@@ -1,0 +1,30 @@
+{
+  "name": "balm-ui",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "gulp",
+    "prod": "gulp --production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/balmjs/balm-ui.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/balmjs/balm-ui/issues"
+  },
+  "homepage": "https://github.com/balmjs/balm-ui#readme",
+  "dependencies": {
+    "vue": "^2.0.3"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-stage-2": "^6.17.0",
+    "balm": "^0.5.1",
+    "gulp": "^3.9.1",
+    "vue-loader": "^9.7.0"
+  }
+}

@@ -5,22 +5,21 @@ balm.config = {
     source: 'src'
   },
   paths: {
-
+    source: {
+      js: ''
+    }
   },
   styles: {
-
+    ext: 'scss'
   },
   scripts: {
     entry: {
-      main: './src/js/index.js'
+      main: './src/main.js'
     },
     loaders: [{
       test: /\.vue$/,
       loader: 'vue'
-    }],
-    alias: {
-      vue: 'vue/dist/vue.js'
-    }
+    }]
   }
 };
 

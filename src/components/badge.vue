@@ -8,10 +8,6 @@
 export default {
   name: 'ui-badge',
   props: {
-    isLink: {
-      type: Boolean,
-      default: false
-    },
     // Applies open-circle effect to badge
     noBackground: {
       type: Boolean,

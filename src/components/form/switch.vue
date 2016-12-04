@@ -1,7 +1,7 @@
 <template>
   <label :class="className" :for="id">
-    <input type="radio" class="mdl-radio__button" :id="id" :name="name" :value="value" v-model="currentValue">
-    <span class="mdl-radio__label" v-if="!hideLabel">
+    <input type="checkbox" class="mdl-switch__input" :id="id" :name="name" :value="value" v-model="currentValue">
+    <span class="mdl-switch__label">
       <slot>
         <span v-text="label"></span>
       </slot>
@@ -10,15 +10,14 @@
 </template>
 
 <script>
-import mdlRadio from '../../styles/radio/radio';
+import mdlSwitch from '../../styles/switch/switch';
 
 /**
  * @example
- * <ui-radio name="gender" value="F" :model="formData.gender" @input="chooseSex">Female</ui-radio>
- * <ui-radio name="gender" value="M" :model="formData.gender" @input="chooseSex">Male</ui-radio>
+ * <ui-switch name="open" :model="formData.open" @input="changeSwitch">On/Off</ui-switch>
  */
 export default {
-  name: 'ui-radio',
+  name: 'ui-switch',
   props: {
     id: String,
     name: {
@@ -26,15 +25,10 @@ export default {
       required: true
     },
     label: String,
-    hideLabel: {
-      type: Boolean,
-      default: false
-    },
-    value: [String, Number, Boolean],
+    value: Boolean,
     model: {
-      type: [String, Number, Boolean],
-      required: true,
-      default: ''
+      type: Boolean,
+      required: true
     },
     // Applies ripple click effect
     effect: {
@@ -50,8 +44,8 @@ export default {
   computed: {
     className() {
       return {
-        'mdl-radio': true,
-        'mdl-js-radio': true,
+        'mdl-switch': true,
+        'mdl-js-switch': true,
         'mdl-js-ripple-effect': this.effect
       };
     }

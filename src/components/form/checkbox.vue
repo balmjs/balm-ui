@@ -1,7 +1,7 @@
 <template>
   <label :class="className" :for="id">
-    <input type="radio" class="mdl-radio__button" :id="id" :name="name" :value="value" v-model="currentValue">
-    <span class="mdl-radio__label" v-if="!hideLabel">
+    <input type="checkbox" class="mdl-checkbox__input" :id="id" :name="name" :value="value" v-model="currentValue">
+    <span class="mdl-checkbox__label" v-if="!hideLabel">
       <slot>
         <span v-text="label"></span>
       </slot>
@@ -10,15 +10,16 @@
 </template>
 
 <script>
-import mdlRadio from '../../styles/radio/radio';
+import mdlCheckbox from '../../styles/checkbox/checkbox';
 
 /**
  * @example
- * <ui-radio name="gender" value="F" :model="formData.gender" @input="chooseSex">Female</ui-radio>
- * <ui-radio name="gender" value="M" :model="formData.gender" @input="chooseSex">Male</ui-radio>
+ * <ui-checkbox name="options[]" value="1" :model="formData.options" @input="chooseOption">Option A</ui-checkbox>
+ * <ui-checkbox name="options[]" value="2" :model="formData.options" @input="chooseOption">Option B</ui-checkbox>
+ * <ui-checkbox name="options[]" value="3" :model="formData.options" @input="chooseOption">Option C</ui-checkbox>
  */
 export default {
-  name: 'ui-radio',
+  name: 'ui-checkbox',
   props: {
     id: String,
     name: {
@@ -32,7 +33,7 @@ export default {
     },
     value: [String, Number, Boolean],
     model: {
-      type: [String, Number, Boolean],
+      type: [Array, String, Number, Boolean],
       required: true,
       default: ''
     },
@@ -44,14 +45,14 @@ export default {
   },
   data() {
     return {
-      currentValue: this.model
+      currentValue: Array.isArray(this.model) ? this.model : [this.model]
     };
   },
   computed: {
     className() {
       return {
-        'mdl-radio': true,
-        'mdl-js-radio': true,
+        'mdl-checkbox': true,
+        'mdl-js-checkbox': true,
         'mdl-js-ripple-effect': this.effect
       };
     }

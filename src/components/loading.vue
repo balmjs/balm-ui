@@ -16,8 +16,8 @@ const PROGRESS = 1; // Progress bar
 export default {
   name: 'ui-loading',
   props: {
-    $type: {
-      type: Number,
+    type: {
+      type: [Number, String],
       default: 0
     },
     // Makes the spinner visible and animated
@@ -35,7 +35,7 @@ export default {
     className() {
       let className = {};
 
-      switch (this.$type) {
+      switch (+this.type) {
         case SPINNER:
           className = {
             'mdl-spinner': true,
@@ -56,7 +56,7 @@ export default {
       return className;
     },
     isSpinner() {
-      return this.$type === SPINNER;
+      return +this.type === SPINNER;
     }
   }
 };

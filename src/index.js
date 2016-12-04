@@ -8,7 +8,7 @@ import UiCheckbox from './components/form/checkbox';
 import UiRadio from './components/form/radio';
 import UiIcon from './components/form/icon';
 import UiSwitch from './components/form/switch';
-// import UiTextfield from './components/form/textfield';
+import UiTextfield from './components/form/textfield';
 
 const BalmUI = {
   UiBadge,
@@ -20,7 +20,7 @@ const BalmUI = {
   UiRadio,
   UiIcon,
   UiSwitch,
-  // UiTextfield,
+  UiTextfield,
   install(Vue) {
     Vue.component('ui-badge', UiBadge);
     Vue.component('ui-button', UiButton);
@@ -31,7 +31,7 @@ const BalmUI = {
     Vue.component('ui-radio', UiRadio);
     Vue.component('ui-icon', UiIcon);
     Vue.component('ui-switch', UiSwitch);
-    // Vue.component('ui-textfield', UiTextfield);
+    Vue.component('ui-textfield', UiTextfield);
     // Vue.prototype.$ui = mdlComponentHandler;
   }
 };

@@ -12,6 +12,10 @@
       </template>
     </ui-list>
     <div>
+      <ui-textfield name="username" :model="formData.username" @input="changeText" pattern="-?[0-9]*(\.[0-9]+)?" label="用户名" error="请输入数字">
+      </ui-textfield>
+    </div>
+    <div>
       <p>复选框</p>
       <ui-checkbox name="answer[]" value="1" :model="formData.answer" @input="chooseAnswer">选项A</ui-checkbox>
       <ui-checkbox name="answer[]" value="2" :model="formData.answer" @input="chooseAnswer">选项B</ui-checkbox>
@@ -42,6 +46,7 @@ export default {
   data() {
     return {
       formData: {
+        username: '',
         gender: 'M',
         answer: ['1','3'],
         options: ['a'],
@@ -99,8 +104,11 @@ export default {
     changeSwitch(val) {
       this.formData.switch1 = val;
     },
+    changeText(val) {
+      this.formData.username = val;
+    },
     submit() {
-      console.log('switch1', this.formData.switch1);
+      console.log('username', this.formData.username);
     }
   },
   created() {

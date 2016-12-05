@@ -1,50 +1,81 @@
 <template>
   <div class="container">
-    <ui-badge :class="'test'" value="99+" noBackground overlap>
-      <b>Badge</b>
-    </ui-badge>
-    <ui-button primary @click="show">Primary Button</ui-button>
-    <ui-button effect @click="hide">Button</ui-button>
     <ui-loading isActive></ui-loading>
-    <ui-list :items="items2" threeLine>
-      <template slot="action" scope="props">
-        <ui-button effect @click.native="test(props.item)">点赞</ui-button>
-      </template>
-    </ui-list>
-    <div>
-      <ui-textfield id="username" name="username" :model="formData.username" @input="changeText" pattern="-?[0-9]*(\.[0-9]+)?" label="用户名" error="请输入数字">
-      </ui-textfield>
-    </div>
-    <div>
-      <p>复选框</p>
-      <ui-checkbox name="answer[]" value="1" :model="formData.answer" @input="chooseAnswer">选项A</ui-checkbox>
-      <ui-checkbox name="answer[]" value="2" :model="formData.answer" @input="chooseAnswer">选项B</ui-checkbox>
-      <ui-checkbox name="answer[]" value="3" :model="formData.answer" @input="chooseAnswer">选项C</ui-checkbox>
-      <p>单选框</p>
-      <ui-radio name="sex" value="F" :model="formData.gender" @input="chooseSex">女</ui-radio>
-      <ui-radio name="sex" value="M" :model="formData.gender" @input="chooseSex">男</ui-radio>
-      <p>图标</p>
-      <ui-icon name="options[]" value="a" :model="formData.options" @input="chooseIcon">X</ui-icon>
-      <ui-icon name="options[]" value="c" :model="formData.options" @input="chooseIcon">Y</ui-icon>
-      <ui-icon name="options[]" value="b" :model="formData.options" @input="chooseIcon">Z</ui-icon>
-      <p>开关</p>
-      <ui-switch name="switch1" :model="formData.switch1" @input="changeSwitch">On/Off</ui-switch>
-    </div>
-    <ui-button primary @click.native="submit">测试按钮</ui-button>
+    <ui-table
+      :thead="table.thead"
+      :tbody="table.tbody"
+      :action="table.action"
+      :checkbox="table.checkbox"
+      :data="table.data"
+      @edit="onEdit"
+      @delete="onDelete">
+    </ui-table>
   </div>
 </template>
 
 <script>
-// <ui-dialog>
-//       <span slot="title">标题</span>
-//       <p slot="content">内容</p>
-//     </ui-dialog>
+// :col="table.col"
+//       :tfoot="table.tfoot"
+//
+//
+//       :checkList="checkList"
 import UiDialog from '../components/dialog';
 import UiLoading from '../components/loading';
 
 export default {
   data() {
     return {
+      checkList: [],
+      table: {
+        col: 3,
+        checkbox: 'left',
+        thead: ['ID', 'Name', 'Email', 'OP'],
+        // thead: [
+        //   ['ID', 'Name', 'Email', {
+        //     data: 'OP',
+        //     row: 2
+        //   }],
+        //   [
+        //     'Key',
+        //     {
+        //       data: 'Info',
+        //       col: 2,
+        //       class: 'test'
+        //     }
+        //   ]
+        // ],
+        tbody: ['id', 'name', 'email'],
+        tfoot: [],
+        data: [
+        {
+          id: 1,
+          name: 'a',
+          email: 'a@123.com'
+        },
+        {
+          id: 2,
+          name: 'b',
+          email: 'b@123.com'
+        },
+        {
+          id: 3,
+          name: 'c',
+          email: 'c@123.com'
+        }
+        ],
+        action: [
+        {
+          type: 'button',
+          name: 'edit',
+          value: '编辑'
+        },
+        {
+          type: 'button',
+          name: 'delete',
+          value: '删除'
+        }
+        ]
+      },
       formData: {
         username: '',
         gender: 'M',
@@ -83,6 +114,12 @@ export default {
     };
   },
   methods: {
+    onEdit(data) {
+      console.log('edit', data);
+    },
+    onDelete(data) {
+      console.log('delete', data);
+    },
     show() {
       UiDialog.close();
     },
@@ -121,6 +158,45 @@ export default {
     });
   }
 };
+
+// <ui-dialog>
+//       <span slot="title">标题</span>
+//       <p slot="content">内容</p>
+//     </ui-dialog>
+
+
+// <ui-badge :class="'test'" value="99+" noBackground overlap>
+//       <b>Badge</b>
+//     </ui-badge>
+//     <ui-button primary @click="show">Primary Button</ui-button>
+//     <ui-button effect @click="hide">Button</ui-button>
+//
+//     <ui-list :items="items2" threeLine>
+//       <template slot="action" scope="props">
+//         <ui-button effect @click.native="test(props.item)">点赞</ui-button>
+//       </template>
+//     </ui-list>
+// <div>
+//       <ui-textfield id="username" name="username" :model="formData.username" @input="changeText" pattern="-?[0-9]*(\.[0-9]+)?" label="用户名" error="请输入数字">
+//       </ui-textfield>
+//     </div>
+//     <div>
+//       <p>复选框</p>
+//       <ui-checkbox name="answer[]" value="1" :model="formData.answer" @input="chooseAnswer">选项A</ui-checkbox>
+//       <ui-checkbox name="answer[]" value="2" :model="formData.answer" @input="chooseAnswer">选项B</ui-checkbox>
+//       <ui-checkbox name="answer[]" value="3" :model="formData.answer" @input="chooseAnswer">选项C</ui-checkbox>
+//       <p>单选框</p>
+//       <ui-radio name="sex" value="F" :model="formData.gender" @input="chooseSex">女</ui-radio>
+//       <ui-radio name="sex" value="M" :model="formData.gender" @input="chooseSex">男</ui-radio>
+//       <p>图标</p>
+//       <ui-icon name="options[]" value="a" :model="formData.options" @input="chooseIcon">X</ui-icon>
+//       <ui-icon name="options[]" value="c" :model="formData.options" @input="chooseIcon">Y</ui-icon>
+//       <ui-icon name="options[]" value="b" :model="formData.options" @input="chooseIcon">Z</ui-icon>
+//       <p>开关</p>
+//       <ui-switch name="switch1" :model="formData.switch1" @input="changeSwitch">On/Off</ui-switch>
+//     </div>
+//     <ui-button primary @click.native="submit">测试按钮</ui-button>
+
 </script>
 
 <style>

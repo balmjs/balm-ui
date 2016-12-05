@@ -9,6 +9,7 @@ import UiRadio from './components/form/radio';
 import UiIcon from './components/form/icon';
 import UiSwitch from './components/form/switch';
 import UiTextfield from './components/form/textfield';
+import UiTable from './components/table';
 
 const BalmUI = {
   UiBadge,
@@ -21,6 +22,7 @@ const BalmUI = {
   UiIcon,
   UiSwitch,
   UiTextfield,
+  UiTable,
   install(Vue) {
     Vue.component('ui-badge', UiBadge);
     Vue.component('ui-button', UiButton);
@@ -32,6 +34,7 @@ const BalmUI = {
     Vue.component('ui-icon', UiIcon);
     Vue.component('ui-switch', UiSwitch);
     Vue.component('ui-textfield', UiTextfield);
+    Vue.component('ui-table', UiTable);
     // Vue.prototype.$ui = mdlComponentHandler;
   }
 };

@@ -12,7 +12,7 @@
       </template>
     </ui-list>
     <div>
-      <ui-textfield name="username" :model="formData.username" @input="changeText" pattern="-?[0-9]*(\.[0-9]+)?" label="用户名" error="请输入数字">
+      <ui-textfield id="username" name="username" :model="formData.username" @input="changeText" pattern="-?[0-9]*(\.[0-9]+)?" label="用户名" error="请输入数字">
       </ui-textfield>
     </div>
     <div>

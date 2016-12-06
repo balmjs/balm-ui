@@ -1,35 +1,43 @@
 <template>
   <div class="container">
     <ui-loading isActive></ui-loading>
+    <ui-textfield id="username" name="username" :model="formData.username" @input="changeText" pattern="-?[0-9]*(\.[0-9]+)?" label="用户名" error="请输入数字">
+
+    </ui-textfield>
     <ui-table
+      :data="table.data"
       :thead="table.thead"
       :tbody="table.tbody"
       :action="table.action"
-      :checkbox="table.checkbox"
-      :data="table.data"
+      :selectable="table.selectable"
+      :checkList="table.checkList"
       @edit="onEdit"
-      @delete="onDelete">
+      @delete="onDelete"
+      @checkbox="onChecked">
     </ui-table>
   </div>
 </template>
 
 <script>
 // :col="table.col"
-//       :tfoot="table.tfoot"
-//
-//
-//       :checkList="checkList"
-import UiDialog from '../components/dialog';
-import UiLoading from '../components/loading';
+// :tfoot="table.tfoot"
+// import UiDialog from '../components/dialog';
+// import UiLoading from '../components/loading';
 
 export default {
   data() {
     return {
-      checkList: [],
       table: {
         col: 3,
-        checkbox: 'left',
-        thead: ['ID', 'Name', 'Email', 'OP'],
+        selectable: 'left',
+        checkList: [],
+        thead: [{
+          data: 'ID',
+          sort: 'asc'
+        }, {
+          data: 'Name',
+          sort: 'asc'
+        }, 'Email', 'OP'],
         // thead: [
         //   ['ID', 'Name', 'Email', {
         //     data: 'OP',
@@ -65,9 +73,14 @@ export default {
         ],
         action: [
         {
-          type: 'button',
+          type: 'link',
+          name: 'view',
+          value: '查看详情'
+        },
+        {
+          type: 'icon',
           name: 'edit',
-          value: '编辑'
+          value: '<i class="material-icons">mood</i>'
         },
         {
           type: 'button',
@@ -120,6 +133,9 @@ export default {
     onDelete(data) {
       console.log('delete', data);
     },
+    onChecked(data) {
+      this.table.checkList = data;
+    },
     show() {
       UiDialog.close();
     },
@@ -149,13 +165,13 @@ export default {
     }
   },
   created() {
-    UiDialog.alert({
-      title: '弹出框标题',
-      message: '弹出框消息',
-      callback: () => {
-        console.log('返回值');
-      }
-    });
+    // UiDialog.alert({
+    //   title: '弹出框标题',
+    //   message: '弹出框消息',
+    //   callback: () => {
+    //     console.log('返回值');
+    //   }
+    // });
   }
 };
 

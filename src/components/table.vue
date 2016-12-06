@@ -3,9 +3,9 @@
     <slot name="thead" :data="theadData">
       <thead>
         <tr v-for="row in theadData">
-          <th v-for="cell in row" :colspan="cell.col" :rowspan="cell.row" :class="cell.class">
-            <span v-if="cell.data" v-text="cell.data"></span>
-            <component v-if="cell.isCheckbox" is="ui-checkbox" name="checkAll" :value="cell.value" :model="checkAll"></component>
+          <th v-for="cell in row" :colspan="cell.col" :rowspan="cell.row" :class="[cell.class, {'mdl-data-table__header--sorted-ascending': cell.sort === 'asc'}, {'mdl-data-table__header--sorted-descending': cell.sort === 'desc'}]">
+            <span v-if="cell.data" v-text="cell.data" @click="sort(cell)"></span>
+            <ui-checkbox v-if="cell.isCheckbox" name="checkAll" :value="cell.value" :model="isCheckAll" @input="onCheckAll"></ui-checkbox>
           </th>
         </tr>
       </thead>
@@ -15,8 +15,8 @@
         <tr v-for="row in tbodyData">
           <td v-for="cell in row" :colspan="cell.col" :rowspan="cell.row" :class="cell.class">
             <span v-if="cell.data" v-text="cell.data"></span>
-            <component v-if="cell.isCheckbox" is="ui-checkbox" name="checkOne[]" :value="cell.value" :model="checkOne"></component>
-            <component v-if="Array.isArray(cell)" v-for="action in cell" is="ui-button" @click.native="doAction(action.name, action.data)" v-text="action.value"></component>
+            <ui-checkbox v-if="cell.isCheckbox" name="checkOne[]" :value="cell.value" :model="currentCheckList" @input="onCheckOne"></ui-checkbox>
+            <ui-button v-if="Array.isArray(cell)" v-for="action in cell" :icon="action.icon" :link="action.link" @click.native="doAction(action.name, action.data)" v-html="action.value"></ui-button>
           </td>
         </tr>
       </tbody>
@@ -45,10 +45,15 @@ const T_FOOT = 'tfoot';
 const CELL_DATA = 'data';
 const CELL_COLSPAN = 'col';
 const CELL_ROWSPAN = 'row';
+const CELL_SORT = 'sort';
 const CELL_CLASS = 'class';
 const ACTION_LINK = 'link';
 const ACTION_BUTTON = 'button';
 const ACTION_ICON = 'icon';
+const POSITION_LEFT = 'left';
+const POSITION_RIGHT = 'right';
+const SORT_ASC = 'asc';
+const SORT_DESC = 'desc';
 
 export default {
   name: 'ui-table',
@@ -84,42 +89,29 @@ export default {
       }
     },
     action: Array,
-    checkbox: {
-      type: String,
-      default: 'left' // or 'right'
+    selectable: {
+      type: [String, Boolean],
+      default: false
     },
     checkList: {
       type: Array,
       default: function() {
         return [];
       }
-    },
-    selectable: {
-      type: Boolean,
-      default: false
     }
   },
   data() {
     return {
-      checkboxData: ''
+      isCheckAll: false,
+      currentCheckList: this.checkList,
+      currentData: this.data
     };
   },
   computed: {
     className() {
       return {
-        table: {
-          'mdl-data-table': true,
-          'mdl-js-data-table': true,
-          'mdl-data-table--selectable': this.selectable
-        },
-        // TODO:
-        thead: {
-          'mdl-data-table__header--sorted-ascending': this.asc,
-          'mdl-data-table__header--sorted-descending': this.desc
-        },
-        cell: {
-          'mdl-data-table__cell--non-numeric': this.nonNum
-        }
+        'mdl-data-table': true,
+        'mdl-js-data-table': true
       };
     },
     theadData() {
@@ -127,15 +119,15 @@ export default {
         type: T_HEAD,
         table: this.thead,
         data: this.thead,
-        checkbox: this.checkbox
+        selectable: this.selectable
       });
     },
     tbodyData() {
       return this.getData({
         type: T_BODY,
         table: this.tbody,
-        data: this.data,
-        checkbox: this.checkbox,
+        data: this.currentData,
+        selectable: this.selectable,
         action: this.action
       });
     },
@@ -145,21 +137,6 @@ export default {
       //   type: T_FOOT,
       //   table: this.tfoot
       // });
-    },
-    checkAll() {
-      let dataCount = this.data.length;
-
-      let beEqual = this.checkList.length === dataCount;
-
-      let ids = this.data.map(value => {
-        return value[this.keyField];
-      });
-      let exists = this.checkList.every(id => ids.indexOf(id) > -1);
-
-      return dataCount && beEqual && exists;
-    },
-    checkOne() {
-      return this.checkList;
     }
   },
   methods: {
@@ -170,9 +147,26 @@ export default {
         result[CELL_DATA] = data;
       } else if (isObject(data)) {
         result[CELL_DATA] = data[CELL_DATA];
-        result[CELL_COLSPAN] = data[CELL_COLSPAN];
-        result[CELL_ROWSPAN] = data[CELL_ROWSPAN];
-        result[CELL_CLASS] = data[CELL_CLASS];
+        if (data[CELL_COLSPAN]) {
+          result[CELL_COLSPAN] = data[CELL_COLSPAN];
+        }
+        if (data[CELL_ROWSPAN]) {
+          result[CELL_ROWSPAN] = data[CELL_ROWSPAN];
+        }
+        if (data[CELL_SORT]) {
+          result[CELL_SORT] = data[CELL_SORT];
+        }
+
+        let className = [];
+        if (data[CELL_CLASS]) {
+          className.push(data[CELL_CLASS]);
+        }
+        if (data.noNum) {
+          className.push('mdl-data-table__cell--non-numeric');
+        }
+        if (className.length) {
+          result[CELL_CLASS] = className.join(' ');
+        }
       } else {
         console.warn('Invalid cell data!');
       }
@@ -185,9 +179,9 @@ export default {
       switch (type) {
         case T_HEAD:
           cell = {
+            row: key, // row number
             isCheckbox: true,
-            value: true,
-            row: key // row number
+            value: true
           };
           break;
         case T_BODY:
@@ -198,9 +192,9 @@ export default {
           break;
       }
 
-      if (this.checkbox === 'left') {
+      if (this.selectable === POSITION_LEFT) {
         result.unshift(cell);
-      } else {
+      } else if (this.selectable === POSITION_RIGHT) {
         result.push(cell);
       }
 
@@ -210,20 +204,20 @@ export default {
       let cell = [];
 
       for (let action of this.action) {
+        let cellData = {
+          name: action.name,
+          value: action.value,
+          data: data
+        };
         switch (action.type.toLowerCase()) {
           case ACTION_LINK:
-            break;
-          case ACTION_BUTTON:
-            cell.push({
-              isAction: true,
-              name: action.name,
-              value: action.value,
-              data: data
-            });
+            cellData.link = true;
             break;
           case ACTION_ICON:
+            cellData.icon = true;
             break;
         }
+        cell.push(cellData);
       }
 
       if (cell.length) {
@@ -257,7 +251,7 @@ export default {
               }
             }
             // add checkbox
-            if (object.checkbox) {
+            if (object.selectable) {
               result[0] = this.getCheckbox(type, result[0], data.length);
             }
             break;
@@ -285,15 +279,47 @@ export default {
     },
     doAction(name, data) {
       this.$emit(name, data);
+    },
+    onCheckOne(data) {
+      this.currentCheckList = data;
+    },
+    onCheckAll(checked) {
+      this.isCheckAll = checked;
+    },
+    checkAll() {
+      let dataCount = this.currentData.length; // not empty
+      let beEqual = this.currentCheckList.length === dataCount;
+      let ids = this.currentData.map(value => value[this.keyField]);
+      let exists = this.currentCheckList.every(id => ids.indexOf(id) > -1);
+
+      this.isCheckAll = dataCount && beEqual && exists;
+    },
+    sort(data) {
+      // TODO
+      console.log(data.sort);
+      if (data.sort === SORT_ASC) {
+        data.sort = SORT_DESC;
+        // this.currentData
+      } else if (data.sort === SORT_DESC) {
+        data.sort = SORT_ASC;
+      }
     }
   },
   watch: {
-    // checkbox(val) {
-    //   // this.currentCheckboxData = val;
-    // },
-    // currentData(val) {
-    //   // this.$emit('input', val);
-    // }
+    checkList(val) {
+      this.currentCheckList = val;
+    },
+    currentCheckList(val) {
+      this.checkAll();
+      this.$emit('checkbox', val);
+    },
+    isCheckAll(val) {
+      let lastCheckList = (this.currentCheckList.length === this.currentData.length) ? [] : this.currentCheckList;
+      this.currentCheckList = val ? this.currentData.map(value => value[this.keyField]) : lastCheckList;
+    }
+  },
+  created() {
+    this.checkAll();
   }
 };
 </script>

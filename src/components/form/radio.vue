@@ -34,7 +34,7 @@ export default {
     model: {
       type: [String, Number, Boolean],
       required: true,
-      default: ''
+      default: false
     },
     // Applies ripple click effect
     effect: {

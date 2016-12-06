@@ -57,6 +57,10 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    link: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -73,9 +77,25 @@ export default {
         'mdl-button--primary': this.primary,
         'mdl-button--accent': this.accent,
         'mdl-js-ripple-effect': this.effect,
-        'mdl-button--disabled': this.disabled
+        'mdl-button--disabled': this.disabled,
+        'mdl-button--link': this.link,
       };
     }
   }
 };
 </script>
+
+<style scoped>
+.mdl-button--link {
+  line-height: 1;
+  display: inline;
+  width: auto;
+  height: auto;
+  padding: 0;
+}
+
+.mdl-button--link:hover {
+  color: rgb(63, 81, 181);
+  background-color: transparent;
+}
+</style>

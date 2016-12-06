@@ -35,7 +35,7 @@ export default {
     model: {
       type: [Array, String, Number, Boolean],
       required: true,
-      default: ''
+      default: false
     },
     // Applies ripple click effect
     effect: {
@@ -45,7 +45,7 @@ export default {
   },
   data() {
     return {
-      currentValue: Array.isArray(this.model) ? this.model : [this.model]
+      currentValue: this.model
     };
   },
   computed: {
@@ -53,8 +53,13 @@ export default {
       return {
         'mdl-checkbox': true,
         'mdl-js-checkbox': true,
-        'mdl-js-ripple-effect': this.effect
+        'mdl-js-ripple-effect': this.effect,
+        'is-upgraded': true,
+        'is-checked': this.isChecked
       };
+    },
+    isChecked() {
+      return Array.isArray(this.model) ? this.model.indexOf(this.value) > -1 : (this.model == this.value || this.model === true);
     }
   },
   watch: {

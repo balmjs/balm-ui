@@ -5,70 +5,80 @@
 
     </ui-textfield>
     <ui-table
+      :col="table.col"
       :data="table.data"
       :thead="table.thead"
       :tbody="table.tbody"
+      :tfoot="table.tfoot"
       :action="table.action"
       :selectable="table.selectable"
       :checkList="table.checkList"
       @edit="onEdit"
       @delete="onDelete"
-      @checkbox="onChecked">
+      @selected="onSelected">
     </ui-table>
   </div>
 </template>
 
 <script>
-// :col="table.col"
-// :tfoot="table.tfoot"
-// import UiDialog from '../components/dialog';
-// import UiLoading from '../components/loading';
-
 export default {
   data() {
     return {
       table: {
-        col: 3,
+        col: 5,
         selectable: 'left',
         checkList: [],
         thead: [{
-          data: 'ID',
-          sort: 'asc'
+          value: 'ID',
+          sort: 'asc',
+          by: 'id'
         }, {
-          data: 'Name',
-          sort: 'asc'
+          value: 'Name',
+          sort: 'asc',
+          by: 'name'
         }, 'Email', 'OP'],
         // thead: [
-        //   ['ID', 'Name', 'Email', {
-        //     data: 'OP',
+        //   [{
+        //     value: 'ID',
+        //     sort: 'asc',
+        //     by: 'id'
+        //   }, {
+        //     value: 'Name',
+        //     sort: 'desc',
+        //     by: 'name'
+        //   }, 'Email', {
+        //     value: 'OP',
         //     row: 2
         //   }],
         //   [
         //     'Key',
         //     {
-        //       data: 'Info',
+        //       value: 'Info',
         //       col: 2,
         //       class: 'test'
         //     }
         //   ]
         // ],
         tbody: ['id', 'name', 'email'],
-        tfoot: [],
+        tfoot: [{
+          name: 'avg',
+          value: 'id'
+        }, null, null],
         data: [
         {
-          id: 1,
-          name: 'a',
-          email: 'a@123.com'
-        },
-        {
-          id: 2,
+          id: 30,
           name: 'b',
-          email: 'b@123.com'
+          email: 'make@123.com'
         },
         {
-          id: 3,
+          id: 10,
+          name: 'w',
+          email: 'air@123.com'
+        },
+        {
+          id: 60,
           name: 'c',
-          email: 'c@123.com'
+          email: 'fun@123.com'
         }
         ],
         action: [
@@ -133,8 +143,11 @@ export default {
     onDelete(data) {
       console.log('delete', data);
     },
-    onChecked(data) {
+    onSelected(data) {
       this.table.checkList = data;
+    },
+    onSort(data) {
+      console.log('sort', data);
     },
     show() {
       UiDialog.close();

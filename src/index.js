@@ -10,6 +10,10 @@ import UiIcon from './components/form/icon';
 import UiSwitch from './components/form/switch';
 import UiTextfield from './components/form/textfield';
 import UiTable from './components/table';
+import UiLayout from './components/layout/layout';
+import UiTabs from './components/layout/tabs';
+import UiFooter from './components/layout/footer';
+import UiMiniFooter from './components/layout/mini-footer';
 
 const BalmUI = {
   UiBadge,
@@ -23,6 +27,10 @@ const BalmUI = {
   UiSwitch,
   UiTextfield,
   UiTable,
+  UiLayout,
+  UiTabs,
+  UiFooter,
+  UiMiniFooter,
   install(Vue) {
     Vue.component('ui-badge', UiBadge);
     Vue.component('ui-button', UiButton);
@@ -35,6 +43,10 @@ const BalmUI = {
     Vue.component('ui-switch', UiSwitch);
     Vue.component('ui-textfield', UiTextfield);
     Vue.component('ui-table', UiTable);
+    Vue.component('ui-layout', UiLayout);
+    Vue.component('ui-tabs', UiTabs);
+    Vue.component('ui-footer', UiFooter);
+    Vue.component('ui-mini-footer', UiMiniFooter);
     // Vue.prototype.$ui = mdlComponentHandler;
   }
 };

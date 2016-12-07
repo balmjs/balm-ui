@@ -4,7 +4,7 @@
       <span v-text="caption"></span>
     </caption>
     <colgroup v-if="col">
-      <col v-for="i in col" :class="'col-' + i">
+      <col v-for="i in col" :class="`col-${i}`">
     </colgroup>
     <slot name="thead" :data="theadData">
       <thead>

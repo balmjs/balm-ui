@@ -11,6 +11,7 @@
 
 <script>
 import mdlIconToggle from '../../styles/icon-toggle/icon-toggle';
+import mdlRipple from '../../styles/ripple/ripple';
 
 /**
  * @example

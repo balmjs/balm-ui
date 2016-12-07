@@ -11,6 +11,7 @@
 
 <script>
 import mdlCheckbox from '../../styles/checkbox/checkbox';
+import mdlRipple from '../../styles/ripple/ripple';
 
 /**
  * @example

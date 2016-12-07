@@ -11,6 +11,7 @@
 
 <script>
 import mdlSwitch from '../../styles/switch/switch';
+import mdlRipple from '../../styles/ripple/ripple';
 
 /**
  * @example

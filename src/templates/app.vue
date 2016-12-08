@@ -1,8 +1,9 @@
 <template>
   <div class="container">
-    <ui-grid :data="grid"></ui-grid>
-    <!-- <ui-tabs :tab="tabs.tab" :panel="tabs.panel" effect>
-    </ui-tabs> -->
+    <ui-tabs :tab="tabs.tab" :panel="tabs.panel">
+      <template slot="panel0">安顺地区覅的设计方案</template>
+      <template slot="panel2">asdfaosdjfoadjfa</template>
+    </ui-tabs>
     <ui-badge :class="'test'" value="99+" noBackground overlap>
       <b>Badge</b>
     </ui-badge>
@@ -13,6 +14,7 @@
         <ui-button effect @click.native="test(props.item)">点赞</ui-button>
       </template>
     </ui-list>
+    <ui-grid :data="grid"></ui-grid>
     <ui-loading isActive></ui-loading>
     <ui-table
       :col="table.col"

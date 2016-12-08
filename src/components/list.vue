@@ -58,6 +58,7 @@
 
 <script>
 export default {
+  name: 'ui-list',
   props: {
     items: {
       type: Array,

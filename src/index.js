@@ -11,6 +11,7 @@ import UiSwitch from './components/form/switch';
 import UiTextfield from './components/form/textfield';
 import UiTable from './components/table';
 import UiLayout from './components/layout/layout';
+import UiGrid from './components/layout/grid';
 import UiTabs from './components/layout/tabs';
 import UiFooter from './components/layout/footer';
 import UiMiniFooter from './components/layout/mini-footer';
@@ -28,6 +29,7 @@ const BalmUI = {
   UiTextfield,
   UiTable,
   UiLayout,
+  UiGrid,
   UiTabs,
   UiFooter,
   UiMiniFooter,
@@ -44,6 +46,7 @@ const BalmUI = {
     Vue.component('ui-textfield', UiTextfield);
     Vue.component('ui-table', UiTable);
     Vue.component('ui-layout', UiLayout);
+    Vue.component('ui-grid', UiGrid);
     Vue.component('ui-tabs', UiTabs);
     Vue.component('ui-footer', UiFooter);
     Vue.component('ui-mini-footer', UiMiniFooter);

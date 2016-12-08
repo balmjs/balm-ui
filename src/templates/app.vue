@@ -1,7 +1,8 @@
 <template>
   <div class="container">
-    <ui-tabs :tab="tabs.tab" :panel="tabs.panel">
-    </ui-tabs>
+    <ui-grid :data="grid"></ui-grid>
+    <!-- <ui-tabs :tab="tabs.tab" :panel="tabs.panel" effect>
+    </ui-tabs> -->
     <ui-badge :class="'test'" value="99+" noBackground overlap>
       <b>Badge</b>
     </ui-badge>
@@ -52,6 +53,12 @@
 export default {
   data() {
     return {
+      grid: [
+      [2,{
+        col: 4
+      },4, 2],
+      [2,6,4]
+      ],
       tabs: {
         tab: ['菜单1', '菜单2', '菜单3'],
         panel: ['1111111', '2222222', '3333333']

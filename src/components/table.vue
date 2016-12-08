@@ -388,26 +388,28 @@ export default {
       this.isCheckAll = dataCount && beEqual && exists;
     },
     sort(data) {
-      let sortBy = data.by;
-      let currentSort;
+      if (data[CELL_SORT]) {
+        let sortBy = data.by;
+        let currentSort;
 
-      if (data[CELL_SORT] === SORT_ASC) {
-        currentSort = SORT_DESC;
-        this.currentData.sort((a, b) => {
-          return b[sortBy] - a[sortBy];
-        });
-      } else if (data[CELL_SORT] === SORT_DESC) {
-        currentSort = SORT_ASC;
-        this.currentData.sort((a, b) => {
-          return a[sortBy] - b[sortBy];
-        });
-      }
+        if (data[CELL_SORT] === SORT_ASC) {
+          currentSort = SORT_DESC;
+          this.currentData.sort((a, b) => {
+            return b[sortBy] - a[sortBy];
+          });
+        } else if (data[CELL_SORT] === SORT_DESC) {
+          currentSort = SORT_ASC;
+          this.currentData.sort((a, b) => {
+            return a[sortBy] - b[sortBy];
+          });
+        }
 
-      if (data[CELL_INDEX].indexOf(',') === -1) {
-        this.currentThead[data[CELL_INDEX]][CELL_SORT] = currentSort;
-      } else {
-        let index = data[CELL_INDEX].split(',');
-        this.currentThead[index[0]][index[1]][CELL_SORT] = currentSort;
+        if (data[CELL_INDEX].indexOf(',') === -1) {
+          this.currentThead[data[CELL_INDEX]][CELL_SORT] = currentSort;
+        } else {
+          let index = data[CELL_INDEX].split(',');
+          this.currentThead[index[0]][index[1]][CELL_SORT] = currentSort;
+        }
       }
     }
   },

@@ -17,7 +17,7 @@ import UiBadge from './components/badge';
 import UiCard from './components/card';
 // import UiChip from './components/chip';
 // import UiSlider from './components/slider';
-// import UiTooltip from './components/tooltip';
+import UiTooltip from './components/tooltip';
 /**
  * Form
  */
@@ -50,7 +50,7 @@ const BalmUI = {
   UiCard,
   // UiChip,
   // UiSlider,
-  // UiTooltip,
+  UiTooltip,
   UiTextfield,
   UiCheckbox,
   UiRadio,
@@ -73,7 +73,7 @@ const BalmUI = {
     Vue.component('ui-card', UiCard);
     // Vue.component('ui-clip', UiChip);
     // Vue.component('ui-slider', UiSlider);
-    // Vue.component('ui-tooltip', UiTooltip);
+    Vue.component('ui-tooltip', UiTooltip);
     Vue.component('ui-textfield', UiTextfield);
     Vue.component('ui-checkbox', UiCheckbox);
     Vue.component('ui-radio', UiRadio);

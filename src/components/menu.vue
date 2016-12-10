@@ -77,7 +77,7 @@ export default {
       let currentPositon = (this.position > 0 && this.position < POSITIONS.length)
         ? POSITIONS[this.position]
         : POSITION_NONE;
-      let className = this.position ? `mdl-menu--${currentPositon}` : '';
+      let className = currentPositon ? `mdl-menu--${currentPositon}` : '';
       return className;
     }
   },

@@ -13,6 +13,8 @@
 import mdlCheckbox from '../../styles/checkbox/checkbox';
 import mdlRipple from '../../styles/ripple/ripple';
 
+const CALLBACK_INPUT = 'input';
+
 /**
  * @example
  * <ui-checkbox name="options[]" value="1" :model="formData.options" @input="chooseOption">Option A</ui-checkbox>
@@ -68,7 +70,7 @@ export default {
       this.currentValue = val;
     },
     currentValue(val) {
-      this.$emit('input', val);
+      this.$emit(CALLBACK_INPUT, val);
     }
   }
 };

@@ -13,6 +13,8 @@
 import mdlIconToggle from '../../styles/icon-toggle/icon-toggle';
 import mdlRipple from '../../styles/ripple/ripple';
 
+const CALLBACK_INPUT = 'input';
+
 /**
  * @example
  * <ui-icon name="icons[]" value="a" :model="formData.icons" @input="chooseIcon">Icon A</ui-icon>
@@ -58,7 +60,7 @@ export default {
       this.currentValue = val;
     },
     currentValue(val) {
-      this.$emit('input', val);
+      this.$emit(CALLBACK_INPUT, val);
     }
   }
 };

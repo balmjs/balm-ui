@@ -23,6 +23,8 @@
 </template>
 
 <script>
+const CALLBACK_SHARED = 'shared';
+
 /**
  * @example
  * <ui-mini-footer :logo="logo" :links="links" :social="social" @share="onShare"></ui-mini-footer>
@@ -36,7 +38,7 @@ export default {
   },
   methods: {
     share(data) {
-      this.$emit('share', data);
+      this.$emit(CALLBACK_SHARED, data);
     }
   }
 };

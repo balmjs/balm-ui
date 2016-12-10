@@ -13,6 +13,8 @@
 import mdlSwitch from '../../styles/switch/switch';
 import mdlRipple from '../../styles/ripple/ripple';
 
+const CALLBACK_INPUT = 'input';
+
 /**
  * @example
  * <ui-switch name="open" :model="formData.open" @input="changeSwitch">On/Off</ui-switch>
@@ -56,7 +58,7 @@ export default {
       this.currentValue = val;
     },
     currentValue(val) {
-      this.$emit('input', val);
+      this.$emit(CALLBACK_INPUT, val);
     }
   }
 };

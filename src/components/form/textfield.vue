@@ -25,6 +25,8 @@
 <script>
 import mdlTextfield from '../../styles/textfield/textfield';
 
+const CALLBACK_INPUT = 'input';
+
 export default {
   name: 'ui-textfield',
   props: {
@@ -104,7 +106,7 @@ export default {
       this.currentValue = val;
     },
     currentValue(val) {
-      this.$emit('input', val);
+      this.$emit(CALLBACK_INPUT, val);
     }
   }
 };

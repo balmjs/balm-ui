@@ -13,6 +13,8 @@
 import mdlRadio from '../../styles/radio/radio';
 import mdlRipple from '../../styles/ripple/ripple';
 
+const CALLBACK_INPUT = 'input';
+
 /**
  * @example
  * <ui-radio name="gender" value="F" :model="formData.gender" @input="chooseSex">Female</ui-radio>
@@ -62,7 +64,7 @@ export default {
       this.currentValue = val;
     },
     currentValue(val) {
-      this.$emit('input', val);
+      this.$emit(CALLBACK_INPUT, val);
     }
   }
 };

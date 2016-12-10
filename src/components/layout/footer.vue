@@ -42,6 +42,8 @@
 </template>
 
 <script>
+const CALLBACK_SHARED = 'shared';
+
 export default {
   name: 'ui-footer',
   props: {
@@ -53,7 +55,7 @@ export default {
   },
   methods: {
     share(data) {
-      this.$emit('share', data);
+      this.$emit(CALLBACK_SHARED, data);
     }
   }
 };

@@ -1,6 +1,10 @@
 <template>
   <label :class="className" :for="id">
-    <input type="checkbox" class="mdl-icon-toggle__input" :id="id" :name="name" :value="value" v-model="currentValue">
+    <input type="checkbox" class="mdl-icon-toggle__input"
+      :id="id"
+      :name="name"
+      :value="value"
+      v-model="currentValue">
     <span class="mdl-icon-toggle__label">
       <slot>
         <i class="material-icons">icon</i>

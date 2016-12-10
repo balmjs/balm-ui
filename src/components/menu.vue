@@ -6,8 +6,11 @@
       </slot>
     </button>
     <ul :class="[className.outer, positionClassName]" :for="name">
-      <li v-for="menu in currentData" :class="className.inner" :disabled="menu.disabled" @click="handle(menu)">
-        <slot name="menu" :data="menu">{{menu.value || menu}}</slot>
+      <li v-for="menu in currentData"
+        :class="className.inner"
+        :disabled="menu.disabled"
+        @click="handle(menu)">
+        <slot name="menu" :data="menu">{{ menu.value || menu }}</slot>
       </li>
     </ul>
   </div>

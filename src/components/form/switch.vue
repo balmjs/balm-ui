@@ -1,10 +1,12 @@
 <template>
   <label :class="className" :for="id">
-    <input type="checkbox" class="mdl-switch__input" :id="id" :name="name" :value="value" v-model="currentValue">
+    <input type="checkbox" class="mdl-switch__input"
+      :id="id"
+      :name="name"
+      :value="value"
+      v-model="currentValue">
     <span class="mdl-switch__label">
-      <slot>
-        <span v-text="label"></span>
-      </slot>
+      <slot>{{ label }}</slot>
     </span>
   </label>
 </template>

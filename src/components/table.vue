@@ -1,17 +1,26 @@
 <template>
   <table class="mdl-data-table mdl-js-data-table">
-    <caption v-if="caption">
-      <span v-text="caption"></span>
-    </caption>
+    <caption v-if="caption">{{ caption }}</caption>
     <colgroup v-if="col">
       <col v-for="i in col" :class="`col-${i}`">
     </colgroup>
     <slot name="thead" :data="theadData">
       <thead>
         <tr v-for="row in theadData">
-          <th v-for="cell in row" :colspan="cell.col" :rowspan="cell.row" :class="[cell.class, {'mdl-data-table__header--sorted-ascending': cell.sort === 'asc'}, {'mdl-data-table__header--sorted-descending': cell.sort === 'desc'}]">
-            <span v-if="!cell.isCheckbox" v-text="cell.value" @click="sort(cell)"></span>
-            <ui-checkbox v-if="cell.isCheckbox" name="checkAll" :value="cell.value" :model="isCheckAll" @input="onCheckAll"></ui-checkbox>
+          <th v-for="cell in row"
+            :colspan="cell.col"
+            :rowspan="cell.row"
+            :class="[
+              cell.class,
+              {'mdl-data-table__header--sorted-ascending': cell.sort === 'asc'},
+              {'mdl-data-table__header--sorted-descending': cell.sort === 'desc'}
+            ]">
+            <span v-if="!cell.isCheckbox" @click="sort(cell)">{{ cell.value }}</span>
+            <ui-checkbox name="checkAll"
+              v-if="cell.isCheckbox"
+              :value="cell.value"
+              :model="isCheckAll"
+              @input="onCheckAll"></ui-checkbox>
           </th>
         </tr>
       </thead>
@@ -19,10 +28,22 @@
     <slot name="tbody" :data="tbodyData">
       <tbody>
         <tr v-for="row in tbodyData">
-          <td v-for="cell in row" :colspan="cell.col" :rowspan="cell.row" :class="cell.class">
-            <span v-if="!(cell.isCheckbox || cell.isAction)" v-text="cell.value"></span>
-            <ui-checkbox v-if="cell.isCheckbox" name="checkOne[]" :value="cell.value" :model="currentCheckList" @input="onCheckOne"></ui-checkbox>
-            <ui-button v-if="cell.isAction" v-for="action in cell.actions" :icon="action.icon" :link="action.link" @click.native="doAction(action.name, action.data)" v-html="action.value"></ui-button>
+          <td v-for="cell in row"
+            :colspan="cell.col"
+            :rowspan="cell.row"
+            :class="cell.class">
+            <span v-if="!(cell.isCheckbox || cell.isAction)">{{ cell.value }}</span>
+            <ui-checkbox name="checkOne[]"
+              v-if="cell.isCheckbox"
+              :value="cell.value"
+              :model="currentCheckList"
+              @input="onCheckOne"></ui-checkbox>
+            <ui-button v-if="cell.isAction"
+              v-for="action in cell.actions"
+              v-html="action.value"
+              :icon="action.icon"
+              :link="action.link"
+              @click.native="doAction(action.name, action.data)"></ui-button>
           </td>
         </tr>
       </tbody>
@@ -30,9 +51,10 @@
     <slot name="tfoot" :data="tfootData">
       <tfoot v-if="tfootData.length">
         <tr>
-          <td v-for="cell in tfootData" :colspan="cell.col" :rowspan="cell.row" :class="cell.class">
-            <span v-text="cell.value"></span>
-          </td>
+          <td v-for="cell in tfootData"
+            :colspan="cell.col"
+            :rowspan="cell.row"
+            :class="cell.class">{{ cell.value }}</td>
         </tr>
       </tfoot>
     </slot>
@@ -40,9 +62,6 @@
 </template>
 
 <script>
-/**
- * Supoorted: thead(2 rows) + tbody(N rows) + tfoot(1 row)
- */
 import mdlTable from '../styles/data-table/data-table';
 import {isString, isObject} from '../helpers/util';
 import UiButton from './button';
@@ -73,6 +92,9 @@ const SORT_DESC = 'desc';
 const SORT_BY = 'by';
 const CALLBACK_SELECTED = 'selected';
 
+/**
+ * Supoorted: thead(2 rows) + tbody(N rows) + tfoot(1 row)
+ */
 export default {
   name: 'ui-table',
   components: {

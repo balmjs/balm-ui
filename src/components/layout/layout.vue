@@ -4,7 +4,7 @@
       <div class="mdl-layout-icon"></div>
       <div class="mdl-layout__header-row">
         <div class="mdl-layout__title">
-          <slot name="header-title">{{header.title}}</slot>
+          <slot name="header-title">{{ header.title }}</slot>
         </div>
         <slot name="header-left" :className="navigationClassName">
           <ui-navigation :links="header.left"></ui-navigation>
@@ -20,7 +20,7 @@
     </header>
     <div class="mdl-layout__drawer">
       <div class="mdl-layout__title">
-        <slot name="drawer-title">{{drawer.title}}</slot>
+        <slot name="drawer-title">{{ drawer.title }}</slot>
       </div>
       <slot name="drawer-top" :className="navigationClassName">
         <ui-navigation :links="drawer.links"></ui-navigation>

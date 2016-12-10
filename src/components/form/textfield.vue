@@ -1,22 +1,30 @@
 <template>
   <div :class="className.outer">
-    <label v-if="plus" class="mdl-button mdl-js-button mdl-button--icon" :for="id">
+    <label class="mdl-button mdl-js-button mdl-button--icon" v-if="plus" :for="id">
       <slot name="icon">
         <i class="material-icons">icon</i>
       </slot>
     </label>
     <div :class="className.inner">
-      <textarea v-if="isTextarea" class="mdl-textfield__input" :id="id" :name="name" :rows="rows" :placeholder="currentPlaceholder" v-model="currentValue"></textarea>
-      <input v-if="!isTextarea" class="mdl-textfield__input" type="text" :id="id" :name="name" :placeholder="currentPlaceholder" :pattern="pattern" v-model="currentValue">
+      <textarea class="mdl-textfield__input"
+        v-if="isTextarea"
+        :id="id"
+        :name="name"
+        :rows="rows"
+        :placeholder="currentPlaceholder"
+        v-model="currentValue"></textarea>
+      <input class="mdl-textfield__input" type="text"
+        v-if="!isTextarea"
+        :id="id"
+        :name="name"
+        :placeholder="currentPlaceholder"
+        :pattern="pattern"
+        v-model="currentValue">
       <label class="mdl-textfield__label" :for="id">
-        <slot name="label">
-          <span v-text="label"></span>
-        </slot>
+        <slot name="label">{{ label }}</slot>
       </label>
       <span class="mdl-textfield__error" v-if="!noError">
-        <slot name="error">
-          <span v-text="error"></span>
-        </slot>
+        <slot name="error">{{ error }}</slot>
       </span>
     </div>
   </div>

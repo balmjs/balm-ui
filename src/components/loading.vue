@@ -1,7 +1,7 @@
 <template>
   <div :class="className">
     <slot>
-      <div v-if="isSpinner" class="mdl-spinner__circle"></div>
+      <div class="mdl-spinner__circle" v-if="isSpinner"></div>
     </slot>
   </div>
 </template>

@@ -26,7 +26,7 @@
           <span :class="subTitleClassName">{{ item.subTitle }}</span>
         </slot>
         <slot name="text"
-          v-if="item.text && ( twoLine || threeLine)"
+          v-if="item.text && (twoLine || threeLine)"
           :className="textBodyClassName"
           :text="item.text">
           <span :class="textBodyClassName">{{ item.text }}</span>

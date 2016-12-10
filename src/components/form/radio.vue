@@ -1,10 +1,12 @@
 <template>
   <label :class="className" :for="id">
-    <input type="radio" class="mdl-radio__button" :id="id" :name="name" :value="value" v-model="currentValue">
+    <input type="radio" class="mdl-radio__button"
+      :id="id"
+      :name="name"
+      :value="value"
+      v-model="currentValue">
     <span class="mdl-radio__label" v-if="!hideLabel">
-      <slot>
-        <span v-text="label"></span>
-      </slot>
+      <slot>{{ label }}</slot>
     </span>
   </label>
 </template>

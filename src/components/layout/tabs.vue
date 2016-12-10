@@ -1,9 +1,13 @@
 <template>
   <div :class="className">
     <div class="mdl-tabs__tab-bar">
-      <a v-for="(item, index) in tab" :class="['mdl-tabs__tab', isActive(index)]" :href="`#${name}${index}`" v-text="item"></a>
+      <a v-for="(item, index) in tab"
+        :class="['mdl-tabs__tab', isActive(index)]"
+        :href="`#${name}${index}`">{{ item }}</a>
     </div>
-    <div v-for="(item, index) in panel" :class="['mdl-tabs__panel', isActive(index)]" :id="`${name}${index}`">
+    <div v-for="(item, index) in panel"
+      :class="['mdl-tabs__panel', isActive(index)]"
+      :id="`${name}${index}`">
       <slot :name="`panel${index}`">
         <code v-text="getPanelTemplate(index)"></code>
       </slot>
@@ -13,7 +17,7 @@
 
 <script>
 import mdlTabs from '../../styles/tabs/tabs';
-// import mdlRipple from '../../styles/ripple/ripple';
+import mdlRipple from '../../styles/ripple/ripple';
 
 export default {
   name: 'ui-tabs',
@@ -36,11 +40,11 @@ export default {
         return [];
       }
     },
-    // TODO: Applies ripple click effect (has bug)
-    // effect: {
-    //   type: Boolean,
-    //   default: false
-    // }
+    // Applies ripple click effect
+    effect: {
+      type: Boolean,
+      default: false
+    }
   },
   computed: {
     className() {

@@ -9,14 +9,17 @@
       <ul class="mdl-mini-footer__link-list">
         <slot name="link">
           <li v-for="link in links">
-            <a :href="link.url" v-text="link.name"></a>
+            <a :href="link.url">{{ link.name }}</a>
           </li>
         </slot>
       </ul>
     </div>
     <div class="mdl-mini-footer__right-section">
       <slot name="social">
-        <button class="mdl-mini-footer__social-btn" v-for="item in social" v-html="item.icon" @click="share(item)"></button>
+        <button class="mdl-mini-footer__social-btn"
+          v-for="item in social"
+          v-html="item.icon"
+          @click="share(item)"></button>
       </slot>
     </div>
   </footer>

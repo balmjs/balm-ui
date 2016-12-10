@@ -14,6 +14,7 @@ import UiLoading from './components/loading';
 import UiButton from './components/button';
 import UiMenu from './components/menu';
 import UiBadge from './components/badge';
+import UiCard from './components/card';
 // import UiChip from './components/chip';
 // import UiSlider from './components/slider';
 // import UiTooltip from './components/tooltip';
@@ -46,6 +47,7 @@ const BalmUI = {
   UiButton,
   UiMenu,
   UiBadge,
+  UiCard,
   // UiChip,
   // UiSlider,
   // UiTooltip,
@@ -68,6 +70,7 @@ const BalmUI = {
     Vue.component('ui-button', UiButton);
     Vue.component('ui-menu', UiMenu);
     Vue.component('ui-badge', UiBadge);
+    Vue.component('ui-card', UiCard);
     // Vue.component('ui-clip', UiChip);
     // Vue.component('ui-slider', UiSlider);
     // Vue.component('ui-tooltip', UiTooltip);

@@ -16,7 +16,6 @@ import UiMenu from './components/menu';
 import UiBadge from './components/badge';
 import UiCard from './components/card';
 // import UiChip from './components/chip';
-// import UiSlider from './components/slider';
 import UiTooltip from './components/tooltip';
 /**
  * Form
@@ -26,6 +25,7 @@ import UiCheckbox from './components/form/checkbox';
 import UiRadio from './components/form/radio';
 import UiIcon from './components/form/icon';
 import UiSwitch from './components/form/switch';
+import UiSlider from './components/form/slider';
 /**
  * Data
  */
@@ -49,13 +49,13 @@ const BalmUI = {
   UiBadge,
   UiCard,
   // UiChip,
-  // UiSlider,
   UiTooltip,
   UiTextfield,
   UiCheckbox,
   UiRadio,
   UiIcon,
   UiSwitch,
+  UiSlider,
   UiList,
   UiTable,
   UiDialog,
@@ -72,13 +72,13 @@ const BalmUI = {
     Vue.component('ui-badge', UiBadge);
     Vue.component('ui-card', UiCard);
     // Vue.component('ui-clip', UiChip);
-    // Vue.component('ui-slider', UiSlider);
     Vue.component('ui-tooltip', UiTooltip);
     Vue.component('ui-textfield', UiTextfield);
     Vue.component('ui-checkbox', UiCheckbox);
     Vue.component('ui-radio', UiRadio);
     Vue.component('ui-icon', UiIcon);
     Vue.component('ui-switch', UiSwitch);
+    Vue.component('ui-slider', UiSlider);
     Vue.component('ui-list', UiList);
     Vue.component('ui-table', UiTable);
     Vue.component('ui-dialog', UiDialog);

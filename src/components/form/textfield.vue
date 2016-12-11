@@ -64,7 +64,6 @@ export default {
       default: false
     },
     placeholder: String,
-    value: String,
     model: {
       type: String,
       required: true,

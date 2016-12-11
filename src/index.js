@@ -15,7 +15,7 @@ import UiButton from './components/button';
 import UiMenu from './components/menu';
 import UiBadge from './components/badge';
 import UiCard from './components/card';
-// import UiChip from './components/chip';
+import UiChip from './components/chip';
 import UiTooltip from './components/tooltip';
 /**
  * Form
@@ -48,7 +48,7 @@ const BalmUI = {
   UiMenu,
   UiBadge,
   UiCard,
-  // UiChip,
+  UiChip,
   UiTooltip,
   UiTextfield,
   UiCheckbox,
@@ -71,7 +71,7 @@ const BalmUI = {
     Vue.component('ui-menu', UiMenu);
     Vue.component('ui-badge', UiBadge);
     Vue.component('ui-card', UiCard);
-    // Vue.component('ui-clip', UiChip);
+    Vue.component('ui-chip', UiChip);
     Vue.component('ui-tooltip', UiTooltip);
     Vue.component('ui-textfield', UiTextfield);
     Vue.component('ui-checkbox', UiCheckbox);

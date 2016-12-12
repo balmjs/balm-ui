@@ -6,7 +6,7 @@
           <button class="mdl-mega-footer__social-btn"
             v-for="item in social"
             v-html="item.icon"
-            @click="share(item)"></button>
+            @click="handleShare(item)"></button>
         </slot>
       </div>
       <div class="mdl-mega-footer__right-section">
@@ -57,7 +57,7 @@ export default {
     bottomLinks: Array
   },
   methods: {
-    share(data) {
+    handleShare(data) {
       this.$emit(CALLBACK_SHARED, data);
     }
   }

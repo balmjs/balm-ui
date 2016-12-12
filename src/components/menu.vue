@@ -9,7 +9,7 @@
       <li v-for="menu in currentData"
         :class="className.inner"
         :disabled="menu.disabled"
-        @click="handle(menu)">
+        @click="handleClick(menu)">
         <slot name="menu" :data="menu">{{ menu.value || menu }}</slot>
       </li>
     </ul>
@@ -87,7 +87,7 @@ export default {
     }
   },
   methods: {
-    handle(data) {
+    handleClick(data) {
       if (!data.disabled) {
         this.$emit(CALLBACK_CLICKED, data);
       }

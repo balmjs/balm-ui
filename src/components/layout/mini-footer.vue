@@ -19,7 +19,7 @@
         <button class="mdl-mini-footer__social-btn"
           v-for="item in social"
           v-html="item.icon"
-          @click="share(item)"></button>
+          @click="handleShare(item)"></button>
       </slot>
     </div>
   </footer>
@@ -30,7 +30,7 @@ const CALLBACK_SHARED = 'shared';
 
 /**
  * @example
- * <ui-mini-footer :logo="logo" :links="links" :social="social" @share="onShare"></ui-mini-footer>
+ * <ui-mini-footer :logo="logo" :links="links" :social="social" @shared="shared"></ui-mini-footer>
  */
 export default {
   name: 'ui-mini-footer',
@@ -40,7 +40,7 @@ export default {
     social: Array
   },
   methods: {
-    share(data) {
+    handleShare(data) {
       this.$emit(CALLBACK_SHARED, data);
     }
   }

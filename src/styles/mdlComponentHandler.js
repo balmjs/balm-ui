@@ -489,5 +489,3 @@ window.addEventListener('load', function() {
     componentHandler.register = function() {};
   }
 });
-
-export default componentHandler;

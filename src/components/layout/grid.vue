@@ -22,7 +22,7 @@ const ALIGN_BOTTOM = 3;
 const ALIGN_FULL = 4;
 
 export default {
-  name: 'ui-badge',
+  name: 'ui-grid',
   props: {
     data: {
       type: Array,

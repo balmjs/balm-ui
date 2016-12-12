@@ -1,4 +1,4 @@
-import mdlComponentHandler from './styles/mdlComponentHandler';
+import './styles/mdlComponentHandler';
 /**
  * Layout
  */
@@ -35,7 +35,7 @@ import UiTable from './components/table';
  * Popup
  */
 import UiDialog from './components/dialog';
-// import UiSnackbar from './components/snackbar';
+import UiSnackbar from './components/snackbar';
 
 const BalmUI = {
   UiLayout,
@@ -59,31 +59,15 @@ const BalmUI = {
   UiList,
   UiTable,
   UiDialog,
-  // UiSnackbar,
+  UiSnackbar,
   install(Vue) {
-    Vue.component('ui-layout', UiLayout);
-    Vue.component('ui-grid', UiGrid);
-    Vue.component('ui-tabs', UiTabs);
-    Vue.component('ui-footer', UiFooter);
-    Vue.component('ui-mini-footer', UiMiniFooter);
-    Vue.component('ui-loading', UiLoading);
-    Vue.component('ui-button', UiButton);
-    Vue.component('ui-menu', UiMenu);
-    Vue.component('ui-badge', UiBadge);
-    Vue.component('ui-card', UiCard);
-    Vue.component('ui-chip', UiChip);
-    Vue.component('ui-tooltip', UiTooltip);
-    Vue.component('ui-textfield', UiTextfield);
-    Vue.component('ui-checkbox', UiCheckbox);
-    Vue.component('ui-radio', UiRadio);
-    Vue.component('ui-icon', UiIcon);
-    Vue.component('ui-switch', UiSwitch);
-    Vue.component('ui-slider', UiSlider);
-    Vue.component('ui-list', UiList);
-    Vue.component('ui-table', UiTable);
-    Vue.component('ui-dialog', UiDialog);
-    // Vue.component('ui-snackbar', UiSnackbar);
-    // Vue.prototype.$ui = mdlComponentHandler;
+    for (let key in BalmUI) {
+      let component = BalmUI[key];
+      if (component && component !== 'install' && component.name) {
+        Vue.component(component.name, component);
+      }
+    }
+    Vue.prototype.$ui = window.componentHandler;
   }
 };
 

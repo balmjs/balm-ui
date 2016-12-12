@@ -1,3 +1,6 @@
+/**
+ * Core
+ */
 import './styles/mdlComponentHandler';
 /**
  * Layout
@@ -36,6 +39,10 @@ import UiTable from './components/table';
  */
 import UiDialog from './components/dialog';
 import UiSnackbar from './components/snackbar';
+/**
+ * Effect
+ */
+import './styles/ripple/ripple';
 
 const BalmUI = {
   UiLayout,

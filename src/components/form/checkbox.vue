@@ -12,8 +12,7 @@
 </template>
 
 <script>
-import mdlCheckbox from '../../styles/checkbox/checkbox';
-import mdlRipple from '../../styles/ripple/ripple';
+import '../../styles/checkbox/checkbox';
 
 const CALLBACK_INPUT = 'input';
 

@@ -12,8 +12,7 @@
 </template>
 
 <script>
-import mdlRadio from '../../styles/radio/radio';
-import mdlRipple from '../../styles/ripple/ripple';
+import '../../styles/radio/radio';
 
 const CALLBACK_INPUT = 'input';
 

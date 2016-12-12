@@ -17,8 +17,7 @@
 </template>
 
 <script>
-import mdlMenu from '../styles/menu/menu';
-import mdlRipple from '../styles/ripple/ripple';
+import '../styles/menu/menu';
 
 const POSITIONS = ['', 'top-left', 'top-right', 'bottom-right'];
 const POSITION_NONE = 0; // Default

@@ -14,8 +14,7 @@
 </template>
 
 <script>
-import mdlIconToggle from '../../styles/icon-toggle/icon-toggle';
-import mdlRipple from '../../styles/ripple/ripple';
+import '../../styles/icon-toggle/icon-toggle';
 
 const CALLBACK_INPUT = 'input';
 

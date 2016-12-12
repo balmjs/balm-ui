@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import mdlTable from '../styles/data-table/data-table';
+import '../styles/data-table/data-table';
 import {isString, isObject} from '../helpers/util';
 import UiButton from './button';
 import UiCheckbox from './form/checkbox';

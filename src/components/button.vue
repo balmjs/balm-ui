@@ -5,8 +5,7 @@
 </template>
 
 <script>
-import mdlButton from '../styles/button/button';
-import mdlRipple from '../styles/ripple/ripple';
+import '../styles/button/button';
 
 export default {
   name: 'ui-button',

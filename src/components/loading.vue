@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import mdlSpinner from '../styles/spinner/spinner';
-import mdlProgress from '../styles/progress/progress';
+import '../styles/spinner/spinner';
+import '../styles/progress/progress';
 
 const SPINNER  = 0; // Spinner
 const PROGRESS = 1; // Progress bar

@@ -12,8 +12,7 @@
 </template>
 
 <script>
-import mdlSwitch from '../../styles/switch/switch';
-import mdlRipple from '../../styles/ripple/ripple';
+import '../../styles/switch/switch';
 
 const CALLBACK_INPUT = 'input';
 

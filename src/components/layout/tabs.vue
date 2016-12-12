@@ -16,8 +16,7 @@
 </template>
 
 <script>
-import mdlTabs from '../../styles/tabs/tabs';
-import mdlRipple from '../../styles/ripple/ripple';
+import '../../styles/tabs/tabs';
 
 export default {
   name: 'ui-tabs',

@@ -6,7 +6,7 @@ balm.config = {
   },
   paths: {
     source: {
-      js: ''
+      js: 'templates'
     }
   },
   styles: {
@@ -14,7 +14,7 @@ balm.config = {
   },
   scripts: {
     entry: {
-      main: './src/main.js'
+      main: './src/templates/main.js'
     },
     loaders: [{
       test: /\.vue$/,

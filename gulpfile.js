@@ -14,7 +14,8 @@ balm.config = {
   },
   scripts: {
     entry: {
-      main: './src/templates/main.js'
+      main: './src/templates/main.js',
+      dialog: './src/templates/dialog.js'
     },
     loaders: [{
       test: /\.vue$/,

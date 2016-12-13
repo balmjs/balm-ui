@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/balmjs/balm-ui#readme",
   "dependencies": {
+    "animate.css": "^3.5.2",
     "material-design-icons": "^3.0.1",
     "material-design-lite": "^1.2.1",
     "vue": "^2.1.5",
@@ -29,6 +30,7 @@
     "babel-preset-stage-2": "^6.18.0",
     "balm": "^0.5.4",
     "gulp": "^3.9.1",
+    "nodemon": "^1.11.0",
     "vue-loader": "^9.9.5"
   }
 }

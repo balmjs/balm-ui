@@ -37,7 +37,7 @@ import UiTable from './components/table';
 /**
  * Popup
  */
-import UiDialog from './components/dialog';
+import UiDialog from './components/dialog/dialog';
 import UiSnackbar from './components/snackbar';
 /**
  * Effect

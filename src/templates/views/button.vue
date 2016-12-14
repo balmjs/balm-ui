@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo-button">
     <ui-button fab colored>
       <i class="material-icons">add</i>
     </ui-button>

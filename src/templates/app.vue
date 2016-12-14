@@ -1,13 +1,18 @@
 <template>
   <ui-layout
     class="container"
-    :header="header"
-    :drawer="drawer"
+    :headerTitle="title"
+    :headerLeft="headerLeft"
+    :drawerTitle="title"
+    :drawerLink="drawerLink"
     fixedDrawer>
     <template slot="header-right" scope="props">
+      <ui-textfield id="search" name="search" :model="keywords" plus>
+        <i slot="icon" class="material-icons">search</i>
+      </ui-textfield>
       <ui-tooltip name="qr-code">
         <i slot="target" class="material-icons">face</i>
-        <img slot="tips" :src="require('../images/test/1.png')">
+        <div slot="tips">tips</div>
       </ui-tooltip>
       <ui-menu :data="menus" :position="3" @clicked="onMenu" effect></ui-menu>
     </template>
@@ -23,25 +28,21 @@ import menu from './menu';
 export default {
   data() {
     return {
-      header: {
-        title: 'BalmUI',
-        left: [
-          {
-            url:'/a',
-            name: 'Item A'
-          }, {
-            url:'/b',
-            name: 'Item B'
-          }, {
-            url:'/c',
-            name: 'Item C'
-          }
-        ]
-      },
-      drawer: {
-        title: 'BalmUI',
-        links: menu
-      },
+      keywords: '',
+      title: 'BalmUI',
+      headerLeft: [
+        {
+          url:'/a',
+          name: 'Item A'
+        }, {
+          url:'/b',
+          name: 'Item B'
+        }, {
+          url:'/c',
+          name: 'Item C'
+        }
+      ],
+      drawerLink: menu,
       menus: [
         {
           url:'/a',

@@ -4,26 +4,26 @@
       <div class="mdl-layout-icon"></div>
       <div class="mdl-layout__header-row">
         <div class="mdl-layout__title">
-          <slot name="header-title">{{ header.title }}</slot>
+          <slot name="header-title">{{ headerTitle }}</slot>
         </div>
         <slot name="header-left" :className="navigationClassName">
-          <ui-navigation :links="header.left"></ui-navigation>
+          <ui-navigation :links="headerLeft"></ui-navigation>
         </slot>
         <div class="mdl-layout-spacer">
           <slot name="header-center"></slot>
         </div>
         <slot name="header-right" :className="navigationClassName">
-          <ui-navigation :links="header.right"></ui-navigation>
+          <ui-navigation :links="headerRight"></ui-navigation>
         </slot>
       </div>
       <slot name="header-bottom" :className="headerClassName"></slot>
     </header>
     <div class="mdl-layout__drawer">
       <div class="mdl-layout__title">
-        <slot name="drawer-title">{{ drawer.title }}</slot>
+        <slot name="drawer-title">{{ drawerTitle }}</slot>
       </div>
       <slot name="drawer-top" :className="navigationClassName">
-        <ui-navigation :links="drawer.links"></ui-navigation>
+        <ui-navigation :links="drawerLink"></ui-navigation>
       </slot>
       <div class="mdl-layout-spacer"></div>
       <slot name="drawer-bottom"></slot>
@@ -50,25 +50,11 @@ export default {
     UiNavigation
   },
   props: {
-    header: {
-      type: Object,
-      default: function() {
-        return {
-          title: '',
-          left: [],
-          right: []
-        }
-      }
-    },
-    drawer: {
-      type: Object,
-      default: function() {
-        return {
-          title: '',
-          links: []
-        };
-      }
-    },
+    headerTitle: String,
+    headerLeft: Array,
+    headerRight: Array,
+    drawerTitle: String,
+    drawerLink: Array,
     // Makes the header scroll with the content
     scroll: {
       type: Boolean,

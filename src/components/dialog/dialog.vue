@@ -2,9 +2,11 @@
   <div class="mdl-dialog__container">
     <template v-if="!transition">
       <div :class="['mdl-dialog', {hidden: !show, targeted: targetNode}]" :style="style">
-        <h4 class="mdl-dialog__title" v-if="!noTitle">
-          <slot name="title">{{ title }}</slot>
-        </h4>
+        <slot name="title">
+          <h4 class="mdl-dialog__title" v-if="!noTitle">
+            {{ title }}
+          </h4>
+        </slot>
         <div class="mdl-dialog__content">
           <slot>
             <p>{{ message }}</p>
@@ -19,7 +21,11 @@
       </div>
     </template>
     <template v-else>
-      <transition :name="transitionName" :enter-class="enterClass" :enter-active-class="enterActiveClass" :leave-class="leaveClass" :leave-active-class="leaveActiveClass">
+      <transition
+        :enter-class="enterClass"
+        :enter-active-class="enterActiveClass"
+        :leave-class="leaveClass"
+        :leave-active-class="leaveActiveClass">
 
         <div class="mdl-dialog" v-show="show" :style="style">
           <h4 class="mdl-dialog__title" v-if="!noTitle">
@@ -78,18 +84,10 @@
         type: Number,
         default: 520
       },
-      mask: {
-        type: Boolean,
-        default: true
-      },
       transition: {
         type: Boolean,
         default: false
       },
-      /*transitionName: {
-        type: String,
-        default: ''
-      },*/
       enterClass: {
         type: String,
         default: ''
@@ -122,7 +120,7 @@
         type: String,
         default: ''
       },
-      actionsFullWidth :{
+      actionsFullWidth: {
         type: Boolean,
         default: false
       },
@@ -134,7 +132,7 @@
         type: String,
         default: 'Cancel'
       },
-      canMaskClick: {
+      force: {
         type: Boolean,
         default: false
       }
@@ -157,51 +155,48 @@
     },
     watch: {
       show(val){
-        val && this.open(this.mask);
+        val ? this.openMask() : this.closeMask();
       }
     },
-    mounted(){
-      window.$n = this.targetNode;
-    },
-    methods:{
+    methods: {
       /*// --------
-      // 进入中
-      // --------
+       // 进入中
+       // --------
 
-      beforeEnter(el) {
-        this.$emit('beforeEnter', el);
-      },
-      // 此回调函数是可选项的设置
-      // 与 CSS 结合时使用
-      enter(el, done) {
-        this.$emit('enter', el);
-        done();
-      },
-      afterEnter(el) {
-        this.$emit('afterEnter', el);
-      },
-      enterCancelled(el) {
-        this.$emit('enterCancelled', el);
-      },
-      // --------
-      // 离开时
-      // --------
-      beforeLeave(el) {
-        this.$emit('beforeLeave', el);
-      },
-      // 此回调函数是可选项的设置
-      // 与 CSS 结合时使用
-      leave(el, done) {
-        this.$emit('beforeLeave', el);
-        done();
-      },
-      afterLeave(el) {
-        this.$emit('afterLeave', el);
-      },
-      // leaveCancelled 只用于 v-show 中
-      leaveCancelled(el) {
-        this.$emit('leaveCancelled', el);
-      },*/
+       beforeEnter(el) {
+       this.$emit('beforeEnter', el);
+       },
+       // 此回调函数是可选项的设置
+       // 与 CSS 结合时使用
+       enter(el, done) {
+       this.$emit('enter', el);
+       done();
+       },
+       afterEnter(el) {
+       this.$emit('afterEnter', el);
+       },
+       enterCancelled(el) {
+       this.$emit('enterCancelled', el);
+       },
+       // --------
+       // 离开时
+       // --------
+       beforeLeave(el) {
+       this.$emit('beforeLeave', el);
+       },
+       // 此回调函数是可选项的设置
+       // 与 CSS 结合时使用
+       leave(el, done) {
+       this.$emit('beforeLeave', el);
+       done();
+       },
+       afterLeave(el) {
+       this.$emit('afterLeave', el);
+       },
+       // leaveCancelled 只用于 v-show 中
+       leaveCancelled(el) {
+       this.$emit('leaveCancelled', el);
+       },*/
       onConfirm(){
         this.close();
         this.$emit('on-confirm');
@@ -211,15 +206,19 @@
         this.$emit('on-cancel');
       },
       close(){
-        this.$emit('after-close');
+        this.$emit('on-close');
+        this.closeMask();
+      },
+      closeMask(){
         $mask.remove();
       },
-      open(){
-        $mask.show({transparent: this.transparent, clickHandler: this.canMaskClick ? this.close : null});
+      openMask(){
+        $mask.show({transparent: this.transparent, clickHandler: this.force ? null : this.close});
       }
     },
     beforeDestroy(){
       $mask.remove();
+      $mask = null;
     },
     components: {
       UiButton

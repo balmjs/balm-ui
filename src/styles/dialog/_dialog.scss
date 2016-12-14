@@ -54,4 +54,14 @@
         padding: 20px 24px 24px 24px;
         color: $dialog-content-color;
     }
+
+
+  &.confirm-enter-active, &.confirm-leave-active {
+    transition: opacity .25s ease, transform .25s ease;
+  }
+
+  &.confirm-enter, &.confirm-leave-active {
+    transform: translate3d(0, -50%, 0);
+    opacity: 0;
+  }
 }

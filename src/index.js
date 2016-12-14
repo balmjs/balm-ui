@@ -21,6 +21,7 @@ import UiBadge from './components/badge';
 import UiCard from './components/card';
 import UiChip from './components/chip';
 import UiTooltip from './components/tooltip';
+import UiSplitter from './components/splitter';
 /**
  * Form
  */
@@ -39,6 +40,7 @@ import UiTable from './components/table';
  * Popup
  */
 import UiDialog from './components/dialog/dialog';
+import UiConfirm from './components/dialog/confirm';
 import UiSnackbar from './components/snackbar';
 /**
  * Effect
@@ -59,6 +61,7 @@ const BalmUI = {
   UiCard,
   UiChip,
   UiTooltip,
+  UiSplitter,
   UiTextfield,
   UiCheckbox,
   UiRadio,
@@ -68,6 +71,7 @@ const BalmUI = {
   UiList,
   UiTable,
   UiDialog,
+  UiConfirm,
   UiSnackbar,
   install(Vue) {
     for (let key in BalmUI) {

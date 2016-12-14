@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import BalmUI from '../index';
-import App from './app';
+import App from './dialog-app';
 import dialogPage from './views/dialog';
 
 Vue.use(BalmUI);

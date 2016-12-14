@@ -1,10 +1,14 @@
 <template>
   <ui-layout
     class="container"
-    :header="layout.header"
-    :drawer="layout.drawer"
+    :header="header"
+    :drawer="drawer"
     fixedDrawer>
     <template slot="header-right" scope="props">
+      <ui-tooltip name="qr-code">
+        <i slot="target" class="material-icons">face</i>
+        <img slot="tips" :src="require('../images/test/1.png')">
+      </ui-tooltip>
       <ui-menu :data="menus" :position="3" @clicked="onMenu" effect></ui-menu>
     </template>
     <div slot="content">
@@ -19,38 +23,24 @@ import menu from './menu';
 export default {
   data() {
     return {
-      layout: {
-        header: {
-          title: 'BalmUI',
-          left: [
-            {
-              url:'/a',
-              name: 'Item A'
-            }, {
-              url:'/b',
-              name: 'Item B'
-            }, {
-              url:'/c',
-              name: 'Item C'
-            }
-          ],
-          right: [
-            {
-              url:'/a',
-              name: 'aaa'
-            }, {
-              url:'/b',
-              name: 'bbb'
-            }, {
-              url:'/c',
-              name: 'ccc'
-            }
-          ]
-        },
-        drawer: {
-          title: 'BalmUI',
-          links: menu
-        }
+      header: {
+        title: 'BalmUI',
+        left: [
+          {
+            url:'/a',
+            name: 'Item A'
+          }, {
+            url:'/b',
+            name: 'Item B'
+          }, {
+            url:'/c',
+            name: 'Item C'
+          }
+        ]
+      },
+      drawer: {
+        title: 'BalmUI',
+        links: menu
       },
       menus: [
         {

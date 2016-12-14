@@ -1,8 +1,8 @@
 <template>
   <div :class="name">
-    <slot name="target" :id="name">
-      <span :id="name" v-html="target"></span>
-    </slot>
+    <span :id="name">
+      <slot name="target">{{ target }}</slot>
+    </span>
     <div :class="[className, positionClassName]" :for="name">
       <slot name="tips">{{ tips }}</slot>
     </div>
@@ -23,13 +23,10 @@ export default {
   props: {
     name: {
       type: String,
-      default: 'tt1'
-    },
-    target: String, // required
-    tips: {
-      type: String,
       required: true
     },
+    target: String,
+    tips: String,
     large: {
       type: Boolean,
       default: false

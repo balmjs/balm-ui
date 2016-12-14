@@ -31,8 +31,7 @@ export default {
       popup: {
         message: 'Hello WOrld',
         active: false
-      },
-      target: '<i class="icon">icon</i>'
+      }
     };
   }
 };

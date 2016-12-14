@@ -54,10 +54,10 @@
     width: auto;
     min-width: 380px;
     max-width: 90%;
-    z-index: 1000;
+    z-index: 5;
     left: 50%;
     top: 100px;
-    max-height: calc(90% - 200px);
+    /*max-height: calc(90% - 200px);*/
     overflow-x: hidden;
     overflow-y: auto;
   }

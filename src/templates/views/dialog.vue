@@ -105,6 +105,7 @@
         <h4>注意对话框标题，尤其是右上角的关闭按钮</h4>
         <br>：通过使用[slot="title"]来改变标题栏的结构；
         <br>：如果你仅仅是想改变文字，请使用title属性
+        <!--<ui-textfield id="s" name="ss" :model="sd" @input.native="reVal('sd', $event)">121212</ui-textfield>-->
       </ui-dialog>
 
       <ui-dialog
@@ -219,6 +220,7 @@
   export default {
     data () {
       return {
+        sd: '',
         contentText: '',
         showTransparent: false,
         showForce: false,
@@ -232,10 +234,13 @@
         showCustomBtnText: false,
         showSlot: false,
         showSlotActions: false,
-        showConfirm: false,
+        showConfirm: false
       }
     },
     methods: {
+      reVal(name, $event){
+        this[name] = $event.target.value.trim();
+      },
       hello(){
         console.log('Hello balm!');
       },

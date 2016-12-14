@@ -1,6 +1,8 @@
 <template>
   <button :class="className" :type="type" :disabled="disabled">
-    <slot></slot>
+    <slot>
+      <i class="material-icons" v-if="icon">{{ icon }}</i>
+    </slot>
   </button>
 </template>
 
@@ -31,7 +33,7 @@ export default {
     },
     // Applies icon (small plain circular) display effect
     icon: {
-      type: Boolean,
+      type: [Boolean, String],
       default: false
     },
     // Applies colored display effect (primary or accent color, depending on the type of button)

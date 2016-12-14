@@ -88,6 +88,9 @@ export default {
         console.warn('`actionHandler` and `actionText` is required in a snackbar.');
       }
     }
+  },
+  mounted() {
+    this.$ui.upgradeElement(this.$el);
   }
 };
 </script>

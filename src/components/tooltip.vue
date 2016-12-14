@@ -53,6 +53,9 @@ export default {
       let className = currentPositon ? `mdl-tooltip--${currentPositon}` : '';
       return className;
     }
+  },
+  mounted() {
+    this.$ui.upgradeElement(this.$el);
   }
 };
 </script>

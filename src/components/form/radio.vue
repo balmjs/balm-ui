@@ -67,6 +67,9 @@ export default {
     currentValue(val) {
       this.$emit(CALLBACK_INPUT, val);
     }
+  },
+  mounted() {
+    this.$ui.upgradeElement(this.$el);
   }
 };
 </script>

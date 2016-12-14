@@ -61,7 +61,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .mdl-icon-toggle.is-checked .mdl-icon-toggle__label {
   color:  red;
 }

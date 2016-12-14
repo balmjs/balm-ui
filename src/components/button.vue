@@ -81,6 +81,9 @@ export default {
         'mdl-button--link': this.link,
       };
     }
+  },
+  mounted() {
+    this.$ui.upgradeElement(this.$el);
   }
 };
 </script>

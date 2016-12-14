@@ -453,6 +453,9 @@ export default {
   },
   created() {
     this.checkAll();
+  },
+  mounted() {
+    this.$ui.upgradeElement(this.$el);
   }
 };
 </script>

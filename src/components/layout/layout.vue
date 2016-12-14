@@ -150,6 +150,9 @@ export default {
     getContentTemplate(links) {
       return '<template slot="content"></template>';
     }
+  },
+  mounted() {
+    this.$ui.upgradeElement(this.$el);
   }
 };
 </script>

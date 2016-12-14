@@ -91,6 +91,9 @@ export default {
         this.$emit(CALLBACK_CLICKED, data);
       }
     }
+  },
+  mounted() {
+    this.$ui.upgradeElement(this.$el);
   }
 };
 </script>

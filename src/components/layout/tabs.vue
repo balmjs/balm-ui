@@ -63,6 +63,9 @@ export default {
     getPanelTemplate(index) {
       return `<template slot="panel${index}"></template>`;
     }
+  },
+  mounted() {
+    this.$ui.upgradeElement(this.$el);
   }
 };
 </script>

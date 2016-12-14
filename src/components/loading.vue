@@ -58,6 +58,9 @@ export default {
     isSpinner() {
       return +this.type === SPINNER;
     }
+  },
+  mounted() {
+    this.$ui.upgradeElement(this.$el);
   }
 };
 </script>

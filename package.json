@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon --exec gulp",
     "dev": "gulp",
     "prod": "gulp --production"
   },

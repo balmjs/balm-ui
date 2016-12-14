@@ -1,7 +1,7 @@
 <template>
   <div class="mdl-dialog__container">
     <template v-if="!transition">
-      <div :class="['mdl-dialog', {hidden: !show, targeted: targetNode}]">
+      <div :class="['mdl-dialog', {hidden: !show, targeted: targetNode}]" :style="style">
         <h4 class="mdl-dialog__title" v-if="!noTitle">
           <slot name="title">{{ title }}</slot>
         </h4>
@@ -19,18 +19,9 @@
       </div>
     </template>
     <template v-else>
-      <!-- TODO: animate.css -->
-      <transition :name="transitionName">
-        <!--@before-enter="beforeEnter"
-        @enter="enter"
-        @after-enter="afterEnter"
-        @enter-cancelled="enterCancelled"
-        @before-leave="beforeLeave"
-        @leave="leave"
-        @after-leave="afterLeave"
-        @leave-cancelled="leaveCancelled"-->
+      <transition :name="transitionName" :enter-class="enterClass" :enter-active-class="enterActiveClass" :leave-class="leaveClass" :leave-active-class="leaveActiveClass">
 
-        <div class="mdl-dialog" v-show="show">
+        <div class="mdl-dialog" v-show="show" :style="style">
           <h4 class="mdl-dialog__title" v-if="!noTitle">
             <slot name="title">{{ title }}</slot>
           </h4>
@@ -60,7 +51,9 @@
     z-index: 1000;
     left: 50%;
     top: 100px;
-    transform: translate3d(-50%, 0, 0);
+    max-height: calc(90% - 200px);
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   .mdl-dialog.hidden {
@@ -81,6 +74,10 @@
       target: {
         default: null
       },
+      width: {
+        type: Number,
+        default: 520
+      },
       mask: {
         type: Boolean,
         default: true
@@ -89,7 +86,15 @@
         type: Boolean,
         default: false
       },
-      transitionName: {
+      /*transitionName: {
+        type: String,
+        default: ''
+      },*/
+      enterClass: {
+        type: String,
+        default: ''
+      },
+      leaveClass: {
         type: String,
         default: ''
       },
@@ -142,6 +147,12 @@
     computed: {
       targetNode(){
         return this.target ? document.querySelector(this.target) : null;
+      },
+      style(){
+        return {
+          width: `${this.width}px`,
+          marginLeft: `${-(this.width / 2)}px`
+        }
       }
     },
     watch: {
@@ -198,7 +209,7 @@
       onCancel(){
         this.close();
         this.$emit('on-cancel');
-      },//git remote rm origin
+      },
       close(){
         this.$emit('after-close');
         $mask.remove();

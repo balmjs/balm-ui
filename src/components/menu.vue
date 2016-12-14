@@ -10,7 +10,7 @@
         :class="className.inner"
         :disabled="menu.disabled"
         @click="handleClick(menu)">
-        <slot name="menu" :data="menu">{{ menu.value || menu }}</slot>
+        <slot name="menu" :data="menu">{{ menu.name || menu }}</slot>
       </li>
     </ul>
   </div>

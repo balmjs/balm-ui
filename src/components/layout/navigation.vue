@@ -1,8 +1,8 @@
 <template>
   <nav class="mdl-navigation" v-if="links">
-    <a class="mdl-navigation__link"
+    <router-link class="mdl-navigation__link"
       v-for="link in links"
-      :href="link.url">{{ link.value }}</a>
+      :to="link.url">{{ link.name }}</router-link>
   </nav>
 </template>
 

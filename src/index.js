@@ -6,11 +6,11 @@ import './styles/mdlComponentHandler';
  * Layout
  */
 import UiLayout from './components/layout/layout';
-import UiGrid from './components/layout/grid';
-import UiCell from './components/layout/cell';
+import UiGrid from './components/layout/grid/grid';
+import UiCell from './components/layout/grid/cell';
 import UiTabs from './components/layout/tabs';
-import UiFooter from './components/layout/footer';
-import UiMiniFooter from './components/layout/mini-footer';
+import UiFooter from './components/layout/footer/footer';
+import UiMiniFooter from './components/layout/footer/mini-footer';
 /**
  * Common
  */

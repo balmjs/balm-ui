@@ -8,7 +8,8 @@ import './styles/mdlComponentHandler';
 import UiLayout from './components/layout/layout';
 import UiGrid from './components/layout/grid/grid';
 import UiCell from './components/layout/grid/cell';
-import UiTabs from './components/layout/tabs';
+import UiTabs from './components/layout/tabs/tabs';
+import UiPanel from './components/layout/tabs/panel';
 import UiFooter from './components/layout/footer/footer';
 import UiMiniFooter from './components/layout/footer/mini-footer';
 /**
@@ -52,6 +53,7 @@ const BalmUI = {
   UiGrid,
   UiCell,
   UiTabs,
+  UiPanel,
   UiFooter,
   UiMiniFooter,
   UiLoading,

@@ -1,19 +1,30 @@
 <template>
-  <ui-tabs :tab="tabs.tab" :panel="tabs.panel" effect>
-    <template slot="panel0">安顺地区覅的设计方案</template>
-    <template slot="panel2">asdfaosdjfoadjfa</template>
-  </ui-tabs>
+  <div class="demo-tabs">
+    <ui-tabs effect :active="tab" @switched="onChange">
+      <ui-panel tab="菜单1">
+        <p>panel1</p>
+      </ui-panel>
+      <ui-panel tab="菜单2">
+        <p>panel2</p>
+      </ui-panel>
+      <ui-panel tab="菜单3">
+        <p>panel3</p>
+      </ui-panel>
+    </ui-tabs>
+  </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      tabs: {
-        tab: ['菜单1', '菜单2', '菜单3'],
-        panel: ['1111111', '2222222', '3333333']
-      }
+      tab: 0
     };
+  },
+  methods: {
+    onChange(tab) {
+      this.tab = tab;
+    }
   }
 };
 </script>

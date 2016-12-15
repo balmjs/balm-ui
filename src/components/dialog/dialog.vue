@@ -54,7 +54,7 @@
     width: auto;
     min-width: 380px;
     max-width: 90%;
-    z-index: 5;
+    z-index: 11;
     left: 50%;
     top: 100px;
     /*max-height: calc(90% - 200px);*/
@@ -213,7 +213,7 @@
         $mask.remove();
       },
       openMask(){
-        $mask.show({transparent: this.transparent, clickHandler: this.force ? null : this.close});
+        $mask.show({transparent: this.transparent, clickHandler: this.force ? null : this.close, parent: this.$el});
       }
     },
     beforeDestroy(){

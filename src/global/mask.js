@@ -1,32 +1,43 @@
-const _createMask = function () {
-  let mask = document.querySelector('.mdl-mask');
+const _createMask = function (parent) {
+  let mask = parent.querySelector('.mdl-mask');
   if(!mask){
     mask = document.createElement('div');
     mask.className = 'mdl-mask hidden';
-    document.body.appendChild(mask);
+    parent.appendChild(mask);
   }
   return mask;
+};
+
+const _dump = function () {
+  this.parent.removeChild(this.mask);
+  this.mask = null;
+  this.parent = null;
 };
 
 export default class {
 
   constructor(){
+    this.parent = null;
     this.mask = null;
-    this.transparent = false;
   }
 
-  show({transparent, clickHandler}){
+  show({transparent, clickHandler, parent}){
 
-    !this.mask && (this.mask = _createMask());
+    this.parent = (parent && parent.nodeType === 1) ? parent : document.body;
+
+    !this.mask && (this.mask = _createMask(this.parent));
+
     !transparent && this.mask.classList.add('bg');
-    clickHandler && this.mask.addEventListener('click', clickHandler, false);
+
+    typeof clickHandler === 'function' && this.mask.addEventListener('click', clickHandler, false);
+
     this.mask.classList.remove('hidden');
 
   }
 
   remove(){
 
-    this.mask && (document.body.removeChild(this.mask), this.mask = null);
+    this.mask && _dump.call(this);
 
   }
 }

@@ -3,35 +3,55 @@
     <header :class="className.header">
       <div class="mdl-layout-icon"></div>
       <div class="mdl-layout__header-row">
+        <!-- title -->
         <div class="mdl-layout__title">
           <slot name="header-title">{{ headerTitle }}</slot>
         </div>
+        <!-- header left -->
         <slot name="header-left" :className="navigationClassName">
           <ui-navigation :links="headerLeft"></ui-navigation>
         </slot>
+        <!-- header center -->
         <div class="mdl-layout-spacer">
           <slot name="header-center"></slot>
         </div>
+        <!-- header right -->
         <slot name="header-right" :className="navigationClassName">
           <ui-navigation :links="headerRight"></ui-navigation>
         </slot>
       </div>
+      <!-- header bottom -->
       <slot name="header-bottom" :className="headerClassName"></slot>
+      <!-- header tabs -->
+      <div class="mdl-layout__tab-bar mdl-js-ripple-effect" v-if="tabs">
+        <a v-for="(tab, index) in tabs"
+          :href="`#${tabName}-${index+1}`"
+          :class="['mdl-layout__tab', {'is-active': !index}]">{{ tab }}</a>
+      </div>
     </header>
     <div class="mdl-layout__drawer">
+      <!-- drawer title -->
       <div class="mdl-layout__title">
         <slot name="drawer-title">{{ drawerTitle }}</slot>
       </div>
+      <!-- drawer top -->
       <slot name="drawer-top" :className="navigationClassName">
         <ui-navigation :links="drawerLink"></ui-navigation>
       </slot>
       <div class="mdl-layout-spacer"></div>
+      <!-- drawer bottom -->
       <slot name="drawer-bottom"></slot>
     </div>
     <main class="mdl-layout__content">
-      <slot name="content">
-        <code v-text="getContentTemplate()"></code>
-      </slot>
+      <!-- main content -->
+      <slot></slot>
+      <!-- tabs content -->
+      <section v-if="tabs"
+        v-for="n in tabs.length"
+        :class="['mdl-layout__tab-panel', {'is-active': n === 1}]"
+        :id="`${tabName}-${n}`">
+        <code v-text="getPanelTemplate(n)"></code>
+      </section>
     </main>
   </div>
 </template>
@@ -55,6 +75,14 @@ export default {
     headerRight: Array,
     drawerTitle: String,
     drawerLink: Array,
+    tabName: {
+      type: String,
+      default: 'layout-tab'
+    },
+    tabs: {
+      type: [Array, Boolean],
+      default: false
+    },
     // Makes the header scroll with the content
     scroll: {
       type: Boolean,
@@ -99,6 +127,11 @@ export default {
     seamed: {
       type: Boolean,
       default: false
+    },
+    // Uses fixed tabs instead of the default scrollable tabs
+    fixedTabs: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -119,7 +152,8 @@ export default {
           'mdl-layout--fixed-drawer': this.fixedDrawer,
           'mdl-layout--fixed-header': this.fixedHeader,
           'mdl-layout--no-drawer-button': this.noDrawerButton,
-          'mdl-layout--no-desktop-drawer-button': this.noDesktopDrawerButton
+          'mdl-layout--no-desktop-drawer-button': this.noDesktopDrawerButton,
+          'mdl-layout--fixed-tabs': this.fixedTabs
         },
         header: {
           'mdl-layout__header': true,
@@ -133,8 +167,8 @@ export default {
     }
   },
   methods: {
-    getContentTemplate(links) {
-      return '<template slot="content"></template>';
+    getPanelTemplate(index) {
+      return `<template slot="panel${index}"></template>`;
     }
   },
   mounted() {

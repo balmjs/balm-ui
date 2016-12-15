@@ -5,7 +5,8 @@
     :headerLeft="headerLeft"
     :drawerTitle="title"
     :drawerLink="drawerLink"
-    fixedDrawer>
+    fixedDrawer
+    >
     <template slot="header-right" scope="props">
       <ui-textfield id="search" name="search" :model="keywords" plus>
         <i slot="icon" class="material-icons">search</i>
@@ -16,9 +17,7 @@
       </ui-tooltip>
       <ui-menu :data="menus" :position="3" @clicked="onMenu" effect></ui-menu>
     </template>
-    <div slot="content">
-      <router-view></router-view>
-    </div>
+    <router-view></router-view>
   </ui-layout>
 </template>
 

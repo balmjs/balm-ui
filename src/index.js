@@ -6,6 +6,7 @@ import './styles/mdlComponentHandler';
  * Layout
  */
 import UiLayout from './components/layout/layout';
+import UiNavigation from './components/layout/navigation';
 import UiGrid from './components/layout/grid/grid';
 import UiCell from './components/layout/grid/cell';
 import UiTabs from './components/layout/tabs/tabs';
@@ -50,6 +51,7 @@ import './styles/ripple/ripple';
 
 const BalmUI = {
   UiLayout,
+  UiNavigation,
   UiGrid,
   UiCell,
   UiTabs,

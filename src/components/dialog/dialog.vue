@@ -69,7 +69,7 @@
 </style>
 <script type="text/babel">
   import UiButton from '../button';
-  import Mask from '../../global/mask'
+  import Mask from '../utils/mask'
 
   let ACount = 0;
 

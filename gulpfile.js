@@ -6,7 +6,10 @@ balm.config = {
   },
   paths: {
     source: {
-      js: 'templates'
+      css: 'styles',
+      js: 'templates',
+      img: 'images',
+      font: 'fonts'
     }
   },
   styles: {
@@ -14,13 +17,16 @@ balm.config = {
   },
   scripts: {
     entry: {
-      main: './src/templates/main.js'
+      main: balm.config.production ? './src/index.js' : './src/templates/main.js'
     },
     loaders: [{
       test: /\.vue$/,
       loader: 'vue'
-    }]
+    }],
+    eslint: true
   }
 };
 
-balm.go();
+balm.go(function(mix) {
+  mix.remove('./dist/index.html');
+});

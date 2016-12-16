@@ -7,6 +7,9 @@
     :drawerLink="drawerLink"
     fixedDrawer
     >
+    <template slot="header-title">
+      <router-link to="/">Balm UI</router-link>
+    </template>
     <template slot="header-right" scope="props">
       <ui-textfield id="search" name="search" :model="keywords" plus>
         <i slot="icon" class="material-icons">search</i>
@@ -16,6 +19,9 @@
         <div slot="tips">tips</div>
       </ui-tooltip>
       <ui-menu :data="menus" :position="3" @clicked="onMenu" effect></ui-menu>
+    </template>
+    <template slot="drawer-title">
+      <router-link to="/">Balm UI</router-link>
     </template>
     <router-view></router-view>
   </ui-layout>

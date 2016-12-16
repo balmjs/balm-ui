@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import {isObject} from '../../../helpers/util';
+import {isObject} from '../../utils/helper';
 
 const MODE = ['phone', 'tablet', 'desktop'];
 const HIDE = ['', 'phone', 'tablet', 'desktop'];

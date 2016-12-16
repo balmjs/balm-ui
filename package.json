@@ -1,8 +1,8 @@
 {
-  "name": "balm-ui.vue",
-  "version": "0.1.0-beta",
+  "name": "balm-ui",
+  "version": "0.0.1-beta",
   "description": "",
-  "main": "index.js",
+  "main": "dist/js/main.js",
   "scripts": {
     "start": "nodemon --exec gulp",
     "dev": "gulp",
@@ -12,37 +12,32 @@
     "type": "git",
     "url": "git+https://github.com/balmjs/balm-ui.git"
   },
-  "author": [
-    {
-      "name": "Elf-mousE",
-      "email": "ifmouz@gmail.com",
-      "url": "http://elf-mouse.me/"
-    },
-    {
-      "name": "74sharlock",
-      "email": "sharlock7788@gmail.com",
-      "url": "http://74sharlock.github.io/"
-    }
-  ],
+  "author": [{
+    "name": "Elf-mousE",
+    "email": "ifmouz@gmail.com",
+    "url": "http://elf-mouse.me/"
+  }, {
+    "name": "74sharlock",
+    "email": "sharlock7788@gmail.com",
+    "url": "http://74sharlock.github.io/"
+  }],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/balmjs/balm-ui/issues"
   },
   "homepage": "https://github.com/balmjs/balm-ui#readme",
-  "dependencies": {
-    "animate.css": "^3.5.2",
-    "material-design-icons": "^3.0.1",
-    "material-design-lite": "^1.2.1",
-    "vue": "^2.1.5",
-    "vue-router": "^2.1.1"
-  },
   "devDependencies": {
+    "animate.css": "^3.5.2",
     "babel-eslint": "^7.1.1",
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-stage-2": "^6.18.0",
     "balm": "^0.5.4",
     "gulp": "^3.9.1",
+    "material-design-icons": "^3.0.1",
+    "material-design-lite": "^1.2.1",
     "nodemon": "^1.11.0",
-    "vue-loader": "9.9.5"
+    "vue": "^2.1.5",
+    "vue-loader": "9.9.5",
+    "vue-router": "^2.1.1"
   }
 }

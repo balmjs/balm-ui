@@ -63,7 +63,7 @@
 
 <script>
 import '../styles/data-table/data-table';
-import {isString, isObject} from '../helpers/util';
+import {isString, isObject} from './utils/helper';
 import UiButton from './button';
 import UiCheckbox from './form/checkbox';
 

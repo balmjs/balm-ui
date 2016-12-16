@@ -1,16 +1,11 @@
 .mdl-mask {
-  display: block;
   position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  display: block;
   width: 100%;
   height: 100%;
-  left: 0;
-  top: 0;
-  z-index: 10;
-  /*opacity: 0;
-  transition: opacity .2s ease;
-  &.in {
-    opacity: 1;
-  }*/
   &.bg {
     background-color: rgba(0, 0, 0, .5);
   }

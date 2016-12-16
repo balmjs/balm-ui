@@ -10,9 +10,9 @@
       <ui-radio name="sex" value="F" :model="formData.gender" @input="chooseSex">女</ui-radio>
       <ui-radio name="sex" value="M" :model="formData.gender" @input="chooseSex">男</ui-radio>
       <p>图标</p>
-      <ui-icon name="options[]" value="a" :model="formData.options" @input="chooseIcon">X</ui-icon>
-      <ui-icon name="options[]" value="c" :model="formData.options" @input="chooseIcon">Y</ui-icon>
-      <ui-icon name="options[]" value="b" :model="formData.options" @input="chooseIcon">Z</ui-icon>
+      <ui-icon-toggle name="options[]" value="a" :model="formData.options" @input="chooseIcon">X</ui-icon-toggle>
+      <ui-icon-toggle name="options[]" value="c" :model="formData.options" @input="chooseIcon">Y</ui-icon-toggle>
+      <ui-icon-toggle name="options[]" value="b" :model="formData.options" @input="chooseIcon">Z</ui-icon-toggle>
       <p>开关</p>
       <ui-switch name="switch1" :model="formData.switch1" @input="changeSwitch">On/Off</ui-switch>
       <ui-slider :max="100" :model="formData.sliderValue" @input="changeSlider"></ui-slider>

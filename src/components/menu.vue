@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import '../styles/menu/menu';
+import 'mdlMenu';
 
 const POSITIONS = ['', 'top-left', 'top-right', 'bottom-right'];
 const POSITION_NONE = 0; // Default

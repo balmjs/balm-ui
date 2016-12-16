@@ -14,18 +14,18 @@
 </template>
 
 <script>
-import '../../styles/icon-toggle/icon-toggle';
+import 'mdlIconToggle';
 
 const CALLBACK_INPUT = 'input';
 
 /**
  * @example
- * <ui-icon name="icons[]" value="a" :model="formData.icons" @input="chooseIcon">Icon A</ui-icon>
- * <ui-icon name="icons[]" value="b" :model="formData.icons" @input="chooseIcon">Icon B</ui-icon>
- * <ui-icon name="icons[]" value="c" :model="formData.icons" @input="chooseIcon">Icon C</ui-icon>
+ * <ui-icon-toggle name="icons[]" value="a" :model="formData.icons" @input="chooseIcon">Icon A</ui-icon-toggle>
+ * <ui-icon-toggle name="icons[]" value="b" :model="formData.icons" @input="chooseIcon">Icon B</ui-icon-toggle>
+ * <ui-icon-toggle name="icons[]" value="c" :model="formData.icons" @input="chooseIcon">Icon C</ui-icon-toggle>
  */
 export default {
-  name: 'ui-icon',
+  name: 'ui-icon-toggle',
   props: {
     id: String,
     name: {

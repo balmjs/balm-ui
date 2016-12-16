@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import '../../styles/textfield/textfield';
+import 'mdlTextfield';
 
 const CALLBACK_INPUT = 'input';
 

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import '../styles/snackbar/snackbar';
+import 'mdlSnackbar';
 
 const TOAST = 0;
 const SNACKBAR = 1;

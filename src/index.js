@@ -1,7 +1,7 @@
 /**
  * Core
  */
-import './styles/mdlComponentHandler';
+import 'mdlComponentHandler';
 /**
  * Layout
  */
@@ -30,7 +30,7 @@ import UiSplitter from './components/splitter';
 import UiTextfield from './components/form/textfield';
 import UiCheckbox from './components/form/checkbox';
 import UiRadio from './components/form/radio';
-import UiIcon from './components/form/icon';
+import UiIconToggle from './components/form/icon-toggle';
 import UiSwitch from './components/form/switch';
 import UiSlider from './components/form/slider';
 /**
@@ -48,7 +48,7 @@ import UiSnackbar from './components/snackbar';
 /**
  * Effect
  */
-import './styles/ripple/ripple';
+import 'mdlRipple';
 
 const BalmUI = {
   UiLayout,
@@ -70,7 +70,7 @@ const BalmUI = {
   UiTextfield,
   UiCheckbox,
   UiRadio,
-  UiIcon,
+  UiIconToggle,
   UiSwitch,
   UiSlider,
   UiList,

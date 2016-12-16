@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import '../../styles/layout/layout';
+import 'mdlLayout';
 import UiNavigation from './navigation';
 
 const CLASSNAME_HEADER = 'mdl-layout__header-row';

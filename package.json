@@ -1,7 +1,7 @@
 {
   "name": "balm-ui",
-  "version": "0.0.1-beta",
-  "description": "",
+  "version": "0.1.0-beta",
+  "description": "Material Design + Vue + Idea",
   "main": "dist/js/main.js",
   "scripts": {
     "start": "nodemon --exec gulp",
@@ -27,7 +27,6 @@
   },
   "homepage": "https://github.com/balmjs/balm-ui#readme",
   "devDependencies": {
-    "animate.css": "^3.5.2",
     "babel-eslint": "^7.1.1",
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-stage-2": "^6.18.0",

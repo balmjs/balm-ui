@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import '../../styles/switch/switch';
+import 'mdlSwitch';
 
 const CALLBACK_INPUT = 'input';
 

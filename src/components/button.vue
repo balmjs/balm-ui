@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import '../styles/button/button';
+import 'mdlButton';
 
 export default {
   name: 'ui-button',

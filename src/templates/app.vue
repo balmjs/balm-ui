@@ -5,8 +5,7 @@
     :headerLeft="headerLeft"
     :drawerTitle="title"
     :drawerLink="drawerLink"
-    fixedDrawer
-    >
+    fixedDrawer>
     <template slot="header-title">
       <router-link to="/">Balm UI</router-link>
     </template>

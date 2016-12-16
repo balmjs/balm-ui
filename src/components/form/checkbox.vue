@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import '../../styles/checkbox/checkbox';
+import 'mdlCheckbox';
 
 const CALLBACK_INPUT = 'input';
 

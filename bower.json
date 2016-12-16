@@ -1,0 +1,26 @@
+{
+  "name": "balm-ui",
+  "version": "0.1.0-beta",
+  "description": "Material Design + Vue + Idea",
+  "main": "index.js",
+  "authors": [
+    "Elf-mousE <ifmouz@gmail.com>",
+    "74sharlock <sharlock7788@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/balmjs/ui-vue",
+  "ignore": [
+    "src",
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "material-design-icons": "^3.0.1",
+    "material-design-lite": "^1.2.1",
+    "normalize-css": "^5.0.0",
+    "animate.css": "^3.5.2"
+  }
+}

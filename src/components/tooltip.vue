@@ -3,7 +3,7 @@
     <span :id="name">
       <slot name="target">{{ target }}</slot>
     </span>
-    <div :class="[className, positionClassName]" :for="name">
+    <div ref="tooltip" :class="[className, positionClassName]" :for="name">
       <slot name="tips">{{ tips }}</slot>
     </div>
   </div>
@@ -52,7 +52,7 @@ export default {
     }
   },
   mounted() {
-    this.$ui.upgradeElement(this.$el);
+    this.$ui.upgradeElement(this.$refs.tooltip);
   }
 };
 </script>

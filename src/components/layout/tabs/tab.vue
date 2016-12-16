@@ -26,7 +26,7 @@ export default {
   },
   mounted() {
     if (this.$parent.effect) {
-    this.$ui.upgradeElement(this.$refs.ripple, 'MaterialRipple');
+      this.$ui.upgradeElement(this.$refs.ripple, 'MaterialRipple');
     }
   }
 };

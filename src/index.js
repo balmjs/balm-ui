@@ -43,6 +43,7 @@ import UiTable from './components/table';
  */
 import UiDialog from './components/dialog/dialog';
 import UiConfirm from './components/dialog/confirm';
+import UiAlert from './components/dialog/alert';
 import UiSnackbar from './components/snackbar';
 /**
  * Effect
@@ -76,6 +77,7 @@ const BalmUI = {
   UiTable,
   UiDialog,
   UiConfirm,
+  UiAlert,
   UiSnackbar,
   install(Vue) {
     for (let key in BalmUI) {

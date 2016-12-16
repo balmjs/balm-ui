@@ -1,11 +1,13 @@
 <template>
   <ui-dialog
+    class="ui confirm"
     :width="width"
     :title="title"
     :cancel-text="cancelText"
     :confirm-text="confirmText"
     :force="force"
     :show="show"
+    :z-index="zIndex"
     :transition="transition"
     :enter-class="enterClass"
     :enter-active-class="enterActiveClass"
@@ -17,13 +19,17 @@
     @on-confirm="emit('on-confirm')"><slot></slot></ui-dialog>
 </template>
 <script type="text/babel">
-  import uiDialog from './dialog'
+  import UiDialog from './dialog'
   export default {
     name: 'ui-confirm',
     props: {
       width: {
         type: Number,
         default: 520
+      },
+      zIndex: {
+        type: Number,
+        default: 10
       },
       transition: {
         type: Boolean,
@@ -55,7 +61,7 @@
       },
       title: {
         type: String,
-        default: 'prompt'
+        default: 'Prompt'
       },
       confirmText: {
         type: String,
@@ -76,7 +82,7 @@
       }
     },
     components: {
-      uiDialog
+      UiDialog
     }
   }
 </script>

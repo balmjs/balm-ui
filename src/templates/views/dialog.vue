@@ -18,6 +18,7 @@
     <div class="btn-group">
       <ui-splitter>extention</ui-splitter>
       <ui-button primary effect raised @click.native="showDialog('showConfirm')">confirm对话框</ui-button>
+      <ui-button primary effect raised @click.native="showDialog('showAlert')">alert对话框</ui-button>
     </div>
 
     <div class="dialog-group">
@@ -135,6 +136,18 @@
         <br>：confirm的遮罩点击时无法关闭对话框；
         <br>：confirm打开时存在预设动画
       </ui-confirm>
+
+      <ui-alert
+        :show="showAlert"
+        @on-click="closeDialog('showAlert', clickButton)"
+        @on-close="closeDialog('showAlert')">
+        <h4>这是一个ui-alert组件</h4>
+        <br>：alert无法使用[slot="title"]和[slot="actions"]，只能使用title, cancel-text或confirm-text来改变标题文字和按钮文字;
+        <br>：alert打开时存在预设动画
+        <br>: alert功能区只有一个按钮，但是标题栏存在关闭按钮
+        <br>: 与ui-confirm组件相比, alert只有@on-click（对应功能区唯一按钮）, @on-close事件（对应标题栏关闭按钮），没有@on-cancel事件
+      </ui-alert>
+
     </div>
     <!--<transition enter-active-class="am-enter-active" enter-class="am-enter" leave-active-class="am-leave-active">
       <p class="test" v-show="showTest">123456</p>
@@ -142,6 +155,15 @@
   </div>
 </template>
 <style>
+
+  .mdl-layout__header, .mdl-layout__drawer {
+    z-index: initial;
+  }
+
+  .mdl-layout__content {
+    z-index: initial;
+  }
+
   .example-dialog {
     padding: 15px;
   }
@@ -234,12 +256,16 @@
         showCustomBtnText: false,
         showSlot: false,
         showSlotActions: false,
-        showConfirm: false
+        showConfirm: false,
+        showAlert: false
       }
     },
     methods: {
       reVal(name, $event){
         this[name] = $event.target.value.trim();
+      },
+      clickButton(){
+        console.log('Hello, 你点击了按钮！');
       },
       hello(){
         console.log('Hello balm!');

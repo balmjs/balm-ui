@@ -71,7 +71,6 @@
   import UiButton from '../button';
   import Mask from '../../global/mask'
 
-  let $mask = new Mask();
   let ACount = 0;
 
   export default {
@@ -83,6 +82,10 @@
       width: {
         type: Number,
         default: 520
+      },
+      zIndex: {
+        type: Number,
+        default: 10
       },
       transition: {
         type: Boolean,
@@ -114,7 +117,7 @@
       },
       title: {
         type: String,
-        default: 'title'
+        default: 'Title'
       },
       message: {
         type: String,
@@ -139,6 +142,7 @@
     },
     data(){
       return {
+        mask: new Mask(),
         showDialog: this.show
       }
     },
@@ -149,7 +153,8 @@
       style(){
         return {
           width: `${this.width}px`,
-          marginLeft: `${-(this.width / 2)}px`
+          marginLeft: `${-(this.width / 2)}px`,
+          zIndex: this.zIndex
         }
       }
     },
@@ -159,44 +164,6 @@
       }
     },
     methods: {
-      /*// --------
-       // 进入中
-       // --------
-
-       beforeEnter(el) {
-       this.$emit('beforeEnter', el);
-       },
-       // 此回调函数是可选项的设置
-       // 与 CSS 结合时使用
-       enter(el, done) {
-       this.$emit('enter', el);
-       done();
-       },
-       afterEnter(el) {
-       this.$emit('afterEnter', el);
-       },
-       enterCancelled(el) {
-       this.$emit('enterCancelled', el);
-       },
-       // --------
-       // 离开时
-       // --------
-       beforeLeave(el) {
-       this.$emit('beforeLeave', el);
-       },
-       // 此回调函数是可选项的设置
-       // 与 CSS 结合时使用
-       leave(el, done) {
-       this.$emit('beforeLeave', el);
-       done();
-       },
-       afterLeave(el) {
-       this.$emit('afterLeave', el);
-       },
-       // leaveCancelled 只用于 v-show 中
-       leaveCancelled(el) {
-       this.$emit('leaveCancelled', el);
-       },*/
       onConfirm(){
         this.close();
         this.$emit('on-confirm');
@@ -210,15 +177,14 @@
         this.closeMask();
       },
       closeMask(){
-        $mask.remove();
+        this.mask.remove();
       },
       openMask(){
-        $mask.show({transparent: this.transparent, clickHandler: this.force ? null : this.close, parent: this.$el});
+        this.mask.show({transparent: this.transparent, clickHandler: this.force ? null : this.close, parent: this.$el, zIndex: this.zIndex - 1});
       }
     },
     beforeDestroy(){
-      $mask.remove();
-      $mask = null;
+      this.mask && this.mask.remove();
     },
     components: {
       UiButton

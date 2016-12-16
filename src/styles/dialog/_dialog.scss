@@ -64,4 +64,63 @@
     transform: translate3d(0, -50%, 0);
     opacity: 0;
   }
+
+  &.alert-enter-active, &.alert-leave-active {
+    transition: opacity .25s ease, transform .25s ease;
+  }
+
+  &.alert-enter, &.alert-leave-active {
+    transform: translate3d(0, -50%, 0);
+    opacity: 0;
+  }
+}
+
+.ui.alert .title {
+  display: flex;
+  font-size: 24px;
+  justify-content: space-between;
+}
+.ui.alert .title .close {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: transform 1s ease;
+  transform: rotate(0deg);
+  position: relative;
+}
+
+.ui.alert .title .close::before, .ui.alert .title .close::after {
+  display: block;
+  position: absolute;
+  width: 16px;
+  left: 4px;
+  top: 11px;
+  content: "";
+  height: 2px;
+  background-color: #CCCCCC;
+}
+
+.ui.alert .title .close::before {
+  transform: rotate(45deg);
+}
+
+.ui.alert .title .close::after {
+  transform: rotate(135deg);
+}
+
+.ui.alert .title .close:hover {
+  transform: rotate(360deg);
+}
+
+.ui.alert .title .close:active {
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, .5) inset;
+}
+
+.ui.alert .mdl-dialog__actions {
+  justify-content: center;
 }

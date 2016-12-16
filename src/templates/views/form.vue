@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form class="demo-form">
     <ui-textfield id="username" name="username" :model="formData.username" @input="changeText" pattern="-?[0-9]*(\.[0-9]+)?" label="用户名" error="请输入数字"></ui-textfield>
     <div>
       <p>复选框</p>

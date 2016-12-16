@@ -1,5 +1,5 @@
 {
-  "name": "balm-ui",
+  "name": "balm-ui.vue",
   "version": "0.1.0-beta",
   "description": "",
   "main": "index.js",
@@ -12,8 +12,15 @@
     "type": "git",
     "url": "git+https://github.com/balmjs/balm-ui.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": [{
+    "name": "Elf-mousE",
+    "email": "ifmouz@gmail.com",
+    "url": "http://elf-mouse.me/"
+  }, {
+    "name": "74sharlock",
+    "email": "2220106810@qq.com"
+  }],
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/balmjs/balm-ui/issues"
   },

@@ -1,17 +1,19 @@
 <template>
-  <ui-table
-    :col="table.col"
-    :data="table.data"
-    :thead="table.thead"
-    :tbody="table.tbody"
-    :tfoot="table.tfoot"
-    :action="table.action"
-    :selectable="table.selectable"
-    :checkList="table.checkList"
-    @edit="onEdit"
-    @delete="onDelete"
-    @on-selected="onSelected">
-  </ui-table>
+  <div class="demo-table">
+    <ui-table
+      :col="table.col"
+      :data="table.data"
+      :thead="table.thead"
+      :tbody="table.tbody"
+      :tfoot="table.tfoot"
+      :action="table.action"
+      :selectable="table.selectable"
+      :checkList="table.checkList"
+      @edit="onEdit"
+      @delete="onDelete"
+      @on-selected="onSelected">
+    </ui-table>
+  </div>
 </template>
 
 <script>

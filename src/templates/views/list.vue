@@ -1,9 +1,11 @@
 <template>
-  <ui-list :items="items2" threeLine>
-    <template slot="action" scope="props">
-      <ui-button effect @click.native="test(props.item)">点赞</ui-button>
-    </template>
-  </ui-list>
+  <div class="demo-list">
+    <ui-list :items="items2" threeLine>
+      <template slot="action" scope="props">
+        <ui-button effect @click.native="test(props.item)">点赞</ui-button>
+      </template>
+    </ui-list>
+  </div>
 </template>
 
 <script>

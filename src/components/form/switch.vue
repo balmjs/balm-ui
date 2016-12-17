@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import 'mdlSwitch';
+import '../../material-design-lite/switch/switch';
 
 const CALLBACK_INPUT = 'input';
 

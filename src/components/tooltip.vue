@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import 'mdlTooltip';
+import '../material-design-lite/tooltip/tooltip';
 
 const POSITIONS = ['', 'top', 'right', 'bottom', 'left'];
 const POSITION_TOP = 1; // Positions the tooltip to the top of the target

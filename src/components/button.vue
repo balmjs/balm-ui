@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import 'mdlButton';
+import '../material-design-lite/button/button';
 
 export default {
   name: 'ui-button',

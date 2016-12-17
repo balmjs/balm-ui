@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import 'mdlIconToggle';
+import '../../material-design-lite/icon-toggle/icon-toggle';
 
 const CALLBACK_INPUT = 'input';
 

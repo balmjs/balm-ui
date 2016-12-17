@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import 'mdlCheckbox';
+import '../../material-design-lite/checkbox/checkbox';
 
 const CALLBACK_INPUT = 'input';
 

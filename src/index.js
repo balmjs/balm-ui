@@ -1,7 +1,7 @@
 /**
  * Core
  */
-import 'mdlComponentHandler';
+import './material-design-lite/mdlComponentHandler';
 /**
  * Layout
  */
@@ -48,7 +48,7 @@ import UiSnackbar from './components/snackbar';
 /**
  * Effect
  */
-import 'mdlRipple';
+import './material-design-lite/ripple/ripple';
 
 const BalmUI = {
   UiLayout,

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import 'mdlRadio';
+import '../../material-design-lite/radio/radio';
 
 const CALLBACK_INPUT = 'input';
 

@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import 'mdlDataTable';
+import '../material-design-lite/data-table/data-table';
 import {isString, isObject} from './utils/helper';
 import UiButton from './button';
 import UiCheckbox from './form/checkbox';

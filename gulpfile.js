@@ -1,4 +1,7 @@
 var balm = require('balm');
+var gulp = require('gulp');
+
+var useDefault = !(process.argv[2] === '--mdl');
 
 balm.config = {
   roots: {
@@ -23,31 +26,33 @@ balm.config = {
       test: /\.vue$/,
       loader: 'vue'
     }],
-    alias: {
-      'mdlComponentHandler': 'material-design-lite/src/mdlComponentHandler.js',
-      'mdlButton': 'material-design-lite/src/button/button.js',
-      'mdlCheckbox': 'material-design-lite/src/checkbox/checkbox.js',
-      'mdlDataTable': 'material-design-lite/src/data-table/data-table.js',
-      'mdlIconToggle': 'material-design-lite/src/icon-toggle/icon-toggle.js',
-      'mdlLayout': 'material-design-lite/src/layout/layout.js',
-      'mdlMenu': 'material-design-lite/src/menu/menu.js',
-      'mdlProgress': 'material-design-lite/src/progress/progress.js',
-      'mdlRadio': 'material-design-lite/src/radio/radio.js',
-      'mdlRipple': 'material-design-lite/src/ripple/ripple.js',
-      'mdlSlider': 'material-design-lite/src/slider/slider.js',
-      'mdlSnackbar': 'material-design-lite/src/snackbar/snackbar.js',
-      'mdlSpinner': 'material-design-lite/src/spinner/spinner.js',
-      'mdlSwitch': 'material-design-lite/src/switch/switch.js',
-      // 'mdlTabs': 'material-design-lite/src/tabs/tabs.js',
-      'mdlTextfield': 'material-design-lite/src/textfield/textfield.js',
-      'mdlTooltip': 'material-design-lite/src/tooltip/tooltip.js'
-    },
     eslint: true
-  }
+  },
+  useDefault: useDefault
+};
+
+var DMI_SOURCE = './node_modules/material-design-icons';
+var DML_SOURCE = './node_modules/material-design-lite';
+var DEV_SOURCE = {
+  static: './src/material-design-lite',
+  img: './src/images',
+  font: './src/fonts'
 };
 
 balm.go(function(mix) {
-  if (balm.config.production) {
-    mix.remove('./dist/index.html');
+  if (useDefault) {
+    if (balm.config.production) {
+      mix.remove('./dist/index.html');
+    }
+  } else {
+    // clear
+    mix.remove([DEV_SOURCE.static + '/*', DEV_SOURCE.img + '/*', DEV_SOURCE.font + '/*']);
+    // get material design lite
+    mix.copy(DML_SOURCE + '/src/{_*scss,material-design-lite.scss,mdlComponentHandler.js}', DEV_SOURCE.static);
+    mix.copy(DML_SOURCE + '/src/**/{_*.scss,*.js}', DEV_SOURCE.static);
+    // get material design lite images
+    mix.copy(DML_SOURCE + '/src/images/*.svg', DEV_SOURCE.img);
+    // get material design icons
+    mix.copy(DMI_SOURCE + '/iconfont/*.{css,eot,svg,ttf,woff,woff2}', DEV_SOURCE.font);
   }
 });

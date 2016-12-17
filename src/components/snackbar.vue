@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import 'mdlSnackbar';
+import '../material-design-lite/snackbar/snackbar';
 
 const TOAST = 0;
 const SNACKBAR = 1;
@@ -71,7 +71,7 @@ export default {
       };
 
       if (this.isSnackbar) {
-        data.actionHandler = this.actionHandler;
+        data.actionHandler = this.actionHandler; // TODO: has bug
         data.actionText = this.actionText;
       }
 

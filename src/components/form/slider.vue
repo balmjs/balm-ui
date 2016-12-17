@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import 'mdlSlider';
+import '../../material-design-lite/slider/slider';
 
 const CALLBACK_INPUT = 'input';
 

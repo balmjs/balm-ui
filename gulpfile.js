@@ -1,5 +1,4 @@
 var balm = require('balm');
-var gulp = require('gulp');
 
 var useDefault = !(process.argv[2] === '--mdl');
 

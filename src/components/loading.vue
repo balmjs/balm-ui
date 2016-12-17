@@ -29,6 +29,10 @@ export default {
     singleColor: {
       type: Boolean,
       default: false
+    },
+    noBuffer: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -48,7 +52,8 @@ export default {
           className = {
             'mdl-progress': true,
             'mdl-js-progress': true,
-            'mdl-progress--indeterminate': this.isActive
+            'mdl-progress--indeterminate': this.isActive,
+            'no-buffer': this.noBuffer
           };
           break;
       }

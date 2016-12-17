@@ -89,18 +89,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.mdl-button--link {
-  line-height: 1;
-  display: inline;
-  width: auto;
-  height: auto;
-  padding: 0;
-}
-
-.mdl-button--link:hover {
-  color: rgb(63, 81, 181);
-  background-color: transparent;
-}
-</style>

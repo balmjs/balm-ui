@@ -1,0 +1,5 @@
+.mdl-progress:not(.mdl-progress__indeterminate):not(.mdl-progress__indeterminate) {
+  &.no-buffer > .auxbar {
+    mask: none;
+  }
+}

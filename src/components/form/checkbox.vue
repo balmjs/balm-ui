@@ -45,6 +45,10 @@ export default {
     effect: {
       type: Boolean,
       default: false
+    },
+    squared: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -59,7 +63,8 @@ export default {
         'mdl-js-checkbox': true,
         'mdl-js-ripple-effect': this.effect,
         'is-upgraded': true,
-        'is-checked': this.isChecked
+        'is-checked': this.isChecked,
+        'is-squared': this.squared
       };
     },
     isChecked() {

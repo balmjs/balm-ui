@@ -121,28 +121,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.mdl-textfield--left-label {
-  padding: 0;
-}
-
-.mdl-textfield--left-label .mdl-input__expandable-holder {
-  display: flex;
-  flex-flow: row-reverse wrap;
-  justify-content: space-between;
-  align-items: stretch;
-}
-
-.mdl-textfield--left-label .mdl-input__expandable-holder > * {
-  position: static;
-  /* change it */
-  width: 50%;
-}
-
-.mdl-textfield--left-label .mdl-input__expandable-holder > label {
-  visibility: visible !important;
-  /* add it */
-  /* width: 50px; */
-}
-</style>

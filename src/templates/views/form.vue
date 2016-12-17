@@ -1,11 +1,14 @@
 <template>
   <form class="demo-form">
-    <ui-textfield id="username" name="username" :model="formData.username" @input="changeText" pattern="-?[0-9]*(\.[0-9]+)?" label="用户名" error="请输入数字"></ui-textfield>
+    <div>
+      <ui-textfield id="username" name="username" :model="formData.username" @input="changeText" pattern="-?[0-9]*(\.[0-9]+)?" label="用户名" error="请输入数字"></ui-textfield>
+      <ui-textfield labelLeft id="age" name="age" :model="formData.username" label="四个大字" error="请输入数字" pattern="-?[0-9]*(\.[0-9]+)?"></ui-textfield>
+    </div>
     <div>
       <p>复选框</p>
       <ui-checkbox name="answer[]" value="1" :model="formData.answer" @input="chooseAnswer">选项A</ui-checkbox>
       <ui-checkbox name="answer[]" value="2" :model="formData.answer" @input="chooseAnswer">选项B</ui-checkbox>
-      <ui-checkbox name="answer[]" value="3" :model="formData.answer" @input="chooseAnswer">选项C</ui-checkbox>
+      <ui-checkbox squared name="answer[]" value="3" :model="formData.answer" @input="chooseAnswer">选项C</ui-checkbox>
       <p>单选框</p>
       <ui-radio name="sex" value="F" :model="formData.gender" @input="chooseSex">女</ui-radio>
       <ui-radio name="sex" value="M" :model="formData.gender" @input="chooseSex">男</ui-radio>

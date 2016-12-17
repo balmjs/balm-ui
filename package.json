@@ -31,7 +31,7 @@
     "babel-eslint": "^7.1.1",
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-stage-2": "^6.18.0",
-    "balm": "^0.5.4",
+    "balm": "^0.5.5",
     "gulp": "^3.9.1",
     "material-design-icons": "^3.0.1",
     "material-design-lite": "^1.2.1",

@@ -51,4 +51,4 @@ Coming Soon...
 - [x] snackbar
 
 
-> __thx [BalmJS](http://balmjs.com/) & [Vue.js](https://vuejs.org/)
+> __thx [BalmJS](http://balmjs.com/) & [Vue.js](https://vuejs.org/)__

@@ -20,8 +20,8 @@ export default {
     },
     // Assigns string value to badge
     value: {
-      type: [String, Number],
-      default: ''
+      type: [Number, String],
+      default: 0
     }
   },
   computed: {
@@ -29,7 +29,8 @@ export default {
       return {
         'mdl-badge': true, // Required on span or link
         'mdl-badge--no-background': this.noBackground,
-        'mdl-badge--overlap': this.overlap
+        'mdl-badge--overlap': this.overlap,
+        'no-badge': !this.value
       };
     }
   }

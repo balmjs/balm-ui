@@ -1,11 +1,11 @@
 <template>
-  <div :class="name">
-    <button class="mdl-button mdl-js-button mdl-button--icon" :id="name">
+  <div :class="`menu${name}`">
+    <button class="mdl-button mdl-js-button mdl-button--icon" :id="`menu${name}`">
       <slot name="icon">
         <i class="material-icons">icon</i>
       </slot>
     </button>
-    <ul :class="[className.outer, positionClassName]" :for="name">
+    <ul :class="[className.outer, positionClassName]" :for="`menu${name}`">
       <li v-for="menu in currentData"
         :class="className.inner"
         :disabled="menu.disabled"
@@ -32,7 +32,7 @@ export default {
   props: {
     name: {
       type: String,
-      default: 'menu1'
+      required: true
     },
     data: {
       type: Array,

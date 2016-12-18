@@ -17,7 +17,7 @@
         <i slot="target" class="material-icons">face</i>
         <div slot="tips">tips</div>
       </ui-tooltip>
-      <ui-menu :data="menus" :position="3" @clicked="onMenu" effect></ui-menu>
+      <ui-menu name="user" :data="menus" :position="3" @clicked="onMenu" effect></ui-menu>
     </template>
     <template slot="drawer-title">
       <router-link to="/">Balm UI</router-link>

@@ -1,6 +1,6 @@
 <template>
-  <div :class="className" ref="tabs">
-    <div class="mdl-tabs__tab-bar">
+  <div :class="className.outer">
+    <div :class="className.inner">
       <ui-tab v-for="tab in tabs" :tab="tab"></ui-tab>
     </div>
     <slot></slot>
@@ -10,6 +10,8 @@
 <script>
 import UiTab from './tab';
 
+const POSITION_LEFT = 'left';
+const POSITION_RIGHT = 'right';
 const CALLBACK_SWITCHED = 'switched';
 
 export default {
@@ -26,6 +28,11 @@ export default {
     effect: {
       type: Boolean,
       default: false
+    },
+    position: String,
+    fixedTabs: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -37,8 +44,16 @@ export default {
   computed: {
     className() {
       return {
-        'mdl-tabs': true,
-        'is-upgraded': true, // manual for effect
+        outer: {
+          'mdl-tabs': true,
+          'is-upgraded': true, // manual for effect
+          'mdl-tabs--fixed-tabs': this.fixedTabs
+        },
+        inner: {
+          'mdl-tabs__tab-bar': true,
+          'mdl-tabs--tab-left': this.position && this.position.toLowerCase() === POSITION_LEFT,
+          'mdl-tabs--tab-right': this.position && this.position.toLowerCase() === POSITION_RIGHT
+        }
       };
     }
   },

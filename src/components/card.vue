@@ -34,7 +34,7 @@ export default {
     },
     // Assigns variable shadow depths (2, 3, 4, 6, 8, or 16) to card
     dp: {
-      type: Number,
+      type: [Number, String],
       default: 0
     },
     expand: {
@@ -84,7 +84,7 @@ export default {
       };
     },
     shadowClassName() {
-      return (SHADOW_DEPTHS.indexOf(this.dp) > -1) ? `mdl-shadow--${this.dp}dp` : '';
+      return (SHADOW_DEPTHS.indexOf(+this.dp) > -1) ? `mdl-shadow--${this.dp}dp` : '';
     }
   }
 };

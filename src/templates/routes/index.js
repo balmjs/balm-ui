@@ -18,8 +18,7 @@ const Tooltip = require('../views/tooltip');
 let routes = [{
   path: '/',
   name: 'home',
-  component: Home,
-  alias: '/'
+  component: Home
 }, {
   path: '/badge',
   name: 'badge',

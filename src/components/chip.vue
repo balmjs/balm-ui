@@ -1,7 +1,9 @@
 <template>
   <span :class="className">
     <slot name="contact" :className="contactClassName"></slot>
-    <span class="mdl-chip__text">{{ value }}</span>
+    <span class="mdl-chip__text">
+      <slot>{{ value }}</slot>
+    </span>
     <slot name="action" :className="actionClassName"></slot>
   </span>
 </template>
@@ -22,10 +24,7 @@ export default {
       type: Boolean,
       default: false
     },
-    value: {
-      type: String,
-      required: true
-    }
+    value: String
   },
   data() {
     return {

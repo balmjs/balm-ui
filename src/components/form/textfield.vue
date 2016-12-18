@@ -46,14 +46,8 @@ export default {
       type: Boolean,
       default: false
     },
-    id: {
-      type: String,
-      required: true
-    },
-    name: {
-      type: String,
-      required: true
-    },
+    id: String,
+    name: String,
     label: String,
     labelFloating: {
       type: Boolean,

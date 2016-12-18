@@ -35,6 +35,18 @@
     <ui-menu name="menu2" :data="menus"></ui-menu>
     <hr>
     <ui-slider></ui-slider>
+    <hr>
+    <ui-button @click.native="showSnackbar">show snackbar</ui-button>
+    <ui-snackbar message="hello snackbar" :active="active" @done="resetSnackbar"></ui-snackbar>
+    <hr>
+    <!-- TODO: TOGGLES -->
+    <hr>
+    <ui-textfield label="Text field" :model="formData.text1" @input.native="changeText('text1', $event)"></ui-textfield>
+    <ui-textfield label="Text field2" :model="formData.text2" @input.native="changeText('text2', $event)"></ui-textfield>
+    <hr>
+    <ui-tooltip name="tt1" target="Tool" tips="tips"></ui-tooltip>
+    <hr>
+    <ui-button effect @click.native="submit">Submit</ui-button>
   </div>
 </template>
 
@@ -53,12 +65,30 @@ export default {
       }, {
         url:'/c',
         name: 'Item C'
-      }]
+      }],
+      active: false,
+      formData: {
+        text1: 'Hello',
+        text2: 'World'
+      }
     };
   },
   methods: {
     onChange(tab) {
       this.tab = tab;
+    },
+    showSnackbar() {
+      this.active = true;
+    },
+    resetSnackbar() {
+      this.active = false;
+    },
+    changeText(field, event) {
+      this.formData[field] = event.target.value;
+    },
+    submit() {
+      console.info('submit');
+      console.log(this.formData);
     }
   }
 };

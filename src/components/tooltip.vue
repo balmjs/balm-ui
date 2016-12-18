@@ -1,9 +1,9 @@
 <template>
-  <div :class="name">
-    <span :id="name">
+  <div :class="`tt${name}`">
+    <span :id="`tt${name}`">
       <slot name="target">{{ target }}</slot>
     </span>
-    <div ref="tooltip" :class="[className, positionClassName]" :for="name">
+    <div ref="tooltip" :class="[className, positionClassName]" :for="`tt${name}`">
       <slot name="tips">{{ tips }}</slot>
     </div>
   </div>

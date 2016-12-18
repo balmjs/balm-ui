@@ -6,8 +6,8 @@
       :value="value"
       v-model="currentValue">
     <span class="mdl-icon-toggle__label">
-      <slot>
-        <i class="material-icons">icon</i>
+      <slot :className="iconClassName">
+        <i :class="iconClassName">icon</i>
       </slot>
     </span>
   </label>
@@ -16,6 +16,7 @@
 <script>
 import '../../material-design-lite/icon-toggle/icon-toggle';
 
+const CLASSNAME_ICON = 'material-icons';
 const CALLBACK_INPUT = 'input';
 
 /**
@@ -28,10 +29,7 @@ export default {
   name: 'ui-icon-toggle',
   props: {
     id: String,
-    name: {
-      type: String,
-      required: true
-    },
+    name: String,
     value: [String, Number, Boolean],
     model: {
       type: [Array, String, Number, Boolean],
@@ -46,7 +44,8 @@ export default {
   },
   data() {
     return {
-      currentValue: Array.isArray(this.model) ? this.model : [this.model]
+      currentValue: Array.isArray(this.model) ? this.model : [this.model],
+      iconClassName: CLASSNAME_ICON
     };
   },
   computed: {

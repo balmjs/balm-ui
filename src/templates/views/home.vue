@@ -39,10 +39,26 @@
     <ui-button @click.native="showSnackbar">show snackbar</ui-button>
     <ui-snackbar message="hello snackbar" :active="active" @done="resetSnackbar"></ui-snackbar>
     <hr>
-    <!-- TODO: TOGGLES -->
+    <ui-checkbox value="A" :model="formData.options" @input="onOptionsChange">Option A</ui-checkbox>
+    <ui-checkbox value="B" :model="formData.options" @input="onOptionsChange">Option B</ui-checkbox>
+    <ui-checkbox value="C" :model="formData.options" @input="onOptionsChange">Option C</ui-checkbox>
+    <br>
+    <ui-radio value="F" :model="formData.gender" @input="onGenderChange">Female</ui-radio>
+    <ui-radio value="M" :model="formData.gender" @input="onGenderChange">Male</ui-radio>
+    <br>
+    <ui-radio value="Y" :model="formData.answer" @input="onAnswerChange">Yes</ui-radio>
+    <ui-radio value="N" :model="formData.answer" @input="onAnswerChange">No</ui-radio>
+    <br>
+    <ui-icon-toggle value="X" :model="formData.icons" @input="onIconsChange">X</ui-icon-toggle>
+    <ui-icon-toggle value="Y" :model="formData.icons" @input="onIconsChange">Y</ui-icon-toggle>
+    <ui-icon-toggle value="Z" :model="formData.icons" @input="onIconsChange">Z</ui-icon-toggle>
+    <br>
+    <ui-switch :model="formData.open" @input="onSwitchChange">On/Off</ui-switch>
     <hr>
-    <ui-textfield label="Text field" :model="formData.text1" @input.native="changeText('text1', $event)"></ui-textfield>
-    <ui-textfield label="Text field2" :model="formData.text2" @input.native="changeText('text2', $event)"></ui-textfield>
+    <ui-textfield label="Text field" :model="formData.text1" @input.native="onInputChange('text1', $event)"></ui-textfield>
+    <ui-textfield label="Text field2" :model="formData.text2" @input.native="onInputChange('text2', $event)"></ui-textfield>
+    <br>
+    <ui-textfield type="textarea" label="Textarea" :model="formData.text3" @input.native="onInputChange('text3', $event)"></ui-textfield>
     <hr>
     <ui-tooltip name="tt1" target="Tool" tips="tips"></ui-tooltip>
     <hr>
@@ -68,8 +84,14 @@ export default {
       }],
       active: false,
       formData: {
+        options: [],
+        gender: '',
+        answer: '',
+        icons: [],
+        open: '',
         text1: 'Hello',
-        text2: 'World'
+        text2: 'World',
+        text3: 'Content'
       }
     };
   },
@@ -83,7 +105,23 @@ export default {
     resetSnackbar() {
       this.active = false;
     },
-    changeText(field, event) {
+    onOptionsChange(val) {
+      this.formData.options = val;
+    },
+    onGenderChange(val) {
+      console.log(val);
+      this.formData.gender = val;
+    },
+    onAnswerChange(val) {
+      this.formData.answer = val;
+    },
+    onIconsChange(val) {
+      this.formData.icons = val;
+    },
+    onSwitchChange(val) {
+      this.formData.open = val;
+    },
+    onInputChange(field, event) {
       this.formData[field] = event.target.value;
     },
     submit() {

@@ -24,10 +24,7 @@ export default {
   name: 'ui-switch',
   props: {
     id: String,
-    name: {
-      type: String,
-      required: true
-    },
+    name: String,
     label: String,
     value: Boolean,
     model: {

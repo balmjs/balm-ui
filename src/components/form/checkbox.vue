@@ -26,10 +26,7 @@ export default {
   name: 'ui-checkbox',
   props: {
     id: String,
-    name: {
-      type: String,
-      required: true
-    },
+    name: String,
     label: String,
     hideLabel: {
       type: Boolean,

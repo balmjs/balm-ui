@@ -25,10 +25,7 @@ export default {
   name: 'ui-radio',
   props: {
     id: String,
-    name: {
-      type: String,
-      required: true
-    },
+    name: String,
     label: String,
     hideLabel: {
       type: Boolean,

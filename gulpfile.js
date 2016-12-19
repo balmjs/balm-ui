@@ -4,22 +4,14 @@ var useDefault = !(process.argv[2] === '--mdl');
 
 balm.config = {
   roots: {
-    source: 'src'
-  },
-  paths: {
-    source: {
-      css: 'styles',
-      js: 'templates',
-      img: 'images',
-      font: 'fonts'
-    }
+    source: balm.config.production ? 'src' : 'docs'
   },
   styles: {
     ext: 'scss'
   },
   scripts: {
     entry: {
-      main: balm.config.production ? './src/index.js' : './src/templates/main.js'
+      main: balm.config.production ? './src/index.js' : './docs/scripts/main.js'
     },
     loaders: [{
       test: /\.vue$/,
@@ -41,7 +33,6 @@ var DEV_SOURCE = {
 balm.go(function(mix) {
   if (useDefault) {
     if (balm.config.production) {
-      mix.remove('./dist/index.html');
       mix.remove('./dist/font/*.css');
     }
   } else {

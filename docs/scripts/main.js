@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import BalmUI from '../index';
+import BalmUI from '../../src/index';
 import App from './app';
 import routes from './routes/index';
 

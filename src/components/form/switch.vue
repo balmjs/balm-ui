@@ -4,7 +4,8 @@
       :id="id"
       :name="name"
       :value="value"
-      v-model="currentValue">
+      v-model="currentValue"
+      @change="handleChange">
     <span class="mdl-switch__label">
       <slot>{{ label }}</slot>
     </span>
@@ -14,7 +15,7 @@
 <script>
 import '../../material-design-lite/switch/switch';
 
-const CALLBACK_INPUT = 'input';
+const CALLBACK_CHANGE = 'change';
 
 /**
  * @example
@@ -54,9 +55,11 @@ export default {
   watch: {
     model(val) {
       this.currentValue = val;
-    },
-    currentValue(val) {
-      this.$emit(CALLBACK_INPUT, val);
+    }
+  },
+  methods: {
+    handleChange() {
+      this.$emit(CALLBACK_CHANGE, this.currentValue);
     }
   },
   mounted() {

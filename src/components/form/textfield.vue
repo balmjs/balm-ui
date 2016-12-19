@@ -12,14 +12,17 @@
         :name="name"
         :rows="rows"
         :placeholder="currentPlaceholder"
-        v-model="currentValue"></textarea>
-      <input class="mdl-textfield__input" type="text"
+        v-model="currentValue"
+        @input="handleInput"></textarea>
+      <input class="mdl-textfield__input"
         v-if="!isTextarea"
+        :type="type"
         :id="id"
         :name="name"
         :placeholder="currentPlaceholder"
         :pattern="pattern"
-        v-model="currentValue">
+        :value="currentValue"
+        @input="handleInput">
       <label class="mdl-textfield__label" :for="id">
         <slot name="label">{{ label }}</slot>
       </label>
@@ -105,9 +108,11 @@ export default {
   watch: {
     model(val) {
       this.currentValue = val;
-    },
-    currentValue(val) {
-      this.$emit(CALLBACK_INPUT, val);
+    }
+  },
+  methods: {
+    handleInput() {
+      this.$emit(CALLBACK_INPUT, this.currentValue);
     }
   },
   mounted() {

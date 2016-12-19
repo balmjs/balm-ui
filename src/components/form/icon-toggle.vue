@@ -4,7 +4,8 @@
       :id="id"
       :name="name"
       :value="value"
-      v-model="currentValue">
+      v-model="currentValue"
+      @change="handleChange">
     <span class="mdl-icon-toggle__label">
       <slot :className="iconClassName">
         <i :class="iconClassName">icon</i>
@@ -17,7 +18,7 @@
 import '../../material-design-lite/icon-toggle/icon-toggle';
 
 const CLASSNAME_ICON = 'material-icons';
-const CALLBACK_INPUT = 'input';
+const CALLBACK_CHANGE = 'change';
 
 /**
  * @example
@@ -60,9 +61,11 @@ export default {
   watch: {
     model(val) {
       this.currentValue = val;
-    },
-    currentValue(val) {
-      this.$emit(CALLBACK_INPUT, val);
+    }
+  },
+  methods: {
+    handleChange() {
+      this.$emit(CALLBACK_CHANGE, this.currentValue);
     }
   },
   mounted() {

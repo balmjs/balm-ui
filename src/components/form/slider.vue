@@ -3,13 +3,14 @@
     :min="min"
     :max="max"
     :step="step"
-    v-model="currentValue">
+    v-model="currentValue"
+    @change="handleChange">
 </template>
 
 <script>
 import '../../material-design-lite/slider/slider';
 
-const CALLBACK_INPUT = 'input';
+const CALLBACK_CHANGE = 'change';
 
 export default {
   name: 'ui-slider',
@@ -39,9 +40,11 @@ export default {
   watch: {
     model(val) {
       this.currentValue = +val;
-    },
-    currentValue(val) {
-      this.$emit(CALLBACK_INPUT, val);
+    }
+  },
+  methods: {
+    handleChange() {
+      this.$emit(CALLBACK_CHANGE, this.currentValue);
     }
   },
   mounted() {

@@ -1,0 +1,11 @@
+.mdl-checkbox {
+  &.is-squared {
+    .mdl-checkbox__tick-outline {
+      width: 8px;
+      height: 8px;
+      margin: 2px;
+      background-image: none;
+      mask: none;
+    }
+  }
+}

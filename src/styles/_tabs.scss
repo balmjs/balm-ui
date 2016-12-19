@@ -1,0 +1,16 @@
+.mdl-tabs__tab-bar {
+  &.mdl-tabs--tab-left {
+    justify-content: flex-start;
+  }
+  &.mdl-tabs--tab-right {
+    justify-content: flex-end;
+  }
+}
+
+.mdl-tabs {
+  &.mdl-tabs--fixed-tabs {
+    .mdl-tabs__tab {
+      flex-grow: 1;
+    }
+  }
+}

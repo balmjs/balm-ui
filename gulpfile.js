@@ -42,6 +42,7 @@ balm.go(function(mix) {
   if (useDefault) {
     if (balm.config.production) {
       mix.remove('./dist/index.html');
+      mix.remove('./dist/font/*.css');
     }
   } else {
     // clear

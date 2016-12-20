@@ -17,6 +17,9 @@ balm.config = {
       test: /\.vue$/,
       loader: 'vue'
     }],
+    alias: {
+      prismCss: 'prismjs/themes/prism-dark.css'
+    },
     eslint: true
   },
   useDefault: useDefault

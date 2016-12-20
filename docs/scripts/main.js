@@ -4,10 +4,14 @@ import VueI18n from 'vue-i18n';
 import BalmUI from '../../src/index';
 import App from './app';
 import routes from './routes/index';
+// syntax highlighting
+import 'prismCss';
+import prismjs from 'prismjs';
 
 Vue.use(VueRouter);
 Vue.use(VueI18n);
 Vue.use(BalmUI);
+Vue.prototype.$prism = prismjs;
 
 // ready translated locales
 import { locales } from './config/lang';

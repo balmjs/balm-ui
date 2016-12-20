@@ -13,6 +13,7 @@ const COMPONENTS = [
   'menu',
   'snackbar',
   'form',
+  'radio',
   'table',
   'tooltip'
 ];

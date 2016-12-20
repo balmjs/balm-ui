@@ -15,6 +15,7 @@
     "form": "表单",
     "table": "表格",
     "textfield": "文本框",
+    "radio": "单选框",
     "tooltip": "文字提示",
     "divider": "分割线"
   }

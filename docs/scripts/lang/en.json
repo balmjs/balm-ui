@@ -15,6 +15,7 @@
     "form": "Form",
     "table": "Table",
     "textfield": "Text field",
+    "radio": "Radio",
     "tooltip": "Tooltip",
     "divider": "Divider"
   }

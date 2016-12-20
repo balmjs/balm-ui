@@ -18,7 +18,7 @@ balm.config = {
       loader: 'vue'
     }],
     alias: {
-      prismCss: 'prismjs/themes/prism-dark.css'
+      prismCss: 'prismjs/themes/prism-okaidia.css'
     },
     eslint: true
   },

@@ -34,8 +34,8 @@ export default {
     }
   },
   created() {
-    this.code.html = this.$prism.highlight(codeTemplate, Prism.languages.html);
-    this.code.js = this.$prism.highlight(codeScript, Prism.languages.javascript);
+    this.code.html = this.$prism.highlight(codeTemplate, this.$prism.languages.html);
+    this.code.js = this.$prism.highlight(codeScript, this.$prism.languages.javascript);
   }
 };
 </script>

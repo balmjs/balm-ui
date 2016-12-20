@@ -16,7 +16,7 @@
     </div>
 
     <div class="btn-group">
-      <ui-splitter>extention</ui-splitter>
+      <ui-divider>extention</ui-divider>
       <ui-button primary effect raised @click.native="showDialog('showConfirm')">confirm对话框</ui-button>
       <ui-button primary effect raised @click.native="showDialog('showAlert')">alert对话框</ui-button>
     </div>

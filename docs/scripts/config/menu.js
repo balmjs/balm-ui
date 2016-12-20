@@ -1,10 +1,8 @@
 const COMPONENTS = [
-  'alert',
   'badge',
   'button',
   'card',
   'chip',
-  'confirm',
   'dialog',
   'divider',
   'grid',
@@ -17,7 +15,7 @@ const COMPONENTS = [
   'form',
   'table',
   'tooltip'
-]
+];
 
 const menu = COMPONENTS.map(component => {
   return {

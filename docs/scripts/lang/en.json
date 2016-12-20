@@ -14,6 +14,7 @@
     "snackbar": "Snackbar",
     "form": "Form",
     "table": "Table",
+    "textfield": "Text field",
     "tooltip": "Tooltip",
     "divider": "Divider"
   }

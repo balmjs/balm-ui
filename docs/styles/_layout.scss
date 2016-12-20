@@ -1,0 +1,25 @@
+.supported-lang {
+  margin: 0;
+  a.active {
+    font-weight: bolder;
+    color: white;
+  }
+}
+
+.mdl-layout__drawer {
+  .mdl-navigation__link {
+    &.router-link-active {
+      background-color: #757575;
+      a {
+        color: white;
+      }
+      &:hover {
+        background-color: #757575;
+      }
+    }
+  }
+}
+
+.mdl-layout__content {
+  padding: 20px;
+}

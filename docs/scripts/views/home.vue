@@ -179,9 +179,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.demo-home {
-  padding: 20px;
-}
-</style>

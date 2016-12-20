@@ -11,7 +11,7 @@
     </template>
     <template slot="drawer-top" scope="props">
       <nav :class="props.className.parent">
-        <router-link :class="props.className.child" tag="li"
+        <router-link :class="props.className.child"
           v-for="menu in menus"
           :to="menu.url">
           <a>{{ $t(menu.name) }}</a>

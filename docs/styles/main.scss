@@ -1,12 +1,3 @@
 @import '../../src/styles/main.scss';
-.supported-lang {
-  cursor: pointer;
-  a.active {
-    font-weight: bolder;
-    color: white;
-  }
-}
-
-.mdl-layout--fixed-drawer > .mdl-layout__content {
-  padding: 15px;
-}
+@import 'base';
+@import 'layout';

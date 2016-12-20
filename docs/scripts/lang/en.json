@@ -1,0 +1,20 @@
+{
+  "components": {
+    "badge": "Badge",
+    "button": "Button",
+    "card": "Card",
+    "chip": "Chip",
+    "dialog": "Dialog",
+    "grid": "Grid",
+    "tabs": "Tabs",
+    "footer": "Footer",
+    "list": "List",
+    "loading": "Loading",
+    "menu": "Menu",
+    "snackbar": "Snackbar",
+    "form": "Form",
+    "table": "Table",
+    "tooltip": "Tooltip",
+    "divider": "Divider"
+  }
+}

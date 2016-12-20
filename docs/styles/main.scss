@@ -1,1 +1,7 @@
 @import '../../src/styles/main.scss';
+.supported-lang {
+  a.active {
+    font-weight: bolder;
+    color: white;
+  }
+}

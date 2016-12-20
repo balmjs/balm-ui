@@ -1,42 +1,47 @@
 <template>
-  <div class="splitter" :class="type"><span><slot></slot></span></div>
+  <div class="mdl-divider" :class="type">
+    <span>
+      <slot></slot>
+    </span>
+  </div>
 </template>
+
 <style scoped>
 
-  .splitter {
+  .mdl-divider {
     display: flex;
   }
 
-  .splitter::before, .splitter::after {
+  .mdl-divider::before, .mdl-divider::after {
     content: '';
     display: block;
   }
 
-  .splitter span {
+  .mdl-divider span {
     display: inline-block;
     flex-shrink: 0;
     font-size: 18px;
     text-transform: uppercase;
   }
 
-  .splitter.horizontal {
+  .mdl-divider.horizontal {
     width: 100%;
     align-items: center;
     justify-content: space-between;
 
   }
 
-  .splitter.horizontal::before, .splitter.horizontal::after {
+  .mdl-divider.horizontal::before, .mdl-divider.horizontal::after {
     height: 1px;
     width: 50%;
     border-bottom: 1px solid currentColor;
   }
 
-  .splitter.horizontal span {
+  .mdl-divider.horizontal span {
     padding: .5em 1em;
   }
 
-  .splitter.vertical {
+  .mdl-divider.vertical {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
@@ -44,26 +49,25 @@
 
   }
 
-  .splitter.vertical::before, .splitter.vertical::after {
+  .mdl-divider.vertical::before, .mdl-divider.vertical::after {
     height: 50%;
     width: 1px;
     border-left: 1px solid currentColor;
   }
 
-  .splitter.vertical span {
+  .mdl-divider.vertical span {
     padding: .5em;
   }
-
 </style>
+
 <script type="text/babel">
   export default {
-    name: 'ui-splitter',
+    name: 'ui-divider',
     props: {
       type: {
         type: String,
         default: 'horizontal'
       }
-    },
-    components: {}
+    }
   }
 </script>

@@ -8,7 +8,7 @@
           <slot name="header-title">{{ headerTitle }}</slot>
         </div>
         <!-- header left -->
-        <slot name="header-left" :className="navigationClassName">
+        <slot name="header-left" :className="navClassName">
           <ui-navigation :links="headerLeft"></ui-navigation>
         </slot>
         <!-- header center -->
@@ -16,7 +16,7 @@
           <slot name="header-center"></slot>
         </div>
         <!-- header right -->
-        <slot name="header-right" :className="navigationClassName">
+        <slot name="header-right" :className="navClassName">
           <ui-navigation :links="headerRight"></ui-navigation>
         </slot>
       </div>
@@ -35,7 +35,7 @@
         <slot name="drawer-title">{{ drawerTitle }}</slot>
       </div>
       <!-- drawer top -->
-      <slot name="drawer-top" :className="navigationClassName">
+      <slot name="drawer-top" :className="navClassName">
         <ui-navigation :links="drawerLink"></ui-navigation>
       </slot>
       <div class="mdl-layout-spacer"></div>
@@ -137,7 +137,7 @@ export default {
   data() {
     return {
       headerClassName: CLASSNAME_HEADER,
-      navigationClassName: {
+      navClassName: {
         parent: CLASSNAME_NAV,
         child: CLASSNAME_LINK
       }

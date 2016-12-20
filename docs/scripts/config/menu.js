@@ -1,9 +1,12 @@
 const COMPONENTS = [
+  'alert',
   'badge',
   'button',
   'card',
   'chip',
+  'confirm',
   'dialog',
+  'divider',
   'grid',
   'tabs',
   'footer',
@@ -19,7 +22,7 @@ const COMPONENTS = [
 const menu = COMPONENTS.map(component => {
   return {
     url: component,
-    name: component.substring(0, 1).toUpperCase() + component.substring(1) // capitalize
+    name: `components.${component}` // component.substring(0, 1).toUpperCase() + component.substring(1) // capitalize
   };
 });
 

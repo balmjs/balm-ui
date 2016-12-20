@@ -1,70 +1,44 @@
 <template>
   <ui-layout
     class="container"
-    :headerTitle="title"
-    :headerLeft="headerLeft"
-    :drawerTitle="title"
-    :drawerLink="drawerLink"
     fixedDrawer>
-    <template slot="header-title">
-      <router-link to="/">Balm UI</router-link>
-    </template>
-    <template slot="header-right" scope="props">
-      <ui-textfield id="search" name="search" :model="keywords" plus>
-        <i slot="icon" class="material-icons">search</i>
-      </ui-textfield>
-      <ui-tooltip name="qr-code">
-        <i slot="target" class="material-icons">face</i>
-        <div slot="tips">tips</div>
-      </ui-tooltip>
-      <ui-menu name="user" :data="menus" :position="3" @clicked="onMenu" effect></ui-menu>
-    </template>
+    <template slot="header-title">Welcome to BalmUI</template>
+    <p class="supported-lang" slot="header-right">
+      <a :class="{'active': isActiveLang('cn') }" @click="switchLang('cn')">{{ lang.cn }}</a> | <a :class="{'active': isActiveLang('en') }" @click="switchLang('en')">{{ lang.en }}</a>
+    </p>
     <template slot="drawer-title">
       <router-link to="/">Balm UI</router-link>
+    </template>
+    <template slot="drawer-top" scope="props">
+      <nav :class="props.className.parent">
+        <router-link :class="props.className.child" tag="li"
+          v-for="menu in menus"
+          :to="menu.url">
+          <a>{{ $t(menu.name) }}</a>
+        </router-link>
+      </nav>
     </template>
     <router-view></router-view>
   </ui-layout>
 </template>
 
 <script>
-import menu from './menu';
+import {lang} from './config/lang';
+import menu from './config/menu';
 
 export default {
   data() {
     return {
-      keywords: '',
-      title: 'BalmUI',
-      headerLeft: [
-        {
-          url:'/a',
-          name: 'Item A'
-        }, {
-          url:'/b',
-          name: 'Item B'
-        }, {
-          url:'/c',
-          name: 'Item C'
-        }
-      ],
-      drawerLink: menu,
-      menus: [
-        {
-          url:'/a',
-          name: 'Item A'
-        }, {
-          url:'/b',
-          name: 'Item B',
-          disabled: true
-        }, {
-          url:'/c',
-          name: 'Item C'
-        }
-      ]
+      lang: lang,
+      menus: menu
     };
   },
   methods: {
-    onMenu(data) {
-      console.log('menu', data);
+    isActiveLang(lang) {
+      return lang === this.$root.$lang.lang;
+    },
+    switchLang(lang) {
+      this.$root.$lang.lang = lang;
     }
   }
 };

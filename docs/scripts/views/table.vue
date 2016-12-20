@@ -1,89 +1,159 @@
 <template>
-  <div class="demo-table">
+  <div class="docs-table">
+    <h4>Data Table</h4>
     <ui-table
-      :col="table.col"
-      :data="table.data"
-      :thead="table.thead"
-      :tbody="table.tbody"
-      :tfoot="table.tfoot"
-      :action="table.action"
-      :selectable="table.selectable"
-      :checkList="table.checkList"
+      :data="table1.data"
+      :col="table1.col"
+      :thead="table1.thead"
+      :tbody="table1.tbody"
+      :action="table1.action"
+      :selectable="table1.selectable"
+      :checkboxList="table1.checkboxList"
+      @view="onView"
       @edit="onEdit"
       @delete="onDelete"
-      @on-selected="onSelected">
+      @selected="onSelected1">
+    </ui-table>
+
+    <ui-table
+      :data="table2.data"
+      :caption="table2.caption"
+      :col="table2.col"
+      :thead="table2.thead"
+      :tbody="table2.tbody"
+      :tfoot="table2.tfoot"
+      :action="table2.action"
+      :selectable="table2.selectable"
+      :checkboxList="table2.checkboxList"
+      @view="onView"
+      @edit="onEdit"
+      @delete="onDelete"
+      @selected="onSelected2">
     </ui-table>
   </div>
 </template>
 
 <script>
+import dataList from '../../data/table';
+
 export default {
   data() {
     return {
-      table: {
-        selectable: 'left',
-        checkList: [],
-        thead: [{
-          value: 'ID',
-          sort: 'asc',
-          by: 'id'
-        }, {
-          value: 'Name',
-          sort: 'asc',
-          by: 'name'
-        }, 'Email', 'OP'],
-        tbody: ['id', 'name', 'email'],
-        tfoot: [{
-          name: 'avg',
-          value: 'id'
-        }, null, null],
-        data: [
-        {
-          id: 30,
-          name: 'b',
-          email: 'make@123.com'
-        },
-        {
-          id: 10,
-          name: 'w',
-          email: 'air@123.com'
-        },
-        {
-          id: 60,
-          name: 'c',
-          email: 'fun@123.com'
-        }
-        ],
-        action: [
-        {
+      table1: {
+        data: [],
+        col: 5,
+        thead: ['ID', 'Name', 'Quantity', 'Price', 'Operate'],
+        tbody: ['id', 'name', 'quantity', 'price'],
+        action: [{
           type: 'link',
           name: 'view',
-          value: '查看详情'
-        },
-        {
+          value: 'View'
+        }, {
+          type: 'icon',
+          name: 'edit',
+          icon: 'edit',
+        }, {
+          type: 'button',
+          name: 'delete',
+          value: 'Delete'
+        }],
+        selectable: true,
+        checkboxList: [],
+      },
+      table2: {
+        caption: 'Table Caption',
+        col: 5,
+        data: [],
+        thead: [
+          [{
+            value: 'Base Info',
+            col: 2,
+            class: 'base-info'
+          }, {
+            value: 'Data Info',
+            col: 2,
+            class: 'data-info'
+          }, {
+            value: 'Operate',
+            row: 2
+          }],
+          [{
+            value: 'ID',
+            sort: 'asc',
+            by: 'id'
+          }, {
+            value: 'Name',
+            sort: 'asc',
+            by: 'name'
+          },
+          'Quantity',
+          'Price']
+        ],
+        tbody: [
+          'id',
+          {
+            field: 'name',
+            class: 'test',
+            noNum: true,
+            fn: function(data) {
+              return data + '!';
+            }
+          },
+          'quantity',
+          'price'
+        ],
+        tfoot: [
+          null,
+          null,
+          {
+            name: 'sum',
+            field: 'quantity'
+          },
+          {
+            name: 'avg',
+            field: 'price'
+          }
+        ],
+        action: [{
+          type: 'link',
+          name: 'view',
+          value: 'View'
+        }, {
           type: 'icon',
           name: 'edit',
           value: '<i class="material-icons">mood</i>'
-        },
-        {
+        }, {
           type: 'button',
           name: 'delete',
-          value: '删除'
-        }
-        ]
+          value: 'Delete'
+        }],
+        selectable: 'left',
+        checkboxList: [],
       }
     }
   },
   methods: {
+    onView(data) {
+      console.log('view', data);
+    },
     onEdit(data) {
       console.log('edit', data);
     },
     onDelete(data) {
       console.log('delete', data);
     },
-    onSelected(data) {
-      this.table.checkList = data;
+    onSelected1(data) {
+      this.table1.checkboxList = data;
+    },
+    onSelected2(data) {
+      this.table2.checkboxList = data;
     }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.table1.data = dataList;
+      this.table2.data = dataList;
+    }, 1000);
   }
 };
 </script>

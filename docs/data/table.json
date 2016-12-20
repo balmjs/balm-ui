@@ -1,0 +1,16 @@
+[{
+  "id": 1,
+  "name": "Acrylic",
+  "quantity": 25,
+  "price": 2.9
+}, {
+  "id": 2,
+  "name": "Plywood",
+  "quantity": 50,
+  "price": 1.25
+}, {
+  "id": 3,
+  "name": "Laminate",
+  "quantity": 10,
+  "price": 2.35
+}]

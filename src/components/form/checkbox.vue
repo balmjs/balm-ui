@@ -80,7 +80,7 @@ export default {
     }
   },
   mounted() {
-    this.$ui.upgradeElement(this.$el);
+    this.$ui.upgradeElement(this.$el, 'MaterialCheckbox');
   }
 };
 </script>

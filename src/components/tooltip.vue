@@ -52,7 +52,7 @@ export default {
     }
   },
   mounted() {
-    this.$ui.upgradeElement(this.$refs.tooltip);
+    this.$ui.upgradeElement(this.$refs.tooltip, 'MaterialTooltip');
   }
 };
 </script>

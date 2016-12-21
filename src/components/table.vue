@@ -510,7 +510,7 @@ export default {
     this.checkAll();
   },
   mounted() {
-    this.$ui.upgradeElement(this.$el);
+    this.$ui.upgradeElement(this.$el, 'MaterialDataTable');
   }
 };
 </script>

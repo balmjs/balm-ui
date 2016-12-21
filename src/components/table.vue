@@ -47,8 +47,8 @@
               </ui-button>
           </td>
         </tr>
-        <tr class="no-data" v-if="!tbodyData.length">
-          <td :colspan="col">No Data</td>
+        <tr v-if="!tbodyData.length">
+          <td class="mdl-no-data-table" :colspan="col">{{ noData }}</td>
         </tr>
       </tbody>
     </slot>
@@ -98,6 +98,8 @@ const SORT_ASC = 'asc';
 const SORT_DESC = 'desc';
 const SORT_BY = 'by';
 const CLASSNAME_NON_NUMERIC = 'mdl-data-table__cell--non-numeric';
+const CLASSNAME_TEXT_LEFT = 'mdl-data-table__cell--text-left';
+const CLASSNAME_TEXT_CENTER = 'mdl-data-table__cell--text-center';
 const CALLBACK_SELECTED = 'selected';
 
 /**
@@ -150,6 +152,10 @@ export default {
       default: function() {
         return [];
       }
+    },
+    noData: {
+      type: String,
+      default: 'No Data123'
     }
   },
   data() {
@@ -175,7 +181,7 @@ export default {
       });
     },
     tfootData() {
-      return this.tfoot ? this.getData({
+      return this.tfoot && this.currentData.length ? this.getData({
         type: T_FOOT,
         table: this.tfoot
       }) : [];
@@ -204,6 +210,16 @@ export default {
         }
         if (data.noNum) {
           className.push(CLASSNAME_NON_NUMERIC);
+        }
+        if (data.align) {
+          switch (data.align.toLowerCase()) {
+            case 'left':
+              className.push(CLASSNAME_TEXT_LEFT);
+              break;
+            case 'center':
+              className.push(CLASSNAME_TEXT_CENTER);
+              break;
+          }
         }
         if (className.length) {
           cell[CELL_CLASS] = className.join(' ');
@@ -276,28 +292,30 @@ export default {
       return cell;
     },
     getCheckbox(type, result, key = 1) {
-      let cell = {};
+      if (this.currentData.length) {
+        let cell = {};
 
-      switch (type) {
-        case T_HEAD:
-          cell = {
-            row: key, // row number
-            isCheckbox: true,
-            value: true
-          };
-          break;
-        case T_BODY:
-          cell = {
-            isCheckbox: true,
-            value: key // data[this.keyField]
-          };
-          break;
-      }
+        switch (type) {
+          case T_HEAD:
+            cell = {
+              row: key, // row number
+              isCheckbox: true,
+              value: true
+            };
+            break;
+          case T_BODY:
+            cell = {
+              isCheckbox: true,
+              value: key // data[this.keyField]
+            };
+            break;
+        }
 
-      if (this.selectable === CHECKBOX_POSITION_RIGHT) {
-        result.push(cell);
-      } else if (this.selectable === CHECKBOX_POSITION_LEFT || this.selectable) {
-        result.unshift(cell);
+        if (this.selectable === CHECKBOX_POSITION_RIGHT) {
+          result.push(cell);
+        } else if (this.selectable === CHECKBOX_POSITION_LEFT || this.selectable) {
+          result.unshift(cell);
+        }
       }
 
       return result;
@@ -368,7 +386,7 @@ export default {
               }
             }
             // add checkbox
-            if (this.selectable && this.currentData.length) {
+            if (this.selectable) {
               result[0] = this.getCheckbox(type, result[0], table.length);
             }
             break;
@@ -498,11 +516,5 @@ export default {
 </script>
 
 <style scoped>
-table {
-  width: 100%;
-}
 
-.no-data td {
-  text-align: center;
-}
 </style>

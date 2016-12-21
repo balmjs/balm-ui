@@ -1,20 +1,22 @@
 <template>
   <div class="docs-table">
     <h4>Data Table</h4>
+
+    <h5>Simple</h5>
     <ui-table
       :data="table1.data"
       :col="table1.col"
       :thead="table1.thead"
       :tbody="table1.tbody"
       :action="table1.action"
-      :selectable="table1.selectable"
-      :checkboxList="table1.checkboxList"
       @view="onView"
       @edit="onEdit"
-      @delete="onDelete"
-      @selected="onSelected1">
+      @delete="onDelete">
     </ui-table>
+    <pre><code class="language-html" v-html="code1.html"></code></pre>
+    <pre><code class="language-js" v-html="code1.js"></code></pre>
 
+    <h5>Advanced</h5>
     <ui-table
       :data="table2.data"
       :caption="table2.caption"
@@ -28,17 +30,25 @@
       @view="onView"
       @edit="onEdit"
       @delete="onDelete"
-      @selected="onSelected2">
+      @selected="onSelected">
     </ui-table>
+    <pre><code class="language-html" v-html="code2.html"></code></pre>
+    <pre><code class="language-js" v-html="code2.js"></code></pre>
   </div>
 </template>
 
 <script>
 import dataList from '../../data/table';
+import codeTemplate1 from '../usages/table/template1.html';
+import codeScript1 from '../usages/table/script1.html';
+import codeTemplate2 from '../usages/table/template2.html';
+import codeScript2 from '../usages/table/script2.html';
 
 export default {
   data() {
     return {
+      code1: {},
+      code2: {},
       table1: {
         data: [],
         col: 5,
@@ -56,12 +66,9 @@ export default {
           type: 'button',
           name: 'delete',
           value: 'Delete'
-        }],
-        selectable: true,
-        checkboxList: [],
+        }]
       },
       table2: {
-        caption: 'Table Caption',
         col: 5,
         data: [],
         thead: [
@@ -81,16 +88,16 @@ export default {
             value: 'ID',
             sort: 'asc',
             by: 'id'
-          }, {
-            value: 'Name',
-            sort: 'asc',
-            by: 'name'
           },
+          'Name',
           'Quantity',
           'Price']
         ],
         tbody: [
-          'id',
+          {
+            field: 'id',
+            align: 'center'
+          },
           {
             field: 'name',
             class: 'test',
@@ -128,7 +135,7 @@ export default {
           value: 'Delete'
         }],
         selectable: 'left',
-        checkboxList: [],
+        checkboxList: []
       }
     }
   },
@@ -142,12 +149,15 @@ export default {
     onDelete(data) {
       console.log('delete', data);
     },
-    onSelected1(data) {
-      this.table1.checkboxList = data;
-    },
-    onSelected2(data) {
+    onSelected(data) {
       this.table2.checkboxList = data;
     }
+  },
+  created() {
+    this.code1.html = this.$prism.highlight(codeTemplate1, this.$prism.languages.html);
+    this.code1.js = this.$prism.highlight(codeScript1, this.$prism.languages.javascript);
+    this.code2.html = this.$prism.highlight(codeTemplate2, this.$prism.languages.html);
+    this.code2.js = this.$prism.highlight(codeScript2, this.$prism.languages.javascript);
   },
   mounted() {
     setTimeout(() => {

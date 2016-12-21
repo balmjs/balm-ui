@@ -1,3 +1,20 @@
+## 0.1.3 beta
+
+### Update components
+
+__`<ui-layout>`__
+
+- fix `noDrawerButton` template
+- add slot `footer-inner` & `footer-outer`
+
+__`<ui-tabs>` & `<ui-tab>`__
+
+- add props `icon` & `iconPrefix`
+
+__`<ui-dialog>`__
+
+- fix some bug
+
 ## 0.1.2 beta
 
 ### Update components

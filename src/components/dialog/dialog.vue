@@ -3,7 +3,7 @@
     <template v-if="!transition">
       <div :class="['mdl-dialog', {hidden: !show, targeted: targetNode}]" :style="style">
         <slot name="title">
-          <h4 class="mdl-dialog__title" v-if="!noTitle">
+          <h4 class="mdl-dialog__title">
             {{ title }}
           </h4>
         </slot>
@@ -28,7 +28,7 @@
         :leave-active-class="leaveActiveClass">
 
         <div class="mdl-dialog" v-show="show" :style="style">
-          <h4 class="mdl-dialog__title" v-if="!noTitle">
+          <h4 class="mdl-dialog__title">
             <slot name="title">{{ title }}</slot>
           </h4>
           <div class="mdl-dialog__content">

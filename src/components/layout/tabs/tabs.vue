@@ -1,7 +1,7 @@
 <template>
   <div :class="className.outer">
     <div :class="className.inner">
-      <ui-tab v-for="tab in tabs" :tab="tab"></ui-tab>
+      <ui-tab v-for="tab in tabs" :tab="tab" :icon="icon" :iconPrefix="iconPrefix"></ui-tab>
     </div>
     <slot></slot>
   </div>
@@ -33,6 +33,14 @@ export default {
     fixedTabs: {
       type: Boolean,
       default: false
+    },
+    icon: {
+      type: [Boolean, String],
+      default: false
+    },
+    iconPrefix: {
+      type: String,
+      default: ''
     }
   },
   data() {

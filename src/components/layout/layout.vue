@@ -1,7 +1,7 @@
 <template>
   <div :class="className.outer">
     <header :class="className.header">
-      <div class="mdl-layout-icon"></div>
+      <div class="mdl-layout-icon" v-if="!noDrawerButton"></div>
       <div class="mdl-layout__header-row">
         <!-- title -->
         <div class="mdl-layout__title">
@@ -29,7 +29,7 @@
           :class="['mdl-layout__tab', {'is-active': !index}]">{{ tab }}</a>
       </div>
     </header>
-    <div class="mdl-layout__drawer">
+    <div class="mdl-layout__drawer" v-if="!noDrawerButton">
       <!-- drawer title -->
       <div class="mdl-layout__title">
         <slot name="drawer-title">{{ drawerTitle }}</slot>
@@ -52,7 +52,9 @@
         :id="`${tabName}-${n}`">
         <code v-text="getPanelTemplate(n)"></code>
       </section>
+      <slot name="footer-inner"></slot>
     </main>
+    <slot name="footer-outer"></slot>
   </div>
 </template>
 

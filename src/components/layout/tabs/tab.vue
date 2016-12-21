@@ -1,6 +1,7 @@
 <template>
-  <a :class="className" @click.stop="$parent.switchTab(tab.index)">
-    {{ tab.name }}
+  <a :class="className.outer" @click.stop="$parent.switchTab(tab.index)">
+    <i v-if="icon" :class="className.inner">{{ tab.name }}</i>
+    <span v-if="!icon">{{ tab.name }}</span>
     <span class="mdl-tabs__ripple-container mdl-js-ripple-effect" ref="ripple" v-if="$parent.effect">
       <span class="mdl-ripple"></span>
     </span>
@@ -14,13 +15,26 @@ export default {
     tab: {
       type: Object,
       required: true
+    },
+    icon: {
+      type: [Boolean, String],
+      default: false
+    },
+    iconPrefix: {
+      type: String,
+      default: ''
     }
   },
   computed: {
     className() {
       return {
-        'mdl-tabs__tab': true,
-        'is-active': this.$parent.isActive(this.tab.index)
+        outer: {
+          'mdl-tabs__tab': true,
+          'is-active': this.$parent.isActive(this.tab.index)
+        },
+        inner: this.iconPrefix
+          ? `${this.icon} ${this.iconPrefix}-${this.tab.name}`
+          : `${this.icon}`
       };
     }
   },

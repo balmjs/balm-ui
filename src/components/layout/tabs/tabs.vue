@@ -1,7 +1,11 @@
 <template>
   <div :class="className.outer">
     <div :class="className.inner">
-      <ui-tab v-for="tab in tabs" :tab="tab" :icon="icon" :iconPrefix="iconPrefix"></ui-tab>
+      <ui-tab v-for="tab in tabs"
+        :tab="tab"
+        :icon="icon"
+        :iconPrefix="iconPrefix"
+        :noIconText="noIconText"></ui-tab>
     </div>
     <slot></slot>
   </div>
@@ -41,6 +45,10 @@ export default {
     iconPrefix: {
       type: String,
       default: ''
+    },
+    noIconText: {
+      type: Boolean,
+      default: false
     }
   },
   data() {

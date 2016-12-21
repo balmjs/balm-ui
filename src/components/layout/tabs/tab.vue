@@ -1,6 +1,6 @@
 <template>
-  <a :class="className.outer" @click.stop="$parent.switchTab(tab.index)">
-    <i v-if="icon" :class="className.inner">{{ tab.name }}</i>
+  <a :class="className" @click.stop="$parent.switchTab(tab.index)">
+    <i v-if="icon" :class="iconClassName">{{ noIconText ? '' : tab.name }}</i>
     <span v-if="!icon">{{ tab.name }}</span>
     <span class="mdl-tabs__ripple-container mdl-js-ripple-effect" ref="ripple" v-if="$parent.effect">
       <span class="mdl-ripple"></span>
@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import {isString} from '../../utils/helper';
+
 export default {
   name: 'ui-tab',
   props: {
@@ -23,19 +25,31 @@ export default {
     iconPrefix: {
       type: String,
       default: ''
+    },
+    noIconText: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
     className() {
       return {
-        outer: {
-          'mdl-tabs__tab': true,
-          'is-active': this.$parent.isActive(this.tab.index)
-        },
-        inner: this.iconPrefix
-          ? `${this.icon} ${this.iconPrefix}-${this.tab.name}`
-          : `${this.icon}`
+        'mdl-tabs__tab': true,
+        'is-active': this.$parent.isActive(this.tab.index)
       };
+    },
+    iconClassName() {
+      let result = [];
+
+      if (isString(this.icon)) {
+        result.push(this.icon);
+      }
+
+      if (this.iconPrefix) {
+        result.push(`${this.iconPrefix}-${this.tab.name}`);
+      }
+
+      return result.join(' ');
     }
   },
   mounted() {

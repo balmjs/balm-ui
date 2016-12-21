@@ -1,3 +1,9 @@
+## 0.1.4 beta
+
+__`<ui-tabs>` & `<ui-tab>`__
+
+- add props `noIconText`
+
 ## 0.1.3 beta
 
 ### Update components

@@ -1,0 +1,34 @@
+export default {
+  data() {
+    return {
+      data: [],
+      col: 5,
+      thead: ['ID', 'Name', 'Quantity', 'Price', 'Operate'],
+      tbody: ['id', 'name', 'quantity', 'price'],
+      action: [{
+        type: 'link',
+        name: 'view',
+        value: 'View'
+      }, {
+        type: 'icon',
+        name: 'edit',
+        icon: 'edit',
+      }, {
+        type: 'button',
+        name: 'delete',
+        value: 'Delete'
+      }]
+    }
+  },
+  methods: {
+    onView(data) {
+      console.log('view', data);
+    },
+    onEdit(data) {
+      console.log('edit', data);
+    },
+    onDelete(data) {
+      console.log('delete', data);
+    }
+  }
+};

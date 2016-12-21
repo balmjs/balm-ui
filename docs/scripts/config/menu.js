@@ -4,6 +4,7 @@ const COMPONENTS = [
   'card',
   'chip',
   'dialog',
+  'divider',
   'grid',
   'tabs',
   'footer',
@@ -12,14 +13,15 @@ const COMPONENTS = [
   'menu',
   'snackbar',
   'form',
+  'radio',
   'table',
   'tooltip'
-]
+];
 
 const menu = COMPONENTS.map(component => {
   return {
     url: component,
-    name: component.substring(0, 1).toUpperCase() + component.substring(1) // capitalize
+    name: `components.${component}` // component.substring(0, 1).toUpperCase() + component.substring(1) // capitalize
   };
 });
 

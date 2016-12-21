@@ -1,0 +1,22 @@
+{
+  "components": {
+    "badge": "徽章",
+    "button": "按钮",
+    "card": "卡片",
+    "chip": "Chip",
+    "dialog": "对话框",
+    "grid": "栅格",
+    "tabs": "选项卡",
+    "footer": "页脚",
+    "list": "列表",
+    "loading": "加载",
+    "menu": "下拉菜单",
+    "snackbar": "弹出框",
+    "form": "表单",
+    "table": "表格",
+    "textfield": "文本框",
+    "radio": "单选框",
+    "tooltip": "文字提示",
+    "divider": "分割线"
+  }
+}

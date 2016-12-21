@@ -1,3 +1,4 @@
+@import 'mask';
 .mdl-dialog {
   &.confirm-enter-active,
   &.confirm-leave-active {
@@ -19,7 +20,7 @@
   }
 }
 
-// TODO: namespace
+// TODO: namespace!!!
 .ui.alert {
   .title {
     font-size: 24px;

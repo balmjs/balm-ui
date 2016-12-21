@@ -9,9 +9,6 @@
       <ui-checkbox name="answer[]" value="1" :model="formData.answer" @input="chooseAnswer">选项A</ui-checkbox>
       <ui-checkbox name="answer[]" value="2" :model="formData.answer" @input="chooseAnswer">选项B</ui-checkbox>
       <ui-checkbox squared name="answer[]" value="3" :model="formData.answer" @input="chooseAnswer">选项C</ui-checkbox>
-      <p>单选框</p>
-      <ui-radio name="sex" value="F" :model="formData.gender" @input="chooseSex">女</ui-radio>
-      <ui-radio name="sex" value="M" :model="formData.gender" @input="chooseSex">男</ui-radio>
       <p>图标</p>
       <ui-icon-toggle name="options[]" value="a" :model="formData.options" @input="chooseIcon">X</ui-icon-toggle>
       <ui-icon-toggle name="options[]" value="c" :model="formData.options" @input="chooseIcon">Y</ui-icon-toggle>

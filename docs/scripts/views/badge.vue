@@ -26,9 +26,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.demo-badge {
-  padding: 20px;
-}
-</style>

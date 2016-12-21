@@ -23,7 +23,7 @@ import UiBadge from './components/badge';
 import UiCard from './components/card';
 import UiChip from './components/chip';
 import UiTooltip from './components/tooltip';
-import UiSplitter from './components/splitter';
+import UiDivider from './components/divider';
 /**
  * Form
  */
@@ -66,7 +66,7 @@ const BalmUI = {
   UiCard,
   UiChip,
   UiTooltip,
-  UiSplitter,
+  UiDivider,
   UiTextfield,
   UiCheckbox,
   UiRadio,

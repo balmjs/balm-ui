@@ -1,0 +1,15 @@
+table {
+  &.mdl-data-table {
+    width: 100%;
+    .mdl-data-table__cell--text-center {
+      text-align: center;
+    }
+    .mdl-data-table__cell--text-left {
+      text-align: left;
+    }
+  }
+}
+
+.mdl-no-data-table {
+  text-align: center;
+}

@@ -1,3 +1,21 @@
+## 0.1.2 beta
+
+### Update components
+
+__rename `<ui-splitter>` to `<ui-divider>`__
+
+__`<ui-table>`__
+
+- fix checkbox event
+- rename props `checkList` to `checkboxList`
+- add tbody attributes
+- add no data show
+
+### Update docs
+
+- `<ui-radio>`
+- `<ui-table>`
+
 ## 0.1.1 beta
 
 ### Add change log
@@ -14,7 +32,7 @@ __`<ui-navigation>`__
 
 ## 0.1.0 beta
 
-### Components List
+### Components
 
 __Layout__
 

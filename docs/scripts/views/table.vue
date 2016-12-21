@@ -1,80 +1,148 @@
 <template>
-  <div class="demo-table">
+  <div class="docs-table">
+    <h4>Data Table</h4>
+
+    <h5>Simple</h5>
     <ui-table
-      :col="table.col"
-      :data="table.data"
-      :thead="table.thead"
-      :tbody="table.tbody"
-      :tfoot="table.tfoot"
-      :action="table.action"
-      :selectable="table.selectable"
-      :checkList="table.checkList"
+      :data="table1.data"
+      :col="table1.col"
+      :thead="table1.thead"
+      :tbody="table1.tbody"
+      :action="table1.action"
+      @view="onView"
+      @edit="onEdit"
+      @delete="onDelete">
+    </ui-table>
+    <pre><code class="language-html" v-html="code1.html"></code></pre>
+    <pre><code class="language-js" v-html="code1.js"></code></pre>
+
+    <h5>Advanced</h5>
+    <ui-table
+      :data="table2.data"
+      :caption="table2.caption"
+      :col="table2.col"
+      :thead="table2.thead"
+      :tbody="table2.tbody"
+      :tfoot="table2.tfoot"
+      :action="table2.action"
+      :selectable="table2.selectable"
+      :checkboxList="table2.checkboxList"
+      @view="onView"
       @edit="onEdit"
       @delete="onDelete"
-      @on-selected="onSelected">
+      @selected="onSelected">
     </ui-table>
+    <pre><code class="language-html" v-html="code2.html"></code></pre>
+    <pre><code class="language-js" v-html="code2.js"></code></pre>
   </div>
 </template>
 
 <script>
+import dataList from '../../data/table';
+import codeTemplate1 from '../usages/table/template1.html';
+import codeScript1 from '../usages/table/script1.html';
+import codeTemplate2 from '../usages/table/template2.html';
+import codeScript2 from '../usages/table/script2.html';
+
 export default {
   data() {
     return {
-      table: {
-        selectable: 'left',
-        checkList: [],
-        thead: [{
-          value: 'ID',
-          sort: 'asc',
-          by: 'id'
-        }, {
-          value: 'Name',
-          sort: 'asc',
-          by: 'name'
-        }, 'Email', 'OP'],
-        tbody: ['id', 'name', 'email'],
-        tfoot: [{
-          name: 'avg',
-          value: 'id'
-        }, null, null],
-        data: [
-        {
-          id: 30,
-          name: 'b',
-          email: 'make@123.com'
-        },
-        {
-          id: 10,
-          name: 'w',
-          email: 'air@123.com'
-        },
-        {
-          id: 60,
-          name: 'c',
-          email: 'fun@123.com'
-        }
-        ],
-        action: [
-        {
+      code1: {},
+      code2: {},
+      table1: {
+        data: [],
+        col: 5,
+        thead: ['ID', 'Name', 'Quantity', 'Price', 'Operate'],
+        tbody: ['id', 'name', 'quantity', 'price'],
+        action: [{
           type: 'link',
           name: 'view',
-          value: '查看详情'
-        },
-        {
+          value: 'View'
+        }, {
+          type: 'icon',
+          name: 'edit',
+          icon: 'edit',
+        }, {
+          type: 'button',
+          name: 'delete',
+          value: 'Delete'
+        }]
+      },
+      table2: {
+        col: 5,
+        data: [],
+        thead: [
+          [{
+            value: 'Base Info',
+            col: 2,
+            class: 'base-info'
+          }, {
+            value: 'Data Info',
+            col: 2,
+            class: 'data-info'
+          }, {
+            value: 'Operate',
+            row: 2
+          }],
+          [{
+            value: 'ID',
+            sort: 'asc',
+            by: 'id'
+          },
+          'Name',
+          'Quantity',
+          'Price']
+        ],
+        tbody: [
+          {
+            field: 'id',
+            align: 'center'
+          },
+          {
+            field: 'name',
+            class: 'test',
+            noNum: true,
+            fn: function(data) {
+              return data + '!';
+            }
+          },
+          'quantity',
+          'price'
+        ],
+        tfoot: [
+          null,
+          null,
+          {
+            name: 'sum',
+            field: 'quantity'
+          },
+          {
+            name: 'avg',
+            field: 'price'
+          }
+        ],
+        action: [{
+          type: 'link',
+          name: 'view',
+          value: 'View'
+        }, {
           type: 'icon',
           name: 'edit',
           value: '<i class="material-icons">mood</i>'
-        },
-        {
+        }, {
           type: 'button',
           name: 'delete',
-          value: '删除'
-        }
-        ]
+          value: 'Delete'
+        }],
+        selectable: 'left',
+        checkboxList: []
       }
     }
   },
   methods: {
+    onView(data) {
+      console.log('view', data);
+    },
     onEdit(data) {
       console.log('edit', data);
     },
@@ -82,8 +150,20 @@ export default {
       console.log('delete', data);
     },
     onSelected(data) {
-      this.table.checkList = data;
+      this.table2.checkboxList = data;
     }
+  },
+  created() {
+    this.code1.html = this.$prism.highlight(codeTemplate1, this.$prism.languages.html);
+    this.code1.js = this.$prism.highlight(codeScript1, this.$prism.languages.javascript);
+    this.code2.html = this.$prism.highlight(codeTemplate2, this.$prism.languages.html);
+    this.code2.js = this.$prism.highlight(codeScript2, this.$prism.languages.javascript);
+  },
+  mounted() {
+    setTimeout(() => {
+      this.table1.data = dataList;
+      this.table2.data = dataList;
+    }, 1000);
   }
 };
 </script>

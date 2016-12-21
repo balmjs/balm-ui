@@ -13,15 +13,18 @@
     "type": "git",
     "url": "git+https://github.com/balmjs/balm-ui.git"
   },
-  "author": [{
-    "name": "Elf-mousE",
-    "email": "ifmouz@gmail.com",
-    "url": "http://elf-mouse.me/"
-  }, {
-    "name": "74sharlock",
-    "email": "sharlock7788@gmail.com",
-    "url": "http://74sharlock.github.io/"
-  }],
+  "author": [
+    {
+      "name": "Elf-mousE",
+      "email": "ifmouz@gmail.com",
+      "url": "http://elf-mouse.me/"
+    },
+    {
+      "name": "74sharlock",
+      "email": "sharlock7788@gmail.com",
+      "url": "http://74sharlock.github.io/"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/balmjs/balm-ui/issues"
@@ -36,7 +39,9 @@
     "material-design-icons": "^3.0.1",
     "material-design-lite": "^1.2.1",
     "nodemon": "^1.11.0",
+    "prismjs": "^1.6.0",
     "vue": "^2.1.5",
+    "vue-i18n": "^4.9.0",
     "vue-loader": "9.9.5",
     "vue-router": "^2.1.1"
   }

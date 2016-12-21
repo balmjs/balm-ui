@@ -1,0 +1,22 @@
+{
+  "components": {
+    "badge": "Badge",
+    "button": "Button",
+    "card": "Card",
+    "chip": "Chip",
+    "dialog": "Dialog",
+    "grid": "Grid",
+    "tabs": "Tabs",
+    "footer": "Footer",
+    "list": "List",
+    "loading": "Loading",
+    "menu": "Menu",
+    "snackbar": "Snackbar",
+    "form": "Form",
+    "table": "Table",
+    "textfield": "Text field",
+    "radio": "Radio",
+    "tooltip": "Tooltip",
+    "divider": "Divider"
+  }
+}

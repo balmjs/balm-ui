@@ -17,6 +17,9 @@ balm.config = {
       test: /\.vue$/,
       loader: 'vue'
     }],
+    alias: {
+      prismCss: 'prismjs/themes/prism-okaidia.css'
+    },
     eslint: true
   },
   useDefault: useDefault

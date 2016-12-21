@@ -103,7 +103,7 @@ export default {
             class: 'test',
             noNum: true,
             fn: function(data) {
-              return data + '!';
+              return data + '!' + '<i class="material-icons">mood</i>';
             }
           },
           'quantity',

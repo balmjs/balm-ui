@@ -32,7 +32,7 @@
             :colspan="cell.col"
             :rowspan="cell.row"
             :class="cell.class">
-            <span v-if="!(cell.isCheckbox || cell.isAction)">{{ cell.value }}</span>
+            <div v-if="!(cell.isCheckbox || cell.isAction)" v-html="cell.value"></div>
             <ui-checkbox name="checkOne[]"
               v-if="cell.isCheckbox"
               :value="cell.value"

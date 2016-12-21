@@ -1,8 +1,14 @@
 ## 0.1.4 beta
 
+### Update components
+
 __`<ui-tabs>` & `<ui-tab>`__
 
 - add props `noIconText`
+
+__`<ui-table>`__
+
+- update tbody cell render: from _text_ to _html_
 
 ## 0.1.3 beta
 

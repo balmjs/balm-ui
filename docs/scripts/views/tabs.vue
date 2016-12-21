@@ -22,6 +22,14 @@
         <p>icon3</p>
       </ui-panel>
     </ui-tabs>
+    <ui-tabs effect icon="fa" iconPrefix="fa" noIconText :active="tab3" @switched="onChange3">
+      <ui-panel tab="qrcode">
+        <p>QR code</p>
+      </ui-panel>
+      <ui-panel tab="tv">
+        <p>PC</p>
+      </ui-panel>
+    </ui-tabs>
   </div>
 </template>
 
@@ -30,7 +38,8 @@ export default {
   data() {
     return {
       tab: 0,
-      tab2: 0
+      tab2: 0,
+      tab3: 0
     };
   },
   methods: {
@@ -39,6 +48,9 @@ export default {
     },
     onChange2(tab) {
       this.tab2 = tab;
+    },
+    onChange3(tab) {
+      this.tab3 = tab;
     }
   }
 };

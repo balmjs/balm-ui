@@ -10,6 +10,11 @@ __`<ui-table>`__
 
 - update tbody cell render: from _text_ to _html_
 
+__`<ui-menu>`__
+
+- fix container css
+- fix component init
+
 ## 0.1.3 beta
 
 ### Update components

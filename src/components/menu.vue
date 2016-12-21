@@ -1,11 +1,15 @@
 <template>
-  <div :class="`menu${name}`">
-    <button class="mdl-button mdl-js-button mdl-button--icon" :id="`menu${name}`">
+  <div :class="className.container">
+    <button ref="button"
+      class="mdl-button mdl-js-button mdl-button--icon"
+      :id="`menu${name}`">
       <slot name="icon">
         <i class="material-icons">icon</i>
       </slot>
     </button>
-    <ul :class="[className.outer, positionClassName]" :for="`menu${name}`">
+    <ul ref="menu"
+      :class="[className.outer, positionClassName]"
+      :for="`menu${name}`">
       <li v-for="menu in currentData"
         :class="className.inner"
         :disabled="menu.disabled"
@@ -61,6 +65,10 @@ export default {
   computed: {
     className() {
       return {
+        container: [
+          'mdl-menu-container',
+          `menu${this.name}`
+        ],
         outer: {
           'mdl-menu': true,
           'mdl-js-menu': true,
@@ -93,7 +101,8 @@ export default {
     }
   },
   mounted() {
-    this.$ui.upgradeElement(this.$el);
+    this.$ui.upgradeElement(this.$refs.button, 'MaterialButton');
+    this.$ui.upgradeElement(this.$refs.menu, 'MaterialMenu');
   }
 };
 </script>

@@ -13,7 +13,8 @@ __`<ui-table>`__
 __`<ui-menu>`__
 
 - fix container css
-- fix component init
+
+### Fix material components init
 
 ## 0.1.3 beta
 

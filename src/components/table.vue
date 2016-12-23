@@ -1,8 +1,8 @@
 <template>
   <table class="mdl-data-table mdl-js-data-table">
     <caption v-if="caption">{{ caption }}</caption>
-    <colgroup v-if="col">
-      <col v-for="i in col" :class="`col-${i}`">
+    <colgroup v-if="currentCol">
+      <col v-for="i in currentCol" :class="`col-${i}`">
     </colgroup>
     <slot name="thead" :data="theadData">
       <thead>
@@ -27,12 +27,18 @@
     </slot>
     <slot name="tbody" :data="tbodyData">
       <tbody>
-        <tr v-if="tbodyData.length" v-for="row in tbodyData">
+        <tr v-if="tbodyData.length"
+          v-for="(row, index) in tbodyData"
+          :key="index"
+          :data-index="index">
           <td v-for="cell in row"
             :colspan="cell.col"
             :rowspan="cell.row"
             :class="cell.class">
-            <div v-if="!(cell.isCheckbox || cell.isAction)" v-html="cell.value"></div>
+            <div v-if="!(cell.isPlus || cell.isCheckbox || cell.isAction)" v-html="cell.value"></div>
+            <i class="material-icons"
+              v-if="cell.isPlus"
+              @click="viewDetail(index, cell.show)">{{ cell.show ? 'remove' : 'add' }}</i>
             <ui-checkbox name="checkOne[]"
               v-if="cell.isCheckbox"
               :value="cell.value"
@@ -44,7 +50,7 @@
               :link="action.isLink"
               @click.native="doAction(action.name, action.data)">
                 <span v-if="!action.icon" v-html="action.value"></span>
-              </ui-button>
+            </ui-button>
           </td>
         </tr>
         <tr v-if="!tbodyData.length">
@@ -77,6 +83,7 @@ const T_FOOT = 'tfoot';
 const CELL_CLASS = 'class';
 const CELL_COLSPAN = 'col';
 const CELL_DATA = 'data';
+const CELL_DETAIL_VIEW = 'detailView';
 const CELL_FIELD = 'field';
 const CELL_FUNCTION = 'fn';
 const CELL_ICON = 'icon';
@@ -101,6 +108,7 @@ const CLASSNAME_NON_NUMERIC = 'mdl-data-table__cell--non-numeric';
 const CLASSNAME_TEXT_LEFT = 'mdl-data-table__cell--text-left';
 const CLASSNAME_TEXT_CENTER = 'mdl-data-table__cell--text-center';
 const CALLBACK_SELECTED = 'selected';
+const CALLBACK_VIEW_DETAIL = 'view-detail';
 
 /**
  * Supoorted: thead(2 rows) + tbody(N rows) + tfoot(1 row)
@@ -155,7 +163,11 @@ export default {
     },
     noData: {
       type: String,
-      default: 'No Data123'
+      default: 'No Data'
+    },
+    detailView: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -163,10 +175,29 @@ export default {
       isCheckAll: false,
       currentCheckboxList: this.checkboxList,
       currentData: this.data,
-      currentThead: this.thead
+      currentThead: this.thead,
+      currentCol: this.col,
+      currentDetailViewIndex: -1
     };
   },
   computed: {
+    currentCol() {
+      let result = this.tbody.length;
+
+      if (this.action.length) {
+        result += 1;
+      }
+
+      if (this.selectable) {
+        result += 1;
+      }
+
+      if (this.detailView) {
+        result += 1;
+      }
+
+      return result;
+    },
     theadData() {
       return this.getData({
         type: T_HEAD,
@@ -292,7 +323,7 @@ export default {
       return cell;
     },
     getCheckbox(type, result, key = 1) {
-      if (this.currentData.length) {
+      if (this.selectable && this.currentData.length) {
         let cell = {};
 
         switch (type) {
@@ -321,30 +352,58 @@ export default {
       return result;
     },
     getAction(result, data) {
-      let actions = [];
-      for (let action of this.action) {
-        let cellData = {
-          name: action.name,
-          value: action[CELL_VALUE] || action.name,
-          data: data
-        };
-        switch (action.type.toLowerCase()) {
-          case ACTION_LINK:
-            cellData.isLink = true;
-            break;
-          case ACTION_ICON:
-            cellData.isIcon = true;
-            cellData[CELL_ICON] = action[CELL_ICON];
-            break;
+      if (this.action.length) {
+        let actions = [];
+        for (let action of this.action) {
+          let cellData = {
+            name: action.name,
+            value: action[CELL_VALUE] || action.name,
+            data: data
+          };
+          switch (action.type.toLowerCase()) {
+            case ACTION_LINK:
+              cellData.isLink = true;
+              break;
+            case ACTION_ICON:
+              cellData.isIcon = true;
+              cellData[CELL_ICON] = action[CELL_ICON];
+              break;
+          }
+          actions.push(cellData);
         }
-        actions.push(cellData);
+
+        let cell = {
+          isAction: true,
+          actions: actions.length ? actions : []
+        };
+
+        result.push(cell);
       }
 
-      let cell = {
-        isAction: true,
-        actions: actions.length ? actions : []
-      };
-      result.push(cell);
+      return result;
+    },
+    getDetailView(type, result, key = -1) {
+      if (this.detailView) {
+        let cell = {};
+
+        switch (type) {
+          case T_HEAD:
+            if (key > 0) {
+              cell = {
+                row: key // row number
+              };
+            }
+            break;
+          case T_BODY:
+            cell = {
+              isPlus: true,
+              show: +key === this.currentDetailViewIndex
+            };
+            break;
+        }
+
+        result.unshift(cell);
+      }
 
       return result;
     },
@@ -386,30 +445,36 @@ export default {
               }
             }
             // add checkbox
-            if (this.selectable) {
-              result[0] = this.getCheckbox(type, result[0], table.length);
-            }
+            result[0] = this.getCheckbox(type, result[0], table.length);
+            // add plus
+            result[0] = this.getDetailView(type, result[0], table.length);
             break;
           case T_BODY:
             for (let key in this.currentData) {
               let value = this.currentData[key];
               result[key] = [];
-              // fill for cell
-              for (let item of table) {
-                cell = {};
-                if (isObject(item)) {
-                  cell = item;
-                  cell[CELL_VALUE] = value[item[CELL_FIELD]]; // use `field` !important
-                } else {
-                  cell[CELL_VALUE] = value[item];
+              if (value[CELL_DETAIL_VIEW]) {
+                result[key].push(this.getCell(type, {
+                  col: this.currentCol
+                }));
+              } else {
+                // fill for cell
+                for (let item of table) {
+                  cell = {};
+                  if (isObject(item)) {
+                    cell = item;
+                    cell[CELL_VALUE] = value[item[CELL_FIELD]]; // use `field` !important
+                  } else {
+                    cell[CELL_VALUE] = value[item];
+                  }
+                  result[key].push(this.getCell(type, cell));
                 }
-                result[key].push(this.getCell(type, cell));
-              }
-              // add action
-              result[key] = this.getAction(result[key], value);
-              // add checkbox
-              if (this.selectable) {
+                // add action
+                result[key] = this.getAction(result[key], value);
+                // add checkbox
                 result[key] = this.getCheckbox(type, result[key], value[this.keyField]);
+                // add plus
+                result[key] = this.getDetailView(type, result[key], key);
               }
             }
             break;
@@ -426,11 +491,12 @@ export default {
                 result.push({});
               }
             }
-            // add empty action & checkbox
-            result.push({});
-            if (this.selectable) {
-              result = this.getCheckbox(type, result);
+            // add empty action & checkbox & plus
+            if (this.action.length) {
+              result.push({});
             }
+            result = this.getCheckbox(type, result);
+            result = this.getDetailView(type, result);
             break;
         }
       } else {
@@ -479,6 +545,27 @@ export default {
           let index = data[CELL_INDEX].split(',');
           this.currentThead[index[0]][index[1]][CELL_SORT] = currentSort;
         }
+      }
+    },
+    viewDetail(currentIndex, show) {
+      if (show) {
+        this.currentData.splice(currentIndex + 1, 1);
+        this.currentDetailViewIndex = -1;
+      } else {
+        let result = [];
+        this.currentData.forEach((value, index) => {
+          if (currentIndex === index) {
+            result.push(value);
+            result.push({
+              detailView: true
+            });
+          } else {
+            result.push(value);
+          }
+        });
+        this.currentData = result;
+        this.currentDetailViewIndex = currentIndex;
+        this.$emit(CALLBACK_VIEW_DETAIL, this.currentData[currentIndex]);
       }
     }
   },

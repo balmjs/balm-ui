@@ -1,3 +1,16 @@
+## 0.1.5 beta
+
+### Update components
+
+__`<ui-textfield>`__
+
+- fix css for error in left label
+
+__`<ui-table`>__
+
+- add props `detailView`
+- add event `view-detail`
+
 ## 0.1.4 beta
 
 ### Update components

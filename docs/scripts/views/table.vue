@@ -5,7 +5,6 @@
     <h5>Simple</h5>
     <ui-table
       :data="table1.data"
-      :col="table1.col"
       :thead="table1.thead"
       :tbody="table1.tbody"
       :action="table1.action"
@@ -20,17 +19,23 @@
     <ui-table
       :data="table2.data"
       :caption="table2.caption"
-      :col="table2.col"
       :thead="table2.thead"
       :tbody="table2.tbody"
       :tfoot="table2.tfoot"
       :action="table2.action"
       :selectable="table2.selectable"
       :checkboxList="table2.checkboxList"
+      detailView
       @view="onView"
       @edit="onEdit"
       @delete="onDelete"
-      @selected="onSelected">
+      @selected="onSelected"
+      @view-detail="viewDetail">
+      <div slot="detailView">
+        1111
+        <ui-button>{{ hello }}</ui-button>
+        2222
+      </div>
     </ui-table>
     <pre><code class="language-html" v-html="code2.html"></code></pre>
     <pre><code class="language-js" v-html="code2.js"></code></pre>
@@ -51,7 +56,6 @@ export default {
       code2: {},
       table1: {
         data: [],
-        col: 5,
         thead: ['ID', 'Name', 'Quantity', 'Price', 'Operate'],
         tbody: ['id', 'name', 'quantity', 'price'],
         action: [{
@@ -69,7 +73,6 @@ export default {
         }]
       },
       table2: {
-        col: 5,
         data: [],
         thead: [
           [{
@@ -136,7 +139,8 @@ export default {
         }],
         selectable: 'left',
         checkboxList: []
-      }
+      },
+      hello: 'Hello'
     }
   },
   methods: {
@@ -151,6 +155,10 @@ export default {
     },
     onSelected(data) {
       this.table2.checkboxList = data;
+    },
+    viewDetail(data) {
+      console.log('viewDetail', data); // TODO
+      this.hello += data.name;
     }
   },
   created() {

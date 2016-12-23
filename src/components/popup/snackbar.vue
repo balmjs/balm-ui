@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import '../material-design-lite/snackbar/snackbar';
+import '../../material-design-lite/snackbar/snackbar';
 
 const TOAST = 0;
 const SNACKBAR = 1;

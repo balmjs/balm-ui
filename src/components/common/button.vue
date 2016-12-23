@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import '../material-design-lite/button/button';
+import '../../material-design-lite/button/button';
 
 export default {
   name: 'ui-button',

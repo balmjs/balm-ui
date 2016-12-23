@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import '../material-design-lite/spinner/spinner';
-import '../material-design-lite/progress/progress';
+import '../../material-design-lite/spinner/spinner';
+import '../../material-design-lite/progress/progress';
 
 const SPINNER  = 0; // Spinner
 const PROGRESS = 1; // Progress bar

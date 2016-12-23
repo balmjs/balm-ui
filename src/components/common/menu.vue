@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import '../material-design-lite/menu/menu';
+import '../../material-design-lite/menu/menu';
 
 const POSITIONS = ['', 'top-left', 'top-right', 'bottom-right'];
 const POSITION_NONE = 0; // Default

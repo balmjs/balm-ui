@@ -16,14 +16,14 @@ import UiMiniFooter from './components/layout/footer/mini-footer';
 /**
  * Common
  */
-import UiLoading from './components/loading';
-import UiButton from './components/button';
-import UiMenu from './components/menu';
-import UiBadge from './components/badge';
-import UiCard from './components/card';
-import UiChip from './components/chip';
-import UiTooltip from './components/tooltip';
-import UiDivider from './components/divider';
+import UiBadge from './components/common/badge';
+import UiButton from './components/common/button';
+import UiCard from './components/common/card';
+import UiChip from './components/common/chip';
+import UiDivider from './components/common/divider';
+import UiLoading from './components/common/loading';
+import UiMenu from './components/common/menu';
+import UiTooltip from './components/common/tooltip';
 /**
  * Form
  */
@@ -36,21 +36,22 @@ import UiSlider from './components/form/slider';
 /**
  * Data
  */
-import UiList from './components/list';
-import UiTable from './components/table';
+import UiList from './components/data/list';
+import UiTable from './components/data/table';
 /**
  * Popup
  */
-import UiDialog from './components/dialog/dialog';
-import UiConfirm from './components/dialog/confirm';
-import UiAlert from './components/dialog/alert';
-import UiSnackbar from './components/snackbar';
+import UiDialog from './components/popup/dialog';
+import UiConfirm from './components/popup/confirm';
+import UiAlert from './components/popup/alert';
+import UiSnackbar from './components/popup/snackbar';
 /**
  * Effect
  */
 import './material-design-lite/ripple/ripple';
 
 const BalmUI = {
+  // Layout
   UiLayout,
   UiNavigation,
   UiGrid,
@@ -59,26 +60,31 @@ const BalmUI = {
   UiPanel,
   UiFooter,
   UiMiniFooter,
-  UiLoading,
-  UiButton,
-  UiMenu,
+  // Common
   UiBadge,
+  UiButton,
   UiCard,
   UiChip,
-  UiTooltip,
   UiDivider,
+  UiLoading,
+  UiMenu,
+  UiTooltip,
+  // Form
   UiTextfield,
   UiCheckbox,
   UiRadio,
   UiIconToggle,
   UiSwitch,
   UiSlider,
+  // Data
   UiList,
   UiTable,
+  // Popup
   UiDialog,
   UiConfirm,
   UiAlert,
   UiSnackbar,
+  // Register
   install(Vue) {
     for (let key in BalmUI) {
       let component = BalmUI[key];
@@ -92,7 +98,7 @@ const BalmUI = {
 
 module.exports = BalmUI;
 
-// auto install in dist mode
+// Auto install in dist mode
 if (typeof window !== 'undefined' && window.Vue) {
   window.Vue.use(BalmUI);
 }

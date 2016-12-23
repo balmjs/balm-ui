@@ -21,7 +21,7 @@
 </template>
 <script type="text/babel">
   import UiDialog from './dialog';
-  import UiButton from '../button';
+  import UiButton from '../common/button';
 
   export default {
     name:'ui-alert',

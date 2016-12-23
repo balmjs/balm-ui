@@ -72,10 +72,10 @@
 </template>
 
 <script>
-import '../material-design-lite/data-table/data-table';
-import {isString, isObject} from './utils/helper';
-import UiButton from './button';
-import UiCheckbox from './form/checkbox';
+import '../../material-design-lite/data-table/data-table';
+import {isString, isObject} from '../utils/helper';
+import UiButton from '../common/button';
+import UiCheckbox from '../form/checkbox';
 
 const T_HEAD = 'thead';
 const T_BODY = 'tbody';

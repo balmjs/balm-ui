@@ -1,5 +1,7 @@
 ## 0.1.5 beta
 
+### Update `material-design-lite@1.3.0`
+
 ### Update components
 
 __`<ui-textfield>`__

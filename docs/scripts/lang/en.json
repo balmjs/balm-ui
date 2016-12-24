@@ -18,5 +18,10 @@
     "radio": "Radio",
     "tooltip": "Tooltip",
     "divider": "Divider"
+  },
+  "table": {
+    "dataTable": "Data Table",
+    "basic": "Basic",
+    "advanced": "Advanced"
   }
 }

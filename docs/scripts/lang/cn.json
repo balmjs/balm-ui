@@ -18,5 +18,10 @@
     "radio": "单选框",
     "tooltip": "文字提示",
     "divider": "分割线"
+  },
+  "table": {
+    "dataTable": "表格",
+    "basic": "基本用法",
+    "advanced": "高级用法"
   }
 }

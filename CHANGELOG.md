@@ -14,6 +14,10 @@ __`<ui-table`>__
 - add event `view-detail`
 - update css
 
+### Update docs
+
+- `<ui-table>`
+
 ## 0.1.4 beta
 
 ### Update components

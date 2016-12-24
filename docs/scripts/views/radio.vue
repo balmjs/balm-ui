@@ -1,8 +1,8 @@
 <template>
   <div class="docs-radio">
     <h4>Radio Box</h4>
-    <pre><code class="language-html" v-html="code.html"></code></pre>
-    <pre><code class="language-js" v-html="code.js"></code></pre>
+    <ui-code language="html" :code="code.html"></ui-code>
+    <ui-code language="js" :code="code.js"></ui-code>
     <p>
       <ui-radio name="sex" value="M" :model="gender" @change="chooseSex">Male</ui-radio>
       <ui-radio name="sex" value="F" :model="gender" @change="chooseSex">Female</ui-radio>
@@ -14,10 +14,14 @@
 </template>
 
 <script>
+import UiCode from '../components/code';
 import codeTemplate from '../usages/radio/template.html';
 import codeScript from '../usages/radio/script.html';
 
 export default {
+  components: {
+    UiCode
+  },
   data() {
     return {
       gender: '',
@@ -34,8 +38,8 @@ export default {
     }
   },
   created() {
-    this.code.html = this.$prism.highlight(codeTemplate, this.$prism.languages.html);
-    this.code.js = this.$prism.highlight(codeScript, this.$prism.languages.javascript);
+    this.code.html = this.renderHTML(codeTemplate);
+    this.code.js = this.renderJS(codeScript);
   }
 };
 </script>

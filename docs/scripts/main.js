@@ -12,6 +12,15 @@ Vue.use(VueRouter);
 Vue.use(VueI18n);
 Vue.use(BalmUI);
 Vue.prototype.$prism = prismjs;
+Vue.prototype.renderHTML = code => {
+  return prismjs.highlight(code, prismjs.languages.html);
+};
+Vue.prototype.renderCSS = code => {
+  return prismjs.highlight(code, prismjs.languages.css);
+};
+Vue.prototype.renderJS = code => {
+  return prismjs.highlight(code, prismjs.languages.javascript);
+};
 
 // ready translated locales
 import { locales } from './config/lang';

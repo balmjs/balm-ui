@@ -1,8 +1,8 @@
 <template>
   <div class="docs-table">
-    <h4>Data Table</h4>
+    <h4>{{ $t('table.dataTable') }}</h4>
 
-    <h5>Simple</h5>
+    <h5>{{ $t('table.basic') }}</h5>
     <ui-table
       :data="table1.data"
       :thead="table1.thead"
@@ -12,10 +12,10 @@
       @edit="onEdit"
       @delete="onDelete">
     </ui-table>
-    <pre><code class="language-html" v-html="code1.html"></code></pre>
-    <pre><code class="language-js" v-html="code1.js"></code></pre>
+    <ui-code language="html" :code="code1.html"></ui-code>
+    <ui-code language="js" :code="code1.js"></ui-code>
 
-    <h5>Advanced</h5>
+    <h5>{{ $t('table.advanced') }}</h5>
     <ui-table
       :data="table2.data"
       :caption="table2.caption"
@@ -26,26 +26,30 @@
       :selectable="table2.selectable"
       :checkboxList="table2.checkboxList"
       detailView
-      :detailViewData="tableDetail"
+      :detailViewData="table2.tableDetail"
       @view="onView"
       @edit="onEdit"
       @delete="onDelete"
       @selected="onSelected"
       @view-detail="viewDetail">
     </ui-table>
-    <pre><code class="language-html" v-html="code2.html"></code></pre>
-    <pre><code class="language-js" v-html="code2.js"></code></pre>
+    <ui-code language="html" :code="code2.html"></ui-code>
+    <ui-code language="js" :code="code2.js"></ui-code>
   </div>
 </template>
 
 <script>
 import dataList from '../../data/table';
+import UiCode from '../components/code';
 import codeTemplate1 from '../usages/table/template1.html';
 import codeScript1 from '../usages/table/script1.html';
 import codeTemplate2 from '../usages/table/template2.html';
 import codeScript2 from '../usages/table/script2.html';
 
 export default {
+  components: {
+    UiCode
+  },
   data() {
     return {
       code1: {},
@@ -70,6 +74,7 @@ export default {
       },
       table2: {
         data: [],
+        caption: 'Table Caption',
         thead: [
           [{
             value: 'Base Info',
@@ -134,9 +139,9 @@ export default {
           value: 'Delete'
         }],
         selectable: 'left',
-        checkboxList: []
-      },
-      tableDetail: 'Hello'
+        checkboxList: [],
+        tableDetail: 'Hello'
+      }
     }
   },
   methods: {
@@ -153,14 +158,14 @@ export default {
       this.table2.checkboxList = data;
     },
     viewDetail() {
-      this.tableDetail +=  ('-' + new Date().getTime());
+      this.table2.tableDetail +=  ('-' + new Date().getTime());
     }
   },
   created() {
-    this.code1.html = this.$prism.highlight(codeTemplate1, this.$prism.languages.html);
-    this.code1.js = this.$prism.highlight(codeScript1, this.$prism.languages.javascript);
-    this.code2.html = this.$prism.highlight(codeTemplate2, this.$prism.languages.html);
-    this.code2.js = this.$prism.highlight(codeScript2, this.$prism.languages.javascript);
+    this.code1.html = this.renderHTML(codeTemplate1);
+    this.code1.js = this.renderJS(codeScript1);
+    this.code2.html = this.renderHTML(codeTemplate2);
+    this.code2.js = this.renderJS(codeScript2);
   },
   mounted() {
     setTimeout(() => {

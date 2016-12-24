@@ -26,16 +26,12 @@
       :selectable="table2.selectable"
       :checkboxList="table2.checkboxList"
       detailView
+      :detailViewData="tableDetail"
       @view="onView"
       @edit="onEdit"
       @delete="onDelete"
       @selected="onSelected"
       @view-detail="viewDetail">
-      <div slot="detailView">
-        1111
-        <ui-button>{{ hello }}</ui-button>
-        2222
-      </div>
     </ui-table>
     <pre><code class="language-html" v-html="code2.html"></code></pre>
     <pre><code class="language-js" v-html="code2.js"></code></pre>
@@ -140,7 +136,7 @@ export default {
         selectable: 'left',
         checkboxList: []
       },
-      hello: 'Hello'
+      tableDetail: 'Hello'
     }
   },
   methods: {
@@ -156,9 +152,8 @@ export default {
     onSelected(data) {
       this.table2.checkboxList = data;
     },
-    viewDetail(data) {
-      console.log('viewDetail', data); // TODO
-      this.hello += data.name;
+    viewDetail() {
+      this.tableDetail +=  ('-' + new Date().getTime());
     }
   },
   created() {

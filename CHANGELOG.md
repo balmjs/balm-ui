@@ -10,8 +10,9 @@ __`<ui-textfield>`__
 
 __`<ui-table`>__
 
-- add props `detailView`
+- add props `detailView` & `detailViewData`
 - add event `view-detail`
+- update css
 
 ## 0.1.4 beta
 

@@ -1,4 +1,4 @@
-table {
+.mdl-data-table {
   &.mdl-data-table {
     width: 100%;
     .mdl-data-table__cell--text-center {
@@ -8,8 +8,14 @@ table {
       text-align: left;
     }
   }
-}
-
-.mdl-no-data-table {
-  text-align: center;
+  tr {
+    td:first-child {
+      i {
+        cursor: pointer;
+      }
+    }
+  }
+  .mdl-no-data-table {
+    text-align: center;
+  }
 }

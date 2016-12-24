@@ -27,15 +27,12 @@
     </slot>
     <slot name="tbody" :data="tbodyData">
       <tbody>
-        <tr v-if="tbodyData.length"
-          v-for="(row, index) in tbodyData"
-          :key="index"
-          :data-index="index">
+        <tr v-if="tbodyData.length" v-for="(row, index) in tbodyData" :key="index">
           <td v-for="cell in row"
             :colspan="cell.col"
             :rowspan="cell.row"
             :class="cell.class">
-            <div v-if="!(cell.isPlus || cell.isCheckbox || cell.isAction)" v-html="cell.value"></div>
+            <div v-if="!(cell.isPlus || cell.isCheckbox || cell.isAction || hasDetailView(index))" v-html="cell.value"></div>
             <i class="material-icons"
               v-if="cell.isPlus"
               @click="viewDetail(index, cell.show)">{{ cell.show ? 'remove' : 'add' }}</i>
@@ -51,10 +48,11 @@
               @click.native="doAction(action.name, action.data)">
                 <span v-if="!action.icon" v-html="action.value"></span>
             </ui-button>
+            <div v-if="hasDetailView(index)">{{ currentDetailViewData }}</div>
           </td>
         </tr>
         <tr v-if="!tbodyData.length">
-          <td class="mdl-no-data-table" :colspan="col">{{ noData }}</td>
+          <td class="mdl-no-data-table" :colspan="currentCol">{{ noData }}</td>
         </tr>
       </tbody>
     </slot>
@@ -77,6 +75,9 @@ import {isString, isObject} from '../utils/helper';
 import UiButton from '../common/button';
 import UiCheckbox from '../form/checkbox';
 
+const DEFAULTS = {
+  detailViewIndex: -2
+};
 const T_HEAD = 'thead';
 const T_BODY = 'tbody';
 const T_FOOT = 'tfoot';
@@ -168,7 +169,8 @@ export default {
     detailView: {
       type: Boolean,
       default: false
-    }
+    },
+    detailViewData: String
   },
   data() {
     return {
@@ -177,7 +179,8 @@ export default {
       currentData: this.data,
       currentThead: this.thead,
       currentCol: this.col,
-      currentDetailViewIndex: -1
+      currentDetailViewIndex: DEFAULTS.detailViewIndex,
+      currentDetailViewData: this.detailViewData
     };
   },
   computed: {
@@ -273,30 +276,39 @@ export default {
               switch (data.name.toLowerCase()) {
                 case AGGREGATE_COUNT:
                   result = data[CELL_DATA].length;
+                  if (this.currentDetailIndex > -1) {
+                    result += 1;
+                  }
                   break;
                 case AGGREGATE_SUM:
                   data[CELL_DATA].forEach(value => {
-                    result += value;
+                    if (value) {
+                      result += value;
+                    }
                   });
                   break;
                 case AGGREGATE_AVG:
                   data[CELL_DATA].forEach(value => {
-                    result += value;
+                    if (value) {
+                      result += value;
+                    }
                   });
                   result /= data[CELL_DATA].length;
                   break;
                 case AGGREGATE_MIN:
                   data[CELL_DATA].forEach(value => {
-                    if (value < result) {
-                      result = value;
-                    } else if (result === 0) {
-                      result = value;
+                    if (value) {
+                      if (value < result) {
+                        result = value;
+                      } else if (result === 0) {
+                        result = value;
+                      }
                     }
                   });
                   break;
                 case AGGREGATE_MAX:
                    data[CELL_DATA].forEach(value => {
-                    if (value > result) {
+                    if (value && value > result) {
                       result = value;
                     }
                   });
@@ -323,20 +335,19 @@ export default {
       return cell;
     },
     getCheckbox(type, result, key = 1) {
-      if (this.selectable && this.currentData.length) {
+      if (this.selectable) {
         let cell = {};
 
         switch (type) {
           case T_HEAD:
             cell = {
               row: key, // row number
-              isCheckbox: true,
-              value: true
+              isCheckbox: this.currentData.length
             };
             break;
           case T_BODY:
             cell = {
-              isCheckbox: true,
+              isCheckbox: this.currentData.length,
               value: key // data[this.keyField]
             };
             break;
@@ -550,23 +561,50 @@ export default {
     viewDetail(currentIndex, show) {
       if (show) {
         this.currentData.splice(currentIndex + 1, 1);
-        this.currentDetailViewIndex = -1;
+        this.currentDetailViewIndex = DEFAULTS.detailViewIndex;
       } else {
         let result = [];
-        this.currentData.forEach((value, index) => {
-          if (currentIndex === index) {
-            result.push(value);
-            result.push({
-              detailView: true
-            });
-          } else {
-            result.push(value);
+
+        if (this.currentDetailViewIndex === DEFAULTS.detailViewIndex) {
+          this.currentData.forEach((value, index) => {
+            if (index === currentIndex) {
+              result.push(value);
+              result.push({
+                detailView: true
+              });
+            } else {
+              result.push(value);
+            }
+          });
+        } else {
+          this.currentData.splice(this.currentDetailViewIndex + 1, 1);
+
+          if (currentIndex > this.currentDetailViewIndex) {
+            currentIndex = currentIndex - 1;
           }
-        });
+
+          this.currentData.forEach((value, index) => {
+            if (index === currentIndex) {
+              result.push(value);
+              result.push({
+                detailView: true
+              });
+            } else {
+              result.push(value);
+            }
+          });
+        }
+
         this.currentData = result;
         this.currentDetailViewIndex = currentIndex;
-        this.$emit(CALLBACK_VIEW_DETAIL, this.currentData[currentIndex]);
+
+        this.$emit(CALLBACK_VIEW_DETAIL);
       }
+    },
+    hasDetailView(index) {
+      let hasDetailViewRow = this.currentDetailViewIndex + 1 > 0;
+      let isDetailViewRow = index === this.currentDetailViewIndex + 1;
+      return hasDetailViewRow && isDetailViewRow;
     }
   },
   watch: {
@@ -591,6 +629,9 @@ export default {
     },
     thead(val) {
       this.currentThead = val;
+    },
+    detailViewData(val) {
+      this.currentDetailViewData = val;
     }
   },
   created() {
@@ -601,7 +642,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-
-</style>

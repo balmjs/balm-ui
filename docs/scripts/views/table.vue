@@ -23,12 +23,12 @@
       :action="table2.action"
       :selectable="table2.selectable"
       :checkboxList="table2.checkboxList"
-      detailView
-      :detailViewData="table2.tableDetail"
       @view="onView"
       @edit="onEdit"
       @delete="onDelete"
       @selected="onSelected"
+      detailView
+      :detailViewData="table2.tableDetail"
       @view-detail="viewDetail">
     </ui-table>
     <ui-code language="html" :code="code2.html"></ui-code>
@@ -157,8 +157,9 @@ export default {
     onSelected(data) {
       this.table2.checkboxList = data;
     },
-    viewDetail() {
-      this.table2.tableDetail +=  ('-' + new Date().getTime());
+    viewDetail(data) {
+      console.log('detail', data);
+      this.table2.tableDetail +=  ('-' + data.name);
     }
   },
   mounted() {

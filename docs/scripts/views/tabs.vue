@@ -43,7 +43,6 @@
 
 <script>
 import UiCode from '../components/code';
-import html from '../snippets/test.md';
 
 export default {
   components: {

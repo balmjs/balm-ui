@@ -1,3 +1,12 @@
+## 0.1.6 beta
+
+### Update components
+
+__`<ui-table`>__
+
+- update event `view-detail`, callback row data
+- fix sort for detailView
+
 ## 0.1.5 beta
 
 ### Update `material-design-lite@1.3.0`

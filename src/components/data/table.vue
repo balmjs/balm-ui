@@ -35,7 +35,7 @@
             <div v-if="!(cell.isPlus || cell.isCheckbox || cell.isAction || hasDetailView(index))" v-html="cell.value"></div>
             <i class="material-icons"
               v-if="cell.isPlus"
-              @click="viewDetail(index, cell.show)">{{ cell.show ? 'remove' : 'add' }}</i>
+              @click="viewDetail(index, cell)">{{ cell.show ? 'remove' : 'add' }}</i>
             <ui-checkbox name="checkOne[]"
               v-if="cell.isCheckbox"
               :value="cell.value"
@@ -393,7 +393,7 @@ export default {
 
       return result;
     },
-    getDetailView(type, result, key = -1) {
+    getDetailView(type, result, key = -1, value = '') {
       if (this.detailView) {
         let cell = {};
 
@@ -410,6 +410,9 @@ export default {
               isPlus: true,
               show: +key === this.currentDetailViewIndex
             };
+            if (value) {
+              cell[CELL_DATA] = value;
+            }
             break;
         }
 
@@ -485,7 +488,7 @@ export default {
                 // add checkbox
                 result[key] = this.getCheckbox(type, result[key], value[this.keyField]);
                 // add plus
-                result[key] = this.getDetailView(type, result[key], key);
+                result[key] = this.getDetailView(type, result[key], key, value);
               }
             }
             break;
@@ -533,7 +536,16 @@ export default {
 
       this.isCheckAll = dataCount && beEqual && exists;
     },
+    resetData(index) {
+      this.currentData.splice(index + 1, 1);
+      this.currentDetailViewIndex = DEFAULTS.detailViewIndex;
+    },
     sort(data) {
+      if (this.currentDetailViewIndex !== DEFAULTS.detailViewIndex) {
+        let currentIndex = this.currentData.findIndex((value, index) => index === this.currentDetailViewIndex);
+        this.resetData(currentIndex);
+      }
+
       if (data[CELL_SORT]) {
         let sortBy = data.by;
         let currentSort;
@@ -558,10 +570,9 @@ export default {
         }
       }
     },
-    viewDetail(currentIndex, show) {
-      if (show) {
-        this.currentData.splice(currentIndex + 1, 1);
-        this.currentDetailViewIndex = DEFAULTS.detailViewIndex;
+    viewDetail(currentIndex, cell) {
+      if (cell.show) {
+        this.resetData(currentIndex);
       } else {
         let result = [];
 
@@ -598,7 +609,7 @@ export default {
         this.currentData = result;
         this.currentDetailViewIndex = currentIndex;
 
-        this.$emit(CALLBACK_VIEW_DETAIL);
+        this.$emit(CALLBACK_VIEW_DETAIL, cell.data);
       }
     },
     hasDetailView(index) {

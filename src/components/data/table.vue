@@ -41,14 +41,16 @@
               :value="cell.value"
               :model="currentCheckboxList"
               @change="onCheckOne"></ui-checkbox>
-            <ui-button v-if="cell.isAction"
-              v-for="action in cell.actions"
-              :icon="action.icon || action.isIcon"
-              :link="action.isLink"
-              @click.native="doAction(action.name, action.data)">
+            <div v-if="cell.isAction">
+              <ui-button
+                v-for="action in cell.actions"
+                :icon="action.icon || action.isIcon"
+                :link="action.isLink"
+                @click.native="doAction(action.name, action.data)">
                 <span v-if="!action.icon" v-html="action.value"></span>
-            </ui-button>
-            <div v-if="hasDetailView(index)">{{ currentDetailViewData }}</div>
+              </ui-button>
+            </div>
+            <div class="mdl-data-table__detail-view" v-if="hasDetailView(index)">{{ currentDetailViewData }}</div>
           </td>
         </tr>
         <tr v-if="!tbodyData.length">

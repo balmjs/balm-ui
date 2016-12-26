@@ -6,6 +6,7 @@ __`<ui-table`>__
 
 - update event `view-detail`, callback row data
 - fix sort for detailView
+- fix action bug for `vue2.x` compatibility :(
 
 ## 0.1.5 beta
 

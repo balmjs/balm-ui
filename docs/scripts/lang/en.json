@@ -20,8 +20,12 @@
     "divider": "Divider"
   },
   "table": {
-    "dataTable": "Data Table",
     "basic": "Basic",
     "advanced": "Advanced"
+  },
+  "tabs": {
+    "basic": "Basic",
+    "materialIcon": "Material icons",
+    "customIcon": "Custom icons"
   }
 }

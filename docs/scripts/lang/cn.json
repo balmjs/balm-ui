@@ -20,8 +20,12 @@
     "divider": "分割线"
   },
   "table": {
-    "dataTable": "表格",
     "basic": "基本用法",
     "advanced": "高级用法"
+  },
+  "tabs": {
+    "basic": "基本用法",
+    "materialIcon": "Material图标",
+    "customIcon": "自定义图标"
   }
 }

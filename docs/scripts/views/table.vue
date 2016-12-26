@@ -1,8 +1,6 @@
 <template>
   <div class="docs-table">
-    <h4>{{ $t('table.dataTable') }}</h4>
-
-    <h5>{{ $t('table.basic') }}</h5>
+    <h4>{{ $t('table.basic') }}</h4>
     <ui-table
       :data="table1.data"
       :thead="table1.thead"
@@ -15,7 +13,7 @@
     <ui-code language="html" :code="code1.html"></ui-code>
     <ui-code language="js" :code="code1.js"></ui-code>
 
-    <h5>{{ $t('table.advanced') }}</h5>
+    <h4>{{ $t('table.advanced') }}</h4>
     <ui-table
       :data="table2.data"
       :caption="table2.caption"
@@ -41,10 +39,6 @@
 <script>
 import dataList from '../../data/table';
 import UiCode from '../components/code';
-import codeTemplate1 from '../usages/table/template1.html';
-import codeScript1 from '../usages/table/script1.html';
-import codeTemplate2 from '../usages/table/template2.html';
-import codeScript2 from '../usages/table/script2.html';
 
 export default {
   components: {
@@ -52,8 +46,10 @@ export default {
   },
   data() {
     return {
-      code1: {},
-      code2: {},
+      code1: {
+        html: require('../snippets/table/demo1-template.html'),
+        js: require('../snippets/table/demo1-script.html')
+      },
       table1: {
         data: [],
         thead: ['ID', 'Name', 'Quantity', 'Price', 'Operate'],
@@ -71,6 +67,10 @@ export default {
           name: 'delete',
           value: 'Delete'
         }]
+      },
+      code2: {
+        html: require('../snippets/table/demo2-template.html'),
+        js: require('../snippets/table/demo2-script.html')
       },
       table2: {
         data: [],
@@ -160,12 +160,6 @@ export default {
     viewDetail() {
       this.table2.tableDetail +=  ('-' + new Date().getTime());
     }
-  },
-  created() {
-    this.code1.html = this.renderHTML(codeTemplate1);
-    this.code1.js = this.renderJS(codeScript1);
-    this.code2.html = this.renderHTML(codeTemplate2);
-    this.code2.js = this.renderJS(codeScript2);
   },
   mounted() {
     setTimeout(() => {

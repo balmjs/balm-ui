@@ -1,8 +1,14 @@
 <template>
-  <pre :class="className"><code :class="className" v-html="code"></code></pre>
+  <pre :class="className"><code :class="className" v-html="output"></code></pre>
 </template>
 
 <script>
+const LANGUAGES = {
+  html: 'html',
+  css: 'css',
+  js: 'javascript'
+};
+
 // Supported languages:
 // http://prismjs.com/#languages-list
 export default {
@@ -20,6 +26,10 @@ export default {
   computed: {
     className() {
       return `language-${this.language}`;
+    },
+    output() {
+      let currentLanguage = LANGUAGES[this.language];
+      return this.code ? this.$prism.highlight(this.code, this.$prism.languages[currentLanguage]) : '';
     }
   }
 };

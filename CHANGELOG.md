@@ -1,12 +1,34 @@
+## 0.1.7 beta
+
+### Update components
+
+__`<ui-textfield>`__
+
+- rename props `plus` to `expandable`
+- add props `plus`
+
+__`<ui-table>`__
+
+- add row selected class
+- fix selected in detail view
+
+### Update docs
+
+__`<ui-textfield>`__
+
+---
+
 ## 0.1.6 beta
 
 ### Update components
 
-__`<ui-table`>__
+__`<ui-table>`__
 
 - update event `view-detail`, callback row data
 - fix sort for detailView
 - fix action bug for `vue2.x` compatibility :(
+
+---
 
 ## 0.1.5 beta
 
@@ -18,7 +40,7 @@ __`<ui-textfield>`__
 
 - fix css for error in left label
 
-__`<ui-table`>__
+__`<ui-table>`__
 
 - add props `detailView` & `detailViewData`
 - add event `view-detail`
@@ -28,6 +50,8 @@ __`<ui-table`>__
 
 - `<ui-table>`
 - `<ui-tabs>`
+
+---
 
 ## 0.1.4 beta
 
@@ -47,6 +71,8 @@ __`<ui-menu>`__
 
 ### Fix material components init
 
+---
+
 ## 0.1.3 beta
 
 ### Update components
@@ -63,6 +89,8 @@ __`<ui-tabs>` & `<ui-tab>`__
 __`<ui-dialog>`__
 
 - fix some bug
+
+---
 
 ## 0.1.2 beta
 
@@ -81,6 +109,8 @@ __`<ui-table>`__
 
 - `<ui-radio>`
 - `<ui-table>`
+
+---
 
 ## 0.1.1 beta
 
@@ -104,7 +134,7 @@ __Layout__
 
 - `<ui-layout>`
 - `<ui-navigation>`
-- `<ui-grid>` & `<ui-cell`>
+- `<ui-grid>` & `<ui-cell>`
 - `<ui-tabs>` & `<ui-panel>`
 - `<ui-footer>` & `<ui-mini-footer>`
 

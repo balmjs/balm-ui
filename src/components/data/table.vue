@@ -27,7 +27,7 @@
     </slot>
     <slot name="tbody" :data="tbodyData">
       <tbody>
-        <tr v-if="tbodyData.length" v-for="(row, index) in tbodyData" :key="index">
+        <tr v-if="tbodyData.length" v-for="(row, index) in tbodyData" :key="index" :class="{'selected': isSelected(row)}">
           <td v-for="cell in row"
             :colspan="cell.col"
             :rowspan="cell.row"
@@ -221,6 +221,11 @@ export default {
         type: T_FOOT,
         table: this.tfoot
       }) : [];
+    },
+    currentDataCount() {
+      return (this.currentDetailViewIndex === DEFAULTS.detailViewIndex)
+        ? this.currentData.length
+        : this.currentData.length -1;
     }
   },
   methods: {
@@ -531,12 +536,20 @@ export default {
       this.isCheckAll = checked;
     },
     checkAll() {
-      let dataCount = this.currentData.length; // not empty
-      let beEqual = this.currentCheckboxList.length === dataCount;
-      let ids = this.currentData.map(value => value[this.keyField]);
+      let notEmpty = this.currentDataCount;
+      let beEqual = this.currentCheckboxList.length === this.currentDataCount;
+      let ids = this.currentData.map(value => value[this.keyField]).filter(value => value);
       let exists = this.currentCheckboxList.every(id => ids.indexOf(id) > -1);
 
-      this.isCheckAll = dataCount && beEqual && exists;
+      this.isCheckAll = notEmpty && beEqual && exists;
+    },
+    isSelected(rowData) {
+      let cell = rowData.find(cell => cell.isCheckbox);
+      let result = cell
+        ? (this.currentCheckboxList.indexOf(cell.value) > -1)
+        : false;
+
+      return result;
     },
     resetData(index) {
       this.currentData.splice(index + 1, 1);
@@ -632,12 +645,13 @@ export default {
       this.$emit(CALLBACK_SELECTED, val);
     },
     isCheckAll(val) {
-      let lastCheckList = (this.currentCheckboxList.length === this.currentData.length)
+      let beEqual = this.currentCheckboxList.length === this.currentDataCount;
+      let lastCheckList = beEqual
         ? []
         : this.currentCheckboxList;
 
       this.currentCheckboxList = val
-        ? this.currentData.map(value => value[this.keyField])
+        ? this.currentData.map(value => value[this.keyField]).filter(value => value)
         : lastCheckList;
     },
     thead(val) {

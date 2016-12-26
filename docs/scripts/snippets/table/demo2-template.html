@@ -1,18 +1,18 @@
 <!-- template -->
 <ui-table
-  :data="table.data"
-  :caption="table.caption"
-  :thead="table.thead"
-  :tbody="table.tbody"
-  :tfoot="table.tfoot"
-  :action="table.action"
-  :selectable="table.selectable"
-  :checkboxList="table.checkboxList"
+  :data="data"
+  :caption="caption"
+  :thead="thead"
+  :tbody="tbody"
+  :tfoot="tfoot"
+  :action="action"
+  :selectable="selectable"
+  :checkboxList="checkboxList"
   @view="onView"
   @edit="onEdit"
   @delete="onDelete"
   @selected="onSelected"
   detailView
-  :detailViewData="table.tableDetail"
+  :detailViewData="tableDetail"
   @view-detail="viewDetail">
 </ui-table>

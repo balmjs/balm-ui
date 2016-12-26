@@ -9,6 +9,9 @@
     }
   }
   tr {
+    &.selected {
+      background-color: #eee;
+    }
     td:first-child {
       i {
         cursor: pointer;

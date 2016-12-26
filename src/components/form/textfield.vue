@@ -1,6 +1,6 @@
 <template>
   <div :class="className.outer">
-    <label class="mdl-button mdl-js-button mdl-button--icon" v-if="plus" :for="id">
+    <label class="mdl-button mdl-js-button mdl-button--icon" v-if="expandable" :for="id">
       <slot name="icon">
         <i class="material-icons">icon</i>
       </slot>
@@ -12,7 +12,8 @@
         :name="name"
         :rows="rows"
         :placeholder="currentPlaceholder"
-        v-model="currentValue"
+        :value="currentValue"
+        :maxlength="maxlength"
         @input="handleInput"></textarea>
       <input class="mdl-textfield__input"
         v-if="!isTextarea"
@@ -22,12 +23,16 @@
         :placeholder="currentPlaceholder"
         :pattern="pattern"
         :value="currentValue"
+        :maxlength="maxlength"
         @input="handleInput">
       <label class="mdl-textfield__label" :for="id">
         <slot name="label">{{ label }}</slot>
       </label>
       <span class="mdl-textfield__error" v-if="!noError">
         <slot name="error">{{ error }}</slot>
+      </span>
+      <span class="mdl-textfield__plus" v-if="plus">
+        <slot name="plus"></slot>
       </span>
     </div>
   </div>
@@ -44,10 +49,6 @@ export default {
     type: {
       type: String,
       default: 'text'
-    },
-    plus: {
-      type: Boolean,
-      default: false
     },
     id: String,
     name: String,
@@ -71,10 +72,19 @@ export default {
       type: Boolean,
       default: false
     },
+    expandable: {
+      type: Boolean,
+      default: false
+    },
     pattern: String,
+    maxlength: [Number, String],
     rows: {
       type: Number,
       default: 2
+    },
+    plus: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -92,11 +102,12 @@ export default {
           'mdl-textfield': true,
           'mdl-js-textfield': true,
           'mdl-textfield--floating-label': this.labelFloating,
-          'mdl-textfield--expandable': this.plus,
-          'mdl-textfield--left-label': this.labelLeft
+          'mdl-textfield--expandable': this.expandable,
+          'mdl-textfield--left-label': this.labelLeft,
+          'mdl-textfield--plus': this.plus
         },
         inner: {
-          'mdl-textfield__expandable-holder': this.plus,
+          'mdl-textfield__expandable-holder': this.expandable,
           'mdl-input__expandable-holder': this.labelLeft
         }
       };
@@ -113,6 +124,11 @@ export default {
   methods: {
     handleInput() {
       this.$emit(CALLBACK_INPUT, this.currentValue);
+    }
+  },
+  created() {
+    if (this.expandable && !this.id) {
+      console.warn('Expandable textfield need a id.');
     }
   },
   mounted() {

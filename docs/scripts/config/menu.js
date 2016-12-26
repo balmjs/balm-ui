@@ -15,6 +15,7 @@ const COMPONENTS = [
   'form',
   'radio',
   'table',
+  'textfield',
   'tooltip'
 ];
 

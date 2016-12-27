@@ -8,6 +8,7 @@
 
 <script>
 import '../../material-design-lite/button/button';
+import '../../material-design-lite/ripple/ripple';
 
 export default {
   name: 'ui-button',
@@ -86,6 +87,9 @@ export default {
   },
   mounted() {
     this.$ui.upgradeElement(this.$el, 'MaterialButton');
+    if (this.effect) {
+      this.$ui.upgradeElement(this.$el, 'MaterialRipple');
+    }
   }
 };
 </script>

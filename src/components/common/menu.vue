@@ -10,7 +10,8 @@
     <ul ref="menu"
       :class="[className.outer, positionClassName]"
       :for="`menu${name}`">
-      <li v-for="menu in currentData"
+      <li ref="item"
+        v-for="menu in currentData"
         :class="className.inner"
         :disabled="menu.disabled"
         @click="handleClick(menu)">
@@ -22,6 +23,7 @@
 
 <script>
 import '../../material-design-lite/menu/menu';
+import '../../material-design-lite/ripple/ripple';
 
 const POSITIONS = ['', 'top-left', 'top-right', 'bottom-right'];
 const POSITION_NONE = 0; // Default
@@ -103,6 +105,10 @@ export default {
   mounted() {
     this.$ui.upgradeElement(this.$refs.button, 'MaterialButton');
     this.$ui.upgradeElement(this.$refs.menu, 'MaterialMenu');
+    if (this.effect) {
+      this.$ui.upgradeElement(this.$refs.menu, 'MaterialRipple');
+      this.$ui.upgradeElements(this.$refs.item);
+    }
   }
 };
 </script>

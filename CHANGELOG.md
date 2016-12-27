@@ -1,3 +1,7 @@
+## 0.1.8 beta
+
+### Update material ripple init
+
 ## 0.1.7 beta
 
 ### Update components

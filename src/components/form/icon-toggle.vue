@@ -16,6 +16,7 @@
 
 <script>
 import '../../material-design-lite/icon-toggle/icon-toggle';
+import '../../material-design-lite/ripple/ripple';
 
 const CLASSNAME_ICON = 'material-icons';
 const CALLBACK_CHANGE = 'change';
@@ -70,6 +71,9 @@ export default {
   },
   mounted() {
     this.$ui.upgradeElement(this.$el, 'MaterialIconToggle');
+    if (this.effect) {
+      this.$ui.upgradeElement(this.$el, 'MaterialRipple');
+    }
   }
 };
 </script>

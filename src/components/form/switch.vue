@@ -14,6 +14,7 @@
 
 <script>
 import '../../material-design-lite/switch/switch';
+import '../../material-design-lite/ripple/ripple';
 
 const CALLBACK_CHANGE = 'change';
 
@@ -64,6 +65,9 @@ export default {
   },
   mounted() {
     this.$ui.upgradeElement(this.$el, 'MaterialSwitch');
+    if (this.effect) {
+      this.$ui.upgradeElement(this.$el, 'MaterialRipple');
+    }
   }
 };
 </script>

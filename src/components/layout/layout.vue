@@ -23,7 +23,7 @@
       <!-- header bottom -->
       <slot name="header-bottom" :className="headerClassName"></slot>
       <!-- header tabs -->
-      <div class="mdl-layout__tab-bar mdl-js-ripple-effect" v-if="tabs">
+      <div class="mdl-layout__tab-bar mdl-js-ripple-effect" ref="tabs" v-if="tabs">
         <a v-for="(tab, index) in tabs"
           :href="`#${tabName}-${index+1}`"
           :class="['mdl-layout__tab', {'is-active': !index}]">{{ tab }}</a>
@@ -60,6 +60,7 @@
 
 <script>
 import '../../material-design-lite/layout/layout';
+import '../../material-design-lite/ripple/ripple';
 import UiNavigation from './navigation';
 
 const CLASSNAME_HEADER = 'mdl-layout__header-row';
@@ -175,6 +176,9 @@ export default {
   },
   mounted() {
     this.$ui.upgradeElement(this.$el, 'MaterialLayout');
+    if (this.tabs) {
+      this.$ui.upgradeElement(this.$refs.tabs, 'MaterialRipple');
+    }
   }
 };
 </script>

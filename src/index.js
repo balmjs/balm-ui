@@ -45,10 +45,6 @@ import UiDialog from './components/popup/dialog';
 import UiConfirm from './components/popup/confirm';
 import UiAlert from './components/popup/alert';
 import UiSnackbar from './components/popup/snackbar';
-/**
- * Effect
- */
-import './material-design-lite/ripple/ripple';
 
 const BalmUI = {
   // Layout

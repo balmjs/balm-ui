@@ -6,11 +6,13 @@ __`<ui-textfield>`__
 
 - rename props `plus` to `expandable`
 - add props `plus`
+- add props `maxlength`
 
 __`<ui-table>`__
 
-- add row selected class
 - fix selected in detail view
+- add row selected class
+- add detail view class
 
 ### Update docs
 

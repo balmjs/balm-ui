@@ -28,7 +28,7 @@
       <label class="mdl-textfield__label" :for="id">
         <slot name="label">{{ label }}</slot>
       </label>
-      <span class="mdl-textfield__error" v-if="!noError">
+      <span class="mdl-textfield__error" v-if="error">
         <slot name="error">{{ error }}</slot>
       </span>
       <span class="mdl-textfield__plus" v-if="plus">
@@ -68,10 +68,6 @@ export default {
       default: ''
     },
     error: String,
-    noError: {
-      type: Boolean,
-      default: false
-    },
     expandable: {
       type: Boolean,
       default: false
@@ -108,7 +104,7 @@ export default {
         },
         inner: {
           'mdl-textfield__expandable-holder': this.expandable,
-          'mdl-input__expandable-holder': this.labelLeft
+          'mdl-input__expandable-holder': this.labelLeft || this.plus
         }
       };
     },

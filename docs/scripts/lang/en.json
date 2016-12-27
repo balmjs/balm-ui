@@ -14,18 +14,27 @@
     "snackbar": "Snackbar",
     "form": "Form",
     "table": "Table",
-    "textfield": "Text field",
+    "textfield": "Text Field",
     "radio": "Radio",
     "tooltip": "Tooltip",
     "divider": "Divider"
-  },
-  "table": {
-    "basic": "Basic",
-    "advanced": "Advanced"
   },
   "tabs": {
     "basic": "Basic",
     "materialIcon": "Material icons",
     "customIcon": "Custom icons"
+  },
+  "table": {
+    "basic": "Basic",
+    "advanced": "Advanced"
+  },
+  "textfield": {
+    "simple": "Simple Textfield",
+    "pattern": "Pattern Textfield with Error Info",
+    "floating": "Textfield with Floating Label",
+    "left": "Textfield with left Label",
+    "textarea": "Multiline Textfield",
+    "expandable": "Expandable Textfield",
+    "plus": "Textfield with Plus"
   }
 }

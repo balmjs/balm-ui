@@ -27,12 +27,12 @@
     </slot>
     <slot name="tbody" :data="tbodyData">
       <tbody>
-        <tr v-if="tbodyData.length" v-for="(row, index) in tbodyData" :key="index" :class="{'selected': isSelected(row)}">
+        <tr v-if="tbodyData.length" v-for="(row, index) in tbodyData" :key="index" :class="{'selected': isSelected(row), 'detail-view': isDetailView(index)}">
           <td v-for="cell in row"
             :colspan="cell.col"
             :rowspan="cell.row"
             :class="cell.class">
-            <div v-if="!(cell.isPlus || cell.isCheckbox || cell.isAction || hasDetailView(index))" v-html="cell.value"></div>
+            <div v-if="!(cell.isPlus || cell.isCheckbox || cell.isAction || isDetailView(index))" v-html="cell.value"></div>
             <i class="material-icons"
               v-if="cell.isPlus"
               @click="viewDetail(index, cell)">{{ cell.show ? 'remove' : 'add' }}</i>
@@ -50,7 +50,7 @@
                 <span v-if="!action.icon" v-html="action.value"></span>
               </ui-button>
             </div>
-            <div class="mdl-data-table__detail-view" v-if="hasDetailView(index)">{{ currentDetailViewData }}</div>
+            <div class="mdl-data-table__detail-view" v-if="isDetailView(index)">{{ currentDetailViewData }}</div>
           </td>
         </tr>
         <tr v-if="!tbodyData.length">
@@ -627,7 +627,7 @@ export default {
         this.$emit(CALLBACK_VIEW_DETAIL, cell.data);
       }
     },
-    hasDetailView(index) {
+    isDetailView(index) {
       let hasDetailViewRow = this.currentDetailViewIndex + 1 > 0;
       let isDetailViewRow = index === this.currentDetailViewIndex + 1;
       return hasDetailViewRow && isDetailViewRow;

@@ -19,13 +19,22 @@
     "tooltip": "文字提示",
     "divider": "分割线"
   },
-  "table": {
-    "basic": "基本用法",
-    "advanced": "高级用法"
-  },
   "tabs": {
     "basic": "基本用法",
     "materialIcon": "Material图标",
     "customIcon": "自定义图标"
+  },
+  "table": {
+    "basic": "基本用法",
+    "advanced": "高级用法"
+  },
+  "textfield": {
+    "simple": "简单的本文框",
+    "pattern": "正则验证和错误信息的文本框",
+    "floating": "浮动标签的文本框",
+    "left": "标签左置的文本框",
+    "textarea": "多行输入的文本框",
+    "expandable": "可伸展的文本框",
+    "plus": "可扩展的文本框"
   }
 }

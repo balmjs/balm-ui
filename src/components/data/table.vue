@@ -27,12 +27,16 @@
     </slot>
     <slot name="tbody" :data="tbodyData">
       <tbody>
-        <tr v-if="tbodyData.length" v-for="(row, index) in tbodyData" :key="index" :class="{'selected': isSelected(row), 'detail-view': isDetailView(index)}">
+        <tr v-if="tbodyData.length"
+          v-for="(row, index) in tbodyData"
+          :key="index"
+          :class="{'selected': isSelected(row), 'detail-view': isDetailView(index)}">
           <td v-for="cell in row"
             :colspan="cell.col"
             :rowspan="cell.row"
             :class="cell.class">
-            <div v-if="!(cell.isPlus || cell.isCheckbox || cell.isAction || isDetailView(index))" v-html="cell.value"></div>
+            <div v-if="!(cell.isPlus || cell.isCheckbox || cell.isAction || isDetailView(index)) && !cell.raw">{{ cell.value }}</div>
+            <div v-if="!(cell.isPlus || cell.isCheckbox || cell.isAction || isDetailView(index)) && cell.raw" v-html="cell.value"></div>
             <i class="material-icons"
               v-if="cell.isPlus"
               @click="viewDetail(index, cell)">{{ cell.show ? 'remove' : 'add' }}</i>
@@ -91,6 +95,7 @@ const CELL_FIELD = 'field';
 const CELL_FUNCTION = 'fn';
 const CELL_ICON = 'icon';
 const CELL_INDEX = 'index';
+const CELL_RAW = 'raw';
 const CELL_ROWSPAN = 'row';
 const CELL_SORT = 'sort';
 const CELL_VALUE = 'value';
@@ -229,7 +234,7 @@ export default {
     }
   },
   methods: {
-    getCell(type, data) {
+    getCell(type, data, index = -1) {
       let cell = {};
       let fn;
 
@@ -330,8 +335,9 @@ export default {
             break;
           default: // T_BODY
             fn = data[CELL_FUNCTION];
-            let val = data[CELL_VALUE];
-            cell[CELL_VALUE] = fn ? fn(val) : val;
+            cell[CELL_VALUE] = fn ? fn(this.currentData[index], index) : data[CELL_VALUE];
+            // dangerously set innerHTML
+            cell[CELL_RAW] = data[CELL_RAW];
             break;
         }
       } else {
@@ -488,7 +494,7 @@ export default {
                   } else {
                     cell[CELL_VALUE] = value[item];
                   }
-                  result[key].push(this.getCell(type, cell));
+                  result[key].push(this.getCell(type, cell, key));
                 }
                 // add action
                 result[key] = this.getAction(result[key], value);

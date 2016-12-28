@@ -2,6 +2,15 @@
 
 ### Update material ripple init
 
+### Update components
+
+__`<ui-table>`__
+
+- add tbody options `raw` for render HTML
+- update tbody options `fn(data, index)`
+
+---
+
 ## 0.1.7 beta
 
 ### Update components

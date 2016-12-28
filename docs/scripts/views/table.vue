@@ -106,8 +106,9 @@ export default {
             field: 'name',
             class: 'test',
             noNum: true,
-            fn: function(data) {
-              return data + '!' + '<i class="material-icons">mood</i>';
+            raw: true,
+            fn: function(data, index) {
+              return data.name + '!' + '<i class="material-icons">mood</i>';
             }
           },
           'quantity',

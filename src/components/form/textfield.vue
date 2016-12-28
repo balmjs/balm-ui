@@ -124,7 +124,7 @@ export default {
   },
   created() {
     if (this.expandable && !this.id) {
-      console.warn('Expandable textfield need a id.');
+      console.warn('Expandable textfield need an id.');
     }
   },
   mounted() {

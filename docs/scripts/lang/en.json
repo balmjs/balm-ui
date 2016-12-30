@@ -36,6 +36,7 @@
     "left": "Textfield with left Label",
     "textarea": "Multiline Textfield",
     "expandable": "Expandable Textfield",
-    "plus": "Textfield with Plus"
+    "plus": "Textfield with Plus",
+    "leftplus": "Textfield with left Label and Plus"
   }
 }

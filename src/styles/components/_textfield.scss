@@ -1,5 +1,15 @@
 .mdl-textfield {
   /**
+   * Textfield with Plus
+   */
+  .mdl-textfield__plus {
+    position: absolute;
+    top: 24px;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+  }
+  /**
    * Textfield with left Label
    */
   &.mdl-textfield--left-label {
@@ -30,15 +40,10 @@
     .mdl-textfield__error {
       text-align: left;
     }
-  }
-  /**
-   * Textfield with Plus
-   */
-  .mdl-textfield__plus {
-    position: absolute;
-    top: 24px;
-    right: 0;
-    bottom: 0;
-    overflow: hidden;
+    .mdl-textfield__plus {
+      position: absolute;
+      top: 0;
+      width: auto;
+    }
   }
 }

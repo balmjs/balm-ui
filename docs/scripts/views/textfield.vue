@@ -33,9 +33,18 @@
 
     <h4>{{ $t('textfield.plus') }}</h4>
     <ui-textfield label="Plus Text..." :model="text7" @input.native="onInputChange('text7', $event)" plus>
-      <template slot="plus"><a href="javascript:void(0)">Link or Button</a></template>
+      <template slot="plus"><a href="javascript:void(0)">Button</a></template>
     </ui-textfield>
     <ui-code language="html" :code="code7.html"></ui-code>
+
+    <h4>{{ $t('textfield.leftplus') }}</h4>
+    <ui-textfield label="Plus Text..." :model="text8" @input.native="onInputChange('text8', $event)"
+      labelLeft
+      placeholder="Placeholder..."
+      plus>
+      <template slot="plus"><a href="javascript:void(0)">Link</a></template>
+    </ui-textfield>
+    <ui-code language="html" :code="code8.html"></ui-code>
   </div>
 </template>
 
@@ -75,7 +84,11 @@ export default {
       code7: {
         html: require('../snippets/textfield/demo7-template.html')
       },
-      text7: ''
+      text7: '',
+      code8: {
+        html: require('../snippets/textfield/demo8-template.html')
+      },
+      text8: ''
     }
   },
   methods: {

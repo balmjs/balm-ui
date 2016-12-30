@@ -42,7 +42,7 @@
               @click="viewDetail(index, cell)">{{ cell.show ? 'remove' : 'add' }}</i>
             <ui-checkbox name="checkOne[]"
               v-if="cell.isCheckbox"
-              :value="cell.value"
+              :value="index"
               :model="currentCheckboxList"
               @change="onCheckOne"></ui-checkbox>
             <div v-if="cell.isAction">
@@ -544,7 +544,7 @@ export default {
     checkAll() {
       let notEmpty = this.currentDataCount;
       let beEqual = this.currentCheckboxList.length === this.currentDataCount;
-      let ids = this.currentData.map(value => value[this.keyField]).filter(value => value);
+      let ids = this.currentData.map((value, index) => index);
       let exists = this.currentCheckboxList.every(id => ids.indexOf(id) > -1);
 
       this.isCheckAll = notEmpty && beEqual && exists;
@@ -592,6 +592,7 @@ export default {
       }
     },
     viewDetail(currentIndex, cell) {
+      // TODO: checkbox list
       if (cell.show) {
         this.resetData(currentIndex);
       } else {
@@ -657,7 +658,7 @@ export default {
         : this.currentCheckboxList;
 
       this.currentCheckboxList = val
-        ? this.currentData.map(value => value[this.keyField]).filter(value => value)
+        ? this.currentData.map((value, index) => index)
         : lastCheckList;
     },
     thead(val) {

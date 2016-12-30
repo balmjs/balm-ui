@@ -8,6 +8,7 @@ __`<ui-table>`__
 
 - add tbody options `raw` for render HTML
 - update tbody options `fn(data, index)`
+- CheckboxList values: from `id` to `index`
 
 ---
 

@@ -11,6 +11,7 @@ const COMPONENTS = [
   'list',
   'loading',
   'menu',
+  'slider',
   'snackbar',
   'form',
   'radio',

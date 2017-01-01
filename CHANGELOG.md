@@ -1,3 +1,17 @@
+## 0.1.9 beta
+
+### Update docs
+
+__`<ui-badge>`__
+
+### Update components
+
+__`<ui-table>`__
+
+- remove props `col`
+
+---
+
 ## 0.1.8 beta
 
 ### Update material ripple init

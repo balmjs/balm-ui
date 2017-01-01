@@ -1,0 +1,23 @@
+{
+  "props": [{
+    "name": "noBackground",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Applies open-circle effect to badge"
+  }, {
+    "name": "overlap",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Make the badge overlap with its container"
+  }, {
+    "name": "value",
+    "type": "Number, String",
+    "default": "0",
+    "description": "Assigns string value to badge"
+  }],
+  "slots": [{
+    "name": "(default)",
+    "description": "The default slot holds the badge text and can contain HTML"
+  }],
+  "events": []
+}

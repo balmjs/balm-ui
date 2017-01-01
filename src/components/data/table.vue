@@ -137,10 +137,6 @@ export default {
       default: 'id'
     },
     caption: String,
-    col: {
-      type: Number,
-      default: 0
-    },
     thead: {
       type: Array,
       required: true
@@ -185,7 +181,6 @@ export default {
       currentCheckboxList: this.checkboxList,
       currentData: this.data,
       currentThead: this.thead,
-      currentCol: this.col,
       currentDetailViewIndex: DEFAULTS.detailViewIndex,
       currentDetailViewData: this.detailViewData
     };

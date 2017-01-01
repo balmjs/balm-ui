@@ -8,6 +8,10 @@
 }
 
 .mdl-layout__drawer {
+  .mdl-badge[data-badge]:after {
+    right: -32px;
+    width: 32px;
+  }
   .mdl-navigation__link {
     &.router-link-active {
       background-color: #757575;

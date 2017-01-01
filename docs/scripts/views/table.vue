@@ -38,12 +38,8 @@
 
 <script>
 import dataList from '../../data/table';
-import UiCode from '../components/code';
 
 export default {
-  components: {
-    UiCode
-  },
   data() {
     return {
       code1: {

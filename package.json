@@ -4,6 +4,7 @@
   "description": "Material Design + Vue + Idea",
   "main": "dist/js/main.js",
   "scripts": {
+    "preinstall": "bower install",
     "mdl": "gulp --mdl",
     "start": "nodemon --exec gulp",
     "dev": "gulp",

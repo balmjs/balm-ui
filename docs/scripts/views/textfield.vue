@@ -49,12 +49,7 @@
 </template>
 
 <script>
-import UiCode from '../components/code';
-
 export default {
-  components: {
-    UiCode
-  },
   data() {
     return {
       code1: {

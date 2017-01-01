@@ -3,6 +3,7 @@
 ### Update docs
 
 __`<ui-badge>`__
+__`<ui-button>`__
 
 ### Update components
 

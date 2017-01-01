@@ -6,9 +6,11 @@
     </div>
 
     <div class="snippet-group">
-      <ui-badge noBackground overlap :value="number">
-        <b>Badge</b>
-      </ui-badge>
+      <div class="snippet-demo">
+        <ui-badge noBackground overlap :value="number">
+          <b>Badge</b>
+        </ui-badge>
+      </div>
     </div>
 
     <div class="snippet-group">

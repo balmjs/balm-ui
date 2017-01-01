@@ -1,0 +1,58 @@
+{
+  "props": [{
+    "name": "raised",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Applies raised display effect"
+  }, {
+    "name": "fab",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Applies fab (circular) display effect"
+  }, {
+    "name": "miniFab",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Applies mini-fab (small fab circular) display effect"
+  }, {
+    "name": "icon",
+    "type": "Boolean, String",
+    "default": "false",
+    "description": "Applies icon (small plain circular) display effect"
+  }, {
+    "name": "colored",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Applies colored display effect (primary or accent color, depending on the type of button)"
+  }, {
+    "name": "primary",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Applies primary color display effect"
+  }, {
+    "name": "accent",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Applies accent color display effect"
+  }, {
+    "name": "effect",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Applies ripple click effect"
+  }, {
+    "name": "disabled",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Applies disabled display effect"
+  }, {
+    "name": "link",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Applies link display effect"
+  }],
+  "slots": [{
+    "name": "(default)",
+    "description": "The default slot holds the button text and can contain HTML"
+  }],
+  "events": []
+}

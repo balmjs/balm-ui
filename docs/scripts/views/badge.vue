@@ -5,12 +5,10 @@
       <p>Small status descriptors for UI elements.</p>
     </div>
 
-    <div class="snippet-group">
-      <div class="snippet-demo">
-        <ui-badge noBackground overlap :value="number">
-          <b>Badge</b>
-        </ui-badge>
-      </div>
+    <div class="snippet-demo">
+      <ui-badge noBackground overlap :value="number">
+        <b>Badge</b>
+      </ui-badge>
     </div>
 
     <div class="snippet-group">

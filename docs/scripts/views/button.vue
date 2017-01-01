@@ -111,10 +111,8 @@
     </div>
     <ui-code language="html" :code="code8.html"></ui-code>
 
-    <div class="snippet-group">
-      <div class="snippet-demo">
-        <ui-button link>Link</ui-button>
-      </div>
+    <div class="snippet-demo">
+      <ui-button link>Link</ui-button>
     </div>
     <ui-code language="html" :code="code9.html"></ui-code>
 

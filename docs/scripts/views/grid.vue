@@ -4,7 +4,7 @@
       <h3>Grid</h3>
     </div>
 
-    <div class="snippet-grid">
+    <div class="snippet-demo">
       <ui-grid>
         <ui-cell v-for="i in [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]" :col="i">{{ i }}</ui-cell>
       </ui-grid>
@@ -129,7 +129,7 @@ export default {
   color: white;
 }
 
-.snippet-grid .mdl-grid:first-of-type .mdl-cell {
+.snippet-demo .mdl-grid:first-of-type .mdl-cell {
   height: 50px;
 }
 </style>

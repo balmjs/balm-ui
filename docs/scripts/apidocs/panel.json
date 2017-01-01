@@ -1,0 +1,14 @@
+{
+  "props": [{
+    "name": "tab",
+    "type": "String",
+    "default": "",
+    "description": "Defines a tab",
+    "required": true
+  }],
+  "slots": [{
+    "name": "(default)",
+    "description": "The default slot holds the panel text and can contain HTML"
+  }],
+  "events": []
+}

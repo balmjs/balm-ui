@@ -1,0 +1,43 @@
+{
+  "props": [{
+    "name": "active",
+    "type": "Number, String",
+    "default": "0",
+    "description": "Defines a tab as the current display tab"
+  }, {
+    "name": "effect",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Applies ripple click effect to tab links"
+  }, {
+    "name": "position",
+    "type": "String",
+    "default": "",
+    "description": "Tabs position ('left' or 'right')"
+  }, {
+    "name": "fixedTabs",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Uses fixed tabs instead of the default tabs"
+  }, {
+    "name": "icon",
+    "type": "Boolean, String",
+    "default": "false",
+    "description": "Applies material or custom icon"
+  }, {
+    "name": "iconPrefix",
+    "type": "String",
+    "default": "",
+    "description": "Applies custom icon prefix"
+  }, {
+    "name": "noIconText",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Hides the tab text in custom icon"
+  }],
+  "slots": [{
+    "name": "(default)",
+    "description": "The default slot holds the tabs text and can contain HTML"
+  }],
+  "events": []
+}

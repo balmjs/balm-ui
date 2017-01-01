@@ -5,6 +5,7 @@
 __`<ui-badge>`__
 __`<ui-button>`__
 __`<ui-grid>`__
+__`<ui-tabs>`__
 
 ### Update components
 

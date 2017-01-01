@@ -4,12 +4,17 @@
 
 __`<ui-badge>`__
 __`<ui-button>`__
+__`<ui-grid>`__
 
 ### Update components
 
 __`<ui-table>`__
 
 - remove props `col`
+
+__`<ui-grid>` && `<ui-cell>`__
+
+- fix props `mode` & `align`
 
 ---
 

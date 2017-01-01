@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import {isString} from '../../utils/helper';
+
 const MODE = ['', 'phone', 'tablet', 'desktop'];
 const MODE_PHONE = 1;
 const MODE_TABLET = 2;
@@ -23,17 +25,15 @@ export default {
       default: false
     }
   },
-  data() {
-    return {
-      currentMode: MODE[+this.mode]
-    };
-  },
   computed: {
     className() {
       return {
         'mdl-grid': true,
         'mdl-grid--no-spacing': this.noSpacing
       };
+    },
+    currentMode() {
+      return isString(this.mode) ? MODE[MODE.indexOf(this.mode)] : MODE[+this.mode];
     }
   }
 };

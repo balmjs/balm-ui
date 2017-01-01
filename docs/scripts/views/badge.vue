@@ -41,7 +41,8 @@
     </div>
     <ui-code language="html" :code="code2.html"></ui-code>
 
-    <ui-tabs effect :active="tab" @switched="onChange">
+    <h4>Badge API</h4>
+    <ui-tabs effect position="left" :active="tab" @switched="onChange">
       <ui-panel tab="props">
         <ui-table
           class="docs-table"

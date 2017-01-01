@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import {isObject} from '../../utils/helper';
+import {isString, isObject} from '../../utils/helper';
 
 const MODE = ['phone', 'tablet', 'desktop'];
 const HIDE = ['', 'phone', 'tablet', 'desktop'];
@@ -59,8 +59,8 @@ export default {
         result.push(`mdl-cell--hide-${hideMode}`);
       }
       // Aligns the cell to the parent
-      if (this.align) {
-        let align = ALIGN[this.align];
+      let align = isString(this.align) ? ALIGN[ALIGN.indexOf(this.align)] : ALIGN[+this.align];
+      if (align) {
         result.push(`mdl-cell--${align}`);
       }
 

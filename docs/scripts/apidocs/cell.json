@@ -1,0 +1,33 @@
+{
+  "props": [{
+    "name": "col",
+    "type": "Number, String, Object",
+    "default": "4",
+    "description": "Sets the column size for the cell to N"
+  }, {
+    "name": "offset",
+    "type": "Number, String, Object",
+    "default": "",
+    "description": "Adds N columns of whitespace before the cell"
+  }, {
+    "name": "order",
+    "type": "Number, String, Object",
+    "default": "",
+    "description": "Reorders cell to position N"
+  }, {
+    "name": "hide",
+    "type": "Number, String",
+    "default": "",
+    "description": "Hides the cell"
+  }, {
+    "name": "align",
+    "type": "Number, String",
+    "default": "4",
+    "description": "Aligns the cell to the parent { 1: 'top', 2: 'middle', 3: 'bottom', 4: 'stretch' }"
+  }],
+  "slots": [{
+    "name": "(default)",
+    "description": "The default slot holds the cell text and can contain HTML"
+  }],
+  "events": []
+}

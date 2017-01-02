@@ -16,7 +16,7 @@ import UiTab from './tab';
 
 const POSITION_LEFT = 'left';
 const POSITION_RIGHT = 'right';
-const CALLBACK_SWITCHED = 'switched';
+const EVENT_SWITCHED = 'switched';
 
 export default {
   name: 'ui-tabs',
@@ -78,7 +78,7 @@ export default {
       return index === this.currentActive;
     },
     switchTab(index) {
-      this.$emit(CALLBACK_SWITCHED, index);
+      this.$emit(EVENT_SWITCHED, index);
     }
   },
   watch: {

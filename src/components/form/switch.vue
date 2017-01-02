@@ -16,7 +16,7 @@
 import '../../material-design-lite/switch/switch';
 import '../../material-design-lite/ripple/ripple';
 
-const CALLBACK_CHANGE = 'change';
+const EVENT_CHANGE = 'change';
 
 /**
  * @example
@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     handleChange() {
-      this.$emit(CALLBACK_CHANGE, this.currentValue);
+      this.$emit(EVENT_CHANGE, this.currentValue);
     }
   },
   mounted() {

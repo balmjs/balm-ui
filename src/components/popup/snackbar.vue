@@ -14,7 +14,7 @@ import '../../material-design-lite/snackbar/snackbar';
 
 const TOAST = 0;
 const SNACKBAR = 1;
-const CALLBACK_DONE = 'done';
+const EVENT_DONE = 'done';
 
 export default {
   name: 'ui-snackbar',
@@ -78,7 +78,7 @@ export default {
       this.$refs.popup.MaterialSnackbar.showSnackbar(data);
 
       setTimeout(() => {
-        this.$emit(CALLBACK_DONE);
+        this.$emit(EVENT_DONE);
       }, this.timeout);
     }
   },

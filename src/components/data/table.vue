@@ -115,8 +115,8 @@ const SORT_BY = 'by';
 const CLASSNAME_NON_NUMERIC = 'mdl-data-table__cell--non-numeric';
 const CLASSNAME_TEXT_LEFT = 'mdl-data-table__cell--text-left';
 const CLASSNAME_TEXT_CENTER = 'mdl-data-table__cell--text-center';
-const CALLBACK_SELECTED = 'selected';
-const CALLBACK_VIEW_DETAIL = 'view-detail';
+const EVENT_SELECTED = 'selected';
+const EVENT_VIEW_DETAIL = 'view-detail';
 
 /**
  * Supoorted: thead(2 rows) + tbody(N rows) + tfoot(1 row)
@@ -626,7 +626,7 @@ export default {
         this.currentData = result;
         this.currentDetailViewIndex = currentIndex;
 
-        this.$emit(CALLBACK_VIEW_DETAIL, cell.data);
+        this.$emit(EVENT_VIEW_DETAIL, cell.data);
       }
     },
     isDetailView(index) {
@@ -644,7 +644,7 @@ export default {
     },
     currentCheckboxList(val) {
       this.checkAll();
-      this.$emit(CALLBACK_SELECTED, val);
+      this.$emit(EVENT_SELECTED, val);
     },
     isCheckAll(val) {
       let beEqual = this.currentCheckboxList.length === this.currentDataCount;

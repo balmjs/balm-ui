@@ -41,7 +41,7 @@
 <script>
 import '../../material-design-lite/textfield/textfield';
 
-const CALLBACK_INPUT = 'input';
+const EVENT_INPUT = 'input';
 
 export default {
   name: 'ui-textfield',
@@ -119,7 +119,7 @@ export default {
   },
   methods: {
     handleInput() {
-      this.$emit(CALLBACK_INPUT, this.currentValue);
+      this.$emit(EVENT_INPUT, this.currentValue);
     }
   },
   created() {

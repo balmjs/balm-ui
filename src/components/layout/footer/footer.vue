@@ -45,7 +45,7 @@
 </template>
 
 <script>
-const CALLBACK_SHARED = 'shared';
+const EVENT_SHARED = 'shared';
 
 export default {
   name: 'ui-footer',
@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     handleShare(data) {
-      this.$emit(CALLBACK_SHARED, data);
+      this.$emit(EVENT_SHARED, data);
     }
   }
 };

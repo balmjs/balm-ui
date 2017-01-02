@@ -31,7 +31,7 @@ const POSITION_TOP_LEFT = 1; // Positions menu above button, aligns left edge of
 const POSITION_TOP_RIGHT = 2; // Positions menu above button, aligns right edge of menu with button
 const POSITION_BOTTOM_LEFT = POSITION_NONE; // Positions menu below button, aligns left edge of menu with button
 const POSITION_BOTTOM_RIGHT = 3; // Positions menu below button, aligns right edge of menu with button
-const CALLBACK_CLICKED = 'clicked';
+const EVENT_CLICKED = 'clicked';
 
 export default {
   name: 'ui-menu',
@@ -98,7 +98,7 @@ export default {
   methods: {
     handleClick(data) {
       if (!data.disabled) {
-        this.$emit(CALLBACK_CLICKED, data);
+        this.$emit(EVENT_CLICKED, data);
       }
     }
   },

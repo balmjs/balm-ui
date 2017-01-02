@@ -10,7 +10,7 @@
 <script>
 import '../../material-design-lite/slider/slider';
 
-const CALLBACK_CHANGE = 'change';
+const EVENT_CHANGE = 'change';
 
 export default {
   name: 'ui-slider',
@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     handleChange() {
-      this.$emit(CALLBACK_CHANGE, this.currentValue);
+      this.$emit(EVENT_CHANGE, this.currentValue);
     }
   },
   mounted() {

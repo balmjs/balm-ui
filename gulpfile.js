@@ -16,6 +16,9 @@ balm.config = {
     loaders: [{
       test: /\.vue$/,
       loader: 'vue'
+    }, {
+      test: /\.md$/,
+      loader: 'html!markdown'
     }],
     alias: {
       prismCss: 'prismjs/themes/prism-okaidia.css'

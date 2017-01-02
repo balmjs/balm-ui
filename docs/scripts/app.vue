@@ -2,7 +2,7 @@
   <ui-layout
     class="container"
     fixedDrawer>
-    <template slot="header-title">Welcome to BalmUI for Vue.js@2.x</template>
+    <template slot="header-title">Welcome to BalmUI</template>
     <p class="supported-lang" slot="header-right">
       <a :class="{'active': isActiveLang('cn') }" @click="switchLang('cn')">{{ lang.cn }}</a> | <a :class="{'active': isActiveLang('en') }" @click="switchLang('en')">{{ lang.en }}</a>
     </p>

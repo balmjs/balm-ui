@@ -145,31 +145,31 @@ export default {
   data() {
     return {
       code1: {
-        html: require('../snippets/button/demo1-template.html')
+        html: ''
       },
       code2: {
-        html: require('../snippets/button/demo2-template.html')
+        html: ''
       },
       code3: {
-        html: require('../snippets/button/demo3-template.html')
+        html: ''
       },
       code4: {
-        html: require('../snippets/button/demo4-template.html')
+        html: ''
       },
       code5: {
-        html: require('../snippets/button/demo5-template.html')
+        html: ''
       },
       code6: {
-        html: require('../snippets/button/demo6-template.html')
+        html: ''
       },
       code7: {
-        html: require('../snippets/button/demo7-template.html')
+        html: ''
       },
       code8: {
-        html: require('../snippets/button/demo8-template.html')
+        html: ''
       },
       code9: {
-        html: require('../snippets/button/demo9-template.html')
+        html: ''
       },
       tab: 0,
       docs: {
@@ -189,6 +189,14 @@ export default {
   methods: {
     onChange(tab) {
       this.tab = tab;
+    }
+  },
+  async created() {
+    for (let i = 1; i <= 9; i++) {
+      let template = await this.$http.get(`/snippets/button/demo${i}-template.html`);
+      this[`code${i}`] = {
+        html: template.data
+      };
     }
   }
 };

@@ -70,10 +70,10 @@ export default {
       timer: null,
       number: 0,
       code1: {
-        html: require('../snippets/badge/demo1-template.html')
+        html: ''
       },
       code2: {
-        html: require('../snippets/badge/demo2-template.html')
+        html: ''
       },
       tab: 0,
       docs: {
@@ -95,7 +95,14 @@ export default {
       this.tab = tab;
     }
   },
-  created() {
+  async created() {
+    for (let i = 1; i <= 2; i++) {
+      let template = await this.$http.get(`/snippets/badge/demo${i}-template.html`);
+      this[`code${i}`] = {
+        html: template.data
+      };
+    }
+
     this.timer = setInterval(() => {
       if (this.number === 99) {
         this.number = '99+';

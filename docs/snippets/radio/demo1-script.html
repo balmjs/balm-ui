@@ -1,13 +1,12 @@
-// script
 export default {
   data() {
     return {
-      tab: 0
+      gender: ''
     };
   },
   methods: {
-    onChange(tab) {
-      this.tab = tab;
+    chooseSex(val) {
+      this.gender = val;
     }
   }
 };

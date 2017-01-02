@@ -23,13 +23,23 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      currentCode: this.code
+    };
+  },
   computed: {
     className() {
       return `language-${this.language}`;
     },
     output() {
       let currentLanguage = LANGUAGES[this.language];
-      return this.code ? this.$prism.highlight(this.code, this.$prism.languages[currentLanguage]) : '';
+      return this.currentCode ? this.$prism.highlight(this.currentCode, this.$prism.languages[currentLanguage]) : '';
+    }
+  },
+  watch: {
+    code(val) {
+      this.currentCode = val;
     }
   }
 };

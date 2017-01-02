@@ -96,35 +96,35 @@ export default {
   data() {
     return {
       code1: {
-        html: require('../snippets/textfield/demo1-template.html')
+        html: ''
       },
       text1: '',
       code2: {
-        html: require('../snippets/textfield/demo2-template.html')
+        html: ''
       },
       text2: '',
       code3: {
-        html: require('../snippets/textfield/demo3-template.html')
+        html: ''
       },
       text3: '',
       code4: {
-        html: require('../snippets/textfield/demo4-template.html')
+        html: ''
       },
       text4: '',
       code5: {
-        html: require('../snippets/textfield/demo5-template.html')
+        html: ''
       },
       text5: '',
       code6: {
-        html: require('../snippets/textfield/demo6-template.html')
+        html: ''
       },
       text6: '',
       code7: {
-        html: require('../snippets/textfield/demo7-template.html')
+        html: ''
       },
       text7: '',
       code8: {
-        html: require('../snippets/textfield/demo8-template.html')
+        html: ''
       },
       text8: '',
       tab: 0,
@@ -153,6 +153,14 @@ export default {
     },
     onChange(tab) {
       this.tab = tab;
+    }
+  },
+  async created() {
+    for (let i = 1; i <= 8; i++) {
+      let template = await this.$http.get(`/snippets/textfield/demo${i}-template.html`);
+      this[`code${i}`] = {
+        html: template.data
+      };
     }
   }
 };

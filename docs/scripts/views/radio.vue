@@ -20,14 +20,24 @@ export default {
     return {
       gender: '',
       code1: {
-        html: require('../snippets/radio/demo1-template.html'),
-        js: require('../snippets/radio/demo1-script.html')
+        html: '',
+        js: ''
       }
     };
   },
   methods: {
     chooseSex(val) {
       this.gender = val;
+    }
+  },
+  async created() {
+    for (let i = 1; i <= 1; i++) {
+      let template = await this.$http.get(`/snippets/radio/demo${i}-template.html`);
+      let script = await this.$http.get(`/snippets/radio/demo${i}-script.html`);
+      this[`code${i}`] = {
+        html: template.data,
+        js: script.data
+      };
     }
   }
 };

@@ -107,18 +107,18 @@ export default {
   data() {
     return {
       code1: {
-        html: require('../snippets/tabs/demo1-template.html'),
-        js: require('../snippets/tabs/demo1-script.html')
+        html: '',
+        js: ''
       },
       tab: 0,
       code2: {
-        html: require('../snippets/tabs/demo2-template.html'),
-        js: require('../snippets/tabs/demo2-script.html')
+        html: '',
+        js: ''
       },
       tab2: 0,
       code3: {
-        html: require('../snippets/tabs/demo3-template.html'),
-        js: require('../snippets/tabs/demo3-script.html')
+        html: '',
+        js: ''
       },
       tab3: 0,
       tabs: {
@@ -173,6 +173,16 @@ export default {
     },
     onChangePanel(tab) {
       this.panel.tab = tab;
+    }
+  },
+  async created() {
+    for (let i = 1; i <= 3; i++) {
+      let template = await this.$http.get(`/snippets/tabs/demo${i}-template.html`);
+      let script = await this.$http.get(`/snippets/tabs/demo${i}-script.html`);
+      this[`code${i}`] = {
+        html: template.data,
+        js: script.data
+      };
     }
   }
 };

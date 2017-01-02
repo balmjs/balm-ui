@@ -1,6 +1,7 @@
 var balm = require('balm');
 
 var useDefault = !(process.argv[2] === '--mdl');
+var buildDocs = process.argv[3] === '--docs';
 
 balm.config = {
   roots: {
@@ -28,6 +29,12 @@ balm.config = {
   useDefault: useDefault
 };
 
+if (buildDocs) {
+  balm.config.roots.source = 'docs';
+  balm.config.scripts.entry.main = './docs/scripts/main.js';
+  balm.config.cache = true;
+}
+
 var DMI_SOURCE = './node_modules/material-design-icons';
 var DML_SOURCE = './node_modules/material-design-lite';
 var DEV_SOURCE = {
@@ -37,19 +44,23 @@ var DEV_SOURCE = {
 };
 
 balm.go(function(mix) {
-  if (useDefault) {
-    if (balm.config.production) {
-      mix.remove('./dist/font/*.css');
-    }
+  if (buildDocs) {
+    mix.copy('./docs/snippets/**/*', './dist/snippets');
   } else {
-    // clear
-    mix.remove([DEV_SOURCE.static + '/*', DEV_SOURCE.img + '/*', DEV_SOURCE.font + '/*']);
-    // get material design lite
-    mix.copy(DML_SOURCE + '/src/{_*scss,material-design-lite.scss,mdlComponentHandler.js}', DEV_SOURCE.static);
-    mix.copy(DML_SOURCE + '/src/**/{_*.scss,*.js}', DEV_SOURCE.static);
-    // get material design lite images
-    mix.copy(DML_SOURCE + '/src/images/*.svg', DEV_SOURCE.img);
-    // get material design icons
-    mix.copy(DMI_SOURCE + '/iconfont/*.{css,eot,svg,ttf,woff,woff2}', DEV_SOURCE.font);
+    if (useDefault) {
+      if (balm.config.production) {
+        mix.remove('./dist/font/*.css');
+      }
+    } else {
+      // clear
+      mix.remove([DEV_SOURCE.static + '/*', DEV_SOURCE.img + '/*', DEV_SOURCE.font + '/*']);
+      // get material design lite
+      mix.copy(DML_SOURCE + '/src/{_*scss,material-design-lite.scss,mdlComponentHandler.js}', DEV_SOURCE.static);
+      mix.copy(DML_SOURCE + '/src/**/{_*.scss,*.js}', DEV_SOURCE.static);
+      // get material design lite images
+      mix.copy(DML_SOURCE + '/src/images/*.svg', DEV_SOURCE.img);
+      // get material design icons
+      mix.copy(DMI_SOURCE + '/iconfont/*.{css,eot,svg,ttf,woff,woff2}', DEV_SOURCE.font);
+    }
   }
 });

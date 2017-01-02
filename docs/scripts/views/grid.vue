@@ -74,7 +74,7 @@ export default {
   data() {
     return {
       code1: {
-        html: require('../snippets/grid/demo1-template.html')
+        html: ''
       },
       grid: {
         tab: 0,
@@ -114,6 +114,14 @@ export default {
     },
     onChangeCell(tab) {
       this.cell.tab = tab;
+    }
+  },
+  async created() {
+    for (let i = 1; i <= 1; i++) {
+      let template = await this.$http.get(`/snippets/grid/demo${i}-template.html`);
+      this[`code${i}`] = {
+        html: template.data
+      };
     }
   }
 };

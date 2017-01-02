@@ -8,7 +8,8 @@
     "mdl": "gulp --mdl",
     "start": "nodemon --exec gulp",
     "dev": "gulp",
-    "prod": "gulp --production"
+    "prod": "gulp --production",
+    "docs": "gulp --production --docs"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
   },
   "homepage": "https://github.com/balmjs/ui-vue#readme",
   "devDependencies": {
+    "axios": "^0.15.3",
     "babel-eslint": "^7.1.1",
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-stage-2": "^6.18.0",

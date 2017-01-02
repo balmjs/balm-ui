@@ -1,10 +1,12 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueI18n from 'vue-i18n';
+import axios from 'axios';
 import BalmUI from '../../src/index';
 import App from './app';
 import routes from './routes/index';
 import UiCode from './components/code';
+import UiMarkdown from './components/markdown';
 // syntax highlighting
 import 'prismCss';
 import prismjs from 'prismjs';
@@ -15,8 +17,10 @@ Vue.use(BalmUI);
 Vue.use({
   install(vue) {
     vue.component(UiCode.name, UiCode);
+    vue.component(UiMarkdown.name, UiMarkdown);
   }
 });
+Vue.prototype.$http = axios;
 Vue.prototype.$prism = prismjs;
 Vue.prototype.$docs = {
   props: {

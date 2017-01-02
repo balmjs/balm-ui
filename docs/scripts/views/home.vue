@@ -1,5 +1,7 @@
 <template>
-  <div class="docs-home" v-html="docs"></div>
+  <div class="docs-home">
+    <ui-markdown :value="docs"></ui-markdown>
+  </div>
 </template>
 
 <script>

@@ -48,8 +48,8 @@ export default {
   data() {
     return {
       code1: {
-        html: require('../snippets/table/demo1-template.html'),
-        js: require('../snippets/table/demo1-script.html')
+        html: '',
+        js: ''
       },
       table1: {
         data: [],
@@ -70,8 +70,8 @@ export default {
         }]
       },
       code2: {
-        html: require('../snippets/table/demo2-template.html'),
-        js: require('../snippets/table/demo2-script.html')
+        html: '',
+        js: ''
       },
       table2: {
         data: [],
@@ -162,6 +162,16 @@ export default {
     viewDetail(data) {
       console.log('detail', data);
       this.table2.tableDetail +=  ('-' + data.name);
+    }
+  },
+  async created() {
+    for (let i = 1; i <= 2; i++) {
+      let template = await this.$http.get(`/snippets/table/demo${i}-template.html`);
+      let script = await this.$http.get(`/snippets/table/demo${i}-script.html`);
+      this[`code${i}`] = {
+        html: template.data,
+        js: script.data
+      };
     }
   },
   mounted() {

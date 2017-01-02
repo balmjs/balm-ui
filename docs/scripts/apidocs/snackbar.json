@@ -1,0 +1,26 @@
+{
+  "props": [{
+    "name": "active",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Marks the snackbar as active which causes it to display"
+  }, {
+    "name": "message",
+    "type": "String",
+    "default": "(required)",
+    "description": "The text message to display"
+  }, {
+    "name": "timeout",
+    "type": "Number",
+    "default": "2750",
+    "description": "The amount of time in milliseconds to show the snackbar"
+  }],
+  "slots": [{
+    "name": "(default)",
+    "description": "The default slot holds the snackbar text and can contain HTML"
+  }],
+  "events": [{
+    "name": "done",
+    "description": "Dispatched when the active is changed"
+  }]
+}

@@ -7,6 +7,7 @@
 - __`<ui-grid>`__
 - __`<ui-tabs>`__
 - __`<ui-textfield>`__
+- __`<ui-snackbar>`__
 
 ### Update components
 

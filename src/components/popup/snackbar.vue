@@ -20,7 +20,7 @@ export default {
   name: 'ui-snackbar',
   props: {
     type: {
-      type: [Number, String],
+      type: Number,
       default: 0
     },
     // Marks the snackbar as active which causes it to display.

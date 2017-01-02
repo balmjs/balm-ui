@@ -16,7 +16,7 @@ npm install --save balm-ui
 
 ### 3. Setup
 
-```json
+```js
 balm.config = {
   ...
   scripts: {

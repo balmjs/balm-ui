@@ -13,7 +13,7 @@ npm install --save balm-ui
 
 #### Setup
 
-```json
+```js
 balm.config = {
   ...
   scripts: {

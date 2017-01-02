@@ -24,9 +24,9 @@ const TYPE_ORDER = 'order';
 export default {
   name: 'ui-cell',
   props: {
-    col: [Number, String, Object], // default: 4
-    offset: [Number, String, Object],
-    order: [Number, String, Object],
+    col: [Number, Object], // default: 4
+    offset: [Number, Object],
+    order: [Number, Object],
     hide: [Number, String],
     align: [Number, String] // default: 4
   },
@@ -54,7 +54,7 @@ export default {
         result = this.handleColumn(TYPE_ORDER, result, this.order);
       }
       // Hides the cell
-      let hideMode = HIDE[+this.hide];
+      let hideMode = isString(this.hide) ? HIDE[HIDE.indexOf(this.hide)] : HIDE[+this.hide];
       if (hideMode) {
         result.push(`mdl-cell--hide-${hideMode}`);
       }

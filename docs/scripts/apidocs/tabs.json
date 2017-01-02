@@ -1,7 +1,7 @@
 {
   "props": [{
     "name": "active",
-    "type": "Number, String",
+    "type": "Number",
     "default": "0",
     "description": "Defines a tab as the current display tab"
   }, {

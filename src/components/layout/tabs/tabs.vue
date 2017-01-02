@@ -25,7 +25,7 @@ export default {
   },
   props: {
     active: {
-      type: [Number, String],
+      type: Number,
       default: 0
     },
     // Applies ripple click effect

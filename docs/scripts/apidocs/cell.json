@@ -1,24 +1,24 @@
 {
   "props": [{
     "name": "col",
-    "type": "Number, String, Object",
+    "type": "Number, Object",
     "default": "4",
     "description": "Sets the column size for the cell to N"
   }, {
     "name": "offset",
-    "type": "Number, String, Object",
+    "type": "Number, Object",
     "default": "",
     "description": "Adds N columns of whitespace before the cell"
   }, {
     "name": "order",
-    "type": "Number, String, Object",
+    "type": "Number, Object",
     "default": "",
     "description": "Reorders cell to position N"
   }, {
     "name": "hide",
     "type": "Number, String",
     "default": "",
-    "description": "Hides the cell"
+    "description": "Hides the cell { 1: 'phone', 2: 'tablet', 3: 'desktop' }"
   }, {
     "name": "align",
     "type": "Number, String",

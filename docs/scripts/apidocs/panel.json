@@ -2,7 +2,7 @@
   "props": [{
     "name": "tab",
     "type": "String",
-    "default": "",
+    "default": "(required)",
     "description": "Defines a tab",
     "required": true
   }],

@@ -2,10 +2,11 @@
 
 ### Update docs
 
-__`<ui-badge>`__
-__`<ui-button>`__
-__`<ui-grid>`__
-__`<ui-tabs>`__
+- __`<ui-badge>`__
+- __`<ui-button>`__
+- __`<ui-grid>`__
+- __`<ui-tabs>`__
+- __`<ui-textfield>`__
 
 ### Update components
 
@@ -16,6 +17,10 @@ __`<ui-table>`__
 __`<ui-grid>` && `<ui-cell>`__
 
 - fix props `mode` & `align`
+
+__`<ui-textfield>`__
+
+- add props `disabled`
 
 ---
 
@@ -51,7 +56,7 @@ __`<ui-table>`__
 
 ### Update docs
 
-__`<ui-textfield>`__
+- __`<ui-textfield>`__
 
 ---
 

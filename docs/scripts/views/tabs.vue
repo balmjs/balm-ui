@@ -67,6 +67,14 @@
           :tbody="tabs.docs.slots.tbody">
         </ui-table>
       </ui-panel>
+      <ui-panel tab="events">
+        <ui-table
+          class="docs-table"
+          :data="tabs.docs.events.data"
+          :thead="tabs.docs.events.thead"
+          :tbody="tabs.docs.events.tbody">
+        </ui-table>
+      </ui-panel>
     </ui-tabs>
 
     <h4>Panel API</h4>
@@ -125,6 +133,11 @@ export default {
             data: tabsDocs.slots,
             thead: this.$docs.slots.thead,
             tbody: this.$docs.slots.tbody
+          },
+          events: {
+            data: tabsDocs.events,
+            thead: this.$docs.events.thead,
+            tbody: this.$docs.events.tbody
           }
         }
       },

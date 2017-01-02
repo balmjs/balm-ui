@@ -39,5 +39,8 @@
     "name": "(default)",
     "description": "The default slot holds the tabs text and can contain HTML"
   }],
-  "events": []
+  "events": [{
+    "name": "switched",
+    "description": "Dispatched when the active tab is changed"
+  }]
 }

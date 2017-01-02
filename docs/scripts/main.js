@@ -28,7 +28,8 @@ Vue.prototype.$docs = {
     tbody: ['name', 'description']
   },
   events: {
-
+    thead: ['Name', 'Description'],
+    tbody: ['name', 'description']
   }
 };
 

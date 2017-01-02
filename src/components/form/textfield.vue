@@ -14,6 +14,7 @@
         :placeholder="currentPlaceholder"
         :value="currentValue"
         :maxlength="maxlength"
+        :disabled="disabled"
         @input="handleInput"></textarea>
       <input class="mdl-textfield__input"
         v-if="!isTextarea"
@@ -24,6 +25,7 @@
         :pattern="pattern"
         :value="currentValue"
         :maxlength="maxlength"
+        :disabled="disabled"
         @input="handleInput">
       <label class="mdl-textfield__label" :for="id">
         <slot name="label">{{ label }}</slot>
@@ -50,6 +52,11 @@ export default {
       type: String,
       default: 'text'
     },
+    model: {
+      type: String,
+      required: true,
+      default: ''
+    },
     id: String,
     name: String,
     label: String,
@@ -62,23 +69,22 @@ export default {
       default: false
     },
     placeholder: String,
-    model: {
-      type: String,
-      required: true,
-      default: ''
-    },
-    error: String,
-    expandable: {
-      type: Boolean,
-      default: false
-    },
     pattern: String,
-    maxlength: [Number, String],
+    error: String,
+    maxlength: Number, // TODO: counter
     rows: {
       type: Number,
       default: 2
     },
+    expandable: {
+      type: Boolean,
+      default: false
+    },
     plus: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
       type: Boolean,
       default: false
     }

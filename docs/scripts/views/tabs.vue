@@ -177,8 +177,8 @@ export default {
   },
   async created() {
     for (let i = 1; i <= 3; i++) {
-      let template = await this.$http.get(`/snippets/tabs/demo${i}-template.html`);
-      let script = await this.$http.get(`/snippets/tabs/demo${i}-script.html`);
+      let template = await this.$http.get(`${this.$domain}/snippets/tabs/demo${i}-template.html`);
+      let script = await this.$http.get(`${this.$domain}/snippets/tabs/demo${i}-script.html`);
       this[`code${i}`] = {
         html: template.data,
         js: script.data

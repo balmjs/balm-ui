@@ -193,7 +193,7 @@ export default {
   },
   async created() {
     for (let i = 1; i <= 9; i++) {
-      let template = await this.$http.get(`/snippets/button/demo${i}-template.html`);
+      let template = await this.$http.get(`${this.$domain}/snippets/button/demo${i}-template.html`);
       this[`code${i}`] = {
         html: template.data
       };

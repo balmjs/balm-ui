@@ -95,8 +95,8 @@ export default {
   },
   async created() {
     for (let i = 1; i <= 1; i++) {
-      let template = await this.$http.get(`/snippets/snackbar/demo${i}-template.html`);
-      let script = await this.$http.get(`/snippets/snackbar/demo${i}-script.html`);
+      let template = await this.$http.get(`${this.$domain}/snippets/snackbar/demo${i}-template.html`);
+      let script = await this.$http.get(`${this.$domain}/snippets/snackbar/demo${i}-script.html`);
       this[`code${i}`] = {
         html: template.data,
         js: script.data

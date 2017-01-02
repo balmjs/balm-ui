@@ -33,6 +33,7 @@ if (buildDocs) {
   balm.config.roots.source = 'docs';
   balm.config.scripts.entry.main = './docs/scripts/main.js';
   balm.config.cache = true;
+  balm.config.assets.subDir = 'ui-vue';
 }
 
 var DMI_SOURCE = './node_modules/material-design-icons';
@@ -45,7 +46,7 @@ var DEV_SOURCE = {
 
 balm.go(function(mix) {
   if (buildDocs) {
-    mix.copy('./docs/snippets/**/*', './dist/snippets');
+    mix.copy('./docs/snippets/**/*', './dist/ui-vue/snippets');
   } else {
     if (useDefault) {
       if (balm.config.production) {

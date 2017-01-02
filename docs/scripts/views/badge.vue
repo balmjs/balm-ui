@@ -97,7 +97,7 @@ export default {
   },
   async created() {
     for (let i = 1; i <= 2; i++) {
-      let template = await this.$http.get(`/snippets/badge/demo${i}-template.html`);
+      let template = await this.$http.get(`${this.$domain}/snippets/badge/demo${i}-template.html`);
       this[`code${i}`] = {
         html: template.data
       };

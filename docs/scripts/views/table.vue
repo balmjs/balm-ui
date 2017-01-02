@@ -1,5 +1,10 @@
 <template>
   <div class="docs-table">
+    <div class="component-title">
+      <h3>Table</h3>
+      <p>Organize data.</p>
+    </div>
+
     <h4>{{ $t('table.basic') }}</h4>
     <ui-table
       :data="table1.data"

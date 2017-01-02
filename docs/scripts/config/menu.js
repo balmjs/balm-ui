@@ -13,7 +13,6 @@ const COMPONENTS = [
   'menu',
   'slider',
   'snackbar',
-  'form',
   'radio',
   'table',
   'textfield',

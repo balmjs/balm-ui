@@ -1,5 +1,10 @@
 <template>
   <div class="demo-chip">
-    <ui-chip value="奥数都发局速读法"></ui-chip>
+    <div class="component-title">
+      <h3>Chip</h3>
+      <p>Represents complex entities in small blocks.</p>
+    </div>
+
+    // TODO
   </div>
 </template>

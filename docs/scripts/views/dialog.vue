@@ -1,5 +1,11 @@
 <template>
   <div class="example-dialog">
+    <div class="component-title">
+      <h3>Dialog</h3>
+      <p>Modal windows for dedicated user input.</p>
+    </div>
+
+    // TODO
     <div class="btn-group">
       <ui-button primary effect raised @click.native="showDialog('show')">有色遮罩无动画对话框</ui-button>
       <ui-button primary effect raised @click.native="showDialog('showForce')">点击遮罩无法再关闭对话框</ui-button>

@@ -1,7 +1,15 @@
 <template>
   <div class="demo-snackbar">
-    <ui-button effect @click.native="show">show</ui-button>
-    <ui-snackbar type="1" :message="message" :active="active" :actionHandler="reset" actionText="Close" @done=""></ui-snackbar>
+    <div class="component-title">
+      <h3>Snackbar</h3>
+      <p>Transient popup notifications.</p>
+    </div>
+
+    // TODO
+    <div class="snippet-demo">
+      <ui-button effect @click.native="show">show</ui-button>
+      <ui-snackbar :message="message" :active="active" @done="reset"></ui-snackbar>
+    </div>
   </div>
 </template>
 
@@ -9,7 +17,7 @@
 export default {
   data() {
     return {
-      message: 'Hello World',
+      message: 'Hello BalmUI',
       active: false
     };
   },

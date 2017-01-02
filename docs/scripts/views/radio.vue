@@ -1,15 +1,16 @@
 <template>
   <div class="docs-radio">
-    <h4>Radio Box</h4>
-    <ui-code language="html" :code="code1.html"></ui-code>
-    <ui-code language="js" :code="code1.js"></ui-code>
-    <p>
+    <div class="component-title">
+      <h3>Radio button</h3>
+    </div>
+
+    // TODO
+    <div class="snippet-demo">
       <ui-radio name="sex" value="M" :model="gender" @change="chooseSex">Male</ui-radio>
       <ui-radio name="sex" value="F" :model="gender" @change="chooseSex">Female</ui-radio>
-    </p>
-    <p>
-      <ui-button raised colored @click.native="submit">Submit</ui-button>
-    </p>
+    </div>
+    <ui-code language="html" :code="code1.html"></ui-code>
+    <ui-code language="js" :code="code1.js"></ui-code>
   </div>
 </template>
 
@@ -27,10 +28,6 @@ export default {
   methods: {
     chooseSex(val) {
       this.gender = val;
-    },
-    submit() {
-      console.info('gender');
-      console.log(this.gender);
     }
   }
 };

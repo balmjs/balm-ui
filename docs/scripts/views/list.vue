@@ -1,5 +1,11 @@
 <template>
   <div class="demo-list">
+    <div class="component-title">
+      <h3>List</h3>
+      <p>Customizable scrollable lists.</p>
+    </div>
+
+    // TODO
     <ui-list :items="items2" threeLine>
       <template slot="action" scope="props">
         <ui-button effect @click.native="test(props.item)">点赞</ui-button>
@@ -22,22 +28,22 @@ export default {
           id: 123,
           avatar: 'person',
           content: 'Bryan Cranston',
-          subTitle: 'aaaaaaa',
-          text: '奥数低价蜂螯伤调节阀奥数低价蜂螯伤调节阀奥数低价蜂螯伤调节阀奥数低价蜂螯伤调节阀奥数低价蜂螯伤调节阀'
+          subTitle: 'aaa',
+          text: 'text1'
         },
         {
           id: 456,
           avatar: 'person',
           content: 'Aaron Paul',
-          subTitle: 'bbbbbbb',
-          text: '案件殴打三阶佛法奇偶附件'
+          subTitle: 'bbb',
+          text: 'text2'
         },
         {
           id: 789,
           avatar: 'person',
           content: 'Bob Odenkirk',
-          subTitle: 'cccccccc',
-          text: '偶家佛额外Inboard基佛沃尔夫'
+          subTitle: 'ccc',
+          text: 'text3'
         }
       ]
     };

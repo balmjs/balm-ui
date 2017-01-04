@@ -42,7 +42,7 @@
       <!-- drawer bottom -->
       <slot name="drawer-bottom"></slot>
     </div>
-    <main class="mdl-layout__content">
+    <div class="mdl-layout__content">
       <!-- main content -->
       <slot></slot>
       <!-- tabs content -->
@@ -53,7 +53,7 @@
         <code v-text="getPanelTemplate(n)"></code>
       </section>
       <slot name="footer-inner"></slot>
-    </main>
+    </div>
     <slot name="footer-outer"></slot>
   </div>
 </template>

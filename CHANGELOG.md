@@ -1,3 +1,11 @@
+## 0.1.12 beta
+
+### Update components
+
+__`<ui-layout>`__
+
+- replace `<main>` to `<div>`
+
 ## 0.1.11 beta
 
 ### Fix `package.json`

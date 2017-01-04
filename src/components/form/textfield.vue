@@ -15,6 +15,7 @@
         :value="currentValue"
         :maxlength="maxlength"
         :disabled="disabled"
+        :readonly="readonly"
         @input="handleInput"></textarea>
       <input class="mdl-textfield__input"
         v-if="!isTextarea"
@@ -26,6 +27,7 @@
         :value="currentValue"
         :maxlength="maxlength"
         :disabled="disabled"
+        :readonly="readonly"
         @input="handleInput">
       <label class="mdl-textfield__label" :for="id">
         <slot name="label">{{ label }}</slot>
@@ -85,6 +87,10 @@ export default {
       default: false
     },
     disabled: {
+      type: Boolean,
+      default: false
+    },
+    readonly: {
       type: Boolean,
       default: false
     }

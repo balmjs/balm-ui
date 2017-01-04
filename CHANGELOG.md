@@ -2,6 +2,7 @@
 
 ### Update docs
 
+- readme
 - __`<ui-badge>`__
 - __`<ui-button>`__
 - __`<ui-grid>`__
@@ -22,6 +23,7 @@ __`<ui-grid>` && `<ui-cell>`__
 __`<ui-textfield>`__
 
 - add props `disabled`
+- add props `readonly`
 
 ---
 

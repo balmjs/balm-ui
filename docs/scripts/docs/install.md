@@ -13,6 +13,50 @@ npm install --save balm-ui
 
 #### Setup
 
+#### 1. CSS Config
+
+##### 1.1 Use Sass (Recommended)
+
+__/path/to/_vendor.scss__
+
+```css
+@import 'node_modules/balm-ui/src/styles/main.scss';
+```
+
+##### 1.2 Use JavaScript
+
+```sh
+npm install --save-dev sass-loader
+```
+
+__gulpfile.js__
+
+```js
+balm.config = {
+  ...
+  scripts: {
+    loaders: [{
+      test: /\.scss$/,
+      loader: 'sass'
+    }],
+    alias: {
+      'balm-css': 'balm-ui/balm-ui/src/styles/main.scss'
+    }
+  },
+  ...
+};
+```
+
+__/path/to/yours_main.js__
+
+```js
+import 'balm-css';
+```
+
+#### 2. JS Config
+
+__gulpfile.js__
+
 ```js
 balm.config = {
   ...
@@ -32,3 +76,16 @@ balm.config = {
   ...
 };
 ```
+
+__/path/to/yours_main.js__
+
+```js
+import Vue from 'vue';
+import BalmUI from 'balm-ui';
+
+Vue.use(BalmUI);
+```
+
+#### 3. Assets Config
+
+> BalmUI [images & fonts](http://balmjs.com/ui-vue/assets.zip)

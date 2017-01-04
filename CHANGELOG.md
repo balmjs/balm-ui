@@ -1,3 +1,8 @@
+## 0.1.11 beta
+
+### Fix `package.json`
+> `0.1.9` & `0.1.10` deprecated
+
 ## 0.1.10 beta
 
 ### restore dist

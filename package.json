@@ -1,10 +1,9 @@
 {
   "name": "balm-ui",
-  "version": "0.1.10-beta",
+  "version": "0.1.11-beta",
   "description": "Material Design + Vue + Idea",
   "main": "dist/js/main.js",
   "scripts": {
-    "preinstall": "bower install",
     "mdl": "gulp --mdl",
     "start": "nodemon --exec gulp",
     "dev": "gulp",

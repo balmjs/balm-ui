@@ -10,13 +10,15 @@
     <ul ref="menu"
       :class="[className.outer, positionClassName]"
       :for="`menu${name}`">
-      <li ref="item"
-        v-for="menu in currentData"
-        :class="className.inner"
-        :disabled="menu.disabled"
-        @click="handleClick(menu)">
-        <slot name="menu" :data="menu">{{ menu.name || menu }}</slot>
-      </li>
+      <slot :className="className.inner">
+        <li ref="item"
+          v-for="menu in currentData"
+          :class="className.inner"
+          :disabled="menu.disabled"
+          @click="handleClick(menu)">
+          <slot name="menu" :data="menu">{{ menu.name || menu }}</slot>
+        </li>
+      </slot>
     </ul>
   </div>
 </template>
@@ -40,10 +42,7 @@ export default {
       type: String,
       required: true
     },
-    data: {
-      type: Array,
-      required: true
-    },
+    data: Array,
     // Modifies an item to have a full bleed divider between it and the next list item.
     divider: {
       type: Boolean,
@@ -105,7 +104,7 @@ export default {
   mounted() {
     this.$ui.upgradeElement(this.$refs.button, 'MaterialButton');
     this.$ui.upgradeElement(this.$refs.menu, 'MaterialMenu');
-    if (this.effect) {
+    if (this.effect & this.data) {
       this.$ui.upgradeElement(this.$refs.menu, 'MaterialRipple');
       this.$ui.upgradeElements(this.$refs.item);
     }

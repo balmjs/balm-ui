@@ -6,7 +6,13 @@
     </div>
 
     // TODO
-    <ui-menu name="menu1" :data="menus"></ui-menu>
+    <ui-menu effect name="menu1" :data="menus"></ui-menu>
+
+    <ui-menu effect name="menu2">
+      <template scope="props">
+        <li v-for="menu in menus" :class="props.className">{{ menu.name }}</li>
+      </template>
+    </ui-menu>
   </div>
 </template>
 

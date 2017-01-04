@@ -88,4 +88,4 @@ Vue.use(BalmUI);
 
 #### 3. Assets Config
 
-> BalmUI [images & fonts](http://balmjs.com/ui-vue/assets.zip)
+- BalmUI [images & fonts](http://balmjs.com/ui-vue/assets.zip)

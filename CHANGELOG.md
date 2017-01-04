@@ -25,6 +25,10 @@ __`<ui-textfield>`__
 - add props `disabled`
 - add props `readonly`
 
+- __`<ui-menu>`__
+
+- add default slot
+
 ---
 
 ## 0.1.8 beta

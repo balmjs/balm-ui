@@ -16,7 +16,6 @@
     padding: 0;
     .mdl-input__expandable-holder {
       display: flex;
-      flex-flow: row-reverse wrap;
       justify-content: space-between;
       & > * {
         position: static;

@@ -6,6 +6,14 @@ __`<ui-layout>`__
 
 - replace `<main>` to `<div>`
 
+__`<ui-textfield>`__
+
+- adjust html for IE9
+
+__`<ui-table>`__
+
+- fix `isSelected` method bug
+
 ## 0.1.11 beta
 
 ### Fix `package.json`

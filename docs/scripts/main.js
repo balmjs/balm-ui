@@ -1,3 +1,5 @@
+require('es6-promise').polyfill(); // just for IE
+
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueI18n from 'vue-i18n';

@@ -162,13 +162,13 @@
 </template>
 <style>
 
-  .mdl-layout__header, .mdl-layout__drawer {
+  /* .mdl-layout__header, .mdl-layout__drawer {
     z-index: initial;
   }
 
   .mdl-layout__content {
     z-index: initial;
-  }
+  } */
 
   .example-dialog {
     padding: 15px;

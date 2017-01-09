@@ -8,7 +8,8 @@ balm.config = {
     source: balm.config.production ? 'src' : 'docs'
   },
   styles: {
-    ext: 'scss'
+    ext: 'scss',
+    autoprefixer: ['> 1%', 'last 2 versions', 'not ie <= 8']
   },
   scripts: {
     entry: {

@@ -6,6 +6,9 @@
       </slot>
     </label>
     <div :class="className.inner">
+      <label class="mdl-textfield__label" :for="id">
+        <slot name="label">{{ label }}</slot>
+      </label>
       <textarea class="mdl-textfield__input"
         v-if="isTextarea"
         :id="id"
@@ -29,9 +32,6 @@
         :disabled="disabled"
         :readonly="readonly"
         @input="handleInput">
-      <label class="mdl-textfield__label" :for="id">
-        <slot name="label">{{ label }}</slot>
-      </label>
       <span class="mdl-textfield__error" v-if="error">
         <slot name="error">{{ error }}</slot>
       </span>

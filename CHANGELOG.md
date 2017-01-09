@@ -14,6 +14,10 @@ __`<ui-table>`__
 
 - fix `isSelected` method bug
 
+__`<ui-panel>`__
+
+- fix currentTab bug
+
 ## 0.1.11 beta
 
 ### Fix `package.json`

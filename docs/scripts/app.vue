@@ -37,10 +37,10 @@ export default {
   },
   methods: {
     isActiveLang(lang) {
-      return lang === this.$root.$lang.lang;
+      return lang === this.$lang;
     },
     switchLang(lang) {
-      this.$root.$lang.lang = lang;
+      this.$root._$lang.lang = lang;
     }
   }
 };

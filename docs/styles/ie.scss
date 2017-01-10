@@ -1,1 +1,17 @@
 // fuck IE
+// fix layout
+.mdl-layout__drawer {
+  height: auto;
+  max-height: none;
+}
+
+.mdl-layout__content {
+  width: 100%;
+}
+
+// fix components
+// badge
+.mdl-badge[data-badge]:after {
+  line-height: 22px;
+  text-align: center;
+}

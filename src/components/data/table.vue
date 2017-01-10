@@ -545,14 +545,10 @@ export default {
       this.isCheckAll = notEmpty && beEqual && exists;
     },
     isSelected(rowData) {
-      let result = false;
-
-      for (let i = 0, len = rowData.length; i < len; i++) {
-        if (rowData[i].isCheckbox) {
-          result = this.currentCheckboxList.indexOf(rowData[i].value) > -1;
-          break;
-        }
-      }
+      let cell = rowData.find(cell => cell.isCheckbox);
+      let result = cell
+        ? (this.currentCheckboxList.indexOf(cell.value) > -1)
+        : false;
 
       return result;
     },

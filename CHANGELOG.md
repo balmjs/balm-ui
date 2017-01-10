@@ -10,13 +10,7 @@ __`<ui-textfield>`__
 
 - adjust html for IE9
 
-__`<ui-table>`__
-
-- fix `isSelected` method bug
-
-__`<ui-panel>`__
-
-- fix currentTab bug
+### test IE9-10 compatibility
 
 ## 0.1.11 beta
 

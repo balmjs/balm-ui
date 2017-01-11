@@ -14,6 +14,7 @@ const COMPONENTS = [
   'slider',
   'snackbar',
   'radio',
+  'checkbox',
   'table',
   'textfield',
   'tooltip'

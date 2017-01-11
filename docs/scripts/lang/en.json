@@ -16,6 +16,7 @@
     "table": "Table",
     "textfield": "Text Field",
     "radio": "Radio",
+    "checkbox": "Checkbox",
     "tooltip": "Tooltip",
     "divider": "Divider"
   },

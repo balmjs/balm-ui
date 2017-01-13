@@ -17,6 +17,7 @@
 <script>
 import '../../material-design-lite/icon-toggle/icon-toggle';
 import '../../material-design-lite/ripple/ripple';
+import {isArray} from '../utils/helper';
 
 const CLASSNAME_ICON = 'material-icons';
 const EVENT_CHANGE = 'change';
@@ -46,7 +47,7 @@ export default {
   },
   data() {
     return {
-      currentValue: Array.isArray(this.model) ? this.model : [this.model],
+      currentValue: isArray(this.model) ? this.model : [this.model],
       iconClassName: CLASSNAME_ICON
     };
   },

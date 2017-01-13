@@ -22,7 +22,8 @@ import UiCard from './components/common/card';
 import UiChip from './components/common/chip';
 import UiDivider from './components/common/divider';
 import UiLoading from './components/common/loading';
-import UiMenu from './components/common/menu';
+import UiMenu from './components/common/menu/menu';
+import UiMenuItem from './components/common/menu/menuitem';
 import UiTooltip from './components/common/tooltip';
 /**
  * Form
@@ -64,6 +65,7 @@ const BalmUI = {
   UiDivider,
   UiLoading,
   UiMenu,
+  UiMenuItem,
   UiTooltip,
   // Form
   UiTextfield,

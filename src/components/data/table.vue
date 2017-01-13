@@ -77,7 +77,7 @@
 
 <script>
 import '../../material-design-lite/data-table/data-table';
-import {isString, isObject} from '../utils/helper';
+import {isString, isObject, isArray} from '../utils/helper';
 import UiButton from '../common/button';
 import UiCheckbox from '../form/checkbox';
 
@@ -433,7 +433,7 @@ export default {
       let result = [];
       let {type, table} = object;
 
-      if (Array.isArray(table)) {
+      if (isArray(table)) {
         let cell;
 
         switch (type) {
@@ -441,7 +441,7 @@ export default {
             result[0] = []; // single line init
             for (let index in table) {
               let row = table[index];
-              if (Array.isArray(row)) { // multi line
+              if (isArray(row)) { // multi line
                 result[index] = [];
                 for (let key in row) {
                   let value = row[key];

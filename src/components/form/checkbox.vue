@@ -15,6 +15,7 @@
 <script>
 import '../../material-design-lite/checkbox/checkbox';
 import '../../material-design-lite/ripple/ripple';
+import {isArray} from '../utils/helper';
 
 const EVENT_CHANGE = 'change';
 
@@ -67,7 +68,9 @@ export default {
       };
     },
     isChecked() {
-      return Array.isArray(this.model) ? this.model.indexOf(this.value) > -1 : (this.model == this.value || this.model === true);
+      return isArray(this.currentValue)
+        ? this.currentValue.indexOf(this.value) > -1
+        : (this.currentValue === this.value || this.currentValue === true);
     }
   },
   watch: {

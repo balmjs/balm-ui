@@ -1,31 +1,29 @@
 <template>
-  <div :class="className.container">
+  <div class="mdl-menu-container">
     <button ref="button"
       class="mdl-button mdl-js-button mdl-button--icon"
-      :id="`menu${name}`">
+      :id="`menu-${name}`">
       <slot name="icon">
         <i class="material-icons">icon</i>
       </slot>
     </button>
     <ul ref="menu"
+      v-if="currentMenu.length"
       :class="[className.outer, positionClassName]"
-      :for="`menu${name}`">
-      <slot :className="className.inner">
-        <li ref="item"
-          v-for="menu in currentData"
-          :class="className.inner"
-          :disabled="menu.disabled"
-          @click="handleClick(menu)">
-          <slot name="menu" :data="menu">{{ menu.name || menu }}</slot>
-        </li>
+      :for="`menu-${name}`">
+      <slot>
+        <ui-menuitem v-for="item in currentMenu"
+          :item="item"
+          @click.native="handleClick(item)"></ui-menuitem>
       </slot>
     </ul>
   </div>
 </template>
 
 <script>
-import '../../material-design-lite/menu/menu';
-import '../../material-design-lite/ripple/ripple';
+import '../../../material-design-lite/menu/menu';
+import {generateRandomAlphaNum} from '../../utils/helper';
+import UiMenuItem from './menuitem';
 
 const POSITIONS = ['', 'top-left', 'top-right', 'bottom-right'];
 const POSITION_NONE = 0; // Default
@@ -37,12 +35,22 @@ const EVENT_CLICKED = 'clicked';
 
 export default {
   name: 'ui-menu',
+  components: {
+    UiMenuItem
+  },
   props: {
     name: {
       type: String,
-      required: true
+      default: function() {
+        return generateRandomAlphaNum(6);
+      }
     },
-    data: Array,
+    menu: {
+      type: Array,
+      default: function() {
+        return [];
+      }
+    },
     // Modifies an item to have a full bleed divider between it and the next list item.
     divider: {
       type: Boolean,
@@ -60,24 +68,20 @@ export default {
   },
   data() {
     return {
-      currentData: this.data
+      currentMenu: this.menu
     };
   },
   computed: {
     className() {
       return {
-        container: [
-          'mdl-menu-container',
-          `menu${this.name}`
-        ],
         outer: {
           'mdl-menu': true,
-          'mdl-js-menu': true,
-          'mdl-js-ripple-effect': this.effect
+          'mdl-js-menu': true
         },
         inner: {
           'mdl-menu__item': true,
-          'mdl-menu__item--full-bleed-divider': this.divider
+          'mdl-menu__item--full-bleed-divider': this.divider,
+          'mdl-js-ripple-effect': this.effect
         }
       };
     },
@@ -90,8 +94,8 @@ export default {
     }
   },
   watch: {
-    data(val) {
-      this.currentData = val;
+    menu(val) {
+      this.currentMenu = val;
     }
   },
   methods: {
@@ -103,10 +107,8 @@ export default {
   },
   mounted() {
     this.$ui.upgradeElement(this.$refs.button, 'MaterialButton');
-    this.$ui.upgradeElement(this.$refs.menu, 'MaterialMenu');
-    if (this.effect & this.data) {
-      this.$ui.upgradeElement(this.$refs.menu, 'MaterialRipple');
-      this.$ui.upgradeElements(this.$refs.item);
+    if (this.currentMenu.length) {
+      this.$ui.upgradeElement(this.$refs.menu, 'MaterialMenu');
     }
   }
 };

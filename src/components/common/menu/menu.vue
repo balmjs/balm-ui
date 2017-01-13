@@ -8,13 +8,12 @@
       </slot>
     </button>
     <ul ref="menu"
-      v-if="currentMenu.length"
       :class="[className.outer, positionClassName]"
-      :for="`menu-${name}`">
+      :for="`menu-${name}`" @click="handleMenu">
       <slot>
         <ui-menuitem v-for="item in currentMenu"
           :item="item"
-          @click.native="handleClick(item)"></ui-menuitem>
+          @click.native="handleItem(item)"></ui-menuitem>
       </slot>
     </ul>
   </div>
@@ -99,7 +98,10 @@ export default {
     }
   },
   methods: {
-    handleClick(data) {
+    handleMenu() {
+      this.$refs.menu.MaterialMenu.hide();
+    },
+    handleItem(data) {
       if (!data.disabled) {
         this.$emit(EVENT_CLICKED, data);
       }
@@ -107,9 +109,7 @@ export default {
   },
   mounted() {
     this.$ui.upgradeElement(this.$refs.button, 'MaterialButton');
-    if (this.currentMenu.length) {
-      this.$ui.upgradeElement(this.$refs.menu, 'MaterialMenu');
-    }
+    this.$ui.upgradeElement(this.$refs.menu, 'MaterialMenu');
   }
 };
 </script>

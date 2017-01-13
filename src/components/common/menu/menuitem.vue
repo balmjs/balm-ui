@@ -1,7 +1,8 @@
 <template>
   <li ref="item"
     :class="$parent.className.inner"
-    :disabled="item.disabled">
+    :disabled="item.disabled"
+    @click="handleClick(item)">
     <slot>{{ item.name }}</slot>
     <span ref="ripple"
       v-if="$parent.effect"
@@ -12,6 +13,8 @@
 </template>
 
 <script>
+const EVENT_CLICKED = 'clicked';
+
 export default {
   name: 'ui-menuitem',
   props: {
@@ -19,6 +22,13 @@ export default {
       type: Object,
       default: function() {
         return {};
+      }
+    }
+  },
+  methods: {
+    handleClick(data) {
+      if (!data.disabled) {
+        this.$emit(EVENT_CLICKED, data);
       }
     }
   },

@@ -11,9 +11,17 @@ __`<ui-menu>`__
 - refactor
 - fix effect for item
 
+__`<ui-dialog>`__
+
+- optimize viewport
+
 ### New components
 
-__`<ui-menuitem>`__
+[x] __`<ui-menuitem>`__
+
+### Update docs
+
+- __`<ui-menu>`__
 
 ## 0.1.12
 

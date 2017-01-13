@@ -5,33 +5,24 @@
       <p>Lists of clickable actions.</p>
     </div>
 
-    // TODO
-    <ui-menu effect :menu="menu" @clicked="onMenu"></ui-menu>
+    <div class="snippet-demo">
+      <ui-menu effect :menu="menu" @clicked="onMenu"></ui-menu>
+    </div>
+    <ui-code language="html" :code="code1.html"></ui-code>
+    <ui-code language="js" :code="code1.js"></ui-code>
 
-    <ui-menu effect>
-      <ui-menuitem v-for="item in menu" :item="item">
-        {{ item.name }}
-      </ui-menuitem>
-    </ui-menu>
-    <!-- <ui-menu effect name="menu1" :data="menus" @clicked="onMenu"></ui-menu>
-
-    <ui-menu effect name="menu2" :data="menus">
-      <template slot="icon">
-        按钮
-      </template>
-      <template slot="menu" scope="props">
-        <a :href="props.data.url">{{ props.data.name }}</li>
-      </template>
-    </ui-menu>
-
-    <ui-menu effect name="menu3">
-      <template slot="icon">
-        头像
-      </template>
-      <template scope="props">
-        <li v-for="menu in menus" :class="props.className">{{ menu.name }}</li>
-      </template>
-    </ui-menu> -->
+    <div class="snippet-demo">
+      <ui-menu effect>
+        <template slot="icon">
+          Avatar
+        </template>
+        <ui-menuitem v-for="item in menu" :item="item" @clicked="onMenu">
+          <a :href="item.url">{{ item.name }}</a>
+        </ui-menuitem>
+      </ui-menu>
+    </div>
+    <ui-code language="html" :code="code2.html"></ui-code>
+    <ui-code language="js" :code="code2.js"></ui-code>
   </div>
 </template>
 
@@ -49,12 +40,30 @@ export default {
       }, {
         url:'/c',
         name: 'Item C'
-      }]
+      }],
+      code1: {
+        html: '',
+        js: ''
+      },
+      code2: {
+        html: '',
+        js: ''
+      }
     };
   },
   methods: {
     onMenu(obj) {
       console.log(obj);
+    }
+  },
+  async created() {
+    for (let i = 1; i <= 2; i++) {
+      let template = await this.$http.get(`${this.$domain}/snippets/menu/demo${i}-template.html`);
+      let script = await this.$http.get(`${this.$domain}/snippets/menu/demo${i}-script.html`);
+      this[`code${i}`] = {
+        html: template.data,
+        js: script.data
+      };
     }
   }
 };

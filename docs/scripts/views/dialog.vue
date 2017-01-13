@@ -18,6 +18,7 @@
       <ui-button primary effect raised @click.native="showDialog('showCustomBtnText')">自定义按钮文字</ui-button>
       <ui-button primary effect raised @click.native="showDialog('showSlot')">通过slot改变title结构</ui-button>
       <ui-button primary effect raised @click.native="showDialog('showSlotActions')">通过slot改变actions结构</ui-button>
+      <ui-button primary effect raised @click.native="showDialog('showOutOfHeight')">如果超出屏幕</ui-button>
       <!--<ui-button primary effect raised @click.native="showTest=!showTest">test</ui-button>-->
     </div>
 
@@ -130,6 +131,15 @@
         <h4>注意对话框按钮区域，同时观察浏览器控制台输出</h4>
         <p v-show="contentText">{{contentText}}</p>
         <br>：通过使用[slot="actions"]来改变按钮区的结构；
+      </ui-dialog>
+
+      <ui-dialog
+        transition
+        enter-active-class="animated fadeInDown"
+        leave-active-class="animated fadeOutUp"
+        :show="showOutOfHeight"
+        @on-close="closeDialog('showOutOfHeight')">
+        <h4 style="height: 1000px;">我是特别高的对话框！</h4>
       </ui-dialog>
 
       <ui-confirm
@@ -263,7 +273,8 @@
         showSlot: false,
         showSlotActions: false,
         showConfirm: false,
-        showAlert: false
+        showAlert: false,
+        showOutOfHeight: false
       }
     },
     methods: {

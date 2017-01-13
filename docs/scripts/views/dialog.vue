@@ -134,12 +134,13 @@
       </ui-dialog>
 
       <ui-dialog
+        class="large-height"
         transition
         enter-active-class="animated fadeInDown"
         leave-active-class="animated fadeOutUp"
         :show="showOutOfHeight"
         @on-close="closeDialog('showOutOfHeight')">
-        <h4 style="height: 1000px;">我是特别高的对话框！</h4>
+        <h4 style="height: 1200px;">我是特别高的对话框！</h4>
       </ui-dialog>
 
       <ui-confirm
@@ -250,6 +251,10 @@
 
   .custom-slot-title .title .close:active {
     box-shadow: 1px 1px 5px rgba(0, 0, 0, .5) inset;
+  }
+
+  .large-height .mdl-dialog {
+    top: 70px;
   }
 </style>
 <script type="text/babel">

@@ -71,8 +71,6 @@
   import UiButton from '../common/button';
   import Mask from '../utils/mask'
 
-  let ACount = 0;
-
   export default {
     name: 'ui-dialog',
     props: {
@@ -143,19 +141,41 @@
     data(){
       return {
         mask: new Mask(),
-        showDialog: this.show
+        showDialog: this.show,
+        viewportHeight: 0
       }
     },
     computed: {
       targetNode(){
         return this.target ? document.querySelector(this.target) : null;
       },
+      bottom(){
+
+        let bottom = null;
+
+        if(this.viewportHeight){
+          let dialog = this.$el.querySelector('.mdl-dialog');
+          let style = getComputedStyle(dialog);
+          let top = parseInt(style.top, 10);
+          let height = parseInt(style.height, 10);
+
+          if((height + top + top) > this.viewportHeight){
+            bottom = `${top}px`;
+          }
+        }
+
+        return bottom;
+      },
       style(){
-        return {
+        let json = {
           width: `${this.width}px`,
           marginLeft: `${-(this.width / 2)}px`,
           zIndex: this.zIndex
-        }
+        };
+
+        this.bottom && (json.bottom = this.bottom);
+
+        return json;
       }
     },
     watch: {
@@ -180,10 +200,25 @@
         this.mask.remove();
       },
       openMask(){
-        this.mask.show({transparent: this.transparent, clickHandler: this.force ? null : this.close, parent: this.$el, zIndex: this.zIndex - 1});
-      }
+        this.mask.show({
+          transparent: this.transparent,
+          clickHandler: this.force ? null : this.close,
+          parent: this.$el,
+          zIndex: this.zIndex - 1
+        });
+        setTimeout(()=>{
+          this.computedVpHeight();
+        }, 0);
+      },
+      computedVpHeight(){
+        this.viewportHeight = document.documentElement.clientHeight || document.body.clientHeight;
+      },
+    },
+    mounted(){
+      window.addEventListener('resize', this.computedVpHeight, false);
     },
     beforeDestroy(){
+      window.removeEventListener('resize', this.computedVpHeight, false);
       this.mask && this.mask.remove();
     },
     components: {

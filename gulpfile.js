@@ -33,7 +33,6 @@ balm.config = {
 if (buildDocs) {
   balm.config.roots.source = 'docs';
   balm.config.scripts.entry.main = './docs/scripts/main.js';
-  balm.config.cache = true;
   balm.config.assets.subDir = 'ui-vue';
 }
 

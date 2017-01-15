@@ -1,3 +1,16 @@
+## 0.1.14
+
+### Update components
+
+__`<ui-tooltip>`__
+
+- optimize name
+
+### Update docs
+
+- __`<ui-menu>`__
+- __`<ui-tooltip>`__
+
 ## 0.1.13
 
 ### Update utils

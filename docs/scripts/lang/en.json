@@ -25,6 +25,10 @@
     "materialIcon": "Material icons",
     "customIcon": "Custom icons"
   },
+  "menu": {
+    "basic": "Basic usage",
+    "custom": "Custom usage"
+  },
   "table": {
     "basic": "Basic",
     "advanced": "Advanced"
@@ -38,5 +42,9 @@
     "expandable": "Expandable Textfield",
     "plus": "Textfield with Plus",
     "leftplus": "Textfield with left Label and Plus"
+  },
+  "tooltip": {
+    "basic": "Basic usage",
+    "custom": "Custom usage"
   }
 }

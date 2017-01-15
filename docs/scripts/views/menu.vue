@@ -5,21 +5,31 @@
       <p>Lists of clickable actions.</p>
     </div>
 
-    <div class="snippet-demo">
-      <ui-menu effect :menu="menu" @clicked="onMenu"></ui-menu>
+    <h4>{{ $t('menu.basic') }}</h4>
+    <div class="snippet-group">
+      <div class="snippet-demo">
+        <ui-menu effect :menu="menu" @clicked="onMenu">
+          <template slot="icon">
+            Avatar
+          </template>
+        </ui-menu>
+      </div>
     </div>
     <ui-code language="html" :code="code1.html"></ui-code>
     <ui-code language="js" :code="code1.js"></ui-code>
 
-    <div class="snippet-demo">
-      <ui-menu effect>
-        <template slot="icon">
-          Avatar
-        </template>
-        <ui-menuitem v-for="item in menu" :item="item" @clicked="onMenu">
-          <a :href="item.url">{{ item.name }}</a>
-        </ui-menuitem>
-      </ui-menu>
+    <h4>{{ $t('menu.custom') }}</h4>
+    <div class="snippet-group">
+      <div class="snippet-demo">
+        <ui-menu effect>
+          <template slot="icon">
+            Avatar
+          </template>
+          <ui-menuitem v-for="item in menu" :item="item" @clicked="onMenu">
+            <a :href="item.url">{{ item.name }}</a>
+          </ui-menuitem>
+        </ui-menu>
+      </div>
     </div>
     <ui-code language="html" :code="code2.html"></ui-code>
     <ui-code language="js" :code="code2.js"></ui-code>

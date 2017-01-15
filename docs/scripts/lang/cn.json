@@ -25,6 +25,10 @@
     "materialIcon": "Material图标",
     "customIcon": "自定义图标"
   },
+  "menu": {
+    "basic": "基本用法",
+    "custom": "自定义用法"
+  },
   "table": {
     "basic": "基本用法",
     "advanced": "高级用法"
@@ -38,5 +42,9 @@
     "expandable": "可伸展的文本框",
     "plus": "可扩展的文本框",
     "leftplus": "标签左置的可扩展的文本框"
+  },
+  "tooltip": {
+    "basic": "基本用法",
+    "custom": "自定义用法"
   }
 }

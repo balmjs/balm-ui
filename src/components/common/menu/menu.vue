@@ -41,7 +41,7 @@ export default {
     name: {
       type: String,
       default: function() {
-        return generateRandomAlphaNum(6);
+        return generateRandomAlphaNum(7);
       }
     },
     menu: {

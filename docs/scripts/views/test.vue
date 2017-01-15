@@ -62,7 +62,7 @@
     <ui-loading isActive></ui-loading>
     <ui-loading type="1" isActive></ui-loading>
     <hr>
-    <ui-menu name="menu2" :data="menus"></ui-menu>
+    <ui-menu name="menu2" :menu="menus"></ui-menu>
     <hr>
     <ui-slider></ui-slider>
     <hr>

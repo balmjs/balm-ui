@@ -10,6 +10,9 @@
         <ui-checkbox v-for="num in [1, 2, 3]" :value="num" :model="numberOptions" @change="onChangeNumber">Option {{ num }}</ui-checkbox>
       </div>
     </div>
+    <ui-button @click.native="onChange([1, 2])">choose 1,2</ui-button>
+    <ui-button @click.native="onChange([1, 3])">choose 1,3</ui-button>
+    <ui-button @click.native="onChange([2, 3])">choose 2,3</ui-button>
     <ui-code language="html" :code="code1.html"></ui-code>
     <ui-code language="js" :code="code1.js"></ui-code>
 
@@ -39,6 +42,9 @@ export default {
     },
     onChangeString(val) {
       this.stringOptions = val;
+    },
+    onChange(val) {
+      this.numberOptions = val;
     }
   },
   async created() {

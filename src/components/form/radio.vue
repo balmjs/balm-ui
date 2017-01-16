@@ -55,8 +55,13 @@ export default {
       return {
         'mdl-radio': true,
         'mdl-js-radio': true,
-        'mdl-js-ripple-effect': this.effect
+        'mdl-js-ripple-effect': this.effect,
+        'is-upgraded': true,
+        'is-checked': this.isChecked
       };
+    },
+    isChecked() {
+      return this.currentValue === this.value;
     }
   },
   watch: {

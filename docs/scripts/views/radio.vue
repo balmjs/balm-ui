@@ -9,6 +9,8 @@
       <ui-radio name="sex" value="M" :model="gender" @change="chooseSex">Male</ui-radio>
       <ui-radio name="sex" value="F" :model="gender" @change="chooseSex">Female</ui-radio>
     </div>
+    <ui-button @click.native="onChange('M')">choose Male</ui-button>
+    <ui-button @click.native="onChange('F')">choose Female</ui-button>
     <ui-code language="html" :code="code1.html"></ui-code>
     <ui-code language="js" :code="code1.js"></ui-code>
   </div>
@@ -27,6 +29,9 @@ export default {
   },
   methods: {
     chooseSex(val) {
+      this.gender = val;
+    },
+    onChange(val) {
       this.gender = val;
     }
   },

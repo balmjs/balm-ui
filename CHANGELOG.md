@@ -6,10 +6,23 @@ __`<ui-tooltip>`__
 
 - optimize name
 
+__`<ui-alert>`__
+
+- fix slot bug
+
+__`<ui-radio>`__
+
+- fix checked bug
+
 ### Update docs
 
 - __`<ui-menu>`__
 - __`<ui-tooltip>`__
+
+### Update test
+
+- __`<ui-checkbox>`__
+- __`<ui-radio>`__
 
 ## 0.1.13
 

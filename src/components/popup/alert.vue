@@ -11,12 +11,16 @@
     :leave-active-class="leaveActiveClass"
     :transparent="transparent"
     @on-close="emit('on-close')">
-    <div slot="title" class="title">
-      {{title}}
-      <i class="close" @click="emit('on-close')"></i>
-    </div>
+    <slot name="title">
+      <div slot="title" class="title">
+        {{title}}
+        <i class="close" @click="emit('on-close')"></i>
+      </div>
+    </slot>
     <slot></slot>
-    <ui-button primary raised effect @click.native="emit('on-click')" slot="actions">{{btnText}}</ui-button>
+    <slot name="actions">
+      <ui-button primary raised effect @click.native="emit('on-click')" slot="actions">{{btnText}}</ui-button>
+    </slot>
   </ui-dialog>
 </template>
 <script type="text/babel">

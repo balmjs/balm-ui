@@ -1,3 +1,12 @@
+## 0.1.15
+
+### Update components
+
+__`<ui-table>`__
+
+- add text-align right class
+- fix checkbox rowspan bug
+
 ## 0.1.14
 
 ### Update components

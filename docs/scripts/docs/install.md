@@ -2,7 +2,7 @@
 
 #### Requirement
 
-- [BalmJS](http://balmjs.com/) or [webpack](http://webpack.github.io/)
+- [BalmJS](http://balmjs.com/)
 - [Vue.js](https://vuejs.org/)@2.x
 
 #### Install

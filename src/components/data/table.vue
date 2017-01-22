@@ -115,6 +115,7 @@ const SORT_BY = 'by';
 const CLASSNAME_NON_NUMERIC = 'mdl-data-table__cell--non-numeric';
 const CLASSNAME_TEXT_LEFT = 'mdl-data-table__cell--text-left';
 const CLASSNAME_TEXT_CENTER = 'mdl-data-table__cell--text-center';
+const CLASSNAME_TEXT_RIGHT = 'mdl-data-table__cell--text-right';
 const EVENT_SELECTED = 'selected';
 const EVENT_VIEW_DETAIL = 'view-detail';
 
@@ -246,6 +247,7 @@ export default {
         }
         // class attribute
         let className = [];
+        // TODO: when is function?
         if (data[CELL_CLASS]) {
           className.push(data[CELL_CLASS]);
         }
@@ -342,21 +344,23 @@ export default {
 
       return cell;
     },
-    getCheckbox(type, result, key = 1) {
+    getCheckbox(type, result, value = 1) {
       if (this.selectable) {
         let cell = {};
 
         switch (type) {
           case T_HEAD:
             cell = {
-              row: key, // row number
               isCheckbox: this.currentData.length
             };
+            if (value > 1) {
+              cell.row = value; // row number
+            }
             break;
           case T_BODY:
             cell = {
               isCheckbox: this.currentData.length,
-              value: key // data[this.keyField]
+              value: value // data[this.keyField]
             };
             break;
         }
@@ -467,7 +471,8 @@ export default {
               }
             }
             // add checkbox
-            result[0] = this.getCheckbox(type, result[0], table.length);
+            let rowspan = isArray(table[0]) ? table.length : 1;
+            result[0] = this.getCheckbox(type, result[0], rowspan); // TODO: bug
             // add plus
             result[0] = this.getDetailView(type, result[0], table.length);
             break;

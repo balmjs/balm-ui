@@ -7,6 +7,9 @@
     .mdl-data-table__cell--text-left {
       text-align: left;
     }
+    .mdl-data-table__cell--text-right {
+      text-align: right;
+    }
   }
   tr {
     &.selected {

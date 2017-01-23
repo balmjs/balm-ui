@@ -1,0 +1,49 @@
+.mdl-select {
+  display: inline-block;
+  width: 300px;
+  border: 1px solid;
+  .mdl-button--icon {
+    font-size: inherit;
+    width: 100%;
+    text-transform: none;
+    border-radius: 0;
+    i {
+      right: 0;
+      left: auto;
+    }
+  }
+  .mdl-menu__outline {
+    display: none;
+    opacity: 0;
+  }
+  .mdl-menu__container {
+    width: 100% !important;
+    height: auto !important;
+    ul {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    li {
+      line-height: 32px;
+      height: 32px;
+      list-style: none;
+      &:hover {
+        background-color: $button-hover-color;
+      }
+      &.selected {
+        background-color: $button-hover-color;
+      }
+    }
+  }
+  .mdl-menu {
+    border-width: 0 1px 1px;
+    border-style: solid;
+    &.is-animating {
+      transition: none;
+    }
+  }
+  .placeholder {
+    color: $input-text-label-color;
+  }
+}

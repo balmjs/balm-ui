@@ -1,9 +1,9 @@
 <template>
   <li ref="item"
-    :class="$parent.className.inner"
+    :class="[$parent.className.inner, {'selected': item.selected}]"
     :disabled="item.disabled"
     @click="handleClick(item)">
-    <slot>{{ item.name }}</slot>
+    <slot>{{ item.label }}</slot>
     <span ref="ripple"
       v-if="$parent.effect"
       class="mdl-menu__item-ripple-container">

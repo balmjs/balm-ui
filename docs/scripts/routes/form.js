@@ -1,6 +1,7 @@
 const Textfield = require('../views/textfield');
 const Radio = require('../views/radio');
 const Checkbox = require('../views/checkbox');
+const Select = require('../views/select');
 const Slider = require('../views/slider');
 
 const formRoutes = [{
@@ -15,6 +16,10 @@ const formRoutes = [{
   path: '/checkbox',
   name: 'checkbox',
   component: Checkbox
+}, {
+  path: '/select',
+  name: 'select',
+  component: Select
 }, {
   path: '/slider',
   name: 'slider',

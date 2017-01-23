@@ -7,6 +7,14 @@ __`<ui-table>`__
 - add text-align right class
 - fix checkbox rowspan bug
 
+__`<ui-menuitem>`__
+
+- rename `item.name` to `item.label`
+
+### New components
+
+[x] __`<ui-select>`__
+
 ## 0.1.14
 
 ### Update components

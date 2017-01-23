@@ -13,10 +13,11 @@
     "menu": "Menu",
     "slider": "Slider",
     "snackbar": "Snackbar",
+    "checkbox": "Checkbox",
+    "radio": "Radio",
+    "select": "Select",
     "table": "Table",
     "textfield": "Text Field",
-    "radio": "Radio",
-    "checkbox": "Checkbox",
     "tooltip": "Tooltip",
     "divider": "Divider"
   },

@@ -10,6 +10,7 @@ __`<ui-table>`__
 __`<ui-menuitem>`__
 
 - rename `item.name` to `item.label`
+- support `<ui-select>`
 
 ### New components
 

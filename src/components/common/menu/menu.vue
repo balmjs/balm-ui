@@ -21,7 +21,7 @@
 
 <script>
 import '../../../material-design-lite/menu/menu';
-import {generateRandomAlphaNum} from '../../utils/helper';
+import {generateRandomAlphaNum, observeMutationSupport} from '../../utils/helper';
 import UiMenuItem from './menuitem';
 
 const POSITIONS = ['', 'top-left', 'top-right', 'bottom-right'];
@@ -63,7 +63,12 @@ export default {
     position: {
       type: Number,
       default: POSITION_BOTTOM_LEFT
-    }
+    },
+    // just for '<ui-select>'
+    isSelect: {
+      type: Boolean,
+      default: false
+    },
   },
   data() {
     return {
@@ -110,6 +115,22 @@ export default {
   mounted() {
     this.$ui.upgradeElement(this.$refs.button, 'MaterialButton');
     this.$ui.upgradeElement(this.$refs.menu, 'MaterialMenu');
+
+    if (this.isSelect && observeMutationSupport) {
+      const callback = records => {
+        this.$parent.isExpand = !(records[0].oldValue.indexOf('is-visible') > -1);
+      };
+
+      let mo = new MutationObserver(callback);
+      let element = this.$el.querySelector('.mdl-menu__container');
+      let options = {
+        'attributes': true,
+        'attributeOldValue': true,
+        'attributeFilter': ['class']
+      }
+
+      mo.observe(element, options);
+    }
   }
 };
 </script>

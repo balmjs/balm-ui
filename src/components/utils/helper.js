@@ -61,6 +61,12 @@ const generateRandomAlphaNum = len => {
   return rdmString.substr(0, len);
 };
 
+let MutationObserver = window.MutationObserver
+  || window.WebKitMutationObserver
+  || window.MozMutationObserver;
+
+let observeMutationSupport = !!MutationObserver;
+
 export {
   isString,
   isNumber,
@@ -73,5 +79,6 @@ export {
   isJSON,
   isEmpty,
   toJSON,
-  generateRandomAlphaNum
+  generateRandomAlphaNum,
+  observeMutationSupport
 };

@@ -1,9 +1,9 @@
 <template>
-  <div class="mdl-select">
-    <ui-menu :menu="currentOptions" @clicked="handleChange">
+  <div :class="className">
+    <ui-menu isSelect :menu="currentOptions" @clicked="handleChange">
       <template slot="icon">
         <span :class="{'placeholder': !selected}">{{ selected || placeholder }}</span>
-        <i class="material-icons">expand_more</i>
+        <i class="material-icons">{{ expand }}</i>
       </template>
     </ui-menu>
   </div>
@@ -32,10 +32,17 @@ export default {
   data() {
     return {
       selected: '',
-      currentValue: this.model
+      currentValue: this.model,
+      isExpand: false
     };
   },
   computed: {
+    className() {
+      return {
+        'mdl-select': true,
+        'is-expand': this.isExpand
+      };
+    },
     currentOptions() {
       let options = [];
 
@@ -74,7 +81,7 @@ export default {
       return result;
     },
     expand() {
-      return this.$children.isExpand ? 'expand_less' : 'expand_more'; // TODO
+      return this.isExpand ? 'expand_less' : 'expand_more';
     }
   },
   watch: {

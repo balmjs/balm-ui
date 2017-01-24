@@ -118,7 +118,9 @@ export default {
 
     if (this.isSelect && observeMutationSupport) {
       const callback = records => {
-        this.$parent.isExpand = !(records[0].oldValue.indexOf('is-visible') > -1);
+        if (this.currentMenu.length) {
+          this.$parent.isExpand = !(records[0].oldValue.indexOf('is-visible') > -1);
+        }
       };
 
       let mo = new MutationObserver(callback);

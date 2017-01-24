@@ -1,15 +1,23 @@
 .mdl-select {
   display: inline-block;
   width: 300px;
-  border: 1px solid;
-  .mdl-button--icon {
+  border: 1px solid $input-text-bottom-border-color;
+  .mdl-button {
     font-size: inherit;
     width: 100%;
     text-transform: none;
     border-radius: 0;
+    background-color: $button-hover-color;
     i {
       right: 0;
       left: auto;
+    }
+  }
+  &:hover,
+  &.is-expand {
+    border-color: $input-text-highlight-color;
+    .mdl-button {
+      background-color: white;
     }
   }
   .mdl-menu__outline {
@@ -39,6 +47,7 @@
   .mdl-menu {
     border-width: 0 1px 1px;
     border-style: solid;
+    background-color: white;
     &.is-animating {
       transition: none;
     }

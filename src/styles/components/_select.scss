@@ -1,23 +1,16 @@
 .mdl-select {
   display: inline-block;
   width: 300px;
-  border: 1px solid $input-text-bottom-border-color;
   .mdl-button {
     font-size: inherit;
     width: 100%;
     text-transform: none;
+    border: 1px solid $input-text-bottom-border-color;
     border-radius: 0;
     background-color: $button-hover-color;
     i {
       right: 0;
       left: auto;
-    }
-  }
-  &:hover,
-  &.is-expand {
-    border-color: $input-text-highlight-color;
-    .mdl-button {
-      background-color: white;
     }
   }
   .mdl-menu__outline {
@@ -54,5 +47,12 @@
   }
   .placeholder {
     color: $input-text-label-color;
+  }
+  &:hover,
+  &.is-expand {
+    .mdl-button {
+      border-color: $input-text-highlight-color;
+      background-color: white;
+    }
   }
 }

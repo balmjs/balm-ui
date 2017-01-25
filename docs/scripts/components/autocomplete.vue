@@ -1,12 +1,15 @@
 <template>
-  <ui-textfield label="Expand Text..."
+  <ui-textfield label="Expand Text... (type 'a' or 'b')"
     :model="currentValue"
     :expand="expand"
     @input.native="handleInput($event)"
-    @blur="handleBlur">
+    @blur="handleBlur"
+    @keydown="handleKeydown">
     <template slot="expand">
       <ul ref="autocomplete">
-        <li v-for="item in items" @click="fillText(item)">{{ item }}</li>
+        <li v-for="item in items"
+          :class="{'active': item.active}"
+          @click="fillText(item.value)">{{ item.value }}</li>
       </ul>
     </template>
   </ui-textfield>
@@ -18,6 +21,7 @@ const EVENT_CHANGE = 'change';
 
 const KEY_UP = 38;
 const KEY_DOWN = 40;
+const KEY_ENTER = 13;
 
 export default {
   name: 'ui-autocomplete',
@@ -36,6 +40,7 @@ export default {
       currentValue: this.model,
       expand: false,
       items: [],
+      currentItemIndex: 0,
       callback: null
     }
   },
@@ -53,7 +58,12 @@ export default {
       if (this.currentValue) {
         let response = await this.$http.get(this.url);
         // TODO: custom response data
-        this.items = response.data[this.currentValue] || [];
+        this.items = response.data[this.currentValue].map((item, index) => {
+          return {
+            active: index === 0,
+            value: item
+          };
+        }) || [];
 
         if (response.data[this.currentValue]) {
           this.show();
@@ -92,6 +102,40 @@ export default {
       this.hide();
 
       this.$emit(EVENT_CHANGE, this.currentValue);
+    },
+    handleKeydown(event) {
+      let count = this.items.length - 1;
+      let choosing = false;
+
+      if (event.keyCode === KEY_UP) {
+        choosing = true;
+        if (this.currentItemIndex === 0) {
+          this.currentItemIndex = count;
+        } else {
+          this.currentItemIndex--;
+        }
+      } else if (event.keyCode === KEY_DOWN) {
+        choosing = true;
+        if (this.currentItemIndex === count) {
+          this.currentItemIndex = 0;
+        } else {
+          this.currentItemIndex++;
+        }
+      } else if (event.keyCode === KEY_ENTER) {
+        this.currentValue = this.items[this.currentItemIndex].value;
+        this.hide();
+
+        this.$emit(EVENT_CHANGE, this.currentValue);
+      }
+
+      if (choosing) {
+        this.items = this.items.map((item, index) => {
+          return {
+            active: index === this.currentItemIndex,
+            value: item.value
+          };
+        });
+      }
     }
   },
   watch: {
@@ -106,3 +150,17 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.mdl-textfield__expand ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mdl-textfield__expand li:hover,
+.mdl-textfield__expand li.active {
+  background: black;
+  color: white;
+}
+</style>

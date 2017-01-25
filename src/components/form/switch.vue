@@ -18,10 +18,6 @@ import '../../material-design-lite/ripple/ripple';
 
 const EVENT_CHANGE = 'change';
 
-/**
- * @example
- * <ui-switch name="open" :model="formData.open" @input="changeSwitch">On/Off</ui-switch>
- */
 export default {
   name: 'ui-switch',
   props: {

@@ -59,6 +59,14 @@
     </div>
     <ui-code language="html" :code="code8.html"></ui-code>
 
+    <h4>{{ $t('textfield.expand') }}</h4>
+    <div class="snippet-demo">
+      <ui-autocomplete url="/data/autocomplete.json"
+        :model="text9"
+        @input.native="onInputChange('text9', $event)"
+        @change="onChangeInput"></ui-autocomplete>
+    </div>
+
     <h4>Textfield API</h4>
     <ui-tabs effect position="left" :active="tab" @switched="onChange">
       <ui-panel tab="props">
@@ -91,8 +99,12 @@
 
 <script>
 import textfieldDocs from '../apidocs/textfield';
+import UiAutocomplete from '../components/autocomplete';
 
 export default {
+  components: {
+    UiAutocomplete
+  },
   data() {
     return {
       code1: {
@@ -127,6 +139,7 @@ export default {
         html: ''
       },
       text8: '',
+      text9: '',
       tab: 0,
       docs: {
         props: {
@@ -153,6 +166,9 @@ export default {
     },
     onChange(tab) {
       this.tab = tab;
+    },
+    onChangeInput(val) {
+      this.text9 = val;
     }
   },
   async created() {

@@ -42,7 +42,8 @@
     "textarea": "多行输入的文本框",
     "expandable": "可伸展的文本框",
     "plus": "可扩展的文本框",
-    "leftplus": "标签左置的可扩展的文本框"
+    "leftplus": "标签左置的可扩展的文本框",
+    "expand": "带自动完成的文本框"
   },
   "tooltip": {
     "basic": "基本用法",

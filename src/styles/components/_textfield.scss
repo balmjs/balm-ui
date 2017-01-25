@@ -1,6 +1,6 @@
 .mdl-textfield {
   /**
-   * Textfield with Plus
+   * Textfield with plus
    */
   .mdl-textfield__plus {
     position: absolute;
@@ -43,6 +43,22 @@
       position: absolute;
       top: 0;
       width: auto;
+    }
+  }
+  /**
+   * Textfield with expand
+   */
+  .mdl-textfield__expand {
+    position: absolute;
+    z-index: 999;
+    display: none;
+    width: 100%;
+    border: 1px solid $input-text-bottom-border-color;
+    background: white;
+  }
+  .is-expand {
+    .mdl-textfield__expand {
+      display: block;
     }
   }
 }

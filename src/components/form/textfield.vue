@@ -5,7 +5,7 @@
         <i class="material-icons">icon</i>
       </slot>
     </label>
-    <div :class="className.inner">
+    <div :class="[className.inner, {'is-expand': isExpand}]">
       <label class="mdl-textfield__label" :for="id">
         <slot name="label">{{ label }}</slot>
       </label>
@@ -15,11 +15,14 @@
         :name="name"
         :rows="rows"
         :placeholder="currentPlaceholder"
-        :value="currentValue"
+        v-model="currentValue"
         :maxlength="maxlength"
         :disabled="disabled"
         :readonly="readonly"
-        @input="handleInput"></textarea>
+        @input="handleInput"
+        @focus="handleFocus"
+        @blur="handleBlur"
+        @keydown="handleKeydown"></textarea>
       <input class="mdl-textfield__input"
         v-if="!isTextarea"
         :type="type"
@@ -31,13 +34,19 @@
         :maxlength="maxlength"
         :disabled="disabled"
         :readonly="readonly"
-        @input="handleInput">
+        @input="handleInput"
+        @focus="handleFocus"
+        @blur="handleBlur"
+        @keydown="handleKeydown">
       <span class="mdl-textfield__error" v-if="error">
         <slot name="error">{{ error }}</slot>
       </span>
       <span class="mdl-textfield__plus" v-if="plus">
-        <slot name="plus"></slot>
+        <slot name="plus"><!-- counter --></slot>
       </span>
+      <div class="mdl-textfield__expand" v-if="isExpand">
+        <slot name="expand"><!-- autocomplete --></slot>
+      </div>
     </div>
   </div>
 </template>
@@ -46,6 +55,9 @@
 import '../../material-design-lite/textfield/textfield';
 
 const EVENT_INPUT = 'input';
+const EVENT_FOCUS = 'focus';
+const EVENT_BLUR = 'blur';
+const EVENT_KEYDOWN = 'keydown';
 
 export default {
   name: 'ui-textfield',
@@ -56,8 +68,7 @@ export default {
     },
     model: {
       type: String,
-      required: true,
-      default: ''
+      required: true
     },
     id: String,
     name: String,
@@ -73,7 +84,7 @@ export default {
     placeholder: String,
     pattern: String,
     error: String,
-    maxlength: Number, // TODO: counter
+    maxlength: Number,
     rows: {
       type: Number,
       default: 2
@@ -91,6 +102,10 @@ export default {
       default: false
     },
     readonly: {
+      type: Boolean,
+      default: false
+    },
+    expand: {
       type: Boolean,
       default: false
     }
@@ -122,6 +137,9 @@ export default {
     },
     currentPlaceholder() {
       return this.labelLeft && this.placeholder;
+    },
+    isExpand() {
+      return this.expand;
     }
   },
   watch: {
@@ -132,6 +150,15 @@ export default {
   methods: {
     handleInput() {
       this.$emit(EVENT_INPUT, this.currentValue);
+    },
+    handleFocus() {
+      this.$emit(EVENT_FOCUS);
+    },
+    handleBlur(event) {
+      this.$emit(EVENT_BLUR, event);
+    },
+    handleKeydown(event) {
+      this.$emit(EVENT_KEYDOWN, event);
     }
   },
   created() {

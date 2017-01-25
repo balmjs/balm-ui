@@ -12,9 +12,21 @@ __`<ui-menuitem>`__
 - rename `item.name` to `item.label`
 - support `<ui-select>`
 
+__`<ui-textfield>`__
+
+- add `expand` prop & slot
+- add `focus` & `blur` & `keydown` event
+- add `<ui-autocomplete>` component demo
+
 ### New components
 
 [x] __`<ui-select>`__
+
+### Update docs
+
+- __`<ui-textfield>`__
+
+---
 
 ## 0.1.14
 
@@ -42,6 +54,8 @@ __`<ui-radio>`__
 - __`<ui-checkbox>`__
 - __`<ui-radio>`__
 
+---
+
 ## 0.1.13
 
 ### Update utils
@@ -67,6 +81,8 @@ __`<ui-dialog>`__
 
 - __`<ui-menu>`__
 
+---
+
 ## 0.1.12
 
 ### Update components
@@ -81,14 +97,20 @@ __`<ui-textfield>`__
 
 ### test IE9-10 compatibility
 
+---
+
 ## 0.1.11 beta
 
 ### Fix `package.json`
 > `0.1.9` & `0.1.10` deprecated
 
+---
+
 ## 0.1.10 beta
 
 ### restore dist
+
+---
 
 ## 0.1.9 beta
 

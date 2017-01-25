@@ -22,12 +22,6 @@ import {isArray} from '../utils/helper';
 const CLASSNAME_ICON = 'material-icons';
 const EVENT_CHANGE = 'change';
 
-/**
- * @example
- * <ui-icon-toggle name="icons[]" value="a" :model="formData.icons" @input="chooseIcon">Icon A</ui-icon-toggle>
- * <ui-icon-toggle name="icons[]" value="b" :model="formData.icons" @input="chooseIcon">Icon B</ui-icon-toggle>
- * <ui-icon-toggle name="icons[]" value="c" :model="formData.icons" @input="chooseIcon">Icon C</ui-icon-toggle>
- */
 export default {
   name: 'ui-icon-toggle',
   props: {

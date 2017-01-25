@@ -19,12 +19,6 @@ import {isArray} from '../utils/helper';
 
 const EVENT_CHANGE = 'change';
 
-/**
- * @example
- * <ui-checkbox name="options[]" value="1" :model="formData.options" @input="chooseOption">Option A</ui-checkbox>
- * <ui-checkbox name="options[]" value="2" :model="formData.options" @input="chooseOption">Option B</ui-checkbox>
- * <ui-checkbox name="options[]" value="3" :model="formData.options" @input="chooseOption">Option C</ui-checkbox>
- */
 export default {
   name: 'ui-checkbox',
   props: {

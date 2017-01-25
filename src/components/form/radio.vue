@@ -18,11 +18,6 @@ import '../../material-design-lite/ripple/ripple';
 
 const EVENT_CHANGE = 'change';
 
-/**
- * @example
- * <ui-radio name="gender" value="F" :model="formData.gender" @input="chooseSex">Female</ui-radio>
- * <ui-radio name="gender" value="M" :model="formData.gender" @input="chooseSex">Male</ui-radio>
- */
 export default {
   name: 'ui-radio',
   props: {

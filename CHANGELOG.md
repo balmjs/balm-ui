@@ -27,6 +27,7 @@ __`<ui-loading>`__
 ### New components
 
 [x] __`<ui-select>`__
+[x] __`<ui-card>`__
 
 ### Update docs
 

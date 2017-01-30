@@ -46,7 +46,7 @@ var DEV_SOURCE = {
 
 balm.go(function(mix) {
   if (buildDocs) {
-    mix.copy('./docs/snippets/**/*', './dist/ui-vue/snippets');
+    // mix.copy('./docs/snippets/**/*', './dist/ui-vue/snippets');
   } else {
     if (useDefault) {
       if (balm.config.production) {

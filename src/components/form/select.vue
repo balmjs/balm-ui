@@ -27,7 +27,11 @@ export default {
       default: ''
     },
     model: [String, Number],
-    placeholder: String
+    placeholder: String,
+    disabled: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
@@ -40,7 +44,8 @@ export default {
     className() {
       return {
         'mdl-select': true,
-        'is-expand': this.isExpand
+        'is-expand': this.isExpand,
+        'mdl-select--disabled': this.disabled // TODO
       };
     },
     currentOptions() {

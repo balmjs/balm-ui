@@ -18,8 +18,7 @@
         </ui-panel>
       </ui-tabs>
     </div>
-    <ui-code language="html" :code="code1.html"></ui-code>
-    <ui-code language="js" :code="code1.js"></ui-code>
+    <ui-markdown :text="code[0]"></ui-markdown>
 
     <h4>{{ $t('tabs.materialIcon') }}</h4>
     <div class="snippet-demo">
@@ -32,8 +31,7 @@
         </ui-panel>
       </ui-tabs>
     </div>
-    <ui-code language="html" :code="code2.html"></ui-code>
-    <ui-code language="js" :code="code2.js"></ui-code>
+    <ui-markdown :text="code[1]"></ui-markdown>
 
     <h4>{{ $t('tabs.customIcon') }}</h4>
     <div class="snippet-demo">
@@ -46,8 +44,7 @@
         </ui-panel>
       </ui-tabs>
     </div>
-    <ui-code language="html" :code="code3.html"></ui-code>
-    <ui-code language="js" :code="code3.js"></ui-code>
+    <ui-markdown :text="code[2]"></ui-markdown>
 
     <h4>Tabs API</h4>
     <ui-tabs effect position="left" :active="tabs.tab" @switched="onChangeTabs">
@@ -106,21 +103,11 @@ import panelDocs from '../apidocs/panel';
 export default {
   data() {
     return {
-      code1: {
-        html: '',
-        js: ''
-      },
       tab: 0,
-      code2: {
-        html: '',
-        js: ''
-      },
       tab2: 0,
-      code3: {
-        html: '',
-        js: ''
-      },
       tab3: 0,
+      demoCount: 3,
+      code: [],
       tabs: {
         tab: 0,
         docs: {
@@ -175,14 +162,10 @@ export default {
       this.panel.tab = tab;
     }
   },
-  async created() {
-    for (let i = 1; i <= 3; i++) {
-      let template = await this.$http.get(`${this.$domain}/snippets/tabs/demo${i}-template.html`);
-      let script = await this.$http.get(`${this.$domain}/snippets/tabs/demo${i}-script.html`);
-      this[`code${i}`] = {
-        html: template.data,
-        js: script.data
-      };
+  created() {
+    for (let i = 1; i <= this.demoCount; i++) {
+      let code = require(`../snippets/tabs/demo${i}.md`);
+      this.code.push(code);
     }
   }
 };

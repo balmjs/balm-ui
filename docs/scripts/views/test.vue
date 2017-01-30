@@ -103,14 +103,14 @@ export default {
       tab: 0,
       menus: [{
         url:'/a',
-        name: 'Item A'
+        label: 'Item A'
       }, {
         url:'/b',
-        name: 'Item B',
+        label: 'Item B',
         disabled: true
       }, {
         url:'/c',
-        name: 'Item C'
+        label: 'Item C'
       }],
       active: false,
       formData: {

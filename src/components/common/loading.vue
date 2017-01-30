@@ -9,9 +9,11 @@
 <script>
 import '../../material-design-lite/spinner/spinner';
 import '../../material-design-lite/progress/progress';
+import {isString} from '../utils/helper';
 
-const SPINNER  = 0; // Spinner
-const PROGRESS = 1; // Progress bar
+const TYPES = ['spinner', 'progress'];
+const TYPE_SPINNER  = 0; // Spinner
+const TYPE_PROGRESS = 1; // Progress bar
 
 export default {
   name: 'ui-loading',
@@ -39,8 +41,10 @@ export default {
     className() {
       let className = {};
 
-      switch (+this.type) {
-        case SPINNER:
+      let type = isString(this.type) ? TYPES.indexOf(this.type) : this.type;
+
+      switch (type) {
+        case TYPE_SPINNER:
           className = {
             'mdl-spinner': true,
             'mdl-js-spinner': true,
@@ -48,7 +52,7 @@ export default {
             'mdl-spinner--single-color': this.singleColor
           };
           break;
-        case PROGRESS:
+        case TYPE_PROGRESS:
           className = {
             'mdl-progress': true,
             'mdl-js-progress': true,
@@ -61,7 +65,8 @@ export default {
       return className;
     },
     isSpinner() {
-      return +this.type === SPINNER;
+      let type = isString(this.type) ? TYPES[TYPE_SPINNER] : TYPE_SPINNER;
+      return this.type === type;
     }
   },
   mounted() {

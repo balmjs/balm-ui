@@ -40,7 +40,7 @@ export default {
       type: Boolean,
       default: false
     },
-    squared: {
+    filled: {
       type: Boolean,
       default: false
     }
@@ -58,7 +58,7 @@ export default {
         'mdl-js-ripple-effect': this.effect,
         'is-upgraded': true,
         'is-checked': this.isChecked,
-        'is-squared': this.squared
+        'is-filled': this.filled
       };
     },
     isChecked() {

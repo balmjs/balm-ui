@@ -15,8 +15,7 @@
       @edit="onEdit"
       @delete="onDelete">
     </ui-table>
-    <ui-code language="html" :code="code1.html"></ui-code>
-    <ui-code language="js" :code="code1.js"></ui-code>
+    <ui-markdown :text="code[0]"></ui-markdown>
 
     <h4>{{ $t('table.advanced') }}</h4>
     <ui-table
@@ -36,8 +35,7 @@
       :detailViewData="table2.tableDetail"
       @view-detail="viewDetail">
     </ui-table>
-    <ui-code language="html" :code="code2.html"></ui-code>
-    <ui-code language="js" :code="code2.js"></ui-code>
+    <ui-markdown :text="code[1]"></ui-markdown>
   </div>
 </template>
 
@@ -47,10 +45,6 @@ import dataList from '../../data/table';
 export default {
   data() {
     return {
-      code1: {
-        html: '',
-        js: ''
-      },
       table1: {
         data: [],
         thead: ['ID', 'Name', 'Quantity', 'Price', 'Operate'],
@@ -68,10 +62,6 @@ export default {
           name: 'delete',
           value: 'Delete'
         }]
-      },
-      code2: {
-        html: '',
-        js: ''
       },
       table2: {
         data: [],
@@ -143,7 +133,9 @@ export default {
         selectable: 'left',
         checkboxList: [],
         tableDetail: 'Hello'
-      }
+      },
+      demoCount: 2,
+      code: []
     }
   },
   methods: {
@@ -164,14 +156,10 @@ export default {
       this.table2.tableDetail +=  ('-' + data.name);
     }
   },
-  async created() {
-    for (let i = 1; i <= 2; i++) {
-      let template = await this.$http.get(`${this.$domain}/snippets/table/demo${i}-template.html`);
-      let script = await this.$http.get(`${this.$domain}/snippets/table/demo${i}-script.html`);
-      this[`code${i}`] = {
-        html: template.data,
-        js: script.data
-      };
+  created() {
+    for (let i = 1; i <= this.demoCount; i++) {
+      let code = require(`../snippets/table/demo${i}.md`);
+      this.code.push(code);
     }
   },
   mounted() {

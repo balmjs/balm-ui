@@ -9,8 +9,7 @@
       <ui-select :value="options1" :model="selected1" defaultValue="全部" @change="onChange1"></ui-select>
       <ui-select :value="options2" :model="selected2" @change="onChange2"></ui-select>
     </div>
-    <ui-code language="html" :code="code1.html"></ui-code>
-    <ui-code language="js" :code="code1.js"></ui-code>
+    <ui-markdown :text="code[0]"></ui-markdown>
   </div>
 </template>
 
@@ -31,10 +30,8 @@ export default {
       }],
       selected2: '',
       options2: [],
-      code1: {
-        html: '',
-        js: ''
-      }
+      demoCount: 1,
+      code: []
     };
   },
   methods: {
@@ -64,14 +61,10 @@ export default {
       this.selected2 = option.key;
     }
   },
-  async created() {
-    for (let i = 1; i <= 1; i++) {
-      let template = await this.$http.get(`${this.$domain}/snippets/select/demo${i}-template.html`);
-      let script = await this.$http.get(`${this.$domain}/snippets/select/demo${i}-script.html`);
-      this[`code${i}`] = {
-        html: template.data,
-        js: script.data
-      };
+  created() {
+    for (let i = 1; i <= this.demoCount; i++) {
+      let code = require(`../snippets/select/demo${i}.md`);
+      this.code.push(code);
     }
   }
 };

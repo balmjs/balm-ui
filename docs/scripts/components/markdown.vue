@@ -1,12 +1,12 @@
 <template>
-  <div v-html="value"></div>
+  <div v-html="text"></div>
 </template>
 
 <script>
 export default {
   name: 'ui-markdown',
   props: {
-    value: {
+    text: {
       type: String,
       required: true
     }

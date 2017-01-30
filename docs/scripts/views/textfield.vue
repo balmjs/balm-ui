@@ -9,31 +9,31 @@
     <div class="snippet-demo">
       <ui-textfield label="Text..." :model="text1" @input.native="onInputChange('text1', $event)"></ui-textfield>
     </div>
-    <ui-code language="html" :code="code1.html"></ui-code>
+    <ui-markdown :text="code[0]"></ui-markdown>
 
     <h4>{{ $t('textfield.pattern') }}</h4>
     <div class="snippet-demo">
       <ui-textfield label="Number..." :model="text2" @input.native="onInputChange('text2', $event)" pattern="-?[0-9]*(\.[0-9]+)?" error="Input is not a number!"></ui-textfield>
     </div>
-    <ui-code language="html" :code="code2.html"></ui-code>
+    <ui-markdown :text="code[1]"></ui-markdown>
 
     <h4>{{ $t('textfield.floating') }}</h4>
     <div class="snippet-demo">
       <ui-textfield labelFloating label="Floating Text..." :model="text3" @input.native="onInputChange('text3', $event)"></ui-textfield>
     </div>
-    <ui-code language="html" :code="code3.html"></ui-code>
+    <ui-markdown :text="code[2]"></ui-markdown>
 
     <h4>{{ $t('textfield.left') }}</h4>
     <div class="snippet-demo">
       <ui-textfield labelLeft label="Left Text..." :model="text4" @input.native="onInputChange('text4', $event)" placeholder="Placeholder..."></ui-textfield>
     </div>
-    <ui-code language="html" :code="code4.html"></ui-code>
+    <ui-markdown :text="code[3]"></ui-markdown>
 
     <h4>{{ $t('textfield.textarea') }}</h4>
     <div class="snippet-demo">
       <ui-textfield type="textarea" label="Text lines..." :model="text5" @input.native="onInputChange('text5', $event)" :rows="3"></ui-textfield>
     </div>
-    <ui-code language="html" :code="code5.html"></ui-code>
+    <ui-markdown :text="code[4]"></ui-markdown>
 
     <h4>{{ $t('textfield.expandable') }}</h4>
     <div class="snippet-demo">
@@ -41,7 +41,7 @@
         <i slot="icon" class="material-icons">search</i>
       </ui-textfield>
     </div>
-    <ui-code language="html" :code="code6.html"></ui-code>
+    <ui-markdown :text="code[5]"></ui-markdown>
 
     <h4>{{ $t('textfield.plus') }}</h4>
     <div class="snippet-demo">
@@ -49,7 +49,7 @@
         <template slot="plus"><a href="javascript:void(0)">Button</a></template>
       </ui-textfield>
     </div>
-    <ui-code language="html" :code="code7.html"></ui-code>
+    <ui-markdown :text="code[6]"></ui-markdown>
 
     <h4>{{ $t('textfield.leftplus') }}</h4>
     <div class="snippet-demo">
@@ -57,7 +57,7 @@
         <template slot="plus"><a href="javascript:void(0)">Link</a></template>
       </ui-textfield>
     </div>
-    <ui-code language="html" :code="code8.html"></ui-code>
+    <ui-markdown :text="code[7]"></ui-markdown>
 
     <h4>{{ $t('textfield.expand') }}</h4>
     <div class="snippet-demo">
@@ -68,7 +68,7 @@
     </div>
 
     <h4>Textfield API</h4>
-    <ui-tabs effect position="left" :active="tab" @switched="onChange">
+    <ui-tabs effect position="left" :active="docs.tab" @switched="onChange">
       <ui-panel tab="props">
         <ui-table
           class="docs-table"
@@ -107,41 +107,19 @@ export default {
   },
   data() {
     return {
-      code1: {
-        html: ''
-      },
       text1: '',
-      code2: {
-        html: ''
-      },
       text2: '',
-      code3: {
-        html: ''
-      },
       text3: '',
-      code4: {
-        html: ''
-      },
       text4: '',
-      code5: {
-        html: ''
-      },
       text5: '',
-      code6: {
-        html: ''
-      },
       text6: '',
-      code7: {
-        html: ''
-      },
       text7: '',
-      code8: {
-        html: ''
-      },
       text8: '',
       text9: '',
-      tab: 0,
+      demoCount: 8,
+      code: [],
       docs: {
+        tab: 0,
         props: {
           data: textfieldDocs.props,
           thead: this.$docs.props.thead,
@@ -165,18 +143,16 @@ export default {
       this[field] = event.target.value;
     },
     onChange(tab) {
-      this.tab = tab;
+      this.docs.tab = tab;
     },
     onChangeInput(val) {
       this.text9 = val;
     }
   },
-  async created() {
-    for (let i = 1; i <= 8; i++) {
-      let template = await this.$http.get(`${this.$domain}/snippets/textfield/demo${i}-template.html`);
-      this[`code${i}`] = {
-        html: template.data
-      };
+  created() {
+    for (let i = 1; i <= this.demoCount; i++) {
+      let code = require(`../snippets/textfield/demo${i}.md`);
+      this.code.push(code);
     }
   }
 };

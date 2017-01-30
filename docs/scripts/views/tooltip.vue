@@ -14,7 +14,7 @@
         <ui-tooltip target="text-2" tips="tips-2"></ui-tooltip>
       </div>
     </div>
-    <ui-code language="html" :code="code1.html"></ui-code>
+    <ui-markdown :text="code[0]"></ui-markdown>
 
     <h4>{{ $t('tooltip.custom') }}</h4>
     <div class="snippet-group">
@@ -29,7 +29,7 @@
         </ui-tooltip>
       </div>
     </div>
-    <ui-code language="html" :code="code2.html"></ui-code>
+    <ui-markdown :text="code[1]"></ui-markdown>
   </div>
 </template>
 
@@ -37,20 +37,14 @@
 export default {
   data() {
     return {
-      code1: {
-        html: ''
-      },
-      code2: {
-        html: ''
-      }
+      demoCount: 2,
+      code: []
     };
   },
-  async created() {
-    for (let i = 1; i <= 2; i++) {
-      let template = await this.$http.get(`${this.$domain}/snippets/tooltip/demo${i}-template.html`);
-      this[`code${i}`] = {
-        html: template.data
-      };
+  created() {
+    for (let i = 1; i <= this.demoCount; i++) {
+      let code = require(`../snippets/tooltip/demo${i}.md`);
+      this.code.push(code);
     }
   }
 };

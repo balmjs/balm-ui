@@ -17,7 +17,7 @@
         </ui-button>
       </div>
     </div>
-    <ui-code language="html" :code="code1.html"></ui-code>
+    <ui-markdown :text="code[0]"></ui-markdown>
 
     <div class="snippet-group">
       <div class="snippet-demo">
@@ -36,7 +36,7 @@
         </ui-button>
       </div>
     </div>
-    <ui-code language="html" :code="code2.html"></ui-code>
+    <ui-markdown :text="code[1]"></ui-markdown>
 
     <div class="snippet-group">
       <div class="snippet-demo">
@@ -49,7 +49,7 @@
         <ui-button raised disabled>Button</ui-button>
       </div>
     </div>
-    <ui-code language="html" :code="code3.html"></ui-code>
+    <ui-markdown :text="code[2]"></ui-markdown>
 
     <div class="snippet-group">
       <div class="snippet-demo">
@@ -62,7 +62,7 @@
         <ui-button raised accent effect>Button</ui-button>
       </div>
     </div>
-    <ui-code language="html" :code="code4.html"></ui-code>
+    <ui-markdown :text="code[3]"></ui-markdown>
 
     <div class="snippet-group">
       <div class="snippet-demo">
@@ -75,7 +75,7 @@
         <ui-button disabled>Button</ui-button>
       </div>
     </div>
-    <ui-code language="html" :code="code5.html"></ui-code>
+    <ui-markdown :text="code[4]"></ui-markdown>
 
     <div class="snippet-group">
       <div class="snippet-demo">
@@ -85,7 +85,7 @@
         <ui-button accent>Button</ui-button>
       </div>
     </div>
-    <ui-code language="html" :code="code6.html"></ui-code>
+    <ui-markdown :text="code[5]"></ui-markdown>
 
     <div class="snippet-group">
       <div class="snippet-demo">
@@ -95,7 +95,7 @@
         <ui-button icon="mood" colored></ui-button>
       </div>
     </div>
-    <ui-code language="html" :code="code7.html"></ui-code>
+    <ui-markdown :text="code[6]"></ui-markdown>
 
     <div class="snippet-group">
       <div class="snippet-demo">
@@ -109,15 +109,15 @@
         </ui-button>
       </div>
     </div>
-    <ui-code language="html" :code="code8.html"></ui-code>
+    <ui-markdown :text="code[7]"></ui-markdown>
 
     <div class="snippet-demo">
       <ui-button link>Link</ui-button>
     </div>
-    <ui-code language="html" :code="code9.html"></ui-code>
+    <ui-markdown :text="code[8]"></ui-markdown>
 
     <h4>Button API</h4>
-    <ui-tabs effect position="left" :active="tab" @switched="onChange">
+    <ui-tabs effect position="left" :active="docs.tab" @switched="onChange">
       <ui-panel tab="props">
         <ui-table
           class="docs-table"
@@ -144,35 +144,10 @@ import buttonDocs from '../apidocs/button';
 export default {
   data() {
     return {
-      code1: {
-        html: ''
-      },
-      code2: {
-        html: ''
-      },
-      code3: {
-        html: ''
-      },
-      code4: {
-        html: ''
-      },
-      code5: {
-        html: ''
-      },
-      code6: {
-        html: ''
-      },
-      code7: {
-        html: ''
-      },
-      code8: {
-        html: ''
-      },
-      code9: {
-        html: ''
-      },
-      tab: 0,
+      demoCount: 9,
+      code: [],
       docs: {
+        tab: 0,
         props: {
           data: buttonDocs.props,
           thead: this.$docs.props.thead,
@@ -188,15 +163,13 @@ export default {
   },
   methods: {
     onChange(tab) {
-      this.tab = tab;
+      this.docs.tab = tab;
     }
   },
-  async created() {
-    for (let i = 1; i <= 9; i++) {
-      let template = await this.$http.get(`${this.$domain}/snippets/button/demo${i}-template.html`);
-      this[`code${i}`] = {
-        html: template.data
-      };
+  created() {
+    for (let i = 1; i <= this.demoCount; i++) {
+      let code = require(`../snippets/button/demo${i}.md`);
+      this.code.push(code);
     }
   }
 };

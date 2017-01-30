@@ -22,7 +22,7 @@
         <ui-cell :col="{col:2, phone:4}">2 (4 phone)</ui-cell>
       </ui-grid>
     </div>
-    <ui-code language="html" :code="code1.html"></ui-code>
+    <ui-markdown :text="code[0]"></ui-markdown>
 
     <h4>Grid API</h4>
     <ui-tabs effect position="left" :active="grid.tab" @switched="onChangeGrid">
@@ -73,9 +73,8 @@ import cellDocs from '../apidocs/cell';
 export default {
   data() {
     return {
-      code1: {
-        html: ''
-      },
+      demoCount: 1,
+      code: [],
       grid: {
         tab: 0,
         docs: {
@@ -116,12 +115,10 @@ export default {
       this.cell.tab = tab;
     }
   },
-  async created() {
-    for (let i = 1; i <= 1; i++) {
-      let template = await this.$http.get(`${this.$domain}/snippets/grid/demo${i}-template.html`);
-      this[`code${i}`] = {
-        html: template.data
-      };
+  created() {
+    for (let i = 1; i <= this.demoCount; i++) {
+      let code = require(`../snippets/grid/demo${i}.md`);
+      this.code.push(code);
     }
   }
 };

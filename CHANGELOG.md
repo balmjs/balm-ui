@@ -18,6 +18,12 @@ __`<ui-textfield>`__
 - add `focus` & `blur` & `keydown` event
 - add `<ui-autocomplete>` component demo
 
+__`<ui-checkbox>`__
+
+- rename props `squared` to `filled`
+
+__`<ui-loading>`__
+
 ### New components
 
 [x] __`<ui-select>`__

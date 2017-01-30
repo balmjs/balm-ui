@@ -5,14 +5,17 @@
     </div>
 
     // TODO
-    <div class="snippet-demo">
-      <ui-radio name="sex" value="M" :model="gender" @change="chooseSex">Male</ui-radio>
-      <ui-radio name="sex" value="F" :model="gender" @change="chooseSex">Female</ui-radio>
+    <div class="snippet-group">
+      <div class="snippet-demo">
+        <ui-radio name="sex" value="M" :model="gender" @change="chooseSex">Male</ui-radio>
+      </div>
+      <div class="snippet-demo">
+        <ui-radio name="sex" value="F" :model="gender" @change="chooseSex">Female</ui-radio>
+      </div>
     </div>
-    <ui-button @click.native="onChange('M')">choose Male</ui-button>
-    <ui-button @click.native="onChange('F')">choose Female</ui-button>
-    <ui-code language="html" :code="code1.html"></ui-code>
-    <ui-code language="js" :code="code1.js"></ui-code>
+    <ui-button @click.native="onWatchSex('M')">choose Male</ui-button>
+    <ui-button @click.native="onWatchSex('F')">choose Female</ui-button>
+    <ui-markdown :text="code[0]"></ui-markdown>
   </div>
 </template>
 
@@ -21,28 +24,22 @@ export default {
   data() {
     return {
       gender: '',
-      code1: {
-        html: '',
-        js: ''
-      }
+      demoCount: 1,
+      code: []
     };
   },
   methods: {
     chooseSex(val) {
       this.gender = val;
     },
-    onChange(val) {
+    onWatchSex(val) {
       this.gender = val;
     }
   },
-  async created() {
-    for (let i = 1; i <= 1; i++) {
-      let template = await this.$http.get(`${this.$domain}/snippets/radio/demo${i}-template.html`);
-      let script = await this.$http.get(`${this.$domain}/snippets/radio/demo${i}-script.html`);
-      this[`code${i}`] = {
-        html: template.data,
-        js: script.data
-      };
+  created() {
+    for (let i = 1; i <= this.demoCount; i++) {
+      let code = require(`../snippets/radio/demo${i}.md`);
+      this.code.push(code);
     }
   }
 };

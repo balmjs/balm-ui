@@ -1,6 +1,6 @@
 <template>
   <div class="docs-home">
-    <ui-markdown :value="docs"></ui-markdown>
+    <ui-markdown :text="docs"></ui-markdown>
   </div>
 </template>
 

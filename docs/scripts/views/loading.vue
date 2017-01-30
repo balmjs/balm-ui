@@ -6,12 +6,36 @@
     </div>
 
     // TODO
-    <div class="snippet-demo">
-      <ui-loading isActive></ui-loading>
+    <div class="snippet-group">
+      <div class="snippet-demo">
+        <ui-loading isActive></ui-loading>
+      </div>
     </div>
+    <ui-markdown :text="code[0]"></ui-markdown>
 
-    <div class="snippet-demo">
-      <ui-loading type="1" isActive></ui-loading>
+    <div class="snippet-group">
+      <div class="snippet-demo">
+        <ui-loading :type="1" isActive></ui-loading>
+      </div>
     </div>
+    <ui-markdown :text="code[1]"></ui-markdown>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      demoCount: 2,
+      code: []
+    };
+  },
+  created() {
+    for (let i = 1; i <= this.demoCount; i++) {
+      let code = require(`../snippets/loading/demo${i}.md`);
+      this.code.push(code);
+    }
+  }
+};
+</script>
+

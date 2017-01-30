@@ -23,7 +23,7 @@
         </ui-badge>
       </div>
     </div>
-    <ui-code language="html" :code="code1.html"></ui-code>
+    <ui-markdown :text="code[0]"></ui-markdown>
 
     <div class="snippet-group">
       <div class="snippet-demo">
@@ -37,10 +37,10 @@
         </ui-badge>
       </div>
     </div>
-    <ui-code language="html" :code="code2.html"></ui-code>
+    <ui-markdown :text="code[1]"></ui-markdown>
 
     <h4>Badge API</h4>
-    <ui-tabs effect position="left" :active="tab" @switched="onChange">
+    <ui-tabs effect position="left" :active="docs.tab" @switched="onChange">
       <ui-panel tab="props">
         <ui-table
           class="docs-table"
@@ -67,16 +67,12 @@ import badgeDocs from '../apidocs/badge';
 export default {
   data() {
     return {
-      timer: null,
       number: 0,
-      code1: {
-        html: ''
-      },
-      code2: {
-        html: ''
-      },
-      tab: 0,
+      timer: null,
+      demoCount: 2,
+      code: [],
       docs: {
+        tab: 0,
         props: {
           data: badgeDocs.props,
           thead: this.$docs.props.thead,
@@ -92,15 +88,13 @@ export default {
   },
   methods: {
     onChange(tab) {
-      this.tab = tab;
+      this.docs.tab = tab;
     }
   },
-  async created() {
-    for (let i = 1; i <= 2; i++) {
-      let template = await this.$http.get(`${this.$domain}/snippets/badge/demo${i}-template.html`);
-      this[`code${i}`] = {
-        html: template.data
-      };
+  created() {
+    for (let i = 1; i <= this.demoCount; i++) {
+      let code = require(`../snippets/badge/demo${i}.md`);
+      this.code.push(code);
     }
 
     this.timer = setInterval(() => {

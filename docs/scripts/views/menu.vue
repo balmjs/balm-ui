@@ -15,8 +15,7 @@
         </ui-menu>
       </div>
     </div>
-    <ui-code language="html" :code="code1.html"></ui-code>
-    <ui-code language="js" :code="code1.js"></ui-code>
+    <ui-markdown :text="code[0]"></ui-markdown>
 
     <h4>{{ $t('menu.custom') }}</h4>
     <div class="snippet-group">
@@ -26,13 +25,12 @@
             Avatar
           </template>
           <ui-menuitem v-for="item in menu" :item="item" @clicked="onMenu">
-            <a :href="item.url">{{ item.name }}</a>
+            <a :href="item.url">{{ item.label }}</a>
           </ui-menuitem>
         </ui-menu>
       </div>
     </div>
-    <ui-code language="html" :code="code2.html"></ui-code>
-    <ui-code language="js" :code="code2.js"></ui-code>
+    <ui-markdown :text="code[1]"></ui-markdown>
   </div>
 </template>
 
@@ -42,23 +40,17 @@ export default {
     return {
       menu: [{
         url:'/a',
-        name: 'Item A'
+        label: 'Item A'
       }, {
         url:'/b',
-        name: 'Item B',
+        label: 'Item B',
         disabled: true
       }, {
         url:'/c',
-        name: 'Item C'
+        label: 'Item C'
       }],
-      code1: {
-        html: '',
-        js: ''
-      },
-      code2: {
-        html: '',
-        js: ''
-      }
+      demoCount: 2,
+      code: []
     };
   },
   methods: {
@@ -66,14 +58,10 @@ export default {
       console.log(obj);
     }
   },
-  async created() {
-    for (let i = 1; i <= 2; i++) {
-      let template = await this.$http.get(`${this.$domain}/snippets/menu/demo${i}-template.html`);
-      let script = await this.$http.get(`${this.$domain}/snippets/menu/demo${i}-script.html`);
-      this[`code${i}`] = {
-        html: template.data,
-        js: script.data
-      };
+  created() {
+    for (let i = 1; i <= this.demoCount; i++) {
+      let code = require(`../snippets/menu/demo${i}.md`);
+      this.code.push(code);
     }
   }
 };

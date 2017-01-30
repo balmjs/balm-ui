@@ -10,8 +10,7 @@
       <ui-button raised effect @click.native="show('toast')">Show</ui-button>
       <ui-snackbar :active="toast.active" :message="toast.message" @done="hide('toast')"></ui-snackbar>
     </div>
-    <ui-code language="html" :code="code1.html"></ui-code>
-    <ui-code language="js" :code="code1.js"></ui-code>
+    <ui-markdown :text="code[0]"></ui-markdown>
 
     <h4>snackbar</h4>
     <div class="snippet-demo">
@@ -19,7 +18,7 @@
     </div>
 
     <h4>Snackbar API</h4>
-    <ui-tabs effect position="left" :active="tab" @switched="onChange">
+    <ui-tabs effect position="left" :active="docs.tab" @switched="onChange">
       <ui-panel tab="props">
         <ui-table
           class="docs-table"
@@ -58,12 +57,10 @@ export default {
         active: false,
         message: 'Hello BalmUI'
       },
-      code1: {
-        html: '',
-        js: ''
-      },
-      tab: 0,
+      demoCount: 1,
+      code: [],
       docs: {
+        tab: 0,
         props: {
           data: snackbarDocs.props,
           thead: this.$docs.props.thead,
@@ -90,17 +87,13 @@ export default {
       this[type].active = false;
     },
     onChange(tab) {
-      this.tab = tab;
+      this.docs.tab = tab;
     }
   },
-  async created() {
-    for (let i = 1; i <= 1; i++) {
-      let template = await this.$http.get(`${this.$domain}/snippets/snackbar/demo${i}-template.html`);
-      let script = await this.$http.get(`${this.$domain}/snippets/snackbar/demo${i}-script.html`);
-      this[`code${i}`] = {
-        html: template.data,
-        js: script.data
-      };
+  created() {
+    for (let i = 1; i <= this.demoCount; i++) {
+      let code = require(`../snippets/snackbar/demo${i}.md`);
+      this.code.push(code);
     }
   }
 };

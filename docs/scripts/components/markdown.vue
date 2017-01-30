@@ -10,6 +10,9 @@ export default {
       type: String,
       required: true
     }
+  },
+  mounted() {
+    this.$prism.highlightAll();
   }
 };
 </script>

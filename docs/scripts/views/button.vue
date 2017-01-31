@@ -111,8 +111,10 @@
     </div>
     <ui-markdown :text="code[7]"></ui-markdown>
 
-    <div class="snippet-demo">
-      <ui-button link>Link</ui-button>
+    <div class="snippet-group">
+      <div class="snippet-demo">
+        <ui-button link>Link</ui-button>
+      </div>
     </div>
     <ui-markdown :text="code[8]"></ui-markdown>
 

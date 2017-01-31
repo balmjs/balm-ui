@@ -16,6 +16,7 @@
         </ui-list>
       </div>
     </div>
+    <ui-markdown :text="code[0]"></ui-markdown>
 
     <h4>Icons</h4>
     <div class="snippet-group">
@@ -31,6 +32,7 @@
         </ui-list>
       </div>
     </div>
+    <ui-markdown :text="code[1]"></ui-markdown>
 
     <h4>Avatars and actions</h4>
     <div class="snippet-group">
@@ -51,6 +53,7 @@
         </ui-list>
       </div>
     </div>
+    <ui-markdown :text="code[2]"></ui-markdown>
 
     <h4>Avatars and controls</h4>
     <div class="snippet-group">
@@ -73,6 +76,7 @@
         </ui-list>
       </div>
     </div>
+    <ui-markdown :text="code[3]"></ui-markdown>
 
     <h4>Two line</h4>
     <div class="snippet-group">
@@ -95,6 +99,7 @@
         </ui-list>
       </div>
     </div>
+    <ui-markdown :text="code[4]"></ui-markdown>
 
     <h4>Three line</h4>
     <div class="snippet-group">
@@ -116,6 +121,7 @@
         </ui-list>
       </div>
     </div>
+    <ui-markdown :text="code[5]"></ui-markdown>
 
     // TODO
   </div>
@@ -149,8 +155,16 @@ export default {
         name: 'Bob Odenkirk',
         text: 'Bob Odinkrik played the role of Saul in Breaking Bad. Due to public fondness for the character, Bob stars in his own show now, called "Better Call Saul".',
         value: true
-      }]
+      }],
+      demoCount: 6,
+      code: []
     };
+  },
+  created() {
+    for (let i = 1; i <= this.demoCount; i++) {
+      let code = require(`../snippets/list/demo${i}.md`);
+      this.code.push(code);
+    }
   }
 };
 </script>

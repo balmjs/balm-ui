@@ -33,7 +33,10 @@ __`<ui-loading>`__
 
 ### Update docs
 
+- __`<ui-select>`__
 - __`<ui-textfield>`__
+- __`<ui-card>`__
+- __`<ui-list>`__
 
 ---
 

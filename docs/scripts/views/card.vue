@@ -26,6 +26,7 @@
         </ui-card>
       </div>
     </div>
+    <ui-markdown :text="code[0]"></ui-markdown>
 
     <h4>Square</h4>
     <div class="snippet-group">
@@ -45,6 +46,7 @@
         </ui-card>
       </div>
     </div>
+    <ui-markdown :text="code[1]"></ui-markdown>
 
     <h4>Image & Event</h4>
     <div class="snippet-group">
@@ -72,6 +74,7 @@
         </ui-card>
       </div>
     </div>
+    <ui-markdown :text="code[2]"></ui-markdown>
 
     <h4>A card (no shadow) with a title, image, text, and action.</h4>
     <div class="snippet-group">
@@ -94,6 +97,7 @@
         </ui-card>
       </div>
     </div>
+    <ui-markdown :text="code[3]"></ui-markdown>
 
     <h4>Card (level-3 shadow) with an image, caption, and text:</h4>
     <div class="snippet-group">
@@ -113,7 +117,25 @@
         </ui-card>
       </div>
     </div>
+    <ui-markdown :text="code[4]"></ui-markdown>
 
     // TODO
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      demoCount: 5,
+      code: []
+    };
+  },
+  created() {
+    for (let i = 1; i <= this.demoCount; i++) {
+      let code = require(`../snippets/card/demo${i}.md`);
+      this.code.push(code);
+    }
+  }
+};
+</script>

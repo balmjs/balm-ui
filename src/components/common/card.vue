@@ -7,6 +7,9 @@
     <div v-if="!hideFooter" :class="className.footer">
       <slot name="footer"></slot>
     </div>
+    <div v-if="hasMenu" class="mdl-card__menu">
+      <slot name="menu"></slot>
+    </div>
   </div>
 </template>
 
@@ -29,7 +32,7 @@ export default {
     // Assigns variable shadow depths (2, 3, 4, 6, 8, or 16) to card
     dp: {
       type: [Number, String],
-      default: 0
+      default: 2
     },
     expand: {
       type: Boolean,
@@ -40,6 +43,10 @@ export default {
       default: false
     },
     hideFooter: {
+      type: Boolean,
+      default: false
+    },
+    hasMenu: {
       type: Boolean,
       default: false
     }

@@ -5,19 +5,69 @@
       <p>Self-contained pieces of paper with data.</p>
     </div>
 
+    <h4>Wide</h4>
     <div class="snippet-group">
       <div class="snippet-demo">
-        <ui-card :dp="2">
+        <ui-card class="demo-card-wide" border hasMenu>
           <template slot="header" scope="props">
-            <h2 :class="props.className.title">Title</h2>
-            <h3 :class="props.className.subtitle">Subtitle</h3>
+            <h2 :class="props.className.title">Welcome</h2>
           </template>
           <template scope="props">
-            <div :class="props.className.media">Media</div>
-            <div :class="props.className.text">Text</div>
+            <div :class="props.className.text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia...
+            </div>
           </template>
           <template slot="footer">
-            Actions
+            <ui-button colored effect>Get Started</ui-button>
+          </template>
+          <template slot="menu">
+            <ui-button icon="share" effect></ui-button>
+          </template>
+        </ui-card>
+      </div>
+    </div>
+
+    <h4>Square</h4>
+    <div class="snippet-group">
+      <div class="snippet-demo">
+        <ui-card class="demo-card-square" expand border>
+          <template slot="header" scope="props">
+            <h2 :class="props.className.title">Update</h2>
+          </template>
+          <template scope="props">
+            <div :class="props.className.text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis.
+            </div>
+          </template>
+          <template slot="footer">
+            <ui-button colored effect>View Updates</ui-button>
+          </template>
+        </ui-card>
+      </div>
+    </div>
+
+    <h4>Image & Event</h4>
+    <div class="snippet-group">
+      <div class="snippet-demo">
+        <ui-card class="demo-card-image" expand>
+          <template slot="footer">
+            <span class="demo-card-image__filename">Image.jpg</span>
+          </template>
+        </ui-card>
+      </div>
+      <div class="snippet-demo">
+        <ui-card class="demo-card-event" expand border>
+          <template slot="header">
+            <h4>
+              Featured event:<br>
+              May 24, 2016<br>
+              7-11pm
+            </h4>
+          </template>
+          <template slot="footer">
+            <ui-button colored effect>Add to Calendar</ui-button>
+            <div class="mdl-layout-spacer"></div>
+            <i class="material-icons">event</i>
           </template>
         </ui-card>
       </div>
@@ -26,12 +76,17 @@
     <h4>A card (no shadow) with a title, image, text, and action.</h4>
     <div class="snippet-group">
       <div class="snippet-demo">
-        <ui-card :dp="2">
+        <ui-card>
           <template slot="header" scope="props">
-            <h2 :class="props.className.title">Auckland Sky Tower<br>Auckland, New Zealand</h2>
+            <h2 :class="props.className.title">
+              Auckland Sky Tower<br>
+              Auckland, New Zealand
+            </h2>
           </template>
           <template scope="props">
-            <div :class="props.className.text">The Sky Tower is an observation and telecommunications tower located in Auckland, New Zealand. It is 328 metres (1,076 ft) tall, making it the tallest man-made structure in the Southern Hemisphere.</div>
+            <div :class="props.className.text">
+              The Sky Tower is an observation and telecommunications tower located in Auckland, New Zealand. It is 328 metres (1,076 ft) tall, making it the tallest man-made structure in the Southern Hemisphere.
+            </div>
           </template>
           <template slot="footer">
             <a href="http://en.wikipedia.org/wiki/Sky_Tower_%28Auckland%29">Wikipedia entry</a>
@@ -54,9 +109,6 @@
             <div :class="props.className.text">
               The Sky Tower is an observation and telecommunications tower located in Auckland, New Zealand. It is 328 metres (1,076 ft) tall, making it the tallest man-made structure in the Southern Hemisphere.
             </div>
-          </template>
-          <template slot="footer">
-            <a href="http://en.wikipedia.org/wiki/Sky_Tower_%28Auckland%29">Wikipedia entry</a>
           </template>
         </ui-card>
       </div>

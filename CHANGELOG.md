@@ -32,6 +32,7 @@ __`<ui-loading>`__
 ### Update docs
 
 - __`<ui-textfield>`__
+- __`<ui-card>`__
 
 ---
 

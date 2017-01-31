@@ -4,6 +4,7 @@
       :id="id"
       :name="name"
       :value="value"
+      :disabled="disabled"
       v-model="currentValue"
       @change="handleChange">
     <span class="mdl-switch__label">
@@ -33,6 +34,10 @@ export default {
     effect: {
       type: Boolean,
       default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -45,7 +50,8 @@ export default {
       return {
         'mdl-switch': true,
         'mdl-js-switch': true,
-        'mdl-js-ripple-effect': this.effect
+        'mdl-js-ripple-effect': this.effect,
+        'mdl-switch--disabled': this.disabled
       };
     }
   },

@@ -4,6 +4,7 @@
       :id="id"
       :name="name"
       :value="value"
+      :disabled="disabled"
       v-model="currentValue"
       @change="handleChange">
     <span class="mdl-icon-toggle__label">
@@ -37,6 +38,10 @@ export default {
     effect: {
       type: Boolean,
       default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -50,7 +55,8 @@ export default {
       return {
         'mdl-icon-toggle': true,
         'mdl-js-icon-toggle': true,
-        'mdl-js-ripple-effect': this.effect
+        'mdl-js-ripple-effect': this.effect,
+        'mdl-icon-toggle--disabled': this.disabled
       };
     }
   },

@@ -4,6 +4,7 @@
       :id="id"
       :name="name"
       :value="value"
+      :disabled="disabled"
       v-model="currentValue"
       @change="handleChange">
     <span class="mdl-radio__label" v-if="!hideLabel">
@@ -38,6 +39,10 @@ export default {
     effect: {
       type: Boolean,
       default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -51,6 +56,7 @@ export default {
         'mdl-radio': true,
         'mdl-js-radio': true,
         'mdl-js-ripple-effect': this.effect,
+        'mdl-radio--disabled': this.disabled,
         'is-upgraded': true,
         'is-checked': this.isChecked
       };

@@ -4,6 +4,7 @@
       :id="id"
       :name="name"
       :value="value"
+      :disabled="disabled"
       v-model="currentValue"
       @change="handleChange">
     <span class="mdl-checkbox__label" v-if="!hideLabel">
@@ -40,6 +41,10 @@ export default {
       type: Boolean,
       default: false
     },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
     filled: {
       type: Boolean,
       default: false
@@ -56,6 +61,7 @@ export default {
         'mdl-checkbox': true,
         'mdl-js-checkbox': true,
         'mdl-js-ripple-effect': this.effect,
+        'mdl-checkbox--disabled': this.disabled,
         'is-upgraded': true,
         'is-checked': this.isChecked,
         'is-filled': this.filled

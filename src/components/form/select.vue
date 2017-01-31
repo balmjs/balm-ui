@@ -1,6 +1,9 @@
 <template>
   <div :class="className">
-    <ui-menu isSelect :menu="currentOptions" @clicked="handleChange">
+    <ui-menu isSelect
+      :menu="currentOptions"
+      :disabled="disabled"
+      @clicked="handleChange">
       <template slot="icon">
         <span :class="{'placeholder': !selected}">{{ selected || placeholder }}</span>
         <i class="material-icons">{{ expand }}</i>
@@ -44,8 +47,8 @@ export default {
     className() {
       return {
         'mdl-select': true,
-        'is-expand': this.isExpand,
-        'mdl-select--disabled': this.disabled // TODO
+        'mdl-select--disabled': this.disabled,
+        'is-expand': this.isExpand
       };
     },
     currentOptions() {
@@ -102,16 +105,7 @@ export default {
         key: option.value,
         value: option.label
       });
-    },
-    bindKeyboard() {
-
-    },
-    unbindKeyboard() {
-
     }
-  },
-  mounted() {
-    this.bindKeyboard();
   }
 };
 </script>

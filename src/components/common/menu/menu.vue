@@ -2,7 +2,8 @@
   <div class="mdl-menu-container">
     <button ref="button"
       class="mdl-button mdl-js-button mdl-button--icon"
-      :id="`menu-${name}`">
+      :id="`menu-${name}`"
+      :disabled="disabled">
       <slot name="icon">
         <i class="material-icons">icon</i>
       </slot>
@@ -57,6 +58,10 @@ export default {
     },
     // Applies ripple click effect to option links
     effect: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
       type: Boolean,
       default: false
     },

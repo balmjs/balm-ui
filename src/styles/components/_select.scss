@@ -55,4 +55,12 @@
       background-color: white;
     }
   }
+  &.mdl-select--disabled {
+    .mdl-button {
+      cursor: default;
+      color: $button-secondary-color-disabled;
+      border-color: $input-text-bottom-border-color;
+      background-color: $button-primary-color-disabled;
+    }
+  }
 }

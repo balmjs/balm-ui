@@ -36,6 +36,11 @@
     "default": "false",
     "description": "Applies ripple click effect"
   }, {
+    "name": "disabled",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Applies disabled display effect"
+  }, {
     "name": "filled",
     "type": "Boolean",
     "default": "false",

@@ -1,8 +1,10 @@
 <template>
-  <input class="mdl-slider mdl-js-slider" type="range"
+  <input type="range"
+    :class="className"
     :min="min"
     :max="max"
     :step="step"
+    :disabled="disabled"
     v-model="currentValue"
     @change="handleChange">
 </template>
@@ -30,12 +32,25 @@ export default {
     step: {
       type: Number,
       default: 1
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
       currentValue: +this.model
     };
+  },
+  computed: {
+    className() {
+      return {
+        'mdl-slider': true,
+        'mdl-js-slider': true,
+        'mdl-slider--disabled': this.disabled
+      };
+    }
   },
   watch: {
     model(val) {

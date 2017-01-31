@@ -24,6 +24,11 @@ __`<ui-checkbox>`__
 
 __`<ui-loading>`__
 
+__`<ui-table>`__
+
+- add props `selectIndex`
+- detailView bugfix
+
 ### New components
 
 [x] __`<ui-select>`__

@@ -152,8 +152,8 @@ export default {
       this.table2.checkboxList = data;
     },
     viewDetail(data) {
-      console.log('detail', data);
-      this.table2.tableDetail +=  ('-' + data.name);
+      // console.log('detail', data);
+      this.table2.tableDetail +=  ('-' + data.id);
     }
   },
   created() {

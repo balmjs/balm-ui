@@ -2,10 +2,10 @@
   <table class="mdl-data-table mdl-js-data-table">
     <caption v-if="caption">{{ caption }}</caption>
     <colgroup v-if="currentCol">
-      <col v-for="i in currentCol" :class="`col-${i}`">
+      <col v-for="col in currentCol" :class="`col-${col}`">
     </colgroup>
-    <slot name="thead" :data="theadData">
-      <thead>
+    <thead>
+      <slot name="thead" :data="theadData">
         <tr v-for="row in theadData">
           <th v-for="cell in row"
             :colspan="cell.col"
@@ -23,14 +23,17 @@
               @change="onCheckAll"></ui-checkbox>
           </th>
         </tr>
-      </thead>
-    </slot>
-    <slot name="tbody" :data="tbodyData">
-      <tbody>
+      </slot>
+    </thead>
+    <tbody>
+      <slot name="tbody" :data="tbodyData">
         <tr v-if="tbodyData.length"
           v-for="(row, index) in tbodyData"
           :key="index"
-          :class="{'selected': isSelected(row), 'detail-view': isDetailView(index)}">
+          :class="{
+            'selected': isSelected(row, index),
+            'detail-view': isDetailView(index)
+          }">
           <td v-for="cell in row"
             :colspan="cell.col"
             :rowspan="cell.row"
@@ -42,7 +45,7 @@
               @click="viewDetail(index, cell)">{{ cell.show ? 'remove' : 'add' }}</i>
             <ui-checkbox name="checkOne[]"
               v-if="cell.isCheckbox"
-              :value="index"
+              :value="selectIndex ? getSelectIndex(index) : cell.value"
               :model="currentCheckboxList"
               @change="onCheckOne"></ui-checkbox>
             <div v-if="cell.isAction">
@@ -60,18 +63,18 @@
         <tr v-if="!tbodyData.length">
           <td class="mdl-no-data-table" :colspan="currentCol">{{ noData }}</td>
         </tr>
-      </tbody>
-    </slot>
-    <slot name="tfoot" :data="tfootData">
-      <tfoot v-if="tfootData.length">
+      </slot>
+    </tbody>
+    <tfoot v-if="tfootData.length">
+      <slot name="tfoot" :data="tfootData">
         <tr>
           <td v-for="cell in tfootData"
             :colspan="cell.col"
             :rowspan="cell.row"
             :class="cell.class">{{ cell.value }}</td>
         </tr>
-      </tfoot>
-    </slot>
+      </slot>
+    </tfoot>
   </table>
 </template>
 
@@ -82,7 +85,7 @@ import UiButton from '../common/button';
 import UiCheckbox from '../form/checkbox';
 
 const DEFAULTS = {
-  detailViewIndex: -2
+  detailViewIndex: -1
 };
 const T_HEAD = 'thead';
 const T_BODY = 'tbody';
@@ -158,6 +161,10 @@ export default {
     },
     selectable: {
       type: [String, Boolean],
+      default: false
+    },
+    selectIndex: {
+      type: Boolean,
       default: false
     },
     checkboxList: {
@@ -285,7 +292,7 @@ export default {
               switch (data.name.toLowerCase()) {
                 case AGGREGATE_COUNT:
                   result = data[CELL_DATA].length;
-                  if (this.currentDetailIndex > -1) {
+                  if (this.currentDetailIndex > DEFAULTS.detailViewIndex) {
                     result += 1;
                   }
                   break;
@@ -347,11 +354,12 @@ export default {
     getCheckbox(type, result, value = 1) {
       if (this.selectable) {
         let cell = {};
+        let isCheckbox = !!this.currentData.length;
 
         switch (type) {
           case T_HEAD:
             cell = {
-              isCheckbox: this.currentData.length
+              isCheckbox
             };
             if (value > 1) {
               cell.row = value; // row number
@@ -359,8 +367,8 @@ export default {
             break;
           case T_BODY:
             cell = {
-              isCheckbox: this.currentData.length,
-              value: value // data[this.keyField]
+              isCheckbox,
+              value // data[this.keyField]
             };
             break;
         }
@@ -405,7 +413,7 @@ export default {
 
       return result;
     },
-    getDetailView(type, result, key = -1, value = '') {
+    getDetailView(type, result, key = DEFAULTS.detailViewIndex, value = '') {
       if (this.detailView) {
         let cell = {};
 
@@ -472,7 +480,7 @@ export default {
             }
             // add checkbox
             let rowspan = isArray(table[0]) ? table.length : 1;
-            result[0] = this.getCheckbox(type, result[0], rowspan); // TODO: bug
+            result[0] = this.getCheckbox(type, result[0], rowspan);
             // add plus
             result[0] = this.getDetailView(type, result[0], table.length);
             break;
@@ -544,15 +552,15 @@ export default {
     checkAll() {
       let notEmpty = this.currentDataCount;
       let beEqual = this.currentCheckboxList.length === this.currentDataCount;
-      let ids = this.currentData.map((value, index) => index);
+      let ids = this.currentData.filter(value => !value[CELL_DETAIL_VIEW]).map((value, index) => this.selectIndex ? index : value[this.keyField]);
       let exists = this.currentCheckboxList.every(id => ids.indexOf(id) > -1);
 
       this.isCheckAll = notEmpty && beEqual && exists;
     },
-    isSelected(rowData) {
+    isSelected(rowData, index) {
       let cell = rowData.find(cell => cell.isCheckbox);
       let result = cell
-        ? (this.currentCheckboxList.indexOf(cell.value) > -1)
+        ? this.currentCheckboxList.indexOf(this.selectIndex ? index : cell.value) > -1
         : false;
 
       return result;
@@ -592,7 +600,6 @@ export default {
       }
     },
     viewDetail(currentIndex, cell) {
-      // TODO: checkbox list
       if (cell.show) {
         this.resetData(currentIndex);
       } else {
@@ -638,6 +645,15 @@ export default {
       let hasDetailViewRow = this.currentDetailViewIndex + 1 > 0;
       let isDetailViewRow = index === this.currentDetailViewIndex + 1;
       return hasDetailViewRow && isDetailViewRow;
+    },
+    getSelectIndex(currentIndex) {
+      let result = currentIndex;
+
+      if (this.currentDetailViewIndex > DEFAULTS.detailViewIndex & currentIndex > this.currentDetailViewIndex) {
+        result -= 1;
+      }
+
+      return result;
     }
   },
   watch: {
@@ -658,7 +674,7 @@ export default {
         : this.currentCheckboxList;
 
       this.currentCheckboxList = val
-        ? this.currentData.map((value, index) => index)
+        ? this.currentData.filter(value => !value[CELL_DETAIL_VIEW]).map((value, index) => this.selectIndex ? index : value[this.keyField])
         : lastCheckList;
     },
     thead(val) {

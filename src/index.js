@@ -38,7 +38,8 @@ import UiSelect from './components/form/select';
 /**
  * Data
  */
-import UiList from './components/data/list';
+import UiList from './components/data/list/list';
+import UiItem from './components/data/list/item';
 import UiTable from './components/data/table';
 /**
  * Popup
@@ -78,6 +79,7 @@ const BalmUI = {
   UiSelect,
   // Data
   UiList,
+  UiItem,
   UiTable,
   // Popup
   UiDialog,

@@ -28,11 +28,12 @@ __`<ui-loading>`__
 
 [x] __`<ui-select>`__
 [x] __`<ui-card>`__
+[x] __`<ui-list>`__
+[x] __`<ui-item>`__
 
 ### Update docs
 
 - __`<ui-textfield>`__
-- __`<ui-card>`__
 
 ---
 

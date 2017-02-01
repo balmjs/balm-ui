@@ -16,6 +16,8 @@ import UiMarkdown from './components/markdown';
 import 'prismCss';
 import prismjs from 'prismjs';
 
+const DEBUG = true; // when build docs, use `false`
+
 Vue.use(VueRouter);
 Vue.use(VueI18n);
 Vue.use(BalmUI);
@@ -41,6 +43,7 @@ Vue.prototype.$docs = {
     tbody: ['name', 'description']
   }
 };
+Vue.prototype.$domain = DEBUG ? '' : '/ui-vue';
 
 // ready translated locales
 import { locales } from './config/lang';

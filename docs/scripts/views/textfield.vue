@@ -61,8 +61,7 @@
 
     <h4>{{ $t('textfield.expand') }}</h4>
     <div class="snippet-demo">
-      <ui-autocomplete url="/data/autocomplete.json"
-        :model="text9"
+      <ui-autocomplete :url="url" :model="text9"
         @input.native="onInputChange('text9', $event)"
         @change="onChangeInput"></ui-autocomplete>
     </div>
@@ -115,6 +114,7 @@ export default {
       text6: '',
       text7: '',
       text8: '',
+      url: `${this.$domain}/data/autocomplete.json`,
       text9: '',
       demoCount: 8,
       code: [],

@@ -42,8 +42,6 @@
 </template>
 
 <script>
-import dataList from '../../data/table';
-
 export default {
   data() {
     return {
@@ -185,11 +183,11 @@ export default {
       this.code.push(code);
     }
   },
-  mounted() {
-    setTimeout(() => {
-      this.table1.data = dataList;
-      this.table2.data = dataList;
-    }, 1000);
+  async mounted() {
+    let response = await this.$http.get(`${this.$domain}/data/table.json`);
+    let dataList = response.data;
+    this.table1.data = dataList;
+    this.table2.data = dataList;
   }
 };
 </script>

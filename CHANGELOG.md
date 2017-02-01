@@ -26,8 +26,9 @@ __`<ui-loading>`__
 
 __`<ui-table>`__
 
-- add props `selectIndex`
+- add props `selectKeyField`
 - detailView bugfix
+- rename props `detailView` to `hasDetailView`
 
 ### New components
 

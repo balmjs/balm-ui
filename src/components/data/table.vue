@@ -4,6 +4,7 @@
     <colgroup v-if="currentCol">
       <col v-for="col in currentCol" :class="`col-${col}`">
     </colgroup>
+    <!-- Table Head -->
     <thead>
       <slot name="thead" :data="theadData">
         <tr v-for="row in theadData">
@@ -25,6 +26,7 @@
         </tr>
       </slot>
     </thead>
+    <!-- Table Body -->
     <tbody>
       <slot name="tbody" :data="tbodyData">
         <tr v-if="tbodyData.length"
@@ -38,16 +40,20 @@
             :colspan="cell.col"
             :rowspan="cell.row"
             :class="cell.class">
+            <!-- Data View -->
             <div v-if="!(cell.isPlus || cell.isCheckbox || cell.isAction || isDetailView(index)) && !cell.raw">{{ cell.value }}</div>
             <div v-if="!(cell.isPlus || cell.isCheckbox || cell.isAction || isDetailView(index)) && cell.raw" v-html="cell.value"></div>
+            <!-- Detail View Control -->
             <i class="material-icons"
               v-if="cell.isPlus"
               @click="viewDetail(index, cell)">{{ cell.show ? 'remove' : 'add' }}</i>
+            <!-- Checkbox -->
             <ui-checkbox name="checkOne[]"
               v-if="cell.isCheckbox"
-              :value="selectIndex ? getSelectIndex(index) : cell.value"
+              :value="selectKeyField ? cell.value : getSelectIndex(index)"
               :model="currentCheckboxList"
               @change="onCheckOne"></ui-checkbox>
+            <!-- Actions -->
             <div v-if="cell.isAction">
               <ui-button
                 v-for="action in cell.actions"
@@ -57,21 +63,29 @@
                 <span v-if="!action.icon" v-html="action.value"></span>
               </ui-button>
             </div>
-            <div class="mdl-data-table__detail-view" v-if="isDetailView(index)">{{ currentDetailViewData }}</div>
+            <!-- Detail View -->
+            <div v-if="isDetailView(index)" class="mdl-data-table__detail-view">
+              <slot name="detail"></slot>
+            </div>
           </td>
         </tr>
+        <!-- No Data -->
         <tr v-if="!tbodyData.length">
           <td class="mdl-no-data-table" :colspan="currentCol">{{ noData }}</td>
         </tr>
       </slot>
     </tbody>
+    <!-- Table Foot -->
     <tfoot v-if="tfootData.length">
       <slot name="tfoot" :data="tfootData">
         <tr>
           <td v-for="cell in tfootData"
             :colspan="cell.col"
             :rowspan="cell.row"
-            :class="cell.class">{{ cell.value }}</td>
+            :class="cell.class">
+            <div v-if="!cell.raw">{{ cell.value }}</div>
+            <div v-if="cell.raw" v-html="cell.value"></div>
+          </td>
         </tr>
       </slot>
     </tfoot>
@@ -80,7 +94,7 @@
 
 <script>
 import '../../material-design-lite/data-table/data-table';
-import {isString, isObject, isArray} from '../utils/helper';
+import {isString, isObject, isArray, isFunction} from '../utils/helper';
 import UiButton from '../common/button';
 import UiCheckbox from '../form/checkbox';
 
@@ -163,7 +177,7 @@ export default {
       type: [String, Boolean],
       default: false
     },
-    selectIndex: {
+    selectKeyField: {
       type: Boolean,
       default: false
     },
@@ -177,11 +191,10 @@ export default {
       type: String,
       default: 'No Data'
     },
-    detailView: {
+    hasDetailView: {
       type: Boolean,
       default: false
-    },
-    detailViewData: String
+    }
   },
   data() {
     return {
@@ -189,8 +202,7 @@ export default {
       currentCheckboxList: this.checkboxList,
       currentData: this.data,
       currentThead: this.thead,
-      currentDetailViewIndex: DEFAULTS.detailViewIndex,
-      currentDetailViewData: this.detailViewData
+      currentDetailViewIndex: DEFAULTS.detailViewIndex
     };
   },
   computed: {
@@ -205,7 +217,7 @@ export default {
         result += 1;
       }
 
-      if (this.detailView) {
+      if (this.hasDetailView) {
         result += 1;
       }
 
@@ -254,9 +266,12 @@ export default {
         }
         // class attribute
         let className = [];
-        // TODO: when is function?
-        if (data[CELL_CLASS]) {
-          className.push(data[CELL_CLASS]);
+        let _className = data[CELL_CLASS];
+        if (_className) {
+          if (isFunction(_className)) {
+            _className = _className(this.currentData[index], index);
+          }
+          className.push(_className);
         }
         if (data.noNum) {
           className.push(CLASSNAME_NON_NUMERIC);
@@ -336,6 +351,8 @@ export default {
             }
             fn = data[CELL_FUNCTION];
             cell[CELL_VALUE] = fn ? fn(result) : Math.round(result * 100) / 100;
+            // dangerously set innerHTML
+            cell[CELL_RAW] = data[CELL_RAW];
             break;
           default: // T_BODY
             fn = data[CELL_FUNCTION];
@@ -414,7 +431,7 @@ export default {
       return result;
     },
     getDetailView(type, result, key = DEFAULTS.detailViewIndex, value = '') {
-      if (this.detailView) {
+      if (this.hasDetailView) {
         let cell = {};
 
         switch (type) {
@@ -552,7 +569,7 @@ export default {
     checkAll() {
       let notEmpty = this.currentDataCount;
       let beEqual = this.currentCheckboxList.length === this.currentDataCount;
-      let ids = this.currentData.filter(value => !value[CELL_DETAIL_VIEW]).map((value, index) => this.selectIndex ? index : value[this.keyField]);
+      let ids = this.currentData.filter(value => !value[CELL_DETAIL_VIEW]).map((value, index) => this.selectKeyField ? value[this.keyField] : index);
       let exists = this.currentCheckboxList.every(id => ids.indexOf(id) > -1);
 
       this.isCheckAll = notEmpty && beEqual && exists;
@@ -560,7 +577,7 @@ export default {
     isSelected(rowData, index) {
       let cell = rowData.find(cell => cell.isCheckbox);
       let result = cell
-        ? this.currentCheckboxList.indexOf(this.selectIndex ? index : cell.value) > -1
+        ? this.currentCheckboxList.indexOf(this.selectKeyField ? cell.value : index) > -1
         : false;
 
       return result;
@@ -597,6 +614,11 @@ export default {
           let index = data[CELL_INDEX].split(',');
           this.currentThead[index[0]][index[1]][CELL_SORT] = currentSort;
         }
+      }
+
+      if (!this.selectKeyField) {
+        this.currentCheckboxList = [];
+        this.$emit(EVENT_SELECTED, []);
       }
     },
     viewDetail(currentIndex, cell) {
@@ -674,14 +696,11 @@ export default {
         : this.currentCheckboxList;
 
       this.currentCheckboxList = val
-        ? this.currentData.filter(value => !value[CELL_DETAIL_VIEW]).map((value, index) => this.selectIndex ? index : value[this.keyField])
+        ? this.currentData.filter(value => !value[CELL_DETAIL_VIEW]).map((value, index) => this.selectKeyField ? value[this.keyField] : index)
         : lastCheckList;
     },
     thead(val) {
       this.currentThead = val;
-    },
-    detailViewData(val) {
-      this.currentDetailViewData = val;
     }
   },
   created() {

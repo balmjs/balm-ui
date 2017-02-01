@@ -31,9 +31,11 @@
       @edit="onEdit"
       @delete="onDelete"
       @selected="onSelected"
-      detailView
-      :detailViewData="table2.tableDetail"
-      @view-detail="viewDetail">
+      hasDetailView
+      @view-detail="onViewDetail">
+      <div slot="detail">
+        {{ table2.tableDetail }}
+      </div>
     </ui-table>
     <ui-markdown :text="code[1]"></ui-markdown>
   </div>
@@ -77,14 +79,19 @@ export default {
             class: 'data-info'
           }, {
             value: 'Operate',
-            row: 2
+            row: 2,
+            align: 'center'
           }],
           [{
             value: 'ID',
             sort: 'asc',
-            by: 'id'
+            by: 'id',
+            align: 'center'
           },
-          'Name',
+          {
+            value: 'Name',
+            align: 'left'
+          },
           'Quantity',
           'Price']
         ],
@@ -95,15 +102,26 @@ export default {
           },
           {
             field: 'name',
-            class: 'test',
             noNum: true,
             raw: true,
             fn: function(data, index) {
               return data.name + '!' + '<i class="material-icons">mood</i>';
             }
           },
-          'quantity',
-          'price'
+          {
+            field: 'quantity',
+            class: data => {
+              return data.quantity > 20 ? 'green' : 'red';
+            }
+          },
+          {
+            field: 'price',
+            raw: true,
+            fn: data => {
+              let price = data.price.toFixed(2);
+              return `<b style="color:gold">$</b>${price}`;
+            }
+          }
         ],
         tfoot: [
           null,
@@ -114,7 +132,12 @@ export default {
           },
           {
             name: 'avg',
-            field: 'price'
+            field: 'price',
+            raw: true,
+            fn: result => {
+              let price = result.toFixed(3);
+              return `<b style="color:gold">$</b>${price}`;
+            }
           }
         ],
         action: [{
@@ -151,7 +174,7 @@ export default {
     onSelected(data) {
       this.table2.checkboxList = data;
     },
-    viewDetail(data) {
+    onViewDetail(data) {
       // console.log('detail', data);
       this.table2.tableDetail +=  ('-' + data.id);
     }

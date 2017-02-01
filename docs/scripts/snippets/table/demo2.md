@@ -12,9 +12,11 @@
   @edit="onEdit"
   @delete="onDelete"
   @selected="onSelected"
-  detailView
-  :detailViewData="tableDetail"
-  @view-detail="viewDetail">
+  hasDetailView
+  @view-detail="onViewDetail">
+  <div slot="detail">
+    {{ tableDetail }}
+  </div>
 </ui-table>
 ```
 
@@ -23,6 +25,7 @@ export default {
   data() {
     return {
       data: [],
+      caption: 'Table Caption',
       thead: [
         [{
           value: 'Base Info',
@@ -34,14 +37,19 @@ export default {
           class: 'data-info'
         }, {
           value: 'Operate',
-          row: 2
+          row: 2,
+          align: 'center'
         }],
         [{
           value: 'ID',
           sort: 'asc',
-          by: 'id'
+          by: 'id',
+          align: 'center'
         },
-        'Name',
+        {
+          value: 'Name',
+          align: 'left'
+        },
         'Quantity',
         'Price']
       ],
@@ -52,15 +60,26 @@ export default {
         },
         {
           field: 'name',
-          class: 'test',
           noNum: true,
           raw: true,
-          fn: function(data) {
-            return data + '!';
+          fn: function(data, index) {
+            return data.name + '!' + '<i class="material-icons">mood</i>';
           }
         },
-        'quantity',
-        'price'
+        {
+          field: 'quantity',
+          class: data => {
+            return data.quantity > 20 ? 'green' : 'red';
+          }
+        },
+        {
+          field: 'price',
+          raw: true,
+          fn: data => {
+            let price = data.price.toFixed(2);
+            return `<b style="color:gold">$</b>${price}`;
+          }
+        }
       ],
       tfoot: [
         null,
@@ -71,24 +90,30 @@ export default {
         },
         {
           name: 'avg',
-          field: 'price'
+          field: 'price',
+          raw: true,
+          fn: result => {
+            let price = result.toFixed(3);
+            return `<b style="color:gold">$</b>${price}`;
+          }
         }
       ],
       action: [{
         type: 'link',
-        name: 'view', // @view
+        name: 'view',
         value: 'View'
       }, {
         type: 'icon',
-        name: 'edit', // @edit
+        name: 'edit',
         value: '<i class="material-icons">mood</i>'
       }, {
         type: 'button',
-        name: 'delete', // @delete
+        name: 'delete',
         value: 'Delete'
       }],
-      selectable: true,
-      checkboxList: []
+      selectable: 'left',
+      checkboxList: [],
+      tableDetail: 'Hello'
     }
   },
   methods: {
@@ -103,6 +128,10 @@ export default {
     },
     onSelected(data) {
       this.checkboxList = data;
+    },
+    onViewDetail(data) {
+      // console.log('detail', data);
+      this.tableDetail +=  ('-' + data.id);
     }
   }
 };

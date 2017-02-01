@@ -4,12 +4,13 @@
       <h3>Select</h3>
     </div>
 
-    // TODO
     <div class="snippet-demo">
       <ui-select :value="options1" :model="selected1" defaultValue="全部" @change="onChange1"></ui-select>
       <ui-select :value="options2" :model="selected2" @change="onChange2"></ui-select>
     </div>
     <ui-markdown :text="code[0]"></ui-markdown>
+
+    // TODO
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="mdl-snackbar mdl-js-snackbar"
+  <div :class="['mdl-snackbar mdl-js-snackbar', {'mdl-snackbar--active': active}]"
     aria-live="assertive"
     aria-atomic="true"
     aria-relevant="text"
@@ -11,16 +11,18 @@
 
 <script>
 import '../../material-design-lite/snackbar/snackbar';
+import {isString} from '../utils/helper';
 
-const TOAST = 0;
-const SNACKBAR = 1;
+const TYPES = ['toast', 'snackbar'];
+const TYPE_TOAST = 0;
+const TYPE_SNACKBAR = 1;
 const EVENT_DONE = 'done';
 
 export default {
   name: 'ui-snackbar',
   props: {
     type: {
-      type: Number,
+      type: [Number, String],
       default: 0
     },
     // Marks the snackbar as active which causes it to display.
@@ -45,12 +47,14 @@ export default {
   },
   data() {
     return {
+      currentActive: this.active,
       currentMessage: this.message
     };
   },
   computed: {
     isSnackbar() {
-      return +this.type === SNACKBAR;
+      let type = isString(this.type) ? TYPES[TYPE_SNACKBAR] : TYPE_SNACKBAR;
+      return this.type === type;
     }
   },
   watch: {
@@ -58,8 +62,9 @@ export default {
       this.currentMessage = val;
     },
     active(val) {
-      if (val) {
-        this.show(val);
+      if (!this.currentActive && val) {
+        this.currentActive = val;
+        this.show();
       }
     }
   },
@@ -71,13 +76,14 @@ export default {
       };
 
       if (this.isSnackbar) {
-        data.actionHandler = this.actionHandler; // TODO: has bug
+        data.actionHandler = this.actionHandler;
         data.actionText = this.actionText;
       }
 
       this.$refs.popup.MaterialSnackbar.showSnackbar(data);
 
       setTimeout(() => {
+        this.currentActive = false;
         this.$emit(EVENT_DONE);
       }, this.timeout);
     }

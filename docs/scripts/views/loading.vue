@@ -5,7 +5,6 @@
       <p>Indicate loading and progress states.</p>
     </div>
 
-    // TODO
     <div class="snippet-group">
       <div class="snippet-demo">
         <ui-loading isActive></ui-loading>
@@ -19,6 +18,8 @@
       </div>
     </div>
     <ui-markdown :text="code[1]"></ui-markdown>
+
+    // TODO
   </div>
 </template>
 

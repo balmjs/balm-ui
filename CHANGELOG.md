@@ -30,6 +30,10 @@ __`<ui-table>`__
 - detailView bugfix
 - rename props `detailView` to `hasDetailView`
 
+__`<ui-snackbar>`__
+
+- action handler bugfix
+
 ### New components
 
 [x] __`<ui-select>`__
@@ -43,6 +47,7 @@ __`<ui-table>`__
 - __`<ui-textfield>`__
 - __`<ui-card>`__
 - __`<ui-list>`__
+- __`<ui-snackbar>`__
 
 ---
 

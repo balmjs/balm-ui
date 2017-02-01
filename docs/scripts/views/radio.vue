@@ -4,7 +4,6 @@
       <h3>Radio button</h3>
     </div>
 
-    // TODO
     <div class="snippet-group">
       <div class="snippet-demo">
         <ui-radio name="sex" value="M" :model="gender" @change="chooseSex">Male</ui-radio>
@@ -16,6 +15,8 @@
     <ui-button @click.native="onWatchSex('M')">choose Male</ui-button>
     <ui-button @click.native="onWatchSex('F')">choose Female</ui-button>
     <ui-markdown :text="code[0]"></ui-markdown>
+
+    // TODO
   </div>
 </template>
 

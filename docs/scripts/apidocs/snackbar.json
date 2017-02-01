@@ -1,5 +1,10 @@
 {
   "props": [{
+    "name": "type",
+    "type": "Number, String",
+    "default": "0",
+    "description": "The snackbar type"
+  }, {
     "name": "active",
     "type": "Boolean",
     "default": "false",
@@ -14,6 +19,16 @@
     "type": "Number",
     "default": "2750",
     "description": "The amount of time in milliseconds to show the snackbar"
+  }, {
+    "name": "actionHandler",
+    "type": "Function",
+    "default": "",
+    "description": "The function to execute when the action is clicked"
+  }, {
+    "name": "actionText",
+    "type": "String",
+    "default": "",
+    "description": "The text to display for the action button"
   }],
   "slots": [{
     "name": "(default)",

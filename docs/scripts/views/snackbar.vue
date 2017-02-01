@@ -7,15 +7,23 @@
 
     <h4>Toast</h4>
     <div class="snippet-demo">
-      <ui-button raised effect @click.native="show('toast')">Show</ui-button>
+      <ui-button raised effect @click.native="show('toast')">Show Toast</ui-button>
       <ui-snackbar :active="toast.active" :message="toast.message" @done="hide('toast')"></ui-snackbar>
     </div>
     <ui-markdown :text="code[0]"></ui-markdown>
 
     <h4>snackbar</h4>
     <div class="snippet-demo">
-      // TODO
+      <ui-button raised effect @click.native="show('snackbar')">Show Snackbar</ui-button>
+      <ui-snackbar :type="1"
+        :active="snackbar.active"
+        :message="snackbar.message"
+        :timeout="3000"
+        :actionHandler="actionHandler"
+        actionText="Undo"
+        @done="hide('snackbar')"></ui-snackbar>
     </div>
+    <ui-markdown :text="code[1]"></ui-markdown>
 
     <h4>Snackbar API</h4>
     <ui-tabs effect position="left" :active="docs.tab" @switched="onChange">
@@ -55,9 +63,13 @@ export default {
     return {
       toast: {
         active: false,
-        message: 'Hello BalmUI'
+        message: 'Hello Toast'
       },
-      demoCount: 1,
+      snackbar: {
+        active: false,
+        message: 'Hello Snackbar'
+      },
+      demoCount: 2,
       code: [],
       docs: {
         tab: 0,
@@ -82,9 +94,13 @@ export default {
   methods: {
     show(type) {
       this[type].active = true;
+      this.snackbar.message = new Date().toString();
     },
     hide(type) {
       this[type].active = false;
+    },
+    actionHandler() {
+      this.snackbar.active = false;
     },
     onChange(tab) {
       this.docs.tab = tab;

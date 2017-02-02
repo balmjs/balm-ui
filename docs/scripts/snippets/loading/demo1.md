@@ -1,7 +1,7 @@
 ```html
-<ui-loading isActive></ui-loading>
+<ui-loading active></ui-loading>
 <!-- or -->
-<ui-loading :type="0" isActive></ui-loading>
+<ui-loading :type="0" active></ui-loading>
 <!-- or -->
-<ui-loading type="spinner" isActive></ui-loading>
+<ui-loading type="spinner" active></ui-loading>
 ```

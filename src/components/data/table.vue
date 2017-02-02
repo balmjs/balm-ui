@@ -150,10 +150,6 @@ export default {
       type: Array,
       required: true
     },
-    keyField: {
-      type: String,
-      default: 'id'
-    },
     caption: String,
     thead: {
       type: Array,
@@ -180,6 +176,10 @@ export default {
     selectKeyField: {
       type: Boolean,
       default: false
+    },
+    keyField: {
+      type: String,
+      default: 'id'
     },
     checkboxList: {
       type: Array,

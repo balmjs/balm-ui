@@ -35,8 +35,8 @@ Vue.prototype.$docs = {
     tbody: ['name', 'type', 'default', 'description']
   },
   slots: {
-    thead: ['Name', 'Description'],
-    tbody: ['name', 'description']
+    thead: ['Name', 'Description', '<template scope="props">'],
+    tbody: ['name', 'description', 'props']
   },
   events: {
     thead: ['Name', 'Description'],

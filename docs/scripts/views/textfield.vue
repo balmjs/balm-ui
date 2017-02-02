@@ -142,11 +142,11 @@ export default {
     onInputChange(field, event) {
       this[field] = event.target.value;
     },
-    onChange(tab) {
-      this.docs.tab = tab;
-    },
     onChangeInput(val) {
       this.text9 = val;
+    },
+    onChange(tab) {
+      this.docs.tab = tab;
     }
   },
   created() {

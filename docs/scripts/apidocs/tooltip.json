@@ -1,0 +1,36 @@
+{
+  "props": [{
+    "name": "name",
+    "type": "String",
+    "default": "(auto)",
+    "description": "A unique identifier for the tooltip"
+  }, {
+    "name": "target",
+    "type": "String",
+    "default": "",
+    "description": "A target text"
+  }, {
+    "name": "tips",
+    "type": "String",
+    "default": "",
+    "description": "A tips text"
+  }, {
+    "name": "large",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Applies large-font effect"
+  }, {
+    "name": "position",
+    "type": "Number, String",
+    "default": "0",
+    "description": "Positions the tooltip to the target { 1: 'top', 2: 'right', 3: 'bottom', 4: 'left' }"
+  }],
+  "slots": [{
+    "name": "(default)",
+    "description": "The default slot holds the tooltip text and can contain HTML"
+  }, {
+    "name": "target",
+    "description": "The target slot holds the tooltip's target text and can contain HTML"
+  }],
+  "events": []
+}

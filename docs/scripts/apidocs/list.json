@@ -1,0 +1,18 @@
+{
+  "props": [{
+    "name": "twoLine",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Defines the List's Items as Two Line"
+  }, {
+    "name": "threeLine",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Defines the List's Items as a Three Line"
+  }],
+  "slots": [{
+    "name": "(default)",
+    "description": "The default slot holds the list text and can contain HTML"
+  }],
+  "events": []
+}

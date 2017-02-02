@@ -1,0 +1,13 @@
+{
+  "props": [],
+  "slots": [{
+    "name": "(default)",
+    "description": "The default slot holds the item text and can contain HTML",
+    "props": "className: { icon, avatar, subtitle, text }"
+  }, {
+    "name": "action",
+    "description": "The action slot holds the item action text and can contain HTML",
+    "props": "className: { info, action }"
+  }],
+  "events": []
+}

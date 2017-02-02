@@ -3,17 +3,17 @@
     "name": "id",
     "type": "String",
     "default": "",
-    "description": "A unique identifier for the checkbox"
+    "description": "A unique identifier for the radio button"
   }, {
     "name": "name",
     "type": "String",
     "default": "",
-    "description": "The name attribute of the checkbox"
+    "description": "The name attribute of the radio button"
   }, {
     "name": "label",
     "type": "String",
     "default": "",
-    "description": "The label shown above the checkbox"
+    "description": "The label shown above the radio button"
   }, {
     "name": "hideLabel",
     "type": "Boolean",
@@ -23,12 +23,12 @@
     "name": "value",
     "type": "String, Number, Boolean",
     "default": "",
-    "description": "The value attribute of the checkbox"
+    "description": "The value attribute of the radio button"
   }, {
     "name": "model",
-    "type": "Array, String, Number, Boolean",
+    "type": "String, Number, Boolean",
     "default": "false (required)",
-    "description": "The model that the checkbox value syncs to",
+    "description": "The model that the radio button value syncs to",
     "required": true
   }, {
     "name": "effect",
@@ -40,18 +40,13 @@
     "type": "Boolean",
     "default": "false",
     "description": "Applies disabled display effect"
-  }, {
-    "name": "filled",
-    "type": "Boolean",
-    "default": "false",
-    "description": "Applies filled checked effect"
   }],
   "slots": [{
     "name": "(default)",
-    "description": "The default slot holds the checkbox label and can contain HTML"
+    "description": "The default slot holds the radio box label and can contain HTML"
   }],
   "events": [{
     "name": "change",
-    "description": "Dispatched when the checkbox is changed"
+    "description": "Dispatched when the radio box is changed"
   }]
 }

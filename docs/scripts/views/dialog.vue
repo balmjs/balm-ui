@@ -5,7 +5,6 @@
       <p>Modal windows for dedicated user input.</p>
     </div>
 
-    // TODO
     <div class="btn-group">
       <ui-button primary effect raised @click.native="showDialog('show')">有色遮罩无动画对话框</ui-button>
       <ui-button primary effect raised @click.native="showDialog('showForce')">点击遮罩无法再关闭对话框</ui-button>
@@ -166,6 +165,7 @@
       </ui-alert>
 
     </div>
+    // TODO
     <!--<transition enter-active-class="am-enter-active" enter-class="am-enter" leave-active-class="am-leave-active">
       <p class="test" v-show="showTest">123456</p>
     </transition>-->

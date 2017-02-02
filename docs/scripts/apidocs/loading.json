@@ -1,0 +1,28 @@
+{
+  "props": [{
+    "name": "type",
+    "type": "Number, String",
+    "default": "0",
+    "description": "The loading type { 0: 'spinner', 1: 'progress' }"
+  }, {
+    "name": "active",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Makes the spinner visible and animated"
+  }, {
+    "name": "singleColor",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Uses a single (primary palette) color instead of changing colors (Spinner only)"
+  }, {
+    "name": "noBuffer",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Applies a no buffer progress effect (Progress bar only)"
+  }],
+  "slots": [{
+    "name": "(default)",
+    "description": "The default slot holds the loading text and can contain HTML"
+  }],
+  "events": []
+}

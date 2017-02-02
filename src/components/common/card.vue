@@ -1,10 +1,10 @@
 <template>
   <div :class="className.outer">
-    <div v-if="!hideHeader" :class="className.header">
+    <div v-if="!noHeader" :class="className.header">
       <slot name="header" :className="titleClassName"></slot>
     </div>
     <slot :className="innerClassName"></slot>
-    <div v-if="!hideFooter" :class="className.footer">
+    <div v-if="!noFooter" :class="className.footer">
       <slot name="footer"></slot>
     </div>
     <div v-if="hasMenu" class="mdl-card__menu">
@@ -38,11 +38,11 @@ export default {
       type: Boolean,
       default: false
     },
-    hideHeader: {
+    noHeader: {
       type: Boolean,
       default: false
     },
-    hideFooter: {
+    noFooter: {
       type: Boolean,
       default: false
     },

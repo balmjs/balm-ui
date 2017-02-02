@@ -1,0 +1,90 @@
+{
+  "props": [{
+    "name": "data",
+    "type": "Array",
+    "default": "(required)",
+    "description": "The data record array to be rendered",
+    "required": true
+  }, {
+    "name": "caption",
+    "type": "String",
+    "default": "",
+    "description": "The table caption title"
+  }, {
+    "name": "thead",
+    "type": "Array",
+    "default": "(required)",
+    "description": "The table head data"
+  }, {
+    "name": "tbody",
+    "type": "Array",
+    "default": "(required)",
+    "description": "The table body data"
+  }, {
+    "name": "tfoot",
+    "type": "Array, Boolean",
+    "default": "false",
+    "description": "The table foot data"
+  }, {
+    "name": "action",
+    "type": "Array",
+    "default": "[]",
+    "description": "The custom actions"
+  }, {
+    "name": "selectable",
+    "type": "String, Boolean",
+    "default": "false",
+    "description": "True to show a checkbox on the left ('left' or 'right')"
+  }, {
+    "name": "selectKeyField",
+    "type": "Boolean",
+    "default": "false",
+    "description": "True to select keyField, False to select row index"
+  }, {
+    "name": "keyField",
+    "type": "String",
+    "default": "'id'",
+    "description": "The field of data source"
+  }, {
+    "name": "checkboxList",
+    "type": "Array",
+    "default": "[]",
+    "description": "Select result"
+  }, {
+    "name": "noData",
+    "type": "String",
+    "default": "No Data",
+    "description": "No data text"
+  }, {
+    "name": "hasDetailView",
+    "type": "Boolean",
+    "default": "false",
+    "description": "True to show detail view table"
+  }],
+  "slots": [{
+    "name": "thead",
+    "description": "The thead slot holds the table head text and can contain HTML",
+    "props": "data"
+  }, {
+    "name": "tbody",
+    "description": "The tbody slot holds the table body text and can contain HTML",
+    "props": "data"
+  }, {
+    "name": "tfoot",
+    "description": "The tfoot slot holds the table foot text and can contain HTML",
+    "props": "data"
+  }, {
+    "name": "detail",
+    "description": "The detail slot holds the detail view text and can contain HTML"
+  }],
+  "events": [{
+    "name": "(custom action)",
+    "description": "See action props"
+  }, {
+    "name": "selected",
+    "description": "Callback that is called when selected rows change"
+  }, {
+    "name": "view-detail",
+    "description": "Dispatched when the detail view is changed"
+  }]
+}

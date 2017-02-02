@@ -85,9 +85,6 @@ export default {
     };
   },
   methods: {
-    onChange(tab) {
-      this.docs.tab = tab;
-    },
     onChangeNumber(val) {
       this.numberOptions = val;
     },
@@ -99,6 +96,9 @@ export default {
     },
     onWatchString(val) {
       this.stringOptions = val;
+    },
+    onChange(tab) {
+      this.docs.tab = tab;
     }
   },
   created() {

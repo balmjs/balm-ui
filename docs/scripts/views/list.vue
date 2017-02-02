@@ -123,11 +123,44 @@
     </div>
     <ui-markdown :text="code[5]"></ui-markdown>
 
-    // TODO
+    <h4>List API</h4>
+    <ui-tabs effect position="left" :active="list.tab" @switched="onChangeList">
+      <ui-panel tab="props">
+        <ui-table
+          class="docs-table"
+          :data="list.docs.props.data"
+          :thead="list.docs.props.thead"
+          :tbody="list.docs.props.tbody">
+        </ui-table>
+      </ui-panel>
+      <ui-panel tab="slots">
+        <ui-table
+          class="docs-table"
+          :data="list.docs.slots.data"
+          :thead="list.docs.slots.thead"
+          :tbody="list.docs.slots.tbody">
+        </ui-table>
+      </ui-panel>
+    </ui-tabs>
+
+    <h4>Item API</h4>
+    <ui-tabs effect position="left">
+      <ui-panel tab="slots">
+        <ui-table
+          class="docs-table"
+          :data="item.docs.slots.data"
+          :thead="item.docs.slots.thead"
+          :tbody="item.docs.slots.tbody">
+        </ui-table>
+      </ui-panel>
+    </ui-tabs>
   </div>
 </template>
 
 <script>
+import listDocs from '../apidocs/list';
+import itemDocs from '../apidocs/item';
+
 export default {
   data() {
     return {
@@ -157,8 +190,37 @@ export default {
         value: true
       }],
       demoCount: 6,
-      code: []
+      code: [],
+      list: {
+        tab: 0,
+        docs: {
+          props: {
+            data: listDocs.props,
+            thead: this.$docs.props.thead,
+            tbody: this.$docs.props.tbody
+          },
+          slots: {
+            data: listDocs.slots,
+            thead: this.$docs.slots.thead,
+            tbody: this.$docs.slots.tbody
+          }
+        }
+      },
+      item: {
+        docs: {
+          slots: {
+            data: itemDocs.slots,
+            thead: this.$docs.slots.thead,
+            tbody: this.$docs.slots.tbody
+          }
+        }
+      }
     };
+  },
+  methods: {
+    onChangeList(tab) {
+      this.list.tab = tab;
+    }
   },
   created() {
     for (let i = 1; i <= this.demoCount; i++) {

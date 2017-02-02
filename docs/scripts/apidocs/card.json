@@ -1,0 +1,49 @@
+{
+  "props": [{
+    "name": "border",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Adds a border to the card section that it's applied to"
+  }, {
+    "name": "dp",
+    "type": "Number, String",
+    "default": "2",
+    "description": "Assigns variable shadow depths (2, 3, 4, 6, 8, or 16) to card"
+  }, {
+    "name": "expand",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Applies expand a card title container effect"
+  }, {
+    "name": "noHeader",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Defines div as a card title container"
+  }, {
+    "name": "noFooter",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Defines div as a card actions container and assigns appropriate text characteristics to actions text"
+  }, {
+    "name": "hasMenu",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Defines element as top right menu button"
+  }],
+  "slots": [{
+    "name": "(default)",
+    "description": "The default slot holds the card text and can contain HTML",
+    "props": "className: { media, text }"
+  }, {
+    "name": "header",
+    "description": "The header slot holds the card title text and can contain HTML",
+    "props": "className: { title, subtitle }"
+  }, {
+    "name": "footer",
+    "description": "The footer slot holds the card inner text and can contain HTML"
+  }, {
+    "name": "menu",
+    "description": "The menu slot holds the card menu text and can contain HTML"
+  }],
+  "events": []
+}

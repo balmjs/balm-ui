@@ -1,0 +1,44 @@
+{
+  "props": [{
+    "name": "name",
+    "type": "String",
+    "default": "(auto)",
+    "description": "A unique identifier for the menu"
+  }, {
+    "name": "menu",
+    "type": "Array",
+    "default": "[]",
+    "description": "Assigns data to menu"
+  }, {
+    "name": "divider",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Modifies an item to have a full bleed divider between it and the next list item"
+  }, {
+    "name": "effect",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Applies ripple click effect to option links"
+  }, {
+    "name": "disabled",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Applies disabled display effect"
+  }, {
+    "name": "position",
+    "type": "Number, String",
+    "default": "0",
+    "description": "Positions menu above or below button { 0: 'bottom-left', 1: 'top-left', 2: 'top-right', 3: 'bottom-right' }"
+  }],
+  "slots": [{
+    "name": "(default)",
+    "description": "The default slot holds the menu text and can contain HTML"
+  }, {
+    "name": "icon",
+    "description": "The icon slot holds the menu icon and can contain HTML"
+  }],
+  "events": [{
+    "name": "clicked",
+    "description": "Dispatched when the menu is clicked"
+  }]
+}

@@ -1,0 +1,16 @@
+{
+  "props": [{
+    "name": "item",
+    "type": "Object",
+    "default": "{}",
+    "description": "Assigns data to item (default support item: { label, disabled })"
+  }],
+  "slots": [{
+    "name": "(default)",
+    "description": "The default slot holds the menuitem text and can contain HTML"
+  }],
+  "events": [{
+    "name": "clicked",
+    "description": "Dispatched when the item is clicked"
+  }]
+}

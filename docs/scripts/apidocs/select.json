@@ -1,0 +1,38 @@
+{
+  "props": [{
+    "name": "value",
+    "type": "Array",
+    "default": "",
+    "description": "The option data of the select"
+  }, {
+    "name": "defaultValue",
+    "type": "String",
+    "default": "",
+    "description": "The label attribute of the default option"
+  }, {
+    "name": "defaultKey",
+    "type": "String, Number",
+    "default": "''",
+    "description": "The value attribute of the default option"
+  }, {
+    "name": "model",
+    "type": "String, Number",
+    "default": "",
+    "description": "The model that the select value syncs to"
+  }, {
+    "name": "placeholder",
+    "type": "String",
+    "default": "",
+    "description": "Provides a hint to the user of what can be entered in the field"
+  }, {
+    "name": "disabled",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Applies disabled display effect"
+  }],
+  "slots": [],
+  "events": [{
+    "name": "change",
+    "description": "Dispatched when the select is changed"
+  }]
+}

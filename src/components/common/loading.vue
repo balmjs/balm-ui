@@ -23,7 +23,7 @@ export default {
       default: 0
     },
     // Makes the spinner visible and animated
-    isActive: {
+    active: {
       type: Boolean,
       default: false
     },
@@ -48,7 +48,7 @@ export default {
           className = {
             'mdl-spinner': true,
             'mdl-js-spinner': true,
-            'is-active': this.isActive,
+            'is-active': this.active,
             'mdl-spinner--single-color': this.singleColor
           };
           break;
@@ -56,7 +56,7 @@ export default {
           className = {
             'mdl-progress': true,
             'mdl-js-progress': true,
-            'mdl-progress--indeterminate': this.isActive,
+            'mdl-progress--indeterminate': this.active,
             'no-buffer': this.noBuffer
           };
           break;

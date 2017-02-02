@@ -3,7 +3,7 @@
     "name": "type",
     "type": "Number, String",
     "default": "0",
-    "description": "The snackbar type"
+    "description": "The snackbar type { 0: 'toast', 1: 'snackbar' }"
   }, {
     "name": "active",
     "type": "Boolean",
@@ -13,7 +13,8 @@
     "name": "message",
     "type": "String",
     "default": "(required)",
-    "description": "The text message to display"
+    "description": "The text message to display",
+    "required": true
   }, {
     "name": "timeout",
     "type": "Number",

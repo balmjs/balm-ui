@@ -38,10 +38,40 @@
       </div>
     </ui-table>
     <ui-markdown :text="code[1]"></ui-markdown>
+
+    <h4>Table API</h4>
+    <ui-tabs effect position="left" :active="docs.tab" @switched="onChange">
+      <ui-panel tab="props">
+        <ui-table
+          class="docs-table"
+          :data="docs.props.data"
+          :thead="docs.props.thead"
+          :tbody="docs.props.tbody">
+        </ui-table>
+      </ui-panel>
+      <ui-panel tab="slots">
+        <ui-table
+          class="docs-table"
+          :data="docs.slots.data"
+          :thead="docs.slots.thead"
+          :tbody="docs.slots.tbody">
+        </ui-table>
+      </ui-panel>
+      <ui-panel tab="events">
+        <ui-table
+          class="docs-table"
+          :data="docs.events.data"
+          :thead="docs.events.thead"
+          :tbody="docs.events.tbody">
+        </ui-table>
+      </ui-panel>
+    </ui-tabs>
   </div>
 </template>
 
 <script>
+import tableDocs from '../apidocs/table';
+
 export default {
   data() {
     return {
@@ -156,7 +186,25 @@ export default {
         tableDetail: 'Hello'
       },
       demoCount: 2,
-      code: []
+      code: [],
+      docs: {
+        tab: 0,
+        props: {
+          data: tableDocs.props,
+          thead: this.$docs.props.thead,
+          tbody: this.$docs.props.tbody
+        },
+        slots: {
+          data: tableDocs.slots,
+          thead: this.$docs.slots.thead,
+          tbody: this.$docs.slots.tbody
+        },
+        events: {
+          data: tableDocs.events,
+          thead: this.$docs.events.thead,
+          tbody: this.$docs.events.tbody
+        }
+      }
     }
   },
   methods: {
@@ -175,6 +223,9 @@ export default {
     onViewDetail(data) {
       // console.log('detail', data);
       this.table2.tableDetail +=  ('-' + data.id);
+    },
+    onChange(tab) {
+      this.docs.tab = tab;
     }
   },
   created() {

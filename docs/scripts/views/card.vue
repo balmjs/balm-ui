@@ -102,7 +102,7 @@
     <h4>Card (level-3 shadow) with an image, caption, and text:</h4>
     <div class="snippet-group">
       <div class="snippet-demo">
-        <ui-card :dp="4" hideHeader>
+        <ui-card :dp="4" noHeader>
           <template scope="props">
             <div :class="props.className.media">
               <img src="skytower.jpg" width="173" height="157" border="0" alt="" style="padding:10px;">
@@ -119,17 +119,55 @@
     </div>
     <ui-markdown :text="code[4]"></ui-markdown>
 
-    // TODO
+    <h4>Card API</h4>
+    <ui-tabs effect position="left" :active="docs.tab" @switched="onChange">
+      <ui-panel tab="props">
+        <ui-table
+          class="docs-table"
+          :data="docs.props.data"
+          :thead="docs.props.thead"
+          :tbody="docs.props.tbody">
+        </ui-table>
+      </ui-panel>
+      <ui-panel tab="slots">
+        <ui-table
+          class="docs-table"
+          :data="docs.slots.data"
+          :thead="docs.slots.thead"
+          :tbody="docs.slots.tbody">
+        </ui-table>
+      </ui-panel>
+    </ui-tabs>
   </div>
 </template>
 
 <script>
+import cardDocs from '../apidocs/card';
+
 export default {
   data() {
     return {
       demoCount: 5,
-      code: []
+      code: [],
+      docs: {
+        tab: 0,
+        props: {
+          data: cardDocs.props,
+          thead: this.$docs.props.thead,
+          tbody: this.$docs.props.tbody
+        },
+        slots: {
+          data: cardDocs.slots,
+          thead: this.$docs.slots.thead,
+          tbody: this.$docs.slots.tbody
+        }
+      }
     };
+  },
+  methods: {
+    onChange(tab) {
+      this.docs.tab = tab;
+    }
   },
   created() {
     for (let i = 1; i <= this.demoCount; i++) {

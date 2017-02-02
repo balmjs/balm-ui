@@ -4,14 +4,14 @@
       <slot name="target">{{ target }}</slot>
     </span>
     <div ref="tooltip" :class="[className, positionClassName]" :for="`tt-${name}`">
-      <slot name="tips">{{ tips }}</slot>
+      <slot>{{ tips }}</slot>
     </div>
   </div>
 </template>
 
 <script>
 import '../../material-design-lite/tooltip/tooltip';
-import {generateRandomAlphaNum} from '../utils/helper';
+import {isString, generateRandomAlphaNum} from '../utils/helper';
 
 const POSITIONS = ['', 'top', 'right', 'bottom', 'left'];
 const POSITION_TOP = 1; // Positions the tooltip to the top of the target
@@ -35,7 +35,7 @@ export default {
       default: false
     },
     position: {
-      type: Number,
+      type: [Number, String],
       default: 0
     }
   },
@@ -47,10 +47,17 @@ export default {
       };
     },
     positionClassName() {
-      let currentPositon = (this.position > 0 && this.position < POSITIONS.length)
-        ? POSITIONS[this.position]
+      let currentPositon = this.position;
+
+      if (isString(currentPositon)) {
+        currentPositon = POSITIONS.indexOf(currentPositon);
+      }
+
+      let currentPositonName = (currentPositon > 0 && currentPositon < POSITIONS.length)
+        ? POSITIONS[currentPositon]
         : '';
-      let className = currentPositon ? `mdl-tooltip--${currentPositon}` : '';
+      let className = currentPositonName ? `mdl-tooltip--${currentPositonName}` : '';
+
       return className;
     }
   },

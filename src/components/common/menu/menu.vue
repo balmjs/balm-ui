@@ -22,10 +22,10 @@
 
 <script>
 import '../../../material-design-lite/menu/menu';
-import {generateRandomAlphaNum, observeMutationSupport} from '../../utils/helper';
+import {isString, generateRandomAlphaNum, observeMutationSupport} from '../../utils/helper';
 import UiMenuItem from './menuitem';
 
-const POSITIONS = ['', 'top-left', 'top-right', 'bottom-right'];
+const POSITIONS = ['bottom-left', 'top-left', 'top-right', 'bottom-right'];
 const POSITION_NONE = 0; // Default
 const POSITION_TOP_LEFT = 1; // Positions menu above button, aligns left edge of menu with button
 const POSITION_TOP_RIGHT = 2; // Positions menu above button, aligns right edge of menu with button
@@ -66,7 +66,7 @@ export default {
       default: false
     },
     position: {
-      type: Number,
+      type: [Number, String],
       default: POSITION_BOTTOM_LEFT
     },
     // just for '<ui-select>'
@@ -95,10 +95,17 @@ export default {
       };
     },
     positionClassName() {
-      let currentPositon = (this.position > 0 && this.position < POSITIONS.length)
-        ? POSITIONS[this.position]
-        : POSITION_NONE;
-      let className = currentPositon ? `mdl-menu--${currentPositon}` : '';
+      let currentPositon = this.position;
+
+      if (isString(currentPositon)) {
+        currentPositon = POSITIONS.indexOf(currentPositon);
+      }
+
+      let currentPositonName = (currentPositon > 0 && currentPositon < POSITIONS.length)
+          ? POSITIONS[currentPositon]
+          : POSITION_NONE;
+      let className = currentPositonName ? `mdl-menu--${currentPositonName}` : '';
+
       return className;
     }
   },
@@ -131,9 +138,9 @@ export default {
       let mo = new MutationObserver(callback);
       let element = this.$el.querySelector('.mdl-menu__container');
       let options = {
-        'attributes': true,
-        'attributeOldValue': true,
-        'attributeFilter': ['class']
+        attributes: true,
+        attributeOldValue: true,
+        attributeFilter: ['class']
       }
 
       mo.observe(element, options);

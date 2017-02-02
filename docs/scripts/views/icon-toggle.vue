@@ -1,17 +1,19 @@
 <template>
-  <div class="demo-switch">
+  <div class="demo-icon-toggle">
     <div class="component-title">
-      <h3>Switch</h3>
+      <h3>Icon Toggle</h3>
     </div>
 
     <div class="snippet-group">
       <div class="snippet-demo">
-        <ui-switch :model="open" @change="onSwitchChange">{{ open ? 'On' : 'Off' }}</ui-switch>
+        <ui-icon-toggle value="X" :model="icons" @change="onIconsChange">X</ui-icon-toggle>
+        <ui-icon-toggle value="Y" :model="icons" @change="onIconsChange">Y</ui-icon-toggle>
+        <ui-icon-toggle value="Z" :model="icons" @change="onIconsChange">Z</ui-icon-toggle>
       </div>
     </div>
     <ui-markdown :text="code[0]"></ui-markdown>
 
-    <h4>Switch API</h4>
+    <h4>Icon Toggle API</h4>
     <ui-tabs effect position="left" :active="docs.tab" @switched="onChange">
       <ui-panel tab="props">
         <ui-table
@@ -42,28 +44,28 @@
 </template>
 
 <script>
-import switchDocs from '../apidocs/switch';
+import iconToggleDocs from '../apidocs/icon-toggle';
 
 export default {
   data() {
     return {
-      open: true,
+      icons: [],
       demoCount: 1,
       code: [],
       docs: {
         tab: 0,
         props: {
-          data: switchDocs.props,
+          data: iconToggleDocs.props,
           thead: this.$docs.props.thead,
           tbody: this.$docs.props.tbody
         },
         slots: {
-          data: switchDocs.slots,
+          data: iconToggleDocs.slots,
           thead: this.$docs.slots.thead,
           tbody: this.$docs.slots.tbody
         },
         events: {
-          data: switchDocs.events,
+          data: iconToggleDocs.events,
           thead: this.$docs.events.thead,
           tbody: this.$docs.events.tbody
         }
@@ -71,8 +73,8 @@ export default {
     };
   },
   methods: {
-    onSwitchChange(val) {
-      this.open = val;
+    onIconsChange(val) {
+      this.icons = val;
     },
     onChange(tab) {
       this.docs.tab = tab;
@@ -80,9 +82,15 @@ export default {
   },
   created() {
     for (let i = 1; i <= this.demoCount; i++) {
-      let code = require(`../snippets/switch/demo${i}.md`);
+      let code = require(`../snippets/icon-toggle/demo${i}.md`);
       this.code.push(code);
     }
   }
 };
 </script>
+
+<style>
+.mdl-icon-toggle.is-checked .mdl-icon-toggle__label {
+  color: red;
+}
+</style>

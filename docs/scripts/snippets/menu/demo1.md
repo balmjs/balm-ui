@@ -1,7 +1,7 @@
 ```html
 <ui-menu effect :menu="menu" @clicked="onMenu">
   <template slot="icon">
-    Avatar
+    <i class="material-icons">person</i>
   </template>
 </ui-menu>
 ```

@@ -10,7 +10,7 @@
       <div class="snippet-demo">
         <ui-menu effect :menu="data" @clicked="onMenu">
           <template slot="icon">
-            Avatar
+            <i class="material-icons">person</i>
           </template>
         </ui-menu>
       </div>
@@ -22,7 +22,7 @@
       <div class="snippet-demo">
         <ui-menu effect>
           <template slot="icon">
-            Avatar
+            <i class="material-icons">settings</i>
           </template>
           <ui-menuitem v-for="item in data" :item="item" @clicked="onMenu">
             <a :href="item.url">{{ item.label }}</a>

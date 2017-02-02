@@ -56,8 +56,15 @@ export default {
         'mdl-icon-toggle': true,
         'mdl-js-icon-toggle': true,
         'mdl-js-ripple-effect': this.effect,
-        'mdl-icon-toggle--disabled': this.disabled
+        'mdl-icon-toggle--disabled': this.disabled,
+        'is-upgraded': true,
+        'is-checked': this.isChecked
       };
+    },
+    isChecked() {
+      return isArray(this.currentValue)
+        ? this.currentValue.indexOf(this.value) > -1
+        : (this.currentValue === this.value || this.currentValue === true);
     }
   },
   watch: {

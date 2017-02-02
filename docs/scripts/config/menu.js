@@ -1,10 +1,10 @@
 const COMPONENTS = [
+  // MDL
   'badge',
   'button',
   'card',
   'chip',
   'dialog',
-  'divider',
   'grid',
   'tabs',
   'footer',
@@ -15,10 +15,14 @@ const COMPONENTS = [
   'snackbar',
   'checkbox',
   'radio',
+  'icon-toggle',
+  'switch',
   'select',
   'table',
   'textfield',
-  'tooltip'
+  'tooltip',
+  // NEW
+  'divider'
 ];
 
 const menu = COMPONENTS.map(component => {

@@ -1,0 +1,43 @@
+{
+  "props": [{
+    "name": "id",
+    "type": "String",
+    "default": "",
+    "description": "A unique identifier for the icon toggle"
+  }, {
+    "name": "name",
+    "type": "String",
+    "default": "",
+    "description": "The name attribute of the icon toggle"
+  }, {
+    "name": "value",
+    "type": "String, Number, Boolean",
+    "default": "",
+    "description": "The value attribute of the icon toggle"
+  }, {
+    "name": "model",
+    "type": "Array, String, Number, Boolean",
+    "default": "false (required)",
+    "description": "The model that the icon toggle value syncs to",
+    "required": true
+  }, {
+    "name": "effect",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Applies ripple click effect"
+  }, {
+    "name": "disabled",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Applies disabled display effect"
+  }],
+  "slots": [{
+    "name": "(default)",
+    "description": "The default slot holds the icon toggle label and can contain HTML",
+    "props": "className"
+  }],
+  "events": [{
+    "name": "change",
+    "description": "Dispatched when the icon toggle is changed"
+  }]
+}

@@ -34,6 +34,10 @@ __`<ui-snackbar>`__
 
 - action handler bugfix
 
+__`<ui-icon-toggle>` & __`<ui-switch>`__
+
+- bugfix
+
 ### New components
 
 [x] __`<ui-select>`__

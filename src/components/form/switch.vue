@@ -51,8 +51,13 @@ export default {
         'mdl-switch': true,
         'mdl-js-switch': true,
         'mdl-js-ripple-effect': this.effect,
-        'mdl-switch--disabled': this.disabled
+        'mdl-switch--disabled': this.disabled,
+        'is-upgraded': true,
+        'is-checked': this.isChecked
       };
+    },
+    isChecked() {
+      return this.currentValue === this.value || this.currentValue === true;
     }
   },
   watch: {

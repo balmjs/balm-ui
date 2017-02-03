@@ -78,6 +78,7 @@ export default {
     },
     hide() {
       this.isExpand = false;
+      this.currentSuggestionIndex = 0;
     },
     async request(data) {
       let config = {

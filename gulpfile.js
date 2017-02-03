@@ -23,7 +23,8 @@ balm.config = {
       loader: 'html!markdown'
     }],
     alias: {
-      prismCss: 'prismjs/themes/prism-okaidia.css'
+      prismCss: 'prismjs/themes/prism-okaidia.css',
+      flatpickrCss: 'flatpickr/dist/flatpickr.min.css'
     },
     eslint: true
   },

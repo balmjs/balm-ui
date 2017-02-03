@@ -6,6 +6,7 @@ const Switch = require('../views/switch');
 const Textfield = require('../views/textfield');
 const Select = require('../views/select');
 const Autocomplete = require('../views/autocomplete');
+const Datepicker = require('../views/datepicker');
 
 const formRoutes = [{
   path: '/slider',
@@ -39,6 +40,10 @@ const formRoutes = [{
   path: '/autocomplete',
   name: 'autocomplete',
   component: Autocomplete
+}, {
+  path: '/datepicker',
+  name: 'datepicker',
+  component: Datepicker
 }];
 
 export default formRoutes;

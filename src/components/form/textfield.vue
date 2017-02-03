@@ -37,7 +37,8 @@
         @input="handleInput"
         @focus="handleFocus"
         @blur="handleBlur"
-        @keydown="handleKeydown">
+        @keydown="handleKeydown"
+        data-input>
       <span class="mdl-textfield__error" v-if="error">
         <slot name="error">{{ error }}</slot>
       </span>

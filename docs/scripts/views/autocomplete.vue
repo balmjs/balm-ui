@@ -1,18 +1,7 @@
 <template>
   <div class="docs-autocomplete">
     <div class="component-title">
-      <h3>Autocomplete</h3>
-    </div>
-
-    <div class="snippet-demo">
-      <ui-autocomplete label="Expand Text... (type 'a' or 'b')"
-        :model="text"
-        :url="url"
-        :params="params"
-        :suggestion="suggestion"
-        @input.native="onInputChange('text', $event)"
-        @response="onSuggest"
-        @enter="onInputEnter"></ui-autocomplete>
+      <h3>AutoComplete</h3>
     </div>
 
     <div class="snippet-demo">
@@ -30,6 +19,7 @@
         </template>
       </ui-autocomplete>
     </div>
+    <ui-markdown :text="code[0]"></ui-markdown>
 
     // TODO
   </div>
@@ -43,6 +33,8 @@ export default {
       url: `${this.$domain}/data/autocomplete.json`,
       params: {},
       suggestion: [],
+      demoCount: 1,
+      code: []
     }
   },
   methods: {
@@ -62,6 +54,12 @@ export default {
     },
     onInputEnter(val) {
       this.text = val;
+    }
+  },
+  created() {
+    for (let i = 1; i <= this.demoCount; i++) {
+      let code = require(`../snippets/autocomplete/demo${i}.md`);
+      this.code.push(code);
     }
   }
 };

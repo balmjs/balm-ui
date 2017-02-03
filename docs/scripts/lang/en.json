@@ -23,7 +23,8 @@
     "tooltip": "Tooltip",
     "divider": "Divider",
     "select": "Select",
-    "autocomplete": "AutoComplete"
+    "autocomplete": "AutoComplete",
+    "datepicker": "DatePicker"
   },
   "tabs": {
     "basic": "Basic",

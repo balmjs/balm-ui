@@ -36,6 +36,7 @@ import UiSwitch from './components/form/switch';
 import UiSlider from './components/form/slider';
 import UiSelect from './components/form/select';
 import UiAutocomplete from './components/form/autocomplete';
+import UiDatepicker from './components/form/datepicker';
 /**
  * Data
  */
@@ -79,6 +80,7 @@ const BalmUI = {
   UiSlider,
   UiSelect,
   UiAutocomplete,
+  UiDatepicker,
   // Data
   UiList,
   UiItem,

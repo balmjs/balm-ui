@@ -6,9 +6,14 @@ __`<ui-snackbar>`__
 
 - add props `mini`
 
+__`<ui-textfield>`__
+
+- add a `data-input` attribute of the input for the datepicker
+
 ### New components
 
 [x] __`<ui-autocomplete>`__
+[x] __`<ui-datepicker>`__
 
 ## 0.1.15
 

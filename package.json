@@ -50,5 +50,8 @@
     "vue-loader": "^10.0.2",
     "vue-router": "^2.1.1",
     "vue-template-compiler": "^2.1.8"
+  },
+  "dependencies": {
+    "flatpickr": "^2.3.5"
   }
 }

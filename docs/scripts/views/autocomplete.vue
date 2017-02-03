@@ -4,7 +4,6 @@
       <h3>Autocomplete</h3>
     </div>
 
-    <h4>{{ $t('textfield.expand') }}</h4>
     <div class="snippet-demo">
       <ui-autocomplete label="Expand Text... (type 'a' or 'b')"
         :model="text"
@@ -15,6 +14,23 @@
         @response="onSuggest"
         @enter="onInputEnter"></ui-autocomplete>
     </div>
+
+    <div class="snippet-demo">
+      <ui-autocomplete label="Expand Text... (type 'a' or 'b')"
+        :model="text"
+        :url="url"
+        :params="params"
+        :suggestion="suggestion"
+        @input.native="onInputChange('text', $event)"
+        @response="onSuggest"
+        @enter="onInputEnter"
+        plus>
+        <template slot="plus">
+          <a href="javascript:void(0)">Button</a>
+        </template>
+      </ui-autocomplete>
+    </div>
+
     // TODO
   </div>
 </template>

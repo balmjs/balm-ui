@@ -46,7 +46,9 @@
     <h4>{{ $t('textfield.plus') }}</h4>
     <div class="snippet-demo">
       <ui-textfield plus label="Plus Text..." :model="text7" @input.native="onInputChange('text7', $event)">
-        <template slot="plus"><a href="javascript:void(0)">Button</a></template>
+        <template slot="plus">
+          <a href="javascript:void(0)">Button</a>
+        </template>
       </ui-textfield>
     </div>
     <ui-markdown :text="code[6]"></ui-markdown>
@@ -54,7 +56,9 @@
     <h4>{{ $t('textfield.leftplus') }}</h4>
     <div class="snippet-demo">
       <ui-textfield label="Plus Text..." :model="text8" @input.native="onInputChange('text8', $event)" labelLeft placeholder="Placeholder..." plus>
-        <template slot="plus"><a href="javascript:void(0)">Link</a></template>
+        <template slot="plus">
+          <a href="javascript:void(0)">Link</a>
+        </template>
       </ui-textfield>
     </div>
     <ui-markdown :text="code[7]"></ui-markdown>

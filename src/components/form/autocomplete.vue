@@ -3,6 +3,7 @@
     :label="label"
     :model="currentValue"
     :expand="isExpand"
+    :plus="plus"
     @input.native="handleInput($event)"
     @blur="handleBlur"
     @keydown="handleKeydown">
@@ -12,6 +13,9 @@
           :class="{'active': suggestion.active}"
           @click="fillText(suggestion.value)">{{ suggestion.value }}</li>
       </ul>
+    </template>
+    <template slot="plus">
+      <slot name="plus"></slot>
     </template>
   </ui-textfield>
 </template>
@@ -53,7 +57,11 @@ export default {
         return {};
       }
     },
-    suggestion: Array
+    suggestion: Array,
+    plus: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {

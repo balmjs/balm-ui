@@ -45,8 +45,7 @@
     "textarea": "Multiline Textfield",
     "expandable": "Expandable Textfield",
     "plus": "Textfield with Plus",
-    "leftplus": "Textfield with left Label and Plus",
-    "expand": "Textfield with Autocomplete"
+    "leftplus": "Textfield with left Label and Plus"
   },
   "tooltip": {
     "basic": "Basic usage",

@@ -8,6 +8,9 @@
 }
 
 .mdl-layout__drawer {
+  .mdl-layout__title {
+    padding: 0 10px 0 20px;
+  }
   .mdl-badge[data-badge]:after {
     right: -32px;
     width: 32px;
@@ -27,4 +30,21 @@
 
 .mdl-layout__content {
   padding: 20px;
+}
+
+/// 浮动布局
+.clearfix {
+  @include clearfix;
+}
+
+.center-block {
+  @include center-block;
+}
+
+.pull-right {
+  float: right;
+}
+
+.pull-left {
+  float: left;
 }

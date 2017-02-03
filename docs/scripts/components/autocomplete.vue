@@ -1,85 +1,101 @@
 <template>
-  <ui-textfield label="Expand Text... (type 'a' or 'b')"
+  <ui-textfield
+    :label="label"
     :model="currentValue"
-    :expand="expand"
+    :expand="isExpand"
     @input.native="handleInput($event)"
     @blur="handleBlur"
     @keydown="handleKeydown">
     <template slot="expand">
       <ul ref="autocomplete">
-        <li v-for="item in items"
-          :class="{'active': item.active}"
-          @click="fillText(item.value)">{{ item.value }}</li>
+        <li v-for="suggestion in currentSuggestion"
+          :class="{'active': suggestion.active}"
+          @click="fillText(suggestion.value)">{{ suggestion.value }}</li>
       </ul>
     </template>
   </ui-textfield>
 </template>
 
 <script>
-const EVENT_INPUT = 'input';
-const EVENT_CHANGE = 'change';
-
 const KEY_UP = 38;
 const KEY_DOWN = 40;
 const KEY_ENTER = 13;
+const METHOD_GET = 'GET';
+const METHOD_POST = 'POST';
+const EVENT_INPUT = 'input';
+const EVENT_RESPONSE = 'response';
+const EVENT_ENTER = 'enter';
 
 export default {
   name: 'ui-autocomplete',
   props: {
+    label: String,
     model: {
       type: String,
       required: true
     },
+    method: {
+      type: String,
+      default: METHOD_GET
+    },
     url: {
       type: String,
       required: true
-    }
+    },
+    params: {
+      type: Object,
+      default: function() {
+        return {};
+      }
+    },
+    suggestion: Array
   },
   data() {
     return {
+      _callback: null,
+      isExpand: false,
       currentValue: this.model,
-      expand: false,
-      items: [],
-      currentItemIndex: 0,
-      callback: null
+      currentSuggestion: [],
+      currentSuggestionIndex: 0
     }
   },
   methods: {
     show() {
-      this.expand = true;
+      this.isExpand = true;
     },
     hide() {
-      this.expand = false;
+      this.isExpand = false;
     },
-    async handleInput(event) {
-      this.currentValue = event.target.value;
+    async request(data) {
+      let config = {
+        method: this.method.toLowerCase(),
+        url: this.url
+      };
 
-      // mock data
-      if (this.currentValue) {
-        let response = await this.$http.get(this.url);
-        // TODO: custom response data
-        this.items = response.data[this.currentValue].map((item, index) => {
-          return {
-            active: index === 0,
-            value: item
-          };
-        }) || [];
-
-        if (response.data[this.currentValue]) {
-          this.show();
-        } else {
-          this.hide();
-        }
-      } else {
-        this.hide();
-        this.items = [];
+      switch (this.method.toUpperCase()) {
+        case METHOD_GET:
+          config.params = data;
+          break;
+        case METHOD_POST:
+          config.data = data;
+          break;
       }
 
+      let response = await this.$http(config);
+      this.$emit(EVENT_RESPONSE, response.data);
+    },
+    handleInput(event) {
+      this.currentValue = event.target.value;
       this.$emit(EVENT_INPUT, this.currentValue);
+
+      if (!this.currentValue) {
+        this.hide();
+        this.currentSuggestion = [];
+      }
     },
     handleBlur(event) {
-      if (!this.callback) {
-        this.callback = e => {
+      if (!this._callback) {
+        this._callback = e => {
           let inTextfield = false;
           let parentEl = e.target.parentNode;
           while (parentEl && parentEl !== this.$el) {
@@ -89,63 +105,78 @@ export default {
             parentEl = parentEl.parentNode;
           }
 
-          if (e !== event && this.expand && !inTextfield) {
-            document.removeEventListener('click', this.callback);
+          if (e !== event && this.isExpand && !inTextfield) {
+            document.removeEventListener('click', this._callback);
             this.hide();
           }
         };
       }
-      document.addEventListener('click', this.callback);
+      document.addEventListener('click', this._callback);
     },
     fillText(val) {
       this.currentValue = val;
       this.hide();
 
-      this.$emit(EVENT_CHANGE, this.currentValue);
+      this.$emit(EVENT_ENTER, this.currentValue);
     },
     handleKeydown(event) {
-      let count = this.items.length - 1;
-      let choosing = false;
+      if (this.currentSuggestion.length) {
+        let count = this.currentSuggestion.length - 1;
+        let choosing = false;
 
-      if (event.keyCode === KEY_UP) {
-        choosing = true;
-        if (this.currentItemIndex === 0) {
-          this.currentItemIndex = count;
-        } else {
-          this.currentItemIndex--;
+        if (event.keyCode === KEY_UP) {
+          choosing = true;
+          if (this.currentSuggestionIndex === 0) {
+            this.currentSuggestionIndex = count;
+          } else {
+            this.currentSuggestionIndex--;
+          }
+        } else if (event.keyCode === KEY_DOWN) {
+          choosing = true;
+          if (this.currentSuggestionIndex === count) {
+            this.currentSuggestionIndex = 0;
+          } else {
+            this.currentSuggestionIndex++;
+          }
+        } else if (event.keyCode === KEY_ENTER) {
+          this.currentValue = this.currentSuggestion[this.currentSuggestionIndex].value;
+          this.hide();
+
+          this.$emit(EVENT_ENTER, this.currentValue);
         }
-      } else if (event.keyCode === KEY_DOWN) {
-        choosing = true;
-        if (this.currentItemIndex === count) {
-          this.currentItemIndex = 0;
-        } else {
-          this.currentItemIndex++;
+
+        if (choosing) {
+          this.currentSuggestion = this.currentSuggestion.map((item, index) => {
+            return {
+              active: index === this.currentSuggestionIndex,
+              value: item.value
+            };
+          });
         }
-      } else if (event.keyCode === KEY_ENTER) {
-        this.currentValue = this.items[this.currentItemIndex].value;
-        this.hide();
-
-        this.$emit(EVENT_CHANGE, this.currentValue);
-      }
-
-      if (choosing) {
-        this.items = this.items.map((item, index) => {
-          return {
-            active: index === this.currentItemIndex,
-            value: item.value
-          };
-        });
       }
     }
   },
   watch: {
     model(val) {
       this.currentValue = val;
+    },
+    params(val) {
+      if (this.currentValue) {
+        this.request(val);
+      }
+    },
+    suggestion(val) {
+      this.currentSuggestion = val;
+      if (this.currentSuggestion.length) {
+        this.show();
+      } else {
+        this.hide();
+      }
     }
   },
   beforeDestroy() {
-    if (this.callback) {
-      document.removeEventListener('click', this.callback);
+    if (this._callback) {
+      document.removeEventListener('click', this._callback);
     }
   }
 };

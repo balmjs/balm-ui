@@ -61,9 +61,14 @@
 
     <h4>{{ $t('textfield.expand') }}</h4>
     <div class="snippet-demo">
-      <ui-autocomplete :url="url" :model="text9"
+      <ui-autocomplete label="Expand Text... (type 'a' or 'b')"
+        :model="text9"
+        :url="url"
+        :params="params"
+        :suggestion="suggestion"
         @input.native="onInputChange('text9', $event)"
-        @change="onChangeInput"></ui-autocomplete>
+        @response="onSuggest"
+        @enter="onInputEnter"></ui-autocomplete>
     </div>
 
     <h4>Textfield API</h4>
@@ -115,7 +120,9 @@ export default {
       text7: '',
       text8: '',
       url: `${this.$domain}/data/autocomplete.json`,
+      params: {},
       text9: '',
+      suggestion: [],
       demoCount: 8,
       code: [],
       docs: {
@@ -141,9 +148,23 @@ export default {
   methods: {
     onInputChange(field, event) {
       this[field] = event.target.value;
+      // autocomplete
+      if (field === 'text9') {
+        this.params = {
+          text: this[field]
+        };
+      }
     },
-    onChangeInput(val) {
+    onInputEnter(val) {
       this.text9 = val;
+    },
+    onSuggest(data) {
+      this.suggestion = data[this.text9] ? data[this.text9].map((item, index) => {
+        return {
+          active: index === 0,
+          value: item
+        };
+      }) : [];
     },
     onChange(tab) {
       this.docs.tab = tab;

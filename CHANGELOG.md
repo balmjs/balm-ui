@@ -1,3 +1,9 @@
+## 0.1.16
+
+### New components
+
+[x] __`<ui-autocomplete>`__
+
 ## 0.1.15
 
 ### Update components

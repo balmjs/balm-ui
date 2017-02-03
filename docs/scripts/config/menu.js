@@ -17,12 +17,13 @@ const COMPONENTS = [
   'radio',
   'icon-toggle',
   'switch',
-  'select',
   'table',
   'textfield',
   'tooltip',
   // NEW
-  'divider'
+  'divider',
+  'select',
+  'autocomplete'
 ];
 
 const menu = COMPONENTS.map(component => {

@@ -17,11 +17,12 @@
     "radio": "Radio",
     "icon-toggle": "Icon Toggle",
     "switch": "Switch",
-    "select": "Select",
     "table": "Table",
     "textfield": "Text Field",
     "tooltip": "Tooltip",
-    "divider": "Divider"
+    "divider": "Divider",
+    "select": "Select",
+    "autocomplete": "Autocomplete"
   },
   "tabs": {
     "basic": "Basic",

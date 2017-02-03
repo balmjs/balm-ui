@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import UiTextfield from './textfield';
+
 const KEY_UP = 38;
 const KEY_DOWN = 40;
 const KEY_ENTER = 13;
@@ -28,6 +30,9 @@ const EVENT_ENTER = 'enter';
 
 export default {
   name: 'ui-autocomplete',
+  components: {
+    UiTextfield
+  },
   props: {
     label: String,
     model: {
@@ -181,17 +186,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.mdl-textfield__expand ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.mdl-textfield__expand li:hover,
-.mdl-textfield__expand li.active {
-  background: black;
-  color: white;
-}
-</style>

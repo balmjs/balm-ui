@@ -59,18 +59,6 @@
     </div>
     <ui-markdown :text="code[7]"></ui-markdown>
 
-    <h4>{{ $t('textfield.expand') }}</h4>
-    <div class="snippet-demo">
-      <ui-autocomplete label="Expand Text... (type 'a' or 'b')"
-        :model="text9"
-        :url="url"
-        :params="params"
-        :suggestion="suggestion"
-        @input.native="onInputChange('text9', $event)"
-        @response="onSuggest"
-        @enter="onInputEnter"></ui-autocomplete>
-    </div>
-
     <h4>Textfield API</h4>
     <ui-tabs effect position="left" :active="docs.tab" @switched="onChange">
       <ui-panel tab="props">
@@ -103,12 +91,8 @@
 
 <script>
 import textfieldDocs from '../apidocs/textfield';
-import UiAutocomplete from '../components/autocomplete';
 
 export default {
-  components: {
-    UiAutocomplete
-  },
   data() {
     return {
       text1: '',
@@ -119,10 +103,6 @@ export default {
       text6: '',
       text7: '',
       text8: '',
-      url: `${this.$domain}/data/autocomplete.json`,
-      params: {},
-      text9: '',
-      suggestion: [],
       demoCount: 8,
       code: [],
       docs: {
@@ -148,23 +128,6 @@ export default {
   methods: {
     onInputChange(field, event) {
       this[field] = event.target.value;
-      // autocomplete
-      if (field === 'text9') {
-        this.params = {
-          text: this[field]
-        };
-      }
-    },
-    onInputEnter(val) {
-      this.text9 = val;
-    },
-    onSuggest(data) {
-      this.suggestion = data[this.text9] ? data[this.text9].map((item, index) => {
-        return {
-          active: index === 0,
-          value: item
-        };
-      }) : [];
     },
     onChange(tab) {
       this.docs.tab = tab;

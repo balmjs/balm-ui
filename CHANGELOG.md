@@ -14,6 +14,7 @@ __`<ui-textfield>`__
 
 [x] __`<ui-autocomplete>`__
 [x] __`<ui-datepicker>`__
+[x] __`<ui-pagination>`__
 
 ## 0.1.15
 

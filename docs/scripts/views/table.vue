@@ -15,6 +15,17 @@
       @edit="onEdit"
       @delete="onDelete">
     </ui-table>
+    <ui-pagination showRecord showJumper
+      :recordCount="100"
+      :pageSize="5"
+      :page="page"
+      jumperBefore="跳转到"
+      jumperAfter="页"
+      @change="onPage">
+      <template scope="props">
+        共 {{ props.recordCount }} 条纪录，每页显示 {{ props.pageSize }} 条，共 {{ props.pageCount }} 页
+      </template>
+    </ui-pagination>
     <ui-markdown :text="code[0]"></ui-markdown>
 
     <h4>{{ $t('table.advanced') }}</h4>
@@ -204,7 +215,8 @@ export default {
           thead: this.$docs.events.thead,
           tbody: this.$docs.events.tbody
         }
-      }
+      },
+      page: 1
     }
   },
   methods: {
@@ -226,6 +238,9 @@ export default {
     },
     onChange(tab) {
       this.docs.tab = tab;
+    },
+    onPage(page) {
+      this.page = +page;
     }
   },
   created() {
@@ -242,3 +257,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.mdl-pagination {
+  padding: 10px;
+}
+</style>

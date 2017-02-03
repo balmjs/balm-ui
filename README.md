@@ -104,14 +104,14 @@ Vue.use(BalmUI);
 
 ### Common
 
-- [x] loading
-- [x] button
-- [x] menu
 - [x] badge
+- [x] button
 - [x] card
 - [x] chip
+- [x] loading
+- [x] menu
 - [x] tooltip
-- [x] splitter
+- [x] divider
 
 ### Form
 
@@ -121,15 +121,16 @@ Vue.use(BalmUI);
 - [x] icon toggle
 - [x] switch
 - [x] slider
-- [ ] select
-- [ ] date picker
-- [ ] upload
+- [x] select
+- [x] autocomplete
+- [x] datepicker
+- [ ] fileupload
 
 ### Data Show
 
 - [x] list
 - [x] table
-- [ ] pagination
+- [x] pagination
 
 ### Popup
 

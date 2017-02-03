@@ -43,6 +43,7 @@ import UiDatepicker from './components/form/datepicker';
 import UiList from './components/data/list/list';
 import UiItem from './components/data/list/item';
 import UiTable from './components/data/table';
+import UiPagination from './components/data/pagination';
 /**
  * Popup
  */
@@ -85,6 +86,7 @@ const BalmUI = {
   UiList,
   UiItem,
   UiTable,
+  UiPagination,
   // Popup
   UiDialog,
   UiConfirm,

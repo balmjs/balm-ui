@@ -1,0 +1,14 @@
+.mdl-snackbar {
+  &.mdl-snackbar--mini {
+    top: 50%;
+    bottom: auto;
+    min-width: 0;
+    transform: none;
+    opacity: 0;
+    &.mdl-snackbar--active {
+      transition: opacity .25s;
+      transform: translate(-50%, -50%);
+      opacity: 1;
+    }
+  }
+}

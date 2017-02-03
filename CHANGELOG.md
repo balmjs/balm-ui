@@ -1,5 +1,11 @@
 ## 0.1.16
 
+### Update components
+
+__`<ui-snackbar>`__
+
+- add props `mini`
+
 ### New components
 
 [x] __`<ui-autocomplete>`__

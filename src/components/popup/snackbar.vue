@@ -1,5 +1,5 @@
 <template>
-  <div :class="['mdl-snackbar mdl-js-snackbar', {'mdl-snackbar--active': active}]"
+  <div :class="className"
     aria-live="assertive"
     aria-atomic="true"
     aria-relevant="text"
@@ -43,7 +43,11 @@ export default {
     // The function to execute when the action is clicked.
     actionHandler: Function,
     // The text to display for the action button.
-    actionText: String
+    actionText: String,
+    mini: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
@@ -52,6 +56,14 @@ export default {
     };
   },
   computed: {
+    className() {
+      return {
+        'mdl-snackbar': true,
+        'mdl-js-snackbar': true,
+        'mdl-snackbar--active': this.active,
+        'mdl-snackbar--mini': this.mini
+      }
+    },
     isSnackbar() {
       let type = isString(this.type) ? TYPES[TYPE_SNACKBAR] : TYPE_SNACKBAR;
       return this.type === type;

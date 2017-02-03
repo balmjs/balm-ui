@@ -30,6 +30,11 @@
     "type": "String",
     "default": "",
     "description": "The text to display for the action button"
+  }, {
+    "name": "mini",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Applies mini toast effect"
   }],
   "slots": [{
     "name": "(default)",

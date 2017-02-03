@@ -5,6 +5,7 @@
     "card": "Card",
     "chip": "Chip",
     "dialog": "Dialog",
+    "layout": "Layout",
     "grid": "Grid",
     "tabs": "Tabs",
     "footer": "Footer",

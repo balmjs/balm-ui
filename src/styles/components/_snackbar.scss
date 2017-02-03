@@ -3,11 +3,11 @@
     top: 50%;
     bottom: auto;
     min-width: 0;
+    transition: opacity .25s;
     transform: none;
+    transform: translate(-50%, -50%);
     opacity: 0;
     &.mdl-snackbar--active {
-      transition: opacity .25s;
-      transform: translate(-50%, -50%);
       opacity: 1;
     }
   }

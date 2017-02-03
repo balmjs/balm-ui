@@ -23,7 +23,7 @@
     "tooltip": "文字提示",
     "divider": "分割线",
     "select": "下拉框",
-    "autocomplete": "自动完成"
+    "autocomplete": "自动补全"
   },
   "tabs": {
     "basic": "基本用法",

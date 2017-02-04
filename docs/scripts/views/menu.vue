@@ -32,68 +32,12 @@
     </div>
     <ui-markdown :text="code[1]"></ui-markdown>
 
-    <h4>Menu API</h4>
-    <ui-tabs effect position="left" :active="menu.tab" @switched="onChangeMenu">
-      <ui-panel tab="props">
-        <ui-table
-          class="docs-table"
-          :data="menu.docs.props.data"
-          :thead="menu.docs.props.thead"
-          :tbody="menu.docs.props.tbody">
-        </ui-table>
-      </ui-panel>
-      <ui-panel tab="slots">
-        <ui-table
-          class="docs-table"
-          :data="menu.docs.slots.data"
-          :thead="menu.docs.slots.thead"
-          :tbody="menu.docs.slots.tbody">
-        </ui-table>
-      </ui-panel>
-      <ui-panel tab="events">
-        <ui-table
-          class="docs-table"
-          :data="menu.docs.events.data"
-          :thead="menu.docs.events.thead"
-          :tbody="menu.docs.events.tbody">
-        </ui-table>
-      </ui-panel>
-    </ui-tabs>
-
-    <h4>Menuitem API</h4>
-    <ui-tabs effect position="left" :active="menuitem.tab" @switched="onChangeMenuitem">
-      <ui-panel tab="props">
-        <ui-table
-          class="docs-table"
-          :data="menuitem.docs.props.data"
-          :thead="menuitem.docs.props.thead"
-          :tbody="menuitem.docs.props.tbody">
-        </ui-table>
-      </ui-panel>
-      <ui-panel tab="slots">
-        <ui-table
-          class="docs-table"
-          :data="menuitem.docs.slots.data"
-          :thead="menuitem.docs.slots.thead"
-          :tbody="menuitem.docs.slots.tbody">
-        </ui-table>
-      </ui-panel>
-      <ui-panel tab="events">
-        <ui-table
-          class="docs-table"
-          :data="menuitem.docs.events.data"
-          :thead="menuitem.docs.events.thead"
-          :tbody="menuitem.docs.events.tbody">
-        </ui-table>
-      </ui-panel>
-    </ui-tabs>
+    <ui-apidoc name="menu"></ui-apidoc>
+    <ui-apidoc name="menuitem"></ui-apidoc>
   </div>
 </template>
 
 <script>
-import menuDocs from '../apidocs/menu';
-import menuitemDocs from '../apidocs/menuitem';
-
 export default {
   data() {
     return {
@@ -109,58 +53,12 @@ export default {
         label: 'Item C'
       }],
       demoCount: 2,
-      code: [],
-      menu: {
-        tab: 0,
-        docs: {
-          props: {
-            data: menuDocs.props,
-            thead: this.$docs.props.thead,
-            tbody: this.$docs.props.tbody
-          },
-          slots: {
-            data: menuDocs.slots,
-            thead: this.$docs.slots.thead,
-            tbody: this.$docs.slots.tbody
-          },
-          events: {
-            data: menuDocs.events,
-            thead: this.$docs.events.thead,
-            tbody: this.$docs.events.tbody
-          }
-        }
-      },
-      menuitem: {
-        tab: 0,
-        docs: {
-          props: {
-            data: menuitemDocs.props,
-            thead: this.$docs.props.thead,
-            tbody: this.$docs.props.tbody
-          },
-          slots: {
-            data: menuitemDocs.slots,
-            thead: this.$docs.slots.thead,
-            tbody: this.$docs.slots.tbody
-          },
-          events: {
-            data: menuitemDocs.events,
-            thead: this.$docs.events.thead,
-            tbody: this.$docs.events.tbody
-          }
-        }
-      }
+      code: []
     };
   },
   methods: {
     onMenu(obj) {
       console.log(obj);
-    },
-    onChangeMenu(tab) {
-      this.menu.tab = tab;
-    },
-    onChangeMenuitem(tab) {
-      this.menuitem.tab = tab;
     }
   },
   created() {

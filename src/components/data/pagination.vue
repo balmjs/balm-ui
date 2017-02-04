@@ -1,5 +1,5 @@
 <template>
-  <div class="mdl-pagination">
+  <div :class="['mdl-pagination', {'mdl-pagination--mini': mini}]">
     <div v-if="showRecord" class="mdl-pagination--record">
       <slot :recordCount="recordCount" :pageSize="pageSize" :pageCount="pageCount"></slot>
     </div>
@@ -9,7 +9,7 @@
       </a>
       <a
         v-for="page in pageCount"
-        v-if="isShow(page)"
+        v-if="!mini && isShow(page)"
         :class="{active: page === currentPage}">
         <span v-if="showPage(page)" @click="handleClick(page)">{{ page }}</span>
         <span v-else class="ellipsis">...</span>
@@ -73,6 +73,10 @@ export default {
     jumperAfter: {
       type: String,
       default: ''
+    },
+    mini: {
+      type: Boolean,
+      default: false
     }
   },
   data() {

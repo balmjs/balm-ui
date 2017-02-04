@@ -46,60 +46,12 @@
     </div>
     <ui-markdown :text="code[2]"></ui-markdown>
 
-    <h4>Tabs API</h4>
-    <ui-tabs effect position="left" :active="tabs.tab" @switched="onChangeTabs">
-      <ui-panel tab="props">
-        <ui-table
-          class="docs-table"
-          :data="tabs.docs.props.data"
-          :thead="tabs.docs.props.thead"
-          :tbody="tabs.docs.props.tbody">
-        </ui-table>
-      </ui-panel>
-      <ui-panel tab="slots">
-        <ui-table
-          class="docs-table"
-          :data="tabs.docs.slots.data"
-          :thead="tabs.docs.slots.thead"
-          :tbody="tabs.docs.slots.tbody">
-        </ui-table>
-      </ui-panel>
-      <ui-panel tab="events">
-        <ui-table
-          class="docs-table"
-          :data="tabs.docs.events.data"
-          :thead="tabs.docs.events.thead"
-          :tbody="tabs.docs.events.tbody">
-        </ui-table>
-      </ui-panel>
-    </ui-tabs>
-
-    <h4>Panel API</h4>
-    <ui-tabs effect position="left" :active="panel.tab" @switched="onChangePanel">
-      <ui-panel tab="props">
-        <ui-table
-          class="docs-table"
-          :data="panel.docs.props.data"
-          :thead="panel.docs.props.thead"
-          :tbody="panel.docs.props.tbody">
-        </ui-table>
-      </ui-panel>
-      <ui-panel tab="slots">
-        <ui-table
-          class="docs-table"
-          :data="panel.docs.slots.data"
-          :thead="panel.docs.slots.thead"
-          :tbody="panel.docs.slots.tbody">
-        </ui-table>
-      </ui-panel>
-    </ui-tabs>
+    <ui-apidoc name="tabs"></ui-apidoc>
+    <ui-apidoc name="panel"></ui-apidoc>
   </div>
 </template>
 
 <script>
-import tabsDocs from '../apidocs/tabs';
-import panelDocs from '../apidocs/panel';
-
 export default {
   data() {
     return {
@@ -107,42 +59,7 @@ export default {
       tab2: 0,
       tab3: 0,
       demoCount: 3,
-      code: [],
-      tabs: {
-        tab: 0,
-        docs: {
-          props: {
-            data: tabsDocs.props,
-            thead: this.$docs.props.thead,
-            tbody: this.$docs.props.tbody
-          },
-          slots: {
-            data: tabsDocs.slots,
-            thead: this.$docs.slots.thead,
-            tbody: this.$docs.slots.tbody
-          },
-          events: {
-            data: tabsDocs.events,
-            thead: this.$docs.events.thead,
-            tbody: this.$docs.events.tbody
-          }
-        }
-      },
-      panel: {
-        tab: 0,
-        docs: {
-          props: {
-            data: panelDocs.props,
-            thead: this.$docs.props.thead,
-            tbody: this.$docs.props.tbody
-          },
-          slots: {
-            data: panelDocs.slots,
-            thead: this.$docs.slots.thead,
-            tbody: this.$docs.slots.tbody
-          }
-        }
-      }
+      code: []
     };
   },
   methods: {
@@ -154,12 +71,6 @@ export default {
     },
     onChange3(tab) {
       this.tab3 = tab;
-    },
-    onChangeTabs(tab) {
-      this.tabs.tab = tab;
-    },
-    onChangePanel(tab) {
-      this.panel.tab = tab;
     }
   },
   created() {

@@ -1,26 +1,42 @@
 <template>
-  <div class="docs-table">
+  <div class="docs-pagination">
     <div class="component-title">
       <h3>Pagination</h3>
     </div>
 
-    <ui-pagination
-      :recordCount="recordCount"
-      :pageSize="pageSize"
-      :page="page"
-      showRecord
-      showJumper
-      jumperBefore="Goto"
-      jumperAfter="page"
-      @change="onPage">
-      <template scope="props">
-        Showing {{ props.recordCount }} records,
-        <ui-select :value="pageSizeList" :model="pageSize" @change="onChangePageSize">{{ props.pageSize }}</ui-select> records / page, {{ props.pageCount }} total pages
-      </template>
-    </ui-pagination>
+    <h4>Full paging</h4>
+    <div class="snippet-demo">
+      <ui-pagination
+        :recordCount="recordCount"
+        :pageSize="pageSize"
+        :page="page"
+        showRecord
+        showJumper
+        jumperBefore="Goto"
+        jumperAfter="page"
+        @change="onPage">
+        <template scope="props">
+          Showing {{ props.recordCount }} records,
+          <ui-select :value="pageSizeList" :model="pageSize" @change="onChangePageSize">{{ props.pageSize }}</ui-select> records / page, {{ props.pageCount }} total pages
+        </template>
+      </ui-pagination>
+    </div>
     <ui-markdown :text="code[0]"></ui-markdown>
 
-    // TODO
+    <h4>Mini paging</h4>
+    <div class="snippet-demo">
+      <ui-pagination
+        :recordCount="recordCount"
+        :pageSize="pageSize"
+        :page="page"
+        mini
+        prev="Prev"
+        next="Next"
+        @change="onPage"></ui-pagination>
+    </div>
+    <ui-markdown :text="code[1]"></ui-markdown>
+
+    <ui-apidoc name="pagination"></ui-apidoc>
   </div>
 </template>
 
@@ -44,7 +60,7 @@ export default {
         key: 20,
         value: 20
       }],
-      demoCount: 1,
+      demoCount: 2,
       code: []
     };
   },

@@ -10,31 +10,11 @@
     </div>
     <ui-markdown :text="code[0]"></ui-markdown>
 
-    <h4>Select API</h4>
-    <ui-tabs effect position="left" :active="docs.tab" @switched="onChange">
-      <ui-panel tab="props">
-        <ui-table
-          class="docs-table"
-          :data="docs.props.data"
-          :thead="docs.props.thead"
-          :tbody="docs.props.tbody">
-        </ui-table>
-      </ui-panel>
-      <ui-panel tab="events">
-        <ui-table
-          class="docs-table"
-          :data="docs.events.data"
-          :thead="docs.events.thead"
-          :tbody="docs.events.tbody">
-        </ui-table>
-      </ui-panel>
-    </ui-tabs>
+    <ui-apidoc name="select"></ui-apidoc>
   </div>
 </template>
 
 <script>
-import selectDocs from '../apidocs/select';
-
 export default {
   data() {
     return {
@@ -52,20 +32,7 @@ export default {
       selected2: '',
       options2: [],
       demoCount: 1,
-      code: [],
-      docs: {
-        tab: 0,
-        props: {
-          data: selectDocs.props,
-          thead: this.$docs.props.thead,
-          tbody: this.$docs.props.tbody
-        },
-        events: {
-          data: selectDocs.events,
-          thead: this.$docs.events.thead,
-          tbody: this.$docs.events.tbody
-        }
-      }
+      code: []
     };
   },
   methods: {
@@ -93,9 +60,6 @@ export default {
     },
     onChange2(option) {
       this.selected2 = option.key;
-    },
-    onChange(tab) {
-      this.docs.tab = tab;
     }
   },
   created() {

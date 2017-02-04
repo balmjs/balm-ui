@@ -12,6 +12,7 @@ import App from './app';
 import routes from './routes/index';
 import UiCode from './components/code';
 import UiMarkdown from './components/markdown';
+import UiApidoc from './components/apidoc';
 // syntax highlighting
 import 'prismCss';
 import prismjs from 'prismjs';
@@ -25,6 +26,7 @@ Vue.use({
   install(vue) {
     vue.component(UiCode.name, UiCode);
     vue.component(UiMarkdown.name, UiMarkdown);
+    vue.component(UiApidoc.name, UiApidoc);
   }
 });
 Vue.prototype.$http = axios;

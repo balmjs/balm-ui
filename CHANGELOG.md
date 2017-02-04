@@ -6,9 +6,11 @@ __`<ui-datepicker>`__
 
 - fix css
 
-### Update docs
-
 __`<ui-pagination>`__
+
+- add props `mini`
+
+### Update docs
 
 ## 0.1.16
 

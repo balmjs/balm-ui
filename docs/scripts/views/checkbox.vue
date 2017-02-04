@@ -24,64 +24,18 @@
     <ui-button @click.native="onWatchString(['A', 'C'])">choose A,C</ui-button>
     <ui-button @click.native="onWatchString(['B', 'C'])">choose B,C</ui-button>
 
-    <h4>Checkbox API</h4>
-    <ui-tabs effect position="left" :active="docs.tab" @switched="onChange">
-      <ui-panel tab="props">
-        <ui-table
-          class="docs-table"
-          :data="docs.props.data"
-          :thead="docs.props.thead"
-          :tbody="docs.props.tbody">
-        </ui-table>
-      </ui-panel>
-      <ui-panel tab="slots">
-        <ui-table
-          class="docs-table"
-          :data="docs.slots.data"
-          :thead="docs.slots.thead"
-          :tbody="docs.slots.tbody">
-        </ui-table>
-      </ui-panel>
-      <ui-panel tab="events">
-        <ui-table
-          class="docs-table"
-          :data="docs.events.data"
-          :thead="docs.events.thead"
-          :tbody="docs.events.tbody">
-        </ui-table>
-      </ui-panel>
-    </ui-tabs>
+    <ui-apidoc name="checkbox"></ui-apidoc>
   </div>
 </template>
 
 <script>
-import checkboxDocs from '../apidocs/checkbox';
-
 export default {
   data() {
     return {
       numberOptions: [],
       stringOptions: [],
       demoCount: 1,
-      code: [],
-      docs: {
-        tab: 0,
-        props: {
-          data: checkboxDocs.props,
-          thead: this.$docs.props.thead,
-          tbody: this.$docs.props.tbody
-        },
-        slots: {
-          data: checkboxDocs.slots,
-          thead: this.$docs.slots.thead,
-          tbody: this.$docs.slots.tbody
-        },
-        events: {
-          data: checkboxDocs.events,
-          thead: this.$docs.events.thead,
-          tbody: this.$docs.events.tbody
-        }
-      }
+      code: []
     };
   },
   methods: {
@@ -96,9 +50,6 @@ export default {
     },
     onWatchString(val) {
       this.stringOptions = val;
-    },
-    onChange(tab) {
-      this.docs.tab = tab;
     }
   },
   created() {

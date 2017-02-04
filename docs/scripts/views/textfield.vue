@@ -63,39 +63,11 @@
     </div>
     <ui-markdown :text="code[7]"></ui-markdown>
 
-    <h4>Textfield API</h4>
-    <ui-tabs effect position="left" :active="docs.tab" @switched="onChange">
-      <ui-panel tab="props">
-        <ui-table
-          class="docs-table"
-          :data="docs.props.data"
-          :thead="docs.props.thead"
-          :tbody="docs.props.tbody">
-        </ui-table>
-      </ui-panel>
-      <ui-panel tab="slots">
-        <ui-table
-          class="docs-table"
-          :data="docs.slots.data"
-          :thead="docs.slots.thead"
-          :tbody="docs.slots.tbody">
-        </ui-table>
-      </ui-panel>
-      <ui-panel tab="events">
-        <ui-table
-          class="docs-table"
-          :data="docs.events.data"
-          :thead="docs.events.thead"
-          :tbody="docs.events.tbody">
-        </ui-table>
-      </ui-panel>
-    </ui-tabs>
+    <ui-apidoc name="textfield"></ui-apidoc>
   </div>
 </template>
 
 <script>
-import textfieldDocs from '../apidocs/textfield';
-
 export default {
   data() {
     return {
@@ -108,33 +80,12 @@ export default {
       text7: '',
       text8: '',
       demoCount: 8,
-      code: [],
-      docs: {
-        tab: 0,
-        props: {
-          data: textfieldDocs.props,
-          thead: this.$docs.props.thead,
-          tbody: this.$docs.props.tbody
-        },
-        slots: {
-          data: textfieldDocs.slots,
-          thead: this.$docs.slots.thead,
-          tbody: this.$docs.slots.tbody
-        },
-        events: {
-          data: textfieldDocs.events,
-          thead: this.$docs.events.thead,
-          tbody: this.$docs.events.tbody
-        }
-      }
+      code: []
     }
   },
   methods: {
     onInputChange(field, event) {
       this[field] = event.target.value;
-    },
-    onChange(tab) {
-      this.docs.tab = tab;
     }
   },
   created() {

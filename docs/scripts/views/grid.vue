@@ -24,96 +24,18 @@
     </div>
     <ui-markdown :text="code[0]"></ui-markdown>
 
-    <h4>Grid API</h4>
-    <ui-tabs effect position="left" :active="grid.tab" @switched="onChangeGrid">
-      <ui-panel tab="props">
-        <ui-table
-          class="docs-table"
-          :data="grid.docs.props.data"
-          :thead="grid.docs.props.thead"
-          :tbody="grid.docs.props.tbody">
-        </ui-table>
-      </ui-panel>
-      <ui-panel tab="slots">
-        <ui-table
-          class="docs-table"
-          :data="grid.docs.slots.data"
-          :thead="grid.docs.slots.thead"
-          :tbody="grid.docs.slots.tbody">
-        </ui-table>
-      </ui-panel>
-    </ui-tabs>
-
-    <h4>Cell API</h4>
-    <ui-tabs effect position="left" :active="cell.tab" @switched="onChangeCell">
-      <ui-panel tab="props">
-        <ui-table
-          class="docs-table"
-          :data="cell.docs.props.data"
-          :thead="cell.docs.props.thead"
-          :tbody="cell.docs.props.tbody">
-        </ui-table>
-      </ui-panel>
-      <ui-panel tab="slots">
-        <ui-table
-          class="docs-table"
-          :data="cell.docs.slots.data"
-          :thead="cell.docs.slots.thead"
-          :tbody="cell.docs.slots.tbody">
-        </ui-table>
-      </ui-panel>
-    </ui-tabs>
+    <ui-apidoc name="grid"></ui-apidoc>
+    <ui-apidoc name="cell"></ui-apidoc>
   </div>
 </template>
 
 <script>
-import gridDocs from '../apidocs/grid';
-import cellDocs from '../apidocs/cell';
-
 export default {
   data() {
     return {
       demoCount: 1,
-      code: [],
-      grid: {
-        tab: 0,
-        docs: {
-          props: {
-            data: gridDocs.props,
-            thead: this.$docs.props.thead,
-            tbody: this.$docs.props.tbody
-          },
-          slots: {
-            data: gridDocs.slots,
-            thead: this.$docs.slots.thead,
-            tbody: this.$docs.slots.tbody
-          }
-        }
-      },
-      cell: {
-        tab: 0,
-        docs: {
-          props: {
-            data: cellDocs.props,
-            thead: this.$docs.props.thead,
-            tbody: this.$docs.props.tbody
-          },
-          slots: {
-            data: cellDocs.slots,
-            thead: this.$docs.slots.thead,
-            tbody: this.$docs.slots.tbody
-          }
-        }
-      }
+      code: []
     };
-  },
-  methods: {
-    onChangeGrid(tab) {
-      this.grid.tab = tab;
-    },
-    onChangeCell(tab) {
-      this.cell.tab = tab;
-    }
   },
   created() {
     for (let i = 1; i <= this.demoCount; i++) {

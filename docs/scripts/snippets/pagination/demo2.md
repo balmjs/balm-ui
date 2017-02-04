@@ -1,0 +1,10 @@
+```html
+<ui-pagination
+  :recordCount="recordCount"
+  :pageSize="pageSize"
+  :page="page"
+  mini
+  prev="Prev"
+  next="Next"
+  @change="onPage"></ui-pagination>
+```

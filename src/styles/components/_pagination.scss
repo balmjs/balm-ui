@@ -51,4 +51,28 @@
       }
     }
   }
+  &.mdl-pagination--mini {
+    display: block;
+    .mdl-pagination--paging {
+      &:before,
+      &:after {
+        display: table;
+        content: ' ';
+      }
+      &:after {
+        clear: both;
+      }
+      a {
+        width: auto;
+        margin: 0;
+        padding: 0 8px;
+      }
+    }
+    .mdl-pagination--paging-previous {
+      float: left;
+    }
+    .mdl-pagination--paging-next {
+      float: right;
+    }
+  }
 }

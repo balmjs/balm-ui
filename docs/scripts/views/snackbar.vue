@@ -25,39 +25,11 @@
     </div>
     <ui-markdown :text="code[1]"></ui-markdown>
 
-    <h4>Snackbar API</h4>
-    <ui-tabs effect position="left" :active="docs.tab" @switched="onChange">
-      <ui-panel tab="props">
-        <ui-table
-          class="docs-table"
-          :data="docs.props.data"
-          :thead="docs.props.thead"
-          :tbody="docs.props.tbody">
-        </ui-table>
-      </ui-panel>
-      <ui-panel tab="slots">
-        <ui-table
-          class="docs-table"
-          :data="docs.slots.data"
-          :thead="docs.slots.thead"
-          :tbody="docs.slots.tbody">
-        </ui-table>
-      </ui-panel>
-      <ui-panel tab="events">
-        <ui-table
-          class="docs-table"
-          :data="docs.events.data"
-          :thead="docs.events.thead"
-          :tbody="docs.events.tbody">
-        </ui-table>
-      </ui-panel>
-    </ui-tabs>
+    <ui-apidoc name="snackbar"></ui-apidoc>
   </div>
 </template>
 
 <script>
-import snackbarDocs from '../apidocs/snackbar';
-
 export default {
   data() {
     return {
@@ -70,25 +42,7 @@ export default {
         message: 'Hello Snackbar'
       },
       demoCount: 2,
-      code: [],
-      docs: {
-        tab: 0,
-        props: {
-          data: snackbarDocs.props,
-          thead: this.$docs.props.thead,
-          tbody: this.$docs.props.tbody
-        },
-        slots: {
-          data: snackbarDocs.slots,
-          thead: this.$docs.slots.thead,
-          tbody: this.$docs.slots.tbody
-        },
-        events: {
-          data: snackbarDocs.events,
-          thead: this.$docs.events.thead,
-          tbody: this.$docs.events.tbody
-        }
-      }
+      code: []
     };
   },
   methods: {
@@ -101,9 +55,6 @@ export default {
     },
     actionHandler() {
       this.snackbar.active = false;
-    },
-    onChange(tab) {
-      this.docs.tab = tab;
     }
   },
   created() {

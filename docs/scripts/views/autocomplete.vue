@@ -21,7 +21,7 @@
     </div>
     <ui-markdown :text="code[0]"></ui-markdown>
 
-    // TODO
+    <ui-apidoc name="autocomplete"></ui-apidoc>
   </div>
 </template>
 

@@ -11,71 +11,22 @@
     </div>
     <ui-markdown :text="code[0]"></ui-markdown>
 
-    <h4>Switch API</h4>
-    <ui-tabs effect position="left" :active="docs.tab" @switched="onChange">
-      <ui-panel tab="props">
-        <ui-table
-          class="docs-table"
-          :data="docs.props.data"
-          :thead="docs.props.thead"
-          :tbody="docs.props.tbody">
-        </ui-table>
-      </ui-panel>
-      <ui-panel tab="slots">
-        <ui-table
-          class="docs-table"
-          :data="docs.slots.data"
-          :thead="docs.slots.thead"
-          :tbody="docs.slots.tbody">
-        </ui-table>
-      </ui-panel>
-      <ui-panel tab="events">
-        <ui-table
-          class="docs-table"
-          :data="docs.events.data"
-          :thead="docs.events.thead"
-          :tbody="docs.events.tbody">
-        </ui-table>
-      </ui-panel>
-    </ui-tabs>
+    <ui-apidoc name="switch"></ui-apidoc>
   </div>
 </template>
 
 <script>
-import switchDocs from '../apidocs/switch';
-
 export default {
   data() {
     return {
       open: true,
       demoCount: 1,
-      code: [],
-      docs: {
-        tab: 0,
-        props: {
-          data: switchDocs.props,
-          thead: this.$docs.props.thead,
-          tbody: this.$docs.props.tbody
-        },
-        slots: {
-          data: switchDocs.slots,
-          thead: this.$docs.slots.thead,
-          tbody: this.$docs.slots.tbody
-        },
-        events: {
-          data: switchDocs.events,
-          thead: this.$docs.events.thead,
-          tbody: this.$docs.events.tbody
-        }
-      }
+      code: []
     };
   },
   methods: {
     onSwitchChange(val) {
       this.open = val;
-    },
-    onChange(tab) {
-      this.docs.tab = tab;
     }
   },
   created() {

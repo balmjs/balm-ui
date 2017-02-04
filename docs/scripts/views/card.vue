@@ -119,55 +119,17 @@
     </div>
     <ui-markdown :text="code[4]"></ui-markdown>
 
-    <h4>Card API</h4>
-    <ui-tabs effect position="left" :active="docs.tab" @switched="onChange">
-      <ui-panel tab="props">
-        <ui-table
-          class="docs-table"
-          :data="docs.props.data"
-          :thead="docs.props.thead"
-          :tbody="docs.props.tbody">
-        </ui-table>
-      </ui-panel>
-      <ui-panel tab="slots">
-        <ui-table
-          class="docs-table"
-          :data="docs.slots.data"
-          :thead="docs.slots.thead"
-          :tbody="docs.slots.tbody">
-        </ui-table>
-      </ui-panel>
-    </ui-tabs>
+    <ui-apidoc name="card"></ui-apidoc>
   </div>
 </template>
 
 <script>
-import cardDocs from '../apidocs/card';
-
 export default {
   data() {
     return {
       demoCount: 5,
-      code: [],
-      docs: {
-        tab: 0,
-        props: {
-          data: cardDocs.props,
-          thead: this.$docs.props.thead,
-          tbody: this.$docs.props.tbody
-        },
-        slots: {
-          data: cardDocs.slots,
-          thead: this.$docs.slots.thead,
-          tbody: this.$docs.slots.tbody
-        }
-      }
+      code: []
     };
-  },
-  methods: {
-    onChange(tab) {
-      this.docs.tab = tab;
-    }
   },
   created() {
     for (let i = 1; i <= this.demoCount; i++) {

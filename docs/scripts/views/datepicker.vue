@@ -11,7 +11,7 @@
     </div>
     <ui-markdown :text="code[0]"></ui-markdown>
 
-    // TODO
+    <ui-apidoc name="datepicker"></ui-apidoc>
   </div>
 </template>
 

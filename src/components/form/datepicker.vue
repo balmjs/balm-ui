@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import 'flatpickrCss';
 import Flatpickr from 'flatpickr';
 import UiTextfield from './textfield';
 

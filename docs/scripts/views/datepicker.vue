@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import 'flatpickrCss';
+
 export default {
   data() {
     return {

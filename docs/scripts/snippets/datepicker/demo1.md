@@ -5,6 +5,8 @@
 ```
 
 ```js
+import 'flatpickrCss';
+
 export default {
   data() {
     return {
@@ -16,5 +18,19 @@ export default {
       this.date = val;
     }
   }
+};
+```
+
+```js
+// gulpfile.js
+
+balm.config = {
+  ...
+  scripts: {
+    ...
+    alias: {
+      flatpickrCss: 'flatpickr/dist/flatpickr.min.css'
+    },
+  ...
 };
 ```

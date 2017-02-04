@@ -1,3 +1,15 @@
+## 0.1.17
+
+### Update components
+
+__`<ui-datepicker>`__
+
+- fix css
+
+### Update docs
+
+__`<ui-pagination>`__
+
 ## 0.1.16
 
 ### Update components

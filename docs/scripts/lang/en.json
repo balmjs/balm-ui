@@ -24,7 +24,8 @@
     "divider": "Divider",
     "select": "Select",
     "autocomplete": "AutoComplete",
-    "datepicker": "DatePicker"
+    "datepicker": "DatePicker",
+    "pagination": "Pagination"
   },
   "tabs": {
     "basic": "Basic",

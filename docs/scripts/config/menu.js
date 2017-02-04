@@ -25,7 +25,8 @@ const COMPONENTS = [
   'divider',
   'select',
   'autocomplete',
-  'datepicker'
+  'datepicker',
+  'pagination'
 ];
 
 const menu = COMPONENTS.map(component => {

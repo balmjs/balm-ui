@@ -122,7 +122,7 @@ export default {
             page = 1;
             break;
         }
-        this.$emit(EVENT_CHANGE, page);
+        this.$emit(EVENT_CHANGE, +page);
         this.pager = page;
       } else {
         this.pager = this.currentPage;

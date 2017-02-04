@@ -24,7 +24,8 @@
     "divider": "分割线",
     "select": "下拉框",
     "autocomplete": "自动补全",
-    "datepicker": "日期选择框"
+    "datepicker": "日期选择框",
+    "pagination": "分页"
   },
   "tabs": {
     "basic": "基本用法",

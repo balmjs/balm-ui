@@ -18,12 +18,13 @@
 </template>
 
 <script>
+import snippets from '../mixins/snippets';
+
 export default {
+  mixins: [snippets],
   data() {
     return {
-      icons: [],
-      demoCount: 1,
-      code: []
+      icons: []
     };
   },
   methods: {
@@ -32,10 +33,7 @@ export default {
     }
   },
   created() {
-    for (let i = 1; i <= this.demoCount; i++) {
-      let code = require(`../snippets/icon-toggle/demo${i}.md`);
-      this.code.push(code);
-    }
+    this.showCode('icon-toggle');
   }
 };
 </script>

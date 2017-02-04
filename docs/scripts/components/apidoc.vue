@@ -18,8 +18,7 @@
           :tbody="docs.slots.tbody">
         </ui-table>
       </ui-panel>
-    </ui-tabs>
-    <ui-panel tab="events" v-if="docs.events">
+      <ui-panel tab="events" v-if="docs.events">
         <ui-table
           class="docs-table"
           :data="docs.events.data"
@@ -55,8 +54,8 @@ export default {
         if (this.api[value].length) {
           result[value] = {
             data: this.api[value],
-            thead: this.$docs.props.thead,
-            tbody: this.$docs.props.tbody
+            thead: this.$docs[value].thead,
+            tbody: this.$docs[value].tbody
           };
         }
       }

@@ -16,6 +16,8 @@ import UiApidoc from './components/apidoc';
 // syntax highlighting
 import 'prismCss';
 import prismjs from 'prismjs';
+// plugins
+import 'flatpickrCss';
 
 const DEBUG = true; // when build docs, use `false`
 
@@ -24,7 +26,6 @@ Vue.use(VueI18n);
 Vue.use(BalmUI);
 Vue.use({
   install(vue) {
-    vue.component(UiCode.name, UiCode);
     vue.component(UiMarkdown.name, UiMarkdown);
     vue.component(UiApidoc.name, UiApidoc);
   }

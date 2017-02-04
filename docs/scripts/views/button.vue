@@ -123,18 +123,12 @@
 </template>
 
 <script>
+import snippets from '../mixins/snippets';
+
 export default {
-  data() {
-    return {
-      demoCount: 9,
-      code: []
-    };
-  },
+  mixins: [snippets],
   created() {
-    for (let i = 1; i <= this.demoCount; i++) {
-      let code = require(`../snippets/button/demo${i}.md`);
-      this.code.push(code);
-    }
+    this.showCode('button', 9);
   }
 };
 </script>

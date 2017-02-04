@@ -29,13 +29,14 @@
 </template>
 
 <script>
+import snippets from '../mixins/snippets';
+
 export default {
+  mixins: [snippets],
   data() {
     return {
       numberOptions: [],
-      stringOptions: [],
-      demoCount: 1,
-      code: []
+      stringOptions: []
     };
   },
   methods: {
@@ -53,10 +54,7 @@ export default {
     }
   },
   created() {
-    for (let i = 1; i <= this.demoCount; i++) {
-      let code = require(`../snippets/checkbox/demo${i}.md`);
-      this.code.push(code);
-    }
+    this.showCode('checkbox');
   }
 };
 </script>

@@ -129,7 +129,10 @@
 </template>
 
 <script>
+import snippets from '../mixins/snippets';
+
 export default {
+  mixins: [snippets],
   data() {
     return {
       items: [
@@ -156,16 +159,11 @@ export default {
         name: 'Bob Odenkirk',
         text: 'Bob Odinkrik played the role of Saul in Breaking Bad. Due to public fondness for the character, Bob stars in his own show now, called "Better Call Saul".',
         value: true
-      }],
-      demoCount: 6,
-      code: []
+      }]
     };
   },
   created() {
-    for (let i = 1; i <= this.demoCount; i++) {
-      let code = require(`../snippets/list/demo${i}.md`);
-      this.code.push(code);
-    }
+    this.showCode('list', 6);
   }
 };
 </script>

@@ -52,14 +52,15 @@
 </template>
 
 <script>
+import snippets from '../mixins/snippets';
+
 export default {
+  mixins: [snippets],
   data() {
     return {
       tab: 0,
       tab2: 0,
-      tab3: 0,
-      demoCount: 3,
-      code: []
+      tab3: 0
     };
   },
   methods: {
@@ -74,10 +75,7 @@ export default {
     }
   },
   created() {
-    for (let i = 1; i <= this.demoCount; i++) {
-      let code = require(`../snippets/tabs/demo${i}.md`);
-      this.code.push(code);
-    }
+    this.showCode('tabs', 3);
   }
 };
 </script>

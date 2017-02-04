@@ -21,12 +21,13 @@
 </template>
 
 <script>
+import snippets from '../mixins/snippets';
+
 export default {
+  mixins: [snippets],
   data() {
     return {
-      gender: '',
-      demoCount: 1,
-      code: []
+      gender: ''
     };
   },
   methods: {
@@ -38,10 +39,7 @@ export default {
     }
   },
   created() {
-    for (let i = 1; i <= this.demoCount; i++) {
-      let code = require(`../snippets/radio/demo${i}.md`);
-      this.code.push(code);
-    }
+    this.showCode('radio');
   }
 };
 </script>

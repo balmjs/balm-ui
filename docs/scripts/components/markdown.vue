@@ -12,6 +12,8 @@ export default {
     }
   },
   mounted() {
+    // Supported languages:
+    // http://prismjs.com/#languages-list
     this.$prism.highlightAll();
   }
 };

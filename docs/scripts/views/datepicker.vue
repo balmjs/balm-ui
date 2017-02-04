@@ -16,14 +16,13 @@
 </template>
 
 <script>
-import 'flatpickrCss';
+import snippets from '../mixins/snippets';
 
 export default {
+  mixins: [snippets],
   data() {
     return {
-      date: '',
-      demoCount: 1,
-      code: []
+      date: ''
     };
   },
   methods: {
@@ -32,10 +31,7 @@ export default {
     }
   },
   created() {
-    for (let i = 1; i <= this.demoCount; i++) {
-      let code = require(`../snippets/datepicker/demo${i}.md`);
-      this.code.push(code);
-    }
+    this.showCode('datepicker');
   }
 };
 </script>

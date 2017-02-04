@@ -26,15 +26,16 @@
 </template>
 
 <script>
+import snippets from '../mixins/snippets';
+
 export default {
+  mixins: [snippets],
   data() {
     return {
       text: '',
       url: `${this.$domain}/data/autocomplete.json`,
       params: {},
-      suggestion: [],
-      demoCount: 1,
-      code: []
+      suggestion: []
     }
   },
   methods: {
@@ -57,10 +58,7 @@ export default {
     }
   },
   created() {
-    for (let i = 1; i <= this.demoCount; i++) {
-      let code = require(`../snippets/autocomplete/demo${i}.md`);
-      this.code.push(code);
-    }
+    this.showCode('autocomplete');
   }
 };
 </script>

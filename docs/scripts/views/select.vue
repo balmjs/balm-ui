@@ -15,7 +15,10 @@
 </template>
 
 <script>
+import snippets from '../mixins/snippets';
+
 export default {
+  mixins: [snippets],
   data() {
     return {
       selected1: 2,
@@ -30,9 +33,7 @@ export default {
         value: 'item 3'
       }],
       selected2: '',
-      options2: [],
-      demoCount: 1,
-      code: []
+      options2: []
     };
   },
   methods: {
@@ -63,10 +64,7 @@ export default {
     }
   },
   created() {
-    for (let i = 1; i <= this.demoCount; i++) {
-      let code = require(`../snippets/select/demo${i}.md`);
-      this.code.push(code);
-    }
+    this.showCode('select');
   }
 };
 </script>

@@ -44,7 +44,10 @@
 </template>
 
 <script>
+import snippets from '../mixins/snippets';
+
 export default {
+  mixins: [snippets],
   data() {
     return {
       table1: {
@@ -156,9 +159,7 @@ export default {
         selectable: 'left',
         checkboxList: [],
         tableDetail: 'Hello'
-      },
-      demoCount: 2,
-      code: []
+      }
     }
   },
   methods: {
@@ -180,10 +181,7 @@ export default {
     }
   },
   created() {
-    for (let i = 1; i <= this.demoCount; i++) {
-      let code = require(`../snippets/table/demo${i}.md`);
-      this.code.push(code);
-    }
+    this.showCode('table', 2);
   },
   async mounted() {
     let response = await this.$http.get(`${this.$domain}/data/table.json`);

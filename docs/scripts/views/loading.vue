@@ -24,18 +24,12 @@
 </template>
 
 <script>
+import snippets from '../mixins/snippets';
+
 export default {
-  data() {
-    return {
-      demoCount: 2,
-      code: []
-    };
-  },
+  mixins: [snippets],
   created() {
-    for (let i = 1; i <= this.demoCount; i++) {
-      let code = require(`../snippets/loading/demo${i}.md`);
-      this.code.push(code);
-    }
+    this.showCode('loading', 2);
   }
 };
 </script>

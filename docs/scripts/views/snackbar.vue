@@ -30,7 +30,10 @@
 </template>
 
 <script>
+import snippets from '../mixins/snippets';
+
 export default {
+  mixins: [snippets],
   data() {
     return {
       toast: {
@@ -40,9 +43,7 @@ export default {
       snackbar: {
         active: false,
         message: 'Hello Snackbar'
-      },
-      demoCount: 2,
-      code: []
+      }
     };
   },
   methods: {
@@ -58,10 +59,7 @@ export default {
     }
   },
   created() {
-    for (let i = 1; i <= this.demoCount; i++) {
-      let code = require(`../snippets/snackbar/demo${i}.md`);
-      this.code.push(code);
-    }
+    this.showCode('snackbar', 2);
   }
 };
 </script>

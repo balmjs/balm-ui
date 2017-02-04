@@ -38,7 +38,10 @@
 </template>
 
 <script>
+import snippets from '../mixins/snippets';
+
 export default {
+  mixins: [snippets],
   data() {
     return {
       data: [{
@@ -51,9 +54,7 @@ export default {
       }, {
         url:'/c',
         label: 'Item C'
-      }],
-      demoCount: 2,
-      code: []
+      }]
     };
   },
   methods: {
@@ -62,10 +63,7 @@ export default {
     }
   },
   created() {
-    for (let i = 1; i <= this.demoCount; i++) {
-      let code = require(`../snippets/menu/demo${i}.md`);
-      this.code.push(code);
-    }
+    this.showCode('menu', 2);
   }
 };
 </script>

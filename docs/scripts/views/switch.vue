@@ -16,12 +16,13 @@
 </template>
 
 <script>
+import snippets from '../mixins/snippets';
+
 export default {
+  mixins: [snippets],
   data() {
     return {
-      open: true,
-      demoCount: 1,
-      code: []
+      open: true
     };
   },
   methods: {
@@ -30,10 +31,7 @@ export default {
     }
   },
   created() {
-    for (let i = 1; i <= this.demoCount; i++) {
-      let code = require(`../snippets/switch/demo${i}.md`);
-      this.code.push(code);
-    }
+    this.showCode('switch');
   }
 };
 </script>

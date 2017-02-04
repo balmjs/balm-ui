@@ -68,7 +68,10 @@
 </template>
 
 <script>
+import snippets from '../mixins/snippets';
+
 export default {
+  mixins: [snippets],
   data() {
     return {
       text1: '',
@@ -78,9 +81,7 @@ export default {
       text5: '',
       text6: '',
       text7: '',
-      text8: '',
-      demoCount: 8,
-      code: []
+      text8: ''
     }
   },
   methods: {
@@ -89,10 +90,7 @@ export default {
     }
   },
   created() {
-    for (let i = 1; i <= this.demoCount; i++) {
-      let code = require(`../snippets/textfield/demo${i}.md`);
-      this.code.push(code);
-    }
+    this.showCode('textfield', 8);
   }
 };
 </script>

@@ -10,7 +10,7 @@ __`<ui-pagination>`__
 
 - add props `mini`
 
-### Update docs
+### Update docs & snippets
 
 ## 0.1.16
 

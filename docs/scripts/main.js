@@ -10,7 +10,6 @@ import axios from 'axios';
 import BalmUI from '../../src/index';
 import App from './app';
 import routes from './routes/index';
-import UiCode from './components/code';
 import UiMarkdown from './components/markdown';
 import UiApidoc from './components/apidoc';
 // syntax highlighting

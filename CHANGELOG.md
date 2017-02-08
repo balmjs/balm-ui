@@ -4,6 +4,10 @@ __`<ui-menu>`__
 
 - fix css for `<ui-select>` support
 
+__`<ui-textfield>`__
+
+- bugfix
+
 ---
 
 ## 0.1.17

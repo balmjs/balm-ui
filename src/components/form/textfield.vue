@@ -146,6 +146,8 @@ export default {
   watch: {
     model(val) {
       this.currentValue = val;
+      // for dynamic assignment
+      this.className.outer['is-dirty'] = val.length;
     }
   },
   methods: {

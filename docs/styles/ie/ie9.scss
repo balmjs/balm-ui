@@ -1,0 +1,24 @@
+@import '../mixins';
+@import 'grid';
+// fix layout
+.mdl-layout__drawer {
+  height: auto;
+  max-height: none;
+}
+
+.mdl-layout--fixed-drawer > .mdl-layout__content {
+  width: 100%;
+  margin-left: 0;
+  padding-left: 240px;
+}
+
+.mdl-layout__content {
+  padding: 20px 20px 20px 260px !important;
+}
+
+/// fix components
+// badge
+.mdl-badge[data-badge]:after {
+  line-height: 22px;
+  text-align: center;
+}

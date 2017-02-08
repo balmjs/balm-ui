@@ -1,0 +1,9 @@
+/**
+ * #ie10,11 will only be red in MSIE 10,
+ * both in high contrast (display setting) and default mode
+ */
+
+@media screen and (-ms-high-contrast: active),
+(-ms-high-contrast: none) {
+
+}

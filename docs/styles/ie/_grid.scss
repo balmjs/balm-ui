@@ -1,0 +1,10 @@
+// parent
+.mdl-grid {
+  display: block;
+  @include clearfix;
+}
+
+// children
+.mdl-cell {
+  float: left;
+}

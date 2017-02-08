@@ -1,0 +1,22 @@
+@mixin fix-list {
+  .mdl-list__item {
+    .mdl-list__item-secondary-content {
+      height: 100%;
+      .mdl-list__item-secondary-info {
+        display: block;
+      }
+    }
+  }
+  .mdl-list__item--three-line {
+    display: block;
+    @include clearfix;
+    .mdl-list__item-primary-content {
+      float: left;
+      width: 550px;
+    }
+    .mdl-list__item-secondary-content {
+      float: right;
+      margin: 0;
+    }
+  }
+}

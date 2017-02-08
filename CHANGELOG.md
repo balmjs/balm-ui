@@ -1,3 +1,11 @@
+## 0.1.18
+
+__`<ui-menu>`__
+
+- fix css for `<ui-select>` support
+
+---
+
 ## 0.1.17
 
 ### Update components
@@ -11,6 +19,8 @@ __`<ui-pagination>`__
 - add props `mini`
 
 ### Update docs & snippets
+
+---
 
 ## 0.1.16
 
@@ -29,6 +39,8 @@ __`<ui-textfield>`__
 [x] __`<ui-autocomplete>`__
 [x] __`<ui-datepicker>`__
 [x] __`<ui-pagination>`__
+
+---
 
 ## 0.1.15
 

@@ -1,7 +1,7 @@
 <template>
   <div class="mdl-menu-container">
     <button ref="button"
-      class="mdl-button mdl-js-button mdl-button--icon"
+      :class="['mdl-button mdl-js-button', {'mdl-button--icon': !isSelect}]"
       :id="`menu-${name}`"
       :disabled="disabled">
       <slot name="icon">

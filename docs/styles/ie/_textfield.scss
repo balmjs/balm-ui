@@ -1,0 +1,10 @@
+.mdl-textfield {
+  &.mdl-textfield--left-label {
+    .mdl-input__expandable-holder {
+      @include clearfix;
+      > * {
+        float: left;
+      }
+    }
+  }
+}

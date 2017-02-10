@@ -75,4 +75,12 @@
       float: right;
     }
   }
+  .mdl-select {
+    .mdl-button {
+      padding: 0 10px;
+      i {
+        right: -10px;
+      }
+    }
+  }
 }

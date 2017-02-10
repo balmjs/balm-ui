@@ -81,10 +81,8 @@ export default {
 
 <style>
 .mdl-pagination--record .mdl-select {
-  width: 60px;
+  width: 64px;
+  min-width: 64px;
 }
-.mdl-pagination--record .mdl-select .mdl-button {
-  text-align: left;
-  text-indent: 12px;
-}
+
 </style>

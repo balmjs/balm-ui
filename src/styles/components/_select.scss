@@ -1,16 +1,24 @@
 .mdl-select {
   display: inline-block;
   width: 300px;
+  min-width: 124px;
   .mdl-button {
     font-size: inherit;
+    line-height: normal;
     width: 100%;
+    height: 32px;
+    text-align: left;
     text-transform: none;
     border: 1px solid $input-text-bottom-border-color;
     border-radius: 0;
     background-color: $button-hover-color;
     i {
+      line-height: 24px;
+      position: absolute;
+      top: 50%;
       right: 0;
-      left: auto;
+      width: 24px;
+      transform: translate(-12px, -12px);
     }
   }
   .mdl-menu__outline {

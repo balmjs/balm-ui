@@ -31,15 +31,10 @@
     "default": "false",
     "description": "Applies floating label effect"
   }, {
-    "name": "labelLeft",
-    "type": "Boolean",
-    "default": "false",
-    "description": "Applies left label effect"
-  }, {
     "name": "placeholder",
     "type": "String",
     "default": "",
-    "description": "Provides a hint to the user of what can be entered in the field (for `labelLeft`)"
+    "description": "Provides a hint to the user of what can be entered in the field"
   }, {
     "name": "pattern",
     "type": "String",
@@ -99,15 +94,21 @@
   }],
   "events": [{
     "name": "input",
-    "description": "Dispatched when the input is changed"
+    "description": "Emitted when the select value is changed. The handler is called with the new value. (IE10+)"
+  }, {
+    "name": "change",
+    "description": "Emitted when a change in the textbox value is committed. The handler is called with the new value. (IE9+)"
   }, {
     "name": "focus",
-    "description": "Dispatched when the input is focussed"
+    "description": "Emitted when the textbox is focused."
   }, {
     "name": "blur",
-    "description": "Dispatched when the input loses focus"
+    "description": "Emitted when the textbox loses focus."
   }, {
     "name": "keydown",
-    "description": "Dispatched when a key is pressed in the input"
+    "description": "Emitted when a key is pressed in the input. The handler is called with the event object."
+  }, {
+    "name": "enter",
+    "description": "Emitted when the Enter key is pressed in the input. The handler is called with the event object."
   }]
 }

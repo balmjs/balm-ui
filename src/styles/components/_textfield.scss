@@ -10,35 +10,6 @@
     overflow: hidden;
   }
   /**
-   * Textfield with left Label
-   */
-  &.mdl-textfield--left-label {
-    padding: 0;
-    .mdl-input__expandable-holder {
-      display: flex;
-      justify-content: space-between;
-    }
-    .mdl-textfield__label {
-      position: relative;
-      top: 0;
-      visibility: visible !important;
-      color: inherit;
-      &::after {
-        bottom: 0;
-        visibility: hidden !important;
-        width: 0;
-      }
-    }
-    .mdl-textfield__error {
-      text-align: left;
-    }
-    .mdl-textfield__plus {
-      position: absolute;
-      top: 0;
-      width: auto;
-    }
-  }
-  /**
    * Textfield with expand
    */
   .mdl-textfield__expand {
@@ -53,5 +24,11 @@
     .mdl-textfield__expand {
       display: block;
     }
+  }
+}
+
+.mdl-textfield__input {
+  &::placeholder {
+    color: $input-text-label-color;
   }
 }

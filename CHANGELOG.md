@@ -7,6 +7,9 @@ __`<ui-menu>`__
 __`<ui-textfield>`__
 
 - bugfix
+- the props `labelLeft` is deprecated
+- add event `change` & `enter`
+- test IE9+
 
 ### Update docs & snippets
 

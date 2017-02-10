@@ -1,3 +1,4 @@
 ```html
-<ui-textfield label="Text..." :model="text" @input.native="onInputChange('text', $event)"></ui-textfield>
+<ui-textfield :model="text1" @input.native="onInputChange('text1', $event)"
+  label="Text..."></ui-textfield>
 ```

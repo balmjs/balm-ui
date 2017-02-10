@@ -1,5 +1,5 @@
 ```html
-<ui-textfield label="Left Text..." :model="text" @input.native="onInputChange('text', $event)"
-  labelLeft
-  placeholder="Placeholder..."></ui-textfield>
+<ui-textfield type="textarea" :model="text5" @input.native="onInputChange('text5', $event)"
+  label="Text lines..."
+  :rows="3"></ui-textfield>
 ```

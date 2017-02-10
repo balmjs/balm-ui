@@ -6,7 +6,7 @@
       </slot>
     </label>
     <div :class="[className.inner, {'is-expand': isExpand}]">
-      <label class="mdl-textfield__label" :for="id">
+      <label class="mdl-textfield__label">
         <slot name="label">{{ label }}</slot>
       </label>
       <textarea class="mdl-textfield__input"
@@ -14,30 +14,34 @@
         :id="id"
         :name="name"
         :rows="rows"
-        :placeholder="currentPlaceholder"
+        :placeholder="labelFloating ? null : placeholder"
         v-model="currentValue"
         :maxlength="maxlength"
         :disabled="disabled"
         :readonly="readonly"
-        @input="handleInput"
+        @input="handleInput($event.target.value)"
+        @change="handleChange"
         @focus="handleFocus"
         @blur="handleBlur"
-        @keydown="handleKeydown"></textarea>
+        @keydown="handleKeydown"
+        @keydown.enter="handleKeydownEnter"></textarea>
       <input class="mdl-textfield__input"
         v-if="!isTextarea"
         :type="type"
         :id="id"
         :name="name"
-        :placeholder="currentPlaceholder"
+        :placeholder="labelFloating ? null : placeholder"
         :pattern="pattern"
         :value="currentValue"
         :maxlength="maxlength"
         :disabled="disabled"
         :readonly="readonly"
-        @input="handleInput"
+        @input="handleInput($event.target.value)"
+        @change="handleChange"
         @focus="handleFocus"
         @blur="handleBlur"
         @keydown="handleKeydown"
+        @keydown.enter="handleKeydownEnter"
         data-input>
       <span class="mdl-textfield__error" v-if="error">
         <slot name="error">{{ error }}</slot>
@@ -56,9 +60,11 @@
 import '../../material-design-lite/textfield/textfield';
 
 const EVENT_INPUT = 'input';
+const EVENT_CHANGE = 'change';
 const EVENT_FOCUS = 'focus';
 const EVENT_BLUR = 'blur';
 const EVENT_KEYDOWN = 'keydown';
+const EVENT_KEYDOWN_ENTER = 'enter';
 
 export default {
   name: 'ui-textfield',
@@ -75,10 +81,6 @@ export default {
     name: String,
     label: String,
     labelFloating: {
-      type: Boolean,
-      default: false
-    },
-    labelLeft: {
       type: Boolean,
       default: false
     },
@@ -126,21 +128,17 @@ export default {
         outer: {
           'mdl-textfield': true,
           'mdl-js-textfield': true,
-          'is-upgraded': true,
           'mdl-textfield--floating-label': this.labelFloating,
           'mdl-textfield--expandable': this.expandable,
-          'mdl-textfield--left-label': this.labelLeft,
           'mdl-textfield--plus': this.plus,
+          'is-textarea': this.isTextarea,
           'is-focused': this.isFocus
         },
         inner: {
           'mdl-textfield__expandable-holder': this.expandable,
-          'mdl-input__expandable-holder': this.labelLeft || this.plus
+          'mdl-input__expandable-holder': this.plus
         }
       };
-    },
-    currentPlaceholder() {
-      return this.labelLeft && this.placeholder;
     },
     isExpand() {
       return this.expand;
@@ -154,16 +152,21 @@ export default {
   },
   methods: {
     checkDirty(isFocus = true) {
-      this.isFocus = isFocus;
-      // for dynamic assignment
-      this.className.outer['is-dirty'] = this.currentValue.length;
+      if (this.label) {
+        this.isFocus = isFocus;
+        // for dynamic assignment
+        this.className.outer['is-dirty'] = this.currentValue.length;
+      }
     },
-    handleInput() {
-      this.$emit(EVENT_INPUT, this.currentValue);
+    handleInput(value) {
+      this.$emit(EVENT_INPUT, value);
     },
-    handleFocus() {
+    handleChange(event) {
+      this.$emit(EVENT_CHANGE, this.currentValue, event);
+    },
+    handleFocus(event) {
       this.checkDirty();
-      this.$emit(EVENT_FOCUS);
+      this.$emit(EVENT_FOCUS, event);
     },
     handleBlur(event) {
       this.checkDirty(false);
@@ -171,9 +174,15 @@ export default {
     },
     handleKeydown(event) {
       this.$emit(EVENT_KEYDOWN, event);
+    },
+    handleKeydownEnter(event) {
+      this.$emit(EVENT_KEYDOWN_ENTER, event);
     }
   },
   created() {
+    if (this.labelFloating && !this.label) {
+      console.warn('Labelfloating textfield need a label.');
+    }
     if (this.expandable && !this.id) {
       console.warn('Expandable textfield need an id.');
     }

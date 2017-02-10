@@ -1,4 +1,5 @@
 ```html
-<ui-textfield label="Floating Text..." :model="text" @input.native="onInputChange('text', $event)"
-  labelFloating></ui-textfield>
+<ui-textfield :model="text3" @input.native="onInputChange('text3', $event)"
+  labelFloating
+  label="Floating Text..."></ui-textfield>
 ```

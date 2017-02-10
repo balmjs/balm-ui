@@ -1,0 +1,11 @@
+.mdl-fileupload {
+  position: relative;
+  .mdl-fileupload__input {
+    position: absolute;
+    z-index: -1;
+    overflow: hidden;
+    width: .1px;
+    height: .1px;
+    opacity: 0;
+  }
+}

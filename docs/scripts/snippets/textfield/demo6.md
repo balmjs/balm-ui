@@ -1,7 +1,9 @@
 ```html
-<ui-textfield :model="text" @input.native="onInputChange('text', $event)"
-  expandable
-  id="search">
-  <i slot="icon" class="material-icons">search</i>
+<ui-textfield :model="text7" @input.native="onInputChange('text7', $event)"
+  label="Plus Text..."
+  plus>
+  <template slot="plus">
+    <a href="javascript:void(0)">Button</a>
+  </template>
 </ui-textfield>
 ```

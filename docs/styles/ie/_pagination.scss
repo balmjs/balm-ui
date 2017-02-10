@@ -1,0 +1,14 @@
+.mdl-pagination {
+  @include clearfix;
+  .mdl-pagination--record {
+    float: left;
+  }
+  .mdl-pagination--paging {
+    float: right;
+  }
+  &.mdl-pagination--mini {
+    .mdl-pagination--paging {
+      width: 100%;
+    }
+  }
+}

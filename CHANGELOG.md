@@ -11,6 +11,11 @@ __`<ui-textfield>`__
 - add event `change` & `enter`
 - test IE9+
 
+__`<ui-pagination>`__
+
+- IE bugfix
+- test IE9+
+
 ### Update docs & snippets
 
 - __`<ui-chip>`__

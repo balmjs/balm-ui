@@ -1,8 +1,8 @@
 <template>
   <div class="mdl-datepicker">
     <ui-textfield
-      :label="label"
       :model="currentValue"
+      :placeholder="placeholder"
       :plus="plus"
       @input.native="handleInput($event)">
       <template slot="plus">
@@ -34,11 +34,11 @@ export default {
         return {};
       }
     },
-    label: String,
     model: {
       type: String,
       required: true
     },
+    placeholder: String,
     plus: {
       type: Boolean,
       default: false

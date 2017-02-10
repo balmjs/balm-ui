@@ -17,16 +17,17 @@
       <a class="mdl-pagination--paging-next">
         <span v-html="next" @click="handleClick(currentPage === pageCount ? pageCount : currentPage + 1)"></span>
       </a>
+      <div v-if="!mini && showJumper" class="mdl-pagination--jumper">
+        <span>{{ jumperBefore }}</span>
+        <input type="text" ref="input" v-model="pager" @keydown="handleClick(pager, $event)">
+        <span>{{ jumperAfter }}</span>
+      </divH>
     </div>
-    <div v-if="showJumper" class="mdl-pagination--jumper">
-      <span>{{ jumperBefore }}</span>
-      <input type="text" v-model="pager" @keyup.enter="handleClick(pager)">
-      <span>{{ jumperAfter }}</span>
-    </divH>
   </div>
 </template>
 
 <script>
+const KEY_ENTER = 13;
 const ARROW_LEFT = '&lsaquo;';
 const ARROW_RIGHT = '&rsaquo;';
 const EVENT_CHANGE = 'change';
@@ -116,7 +117,7 @@ export default {
       let noFirstOrLast = (page !== 1 && page !== this.pageCount);
       return !(isExisted && noFirstOrLast);
     },
-    handleClick(page) {
+    handleClick(page, event) {
       if (!isNaN(page)) {
         switch (true) {
           case (page > this.pageCount):
@@ -130,6 +131,10 @@ export default {
         this.pager = page;
       } else {
         this.pager = this.currentPage;
+      }
+      // fix IE bug
+      if (event.keyCode === KEY_ENTER) {
+        event.preventDefault();
       }
     }
   }

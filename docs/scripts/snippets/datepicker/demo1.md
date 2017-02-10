@@ -1,5 +1,5 @@
 ```html
-<ui-datepicker label="Select Date.." :model="date" @input="onInput" plus>
+<ui-datepicker placeholder="Select Date.." :model="date" @input="onInput" plus>
   <i slot="plus" class="fa fa-calendar"></i>
 </ui-datepicker>
 ```

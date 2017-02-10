@@ -1,8 +1,8 @@
 <template>
   <ui-textfield
     class="mdl-autocomplete"
-    :label="label"
     :model="currentValue"
+    :placeholder="placeholder"
     :expand="isExpand"
     :plus="plus"
     @input.native="handleInput($event)"
@@ -39,11 +39,11 @@ export default {
     UiTextfield
   },
   props: {
-    label: String,
     model: {
       type: String,
       required: true
     },
+    placeholder: String,
     method: {
       type: String,
       default: METHOD_GET

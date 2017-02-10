@@ -5,7 +5,7 @@
     </div>
 
     <div class="snippet-demo">
-      <ui-autocomplete label="Expand Text... (type 'a' or 'b')"
+      <ui-autocomplete placeholder="Expand Text... (type 'a' or 'b')"
         :model="text"
         :url="url"
         :params="params"

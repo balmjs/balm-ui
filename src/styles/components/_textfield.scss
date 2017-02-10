@@ -17,19 +17,12 @@
     .mdl-input__expandable-holder {
       display: flex;
       justify-content: space-between;
-      & > * {
-        position: static;
-        /* change it */
-        width: 50%;
-        margin: 0;
-      }
     }
     .mdl-textfield__label {
       position: relative;
       top: 0;
       visibility: visible !important;
-      /* change it */
-      width: 50%;
+      color: inherit;
       &::after {
         bottom: 0;
         visibility: hidden !important;

@@ -1,8 +1,8 @@
 <template>
   <span :class="className">
-    <slot name="contact" :className="contactClassName"></slot>
+    <slot name="icon" :className="contactClassName"></slot>
     <span class="mdl-chip__text">
-      <slot>{{ value }}</slot>
+      <slot></slot>
     </span>
     <slot name="action" :className="actionClassName"></slot>
   </span>
@@ -16,15 +16,14 @@ export default {
   name: 'ui-chip',
   props: {
     // Defines an MDL chip as a contact style chip
-    contact: {
+    icon: {
       type: Boolean,
       default: false
     },
-    deletable: {
+    action: {
       type: Boolean,
       default: false
-    },
-    value: String
+    }
   },
   data() {
     return {
@@ -36,8 +35,8 @@ export default {
     className() {
       return {
         'mdl-chip': true,
-        'mdl-chip--contact': this.contact,
-        'mdl-chip--deletable': this.deletable
+        'mdl-chip--contact': this.icon,
+        'mdl-chip--deletable': this.action
       };
     }
   }

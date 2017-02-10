@@ -113,7 +113,8 @@ export default {
   },
   data() {
     return {
-      currentValue: this.model
+      currentValue: this.model,
+      isFocus: false,
     };
   },
   computed: {
@@ -125,10 +126,12 @@ export default {
         outer: {
           'mdl-textfield': true,
           'mdl-js-textfield': true,
+          'is-upgraded': true,
           'mdl-textfield--floating-label': this.labelFloating,
           'mdl-textfield--expandable': this.expandable,
           'mdl-textfield--left-label': this.labelLeft,
-          'mdl-textfield--plus': this.plus
+          'mdl-textfield--plus': this.plus,
+          'is-focused': this.isFocus
         },
         inner: {
           'mdl-textfield__expandable-holder': this.expandable,
@@ -146,18 +149,24 @@ export default {
   watch: {
     model(val) {
       this.currentValue = val;
-      // for dynamic assignment
-      this.className.outer['is-dirty'] = val.length;
+      this.checkDirty();
     }
   },
   methods: {
+    checkDirty(isFocus = true) {
+      this.isFocus = isFocus;
+      // for dynamic assignment
+      this.className.outer['is-dirty'] = this.currentValue.length;
+    },
     handleInput() {
       this.$emit(EVENT_INPUT, this.currentValue);
     },
     handleFocus() {
+      this.checkDirty();
       this.$emit(EVENT_FOCUS);
     },
     handleBlur(event) {
+      this.checkDirty(false);
       this.$emit(EVENT_BLUR, event);
     },
     handleKeydown(event) {

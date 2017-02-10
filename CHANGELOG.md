@@ -8,6 +8,10 @@ __`<ui-textfield>`__
 
 - bugfix
 
+### Update docs & snippets
+
+- __`<ui-chip>`__
+
 ---
 
 ## 0.1.17

@@ -1,0 +1,26 @@
+{
+  "props": [{
+    "name": "icon",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Defines an MDL chip as a contact style chip"
+  }, {
+    "name": "action",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Defines an MDL chip as a deletable style chip"
+  }],
+  "slots": [{
+    "name": "(default)",
+    "description": "The default slot holds the chip text and can contain HTML"
+  }, {
+    "name": "icon",
+    "description": "The icon slot holds the chip contact and can contain HTML",
+    "props": "className"
+  }, {
+    "name": "action",
+    "description": "The action slot holds the chip action and can contain HTML",
+    "props": "className"
+  }],
+  "events": []
+}

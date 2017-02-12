@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import {detectIE} from '../utils/helper';
+
 const KEY_ENTER = 13;
 const ARROW_LEFT = '&lsaquo;';
 const ARROW_RIGHT = '&rsaquo;';
@@ -132,8 +134,9 @@ export default {
       } else {
         this.pager = this.currentPage;
       }
-      // fix IE bug
-      if (event.keyCode === KEY_ENTER) {
+      // fix IE10- bug
+      let version = detectIE();
+      if (version < 11 && event.keyCode === KEY_ENTER) {
         event.preventDefault();
       }
     }

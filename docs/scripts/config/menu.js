@@ -27,6 +27,7 @@ const COMPONENTS = [
   'autocomplete',
   'datepicker',
   'pagination'
+  // 'fileupload'
 ];
 
 const menu = COMPONENTS.map(component => {

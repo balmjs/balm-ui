@@ -29,7 +29,8 @@
     "select": "Select",
     "autocomplete": "AutoComplete",
     "datepicker": "DatePicker",
-    "pagination": "Pagination"
+    "pagination": "Pagination",
+    "fileupload": "FileUpload"
   },
   "tabs": {
     "basic": "Basic",

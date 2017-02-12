@@ -29,7 +29,8 @@
     "select": "下拉框",
     "autocomplete": "自动补全",
     "datepicker": "日期选择框",
-    "pagination": "分页"
+    "pagination": "分页",
+    "fileupload": "文件上传"
   },
   "tabs": {
     "basic": "基本用法",

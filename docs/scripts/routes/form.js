@@ -7,6 +7,7 @@ const Textfield = require('../views/textfield');
 const Select = require('../views/select');
 const Autocomplete = require('../views/autocomplete');
 const Datepicker = require('../views/datepicker');
+const Fileupload = require('../views/fileupload');
 
 const formRoutes = [{
   path: '/slider',
@@ -44,6 +45,10 @@ const formRoutes = [{
   path: '/datepicker',
   name: 'datepicker',
   component: Datepicker
+}, {
+  path: '/fileupload',
+  name: 'fileupload',
+  component: Fileupload
 }];
 
 export default formRoutes;

@@ -16,9 +16,18 @@ __`<ui-pagination>`__
 - IE bugfix
 - test IE9+
 
+__`<ui-panel>`__
+
+- update for vue@2.1.10
+
 ### Update docs & snippets
 
 - __`<ui-chip>`__
+
+### Update dependencies
+
+- use balm@0.6.0-beta
+- update flatpickr@2.3.7
 
 ---
 

@@ -13,7 +13,7 @@ balm.config = {
   },
   scripts: {
     entry: {
-      main: balm.config.production ? './src/index.js' : './docs/scripts/main.js'
+      main: balm.config.production ? './src/index' : './docs/scripts/main'
     },
     loaders: [{
       test: /\.vue$/,

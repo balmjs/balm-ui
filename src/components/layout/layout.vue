@@ -1,7 +1,7 @@
 <template>
   <div :class="className.outer">
     <header :class="className.header">
-      <div class="mdl-layout-icon" v-if="!noDrawerButton"></div>
+      <div v-if="!noDrawerButton" class="mdl-layout-icon"></div>
       <div class="mdl-layout__header-row">
         <!-- title -->
         <div class="mdl-layout__title">
@@ -23,13 +23,13 @@
       <!-- header bottom -->
       <slot name="header-bottom" :className="headerClassName"></slot>
       <!-- header tabs -->
-      <div class="mdl-layout__tab-bar mdl-js-ripple-effect" ref="tabs" v-if="tabs">
+      <div v-if="tabs" class="mdl-layout__tab-bar mdl-js-ripple-effect" ref="tabs">
         <a v-for="(tab, index) in tabs"
           :href="`#${tabName}-${index+1}`"
           :class="['mdl-layout__tab', {'is-active': !index}]">{{ tab }}</a>
       </div>
     </header>
-    <div class="mdl-layout__drawer" v-if="!noDrawerButton">
+    <div v-if="!noDrawerButton" class="mdl-layout__drawer">
       <!-- drawer title -->
       <div class="mdl-layout__title">
         <slot name="drawer-title">{{ drawerTitle }}</slot>

@@ -1,6 +1,6 @@
 <template>
   <div :class="className.outer">
-    <label class="mdl-button mdl-js-button mdl-button--icon" v-if="expandable" :for="id">
+    <label v-if="expandable" class="mdl-button mdl-js-button mdl-button--icon" :for="id">
       <slot name="icon">
         <i class="material-icons">icon</i>
       </slot>
@@ -9,13 +9,13 @@
       <label class="mdl-textfield__label">
         <slot name="label">{{ label }}</slot>
       </label>
-      <textarea class="mdl-textfield__input"
-        v-if="isTextarea"
+      <textarea v-if="isTextarea"
+        class="mdl-textfield__input"
+        v-model="currentValue"
         :id="id"
         :name="name"
         :rows="rows"
         :placeholder="labelFloating ? null : placeholder"
-        v-model="currentValue"
         :maxlength="maxlength"
         :disabled="disabled"
         :readonly="readonly"
@@ -25,14 +25,14 @@
         @blur="handleBlur"
         @keydown="handleKeydown"
         @keydown.enter="handleKeydownEnter"></textarea>
-      <input class="mdl-textfield__input"
-        v-if="!isTextarea"
+      <input v-if="!isTextarea"
+        class="mdl-textfield__input"
         :type="type"
+        :value="currentValue"
         :id="id"
         :name="name"
         :placeholder="labelFloating ? null : placeholder"
         :pattern="pattern"
-        :value="currentValue"
         :maxlength="maxlength"
         :disabled="disabled"
         :readonly="readonly"
@@ -43,13 +43,13 @@
         @keydown="handleKeydown"
         @keydown.enter="handleKeydownEnter"
         data-input>
-      <span class="mdl-textfield__error" v-if="error">
+      <span v-if="error" class="mdl-textfield__error">
         <slot name="error">{{ error }}</slot>
       </span>
-      <span class="mdl-textfield__plus" v-if="plus">
+      <span v-if="plus" class="mdl-textfield__plus">
         <slot name="plus"><!-- counter --></slot>
       </span>
-      <div class="mdl-textfield__expand" v-if="isExpand">
+      <div v-if="isExpand" class="mdl-textfield__expand">
         <slot name="expand"><!-- autocomplete --></slot>
       </div>
     </div>

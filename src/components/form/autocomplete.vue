@@ -1,6 +1,5 @@
 <template>
-  <ui-textfield
-    class="mdl-autocomplete"
+  <ui-textfield class="mdl-autocomplete"
     :model="currentValue"
     :placeholder="placeholder"
     :expand="isExpand"

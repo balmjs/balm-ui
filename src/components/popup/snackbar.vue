@@ -1,9 +1,9 @@
 <template>
   <div :class="className"
+    ref="popup"
     aria-live="assertive"
     aria-atomic="true"
-    aria-relevant="text"
-    ref="popup">
+    aria-relevant="text">
     <div class="mdl-snackbar__text">{{ currentMessage }}</div>
     <button class="mdl-snackbar__action" type="button">{{ actionText }}</button>
   </div>

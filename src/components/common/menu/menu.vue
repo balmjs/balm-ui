@@ -10,7 +10,8 @@
     </button>
     <ul ref="menu"
       :class="[className.outer, positionClassName]"
-      :for="`menu-${name}`" @click="handleMenu">
+      :for="`menu-${name}`"
+      @click="handleMenu">
       <slot>
         <ui-menuitem v-for="item in currentMenu"
           :item="item"

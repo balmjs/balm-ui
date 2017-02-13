@@ -7,8 +7,7 @@
       <a class="mdl-pagination--paging-previous">
         <span v-html="prev" @click="handleClick(currentPage === 1 ? 1 : currentPage - 1)"></span>
       </a>
-      <a
-        v-for="page in pageCount"
+      <a v-for="page in pageCount"
         v-if="!mini && isShow(page)"
         :class="{active: page === currentPage}">
         <span v-if="showPage(page)" @click="handleClick(page)">{{ page }}</span>

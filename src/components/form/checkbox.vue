@@ -1,13 +1,14 @@
 <template>
-  <label :class="className" :for="id">
-    <input type="checkbox" class="mdl-checkbox__input"
+  <label :class="className">
+    <input type="checkbox"
+      class="mdl-checkbox__input"
       :id="id"
       :name="name"
       :value="value"
       :disabled="disabled"
       v-model="currentValue"
       @change="handleChange">
-    <span class="mdl-checkbox__label" v-if="!hideLabel">
+    <span v-if="!hideLabel" class="mdl-checkbox__label">
       <slot>{{ label }}</slot>
     </span>
   </label>

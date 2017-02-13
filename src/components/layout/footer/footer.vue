@@ -3,8 +3,8 @@
     <div class="mdl-mega-footer__top-section">
       <div class="mdl-mega-footer__left-section">
         <slot name="social">
-          <button class="mdl-mega-footer__social-btn"
-            v-for="item in social"
+          <button v-for="item in social"
+            class="mdl-mega-footer__social-btn"
             v-html="item.icon"
             @click="handleShare(item)"></button>
         </slot>
@@ -17,7 +17,7 @@
     </div>
     <div class="mdl-mega-footer__middle-section">
       <slot name="sitemap">
-        <div class="mdl-mega-footer__drop-down-section" v-for="sitemap in sitemaps">
+        <div v-for="sitemap in sitemaps" class="mdl-mega-footer__drop-down-section">
           <h1 class="mdl-mega-footer__heading">{{ sitemap.title }}</h1>
           <ul class="mdl-mega-footer__link-list">
             <li v-for="item in sitemap.list">

@@ -1,6 +1,7 @@
 <template>
-  <label :class="className" :for="id">
-    <input type="checkbox" class="mdl-icon-toggle__input"
+  <label :class="className">
+    <input type="checkbox"
+      class="mdl-icon-toggle__input"
       :id="id"
       :name="name"
       :value="value"

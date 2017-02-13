@@ -17,8 +17,8 @@
               {'mdl-data-table__header--sorted-descending': cell.sort === 'desc'}
             ]">
             <span v-if="!cell.isCheckbox" @click="sort(cell)">{{ cell.value }}</span>
-            <ui-checkbox name="checkAll"
-              v-if="cell.isCheckbox"
+            <ui-checkbox v-if="cell.isCheckbox"
+              name="checkAll"
               :value="cell.value"
               :model="isCheckAll"
               @change="onCheckAll"></ui-checkbox>
@@ -44,19 +44,18 @@
             <div v-if="!(cell.isPlus || cell.isCheckbox || cell.isAction || isDetailView(index)) && !cell.raw">{{ cell.value }}</div>
             <div v-if="!(cell.isPlus || cell.isCheckbox || cell.isAction || isDetailView(index)) && cell.raw" v-html="cell.value"></div>
             <!-- Detail View Control -->
-            <i class="material-icons"
-              v-if="cell.isPlus"
+            <i v-if="cell.isPlus"
+              class="material-icons"
               @click="viewDetail(index, cell)">{{ cell.show ? 'remove' : 'add' }}</i>
             <!-- Checkbox -->
-            <ui-checkbox name="checkOne[]"
-              v-if="cell.isCheckbox"
+            <ui-checkbox v-if="cell.isCheckbox"
+              name="checkOne[]"
               :value="selectKeyField ? cell.value : getSelectIndex(index)"
               :model="currentCheckboxList"
               @change="onCheckOne"></ui-checkbox>
             <!-- Actions -->
             <div v-if="cell.isAction">
-              <ui-button
-                v-for="action in cell.actions"
+              <ui-button v-for="action in cell.actions"
                 :icon="action.icon || action.isIcon"
                 :link="action.isLink"
                 @click.native="doAction(action.name, action.data)">

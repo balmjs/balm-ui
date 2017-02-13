@@ -1,7 +1,7 @@
 <template>
   <button :class="className" :type="type" :disabled="disabled">
     <slot>
-      <i class="material-icons" v-if="icon">{{ icon }}</i>
+      <i v-if="icon" class="material-icons">{{ icon }}</i>
     </slot>
   </button>
 </template>

@@ -1,6 +1,7 @@
 <template>
   <label class="mdl-fileupload">
-    <input type="file" class="mdl-fileupload__input"
+    <input type="file"
+      class="mdl-fileupload__input"
       ref="input"
       :name="name"
       :accept="accept"

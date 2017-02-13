@@ -16,8 +16,8 @@
     </div>
     <div class="mdl-mini-footer__right-section">
       <slot name="social">
-        <button class="mdl-mini-footer__social-btn"
-          v-for="item in social"
+        <button v-for="item in social"
+          class="mdl-mini-footer__social-btn"
           v-html="item.icon"
           @click="handleShare(item)"></button>
       </slot>

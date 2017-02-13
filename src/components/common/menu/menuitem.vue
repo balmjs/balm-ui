@@ -4,8 +4,8 @@
     :disabled="item.disabled"
     @click="handleClick(item)">
     <slot>{{ item.label }}</slot>
-    <span ref="ripple"
-      v-if="$parent.effect"
+    <span v-if="$parent.effect"
+      ref="ripple"
       class="mdl-menu__item-ripple-container">
       <span class="mdl-ripple"></span>
     </span>

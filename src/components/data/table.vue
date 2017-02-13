@@ -163,7 +163,7 @@ export default {
       default: false
     },
     action: {
-      type: Array,
+      type: [Array, Object],
       default: function() {
         return [];
       }
@@ -265,6 +265,7 @@ export default {
         }
         // class attribute
         let className = [];
+        // custom class
         let _className = data[CELL_CLASS];
         if (_className) {
           if (isFunction(_className)) {
@@ -272,6 +273,7 @@ export default {
           }
           className.push(_className);
         }
+        // text-align
         if (data.noNum) {
           className.push(CLASSNAME_NON_NUMERIC);
         }
@@ -283,8 +285,12 @@ export default {
             case 'center':
               className.push(CLASSNAME_TEXT_CENTER);
               break;
+            case 'right':
+              className.push(CLASSNAME_TEXT_RIGHT);
+              break;
           }
         }
+        // text-align end
         if (className.length) {
           cell[CELL_CLASS] = className.join(' ');
         }
@@ -399,9 +405,44 @@ export default {
       return result;
     },
     getAction(result, data) {
-      if (this.action.length) {
-        let actions = [];
-        for (let action of this.action) {
+      let _actions = this.action;
+      let actions = _actions;
+      let currentActions = [];
+      let cell = {
+        isAction: true
+      };
+
+      if (isObject(_actions)) {
+        let className = [];
+
+        let _className = _actions[CELL_CLASS];
+        if (_className) {
+          className.push(_className);
+        }
+        // text-align
+        if (_actions.align) {
+          switch (_actions.align.toLowerCase()) {
+            case 'left':
+              className.push(CLASSNAME_TEXT_LEFT);
+              break;
+            case 'center':
+              className.push(CLASSNAME_TEXT_CENTER);
+              break;
+            case 'right':
+              className.push(CLASSNAME_TEXT_RIGHT);
+              break;
+          }
+        }
+        // text-align end
+        if (className.length) {
+          cell[CELL_CLASS] = className.join(' ');
+        }
+
+        actions = _actions[CELL_VALUE];
+      }
+
+      if (actions.length) {
+        for (let action of actions) {
           let cellData = {
             name: action.name,
             value: action[CELL_VALUE] || action.name,
@@ -416,13 +457,10 @@ export default {
               cellData[CELL_ICON] = action[CELL_ICON];
               break;
           }
-          actions.push(cellData);
+          currentActions.push(cellData);
         }
 
-        let cell = {
-          isAction: true,
-          actions: actions.length ? actions : []
-        };
+        cell.actions = currentActions.length ? currentActions : [];
 
         result.push(cell);
       }

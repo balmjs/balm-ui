@@ -90,19 +90,19 @@ export default {
             sort: 'asc',
             by: 'id',
             align: 'center'
-          },
-          {
+          }, {
             value: 'Name',
             align: 'left'
-          },
-          'Quantity',
-          'Price']
+          }, {
+            value: 'Quantity',
+            align: 'center'
+          }, {
+            value: 'Price',
+            align: 'right'
+          }]
         ],
         tbody: [
-          {
-            field: 'id',
-            align: 'center'
-          },
+          'id',
           {
             field: 'name',
             noNum: true,
@@ -113,12 +113,14 @@ export default {
           },
           {
             field: 'quantity',
+            align: 'center',
             class: data => {
               return data.quantity > 20 ? 'green' : 'red';
             }
           },
           {
             field: 'price',
+            align: 'right',
             raw: true,
             fn: data => {
               let price = data.price.toFixed(2);
@@ -143,19 +145,23 @@ export default {
             }
           }
         ],
-        action: [{
-          type: 'link',
-          name: 'view',
-          value: 'View'
-        }, {
-          type: 'icon',
-          name: 'edit',
-          value: '<i class="material-icons">mood</i>'
-        }, {
-          type: 'button',
-          name: 'delete',
-          value: 'Delete'
-        }],
+        action: {
+          class: 'button-test',
+          align: 'center',
+          value: [{
+            type: 'link',
+            name: 'view',
+            value: 'View'
+          }, {
+            type: 'icon',
+            name: 'edit',
+            value: '<i class="material-icons">mood</i>'
+          }, {
+            type: 'button',
+            name: 'delete',
+            value: 'Delete'
+          }]
+        },
         selectable: 'left',
         checkboxList: [],
         tableDetail: 'Hello'

@@ -6,7 +6,7 @@
     "description": "The type attribute of the <input>"
   }, {
     "name": "model",
-    "type": "String",
+    "type": "null",
     "default": "(required)",
     "description": "The model that the input value syncs to",
     "required": true

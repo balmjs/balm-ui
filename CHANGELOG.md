@@ -1,4 +1,20 @@
+## 0.1.19
+
+### Update components
+
+__`<ui-table>`__
+
+- add custom class & align for action cell
+
+__`<ui-textfield>`__
+
+- update props `model` to `null`
+
+---
+
 ## 0.1.18
+
+### Update components
 
 __`<ui-menu>`__
 

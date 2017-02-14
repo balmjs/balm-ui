@@ -74,7 +74,6 @@ export default {
       default: 'text'
     },
     model: {
-      type: String,
       required: true
     },
     id: String,

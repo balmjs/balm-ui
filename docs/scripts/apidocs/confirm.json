@@ -4,13 +4,13 @@
       "name": "width",
       "type": "Number",
       "default": "520",
-      "description": "Customize dialog width."
+      "description": "Customize confirm width."
     },
     {
       "name": "zIndex",
       "type": "Number",
       "default": "10",
-      "description": "Customize dialog z-index."
+      "description": "Customize confirm z-index."
     },
     {
       "name": "transition",
@@ -21,7 +21,8 @@
     {
       "name": "enterClass",
       "type": "String",
-      "description": "Define the animation class name when the dialog is entering.<br>you can refer to vue.js <a target='_blank' href='https://vuejs.org/v2/guide/transitions.html#Custom-Transition-Classes'>[Custom-Transition-Classes]</a>"
+      "default": "confirm-enter",
+      "description": "Define the animation class name when the confirm is entering.<br>you can refer to vue.js <a target='_blank' href='https://vuejs.org/v2/guide/transitions.html#Custom-Transition-Classes'>[Custom-Transition-Classes]</a>"
     },
     {
       "name": "leaveClass",
@@ -31,11 +32,13 @@
     {
       "name": "enterActiveClass",
       "type": "String",
+      "default": "confirm-enter-active",
       "description": "Ibid."
     },
     {
       "name": "leaveActiveClass",
       "type": "String",
+      "default": "confirm-leave-active",
       "description": "Ibid."
     },
     {
@@ -48,12 +51,12 @@
       "name": "show",
       "type": "Boolean",
       "default": "false",
-      "description": "The prop which Control the dialog box on or off."
+      "description": "The prop which Control the confirm box on or off."
     },
     {
       "name": "title",
       "type": "String",
-      "default": "Title",
+      "default": "Prompt",
       "description": "The title bar‘s text."
     },
     {
@@ -71,22 +74,22 @@
     {
       "name": "force",
       "type": "Boolean",
-      "default": "false",
-      "description": "Decide whether to close the dialog when clicking the mask."
+      "default": "true",
+      "description": "Decide whether to close the confirm when clicking the mask."
     }
   ],
   "slots": [
     {
       "name": "(default)",
-      "description": "dialog's content."
+      "description": "confirm's content."
     },
     {
       "name": "title",
-      "description": "dialog's title bar."
+      "description": "confirm's title bar."
     },
     {
       "name": "actions",
-      "description": "dialog's button area."
+      "description": "confirm's button area."
     }
   ],
   "events": [
@@ -100,7 +103,7 @@
     },
     {
       "name": "on-close",
-      "description": "Dispatched when dialog will be closed."
+      "description": "Dispatched when confirm will be closed."
     }
   ]
 }

@@ -1,47 +1,88 @@
 <template>
-  <div class="example-dialog">
+  <div class="demo-dialog">
     <div class="component-title">
       <h3>Dialog</h3>
       <p>Modal windows for dedicated user input.</p>
     </div>
 
+    <h4>Basic Dialog</h4>
     <div class="btn-group">
-      <ui-button primary effect raised @click.native="showDialog('show')">有色遮罩无动画对话框</ui-button>
-      <ui-button primary effect raised @click.native="showDialog('showForce')">点击遮罩无法再关闭对话框</ui-button>
-      <ui-button primary effect raised @click.native="showDialog('showTransparent')">透明遮罩无动画对话框</ui-button>
-      <ui-button primary effect raised @click.native="showDialog('showFade')">渐现对话框</ui-button>
+      <ui-button primary effect raised @click.native="showDialog('show')">basic dialog</ui-button>
+      <ui-button primary effect raised @click.native="showDialog('showForce')">cannot close dialog by clicking on the mask.</ui-button>
+    </div>
+    <ui-markdown :text="code[0]"></ui-markdown>
+
+    <h4>No mask</h4>
+    <div class="btn-group">
+      <ui-button primary effect raised @click.native="showDialog('showTransparent')">Dialog with transparent mask</ui-button>
+    </div>
+    <ui-markdown :text="code[1]"></ui-markdown>
+
+    <h4>Custom animate</h4>
+    <div class="btn-group">
+      <ui-button primary effect raised @click.native="showDialog('showFade')">fade in</ui-button>
+    </div>
+    <ui-markdown :text="code[2]"></ui-markdown>
+
+    <h4>Animate.css</h4>
+    <div class="btn-group">
       <ui-button primary effect raised @click.native="showDialog('showAnimation')">animate.css</ui-button>
-      <ui-button primary effect raised @click.native="showDialog('showAnimation2')">更加酷炫的动画</ui-button>
-      <ui-button primary effect raised @click.native="showDialog('showCustomWidth')">自定义宽度</ui-button>
-      <ui-button primary effect raised @click.native="showDialog('showEvent')">事件</ui-button>
-      <ui-button primary effect raised @click.native="showDialog('showCustomBtnText')">自定义按钮文字</ui-button>
-      <ui-button primary effect raised @click.native="showDialog('showSlot')">通过slot改变title结构</ui-button>
-      <ui-button primary effect raised @click.native="showDialog('showSlotActions')">通过slot改变actions结构</ui-button>
-      <ui-button primary effect raised @click.native="showDialog('showOutOfHeight')">如果超出屏幕</ui-button>
+      <ui-button primary effect raised @click.native="showDialog('showAnimation2')">another cooler animate</ui-button>
       <!--<ui-button primary effect raised @click.native="showTest=!showTest">test</ui-button>-->
     </div>
+    <ui-markdown :text="code[3]"></ui-markdown>
 
+    <h4>Customize width</h4>
     <div class="btn-group">
-      <ui-divider>extention</ui-divider>
-      <ui-button primary effect raised @click.native="showDialog('showConfirm')">confirm对话框</ui-button>
-      <ui-button primary effect raised @click.native="showDialog('showAlert')">alert对话框</ui-button>
+      <ui-button primary effect raised @click.native="showDialog('showCustomWidth')">custom width</ui-button>
     </div>
+    <ui-markdown :text="code[4]"></ui-markdown>
+
+    <h4>Event</h4>
+    <div class="btn-group">
+      <ui-button primary effect raised @click.native="showDialog('showEvent')">event</ui-button>
+    </div>
+    <ui-markdown :text="code[5]"></ui-markdown>
+
+    <h4>Customize button text</h4>
+    <div class="btn-group">
+      <ui-button primary effect raised @click.native="showDialog('showCustomBtnText')">not default button text</ui-button>
+    </div>
+    <ui-markdown :text="code[6]"></ui-markdown>
+
+    <h4>Customize title</h4>
+    <div class="btn-group">
+      <ui-button primary effect raised @click.native="showDialog('showSlot')">slot: title</ui-button>
+    </div>
+    <ui-markdown :text="code[7]"></ui-markdown>
+
+    <h4>Customize buttons</h4>
+    <div class="btn-group">
+      <ui-button primary effect raised @click.native="showDialog('showSlotActions')">slot: actions</ui-button>
+    </div>
+    <ui-markdown :text="code[8]"></ui-markdown>
+
+    <h4>Out of the screen</h4>
+    <div class="btn-group">
+      <ui-button primary effect raised @click.native="showDialog('showOutOfHeight')">content height: 1200px</ui-button>
+    </div>
+    <ui-markdown :text="code[9]"></ui-markdown>
 
     <div class="dialog-group">
 
       <ui-dialog :show="show" @on-close="closeDialog('show')">
-        <h4>我是有色遮罩的对话框</h4>
-        <br>：使用@on-close事件来关闭对话框
+        <h4>I am a basic dialog.</h4>
+        <br>:use [ @on-close ] to close the dialog.
       </ui-dialog>
 
       <ui-dialog :show="showForce" @on-close="closeDialog('showForce')" force>
-        <h4>你不能再通过点击我的遮罩关闭对话框了。</h4>
-        <br>：使用force属性
+        <h4>You cannot close me by clicking on my mask.</h4>
+        <br>:use { force } prop.
       </ui-dialog>
 
       <ui-dialog :show="showTransparent"  @on-close="closeDialog('showTransparent')" transparent>
-        <h4>我是透明遮罩的对话框</h4>
-        <br>：使用transparent属性
+        <h4>I'm a dialog width a transparent mask.</h4>
+        <br>:use { transparent } prop.
       </ui-dialog>
 
       <ui-dialog
@@ -51,8 +92,8 @@
         leave-active-class="am-leave-active"
         :show="showFade"
         @on-close="closeDialog('showFade')">
-        <h4>我是使用css过渡渐现效果的对话框</h4>
-        <br>：需要配置transition, enter-active-class, enter-class, leave-class, leave-active-class属性
+        <h4>Fade in...</h4>
+        <br>:use { transition, enter-active-class, enter-class, leave-class, leave-active-class } props.
       </ui-dialog>
 
       <ui-dialog
@@ -61,8 +102,8 @@
         leave-active-class="animated fadeOutUp"
         :show="showAnimation"
         @on-close="closeDialog('showAnimation')">
-        <h4>我是使用animate.css动画的对话框</h4>
-        <br>也可以结合其他第三方动画库，使打开/关闭对话框呈现不同的动画效果。
+        <h4>Use animate.css library.</h4>
+        <br>You can also use other animate library.
       </ui-dialog>
 
       <ui-dialog
@@ -71,16 +112,16 @@
         leave-active-class="animated flipOutX"
         :show="showAnimation2"
         @on-close="closeDialog('showAnimation2')">
-        <h4>我是另一个使用animate.css动画的对话框</h4>
+        <h4>Use animate.css library, too.</h4>
       </ui-dialog>
 
       <ui-dialog
         :width="1000"
         :show="showCustomWidth"
         @on-close="closeDialog('showCustomWidth')">
-        <h4>我是一个比它们都宽的dialog，因为我设定了自定义宽度。</h4>
-        <br>：配置了width属性，width只接受Number类型。
-        <br>：我的默认宽度是：520！单位：像素。
+        <h4>I am a dialog that is wider than others, because I set the custom width.</h4>
+        <br>:use { width } prop.
+        <br>:default 520 (px)
       </ui-dialog>
 
       <ui-dialog
@@ -88,17 +129,17 @@
         @on-close="closeDialog('showEvent')"
         @on-cancel="onCancel"
         @on-confirm="onConfirm">
-        <h4>请打开浏览器控制台，通过点击取消或者确定按钮观察控制台的输出。</h4>
-        <br>：通过@on-cancel, @on-confirm来达到自定义事件处理的目的。
+        <h4>Open the browser console and view the output of the console by clicking the Cancel or OK button.</h4>
+        <br>:use [ @on-cancel, @on-confirm ] to achieve the purpose of custom event handling。
       </ui-dialog>
 
       <ui-dialog
-        cancel-text="被改变文字的取消按钮"
-        confirm-text="可爱的确定按钮"
+        cancel-text="Cancel button 2"
+        confirm-text="Lovely ok button"
         :show="showCustomBtnText"
         @on-close="closeDialog('showCustomBtnText')">
-        <h4>注意按钮文字</h4>
-        <br>：通过配置cancel-text或confirm-text来达到改变按钮文字的目的。
+        <h4>Note the button text</h4>
+        <br>:use { cancel-text, confirm-text } to achieve the purpose of changing the button text.
       </ui-dialog>
 
       <ui-dialog
@@ -108,11 +149,10 @@
         leave-active-class="animated fadeOutUp"
         :show="showSlot"
         @on-close="closeDialog('showSlot')">
-        <div slot="title" class="title">被更改的标题栏 <i class="close" @click="closeDialog('showSlot')"></i></div>
-        <h4>注意对话框标题，尤其是右上角的关闭按钮</h4>
-        <br>：通过使用[slot="title"]来改变标题栏的结构；
-        <br>：如果你仅仅是想改变文字，请使用title属性
-        <!--<ui-textfield id="s" name="ss" :model="sd" @input.native="reVal('sd', $event)">121212</ui-textfield>-->
+        <div slot="title" class="title">The title bar that has been changed <i class="close" @click="closeDialog('showSlot')"></i></div>
+        <h4>Notice the title bar, especially the closing button in the upper right corner.</h4>
+        <br>:use  << slot="title" >> to change the structure of the title bar.
+        <br>:note  If you just want to change the text, use { title } prop.
       </ui-dialog>
 
       <ui-dialog
@@ -124,12 +164,12 @@
         @on-close="closeDialog('showSlotActions')">
         <div slot="actions" class="actions">
           <ui-button primary raised effect @click.native="print123">'123'</ui-button>
-          <ui-button accent raised effect @click.native="setContentText('Hello balm!')">改变内容</ui-button>
-          <ui-button raised effect @click.native="closeDialog('showSlotActions', resetContentText)">关闭对话框</ui-button>
+          <ui-button accent raised effect @click.native="setContentText('Hello balm!')">change text</ui-button>
+          <ui-button raised effect @click.native="closeDialog('showSlotActions', resetContentText)">close</ui-button>
         </div>
-        <h4>注意对话框按钮区域，同时观察浏览器控制台输出</h4>
+        <h4>Notice button area, while viewing the browser console output.</h4>
         <p v-show="contentText">{{contentText}}</p>
-        <br>：通过使用[slot="actions"]来改变按钮区的结构；
+        <br>:use << slot="actions" >> to change structure of the button area.
       </ui-dialog>
 
       <ui-dialog
@@ -139,36 +179,12 @@
         leave-active-class="animated fadeOutUp"
         :show="showOutOfHeight"
         @on-close="closeDialog('showOutOfHeight')">
-        <h4 style="height: 1200px;">我是特别高的对话框！</h4>
+        <h4 style="height: 1200px;">I am a particularly high dialog!</h4>
       </ui-dialog>
 
-      <ui-confirm
-        :show="showConfirm"
-        @on-close="closeDialog('showConfirm')"
-        @on-cancel="onCancel"
-        @on-confirm="onConfirm">
-        <h4>这是一个ui-confirm组件</h4>
-        <br>：confirm无法使用[slot="title"]和[slot="actions"]，只能使用title, cancel-text或confirm-text来改变标题文字和按钮文字;
-        <br>：confirm的遮罩点击时无法关闭对话框；
-        <br>：confirm打开时存在预设动画
-      </ui-confirm>
-
-      <ui-alert
-        :show="showAlert"
-        @on-click="closeDialog('showAlert', clickButton)"
-        @on-close="closeDialog('showAlert')">
-        <h4>这是一个ui-alert组件</h4>
-        <br>：alert无法使用[slot="title"]和[slot="actions"]，只能使用title, cancel-text或confirm-text来改变标题文字和按钮文字;
-        <br>：alert打开时存在预设动画
-        <br>: alert功能区只有一个按钮，但是标题栏存在关闭按钮
-        <br>: 与ui-confirm组件相比, alert只有@on-click（对应功能区唯一按钮）, @on-close事件（对应标题栏关闭按钮），没有@on-cancel事件
-      </ui-alert>
-
     </div>
-    // TODO
-    <!--<transition enter-active-class="am-enter-active" enter-class="am-enter" leave-active-class="am-leave-active">
-      <p class="test" v-show="showTest">123456</p>
-    </transition>-->
+
+    <ui-apidoc name="dialog"></ui-apidoc>
   </div>
 </template>
 <style>
@@ -185,8 +201,8 @@
     padding: 15px;
   }
 
-  .btn-group button {
-    margin-bottom: 4px;
+  .btn-group {
+    padding: 20px 0;
   }
 
   .am-enter-active, .am-leave-active {
@@ -214,8 +230,8 @@
   }
   .custom-slot-title .title .close {
     display: flex;
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
@@ -230,8 +246,8 @@
     display: block;
     position: absolute;
     width: 16px;
-    left: 4px;
-    top: 11px;
+    left: 4.3px;
+    top: 12.1px;
     content: "";
     height: 2px;
     background-color: #CCCCCC;
@@ -259,8 +275,10 @@
 </style>
 <script type="text/babel">
   import 'animate.css';
+  import snippets from '../mixins/snippets';
 
   export default {
+    mixins: [snippets],
     data () {
       return {
         sd: '',
@@ -277,17 +295,12 @@
         showCustomBtnText: false,
         showSlot: false,
         showSlotActions: false,
-        showConfirm: false,
-        showAlert: false,
         showOutOfHeight: false
       }
     },
     methods: {
       reVal(name, $event){
         this[name] = $event.target.value.trim();
-      },
-      clickButton(){
-        console.log('Hello, 你点击了按钮！');
       },
       hello(){
         console.log('Hello balm!');
@@ -307,14 +320,11 @@
       },
       resetContentText(){
         this.contentText = '';
-      },
-      onCancel(){
-        console.log('你点击了取消按钮！');
-      },
-      onConfirm(){
-        console.log('你点击了确定按钮！');
       }
     },
-    components: {}
+    components: {},
+    created(){
+      this.showCode('dialog', 10);
+    }
   }
 </script>

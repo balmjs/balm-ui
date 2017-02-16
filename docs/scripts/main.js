@@ -34,7 +34,10 @@ Vue.prototype.$prism = prismjs;
 Vue.prototype.$docs = {
   props: {
     thead: ['Name', 'Type', 'Default', 'Description'],
-    tbody: ['name', 'type', 'default', 'description']
+    tbody: ['name', 'type', 'default', {
+      field: 'description',
+      raw: true
+    }]
   },
   slots: {
     thead: ['Name', 'Description', '<template scope="props">'],

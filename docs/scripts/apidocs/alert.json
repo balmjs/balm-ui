@@ -1,0 +1,99 @@
+{
+  "props": [
+    {
+      "name": "width",
+      "type": "Number",
+      "default": "520",
+      "description": "Customize alert width."
+    },
+    {
+      "name": "zIndex",
+      "type": "Number",
+      "default": "10",
+      "description": "Customize alert z-index."
+    },
+    {
+      "name": "transparent",
+      "type": "Boolean",
+      "default": "false",
+      "description": "It will determine whether the mask is transparent."
+    },
+    {
+      "name": "show",
+      "type": "Boolean",
+      "default": "false",
+      "description": "The prop which Control the alert on or off."
+    },
+    {
+      "name": "title",
+      "type": "String",
+      "default": "Prompt",
+      "description": "The title bar‘s text."
+    },
+    {
+      "name": "transition",
+      "type": "Boolean",
+      "default": "false",
+      "description": "Turn off or turn on animate"
+    },
+    {
+      "name": "enterClass",
+      "type": "String",
+      "default": "alert-enter",
+      "description": "Define the animation class name when the alert is entering.<br>you can refer to vue.js <a target='_blank' href='https://vuejs.org/v2/guide/transitions.html#Custom-Transition-Classes'>[Custom-Transition-Classes]</a>"
+    },
+    {
+      "name": "leaveClass",
+      "type": "String",
+      "description": "Ibid."
+    },
+    {
+      "name": "enterActiveClass",
+      "type": "String",
+      "default": "alert-enter-active",
+      "description": "Ibid."
+    },
+    {
+      "name": "leaveActiveClass",
+      "type": "String",
+      "default": "alert-leave-active",
+      "description": "Ibid."
+    },
+    {
+      "name": "btnText",
+      "type": "String",
+      "default": "OK",
+      "description": "the only button's text."
+    },
+    {
+      "name": "force",
+      "type": "Boolean",
+      "default": "false",
+      "description": "Decide whether to close the alert when clicking the mask."
+    }
+  ],
+  "slots": [
+    {
+      "name": "(default)",
+      "description": "alert's content."
+    },
+    {
+      "name": "title",
+      "description": "alert's title bar."
+    },
+    {
+      "name": "actions",
+      "description": "alert's button area."
+    }
+  ],
+  "events": [
+    {
+      "name": "on-click",
+      "description": "Dispatched when the only button is clicked"
+    },
+    {
+      "name": "on-close",
+      "description": "Dispatched when alert will be closed."
+    }
+  ]
+}

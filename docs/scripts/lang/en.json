@@ -5,6 +5,8 @@
     "card": "Card",
     "chip": "Chip",
     "dialog": "Dialog",
+    "alert": "Alert",
+    "confirm": "Confirm",
     "layout": "Layout",
     "grid": "Grid",
     "cell": "Cell",

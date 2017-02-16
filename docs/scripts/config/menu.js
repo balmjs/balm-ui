@@ -5,6 +5,8 @@ const COMPONENTS = [
   'card',
   'chip',
   'dialog',
+  'alert',
+  'confirm',
   'layout',
   'grid',
   'tabs',

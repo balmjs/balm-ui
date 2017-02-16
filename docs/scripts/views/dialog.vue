@@ -318,6 +318,12 @@
       setContentText(text){
         this.contentText = text;
       },
+      onCancel(){
+        console.log('clicked the Cancel button!');
+      },
+      onConfirm(){
+        console.log('clicked the OK button!');
+      },
       resetContentText(){
         this.contentText = '';
       }

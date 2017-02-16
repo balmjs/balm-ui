@@ -1,8 +1,17 @@
 ## 0.1.20
 
+### Update components
+
+__`<ui-table>`__
+
+- fix detailView colspan bug
+- fix isSelected bug
+
 ### Update docs & snippets
 
 - __`<ui-dialog>`__
+- __`<ui-alert>`__
+- __`<ui-confirm>`__
 - __`<ui-select>`__
 
 ---

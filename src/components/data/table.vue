@@ -208,7 +208,9 @@ export default {
     currentCol() {
       let result = this.tbody.length;
 
-      if (this.action.length) {
+      let _actions = this.action;
+      let actions = isObject(_actions) ? _actions[CELL_VALUE] : _actions;
+      if (actions.length) {
         result += 1;
       }
 
@@ -613,11 +615,24 @@ export default {
     },
     isSelected(rowData, index) {
       let cell = rowData.find(cell => cell.isCheckbox);
-      let result = cell
-        ? this.currentCheckboxList.indexOf(this.selectKeyField ? cell.value : index) > -1
-        : false;
 
-      return result;
+      let result;
+      if (this.selectKeyField) {
+        result = cell
+          ? this.currentCheckboxList.indexOf(cell.value) > -1
+          : false;
+      } else {
+        if (this.currentDetailViewIndex === DEFAULTS.detailViewIndex) {
+          result = this.currentCheckboxList.indexOf(index) > -1;
+        } else {
+          let _index = (index > this.currentDetailViewIndex)
+            ? index - 1
+            : index;
+          result = this.currentCheckboxList.indexOf(_index) > -1;
+        }
+      }
+
+      return cell ? result : false;
     },
     resetData(index) {
       this.currentData.splice(index + 1, 1);

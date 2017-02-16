@@ -1,5 +1,5 @@
 ```html
-<ui-select :value="options" :model="selected" defaultValue="全部" @change="onChange"></ui-select>
+<ui-select :value="options" :model="selected" defaultValue="All items" @change="onChange('selected', $event)"></ui-select>
 ```
 
 ```js
@@ -20,8 +20,8 @@ export default {
     };
   },
   methods: {
-    onChange(option) {
-      this.selected = option.key;
+    onChange(field, option) {
+      this[field] = option.key;
     }
   }
 };

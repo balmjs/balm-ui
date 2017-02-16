@@ -1,3 +1,12 @@
+## 0.1.20
+
+### Update docs & snippets
+
+- __`<ui-dialog>`__
+- __`<ui-select>`__
+
+---
+
 ## 0.1.19
 
 ### Update components

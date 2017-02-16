@@ -5,8 +5,8 @@
     </div>
 
     <div class="snippet-demo">
-      <ui-select :value="options1" :model="selected1" defaultValue="全部" @change="onChange1"></ui-select>
-      <ui-select :value="options2" :model="selected2" @change="onChange2"></ui-select>
+      <ui-select :value="options1" :model="selected1" defaultValue="All items" @change="onChange('selected1', $event, changeSelected2)"></ui-select>
+      <ui-select :value="options2" :model="selected2" placeholder="Select..." @change="onChange('selected2', $event)"></ui-select>
     </div>
     <ui-markdown :text="code[0]"></ui-markdown>
 
@@ -37,9 +37,12 @@ export default {
     };
   },
   methods: {
-    onChange1(option) {
-      this.selected1 = option.key;
-      if (option.key === 1) {
+    onChange(field, option, fn) {
+      this[field] = option.key;
+      fn && fn(option.key);
+    },
+    changeSelected2(key) {
+      if (key === 1) {
         this.selected2 = 'A';
         this.options2 = [{
           key: 'A',
@@ -58,9 +61,6 @@ export default {
           value: 'D'
         }];
       }
-    },
-    onChange2(option) {
-      this.selected2 = option.key;
     }
   },
   created() {

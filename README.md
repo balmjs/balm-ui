@@ -126,7 +126,7 @@ Vue.use(BalmUI);
 - [x] datepicker
 - [ ] fileupload
 
-### Data Show
+### Data View
 
 - [x] list
 - [x] table

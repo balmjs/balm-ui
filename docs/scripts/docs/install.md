@@ -69,7 +69,7 @@ balm.config = {
       loader: 'babel'
     }],
     alias: {
-      vue: 'vue/dist/vue.js',
+      'vue': 'vue/dist/vue.js',
       'balm-ui': 'balm-ui/src/index.js'
     }
   },

@@ -8,6 +8,14 @@
 }
 
 .mdl-layout__drawer {
+  .mdl-navigation {
+    padding: 0;
+    border-top: 1px solid rgba(0,0,0,.12);
+  }
+  h3 {
+    margin: 0;
+    text-indent: 20px;
+  }
   .mdl-layout__title {
     padding: 0 10px 0 20px;
   }
@@ -16,7 +24,7 @@
     width: 32px;
   }
   .mdl-navigation__link {
-    &.router-link-active {
+    &.active {
       background-color: #757575;
       a {
         color: white;

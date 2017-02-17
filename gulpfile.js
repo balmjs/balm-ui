@@ -24,7 +24,8 @@ balm.config = {
     }],
     alias: {
       prismCss: 'prismjs/themes/prism-okaidia.css',
-      flatpickrCss: 'flatpickr/dist/flatpickr.min.css'
+      flatpickrCss: 'flatpickr/dist/flatpickr.min.css',
+      flatpickrLangZh: 'flatpickr/dist/l10n/zh.js'
     },
     eslint: true
   },

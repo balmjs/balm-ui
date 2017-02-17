@@ -3,12 +3,17 @@
     <ui-textfield
       :model="currentValue"
       :placeholder="placeholder"
-      :plus="plus"
+      :plus="toggle || clear"
       @input.native="handleInput($event)">
       <template slot="plus">
-        <div class="mdl-datepicker__plus" data-toggle>
-          <slot name="plus">
+        <div v-if="toggle" class="mdl-datepicker__toggle" data-toggle>
+          <slot name="toggle">
             <i class="fa fa-calendar"></i>
+          </slot>
+        </div>
+        <div v-if="clear" class="mdl-datepicker__clear" data-clear>
+          <slot name="clear">
+            <i class="fa fa-close"></i>
           </slot>
         </div>
       </template>
@@ -20,7 +25,7 @@
 import Flatpickr from 'flatpickr';
 import UiTextfield from './textfield';
 
-const EVENT_INPUT = 'input';
+const EVENT_CHANGE = 'change';
 
 export default {
   name: 'ui-datepicker',
@@ -39,7 +44,11 @@ export default {
       required: true
     },
     placeholder: String,
-    plus: {
+    toggle: {
+      type: Boolean,
+      default: false
+    },
+    clear: {
       type: Boolean,
       default: false
     }
@@ -53,7 +62,7 @@ export default {
   methods: {
     handleInput(event) {
       this.currentValue = event.target.value;
-      this.$emit(EVENT_INPUT, this.currentValue);
+      this.$emit(EVENT_CHANGE, this.currentValue);
     }
   },
   watch: {

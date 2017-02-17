@@ -1,5 +1,6 @@
 import en from '../lang/en.json';
 import cn from '../lang/cn.json';
+import flatpickrLangZh from 'flatpickrLangZh';
 
 // for link
 const lang = {
@@ -13,7 +14,13 @@ const locales = {
   cn
 };
 
+// for flatpickr
+const flatpickrLang = {
+  cn: flatpickrLangZh.zh
+};
+
 export {
   lang,
-  locales
+  locales,
+  flatpickrLang
 };

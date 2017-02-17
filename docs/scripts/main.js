@@ -51,10 +51,11 @@ Vue.prototype.$docs = {
 Vue.prototype.$domain = DEBUG ? '' : '/ui-vue';
 
 // ready translated locales
-import { locales } from './config/lang';
+import { locales, flatpickrLang } from './config/lang';
 
 // set lang
 Vue.config.lang = 'en';
+Vue.prototype.flatpickrLang = flatpickrLang;
 
 // set locales
 Object.keys(locales).forEach(lang => {

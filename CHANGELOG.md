@@ -1,3 +1,22 @@
+## 0.1.21
+
+### Update components
+
+__`<ui-datepicker>`__
+
+- remove `plus` props & slot
+- add `toggle` props & slot
+- add `clear` props & slot
+- rename event `input` to `change`
+- update css
+
+### Update docs & snippets
+
+- __`<ui-divider>`__
+- __`<ui-datepicker>`__
+
+---
+
 ## 0.1.20
 
 ### Update components

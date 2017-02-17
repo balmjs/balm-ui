@@ -5,6 +5,7 @@ const Chip = require('../views/chip');
 const Loading = require('../views/loading');
 const Menu = require('../views/menu');
 const Tooltip = require('../views/tooltip');
+const Divider = require('../views/divider');
 
 const commonRoutes = [{
   path: '/badge',
@@ -22,7 +23,7 @@ const commonRoutes = [{
   path: '/chip',
   name: 'chip',
   component: Chip
-}, , {
+}, {
   path: '/loading',
   name: 'loading',
   component: Loading
@@ -34,6 +35,10 @@ const commonRoutes = [{
   path: '/tooltip',
   name: 'tooltip',
   component: Tooltip
+}, {
+  path: '/divider',
+  name: 'divider',
+  component: Divider
 }];
 
 export default commonRoutes;

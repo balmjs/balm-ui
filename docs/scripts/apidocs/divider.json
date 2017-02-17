@@ -1,0 +1,13 @@
+{
+  "props": [{
+    "name": "type",
+    "type": "String, Number",
+    "default": "horizontal",
+    "description": "Determine the direction of the divider."
+  }],
+  "slots": [{
+    "name": "(default)",
+    "description": "The default slot holds the divider text and can contain HTML"
+  }],
+  "events": []
+}

@@ -10,8 +10,8 @@
     <template slot="expand">
       <ul ref="autocomplete">
         <li v-for="suggestion in currentSuggestion"
-          :class="{'active': suggestion.active}"
-          @click="fillText(suggestion.value)">{{ suggestion.value }}</li>
+          :class="{'active': suggestion[ITEM_ACTIVE]}"
+          @click="fillText(suggestion)">{{ suggestion[ITEM_VALUE] }}</li>
       </ul>
     </template>
     <template slot="plus">
@@ -28,6 +28,10 @@ const KEY_DOWN = 40;
 const KEY_ENTER = 13;
 const METHOD_GET = 'GET';
 const METHOD_POST = 'POST';
+const ITEM_ACTIVE = 'active';
+const ITEM_KEY = 'key';
+const ITEM_VALUE = 'value';
+const _EVENT_CLICK = 'click';
 const EVENT_INPUT = 'input';
 const EVENT_RESPONSE = 'response';
 const EVENT_ENTER = 'enter';
@@ -39,7 +43,6 @@ export default {
   },
   props: {
     model: {
-      type: String,
       required: true
     },
     placeholder: String,
@@ -65,6 +68,8 @@ export default {
   },
   data() {
     return {
+      ITEM_ACTIVE: ITEM_ACTIVE,
+      ITEM_VALUE: ITEM_VALUE,
       _callback: null,
       isExpand: false,
       currentValue: this.model,
@@ -120,18 +125,19 @@ export default {
           }
 
           if (e !== event && this.isExpand && !inTextfield) {
-            document.removeEventListener('click', this._callback);
+            document.removeEventListener(_EVENT_CLICK, this._callback);
             this.hide();
           }
         };
       }
-      document.addEventListener('click', this._callback);
+      document.addEventListener(_EVENT_CLICK, this._callback);
     },
-    fillText(val) {
-      this.currentValue = val;
+    fillText(data) {
+      this.currentValue = data[ITEM_VALUE];
       this.hide();
 
-      this.$emit(EVENT_ENTER, this.currentValue);
+      delete data[ITEM_ACTIVE];
+      this.$emit(EVENT_ENTER, data);
     },
     handleKeydown(event) {
       if (this.currentSuggestion.length) {
@@ -153,18 +159,22 @@ export default {
             this.currentSuggestionIndex++;
           }
         } else if (event.keyCode === KEY_ENTER) {
-          this.currentValue = this.currentSuggestion[this.currentSuggestionIndex].value;
+          let data = this.currentSuggestion[this.currentSuggestionIndex];
+          this.currentValue = data[ITEM_VALUE];
           this.hide();
 
-          this.$emit(EVENT_ENTER, this.currentValue);
+          delete data[ITEM_ACTIVE];
+          this.$emit(EVENT_ENTER, data);
+          event.preventDefault();
         }
 
         if (choosing) {
           this.currentSuggestion = this.currentSuggestion.map((item, index) => {
-            return {
-              active: index === this.currentSuggestionIndex,
-              value: item.value
-            };
+            let result = {};
+            result[ITEM_ACTIVE] = index === this.currentSuggestionIndex;
+            result[ITEM_KEY] = item[ITEM_KEY];
+            result[ITEM_VALUE] = item[ITEM_VALUE];
+            return result;
           });
         }
       }
@@ -190,7 +200,7 @@ export default {
   },
   beforeDestroy() {
     if (this._callback) {
-      document.removeEventListener('click', this._callback);
+      document.removeEventListener(_EVENT_CLICK, this._callback);
     }
   }
 };

@@ -35,12 +35,13 @@ export default {
       this.suggestion = data[this.text] ? data[this.text].map((item, index) => {
         return {
           active: index === 0,
+          key: index,
           value: item
         };
       }) : [];
     },
-    onInputEnter(val) {
-      this.text = val;
+    onInputEnter(data) {
+      this.text = data.value;
     }
   }
 };

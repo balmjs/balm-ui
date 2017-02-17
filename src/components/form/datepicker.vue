@@ -40,7 +40,6 @@ export default {
       }
     },
     model: {
-      type: String,
       required: true
     },
     placeholder: String,

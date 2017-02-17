@@ -10,6 +10,10 @@ __`<ui-datepicker>`__
 - rename event `input` to `change`
 - update css
 
+__`<ui-autocomplete>`__
+
+- update event `enter` return `{ key, value }`
+
 ### Update docs & snippets
 
 - __`<ui-divider>`__

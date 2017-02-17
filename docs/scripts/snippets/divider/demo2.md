@@ -1,4 +1,12 @@
 ```html
+<div class="demo-divider-container">
+  <div class="a"></div>
+  <ui-divider type="vertical">or</ui-divider>
+  <div class="b"></div>
+</div>
+```
+
+```html
 <!-- use full spells -->
 <ui-divider type="vertical">divider</ui-divider>
 

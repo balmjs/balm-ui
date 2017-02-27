@@ -23,13 +23,15 @@ export default {
     UiMenu
   },
   props: {
-    value: Array,
+    options: Array,
     defaultValue: String,
     defaultKey: {
-      type: [String, Number],
+      type: String,
       default: ''
     },
-    model: [String, Number],
+    model: {
+      required: true
+    },
     placeholder: String,
     disabled: {
       type: Boolean,
@@ -52,6 +54,36 @@ export default {
       };
     },
     currentOptions() {
+      return this.init();
+    },
+    expand() {
+      return this.isExpand ? 'expand_less' : 'expand_more';
+    }
+  },
+  watch: {
+    model(val) {
+      this.currentValue = val;
+    },
+    options(val) {
+      this.currentOptions = this.init(val);
+      this.selected = '';
+
+      let currentOptions = this.currentOptions;
+      if (currentOptions.length) {
+        let selected = currentOptions[0].label;
+        for (let i = 0, len = currentOptions.length; i < len; i++) {
+          if (currentOptions[i].key == this.currentValue) {
+            selected = currentOptions[i].label;
+            break;
+          }
+        }
+
+        this.selected = selected;
+      }
+    }
+  },
+  methods: {
+    init(_options = this.options) {
       let options = [];
 
       // default value
@@ -60,24 +92,11 @@ export default {
           key: this.defaultKey,
           value: this.defaultValue
         });
-      }
-
-      // selected init
-      options = options.concat(this.value);
-      if (options.length) {
-        let selected = options[0].value;
-        for (let i = 0, len = options.length; i < len; i++) {
-          if (options[i].key == this.currentValue) {
-            selected = options[i].value;
-            break;
-          }
-        }
-
-        this.selected = selected;
+        this.selected = options[0].value;
       }
 
       // menu data
-      let result = options.map((option, index) => {
+      let result = options.concat(_options).map((option, index) => {
         return {
           index: index,
           value: option.key,
@@ -88,16 +107,6 @@ export default {
 
       return result;
     },
-    expand() {
-      return this.isExpand ? 'expand_less' : 'expand_more';
-    }
-  },
-  watch: {
-    model(val) {
-      this.currentValue = val;
-    }
-  },
-  methods: {
     handleChange(option) {
       this.selected = option.label;
       this.$emit(EVENT_CHANGE, {

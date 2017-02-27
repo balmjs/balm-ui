@@ -4,11 +4,30 @@
       <h3>Select</h3>
     </div>
 
-    <div class="snippet-demo">
-      <ui-select :value="options1" :model="selected1" defaultValue="All items" @change="onChange('selected1', $event, changeSelected2)"></ui-select>
-      <ui-select :value="options2" :model="selected2" placeholder="Select..." @change="onChange('selected2', $event)"></ui-select>
+    <div class="snippet-group">
+      <div class="snippet-demo">
+        <ui-select :options="options" :model="formData.selected"
+          defaultValue="All items" defaultKey="0"
+          @change="onSelectChange('selected', $event)"></ui-select>
+        selected: {{ formData.selected }}
+      </div>
     </div>
     <ui-markdown :text="code[0]"></ui-markdown>
+
+    <div class="snippet-group">
+      <div class="snippet-demo">
+        <ui-select :options="provinces" :model="formData.province"
+          placeholder="Select province..."
+          @change="onSelectChange('province', $event, changeCity)"></ui-select>
+      </div>
+      <div class="snippet-demo">
+        <ui-select :options="cities" :model="formData.city"
+          placeholder="Select city..."
+          @change="onSelectChange('city', $event)"></ui-select>
+        Province: {{ formData.province }} - City: {{ formData.city }}
+      </div>
+    </div>
+    <ui-markdown :text="code[1]"></ui-markdown>
 
     <ui-apidoc name="select"></ui-apidoc>
   </div>
@@ -17,12 +36,46 @@
 <script>
 import snippets from '../mixins/snippets';
 
+const PROVINCES = [{
+  key: 1,
+  value: 'Beijing'
+}, {
+  key: 2,
+  value: 'Shanghai'
+}, {
+  key: 3,
+  value: 'Guangzhou'
+}];
+
+const CITIES = [
+  [],
+  [{
+    key: 1,
+    value: 'Haiding'
+  }, {
+    key: 2,
+    value: 'Chaoyang'
+  }],
+  [{
+    key: 3,
+    value: 'Huangpu'
+  }, {
+    key: 4,
+    value: 'Xuhui'
+  }],
+  []
+];
+
 export default {
   mixins: [snippets],
   data() {
     return {
-      selected1: 2,
-      options1: [{
+      formData: {
+        selected: 0,
+        province: 0,
+        city: 0
+      },
+      options: [{
         key: 1,
         value: 'item 1'
       }, {
@@ -32,39 +85,27 @@ export default {
         key: 3,
         value: 'item 3'
       }],
-      selected2: '',
-      options2: []
+      provinces: PROVINCES,
+      cities: []
     };
   },
   methods: {
-    onChange(field, option, fn) {
-      this[field] = option.key;
-      fn && fn(option.key);
-    },
-    changeSelected2(key) {
-      if (key === 1) {
-        this.selected2 = 'A';
-        this.options2 = [{
-          key: 'A',
-          value: 'A'
-        }, {
-          key: 'B',
-          value: 'B'
-        }];
-      } else {
-        this.selected2 = 'C';
-        this.options2 = [{
-          key: 'C',
-          value: 'C'
-        }, {
-          key: 'D',
-          value: 'D'
-        }];
+    onSelectChange(field, option, fn) {
+      let key = option.key || -1;
+
+      this.formData[field] = key;
+      fn && fn(key);
+
+      if (field === 'province') {
+        this.formData.city = (key > -1 && CITIES[key].length) ? CITIES[key][0].key : 0;
       }
+    },
+    changeCity(key) {
+      this.cities = key > -1 ? CITIES[key] : [];
     }
   },
   created() {
-    this.showCode('select');
+    this.showCode('select', 2);
   }
 };
 </script>

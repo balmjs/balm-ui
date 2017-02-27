@@ -38,6 +38,11 @@ export default {
       menu
     };
   },
+  watch: {
+    $route() {
+      this.$el.scrollTop = 0;
+    }
+  },
   methods: {
     isActiveLang(lang) {
       return lang === this.$lang;

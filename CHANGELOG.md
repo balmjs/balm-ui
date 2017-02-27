@@ -14,10 +14,16 @@ __`<ui-autocomplete>`__
 
 - update event `enter` return `{ key, value }`
 
+__`<ui-select>`__
+
+- rename props `value` to `options`
+- fix placeholder bug
+
 ### Update docs & snippets
 
 - __`<ui-divider>`__
 - __`<ui-datepicker>`__
+- __`<ui-select>`__
 
 ---
 

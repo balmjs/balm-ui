@@ -1,6 +1,6 @@
 {
   "props": [{
-    "name": "value",
+    "name": "options",
     "type": "Array",
     "default": "",
     "description": "The option data of the select"
@@ -11,13 +11,13 @@
     "description": "The label attribute of the default option"
   }, {
     "name": "defaultKey",
-    "type": "String, Number",
+    "type": "String",
     "default": "''",
     "description": "The value attribute of the default option"
   }, {
     "name": "model",
-    "type": "String, Number",
-    "default": "",
+    "type": "null",
+    "default": "(required)",
     "description": "The model that the select value syncs to"
   }, {
     "name": "placeholder",

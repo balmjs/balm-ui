@@ -23,7 +23,12 @@ export default {
     UiMenu
   },
   props: {
-    options: Array,
+    options: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
     defaultValue: String,
     defaultKey: {
       type: String,
@@ -95,8 +100,23 @@ export default {
         this.selected = options[0].value;
       }
 
+      options = options.concat(_options);
+
+      // init selected
+      if (!this.placeholder && options.length) {
+        let selected = options[0].value;
+        for (let i = 0, len = options.length; i < len; i++) {
+          if (options[i].key == this.currentValue) {
+            selected = options[i].value;
+            break;
+          }
+        }
+
+        this.selected = selected;
+      }
+
       // menu data
-      let result = options.concat(_options).map((option, index) => {
+      let result = options.map((option, index) => {
         return {
           index: index,
           value: option.key,

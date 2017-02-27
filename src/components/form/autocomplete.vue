@@ -9,7 +9,8 @@
     @keydown="handleKeydown">
     <template slot="expand">
       <ul ref="autocomplete">
-        <li v-for="suggestion in currentSuggestion"
+        <li v-for="(suggestion, index) in currentSuggestion"
+          :key="index"
           :class="{'active': suggestion[ITEM_ACTIVE]}"
           @click="fillText(suggestion)">{{ suggestion[ITEM_VALUE] }}</li>
       </ul>

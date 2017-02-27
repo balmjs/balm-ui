@@ -25,6 +25,7 @@
       <!-- header tabs -->
       <div v-if="tabs" class="mdl-layout__tab-bar mdl-js-ripple-effect" ref="tabs">
         <a v-for="(tab, index) in tabs"
+          :key="index"
           :href="`#${tabName}-${index+1}`"
           :class="['mdl-layout__tab', {'is-active': !index}]">{{ tab }}</a>
       </div>
@@ -48,6 +49,7 @@
       <!-- tabs content -->
       <section v-if="tabs"
         v-for="n in tabs.length"
+        :key="n"
         :class="['mdl-layout__tab-panel', {'is-active': n === 1}]"
         :id="`${tabName}-${n}`">
         <code v-text="getPanelTemplate(n)"></code>

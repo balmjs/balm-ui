@@ -10,7 +10,7 @@
       <div class="snippet-demo">
         <!-- Simple list -->
         <ui-list class="demo-list-item">
-          <ui-item v-for="item in items">
+          <ui-item v-for="(item, index) in items" :key="index">
             {{ item }}
           </ui-item>
         </ui-list>
@@ -23,7 +23,7 @@
       <div class="snippet-demo">
         <!-- Icon List -->
         <ui-list class="demo-list-icon">
-          <ui-item v-for="item in items">
+          <ui-item v-for="(item, index) in items" :key="index">
             <template scope="props">
               <i :class="props.className.icon">person</i>
               {{ item }}
@@ -39,7 +39,7 @@
       <div class="snippet-demo">
         <!-- List items with avatar and action -->
         <ui-list class="demo-list-action">
-          <ui-item v-for="item in items">
+          <ui-item v-for="(item, index) in items" :key="index">
             <template scope="props">
               <i :class="props.className.avatar">person</i>
               {{ item }}
@@ -60,7 +60,7 @@
       <div class="snippet-demo">
         <!-- List with avatar and controls -->
         <ui-list class="demo-list-control">
-          <ui-item v-for="(item, index) in items2">
+          <ui-item v-for="(item, index) in items2" :key="index">
             <template scope="props">
               <i :class="props.className.avatar">{{ item.avatar }}</i>
               {{ item.name }}
@@ -83,7 +83,7 @@
       <div class="snippet-demo">
         <!-- Two Line List with secondary info and action -->
         <ui-list class="demo-list-two" twoLine>
-          <ui-item v-for="(item, index) in items2">
+          <ui-item v-for="(item, index) in items2" :key="index">
             <template scope="props">
               <i :class="props.className.avatar">{{ item.avatar }}</i>
               <span>{{ item.name }}</span>
@@ -106,7 +106,7 @@
       <div class="snippet-demo">
         <!-- Three Line List with secondary info and action -->
         <ui-list class="demo-list-three" threeLine>
-          <ui-item v-for="(item, index) in items2">
+          <ui-item v-for="(item, index) in items2" :key="index">
             <template scope="props">
               <i :class="props.className.avatar">{{ item.avatar }}</i>
               <span>{{ item.name }}</span>

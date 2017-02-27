@@ -17,7 +17,7 @@
         @change="onPage">
         <template scope="props">
           Showing {{ props.recordCount }} records,
-          <ui-select :value="pageSizeList" :model="pageSize" @change="onChangePageSize">{{ props.pageSize }}</ui-select> records / page, {{ props.pageCount }} total pages
+          <ui-select :options="pageSizeList" :model="pageSize" @change="onChangePageSize">{{ props.pageSize }}</ui-select> records / page, {{ props.pageCount }} total pages
         </template>
       </ui-pagination>
     </div>

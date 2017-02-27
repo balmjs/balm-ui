@@ -6,10 +6,10 @@
 
     <div class="snippet-demo">
       <ui-grid>
-        <ui-cell v-for="i in [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]" :col="i">{{ i }}</ui-cell>
+        <ui-cell v-for="(i, index) in [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]" :key="index" :col="i">{{ i }}</ui-cell>
       </ui-grid>
       <ui-grid>
-        <ui-cell v-for="i in [4, 4, 4]" :col="i">{{ i }}</ui-cell>
+        <ui-cell v-for="(i, index) in [4, 4, 4]" :key="index" :col="i">{{ i }}</ui-cell>
       </ui-grid>
       <ui-grid>
         <ui-cell :col="6">6</ui-cell>

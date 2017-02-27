@@ -13,7 +13,8 @@
       :for="`menu-${name}`"
       @click="handleMenu">
       <slot>
-        <ui-menuitem v-for="item in currentMenu"
+        <ui-menuitem v-for="(item, index) in currentMenu"
+          :key="index"
           :item="item"
           @click.native="handleItem(item)"></ui-menuitem>
       </slot>

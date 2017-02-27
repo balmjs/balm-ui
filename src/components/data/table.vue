@@ -2,13 +2,14 @@
   <table class="mdl-data-table mdl-js-data-table">
     <caption v-if="caption">{{ caption }}</caption>
     <colgroup v-if="currentCol">
-      <col v-for="col in currentCol" :class="`col-${col}`">
+      <col v-for="(col, index) in currentCol" :key="index" :class="`col-${col}`">
     </colgroup>
     <!-- Table Head -->
     <thead>
       <slot name="thead" :data="theadData">
-        <tr v-for="row in theadData">
-          <th v-for="cell in row"
+        <tr v-for="(row, index) in theadData" :key="index">
+          <th v-for="(cell, index) in row"
+            :key="index"
             :colspan="cell.col"
             :rowspan="cell.row"
             :class="[
@@ -36,7 +37,8 @@
             'selected': isSelected(row, index),
             'detail-view': isDetailView(index)
           }">
-          <td v-for="cell in row"
+          <td v-for="(cell, index) in row"
+            :key="index"
             :colspan="cell.col"
             :rowspan="cell.row"
             :class="cell.class">
@@ -55,7 +57,8 @@
               @change="onCheckOne"></ui-checkbox>
             <!-- Actions -->
             <div v-if="cell.isAction">
-              <ui-button v-for="action in cell.actions"
+              <ui-button v-for="(action, index) in cell.actions"
+                :key="index"
                 :icon="action.icon || action.isIcon"
                 :link="action.isLink"
                 @click.native="doAction(action.name, action.data)">
@@ -78,7 +81,8 @@
     <tfoot v-if="tfootData.length">
       <slot name="tfoot" :data="tfootData">
         <tr>
-          <td v-for="cell in tfootData"
+          <td v-for="(cell, index) in tfootData"
+            :key="index"
             :colspan="cell.col"
             :rowspan="cell.row"
             :class="cell.class">

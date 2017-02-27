@@ -24,7 +24,7 @@
           <template slot="icon">
             <i class="material-icons">settings</i>
           </template>
-          <ui-menuitem v-for="item in data" :item="item" @clicked="onMenu">
+          <ui-menuitem v-for="(item, index) in data" :key="index" :item="item" @clicked="onMenu">
             <a :href="item.url">{{ item.label }}</a>
           </ui-menuitem>
         </ui-menu>

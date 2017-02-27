@@ -5,8 +5,8 @@
     </div>
 
     <div class="snippet-group">
-      <div class="snippet-demo" v-for="num in [1, 2, 3]">
-        <ui-checkbox :value="num" :model="numberOptions" @change="onChangeNumber">Option {{ num }}</ui-checkbox>
+      <div class="snippet-demo" v-for="(num, index) in [1, 2, 3]">
+        <ui-checkbox :key="index" :value="num" :model="numberOptions" @change="onChangeNumber">Option {{ num }}</ui-checkbox>
       </div>
     </div>
     <ui-button @click.native="onWatchNumber([1, 2])">choose 1,2</ui-button>
@@ -16,8 +16,8 @@
     <ui-markdown :text="code[0]"></ui-markdown>
 
     <div class="snippet-group">
-      <div class="snippet-demo" v-for="str in ['A', 'B', 'C']">
-        <ui-checkbox :value="str" :model="stringOptions" @change="onChangeString">Option {{ str }}</ui-checkbox>
+      <div class="snippet-demo" v-for="(str, index) in ['A', 'B', 'C']">
+        <ui-checkbox :key="index" :value="str" :model="stringOptions" @change="onChangeString">Option {{ str }}</ui-checkbox>
       </div>
     </div>
     <ui-button @click.native="onWatchString(['A', 'B'])">choose A,B</ui-button>

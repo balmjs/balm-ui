@@ -1,7 +1,8 @@
 <template>
   <div :class="className.outer">
     <div :class="className.inner">
-      <ui-tab v-for="tab in tabs"
+      <ui-tab v-for="(tab, index) in tabs"
+        :key="index"
         :tab="tab"
         :icon="icon"
         :iconPrefix="iconPrefix"

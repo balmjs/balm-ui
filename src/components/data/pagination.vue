@@ -7,8 +7,9 @@
       <a class="mdl-pagination--paging-previous">
         <span v-html="prev" @click="handleClick(currentPage === 1 ? 1 : currentPage - 1)"></span>
       </a>
-      <a v-for="page in pageCount"
+      <a v-for="(page, index) in pageCount"
         v-if="!mini && isShow(page)"
+        :key="index"
         :class="{active: page === currentPage}">
         <span v-if="showPage(page)" @click="handleClick(page)">{{ page }}</span>
         <span v-else class="ellipsis">...</span>
@@ -20,7 +21,7 @@
         <span>{{ jumperBefore }}</span>
         <input type="text" ref="input" v-model="pager" @keydown="handleClick(pager, $event)">
         <span>{{ jumperAfter }}</span>
-      </divH>
+      </div>
     </div>
   </div>
 </template>

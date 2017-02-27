@@ -1,7 +1,8 @@
 <template>
   <nav v-if="links" class="mdl-navigation">
-    <router-link v-for="link in links"
+    <router-link v-for="(link, index) in links"
       class="mdl-navigation__link"
+      :key="index"
       :to="link.url"
       :tag="tag">
       <span v-if="isTagA">{{ link.name }}</span>

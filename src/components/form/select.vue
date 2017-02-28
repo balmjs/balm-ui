@@ -5,7 +5,7 @@
       :disabled="disabled"
       @clicked="handleChange">
       <template slot="icon">
-        <span :class="{'placeholder': !selected}">{{ selected || placeholder }}</span>
+        <span :class="{'placeholder': !currentValue}">{{ currentValue || placeholder }}</span>
         <i class="material-icons">{{ expand }}</i>
       </template>
     </ui-menu>
@@ -45,8 +45,8 @@ export default {
   },
   data() {
     return {
-      selected: '',
-      currentValue: this.model,
+      currentKey: this.model,
+      currentValue: '',
       isExpand: false
     };
   },
@@ -67,27 +67,31 @@ export default {
   },
   watch: {
     model(val) {
-      this.currentValue = val;
+      this.currentKey = val;
     },
     options(val) {
       this.currentOptions = this.init(val);
-      this.selected = '';
+      this.currentValue = '';
 
       let currentOptions = this.currentOptions;
       if (currentOptions.length) {
-        let selected = currentOptions[0].label;
-        for (let i = 0, len = currentOptions.length; i < len; i++) {
-          if (currentOptions[i].key == this.currentValue) {
-            selected = currentOptions[i].label;
-            break;
-          }
-        }
-
-        this.selected = selected;
+        this.initSelected(currentOptions, currentOptions[0].label, 'label');
       }
     }
   },
   methods: {
+    initSelected(options, defaults = '', keyField = 'value') {
+      let selected = defaults;
+
+      for (let i = 0, len = options.length; i < len; i++) {
+        if (options[i].key == this.currentKey) {
+          selected = options[i][keyField];
+          break;
+        }
+      }
+
+      this.currentValue = selected;
+    },
     init(_options = this.options) {
       let options = [];
 
@@ -97,22 +101,14 @@ export default {
           key: this.defaultKey,
           value: this.defaultValue
         });
-        this.selected = options[0].value;
+        this.currentValue = options[0].value;
       }
 
       options = options.concat(_options);
 
       // init selected
       if (!this.placeholder && options.length) {
-        let selected = options[0].value;
-        for (let i = 0, len = options.length; i < len; i++) {
-          if (options[i].key == this.currentValue) {
-            selected = options[i].value;
-            break;
-          }
-        }
-
-        this.selected = selected;
+        this.initSelected(options, options[0].value);
       }
 
       // menu data
@@ -121,19 +117,25 @@ export default {
           index: index,
           value: option.key,
           label: option.value,
-          selected: option.value === this.selected
+          selected: option.value === this.currentValue
         };
       });
 
       return result;
     },
     handleChange(option) {
-      this.selected = option.label;
+      this.currentValue = option.label;
       this.$emit(EVENT_CHANGE, {
         index: option.index,
         key: option.value,
         value: option.label
       });
+    }
+  },
+  mounted() {
+    let options = this.options;
+    if (options.length) {
+      this.initSelected(options);
     }
   }
 };

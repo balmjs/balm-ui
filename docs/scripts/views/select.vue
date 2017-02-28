@@ -29,6 +29,21 @@
     </div>
     <ui-markdown :text="code[1]"></ui-markdown>
 
+    <div class="snippet-group">
+      <div class="snippet-demo">
+        <p v-if="!edit">
+          {{ formData.selected }}
+          <ui-button effect @click.native="onEdit">Edit</ui-button>
+        </p>
+        <p v-if="edit">
+          <ui-select :options="options" :model="formData.selected"
+            placeholder="Select..."
+            @change="onSelectChange('selected', $event)"></ui-select>
+          <ui-button effect @click.native="onCancel">Cancel</ui-button>
+        </p>
+      </div>
+    </div>
+
     <ui-apidoc name="select"></ui-apidoc>
   </div>
 </template>
@@ -70,6 +85,7 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      edit: false,
       formData: {
         selected: 0,
         province: 0,
@@ -102,6 +118,12 @@ export default {
     },
     changeCity(key) {
       this.cities = key > -1 ? CITIES[key] : [];
+    },
+    onEdit() {
+      this.edit = true;
+    },
+    onCancel() {
+      this.edit = false;
     }
   },
   created() {

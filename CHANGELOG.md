@@ -1,3 +1,11 @@
+## 0.1.22
+
+### Update components
+
+__`<ui-select>`__
+
+- bugfix: init selected
+
 ## 0.1.21
 
 ### Update components

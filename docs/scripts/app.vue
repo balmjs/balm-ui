@@ -41,7 +41,7 @@ export default {
   },
   watch: {
     $route() {
-      this.$el.scrollTop = 0;
+      this.$el.querySelector('.mdl-layout__content').scrollTop = 0;
     }
   },
   methods: {

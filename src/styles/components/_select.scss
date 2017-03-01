@@ -1,3 +1,4 @@
+$optionHeight: 32px;
 .mdl-select {
   display: inline-block;
   width: 300px;
@@ -6,7 +7,7 @@
     font-size: inherit;
     line-height: normal;
     width: 100%;
-    height: 32px;
+    height: $optionHeight;
     text-align: left;
     text-transform: none;
     border: 1px solid $input-text-bottom-border-color;
@@ -28,14 +29,23 @@
   .mdl-menu__container {
     width: 100% !important;
     height: auto !important;
-    ul {
+    .mdl-menu {
+      overflow-x: hidden;
+      overflow-y: auto;
       width: 100%;
+      max-height: $optionHeight * 6;
       margin: 0;
       padding: 0;
+      border-width: 0 1px 1px;
+      border-style: solid;
+      background-color: white;
+      &.is-animating {
+        transition: none;
+      }
     }
-    li {
-      line-height: 32px;
-      height: 32px;
+    .mdl-menu__item {
+      line-height: $optionHeight;
+      height: $optionHeight;
       list-style: none;
       &:hover {
         background-color: $button-hover-color;
@@ -44,13 +54,8 @@
         background-color: $button-hover-color;
       }
     }
-  }
-  .mdl-menu {
-    border-width: 0 1px 1px;
-    border-style: solid;
-    background-color: white;
-    &.is-animating {
-      transition: none;
+    &.is-visible .mdl-menu__item {
+      transition-delay: 0s !important;
     }
   }
   .placeholder {

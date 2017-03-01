@@ -1,3 +1,13 @@
+## 0.1.23
+
+### Update components
+
+__`<ui-select>`__
+
+- update css for the long options list
+
+---
+
 ## 0.1.22
 
 ### Update components
@@ -5,6 +15,8 @@
 __`<ui-select>`__
 
 - bugfix: init selected
+
+---
 
 ## 0.1.21
 

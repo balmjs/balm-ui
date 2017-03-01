@@ -100,6 +100,27 @@ export default {
       }, {
         key: 3,
         value: 'item 3'
+      }, {
+        key: 4,
+        value: 'item 4'
+      }, {
+        key: 5,
+        value: 'item 5'
+      }, {
+        key: 6,
+        value: 'item 6'
+      }, {
+        key: 7,
+        value: 'item 7'
+      }, {
+        key: 8,
+        value: 'item 8'
+      }, {
+        key: 9,
+        value: 'item 9'
+      }, {
+        key: 10,
+        value: 'item 10'
       }],
       provinces: PROVINCES,
       cities: []

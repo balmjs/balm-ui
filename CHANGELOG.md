@@ -6,6 +6,10 @@ __`<ui-select>`__
 
 - update css for the long options list
 
+__`<ui-tabs>`__
+
+- dynamic tab name
+
 ---
 
 ## 0.1.22

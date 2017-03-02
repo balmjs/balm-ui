@@ -3,7 +3,7 @@ const COMPONENTS = {
     'layout',
     'grid',
     'tabs',
-    'footer'
+    // 'footer'
   ],
   common: [
     'badge',

@@ -26,6 +26,11 @@ export default {
       };
     }
   },
+  watch: {
+    tab(val) {
+      this.$parent.updateTab(this.currentIndex, val);
+    }
+  },
   beforeUpdate() {
     let currentTab = this.$parent.tabs.find(tab => tab.name === this.tab);
     if (currentTab) {

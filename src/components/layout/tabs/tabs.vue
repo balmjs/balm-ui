@@ -80,6 +80,11 @@ export default {
     },
     switchTab(index) {
       this.$emit(EVENT_SWITCHED, index);
+    },
+    updateTab(index, name) {
+      this.tabs = this.tabs.map(tab => {
+        return (tab.index === index) ? {index, name} : tab;
+      });
     }
   },
   watch: {

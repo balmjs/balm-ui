@@ -18,7 +18,7 @@ import prismjs from 'prismjs';
 // plugins
 import 'flatpickrCss';
 
-const DEBUG = true; // when build docs, use `false`
+const DEBUG = (process.env.NODE_ENV === 'production') ? false : true;
 
 Vue.use(VueRouter);
 Vue.use(VueI18n);

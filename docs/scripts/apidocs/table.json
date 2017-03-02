@@ -53,7 +53,7 @@
   }, {
     "name": "noData",
     "type": "String",
-    "default": "No Data",
+    "default": "'No Data'",
     "description": "No data text"
   }, {
     "name": "hasDetailView",

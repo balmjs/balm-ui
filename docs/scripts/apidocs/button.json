@@ -3,7 +3,7 @@
     "name": "type",
     "type": "String",
     "default": "'button'",
-    "description": "The type attribute of the <button>"
+    "description": "The type attribute of the &lt;button&gt;"
   }, {
     "name": "raised",
     "type": "Boolean",

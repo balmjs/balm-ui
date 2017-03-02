@@ -3,7 +3,7 @@
     "name": "type",
     "type": "String",
     "default": "'text'",
-    "description": "The type attribute of the <input>"
+    "description": "The type attribute of the &lt;input&gt;"
   }, {
     "name": "model",
     "type": "null",
@@ -19,7 +19,7 @@
     "name": "name",
     "type": "String",
     "default": "",
-    "description": "The name attribute of the <input> or <textarea>"
+    "description": "The name attribute of the &lt;input&gt; or &lt;textarea&gt;"
   }, {
     "name": "label",
     "type": "String",
@@ -54,7 +54,7 @@
     "name": "rows",
     "type": "Number",
     "default": "2",
-    "description": "The rows attribute of the <textarea>"
+    "description": "The rows attribute of the &lt;textarea&gt;"
   }, {
     "name": "expandable",
     "type": "Boolean",

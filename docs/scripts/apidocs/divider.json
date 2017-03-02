@@ -2,7 +2,7 @@
   "props": [{
     "name": "type",
     "type": "String, Number",
-    "default": "horizontal",
+    "default": "'horizontal'",
     "description": "Determine the direction of the divider."
   }],
   "slots": [{

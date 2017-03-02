@@ -27,7 +27,7 @@
     {
       "name": "title",
       "type": "String",
-      "default": "Prompt",
+      "default": "'Prompt'",
       "description": "The title bar‘s text."
     },
     {
@@ -39,7 +39,7 @@
     {
       "name": "enterClass",
       "type": "String",
-      "default": "alert-enter",
+      "default": "'alert-enter'",
       "description": "Define the animation class name when the alert is entering.<br>you can refer to vue.js <a target='_blank' href='https://vuejs.org/v2/guide/transitions.html#Custom-Transition-Classes'>[Custom-Transition-Classes]</a>"
     },
     {
@@ -50,19 +50,19 @@
     {
       "name": "enterActiveClass",
       "type": "String",
-      "default": "alert-enter-active",
+      "default": "'alert-enter-active'",
       "description": "Ibid."
     },
     {
       "name": "leaveActiveClass",
       "type": "String",
-      "default": "alert-leave-active",
+      "default": "'alert-leave-active'",
       "description": "Ibid."
     },
     {
       "name": "btnText",
       "type": "String",
-      "default": "OK",
+      "default": "'OK'",
       "description": "the only button's text."
     },
     {

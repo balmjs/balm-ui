@@ -21,7 +21,7 @@
     {
       "name": "enterClass",
       "type": "String",
-      "default": "confirm-enter",
+      "default": "'confirm-enter'",
       "description": "Define the animation class name when the confirm is entering.<br>you can refer to vue.js <a target='_blank' href='https://vuejs.org/v2/guide/transitions.html#Custom-Transition-Classes'>[Custom-Transition-Classes]</a>"
     },
     {
@@ -32,13 +32,13 @@
     {
       "name": "enterActiveClass",
       "type": "String",
-      "default": "confirm-enter-active",
+      "default": "'confirm-enter-active'",
       "description": "Ibid."
     },
     {
       "name": "leaveActiveClass",
       "type": "String",
-      "default": "confirm-leave-active",
+      "default": "'confirm-leave-active'",
       "description": "Ibid."
     },
     {
@@ -56,19 +56,19 @@
     {
       "name": "title",
       "type": "String",
-      "default": "Prompt",
+      "default": "'Prompt'",
       "description": "The title bar‘s text."
     },
     {
       "name": "confirmText",
       "type": "String",
-      "default": "OK",
+      "default": "'OK'",
       "description": "Ok button's text."
     },
     {
       "name": "cancelText",
       "type": "String",
-      "default": "Cancel",
+      "default": "'Cancel'",
       "description": "Cancel button's text."
     },
     {

@@ -53,19 +53,19 @@
     {
       "name": "title",
       "type": "String",
-      "default": "Title",
+      "default": "'Title'",
       "description": "The title bar‘s text."
     },
     {
       "name": "confirmText",
       "type": "String",
-      "default": "OK",
+      "default": "'OK'",
       "description": "Ok button's text."
     },
     {
       "name": "cancelText",
       "type": "String",
-      "default": "Cancel",
+      "default": "'Cancel'",
       "description": "Cancel button's text."
     },
     {

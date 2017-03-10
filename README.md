@@ -125,6 +125,7 @@ Vue.use(BalmUI);
 - [x] autocomplete
 - [x] datepicker
 - [ ] fileupload
+- [ ] editor
 
 ### Data View
 

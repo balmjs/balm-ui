@@ -2,13 +2,13 @@
   <table class="mdl-data-table mdl-js-data-table">
     <caption v-if="caption">{{ caption }}</caption>
     <colgroup v-if="currentCol">
-      <col v-for="(col, index) in currentCol" :key="index" :class="`col-${col}`">
+      <col v-for="(value, key) in currentCol" :key="key" :class="`col-${value}`">
     </colgroup>
     <!-- Table Head -->
     <thead>
       <slot name="thead" :data="theadData">
-        <tr v-for="(row, index) in theadData" :key="index">
-          <th v-for="(cell, index) in row"
+        <tr v-for="(rowValue, rowKey) in theadData" :key="rowKey">
+          <th v-for="(cell, index) in rowValue"
             :key="index"
             :colspan="cell.col"
             :rowspan="cell.row"
@@ -31,42 +31,42 @@
     <tbody>
       <slot name="tbody" :data="tbodyData">
         <tr v-if="tbodyData.length"
-          v-for="(row, index) in tbodyData"
-          :key="index"
+          v-for="(rowValue, rowKey) in tbodyData"
+          :key="rowKey"
           :class="{
-            'selected': isSelected(row, index),
-            'detail-view': isDetailView(index)
+            'selected': isSelected(rowValue, rowKey),
+            'detail-view': isDetailView(rowKey)
           }">
-          <td v-for="(cell, index) in row"
+          <td v-for="(cell, index) in rowValue"
             :key="index"
             :colspan="cell.col"
             :rowspan="cell.row"
             :class="cell.class">
             <!-- Data View -->
-            <div v-if="!(cell.isPlus || cell.isCheckbox || cell.isAction || isDetailView(index)) && !cell.raw">{{ cell.value }}</div>
-            <div v-if="!(cell.isPlus || cell.isCheckbox || cell.isAction || isDetailView(index)) && cell.raw" v-html="cell.value"></div>
+            <div v-if="isCellData(rowKey, cell) && !cell.raw">{{ cell.value }}</div>
+            <div v-if="isCellData(rowKey, cell) && cell.raw" v-html="cell.value"></div>
             <!-- Detail View Control -->
             <i v-if="cell.isPlus"
               class="material-icons"
-              @click="viewDetail(index, cell)">{{ cell.show ? 'remove' : 'add' }}</i>
+              @click="viewDetail(rowKey, cell)">{{ cell.show ? 'remove' : 'add' }}</i>
             <!-- Checkbox -->
             <ui-checkbox v-if="cell.isCheckbox"
               name="checkOne[]"
-              :value="selectKeyField ? cell.value : getSelectIndex(index)"
+              :value="selectKeyField ? cell.value : getSelectIndex(rowKey)"
               :model="currentCheckboxList"
               @change="onCheckOne"></ui-checkbox>
             <!-- Actions -->
             <div v-if="cell.isAction">
-              <ui-button v-for="(action, index) in cell.actions"
-                :key="index"
-                :icon="action.icon || action.isIcon"
-                :link="action.isLink"
-                @click.native="doAction(action.name, action.data)">
-                <span v-if="!action.icon" v-html="action.value"></span>
+              <ui-button v-for="(actionValue, actionKey) in cell.actions"
+                :key="actionKey"
+                :icon="actionValue.icon || actionValue.isIcon"
+                :link="actionValue.isLink"
+                @click.native="doAction(actionValue.name, actionValue.data)">
+                <span v-if="!actionValue.icon" v-html="actionValue.value"></span>
               </ui-button>
             </div>
             <!-- Detail View -->
-            <div v-if="isDetailView(index)" class="mdl-data-table__detail-view">
+            <div v-if="isDetailView(rowKey)" class="mdl-data-table__detail-view">
               <slot name="detail"></slot>
             </div>
           </td>
@@ -119,6 +119,7 @@ const CELL_RAW = 'raw';
 const CELL_ROWSPAN = 'row';
 const CELL_SORT = 'sort';
 const CELL_VALUE = 'value';
+const CELL_ACTION = 'actions';
 const ACTION_BUTTON = 'button';
 const ACTION_ICON = 'icon';
 const ACTION_LINK = 'link';
@@ -209,12 +210,14 @@ export default {
     };
   },
   computed: {
+    currentActions() {
+      let actions = this.action;
+      return isObject(actions) ? actions[CELL_VALUE] : actions;
+    },
     currentCol() {
       let result = this.tbody.length;
 
-      let _actions = this.action;
-      let actions = isObject(_actions) ? _actions[CELL_VALUE] : _actions;
-      if (actions.length) {
+      if (this.currentActions.length) {
         result += 1;
       }
 
@@ -231,20 +234,19 @@ export default {
     theadData() {
       return this.getData({
         type: T_HEAD,
-        table: this.currentThead
+        data: this.currentThead
       });
     },
     tbodyData() {
       return this.getData({
         type: T_BODY,
-        table: this.tbody,
-        action: this.action
+        data: this.tbody
       });
     },
     tfootData() {
       return this.tfoot && this.currentData.length ? this.getData({
         type: T_FOOT,
-        table: this.tfoot
+        data: this.tfoot
       }) : [];
     },
     currentDataCount() {
@@ -411,23 +413,21 @@ export default {
       return result;
     },
     getAction(result, data) {
-      let _actions = this.action;
-      let actions = _actions;
-      let currentActions = [];
       let cell = {
         isAction: true
       };
 
-      if (isObject(_actions)) {
+      let actions = this.action;
+      if (isObject(actions)) {
         let className = [];
 
-        let _className = _actions[CELL_CLASS];
+        let _className = actions[CELL_CLASS];
         if (_className) {
           className.push(_className);
         }
         // text-align
-        if (_actions.align) {
-          switch (_actions.align.toLowerCase()) {
+        if (actions.align) {
+          switch (actions.align.toLowerCase()) {
             case 'left':
               className.push(CLASSNAME_TEXT_LEFT);
               break;
@@ -443,12 +443,11 @@ export default {
         if (className.length) {
           cell[CELL_CLASS] = className.join(' ');
         }
-
-        actions = _actions[CELL_VALUE];
       }
 
-      if (actions.length) {
-        for (let action of actions) {
+      let currentActions = [];
+      if (this.currentActions.length) {
+        for (let action of this.currentActions) {
           let cellData = {
             name: action.name,
             value: action[CELL_VALUE] || action.name,
@@ -466,7 +465,7 @@ export default {
           currentActions.push(cellData);
         }
 
-        cell.actions = currentActions.length ? currentActions : [];
+        cell[CELL_ACTION] = currentActions.length ? currentActions : [];
 
         result.push(cell);
       }
@@ -503,16 +502,16 @@ export default {
     },
     getData(object) {
       let result = [];
-      let {type, table} = object;
+      let {type, data} = object;
 
-      if (isArray(table)) {
+      if (isArray(data)) {
         let cell;
 
         switch (type) {
           case T_HEAD:
             result[0] = []; // single line init
-            for (let index in table) {
-              let row = table[index];
+            for (let index in data) {
+              let row = data[index];
               if (isArray(row)) { // multi line
                 result[index] = [];
                 for (let key in row) {
@@ -539,10 +538,10 @@ export default {
               }
             }
             // add checkbox
-            let rowspan = isArray(table[0]) ? table.length : 1;
+            let rowspan = isArray(data[0]) ? data.length : 1;
             result[0] = this.getCheckbox(type, result[0], rowspan);
             // add plus
-            result[0] = this.getDetailView(type, result[0], table.length);
+            result[0] = this.getDetailView(type, result[0], data.length);
             break;
           case T_BODY:
             for (let key in this.currentData) {
@@ -554,7 +553,7 @@ export default {
                 }));
               } else {
                 // fill for cell
-                for (let item of table) {
+                for (let item of data) {
                   cell = {};
                   if (isObject(item)) {
                     cell = item;
@@ -574,7 +573,7 @@ export default {
             }
             break;
           case T_FOOT:
-            for (let item of table) {
+            for (let item of data) {
               if (item) {
                 cell = item;
                 let field = item && item[CELL_FIELD] ? item[CELL_FIELD] : false;
@@ -587,7 +586,7 @@ export default {
               }
             }
             // add empty action & checkbox & plus
-            if (this.action.length) {
+            if (this.currentActions.length) {
               result.push({});
             }
             result = this.getCheckbox(type, result);
@@ -623,7 +622,7 @@ export default {
       let result;
       if (this.selectKeyField) {
         result = cell
-          ? this.currentCheckboxList.indexOf(cell.value) > -1
+          ? this.currentCheckboxList.indexOf(cell[CELL_VALUE]) > -1
           : false;
       } else {
         if (this.currentDetailViewIndex === DEFAULTS.detailViewIndex) {
@@ -716,13 +715,16 @@ export default {
         this.currentData = result;
         this.currentDetailViewIndex = currentIndex;
 
-        this.$emit(EVENT_VIEW_DETAIL, cell.data);
+        this.$emit(EVENT_VIEW_DETAIL, cell[CELL_DATA]);
       }
     },
     isDetailView(index) {
       let hasDetailViewRow = this.currentDetailViewIndex + 1 > 0;
       let isDetailViewRow = index === this.currentDetailViewIndex + 1;
       return hasDetailViewRow && isDetailViewRow;
+    },
+    isCellData(currentIndex, cell) {
+      return !(cell.isPlus || cell.isCheckbox || cell.isAction || this.isDetailView(currentIndex));
     },
     getSelectIndex(currentIndex) {
       let result = currentIndex;

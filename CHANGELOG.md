@@ -5,10 +5,17 @@
 __`<ui-select>`__
 
 - update css for the long options list
+- bugfix: auto submit form
+- bugfix: select the some option
 
 __`<ui-tabs>`__
 
 - dynamic tab name
+
+- __`<ui-table>`__
+
+- clean code
+- bugfix: table footer css
 
 ---
 

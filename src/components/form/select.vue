@@ -124,12 +124,14 @@ export default {
       return result;
     },
     handleChange(option) {
-      this.currentValue = option.label;
-      this.$emit(EVENT_CHANGE, {
-        index: option.index,
-        key: option.value,
-        value: option.label
-      });
+      if (option.label !== this.currentValue) {
+        this.currentValue = option.label;
+        this.$emit(EVENT_CHANGE, {
+          index: option.index,
+          key: option.value,
+          value: option.label
+        });
+      }
     }
   },
   mounted() {

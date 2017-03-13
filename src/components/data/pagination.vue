@@ -136,7 +136,7 @@ export default {
       }
       // fix IE10- bug
       let version = detectIE();
-      if (version < 11 && event.keyCode === KEY_ENTER) {
+      if (version && version < 11 && event.keyCode === KEY_ENTER) {
         event.preventDefault();
       }
     }

@@ -12,10 +12,14 @@ __`<ui-tabs>`__
 
 - dynamic tab name
 
-- __`<ui-table>`__
+__`<ui-table>`__
 
 - clean code
 - bugfix: table footer css
+
+- __`<ui-pagination>`__
+
+- bugfix: detect ie
 
 ---
 

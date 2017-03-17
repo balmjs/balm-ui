@@ -1,3 +1,13 @@
+## 0.1.24
+
+### Update components
+
+__`<ui-pagination>`__
+
+- update css
+
+---
+
 ## 0.1.23
 
 ### Update components

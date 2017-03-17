@@ -5,7 +5,7 @@
     </div>
     <div class="mdl-pagination--paging">
       <a class="mdl-pagination--paging-previous">
-        <span v-html="prev" @click="handleClick(currentPage === 1 ? 1 : currentPage - 1)"></span>
+        <span v-html="currentPrev" @click="handleClick(currentPage === 1 ? 1 : currentPage - 1)"></span>
       </a>
       <a v-for="(page, index) in pageCount"
         v-if="!mini && isShow(page)"
@@ -15,7 +15,7 @@
         <span v-else class="ellipsis">...</span>
       </a>
       <a class="mdl-pagination--paging-next">
-        <span v-html="next" @click="handleClick(currentPage === pageCount ? pageCount : currentPage + 1)"></span>
+        <span v-html="currentNext" @click="handleClick(currentPage === pageCount ? pageCount : currentPage + 1)"></span>
       </a>
       <div v-if="!mini && showJumper" class="mdl-pagination--jumper">
         <span>{{ jumperBefore }}</span>
@@ -30,8 +30,10 @@
 import {detectIE} from '../utils/helper';
 
 const KEY_ENTER = 13;
-const ARROW_LEFT = '&lsaquo;';
-const ARROW_RIGHT = '&rsaquo;';
+const DOUBLE_ARROW_LEFT = '&laquo;';
+const DOUBLE_ARROW_RIGHT = '&raquo;';
+const SINGLE_ARROW_LEFT = '&lsaquo;';
+const SINGLE_ARROW_RIGHT = '&rsaquo;';
 const EVENT_CHANGE = 'change';
 
 export default {
@@ -49,14 +51,8 @@ export default {
       type: Number,
       default: 1
     },
-    prev: {
-      type: String,
-      default: ARROW_LEFT
-    },
-    next: {
-      type: String,
-      default: ARROW_RIGHT
-    },
+    prev: String,
+    next: String,
     pageSpan: {
       type: Number,
       default: 3
@@ -92,8 +88,13 @@ export default {
     pageCount() {
       return Math.ceil(this.recordCount / this.pageSize);
     },
-    pageData() {
-      return [];
+    currentPrev() {
+      let arrow = this.mini ? SINGLE_ARROW_LEFT : DOUBLE_ARROW_LEFT;
+      return this.prev || arrow;
+    },
+    currentNext() {
+      let arrow = this.mini ? SINGLE_ARROW_RIGHT : DOUBLE_ARROW_RIGHT;
+      return this.next || arrow;
     }
   },
   watch: {

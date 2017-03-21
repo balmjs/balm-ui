@@ -1,5 +1,127 @@
 {
-  "props": [],
-  "slots": [],
+  "props": [{
+    "name": "headerTitle",
+    "type": "String",
+    "default": "",
+    "description": ""
+  }, {
+    "name": "headerLeft",
+    "type": "Array",
+    "default": "",
+    "description": ""
+  }, {
+    "name": "headerRight",
+    "type": "Array",
+    "default": "",
+    "description": ""
+  }, {
+    "name": "drawerTitle",
+    "type": "String",
+    "default": "",
+    "description": ""
+  }, {
+    "name": "drawerLink",
+    "type": "Array",
+    "default": "",
+    "description": ""
+  }, {
+    "name": "tabName",
+    "type": "String",
+    "default": "'layout-tab'",
+    "description": ""
+  }, {
+    "name": "tabs",
+    "type": "Array, Boolean",
+    "default": "false",
+    "description": ""
+  }, {
+    "name": "scroll",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Makes the header scroll with the content"
+  }, {
+    "name": "fixedDrawer",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Makes the drawer always visible and open in larger screens"
+  }, {
+    "name": "fixedHeader",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Makes the header always visible, even in small screens"
+  }, {
+    "name": "noDrawerButton",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Does not display a drawer button"
+  }, {
+    "name": "noDesktopDrawerButton",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Does not display a drawer button in desktop mode"
+  }, {
+    "name": "waterfall",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Allows a \"waterfall\" effect with multiple header lines"
+  }, {
+    "name": "waterfallHideTop",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Hides the top rather than the bottom rows on a waterfall header"
+  }, {
+    "name": "transparent",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Makes header transparent (draws on top of layout background)"
+  }, {
+    "name": "seamed",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Uses a header without a shadow"
+  }, {
+    "name": "fixedTabs",
+    "type": "Boolean",
+    "default": "false",
+    "description": "Uses fixed tabs instead of the default scrollable tabs"
+  }],
+  "slots": [{
+    "name": "(default)",
+    "description": "The default slot holds the layout content and can contain HTML"
+  }, {
+    "name": "header-title",
+    "description": "The title of the header"
+  }, {
+    "name": "header-left",
+    "description": "The left section of the header",
+    "props": "className: { parent, child }"
+  }, {
+    "name": "header-center",
+    "description": "The center section of the header"
+  }, {
+    "name": "header-right",
+    "description": "The right section of the header",
+    "props": "className: { parent, child }"
+  }, {
+    "name": "header-bottom",
+    "description": "The bottom section of the header",
+    "props": "className"
+  }, {
+    "name": "drawer-title",
+    "description": "The title of the drawer"
+  }, {
+    "name": "drawer-top",
+    "description": "The top section of the drawer",
+    "props": "className: { parent, child }"
+  }, {
+    "name": "drawer-bottom",
+    "description": "The bottom section of the drawer"
+  }, {
+    "name": "footer-inner",
+    "description": "The inner section of the footer"
+  }, {
+    "name": "footer-outer",
+    "description": "The outer section of the footer"
+  }],
   "events": []
 }

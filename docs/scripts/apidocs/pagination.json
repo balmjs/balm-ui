@@ -1,5 +1,69 @@
 {
-  "props": [],
-  "slots": [],
-  "events": []
+  "props": [{
+    "name": "recordCount",
+    "type": "Number",
+    "default": "(required)",
+    "description": "",
+    "required": true
+  }, {
+    "name": "pageSize",
+    "type": "Number",
+    "default": "(required)",
+    "description": "",
+    "required": true
+  }, {
+    "name": "page",
+    "type": "Number",
+    "default": 1,
+    "description": ""
+  }, {
+    "name": "prev",
+    "type": "String",
+    "default": "",
+    "description": ""
+  }, {
+    "name": "next",
+    "type": "String",
+    "default": "",
+    "description": ""
+  }, {
+    "name": "pageSpan",
+    "type": "Number",
+    "default": 3,
+    "description": ""
+  }, {
+    "name": "showRecord",
+    "type": "Boolean",
+    "default": false,
+    "description": ""
+  }, {
+    "name": "showJumper",
+    "type": "Boolean",
+    "default": false,
+    "description": ""
+  }, {
+    "name": "jumperBefore",
+    "type": "String",
+    "default": "'Goto'",
+    "description": ""
+  }, {
+    "name": "jumperAfter",
+    "type": "String",
+    "default": "",
+    "description": ""
+  }, {
+    "name": "mini",
+    "type": "Boolean",
+    "default": false,
+    "description": ""
+  }],
+  "slots": [{
+    "name": "(default)",
+    "description": "The default slot holds the pagination record content and can contain HTML",
+    "props": "{ recordCount, pageSize, pageCount }"
+  }],
+  "events": [{
+    "name": "change",
+    "description": "Dispatched when the pagination is changed"
+  }]
 }

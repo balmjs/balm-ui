@@ -1,7 +1,11 @@
 <template>
   <a :class="className" @click.stop="$parent.switchTab(tab.index)">
-    <i v-if="icon" :class="iconClassName">{{ noIconText ? '' : tab.name }}</i>
-    <span v-if="!icon">{{ tab.name }}</span>
+    <template v-if="icon">
+      <i :class="iconClassName">{{ noIconText ? '' : tab.name }}</i>
+    </template>
+    <template v-else>
+      <span>{{ tab.name }}</span>
+    </template>
     <span ref="ripple"
       v-if="$parent.effect"
       class="mdl-tabs__ripple-container mdl-js-ripple-effect">

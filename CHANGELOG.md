@@ -6,6 +6,11 @@ __`<ui-pagination>`__
 
 - update css
 
+### Update docs
+
+- __`<ui-layout>`__
+- __`<ui-pagination>`__
+
 ---
 
 ## 0.1.23

@@ -17,12 +17,16 @@
               {'mdl-data-table__header--sorted-ascending': cell.sort === 'asc'},
               {'mdl-data-table__header--sorted-descending': cell.sort === 'desc'}
             ]">
-            <span v-if="!cell.isCheckbox" @click="sort(cell)">{{ cell.value }}</span>
-            <ui-checkbox v-if="cell.isCheckbox"
-              name="checkAll"
-              :value="cell.value"
-              :model="isCheckAll"
-              @change="onCheckAll"></ui-checkbox>
+            <template v-if="cell.isCheckbox">
+              <ui-checkbox
+                name="checkAll"
+                :value="cell.value"
+                :model="isCheckAll"
+                @change="onCheckAll"></ui-checkbox>
+            </template>
+            <template v-else>
+              <span @click="sort(cell)">{{ cell.value }}</span>
+            </template>
           </th>
         </tr>
       </slot>
@@ -30,51 +34,55 @@
     <!-- Table Body -->
     <tbody>
       <slot name="tbody" :data="tbodyData">
-        <tr v-if="tbodyData.length"
-          v-for="(rowValue, rowKey) in tbodyData"
-          :key="rowKey"
-          :class="{
-            'selected': isSelected(rowValue, rowKey),
-            'detail-view': isDetailView(rowKey)
-          }">
-          <td v-for="(cell, index) in rowValue"
-            :key="index"
-            :colspan="cell.col"
-            :rowspan="cell.row"
-            :class="cell.class">
-            <!-- Data View -->
-            <div v-if="isCellData(rowKey, cell) && !cell.raw">{{ cell.value }}</div>
-            <div v-if="isCellData(rowKey, cell) && cell.raw" v-html="cell.value"></div>
-            <!-- Detail View Control -->
-            <i v-if="cell.isPlus"
-              class="material-icons"
-              @click="viewDetail(rowKey, cell)">{{ cell.show ? 'remove' : 'add' }}</i>
-            <!-- Checkbox -->
-            <ui-checkbox v-if="cell.isCheckbox"
-              name="checkOne[]"
-              :value="selectKeyField ? cell.value : getSelectIndex(rowKey)"
-              :model="currentCheckboxList"
-              @change="onCheckOne"></ui-checkbox>
-            <!-- Actions -->
-            <div v-if="cell.isAction">
-              <ui-button v-for="(actionValue, actionKey) in cell.actions"
-                :key="actionKey"
-                :icon="actionValue.icon || actionValue.isIcon"
-                :link="actionValue.isLink"
-                @click.native="doAction(actionValue.name, actionValue.data)">
-                <span v-if="!actionValue.icon" v-html="actionValue.value"></span>
-              </ui-button>
-            </div>
-            <!-- Detail View -->
-            <div v-if="isDetailView(rowKey)" class="mdl-data-table__detail-view">
-              <slot name="detail"></slot>
-            </div>
-          </td>
-        </tr>
+        <!-- Has Data -->
+        <template v-if="tbodyData.length">
+          <tr v-for="(rowValue, rowKey) in tbodyData"
+            :key="rowKey"
+            :class="{
+              'selected': isSelected(rowValue, rowKey),
+              'detail-view': isDetailView(rowKey)
+            }">
+            <td v-for="(cell, index) in rowValue"
+              :key="index"
+              :colspan="cell.col"
+              :rowspan="cell.row"
+              :class="cell.class">
+              <!-- Data View -->
+              <div v-if="isCellData(rowKey, cell) && !cell.raw">{{ cell.value }}</div>
+              <div v-if="isCellData(rowKey, cell) && cell.raw" v-html="cell.value"></div>
+              <!-- Detail View Control -->
+              <i v-if="cell.isPlus"
+                class="material-icons"
+                @click="viewDetail(rowKey, cell)">{{ cell.show ? 'remove' : 'add' }}</i>
+              <!-- Checkbox -->
+              <ui-checkbox v-if="cell.isCheckbox"
+                name="checkOne[]"
+                :value="selectKeyField ? cell.value : getSelectIndex(rowKey)"
+                :model="currentCheckboxList"
+                @change="onCheckOne"></ui-checkbox>
+              <!-- Actions -->
+              <div v-if="cell.isAction">
+                <ui-button v-for="(actionValue, actionKey) in cell.actions"
+                  :key="actionKey"
+                  :icon="actionValue.icon || actionValue.isIcon"
+                  :link="actionValue.isLink"
+                  @click.native="doAction(actionValue.name, actionValue.data)">
+                  <span v-if="!actionValue.icon" v-html="actionValue.value"></span>
+                </ui-button>
+              </div>
+              <!-- Detail View -->
+              <div v-if="isDetailView(rowKey)" class="mdl-data-table__detail-view">
+                <slot name="detail"></slot>
+              </div>
+            </td>
+          </tr>
+        </template>
         <!-- No Data -->
-        <tr v-if="!tbodyData.length">
-          <td class="mdl-no-data-table" :colspan="currentCol">{{ noData }}</td>
-        </tr>
+        <template v-else>
+          <tr>
+            <td class="mdl-no-data-table" :colspan="currentCol">{{ noData }}</td>
+          </tr>
+        </template>
       </slot>
     </tbody>
     <!-- Table Foot -->
@@ -86,8 +94,12 @@
             :colspan="cell.col"
             :rowspan="cell.row"
             :class="cell.class">
-            <div v-if="!cell.raw">{{ cell.value }}</div>
-            <div v-if="cell.raw" v-html="cell.value"></div>
+            <template v-if="cell.raw">
+              <div v-html="cell.value"></div>
+            </template>
+            <template v-else>
+              <div>{{ cell.value }}</div>
+            </template>
           </td>
         </tr>
       </slot>

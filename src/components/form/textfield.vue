@@ -9,40 +9,42 @@
       <label class="mdl-textfield__label">
         <slot name="label">{{ label }}</slot>
       </label>
-      <textarea v-if="isTextarea"
-        class="mdl-textfield__input"
-        v-model="currentValue"
-        :id="id"
-        :name="name"
-        :rows="rows"
-        :placeholder="labelFloating ? null : placeholder"
-        :maxlength="maxlength"
-        :disabled="disabled"
-        :readonly="readonly"
-        @input="handleInput($event.target.value)"
-        @change="handleChange"
-        @focus="handleFocus"
-        @blur="handleBlur"
-        @keydown="handleKeydown"
-        @keydown.enter="handleKeydownEnter"></textarea>
-      <input v-if="!isTextarea"
-        class="mdl-textfield__input"
-        :type="type"
-        :value="currentValue"
-        :id="id"
-        :name="name"
-        :placeholder="labelFloating ? null : placeholder"
-        :pattern="pattern"
-        :maxlength="maxlength"
-        :disabled="disabled"
-        :readonly="readonly"
-        @input="handleInput($event.target.value)"
-        @change="handleChange"
-        @focus="handleFocus"
-        @blur="handleBlur"
-        @keydown="handleKeydown"
-        @keydown.enter="handleKeydownEnter"
-        data-input>
+      <template v-if="isTextarea">
+        <textarea class="mdl-textfield__input"
+          v-model="currentValue"
+          :id="id"
+          :name="name"
+          :rows="rows"
+          :placeholder="labelFloating ? null : placeholder"
+          :maxlength="maxlength"
+          :disabled="disabled"
+          :readonly="readonly"
+          @input="handleInput($event.target.value)"
+          @change="handleChange"
+          @focus="handleFocus"
+          @blur="handleBlur"
+          @keydown="handleKeydown"
+          @keydown.enter="handleKeydownEnter"></textarea>
+      </template>
+      <template v-else>
+        <input class="mdl-textfield__input"
+          :type="type"
+          :value="currentValue"
+          :id="id"
+          :name="name"
+          :placeholder="labelFloating ? null : placeholder"
+          :pattern="pattern"
+          :maxlength="maxlength"
+          :disabled="disabled"
+          :readonly="readonly"
+          @input="handleInput($event.target.value)"
+          @change="handleChange"
+          @focus="handleFocus"
+          @blur="handleBlur"
+          @keydown="handleKeydown"
+          @keydown.enter="handleKeydownEnter"
+          data-input>
+      </template>
       <span v-if="error" class="mdl-textfield__error">
         <slot name="error">{{ error }}</slot>
       </span>

@@ -7,10 +7,12 @@
     <div class="mdl-list__item-primary-content">
       <slot :className="className.primary"></slot>
     </div>
-    <div v-if="hasMultiLine" class="mdl-list__item-secondary-content">
-      <slot name="action" :className="className.secondary"></slot>
-    </div>
-    <template v-if="!hasMultiLine">
+    <template v-if="hasMultiLine">
+      <div class="mdl-list__item-secondary-content">
+        <slot name="action" :className="className.secondary"></slot>
+      </div>
+    </template>
+    <template v-else>
       <slot name="action" :className="className.secondary"></slot>
     </template>
   </li>

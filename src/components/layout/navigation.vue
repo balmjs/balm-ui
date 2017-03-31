@@ -3,10 +3,14 @@
     <router-link v-for="(link, index) in links"
       class="mdl-navigation__link"
       :key="index"
-      :to="link.url"
+      :to="link[fields.url]"
       :tag="tag">
-      <span v-if="isTagA">{{ link.name }}</span>
-      <a v-if="!isTagA">{{ link.name }}</a>
+      <template v-if="isTagA">
+        <span>{{ link[fields.name] }}</span>
+      </template>
+      <template v-else>
+        <a>{{ link[fields.name] }}</a>
+      </template>
     </router-link>
   </nav>
 </template>
@@ -21,7 +25,16 @@ export default {
       type: String,
       default: 'a' // or 'li'
     },
-    links: Array
+    links: Array,
+    fields: {
+      type: Object,
+      default() {
+        return {
+          name: 'name',
+          url: 'url'
+        };
+      }
+    }
   },
   computed: {
     isTagA() {

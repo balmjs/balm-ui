@@ -13,12 +13,12 @@
   }, {
     "name": "thead",
     "type": "Array",
-    "default": "(required)",
+    "default": "[]",
     "description": "The table head data"
   }, {
     "name": "tbody",
     "type": "Array",
-    "default": "(required)",
+    "default": "[]",
     "description": "The table body data"
   }, {
     "name": "tfoot",
@@ -62,9 +62,12 @@
     "description": "True to show detail view table"
   }],
   "slots": [{
+    "name": "(default)",
+    "description": "The default slot holds the table caption text and can contain HTML"
+  }, {
     "name": "thead",
     "description": "The thead slot holds the table head text and can contain HTML",
-    "props": "data"
+    "props": "className: { asc, desc }"
   }, {
     "name": "tbody",
     "description": "The tbody slot holds the table body text and can contain HTML",
@@ -72,7 +75,7 @@
   }, {
     "name": "tfoot",
     "description": "The tfoot slot holds the table foot text and can contain HTML",
-    "props": "data"
+    "props": "data (Need to config `props.tfoot`)"
   }, {
     "name": "detail",
     "description": "The detail slot holds the detail view text and can contain HTML"

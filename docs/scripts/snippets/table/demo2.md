@@ -61,9 +61,8 @@ export default {
         {
           field: 'name',
           noNum: true,
-          raw: true,
-          fn: function(data, index) {
-            return data.name + '!' + '<i class="material-icons">mood</i>';
+          url: (data, index) => {
+            return `#/detail/${data.id}`;
           }
         },
         {

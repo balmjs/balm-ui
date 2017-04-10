@@ -1,39 +1,49 @@
 <template>
   <table class="mdl-data-table mdl-js-data-table">
-    <caption v-if="caption">{{ caption }}</caption>
-    <colgroup v-if="currentCol">
-      <col v-for="(value, key) in currentCol" :key="key" :class="`col-${value}`">
-    </colgroup>
+    <slot>
+      <caption v-if="caption">{{ caption }}</caption>
+      <colgroup v-if="currentCol">
+        <col v-for="(value, key) in currentCol" :key="key" :class="`col-${value}`">
+      </colgroup>
+    </slot>
     <!-- Table Head -->
     <thead>
-      <slot name="thead" :data="theadData">
+      <slot name="thead" :className="{asc: CLASSNAME_ASC, desc: CLASSNAME_DESC}">
         <tr v-for="(rowValue, rowKey) in theadData" :key="rowKey">
-          <th v-for="(cell, index) in rowValue"
-            :key="index"
-            :colspan="cell.col"
-            :rowspan="cell.row"
-            :class="[
-              cell.class,
-              {'mdl-data-table__header--sorted-ascending': cell.sort === 'asc'},
-              {'mdl-data-table__header--sorted-descending': cell.sort === 'desc'}
-            ]">
+          <template v-for="(cell, index) in rowValue">
             <template v-if="cell.isCheckbox">
-              <ui-checkbox
-                name="checkAll"
-                :value="cell.value"
-                :model="isCheckAll"
-                @change="onCheckAll"></ui-checkbox>
+              <th
+              :key="index"
+              :colspan="cell.col"
+              :rowspan="cell.row"
+              :class="cell.class">
+                <ui-checkbox
+                  name="checkAll"
+                  :value="cell.value"
+                  :model="isCheckAll"
+                  @change="onCheckAll"></ui-checkbox>
+              </th>
             </template>
             <template v-else>
-              <span @click="sort(cell)">{{ cell.value }}</span>
+              <th
+              :key="index"
+              :colspan="cell.col"
+              :rowspan="cell.row"
+              :class="[
+                cell.class,
+                getSortClass(cell.sort)
+              ]"
+              @click="sort(cell)">
+                <span>{{ cell.value }}</span>
+              </th>
             </template>
-          </th>
+          </template>
         </tr>
       </slot>
     </thead>
     <!-- Table Body -->
     <tbody>
-      <slot name="tbody" :data="tbodyData">
+      <slot name="tbody" :data="currentData">
         <!-- Has Data -->
         <template v-if="tbodyData.length">
           <tr v-for="(rowValue, rowKey) in tbodyData"
@@ -48,7 +58,14 @@
               :rowspan="cell.row"
               :class="cell.class">
               <!-- Data View -->
-              <div v-if="isCellData(rowKey, cell) && !cell.raw">{{ cell.value }}</div>
+              <div v-if="isCellData(rowKey, cell) && !cell.raw">
+                <template v-if="cell.url">
+                  <a :href="cell.url">{{ cell.value }}</a>
+                </template>
+                <template v-else>
+                  {{ cell.value }}
+                </template>
+              </div>
               <div v-if="isCellData(rowKey, cell) && cell.raw" v-html="cell.value"></div>
               <!-- Detail View Control -->
               <i v-if="cell.isPlus"
@@ -131,6 +148,7 @@ const CELL_RAW = 'raw';
 const CELL_ROWSPAN = 'row';
 const CELL_SORT = 'sort';
 const CELL_VALUE = 'value';
+const CELL_URL = 'url';
 const CELL_ACTION = 'actions';
 const ACTION_BUTTON = 'button';
 const ACTION_ICON = 'icon';
@@ -149,6 +167,8 @@ const CLASSNAME_NON_NUMERIC = 'mdl-data-table__cell--non-numeric';
 const CLASSNAME_TEXT_LEFT = 'mdl-data-table__cell--text-left';
 const CLASSNAME_TEXT_CENTER = 'mdl-data-table__cell--text-center';
 const CLASSNAME_TEXT_RIGHT = 'mdl-data-table__cell--text-right';
+const CLASSNAME_ASC = 'mdl-data-table__header--sorted-ascending';
+const CLASSNAME_DESC = 'mdl-data-table__header--sorted-descending';
 const EVENT_SELECTED = 'selected';
 const EVENT_VIEW_DETAIL = 'view-detail';
 
@@ -169,11 +189,15 @@ export default {
     caption: String,
     thead: {
       type: Array,
-      required: true
+      default() {
+        return [];
+      }
     },
     tbody: {
       type: Array,
-      required: true
+      default() {
+        return [];
+      }
     },
     tfoot: {
       type: [Array, Boolean],
@@ -181,7 +205,7 @@ export default {
     },
     action: {
       type: [Array, Object],
-      default: function() {
+      default() {
         return [];
       }
     },
@@ -199,7 +223,7 @@ export default {
     },
     checkboxList: {
       type: Array,
-      default: function() {
+      default() {
         return [];
       }
     },
@@ -218,7 +242,9 @@ export default {
       currentCheckboxList: this.checkboxList,
       currentData: this.data,
       currentThead: this.thead,
-      currentDetailViewIndex: DEFAULTS.detailViewIndex
+      currentDetailViewIndex: DEFAULTS.detailViewIndex,
+      CLASSNAME_ASC,
+      CLASSNAME_DESC
     };
   },
   computed: {
@@ -268,6 +294,15 @@ export default {
     }
   },
   methods: {
+    getSortClass(sort) {
+      let className = '';
+      if (sort === SORT_ASC) {
+        className = CLASSNAME_ASC;
+      } else if (sort === SORT_DESC) {
+        className = CLASSNAME_DESC;
+      }
+      return className;
+    },
     getCell(type, data, index = -1) {
       let cell = {};
       let fn;
@@ -381,7 +416,9 @@ export default {
             break;
           default: // T_BODY
             fn = data[CELL_FUNCTION];
+            let _url = data[CELL_URL];
             cell[CELL_VALUE] = fn ? fn(this.currentData[index], index) : data[CELL_VALUE];
+            cell[CELL_URL] = isFunction(_url) ? _url(this.currentData[index], index) : false;
             // dangerously set innerHTML
             cell[CELL_RAW] = data[CELL_RAW];
             break;

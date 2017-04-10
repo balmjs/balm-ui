@@ -39,6 +39,28 @@
     </ui-table>
     <ui-markdown :text="code[1]"></ui-markdown>
 
+    <h4>Custom</h4>
+    <ui-table :data="table3.data"
+      :tfoot="table3.tfoot">
+      <template slot="thead">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </template>
+      <template slot="tbody" scope="props">
+        <tr v-for="item in props.data">
+          <td>{{ item.id }}</td>
+          <td><a :href="`#${item.id}`">{{ item.name }}</a></td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.price }}</td>
+        </tr>
+      </template>
+    </ui-table>
+    <ui-markdown :text="code[2]"></ui-markdown>
+
     <ui-apidoc name="table"></ui-apidoc>
   </div>
 </template>
@@ -106,15 +128,14 @@ export default {
           {
             field: 'name',
             noNum: true,
-            raw: true,
-            fn: function(data, index) {
-              return data.name + '!' + '<i class="material-icons">mood</i>';
+            url(data, index) {
+              return `#/detail/${data.id}`;
             }
           },
           {
             field: 'quantity',
             align: 'center',
-            class: data => {
+            class(data) {
               return data.quantity > 20 ? 'green' : 'red';
             }
           },
@@ -122,7 +143,7 @@ export default {
             field: 'price',
             align: 'right',
             raw: true,
-            fn: data => {
+            fn(data) {
               let price = data.price.toFixed(2);
               return `<b style="color:gold">$</b>${price}`;
             }
@@ -139,7 +160,7 @@ export default {
             name: 'avg',
             field: 'price',
             raw: true,
-            fn: result => {
+            fn(result) {
               let price = result.toFixed(3);
               return `<b style="color:gold">$</b>${price}`;
             }
@@ -165,6 +186,9 @@ export default {
         selectable: 'left',
         checkboxList: [],
         tableDetail: 'Hello'
+      },
+      table3: {
+        data: []
       }
     }
   },
@@ -187,13 +211,14 @@ export default {
     }
   },
   created() {
-    this.showCode('table', 2);
+    this.showCode('table', 3);
   },
   async mounted() {
     let response = await this.$http.get(`${this.$domain}/data/table.json`);
     let dataList = response.data;
     this.table1.data = dataList;
     this.table2.data = dataList;
+    this.table3.data = dataList;
   }
 };
 </script>

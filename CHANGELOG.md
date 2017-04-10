@@ -6,10 +6,16 @@ __`<ui-pagination>`__
 
 - update css
 
+__`<ui-table>`__
+
+- add `url` for `props.tbody`
+- update custom demo
+
 ### Update docs
 
 - __`<ui-layout>`__
 - __`<ui-pagination>`__
+- __`<ui-table>`__
 
 ---
 

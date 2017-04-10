@@ -4,7 +4,7 @@
       :model="currentValue"
       :placeholder="placeholder"
       :plus="toggle || clear"
-      @input.native="handleInput($event)">
+      @change="handleInput">
       <template slot="plus">
         <div v-if="toggle" class="mdl-datepicker__toggle" data-toggle>
           <slot name="toggle">

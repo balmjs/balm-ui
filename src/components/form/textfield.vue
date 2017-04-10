@@ -163,7 +163,7 @@ export default {
       this.$emit(EVENT_INPUT, value);
     },
     handleChange(event) {
-      this.$emit(EVENT_CHANGE, this.currentValue, event);
+      this.$emit(EVENT_CHANGE, event);
     },
     handleFocus(event) {
       this.checkDirty();

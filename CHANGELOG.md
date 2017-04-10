@@ -4,6 +4,10 @@ __`<ui-select>`__
 
 - update css: Workaround to IE's overflow auto and position relative bug
 
+__`<ui-datepicker>`__
+
+- bugfix: change event
+
 ---
 
 ## 0.1.24

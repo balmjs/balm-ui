@@ -23,6 +23,7 @@ balm.config = {
       loader: 'html!markdown'
     }],
     alias: {
+      vue: balm.config.production ? 'vue/dist/vue.min.js' : 'vue/dist/vue.js',
       prismCss: 'prismjs/themes/prism-okaidia.css',
       flatpickrCss: 'flatpickr/dist/flatpickr.min.css',
       flatpickrLangZh: 'flatpickr/dist/l10n/zh.js'

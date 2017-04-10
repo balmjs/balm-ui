@@ -17,6 +17,8 @@ import 'prismCss';
 import prismjs from 'prismjs';
 // plugins
 import 'flatpickrCss';
+// ready translated locales
+import { locales, flatpickrLang } from './config/lang';
 
 const DEBUG = (process.env.NODE_ENV === 'production') ? false : true;
 
@@ -50,23 +52,21 @@ Vue.prototype.$docs = {
 };
 Vue.prototype.$domain = DEBUG ? '' : '/ui-vue';
 
-// ready translated locales
-import { locales, flatpickrLang } from './config/lang';
-
-// set lang
-Vue.config.lang = 'en';
-Vue.prototype.flatpickrLang = flatpickrLang;
-
-// set locales
-Object.keys(locales).forEach(lang => {
-  Vue.locale(lang, locales[lang]);
-});
-
 const router = new VueRouter({
   routes
 });
 
+// Create VueI18n instance with options
+const i18n = new VueI18n({
+  locale: 'en', // set locale
+  messages: locales, // set locale messages
+});
+Vue.prototype.flatpickrLang = flatpickrLang;
+
 new Vue({
+  el: '#app',
   router,
-  render: h => h(App)
-}).$mount('#app');
+  template: '<App/>',
+  components: { App },
+  i18n
+});

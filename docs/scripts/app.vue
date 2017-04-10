@@ -46,10 +46,10 @@ export default {
   },
   methods: {
     isActiveLang(lang) {
-      return lang === this.$lang;
+      return lang === this.$i18n.locale;
     },
     switchLang(lang) {
-      this.$root._$lang.lang = lang;
+      this.$i18n.locale = lang;
     }
   }
 };

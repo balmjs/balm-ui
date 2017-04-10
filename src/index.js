@@ -112,3 +112,46 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default BalmUI;
+
+export {
+  // Layout
+  UiLayout,
+  UiNavigation,
+  UiGrid,
+  UiCell,
+  UiTabs,
+  UiPanel,
+  UiFooter,
+  UiMiniFooter,
+  // Common
+  UiBadge,
+  UiButton,
+  UiCard,
+  UiChip,
+  UiDivider,
+  UiLoading,
+  UiMenu,
+  UiMenuItem,
+  UiTooltip,
+  // Form
+  UiTextfield,
+  UiCheckbox,
+  UiRadio,
+  UiIconToggle,
+  UiSwitch,
+  UiSlider,
+  UiSelect,
+  UiAutocomplete,
+  UiDatepicker,
+  UiFileupload,
+  // Data
+  UiList,
+  UiItem,
+  UiTable,
+  UiPagination,
+  // Popup
+  UiDialog,
+  UiConfirm,
+  UiAlert,
+  UiSnackbar
+};

@@ -1,3 +1,11 @@
+## 0.1.25
+
+__`<ui-select>`__
+
+- update css: Workaround to IE's overflow auto and position relative bug
+
+---
+
 ## 0.1.24
 
 ### Update components

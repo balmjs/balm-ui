@@ -28,8 +28,8 @@ $optionHeight: 32px;
   }
   .mdl-menu__container {
     width: 100% !important;
-    height: auto !important;
     .mdl-menu {
+      position: relative;
       overflow-x: hidden;
       overflow-y: auto;
       width: 100%;

@@ -56,6 +56,10 @@ const router = new VueRouter({
   routes
 });
 
+router.afterEach((to, from) => {
+  document.querySelector('title').innerHTML = to.meta.title;
+});
+
 // Create VueI18n instance with options
 const i18n = new VueI18n({
   locale: 'en', // set locale

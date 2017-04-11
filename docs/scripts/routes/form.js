@@ -12,43 +12,93 @@ const Fileupload = require('../views/fileupload');
 const formRoutes = [{
   path: '/slider',
   name: 'slider',
-  component: Slider
+  component: Slider,
+  meta: {
+    title: 'BalmUI - Slider',
+    keywords: '',
+    description: ''
+  }
 }, {
   path: '/checkbox',
   name: 'checkbox',
-  component: Checkbox
+  component: Checkbox,
+  meta: {
+    title: 'BalmUI - Checkbox',
+    keywords: '',
+    description: ''
+  }
 }, {
   path: '/radio',
   name: 'radio',
-  component: Radio
+  component: Radio,
+  meta: {
+    title: 'BalmUI - Radio button',
+    keywords: '',
+    description: ''
+  }
 }, {
   path: '/icon-toggle',
   name: 'icon-toggle',
-  component: IconToggle
+  component: IconToggle,
+  meta: {
+    title: 'BalmUI - Icon toggle',
+    keywords: '',
+    description: ''
+  }
 }, {
   path: '/switch',
   name: 'switch',
-  component: Switch
+  component: Switch,
+  meta: {
+    title: 'BalmUI - Switch',
+    keywords: '',
+    description: ''
+  }
 }, {
   path: '/textfield',
   name: 'textfield',
-  component: Textfield
+  component: Textfield,
+  meta: {
+    title: 'BalmUI - Textfield',
+    keywords: '',
+    description: ''
+  }
 }, {
   path: '/select',
   name: 'select',
-  component: Select
+  component: Select,
+  meta: {
+    title: 'BalmUI - Select',
+    keywords: '',
+    description: ''
+  }
 }, {
   path: '/autocomplete',
   name: 'autocomplete',
-  component: Autocomplete
+  component: Autocomplete,
+  meta: {
+    title: 'BalmUI - Autocomplete',
+    keywords: '',
+    description: ''
+  }
 }, {
   path: '/datepicker',
   name: 'datepicker',
-  component: Datepicker
+  component: Datepicker,
+  meta: {
+    title: 'BalmUI - Datepicker',
+    keywords: '',
+    description: ''
+  }
 }, {
   path: '/fileupload',
   name: 'fileupload',
-  component: Fileupload
+  component: Fileupload,
+  meta: {
+    title: 'BalmUI - Fileupload',
+    keywords: '',
+    description: ''
+  }
 }];
 
 export default formRoutes;

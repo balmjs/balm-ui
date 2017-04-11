@@ -6,19 +6,39 @@ const Snackbar = require('../views/snackbar');
 const popupRoutes = [{
   path: '/dialog',
   name: 'dialog',
-  component: Dialog
+  component: Dialog,
+  meta: {
+    title: 'BalmUI - Dialog',
+    keywords: '',
+    description: ''
+  }
 }, {
   path: '/alert',
   name: 'alert',
-  component: Alert
+  component: Alert,
+  meta: {
+    title: 'BalmUI - Alert',
+    keywords: '',
+    description: ''
+  }
 }, {
   path: '/confirm',
   name: 'confirm',
-  component: Confirm
+  component: Confirm,
+  meta: {
+    title: 'BalmUI - Confirm',
+    keywords: '',
+    description: ''
+  }
 }, {
   path: '/snackbar',
   name: 'snackbar',
-  component: Snackbar
+  component: Snackbar,
+  meta: {
+    title: 'BalmUI - Snackbar',
+    keywords: '',
+    description: ''
+  }
 }];
 
 export default popupRoutes;

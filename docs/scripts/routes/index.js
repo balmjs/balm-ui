@@ -5,17 +5,24 @@ import dataRoutes from './data';
 import popupRoutes from './popup';
 
 const Home = require('../views/home');
-const Test = require('../views/test');
+// const Test = require('../views/test');
 
 const baseRoutes = [{
-  path: '/',
-  name: 'home',
-  component: Home
-}, {
-  path: '/test',
-  name: 'test',
-  component: Test
-}];
+    path: '/',
+    name: 'home',
+    component: Home,
+    meta: {
+      title: 'BalmUI - Home',
+      keywords: '',
+      description: ''
+    }
+  },
+  // {
+  //   path: '/test',
+  //   name: 'test',
+  //   component: Test,
+  // }
+];
 
 const routes = baseRoutes.concat(layoutRoutes, commonRoutes, formRoutes, dataRoutes, popupRoutes);
 

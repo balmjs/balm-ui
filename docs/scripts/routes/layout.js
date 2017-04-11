@@ -6,19 +6,39 @@ const Footer = require('../views/footer');
 const layoutRoutes = [{
   path: '/layout',
   name: 'layout',
-  component: Layout
+  component: Layout,
+  meta: {
+    title: 'BalmUI - Layout',
+    keywords: '',
+    description: ''
+  }
 }, {
   path: '/grid',
   name: 'grid',
-  component: Grid
+  component: Grid,
+  meta: {
+    title: 'BalmUI - Grid',
+    keywords: '',
+    description: ''
+  }
 }, {
   path: '/tabs',
   name: 'tabs',
-  component: Tabs
+  component: Tabs,
+  meta: {
+    title: 'BalmUI - Tabs',
+    keywords: '',
+    description: ''
+  }
 }, {
   path: '/footer',
   name: 'footer',
-  component: Footer
+  component: Footer,
+  meta: {
+    title: 'BalmUI - Footer',
+    keywords: '',
+    description: ''
+  }
 }];
 
 export default layoutRoutes;

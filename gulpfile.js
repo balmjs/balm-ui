@@ -1,4 +1,6 @@
 var balm = require('balm');
+var path = require('path');
+var PrerenderSpaPlugin = require('prerender-spa-plugin');
 
 var useDefault = !(process.argv[2] === '--mdl');
 var buildDocs = process.argv[3] === '--docs';
@@ -28,6 +30,43 @@ balm.config = {
       flatpickrCss: 'flatpickr/dist/flatpickr.min.css',
       flatpickrLangZh: 'flatpickr/dist/l10n/zh.js'
     },
+    plugins: [
+      new PrerenderSpaPlugin(
+        // (REQUIRED) Absolute path to static root
+        path.join(__dirname, 'dist'),
+        // (REQUIRED) List of routes to prerender
+        [
+          '/',
+          '/layout',
+          '/grid',
+          '/tabs',
+          '/badge',
+          '/button',
+          '/card',
+          '/chip',
+          '/loading',
+          '/menu',
+          '/tooltip',
+          '/divider',
+          '/slider',
+          '/checkbox',
+          '/radio',
+          '/icon-toggle',
+          '/switch',
+          '/textfield',
+          '/select',
+          '/autocomplete',
+          '/datepicker',
+          '/list',
+          '/table',
+          '/pagination',
+          '/dialog',
+          '/alert',
+          '/confirm',
+          '/snackbar'
+        ]
+      )
+    ],
     eslint: true
   },
   useDefault: useDefault

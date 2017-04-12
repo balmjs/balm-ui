@@ -17,10 +17,8 @@
     "test",
     "tests"
   ],
-  "dependencies": {
-    "normalize-css": "^5.0.0"
-  },
   "devDependencies": {
+    "normalize-css": "^6.0.0",
     "material-design-icons": "^3.0.1",
     "material-design-lite": "^1.3.0",
     "animate.css": "^3.5.2",

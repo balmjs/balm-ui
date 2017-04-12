@@ -1,7 +1,7 @@
 @import '../../src/styles/main.scss';
-@import 'vendor';
-@import 'mixins';
-@import 'base';
-@import 'layout';
+@import 'global/vendor';
+@import 'global/mixins';
+@import 'global/base';
+@import 'global/layout';
 @import 'demos/card';
 @import 'demos/list';

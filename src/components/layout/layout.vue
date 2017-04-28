@@ -30,7 +30,7 @@
           :class="['mdl-layout__tab', {'is-active': !index}]">{{ tab }}</a>
       </div>
     </header>
-    <div v-if="!noDrawerButton" class="mdl-layout__drawer">
+    <div v-if="!noDrawerButton" :class="className.drawer">
       <!-- drawer title -->
       <div class="mdl-layout__title">
         <slot name="drawer-title">{{ drawerTitle }}</slot>
@@ -42,6 +42,9 @@
       <div class="mdl-layout-spacer"></div>
       <!-- drawer bottom -->
       <slot name="drawer-bottom"></slot>
+    </div>
+    <div v-if="hasDrawer" class="mdl-layout__drawer-button" @click="showDrawer">
+      <i class="material-icons"></i>
     </div>
     <div class="mdl-layout__content">
       <!-- main content -->
@@ -57,12 +60,13 @@
       <slot name="footer-inner"></slot>
     </div>
     <slot name="footer-outer"></slot>
+    <div :class="className.obfuscator" @click="hideDrawer"></div>
   </div>
 </template>
 
 <script>
-import '../../material-design-lite/layout/layout';
-import '../../material-design-lite/ripple/ripple';
+// import '../../material-design-lite/layout/layout';
+// import '../../material-design-lite/ripple/ripple';
 import UiNavigation from './navigation';
 
 const CLASSNAME_HEADER = 'mdl-layout__header-row';
@@ -86,6 +90,10 @@ export default {
     },
     tabs: {
       type: [Array, Boolean],
+      default: false
+    },
+    hasDrawer: {
+      type: Boolean,
       default: false
     },
     // Makes the header scroll with the content
@@ -145,7 +153,8 @@ export default {
       navClassName: {
         parent: CLASSNAME_NAV,
         child: CLASSNAME_LINK
-      }
+      },
+      drawerIsVisible: false
     }
   },
   computed: {
@@ -158,7 +167,9 @@ export default {
           'mdl-layout--fixed-header': this.fixedHeader,
           'mdl-layout--no-drawer-button': this.noDrawerButton,
           'mdl-layout--no-desktop-drawer-button': this.noDesktopDrawerButton,
-          'mdl-layout--fixed-tabs': this.fixedTabs
+          'mdl-layout--fixed-tabs': this.fixedTabs,
+          'has-drawer': this.hasDrawer,
+          'is-upgraded': true // manual
         },
         header: {
           'mdl-layout__header': true,
@@ -167,20 +178,34 @@ export default {
           'mdl-layout__header--waterfall-hide-top': this.waterfall && this.waterfallHideTop,
           'mdl-layout__header--transparent': this.transparent,
           'mdl-layout__header--seamed': this.seamed
+        },
+        drawer: {
+          'mdl-layout__drawer': true,
+          'is-visible': this.drawerIsVisible
+        },
+        obfuscator: {
+          'mdl-layout__obfuscator': true,
+          'is-visible': this.drawerIsVisible
         }
       };
     }
   },
   methods: {
+    showDrawer() {
+      this.drawerIsVisible = true;
+    },
+    hideDrawer() {
+      this.drawerIsVisible = false;
+    },
     getPanelTemplate(index) {
       return `<template slot="panel${index}"></template>`;
     }
   },
   mounted() {
-    this.$ui.upgradeElement(this.$el, 'MaterialLayout');
-    if (this.tabs) {
-      this.$ui.upgradeElement(this.$refs.tabs, 'MaterialRipple');
-    }
+    // this.$ui.upgradeElement(this.$el, 'MaterialLayout');
+    // if (this.tabs) {
+    //   this.$ui.upgradeElement(this.$refs.tabs, 'MaterialRipple');
+    // }
   }
 };
 </script>

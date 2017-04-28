@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import {lang} from './config/lang';
-import menu from './config/menu';
+import {lang} from '../../config/lang';
+import menu from '../../config/menu';
 
 export default {
   data() {

@@ -1,17 +1,13 @@
-// fuck IE
-import 'core-js/shim'; // for IE
-import 'classlist.js'; // for IE9-
-import './polyfill/rAF'; // for IE9-
-// gg
+import './config/polyfill';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import VueI18n from 'vue-i18n';
 import axios from 'axios';
+import VueI18n from 'vue-i18n';
 import BalmUI from '../../src/index';
-import App from './app';
 import routes from './routes/index';
-import UiMarkdown from './components/markdown';
-import UiApidoc from './components/apidoc';
+import App from './views/layouts/app';
+import UiMarkdown from './views/components/markdown';
+import UiApidoc from './views/components/apidoc';
 // syntax highlighting
 import 'prismCss';
 import prismjs from 'prismjs';
@@ -23,6 +19,7 @@ import { locales, flatpickrLang } from './config/lang';
 const DEBUG = (process.env.NODE_ENV === 'production') ? false : true;
 
 Vue.use(VueRouter);
+Vue.prototype.$http = axios;
 Vue.use(VueI18n);
 Vue.use(BalmUI);
 Vue.use({
@@ -31,7 +28,6 @@ Vue.use({
     vue.component(UiApidoc.name, UiApidoc);
   }
 });
-Vue.prototype.$http = axios;
 Vue.prototype.$prism = prismjs;
 Vue.prototype.$docs = {
   props: {

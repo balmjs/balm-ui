@@ -59,9 +59,9 @@ export default {
     }
   },
   mounted() {
-    if (this.$parent.effect) {
-      this.$ui.upgradeElement(this.$refs.ripple, 'MaterialRipple');
-    }
+    // if (this.$parent.effect) {
+    //   this.$ui.upgradeElement(this.$refs.ripple, 'MaterialRipple');
+    // }
   }
 };
 </script>

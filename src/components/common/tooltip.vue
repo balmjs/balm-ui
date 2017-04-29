@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import '../../material-design-lite/tooltip/tooltip';
+// import '../../material-design-lite/tooltip/tooltip';
 import {isString, generateRandomAlphaNum} from '../utils/helper';
 
 const POSITIONS = ['', 'top', 'right', 'bottom', 'left'];
@@ -62,7 +62,7 @@ export default {
     }
   },
   mounted() {
-    this.$ui.upgradeElement(this.$refs.tooltip, 'MaterialTooltip');
+    // this.$ui.upgradeElement(this.$refs.tooltip, 'MaterialTooltip');
   }
 };
 </script>

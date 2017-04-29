@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import '../../material-design-lite/slider/slider';
+// import '../../material-design-lite/slider/slider';
 
 const EVENT_CHANGE = 'change';
 
@@ -63,7 +63,7 @@ export default {
     }
   },
   mounted() {
-    this.$ui.upgradeElement(this.$el, 'MaterialSlider');
+    // this.$ui.upgradeElement(this.$el, 'MaterialSlider');
   }
 };
 </script>

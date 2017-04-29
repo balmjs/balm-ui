@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import '../../../material-design-lite/menu/menu';
+// import '../../../material-design-lite/menu/menu';
 import {isString, generateRandomAlphaNum, observeMutationSupport} from '../../utils/helper';
 import UiMenuItem from './menuitem';
 
@@ -127,8 +127,8 @@ export default {
     }
   },
   mounted() {
-    this.$ui.upgradeElement(this.$refs.button, 'MaterialButton');
-    this.$ui.upgradeElement(this.$refs.menu, 'MaterialMenu');
+    // this.$ui.upgradeElement(this.$refs.button, 'MaterialButton');
+    // this.$ui.upgradeElement(this.$refs.menu, 'MaterialMenu');
 
     if (this.isSelect && observeMutationSupport) {
       const callback = records => {

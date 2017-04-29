@@ -1,124 +1,96 @@
 <template>
   <div class="demo-button">
-    <div class="component-title">
-      <h3>Button</h3>
-      <p>Variations on Material Design buttons.</p>
-    </div>
+    <h3>MDC WEB BUTTON</h3>
+    <section>
+      <fieldset>
+        <legend>Buttons</legend>
+        <ui-button>Default</ui-button>
+        <ui-button raised>Raised</ui-button>
+        <ui-button dense>Dense Default</ui-button>
+        <ui-button raised dense>Dense Raised</ui-button>
+        <ui-button compact>Compact</ui-button>
+        <ui-button raised compact>Compact Raised</ui-button>
+        <ui-button primary>Default with Primary</ui-button>
+        <ui-button raised primary>Raised with Primary</ui-button>
+        <ui-button accent>Default with Accent</ui-button>
+        <ui-button raised accent>Raised with Accent</ui-button>
+      </fieldset>
 
-    <div class="snippet-group">
-      <div class="snippet-demo">
-        <ui-button fab colored>
-          <i class="material-icons">add</i>
-        </ui-button>
-      </div>
-      <div class="snippet-demo">
-        <ui-button fab colored effect>
-          <i class="material-icons">add</i>
-        </ui-button>
-      </div>
-    </div>
-    <ui-markdown :text="code[0]"></ui-markdown>
+      <fieldset>
+        <legend>Buttons - Ripple Effect</legend>
+        <ui-button ripple>Default</ui-button>
+        <ui-button ripple raised>Raised</ui-button>
+        <ui-button ripple dense>Dense Default</ui-button>
+        <ui-button ripple raised dense>Dense Raised</ui-button>
+        <ui-button ripple compact>Compact</ui-button>
+        <ui-button ripple raised compact>Compact Raised</ui-button>
+        <ui-button ripple primary>Default with Primary</ui-button>
+        <ui-button ripple raised primary>Raised with Primary</ui-button>
+        <ui-button ripple accent>Default with Accent</ui-button>
+        <ui-button ripple raised accent>Raised with Accent</ui-button>
+      </fieldset>
 
-    <div class="snippet-group">
-      <div class="snippet-demo">
-        <ui-button fab>
-          <i class="material-icons">add</i>
-        </ui-button>
-      </div>
-      <div class="snippet-demo">
-        <ui-button fab effect>
-          <i class="material-icons">add</i>
-        </ui-button>
-      </div>
-      <div class="snippet-demo">
-        <ui-button fab disabled>
-          <i class="material-icons">add</i>
-        </ui-button>
-      </div>
-    </div>
-    <ui-markdown :text="code[1]"></ui-markdown>
+      <fieldset>
+        <legend>Buttons - Disabled</legend>
+        <ui-button disabled>Default</ui-button>
+        <ui-button disabled raised>Raised</ui-button>
+        <ui-button disabled dense>Dense Default</ui-button>
+        <ui-button disabled raised dense>Dense Raised</ui-button>
+        <ui-button disabled compact>Compact</ui-button>
+        <ui-button disabled raised compact>Compact Raised</ui-button>
+        <ui-button disabled primary>Default with Primary</ui-button>
+        <ui-button disabled raised primary>Raised with Primary</ui-button>
+        <ui-button disabled accent>Default with Accent</ui-button>
+        <ui-button disabled raised accent>Raised with Accent</ui-button>
+      </fieldset>
+    </section>
 
-    <div class="snippet-group">
-      <div class="snippet-demo">
-        <ui-button raised>Button</ui-button>
-      </div>
-      <div class="snippet-demo">
-        <ui-button raised effect>Button</ui-button>
-      </div>
-      <div class="snippet-demo">
-        <ui-button raised disabled>Button</ui-button>
-      </div>
-    </div>
-    <ui-markdown :text="code[2]"></ui-markdown>
+    <h3>Dark theme</h3>
+    <section class="mdc-theme--dark">
+      <fieldset>
+        <legend>Buttons</legend>
+        <ui-button>Default</ui-button>
+        <ui-button raised>Raised</ui-button>
+        <ui-button dense>Dense Default</ui-button>
+        <ui-button raised dense>Dense Raised</ui-button>
+        <ui-button compact>Compact</ui-button>
+        <ui-button raised compact>Compact Raised</ui-button>
+        <ui-button primary>Default with Primary</ui-button>
+        <ui-button raised primary>Raised with Primary</ui-button>
+        <ui-button accent>Default with Accent</ui-button>
+        <ui-button raised accent>Raised with Accent</ui-button>
+      </fieldset>
 
-    <div class="snippet-group">
-      <div class="snippet-demo">
-        <ui-button raised colored>Button</ui-button>
-      </div>
-      <div class="snippet-demo">
-        <ui-button raised accent>Button</ui-button>
-      </div>
-      <div class="snippet-demo">
-        <ui-button raised accent effect>Button</ui-button>
-      </div>
-    </div>
-    <ui-markdown :text="code[3]"></ui-markdown>
+      <fieldset>
+        <legend>Buttons - Ripple Effect</legend>
+        <ui-button ripple>Default</ui-button>
+        <ui-button ripple raised>Raised</ui-button>
+        <ui-button ripple dense>Dense Default</ui-button>
+        <ui-button ripple raised dense>Dense Raised</ui-button>
+        <ui-button ripple compact>Compact</ui-button>
+        <ui-button ripple raised compact>Compact Raised</ui-button>
+        <ui-button ripple primary>Default with Primary</ui-button>
+        <ui-button ripple raised primary>Raised with Primary</ui-button>
+        <ui-button ripple accent>Default with Accent</ui-button>
+        <ui-button ripple raised accent>Raised with Accent</ui-button>
+      </fieldset>
 
-    <div class="snippet-group">
-      <div class="snippet-demo">
-        <ui-button>Button</ui-button>
-      </div>
-      <div class="snippet-demo">
-        <ui-button effect>Button</ui-button>
-      </div>
-      <div class="snippet-demo">
-        <ui-button disabled>Button</ui-button>
-      </div>
-    </div>
-    <ui-markdown :text="code[4]"></ui-markdown>
+      <fieldset>
+        <legend>Buttons - Disabled</legend>
+        <ui-button disabled>Default</ui-button>
+        <ui-button disabled raised>Raised</ui-button>
+        <ui-button disabled dense>Dense Default</ui-button>
+        <ui-button disabled raised dense>Dense Raised</ui-button>
+        <ui-button disabled compact>Compact</ui-button>
+        <ui-button disabled raised compact>Compact Raised</ui-button>
+        <ui-button disabled primary>Default with Primary</ui-button>
+        <ui-button disabled raised primary>Raised with Primary</ui-button>
+        <ui-button disabled accent>Default with Accent</ui-button>
+        <ui-button disabled raised accent>Raised with Accent</ui-button>
+      </fieldset>
+    </section>
 
-    <div class="snippet-group">
-      <div class="snippet-demo">
-        <ui-button primary>Button</ui-button>
-      </div>
-      <div class="snippet-demo">
-        <ui-button accent>Button</ui-button>
-      </div>
-    </div>
-    <ui-markdown :text="code[5]"></ui-markdown>
-
-    <div class="snippet-group">
-      <div class="snippet-demo">
-        <ui-button icon="mood"></ui-button>
-      </div>
-      <div class="snippet-demo">
-        <ui-button icon="mood" colored></ui-button>
-      </div>
-    </div>
-    <ui-markdown :text="code[6]"></ui-markdown>
-
-    <div class="snippet-group">
-      <div class="snippet-demo">
-        <ui-button fab mini-fab>
-          <i class="material-icons">add</i>
-        </ui-button>
-      </div>
-      <div class="snippet-demo">
-        <ui-button fab mini-fab colored>
-          <i class="material-icons">add</i>
-        </ui-button>
-      </div>
-    </div>
-    <ui-markdown :text="code[7]"></ui-markdown>
-
-    <div class="snippet-group">
-      <div class="snippet-demo">
-        <ui-button link>Link</ui-button>
-      </div>
-    </div>
-    <ui-markdown :text="code[8]"></ui-markdown>
-
-    <ui-apidoc name="button"></ui-apidoc>
+    <!-- <ui-apidoc name="button"></ui-apidoc> -->
   </div>
 </template>
 
@@ -128,7 +100,7 @@ import snippets from '../mixins/snippets';
 export default {
   mixins: [snippets],
   created() {
-    this.showCode('button', 9);
+    // this.showCode('button', 10);
   }
 };
 </script>

@@ -1,125 +1,188 @@
 <template>
   <div class="demo-card">
-    <div class="component-title">
-      <h3>Card</h3>
-      <p>Self-contained pieces of paper with data.</p>
-    </div>
+    <h3>MDC Cards</h3>
+    <section class="demo-typography--section mdc-typography">
+      <ui-card :class="'demo-card'">
+        <ui-card-media class="demo-card__16-9-media"></ui-card-media>
+        <ui-card-text>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
+        </ui-card-text>
+      </ui-card>
 
-    <h4>Wide</h4>
-    <div class="snippet-group">
-      <div class="snippet-demo">
-        <ui-card class="demo-card-wide" border hasMenu>
-          <template slot="header" scope="props">
-            <h2 :class="props.className.title">Welcome</h2>
+      <ui-card :class="'demo-card demo-card--with-avatar'">
+        <ui-card-primary hasSubtitle>
+          <template slot="before">
+            <div class="demo-card__avatar"></div>
           </template>
-          <template scope="props">
-            <div :class="props.className.text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia...
-            </div>
+          <template slot="title">
+            Title
           </template>
-          <template slot="footer">
-            <ui-button colored effect>Get Started</ui-button>
+          <template slot="subtitle">
+            Subhead
           </template>
-          <template slot="menu">
-            <ui-button icon="share" effect></ui-button>
-          </template>
-        </ui-card>
-      </div>
-    </div>
-    <ui-markdown :text="code[0]"></ui-markdown>
+        </ui-card-primary>
+        <ui-card-media class="demo-card__16-9-media"></ui-card-media>
+        <ui-card-text>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
+        </ui-card-text>
+        <ui-card-actions>
+          <ui-button class="mdc-card__action" compact>Action 1</ui-button>
+          <ui-button class="mdc-card__action" compact>Action 2</ui-button>
+        </ui-card-actions>
+      </ui-card>
 
-    <h4>Square</h4>
-    <div class="snippet-group">
-      <div class="snippet-demo">
-        <ui-card class="demo-card-square" expand border>
-          <template slot="header" scope="props">
-            <h2 :class="props.className.title">Update</h2>
+      <ui-card :class="'demo-card demo-card--with-avatar'">
+        <ui-card-primary hasSubtitle>
+          <template slot="before">
+            <div class="demo-card__avatar"></div>
           </template>
-          <template scope="props">
-            <div :class="props.className.text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis.
-            </div>
+          <template slot="title">
+            Title
           </template>
-          <template slot="footer">
-            <ui-button colored effect>View Updates</ui-button>
+          <template slot="subtitle">
+            Subhead
           </template>
-        </ui-card>
-      </div>
-    </div>
-    <ui-markdown :text="code[1]"></ui-markdown>
+        </ui-card-primary>
+        <ui-card-media class="demo-card__16-9-media"></ui-card-media>
+        <ui-card-text>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
+        </ui-card-text>
+        <ui-card-actions vertical>
+          <ui-button class="mdc-card__action" compact>Action 1</ui-button>
+          <ui-button class="mdc-card__action" compact>Action 2</ui-button>
+        </ui-card-actions>
+      </ui-card>
 
-    <h4>Image & Event</h4>
-    <div class="snippet-group">
-      <div class="snippet-demo">
-        <ui-card class="demo-card-image" expand>
-          <template slot="footer">
-            <span class="demo-card-image__filename">Image.jpg</span>
+      <ui-card :class="'demo-card'">
+        <ui-card-media class="demo-card__16-9-media"></ui-card-media>
+        <ui-card-primary large hasSubtitle>
+          <template slot="title">
+            Title goes here
           </template>
-        </ui-card>
-      </div>
-      <div class="snippet-demo">
-        <ui-card class="demo-card-event" expand border>
-          <template slot="header">
-            <h4>
-              Featured event:<br>
-              May 24, 2016<br>
-              7-11pm
-            </h4>
+          <template slot="subtitle">
+            Subtitle here
           </template>
-          <template slot="footer">
-            <ui-button colored effect>Add to Calendar</ui-button>
-            <div class="mdl-layout-spacer"></div>
-            <i class="material-icons">event</i>
-          </template>
-        </ui-card>
-      </div>
-    </div>
-    <ui-markdown :text="code[2]"></ui-markdown>
+        </ui-card-primary>
+        <ui-card-actions>
+          <ui-button class="mdc-card__action" compact>Action 1</ui-button>
+          <ui-button class="mdc-card__action" compact>Action 2</ui-button>
+        </ui-card-actions>
+      </ui-card>
 
-    <h4>A card (no shadow) with a title, image, text, and action.</h4>
-    <div class="snippet-group">
-      <div class="snippet-demo">
-        <ui-card>
-          <template slot="header" scope="props">
-            <h2 :class="props.className.title">
-              Auckland Sky Tower<br>
-              Auckland, New Zealand
-            </h2>
+      <ui-card :class="'demo-card'">
+        <ui-card-primary large hasSubtitle>
+          <template slot="title">
+            Title goes here
           </template>
-          <template scope="props">
-            <div :class="props.className.text">
-              The Sky Tower is an observation and telecommunications tower located in Auckland, New Zealand. It is 328 metres (1,076 ft) tall, making it the tallest man-made structure in the Southern Hemisphere.
-            </div>
+          <template slot="subtitle">
+            Subtitle here
           </template>
-          <template slot="footer">
-            <a href="http://en.wikipedia.org/wiki/Sky_Tower_%28Auckland%29">Wikipedia entry</a>
-          </template>
-        </ui-card>
-      </div>
-    </div>
-    <ui-markdown :text="code[3]"></ui-markdown>
+        </ui-card-primary>
+        <ui-card-text>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+          ea commodo consequat.
+        </ui-card-text>
+        <ui-card-actions>
+          <ui-button class="mdc-card__action" compact>Action 1</ui-button>
+          <ui-button class="mdc-card__action" compact>Action 2</ui-button>
+        </ui-card-actions>
+      </ui-card>
 
-    <h4>Card (level-3 shadow) with an image, caption, and text:</h4>
-    <div class="snippet-group">
-      <div class="snippet-demo">
-        <ui-card :dp="4" noHeader>
-          <template scope="props">
-            <div :class="props.className.media">
-              <img src="skytower.jpg" width="173" height="157" border="0" alt="" style="padding:10px;">
-            </div>
-            <div :class="props.className.text">
-              Auckland Sky Tower, taken March 24th, 2014
-            </div>
-            <div :class="props.className.text">
-              The Sky Tower is an observation and telecommunications tower located in Auckland, New Zealand. It is 328 metres (1,076 ft) tall, making it the tallest man-made structure in the Southern Hemisphere.
-            </div>
+      <ui-card :class="'demo-card demo-card--bg-demo'" dark>
+        <ui-card-primary large hasSubtitle>
+          <template slot="title">
+            Title goes here
           </template>
-        </ui-card>
-      </div>
-    </div>
-    <ui-markdown :text="code[4]"></ui-markdown>
+          <template slot="subtitle">
+            Subtitle here
+          </template>
+        </ui-card-primary>
+        <ui-card-actions>
+          <ui-button class="mdc-card__action" compact dark>Action 1</ui-button>
+          <ui-button class="mdc-card__action" compact dark>Action 2</ui-button>
+        </ui-card-actions>
+      </ui-card>
 
-    <ui-apidoc name="card"></ui-apidoc>
+      <ui-card :class="'demo-card demo-card--small'">
+        <ui-card-media>
+          <ui-card-primary noWrap large>
+            <template slot="title">
+              Title
+            </template>
+          </ui-card-primary>
+        </ui-card-media>
+        <ui-card-actions>
+          <ui-button class="mdc-card__action" compact>Action 1</ui-button>
+        </ui-card-actions>
+      </ui-card>
+
+      <ui-card :class="'demo-card'">
+        <ui-card-block>
+          <ui-card-primary large hasSubtitle>
+            <template slot="title">
+              Title here
+            </template>
+            <template slot="subtitle">
+              Subtitle here
+            </template>
+          </ui-card-primary>
+          <ui-card-media-item class="demo-card__1-1-media"></ui-card-media-item>
+        </ui-card-block>
+        <ui-card-actions>
+          <ui-button class="mdc-card__action" compact>Action 1</ui-button>
+          <ui-button class="mdc-card__action" compact>Action 2</ui-button>
+        </ui-card-actions>
+      </ui-card>
+
+      <ui-card :class="'demo-card'">
+        <ui-card-block>
+          <ui-card-media-item class="demo-card__1-1-media" :size="1.5"></ui-card-media-item>
+          <ui-card-primary large hasSubtitle>
+            <template slot="title">
+              Title here
+            </template>
+            <template slot="subtitle">
+              Subtitle here
+            </template>
+          </ui-card-primary>
+        </ui-card-block>
+        <ui-card-actions>
+          <ui-button class="mdc-card__action" compact>Action 1</ui-button>
+          <ui-button class="mdc-card__action" compact>Action 2</ui-button>
+        </ui-card-actions>
+      </ui-card>
+
+      <ui-card :class="'demo-card'">
+        <ui-card-block>
+          <ui-card-primary large hasSubtitle>
+            <template slot="title">
+              Title here
+            </template>
+            <template slot="subtitle">
+              Subtitle here
+            </template>
+          </ui-card-primary>
+          <ui-card-media-item class="demo-card__1-1-media" :size="2"></ui-card-media-item>
+        </ui-card-block>
+        <ui-card-actions>
+          <ui-button class="mdc-card__action" compact>Action 1</ui-button>
+          <ui-button class="mdc-card__action" compact>Action 2</ui-button>
+        </ui-card-actions>
+      </ui-card>
+
+      <ui-card :class="'demo-card'">
+        <ui-card-block class="mdc-card__horizontal-block">
+          <ui-card-media-item class="demo-card__1-1-media" :size="3"></ui-card-media-item>
+          <ui-card-actions vertical>
+            <ui-button class="mdc-card__action" compact>A1</ui-button>
+            <ui-button class="mdc-card__action" compact>A2</ui-button>
+          </ui-card-actions>
+        </ui-card-block>
+      </ui-card>
+    </section>
+
+    <!-- <ui-apidoc name="card"></ui-apidoc> -->
   </div>
 </template>
 
@@ -129,7 +192,7 @@ import snippets from '../mixins/snippets';
 export default {
   mixins: [snippets],
   created() {
-    this.showCode('card', 5);
+    // this.showCode('card', 5);
   }
 };
 </script>

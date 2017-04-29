@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import '../../material-design-lite/spinner/spinner';
-import '../../material-design-lite/progress/progress';
+// import '../../material-design-lite/spinner/spinner';
+// import '../../material-design-lite/progress/progress';
 import {isString} from '../utils/helper';
 
 const TYPES = ['spinner', 'progress'];
@@ -70,7 +70,7 @@ export default {
     }
   },
   mounted() {
-    this.$ui.upgradeElement(this.$el, this.isSpinner ? 'MaterialSpinner' : 'MaterialProgress');
+    // this.$ui.upgradeElement(this.$el, this.isSpinner ? 'MaterialSpinner' : 'MaterialProgress');
   }
 };
 </script>

@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import '../../material-design-lite/checkbox/checkbox';
-import '../../material-design-lite/ripple/ripple';
+// import '../../material-design-lite/checkbox/checkbox';
+// import '../../material-design-lite/ripple/ripple';
 import {isArray} from '../utils/helper';
 
 const EVENT_CHANGE = 'change';
@@ -85,10 +85,10 @@ export default {
     }
   },
   mounted() {
-    this.$ui.upgradeElement(this.$el, 'MaterialCheckbox');
-    if (this.effect) {
-      this.$ui.upgradeElement(this.$el, 'MaterialRipple');
-    }
+    // this.$ui.upgradeElement(this.$el, 'MaterialCheckbox');
+    // if (this.effect) {
+    //   this.$ui.upgradeElement(this.$el, 'MaterialRipple');
+    // }
   }
 };
 </script>

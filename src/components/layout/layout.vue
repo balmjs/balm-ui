@@ -1,72 +1,79 @@
 <template>
-  <div :class="className.outer">
-    <header :class="className.header">
-      <div v-if="!noDrawerButton" class="mdl-layout-icon"></div>
-      <div class="mdl-layout__header-row">
-        <!-- title -->
+  <div class="mdl-layout__container">
+    <div :class="className.outer">
+      <!-- header -->
+      <header :class="className.header">
+        <div v-if="!noDrawerButton" class="mdl-layout-icon"></div>
+        <div class="mdl-layout__header-row">
+          <!-- title -->
+          <div class="mdl-layout__title">
+            <slot name="header-title">{{ headerTitle }}</slot>
+          </div>
+          <!-- header left -->
+          <slot name="header-left" :className="navClassName">
+            <ui-navigation :links="headerLeft"></ui-navigation>
+          </slot>
+          <!-- header center -->
+          <div class="mdl-layout-spacer">
+            <slot name="header-center"></slot>
+          </div>
+          <!-- header right -->
+          <slot name="header-right" :className="navClassName">
+            <ui-navigation :links="headerRight"></ui-navigation>
+          </slot>
+        </div>
+        <!-- header bottom -->
+        <slot name="header-bottom" :className="headerClassName"></slot>
+        <!-- header tabs -->
+        <div v-if="tabs" class="mdl-layout__tab-bar mdl-js-ripple-effect" ref="tabs">
+          <a v-for="(tab, index) in tabs"
+            :key="index"
+            :href="`#${tabName}-${index+1}`"
+            :class="['mdl-layout__tab', {'is-active': !index}]">{{ tab }}</a>
+        </div>
+      </header>
+      <!-- drawer -->
+      <div v-if="!noDrawerButton" :class="className.drawer">
+        <!-- drawer title -->
         <div class="mdl-layout__title">
-          <slot name="header-title">{{ headerTitle }}</slot>
+          <slot name="drawer-title">{{ drawerTitle }}</slot>
         </div>
-        <!-- header left -->
-        <slot name="header-left" :className="navClassName">
-          <ui-navigation :links="headerLeft"></ui-navigation>
+        <!-- drawer top -->
+        <slot name="drawer-top" :className="navClassName">
+          <ui-navigation :links="drawerLink"></ui-navigation>
         </slot>
-        <!-- header center -->
-        <div class="mdl-layout-spacer">
-          <slot name="header-center"></slot>
-        </div>
-        <!-- header right -->
-        <slot name="header-right" :className="navClassName">
-          <ui-navigation :links="headerRight"></ui-navigation>
-        </slot>
+        <div class="mdl-layout-spacer"></div>
+        <!-- drawer bottom -->
+        <slot name="drawer-bottom"></slot>
       </div>
-      <!-- header bottom -->
-      <slot name="header-bottom" :className="headerClassName"></slot>
-      <!-- header tabs -->
-      <div v-if="tabs" class="mdl-layout__tab-bar mdl-js-ripple-effect" ref="tabs">
-        <a v-for="(tab, index) in tabs"
-          :key="index"
-          :href="`#${tabName}-${index+1}`"
-          :class="['mdl-layout__tab', {'is-active': !index}]">{{ tab }}</a>
+      <!-- drawer button -->
+      <div v-if="!noDrawerButton" class="mdl-layout__drawer-button" @click="showDrawer">
+        <i class="material-icons"></i>
       </div>
-    </header>
-    <div v-if="!noDrawerButton" :class="className.drawer">
-      <!-- drawer title -->
-      <div class="mdl-layout__title">
-        <slot name="drawer-title">{{ drawerTitle }}</slot>
+      <!-- content -->
+      <div class="mdl-layout__content">
+        <!-- main content -->
+        <slot></slot>
+        <!-- tabs content -->
+        <section v-if="tabs"
+          v-for="n in tabs.length"
+          :key="n"
+          :class="['mdl-layout__tab-panel', {'is-active': n === 1}]"
+          :id="`${tabName}-${n}`">
+          <code v-text="getPanelTemplate(n)"></code>
+        </section>
+        <!-- footer inner -->
+        <slot name="footer-inner"></slot>
       </div>
-      <!-- drawer top -->
-      <slot name="drawer-top" :className="navClassName">
-        <ui-navigation :links="drawerLink"></ui-navigation>
-      </slot>
-      <div class="mdl-layout-spacer"></div>
-      <!-- drawer bottom -->
-      <slot name="drawer-bottom"></slot>
+      <!-- footer outer -->
+      <slot name="footer-outer"></slot>
+      <!-- obfuscator -->
+      <div :class="className.obfuscator" @click="hideDrawer"></div>
     </div>
-    <div v-if="hasDrawer" class="mdl-layout__drawer-button" @click="showDrawer">
-      <i class="material-icons"></i>
-    </div>
-    <div class="mdl-layout__content">
-      <!-- main content -->
-      <slot></slot>
-      <!-- tabs content -->
-      <section v-if="tabs"
-        v-for="n in tabs.length"
-        :key="n"
-        :class="['mdl-layout__tab-panel', {'is-active': n === 1}]"
-        :id="`${tabName}-${n}`">
-        <code v-text="getPanelTemplate(n)"></code>
-      </section>
-      <slot name="footer-inner"></slot>
-    </div>
-    <slot name="footer-outer"></slot>
-    <div :class="className.obfuscator" @click="hideDrawer"></div>
   </div>
 </template>
 
 <script>
-// import '../../material-design-lite/layout/layout';
-// import '../../material-design-lite/ripple/ripple';
 import UiNavigation from './navigation';
 
 const CLASSNAME_HEADER = 'mdl-layout__header-row';
@@ -90,10 +97,6 @@ export default {
     },
     tabs: {
       type: [Array, Boolean],
-      default: false
-    },
-    hasDrawer: {
-      type: Boolean,
       default: false
     },
     // Makes the header scroll with the content
@@ -162,14 +165,13 @@ export default {
       return {
         outer: {
           'mdl-layout': true,
-          'mdl-js-layout': true,
           'mdl-layout--fixed-drawer': this.fixedDrawer,
           'mdl-layout--fixed-header': this.fixedHeader,
           'mdl-layout--no-drawer-button': this.noDrawerButton,
           'mdl-layout--no-desktop-drawer-button': this.noDesktopDrawerButton,
           'mdl-layout--fixed-tabs': this.fixedTabs,
-          'has-drawer': this.hasDrawer,
-          'is-upgraded': true // manual
+          'has-drawer': !this.noDrawerButton,
+          'is-upgraded': true
         },
         header: {
           'mdl-layout__header': true,

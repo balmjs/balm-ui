@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import '../../material-design-lite/textfield/textfield';
+// import '../../material-design-lite/textfield/textfield';
 
 const EVENT_INPUT = 'input';
 const EVENT_CHANGE = 'change';
@@ -189,7 +189,7 @@ export default {
     }
   },
   mounted() {
-    this.$ui.upgradeElement(this.$el, 'MaterialTextfield');
+    // this.$ui.upgradeElement(this.$el, 'MaterialTextfield');
   }
 };
 </script>

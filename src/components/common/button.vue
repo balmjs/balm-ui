@@ -1,15 +1,10 @@
 <template>
-  <button :class="className" :type="type" :disabled="disabled">
-    <slot>
-      <i v-if="icon" class="material-icons">{{ icon }}</i>
-    </slot>
+  <button :type="type" :class="className" :disabled="disabled">
+    <slot></slot>
   </button>
 </template>
 
 <script>
-import '../../material-design-lite/button/button';
-import '../../material-design-lite/ripple/ripple';
-
 export default {
   name: 'ui-button',
   props: {
@@ -17,43 +12,31 @@ export default {
       type: String,
       default: 'button'
     },
-    // Applies raised display effect
     raised: {
       type: Boolean,
       default: false
     },
-    // Applies fab (circular) display effect
-    fab: {
+    dense: {
       type: Boolean,
       default: false
     },
-    // Applies mini-fab (small fab circular) display effect
-    miniFab: {
+    compact: {
       type: Boolean,
       default: false
     },
-    // Applies icon (small plain circular) display effect
-    icon: {
-      type: [Boolean, String],
-      default: false
-    },
-    // Applies colored display effect (primary or accent color, depending on the type of button)
-    colored: {
-      type: Boolean,
-      default: false
-    },
-    // Applies primary color display effect
     primary: {
       type: Boolean,
       default: false
     },
-    // Applies accent color display effect
     accent: {
       type: Boolean,
       default: false
     },
-    // Applies ripple click effect
-    effect: {
+    ripple: {
+      type: Boolean,
+      default: false
+    },
+    link: {
       type: Boolean,
       default: false
     },
@@ -61,7 +44,7 @@ export default {
       type: Boolean,
       default: false
     },
-    link: {
+    dark: {
       type: Boolean,
       default: false
     }
@@ -69,26 +52,20 @@ export default {
   computed: {
     className() {
       return {
-        'mdl-button': true,
-        'mdl-js-button': true,
-        // (none) Applies flat display effect to button (default)
-        'mdl-button--raised': this.raised,
-        'mdl-button--fab': this.fab,
-        'mdl-button--mini-fab': this.miniFab,
-        'mdl-button--icon': this.icon,
-        'mdl-button--colored': this.colored,
-        'mdl-button--primary': this.primary,
-        'mdl-button--accent': this.accent,
-        'mdl-js-ripple-effect': this.effect,
-        'mdl-button--disabled': this.disabled,
-        'mdl-button--link': this.link,
+        'mdc-button': true,
+        'mdc-button--raised': this.raised,
+        'mdc-button--dense': this.dense,
+        'mdc-button--compact': this.compact,
+        'mdc-button--primary': this.primary,
+        'mdc-button--accent': this.accent,
+        'mdc-ripple': this.ripple,
+        'mdc-button--theme-dark': this.dark
       };
     }
   },
   mounted() {
-    this.$ui.upgradeElement(this.$el, 'MaterialButton');
-    if (this.effect) {
-      this.$ui.upgradeElement(this.$el, 'MaterialRipple');
+    if (this.ripple) {
+      this.MDCRipple.attachTo(this.$el);
     }
   }
 };

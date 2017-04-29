@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import '../../material-design-lite/snackbar/snackbar';
+// import '../../material-design-lite/snackbar/snackbar';
 import {isString} from '../utils/helper';
 
 const TYPES = ['toast', 'snackbar'];
@@ -108,7 +108,7 @@ export default {
     }
   },
   mounted() {
-    this.$ui.upgradeElement(this.$el, 'MaterialSnackbar');
+    // this.$ui.upgradeElement(this.$el, 'MaterialSnackbar');
   }
 };
 </script>

@@ -1,7 +1,4 @@
-/**
- * Core
- */
-import './material-design-lite/mdlComponentHandler';
+import {MDCRipple, MDCRippleFoundation} from './material-components-web/ripple';
 /**
  * Layout
  */
@@ -18,7 +15,13 @@ import UiMiniFooter from './components/layout/footer/mini-footer';
  */
 import UiBadge from './components/common/badge';
 import UiButton from './components/common/button';
-import UiCard from './components/common/card';
+import UiCard from './components/common/card/card';
+import UiCardPrimary from './components/common/card/card-primary';
+import UiCardMedia from './components/common/card/card-media';
+import UiCardMediaItem from './components/common/card/card-media-item';
+import UiCardText from './components/common/card/card-text';
+import UiCardActions from './components/common/card/card-actions';
+import UiCardBlock from './components/common/card/card-block';
 import UiChip from './components/common/chip';
 import UiDivider from './components/common/divider';
 import UiLoading from './components/common/loading';
@@ -67,6 +70,12 @@ const BalmUI = {
   UiBadge,
   UiButton,
   UiCard,
+  UiCardPrimary,
+  UiCardMedia,
+  UiCardMediaItem,
+  UiCardText,
+  UiCardActions,
+  UiCardBlock,
   UiChip,
   UiDivider,
   UiLoading,
@@ -102,7 +111,9 @@ const BalmUI = {
         Vue.component(component.name, component);
       }
     }
-    Vue.prototype.$ui = window.componentHandler;
+
+    Vue.prototype.MDCRipple = MDCRipple;
+    Vue.prototype.MDCRippleFoundation = MDCRippleFoundation;
   }
 };
 
@@ -113,45 +124,49 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 export default BalmUI;
 
-export {
-  // Layout
-  UiLayout,
-  UiNavigation,
-  UiGrid,
-  UiCell,
-  UiTabs,
-  UiPanel,
-  UiFooter,
-  UiMiniFooter,
-  // Common
-  UiBadge,
-  UiButton,
-  UiCard,
-  UiChip,
-  UiDivider,
-  UiLoading,
-  UiMenu,
-  UiMenuItem,
-  UiTooltip,
-  // Form
-  UiTextfield,
-  UiCheckbox,
-  UiRadio,
-  UiIconToggle,
-  UiSwitch,
-  UiSlider,
-  UiSelect,
-  UiAutocomplete,
-  UiDatepicker,
-  UiFileupload,
-  // Data
-  UiList,
-  UiItem,
-  UiTable,
-  UiPagination,
-  // Popup
-  UiDialog,
-  UiConfirm,
-  UiAlert,
-  UiSnackbar
-};
+// export {
+//   // Layout
+//   UiLayout,
+//   UiNavigation,
+//   UiGrid,
+//   UiCell,
+//   UiTabs,
+//   UiPanel,
+//   UiFooter,
+//   UiMiniFooter,
+//   // Common
+//   UiBadge,
+//   UiButton,
+//   UiCard,
+//   UiCardPrimary,
+//   UiCardMedia,
+//   UiCardText,
+//   UiCardActions,
+//   UiChip,
+//   UiDivider,
+//   UiLoading,
+//   UiMenu,
+//   UiMenuItem,
+//   UiTooltip,
+//   // Form
+//   UiTextfield,
+//   UiCheckbox,
+//   UiRadio,
+//   UiIconToggle,
+//   UiSwitch,
+//   UiSlider,
+//   UiSelect,
+//   UiAutocomplete,
+//   UiDatepicker,
+//   UiFileupload,
+//   // Data
+//   UiList,
+//   UiItem,
+//   UiTable,
+//   UiPagination,
+//   // Popup
+//   UiDialog,
+//   UiConfirm,
+//   UiAlert,
+//   UiSnackbar
+// };

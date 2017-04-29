@@ -1,6 +1,6 @@
 var balm = require('balm');
 
-var useDefault = !(process.argv[2] === '--mdl');
+var useDefault = !(process.argv[2] === '--mdc');
 var buildDocs = process.argv[3] === '--docs';
 
 balm.config = {
@@ -9,7 +9,8 @@ balm.config = {
   },
   styles: {
     ext: 'scss',
-    autoprefixer: ['> 1%', 'last 3 versions', 'not ie <= 8']
+    autoprefixer: ['> 1%', 'last 3 versions', 'not ie <= 8'],
+    includePaths: ['node_modules']
   },
   scripts: {
     entry: {
@@ -39,13 +40,8 @@ if (buildDocs) {
   balm.config.assets.subDir = 'ui-vue';
 }
 
-var DMI_SOURCE = './node_modules/material-design-icons';
-var DML_SOURCE = './node_modules/material-design-lite';
-var DEV_SOURCE = {
-  static: './src/material-design-lite',
-  img: './src/images',
-  font: './src/fonts'
-};
+var DMC_SOURCE = './node_modules/@material';
+var DEV_SOURCE = './src/material-components-web';
 
 balm.go(function(mix) {
   if (buildDocs) {
@@ -57,14 +53,10 @@ balm.go(function(mix) {
       }
     } else {
       // clear
-      mix.remove([DEV_SOURCE.static + '/*', DEV_SOURCE.img + '/*', DEV_SOURCE.font + '/*']);
-      // get material design lite
-      mix.copy(DML_SOURCE + '/src/{_*scss,material-design-lite.scss,mdlComponentHandler.js}', DEV_SOURCE.static);
-      mix.copy(DML_SOURCE + '/src/**/{_*.scss,*.js}', DEV_SOURCE.static);
-      // get material design lite images
-      mix.copy(DML_SOURCE + '/src/images/*.svg', DEV_SOURCE.img);
-      // get material design icons
-      mix.copy(DMI_SOURCE + '/iconfont/*.{css,eot,svg,ttf,woff,woff2}', DEV_SOURCE.font);
+      mix.remove([DEV_SOURCE]);
+      // get Material
+      mix.copy(DMC_SOURCE + '/ripple/*.js', DEV_SOURCE + '/ripple');
+      mix.copy(DMC_SOURCE + '/base/*.js', DEV_SOURCE + '/base');
     }
   }
 });

@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import '../../material-design-lite/icon-toggle/icon-toggle';
-import '../../material-design-lite/ripple/ripple';
+// import '../../material-design-lite/icon-toggle/icon-toggle';
+// import '../../material-design-lite/ripple/ripple';
 import {isArray} from '../utils/helper';
 
 const CLASSNAME_ICON = 'material-icons';
@@ -79,10 +79,10 @@ export default {
     }
   },
   mounted() {
-    this.$ui.upgradeElement(this.$el, 'MaterialIconToggle');
-    if (this.effect) {
-      this.$ui.upgradeElement(this.$el, 'MaterialRipple');
-    }
+    // this.$ui.upgradeElement(this.$el, 'MaterialIconToggle');
+    // if (this.effect) {
+    //   this.$ui.upgradeElement(this.$el, 'MaterialRipple');
+    // }
   }
 };
 </script>

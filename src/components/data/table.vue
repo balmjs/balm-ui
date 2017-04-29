@@ -125,7 +125,7 @@
 </template>
 
 <script>
-import '../../material-design-lite/data-table/data-table';
+// import '../../material-design-lite/data-table/data-table';
 import {isString, isObject, isArray, isFunction} from '../utils/helper';
 import UiButton from '../common/button';
 import UiCheckbox from '../form/checkbox';
@@ -814,7 +814,7 @@ export default {
     this.checkAll();
   },
   mounted() {
-    this.$ui.upgradeElement(this.$el, 'MaterialDataTable');
+    // this.$ui.upgradeElement(this.$el, 'MaterialDataTable');
   }
 };
 </script>

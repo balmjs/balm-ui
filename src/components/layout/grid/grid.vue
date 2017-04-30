@@ -1,39 +1,38 @@
 <template>
-  <div :class="className">
+  <div class="mdc-layout-grid">
     <slot></slot>
   </div>
 </template>
 
 <script>
-import {isString} from '../../utils/helper';
-
-const MODE = ['', 'phone', 'tablet', 'desktop'];
-const MODE_PHONE = 1;
-const MODE_TABLET = 2;
-const MODE_DESKTOP = 3;
+const DEFAULT_VALUE = '16px';
 
 export default {
   name: 'ui-grid',
   props: {
-    mode: {
-      type: [Number, String],
-      default: 0
+    margin: {
+      type: String,
+      default: DEFAULT_VALUE
     },
-    // Modifies the grid cells to have no margin between them.
-    noSpacing: {
-      type: Boolean,
-      default: false
+    gutter: {
+      type: String,
+      default: DEFAULT_VALUE
     }
   },
-  computed: {
-    className() {
-      return {
-        'mdl-grid': true,
-        'mdl-grid--no-spacing': this.noSpacing
-      };
+  methods: {
+    setMargin() {
+      this.$el.style.setProperty('--mdc-layout-grid-margin', this.margin);
     },
-    currentMode() {
-      return isString(this.mode) ? MODE[MODE.indexOf(this.mode)] : MODE[+this.mode];
+    setGutter() {
+      this.$el.style.setProperty('--mdc-layout-grid-gutter', this.gutter);
+    }
+  },
+  mounted() {
+    if (this.margin !== DEFAULT_VALUE) {
+      this.setMargin();
+    }
+    if (this.gutter !== DEFAULT_VALUE) {
+      this.setGutter();
     }
   }
 };

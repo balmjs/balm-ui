@@ -1,0 +1,58 @@
+.demo-grid {
+  background-color: #DDDDDD;
+  margin-bottom: 32px;
+}
+
+.demo-cell {
+  box-sizing: border-box;
+  background-color: #666666;
+  height: 200px;
+  padding: 8px;
+  color: white;
+  font-size: 1.5em;
+}
+
+.demo-grid.max-width {
+  max-width: 1600px;
+}
+
+.demo-grid.left-align {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.demo-grid-legend {
+  margin: 16px 0 8px 0;
+}
+
+.demo-ruler {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+  left: 0;
+  height: 20px;
+  width: 100%;
+  margin: 0;
+  background: black;
+  color: white;
+}
+
+.demo-controls {
+  display: none;
+  margin-bottom: 8px;
+}
+
+.demo-warning::after {
+  content: "This browser does not support custom properties, so margins and gutters cannot be changed at runtime.";
+}
+
+@supports (--foo: green) {
+  .demo-controls {
+    display: block;
+  }
+  .demo-warning::after {
+    content: "";
+  }
+}

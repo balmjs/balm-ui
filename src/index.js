@@ -1,4 +1,3 @@
-import {MDCRipple, MDCRippleFoundation} from './material-components-web/ripple';
 /**
  * Layout
  */
@@ -51,7 +50,7 @@ import UiPagination from './components/data/pagination';
 /**
  * Popup
  */
-import UiDialog from './components/popup/dialog';
+import UiDialog from './components/dialog/dialog';
 import UiConfirm from './components/popup/confirm';
 import UiAlert from './components/popup/alert';
 import UiSnackbar from './components/popup/snackbar';
@@ -111,9 +110,6 @@ const BalmUI = {
         Vue.component(component.name, component);
       }
     }
-
-    Vue.prototype.MDCRipple = MDCRipple;
-    Vue.prototype.MDCRippleFoundation = MDCRippleFoundation;
   }
 };
 

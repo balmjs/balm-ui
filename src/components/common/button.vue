@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import {MDCRipple} from '../../material-components-web/ripple';
+
 export default {
   name: 'ui-button',
   props: {
@@ -36,7 +38,7 @@ export default {
       type: Boolean,
       default: false
     },
-    link: {
+    link: { // TODO
       type: Boolean,
       default: false
     },
@@ -65,7 +67,7 @@ export default {
   },
   mounted() {
     if (this.ripple) {
-      this.MDCRipple.attachTo(this.$el);
+      MDCRipple.attachTo(this.$el);
     }
   }
 };

@@ -55,8 +55,9 @@ balm.go(function(mix) {
       // clear
       mix.remove([DEV_SOURCE]);
       // get Material
-      mix.copy(DMC_SOURCE + '/ripple/*.js', DEV_SOURCE + '/ripple');
       mix.copy(DMC_SOURCE + '/base/*.js', DEV_SOURCE + '/base');
+      mix.copy(DMC_SOURCE + '/ripple/*.js', DEV_SOURCE + '/ripple');
+      mix.copy(DMC_SOURCE + '/dialog/*.js', DEV_SOURCE + '/dialog');
     }
   }
 });

@@ -60,7 +60,7 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      avatar: require('../../images/assets/demos/user.jpg')
+      avatar: ''//require('../../images/assets/demos/user.jpg')
     };
   },
   created() {

@@ -1,5 +1,5 @@
 <template>
-  <aside class="mdc-dialog" :className="btnClassName">
+  <aside class="mdc-dialog" style="visibility:hidden;">
     <div class="mdc-dialog__surface">
       <header v-if="!noHeader" class="mdc-dialog__header">
         <slot name="title:before"></slot>
@@ -12,7 +12,7 @@
         <slot></slot>
       </section>
       <footer v-if="!noFooter" class="mdc-dialog__footer">
-        <slot name="footer">
+        <slot name="footer" :className="btnClassName">
           <ui-button
             :class="['mdc-dialog__footer__button', {'mdc-dialog__footer__button--cancel': notifyCancel}]"
             @click.native="cancel">{{ CancelText }}</ui-button>

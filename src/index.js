@@ -104,6 +104,8 @@ const BalmUI = {
   UiSnackbar,
   // Register
   install(Vue) {
+    document.querySelector('body').classList.add('mdc-typography');
+
     for (let key in BalmUI) {
       let component = BalmUI[key];
       if (component && component !== 'install' && component.name) {

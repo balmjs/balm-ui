@@ -40,8 +40,14 @@ if (buildDocs) {
   balm.config.assets.subDir = 'ui-vue';
 }
 
-var DMC_SOURCE = './node_modules/@material';
-var DEV_SOURCE = './src/material-components-web';
+var DMC_SOURCE = {
+  material: './node_modules/@material',
+  icon: './node_modules/material-design-icons'
+};
+var DEV_SOURCE = {
+  material: './src/material-components-web',
+  font: './src/fonts'
+};
 
 balm.go(function(mix) {
   if (buildDocs) {
@@ -53,11 +59,13 @@ balm.go(function(mix) {
       }
     } else {
       // clear
-      mix.remove([DEV_SOURCE]);
+      mix.remove([DEV_SOURCE.material, DEV_SOURCE.font]);
       // get Material
-      mix.copy(DMC_SOURCE + '/base/*.js', DEV_SOURCE + '/base');
-      mix.copy(DMC_SOURCE + '/ripple/*.js', DEV_SOURCE + '/ripple');
-      mix.copy(DMC_SOURCE + '/dialog/*.js', DEV_SOURCE + '/dialog');
+      mix.copy(DMC_SOURCE.material + '/base/*.js', DEV_SOURCE.material + '/base');
+      mix.copy(DMC_SOURCE.material + '/ripple/*.js', DEV_SOURCE.material + '/ripple');
+      mix.copy(DMC_SOURCE.material + '/dialog/*.js', DEV_SOURCE.material+ '/dialog');
+      // get Material Icons
+      mix.copy(DMC_SOURCE.icon + '/iconfont/*.{css,eot,svg,ttf,woff,woff2}', DEV_SOURCE.font);
     }
   }
 });

@@ -10,9 +10,19 @@ import {MDCRipple} from '../../material-components-web/ripple';
 export default {
   name: 'ui-button',
   props: {
+    // attribute
     type: {
       type: String,
       default: 'button'
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    // mdc
+    noRipple: {
+      type: Boolean,
+      default: false
     },
     raised: {
       type: Boolean,
@@ -34,19 +44,18 @@ export default {
       type: Boolean,
       default: false
     },
-    ripple: {
+    // TODO
+    link: {
       type: Boolean,
       default: false
     },
-    link: { // TODO
-      type: Boolean,
-      default: false
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
+    // theme
     dark: {
+      type: Boolean,
+      default: false
+    },
+    // extension
+    fab: {
       type: Boolean,
       default: false
     }
@@ -54,19 +63,19 @@ export default {
   computed: {
     className() {
       return {
-        'mdc-button': true,
+        'mdc-button': !this.fab,
         'mdc-button--raised': this.raised,
         'mdc-button--dense': this.dense,
         'mdc-button--compact': this.compact,
         'mdc-button--primary': this.primary,
         'mdc-button--accent': this.accent,
-        'mdc-ripple': this.ripple,
+        'mdc-ripple': !this.noRipple,
         'mdc-button--theme-dark': this.dark
       };
     }
   },
   mounted() {
-    if (this.ripple) {
+    if (!this.noRipple) {
       MDCRipple.attachTo(this.$el);
     }
   }

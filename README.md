@@ -6,7 +6,7 @@
 ### 1. Requirement
 
 - [BalmJS](http://balmjs.com/)
-- [Vue.js](https://vuejs.org/)@2.x
+- [Vue.js](https://vuejs.org/)@2.1.0+
 
 ### 2. Install
 
@@ -95,50 +95,30 @@ Vue.use(BalmUI);
 
 ## Components
 
-### Layout
-
-- [x] layout
-- [x] grid
-- [x] tabs
-- [x] footer
-
-### Common
-
-- [x] badge
-- [x] button
-- [x] card
-- [x] chip
-- [x] loading
-- [x] menu
-- [x] tooltip
-- [x] divider
-
-### Form
-
-- [x] textfield
-- [x] checkbox
-- [x] radio
-- [x] icon toggle
-- [x] switch
-- [x] slider
-- [x] select
-- [x] autocomplete
-- [x] datepicker
-- [ ] fileupload
-- [ ] editor
-
-### Data View
-
-- [x] list
-- [x] table
-- [x] pagination
-
-### Popup
-
-- [x] dialog
-- [x] alert
-- [x] confirm
-- [x] snackbar
+- [x] Button
+- [x] Card
+- [ ] Checkbox
+- [x] Dialog
+- [ ] Drawer (temporary)
+- [ ] Drawer (persistent)
+- [ ] Drawer (permanent, above toolbar)
+- [ ] Drawer (permanent, below toolbar)
+- [x] Elevation
+- [x] FAB
+- [ ] Grid List
+- [ ] Icon Toggle
+- [x] Layout grid
+- [ ] List
+- [ ] Select
+- [ ] Menu (simple)
+- [ ] Switch
+- [ ] Radio
+- [x] Ripple
+- [ ] Snackbar
+- [ ] Text Field
+- [ ] Theme
+- [ ] Toolbar
+- [x] Typography
 
 
 > __thx [BalmJS](http://balmjs.com/) & [Vue.js](https://vuejs.org/)__

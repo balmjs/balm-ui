@@ -16,6 +16,7 @@
     "menuitem": "Menuitem",
     "tooltip": "Tooltip",
     "divider": "Divider",
+    "fab": "Fab",
     "form": "Form Components",
     "textfield": "Text Field",
     "checkbox": "Checkbox",

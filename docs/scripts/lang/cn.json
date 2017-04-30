@@ -16,6 +16,7 @@
     "menuitem": "菜单",
     "tooltip": "文字提示",
     "divider": "分割线",
+    "fab": "Fab",
     "form": "表单",
     "textfield": "文本框",
     "checkbox": "复选框",

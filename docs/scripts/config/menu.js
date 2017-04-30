@@ -13,7 +13,8 @@ const COMPONENTS = {
     'loading',
     'menu',
     'tooltip',
-    'divider'
+    'divider',
+    'fab'
   ],
   form: [
     'textfield',

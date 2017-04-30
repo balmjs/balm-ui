@@ -6,6 +6,7 @@ const Loading = require('../views/loading');
 const Menu = require('../views/menu');
 const Tooltip = require('../views/tooltip');
 const Divider = require('../views/divider');
+const Fab = require('../views/fab');
 
 const commonRoutes = [{
   path: '/badge',
@@ -31,6 +32,15 @@ const commonRoutes = [{
   component: Card,
   meta: {
     title: 'BalmUI - Card',
+    keywords: '',
+    description: ''
+  }
+}, {
+  path: '/fab',
+  name: 'fab',
+  component: Fab,
+  meta: {
+    title: 'BalmUI - Fab',
     keywords: '',
     description: ''
   }

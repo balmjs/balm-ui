@@ -14,6 +14,7 @@ import UiMiniFooter from './components/layout/footer/mini-footer';
  */
 import UiBadge from './components/common/badge';
 import UiButton from './components/common/button';
+import UiFab from './components/common/fab';
 import UiCard from './components/common/card/card';
 import UiCardPrimary from './components/common/card/card-primary';
 import UiCardMedia from './components/common/card/card-media';
@@ -68,6 +69,7 @@ const BalmUI = {
   // Common
   UiBadge,
   UiButton,
+  UiFab,
   UiCard,
   UiCardPrimary,
   UiCardMedia,

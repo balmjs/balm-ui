@@ -1,50 +1,94 @@
 <template>
-  <div class="demo-select">
-    <div class="component-title">
-      <h3>Select</h3>
-    </div>
+  <div>
+    <h1>MDC select</h1>
+    <section>
+      <h2>Fully-Featured Component</h2>
+      <section id="demo-wrapper">
+        <ui-select
+          :options="options"
+          :selected="selected"
+          optionKey="key" optionValue="value"
+          @change="onChange"></ui-select>
 
-    <div class="snippet-group">
-      <div class="snippet-demo">
-        <ui-select :options="options" :model="formData.selected"
-          defaultValue="All items" defaultKey="0"
-          @change="onSelectChange('selected', $event)"></ui-select>
-        selected: {{ formData.selected }}
-      </div>
-    </div>
-    <ui-markdown :text="code[0]"></ui-markdown>
+        <!-- <div class="mdc-select">
+          <span class="mdc-select__selected-text">Pick a food group</span>
+          <div class="mdc-simple-menu mdc-select__menu">
+            <ul class="mdc-list mdc-simple-menu__items">
+              <li class="mdc-list-item" role="option" id="grains" aria-disabled="true">
+                Pick a food group
+              </li>
+              <li class="mdc-list-item" role="option" id="grains" tabindex="0">
+                Bread, Cereal, Rice, and Pasta
+              </li>
+              <li class="mdc-list-item" role="option" id="vegetables" tabindex="0">
+                Vegetables
+              </li>
+              <li class="mdc-list-item" role="option" id="fruit" tabindex="0">
+                Fruit
+              </li>
+              <li class="mdc-list-item" role="option" id="dairy" tabindex="0">
+                Milk, Yogurt, and Cheese
+              </li>
+              <li class="mdc-list-item" role="option" id="meat" tabindex="0">
+                Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts
+              </li>
+              <li class="mdc-list-item" role="option" id="fats" tabindex="0">
+                Fats, Oils, and Sweets
+              </li>
+            </ul>
+          </div>
+        </div> -->
+      </section>
 
-    <div class="snippet-group">
-      <div class="snippet-demo">
-        <ui-select :options="provinces" :model="formData.province"
-          placeholder="Select province..."
-          @change="onSelectChange('province', $event, changeCity)"></ui-select>
-      </div>
-      <div class="snippet-demo">
-        <ui-select :options="cities" :model="formData.city"
-          placeholder="Select city..."
-          @change="onSelectChange('city', $event)"></ui-select>
-        Province: {{ formData.province }} - City: {{ formData.city }}
-      </div>
-    </div>
-    <ui-markdown :text="code[1]"></ui-markdown>
+      <hr>
 
-    <div class="snippet-group">
-      <div class="snippet-demo">
-        <p v-if="!edit">
-          {{ formData.selected }}
-          <ui-button effect @click.native="onEdit">Edit</ui-button>
-        </p>
-        <p v-if="edit">
-          <ui-select :options="options" :model="formData.selected"
-            placeholder="Select..."
-            @change="onSelectChange('selected', $event)"></ui-select>
-          <ui-button effect @click.native="onCancel">Cancel</ui-button>
-        </p>
+      <p>Currently selected: <span id="currently-selected">(none)</span></p>
+      <div>
+        <input type="checkbox" id="dark-theme">
+        <label for="dark-theme">Dark Theme</label>
       </div>
-    </div>
+      <div>
+        <input type="checkbox" id="rtl">
+        <label for="rtl">RTL</label>
+      </div>
+      <div>
+        <input type="checkbox" id="disabled">
+        <label for="disabled">Disabled</label>
+      </div>
+    </section>
+    <section>
+      <h2>CSS Only</h2>
+      <select class="mdc-select">
+        <option value="" default selected>Pick a food group</option>
+        <option value="grains">Bread, Cereal, Rice, and Pasta</option>
+        <option value="vegetables">Vegetables</option>
+        <option value="fruit">Fruit</option>
+        <option value="dairy">Milk, Yogurt, and Cheese</option>
+        <option value="meat">Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts</option>
+        <option value="fats">Fats, Oils, and Sweets</option>
+      </select>
+    </section>
 
-    <ui-apidoc name="select"></ui-apidoc>
+    <section>
+      <h2>Select Multiple - CSS Only</h2>
+      <select multiple size="8" class="mdc-multi-select mdc-list">
+
+        <optgroup class="mdc-list-group" label="Fats, Oils, & Sweets">
+          <option class="mdc-list-item">Olive Oil</option>
+          <option class="mdc-list-item">Brown Sugar</option>
+          <option class="mdc-list-item">Ice Cream</option>
+        </optgroup>
+        <option class="mdc-list-divider" role="presentation" disabled />
+
+        <optgroup class="mdc-list-group" label="Dairy">
+          <option class="mdc-list-item">Milk</option>
+          <option class="mdc-list-item">Cheese</option>
+          <option class="mdc-list-item">More Cheese</option>
+        </optgroup>
+
+      </select>
+    </section>
+    <!-- <ui-apidoc name="select"></ui-apidoc> -->
   </div>
 </template>
 
@@ -91,6 +135,7 @@ export default {
         province: 0,
         city: 0
       },
+      selected: 3,
       options: [{
         key: 1,
         value: 'item 1'
@@ -127,6 +172,9 @@ export default {
     };
   },
   methods: {
+    onChange(option) {
+      this.selected = option.key;
+    },
     onSelectChange(field, option, fn) {
       let key = option.key || -1;
 

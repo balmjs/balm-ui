@@ -1,5 +1,5 @@
 <template>
-  <li class="mdc-list-item" role="menuitem" :tabindex="item.index || 0">
+  <li class="mdc-list-item" :role="role" :tabindex="item.index || 0">
     <slot>{{ item[label] }}</slot>
   </li>
 </template>
@@ -18,6 +18,10 @@ export default {
     label: {
       type: String,
       default: 'label'
+    },
+    role: {
+      type: String,
+      default: 'menuitem'
     }
   }
 };

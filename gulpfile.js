@@ -59,11 +59,12 @@ balm.go(function(mix) {
       }
     } else {
       // clear
-      mix.remove([DEV_SOURCE.material, DEV_SOURCE.font]);
+      mix.remove([DEV_SOURCE.material + '/*', DEV_SOURCE.font + '/*']);
       // get Material
-      mix.copy(DMC_SOURCE.material + '/base/*.js', DEV_SOURCE.material + '/base');
-      mix.copy(DMC_SOURCE.material + '/ripple/*.js', DEV_SOURCE.material + '/ripple');
-      mix.copy(DMC_SOURCE.material + '/dialog/*.js', DEV_SOURCE.material+ '/dialog');
+      ['base', 'ripple', 'dialog', 'select', 'menu'].forEach(function(item) {
+        mix.copy(DMC_SOURCE.material + '/' + item + '/**/*.js', DEV_SOURCE.material + '/' + item);
+        mix.remove(DEV_SOURCE.material + '/' + item + '/dist');
+      });
       // get Material Icons
       mix.copy(DMC_SOURCE.icon + '/iconfont/*.{css,eot,svg,ttf,woff,woff2}', DEV_SOURCE.font);
     }

@@ -25,8 +25,10 @@ import UiCardBlock from './components/common/card/card-block';
 import UiChip from './components/common/chip';
 import UiDivider from './components/common/divider';
 import UiLoading from './components/common/loading';
+import UiMenuAnchor from './components/common/menu/menu-anchor';
 import UiMenu from './components/common/menu/menu';
 import UiMenuItem from './components/common/menu/menuitem';
+import UiSeparator from './components/common/menu/separator';
 import UiTooltip from './components/common/tooltip';
 /**
  * Form
@@ -80,8 +82,10 @@ const BalmUI = {
   UiChip,
   UiDivider,
   UiLoading,
+  UiMenuAnchor,
   UiMenu,
   UiMenuItem,
+  UiSeparator,
   UiTooltip,
   // Form
   UiTextfield,

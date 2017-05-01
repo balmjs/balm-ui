@@ -1,20 +1,11 @@
 <template>
-  <li ref="item"
-    :class="[$parent.className.inner, {'selected': item.selected}]"
-    :disabled="item.disabled"
-    @click="handleClick(item)">
-    <slot>{{ item.label }}</slot>
-    <span v-if="$parent.effect"
-      ref="ripple"
-      class="mdl-menu__item-ripple-container">
-      <span class="mdl-ripple"></span>
-    </span>
+  <li class="mdc-list-item" role="menuitem" :tabindex="item.index || 0">
+    <slot>{{ item[label] }}</slot>
   </li>
 </template>
 
 <script>
-const EVENT_CLICKED = 'clicked';
-
+// TODO: icon
 export default {
   name: 'ui-menuitem',
   props: {
@@ -23,19 +14,11 @@ export default {
       default: function() {
         return {};
       }
+    },
+    label: {
+      type: String,
+      default: 'label'
     }
-  },
-  methods: {
-    handleClick(data) {
-      if (!data.disabled) {
-        this.$emit(EVENT_CLICKED, data);
-      }
-    }
-  },
-  mounted() {
-    // if (this.$parent.effect) {
-    //   this.$ui.upgradeElement(this.$refs.item, 'MaterialRipple');
-    // }
   }
 };
 </script>

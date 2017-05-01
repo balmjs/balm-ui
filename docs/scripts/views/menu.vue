@@ -5,35 +5,21 @@
       <p>Lists of clickable actions.</p>
     </div>
 
-    <h4>{{ $t('menu.basic') }}</h4>
-    <div class="snippet-group">
-      <div class="snippet-demo">
-        <ui-menu effect :menu="data" @clicked="onMenu">
-          <template slot="icon">
-            <i class="material-icons">person</i>
-          </template>
-        </ui-menu>
-      </div>
-    </div>
-    <ui-markdown :text="code[0]"></ui-markdown>
-
-    <h4>{{ $t('menu.custom') }}</h4>
-    <div class="snippet-group">
-      <div class="snippet-demo">
-        <ui-menu effect>
-          <template slot="icon">
-            <i class="material-icons">settings</i>
-          </template>
-          <ui-menuitem v-for="(item, index) in data" :key="index" :item="item" @clicked="onMenu">
-            <a :href="item.url">{{ item.label }}</a>
+    <div class="demo-content" style="height:300px">
+      <ui-menu-anchor>
+        <ui-button @click.native="openMenu">Open Menu</ui-button>
+        <ui-menu :open="open"
+          @selected="onSelected"
+          @cancel="onCancel">
+          <ui-menuitem v-for="(item, index) in menu" :key="index">
+            {{ item.label }}
           </ui-menuitem>
         </ui-menu>
-      </div>
+      </ui-menu-anchor>
     </div>
-    <ui-markdown :text="code[1]"></ui-markdown>
 
-    <ui-apidoc name="menu"></ui-apidoc>
-    <ui-apidoc name="menuitem"></ui-apidoc>
+    <!-- <ui-apidoc name="menu"></ui-apidoc>
+    <ui-apidoc name="menuitem"></ui-apidoc> -->
   </div>
 </template>
 
@@ -44,13 +30,13 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      data: [{
+      open: false,
+      menu: [{
         url:'/a',
         label: 'Item A'
       }, {
         url:'/b',
-        label: 'Item B',
-        disabled: true
+        label: 'Item B'
       }, {
         url:'/c',
         label: 'Item C'
@@ -58,8 +44,15 @@ export default {
     };
   },
   methods: {
-    onMenu(obj) {
-      console.log(obj);
+    openMenu() {
+      this.open = true;
+    },
+    onSelected(data) {
+      console.log('onSelected', data);
+    },
+    onCancel() {
+      console.log('onCancel');
+      this.open = false;
     }
   },
   created() {

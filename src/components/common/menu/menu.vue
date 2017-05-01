@@ -1,51 +1,37 @@
 <template>
-  <div class="mdl-menu-container">
-    <button ref="button"
-      :class="['mdl-button mdl-js-button', {'mdl-button--icon': !isSelect}]"
-      :id="`menu-${name}`"
-      :disabled="disabled">
-      <slot name="icon">
-        <i class="material-icons">icon</i>
-      </slot>
-    </button>
-    <ul ref="menu"
-      :class="[className.outer, positionClassName]"
-      :for="`menu-${name}`"
-      @click="handleMenu">
+  <div :class="[menuClassName, positionClassName]" tabindex="-1">
+    <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
       <slot>
-        <ui-menuitem v-for="(item, index) in currentMenu"
-          :key="index"
-          :item="item"
-          @click.native="handleItem(item)"></ui-menuitem>
+        <template v-for="(item, index) in currentMenu">
+          <ui-separator v-if="item.hr || item.divider || item.separator"></ui-separator>
+          <ui-menuitem v-else :item="item"></ui-menuitem>
+        </template>
       </slot>
     </ul>
   </div>
 </template>
 
 <script>
-// import '../../../material-design-lite/menu/menu';
-import {isString, generateRandomAlphaNum, observeMutationSupport} from '../../utils/helper';
+import {MDCSimpleMenu} from '../../../material-components-web/menu';
+import {isString} from '../../utils/helper';
 import UiMenuItem from './menuitem';
+import UiSeparator from './separator';
 
-const POSITIONS = ['bottom-left', 'top-left', 'top-right', 'bottom-right'];
-const POSITION_NONE = 0; // Default
-const POSITION_TOP_LEFT = 1; // Positions menu above button, aligns left edge of menu with button
-const POSITION_TOP_RIGHT = 2; // Positions menu above button, aligns right edge of menu with button
-const POSITION_BOTTOM_LEFT = POSITION_NONE; // Positions menu below button, aligns left edge of menu with button
-const POSITION_BOTTOM_RIGHT = 3; // Positions menu below button, aligns right edge of menu with button
-const EVENT_CLICKED = 'clicked';
+const POSITIONS = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
+const API_SELECTED = 'selected';
+const API_CANCEL = 'cancel';
 
 export default {
   name: 'ui-menu',
   components: {
-    UiMenuItem
+    UiMenuItem,
+    UiSeparator
   },
   props: {
-    name: {
-      type: String,
-      default: function() {
-        return generateRandomAlphaNum(7);
-      }
+    // mdc
+    open: {
+      type: Boolean,
+      default: false
     },
     menu: {
       type: Array,
@@ -53,99 +39,71 @@ export default {
         return [];
       }
     },
-    // Modifies an item to have a full bleed divider between it and the next list item.
-    divider: {
-      type: Boolean,
-      default: false
-    },
-    // Applies ripple click effect to option links
-    effect: {
-      type: Boolean,
-      default: false
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
     position: {
       type: [Number, String],
-      default: POSITION_BOTTOM_LEFT
+      default: 0
     },
-    // just for '<ui-select>'
-    isSelect: {
+    // theme
+    dark: {
       type: Boolean,
       default: false
-    },
+    }
   },
   data() {
     return {
+      $menu: null,
       currentMenu: this.menu
     };
   },
   computed: {
-    className() {
+    menuClassName() {
       return {
-        outer: {
-          'mdl-menu': true,
-          'mdl-js-menu': true
-        },
-        inner: {
-          'mdl-menu__item': true,
-          'mdl-menu__item--full-bleed-divider': this.divider,
-          'mdl-js-ripple-effect': this.effect
-        }
+        'mdc-simple-menu': true,
+        'mdc-simple-menu--theme-dark': this.dark
       };
     },
     positionClassName() {
-      let currentPositon = this.position;
+      let currentPositon = isString(this.position)
+        ? POSITIONS.indexOf(this.position) + 1
+        : this.position;
 
-      if (isString(currentPositon)) {
-        currentPositon = POSITIONS.indexOf(currentPositon);
-      }
+      let currentPositonName = (currentPositon > 0 && currentPositon <= POSITIONS.length)
+          ? POSITIONS[currentPositon - 1]
+          : false;
 
-      let currentPositonName = (currentPositon > 0 && currentPositon < POSITIONS.length)
-          ? POSITIONS[currentPositon]
-          : POSITION_NONE;
-      let className = currentPositonName ? `mdl-menu--${currentPositonName}` : '';
+      let className = currentPositonName
+        ? `mdc-simple-menu--open-from-${currentPositonName}`
+        : '';
 
       return className;
     }
   },
   watch: {
+    open(val) {
+      if (val) {
+        this.$menu.show();
+      }
+    },
     menu(val) {
       this.currentMenu = val;
     }
   },
   methods: {
-    handleMenu() {
-      this.$refs.menu.MaterialMenu.hide();
-    },
-    handleItem(data) {
-      if (!data.disabled) {
-        this.$emit(EVENT_CLICKED, data);
-      }
+    handlingSelection() {
+      this.$el.addEventListener('MDCSimpleMenu:selected', evt => {
+        let detail = evt.detail;
+        this.$emit(API_SELECTED, detail);
+      });
+      this.$el.addEventListener('MDCSimpleMenu:cancel', () => {
+        this.$emit(API_CANCEL);
+      });
     }
   },
   mounted() {
-    // this.$ui.upgradeElement(this.$refs.button, 'MaterialButton');
-    // this.$ui.upgradeElement(this.$refs.menu, 'MaterialMenu');
-
-    if (this.isSelect && observeMutationSupport) {
-      const callback = records => {
-        if (this.currentMenu.length) {
-          this.$parent.isExpand = !(records[0].oldValue.indexOf('is-visible') > -1);
-        }
-      };
-
-      let mo = new MutationObserver(callback);
-      let element = this.$el.querySelector('.mdl-menu__container');
-      let options = {
-        attributes: true,
-        attributeOldValue: true,
-        attributeFilter: ['class']
-      }
-
-      mo.observe(element, options);
+    this.$menu = new MDCSimpleMenu(this.$el);
+    this.handlingSelection();
+    if (this.open) {
+      this.$menu.show();
     }
   }
 };

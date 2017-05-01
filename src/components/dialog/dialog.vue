@@ -39,15 +39,8 @@ const EVENT_CANCEL = 'cancel';
 export default {
   name: 'ui-dialog',
   props: {
+    // mdc
     open: {
-      type: Boolean,
-      default: false
-    },
-    noHeader: {
-      type: Boolean,
-      default: false
-    },
-    noFooter: {
       type: Boolean,
       default: false
     },
@@ -55,6 +48,7 @@ export default {
       type: Boolean,
       default: false
     },
+    // button
     notifyAccept: {
       type: Boolean,
       default: false
@@ -70,11 +64,20 @@ export default {
     CancelText: {
       type: String,
       default: 'Cancel'
-    }
+    },
+    // layout
+    noHeader: {
+      type: Boolean,
+      default: false
+    },
+    noFooter: {
+      type: Boolean,
+      default: false
+    },
   },
   data() {
     return {
-      dialog: null
+      $dialog: null
     }
   },
   computed: {
@@ -96,9 +99,9 @@ export default {
   watch: {
     open(val) {
       if (val) {
-        this.dialog.show();
+        this.$dialog.show();
       } else {
-        this.dialog.close();
+        this.$dialog.close();
       }
     }
   },
@@ -120,9 +123,9 @@ export default {
     }
   },
   mounted() {
-    this.dialog = new MDCDialog(this.$el);
+    this.$dialog = new MDCDialog(this.$el);
     if (this.open) {
-      this.dialog.show();
+      this.$dialog.show();
     }
   }
 };

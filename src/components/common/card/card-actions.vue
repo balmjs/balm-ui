@@ -8,6 +8,7 @@
 export default {
   name: 'ui-card-actions',
   props: {
+    // mdc
     vertical: {
       type: Boolean,
       default: false

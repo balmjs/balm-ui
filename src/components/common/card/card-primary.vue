@@ -15,11 +15,13 @@
 export default {
   name: 'ui-card-primary',
   props: {
-    noWrap: {
+    // mdc
+    large: {
       type: Boolean,
       default: false
     },
-    large: {
+    // layout
+    noWrap: {
       type: Boolean,
       default: false
     },

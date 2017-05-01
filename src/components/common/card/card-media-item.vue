@@ -8,6 +8,7 @@
 export default {
   name: 'ui-card-media-item',
   props: {
+    // mdc
     size: {
       type: Number,
       default: 1

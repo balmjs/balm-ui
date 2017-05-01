@@ -11,13 +11,15 @@ const MAX_DP = 24;
 export default {
   name: 'ui-card',
   props: {
+    // theme
     dark: {
       type: Boolean,
       default: false
     },
+    // elevation
     dp: {
       type: Number,
-      default: 0 // [0, 24]
+      default: 0
     }
   },
   computed: {

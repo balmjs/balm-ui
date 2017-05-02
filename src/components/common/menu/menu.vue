@@ -18,8 +18,10 @@ import UiMenuItem from './menuitem';
 import UiSeparator from './separator';
 
 const POSITIONS = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
-const API_SELECTED = 'selected';
-const API_CANCEL = 'cancel';
+const MDC_EVENT_SELECTED = 'MDCSimpleMenu:selected';
+const MDC_EVENT_CANCEL = 'MDCSimpleMenu:cancel';
+const UI_EVENT_SELECTED = 'selected';
+const UI_EVENT_CANCEL = 'cancel';
 
 export default {
   name: 'ui-menu',
@@ -90,12 +92,13 @@ export default {
   },
   methods: {
     handlingSelection() {
-      this.$el.addEventListener('MDCSimpleMenu:selected', evt => {
+      this.$el.addEventListener(MDC_EVENT_SELECTED, evt => {
         let detail = evt.detail;
-        this.$emit(API_SELECTED, detail);
+        this.$emit(UI_EVENT_SELECTED, detail);
       });
-      this.$el.addEventListener('MDCSimpleMenu:cancel', () => {
-        this.$emit(API_CANCEL);
+
+      this.$el.addEventListener(MDC_EVENT_CANCEL, () => {
+        this.$emit(UI_EVENT_CANCEL);
       });
     }
   },

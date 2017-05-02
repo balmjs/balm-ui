@@ -32,9 +32,9 @@ import {MDCDialog} from '../../material-components-web/dialog';
 
 const CLASSNAME_ACCEPT = 'mdc-dialog__footer__button--accept';
 const CLASSNAME_CANCEL = 'mdc-dialog__footer__button--cancel';
-const API_CLOSE = 'close';
-const EVENT_ACCEPT = 'accept';
-const EVENT_CANCEL = 'cancel';
+const UI_EVENT_CLOSE = 'close';
+const UI_EVENT_ACCEPT = 'accept';
+const UI_EVENT_CANCEL = 'cancel';
 
 export default {
   name: 'ui-dialog',
@@ -107,19 +107,19 @@ export default {
   },
   methods: {
     close() {
-      this.$emit(API_CLOSE);
+      this.$emit(UI_EVENT_CLOSE);
     },
     accept() {
       if (this.notifyAccept) {
-        this.$emit(API_CLOSE);
+        this.$emit(UI_EVENT_CLOSE);
       }
-      this.$emit(EVENT_ACCEPT);
+      this.$emit(UI_EVENT_ACCEPT);
     },
     cancel() {
       if (this.notifyCancel) {
-        this.$emit(API_CLOSE);
+        this.$emit(UI_EVENT_CLOSE);
       }
-      this.$emit(EVENT_CANCEL);
+      this.$emit(UI_EVENT_CANCEL);
     }
   },
   mounted() {

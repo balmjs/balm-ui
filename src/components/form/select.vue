@@ -1,4 +1,5 @@
 <template>
+  <!-- Native element, shown on mobile devices -->
   <select :class="className"
     v-model="model"
     :disabled="disabled"
@@ -30,7 +31,7 @@
 <script>
 import {isObject} from '../utils/helper';
 
-const EVENT_CHANGE = 'change';
+const UI_EVENT_CHANGE = 'change';
 
 export default {
   name: 'ui-select',
@@ -82,6 +83,7 @@ export default {
     className() {
       return {
         'mdc-select': !this.multiple && !this.group,
+        'mdc-select--disabled': this.disabled,
         'mdc-multi-select': this.multiple,
         'mdc-list': this.group
       };
@@ -94,9 +96,9 @@ export default {
   },
   methods: {
     handleChange() {
-      this.$emit(EVENT_CHANGE, this.model);
+      this.$emit(UI_EVENT_CHANGE, this.model);
     },
-    placeholder() {
+    init() {
       if (!this.defaultValue && this.options.length) {
         let defaultOption = {};
 
@@ -117,13 +119,13 @@ export default {
             : this.options[0];
         }
 
-        this.$emit(EVENT_CHANGE, defaultOption[this.optionKey]);
+        this.$emit(UI_EVENT_CHANGE, defaultOption[this.optionKey]);
       }
     }
   },
   mounted() {
     if (!this.multiple) {
-      this.placeholder();
+      this.init();
     }
   }
 };

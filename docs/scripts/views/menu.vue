@@ -16,6 +16,17 @@
           </ui-menuitem>
         </ui-menu>
       </ui-menu-anchor>
+
+      <ui-menu-anchor :position="4">
+        <ui-button @click.native="openMenu2">Open Menu2</ui-button>
+        <ui-menu :open="open2" :position="4"
+          @selected="onSelected"
+          @cancel="onCancel2">
+          <ui-menuitem v-for="(item, index) in menu2" :key="index">
+            {{ item.label }}
+          </ui-menuitem>
+        </ui-menu>
+      </ui-menu-anchor>
     </div>
 
     <!-- <ui-apidoc name="menu"></ui-apidoc>
@@ -40,6 +51,17 @@ export default {
       }, {
         url:'/c',
         label: 'Item C'
+      }],
+      open2: false,
+      menu2: [{
+        url:'/d',
+        label: 'Item D'
+      }, {
+        url:'/e',
+        label: 'Item E'
+      }, {
+        url:'/f',
+        label: 'Item F'
       }]
     };
   },
@@ -53,10 +75,17 @@ export default {
     onCancel() {
       console.log('onCancel');
       this.open = false;
+    },
+    openMenu2() {
+      this.open2 = true;
+    },
+    onCancel2() {
+      console.log('onCancel2');
+      this.open2 = false;
     }
   },
   created() {
-    this.showCode('menu', 2);
+    // this.showCode('menu', 2);
   }
 };
 </script>

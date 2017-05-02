@@ -1,5 +1,5 @@
 <template>
-  <select class="mdc-select"
+  <select :class="className"
     v-model="model"
     :disabled="disabled"
     :multiple="multiple"
@@ -20,7 +20,7 @@ export default {
       type: Boolean,
       default: false
     },
-    multiple: { // TODO
+    multiple: {
       type: Boolean,
       default: false
     },
@@ -54,40 +54,37 @@ export default {
       model: this.selected
     };
   },
+  computed: {
+    className() {
+      return {
+        'mdc-select': true,
+        'mdc-multi-select': this.multiple
+      };
+    }
+  },
   watch: {
     selected(val) {
       this.model = val;
     }
   },
-  computed: {
-    selectedOption() {
-      return this.options.length
-        ? this.options.find(option => option[this.optionKey] == this.model)
-        : {};
-    }
-  },
   methods: {
     handleChange() {
-      this.$emit(EVENT_CHANGE, {
-        key: this.selectedOption[this.optionKey],
-        value: this.selectedOption[this.optionValue]
-      });
+      this.$emit(EVENT_CHANGE, this.model);
     },
     placeholder() {
       if (!this.defaultValue && this.options.length) {
         let defaultOption = this.model
-          ? this.selectedOption
+          ? this.options.find(option => option[this.optionKey] == this.model)
           : this.options[0];
 
-        this.$emit(EVENT_CHANGE, {
-          key: defaultOption[this.optionKey],
-          value: defaultOption[this.optionValue]
-        });
+        this.$emit(EVENT_CHANGE, defaultOption[this.optionKey]);
       }
     }
   },
   mounted() {
-    this.placeholder();
+    if (!this.multiple) {
+      this.placeholder();
+    }
   }
 };
 </script>

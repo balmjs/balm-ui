@@ -109,8 +109,9 @@ Vue.use(BalmUI);
 - [ ] Icon Toggle
 - [x] Layout grid
 - [ ] List
-- [ ] Select
-- [ ] Menu (simple)
+- [x] Select
+- [ ] Select2
+- [x] Menu (simple)
 - [ ] Switch
 - [ ] Radio
 - [x] Ripple

@@ -16,6 +16,12 @@
           optionKey="key" optionValue="value"
           @change="onSelectChange('city', $event)"></ui-select>
 
+        <ui-select multiple style="height:100px"
+          :options="options"
+          :selected="selected"
+          optionKey="key" optionValue="value"
+          @change="onChange"></ui-select>
+
         <!-- <div class="mdc-select">
           <span class="mdc-select__selected-text">Pick a food group</span>
           <div class="mdc-simple-menu mdc-select__menu">
@@ -141,7 +147,7 @@ export default {
         province: 2,
         city: ''
       },
-      selected: 3,
+      selected: [],
       options: [{
         key: 1,
         value: 'item 1'
@@ -178,11 +184,11 @@ export default {
     };
   },
   methods: {
-    onChange(option) {
-      this.selected = option.key;
+    onChange(value) {
+      this.selected = value;
     },
-    onSelectChange(field, option, fn) {
-      let key = option.key || -1;
+    onSelectChange(field, value, fn) {
+      let key = value || -1;
 
       this.formData[field] = key;
       fn && fn(key);

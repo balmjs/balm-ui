@@ -5,10 +5,16 @@
       <h2>Fully-Featured Component</h2>
       <section id="demo-wrapper">
         <ui-select
-          :options="options"
-          :selected="selected"
+          :options="provinces"
+          :selected="formData.province"
           optionKey="key" optionValue="value"
-          @change="onChange"></ui-select>
+          @change="onSelectChange('province', $event, changeCity)"></ui-select>
+
+        <ui-select
+          :options="cities"
+          :selected="formData.city"
+          optionKey="key" optionValue="value"
+          @change="onSelectChange('city', $event)"></ui-select>
 
         <!-- <div class="mdc-select">
           <span class="mdc-select__selected-text">Pick a food group</span>
@@ -132,8 +138,8 @@ export default {
       edit: false,
       formData: {
         selected: 0,
-        province: 0,
-        city: 0
+        province: 2,
+        city: ''
       },
       selected: 3,
       options: [{

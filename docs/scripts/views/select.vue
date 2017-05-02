@@ -22,17 +22,17 @@
           optionKey="key" optionValue="value"
           @change="onChange"></ui-select>
 
-        <!-- <ui-select group
-          :options="groupOptions"
-          :selected="selected"
-          optionKey="key" optionValue="value"
-          @change="onChange"></ui-select> -->
-
-        <ui-select multiple group style="height:300px"
+        <ui-select group
           :options="groupOptions"
           :selected="selected"
           optionKey="key" optionValue="value"
           @change="onChange"></ui-select>
+
+        <!-- <ui-select multiple group style="height:300px"
+          :options="groupOptions"
+          :selected="selected"
+          optionKey="key" optionValue="value"
+          @change="onChange"></ui-select> -->
 
         <!-- <div class="mdc-select">
           <span class="mdc-select__selected-text">Pick a food group</span>
@@ -186,7 +186,7 @@ export default {
         province: 2,
         city: ''
       },
-      selected: [],
+      selected: 5,
       options: [{
         key: 1,
         value: 'item 1'

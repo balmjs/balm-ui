@@ -4,8 +4,26 @@
     :disabled="disabled"
     :multiple="multiple"
     @change="handleChange">
-    <option v-if="defaultValue" :value="defaultKey" selected>{{ defaultValue }}</option>
-    <option v-for="option in options" :value="option[optionKey]">{{ option[optionValue] }}</option>
+    <option v-if="defaultValue"
+      :value="defaultKey" selected>{{ defaultValue }}</option>
+    <template v-if="group">
+      <template v-for="option in options">
+        <option v-if="multiple && (option.hr || option.divider)"
+          class="mdc-list-divider" role="presentation" disabled></option>
+        <template v-else>
+          <optgroup v-if="option.items.length"
+            class="mdc-list-group" :label="option.label">
+            <option v-for="item in option.items"
+              class="mdc-list-item"
+              :value="item[optionKey]">{{ item[optionValue] }}</option>
+          </optgroup>
+        </template>
+      </template>
+    </template>
+    <template v-else>
+      <option v-for="option in options"
+        :value="option[optionKey]">{{ option[optionValue] }}</option>
+    </template>
   </select>
 </template>
 
@@ -47,7 +65,11 @@ export default {
       type: String,
       default: ''
     },
-    defaultValue: String
+    defaultValue: String,
+    group: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
@@ -58,7 +80,8 @@ export default {
     className() {
       return {
         'mdc-select': true,
-        'mdc-multi-select': this.multiple
+        'mdc-multi-select': this.multiple,
+        'mdc-list': this.group
       };
     }
   },
@@ -73,9 +96,22 @@ export default {
     },
     placeholder() {
       if (!this.defaultValue && this.options.length) {
-        let defaultOption = this.model
-          ? this.options.find(option => option[this.optionKey] == this.model)
-          : this.options[0];
+        let defaultOption = {};
+
+        if (this.model) {
+          defaultOption = this.options.find(option => option[this.optionKey] == this.model)
+        } else {
+          if (this.group) {
+            for (let options of this.options) {
+              if (options.items.length) {
+                defaultOption = options.items[0];
+                break;
+              }
+            }
+          } else {
+            defaultOption = this.options[0];
+          }
+        }
 
         this.$emit(EVENT_CHANGE, defaultOption[this.optionKey]);
       }

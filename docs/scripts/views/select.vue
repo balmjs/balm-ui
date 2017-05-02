@@ -18,6 +18,18 @@
 
         <ui-select multiple style="height:100px"
           :options="options"
+          :selected="formData.selected"
+          optionKey="key" optionValue="value"
+          @change="onChange"></ui-select>
+
+        <!-- <ui-select group
+          :options="groupOptions"
+          :selected="selected"
+          optionKey="key" optionValue="value"
+          @change="onChange"></ui-select> -->
+
+        <ui-select multiple group style="height:300px"
+          :options="groupOptions"
           :selected="selected"
           optionKey="key" optionValue="value"
           @change="onChange"></ui-select>
@@ -86,7 +98,7 @@
       <select multiple size="8" class="mdc-multi-select mdc-list">
 
         <optgroup class="mdc-list-group" label="Fats, Oils, & Sweets">
-          <option class="mdc-list-item">Olive Oil</option>
+          <option class="mdc-list-item">ke</option>
           <option class="mdc-list-item">Brown Sugar</option>
           <option class="mdc-list-item">Ice Cream</option>
         </optgroup>
@@ -141,9 +153,36 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      groupOptions: [{
+        label: 'Fats, Oils, & Sweets',
+        items: [{
+          key: 1,
+          value: 'Olive Oil'
+        }, {
+          key: 2,
+          value: 'Brown Sugar'
+        }, {
+          key: 3,
+          value: 'Ice Cream'
+        }]
+      }, {
+        hr: true
+      }, {
+        label: 'Dairy',
+        items: [{
+          key: 4,
+          value: 'Milk'
+        }, {
+          key: 5,
+          value: 'Cheese'
+        }, {
+          key: 6,
+          value: 'More Cheese'
+        }]
+      }],
       edit: false,
       formData: {
-        selected: 0,
+        selected: [],
         province: 2,
         city: ''
       },

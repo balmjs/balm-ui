@@ -40,6 +40,7 @@ import UiIconToggle from './components/form/icon-toggle';
 import UiSwitch from './components/form/switch';
 import UiSlider from './components/form/slider';
 import UiSelect from './components/form/select';
+import UiSelect2 from './components/form/select2';
 import UiAutocomplete from './components/form/autocomplete';
 import UiDatepicker from './components/form/datepicker';
 import UiFileupload from './components/form/fileupload';
@@ -95,6 +96,7 @@ const BalmUI = {
   UiSwitch,
   UiSlider,
   UiSelect,
+  UiSelect2,
   UiAutocomplete,
   UiDatepicker,
   UiFileupload,

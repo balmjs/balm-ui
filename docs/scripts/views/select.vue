@@ -4,7 +4,19 @@
     <section>
       <h2>Fully-Featured Component</h2>
       <section id="demo-wrapper">
-        <ui-select
+        <ui-select2
+          :options="provinces"
+          :selected="formData.province"
+          optionKey="key" optionValue="value"
+          @change="onSelectChange('province', $event, changeCity)"></ui-select2>
+
+        <ui-select2
+          :options="cities"
+          :selected="formData.city"
+          optionKey="key" optionValue="value"
+          @change="onSelectChange('city', $event)"></ui-select2>
+
+        <!-- <ui-select
           :options="provinces"
           :selected="formData.province"
           optionKey="key" optionValue="value"
@@ -26,7 +38,7 @@
           :options="groupOptions"
           :selected="selected"
           optionKey="key" optionValue="value"
-          @change="onChange"></ui-select>
+          @change="onChange"></ui-select> -->
 
         <!-- <ui-select multiple group style="height:300px"
           :options="groupOptions"
@@ -247,7 +259,7 @@ export default {
     }
   },
   created() {
-    this.showCode('select', 2);
+    // this.showCode('select', 2);
   }
 };
 </script>

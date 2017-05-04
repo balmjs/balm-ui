@@ -2,23 +2,11 @@
   <!-- Custom MDC Select, shown on desktop -->
   <div :class="className" role="listbox" tabindex="0" :aria-disabled="disabled">
     <span class="mdc-select__selected-text">
-      <slot>{{ selectedOption[optionValue] }}</slot>
+      <slot>{{ selectedOption[optionValue] || placeholder }}</slot>
     </span>
-    <ui-menu :class="'mdc-select__menu'">
-      <ui-menuitem v-if="defaultValue"
-        role="option"
-        :item="defaultOption">{{ defaultValue }}</ui-menuitem>
-      <template v-if="group">
-        <!-- TODO -->
-      </template>
-      <template v-else>
-        <ui-menuitem v-for="(option, index) in options" :key="index"
-          role="option"
-          :item="option"
-          :label="optionValue"
-          :tabindex="option.index || 0"
-          :aria-selected="option[optionKey] == model">{{ option[optionValue] }}</ui-menuitem>
-      </template>
+    <ui-menu :class="'mdc-select__menu'" :dark="dark">
+      <ui-menuitem v-for="(option, index) in currentOptions" :key="index"
+        role="option" :item="option"></ui-menuitem>
     </ui-menu>
   </div>
 </template>
@@ -40,10 +28,6 @@ export default {
   props: {
     // attribute
     disabled: {
-      type: Boolean,
-      default: false
-    },
-    multiple: {
       type: Boolean,
       default: false
     },
@@ -71,7 +55,9 @@ export default {
       default: ''
     },
     defaultValue: String,
-    group: {
+    placeholder: String,
+    // theme
+    dark: {
       type: Boolean,
       default: false
     }
@@ -80,23 +66,16 @@ export default {
     return {
       $select: null,
       model: this.selected,
+      currentOptions: [],
       selectedOption: {}
     };
   },
   computed: {
     className() {
       return {
-        'mdc-select': !this.multiple && !this.group,
-        'mdc-select--disabled': this.disabled,
-        'mdc-multi-select': this.multiple,
-        'mdc-list': this.group
+        'mdc-select': true,
+        'mdc-select--disabled': this.disabled
       };
-    },
-    defaultOption() {
-      let option = {};
-      option[this.optionKey] = this.defaultKey;
-      option[this.optionValue] = this.defaultValue;
-      return option;
     }
   },
   watch: {
@@ -104,65 +83,104 @@ export default {
       this.model = val;
     },
     options(val) {
-      this.resetSelected(!val.length);
-      if (val.length) {
-        this.init();
+      this.currentOptions = this.init(val);
+      if (this.currentOptions.length) {
         this.setSelectedTextContent(this.selectedOption[this.optionValue]);
-      } else {
-        this.setSelectedTextContent('');
       }
     }
   },
   methods: {
     changeHandler(evt) {
       let detail = evt.detail;
-      this.selectedOption = this.options[detail.selectedIndex];
-      this.$emit(UI_EVENT_CHANGE, this.selectedOption[this.optionKey]);
+      if (this.options[detail.selectedIndex]) {
+        this.selectedOption = this.options[detail.selectedIndex];
+        this.$emit(UI_EVENT_CHANGE, this.selectedOption[this.optionKey]);
+      } else {
+        console.warn('Invalid Options');
+      }
     },
-    init() {
-      if (!this.defaultValue && this.options.length) {
-        let currentOption = this.selectedOption;
+    setSelectedTextContent(selectedTextContent = '') {
+      if (this.$select) {
+        this.$select.foundation_.adapter_.setSelectedTextContent(selectedTextContent);
+      }
+    },
+    initSelected(currentOptions = this.currentOptions) {
+      let selectedOption = {};
+      if (this.$select) {
+        this.$select.disabled = false;
+        this.$select.selectedIndex = 0; // default index
+      }
 
-        if (this.group) {
-          for (let options of this.options) {
-            if (options.items && options.items.length) {
-              currentOption = this.model
-                ? options.items.find(option => option[this.optionKey] == this.model) // `object` || `undefined`
-                : options.items[0]; // `object`
-            }
-            if (isObject(currentOption) && currentOption.hasOwnProperty(this.optionKey)) {
-              break;
-            }
-          }
-        } else {
-          currentOption = this.model
-            ? this.options.find(option => option[this.optionKey] == this.model)
-            : this.options[0];
+      for (let i = 0, len = currentOptions.length; i < len; i++) {
+        let currentOption = currentOptions[i];
+        let selected = currentOption[this.optionKey] == this.model;
+
+        if (selected || i === 0) {
+          selectedOption = currentOption;
         }
 
-        this.selectedOption = currentOption;
+        if (selected) {
+          if (this.$select && i > 0) {
+            this.$select.selectedIndex = i; // selected index
+          }
+          break;
+        }
+      }
+
+      if (selectedOption[this.optionValue]) {
+        this.selectedOption = selectedOption;
+        this.setSelectedTextContent(this.selectedOption[this.optionValue]);
         this.$emit(UI_EVENT_CHANGE, this.selectedOption[this.optionKey]);
       }
     },
-    resetSelected(disabled) {
-      this.selectedOption = {};
-      this.$select.selectedIndex = -1;
-      this.$select.disabled = disabled;
-    },
-    setSelectedTextContent(selectedTextContent = '') {
-      this.$select.foundation_.adapter_.setSelectedTextContent(selectedTextContent);
+    init(options = this.options) {
+      let result = [];
+      let currentOptions = [];
+
+      // default value
+      if (this.defaultValue) {
+        let defaultOption = {};
+        defaultOption[this.optionKey] = this.defaultKey;
+        defaultOption[this.optionValue] = this.defaultValue;
+        currentOptions.push(defaultOption);
+      }
+
+      currentOptions = currentOptions.concat(options);
+
+      // default selected
+      if (currentOptions.length) {
+        // init selected
+        let needInit = !this.placeholder || (this.placeholder && this.model);
+        if (needInit) {
+          this.initSelected(currentOptions);
+        }
+        // menu items
+        result = currentOptions.map(option => {
+          return {
+            index: option.index || 0,
+            label: option[this.optionValue]
+          };
+        });
+      } else {
+        // reset selected
+        if (this.$select) {
+          this.selectedOption = {};
+          this.$select.selectedIndex = -1;
+          this.$select.disabled = true;
+        }
+      }
+
+      return result;
     }
   },
   mounted() {
     if (!this.disabled) {
       this.$select = new MDCSelect(this.$el);
       this.$select.listen(MDC_EVENT_CHANGE, this.changeHandler);
-      this.$el.style.width = 'auto'; // MDCSelect's bug (when options is empty)
+      this.$el.style.width = 'auto'; // NOTE: MDCSelect's bug (when options is empty)
     }
 
-    if (!this.multiple) {
-      this.init();
-    }
+    this.currentOptions = this.init();
   }
 };
 </script>

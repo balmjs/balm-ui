@@ -9,16 +9,20 @@
       :value="defaultKey" selected>{{ defaultValue }}</option>
     <template v-if="group">
       <template v-for="option in options">
+        <!-- A group of options -->
+        <optgroup v-if="option.label && option.items && option.items.length"
+          class="mdc-list-group" :label="option.label">
+          <option v-for="item in option.items"
+            class="mdc-list-item"
+            :value="item[optionKey]">{{ item[optionValue] }}</option>
+        </optgroup>
+        <!-- A list item -->
+        <option v-if="!option.label && option[optionValue]"
+          class="mdc-list-item"
+          :value="option[optionKey]">{{ option[optionValue] }}</option>
+        <!-- A divider -->
         <option v-if="multiple && (option.hr || option.divider)"
           class="mdc-list-divider" role="presentation" disabled></option>
-        <template v-else>
-          <optgroup v-if="option.items && option.items.length"
-            class="mdc-list-group" :label="option.label">
-            <option v-for="item in option.items"
-              class="mdc-list-item"
-              :value="item[optionKey]">{{ item[optionValue] }}</option>
-          </optgroup>
-        </template>
       </template>
     </template>
     <template v-else>

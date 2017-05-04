@@ -8,6 +8,7 @@
           :options="provinces"
           :selected="formData.province"
           optionKey="key" optionValue="value"
+          placeholder="请选择"
           @change="onSelectChange('province', $event, changeCity)"></ui-select2>
 
         <ui-select2
@@ -30,50 +31,21 @@
 
         <ui-select multiple style="height:100px"
           :options="options"
-          :selected="formData.selected"
+          :selected="formData.multipleSelected"
           optionKey="key" optionValue="value"
-          @change="onChange"></ui-select>
+          @change="onSelectChange('multipleSelected', $event)"></ui-select>
 
         <ui-select group
           :options="groupOptions"
-          :selected="selected"
+          :selected="formData.groupSelected"
           optionKey="key" optionValue="value"
-          @change="onChange"></ui-select> -->
+          @change="onSelectChange('groupSelected', $event)"></ui-select>
 
-        <!-- <ui-select multiple group style="height:300px"
+        <ui-select multiple group style="height:300px" dark
           :options="groupOptions"
-          :selected="selected"
+          :selected="formData.selected"
           optionKey="key" optionValue="value"
-          @change="onChange"></ui-select> -->
-
-        <!-- <div class="mdc-select">
-          <span class="mdc-select__selected-text">Pick a food group</span>
-          <div class="mdc-simple-menu mdc-select__menu">
-            <ul class="mdc-list mdc-simple-menu__items">
-              <li class="mdc-list-item" role="option" id="grains" aria-disabled="true">
-                Pick a food group
-              </li>
-              <li class="mdc-list-item" role="option" id="grains" tabindex="0">
-                Bread, Cereal, Rice, and Pasta
-              </li>
-              <li class="mdc-list-item" role="option" id="vegetables" tabindex="0">
-                Vegetables
-              </li>
-              <li class="mdc-list-item" role="option" id="fruit" tabindex="0">
-                Fruit
-              </li>
-              <li class="mdc-list-item" role="option" id="dairy" tabindex="0">
-                Milk, Yogurt, and Cheese
-              </li>
-              <li class="mdc-list-item" role="option" id="meat" tabindex="0">
-                Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts
-              </li>
-              <li class="mdc-list-item" role="option" id="fats" tabindex="0">
-                Fats, Oils, and Sweets
-              </li>
-            </ul>
-          </div>
-        </div> -->
+          @change="onSelectChange('selected', $event)"></ui-select> -->
       </section>
 
       <hr>
@@ -146,17 +118,17 @@ const CITIES = [
   [],
   [{
     key: 1,
-    value: 'Haiding'
+    value: '海定'
   }, {
     key: 2,
-    value: 'Chaoyang'
+    value: '朝阳'
   }],
   [{
     key: 3,
-    value: 'Huangpu'
+    value: '黄浦'
   }, {
     key: 4,
-    value: 'Xuhui'
+    value: '徐汇'
   }],
   []
 ];
@@ -165,40 +137,13 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      groupOptions: [{
-        label: 'Fats, Oils, & Sweets',
-        items: [{
-          key: 1,
-          value: 'Olive Oil'
-        }, {
-          key: 2,
-          value: 'Brown Sugar'
-        }, {
-          key: 3,
-          value: 'Ice Cream'
-        }]
-      }, {
-        hr: true
-      }, {
-        label: 'Dairy',
-        items: [{
-          key: 4,
-          value: 'Milk'
-        }, {
-          key: 5,
-          value: 'Cheese'
-        }, {
-          key: 6,
-          value: 'More Cheese'
-        }]
-      }],
-      edit: false,
       formData: {
-        selected: [],
-        province: 2,
-        city: ''
+        province: '',
+        city: '',
+        multipleSelected: [],
+        groupSelected: '',
+        selected: []
       },
-      selected: 5,
       options: [{
         key: 1,
         value: 'item 1'
@@ -231,31 +176,45 @@ export default {
         value: 'item 10'
       }],
       provinces: PROVINCES,
-      cities: []
+      cities: [],
+      groupOptions: [{
+        label: 'Fats, Oils, & Sweets',
+        items: [{
+          key: 1,
+          value: 'Olive Oil'
+        }, {
+          key: 2,
+          value: 'Brown Sugar'
+        }, {
+          key: 3,
+          value: 'Ice Cream'
+        }]
+      }, {
+        hr: true
+      }, {
+        label: 'Dairy',
+        items: [{
+          key: 4,
+          value: 'Milk'
+        }, {
+          key: 5,
+          value: 'Cheese'
+        }, {
+          key: 6,
+          value: 'More Cheese'
+        }]
+      }]
     };
   },
   methods: {
-    onChange(value) {
-      this.selected = value;
-    },
     onSelectChange(field, value, fn) {
+      this.formData[field] = value;
+
       let key = value || -1;
-
-      this.formData[field] = key;
       fn && fn(key);
-
-      if (field === 'province') {
-        this.formData.city = (key > -1 && CITIES[key].length) ? CITIES[key][0].key : 0;
-      }
     },
     changeCity(key) {
       this.cities = key > -1 ? CITIES[key] : [];
-    },
-    onEdit() {
-      this.edit = true;
-    },
-    onCancel() {
-      this.edit = false;
     }
   },
   created() {

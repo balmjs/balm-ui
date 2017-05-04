@@ -110,7 +110,7 @@ Vue.use(BalmUI);
 - [x] Layout grid
 - [ ] List
 - [x] Select
-- [ ] Select2
+- [x] Select2
 - [x] Menu (simple)
 - [ ] Switch
 - [ ] Radio

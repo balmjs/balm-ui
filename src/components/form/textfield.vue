@@ -1,195 +1,190 @@
 <template>
-  <div :class="className.outer">
-    <label v-if="expandable" class="mdl-button mdl-js-button mdl-button--icon" :for="id">
-      <slot name="icon">
-        <i class="material-icons">icon</i>
-      </slot>
+  <ui-form-field :class="className.outer"
+    :noFormField="noFormField"
+    :alignEnd="alignEnd"
+    :dark="dark">
+    <label :class="className.label" :for="id">
+      <slot name="label">{{ label }}</slot>
     </label>
-    <div :class="[className.inner, {'is-expand': isExpand}]">
-      <label class="mdl-textfield__label">
-        <slot name="label">{{ label }}</slot>
-      </label>
-      <template v-if="isTextarea">
-        <textarea class="mdl-textfield__input"
-          v-model="currentValue"
-          :id="id"
-          :name="name"
-          :rows="rows"
-          :placeholder="labelFloating ? null : placeholder"
-          :maxlength="maxlength"
-          :disabled="disabled"
-          :readonly="readonly"
-          @input="handleInput($event.target.value)"
-          @change="handleChange"
-          @focus="handleFocus"
-          @blur="handleBlur"
-          @keydown="handleKeydown"
-          @keydown.enter="handleKeydownEnter"></textarea>
-      </template>
-      <template v-else>
-        <input class="mdl-textfield__input"
-          :type="type"
-          :value="currentValue"
-          :id="id"
-          :name="name"
-          :placeholder="labelFloating ? null : placeholder"
-          :pattern="pattern"
-          :maxlength="maxlength"
-          :disabled="disabled"
-          :readonly="readonly"
-          @input="handleInput($event.target.value)"
-          @change="handleChange"
-          @focus="handleFocus"
-          @blur="handleBlur"
-          @keydown="handleKeydown"
-          @keydown.enter="handleKeydownEnter"
-          data-input>
-      </template>
-      <span v-if="error" class="mdl-textfield__error">
-        <slot name="error">{{ error }}</slot>
-      </span>
-      <span v-if="plus" class="mdl-textfield__plus">
-        <slot name="plus"><!-- counter --></slot>
-      </span>
-      <div v-if="isExpand" class="mdl-textfield__expand">
-        <slot name="expand"><!-- autocomplete --></slot>
-      </div>
-    </div>
-  </div>
+    <template v-if="isMultiLine">
+      <textarea :class="className.input" :id="id" :v-model="model"
+        :autocomplete="autocomplete"
+        :disabled="disabled"
+        :maxlength="maxlength"
+        :minlength="minlength"
+        :name="name"
+        :placeholder="placeholder"
+        :readonly="readonly"
+        :required="required"
+        :rows="rows"
+        :cols="cols"
+        :aria-controls="helptext"
+        @focus="handleFocus"
+        @blur="handleBlur"
+        @input="handleInput"
+        @keydown="handleKeydown"
+        @keydown.enter="handleKeydownEnter"></textarea>
+    </template>
+    <template v-else>
+      <input :type="type" :class="className.input" :id="id"
+        :autocomplete="autocomplete"
+        :disabled="disabled"
+        :maxlength="maxlength"
+        :minlength="minlength"
+        :name="name"
+        :pattern="pattern"
+        :placeholder="placeholder"
+        :readonly="readonly"
+        :required="required"
+        :value="model"
+        :aria-controls="helptext"
+        @focus="handleFocus"
+        @blur="handleBlur"
+        @input="handleInput"
+        @keydown="handleKeydown"
+        @keydown.enter="handleKeydownEnter">
+    </template>
+    <slot></slot>
+  </ui-form-field>
 </template>
 
 <script>
-// import '../../material-design-lite/textfield/textfield';
+import {MDCTextfield} from '../../material-components-web/textfield';
+import UiFormField from './form-field';
 
-const EVENT_INPUT = 'input';
-const EVENT_CHANGE = 'change';
-const EVENT_FOCUS = 'focus';
-const EVENT_BLUR = 'blur';
-const EVENT_KEYDOWN = 'keydown';
-const EVENT_KEYDOWN_ENTER = 'enter';
+const UI_EVENT_FOCUS = 'focus';
+const UI_EVENT_BLUR = 'blur';
+const UI_EVENT_INPUT = 'input';
+const UI_EVENT_KEYDOWN = 'keydown';
+const UI_EVENT_KEYDOWN_ENTER = 'enter';
 
 export default {
   name: 'ui-textfield',
+  components: {
+    UiFormField
+  },
   props: {
-    type: {
-      type: String,
-      default: 'text'
-    },
-    model: {
-      required: true
-    },
+    // common attribute
     id: String,
     name: String,
-    label: String,
-    labelFloating: {
-      type: Boolean,
-      default: false
-    },
-    placeholder: String,
-    pattern: String,
-    error: String,
-    maxlength: Number,
-    rows: {
-      type: Number,
-      default: 2
-    },
-    expandable: {
-      type: Boolean,
-      default: false
-    },
-    plus: {
-      type: Boolean,
-      default: false
-    },
+    autocomplete: String,
     disabled: {
       type: Boolean,
       default: false
     },
+    maxlength: [Number, String],
+    minlength: [Number, String],
+    placeholder: String,
     readonly: {
       type: Boolean,
       default: false
     },
-    expand: {
+    required: {
+      type: Boolean,
+      default: false
+    },
+    value: String,
+    // input attribute
+    type: {
+      type: String,
+      default: 'text'
+    },
+    pattern: String,
+    // textarea attribute
+    rows: {
+      type: [Number, String],
+      default: 1
+    },
+    cols: {
+      type: [Number, String],
+      default: 20
+    },
+    // attributes: Object, // TODO
+    // mdc
+    label: String,
+    floatAbove: {
+      type: Boolean,
+      default: false
+    },
+    fullwidth: {
+      type: Boolean,
+      default: false
+    },
+    dense: {
+      type: Boolean,
+      default: false
+    },
+    // helptext
+    helptext: String,
+    // form field
+    noFormField: {
+      type: Boolean,
+      default: false
+    },
+    alignEnd: {
+      type: Boolean,
+      default: false
+    },
+    dark: {
       type: Boolean,
       default: false
     }
   },
   data() {
     return {
-      currentValue: this.model,
-      isFocus: false,
+      $textfield: null,
+      model: this.value
     };
   },
   computed: {
-    isTextarea() {
+    isMultiLine() {
       return this.type.toLowerCase() === 'textarea';
     },
     className() {
       return {
         outer: {
-          'mdl-textfield': true,
-          'mdl-js-textfield': true,
-          'mdl-textfield--floating-label': this.labelFloating,
-          'mdl-textfield--expandable': this.expandable,
-          'mdl-textfield--plus': this.plus,
-          'is-textarea': this.isTextarea,
-          'is-focused': this.isFocus
+          'mdc-textfield': true,
+          'mdc-textfield--multiline': this.isMultiLine,
+          'mdc-textfield--fullwidth': this.fullwidth,
+          'mdc-textfield--dense': this.dense,
+          'mdc-textfield--disabled': this.disabled
         },
-        inner: {
-          'mdl-textfield__expandable-holder': this.expandable,
-          'mdl-input__expandable-holder': this.plus
+        label: {
+          'mdc-textfield__label': true,
+          'mdc-textfield__label--float-above': this.floatAbove && this.model
+        },
+        input: {
+          'mdc-textfield__input': true
         }
       };
-    },
-    isExpand() {
-      return this.expand;
     }
   },
   watch: {
-    model(val) {
-      this.currentValue = val;
-      this.checkDirty();
+    value(val) {
+      this.model = val;
     }
   },
   methods: {
-    checkDirty(isFocus = true) {
-      if (this.label) {
-        this.isFocus = isFocus;
-        // for dynamic assignment
-        this.className.outer['is-dirty'] = this.currentValue.length;
-      }
-    },
-    handleInput(value) {
-      this.$emit(EVENT_INPUT, value);
-    },
-    handleChange(event) {
-      this.$emit(EVENT_CHANGE, event);
-    },
     handleFocus(event) {
-      this.checkDirty();
-      this.$emit(EVENT_FOCUS, event);
+      this.$emit(UI_EVENT_FOCUS, event);
     },
     handleBlur(event) {
-      this.checkDirty(false);
-      this.$emit(EVENT_BLUR, event);
+      this.$emit(UI_EVENT_BLUR, event);
+    },
+    handleInput(event) {
+      this.$emit(UI_EVENT_INPUT, event.target.value);
     },
     handleKeydown(event) {
-      this.$emit(EVENT_KEYDOWN, event);
+      this.$emit(UI_EVENT_KEYDOWN, event);
     },
     handleKeydownEnter(event) {
-      this.$emit(EVENT_KEYDOWN_ENTER, event);
-    }
-  },
-  created() {
-    if (this.labelFloating && !this.label) {
-      console.warn('Labelfloating textfield need a label.');
-    }
-    if (this.expandable && !this.id) {
-      console.warn('Expandable textfield need an id.');
+      this.$emit(UI_EVENT_KEYDOWN_ENTER, event.target.value);
     }
   },
   mounted() {
-    // this.$ui.upgradeElement(this.$el, 'MaterialTextfield');
+    if (!this.$textfield) {
+      this.$textfield = new MDCTextfield(this.$el);
+    }
   }
 };
 </script>

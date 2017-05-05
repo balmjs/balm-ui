@@ -1,66 +1,61 @@
 <template>
   <div class="docs-textfield">
-    <div class="component-title">
-      <h3>Text Field</h3>
-      <p>Textual input components.</p>
-    </div>
+    <h1>MDC Textfield</h1>
 
-    <h4>{{ $t('textfield.simple') }}</h4>
-    <div class="snippet-demo">
-      <ui-textfield :model="text1" @input.native="onInputChange('text1', $event)"
-        label="Text..."></ui-textfield>
-    </div>
-    <ui-markdown :text="code[0]"></ui-markdown>
+    <section class="interactive-demo">
+      <h2>Full Functionality JS Component (Floating Label, Validation, Autocomplete)</h2>
+      <section id="demo-textfield-wrapper">
+        <ui-textfield id="my-textfield" name="email"
+          label="Email Address"
+          helptext="my-textfield-helptext"
+          autocomplete="email"
+          @focus="onFocus"
+          @blur="onBlur"
+          @input="onInput"
+          @keydown="onKeydown"
+          @enter="onEnter"></ui-textfield>
+        <ui-textfield-helptext id="my-textfield-helptext">Help Text (possibly validation message)</ui-textfield-helptext>
+      </section>
+    </section>
 
-    <h4>{{ $t('textfield.pattern') }}</h4>
-    <div class="snippet-demo">
-      <ui-textfield :model="text2" @input.native="onInputChange('text2', $event)"
-        label="Number..."
-        pattern="-?[0-9]*(\.[0-9]+)?"
-        error="Input is not a number!"></ui-textfield>
-    </div>
-    <ui-markdown :text="code[1]"></ui-markdown>
+    <section>
+      <h2>Password field with validation</h2>
+      <ui-textfield required pattern=".{8,}" type="password" id="pw"
+        helptext="pw-validation-msg" autocomplete="current-password"
+        label="Choose password"></ui-textfield>
+      <ui-textfield-helptext id="pw-validation-msg" persistent validationMsg="Must be at least 8 characters long"></ui-textfield-helptext>
+    </section>
 
-    <h4>{{ $t('textfield.floating') }}</h4>
-    <div class="snippet-demo">
-      <ui-textfield :model="text3" @input.native="onInputChange('text3', $event)"
-        labelFloating
-        label="Floating Text..."></ui-textfield>
-    </div>
-    <ui-markdown :text="code[2]"></ui-markdown>
+    <section>
+      <h2>CSS Only</h2>
+      <ui-textfield id="css-only-textfield" placeholder="Name" label="Your name:"></ui-textfield>
+    </section>
+    <section>
+      <h2>Preventing FOUC</h2>
+      <ui-textfield id="fouc" value="Pre-filled value" floatAbove label="Label floating above"></ui-textfield>
+    </section>
+    <section>
+      <h2>Multi-line Textfields</h2>
+      <section id="demo-textfield-multiline-wrapper" style="overflow:hidden;">
+        <ui-textfield type="textarea" rows="8" cols="40" id="multi-line" label="Multi-line Label"></ui-textfield>
+      </section>
+    </section>
+    <section>
+      <h2>Multi-line Textfields - CSS Only</h2>
+      <ui-textfield type="textarea" id="css-only-multiline"
+                  rows="8" cols="40"
+                  label="About you:"
+                  placeholder="Tell the world something about yourself!"></ui-textfield>
+    </section>
+    <section>
+      <h2>Full-Width Textfields</h2>
+      <div id="demo-fullwidth-wrapper">
+        <ui-textfield fullwidth placeholder="Subject" dense></ui-textfield>
+        <ui-textfield fullwidth type="textarea" placeholder="Message" rows="8" cols="40" dense></ui-textfield>
+      </div>
+    </section>
 
-    <h4>{{ $t('textfield.textarea') }}</h4>
-    <div class="snippet-demo">
-      <ui-textfield type="textarea" :model="text4" @input.native="onInputChange('text4', $event)"
-        label="Text lines..."
-        :rows="3"></ui-textfield>
-    </div>
-    <ui-markdown :text="code[3]"></ui-markdown>
-
-    <h4>{{ $t('textfield.expandable') }}</h4>
-    <div class="snippet-demo">
-      <ui-textfield :model="text5" @input.native="onInputChange('text5', $event)"
-        label="Expandable Text..."
-        expandable
-        id="search">
-        <i slot="icon" class="material-icons">search</i>
-      </ui-textfield>
-    </div>
-    <ui-markdown :text="code[4]"></ui-markdown>
-
-    <h4>{{ $t('textfield.plus') }}</h4>
-    <div class="snippet-demo">
-      <ui-textfield :model="text6" @input.native="onInputChange('text6', $event)"
-        label="Plus Text..."
-        plus>
-        <template slot="plus">
-          <a href="javascript:void(0)">Button</a>
-        </template>
-      </ui-textfield>
-    </div>
-    <ui-markdown :text="code[5]"></ui-markdown>
-
-    <ui-apidoc name="textfield"></ui-apidoc>
+    <!-- <ui-apidoc name="textfield"></ui-apidoc> -->
   </div>
 </template>
 
@@ -71,21 +66,28 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      text1: '',
-      text2: '',
-      text3: '',
-      text4: '',
-      text5: '',
-      text6: ''
-    }
+
+    };
   },
   methods: {
-    onInputChange(field, event) {
-      this[field] = event.target.value;
+    onFocus(event) {
+      console.log('onFocus', event);
+    },
+    onBlur(event) {
+      console.log('onBlur', event);
+    },
+    onInput(value) {
+      console.log('onInput', value);
+    },
+    onKeydown(event) {
+      console.log('onKeydown', event);
+    },
+    onEnter(value) {
+      console.log('onEnter', value);
     }
   },
   created() {
-    this.showCode('textfield', 6);
+    // this.showCode('textfield', 6);
   }
 };
 </script>

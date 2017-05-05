@@ -33,7 +33,9 @@ import UiTooltip from './components/common/tooltip';
 /**
  * Form
  */
+import UiFormField from './components/form/form-field';
 import UiTextfield from './components/form/textfield';
+import UiTextfieldHelptext from './components/form/textfield-helptext';
 import UiCheckbox from './components/form/checkbox';
 import UiRadio from './components/form/radio';
 import UiIconToggle from './components/form/icon-toggle';
@@ -89,7 +91,9 @@ const BalmUI = {
   UiSeparator,
   UiTooltip,
   // Form
+  UiFormField,
   UiTextfield,
+  UiTextfieldHelptext,
   UiCheckbox,
   UiRadio,
   UiIconToggle,

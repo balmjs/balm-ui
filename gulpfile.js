@@ -3,6 +3,23 @@ var balm = require('balm');
 var useDefault = !(process.argv[2] === '--mdc');
 var buildDocs = process.argv[3] === '--docs';
 
+var DMC_SOURCE = {
+  material: './node_modules/@material',
+  icon: './node_modules/material-design-icons'
+};
+var DEV_SOURCE = {
+  material: './src/material-components-web',
+  font: './src/fonts'
+};
+var DMC_COMPONENTS = [
+  'base',
+  'ripple',
+  'dialog',
+  'menu',
+  'select',
+  'textfield'
+];
+
 balm.config = {
   roots: {
     source: balm.config.production ? 'src' : 'docs'
@@ -40,15 +57,6 @@ if (buildDocs) {
   balm.config.assets.subDir = 'ui-vue';
 }
 
-var DMC_SOURCE = {
-  material: './node_modules/@material',
-  icon: './node_modules/material-design-icons'
-};
-var DEV_SOURCE = {
-  material: './src/material-components-web',
-  font: './src/fonts'
-};
-
 balm.go(function(mix) {
   if (buildDocs) {
     mix.copy('./docs/data/*', './dist/ui-vue/data');
@@ -61,7 +69,7 @@ balm.go(function(mix) {
       // clear
       mix.remove([DEV_SOURCE.material + '/*', DEV_SOURCE.font + '/*']);
       // get Material
-      ['base', 'ripple', 'dialog', 'select', 'menu'].forEach(function(item) {
+      DMC_COMPONENTS.forEach(function(item) {
         mix.copy(DMC_SOURCE.material + '/' + item + '/**/*.js', DEV_SOURCE.material + '/' + item);
         mix.remove(DEV_SOURCE.material + '/' + item + '/dist');
       });

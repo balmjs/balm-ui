@@ -1,33 +1,38 @@
 <template>
   <!-- Native element, shown on mobile devices -->
   <select :class="className"
-    v-model="model"
-    :disabled="disabled"
-    :multiple="multiple"
-    @change="handleChange">
+          :disabled="disabled"
+          :multiple="multiple"
+          v-model="model"
+          @change="handleChange">
+    <!-- Default value -->
     <option v-if="defaultValue"
-      :value="defaultKey" selected>{{ defaultValue }}</option>
+            :value="defaultKey"
+            selected>{{ defaultValue }}</option>
     <template v-if="group">
       <template v-for="option in options">
         <!-- A group of options -->
         <optgroup v-if="option.label && option.items && option.items.length"
-          class="mdc-list-group" :label="option.label">
+                  class="mdc-list-group"
+                  :label="option.label">
           <option v-for="item in option.items"
-            class="mdc-list-item"
-            :value="item[optionKey]">{{ item[optionValue] }}</option>
+                  class="mdc-list-item"
+                  :value="item[optionKey]">{{ item[optionValue] }}</option>
         </optgroup>
         <!-- A list item -->
         <option v-if="!option.label && option[optionValue]"
-          class="mdc-list-item"
-          :value="option[optionKey]">{{ option[optionValue] }}</option>
+                class="mdc-list-item"
+                :value="option[optionKey]">{{ option[optionValue] }}</option>
         <!-- A divider -->
         <option v-if="multiple && (option.hr || option.divider)"
-          class="mdc-list-divider" role="presentation" disabled></option>
+                class="mdc-list-divider"
+                role="presentation"
+                disabled></option>
       </template>
     </template>
     <template v-else>
       <option v-for="option in options"
-        :value="option[optionKey]">{{ option[optionValue] }}</option>
+              :value="option[optionKey]">{{ option[optionValue] }}</option>
     </template>
   </select>
 </template>

@@ -3,7 +3,8 @@
     <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
       <slot>
         <template v-for="(item, index) in currentMenu">
-          <ui-separator v-if="item.hr || item.divider || item.separator"></ui-separator>
+          <ui-separator v-if="item.hr || item.divider || item.separator">
+          </ui-separator>
           <ui-menuitem v-else :item="item"></ui-menuitem>
         </template>
       </slot>

@@ -1,9 +1,9 @@
 <template>
   <ui-button fab
-    :class="className"
-    :disabled="disabled"
-    :noRipple="noRipple"
-    :dark="dark">
+             :class="className"
+             :disabled="disabled"
+             :noRipple="noRipple"
+             :dark="dark">
     <template v-if="materialIcon">
       <span class="mdc-fab__icon">
         <slot>{{ materialIcon }}</slot>

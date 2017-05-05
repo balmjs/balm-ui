@@ -1,5 +1,5 @@
 <template>
-  <div :class="noFormField ? false : className">
+  <div :class="className">
     <slot></slot>
   </div>
 </template>
@@ -9,10 +9,6 @@ export default {
   name: 'ui-form-field',
   props: {
     // mdc
-    noFormField: {
-      type: Boolean,
-      default: false
-    },
     alignEnd: {
       type: Boolean,
       default: false

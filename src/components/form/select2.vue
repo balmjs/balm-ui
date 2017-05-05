@@ -1,12 +1,17 @@
 <template>
   <!-- Custom MDC Select, shown on desktop -->
-  <div :class="className" role="listbox" tabindex="0" :aria-disabled="disabled">
+  <div :class="className"
+       role="listbox"
+       tabindex="0"
+       :aria-disabled="disabled">
     <span class="mdc-select__selected-text">
       <slot>{{ selectedOption[optionValue] || placeholder }}</slot>
     </span>
     <ui-menu :class="'mdc-select__menu'" :dark="dark">
-      <ui-menuitem v-for="(option, index) in currentOptions" :key="index"
-        role="option" :item="option"></ui-menuitem>
+      <ui-menuitem v-for="(option, index) in currentOptions"
+                   role="option"
+                   :item="option"
+                   :key="index"></ui-menuitem>
     </ui-menu>
   </div>
 </template>

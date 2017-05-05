@@ -1,48 +1,51 @@
 <template>
   <ui-form-field :class="className.outer"
-    :noFormField="noFormField"
-    :alignEnd="alignEnd"
-    :dark="dark">
+                 :alignEnd="alignEnd"
+                 :dark="dark">
     <label :class="className.label" :for="id">
       <slot name="label">{{ label }}</slot>
     </label>
     <template v-if="isMultiLine">
-      <textarea :class="className.input" :id="id" :v-model="model"
-        :autocomplete="autocomplete"
-        :disabled="disabled"
-        :maxlength="maxlength"
-        :minlength="minlength"
-        :name="name"
-        :placeholder="placeholder"
-        :readonly="readonly"
-        :required="required"
-        :rows="rows"
-        :cols="cols"
-        :aria-controls="helptext"
-        @focus="handleFocus"
-        @blur="handleBlur"
-        @input="handleInput"
-        @keydown="handleKeydown"
-        @keydown.enter="handleKeydownEnter"></textarea>
+      <textarea :class="className.input"
+                :id="id"
+                :autocomplete="autocomplete"
+                :disabled="disabled"
+                :maxlength="maxlength"
+                :minlength="minlength"
+                :name="name"
+                :placeholder="placeholder"
+                :readonly="readonly"
+                :required="required"
+                :rows="rows"
+                :cols="cols"
+                :v-model="model"
+                :aria-controls="helptext"
+                @focus="handleFocus"
+                @blur="handleBlur"
+                @input="handleInput"
+                @keydown="handleKeydown"
+                @keydown.enter="handleKeydownEnter"></textarea>
     </template>
     <template v-else>
-      <input :type="type" :class="className.input" :id="id"
-        :autocomplete="autocomplete"
-        :disabled="disabled"
-        :maxlength="maxlength"
-        :minlength="minlength"
-        :name="name"
-        :pattern="pattern"
-        :placeholder="placeholder"
-        :readonly="readonly"
-        :required="required"
-        :value="model"
-        :aria-controls="helptext"
-        @focus="handleFocus"
-        @blur="handleBlur"
-        @input="handleInput"
-        @keydown="handleKeydown"
-        @keydown.enter="handleKeydownEnter">
+      <input :type="type"
+             :class="className.input"
+             :id="id"
+             :autocomplete="autocomplete"
+             :disabled="disabled"
+             :maxlength="maxlength"
+             :minlength="minlength"
+             :name="name"
+             :pattern="pattern"
+             :placeholder="placeholder"
+             :readonly="readonly"
+             :required="required"
+             :value="model"
+             :aria-controls="helptext"
+             @focus="handleFocus"
+             @blur="handleBlur"
+             @input="handleInput"
+             @keydown="handleKeydown"
+             @keydown.enter="handleKeydownEnter">
     </template>
     <slot></slot>
   </ui-form-field>
@@ -117,10 +120,6 @@ export default {
     // helptext
     helptext: String,
     // form field
-    noFormField: {
-      type: Boolean,
-      default: false
-    },
     alignEnd: {
       type: Boolean,
       default: false

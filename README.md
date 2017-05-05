@@ -97,7 +97,7 @@ Vue.use(BalmUI);
 
 - [x] Button
 - [x] Card
-- [ ] Checkbox
+- [x] Checkbox
 - [x] Dialog
 - [ ] Drawer
 - [x] Elevation

@@ -19,7 +19,7 @@ export default {
     className() {
       return {
         'mdc-textfield-helptext': true,
-        'mdc-textfield-helptext--persistent': this.show || this.text,
+        'mdc-textfield-helptext--persistent': this.show,
         'mdc-textfield-helptext--validation-msg': this.text
       };
     }

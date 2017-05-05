@@ -3,7 +3,7 @@
                  :alignEnd="alignEnd"
                  :dark="dark">
     <slot name="before"></slot>
-    <label :class="className.label" :for="id">
+    <label :class="cssOnly ? false : className.label" :for="id">
       <slot>{{ label }}</slot>
     </label>
     <!-- Textarea -->
@@ -120,6 +120,10 @@ export default {
       type: Boolean,
       default: false
     },
+    cssOnly: {
+      type: Boolean,
+      default: false
+    },
     // helptext
     helptext: String,
     // form field
@@ -184,7 +188,7 @@ export default {
     }
   },
   mounted() {
-    if (!this.$textfield) {
+    if (!this.$textfield && !this.cssOnly) {
       this.$textfield = new MDCTextfield(this.$el);
     }
   }

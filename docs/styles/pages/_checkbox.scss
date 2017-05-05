@@ -1,3 +1,8 @@
+.mdc-theme--dark {
+  background: #262626;
+  color: white;
+}
+
 .mdc-theme--dark .mdc-checkbox__native-control:checked:not(:disabled) ~ .mdc-checkbox__background,
 .mdc-theme--dark .mdc-checkbox__native-control:indeterminate:not(:disabled) ~ .mdc-checkbox__background {
   background-color: #E91E63;

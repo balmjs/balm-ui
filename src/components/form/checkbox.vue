@@ -48,10 +48,6 @@ export default {
     value: [Boolean, Array],
     // mdc
     label: String,
-    indeterminate: {
-      type: Boolean,
-      default: false
-    },
     cssOnly: {
       type: Boolean,
       default: false
@@ -85,9 +81,9 @@ export default {
     value(val) {
       this.model = val;
     },
-    indeterminate(val) {
-      if (this.$checkbox) {
-        this.$checkbox.indeterminate = this.indeterminate;
+    disabled(val) {
+      if (this.$checkbox && val) {
+        this.$checkbox.indeterminate = val;
       }
     }
   },
@@ -99,7 +95,7 @@ export default {
   mounted() {
     if (!this.$checkbox && !this.cssOnly) {
       this.$checkbox = new MDCCheckbox(this.$refs.checkbox);
-      this.$checkbox.indeterminate = this.indeterminate;
+      this.$checkbox.indeterminate = this.disabled;
     }
   }
 };

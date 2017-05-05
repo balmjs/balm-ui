@@ -28,7 +28,7 @@
 
     <section>
       <h2>CSS Only</h2>
-      <ui-textfield id="css-only-textfield" placeholder="Name" label="Your name:"></ui-textfield>
+      <ui-textfield id="css-only-textfield" placeholder="Name" label="Your name:" cssOnly></ui-textfield>
     </section>
     <section>
       <h2>Preventing FOUC</h2>

@@ -1,0 +1,17 @@
+.mdc-theme--dark .mdc-checkbox__native-control:checked:not(:disabled) ~ .mdc-checkbox__background,
+.mdc-theme--dark .mdc-checkbox__native-control:indeterminate:not(:disabled) ~ .mdc-checkbox__background {
+  background-color: #E91E63;
+  border-color: #E91E63;
+}
+
+.mdc-theme--dark .mdc-checkbox__background::before {
+  background-color: #E91E63;
+}
+
+.mdc-theme--dark .mdc-checkbox__checkmark__path {
+  stroke: #262626 !important;
+}
+
+.mdc-theme--dark .mdc-checkbox__mixedmark {
+  background-color: #262626;
+}

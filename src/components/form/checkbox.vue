@@ -1,94 +1,106 @@
 <template>
-  <label :class="className">
-    <input type="checkbox"
-      class="mdl-checkbox__input"
-      :id="id"
-      :name="name"
-      :value="value"
-      :disabled="disabled"
-      v-model="currentValue"
-      @change="handleChange">
-    <span v-if="!hideLabel" class="mdl-checkbox__label">
+  <ui-form-field :alignEnd="alignEnd" :dark="dark">
+    <slot name="before"></slot>
+    <div ref="checkbox" :class="className">
+      <input type="checkbox"
+             class="mdc-checkbox__native-control"
+             :id="id"
+             :name="name"
+             :disabled="disabled"
+             v-model="model"
+             @change="handleChange">
+      <div class="mdc-checkbox__background">
+        <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+          <path class="mdc-checkbox__checkmark__path"
+                fill="none"
+                stroke="white"
+                d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+        </svg>
+        <div class="mdc-checkbox__mixedmark"></div>
+      </div>
+    </div>
+    <label :for="id">
       <slot>{{ label }}</slot>
-    </span>
-  </label>
+    </label>
+    <slot name="after"></slot>
+  </ui-form-field>
 </template>
 
 <script>
-// import '../../material-design-lite/checkbox/checkbox';
-// import '../../material-design-lite/ripple/ripple';
-import {isArray} from '../utils/helper';
+import {MDCCheckbox} from '../../material-components-web/checkbox';
+import UiFormField from './form-field';
 
-const EVENT_CHANGE = 'change';
+const UI_EVENT_CHANGE = 'change';
 
 export default {
   name: 'ui-checkbox',
+  components: {
+    UiFormField
+  },
   props: {
+    // attribute
     id: String,
     name: String,
-    label: String,
-    hideLabel: {
-      type: Boolean,
-      default: false
-    },
-    value: [String, Number, Boolean],
-    model: {
-      type: [Array, String, Number, Boolean],
-      required: true,
-      default: false
-    },
-    // Applies ripple click effect
-    effect: {
-      type: Boolean,
-      default: false
-    },
     disabled: {
       type: Boolean,
       default: false
     },
-    filled: {
+    value: [Boolean, Array],
+    // mdc
+    label: String,
+    indeterminate: {
+      type: Boolean,
+      default: false
+    },
+    cssOnly: {
+      type: Boolean,
+      default: false
+    },
+    // form field
+    alignEnd: {
+      type: Boolean,
+      default: false
+    },
+    dark: {
       type: Boolean,
       default: false
     }
   },
   data() {
     return {
-      currentValue: this.model
+      $checkbox: null,
+      model: this.value
     };
   },
   computed: {
     className() {
       return {
-        'mdl-checkbox': true,
-        'mdl-js-checkbox': true,
-        'mdl-js-ripple-effect': this.effect,
-        'mdl-checkbox--disabled': this.disabled,
-        'is-upgraded': true,
-        'is-checked': this.isChecked,
-        'is-filled': this.filled
+        'mdc-checkbox': true,
+        'mdc-checkbox--disabled': this.disabled,
+        'mdc-checkbox--theme-dark': this.dark
       };
-    },
-    isChecked() {
-      return isArray(this.currentValue)
-        ? this.currentValue.indexOf(this.value) > -1
-        : (this.currentValue === this.value || this.currentValue === true);
     }
   },
   watch: {
-    model(val) {
-      this.currentValue = val;
+    value(val) {
+      this.model = val;
+    },
+    indeterminate(val) {
+      if (this.$checkbox) {
+        this.$checkbox.indeterminate = this.indeterminate;
+      }
     }
   },
   methods: {
     handleChange() {
-      this.$emit(EVENT_CHANGE, this.currentValue);
+      this.$emit(UI_EVENT_CHANGE, this.model);
     }
   },
   mounted() {
-    // this.$ui.upgradeElement(this.$el, 'MaterialCheckbox');
-    // if (this.effect) {
-    //   this.$ui.upgradeElement(this.$el, 'MaterialRipple');
-    // }
+    if (!this.$checkbox && !this.cssOnly) {
+      this.$checkbox = new MDCCheckbox(this.$refs.checkbox);
+      this.$checkbox.indeterminate = this.indeterminate;
+    }
   }
 };
 </script>

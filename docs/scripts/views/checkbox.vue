@@ -1,30 +1,35 @@
 <template>
   <div class="docs-checkbox">
-    <div class="component-title">
-      <h3>Checkbox button</h3>
-    </div>
+    <h1>MDC Checkbox</h1>
+    <section>
+      <h2>CSS Only</h2>
+      <ui-checkbox id="basic-checkbox" cssOnly>
+        This is my checkbox
+      </ui-checkbox>
+    </section>
 
-    <div class="snippet-group">
-      <div class="snippet-demo" v-for="(num, index) in [1, 2, 3]">
-        <ui-checkbox :key="index" :value="num" :model="numberOptions" @change="onChangeNumber">Option {{ num }}</ui-checkbox>
-      </div>
-    </div>
-    <ui-button @click.native="onWatchNumber([1, 2])">choose 1,2</ui-button>
-    <ui-button @click.native="onWatchNumber([1, 3])">choose 1,3</ui-button>
-    <ui-button @click.native="onWatchNumber([2, 3])">choose 2,3</ui-button>
+    <section>
+      <h2>CSS Only - Disabled</h2>
+      <ui-checkbox id="basic-disabled-checkbox-label" cssOnly disabled>
+        This is my disabled checkbox
+      </ui-checkbox>
+    </section>
 
-    <ui-markdown :text="code[0]"></ui-markdown>
+    <section>
+      <h2>With Javascript</h2>
+      <ui-checkbox id="native-js-checkbox">
+        This is my checkbox
+      </ui-checkbox>
+    </section>
 
-    <div class="snippet-group">
-      <div class="snippet-demo" v-for="(str, index) in ['A', 'B', 'C']">
-        <ui-checkbox :key="index" :value="str" :model="stringOptions" @change="onChangeString">Option {{ str }}</ui-checkbox>
-      </div>
-    </div>
-    <ui-button @click.native="onWatchString(['A', 'B'])">choose A,B</ui-button>
-    <ui-button @click.native="onWatchString(['A', 'C'])">choose A,C</ui-button>
-    <ui-button @click.native="onWatchString(['B', 'C'])">choose B,C</ui-button>
+    <section class="mdc-theme--dark">
+      <h2>Dark Theme</h2>
+      <ui-checkbox id="checkbox-dark" dark>
+        This is my checkbox
+      </ui-checkbox>
+    </section>
 
-    <ui-apidoc name="checkbox"></ui-apidoc>
+    <!-- <ui-apidoc name="checkbox"></ui-apidoc> -->
   </div>
 </template>
 
@@ -35,26 +40,12 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      numberOptions: [],
-      stringOptions: []
     };
   },
   methods: {
-    onChangeNumber(val) {
-      this.numberOptions = val;
-    },
-    onChangeString(val) {
-      this.stringOptions = val;
-    },
-    onWatchNumber(val) {
-      this.numberOptions = val;
-    },
-    onWatchString(val) {
-      this.stringOptions = val;
-    }
   },
   created() {
-    this.showCode('checkbox');
+    // this.showCode('checkbox');
   }
 };
 </script>

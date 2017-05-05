@@ -13,12 +13,16 @@
       </section>
       <footer v-if="!noFooter" class="mdc-dialog__footer">
         <slot name="footer" :className="btnClassName">
-          <ui-button
-            :class="['mdc-dialog__footer__button', {'mdc-dialog__footer__button--cancel': notifyCancel}]"
-            @click.native="cancel">{{ CancelText }}</ui-button>
-          <ui-button
-            :class="['mdc-dialog__footer__button', {'mdc-dialog__footer__button--accept': notifyAccept}]"
-            @click.native="accept">{{ AcceptText }}</ui-button>
+          <ui-button :class="[
+                       'mdc-dialog__footer__button',
+                       {'mdc-dialog__footer__button--cancel': notifyCancel}
+                     ]"
+                     @click.native="cancel">{{ CancelText }}</ui-button>
+          <ui-button :class="[
+                       'mdc-dialog__footer__button',
+                       {'mdc-dialog__footer__button--accept': notifyAccept}
+                     ]"
+                     @click.native="accept">{{ AcceptText }}</ui-button>
         </slot>
       </footer>
     </div>

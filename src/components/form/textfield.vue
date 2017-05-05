@@ -2,9 +2,11 @@
   <ui-form-field :class="className.outer"
                  :alignEnd="alignEnd"
                  :dark="dark">
+    <slot name="before"></slot>
     <label :class="className.label" :for="id">
-      <slot name="label">{{ label }}</slot>
+      <slot>{{ label }}</slot>
     </label>
+    <!-- Textarea -->
     <template v-if="isMultiLine">
       <textarea :class="className.input"
                 :id="id"
@@ -26,6 +28,7 @@
                 @keydown="handleKeydown"
                 @keydown.enter="handleKeydownEnter"></textarea>
     </template>
+    <!-- Input -->
     <template v-else>
       <input :type="type"
              :class="className.input"
@@ -47,7 +50,7 @@
              @keydown="handleKeydown"
              @keydown.enter="handleKeydownEnter">
     </template>
-    <slot></slot>
+    <slot name="after"></slot>
   </ui-form-field>
 </template>
 

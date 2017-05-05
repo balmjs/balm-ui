@@ -23,7 +23,7 @@
       <ui-textfield required pattern=".{8,}" type="password" id="pw"
         helptext="pw-validation-msg" autocomplete="current-password"
         label="Choose password"></ui-textfield>
-      <ui-textfield-helptext id="pw-validation-msg" persistent validationMsg="Must be at least 8 characters long"></ui-textfield-helptext>
+      <ui-textfield-helptext id="pw-validation-msg" show text="Must be at least 8 characters long"></ui-textfield-helptext>
     </section>
 
     <section>

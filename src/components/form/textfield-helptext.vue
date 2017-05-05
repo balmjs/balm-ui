@@ -1,6 +1,6 @@
 <template>
   <p :class="className" :id="id">
-    <slot>{{ validationMsg }}</slot>
+    <slot>{{ text }}</slot>
   </p>
 </template>
 
@@ -9,18 +9,18 @@ export default {
   name: 'ui-textfield-helptext',
   props: {
     id: String,
-    persistent: {
+    show: {
       type: Boolean,
       default: false
     },
-    validationMsg: String
+    text: String
   },
   computed: {
     className() {
       return {
         'mdc-textfield-helptext': true,
-        'mdc-textfield-helptext--persistent': this.persistent || this.validationMsg,
-        'mdc-textfield-helptext--validation-msg': this.validationMsg
+        'mdc-textfield-helptext--persistent': this.show || this.text,
+        'mdc-textfield-helptext--validation-msg': this.text
       };
     }
   }

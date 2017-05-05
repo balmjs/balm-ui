@@ -103,7 +103,9 @@ export default {
     }
   },
   mounted() {
-    this.$menu = new MDCSimpleMenu(this.$el);
+    if (!this.$menu) {
+      this.$menu = new MDCSimpleMenu(this.$el);
+    }
     this.handlingSelection();
     if (this.open) {
       this.$menu.show();

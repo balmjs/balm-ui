@@ -123,7 +123,9 @@ export default {
     }
   },
   mounted() {
-    this.$dialog = new MDCDialog(this.$el);
+    if (!this.$dialog) {
+      this.$dialog = new MDCDialog(this.$el);
+    }
     if (this.open) {
       this.$dialog.show();
     }

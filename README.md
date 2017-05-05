@@ -99,10 +99,7 @@ Vue.use(BalmUI);
 - [x] Card
 - [ ] Checkbox
 - [x] Dialog
-- [ ] Drawer (temporary)
-- [ ] Drawer (persistent)
-- [ ] Drawer (permanent, above toolbar)
-- [ ] Drawer (permanent, below toolbar)
+- [ ] Drawer
 - [x] Elevation
 - [x] FAB
 - [ ] Grid List
@@ -111,12 +108,14 @@ Vue.use(BalmUI);
 - [ ] List
 - [x] Select
 - [x] Select2
-- [x] Menu (simple)
+- [x] Menu
 - [ ] Switch
 - [ ] Radio
 - [x] Ripple
 - [ ] Snackbar
-- [ ] Text Field
+- [x] Form Field
+- [x] Textfield
+- [x] Textfield Helptext
 - [ ] Theme
 - [ ] Toolbar
 - [x] Typography

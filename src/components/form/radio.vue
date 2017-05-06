@@ -1,32 +1,43 @@
 <template>
-  <label :class="className">
-    <input type="radio"
-      class="mdl-radio__button"
-      :id="id"
-      :name="name"
-      :value="value"
-      :disabled="disabled"
-      v-model="currentValue"
-      @change="handleChange">
-    <span v-if="!hideLabel" class="mdl-radio__label">
+  <ui-form-field :alignEnd="alignEnd" :dark="dark">
+    <slot name="before"></slot>
+    <div ref="radio" :class="className">
+      <input type="radio"
+             class="mdc-radio__native-control"
+             :id="id"
+             :name="name"
+             :disabled="disabled"
+             :value="value"
+             v-model="currentValue"
+             @change="handleChange">
+      <div class="mdc-radio__background">
+        <div class="mdc-radio__outer-circle"></div>
+        <div class="mdc-radio__inner-circle"></div>
+      </div>
+    </div>
+    <label :for="id">
       <slot>{{ label }}</slot>
-    </span>
-  </label>
+    </label>
+    <slot name="after"></slot>
+  </ui-form-field>
 </template>
 
 <script>
-// import '../../material-design-lite/radio/radio';
-// import '../../material-design-lite/ripple/ripple';
+import {MDCRadio} from '../../material-components-web/radio';
+import UiFormField from './form-field';
 
-const EVENT_CHANGE = 'change';
+const UI_EVENT_CHANGE = 'change';
 
 export default {
   name: 'ui-radio',
+  components: {
+    UiFormField
+  },
   props: {
+    // attribute
     id: String,
     name: String,
-    label: String,
-    hideLabel: {
+    disabled: {
       type: Boolean,
       default: false
     },
@@ -36,34 +47,34 @@ export default {
       required: true,
       default: false
     },
-    // Applies ripple click effect
-    effect: {
+    // mdc
+    label: String,
+    cssOnly: {
       type: Boolean,
       default: false
     },
-    disabled: {
+    // form field
+    alignEnd: {
+      type: Boolean,
+      default: false
+    },
+    dark: {
       type: Boolean,
       default: false
     }
   },
   data() {
     return {
+      $radio: null,
       currentValue: this.model
     };
   },
   computed: {
     className() {
       return {
-        'mdl-radio': true,
-        'mdl-js-radio': true,
-        'mdl-js-ripple-effect': this.effect,
-        'mdl-radio--disabled': this.disabled,
-        'is-upgraded': true,
-        'is-checked': this.isChecked
+        'mdc-radio': true,
+        'mdc-radio--disabled': this.disabled
       };
-    },
-    isChecked() {
-      return this.currentValue === this.value;
     }
   },
   watch: {
@@ -73,14 +84,14 @@ export default {
   },
   methods: {
     handleChange() {
-      this.$emit(EVENT_CHANGE, this.currentValue);
+      this.$emit(UI_EVENT_CHANGE, this.currentValue);
     }
   },
   mounted() {
-    // this.$ui.upgradeElement(this.$el, 'MaterialRadio');
-    // if (this.effect) {
-    //   this.$ui.upgradeElement(this.$el, 'MaterialRipple');
-    // }
+    if (!this.$radio && !this.cssOnly) {
+      this.$radio = new MDCRadio(this.$refs.radio);
+      this.$radio.checked = this.currentValue == this.value;
+    }
   }
 };
 </script>

@@ -19,7 +19,8 @@ var DMC_COMPONENTS = [
   'select',
   'textfield',
   'animation',
-  'checkbox'
+  'checkbox',
+  'radio'
 ];
 
 balm.config = {

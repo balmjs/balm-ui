@@ -1,0 +1,20 @@
+.mdc-theme--dark {
+  background-color: #303030;
+}
+
+.mdc-theme--dark .mdc-radio__native-control:checked:not(:disabled) ~ .mdc-radio__background .mdc-radio__outer-circle {
+  border-color: #e91e63;
+}
+
+.mdc-theme--dark .mdc-radio__native-control:checked:not(:disabled) ~ .mdc-radio__background .mdc-radio__inner-circle {
+  background-color: #e91e63;
+}
+
+.mdc-theme--dark .mdc-radio__background::before {
+  background-color: #e91e63;
+}
+
+.mdc-theme--dark .mdc-radio.mdc-ripple-upgraded::before,
+.mdc-theme--dark .mdc-radio.mdc-ripple-upgraded::after {
+  background-color: rgba(233, 31, 99, .2);
+}

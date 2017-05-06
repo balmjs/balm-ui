@@ -110,7 +110,7 @@ Vue.use(BalmUI);
 - [x] Select2
 - [x] Menu
 - [ ] Switch
-- [ ] Radio
+- [x] Radio
 - [x] Ripple
 - [ ] Snackbar
 - [x] Form Field

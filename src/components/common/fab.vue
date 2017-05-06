@@ -2,7 +2,7 @@
   <ui-button fab
              :class="className"
              :disabled="disabled"
-             :noRipple="noRipple"
+             :cssOnly="cssOnly"
              :dark="dark">
     <template v-if="materialIcon">
       <span class="mdc-fab__icon">
@@ -31,7 +31,7 @@ export default {
       default: false
     },
     // mdc
-    noRipple: {
+    cssOnly: {
       type: Boolean,
       default: false
     },

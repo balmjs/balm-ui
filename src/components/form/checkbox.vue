@@ -54,11 +54,11 @@ export default {
       default: false
     },
     // mdc
-    label: String,
     cssOnly: {
       type: Boolean,
       default: false
     },
+    label: String,
     // form field
     alignEnd: {
       type: Boolean,

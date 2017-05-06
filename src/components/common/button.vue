@@ -20,7 +20,7 @@ export default {
       default: false
     },
     // mdc
-    noRipple: {
+    cssOnly: {
       type: Boolean,
       default: false
     },
@@ -69,13 +69,13 @@ export default {
         'mdc-button--compact': this.compact,
         'mdc-button--primary': this.primary,
         'mdc-button--accent': this.accent,
-        'mdc-ripple': !this.noRipple,
+        'mdc-ripple': !this.cssOnly,
         'mdc-button--theme-dark': this.dark
       };
     }
   },
   mounted() {
-    if (!this.noRipple) {
+    if (!this.cssOnly) {
       MDCRipple.attachTo(this.$el);
     }
   }

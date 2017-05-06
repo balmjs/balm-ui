@@ -107,6 +107,10 @@ export default {
     },
     // attributes: Object, // TODO
     // mdc
+    cssOnly: {
+      type: Boolean,
+      default: false
+    },
     label: String,
     floatAbove: {
       type: Boolean,
@@ -117,10 +121,6 @@ export default {
       default: false
     },
     dense: {
-      type: Boolean,
-      default: false
-    },
-    cssOnly: {
       type: Boolean,
       default: false
     },

@@ -7,7 +7,8 @@
              :id="id"
              :name="name"
              :disabled="disabled"
-             v-model="model"
+             :value="isMultiple ? value : false"
+             v-model="currentValue"
              @change="handleChange">
       <div class="mdc-checkbox__background">
         <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
@@ -29,6 +30,7 @@
 <script>
 import {MDCCheckbox} from '../../material-components-web/checkbox';
 import UiFormField from './form-field';
+import {isArray} from '../utils/helper';
 
 const UI_EVENT_CHANGE = 'change';
 
@@ -45,7 +47,12 @@ export default {
       type: Boolean,
       default: false
     },
-    value: [Boolean, Array],
+    value: [String, Number, Boolean],
+    model: {
+      type: [Array, String, Number, Boolean],
+      required: true,
+      default: false
+    },
     // mdc
     label: String,
     cssOnly: {
@@ -65,7 +72,7 @@ export default {
   data() {
     return {
       $checkbox: null,
-      model: this.value
+      currentValue: this.model
     };
   },
   computed: {
@@ -75,11 +82,14 @@ export default {
         'mdc-checkbox--disabled': this.disabled,
         'mdc-checkbox--theme-dark': this.dark
       };
+    },
+    isMultiple() {
+      return isArray(this.currentValue);
     }
   },
   watch: {
-    value(val) {
-      this.model = val;
+    model(val) {
+      this.currentValue = val;
     },
     disabled(val) {
       if (this.$checkbox && val) {
@@ -89,7 +99,7 @@ export default {
   },
   methods: {
     handleChange() {
-      this.$emit(UI_EVENT_CHANGE, this.model);
+      this.$emit(UI_EVENT_CHANGE, this.currentValue);
     }
   },
   mounted() {

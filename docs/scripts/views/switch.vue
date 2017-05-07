@@ -1,17 +1,27 @@
 <template>
   <div class="demo-switch">
-    <div class="component-title">
-      <h3>Switch</h3>
-    </div>
+    <h1>MDC Switch - CSS Only</h1>
 
-    <div class="snippet-group">
-      <div class="snippet-demo">
-        <ui-switch :model="open" @change="onSwitchChange">{{ open ? 'On' : 'Off' }}</ui-switch>
-      </div>
-    </div>
-    <ui-markdown :text="code[0]"></ui-markdown>
+    <section>
+      <h2>Switch on Light Theme</h2>
+      <ui-switch id="basic-switch" :model="value1" @change="onChange('value1', $event)">off/on</ui-switch>
+    </section>
+    <section>
+      <h2>Switch on Light Theme - Disabled</h2>
+      <ui-switch disabled id="basic-switch--disabled">off/on</ui-switch>
+    </section>
 
-    <ui-apidoc name="switch"></ui-apidoc>
+    <section class="mdc-theme--dark">
+      <h2>Switch on Dark Theme</h2>
+      <ui-switch id="basic-switch--dark">off/on</ui-switch>
+    </section>
+
+    <section class="mdc-theme--dark">
+      <h2>Switch on Dark Theme - Disabled</h2>
+      <ui-switch disabled id="basic-switch--dark--disabled">off/on</ui-switch>
+    </section>
+
+    <!-- <ui-apidoc name="switch"></ui-apidoc> -->
   </div>
 </template>
 
@@ -22,16 +32,16 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      open: true
+      value1: false
     };
   },
   methods: {
-    onSwitchChange(val) {
-      this.open = val;
+    onChange(field, value) {
+      this[field] = value;
     }
   },
   created() {
-    this.showCode('switch');
+    // this.showCode('switch');
   }
 };
 </script>

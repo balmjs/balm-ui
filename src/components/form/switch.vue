@@ -1,42 +1,47 @@
 <template>
-  <label :class="className">
-    <input type="checkbox"
-      class="mdl-switch__input"
-      :id="id"
-      :name="name"
-      :value="value"
-      :disabled="disabled"
-      v-model="currentValue"
-      @change="handleChange">
-    <span class="mdl-switch__label">
+  <ui-form-field :alignEnd="alignEnd" :dark="dark">
+    <slot name="before"></slot>
+    <div :class="className">
+      <input type="checkbox"
+             class="mdc-switch__native-control"
+             :id="id"
+             :name="name"
+             :disabled="disabled"
+             v-model="currentValue"
+             @change="handleChange">
+      <div class="mdc-switch__background">
+        <div class="mdc-switch__knob"></div>
+      </div>
+    </div>
+    <label class="mdc-switch-label" :for="id">
       <slot>{{ label }}</slot>
-    </span>
-  </label>
+    </label>
+    <slot name="after"></slot>
+  </ui-form-field>
 </template>
 
 <script>
-// import '../../material-design-lite/switch/switch';
-// import '../../material-design-lite/ripple/ripple';
-
-const EVENT_CHANGE = 'change';
+const UI_EVENT_CHANGE = 'change';
 
 export default {
   name: 'ui-switch',
   props: {
+    // attribute
     id: String,
     name: String,
-    label: String,
-    value: Boolean,
-    model: {
-      type: Boolean,
-      required: true
-    },
-    // Applies ripple click effect
-    effect: {
+    disabled: {
       type: Boolean,
       default: false
     },
-    disabled: {
+    model: [Boolean, Number, String],
+    // mdc
+    label: String,
+    // form field
+    alignEnd: {
+      type: Boolean,
+      default: false
+    },
+    dark: {
       type: Boolean,
       default: false
     }
@@ -49,16 +54,9 @@ export default {
   computed: {
     className() {
       return {
-        'mdl-switch': true,
-        'mdl-js-switch': true,
-        'mdl-js-ripple-effect': this.effect,
-        'mdl-switch--disabled': this.disabled,
-        'is-upgraded': true,
-        'is-checked': this.isChecked
+        'mdc-switch': true,
+        'mdc-switch--disabled': this.disabled
       };
-    },
-    isChecked() {
-      return this.currentValue === this.value || this.currentValue === true;
     }
   },
   watch: {
@@ -68,14 +66,8 @@ export default {
   },
   methods: {
     handleChange() {
-      this.$emit(EVENT_CHANGE, this.currentValue);
+      this.$emit(UI_EVENT_CHANGE, this.currentValue);
     }
-  },
-  mounted() {
-    // this.$ui.upgradeElement(this.$el, 'MaterialSwitch');
-    // if (this.effect) {
-    //   this.$ui.upgradeElement(this.$el, 'MaterialRipple');
-    // }
   }
 };
 </script>

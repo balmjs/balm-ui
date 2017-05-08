@@ -1,31 +1,28 @@
 <template>
   <div class="demo-snackbar">
-    <div class="component-title">
-      <h3>Snackbar</h3>
-      <p>Transient popup notifications.</p>
-    </div>
+    <h1>MDC Snackbar</h1>
+    <section>
+      <h2>Basic Example</h2>
+      <div>
+        <ui-checkbox id="multiline" :model="multiline" @change="onChange('multiline', $event)">Multiline</ui-checkbox><br>
+        <ui-checkbox id="action-on-bottom" :model="actionOnBottom" @change="onChange('actionOnBottom', $event)">Action On Bottom</ui-checkbox><br>
+        <ui-textfield id="message" :model="message" @input="onChange('message', $event)">Message Text</ui-textfield><br>
+        <ui-textfield id="action" :model="actionText" @input="onChange('actionText', $event)">Action Text</ui-textfield><br>
 
-    <h4>Toast</h4>
-    <div class="snippet-demo">
-      <ui-button raised effect @click.native="show('toast')">Show Toast</ui-button>
-      <ui-snackbar :active="toast.active" :message="toast.message" @done="hide('toast')"></ui-snackbar>
-    </div>
-    <ui-markdown :text="code[0]"></ui-markdown>
+        <ui-button @click.native="show">Show</ui-button>
 
-    <h4>snackbar</h4>
-    <div class="snippet-demo">
-      <ui-button raised effect @click.native="show('snackbar')">Show Snackbar</ui-button>
-      <ui-snackbar :type="1"
-        :active="snackbar.active"
-        :message="snackbar.message"
-        :timeout="3000"
-        :actionHandler="actionHandler"
-        actionText="Undo"
-        @done="hide('snackbar')"></ui-snackbar>
-    </div>
-    <ui-markdown :text="code[1]"></ui-markdown>
+        <ui-snackbar
+          :active="active"
+          :message="message"
+          :actionHandler="actionHandler"
+          :multiline="multiline"
+          :actionOnBottom="actionOnBottom"
+          :actionText="actionText"
+          @done="onDone"></ui-snackbar>
+      </div>
+    </section>
 
-    <ui-apidoc name="snackbar"></ui-apidoc>
+    <!-- <ui-apidoc name="snackbar"></ui-apidoc> -->
   </div>
 </template>
 
@@ -36,30 +33,29 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      toast: {
-        active: false,
-        message: 'Hello Toast'
-      },
-      snackbar: {
-        active: false,
-        message: 'Hello Snackbar'
-      }
+      active: false,
+      message: 'Hello Snackbar',
+      actionText: '',
+      multiline: false,
+      actionOnBottom: false
     };
   },
   methods: {
-    show(type) {
-      this[type].active = true;
-      this.snackbar.message = new Date().toString();
+    onChange(field, value) {
+      this[field] = value;
     },
-    hide(type) {
-      this[type].active = false;
+    show(type) {
+      this.active = true;
+    },
+    onDone() {
+      this.active = false;
     },
     actionHandler() {
-      this.snackbar.active = false;
+      console.log('undo');
     }
   },
   created() {
-    this.showCode('snackbar', 2);
+    // this.showCode('snackbar', 2);
   }
 };
 </script>

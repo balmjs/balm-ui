@@ -1,42 +1,40 @@
 <template>
-  <label :class="className">
-    <input type="checkbox"
-      class="mdl-icon-toggle__input"
-      :id="id"
-      :name="name"
-      :value="value"
-      :disabled="disabled"
-      v-model="currentValue"
-      @change="handleChange">
-    <span class="mdl-icon-toggle__label">
-      <slot :className="iconClassName">
-        <i :class="iconClassName">icon</i>
-      </slot>
-    </span>
-  </label>
+  <span :class="className"
+        role="button"
+        tabindex="0"
+        :aria-pressed="model"
+        :aria-label="label"
+        :aria-disabled="disabled"
+        :data-icon-inner-selector="iconInnerSelector"
+        :data-toggle-on="toggleOn"
+        :data-toggle-off="toggleOff">
+    <slot></slot>
+  </span>
 </template>
 
 <script>
-// import '../../material-design-lite/icon-toggle/icon-toggle';
-// import '../../material-design-lite/ripple/ripple';
-import {isArray} from '../utils/helper';
+import {MDCIconToggle} from '../../material-components-web/icon-toggle';
 
-const CLASSNAME_ICON = 'material-icons';
-const EVENT_CHANGE = 'change';
+const DMC_EVENT_CHANGE = 'MDCIconToggle:change';
+const UI_EVENT_CHANGE = 'change';
 
 export default {
   name: 'ui-icon-toggle',
   props: {
-    id: String,
-    name: String,
-    value: [String, Number, Boolean],
-    model: {
-      type: [Array, String, Number, Boolean],
-      required: true,
+    // mdc
+    label: String,
+    icon: String,
+    on: Object,
+    off: Object,
+    value: {
+      type: [Boolean, Number, String],
       default: false
     },
-    // Applies ripple click effect
-    effect: {
+    primary: {
+      type: Boolean,
+      default: false
+    },
+    accent: {
       type: Boolean,
       default: false
     },
@@ -47,42 +45,59 @@ export default {
   },
   data() {
     return {
-      currentValue: isArray(this.model) ? this.model : [this.model],
-      iconClassName: CLASSNAME_ICON
+      $iconToggle: null,
+      model: this.value
     };
   },
   computed: {
     className() {
       return {
-        'mdl-icon-toggle': true,
-        'mdl-js-icon-toggle': true,
-        'mdl-js-ripple-effect': this.effect,
-        'mdl-icon-toggle--disabled': this.disabled,
-        'is-upgraded': true,
-        'is-checked': this.isChecked
+        'material-icons': !this.icon,
+        'mdc-icon-toggle': true,
+        'mdc-icon-toggle--primary': this.primary,
+        'mdc-icon-toggle--accent': this.accent,
+        'mdc-icon-toggle--disabled': this.disabled
       };
     },
-    isChecked() {
-      return isArray(this.currentValue)
-        ? this.currentValue.indexOf(this.value) > -1
-        : (this.currentValue === this.value || this.currentValue === true);
-    }
-  },
-  watch: {
-    model(val) {
-      this.currentValue = val;
+    iconInnerSelector() {
+      return this.icon ? `.${this.icon}` : false;
+    },
+    toggleOn() {
+      return JSON.stringify(this.on);
+    },
+    toggleOff() {
+      return JSON.stringify(this.off);
     }
   },
   methods: {
-    handleChange() {
-      this.$emit(EVENT_CHANGE, this.currentValue);
+    updateState(key, value) {
+      if (this.$iconToggle) {
+        this.$iconToggle[key] = value;
+      }
+    }
+  },
+  watch: {
+    value(val) {
+      if (!this.disabled) {
+        this.model = val;
+        this.updateState('on', val);
+      }
+    },
+    disabled(val) {
+      this.updateState('disabled', val);
     }
   },
   mounted() {
-    // this.$ui.upgradeElement(this.$el, 'MaterialIconToggle');
-    // if (this.effect) {
-    //   this.$ui.upgradeElement(this.$el, 'MaterialRipple');
-    // }
+    if (!this.$iconToggle) {
+      this.$iconToggle = new MDCIconToggle(this.$el);
+
+      this.$iconToggle.listen(DMC_EVENT_CHANGE, ({detail}) => {
+        this.$emit(UI_EVENT_CHANGE, detail.isOn);
+      });
+
+      this.updateState('on', this.model);
+      this.updateState('disabled', this.disabled);
+    }
   }
 };
 </script>

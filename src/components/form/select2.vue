@@ -95,8 +95,7 @@ export default {
     }
   },
   methods: {
-    changeHandler(evt) {
-      let detail = evt.detail;
+    changeHandler({detail}) {
       if (this.options[detail.selectedIndex]) {
         this.selectedOption = this.options[detail.selectedIndex];
         this.$emit(UI_EVENT_CHANGE, this.selectedOption[this.optionKey]);

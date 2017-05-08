@@ -1,0 +1,59 @@
+.mdc-theme--dark {
+  background: #303030;
+}
+
+section.mdc-theme--dark:not(.demo-color-combo) {
+  padding-bottom: 1rem;
+}
+
+#demo-color-combos {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.demo-wrapper {
+  margin-left: 1rem;
+}
+
+.demo-color-combo {
+  width: 250px;
+  padding: 1rem;
+  border-radius: 4px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+}
+
+.demo-color-combo > p {
+  margin: 0;
+}
+
+#light-on-bg {
+  background-color: #3e82f7;
+}
+
+#light-on-bg .mdc-icon-toggle {
+  color: white;
+}
+
+#light-on-bg .mdc-icon-toggle.mdc-ripple-upgraded::before,
+#light-on-bg .mdc-icon-toggle.mdc-ripple-upgraded::after {
+  background-color: rgba(255, 255, 255, .3);
+}
+
+#dark-on-bg {
+  background-color: #00bcd6;
+}
+
+#custom-on-dark .mdc-icon-toggle {
+  color: #de442c;
+}
+
+#custom-on-dark .mdc-icon-toggle.mdc-ripple-upgraded::before,
+#custom-on-dark .mdc-icon-toggle.mdc-ripple-upgraded::after {
+  /* #de442c - opacity .16 */
+  background-color: rgba(222, 68, 44, .26);
+}

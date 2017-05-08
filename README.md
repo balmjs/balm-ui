@@ -103,13 +103,13 @@ Vue.use(BalmUI);
 - [x] Elevation
 - [x] FAB
 - [ ] Grid List
-- [ ] Icon Toggle
+- [x] Icon Toggle
 - [x] Layout grid
 - [ ] List
 - [x] Select
 - [x] Select2
 - [x] Menu
-- [ ] Switch
+- [x] Switch
 - [x] Radio
 - [x] Ripple
 - [ ] Snackbar

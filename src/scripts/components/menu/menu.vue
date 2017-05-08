@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import {MDCSimpleMenu} from '../../../material-components-web/menu';
-import {isString} from '../../utils/helper';
+import {MDCSimpleMenu} from '../../material-components-web/menu';
+import {isString} from '../../helpers';
 import UiMenuItem from './menuitem';
 import UiSeparator from './separator';
 

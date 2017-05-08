@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import {MDCRipple} from '../../material-components-web/ripple';
+import {MDCRipple} from '../material-components-web/ripple';
 
 export default {
   name: 'ui-button',

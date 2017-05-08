@@ -8,7 +8,7 @@ var DMC_SOURCE = {
   icon: './node_modules/material-design-icons'
 };
 var DEV_SOURCE = {
-  material: './src/material-components-web',
+  material: './src/scripts/material-components-web',
   font: './src/fonts'
 };
 var DMC_COMPONENTS = [
@@ -21,7 +21,8 @@ var DMC_COMPONENTS = [
   'animation',
   'checkbox',
   'radio',
-  'icon-toggle'
+  'icon-toggle',
+  'snackbar'
 ];
 
 balm.config = {

@@ -1,35 +1,26 @@
 /**
  * Layout
  */
-import UiLayout from './components/layout/layout';
-import UiNavigation from './components/layout/navigation';
-import UiGrid from './components/layout/grid/grid';
-import UiCell from './components/layout/grid/cell';
-import UiTabs from './components/layout/tabs/tabs';
-import UiPanel from './components/layout/tabs/panel';
-import UiFooter from './components/layout/footer/footer';
-import UiMiniFooter from './components/layout/footer/mini-footer';
+import UiLayout from './scripts/components/layout/layout';
+import UiGrid from './scripts/components/grid/grid';
+import UiCell from './scripts/components/grid/cell';
 /**
  * Common
  */
-import UiBadge from './components/common/badge';
-import UiButton from './components/common/button';
-import UiFab from './components/common/fab';
-import UiCard from './components/common/card/card';
-import UiCardPrimary from './components/common/card/card-primary';
-import UiCardMedia from './components/common/card/card-media';
-import UiCardMediaItem from './components/common/card/card-media-item';
-import UiCardText from './components/common/card/card-text';
-import UiCardActions from './components/common/card/card-actions';
-import UiCardBlock from './components/common/card/card-block';
-import UiChip from './components/common/chip';
-import UiDivider from './components/common/divider';
-import UiLoading from './components/common/loading';
-import UiMenuAnchor from './components/common/menu/menu-anchor';
-import UiMenu from './components/common/menu/menu';
-import UiMenuItem from './components/common/menu/menuitem';
-import UiSeparator from './components/common/menu/separator';
-import UiTooltip from './components/common/tooltip';
+import UiBadge from './scripts/components/common/badge';
+import UiButton from './scripts/components/button';
+import UiFab from './scripts/components/fab';
+import UiCard from './scripts/components/card/card';
+import UiCardPrimary from './scripts/components/card/card-primary';
+import UiCardMedia from './scripts/components/card/card-media';
+import UiCardMediaItem from './scripts/components/card/card-media-item';
+import UiCardText from './scripts/components/card/card-text';
+import UiCardActions from './scripts/components/card/card-actions';
+import UiCardBlock from './scripts/components/card/card-block';
+import UiMenuAnchor from './scripts/components/menu/menu-anchor';
+import UiMenu from './scripts/components/menu/menu';
+import UiMenuItem from './scripts/components/menu/menuitem';
+import UiSeparator from './scripts/components/menu/separator';
 /**
  * Form
  */
@@ -40,37 +31,26 @@ import UiCheckbox from './components/form/checkbox';
 import UiRadio from './components/form/radio';
 import UiIconToggle from './components/form/icon-toggle';
 import UiSwitch from './components/form/switch';
-import UiSlider from './components/form/slider';
 import UiSelect from './components/form/select';
 import UiSelect2 from './components/form/select2';
-import UiAutocomplete from './components/form/autocomplete';
-import UiDatepicker from './components/form/datepicker';
-import UiFileupload from './components/form/fileupload';
 /**
  * Data
  */
-import UiList from './components/data/list/list';
-import UiItem from './components/data/list/item';
-import UiTable from './components/data/table';
-import UiPagination from './components/data/pagination';
+// import UiList from './components/data/list/list';
+// import UiItem from './components/data/list/item';
+// import UiTable from './components/data/table';
+// import UiPagination from './components/data/pagination';
 /**
- * Popup
+ * Dialog
  */
 import UiDialog from './components/dialog/dialog';
-import UiConfirm from './components/popup/confirm';
-import UiAlert from './components/popup/alert';
-import UiSnackbar from './components/popup/snackbar';
+import UiSnackbar from './components/dialog/snackbar';
 
 const BalmUI = {
   // Layout
   UiLayout,
-  UiNavigation,
   UiGrid,
   UiCell,
-  UiTabs,
-  UiPanel,
-  UiFooter,
-  UiMiniFooter,
   // Common
   UiBadge,
   UiButton,
@@ -82,14 +62,10 @@ const BalmUI = {
   UiCardText,
   UiCardActions,
   UiCardBlock,
-  UiChip,
-  UiDivider,
-  UiLoading,
   UiMenuAnchor,
   UiMenu,
   UiMenuItem,
   UiSeparator,
-  UiTooltip,
   // Form
   UiFormField,
   UiTextfield,
@@ -98,21 +74,15 @@ const BalmUI = {
   UiRadio,
   UiIconToggle,
   UiSwitch,
-  UiSlider,
   UiSelect,
   UiSelect2,
-  UiAutocomplete,
-  UiDatepicker,
-  UiFileupload,
   // Data
-  UiList,
-  UiItem,
-  UiTable,
-  UiPagination,
+  // UiList,
+  // UiItem,
+  // UiTable,
+  // UiPagination,
   // Popup
   UiDialog,
-  UiConfirm,
-  UiAlert,
   UiSnackbar,
   // Register
   install(Vue) {

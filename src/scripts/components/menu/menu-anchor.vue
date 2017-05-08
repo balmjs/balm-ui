@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import {isString} from '../../utils/helper';
+import {isString} from '../../helpers';
 
 const POSITIONS = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
 

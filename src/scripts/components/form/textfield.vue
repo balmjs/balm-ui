@@ -20,7 +20,7 @@
                 :required="required"
                 :rows="rows"
                 :cols="cols"
-                :v-model="model"
+                :v-model="currentValue"
                 :aria-controls="helptext"
                 @focus="handleFocus"
                 @blur="handleBlur"
@@ -42,7 +42,7 @@
              :placeholder="placeholder"
              :readonly="readonly"
              :required="required"
-             :value="model"
+             :value="currentValue"
              :aria-controls="helptext"
              @focus="handleFocus"
              @blur="handleBlur"
@@ -89,7 +89,7 @@ export default {
       type: Boolean,
       default: false
     },
-    value: String,
+    model: String,
     // input attribute
     type: {
       type: String,
@@ -139,7 +139,7 @@ export default {
   data() {
     return {
       $textfield: null,
-      model: this.value
+      currentValue: this.model
     };
   },
   computed: {
@@ -157,7 +157,7 @@ export default {
         },
         label: {
           'mdc-textfield__label': true,
-          'mdc-textfield__label--float-above': this.floatAbove && this.model
+          'mdc-textfield__label--float-above': this.floatAbove && this.currentValue
         },
         input: {
           'mdc-textfield__input': true
@@ -166,8 +166,8 @@ export default {
     }
   },
   watch: {
-    value(val) {
-      this.model = val;
+    model(val) {
+      this.currentValue = val;
     }
   },
   methods: {

@@ -6,44 +6,44 @@
       <section id="demo-wrapper">
         <ui-select2
           :options="provinces"
-          :selected="formData.province"
+          :model="formData.province"
           optionKey="key" optionValue="value"
           placeholder="请选择"
           @change="onSelectChange('province', $event, changeCity)"></ui-select2>
 
         <ui-select2
           :options="cities"
-          :selected="formData.city"
+          :model="formData.city"
           optionKey="key" optionValue="value"
           @change="onSelectChange('city', $event)"></ui-select2>
 
         <!-- <ui-select
           :options="provinces"
-          :selected="formData.province"
+          :model="formData.province"
           optionKey="key" optionValue="value"
           @change="onSelectChange('province', $event, changeCity)"></ui-select>
 
         <ui-select
           :options="cities"
-          :selected="formData.city"
+          :model="formData.city"
           optionKey="key" optionValue="value"
           @change="onSelectChange('city', $event)"></ui-select>
 
         <ui-select multiple style="height:100px"
           :options="options"
-          :selected="formData.multipleSelected"
+          :model="formData.multipleSelected"
           optionKey="key" optionValue="value"
           @change="onSelectChange('multipleSelected', $event)"></ui-select>
 
         <ui-select group
           :options="groupOptions"
-          :selected="formData.groupSelected"
+          :model="formData.groupSelected"
           optionKey="key" optionValue="value"
           @change="onSelectChange('groupSelected', $event)"></ui-select>
 
         <ui-select multiple group style="height:300px" dark
           :options="groupOptions"
-          :selected="formData.selected"
+          :model="formData.selected"
           optionKey="key" optionValue="value"
           @change="onSelectChange('selected', $event)"></ui-select> -->
       </section>

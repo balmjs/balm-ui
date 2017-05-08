@@ -2,7 +2,7 @@
   <span :class="className"
         role="button"
         tabindex="0"
-        :aria-pressed="model"
+        :aria-pressed="currentValue"
         :aria-label="label"
         :aria-disabled="disabled"
         :data-icon-inner-selector="iconInnerSelector"
@@ -26,7 +26,7 @@ export default {
     icon: String,
     on: Object,
     off: Object,
-    value: {
+    model: {
       type: [Boolean, Number, String],
       default: false
     },
@@ -46,7 +46,7 @@ export default {
   data() {
     return {
       $iconToggle: null,
-      model: this.value
+      currentValue: this.model
     };
   },
   computed: {
@@ -77,9 +77,9 @@ export default {
     }
   },
   watch: {
-    value(val) {
+    model(val) {
       if (!this.disabled) {
-        this.model = val;
+        this.currentValue = val;
         this.updateState('on', val);
       }
     },
@@ -95,7 +95,7 @@ export default {
         this.$emit(UI_EVENT_CHANGE, detail.isOn);
       });
 
-      this.updateState('on', this.model);
+      this.updateState('on', this.currentValue);
       this.updateState('disabled', this.disabled);
     }
   }

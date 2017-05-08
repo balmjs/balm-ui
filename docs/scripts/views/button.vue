@@ -18,16 +18,16 @@
 
       <fieldset>
         <legend>Buttons - CSS Only</legend>
-        <ui-button noRipple>Default</ui-button>
-        <ui-button noRipple raised>Raised</ui-button>
-        <ui-button noRipple dense>Dense Default</ui-button>
-        <ui-button noRipple raised dense>Dense Raised</ui-button>
-        <ui-button noRipple compact>Compact</ui-button>
-        <ui-button noRipple raised compact>Compact Raised</ui-button>
-        <ui-button noRipple primary>Default with Primary</ui-button>
-        <ui-button noRipple raised primary>Raised with Primary</ui-button>
-        <ui-button noRipple accent>Default with Accent</ui-button>
-        <ui-button noRipple raised accent>Raised with Accent</ui-button>
+        <ui-button cssOnly>Default</ui-button>
+        <ui-button cssOnly raised>Raised</ui-button>
+        <ui-button cssOnly dense>Dense Default</ui-button>
+        <ui-button cssOnly raised dense>Dense Raised</ui-button>
+        <ui-button cssOnly compact>Compact</ui-button>
+        <ui-button cssOnly raised compact>Compact Raised</ui-button>
+        <ui-button cssOnly primary>Default with Primary</ui-button>
+        <ui-button cssOnly raised primary>Raised with Primary</ui-button>
+        <ui-button cssOnly accent>Default with Accent</ui-button>
+        <ui-button cssOnly raised accent>Raised with Accent</ui-button>
       </fieldset>
 
       <fieldset>
@@ -63,16 +63,16 @@
 
       <fieldset>
         <legend>Buttons - CSS Only</legend>
-        <ui-button noRipple>Default</ui-button>
-        <ui-button noRipple raised>Raised</ui-button>
-        <ui-button noRipple dense>Dense Default</ui-button>
-        <ui-button noRipple raised dense>Dense Raised</ui-button>
-        <ui-button noRipple compact>Compact</ui-button>
-        <ui-button noRipple raised compact>Compact Raised</ui-button>
-        <ui-button noRipple primary>Default with Primary</ui-button>
-        <ui-button noRipple raised primary>Raised with Primary</ui-button>
-        <ui-button noRipple accent>Default with Accent</ui-button>
-        <ui-button noRipple raised accent>Raised with Accent</ui-button>
+        <ui-button cssOnly>Default</ui-button>
+        <ui-button cssOnly raised>Raised</ui-button>
+        <ui-button cssOnly dense>Dense Default</ui-button>
+        <ui-button cssOnly raised dense>Dense Raised</ui-button>
+        <ui-button cssOnly compact>Compact</ui-button>
+        <ui-button cssOnly raised compact>Compact Raised</ui-button>
+        <ui-button cssOnly primary>Default with Primary</ui-button>
+        <ui-button cssOnly raised primary>Raised with Primary</ui-button>
+        <ui-button cssOnly accent>Default with Accent</ui-button>
+        <ui-button cssOnly raised accent>Raised with Accent</ui-button>
       </fieldset>
 
       <fieldset>

@@ -3,7 +3,7 @@
   <select :class="className"
           :disabled="disabled"
           :multiple="multiple"
-          v-model="model"
+          v-model="currentValue"
           @change="handleChange">
     <!-- Default value -->
     <option v-if="defaultValue"
@@ -55,7 +55,7 @@ export default {
       default: false
     },
     // mdc
-    selected: {
+    model: {
       required: true
     },
     options: {
@@ -85,7 +85,7 @@ export default {
   },
   data() {
     return {
-      model: this.selected
+      currentValue: this.model
     };
   },
   computed: {
@@ -99,13 +99,13 @@ export default {
     }
   },
   watch: {
-    selected(val) {
-      this.model = val;
+    model(val) {
+      this.currentValue = val;
     }
   },
   methods: {
     handleChange() {
-      this.$emit(UI_EVENT_CHANGE, this.model);
+      this.$emit(UI_EVENT_CHANGE, this.currentValue);
     },
     init() {
       if (!this.defaultValue && this.options.length) {
@@ -114,8 +114,8 @@ export default {
         if (this.group) {
           for (let options of this.options) {
             if (options.items && options.items.length) {
-              defaultOption = this.model
-                ? options.items.find(option => option[this.optionKey] == this.model) // `object` || `undefined`
+              defaultOption = this.currentValue
+                ? options.items.find(option => option[this.optionKey] == this.currentValue) // `object` || `undefined`
                 : options.items[0]; // `object`
             }
             if (isObject(defaultOption) && defaultOption.hasOwnProperty(this.optionKey)) {
@@ -123,8 +123,8 @@ export default {
             }
           }
         } else {
-          defaultOption = this.model
-            ? this.options.find(option => option[this.optionKey] == this.model)
+          defaultOption = this.currentValue
+            ? this.options.find(option => option[this.optionKey] == this.currentValue)
             : this.options[0];
         }
 

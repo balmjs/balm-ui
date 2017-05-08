@@ -37,7 +37,7 @@ export default {
       default: false
     },
     // mdc
-    selected: {
+    model: {
       required: true
     },
     options: {
@@ -70,7 +70,7 @@ export default {
   data() {
     return {
       $select: null,
-      model: this.selected,
+      currentValue: this.model,
       currentOptions: [],
       selectedOption: {}
     };
@@ -84,8 +84,8 @@ export default {
     }
   },
   watch: {
-    selected(val) {
-      this.model = val;
+    model(val) {
+      this.currentValue = val;
     },
     options(val) {
       this.currentOptions = this.init(val);
@@ -117,7 +117,7 @@ export default {
 
       for (let i = 0, len = currentOptions.length; i < len; i++) {
         let currentOption = currentOptions[i];
-        let selected = currentOption[this.optionKey] == this.model;
+        let selected = currentOption[this.optionKey] == this.currentValue;
 
         if (selected || i === 0) {
           selectedOption = currentOption;
@@ -154,7 +154,7 @@ export default {
       // default selected
       if (currentOptions.length) {
         // init selected
-        let needInit = !this.placeholder || (this.placeholder && this.model);
+        let needInit = !this.placeholder || (this.placeholder && this.currentValue);
         if (needInit) {
           this.initSelected(currentOptions);
         }

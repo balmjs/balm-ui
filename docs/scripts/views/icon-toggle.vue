@@ -5,7 +5,7 @@
       <h2>Using material-icons</h2>
       <div class="demo-wrapper">
         <ui-icon-toggle :label="icon1.off.label"
-          :value="icon1.value"
+          :model="icon1.value"
           :on="icon1.on"
           :off="icon1.off"
           @change="onChange('icon1', $event)">
@@ -19,7 +19,7 @@
       <h2>Using Font Awesome</h2>
       <div class="demo-wrapper">
         <ui-icon-toggle :label="icon2.on.label"
-          :value="icon2.value"
+          :model="icon2.value"
           icon="fa"
           :on="icon2.on"
           :off="icon2.off"
@@ -33,7 +33,7 @@
       <h2 class="mdc-theme--text-primary-on-dark">Dark Theme</h2>
       <div class="demo-wrapper">
         <ui-icon-toggle :label="icon1.off.label"
-          :value="icon1.value"
+          :model="icon1.value"
           :on="icon1.on"
           :off="icon1.off"
           @change="onChange('icon1', $event)">
@@ -46,7 +46,7 @@
       <div class="demo-wrapper">
         <ui-icon-toggle primary
           :label="icon1.off.label"
-          :value="icon1.value"
+          :model="icon1.value"
           :on="icon1.on"
           :off="icon1.off"
           @change="onChange('icon1', $event)">
@@ -59,7 +59,7 @@
       <div class="demo-wrapper">
         <ui-icon-toggle accent
           :label="icon1.off.label"
-          :value="icon1.value"
+          :model="icon1.value"
           :on="icon1.on"
           :off="icon1.off"
           @change="onChange('icon1', $event)">
@@ -72,7 +72,7 @@
       <div class="demo-wrapper">
         <ui-icon-toggle disabled
           :label="icon1.off.label"
-          :value="icon1.value"
+          :model="icon1.value"
           :on="icon1.on"
           :off="icon1.off"
           @change="onChange('icon1', $event)">
@@ -83,7 +83,7 @@
         <div class="demo-wrapper">
           <ui-icon-toggle disabled
             :label="icon1.off.label"
-            :value="icon1.value"
+            :model="icon1.value"
             :on="icon1.on"
             :off="icon1.off"
             @change="onChange('icon1', $event)">

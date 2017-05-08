@@ -12,10 +12,10 @@
 
       <fieldset>
         <legend>CSS Only FABs</legend>
-        <ui-fab noRipple icon="favorite_border"></ui-fab>
-        <ui-fab noRipple mini icon="favorite_border"></ui-fab>
-        <ui-fab noRipple plain icon="favorite_border"></ui-fab>
-        <ui-fab noRipple mini plain icon="favorite_border"></ui-fab>
+        <ui-fab cssOnly icon="favorite_border"></ui-fab>
+        <ui-fab cssOnly mini icon="favorite_border"></ui-fab>
+        <ui-fab cssOnly plain icon="favorite_border"></ui-fab>
+        <ui-fab cssOnly mini plain icon="favorite_border"></ui-fab>
       </fieldset>
 
       <fieldset>

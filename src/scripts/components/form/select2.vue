@@ -18,8 +18,8 @@
 
 <script>
 import {MDCSelect} from '../../material-components-web/select';
-import UiMenu from '../common/menu/menu';
-import UiMenuItem from '../common/menu/menuitem';
+import UiMenu from '../menu/menu';
+import UiMenuItem from '../menu/menuitem';
 
 const MDC_EVENT_CHANGE = 'MDCSelect:change';
 const UI_EVENT_CHANGE = 'change';

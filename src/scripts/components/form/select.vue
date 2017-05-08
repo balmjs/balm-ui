@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import {isObject} from '../utils/helper';
+import {isObject} from '../../helpers';
 
 const UI_EVENT_CHANGE = 'change';
 

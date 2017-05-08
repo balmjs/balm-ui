@@ -30,7 +30,7 @@
 <script>
 import {MDCCheckbox} from '../../material-components-web/checkbox';
 import UiFormField from './form-field';
-import {isArray} from '../utils/helper';
+import {isArray} from '../../helpers';
 
 const UI_EVENT_CHANGE = 'change';
 

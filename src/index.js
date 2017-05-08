@@ -24,15 +24,15 @@ import UiSeparator from './scripts/components/menu/separator';
 /**
  * Form
  */
-import UiFormField from './components/form/form-field';
-import UiTextfield from './components/form/textfield';
-import UiTextfieldHelptext from './components/form/textfield-helptext';
-import UiCheckbox from './components/form/checkbox';
-import UiRadio from './components/form/radio';
-import UiIconToggle from './components/form/icon-toggle';
-import UiSwitch from './components/form/switch';
-import UiSelect from './components/form/select';
-import UiSelect2 from './components/form/select2';
+import UiFormField from './scripts/components/form/form-field';
+import UiTextfield from './scripts/components/form/textfield';
+import UiTextfieldHelptext from './scripts/components/form/textfield-helptext';
+import UiCheckbox from './scripts/components/form/checkbox';
+import UiRadio from './scripts/components/form/radio';
+import UiIconToggle from './scripts/components/form/icon-toggle';
+import UiSwitch from './scripts/components/form/switch';
+import UiSelect from './scripts/components/form/select';
+import UiSelect2 from './scripts/components/form/select2';
 /**
  * Data
  */
@@ -43,8 +43,8 @@ import UiSelect2 from './components/form/select2';
 /**
  * Dialog
  */
-import UiDialog from './components/dialog/dialog';
-import UiSnackbar from './components/dialog/snackbar';
+import UiDialog from './scripts/components/dialog';
+import UiSnackbar from './scripts/components/snackbar';
 
 const BalmUI = {
   // Layout

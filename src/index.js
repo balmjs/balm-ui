@@ -38,8 +38,11 @@ import UiSelect2 from './scripts/components/form/select2';
 /**
  * Data
  */
-// import UiList from './components/data/list/list';
-// import UiItem from './components/data/list/item';
+import UiListGroup from './scripts/components/list/list-group';
+import UiList from './scripts/components/list/list';
+import UiListDivider from './scripts/components/list/list-divider';
+import UiItem from './scripts/components/list/item';
+import UiItemDivider from './scripts/components/list/item-divider';
 // import UiTable from './components/data/table';
 // import UiPagination from './components/data/pagination';
 /**
@@ -81,8 +84,11 @@ const BalmUI = {
   UiSelect,
   UiSelect2,
   // Data
-  // UiList,
-  // UiItem,
+  UiListGroup,
+  UiList,
+  UiListDivider,
+  UiItem,
+  UiItemDivider,
   // UiTable,
   // UiPagination,
   // Popup

@@ -1,0 +1,44 @@
+.mdc-toolbar-demo {
+  margin: 0px;
+}
+
+.demo-paragraph {
+  margin: 0px;
+  padding: 20px 28px;
+}
+
+.material-icons {
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0px 8px 0px 0px;
+  color: white;
+}
+
+[dir='rtl'] .material-icons {
+  padding-left: 8px;
+}
+
+@media (max-width: 599px) {
+  .demo-paragraph {
+    padding: 16px;
+  }
+}
+
+footer {
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  color: red;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+#my-flexible-header {
+  --mdc-toolbar-ratio-to-extend-flexible: 2;
+  background-color: rgb(255, 64, 129);
+}
+
+#my-flexible-header .mdc-toolbar__title {
+  font-size: 5rem;
+  transform: translateY(-30px);
+}

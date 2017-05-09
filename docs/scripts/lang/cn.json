@@ -17,6 +17,7 @@
     "tooltip": "文字提示",
     "divider": "分割线",
     "fab": "Fab",
+    "toolbar": "Toolbar",
     "form": "表单",
     "textfield": "文本框",
     "checkbox": "复选框",

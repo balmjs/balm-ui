@@ -22,7 +22,8 @@ var DMC_COMPONENTS = [
   'checkbox',
   'radio',
   'icon-toggle',
-  'snackbar'
+  'snackbar',
+  'toolbar'
 ];
 
 balm.config = {

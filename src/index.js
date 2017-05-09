@@ -4,6 +4,8 @@
 import UiLayout from './scripts/components/layout/layout';
 import UiGrid from './scripts/components/grid/grid';
 import UiCell from './scripts/components/grid/cell';
+import UiToolbar from './scripts/components/toolbar/toolbar';
+import UiToolbarSection from './scripts/components/toolbar/toolbar-section';
 /**
  * Common
  */
@@ -51,6 +53,8 @@ const BalmUI = {
   UiLayout,
   UiGrid,
   UiCell,
+  UiToolbar,
+  UiToolbarSection,
   // Common
   UiBadge,
   UiButton,

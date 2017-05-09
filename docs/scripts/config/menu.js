@@ -3,6 +3,7 @@ const COMPONENTS = {
     'layout',
     'grid',
     'tabs',
+    'toolbar'
     // 'footer'
   ],
   common: [

@@ -112,12 +112,12 @@ Vue.use(BalmUI);
 - [x] Switch
 - [x] Radio
 - [x] Ripple
-- [ ] Snackbar
+- [x] Snackbar
 - [x] Form Field
 - [x] Textfield
 - [x] Textfield Helptext
 - [ ] Theme
-- [ ] Toolbar
+- [x] Toolbar
 - [x] Typography
 
 

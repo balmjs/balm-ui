@@ -17,6 +17,7 @@
     "tooltip": "Tooltip",
     "divider": "Divider",
     "fab": "Fab",
+    "toolbar": "Toolbar",
     "form": "Form Components",
     "textfield": "Text Field",
     "checkbox": "Checkbox",

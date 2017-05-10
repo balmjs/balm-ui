@@ -105,7 +105,7 @@ Vue.use(BalmUI);
 - [ ] Grid List
 - [x] Icon Toggle
 - [x] Layout grid
-- [ ] List
+- [x] List
 - [x] Select
 - [x] Select2
 - [x] Menu

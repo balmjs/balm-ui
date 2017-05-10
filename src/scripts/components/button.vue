@@ -44,11 +44,6 @@ export default {
       type: Boolean,
       default: false
     },
-    // TODO
-    link: {
-      type: Boolean,
-      default: false
-    },
     // theme
     dark: {
       type: Boolean,

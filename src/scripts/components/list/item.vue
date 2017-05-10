@@ -1,27 +1,23 @@
 <template>
   <li class="mdc-list-item">
-    <slot name="before" :className="CLASSNAME_START_DETAIL"></slot>
+    <slot name="before" :className="cssClasses.start"></slot>
     <slot :className="textClassName"></slot>
-    <slot name="after" :className="CLASSNAME_END_DETAIL"></slot>
+    <slot name="after" :className="cssClasses.end"></slot>
   </li>
 </template>
 
 <script>
-const CLASSNAME_START_DETAIL = 'mdc-list-item__start-detail';
-const CLASSNAME_TEXT_PRIMARY = 'mdc-list-item__text';
-const CLASSNAME_TEXT_SECONDARY = 'mdc-list-item__text__secondary';
-const CLASSNAME_END_DETAIL = 'mdc-list-item__end-detail';
+import cssClasses from './constants';
 
 export default {
   name: 'ui-item',
   data() {
     return {
-      CLASSNAME_START_DETAIL,
+      cssClasses,
       textClassName: {
-        primary: CLASSNAME_TEXT_PRIMARY,
-        secondary: CLASSNAME_TEXT_SECONDARY
-      },
-      CLASSNAME_END_DETAIL
+        text: cssClasses.text,
+        subtext: cssClasses.subtext
+      }
     };
   }
 };

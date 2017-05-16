@@ -17,19 +17,23 @@ const COMPONENTS = [{
 }, {
   icon: 'side_navigation',
   name: 'Drawer',
-  description: 'Temporary'
+  description: 'Temporary',
+  url: 'temporary-drawer'
 }, {
   icon: 'side_navigation',
   name: 'Drawer',
-  description: 'Persistent'
+  description: 'Persistent',
+  url: 'persistent-drawer'
 }, {
   icon: 'side_navigation',
   name: 'Drawer',
-  description: 'Permanent drawer above toolbar'
+  description: 'Permanent drawer above toolbar',
+  url: 'permanent-drawer-above-toolbar'
 }, {
   icon: 'side_navigation',
   name: 'Drawer',
-  description: 'Permanent drawer below toolbar'
+  description: 'Permanent drawer below toolbar',
+  url: 'permanent-drawer-below-toolbar'
 }, {
   icon: 'shadow',
   name: 'Elevation',
@@ -37,19 +41,23 @@ const COMPONENTS = [{
 }, {
   icon: 'button',
   name: 'Floating action button',
-  description: 'The primary action in an application'
+  description: 'The primary action in an application',
+  url: 'fab'
 }, {
   icon: 'card',
   name: 'Grid list',
-  description: '2D grid layouts'
+  description: '2D grid layouts',
+  url: 'grid-list'
 }, {
   icon: 'component',
   name: 'Icon toggle',
-  description: 'Toggling icon states'
+  description: 'Toggling icon states',
+  url: 'icon-toggle'
 }, {
   icon: 'card',
   name: 'Layout grid',
-  description: 'Grid and gutter support'
+  description: 'Grid and gutter support',
+  url: 'grid'
 }, {
   icon: 'list',
   name: 'List',
@@ -57,7 +65,8 @@ const COMPONENTS = [{
 }, {
   icon: 'radio_button',
   name: 'Radio buttons',
-  description: 'Single selection controls'
+  description: 'Single selection controls',
+  url: 'radio'
 }, {
   icon: 'ripple',
   name: 'Ripple',
@@ -69,7 +78,8 @@ const COMPONENTS = [{
 }, {
   icon: 'menu',
   name: 'Simple Menu',
-  description: 'Pop over menus'
+  description: 'Pop over menus',
+  url: 'menu'
 }, {
   icon: 'toast',
   name: 'Snackbar',
@@ -106,7 +116,7 @@ for (let component of COMPONENTS) {
     icon: `ic_${component.icon}_24px.svg`,
     name: component.name,
     description: component.description,
-    url: component.name.toLowerCase()
+    url: component.url || component.name.toLowerCase()
   });
 }
 

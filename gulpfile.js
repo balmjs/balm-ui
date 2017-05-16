@@ -32,7 +32,7 @@ balm.config = {
   },
   styles: {
     ext: 'scss',
-    autoprefixer: ['> 1%', 'last 3 versions', 'not ie <= 8'],
+    autoprefixer: ['> 1%', 'last 2 versions', 'Firefox ESR'],
     includePaths: ['node_modules']
   },
   scripts: {

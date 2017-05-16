@@ -54,6 +54,10 @@ balm.config = {
     },
     eslint: true
   },
+  sprites: {
+    svg: ['icon'],
+    padding: 1
+  },
   useDefault: useDefault
 };
 

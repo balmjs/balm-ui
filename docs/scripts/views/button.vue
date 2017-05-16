@@ -1,9 +1,13 @@
 <template>
-  <div class="demo-button">
-    <h3>MDC WEB BUTTON</h3>
+  <div>
+    <section class="hero">
+      <ui-button>Flat</ui-button>
+      <ui-button raised primary>Raised</ui-button>
+    </section>
+
     <section>
       <fieldset>
-        <legend>Buttons</legend>
+        <legend class="mdc-typography--title">Buttons</legend>
         <ui-button>Default</ui-button>
         <ui-button raised>Raised</ui-button>
         <ui-button dense>Dense Default</ui-button>
@@ -17,7 +21,7 @@
       </fieldset>
 
       <fieldset>
-        <legend>Buttons - CSS Only</legend>
+        <legend class="mdc-typography--title">Buttons CSS Only</legend>
         <ui-button cssOnly>Default</ui-button>
         <ui-button cssOnly raised>Raised</ui-button>
         <ui-button cssOnly dense>Dense Default</ui-button>
@@ -31,7 +35,7 @@
       </fieldset>
 
       <fieldset>
-        <legend>Buttons - Disabled</legend>
+        <legend class="mdc-typography--title">Disabled</legend>
         <ui-button disabled>Default</ui-button>
         <ui-button disabled raised>Raised</ui-button>
         <ui-button disabled dense>Dense Default</ui-button>
@@ -45,10 +49,9 @@
       </fieldset>
     </section>
 
-    <h3>Dark theme</h3>
     <section class="mdc-theme--dark">
       <fieldset>
-        <legend>Buttons</legend>
+        <legend class="mdc-typography--title">Dark Theme - Buttons</legend>
         <ui-button>Default</ui-button>
         <ui-button raised>Raised</ui-button>
         <ui-button dense>Dense Default</ui-button>
@@ -62,7 +65,7 @@
       </fieldset>
 
       <fieldset>
-        <legend>Buttons - CSS Only</legend>
+        <legend class="mdc-typography--title">Dark Theme - Buttons CSS Only</legend>
         <ui-button cssOnly>Default</ui-button>
         <ui-button cssOnly raised>Raised</ui-button>
         <ui-button cssOnly dense>Dense Default</ui-button>
@@ -76,7 +79,7 @@
       </fieldset>
 
       <fieldset>
-        <legend>Buttons - Disabled</legend>
+        <legend class="mdc-typography--title">Dark Theme - Disabled</legend>
         <ui-button disabled>Default</ui-button>
         <ui-button disabled raised>Raised</ui-button>
         <ui-button disabled dense>Dense Default</ui-button>
@@ -104,3 +107,30 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+fieldset {
+  margin: 24px;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+fieldset .mdc-button {
+  margin: 16px;
+}
+.mdc-theme--dark fieldset {
+  background-color: #333;
+}
+.mdc-theme--dark fieldset legend {
+  color: #f0f0f0;
+}
+.hero button {
+  margin-left: 32px;
+  margin-right: 32px;
+}
+fieldset legend {
+  display: block;
+  padding: 16px;
+  padding-top: 64px;
+  padding-bottom: 24px;
+}
+</style>

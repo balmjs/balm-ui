@@ -1,20 +1,29 @@
-fieldset {
-  margin-bottom: 0.5rem;
-}
-
-fieldset .mdc-fab {
-  margin: 16px;
-}
-
-#demo-absolute-fab {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-}
-
-@media(min-width: 1024px) {
+.demo--fab {
+  fieldset {
+    margin-bottom: 0.5rem;
+  }
+  fieldset .mdc-fab {
+    margin: 16px;
+  }
   #demo-absolute-fab {
-    bottom: 3rem;
-    right: 5rem;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+  }
+  @media(min-width: 1024px) {
+    #demo-absolute-fab {
+      bottom: 3rem;
+      right: 5rem;
+    }
+  }
+  fieldset legend {
+    display: block;
+    padding: 16px;
+    padding-top: 64px;
+    padding-bottom: 24px;
+  }
+  .hero button {
+    margin-left: 32px;
+    margin-right: 32px;
   }
 }

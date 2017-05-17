@@ -1,6 +1,6 @@
 <template>
-  <div class="demo-body">
-    <ui-toolbar :fixed="true" contentSelector=".demo-main">
+  <div class="demo--drawer demo--temporary-drawer">
+    <ui-toolbar :fixed="true">
       <ui-toolbar-section align="start">
         <template slot="before">
           <ui-button link class="demo-menu material-icons" @click.native="openMenu">menu</ui-button>
@@ -42,7 +42,7 @@
       </ui-list-group>
     </ui-temporary-drawer>
 
-    <main class="demo-main mdc-toolbar-fixed-adjust">
+    <main class="demo-main">
       <h1 class="mdc-typography--display1">Temporary Drawer</h1>
       <p class="mdc-typography--body1">Click the menu icon above to open.</p>
     </main>
@@ -93,27 +93,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-body {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-/* A simple menu button. */
-.demo-menu {
-  background: none;
-  border: none;
-  width: 24px;
-  height: 24px;
-  padding: 0;
-  margin: 0;
-  margin-right: 24px;
-  color: #FFF;
-  box-sizing: border-box;
-}
-.demo-main {
-  padding-left: 16px;
-  overflow: auto;
-}
-</style>

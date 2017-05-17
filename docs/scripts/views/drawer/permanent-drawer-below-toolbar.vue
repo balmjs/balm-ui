@@ -1,5 +1,5 @@
 <template>
-  <div class="demo-body">
+  <div class="demo--drawer demo--permanent-drawer-below-toolbar">
     <ui-toolbar :fixed="true">
       <ui-toolbar-section align="start">
         <span class="catalog-title">Permanent Drawer Below Toolbar</span>
@@ -72,24 +72,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-/* Stack toolbar and content on top of each other. */
-.demo-body {
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  height: 100%;
-}
-/* Place drawer and main next to each other. */
-.demo-content {
-  display: flex;
-  height: 100%;
-  box-sizing: border-box;
-}
-.demo-main {
-  padding-left: 16px;
-}
-</style>

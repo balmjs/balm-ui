@@ -1,5 +1,5 @@
 <template>
-  <div class="demo-body">
+  <div class="demo--drawer demo--persistent-drawer">
     <!-- menuSelector=".demo-menu" -->
     <ui-persistent-drawer
       hasSpacer
@@ -94,39 +94,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-/* Place drawer and content side by side. */
-.demo-body {
-  display: flex;
-  flex-direction: row;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  height: 100%;
-  width: 100%;
-}
-/* A simple menu button. */
-.demo-menu {
-  background: none;
-  border: none;
-  width: 24px;
-  height: 24px;
-  padding: 0;
-  margin: 0;
-  margin-right: 24px;
-  color: #FFF;
-  box-sizing: border-box;
-}
-/* Stack toolbar and main on top of each other. */
-.demo-content {
-  display: inline-flex;
-  flex-direction: column;
-  flex-grow: 1;
-  height: 100%;
-  box-sizing: border-box;
-}
-.demo-main {
-  padding-left: 16px;
-}
-</style>

@@ -68,9 +68,13 @@ html,
   margin-right: 24px;
 }
 
-ul.catalog-list li a {
+.catalog-list .mdc-list-item {
   text-decoration: none;
-  color: #212121;
+  color: gray;
+  &.mdc-permanent-drawer--selected {
+    color: #212121;
+    background: rgba(0, 0, 0, 0.05);
+  }
 }
 
 .catalog-component-list-content {

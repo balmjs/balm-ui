@@ -11,7 +11,7 @@
         <slot name="spacer"></slot>
       </div>
       <div :class="['mdc-temporary-drawer__content', contentClass]">
-        <slot></slot>
+        <slot :className="navClassName"></slot>
       </div>
       <slot name="after"></slot>
     </nav>
@@ -22,6 +22,8 @@
 import {MDCTemporaryDrawer} from '../../material-components-web/drawer';
 import drawerMixin from '../../mixins/drawer';
 
+const CLASSNAME_ACTIVE = 'mdc-temporary-drawer--selected';
+const CLASSNAME_ITEM = 'mdc-list-item';
 const MDC_EVENT_OPEN = 'MDCTemporaryDrawer:open';
 const MDC_EVENT_CLOSE = 'MDCTemporaryDrawer:close';
 const UI_EVENT_OPEN = 'open';
@@ -30,6 +32,14 @@ const UI_EVENT_CLOSE = 'close';
 export default {
   name: 'ui-temporary-drawer',
   mixins: [drawerMixin],
+  data() {
+    return {
+      navClassName: {
+        active: CLASSNAME_ACTIVE,
+        item: CLASSNAME_ITEM
+      }
+    };
+  },
   mounted() {
     if (!this.$drawer) {
       this.$drawer = new MDCTemporaryDrawer(this.$el);

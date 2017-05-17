@@ -1,14 +1,13 @@
 /**
  * Layout
  */
-import UiLayout from './scripts/components/layout/layout';
-import UiGrid from './scripts/components/grid/grid';
-import UiCell from './scripts/components/grid/cell';
+import UiPermanentDrawer from './scripts/components/drawer/permanent';
+import UiPersistentDrawer from './scripts/components/drawer/persistent';
+import UiTemporaryDrawer from './scripts/components/drawer/temporary';
 import UiToolbar from './scripts/components/toolbar/toolbar';
 import UiToolbarSection from './scripts/components/toolbar/toolbar-section';
-import UiTemporaryDrawer from './scripts/components/drawer/temporary';
-import UiPersistentDrawer from './scripts/components/drawer/persistent';
-import UiPermanentDrawer from './scripts/components/drawer/permanent';
+import UiGrid from './scripts/components/grid/grid';
+import UiCell from './scripts/components/grid/cell';
 /**
  * Common
  */
@@ -58,14 +57,13 @@ import UiSnackbar from './scripts/components/snackbar';
 
 const BalmUI = {
   // Layout
-  UiLayout,
-  UiGrid,
-  UiCell,
+  UiPermanentDrawer,
+  UiPersistentDrawer,
+  UiTemporaryDrawer,
   UiToolbar,
   UiToolbarSection,
-  UiTemporaryDrawer,
-  UiPersistentDrawer,
-  UiPermanentDrawer,
+  UiGrid,
+  UiCell,
   // Common
   UiBadge,
   UiLink,

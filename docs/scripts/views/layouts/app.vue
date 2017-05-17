@@ -14,14 +14,22 @@
     <!-- content -->
     <div class="balmui-body mdc-toolbar-fixed-adjust">
       <ui-permanent-drawer v-if="!isDrawerDemo" class="balmui-menu">
-        <ui-list-nav class="catalog-list">
-          <template slot="default" scope="props">
-            <ui-link item effect v-for="(item, index) in menu" :key="index" :href="`#/${item.url}`">
-              <img :class="[props.className.start, 'catalog-component-icon']" :src="require(`../../../images/icon/${item.icon}`)" :alt="item.name">
-              {{ item.name }}
-            </ui-link>
-          </template>
-        </ui-list-nav>
+        <template slot="default" scope="drawerProps">
+          <ui-list-nav class="catalog-list">
+            <template slot="default" scope="listProps">
+              <router-link v-for="(item, index) in menu" :key="index"
+                :class="drawerProps.className.item"
+                :to="item.url"
+                :active-class="drawerProps.className.active">
+                <img
+                  :class="[listProps.className.start, 'catalog-component-icon']"
+                  :src="require(`../../../images/icon/${item.icon}`)"
+                  :alt="item.name">
+                {{ item.name }}
+              </router-link>
+            </template>
+          </ui-list-nav>
+        </template>
       </ui-permanent-drawer>
       <main class="balmui-content">
         <router-view></router-view>
@@ -47,9 +55,8 @@ export default {
     }
   },
   watch: {
-    $route(val) {
-      console.log(val);
-      // this.$el.querySelector('.mdl-layout__content').scrollTop = 0;
+    $route() {
+      this.$el.querySelector('.balmui-content').scrollTop = 0;
     }
   },
   methods: {

@@ -11,7 +11,7 @@
         <slot name="spacer"></slot>
       </div>
       <div :class="['mdc-persistent-drawer__content', contentClass]">
-        <slot></slot>
+        <slot :className="navClassName"></slot>
       </div>
       <slot name="after"></slot>
     </nav>
@@ -22,6 +22,8 @@
 import {MDCPersistentDrawer} from '../../material-components-web/drawer';
 import drawerMixin from '../../mixins/drawer';
 
+const CLASSNAME_ACTIVE = 'mdc-persistent-drawer--selected';
+const CLASSNAME_ITEM = 'mdc-list-item';
 const MDC_EVENT_OPEN = 'MDCPersistentDrawer:open';
 const MDC_EVENT_CLOSE = 'MDCPersistentDrawer:close';
 const UI_EVENT_OPEN = 'open';
@@ -30,6 +32,14 @@ const UI_EVENT_CLOSE = 'close';
 export default {
   name: 'ui-persistent-drawer',
   mixins: [drawerMixin],
+  data() {
+    return {
+      navClassName: {
+        active: CLASSNAME_ACTIVE,
+        item: CLASSNAME_ITEM
+      }
+    };
+  },
   mounted() {
     if (!this.$drawer) {
       this.$drawer = new MDCPersistentDrawer(this.$el);

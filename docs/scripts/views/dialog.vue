@@ -1,12 +1,20 @@
 <template>
-  <div class="demo-dialog">
-    <div class="component-title">
-      <h3>MDC Web Dialog</h3>
-      <p>Modal dialog windows for the web</p>
-    </div>
+  <div class="demo--dialog">
+    <section class="hero">
+      <ui-dialog class="catalog-dialog-demo" noMask :open="true">
+        <template slot="title">Are you happy?</template>
+        <p>Please check the left and right side of this element for fun.</p>
+        <template slot="footer">
+          <ui-button>Cancel</ui-button>
+          <ui-button>Continue</ui-button>
+        </template>
+      </ui-dialog>
+    </section>
 
-    <ui-button primary raised @click.native="showDialog">Show Dialog</ui-button>
-    <ui-button primary raised @click.native="showScrollingDialog">Show Scrolling Dialog</ui-button>
+    <section class="example">
+      <ui-button primary raised @click.native="showDialog">Show Dialog</ui-button>
+      <ui-button primary raised @click.native="showScrollingDialog">Show Scrolling Dialog</ui-button>
+    </section>
 
     <ui-dialog
       :open="open"

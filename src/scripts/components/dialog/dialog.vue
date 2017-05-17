@@ -26,13 +26,13 @@
         </slot>
       </footer>
     </div>
-    <div class="mdc-dialog__backdrop" @click="close"></div>
+    <div v-if="!noMask" class="mdc-dialog__backdrop" @click="close"></div>
   </aside>
 </template>
 
 <script>
 // NOTE: remove 'focus-trap' in MDC Dialog
-import {MDCDialog} from '../material-components-web/dialog';
+import {MDCDialog} from '../../material-components-web/dialog';
 
 const CLASSNAME_ACCEPT = 'mdc-dialog__footer__button--accept';
 const CLASSNAME_CANCEL = 'mdc-dialog__footer__button--cancel';
@@ -78,6 +78,10 @@ export default {
       type: Boolean,
       default: false
     },
+    noMask: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {

@@ -53,7 +53,7 @@ import UiListNav from './scripts/components/list/list-nav';
 /**
  * Dialog
  */
-import UiDialog from './scripts/components/dialog';
+import UiDialog from './scripts/components/dialog/dialog';
 import UiSnackbar from './scripts/components/snackbar';
 
 const BalmUI = {

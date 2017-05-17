@@ -3,7 +3,8 @@ const Grid = require('../views/grid');
 const Tabs = require('../views/tabs');
 const Footer = require('../views/footer');
 const Toolbar = require('../views/toolbar');
-const TemporaryDrawer = require('../views/temporary-drawer');
+const TemporaryDrawer = require('../views/drawer/temporary-drawer');
+const PersistentDrawer = require('../views/drawer/persistent-drawer');
 
 const layoutRoutes = [{
   path: '/layout',
@@ -49,6 +50,10 @@ const layoutRoutes = [{
   path: '/temporary-drawer',
   name: 'temporary-drawer',
   component: TemporaryDrawer
+}, {
+  path: '/persistent-drawer',
+  name: 'persistent-drawer',
+  component: PersistentDrawer
 }];
 
 export default layoutRoutes;

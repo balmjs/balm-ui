@@ -7,6 +7,7 @@ import UiCell from './scripts/components/grid/cell';
 import UiToolbar from './scripts/components/toolbar/toolbar';
 import UiToolbarSection from './scripts/components/toolbar/toolbar-section';
 import UiTemporaryDrawer from './scripts/components/drawer/temporary';
+import UiPersistentDrawer from './scripts/components/drawer/persistent';
 /**
  * Common
  */
@@ -62,6 +63,7 @@ const BalmUI = {
   UiToolbar,
   UiToolbarSection,
   UiTemporaryDrawer,
+  UiPersistentDrawer,
   // Common
   UiBadge,
   UiLink,

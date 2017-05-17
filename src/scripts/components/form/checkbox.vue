@@ -50,7 +50,6 @@ export default {
     value: [String, Number, Boolean],
     model: {
       type: [Array, String, Number, Boolean],
-      required: true,
       default: false
     },
     // mdc

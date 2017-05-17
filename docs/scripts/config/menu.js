@@ -92,7 +92,8 @@ const COMPONENTS = [{
 }, {
   icon: 'text_field',
   name: 'Text field',
-  description: 'Single and multiline text fields'
+  description: 'Single and multiline text fields',
+  url: 'textfield'
 }, {
   icon: 'theme',
   name: 'Theme',

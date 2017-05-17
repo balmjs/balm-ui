@@ -1,22 +1,24 @@
-.mdc-theme--dark {
-  background: #262626;
-  color: white;
-}
-
-.mdc-theme--dark .mdc-checkbox__native-control:checked:not(:disabled) ~ .mdc-checkbox__background,
-.mdc-theme--dark .mdc-checkbox__native-control:indeterminate:not(:disabled) ~ .mdc-checkbox__background {
-  background-color: #E91E63;
-  border-color: #E91E63;
-}
-
-.mdc-theme--dark .mdc-checkbox__background::before {
-  background-color: #E91E63;
-}
-
-.mdc-theme--dark .mdc-checkbox__checkmark__path {
-  stroke: #262626 !important;
-}
-
-.mdc-theme--dark .mdc-checkbox__mixedmark {
-  background-color: #262626;
+.demo--checkbox {
+  .mdc-theme--dark {
+    background: #262626;
+    color: white;
+  }
+  .mdc-theme--dark > h2 {
+    margin-top: 0;
+  }
+  // Example of manually theming a checkbox. Note that this does not take JS-provided animations into account.
+  .mdc-theme--dark .mdc-checkbox__native-control:checked:not(:disabled) ~ .mdc-checkbox__background,
+  .mdc-theme--dark .mdc-checkbox__native-control:indeterminate:not(:disabled) ~ .mdc-checkbox__background {
+    background-color: #64DD17;
+    border-color: #64DD17;
+  }
+  .mdc-theme--dark .mdc-checkbox__background::before {
+    background-color: #64DD17;
+  }
+  .mdc-theme--dark .mdc-checkbox__checkmark__path {
+    stroke: #262626 !important;
+  }
+  .mdc-theme--dark .mdc-checkbox__mixedmark {
+    background-color: #64DD17;
+  }
 }

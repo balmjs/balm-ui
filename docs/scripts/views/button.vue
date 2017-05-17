@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo--button">
     <section class="hero">
       <ui-button>Flat</ui-button>
       <ui-button raised primary>Raised</ui-button>

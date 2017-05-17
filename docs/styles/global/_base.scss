@@ -1,27 +1,11 @@
-a {
-  text-decoration: none;
+body {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-size: 14px;
-  font-weight: bold;
-}
-
-h1 {
-  font-size: 24px;
-}
-
-h2 {
-  font-size: 20px;
-}
-
-h3 {
-  font-size: 16px;
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
 .snippet-group {

@@ -16,22 +16,22 @@ const COMPONENTS = [{
   description: 'Secondary text'
 }, {
   icon: 'side_navigation',
-  name: 'Drawer',
+  name: 'Drawer I',
   description: 'Temporary',
   url: 'temporary-drawer'
 }, {
   icon: 'side_navigation',
-  name: 'Drawer',
+  name: 'Drawer II',
   description: 'Persistent',
   url: 'persistent-drawer'
 }, {
   icon: 'side_navigation',
-  name: 'Drawer',
+  name: 'Drawer III',
   description: 'Permanent drawer above toolbar',
   url: 'permanent-drawer-above-toolbar'
 }, {
   icon: 'side_navigation',
-  name: 'Drawer',
+  name: 'Drawer III-2',
   description: 'Permanent drawer below toolbar',
   url: 'permanent-drawer-below-toolbar'
 }, {
@@ -40,9 +40,8 @@ const COMPONENTS = [{
   description: 'Shadow for different elevations'
 }, {
   icon: 'button',
-  name: 'Floating action button',
-  description: 'The primary action in an application',
-  url: 'fab'
+  name: 'Fab', // Floating action button
+  description: 'The primary action in an application'
 }, {
   icon: 'card',
   name: 'Grid list',
@@ -64,9 +63,8 @@ const COMPONENTS = [{
   description: 'Item layouts in lists'
 }, {
   icon: 'radio_button',
-  name: 'Radio buttons',
-  description: 'Single selection controls',
-  url: 'radio'
+  name: 'Radio', // Radio buttons
+  description: 'Single selection controls'
 }, {
   icon: 'ripple',
   name: 'Ripple',
@@ -77,9 +75,8 @@ const COMPONENTS = [{
   description: 'Popover selection menus'
 }, {
   icon: 'menu',
-  name: 'Simple Menu',
-  description: 'Pop over menus',
-  url: 'menu'
+  name: 'Menu', // Simple Menu
+  description: 'Pop over menus'
 }, {
   icon: 'toast',
   name: 'Snackbar',

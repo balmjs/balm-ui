@@ -54,6 +54,7 @@ const router = new VueRouter({
 
 router.afterEach((to, from) => {
   document.querySelector('title').innerHTML = to.meta.title;
+
   let bodyClassList = document.querySelector('body').classList;
   if (from.name) {
     bodyClassList.remove(`page--${from.name}`);

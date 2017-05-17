@@ -1,3 +1,96 @@
+.mdc-toolbar a,
+.mdc-toolbar a:visited {
+  text-decoration: none;
+  color: #f0f0f0;
+}
+
+.catalog-title {
+  font-family: "Roboto Mono", monospace;
+}
+
+.catalog-logo,
+.catalog-back {
+  text-decoration: none;
+  padding-right: 24px;
+  color: #eeeeee;
+}
+
+.hero {
+  background-color: rgba(0, 0, 0, 0.05);
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row nowrap;
+}
+
+/// Default padding on all examples.
+section.example {
+  padding: 24px;
+  margin: 24px;
+}
+
+section.example h2 {
+  margin-left: 0;
+}
+
+/// Ensure layout covers the entire screen.
+html,
+.page--persistent-drawer,
+.page--permanent-drawer-above-toolbar,
+.page--permanent-drawer-below-toolbar,
+.balmui-container {
+  height: 100%;
+}
+
+.balmui-body {
+  display: flex;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.balmui-menu,
+.balmui-content {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.balmui-menu {
+  width: 200px;
+}
+
+.balmui-content {
+  flex: 1;
+}
+
+.catalog-list-icon {
+  margin-right: 24px;
+}
+
+ul.catalog-list li a {
+  text-decoration: none;
+  color: #212121;
+}
+
+.catalog-component-list-content {
+  padding-left: 24px;
+  order: 2;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+}
+
+.catalog-component-list-title {
+  order: 1;
+}
+
+.catalog-component-list-description {
+  color: #999;
+  order: 2;
+}
+
+/// lang
 .supported-lang {
   margin: 0;
   cursor: pointer;
@@ -6,61 +99,3 @@
     color: white;
   }
 }
-
-.mdl-layout__drawer {
-  .mdl-navigation {
-    padding: 0;
-    border-top: 1px solid rgba(0,0,0,.12);
-  }
-  h3 {
-    margin: 0;
-    text-indent: 20px;
-  }
-  .mdl-layout__title {
-    padding: 0 10px 0 20px;
-  }
-  .mdl-badge[data-badge]:after {
-    right: -32px;
-    width: 32px;
-  }
-  .mdl-navigation__link {
-    &.active {
-      background-color: #757575;
-      a {
-        color: white;
-      }
-      &:hover {
-        background-color: #757575;
-      }
-    }
-  }
-}
-
-// @media screen and (min-width: 1025px) {
-//   .mdl-layout__header, .mdl-layout__drawer {
-//     z-index: 1;
-//   }
-// }
-
-
-.mdl-layout__content {
-  padding: 20px;
-}
-
-/// 浮动布局
-.clearfix {
-  @include clearfix;
-}
-
-.center-block {
-  @include center-block;
-}
-
-.pull-right {
-  float: right;
-}
-
-.pull-left {
-  float: left;
-}
-

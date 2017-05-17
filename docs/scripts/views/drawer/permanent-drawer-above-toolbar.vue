@@ -1,11 +1,6 @@
 <template>
   <div class="demo-body">
-    <!-- menuSelector=".demo-menu" -->
-    <ui-persistent-drawer
-      hasSpacer
-      :open="open"
-      @open="onOpen"
-      @close="onClose">
+    <ui-permanent-drawer hasSpacer>
       <ui-list-group>
         <ui-list-nav>
           <template slot="default" scope="props">
@@ -29,24 +24,20 @@
           </template>
         </ui-list-nav>
       </ui-list-group>
-    </ui-persistent-drawer>
+    </ui-permanent-drawer>
 
     <div class="demo-content">
-      <ui-toolbar contentSelector=".demo-main" :class="'mdc-elevation--z4'">
+      <ui-toolbar :class="'mdc-elevation--z4'">
         <ui-toolbar-section align="start">
-          <template slot="before">
-            <ui-button link class="demo-menu material-icons" @click.native="openMenu">menu</ui-button>
-          </template>
-          <span class="catalog-title">Persistent Drawer</span>
+          <span class="catalog-title">Permanent Drawer Above Toolbar</span>
         </ui-toolbar-section>
       </ui-toolbar>
 
       <main class="demo-main">
-        <h1 class="mdc-typography--display1">Persistent Drawer</h1>
-        <p class="mdc-typography--body1">Click the menu icon above to open and close the drawer.</p>
+        <h1 class="mdc-typography--display1">Permanent Drawer</h1>
+        <p class="mdc-typography--body1">It sits to the left of this content.</p>
       </main>
     </div>
-
   </div>
 </template>
 
@@ -76,21 +67,8 @@ export default {
       }, {
         icon: 'report',
         name: 'Spam'
-      }],
-      open: false
+      }]
     };
-  },
-  methods: {
-    openMenu() {
-      this.open = !this.open;
-    },
-    onOpen(val) {
-      console.log('open', val);
-    },
-    onClose(val) {
-      this.open = false;
-      console.log('close', val);
-    }
   }
 };
 </script>
@@ -106,18 +84,6 @@ export default {
   height: 100%;
   width: 100%;
 }
-/* A simple menu button. */
-.demo-menu {
-  background: none;
-  border: none;
-  width: 24px;
-  height: 24px;
-  padding: 0;
-  margin: 0;
-  margin-right: 24px;
-  color: #FFF;
-  box-sizing: border-box;
-}
 /* Stack toolbar and main on top of each other. */
 .demo-content {
   display: inline-flex;
@@ -125,6 +91,10 @@ export default {
   flex-grow: 1;
   height: 100%;
   box-sizing: border-box;
+}
+/* Place drawer above toolbar shadow. */
+.mdc-permanent-drawer {
+  z-index: 2;
 }
 .demo-main {
   padding-left: 16px;

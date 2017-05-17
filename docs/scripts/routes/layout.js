@@ -5,6 +5,8 @@ const Footer = require('../views/footer');
 const Toolbar = require('../views/toolbar');
 const TemporaryDrawer = require('../views/drawer/temporary-drawer');
 const PersistentDrawer = require('../views/drawer/persistent-drawer');
+const PermanentDrawerAboveToolbar = require('../views/drawer/permanent-drawer-above-toolbar');
+const PermanentDrawerBelowToolbar = require('../views/drawer/permanent-drawer-below-toolbar');
 
 const layoutRoutes = [{
   path: '/layout',
@@ -54,6 +56,14 @@ const layoutRoutes = [{
   path: '/persistent-drawer',
   name: 'persistent-drawer',
   component: PersistentDrawer
+}, {
+  path: '/permanent-drawer-above-toolbar',
+  name: 'permanent-drawer-above-toolbar',
+  component: PermanentDrawerAboveToolbar
+}, {
+  path: '/permanent-drawer-below-toolbar',
+  name: 'permanent-drawer-below-toolbar',
+  component: PermanentDrawerBelowToolbar
 }];
 
 export default layoutRoutes;

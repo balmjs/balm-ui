@@ -53,24 +53,28 @@ export default {
     fab: {
       type: Boolean,
       default: false
+    },
+    link: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
     className() {
       return {
-        'mdc-button': !this.fab,
+        'mdc-button': !(this.fab || this.link),
         'mdc-button--raised': this.raised,
         'mdc-button--dense': this.dense,
         'mdc-button--compact': this.compact,
         'mdc-button--primary': this.primary,
         'mdc-button--accent': this.accent,
-        'mdc-ripple': !this.cssOnly,
+        'mdc-ripple': !(this.cssOnly || this.link),
         'mdc-button--theme-dark': this.dark
       };
     }
   },
   mounted() {
-    if (!this.cssOnly) {
+    if (!(this.cssOnly || this.link)) {
       MDCRipple.attachTo(this.$el);
     }
   }

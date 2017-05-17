@@ -63,14 +63,25 @@ section.example h2 {
   margin-left: 0;
 }
 
-@import 'pages/button';
-@import 'pages/card';
-@import 'pages/checkbox';
-@import 'pages/fab';
-@import 'pages/icon-toggle';
-@import 'pages/grid';
-@import 'pages/list';
-@import 'pages/radio';
-@import 'pages/select';
-@import 'pages/menu';
-@import 'pages/toolbar';
+
+/* Ensure layout covers the entire screen. */
+
+html,
+.page--persistent-drawer,
+.page--permanent-drawer-above-toolbar,
+.page--permanent-drawer-below-toolbar,
+.balmui-container {
+  height: 100%;
+}
+
+// @import 'pages/button';
+// @import 'pages/card';
+// @import 'pages/checkbox';
+// @import 'pages/fab';
+// @import 'pages/icon-toggle';
+// @import 'pages/grid';
+// @import 'pages/list';
+// @import 'pages/radio';
+// @import 'pages/select';
+// @import 'pages/menu';
+// @import 'pages/toolbar';

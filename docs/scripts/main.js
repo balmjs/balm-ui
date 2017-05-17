@@ -54,6 +54,13 @@ const router = new VueRouter({
 
 router.afterEach((to, from) => {
   document.querySelector('title').innerHTML = to.meta.title;
+  let bodyClassList = document.querySelector('body').classList;
+  if (from.name) {
+    bodyClassList.remove(`page--${from.name}`);
+  }
+  if (to.name) {
+    bodyClassList.add(`page--${to.name}`)
+  }
 });
 
 // Create VueI18n instance with options

@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <ui-toolbar fixed contentSelector=".demo-main">
+  <div class="demo-body">
+    <ui-toolbar :fixed="true" contentSelector=".demo-main">
       <ui-toolbar-section align="start">
         <template slot="before">
-          <ui-button dark class="demo-menu material-icons" @click.native="openMenu">menu</ui-button>
+          <ui-button link class="demo-menu material-icons" @click.native="openMenu">menu</ui-button>
         </template>
         <span class="catalog-title">Temporary Drawer</span>
       </ui-toolbar-section>
@@ -93,3 +93,27 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+/* A simple menu button. */
+.demo-menu {
+  background: none;
+  border: none;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  margin: 0;
+  margin-right: 24px;
+  color: #FFF;
+  box-sizing: border-box;
+}
+.demo-main {
+  padding-left: 16px;
+  overflow: auto;
+}
+</style>

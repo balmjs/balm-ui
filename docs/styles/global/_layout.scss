@@ -35,7 +35,6 @@ section.example h2 {
 }
 
 /// Ensure layout covers the entire screen.
-html,
 .page--persistent-drawer,
 .page--permanent-drawer-above-toolbar,
 .page--permanent-drawer-below-toolbar,
@@ -54,6 +53,9 @@ html,
   height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
+  & > * {
+    padding-bottom: 20px;
+  }
 }
 
 .balmui-menu {

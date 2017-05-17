@@ -29,6 +29,7 @@
               </router-link>
             </template>
           </ui-list-nav>
+          <ui-list-divider></ui-list-divider>
         </template>
       </ui-permanent-drawer>
       <main class="balmui-content">

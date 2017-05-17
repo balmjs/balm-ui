@@ -23,7 +23,8 @@ var DMC_COMPONENTS = [
   'radio',
   'icon-toggle',
   'snackbar',
-  'toolbar'
+  'toolbar',
+  'drawer'
 ];
 
 balm.config = {

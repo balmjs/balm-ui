@@ -2,7 +2,7 @@
   <div class="mdc-toolbar__row">
     <section :class="className">
       <slot name="before"></slot>
-      <span class="mdc-toolbar__title">
+      <span :class="['mdc-toolbar__title', titleClass]">
         <slot></slot>
       </span>
       <slot name="after"></slot>
@@ -22,7 +22,8 @@ export default {
     fit: {
       type: Boolean,
       default: false
-    }
+    },
+    titleClass: String
   },
   computed: {
     className() {

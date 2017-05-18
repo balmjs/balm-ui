@@ -54,6 +54,10 @@ import UiListNav from './scripts/components/list/list-nav';
  */
 import UiDialog from './scripts/components/dialog/dialog';
 import UiSnackbar from './scripts/components/snackbar';
+/**
+ * Plugin
+ */
+import helper from './scripts/plugins/helper';
 
 const BalmUI = {
   // Layout
@@ -102,6 +106,10 @@ const BalmUI = {
   // Popup
   UiDialog,
   UiSnackbar,
+  // Plugins
+  plugins: {
+    helper
+  },
   // Register
   install(Vue) {
     document.querySelector('body').classList.add('mdc-typography');
@@ -118,6 +126,7 @@ const BalmUI = {
 // Auto install in dist mode
 if (typeof window !== 'undefined' && window.Vue) {
   window.Vue.use(BalmUI);
+  window.Vue.use(BalmUI.plugins.helper);
 }
 
 export default BalmUI;

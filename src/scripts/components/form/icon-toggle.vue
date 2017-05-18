@@ -6,14 +6,15 @@
         :aria-label="label"
         :aria-disabled="disabled"
         :data-icon-inner-selector="iconInnerSelector"
-        :data-toggle-on="toggleOn"
-        :data-toggle-off="toggleOff">
+        :data-toggle-on="toggleOnData"
+        :data-toggle-off="toggleOffData">
     <slot></slot>
   </span>
 </template>
 
 <script>
 import {MDCIconToggle} from '../../material-components-web/icon-toggle';
+import {isString} from '../../helpers';
 
 const DMC_EVENT_CHANGE = 'MDCIconToggle:change';
 const UI_EVENT_CHANGE = 'change';
@@ -22,10 +23,16 @@ export default {
   name: 'ui-icon-toggle',
   props: {
     // mdc
+    on: {
+      type: Object,
+      required: true
+    },
+    off: {
+      type: Object,
+      required: true
+    },
     label: String,
     icon: String,
-    on: Object,
-    off: Object,
     model: {
       type: [Boolean, Number, String],
       default: false
@@ -62,11 +69,11 @@ export default {
     iconInnerSelector() {
       return this.icon ? `.${this.icon}` : false;
     },
-    toggleOn() {
-      return JSON.stringify(this.on);
+    toggleOnData() {
+      return isString(this.on) ? this.on : JSON.stringify(this.on);
     },
-    toggleOff() {
-      return JSON.stringify(this.off);
+    toggleOffData() {
+      return isString(this.off) ? this.off : JSON.stringify(this.off);
     }
   },
   methods: {

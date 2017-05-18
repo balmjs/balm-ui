@@ -5,9 +5,12 @@ import UiPermanentDrawer from './scripts/components/drawer/permanent';
 import UiPersistentDrawer from './scripts/components/drawer/persistent';
 import UiTemporaryDrawer from './scripts/components/drawer/temporary';
 import UiToolbar from './scripts/components/toolbar/toolbar';
+import UiToolbarRow from './scripts/components/toolbar/toolbar-row';
 import UiToolbarSection from './scripts/components/toolbar/toolbar-section';
 import UiGrid from './scripts/components/grid/grid';
 import UiCell from './scripts/components/grid/cell';
+import UiTabBar from './scripts/components/tabs/tab-bar';
+import UiTab from './scripts/components/tabs/tab';
 /**
  * Common
  */
@@ -66,9 +69,12 @@ const BalmUI = {
   UiPersistentDrawer,
   UiTemporaryDrawer,
   UiToolbar,
+  UiToolbarRow,
   UiToolbarSection,
   UiGrid,
   UiCell,
+  UiTabBar,
+  UiTab,
   // Common
   UiBadge,
   UiLink,

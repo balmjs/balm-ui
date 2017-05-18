@@ -1,6 +1,6 @@
 <template>
   <header :class="className">
-    <slot></slot>
+    <slot><!-- toolbar row --></slot>
   </header>
 </template>
 

@@ -1,0 +1,87 @@
+<template>
+  <nav :class="className">
+    <slot name="before"></slot>
+    <slot></slot>
+    <span class="mdc-tab-bar__indicator"></span>
+    <slot name="after"></slot>
+  </nav>
+</template>
+
+<script>
+import {MDCTabBar} from '../../material-components-web/tabs';
+
+const LABEL_TEXT = 0; // text
+const LABEL_ICON = 1; // icon-only
+const LABEL_TEXT_WITH_ICON = 2; // text with icon
+const CLASSNAME_TAB = 'mdc-tab';
+const CLASSNAME_ACTIVE = 'mdc-tab--active';
+const MDC_EVENT_CHANGE = 'MDCTabBar:change';
+const UI_EVENT_CHANGE = 'change';
+
+export default {
+  name: 'ui-tab-bar',
+  props: {
+    type: {
+      type: [Number, String],
+      default: LABEL_TEXT
+    },
+    active: {
+      type: [Number, String],
+      default: 0
+    },
+    primary: {
+      type: Boolean,
+      default: false
+    },
+    accent: {
+      type: Boolean,
+      default: false
+    },
+    dark: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data() {
+    return {
+      $tabBar: null
+    };
+  },
+  computed: {
+    iconOnly() {
+      return +this.type === LABEL_ICON;
+    },
+    textWithIcon() {
+      return +this.type === LABEL_TEXT_WITH_ICON;
+    },
+    className() {
+      return {
+        'mdc-tab-bar': true,
+        'mdc-tab-bar--icon-tab-bar': this.iconOnly,
+        'mdc-tab-bar--icons-with-text': this.textWithIcon,
+        'mdc-tab-bar--indicator-primary': this.primary,
+        'mdc-tab-bar--indicator-accent': this.accent,
+        'mdc-tab-bar--theme-dark': this.dark
+      }
+    }
+  },
+  mounted() {
+    if (!this.$tabBar) {
+      this.$tabBar = new MDCTabBar(this.$el);
+      this.$tabBar.listen('MDCTabBar:change', ({detail: tabs}) => {
+        this.$emit(UI_EVENT_CHANGE, tabs.activeTabIndex);
+      });
+      let currentTabIndex = this.active;
+      if (currentTabIndex && currentTabIndex < this.$tabBar.tabs.length) {
+        this.$tabBar.activeTab = this.$tabBar.tabs[currentTabIndex];
+        this.$tabBar.activeTabIndex = currentTabIndex;
+      } else {
+        // NOTE: It has bug when index = 0.
+        // this.$tabBar.activeTab = this.$tabBar.tabs[0];
+        // this.$tabBar.activeTabIndex = 0;
+        this.$el.querySelector(`.${CLASSNAME_TAB}`).classList.add(CLASSNAME_ACTIVE);
+      }
+    }
+  }
+};
+</script>

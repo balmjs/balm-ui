@@ -1,13 +1,11 @@
 <template>
-  <div class="mdc-toolbar__row">
-    <section :class="className">
-      <slot name="before"></slot>
-      <span :class="['mdc-toolbar__title', titleClass]">
-        <slot></slot>
-      </span>
-      <slot name="after"></slot>
-    </section>
-  </div>
+  <section :class="className">
+    <slot name="before"></slot>
+    <span :class="['mdc-toolbar__title', titleClass]">
+      <slot></slot>
+    </span>
+    <slot name="after"></slot>
+  </section>
 </template>
 
 <script>

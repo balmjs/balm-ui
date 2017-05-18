@@ -5,6 +5,9 @@
 </template>
 
 <script>
+import {MDCRipple} from '../../material-components-web/ripple';
+import cssClasses from './constants';
+
 export default {
   name: 'ui-list',
   props: {
@@ -19,7 +22,16 @@ export default {
     avatar: {
       type: Boolean,
       default: false
+    },
+    effect: {
+      type: Boolean,
+      default: false
     }
+    // NOTE: coming soon
+    // threeLine: {
+    //   type: Boolean,
+    //   default: false
+    // }
   },
   computed: {
     className() {
@@ -29,6 +41,13 @@ export default {
         'mdc-list--two-line': this.twoLine,
         'mdc-list--avatar-list': this.avatar
       };
+    }
+  },
+  mounted() {
+    if (this.effect) {
+      this.$el.querySelectorAll(`.${cssClasses.item}`).forEach(item => {
+        MDCRipple.attachTo(item);
+      });
     }
   }
 };

@@ -1,0 +1,45 @@
+body {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.mdc-toolbar a,
+.mdc-toolbar a:visited {
+  text-decoration: none;
+  color: #f0f0f0;
+}
+
+.catalog-title {
+  font-family: "Roboto Mono", monospace;
+}
+
+.catalog-logo,
+.catalog-back {
+  text-decoration: none;
+  padding-right: 24px;
+  color: #eeeeee;
+}
+
+.hero {
+  background-color: rgba(0, 0, 0, 0.05);
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row nowrap;
+}
+
+// Default padding on all examples.
+section.example {
+  padding: 24px;
+  margin: 24px;
+}
+
+section.example h2 {
+  margin-left: 0;
+}

@@ -1,5 +1,5 @@
 <template>
-  <li class="mdc-list-item">
+  <li :class="cssClasses.item">
     <slot name="before" :className="cssClasses.start"></slot>
     <slot :className="textClassName"></slot>
     <slot name="after" :className="cssClasses.end"></slot>

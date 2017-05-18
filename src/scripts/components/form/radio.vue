@@ -44,7 +44,6 @@ export default {
     value: [String, Number, Boolean],
     model: {
       type: [String, Number, Boolean],
-      required: true,
       default: false
     },
     // mdc

@@ -35,11 +35,6 @@ export default {
       value1: false
     };
   },
-  methods: {
-    onChange(field, value) {
-      this[field] = value;
-    }
-  },
   created() {
     // this.showCode('switch');
   }

@@ -125,11 +125,6 @@ export default {
       }
     };
   },
-  methods: {
-    onChange(field, value) {
-      this[field].value = value;
-    }
-  },
   created() {
     // this.showCode('icon-toggle');
   }

@@ -56,11 +56,6 @@ export default {
       value3: ['a', 'c']
     };
   },
-  methods: {
-    onChange(field, value) {
-      this[field] = value;
-    }
-  },
   created() {
     // this.showCode('checkbox');
   }

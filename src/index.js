@@ -58,6 +58,7 @@ import UiSnackbar from './scripts/components/snackbar';
  * Plugin
  */
 import helper from './scripts/plugins/helper';
+import event from './scripts/plugins/event';
 
 const BalmUI = {
   // Layout
@@ -108,7 +109,8 @@ const BalmUI = {
   UiSnackbar,
   // Plugins
   plugins: {
-    helper
+    helper,
+    event
   },
   // Register
   install(Vue) {
@@ -127,6 +129,7 @@ const BalmUI = {
 if (typeof window !== 'undefined' && window.Vue) {
   window.Vue.use(BalmUI);
   window.Vue.use(BalmUI.plugins.helper);
+  window.Vue.use(BalmUI.plugins.event);
 }
 
 export default BalmUI;

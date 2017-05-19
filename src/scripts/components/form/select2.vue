@@ -100,7 +100,7 @@ export default {
         this.selectedOption = this.options[detail.selectedIndex];
         this.$emit(UI_EVENT_CHANGE, this.selectedOption[this.optionKey]);
       } else {
-        console.warn('Invalid Options');
+        console.warn('Invalid Options!');
       }
     },
     setSelectedTextContent(selectedTextContent = '') {

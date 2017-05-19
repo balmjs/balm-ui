@@ -1,7 +1,7 @@
 <template>
   <div class="demo--dialog">
     <section class="hero">
-      <ui-dialog class="catalog-dialog-demo" noMask :open="true">
+      <ui-dialog class="catalog-dialog-demo mdc-dialog--open" noMask style="visibility: visible;">
         <template slot="title">Are you happy?</template>
         <p>Please check the left and right side of this element for fun.</p>
         <template slot="footer">

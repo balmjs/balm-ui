@@ -44,6 +44,10 @@ export default {
   name: 'ui-dialog',
   props: {
     // mdc
+    cssOnly: {
+      type: Boolean,
+      default: false
+    },
     open: {
       type: Boolean,
       default: false
@@ -131,11 +135,8 @@ export default {
     }
   },
   mounted() {
-    if (!this.$dialog) {
+    if (!this.$dialog && !this.cssOnly) {
       this.$dialog = new MDCDialog(this.$el);
-    }
-    if (this.open) {
-      this.$dialog.show();
     }
   }
 };

@@ -1,7 +1,13 @@
 <template>
-  <div class="demo-snackbar">
-    <h1>MDC Snackbar</h1>
-    <section>
+  <div class="demo--snackbar">
+    <section class="hero">
+      <ui-snackbar class="mdc-snackbar--active"
+        message="Message sent"
+        actionText="Undo"
+        cssOnly></ui-snackbar>
+    </section>
+
+    <section class="example">
       <h2>Basic Example</h2>
       <div>
         <ui-checkbox id="multiline" :model="multiline" @change="onChange('multiline', $event)">Multiline</ui-checkbox><br>
@@ -41,9 +47,6 @@ export default {
     };
   },
   methods: {
-    onChange(field, value) {
-      this[field] = value;
-    },
     show(type) {
       this.active = true;
     },

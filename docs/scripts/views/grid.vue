@@ -86,7 +86,9 @@ export default {
       } else if (window.innerWidth >= 480) {
         size = '(tablet)';
       }
-      this.$refs.current.textContent = window.innerWidth + 'px ' + size;
+      if (this.$refs.current) {
+        this.$refs.current.textContent = window.innerWidth + 'px ' + size;
+      }
     }
   },
   mounted() {

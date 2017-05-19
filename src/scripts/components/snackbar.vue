@@ -3,9 +3,11 @@
        aria-live="assertive"
        aria-atomic="true"
        aria-hidden="true">
-    <div class="mdc-snackbar__text"></div>
+    <div class="mdc-snackbar__text">{{ message }}</div>
     <div class="mdc-snackbar__action-wrapper">
-      <ui-button :class="'mdc-snackbar__action-button'"></ui-button>
+      <ui-button
+        cssOnly
+        :class="'mdc-snackbar__action-button'">{{ actionText }}</ui-button>
     </div>
   </div>
 </template>
@@ -22,6 +24,10 @@ export default {
     UiButton
   },
   props: {
+    cssOnly: {
+      type: Boolean,
+      default: false
+    },
     active: {
       type: Boolean,
       default: false
@@ -77,14 +83,14 @@ export default {
   },
   created() {
     if (this.actionHandler && !this.actionText) {
-      console.warn('`actionText` is required if `actionHandler` is set');
+      console.warn('`actionHandler` and `actionText` need be settled.');
     }
     if (!this.multiline && this.actionOnBottom) {
-      console.warn('`actionOnBottom` applies when `multiline` is true');
+      console.warn('`actionOnBottom` applies when `multiline` is true.');
     }
   },
   mounted() {
-    if (!this.$snackbar) {
+    if (!this.$snackbar && !this.cssOnly) {
       this.$snackbar = new MDCSnackbar(this.$el);
     }
   }

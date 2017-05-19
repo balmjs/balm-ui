@@ -17,16 +17,16 @@
                        'mdc-dialog__footer__button',
                        {'mdc-dialog__footer__button--cancel': notifyCancel}
                      ]"
-                     @click.native="cancel">{{ CancelText }}</ui-button>
+                     @click.native="handleCancel">{{ CancelText }}</ui-button>
           <ui-button :class="[
                        'mdc-dialog__footer__button',
                        {'mdc-dialog__footer__button--accept': notifyAccept}
                      ]"
-                     @click.native="accept">{{ AcceptText }}</ui-button>
+                     @click.native="handleAccept">{{ AcceptText }}</ui-button>
         </slot>
       </footer>
     </div>
-    <div v-if="!noMask" class="mdc-dialog__backdrop" @click="close"></div>
+    <div v-if="!noMask" class="mdc-dialog__backdrop" @click="handleClose"></div>
   </aside>
 </template>
 
@@ -114,16 +114,16 @@ export default {
     }
   },
   methods: {
-    close() {
+    handleClose() {
       this.$emit(UI_EVENT_CLOSE);
     },
-    accept() {
+    handleAccept() {
       if (this.notifyAccept) {
         this.$emit(UI_EVENT_CLOSE);
       }
       this.$emit(UI_EVENT_ACCEPT);
     },
-    cancel() {
+    handleCancel() {
       if (this.notifyCancel) {
         this.$emit(UI_EVENT_CLOSE);
       }

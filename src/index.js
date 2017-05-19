@@ -9,6 +9,7 @@ import UiToolbarRow from './scripts/components/toolbar/toolbar-row';
 import UiToolbarSection from './scripts/components/toolbar/toolbar-section';
 import UiGrid from './scripts/components/grid/grid';
 import UiCell from './scripts/components/grid/cell';
+import UiTabs from './scripts/components/tabs/tabs';
 import UiTabBar from './scripts/components/tabs/tab-bar';
 import UiTab from './scripts/components/tabs/tab';
 /**
@@ -73,6 +74,7 @@ const BalmUI = {
   UiToolbarSection,
   UiGrid,
   UiCell,
+  UiTabs,
   UiTabBar,
   UiTab,
   // Common

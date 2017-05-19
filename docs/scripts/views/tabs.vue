@@ -1,11 +1,7 @@
 <template>
   <div class="demo--tabs">
     <section class="hero">
-      <ui-tab-bar @change="onChange">
-        <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
-          {{ tab.name }}
-        </ui-tab>
-      </ui-tab-bar>
+      <ui-tabs :data="tabs" @change="onChange"></ui-tabs>
     </section>
 
     <section>

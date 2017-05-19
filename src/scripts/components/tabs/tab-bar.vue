@@ -9,10 +9,8 @@
 
 <script>
 import {MDCTabBar} from '../../material-components-web/tabs';
+import tabBarMixin from '../../mixins/tab-bar';
 
-const LABEL_TEXT = 0; // text
-const LABEL_ICON = 1; // icon-only
-const LABEL_TEXT_WITH_ICON = 2; // text with icon
 const CLASSNAME_TAB = 'mdc-tab';
 const CLASSNAME_ACTIVE = 'mdc-tab--active';
 const MDC_EVENT_CHANGE = 'MDCTabBar:change';
@@ -20,40 +18,13 @@ const UI_EVENT_CHANGE = 'change';
 
 export default {
   name: 'ui-tab-bar',
-  props: {
-    type: {
-      type: [Number, String],
-      default: LABEL_TEXT
-    },
-    active: {
-      type: [Number, String],
-      default: 0
-    },
-    primary: {
-      type: Boolean,
-      default: false
-    },
-    accent: {
-      type: Boolean,
-      default: false
-    },
-    dark: {
-      type: Boolean,
-      default: false
-    }
-  },
+  mixins: [tabBarMixin],
   data() {
     return {
       $tabBar: null
     };
   },
   computed: {
-    iconOnly() {
-      return +this.type === LABEL_ICON;
-    },
-    textWithIcon() {
-      return +this.type === LABEL_TEXT_WITH_ICON;
-    },
     className() {
       return {
         'mdc-tab-bar': true,

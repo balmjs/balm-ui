@@ -18,13 +18,12 @@
 </template>
 
 <script>
+import tabMixin from '../../mixins/tab';
+
 // const MDC_EVENT_SELECTED = 'MDCTab:selected';
 
 export default {
   name: 'ui-tab',
-  props: {
-    icon: String,
-    text: String
-  }
+  mixins: [tabMixin]
 };
 </script>

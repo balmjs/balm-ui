@@ -1,14 +1,25 @@
-.demo-content {
-  position: relative;
-  flex: 1;
-  margin-top: 16px;
-  background-color: antiquewhite;
-}
-
-.mdc-theme--dark {
-  background-color: #333;
-}
-
-.mdc-menu-anchor {
-  position: absolute;
+.demo--menu {
+  .demo-content {
+    position: relative;
+    flex: 1;
+    margin-top: 16px;
+  }
+  .demo-controls-container {
+    height: 100%;
+    width: 100%;
+  }
+  .demo-controls {
+    margin-left: auto;
+    margin-right: auto;
+    width: 320px;
+  }
+  .mdc-menu-anchor {
+    margin: 16px;
+  }
+  .mdc-theme--dark {
+    background-color: #333;
+  }
+  .mdc-menu-anchor {
+    position: absolute;
+  }
 }

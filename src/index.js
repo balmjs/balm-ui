@@ -31,7 +31,6 @@ import UiCardBlock from './scripts/components/card/card-block';
 import UiMenuAnchor from './scripts/components/menu/menu-anchor';
 import UiMenu from './scripts/components/menu/menu';
 import UiMenuItem from './scripts/components/menu/menuitem';
-import UiSeparator from './scripts/components/menu/separator';
 /**
  * Form
  */
@@ -96,7 +95,6 @@ const BalmUI = {
   UiMenuAnchor,
   UiMenu,
   UiMenuItem,
-  UiSeparator,
   // Form
   UiFormField,
   UiTextfield,

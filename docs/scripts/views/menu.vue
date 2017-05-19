@@ -1,32 +1,54 @@
 <template>
-  <div class="docs-menu">
-    <div class="component-title">
-      <h3>Menu</h3>
-      <p>Lists of clickable actions.</p>
-    </div>
+  <div class="demo--menu">
+    <section class="hero">
+      <ui-menu cssOnly
+        class="mdc-simple-menu--open"
+        :menu="['Back', 'Forward', 'Reload', '-', 'Help & Feedback', 'Settings']">
+      </ui-menu>
+    </section>
 
-    <div class="demo-content" style="height:300px">
-      <ui-menu-anchor>
-        <ui-button @click.native="openMenu">Open Menu</ui-button>
-        <ui-menu :open="open"
+    <section class="example"></section>
+
+    <div class="demo-content">
+      <ui-menu-anchor :position="position">
+        <ui-button raised primary @click.native="openMenu">Reveal Menu</ui-button>
+
+        <ui-menu :open="open" :dark="dark"
           @selected="onSelected"
           @cancel="onCancel">
           <ui-menuitem v-for="(item, index) in menu" :key="index">
-            {{ item.label }}
+            {{ item }}
           </ui-menuitem>
+          <ui-item-divider></ui-item-divider>
+          <ui-menuitem>Save As...</ui-menuitem>
         </ui-menu>
       </ui-menu-anchor>
 
-      <ui-menu-anchor :position="4">
-        <ui-button @click.native="openMenu2">Open Menu2</ui-button>
-        <ui-menu :open="open2" :position="4"
-          @selected="onSelected"
-          @cancel="onCancel2">
-          <ui-menuitem v-for="(item, index) in menu2" :key="index">
-            {{ item.label }}
-          </ui-menuitem>
-        </ui-menu>
-      </ui-menu-anchor>
+      <div class="demo-controls-container">
+        <div class="demo-controls">
+          Button position:
+          <ui-radio name="position"
+            :value="1"
+            :model="position"
+            @change="onChange('position', $event)">Top left</ui-radio>
+          <ui-radio name="position"
+            :value="2"
+            :model="position"
+            @change="onChange('position', $event)">Top right</ui-radio>
+          <ui-radio name="position"
+            :value="3"
+            :model="position"
+            @change="onChange('position', $event)">bottom left</ui-radio>
+          <ui-radio name="position"
+            :value="4"
+            :model="position"
+            @change="onChange('position', $event)">bottom right</ui-radio>
+          <ui-checkbox :model="dark" @change="onChange('dark', $event)">Dark mode</ui-checkbox>
+          <div>
+            <span>Last Selected item: <em id="last-selected">{{ selected.item || 'none' }} selected</em></span>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- <ui-apidoc name="menu"></ui-apidoc>
@@ -42,27 +64,10 @@ export default {
   data() {
     return {
       open: false,
-      menu: [{
-        url:'/a',
-        label: 'Item A'
-      }, {
-        url:'/b',
-        label: 'Item B'
-      }, {
-        url:'/c',
-        label: 'Item C'
-      }],
-      open2: false,
-      menu2: [{
-        url:'/d',
-        label: 'Item D'
-      }, {
-        url:'/e',
-        label: 'Item E'
-      }, {
-        url:'/f',
-        label: 'Item F'
-      }]
+      menu: ['Back', 'Forward', 'Reload'],
+      selected: {},
+      position: 1,
+      dark: false
     };
   },
   methods: {
@@ -71,17 +76,11 @@ export default {
     },
     onSelected(data) {
       console.log('onSelected', data);
+      this.selected = data;
     },
     onCancel() {
       console.log('onCancel');
       this.open = false;
-    },
-    openMenu2() {
-      this.open2 = true;
-    },
-    onCancel2() {
-      console.log('onCancel2');
-      this.open2 = false;
     }
   },
   created() {

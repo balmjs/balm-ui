@@ -3,9 +3,11 @@
     <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
       <slot>
         <template v-for="(item, index) in currentMenu">
-          <ui-separator v-if="item.hr || item.divider || item.separator">
-          </ui-separator>
-          <ui-menuitem v-else :item="item"></ui-menuitem>
+          <ui-item-divider v-if="item === DIVIDER">
+          </ui-item-divider>
+          <ui-menuitem v-else :item="isObject(item) ? item : {}">
+            {{ isString(item) ? item : '' }}
+          </ui-menuitem>
         </template>
       </slot>
     </ul>
@@ -14,10 +16,11 @@
 
 <script>
 import {MDCSimpleMenu} from '../../material-components-web/menu';
-import {isString} from '../../helpers';
+import {isString, isObject} from '../../helpers';
 import UiMenuItem from './menuitem';
-import UiSeparator from './separator';
+import UiItemDivider from '../list/item-divider';
 
+const DIVIDER = '-';
 const POSITIONS = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
 const MDC_EVENT_SELECTED = 'MDCSimpleMenu:selected';
 const MDC_EVENT_CANCEL = 'MDCSimpleMenu:cancel';
@@ -28,10 +31,14 @@ export default {
   name: 'ui-menu',
   components: {
     UiMenuItem,
-    UiSeparator
+    UiItemDivider
   },
   props: {
     // mdc
+    cssOnly: {
+      type: Boolean,
+      default: false
+    },
     open: {
       type: Boolean,
       default: false
@@ -54,6 +61,9 @@ export default {
   },
   data() {
     return {
+      DIVIDER,
+      isString,
+      isObject,
       $menu: null,
       currentMenu: this.menu
     };
@@ -93,9 +103,11 @@ export default {
   },
   methods: {
     handlingSelection() {
-      this.$el.addEventListener(MDC_EVENT_SELECTED, evt => {
-        let detail = evt.detail;
-        this.$emit(UI_EVENT_SELECTED, detail);
+      this.$el.addEventListener(MDC_EVENT_SELECTED, ({detail}) => {
+        this.$emit(UI_EVENT_SELECTED, {
+          index: detail.index,
+          item: detail.item.textContent.trim()
+        });
       });
 
       this.$el.addEventListener(MDC_EVENT_CANCEL, () => {
@@ -104,12 +116,9 @@ export default {
     }
   },
   mounted() {
-    if (!this.$menu) {
+    if (!this.$menu && !this.cssOnly) {
       this.$menu = new MDCSimpleMenu(this.$el);
-    }
-    this.handlingSelection();
-    if (this.open) {
-      this.$menu.show();
+      this.handlingSelection();
     }
   }
 };

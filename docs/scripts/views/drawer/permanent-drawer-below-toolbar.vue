@@ -1,9 +1,11 @@
 <template>
   <div class="demo--drawer demo--permanent-drawer-below-toolbar">
     <ui-toolbar :fixed="true">
-      <ui-toolbar-section align="start">
-        <span class="catalog-title">Permanent Drawer Below Toolbar</span>
-      </ui-toolbar-section>
+      <ui-toolbar-row>
+        <ui-toolbar-section align="start">
+          <span class="catalog-title">Permanent Drawer Below Toolbar</span>
+        </ui-toolbar-section>
+      </ui-toolbar-row>
     </ui-toolbar>
 
     <div class="demo-content mdc-toolbar-fixed-adjust">

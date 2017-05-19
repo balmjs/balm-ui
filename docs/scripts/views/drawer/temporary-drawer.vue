@@ -1,12 +1,14 @@
 <template>
   <div class="demo--drawer demo--temporary-drawer">
     <ui-toolbar :fixed="true">
-      <ui-toolbar-section align="start">
-        <template slot="before">
-          <ui-button link class="demo-menu material-icons" @click.native="openMenu">menu</ui-button>
-        </template>
-        <span class="catalog-title">Temporary Drawer</span>
-      </ui-toolbar-section>
+      <ui-toolbar-row>
+        <ui-toolbar-section align="start">
+          <template slot="before">
+            <ui-button link class="demo-menu material-icons" @click.native="openMenu">menu</ui-button>
+          </template>
+          <span class="catalog-title">Temporary Drawer</span>
+        </ui-toolbar-section>
+      </ui-toolbar-row>
     </ui-toolbar>
 
     <!-- menuSelector=".demo-menu" -->

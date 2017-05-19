@@ -179,7 +179,7 @@ left: 0;
           </ui-toolbar-row>
         </ui-toolbar>
         <section>
-          <ui-panels :activeIndex="activeIndex">
+          <ui-panels class="panels" :activeIndex="activeIndex">
             <ui-panel>Item One</ui-panel>
             <ui-panel>Item Two</ui-panel>
             <ui-panel>Item Three</ui-panel>

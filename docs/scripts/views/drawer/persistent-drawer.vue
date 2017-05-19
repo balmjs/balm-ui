@@ -33,12 +33,14 @@
 
     <div class="demo-content">
       <ui-toolbar contentSelector=".demo-main" :class="'mdc-elevation--z4'">
-        <ui-toolbar-section align="start">
-          <template slot="before">
-            <ui-button link class="demo-menu material-icons" @click.native="openMenu">menu</ui-button>
-          </template>
-          <span class="catalog-title">Persistent Drawer</span>
-        </ui-toolbar-section>
+        <ui-toolbar-row>
+          <ui-toolbar-section align="start">
+            <template slot="before">
+              <ui-button link class="demo-menu material-icons" @click.native="openMenu">menu</ui-button>
+            </template>
+            <span class="catalog-title">Persistent Drawer</span>
+          </ui-toolbar-section>
+        </ui-toolbar-row>
       </ui-toolbar>
 
       <main class="demo-main">

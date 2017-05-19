@@ -28,9 +28,11 @@
 
     <div class="demo-content">
       <ui-toolbar :class="'mdc-elevation--z4'">
-        <ui-toolbar-section align="start">
-          <span class="catalog-title">Permanent Drawer Above Toolbar</span>
-        </ui-toolbar-section>
+        <ui-toolbar-row>
+          <ui-toolbar-section align="start">
+            <span class="catalog-title">Permanent Drawer Above Toolbar</span>
+          </ui-toolbar-section>
+        </ui-toolbar-row>
       </ui-toolbar>
 
       <main class="demo-main">

@@ -1,7 +1,7 @@
 <template>
   <div class="balmui-container">
     <!-- header -->
-    <ui-toolbar v-if="!isDrawerDemo" :fixed="true">
+    <ui-toolbar v-if="!isDrawerDemo" :fixed="true" contentSelector=".balmui-body">
       <ui-toolbar-row>
         <ui-toolbar-section align="start" titleClass="catalog-title">
           <template slot="before">
@@ -18,7 +18,7 @@
       </ui-toolbar-row>
     </ui-toolbar>
     <!-- content -->
-    <div class="balmui-body mdc-toolbar-fixed-adjust">
+    <div class="balmui-body">
       <ui-permanent-drawer v-if="!isDrawerDemo" class="balmui-menu">
         <template slot="default" scope="drawerProps">
           <ui-list-nav class="catalog-list">

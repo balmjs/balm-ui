@@ -180,9 +180,9 @@ left: 0;
         </ui-toolbar>
         <section>
           <ui-panels class="panels" :activeIndex="activeIndex">
-            <ui-panel>Item One</ui-panel>
-            <ui-panel>Item Two</ui-panel>
-            <ui-panel>Item Three</ui-panel>
+            <ui-panel>Panel One</ui-panel>
+            <ui-panel>Panel Two</ui-panel>
+            <ui-panel>Panel Three</ui-panel>
           </ui-panels>
         </section>
       </fieldset>

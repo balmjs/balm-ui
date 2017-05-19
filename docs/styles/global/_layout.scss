@@ -1,20 +1,23 @@
-/// Ensure layout covers the entire screen.
-.page--persistent-drawer,
-.page--permanent-drawer-above-toolbar,
-.page--permanent-drawer-below-toolbar,
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body,
 .balmui-container {
+  position: relative;
+  display: flex;
+  width: 100%;
   height: 100%;
 }
 
 .balmui-body {
   display: flex;
-  height: 100%;
-  box-sizing: border-box;
+  width: 100%;
 }
 
-.balmui-menu,
-.balmui-content {
-  height: 100vh;
+.balmui-menu, .balmui-content {
+  height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
   & > * {
@@ -39,14 +42,14 @@
   color: gray;
   &.mdc-permanent-drawer--selected {
     color: #212121;
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, .05);
   }
 }
 
 .catalog-component-list-content {
+  display: flex;
   padding-left: 24px;
   order: 2;
-  display: flex;
   flex-flow: column wrap;
   justify-content: center;
 }

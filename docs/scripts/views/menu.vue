@@ -2,7 +2,7 @@
   <div class="demo--menu">
     <section class="hero">
       <ui-menu cssOnly
-        class="mdc-simple-menu--open"
+        class="demo-menu mdc-simple-menu--open"
         :menu="['Back', 'Forward', 'Reload', '-', 'Help & Feedback', 'Settings']">
       </ui-menu>
     </section>
@@ -50,6 +50,8 @@
         </div>
       </div>
     </div>
+
+    <section class="example"></section>
 
     <!-- <ui-apidoc name="menu"></ui-apidoc>
     <ui-apidoc name="menuitem"></ui-apidoc> -->

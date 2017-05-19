@@ -1,0 +1,15 @@
+.demo--textfield {
+  .mdc-theme--dark {
+    background-color: #303030;
+  }
+  input[type="checkbox"]:disabled + label {
+    opacity: .4;
+  }
+  .example {
+    margin: 24px;
+    padding: 24px;
+  }
+  .hero .mdc-textfield {
+    min-width: 240px;
+  }
+}

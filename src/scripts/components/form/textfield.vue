@@ -3,7 +3,7 @@
                  :alignEnd="alignEnd"
                  :dark="dark">
     <slot name="before"></slot>
-    <label :class="cssOnly ? false : className.label" :for="id">
+    <label v-if="!noLabel" :class="cssOnly ? false : className.label" :for="id">
       <slot>{{ label }}</slot>
     </label>
     <!-- Textarea -->
@@ -132,6 +132,10 @@ export default {
       default: false
     },
     dark: {
+      type: Boolean,
+      default: false
+    },
+    noLabel: {
       type: Boolean,
       default: false
     }

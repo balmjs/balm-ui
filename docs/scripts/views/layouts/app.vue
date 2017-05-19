@@ -63,6 +63,10 @@ export default {
   },
   watch: {
     $route() {
+      let bodyClass = document.querySelector('body').classList;
+      if (bodyClass.contains('mdc-dialog-scroll-lock')) {
+        bodyClass.remove('mdc-dialog-scroll-lock');
+      }
       this.$el.querySelector('.balmui-content').scrollTop = 0;
     }
   },

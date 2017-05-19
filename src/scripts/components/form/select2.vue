@@ -37,9 +37,7 @@ export default {
       default: false
     },
     // mdc
-    model: {
-      required: true
-    },
+    model: null,
     options: {
       required: true,
       type: Array,
@@ -81,6 +79,9 @@ export default {
         'mdc-select': true,
         'mdc-select--disabled': this.disabled
       };
+    },
+    hasDefaultOption() {
+      return this.defaultValue ? this.defaultValue.trim() : false;
     }
   },
   watch: {
@@ -96,9 +97,26 @@ export default {
   },
   methods: {
     changeHandler({detail}) {
-      if (this.options[detail.selectedIndex]) {
-        this.selectedOption = this.options[detail.selectedIndex];
-        this.$emit(UI_EVENT_CHANGE, this.selectedOption[this.optionKey]);
+      let index = detail.selectedIndex;
+      if (this.options[index]) {
+        let key = this.defaultKey;
+        let value = this.defaultValue;
+
+        if (this.hasDefaultOption) {
+          index -= 1;
+        }
+
+        if (index > -1) {
+          this.selectedOption = this.options[index];
+          key = this.selectedOption[this.optionKey];
+          value = this.selectedOption[this.optionValue];
+        }
+
+        this.$emit(UI_EVENT_CHANGE, {
+          index,
+          key,
+          value
+        });
       } else {
         console.warn('Invalid Options!');
       }
@@ -142,7 +160,7 @@ export default {
       let currentOptions = [];
 
       // default value
-      if (this.defaultValue) {
+      if (this.hasDefaultOption) {
         let defaultOption = {};
         defaultOption[this.optionKey] = this.defaultKey;
         defaultOption[this.optionValue] = this.defaultValue;

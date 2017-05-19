@@ -3,6 +3,7 @@
   <select :class="className"
           :disabled="disabled"
           :multiple="multiple"
+          :size="size"
           v-model="currentValue"
           @change="handleChange">
     <!-- Default value -->
@@ -24,7 +25,7 @@
                 class="mdc-list-item"
                 :value="option[optionKey]">{{ option[optionValue] }}</option>
         <!-- A divider -->
-        <option v-if="multiple && (option.hr || option.divider)"
+        <option v-if="multiple && (option === DIVIDER)"
                 class="mdc-list-divider"
                 role="presentation"
                 disabled></option>
@@ -40,6 +41,7 @@
 <script>
 import {isObject} from '../../helpers';
 
+const DIVIDER = '-';
 const UI_EVENT_CHANGE = 'change';
 
 export default {
@@ -54,10 +56,12 @@ export default {
       type: Boolean,
       default: false
     },
-    // mdc
-    model: {
-      required: true
+    size: {
+      type: [Number, String],
+      default: 0
     },
+    // mdc
+    model: null,
     options: {
       required: true,
       type: Array,
@@ -85,6 +89,7 @@ export default {
   },
   data() {
     return {
+      DIVIDER,
       currentValue: this.model
     };
   },

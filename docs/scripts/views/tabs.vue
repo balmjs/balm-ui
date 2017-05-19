@@ -1,7 +1,7 @@
 <template>
   <div class="demo--tabs">
     <section class="hero">
-      <ui-tabs :data="tabs" @change="onChange"></ui-tabs>
+      <ui-tabs :data="tabs"></ui-tabs>
     </section>
 
     <section>
@@ -170,26 +170,20 @@ left: 0;
         <ui-toolbar id="dynamic-demo-toolbar">
           <ui-toolbar-row>
             <ui-toolbar-section fit align="start">
-              <ui-tab-bar accent id="dynamic-tab-bar">
-                <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url"
-                  :aria-controls="tab.panel">
-                  {{ tab.name }}
-                </ui-tab>
-              </ui-tab-bar>
+              <ui-tabs accent
+                id="dynamic-tab-bar"
+                :data="tabs"
+                :activeIndex="activeIndex"
+                @change="onChange('activeIndex', $event)"></ui-tabs>
             </ui-toolbar-section>
           </ui-toolbar-row>
         </ui-toolbar>
         <section>
-          <div class="panels">
-            <p class="panel active" id="panel-1" role="tabpanel" aria-hidden="false">Item One</p>
-            <p class="panel" id="panel-2" role="tabpanel" aria-hidden="true">Item Two</p>
-            <p class="panel" id="panel-3" role="tabpanel" aria-hidden="true">Item Three</p>
-          </div>
-          <div class="dots">
-            <a class="dot active" data-trigger="panel-1" href="#panel-1"></a>
-            <a class="dot" data-trigger="panel-2" href="#panel-2"></a>
-            <a class="dot" data-trigger="panel-3" href="#panel-3"></a>
-          </div>
+          <ui-panels :activeIndex="activeIndex">
+            <ui-panel>Item One</ui-panel>
+            <ui-panel>Item Two</ui-panel>
+            <ui-panel>Item Three</ui-panel>
+          </ui-panels>
         </section>
       </fieldset>
     </section>
@@ -206,6 +200,7 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      activeIndex: 1,
       tabs: [{
         name: 'Item One',
         url: '#one',
@@ -233,11 +228,6 @@ export default {
         text: 'Nearby'
       }]
     };
-  },
-  methods: {
-    onChange(index) {
-      console.log(index);
-    }
   },
   created() {
     // this.showCode('tabs', 3);

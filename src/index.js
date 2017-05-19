@@ -12,6 +12,8 @@ import UiCell from './scripts/components/grid/cell';
 import UiTabs from './scripts/components/tabs/tabs';
 import UiTabBar from './scripts/components/tabs/tab-bar';
 import UiTab from './scripts/components/tabs/tab';
+import UiPanels from './scripts/components/tabs/panels';
+import UiPanel from './scripts/components/tabs/panel';
 /**
  * Common
  */
@@ -77,6 +79,8 @@ const BalmUI = {
   UiTabs,
   UiTabBar,
   UiTab,
+  UiPanels,
+  UiPanel,
   // Common
   UiBadge,
   UiLink,

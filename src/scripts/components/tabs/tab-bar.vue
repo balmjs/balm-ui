@@ -1,5 +1,5 @@
 <template>
-  <nav :class="className">
+  <nav :class="className" role="tablist">
     <slot name="before"></slot>
     <slot></slot>
     <span class="mdc-tab-bar__indicator"></span>
@@ -42,10 +42,10 @@ export default {
       this.$tabBar.listen('MDCTabBar:change', ({detail: tabs}) => {
         this.$emit(UI_EVENT_CHANGE, tabs.activeTabIndex);
       });
-      let currentTabIndex = this.active;
-      if (currentTabIndex && currentTabIndex < this.$tabBar.tabs.length) {
-        this.$tabBar.activeTab = this.$tabBar.tabs[currentTabIndex];
-        this.$tabBar.activeTabIndex = currentTabIndex;
+      let activeIndex = this.activeIndex;
+      if (activeIndex && activeIndex < this.$tabBar.tabs.length) {
+        this.$tabBar.activeTab = this.$tabBar.tabs[activeIndex];
+        this.$tabBar.activeTabIndex = activeIndex;
       } else {
         // NOTE: It has bug when index = 0.
         // this.$tabBar.activeTab = this.$tabBar.tabs[0];

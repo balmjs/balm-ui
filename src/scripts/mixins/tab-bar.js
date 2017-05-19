@@ -6,7 +6,8 @@ export default {
       type: [Number, String],
       default: LABEL_TEXT
     },
-    active: {
+    // mdc
+    activeIndex: {
       type: [Number, String],
       default: 0
     },
@@ -18,6 +19,7 @@ export default {
       type: Boolean,
       default: false
     },
+    // theme
     dark: {
       type: Boolean,
       default: false

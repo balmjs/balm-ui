@@ -1,5 +1,5 @@
 <template>
-  <a class="mdc-tab" @click.prevent>
+  <a class="mdc-tab" role="tab" @click.prevent>
     <slot name="before"></slot>
     <template v-if="icon">
       <i class="mdc-tab__icon material-icons">{{ icon }}</i>

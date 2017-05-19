@@ -8,32 +8,44 @@
     @change="handleChange">
     <ui-tab v-for="(tab, index) in data"
       :key="index"
-      :icon="(iconOnly || textWithIcon) ? tab.icon : false"
-      :text="textWithIcon ? tab.text : false"
-      :href="tab.url">
-      {{ textOnly && tab.name ? tab.name : '' }}
+      :icon="(iconOnly || textWithIcon) ? tab[tabIcon] : false"
+      :text="textWithIcon ? tab[tabText] : false"
+      :href="tab[tabUrl]">
+      {{ textOnly && tab[tabName] ? tab[tabName] : '' }}
     </ui-tab>
   </ui-tab-bar>
 </template>
 
 <script>
 import tabBarMixin from '../../mixins/tab-bar';
-import tabMixin from '../../mixins/tab';
 
 const UI_EVENT_CHANGE = 'change';
 
 export default {
   name: 'ui-tabs',
-  mixins: [
-    tabBarMixin,
-    tabMixin
-  ],
+  mixins: [tabBarMixin],
   props: {
     data: {
       type: Array,
       default: () => {
         return [];
       }
+    },
+    tabIcon: {
+      type: String,
+      default: 'icon'
+    },
+    tabText: {
+      type: String,
+      default: 'text'
+    },
+    tabUrl: {
+      type: String,
+      default: 'url'
+    },
+    tabName: {
+      type: String,
+      default: 'name'
     }
   },
   methods: {

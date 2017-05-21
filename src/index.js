@@ -68,8 +68,7 @@ import UiSnackbar from './scripts/components/snackbar';
  */
 import helper from './scripts/plugins/helper';
 import event from './scripts/plugins/event';
-import elevation from './scripts/plugins/elevation';
-import theme from './scripts/plugins/theme';
+import mixin from './scripts/plugins/mixin';
 
 const BalmUI = {
   // Layout
@@ -131,8 +130,7 @@ const BalmUI = {
   plugins: {
     helper,
     event,
-    elevation,
-    theme
+    mixin
   },
   // Register
   install(Vue) {

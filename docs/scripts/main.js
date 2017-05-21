@@ -24,8 +24,7 @@ Vue.use(VueI18n);
 Vue.use(BalmUI);
 Vue.use(BalmUI.plugins.helper);
 Vue.use(BalmUI.plugins.event);
-Vue.use(BalmUI.plugins.elevation);
-Vue.use(BalmUI.plugins.theme);
+Vue.use(BalmUI.plugins.mixin);
 Vue.use({
   install(vue) {
     vue.component(UiMarkdown.name, UiMarkdown);

@@ -66,10 +66,6 @@ const COMPONENTS = [{
   name: 'Radio', // Radio buttons
   description: 'Single selection controls'
 }, {
-  icon: 'ripple',
-  name: 'Ripple',
-  description: 'Touch ripple'
-}, {
   icon: 'menu',
   name: 'Select',
   description: 'Popover selection menus'

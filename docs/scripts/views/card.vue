@@ -1,7 +1,7 @@
 <template>
   <div class="demo--card">
     <section class="hero">
-      <ui-card :class="'demo-card'">
+      <ui-card class="demo-card">
         <ui-card-media class="demo-card__16-9-media"></ui-card-media>
         <ui-card-primary large hasSubtitle>
           <template slot="title">
@@ -20,7 +20,7 @@
 
     <section class="demo-typography--section mdc-typography" id="demo-wrapper">
       <div>
-        <ui-card :class="'demo-card'">
+        <ui-card class="demo-card">
           <ui-card-media class="demo-card__16-9-media"></ui-card-media>
           <ui-card-text>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
@@ -77,7 +77,7 @@
       </div>
 
       <div>
-        <ui-card :class="'demo-card'">
+        <ui-card class="demo-card">
           <ui-card-media class="demo-card__16-9-media"></ui-card-media>
           <ui-card-primary large hasSubtitle>
             <template slot="title">
@@ -95,7 +95,7 @@
       </div>
 
       <div>
-        <ui-card :class="'demo-card'">
+        <ui-card class="demo-card">
           <ui-card-primary large hasSubtitle>
             <template slot="title">
               Title goes here
@@ -149,7 +149,7 @@
       </div>
 
       <div>
-        <ui-card :class="'demo-card'">
+        <ui-card class="demo-card">
           <ui-card-block>
             <ui-card-primary large hasSubtitle>
               <template slot="title">
@@ -171,7 +171,7 @@
       </div>
 
       <div>
-        <ui-card :class="'demo-card'">
+        <ui-card class="demo-card">
           <ui-card-block>
             <template slot="before" scope="props">
               <img :class="[props.className.media, props.className.x1_5]" :src="require('../../images/1-1.jpg')" alt="">
@@ -193,7 +193,7 @@
       </div>
 
       <div>
-        <ui-card :class="'demo-card'">
+        <ui-card class="demo-card">
           <ui-card-block>
             <ui-card-primary large hasSubtitle>
               <template slot="title">
@@ -215,7 +215,7 @@
       </div>
 
       <div>
-        <ui-card :class="'demo-card'">
+        <ui-card class="demo-card">
           <ui-card-block class="mdc-card__horizontal-block">
             <template slot="before" scope="props">
               <img :class="[props.className.media, props.className.x3]" :src="require('../../images/1-1.jpg')" alt="">

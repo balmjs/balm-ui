@@ -64,10 +64,11 @@ import UiListNav from './scripts/components/list/list-nav';
 import UiDialog from './scripts/components/dialog/dialog';
 import UiSnackbar from './scripts/components/snackbar';
 /**
- * Plugin
+ * Plugins
  */
 import helper from './scripts/plugins/helper';
 import event from './scripts/plugins/event';
+import elevation from './scripts/plugins/elevation';
 
 const BalmUI = {
   // Layout
@@ -128,7 +129,8 @@ const BalmUI = {
   // Plugins
   plugins: {
     helper,
-    event
+    event,
+    elevation
   },
   // Register
   install(Vue) {

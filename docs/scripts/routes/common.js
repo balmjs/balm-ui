@@ -7,6 +7,7 @@ const Menu = require('../views/menu');
 const Tooltip = require('../views/tooltip');
 const Divider = require('../views/divider');
 const Fab = require('../views/fab');
+const Elevation = require('../views/elevation');
 
 const commonRoutes = [{
   path: '/badge',
@@ -86,6 +87,15 @@ const commonRoutes = [{
   component: Divider,
   meta: {
     title: 'BalmUI - Divider',
+    keywords: '',
+    description: ''
+  }
+}, {
+  path: '/elevation',
+  name: 'elevation',
+  component: Elevation,
+  meta: {
+    title: 'BalmUI - Elevation',
     keywords: '',
     description: ''
   }

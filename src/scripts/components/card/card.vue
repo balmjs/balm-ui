@@ -1,25 +1,20 @@
 <template>
-  <div :class="[className, elevation]">
+  <div :class="className">
     <slot></slot>
   </div>
 </template>
 
 <script>
-const MIN_DP = 0;
-const MAX_DP = 24;
+import elevation from '../../mixins/elevation';
 
 export default {
   name: 'ui-card',
+  mixins: [elevation],
   props: {
     // theme
     dark: {
       type: Boolean,
       default: false
-    },
-    // elevation
-    dp: {
-      type: Number,
-      default: 0
     }
   },
   computed: {
@@ -28,9 +23,6 @@ export default {
         'mdc-card': true,
         'mdc-card--theme-dark': this.dark
       };
-    },
-    elevation() {
-      return (this.dp > MIN_DP && this.dp <= MAX_DP) ? `mdc-elevation--z${this.dp}` : '';
     }
   }
 };

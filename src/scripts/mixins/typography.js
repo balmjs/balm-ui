@@ -14,10 +14,14 @@ const STYLES = [
 
 export default {
   methods: {
-    typography(style = '') {
-      return STYLES.indexOf(style.toLowerCase()) > -1
-        ? `mdc-typography--${style}`
-        : '';
+    typography(style = '', adjustMargin = false) {
+      let result = STYLES.indexOf(style.toLowerCase()) > -1
+        ? [`mdc-typography--${style}`]
+        : [];
+      if (adjustMargin) {
+        result.push('mdc-typography--adjust-margin');
+      }
+      return result.join(' ');
     }
   }
 };

@@ -17,7 +17,7 @@ import UiPanel from './scripts/components/tabs/panel';
 /**
  * Common
  */
-import UiBadge from './scripts/components/common/badge';
+// import UiBadge from './scripts/components/common/badge';
 import UiLink from './scripts/components/link';
 import UiButton from './scripts/components/button';
 import UiFab from './scripts/components/fab';
@@ -46,6 +46,10 @@ import UiSelect2 from './scripts/components/form/select2';
 /**
  * Data
  */
+import UiGridList from './scripts/components/list/grid-list';
+import UiGridTile from './scripts/components/list/grid-tile';
+import UiGridTileTitle from './scripts/components/list/grid-tile-title';
+import UiGridTileText from './scripts/components/list/grid-tile-text';
 import UiListGroup from './scripts/components/list/list-group';
 import UiList from './scripts/components/list/list';
 import UiListDivider from './scripts/components/list/list-divider';
@@ -81,7 +85,7 @@ const BalmUI = {
   UiPanels,
   UiPanel,
   // Common
-  UiBadge,
+  // UiBadge,
   UiLink,
   UiButton,
   UiFab,
@@ -106,6 +110,10 @@ const BalmUI = {
   UiSelect,
   UiSelect2,
   // Data
+  UiGridList,
+  UiGridTile,
+  UiGridTileTitle,
+  UiGridTileText,
   UiListGroup,
   UiList,
   UiListDivider,

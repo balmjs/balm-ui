@@ -58,12 +58,6 @@
         <p><router-link to="waterfall-toolbar-fix-last-row" target="_blank">View in separate window</router-link></p>
         <iframe v-if="!DEBUG" class="demo-container" src="/#/waterfall-toolbar-fix-last-row"></iframe>
       </div>
-
-      <div class="example">
-        <h2>Waterfall Flexible Toolbar with Custom Style</h2>
-        <p><router-link to="waterfall-flexible-toolbar-custom-style" target="_blank">View in separate window</router-link></p>
-        <iframe v-if="!DEBUG" class="demo-container" src="/#/waterfall-flexible-toolbar-custom-style"></iframe>
-      </div>
     </section>
   </div>
 </template>

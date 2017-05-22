@@ -1,0 +1,55 @@
+<template>
+  <div class="demo--waterfall-flexible-toolbar">
+    <ui-toolbar
+      :fixed="true"
+      waterfall
+      :flexible="true"
+      contentSelector="#demo--waterfall-flexible-toolbar-content"
+      @change="onChange">
+      <ui-toolbar-row>
+        <ui-toolbar-section align="start">
+          <template slot="before">
+            <a href="#" class="material-icons">menu</a>
+          </template>
+          Title
+        </ui-toolbar-section>
+        <ui-toolbar-section align="end" noTitle>
+          <a href="#" class="material-icons" aria-label="Download" alt="Download">file_download</a>
+          <a href="#" class="material-icons" aria-label="Print this page" alt="Print this page">print</a>
+          <a href="#" class="material-icons" aria-label="Bookmark this page" alt="Bookmark this page">bookmark</a>
+        </ui-toolbar-section>
+      </ui-toolbar-row>
+    </ui-toolbar>
+    <main>
+      <div id="demo--waterfall-flexible-toolbar-content">
+        <p class="demo-paragraph">
+          Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.
+        </p>
+        <p class="demo-paragraph">
+          Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.
+        </p>
+        <p class="demo-paragraph">
+          Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.
+        </p>
+      </div>
+    </main>
+    <footer>
+      <span>Flexible Expansion Ratio: <span id="ratio">{{ ratio }}</span></span>
+    </footer>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      ratio: 0
+    };
+  },
+  methods: {
+    onChange(ratio) {
+      this.ratio = ratio.toFixed(2);
+    }
+  }
+};
+</script>

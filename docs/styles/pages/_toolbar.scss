@@ -1,3 +1,12 @@
+.balm-ui--default-toolbar,
+.balm-ui--fixed-toolbar,
+.balm-ui--waterfall-toolbar,
+.balm-ui--default-flexible-toolbar,
+.balm-ui--waterfall-flexible-toolbar,
+.balm-ui--waterfall-toolbar-fix-last-row {
+  height: auto;
+}
+
 .demo--toolbar {
   .demo-container {
     height: 500px;
@@ -32,5 +41,59 @@
   }
   p.intro {
     padding: 48px 24px;
+  }
+}
+
+.demo--default-toolbar,
+.demo--fixed-toolbar,
+.demo--waterfall-toolbar,
+.demo--default-flexible-toolbar,
+.demo--waterfall-flexible-toolbar,
+.demo--waterfall-toolbar-fix-last-row {
+  .demo-paragraph {
+    margin: 0px;
+    padding: 20px 28px;
+  }
+  .material-icons {
+    text-decoration: none;
+    cursor: pointer;
+    padding-right: 8px;
+    color: white;
+  }
+  [dir='rtl'] .material-icons {
+    padding-left: 8px;
+  }
+  @media (max-width: 599px) {
+    .demo-paragraph {
+      padding: 16px;
+    }
+  }
+  footer {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    color: red;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+}
+
+.demo--default-flexible-toolbar,
+.demo--waterfall-flexible-toolbar,
+.demo--waterfall-toolbar-fix-last-row {
+  .mdc-toolbar__row:first-child::after {
+    background-image: url("../images/4-3.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+.demo--waterfall-toolbar-fix-last-row {
+  .mdc-toolbar {
+    background-color: #141395;
+    transition: background-color .2s ease;
+  }
+  .mdc-toolbar.mdc-toolbar--flexible-space-minimized {
+    background-color: #3f51b5;
   }
 }

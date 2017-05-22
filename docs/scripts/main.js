@@ -16,8 +16,9 @@ import 'flatpickrCss';
 // ready translated locales
 import { locales, flatpickrLang } from './config/lang';
 
+const CLASS_NAMESPACE = 'balm-ui';
 const DEBUG = (process.env.NODE_ENV === 'production') ? false : true;
-
+Vue.prototype.DEBUG = DEBUG;
 Vue.use(VueRouter);
 Vue.prototype.$http = axios;
 Vue.use(VueI18n);
@@ -49,7 +50,7 @@ Vue.prototype.$docs = {
     tbody: ['name', 'description']
   }
 };
-Vue.prototype.$domain = DEBUG ? '' : '/ui-vue';
+Vue.prototype.$domain = DEBUG ? '' : '/ui';
 
 const router = new VueRouter({
   routes
@@ -58,12 +59,12 @@ const router = new VueRouter({
 router.afterEach((to, from) => {
   document.querySelector('title').innerHTML = to.meta.title;
 
-  let bodyClassList = document.querySelector('body').classList;
+  let pageClassList = document.querySelector('html').classList;
   if (from.name) {
-    bodyClassList.remove(`page--${from.name}`);
+    pageClassList.remove(`${CLASS_NAMESPACE}--${from.name}`);
   }
   if (to.name) {
-    bodyClassList.add(`page--${to.name}`)
+    pageClassList.add(`${CLASS_NAMESPACE}--${to.name}`)
   }
 });
 

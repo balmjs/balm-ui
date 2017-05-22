@@ -17,16 +17,53 @@
       </div>
     </div>
 
-    // TODO
+    <p class="intro">
+      To best show the functionality of toolbars, we put both demos in iframes.
+      Click the links above the iframe to view the demo in a full browser window.
+    </p>
+
+    <section class="examples">
+      <div class="example">
+        <h2>Normal Toolbar</h2>
+        <p><router-link to="default-toolbar" target="_blank">View in separate window</router-link></p>
+        <iframe v-if="!DEBUG" class="demo-container" src="/#/default-toolbar"></iframe>
+      </div>
+
+      <div class="example">
+        <h2>Fixed Toolbar</h2>
+        <p><router-link to="fixed-toolbar" target="_blank">View in separate window</router-link></p>
+        <iframe v-if="!DEBUG" class="demo-container" src="/#/fixed-toolbar"></iframe>
+      </div>
+
+      <div class="example">
+        <h2>Waterfall Toolbar</h2>
+        <p><router-link to="waterfall-toolbar" target="_blank">View in separate window</router-link></p>
+        <iframe v-if="!DEBUG" class="demo-container" src="/#/waterfall-toolbar"></iframe>
+      </div>
+
+      <div class="example">
+        <h2>Default Flexible Toolbar</h2>
+        <p><router-link to="default-flexible-toolbar" target="_blank">View in separate window</router-link></p>
+        <iframe v-if="!DEBUG" class="demo-container" src="/#/default-flexible-toolbar"></iframe>
+      </div>
+
+      <div class="example">
+        <h2>Waterfall Flexible Toolbar</h2>
+        <p><router-link to="waterfall-flexible-toolbar" target="_blank">View in separate window</router-link></p>
+        <iframe v-if="!DEBUG" class="demo-container" src="/#/waterfall-flexible-toolbar"></iframe>
+      </div>
+
+      <div class="example">
+        <h2>Waterfall Toolbar Fix Last Row</h2>
+        <p><router-link to="waterfall-toolbar-fix-last-row" target="_blank">View in separate window</router-link></p>
+        <iframe v-if="!DEBUG" class="demo-container" src="/#/waterfall-toolbar-fix-last-row"></iframe>
+      </div>
+
+      <div class="example">
+        <h2>Waterfall Flexible Toolbar with Custom Style</h2>
+        <p><router-link to="waterfall-flexible-toolbar-custom-style" target="_blank">View in separate window</router-link></p>
+        <iframe v-if="!DEBUG" class="demo-container" src="/#/waterfall-flexible-toolbar-custom-style"></iframe>
+      </div>
+    </section>
   </div>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-
-    };
-  }
-};
-</script>

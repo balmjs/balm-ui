@@ -38,19 +38,24 @@ export default {
     };
   },
   computed: {
-    isfixedLastrowOnly() {
+    isFixedLastrowOnly() {
       return isString(this.fixed)
         ? this.fixed.toLowerCase() === 'lastrow'
         : false;
+    },
+    noFlexibleDefaultBehavior() {
+      return isString(this.flexible)
+        ? this.flexible.toLowerCase() === 'custom'
+        : false
     },
     className() {
       return {
         'mdc-toolbar': true,
         'mdc-toolbar--fixed': this.fixed || this.waterfall,
         'mdc-toolbar--waterfall': this.waterfall,
-        'mdc-toolbar--fixed-lastrow-only': this.isfixedLastrowOnly,
+        'mdc-toolbar--fixed-lastrow-only': this.isFixedLastrowOnly,
         'mdc-toolbar--flexible': this.flexible,
-        'mdc-toolbar--flexible-default-behavior': this.flexible
+        'mdc-toolbar--flexible-default-behavior': !this.noFlexibleDefaultBehavior
       };
     }
   },
@@ -73,7 +78,7 @@ export default {
     if (!this.$toolbar) {
       this.$toolbar = new MDCToolbar(this.$el);
       this.$toolbar.listen(MDC_EVENT_CHANGE, ({detail}) => {
-        this.$emit(UI_EVENT_CHANGE, detail);
+        this.$emit(UI_EVENT_CHANGE, detail.flexibleExpansionRatio);
       });
       this.fixedAdjustContent();
     }

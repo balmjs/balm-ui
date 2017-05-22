@@ -1,9 +1,14 @@
 <template>
   <section :class="className">
     <slot name="before"></slot>
-    <span :class="['mdc-toolbar__title', titleClass]">
+    <template v-if="noTitle">
       <slot></slot>
-    </span>
+    </template>
+    <template v-else>
+      <span :class="['mdc-toolbar__title', titleClass]">
+        <slot></slot>
+      </span>
+    </template>
     <slot name="after"></slot>
   </section>
 </template>
@@ -21,7 +26,11 @@ export default {
       type: Boolean,
       default: false
     },
-    titleClass: String
+    titleClass: String,
+    noTitle: {
+      type: Boolean,
+      default: false
+    }
   },
   computed: {
     className() {

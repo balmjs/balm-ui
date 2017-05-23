@@ -1,3 +1,10 @@
+/// Ensure layout covers the entire screen.
+.balmui--persistent-drawer,
+.balmui--permanent-drawer-above-toolbar,
+.balmui--permanent-drawer-below-toolbar {
+  height: 100%;
+}
+
 .demo--temporary-drawer {
   .demo-menu {
     background: none;

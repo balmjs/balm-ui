@@ -1,7 +1,6 @@
 <template>
   <div class="demo--waterfall-flexible-toolbar">
     <ui-toolbar
-      :fixed="true"
       waterfall
       :flexible="true"
       contentSelector="#demo--waterfall-flexible-toolbar-content"

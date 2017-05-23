@@ -16,7 +16,7 @@ import 'flatpickrCss';
 // ready translated locales
 import { locales, flatpickrLang } from './config/lang';
 
-const CLASS_NAMESPACE = 'balm-ui';
+const CLASS_NAMESPACE = 'balmui';
 const DEBUG = (process.env.NODE_ENV === 'production') ? false : true;
 Vue.prototype.DEBUG = DEBUG;
 Vue.use(VueRouter);

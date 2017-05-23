@@ -1,7 +1,6 @@
 <template>
   <div class="demo--waterfall-toolbar">
     <ui-toolbar
-      :fixed="true"
       waterfall
       contentSelector="#demo--waterfall-toolbar-content">
       <ui-toolbar-row>

@@ -8,6 +8,8 @@
 import {MDCToolbar} from '../../material-components-web/toolbar';
 import {isString} from '../../helpers';
 
+const FIXED_LASTROW_ONLY = 'lastrow';
+const FLEXIBLE_CUSTOM_BEHAVIOR = 'custom';
 const MDC_EVENT_CHANGE = 'MDCToolbar:change';
 const UI_EVENT_CHANGE = 'change';
 
@@ -39,14 +41,10 @@ export default {
   },
   computed: {
     isFixedLastrowOnly() {
-      return isString(this.fixed)
-        ? this.fixed.toLowerCase() === 'lastrow'
-        : false;
+      return isString(this.fixed) && this.fixed.toLowerCase() === FIXED_LASTROW_ONLY;
     },
     noFlexibleDefaultBehavior() {
-      return isString(this.flexible)
-        ? this.flexible.toLowerCase() === 'custom'
-        : false
+      return isString(this.flexible) && this.flexible.toLowerCase() === FLEXIBLE_CUSTOM_BEHAVIOR;
     },
     className() {
       return {
@@ -55,7 +53,7 @@ export default {
         'mdc-toolbar--waterfall': this.waterfall,
         'mdc-toolbar--fixed-lastrow-only': this.isFixedLastrowOnly,
         'mdc-toolbar--flexible': this.flexible,
-        'mdc-toolbar--flexible-default-behavior': !this.noFlexibleDefaultBehavior
+        'mdc-toolbar--flexible-default-behavior': this.flexible && !this.noFlexibleDefaultBehavior
       };
     }
   },

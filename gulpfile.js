@@ -66,12 +66,12 @@ balm.config = {
 if (buildDocs) {
   balm.config.roots.source = 'docs';
   balm.config.scripts.entry.main = './docs/scripts/main.js';
-  balm.config.assets.subDir = 'ui-vue';
+  balm.config.assets.subDir = 'ui';
 }
 
 balm.go(function(mix) {
   if (buildDocs) {
-    mix.copy('./docs/data/*', './dist/ui-vue/data');
+    mix.copy('./docs/data/*', './dist/ui/data');
   } else {
     if (useDefault) {
       if (balm.config.production) {

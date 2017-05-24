@@ -24,6 +24,7 @@ export default {
     UiButton
   },
   props: {
+    // ui attributes
     cssOnly: {
       type: Boolean,
       default: false
@@ -71,7 +72,7 @@ export default {
         }
         this.$snackbar.show(data);
       }
-      this.$emit(UI_EVENT_DONE);
+      this.$emit(UI_EVENT_DONE); // TODO: dismissesOnAction
     }
   },
   watch: {

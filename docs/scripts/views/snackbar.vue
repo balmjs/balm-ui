@@ -54,7 +54,7 @@ export default {
       this.active = false;
     },
     actionHandler() {
-      console.log('undo');
+      console.log('gg');
     }
   },
   created() {

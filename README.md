@@ -101,7 +101,7 @@ Vue.use(BalmUI);
 - [x] Dialog
 - [x] Drawer
 - [x] Elevation
-- [x] FAB
+- [x] FAB ✅
 - [x] Grid List
 - [x] Icon Toggle
 - [x] Layout grid

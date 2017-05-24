@@ -2,15 +2,14 @@
   <ui-button fab
              :class="className"
              :disabled="disabled"
-             :cssOnly="cssOnly"
-             :dark="dark">
+             :cssOnly="cssOnly">
     <template v-if="materialIcon">
       <span class="mdc-fab__icon">
         <slot>{{ materialIcon }}</slot>
       </span>
     </template>
     <template v-else>
-      <slot></slot>
+      <slot><!-- Custom Icon --></slot>
     </template>
   </ui-button>
 </template>
@@ -25,12 +24,12 @@ export default {
     UiButton
   },
   props: {
-    // attribute
+    // element attributes
     disabled: {
       type: Boolean,
       default: false
     },
-    // mdc
+    // ui attributes
     cssOnly: {
       type: Boolean,
       default: false
@@ -46,24 +45,19 @@ export default {
     plain: {
       type: Boolean,
       default: false
-    },
-    // theme
-    dark: {
-      type: Boolean,
-      default: false
     }
   },
   computed: {
+    materialIcon() {
+      return isString(this.icon) ? this.icon : false;
+    },
     className() {
       return {
         'mdc-fab': true,
         'mdc-fab--mini': this.mini,
         'mdc-fab--plain': this.plain,
-        'material-icons': this.icon,
+        'material-icons': this.materialIcon,
       };
-    },
-    materialIcon() {
-      return isString(this.icon) ? this.icon : '';
     }
   }
 };

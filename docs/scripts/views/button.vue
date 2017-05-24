@@ -7,7 +7,7 @@
 
     <section>
       <fieldset>
-        <legend class="mdc-typography--title">Buttons</legend>
+        <legend :class="typography('title')">Buttons</legend>
         <ui-button>Default</ui-button>
         <ui-button raised>Raised</ui-button>
         <ui-button dense>Dense Default</ui-button>
@@ -21,7 +21,7 @@
       </fieldset>
 
       <fieldset>
-        <legend class="mdc-typography--title">Buttons CSS Only</legend>
+        <legend :class="typography('title')">Buttons CSS Only</legend>
         <ui-button cssOnly>Default</ui-button>
         <ui-button cssOnly raised>Raised</ui-button>
         <ui-button cssOnly dense>Dense Default</ui-button>
@@ -35,7 +35,7 @@
       </fieldset>
 
       <fieldset>
-        <legend class="mdc-typography--title">Disabled</legend>
+        <legend :class="typography('title')">Disabled</legend>
         <ui-button disabled>Default</ui-button>
         <ui-button disabled raised>Raised</ui-button>
         <ui-button disabled dense>Dense Default</ui-button>
@@ -51,7 +51,7 @@
 
     <section class="mdc-theme--dark">
       <fieldset>
-        <legend class="mdc-typography--title">Dark Theme - Buttons</legend>
+        <legend :class="typography('title')">Dark Theme - Buttons</legend>
         <ui-button>Default</ui-button>
         <ui-button raised>Raised</ui-button>
         <ui-button dense>Dense Default</ui-button>
@@ -65,7 +65,7 @@
       </fieldset>
 
       <fieldset>
-        <legend class="mdc-typography--title">Dark Theme - Buttons CSS Only</legend>
+        <legend :class="typography('title')">Dark Theme - Buttons CSS Only</legend>
         <ui-button cssOnly>Default</ui-button>
         <ui-button cssOnly raised>Raised</ui-button>
         <ui-button cssOnly dense>Dense Default</ui-button>
@@ -79,7 +79,7 @@
       </fieldset>
 
       <fieldset>
-        <legend class="mdc-typography--title">Dark Theme - Disabled</legend>
+        <legend :class="typography('title')">Dark Theme - Disabled</legend>
         <ui-button disabled>Default</ui-button>
         <ui-button disabled raised>Raised</ui-button>
         <ui-button disabled dense>Dense Default</ui-button>

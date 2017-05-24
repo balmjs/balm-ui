@@ -34,6 +34,22 @@
         <ui-fab disabled plain icon="favorite_border"></ui-fab>
         <ui-fab disabled mini plain icon="favorite_border"></ui-fab>
       </fieldset>
+
+      <fieldset>
+        <legend>Custom FABs</legend>
+        <ui-fab cssOnly>
+          <i class="fa fa-flag fa-lg" aria-hidden="true"></i>
+        </ui-fab>
+        <ui-fab cssOnly plain>
+          <i class="fa fa-smile-o fa-lg" aria-hidden="true"></i>
+        </ui-fab>
+        <ui-fab cssOnly dark>
+          <i class="fa fa-camera-retro fa-lg"></i>
+        </ui-fab>
+        <ui-fab cssOnly plain dark>
+          <i class="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
+        </ui-fab>
+      </fieldset>
     </section>
   </div>
 </template>

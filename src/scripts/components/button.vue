@@ -41,11 +41,6 @@ export default {
       type: Boolean,
       default: false
     },
-    // theme
-    dark: {
-      type: Boolean,
-      default: false
-    },
     // extension
     fab: {
       type: Boolean,
@@ -68,8 +63,7 @@ export default {
         'mdc-button--compact': this.compact,
         'mdc-button--primary': this.primary,
         'mdc-button--accent': this.accent,
-        'mdc-ripple': !this.noRipple,
-        'mdc-button--theme-dark': this.dark
+        'mdc-ripple': !this.noRipple
       };
     }
   },

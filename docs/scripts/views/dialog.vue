@@ -12,13 +12,13 @@
     </section>
 
     <section class="example">
-      <ui-button primary raised @click.native="showDialog">Show Dialog</ui-button>
-      <ui-button primary raised @click.native="showScrollingDialog">Show Scrolling Dialog</ui-button>
+      <ui-button primary raised @click.native="openDialog('open')">Show Dialog</ui-button>
+      <ui-button primary raised @click.native="showDialog('open2')">Show Scrolling Dialog</ui-button>
     </section>
 
     <ui-dialog
       :open="open"
-      @close="close"
+      @close="closeDialog('open')"
       @accept="accept"
       @cancel="cancel">
       <template slot="title">Use Google's location service?</template>
@@ -28,7 +28,7 @@
     <ui-dialog
       scrollable
       :open="open2"
-      @close="close"
+      @close="hideDialog('open2')"
       @accept="accept"
       @cancel="cancel">
       <template slot="title">Choose a Ringtone</template>
@@ -63,16 +63,6 @@ export default {
     }
   },
   methods: {
-    close() {
-      this.open = false;
-      this.open2 = false;
-    },
-    showDialog() {
-      this.open = true;
-    },
-    showScrollingDialog() {
-      this.open2 = true;
-    },
     accept() {
       console.log('ok');
     },

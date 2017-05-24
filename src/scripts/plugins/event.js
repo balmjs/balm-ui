@@ -1,16 +1,26 @@
 const methods = {
-  onChange(key, value, fn = () => {}) {
-    (new Function('value', `this.${key} = value`)).call(this, value);
+  onChange(_property, value, fn = () => {}) {
+    (new Function('value', `this.${_property} = value;`)).call(this, value);
     fn(value);
     return this;
   },
-  openDialog(name, fn = () => {}) {
-    (new Function(`this.${name} = true;`)).call(this);
+  openDialog(_property, fn = () => {}) {
+    (new Function(`this.${_property} = true;`)).call(this);
     fn();
     return this;
   },
-  closeDialog(name, fn = () => {}) {
-    (new Function(`this.${name} = false;`)).call(this);
+  closeDialog(_property, fn = () => {}) {
+    (new Function(`this.${_property} = false;`)).call(this);
+    fn();
+    return this;
+  },
+  showDialog(_property, fn = () => {}) {
+    (new Function(`this.${_property} = true;`)).call(this);
+    fn();
+    return this;
+  },
+  hideDialog(_property, fn = () => {}) {
+    (new Function(`this.${_property} = false;`)).call(this);
     fn();
     return this;
   }

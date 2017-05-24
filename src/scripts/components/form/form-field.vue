@@ -1,6 +1,6 @@
 <template>
   <div :class="className">
-    <slot></slot>
+    <slot><!-- Form Item --></slot>
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
   name: 'ui-form-field',
   props: {
-    // mdc
+    // ui attributes
     alignEnd: {
       type: Boolean,
       default: false

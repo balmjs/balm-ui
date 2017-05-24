@@ -40,6 +40,11 @@ export default {
     UiFormField
   },
   props: {
+    // state
+    model: {
+      type: [Array, String, Number, Boolean],
+      default: false
+    },
     // element attributes
     id: String,
     name: String,
@@ -48,10 +53,6 @@ export default {
       default: false
     },
     value: [String, Number, Boolean],
-    model: {
-      type: [Array, String, Number, Boolean],
-      default: false
-    },
     // ui attributes
     cssOnly: {
       type: Boolean,

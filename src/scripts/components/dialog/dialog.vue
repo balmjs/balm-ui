@@ -43,12 +43,13 @@ const UI_EVENT_CANCEL = 'cancel';
 export default {
   name: 'ui-dialog',
   props: {
-    // mdc
-    cssOnly: {
+    // state
+    open: {
       type: Boolean,
       default: false
     },
-    open: {
+    // ui attributes
+    cssOnly: {
       type: Boolean,
       default: false
     },

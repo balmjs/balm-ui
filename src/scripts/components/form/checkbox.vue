@@ -40,7 +40,7 @@ export default {
     UiFormField
   },
   props: {
-    // attribute
+    // element attributes
     id: String,
     name: String,
     disabled: {
@@ -52,7 +52,7 @@ export default {
       type: [Array, String, Number, Boolean],
       default: false
     },
-    // mdc
+    // ui attributes
     cssOnly: {
       type: Boolean,
       default: false

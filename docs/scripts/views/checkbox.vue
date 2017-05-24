@@ -8,36 +8,44 @@
 
     <section class="example">
       <h2>CSS Only</h2>
-      <ui-checkbox id="basic-checkbox" cssOnly value="1" :model="value1" @change="onChange('value1', $event)">
+      <ui-checkbox id="basic-checkbox" cssOnly>
         This is my checkbox
       </ui-checkbox>
     </section>
 
     <section class="example">
       <h2>CSS Only - Disabled</h2>
-      <ui-checkbox id="basic-disabled-checkbox-label" cssOnly disabled :model="false">
+      <ui-checkbox id="basic-disabled-checkbox-label" cssOnly disabled>
         This is my disabled checkbox
       </ui-checkbox>
     </section>
 
     <section class="example">
       <h2>With Javascript</h2>
-      <ui-checkbox id="native-js-checkbox" value="a" :model="value2" @change="onChange('value2', $event)">
+      <ui-checkbox id="native-js-checkbox">
         This is my checkbox
       </ui-checkbox>
     </section>
 
     <section class="example mdc-theme--dark">
       <h2>Dark Theme</h2>
-      <ui-checkbox id="checkbox-dark" dark :model="false">
+      <ui-checkbox id="checkbox-dark" dark>
         This is my checkbox
       </ui-checkbox>
     </section>
 
     <section class="example">
-      <ui-checkbox id="box1" value="a" :model="value3" @change="onChange('value3', $event)">Item 1</ui-checkbox>
-      <ui-checkbox id="box2" value="b" :model="value3" @change="onChange('value3', $event)">Item 2</ui-checkbox>
-      <ui-checkbox id="box3" value="c" :model="value3" @change="onChange('value3', $event)">Item 3</ui-checkbox>
+      <p>Single checkbox, boolean value: </p>
+      <ui-checkbox id="checkbox" :model="checked" @change="onChange('checked', $event)">
+        {{checked}}
+      </ui-checkbox>
+    </section>
+
+    <section class="example">
+      <p>Multiple checkboxes, bound to the same Array: {{checkedNames}}</p>
+      <ui-checkbox id="jack" value="Jack" :model="checkedNames" @change="onChange('checkedNames', $event)">Jack</ui-checkbox>
+      <ui-checkbox id="john" value="John" :model="checkedNames" @change="onChange('checkedNames', $event)">John</ui-checkbox>
+      <ui-checkbox id="mike" value="Mike" :model="checkedNames" @change="onChange('checkedNames', $event)">Mike</ui-checkbox>
     </section>
 
     <!-- <ui-apidoc name="checkbox"></ui-apidoc> -->
@@ -51,9 +59,8 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      value1: '',
-      value2: '',
-      value3: ['a', 'c']
+      checked: false,
+      checkedNames: []
     };
   },
   created() {

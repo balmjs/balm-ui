@@ -14,6 +14,8 @@
     <section class="example">
       <ui-button primary raised @click.native="openDialog('open')">Show Dialog</ui-button>
       <ui-button primary raised @click.native="showDialog('open2')">Show Scrolling Dialog</ui-button>
+      <ui-button primary raised @click.native="showAlert">Show Alert</ui-button>
+      <ui-button primary raised @click.native="showConfirm">Show Confirm</ui-button>
     </section>
 
     <ui-dialog
@@ -47,6 +49,16 @@
       </ul>
     </ui-dialog>
 
+    <!-- <ui-alert :open="open3" @close="hideDialog('open3')">
+      <template slot="title">Title</template>
+      Hello World!
+    </ui-alert>
+
+    <ui-confirm :open="open4" @close="hideDialog('open4')" @result="onResult">
+      <template slot="title">Title</template>
+      Are you sure?
+    </ui-confirm> -->
+
     <!-- <ui-apidoc name="dialog"></ui-apidoc> -->
   </div>
 </template>
@@ -59,7 +71,9 @@ export default {
   data() {
     return {
       open: false,
-      open2: false
+      open2: false,
+      open3: false,
+      open4: false
     }
   },
   methods: {
@@ -68,6 +82,15 @@ export default {
     },
     cancel() {
       console.log('cancel');
+    },
+    onResult(a) {
+      console.log(a);
+    },
+    showAlert() {
+      this.alert('呵呵哒');
+    },
+    showConfirm() {
+      this.confirm('确定删除吗');
     }
   },
   created() {

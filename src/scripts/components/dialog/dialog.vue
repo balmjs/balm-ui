@@ -17,12 +17,12 @@
                        'mdc-dialog__footer__button',
                        {'mdc-dialog__footer__button--cancel': notifyCancel}
                      ]"
-                     @click.native="handleCancel">{{ CancelText }}</ui-button>
+                     @click.native="handleCancel">{{ cancelText }}</ui-button>
           <ui-button :class="[
                        'mdc-dialog__footer__button',
                        {'mdc-dialog__footer__button--accept': notifyAccept}
                      ]"
-                     @click.native="handleAccept">{{ AcceptText }}</ui-button>
+                     @click.native="handleAccept">{{ acceptText }}</ui-button>
         </slot>
       </footer>
     </div>
@@ -33,6 +33,7 @@
 <script>
 // NOTE: remove 'focus-trap' in MDC Dialog
 import {MDCDialog} from '../../material-components-web/dialog';
+import UiButton from '../button';
 
 const CLASSNAME_ACCEPT = 'mdc-dialog__footer__button--accept';
 const CLASSNAME_CANCEL = 'mdc-dialog__footer__button--cancel';
@@ -42,6 +43,9 @@ const UI_EVENT_CANCEL = 'cancel';
 
 export default {
   name: 'ui-dialog',
+  components: {
+    UiButton
+  },
   props: {
     // state
     open: {
@@ -66,11 +70,11 @@ export default {
       type: Boolean,
       default: false
     },
-    AcceptText: {
+    acceptText: {
       type: String,
       default: 'Accept'
     },
-    CancelText: {
+    cancelText: {
       type: String,
       default: 'Cancel'
     },
@@ -124,13 +128,13 @@ export default {
     },
     handleAccept() {
       if (this.notifyAccept) {
-        this.$emit(UI_EVENT_CLOSE);
+        this.handleClose();
       }
       this.$emit(UI_EVENT_ACCEPT);
     },
     handleCancel() {
       if (this.notifyCancel) {
-        this.$emit(UI_EVENT_CLOSE);
+        this.handleClose();
       }
       this.$emit(UI_EVENT_CANCEL);
     }

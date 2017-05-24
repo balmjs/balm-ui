@@ -1,0 +1,9 @@
+.mdc-alert,
+.mdc-confirm {
+  .close {
+    cursor: pointer;
+  }
+  .mdc-dialog__footer {
+    justify-content: center;
+  }
+}

@@ -1,34 +1,31 @@
 <template>
-  <button :type="type" :class="className" :disabled="disabled">
+  <button :type="type" :class="className">
     <slot></slot>
   </button>
 </template>
 
 <script>
-import {MDCRipple} from '../material-components-web/ripple';
+import rippleMixin from '../mixins/ripple';
 
 export default {
   name: 'ui-button',
+  mixins: [rippleMixin],
   props: {
-    // attribute
+    // element attributes
     type: {
       type: String,
       default: 'button'
     },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    // mdc
+    // ui attributes
     cssOnly: {
       type: Boolean,
       default: false
     },
-    raised: {
+    dense: {
       type: Boolean,
       default: false
     },
-    dense: {
+    raised: {
       type: Boolean,
       default: false
     },
@@ -60,22 +57,25 @@ export default {
     }
   },
   computed: {
+    noRipple() {
+      return this.cssOnly || this.link;
+    },
     className() {
       return {
         'mdc-button': !(this.fab || this.link),
-        'mdc-button--raised': this.raised,
         'mdc-button--dense': this.dense,
+        'mdc-button--raised': this.raised,
         'mdc-button--compact': this.compact,
         'mdc-button--primary': this.primary,
         'mdc-button--accent': this.accent,
-        'mdc-ripple': !(this.cssOnly || this.link),
+        'mdc-ripple': !this.noRipple,
         'mdc-button--theme-dark': this.dark
       };
     }
   },
   mounted() {
-    if (!(this.cssOnly || this.link)) {
-      MDCRipple.attachTo(this.$el);
+    if (!this.noRipple) {
+      this.initRipple(this.$el);
     }
   }
 };

@@ -95,14 +95,14 @@ Vue.use(BalmUI);
 
 ## Components
 
-- [x] Button
+- [x] Button ✅
 - [x] Card
 - [x] Checkbox
 - [x] Dialog
-- [ ] Drawer
+- [x] Drawer
 - [x] Elevation
 - [x] FAB
-- [ ] Grid List
+- [x] Grid List
 - [x] Icon Toggle
 - [x] Layout grid
 - [x] List
@@ -116,7 +116,7 @@ Vue.use(BalmUI);
 - [x] Form Field
 - [x] Textfield
 - [x] Textfield Helptext
-- [ ] Theme
+- [x] Theme
 - [x] Toolbar
 - [x] Typography
 

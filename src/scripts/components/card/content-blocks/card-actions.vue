@@ -1,6 +1,6 @@
 <template>
   <section :class="className">
-    <slot></slot>
+    <slot><!-- Actions --></slot>
   </section>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
   name: 'ui-card-actions',
   props: {
-    // mdc
+    // ui attributes
     vertical: {
       type: Boolean,
       default: false

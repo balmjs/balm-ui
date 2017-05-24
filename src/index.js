@@ -22,12 +22,12 @@ import UiLink from './scripts/components/link';
 import UiButton from './scripts/components/button';
 import UiFab from './scripts/components/fab';
 import UiCard from './scripts/components/card/card';
-import UiCardPrimary from './scripts/components/card/card-primary';
-import UiCardMedia from './scripts/components/card/card-media';
-import UiCardMediaItem from './scripts/components/card/card-media-item';
-import UiCardText from './scripts/components/card/card-text';
-import UiCardActions from './scripts/components/card/card-actions';
-import UiCardBlock from './scripts/components/card/card-block';
+import UiCardMedia from './scripts/components/card/content-blocks/card-media';
+import UiCardHead from './scripts/components/card/content-blocks/card-head';
+import UiCardBody from './scripts/components/card/content-blocks/card-body';
+import UiCardActions from './scripts/components/card/content-blocks/card-actions';
+import UiCardHBlock from './scripts/components/card/horizontal-blocks/card-h-block';
+import UiCardMediaItem from './scripts/components/card/horizontal-blocks/card-media-item';
 import UiMenuAnchor from './scripts/components/menu/menu-anchor';
 import UiMenu from './scripts/components/menu/menu';
 import UiMenuItem from './scripts/components/menu/menuitem';
@@ -91,12 +91,12 @@ const BalmUI = {
   UiButton,
   UiFab,
   UiCard,
-  UiCardPrimary,
+  UiCardHead,
   UiCardMedia,
   UiCardMediaItem,
-  UiCardText,
+  UiCardBody,
   UiCardActions,
-  UiCardBlock,
+  UiCardHBlock,
   UiMenuAnchor,
   UiMenu,
   UiMenuItem,
@@ -168,9 +168,9 @@ export default BalmUI;
 //   UiBadge,
 //   UiButton,
 //   UiCard,
-//   UiCardPrimary,
+//   UiCardHead,
 //   UiCardMedia,
-//   UiCardText,
+//   UiCardBody,
 //   UiCardActions,
 //   UiChip,
 //   UiDivider,

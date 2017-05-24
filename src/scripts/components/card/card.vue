@@ -1,15 +1,12 @@
 <template>
   <div :class="className">
-    <slot></slot>
+    <slot><!-- Card Content --></slot>
   </div>
 </template>
 
 <script>
-import elevation from '../../mixins/elevation';
-
 export default {
   name: 'ui-card',
-  mixins: [elevation],
   props: {
     // theme
     dark: {

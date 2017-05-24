@@ -24,12 +24,13 @@ export default {
     UiButton
   },
   props: {
-    // ui attributes
-    cssOnly: {
+    // state
+    active: {
       type: Boolean,
       default: false
     },
-    active: {
+    // ui attributes
+    cssOnly: {
       type: Boolean,
       default: false
     },

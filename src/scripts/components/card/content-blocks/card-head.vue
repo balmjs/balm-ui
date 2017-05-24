@@ -1,10 +1,11 @@
 <template>
   <section :class="className.outer">
+    <!-- Primary title / text -->
     <slot name="before"></slot>
-    <h1 :class="className.title">
+    <h1 v-if="!noTitle" :class="className.title">
       <slot name="title"></slot>
     </h1>
-    <h2 v-if="hasSubtitle" class="mdc-card__subtitle">
+    <h2 v-if="!noSubtitle" class="mdc-card__subtitle">
       <slot name="subtitle"></slot>
     </h2>
     <slot name="after"></slot>
@@ -13,19 +14,23 @@
 
 <script>
 export default {
-  name: 'ui-card-primary',
+  name: 'ui-card-head',
   props: {
-    // mdc
+    // ui attributes
     large: {
       type: Boolean,
-      default: false
+      default: true
     },
     // layout
     noWrap: {
       type: Boolean,
       default: false
     },
-    hasSubtitle: {
+    noTitle: {
+      type: Boolean,
+      default: false
+    },
+    noSubtitle: {
       type: Boolean,
       default: false
     }

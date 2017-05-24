@@ -1,11 +1,11 @@
 <template>
-  <section class="mdc-card__media">
+  <div class="mdc-card__horizontal-block">
     <slot></slot>
-  </section>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'ui-card-media'
+  name: 'ui-card-h-block'
 };
 </script>

@@ -61,9 +61,7 @@ import UiListNav from './scripts/components/list/list-nav';
 /**
  * Dialog
  */
-import UiDialog from './scripts/components/dialog/dialog';
-// import UiAlert from './scripts/components/dialog/alert';
-// import UiConfirm from './scripts/components/dialog/confirm';
+import UiDialog from './scripts/components/dialog';
 import UiSnackbar from './scripts/components/snackbar';
 /**
  * Plugins
@@ -73,6 +71,7 @@ import event from './scripts/plugins/event';
 import mixin from './scripts/plugins/mixin';
 import alert from './scripts/plugins/alert';
 import confirm from './scripts/plugins/confirm';
+import toast from './scripts/plugins/toast';
 
 const BalmUI = {
   // Layout
@@ -136,7 +135,8 @@ const BalmUI = {
     event,
     mixin,
     alert,
-    confirm
+    confirm,
+    toast
   },
   // Register
   install(Vue) {
@@ -156,6 +156,7 @@ if (typeof window !== 'undefined' && window.Vue) {
   window.Vue.use(BalmUI);
   window.Vue.use(BalmUI.plugins.helper);
   window.Vue.use(BalmUI.plugins.event);
+  window.Vue.use(BalmUI.plugins.mixin);
 }
 
 export default BalmUI;

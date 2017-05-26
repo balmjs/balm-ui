@@ -1,63 +1,80 @@
-import UiDialog from '../components/dialog/dialog';
+import UiDialog from '../components/dialog';
 import UiButton from '../components/button';
+import {isString, isObject} from '../helpers';
 
-const UI_EVENT_SELECTED = 'selected';
+const DEFAULT_OPTIONS = {
+  data: 'confirm',
+  className: '',
+  title: '',
+  message: '',
+  acceptText: 'OK',
+  cancelText: 'Cancel'
+};
 
-// TODO
+const template =
+`<ui-dialog
+  :class="['mdc-confirm', options.className]"
+  :open="open"
+  @close="handleClose">
+  <template slot="title">{{ options.title }}</template>
+  <template slot="title:after">
+    <i class="material-icons close" @click="handleClose">close</i>
+  </template>
+  {{ options.message }}
+  <template slot="footer">
+    <ui-button raised primary dense compact
+      class="mdc-dialog__footer__button"
+      @click.native="handleAccept">{{ options.acceptText }}</ui-button>
+    <ui-button raised accent dense compact
+      class="mdc-dialog__footer__button"
+      @click.native="handleCancel">{{ options.cancelText }}</ui-button>
+  </template>
+</ui-dialog>`;
+
 export default {
   install(Vue) {
-    let instance;
+    let vm;
 
-    const confirm = message => {
-      console.log(message);
-      instance = new Vue({
+    const confirm = (options = {}, callback = () => {}) => {
+      vm = new Vue({
         components: {
           UiDialog,
           UiButton
         },
+        el: document.createElement('div'),
+        template,
         data: {
           open: false,
-          message,
-          acceptText: 'OK',
-          cancelText: 'Cancel'
+          options: DEFAULT_OPTIONS
         },
-        el: document.createElement('div'),
-        template: `<ui-dialog class="mdc-confirm" :open="open" @close="handleClose">
-    <template slot="title:after">
-      <slot name="title:after">
-        <i class="material-icons close" @click="handleClose">close</i>
-      </slot>
-    </template>
-    {{ message }}
-    <template slot="footer">
-      <ui-button class="mdc-dialog__footer__button" @click.native="handleAccept">{{ acceptText }}</ui-button>
-      <ui-button class="mdc-dialog__footer__button" @click.native="handleCancel">{{ cancelText }}</ui-button>
-    </template>
-  </ui-dialog>`,
         methods: {
           handleClose() {
-            instance.open = false;
-
-            setTimeout(() => {
-              document.body.removeChild(instance.$el);
-            }, 1);
+            this.open = false;
+            document.body.removeChild(this.$el);
+            vm = null;
           },
           handleAccept() {
-            instance.handleClose();
-            this.$emit(UI_EVENT_SELECTED, true);
+            this.handleClose();
+            callback(true);
           },
           handleCancel() {
-            instance.handleClose();
-            this.$emit(UI_EVENT_SELECTED, false);
+            this.handleClose();
+            callback(false);
+          }
+        },
+        created() {
+          if (isString(options)) {
+            this.options.message = options;
+          } else if (isObject(options)) {
+            this.options = Object.assign(DEFAULT_OPTIONS, options);
           }
         }
       });
 
-      document.body.appendChild(instance.$el);
-
-      instance.open = true;
+      document.body.appendChild(vm.$el);
+      vm.open = true;
     };
 
-    Vue.prototype.confirm = confirm;
+    Vue.prototype.$confirm = confirm;
   }
 };

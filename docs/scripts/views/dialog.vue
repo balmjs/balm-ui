@@ -14,6 +14,9 @@
     <section class="example">
       <ui-button primary raised @click.native="openDialog('open')">Show Dialog</ui-button>
       <ui-button primary raised @click.native="showDialog('open2')">Show Scrolling Dialog</ui-button>
+    </section>
+
+    <section class="example">
       <ui-button primary raised @click.native="showAlert">Show Alert</ui-button>
       <ui-button primary raised @click.native="showConfirm">Show Confirm</ui-button>
     </section>
@@ -87,10 +90,15 @@ export default {
       console.log(a);
     },
     showAlert() {
-      this.alert('呵呵哒');
+      this.$toast('Hello World');
+      // this.$alert('Message');
     },
     showConfirm() {
-      this.confirm('确定删除吗');
+      this.$confirm({
+        message: 'Are you sure?'
+      }, result => {
+        console.log(result);
+      });
     }
   },
   created() {

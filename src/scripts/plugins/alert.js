@@ -1,50 +1,69 @@
-import UiDialog from '../components/dialog/dialog';
+import UiDialog from '../components/dialog';
 import UiButton from '../components/button';
+import {isString, isObject} from '../helpers';
 
-// TODO
+const DEFAULT_OPTIONS = {
+  className: '',
+  title: '',
+  message: '',
+  buttonText: 'OK'
+};
+
+const template =
+`<ui-dialog
+  :class="['mdc-alert', options.className]"
+  :open="open"
+  @close="handleClose">
+  <template slot="title">{{ options.title }}</template>
+  <template slot="title:after">
+    <i class="material-icons close" @click="handleClose">close</i>
+  </template>
+  {{ options.message }}
+  <template slot="footer">
+    <ui-button raised primary dense compact
+      class="mdc-dialog__footer__button"
+      @click.native="handleClose">
+      {{ options.buttonText }}
+    </ui-button>
+  </template>
+</ui-dialog>`;
+
 export default {
   install(Vue) {
-    let instance;
+    let vm;
 
-    const alert = message => {
-      instance = new Vue({
+    const alert = (options = {}) => {
+      vm = new Vue({
         components: {
           UiDialog,
           UiButton
         },
+        el: document.createElement('div'),
+        template,
         data: {
           open: false,
-          message,
-          acceptText: 'OK'
+          options: DEFAULT_OPTIONS
         },
-        el: document.createElement('div'),
-        template: `<ui-dialog class="mdc-alert" :open="open" @close="handleClose">
-    <template slot="title:after">
-      <slot name="title:after">
-        <i class="material-icons close" @click="handleClose">close</i>
-      </slot>
-    </template>
-    {{ message }}
-    <template slot="footer">
-      <ui-button class="mdc-dialog__footer__button" @click.native="handleClose">{{ acceptText }}</ui-button>
-    </template>
-  </ui-dialog>`,
         methods: {
           handleClose() {
-            instance.open = false;
-
-            setTimeout(() => {
-              document.body.removeChild(instance.$el);
-            }, 1);
+            this.open = false;
+            document.body.removeChild(this.$el);
+            vm = null;
+          }
+        },
+        created() {
+          if (isString(options)) {
+            this.options.message = options;
+          } else if (isObject(options)) {
+            this.options = Object.assign(DEFAULT_OPTIONS, options);
           }
         }
       });
 
-      document.body.appendChild(instance.$el);
-
-      instance.open = true;
+      document.body.appendChild(vm.$el);
+      vm.open = true;
     };
 
-    Vue.prototype.alert = alert;
+    Vue.prototype.$alert = alert;
   }
 };

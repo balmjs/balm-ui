@@ -15,6 +15,7 @@ const TYPE_ORDER = 'order';
 export default {
   name: 'ui-cell',
   props: {
+    // ui attributes
     col: [Number, String, Object], // default: 4
     order: [Number, String, Object]
   },

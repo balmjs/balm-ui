@@ -10,6 +10,7 @@ const DEFAULT_VALUE = '16px';
 export default {
   name: 'ui-grid',
   props: {
+    // ui attributes
     margin: {
       type: String,
       default: DEFAULT_VALUE

@@ -22,6 +22,8 @@ const isObject = obj => getType(obj) === 'object';
 
 const isArray = arr => getType(arr) === 'array';
 
+const isFunction = arr => getType(arr) === 'function';
+
 /**
  * detect IE
  * returns version of IE or false, if browser is not Internet Explorer
@@ -76,5 +78,6 @@ export {
   isSymbol,
   isObject,
   isArray,
+  isFunction,
   detectIE
 };

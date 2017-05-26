@@ -19,6 +19,7 @@
     <section class="example">
       <ui-button primary raised @click.native="showAlert">Show Alert</ui-button>
       <ui-button primary raised @click.native="showConfirm">Show Confirm</ui-button>
+      <ui-button primary raised @click.native="showToast">Show Toast</ui-button>
     </section>
 
     <ui-dialog
@@ -90,15 +91,22 @@ export default {
       console.log(a);
     },
     showAlert() {
-      this.$toast('Hello World');
-      // this.$alert('Message');
+      this.$alert('Message');
     },
     showConfirm() {
       this.$confirm({
-        message: 'Are you sure?'
-      }, result => {
-        console.log(result);
+        message: 'Are you sure?',
+        callback: result => {
+          console.log(result);
+        }
+      }).then(() => {
+        console.log('OK');
+      }).catch(() => {
+        console.log('Cancel');
       });
+    },
+    showToast() {
+      this.$toast('Hello World');
     }
   },
   created() {

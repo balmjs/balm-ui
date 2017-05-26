@@ -5,10 +5,11 @@
 </template>
 
 <script>
-import {MDCRipple} from '../material-components-web/ripple';
+import rippleMixin from '../mixins/ripple';
 
 export default {
   name: 'ui-link',
+  mixins: [rippleMixin],
   props: {
     // mdc
     effect: {
@@ -29,7 +30,7 @@ export default {
   },
   mounted() {
     if (this.effect) {
-      MDCRipple.attachTo(this.$el);
+      this.initRipple(this.$el);
     }
   }
 };

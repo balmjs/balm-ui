@@ -32,7 +32,7 @@
     </ui-persistent-drawer>
 
     <div class="demo-content">
-      <ui-toolbar contentSelector=".demo-main" :class="'mdc-elevation--z4'">
+      <ui-toolbar contentSelector=".demo-main" :class="zSpace(4)">
         <ui-toolbar-row>
           <ui-toolbar-section align="start">
             <template slot="before">
@@ -44,8 +44,8 @@
       </ui-toolbar>
 
       <main class="demo-main">
-        <h1 class="mdc-typography--display1">Persistent Drawer</h1>
-        <p class="mdc-typography--body1">Click the menu icon above to open and close the drawer.</p>
+        <h1 :class="typography('display1')">Persistent Drawer</h1>
+        <p :class="typography('body1')">Click the menu icon above to open and close the drawer.</p>
       </main>
     </div>
 

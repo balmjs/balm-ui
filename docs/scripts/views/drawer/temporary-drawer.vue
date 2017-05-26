@@ -14,7 +14,7 @@
     <!-- menuSelector=".demo-menu" -->
     <ui-temporary-drawer
       hasHeader
-      headerClass="mdc-theme--primary-bg mdc-theme--text-primary-on-primary"
+      :headerClass="[themeColor('primary', true), textColor('primary', 'primary')]"
       :open="open"
       @open="onOpen"
       @close="onClose">
@@ -45,8 +45,8 @@
     </ui-temporary-drawer>
 
     <main class="demo-main">
-      <h1 class="mdc-typography--display1">Temporary Drawer</h1>
-      <p class="mdc-typography--body1">Click the menu icon above to open.</p>
+      <h1 :class="typography('display1')">Temporary Drawer</h1>
+      <p :class="typography('body1')">Click the menu icon above to open.</p>
     </main>
   </div>
 </template>

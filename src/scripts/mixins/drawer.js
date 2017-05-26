@@ -1,10 +1,15 @@
 export default {
   props: {
-    menuSelector: String,
+    // state
     open: {
       type: Boolean,
       default: false
     },
+    // ui attributes
+    menuSelector: String,
+    headerClass: [String, Array, Object],
+    contentClass: [String, Array, Object],
+    // layout
     hasHeader: {
       type: Boolean,
       default: false
@@ -12,9 +17,7 @@ export default {
     hasSpacer: {
       type: Boolean,
       default: false
-    },
-    headerClass: String,
-    contentClass: String
+    }
   },
   data() {
     return {

@@ -26,7 +26,7 @@ export default {
       type: Boolean,
       default: false
     },
-    titleClass: String,
+    titleClass: [String, Array, Object],
     noTitle: {
       type: Boolean,
       default: false

@@ -36,8 +36,8 @@
       </ui-permanent-drawer>
 
       <main class="demo-main">
-        <h1 class="mdc-typography--display1">Permanent Drawer</h1>
-        <p class="mdc-typography--body1">It sits to the left of this content.</p>
+        <h1 :class="typography('display1')">Permanent Drawer</h1>
+        <p :class="typography('body1')">It sits to the left of this content.</p>
       </main>
     </div>
   </div>

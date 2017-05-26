@@ -32,7 +32,7 @@ export default {
     },
     imgUrl: String,
     title: String,
-    imgClass: '',
+    imgClass: [String, Array, Object],
     icon: String
   },
   data() {

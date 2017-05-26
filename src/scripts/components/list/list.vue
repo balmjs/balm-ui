@@ -5,11 +5,12 @@
 </template>
 
 <script>
-import {MDCRipple} from '../../material-components-web/ripple';
+import rippleMixin from '../../mixins/ripple';
 import cssClasses from './constants';
 
 export default {
   name: 'ui-list',
+  mixins: [rippleMixin],
   props: {
     dense: {
       type: Boolean,
@@ -46,7 +47,7 @@ export default {
   mounted() {
     if (this.effect) {
       this.$el.querySelectorAll(`.${cssClasses.item}`).forEach(item => {
-        MDCRipple.attachTo(item);
+        this.initRipple(item);
       });
     }
   }

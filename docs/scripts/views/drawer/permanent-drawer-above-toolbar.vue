@@ -27,7 +27,7 @@
     </ui-permanent-drawer>
 
     <div class="demo-content">
-      <ui-toolbar :class="'mdc-elevation--z4'">
+      <ui-toolbar :class="zSpace(4)">
         <ui-toolbar-row>
           <ui-toolbar-section align="start">
             <span class="catalog-title">Permanent Drawer Above Toolbar</span>
@@ -36,8 +36,8 @@
       </ui-toolbar>
 
       <main class="demo-main">
-        <h1 class="mdc-typography--display1">Permanent Drawer</h1>
-        <p class="mdc-typography--body1">It sits to the left of this content.</p>
+        <h1 :class="typography('display1')">Permanent Drawer</h1>
+        <p :class="typography('body1')">It sits to the left of this content.</p>
       </main>
     </div>
   </div>

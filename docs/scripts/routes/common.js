@@ -10,6 +10,7 @@ const Fab = require('../views/fab');
 const Elevation = require('../views/elevation');
 const Theme = require('../views/theme');
 const Typography = require('../views/typography');
+const Icons = require('../views/icons');
 
 const commonRoutes = [{
   path: '/badge',
@@ -116,6 +117,15 @@ const commonRoutes = [{
   component: Typography,
   meta: {
     title: 'BalmUI - Typography',
+    keywords: '',
+    description: ''
+  }
+}, {
+  path: '/icons',
+  name: 'icons',
+  component: Icons,
+  meta: {
+    title: 'BalmUI - Icons',
     keywords: '',
     description: ''
   }

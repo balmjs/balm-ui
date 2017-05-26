@@ -18,6 +18,7 @@ import UiPanel from './scripts/components/tabs/panel';
  * Common
  */
 // import UiBadge from './scripts/components/common/badge';
+import UiIcon from './scripts/components/icon';
 import UiLink from './scripts/components/link';
 import UiButton from './scripts/components/button';
 import UiFab from './scripts/components/fab';
@@ -90,6 +91,7 @@ const BalmUI = {
   UiPanel,
   // Common
   // UiBadge,
+  UiIcon,
   UiLink,
   UiButton,
   UiFab,

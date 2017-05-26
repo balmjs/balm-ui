@@ -1,6 +1,6 @@
 <template>
   <li class="mdc-grid-tile">
-    <div class="mdc-grid-tile__primary">
+    <div v-if="!noImage" class="mdc-grid-tile__primary">
       <template v-if="imgUrl">
         <img class="mdc-grid-tile__primary-content" :src="imgUrl" :alt="title">
       </template>
@@ -33,6 +33,10 @@ export default {
     icon: String,
     // layout
     imageOnly: {
+      type: Boolean,
+      default: false
+    },
+    noImage: {
       type: Boolean,
       default: false
     }

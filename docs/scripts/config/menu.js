@@ -48,6 +48,10 @@ const COMPONENTS = [{
   description: '2D grid layouts',
   url: 'grid-list'
 }, {
+  icon: 'icons',
+  name: 'Icons',
+  description: 'Material Icons'
+}, {
   icon: 'component',
   name: 'Icon toggle',
   description: 'Toggling icon states',
@@ -107,7 +111,7 @@ const COMPONENTS = [{
 let menu = [];
 for (let component of COMPONENTS) {
   menu.push({
-    icon: `ic_${component.icon}_24px.svg`,
+    icon: (component.icon === 'icons') ? 'icons_light.svg' : `ic_${component.icon}_24px.svg`,
     name: component.name,
     description: component.description,
     url: component.url || component.name.toLowerCase()

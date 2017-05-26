@@ -20,6 +20,7 @@ const ASPECT_RATIO = [
 export default {
   name: 'ui-grid-list',
   props: {
+    // ui attributes
     gutter1: {
       type: Boolean,
       default: false

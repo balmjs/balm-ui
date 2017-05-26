@@ -26,14 +26,16 @@ const CLASSNAME_ICON = 'mdc-grid-tile__icon';
 export default {
   name: 'ui-grid-tile',
   props: {
-    imageOnly: {
-      type: Boolean,
-      default: false
-    },
+    // ui attributes
     imgUrl: String,
     title: String,
     imgClass: [String, Array, Object],
-    icon: String
+    icon: String,
+    // layout
+    imageOnly: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {

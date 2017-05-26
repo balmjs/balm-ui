@@ -22,7 +22,12 @@ const UI_EVENT_CHANGE = 'change';
 export default {
   name: 'ui-icon-toggle',
   props: {
-    // mdc
+    // state
+    model: {
+      type: Boolean,
+      default: false
+    },
+    // ui attributes
     on: {
       type: Object,
       required: true
@@ -33,10 +38,6 @@ export default {
     },
     label: String,
     icon: String,
-    model: {
-      type: [Boolean, Number, String],
-      default: false
-    },
     primary: {
       type: Boolean,
       default: false

@@ -10,12 +10,11 @@
       <div class="toggle-example">
         <h2>Using Material Icons</h2>
         <div class="demo-wrapper">
-          <ui-icon-toggle :label="icon1.off.label"
+          <ui-icon-toggle
             :model="icon1.value"
             :on="icon1.on"
             :off="icon1.off"
-            @change="onChange('icon1', $event)">
-            {{ icon1.off.content }}
+            @change="onChange('icon1.value', $event)">
           </ui-icon-toggle>
         </div>
         <p>Favorited? <span id="favorited-status">{{ icon1.value }}</span></p>
@@ -24,12 +23,12 @@
       <div class="toggle-example">
         <h2>Using Font Awesome</h2>
         <div class="demo-wrapper">
-          <ui-icon-toggle :label="icon2.on.label"
+          <ui-icon-toggle
             :model="icon2.value"
             icon="fa"
             :on="icon2.on"
             :off="icon2.off"
-            @change="onChange('icon2', $event)">
+            @change="onChange('icon2.value', $event)">
             <i class="fa fa-star" aria-hidden="true"></i>
           </ui-icon-toggle>
         </div>
@@ -38,12 +37,9 @@
       <div class="toggle-example mdc-theme--dark">
         <h2 class="mdc-theme--text-primary-on-dark">Dark Theme</h2>
         <div class="demo-wrapper">
-          <ui-icon-toggle :label="icon1.off.label"
-            :model="icon1.value"
+          <ui-icon-toggle
             :on="icon1.on"
-            :off="icon1.off"
-            @change="onChange('icon1', $event)">
-            {{ icon1.off.content }}
+            :off="icon1.off">
           </ui-icon-toggle>
         </div>
       </div>
@@ -52,12 +48,8 @@
         <h2>Primary Colored Icons</h2>
         <div class="demo-wrapper">
           <ui-icon-toggle primary
-            :label="icon1.off.label"
-            :model="icon1.value"
             :on="icon1.on"
-            :off="icon1.off"
-            @change="onChange('icon1', $event)">
-            {{ icon1.off.content }}
+            :off="icon1.off">
           </ui-icon-toggle>
         </div>
       </div>
@@ -66,12 +58,8 @@
         <h2>Accent Colored Icons</h2>
         <div class="demo-wrapper">
           <ui-icon-toggle accent
-            :label="icon1.off.label"
-            :model="icon1.value"
             :on="icon1.on"
-            :off="icon1.off"
-            @change="onChange('icon1', $event)">
-            {{ icon1.off.content }}
+            :off="icon1.off">
           </ui-icon-toggle>
         </div>
       </div>
@@ -80,23 +68,15 @@
         <h2>Disabled Icons</h2>
         <div class="demo-wrapper">
           <ui-icon-toggle disabled
-            :label="icon1.off.label"
-            :model="icon1.value"
             :on="icon1.on"
-            :off="icon1.off"
-            @change="onChange('icon1', $event)">
-            {{ icon1.off.content }}
+            :off="icon1.off">
           </ui-icon-toggle>
         </div>
         <div class="mdc-theme--dark">
           <div class="demo-wrapper">
             <ui-icon-toggle disabled
-              :label="icon1.off.label"
-              :model="icon1.value"
               :on="icon1.on"
-              :off="icon1.off"
-              @change="onChange('icon1', $event)">
-              {{ icon1.off.content }}
+              :off="icon1.off">
             </ui-icon-toggle>
           </div>
         </div>

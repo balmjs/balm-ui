@@ -11,7 +11,7 @@ export default {
   name: 'ui-link',
   mixins: [rippleMixin],
   props: {
-    // mdc
+    // ui attributes
     effect: {
       type: Boolean,
       default: false

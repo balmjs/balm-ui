@@ -16,10 +16,11 @@ body,
   width: 100%;
 }
 
-.balmui-menu, .balmui-content {
-  height: 100%;
+.balmui-menu,
+.balmui-content {
   overflow-x: hidden;
   overflow-y: auto;
+  height: 100%;
   & > * {
     padding-bottom: 20px;
   }

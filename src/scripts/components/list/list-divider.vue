@@ -1,23 +1,12 @@
 <template>
-  <hr class="mdc-list-divider">
+  <hr :class="className">
 </template>
 
 <script>
+import dividerMixin from '../../mixins/divider';
+
 export default {
   name: 'ui-list-divider',
-  props: {
-    inset: {
-      type: Boolean,
-      default: false
-    }
-  },
-  computed: {
-    className() {
-      return {
-        'mdc-list-divider': true,
-        'mdc-list-divider--inset': this.inset
-      };
-    }
-  }
+  mixins: [dividerMixin]
 };
 </script>

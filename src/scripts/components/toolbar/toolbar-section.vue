@@ -37,6 +37,7 @@ export default {
       return {
         'mdc-toolbar__section': true,
         'mdc-toolbar__section--align-start': this.align.toLowerCase() === 'start',
+        'mdc-toolbar__section--align-center': this.align.toLowerCase() === 'center', // Need custom css
         'mdc-toolbar__section--align-end': this.align.toLowerCase() === 'end',
         'mdc-toolbar__section--shrink-to-fit': this.fit
       };

@@ -1,4 +1,7 @@
 .demo--material-icons {
+  .material-icons {
+    overflow: hidden;
+  }
   .mdc-list-item {
     display: block;
     height: auto;

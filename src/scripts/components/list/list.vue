@@ -12,6 +12,7 @@ export default {
   name: 'ui-list',
   mixins: [rippleMixin],
   props: {
+    // ui attributes
     dense: {
       type: Boolean,
       default: false

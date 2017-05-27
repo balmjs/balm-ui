@@ -10,6 +10,7 @@ import cssClasses from './constants';
 export default {
   name: 'ui-list-nav',
   props: {
+    // ui attributes
     dense: {
       type: Boolean,
       default: false

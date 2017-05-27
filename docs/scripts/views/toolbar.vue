@@ -26,37 +26,37 @@
       <div class="example">
         <h2>Normal Toolbar</h2>
         <p><router-link to="default-toolbar" target="_blank">View in separate window</router-link></p>
-        <iframe v-if="!DEBUG" class="demo-container" src="/#/default-toolbar"></iframe>
+        <iframe v-if="!DEBUG" class="demo-container" :src="`${$domain}/#/default-toolbar`"></iframe>
       </div>
 
       <div class="example">
         <h2>Fixed Toolbar</h2>
         <p><router-link to="fixed-toolbar" target="_blank">View in separate window</router-link></p>
-        <iframe v-if="!DEBUG" class="demo-container" src="/#/fixed-toolbar"></iframe>
+        <iframe v-if="!DEBUG" class="demo-container" :src="`${$domain}/#/fixed-toolbar`"></iframe>
       </div>
 
       <div class="example">
         <h2>Waterfall Toolbar</h2>
         <p><router-link to="waterfall-toolbar" target="_blank">View in separate window</router-link></p>
-        <iframe v-if="!DEBUG" class="demo-container" src="/#/waterfall-toolbar"></iframe>
+        <iframe v-if="!DEBUG" class="demo-container" :src="`${$domain}/#/waterfall-toolbar`"></iframe>
       </div>
 
       <div class="example">
         <h2>Default Flexible Toolbar</h2>
         <p><router-link to="default-flexible-toolbar" target="_blank">View in separate window</router-link></p>
-        <iframe v-if="!DEBUG" class="demo-container" src="/#/default-flexible-toolbar"></iframe>
+        <iframe v-if="!DEBUG" class="demo-container" :src="`${$domain}/#/default-flexible-toolbar`"></iframe>
       </div>
 
       <div class="example">
         <h2>Waterfall Flexible Toolbar</h2>
         <p><router-link to="waterfall-flexible-toolbar" target="_blank">View in separate window</router-link></p>
-        <iframe v-if="!DEBUG" class="demo-container" src="/#/waterfall-flexible-toolbar"></iframe>
+        <iframe v-if="!DEBUG" class="demo-container" :src="`${$domain}/#/waterfall-flexible-toolbar`"></iframe>
       </div>
 
       <div class="example">
         <h2>Waterfall Toolbar Fix Last Row</h2>
         <p><router-link to="waterfall-toolbar-fix-last-row" target="_blank">View in separate window</router-link></p>
-        <iframe v-if="!DEBUG" class="demo-container" src="/#/waterfall-toolbar-fix-last-row"></iframe>
+        <iframe v-if="!DEBUG" class="demo-container" :src="`${$domain}/#/waterfall-toolbar-fix-last-row`"></iframe>
       </div>
     </section>
   </div>

@@ -1,6 +1,9 @@
 <template>
-  <div class="docs-home">
-    <ui-markdown :text="docs"></ui-markdown>
+  <div class="demo--home">
+    <!-- <ui-markdown :text="docs"></ui-markdown> -->
+    <section class="hero">
+      <h2 :class="typography('display1')">Coming Soon...</h2>
+    </section>
   </div>
 </template>
 

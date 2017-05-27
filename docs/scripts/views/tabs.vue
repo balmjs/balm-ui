@@ -83,26 +83,17 @@
       <fieldset>
         <legend class="mdc-typography--title">Within MDCToolbar - fixed to bottom of toolbar</legend>
         <div class="demo-note">
-          <em>
-            Note: We want to avoid too many modifier classes for layouts like this. Therefore, we recommend overriding the style of
-            <code>mdc-toolbar__section</code> for the <code>MDCTabBar</code> instance you'd like affixed to the bottom edge of mdc-toolbar. The style used to acheive this example is:
-          </em>
-          <br />
-          <br />
-          <pre>
-            <code>
-.my-modified-toolbar-section {
-position: absolute;
-right: 0;
-bottom: 0;
+          <em>Note: The style used to acheive this example is:</em>
+          <pre><code>.my-modified-toolbar-section {
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
 [dir="rtl"] .my-modified-toolbar-section {
-right: auto;
-left: 0;
-}
-          </code>
-        </pre>
+  right: auto;
+  left: 0;
+}</code></pre>
         </div>
         <ui-toolbar>
           <ui-toolbar-row>

@@ -4,8 +4,7 @@
   "description": "Material Design + Vue + Idea",
   "main": "dist/js/main.js",
   "scripts": {
-    "mdl": "gulp --mdl",
-    "start": "nodemon --exec gulp",
+    "mdc": "gulp --mdc",
     "dev": "gulp",
     "prod": "gulp --production",
     "docs": "gulp --production --docs"

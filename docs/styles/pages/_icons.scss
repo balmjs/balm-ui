@@ -4,21 +4,39 @@
     height: auto;
   }
   .mdc-grid-tile {
-    width: 240px;
-    height: 240px;
+    width: 128px;
+    height: 128px;
   }
   .mdc-grid-tile__secondary {
     display: flex;
     flex-direction: column;
     height: 100%;
+    transition: all .4s;
     color: #757575;
     background: transparent;
     justify-content: space-around;
     align-items: center;
+    &:hover {
+      background-color: #e0e0e0;
+    }
   }
   .mdc-grid-tile__icon {
-    font-size: 48px;
     position: static;
+    cursor: pointer;
+  }
+  .mdc-grid-tile__title {
+    font-size: 12px;
+    @include ellipsis(100px);
+  }
+  .new-badge {
+    font-size: 10px;
+    font-weight: 500;
+    position: absolute;
+    top: 5px;
+    right: 0;
+    padding: 2px 3px;
+    color: #fff;
+    border-radius: 2px;
+    background: #fe6363;
   }
 }
-// #e0e0e0

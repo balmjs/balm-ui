@@ -2,7 +2,12 @@
   <a class="mdc-tab" role="tab" @click.prevent>
     <slot name="before"></slot>
     <template v-if="icon">
-      <ui-icon class="mdc-tab__icon">{{ icon }}</ui-icon>
+      <ui-icon
+        class="mdc-tab__icon"
+        :size="iconSize"
+        :dark="iconDark"
+        :light="iconLight"
+        :inactive="iconInactive">{{ icon }}</ui-icon>
     </template>
     <template v-else>
       <slot name="icon"></slot>
@@ -19,6 +24,7 @@
 
 <script>
 import UiIcon from '../icon';
+import iconMixin from '../../mixins/icon';
 
 // const MDC_EVENT_SELECTED = 'MDCTab:selected';
 

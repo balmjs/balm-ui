@@ -10,7 +10,12 @@
     </div>
     <span v-if="!imageOnly" class="mdc-grid-tile__secondary">
       <template v-if="icon">
-        <ui-icon :class="CLASSNAME_ICON">{{ icon }}</ui-icon>
+        <ui-icon
+          :class="CLASSNAME_ICON"
+          :size="iconSize"
+          :dark="iconDark"
+          :light="iconLight"
+          :inactive="iconInactive">{{ icon }}</ui-icon>
       </template>
       <template v-else>
         <slot name="icon" :className="CLASSNAME_ICON"></slot>
@@ -22,6 +27,7 @@
 
 <script>
 import UiIcon from '../icon';
+import iconMixin from '../../mixins/icon';
 
 const CLASSNAME_ICON = 'mdc-grid-tile__icon';
 
@@ -30,6 +36,7 @@ export default {
   components: {
     UiIcon
   },
+  mixins: [iconMixin],
   props: {
     // ui attributes
     imgUrl: String,

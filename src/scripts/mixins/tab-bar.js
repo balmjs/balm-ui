@@ -2,14 +2,15 @@ import {LABEL_TEXT, LABEL_ICON, LABEL_TEXT_WITH_ICON} from '../components/tabs/c
 
 export default {
   props: {
-    type: {
-      type: [Number, String],
-      default: LABEL_TEXT
-    },
-    // mdc
+    // state
     activeIndex: {
       type: [Number, String],
       default: 0
+    },
+    // ui attributes
+    type: {
+      type: [Number, String],
+      default: LABEL_TEXT
     },
     primary: {
       type: Boolean,

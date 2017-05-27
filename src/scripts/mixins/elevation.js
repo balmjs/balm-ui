@@ -3,6 +3,7 @@ const Z_SPACE_MAX = 24;
 
 export default {
   props: {
+    // ui attributes
     z: {
       type: [Number, String],
       default: Z_SPACE_MIN

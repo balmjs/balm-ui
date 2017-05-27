@@ -55,8 +55,7 @@ export default {
   data() {
     return {
       config1: {
-        defaultDate: 'today',
-        // locale: this.flatpickrLang.cn
+        defaultDate: 'today'
       },
       date1: '',
       config2: {

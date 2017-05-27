@@ -50,15 +50,12 @@ balm.config = {
     }],
     alias: {
       vue: balm.config.production ? 'vue/dist/vue.min.js' : 'vue/dist/vue.js',
-      prismCss: 'prismjs/themes/prism-okaidia.css',
-      flatpickrCss: 'flatpickr/dist/flatpickr.min.css',
-      flatpickrLangZh: 'flatpickr/dist/l10n/zh.js'
+      prismCss: 'prismjs/themes/prism-okaidia.css'
     },
     eslint: true
   },
   sprites: {
-    svg: ['icon'],
-    padding: 1
+    svg: ['icon']
   },
   useDefault: useDefault
 };

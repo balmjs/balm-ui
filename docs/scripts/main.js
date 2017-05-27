@@ -12,7 +12,7 @@ import UiApidoc from './views/components/apidoc';
 import 'prismCss';
 import prismjs from 'prismjs';
 // ready translated locales
-import { locales, flatpickrLang } from './config/lang';
+import { locales } from './config/lang';
 
 const CLASS_NAMESPACE = 'balmui';
 const DEBUG = (process.env.NODE_ENV === 'production') ? false : true;
@@ -74,7 +74,6 @@ const i18n = new VueI18n({
   locale: 'en', // set locale
   messages: locales, // set locale messages
 });
-Vue.prototype.flatpickrLang = flatpickrLang;
 
 new Vue({
   el: '#app',

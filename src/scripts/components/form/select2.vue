@@ -31,13 +31,14 @@ export default {
     UiMenuItem
   },
   props: {
-    // attribute
+    // state
+    model: null,
+    // element attributes
     disabled: {
       type: Boolean,
       default: false
     },
-    // mdc
-    model: null,
+    // ui attributes
     options: {
       required: true,
       type: Array,

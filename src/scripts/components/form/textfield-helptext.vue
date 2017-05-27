@@ -8,11 +8,14 @@
 export default {
   name: 'ui-textfield-helptext',
   props: {
-    id: String,
+    // state
     show: {
       type: Boolean,
       default: false
     },
+    // element attributes
+    id: String,
+    // ui attributes
     text: String
   },
   computed: {

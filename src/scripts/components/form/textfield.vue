@@ -70,7 +70,9 @@ export default {
     UiFormField
   },
   props: {
-    // common attribute
+    // state
+    model: String,
+    // element attributes
     id: String,
     name: String,
     autocomplete: String,
@@ -89,14 +91,13 @@ export default {
       type: Boolean,
       default: false
     },
-    model: String,
-    // input attribute
+    // input attributes
     type: {
       type: String,
       default: 'text'
     },
     pattern: String,
-    // textarea attribute
+    // textarea attributes
     rows: {
       type: [Number, String],
       default: 1
@@ -105,8 +106,7 @@ export default {
       type: [Number, String],
       default: 20
     },
-    // attributes: Object, // TODO
-    // mdc
+    // ui attributes
     cssOnly: {
       type: Boolean,
       default: false

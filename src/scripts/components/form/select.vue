@@ -47,7 +47,9 @@ const UI_EVENT_CHANGE = 'change';
 export default {
   name: 'ui-select',
   props: {
-    // attribute
+    // state
+    model: null,
+    // element attributes
     disabled: {
       type: Boolean,
       default: false
@@ -60,8 +62,7 @@ export default {
       type: [Number, String],
       default: 0
     },
-    // mdc
-    model: null,
+    // ui attributes
     options: {
       required: true,
       type: Array,

@@ -26,15 +26,16 @@ const UI_EVENT_CHANGE = 'change';
 export default {
   name: 'ui-switch',
   props: {
-    // attribute
+    // state
+    model: [Boolean, Number, String],
+    // element attributes
     id: String,
     name: String,
     disabled: {
       type: Boolean,
       default: false
     },
-    model: [Boolean, Number, String],
-    // mdc
+    // ui attributes
     label: String,
     // form field
     alignEnd: {

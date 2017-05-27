@@ -11,8 +11,6 @@ import UiApidoc from './views/components/apidoc';
 // syntax highlighting
 import 'prismCss';
 import prismjs from 'prismjs';
-// plugins
-import 'flatpickrCss';
 // ready translated locales
 import { locales, flatpickrLang } from './config/lang';
 

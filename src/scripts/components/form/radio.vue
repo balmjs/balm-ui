@@ -34,7 +34,12 @@ export default {
     UiFormField
   },
   props: {
-    // attribute
+    // state
+    model: {
+      type: [String, Number, Boolean],
+      default: false
+    },
+    // element attributes
     id: String,
     name: String,
     disabled: {
@@ -42,16 +47,12 @@ export default {
       default: false
     },
     value: [String, Number, Boolean],
-    model: {
-      type: [String, Number, Boolean],
-      default: false
-    },
-    // mdc
-    label: String,
+    // ui attributes
     cssOnly: {
       type: Boolean,
       default: false
     },
+    label: String,
     // form field
     alignEnd: {
       type: Boolean,

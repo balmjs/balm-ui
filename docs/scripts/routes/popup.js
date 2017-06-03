@@ -1,7 +1,5 @@
-const Dialog = require('../views/dialog');
-const Alert = require('../views/Alert');
-const Confirm = require('../views/Confirm');
-const Snackbar = require('../views/snackbar');
+const Dialog = resolve => require(['../views/dialog'], resolve);
+const Snackbar = resolve => require(['../views/snackbar'], resolve);
 
 const popupRoutes = [{
   path: '/dialog',
@@ -9,24 +7,6 @@ const popupRoutes = [{
   component: Dialog,
   meta: {
     title: 'BalmUI - Dialog',
-    keywords: '',
-    description: ''
-  }
-}, {
-  path: '/alert',
-  name: 'alert',
-  component: Alert,
-  meta: {
-    title: 'BalmUI - Alert',
-    keywords: '',
-    description: ''
-  }
-}, {
-  path: '/confirm',
-  name: 'confirm',
-  component: Confirm,
-  meta: {
-    title: 'BalmUI - Confirm',
     keywords: '',
     description: ''
   }

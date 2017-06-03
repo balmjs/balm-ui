@@ -1,7 +1,7 @@
-const GridList = require('../views/grid-list');
-const List = require('../views/list');
-const Table = require('../views/table');
-const Pagination = require('../views/pagination');
+const GridList = resolve => require(['../views/grid-list'], resolve);
+const List = resolve => require(['../views/list'], resolve);
+// const Table = require('../views/table');
+// const Pagination = require('../views/pagination');
 
 const dataRoutes = [{
   path: '/grid-list',
@@ -18,24 +18,6 @@ const dataRoutes = [{
   component: List,
   meta: {
     title: 'BalmUI - List',
-    keywords: '',
-    description: ''
-  }
-}, {
-  path: '/table',
-  name: 'table',
-  component: Table,
-  meta: {
-    title: 'BalmUI - Table',
-    keywords: '',
-    description: ''
-  }
-}, {
-  path: '/pagination',
-  name: 'pagination',
-  component: Pagination,
-  meta: {
-    title: 'BalmUI - Pagination',
     keywords: '',
     description: ''
   }

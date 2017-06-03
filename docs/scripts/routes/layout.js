@@ -1,16 +1,16 @@
-const TemporaryDrawer = require('../views/drawer/temporary-drawer');
-const PersistentDrawer = require('../views/drawer/persistent-drawer');
-const PermanentDrawerAboveToolbar = require('../views/drawer/permanent-drawer-above-toolbar');
-const PermanentDrawerBelowToolbar = require('../views/drawer/permanent-drawer-below-toolbar');
-const Grid = require('../views/grid');
-const Tabs = require('../views/tabs');
-const Toolbar = require('../views/toolbar');
-const DefaultToolbar = require('../views/toolbar/default-toolbar');
-const FixedToolbar = require('../views/toolbar/fixed-toolbar');
-const WaterfallToolbar = require('../views/toolbar/waterfall-toolbar');
-const DefaultFlexibleToolbar = require('../views/toolbar/default-flexible-toolbar');
-const WaterfallFlexibleToolbar = require('../views/toolbar/waterfall-flexible-toolbar');
-const WaterfallToolbarFixLastRow = require('../views/toolbar/waterfall-toolbar-fix-last-row');
+const TemporaryDrawer = resolve => require(['../views/drawer/temporary-drawer'], resolve);
+const PersistentDrawer = resolve => require(['../views/drawer/persistent-drawer'], resolve);
+const PermanentDrawerAboveToolbar = resolve => require(['../views/drawer/permanent-drawer-above-toolbar'], resolve);
+const PermanentDrawerBelowToolbar = resolve => require(['../views/drawer/permanent-drawer-below-toolbar'], resolve);
+const Grid = resolve => require(['../views/grid'], resolve);
+const Tabs = resolve => require(['../views/tabs'], resolve);
+const Toolbar = resolve => require(['../views/toolbar'], resolve);
+const DefaultToolbar = resolve => require(['../views/toolbar/default-toolbar'], resolve);
+const FixedToolbar = resolve => require(['../views/toolbar/fixed-toolbar'], resolve);
+const WaterfallToolbar = resolve => require(['../views/toolbar/waterfall-toolbar'], resolve);
+const DefaultFlexibleToolbar = resolve => require(['../views/toolbar/default-flexible-toolbar'], resolve);
+const WaterfallFlexibleToolbar = resolve => require(['../views/toolbar/waterfall-flexible-toolbar'], resolve);
+const WaterfallToolbarFixLastRow = resolve => require(['../views/toolbar/waterfall-toolbar-fix-last-row'], resolve);
 
 const layoutRoutes = [{
   path: '/temporary-drawer',

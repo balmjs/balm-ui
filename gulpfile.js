@@ -39,6 +39,7 @@ balm.config = {
   },
   scripts: {
     entry: {
+      mylib: ['vue', 'vue-router', 'axios', 'vue-i18n', 'prismCss', 'prismjs', 'clipboard'],
       main: balm.config.production ? './src/index' : './docs/scripts/main'
     },
     loaders: [{

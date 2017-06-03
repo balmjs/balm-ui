@@ -1,27 +1,17 @@
-const Badge = require('../views/badge');
-const Button = require('../views/button');
-const Card = require('../views/card');
-const Chip = require('../views/chip');
-const Loading = require('../views/loading');
-const Menu = require('../views/menu');
-const Tooltip = require('../views/tooltip');
-const Divider = require('../views/divider');
-const Fab = require('../views/fab');
-const Elevation = require('../views/elevation');
-const Theme = require('../views/theme');
-const Typography = require('../views/typography');
-const Icons = require('../views/icons');
+// const Badge = require('../views/badge');
+const Button = resolve => require(['../views/button'], resolve);
+const Card = resolve => require(['../views/card'], resolve);
+// const Chip = require('../views/chip');
+// const Loading = require('../views/loading');
+const Menu = resolve => require(['../views/menu'], resolve);
+// const Tooltip = require('../views/tooltip');
+const Fab = resolve => require(['../views/fab'], resolve);
+const Elevation = resolve => require(['../views/elevation'], resolve);
+const Theme = resolve => require(['../views/theme'], resolve);
+const Typography = resolve => require(['../views/typography'], resolve);
+const Icons = resolve => require(['../views/icons'], resolve);
 
 const commonRoutes = [{
-  path: '/badge',
-  name: 'badge',
-  component: Badge,
-  meta: {
-    title: 'BalmUI - Badge',
-    keywords: '',
-    description: ''
-  }
-}, {
   path: '/button',
   name: 'button',
   component: Button,
@@ -49,47 +39,11 @@ const commonRoutes = [{
     description: ''
   }
 }, {
-  path: '/chip',
-  name: 'chip',
-  component: Chip,
-  meta: {
-    title: 'BalmUI - Chip',
-    keywords: '',
-    description: ''
-  }
-}, {
-  path: '/loading',
-  name: 'loading',
-  component: Loading,
-  meta: {
-    title: 'BalmUI - Loading',
-    keywords: '',
-    description: ''
-  }
-}, {
   path: '/menu',
   name: 'menu',
   component: Menu,
   meta: {
     title: 'BalmUI - Menu',
-    keywords: '',
-    description: ''
-  }
-}, {
-  path: '/tooltip',
-  name: 'tooltip',
-  component: Tooltip,
-  meta: {
-    title: 'BalmUI - Tooltip',
-    keywords: '',
-    description: ''
-  }
-}, {
-  path: '/divider',
-  name: 'divider',
-  component: Divider,
-  meta: {
-    title: 'BalmUI - Divider',
     keywords: '',
     description: ''
   }

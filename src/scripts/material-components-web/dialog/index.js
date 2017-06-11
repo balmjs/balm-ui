@@ -18,10 +18,10 @@ import {MDCComponent} from '../base';
 import {MDCRipple} from '../ripple';
 
 import MDCDialogFoundation from './foundation';
-// import * as util from './util';
+import * as util from './util';
 
 export {MDCDialogFoundation};
-// export {util};
+export {util};
 
 export class MDCDialog extends MDCComponent {
   static attachTo(root) {
@@ -41,7 +41,7 @@ export class MDCDialog extends MDCComponent {
   }
 
   initialize() {
-    // this.focusTrap_ = util.createFocusTrapInstance(this.dialogSurface_, this.acceptButton_);
+    this.focusTrap_ = util.createFocusTrapInstance(this.dialogSurface_, this.acceptButton_);
     this.footerBtnRipples_ = [];
 
     const footerBtns = this.root_.querySelectorAll('.mdc-dialog__footer__button');
@@ -67,7 +67,6 @@ export class MDCDialog extends MDCComponent {
     return new MDCDialogFoundation({
       addClass: (className) => this.root_.classList.add(className),
       removeClass: (className) => this.root_.classList.remove(className),
-      setStyle: (prop, val) => this.root_.style.setProperty(prop, val),
       addBodyClass: (className) => document.body.classList.add(className),
       removeBodyClass: (className) => document.body.classList.remove(className),
       eventTargetHasClass: (target, className) => target.classList.contains(className),
@@ -77,10 +76,13 @@ export class MDCDialog extends MDCComponent {
       deregisterSurfaceInteractionHandler: (evt, handler) => this.dialogSurface_.removeEventListener(evt, handler),
       registerDocumentKeydownHandler: (handler) => document.addEventListener('keydown', handler),
       deregisterDocumentKeydownHandler: (handler) => document.removeEventListener('keydown', handler),
-      notifyAccept: () => this.emit('MDCDialog:accept'),
-      notifyCancel: () => this.emit('MDCDialog:cancel'),
-      // trapFocusOnSurface: () => this.focusTrap_.activate(),
-      // untrapFocusOnSurface: () => this.focusTrap_.deactivate(),
+      registerTransitionEndHandler: (handler) => this.dialogSurface_.addEventListener('transitionend', handler),
+      deregisterTransitionEndHandler: (handler) => this.dialogSurface_.removeEventListener('transitionend', handler),
+      notifyAccept: () => this.emit(MDCDialogFoundation.strings.ACCEPT_EVENT),
+      notifyCancel: () => this.emit(MDCDialogFoundation.strings.CANCEL_EVENT),
+      trapFocusOnSurface: () => this.focusTrap_.activate(),
+      untrapFocusOnSurface: () => this.focusTrap_.deactivate(),
+      isDialog: (el) => el === this.dialogSurface_,
     });
   }
 }

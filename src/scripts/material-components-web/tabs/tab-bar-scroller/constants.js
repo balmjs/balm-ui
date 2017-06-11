@@ -15,11 +15,16 @@
  */
 
 export const cssClasses = {
-  UPGRADED: 'mdc-tab-bar-upgraded',
+  INDICATOR_FORWARD: 'mdc-tab-bar-scroller__indicator--forward',
+  INDICATOR_BACK: 'mdc-tab-bar-scroller__indicator--back',
+  INDICATOR_ENABLED: 'mdc-tab-bar-scroller__indicator--enabled',
+  TAB: 'mdc-tab',
 };
 
 export const strings = {
+  FRAME_SELECTOR: '.mdc-tab-bar-scroller__scroll-frame',
+  TABS_SELECTOR: '.mdc-tab-bar-scroller__scroll-frame__tabs',
   TAB_SELECTOR: '.mdc-tab',
-  INDICATOR_SELECTOR: '.mdc-tab-bar__indicator',
-  CHANGE_EVENT: 'MDCTabBar:change',
+  INDICATOR_FORWARD_SELECTOR: '.mdc-tab-bar-scroller__indicator--forward',
+  INDICATOR_BACK_SELECTOR: '.mdc-tab-bar-scroller__indicator--back',
 };

@@ -1,5 +1,5 @@
 <template>
-  <aside class="mdc-dialog" style="visibility:hidden;">
+  <aside class="mdc-dialog">
     <div class="mdc-dialog__surface">
       <header v-if="!noHeader" class="mdc-dialog__header">
         <slot name="title:before"></slot>
@@ -33,7 +33,7 @@
 <script>
 // NOTE: remove 'focus-trap' in MDC Dialog
 import {MDCDialog} from '../material-components-web/dialog';
-import UiButton from './button';
+import UiButton from './button/button';
 
 const CLASSNAME_ACCEPT = 'mdc-dialog__footer__button--accept';
 const CLASSNAME_CANCEL = 'mdc-dialog__footer__button--cancel';

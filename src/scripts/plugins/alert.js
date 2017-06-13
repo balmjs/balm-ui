@@ -1,5 +1,5 @@
 import UiDialog from '../components/dialog';
-import UiButton from '../components/button';
+import UiButton from '../components/button/button';
 import {isString, isObject} from '../helpers';
 
 const DEFAULT_OPTIONS = {

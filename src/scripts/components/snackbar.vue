@@ -14,7 +14,7 @@
 
 <script>
 import {MDCSnackbar} from '../material-components-web/snackbar';
-import UiButton from './button';
+import UiButton from './button/button';
 
 const UI_EVENT_DONE = 'done';
 

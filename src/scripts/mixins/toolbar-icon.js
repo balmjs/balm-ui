@@ -1,15 +1,7 @@
-<template>
-  <a :class="className">
-    <slot>{{ isMenu ? 'menu' : '' }}</slot>
-  </a>
-</template>
-
-<script>
 const TYPE_MENU = 'menu';
 const TYPE_ICON = 'icon';
 
 export default {
-  name: 'ui-toolbar-icon',
   props: {
     // ui attributes
     type: {
@@ -29,4 +21,3 @@ export default {
     }
   }
 };
-</script>

@@ -4,23 +4,26 @@
       <div class="catalog-toolbar-container">
         <ui-toolbar>
           <ui-toolbar-row>
-            <ui-toolbar-section align="start" titleClass="catalog-title">
-              <template slot="before">
-                <span class="catalog-back">
-                  <a href="#"><i class="material-icons">menu</i></a>
-                </span>
-              </template>
-              Toolbar
+            <ui-toolbar-section align="start">
+              <ui-toolbar-anchor type="menu"></ui-toolbar-anchor>
+              <ui-toolbar-title>Toolbar</ui-toolbar-title>
+            </ui-toolbar-section>
+            <ui-toolbar-section align="end">
+              <ui-toolbar-anchor href="javascript:void(0)" alt="Download">file_download</ui-toolbar-anchor>
+              <ui-toolbar-anchor href="javascript:void(0)" alt="Print this page">print</ui-toolbar-anchor>
+              <ui-toolbar-anchor href="javascript:void(0)" alt="Bookmark this page">more_vert</ui-toolbar-anchor>
             </ui-toolbar-section>
           </ui-toolbar-row>
         </ui-toolbar>
       </div>
     </div>
 
-    <p class="intro">
-      To best show the functionality of toolbars, we put both demos in iframes.
-      Click the links above the iframe to view the demo in a full browser window.
-    </p>
+    <div class="intro">
+      <p>
+        To best show the functionality of toolbars, we put both demos in iframes.
+        Click the links above the iframe to view the demo in a full browser window.
+      </p>
+    </div>
 
     <section class="examples">
       <div class="example">

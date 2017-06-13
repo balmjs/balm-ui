@@ -5,15 +5,13 @@
       contentSelector="#demo--fixed-toolbar-content">
       <ui-toolbar-row>
         <ui-toolbar-section align="start">
-          <template slot="before">
-            <a href="#" class="material-icons">menu</a>
-          </template>
-          Title
+          <ui-toolbar-anchor type="menu"></ui-toolbar-anchor>
+          <ui-toolbar-title>Title</ui-toolbar-title>
         </ui-toolbar-section>
         <ui-toolbar-section align="end" noTitle>
-          <a href="#" class="material-icons" aria-label="Download" alt="Download">file_download</a>
-          <a href="#" class="material-icons" aria-label="Print this page" alt="Print this page">print</a>
-          <a href="#" class="material-icons" aria-label="Bookmark this page" alt="Bookmark this page">bookmark</a>
+          <ui-toolbar-anchor href="javascript:void(0)" alt="Download">file_download</ui-toolbar-anchor>
+          <ui-toolbar-anchor href="javascript:void(0)" alt="Print this page">print</ui-toolbar-anchor>
+          <ui-toolbar-anchor href="javascript:void(0)" alt="Bookmark this page">more_vert</ui-toolbar-anchor>
         </ui-toolbar-section>
       </ui-toolbar-row>
     </ui-toolbar>

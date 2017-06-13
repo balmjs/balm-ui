@@ -7,6 +7,10 @@ import UiTemporaryDrawer from './scripts/components/drawer/temporary';
 import UiToolbar from './scripts/components/toolbar/toolbar';
 import UiToolbarRow from './scripts/components/toolbar/toolbar-row';
 import UiToolbarSection from './scripts/components/toolbar/toolbar-section';
+import UiToolbarTitle from './scripts/components/toolbar/toolbar-title';
+import UiToolbarAnchor from './scripts/components/toolbar/icons/toolbar-anchor';
+import UiToolbarSpan from './scripts/components/toolbar/icons/toolbar-span';
+import UiToolbarButton from './scripts/components/toolbar/icons/toolbar-button';
 import UiGrid from './scripts/components/grid/grid';
 import UiCell from './scripts/components/grid/cell';
 import UiTabs from './scripts/components/tabs/tabs';
@@ -20,8 +24,9 @@ import UiPanel from './scripts/components/tabs/panel';
 // import UiBadge from './scripts/components/common/badge';
 import UiIcon from './scripts/components/icon';
 import UiLink from './scripts/components/link';
-import UiButton from './scripts/components/button';
-import UiFab from './scripts/components/fab';
+import UiButton from './scripts/components/button/button';
+import UiFab from './scripts/components/button/fab';
+import UiIconToggle from './scripts/components/button/icon-toggle';
 import UiCard from './scripts/components/card/card';
 import UiCardMedia from './scripts/components/card/content-blocks/card-media';
 import UiCardHead from './scripts/components/card/content-blocks/card-head';
@@ -33,17 +38,16 @@ import UiMenuAnchor from './scripts/components/menu/menu-anchor';
 import UiMenu from './scripts/components/menu/menu';
 import UiMenuItem from './scripts/components/menu/menuitem';
 /**
- * Form
+ * Input Controls
  */
-import UiFormField from './scripts/components/form/form-field';
-import UiTextfield from './scripts/components/form/textfield';
-import UiTextfieldHelptext from './scripts/components/form/textfield-helptext';
-import UiCheckbox from './scripts/components/form/checkbox';
-import UiRadio from './scripts/components/form/radio';
-import UiIconToggle from './scripts/components/form/icon-toggle';
-import UiSwitch from './scripts/components/form/switch';
-import UiSelect from './scripts/components/form/select';
-import UiSelect2 from './scripts/components/form/select2';
+import UiFormField from './scripts/components/input-controls/form-field';
+import UiTextfield from './scripts/components/input-controls/textfield';
+import UiTextfieldHelptext from './scripts/components/input-controls/textfield-helptext';
+import UiCheckbox from './scripts/components/input-controls/checkbox';
+import UiRadio from './scripts/components/input-controls/radio';
+import UiSelect from './scripts/components/input-controls/select';
+import UiSelect2 from './scripts/components/input-controls/select2';
+import UiSwitch from './scripts/components/input-controls/switch';
 /**
  * Data
  */
@@ -82,6 +86,10 @@ const BalmUI = {
   UiToolbar,
   UiToolbarRow,
   UiToolbarSection,
+  UiToolbarTitle,
+  UiToolbarAnchor,
+  UiToolbarSpan,
+  UiToolbarButton,
   UiGrid,
   UiCell,
   UiTabs,

@@ -11,6 +11,10 @@ body,
   height: 100%;
 }
 
+.balmui-head {
+  padding-right: 20px;
+}
+
 .balmui-body {
   display: flex;
   width: 100%;
@@ -32,36 +36,6 @@ body,
 
 .balmui-content {
   flex: 1;
-}
-
-.catalog-list-icon {
-  margin-right: 24px;
-}
-
-.catalog-list .mdc-list-item {
-  text-decoration: none;
-  color: gray;
-  &.mdc-permanent-drawer--selected {
-    color: #212121;
-    background: rgba(0, 0, 0, .05);
-  }
-}
-
-.catalog-component-list-content {
-  display: flex;
-  padding-left: 24px;
-  order: 2;
-  flex-flow: column wrap;
-  justify-content: center;
-}
-
-.catalog-component-list-title {
-  order: 1;
-}
-
-.catalog-component-list-description {
-  color: #999;
-  order: 2;
 }
 
 /// lang

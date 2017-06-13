@@ -7,14 +7,11 @@
       <!-- header -->
       <ui-toolbar class="balmui-head" :fixed="true" contentSelector=".balmui-body">
         <ui-toolbar-row>
-          <ui-toolbar-section align="start" titleClass="catalog-title">
-            <template slot="before">
-              <span class="catalog-logo">
-                <img :src="require('../../../images/icon/ic_component_24px_white.svg')" alt="BalmUI">
-              </span>
-              <!--<a href="#" class="material-icons">menu</a>-->
-            </template>
-            BalmUI
+          <ui-toolbar-section align="start">
+            <ui-toolbar-span type="menu" class="catalog-logo">
+              <img :src="require('../../../images/icon/ic_component_24px_white.svg')" alt="BalmUI">
+            </ui-toolbar-span>
+            <ui-toolbar-title class="catalog-title">BalmUI</ui-toolbar-title>
           </ui-toolbar-section>
           <ui-toolbar-section align="end">
             <a href="https://github.com/balmjs/ui-vue">
@@ -29,16 +26,20 @@
           <template slot="default" scope="drawerProps">
             <ui-list-nav class="catalog-list">
               <template slot="default" scope="listProps">
-                <router-link v-for="(item, index) in menu" :key="index"
-                  :class="drawerProps.className.item"
-                  :to="item.url"
-                  :active-class="drawerProps.className.active">
-                  <img
-                    :class="[listProps.className.start, 'catalog-component-icon']"
-                    :src="require(`../../../images/icon/${item.icon}`)"
-                    :alt="item.name">
-                  {{ item.name }}
-                </router-link>
+                <template v-for="(item, index) in menu">
+                  <router-link
+                    v-if="item.url"
+                    :class="[drawerProps.className.item, {'submenu': item.isSubmenu}]"
+                    :to="item.url"
+                    :active-class="drawerProps.className.active">
+                    <img v-if="item.icon"
+                      :class="[listProps.className.start, 'catalog-component-icon']"
+                      :src="require(`../../../images/icon/${item.icon}`)"
+                      :alt="item.name">
+                    {{ item.name }}
+                  </router-link>
+                  <h3 v-else>{{ item.name }}</h3>
+                </template>
               </template>
             </ui-list-nav>
             <ui-list-divider></ui-list-divider>
@@ -65,7 +66,8 @@ export default {
   },
   computed: {
     noLayout() {
-      return this.$route.name.indexOf('-drawer') > -1 || this.$route.name.indexOf('-toolbar') > -1;
+      let routeName = this.$route.name;
+      return routeName && (routeName.indexOf('-drawer') > -1 || routeName.indexOf('-toolbar') > -1);
     }
   },
   watch: {

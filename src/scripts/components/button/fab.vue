@@ -16,7 +16,7 @@
 
 <script>
 import UiButton from './button';
-import {isString} from '../helpers';
+import {isString} from '../../helpers';
 
 export default {
   name: 'ui-fab',

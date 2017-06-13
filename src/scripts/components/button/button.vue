@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import rippleMixin from '../mixins/ripple';
+import rippleMixin from '../../mixins/ripple';
 
 export default {
   name: 'ui-button',

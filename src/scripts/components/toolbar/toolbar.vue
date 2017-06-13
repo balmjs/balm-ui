@@ -16,7 +16,7 @@ const UI_EVENT_CHANGE = 'change';
 export default {
   name: 'ui-toolbar',
   props: {
-    // mdc
+    // ui attributes
     fixed: {
       type: [Boolean, String],
       default: false
@@ -51,7 +51,7 @@ export default {
         'mdc-toolbar': true,
         'mdc-toolbar--fixed': this.fixed || this.waterfall,
         'mdc-toolbar--waterfall': this.waterfall,
-        'mdc-toolbar--fixed-lastrow-only': this.isFixedLastrowOnly,
+        'mdc-toolbar--fixed-lastrow-only': this.fixed && this.isFixedLastrowOnly,
         'mdc-toolbar--flexible': this.flexible,
         'mdc-toolbar--flexible-default-behavior': this.flexible && !this.noFlexibleDefaultBehavior
       };

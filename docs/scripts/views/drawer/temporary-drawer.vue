@@ -1,23 +1,18 @@
 <template>
   <div class="demo--drawer demo--temporary-drawer">
-    <ui-toolbar :fixed="true">
+    <ui-toolbar :fixed="true" contentSelector=".demo-main">
       <ui-toolbar-row>
         <ui-toolbar-section align="start">
-          <template slot="before">
-            <ui-button link class="demo-menu material-icons" @click.native="openMenu">menu</ui-button>
-          </template>
-          <span class="catalog-title">Temporary Drawer</span>
+          <ui-toolbar-button type="menu" class="demo-menu"></ui-toolbar-button>
+          <ui-toolbar-title class="catalog-title">Temporary Drawer</ui-toolbar-title>
         </ui-toolbar-section>
       </ui-toolbar-row>
     </ui-toolbar>
 
-    <!-- menuSelector=".demo-menu" -->
     <ui-temporary-drawer
       hasHeader
       :headerClass="[themeColor('primary', true), textColor('primary', 'primary')]"
-      :open="open"
-      @open="onOpen"
-      @close="onClose">
+      menuSelector=".demo-menu">
       <template slot="header">Header here</template>
       <ui-list-group>
         <ui-list-nav>
@@ -52,46 +47,9 @@
 </template>
 
 <script>
+import DrawerMixin from '../../mixins/drawer';
+
 export default {
-  data() {
-    return {
-      menu1: [{
-        icon: 'inbox',
-        name: 'Inbox'
-      }, {
-        icon: 'star',
-        name: 'Star'
-      }, {
-        icon: 'send',
-        name: 'Sent Mail'
-      }, {
-        icon: 'drafts',
-        name: 'Drafts'
-      }],
-      menu2: [{
-        icon: 'email',
-        name: 'All Mail'
-      }, {
-        icon: 'delete',
-        name: 'Trash'
-      }, {
-        icon: 'report',
-        name: 'Spam'
-      }],
-      open: false
-    };
-  },
-  methods: {
-    openMenu() {
-      this.open = true;
-    },
-    onOpen(val) {
-      console.log('open', val);
-    },
-    onClose(val) {
-      this.open = false;
-      console.log('close', val);
-    }
-  }
+  mixins: [DrawerMixin]
 };
 </script>

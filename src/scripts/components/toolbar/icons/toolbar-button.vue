@@ -1,18 +1,14 @@
 <template>
-  <ui-button :class="className">
-    <slot></slot>
-  </ui-button>
+  <button type="button" :class="className">
+    <slot>{{ isMenu ? 'menu' : '' }}</slot>
+  </button>
 </template>
 
 <script>
-import UiButton from '../../button/button';
 import toolbarIconMixin from '../../../mixins/toolbar-icon';
 
 export default {
   name: 'ui-toolbar-button',
-  components: {
-    UiButton
-  },
   mixins: [toolbarIconMixin]
 };
 </script>

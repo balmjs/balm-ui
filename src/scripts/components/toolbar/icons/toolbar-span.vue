@@ -1,6 +1,6 @@
 <template>
   <span :class="className">
-    <slot></slot>
+    <slot>{{ isMenu ? 'menu' : '' }}</slot>
   </span>
 </template>
 

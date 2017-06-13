@@ -1,11 +1,8 @@
 <template>
   <div class="demo--drawer demo--persistent-drawer">
-    <!-- menuSelector=".demo-menu" -->
     <ui-persistent-drawer
       hasSpacer
-      :open="open"
-      @open="onOpen"
-      @close="onClose">
+      menuSelector=".demo-menu">
       <ui-list-group>
         <ui-list-nav>
           <template slot="default" scope="props">
@@ -35,10 +32,8 @@
       <ui-toolbar contentSelector=".demo-main" :class="zSpace(4)">
         <ui-toolbar-row>
           <ui-toolbar-section align="start">
-            <template slot="before">
-              <ui-button link class="demo-menu material-icons" @click.native="openMenu">menu</ui-button>
-            </template>
-            <span class="catalog-title">Persistent Drawer</span>
+            <ui-toolbar-button type="menu" class="demo-menu"></ui-toolbar-button>
+            <ui-toolbar-title class="catalog-title">Persistent Drawer</ui-toolbar-title>
           </ui-toolbar-section>
         </ui-toolbar-row>
       </ui-toolbar>
@@ -53,46 +48,9 @@
 </template>
 
 <script>
+import DrawerMixin from '../../mixins/drawer';
+
 export default {
-  data() {
-    return {
-      menu1: [{
-        icon: 'inbox',
-        name: 'Inbox'
-      }, {
-        icon: 'star',
-        name: 'Star'
-      }, {
-        icon: 'send',
-        name: 'Sent Mail'
-      }, {
-        icon: 'drafts',
-        name: 'Drafts'
-      }],
-      menu2: [{
-        icon: 'email',
-        name: 'All Mail'
-      }, {
-        icon: 'delete',
-        name: 'Trash'
-      }, {
-        icon: 'report',
-        name: 'Spam'
-      }],
-      open: false
-    };
-  },
-  methods: {
-    openMenu() {
-      this.open = !this.open;
-    },
-    onOpen(val) {
-      console.log('open', val);
-    },
-    onClose(val) {
-      this.open = false;
-      console.log('close', val);
-    }
-  }
+  mixins: [DrawerMixin]
 };
 </script>

@@ -30,7 +30,7 @@
       <ui-toolbar :class="zSpace(4)">
         <ui-toolbar-row>
           <ui-toolbar-section align="start">
-            <span class="catalog-title">Permanent Drawer Above Toolbar</span>
+            <ui-toolbar-title class="catalog-title">Permanent Drawer Above Toolbar</ui-toolbar-title>
           </ui-toolbar-section>
         </ui-toolbar-row>
       </ui-toolbar>
@@ -44,33 +44,9 @@
 </template>
 
 <script>
+import DrawerMixin from '../../mixins/drawer';
+
 export default {
-  data() {
-    return {
-      menu1: [{
-        icon: 'inbox',
-        name: 'Inbox'
-      }, {
-        icon: 'star',
-        name: 'Star'
-      }, {
-        icon: 'send',
-        name: 'Sent Mail'
-      }, {
-        icon: 'drafts',
-        name: 'Drafts'
-      }],
-      menu2: [{
-        icon: 'email',
-        name: 'All Mail'
-      }, {
-        icon: 'delete',
-        name: 'Trash'
-      }, {
-        icon: 'report',
-        name: 'Spam'
-      }]
-    };
-  }
+  mixins: [DrawerMixin]
 };
 </script>

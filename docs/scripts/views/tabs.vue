@@ -1,12 +1,12 @@
 <template>
   <div class="demo--tabs">
     <section class="hero">
-      <ui-tabs :data="tabs"></ui-tabs>
+      <ui-tabs id="demo-tab-bar" :data="tabs"></ui-tabs>
     </section>
 
     <section>
       <fieldset>
-        <legend class="mdc-typography--title">Basic Tab Bar</legend>
+        <legend :class="typography('title')">Basic Tab Bar</legend>
         <ui-tab-bar id="basic-tab-bar">
           <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
             {{ tab.name }}
@@ -16,8 +16,19 @@
     </section>
 
     <section>
+      <div class="demo-tabs__scroller">
+        <h2 :class="[typography('title'), 'demo-title']">Tab Bar with Scroller</h2>
+        <ui-tab-bar-scroller id="tab-bar-scroller" @change="(index) => { console.log(index); }">
+          <ui-tab v-for="(tab, index) in 9" :key="index" :href="`#${tab}`">
+            Item {{ tab }}
+          </ui-tab>
+        </ui-tab-bar-scroller>
+      </div>
+    </section>
+
+    <section>
       <fieldset>
-        <legend class="mdc-typography--title">Icon Tab Labels</legend>
+        <legend :class="typography('title')">Icon Tab Labels</legend>
         <ui-tab-bar type="1" id="icon-tab-bar">
           <ui-tab v-for="(tab, index) in tabs2" :key="index"
             :icon="tab.icon" :href="tab.url">
@@ -28,7 +39,7 @@
 
     <section>
       <fieldset>
-        <legend class="mdc-typography--title">Icon &amp; Text Labels</legend>
+        <legend :class="typography('title')">Icon &amp; Text Labels</legend>
         <ui-tab-bar type="2" id="icon-text-tab-bar">
           <ui-tab v-for="(tab, index) in tabs2" :key="index"
             :icon="tab.icon" :text="tab.text" :href="tab.url">
@@ -39,7 +50,7 @@
 
     <section>
       <fieldset>
-        <legend class="mdc-typography--title">Primary Color Indicator</legend>
+        <legend :class="typography('title')">Primary Color Indicator</legend>
         <ui-tab-bar primary id="primary-indicator-tab-bar">
           <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
             {{ tab.name }}
@@ -50,7 +61,7 @@
 
     <section>
       <fieldset>
-        <legend class="mdc-typography--title">Accent Color Indicator</legend>
+        <legend :class="typography('title')">Accent Color Indicator</legend>
         <ui-tab-bar accent id="accent-indicator-tab-bar">
           <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
             {{ tab.name }}
@@ -61,18 +72,20 @@
 
     <section>
       <fieldset>
-        <legend class="mdc-typography--title">Within mdc-toolbar</legend>
+        <legend :class="typography('title')">Within mdc-toolbar</legend>
         <ui-toolbar>
           <ui-toolbar-row>
             <ui-toolbar-section fit align="start">
-              Title
+              <ui-toolbar-title>Title</ui-toolbar-title>
             </ui-toolbar-section>
             <ui-toolbar-section align="end">
-              <ui-tab-bar id="toolbar-tab-bar">
-                <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
-                  {{ tab.name }}
-                </ui-tab>
-              </ui-tab-bar>
+              <div>
+                <ui-tab-bar id="toolbar-tab-bar">
+                  <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
+                    {{ tab.name }}
+                  </ui-tab>
+                </ui-tab-bar>
+              </div>
             </ui-toolbar-section>
           </ui-toolbar-row>
         </ui-toolbar>
@@ -81,7 +94,7 @@
 
     <section>
       <fieldset>
-        <legend class="mdc-typography--title">Within MDCToolbar - fixed to bottom of toolbar</legend>
+        <legend :class="typography('title')">Within MDCToolbar - fixed to bottom of toolbar</legend>
         <div class="demo-note">
           <em>Note: The style used to acheive this example is:</em>
           <pre><code>.my-modified-toolbar-section {
@@ -98,7 +111,7 @@
         <ui-toolbar>
           <ui-toolbar-row>
             <ui-toolbar-section fit align="start">
-              Title
+              <ui-toolbar-title>Title</ui-toolbar-title>
             </ui-toolbar-section>
             <ui-toolbar-section class="my-modified-toolbar-section">
               <ui-tab-bar id="toolbar-tab-bar-modified">
@@ -114,21 +127,23 @@
 
     <section>
       <fieldset>
-        <legend class="mdc-typography--title">Within mdc-toolbar + primary indicator</legend>
+        <legend :class="typography('title')">Within mdc-toolbar + primary indicator</legend>
         <div class="demo-note">
           <em>Note: Changing the toolbar's background color here so that the primary indicator can be visible</em>
         </div>
         <ui-toolbar class="mdc-theme--accent-bg">
           <ui-toolbar-row>
             <ui-toolbar-section fit align="start">
-              Title
+              <ui-toolbar-title>Title</ui-toolbar-title>
             </ui-toolbar-section>
             <ui-toolbar-section align="end">
-              <ui-tab-bar primary id="toolbar-tab-bar-primary-indicator">
-                <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
-                  {{ tab.name }}
-                </ui-tab>
-              </ui-tab-bar>
+              <div>
+                <ui-tab-bar primary id="toolbar-tab-bar-primary-indicator">
+                  <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
+                    {{ tab.name }}
+                  </ui-tab>
+                </ui-tab-bar>
+              </div>
             </ui-toolbar-section>
           </ui-toolbar-row>
         </ui-toolbar>
@@ -137,18 +152,20 @@
 
     <section>
       <fieldset>
-        <legend class="mdc-typography--title">Within mdc-toolbar + accent indicator</legend>
+        <legend :class="typography('title')">Within mdc-toolbar + accent indicator</legend>
         <ui-toolbar>
           <ui-toolbar-row>
             <ui-toolbar-section fit align="start">
-              Title
+              <ui-toolbar-title>Title</ui-toolbar-title>
             </ui-toolbar-section>
             <ui-toolbar-section align="end">
-              <ui-tab-bar accent id="toolbar-tab-bar-accent-indicator">
-                <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
-                  {{ tab.name }}
-                </ui-tab>
-              </ui-tab-bar>
+              <div>
+                <ui-tab-bar accent id="toolbar-tab-bar-accent-indicator">
+                  <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
+                    {{ tab.name }}
+                  </ui-tab>
+                </ui-tab-bar>
+              </div>
             </ui-toolbar-section>
           </ui-toolbar-row>
         </ui-toolbar>
@@ -157,7 +174,7 @@
 
     <section>
       <fieldset>
-        <legend class="mdc-typography--title">Within Toolbar, Dynamic Content Control</legend>
+        <legend :class="typography('title')">Within Toolbar, Dynamic Content Control</legend>
         <ui-toolbar id="dynamic-demo-toolbar">
           <ui-toolbar-row>
             <ui-toolbar-section fit align="start">
@@ -191,7 +208,7 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      activeIndex: 1,
+      activeIndex: 0,
       tabs: [{
         name: 'Item One',
         url: '#one',

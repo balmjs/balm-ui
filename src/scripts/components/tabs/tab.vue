@@ -26,13 +26,12 @@
 import UiIcon from '../icon';
 import iconMixin from '../../mixins/icon';
 
-// const MDC_EVENT_SELECTED = 'MDCTab:selected';
-
 export default {
   name: 'ui-tab',
   components: {
     UiIcon
   },
+  mixins: [iconMixin],
   props: {
     icon: {
       type: [String, Boolean],

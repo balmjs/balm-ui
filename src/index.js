@@ -16,6 +16,7 @@ import UiGridInner from './scripts/components/grid/grid-inner';
 import UiCell from './scripts/components/grid/cell';
 import UiTabs from './scripts/components/tabs/tabs';
 import UiTabBar from './scripts/components/tabs/tab-bar';
+import UiTabBarScroller from './scripts/components/tabs/tab-bar-scroller';
 import UiTab from './scripts/components/tabs/tab';
 import UiPanels from './scripts/components/tabs/panels';
 import UiPanel from './scripts/components/tabs/panel';
@@ -97,6 +98,7 @@ const BalmUI = {
   UiCell,
   UiTabs,
   UiTabBar,
+  UiTabBarScroller,
   UiTab,
   UiPanels,
   UiPanel,

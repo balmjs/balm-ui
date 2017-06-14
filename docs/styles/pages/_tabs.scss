@@ -1,8 +1,8 @@
 .demo--tabs {
   fieldset {
-    margin: 24px;
-    margin-top: 0;
-    margin-bottom: 16px;
+    padding: 24px;
+    padding-top: 0;
+    padding-bottom: 16px;
   }
   fieldset .mdc-button {
     margin: 16px;
@@ -12,6 +12,15 @@
   }
   .mdc-theme--dark fieldset legend {
     color: #f0f0f0;
+  }
+  .mdc-theme--dark .demo-tabs__scroller {
+    background-color: #333;
+  }
+  .mdc-theme--dark .demo-tabs__scroller .demo-title {
+    color: #f0f0f0;
+  }
+  .demo-header-toolbar {
+    z-index: 10;
   }
   .hero button {
     margin-left: 32px;
@@ -25,6 +34,16 @@
     padding: 16px;
     padding-top: 64px;
     padding-bottom: 24px;
+  }
+  .demo-tabs__scroller {
+    margin-top: 64px;
+    padding-bottom: 1px;
+  }
+  .demo-title {
+    padding: 0 40px 40px;
+  }
+  .mdc-tab-bar-scroller {
+    margin-bottom: 16px;
   }
   .demo-note {
     padding: 20px;
@@ -69,7 +88,7 @@
   .my-modified-toolbar-section {
     position: absolute;
     right: 0;
-    bottom: 0;
+    bottom: -16px;
   }
   [dir="rtl"] .my-modified-toolbar-section {
     right: auto;

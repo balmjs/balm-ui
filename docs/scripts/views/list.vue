@@ -1,11 +1,11 @@
 <template>
   <div class="demo--list">
     <section class="hero">
-      <ui-list twoLine avatar effect :class="'two-line-avatar-text-icon-demo'">
+      <ui-list twoLine avatar effect class="two-line-avatar-text-icon-demo">
         <ui-item v-for="(item, index) in items" :key="index">
           <template slot="before" scope="props">
             <span :class="[props.className, 'grey-bg']" role="presentation">
-              <i class="material-icons" aria-hidden="true">folder</i>
+              <ui-icon>folder</ui-icon>
             </span>
           </template>
           <template slot="default" scope="props">

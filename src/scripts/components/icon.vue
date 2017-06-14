@@ -1,5 +1,5 @@
 <template>
-  <i :class="className">
+  <i :class="className" aria-hidden="true">
     <slot></slot>
   </i>
 </template>

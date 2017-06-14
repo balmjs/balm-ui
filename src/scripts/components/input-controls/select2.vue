@@ -7,7 +7,7 @@
     <span class="mdc-select__selected-text">
       <slot>{{ selectedOption[optionValue] || placeholder }}</slot>
     </span>
-    <ui-menu :class="'mdc-select__menu'" :dark="dark">
+    <ui-menu class="mdc-select__menu" :dark="dark">
       <ui-menuitem v-for="(option, index) in currentOptions"
                    role="option"
                    :item="option"

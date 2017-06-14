@@ -26,7 +26,8 @@ var DMC_COMPONENTS = [
   'toolbar',
   'drawer',
   'tabs',
-  'form-field'
+  'form-field',
+  'linear-progress'
 ];
 
 balm.config = {

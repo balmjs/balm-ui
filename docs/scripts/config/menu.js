@@ -53,6 +53,11 @@ const MATERIAL_COMPONENTS = [{
   description: 'Grid and gutter support',
   url: 'grid'
 }, {
+  icon: 'progress',
+  name: 'Linear Progress',
+  description: 'Fills from 0% to 100%, represented by bars',
+  url: 'linear-progress'
+}, {
   icon: 'list',
   name: 'List',
   description: 'Item layouts in lists'
@@ -123,7 +128,17 @@ const MATERIAL_COMPONENTS = [{
 const getComponentIcon = component => {
   let icon = '';
   if (component.icon) {
-    icon = (component.icon === 'icons') ? 'icons_light.svg' : `ic_${component.icon}_24px.svg`;
+    switch (component.icon) {
+      case 'icons':
+        icon = 'icons_light.svg';
+        break;
+      case 'progress':
+        icon = 'ic_progress_activity.svg';
+        break;
+      default:
+        icon = `ic_${component.icon}_24px.svg`;
+        break;
+    }
   }
   return icon;
 };

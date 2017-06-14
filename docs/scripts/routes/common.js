@@ -10,6 +10,7 @@ const Elevation = resolve => require(['../views/elevation'], resolve);
 const Theme = resolve => require(['../views/theme'], resolve);
 const Typography = resolve => require(['../views/typography'], resolve);
 const Icons = resolve => require(['../views/icons'], resolve);
+const LinearProgress = resolve => require(['../views/linear-progress'], resolve);
 
 const commonRoutes = [{
   path: '/button',
@@ -80,6 +81,15 @@ const commonRoutes = [{
   component: Icons,
   meta: {
     title: 'BalmUI - Icons',
+    keywords: '',
+    description: ''
+  }
+}, {
+  path: '/linear-progress',
+  name: 'linear-progress',
+  component: LinearProgress,
+  meta: {
+    title: 'BalmUI - Linear Progress',
     keywords: '',
     description: ''
   }

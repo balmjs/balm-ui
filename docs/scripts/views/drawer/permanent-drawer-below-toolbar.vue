@@ -4,7 +4,7 @@
       <ui-toolbar-row>
         <ui-toolbar-section align="start">
           <span class="catalog-back">
-            <ui-toolbar-anchor type="menu"
+            <ui-toolbar-anchor type="menu" href="javascript:void(0)"
               @click.native="() => { $router.back(); }">&#xE5C4;</ui-toolbar-anchor>
           </span>
           <ui-toolbar-title class="catalog-title">Permanent Drawer Below Toolbar</ui-toolbar-title>

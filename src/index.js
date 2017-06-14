@@ -38,6 +38,7 @@ import UiCardMediaItem from './scripts/components/card/horizontal-blocks/card-me
 import UiMenuAnchor from './scripts/components/menu/menu-anchor';
 import UiMenu from './scripts/components/menu/menu';
 import UiMenuItem from './scripts/components/menu/menuitem';
+import UiLinearProgress from './scripts/components/linear-progress';
 /**
  * Input Controls
  */
@@ -115,6 +116,7 @@ const BalmUI = {
   UiMenuAnchor,
   UiMenu,
   UiMenuItem,
+  UiLinearProgress,
   // Form
   UiFormField,
   UiTextfield,

@@ -13,16 +13,18 @@
       </section>
       <footer v-if="!noFooter" class="mdc-dialog__footer">
         <slot name="footer" :className="btnClassName">
-          <ui-button :class="[
-                       'mdc-dialog__footer__button',
-                       {'mdc-dialog__footer__button--cancel': notifyCancel}
-                     ]"
-                     @click.native="handleCancel">{{ cancelText }}</ui-button>
-          <ui-button :class="[
-                       'mdc-dialog__footer__button',
-                       {'mdc-dialog__footer__button--accept': notifyAccept}
-                     ]"
-                     @click.native="handleAccept">{{ acceptText }}</ui-button>
+          <button type="button"
+                  :class="[
+                    'mdc-dialog__footer__button',
+                    {'mdc-dialog__footer__button--cancel': notifyCancel}
+                  ]"
+                  @click.native="handleCancel">{{ cancelText }}</button>
+          <button type="button"
+                  :class="[
+                    'mdc-dialog__footer__button',
+                    {'mdc-dialog__footer__button--accept': notifyAccept}
+                  ]"
+                  @click.native="handleAccept">{{ acceptText }}</button>
         </slot>
       </footer>
     </div>
@@ -33,7 +35,6 @@
 <script>
 // NOTE: remove 'focus-trap' in MDC Dialog
 import {MDCDialog} from '../material-components-web/dialog';
-import UiButton from './button/button';
 
 const CLASSNAME_ACCEPT = 'mdc-dialog__footer__button--accept';
 const CLASSNAME_CANCEL = 'mdc-dialog__footer__button--cancel';
@@ -43,9 +44,6 @@ const UI_EVENT_CANCEL = 'cancel';
 
 export default {
   name: 'ui-dialog',
-  components: {
-    UiButton
-  },
   props: {
     // state
     open: {

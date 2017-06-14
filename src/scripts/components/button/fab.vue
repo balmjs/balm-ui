@@ -1,8 +1,7 @@
 <template>
-  <ui-button fab
-             :class="className"
-             :disabled="disabled"
-             :cssOnly="cssOnly">
+  <button type="button"
+          :class="className"
+          :disabled="disabled">
     <template v-if="materialIcon">
       <span class="mdc-fab__icon">
         <slot>{{ materialIcon }}</slot>
@@ -11,18 +10,14 @@
     <template v-else>
       <slot><!-- Custom Icon --></slot>
     </template>
-  </ui-button>
+  </button>
 </template>
 
 <script>
-import UiButton from './button';
 import {isString} from '../../helpers';
 
 export default {
   name: 'ui-fab',
-  components: {
-    UiButton
-  },
   props: {
     // element attributes
     disabled: {
@@ -30,10 +25,6 @@ export default {
       default: false
     },
     // ui attributes
-    cssOnly: {
-      type: Boolean,
-      default: false
-    },
     icon: {
       type: [Boolean, String],
       default: false

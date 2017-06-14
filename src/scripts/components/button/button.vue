@@ -47,10 +47,6 @@ export default {
       default: false
     },
     // extension
-    fab: {
-      type: Boolean,
-      default: false
-    },
     link: {
       type: Boolean,
       default: false
@@ -62,14 +58,15 @@ export default {
     },
     className() {
       return {
-        'mdc-button': !(this.fab || this.link),
+        'mdc-button': !this.link,
         'mdc-button--dense': this.dense,
         'mdc-button--raised': this.raised,
         'mdc-button--compact': this.compact,
         'mdc-button--primary': this.primary,
         'mdc-button--accent': this.accent,
         'mdc-ripple': !this.noRipple,
-        'mdc-button--theme-dark': this.dark
+        'mdc-button--theme-dark': this.dark,
+        'mdc-link': this.link
       };
     }
   },

@@ -5,24 +5,20 @@
        aria-hidden="true">
     <div class="mdc-snackbar__text">{{ message }}</div>
     <div class="mdc-snackbar__action-wrapper">
-      <ui-button
-        cssOnly
-        :class="'mdc-snackbar__action-button'">{{ actionText }}</ui-button>
+      <button type="button" class="mdc-button mdc-snackbar__action-button">
+        {{ actionText }}
+      </button>
     </div>
   </div>
 </template>
 
 <script>
 import {MDCSnackbar} from '../material-components-web/snackbar';
-import UiButton from './button/button';
 
 const UI_EVENT_DONE = 'done';
 
 export default {
   name: 'ui-snackbar',
-  components: {
-    UiButton
-  },
   props: {
     // state
     active: {
@@ -73,7 +69,7 @@ export default {
         }
         this.$snackbar.show(data);
       }
-      this.$emit(UI_EVENT_DONE); // TODO: dismissesOnAction
+      this.$emit(UI_EVENT_DONE);
     }
   },
   watch: {

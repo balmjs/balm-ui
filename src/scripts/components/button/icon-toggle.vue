@@ -1,7 +1,7 @@
 <template>
-  <span :class="className"
-        role="button"
+  <span role="button"
         tabindex="0"
+        :class="className"
         :aria-pressed="currentValue"
         :aria-label="label"
         :aria-disabled="disabled"

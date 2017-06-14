@@ -23,23 +23,23 @@
       <!-- content -->
       <div class="balmui-body">
         <ui-permanent-drawer class="balmui-menu">
-          <template slot="default" scope="drawerProps">
+          <template slot="default" scope="props">
             <ui-list-nav class="catalog-list">
-              <template slot="default" scope="listProps">
-                <template v-for="(item, index) in menu">
-                  <router-link
-                    v-if="item.url"
-                    :class="[drawerProps.className.item, {'submenu': item.isSubmenu}]"
-                    :to="item.url"
-                    :active-class="drawerProps.className.active">
+              <template v-for="(item, index) in menu">
+                <router-link
+                  v-if="item.url"
+                  :class="[props.className.item, {'submenu': item.isSubmenu}]"
+                  :to="item.url"
+                  :active-class="props.className.active">
+                  <ui-item-start>
                     <img v-if="item.icon"
-                      :class="[listProps.className.start, 'catalog-component-icon']"
+                      class="catalog-component-icon"
                       :src="require(`../../../images/icon/${item.icon}`)"
                       :alt="item.name">
-                    {{ item.name }}
-                  </router-link>
-                  <h3 v-else>{{ item.name }}</h3>
-                </template>
+                  </ui-item-start>
+                  {{ item.name }}
+                </router-link>
+                <h3 v-else>{{ item.name }}</h3>
               </template>
             </ui-list-nav>
             <ui-list-divider></ui-list-divider>

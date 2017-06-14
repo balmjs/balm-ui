@@ -16,25 +16,17 @@
       <ui-permanent-drawer>
         <ui-list-group>
           <ui-list-nav>
-            <template slot="default" scope="props">
-              <ui-link item effect v-for="(item, index) in menu1" :key="index">
-                <i :class="[props.className.start, 'material-icons']" aria-hidden="true">
-                  {{ item.icon }}
-                </i>
-                {{ item.name }}
-              </ui-link>
-            </template>
+            <ui-item-link v-for="(item, index) in menu1" :key="index">
+              <ui-item-start :icon="item.icon"></ui-item-start>
+              {{ item.name }}
+            </ui-item-link>
           </ui-list-nav>
           <ui-list-divider></ui-list-divider>
           <ui-list-nav>
-            <template slot="default" scope="props">
-              <ui-link item effect v-for="(item, index) in menu2" :key="index">
-                <i :class="[props.className.start, 'material-icons']" aria-hidden="true">
-                  {{ item.icon }}
-                </i>
-                {{ item.name }}
-              </ui-link>
-            </template>
+            <ui-item-link v-for="(item, index) in menu2" :key="index">
+              <ui-item-start :icon="item.icon"></ui-item-start>
+              {{ item.name }}
+            </ui-item-link>
           </ui-list-nav>
         </ui-list-group>
       </ui-permanent-drawer>

@@ -18,10 +18,6 @@ export default {
   name: 'ui-linear-progress',
   props: {
     // state
-    open: {
-      type: Boolean,
-      default: false
-    },
     progress: {
       type: [Number, String],
       default: 0

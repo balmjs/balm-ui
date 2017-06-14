@@ -3,24 +3,12 @@
     <section class="hero">
       <ui-list twoLine avatar effect class="two-line-avatar-text-icon-demo">
         <ui-item v-for="(item, index) in items" :key="index">
-          <template slot="before" scope="props">
-            <span :class="[props.className, 'grey-bg']" role="presentation">
-              <ui-icon>folder</ui-icon>
-            </span>
-          </template>
-          <template slot="default" scope="props">
-            <span :class="props.className.text">
-              {{ item }}
-              <span :class="props.className.subtext">Jan 9, 2014</span>
-            </span>
-          </template>
-          <template slot="after" scope="props">
-            <a href="#" :class="[props.className, 'material-icons']"
-               aria-label="View more information" title="More info"
-               onclick="event.preventDefault();">
-              info
-            </a>
-          </template>
+          <ui-item-start class="grey-bg" icon="folder"></ui-item-start>
+          <ui-item-text>
+            {{ item }}
+            <ui-item-subtext>Jan 9, 2014</ui-item-subtext>
+          </ui-item-text>
+          <ui-item-end icon="info"></ui-item-end>
         </ui-item>
       </ui-list>
     </section>
@@ -57,9 +45,7 @@
           <aside><p><em>Note: The grey background is styled using demo placeholder styles</em></p></aside>
           <ui-list>
             <ui-item v-for="i in 3" :key="i">
-              <template slot="before" scope="props">
-                <span :class="[props.className, 'grey-bg']"></span>
-              </template>
+              <ui-item-start class="grey-bg"></ui-item-start>
               Single-line item
             </ui-item>
           </ui-list>
@@ -68,9 +54,7 @@
           <h3>Start Detail (dense)</h3>
           <ui-list dense>
             <ui-item v-for="i in 3" :key="i">
-              <template slot="before" scope="props">
-                <span :class="[props.className, 'grey-bg']"></span>
-              </template>
+              <ui-item-start class="grey-bg"></ui-item-start>
               Single-line item
             </ui-item>
           </ui-list>
@@ -79,11 +63,7 @@
           <h3>Start Detail Example - Icon with Text</h3>
           <ui-list id="icon-with-text-demo">
             <ui-item v-for="(item, index) in items2" :key="index">
-              <template slot="before" scope="props">
-                <i :class="[props.className, 'material-icons']" aria-hidden="true">
-                  {{ item.icon }}
-                </i>
-              </template>
+              <ui-item-start :icon="item.icon"></ui-item-start>
               {{ item.text }}
             </ui-item>
           </ui-list>
@@ -92,11 +72,7 @@
           <h3>Start Detail Example - Icon with Text (Dark)</h3>
           <ui-list>
             <ui-item v-for="(item, index) in items2" :key="index">
-              <template slot="before" scope="props">
-                <i :class="[props.className, 'material-icons']" aria-hidden="true">
-                  {{ item.icon }}
-                </i>
-              </template>
+              <ui-item-start :icon="item.icon"></ui-item-start>
               {{ item.text }}
             </ui-item>
           </ui-list>
@@ -105,9 +81,7 @@
           <h3>Avatar List</h3>
           <ui-list avatar>
             <ui-item v-for="i in 3" :key="i">
-              <template slot="before" scope="props">
-                <span :class="[props.className, 'grey-bg']"></span>
-              </template>
+              <ui-item-start class="grey-bg"></ui-item-start>
               Single-line item
             </ui-item>
           </ui-list>
@@ -116,9 +90,7 @@
           <h3>Avatar List (dense)</h3>
           <ui-list dense avatar>
             <ui-item v-for="i in 3" :key="i">
-              <template slot="before" scope="props">
-                <span :class="[props.className, 'grey-bg']"></span>
-              </template>
+              <ui-item-start class="grey-bg"></ui-item-start>
               Single-line item
             </ui-item>
           </ui-list>
@@ -127,9 +99,9 @@
           <h3>Example - Avatar with Text</h3>
           <ui-list avatar>
             <ui-item v-for="(item, index) in items2" :key="index">
-              <template slot="before" scope="props">
-                <img :class="[props.className]" :src="item.avatar" :alt="item.name">
-              </template>
+              <ui-item-start>
+                <img :src="item.avatar" :alt="item.name">
+              </ui-item-start>
               {{ item.name }}
             </ui-item>
           </ui-list>
@@ -138,9 +110,9 @@
           <h3>Example - Avatar with Text (Dark)</h3>
           <ui-list avatar>
             <ui-item v-for="(item, index) in items2" :key="index">
-              <template slot="before" scope="props">
-                <img :class="[props.className]" :src="item.avatar" :alt="item.name">
-              </template>
+              <ui-item-start>
+                <img :src="item.avatar" :alt="item.name">
+              </ui-item-start>
               {{ item.name }}
             </ui-item>
           </ui-list>
@@ -150,9 +122,7 @@
           <ui-list>
             <ui-item v-for="i in 3" :key="i">
               Single-line item
-              <template slot="after" scope="props">
-                <span :class="[props.className, 'grey-bg']"></span>
-              </template>
+              <ui-item-end class="grey-bg"></ui-item-end>
             </ui-item>
           </ui-list>
         </section>
@@ -161,9 +131,7 @@
           <ui-list dense>
             <ui-item v-for="i in 3" :key="i">
               Single-line item
-              <template slot="after" scope="props">
-                <span :class="[props.className, 'grey-bg']"></span>
-              </template>
+              <ui-item-end class="grey-bg"></ui-item-end>
             </ui-item>
           </ui-list>
         </section>
@@ -171,13 +139,9 @@
           <h3>Avatar + End Detail</h3>
           <ui-list avatar>
             <ui-item v-for="i in 3" :key="i">
-              <template slot="before" scope="props">
-                <span :class="[props.className, 'grey-bg']"></span>
-              </template>
+              <ui-item-start class="grey-bg"></ui-item-start>
               Single-line item
-              <template slot="after" scope="props">
-                <span :class="[props.className, 'grey-bg']"></span>
-              </template>
+              <ui-item-end class="grey-bg"></ui-item-end>
             </ui-item>
           </ui-list>
         </section>
@@ -185,13 +149,9 @@
           <h3>Avatar + End Detail (Dense)</h3>
           <ui-list dense avatar>
             <ui-item v-for="i in 3" :key="i">
-              <template slot="before" scope="props">
-                <span :class="[props.className, 'grey-bg']"></span>
-              </template>
+              <ui-item-start class="grey-bg"></ui-item-start>
               Single-line item
-              <template slot="after" scope="props">
-                <span :class="[props.className, 'grey-bg']"></span>
-              </template>
+              <ui-item-end class="grey-bg"></ui-item-end>
             </ui-item>
           </ui-list>
         </section>
@@ -199,18 +159,17 @@
           <h3>Example - Avatar with Text and icon</h3>
           <ui-list avatar id="avatar-text-icon-demo-list">
             <ui-item v-for="(item, index) in items2" :key="index">
-              <template slot="before" scope="props">
-                <img :class="props.className" :src="item.avatar" :alt="item.name">
-              </template>
+              <ui-item-start>
+                <img :src="item.avatar" :alt="item.name">
+              </ui-item-start>
               {{ item.name }}
-              <template slot="after" scope="props">
+              <ui-item-end>
                 <ui-icon-toggle
-                  :class="props.className"
                   :on="icon.on"
                   :off="icon.off"
                   :model="item.favorite">
                 </ui-icon-toggle>
-              </template>
+              </ui-item-end>
             </ui-item>
           </ui-list>
         </section>
@@ -218,18 +177,17 @@
           <h3>Example - Avatar with Text and icon (Dark)</h3>
           <ui-list avatar id="avatar-text-icon-demo-list">
             <ui-item v-for="(item, index) in items2" :key="index">
-              <template slot="before" scope="props">
-                <img :class="props.className" :src="item.avatar" :alt="item.name">
-              </template>
+              <ui-item-start>
+                <img :src="item.avatar" :alt="item.name">
+              </ui-item-start>
               {{ item.name }}
-              <template slot="after" scope="props">
+              <ui-item-end>
                 <ui-icon-toggle
-                  :class="props.className"
                   :on="icon.on"
                   :off="icon.off"
                   :model="item.favorite">
                 </ui-icon-toggle>
-              </template>
+              </ui-item-end>
             </ui-item>
           </ui-list>
         </section>
@@ -240,12 +198,10 @@
           <h3>Text-Only</h3>
           <ui-list twoLine>
             <ui-item v-for="i in 3" :key="i">
-              <template slot="default" scope="props">
-                <span :class="props.className.text">
-                  Two-line item
-                  <span :class="props.className.subtext">Secondary text</span>
-                </span>
-              </template>
+              <ui-item-text>
+                Two-line item
+                <ui-item-subtext>Secondary text</ui-item-subtext>
+              </ui-item-text>
             </ui-item>
           </ui-list>
         </section>
@@ -253,12 +209,10 @@
           <h3>Text-Only (Dense)</h3>
           <ui-list twoLine dense>
             <ui-item v-for="i in 3" :key="i">
-              <template slot="default" scope="props">
-                <span :class="props.className.text">
-                  Two-line item
-                  <span :class="props.className.subtext">Secondary text</span>
-                </span>
-              </template>
+              <ui-item-text>
+                Two-line item
+                <ui-item-subtext>Secondary text</ui-item-subtext>
+              </ui-item-text>
             </ui-item>
           </ui-list>
         </section>
@@ -266,15 +220,11 @@
           <h3>Start Detail</h3>
           <ui-list twoLine>
             <ui-item v-for="i in 3" :key="i">
-              <template slot="before" scope="props">
-                <span :class="[props.className, 'grey-bg']"></span>
-              </template>
-              <template slot="default" scope="props">
-                <span :class="props.className.text">
-                  Two-line item
-                  <span :class="props.className.subtext">Secondary text</span>
-                </span>
-              </template>
+              <ui-item-start class="grey-bg"></ui-item-start>
+              <ui-item-text>
+                Two-line item
+                <ui-item-subtext>Secondary text</ui-item-subtext>
+              </ui-item-text>
             </ui-item>
           </ui-list>
         </section>
@@ -282,15 +232,11 @@
           <h3>Start Detail (Dense)</h3>
           <ui-list twoLine dense>
             <ui-item v-for="i in 3" :key="i">
-              <template slot="before" scope="props">
-                <span :class="[props.className, 'grey-bg']"></span>
-              </template>
-              <template slot="default" scope="props">
-                <span :class="props.className.text">
-                  Two-line item
-                  <span :class="props.className.subtext">Secondary text</span>
-                </span>
-              </template>
+              <ui-item-start class="grey-bg"></ui-item-start>
+              <ui-item-text>
+                Two-line item
+                <ui-item-subtext>Secondary text</ui-item-subtext>
+              </ui-item-text>
             </ui-item>
           </ui-list>
         </section>
@@ -298,15 +244,11 @@
           <h3>Avatar List</h3>
           <ui-list twoLine avatar>
             <ui-item v-for="i in 3" :key="i">
-              <template slot="before" scope="props">
-                <span :class="[props.className, 'grey-bg']"></span>
-              </template>
-              <template slot="default" scope="props">
-                <span :class="props.className.text">
-                  Two-line item
-                  <span :class="props.className.subtext">Secondary text</span>
-                </span>
-              </template>
+              <ui-item-start class="grey-bg"></ui-item-start>
+              <ui-item-text>
+                Two-line item
+                <ui-item-subtext>Secondary text</ui-item-subtext>
+              </ui-item-text>
             </ui-item>
           </ui-list>
         </section>
@@ -314,15 +256,11 @@
           <h3>Avatar List (dense)</h3>
           <ui-list twoLine dense avatar>
             <ui-item v-for="i in 3" :key="i">
-              <template slot="before" scope="props">
-                <span :class="[props.className, 'grey-bg']"></span>
-              </template>
-              <template slot="default" scope="props">
-                <span :class="props.className.text">
-                  Two-line item
-                  <span :class="props.className.subtext">Secondary text</span>
-                </span>
-              </template>
+              <ui-item-start class="grey-bg"></ui-item-start>
+              <ui-item-text>
+                Two-line item
+                <ui-item-subtext>Secondary text</ui-item-subtext>
+              </ui-item-text>
             </ui-item>
           </ui-list>
         </section>
@@ -330,15 +268,11 @@
           <h3>End Detail</h3>
           <ui-list twoLine>
             <ui-item v-for="i in 3" :key="i">
-              <template slot="default" scope="props">
-                <span :class="props.className.text">
-                  Two-line item
-                  <span :class="props.className.subtext">Secondary text</span>
-                </span>
-              </template>
-              <template slot="after" scope="props">
-                <span :class="[props.className, 'grey-bg']"></span>
-              </template>
+              <ui-item-text>
+                Two-line item
+                <ui-item-subtext>Secondary text</ui-item-subtext>
+              </ui-item-text>
+              <ui-item-end class="grey-bg"></ui-item-end>
             </ui-item>
           </ui-list>
         </section>
@@ -346,15 +280,11 @@
           <h3>End Detail (Dense)</h3>
           <ui-list twoLine dense>
             <ui-item v-for="i in 3" :key="i">
-              <template slot="default" scope="props">
-                <span :class="props.className.text">
-                  Two-line item
-                  <span :class="props.className.subtext">Secondary text</span>
-                </span>
-              </template>
-              <template slot="after" scope="props">
-                <span :class="[props.className, 'grey-bg']"></span>
-              </template>
+              <ui-item-text>
+                Two-line item
+                <ui-item-subtext>Secondary text</ui-item-subtext>
+              </ui-item-text>
+              <ui-item-end class="grey-bg"></ui-item-end>
             </ui-item>
           </ui-list>
         </section>
@@ -362,24 +292,12 @@
           <h3>Example - Two-line avatar + text + icon</h3>
           <ui-list twoLine avatar class="two-line-avatar-text-icon-demo">
             <ui-item v-for="(item, index) in items" :key="index">
-              <template slot="before" scope="props">
-                <span :class="[props.className, 'grey-bg']">
-                  <i class="material-icons" aria-hidden="true">folder</i>
-                </span>
-              </template>
-              <template slot="default" scope="props">
-                <span :class="props.className.text">
-                  {{ item }}
-                  <span :class="props.className.subtext">Jan 9, 2014</span>
-                </span>
-              </template>
-              <template slot="after" scope="props">
-                <a href="#" :class="[props.className, 'material-icons']"
-                   aria-label="View more information" title="More info"
-                   onclick="event.preventDefault();">
-                  info
-                </a>
-              </template>
+              <ui-item-start class="grey-bg" icon="folder"></ui-item-start>
+              <ui-item-text>
+                {{ item }}
+                <ui-item-subtext>Jan 9, 2014</ui-item-subtext>
+              </ui-item-text>
+              <ui-item-end icon="info"></ui-item-end>
             </ui-item>
           </ui-list>
         </section>
@@ -387,24 +305,12 @@
           <h3>Example - Two-line avatar + text + icon (Dark)</h3>
           <ui-list twoLine avatar class="two-line-avatar-text-icon-demo">
             <ui-item v-for="(item, index) in items" :key="index">
-              <template slot="before" scope="props">
-                <span :class="[props.className, 'grey-bg']">
-                  <i class="material-icons" aria-hidden="true">folder</i>
-                </span>
-              </template>
-              <template slot="default" scope="props">
-                <span :class="props.className.text">
-                  {{ item }}
-                  <span :class="props.className.subtext">Jan 9, 2014</span>
-                </span>
-              </template>
-              <template slot="after" scope="props">
-                <a href="#" :class="[props.className, 'material-icons']"
-                   aria-label="View more information" title="More info"
-                   onclick="event.preventDefault();">
-                  info
-                </a>
-              </template>
+              <ui-item-start class="grey-bg" icon="folder"></ui-item-start>
+              <ui-item-text>
+                {{ item }}
+                <ui-item-subtext>Jan 9, 2014</ui-item-subtext>
+              </ui-item-text>
+              <ui-item-end icon="info"></ui-item-end>
             </ui-item>
           </ui-list>
         </section>
@@ -423,16 +329,12 @@
           <h3>Inset Dividers</h3>
           <ui-list avatar>
             <ui-item v-for="i in 3" :key="i">
-              <template slot="before" scope="props">
-                <span :class="[props.className, 'grey-bg']"></span>
-              </template>
+              <ui-item-start class="grey-bg"></ui-item-start>
               Single-line item - section 1
             </ui-item>
             <ui-item-divider inset></ui-item-divider>
             <ui-item v-for="i in 2" :key="i">
-              <template slot="before" scope="props">
-                <span :class="[props.className, 'grey-bg']"></span>
-              </template>
+              <ui-item-start class="grey-bg"></ui-item-start>
               Single-line item - section 2
             </ui-item>
           </ui-list>
@@ -443,125 +345,71 @@
         <section>
           <h3>Basic Usage</h3>
           <ui-list-group>
-            <template slot="default" scope="props">
-              <h3 :class="props.className">List 1</h3>
-              <ui-list>
-                <ui-item v-for="i in 3" :key="i">Single-line item</ui-item>
-              </ui-list>
-              <ui-list-divider></ui-list-divider>
-              <h3 :class="props.className">List 2</h3>
-              <ui-list>
-                <ui-item v-for="i in 3" :key="i">Single-line item</ui-item>
-              </ui-list>
-            </template>
+            <ui-list-group-subheader>List 1</ui-list-group-subheader>
+            <ui-list>
+              <ui-item v-for="i in 3" :key="i">Single-line item</ui-item>
+            </ui-list>
+            <ui-list-divider></ui-list-divider>
+            <ui-list-group-subheader>List 2</ui-list-group-subheader>
+            <ui-list>
+              <ui-item v-for="i in 3" :key="i">Single-line item</ui-item>
+            </ui-list>
           </ui-list-group>
         </section>
         <section>
           <h3>Example - Two-line Lists, Avatars, end detail, inset dividers</h3>
           <ui-list-group>
-            <template slot="default" scope="props">
-              <h3 :class="props.className">Folders</h3>
-              <ui-list twoLine avatar class="two-line-avatar-text-icon-demo">
-                <ui-item v-for="(item, index) in items" :key="index">
-                  <template slot="before" scope="props">
-                    <span :class="[props.className, 'grey-bg']">
-                      <i class="material-icons" aria-hidden="true">folder</i>
-                    </span>
-                  </template>
-                  <template slot="default" scope="props">
-                    <span :class="props.className.text">
-                      {{ item }}
-                      <span :class="props.className.subtext">Jan 9, 2014</span>
-                    </span>
-                  </template>
-                  <template slot="after" scope="props">
-                    <a href="#" :class="[props.className, 'material-icons']"
-                       aria-label="View more information" title="More info"
-                       onclick="event.preventDefault();">
-                      info
-                    </a>
-                  </template>
-                </ui-item>
-              </ui-list>
-              <ui-list-divider inset></ui-list-divider>
-              <h3 :class="props.className">Files</h3>
-              <ui-list twoLine avatar class="two-line-avatar-text-icon-demo">
-                <ui-item v-for="(item, index) in item3" :key="index">
-                  <template slot="before" scope="props">
-                    <span :class="[props.className, 'grey-bg']">
-                      <i class="material-icons" aria-hidden="true">folder</i>
-                    </span>
-                  </template>
-                  <template slot="default" scope="props">
-                    <span :class="props.className.text">
-                      {{ item }}
-                      <span :class="props.className.subtext">Jan 9, 2014</span>
-                    </span>
-                  </template>
-                  <template slot="after" scope="props">
-                    <a href="#" :class="[props.className, 'material-icons']"
-                       aria-label="View more information" title="More info"
-                       onclick="event.preventDefault();">
-                      info
-                    </a>
-                  </template>
-                </ui-item>
-              </ui-list>
-            </template>
+            <ui-list-group-subheader>Folders</ui-list-group-subheader>
+            <ui-list twoLine avatar class="two-line-avatar-text-icon-demo">
+              <ui-item v-for="(item, index) in items" :key="index">
+                <ui-item-start class="grey-bg" icon="folder"></ui-item-start>
+                <ui-item-text>
+                  {{ item }}
+                  <ui-item-subtext>Jan 9, 2014</ui-item-subtext>
+                </ui-item-text>
+                <ui-item-end icon="info"></ui-item-end>
+              </ui-item>
+            </ui-list>
+            <ui-list-divider inset></ui-list-divider>
+            <ui-list-group-subheader>Files</ui-list-group-subheader>
+            <ui-list twoLine avatar class="two-line-avatar-text-icon-demo">
+              <ui-item v-for="(item, index) in item3" :key="index">
+                <ui-item-start class="grey-bg" icon="folder"></ui-item-start>
+                <ui-item-text>
+                  {{ item }}
+                  <ui-item-subtext>Jan 9, 2014</ui-item-subtext>
+                </ui-item-text>
+                <ui-item-end icon="info"></ui-item-end>
+              </ui-item>
+            </ui-list>
           </ui-list-group>
         </section>
         <section class="mdc-theme--dark">
           <h3>Example - Two-line Lists, Avatars, end detail, inset dividers (Dark)</h3>
           <ui-list-group>
-            <template slot="default" scope="props">
-              <h3 :class="props.className">Folders</h3>
-              <ui-list twoLine avatar class="two-line-avatar-text-icon-demo">
-                <ui-item v-for="(item, index) in items" :key="index">
-                  <template slot="before" scope="props">
-                    <span :class="[props.className, 'grey-bg']">
-                      <i class="material-icons" aria-hidden="true">folder</i>
-                    </span>
-                  </template>
-                  <template slot="default" scope="props">
-                    <span :class="props.className.text">
-                      {{ item }}
-                      <span :class="props.className.subtext">Jan 9, 2014</span>
-                    </span>
-                  </template>
-                  <template slot="after" scope="props">
-                    <a href="#" :class="[props.className, 'material-icons']"
-                       aria-label="View more information" title="More info"
-                       onclick="event.preventDefault();">
-                      info
-                    </a>
-                  </template>
-                </ui-item>
-              </ui-list>
-              <ui-list-divider inset></ui-list-divider>
-              <h3 :class="props.className">Files</h3>
-              <ui-list twoLine avatar class="two-line-avatar-text-icon-demo">
-                <ui-item v-for="(item, index) in item3" :key="index">
-                  <template slot="before" scope="props">
-                    <span :class="[props.className, 'grey-bg']">
-                      <i class="material-icons" aria-hidden="true">folder</i>
-                    </span>
-                  </template>
-                  <template slot="default" scope="props">
-                    <span :class="props.className.text">
-                      {{ item }}
-                      <span :class="props.className.subtext">Jan 9, 2014</span>
-                    </span>
-                  </template>
-                  <template slot="after" scope="props">
-                    <a href="#" :class="[props.className, 'material-icons']"
-                       aria-label="View more information" title="More info"
-                       onclick="event.preventDefault();">
-                      info
-                    </a>
-                  </template>
-                </ui-item>
-              </ui-list>
-            </template>
+            <ui-list-group-subheader>Folders</ui-list-group-subheader>
+            <ui-list twoLine avatar class="two-line-avatar-text-icon-demo">
+              <ui-item v-for="(item, index) in items" :key="index">
+                <ui-item-start class="grey-bg" icon="folder"></ui-item-start>
+                <ui-item-text>
+                  {{ item }}
+                  <ui-item-subtext>Jan 9, 2014</ui-item-subtext>
+                </ui-item-text>
+                <ui-item-end icon="info"></ui-item-end>
+              </ui-item>
+            </ui-list>
+            <ui-list-divider inset></ui-list-divider>
+            <ui-list-group-subheader>Files</ui-list-group-subheader>
+            <ui-list twoLine avatar class="two-line-avatar-text-icon-demo">
+              <ui-item v-for="(item, index) in item3" :key="index">
+                <ui-item-start class="grey-bg" icon="folder"></ui-item-start>
+                <ui-item-text>
+                  {{ item }}
+                  <ui-item-subtext>Jan 9, 2014</ui-item-subtext>
+                </ui-item-text>
+                <ui-item-end icon="info"></ui-item-end>
+              </ui-item>
+            </ui-list>
           </ui-list-group>
         </section>
       </section>
@@ -570,27 +418,19 @@
         <section>
           <h3>Example - Interactive List</h3>
           <ui-list-nav>
-            <template slot="default" scope="props">
-              <ui-link item effect v-for="(item, index) in items2" :key="index">
-                <i :class="[props.className.start, 'material-icons']" aria-hidden="true">
-                  {{ item.icon }}
-                </i>
-                {{ item.name }}
-              </ui-link>
-            </template>
+            <ui-item-link v-for="(item, index) in items2" :key="index">
+              <ui-item-start :icon="item.icon"></ui-item-start>
+              {{ item.name }}
+            </ui-item-link>
           </ui-list-nav>
         </section>
         <section class="mdc-theme--dark">
           <h3>Example - Interactive List (Dark Theme)</h3>
           <ui-list-nav>
-            <template slot="default" scope="props">
-              <ui-link item effect v-for="(item, index) in items2" :key="index">
-                <i :class="[props.className.start, 'material-icons']" aria-hidden="true">
-                  {{ item.icon }}
-                </i>
-                {{ item.name }}
-              </ui-link>
-            </template>
+            <ui-item-link v-for="(item, index) in items2" :key="index">
+              <ui-item-start :icon="item.icon"></ui-item-start>
+              {{ item.name }}
+            </ui-item-link>
           </ui-list-nav>
         </section>
       </section>

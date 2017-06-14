@@ -1,12 +1,10 @@
 <template>
   <nav :class="className">
-    <slot :className="cssClasses"></slot>
+    <slot></slot>
   </nav>
 </template>
 
 <script>
-import cssClasses from './constants';
-
 export default {
   name: 'ui-list-nav',
   props: {
@@ -23,11 +21,6 @@ export default {
       type: Boolean,
       default: false
     }
-  },
-  data() {
-    return {
-      cssClasses
-    };
   },
   computed: {
     className() {

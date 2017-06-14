@@ -25,7 +25,6 @@ import UiPanel from './scripts/components/tabs/panel';
  */
 // import UiBadge from './scripts/components/common/badge';
 import UiIcon from './scripts/components/icon';
-import UiLink from './scripts/components/link';
 import UiButton from './scripts/components/button/button';
 import UiFab from './scripts/components/button/fab';
 import UiIconToggle from './scripts/components/button/icon-toggle';
@@ -54,16 +53,22 @@ import UiSwitch from './scripts/components/input-controls/switch';
 /**
  * Data
  */
-import UiGridList from './scripts/components/list/grid-list';
-import UiGridTile from './scripts/components/list/grid-tile';
-import UiGridTileTitle from './scripts/components/list/grid-tile-title';
-import UiGridTileText from './scripts/components/list/grid-tile-text';
+import UiGridList from './scripts/components/grid-list/grid-list';
+import UiGridTile from './scripts/components/grid-list/grid-tile';
+import UiGridTileTitle from './scripts/components/grid-list/grid-tile-title';
+import UiGridTileText from './scripts/components/grid-list/grid-tile-text';
 import UiListGroup from './scripts/components/list/list-group';
+import UiListGroupSubheader from './scripts/components/list/list-group-subheader';
 import UiList from './scripts/components/list/list';
 import UiListDivider from './scripts/components/list/list-divider';
 import UiItem from './scripts/components/list/item';
+import UiItemStart from './scripts/components/list/item-start';
+import UiItemText from './scripts/components/list/item-text';
+import UiItemSubtext from './scripts/components/list/item-subtext';
+import UiItemEnd from './scripts/components/list/item-end';
 import UiItemDivider from './scripts/components/list/item-divider';
 import UiListNav from './scripts/components/list/list-nav';
+import UiItemLink from './scripts/components/list/item-link';
 // import UiTable from './components/data/table';
 // import UiPagination from './components/data/pagination';
 /**
@@ -105,7 +110,6 @@ const BalmUI = {
   // Common
   // UiBadge,
   UiIcon,
-  UiLink,
   UiButton,
   UiFab,
   UiCard,
@@ -135,11 +139,17 @@ const BalmUI = {
   UiGridTileTitle,
   UiGridTileText,
   UiListGroup,
+  UiListGroupSubheader,
   UiList,
   UiListDivider,
   UiItem,
+  UiItemStart,
+  UiItemText,
+  UiItemSubtext,
+  UiItemEnd,
   UiItemDivider,
   UiListNav,
+  UiItemLink,
   // UiTable,
   // UiPagination,
   // Popup

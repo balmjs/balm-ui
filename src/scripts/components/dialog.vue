@@ -13,18 +13,18 @@
       </section>
       <footer v-if="!noFooter" class="mdc-dialog__footer">
         <slot name="footer" :className="btnClassName">
-          <button type="button"
+          <ui-button accent
                   :class="[
                     'mdc-dialog__footer__button',
                     {'mdc-dialog__footer__button--cancel': notifyCancel}
                   ]"
-                  @click.native="handleCancel">{{ cancelText }}</button>
-          <button type="button"
+                  @click.native="handleCancel">{{ cancelText }}</ui-button>
+          <ui-button primary
                   :class="[
                     'mdc-dialog__footer__button',
                     {'mdc-dialog__footer__button--accept': notifyAccept}
                   ]"
-                  @click.native="handleAccept">{{ acceptText }}</button>
+                  @click.native="handleAccept">{{ acceptText }}</ui-button>
         </slot>
       </footer>
     </div>
@@ -35,6 +35,7 @@
 <script>
 // NOTE: remove 'focus-trap' in MDC Dialog
 import {MDCDialog} from '../material-components-web/dialog';
+import UiButton from '../components/button/button';
 
 const CLASSNAME_ACCEPT = 'mdc-dialog__footer__button--accept';
 const CLASSNAME_CANCEL = 'mdc-dialog__footer__button--cancel';
@@ -44,6 +45,9 @@ const UI_EVENT_CANCEL = 'cancel';
 
 export default {
   name: 'ui-dialog',
+  components: {
+    UiButton
+  },
   props: {
     // state
     open: {

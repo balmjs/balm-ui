@@ -27,7 +27,7 @@
             <ui-list-nav class="catalog-list">
               <template v-for="(item, index) in menu">
                 <router-link
-                  v-if="item.url"
+                  v-if="item.icon"
                   :class="[props.className.item, {'submenu': item.isSubmenu}]"
                   :to="item.url"
                   :active-class="props.className.active">
@@ -39,6 +39,7 @@
                   </ui-item-start>
                   {{ item.name }}
                 </router-link>
+                <ui-list-divider v-else-if="item === '-'"></ui-list-divider>
                 <h3 v-else>{{ item.name }}</h3>
               </template>
             </ui-list-nav>

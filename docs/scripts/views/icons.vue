@@ -1,9 +1,16 @@
 <template>
   <div class="demo--material-icons">
     <p>
-      <ui-textfield type="search" fullwidth :model="keywords" @input="onInput">
+      <ui-textfield type="search"
+        id="search"
+        fullwidth
+        :model="keywords"
+        @input="onInput">
         Search
       </ui-textfield>
+      <ui-textfield-helptext class="search-helper" show>
+        TIPS: Click icon to copy icon name, then you can use <b>`&lt;ui-icon&gt;${icon_name}&lt;/ui-icon&gt;`</b>
+      </ui-textfield-helptext>
     </p>
     <ui-list>
       <template v-for="(group, index) in groups">

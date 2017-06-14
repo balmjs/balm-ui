@@ -48,6 +48,7 @@ export default {
           handleClose() {
             this.open = false;
             document.body.removeChild(this.$el);
+            document.body.classList.remove('mdc-dialog-scroll-lock');
             vm = null;
           }
         },

@@ -11,7 +11,9 @@
             <ui-toolbar-span type="menu" class="catalog-logo">
               <img :src="require('../../../images/icon/ic_component_24px_white.svg')" alt="BalmUI">
             </ui-toolbar-span>
-            <ui-toolbar-title class="catalog-title">BalmUI</ui-toolbar-title>
+            <ui-toolbar-title class="catalog-title">
+              <router-link to="/">BalmUI</router-link>
+            </ui-toolbar-title>
           </ui-toolbar-section>
           <ui-toolbar-section align="end">
             <a href="https://github.com/balmjs/ui-vue">

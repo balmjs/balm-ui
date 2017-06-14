@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import {MDCFormField} from '../../material-components-web/form-field';
 import {MDCCheckbox} from '../../material-components-web/checkbox';
 import UiFormField from './form-field';
 import {isArray} from '../../helpers';
@@ -104,7 +105,9 @@ export default {
   },
   mounted() {
     if (!this.$checkbox && !this.cssOnly) {
+      const formField = new MDCFormField(this.$el);
       this.$checkbox = new MDCCheckbox(this.$refs.checkbox);
+      formField.input = this.$checkbox;
       this.$checkbox.indeterminate = this.disabled;
     }
   }

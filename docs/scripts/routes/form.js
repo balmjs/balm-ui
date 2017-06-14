@@ -1,3 +1,4 @@
+const FormField = resolve => require(['../views/form-field'], resolve);
 const Checkbox = resolve => require(['../views/checkbox'], resolve);
 const Radio = resolve => require(['../views/radio'], resolve);
 const IconToggle = resolve => require(['../views/icon-toggle'], resolve);
@@ -6,6 +7,15 @@ const Textfield = resolve => require(['../views/textfield'], resolve);
 const Select = resolve => require(['../views/select'], resolve);
 
 const formRoutes = [{
+  path: '/form-field',
+  name: 'form-field',
+  component: FormField,
+  meta: {
+    title: 'BalmUI - FormField',
+    keywords: '',
+    description: ''
+  }
+}, {
   path: '/checkbox',
   name: 'checkbox',
   component: Checkbox,

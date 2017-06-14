@@ -12,6 +12,7 @@ import UiToolbarAnchor from './scripts/components/toolbar/icons/toolbar-anchor';
 import UiToolbarSpan from './scripts/components/toolbar/icons/toolbar-span';
 import UiToolbarButton from './scripts/components/toolbar/icons/toolbar-button';
 import UiGrid from './scripts/components/grid/grid';
+import UiGridInner from './scripts/components/grid/grid-inner';
 import UiCell from './scripts/components/grid/cell';
 import UiTabs from './scripts/components/tabs/tabs';
 import UiTabBar from './scripts/components/tabs/tab-bar';
@@ -91,6 +92,7 @@ const BalmUI = {
   UiToolbarSpan,
   UiToolbarButton,
   UiGrid,
+  UiGridInner,
   UiCell,
   UiTabs,
   UiTabBar,

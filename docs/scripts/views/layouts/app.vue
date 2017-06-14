@@ -67,7 +67,10 @@ export default {
   computed: {
     noLayout() {
       let routeName = this.$route.name;
-      return routeName && (routeName.indexOf('-drawer') > -1 || routeName.indexOf('-toolbar') > -1);
+      return routeName
+        && (routeName.indexOf('-drawer') > -1
+        || routeName.indexOf('-toolbar') > -1)
+        || routeName === 'grid';
     }
   },
   watch: {

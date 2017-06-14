@@ -8,40 +8,58 @@
 import {isObject} from '../../helpers';
 
 const CLASSNAME_CELL = 'mdc-layout-grid__cell';
-const MODE = ['default', 'phone', 'tablet', 'desktop'];
-const TYPE_COL = 'span';
-const TYPE_ORDER = 'order';
+const TYPE_SPAN = 'span'; // [1, 12]
+const SCREEN_SIZE = ['desktop', 'tablet', 'phone'];
+const TYPE_ORDER = 'order'; // [1, 12]
+const TYPE_ALIGN = 'align';
+const ALIGN_POSITION = ['top', 'middle', 'bottom'];
 
 export default {
   name: 'ui-cell',
   props: {
     // ui attributes
     col: [Number, String, Object], // default: 4
-    order: [Number, String, Object]
+    order: [Number, String],
+    align: String
   },
   computed: {
     className() {
       let result = [CLASSNAME_CELL];
-      // Sets the column size for the cell to N
+
+      // Column spans
+      // mdc-layout-grid__cell--span-{columns}
+      // Column spans for specific screen sizes
+      // mdc-layout-grid__cell--span-{columns}-{screen_size}
       if (this.col) {
-        result = this.handleColumn(TYPE_COL, result, this.col);
+        result = this.handleCell(TYPE_SPAN, result, this.col);
       }
-      // Reorders cell to position N
-      if (this.order) {
-        result = this.handleColumn(TYPE_ORDER, result, this.order);
+
+      // Reordering
+      // mdc-layout-grid__cell--order-{number}
+      let currentOrder = +this.order;
+      if (currentOrder >= 1 && currentOrder <= 12) {
+        result = this.handleCell(TYPE_ORDER, result, currentOrder);
+      }
+
+      // Alignment
+      // mdc-layout-grid__cell--align-{position}
+      let currentAlign = this.align ? this.align.toLowerCase() : '';
+      if (ALIGN_POSITION.indexOf(currentAlign) > -1) {
+        result = this.handleCell(TYPE_ALIGN, result, currentAlign);
       }
 
       return result;
     }
   },
   methods: {
-    handleColumn(type, result, data) {
+    handleCell(type, result, data) {
       if (isObject(data)) {
         for (let key in data) {
-          if (MODE.indexOf(key) > -1) {
-            let value = data[key];
-            let suffix = (key === 'default') ? '' : `-${key}`;
-            result.push(`${CLASSNAME_CELL}--${type}-${value}${suffix}`);
+          let value = data[key];
+          if (SCREEN_SIZE.indexOf(key) > -1) {
+            result.push(`${CLASSNAME_CELL}--${type}-${value}-${key}`);
+          } else if (key === 'default') {
+            result.push(`${CLASSNAME_CELL}--${type}-${value}`);
           }
         }
       } else {

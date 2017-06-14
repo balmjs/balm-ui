@@ -1,7 +1,7 @@
 <template>
   <div class="demo--checkbox">
     <section class="hero">
-      <ui-checkbox id="hero-checkbox-label">
+      <ui-checkbox cssOnly id="hero-checkbox-label">
         Checkbox
       </ui-checkbox>
     </section>

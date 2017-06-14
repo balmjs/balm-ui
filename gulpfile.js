@@ -25,7 +25,8 @@ var DMC_COMPONENTS = [
   'snackbar',
   'toolbar',
   'drawer',
-  'tabs'
+  'tabs',
+  'form-field'
 ];
 
 balm.config = {

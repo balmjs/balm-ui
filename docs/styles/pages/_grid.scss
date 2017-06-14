@@ -1,4 +1,5 @@
 .demo--grid {
+  width: 100%;
   .demo-grid {
     background-color: #DDDDDD;
     margin-bottom: 32px;
@@ -11,8 +12,28 @@
     color: white;
     font-size: 1.5em;
   }
+  .demo-parent-cell {
+    position: relative;
+    background-color: #aaaaaa;
+  }
+  .demo-parent-cell>span {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-size: 1.5em;
+    color: white;
+  }
+  .demo-child-cell {
+    position: relative;
+  }
+  .demo-child-cell>span {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    color: #ddd;
+  }
   .demo-grid.max-width {
-    max-width: 1600px;
+    max-width: 1280px;
   }
   .demo-grid.left-align {
     margin-left: 0;
@@ -51,6 +72,9 @@
   }
   .examples {
     margin: 24px;
+  }
+  .hero .demo-grid {
+    min-width: 360px;
   }
   .hero .demo-cell {
     height: 60px;

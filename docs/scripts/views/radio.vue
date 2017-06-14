@@ -1,8 +1,8 @@
 <template>
   <div class="docs--radio">
     <section class="hero">
-      <ui-radio name="hero" value="0"></ui-radio>
-      <ui-radio name="hero" value="1"></ui-radio>
+      <ui-radio cssOnly name="hero" value="0"></ui-radio>
+      <ui-radio cssOnly name="hero" value="1" model="1"></ui-radio>
     </section>
 
     <section class="example">
@@ -84,7 +84,7 @@ export default {
   data() {
     return {
       value: 'yes',
-      value1: '',
+      value1: 'a',
       value2: 1,
       value3: true
     };

@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import {MDCFormField} from '../../material-components-web/form-field';
 import {MDCRadio} from '../../material-components-web/radio';
 import UiFormField from './form-field';
 
@@ -89,7 +90,9 @@ export default {
   },
   mounted() {
     if (!this.$radio && !this.cssOnly) {
+      const formField = new MDCFormField(this.$el);
       this.$radio = new MDCRadio(this.$refs.radio);
+      formField.input = this.$radio;
       this.$radio.checked = this.currentValue == this.value;
     }
   }

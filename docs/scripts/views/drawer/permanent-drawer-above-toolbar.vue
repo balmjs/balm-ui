@@ -30,6 +30,10 @@
       <ui-toolbar :class="zSpace(4)">
         <ui-toolbar-row>
           <ui-toolbar-section align="start">
+            <span class="catalog-back">
+              <ui-toolbar-anchor type="menu"
+                @click.native="() => { $router.back(); }">&#xE5C4;</ui-toolbar-anchor>
+            </span>
             <ui-toolbar-title class="catalog-title">Permanent Drawer Above Toolbar</ui-toolbar-title>
           </ui-toolbar-section>
         </ui-toolbar-row>

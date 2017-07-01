@@ -1,10 +1,10 @@
-const FormField = resolve => require(['../views/form-field'], resolve);
-const Checkbox = resolve => require(['../views/checkbox'], resolve);
-const Radio = resolve => require(['../views/radio'], resolve);
-const IconToggle = resolve => require(['../views/icon-toggle'], resolve);
-const Switch = resolve => require(['../views/switch'], resolve);
-const Textfield = resolve => require(['../views/textfield'], resolve);
-const Select = resolve => require(['../views/select'], resolve);
+const FormField = () => import('../views/form-field');
+const Checkbox = () => import('../views/checkbox');
+const Radio = () => import('../views/radio');
+const IconToggle = () => import('../views/icon-toggle');
+const Switch = () => import('../views/switch');
+const Textfield = () => import('../views/textfield');
+const Select = () => import('../views/select');
 
 const formRoutes = [{
   path: '/form-field',

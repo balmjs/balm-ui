@@ -16,6 +16,8 @@ import { locales } from './config/lang';
 
 const CLASS_NAMESPACE = 'balmui';
 const DEBUG = (process.env.NODE_ENV === 'production') ? false : true;
+
+Vue.config.productionTip = false;
 Vue.prototype.DEBUG = DEBUG;
 Vue.use(VueRouter);
 Vue.prototype.$http = axios;

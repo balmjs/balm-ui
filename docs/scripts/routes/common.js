@@ -1,16 +1,16 @@
-// const Badge = require('../views/badge');
-const Button = resolve => require(['../views/button'], resolve);
-const Card = resolve => require(['../views/card'], resolve);
-// const Chip = require('../views/chip');
-// const Loading = require('../views/loading');
-const Menu = resolve => require(['../views/menu'], resolve);
-// const Tooltip = require('../views/tooltip');
-const Fab = resolve => require(['../views/fab'], resolve);
-const Elevation = resolve => require(['../views/elevation'], resolve);
-const Theme = resolve => require(['../views/theme'], resolve);
-const Typography = resolve => require(['../views/typography'], resolve);
-const Icons = resolve => require(['../views/icons'], resolve);
-const LinearProgress = resolve => require(['../views/linear-progress'], resolve);
+// const Badge = () => import('../views/badge');
+const Button = () => import('../views/button');
+const Card = () => import('../views/card');
+// const Chip = () => import('../views/chip');
+// const Loading = () => import('../views/loading');
+const Menu = () => import('../views/menu');
+// const Tooltip = () => import('../views/tooltip');
+const Fab = () => import('../views/fab');
+const Elevation = () => import('../views/elevation');
+const Theme = () => import('../views/theme');
+const Typography = () => import('../views/typography');
+const Icons = () => import('../views/icons');
+const LinearProgress = () => import('../views/linear-progress');
 
 const commonRoutes = [{
   path: '/button',

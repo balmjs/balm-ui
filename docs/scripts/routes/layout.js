@@ -1,16 +1,16 @@
-const TemporaryDrawer = resolve => require(['../views/drawer/temporary-drawer'], resolve);
-const PersistentDrawer = resolve => require(['../views/drawer/persistent-drawer'], resolve);
-const PermanentDrawerAboveToolbar = resolve => require(['../views/drawer/permanent-drawer-above-toolbar'], resolve);
-const PermanentDrawerBelowToolbar = resolve => require(['../views/drawer/permanent-drawer-below-toolbar'], resolve);
-const Grid = resolve => require(['../views/grid'], resolve);
-const Tabs = resolve => require(['../views/tabs'], resolve);
-const Toolbar = resolve => require(['../views/toolbar'], resolve);
-const DefaultToolbar = resolve => require(['../views/toolbar/default-toolbar'], resolve);
-const FixedToolbar = resolve => require(['../views/toolbar/fixed-toolbar'], resolve);
-const WaterfallToolbar = resolve => require(['../views/toolbar/waterfall-toolbar'], resolve);
-const DefaultFlexibleToolbar = resolve => require(['../views/toolbar/default-flexible-toolbar'], resolve);
-const WaterfallFlexibleToolbar = resolve => require(['../views/toolbar/waterfall-flexible-toolbar'], resolve);
-const WaterfallToolbarFixLastRow = resolve => require(['../views/toolbar/waterfall-toolbar-fix-last-row'], resolve);
+const TemporaryDrawer = () => import('../views/drawer/temporary-drawer');
+const PersistentDrawer = () => import('../views/drawer/persistent-drawer');
+const PermanentDrawerAboveToolbar = () => import('../views/drawer/permanent-drawer-above-toolbar');
+const PermanentDrawerBelowToolbar = () => import('../views/drawer/permanent-drawer-below-toolbar');
+const Grid = () => import('../views/grid');
+const Tabs = () => import('../views/tabs');
+const Toolbar = () => import('../views/toolbar');
+const DefaultToolbar = () => import('../views/toolbar/default-toolbar');
+const FixedToolbar = () => import('../views/toolbar/fixed-toolbar');
+const WaterfallToolbar = () => import('../views/toolbar/waterfall-toolbar');
+const DefaultFlexibleToolbar = () => import('../views/toolbar/default-flexible-toolbar');
+const WaterfallFlexibleToolbar = () => import('../views/toolbar/waterfall-flexible-toolbar');
+const WaterfallToolbarFixLastRow = () => import('../views/toolbar/waterfall-toolbar-fix-last-row');
 
 const layoutRoutes = [{
   path: '/temporary-drawer',

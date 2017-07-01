@@ -9,7 +9,7 @@
         <ui-toolbar-row>
           <ui-toolbar-section align="start">
             <ui-toolbar-span type="menu" class="catalog-logo">
-              <img :src="require('../../../images/icon/ic_component_24px_white.svg')" alt="BalmUI">
+              <img :src="logo" alt="BalmUI">
             </ui-toolbar-span>
             <ui-toolbar-title class="catalog-title">
               <router-link to="/">BalmUI</router-link>
@@ -59,10 +59,12 @@
 <script>
 import {lang} from '../../config/lang';
 import menu from '../../config/menu';
+import logo from '../../../images/icon/ic_component_24px_white.svg';
 
 export default {
   data() {
     return {
+      logo,
       lang,
       menu
     };

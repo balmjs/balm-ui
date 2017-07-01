@@ -1,5 +1,5 @@
-const Dialog = resolve => require(['../views/dialog'], resolve);
-const Snackbar = resolve => require(['../views/snackbar'], resolve);
+const Dialog = () => import('../views/dialog');
+const Snackbar = () => import('../views/snackbar');
 
 const popupRoutes = [{
   path: '/dialog',

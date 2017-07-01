@@ -1,7 +1,7 @@
-const GridList = resolve => require(['../views/grid-list'], resolve);
-const List = resolve => require(['../views/list'], resolve);
-// const Table = require('../views/table');
-// const Pagination = require('../views/pagination');
+const GridList = () => import('../views/grid-list');
+const List = () => import('../views/list');
+// const Table = () => import('../views/table');
+// const Pagination = () => import('../views/pagination');
 
 const dataRoutes = [{
   path: '/grid-list',

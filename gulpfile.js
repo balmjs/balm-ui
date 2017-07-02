@@ -46,7 +46,10 @@ balm.config = {
     },
     loaders: [{
       test: /\.vue$/,
-      loader: 'vue'
+      loader: 'vue',
+      options: {
+        esModule: false // For `const MyComponent = () => import('./components/my-component');`
+      }
     }, {
       test: /\.md$/,
       loader: 'html!markdown'

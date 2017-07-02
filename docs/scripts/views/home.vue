@@ -13,7 +13,7 @@ import docs from '../docs/install.md';
 export default {
   data() {
     return {
-      docs: docs
+      docs
     };
   }
 };

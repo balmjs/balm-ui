@@ -1,9 +1,10 @@
 <template>
   <ui-form-field :class="className.outer"
+                 :cssOnly="cssOnly"
                  :alignEnd="alignEnd"
                  :dark="dark">
     <slot name="before"></slot>
-    <label v-if="!noLabel" :class="cssOnly ? false : className.label" :for="id">
+    <label v-if="!cssOnly" :class="className.label" :for="id">
       <slot>{{ label }}</slot>
     </label>
     <!-- Textarea -->
@@ -50,13 +51,14 @@
              @keydown="handleKeydown"
              @keydown.enter="handleKeydownEnter">
     </template>
+    <div v-if="!cssOnly && box" class="mdc-textfield__bottom-line"></div>
     <slot name="after"></slot>
   </ui-form-field>
 </template>
 
 <script>
-import {MDCTextfield} from '../../material-components-web/textfield';
-import UiFormField from './form-field';
+import {MDCTextfield} from '../../../material-components-web/textfield';
+import UiFormField from '../form-field';
 
 const UI_EVENT_FOCUS = 'focus';
 const UI_EVENT_BLUR = 'blur';
@@ -120,6 +122,10 @@ export default {
       type: Boolean,
       default: false
     },
+    box: {
+      type: Boolean,
+      default: false
+    },
     dense: {
       type: Boolean,
       default: false
@@ -156,6 +162,7 @@ export default {
           'mdc-textfield': true,
           'mdc-textfield--multiline': this.isMultiLine,
           'mdc-textfield--fullwidth': this.fullwidth,
+          'mdc-textfield--box': this.box,
           'mdc-textfield--dense': this.dense,
           'mdc-textfield--disabled': this.disabled
         },

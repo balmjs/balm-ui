@@ -15,19 +15,39 @@ const WaterfallToolbarFixLastRow = () => import('../views/toolbar/waterfall-tool
 const layoutRoutes = [{
   path: '/temporary-drawer',
   name: 'temporary-drawer',
-  component: TemporaryDrawer
+  component: TemporaryDrawer,
+  meta: {
+    title: 'BalmUI - Temporary Drawer',
+    keywords: '',
+    description: ''
+  }
 }, {
   path: '/persistent-drawer',
   name: 'persistent-drawer',
-  component: PersistentDrawer
+  component: PersistentDrawer,
+  meta: {
+    title: 'BalmUI - Persistent Drawer',
+    keywords: '',
+    description: ''
+  }
 }, {
   path: '/permanent-drawer-above-toolbar',
   name: 'permanent-drawer-above-toolbar',
-  component: PermanentDrawerAboveToolbar
+  component: PermanentDrawerAboveToolbar,
+  meta: {
+    title: 'BalmUI - Permanent Drawer Above Toolbar',
+    keywords: '',
+    description: ''
+  }
 }, {
   path: '/permanent-drawer-below-toolbar',
   name: 'permanent-drawer-below-toolbar',
-  component: PermanentDrawerBelowToolbar
+  component: PermanentDrawerBelowToolbar,
+  meta: {
+    title: 'BalmUI - Permanent Drawer Below Toolbar',
+    keywords: '',
+    description: ''
+  }
 }, {
   path: '/grid',
   name: 'grid',
@@ -49,31 +69,66 @@ const layoutRoutes = [{
 }, {
   path: '/toolbar',
   name: 'toolbar',
-  component: Toolbar
+  component: Toolbar,
+  meta: {
+    title: 'BalmUI - Toolbar',
+    keywords: '',
+    description: ''
+  }
 }, {
   path: '/default-toolbar',
   name: 'default-toolbar',
-  component: DefaultToolbar
+  component: DefaultToolbar,
+  meta: {
+    title: 'BalmUI - Default Toolbar',
+    keywords: '',
+    description: ''
+  }
 }, {
   path: '/fixed-toolbar',
   name: 'fixed-toolbar',
-  component: FixedToolbar
+  component: FixedToolbar,
+  meta: {
+    title: 'BalmUI - Fixed Toolbar',
+    keywords: '',
+    description: ''
+  }
 }, {
   path: '/waterfall-toolbar',
   name: 'waterfall-toolbar',
-  component: WaterfallToolbar
+  component: WaterfallToolbar,
+  meta: {
+    title: 'BalmUI - Waterfall Toolbar',
+    keywords: '',
+    description: ''
+  }
 }, {
   path: '/default-flexible-toolbar',
   name: 'default-flexible-toolbar',
-  component: DefaultFlexibleToolbar
+  component: DefaultFlexibleToolbar,
+  meta: {
+    title: 'BalmUI - Default Flexible Toolbar',
+    keywords: '',
+    description: ''
+  }
 }, {
   path: '/waterfall-flexible-toolbar',
   name: 'waterfall-flexible-toolbar',
-  component: WaterfallFlexibleToolbar
+  component: WaterfallFlexibleToolbar,
+  meta: {
+    title: 'BalmUI - Waterfall Flexible Toolbar',
+    keywords: '',
+    description: ''
+  }
 }, {
   path: '/waterfall-toolbar-fix-last-row',
   name: 'waterfall-toolbar-fix-last-row',
-  component: WaterfallToolbarFixLastRow
+  component: WaterfallToolbarFixLastRow,
+  meta: {
+    title: 'BalmUI - Waterfall Toolbar Fix LastRow',
+    keywords: '',
+    description: ''
+  }
 }];
 
 export default layoutRoutes;

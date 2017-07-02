@@ -4,7 +4,7 @@ import formRoutes from './form';
 import dataRoutes from './data';
 import popupRoutes from './popup';
 
-const Home = require('../views/home').default;
+import Home from '../views/home';
 // const Test = import('../views/test');
 
 const baseRoutes = [{

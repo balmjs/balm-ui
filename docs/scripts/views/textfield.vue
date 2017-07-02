@@ -30,16 +30,38 @@
         type="password"
         id="pw"
         helptext="pw-validation-msg"
-        autocomplete="current-password">Choose password</ui-textfield>
+        autocomplete="current-password">Choose password*</ui-textfield>
       <ui-textfield-helptext id="pw-validation-msg" show text="Must be at least 8 characters long"></ui-textfield-helptext>
     </section>
     <section class="example">
-      <h2>CSS Only</h2>
+      <h2>Textfield box</h2>
       <ui-textfield
-        cssOnly
-        id="css-only-textfield"
-        placeholder="Name"
-        label="Your name:"></ui-textfield>
+        box
+        id="tf-box"
+        helptext="name-validation-message"
+        required>Your Name*</ui-textfield>
+      <ui-textfield-helptext id="name-validation-message" show text="Must provide a name"></ui-textfield-helptext>
+    </section>
+    <section class="example">
+      <h2>CSS Only</h2>
+      <ui-form-field>
+        <label for="css-only-textfield">Your name:</label>
+        <ui-textfield
+          cssOnly
+          id="css-only-textfield"
+          placeholder="Name"></ui-textfield>
+      </ui-form-field>
+    </section>
+    <section class="example">
+      <h2>CSS Only Textfield box</h2>
+      <ui-form-field>
+        <label for="css-only-textfield-box">Your name:</label>
+        <ui-textfield
+          cssOnly
+          box
+          id="css-only-textfield-box"
+          placeholder="Name"></ui-textfield>
+      </ui-form-field>
     </section>
     <section class="example">
       <h2>Preventing FOUC</h2>
@@ -61,12 +83,14 @@
     </section>
     <section class="example">
       <h2>Multi-line Textfields - CSS Only</h2>
-      <label for="css-only-multiline">About you:</label>
-      <ui-textfield cssOnly noLabel
-        type="textarea"
-        id="css-only-multiline"
-        rows="8" cols="40"
-        placeholder="Tell the world something about yourself!"></ui-textfield>
+      <div>
+        <label for="css-only-multiline">About you:</label>
+        <ui-textfield cssOnly
+          type="textarea"
+          id="css-only-multiline"
+          rows="8" cols="40"
+          placeholder="Tell the world something about yourself!"></ui-textfield>
+      </div>
     </section>
     <section class="example">
       <h2>Full-Width Textfields</h2>

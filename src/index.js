@@ -86,7 +86,7 @@ import alert from './scripts/plugins/alert';
 import confirm from './scripts/plugins/confirm';
 import toast from './scripts/plugins/toast';
 
-const BalmUI = {
+const BalmUI_Components = {
   // Layout
   UiPermanentDrawer,
   UiPersistentDrawer,
@@ -154,8 +154,10 @@ const BalmUI = {
   // UiPagination,
   // Popup
   UiDialog,
-  UiSnackbar,
-  // Plugins
+  UiSnackbar
+};
+
+const BalmUI_Plugins = {
   plugins: {
     helper,
     event,
@@ -163,8 +165,10 @@ const BalmUI = {
     alert,
     confirm,
     toast
-  },
-  // Register
+  }
+};
+
+const BalmUI_Register = {
   install(Vue) {
     document.querySelector('body').classList.add('mdc-typography');
 
@@ -177,59 +181,14 @@ const BalmUI = {
   }
 };
 
+const BalmUI = Object.assign({}, BalmUI_Components, BalmUI_Plugins, BalmUI_Register);
+
 // Auto install in dist mode
 if (typeof window !== 'undefined' && window.Vue) {
   window.Vue.use(BalmUI);
-  window.Vue.use(BalmUI.plugins.helper);
-  window.Vue.use(BalmUI.plugins.event);
-  window.Vue.use(BalmUI.plugins.mixin);
+  for (let key in BalmUI.plugins) {
+    window.Vue.use(BalmUI.plugins[key]);
+  }
 }
 
 export default BalmUI;
-
-// export {
-//   // Layout
-//   UiLayout,
-//   UiNavigation,
-//   UiGrid,
-//   UiCell,
-//   UiTabs,
-//   UiPanel,
-//   UiFooter,
-//   UiMiniFooter,
-//   // Common
-//   UiBadge,
-//   UiButton,
-//   UiCard,
-//   UiCardHead,
-//   UiCardMedia,
-//   UiCardBody,
-//   UiCardActions,
-//   UiChip,
-//   UiDivider,
-//   UiLoading,
-//   UiMenu,
-//   UiMenuItem,
-//   UiTooltip,
-//   // Form
-//   UiTextfield,
-//   UiCheckbox,
-//   UiRadio,
-//   UiIconToggle,
-//   UiSwitch,
-//   UiSlider,
-//   UiSelect,
-//   UiAutocomplete,
-//   UiDatepicker,
-//   UiFileupload,
-//   // Data
-//   UiList,
-//   UiItem,
-//   UiTable,
-//   UiPagination,
-//   // Popup
-//   UiDialog,
-//   UiConfirm,
-//   UiAlert,
-//   UiSnackbar
-// };

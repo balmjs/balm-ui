@@ -1,24 +1,13 @@
+$iconSizes: 18 24 36 48;
+
 .material-icons {
   // Rules for sizing the icon.
-  &.md-18 {
-    font-size: 18px;
-    width: 18px;
-    height: 18px;
-  }
-  &.md-24 {
-    font-size: 24px;
-    width: 24px;
-    height: 24px;
-  }
-  &.md-36 {
-    font-size: 36px;
-    width: 36px;
-    height: 36px;
-  }
-  &.md-48 {
-    font-size: 48px;
-    width: 48px;
-    height: 48px;
+  @each $size in $iconSizes {
+    &.md-#{$size} {
+      font-size: #{$size}px;
+      width: #{$size}px;
+      height: #{$size}px;
+    }
   }
   // Rules for using icons as black on a light background.
   &.md-dark {

@@ -2,7 +2,7 @@
   <div class="demo--home">
     <section class="hero">
       <h2 :class="typography('display1')">
-        BalmUI@next<br><br>Coming Soon...
+        BalmUI@next<br><br>Coming Up...
       </h2>
     </section>
     <ui-markdown class="quick-start" :text="docs"></ui-markdown>

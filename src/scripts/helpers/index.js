@@ -2,13 +2,13 @@
 
 const getType = any => Object.prototype.toString.call(any).replace(/\[object\s(.*)\]/, '$1').toLowerCase();
 
-// Undefined, Null, Boolean, Number, String, and Symbol
+// Boolean, null, undefined, Number, String, and Symbol
 
-const isUndefined = _var => getType(_var) === 'undefined';
+const isBoolean = bool => getType(bool) === 'boolean';
 
 const isNull = _var => getType(_var) === 'null';
 
-const isBoolean = bool => getType(bool) === 'boolean';
+const isUndefined = _var => getType(_var) === 'undefined';
 
 const isNumber = num => getType(num) === 'number';
 
@@ -70,9 +70,9 @@ const detectIE = () => {
 
 export {
   getType,
-  isUndefined,
-  isNull,
   isBoolean,
+  isNull,
+  isUndefined,
   isNumber,
   isString,
   isSymbol,

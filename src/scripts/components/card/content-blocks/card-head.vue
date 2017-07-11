@@ -2,7 +2,7 @@
   <section :class="className.outer">
     <!-- Primary title / text -->
     <slot name="before"></slot>
-    <h1 v-if="!noTitle" :class="className.title">
+    <h1 v-if="!noTitle" :class="className.inner">
       <slot name="title"></slot>
     </h1>
     <h2 v-if="!noSubtitle" class="mdc-card__subtitle">
@@ -41,7 +41,7 @@ export default {
         outer: {
           'mdc-card__primary': !this.noWrap
         },
-        title: {
+        inner: {
           'mdc-card__title': true,
           'mdc-card__title--large': this.large
         }

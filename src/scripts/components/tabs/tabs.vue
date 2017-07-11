@@ -1,7 +1,7 @@
 <template>
   <ui-tab-bar
     :type="type"
-    :activeIndex="activeIndex"
+    :active="active"
     :primary="primary"
     :accent="accent"
     :dark="dark"

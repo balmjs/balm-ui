@@ -10,31 +10,32 @@ import {CLASSNAME_PANEL, CLASSNAME_ACTIVE} from './constants';
 export default {
   name: 'ui-panels',
   props: {
-    activeIndex: {
+    active: {
       type: [Number, String],
       default: 0
     }
   },
   methods: {
-    updatePanel(index) {
-      let activePanel = this.$el.querySelector(`.${CLASSNAME_PANEL}.${CLASSNAME_ACTIVE}`);
-      if (activePanel) {
-        activePanel.classList.remove(CLASSNAME_ACTIVE);
-      }
-      let n = index + 1;
-      let newActivePanel = this.$el.querySelector(`.${CLASSNAME_PANEL}:nth-child(${n})`);
-      if (newActivePanel) {
-        newActivePanel.classList.add(CLASSNAME_ACTIVE);
+    updatePanel(activeIndex) {
+      let panels = this.$el.querySelectorAll(`.${CLASSNAME_PANEL}`);
+      if (panels.length) {
+        panels.forEach((panel, index) => {
+          if (index === activeIndex && !panel.classList.contains(CLASSNAME_ACTIVE)) {
+            panel.classList.add(CLASSNAME_ACTIVE);
+          } else {
+            panel.classList.remove(CLASSNAME_ACTIVE);
+          }
+        });
       }
     }
   },
   watch: {
-    activeIndex(val) {
-      this.updatePanel(this.activeIndex);
+    active(val) {
+      this.updatePanel(val);
     }
   },
   mounted() {
-    this.updatePanel(this.activeIndex);
+    this.updatePanel(this.active);
   }
 };
 </script>

@@ -10,7 +10,7 @@
         :inactive="iconInactive">{{ icon }}</ui-icon>
     </template>
     <template v-else>
-      <slot name="icon"></slot>
+      <slot name="icon"><!-- Custom Icon --></slot>
     </template>
     <template v-if="text">
       <span class="mdc-tab__icon-text">{{ text }}</span>

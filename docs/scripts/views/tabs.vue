@@ -181,13 +181,13 @@
               <ui-tabs accent
                 id="dynamic-tab-bar"
                 :data="tabs"
-                :activeIndex="activeIndex"
-                @change="onChange('activeIndex', $event)"></ui-tabs>
+                :active="active"
+                @change="onChange('active', $event)"></ui-tabs>
             </ui-toolbar-section>
           </ui-toolbar-row>
         </ui-toolbar>
         <section>
-          <ui-panels class="panels" :activeIndex="activeIndex">
+          <ui-panels class="panels" :active="active">
             <ui-panel>Panel One</ui-panel>
             <ui-panel>Panel Two</ui-panel>
             <ui-panel>Panel Three</ui-panel>
@@ -208,7 +208,7 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      activeIndex: 0,
+      active: 0,
       tabs: [{
         name: 'Item One',
         url: '#one',

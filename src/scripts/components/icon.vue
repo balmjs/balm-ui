@@ -1,6 +1,6 @@
 <template>
   <i :class="className" aria-hidden="true">
-    <slot></slot>
+    <slot><!-- Custom Icon --></slot>
   </i>
 </template>
 

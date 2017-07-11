@@ -40,7 +40,8 @@ export default {
       this.$tabBar.listen(MDC_EVENT_CHANGE, ({detail: tabs}) => {
         this.$emit(UI_EVENT_CHANGE, tabs.activeTabIndex);
       });
-      let activeIndex = this.activeIndex;
+
+      let activeIndex = this.active;
       if (activeIndex && activeIndex < this.$tabBar.tabs.length) {
         this.$tabBar.activeTab = this.$tabBar.tabs[activeIndex];
         this.$tabBar.activeTabIndex = activeIndex;

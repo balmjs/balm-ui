@@ -3,7 +3,7 @@ import {LABEL_TEXT, LABEL_ICON, LABEL_TEXT_WITH_ICON} from '../components/tabs/c
 export default {
   props: {
     // state
-    activeIndex: {
+    active: {
       type: [Number, String],
       default: 0
     },

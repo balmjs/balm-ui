@@ -17,7 +17,6 @@
 import {MDCFoundation} from '../../base';
 
 export class MDCSlidableDrawerFoundation extends MDCFoundation {
-
   static get defaultAdapter() {
     return {
       addClass: (/* className: string */) => {},

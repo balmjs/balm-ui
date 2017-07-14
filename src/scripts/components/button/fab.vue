@@ -1,7 +1,5 @@
 <template>
-  <button type="button"
-          :class="className"
-          :disabled="disabled">
+  <button type="button" :class="className">
     <template v-if="materialIcon">
       <span class="mdc-fab__icon">
         <slot>{{ materialIcon }}</slot>
@@ -14,17 +12,18 @@
 </template>
 
 <script>
+import rippleMixin from '../../mixins/ripple';
 import {isString} from '../../helpers';
 
 export default {
   name: 'ui-fab',
+  mixins: [rippleMixin],
   props: {
-    // element attributes
-    disabled: {
+    // ui attributes
+    cssOnly: {
       type: Boolean,
       default: false
     },
-    // ui attributes
     icon: {
       type: [Boolean, String],
       default: false
@@ -49,6 +48,11 @@ export default {
         'mdc-fab--plain': this.plain,
         'material-icons': this.materialIcon,
       };
+    }
+  },
+  mounted() {
+    if (!this.cssOnly) {
+      this.initRipple(this.$el);
     }
   }
 };

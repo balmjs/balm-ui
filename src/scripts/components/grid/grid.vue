@@ -1,5 +1,5 @@
 <template>
-  <div class="mdc-layout-grid">
+  <div :class="className">
     <ui-grid-inner>
       <slot></slot>
     </ui-grid-inner>
@@ -9,10 +9,35 @@
 <script>
 import UiGridInner from './grid-inner';
 
+const ALIGNMENT = ['left', 'right'];
+
 export default {
   name: 'ui-grid',
   components: {
     UiGridInner
+  },
+  props: {
+    fixedColumnWidth: {
+      type: Boolean,
+      default: false
+    },
+    align: String
+  },
+  computed: {
+    className() {
+      let result = ['mdc-layout-grid'];
+
+      if (this.fixedColumnWidth) {
+        result.push('mdc-layout-grid--fixed-column-width');
+      }
+
+      let currentAlign = this.align ? this.align.toLowerCase() : '';
+      if (ALIGNMENT.indexOf(currentAlign) > -1) {
+        result.push(`mdc-layout-grid--align-${currentAlign}`);
+      }
+
+      return result;
+    }
   }
 };
 </script>

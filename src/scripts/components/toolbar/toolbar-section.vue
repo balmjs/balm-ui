@@ -5,6 +5,8 @@
 </template>
 
 <script>
+const ALIGNMENT = ['start', 'end'];
+
 export default {
   name: 'ui-toolbar-section',
   props: {
@@ -20,12 +22,18 @@ export default {
   },
   computed: {
     className() {
-      return {
-        'mdc-toolbar__section': true,
-        'mdc-toolbar__section--align-start': this.align.toLowerCase() === 'start',
-        'mdc-toolbar__section--align-end': this.align.toLowerCase() === 'end',
-        'mdc-toolbar__section--shrink-to-fit': this.fit
-      };
+      let result = ['mdc-toolbar__section'];
+
+      let currentAlign = this.align ? this.align.toLowerCase() : '';
+      if (ALIGNMENT.indexOf(currentAlign) > -1) {
+        result.push(`mdc-toolbar__section--align-${currentAlign}`);
+      }
+
+      if (this.fit) {
+        result.push('mdc-toolbar__section--shrink-to-fit');
+      }
+
+      return result;
     }
   }
 };

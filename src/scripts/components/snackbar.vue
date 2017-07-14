@@ -2,7 +2,8 @@
   <div class="mdc-snackbar"
        aria-live="assertive"
        aria-atomic="true"
-       aria-hidden="true">
+       aria-hidden="true"
+       :style="style">
     <div class="mdc-snackbar__text">{{ message }}</div>
     <div class="mdc-snackbar__action-wrapper">
       <button type="button" class="mdc-button mdc-snackbar__action-button">
@@ -30,6 +31,10 @@ export default {
       type: Boolean,
       default: false
     },
+    alignStart: {
+      type: Boolean,
+      default: false
+    },
     message: String,
     timeout: {
       type: [Number, String],
@@ -41,7 +46,12 @@ export default {
     },
     actionText: String,
     multiline: Boolean,
-    actionOnBottom: Boolean
+    actionOnBottom: Boolean,
+    // Avoiding Flash-Of-Unstyled-Content (FOUC)
+    fouc: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
@@ -49,8 +59,19 @@ export default {
     };
   },
   computed: {
+    className() {
+      return {
+        'mdc-snackbar': true,
+        'mdc-snackbar--align-start': this.alignStart
+      };
+    },
     hasAction() {
       return this.actionHandler && this.actionText;
+    },
+    style() {
+      return this.fouc ? {
+        transform: 'translateY(100%)'
+      } : {};
     }
   },
   methods: {

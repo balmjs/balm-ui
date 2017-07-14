@@ -10,6 +10,7 @@ import {CLASSNAME_PANEL, CLASSNAME_ACTIVE} from './constants';
 export default {
   name: 'ui-panels',
   props: {
+    // state
     active: {
       type: [Number, String],
       default: 0

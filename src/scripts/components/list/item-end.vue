@@ -8,6 +8,7 @@
 export default {
   name: 'ui-item-end',
   props: {
+    // ui attributes
     icon: {
       type: String,
       default: ''

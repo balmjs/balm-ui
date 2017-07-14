@@ -9,6 +9,7 @@
 export default {
   name: 'ui-menuitem',
   props: {
+    // ui attributes
     item: {
       type: Object,
       default: function() {

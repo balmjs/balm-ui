@@ -34,11 +34,7 @@ export default {
     UiItemDivider
   },
   props: {
-    // mdc
-    cssOnly: {
-      type: Boolean,
-      default: false
-    },
+    // state
     open: {
       type: Boolean,
       default: false
@@ -48,6 +44,11 @@ export default {
       default: function() {
         return [];
       }
+    },
+    // ui attributes
+    cssOnly: {
+      type: Boolean,
+      default: false
     },
     position: {
       type: [Number, String],

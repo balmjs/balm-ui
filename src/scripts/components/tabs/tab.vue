@@ -33,6 +33,7 @@ export default {
   },
   mixins: [iconMixin],
   props: {
+    // ui attributes
     icon: {
       type: [String, Boolean],
       default: false

@@ -25,12 +25,14 @@ export default {
   name: 'ui-tabs',
   mixins: [tabBarMixin],
   props: {
+    // state
     data: {
       type: Array,
       default: () => {
         return [];
       }
     },
+    // ui attributes
     tabIcon: {
       type: String,
       default: 'icon'

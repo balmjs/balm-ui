@@ -12,7 +12,7 @@ const POSITIONS = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
 export default {
   name: 'ui-menu-anchor',
   props: {
-    // mdc
+    // ui attributes
     position: {
       type: [Number, String],
       default: 0

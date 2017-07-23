@@ -69,7 +69,7 @@ export default {
     }
   },
   created() {
-    this.api = require(`../../apidocs/${this.name}.json`);
+    this.api = () => import(`../../apidocs/${this.name}.json`);
   }
 };
 </script>

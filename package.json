@@ -1,7 +1,7 @@
 {
   "name": "balm-ui",
   "version": "0.5.0-beta",
-  "description": "Material Design + Vue + Idea",
+  "description": "Material Components + Vue",
   "main": "dist/js/main.js",
   "scripts": {
     "mdc": "gulp --mdc",
@@ -25,11 +25,11 @@
   "homepage": "https://github.com/balmjs/ui-vue#readme",
   "devDependencies": {
     "axios": "^0.16.2",
+    "babel-eslint": "^7.2.3",
     "babel-preset-stage-2": "^6.24.1",
-    "balm": "^0.7.5",
+    "balm": "^0.8.3",
     "clipboard": "^1.7.1",
     "core-js": "^2.4.1",
-    "focus-trap": "^2.3.0",
     "font-awesome": "^4.7.0",
     "gulp": "^3.9.1",
     "markdown-loader": "^2.0.1",

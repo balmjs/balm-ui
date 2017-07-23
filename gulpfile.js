@@ -69,6 +69,7 @@ balm.config = {
 if (buildDocs) {
   balm.config.roots.source = 'docs';
   balm.config.scripts.entry.main = './docs/scripts/main.js';
+  balm.config.assets.publicUrl = 'http://balmjs.com/ui-vue/';
 }
 
 balm.go(function(mix) {

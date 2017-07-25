@@ -28,13 +28,6 @@ import UiIcon from './scripts/components/icon';
 import UiButton from './scripts/components/button/button';
 import UiFab from './scripts/components/button/fab';
 import UiIconToggle from './scripts/components/button/icon-toggle';
-import UiCard from './scripts/components/card/card';
-import UiCardMedia from './scripts/components/card/content-blocks/card-media';
-import UiCardHead from './scripts/components/card/content-blocks/card-head';
-import UiCardBody from './scripts/components/card/content-blocks/card-body';
-import UiCardActions from './scripts/components/card/content-blocks/card-actions';
-import UiCardHBlock from './scripts/components/card/horizontal-blocks/card-h-block';
-import UiCardMediaItem from './scripts/components/card/horizontal-blocks/card-media-item';
 import UiMenuAnchor from './scripts/components/menu/menu-anchor';
 import UiMenu from './scripts/components/menu/menu';
 import UiMenuItem from './scripts/components/menu/menuitem';
@@ -53,6 +46,13 @@ import UiSwitch from './scripts/components/input-controls/switch';
 /**
  * Data
  */
+import UiCard from './scripts/components/card/card';
+import UiCardMedia from './scripts/components/card/content-blocks/card-media';
+import UiCardHead from './scripts/components/card/content-blocks/card-head';
+import UiCardBody from './scripts/components/card/content-blocks/card-body';
+import UiCardActions from './scripts/components/card/content-blocks/card-actions';
+import UiCardHBlock from './scripts/components/card/horizontal-blocks/card-h-block';
+import UiCardMediaItem from './scripts/components/card/horizontal-blocks/card-media-item';
 import UiGridList from './scripts/components/grid-list/grid-list';
 import UiGridTile from './scripts/components/grid-list/grid-tile';
 import UiGridTileTitle from './scripts/components/grid-list/grid-tile-title';
@@ -123,7 +123,7 @@ const BalmUI_Components = {
   UiMenu,
   UiMenuItem,
   UiLinearProgress,
-  // Form
+  // Input Controls
   UiFormField,
   UiTextfield,
   UiTextfieldHelptext,
@@ -152,7 +152,7 @@ const BalmUI_Components = {
   UiItemLink,
   // UiTable,
   // UiPagination,
-  // Popup
+  // Dialog
   UiDialog,
   UiSnackbar
 };

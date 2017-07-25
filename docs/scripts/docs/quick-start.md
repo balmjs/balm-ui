@@ -1,6 +1,6 @@
 ## Quick Start
 
-### Requirement
+### 0. Requirement
 
 - [BalmJS](http://balmjs.com/)
 - [Vue.js](https://vuejs.org/)@2.1.0+

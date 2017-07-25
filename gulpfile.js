@@ -2,6 +2,7 @@ var balm = require('balm');
 
 var useDefault = !(process.argv[2] === '--mdc');
 var buildDocs = process.argv[3] === '--docs';
+var useDocs = !balm.config.production || buildDocs;
 
 var DMC_SOURCE = {
   material: './node_modules/@material',
@@ -32,7 +33,7 @@ var DMC_COMPONENTS = [
 
 balm.config = {
   roots: {
-    source: balm.config.production ? 'src' : 'docs'
+    source: useDocs ? 'docs' : 'src'
   },
   styles: {
     ext: 'scss',
@@ -40,9 +41,19 @@ balm.config = {
     includePaths: ['node_modules']
   },
   scripts: {
-    entry: {
-      mylib: ['vue', 'vue-router', 'axios', 'vue-i18n', 'prismCss', 'prismjs', 'clipboard'],
-      main: balm.config.production ? './src/index' : './docs/scripts/main'
+    entry: useDocs ? {
+      mylib: [
+        'vue',
+        'vue-router',
+        'axios',
+        'vue-i18n',
+        'prismCss',
+        'prismjs',
+        'clipboard'
+      ],
+      main: './docs/scripts/main.js'
+    } : {
+      main: './src/index.js'
     },
     loaders: [{
       test: /\.vue$/,
@@ -63,14 +74,14 @@ balm.config = {
   sprites: {
     svg: ['icon']
   },
+  extras: {
+    excludes: ['index.js']
+  },
+  assets: {
+    publicUrl: buildDocs ? 'http://balmjs.com/ui-vue/' : ''
+  },
   useDefault: useDefault
 };
-
-if (buildDocs) {
-  balm.config.roots.source = 'docs';
-  balm.config.scripts.entry.main = './docs/scripts/main.js';
-  balm.config.assets.publicUrl = 'http://balmjs.com/ui-vue/';
-}
 
 balm.go(function(mix) {
   if (buildDocs) {

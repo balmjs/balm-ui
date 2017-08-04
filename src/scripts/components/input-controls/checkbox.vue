@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import {MDCFormField} from '../../material-components-web/form-field';
-import {MDCCheckbox} from '../../material-components-web/checkbox';
+import {MDCFormField} from '../../../material-components-web/form-field';
+import {MDCCheckbox} from '../../../material-components-web/checkbox';
 import UiFormField from './form-field';
 import {isArray} from '../../helpers';
 

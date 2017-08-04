@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import {MDCTextfield} from '../../../material-components-web/textfield';
+import {MDCTextfield} from '../../../../material-components-web/textfield';
 import UiFormField from '../form-field';
 
 const UI_EVENT_FOCUS = 'focus';

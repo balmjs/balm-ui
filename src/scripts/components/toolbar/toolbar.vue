@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import {MDCToolbar} from '../../material-components-web/toolbar';
+import {MDCToolbar} from '../../../material-components-web/toolbar';
 import {isString} from '../../helpers';
 
 const FIXED_LASTROW_ONLY = 'lastrow';

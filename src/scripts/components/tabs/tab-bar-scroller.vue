@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import {MDCTabBarScroller} from '../../material-components-web/tabs';
+import {MDCTabBarScroller} from '../../../material-components-web/tabs';
 
 export default {
   name: 'ui-tab-bar-scroller',

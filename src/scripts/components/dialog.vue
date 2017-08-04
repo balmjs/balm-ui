@@ -34,7 +34,7 @@
 
 <script>
 // NOTE: remove 'focus-trap' in MDC Dialog
-import {MDCDialog} from '../material-components-web/dialog';
+import {MDCDialog} from '../../material-components-web/dialog';
 import UiButton from '../components/button/button';
 
 const CLASSNAME_ACCEPT = 'mdc-dialog__footer__button--accept';

@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import {MDCFormField} from '../../material-components-web/form-field';
-import {MDCRadio} from '../../material-components-web/radio';
+import {MDCFormField} from '../../../material-components-web/form-field';
+import {MDCRadio} from '../../../material-components-web/radio';
 import UiFormField from './form-field';
 
 const UI_EVENT_CHANGE = 'change';

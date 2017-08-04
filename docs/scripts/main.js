@@ -3,7 +3,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import axios from 'axios';
 import VueI18n from 'vue-i18n';
-import BalmUI from '../../src/index';
+import BalmUI from '../../src/index'; // 'balm-ui'
 import routes from './routes/index';
 import App from './views/layouts/app';
 import UiMarkdown from './views/components/markdown';
@@ -23,7 +23,6 @@ Vue.use(VueRouter);
 Vue.prototype.$http = axios;
 Vue.use(VueI18n);
 Vue.use(BalmUI);
-Vue.use(BalmUI.plugins.helper);
 Vue.use(BalmUI.plugins.event);
 Vue.use(BalmUI.plugins.mixin);
 Vue.use(BalmUI.plugins.alert);

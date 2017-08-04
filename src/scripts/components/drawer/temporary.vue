@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import {MDCTemporaryDrawer} from '../../material-components-web/drawer';
+import {MDCTemporaryDrawer} from '../../../material-components-web/drawer';
 import drawerMixin from '../../mixins/drawer';
 
 const CLASSNAME_ACTIVE = 'mdc-temporary-drawer--selected';

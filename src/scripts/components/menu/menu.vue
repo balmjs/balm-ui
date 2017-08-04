@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import {MDCSimpleMenu} from '../../material-components-web/menu';
+import {MDCSimpleMenu} from '../../../material-components-web/menu';
 import {isString, isObject} from '../../helpers';
 import UiMenuItem from './menuitem';
 import UiItemDivider from '../list/item-divider';

@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import {MDCSnackbar} from '../material-components-web/snackbar';
+import {MDCSnackbar} from '../../material-components-web/snackbar';
 
 const UI_EVENT_DONE = 'done';
 

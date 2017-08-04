@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import {MDCPersistentDrawer} from '../../material-components-web/drawer';
+import {MDCPersistentDrawer} from '../../../material-components-web/drawer';
 import drawerMixin from '../../mixins/drawer';
 
 const CLASSNAME_ACTIVE = 'mdc-persistent-drawer--selected';

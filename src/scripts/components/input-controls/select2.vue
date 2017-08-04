@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import {MDCSelect} from '../../material-components-web/select';
+import {MDCSelect} from '../../../material-components-web/select';
 import UiMenu from '../menu/menu';
 import UiMenuItem from '../menu/menuitem';
 

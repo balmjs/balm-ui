@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import {MDCIconToggle} from '../../material-components-web/icon-toggle';
+import {MDCIconToggle} from '../../../material-components-web/icon-toggle';
 import {isString} from '../../helpers';
 
 const DMC_EVENT_CHANGE = 'MDCIconToggle:change';

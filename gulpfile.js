@@ -5,30 +5,42 @@ var buildDocs = process.argv[3] === '--docs';
 var useDocs = !balm.config.production || buildDocs;
 
 var DMC_SOURCE = {
+  mdc: './node_modules/material-components-web',
   material: './node_modules/@material',
   icon: './node_modules/material-design-icons'
 };
 var DEV_SOURCE = {
-  material: './src/scripts/material-components-web',
+  mdc: './src/material-components-web',
   font: './src/fonts'
 };
 var DMC_COMPONENTS = [
   'base',
-  'ripple',
-  'dialog',
-  'menu',
-  'select',
-  'textfield',
   'animation',
+  'button',
+  'card',
   'checkbox',
-  'radio',
-  'icon-toggle',
-  'snackbar',
-  'toolbar',
+  'dialog',
   'drawer',
-  'tabs',
+  'elevation',
+  'fab',
   'form-field',
-  'linear-progress'
+  'grid-list',
+  'icon-toggle',
+  'layout-grid',
+  'linear-progress',
+  'list',
+  'menu',
+  'radio',
+  'ripple',
+  'select',
+  'slider',
+  'snackbar',
+  'switch',
+  'tabs',
+  'textfield',
+  'theme',
+  'toolbar',
+  'typography'
 ];
 
 balm.config = {
@@ -41,20 +53,8 @@ balm.config = {
     includePaths: ['node_modules']
   },
   scripts: {
-    entry: useDocs ? {
-      mylib: [
-        'vue',
-        'vue-router',
-        'axios',
-        'vue-i18n',
-        'prismCss',
-        'prismjs',
-        'clipboard'
-      ],
-      main: './docs/scripts/main.js'
-    } : {
-      main: './src/index.js'
-    },
+    library: 'BalmUI',
+    libraryTarget: 'umd',
     loaders: [{
       test: /\.vue$/,
       loader: 'vue',
@@ -83,6 +83,25 @@ balm.config = {
   useDefault: useDefault
 };
 
+if (useDocs) {
+  balm.config.scripts.entry = {
+    mylib: [
+      'vue',
+      'vue-router',
+      'axios',
+      'vue-i18n',
+      'prismCss',
+      'prismjs',
+      'clipboard'
+    ],
+    main: './docs/scripts/main.js'
+  };
+} else {
+  balm.config.scripts.entry = {
+    'balm-ui': './src/index.js'
+  }
+}
+
 balm.go(function(mix) {
   if (buildDocs) {
     mix.copy('./docs/data/*', './dist/data');
@@ -93,11 +112,13 @@ balm.go(function(mix) {
       }
     } else {
       // clear
-      mix.remove([DEV_SOURCE.material + '/*', DEV_SOURCE.font + '/*']);
+      mix.remove([DEV_SOURCE.mdc + '/*', DEV_SOURCE.font + '/*']);
       // get Material
+      mix.copy(DMC_SOURCE.mdc + '/material-components-web.scss', DEV_SOURCE.mdc);
       DMC_COMPONENTS.forEach(function(item) {
-        mix.copy(DMC_SOURCE.material + '/' + item + '/**/*.js', DEV_SOURCE.material + '/' + item);
-        mix.remove(DEV_SOURCE.material + '/' + item + '/dist');
+        mix.copy(DMC_SOURCE.material + '/' + item + '/**/{*.scss,*.js}', DEV_SOURCE.mdc + '/' + item);
+        mix.remove(DEV_SOURCE.mdc + '/' + item + '/dist');
+        mix.remove(DEV_SOURCE.mdc + '/' + item + '/node_modules');
       });
       // get Material Icons
       mix.copy(DMC_SOURCE.icon + '/iconfont/*.{css,eot,svg,ttf,woff,woff2}', DEV_SOURCE.font);

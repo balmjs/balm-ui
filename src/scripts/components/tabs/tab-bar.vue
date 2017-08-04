@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import {MDCTabBar} from '../../material-components-web/tabs';
+import {MDCTabBar} from '../../../material-components-web/tabs';
 import tabBarMixin from '../../mixins/tab-bar';
 
 const MDC_EVENT_CHANGE = 'MDCTabBar:change';

@@ -15,7 +15,7 @@
  */
 
 import MDCFoundation from '../../base/foundation';
-import {getCorrectPropertyName} from '../animation';
+import {getCorrectPropertyName} from '../../animation';
 
 import {cssClasses, strings} from './constants';
 

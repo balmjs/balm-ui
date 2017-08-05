@@ -1,5 +1,5 @@
 <template>
-  <div :class="['mdl-pagination', {'mdl-pagination--mini': mini}]">
+  <div v-if="recordCount" :class="['mdl-pagination', {'mdl-pagination--mini': mini}]">
     <div v-if="showRecord" class="mdl-pagination--record">
       <slot :recordCount="recordCount" :pageSize="pageSize" :pageCount="pageCount"></slot>
     </div>

@@ -14,11 +14,11 @@
 // limitations under the License.
 //
 
-@import "../animation/functions";
-@import "../typography/mixins";
-@import "../theme/mixins";
-@import "../ripple/mixins";
-@import "../rtl/mixins";
+@import "../../animation/functions";
+@import "../../typography/mixins";
+@import "../../theme/mixins";
+@import "../../ripple/mixins";
+@import "../../rtl/mixins";
 
 $mdc-tab-with-text-height: 48px;
 $mdc-tab-with-icon-and-text-height: 72px;

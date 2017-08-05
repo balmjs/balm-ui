@@ -40,7 +40,8 @@ var DMC_COMPONENTS = [
   'textfield',
   'theme',
   'toolbar',
-  'typography'
+  'typography',
+  'rtl'
 ];
 
 balm.config = {
@@ -53,6 +54,20 @@ balm.config = {
     includePaths: ['node_modules']
   },
   scripts: {
+    entry: useDocs ? {
+      mylib: [
+        'vue',
+        'vue-router',
+        'axios',
+        'vue-i18n',
+        'prismCss',
+        'prismjs',
+        'clipboard'
+      ],
+      main: './docs/scripts/main.js'
+    } : {
+      'balm-ui': './src/index.js'
+    },
     library: 'BalmUI',
     libraryTarget: 'umd',
     loaders: [{
@@ -82,25 +97,6 @@ balm.config = {
   },
   useDefault: useDefault
 };
-
-if (useDocs) {
-  balm.config.scripts.entry = {
-    mylib: [
-      'vue',
-      'vue-router',
-      'axios',
-      'vue-i18n',
-      'prismCss',
-      'prismjs',
-      'clipboard'
-    ],
-    main: './docs/scripts/main.js'
-  };
-} else {
-  balm.config.scripts.entry = {
-    'balm-ui': './src/index.js'
-  }
-}
 
 balm.go(function(mix) {
   if (buildDocs) {

@@ -20,7 +20,7 @@
  * ```
  *
  * ```js
- * import { mixins } from 'balm-ui-lite';
+ * import { mixins } from 'balm-ui';
  * import formValidatorRules from '/path/to/mixins/form-validator-rules';
  *
  * export default {
@@ -70,11 +70,11 @@ export default {
   methods: {
     validate(formData) {
       let result = {
-        isValid: true, // 是否验证通过
-        valid: [], // 有效字段
-        invalid: [], // 无效字段
-        message: '', // 第一个无效字段的提示语
-        messages: [] // 所有无效字段的提示语
+        isValid: true,
+        valid: [], // Valid fields
+        invalid: [], // Invalid fields
+        message: '', // The first invalid message
+        messages: [] // All invalid messages
       };
 
       const VALIDATION = this.$options.validation || {};
@@ -93,12 +93,12 @@ export default {
 
           if (curValidator) {
             if (curValidator.validate(value, formData)) {
-              // success
+              // Success
               if (!result.valid.includes(key)) {
                 result.valid.push(key);
               }
             } else {
-              // failure
+              // Failure
               result.isValid = false;
               result.invalid.push(key);
               let index = result.valid.findIndex(item => item === key);

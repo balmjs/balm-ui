@@ -268,5 +268,9 @@ export {
   // UiPagination,
   // Dialog
   UiDialog,
-  UiSnackbar
+  UiSnackbar,
+  // Others
+  helpers,
+  mixins,
+  plugins
 };

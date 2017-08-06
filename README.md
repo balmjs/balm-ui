@@ -59,58 +59,103 @@ Vue.use(BalmUI);
 
 Enjoy 👻
 
+## Helpers
+
+```js
+import {helpers} from 'balm-ui';
+```
+
+- getType
+- isBoolean
+- isNull
+- isUndefined
+- isNumber
+- isString
+- isSymbol
+- isObject
+- isArray
+- isFunction
+- detectIE
+
+## Mixins
+
+```js
+import {mixins} from 'balm-ui';
+
+export default {
+  mixins: [mixins.formValidator],
+  ...
+};
+```
+
+- formValidator
+
 ## Components
+
+```js
+import {UiButton, UiIcon} from 'balm-ui';
+
+export default {
+  components: {
+    UiButton,
+    UiIcon
+  },
+  ...
+};
+```
 
 - Layout
     - Drawer
-    - Toolbar
-    - Grid
-    - Tabs
+    - Toolbar (Header and footers)
+    - Grid (Grid and gutter support)
+    - Tabs (Tabs with support for icon and text labels)
 - Common
     - Material Icon
-    - Button
-    - Fab
-    - Icon Toggle
-    - Menu
-    - Linear Progress
+    - Button (Raised and flat buttons)
+    - Fab (The primary action in an application)
+    - Icon Toggle (Toggling icon states)
+    - Menu (Pop over menus)
+    - Linear Progress (Fills from 0% to 100%, represented by bars)
 - Input Controls
     - Form Field
-    - Textfield
-    - Checkbox
-    - Radio
-    - Select
-    - Switch
+    - Checkbox (Multi-selection controls)
+    - Radio (Single selection controls)
+    - Select (Popover selection menus)
+    - Slider (Range Controls)
+    - Switch (On off switches)
+    - Textfield (Single and multiline text fields)
 - Data
-    - Card
-    - Grid List
-    - List
+    - Card (Various card layout styles)
+    - Grid List (2D grid layouts)
+    - List (Item layouts in lists)
 - Dialog
-    - Dialog
-    - Snackbar
+    - Dialog (Secondary text)
+    - Snackbar (Transient messages)
 
 ## Plugins
 
-- helper
-    - getType
-    - isBoolean
-    - isNull
-    - isUndefined
-    - isNumber
-    - isString
-    - isSymbol
-    - isObject
-    - isArray
-    - isFunction
-    - detectIE
+```js
+import Vue from 'vue';
+import {plugins} from 'balm-ui';
+
+Vue.use(plugins.alert);
+
+export default {
+  created() {
+    this.$alert('message');
+  }
+};
+```
+
 - event
     - onChange
     - openDialog/showDialog
     - closeDialog/hideDialog
     - setGrid
 - mixin
-    - elevation
-    - theme
-    - typography
+    - elevation (Shadow for different elevations)
+    - theme (Using primary and accent colors)
+    - typography (Type hierarchy)
 - alert
 - confirm
 - toast

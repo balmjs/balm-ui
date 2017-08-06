@@ -14,11 +14,12 @@ export default {
   },
   computed: {
     className() {
+      let size = +this.size;
       return {
         'mdc-card__media-item': true,
-        'mdc-card__media-item--1dot5x': +this.size === 1.5,
-        'mdc-card__media-item--2x': +this.size === 2,
-        'mdc-card__media-item--3x': +this.size === 3
+        'mdc-card__media-item--1dot5x': size === 1.5,
+        'mdc-card__media-item--2x': size === 2,
+        'mdc-card__media-item--3x': size === 3
       };
     }
   }

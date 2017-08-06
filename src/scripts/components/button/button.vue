@@ -21,23 +21,23 @@ export default {
       type: Boolean,
       default: false
     },
-    dense: {
+    dense: { // Compresses the button text to make it slightly smaller.
       type: Boolean,
       default: false
     },
-    raised: {
+    raised: { // Elevates the button and creates a colored background.
       type: Boolean,
       default: false
     },
-    compact: {
+    compact: { // Reduces the amount of horizontal padding in the button.
       type: Boolean,
       default: false
     },
-    primary: {
+    primary: { // Colors the button with the primary color.
       type: Boolean,
       default: false
     },
-    accent: {
+    accent: { // Colors the button with the accent color.
       type: Boolean,
       default: false
     },

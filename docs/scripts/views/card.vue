@@ -4,12 +4,8 @@
       <ui-card class="demo-card">
         <ui-card-media class="demo-card__16-9-media"></ui-card-media>
         <ui-card-head>
-          <template slot="title">
-            Title goes here
-          </template>
-          <template slot="subtitle">
-            Subtitle here
-          </template>
+          <ui-card-title>Title goes here</ui-card-title>
+          <ui-card-subtitle>Subtitle here</ui-card-subtitle>
         </ui-card-head>
         <ui-card-actions>
           <ui-button class="mdc-card__action" compact>Action 1</ui-button>
@@ -30,16 +26,10 @@
 
       <div>
         <ui-card class="demo-card demo-card--with-avatar">
-          <ui-card-head :large="false">
-            <template slot="before">
-              <div class="demo-card__avatar"></div>
-            </template>
-            <template slot="title">
-              Title
-            </template>
-            <template slot="subtitle">
-              Subhead
-            </template>
+          <ui-card-head>
+            <div class="demo-card__avatar"></div>
+            <ui-card-title :large="false">Title</ui-card-title>
+            <ui-card-subtitle>Subhead</ui-card-subtitle>
           </ui-card-head>
           <ui-card-media class="demo-card__16-9-media"></ui-card-media>
           <ui-card-body>
@@ -54,16 +44,10 @@
 
       <div>
         <ui-card class="demo-card demo-card--with-avatar">
-          <ui-card-head :large="false">
-            <template slot="before">
-              <div class="demo-card__avatar"></div>
-            </template>
-            <template slot="title">
-              Title
-            </template>
-            <template slot="subtitle">
-              Subhead
-            </template>
+          <ui-card-head>
+            <div class="demo-card__avatar"></div>
+            <ui-card-title :large="false">Title</ui-card-title>
+            <ui-card-subtitle>Subhead</ui-card-subtitle>
           </ui-card-head>
           <ui-card-media class="demo-card__16-9-media"></ui-card-media>
           <ui-card-body>
@@ -80,12 +64,8 @@
         <ui-card class="demo-card">
           <ui-card-media class="demo-card__16-9-media"></ui-card-media>
           <ui-card-head>
-            <template slot="title">
-              Title goes here
-            </template>
-            <template slot="subtitle">
-              Subtitle here
-            </template>
+            <ui-card-title>Title goes here</ui-card-title>
+            <ui-card-subtitle>Subtitle here</ui-card-subtitle>
           </ui-card-head>
           <ui-card-actions>
             <ui-button class="mdc-card__action" compact>Action 1</ui-button>
@@ -97,12 +77,8 @@
       <div>
         <ui-card class="demo-card">
           <ui-card-head>
-            <template slot="title">
-              Title goes here
-            </template>
-            <template slot="subtitle">
-              Subtitle here
-            </template>
+            <ui-card-title>Title goes here</ui-card-title>
+            <ui-card-subtitle>Subtitle here</ui-card-subtitle>
           </ui-card-head>
           <ui-card-body>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
@@ -119,12 +95,8 @@
       <div>
         <ui-card class="demo-card demo-card--bg-demo" dark>
           <ui-card-head>
-            <template slot="title">
-              Title goes here
-            </template>
-            <template slot="subtitle">
-              Subtitle here
-            </template>
+            <ui-card-title>Title goes here</ui-card-title>
+            <ui-card-subtitle>Subtitle here</ui-card-subtitle>
           </ui-card-head>
           <ui-card-actions>
             <ui-button class="mdc-card__action" compact dark>Action 1</ui-button>
@@ -136,11 +108,7 @@
       <div>
         <ui-card class="demo-card demo-card--small">
           <ui-card-media>
-            <ui-card-head noWrap noSubtitle>
-              <template slot="title">
-                Title
-              </template>
-            </ui-card-head>
+            <ui-card-title>Title</ui-card-title>
           </ui-card-media>
           <ui-card-actions>
             <ui-button class="mdc-card__action" compact>Action 1</ui-button>
@@ -150,18 +118,14 @@
 
       <div>
         <ui-card class="demo-card">
-          <ui-card-h-block>
+          <ui-card-horizontal-block>
             <ui-card-head>
-              <template slot="title">
-                Title here
-              </template>
-              <template slot="subtitle">
-                Subtitle here
-              </template>
+              <ui-card-title>Title here</ui-card-title>
+              <ui-card-subtitle>Subtitle here</ui-card-subtitle>
             </ui-card-head>
             <ui-card-media-item :src="require('../../images/1-1.jpg')" alt="">
             </ui-card-media-item>
-          </ui-card-h-block>
+          </ui-card-horizontal-block>
           <ui-card-actions>
             <ui-button class="mdc-card__action" compact>Action 1</ui-button>
             <ui-button class="mdc-card__action" compact>Action 2</ui-button>
@@ -171,18 +135,14 @@
 
       <div>
         <ui-card class="demo-card">
-          <ui-card-h-block>
+          <ui-card-horizontal-block>
+            <ui-card-head>
+              <ui-card-title>Title here</ui-card-title>
+              <ui-card-subtitle>Subtitle here</ui-card-subtitle>
+            </ui-card-head>
             <ui-card-media-item size="1.5" :src="require('../../images/1-1.jpg')" alt="">
             </ui-card-media-item>
-            <ui-card-head>
-              <template slot="title">
-                Title here
-              </template>
-              <template slot="subtitle">
-                Subtitle here
-              </template>
-            </ui-card-head>
-          </ui-card-h-block>
+          </ui-card-horizontal-block>
           <ui-card-actions>
             <ui-button class="mdc-card__action" compact>Action 1</ui-button>
             <ui-button class="mdc-card__action" compact>Action 2</ui-button>
@@ -192,18 +152,14 @@
 
       <div>
         <ui-card class="demo-card">
-          <ui-card-h-block>
+          <ui-card-horizontal-block>
             <ui-card-head>
-              <template slot="title">
-                Title here
-              </template>
-              <template slot="subtitle">
-                Subtitle here
-              </template>
+              <ui-card-title>Title here</ui-card-title>
+              <ui-card-subtitle>Subtitle here</ui-card-subtitle>
             </ui-card-head>
             <ui-card-media-item size="2" :src="require('../../images/1-1.jpg')" alt="">
             </ui-card-media-item>
-          </ui-card-h-block>
+          </ui-card-horizontal-block>
           <ui-card-actions>
             <ui-button class="mdc-card__action" compact>Action 1</ui-button>
             <ui-button class="mdc-card__action" compact>Action 2</ui-button>
@@ -213,14 +169,15 @@
 
       <div>
         <ui-card class="demo-card">
-          <ui-card-h-block>
+          <ui-card-horizontal-block>
             <ui-card-media-item size="3" :src="require('../../images/1-1.jpg')" alt="">
             </ui-card-media-item>
             <ui-card-actions vertical>
+              <!-- TODO(sgomes): Replace with icon buttons when we have those. -->
               <ui-button class="mdc-card__action" compact>A1</ui-button>
               <ui-button class="mdc-card__action" compact>A2</ui-button>
             </ui-card-actions>
-          </ui-card-h-block>
+          </ui-card-horizontal-block>
         </ui-card>
       </div>
     </section>

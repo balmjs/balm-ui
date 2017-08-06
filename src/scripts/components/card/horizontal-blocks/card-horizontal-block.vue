@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ui-card-h-block'
+  name: 'ui-card-horizontal-block'
 };
 </script>

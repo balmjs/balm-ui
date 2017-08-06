@@ -58,9 +58,11 @@ import UiSlider from './scripts/components/input-controls/slider';
 import UiCard from './scripts/components/card/card';
 import UiCardMedia from './scripts/components/card/content-blocks/card-media';
 import UiCardHead from './scripts/components/card/content-blocks/card-head';
+import UiCardTitle from './scripts/components/card/content-blocks/card-title';
+import UiCardSubtitle from './scripts/components/card/content-blocks/card-subtitle';
 import UiCardBody from './scripts/components/card/content-blocks/card-body';
 import UiCardActions from './scripts/components/card/content-blocks/card-actions';
-import UiCardHBlock from './scripts/components/card/horizontal-blocks/card-h-block';
+import UiCardHorizontalBlock from './scripts/components/card/horizontal-blocks/card-horizontal-block';
 import UiCardMediaItem from './scripts/components/card/horizontal-blocks/card-media-item';
 import UiGridList from './scripts/components/grid-list/grid-list';
 import UiGridTile from './scripts/components/grid-list/grid-tile';
@@ -125,11 +127,13 @@ const components = {
   UiFab,
   UiCard,
   UiCardHead,
+  UiCardTitle,
+  UiCardSubtitle,
   UiCardMedia,
   UiCardMediaItem,
   UiCardBody,
   UiCardActions,
-  UiCardHBlock,
+  UiCardHorizontalBlock,
   UiMenuAnchor,
   UiMenu,
   UiMenuItem,
@@ -230,11 +234,13 @@ export {
   UiFab,
   UiCard,
   UiCardHead,
+  UiCardTitle,
+  UiCardSubtitle,
   UiCardMedia,
   UiCardMediaItem,
   UiCardBody,
   UiCardActions,
-  UiCardHBlock,
+  UiCardHorizontalBlock,
   UiMenuAnchor,
   UiMenu,
   UiMenuItem,

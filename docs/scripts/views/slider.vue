@@ -1,15 +1,67 @@
 <template>
-  <div class="docs-slider">
-    <div class="component-title">
-      <h3>Slider</h3>
-      <p>Selecting a value out of a range.</p>
-    </div>
+  <div class="demo--slider">
+    <section class="hero">
+      <div id="hero-slider-wrapper">
+        <ui-slider id="hero-slider" min="0" max="100" step="2"
+          :model="value" label="Select Value"
+          @change="onChange('value', $event)"></ui-slider>
+      </div>
+    </section>
 
-    <!-- <h4>{{ $t('slider.basic') }}</h4> -->
-    <ui-slider :min="-5" :max="5" :model="slider1" @change="onChange"></ui-slider>
+    <section id="slider-example" class="example">
+      <h2>Continuous Slider</h2>
+      <div class="slider-example">
+        <p id="example-cs-label">Select Value:</p>
 
-    <!-- <h4>{{ $t('slider.advanced') }}</h4> -->
-    // TODO
+        <div class="example-slider-wrapper">
+          <ui-slider id="continuous-mdc-slider"
+            :model="value1"
+            @change="onChange('value1', $event)"></ui-slider>
+        </div>
+
+        <p>
+          Value from <code>change</code> event: <span id="continuous-slider-committed-value">
+            {{ value1 }}
+          </span>
+        </p>
+      </div>
+
+      <h2>Discrete Slider</h2>
+      <div class="slider-example">
+        <p id="example-ds-label">Select Value:</p>
+
+        <div class="example-slider-wrapper">
+          <ui-slider id="discrete-mdc-slider"
+            discrete
+            :model="value2"
+            @change="onChange('value2', $event)"></ui-slider>
+        </div>
+
+        <p>
+          Value from <code>change</code> event: <span id="discrete-slider-committed-value">
+            {{ value2 }}
+          </span>
+        </p>
+      </div>
+
+      <h2>Discrete Slider with markers</h2>
+      <div class="slider-example">
+        <p id="example-ds-marker-label">Select Value:</p>
+
+        <div class="example-slider-wrapper">
+          <ui-slider id="discrete-mdc-slider-w-marker"
+            displayMarkers
+            :model="value3"
+            @change="onChange('value3', $event)"></ui-slider>
+        </div>
+
+        <p>
+          Value from <code>change</code> event: <span id="discrete-slider-w-marker-committed-value">
+            {{ value3 }}
+          </span>
+        </p>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -17,13 +69,11 @@
 export default {
   data() {
     return {
-      slider1: 0
+      value: 30,
+      value1: 10,
+      value2: 20,
+      value3: 30
     };
-  },
-  methods: {
-    onChange(data) {
-      this.slider1 = data;
-    }
   }
 };
 </script>

@@ -51,6 +51,7 @@ import UiRadio from './scripts/components/input-controls/radio';
 import UiSelect from './scripts/components/input-controls/select';
 import UiSelect2 from './scripts/components/input-controls/select2';
 import UiSwitch from './scripts/components/input-controls/switch';
+import UiSlider from './scripts/components/input-controls/slider';
 /**
  * Data
  */
@@ -140,9 +141,10 @@ const components = {
   UiCheckbox,
   UiRadio,
   UiIconToggle,
-  UiSwitch,
   UiSelect,
   UiSelect2,
+  UiSwitch,
+  UiSlider,
   // Data
   UiGridList,
   UiGridTile,
@@ -244,9 +246,10 @@ export {
   UiCheckbox,
   UiRadio,
   UiIconToggle,
-  UiSwitch,
   UiSelect,
   UiSelect2,
+  UiSwitch,
+  UiSlider,
   // Data
   UiGridList,
   UiGridTile,

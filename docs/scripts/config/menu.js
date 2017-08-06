@@ -108,6 +108,10 @@ const MATERIAL_COMPONENTS = [{
         icon: 'switch',
         name: 'Switch',
         description: 'On off switches'
+      }, {
+        icon: 'slider',
+        name: 'Slider',
+        description: 'Range Controls'
       }
     ]
   }, '-', {
@@ -152,6 +156,9 @@ const getComponentIcon = component => {
         break;
       case 'progress':
         icon = 'ic_progress_activity.svg';
+        break;
+      case 'slider':
+        icon = 'slider.svg';
         break;
       default:
         icon = `ic_${component.icon}_24px.svg`;

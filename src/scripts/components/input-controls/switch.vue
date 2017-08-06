@@ -21,10 +21,16 @@
 </template>
 
 <script>
+// import {MDCFormField} from '../../../material-components-web/form-field';
+import UiFormField from './form-field';
+
 const UI_EVENT_CHANGE = 'change';
 
 export default {
   name: 'ui-switch',
+  components: {
+    UiFormField
+  },
   props: {
     // state
     model: [Boolean, Number, String],

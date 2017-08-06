@@ -5,6 +5,7 @@ const IconToggle = () => import('../views/icon-toggle');
 const Switch = () => import('../views/switch');
 const Textfield = () => import('../views/textfield');
 const Select = () => import('../views/select');
+const Slider = () => import('../views/slider');
 
 const formRoutes = [{
   path: '/form-field',
@@ -66,6 +67,15 @@ const formRoutes = [{
   component: Select,
   meta: {
     title: 'BalmUI - Select',
+    keywords: '',
+    description: ''
+  }
+}, {
+  path: '/slider',
+  name: 'slider',
+  component: Slider,
+  meta: {
+    title: 'BalmUI - Slider',
     keywords: '',
     description: ''
   }

@@ -12,8 +12,8 @@
     </section>
 
     <section class="example">
-      <ui-button primary raised @click.native="openDialog('open')">Show Dialog</ui-button>
-      <ui-button primary raised @click.native="showDialog('open2')">Show Scrolling Dialog</ui-button>
+      <ui-button primary raised @click.native="onOpen('open')">Show Dialog</ui-button>
+      <ui-button primary raised @click.native="onShow('open2')">Show Scrolling Dialog</ui-button>
     </section>
 
     <section class="example">
@@ -24,7 +24,7 @@
 
     <ui-dialog
       :open="open"
-      @close="closeDialog('open')"
+      @close="onClose('open')"
       @accept="accept"
       @cancel="cancel">
       <template slot="title">Use Google's location service?</template>
@@ -34,7 +34,7 @@
     <ui-dialog
       scrollable
       :open="open2"
-      @close="hideDialog('open2')"
+      @close="onHide('open2')"
       @accept="accept"
       @cancel="cancel">
       <template slot="title">Choose a Ringtone</template>
@@ -53,12 +53,12 @@
       </ul>
     </ui-dialog>
 
-    <!-- <ui-alert :open="open3" @close="hideDialog('open3')">
+    <!-- <ui-alert :open="open3" @close="onHide('open3')">
       <template slot="title">Title</template>
       Hello World!
     </ui-alert>
 
-    <ui-confirm :open="open4" @close="hideDialog('open4')" @result="onResult">
+    <ui-confirm :open="open4" @close="onHide('open4')" @result="onResult">
       <template slot="title">Title</template>
       Are you sure?
     </ui-confirm> -->

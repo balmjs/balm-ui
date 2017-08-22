@@ -39,6 +39,12 @@
       </div>
 
       <div class="example">
+        <h2>Fixed Toolbar with Menu</h2>
+        <p><router-link to="menu-toolbar" target="_blank">View in separate window</router-link></p>
+        <iframe v-if="!DEBUG" class="demo-container" :src="`${$domain}/#/menu-toolbar`"></iframe>
+      </div>
+
+      <div class="example">
         <h2>Waterfall Toolbar</h2>
         <p><router-link to="waterfall-toolbar" target="_blank">View in separate window</router-link></p>
         <iframe v-if="!DEBUG" class="demo-container" :src="`${$domain}/#/waterfall-toolbar`"></iframe>

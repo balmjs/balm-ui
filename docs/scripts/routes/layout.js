@@ -11,6 +11,7 @@ const WaterfallToolbar = () => import('../views/toolbar/waterfall-toolbar');
 const DefaultFlexibleToolbar = () => import('../views/toolbar/default-flexible-toolbar');
 const WaterfallFlexibleToolbar = () => import('../views/toolbar/waterfall-flexible-toolbar');
 const WaterfallToolbarFixLastRow = () => import('../views/toolbar/waterfall-toolbar-fix-last-row');
+const MenuToolbar = () => import('../views/toolbar/menu-toolbar');
 
 const layoutRoutes = [{
   path: '/temporary-drawer',
@@ -126,6 +127,15 @@ const layoutRoutes = [{
   component: WaterfallToolbarFixLastRow,
   meta: {
     title: 'BalmUI - Waterfall Toolbar Fix LastRow',
+    keywords: '',
+    description: ''
+  }
+}, {
+  path: '/menu-toolbar',
+  name: 'menu-toolbar',
+  component: MenuToolbar,
+  meta: {
+    title: 'BalmUI - Fixed Toolbar with Menu',
     keywords: '',
     description: ''
   }

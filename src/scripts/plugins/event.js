@@ -7,22 +7,22 @@ const methods = {
     fn(value);
     return this;
   },
-  openDialog(_property, fn = () => {}) {
+  onOpen(_property, fn = () => {}) {
     (new Function(`this.${_property} = true;`)).call(this);
     fn();
     return this;
   },
-  closeDialog(_property, fn = () => {}) {
+  onClose(_property, fn = () => {}) {
     (new Function(`this.${_property} = false;`)).call(this);
     fn();
     return this;
   },
-  showDialog(_property, fn = () => {}) {
+  onShow(_property, fn = () => {}) {
     (new Function(`this.${_property} = true;`)).call(this);
     fn();
     return this;
   },
-  hideDialog(_property, fn = () => {}) {
+  onHide(_property, fn = () => {}) {
     (new Function(`this.${_property} = false;`)).call(this);
     fn();
     return this;

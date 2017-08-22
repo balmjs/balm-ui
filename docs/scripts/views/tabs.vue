@@ -131,7 +131,7 @@
         <div class="demo-note">
           <em>Note: Changing the toolbar's background color here so that the primary indicator can be visible</em>
         </div>
-        <ui-toolbar class="mdc-theme--accent-bg">
+        <ui-toolbar :class="themeColor('secondary', true)">
           <ui-toolbar-row>
             <ui-toolbar-section fit align="start">
               <ui-toolbar-title>Title</ui-toolbar-title>

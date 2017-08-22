@@ -1,8 +1,10 @@
+import { isUndefined } from '../helpers';
+
 /**
  * Form Validator
  *
  * @author Elf-mousE
- * @updated 2017.08.04
+ * @updated 2017.08.08
  *
  * @usage
  *
@@ -68,7 +70,7 @@ const LABEL_PLACEHOLDER = '%s';
 
 export default {
   methods: {
-    validate(formData) {
+    validate(formData, extraRules = {}) {
       let result = {
         isValid: true,
         valid: [], // Valid fields
@@ -77,44 +79,46 @@ export default {
         messages: [] // All invalid messages
       };
 
-      const VALIDATION = this.$options.validation || {};
+      const VALIDATION = Object.assign({}, this.$options.validation, extraRules) || {};
       const RULES = this.$options.validationRules || {};
 
       for (let key in VALIDATION) {
-        let value = formData[key];
-        let field = VALIDATION[key];
+        if (!isUndefined(formData[key])) {
+          let value = formData[key];
+          let field = VALIDATION[key];
 
-        let validators = field.validator.split(',').map(validator => validator.trim());
-        let label = field.label || '';
+          let validators = field.validator.split(',').map(validator => validator.trim());
+          let label = field.label || '';
 
-        for (let i = 0, len = validators.length; i < len; i++) {
-          let curRuleName = validators[i];
-          let curValidator = RULES[curRuleName] || field[curRuleName];
+          for (let i = 0, len = validators.length; i < len; i++) {
+            let curRuleName = validators[i];
+            let curValidator = RULES[curRuleName] || field[curRuleName];
 
-          if (curValidator) {
-            if (curValidator.validate(value, formData)) {
-              // Success
-              if (!result.valid.includes(key)) {
-                result.valid.push(key);
+            if (curValidator) {
+              if (curValidator.validate(value, formData)) {
+                // success
+                if (!result.valid.includes(key)) {
+                  result.valid.push(key);
+                }
+              } else {
+                // failure
+                result.isValid = false;
+                result.invalid.push(key);
+                let index = result.valid.findIndex(item => item === key);
+                if (index > -1) {
+                  result.valid.splice(index, 1);
+                }
+
+                let message = curValidator.message.replace(LABEL_PLACEHOLDER, label);
+                if (!result.message) {
+                  result.message = message;
+                }
+                result.messages.push(message);
+                break;
               }
             } else {
-              // Failure
-              result.isValid = false;
-              result.invalid.push(key);
-              let index = result.valid.findIndex(item => item === key);
-              if (index > -1) {
-                result.valid.splice(index, 1);
-              }
-
-              let message = curValidator.message.replace(LABEL_PLACEHOLDER, label);
-              if (!result.message) {
-                result.message = message;
-              }
-              result.messages.push(message);
-              break;
+              console.warn(`The '${key}' is missing a validation rule: [${curRuleName}]`);
             }
-          } else {
-            console.warn(`The '${key}' is missing a validation rule: [${curRuleName}]`);
           }
         }
       }

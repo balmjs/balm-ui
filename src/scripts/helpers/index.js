@@ -24,6 +24,8 @@ const isArray = arr => getType(arr) === 'array';
 
 const isFunction = arr => getType(arr) === 'function';
 
+const jsonEqual = (a, b) => JSON.stringify(a) === JSON.stringify(b); // The ORDER of the properties IS IMPORTANT
+
 /**
  * detect IE
  * returns version of IE or false, if browser is not Internet Explorer
@@ -79,5 +81,6 @@ export {
   isObject,
   isArray,
   isFunction,
+  jsonEqual,
   detectIE
 };

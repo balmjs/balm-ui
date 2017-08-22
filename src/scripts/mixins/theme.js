@@ -1,37 +1,48 @@
-const THEME_COLORS = ['primary', 'accent', 'background'];
-const TEXT_COLORS = ['primary', 'secondary', 'hint', 'disabled', 'icon'];
-const TEXT_THEME_COLORS = THEME_COLORS.concat(['light', 'dark']);
+const THEME_COLORS = [
+  'primary',
+  'primary-light',
+  'primary-dark',
+  'secondary',
+  'secondary-light',
+  'secondary-dark',
+  'background'
+];
+const TEXT_STYLES = ['primary', 'secondary', 'hint', 'disabled', 'icon'];
+const THEME_STYLES = ['light', 'dark'];
+const TEXT_THEME_COLORS = THEME_COLORS.concat(THEME_STYLES);
 
 export default {
   methods: {
     themeColor(color = '', bg = false) {
-      let style = '';
+      let className = '';
+      let currentColor = color.toLowerCase();
 
-      if (THEME_COLORS.indexOf(color.toLowerCase()) > -1) {
-        style = `mdc-theme--${color}`;
-        if (bg) {
-          style += '-bg';
+      if (THEME_COLORS.indexOf(currentColor) > -1) {
+        className = `mdc-theme--${currentColor}`;
+        let hasBackground = bg && (currentColor !== 'background');
+        if (hasBackground) {
+          className += '-bg';
         }
       } else {
         console.warn('Please choose a theme color: ' + JSON.stringify(THEME_COLORS));
       }
 
-      return style;
+      return className;
     },
     textColor(color = '', bgColor = '') {
-      let style = '';
+      let className = '';
 
-      if (TEXT_COLORS.indexOf(color.toLowerCase()) > -1) {
+      if (TEXT_STYLES.indexOf(color.toLowerCase()) > -1) {
         if (TEXT_THEME_COLORS.indexOf(bgColor.toLowerCase()) > -1) {
-          style = `mdc-theme--text-${color}-on-${bgColor}`;
+          className = `mdc-theme--text-${color}-on-${bgColor}`;
         } else {
           console.warn('Please choose a text theme color: ' + JSON.stringify(TEXT_THEME_COLORS));
         }
       } else {
-        console.warn('Please choose a text color: ' + JSON.stringify(TEXT_COLORS));
+        console.warn('Please choose a text color: ' + JSON.stringify(TEXT_STYLES));
       }
 
-      return style;
+      return className;
     }
   }
 };

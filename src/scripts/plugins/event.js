@@ -1,4 +1,4 @@
-const GRID_PROPERTY = ['margin', 'gutter'];
+const GRID_PROPERTY = ['margin', 'gutter', 'column-width'];
 const SCREEN_SIZE = ['desktop', 'tablet', 'phone'];
 
 const methods = {

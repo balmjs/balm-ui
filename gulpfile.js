@@ -14,8 +14,8 @@ var DEV_SOURCE = {
   font: './src/fonts'
 };
 var DMC_COMPONENTS = [
-  'base',
   'animation',
+  'base',
   'button',
   'card',
   'checkbox',
@@ -32,7 +32,9 @@ var DMC_COMPONENTS = [
   'menu',
   'radio',
   'ripple',
+  'rtl',
   'select',
+  'selection-control',
   'slider',
   'snackbar',
   'switch',
@@ -40,8 +42,7 @@ var DMC_COMPONENTS = [
   'textfield',
   'theme',
   'toolbar',
-  'typography',
-  'rtl'
+  'typography'
 ];
 
 balm.config = {

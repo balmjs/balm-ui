@@ -19,247 +19,255 @@
     normalize-path "^2.0.1"
     through2 "^2.0.3"
 
-"@material/animation@^0.3.0":
-  version "0.3.0"
-  resolved "http://registry.npm.taobao.org/@material/animation/download/@material/animation-0.3.0.tgz#57b13c75e705eba9686ec5e9fd03a361738ce76a"
+"@material/animation@^0.3.1":
+  version "0.3.1"
+  resolved "http://registry.npm.taobao.org/@material/animation/download/@material/animation-0.3.1.tgz#229de6927d0590d6d6b20157d778d264ef02229a"
 
-"@material/auto-init@^0.1.2":
-  version "0.1.2"
-  resolved "http://registry.npm.taobao.org/@material/auto-init/download/@material/auto-init-0.1.2.tgz#a6d5f88efff08c087e53f55c2cdfbb22ce6f4901"
+"@material/auto-init@^0.1.3":
+  version "0.1.3"
+  resolved "http://registry.npm.taobao.org/@material/auto-init/download/@material/auto-init-0.1.3.tgz#11f92ebb40067268238448391a542505b1932190"
 
-"@material/base@^0.2.3":
-  version "0.2.3"
-  resolved "http://registry.npm.taobao.org/@material/base/download/@material/base-0.2.3.tgz#c4eb26b6d6e5840c254ad487588dc4f69b971f3e"
+"@material/base@^0.2.4":
+  version "0.2.4"
+  resolved "http://registry.npm.taobao.org/@material/base/download/@material/base-0.2.4.tgz#5f7abc80f808f955ec68b01106e490187e3feda9"
 
-"@material/button@^0.3.10":
-  version "0.3.10"
-  resolved "http://registry.npm.taobao.org/@material/button/download/@material/button-0.3.10.tgz#fec02394db79ee7a5799917f806076c8047a00ad"
+"@material/button@^0.4.0":
+  version "0.4.0"
+  resolved "http://registry.npm.taobao.org/@material/button/download/@material/button-0.4.0.tgz#1ef10e7da9d675e4e38d21cad4db033a3b04c64a"
   dependencies:
-    "@material/animation" "^0.3.0"
-    "@material/elevation" "^0.1.10"
-    "@material/ripple" "^0.8.1"
-    "@material/theme" "^0.1.6"
-    "@material/typography" "^0.2.3"
+    "@material/elevation" "^0.1.11"
+    "@material/ripple" "^0.8.3"
+    "@material/theme" "^0.2.0"
+    "@material/typography" "^0.3.0"
 
-"@material/card@^0.2.5":
-  version "0.2.5"
-  resolved "http://registry.npm.taobao.org/@material/card/download/@material/card-0.2.5.tgz#dc58e68b50e53a889000695b0e94f868234f4afd"
+"@material/card@^0.2.7":
+  version "0.2.7"
+  resolved "http://registry.npm.taobao.org/@material/card/download/@material/card-0.2.7.tgz#277f08d8013ea61fbd91885eb6f029ba9bc5502b"
   dependencies:
-    "@material/elevation" "^0.1.10"
+    "@material/elevation" "^0.1.11"
     "@material/rtl" "^0.1.7"
-    "@material/theme" "^0.1.6"
-    "@material/typography" "^0.2.3"
+    "@material/theme" "^0.2.0"
+    "@material/typography" "^0.3.0"
 
-"@material/checkbox@^0.4.1":
-  version "0.4.1"
-  resolved "http://registry.npm.taobao.org/@material/checkbox/download/@material/checkbox-0.4.1.tgz#7c1cc0bfb1035da01d18681b3ea9b09db9fa0b66"
+"@material/checkbox@^0.4.3":
+  version "0.4.3"
+  resolved "http://registry.npm.taobao.org/@material/checkbox/download/@material/checkbox-0.4.3.tgz#ae26289298a06df029d355570272ee202cfee5c3"
   dependencies:
-    "@material/animation" "^0.3.0"
-    "@material/base" "^0.2.3"
-    "@material/ripple" "^0.8.1"
+    "@material/animation" "^0.3.1"
+    "@material/base" "^0.2.4"
+    "@material/ripple" "^0.8.3"
     "@material/rtl" "^0.1.7"
-    "@material/theme" "^0.1.6"
+    "@material/selection-control" "^0.0.1"
+    "@material/theme" "^0.2.0"
 
-"@material/dialog@^0.3.4":
-  version "0.3.4"
-  resolved "http://registry.npm.taobao.org/@material/dialog/download/@material/dialog-0.3.4.tgz#f25f71087ea9f325503ab9bb3a1447d71bf22d57"
+"@material/dialog@^0.4.0":
+  version "0.4.0"
+  resolved "http://registry.npm.taobao.org/@material/dialog/download/@material/dialog-0.4.0.tgz#02f7b00ac001b7713480314ea9df98751088879c"
   dependencies:
-    "@material/animation" "^0.3.0"
-    "@material/base" "^0.2.3"
-    "@material/elevation" "^0.1.10"
-    "@material/ripple" "^0.8.1"
+    "@material/animation" "^0.3.1"
+    "@material/base" "^0.2.4"
+    "@material/elevation" "^0.1.11"
+    "@material/ripple" "^0.8.3"
     "@material/rtl" "^0.1.7"
-    "@material/theme" "^0.1.6"
+    "@material/theme" "^0.2.0"
     "@material/typography" "^0.1.1"
     focus-trap "^2.3.0"
 
-"@material/drawer@^0.5.3":
-  version "0.5.3"
-  resolved "http://registry.npm.taobao.org/@material/drawer/download/@material/drawer-0.5.3.tgz#a404f784e9ec8b1f2c64b9c1d1298e2c6e3b5c8e"
+"@material/drawer@^0.5.5":
+  version "0.5.5"
+  resolved "http://registry.npm.taobao.org/@material/drawer/download/@material/drawer-0.5.5.tgz#dea40b69aa7005e2ab2d46d44f2bf70e17118d3a"
   dependencies:
-    "@material/animation" "^0.3.0"
-    "@material/base" "^0.2.3"
-    "@material/elevation" "^0.1.10"
+    "@material/animation" "^0.3.1"
+    "@material/base" "^0.2.4"
+    "@material/elevation" "^0.1.11"
     "@material/rtl" "^0.1.7"
-    "@material/theme" "^0.1.6"
-    "@material/typography" "^0.2.3"
+    "@material/theme" "^0.2.0"
+    "@material/typography" "^0.3.0"
 
-"@material/elevation@^0.1.10":
-  version "0.1.10"
-  resolved "http://registry.npm.taobao.org/@material/elevation/download/@material/elevation-0.1.10.tgz#f0250c97c81663534b83c3428e764c9026d41ba1"
+"@material/elevation@^0.1.11":
+  version "0.1.11"
+  resolved "http://registry.npm.taobao.org/@material/elevation/download/@material/elevation-0.1.11.tgz#195815648697f2fbad20666a4c232dc9b6f1189b"
   dependencies:
-    "@material/animation" "^0.3.0"
+    "@material/animation" "^0.3.1"
 
-"@material/fab@^0.3.12":
-  version "0.3.12"
-  resolved "http://registry.npm.taobao.org/@material/fab/download/@material/fab-0.3.12.tgz#d4b2ba9da81ff4a64a59412aaa05225ea627fc4f"
+"@material/fab@^0.3.14":
+  version "0.3.14"
+  resolved "http://registry.npm.taobao.org/@material/fab/download/@material/fab-0.3.14.tgz#61f6b646482db7b885c9fababd5a847f9978a3ca"
   dependencies:
-    "@material/animation" "^0.3.0"
-    "@material/elevation" "^0.1.10"
-    "@material/ripple" "^0.8.1"
-    "@material/theme" "^0.1.6"
+    "@material/animation" "^0.3.1"
+    "@material/elevation" "^0.1.11"
+    "@material/ripple" "^0.8.3"
+    "@material/theme" "^0.2.0"
 
-"@material/form-field@^0.2.10":
-  version "0.2.10"
-  resolved "http://registry.npm.taobao.org/@material/form-field/download/@material/form-field-0.2.10.tgz#f36b5a83da9ac8967a36245822661f3d133175c5"
+"@material/form-field@^0.2.12":
+  version "0.2.12"
+  resolved "http://registry.npm.taobao.org/@material/form-field/download/@material/form-field-0.2.12.tgz#bbf1307a86615e58f9aa239cc5563e171e5d3b6f"
   dependencies:
-    "@material/base" "^0.2.3"
+    "@material/base" "^0.2.4"
     "@material/rtl" "^0.1.7"
-    "@material/theme" "^0.1.6"
-    "@material/typography" "^0.2.3"
+    "@material/selection-control" "^0.0.1"
+    "@material/theme" "^0.2.0"
+    "@material/typography" "^0.3.0"
 
-"@material/grid-list@^0.2.7":
-  version "0.2.7"
-  resolved "http://registry.npm.taobao.org/@material/grid-list/download/@material/grid-list-0.2.7.tgz#73da8f84de735bf48640d455299407d3c99f0548"
+"@material/grid-list@^0.2.9":
+  version "0.2.9"
+  resolved "http://registry.npm.taobao.org/@material/grid-list/download/@material/grid-list-0.2.9.tgz#a6bcdceafcb125c0b3d26450a52809546835b75f"
   dependencies:
-    "@material/base" "^0.2.3"
+    "@material/base" "^0.2.4"
     "@material/rtl" "^0.1.7"
-    "@material/theme" "^0.1.6"
-    "@material/typography" "^0.2.3"
+    "@material/theme" "^0.2.0"
+    "@material/typography" "^0.3.0"
 
-"@material/icon-toggle@^0.1.15":
-  version "0.1.15"
-  resolved "http://registry.npm.taobao.org/@material/icon-toggle/download/@material/icon-toggle-0.1.15.tgz#99673aa89916e9acdad68bfe75e79b81664ca097"
+"@material/icon-toggle@^0.1.17":
+  version "0.1.17"
+  resolved "http://registry.npm.taobao.org/@material/icon-toggle/download/@material/icon-toggle-0.1.17.tgz#3459cd1dcb0ee784790a939f3442c1eac0d2e0d2"
   dependencies:
-    "@material/animation" "^0.3.0"
-    "@material/base" "^0.2.3"
-    "@material/ripple" "^0.8.1"
-    "@material/theme" "^0.1.6"
+    "@material/animation" "^0.3.1"
+    "@material/base" "^0.2.4"
+    "@material/ripple" "^0.8.3"
+    "@material/theme" "^0.2.0"
 
-"@material/layout-grid@^0.4.1":
-  version "0.4.1"
-  resolved "http://registry.npm.taobao.org/@material/layout-grid/download/@material/layout-grid-0.4.1.tgz#32516e67589c2826e452c913b9108bbaf01d3015"
-
-"@material/linear-progress@^0.1.5":
-  version "0.1.5"
-  resolved "http://registry.npm.taobao.org/@material/linear-progress/download/@material/linear-progress-0.1.5.tgz#5356f000dacc384bdaac0db46edf2f5a37e49c58"
-  dependencies:
-    "@material/animation" "^0.3.0"
-    "@material/base" "^0.2.3"
-    "@material/theme" "^0.1.6"
-
-"@material/list@^0.2.13":
-  version "0.2.13"
-  resolved "http://registry.npm.taobao.org/@material/list/download/@material/list-0.2.13.tgz#6ce919057adcd4e98c27338a751cb89578410303"
-  dependencies:
-    "@material/ripple" "^0.8.1"
-    "@material/rtl" "^0.1.7"
-    "@material/theme" "^0.1.6"
-    "@material/typography" "^0.2.3"
-
-"@material/menu@^0.4.2":
+"@material/layout-grid@^0.4.2":
   version "0.4.2"
-  resolved "http://registry.npm.taobao.org/@material/menu/download/@material/menu-0.4.2.tgz#90d75e39f5d0eab07a245be66a6f4f97cb36ca14"
-  dependencies:
-    "@material/animation" "^0.3.0"
-    "@material/base" "^0.2.3"
-    "@material/elevation" "^0.1.10"
-    "@material/theme" "^0.1.6"
-    "@material/typography" "^0.2.3"
+  resolved "http://registry.npm.taobao.org/@material/layout-grid/download/@material/layout-grid-0.4.2.tgz#729e4f50cd38fe1d7ea37717bda8a5ac59547804"
 
-"@material/radio@^0.2.8":
-  version "0.2.8"
-  resolved "http://registry.npm.taobao.org/@material/radio/download/@material/radio-0.2.8.tgz#43ac9d4e6e22674b533c2d13366e1e9849e80164"
+"@material/linear-progress@^0.1.7":
+  version "0.1.7"
+  resolved "http://registry.npm.taobao.org/@material/linear-progress/download/@material/linear-progress-0.1.7.tgz#4ac219b23807f5607878421c26fe0b67debf89b4"
   dependencies:
-    "@material/animation" "^0.3.0"
-    "@material/base" "^0.2.3"
-    "@material/ripple" "^0.8.1"
-    "@material/theme" "^0.1.6"
+    "@material/animation" "^0.3.1"
+    "@material/base" "^0.2.4"
+    "@material/theme" "^0.2.0"
 
-"@material/ripple@^0.8.1":
-  version "0.8.1"
-  resolved "http://registry.npm.taobao.org/@material/ripple/download/@material/ripple-0.8.1.tgz#6e1d9dee6453f68a8cfd3b9b7fcd253cc0e12f12"
+"@material/list@^0.2.15":
+  version "0.2.15"
+  resolved "http://registry.npm.taobao.org/@material/list/download/@material/list-0.2.15.tgz#a8e16207cfc8bb6d4c58a569a1f7c50e81dd722c"
   dependencies:
-    "@material/base" "^0.2.3"
-    "@material/theme" "^0.1.6"
+    "@material/ripple" "^0.8.3"
+    "@material/rtl" "^0.1.7"
+    "@material/theme" "^0.2.0"
+    "@material/typography" "^0.3.0"
+
+"@material/menu@^0.4.4":
+  version "0.4.4"
+  resolved "http://registry.npm.taobao.org/@material/menu/download/@material/menu-0.4.4.tgz#3b1dedccebbd1f3eeaf927eee1b9459668e7c4a2"
+  dependencies:
+    "@material/animation" "^0.3.1"
+    "@material/base" "^0.2.4"
+    "@material/elevation" "^0.1.11"
+    "@material/theme" "^0.2.0"
+    "@material/typography" "^0.3.0"
+
+"@material/radio@^0.2.10":
+  version "0.2.10"
+  resolved "http://registry.npm.taobao.org/@material/radio/download/@material/radio-0.2.10.tgz#d5f71849c6aa93b7ad770cb21941a63c583b793f"
+  dependencies:
+    "@material/animation" "^0.3.1"
+    "@material/base" "^0.2.4"
+    "@material/ripple" "^0.8.3"
+    "@material/selection-control" "^0.0.1"
+    "@material/theme" "^0.2.0"
+
+"@material/ripple@^0.8.3":
+  version "0.8.3"
+  resolved "http://registry.npm.taobao.org/@material/ripple/download/@material/ripple-0.8.3.tgz#4357e9b7e2f3b56104a488598b16b81e910538f7"
+  dependencies:
+    "@material/base" "^0.2.4"
+    "@material/theme" "^0.2.0"
 
 "@material/rtl@^0.1.7":
   version "0.1.7"
   resolved "http://registry.npm.taobao.org/@material/rtl/download/@material/rtl-0.1.7.tgz#b38b771af183bcf34d643f600f17fc433698535a"
 
-"@material/select@^0.3.11":
-  version "0.3.11"
-  resolved "http://registry.npm.taobao.org/@material/select/download/@material/select-0.3.11.tgz#014e141f9eb86207ac1424fecf77c4712db73d04"
+"@material/select@^0.3.13":
+  version "0.3.13"
+  resolved "http://registry.npm.taobao.org/@material/select/download/@material/select-0.3.13.tgz#d0e00fc0c1d3c40f6f7db60792ef83b38d8ef8a9"
   dependencies:
-    "@material/animation" "^0.3.0"
-    "@material/base" "^0.2.3"
-    "@material/list" "^0.2.13"
-    "@material/menu" "^0.4.2"
+    "@material/animation" "^0.3.1"
+    "@material/base" "^0.2.4"
+    "@material/list" "^0.2.15"
+    "@material/menu" "^0.4.4"
     "@material/rtl" "^0.1.7"
-    "@material/theme" "^0.1.6"
-    "@material/typography" "^0.2.3"
+    "@material/theme" "^0.2.0"
+    "@material/typography" "^0.3.0"
 
-"@material/slider@^0.2.1":
-  version "0.2.1"
-  resolved "http://registry.npm.taobao.org/@material/slider/download/@material/slider-0.2.1.tgz#c7dc6e5a88f4366bbed41ba45e555c7d07903f63"
+"@material/selection-control@^0.0.1":
+  version "0.0.1"
+  resolved "http://registry.npm.taobao.org/@material/selection-control/download/@material/selection-control-0.0.1.tgz#4755cdc5f8e7d33f741f9fb2007642b83aef402e"
   dependencies:
-    "@material/animation" "^0.3.0"
-    "@material/base" "^0.2.3"
+    "@material/ripple" "^0.8.3"
+
+"@material/slider@^0.2.3":
+  version "0.2.3"
+  resolved "http://registry.npm.taobao.org/@material/slider/download/@material/slider-0.2.3.tgz#056658ce29c6f42146ef04988b3caf0a6988d97f"
+  dependencies:
+    "@material/animation" "^0.3.1"
+    "@material/base" "^0.2.4"
     "@material/rtl" "^0.1.7"
-    "@material/theme" "^0.1.6"
+    "@material/theme" "^0.2.0"
 
-"@material/snackbar@^0.3.1":
-  version "0.3.1"
-  resolved "http://registry.npm.taobao.org/@material/snackbar/download/@material/snackbar-0.3.1.tgz#6497be39fe74ce8776d6bde18ddfc4a5bd752751"
+"@material/snackbar@^0.3.3":
+  version "0.3.3"
+  resolved "http://registry.npm.taobao.org/@material/snackbar/download/@material/snackbar-0.3.3.tgz#8f40e9f4da8ddb383b9b8ddc88cf75be0a9af8a1"
   dependencies:
-    "@material/animation" "^0.3.0"
-    "@material/base" "^0.2.3"
-    "@material/button" "^0.3.10"
+    "@material/animation" "^0.3.1"
+    "@material/base" "^0.2.4"
+    "@material/button" "^0.4.0"
     "@material/rtl" "^0.1.7"
-    "@material/theme" "^0.1.6"
-    "@material/typography" "^0.2.3"
+    "@material/theme" "^0.2.0"
+    "@material/typography" "^0.3.0"
 
-"@material/switch@^0.1.10":
-  version "0.1.10"
-  resolved "http://registry.npm.taobao.org/@material/switch/download/@material/switch-0.1.10.tgz#1d61520bf1c839c7a554433e57420ca5b2d5b03a"
+"@material/switch@^0.1.12":
+  version "0.1.12"
+  resolved "http://registry.npm.taobao.org/@material/switch/download/@material/switch-0.1.12.tgz#ec41cf737567f503b63c620f6124646a202a548f"
   dependencies:
-    "@material/animation" "^0.3.0"
-    "@material/elevation" "^0.1.10"
-    "@material/theme" "^0.1.6"
+    "@material/animation" "^0.3.1"
+    "@material/elevation" "^0.1.11"
+    "@material/theme" "^0.2.0"
 
-"@material/tabs@^0.2.4":
-  version "0.2.4"
-  resolved "http://registry.npm.taobao.org/@material/tabs/download/@material/tabs-0.2.4.tgz#ddc8ebe7f9aeccdf8dcb296a14c0af2c38d48668"
+"@material/tabs@^0.2.6":
+  version "0.2.6"
+  resolved "http://registry.npm.taobao.org/@material/tabs/download/@material/tabs-0.2.6.tgz#de544829ce5c39ffadb65b2578e0d76a67329bea"
   dependencies:
-    "@material/animation" "^0.3.0"
-    "@material/base" "^0.2.3"
-    "@material/ripple" "^0.8.1"
+    "@material/animation" "^0.3.1"
+    "@material/base" "^0.2.4"
+    "@material/ripple" "^0.8.3"
     "@material/rtl" "^0.1.7"
-    "@material/theme" "^0.1.6"
-    "@material/typography" "^0.2.3"
+    "@material/theme" "^0.2.0"
+    "@material/typography" "^0.3.0"
 
-"@material/textfield@^0.3.2":
-  version "0.3.2"
-  resolved "http://registry.npm.taobao.org/@material/textfield/download/@material/textfield-0.3.2.tgz#ce4a61e36185512b29dfb89d57ced166ae3d3d0b"
+"@material/textfield@^0.3.4":
+  version "0.3.4"
+  resolved "http://registry.npm.taobao.org/@material/textfield/download/@material/textfield-0.3.4.tgz#09e0f1f1773c70e652f0c9d2b117a94c25cd86dd"
   dependencies:
-    "@material/animation" "^0.3.0"
-    "@material/base" "^0.2.3"
-    "@material/ripple" "^0.8.1"
+    "@material/animation" "^0.3.1"
+    "@material/base" "^0.2.4"
+    "@material/ripple" "^0.8.3"
     "@material/rtl" "^0.1.7"
-    "@material/theme" "^0.1.6"
-    "@material/typography" "^0.2.3"
+    "@material/theme" "^0.2.0"
+    "@material/typography" "^0.3.0"
 
-"@material/theme@^0.1.6":
-  version "0.1.6"
-  resolved "http://registry.npm.taobao.org/@material/theme/download/@material/theme-0.1.6.tgz#a2044973590a68f608b439d2ce33c17707bc000c"
+"@material/theme@^0.2.0":
+  version "0.2.0"
+  resolved "http://registry.npm.taobao.org/@material/theme/download/@material/theme-0.2.0.tgz#f54a62e8bcd2a63818419c02f7ec61d9968eff07"
 
-"@material/toolbar@^0.4.3":
-  version "0.4.3"
-  resolved "http://registry.npm.taobao.org/@material/toolbar/download/@material/toolbar-0.4.3.tgz#5fc150f1a404e0568c4aec03a59b0f1f345ad08d"
+"@material/toolbar@^0.4.5":
+  version "0.4.5"
+  resolved "http://registry.npm.taobao.org/@material/toolbar/download/@material/toolbar-0.4.5.tgz#2a946b6abf7ccd636a546eadbeeed43470ca9613"
   dependencies:
-    "@material/base" "^0.2.3"
-    "@material/elevation" "^0.1.10"
+    "@material/base" "^0.2.4"
+    "@material/elevation" "^0.1.11"
     "@material/rtl" "^0.1.7"
-    "@material/theme" "^0.1.6"
-    "@material/typography" "^0.2.3"
+    "@material/theme" "^0.2.0"
+    "@material/typography" "^0.3.0"
 
 "@material/typography@^0.1.1":
   version "0.1.1"
   resolved "http://registry.npm.taobao.org/@material/typography/download/@material/typography-0.1.1.tgz#fb2e3437bd3284d39e9fb91485767ade6b2bd0c1"
 
-"@material/typography@^0.2.3":
-  version "0.2.3"
-  resolved "http://registry.npm.taobao.org/@material/typography/download/@material/typography-0.2.3.tgz#cddf4178098c9c7b4c2e78a33049376b4d6aeb53"
+"@material/typography@^0.3.0":
+  version "0.3.0"
+  resolved "http://registry.npm.taobao.org/@material/typography/download/@material/typography-0.3.0.tgz#f828c2d3215bfd66c58072709b4260c64125390a"
 
 abbrev@1:
   version "1.1.0"
@@ -1218,9 +1226,9 @@ balanced-match@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/balanced-match/download/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
 
-balm@^0.8.4:
-  version "0.8.4"
-  resolved "http://registry.npm.taobao.org/balm/download/balm-0.8.4.tgz#05f46eddcc4749f4bd8b92bcd0c795b1b79ce3c2"
+balm@^0.8.6:
+  version "0.8.6"
+  resolved "http://registry.npm.taobao.org/balm/download/balm-0.8.6.tgz#4326bd4a7fbca78879db466f6984bfe267d3d5fd"
   dependencies:
     autoprefixer "^7.1.2"
     babel-core "^6.25.0"
@@ -1257,7 +1265,7 @@ balm@^0.8.4:
     gulp-util "^3.0.8"
     gulp-zip "^4.0.0"
     gulp.spritesmith "^6.5.1"
-    html-loader "^0.5.0"
+    html-loader "^0.5.1"
     http-proxy-middleware "^0.17.4"
     main-bower-files "^2.13.1"
     merge-stream "^1.0.1"
@@ -1268,7 +1276,7 @@ balm@^0.8.4:
     run-sequence "^2.1.0"
     style-loader "^0.18.2"
     url-loader "^0.5.9"
-    webpack "^3.4.1"
+    webpack "^3.5.3"
     webpack-dev-middleware "^1.12.0"
     webpack-hot-middleware "^2.18.2"
     wiredep "^4.0.0"
@@ -2036,9 +2044,13 @@ cookie@0.3.1:
   version "0.3.1"
   resolved "http://registry.npm.taobao.org/cookie/download/cookie-0.3.1.tgz#e7e0a1f9ef43b4c8ba925c5c5a96e806d16873bb"
 
-core-js@^2.4.0, core-js@^2.4.1:
+core-js@^2.4.0:
   version "2.4.1"
   resolved "http://registry.npm.taobao.org/core-js/download/core-js-2.4.1.tgz#4de911e667b0eae9124e34254b53aea6fc618d3e"
+
+core-js@^2.5.0:
+  version "2.5.0"
+  resolved "http://registry.npm.taobao.org/core-js/download/core-js-2.5.0.tgz#569c050918be6486b3837552028ae0466b717086"
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -4184,9 +4196,9 @@ html-entities@^1.2.0:
   version "1.2.1"
   resolved "http://registry.npm.taobao.org/html-entities/download/html-entities-1.2.1.tgz#0df29351f0721163515dfb9e5543e5f6eed5162f"
 
-html-loader@^0.5.0:
-  version "0.5.0"
-  resolved "http://registry.npm.taobao.org/html-loader/download/html-loader-0.5.0.tgz#55653aea10937854de2610f43060d040505a0fd3"
+html-loader@^0.5.1:
+  version "0.5.1"
+  resolved "http://registry.npm.taobao.org/html-loader/download/html-loader-0.5.1.tgz#4f1e8396a1ea6ab42bedc987dfac058070861ebe"
   dependencies:
     es6-templates "^0.2.2"
     fastparse "^1.1.1"
@@ -5449,39 +5461,40 @@ marked@^0.3.6:
   version "0.3.6"
   resolved "http://registry.npm.taobao.org/marked/download/marked-0.3.6.tgz#b2c6c618fccece4ef86c4fc6cb8a7cbf5aeda8d7"
 
-material-components-web@0.16.0:
-  version "0.16.0"
-  resolved "http://registry.npm.taobao.org/material-components-web/download/material-components-web-0.16.0.tgz#9137f20d89a2638ce762405920fde5f3cc89e71f"
+material-components-web@0.18.0:
+  version "0.18.0"
+  resolved "http://registry.npm.taobao.org/material-components-web/download/material-components-web-0.18.0.tgz#67a63c195f0172b709e6f91987071430acf9e243"
   dependencies:
-    "@material/animation" "^0.3.0"
-    "@material/auto-init" "^0.1.2"
-    "@material/base" "^0.2.3"
-    "@material/button" "^0.3.10"
-    "@material/card" "^0.2.5"
-    "@material/checkbox" "^0.4.1"
-    "@material/dialog" "^0.3.4"
-    "@material/drawer" "^0.5.3"
-    "@material/elevation" "^0.1.10"
-    "@material/fab" "^0.3.12"
-    "@material/form-field" "^0.2.10"
-    "@material/grid-list" "^0.2.7"
-    "@material/icon-toggle" "^0.1.15"
-    "@material/layout-grid" "^0.4.1"
-    "@material/linear-progress" "^0.1.5"
-    "@material/list" "^0.2.13"
-    "@material/menu" "^0.4.2"
-    "@material/radio" "^0.2.8"
-    "@material/ripple" "^0.8.1"
+    "@material/animation" "^0.3.1"
+    "@material/auto-init" "^0.1.3"
+    "@material/base" "^0.2.4"
+    "@material/button" "^0.4.0"
+    "@material/card" "^0.2.7"
+    "@material/checkbox" "^0.4.3"
+    "@material/dialog" "^0.4.0"
+    "@material/drawer" "^0.5.5"
+    "@material/elevation" "^0.1.11"
+    "@material/fab" "^0.3.14"
+    "@material/form-field" "^0.2.12"
+    "@material/grid-list" "^0.2.9"
+    "@material/icon-toggle" "^0.1.17"
+    "@material/layout-grid" "^0.4.2"
+    "@material/linear-progress" "^0.1.7"
+    "@material/list" "^0.2.15"
+    "@material/menu" "^0.4.4"
+    "@material/radio" "^0.2.10"
+    "@material/ripple" "^0.8.3"
     "@material/rtl" "^0.1.7"
-    "@material/select" "^0.3.11"
-    "@material/slider" "^0.2.1"
-    "@material/snackbar" "^0.3.1"
-    "@material/switch" "^0.1.10"
-    "@material/tabs" "^0.2.4"
-    "@material/textfield" "^0.3.2"
-    "@material/theme" "^0.1.6"
-    "@material/toolbar" "^0.4.3"
-    "@material/typography" "^0.2.3"
+    "@material/select" "^0.3.13"
+    "@material/selection-control" "^0.0.1"
+    "@material/slider" "^0.2.3"
+    "@material/snackbar" "^0.3.3"
+    "@material/switch" "^0.1.12"
+    "@material/tabs" "^0.2.6"
+    "@material/textfield" "^0.3.4"
+    "@material/theme" "^0.2.0"
+    "@material/toolbar" "^0.4.5"
+    "@material/typography" "^0.3.0"
 
 material-design-icons@^3.0.1:
   version "3.0.1"
@@ -8812,9 +8825,9 @@ webpack-sources@^1.0.1:
     source-list-map "^2.0.0"
     source-map "~0.5.3"
 
-webpack@^3.4.1:
-  version "3.4.1"
-  resolved "http://registry.npm.taobao.org/webpack/download/webpack-3.4.1.tgz#4c3f4f3fb318155a4db0cb6a36ff05c5697418f4"
+webpack@^3.5.3:
+  version "3.5.5"
+  resolved "http://registry.npm.taobao.org/webpack/download/webpack-3.5.5.tgz#3226f09fc8b3e435ff781e7af34f82b68b26996c"
   dependencies:
     acorn "^5.0.0"
     acorn-dynamic-import "^2.0.0"

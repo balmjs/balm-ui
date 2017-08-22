@@ -14,16 +14,12 @@
  * limitations under the License.
  */
 
-/* eslint-disable no-unused-vars */
-import {MDCSelectionControlState} from '../selection-control';
-
 /* eslint no-unused-vars: [2, {"args": "none"}] */
 
 /**
- * Adapter for MDC Checkbox. Provides an interface for managing
- * - classes
- * - dom
+ * Adapter for MDC Form Field. Provides an interface for managing
  * - event handlers
+ * - ripple activation
  *
  * Additionally, provides type information for the adapter to the Closure
  * compiler.
@@ -35,30 +31,20 @@ import {MDCSelectionControlState} from '../selection-control';
  *
  * @record
  */
-export default class MDCCheckboxAdapter {
-  /** @param {string} className */
-  addClass(className) {}
+export default class MDCFormFieldAdapter {
+  /**
+   * @param {string} type
+   * @param {!EventListener} handler
+   */
+  registerInteractionHandler(type, handler) {}
 
-  /** @param {string} className */
-  removeClass(className) {}
+  /**
+   * @param {string} type
+   * @param {!EventListener} handler
+   */
+  deregisterInteractionHandler(type, handler) {}
 
-  /** @param {!EventListener} handler */
-  registerAnimationEndHandler(handler) {}
+  activateInputRipple() {}
 
-  /** @param {!EventListener} handler */
-  deregisterAnimationEndHandler(handler) {}
-
-  /** @param {!EventListener} handler */
-  registerChangeHandler(handler) {}
-
-  /** @param {!EventListener} handler */
-  deregisterChangeHandler(handler) {}
-
-  /** @return {!MDCSelectionControlState} */
-  getNativeControl() {}
-
-  forceLayout() {}
-
-  /** @return {boolean} */
-  isAttachedToDOM() {}
+  deactivateInputRipple() {}
 }

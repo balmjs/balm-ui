@@ -17,6 +17,7 @@ export default {
     UiGridInner
   },
   props: {
+    // ui attributes
     fixedColumnWidth: {
       type: Boolean,
       default: false

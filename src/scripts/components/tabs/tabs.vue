@@ -17,12 +17,18 @@
 </template>
 
 <script>
+import UiTabBar from './tab-bar';
+import UiTab from './tab';
 import tabBarMixin from '../../mixins/tab-bar';
 
 const UI_EVENT_CHANGE = 'change';
 
 export default {
   name: 'ui-tabs',
+  components: {
+    UiTabBar,
+    UiTab
+  },
   mixins: [tabBarMixin],
   props: {
     // state
@@ -52,7 +58,7 @@ export default {
   },
   methods: {
     handleChange(activeTabIndex) {
-      this.$emit(UI_EVENT_CHANGE, activeTabIndex);
+      this.$emit(UI_EVENT_CHANGE, +activeTabIndex); // activeTabIndex: number
     }
   }
 };

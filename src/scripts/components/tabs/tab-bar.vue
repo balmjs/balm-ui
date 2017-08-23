@@ -38,7 +38,7 @@ export default {
     if (!this.$tabBar) {
       this.$tabBar = new MDCTabBar(this.$el);
       this.$tabBar.listen(MDC_EVENT_CHANGE, ({detail: tabs}) => {
-        this.$emit(UI_EVENT_CHANGE, tabs.activeTabIndex);
+        this.$emit(UI_EVENT_CHANGE, +tabs.activeTabIndex); // activeTabIndex: number
       });
 
       let activeIndex = this.active;

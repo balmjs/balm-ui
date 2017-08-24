@@ -10,10 +10,8 @@
     </div>
     <div class="mdc-tab-bar-scroller__scroll-frame">
       <nav class="mdc-tab-bar mdc-tab-bar-scroller__scroll-frame__tabs">
-        <slot name="before"></slot>
         <slot></slot>
         <span class="mdc-tab-bar__indicator"></span>
-        <slot name="after"></slot>
       </nav>
     </div>
     <div class="mdc-tab-bar-scroller__indicator mdc-tab-bar-scroller__indicator--forward">

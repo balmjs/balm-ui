@@ -1,9 +1,7 @@
 <template>
   <nav :class="className" role="tablist">
-    <slot name="before"></slot>
     <slot></slot>
     <span class="mdc-tab-bar__indicator"></span>
-    <slot name="after"></slot>
   </nav>
 </template>
 

@@ -5,91 +5,51 @@
       <ui-button raised primary>Raised</ui-button>
     </section>
 
-    <section>
+    <section :class="['demo-wrapper', {'mdc-theme--dark': useDarkTheme}]">
+      <ui-checkbox id="toggle-dark"
+        :model="useDarkTheme"
+        @change="onChange('useDarkTheme', $event)">
+        Dark Theme
+      </ui-checkbox>
+
+      <h1 :class="typography('display2')">Ripple Enabled</h1>
       <fieldset>
-        <legend :class="typography('title')">Buttons</legend>
-        <ui-button>Default</ui-button>
-        <ui-button raised>Raised</ui-button>
-        <ui-button dense>Dense Default</ui-button>
-        <ui-button raised dense>Dense Raised</ui-button>
+        <legend :class="typography('title')">Text Button</legend>
+        <ui-button>Baseline</ui-button>
         <ui-button compact>Compact</ui-button>
-        <ui-button raised compact>Compact Raised</ui-button>
-        <ui-button primary>Default with Primary</ui-button>
-        <ui-button raised primary>Raised with Primary</ui-button>
-        <ui-button accent>Default with Accent</ui-button>
-        <ui-button raised accent>Raised with Accent</ui-button>
+        <ui-button dense>Dense</ui-button>
+        <ui-button primary>Primary</ui-button>
+        <ui-button accent>Accent</ui-button>
+        <ui-button disabled>Disabled</ui-button>
+      </fieldset>
+      <fieldset>
+        <legend :class="typography('title')">Raised Button</legend>
+        <ui-button raised>Baseline</ui-button>
+        <ui-button raised compact>Compact</ui-button>
+        <ui-button raised dense>Dense</ui-button>
+        <ui-button raised primary>Primary</ui-button>
+        <ui-button raised accent>Accent</ui-button>
+        <ui-button raised disabled>Disabled</ui-button>
       </fieldset>
 
+      <h1 :class="typography('display2')">CSS Only</h1>
       <fieldset>
-        <legend :class="typography('title')">Buttons CSS Only</legend>
-        <ui-button cssOnly>Default</ui-button>
-        <ui-button cssOnly raised>Raised</ui-button>
-        <ui-button cssOnly dense>Dense Default</ui-button>
-        <ui-button cssOnly raised dense>Dense Raised</ui-button>
+        <legend :class="typography('title')">Text Button</legend>
+        <ui-button>Baseline</ui-button>
         <ui-button cssOnly compact>Compact</ui-button>
-        <ui-button cssOnly raised compact>Compact Raised</ui-button>
-        <ui-button cssOnly primary>Default with Primary</ui-button>
-        <ui-button cssOnly raised primary>Raised with Primary</ui-button>
-        <ui-button cssOnly accent>Default with Accent</ui-button>
-        <ui-button cssOnly raised accent>Raised with Accent</ui-button>
+        <ui-button cssOnly dense>Dense</ui-button>
+        <ui-button cssOnly primary>Primary</ui-button>
+        <ui-button cssOnly accent>Accent</ui-button>
+        <ui-button cssOnly disabled>Disabled</ui-button>
       </fieldset>
-
       <fieldset>
-        <legend :class="typography('title')">Disabled</legend>
-        <ui-button disabled>Default</ui-button>
-        <ui-button disabled raised>Raised</ui-button>
-        <ui-button disabled dense>Dense Default</ui-button>
-        <ui-button disabled raised dense>Dense Raised</ui-button>
-        <ui-button disabled compact>Compact</ui-button>
-        <ui-button disabled raised compact>Compact Raised</ui-button>
-        <ui-button disabled primary>Default with Primary</ui-button>
-        <ui-button disabled raised primary>Raised with Primary</ui-button>
-        <ui-button disabled accent>Default with Accent</ui-button>
-        <ui-button disabled raised accent>Raised with Accent</ui-button>
-      </fieldset>
-    </section>
-
-    <section class="mdc-theme--dark">
-      <fieldset>
-        <legend :class="typography('title')">Dark Theme - Buttons</legend>
-        <ui-button>Default</ui-button>
-        <ui-button raised>Raised</ui-button>
-        <ui-button dense>Dense Default</ui-button>
-        <ui-button raised dense>Dense Raised</ui-button>
-        <ui-button compact>Compact</ui-button>
-        <ui-button raised compact>Compact Raised</ui-button>
-        <ui-button primary>Default with Primary</ui-button>
-        <ui-button raised primary>Raised with Primary</ui-button>
-        <ui-button accent>Default with Accent</ui-button>
-        <ui-button raised accent>Raised with Accent</ui-button>
-      </fieldset>
-
-      <fieldset>
-        <legend :class="typography('title')">Dark Theme - Buttons CSS Only</legend>
-        <ui-button cssOnly>Default</ui-button>
-        <ui-button cssOnly raised>Raised</ui-button>
-        <ui-button cssOnly dense>Dense Default</ui-button>
-        <ui-button cssOnly raised dense>Dense Raised</ui-button>
-        <ui-button cssOnly compact>Compact</ui-button>
-        <ui-button cssOnly raised compact>Compact Raised</ui-button>
-        <ui-button cssOnly primary>Default with Primary</ui-button>
-        <ui-button cssOnly raised primary>Raised with Primary</ui-button>
-        <ui-button cssOnly accent>Default with Accent</ui-button>
-        <ui-button cssOnly raised accent>Raised with Accent</ui-button>
-      </fieldset>
-
-      <fieldset>
-        <legend :class="typography('title')">Dark Theme - Disabled</legend>
-        <ui-button disabled>Default</ui-button>
-        <ui-button disabled raised>Raised</ui-button>
-        <ui-button disabled dense>Dense Default</ui-button>
-        <ui-button disabled raised dense>Dense Raised</ui-button>
-        <ui-button disabled compact>Compact</ui-button>
-        <ui-button disabled raised compact>Compact Raised</ui-button>
-        <ui-button disabled primary>Default with Primary</ui-button>
-        <ui-button disabled raised primary>Raised with Primary</ui-button>
-        <ui-button disabled accent>Default with Accent</ui-button>
-        <ui-button disabled raised accent>Raised with Accent</ui-button>
+        <legend :class="typography('title')">Raised Button</legend>
+        <ui-button cssOnly raised>Baseline</ui-button>
+        <ui-button cssOnly raised compact>Compact</ui-button>
+        <ui-button cssOnly raised dense>Dense</ui-button>
+        <ui-button cssOnly raised primary>Primary</ui-button>
+        <ui-button cssOnly raised accent>Accent</ui-button>
+        <ui-button cssOnly raised disabled>Disabled</ui-button>
       </fieldset>
     </section>
 
@@ -102,6 +62,11 @@ import snippets from '../mixins/snippets';
 
 export default {
   mixins: [snippets],
+  data() {
+    return {
+      useDarkTheme: false
+    };
+  },
   created() {
     // this.showCode('button', 10);
   }

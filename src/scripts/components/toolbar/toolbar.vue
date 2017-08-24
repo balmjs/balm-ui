@@ -76,7 +76,7 @@ export default {
     if (!this.$toolbar) {
       this.$toolbar = new MDCToolbar(this.$el);
       this.$toolbar.listen(MDC_EVENT_CHANGE, ({detail}) => {
-        this.$emit(UI_EVENT_CHANGE, detail.flexibleExpansionRatio);
+        this.$emit(UI_EVENT_CHANGE, detail.flexibleExpansionRatio); // flexibleExpansionRatio: number
       });
       this.fixedAdjustContent();
     }

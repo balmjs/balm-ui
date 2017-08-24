@@ -17,7 +17,7 @@ export default {
       let className = '';
       let currentColor = color.toLowerCase();
 
-      if (THEME_COLORS.indexOf(currentColor) > -1) {
+      if (THEME_COLORS.includes(currentColor)) {
         className = `mdc-theme--${currentColor}`;
         let hasBackground = bg && (currentColor !== 'background');
         if (hasBackground) {
@@ -32,8 +32,8 @@ export default {
     textColor(color = '', bgColor = '') {
       let className = '';
 
-      if (TEXT_STYLES.indexOf(color.toLowerCase()) > -1) {
-        if (TEXT_THEME_COLORS.indexOf(bgColor.toLowerCase()) > -1) {
+      if (TEXT_STYLES.includes(color.toLowerCase())) {
+        if (TEXT_THEME_COLORS.includes(bgColor.toLowerCase())) {
           className = `mdc-theme--text-${color}-on-${bgColor}`;
         } else {
           console.warn('Please choose a text theme color: ' + JSON.stringify(TEXT_THEME_COLORS));

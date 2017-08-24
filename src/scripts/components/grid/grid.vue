@@ -33,7 +33,7 @@ export default {
       }
 
       let currentAlign = this.align ? this.align.toLowerCase() : '';
-      if (ALIGNMENT.indexOf(currentAlign) > -1) {
+      if (ALIGNMENT.includes(currentAlign)) {
         result.push(`mdc-layout-grid--align-${currentAlign}`);
       }
 

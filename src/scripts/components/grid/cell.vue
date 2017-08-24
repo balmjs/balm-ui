@@ -44,7 +44,7 @@ export default {
       // Alignment
       // mdc-layout-grid__cell--align-{position}
       let currentAlign = this.align ? this.align.toLowerCase() : '';
-      if (ALIGN_POSITION.indexOf(currentAlign) > -1) {
+      if (ALIGN_POSITION.includes(currentAlign)) {
         result = this.handleCell(TYPE_ALIGN, result, currentAlign);
       }
 
@@ -56,7 +56,7 @@ export default {
       if (isObject(data)) {
         for (let key in data) {
           let value = data[key];
-          if (SCREEN_SIZE.indexOf(key) > -1) {
+          if (SCREEN_SIZE.includes(key)) {
             result.push(`${CLASSNAME_CELL}--${type}-${value}-${key}`);
           } else if (key === 'default') {
             result.push(`${CLASSNAME_CELL}--${type}-${value}`);

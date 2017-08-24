@@ -25,7 +25,7 @@ export default {
       let result = ['mdc-toolbar__section'];
 
       let currentAlign = this.align ? this.align.toLowerCase() : '';
-      if (ALIGNMENT.indexOf(currentAlign) > -1) {
+      if (ALIGNMENT.includes(currentAlign)) {
         result.push(`mdc-toolbar__section--align-${currentAlign}`);
       }
 

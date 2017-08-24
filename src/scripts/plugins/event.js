@@ -28,8 +28,8 @@ const methods = {
     return this;
   },
   setGrid(_property, screenSize, value) {
-    if (GRID_PROPERTY.indexOf(_property) > -1) {
-      if (SCREEN_SIZE.indexOf(screenSize) > -1) {
+    if (GRID_PROPERTY.includes(_property)) {
+      if (SCREEN_SIZE.includes(screenSize)) {
         document.documentElement.style.setProperty(`--mdc-layout-grid-${_property}-${screenSize}`, value);
       } else {
         console.warn('Please set a screen size: ' + JSON.stringify(SCREEN_SIZE));

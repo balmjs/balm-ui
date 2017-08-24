@@ -58,7 +58,7 @@ export default {
       };
     },
     tileAspect() {
-      return ASPECT_RATIO.indexOf(this.ratio)
+      return ASPECT_RATIO.includes(this.ratio)
         ? `mdc-grid-list--tile-aspect-${this.ratio}`
         : '';
     }

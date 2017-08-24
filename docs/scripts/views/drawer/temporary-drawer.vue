@@ -9,26 +9,27 @@
       </ui-toolbar-row>
     </ui-toolbar>
 
-    <ui-temporary-drawer
-      hasHeader
-      :headerClass="[themeColor('primary', true), textColor('primary', 'primary')]"
-      menuSelector=".demo-menu">
-      <template slot="header">Header here</template>
-      <ui-list-group>
-        <ui-list-nav>
-          <ui-item-link v-for="(item, index) in menu1" :key="index">
-            <ui-item-start :icon="item.icon"></ui-item-start>
-            {{ item.name }}
-          </ui-item-link>
-        </ui-list-nav>
-        <ui-list-divider></ui-list-divider>
-        <ui-list-nav>
-          <ui-item-link v-for="(item, index) in menu2" :key="index">
-            <ui-item-start :icon="item.icon"></ui-item-start>
-            {{ item.name }}
-          </ui-item-link>
-        </ui-list-nav>
-      </ui-list-group>
+    <ui-temporary-drawer menuSelector=".demo-menu">
+      <ui-drawer-header :contentClass="[themeColor('primary', true), textColor('primary', 'primary')]">
+        Header here
+      </ui-drawer-header>
+      <ui-drawer-content>
+        <ui-list-group>
+          <ui-list-nav>
+            <ui-item-link v-for="(item, index) in menu1" :key="index">
+              <ui-item-start :icon="item.icon"></ui-item-start>
+              {{ item.name }}
+            </ui-item-link>
+          </ui-list-nav>
+          <ui-list-divider></ui-list-divider>
+          <ui-list-nav>
+            <ui-item-link v-for="(item, index) in menu2" :key="index">
+              <ui-item-start :icon="item.icon"></ui-item-start>
+              {{ item.name }}
+            </ui-item-link>
+          </ui-list-nav>
+        </ui-list-group>
+      </ui-drawer-content>
     </ui-temporary-drawer>
 
     <main class="demo-main">

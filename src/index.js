@@ -12,6 +12,9 @@ import * as BalmUI_Mixins from './scripts/mixins';
 import UiPermanentDrawer from './scripts/components/drawer/permanent';
 import UiPersistentDrawer from './scripts/components/drawer/persistent';
 import UiTemporaryDrawer from './scripts/components/drawer/temporary';
+import UiDrawerHeader from './scripts/components/drawer/drawer-header';
+import UiDrawerToolbarSpacer from './scripts/components/drawer/drawer-toolbar-spacer';
+import UiDrawerContent from './scripts/components/drawer/drawer-content';
 import UiToolbar from './scripts/components/toolbar/toolbar';
 import UiToolbarRow from './scripts/components/toolbar/toolbar-row';
 import UiToolbarSection from './scripts/components/toolbar/toolbar-section';
@@ -104,6 +107,9 @@ const components = {
   UiPermanentDrawer,
   UiPersistentDrawer,
   UiTemporaryDrawer,
+  UiDrawerHeader,
+  UiDrawerToolbarSpacer,
+  UiDrawerContent,
   UiToolbar,
   UiToolbarRow,
   UiToolbarSection,
@@ -211,6 +217,9 @@ export {
   UiPermanentDrawer,
   UiPersistentDrawer,
   UiTemporaryDrawer,
+  UiDrawerHeader,
+  UiDrawerToolbarSpacer,
+  UiDrawerContent,
   UiToolbar,
   UiToolbarRow,
   UiToolbarSection,

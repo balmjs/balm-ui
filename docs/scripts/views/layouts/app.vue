@@ -25,28 +25,30 @@
       <!-- content -->
       <div class="balmui-body">
         <ui-permanent-drawer class="balmui-menu">
-          <template slot="default" scope="props">
-            <ui-list-nav class="catalog-list">
-              <template v-for="(item, index) in menu">
-                <router-link
-                  v-if="item.icon"
-                  :class="[props.className.item, {'submenu': item.isSubmenu}]"
-                  :to="item.url"
-                  :active-class="props.className.active">
-                  <ui-item-start>
-                    <img v-if="item.icon"
-                      class="catalog-component-icon"
-                      :src="require(`../../../images/icon/${item.icon}`)"
-                      :alt="item.name">
-                  </ui-item-start>
-                  {{ item.name }}
-                </router-link>
-                <ui-list-divider v-else-if="item === '-'"></ui-list-divider>
-                <h3 v-else>{{ item.name }}</h3>
-              </template>
-            </ui-list-nav>
-            <ui-list-divider></ui-list-divider>
-          </template>
+          <ui-drawer-content>
+            <template scope="props">
+              <ui-list-nav class="catalog-list">
+                <template v-for="(item, index) in menu">
+                  <router-link
+                    v-if="item.icon"
+                    :class="[props.className.item, {'submenu': item.isSubmenu}]"
+                    :to="item.url"
+                    :active-class="props.className.active">
+                    <ui-item-start>
+                      <img v-if="item.icon"
+                        class="catalog-component-icon"
+                        :src="require(`../../../images/icon/${item.icon}`)"
+                        :alt="item.name">
+                    </ui-item-start>
+                    {{ item.name }}
+                  </router-link>
+                  <ui-list-divider v-else-if="item === '-'"></ui-list-divider>
+                  <h3 v-else>{{ item.name }}</h3>
+                </template>
+              </ui-list-nav>
+              <ui-list-divider></ui-list-divider>
+            </template>
+          </ui-drawer-content>
         </ui-permanent-drawer>
         <main class="balmui-content">
           <router-view></router-view>

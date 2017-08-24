@@ -6,18 +6,7 @@ export default {
       default: false
     },
     // ui attributes
-    menuSelector: String,
-    headerClass: [String, Array, Object],
-    contentClass: [String, Array, Object],
-    // layout
-    hasHeader: {
-      type: Boolean,
-      default: false
-    },
-    hasSpacer: {
-      type: Boolean,
-      default: false
-    }
+    menuSelector: String
   },
   data() {
     return {

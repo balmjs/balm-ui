@@ -1,23 +1,24 @@
 <template>
   <div class="demo--drawer demo--persistent-drawer">
-    <ui-persistent-drawer
-      hasSpacer
-      menuSelector=".demo-menu">
-      <ui-list-group>
-        <ui-list-nav>
-          <ui-item-link v-for="(item, index) in menu1" :key="index">
-            <ui-item-start :icon="item.icon"></ui-item-start>
-            {{ item.name }}
-          </ui-item-link>
-        </ui-list-nav>
-        <ui-list-divider></ui-list-divider>
-        <ui-list-nav>
-          <ui-item-link v-for="(item, index) in menu2" :key="index">
-            <ui-item-start :icon="item.icon"></ui-item-start>
-            {{ item.name }}
-          </ui-item-link>
-        </ui-list-nav>
-      </ui-list-group>
+    <ui-persistent-drawer menuSelector=".demo-menu">
+      <ui-drawer-toolbar-spacer></ui-drawer-toolbar-spacer>
+      <ui-drawer-content>
+        <ui-list-group>
+          <ui-list-nav>
+            <ui-item-link v-for="(item, index) in menu1" :key="index">
+              <ui-item-start :icon="item.icon"></ui-item-start>
+              {{ item.name }}
+            </ui-item-link>
+          </ui-list-nav>
+          <ui-list-divider></ui-list-divider>
+          <ui-list-nav>
+            <ui-item-link v-for="(item, index) in menu2" :key="index">
+              <ui-item-start :icon="item.icon"></ui-item-start>
+              {{ item.name }}
+            </ui-item-link>
+          </ui-list-nav>
+        </ui-list-group>
+      </ui-drawer-content>
     </ui-persistent-drawer>
 
     <div class="demo-content">

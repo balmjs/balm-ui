@@ -26,7 +26,7 @@
       <div class="balmui-body">
         <ui-permanent-drawer class="balmui-menu">
           <ui-drawer-content>
-            <template scope="props">
+            <template slot-scope="props">
               <ui-list-nav class="catalog-list">
                 <template v-for="(item, index) in menu">
                   <router-link

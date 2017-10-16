@@ -7,8 +7,5 @@
   "parserOptions": {
     "ecmaVersion": 2017,
     "sourceType": "module"
-  },
-  "rules": {
-    "quotes": [2, "single"]
   }
 }

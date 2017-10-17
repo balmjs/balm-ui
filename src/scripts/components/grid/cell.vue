@@ -26,23 +26,23 @@ export default {
     className() {
       let result = [CLASSNAME_CELL];
 
-      // Column spans
-      // mdc-layout-grid__cell--span-{columns}
-      // Column spans for specific screen sizes
-      // mdc-layout-grid__cell--span-{columns}-{screen_size}
+      // Optional, specifies the number of columns the cell spans
+      // mdc-layout-grid__cell--span-<NUMBER_OF_COLUMNS>
+      // Optional, specifies the number of columns the cell spans on a type of device (desktop, tablet, mobile)
+      // mdc-layout-grid__cell--span-<NUMBER_OF_COLUMNS>-<TYPE_OF_DEVICE>
       if (this.col) {
         result = this.handleCell(TYPE_SPAN, result, this.col);
       }
 
-      // Reordering
-      // mdc-layout-grid__cell--order-{number}
+      // Optional, specifies the order of the cell
+      // mdc-layout-grid__cell--order-<INDEX>
       let currentOrder = +this.order;
       if (currentOrder >= 1 && currentOrder <= 12) {
         result = this.handleCell(TYPE_ORDER, result, currentOrder);
       }
 
-      // Alignment
-      // mdc-layout-grid__cell--align-{position}
+      // Optional, specifies the alignment of cell
+      // mdc-layout-grid__cell--align-<POSITION>
       let currentAlign = this.align ? this.align.toLowerCase() : '';
       if (ALIGN_POSITION.includes(currentAlign)) {
         result = this.handleCell(TYPE_ALIGN, result, currentAlign);

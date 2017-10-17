@@ -22,6 +22,7 @@
       </section>
 
       <section class="examples">
+        <h2 class="demo-grid-legend">Layout grid (in fluid container)</h2>
         <ui-grid>
           <ui-cell>
             <div class="demo-controls">
@@ -151,8 +152,8 @@
           <ui-cell class="demo-cell" col="4">4</ui-cell>
         </ui-grid>
 
-        <h2 class="demo-grid-legend">Grid with max width</h2>
-        <div class="demo-grid-legend">Grid with max width (1280px) and center alignment</div>
+        <h3 class="demo-grid-legend">Grid with max width</h3>
+        <div class="demo-grid-legend">Grid with max width (1280px) and center alignment by default</div>
         <ui-grid class="demo-grid max-width">
           <ui-cell class="demo-cell" col="4"></ui-cell>
           <ui-cell class="demo-cell" col="4"></ui-cell>
@@ -160,7 +161,7 @@
         </ui-grid>
 
         <div class="demo-grid-legend">Grid with max width (1280px) and left alignment</div>
-        <ui-grid class="demo-grid max-width left-align">
+        <ui-grid class="demo-grid max-width" align="left">
           <ui-cell class="demo-cell" col="4"></ui-cell>
           <ui-cell class="demo-cell" col="4"></ui-cell>
           <ui-cell class="demo-cell" col="4"></ui-cell>
@@ -205,23 +206,20 @@
             </div>
           </ui-cell>
         </ui-grid>
+
         <div class="demo-grid-legend">Fixed column width layout grid and center alignment by default</div>
-        <div class="demo-grid mdc-layout-grid mdc-layout-grid--fixed-column-width">
-          <div class="mdc-layout-grid__inner">
-            <div class="demo-cell mdc-layout-grid__cell mdc-layout-grid__cell--span-1"></div>
-            <div class="demo-cell mdc-layout-grid__cell mdc-layout-grid__cell--span-1"></div>
-            <div class="demo-cell mdc-layout-grid__cell mdc-layout-grid__cell--span-1"></div>
-          </div>
-        </div>
+        <ui-grid class="demo-grid" fixedColumnWidth>
+          <ui-cell class="demo-cell" col="1"></ui-cell>
+          <ui-cell class="demo-cell" col="1"></ui-cell>
+          <ui-cell class="demo-cell" col="1"></ui-cell>
+        </ui-grid>
 
         <div class="demo-grid-legend">Fixed column width layout grid and right alignment</div>
-        <div class="demo-grid mdc-layout-grid mdc-layout-grid--fixed-column-width mdc-layout-grid--align-right">
-          <div class="mdc-layout-grid__inner">
-            <div class="demo-cell mdc-layout-grid__cell mdc-layout-grid__cell--span-1"></div>
-            <div class="demo-cell mdc-layout-grid__cell mdc-layout-grid__cell--span-1"></div>
-            <div class="demo-cell mdc-layout-grid__cell mdc-layout-grid__cell--span-1"></div>
-          </div>
-        </div>
+        <ui-grid class="demo-grid" fixedColumnWidth align="right">
+          <ui-cell class="demo-cell" col="1"></ui-cell>
+          <ui-cell class="demo-cell" col="1"></ui-cell>
+          <ui-cell class="demo-cell" col="1"></ui-cell>
+        </ui-grid>
 
         <div class="demo-ruler"><div id="current" ref="ruler"></div></div>
       </section>

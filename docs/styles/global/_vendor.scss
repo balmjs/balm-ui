@@ -1,5 +1,5 @@
-$fa-font-path: '../fonts';
-
 @import 'normalize';
+@import '../../../src/material-components-web/theme/color_palette'; // just for demos
+@import 'var';
 @import '../../../src/styles/balm-ui.scss';
 @import 'node_modules/font-awesome/scss/font-awesome.scss';

@@ -1,0 +1,72 @@
+body {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.mdc-toolbar {
+  a {
+    color: #f0f0f0;
+    text-decoration: none;
+  }
+}
+
+$dark-button-color: $material-color-light-green-a200;
+.mdc-button {
+  @include mdc-theme-dark {
+    @include mdc-button-ink-color($dark-button-color);
+    @include mdc-button-ripple((base-color: $dark-button-color, opacity: $mdc-unfilled-button-ripple-opacity));
+  }
+}
+
+.mdc-button--raised,
+.mdc-button--unelevated {
+  @include mdc-theme-dark(".mdc-button", true) {
+    @include mdc-button-filled-accessible($dark-button-color);
+  }
+}
+
+.mdc-button--stroked {
+  @include mdc-theme-dark(".mdc-button", true) {
+    @include mdc-button-stroke-color($dark-button-color);
+  }
+}
+
+.catalog-title {
+  font-family: "Roboto Mono", monospace;
+}
+
+.catalog-logo,
+.catalog-back {
+  padding-right: 24px;
+  color: #eee;
+  text-decoration: none;
+}
+
+.hero {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  height: 360px;
+  min-height: 360px;
+  background-color: rgba(0, 0, 0, .05);
+}
+
+
+/* Default padding on all examples. */
+
+section.example {
+  margin: 24px;
+  padding: 24px;
+}
+
+section.example {
+  h2 {
+    margin-left: 0;
+  }
+}

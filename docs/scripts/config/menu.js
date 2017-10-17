@@ -16,7 +16,7 @@ const MATERIAL_COMPONENTS = [{
     }]
   },
   '-', {
-    name: 'Drawer',
+    name: 'Drawers',
     children: [{
       icon: 'side_navigation',
       name: 'Temporary',
@@ -130,7 +130,7 @@ const MATERIAL_COMPONENTS = [{
     name: 'Menu', // Simple Menu
     description: 'Pop over menus'
   }, '-', {
-    name: 'Other',
+    name: 'Others',
     children: [{
       icon: 'typography',
       name: 'Typography',

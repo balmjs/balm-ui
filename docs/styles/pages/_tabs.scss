@@ -23,14 +23,15 @@
     z-index: 10;
   }
   .hero button {
-    margin-left: 32px;
     margin-right: 32px;
+    margin-left: 32px;
   }
   .demo-buttons {
     padding: 40px 40px 0 40px;
   }
   fieldset legend {
     display: block;
+
     padding: 16px;
     padding-top: 64px;
     padding-bottom: 24px;
@@ -46,18 +47,20 @@
     margin-bottom: 16px;
   }
   .demo-note {
-    padding: 20px;
     margin: 20px 0;
+    padding: 20px;
+
     background-color: #f2f2f2;
   }
   #dynamic-demo-toolbar h1 {
     margin-left: 64px;
   }
   .panels {
+    margin-top: 8px;
     padding: 8px;
+
     border: 1px solid #ccc;
     border-radius: 4px;
-    margin-top: 8px;
   }
   .panel {
     display: none;
@@ -67,30 +70,33 @@
   }
   .dots {
     display: flex;
-    justify-content: flex-start;
+
     margin-top: 4px;
     padding-bottom: 16px;
+
+    justify-content: flex-start;
   }
   .dot {
-    margin: 0 4px;
-    border-radius: 50%;
-    border: 1px solid #64DD17;
     width: 20px;
     height: 20px;
+    margin: 0 4px;
+
+    border: 1px solid #64dd17;
+    border-radius: 50%;
   }
   .dot:last-child {
     margin-right: 0;
   }
   .dot.active {
-    background-color: #64DD17;
-    border-color: #64DD17;
+    border-color: #64dd17;
+    background-color: #64dd17;
   }
   .my-modified-toolbar-section {
     position: absolute;
     right: 0;
     bottom: 0;
   }
-  [dir="rtl"] .my-modified-toolbar-section {
+  [dir='rtl'] .my-modified-toolbar-section {
     right: auto;
     left: 0;
   }

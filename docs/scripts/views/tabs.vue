@@ -61,7 +61,7 @@
 
     <section>
       <fieldset>
-        <legend :class="typography('title')">Accent Color Indicator</legend>
+        <legend :class="typography('title')">Secondary Color Indicator</legend>
         <ui-tab-bar accent id="accent-indicator-tab-bar">
           <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
             {{ tab.name }}
@@ -152,7 +152,7 @@
 
     <section>
       <fieldset>
-        <legend :class="typography('title')">Within mdc-toolbar + accent indicator</legend>
+        <legend :class="typography('title')">Within mdc-toolbar + secondary indicator</legend>
         <ui-toolbar>
           <ui-toolbar-row>
             <ui-toolbar-section fit align="start">

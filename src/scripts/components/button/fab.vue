@@ -32,7 +32,7 @@ export default {
       type: Boolean,
       default: false
     },
-    plain: {
+    exited: {
       type: Boolean,
       default: false
     }
@@ -45,7 +45,7 @@ export default {
       return {
         'mdc-fab': true,
         'mdc-fab--mini': this.mini,
-        'mdc-fab--plain': this.plain,
+        'mdc-fab--exited': this.exited,
         'material-icons': this.materialIcon,
       };
     }

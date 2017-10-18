@@ -18,21 +18,32 @@
     margin: 16px;
   }
   .hero button {
-    margin-left: 32px;
     margin-right: 32px;
+    margin-left: 32px;
   }
   fieldset legend {
     display: block;
+
     padding: 16px;
     padding-top: 48px;
     padding-bottom: 24px;
   }
   h1 {
-    padding-left: 36px;
     padding-top: 64px;
     padding-bottom: 8px;
+    padding-left: 36px;
   }
   .mdc-form-field {
     margin: 50px 0 -20px 30px;
+  }
+  .hero {
+    position: relative;
+  }
+  .hero .note {
+    position: absolute;
+    bottom: 10px;
+    left: 36px;
+
+    color: rgba(33, 33, 33, .38);
   }
 }

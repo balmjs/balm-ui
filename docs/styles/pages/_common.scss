@@ -25,13 +25,13 @@ $dark-button-color: $material-color-light-green-a200;
 
 .mdc-button--raised,
 .mdc-button--unelevated {
-  @include mdc-theme-dark(".mdc-button", true) {
+  @include mdc-theme-dark(".mdc-button") {
     @include mdc-button-filled-accessible($dark-button-color);
   }
 }
 
 .mdc-button--stroked {
-  @include mdc-theme-dark(".mdc-button", true) {
+  @include mdc-theme-dark(".mdc-button") {
     @include mdc-button-stroke-color($dark-button-color);
   }
 }
@@ -56,6 +56,10 @@ $dark-button-color: $material-color-light-green-a200;
   min-height: 360px;
   background-color: rgba(0, 0, 0, .05);
 }
+
+
+
+
 
 
 /* Default padding on all examples. */

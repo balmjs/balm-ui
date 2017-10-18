@@ -36,6 +36,7 @@ import UiPanel from './scripts/components/tabs/panel';
  */
 // import UiBadge from './scripts/components/common/badge';
 import UiIcon from './scripts/components/icon';
+import UiLink from './scripts/components/link';
 import UiButton from './scripts/components/button/button';
 import UiFab from './scripts/components/button/fab';
 import UiIconToggle from './scripts/components/button/icon-toggle';
@@ -129,6 +130,7 @@ const components = {
   // Common
   // UiBadge,
   UiIcon,
+  UiLink,
   UiButton,
   UiFab,
   UiCard,
@@ -239,6 +241,7 @@ export {
   // Common
   // UiBadge,
   UiIcon,
+  UiLink,
   UiButton,
   UiFab,
   UiCard,

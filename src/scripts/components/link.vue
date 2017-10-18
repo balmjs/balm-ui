@@ -1,5 +1,5 @@
 <template>
-  <button :type="type" :class="className">
+  <a :href="url" :class="className">
     <ui-icon v-if="icon"
       :class="'mdc-button__icon'"
       :size="iconSize"
@@ -7,20 +7,20 @@
       :light="iconLight"
       :inactive="iconInactive">{{ icon }}</ui-icon>
     <slot></slot>
-  </button>
+  </a>
 </template>
 
 <script>
-import buttonMixin from '../../mixins/button';
+import buttonMixin from '../mixins/button';
 
 export default {
-  name: 'ui-button',
+  name: 'ui-link',
   mixins: [buttonMixin],
   props: {
     // element attributes
-    type: {
+    url: {
       type: String,
-      default: 'button'
+      default: 'javascript:void(0)'
     }
   }
 };

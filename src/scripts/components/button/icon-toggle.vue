@@ -95,6 +95,11 @@ export default {
       this.updateState('disabled', val);
     }
   },
+  created() {
+    if (!(this.on && this.off)) {
+      console.warn('You must be setting `on` and `off` props: `{"label": "Some label", "content": "Some content"}`');
+    }
+  },
   mounted() {
     if (!this.$iconToggle) {
       this.$iconToggle = new MDCIconToggle(this.$el);

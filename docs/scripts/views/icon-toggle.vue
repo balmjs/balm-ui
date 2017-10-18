@@ -81,6 +81,39 @@
           </div>
         </div>
       </div>
+
+      <div class="toggle-example">
+        <h2>Additional Color Combinations</h2>
+        <div id="demo-color-combos">
+          <div id="light-on-bg" class="demo-color-combo">
+            <div>
+              <ui-icon-toggle class="mdc-theme--text-primary-on-primary"
+                :on="icon1.on"
+                :off="icon1.off">
+              </ui-icon-toggle>
+            </div>
+            <p class="mdc-theme--text-primary-on-primary">Light icon on background</p>
+          </div>
+          <div id="dark-on-bg" class="demo-color-combo">
+            <div class="mdc-theme--primary">
+              <ui-icon-toggle
+                :on="icon1.on"
+                :off="icon1.off">
+              </ui-icon-toggle>
+            </div>
+            <p>Dark icon on background</p>
+          </div>
+          <div id="custom-on-dark" class="demo-color-combo mdc-theme--dark">
+            <div>
+              <ui-icon-toggle
+                :on="icon1.on"
+                :off="icon1.off">
+              </ui-icon-toggle>
+            </div>
+            <p class="mdc-theme--text-primary-on-dark">Custom color on dark background</p>
+          </div>
+        </div>
+      </div>
     </section>
     <!-- <ui-apidoc name="icon-toggle"></ui-apidoc> -->
   </div>

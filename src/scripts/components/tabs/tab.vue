@@ -3,7 +3,7 @@
     <slot name="before"></slot>
     <template v-if="icon">
       <ui-icon
-        class="mdc-tab__icon"
+        :class="'mdc-tab__icon'"
         :size="iconSize"
         :dark="iconDark"
         :light="iconLight"

@@ -164,11 +164,7 @@
               </ui-item-start>
               {{ item.name }}
               <ui-item-end>
-                <ui-icon-toggle
-                  :on="icon.on"
-                  :off="icon.off"
-                  :model="item.favorite">
-                </ui-icon-toggle>
+                <ui-icon>{{ item.favorite ? icon.on.content : icon.off.content }}</ui-icon>
               </ui-item-end>
             </ui-item>
           </ui-list>
@@ -182,11 +178,7 @@
               </ui-item-start>
               {{ item.name }}
               <ui-item-end>
-                <ui-icon-toggle
-                  :on="icon.on"
-                  :off="icon.off"
-                  :model="item.favorite">
-                </ui-icon-toggle>
+                <ui-icon>{{ item.favorite ? icon.on.content : icon.off.content }}</ui-icon>
               </ui-item-end>
             </ui-item>
           </ui-list>

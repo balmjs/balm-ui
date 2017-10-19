@@ -48,8 +48,8 @@ import UiLinearProgress from './scripts/components/linear-progress';
  * Input Controls
  */
 import UiFormField from './scripts/components/input-controls/form-field';
-import UiTextfield from './scripts/components/input-controls/textfield/textfield';
-import UiTextfieldHelptext from './scripts/components/input-controls/textfield/textfield-helptext';
+import UiTextfield from './scripts/components/input-controls/textfield';
+import UiTextfieldHelptext from './scripts/components/input-controls/textfield-helptext';
 import UiCheckbox from './scripts/components/input-controls/checkbox';
 import UiRadio from './scripts/components/input-controls/radio';
 import UiSelect from './scripts/components/input-controls/select';

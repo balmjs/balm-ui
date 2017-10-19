@@ -9,7 +9,7 @@ export default {
   name: 'ui-form-field',
   props: {
     // ui attributes
-    cssOnly: {
+    noWrap: {
       type: Boolean,
       default: false
     },
@@ -26,7 +26,7 @@ export default {
   computed: {
     className() {
       return {
-        'mdc-form-field': !this.cssOnly,
+        'mdc-form-field': !this.noWrap,
         'mdc-form-field--align-end': this.alignEnd,
         'mdc-form-field--theme-dark': this.dark
       };

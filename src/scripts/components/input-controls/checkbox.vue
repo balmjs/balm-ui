@@ -92,11 +92,11 @@ export default {
     model(val) {
       this.currentValue = val;
     },
-    disabled(val) {
-      if (this.$checkbox && val) {
-        this.$checkbox.indeterminate = val;
-      }
-    }
+    // disabled(val) {
+    //   if (this.$checkbox && val) {
+    //     this.$checkbox.indeterminate = val;
+    //   }
+    // }
   },
   methods: {
     handleChange() {
@@ -108,7 +108,7 @@ export default {
       const formField = new MDCFormField(this.$el);
       this.$checkbox = new MDCCheckbox(this.$refs.checkbox);
       formField.input = this.$checkbox;
-      this.$checkbox.indeterminate = this.disabled;
+      // this.$checkbox.indeterminate = this.disabled;
     }
   }
 };

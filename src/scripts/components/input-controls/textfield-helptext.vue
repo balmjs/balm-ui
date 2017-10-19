@@ -1,6 +1,6 @@
 <template>
   <p :class="className" :id="id">
-    <slot>{{ text }}</slot>
+    <slot>{{ msg }}</slot>
   </p>
 </template>
 
@@ -16,14 +16,14 @@ export default {
     // element attributes
     id: String,
     // ui attributes
-    text: String
+    msg: String
   },
   computed: {
     className() {
       return {
         'mdc-textfield-helptext': true,
         'mdc-textfield-helptext--persistent': this.show,
-        'mdc-textfield-helptext--validation-msg': this.text
+        'mdc-textfield-helptext--validation-msg': this.msg
       };
     }
   }

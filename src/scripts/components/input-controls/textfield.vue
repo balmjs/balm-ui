@@ -1,6 +1,7 @@
 <template>
   <ui-form-field :class="className.outer"
                  :noWrap="noFormField"
+                 :block="block"
                  :alignEnd="alignEnd"
                  :dark="dark">
     <template v-if="leadingIcon">
@@ -81,6 +82,7 @@ import {MDCTextfield} from '../../../material-components-web/textfield';
 import UiFormField from './form-field';
 import UiIcon from '../icon';
 import {isString, detectIE} from '../../helpers'
+import formFieldMixin from '../../mixins/form-field';
 
 const UI_EVENT_FOCUS = 'focus';
 const UI_EVENT_BLUR = 'blur';
@@ -94,6 +96,9 @@ export default {
     UiFormField,
     UiIcon
   },
+  mixins: [
+    formFieldMixin
+  ],
   props: {
     // state
     model: String,
@@ -166,20 +171,7 @@ export default {
       default: 0
     },
     // helptext
-    helptextId: String,
-    // form field
-    noWrap: {
-      type: Boolean,
-      default: false
-    },
-    alignEnd: {
-      type: Boolean,
-      default: false
-    },
-    dark: {
-      type: Boolean,
-      default: false
-    }
+    helptextId: String
   },
   data() {
     return {

@@ -1,5 +1,8 @@
 <template>
-  <li class="mdc-list-item" :role="role" :tabindex="item.index || 0">
+  <li class="mdc-list-item"
+      :role="role"
+      :tabindex="tabindex(item)"
+      :aria-hidden="item.disabled">
     <slot>{{ item[label] }}</slot>
   </li>
 </template>
@@ -23,6 +26,17 @@ export default {
     role: {
       type: String,
       default: 'menuitem'
+    }
+  },
+  methods: {
+    tabindex(item) {
+      let index = item.index || 0;
+
+      if (item.disabled) {
+        index = -1;
+      }
+
+      return index;
     }
   }
 };

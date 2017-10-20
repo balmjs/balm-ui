@@ -1,20 +1,44 @@
 .demo--menu {
   .demo-menu {
-    position: static;
+    position: static; // just for hero
   }
   .demo-content {
     position: relative;
-    flex: 1;
+
     margin-top: 16px;
+
+    flex: 1;
   }
   .demo-controls-container {
-    height: 100%;
     width: 100%;
+    height: 100%;
   }
   .demo-controls {
-    margin-left: auto;
-    margin-right: auto;
     width: 320px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .mdc-menu-anchor {
+    margin: 16px;
+  }
+  .mdc-theme--dark {
+    background-color: #333;
+  }
+  .m.demo-content {
+    position: relative;
+
+    margin-top: 16px;
+
+    flex: 1;
+  }
+  .demo-controls-container {
+    width: 100%;
+    height: 100%;
+  }
+  .demo-controls {
+    width: 320px;
+    margin-right: auto;
+    margin-left: auto;
   }
   .mdc-menu-anchor {
     margin: 16px;

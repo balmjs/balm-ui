@@ -9,9 +9,9 @@
 
     <section class="example"></section>
 
-    <div class="demo-content">
+    <div :class="['demo-content', {'mdc-theme--dark': dark}]">
       <ui-menu-anchor :position="position">
-        <ui-button raised primary @click.native="openMenu">Reveal Menu</ui-button>
+        <ui-button raised @click.native="openMenu">Reveal Menu</ui-button>
 
         <ui-menu :open="open" :dark="dark"
           @selected="onSelected"
@@ -27,30 +27,37 @@
       <div class="demo-controls-container">
         <div class="demo-controls">
           Button position:
-          <ui-radio name="position"
+          <ui-radio block
+            name="position"
             id="top-left"
             :value="1"
             :model="position"
             @change="onChange('position', $event)">Top left</ui-radio>
-          <ui-radio name="position"
+          <ui-radio block
+            name="position"
             id="top-right"
             :value="2"
             :model="position"
             @change="onChange('position', $event)">Top right</ui-radio>
-          <ui-radio name="position"
+          <ui-radio block
+            name="position"
             id="bottom-left"
             :value="3"
             :model="position"
-            @change="onChange('position', $event)">bottom left</ui-radio>
-          <ui-radio name="position"
+            @change="onChange('position', $event)">Bottom left</ui-radio>
+          <ui-radio block
+            name="position"
             id="bottom-right"
             :value="4"
             :model="position"
-            @change="onChange('position', $event)">bottom right</ui-radio>
-          <ui-checkbox id="dark-mode" :model="dark" @change="onChange('dark', $event)">Dark mode</ui-checkbox>
-          <div>
+            @change="onChange('position', $event)">Bottom right</ui-radio>
+          <ui-checkbox block
+            id="dark-mode"
+            :model="dark"
+            @change="onChange('dark', $event)">Dark mode</ui-checkbox>
+          <p>
             <span>Last Selected item: <em id="last-selected">{{ selected.item || 'none' }} selected</em></span>
-          </div>
+          </p>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <ui-form-field :alignEnd="alignEnd" :dark="dark">
+  <ui-form-field :block="block" :alignEnd="alignEnd" :dark="dark">
     <slot name="before"></slot>
     <div ref="radio" :class="className">
       <input type="radio"
@@ -26,6 +26,7 @@
 import {MDCFormField} from '../../../material-components-web/form-field';
 import {MDCRadio} from '../../../material-components-web/radio';
 import UiFormField from './form-field';
+import formFieldMixin from '../../mixins/form-field';
 
 const UI_EVENT_CHANGE = 'change';
 
@@ -34,6 +35,9 @@ export default {
   components: {
     UiFormField
   },
+  mixins: [
+    formFieldMixin
+  ],
   props: {
     // state
     model: {
@@ -53,16 +57,7 @@ export default {
       type: Boolean,
       default: false
     },
-    label: String,
-    // form field
-    alignEnd: {
-      type: Boolean,
-      default: false
-    },
-    dark: {
-      type: Boolean,
-      default: false
-    }
+    label: String
   },
   data() {
     return {

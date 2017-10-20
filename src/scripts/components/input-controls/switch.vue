@@ -1,5 +1,5 @@
 <template>
-  <ui-form-field :alignEnd="alignEnd" :dark="dark">
+  <ui-form-field :noWrap="noWrap" :block="block" :alignEnd="alignEnd" :dark="dark">
     <slot name="before"></slot>
     <div :class="className">
       <input type="checkbox"
@@ -23,6 +23,7 @@
 <script>
 // import {MDCFormField} from '../../../material-components-web/form-field';
 import UiFormField from './form-field';
+import formFieldMixin from '../../mixins/form-field';
 
 const UI_EVENT_CHANGE = 'change';
 
@@ -31,6 +32,9 @@ export default {
   components: {
     UiFormField
   },
+  mixins: [
+    formFieldMixin
+  ],
   props: {
     // state
     model: [Boolean, Number, String],
@@ -42,16 +46,7 @@ export default {
       default: false
     },
     // ui attributes
-    label: String,
-    // form field
-    alignEnd: {
-      type: Boolean,
-      default: false
-    },
-    dark: {
-      type: Boolean,
-      default: false
-    }
+    label: String
   },
   data() {
     return {

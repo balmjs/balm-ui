@@ -27,7 +27,9 @@
 <script>
 import {MDCSlider} from '../../../material-components-web/slider';
 
+const MDC_EVENT_INPUT = 'MDCSlider:input';
 const MDC_EVENT_CHANGE = 'MDCSlider:change';
+const UI_EVENT_INPUT = 'input';
 const UI_EVENT_CHANGE = 'change';
 
 export default {
@@ -92,6 +94,11 @@ export default {
   mounted() {
     if (!this.$slider) {
       this.$slider = new MDCSlider(this.$el);
+
+      this.$slider.listen(MDC_EVENT_INPUT, () => {
+        this.$emit(UI_EVENT_INPUT, this.$slider.value);
+      });
+
       this.$slider.listen(MDC_EVENT_CHANGE, () => {
         this.$emit(UI_EVENT_CHANGE, this.$slider.value);
       });

@@ -2,7 +2,7 @@
   <li class="mdc-list-item"
       :role="role"
       :tabindex="tabindex(item)"
-      :aria-hidden="item.disabled">
+      :aria-disabled="item.disabled">
     <slot>{{ item[label] }}</slot>
   </li>
 </template>

@@ -33,7 +33,8 @@
     </template>
     <template v-else>
       <option v-for="option in options"
-              :value="option[optionKey]">{{ option[optionValue] }}</option>
+              :value="option[optionKey]"
+              :disabled="option.disabled">{{ option[optionValue] }}</option>
     </template>
   </select>
 </template>

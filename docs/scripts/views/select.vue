@@ -125,7 +125,8 @@ export default {
         value: 'Bread, Cereal, Rice, and Pasta'
       }, {
         key: 2,
-        value: 'Vegetables'
+        value: 'Vegetables',
+        disabled: true
       }, {
         key: 3,
         value: 'Fruit'

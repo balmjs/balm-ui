@@ -89,7 +89,10 @@ import UiItemLink from './scripts/components/list/item-link';
 /**
  * Dialog
  */
-import UiDialog from './scripts/components/dialog';
+import UiDialog from './scripts/components/dialog/dialog';
+import UiDialogHeader from './scripts/components/dialog/dialog-header';
+import UiDialogBody from './scripts/components/dialog/dialog-body';
+import UiDialogFooter from './scripts/components/dialog/dialog-footer';
 import UiSnackbar from './scripts/components/snackbar';
 /**
  * Plugins
@@ -178,6 +181,9 @@ const components = {
   // UiPagination,
   // Dialog
   UiDialog,
+  UiDialogHeader,
+  UiDialogBody,
+  UiDialogFooter,
   UiSnackbar
 };
 
@@ -289,6 +295,9 @@ export {
   // UiPagination,
   // Dialog
   UiDialog,
+  UiDialogHeader,
+  UiDialogBody,
+  UiDialogFooter,
   UiSnackbar,
   // Others
   helpers,

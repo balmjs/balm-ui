@@ -1,4 +1,7 @@
-import UiDialog from '../components/dialog';
+import UiDialog from '../components/dialog/dialog';
+import UiDialogHeader from '../components/dialog/dialog-header';
+import UiDialogBody from '../components/dialog/dialog-body';
+import UiDialogFooter from '../components/dialog/dialog-footer';
 import UiButton from '../components/button/button';
 import {isString, isObject, isFunction} from '../helpers';
 
@@ -16,30 +19,33 @@ const template =
   :class="['mdc-confirm', options.className]"
   :open="open"
   @close="handleClose">
-  <template slot="title">{{ options.title }}</template>
-  <template slot="title:after">
-    <i class="material-icons close" @click="handleClose">close</i>
-  </template>
-  {{ options.message }}
-  <template slot="footer">
-    <ui-button raised primary dense compact
+  <ui-dialog-header v-if="options.title">
+    {{ options.title }}
+    <i slot="after" class="material-icons close" @click="handleClose">close</i>
+  </ui-dialog-header>
+  <ui-dialog-body>{{ options.message }}</ui-dialog-body>
+  <ui-dialog-footer>
+    <ui-button raised dense compact
       class="mdc-dialog__footer__button"
-      @click.native="handleAccept">{{ options.acceptText }}</ui-button>
-    <ui-button raised accent dense compact
+      @click.native="handleConfirm(true)">{{ options.acceptText }}</ui-button>
+    <ui-button raised dense compact
       class="mdc-dialog__footer__button"
-      @click.native="handleCancel">{{ options.cancelText }}</ui-button>
-  </template>
+      @click.native="handleConfirm(false)">{{ options.cancelText }}</ui-button>
+  </ui-dialog-footer>
 </ui-dialog>`;
 
 export default {
   install(Vue) {
     let vm;
 
-    const confirm = (options = {}) => {
+    const UiConfirm = (options = {}) => {
       return new Promise((resolve, reject) => {
         vm = new Vue({
           components: {
             UiDialog,
+            UiDialogHeader,
+            UiDialogBody,
+            UiDialogFooter,
             UiButton
           },
           el: document.createElement('div'),
@@ -55,21 +61,17 @@ export default {
               document.body.classList.remove('mdc-dialog-scroll-lock');
               vm = null;
             },
-            handleAccept() {
-              if (isFunction(this.options.callback)) {
-                this.options.callback(true);
-              } else {
-                resolve();
-              }
+            handleConfirm(result) {
               this.handleClose();
-            },
-            handleCancel() {
               if (isFunction(this.options.callback)) {
-                this.options.callback(false);
+                this.options.callback(result);
               } else {
-                reject();
+                if (result) {
+                  resolve();
+                } else {
+                  reject();
+                }
               }
-              this.handleClose();
             }
           },
           created() {
@@ -86,6 +88,6 @@ export default {
       });
     };
 
-    Vue.prototype.$confirm = confirm;
+    Vue.prototype.$confirm = UiConfirm;
   }
 };

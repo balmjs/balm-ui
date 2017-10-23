@@ -1,13 +1,15 @@
 <template>
   <div class="demo--dialog">
     <section class="hero">
-      <ui-dialog class="catalog-dialog-demo mdc-dialog--open" noMask style="visibility: visible;">
-        <template slot="title">Are you happy?</template>
-        <p>Please check the left and right side of this element for fun.</p>
-        <template slot="footer">
+      <ui-dialog cssOnly noMask class="catalog-dialog-demo mdc-dialog--open" style="visibility: visible;">
+        <ui-dialog-header>Are you happy?</ui-dialog-header>
+        <ui-dialog-body>
+          <p>Please check the left and right side of this element for fun.</p>
+        </ui-dialog-body>
+        <ui-dialog-footer>
           <ui-button>Cancel</ui-button>
           <ui-button>Continue</ui-button>
-        </template>
+        </ui-dialog-footer>
       </ui-dialog>
     </section>
 
@@ -25,43 +27,36 @@
     <ui-dialog
       :open="open"
       @close="onClose('open')"
-      @accept="accept"
-      @cancel="cancel">
-      <template slot="title">Use Google's location service?</template>
-      <p>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</p>
+      @confirm="onConfirm">
+      <ui-dialog-header>Use Google's location service?</ui-dialog-header>
+      <ui-dialog-body>
+        <p>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</p>
+      </ui-dialog-body>
+      <ui-dialog-footer></ui-dialog-footer>
     </ui-dialog>
 
     <ui-dialog
-      scrollable
       :open="open2"
       @close="onHide('open2')"
-      @accept="accept"
-      @cancel="cancel">
-      <template slot="title">Choose a Ringtone</template>
-      <ul class="mdc-list">
-        <li class="mdc-list-item">None</li>
-        <li class="mdc-list-item">Callisto</li>
-        <li class="mdc-list-item">Ganymede</li>
-        <li class="mdc-list-item">Luna</li>
-        <li class="mdc-list-item">Marimba</li>
-        <li class="mdc-list-item">Schwifty</li>
-        <li class="mdc-list-item">Callisto</li>
-        <li class="mdc-list-item">Ganymede</li>
-        <li class="mdc-list-item">Luna</li>
-        <li class="mdc-list-item">Marimba</li>
-        <li class="mdc-list-item">Schwifty</li>
-      </ul>
+      @confirm="onConfirm">
+      <ui-dialog-header>Choose a Ringtone</ui-dialog-header>
+      <ui-dialog-body scrollable>
+        <ul class="mdc-list">
+          <li class="mdc-list-item">None</li>
+          <li class="mdc-list-item">Callisto</li>
+          <li class="mdc-list-item">Ganymede</li>
+          <li class="mdc-list-item">Luna</li>
+          <li class="mdc-list-item">Marimba</li>
+          <li class="mdc-list-item">Schwifty</li>
+          <li class="mdc-list-item">Callisto</li>
+          <li class="mdc-list-item">Ganymede</li>
+          <li class="mdc-list-item">Luna</li>
+          <li class="mdc-list-item">Marimba</li>
+          <li class="mdc-list-item">Schwifty</li>
+        </ul>
+      </ui-dialog-body>
+      <ui-dialog-footer></ui-dialog-footer>
     </ui-dialog>
-
-    <!-- <ui-alert :open="open3" @close="onHide('open3')">
-      <template slot="title">Title</template>
-      Hello World!
-    </ui-alert>
-
-    <ui-confirm :open="open4" @close="onHide('open4')" @result="onResult">
-      <template slot="title">Title</template>
-      Are you sure?
-    </ui-confirm> -->
 
     <!-- <ui-apidoc name="dialog"></ui-apidoc> -->
   </div>
@@ -81,28 +76,39 @@ export default {
     }
   },
   methods: {
-    accept() {
-      console.log('ok');
-    },
-    cancel() {
-      console.log('cancel');
-    },
-    onResult(a) {
-      console.log(a);
+    onConfirm(result) {
+      if (result) {
+        console.log('ok');
+      } else {
+        console.log('cancel');
+      }
     },
     showAlert() {
-      this.$alert('Message');
+      // this.$alert('Hello').then(() => {
+      //   console.log('World');
+      // });
+
+      this.$alert({
+        message: 'Hello',
+        callback: () => {
+          console.log('World');
+        }
+      });
     },
     showConfirm() {
+      // this.$confirm({
+      //   message: 'Are you sure?'
+      // }).then(() => {
+      //   console.log('OK');
+      // }).catch(() => {
+      //   console.log('Cancel');
+      // });
+
       this.$confirm({
         message: 'Are you sure?',
         callback: result => {
           console.log(result);
         }
-      }).then(() => {
-        console.log('OK');
-      }).catch(() => {
-        console.log('Cancel');
       });
     },
     showToast() {

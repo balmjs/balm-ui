@@ -16,7 +16,7 @@ export default {
     className() {
       return [
         'material-icons',
-        this.isMenu ? 'mdc-toolbar__icon--menu' : 'mdc-toolbar__icon'
+        this.isMenu ? 'mdc-toolbar__menu-icon' : 'mdc-toolbar__icon'
       ];
     }
   }

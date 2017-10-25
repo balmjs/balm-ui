@@ -85,7 +85,17 @@ balm.config = {
       'vue$': balm.config.production ? 'vue/dist/vue.min.js' : 'vue/dist/vue.esm.js',
       'prismCss': 'prismjs/themes/prism-okaidia.css'
     },
-    eslint: true
+    eslint: true,
+    options: {
+      compress: {
+        warnings: false,
+        comparisons: false
+      },
+      output: {
+        comments: false,
+        ascii_only: true
+      }
+    }
   },
   sprites: {
     svg: ['icon']

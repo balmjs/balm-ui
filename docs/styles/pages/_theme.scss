@@ -2,6 +2,7 @@
   .demo-theme__color {
     display: inline-flex;
     flex-direction: column;
+    margin-right: 24px;
   }
   .demo-theme__color__label {
     display: inline-block;
@@ -12,11 +13,12 @@
   .demo-theme__color__block {
     display: inline-block;
     box-sizing: border-box;
-    width: 130px;
+    width: 150px;
     height: 50px;
     line-height: 50px;
     text-align: center;
     border: 1px solid #f0f0f0;
+    margin-bottom: 1px;
   }
   .demo-theme__text-styles {
     display: inline-flex;
@@ -31,7 +33,7 @@
       flex-direction: row;
     }
   }
-  .demo-theme__text-styles > span {
+  .demo-theme__text-styles>span {
     padding: 0 16px;
   }
   .demo-theme--custom-light-bg {

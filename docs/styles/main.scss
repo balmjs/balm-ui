@@ -2,30 +2,32 @@
 // components
 @import 'components/button';
 @import 'components/fab';
+@import 'components/theme';
 // pages
 @import 'pages/common';
 @import 'pages/home';
+// demos
 @import 'pages/button';
 @import 'pages/card';
 @import 'pages/checkbox';
 @import 'pages/dialog';
 @import 'pages/drawer';
-// @import 'pages/elevation';
+@import 'pages/elevation';
 @import 'pages/fab';
+@import 'pages/grid-list';
 @import 'pages/icon-toggle';
 @import 'pages/grid';
-@import 'pages/grid-list';
+@import 'pages/linear-progress';
 @import 'pages/list';
-@import 'pages/menu';
 @import 'pages/radio';
 @import 'pages/select';
+@import 'pages/menu';
+@import 'pages/slider';
 @import 'pages/snackbar';
 @import 'pages/switch';
 @import 'pages/tabs';
 @import 'pages/textfield';
-// @import 'pages/theme';
+@import 'pages/theme';
 @import 'pages/toolbar';
-// @import 'pages/typography';
+@import 'pages/typography';
 @import 'pages/icons';
-@import 'pages/linear-progress';
-@import 'pages/slider';

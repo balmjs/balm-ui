@@ -4,8 +4,9 @@
       <h2 :class="typography('display4')">Tt</h2>
     </section>
 
-    <h2 :class="typography('display1')">Styles</h2>
     <section class="demo-typography--section">
+      <h2 :class="typography('display1')">Styles</h2>
+
       <h1 :class="typography('display4')">Display 4</h1>
       <h1 :class="typography('display3')">Display 3</h1>
       <h1 :class="typography('display2')">Display 2</h1>
@@ -23,8 +24,9 @@
       <aside :class="typography('body2')">Body 2 text, calling something out.</aside>
     </section>
 
-    <h2 :class="typography('display1')">Styles with margin adjustments</h2>
     <section class="demo-typography--section">
+      <h2 :class="typography('display1')">Styles with margin adjustments</h2>
+
       <h1 :class="typography('display4', true)">Display 4</h1>
       <h1 :class="typography('display3', true)">Display 3</h1>
       <h1 :class="typography('display2', true)">Display 2</h1>

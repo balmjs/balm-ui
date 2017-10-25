@@ -5,8 +5,8 @@
        aria-hidden="true"
        :style="style">
     <div class="mdc-snackbar__text">{{ message }}</div>
-    <div class="mdc-snackbar__action-wrapper">
-      <button type="button" class="mdc-button mdc-snackbar__action-button">
+    <div v-show="hasAction" class="mdc-snackbar__action-wrapper">
+      <button type="button" class="mdc-snackbar__action-button">
         {{ actionText }}
       </button>
     </div>
@@ -16,7 +16,7 @@
 <script>
 import {MDCSnackbar} from '../../material-components-web/snackbar';
 
-const UI_EVENT_DONE = 'done';
+const UI_EVENT_CALLBACK = 'callback';
 
 export default {
   name: 'ui-snackbar',
@@ -35,18 +35,20 @@ export default {
       type: Boolean,
       default: false
     },
+    // Showing a message and action
     message: String,
     timeout: {
       type: [Number, String],
       default: 2750
     },
-    actionHandler: {
-      type: [Function, Boolean],
-      default: false
-    },
+    actionHandler: Function,
     actionText: String,
     multiline: Boolean,
     actionOnBottom: Boolean,
+    dismissesOnAction: {
+      type: Boolean,
+      default: true
+    },
     // Avoiding Flash-Of-Unstyled-Content (FOUC)
     fouc: {
       type: Boolean,
@@ -62,7 +64,7 @@ export default {
     className() {
       return {
         'mdc-snackbar': true,
-        'mdc-snackbar--align-start': this.alignStart
+        'mdc-snackbar--align-start': this.alignStart // tablet and desktop only
       };
     },
     hasAction() {
@@ -77,26 +79,32 @@ export default {
   methods: {
     show() {
       if (this.$snackbar && this.message) {
-        let data =  {
+        let dataObj =  {
           message: this.message,
+          timeout: this.timeout,
           multiline: this.multiline
         };
         if (this.hasAction) {
-          data.actionHandler = this.actionHandler;
-          data.actionText = this.actionText;
+          dataObj.actionHandler = this.actionHandler;
+          dataObj.actionText = this.actionText;
         }
         if (this.multiline) {
-          data.actionOnBottom = this.actionOnBottom;
+          dataObj.actionOnBottom = this.actionOnBottom;
         }
-        this.$snackbar.show(data);
+        this.$snackbar.show(dataObj);
       }
-      this.$emit(UI_EVENT_DONE);
+      this.$emit(UI_EVENT_CALLBACK);
     }
   },
   watch: {
     active(val) {
       if (val) {
         this.show();
+      }
+    },
+    dismissesOnAction(val) {
+      if (this.$snackbar) {
+        this.$snackbar.dismissesOnAction = val;
       }
     }
   },

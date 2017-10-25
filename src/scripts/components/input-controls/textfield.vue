@@ -101,7 +101,7 @@ export default {
   ],
   props: {
     // state
-    model: String,
+    model: [String, Number],
     // element attributes
     id: String,
     name: String,

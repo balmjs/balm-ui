@@ -55,7 +55,7 @@
       </div>
 
       <div class="toggle-example">
-        <h2>Accent Colored Icons</h2>
+        <h2>Secondary Colored Icons</h2>
         <div class="demo-wrapper">
           <ui-icon-toggle accent
             :on="icon1.on"

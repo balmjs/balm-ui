@@ -97,7 +97,11 @@ balm.config = {
         ascii_only: true
       }
     },
-    include: [
+    include: useDocs ? [
+      path.resolve('./src/material-components-web'),
+      path.resolve('./src/scripts'),
+      path.resolve('./src/index.js')
+    ] : [
       path.resolve('./src/material-components-web'),
       path.resolve('./src/index.js')
     ]

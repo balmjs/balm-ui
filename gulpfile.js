@@ -1,4 +1,5 @@
 var balm = require('balm');
+var path = require('path');
 
 var useDefault = !process.argv.includes('--mdc');
 var buildDocs = process.argv.includes('--docs');
@@ -95,7 +96,11 @@ balm.config = {
         comments: false,
         ascii_only: true
       }
-    }
+    },
+    include: [
+      path.resolve('./src/material-components-web'),
+      path.resolve('./src/index.js')
+    ]
   },
   sprites: {
     svg: ['icon']

@@ -1,22 +1,23 @@
-$iconSizes: 18 24 36 48;
+$mdc-icon-sizes: 16 24 36 48 !default;
 
 .material-icons {
-  // Rules for sizing the icon.
-  @each $size in $iconSizes {
+  /* Rules for sizing the icon. */
+  @each $size in $mdc-icon-sizes {
     &.md-#{$size} {
       font-size: #{$size}px;
+
       width: #{$size}px;
       height: #{$size}px;
     }
   }
-  // Rules for using icons as black on a light background.
+  /* Rules for using icons as black on a light background. */
   &.md-dark {
     color: rgba(0, 0, 0, .54);
     &.md-inactive {
       color: rgba(0, 0, 0, .26);
     }
   }
-  // Rules for using icons as white on a dark background.
+  /* Rules for using icons as white on a dark background. */
   &.md-light {
     color: rgba(255, 255, 255, 1);
     &.md-inactive {

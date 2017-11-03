@@ -9,6 +9,7 @@
     "url": "http://elf-mouse.me/"
   },
   "files": [
+    "components",
     "dist",
     "src"
   ],
@@ -17,6 +18,7 @@
     "mdc": "gulp --mdc",
     "dev": "gulp",
     "prod": "gulp --production",
+    "build": "gulp --production --components",
     "docs": "gulp --production --docs"
   },
   "repository": {

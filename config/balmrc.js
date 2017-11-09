@@ -9,6 +9,9 @@ module.exports = {
     target: env.buildComponents ? 'components' : 'dist'
   },
   paths: {
+    source: {
+      css: env.buildComponents ? 'styles/components' : 'styles'
+    },
     target: {
       css: env.buildComponents ? '.' : 'css',
       js: env.buildComponents ? '.' : 'js'

@@ -12,9 +12,10 @@ balm.go(function(mix) {
     if (env.useDefault) {
       if (balm.config.production) {
         mix.remove('./dist/font/*.css');
+        mix.remove('./dist/css/components');
       }
       if (env.buildComponents) {
-        mix.remove(['./components/font', './components/balm-ui.css']);
+        mix.remove('./components/font');
       }
     } else {
       // clear

@@ -64,6 +64,11 @@ export default {
       }
     }
   },
+  mounted() {
+    if (!this.$dialog && !this.cssOnly) {
+      this.$dialog = new MDCDialog(this.$el);
+    }
+  },
   methods: {
     handleClose() {
       this.$emit(UI_EVENT_CLOSE);
@@ -79,11 +84,6 @@ export default {
       if (this.closable) {
         this.handleClose();
       }
-    }
-  },
-  mounted() {
-    if (!this.$dialog && !this.cssOnly) {
-      this.$dialog = new MDCDialog(this.$el);
     }
   }
 };

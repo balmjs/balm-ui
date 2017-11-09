@@ -110,6 +110,11 @@ export default {
       this.currentValue = val;
     }
   },
+  mounted() {
+    if (!this.multiple) {
+      this.init();
+    }
+  },
   methods: {
     handleChange() {
       this.$emit(UI_EVENT_CHANGE, this.currentValue);
@@ -137,11 +142,6 @@ export default {
 
         this.$emit(UI_EVENT_CHANGE, defaultOption[this.optionKey]);
       }
-    }
-  },
-  mounted() {
-    if (!this.multiple) {
-      this.init();
     }
   }
 };

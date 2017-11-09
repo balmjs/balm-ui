@@ -26,16 +26,12 @@
 </template>
 
 <script>
-import UiIcon from '../icon';
 import iconMixin from '../../mixins/icon';
 
 const CLASSNAME_ICON = 'mdc-grid-tile__icon';
 
 export default {
   name: 'ui-grid-tile',
-  components: {
-    UiIcon
-  },
   mixins: [iconMixin],
   props: {
     // ui attributes

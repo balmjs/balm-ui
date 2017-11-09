@@ -16,6 +16,14 @@ export default {
       default: 0
     }
   },
+  watch: {
+    active(val) {
+      this.updatePanel(val);
+    }
+  },
+  mounted() {
+    this.updatePanel(this.active);
+  },
   methods: {
     updatePanel(activeIndex) {
       let panels = this.$el.querySelectorAll(`.${CLASSNAME_PANEL}`);
@@ -29,14 +37,6 @@ export default {
         });
       }
     }
-  },
-  watch: {
-    active(val) {
-      this.updatePanel(val);
-    }
-  },
-  mounted() {
-    this.updatePanel(this.active);
   }
 };
 </script>

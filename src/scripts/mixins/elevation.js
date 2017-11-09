@@ -13,6 +13,11 @@ export default {
       default: false
     }
   },
+  computed: {
+    zSpaceValue() {
+      return this.zSpace(+this.z, this.zTransition);
+    }
+  },
   methods: {
     zSpace(z = 0, zTransition = false) {
       let N = z;
@@ -23,11 +28,6 @@ export default {
         result.push(`mdc-elevation--z${N}`)
       }
       return result.join(' ');
-    }
-  },
-  computed: {
-    zSpaceValue() {
-      return this.zSpace(+this.z, this.zTransition);
     }
   }
 };

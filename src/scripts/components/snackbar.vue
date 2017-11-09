@@ -76,26 +76,6 @@ export default {
       } : {};
     }
   },
-  methods: {
-    show() {
-      if (this.$snackbar && this.message) {
-        let dataObj =  {
-          message: this.message,
-          timeout: this.timeout,
-          multiline: this.multiline
-        };
-        if (this.hasAction) {
-          dataObj.actionHandler = this.actionHandler;
-          dataObj.actionText = this.actionText;
-        }
-        if (this.multiline) {
-          dataObj.actionOnBottom = this.actionOnBottom;
-        }
-        this.$snackbar.show(dataObj);
-      }
-      this.$emit(UI_EVENT_CALLBACK);
-    }
-  },
   watch: {
     active(val) {
       if (val) {
@@ -119,6 +99,26 @@ export default {
   mounted() {
     if (!this.$snackbar && !this.cssOnly) {
       this.$snackbar = new MDCSnackbar(this.$el);
+    }
+  },
+  methods: {
+    show() {
+      if (this.$snackbar && this.message) {
+        let dataObj =  {
+          message: this.message,
+          timeout: this.timeout,
+          multiline: this.multiline
+        };
+        if (this.hasAction) {
+          dataObj.actionHandler = this.actionHandler;
+          dataObj.actionText = this.actionText;
+        }
+        if (this.multiline) {
+          dataObj.actionOnBottom = this.actionOnBottom;
+        }
+        this.$snackbar.show(dataObj);
+      }
+      this.$emit(UI_EVENT_CALLBACK);
     }
   }
 };

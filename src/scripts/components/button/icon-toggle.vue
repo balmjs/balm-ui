@@ -77,13 +77,6 @@ export default {
       return isString(this.off) ? this.off : JSON.stringify(this.off);
     }
   },
-  methods: {
-    updateState(key, value) {
-      if (this.$iconToggle) {
-        this.$iconToggle[key] = value;
-      }
-    }
-  },
   watch: {
     model(val) {
       if (!this.disabled) {
@@ -110,6 +103,13 @@ export default {
 
       this.updateState('on', this.currentValue);
       this.updateState('disabled', this.disabled);
+    }
+  },
+  methods: {
+    updateState(key, value) {
+      if (this.$iconToggle) {
+        this.$iconToggle[key] = value;
+      }
     }
   }
 };

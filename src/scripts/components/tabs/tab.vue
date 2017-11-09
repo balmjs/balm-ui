@@ -23,14 +23,10 @@
 </template>
 
 <script>
-import UiIcon from '../icon';
 import iconMixin from '../../mixins/icon';
 
 export default {
   name: 'ui-tab',
-  components: {
-    UiIcon
-  },
   mixins: [iconMixin],
   props: {
     // ui attributes

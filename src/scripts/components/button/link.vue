@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import buttonMixin from '../mixins/button';
+import buttonMixin from '../../mixins/button';
 
 export default {
   name: 'ui-link',

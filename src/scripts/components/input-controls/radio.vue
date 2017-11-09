@@ -78,17 +78,17 @@ export default {
       this.currentValue = val;
     }
   },
-  methods: {
-    handleChange() {
-      this.$emit(UI_EVENT_CHANGE, this.currentValue);
-    }
-  },
   mounted() {
     if (!this.$radio && !this.cssOnly) {
       const formField = new MDCFormField(this.$el);
       this.$radio = new MDCRadio(this.$refs.radio);
       formField.input = this.$radio;
       this.$radio.checked = this.currentValue == this.value;
+    }
+  },
+  methods: {
+    handleChange() {
+      this.$emit(UI_EVENT_CHANGE, this.currentValue);
     }
   }
 };

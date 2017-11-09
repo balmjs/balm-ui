@@ -102,6 +102,12 @@ export default {
       this.currentMenu = val;
     }
   },
+  mounted() {
+    if (!this.$menu && !this.cssOnly) {
+      this.$menu = new MDCSimpleMenu(this.$el);
+      this.handlingSelection();
+    }
+  },
   methods: {
     handlingSelection() {
       this.$el.addEventListener(MDC_EVENT_SELECTED, ({detail}) => {
@@ -114,12 +120,6 @@ export default {
       this.$el.addEventListener(MDC_EVENT_CANCEL, () => {
         this.$emit(UI_EVENT_CANCEL);
       });
-    }
-  },
-  mounted() {
-    if (!this.$menu && !this.cssOnly) {
-      this.$menu = new MDCSimpleMenu(this.$el);
-      this.handlingSelection();
     }
   }
 };

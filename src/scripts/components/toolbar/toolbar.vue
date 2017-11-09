@@ -57,14 +57,6 @@ export default {
       };
     }
   },
-  methods: {
-    fixedAdjustContent(selectors = this.contentSelector) {
-      let element = document.querySelector(selectors);
-      if (element) {
-        this.$toolbar.fixedAdjustElement = element;
-      }
-    }
-  },
   watch: {
     fixedAdjustElement(val) {
       if (this.$toolbar) {
@@ -79,6 +71,14 @@ export default {
         this.$emit(UI_EVENT_CHANGE, detail.flexibleExpansionRatio); // flexibleExpansionRatio: number
       });
       this.fixedAdjustContent();
+    }
+  },
+  methods: {
+    fixedAdjustContent(selectors = this.contentSelector) {
+      let element = document.querySelector(selectors);
+      if (element) {
+        this.$toolbar.fixedAdjustElement = element;
+      }
     }
   }
 };

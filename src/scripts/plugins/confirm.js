@@ -41,6 +41,7 @@ export default {
     const UiConfirm = (options = {}) => {
       return new Promise((resolve, reject) => {
         vm = new Vue({
+          el: document.createElement('div'),
           components: {
             UiDialog,
             UiDialogHeader,
@@ -48,11 +49,16 @@ export default {
             UiDialogFooter,
             UiButton
           },
-          el: document.createElement('div'),
-          template,
           data: {
             open: false,
             options: DEFAULT_OPTIONS
+          },
+          created() {
+            if (isString(options)) {
+              this.options.message = options;
+            } else if (isObject(options)) {
+              this.options = Object.assign(DEFAULT_OPTIONS, options);
+            }
           },
           methods: {
             handleClose() {
@@ -74,13 +80,7 @@ export default {
               }
             }
           },
-          created() {
-            if (isString(options)) {
-              this.options.message = options;
-            } else if (isObject(options)) {
-              this.options = Object.assign(DEFAULT_OPTIONS, options);
-            }
-          }
+          template
         });
 
         document.body.appendChild(vm.$el);

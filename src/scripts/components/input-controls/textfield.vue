@@ -217,6 +217,11 @@ export default {
       this.currentValue = val;
     }
   },
+  mounted() {
+    if (!this.$textfield && !this.cssOnly) {
+      this.$textfield = new MDCTextfield(this.$el);
+    }
+  },
   methods: {
     handleFocus(event) {
       this.$emit(UI_EVENT_FOCUS, event);
@@ -249,11 +254,6 @@ export default {
     },
     handleKeydownEnter(event) {
       this.$emit(UI_EVENT_KEYDOWN_ENTER, event.target.value);
-    }
-  },
-  mounted() {
-    if (!this.$textfield && !this.cssOnly) {
-      this.$textfield = new MDCTextfield(this.$el);
     }
   }
 };

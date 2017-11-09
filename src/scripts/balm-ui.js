@@ -35,7 +35,7 @@ import UiPanel from './components/tabs/panel';
  * Common
  */
 import UiIcon from './components/icon';
-import UiLink from './components/link';
+import UiLink from './components/button/link';
 import UiButton from './components/button/button';
 import UiFab from './components/button/fab';
 import UiIconToggle from './components/button/icon-toggle';
@@ -128,7 +128,6 @@ const components = {
   UiPanels,
   UiPanel,
   // Common
-  // UiBadge,
   UiIcon,
   UiLink,
   UiButton,
@@ -174,8 +173,6 @@ const components = {
   UiItemDivider,
   UiListNav,
   UiItemLink,
-  // UiTable,
-  // UiPagination,
   // Dialog
   UiDialog,
   UiDialogHeader,
@@ -242,7 +239,6 @@ export {
   UiPanels,
   UiPanel,
   // Common
-  // UiBadge,
   UiIcon,
   UiLink,
   UiButton,
@@ -288,8 +284,6 @@ export {
   UiItemDivider,
   UiListNav,
   UiItemLink,
-  // UiTable,
-  // UiPagination,
   // Dialog
   UiDialog,
   UiDialogHeader,

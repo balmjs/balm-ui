@@ -96,6 +96,15 @@ export default {
       }
     }
   },
+  mounted() {
+    if (!this.disabled) {
+      this.$select = new MDCSelect(this.$el);
+      this.$select.listen(MDC_EVENT_CHANGE, this.changeHandler);
+      this.$el.style.width = 'auto'; // NOTE: MDCSelect's bug (when options is empty)
+    }
+
+    this.currentOptions = this.init();
+  },
   methods: {
     changeHandler({detail}) {
       let index = detail.selectedIndex;
@@ -196,15 +205,6 @@ export default {
 
       return result;
     }
-  },
-  mounted() {
-    if (!this.disabled) {
-      this.$select = new MDCSelect(this.$el);
-      this.$select.listen(MDC_EVENT_CHANGE, this.changeHandler);
-      this.$el.style.width = 'auto'; // NOTE: MDCSelect's bug (when options is empty)
-    }
-
-    this.currentOptions = this.init();
   }
 };
 </script>

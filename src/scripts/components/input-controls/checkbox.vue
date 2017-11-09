@@ -93,17 +93,17 @@ export default {
     //   }
     // }
   },
-  methods: {
-    handleChange() {
-      this.$emit(UI_EVENT_CHANGE, this.currentValue);
-    }
-  },
   mounted() {
     if (!this.$checkbox && !this.cssOnly) {
       const formField = new MDCFormField(this.$el);
       this.$checkbox = new MDCCheckbox(this.$refs.checkbox);
       formField.input = this.$checkbox;
       // this.$checkbox.indeterminate = this.disabled;
+    }
+  },
+  methods: {
+    handleChange() {
+      this.$emit(UI_EVENT_CHANGE, this.currentValue);
     }
   }
 };

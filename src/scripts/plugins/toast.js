@@ -24,11 +24,10 @@ export default {
     const toast = (options = '') => {
       if (!document.querySelector('.mdc-toast')) {
         vm = new Vue({
+          el: document.createElement('div'),
           components: {
             UiSnackbar
           },
-          el: document.createElement('div'),
-          template,
           data: {
             active: false,
             options: DEFAULT_OPTIONS
@@ -39,7 +38,8 @@ export default {
             } else if (isObject(options)) {
               this.options = Object.assign(DEFAULT_OPTIONS, options);
             }
-          }
+          },
+          template
         });
 
         document.body.appendChild(vm.$el);

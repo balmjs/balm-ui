@@ -55,18 +55,6 @@ export default {
       };
     }
   },
-  methods: {
-    setProgress(value) {
-      if (this.$linearProgress && value >= 0 && value <= 1) {
-        this.$linearProgress.progress = value;
-      }
-    },
-    setBuffer(value) {
-      if (this.$linearProgress && value >= 0 && value <= 1) {
-        this.$linearProgress.buffer = value;
-      }
-    }
-  },
   watch: {
     progress(val) {
       this.setProgress(val);
@@ -81,6 +69,18 @@ export default {
       this.setProgress(this.progress);
       if (this.$el.dataset.buffer) {
         this.setBuffer(this.buffer);
+      }
+    }
+  },
+  methods: {
+    setProgress(value) {
+      if (this.$linearProgress && value >= 0 && value <= 1) {
+        this.$linearProgress.progress = value;
+      }
+    },
+    setBuffer(value) {
+      if (this.$linearProgress && value >= 0 && value <= 1) {
+        this.$linearProgress.buffer = value;
       }
     }
   }

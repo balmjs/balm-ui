@@ -1,4 +1,9 @@
+import UiIcon from '../components/icon';
+
 export default {
+  components: {
+    UiIcon
+  },
   props: {
     // ui attributes
     iconSize: {

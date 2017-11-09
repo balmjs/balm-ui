@@ -1,11 +1,14 @@
 <template>
   <div v-if="recordCount" :class="['mdl-pagination', {'mdl-pagination--mini': mini}]">
     <div v-if="showRecord" class="mdl-pagination--record">
-      <slot :recordCount="recordCount" :pageSize="pageSize" :pageCount="pageCount"></slot>
+      <slot :recordCount="recordCount"
+            :pageSize="pageSize"
+            :pageCount="pageCount"></slot>
     </div>
     <div class="mdl-pagination--paging">
       <a class="mdl-pagination--paging-previous">
-        <span v-html="currentPrev" @click="handleClick(currentPage === 1 ? 1 : currentPage - 1)"></span>
+        <span @click="handleClick(currentPage === 1 ? 1 : currentPage - 1)"
+              v-html="currentPrev"></span>
       </a>
       <a v-for="(page, index) in pageCount"
         v-if="!mini && isShow(page)"
@@ -15,11 +18,12 @@
         <span v-else class="ellipsis">...</span>
       </a>
       <a class="mdl-pagination--paging-next">
-        <span v-html="currentNext" @click="handleClick(currentPage === pageCount ? pageCount : currentPage + 1)"></span>
+        <span @click="handleClick(currentPage === pageCount ? pageCount : currentPage + 1)"
+              v-html="currentNext"></span>
       </a>
       <div v-if="!mini && showJumper" class="mdl-pagination--jumper">
         <span>{{ jumperBefore }}</span>
-        <input type="text" ref="input" v-model="pager" @keydown="handleClick(pager, $event)">
+        <input ref="input" v-model="pager" type="text" @keydown="handleClick(pager, $event)">
         <span>{{ jumperAfter }}</span>
       </div>
     </div>

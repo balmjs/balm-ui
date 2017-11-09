@@ -2,13 +2,13 @@
   <ui-form-field :block="block" :alignEnd="alignEnd" :dark="dark">
     <slot name="before"></slot>
     <div ref="checkbox" :class="className">
-      <input type="checkbox"
+      <input :id="id"
+             v-model="currentValue"
+             type="checkbox"
              class="mdc-checkbox__native-control"
-             :id="id"
              :name="name"
              :disabled="disabled"
              :value="isMultiple ? value : false"
-             v-model="currentValue"
              @change="handleChange">
       <div class="mdc-checkbox__background">
         <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">

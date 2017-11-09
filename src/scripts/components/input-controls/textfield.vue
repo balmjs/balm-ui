@@ -17,9 +17,10 @@
     </template>
     <!-- Textarea -->
     <textarea v-if="isMultiLine"
-              ref="input"
-              :class="className.input"
               :id="id"
+              ref="input"
+              :v-model="currentValue"
+              :class="className.input"
               :autocomplete="autocomplete"
               :disabled="disabled"
               :maxlength="maxlength"
@@ -30,7 +31,6 @@
               :required="required"
               :rows="rows"
               :cols="cols"
-              :v-model="currentValue"
               :aria-controls="helptextId"
               @focus="handleFocus"
               @blur="handleBlur"
@@ -39,10 +39,10 @@
               @keydown.enter="handleKeydownEnter"></textarea>
     <!-- Input -->
     <input v-else
+           :id="id"
            ref="input"
            :type="type"
            :class="className.input"
-           :id="id"
            :autocomplete="autocomplete"
            :disabled="disabled"
            :maxlength="maxlength"

@@ -2,12 +2,12 @@
   <ui-form-field :noWrap="noWrap" :block="block" :alignEnd="alignEnd" :dark="dark">
     <slot name="before"></slot>
     <div :class="className">
-      <input type="checkbox"
+      <input :id="id"
+             v-model="currentValue"
+             type="checkbox"
              class="mdc-switch__native-control"
-             :id="id"
              :name="name"
              :disabled="disabled"
-             v-model="currentValue"
              @change="handleChange">
       <div class="mdc-switch__background">
         <div class="mdc-switch__knob"></div>

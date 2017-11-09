@@ -1,5 +1,5 @@
 <template>
-  <p :class="className" :id="id">
+  <p :id="id" :class="className">
     <slot>{{ msg }}</slot>
   </p>
 </template>

@@ -1,10 +1,10 @@
 <template>
   <!-- Native element, shown on mobile devices -->
-  <select :class="className"
+  <select v-model="currentValue"
+          :class="className"
           :disabled="disabled"
           :multiple="multiple"
           :size="size"
-          v-model="currentValue"
           @change="handleChange">
     <!-- Default value -->
     <option v-if="defaultValue"

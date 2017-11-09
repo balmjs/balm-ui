@@ -2,13 +2,13 @@
   <ui-form-field :block="block" :alignEnd="alignEnd" :dark="dark">
     <slot name="before"></slot>
     <div ref="radio" :class="className">
-      <input type="radio"
+      <input :id="id"
+             v-model="currentValue"
+             type="radio"
              class="mdc-radio__native-control"
-             :id="id"
              :name="name"
              :disabled="disabled"
              :value="value"
-             v-model="currentValue"
              @change="handleChange">
       <div class="mdc-radio__background">
         <div class="mdc-radio__outer-circle"></div>

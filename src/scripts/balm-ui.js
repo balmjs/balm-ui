@@ -34,7 +34,7 @@ import UiPanel from './components/tabs/panel';
 /**
  * Common
  */
-import UiIcon from './components/icon';
+import UiIcon from './components/icon.vue';
 import UiLink from './components/button/link';
 import UiButton from './components/button/button';
 import UiFab from './components/button/fab';
@@ -42,7 +42,7 @@ import UiIconToggle from './components/button/icon-toggle';
 import UiMenuAnchor from './components/menu/menu-anchor';
 import UiMenu from './components/menu/menu';
 import UiMenuItem from './components/menu/menuitem';
-import UiLinearProgress from './components/linear-progress';
+import UiLinearProgress from './components/linear-progress.vue';
 /**
  * Input Controls
  */
@@ -90,7 +90,7 @@ import UiDialog from './components/dialog/dialog';
 import UiDialogHeader from './components/dialog/dialog-header';
 import UiDialogBody from './components/dialog/dialog-body';
 import UiDialogFooter from './components/dialog/dialog-footer';
-import UiSnackbar from './components/snackbar';
+import UiSnackbar from './components/snackbar.vue';
 /**
  * Plugins
  */

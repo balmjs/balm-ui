@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <link rel="stylesheet" href="/components/core.css">
+  <link rel="stylesheet" href="/components/button.css">
+  <link rel="stylesheet" href="/components/snackbar.css">
+</head>
+<body>
+  <div id="app">
+    <ui-button primary raised @click.native="onShow('active')">Show Snackbar</ui-button>
+    <ui-snackbar
+      :active="active"
+      :message="message"
+      :action-handler="actionHandler"
+      :multiline="multiline"
+      :action-on-bottom="actionOnBottom"
+      :action-text="actionText"
+      @callback="onHide('active')"></ui-snackbar>
+  </div>
+  <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
+  <script src="/components/core.js"></script>
+  <script src="/components/button.js"></script>
+  <script src="/components/snackbar.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data() {
+        return {
+          active: false,
+          message: 'Hello Snackbar',
+          actionText: 'Undo',
+          multiline: false,
+          actionOnBottom: false
+        };
+      },
+      methods: {
+        actionHandler() {
+          console.log('gg');
+        }
+      }
+    })
+  </script>
+</body>
+</html>

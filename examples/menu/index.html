@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <link rel="stylesheet" href="/components/core.css">
+  <link rel="stylesheet" href="/components/button.css">
+  <link rel="stylesheet" href="/components/menu.css">
+  <link rel="stylesheet" href="/components/list.css">
+</head>
+<body>
+  <div id="app">
+    <ui-menu-anchor :position="position">
+      <ui-button raised @click.native="openMenu">Reveal Menu</ui-button>
+
+      <ui-menu :open="open" :dark="dark"
+        @selected="onSelected"
+        @cancel="onCancel">
+        <ui-menuitem v-for="(item, index) in menu" :key="index">
+          {{ item }}
+        </ui-menuitem>
+        <ui-item-divider></ui-item-divider>
+        <ui-menuitem>Save As...</ui-menuitem>
+      </ui-menu>
+    </ui-menu-anchor>
+  </div>
+  <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
+  <script src="/components/core.js"></script>
+  <script src="/components/button.js"></script>
+  <script src="/components/menu.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data() {
+        return {
+          open: false,
+          menu: ['Back', 'Forward', 'Reload'],
+          selected: {},
+          position: 1,
+          dark: false
+        }
+      },
+      methods: {
+        openMenu() {
+          this.open = true;
+        },
+        onSelected(data) {
+          console.log('onSelected', data);
+          this.selected = data;
+        },
+        onCancel() {
+          console.log('onCancel');
+          this.open = false;
+        }
+      }
+    })
+  </script>
+</body>
+</html>

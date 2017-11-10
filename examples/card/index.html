@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <link rel="stylesheet" href="/components/core.css">
+  <link rel="stylesheet" href="/components/card.css">
+  <link rel="stylesheet" href="/components/button.css">
+  <style>
+  .demo-card {
+    max-width: 21.875rem; // 350sp
+    margin-bottom: 48px;
+  }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <ui-card class="demo-card">
+      <ui-card-head>
+        <ui-card-title>Title goes here</ui-card-title>
+        <ui-card-subtitle>Subtitle here</ui-card-subtitle>
+      </ui-card-head>
+      <ui-card-body>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+        ea commodo consequat.
+      </ui-card-body>
+      <ui-card-actions>
+        <ui-button compact>Action 1</ui-button>
+        <ui-button compact>Action 2</ui-button>
+      </ui-card-actions>
+    </ui-card>
+  </div>
+  <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
+  <script src="/components/core.js"></script>
+  <script src="/components/card.js"></script>
+  <script src="/components/button.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app'
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <link rel="stylesheet" href="/components/core.css">
+  <link rel="stylesheet" href="/components/toolbar.css">
+  <link rel="stylesheet" href="/components/drawer.css">
+  <link rel="stylesheet" href="/components/list.css">
+  <style>
+  body {
+    margin: 0;
+  }
+  .demo-main {
+    padding-left: 16px;
+    overflow: auto;
+  }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="demo--drawer demo--temporary-drawer">
+      <ui-toolbar :fixed="true" content-selector=".demo-main">
+        <ui-toolbar-row>
+          <ui-toolbar-section align="start">
+            <ui-toolbar-button type="menu" class="demo-menu"></ui-toolbar-button>
+            <ui-toolbar-title class="catalog-title">Temporary Drawer</ui-toolbar-title>
+          </ui-toolbar-section>
+        </ui-toolbar-row>
+      </ui-toolbar>
+
+      <ui-temporary-drawer menu-selector=".demo-menu">
+        <ui-drawer-header :contentClass="[themeColor('primary', true), textColor('primary', 'primary')]">
+          Header here
+        </ui-drawer-header>
+        <ui-drawer-content>
+          <ui-list-group>
+            <ui-list-nav>
+              <ui-item-link v-for="(item, index) in menu1" :key="index">
+                <ui-item-start :icon="item.icon"></ui-item-start>
+                {{ item.name }}
+              </ui-item-link>
+            </ui-list-nav>
+            <ui-list-divider></ui-list-divider>
+            <ui-list-nav>
+              <ui-item-link v-for="(item, index) in menu2" :key="index">
+                <ui-item-start :icon="item.icon"></ui-item-start>
+                {{ item.name }}
+              </ui-item-link>
+            </ui-list-nav>
+          </ui-list-group>
+        </ui-drawer-content>
+      </ui-temporary-drawer>
+
+      <main class="demo-main">
+        <h1 :class="typography('display1')">Temporary Drawer</h1>
+        <p :class="typography('body1')">Click the menu icon above to open.</p>
+      </main>
+    </div>
+  </div>
+  <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
+  <script src="/components/core.js"></script>
+  <script src="/components/toolbar.js"></script>
+  <script src="/components/drawer.js"></script>
+  <script src="/components/list.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data() {
+        return {
+          menu1: [{
+            icon: 'inbox',
+            name: 'Inbox'
+          }, {
+            icon: 'star',
+            name: 'Star'
+          }, {
+            icon: 'send',
+            name: 'Sent Mail'
+          }, {
+            icon: 'drafts',
+            name: 'Drafts'
+          }],
+          menu2: [{
+            icon: 'email',
+            name: 'All Mail'
+          }, {
+            icon: 'delete',
+            name: 'Trash'
+          }, {
+            icon: 'report',
+            name: 'Spam'
+          }]
+        };
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <link rel="stylesheet" href="/components/core.css">
+  <link rel="stylesheet" href="/components/tabs.css">
+  <style>
+  .panels {
+    margin-top: 8px;
+    padding: 8px;
+
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <ui-toolbar id="dynamic-demo-toolbar">
+      <ui-toolbar-row>
+        <ui-toolbar-section fit align="start">
+          <ui-tabs accent
+            id="dynamic-tab-bar"
+            :data="tabs"
+            :active="active"
+            @change="onChange('active', $event)"></ui-tabs>
+        </ui-toolbar-section>
+      </ui-toolbar-row>
+    </ui-toolbar>
+    <section>
+      <ui-panels class="panels" :active="active">
+        <ui-panel>Panel One</ui-panel>
+        <ui-panel>Panel Two</ui-panel>
+        <ui-panel>Panel Three</ui-panel>
+      </ui-panels>
+    </section>
+  </div>
+  <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
+  <script src="/components/core.js"></script>
+  <script src="/components/tabs.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data() {
+        return {
+          active: 0,
+          tabs: [{
+            name: 'Item One',
+            url: '#one',
+            panel: 'panel-1'
+          }, {
+            name: 'Item Two',
+            url: '#two',
+            panel: 'panel-2'
+          }, {
+            name: 'Item Three',
+            url: '#three',
+            panel: 'panel-3'
+          }]
+        }
+      }
+    })
+  </script>
+</body>
+</html>

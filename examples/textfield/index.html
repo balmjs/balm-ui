@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <link rel="stylesheet" href="/components/core.css">
+  <link rel="stylesheet" href="/components/form-field.css">
+  <link rel="stylesheet" href="/components/textfield.css">
+</head>
+<body>
+  <div id="app">
+    <ui-textfield
+      required
+      pattern=".{8,}"
+      type="password"
+      id="pw"
+      helptext="pw-validation-msg"
+      autocomplete="current-password">Choose password</ui-textfield>
+    <ui-textfield-helptext id="pw-validation-msg" show msg="Must be at least 8 characters long"></ui-textfield-helptext>
+  </div>
+  <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
+  <script src="/components/core.js"></script>
+  <script src="/components/textfield.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app'
+    })
+  </script>
+</body>
+</html>

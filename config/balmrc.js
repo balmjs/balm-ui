@@ -43,12 +43,7 @@ module.exports = {
     eslint: true,
     options: {
       compress: {
-        warnings: false,
-        comparisons: false
-      },
-      output: {
-        comments: false,
-        ascii_only: true
+        drop_console: false
       }
     },
     include: env.useDocs ? [

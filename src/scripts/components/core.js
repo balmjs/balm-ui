@@ -7,6 +7,7 @@ const plugins = {
 };
 
 if (typeof window !== 'undefined' && window.Vue) {
+  document.querySelector('body').classList.add('mdc-typography');
   for (let key in plugins) {
     window.Vue.use(plugins[key]);
   }

@@ -2,7 +2,7 @@
   <div :class="[menuClassName, positionClassName]" tabindex="-1">
     <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
       <slot>
-        <template v-for="(item, index) in currentMenu">
+        <template v-for="item in currentMenu">
           <ui-item-divider v-if="item === DIVIDER">
           </ui-item-divider>
           <ui-menuitem v-else :item="isObject(item) ? item : {}">

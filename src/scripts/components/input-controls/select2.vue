@@ -9,9 +9,9 @@
     </span>
     <ui-menu :class="'mdc-select__menu'" :dark="dark">
       <ui-menuitem v-for="(option, index) in currentOptions"
+                   :key="index"
                    role="option"
-                   :item="option"
-                   :key="index"></ui-menuitem>
+                   :item="option"></ui-menuitem>
     </ui-menu>
   </div>
 </template>

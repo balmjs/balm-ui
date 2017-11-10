@@ -16,7 +16,8 @@
         <optgroup v-if="option.label && option.items && option.items.length"
                   class="mdc-list-group"
                   :label="option.label">
-          <option v-for="item in option.items"
+          <option v-for="(item, index) in option.items"
+                  :key="index"
                   class="mdc-list-item"
                   :value="item[optionKey]">{{ item[optionValue] }}</option>
         </optgroup>
@@ -32,7 +33,8 @@
       </template>
     </template>
     <template v-else>
-      <option v-for="option in options"
+      <option v-for="(option, index) in options"
+              :key="index"
               :value="option[optionKey]"
               :disabled="option.disabled">{{ option[optionValue] }}</option>
     </template>

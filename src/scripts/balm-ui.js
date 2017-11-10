@@ -83,6 +83,7 @@ import UiItemEnd from './components/list/item-end';
 import UiItemDivider from './components/list/item-divider';
 import UiListNav from './components/list/list-nav';
 import UiItemLink from './components/list/item-link';
+import UiPagination from './components/data/pagination';
 /**
  * Dialog
  */
@@ -173,6 +174,7 @@ const components = {
   UiItemDivider,
   UiListNav,
   UiItemLink,
+  UiPagination,
   // Dialog
   UiDialog,
   UiDialogHeader,
@@ -284,6 +286,7 @@ export {
   UiItemDivider,
   UiListNav,
   UiItemLink,
+  UiPagination,
   // Dialog
   UiDialog,
   UiDialogHeader,

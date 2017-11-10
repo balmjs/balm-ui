@@ -1,6 +1,6 @@
 @import 'global/vendor';
 @import 'global/reset';
-/// Custom
+/// Overwrite
 @import 'components/ui-dialog';
 @import 'components/ui-grid-list';
 @import 'components/ui-icon';
@@ -9,3 +9,5 @@
 @import 'components/ui-toolbar';
 @import 'components/ui-form-field';
 @import 'components/ui-textfield';
+/// Custom
+@import 'components/ui-pagination';

@@ -17,6 +17,9 @@ var entry = env.useDocs ? {
 
 if (env.buildComponents) {
   entry = {
+    'helpers': './src/scripts/components/helpers.js',
+    'mixins': './src/scripts/components/mixins.js',
+    'core': './src/scripts/components/core.js',
     'button': './src/scripts/components/button.js',
     'card': './src/scripts/components/card.js',
     'checkbox': './src/scripts/components/checkbox.js',
@@ -40,6 +43,10 @@ if (env.buildComponents) {
     'tabs': './src/scripts/components/tabs.js',
     'textfield': './src/scripts/components/textfield.js',
     'toolbar': './src/scripts/components/toolbar.js',
+    'pagination': './src/scripts/components/pagination.js',
+    'alert': './src/scripts/components/alert.js',
+    'confirm': './src/scripts/components/confirm.js',
+    'toast': './src/scripts/components/toast.js',
   };
 }
 

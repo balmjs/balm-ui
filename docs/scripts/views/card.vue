@@ -50,9 +50,6 @@
             <ui-card-subtitle>Subhead</ui-card-subtitle>
           </ui-card-head>
           <ui-card-media class="demo-card__16-9-media"></ui-card-media>
-          <ui-card-body>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
-          </ui-card-body>
           <ui-card-actions vertical>
             <ui-button class="mdc-card__action" compact>Action 1</ui-button>
             <ui-button class="mdc-card__action" compact>Action 2</ui-button>
@@ -174,8 +171,8 @@
             </ui-card-media-item>
             <ui-card-actions vertical>
               <!-- TODO(sgomes): Replace with icon buttons when we have those. -->
-              <ui-button class="mdc-card__action" compact>A1</ui-button>
-              <ui-button class="mdc-card__action" compact>A2</ui-button>
+              <ui-button cssOnly compact>A1</ui-button>
+              <ui-button cssOnly compact>A2</ui-button>
             </ui-card-actions>
           </ui-card-horizontal-block>
         </ui-card>

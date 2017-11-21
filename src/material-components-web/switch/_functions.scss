@@ -1,5 +1,5 @@
 //
-// Copyright 2017 Google Inc. All Rights Reserved.
+// Copyright 2016 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,10 +14,8 @@
 // limitations under the License.
 //
 
-$mdc-button-height: 36px;
-$mdc-button-horizontal-padding: 16px;
-$mdc-dense-button-height: 32px;
-$mdc-compact-button-horizontal-padding: 8px;
+@import "../animation/variables";
 
-$mdc-unfilled-button-ripple-opacity: .16;
-$mdc-filled-button-ripple-opacity: .32;
+@function mdc-switch-transition($property) {
+  @return $property 90ms $mdc-animation-standard-curve-timing-function;
+}

@@ -1,4 +1,7 @@
-@import 'vendor';
-@import 'mixins';
-@import 'base';
-@import 'layout';
+@import './reset';
+@import '../../../src/styles/color'; // just for demos
+@import './var';
+@import './vendor';
+@import './mixins';
+@import './base';
+@import './layout';

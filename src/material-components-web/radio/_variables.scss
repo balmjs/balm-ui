@@ -1,5 +1,5 @@
 //
-// Copyright 2017 Google Inc. All Rights Reserved.
+// Copyright 2016 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,10 +14,10 @@
 // limitations under the License.
 //
 
-$mdc-button-height: 36px;
-$mdc-button-horizontal-padding: 16px;
-$mdc-dense-button-height: 32px;
-$mdc-compact-button-horizontal-padding: 8px;
-
-$mdc-unfilled-button-ripple-opacity: .16;
-$mdc-filled-button-ripple-opacity: .32;
+$mdc-radio-touch-area: 40px;
+$mdc-radio-ui-size: 20px;
+$mdc-radio-ui-pct: percentage($mdc-radio-ui-size / $mdc-radio-touch-area);
+$mdc-radio-transition-duration: 120ms;
+$mdc-radio-ripple-opacity: .14;
+$mdc-radio-ripple-radius: 50%;
+$mdc-radio-baseline-theme-color: secondary;

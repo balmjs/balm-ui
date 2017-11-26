@@ -5,10 +5,10 @@
                  :alignEnd="alignEnd"
                  :dark="dark">
     <template v-if="leadingIcon">
-      <ui-icon v-if="isMaterialIcon" :class="'mdc-textfield__icon'" :tabindex="clickable">
+      <ui-icon v-if="isMaterialIcon" :class="'mdc-text-field__icon'" :tabindex="clickable">
         {{ leadingIcon }}
       </ui-icon>
-      <span v-else class="mdc-textfield__icon mdc-textfield__custom-icon">
+      <span v-else class="mdc-text-field__icon mdc-text-field__custom-icon">
         <slot name="before"></slot>
       </span>
     </template>
@@ -63,22 +63,22 @@
       <slot>{{ label }}</slot>
     </label>
     <template v-if="trailingIcon">
-      <ui-icon v-if="isMaterialIcon" :class="'mdc-textfield__icon'" :tabindex="clickable">
+      <ui-icon v-if="isMaterialIcon" :class="'mdc-text-field__icon'" :tabindex="clickable">
         {{ trailingIcon }}
       </ui-icon>
-      <span v-else class="mdc-textfield__icon mdc-textfield__custom-icon">
+      <span v-else class="mdc-text-field__icon mdc-text-field__custom-icon">
         <slot name="after"></slot>
       </span>
     </template>
     <template v-else>
       <slot name="after"></slot>
     </template>
-    <div v-if="!(cssOnly || isMultiLine)" class="mdc-textfield__bottom-line"></div>
+    <div v-if="!(cssOnly || isMultiLine)" class="mdc-text-field__bottom-line"></div>
   </ui-form-field>
 </template>
 
 <script>
-import {MDCTextfield} from '../../../material-components-web/textfield';
+import {MDCTextField} from '../../../material-components-web/textfield';
 import UiFormField from './form-field';
 import UiIcon from '../icon';
 import {isString, detectIE} from '../../helpers'
@@ -192,22 +192,22 @@ export default {
     className() {
       return {
         outer: {
-          'mdc-textfield': true,
-          'mdc-textfield--textarea': this.isMultiLine,
-          'mdc-textfield--disabled': this.disabled,
-          'mdc-textfield--box': this.box,
-          'mdc-textfield--dense': this.dense,
-          'mdc-textfield--with-leading-icon': this.leadingIcon,
-          'mdc-textfield--with-trailing-icon': this.trailingIcon,
-          'mdc-textfield--fullwidth': this.fullwidth,
-          'mdc-textfield--upgraded': !this.cssOnly
+          'mdc-text-field': true,
+          'mdc-text-field--textarea': this.isMultiLine,
+          'mdc-text-field--disabled': this.disabled,
+          'mdc-text-field--box': this.box,
+          'mdc-text-field--dense': this.dense,
+          'mdc-text-field--with-leading-icon': this.leadingIcon,
+          'mdc-text-field--with-trailing-icon': this.trailingIcon,
+          'mdc-text-field--fullwidth': this.fullwidth,
+          'mdc-text-field--upgraded': !this.cssOnly
         },
         label: {
-          'mdc-textfield__label': true,
-          'mdc-textfield__label--float-above': this.floatAbove && this.currentValue
+          'mdc-text-field__label': true,
+          'mdc-text-field__label--float-above': this.floatAbove && this.currentValue
         },
         input: {
-          'mdc-textfield__input': true
+          'mdc-text-field__input': true
         }
       };
     }
@@ -219,7 +219,7 @@ export default {
   },
   mounted() {
     if (!this.$textfield && !this.cssOnly) {
-      this.$textfield = new MDCTextfield(this.$el);
+      this.$textfield = new MDCTextField(this.$el);
     }
   },
   methods: {

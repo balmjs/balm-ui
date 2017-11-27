@@ -32,7 +32,6 @@
   "devDependencies": {
     "axios": "^0.17.1",
     "babel-eslint": "^8.0.2",
-    "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "balm": "^0.11.0",
     "clipboard": "^1.7.1",

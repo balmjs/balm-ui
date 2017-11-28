@@ -1,8 +1,9 @@
+import grid from './grid';
 import elevation from '../mixins/elevation';
 import theme from '../mixins/theme';
 import typography from '../mixins/typography';
 
-const methods = Object.assign({}, elevation.methods, theme.methods, typography.methods);
+const methods = Object.assign({}, grid.methods, elevation.methods, theme.methods, typography.methods);
 
 export default {
   install(Vue) {

@@ -95,12 +95,13 @@ import UiSnackbar from './components/common/snackbar';
 /**
  * Plugins
  */
-import event from './plugins/event';
-import mixin from './plugins/mixin';
+import event from './plugins/instance-methods';
+import mixin from './plugins/global-methods';
 import alert from './plugins/alert';
 import confirm from './plugins/confirm';
 import toast from './plugins/toast';
 
+const version = require('../../package.json').version;
 const helpers = Object.assign({}, BalmUI_Helpers);
 const mixins = Object.assign({}, BalmUI_Mixins);
 
@@ -204,7 +205,7 @@ const registers = {
   }
 };
 
-const BalmUI = Object.assign({}, { helpers }, { mixins }, { components }, { plugins }, registers);
+const BalmUI = Object.assign({}, { version }, { helpers }, { mixins }, { components }, { plugins }, registers);
 
 // Auto install in dist mode
 if (typeof window !== 'undefined' && window.Vue) {
@@ -217,84 +218,6 @@ if (typeof window !== 'undefined' && window.Vue) {
 export default BalmUI;
 
 export {
-  // Layout
-  UiPermanentDrawer,
-  UiPersistentDrawer,
-  UiTemporaryDrawer,
-  UiDrawerHeader,
-  UiDrawerToolbarSpacer,
-  UiDrawerContent,
-  UiToolbar,
-  UiToolbarRow,
-  UiToolbarSection,
-  UiToolbarTitle,
-  UiToolbarAnchor,
-  UiToolbarSpan,
-  UiToolbarButton,
-  UiGrid,
-  UiGridInner,
-  UiCell,
-  UiTabs,
-  UiTabBar,
-  UiTabBarScroller,
-  UiTab,
-  UiPanels,
-  UiPanel,
-  // Common
-  UiIcon,
-  UiLink,
-  UiButton,
-  UiFab,
-  UiCard,
-  UiCardHead,
-  UiCardTitle,
-  UiCardSubtitle,
-  UiCardMedia,
-  UiCardMediaItem,
-  UiCardBody,
-  UiCardActions,
-  UiCardHorizontalBlock,
-  UiMenuAnchor,
-  UiMenu,
-  UiMenuItem,
-  UiLinearProgress,
-  // Input Controls
-  UiFormField,
-  UiTextfield,
-  UiTextfieldHelptext,
-  UiCheckbox,
-  UiRadio,
-  UiIconToggle,
-  UiSelect,
-  UiSelect2,
-  UiSwitch,
-  UiSlider,
-  // Data
-  UiGridList,
-  UiGridTile,
-  UiGridTileTitle,
-  UiGridTileText,
-  UiListGroup,
-  UiListGroupSubheader,
-  UiList,
-  UiListDivider,
-  UiItem,
-  UiItemStart,
-  UiItemText,
-  UiItemSubtext,
-  UiItemEnd,
-  UiItemDivider,
-  UiListNav,
-  UiItemLink,
-  UiPagination,
-  // Dialog
-  UiDialog,
-  UiDialogHeader,
-  UiDialogBody,
-  UiDialogFooter,
-  UiSnackbar,
-  // Others
   helpers,
-  mixins,
-  plugins
+  mixins
 };

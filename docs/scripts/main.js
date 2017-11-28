@@ -5,6 +5,7 @@ import axios from 'axios';
 import VueI18n from 'vue-i18n';
 import BalmUI from '../../src/scripts/balm-ui'; // 'balm-ui'
 import routes from './routes/index';
+import helpers from './helpers';
 import App from './views/layouts/app';
 import UiMarkdown from './views/components/markdown';
 import UiApidoc from './views/components/apidoc';

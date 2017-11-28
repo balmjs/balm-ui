@@ -1,4 +1,4 @@
-import { isUndefined } from '../helpers';
+import {isUndefined} from '../helpers/typeof';
 
 /**
  * Form Validator

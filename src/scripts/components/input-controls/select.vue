@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import {isObject} from '../../helpers';
+import {isObject} from '../../helpers/typeof';
 
 const DIVIDER = '-';
 const UI_EVENT_CHANGE = 'change';

@@ -3,7 +3,7 @@ import UiDialogHeader from '../components/dialog/dialog-header';
 import UiDialogBody from '../components/dialog/dialog-body';
 import UiDialogFooter from '../components/dialog/dialog-footer';
 import UiButton from '../components/button/button';
-import {isString, isObject, isFunction} from '../helpers';
+import {isString, isObject, isFunction} from '../helpers/typeof';
 
 const DEFAULT_OPTIONS = {
   className: '',

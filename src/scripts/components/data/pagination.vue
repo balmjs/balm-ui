@@ -23,7 +23,7 @@
       </a>
       <div v-if="!mini && showJumper" class="mdc-pagination--jumper">
         <span>{{ jumperBefore }}</span>
-        <input ref="input" v-model="pager" type="text" @keydown="handleClick(pager, $event)">
+        <input ref="input" v-model="pager" type="text" @keydown="handleClick(pager)">
         <span>{{ jumperAfter }}</span>
       </div>
     </div>
@@ -31,9 +31,6 @@
 </template>
 
 <script>
-import {detectIE} from '../../helpers';
-
-const KEY_ENTER = 13;
 const DOUBLE_ARROW_LEFT = '&laquo;';
 const DOUBLE_ARROW_RIGHT = '&raquo;';
 const SINGLE_ARROW_LEFT = '&lsaquo;';
@@ -124,7 +121,7 @@ export default {
       let noFirstOrLast = (page !== 1 && page !== this.pageCount);
       return !(isExisted && noFirstOrLast);
     },
-    handleClick(page, event) {
+    handleClick(page) {
       if (!isNaN(page)) {
         switch (true) {
           case (page > this.pageCount):
@@ -138,11 +135,6 @@ export default {
         this.pager = page;
       } else {
         this.pager = this.currentPage;
-      }
-      // fix IE10- bug
-      let version = detectIE();
-      if (version && version < 11 && event.keyCode === KEY_ENTER) {
-        event.preventDefault();
       }
     }
   }

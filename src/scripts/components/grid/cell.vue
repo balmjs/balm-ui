@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import {isObject} from '../../helpers';
+import {isObject} from '../../helpers/typeof';
 
 const CLASSNAME_CELL = 'mdc-layout-grid__cell';
 const TYPE_SPAN = 'span'; // [1, 12]

@@ -1,5 +1,5 @@
-import UiSnackbar from '../components/snackbar';
-import {isString, isObject} from '../helpers';
+import UiSnackbar from '../components/common/snackbar';
+import {isString, isObject} from '../helpers/typeof';
 
 const DEFAULT_OPTIONS = {
   className: '',

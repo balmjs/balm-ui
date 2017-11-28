@@ -31,7 +31,7 @@
 import {MDCFormField} from '../../../material-components-web/form-field';
 import {MDCCheckbox} from '../../../material-components-web/checkbox';
 import UiFormField from './form-field';
-import {isArray} from '../../helpers';
+import {isArray} from '../../helpers/typeof';
 import formFieldMixin from '../../mixins/form-field';
 
 const UI_EVENT_CHANGE = 'change';

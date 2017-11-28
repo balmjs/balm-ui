@@ -14,7 +14,7 @@
 
 <script>
 import {MDCIconToggle} from '../../../material-components-web/icon-toggle';
-import {isString} from '../../helpers';
+import {isString} from '../../helpers/typeof';
 
 const DMC_EVENT_CHANGE = 'MDCIconToggle:change';
 const UI_EVENT_CHANGE = 'change';

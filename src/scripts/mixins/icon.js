@@ -1,4 +1,4 @@
-import UiIcon from '../components/icon.vue';
+import UiIcon from '../components/common/icon';
 
 export default {
   components: {

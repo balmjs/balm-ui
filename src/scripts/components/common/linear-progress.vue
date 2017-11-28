@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import {MDCLinearProgress} from '../../material-components-web/linear-progress';
+import {MDCLinearProgress} from '../../../material-components-web/linear-progress';
 
 export default {
   name: 'ui-linear-progress',

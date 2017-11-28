@@ -81,7 +81,7 @@
 import {MDCTextField} from '../../../material-components-web/textfield';
 import UiFormField from './form-field';
 import UiIcon from '../icon';
-import {isString, detectIE} from '../../helpers'
+import {isString} from '../../helpers/typeof'
 import formFieldMixin from '../../mixins/form-field';
 
 const UI_EVENT_FOCUS = 'focus';
@@ -227,22 +227,17 @@ export default {
       this.$emit(UI_EVENT_FOCUS, event);
     },
     handleBlur() {
-      let result = {};
+      let input = this.$refs.input;
 
-      let ie = detectIE();
-      if (!(ie && ie < 10)) {
-        let input = this.$refs.input;
+      let valid = input.checkValidity();
+      let validity = input.validity;
+      let message = input.validationMessage;
 
-        let valid = input.checkValidity();
-        let validity = input.validity;
-        let message = input.validationMessage;
-
-        result = {
-          valid,
-          validity,
-          message
-        };
-      }
+      let result = {
+        valid,
+        validity,
+        message
+      };
 
       this.$emit(UI_EVENT_BLUR, result);
     },

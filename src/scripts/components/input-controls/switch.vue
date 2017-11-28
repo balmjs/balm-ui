@@ -21,7 +21,6 @@
 </template>
 
 <script>
-// import {MDCFormField} from '../../../material-components-web/form-field';
 import UiFormField from './form-field';
 import formFieldMixin from '../../mixins/form-field';
 

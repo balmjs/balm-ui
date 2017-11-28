@@ -13,7 +13,7 @@
 
 <script>
 import rippleMixin from '../../mixins/ripple';
-import {isString} from '../../helpers';
+import {isString} from '../../helpers/typeof';
 
 export default {
   name: 'ui-fab',

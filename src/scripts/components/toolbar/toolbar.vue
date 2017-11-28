@@ -6,7 +6,7 @@
 
 <script>
 import {MDCToolbar} from '../../../material-components-web/toolbar';
-import {isString} from '../../helpers';
+import {isString} from '../../helpers/typeof';
 
 const FIXED_LASTROW_ONLY = 'lastrow';
 const FLEXIBLE_CUSTOM_BEHAVIOR = 'custom';

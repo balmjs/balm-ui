@@ -16,7 +16,7 @@
 
 <script>
 import {MDCSimpleMenu} from '../../../material-components-web/menu';
-import {isString, isObject} from '../../helpers';
+import {isString, isObject} from '../../helpers/typeof';
 import UiMenuItem from './menuitem';
 import UiItemDivider from '../list/item-divider';
 

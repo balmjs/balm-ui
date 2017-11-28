@@ -1,5 +1,5 @@
-$pagination-color: #49a9ee !default;
-$pagination-active-color: #108ee9 !default;
+$ui-pagination-color: #49a9ee !default;
+$ui-pagination-active-color: #108ee9 !default;
 
 .mdc-pagination {
   line-height: 28px;
@@ -30,15 +30,15 @@ $pagination-active-color: #108ee9 !default;
         display: block;
       }
       &:hover {
-        color: $pagination-color;
-        border-color: $pagination-color;
+        color: $ui-pagination-color;
+        border-color: $ui-pagination-color;
       }
       &.active {
         cursor: default;
 
         color: white;
-        border-color: $pagination-active-color;
-        background-color: $pagination-active-color;
+        border-color: $ui-pagination-active-color;
+        background-color: $ui-pagination-active-color;
       }
     }
   }
@@ -52,10 +52,10 @@ $pagination-active-color: #108ee9 !default;
       color: rgba(0, 0, 0, .65);
       border: 1px solid #d9d9d9;
       &:hover {
-        border-color: $pagination-color;
+        border-color: $ui-pagination-color;
       }
       &:focus {
-        border-color: $pagination-color;
+        border-color: $ui-pagination-color;
         outline: 0;
         box-shadow: 0 0 0 2px rgba(16, 142, 233, .2);
       }
@@ -69,8 +69,8 @@ $pagination-active-color: #108ee9 !default;
       color: rgba(0, 0, 0, .65);
       border: 1px solid #d9d9d9;
       &:hover {
-        color: $pagination-color;
-        border-color: $pagination-color;
+        color: $ui-pagination-color;
+        border-color: $ui-pagination-color;
         background: none;
       }
     }

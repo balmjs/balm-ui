@@ -1,0 +1,21 @@
+// BalmUI Overwrite
+$ui-checkbox-mark-color: $mdc-checkbox-mark-color !default;
+$ui-checkbox-focus-indicator-color: $mdc-theme-secondary !default;
+$ui-checkbox-ripple-color: $mdc-theme-secondary !default;
+$ui-checkbox-unmarked-stroke-color: $mdc-checkbox-border-color !default;
+$ui-checkbox-unmarked-fill-color: transparent !default;
+$ui-checkbox-marked-fill-color: $mdc-theme-secondary !default;
+$ui-checkbox-border-color-dark: $mdc-checkbox-border-color-dark !default;
+
+.mdc-checkbox {
+  @include mdc-checkbox-ink-color($ui-checkbox-mark-color);
+  @include mdc-checkbox-focus-indicator-color($ui-checkbox-focus-indicator-color);
+  @include mdc-ripple-color($ui-checkbox-ripple-color, $mdc-checkbox-ripple-opacity);
+  @include mdc-checkbox-container-colors(
+    $unmarked-stroke-color: $ui-checkbox-unmarked-stroke-color,
+    $unmarked-fill-color: $ui-checkbox-unmarked-fill-color,
+    $marked-fill-color: $ui-checkbox-marked-fill-color);
+  @include mdc-theme-dark {
+    @include mdc-checkbox-container-colors($unmarked-stroke-color: $ui-checkbox-border-color-dark);
+  }
+}

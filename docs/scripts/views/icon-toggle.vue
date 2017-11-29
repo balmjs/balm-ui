@@ -14,7 +14,7 @@
             :model="icon1.value"
             :on="icon1.on"
             :off="icon1.off"
-            @change="onChange('icon1.value', $event)">
+            @change="balmUI.onChange('icon1.value', $event)">
           </ui-icon-toggle>
         </div>
         <p>Favorited? <span id="favorited-status">{{ icon1.value }}</span></p>
@@ -28,7 +28,7 @@
             icon="fa"
             :on="icon2.on"
             :off="icon2.off"
-            @change="onChange('icon2.value', $event)">
+            @change="balmUI.onChange('icon2.value', $event)">
             <i class="fa fa-star" aria-hidden="true"></i>
           </ui-icon-toggle>
         </div>

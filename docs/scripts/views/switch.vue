@@ -6,7 +6,7 @@
 
     <section class="example">
       <h2>Switch on Light Theme</h2>
-      <ui-switch id="basic-switch" :model="value1" @change="onChange('value1', $event)">off/on</ui-switch>
+      <ui-switch id="basic-switch" :model="value1" @change="balmUI.onChange('value1', $event)">off/on</ui-switch>
     </section>
     <section class="example">
       <h2>Switch on Light Theme - Disabled</h2>

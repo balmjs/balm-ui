@@ -32,29 +32,29 @@
             id="top-left"
             :value="1"
             :model="position"
-            @change="onChange('position', $event)">Top left</ui-radio>
+            @change="balmUI.onChange('position', $event)">Top left</ui-radio>
           <ui-radio block
             name="position"
             id="top-right"
             :value="2"
             :model="position"
-            @change="onChange('position', $event)">Top right</ui-radio>
+            @change="balmUI.onChange('position', $event)">Top right</ui-radio>
           <ui-radio block
             name="position"
             id="bottom-left"
             :value="3"
             :model="position"
-            @change="onChange('position', $event)">Bottom left</ui-radio>
+            @change="balmUI.onChange('position', $event)">Bottom left</ui-radio>
           <ui-radio block
             name="position"
             id="bottom-right"
             :value="4"
             :model="position"
-            @change="onChange('position', $event)">Bottom right</ui-radio>
+            @change="balmUI.onChange('position', $event)">Bottom right</ui-radio>
           <ui-checkbox block
             id="dark-mode"
             :model="dark"
-            @change="onChange('dark', $event)">Dark mode</ui-checkbox>
+            @change="balmUI.onChange('dark', $event)">Dark mode</ui-checkbox>
           <p>
             <span>Last Selected item: <em id="last-selected">{{ selected.item || 'none' }} selected</em></span>
           </p>

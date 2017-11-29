@@ -14,7 +14,7 @@
 
 <script>
 import {MDCIconToggle} from '../../../material-components-web/icon-toggle';
-import {isString} from '../../helpers/typeof';
+import getType from '../../helpers/typeof';
 
 const DMC_EVENT_CHANGE = 'MDCIconToggle:change';
 const UI_EVENT_CHANGE = 'change';
@@ -71,10 +71,14 @@ export default {
       return this.icon ? `.${this.icon}` : false;
     },
     toggleOnData() {
-      return isString(this.on) ? this.on : JSON.stringify(this.on);
+      return (getType(this.on) === 'string')
+        ? this.on
+        : JSON.stringify(this.on);
     },
     toggleOffData() {
-      return isString(this.off) ? this.off : JSON.stringify(this.off);
+      return (getType(this.off) === 'string')
+        ? this.off
+        : JSON.stringify(this.off);
     }
   },
   watch: {

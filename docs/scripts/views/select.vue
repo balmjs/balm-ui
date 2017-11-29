@@ -14,7 +14,7 @@
           optionKey="key"
           optionValue="value"
           placeholder="Pick a food group"
-          @change="onChange('formData.selected', $event)"></ui-select2>
+          @change="balmUI.onChange('formData.selected', $event)"></ui-select2>
       </section>
       <p>Currently selected:
         <span id="currently-selected">{{ formData.selected || '(none)'}}</span>
@@ -27,7 +27,7 @@
         optionKey="key"
         optionValue="value"
         defaultValue="Pick a food group"
-        @change="onChange('formData.selected', $event)"></ui-select>
+        @change="balmUI.onChange('formData.selected', $event)"></ui-select>
     </section>
     <section class="example">
       <h2>Select Multiple - CSS Only</h2>
@@ -36,7 +36,7 @@
         :model="formData.multipleSelected"
         optionKey="key"
         optionValue="value"
-        @change="onChange('formData.multipleSelected', $event)"></ui-select>
+        @change="balmUI.onChange('formData.multipleSelected', $event)"></ui-select>
     </section>
 
     <!-- <ui-select2

@@ -81,7 +81,7 @@
 import {MDCTextField} from '../../../material-components-web/textfield';
 import UiFormField from './form-field';
 import UiIcon from '../icon';
-import {isString} from '../../helpers/typeof'
+import getType from '../../helpers/typeof'
 import formFieldMixin from '../../mixins/form-field';
 
 const UI_EVENT_FOCUS = 'focus';
@@ -181,7 +181,7 @@ export default {
   },
   computed: {
     isMaterialIcon() {
-      return isString(this.leadingIcon) || isString(this.trailingIcon);
+      return getType(this.leadingIcon) === 'string' || getType(this.trailingIcon) === 'string';
     },
     isMultiLine() {
       return this.type.toLowerCase() === 'textarea';

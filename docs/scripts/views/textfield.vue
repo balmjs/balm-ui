@@ -30,42 +30,42 @@
         </ui-textfield-helptext>
       </section>
       <p>
-        <ui-checkbox :model="useDisabled" @change="onChange('useDisabled', $event)">
+        <ui-checkbox :model="useDisabled" @change="balmUI.onChange('useDisabled', $event)">
           Disabled
         </ui-checkbox>
       </p>
       <p>
-        <ui-checkbox :model="useRTL" @change="onChange('useRTL', $event)">
+        <ui-checkbox :model="useRTL" @change="balmUI.onChange('useRTL', $event)">
           RTL
         </ui-checkbox>
       </p>
       <p>
-        <ui-checkbox :model="useDarkTheme" @change="onChange('useDarkTheme', $event)">
+        <ui-checkbox :model="useDarkTheme" @change="balmUI.onChange('useDarkTheme', $event)">
           Dark Theme
         </ui-checkbox>
       </p>
       <p>
-        <ui-checkbox :model="useDense" @change="onChange('useDense', $event)">
+        <ui-checkbox :model="useDense" @change="balmUI.onChange('useDense', $event)">
           Dense
         </ui-checkbox>
       </p>
       <p>
-        <ui-checkbox :model="useRequired" @change="onChange('useRequired', $event)">
+        <ui-checkbox :model="useRequired" @change="balmUI.onChange('useRequired', $event)">
           Required
         </ui-checkbox>
       </p>
       <p>
-        <ui-checkbox :model="useHelptext" @change="onChange('useHelptext', $event)">
+        <ui-checkbox :model="useHelptext" @change="balmUI.onChange('useHelptext', $event)">
           Use Help Text
         </ui-checkbox>
       </p>
       <p>
-        <ui-checkbox :disabled="!useHelptext" :model="showHelptext" @change="onChange('showHelptext', $event)">
+        <ui-checkbox :disabled="!useHelptext" :model="showHelptext" @change="balmUI.onChange('showHelptext', $event)">
           Make helper text persistent
         </ui-checkbox>
       </p>
       <p>
-        <ui-checkbox :disabled="!useHelptext" :model="useValidation" @change="onChange('useValidation', $event)">
+        <ui-checkbox :disabled="!useHelptext" :model="useValidation" @change="balmUI.onChange('useValidation', $event)">
           Use helper text as validation message
         </ui-checkbox>
       </p>

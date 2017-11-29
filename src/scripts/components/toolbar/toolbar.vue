@@ -6,7 +6,7 @@
 
 <script>
 import {MDCToolbar} from '../../../material-components-web/toolbar';
-import {isString} from '../../helpers/typeof';
+import getType from '../../helpers/typeof';
 
 const FIXED_LASTROW_ONLY = 'lastrow';
 const FLEXIBLE_CUSTOM_BEHAVIOR = 'custom';
@@ -41,10 +41,10 @@ export default {
   },
   computed: {
     isFixedLastrowOnly() {
-      return isString(this.fixed) && this.fixed.toLowerCase() === FIXED_LASTROW_ONLY;
+      return getType(this.fixed) === 'string' && this.fixed.toLowerCase() === FIXED_LASTROW_ONLY;
     },
     noFlexibleDefaultBehavior() {
-      return isString(this.flexible) && this.flexible.toLowerCase() === FLEXIBLE_CUSTOM_BEHAVIOR;
+      return getType(this.flexible) === 'string' && this.flexible.toLowerCase() === FLEXIBLE_CUSTOM_BEHAVIOR;
     },
     className() {
       return {

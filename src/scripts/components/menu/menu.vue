@@ -5,8 +5,8 @@
         <template v-for="item in currentMenu">
           <ui-item-divider v-if="item === DIVIDER">
           </ui-item-divider>
-          <ui-menuitem v-else :item="isObject(item) ? item : {}">
-            {{ isString(item) ? item : '' }}
+          <ui-menuitem v-else :item="(getType(item) === 'object') ? item : {}">
+            {{ (getType(item) === 'string') ? item : '' }}
           </ui-menuitem>
         </template>
       </slot>
@@ -16,7 +16,7 @@
 
 <script>
 import {MDCSimpleMenu} from '../../../material-components-web/menu';
-import {isString, isObject} from '../../helpers/typeof';
+import getType from '../../helpers/typeof';
 import UiMenuItem from './menuitem';
 import UiItemDivider from '../list/item-divider';
 
@@ -63,8 +63,7 @@ export default {
   data() {
     return {
       DIVIDER,
-      isString,
-      isObject,
+      getType,
       $menu: null,
       currentMenu: this.menu
     };
@@ -77,7 +76,7 @@ export default {
       };
     },
     positionClassName() {
-      let currentPositon = isString(this.position)
+      let currentPositon = (getType(this.position) === 'string')
         ? POSITIONS.indexOf(this.position) + 1
         : this.position;
 

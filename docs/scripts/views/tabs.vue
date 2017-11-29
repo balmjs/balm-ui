@@ -182,7 +182,7 @@
                 id="dynamic-tab-bar"
                 :data="tabs"
                 :active="active"
-                @change="onChange('active', $event)"></ui-tabs>
+                @change="balmUI.onChange('active', $event)"></ui-tabs>
             </ui-toolbar-section>
           </ui-toolbar-row>
         </ui-toolbar>

@@ -11,20 +11,20 @@
       <div>
         <ui-checkbox id="multiline"
           :model="multiline"
-          @change="onChange('multiline', $event)">Multiline</ui-checkbox><br>
+          @change="balmUI.onChange('multiline', $event)">Multiline</ui-checkbox><br>
         <ui-checkbox id="action-on-bottom"
           :model="actionOnBottom"
           :disabled="!multiline"
-          @change="onChange('actionOnBottom', $event)">Action On Bottom</ui-checkbox><br>
+          @change="balmUI.onChange('actionOnBottom', $event)">Action On Bottom</ui-checkbox><br>
 
         <ui-textfield id="message"
           :model="message"
-          @input="onChange('message', $event)">Message Text</ui-textfield><br>
+          @input="balmUI.onChange('message', $event)">Message Text</ui-textfield><br>
         <ui-textfield id="action"
           :model="actionText"
-          @input="onChange('actionText', $event)">Action Text</ui-textfield><br>
+          @input="balmUI.onChange('actionText', $event)">Action Text</ui-textfield><br>
 
-        <ui-button raised @click.native="onShow('active')">Show</ui-button>
+        <ui-button raised @click.native="balmUI.onShow('active')">Show</ui-button>
 
         <ui-snackbar
           :active="active"
@@ -33,7 +33,7 @@
           :multiline="multiline"
           :actionOnBottom="actionOnBottom"
           :actionText="actionText"
-          @callback="onHide('active')"></ui-snackbar>
+          @callback="balmUI.onHide('active')"></ui-snackbar>
       </div>
     </section>
 

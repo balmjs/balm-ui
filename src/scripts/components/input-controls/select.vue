@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import {isObject} from '../../helpers/typeof';
+import getType from '../../helpers/typeof';
 
 const DIVIDER = '-';
 const UI_EVENT_CHANGE = 'change';
@@ -132,7 +132,7 @@ export default {
                 ? options.items.find(option => option[this.optionKey] == this.currentValue) // `object` || `undefined`
                 : options.items[0]; // `object`
             }
-            if (isObject(defaultOption) && defaultOption.hasOwnProperty(this.optionKey)) {
+            if (getType(defaultOption) === 'object' && defaultOption.hasOwnProperty(this.optionKey)) {
               break;
             }
           }

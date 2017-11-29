@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import {isObject} from '../../helpers/typeof';
+import getType from '../../helpers/typeof';
 
 const CLASSNAME_CELL = 'mdc-layout-grid__cell';
 const TYPE_SPAN = 'span'; // [1, 12]
@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     handleCell(type, result, data) {
-      if (isObject(data)) {
+      if (getType(data) === 'object') {
         for (let key in data) {
           let value = data[key];
           if (SCREEN_SIZE.includes(key)) {

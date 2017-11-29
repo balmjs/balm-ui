@@ -4,7 +4,7 @@
       <div id="hero-slider-wrapper">
         <ui-slider id="hero-slider" min="0" max="100" step="2"
           :model="value" label="Select Value"
-          @change="onChange('value', $event)"></ui-slider>
+          @change="balmUI.onChange('value', $event)"></ui-slider>
       </div>
     </section>
 
@@ -16,7 +16,7 @@
         <div class="example-slider-wrapper">
           <ui-slider id="continuous-mdc-slider"
             :model="value1"
-            @change="onChange('value1', $event)"></ui-slider>
+            @change="balmUI.onChange('value1', $event)"></ui-slider>
         </div>
 
         <p>
@@ -34,7 +34,7 @@
           <ui-slider id="discrete-mdc-slider"
             discrete
             :model="value2"
-            @change="onChange('value2', $event)"></ui-slider>
+            @change="balmUI.onChange('value2', $event)"></ui-slider>
         </div>
 
         <p>
@@ -52,7 +52,7 @@
           <ui-slider id="discrete-mdc-slider-w-marker"
             displayMarkers
             :model="value3"
-            @change="onChange('value3', $event)"></ui-slider>
+            @change="balmUI.onChange('value3', $event)"></ui-slider>
         </div>
 
         <p>

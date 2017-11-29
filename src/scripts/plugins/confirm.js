@@ -3,7 +3,7 @@ import UiDialogHeader from '../components/dialog/dialog-header';
 import UiDialogBody from '../components/dialog/dialog-body';
 import UiDialogFooter from '../components/dialog/dialog-footer';
 import UiButton from '../components/button/button';
-import {isString, isObject, isFunction} from '../helpers/typeof';
+import getType from '../helpers/typeof';
 
 const DEFAULT_OPTIONS = {
   className: '',
@@ -54,9 +54,9 @@ export default {
             options: DEFAULT_OPTIONS
           },
           created() {
-            if (isString(options)) {
+            if (getType(options) === 'string') {
               this.options.message = options;
-            } else if (isObject(options)) {
+            } else if (getType(options) === 'object') {
               this.options = Object.assign(DEFAULT_OPTIONS, options);
             }
           },
@@ -69,7 +69,7 @@ export default {
             },
             handleConfirm(result) {
               this.handleClose();
-              if (isFunction(this.options.callback)) {
+              if (getType(this.options.callback) === 'function') {
                 this.options.callback(result);
               } else {
                 if (result) {

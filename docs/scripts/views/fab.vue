@@ -66,7 +66,7 @@
         </div>
         <div class="fab-motion-container__view" :class="{'fab-motion-container__view--exited': !exited}">
           <p>View two (without FAB)</p>
-          <p><button type="button" id="enter-exit-back" :disabled="!exited" @click="onChange('exited', false)">Go back</button></p>
+          <p><button type="button" id="enter-exit-back" :disabled="!exited" @click="balmUI.onChange('exited', false)">Go back</button></p>
         </div>
         <ui-fab id="enter-exit-add" class="demo-absolute-fab" icon="add"
           :exited="exited"

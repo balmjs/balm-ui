@@ -13,7 +13,7 @@
 
 <script>
 import rippleMixin from '../../mixins/ripple';
-import {isString} from '../../helpers/typeof';
+import getType from '../../helpers/typeof';
 
 export default {
   name: 'ui-fab',
@@ -39,7 +39,9 @@ export default {
   },
   computed: {
     materialIcon() {
-      return isString(this.icon) ? this.icon : false;
+      return (getType(this.icon) === 'string')
+        ? this.icon
+        : false;
     },
     className() {
       return {

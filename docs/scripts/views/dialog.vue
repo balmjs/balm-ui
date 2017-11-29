@@ -14,8 +14,8 @@
     </section>
 
     <section class="example">
-      <ui-button primary raised @click.native="onOpen('open')">Show Dialog</ui-button>
-      <ui-button primary raised @click.native="onShow('open2')">Show Scrolling Dialog</ui-button>
+      <ui-button primary raised @click.native="balmUI.onOpen('open')">Show Dialog</ui-button>
+      <ui-button primary raised @click.native="balmUI.onShow('open2')">Show Scrolling Dialog</ui-button>
     </section>
 
     <section class="example">
@@ -26,7 +26,7 @@
 
     <ui-dialog
       :open="open"
-      @close="onClose('open')"
+      @close="balmUI.onClose('open')"
       @confirm="onConfirm">
       <ui-dialog-header>Use Google's location service?</ui-dialog-header>
       <ui-dialog-body>
@@ -37,7 +37,7 @@
 
     <ui-dialog
       :open="open2"
-      @close="onHide('open2')"
+      @close="balmUI.onHide('open2')"
       @confirm="onConfirm">
       <ui-dialog-header>Choose a Ringtone</ui-dialog-header>
       <ui-dialog-body scrollable>

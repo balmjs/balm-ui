@@ -1,4 +1,4 @@
-import {isUndefined} from '../helpers/typeof';
+import getType from '../helpers/typeof';
 
 /**
  * Form Validator
@@ -83,7 +83,7 @@ export default {
       const RULES = this.$options.validationRules || {};
 
       for (let key in VALIDATION) {
-        if (!isUndefined(formData[key])) {
+        if (getType(formData[key]) !== 'undefined') {
           let value = formData[key];
           let field = VALIDATION[key];
 

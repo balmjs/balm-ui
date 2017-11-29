@@ -9,12 +9,12 @@
       <h2>With Javascript</h2>
       <ui-radio id="ex1-radio1" name="ex1"
         value="a" :model="value1"
-        @change="onChange('value1', $event)">
+        @change="balmUI.onChange('value1', $event)">
         Radio 1
       </ui-radio>
       <ui-radio id="ex1-radio2" name="ex1"
         value="b" :model="value1"
-        @change="onChange('value1', $event)">
+        @change="balmUI.onChange('value1', $event)">
         Radio 2
       </ui-radio>
     </section>
@@ -23,13 +23,13 @@
       <h2>CSS Only</h2>
       <ui-radio cssOnly id="ex2-radio1" name="ex2"
         :value="1" :model="value2"
-        @change="onChange('value2', $event)">
+        @change="balmUI.onChange('value2', $event)">
         Radio 1
       </ui-radio>
 
       <ui-radio cssOnly id="ex2-radio2" name="ex2"
         :value="2" :model="value2"
-        @change="onChange('value2', $event)">
+        @change="balmUI.onChange('value2', $event)">
         Radio 2
       </ui-radio>
     </section>
@@ -48,12 +48,12 @@
       <h2 class="mdc-theme--text-primary-on-dark">Dark Theme</h2>
       <ui-radio id="ex3-radio1" name="ex3"
         :value="true" :model="value3"
-        @change="onChange('value3', $event)">
+        @change="balmUI.onChange('value3', $event)">
         Radio 1
       </ui-radio>
       <ui-radio id="ex3-radio2" name="ex3"
         :value="false" :model="value3"
-        @change="onChange('value3', $event)">
+        @change="balmUI.onChange('value3', $event)">
         Radio 2
       </ui-radio>
     </section>

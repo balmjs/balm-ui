@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import {isString} from '../../helpers/typeof';
+import getType from '../../helpers/typeof';
 
 const POSITIONS = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
 
@@ -20,7 +20,7 @@ export default {
   },
   computed: {
     positionStyle() {
-      let currentPositon = isString(this.position)
+      let currentPositon = (getType(this.position) === 'string')
         ? POSITIONS.indexOf(this.position) + 1
         : this.position;
 

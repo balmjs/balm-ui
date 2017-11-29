@@ -8,12 +8,12 @@
     <section :class="['demo-wrapper', {'mdc-theme--dark': useDarkTheme}]">
       <ui-checkbox id="toggle-dark"
         :model="useDarkTheme"
-        @change="onChange('useDarkTheme', $event)">
+        @change="balmUI.onChange('useDarkTheme', $event)">
         Dark Theme
       </ui-checkbox>
       <ui-checkbox id="toggle-disabled"
         :model="useDisabled"
-        @change="onChange('useDisabled', $event)">
+        @change="balmUI.onChange('useDisabled', $event)">
         Disabled buttons (excluding links)
       </ui-checkbox>
 

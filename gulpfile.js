@@ -19,16 +19,28 @@ balm.go(function(mix) {
       }
     } else {
       // clear
-      mix.remove([constants.DEV_SOURCE.mdc + '/*', constants.DEV_SOURCE.font + '/*']);
+      mix.remove([
+        constants.DEV_SOURCE.mdc + '/*',
+        constants.DEV_SOURCE.font + '/*'
+      ]);
       // get Material
-      mix.copy(constants.DMC_SOURCE.mdc + '/material-components-web.scss', constants.DEV_SOURCE.mdc);
+      mix.copy(
+        constants.DMC_SOURCE.mdc + '/material-components-web.scss',
+        constants.DEV_SOURCE.mdc
+      );
       constants.DMC_COMPONENTS.forEach(function(item) {
-        mix.copy(constants.DMC_SOURCE.material + '/' + item + '/**/{*.scss,*.js}', constants.DEV_SOURCE.mdc + '/' + item);
+        mix.copy(
+          constants.DMC_SOURCE.material + '/' + item + '/**/{*.scss,*.js}',
+          constants.DEV_SOURCE.mdc + '/' + item
+        );
         mix.remove(constants.DEV_SOURCE.mdc + '/' + item + '/dist');
         mix.remove(constants.DEV_SOURCE.mdc + '/' + item + '/node_modules');
       });
       // get Material Icons
-      mix.copy(constants.DMC_SOURCE.icon + '/iconfont/*.{css,eot,svg,ttf,woff,woff2}', constants.DEV_SOURCE.font);
+      mix.copy(
+        constants.DMC_SOURCE.icon + '/iconfont/*.{css,eot,svg,ttf,woff,woff2}',
+        constants.DEV_SOURCE.font
+      );
     }
   }
 });

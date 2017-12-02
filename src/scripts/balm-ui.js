@@ -95,7 +95,7 @@ import UiSnackbar from './components/common/snackbar';
 /**
  * Plugins
  */
-import core from './plugins/methods';
+import core from './plugins/core';
 import alert from './plugins/alert';
 import confirm from './plugins/confirm';
 import toast from './plugins/toast';

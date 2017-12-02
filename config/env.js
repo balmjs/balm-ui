@@ -1,12 +1,12 @@
 var balm = require('balm');
-var useDefault = !process.argv.includes('--mdc');
-var buildComponents = process.argv.includes('--components');
+var updateMDC = process.argv.includes('--mdc');
+var useDefault = !updateMDC;
 var buildDocs = process.argv.includes('--docs');
 var useDocs = !balm.config.production || buildDocs;
 
 module.exports = {
+  updateMDC,
   useDefault,
-  buildComponents,
   buildDocs,
   useDocs
 };

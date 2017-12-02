@@ -13,8 +13,7 @@ const DEFAULT_OPTIONS = {
   callback: false
 };
 
-const template =
-`<ui-dialog
+const template = `<ui-dialog
   :class="['mdc-alert', options.className]"
   :open="open"
   @close="handleClose">
@@ -32,11 +31,12 @@ const template =
   </ui-dialog-footer>
 </ui-dialog>`;
 
-export default {
-  install(Vue) {
+const BalmUIAlertPlugin = {
+  // TODO: options
+  install(Vue, options) {
     let vm;
 
-    const UiAlert = (options = {}) => {
+    const UiAlert = (alertOptions = {}) => {
       return new Promise((resolve, reject) => {
         vm = new Vue({
           el: document.createElement('div'),
@@ -52,10 +52,10 @@ export default {
             options: DEFAULT_OPTIONS
           },
           created() {
-            if (getType(options) === 'string') {
-              this.options.message = options;
-            } else if (getType(options) === 'object') {
-              this.options = Object.assign(DEFAULT_OPTIONS, options);
+            if (getType(alertOptions) === 'string') {
+              this.options.message = alertOptions;
+            } else if (getType(alertOptions) === 'object') {
+              this.options = Object.assign(DEFAULT_OPTIONS, alertOptions);
             }
           },
           methods: {
@@ -85,3 +85,9 @@ export default {
     Vue.prototype.$alert = UiAlert;
   }
 };
+
+if (typeof window !== 'undefined' && window.Vue) {
+  window.Vue.use(BalmUIAlertPlugin);
+}
+
+export default BalmUIAlertPlugin;

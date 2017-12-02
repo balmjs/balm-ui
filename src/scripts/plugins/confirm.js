@@ -14,8 +14,7 @@ const DEFAULT_OPTIONS = {
   callback: false
 };
 
-const template =
-`<ui-dialog
+const template = `<ui-dialog
   :class="['mdc-confirm', options.className]"
   :open="open"
   @close="handleClose">
@@ -34,11 +33,12 @@ const template =
   </ui-dialog-footer>
 </ui-dialog>`;
 
-export default {
-  install(Vue) {
+const BalmUIConfirmPlugin = {
+  // TODO: options
+  install(Vue, options) {
     let vm;
 
-    const UiConfirm = (options = {}) => {
+    const UiConfirm = (confirmOptions = {}) => {
       return new Promise((resolve, reject) => {
         vm = new Vue({
           el: document.createElement('div'),
@@ -54,10 +54,10 @@ export default {
             options: DEFAULT_OPTIONS
           },
           created() {
-            if (getType(options) === 'string') {
-              this.options.message = options;
-            } else if (getType(options) === 'object') {
-              this.options = Object.assign(DEFAULT_OPTIONS, options);
+            if (getType(confirmOptions) === 'string') {
+              this.options.message = confirmOptions;
+            } else if (getType(confirmOptions) === 'object') {
+              this.options = Object.assign(DEFAULT_OPTIONS, confirmOptions);
             }
           },
           methods: {
@@ -91,3 +91,9 @@ export default {
     Vue.prototype.$confirm = UiConfirm;
   }
 };
+
+if (typeof window !== 'undefined' && window.Vue) {
+  window.Vue.use(BalmUIConfirmPlugin);
+}
+
+export default BalmUIConfirmPlugin;

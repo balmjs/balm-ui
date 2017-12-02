@@ -9,19 +9,19 @@ const DEFAULT_OPTIONS = {
 };
 const DELAY = 200;
 
-const template =
-`<ui-snackbar
+const template = `<ui-snackbar
   :class="['mdc-toast', options.className]"
   :active="active"
   :message="options.message"
   :multiline="options.multiline">
 </ui-snackbar>`;
 
-export default {
-  install(Vue) {
+const BalmUIToastPlugin = {
+  // TODO: options
+  install(Vue, options) {
     let vm;
 
-    const toast = (options = '') => {
+    const UiToast = (toastOptions = '') => {
       if (!document.querySelector('.mdc-toast')) {
         vm = new Vue({
           el: document.createElement('div'),
@@ -33,10 +33,10 @@ export default {
             options: DEFAULT_OPTIONS
           },
           created() {
-            if (getType(options) === 'string') {
-              this.options.message = options;
-            } else if (getType(options) === 'object') {
-              this.options = Object.assign(DEFAULT_OPTIONS, options);
+            if (getType(toastOptions) === 'string') {
+              this.options.message = toastOptions;
+            } else if (getType(toastOptions) === 'object') {
+              this.options = Object.assign(DEFAULT_OPTIONS, toastOptions);
             }
           },
           template
@@ -57,6 +57,12 @@ export default {
       }
     };
 
-    Vue.prototype.$toast = toast;
+    Vue.prototype.$toast = UiToast;
   }
 };
+
+if (typeof window !== 'undefined' && window.Vue) {
+  window.Vue.use(BalmUIToastPlugin);
+}
+
+export default BalmUIToastPlugin;

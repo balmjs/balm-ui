@@ -14,7 +14,7 @@ const STYLES = [
 
 export default {
   methods: {
-    typography(style = '', adjustMargin = false) {
+    tt(style = '', adjustMargin = false) {
       let result = STYLES.includes(style.toLowerCase())
         ? [`mdc-typography--${style}`]
         : [];

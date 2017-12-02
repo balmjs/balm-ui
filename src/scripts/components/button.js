@@ -1,7 +1,16 @@
 import UiButton from './button/button';
+import UiLink from './button/link';
+
+const components = {
+  UiButton,
+  UiLink
+};
 
 if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.component(UiButton.name, UiButton);
+  for (let key in components) {
+    let component = components[key];
+    window.Vue.component(component.name, component);
+  }
 }
 
-export default UiButton;
+export default components;

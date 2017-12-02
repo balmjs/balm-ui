@@ -22,7 +22,7 @@
     </ui-permanent-drawer>
 
     <div class="demo-content">
-      <ui-toolbar :class="zSpace(4)">
+      <ui-toolbar :class="balmUI.zSpace(4)">
         <ui-toolbar-row>
           <ui-toolbar-section align="start">
             <span class="catalog-back">
@@ -35,8 +35,8 @@
       </ui-toolbar>
 
       <main class="demo-main">
-        <h1 :class="typography('display1')">Permanent Drawer</h1>
-        <p :class="typography('body1')">It sits to the left of this content.</p>
+        <h1 :class="balmUI.tt('display1')">Permanent Drawer</h1>
+        <p :class="balmUI.tt('body1')">It sits to the left of this content.</p>
       </main>
     </div>
   </div>

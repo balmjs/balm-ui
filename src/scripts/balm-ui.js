@@ -95,8 +95,7 @@ import UiSnackbar from './components/common/snackbar';
 /**
  * Plugins
  */
-import event from './plugins/instance-methods';
-import mixin from './plugins/global-methods';
+import core from './plugins/methods';
 import alert from './plugins/alert';
 import confirm from './plugins/confirm';
 import toast from './plugins/toast';
@@ -185,8 +184,7 @@ const components = {
 };
 
 const plugins = {
-  event,
-  mixin,
+  core,
   alert,
   confirm,
   toast
@@ -210,9 +208,6 @@ const BalmUI = Object.assign({}, { version }, { helpers }, { mixins }, { compone
 // Auto install in dist mode
 if (typeof window !== 'undefined' && window.Vue) {
   window.Vue.use(BalmUI);
-  for (let key in BalmUI.plugins) {
-    window.Vue.use(BalmUI.plugins[key]);
-  }
 }
 
 export default BalmUI;

@@ -32,7 +32,7 @@
                 optionValue="value"
                 :options="gutterOptions"
                 :model="desktop.margin"
-                @change="setGrid('margin', 'desktop', $event)">
+                @change="balmUI.setGrid('margin', 'desktop', $event)">
               </ui-select>
 
               <br>
@@ -43,7 +43,7 @@
                 optionValue="value"
                 :options="gutterOptions"
                 :model="desktop.gutter"
-                @change="setGrid('gutter', 'desktop', $event)">
+                @change="balmUI.setGrid('gutter', 'desktop', $event)">
               </ui-select>
             </div>
           </ui-cell>
@@ -55,7 +55,7 @@
                 optionValue="value"
                 :options="gutterOptions"
                 :model="tablet.margin"
-                @change="setGrid('margin', 'tablet', $event)">
+                @change="balmUI.setGrid('margin', 'tablet', $event)">
               </ui-select>
 
               <br>
@@ -66,7 +66,7 @@
                 optionValue="value"
                 :options="gutterOptions"
                 :model="tablet.gutter"
-                @change="setGrid('gutter', 'tablet', $event)">
+                @change="balmUI.setGrid('gutter', 'tablet', $event)">
               </ui-select>
             </div>
           </ui-cell>
@@ -78,7 +78,7 @@
                 optionValue="value"
                 :options="gutterOptions"
                 :model="phone.margin"
-                @change="setGrid('margin', 'phone', $event)">
+                @change="balmUI.setGrid('margin', 'phone', $event)">
               </ui-select>
 
               <br>
@@ -89,7 +89,7 @@
                 optionValue="value"
                 :options="gutterOptions"
                 :model="phone.gutter"
-                @change="setGrid('gutter', 'phone', $event)">
+                @change="balmUI.setGrid('gutter', 'phone', $event)">
               </ui-select>
             </div>
           </ui-cell>
@@ -177,7 +177,7 @@
                 optionValue="value"
                 :options="widthOptions"
                 :model="desktop.width"
-                @change="setGrid('column-width', 'desktop', $event)">
+                @change="balmUI.setGrid('column-width', 'desktop', $event)">
               </ui-select>
             </div>
           </ui-cell>
@@ -189,7 +189,7 @@
                 optionValue="value"
                 :options="widthOptions"
                 :model="tablet.width"
-                @change="setGrid('column-width', 'tablet', $event)">
+                @change="balmUI.setGrid('column-width', 'tablet', $event)">
               </ui-select>
             </div>
           </ui-cell>
@@ -201,7 +201,7 @@
                 optionValue="value"
                 :options="widthOptions"
                 :model="phone.width"
-                @change="setGrid('column-width', 'phone', $event)">
+                @change="balmUI.setGrid('column-width', 'phone', $event)">
               </ui-select>
             </div>
           </ui-cell>

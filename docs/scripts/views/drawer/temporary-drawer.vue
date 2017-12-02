@@ -10,7 +10,7 @@
     </ui-toolbar>
 
     <ui-temporary-drawer menuSelector=".demo-menu">
-      <ui-drawer-header :contentClass="[themeColor('primary', true), textColor('primary', 'primary')]">
+      <ui-drawer-header :contentClass="[balmUI.themeColor('primary', true), balmUI.textColor('primary', 'primary')]">
         Header here
       </ui-drawer-header>
       <ui-drawer-content>
@@ -33,8 +33,8 @@
     </ui-temporary-drawer>
 
     <main class="demo-main">
-      <h1 :class="typography('display1')">Temporary Drawer</h1>
-      <p :class="typography('body1')">Click the menu icon above to open.</p>
+      <h1 :class="balmUI.tt('display1')">Temporary Drawer</h1>
+      <p :class="balmUI.tt('body1')">Click the menu icon above to open.</p>
     </main>
   </div>
 </template>

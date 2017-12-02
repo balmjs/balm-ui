@@ -22,7 +22,7 @@
     </ui-persistent-drawer>
 
     <div class="demo-content">
-      <ui-toolbar contentSelector=".demo-main" :class="zSpace(4)">
+      <ui-toolbar contentSelector=".demo-main" :class="balmUI.zSpace(4)">
         <ui-toolbar-row>
           <ui-toolbar-section align="start">
             <ui-toolbar-button type="menu" class="demo-menu"></ui-toolbar-button>
@@ -32,8 +32,8 @@
       </ui-toolbar>
 
       <main class="demo-main">
-        <h1 :class="typography('display1')">Persistent Drawer</h1>
-        <p :class="typography('body1')">Click the menu icon above to open and close the drawer.</p>
+        <h1 :class="balmUI.tt('display1')">Persistent Drawer</h1>
+        <p :class="balmUI.tt('body1')">Click the menu icon above to open and close the drawer.</p>
       </main>
     </div>
 

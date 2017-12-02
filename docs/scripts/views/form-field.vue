@@ -14,7 +14,7 @@
       </ui-form-field>
     </section>
 
-    <section :class="['example', themeColor('primary', true)]">
+    <section :class="['example', balmUI.themeColor('primary', true)]">
       <ui-form-field dark>
         <input type="checkbox" id="input3">
         <label for="input3">Input Label</label>

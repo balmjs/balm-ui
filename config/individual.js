@@ -35,7 +35,7 @@ const components = [
 ];
 const helpers = ['index.js'];
 const mixins = ['index.js'];
-const plugins = ['event.js', 'alert.js', 'confirm.js', 'toast.js'];
+const plugins = ['core.js', 'alert.js', 'confirm.js', 'toast.js'];
 
 const output = {
   components: './components',

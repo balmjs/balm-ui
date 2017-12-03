@@ -7,6 +7,15 @@ $ui-pagination-active-color: #108ee9 !default;
   display: flex;
 
   justify-content: center;
+  &.mdl-pagination--left {
+    justify-content: flex-start;
+  }
+  &.mdl-pagination--right {
+    justify-content: flex-end;
+  }
+  &.mdl-pagination--between {
+    justify-content: space-between;
+  }
   .mdc-pagination--record {
     flex: 1;
   }
@@ -26,8 +35,10 @@ $ui-pagination-active-color: #108ee9 !default;
       color: rgba(0, 0, 0, .65);
       border: 1px solid #d9d9d9;
       background-color: white;
-      span {
+      &>span {
         display: block;
+
+        padding: 0 6px;
       }
       &:hover {
         color: $ui-pagination-color;
@@ -75,33 +86,23 @@ $ui-pagination-active-color: #108ee9 !default;
       }
     }
   }
-  &.mdc-pagination--mini {
+  &.mdl-pagination--mini {
     display: block;
-    .mdc-pagination--paging {
-      &:before,
-      &:after {
-        display: table;
+    .mdl-pagination--paging {
+      display: flex;
 
-        content: ' ';
-      }
-      &:after {
-        clear: both;
-      }
-      a {
-        width: auto;
-        margin: 0;
-        padding: 0 8px;
-      }
+      justify-content: space-between;
     }
-    .mdc-pagination--paging-previous {
-      float: left;
-    }
-    .mdc-pagination--paging-next {
-      float: right;
+    a {
+      min-width: auto;
+      margin: 0;
+      &>span {
+        padding: 0 10px;
+      }
     }
   }
-  .mdc-select {
-    .mdc-button {
+  .mdl-select {
+    .mdl-button {
       padding: 0 10px;
       i {
         right: -10px;

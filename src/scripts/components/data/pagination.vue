@@ -1,5 +1,5 @@
 <template>
-  <div v-if="recordCount" :class="['mdc-pagination', {'mdc-pagination--mini': mini}]">
+  <div v-if="recordCount" :class="className">
     <div v-if="showRecord" class="mdc-pagination--record">
       <slot :recordCount="recordCount"
             :pageSize="pageSize"
@@ -23,8 +23,14 @@
       </a>
       <div v-if="!mini && showJumper" class="mdc-pagination--jumper">
         <span>{{ jumperBefore }}</span>
-        <input ref="input" v-model="pager" type="text" @keydown="handleClick(pager)">
+        <input v-model="pager"
+               type="number"
+               min="1"
+               :max="pageCount"
+               @keydown.prevent.enter="handleClick($event.target.value)">
         <span>{{ jumperAfter }}</span>
+        <ui-button v-if="jumperButton"
+                   @click.native="handleClick(pager)">{{ jumperButton }}</ui-button>
       </div>
     </div>
   </div>
@@ -35,11 +41,19 @@ const DOUBLE_ARROW_LEFT = '&laquo;';
 const DOUBLE_ARROW_RIGHT = '&raquo;';
 const SINGLE_ARROW_LEFT = '&lsaquo;';
 const SINGLE_ARROW_RIGHT = '&rsaquo;';
+const POSITION_LEFT = 'left';
+const POSITION_RIGHT = 'right';
 const UI_EVENT_CHANGE = 'change';
 
 export default {
   name: 'ui-pagination',
   props: {
+    // state
+    page: {
+      type: Number,
+      default: 1
+    },
+    // ui attributes
     recordCount: {
       type: Number,
       required: true
@@ -47,10 +61,6 @@ export default {
     pageSize: {
       type: Number,
       required: true
-    },
-    page: {
-      type: Number,
-      default: 1
     },
     prev: String,
     next: String,
@@ -74,6 +84,11 @@ export default {
       type: String,
       default: ''
     },
+    jumperButton: {
+      type: String,
+      default: ''
+    },
+    position: String,
     mini: {
       type: Boolean,
       default: false
@@ -86,6 +101,21 @@ export default {
     };
   },
   computed: {
+    className() {
+      let result = ['mdc-pagination'];
+
+      if (this.mini) {
+        result.push('mdc-pagination--mini');
+      } else {
+        if (this.showRecord) {
+          result.push(`mdc-pagination--between`);
+        } else if ([POSITION_LEFT, POSITION_RIGHT].includes(this.position)) {
+          result.push(`mdc-pagination--${this.position}`);
+        }
+      }
+
+      return result;
+    },
     pageCount() {
       return Math.ceil(this.recordCount / this.pageSize);
     },
@@ -121,7 +151,7 @@ export default {
       let noFirstOrLast = (page !== 1 && page !== this.pageCount);
       return !(isExisted && noFirstOrLast);
     },
-    handleClick(page) {
+    handleClick(page) { // page: number
       if (!isNaN(page)) {
         switch (true) {
           case (page > this.pageCount):

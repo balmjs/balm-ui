@@ -23,9 +23,11 @@ export default {
   methods: {
     init() {
       if (document.querySelector(this.menuSelector)) {
-        document.querySelector(this.menuSelector).addEventListener('click', () => {
-          this.$drawer.open = !this.$drawer.open;
-        });
+        document
+          .querySelector(this.menuSelector)
+          .addEventListener('click', () => {
+            this.$drawer.open = !this.$drawer.open;
+          });
       }
     }
   }

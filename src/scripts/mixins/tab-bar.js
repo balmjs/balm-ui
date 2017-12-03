@@ -1,4 +1,8 @@
-import {LABEL_TEXT, LABEL_ICON, LABEL_TEXT_WITH_ICON} from '../components/tabs/constants';
+import {
+  LABEL_TEXT,
+  LABEL_ICON,
+  LABEL_TEXT_WITH_ICON
+} from '../components/tabs/constants';
 
 export default {
   props: {

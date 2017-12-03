@@ -203,7 +203,15 @@ const registers = {
   }
 };
 
-const BalmUI = Object.assign({}, { version }, { helpers }, { mixins }, { components }, { plugins }, registers);
+const BalmUI = Object.assign(
+  {},
+  { version },
+  { helpers },
+  { mixins },
+  { components },
+  { plugins },
+  registers
+);
 
 // Auto install in dist mode
 if (typeof window !== 'undefined' && window.Vue) {
@@ -212,7 +220,4 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 export default BalmUI;
 
-export {
-  helpers,
-  mixins
-};
+export { helpers, mixins };

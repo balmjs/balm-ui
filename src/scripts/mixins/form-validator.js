@@ -79,7 +79,8 @@ export default {
         messages: [] // All invalid messages
       };
 
-      const VALIDATION = Object.assign({}, this.$options.validation, extraRules) || {};
+      const VALIDATION =
+        Object.assign({}, this.$options.validation, extraRules) || {};
       const RULES = this.$options.validationRules || {};
 
       for (let key in VALIDATION) {
@@ -87,7 +88,9 @@ export default {
           let value = formData[key];
           let field = VALIDATION[key];
 
-          let validators = field.validator.split(',').map(validator => validator.trim());
+          let validators = field.validator
+            .split(',')
+            .map(validator => validator.trim());
           let label = field.label || '';
 
           for (let i = 0, len = validators.length; i < len; i++) {
@@ -109,7 +112,10 @@ export default {
                   result.valid.splice(index, 1);
                 }
 
-                let message = curValidator.message.replace(LABEL_PLACEHOLDER, label);
+                let message = curValidator.message.replace(
+                  LABEL_PLACEHOLDER,
+                  label
+                );
                 if (!result.message) {
                   result.message = message;
                 }
@@ -117,7 +123,9 @@ export default {
                 break;
               }
             } else {
-              console.warn(`The '${key}' is missing a validation rule: [${curRuleName}]`);
+              console.warn(
+                `The '${key}' is missing a validation rule: [${curRuleName}]`
+              );
             }
           }
         }

@@ -21,11 +21,9 @@ export default {
   methods: {
     zSpace(z = 0, zTransition = false) {
       let N = z;
-      let result = zTransition
-        ? ['mdc-elevation-transition']
-        : [];
+      let result = zTransition ? ['mdc-elevation-transition'] : [];
       if (N >= Z_SPACE_MIN && N <= Z_SPACE_MAX) {
-        result.push(`mdc-elevation--z${N}`)
+        result.push(`mdc-elevation--z${N}`);
       }
       return result.join(' ');
     }

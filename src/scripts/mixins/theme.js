@@ -19,12 +19,14 @@ export default {
 
       if (THEME_COLORS.includes(currentColor)) {
         className = `mdc-theme--${currentColor}`;
-        let hasBackground = bg && (currentColor !== 'background');
+        let hasBackground = bg && currentColor !== 'background';
         if (hasBackground) {
           className += '-bg';
         }
       } else {
-        console.warn('Please choose a theme color: ' + JSON.stringify(THEME_COLORS));
+        console.warn(
+          'Please choose a theme color: ' + JSON.stringify(THEME_COLORS)
+        );
       }
 
       return className;
@@ -36,10 +38,15 @@ export default {
         if (TEXT_THEME_COLORS.includes(bgColor.toLowerCase())) {
           className = `mdc-theme--text-${color}-on-${bgColor}`;
         } else {
-          console.warn('Please choose a text theme color: ' + JSON.stringify(TEXT_THEME_COLORS));
+          console.warn(
+            'Please choose a text theme color: ' +
+              JSON.stringify(TEXT_THEME_COLORS)
+          );
         }
       } else {
-        console.warn('Please choose a text color: ' + JSON.stringify(TEXT_STYLES));
+        console.warn(
+          'Please choose a text color: ' + JSON.stringify(TEXT_STYLES)
+        );
       }
 
       return className;

@@ -6,7 +6,7 @@
 
     <section>
       <fieldset>
-        <legend :class="balmUI.tt('title')">Basic Tab Bar</legend>
+        <legend :class="$tt('title')">Basic Tab Bar</legend>
         <ui-tab-bar id="basic-tab-bar">
           <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
             {{ tab.name }}
@@ -17,7 +17,7 @@
 
     <section>
       <div class="demo-tabs__scroller">
-        <h2 :class="[balmUI.tt('title'), 'demo-title']">Tab Bar with Scroller</h2>
+        <h2 :class="[$tt('title'), 'demo-title']">Tab Bar with Scroller</h2>
         <ui-tab-bar-scroller id="tab-bar-scroller" @change="(index) => { console.log(index); }">
           <ui-tab v-for="(tab, index) in 9" :key="index" :href="`#${tab}`">
             Item {{ tab }}
@@ -28,7 +28,7 @@
 
     <section>
       <fieldset>
-        <legend :class="balmUI.tt('title')">Icon Tab Labels</legend>
+        <legend :class="$tt('title')">Icon Tab Labels</legend>
         <ui-tab-bar type="1" id="icon-tab-bar">
           <ui-tab v-for="(tab, index) in tabs2" :key="index"
             :icon="tab.icon" :href="tab.url">
@@ -39,7 +39,7 @@
 
     <section>
       <fieldset>
-        <legend :class="balmUI.tt('title')">Icon &amp; Text Labels</legend>
+        <legend :class="$tt('title')">Icon &amp; Text Labels</legend>
         <ui-tab-bar type="2" id="icon-text-tab-bar">
           <ui-tab v-for="(tab, index) in tabs2" :key="index"
             :icon="tab.icon" :text="tab.text" :href="tab.url">
@@ -50,7 +50,7 @@
 
     <section>
       <fieldset>
-        <legend :class="balmUI.tt('title')">Primary Color Indicator</legend>
+        <legend :class="$tt('title')">Primary Color Indicator</legend>
         <ui-tab-bar primary id="primary-indicator-tab-bar">
           <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
             {{ tab.name }}
@@ -61,7 +61,7 @@
 
     <section>
       <fieldset>
-        <legend :class="balmUI.tt('title')">Secondary Color Indicator</legend>
+        <legend :class="$tt('title')">Secondary Color Indicator</legend>
         <ui-tab-bar accent id="accent-indicator-tab-bar">
           <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
             {{ tab.name }}
@@ -72,7 +72,7 @@
 
     <section>
       <fieldset>
-        <legend :class="balmUI.tt('title')">Within mdc-toolbar</legend>
+        <legend :class="$tt('title')">Within mdc-toolbar</legend>
         <ui-toolbar>
           <ui-toolbar-row>
             <ui-toolbar-section fit align="start">
@@ -94,7 +94,7 @@
 
     <section>
       <fieldset>
-        <legend :class="balmUI.tt('title')">Within MDCToolbar - fixed to bottom of toolbar</legend>
+        <legend :class="$tt('title')">Within MDCToolbar - fixed to bottom of toolbar</legend>
         <div class="demo-note">
           <em>Note: The style used to acheive this example is:</em>
           <pre><code>.my-modified-toolbar-section {
@@ -127,11 +127,11 @@
 
     <section>
       <fieldset>
-        <legend :class="balmUI.tt('title')">Within mdc-toolbar + primary indicator</legend>
+        <legend :class="$tt('title')">Within mdc-toolbar + primary indicator</legend>
         <div class="demo-note">
           <em>Note: Changing the toolbar's background color here so that the primary indicator can be visible</em>
         </div>
-        <ui-toolbar :class="balmUI.themeColor('secondary', true)">
+        <ui-toolbar :class="$themeColor('secondary', true)">
           <ui-toolbar-row>
             <ui-toolbar-section fit align="start">
               <ui-toolbar-title>Title</ui-toolbar-title>
@@ -152,7 +152,7 @@
 
     <section>
       <fieldset>
-        <legend :class="balmUI.tt('title')">Within mdc-toolbar + secondary indicator</legend>
+        <legend :class="$tt('title')">Within mdc-toolbar + secondary indicator</legend>
         <ui-toolbar>
           <ui-toolbar-row>
             <ui-toolbar-section fit align="start">
@@ -174,7 +174,7 @@
 
     <section>
       <fieldset>
-        <legend :class="balmUI.tt('title')">Within Toolbar, Dynamic Content Control</legend>
+        <legend :class="$tt('title')">Within Toolbar, Dynamic Content Control</legend>
         <ui-toolbar id="dynamic-demo-toolbar">
           <ui-toolbar-row>
             <ui-toolbar-section fit align="start">

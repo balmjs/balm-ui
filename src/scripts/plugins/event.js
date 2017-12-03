@@ -1,16 +1,3 @@
-import grid from '../mixins/grid';
-import elevation from '../mixins/elevation';
-import theme from '../mixins/theme';
-import typography from '../mixins/typography';
-
-const UiMethods = Object.assign(
-  {},
-  grid.methods,
-  elevation.methods,
-  theme.methods,
-  typography.methods
-);
-
 const noop = () => {};
 
 const EventMethods = {
@@ -36,15 +23,11 @@ const EventMethods = {
   }
 };
 
-const BalmUICorePlugin = {
+const BalmUI_EventPlugin = {
   install(Vue) {
     Object.defineProperty(Vue.prototype, 'balmUI', {
       get() {
         let balmUI = {};
-
-        Object.keys(UiMethods).forEach(key => {
-          balmUI[key] = UiMethods[key].bind(this);
-        });
 
         Object.keys(EventMethods).forEach(key => {
           balmUI[key] = EventMethods[key].bind(this);
@@ -57,7 +40,7 @@ const BalmUICorePlugin = {
 };
 
 if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(BalmUICorePlugin);
+  window.Vue.use(BalmUI_EventPlugin);
 }
 
-export default BalmUICorePlugin;
+export default BalmUI_EventPlugin;

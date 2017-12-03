@@ -6,7 +6,6 @@ const input = {
 };
 
 const components = [
-  'core.js',
   'icon.js',
   // MDC components
   'button.js',
@@ -35,7 +34,16 @@ const components = [
 ];
 const helpers = ['index.js'];
 const mixins = ['index.js'];
-const plugins = ['core.js', 'alert.js', 'confirm.js', 'toast.js'];
+const plugins = [
+  'event.js',
+  'elevation.js',
+  'grid.js',
+  'theme.js',
+  'typography.js',
+  'alert.js',
+  'confirm.js',
+  'toast.js'
+];
 
 const output = {
   components: './components',

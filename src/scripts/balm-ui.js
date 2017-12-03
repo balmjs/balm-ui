@@ -95,7 +95,11 @@ import UiSnackbar from './components/common/snackbar';
 /**
  * Plugins
  */
-import core from './plugins/core';
+import event from './plugins/event';
+import elevation from './plugins/elevation';
+import grid from './plugins/grid';
+import theme from './plugins/theme';
+import typography from './plugins/typography';
 import alert from './plugins/alert';
 import confirm from './plugins/confirm';
 import toast from './plugins/toast';
@@ -184,22 +188,26 @@ const components = {
 };
 
 const plugins = {
-  core,
+  event,
+  elevation,
+  grid,
+  theme,
+  typography,
   alert,
   confirm,
   toast
 };
 
 const registers = {
-  install(Vue) {
-    document.querySelector('body').classList.add('mdc-typography');
+  install(Vue, options = {}) {
+    // TODO: Configure the component props
 
-    for (let key in BalmUI.components) {
-      let component = BalmUI.components[key];
-      if (component && component !== 'install' && component.name) {
-        Vue.component(component.name, component);
+    Object.keys(components).forEach(key => {
+      const Component = components[key];
+      if (Component) {
+        Vue.component(Component.name, Component);
       }
-    }
+    });
   }
 };
 

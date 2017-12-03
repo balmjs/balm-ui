@@ -1,7 +1,7 @@
 <template>
   <div class="demo--home">
     <section class="hero">
-      <h2 :class="balmUI.tt('display1')">
+      <h2 :class="$tt('display1')">
         BalmUI@next<br><br>Coming Up...
       </h2>
     </section>

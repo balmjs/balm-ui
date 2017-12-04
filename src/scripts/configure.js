@@ -1,4 +1,4 @@
-import getType from './typeof';
+import getType from './helpers/typeof';
 import merge from 'deepmerge';
 
 const configure = (Component, props) => {

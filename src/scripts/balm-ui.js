@@ -1,3 +1,4 @@
+import configure from './configure';
 /**
  * Helpers
  */
@@ -200,13 +201,22 @@ const plugins = {
 
 const registers = {
   install(Vue, options = {}) {
-    // TODO: Configure the component props
-
-    Object.keys(components).forEach(key => {
-      const Component = components[key];
-      if (Component) {
-        Vue.component(Component.name, Component);
+    // Configure the component props
+    Object.keys(options).forEach(key => {
+      if (components[key] === undefined) {
+        return;
       }
+
+      let Component = components[key];
+      let props = options[key];
+
+      configure(Component, props);
+    });
+
+    // Install the components
+    Object.keys(components).forEach(key => {
+      let Component = components[key];
+      Vue.component(Component.name, Component);
     });
   }
 };

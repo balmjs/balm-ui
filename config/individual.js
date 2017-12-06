@@ -1,7 +1,6 @@
 const input = {
   components: './src/scripts/components',
   helpers: './src/scripts/helpers',
-  mixins: './src/scripts/mixins',
   plugins: './src/scripts/plugins'
 };
 
@@ -33,7 +32,6 @@ const components = [
   'pagination.js'
 ];
 const helpers = ['index.js'];
-const mixins = ['index.js'];
 const plugins = [
   'event.js',
   'elevation.js',
@@ -48,7 +46,6 @@ const plugins = [
 const output = {
   components: './components',
   helpers: './helpers',
-  mixins: './mixins',
   plugins: './plugins'
 };
 
@@ -56,7 +53,6 @@ module.exports = {
   input,
   components,
   helpers,
-  mixins,
   plugins,
   output
 };

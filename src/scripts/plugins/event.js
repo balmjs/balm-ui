@@ -1,3 +1,5 @@
+import getType from '../helpers/typeof';
+
 const noop = () => {};
 
 const EventMethods = {
@@ -23,15 +25,18 @@ const EventMethods = {
   }
 };
 
+let balmUI = null;
+
 const BalmUI_EventPlugin = {
   install(Vue) {
     Object.defineProperty(Vue.prototype, 'balmUI', {
       get() {
-        let balmUI = {};
-
-        Object.keys(EventMethods).forEach(key => {
-          balmUI[key] = EventMethods[key].bind(this);
-        });
+        if (getType(balmUI) !== 'object') {
+          balmUI = {};
+          Object.keys(EventMethods).forEach(key => {
+            balmUI[key] = EventMethods[key].bind(this);
+          });
+        }
 
         return balmUI;
       }

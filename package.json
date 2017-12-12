@@ -1,6 +1,6 @@
 {
   "name": "balm-ui",
-  "version": "0.5.0-beta.6",
+  "version": "0.5.0-beta.7",
   "description": "Material Components + Vue",
   "homepage": "http://balmjs.com/ui-vue/",
   "author": {
@@ -18,10 +18,10 @@
   ],
   "main": "dist/js/balm-ui.js",
   "scripts": {
-    "mdc": "gulp --mdc",
-    "dev": "gulp",
-    "prod": "gulp --production",
-    "docs": "gulp --production --docs"
+    "mdc": "gulp --silent --mdc",
+    "dev": "gulp --silent",
+    "prod": "gulp --silent --production",
+    "docs": "gulp --silent --production --docs"
   },
   "repository": {
     "type": "git",

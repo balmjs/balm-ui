@@ -69,7 +69,7 @@ module.exports = {
     excludes: ['index.js']
   },
   assets: {
-    publicUrl: env.buildDocs ? 'http://balmjs.com/ui-vue/' : ''
+    publicUrl: env.buildDocs ? 'http://material.balmjs.com/' : ''
   },
   useDefault: env.useDefault
 };

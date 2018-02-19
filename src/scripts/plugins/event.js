@@ -35,7 +35,7 @@ const BalmUI_EventPlugin = {
           balmUI[key] = EventMethods[key].bind(this);
         });
 
-        return balmUI;
+        return balmUI; // Return new object for every vm !important
       }
     });
   }

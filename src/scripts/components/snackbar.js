@@ -1,7 +1,6 @@
+import bootstrap from '../config/bootstrap';
 import UiSnackbar from './common/snackbar';
 
-if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.component(UiSnackbar.name, UiSnackbar);
-}
+bootstrap(UiSnackbar);
 
 export default UiSnackbar;

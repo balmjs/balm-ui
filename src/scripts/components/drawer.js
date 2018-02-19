@@ -1,3 +1,4 @@
+import multiBootstrap from '../config/multi-bootstrap';
 import UiPermanentDrawer from './drawer/permanent';
 import UiPersistentDrawer from './drawer/persistent';
 import UiTemporaryDrawer from './drawer/temporary';
@@ -14,11 +15,14 @@ const components = {
   UiDrawerContent
 };
 
-if (typeof window !== 'undefined' && window.Vue) {
-  for (let key in components) {
-    let component = components[key];
-    window.Vue.component(component.name, component);
-  }
-}
+multiBootstrap(components);
 
 export default components;
+export {
+  UiPermanentDrawer,
+  UiPersistentDrawer,
+  UiTemporaryDrawer,
+  UiDrawerHeader,
+  UiDrawerToolbarSpacer,
+  UiDrawerContent
+};

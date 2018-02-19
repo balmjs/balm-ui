@@ -1,12 +1,8 @@
-import configure from './configure';
+import multiConfigure from './config/multi-configure';
 /**
  * Helpers
  */
 import * as BalmUI_Helpers from './helpers';
-/**
- * Mixins
- */
-import * as BalmUI_Mixins from './mixins';
 /**
  * Layout
  */
@@ -53,7 +49,7 @@ import UiTextfieldHelptext from './components/input-controls/textfield-helptext'
 import UiCheckbox from './components/input-controls/checkbox';
 import UiRadio from './components/input-controls/radio';
 import UiSelect from './components/input-controls/select';
-import UiSelect2 from './components/input-controls/select2';
+import UiSelectmenu from './components/input-controls/selectmenu';
 import UiSwitch from './components/input-controls/switch';
 import UiSlider from './components/input-controls/slider';
 /**
@@ -104,10 +100,10 @@ import typography from './plugins/typography';
 import alert from './plugins/alert';
 import confirm from './plugins/confirm';
 import toast from './plugins/toast';
+import validator from './plugins/validator';
 
 const version = require('../../package.json').version;
 const helpers = Object.assign({}, BalmUI_Helpers);
-const mixins = Object.assign({}, BalmUI_Mixins);
 
 const components = {
   // Layout
@@ -159,7 +155,7 @@ const components = {
   UiRadio,
   UiIconToggle,
   UiSelect,
-  UiSelect2,
+  UiSelectmenu,
   UiSwitch,
   UiSlider,
   // Data
@@ -196,28 +192,30 @@ const plugins = {
   typography,
   alert,
   confirm,
-  toast
+  toast,
+  validator
 };
 
 const registers = {
   install(Vue, options = {}) {
-    // Configure the component props
-    Object.keys(options).forEach(key => {
-      if (components[key] === undefined) {
-        return;
-      }
-
-      let Component = components[key];
-      let props = options[key];
-
-      configure(Component, props);
-    });
+    // Configure the components' props
+    multiConfigure(BalmUI.components, options);
 
     // Install the components
-    Object.keys(components).forEach(key => {
-      let Component = components[key];
+    for (let key in BalmUI.components) {
+      let Component = BalmUI.components[key];
       Vue.component(Component.name, Component);
-    });
+    }
+
+    // Install the plugins
+    for (let key in BalmUI.plugins) {
+      let Plugin = BalmUI.plugins[key];
+      if (options[`$${key}`]) {
+        Vue.use(Plugin, options[`$${key}`]);
+      } else {
+        Vue.use(Plugin);
+      }
+    }
   }
 };
 
@@ -225,7 +223,6 @@ const BalmUI = Object.assign(
   {},
   { version },
   { helpers },
-  { mixins },
   { components },
   { plugins },
   registers
@@ -237,5 +234,4 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default BalmUI;
-
-export { helpers, mixins };
+export { helpers };

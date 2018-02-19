@@ -1,9 +1,9 @@
+import getType from '../helpers/typeof';
 import UiDialog from '../components/dialog/dialog';
 import UiDialogHeader from '../components/dialog/dialog-header';
 import UiDialogBody from '../components/dialog/dialog-body';
 import UiDialogFooter from '../components/dialog/dialog-footer';
 import UiButton from '../components/button/button';
-import getType from '../helpers/typeof';
 
 const DEFAULT_OPTIONS = {
   className: '',
@@ -31,14 +31,13 @@ const template = `<ui-dialog
   </ui-dialog-footer>
 </ui-dialog>`;
 
-const BalmUIAlertPlugin = {
-  // TODO: options
-  install(Vue, options) {
-    let vm;
+const BalmUI_AlertPlugin = {
+  install(Vue, config) {
+    let options = Object.assign({}, DEFAULT_OPTIONS, config);
 
-    const UiAlert = (alertOptions = {}) => {
-      return new Promise((resolve, reject) => {
-        vm = new Vue({
+    const $alert = (customOptions = {}) => {
+      return new Promise(resolve => {
+        let vm = new Vue({
           el: document.createElement('div'),
           components: {
             UiDialog,
@@ -49,21 +48,29 @@ const BalmUIAlertPlugin = {
           },
           data: {
             open: false,
-            options: DEFAULT_OPTIONS
+            options
           },
           created() {
-            if (getType(alertOptions) === 'string') {
-              this.options.message = alertOptions;
-            } else if (getType(alertOptions) === 'object') {
-              this.options = Object.assign(DEFAULT_OPTIONS, alertOptions);
+            if (getType(customOptions) === 'string') {
+              this.options.message = customOptions;
+            } else if (getType(customOptions) === 'object') {
+              this.options = Object.assign({}, this.options, customOptions);
             }
+
+            this.$nextTick(() => {
+              document.body.appendChild(vm.$el);
+              this.open = true;
+            });
           },
           methods: {
             handleClose() {
               this.open = false;
-              document.body.removeChild(this.$el);
-              document.body.classList.remove('mdc-dialog-scroll-lock');
-              vm = null;
+
+              this.$nextTick(() => {
+                document.body.removeChild(this.$el);
+                document.body.classList.remove('mdc-dialog-scroll-lock');
+                vm = null;
+              });
             },
             handleClick() {
               this.handleClose();
@@ -76,18 +83,15 @@ const BalmUIAlertPlugin = {
           },
           template
         });
-
-        document.body.appendChild(vm.$el);
-        vm.open = true;
       });
     };
 
-    Vue.prototype.$alert = UiAlert;
+    Vue.prototype.$alert = $alert;
   }
 };
 
 if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(BalmUIAlertPlugin);
+  window.Vue.use(BalmUI_AlertPlugin);
 }
 
-export default BalmUIAlertPlugin;
+export default BalmUI_AlertPlugin;

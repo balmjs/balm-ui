@@ -1,3 +1,4 @@
+import multiBootstrap from '../config/multi-bootstrap';
 import UiGrid from './grid/grid';
 import UiGridInner from './grid/grid-inner';
 import UiCell from './grid/cell';
@@ -8,11 +9,7 @@ const components = {
   UiCell
 };
 
-if (typeof window !== 'undefined' && window.Vue) {
-  for (let key in components) {
-    let component = components[key];
-    window.Vue.component(component.name, component);
-  }
-}
+multiBootstrap(components);
 
 export default components;
+export { UiGrid, UiGridInner, UiCell };

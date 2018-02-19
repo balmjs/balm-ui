@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import BalmUI from '../../../src/scripts/balm-ui';
+import BalmUI from '../../../src/scripts/index';
 
 let helpers = Object.assign({}, BalmUI.helpers);
 

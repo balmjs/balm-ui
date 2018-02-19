@@ -1,9 +1,9 @@
+import getType from '../helpers/typeof';
 import UiDialog from '../components/dialog/dialog';
 import UiDialogHeader from '../components/dialog/dialog-header';
 import UiDialogBody from '../components/dialog/dialog-body';
 import UiDialogFooter from '../components/dialog/dialog-footer';
 import UiButton from '../components/button/button';
-import getType from '../helpers/typeof';
 
 const DEFAULT_OPTIONS = {
   className: '',
@@ -33,14 +33,13 @@ const template = `<ui-dialog
   </ui-dialog-footer>
 </ui-dialog>`;
 
-const BalmUIConfirmPlugin = {
-  // TODO: options
-  install(Vue, options) {
-    let vm;
+const BalmUI_ConfirmPlugin = {
+  install(Vue, config) {
+    let options = Object.assign({}, DEFAULT_OPTIONS, config);
 
-    const UiConfirm = (confirmOptions = {}) => {
-      return new Promise((resolve, reject) => {
-        vm = new Vue({
+    const $confirm = (customOptions = {}) => {
+      return new Promise(resolve => {
+        let vm = new Vue({
           el: document.createElement('div'),
           components: {
             UiDialog,
@@ -51,49 +50,50 @@ const BalmUIConfirmPlugin = {
           },
           data: {
             open: false,
-            options: DEFAULT_OPTIONS
+            options
           },
           created() {
-            if (getType(confirmOptions) === 'string') {
-              this.options.message = confirmOptions;
-            } else if (getType(confirmOptions) === 'object') {
-              this.options = Object.assign(DEFAULT_OPTIONS, confirmOptions);
+            if (getType(customOptions) === 'string') {
+              this.options.message = customOptions;
+            } else if (getType(customOptions) === 'object') {
+              this.options = Object.assign({}, this.options, customOptions);
             }
+
+            this.$nextTick(() => {
+              document.body.appendChild(vm.$el);
+              this.open = true;
+            });
           },
           methods: {
             handleClose() {
               this.open = false;
-              document.body.removeChild(this.$el);
-              document.body.classList.remove('mdc-dialog-scroll-lock');
-              vm = null;
+
+              this.$nextTick(() => {
+                document.body.removeChild(this.$el);
+                document.body.classList.remove('mdc-dialog-scroll-lock');
+                vm = null;
+              });
             },
             handleConfirm(result) {
               this.handleClose();
               if (getType(this.options.callback) === 'function') {
                 this.options.callback(result);
               } else {
-                if (result) {
-                  resolve();
-                } else {
-                  reject();
-                }
+                resolve(result);
               }
             }
           },
           template
         });
-
-        document.body.appendChild(vm.$el);
-        vm.open = true;
       });
     };
 
-    Vue.prototype.$confirm = UiConfirm;
+    Vue.prototype.$confirm = $confirm;
   }
 };
 
 if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(BalmUIConfirmPlugin);
+  window.Vue.use(BalmUI_ConfirmPlugin);
 }
 
-export default BalmUIConfirmPlugin;
+export default BalmUI_ConfirmPlugin;

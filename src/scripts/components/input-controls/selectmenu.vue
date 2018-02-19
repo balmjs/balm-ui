@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import {MDCSelect} from '../../../material-components-web/select';
+import { MDCSelect } from '../../../material-components-web/select';
 import UiMenu from '../menu/menu';
 import UiMenuItem from '../menu/menuitem';
 
@@ -25,7 +25,7 @@ const MDC_EVENT_CHANGE = 'MDCSelect:change';
 const UI_EVENT_CHANGE = 'change';
 
 export default {
-  name: 'ui-select2',
+  name: 'ui-selectmenu',
   components: {
     UiMenu,
     UiMenuItem
@@ -106,7 +106,7 @@ export default {
     this.currentOptions = this.init();
   },
   methods: {
-    changeHandler({detail}) {
+    changeHandler({ detail }) {
       let index = detail.selectedIndex;
       if (this.options[index]) {
         let key = this.defaultKey;
@@ -133,7 +133,9 @@ export default {
     },
     setSelectedTextContent(selectedTextContent = '') {
       if (this.$select) {
-        this.$select.foundation_.adapter_.setSelectedTextContent(selectedTextContent);
+        this.$select.foundation_.adapter_.setSelectedTextContent(
+          selectedTextContent
+        );
       }
     },
     initSelected(currentOptions = this.currentOptions) {
@@ -182,7 +184,8 @@ export default {
       // default selected
       if (currentOptions.length) {
         // init selected
-        let needInit = !this.placeholder || (this.placeholder && this.currentValue);
+        let needInit =
+          !this.placeholder || (this.placeholder && this.currentValue);
         if (needInit) {
           this.initSelected(currentOptions);
         }

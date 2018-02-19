@@ -1,3 +1,4 @@
+import multiBootstrap from '../config/multi-bootstrap';
 import UiListGroup from './list/list-group';
 import UiListGroupSubheader from './list/list-group-subheader';
 import UiList from './list/list';
@@ -26,11 +27,20 @@ const components = {
   UiItemLink
 };
 
-if (typeof window !== 'undefined' && window.Vue) {
-  for (let key in components) {
-    let component = components[key];
-    window.Vue.component(component.name, component);
-  }
-}
+multiBootstrap(components);
 
 export default components;
+export {
+  UiListGroup,
+  UiListGroupSubheader,
+  UiList,
+  UiListDivider,
+  UiItem,
+  UiItemStart,
+  UiItemText,
+  UiItemSubtext,
+  UiItemEnd,
+  UiItemDivider,
+  UiListNav,
+  UiItemLink
+};

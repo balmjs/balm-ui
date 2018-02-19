@@ -16,53 +16,55 @@ const template = `<ui-snackbar
   :multiline="options.multiline">
 </ui-snackbar>`;
 
-const BalmUIToastPlugin = {
-  // TODO: options
-  install(Vue, options) {
-    let vm;
+const BalmUI_ToastPlugin = {
+  install(Vue, config = {}) {
+    let options = Object.assign({}, DEFAULT_OPTIONS, config);
 
-    const UiToast = (toastOptions = '') => {
+    const $toast = (customOptions = {}) => {
       if (!document.querySelector('.mdc-toast')) {
-        vm = new Vue({
+        let vm = new Vue({
           el: document.createElement('div'),
           components: {
             UiSnackbar
           },
           data: {
             active: false,
-            options: DEFAULT_OPTIONS
+            options
           },
           created() {
-            if (getType(toastOptions) === 'string') {
-              this.options.message = toastOptions;
-            } else if (getType(toastOptions) === 'object') {
-              this.options = Object.assign(DEFAULT_OPTIONS, toastOptions);
+            if (getType(customOptions) === 'string') {
+              this.options.message = customOptions;
+            } else if (getType(customOptions) === 'object') {
+              this.options = Object.assign({}, this.options, customOptions);
             }
+
+            this.$nextTick(() => {
+              document.body.appendChild(vm.$el);
+
+              setTimeout(() => {
+                this.active = true;
+              }, DELAY);
+
+              setTimeout(() => {
+                this.active = false;
+                setTimeout(() => {
+                  document.body.removeChild(vm.$el);
+                  vm = null;
+                }, DELAY);
+              }, this.options.timeout);
+            });
           },
           template
         });
-
-        document.body.appendChild(vm.$el);
-        setTimeout(() => {
-          vm.active = true;
-        }, DELAY);
-
-        setTimeout(() => {
-          vm.active = false;
-          setTimeout(() => {
-            document.body.removeChild(vm.$el);
-            vm = null;
-          }, DELAY);
-        }, vm.options.timeout);
       }
     };
 
-    Vue.prototype.$toast = UiToast;
+    Vue.prototype.$toast = $toast;
   }
 };
 
 if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(BalmUIToastPlugin);
+  window.Vue.use(BalmUI_ToastPlugin);
 }
 
-export default BalmUIToastPlugin;
+export default BalmUI_ToastPlugin;

@@ -1,7 +1,6 @@
+import bootstrap from '../config/bootstrap';
 import UiFab from './button/fab';
 
-if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.component(UiFab.name, UiFab);
-}
+bootstrap(UiFab);
 
 export default UiFab;

@@ -1,7 +1,6 @@
+import bootstrap from '../config/bootstrap';
 import UiRadio from './input-controls/radio';
 
-if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.component(UiRadio.name, UiRadio);
-}
+bootstrap(UiRadio);
 
 export default UiRadio;

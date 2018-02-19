@@ -1,16 +1,6 @@
+import bootstrap from '../config/bootstrap';
 import UiSelect from './input-controls/select';
-import UiSelect2 from './input-controls/select2';
 
-const components = {
-  UiSelect,
-  UiSelect2
-};
+bootstrap(UiSelect);
 
-if (typeof window !== 'undefined' && window.Vue) {
-  for (let key in components) {
-    let component = components[key];
-    window.Vue.component(component.name, component);
-  }
-}
-
-export default components;
+export default UiSelect;

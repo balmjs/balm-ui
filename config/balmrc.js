@@ -8,7 +8,7 @@ module.exports = {
   },
   styles: {
     ext: 'scss',
-    autoprefixer: ['> 1%', 'last 2 versions', 'Firefox ESR']
+    autoprefixer: ['> 0.5%', 'last 2 versions', 'Firefox ESR', 'not dead']
     // includePaths: ['node_modules']
   },
   scripts: {
@@ -17,16 +17,15 @@ module.exports = {
           mylib: [
             'vue',
             'vue-router',
+            'vue-meta',
             'axios',
-            'vue-i18n',
-            'prismCss',
             'prismjs',
             'clipboard'
           ],
           main: './docs/scripts/main.js'
         }
       : {
-          'balm-ui': './src/scripts/balm-ui.js'
+          'balm-ui': './src/scripts/index.js'
         },
     library: 'BalmUI',
     libraryTarget: 'umd',
@@ -44,10 +43,7 @@ module.exports = {
       }
     ],
     alias: {
-      vue$: balm.config.production
-        ? 'vue/dist/vue.min.js'
-        : 'vue/dist/vue.esm.js',
-      prismCss: 'prismjs/themes/prism-okaidia.css'
+      vue$: 'vue/dist/vue.esm.js'
     },
     eslint: true,
     options: {

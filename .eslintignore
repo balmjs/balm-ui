@@ -1,0 +1,11 @@
+/.tmp/
+/components/
+/config/
+/dist/
+/docs/styles/global/_normalize.scss
+/helpers/
+/plugins/
+/src/fonts/
+/src/material-components-web/
+/*.js
+/test/

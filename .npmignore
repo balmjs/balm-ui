@@ -1,0 +1,6 @@
+src/fonts/*.css
+src/scripts/components/*.js
+src/scripts/config/bootstrap.js
+src/scripts/config/multi-bootstrap.js
+!src/styles/components/_*.scss
+!src/styles/plugins/_*.scss

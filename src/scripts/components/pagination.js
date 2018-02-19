@@ -1,7 +1,6 @@
+import bootstrap from '../config/bootstrap';
 import UiPagination from './data/pagination';
 
-if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.component(UiPagination.name, UiPagination);
-}
+bootstrap(UiPagination);
 
 export default UiPagination;

@@ -1,20 +1,20 @@
 <template>
   <div class="demo--select">
     <section class="hero">
-      <ui-select2 :options="options"
+      <ui-selectmenu :options="options"
         optionKey="key"
         optionValue="value"
-        placeholder="Pick a food group"></ui-select2>
+        placeholder="Pick a food group"></ui-selectmenu>
     </section>
 
     <section class="example">
       <h2>Fully-Featured Component</h2>
       <section id="demo-wrapper">
-        <ui-select2 :options="options"
+        <ui-selectmenu :options="options"
           optionKey="key"
           optionValue="value"
           placeholder="Pick a food group"
-          @change="balmUI.onChange('formData.selected', $event)"></ui-select2>
+          @change="balmUI.onChange('formData.selected', $event)"></ui-selectmenu>
       </section>
       <p>Currently selected:
         <span id="currently-selected">{{ formData.selected || '(none)'}}</span>
@@ -39,18 +39,18 @@
         @change="balmUI.onChange('formData.multipleSelected', $event)"></ui-select>
     </section>
 
-    <!-- <ui-select2
+    <!-- <ui-selectmenu
           :options="provinces"
           :model="formData.province"
           optionKey="key" optionValue="value"
           placeholder="请选择"
-          @change="onSelectChange('province', $event, changeCity)"></ui-select2>
+          @change="onSelectChange('province', $event, changeCity)"></ui-selectmenu>
 
-        <ui-select2
+        <ui-selectmenu
           :options="cities"
           :model="formData.city"
           optionKey="key" optionValue="value"
-          @change="onSelectChange('city', $event)"></ui-select2> -->
+          @change="onSelectChange('city', $event)"></ui-selectmenu> -->
 
     <!-- <ui-select
           :options="provinces"
@@ -86,33 +86,43 @@
 <script>
 import snippets from '../mixins/snippets';
 
-const PROVINCES = [{
-  key: 1,
-  value: 'Beijing'
-}, {
-  key: 2,
-  value: 'Shanghai'
-}, {
-  key: 3,
-  value: 'Guangzhou'
-}];
+const PROVINCES = [
+  {
+    key: 1,
+    value: 'Beijing'
+  },
+  {
+    key: 2,
+    value: 'Shanghai'
+  },
+  {
+    key: 3,
+    value: 'Guangzhou'
+  }
+];
 
 const CITIES = [
   [],
-  [{
-    key: 11,
-    value: '海定'
-  }, {
-    key: 12,
-    value: '朝阳'
-  }],
-  [{
-    key: 21,
-    value: '黄浦'
-  }, {
-    key: 22,
-    value: '徐汇'
-  }],
+  [
+    {
+      key: 11,
+      value: '海定'
+    },
+    {
+      key: 12,
+      value: '朝阳'
+    }
+  ],
+  [
+    {
+      key: 21,
+      value: '黄浦'
+    },
+    {
+      key: 22,
+      value: '徐汇'
+    }
+  ],
   []
 ];
 
@@ -120,26 +130,33 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      options: [{
-        key: 1,
-        value: 'Bread, Cereal, Rice, and Pasta'
-      }, {
-        key: 2,
-        value: 'Vegetables',
-        disabled: true
-      }, {
-        key: 3,
-        value: 'Fruit'
-      }, {
-        key: 4,
-        value: 'Milk, Yogurt, and Cheese'
-      }, {
-        key: 5,
-        value: 'Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts'
-      }, {
-        key: 6,
-        value: 'Fats, Oils, and Sweets'
-      }],
+      options: [
+        {
+          key: 1,
+          value: 'Bread, Cereal, Rice, and Pasta'
+        },
+        {
+          key: 2,
+          value: 'Vegetables',
+          disabled: true
+        },
+        {
+          key: 3,
+          value: 'Fruit'
+        },
+        {
+          key: 4,
+          value: 'Milk, Yogurt, and Cheese'
+        },
+        {
+          key: 5,
+          value: 'Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts'
+        },
+        {
+          key: 6,
+          value: 'Fats, Oils, and Sweets'
+        }
+      ],
       formData: {
         selected: '',
         province: '',
@@ -147,31 +164,43 @@ export default {
         multipleSelected: [],
         groupSelected: ''
       },
-      groupOptions: [{
-        label: 'Fats, Oils, & Sweets',
-        items: [{
-          key: 1,
-          value: 'Olive Oil'
-        }, {
-          key: 2,
-          value: 'Brown Sugar'
-        }, {
-          key: 3,
-          value: 'Ice Cream'
-        }]
-      }, '-', {
-        label: 'Dairy',
-        items: [{
-          key: 4,
-          value: 'Milk'
-        }, {
-          key: 5,
-          value: 'Cheese'
-        }, {
-          key: 6,
-          value: 'More Cheese'
-        }]
-      }],
+      groupOptions: [
+        {
+          label: 'Fats, Oils, & Sweets',
+          items: [
+            {
+              key: 1,
+              value: 'Olive Oil'
+            },
+            {
+              key: 2,
+              value: 'Brown Sugar'
+            },
+            {
+              key: 3,
+              value: 'Ice Cream'
+            }
+          ]
+        },
+        '-',
+        {
+          label: 'Dairy',
+          items: [
+            {
+              key: 4,
+              value: 'Milk'
+            },
+            {
+              key: 5,
+              value: 'Cheese'
+            },
+            {
+              key: 6,
+              value: 'More Cheese'
+            }
+          ]
+        }
+      ],
       provinces: PROVINCES,
       cities: []
     };

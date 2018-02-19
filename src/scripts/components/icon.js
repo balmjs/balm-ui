@@ -1,7 +1,6 @@
+import bootstrap from '../config/bootstrap';
 import UiIcon from './common/icon';
 
-if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.component(UiIcon.name, UiIcon);
-}
+bootstrap(UiIcon);
 
 export default UiIcon;

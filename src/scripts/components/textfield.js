@@ -1,3 +1,4 @@
+import multiBootstrap from '../config/multi-bootstrap';
 import UiTextfield from './input-controls/textfield';
 import UiTextfieldHelptext from './input-controls/textfield-helptext';
 
@@ -6,11 +7,7 @@ const components = {
   UiTextfieldHelptext
 };
 
-if (typeof window !== 'undefined' && window.Vue) {
-  for (let key in components) {
-    let component = components[key];
-    window.Vue.component(component.name, component);
-  }
-}
+multiBootstrap(components);
 
 export default components;
+export { UiTextfield, UiTextfieldHelptext };

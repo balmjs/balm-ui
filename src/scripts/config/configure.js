@@ -1,5 +1,5 @@
-import getType from './helpers/typeof';
 import merge from 'deepmerge';
+import getType from '../helpers/typeof';
 
 const configure = (Component, props) => {
   Object.keys(props).forEach(propName => {
@@ -7,7 +7,7 @@ const configure = (Component, props) => {
       return;
     }
 
-    const defaultValue = Component.props[propName].default;
+    let defaultValue = Component.props[propName].default;
 
     if (getType(defaultValue) === 'object') {
       Component.props[propName].default = merge(defaultValue, props[propName]);

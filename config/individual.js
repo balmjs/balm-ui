@@ -31,7 +31,7 @@ const components = [
   // Plus
   'pagination.js'
 ];
-const helpers = ['index.js'];
+const helpers = ['is.js', 'utils.js', 'detect-ie.js'];
 const plugins = [
   'event.js',
   'elevation.js',

@@ -3,20 +3,19 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import axios from 'axios';
 import VueI18n from 'vue-i18n';
-import BalmUI from '../../src/scripts/balm-ui'; // 'balm-ui'
+import BalmUI from '../../src/scripts/index'; // 'balm-ui'
 import routes from './routes/index';
 import helpers from './helpers';
 import App from './views/layouts/app';
 import UiMarkdown from './views/components/markdown';
 import UiApidoc from './views/components/apidoc';
 // syntax highlighting
-import 'prismCss';
 import prismjs from 'prismjs';
 // ready translated locales
 import { locales } from './config/lang';
 
 const CLASS_NAMESPACE = 'balmui';
-const DEBUG = (process.env.NODE_ENV === 'production') ? false : true;
+const DEBUG = process.env.NODE_ENV === 'production' ? false : true;
 
 Vue.config.productionTip = false;
 Vue.prototype.DEBUG = DEBUG;
@@ -42,10 +41,15 @@ Vue.prototype.$prism = prismjs;
 Vue.prototype.$docs = {
   props: {
     thead: ['Name', 'Type', 'Default', 'Description'],
-    tbody: ['name', 'type', 'default', {
-      field: 'description',
-      raw: true
-    }]
+    tbody: [
+      'name',
+      'type',
+      'default',
+      {
+        field: 'description',
+        raw: true
+      }
+    ]
   },
   slots: {
     thead: ['Name', 'Description', '<template scope="props">'],
@@ -70,14 +74,14 @@ router.afterEach((to, from) => {
     pageClassList.remove(`${CLASS_NAMESPACE}--${from.name}`);
   }
   if (to.name) {
-    pageClassList.add(`${CLASS_NAMESPACE}--${to.name}`)
+    pageClassList.add(`${CLASS_NAMESPACE}--${to.name}`);
   }
 });
 
 // Create VueI18n instance with options
 const i18n = new VueI18n({
   locale: 'en', // set locale
-  messages: locales, // set locale messages
+  messages: locales // set locale messages
 });
 
 new Vue({

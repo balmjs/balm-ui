@@ -1,3 +1,4 @@
+import multiBootstrap from '../config/multi-bootstrap';
 import UiTabs from './tabs/tabs';
 import UiTabBar from './tabs/tab-bar';
 import UiTabBarScroller from './tabs/tab-bar-scroller';
@@ -14,11 +15,7 @@ const components = {
   UiPanel
 };
 
-if (typeof window !== 'undefined' && window.Vue) {
-  for (let key in components) {
-    let component = components[key];
-    window.Vue.component(component.name, component);
-  }
-}
+multiBootstrap(components);
 
 export default components;
+export { UiTabs, UiTabBar, UiTabBarScroller, UiTab, UiPanels, UiPanel };

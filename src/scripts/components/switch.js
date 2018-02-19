@@ -1,7 +1,6 @@
+import bootstrap from '../config/bootstrap';
 import UiSwitch from './input-controls/switch';
 
-if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.component(UiSwitch.name, UiSwitch);
-}
+bootstrap(UiSwitch);
 
 export default UiSwitch;

@@ -67,11 +67,7 @@ balm.go(function(mix) {
         mix.copy('./dist/css/components/*', './components');
         mix.copy('./dist/css/plugins/*', './plugins');
         mix.copy('./dist/font/*', './font');
-        mix.remove([
-          './dist/css',
-          './dist/js',
-          './dist/font'
-        ]);
+        mix.remove(['./dist/css', './dist/js', './dist/font']);
       }
     }
   }

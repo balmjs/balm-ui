@@ -40,7 +40,8 @@ const plugins = [
   'typography.js',
   'alert.js',
   'confirm.js',
-  'toast.js'
+  'toast.js',
+  'validator.js'
 ];
 
 const output = {

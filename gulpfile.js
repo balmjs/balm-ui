@@ -48,20 +48,13 @@ balm.go(function(mix) {
         ]);
 
         // build individual
-        let components = individual.components.map(item => {
-          return individual.input.components + '/' + item;
+        const individualBuild = ['components', 'plugins', 'helpers']; // , 'directives'
+        individualBuild.forEach(buildName => {
+          let buildFiles = individual[buildName].map(item => {
+            return individual.input[buildName] + '/' + item;
+          });
+          mix.js(buildFiles, individual.output[buildName]);
         });
-        mix.js(components, individual.output.components);
-
-        let helpers = individual.helpers.map(item => {
-          return individual.input.helpers + '/' + item;
-        });
-        mix.js(helpers, individual.output.helpers);
-
-        let plugins = individual.plugins.map(item => {
-          return individual.input.plugins + '/' + item;
-        });
-        mix.js(plugins, individual.output.plugins);
 
         mix.copy(['./dist/css/*.css', './dist/js/*.js'], './dist');
         mix.copy('./dist/css/components/*', './components');

@@ -17,6 +17,12 @@ balm.go(function(mix) {
         constants.DEV_SOURCE.font + '/*'
       ]);
 
+      // update css reset for docs
+      mix.copy(constants.CSS_RESET, './docs/styles/global', {
+        prefix: '_',
+        extname: '.scss'
+      });
+
       // get Material
       mix.copy(
         constants.DMC_SOURCE.mdc + '/material-components-web.scss',

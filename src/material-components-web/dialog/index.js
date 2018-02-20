@@ -18,10 +18,10 @@ import {MDCComponent} from '../base/index';
 import {MDCRipple} from '../ripple/index';
 
 import MDCDialogFoundation from './foundation';
-// import * as util from './util';
+import * as util from './util';
 
 export {MDCDialogFoundation};
-// export {util};
+export {util};
 
 export class MDCDialog extends MDCComponent {
   static attachTo(root) {
@@ -80,8 +80,8 @@ export class MDCDialog extends MDCComponent {
       deregisterTransitionEndHandler: (handler) => this.dialogSurface_.removeEventListener('transitionend', handler),
       notifyAccept: () => this.emit(MDCDialogFoundation.strings.ACCEPT_EVENT),
       notifyCancel: () => this.emit(MDCDialogFoundation.strings.CANCEL_EVENT),
-      // trapFocusOnSurface: () => this.focusTrap_.activate(),
-      // untrapFocusOnSurface: () => this.focusTrap_.deactivate(),
+      trapFocusOnSurface: () => this.focusTrap_.activate(),
+      untrapFocusOnSurface: () => this.focusTrap_.deactivate(),
       isDialog: (el) => el === this.dialogSurface_,
       layoutFooterRipples: () => this.footerBtnRipples_.forEach((ripple) => ripple.layout()),
     });

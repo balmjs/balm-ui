@@ -17,13 +17,12 @@
 
 /** @enum {string} */
 const strings = {
-  ARIA_HIDDEN: 'aria-hidden',
-  ROLE: 'role',
+  ARIA_CONTROLS: 'aria-controls',
   INPUT_SELECTOR: '.mdc-text-field__input',
   LABEL_SELECTOR: '.mdc-text-field__label',
   ICON_SELECTOR: '.mdc-text-field__icon',
-  ICON_EVENT: 'MDCTextField:icon',
-  BOTTOM_LINE_SELECTOR: '.mdc-text-field__bottom-line',
+  OUTLINE_SELECTOR: '.mdc-text-field__outline',
+  BOTTOM_LINE_SELECTOR: '.mdc-line-ripple',
 };
 
 /** @enum {string} */
@@ -31,16 +30,17 @@ const cssClasses = {
   ROOT: 'mdc-text-field',
   UPGRADED: 'mdc-text-field--upgraded',
   DISABLED: 'mdc-text-field--disabled',
+  DENSE: 'mdc-text-field--dense',
   FOCUSED: 'mdc-text-field--focused',
   INVALID: 'mdc-text-field--invalid',
-  HELPTEXT_PERSISTENT: 'mdc-text-field-helptext--persistent',
-  HELPTEXT_VALIDATION_MSG: 'mdc-text-field-helptext--validation-msg',
-  LABEL_FLOAT_ABOVE: 'mdc-text-field__label--float-above',
-  LABEL_SHAKE: 'mdc-text-field__label--shake',
   BOX: 'mdc-text-field--box',
-  TEXT_FIELD_ICON: 'mdc-text-field__icon',
-  TEXTAREA: 'mdc-text-field--textarea',
-  BOTTOM_LINE_ACTIVE: 'mdc-text-field__bottom-line--active',
+  OUTLINED: 'mdc-text-field--outlined',
 };
 
-export {cssClasses, strings};
+/** @enum {number} */
+const numbers = {
+  LABEL_SCALE: 0.75,
+  DENSE_LABEL_SCALE: 0.923,
+};
+
+export {cssClasses, strings, numbers};

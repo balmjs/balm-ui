@@ -16,6 +16,7 @@
 
 @import "../animation/functions";
 @import "../theme/mixins";
+@import "./common";
 @import "./mixins";
 @import "./variables";
 
@@ -23,23 +24,25 @@
 
 .mdc-ripple-surface {
   @include mdc-ripple-surface;
-  @include mdc-ripple-color;
-  @include mdc-ripple-radius;
+  @include mdc-states;
+  @include mdc-ripple-radius-bounded;
 
   position: relative;
   outline: none;
   overflow: hidden;
 
   &[data-mdc-ripple-is-unbounded] {
+    @include mdc-ripple-radius-unbounded;
+
     overflow: visible;
   }
 
   &--primary {
-    @include mdc-ripple-color(primary, $mdc-ripple-pressed-dark-ink-opacity);
+    @include mdc-states(primary);
   }
 
   &--accent {
-    @include mdc-ripple-color(secondary, $mdc-ripple-pressed-dark-ink-opacity);
+    @include mdc-states(secondary);
   }
 }
 

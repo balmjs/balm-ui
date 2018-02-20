@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import {MDCComponent} from '../base';
-import {MDCRipple} from '../ripple';
+import {MDCComponent} from '../base/index';
+import {MDCRipple} from '../ripple/index';
 
 import MDCDialogFoundation from './foundation';
 // import * as util from './util';
@@ -41,7 +41,7 @@ export class MDCDialog extends MDCComponent {
   }
 
   initialize() {
-    // this.focusTrap_ = util.createFocusTrapInstance(this.dialogSurface_, this.acceptButton_);
+    this.focusTrap_ = util.createFocusTrapInstance(this.dialogSurface_, this.acceptButton_);
     this.footerBtnRipples_ = [];
 
     const footerBtns = this.root_.querySelectorAll('.mdc-dialog__footer__button');

@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import {getCorrectPropertyName} from '../../animation';
+import {getCorrectPropertyName} from '../../animation/index';
 import MDCComponent from '../../base/component';
 
-import {MDCTabBar} from '../tab-bar';
+import {MDCTabBar} from '../tab-bar/index';
 import MDCTabBarScrollerFoundation from './foundation';
 
 export {MDCTabBarScrollerFoundation};

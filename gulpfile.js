@@ -3,8 +3,10 @@ var balmConfig = require('./config/balmrc');
 var env = require('./config/env');
 var constants = require('./config/constants');
 var individual = require('./config/individual');
+require('./config/update');
 
 balm.config = balmConfig;
+balm.afterTask = 'update:mdc';
 
 balm.go(function(mix) {
   if (env.buildDocs) {

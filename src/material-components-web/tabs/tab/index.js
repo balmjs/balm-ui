@@ -15,7 +15,7 @@
  */
 
 import MDCComponent from '../../base/component';
-import {MDCRipple} from '../../ripple';
+import {MDCRipple} from '../../ripple/index';
 
 import {cssClasses} from './constants';
 import MDCTabFoundation from './foundation';

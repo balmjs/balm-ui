@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {MDCComponent} from '../../base';
+import {MDCComponent} from '../../base/index';
 import MDCTemporaryDrawerFoundation from './foundation';
 import * as util from '../util';
 
@@ -52,6 +52,7 @@ export class MDCTemporaryDrawer extends MDCComponent {
       hasClass: (className) => this.root_.classList.contains(className),
       addBodyClass: (className) => document.body.classList.add(className),
       removeBodyClass: (className) => document.body.classList.remove(className),
+      eventTargetHasClass: (target, className) => target.classList.contains(className),
       hasNecessaryDom: () => Boolean(this.drawer),
       registerInteractionHandler: (evt, handler) =>
         this.root_.addEventListener(util.remapEvent(evt), handler, util.applyPassive()),

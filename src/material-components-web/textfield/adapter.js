@@ -15,6 +15,13 @@
  * limitations under the License.
  */
 
+/* eslint-disable no-unused-vars */
+import MDCLineRippleFoundation from '../line-ripple/foundation';
+import MDCTextFieldHelperTextFoundation from './helper-text/foundation';
+import MDCTextFieldIconFoundation from './icon/foundation';
+import MDCTextFieldLabelFoundation from './label/foundation';
+import MDCTextFieldOutlineFoundation from './outline/foundation';
+
 /* eslint no-unused-vars: [2, {"args": "none"}] */
 
 /**
@@ -22,10 +29,24 @@
  *   value: string,
  *   disabled: boolean,
  *   badInput: boolean,
- *   checkValidity: (function(): boolean)
+ *   validity: {
+ *     badInput: boolean,
+ *     valid: boolean,
+ *   },
  * }}
  */
 let NativeInputType;
+
+/**
+ * @typedef {{
+ *   lineRipple: (!MDCLineRippleFoundation|undefined),
+ *   helperText: (!MDCTextFieldHelperTextFoundation|undefined),
+ *   icon: (!MDCTextFieldIconFoundation|undefined),
+ *   label: (!MDCTextFieldLabelFoundation|undefined),
+ *   outline: (!MDCTextFieldOutlineFoundation|undefined)
+ * }}
+ */
+let FoundationMapType;
 
 /**
  * Adapter for MDC Text Field.
@@ -51,34 +72,11 @@ class MDCTextFieldAdapter {
   removeClass(className) {}
 
   /**
-   * Adds a class to the label Element. We recommend you add a conditional
-   * check here, and in removeClassFromLabel for whether or not the label is
-   * present so that the JS component could be used with text fields that don't
-   * require a label, such as the full-width text field.
-   * @param {string} className
-   */
-  addClassToLabel(className) {}
-
-  /**
-   * Removes a class from the label Element.
-   * @param {string} className
-   */
-  removeClassFromLabel(className) {}
-
-  /**
-   * Sets an attribute on the icon Element.
-   * @param {string} name
-   * @param {string} value
-   */
-  setIconAttr(name, value) {}
-
-  /**
-   * Returns true if classname exists for a given target element.
-   * @param {?EventTarget} target
+   * Returns true if the root element contains the given class name.
    * @param {string} className
    * @return {boolean}
    */
-  eventTargetHasClass(target, className) {}
+  hasClass(className) {}
 
   /**
    * Registers an event handler on the root element for a given event.
@@ -95,44 +93,6 @@ class MDCTextFieldAdapter {
   deregisterTextFieldInteractionHandler(type, handler) {}
 
   /**
-   * Emits a custom event "MDCTextField:icon" denoting a user has clicked the icon.
-   */
-  notifyIconAction() {}
-
-  /**
-   * Adds a class to the bottom line element.
-   * @param {string} className
-   */
-  addClassToBottomLine(className) {}
-
-  /**
-   * Removes a class from the bottom line element.
-   * @param {string} className
-   */
-  removeClassFromBottomLine(className) {}
-
-  /**
-   * Adds a class to the help text element. Note that in our code we check for
-   * whether or not we have a help text element and if we don't, we simply
-   * return.
-   * @param {string} className
-   */
-  addClassToHelptext(className) {}
-
-  /**
-   * Removes a class from the help text element.
-   * @param {string} className
-   */
-  removeClassFromHelptext(className) {}
-
-  /**
-   * Returns whether or not the help text element contains the given class.
-   * @param {string} className
-   * @return {boolean}
-   */
-  helptextHasClass(className) {}
-
-  /**
    * Registers an event listener on the native input element for a given event.
    * @param {string} evtType
    * @param {function(!Event): undefined} handler
@@ -147,38 +107,6 @@ class MDCTextFieldAdapter {
   deregisterInputInteractionHandler(evtType, handler) {}
 
   /**
-   * Registers an event listener on the bottom line element for a "transitionend" event.
-   * @param {function(!Event): undefined} handler
-   */
-  registerTransitionEndHandler(handler) {}
-
-  /**
-   * Deregisters an event listener on the bottom line element for a "transitionend" event.
-   * @param {function(!Event): undefined} handler
-   */
-  deregisterTransitionEndHandler(handler) {}
-
-  /**
-   * Sets an attribute with a given value on the bottom line element.
-   * @param {string} attr
-   * @param {string} value
-   */
-  setBottomLineAttr(attr, value) {}
-
-  /**
-   * Sets an attribute with a given value on the help text element.
-   * @param {string} name
-   * @param {string} value
-   */
-  setHelptextAttr(name, value) {}
-
-  /**
-   * Removes an attribute from the help text element.
-   * @param {string} name
-   */
-  removeHelptextAttr(name) {}
-
-  /**
    * Returns an object representing the native text input element, with a
    * similar API shape. The object returned should include the value, disabled
    * and badInput properties, as well as the checkValidity() function. We never
@@ -189,6 +117,35 @@ class MDCTextFieldAdapter {
    * @return {?Element|?NativeInputType}
    */
   getNativeInput() {}
+
+  /**
+   * Returns true if the textfield is focused.
+   * We achieve this via `document.activeElement === this.root_`.
+   * @return {boolean}
+   */
+  isFocused() {}
+
+  /**
+   * Returns true if the direction of the root element is set to RTL.
+   * @return {boolean}
+   */
+  isRtl() {}
+
+  /**
+   * Activates the line ripple.
+   */
+  activateLineRipple() {}
+
+  /**
+   * Deactivates the line ripple.
+   */
+  deactivateLineRipple() {}
+
+  /**
+   * Sets the transform origin of the line ripple.
+   * @param {number} normalizedX
+   */
+  setLineRippleTransformOrigin(normalizedX) {}
 }
 
-export {MDCTextFieldAdapter, NativeInputType};
+export {MDCTextFieldAdapter, NativeInputType, FoundationMapType};

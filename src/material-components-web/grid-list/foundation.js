@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {MDCFoundation} from '../base';
+import {MDCFoundation} from '../base/index';
 import {strings} from './constants';
 
 export default class MDCGridListFoundation extends MDCFoundation {

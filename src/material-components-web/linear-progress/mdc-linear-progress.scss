@@ -18,9 +18,6 @@
 @import "./variables";
 
 .mdc-linear-progress {
-  @include mdc-linear-progress-bar-color(primary);
-  @include mdc-linear-progress-buffer-color($mdc-linear-progress-baseline-buffer-color);
-
   position: relative;
   width: 100%;
   height: 4px;
@@ -60,6 +57,10 @@
     height: 100%;
     transform-origin: top left;
     transition: mdc-animation-exit-temporary(transform, 250ms);
+  }
+
+  &__primary-bar {
+    transform: scaleX(0);
   }
 
   &__secondary-bar {
@@ -114,6 +115,11 @@
   &--closed {
     opacity: 0;
   }
+}
+
+@at-root {
+  @include mdc-linear-progress-bar-color(primary);
+  @include mdc-linear-progress-buffer-color($mdc-linear-progress-baseline-buffer-color);
 }
 
 .mdc-linear-progress--indeterminate.mdc-linear-progress--reversed {

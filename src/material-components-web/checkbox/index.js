@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-import {getCorrectEventName} from '../animation';
+import {getCorrectEventName} from '../animation/index';
 import MDCComponent from '../base/component';
 /* eslint-disable no-unused-vars */
-import {MDCSelectionControlState, MDCSelectionControl} from '../selection-control';
+import {MDCSelectionControlState, MDCSelectionControl} from '../selection-control/index';
 /* eslint-enable no-unused-vars */
 import MDCCheckboxFoundation from './foundation';
-import {MDCRipple, MDCRippleFoundation} from '../ripple';
+import {MDCRipple, MDCRippleFoundation} from '../ripple/index';
 import {getMatchesProperty} from '../ripple/util';
 
 /**

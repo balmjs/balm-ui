@@ -18,7 +18,7 @@
 import MDCComponent from '../base/component';
 import MDCFormFieldFoundation from './foundation';
 /* eslint-disable no-unused-vars */
-import {MDCSelectionControl} from '../selection-control';
+import {MDCSelectionControl} from '../selection-control/index';
 /* eslint-enable no-unused-vars */
 
 /**

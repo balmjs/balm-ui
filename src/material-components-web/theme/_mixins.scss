@@ -22,7 +22,7 @@
 // $edgeOptOut controls whether to feature-detect around Edge to avoid emitting CSS variables for it,
 // intended for use in cases where interactions with pseudo-element styles cause problems due to Edge bugs.
 @mixin mdc-theme-prop($property, $style, $important: false, $edgeOptOut: false) {
-  @if type-of($style) == "color" {
+  @if type-of($style) == "color" or $style == "currentColor" {
     @if $important {
       #{$property}: $style !important;
     } @else {
@@ -73,61 +73,6 @@
       } @else {
         #{$property}: var(--mdc-theme-#{$style}, $value);
       }
-    }
-  }
-}
-
-// Creates a rule to be used in MDC-Web components for dark theming, and applies the provided contents.
-// Should provide the $root-selector option if applied to anything other than the root selector.
-// When used with a modifier class, provide a second argument of `true` for the $compound parameter
-// to specify that this should be attached as a compound class.
-//
-// Usage example:
-//
-// ```scss
-// .mdc-foo {
-//   color: black;
-//
-//   @include mdc-theme-dark {
-//     color: white;
-//   }
-//
-//   &__bar {
-//     background: black;
-//
-//     @include mdc-theme-dark(".mdc-foo") {
-//       background: white;
-//     }
-//   }
-// }
-//
-// .mdc-foo--disabled {
-//   opacity: .38;
-//
-//   @include mdc-theme-dark(".mdc-foo", true) {
-//     opacity: .5;
-//   }
-// }
-// ```
-@mixin mdc-theme-dark($root-selector: null, $compound: false) {
-  @if ($root-selector) {
-    @at-root {
-      @if ($compound) {
-        #{$root-selector}--theme-dark#{&},
-        .mdc-theme--dark & {
-          @content;
-        }
-      } @else {
-        #{$root-selector}--theme-dark &,
-        .mdc-theme--dark & {
-          @content;
-        }
-      }
-    }
-  } @else {
-    &--theme-dark,
-    .mdc-theme--dark & {
-      @content;
     }
   }
 }

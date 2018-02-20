@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {MDCComponent} from '../../base';
+import {MDCComponent} from '../../base/index';
 import MDCPersistentDrawerFoundation from './foundation';
 import * as util from '../util';
 

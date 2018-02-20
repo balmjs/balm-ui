@@ -42,6 +42,10 @@ $_mdc-theme-tonal-offset: 7%;
 
 // Determine whether the color is "light" or "dark".
 @function mdc-theme-tone($color) {
+  @if $color == "dark" or $color == "light" {
+    @return $color;
+  }
+
   $minimumContrast: 3.1;
 
   $lightContrast: mdc-theme-contrast($color, white);
@@ -58,15 +62,6 @@ $_mdc-theme-tonal-offset: 7%;
 // Returns "dark" if the given color is light and "light" if the given color is dark.
 @function mdc-theme-contrast-tone($color) {
   @return if(mdc-theme-tone($color) == "dark", "light", "dark");
-}
-
-// DEPRECATED. Use mdc-theme-contrast-tone instead.
-@function mdc-theme-light-or-dark($color) {
-  // stylelint-disable indentation
-  @warn "The 'mdc-theme-light-or-dark' mixin is DEPRECATED and will be REMOVED in a future version. " +
-        "Please use 'mdc-theme-contrast-tone' or 'mdc-theme-tone' (as applicable) instead.";
-  @return mdc-theme-contrast-tone($color);
-  // stylelint-enable indentation
 }
 
 // lighten() and darken() require values to be between 0% and 100%.

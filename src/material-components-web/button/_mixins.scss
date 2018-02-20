@@ -28,10 +28,10 @@
 
   @if ($fill-tone == "dark") {
     @include mdc-button-ink-color(text-primary-on-dark);
-    @include mdc-ripple-color(text-primary-on-dark, $mdc-filled-button-ripple-opacity);
+    @include mdc-states(text-primary-on-dark);
   } @else {
     @include mdc-button-ink-color(text-primary-on-light);
-    @include mdc-ripple-color(text-primary-on-light, $mdc-filled-button-ripple-opacity);
+    @include mdc-states(text-primary-on-light);
   }
 }
 
@@ -87,7 +87,7 @@
 @mixin mdc-button-base_() {
   @include mdc-typography(button);
   @include mdc-ripple-surface;
-  @include mdc-ripple-radius;
+  @include mdc-ripple-radius-bounded;
 
   display: inline-block;
   position: relative;
@@ -103,6 +103,11 @@
   overflow: hidden;
   vertical-align: middle;
 
+  &::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+  }
+
   // postcss-bem-linter: ignore
   &:active {
     outline: none;
@@ -112,21 +117,12 @@
     cursor: pointer;
   }
 
-  &::-moz-focus-inner {
-    padding: 0;
-    border: 0;
-  }
-
   &:disabled {
     @include mdc-theme-prop(background-color, transparent);
     @include mdc-theme-prop(color, text-disabled-on-light);
 
     cursor: default;
     pointer-events: none;
-
-    @include mdc-theme-dark(".mdc-button") {
-      @include mdc-theme-prop(color, text-disabled-on-dark);
-    }
   }
 }
 
@@ -145,10 +141,6 @@
 
   &:disabled {
     @include mdc-theme-prop(border-color, text-disabled-on-light);
-
-    @include mdc-theme-dark(".mdc-button") {
-      @include mdc-theme-prop(border-color, text-disabled-on-dark);
-    }
   }
 }
 
@@ -156,17 +148,13 @@
   &:disabled {
     @include mdc-theme-prop(background-color, rgba(black, .12));
     @include mdc-theme-prop(color, text-disabled-on-light);
-
-    @include mdc-theme-dark(".mdc-button") {
-      @include mdc-theme-prop(background-color, rgba(white, .12));
-      @include mdc-theme-prop(color, text-disabled-on-light);
-    }
   }
 }
 
 @mixin mdc-button--raised_() {
   @include mdc-elevation(2);
-  @include mdc-elevation-transition;
+
+  transition: mdc-elevation-transition-value();
 
   &:hover,
   &:focus {

@@ -17,10 +17,10 @@
 
 import MDCComponent from '../base/component';
 /* eslint-disable no-unused-vars */
-import {MDCSelectionControlState, MDCSelectionControl} from '../selection-control';
+import {MDCSelectionControlState, MDCSelectionControl} from '../selection-control/index';
 /* eslint-enable no-unused-vars */
 import MDCRadioFoundation from './foundation';
-import {MDCRipple, MDCRippleFoundation} from '../ripple';
+import {MDCRipple, MDCRippleFoundation} from '../ripple/index';
 
 /**
  * @extends MDCComponent<!MDCRadioFoundation>

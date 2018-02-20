@@ -7,6 +7,7 @@ var level1 = [
   'button',
   'card',
   'checkbox',
+  'chips',
   'dialog',
   'drawer',
   'elevation',
@@ -14,6 +15,7 @@ var level1 = [
   'form-field',
   'grid-list',
   'icon-toggle',
+  'line-ripple',
   'linear-progress',
   'list',
   'menu',
@@ -28,6 +30,8 @@ var level1 = [
   'toolbar'
 ];
 var level2 = [
+  'chips/chip',
+  'chips/chip-set',
   'drawer/permanent',
   'drawer/persistent',
   'drawer/slidable',

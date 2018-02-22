@@ -1,6 +1,6 @@
 <template>
   <div :class="[menuClassName, positionClassName]" tabindex="-1">
-    <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
+    <ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
       <slot>
         <template v-for="item in currentMenu">
           <ui-item-divider v-if="item === DIVIDER">
@@ -15,15 +15,15 @@
 </template>
 
 <script>
-import {MDCSimpleMenu} from '../../../material-components-web/menu';
+import { MDCMenu } from '../../../material-components-web/menu';
 import getType from '../../helpers/typeof';
 import UiMenuItem from './menuitem';
 import UiItemDivider from '../list/item-divider';
 
 const DIVIDER = '-';
 const POSITIONS = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
-const MDC_EVENT_SELECTED = 'MDCSimpleMenu:selected';
-const MDC_EVENT_CANCEL = 'MDCSimpleMenu:cancel';
+const MDC_EVENT_SELECTED = 'MDCMenu:selected';
+const MDC_EVENT_CANCEL = 'MDCMenu:cancel';
 const UI_EVENT_SELECTED = 'selected';
 const UI_EVENT_CANCEL = 'cancel';
 
@@ -71,21 +71,23 @@ export default {
   computed: {
     menuClassName() {
       return {
-        'mdc-simple-menu': true,
-        'mdc-simple-menu--theme-dark': this.dark
+        'mdc-menu': true,
+        'mdc-menu--theme-dark': this.dark
       };
     },
     positionClassName() {
-      let currentPositon = (getType(this.position) === 'string')
-        ? POSITIONS.indexOf(this.position) + 1
-        : this.position;
+      let currentPositon =
+        getType(this.position) === 'string'
+          ? POSITIONS.indexOf(this.position) + 1
+          : this.position;
 
-      let currentPositonName = (currentPositon > 0 && currentPositon <= POSITIONS.length)
+      let currentPositonName =
+        currentPositon > 0 && currentPositon <= POSITIONS.length
           ? POSITIONS[currentPositon - 1]
           : false;
 
       let className = currentPositonName
-        ? `mdc-simple-menu--open-from-${currentPositonName}`
+        ? `mdc-menu--open-from-${currentPositonName}`
         : '';
 
       return className;
@@ -103,16 +105,18 @@ export default {
   },
   mounted() {
     if (!this.$menu && !this.cssOnly) {
-      this.$menu = new MDCSimpleMenu(this.$el);
+      this.$menu = new MDCMenu(this.$el);
       this.handlingSelection();
     }
   },
   methods: {
     handlingSelection() {
-      this.$el.addEventListener(MDC_EVENT_SELECTED, ({detail}) => {
+      this.$el.addEventListener(MDC_EVENT_SELECTED, ({ detail }) => {
+        let item = detail.item;
         this.$emit(UI_EVENT_SELECTED, {
-          index: detail.index,
-          item: detail.item.textContent.trim()
+          item, // HTMLElement
+          index: detail.index, // number
+          label: item.textContent.trim() // string
         });
       });
 

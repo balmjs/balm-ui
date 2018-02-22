@@ -13,11 +13,11 @@
           <ui-toolbar-anchor href="javascript:void(0)" alt="Print this page">print</ui-toolbar-anchor>
 
           <ui-menu-anchor>
-            <ui-toolbar-anchor href="javascript:void(0)" alt="Bookmark this page" @click.native="onOpen('open')">more_vert</ui-toolbar-anchor>
+            <ui-toolbar-anchor href="javascript:void(0)" alt="Bookmark this page" @click.native="balmUI.onOpen('open')">more_vert</ui-toolbar-anchor>
             <ui-menu :open="open"
               :menu="menu"
               @selected="onSelected"
-              @cancel="onClose('open')">
+              @cancel="balmUI.onClose('open')">
             </ui-menu>
           </ui-menu-anchor>
         </ui-toolbar-section>
@@ -44,7 +44,7 @@ export default {
   data() {
     return {
       open: false,
-      menu: ['Back', 'Forward', 'Reload', '-', 'Save As...'],
+      menu: ['Back', 'Forward', 'Reload', '-', 'Save As...']
     };
   },
   methods: {

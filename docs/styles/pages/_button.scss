@@ -2,13 +2,6 @@
   .demo-wrapper {
     padding-bottom: 100px;
   }
-  .demo-wrapper.mdc-theme--dark {
-    background-color: #333;
-  }
-  .demo-wrapper.mdc-theme--dark fieldset legend,
-  .demo-wrapper.mdc-theme--dark h1 {
-    color: #f0f0f0;
-  }
   fieldset {
     padding: 24px;
     padding-top: 0;
@@ -18,20 +11,19 @@
     margin: 16px;
   }
   .hero button {
-    margin-right: 32px;
     margin-left: 32px;
+    margin-right: 32px;
   }
   fieldset legend {
     display: block;
-
     padding: 16px;
     padding-top: 48px;
     padding-bottom: 24px;
   }
   h1 {
+    padding-left: 36px;
     padding-top: 64px;
     padding-bottom: 8px;
-    padding-left: 36px;
   }
   .mdc-form-field {
     margin: 50px 0 -20px 30px;
@@ -43,7 +35,6 @@
     position: absolute;
     bottom: 10px;
     left: 36px;
-
-    color: rgba(33, 33, 33, .38);
+    color: rgba(33, 33, 33, 0.38);
   }
 }

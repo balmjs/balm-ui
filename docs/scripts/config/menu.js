@@ -127,7 +127,7 @@ const MATERIAL_COMPONENTS = [{
     }]
   }, '-', {
     icon: 'menu',
-    name: 'Menu', // Simple Menu
+    name: 'Menu',
     description: 'Pop over menus'
   }, '-', {
     name: 'Others',

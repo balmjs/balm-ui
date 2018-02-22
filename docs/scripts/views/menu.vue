@@ -2,7 +2,7 @@
   <div class="demo--menu">
     <section class="hero">
       <ui-menu cssOnly
-        class="demo-menu mdc-simple-menu--open"
+        class="mdc-menu--open"
         :menu="['Back', 'Forward', 'Reload', '-', 'Help & Feedback', 'Settings']">
       </ui-menu>
     </section>
@@ -10,7 +10,7 @@
     <section class="example"></section>
 
     <div :class="['demo-content', {'mdc-theme--dark': dark}]">
-      <ui-menu-anchor :position="position">
+      <!-- <ui-menu-anchor :position="position">
         <ui-button raised @click.native="openMenu">Reveal Menu</ui-button>
 
         <ui-menu :open="open" :dark="dark"
@@ -22,7 +22,7 @@
           <ui-item-divider></ui-item-divider>
           <ui-menuitem>Save As...</ui-menuitem>
         </ui-menu>
-      </ui-menu-anchor>
+      </ui-menu-anchor> -->
 
       <div class="demo-controls-container">
         <div class="demo-controls">

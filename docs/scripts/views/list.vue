@@ -314,7 +314,7 @@
           <ui-list>
             <ui-item v-for="i in 3" :key="i">Single-line item - section 1</ui-item>
             <ui-item-divider></ui-item-divider>
-            <ui-item v-for="i in 2" :key="i">Single-line item - section 2</ui-item>
+            <ui-item v-for="i in 2" :key="i + 3">Single-line item - section 2</ui-item>
           </ui-list>
         </section>
         <section>
@@ -325,7 +325,7 @@
               Single-line item - section 1
             </ui-item>
             <ui-item-divider inset></ui-item-divider>
-            <ui-item v-for="i in 2" :key="i">
+            <ui-item v-for="i in 2" :key="i + 3">
               <ui-item-start class="grey-bg"></ui-item-start>
               Single-line item - section 2
             </ui-item>
@@ -440,38 +440,35 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      items: [
-        'Photos',
-        'Recipes',
-        'Work'
+      items: ['Photos', 'Recipes', 'Work'],
+      items2: [
+        {
+          icon: 'network_wifi',
+          text: 'Wi-Fi',
+          avatar: require('../../images/animal1.svg'),
+          name: 'Panda',
+          favorite: true
+        },
+        {
+          icon: 'bluetooth',
+          text: 'Bluetooth',
+          avatar: require('../../images/animal2.svg'),
+          name: 'Sleuth',
+          favorite: false
+        },
+        {
+          icon: 'data_usage',
+          text: 'Data Usage',
+          avatar: require('../../images/animal3.svg'),
+          name: 'Brown Bear',
+          favorite: false
+        }
       ],
-      items2: [{
-        icon: 'network_wifi',
-        text: 'Wi-Fi',
-        avatar: require('../../images/animal1.svg'),
-        name: 'Panda',
-        favorite: true
-      }, {
-        icon: 'bluetooth',
-        text: 'Bluetooth',
-        avatar: require('../../images/animal2.svg'),
-        name: 'Sleuth',
-        favorite: false
-      }, {
-        icon: 'data_usage',
-        text: 'Data Usage',
-        avatar: require('../../images/animal3.svg'),
-        name: 'Brown Bear',
-        favorite: false
-      }],
       icon: {
-        on: {content: 'favorite', label: 'Remove From Favorites'},
-        off: {content: 'favorite_border', label: 'Add to Favorites'}
+        on: { content: 'favorite', label: 'Remove From Favorites' },
+        off: { content: 'favorite_border', label: 'Add to Favorites' }
       },
-      item3: [
-        'Vacation Itinerary',
-        'Kitchen Remodel'
-      ]
+      item3: ['Vacation Itinerary', 'Kitchen Remodel']
     };
   },
   created() {

@@ -2,16 +2,20 @@
   <!-- Custom MDC Select, shown on desktop -->
   <div :class="className"
        role="listbox"
-       tabindex="0"
        :aria-disabled="disabled">
-    <span class="mdc-select__selected-text">
-      <slot>{{ selectedOption[optionValue] || placeholder }}</slot>
-    </span>
+    <div class="mdc-select__surface" tabindex="0">
+      <div class="mdc-select__label">Pick a Food Group</div>
+      <div class="mdc-select__selected-text">
+        <slot>{{ selectedOption[optionValue] || placeholder }}</slot>
+      </div>
+      <div class="mdc-select__bottom-line"></div>
+    </div>
     <ui-menu :class="'mdc-select__menu'" :dark="dark">
       <ui-menuitem v-for="(option, index) in currentOptions"
                    :key="index"
                    role="option"
-                   :item="option"></ui-menuitem>
+                   :item="option"
+                   :aria-selected="index === $select.selectedIndex"></ui-menuitem>
     </ui-menu>
   </div>
 </template>
@@ -92,7 +96,7 @@ export default {
     options(val) {
       this.currentOptions = this.init(val);
       if (this.currentOptions.length) {
-        this.setSelectedTextContent(this.selectedOption[this.optionValue]);
+        // this.setSelectedTextContent(this.selectedOption[this.optionValue]);
       }
     }
   },
@@ -100,28 +104,24 @@ export default {
     if (!this.disabled) {
       this.$select = new MDCSelect(this.$el);
       this.$select.listen(MDC_EVENT_CHANGE, this.changeHandler);
-      this.$el.style.width = 'auto'; // NOTE: MDCSelect's bug (when options is empty)
     }
 
     this.currentOptions = this.init();
   },
   methods: {
-    changeHandler({ detail }) {
-      let index = detail.selectedIndex;
+    changeHandler() {
+      let index = this.$select.selectedIndex;
       if (this.options[index]) {
         let key = this.defaultKey;
         let value = this.defaultValue;
-
         if (this.hasDefaultOption) {
           index -= 1;
         }
-
         if (index > -1) {
           this.selectedOption = this.options[index];
           key = this.selectedOption[this.optionKey];
           value = this.selectedOption[this.optionValue];
         }
-
         this.$emit(UI_EVENT_CHANGE, {
           index,
           key,
@@ -163,7 +163,7 @@ export default {
 
       if (selectedOption[this.optionValue]) {
         this.selectedOption = selectedOption;
-        this.setSelectedTextContent(this.selectedOption[this.optionValue]);
+        // this.setSelectedTextContent(this.selectedOption[this.optionValue]);
         this.$emit(UI_EVENT_CHANGE, this.selectedOption[this.optionKey]);
       }
     },

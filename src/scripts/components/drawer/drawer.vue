@@ -23,8 +23,8 @@ export default {
       let type = this.type;
 
       return {
-        outer: `mdc-${type}-drawer`,
-        inner: `mdc-${type}-drawer__drawer`
+        outer: `mdc-drawer--${type}`,
+        inner: `mdc-drawer__drawer`
       };
     }
   },

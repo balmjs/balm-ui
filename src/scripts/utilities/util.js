@@ -19,19 +19,18 @@ const isEmpty = value => {
       result = !Object.keys(value).length;
       break;
     default:
-      for (let i = 0, len = emptyValues.length; i < len; i++) {
-        if (value === emptyValues[i]) {
+      let len = emptyValues.length;
+      while (len--) {
+        if (value === emptyValues[len]) {
           result = true;
           break;
         }
       }
-      break;
   }
 
   return result;
 };
 
-const isEqualJSON = (value, other) =>
-  JSON.stringify(value) === JSON.stringify(other); // The ORDER of the properties IS IMPORTANT
+const jsonEqual = (a, b) => JSON.stringify(a) === JSON.stringify(b); // The ORDER of the properties IS IMPORTANT
 
-export { isEmpty, isEqualJSON };
+export { isEmpty, jsonEqual };

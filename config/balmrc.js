@@ -32,14 +32,11 @@ module.exports = {
     loaders: [
       {
         test: /\.vue$/,
-        loader: 'vue',
-        options: {
-          esModule: false // For `const MyComponent = () => import('./components/my-component');`
-        }
+        loader: 'vue-loader'
       },
       {
         test: /\.md$/,
-        loader: 'html!markdown'
+        loader: 'html-loader!markdown-loader'
       }
     ],
     alias: {

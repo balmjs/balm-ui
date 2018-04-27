@@ -34,28 +34,28 @@
   },
   "devDependencies": {
     "axios": "^0.18.0",
-    "babel-eslint": "^8.2.1",
+    "babel-eslint": "^8.2.3",
     "babel-preset-stage-2": "^6.24.1",
-    "balm": "^0.16.2",
-    "clipboard": "^1.7.1",
-    "core-js": "^2.5.3",
-    "eslint": "^4.18.0",
-    "eslint-plugin-vue": "^4.2.2",
+    "balm": "^0.20.2",
+    "clipboard": "^2.0.0",
+    "core-js": "^2.5.5",
+    "eslint": "^4.19.1",
+    "eslint-plugin-vue": "^4.5.0",
     "font-awesome": "^4.7.0",
     "gulp": "^3.9.1",
     "markdown-loader": "^2.0.2",
-    "material-components-web": "0.30.0",
+    "material-components-web": "0.35.0",
     "material-design-icons": "^3.0.1",
     "normalize.css": "^8.0.0",
-    "prismjs": "^1.11.0",
-    "vue": "^2.5.13",
-    "vue-i18n": "^7.4.2",
-    "vue-loader": "^14.1.1",
-    "vue-meta": "^1.4.3",
+    "prismjs": "^1.14.0",
+    "vue": "^2.5.16",
+    "vue-i18n": "^7.6.0",
+    "vue-loader": "^14.2.2",
+    "vue-meta": "^1.5.0",
     "vue-router": "^3.0.1",
-    "vue-template-compiler": "^2.5.13"
+    "vue-template-compiler": "^2.5.16"
   },
   "dependencies": {
-    "deepmerge": "^2.0.1"
+    "deepmerge": "^2.1.0"
   }
 }

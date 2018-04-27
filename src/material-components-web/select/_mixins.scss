@@ -14,6 +14,10 @@
 // limitations under the License.
 //
 
+@import "../floating-label/mixins";
+@import "../theme/mixins";
+@import "../line-ripple/mixins";
+
 // Public
 
 @mixin mdc-select-ink-color($color) {
@@ -28,15 +32,17 @@
   }
 }
 
-@mixin mdc-select-label-color($color) {
+@mixin mdc-select-focused-label-color($color) {
   &:not(.mdc-select--disabled) {
-    @include mdc-select-label-color_($color);
+    .mdc-select__native-control:focus ~ .mdc-floating-label {
+      @include mdc-floating-label-ink-color(mdc-theme-prop-value($color));
+    }
   }
 }
 
-@mixin mdc-select-focused-label-color($color, $opacity: .87) {
-  &:not(.mdc-select--disabled) {
-    @include mdc-select-focused-label-color_($color, $opacity);
+@mixin mdc-select-hover-bottom-line-color($color) {
+  &:not(.mdc-select--disabled) .mdc-select__native-control:hover {
+    @include mdc-select-native-control-bottom-line-color_($color);
   }
 }
 
@@ -48,67 +54,46 @@
 
 @mixin mdc-select-focused-bottom-line-color($color) {
   &:not(.mdc-select--disabled) {
-    @include mdc-select-focused-bottom-line-color_($color);
+    @include mdc-select-focused-line-ripple-color_($color);
+  }
+}
+
+@mixin mdc-select-label-color($color) {
+  &:not(.mdc-select--disabled) .mdc-floating-label {
+    @include mdc-floating-label-ink-color($color);
   }
 }
 
 // Private
-
-@mixin mdc-select-focused-bottom-line_ {
-  .mdc-select__surface:focus .mdc-select__bottom-line {
+@mixin mdc-select-focused-line-ripple_ {
+  .mdc-select__native-control:focus ~ .mdc-line-ripple {
     @content;
   }
 }
 
 @mixin mdc-select-ink-color_($color) {
-  .mdc-select__surface,
-  .mdc-select__selected-text {
+  .mdc-select__native-control {
     @include mdc-theme-prop(color, $color);
   }
 }
 
 @mixin mdc-select-container-fill-color_($color) {
-  .mdc-select__surface {
-    @include mdc-theme-prop(background-color, $color);
-  }
-}
-
-@mixin mdc-select-label-color_($color) {
-  .mdc-select__label {
-    @include mdc-theme-prop(color, $color);
-  }
-}
-
-@mixin mdc-select-focused-label-color_($color, $opacity: .87) {
-  .mdc-select__surface:focus .mdc-select__label {
-    @include mdc-theme-prop(color, $color);
-  }
-
-  // Separate parameter is used for opacity, because opacity is only applied when the
-  // label is floating, but the label is the same color when the select is focused
-  // but an option has not been selected.
-  .mdc-select__surface:focus .mdc-select__label--float-above {
-    opacity: $opacity;
-  }
+  @include mdc-theme-prop(background-color, $color);
 }
 
 @mixin mdc-select-bottom-line-color_($color) {
-  .mdc-select__bottom-line {
-    @include mdc-theme-prop(background-color, $color);
+  .mdc-select__native-control {
+    @include mdc-select-native-control-bottom-line-color_($color);
   }
 }
 
-@mixin mdc-select-focused-bottom-line-color_($color) {
-  @include mdc-select-focused-bottom-line_ {
-    @include mdc-theme-prop(background-color, $color);
-  }
+@mixin mdc-select-native-control-bottom-line-color_($color) {
+  border-bottom-color: $color;
+}
 
-  &.mdc-select--open .mdc-select__bottom-line {
-    @include mdc-theme-prop(background-color, $color);
-  }
-
-  .mdc-select__bottom-line::after {
-    @include mdc-theme-prop(background-color, $color);
+@mixin mdc-select-focused-line-ripple-color_($color) {
+  @include mdc-select-focused-line-ripple_ {
+    @include mdc-line-ripple-color($color);
   }
 }
 

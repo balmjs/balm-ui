@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2018 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,14 @@
  */
 
 /** @enum {string} */
-const cssClasses = {
-  LABEL_FLOAT_ABOVE: 'mdc-text-field__label--float-above',
-  LABEL_SHAKE: 'mdc-text-field__label--shake',
+const strings = {
+  PATH_SELECTOR: '.mdc-notched-outline__path',
+  IDLE_OUTLINE_SELECTOR: '.mdc-notched-outline__idle',
 };
 
-export {cssClasses};
+/** @enum {string} */
+const cssClasses = {
+  OUTLINE_NOTCHED: 'mdc-notched-outline--notched',
+};
+
+export {cssClasses, strings};

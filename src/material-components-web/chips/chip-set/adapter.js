@@ -31,8 +31,38 @@ class MDCChipSetAdapter {
   /**
    * Returns true if the root element contains the given class name.
    * @param {string} className
+   * @return {boolean}
    */
   hasClass(className) {}
+
+  /**
+   * Registers an event handler on the root element for a given event.
+   * @param {string} evtType
+   * @param {function(!Event): undefined} handler
+   */
+  registerInteractionHandler(evtType, handler) {}
+
+  /**
+   * Deregisters an event handler on the root element for a given event.
+   * @param {string} evtType
+   * @param {function(!Event): undefined} handler
+   */
+  deregisterInteractionHandler(evtType, handler) {}
+
+  /**
+   * Appends and returns a new chip element with the given text, leading icon, and trailing icon.
+   * @param {string} text
+   * @param {?Element} leadingIcon
+   * @param {?Element} trailingIcon
+   * @return {!Element}
+   */
+  appendChip(text, leadingIcon, trailingIcon) {}
+
+  /**
+   * Removes the chip object from the chip set.
+   * @param {!Object} chip
+   */
+  removeChip(chip) {}
 }
 
 export default MDCChipSetAdapter;

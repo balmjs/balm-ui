@@ -15,48 +15,76 @@
  * limitations under the License.
  */
 
-import MDCFoundation from '../../base/foundation';
-import MDCTextFieldOutlineAdapter from './adapter';
-import {strings} from './constants';
+import MDCFoundation from '../base/foundation';
+import MDCNotchedOutlineAdapter from './adapter';
+import {cssClasses, strings} from './constants';
 
 /**
- * @extends {MDCFoundation<!MDCTextFieldOutlineAdapter>}
+ * @extends {MDCFoundation<!MDCNotchedOutlineAdapter>}
  * @final
  */
-class MDCTextFieldOutlineFoundation extends MDCFoundation {
+class MDCNotchedOutlineFoundation extends MDCFoundation {
   /** @return enum {string} */
   static get strings() {
     return strings;
   }
 
+  /** @return enum {string} */
+  static get cssClasses() {
+    return cssClasses;
+  }
+
   /**
-   * {@see MDCTextFieldOutlineAdapter} for typing information on parameters and return
+   * {@see MDCNotchedOutlineAdapter} for typing information on parameters and return
    * types.
-   * @return {!MDCTextFieldOutlineAdapter}
+   * @return {!MDCNotchedOutlineAdapter}
    */
   static get defaultAdapter() {
-    return /** @type {!MDCTextFieldOutlineAdapter} */ ({
+    return /** @type {!MDCNotchedOutlineAdapter} */ ({
       getWidth: () => {},
       getHeight: () => {},
+      addClass: () => {},
+      removeClass: () => {},
       setOutlinePathAttr: () => {},
       getIdleOutlineStyleValue: () => {},
     });
   }
 
   /**
-   * @param {!MDCTextFieldOutlineAdapter} adapter
+   * @param {!MDCNotchedOutlineAdapter} adapter
    */
   constructor(adapter) {
-    super(Object.assign(MDCTextFieldOutlineFoundation.defaultAdapter, adapter));
+    super(Object.assign(MDCNotchedOutlineFoundation.defaultAdapter, adapter));
   }
 
   /**
-   * Updates the SVG path of the focus outline element based on the given width of the
-   * label element and the RTL context.
-   * @param {number} labelWidth
+   * Adds the outline notched selector and updates the notch width
+   * calculated based off of notchWidth and isRtl.
+   * @param {number} notchWidth
    * @param {boolean=} isRtl
    */
-  updateSvgPath(labelWidth, isRtl = false) {
+  notch(notchWidth, isRtl = false) {
+    const {OUTLINE_NOTCHED} = MDCNotchedOutlineFoundation.cssClasses;
+    this.adapter_.addClass(OUTLINE_NOTCHED);
+    this.updateSvgPath_(notchWidth, isRtl);
+  }
+
+  /**
+   * Removes notched outline selector to close the notch in the outline.
+   */
+  closeNotch() {
+    const {OUTLINE_NOTCHED} = MDCNotchedOutlineFoundation.cssClasses;
+    this.adapter_.removeClass(OUTLINE_NOTCHED);
+  }
+
+  /**
+   * Updates the SVG path of the focus outline element based on the notchWidth
+   * and the RTL context.
+   * @param {number} notchWidth
+   * @param {boolean=} isRtl
+   * @private
+   */
+  updateSvgPath_(notchWidth, isRtl) {
     // Fall back to reading a specific corner's style because Firefox doesn't report the style on border-radius.
     const radiusStyleValue = this.adapter_.getIdleOutlineStyleValue('border-radius') ||
         this.adapter_.getIdleOutlineStyleValue('border-top-left-radius');
@@ -65,7 +93,7 @@ class MDCTextFieldOutlineFoundation extends MDCFoundation {
     const height = this.adapter_.getHeight();
     const cornerWidth = radius + 1.2;
     const leadingStrokeLength = Math.abs(11 - cornerWidth);
-    const paddedLabelWidth = labelWidth + 8;
+    const paddedNotchWidth = notchWidth + 8;
 
     // The right, bottom, and left sides of the outline follow the same SVG path.
     const pathMiddle = 'a' + radius + ',' + radius + ' 0 0 1 ' + radius + ',' + radius
@@ -78,19 +106,19 @@ class MDCTextFieldOutlineFoundation extends MDCFoundation {
 
     let path;
     if (!isRtl) {
-      path = 'M' + (cornerWidth + leadingStrokeLength + paddedLabelWidth) + ',' + 1
-        + 'h' + (width - (2 * cornerWidth) - paddedLabelWidth - leadingStrokeLength)
+      path = 'M' + (cornerWidth + leadingStrokeLength + paddedNotchWidth) + ',' + 1
+        + 'h' + (width - (2 * cornerWidth) - paddedNotchWidth - leadingStrokeLength)
         + pathMiddle
         + 'h' + leadingStrokeLength;
     } else {
       path = 'M' + (width - cornerWidth - leadingStrokeLength) + ',' + 1
         + 'h' + leadingStrokeLength
         + pathMiddle
-        + 'h' + (width - (2 * cornerWidth) - paddedLabelWidth - leadingStrokeLength);
+        + 'h' + (width - (2 * cornerWidth) - paddedNotchWidth - leadingStrokeLength);
     }
 
     this.adapter_.setOutlinePathAttr(path);
   }
 }
 
-export default MDCTextFieldOutlineFoundation;
+export default MDCNotchedOutlineFoundation;

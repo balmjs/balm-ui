@@ -15,51 +15,61 @@
  * limitations under the License.
  */
 
-import MDCComponent from '../../base/component';
+import MDCComponent from '../base/component';
 
+import MDCNotchedOutlineAdapter from './adapter';
+import MDCNotchedOutlineFoundation from './foundation';
 import {strings} from './constants';
-import MDCTextFieldOutlineAdapter from './adapter';
-import MDCTextFieldOutlineFoundation from './foundation';
 
 /**
- * @extends {MDCComponent<!MDCTextFieldOutlineFoundation>}
+ * @extends {MDCComponent<!MDCNotchedOutlineFoundation>}
  * @final
  */
-class MDCTextFieldOutline extends MDCComponent {
+class MDCNotchedOutline extends MDCComponent {
   /**
    * @param {!Element} root
-   * @return {!MDCTextFieldOutline}
+   * @return {!MDCNotchedOutline}
    */
   static attachTo(root) {
-    return new MDCTextFieldOutline(root);
+    return new MDCNotchedOutline(root);
   }
 
   /**
-   * @return {!MDCTextFieldOutlineFoundation}
+    * Updates outline selectors and SVG path to open notch.
+    * @param {number} notchWidth The notch width in the outline.
+    * @param {boolean=} isRtl Determines if outline is rtl. If rtl is true, notch
+    * will be right justified in outline path, otherwise left justified.
+    */
+  notch(notchWidth, isRtl) {
+    this.foundation_.notch(notchWidth, isRtl);
+  }
+
+  /**
+   * Updates the outline selectors to close notch and return it to idle state.
    */
-  get foundation() {
-    return this.foundation_;
+  closeNotch() {
+    this.foundation_.closeNotch();
   }
 
   /**
-   * @return {!MDCTextFieldOutlineFoundation}
+   * @return {!MDCNotchedOutlineFoundation}
    */
   getDefaultFoundation() {
-    return new MDCTextFieldOutlineFoundation(/** @type {!MDCTextFieldOutlineAdapter} */ (Object.assign({
+    return new MDCNotchedOutlineFoundation({
       getWidth: () => this.root_.offsetWidth,
       getHeight: () => this.root_.offsetHeight,
+      addClass: (className) => this.root_.classList.add(className),
+      removeClass: (className) => this.root_.classList.remove(className),
       setOutlinePathAttr: (value) => {
         const path = this.root_.querySelector(strings.PATH_SELECTOR);
         path.setAttribute('d', value);
       },
       getIdleOutlineStyleValue: (propertyName) => {
         const idleOutlineElement = this.root_.parentNode.querySelector(strings.IDLE_OUTLINE_SELECTOR);
-        if (idleOutlineElement) {
-          return window.getComputedStyle(idleOutlineElement).getPropertyValue(propertyName);
-        }
+        return window.getComputedStyle(idleOutlineElement).getPropertyValue(propertyName);
       },
-    })));
+    });
   }
 }
 
-export {MDCTextFieldOutline, MDCTextFieldOutlineFoundation};
+export {MDCNotchedOutline, MDCNotchedOutlineFoundation};

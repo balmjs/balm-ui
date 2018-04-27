@@ -18,16 +18,16 @@
 /* eslint no-unused-vars: [2, {"args": "none"}] */
 
 /**
- * Adapter for MDC Text Field Outline.
+ * Adapter for MDC Notched Outline.
  *
  * Defines the shape of the adapter expected by the foundation. Implement this
- * adapter to integrate the Text Field outline into your framework. See
+ * adapter to integrate the Notched Outline into your framework. See
  * https://github.com/material-components/material-components-web/blob/master/docs/authoring-components.md
  * for more information.
  *
  * @record
  */
-class MDCTextFieldOutlineAdapter {
+class MDCNotchedOutlineAdapter {
   /**
    * Returns the width of the root element.
    * @return {number}
@@ -39,6 +39,18 @@ class MDCTextFieldOutlineAdapter {
    * @return {number}
    */
   getHeight() {}
+
+  /**
+   * Adds a class to the root element.
+   * @param {string} className
+   */
+  addClass(className) {}
+
+  /**
+   * Removes a class from the root element.
+   * @param {string} className
+   */
+  removeClass(className) {}
 
   /**
    * Sets the "d" attribute of the outline element's SVG path.
@@ -55,4 +67,4 @@ class MDCTextFieldOutlineAdapter {
   getIdleOutlineStyleValue(propertyName) {}
 }
 
-export default MDCTextFieldOutlineAdapter;
+export default MDCNotchedOutlineAdapter;

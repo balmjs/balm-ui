@@ -12,13 +12,16 @@ var level1 = [
   'drawer',
   'elevation',
   'fab',
+  'floating-label',
   'form-field',
   'grid-list',
   'icon-toggle',
+  'image-list',
   'line-ripple',
   'linear-progress',
   'list',
   'menu',
+  'notched-outline',
   'radio',
   'ripple',
   'select',
@@ -27,7 +30,8 @@ var level1 = [
   'snackbar',
   'switch',
   'textfield',
-  'toolbar'
+  'toolbar',
+  'top-app-bar'
 ];
 var level2 = [
   'chips/chip',

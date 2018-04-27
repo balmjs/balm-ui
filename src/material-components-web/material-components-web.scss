@@ -14,7 +14,6 @@
 // limitations under the License.
 //
 
-@import "./line-ripple/mdc-line-ripple";
 @import "./button/mdc-button";
 @import "./card/mdc-card";
 @import "./checkbox/mdc-checkbox";
@@ -23,16 +22,21 @@
 @import "./drawer/mdc-drawer";
 @import "./elevation/mdc-elevation";
 @import "./fab/mdc-fab";
+@import "./floating-label/mdc-floating-label";
 @import "./form-field/mdc-form-field";
 @import "./grid-list/mdc-grid-list";
 @import "./icon-toggle/mdc-icon-toggle";
+@import "./image-list/mdc-image-list";
 @import "./layout-grid/mdc-layout-grid";
+@import "./line-ripple/mdc-line-ripple";
 @import "./linear-progress/mdc-linear-progress";
 @import "./list/mdc-list";
 @import "./menu/mdc-menu";
+@import "./notched-outline/mdc-notched-outline";
 @import "./radio/mdc-radio";
 @import "./ripple/mdc-ripple";
 @import "./select/mdc-select";
+@import "./shape/mdc-shape";
 @import "./slider/mdc-slider";
 @import "./snackbar/mdc-snackbar";
 @import "./switch/mdc-switch";
@@ -40,4 +44,5 @@
 @import "./textfield/mdc-text-field";
 @import "./theme/mdc-theme";
 @import "./toolbar/mdc-toolbar";
+@import "./top-app-bar/mdc-top-app-bar";
 @import "./typography/mdc-typography";

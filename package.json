@@ -37,7 +37,7 @@
     "babel-eslint": "^8.2.3",
     "babel-preset-stage-2": "^6.24.1",
     "balm": "^0.20.2",
-    "clipboard": "^2.0.0",
+    "clipboard": "^2.0.1",
     "core-js": "^2.5.5",
     "eslint": "^4.19.1",
     "eslint-plugin-vue": "^4.5.0",

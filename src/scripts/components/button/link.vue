@@ -17,7 +17,7 @@ export default {
   name: 'ui-link',
   mixins: [buttonMixin],
   props: {
-    // element attributes
+    // Element attributes
     url: {
       type: String,
       default: 'javascript:void(0)'

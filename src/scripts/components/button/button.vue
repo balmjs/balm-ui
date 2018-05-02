@@ -17,7 +17,7 @@ export default {
   name: 'ui-button',
   mixins: [buttonMixin],
   props: {
-    // element attributes
+    // Element attributes
     type: {
       type: String,
       default: 'button'

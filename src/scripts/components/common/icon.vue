@@ -10,7 +10,7 @@ const DEFAULT_SIZE = 24;
 export default {
   name: 'ui-icon',
   props: {
-    // ui attributes
+    // UI attributes
     size: {
       type: [Number, String],
       default: DEFAULT_SIZE
@@ -36,9 +36,11 @@ export default {
         'md-light': this.light && !this.dark,
         'md-inactive': this.inactive
       };
+
       if (+this.size !== DEFAULT_SIZE && this.size > 0) {
         result[`md-${this.size}`] = true;
       }
+
       return result;
     }
   }

@@ -9,6 +9,7 @@ import helpers from './helpers';
 import App from './views/layouts/app';
 import UiMarkdown from './views/components/markdown';
 import UiApidoc from './views/components/apidoc';
+import UiLogo from './views/components/logo';
 // syntax highlighting
 import prismjs from 'prismjs';
 // ready translated locales
@@ -35,6 +36,7 @@ Vue.use({
   install(vue) {
     vue.component(UiMarkdown.name, UiMarkdown);
     vue.component(UiApidoc.name, UiApidoc);
+    vue.component(UiLogo.name, UiLogo);
   }
 });
 Vue.prototype.$prism = prismjs;

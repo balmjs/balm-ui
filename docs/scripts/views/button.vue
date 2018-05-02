@@ -1,127 +1,22 @@
 <template>
   <div class="demo--button">
     <section class="hero">
-      <ui-button>Flat</ui-button>
-      <ui-button raised primary>Raised</ui-button>
+      <ui-button :disabled="disabled">Flat</ui-button>
+      <ui-button raised :disabled="disabled">Raised</ui-button>
     </section>
 
-    <section :class="['demo-wrapper', {'mdc-theme--dark': useDarkTheme}]">
-      <ui-checkbox id="toggle-dark"
-        :model="useDarkTheme"
-        @change="balmUI.onChange('useDarkTheme', $event)">
-        Dark Theme
-      </ui-checkbox>
+    <section class="demo-wrapper">
       <ui-checkbox id="toggle-disabled"
-        :model="useDisabled"
-        @change="balmUI.onChange('useDisabled', $event)">
+        :model="disabled"
+        @change="balmUI.onChange('disabled', $event)">
         Disabled buttons (excluding links)
       </ui-checkbox>
 
-      <h1 :class="$tt('display2')">Ripple Enabled</h1>
-      <fieldset>
-        <legend :class="$tt('title')">Text Button</legend>
-        <div>
-          <ui-button :disabled="useDisabled">Baseline</ui-button>
-          <ui-button compact :disabled="useDisabled">Compact</ui-button>
-          <ui-button dense :disabled="useDisabled">Dense</ui-button>
-          <ui-button class="secondary-text-button" :disabled="useDisabled">Secondary</ui-button>
-          <ui-button icon="favorite" :disabled="useDisabled">Icon</ui-button>
-          <ui-link>Link</ui-link>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend :class="$tt('title')">Raised Button</legend>
-        <div>
-          <ui-button raised :disabled="useDisabled">Baseline</ui-button>
-          <ui-button raised compact :disabled="useDisabled">Compact</ui-button>
-          <ui-button raised dense :disabled="useDisabled">Dense</ui-button>
-          <ui-button raised class="secondary-filled-button" :disabled="useDisabled">Secondary</ui-button>
-          <ui-button raised icon="favorite" :disabled="useDisabled">Icon</ui-button>
-          <ui-link raised>Link</ui-link>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend :class="$tt('title')">Unelevated Button (Experimental)</legend>
-        <div>
-          <ui-button unelevated :disabled="useDisabled">Baseline</ui-button>
-          <ui-button unelevated compact :disabled="useDisabled">Compact</ui-button>
-          <ui-button unelevated dense :disabled="useDisabled">Dense</ui-button>
-          <ui-button unelevated class="secondary-filled-button" :disabled="useDisabled">Secondary</ui-button>
-          <ui-button unelevated icon="favorite" :disabled="useDisabled">Icon</ui-button>
-          <ui-link unelevated>Link</ui-link>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend :class="$tt('title')">Stroked Button (Experimental)</legend>
-        <div>
-          <ui-button stroked :disabled="useDisabled">Baseline</ui-button>
-          <ui-button stroked compact :disabled="useDisabled">Compact</ui-button>
-          <ui-button stroked dense :disabled="useDisabled">Dense</ui-button>
-          <ui-button stroked class="secondary-stroked-button" :disabled="useDisabled">Secondary</ui-button>
-          <ui-button stroked icon="favorite" :disabled="useDisabled">Icon</ui-button>
-          <ui-link stroked>Link</ui-link>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend :class="$tt('title')">Custom button (Experimental)</legend>
-        <div>
-          <ui-button unelevated class="big-round-corner-button" :disabled="useDisabled">Corner Radius</ui-button>
-          <ui-button stroked class="thick-stroke-button" :disabled="useDisabled">Thick Stroke Width</ui-button>
-        </div>
-      </fieldset>
+      <h1 :class="$tt('headline3')">Ripple Enabled</h1>
+      <ui-button-demo :disabled="disabled"></ui-button-demo>
 
-      <h1 :class="$tt('display2')">CSS Only</h1>
-      <fieldset>
-        <legend :class="$tt('title')">Text Button</legend>
-        <div>
-          <ui-button cssOnly :disabled="useDisabled">Baseline</ui-button>
-          <ui-button cssOnly compact :disabled="useDisabled">Compact</ui-button>
-          <ui-button cssOnly dense :disabled="useDisabled">Dense</ui-button>
-          <ui-button cssOnly class="secondary-text-button" :disabled="useDisabled">Secondary</ui-button>
-          <ui-button cssOnly icon="favorite" :disabled="useDisabled">Icon</ui-button>
-          <ui-link cssOnly>Link</ui-link>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend :class="$tt('title')">Raised Button</legend>
-        <div>
-          <ui-button cssOnly raised :disabled="useDisabled">Baseline</ui-button>
-          <ui-button cssOnly raised compact :disabled="useDisabled">Compact</ui-button>
-          <ui-button cssOnly raised dense :disabled="useDisabled">Dense</ui-button>
-          <ui-button cssOnly raised class="secondary-filled-button" :disabled="useDisabled">Secondary</ui-button>
-          <ui-button cssOnly raised icon="favorite" :disabled="useDisabled">Icon</ui-button>
-          <ui-link cssOnly raised>Link</ui-link>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend :class="$tt('title')">Unelevated Button (Experimental)</legend>
-        <div>
-          <ui-button cssOnly unelevated :disabled="useDisabled">Baseline</ui-button>
-          <ui-button cssOnly unelevated compact :disabled="useDisabled">Compact</ui-button>
-          <ui-button cssOnly unelevated dense :disabled="useDisabled">Dense</ui-button>
-          <ui-button cssOnly unelevated class="secondary-filled-button" :disabled="useDisabled">Secondary</ui-button>
-          <ui-button cssOnly unelevated icon="favorite" :disabled="useDisabled">Icon</ui-button>
-          <ui-link cssOnly unelevated>Link</ui-link>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend :class="$tt('title')">Stroked Button (Experimental)</legend>
-        <div>
-          <ui-button cssOnly stroked :disabled="useDisabled">Baseline</ui-button>
-          <ui-button cssOnly stroked compact :disabled="useDisabled">Compact</ui-button>
-          <ui-button cssOnly stroked dense :disabled="useDisabled">Dense</ui-button>
-          <ui-button cssOnly stroked class="secondary-stroked-button" :disabled="useDisabled">Secondary</ui-button>
-          <ui-button cssOnly stroked icon="favorite" :disabled="useDisabled">Icon</ui-button>
-          <ui-link cssOnly stroked>Link</ui-link>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend :class="$tt('title')">Custom button (Experimental)</legend>
-        <div>
-          <ui-button cssOnly unelevated class="big-round-corner-button" :disabled="useDisabled">Corner Radius</ui-button>
-          <ui-button cssOnly stroked class="thick-stroke-button" :disabled="useDisabled">Thick Stroke Width</ui-button>
-        </div>
-      </fieldset>
+      <h1 :class="$tt('headline3')">CSS Only</h1>
+      <ui-button-demo cssOnly :disabled="disabled"></ui-button-demo>
     </section>
 
     <!-- <ui-apidoc name="button"></ui-apidoc> -->
@@ -130,13 +25,16 @@
 
 <script>
 import snippets from '../mixins/snippets';
+import UiButtonDemo from './components/button';
 
 export default {
   mixins: [snippets],
+  components: {
+    UiButtonDemo
+  },
   data() {
     return {
-      useDarkTheme: false,
-      useDisabled: false
+      disabled: false
     };
   },
   created() {

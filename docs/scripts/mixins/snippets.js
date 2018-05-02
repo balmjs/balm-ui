@@ -15,13 +15,15 @@ export default {
         count
       };
 
-      if (this.demo.name && this.demo.count) {
-        for (let i = 1; i <= this.demo.count; i++) {
+      if (this.demo.name) {
+        for (let i = 0; i <= this.demo.count; i++) {
           let code = require(`../snippets/${this.demo.name}/demo${i}.md`);
           this.code.push(code);
         }
       } else {
-        console.warn('The snippet name is required. You can run `showCode(snippetName, snippetCount)` for it.');
+        console.warn(
+          'The snippet name is required. You can run `showCode(snippetName, snippetCount)` for it.'
+        );
       }
     }
   }

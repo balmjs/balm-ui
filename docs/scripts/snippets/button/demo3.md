@@ -1,10 +1,12 @@
 ```html
-<!-- Raised button -->
-<ui-button raised>Button</ui-button>
-
-<!-- Raised button with ripple -->
-<ui-button raised effect>Button</ui-button>
-
-<!-- Raised disabled button -->
-<ui-button raised disabled>Button</ui-button>
+<ui-button unelevated>Baseline</ui-button>
+<ui-button unelevated dense>Dense</ui-button>
+<ui-button unelevated :class="'secondary-text-button'">Secondary</ui-button>
+<ui-button unelevated icon="favorite">Icon</ui-button>
+<ui-button unelevated>
+  <!-- Custom SVG -->
+  <ui-logo class="mdc-button__icon"></ui-logo>
+  SVG Icon
+</ui-button>
+<ui-link unelevated>Link</ui-link>
 ```

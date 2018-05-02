@@ -5,15 +5,6 @@
   fill: currentColor;
 }
 
-.snippet-group {
-  display: flex;
-  padding: 20px 0;
-}
-
-.snippet-demo {
-  margin-right: 20px;
-}
-
 .layout-demo {
   position: relative;
   height: 300px;
@@ -36,12 +27,12 @@
   color: green;
 }
 
-// .mdc-toolbar {
-//   a {
-//     color: #f0f0f0;
-//     text-decoration: none;
-//   }
-// }
+.mdc-toolbar {
+  a {
+    color: #f0f0f0;
+    text-decoration: none;
+  }
+}
 
 // $dark-button-color: $material-color-light-green-a200;
 // .mdc-button {

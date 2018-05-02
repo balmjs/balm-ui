@@ -7,9 +7,10 @@ import BalmUI from '../../src/scripts/index'; // 'balm-ui'
 import routes from './routes/index';
 import helpers from './helpers';
 import App from './views/layouts/app';
-import UiMarkdown from './views/components/markdown';
-import UiApidoc from './views/components/apidoc';
-import UiLogo from './views/components/logo';
+import UiMarkdown from './components/markdown';
+import UiApidocs from './components/apidocs';
+import UiAccordion from './components/accordion';
+import UiLogo from './components/logo';
 // syntax highlighting
 import prismjs from 'prismjs';
 // ready translated locales
@@ -24,21 +25,21 @@ Vue.use(VueRouter);
 Vue.prototype.$http = axios;
 Vue.use(VueI18n);
 Vue.use(BalmUI);
-Vue.use(BalmUI.plugins.event);
-Vue.use(BalmUI.plugins.elevation);
-Vue.use(BalmUI.plugins.grid);
-Vue.use(BalmUI.plugins.theme);
-Vue.use(BalmUI.plugins.typography);
-Vue.use(BalmUI.plugins.alert);
-Vue.use(BalmUI.plugins.confirm);
-Vue.use(BalmUI.plugins.toast);
-Vue.use({
-  install(vue) {
-    vue.component(UiMarkdown.name, UiMarkdown);
-    vue.component(UiApidoc.name, UiApidoc);
-    vue.component(UiLogo.name, UiLogo);
-  }
-});
+
+// Vue.use(BalmUI.plugins.event);
+// Vue.use(BalmUI.plugins.elevation);
+// Vue.use(BalmUI.plugins.grid);
+// Vue.use(BalmUI.plugins.theme);
+// Vue.use(BalmUI.plugins.typography);
+// Vue.use(BalmUI.plugins.alert);
+// Vue.use(BalmUI.plugins.confirm);
+// Vue.use(BalmUI.plugins.toast);
+
+Vue.component(UiMarkdown.name, UiMarkdown);
+Vue.component(UiApidocs.name, UiApidocs);
+Vue.component(UiLogo.name, UiLogo);
+Vue.component(UiAccordion.name, UiAccordion);
+
 Vue.prototype.$prism = prismjs;
 Vue.prototype.$docs = {
   props: {
@@ -54,12 +55,22 @@ Vue.prototype.$docs = {
     ]
   },
   slots: {
-    thead: ['Name', 'Description', '<template scope="props">'],
+    thead: ['Name', 'Description', 'Slot'],
     tbody: ['name', 'description', 'props']
   },
   events: {
-    thead: ['Name', 'Description'],
-    tbody: ['name', 'description']
+    thead: ['Name', 'Type', 'Description'],
+    tbody: ['name', 'type', 'description']
+  },
+  sass: {
+    thead: ['Variable', 'Description'],
+    tbody: [
+      'var',
+      {
+        field: 'description',
+        raw: true
+      }
+    ]
   }
 };
 Vue.prototype.$domain = DEBUG ? '' : 'http://material.balmjs.com';

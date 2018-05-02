@@ -1,7 +1,4 @@
 ```html
-<!-- Primary-colored flat button -->
-<ui-button primary>Button</ui-button>
-
-<!-- Accent-colored flat button -->
-<ui-button accent>Button</ui-button>
+<ui-button unelevated :class="'demo-ink-color'" icon="favorite">Ink Color</ui-button>
+<ui-button outlined :class="'demo-icon-color'" icon="favorite">Icon Color</ui-button>
 ```

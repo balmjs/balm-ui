@@ -4,12 +4,7 @@ import iconMixin from './icon';
 export default {
   mixins: [rippleMixin, iconMixin],
   props: {
-    // UI attributes
-    cssOnly: {
-      type: Boolean,
-      default: false
-    },
-    // Optional, a contained button that is elevated upon the surface
+    // Optional. Styles a contained button that is elevated above the surface.
     raised: {
       type: Boolean,
       default: false
@@ -32,6 +27,11 @@ export default {
     // Optional. Indicates an icon element.
     icon: {
       type: [Boolean, String],
+      default: false
+    },
+    // UI attributes
+    cssOnly: {
+      type: Boolean,
       default: false
     }
   },

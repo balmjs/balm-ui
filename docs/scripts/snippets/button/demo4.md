@@ -1,10 +1,12 @@
 ```html
-<!-- Colored raised button -->
-<ui-button raised colored>Button</ui-button>
-
-<!-- Accent-colored raised button -->
-<ui-button raised accent>Button</ui-button>
-
-<!-- Accent-colored raised button with ripple -->
-<ui-button raised accent effect>Button</ui-button>
+<ui-button outlined>Baseline</ui-button>
+<ui-button outlined dense>Dense</ui-button>
+<ui-button outlined :class="'secondary-text-button'">Secondary</ui-button>
+<ui-button outlined icon="favorite">Icon</ui-button>
+<ui-button outlined>
+  <!-- Custom SVG -->
+  <ui-logo class="mdc-button__icon"></ui-logo>
+  SVG Icon
+</ui-button>
+<ui-link outlined>Link</ui-link>
 ```

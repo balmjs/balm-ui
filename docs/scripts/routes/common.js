@@ -1,11 +1,11 @@
 // const Badge = () => import('../views/badge');
 const Button = () => import('../views/components/button');
-const Card = () => import('../views/card');
+const Fab = () => import('../views/fab');
+const IconToggle = () => import('../views/components/icon-toggle');
 // const Chip = () => import('../views/chip');
 // const Loading = () => import('../views/loading');
 const Menu = () => import('../views/menu');
 // const Tooltip = () => import('../views/tooltip');
-const Fab = () => import('../views/fab');
 const Elevation = () => import('../views/elevation');
 const Theme = () => import('../views/theme');
 const Typography = () => import('../views/typography');
@@ -24,21 +24,21 @@ const commonRoutes = [
     }
   },
   {
-    path: '/card',
-    name: 'card',
-    component: Card,
-    meta: {
-      title: 'BalmUI - Card',
-      keywords: '',
-      description: ''
-    }
-  },
-  {
     path: '/fab',
     name: 'fab',
     component: Fab,
     meta: {
       title: 'BalmUI - Fab',
+      keywords: '',
+      description: ''
+    }
+  },
+  {
+    path: '/icon-toggle',
+    name: 'icon-toggle',
+    component: IconToggle,
+    meta: {
+      title: 'BalmUI - Icon toggle',
       keywords: '',
       description: ''
     }

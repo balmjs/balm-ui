@@ -1,72 +1,62 @@
 .demo--icon-toggle {
-  .mdc-theme--dark {
-    background: #303030;
-  }
-  .mdc-theme--dark:not(.demo-color-combo) {
-    padding-bottom: 1rem;
-  }
-  #demo-color-combos {
-    display: flex;
-
-    align-items: center;
-    justify-content: flex-start;
-  }
   .demo-wrapper {
     margin-left: 1rem;
   }
+
   .example {
     display: flex;
-
     flex-flow: row wrap;
     align-content: left;
     justify-content: left;
   }
+
   .toggle-example {
     min-width: 240px;
-    margin: 24px;
     padding: 24px;
+    margin: 24px;
   }
-  .example h2 {
-    font-size: 1.3em;
 
-    margin-top: .8em;
-    margin-bottom: .8em;
+  #demo-color-combos {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
   }
+
   .demo-color-combo {
+    width: 250px;
+    padding: 1rem;
+    border-radius: 4px;
     display: inline-flex;
     flex-direction: column;
-
-    width: 250px;
-    margin-right: 8px;
-    padding: 1rem;
-
-    border-radius: 4px;
-
     align-items: center;
     justify-content: center;
+    margin-right: 8px;
   }
-  .demo-color-combo>p {
-    margin: 0;
-  }
+
   #light-on-bg {
     background-color: #3e82f7;
   }
   #light-on-bg .mdc-icon-toggle {
-    color: white;
+    @include mdc-icon-toggle-ink-color(white);
+    @include mdc-states-base-color(white);
+    @include mdc-states-hover-opacity(0.1);
+    @include mdc-states-focus-opacity(0.3);
+    @include mdc-states-press-opacity(0.4);
   }
-  #light-on-bg .mdc-icon-toggle.mdc-ripple-upgraded::before,
-  #light-on-bg .mdc-icon-toggle.mdc-ripple-upgraded::after {
-    background-color: rgba(255, 255, 255, .3);
-  }
+
   #dark-on-bg {
     background-color: #00bcd6;
   }
-  #custom-on-dark .mdc-icon-toggle {
-    color: #de442c;
+  #dark-on-bg .mdc-icon-toggle {
+    @include mdc-icon-toggle-ink-color(black);
+    @include mdc-states(black);
   }
-  #custom-on-dark .mdc-icon-toggle.mdc-ripple-upgraded::before,
-  #custom-on-dark .mdc-icon-toggle.mdc-ripple-upgraded::after {
-    /* #de442c - opacity .16 */
-    background-color: rgba(222, 68, 44, .26);
+
+  #custom-color-combo .mdc-icon-toggle {
+    @include mdc-icon-toggle-ink-color(#de442c);
+    @include mdc-states-base-color(#de442c);
+    @include mdc-states-hover-opacity(0.09);
+    @include mdc-states-focus-opacity(0.26);
+    @include mdc-states-press-opacity(0.35);
   }
 }

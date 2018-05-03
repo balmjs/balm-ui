@@ -41,6 +41,11 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    // Card attributes
+    cardIcon: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -55,7 +60,9 @@ export default {
       return {
         'material-icons': !this.icon,
         'mdc-icon-toggle': true,
-        'mdc-icon-toggle--disabled': this.disabled
+        'mdc-icon-toggle--disabled': this.disabled,
+        'mdc-card__action': this.cardIcon,
+        'mdc-card__action--icon': this.cardIcon
       };
     },
     iconInnerSelector() {
@@ -102,9 +109,11 @@ export default {
   },
   methods: {
     isValidToggleData(value) {
-      return Object.keys(value).some(currentValue =>
-        MDCIconToggle_states.includes(currentValue)
-      );
+      return value
+        ? Object.keys(value).some(currentValue =>
+            MDCIconToggle_states.includes(currentValue)
+          )
+        : false;
     },
     getToggleData(value) {
       return getType(value) === 'object' ? JSON.stringify(value) : {};

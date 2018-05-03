@@ -1,11 +1,11 @@
 <template>
-  <h2 class="mdc-card__subtitle">
+  <a class="mdc-card__primary-action">
     <slot></slot>
-  </h2>
+  </a>
 </template>
 
 <script>
 export default {
-  name: 'ui-card-subtitle'
+  name: 'ui-card-primary-action'
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div :class="className">
-    <slot><!-- Card Content --></slot>
+    <slot></slot>
   </div>
 </template>
 
@@ -8,8 +8,8 @@
 export default {
   name: 'ui-card',
   props: {
-    // theme
-    dark: {
+    // Removes the shadow and displays a hairline outline instead
+    outlined: {
       type: Boolean,
       default: false
     }
@@ -18,7 +18,7 @@ export default {
     className() {
       return {
         'mdc-card': true,
-        'mdc-card--theme-dark': this.dark
+        'mdc-card--outlined': this.outlined
       };
     }
   }

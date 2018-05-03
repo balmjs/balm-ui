@@ -1,5 +1,5 @@
 <template>
-  <button :type="type" :class="className">
+  <button :type="type" :class="className" @click="handleClick">
     <ui-icon v-if="icon"
       :class="'mdc-button__icon'"
       :size="iconSize"
@@ -13,6 +13,8 @@
 <script>
 import buttonMixin from '../../mixins/button';
 
+const UI_EVENT_CLICK = 'click';
+
 export default {
   name: 'ui-button',
   mixins: [buttonMixin],
@@ -21,6 +23,11 @@ export default {
     type: {
       type: String,
       default: 'button'
+    }
+  },
+  methods: {
+    handleClick(event) {
+      this.$emit(UI_EVENT_CLICK, event);
     }
   }
 };

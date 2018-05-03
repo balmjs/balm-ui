@@ -56,14 +56,12 @@ import UiSlider from './components/input-controls/slider';
  * Data
  */
 import UiCard from './components/card/card';
-import UiCardMedia from './components/card/content-blocks/card-media';
-import UiCardHead from './components/card/content-blocks/card-head';
-import UiCardTitle from './components/card/content-blocks/card-title';
-import UiCardSubtitle from './components/card/content-blocks/card-subtitle';
-import UiCardBody from './components/card/content-blocks/card-body';
-import UiCardActions from './components/card/content-blocks/card-actions';
-import UiCardHorizontalBlock from './components/card/horizontal-blocks/card-horizontal-block';
-import UiCardMediaItem from './components/card/horizontal-blocks/card-media-item';
+import UiCardPrimaryAction from './components/card/card-primary-action';
+import UiCardMedia from './components/card/card-media';
+import UiCardMediaContent from './components/card/card-media-content';
+import UiCardActions from './components/card/card-actions';
+import UiCardButtons from './components/card/card-buttons';
+import UiCardIcons from './components/card/card-icons';
 import UiGridList from './components/grid-list/grid-list';
 import UiGridTile from './components/grid-list/grid-tile';
 import UiGridTileTitle from './components/grid-list/grid-tile-title';
@@ -134,15 +132,6 @@ const components = {
   UiLink,
   UiButton,
   UiFab,
-  UiCard,
-  UiCardHead,
-  UiCardTitle,
-  UiCardSubtitle,
-  UiCardMedia,
-  UiCardMediaItem,
-  UiCardBody,
-  UiCardActions,
-  UiCardHorizontalBlock,
   UiMenuAnchor,
   UiMenu,
   UiMenuItem,
@@ -159,6 +148,13 @@ const components = {
   UiSwitch,
   UiSlider,
   // Data
+  UiCard,
+  UiCardPrimaryAction,
+  UiCardMedia,
+  UiCardMediaContent,
+  UiCardActions,
+  UiCardButtons,
+  UiCardIcons,
   UiGridList,
   UiGridTile,
   UiGridTileTitle,

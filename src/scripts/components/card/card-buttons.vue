@@ -1,11 +1,11 @@
 <template>
-  <div class="mdc-card__horizontal-block">
+  <div class="mdc-card__action-buttons">
     <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ui-card-horizontal-block'
+  name: 'ui-card-buttons'
 };
 </script>

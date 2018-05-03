@@ -33,6 +33,11 @@ export default {
     cssOnly: {
       type: Boolean,
       default: false
+    },
+    // Card attributes
+    cardAction: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -42,7 +47,9 @@ export default {
         'mdc-button--raised': this.raised,
         'mdc-button--unelevated': this.unelevated,
         'mdc-button--outlined': this.outlined,
-        'mdc-button--dense': this.dense
+        'mdc-button--dense': this.dense,
+        'mdc-card__action': this.cardAction,
+        'mdc-card__action--button': this.cardAction
       };
     }
   },

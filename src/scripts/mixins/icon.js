@@ -5,7 +5,7 @@ export default {
     UiIcon
   },
   props: {
-    // ui attributes
+    // UI attributes
     iconSize: {
       type: [Number, String],
       default: 0

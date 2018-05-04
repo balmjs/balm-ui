@@ -77,7 +77,7 @@
         <ui-card-primary-action class="demo-card__primary-action" href="#">
           <ui-card-media square class="demo-card__media">
             <ui-card-media-content class="demo-card__media-content--with-title">
-              <div class="demo-card__media-title mdc-typography--subtitle2">
+              <div :class="[$tt('subtitle2'), 'demo-card__media-title']">
                 Vacation Photos
               </div>
             </ui-card-media-content>
@@ -97,17 +97,17 @@
           <div class="demo-card__music-row">
             <ui-card-media square class="demo-card__media demo-card__media--music"></ui-card-media>
             <div class="demo-card__music-info">
-              <div class="demo-card__music-title mdc-typography--headline5">Rozes</div>
-              <div class="demo-card__music-artist mdc-typography--body2">Under the Grave</div>
-              <div class="demo-card__music-year mdc-typography--body2">(2016)</div>
+              <div :class="[$tt('headline5'), 'demo-card__music-title']">Rozes</div>
+              <div :class="[$tt('body2'), 'demo-card__music-artist']">Under the Grave</div>
+              <div :class="[$tt('body2'), 'demo-card__music-year']">(2016)</div>
             </div>
           </div>
         </ui-card-primary-action>
         <hr class="mdc-list-divider">
-        <ui-card-actions class="mdc-card__actions">
+        <ui-card-actions>
           <ui-card-buttons class="demo-card__action-buttons--text-only">Rate this album</ui-card-buttons>
           <ui-card-icons>
-            <ui-icon v-for="i in 5"
+            <ui-icon v-for="i in 5" :key="i"
               class="demo-card__action-icon--star"
               :title="`${i} star${ i > 1 ? 's' : '' }`">star_border</ui-icon>
           </ui-card-icons>

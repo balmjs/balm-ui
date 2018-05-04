@@ -1,30 +1,37 @@
-const STYLES = [
-  'display4',
-  'display3',
-  'display2',
-  'display1',
-  'headline',
-  'title',
-  'subheading2',
-  'subheading1',
-  'body2',
+const T_BASE = 'mdc-typography';
+const T_STYLES = [
+  'headline1',
+  'headline2',
+  'headline3',
+  'headline4',
+  'headline5',
+  'headline6',
+  'subtitle1',
+  'subtitle2',
   'body1',
-  'caption'
+  'body2',
+  'caption',
+  'button',
+  'overline'
 ];
 
-const tt = (style = '', adjustMargin = false) => {
-  let result = STYLES.includes(style.toLowerCase())
-    ? [`mdc-typography--${style}`]
-    : [];
-  if (adjustMargin) {
-    result.push('mdc-typography--adjust-margin');
+const tt = (style = '') => {
+  let result = '';
+
+  if (T_STYLES.includes(style.toLowerCase())) {
+    result = `${T_BASE}--${style}`;
+  } else {
+    console.warn(
+      '[BalmUI] Please set a typographic style:\n' + JSON.stringify(T_STYLES)
+    );
   }
-  return result.join(' ');
+
+  return result;
 };
 
 const BalmUI_TypographyPlugin = {
   install(Vue) {
-    document.querySelector('body').classList.add('mdc-typography');
+    document.querySelector('body').classList.add(T_BASE);
 
     Vue.prototype.$tt = tt;
   }

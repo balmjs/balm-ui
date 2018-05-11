@@ -44,9 +44,7 @@ var level2 = [
   'tabs/tab-bar',
   'tabs/tab-bar-scroller',
   'textfield/helper-text',
-  'textfield/icon',
-  'textfield/label',
-  'textfield/outline'
+  'textfield/icon'
 ];
 
 var index = 0;

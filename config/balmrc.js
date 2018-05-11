@@ -1,6 +1,7 @@
 var balm = require('balm');
 var path = require('path');
 var env = require('./env');
+var VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
   roots: {
@@ -39,6 +40,7 @@ module.exports = {
         loader: 'html-loader!markdown-loader'
       }
     ],
+    plugins: [new VueLoaderPlugin()],
     alias: {
       vue$: 'vue/dist/vue.esm.js'
     },

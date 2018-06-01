@@ -36,7 +36,7 @@
     "axios": "^0.18.0",
     "babel-eslint": "^8.2.3",
     "babel-preset-stage-2": "^6.24.1",
-    "balm": "^0.22.0",
+    "balm": "^0.23.1",
     "clipboard": "^2.0.1",
     "core-js": "^2.5.7",
     "eslint": "^4.19.1",

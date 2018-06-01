@@ -1,6 +1,6 @@
 // const Badge = () => import('../views/badge');
 const Button = () => import('../views/components/button');
-const Fab = () => import('../views/fab');
+const Fab = () => import('../views/components/fab');
 const IconToggle = () => import('../views/components/icon-toggle');
 // const Chip = () => import('../views/chip');
 // const Loading = () => import('../views/loading');

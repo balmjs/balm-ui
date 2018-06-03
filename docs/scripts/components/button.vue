@@ -8,8 +8,10 @@
         <ui-button :cssOnly="cssOnly" :class="'secondary-text-button'" :disabled="useDisabled">Secondary</ui-button>
         <ui-button :cssOnly="cssOnly" icon="favorite" :disabled="useDisabled">Icon</ui-button>
         <ui-button :cssOnly="cssOnly" :disabled="useDisabled">
-          <ui-logo class="mdc-button__icon"></ui-logo>
-          SVG Icon
+          <template slot-scope="{ className }">
+            <ui-logo :class="className.icon"></ui-logo>
+            SVG Icon
+          </template>
         </ui-button>
         <ui-link :cssOnly="cssOnly">Link</ui-link>
       </div>
@@ -26,8 +28,10 @@
         <ui-button :cssOnly="cssOnly" raised :class="'secondary-filled-button'" :disabled="useDisabled">Secondary</ui-button>
         <ui-button :cssOnly="cssOnly" raised icon="favorite" :disabled="useDisabled">Icon</ui-button>
         <ui-button :cssOnly="cssOnly" raised :disabled="useDisabled">
-          <ui-logo class="mdc-button__icon"></ui-logo>
-          SVG Icon
+          <template slot-scope="{ className }">
+            <ui-logo :class="className.icon"></ui-logo>
+            SVG Icon
+          </template>
         </ui-button>
         <ui-link :cssOnly="cssOnly" raised>Link</ui-link>
       </div>
@@ -44,8 +48,10 @@
         <ui-button :cssOnly="cssOnly" unelevated :class="'secondary-filled-button'" :disabled="useDisabled">Secondary</ui-button>
         <ui-button :cssOnly="cssOnly" unelevated icon="favorite" :disabled="useDisabled">Icon</ui-button>
         <ui-button :cssOnly="cssOnly" unelevated :disabled="useDisabled">
-          <ui-logo class="mdc-button__icon"></ui-logo>
-          SVG Icon
+          <template slot-scope="{ className }">
+            <ui-logo :class="className.icon"></ui-logo>
+            SVG Icon
+          </template>
         </ui-button>
         <ui-link :cssOnly="cssOnly" unelevated>Link</ui-link>
       </div>
@@ -62,8 +68,10 @@
         <ui-button :cssOnly="cssOnly" outlined :class="'secondary-outlined-button'" :disabled="useDisabled">Secondary</ui-button>
         <ui-button :cssOnly="cssOnly" outlined icon="favorite" :disabled="useDisabled">Icon</ui-button>
         <ui-button :cssOnly="cssOnly" outlined :disabled="useDisabled">
-          <ui-logo class="mdc-button__icon"></ui-logo>
-          SVG Icon
+          <template slot-scope="{ className }">
+            <ui-logo :class="className.icon"></ui-logo>
+            SVG Icon
+          </template>
         </ui-button>
         <ui-link :cssOnly="cssOnly" outlined>Link</ui-link>
       </div>

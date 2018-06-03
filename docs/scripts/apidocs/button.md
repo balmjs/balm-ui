@@ -12,8 +12,8 @@
 
 ### Slots
 
-| Name      | Description                                                  |
-| --------- | ------------------------------------------------------------ |
-| (default) | The default slot holds the button text and can contain HTML. |
+| Name      | Description                                                  | `slot-scope`                               |
+| --------- | ------------------------------------------------------------ | ------------------------------------------ |
+| (default) | The default slot holds the button text and can contain HTML. | `className = { icon: 'mdc-button__icon' }` |
 
 ### Sass

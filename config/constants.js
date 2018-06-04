@@ -22,6 +22,7 @@ var DMC_COMPONENTS = [
   'floating-label',
   'form-field',
   'grid-list',
+  'icon-button',
   'icon-toggle',
   'image-list',
   'layout-grid',

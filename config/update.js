@@ -15,6 +15,7 @@ var level1 = [
   'floating-label',
   'form-field',
   'grid-list',
+  'icon-button',
   'icon-toggle',
   'image-list',
   'line-ripple',

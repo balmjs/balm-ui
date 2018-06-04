@@ -1,12 +1,10 @@
 <template>
   <button type="button" :class="className" @click="handleClick">
     <template v-if="materialIcon">
-      <span class="mdc-fab__icon">
-        <slot>{{ materialIcon }}</slot>
-      </span>
+      <span :class="CLASSNAME_ICON">{{ materialIcon }}</span>
     </template>
     <template v-else>
-      <slot><!-- Custom Icon --></slot>
+      <slot :className="slotClass"><!-- Custom Icon --></slot>
     </template>
   </button>
 </template>
@@ -14,30 +12,40 @@
 <script>
 import rippleMixin from '../../mixins/ripple';
 import getType from '../../helpers/typeof';
+import UI_EVENT from '../../config/events';
 
-const UI_EVENT_CLICK = 'click';
+const CLASSNAME_ICON = 'mdc-fab__icon';
 
 export default {
   name: 'ui-fab',
   mixins: [rippleMixin],
   props: {
-    // ui attributes
-    cssOnly: {
-      type: Boolean,
-      default: false
-    },
-    icon: {
-      type: [Boolean, String],
-      default: false
-    },
+    // Mandatory, for the icon element
+    icon: String,
+    // Optional, modifies the FAB to a smaller size
     mini: {
       type: Boolean,
       default: false
     },
+    // Optional, animates the FAB out of view.
+    // When this class is removed, the FAB will return to view.
     exited: {
       type: Boolean,
       default: false
+    },
+    // UI attributes
+    cssOnly: {
+      type: Boolean,
+      default: false
     }
+  },
+  data() {
+    return {
+      CLASSNAME_ICON,
+      slotClass: {
+        icon: CLASSNAME_ICON
+      }
+    };
   },
   computed: {
     materialIcon() {
@@ -59,7 +67,7 @@ export default {
   },
   methods: {
     handleClick(event) {
-      this.$emit(UI_EVENT_CLICK, event);
+      this.$emit(UI_EVENT.CLICK, event);
     }
   }
 };

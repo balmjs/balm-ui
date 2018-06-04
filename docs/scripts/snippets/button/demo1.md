@@ -4,9 +4,11 @@
 <ui-button :class="'secondary-text-button'">Secondary</ui-button>
 <ui-button icon="favorite">Icon</ui-button>
 <ui-button>
-  <!-- Custom SVG -->
-  <ui-logo class="mdc-button__icon"></ui-logo>
-  SVG Icon
+  <template slot-scope="{ className }">
+    <!-- Custom SVG -->
+    <ui-logo :class="className.icon"></ui-logo>
+    SVG Icon
+  </template>
 </ui-button>
 <ui-link>Link</ui-link>
 ```

@@ -1,5 +1,6 @@
 import rippleMixin from './ripple';
 import iconMixin from './icon';
+import getType from '../helpers/typeof';
 
 export default {
   mixins: [rippleMixin, iconMixin],
@@ -25,10 +26,7 @@ export default {
       default: false
     },
     // Optional. Indicates an icon element.
-    icon: {
-      type: [Boolean, String],
-      default: false
-    },
+    icon: String,
     // UI attributes
     cssOnly: {
       type: Boolean,
@@ -51,6 +49,9 @@ export default {
         'mdc-card__action': this.cardAction,
         'mdc-card__action--button': this.cardAction
       };
+    },
+    materialIcon() {
+      return getType(this.icon) === 'string' ? this.icon : false;
     }
   },
   mounted() {

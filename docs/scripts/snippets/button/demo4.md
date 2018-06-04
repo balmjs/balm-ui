@@ -4,9 +4,11 @@
 <ui-button outlined :class="'secondary-text-button'">Secondary</ui-button>
 <ui-button outlined icon="favorite">Icon</ui-button>
 <ui-button outlined>
-  <!-- Custom SVG -->
-  <ui-logo class="mdc-button__icon"></ui-logo>
-  SVG Icon
+  <template slot-scope="{ className }">
+    <!-- Custom SVG -->
+    <ui-logo :class="className.icon"></ui-logo>
+    SVG Icon
+  </template>
 </ui-button>
 <ui-link outlined>Link</ui-link>
 ```

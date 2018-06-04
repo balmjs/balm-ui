@@ -4,14 +4,13 @@
       <ui-fab icon="favorite_border"></ui-fab>
     </section>
 
-    <ui-fab class="demo-fixed-fab">
-      <svg width="24" height="24" viewBox="0 0 24 24">
-        <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
-      </svg>
-    </ui-fab>
+    <h1 :class="$tt('headline4')">0. Usage</h1>
+    <ui-markdown :text="code[0]"></ui-markdown>
+
+    <ui-fab class="demo-fixed-fab" icon="mode_edit"></ui-fab>
 
     <section>
-      <legend>FABs with Ripple</legend>
+      <legend :class="$tt('headline4')">1. FABs with Ripple</legend>
       <div class="demo-fabs">
         <figure>
           <ui-fab icon="favorite_border"></ui-fab>
@@ -27,10 +26,9 @@
         </figure>
         <figure>
           <ui-fab>
-            <svg xmlns="http://www.w3.org/2000/svg" class="mdc-fab__icon" viewBox="0 0 24 24" fill="#000000">
-              <path fill="none" d="M0 0h24v24H0z"/>
-              <path d="M23 12c0-6.07-4.93-11-11-11S1 5.93 1 12s4.93 11 11 11 11-4.93 11-11zM5 17.64C3.75 16.1 3 14.14 3 12c0-2.13.76-4.08 2-5.63v11.27zM17.64 5H6.36C7.9 3.75 9.86 3 12 3s4.1.75 5.64 2zM12 14.53L8.24 7h7.53L12 14.53zM17 9v8h-4l4-8zm-6 8H7V9l4 8zm6.64 2c-1.55 1.25-3.51 2-5.64 2s-4.1-.75-5.64-2h11.28zM21 12c0 2.14-.75 4.1-2 5.64V6.37c1.24 1.55 2 3.5 2 5.63z"/>
-            </svg>
+            <template slot-scope="{ className }">
+              <ui-logo :class="className.icon"></ui-logo>
+            </template>
           </ui-fab>
           <figcaption>
             <div>SVG FAB</div>
@@ -38,10 +36,9 @@
         </figure>
         <figure>
           <ui-fab mini>
-            <svg xmlns="http://www.w3.org/2000/svg" class="mdc-fab__icon" viewBox="0 0 24 24" fill="#000000">
-              <path fill="none" d="M0 0h24v24H0z"/>
-              <path d="M23 12c0-6.07-4.93-11-11-11S1 5.93 1 12s4.93 11 11 11 11-4.93 11-11zM5 17.64C3.75 16.1 3 14.14 3 12c0-2.13.76-4.08 2-5.63v11.27zM17.64 5H6.36C7.9 3.75 9.86 3 12 3s4.1.75 5.64 2zM12 14.53L8.24 7h7.53L12 14.53zM17 9v8h-4l4-8zm-6 8H7V9l4 8zm6.64 2c-1.55 1.25-3.51 2-5.64 2s-4.1-.75-5.64-2h11.28zM21 12c0 2.14-.75 4.1-2 5.64V6.37c1.24 1.55 2 3.5 2 5.63z"/>
-            </svg>
+            <template slot-scope="{ className }">
+              <ui-logo :class="className.icon"></ui-logo>
+            </template>
           </ui-fab>
           <figcaption>
             <div>SVG Mini FAB</div>
@@ -60,10 +57,13 @@
           </figcaption>
         </figure>
       </div>
+      <ui-accordion>
+        <ui-markdown :code="code[1]"></ui-markdown>
+      </ui-accordion>
     </section>
 
     <section>
-      <legend>CSS Only FABs</legend>
+      <legend :class="$tt('headline4')">2. CSS Only FABs</legend>
       <div class="demo-fabs">
         <figure>
           <ui-fab cssOnly icon="favorite_border"></ui-fab>
@@ -78,55 +78,70 @@
           <ui-fab cssOnly class="lightGreen800Fab" icon="favorite_border" mini></ui-fab>
         </figure>
       </div>
+      <ui-accordion>
+        <ui-markdown :code="code[2]"></ui-markdown>
+      </ui-accordion>
     </section>
 
     <section>
-      <legend>Example of Enter and Exit Motions</legend>
+      <legend :class="$tt('headline4')">3. Example of Enter and Exit Motions</legend>
       <div class="fab-motion-container">
         <div class="fab-motion-container__view">
           <p>View one (with FAB)</p>
         </div>
         <div class="fab-motion-container__view" :class="{'fab-motion-container__view--exited': !exited}">
           <p>View two (without FAB)</p>
-          <p><button type="button" id="enter-exit-back" :disabled="!exited" @click="balmUI.onChange('exited', false)">Go back</button></p>
+          <p><button type="button" id="enter-exit-back"
+            :disabled="!exited"
+            @click="balmUI.onHide('exited')">Go back</button></p>
         </div>
         <ui-fab id="enter-exit-add" class="demo-absolute-fab" icon="add"
           :exited="exited"
-          @click="show">add</ui-fab>
+          @click="balmUI.onShow('exited')">add</ui-fab>
       </div>
+      <ui-accordion>
+        <ui-markdown :code="code[3]"></ui-markdown>
+      </ui-accordion>
     </section>
 
     <section>
       <fieldset>
-        <legend>Custom FABs (Fontawesome)</legend>
+        <legend :class="$tt('headline4')">4. Custom FABs (Fontawesome)</legend>
         <ui-fab>
           <i class="fa fa-flag fa-lg"></i>
         </ui-fab>
-        <ui-fab plain>
+        <ui-fab>
           <i class="fa fa-smile-o fa-lg"></i>
         </ui-fab>
         <ui-fab>
           <i class="fa fa-camera-retro fa-lg"></i>
         </ui-fab>
-        <ui-fab plain>
+        <ui-fab>
           <i class="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
         </ui-fab>
       </fieldset>
+      <ui-accordion>
+        <ui-markdown :code="code[4]"></ui-markdown>
+      </ui-accordion>
     </section>
+
+    <h1 :class="$tt('headline4')">5. API</h1>
+    <ui-apidocs name="fab"></ui-apidocs>
   </div>
 </template>
 
 <script>
+import snippets from '../../mixins/snippets';
+
 export default {
+  mixins: [snippets],
   data() {
     return {
       exited: false
     };
   },
-  methods: {
-    show() {
-      this.exited = !this.exited;
-    }
+  created() {
+    this.showCode('fab', 4);
   }
 };
 </script>

@@ -1,18 +1,18 @@
 <template>
   <button :type="type" :class="className" @click="handleClick">
-    <ui-icon v-if="icon"
+    <ui-icon v-if="materialIcon"
       :class="CLASSNAME_ICON"
       :size="iconSize"
       :dark="iconDark"
       :light="iconLight"
-      :inactive="iconInactive">{{ icon }}</ui-icon>
+      :inactive="iconInactive">{{ materialIcon }}</ui-icon>
     <slot :className="slotClass"></slot>
   </button>
 </template>
 
 <script>
 import buttonMixin from '../../mixins/button';
-import { UI_EVENT } from '../../config/constants';
+import UI_EVENT from '../../config/events';
 
 const CLASSNAME_ICON = 'mdc-button__icon';
 

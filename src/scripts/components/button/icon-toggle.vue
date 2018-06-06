@@ -101,7 +101,7 @@ export default {
     }
   },
   created() {
-    if (this.isValidToggleData(this.on) && this.isValidToggleData(this.off)) {
+    if (this.isValidToggleState(this.on) && this.isValidToggleState(this.off)) {
       this.canRendering = true;
     } else {
       console.warn(
@@ -122,7 +122,7 @@ export default {
     }
   },
   methods: {
-    isValidToggleData(value) {
+    isValidToggleState(value) {
       return value
         ? Object.keys(value).some(currentValue =>
             MDC_ICONTOGGLE.DATA_STATES.includes(currentValue)

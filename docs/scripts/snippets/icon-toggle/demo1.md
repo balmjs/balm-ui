@@ -1,42 +1,32 @@
 ```html
-<ui-icon-toggle
-  :model="icon1.value"
-  :on="icon1.on"
-  :off="icon1.off"
-  @change="balmUI.onChange('icon1.value', $event)">
-</ui-icon-toggle>
+<!-- Material Icons -->
+<ui-icon-button>favorite</ui-icon-button>
+<ui-icon-button>airplanemode_active</ui-icon-button>
+<ui-icon-link>directions_transit</ui-icon-link>
 
-<ui-icon-toggle
-  :model="icon2.value"
-  :on="icon2.on"
-  :off="icon2.off"
-  icon="fa"
-  @change="balmUI.onChange('icon2.value', $event)">
-  <i class="fa fa-star" aria-hidden="true"></i>
-</ui-icon-toggle>
+<!-- SVG Icon -->
+<ui-icon-button>
+  <ui-logo></ui-logo>
+</ui-icon-button>
 
-<ui-icon-toggle
-  :on="icon1.on"
-  :off="icon1.off"
-  disabled>
-</ui-icon-toggle>
+<!-- Disabled Buttons -->
+<ui-icon-button disabled>airplanemode_active</ui-icon-button>
+<ui-icon-button disabled>
+  <ui-logo></ui-logo>
+</ui-icon-button>
+
+<!-- Larger Buttons -->
+<ui-icon-button class="demo-icon-button-large">airplanemode_active</ui-icon-button>
+<ui-icon-button class="demo-icon-button-large">
+  <ui-logo></ui-logo>
+</ui-icon-button>
 ```
 
-```js
-export default {
-  data() {
-    return {
-      icon1: {
-        value: false,
-        on: { content: 'favorite', label: 'Remove From Favorites' },
-        off: { content: 'favorite_border', label: 'Add to Favorites' }
-      },
-      icon2: {
-        value: true,
-        on: { cssClass: 'fa-star', label: 'Unstar this item' },
-        off: { cssClass: 'fa-star-o', label: 'Star this item' }
-      }
-    };
-  }
-};
+```css
+.demo-icon-button-large {
+  width: 72px;
+  height: 72px;
+  padding: 18px;
+  font-size: 36px;
+}
 ```

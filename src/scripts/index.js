@@ -32,9 +32,11 @@ import UiPanel from './components/tabs/panel';
  * Common
  */
 import UiIcon from './components/common/icon';
-import UiLink from './components/button/link';
 import UiButton from './components/button/button';
+import UiLink from './components/button/link';
 import UiFab from './components/button/fab';
+import UiIconButton from './components/button/icon-button';
+import UiIconLink from './components/button/icon-link';
 import UiIconToggle from './components/button/icon-toggle';
 import UiMenuAnchor from './components/menu/menu-anchor';
 import UiMenu from './components/menu/menu';
@@ -129,8 +131,8 @@ const components = {
   UiPanel,
   // Common
   UiIcon,
-  UiLink,
   UiButton,
+  UiLink,
   UiFab,
   UiMenuAnchor,
   UiMenu,
@@ -142,6 +144,8 @@ const components = {
   UiTextfieldHelptext,
   UiCheckbox,
   UiRadio,
+  UiIconButton,
+  UiIconLink,
   UiIconToggle,
   UiSelect,
   UiSelectmenu,

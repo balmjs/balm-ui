@@ -1,5 +1,5 @@
 <template>
-  <a :href="url" :class="className">
+  <a :class="className" :href="url">
     <ui-icon v-if="materialIcon"
       :class="UI_LINK.CLASSNAME.ICON"
       :size="iconSize"

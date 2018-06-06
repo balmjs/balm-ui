@@ -1,7 +1,7 @@
 <template>
   <button type="button" :class="className" @click="handleClick">
     <template v-if="materialIcon">
-      <span :class="CLASSNAME_ICON">{{ materialIcon }}</span>
+      <span :class="UI_FAB.CLASSNAME.ICON">{{ materialIcon }}</span>
     </template>
     <template v-else>
       <slot :className="slotClass"><!-- Custom Icon --></slot>
@@ -12,9 +12,16 @@
 <script>
 import rippleMixin from '../../mixins/ripple';
 import getType from '../../helpers/typeof';
-import UI_EVENT from '../../config/events';
 
-const CLASSNAME_ICON = 'mdc-fab__icon';
+// Define constants
+const UI_FAB = {
+  EVENT: {
+    CLICK: 'click'
+  },
+  CLASSNAME: {
+    ICON: 'mdc-fab__icon'
+  }
+};
 
 export default {
   name: 'ui-fab',
@@ -41,9 +48,9 @@ export default {
   },
   data() {
     return {
-      CLASSNAME_ICON,
+      UI_FAB,
       slotClass: {
-        icon: CLASSNAME_ICON
+        icon: UI_FAB.CLASSNAME.ICON
       }
     };
   },
@@ -67,7 +74,7 @@ export default {
   },
   methods: {
     handleClick(event) {
-      this.$emit(UI_EVENT.CLICK, event);
+      this.$emit(UI_FAB.EVENT.CLICK, event);
     }
   }
 };

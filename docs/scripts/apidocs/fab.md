@@ -9,9 +9,9 @@
 
 ### Slots
 
-| Name      | Description                                                  | `slot-scope`                            |
-| --------- | ------------------------------------------------------------ | --------------------------------------- |
-| (default) | The default slot holds the button text and can contain HTML. | `className = { icon: 'mdc-fab__icon' }` |
+| Name      | Description                                                                  | `slot-scope`                            |
+| --------- | ---------------------------------------------------------------------------- | --------------------------------------- |
+| (default) | The default slot holds the floating action button text and can contain HTML. | `className = { icon: 'mdc-fab__icon' }` |
 
 ### Events
 

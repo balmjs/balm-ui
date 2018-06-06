@@ -8,6 +8,7 @@
 | outlined   | `Boolean` | `false`     | Optional. Styles an outlined button that is flush with the surface.        |
 | dense      | `Boolean` | `false`     | Optional. Makes the button text and container slightly smaller.            |
 | icon       | `String`  | `undefined` | Optional. Indicates an icon element. See [Material Icons](/#/icons) usage. |
+| disabled   | `Boolean` | `false`     | To disable a button.                                                       |
 | cssOnly    | `Boolean` | `false`     | Ripple effect is disabled.                                                 |
 | cardAction | `Boolean` | `false`     |                                                                            |
 

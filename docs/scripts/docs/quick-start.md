@@ -2,8 +2,8 @@
 
 ### 0. Requirement
 
-- [BalmJS](http://balmjs.com/)
-- [Vue.js](https://vuejs.org/)@2.1.0+
+* [BalmJS](https://balmjs.com/)
+* [Vue.js](https://vuejs.org/)@2.1.0+
 
 ### 1. Install
 
@@ -15,13 +15,13 @@ npm install --save balm-ui
 
 ### 2. Setup
 
-2.1 CSS Config (__`/path/to/_vendor.scss`__)
+2.1 CSS Config (**`/path/to/_vendor.scss`**)
 
 ```css
 @import 'node_modules/balm-ui/src/styles/main.scss';
 ```
 
-2.2 JS Config (__`./gulpfile.js`__)
+2.2 JS Config (**`./gulpfile.js`**)
 
 ```js
 balm.config = {

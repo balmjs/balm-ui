@@ -73,7 +73,7 @@ Vue.prototype.$docs = {
     ]
   }
 };
-Vue.prototype.$domain = DEBUG ? '' : 'http://material.balmjs.com';
+Vue.prototype.$domain = DEBUG ? '' : '//material.balmjs.com';
 
 const router = new VueRouter({
   routes

@@ -64,7 +64,7 @@ module.exports = {
     excludes: ['index.js']
   },
   assets: {
-    publicUrl: env.buildDocs ? 'http://material.balmjs.com/' : ''
+    publicUrl: env.buildDocs ? '//material.balmjs.com/' : ''
   },
   useDefault: env.useDefault
 };

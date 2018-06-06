@@ -1,14 +1,13 @@
 <template>
   <span role="button"
         :class="className"
+        :tabindex="currentTabindex"
         :aria-pressed="currentValue"
-        :aria-label="currentValue ? toggleOnData.label : toggleOffData.label"
-        :tabindex="tabindex"
         :aria-disabled="disabled"
         :data-icon-inner-selector="iconInnerSelector"
-        :data-toggle-on="toggleOnData"
-        :data-toggle-off="toggleOffData">
-    <slot><!-- Prevent FOUC by putting the initial content in --></slot>
+        :data-toggle-on="toggleOnState"
+        :data-toggle-off="toggleOffState">
+    <slot></slot>
   </span>
 </template>
 
@@ -16,11 +15,22 @@
 import { MDCIconToggle } from '../../../material-components-web/icon-toggle';
 import getType from '../../helpers/typeof';
 
-const DMC_EVENT_CHANGE = 'MDCIconToggle:change';
-const UI_EVENT_CHANGE = 'change';
-const MDCIconToggle_on = 'on';
-const MDCIconToggle_disabled = 'disabled';
-const MDCIconToggle_states = ['label', 'content', 'cssClass'];
+// Define constants
+const UI_ICONTOGGLE = {
+  EVENT: {
+    CHANGE: 'change'
+  }
+};
+const MDC_ICONTOGGLE = {
+  EVENT: {
+    CHANGE: `MDCIconToggle:${UI_ICONTOGGLE.EVENT.CHANGE}`
+  },
+  STATUS: {
+    ON: 'on',
+    DISABLED: 'disabled'
+  },
+  DATA_STATES: ['label', 'content', 'cssClass']
+};
 
 export default {
   name: 'ui-icon-toggle',
@@ -32,16 +42,17 @@ export default {
     },
     on: Object,
     off: Object,
-    // UI attributes
+    // Element attributes
     tabindex: {
       type: [Number, String],
       default: 0
     },
-    icon: String,
     disabled: {
       type: Boolean,
       default: false
     },
+    // UI attributes
+    icon: String,
     // Card attributes
     cardIcon: {
       type: Boolean,
@@ -65,25 +76,28 @@ export default {
         'mdc-card__action--icon': this.cardIcon
       };
     },
+    currentTabindex() {
+      return this.disabled ? -1 : this.tabindex;
+    },
     iconInnerSelector() {
       return this.icon ? `.${this.icon}` : false;
     },
-    toggleOnData() {
-      return this.getToggleData(this.on);
+    toggleOnState() {
+      return this.getToggleState(this.on);
     },
-    toggleOffData() {
-      return this.getToggleData(this.off);
+    toggleOffState() {
+      return this.getToggleState(this.off);
     }
   },
   watch: {
     model(val) {
       if (!this.disabled) {
         this.currentValue = val;
-        this.updateState(MDCIconToggle_on, val);
+        this.updateStatus(MDC_ICONTOGGLE.STATUS.ON, val);
       }
     },
     disabled(val) {
-      this.updateState(MDCIconToggle_disabled, val);
+      this.updateStatus(MDC_ICONTOGGLE.STATUS.DISABLED, val);
     }
   },
   created() {
@@ -99,26 +113,26 @@ export default {
     if (this.canRendering && !this.$iconToggle) {
       this.$iconToggle = new MDCIconToggle(this.$el);
 
-      this.$iconToggle.listen(DMC_EVENT_CHANGE, ({ detail }) => {
-        this.$emit(UI_EVENT_CHANGE, detail.isOn);
+      this.$iconToggle.listen(MDC_ICONTOGGLE.EVENT.CHANGE, ({ detail }) => {
+        this.$emit(UI_ICONTOGGLE.EVENT.CHANGE, detail.isOn);
       });
 
-      this.updateState(MDCIconToggle_on, this.currentValue);
-      this.updateState(MDCIconToggle_disabled, this.disabled);
+      this.updateStatus(MDC_ICONTOGGLE.STATUS.ON, this.currentValue);
+      this.updateStatus(MDC_ICONTOGGLE.STATUS.DISABLED, this.disabled);
     }
   },
   methods: {
     isValidToggleData(value) {
       return value
         ? Object.keys(value).some(currentValue =>
-            MDCIconToggle_states.includes(currentValue)
+            MDC_ICONTOGGLE.DATA_STATES.includes(currentValue)
           )
         : false;
     },
-    getToggleData(value) {
+    getToggleState(value) {
       return getType(value) === 'object' ? JSON.stringify(value) : {};
     },
-    updateState(key, value) {
+    updateStatus(key, value) {
       if (this.$iconToggle) {
         this.$iconToggle[key] = value;
       }

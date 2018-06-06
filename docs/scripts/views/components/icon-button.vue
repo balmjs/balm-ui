@@ -1,5 +1,5 @@
 <template>
-  <div class="demo--icon-toggle">
+  <div class="demo--icon-button">
     <section class="hero">
       <div class="demo-wrapper">
         <ui-icon-button :model="icon1.value" :on="icon1.on" :off="icon1.off">
@@ -141,7 +141,7 @@
     </section>
 
     <h1 :class="$tt('headline5')">4. API</h1>
-    <ui-apidocs name="icon-toggle"></ui-apidocs>
+    <ui-apidocs name="icon-button"></ui-apidocs>
   </div>
 </template>
 
@@ -176,13 +176,8 @@ export default {
       }
     };
   },
-  methods: {
-    test(value) {
-      console.log(value, 'gg');
-    }
-  },
   created() {
-    this.showCode('icon-toggle', 3);
+    this.showCode('icon-button', 3);
   }
 };
 </script>

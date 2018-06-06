@@ -65,9 +65,9 @@ const MATERIAL_COMPONENTS = [
       },
       {
         icon: 'component',
-        name: 'Icon toggle',
-        description: 'Toggling icon states',
-        url: 'icon-toggle'
+        name: 'Icon button',
+        description: 'Icon buttons and toggles',
+        url: 'icon-button'
       }
     ]
   },

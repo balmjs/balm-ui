@@ -5,8 +5,8 @@ import Vue from 'vue';
 import BalmUI from 'balm-ui';
 
 Vue.use(BalmUI, {
-  // (Optional) Overwrite <ui-icon-toggle> props
-  UiIconToggle: {
+  // (Optional) Overwrite <ui-icon-button> props
+  UiIconButton: {
     // some props
   }
 });
@@ -16,17 +16,17 @@ Standalone Usage
 
 ```js
 import Vue from 'vue';
-import UiIconToggle from 'balm-ui/components/icon-toggle';
+import UiIconButton from 'balm-ui/components/icon-button';
 
 // (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage
 import 'balm-ui/components/core.css';
-import 'balm-ui/components/icon-toggle.css';
+import 'balm-ui/components/icon-button.css';
 import 'balm-ui/components/icon.css'; // Optional
 
-// (Optional) Overwrite <ui-icon-toggle> props
-UiIconToggle.config({
+// (Optional) Overwrite <ui-icon-button> props
+UiIconButton.config({
   // some props
 });
 
-Vue.component(UiIconToggle.name, UiIconToggle);
+Vue.component(UiIconButton.name, UiIconButton);
 ```

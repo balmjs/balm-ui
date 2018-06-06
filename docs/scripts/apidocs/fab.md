@@ -15,6 +15,6 @@
 
 ### Events
 
-| Name  | Type                      | Description |
-| ----- | ------------------------- | ----------- |
-| click | `Function(event: object)` |             |
+| Name  | Type                      | Description                                       |
+| ----- | ------------------------- | ------------------------------------------------- |
+| click | `Function(event: object)` | Emits when the floating action button is clicked. |

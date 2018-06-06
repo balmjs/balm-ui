@@ -1,7 +1,7 @@
 // const Badge = () => import('../views/badge');
 const Button = () => import('../views/components/button');
 const Fab = () => import('../views/components/fab');
-const IconToggle = () => import('../views/components/icon-toggle');
+const IconButton = () => import('../views/components/icon-button');
 // const Chip = () => import('../views/chip');
 // const Loading = () => import('../views/loading');
 const Menu = () => import('../views/menu');
@@ -34,11 +34,11 @@ const commonRoutes = [
     }
   },
   {
-    path: '/icon-toggle',
-    name: 'icon-toggle',
-    component: IconToggle,
+    path: '/icon-button',
+    name: 'icon-button',
+    component: IconButton,
     meta: {
-      title: 'BalmUI - Icon toggle',
+      title: 'BalmUI - Icon button',
       keywords: '',
       description: ''
     }

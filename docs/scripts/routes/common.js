@@ -7,7 +7,7 @@ const IconButton = () => import('../views/components/icon-button');
 const Menu = () => import('../views/menu');
 // const Tooltip = () => import('../views/tooltip');
 const Elevation = () => import('../views/plugins/elevation');
-const Theme = () => import('../views/theme');
+const Theme = () => import('../views/plugins/theme');
 const Typography = () => import('../views/plugins/typography');
 const Icons = () => import('../views/icons');
 const LinearProgress = () => import('../views/linear-progress');

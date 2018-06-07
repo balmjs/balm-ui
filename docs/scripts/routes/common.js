@@ -6,9 +6,9 @@ const IconButton = () => import('../views/components/icon-button');
 // const Loading = () => import('../views/loading');
 const Menu = () => import('../views/menu');
 // const Tooltip = () => import('../views/tooltip');
-const Elevation = () => import('../views/elevation');
+const Elevation = () => import('../views/plugins/elevation');
 const Theme = () => import('../views/theme');
-const Typography = () => import('../views/typography');
+const Typography = () => import('../views/plugins/typography');
 const Icons = () => import('../views/icons');
 const LinearProgress = () => import('../views/linear-progress');
 

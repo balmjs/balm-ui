@@ -33,37 +33,15 @@
     <section class="demo-card-collection">
       <ui-card outlined class="demo-card">
         <div :class="[$tt('subtitle2'), 'demo-card-article-group-heading']">Headlines</div>
-
         <hr class="mdc-list-divider">
 
-        <a class="demo-card-article mdc-ripple-surface">
-          <h2 :class="[$tt('headline5'), 'demo-card-article__title']">Copper on the rise</h2>
-          <p :class="[$tt('body2'), 'demo-card-article__snippet']">
-            Copper price soars amid global market optimism and increased demand.
-          </p>
-        </a>
-
-        <hr class="mdc-list-divider">
-
-        <a class="demo-card-article mdc-ripple-surface">
-          <h2 :class="[$tt('headline5'), 'demo-card-article__title']">U.S. tech startups rebound</h2>
-          <p :class="[$tt('body2'), 'demo-card-article__snippet']">
-            Favorable business conditions have allowed startups to secure more fundraising deals compared to last
-            year.
-          </p>
-        </a>
-
-        <hr class="mdc-list-divider">
-
-        <a class="demo-card-article mdc-ripple-surface">
-          <h2 :class="[$tt('headline5'), 'demo-card-article__title']">Asia's clean energy ambitions</h2>
-          <p :class="[$tt('body2'), 'demo-card-article__snippet']">
-            China plans to invest billions of dollars for the development of over 300 clean energy projects in
-            Southeast Asia.
-          </p>
-        </a>
-
-        <hr class="mdc-list-divider">
+        <template v-for="item in list">
+          <a class="demo-card-article mdc-ripple-surface">
+            <h2 :class="[$tt('headline5'), 'demo-card-article__title']">{{ item.title }}</h2>
+            <p :class="[$tt('body2'), 'demo-card-article__snippet']">{{ item.content }}</p>
+          </a>
+          <hr class="mdc-list-divider">
+        </template>
 
         <ui-card-actions fullBleed>
           <ui-link actionButton class="demo-card-action">
@@ -72,7 +50,10 @@
           </ui-link>
         </ui-card-actions>
       </ui-card>
+    </section>
+    <ui-markdown :text="code[1]"></ui-markdown>
 
+    <section class="demo-card-collection">
       <ui-card class="demo-card demo-card--photo">
         <ui-card-primary-action class="demo-card__primary-action">
           <ui-card-media square class="demo-card__media">
@@ -91,7 +72,10 @@
           </ui-card-icons>
         </ui-card-actions>
       </ui-card>
+    </section>
+    <ui-markdown :text="code[2]"></ui-markdown>
 
+    <section class="demo-card-collection">
       <ui-card class="demo-card demo-card--music">
         <ui-card-primary-action class="demo-card__primary-action">
           <div class="demo-card__music-row">
@@ -114,6 +98,7 @@
         </ui-card-actions>
       </ui-card>
     </section>
+    <ui-markdown :text="code[3]"></ui-markdown>
 
     <h1 :class="$tt('headline3')">2. API</h1>
     <ui-apidocs name="card"></ui-apidocs>
@@ -133,6 +118,23 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      list: [
+        {
+          title: 'Copper on the rise',
+          content:
+            'Copper price soars amid global market optimism and increased demand.'
+        },
+        {
+          title: 'U.S. tech startups rebound',
+          content:
+            'Favorable business conditions have allowed startups to secure more fundraising deals compared to last year.'
+        },
+        {
+          title: `Asia's clean energy ambitions`,
+          content:
+            'China plans to invest billions of dollars for the development of over 300 clean energy projects in Southeast Asia.'
+        }
+      ],
       icon1: {
         on: {
           content: 'favorite',

@@ -1,4 +1,5 @@
 import { MDCIconButtonToggle } from '../../material-components-web/icon-button';
+import cardButtonMixin from './card-button';
 import getType from '../helpers/typeof';
 
 // Define constants
@@ -19,6 +20,7 @@ const MDC_ICONBUTTON = {
 };
 
 export default {
+  mixins: [cardButtonMixin],
   props: {
     // States
     model: {

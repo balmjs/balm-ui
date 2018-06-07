@@ -1,5 +1,11 @@
 ## `<ui-card-primary-action>`
 
+### Props
+
+| Name | Type     | Default                | Description                                             |
+| ---- | -------- | ---------------------- | ------------------------------------------------------- |
+| url  | `String` | `'javascript:void(0)'` | The _href_ attribute of the `<ui-card-primary-action>`. |
+
 ### Slots
 
 | Name      | Description                                                                                                                                                                                             |

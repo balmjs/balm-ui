@@ -1,5 +1,5 @@
 <template>
-  <a :class="className" :href="url">
+  <a :class="[className, actionClassName]" :href="url">
     <ui-icon v-if="materialIcon"
       :class="UI_LINK.CLASSNAME.ICON"
       :size="iconSize"
@@ -12,6 +12,7 @@
 
 <script>
 import buttonMixin from '../../mixins/button';
+import linkMixin from '../../mixins/link';
 
 // Define constants
 const UI_LINK = {
@@ -22,14 +23,7 @@ const UI_LINK = {
 
 export default {
   name: 'ui-link',
-  mixins: [buttonMixin],
-  props: {
-    // Element attributes
-    url: {
-      type: String,
-      default: 'javascript:void(0)'
-    }
-  },
+  mixins: [buttonMixin, linkMixin],
   data() {
     return {
       UI_LINK,

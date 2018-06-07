@@ -1,5 +1,5 @@
 <template>
-  <button :type="type" :class="className" @click="handleClick">
+  <button :type="type" :class="[className, actionClassName]" @click="handleClick">
     <ui-icon v-if="materialIcon"
       :class="UI_BUTTON.CLASSNAME.ICON"
       :size="iconSize"

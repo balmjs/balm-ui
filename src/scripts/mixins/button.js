@@ -1,9 +1,10 @@
 import rippleMixin from './ripple';
 import iconMixin from './icon';
+import cardButtonMixin from './card-button';
 import getType from '../helpers/typeof';
 
 export default {
-  mixins: [rippleMixin, iconMixin],
+  mixins: [rippleMixin, iconMixin, cardButtonMixin],
   props: {
     // Optional. Styles a contained button that is elevated above the surface.
     raised: {
@@ -31,11 +32,6 @@ export default {
     cssOnly: {
       type: Boolean,
       default: false
-    },
-    // Card attributes
-    cardAction: {
-      type: Boolean,
-      default: false
     }
   },
   computed: {
@@ -45,9 +41,7 @@ export default {
         'mdc-button--raised': this.raised,
         'mdc-button--unelevated': this.unelevated,
         'mdc-button--outlined': this.outlined,
-        'mdc-button--dense': this.dense,
-        'mdc-card__action': this.cardAction,
-        'mdc-card__action--button': this.cardAction
+        'mdc-button--dense': this.dense
       };
     },
     materialIcon() {

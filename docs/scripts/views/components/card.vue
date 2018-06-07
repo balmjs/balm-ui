@@ -2,7 +2,7 @@
   <div class="demo--card">
     <section class="hero">
       <ui-card class="demo-card">
-        <ui-card-primary-action href="#">
+        <ui-card-primary-action>
           <ui-card-media rectangle class="demo-card__media demo-card__media--16-9"></ui-card-media>
           <div class="demo-card__primary">
             <h2 :class="[$tt('headline6'), 'demo-card__title']">Our Changing Planet</h2>
@@ -14,13 +14,13 @@
         </ui-card-primary-action>
         <ui-card-actions>
           <ui-card-buttons>
-            <ui-button cardAction>Read</ui-button>
-            <ui-button cardAction>Bookmark</ui-button>
+            <ui-button actionButton>Read</ui-button>
+            <ui-button actionButton>Bookmark</ui-button>
           </ui-card-buttons>
           <ui-card-icons>
-            <ui-icon-toggle cardIcon :on="icon1.on" :off="icon1.off"></ui-icon-toggle>
-            <ui-icon-toggle cardIcon>share</ui-icon-toggle>
-            <ui-icon-toggle cardIcon>more_vert</ui-icon-toggle>
+            <ui-icon-button actionIcon :on="icon1.on" :off="icon1.off"></ui-icon-button>
+            <ui-icon-button actionIcon>share</ui-icon-button>
+            <ui-icon-button actionIcon>more_vert</ui-icon-button>
           </ui-card-icons>
         </ui-card-actions>
       </ui-card>
@@ -31,23 +31,23 @@
 
     <h1 :class="$tt('headline3')">1. Example</h1>
     <section class="demo-card-collection">
-      <div class="mdc-card mdc-card--outlined demo-card">
-        <div class="demo-card-article-group-heading mdc-typography--subtitle2">Headlines</div>
+      <ui-card outlined class="demo-card">
+        <div :class="[$tt('subtitle2'), 'demo-card-article-group-heading']">Headlines</div>
 
         <hr class="mdc-list-divider">
 
-        <a class="demo-card-article mdc-ripple-surface" href="#">
-          <h2 class="demo-card-article__title mdc-typography--headline5">Copper on the rise</h2>
-          <p class="demo-card-article__snippet mdc-typography--body2">
+        <a class="demo-card-article mdc-ripple-surface">
+          <h2 :class="[$tt('headline5'), 'demo-card-article__title']">Copper on the rise</h2>
+          <p :class="[$tt('body2'), 'demo-card-article__snippet']">
             Copper price soars amid global market optimism and increased demand.
           </p>
         </a>
 
         <hr class="mdc-list-divider">
 
-        <a class="demo-card-article mdc-ripple-surface" href="#">
-          <h2 class="demo-card-article__title mdc-typography--headline5">U.S. tech startups rebound</h2>
-          <p class="demo-card-article__snippet mdc-typography--body2">
+        <a class="demo-card-article mdc-ripple-surface">
+          <h2 :class="[$tt('headline5'), 'demo-card-article__title']">U.S. tech startups rebound</h2>
+          <p :class="[$tt('body2'), 'demo-card-article__snippet']">
             Favorable business conditions have allowed startups to secure more fundraising deals compared to last
             year.
           </p>
@@ -55,9 +55,9 @@
 
         <hr class="mdc-list-divider">
 
-        <a class="demo-card-article mdc-ripple-surface" href="#">
-          <h2 class="demo-card-article__title mdc-typography--headline5">Asia's clean energy ambitions</h2>
-          <p class="demo-card-article__snippet mdc-typography--body2">
+        <a class="demo-card-article mdc-ripple-surface">
+          <h2 :class="[$tt('headline5'), 'demo-card-article__title']">Asia's clean energy ambitions</h2>
+          <p :class="[$tt('body2'), 'demo-card-article__snippet']">
             China plans to invest billions of dollars for the development of over 300 clean energy projects in
             Southeast Asia.
           </p>
@@ -65,16 +65,16 @@
 
         <hr class="mdc-list-divider">
 
-        <div class="mdc-card__actions mdc-card__actions--full-bleed">
-          <a class="mdc-button mdc-card__action mdc-card__action--button demo-card-action" href="#">
+        <ui-card-actions fullBleed>
+          <ui-link actionButton class="demo-card-action">
             All Business Headlines
-            <i class="material-icons" aria-hidden="true">arrow_forward</i>
-          </a>
-        </div>
-      </div>
+            <ui-icon>arrow_forward</ui-icon>
+          </ui-link>
+        </ui-card-actions>
+      </ui-card>
 
       <ui-card class="demo-card demo-card--photo">
-        <ui-card-primary-action class="demo-card__primary-action" href="#">
+        <ui-card-primary-action class="demo-card__primary-action">
           <ui-card-media square class="demo-card__media">
             <ui-card-media-content class="demo-card__media-content--with-title">
               <div :class="[$tt('subtitle2'), 'demo-card__media-title']">
@@ -85,15 +85,15 @@
         </ui-card-primary-action>
         <ui-card-actions>
           <ui-card-icons>
-            <ui-icon-toggle cardIcon :on="icon1.on" :off="icon1.off"></ui-icon-toggle>
-            <ui-icon-toggle cardIcon :on="icon2.on" :off="icon2.off"></ui-icon-toggle>
-            <ui-icon-toggle cardIcon>share</ui-icon-toggle>
+            <ui-icon-button actionIcon :on="icon1.on" :off="icon1.off"></ui-icon-button>
+            <ui-icon-button actionIcon :on="icon2.on" :off="icon2.off"></ui-icon-button>
+            <ui-icon-button actionIcon>share</ui-icon-button>
           </ui-card-icons>
         </ui-card-actions>
       </ui-card>
 
       <ui-card class="demo-card demo-card--music">
-        <ui-card-primary-action class="demo-card__primary-action" href="#">
+        <ui-card-primary-action class="demo-card__primary-action">
           <div class="demo-card__music-row">
             <ui-card-media square class="demo-card__media demo-card__media--music"></ui-card-media>
             <div class="demo-card__music-info">
@@ -134,12 +134,24 @@ export default {
   data() {
     return {
       icon1: {
-        on: { content: 'favorite', label: 'Remove From Favorites' },
-        off: { content: 'favorite_border', label: 'Add to Favorites' }
+        on: {
+          content: 'favorite',
+          label: 'Remove From Favorites'
+        },
+        off: {
+          content: 'favorite_border',
+          label: 'Add to Favorites'
+        }
       },
       icon2: {
-        on: { content: 'bookmark', label: 'Remove bookmark' },
-        off: { content: 'bookmark_border', label: 'Add bookmark' }
+        on: {
+          content: 'bookmark',
+          label: 'Remove bookmark'
+        },
+        off: {
+          content: 'bookmark_border',
+          label: 'Add bookmark'
+        }
       }
     };
   },

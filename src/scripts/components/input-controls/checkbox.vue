@@ -1,18 +1,18 @@
 <template>
-  <ui-form-field :block="block" :alignEnd="alignEnd" :dark="dark">
+  <ui-form-field :block="block" :alignEnd="alignEnd">
     <slot name="before"></slot>
     <div ref="checkbox" :class="className">
       <input :id="id"
              v-model="currentValue"
              type="checkbox"
              class="mdc-checkbox__native-control"
-             :name="name"
              :disabled="disabled"
              :value="isMultiple ? value : false"
              @change="handleChange">
       <div class="mdc-checkbox__background">
-        <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-          <path class="mdc-checkbox__checkmark__path"
+        <svg class="mdc-checkbox__checkmark"
+             viewBox="0 0 24 24">
+          <path class="mdc-checkbox__checkmark-path"
                 fill="none"
                 stroke="white"
                 d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
@@ -28,37 +28,45 @@
 </template>
 
 <script>
-import {MDCFormField} from '../../../material-components-web/form-field';
-import {MDCCheckbox} from '../../../material-components-web/checkbox';
+import { MDCFormField } from '../../../material-components-web/form-field';
+import { MDCCheckbox } from '../../../material-components-web/checkbox';
 import UiFormField from './form-field';
 import getType from '../../helpers/typeof';
 import formFieldMixin from '../../mixins/form-field';
+import elementMixin from '../../mixins/element';
 
-const UI_EVENT_CHANGE = 'change';
+// Define constants
+const UI_CHECKBOX = {
+  // STATES: {
+  //   checked,
+  //   indeterminate,
+  //   disabled
+  // },
+  EVENT: {
+    CHANGE: 'change'
+  }
+};
 
 export default {
   name: 'ui-checkbox',
   components: {
     UiFormField
   },
-  mixins: [
-    formFieldMixin
-  ],
+  mixins: [formFieldMixin, elementMixin],
   props: {
-    // state
+    // States
     model: {
       type: [Array, String, Number, Boolean],
       default: false
     },
-    // element attributes
+    // Element attributes
     id: String,
-    name: String,
     disabled: {
       type: Boolean,
       default: false
     },
     value: [String, Number, Boolean],
-    // ui attributes
+    // UI attributes
     cssOnly: {
       type: Boolean,
       default: false
@@ -75,8 +83,7 @@ export default {
     className() {
       return {
         'mdc-checkbox': true,
-        'mdc-checkbox--disabled': this.disabled,
-        'mdc-checkbox--theme-dark': this.dark
+        'mdc-checkbox--disabled': this.disabled
       };
     },
     isMultiple() {
@@ -86,7 +93,7 @@ export default {
   watch: {
     model(val) {
       this.currentValue = val;
-    },
+    }
     // disabled(val) {
     //   if (this.$checkbox && val) {
     //     this.$checkbox.indeterminate = val;
@@ -94,6 +101,9 @@ export default {
     // }
   },
   mounted() {
+    let checkbox = this.$refs.checkbox.querySelector('input');
+    this.initAttributes(checkbox);
+
     if (!this.$checkbox && !this.cssOnly) {
       const formField = new MDCFormField(this.$el);
       this.$checkbox = new MDCCheckbox(this.$refs.checkbox);
@@ -103,7 +113,7 @@ export default {
   },
   methods: {
     handleChange() {
-      this.$emit(UI_EVENT_CHANGE, this.currentValue);
+      this.$emit(UI_CHECKBOX.EVENT.CHANGE, this.currentValue);
     }
   }
 };

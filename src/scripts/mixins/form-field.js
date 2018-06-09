@@ -1,6 +1,6 @@
 export default {
   props: {
-    // ui attributes
+    // UI attributes
     noWrap: {
       type: Boolean,
       default: false
@@ -9,12 +9,8 @@ export default {
       type: Boolean,
       default: false
     },
+    // Position the input after the label
     alignEnd: {
-      type: Boolean,
-      default: false
-    },
-    // theme
-    dark: {
       type: Boolean,
       default: false
     }

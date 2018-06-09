@@ -9,16 +9,13 @@ import formFieldMixin from '../../mixins/form-field';
 
 export default {
   name: 'ui-form-field',
-  mixins: [
-    formFieldMixin
-  ],
+  mixins: [formFieldMixin],
   computed: {
     className() {
       return {
         'mdc-form-field': !this.noWrap,
         'mdc-form-field--block': this.block,
-        'mdc-form-field--align-end': this.alignEnd,
-        'mdc-form-field--theme-dark': this.dark
+        'mdc-form-field--align-end': this.alignEnd
       };
     }
   }

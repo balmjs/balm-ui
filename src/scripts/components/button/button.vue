@@ -15,11 +15,11 @@ import buttonMixin from '../../mixins/button';
 
 // Define constants
 const UI_BUTTON = {
-  EVENT: {
-    CLICK: 'click'
-  },
   CLASSNAME: {
     ICON: 'mdc-button__icon'
+  },
+  EVENT: {
+    CLICK: 'click'
   }
 };
 

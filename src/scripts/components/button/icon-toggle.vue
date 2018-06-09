@@ -22,14 +22,14 @@ const UI_ICONTOGGLE = {
   }
 };
 const MDC_ICONTOGGLE = {
-  EVENT: {
-    CHANGE: `MDCIconToggle:${UI_ICONTOGGLE.EVENT.CHANGE}`
-  },
+  DATA_STATES: ['label', 'content', 'cssClass'],
   STATUS: {
     ON: 'on',
     DISABLED: 'disabled'
   },
-  DATA_STATES: ['label', 'content', 'cssClass']
+  EVENT: {
+    CHANGE: `MDCIconToggle:${UI_ICONTOGGLE.EVENT.CHANGE}`
+  }
 };
 
 export default {

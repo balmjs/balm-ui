@@ -10,13 +10,13 @@ const UI_ICONBUTTON = {
   }
 };
 const MDC_ICONBUTTON = {
-  EVENT: {
-    CHANGE: `MDCIconButtonToggle:${UI_ICONBUTTON.EVENT.CHANGE}`
-  },
+  TOGGLE_STATES: ['label', 'content', 'class'],
   TOGGLE_STATUS: {
     ON: 'on'
   },
-  TOGGLE_STATES: ['label', 'content', 'class']
+  EVENT: {
+    CHANGE: `MDCIconButtonToggle:${UI_ICONBUTTON.EVENT.CHANGE}`
+  }
 };
 
 export default {

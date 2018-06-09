@@ -15,11 +15,11 @@ import getType from '../../helpers/typeof';
 
 // Define constants
 const UI_FAB = {
-  EVENT: {
-    CLICK: 'click'
-  },
   CLASSNAME: {
     ICON: 'mdc-fab__icon'
+  },
+  EVENT: {
+    CLICK: 'click'
   }
 };
 

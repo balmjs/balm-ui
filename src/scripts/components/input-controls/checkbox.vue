@@ -37,11 +37,6 @@ import elementMixin from '../../mixins/element';
 
 // Define constants
 const UI_CHECKBOX = {
-  // STATES: {
-  //   checked,
-  //   indeterminate,
-  //   disabled
-  // },
   EVENT: {
     CHANGE: 'change'
   }
@@ -59,12 +54,16 @@ export default {
       type: [Boolean, Array],
       default: false
     },
-    // Element attributes
-    id: String,
+    indeterminate: {
+      type: Boolean,
+      default: false
+    },
     disabled: {
       type: Boolean,
       default: false
     },
+    // Element attributes
+    id: String,
     value: [String, Number],
     // UI attributes
     cssOnly: {
@@ -93,12 +92,12 @@ export default {
   watch: {
     model(val) {
       this.currentValue = val;
+    },
+    indeterminate(val) {
+      if (this.$checkbox) {
+        this.$checkbox.indeterminate = val;
+      }
     }
-    // disabled(val) {
-    //   if (this.$checkbox && val) {
-    //     this.$checkbox.indeterminate = val;
-    //   }
-    // }
   },
   mounted() {
     const checkbox = this.$refs.checkbox;
@@ -108,12 +107,11 @@ export default {
       const formField = new MDCFormField(this.$el);
       this.$checkbox = new MDCCheckbox(checkbox);
       formField.input = this.$checkbox;
-      // this.$checkbox.indeterminate = this.disabled;
+      this.$checkbox.indeterminate = this.indeterminate;
     }
   },
   methods: {
     handleChange(event) {
-      console.log('handleChange', event.target.value, this.currentValue);
       this.$emit(UI_CHECKBOX.EVENT.CHANGE, this.currentValue);
     }
   }

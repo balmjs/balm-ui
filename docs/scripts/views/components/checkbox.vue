@@ -8,31 +8,15 @@
 
     <section class="example">
       <h2>CSS Only</h2>
-      <ui-checkbox id="basic-checkbox" cssOnly>
-        This is my checkbox
-      </ui-checkbox>
+      <ui-checkbox-demo cssOnly></ui-checkbox-demo>
     </section>
 
     <section class="example">
-      <h2>CSS Only - Disabled</h2>
-      <ui-checkbox id="basic-disabled-checkbox-label" cssOnly disabled>
-        This is my disabled checkbox
-      </ui-checkbox>
+      <h2>With JavaScript</h2>
+      <ui-checkbox-demo></ui-checkbox-demo>
     </section>
 
-    <section class="example">
-      <h2>With Javascript</h2>
-      <ui-checkbox id="native-js-checkbox">
-        This is my checkbox
-      </ui-checkbox>
-    </section>
-
-    <section class="example mdc-theme--dark">
-      <h2>Dark Theme</h2>
-      <ui-checkbox id="checkbox-dark" dark>
-        This is my checkbox
-      </ui-checkbox>
-    </section>
+    <hr>
 
     <section class="example">
       <p>Single checkbox, boolean value: </p>
@@ -54,9 +38,13 @@
 
 <script>
 import snippets from '../../mixins/snippets';
+import UiCheckboxDemo from '../../components/checkbox';
 
 export default {
   mixins: [snippets],
+  components: {
+    UiCheckboxDemo
+  },
   data() {
     return {
       checked: false,

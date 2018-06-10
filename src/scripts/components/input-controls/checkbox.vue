@@ -6,8 +6,8 @@
              v-model="currentValue"
              type="checkbox"
              class="mdc-checkbox__native-control"
+             :value="isMultiple ? value : currentValue"
              :disabled="disabled"
-             :value="isMultiple ? value : false"
              @change="handleChange">
       <div class="mdc-checkbox__background">
         <svg class="mdc-checkbox__checkmark"
@@ -56,7 +56,7 @@ export default {
   props: {
     // States
     model: {
-      type: [Array, String, Number, Boolean],
+      type: [Boolean, Array],
       default: false
     },
     // Element attributes
@@ -65,7 +65,7 @@ export default {
       type: Boolean,
       default: false
     },
-    value: [String, Number, Boolean],
+    value: [String, Number],
     // UI attributes
     cssOnly: {
       type: Boolean,
@@ -101,18 +101,19 @@ export default {
     // }
   },
   mounted() {
-    let checkbox = this.$refs.checkbox.querySelector('input');
-    this.initAttributes(checkbox);
+    const checkbox = this.$refs.checkbox;
+    this.initAttributes(checkbox.querySelector('input'));
 
     if (!this.$checkbox && !this.cssOnly) {
       const formField = new MDCFormField(this.$el);
-      this.$checkbox = new MDCCheckbox(this.$refs.checkbox);
+      this.$checkbox = new MDCCheckbox(checkbox);
       formField.input = this.$checkbox;
       // this.$checkbox.indeterminate = this.disabled;
     }
   },
   methods: {
-    handleChange() {
+    handleChange(event) {
+      console.log('handleChange', event.target.value, this.currentValue);
       this.$emit(UI_CHECKBOX.EVENT.CHANGE, this.currentValue);
     }
   }

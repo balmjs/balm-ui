@@ -1,3 +1,5 @@
+import autoInstall from '../config/auto-install';
+
 const namespace = 'balmUI';
 
 const noop = () => {};
@@ -41,8 +43,6 @@ const BalmUI_EventPlugin = {
   }
 };
 
-if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(BalmUI_EventPlugin);
-}
+autoInstall(BalmUI_EventPlugin);
 
 export default BalmUI_EventPlugin;

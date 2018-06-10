@@ -4,6 +4,7 @@ import UiDialogHeader from '../components/dialog/dialog-header';
 import UiDialogBody from '../components/dialog/dialog-body';
 import UiDialogFooter from '../components/dialog/dialog-footer';
 import UiButton from '../components/button/button';
+import autoInstall from '../config/auto-install';
 
 const DEFAULT_OPTIONS = {
   className: '',
@@ -92,8 +93,6 @@ const BalmUI_ConfirmPlugin = {
   }
 };
 
-if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(BalmUI_ConfirmPlugin);
-}
+autoInstall(BalmUI_ConfirmPlugin);
 
 export default BalmUI_ConfirmPlugin;

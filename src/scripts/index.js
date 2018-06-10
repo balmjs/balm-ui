@@ -101,6 +101,10 @@ import alert from './plugins/alert';
 import confirm from './plugins/confirm';
 import toast from './plugins/toast';
 import validator from './plugins/validator';
+/**
+ * Auto install
+ */
+import autoInstall from './config/auto-install';
 
 const version = require('../../package.json').version;
 const helpers = Object.assign({}, BalmUI_Helpers);
@@ -228,10 +232,7 @@ const BalmUI = Object.assign(
   registers
 );
 
-// Auto install in dist mode
-if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(BalmUI);
-}
+autoInstall(BalmUI);
 
 export default BalmUI;
 export { helpers };

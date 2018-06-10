@@ -1,3 +1,5 @@
+import autoInstall from '../config/auto-install';
+
 const Z_SPACE_MIN = 0;
 const Z_SPACE_MAX = 24;
 
@@ -22,8 +24,6 @@ const BalmUI_ElevationPlugin = {
   }
 };
 
-if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(BalmUI_ElevationPlugin);
-}
+autoInstall(BalmUI_ElevationPlugin);
 
 export default BalmUI_ElevationPlugin;

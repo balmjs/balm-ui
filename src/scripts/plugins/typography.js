@@ -1,3 +1,5 @@
+import autoInstall from '../config/auto-install';
+
 const T_BASE = 'mdc-typography';
 const T_STYLES = [
   'headline1',
@@ -37,8 +39,6 @@ const BalmUI_TypographyPlugin = {
   }
 };
 
-if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(BalmUI_TypographyPlugin);
-}
+autoInstall(BalmUI_TypographyPlugin);
 
 export default BalmUI_TypographyPlugin;

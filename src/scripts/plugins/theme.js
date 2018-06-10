@@ -1,3 +1,5 @@
+import autoInstall from '../config/auto-install';
+
 const THEME_COLORS = [
   'primary',
   'primary-light',
@@ -55,8 +57,6 @@ const BalmUI_ThemePlugin = {
   }
 };
 
-if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(BalmUI_ThemePlugin);
-}
+autoInstall(BalmUI_ThemePlugin);
 
 export default BalmUI_ThemePlugin;

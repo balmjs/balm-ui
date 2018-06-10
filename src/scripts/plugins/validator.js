@@ -1,4 +1,5 @@
 import getType from '../helpers/typeof';
+import autoInstall from '../config/auto-install';
 
 const defaultRules = {
   required: {
@@ -98,8 +99,6 @@ const BalmUI_ValidatorPlugin = {
   }
 };
 
-if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(BalmUI_ValidatorPlugin);
-}
+autoInstall(BalmUI_ValidatorPlugin);
 
 export default BalmUI_ValidatorPlugin;

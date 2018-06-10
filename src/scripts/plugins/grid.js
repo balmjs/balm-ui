@@ -1,3 +1,5 @@
+import autoInstall from '../config/auto-install';
+
 const GRID_PROPERTY = ['margin', 'gutter', 'column-width'];
 const SCREEN_SIZE = ['desktop', 'tablet', 'phone'];
 
@@ -24,8 +26,6 @@ const BalmUI_GridPlugin = {
   }
 };
 
-if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(BalmUI_GridPlugin);
-}
+autoInstall(BalmUI_GridPlugin);
 
 export default BalmUI_GridPlugin;

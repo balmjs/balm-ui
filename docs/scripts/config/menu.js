@@ -81,6 +81,11 @@ const MATERIAL_COMPONENTS = [
         description: 'Various card layout styles'
       },
       {
+        icon: 'component',
+        name: 'Chips',
+        description: 'Chips for actions, selection, and input '
+      },
+      {
         icon: 'card',
         name: 'Grid list',
         description: '2D grid layouts',

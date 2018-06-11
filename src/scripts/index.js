@@ -64,6 +64,12 @@ import UiCardMediaContent from './components/card/card-media-content';
 import UiCardActions from './components/card/card-actions';
 import UiCardButtons from './components/card/card-buttons';
 import UiCardIcons from './components/card/card-icons';
+import UiChipSet from './components/chips/chip-set';
+import UiChip from './components/chips/chip';
+import UiChipText from './components/chips/chip-text';
+import UiChipLeadingIcon from './components/chips/chip-icon-leading';
+import UiChipTrailingIcon from './components/chips/chip-icon-trailing';
+import UiChipCheckmark from './components/chips/chip-checkmark';
 import UiGridList from './components/grid-list/grid-list';
 import UiGridTile from './components/grid-list/grid-tile';
 import UiGridTileTitle from './components/grid-list/grid-tile-title';
@@ -163,6 +169,12 @@ const components = {
   UiCardActions,
   UiCardButtons,
   UiCardIcons,
+  UiChipSet,
+  UiChip,
+  UiChipText,
+  UiChipLeadingIcon,
+  UiChipTrailingIcon,
+  UiChipCheckmark,
   UiGridList,
   UiGridTile,
   UiGridTileTitle,

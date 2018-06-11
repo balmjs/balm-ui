@@ -1,4 +1,5 @@
 const Card = () => import('../views/components/card');
+const Chips = () => import('../views/components/chips');
 const GridList = () => import('../views/grid-list');
 const List = () => import('../views/list');
 // const Table = () => import('../views/table');
@@ -8,32 +9,22 @@ const dataRoutes = [
   {
     path: '/card',
     name: 'card',
-    component: Card,
-    meta: {
-      title: 'BalmUI - Card',
-      keywords: '',
-      description: ''
-    }
+    component: Card
+  },
+  {
+    path: '/chips',
+    name: 'chips',
+    component: Chips
   },
   {
     path: '/grid-list',
     name: 'grid-list',
-    component: GridList,
-    meta: {
-      title: 'BalmUI - Grid List',
-      keywords: '',
-      description: ''
-    }
+    component: GridList
   },
   {
     path: '/list',
     name: 'list',
-    component: List,
-    meta: {
-      title: 'BalmUI - List',
-      keywords: '',
-      description: ''
-    }
+    component: List
   }
 ];
 

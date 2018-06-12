@@ -35,8 +35,7 @@ export default {
   data() {
     return {
       $iconButton: null,
-      canRendering: false,
-      currentValue: this.model
+      canRendering: false
     };
   },
   computed: {
@@ -45,18 +44,20 @@ export default {
         'mdc-icon-button': true,
         'material-icons': !this.iconInnerSelector
       };
+    },
+    isToggleButton() {
+      return !!(this.on && this.off);
     }
   },
   watch: {
     model(val) {
-      if (this.isToggleButton()) {
-        this.currentValue = val;
+      if (this.isToggleButton) {
         this.updateStatus(MDC_ICONBUTTON.TOGGLE_STATUS.ON, val);
       }
     }
   },
   created() {
-    if (this.isToggleButton()) {
+    if (this.isToggleButton) {
       if (
         this.isValidToggleState(this.on) &&
         this.isValidToggleState(this.off)
@@ -73,7 +74,7 @@ export default {
   },
   mounted() {
     if (this.canRendering && !this.$iconButton) {
-      if (this.isToggleButton()) {
+      if (this.isToggleButton) {
         this.initToggleState('on');
         this.initToggleState('off');
 
@@ -83,20 +84,17 @@ export default {
           this.$emit(UI_ICONBUTTON.EVENT.CHANGE, detail.isOn);
         });
 
-        this.updateStatus(MDC_ICONBUTTON.TOGGLE_STATUS.ON, this.currentValue);
+        this.updateStatus(MDC_ICONBUTTON.TOGGLE_STATUS.ON, this.model);
       } else {
         new MDCIconButtonToggle(this.$el);
       }
     }
   },
   methods: {
-    isToggleButton() {
-      return this.on && this.off;
-    },
-    isValidToggleState(value) {
-      return value
-        ? Object.keys(value).some(currentValue =>
-            MDC_ICONBUTTON.TOGGLE_STATES.includes(currentValue)
+    isValidToggleState(states) {
+      return states
+        ? Object.keys(states).some(state =>
+            MDC_ICONBUTTON.TOGGLE_STATES.includes(state)
           )
         : false;
     },
@@ -119,7 +117,7 @@ export default {
       }
     },
     handleClick(event) {
-      if (!this.isToggleButton()) {
+      if (!this.isToggleButton) {
         this.$emit(UI_ICONBUTTON.EVENT.CLICK, event);
       }
     }

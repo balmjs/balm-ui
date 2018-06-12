@@ -2,7 +2,7 @@
   <span role="button"
         :class="className"
         :tabindex="currentTabindex"
-        :aria-pressed="currentValue"
+        :aria-pressed="model"
         :aria-disabled="disabled"
         :data-icon-inner-selector="iconInnerSelector"
         :data-toggle-on="toggleOnState"
@@ -62,8 +62,7 @@ export default {
   data() {
     return {
       $iconToggle: null,
-      canRendering: false,
-      currentValue: this.model
+      canRendering: false
     };
   },
   computed: {
@@ -92,7 +91,6 @@ export default {
   watch: {
     model(val) {
       if (!this.disabled) {
-        this.currentValue = val;
         this.updateStatus(MDC_ICONTOGGLE.STATUS.ON, val);
       }
     },
@@ -117,15 +115,15 @@ export default {
         this.$emit(UI_ICONTOGGLE.EVENT.CHANGE, detail.isOn);
       });
 
-      this.updateStatus(MDC_ICONTOGGLE.STATUS.ON, this.currentValue);
+      this.updateStatus(MDC_ICONTOGGLE.STATUS.ON, this.model);
       this.updateStatus(MDC_ICONTOGGLE.STATUS.DISABLED, this.disabled);
     }
   },
   methods: {
-    isValidToggleState(value) {
-      return value
-        ? Object.keys(value).some(currentValue =>
-            MDC_ICONTOGGLE.DATA_STATES.includes(currentValue)
+    isValidToggleState(states) {
+      return states
+        ? Object.keys(states).some(prop =>
+            MDC_ICONTOGGLE.DATA_STATES.includes(prop)
           )
         : false;
     },

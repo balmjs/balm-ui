@@ -1,7 +1,8 @@
 <template>
   <button type="button"
     :class="[className, actionClassName]"
-    :data-icon-inner-selector="iconInnerSelector">
+    :data-icon-inner-selector="iconInnerSelector"
+    @click="handleClick">
     <slot></slot>
   </button>
 </template>

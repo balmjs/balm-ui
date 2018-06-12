@@ -112,7 +112,11 @@ export default {
   },
   methods: {
     handleChange(event) {
-      this.$emit(UI_CHECKBOX.EVENT.CHANGE, this.currentValue);
+      let result = this.isMultiple
+        ? Object.assign([], this.currentValue)
+        : this.currentValue;
+
+      this.$emit(UI_CHECKBOX.EVENT.CHANGE, result);
     }
   }
 };

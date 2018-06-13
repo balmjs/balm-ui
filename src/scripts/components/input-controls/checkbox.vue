@@ -3,10 +3,11 @@
     <slot name="before"></slot>
     <div ref="checkbox" :class="className">
       <input :id="id"
-             v-model="currentValue"
+             v-model="checkedValue"
              type="checkbox"
              class="mdc-checkbox__native-control"
-             :value="isMultiple ? value : currentValue"
+             :name="name"
+             :value="isMultiple ? value : checkedValue"
              :disabled="disabled"
              @change="handleChange">
       <div class="mdc-checkbox__background">
@@ -48,9 +49,13 @@ export default {
     UiFormField
   },
   mixins: [formFieldMixin, elementMixin],
+  model: {
+    prop: 'checked',
+    event: 'change'
+  },
   props: {
     // States
-    model: {
+    checked: {
       type: [Boolean, Array],
       default: false
     },
@@ -64,6 +69,7 @@ export default {
     },
     // Element attributes
     id: String,
+    name: String,
     value: [String, Number],
     // UI attributes
     cssOnly: {
@@ -75,7 +81,7 @@ export default {
   data() {
     return {
       $checkbox: null,
-      currentValue: this.model
+      checkedValue: this.checked
     };
   },
   computed: {
@@ -86,12 +92,12 @@ export default {
       };
     },
     isMultiple() {
-      return getType(this.currentValue) === 'array';
+      return getType(this.checkedValue) === 'array';
     }
   },
   watch: {
-    model(val) {
-      this.currentValue = val;
+    checked(val) {
+      this.checkedValue = val;
     },
     indeterminate(val) {
       this.$checkbox.indeterminate =
@@ -106,14 +112,15 @@ export default {
       const formField = new MDCFormField(this.$el);
       this.$checkbox = new MDCCheckbox(checkbox);
       formField.input = this.$checkbox;
+
       this.$checkbox.indeterminate = this.indeterminate;
     }
   },
   methods: {
     handleChange(event) {
       let result = this.isMultiple
-        ? Object.assign([], this.currentValue)
-        : this.currentValue;
+        ? Object.assign([], this.checkedValue)
+        : this.checkedValue;
 
       this.$emit(UI_CHECKBOX.EVENT.CHANGE, result);
     }

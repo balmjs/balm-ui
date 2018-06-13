@@ -20,16 +20,26 @@
 
     <section class="example">
       <p>Single checkbox, boolean value: </p>
+      <!-- v-model -->
       <ui-checkbox id="checkbox" v-model="checked">
         {{checked}}
       </ui-checkbox>
+      <!-- model -->
+      <!-- <ui-checkbox id="checkbox" :model="checked" @change="balmUI.onChange('checked', $event)">
+        {{checked}}
+      </ui-checkbox> -->
     </section>
 
     <section class="example">
       <p>Multiple checkboxes, bound to the same Array: {{checkedNames}}</p>
+      <!-- v-model -->
       <ui-checkbox id="jack" value="Jack" v-model="checkedNames">Jack</ui-checkbox>
       <ui-checkbox id="john" value="John" v-model="checkedNames">John</ui-checkbox>
       <ui-checkbox id="mike" value="Mike" v-model="checkedNames">Mike</ui-checkbox>
+      <!-- model -->
+      <!-- <ui-checkbox id="jack" value="Jack" :model="checkedNames" @change="balmUI.onChange('checkedNames', $event)">Jack</ui-checkbox>
+      <ui-checkbox id="john" value="John" :model="checkedNames" @change="balmUI.onChange('checkedNames', $event)">John</ui-checkbox>
+      <ui-checkbox id="mike" value="Mike" :model="checkedNames" @change="balmUI.onChange('checkedNames', $event)">Mike</ui-checkbox> -->
     </section>
 
     <!-- <ui-apidoc name="checkbox"></ui-apidoc> -->

@@ -50,12 +50,12 @@ export default {
   },
   mixins: [formFieldMixin, elementMixin],
   model: {
-    prop: 'checked',
-    event: 'change'
+    prop: 'model',
+    event: UI_CHECKBOX.EVENT.CHANGE
   },
   props: {
     // States
-    checked: {
+    model: {
       type: [Boolean, Array],
       default: false
     },
@@ -81,7 +81,7 @@ export default {
   data() {
     return {
       $checkbox: null,
-      checkedValue: this.checked
+      checkedValue: this.model
     };
   },
   computed: {
@@ -96,7 +96,7 @@ export default {
     }
   },
   watch: {
-    checked(val) {
+    model(val) {
       this.checkedValue = val;
     },
     indeterminate(val) {

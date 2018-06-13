@@ -7,7 +7,7 @@
              type="checkbox"
              class="mdc-checkbox__native-control"
              :name="name"
-             :value="isMultiple ? value : checkedValue"
+             :value="value"
              :disabled="disabled"
              @change="handleChange">
       <div class="mdc-checkbox__background">
@@ -90,9 +90,6 @@ export default {
         'mdc-checkbox': true,
         'mdc-checkbox--disabled': this.disabled
       };
-    },
-    isMultiple() {
-      return getType(this.checkedValue) === 'array';
     }
   },
   watch: {
@@ -118,9 +115,10 @@ export default {
   },
   methods: {
     handleChange(event) {
-      let result = this.isMultiple
-        ? Object.assign([], this.checkedValue)
-        : this.checkedValue;
+      let result =
+        getType(this.checkedValue) === 'array'
+          ? Object.assign([], this.checkedValue)
+          : this.checkedValue;
 
       this.$emit(UI_CHECKBOX.EVENT.CHANGE, result);
     }

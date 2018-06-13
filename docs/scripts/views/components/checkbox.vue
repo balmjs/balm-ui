@@ -51,10 +51,10 @@ import snippets from '../../mixins/snippets';
 import UiCheckboxDemo from '../../components/checkbox';
 
 export default {
-  mixins: [snippets],
   components: {
     UiCheckboxDemo
   },
+  mixins: [snippets],
   data() {
     return {
       checked: false,

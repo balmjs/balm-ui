@@ -32,10 +32,10 @@ import snippets from '../../mixins/snippets';
 import UiButtonDemo from '../../components/button';
 
 export default {
-  mixins: [snippets],
   components: {
     UiButtonDemo
   },
+  mixins: [snippets],
   data() {
     return {
       disabled: false

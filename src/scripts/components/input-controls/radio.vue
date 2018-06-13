@@ -1,14 +1,14 @@
 <template>
-  <ui-form-field :block="block" :alignEnd="alignEnd" :dark="dark">
+  <ui-form-field :block="block" :alignEnd="alignEnd">
     <slot name="before"></slot>
     <div ref="radio" :class="className">
       <input :id="id"
-             v-model="currentValue"
+             v-model="checkedValue"
              type="radio"
              class="mdc-radio__native-control"
              :name="name"
-             :disabled="disabled"
              :value="value"
+             :disabled="disabled"
              @change="handleChange">
       <div class="mdc-radio__background">
         <div class="mdc-radio__outer-circle"></div>
@@ -23,36 +23,44 @@
 </template>
 
 <script>
-import {MDCFormField} from '../../../material-components-web/form-field';
-import {MDCRadio} from '../../../material-components-web/radio';
+import { MDCFormField } from '../../../material-components-web/form-field';
+import { MDCRadio } from '../../../material-components-web/radio';
 import UiFormField from './form-field';
 import formFieldMixin from '../../mixins/form-field';
+import elementMixin from '../../mixins/element';
 
-const UI_EVENT_CHANGE = 'change';
+// Define constants
+const UI_RADIO = {
+  EVENT: {
+    CHANGE: 'change'
+  }
+};
 
 export default {
   name: 'ui-radio',
   components: {
     UiFormField
   },
-  mixins: [
-    formFieldMixin
-  ],
+  mixins: [formFieldMixin, elementMixin],
+  model: {
+    prop: 'model',
+    event: UI_RADIO.EVENT.CHANGE
+  },
   props: {
-    // state
+    // States
     model: {
       type: [String, Number, Boolean],
       default: false
     },
-    // element attributes
-    id: String,
-    name: String,
     disabled: {
       type: Boolean,
       default: false
     },
+    // Element attributes
+    id: String,
+    name: String,
     value: [String, Number, Boolean],
-    // ui attributes
+    // UI attributes
     cssOnly: {
       type: Boolean,
       default: false
@@ -62,7 +70,7 @@ export default {
   data() {
     return {
       $radio: null,
-      currentValue: this.model
+      checkedValue: this.model
     };
   },
   computed: {
@@ -75,20 +83,24 @@ export default {
   },
   watch: {
     model(val) {
-      this.currentValue = val;
+      this.checkedValue = val;
     }
   },
   mounted() {
+    const radio = this.$refs.radio;
+    this.initAttributes(radio.querySelector('input'));
+
     if (!this.$radio && !this.cssOnly) {
       const formField = new MDCFormField(this.$el);
-      this.$radio = new MDCRadio(this.$refs.radio);
+      this.$radio = new MDCRadio(radio);
       formField.input = this.$radio;
-      this.$radio.checked = this.currentValue == this.value;
+
+      this.$radio.checked = this.checkedValue == this.value;
     }
   },
   methods: {
     handleChange() {
-      this.$emit(UI_EVENT_CHANGE, this.currentValue);
+      this.$emit(UI_RADIO.EVENT.CHANGE, this.checkedValue);
     }
   }
 };

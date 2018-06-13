@@ -94,9 +94,8 @@ export default {
       this.currentValue = val;
     },
     indeterminate(val) {
-      if (this.$checkbox) {
-        this.$checkbox.indeterminate = val;
-      }
+      this.$checkbox.indeterminate =
+        val === this.$checkbox.indeterminate ? !val : val;
     }
   },
   mounted() {

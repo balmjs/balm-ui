@@ -1,10 +1,70 @@
 <template>
   <div class="demo--textfield">
     <section class="hero">
-      <ui-textfield>Text Field</ui-textfield>
+      <ui-textfield id="my-text-field">Text Field</ui-textfield>
     </section>
 
-    <section class="example interactive-demo">
+    <section class="example">
+      <h2>Full Functionality JS Component (Floating Label, Validation)</h2>
+      <section id="demo-text-field-wrapper" :dir="useRTL ? 'rtl' : false">
+        <ui-textfield id="full-func-text-field"
+          helptextId="my-text-field-helper-text"
+          :class="{'demo-text-field-custom-colors': useCustomColor}"
+          :disabled="useDisabled"
+          :dense="useDense"
+          :required="useRequired">
+          Email Address
+        </ui-textfield>
+        <ui-textfield-helptext v-if="useHelperText"
+          id="my-text-field-helper-text"
+          :visible="isVisible"
+          :validMsg="isValidMsg">
+          Helper Text (possibly validation message)
+        </ui-textfield-helptext>
+      </section>
+      <div>
+        <ui-checkbox id="disable" v-model="useDisabled">
+          Disabled
+        </ui-checkbox>
+      </div>
+      <div>
+        <ui-checkbox id="rtl" v-model="useRTL">
+          RTL
+        </ui-checkbox>
+      </div>
+      <div>
+        <ui-checkbox id="dense" v-model="useDense">
+          Dense
+        </ui-checkbox>
+      </div>
+      <div>
+        <ui-checkbox id="required" v-model="useRequired">
+          Required
+        </ui-checkbox>
+      </div>
+      <div>
+        <ui-checkbox id="alternate-colors" v-model="useCustomColor">
+          Alternate Colors
+        </ui-checkbox>
+      </div>
+      <div>
+        <ui-checkbox id="use-helper-text" v-model="useHelperText">
+          Use Helper Text
+        </ui-checkbox>
+      </div>
+      <div>
+        <ui-checkbox id="persistent-helper-text" v-model="isVisible" :disabled="!useHelperText">
+          Make helper text persistent
+        </ui-checkbox>
+      </div>
+      <div>
+        <ui-checkbox id="helper-text-as-validation" v-model="isValidMsg" :disabled="!useHelperText">
+          Use helper text as validation message
+        </ui-checkbox>
+      </div>
+    </section>
+
+    <!-- <section class="example interactive-demo">
       <h2>Full Functionality JS Component (Floating Label, Validation)</h2>
       <section id="demo-textfield-wrapper"
         :class="{'mdc-theme--dark': useDarkTheme}"
@@ -98,14 +158,12 @@
       <h2>Textfield - Leading/Trailing icons</h2>
       <div id="demo-tf-box-leading-wrapper">
         <ui-textfield id="tf-box-leading" box leadingIcon="event">
-          <!-- <ui-icon slot="before" tabindex="0">event</ui-icon> -->
           Your name
         </ui-textfield>
       </div>
       <div id="demo-tf-box-trailing-wrapper">
         <ui-textfield id="tf-box-trailing" box trailingIcon="delete">
           Your other name
-          <!-- <ui-icon slot="after" tabindex="0">delete</ui-icon> -->
         </ui-textfield>
       </div>
     </section>
@@ -169,14 +227,14 @@
           class="full-width-textarea-example"
           rows="8" cols="40">Textarea Label</ui-textfield>
       </div>
-    </section>
+    </section> -->
 
     <!-- <ui-apidoc name="textfield"></ui-apidoc> -->
   </div>
 </template>
 
 <script>
-import snippets from '../mixins/snippets';
+import snippets from '../../mixins/snippets';
 
 export default {
   mixins: [snippets],
@@ -184,40 +242,61 @@ export default {
     return {
       useDisabled: false,
       useRTL: false,
-      useDarkTheme: false,
       useDense: false,
       useRequired: false,
-      useHelptext: false,
-      showHelptext: false,
-      useValidation: false,
-      text: '',
-      msg: 'Help Text (possibly validation message)'
+      useCustomColor: false,
+      useHelperText: false,
+      isVisible: false,
+      isValidMsg: false
+      // text: '',
+      // msg: 'Help Text (possibly validation message)'
     };
   },
-  methods: {
-    onFocus(event) {
-      console.log('onFocus', event);
-    },
-    onBlur({valid, message}) {
-      if (this.useValidation) {
-        this.msg = message;
-      } else {
-        this.msg = 'Help Text (possibly validation message)';
-      }
-    },
-    onInput(value) {
-      console.log('onInput', value);
-      this.text = value;
-    },
-    onKeydown(event) {
-      console.log('onKeydown', event);
-    },
-    onEnter(value) {
-      console.log('onEnter', value);
-    }
-  },
+  // methods: {
+  //   onFocus(event) {
+  //     console.log('onFocus', event);
+  //   },
+  //   onBlur({ valid, message }) {
+  //     if (this.useValidation) {
+  //       this.msg = message;
+  //     } else {
+  //       this.msg = 'Help Text (possibly validation message)';
+  //     }
+  //   },
+  //   onInput(value) {
+  //     console.log('onInput', value);
+  //     this.text = value;
+  //   },
+  //   onKeydown(event) {
+  //     console.log('onKeydown', event);
+  //   },
+  //   onEnter(value) {
+  //     console.log('onEnter', value);
+  //   }
+  // },
   created() {
     // this.showCode('textfield', 6);
   }
 };
 </script>
+
+<style scoped>
+.example {
+  margin: 24px;
+  padding: 24px;
+}
+
+.hero .mdc-text-field {
+  min-width: 240px;
+}
+
+.demo-note {
+  padding: 20px;
+  margin: 20px 0;
+  background-color: #f2f2f2;
+}
+
+.full-width-textarea-example {
+  margin-top: 16px;
+}
+</style>

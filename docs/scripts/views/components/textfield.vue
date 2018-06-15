@@ -6,228 +6,98 @@
 
     <section class="example">
       <h2>Full Functionality JS Component (Floating Label, Validation)</h2>
-      <section id="demo-text-field-wrapper" :dir="useRTL ? 'rtl' : false">
+      <section id="demo-text-field-wrapper" :dir="value.rtl ? 'rtl' : false">
         <ui-textfield id="full-func-text-field"
           helptextId="my-text-field-helper-text"
-          :class="{'demo-text-field-custom-colors': useCustomColor}"
-          :disabled="useDisabled"
-          :dense="useDense"
-          :required="useRequired">
+          :class="{'demo-text-field-custom-colors': value.customColor}"
+          :disabled="value.disabled"
+          :dense="value.dense"
+          :required="value.required">
           Email Address
         </ui-textfield>
-        <ui-textfield-helptext v-if="useHelperText"
+        <ui-textfield-helptext v-if="value.helperText"
           id="my-text-field-helper-text"
-          :visible="isVisible"
-          :validMsg="isValidMsg">
+          :visible="value.isVisible"
+          :validMsg="value.isValidMsg">
           Helper Text (possibly validation message)
         </ui-textfield-helptext>
       </section>
-      <div>
-        <ui-checkbox id="disable" v-model="useDisabled">
-          Disabled
-        </ui-checkbox>
-      </div>
-      <div>
-        <ui-checkbox id="rtl" v-model="useRTL">
-          RTL
-        </ui-checkbox>
-      </div>
-      <div>
-        <ui-checkbox id="dense" v-model="useDense">
-          Dense
-        </ui-checkbox>
-      </div>
-      <div>
-        <ui-checkbox id="required" v-model="useRequired">
-          Required
-        </ui-checkbox>
-      </div>
-      <div>
-        <ui-checkbox id="alternate-colors" v-model="useCustomColor">
-          Alternate Colors
-        </ui-checkbox>
-      </div>
-      <div>
-        <ui-checkbox id="use-helper-text" v-model="useHelperText">
-          Use Helper Text
-        </ui-checkbox>
-      </div>
-      <div>
-        <ui-checkbox id="persistent-helper-text" v-model="isVisible" :disabled="!useHelperText">
-          Make helper text persistent
-        </ui-checkbox>
-      </div>
-      <div>
-        <ui-checkbox id="helper-text-as-validation" v-model="isValidMsg" :disabled="!useHelperText">
-          Use helper text as validation message
-        </ui-checkbox>
-      </div>
-    </section>
-
-    <!-- <section class="example interactive-demo">
-      <h2>Full Functionality JS Component (Floating Label, Validation)</h2>
-      <section id="demo-textfield-wrapper"
-        :class="{'mdc-theme--dark': useDarkTheme}"
-        :dir="useRTL ? 'rtl' : false">
-        <ui-textfield
-          id="my-textfield"
-          name="email"
-          helptextId="my-textfield-helptext"
-          autocomplete="email"
-          :disabled="useDisabled"
-          :dense="useDense"
-          :required="useRequired"
-          :model="text"
-          pattern="\w{4,8}"
-          @focus="onFocus"
-          @blur="onBlur"
-          @input="onInput"
-          @keydown="onKeydown"
-          @enter="onEnter">Email Address</ui-textfield>
-        <ui-textfield-helptext v-if="useHelptext" id="my-textfield-helptext"
-          :show="showHelptext"
-          :msg="msg">
-        </ui-textfield-helptext>
-      </section>
-      <p>
-        <ui-checkbox :model="useDisabled" @change="balmUI.onChange('useDisabled', $event)">
-          Disabled
-        </ui-checkbox>
-      </p>
-      <p>
-        <ui-checkbox :model="useRTL" @change="balmUI.onChange('useRTL', $event)">
-          RTL
-        </ui-checkbox>
-      </p>
-      <p>
-        <ui-checkbox :model="useDarkTheme" @change="balmUI.onChange('useDarkTheme', $event)">
-          Dark Theme
-        </ui-checkbox>
-      </p>
-      <p>
-        <ui-checkbox :model="useDense" @change="balmUI.onChange('useDense', $event)">
-          Dense
-        </ui-checkbox>
-      </p>
-      <p>
-        <ui-checkbox :model="useRequired" @change="balmUI.onChange('useRequired', $event)">
-          Required
-        </ui-checkbox>
-      </p>
-      <p>
-        <ui-checkbox :model="useHelptext" @change="balmUI.onChange('useHelptext', $event)">
-          Use Help Text
-        </ui-checkbox>
-      </p>
-      <p>
-        <ui-checkbox :disabled="!useHelptext" :model="showHelptext" @change="balmUI.onChange('showHelptext', $event)">
-          Make helper text persistent
-        </ui-checkbox>
-      </p>
-      <p>
-        <ui-checkbox :disabled="!useHelptext" :model="useValidation" @change="balmUI.onChange('useValidation', $event)">
-          Use helper text as validation message
-        </ui-checkbox>
-      </p>
+      <ui-textfield-options
+        :options="['disabled', 'rtl', 'dense', 'required', 'customColor', 'helperText']"
+        v-model="value"></ui-textfield-options>
     </section>
 
     <section class="example">
       <h2>Password field with validation</h2>
-      <ui-textfield
+      <ui-textfield type="password"
         required
         pattern=".{8,}"
-        type="password"
         id="pw"
-        helptext="pw-validation-msg"
-        autocomplete="current-password">Choose password</ui-textfield>
-      <ui-textfield-helptext id="pw-validation-msg" show msg="Must be at least 8 characters long"></ui-textfield-helptext>
+        helptextId="pw-validation-msg"
+        autocomplete="current-password">
+        Choose password
+      </ui-textfield>
+      <ui-textfield-helptext id="pw-validation-msg"
+        visible
+        validMsg>
+        Must be at least 8 characters long
+      </ui-textfield-helptext>
     </section>
 
     <section class="example">
-      <h2>Textfield box</h2>
-      <ui-textfield
-        box
-        required
-        pattern=".{8,}"
-        id="tf-box"
-        helptext="name-validation-message">Your Name</ui-textfield>
-      <ui-textfield-helptext id="name-validation-message" show msg="Must be at least 8 characters"></ui-textfield-helptext>
-    </section>
-
-    <section class="example">
-      <h2>Textfield - Leading/Trailing icons</h2>
-      <div id="demo-tf-box-leading-wrapper">
-        <ui-textfield id="tf-box-leading" box leadingIcon="event">
-          Your name
+      <h2>Outlined Text Field</h2>
+      <div id="demo-tf-outlined-wrapper" :dir="value.rtl ? 'rtl' : false">
+        <ui-textfield id="tf-outlined-input"
+          outlined
+          helptextId="name-validation-message"
+          :class="{'demo-text-field-custom-colors': value.customColor}"
+          :disabled="value.disabled"
+          :dense="value.dense"
+          :required="value.required"
+          :attrs="{
+            minlength: value.min ? 8 : 0,
+            maxlength: value.max ? 10 : -1
+          }">
+          Your Name
         </ui-textfield>
+        <ui-textfield-helptext id="name-validation-message" validMsg>
+          {{ value.min
+              ? 'Must be at least 8 characters'
+              : 'Helper Text (possibly validation message)' }}
+        </ui-textfield-helptext>
       </div>
-      <div id="demo-tf-box-trailing-wrapper">
-        <ui-textfield id="tf-box-trailing" box trailingIcon="delete">
-          Your other name
-        </ui-textfield>
-      </div>
+      <ui-textfield-options idPrefix="outlined"
+        :options="['disabled', 'rtl', 'dense', 'required', 'customColor', 'min', 'max']"
+        v-model="value"></ui-textfield-options>
     </section>
 
-    <section class="example">
-      <h2>CSS Only</h2>
-      <ui-form-field alignEnd>
-        <ui-textfield
-          cssOnly
-          id="css-only-textfield"
-          placeholder="Name"></ui-textfield>
-        <label for="css-only-textfield">Your name:</label>
-      </ui-form-field>
-    </section>
-    <section class="example">
-      <h2>CSS Only Textfield box</h2>
-      <ui-form-field>
-        <label for="css-only-textfield-box">Your name:</label>
-        <ui-textfield
-          cssOnly
+    <section class="example" id="text-field-box-example">
+      <h2>Text Field box</h2>
+      <div id="demo-tf-box-wrapper" :dir="value.rtl ? 'rtl' : false">
+        <ui-textfield id="tf-box"
           box
-          id="css-only-textfield-box"
-          placeholder="Name"></ui-textfield>
-      </ui-form-field>
-    </section>
-    <section class="example">
-      <h2>Preventing FOUC</h2>
-      <ui-textfield
-        noWrap
-        id="fouc"
-        model="Pre-filled value"
-        floatAbove
-        label="Label floating above"></ui-textfield>
-    </section>
-
-    <section class="example">
-      <h2>Textarea</h2>
-      <section id="demo-textfield-textarea-wrapper">
-        <ui-textfield type="textarea"
-          rows="8" cols="40"
-          id="textarea">Textarea Label</ui-textfield>
-      </section>
-    </section>
-
-    <section class="example">
-      <h2>CSS Only Textarea</h2>
-      <section>
-        <ui-textfield cssOnly
-          type="textarea"
-          rows="8" cols="40"
-          id="textarea-css-only"
-          placeholder="Enter something about yourself"></ui-textfield>
-      </section>
-    </section>
-
-    <section class="example">
-      <h2>Full-Width Textfield and Textarea</h2>
-      <div id="demo-fullwidth-wrapper">
-        <ui-textfield fullwidth placeholder="Subject"></ui-textfield>
-        <ui-textfield fullwidth type="textarea"
-          class="full-width-textarea-example"
-          rows="8" cols="40">Textarea Label</ui-textfield>
+          helptextId="box-name-validation-message"
+          :class="{'demo-text-field-custom-colors': value.customColor}"
+          :disabled="value.disabled"
+          :dense="value.dense"
+          :required="value.required"
+          :attrs="{
+            minlength: value.min ? 8 : 0
+          }">
+          Your Name
+        </ui-textfield>
+        <ui-textfield-helptext v-if="value.helperText"
+          id="box-name-validation-message"
+          :visible="value.isVisible">
+          {{ value.min
+              ? 'Must be at least 8 characters'
+              : 'Helper Text (possibly validation message)' }}
+        </ui-textfield-helptext>
       </div>
-    </section> -->
+      <ui-textfield-options
+        :options="['disabled', 'rtl', 'dense', 'required', 'customColor', 'helperText', 'min']"
+        v-model="value"></ui-textfield-options>
+    </section>
 
     <!-- <ui-apidoc name="textfield"></ui-apidoc> -->
   </div>
@@ -235,21 +105,27 @@
 
 <script>
 import snippets from '../../mixins/snippets';
+import UiTextfieldOptions from '../../components/textfield-options';
 
 export default {
+  components: {
+    UiTextfieldOptions
+  },
   mixins: [snippets],
   data() {
     return {
-      useDisabled: false,
-      useRTL: false,
-      useDense: false,
-      useRequired: false,
-      useCustomColor: false,
-      useHelperText: false,
-      isVisible: false,
-      isValidMsg: false
-      // text: '',
-      // msg: 'Help Text (possibly validation message)'
+      value: {
+        disabled: false,
+        rtl: false,
+        dense: false,
+        required: false,
+        customColor: false,
+        helperText: false,
+        isVisible: false,
+        isValidMsg: false,
+        min: false,
+        max: false
+      }
     };
   },
   // methods: {

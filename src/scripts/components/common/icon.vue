@@ -1,11 +1,16 @@
 <template>
-  <i :class="className" aria-hidden="true">
+  <i :class="className" aria-hidden="true" @click="handleClick">
     <slot><!-- Custom Icon --></slot>
   </i>
 </template>
 
 <script>
-const DEFAULT_SIZE = 24;
+const UI_ICON = {
+  DEFAULT_SIZE: 24,
+  EVENT: {
+    CLICK: 'click'
+  }
+};
 
 export default {
   name: 'ui-icon',
@@ -13,7 +18,7 @@ export default {
     // UI attributes
     size: {
       type: [Number, String],
-      default: DEFAULT_SIZE
+      default: UI_ICON.DEFAULT_SIZE
     },
     dark: {
       type: Boolean,
@@ -37,11 +42,16 @@ export default {
         'md-inactive': this.inactive
       };
 
-      if (+this.size !== DEFAULT_SIZE && this.size > 0) {
+      if (+this.size !== UI_ICON.DEFAULT_SIZE && this.size > 0) {
         result[`md-${this.size}`] = true;
       }
 
       return result;
+    }
+  },
+  methods: {
+    handleClick(event) {
+      this.$emit(UI_ICON.EVENT.CLICK, event);
     }
   }
 };

@@ -1,10 +1,12 @@
 <template>
   <div :class="className.outer">
-    <template v-if="leadingIcon">
-      <ui-icon v-if="isMaterialIcon" :class="'mdc-text-field__icon'" :tabindex="clickable">
+    <template v-if="hasIcon">
+      <ui-textfield-icon v-if="isMaterialIcon"
+        :unclickable="leadingIconUnclickable"
+        @click="handleLeadingIcon">
         {{ leadingIcon }}
-      </ui-icon>
-      <span v-else class="mdc-text-field__icon mdc-text-field__custom-icon">
+      </ui-textfield-icon>
+      <span v-else class="mdc-text-field__custom-icon">
         <slot name="before"></slot>
       </span>
     </template>
@@ -19,6 +21,8 @@
               :v-model="inputValue"
               :class="className.input"
               :placeholder="placeholder"
+              :rows="rows"
+              :cols="cols"
               :disabled="disabled"
               :required="required"
               :autocomplete="autocomplete"
@@ -49,17 +53,19 @@
            @keyup="handleKeyup"
            @keyup.enter="handleEnter"
            @blur="handleBlur">
-    <ui-floating-label
+    <ui-floating-label v-if="!placeholder"
       :for="id"
-      :floatAbove="floatAbove || inputValue">
+      :floatAbove="!!inputValue">
       <slot>{{ label }}</slot>
     </ui-floating-label>
 
-    <template v-if="trailingIcon">
-      <ui-icon v-if="isMaterialIcon" :class="'mdc-text-field__icon'" :tabindex="clickable">
+    <template v-if="hasIcon">
+      <ui-textfield-icon v-if="isMaterialIcon"
+        :unclickable="trailingIconUnclickable"
+        @click="handleTrailingIcon">
         {{ trailingIcon }}
-      </ui-icon>
-      <span v-else class="mdc-text-field__icon mdc-text-field__custom-icon">
+      </ui-textfield-icon>
+      <span v-else class="mdc-text-field__custom-icon">
         <slot name="after"></slot>
       </span>
     </template>
@@ -83,9 +89,8 @@
 
 <script>
 import { MDCTextField } from '../../../material-components-web/textfield';
-import UiFormField from './form-field';
 import UiFloatingLabel from './floating-label';
-import UiIcon from '../icon';
+import UiTextfieldIcon from './textfield-icon';
 import elementMixin from '../../mixins/element';
 import floatingLabelMixin from '../../mixins/floating-label';
 import getType from '../../helpers/typeof';
@@ -99,7 +104,9 @@ const UI_TEXTFIELD = {
     KEYUP: 'keyup',
     CHANGE: 'change',
     ENTER: 'enter',
-    BLUR: 'blur'
+    BLUR: 'blur',
+    LEADING: 'leading-action',
+    TRAILING: 'trailing-action'
   }
 };
 
@@ -107,7 +114,7 @@ export default {
   name: 'ui-textfield',
   components: {
     UiFloatingLabel,
-    UiIcon
+    UiTextfieldIcon
   },
   mixins: [elementMixin, floatingLabelMixin],
   model: {
@@ -121,17 +128,31 @@ export default {
     id: String,
     placeholder: String,
     autocomplete: String,
+    required: {
+      type: Boolean,
+      default: false
+    },
     // <input> attributes
     type: {
       type: String,
       default: 'text'
     },
     pattern: String,
+    // <textarea> attributes
+    rows: {
+      type: [String, Number],
+      default: 1
+    },
+    cols: {
+      type: [String, Number],
+      default: 20
+    },
     // UI attributes
     cssOnly: {
       type: Boolean,
       default: false
     },
+    label: String,
     // Styles the text field as a box text field.
     box: {
       type: Boolean,
@@ -159,22 +180,21 @@ export default {
     },
     // Styles the text field as a text field with a leading icon.
     leadingIcon: String,
+    leadingIconUnclickable: {
+      type: Boolean,
+      default: false
+    },
     // Styles the text field as a text field with a trailing icon.
     trailingIcon: String,
+    trailingIconUnclickable: {
+      type: Boolean,
+      default: false
+    },
     // Styles the text field as a text field in focus.
-    focused: {
-      type: Boolean,
-      default: false
-    },
-    required: {
-      type: Boolean,
-      default: false
-    },
-    label: String,
-    clickable: {
-      type: [Number, Boolean],
-      default: 0
-    },
+    // focused: {
+    //   type: Boolean,
+    //   default: false
+    // },
     // For helper text
     helptextId: String
   },
@@ -185,15 +205,6 @@ export default {
     };
   },
   computed: {
-    isMaterialIcon() {
-      return (
-        getType(this.leadingIcon) === 'string' ||
-        getType(this.trailingIcon) === 'string'
-      );
-    },
-    isMultiLine() {
-      return this.type.toLowerCase() === 'textarea';
-    },
     className() {
       return {
         outer: {
@@ -206,13 +217,23 @@ export default {
           'mdc-text-field--disabled': this.disabled,
           'mdc-text-field--dense': this.dense,
           'mdc-text-field--with-leading-icon': this.leadingIcon,
-          'mdc-text-field--with-trailing-icon': this.trailingIcon,
-          'mdc-text-field--focused': this.focused
+          'mdc-text-field--with-trailing-icon': this.trailingIcon
+          // 'mdc-text-field--focused': this.focused
         },
-        input: {
-          'mdc-text-field__input': true
-        }
+        input: 'mdc-text-field__input'
       };
+    },
+    isMultiLine() {
+      return this.type.toLowerCase() === 'textarea';
+    },
+    hasIcon() {
+      return this.box || this.outlined;
+    },
+    isMaterialIcon() {
+      return (
+        getType(this.leadingIcon) === 'string' ||
+        getType(this.trailingIcon) === 'string'
+      );
     }
   },
   watch: {
@@ -261,6 +282,12 @@ export default {
       };
 
       this.$emit(UI_TEXTFIELD.EVENT.BLUR, result);
+    },
+    handleLeadingIcon() {
+      this.$emit(UI_TEXTFIELD.EVENT.LEADING);
+    },
+    handleTrailingIcon() {
+      this.$emit(UI_TEXTFIELD.EVENT.TRAILING);
     }
   }
 };

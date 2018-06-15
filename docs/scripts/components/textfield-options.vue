@@ -25,6 +25,11 @@
         Alternate Colors
       </ui-checkbox>
     </div>
+    <div v-if="options.includes('unclickable')">
+      <ui-checkbox :id="`${idPrefix}-unclickable-leading-trailing`" v-model="value.unclickable">
+        Unclickable icons
+      </ui-checkbox>
+    </div>
     <div v-if="options.includes('min')">
       <ui-checkbox :id="`${idPrefix}-outlined-minlength`" v-model="value.min">
         Must be at least 8 characters
@@ -64,7 +69,8 @@ const OPTION_TYPES = [
   'customColor',
   'helperText',
   'min',
-  'max'
+  'max',
+  'unclickable'
 ];
 
 export default {
@@ -91,7 +97,8 @@ export default {
           isVisible: false,
           isValidMsg: false,
           min: false,
-          max: false
+          max: false,
+          unclickable: false
         };
       }
     }

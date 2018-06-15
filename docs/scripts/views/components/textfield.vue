@@ -99,6 +99,117 @@
         v-model="value"></ui-textfield-options>
     </section>
 
+    <section class="example" id="demo-tf-icon-container">
+      <h2>Text Field - Leading/Trailing icons</h2>
+      <div id="demo-tf-box-leading-wrapper" :dir="value.rtl ? 'rtl' : false">
+        <ui-textfield id="tf-box-leading" box leadingIcon="event"
+          :class="{'demo-text-field-custom-colors': value.customColor}"
+          :disabled="value.disabled"
+          :dense="value.dense"
+          :required="value.required"
+          :leadingIconUnclickable="value.unclickable"
+          :trailingIconUnclickable="value.unclickable"
+          :attrs="{
+            minlength: value.min ? 8 : 0
+          }">
+          Your name
+        </ui-textfield>
+      </div>
+      <div id="demo-tf-box-trailing-wrapper" :dir="value.rtl ? 'rtl' : false">
+        <ui-textfield id="tf-box-trailing" box trailingIcon="delete"
+          :class="{'demo-text-field-custom-colors': value.customColor}"
+          :disabled="value.disabled"
+          :dense="value.dense"
+          :required="value.required"
+          :leadingIconUnclickable="value.unclickable"
+          :trailingIconUnclickable="value.unclickable"
+          :attrs="{
+            minlength: value.min ? 8 : 0
+          }">
+          Your name
+        </ui-textfield>
+      </div>
+      <div id="demo-tf-outlined-leading-wrapper" :dir="value.rtl ? 'rtl' : false">
+        <ui-textfield id="tf-outlined-leading" outlined leadingIcon="event"
+          :class="{'demo-text-field-custom-colors': value.customColor}"
+          :disabled="value.disabled"
+          :dense="value.dense"
+          :required="value.required"
+          :leadingIconUnclickable="value.unclickable"
+          :trailingIconUnclickable="value.unclickable"
+          :attrs="{
+            minlength: value.min ? 8 : 0
+          }">
+          Your other name
+        </ui-textfield>
+      </div>
+      <div id="demo-tf-outlined-trailing-wrapper" :dir="value.rtl ? 'rtl' : false">
+        <ui-textfield id="tf-outlined-trailing" outlined trailingIcon="delete"
+          :class="{'demo-text-field-custom-colors': value.customColor}"
+          :disabled="value.disabled"
+          :dense="value.dense"
+          :required="value.required"
+          :leadingIconUnclickable="value.unclickable"
+          :trailingIconUnclickable="value.unclickable"
+          :attrs="{
+            minlength: value.min ? 8 : 0
+          }">
+          Your other name
+        </ui-textfield>
+      </div>
+      <ui-textfield-options
+        :options="['disabled', 'rtl', 'dense', 'required', 'customColor', 'min', 'unclickable']"
+        v-model="value"></ui-textfield-options>
+    </section>
+
+    <section class="example">
+      <h2>Preventing FOUC</h2>
+      <ui-textfield id="fouc" v-model="text">
+        Label floating above
+      </ui-textfield>
+    </section>
+
+    <section class="example">
+      <h2>Textarea</h2>
+      <section id="demo-text-field-textarea-wrapper" :dir="value.rtl ? 'rtl' : false">
+        <ui-textfield type="textarea" id="textarea" rows="8" cols="40"
+          :class="{'demo-text-field-custom-colors': value.customColor}"
+          :disabled="value.disabled"
+          :required="value.required">
+          Textarea Label
+        </ui-textfield>
+      </section>
+      <ui-textfield-options
+        :options="['disabled', 'rtl', 'required', 'customColor']"
+        v-model="value"></ui-textfield-options>
+    </section>
+
+    <section class="example">
+      <h2>Full-Width Text Field and Textarea</h2>
+      <div id="demo-fullwidth-wrapper">
+        <ui-textfield fullwidth placeholder="Subject"
+          :class="{'demo-text-field-custom-colors': value.customColor}"
+          :disabled="value.disabled"
+          :dense="value.dense"
+          :required="value.required">
+        </ui-textfield>
+        <ui-textfield type="textarea"
+          id="full-width-textarea"
+          fullwidth
+          class="full-width-textarea-example"
+          rows="8"
+          :class="{'demo-text-field-custom-colors': value.customColor}"
+          :disabled="value.disabled"
+          :dense="value.dense"
+          :required="value.required">
+          Textarea Label
+        </ui-textfield>
+      </div>
+      <ui-textfield-options
+        :options="['disabled', 'dense', 'required', 'customColor']"
+        v-model="value"></ui-textfield-options>
+    </section>
+
     <!-- <ui-apidoc name="textfield"></ui-apidoc> -->
   </div>
 </template>
@@ -124,8 +235,10 @@ export default {
         isVisible: false,
         isValidMsg: false,
         min: false,
-        max: false
-      }
+        max: false,
+        unclickable: false
+      },
+      text: 'Pre-filled value'
     };
   },
   // methods: {

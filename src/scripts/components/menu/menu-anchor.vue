@@ -7,35 +7,41 @@
 <script>
 import getType from '../../helpers/typeof';
 
-const POSITIONS = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
+const BUTTON_POSITIONS = [
+  'top left',
+  'top right',
+  'middle left',
+  'middle right',
+  'bottom left',
+  'bottom right'
+];
 
 export default {
   name: 'ui-menu-anchor',
   props: {
-    // ui attributes
+    // UI attributes
     position: {
-      type: [Number, String],
-      default: 0
+      type: String,
+      default: ''
     }
   },
   computed: {
     positionStyle() {
-      let currentPositon = (getType(this.position) === 'string')
-        ? POSITIONS.indexOf(this.position) + 1
-        : this.position;
+      let result = '';
 
-      let currentPositonName = (currentPositon > 0 && currentPositon <= POSITIONS.length)
-        ? POSITIONS[currentPositon - 1]
-        : false;
+      if (BUTTON_POSITIONS.includes(this.position)) {
+        let positions = this.position.split(' ');
 
-      let styles = [];
-      if (currentPositonName) {
-        currentPositonName.split('-').forEach(positionName => {
-          styles.push(`${positionName}:0;`);
-        });
+        if (positions[0] === 'middle') {
+          result = `top:35%;${positions[1]}:0`;
+        } else {
+          result = positions.map(position => `${position}:0`).join(';');
+        }
       }
 
-      return styles.join(' ');
+      console.log(result);
+
+      return result;
     }
   }
 };

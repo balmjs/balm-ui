@@ -1,6 +1,6 @@
 <template>
   <li class="mdc-list-item"
-      :role="role"
+      role="menuitem"
       :tabindex="tabindex(item)"
       :aria-disabled="item.disabled">
     <slot>{{ item[label] }}</slot>
@@ -8,11 +8,10 @@
 </template>
 
 <script>
-// TODO: icon
 export default {
   name: 'ui-menuitem',
   props: {
-    // ui attributes
+    // UI attributes
     item: {
       type: Object,
       default: function() {
@@ -22,21 +21,11 @@ export default {
     label: {
       type: String,
       default: 'label'
-    },
-    role: {
-      type: String,
-      default: 'menuitem'
     }
   },
   methods: {
     tabindex(item) {
-      let index = item.index || 0;
-
-      if (item.disabled) {
-        index = -1;
-      }
-
-      return index;
+      return item.disabled ? -1 : item.tabindex || 0;
     }
   }
 };

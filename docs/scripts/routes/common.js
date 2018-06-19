@@ -4,7 +4,7 @@ const Fab = () => import('../views/components/fab');
 const IconButton = () => import('../views/components/icon-button');
 // const Chip = () => import('../views/chip');
 // const Loading = () => import('../views/loading');
-const Menu = () => import('../views/menu');
+const Menu = () => import('../views/components/menu');
 // const Tooltip = () => import('../views/tooltip');
 const Elevation = () => import('../views/plugins/elevation');
 const Theme = () => import('../views/plugins/theme');

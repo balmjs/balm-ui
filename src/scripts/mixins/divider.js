@@ -1,6 +1,10 @@
 export default {
   props: {
-    // ui attributes
+    // UI attributes
+    padded: {
+      type: Boolean,
+      default: false
+    },
     inset: {
       type: Boolean,
       default: false
@@ -10,6 +14,7 @@ export default {
     className() {
       return {
         'mdc-list-divider': true,
+        'mdc-list-divider--padded': this.padded,
         'mdc-list-divider--inset': this.inset
       };
     }

@@ -56,7 +56,9 @@
         </div>
       </div>
     </section>
-    <ui-markdown :code="code[1]"></ui-markdown>
+    <ui-accordion>
+      <ui-markdown :code="code[1]"></ui-markdown>
+    </ui-accordion>
 
     <section class="example">
       <div>
@@ -102,7 +104,9 @@
             </div>
           </div>
         </div>
-        <ui-markdown :code="code[2]"></ui-markdown>
+        <ui-accordion>
+          <ui-markdown :code="code[2]"></ui-markdown>
+        </ui-accordion>
 
         <div class="toggle-example">
           <h2 :class="$tt('headline6')">Additional Color Combinations</h2>
@@ -136,7 +140,9 @@
             </div>
           </div>
         </div>
-        <ui-markdown :code="code[3]"></ui-markdown>
+        <ui-accordion>
+          <ui-markdown :code="code[3]"></ui-markdown>
+        </ui-accordion>
       </div>
     </section>
 

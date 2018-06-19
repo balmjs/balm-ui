@@ -51,7 +51,9 @@
         </ui-card-actions>
       </ui-card>
     </section>
-    <ui-markdown :text="code[1]"></ui-markdown>
+    <ui-accordion>
+      <ui-markdown :text="code[1]"></ui-markdown>
+    </ui-accordion>
 
     <section class="demo-card-collection">
       <ui-card class="demo-card demo-card--photo">
@@ -73,7 +75,9 @@
         </ui-card-actions>
       </ui-card>
     </section>
-    <ui-markdown :text="code[2]"></ui-markdown>
+    <ui-accordion>
+      <ui-markdown :text="code[2]"></ui-markdown>
+    </ui-accordion>
 
     <section class="demo-card-collection">
       <ui-card class="demo-card demo-card--music">
@@ -98,7 +102,9 @@
         </ui-card-actions>
       </ui-card>
     </section>
-    <ui-markdown :text="code[3]"></ui-markdown>
+    <ui-accordion>
+      <ui-markdown :text="code[3]"></ui-markdown>
+    </ui-accordion>
 
     <h1 :class="$tt('headline3')">2. API</h1>
     <ui-apidocs name="card"></ui-apidocs>

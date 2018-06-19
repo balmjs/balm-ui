@@ -1,7 +1,7 @@
 ```html
 <ui-button outlined>Baseline</ui-button>
 <ui-button outlined dense>Dense</ui-button>
-<ui-button outlined :class="'secondary-text-button'">Secondary</ui-button>
+<ui-button outlined class="secondary-outlined-button">Secondary</ui-button>
 <ui-button outlined icon="favorite">Icon</ui-button>
 <ui-button outlined>
   <template slot-scope="{ className }">
@@ -11,4 +11,12 @@
   </template>
 </ui-button>
 <ui-link outlined>Link</ui-link>
+```
+
+```css
+/* Sass code */
+.mdc-button.secondary-outlined-button {
+  @include mdc-button-ink-color($mdc-theme-secondary);
+  @include mdc-button-outline-color($mdc-theme-secondary);
+}
 ```

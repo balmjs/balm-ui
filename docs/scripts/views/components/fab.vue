@@ -106,7 +106,7 @@
 
     <section>
       <fieldset>
-        <legend :class="$tt('headline4')">4. Custom FABs (Fontawesome)</legend>
+        <legend :class="$tt('headline4')">4. Custom FABs (Font awesome)</legend>
         <ui-fab>
           <i class="fa fa-flag fa-lg"></i>
         </ui-fab>

@@ -5,7 +5,7 @@
       <div>
         <ui-button :cssOnly="cssOnly" :disabled="useDisabled">Baseline</ui-button>
         <ui-button :cssOnly="cssOnly" dense :disabled="useDisabled">Dense</ui-button>
-        <ui-button :cssOnly="cssOnly" :class="'secondary-text-button'" :disabled="useDisabled">Secondary</ui-button>
+        <ui-button :cssOnly="cssOnly" class="secondary-text-button" :disabled="useDisabled">Secondary</ui-button>
         <ui-button :cssOnly="cssOnly" icon="favorite" :disabled="useDisabled">Icon</ui-button>
         <ui-button :cssOnly="cssOnly" :disabled="useDisabled">
           <template slot-scope="{ className }">
@@ -25,7 +25,7 @@
       <div>
         <ui-button :cssOnly="cssOnly" raised :disabled="useDisabled">Baseline</ui-button>
         <ui-button :cssOnly="cssOnly" raised dense :disabled="useDisabled">Dense</ui-button>
-        <ui-button :cssOnly="cssOnly" raised :class="'secondary-filled-button'" :disabled="useDisabled">Secondary</ui-button>
+        <ui-button :cssOnly="cssOnly" raised class="secondary-filled-button" :disabled="useDisabled">Secondary</ui-button>
         <ui-button :cssOnly="cssOnly" raised icon="favorite" :disabled="useDisabled">Icon</ui-button>
         <ui-button :cssOnly="cssOnly" raised :disabled="useDisabled">
           <template slot-scope="{ className }">
@@ -45,7 +45,7 @@
       <div>
         <ui-button :cssOnly="cssOnly" unelevated :disabled="useDisabled">Baseline</ui-button>
         <ui-button :cssOnly="cssOnly" unelevated dense :disabled="useDisabled">Dense</ui-button>
-        <ui-button :cssOnly="cssOnly" unelevated :class="'secondary-filled-button'" :disabled="useDisabled">Secondary</ui-button>
+        <ui-button :cssOnly="cssOnly" unelevated class="secondary-filled-button" :disabled="useDisabled">Secondary</ui-button>
         <ui-button :cssOnly="cssOnly" unelevated icon="favorite" :disabled="useDisabled">Icon</ui-button>
         <ui-button :cssOnly="cssOnly" unelevated :disabled="useDisabled">
           <template slot-scope="{ className }">
@@ -65,7 +65,7 @@
       <div>
         <ui-button :cssOnly="cssOnly" outlined :disabled="useDisabled">Baseline</ui-button>
         <ui-button :cssOnly="cssOnly" outlined dense :disabled="useDisabled">Dense</ui-button>
-        <ui-button :cssOnly="cssOnly" outlined :class="'secondary-outlined-button'" :disabled="useDisabled">Secondary</ui-button>
+        <ui-button :cssOnly="cssOnly" outlined class="secondary-outlined-button" :disabled="useDisabled">Secondary</ui-button>
         <ui-button :cssOnly="cssOnly" outlined icon="favorite" :disabled="useDisabled">Icon</ui-button>
         <ui-button :cssOnly="cssOnly" outlined :disabled="useDisabled">
           <template slot-scope="{ className }">
@@ -83,8 +83,8 @@
     <fieldset>
       <legend :class="$tt('headline6')">{{ categoryNumber }}.5 Custom button (Experimental)</legend>
       <div>
-        <ui-button :cssOnly="cssOnly" unelevated :class="'big-round-corner-button'" :disabled="useDisabled">Big Corner Radius</ui-button>
-        <ui-button :cssOnly="cssOnly" outlined :class="'thick-outlined-button'" :disabled="useDisabled">Thick Outline Width</ui-button>
+        <ui-button :cssOnly="cssOnly" unelevated class="big-round-corner-button" :disabled="useDisabled">Big Corner Radius</ui-button>
+        <ui-button :cssOnly="cssOnly" outlined class="thick-outlined-button" :disabled="useDisabled">Thick Outline Width</ui-button>
       </div>
     </fieldset>
     <ui-accordion v-if="!cssOnly">
@@ -94,8 +94,8 @@
     <fieldset>
       <legend :class="$tt('headline6')">{{ categoryNumber }}.6 Different Color Icons/Ink</legend>
       <div>
-        <ui-button :cssOnly="cssOnly" unelevated :class="'demo-ink-color'" icon="favorite" :disabled="useDisabled">Ink Color</ui-button>
-        <ui-button :cssOnly="cssOnly" outlined :class="'demo-icon-color'" icon="favorite" :disabled="useDisabled">Icon Color</ui-button>
+        <ui-button :cssOnly="cssOnly" unelevated class="demo-ink-color" icon="favorite" :disabled="useDisabled">Ink Color</ui-button>
+        <ui-button :cssOnly="cssOnly" outlined class="demo-icon-color" icon="favorite" :disabled="useDisabled">Icon Color</ui-button>
       </div>
     </fieldset>
     <ui-accordion v-if="!cssOnly">

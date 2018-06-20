@@ -22,9 +22,9 @@
           Helper Text (possibly validation message)
         </ui-textfield-helptext>
       </section>
-      <ui-textfield-options
+      <ui-textfield-controls
         :options="['disabled', 'rtl', 'dense', 'required', 'customColor', 'helperText']"
-        v-model="value"></ui-textfield-options>
+        v-model="value"></ui-textfield-controls>
     </section>
 
     <section class="example">
@@ -66,9 +66,9 @@
               : 'Helper Text (possibly validation message)' }}
         </ui-textfield-helptext>
       </div>
-      <ui-textfield-options idPrefix="outlined"
+      <ui-textfield-controls idPrefix="outlined"
         :options="['disabled', 'rtl', 'dense', 'required', 'customColor', 'min', 'max']"
-        v-model="value"></ui-textfield-options>
+        v-model="value"></ui-textfield-controls>
     </section>
 
     <section class="example" id="text-field-box-example">
@@ -94,9 +94,9 @@
               : 'Helper Text (possibly validation message)' }}
         </ui-textfield-helptext>
       </div>
-      <ui-textfield-options
+      <ui-textfield-controls
         :options="['disabled', 'rtl', 'dense', 'required', 'customColor', 'helperText', 'min']"
-        v-model="value"></ui-textfield-options>
+        v-model="value"></ui-textfield-controls>
     </section>
 
     <section class="example" id="demo-tf-icon-container">
@@ -157,9 +157,9 @@
           Your other name
         </ui-textfield>
       </div>
-      <ui-textfield-options
+      <ui-textfield-controls
         :options="['disabled', 'rtl', 'dense', 'required', 'customColor', 'min', 'unclickable']"
-        v-model="value"></ui-textfield-options>
+        v-model="value"></ui-textfield-controls>
     </section>
 
     <section class="example">
@@ -179,9 +179,9 @@
           Textarea Label
         </ui-textfield>
       </section>
-      <ui-textfield-options
+      <ui-textfield-controls
         :options="['disabled', 'rtl', 'required', 'customColor']"
-        v-model="value"></ui-textfield-options>
+        v-model="value"></ui-textfield-controls>
     </section>
 
     <section class="example">
@@ -205,9 +205,9 @@
           Textarea Label
         </ui-textfield>
       </div>
-      <ui-textfield-options
+      <ui-textfield-controls
         :options="['disabled', 'dense', 'required', 'customColor']"
-        v-model="value"></ui-textfield-options>
+        v-model="value"></ui-textfield-controls>
     </section>
 
     <!-- <ui-apidoc name="textfield"></ui-apidoc> -->
@@ -216,11 +216,11 @@
 
 <script>
 import snippets from '../../mixins/snippets';
-import UiTextfieldOptions from '../../components/textfield-options';
+import UiTextfieldControls from '../../components/textfield-controls';
 
 export default {
   components: {
-    UiTextfieldOptions
+    UiTextfieldControls
   },
   mixins: [snippets],
   data() {

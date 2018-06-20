@@ -1,13 +1,53 @@
 <template>
   <div class="demo--select">
     <section class="hero">
-      <ui-selectmenu :options="options"
-        optionKey="key"
-        optionValue="value"
-        placeholder="Pick a food group"></ui-selectmenu>
+      <ui-select id="my-select"
+        v-model="selected"
+        :options="options">
+        Pick a Food Group
+      </ui-select>
     </section>
 
     <section class="example">
+      <h2 :class="$tt('headline6')">Fully-Featured JS Component</h2>
+      <section id="demo-wrapper" :dir="controls.rtl ? 'rtl' : false">
+        <ui-select id="full-func-js-select"
+          defaultLabel="Food Group"
+          v-model="selected2"
+          :options="options"
+          :class="{'demo-select-custom-colors': controls.customColor}"
+          :disabled="controls.disabled"
+          @selected="balmUI.onChange('selectedValue', $event)">
+        </ui-select>
+      </section>
+      <p>
+        Currently selected:
+        <span id="currently-selected">
+          {{ selectedValue ? selectedValue.value + ' at index ' + selectedValue.index : '(none)' }}
+        </span>
+      </p>
+      <div>
+        <ui-checkbox id="rtl" v-model="controls.rtl">RTL</ui-checkbox>
+      </div>
+      <div>
+        <ui-checkbox id="alternate-colors" v-model="controls.customColor">Alternate Colors</ui-checkbox>
+      </div>
+      <div>
+        <ui-checkbox id="disabled" v-model="controls.disabled">Disabled</ui-checkbox>
+      </div>
+      <div class="button-container">
+        <ui-button raised id="set-selected-index-zero-button">
+          Set Selected Index (0)
+        </ui-button>
+      </div>
+      <div class="button-container">
+        <ui-button raised id="set-value-meat-button">
+          Set Value to Meat
+        </ui-button>
+      </div>
+    </section>
+
+    <!-- <section class="example">
       <h2>Fully-Featured Component</h2>
       <section id="demo-wrapper">
         <ui-selectmenu :options="options"
@@ -37,7 +77,7 @@
         optionKey="key"
         optionValue="value"
         @change="balmUI.onChange('formData.multipleSelected', $event)"></ui-select>
-    </section>
+    </section> -->
 
     <!-- <ui-selectmenu
           :options="provinces"
@@ -84,7 +124,7 @@
 </template>
 
 <script>
-import snippets from '../mixins/snippets';
+import snippets from '../../mixins/snippets';
 
 const PROVINCES = [
   {
@@ -130,33 +170,47 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      selected: 'grains',
+      selected2: '',
       options: [
         {
           key: 1,
-          value: 'Bread, Cereal, Rice, and Pasta'
+          label: 'Bread, Cereal, Rice, and Pasta',
+          value: 'grains'
         },
         {
           key: 2,
-          value: 'Vegetables',
+          label: 'Vegetables',
+          value: 'vegetables',
           disabled: true
         },
         {
           key: 3,
-          value: 'Fruit'
+          label: 'Fruit',
+          value: 'fruit'
         },
         {
           key: 4,
-          value: 'Milk, Yogurt, and Cheese'
+          label: 'Milk, Yogurt, and Cheese',
+          value: 'dairy'
         },
         {
           key: 5,
-          value: 'Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts'
+          label: 'Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts',
+          value: 'meat'
         },
         {
           key: 6,
-          value: 'Fats, Oils, and Sweets'
+          label: 'Fats, Oils, and Sweets',
+          value: 'fats'
         }
       ],
+      selectedValue: null,
+      controls: {
+        rtl: false,
+        customColor: false,
+        disabled: false
+      },
       formData: {
         selected: '',
         province: '',

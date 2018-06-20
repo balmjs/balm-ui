@@ -2,7 +2,7 @@
   <div class="mdc-menu" tabindex="-1">
     <ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
       <slot>
-        <template v-for="item in currentMenu">
+        <template v-for="item in currentItems">
           <ui-item-divider v-if="item === UI_MENU.DIVIDER">
           </ui-item-divider>
           <ui-menuitem v-else :item="getType(item) === 'object' ? item : {}">
@@ -93,7 +93,7 @@ export default {
       UI_MENU,
       getType,
       $menu: null,
-      currentMenu: this.items
+      currentItems: this.items
     };
   },
   watch: {
@@ -105,7 +105,7 @@ export default {
       }
     },
     items(val) {
-      this.currentMenu = val;
+      this.currentItems = val;
     },
     quickOpen(val) {
       this.setQuickOpen(val);

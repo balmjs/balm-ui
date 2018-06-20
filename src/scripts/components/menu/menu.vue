@@ -1,5 +1,5 @@
 <template>
-  <div :class="[menuClassName]" tabindex="-1">
+  <div class="mdc-menu" tabindex="-1">
     <ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
       <slot>
         <template v-for="item in currentMenu">
@@ -30,7 +30,7 @@ const MDC_MENU = {
 
 const UI_MENU = {
   DIVIDER: '-',
-  CORNERS: [
+  MENU_POSITIONS: [
     'TOP_LEFT',
     'TOP_RIGHT',
     'BOTTOM_LEFT',
@@ -81,6 +81,11 @@ export default {
     position: {
       type: String,
       default: 'TOP_LEFT'
+    },
+    margin: String,
+    rememberSelection: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -90,16 +95,6 @@ export default {
       $menu: null,
       currentMenu: this.items
     };
-  },
-  computed: {
-    menuClassName() {
-      return {
-        'mdc-menu': true,
-        'mdc-menu--animating-open': false,
-        'mdc-menu--open': this.open,
-        'mdc-menu--animating-closed': false
-      };
-    }
   },
   watch: {
     open(val) {
@@ -117,6 +112,12 @@ export default {
     },
     position(val) {
       this.setAnchorCorner(val);
+    },
+    margin(val) {
+      this.setAnchorMargin(val);
+    },
+    rememberSelection(val) {
+      this.setRememberSelection(val);
     }
   },
   mounted() {
@@ -139,29 +140,43 @@ export default {
         this.$emit(UI_MENU.EVENT.CANCEL);
       });
 
-      this.setAnchorCorner();
       this.setQuickOpen();
+      this.setAnchorCorner();
+      this.setAnchorMargin();
+      this.setRememberSelection();
     }
   },
   methods: {
+    setQuickOpen(quickOpen = this.quickOpen) {
+      this.$menu.quickOpen = quickOpen;
+    },
     hasAnchor() {
       return (
         this.$el.parentElement &&
         this.$el.parentElement.classList.contains('mdc-menu-anchor')
       );
     },
-    setAnchorCorner(position = this.position) {
+    setAnchorCorner(menuPosition = this.position) {
       if (this.hasAnchor()) {
-        // Set Anchor Corner to Bottom End
-        if (UI_MENU.CORNERS.includes(position)) {
-          this.$menu.setAnchorCorner(Corner[position]);
+        if (UI_MENU.MENU_POSITIONS.includes(menuPosition)) {
+          this.$menu.setAnchorCorner(Corner[menuPosition]);
         } else {
-          console.warn('Invalid corner');
+          console.warn('Invalid menu position');
         }
       }
     },
-    setQuickOpen(quickOpen = this.quickOpen) {
-      this.$menu.quickOpen = quickOpen;
+    setAnchorMargin(anchorMargin = this.margin) {
+      if (this.hasAnchor() && anchorMargin) {
+        let margin = {};
+        let anchorMargins = anchorMargin.split(' ');
+        ['top', 'right', 'bottom', 'left'].forEach((value, index) => {
+          margin[value] = anchorMargins[index] ? +anchorMargins[index] : 0;
+        });
+        this.$menu.setAnchorMargin(margin);
+      }
+    },
+    setRememberSelection(rememberSelection = this.rememberSelection) {
+      this.$menu.rememberSelection = rememberSelection;
     }
   }
 };

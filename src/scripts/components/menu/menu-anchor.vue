@@ -20,26 +20,26 @@ export default {
   name: 'ui-menu-anchor',
   props: {
     // UI attributes
-    position: {
-      type: String,
-      default: ''
-    }
+    position: String
   },
   computed: {
     positionStyle() {
       let result = '';
+      let buttonPosition = this.position;
 
-      if (BUTTON_POSITIONS.includes(this.position)) {
-        let positions = this.position.split(' ');
+      if (buttonPosition) {
+        if (BUTTON_POSITIONS.includes(buttonPosition)) {
+          let positions = buttonPosition.split(' ');
 
-        if (positions[0] === 'middle') {
-          result = `top:35%;${positions[1]}:0`;
+          if (positions[0] === 'middle') {
+            result = `top:35%;${positions[1]}:0`;
+          } else {
+            result = positions.map(position => `${position}:0`).join(';');
+          }
         } else {
-          result = positions.map(position => `${position}:0`).join(';');
+          console.warn('Invalid button position');
         }
       }
-
-      console.log(result);
 
       return result;
     }

@@ -5,8 +5,6 @@
     <select v-model="selectedValue"
             class="mdc-select__native-control"
             :disabled="disabled"
-            :multiple="multiple"
-            :size="size"
             @change="handleChange">
       <!-- Default option -->
       <option v-if="defaultLabel"
@@ -28,7 +26,7 @@
                   class="mdc-list-item"
                   :value="option[optionValue]">{{ option[optionLabel] }}</option>
           <!-- A divider -->
-          <option v-if="multiple && (option === UI_SELECT.DIVIDER)"
+          <option v-if="option === UI_SELECT.DIVIDER"
                   class="mdc-list-divider"
                   role="presentation"
                   disabled></option>
@@ -97,19 +95,15 @@ export default {
         return [];
       }
     },
+    selectedIndex: {
+      type: Number,
+      default: 0
+    },
     // Element attributes
     id: String,
     disabled: {
       type: Boolean,
       default: false
-    },
-    multiple: {
-      type: Boolean,
-      default: false
-    },
-    size: {
-      type: [Number, String],
-      default: 0
     },
     // UI attributes
     cssOnly: {
@@ -163,23 +157,28 @@ export default {
   watch: {
     model(val) {
       this.selectedValue = val;
+
+      let selectedIndex = this.options.findIndex(
+        option => option[this.optionValue] === val
+      );
+      this.$emit(UI_SELECT.EVENT.SELECTED, {
+        value: val,
+        index: this.defaultLabel ? selectedIndex + 1 : selectedIndex
+      });
+    },
+    selectedIndex(val) {
+      if (this.$select) {
+        this.$select.selectedIndex = val;
+        this.$emit(UI_SELECT.EVENT.CHANGE, this.$select.value);
+      }
     }
   },
   mounted() {
-    // if (!this.multiple) {
-    //   this.init();
-    // }
     const select = this.$el;
     this.initAttributes(select.querySelector('select'));
 
     if (!this.$select && !this.cssOnly) {
       this.$select = new MDCSelect(select);
-      this.$select.listen(UI_SELECT.EVENT.CHANGE, () => {
-        this.$emit(UI_SELECT.EVENT.SELECTED, {
-          index: this.$select.selectedIndex,
-          value: this.$select.value
-        });
-      });
     }
   },
   methods: {

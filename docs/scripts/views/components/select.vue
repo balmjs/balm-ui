@@ -13,17 +13,18 @@
       <section id="demo-wrapper" :dir="controls.rtl ? 'rtl' : false">
         <ui-select id="full-func-js-select"
           defaultLabel="Food Group"
-          v-model="selected2"
+          v-model="selectedValue"
+          :selectedIndex="selectedIndex"
           :options="options"
           :class="{'demo-select-custom-colors': controls.customColor}"
           :disabled="controls.disabled"
-          @selected="balmUI.onChange('selectedValue', $event)">
+          @selected="onSelected">
         </ui-select>
       </section>
       <p>
         Currently selected:
         <span id="currently-selected">
-          {{ selectedValue ? selectedValue.value + ' at index ' + selectedValue.index : '(none)' }}
+          {{ selectedValue ? `${selectedValue} at index ${selectedIndex}` : '(none)' }}
         </span>
       </p>
       <div>
@@ -36,12 +37,14 @@
         <ui-checkbox id="disabled" v-model="controls.disabled">Disabled</ui-checkbox>
       </div>
       <div class="button-container">
-        <ui-button raised id="set-selected-index-zero-button">
+        <ui-button raised id="set-selected-index-zero-button"
+          @click="balmUI.onChange('selectedIndex', 0)">
           Set Selected Index (0)
         </ui-button>
       </div>
       <div class="button-container">
-        <ui-button raised id="set-value-meat-button">
+        <ui-button raised id="set-value-meat-button"
+          @click="balmUI.onChange('selectedValue', 'meat')">
           Set Value to Meat
         </ui-button>
       </div>
@@ -171,7 +174,8 @@ export default {
   data() {
     return {
       selected: 'grains',
-      selected2: '',
+      selectedValue: '',
+      selectedIndex: 0,
       options: [
         {
           key: 1,
@@ -205,7 +209,6 @@ export default {
           value: 'fats'
         }
       ],
-      selectedValue: null,
       controls: {
         rtl: false,
         customColor: false,
@@ -260,6 +263,10 @@ export default {
     };
   },
   methods: {
+    onSelected(result) {
+      this.selectedValue = result.value;
+      this.selectedIndex = result.index;
+    },
     onSelectChange(field, value, fn) {
       this.formData[field] = value;
 
@@ -275,3 +282,16 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+#demo-wrapper {
+  padding: 4px;
+  padding-left: 0;
+}
+
+.example {
+  max-width: 400px;
+  margin: 24px;
+  padding: 24px;
+}
+</style>

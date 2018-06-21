@@ -7,29 +7,22 @@
             :disabled="disabled"
             @change="handleChange">
       <!-- Default option -->
-      <option v-if="defaultLabel"
+      <option v-if="placeholder"
               :value="defaultValue"
+              :disabled="!defaultLabel"
               selected>{{ defaultLabel }}</option>
       <template v-if="group">
         <template v-for="option in options">
           <!-- A group of options -->
-          <optgroup v-if="option.label && option.items && option.items.length"
-                    class="mdc-list-group"
-                    :label="option.label">
-            <option v-for="(item, index) in option.items"
+          <optgroup v-if="option[optgroupLabel] && option[optgroupItems] && option[optgroupItems].length"
+                    :label="option[optgroupLabel]">
+            <option v-for="(item, index) in option[optgroupItems]"
                     :key="index"
-                    class="mdc-list-item"
                     :value="item[optionValue]">{{ item[optionLabel] }}</option>
           </optgroup>
-          <!-- A list item -->
-          <option v-if="!option.label && option[optionLabel]"
-                  class="mdc-list-item"
+          <!-- An option -->
+          <option v-if="option[optionLabel] && option[optionValue]"
                   :value="option[optionValue]">{{ option[optionLabel] }}</option>
-          <!-- A divider -->
-          <option v-if="option === UI_SELECT.DIVIDER"
-                  class="mdc-list-divider"
-                  role="presentation"
-                  disabled></option>
         </template>
       </template>
       <template v-else>
@@ -39,7 +32,7 @@
                 :disabled="option.disabled || false">{{ option[optionLabel] }}</option>
       </template>
     </select>
-    <ui-floating-label v-if="!defaultLabel"
+    <ui-floating-label
       :for="id"
       :floatAbove="!!selectedValue">
       <slot>{{ label }}</slot>
@@ -50,11 +43,11 @@
     <template v-if="!cssOnly">
       <template v-if="outlined">
         <div class="mdc-notched-outline">
-          <svg>
-            <path class="mdc-notched-outline__path"/>
-          </svg>
-        </div>
-        <div class="mdc-notched-outline__idle"></div>
+         <svg>
+           <path class="mdc-notched-outline__path"/>
+         </svg>
+       </div>
+       <div class="mdc-notched-outline__idle"></div>
       </template>
       <div v-else class="mdc-line-ripple"></div>
     </template>
@@ -69,7 +62,6 @@ import floatingLabelMixin from '../../mixins/floating-label';
 import getType from '../../helpers/typeof';
 
 const UI_SELECT = {
-  DIVIDER: '-',
   EVENT: {
     CHANGE: 'change',
     SELECTED: 'selected'
@@ -127,14 +119,26 @@ export default {
       type: String,
       default: 'value'
     },
+    placeholder: {
+      type: Boolean,
+      default: false
+    },
+    defaultLabel: String,
     defaultValue: {
       type: String,
       default: ''
     },
-    defaultLabel: String,
     group: {
       type: Boolean,
       default: false
+    },
+    optgroupLabel: {
+      type: String,
+      default: 'label'
+    },
+    optgroupItems: {
+      type: String,
+      default: 'items'
     }
   },
   data() {
@@ -163,7 +167,7 @@ export default {
       );
       this.$emit(UI_SELECT.EVENT.SELECTED, {
         value: val,
-        index: this.defaultLabel ? selectedIndex + 1 : selectedIndex
+        index: this.placeholder ? selectedIndex + 1 : selectedIndex
       });
     },
     selectedIndex(val) {
@@ -184,37 +188,6 @@ export default {
   methods: {
     handleChange() {
       this.$emit(UI_SELECT.EVENT.CHANGE, this.selectedValue);
-    },
-    init() {
-      if (!this.defaultLabel && this.options.length) {
-        let defaultOption = {};
-
-        if (this.group) {
-          for (let options of this.options) {
-            if (options.items && options.items.length) {
-              defaultOption = this.selectedValue
-                ? options.items.find(
-                    option => option[this.optionValue] == this.selectedValue
-                  ) // `object` || `undefined`
-                : options.items[0]; // `object`
-            }
-            if (
-              getType(defaultOption) === 'object' &&
-              defaultOption.hasOwnProperty(this.optionValue)
-            ) {
-              break;
-            }
-          }
-        } else {
-          defaultOption = this.selectedValue
-            ? this.options.find(
-                option => option[this.optionValue] == this.selectedValue
-              )
-            : this.options[0];
-        }
-
-        this.$emit(UI_SELECT.EVENT.CHANGE, defaultOption[this.optionValue]);
-      }
     }
   }
 };

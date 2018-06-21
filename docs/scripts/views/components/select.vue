@@ -3,7 +3,7 @@
     <section class="hero">
       <ui-select id="my-select"
         v-model="selected"
-        :options="options">
+        :options="options1">
         Pick a Food Group
       </ui-select>
     </section>
@@ -12,115 +12,145 @@
       <h2 :class="$tt('headline6')">Fully-Featured JS Component</h2>
       <section id="demo-wrapper" :dir="controls.rtl ? 'rtl' : false">
         <ui-select id="full-func-js-select"
-          defaultLabel="Food Group"
-          v-model="selectedValue"
-          :selectedIndex="selectedIndex"
-          :options="options"
+          placeholder
+          v-model="selected1.value"
+          :selectedIndex="selected1.index"
+          :options="options1"
           :class="{'demo-select-custom-colors': controls.customColor}"
           :disabled="controls.disabled"
-          @selected="onSelected">
+          @selected="onSelected($event, 1)">
+          Food Group
         </ui-select>
       </section>
       <p>
         Currently selected:
         <span id="currently-selected">
-          {{ selectedValue ? `${selectedValue} at index ${selectedIndex}` : '(none)' }}
+          {{ selected1.value ? `${selected1.value} at index ${selected1.index}` : '(none)' }}
         </span>
       </p>
-      <div>
-        <ui-checkbox id="rtl" v-model="controls.rtl">RTL</ui-checkbox>
-      </div>
-      <div>
-        <ui-checkbox id="alternate-colors" v-model="controls.customColor">Alternate Colors</ui-checkbox>
-      </div>
-      <div>
-        <ui-checkbox id="disabled" v-model="controls.disabled">Disabled</ui-checkbox>
-      </div>
+      <ui-select-controls v-model="controls"></ui-select-controls>
       <div class="button-container">
         <ui-button raised id="set-selected-index-zero-button"
-          @click="balmUI.onChange('selectedIndex', 0)">
+          @click="balmUI.onChange('selected1.index', 0)">
           Set Selected Index (0)
         </ui-button>
       </div>
       <div class="button-container">
         <ui-button raised id="set-value-meat-button"
-          @click="balmUI.onChange('selectedValue', 'meat')">
+          @click="balmUI.onChange('selected1.value', 'meat')">
           Set Value to Meat
         </ui-button>
       </div>
     </section>
 
-    <!-- <section class="example">
-      <h2>Fully-Featured Component</h2>
-      <section id="demo-wrapper">
-        <ui-selectmenu :options="options"
-          optionKey="key"
-          optionValue="value"
-          placeholder="Pick a food group"
-          @change="balmUI.onChange('formData.selected', $event)"></ui-selectmenu>
+    <section class="example">
+      <h2 :class="$tt('headline6')">Select box</h2>
+      <section id="box-demo-wrapper" :dir="controls.rtl ? 'rtl' : false">
+        <ui-select id="select-box"
+          box
+          placeholder
+          v-model="selected2.value"
+          :selectedIndex="selected2.index"
+          :options="options2"
+          :class="{'demo-select-custom-colors': controls.customColor}"
+          :disabled="controls.disabled"
+          @selected="onSelected($event, 2)">
+          Food Group
+        </ui-select>
       </section>
-      <p>Currently selected:
-        <span id="currently-selected">{{ formData.selected || '(none)'}}</span>
+      <p>
+        Currently selected:
+        <span id="box-currently-selected">
+          {{ selected2.value ? `${selected2.value} at index ${selected2.index}` : '(none)' }}
+        </span>
       </p>
+      <ui-select-controls idPrefix="box" v-model="controls"></ui-select-controls>
+      <div class="button-container">
+        <ui-button raised id="box-set-selected-index-zero-button"
+          @click="balmUI.onChange('selected2.index', 0)">
+          Set Selected Index (0)
+        </ui-button>
+      </div>
+      <div class="button-container">
+        <ui-button raised id="box-set-value-fruit-roll-up-button"
+          @click="balmUI.onChange('selected2.value', 'fruit-roll-ups')">
+          Set Value to Fruit Roll Ups
+        </ui-button>
+      </div>
     </section>
-    <section class="example">
-      <h2>CSS Only</h2>
-      <ui-select :options="options"
-        model=""
-        optionKey="key"
-        optionValue="value"
-        defaultValue="Pick a food group"
-        @change="balmUI.onChange('formData.selected', $event)"></ui-select>
-    </section>
-    <section class="example">
-      <h2>Select Multiple - CSS Only</h2>
-      <ui-select multiple group size="8"
-        :options="groupOptions"
-        :model="formData.multipleSelected"
-        optionKey="key"
-        optionValue="value"
-        @change="balmUI.onChange('formData.multipleSelected', $event)"></ui-select>
+
+    <!-- <section class="example">
+      <h2 :class="$tt('headline6')">Outlined Select</h2>
+      <section :dir="controls.rtl ? 'rtl' : false">
+        <ui-select id="outlined-select"
+          outlined
+          placeholder
+          v-model="selected1.value"
+          :selectedIndex="selected1.index"
+          :options="options1"
+          :class="{'demo-select-custom-colors': controls.customColor}"
+          :disabled="controls.disabled"
+          @selected="onSelected($event, 1)">
+          Food Group
+        </ui-select>
+      </section>
+      <p>
+        Currently selected:
+        <span id="currently-selected-outline">
+          {{ selected1.value ? `${selected1.value} at index ${selected1.index}` : '(none)' }}
+        </span>
+      </p>
+      <ui-select-controls idPrefix="outline" v-model="controls"></ui-select-controls>
+      <div class="button-container">
+        <ui-button raised id="set-selected-index-zero-button-outline"
+          @click="balmUI.onChange('selected1.index', 0)">
+          Set Selected Index (0)
+        </ui-button>
+      </div>
+      <div class="button-container">
+        <ui-button raised id="set-value-meat-button-outline"
+          @click="balmUI.onChange('selected1.value', 'meat')">
+          Set Value to Meat
+        </ui-button>
+      </div>
     </section> -->
 
-    <!-- <ui-selectmenu
-          :options="provinces"
-          :model="formData.province"
-          optionKey="key" optionValue="value"
-          placeholder="请选择"
-          @change="onSelectChange('province', $event, changeCity)"></ui-selectmenu>
+    <section class="example">
+      <h2 :class="$tt('headline6')">Pre-selected option via HTML</h2>
+      <section>
+        <ui-select id="select-preselected"
+          v-model="selected3"
+          :options="options2">
+          Food Group
+        </ui-select>
+      </section>
+    </section>
 
-        <ui-selectmenu
-          :options="cities"
-          :model="formData.city"
-          optionKey="key" optionValue="value"
-          @change="onSelectChange('city', $event)"></ui-selectmenu> -->
+    <section class="example">
+      <h2 :class="$tt('headline6')">MDC Select with optgroups</h2>
+      <ui-select id="select-preselected"
+        group
+        v-model="selected4"
+        :options="options3">
+        Food Group
+      </ui-select>
+    </section>
 
-    <!-- <ui-select
-          :options="provinces"
-          :model="formData.province"
-          optionKey="key" optionValue="value"
-          @change="onSelectChange('province', $event, changeCity)"></ui-select>
+    <section class="example">
+      <ui-select
+        placeholder
+        defaultLabel="Province"
+        :options="provinces"
+        v-model="formData.province"
+        @change="onSelectChange('province', $event, changeCity)"></ui-select>
 
-        <ui-select
-          :options="cities"
-          :model="formData.city"
-          optionKey="key" optionValue="value"
-          @change="onSelectChange('city', $event)"></ui-select>
-
-        <ui-select multiple style="height:100px"
-          :options="options"
-          :model="formData.multipleSelected"
-          optionKey="key" optionValue="value"
-          @change="onSelectChange('multipleSelected', $event)"></ui-select>
-
-        <ui-select group
-          :options="groupOptions"
-          :model="formData.groupSelected"
-          optionKey="key" optionValue="value"
-          @change="onSelectChange('groupSelected', $event)"></ui-select>
-
-         -->
-
+      <ui-select
+        :placeholder="!cities.length"
+        defaultLabel="City"
+        :options="cities"
+        v-model="formData.city"
+        @change="onSelectChange('city', $event)"></ui-select>
+    </section>
 
     <!-- <ui-apidoc name="select"></ui-apidoc> -->
   </div>
@@ -128,19 +158,20 @@
 
 <script>
 import snippets from '../../mixins/snippets';
+import UiSelectControls from '../../components/select-controls';
 
 const PROVINCES = [
   {
-    key: 1,
-    value: 'Beijing'
+    value: 1,
+    label: 'Beijing'
   },
   {
-    key: 2,
-    value: 'Shanghai'
+    value: 2,
+    label: 'Shanghai'
   },
   {
-    key: 3,
-    value: 'Guangzhou'
+    value: 3,
+    label: 'Guangzhou'
   }
 ];
 
@@ -148,124 +179,141 @@ const CITIES = [
   [],
   [
     {
-      key: 11,
-      value: '海定'
+      value: 11,
+      label: '海定'
     },
     {
-      key: 12,
-      value: '朝阳'
+      value: 12,
+      label: '朝阳'
     }
   ],
   [
     {
-      key: 21,
-      value: '黄浦'
+      value: 21,
+      label: '黄浦'
     },
     {
-      key: 22,
-      value: '徐汇'
+      value: 22,
+      label: '徐汇'
     }
   ],
   []
 ];
 
+const options1 = [
+  {
+    label: 'Bread, Cereal, Rice, and Pasta',
+    value: 'grains'
+  },
+  {
+    label: 'Vegetables',
+    value: 'vegetables',
+    disabled: true
+  },
+  {
+    label: 'Fruit',
+    value: 'fruit'
+  },
+  {
+    label: 'Milk, Yogurt, and Cheese',
+    value: 'dairy'
+  },
+  {
+    label: 'Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts',
+    value: 'meat'
+  },
+  {
+    label: 'Fats, Oils, and Sweets',
+    value: 'fats'
+  }
+];
+
+const options2 = [
+  {
+    label: 'Fruit Roll Ups',
+    value: 'fruit-roll-ups'
+  },
+  {
+    label: 'Candy (cotton)',
+    value: 'cotton-candy'
+  },
+  {
+    label: 'Vegetables',
+    value: 'vegetables'
+  },
+  {
+    label: 'Noodles',
+    value: 'noodles'
+  }
+];
+
+const options3 = [
+  {
+    label: 'Meats',
+    items: [
+      {
+        label: 'Steak',
+        value: 'steak'
+      },
+      {
+        label: 'Hamburger',
+        value: 'hamburger'
+      }
+    ]
+  },
+  {
+    label: 'Vegetables',
+    items: [
+      {
+        label: 'Beet',
+        value: 'beet'
+      },
+      {
+        label: 'Carrot',
+        value: 'carrot'
+      }
+    ]
+  }
+];
+
 export default {
+  components: {
+    UiSelectControls
+  },
   mixins: [snippets],
   data() {
     return {
       selected: 'grains',
-      selectedValue: '',
-      selectedIndex: 0,
-      options: [
-        {
-          key: 1,
-          label: 'Bread, Cereal, Rice, and Pasta',
-          value: 'grains'
-        },
-        {
-          key: 2,
-          label: 'Vegetables',
-          value: 'vegetables',
-          disabled: true
-        },
-        {
-          key: 3,
-          label: 'Fruit',
-          value: 'fruit'
-        },
-        {
-          key: 4,
-          label: 'Milk, Yogurt, and Cheese',
-          value: 'dairy'
-        },
-        {
-          key: 5,
-          label: 'Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts',
-          value: 'meat'
-        },
-        {
-          key: 6,
-          label: 'Fats, Oils, and Sweets',
-          value: 'fats'
-        }
-      ],
+      selected1: {
+        value: '',
+        index: 0
+      },
+      selected2: {
+        value: '',
+        index: 0
+      },
+      selected3: 'fruit-roll-ups',
+      selected4: 'steak',
+      options1,
+      options2,
+      options3,
       controls: {
         rtl: false,
         customColor: false,
         disabled: false
       },
       formData: {
-        selected: '',
         province: '',
-        city: '',
-        multipleSelected: [],
-        groupSelected: ''
+        city: ''
       },
-      groupOptions: [
-        {
-          label: 'Fats, Oils, & Sweets',
-          items: [
-            {
-              key: 1,
-              value: 'Olive Oil'
-            },
-            {
-              key: 2,
-              value: 'Brown Sugar'
-            },
-            {
-              key: 3,
-              value: 'Ice Cream'
-            }
-          ]
-        },
-        '-',
-        {
-          label: 'Dairy',
-          items: [
-            {
-              key: 4,
-              value: 'Milk'
-            },
-            {
-              key: 5,
-              value: 'Cheese'
-            },
-            {
-              key: 6,
-              value: 'More Cheese'
-            }
-          ]
-        }
-      ],
       provinces: PROVINCES,
       cities: []
     };
   },
   methods: {
-    onSelected(result) {
-      this.selectedValue = result.value;
-      this.selectedIndex = result.index;
+    onSelected(result, key) {
+      this[`selected${key}`].value = result.value;
+      this[`selected${key}`].index = result.index;
     },
     onSelectChange(field, value, fn) {
       this.formData[field] = value;
@@ -275,6 +323,7 @@ export default {
     },
     changeCity(key) {
       this.cities = key > -1 ? CITIES[key] : [];
+      this.formData.city = this.cities.length ? this.cities[0].value : '';
     }
   },
   created() {

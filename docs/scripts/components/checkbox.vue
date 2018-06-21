@@ -80,13 +80,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.demo-toggle-group {
-  display: inline-block;
-}
-
-.mdc-button code {
-  text-transform: none;
-}
-</style>

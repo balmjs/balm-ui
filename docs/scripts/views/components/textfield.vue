@@ -268,24 +268,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.example {
-  margin: 24px;
-  padding: 24px;
-}
-
-.hero .mdc-text-field {
-  min-width: 240px;
-}
-
-.demo-note {
-  padding: 20px;
-  margin: 20px 0;
-  background-color: #f2f2f2;
-}
-
-.full-width-textarea-example {
-  margin-top: 16px;
-}
-</style>

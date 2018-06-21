@@ -331,16 +331,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-#demo-wrapper {
-  padding: 4px;
-  padding-left: 0;
-}
-
-.example {
-  max-width: 400px;
-  margin: 24px;
-  padding: 24px;
-}
-</style>

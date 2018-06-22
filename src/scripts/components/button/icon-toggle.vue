@@ -26,9 +26,6 @@ const MDC_ICONTOGGLE = {
   STATUS: {
     ON: 'on',
     DISABLED: 'disabled'
-  },
-  EVENT: {
-    CHANGE: `MDCIconToggle:${UI_ICONTOGGLE.EVENT.CHANGE}`
   }
 };
 
@@ -111,9 +108,12 @@ export default {
     if (this.canRendering && !this.$iconToggle) {
       this.$iconToggle = new MDCIconToggle(this.$el);
 
-      this.$iconToggle.listen(MDC_ICONTOGGLE.EVENT.CHANGE, ({ detail }) => {
-        this.$emit(UI_ICONTOGGLE.EVENT.CHANGE, detail.isOn);
-      });
+      this.$iconToggle.listen(
+        `MDCIconToggle:${UI_ICONTOGGLE.EVENT.CHANGE}`,
+        ({ detail }) => {
+          this.$emit(UI_ICONTOGGLE.EVENT.CHANGE, detail.isOn);
+        }
+      );
 
       this.updateStatus(MDC_ICONTOGGLE.STATUS.ON, this.model);
       this.updateStatus(MDC_ICONTOGGLE.STATUS.DISABLED, this.disabled);

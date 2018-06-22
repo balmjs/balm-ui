@@ -13,9 +13,6 @@ const MDC_ICONBUTTON = {
   TOGGLE_STATES: ['label', 'content', 'class'],
   TOGGLE_STATUS: {
     ON: 'on'
-  },
-  EVENT: {
-    CHANGE: `MDCIconButtonToggle:${UI_ICONBUTTON.EVENT.CHANGE}`
   }
 };
 
@@ -80,9 +77,12 @@ export default {
 
         this.$iconButton = new MDCIconButtonToggle(this.$el);
 
-        this.$iconButton.listen(MDC_ICONBUTTON.EVENT.CHANGE, ({ detail }) => {
-          this.$emit(UI_ICONBUTTON.EVENT.CHANGE, detail.isOn);
-        });
+        this.$iconButton.listen(
+          `MDCIconButtonToggle:${UI_ICONBUTTON.EVENT.CHANGE}`,
+          ({ detail }) => {
+            this.$emit(UI_ICONBUTTON.EVENT.CHANGE, detail.isOn);
+          }
+        );
 
         this.updateStatus(MDC_ICONBUTTON.TOGGLE_STATUS.ON, this.model);
       } else {

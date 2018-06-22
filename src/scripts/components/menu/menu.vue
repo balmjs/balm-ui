@@ -21,13 +21,6 @@ import UiMenuItem from './menuitem';
 import UiItemDivider from '../list/item-divider';
 import getType from '../../helpers/typeof';
 
-const MDC_MENU = {
-  EVENT: {
-    SELECTED: 'MDCMenu:selected',
-    CANCEL: 'MDCMenu:cancel'
-  }
-};
-
 const UI_MENU = {
   DIVIDER: '-',
   MENU_POSITIONS: [
@@ -125,17 +118,20 @@ export default {
       this.$menu = new MDCMenu(this.$el);
 
       // Listen for selected item
-      this.$el.addEventListener(MDC_MENU.EVENT.SELECTED, ({ detail }) => {
-        let item = detail.item;
-        this.$emit(UI_MENU.EVENT.CHANGE, false);
-        this.$emit(UI_MENU.EVENT.SELECTED, {
-          index: detail.index, // number
-          label: item.textContent.trim(), // string
-          item // HTMLElement
-        });
-      });
+      this.$el.addEventListener(
+        `MDCMenu:${UI_MENU.EVENT.SELECTED}`,
+        ({ detail }) => {
+          let item = detail.item;
+          this.$emit(UI_MENU.EVENT.CHANGE, false);
+          this.$emit(UI_MENU.EVENT.SELECTED, {
+            index: detail.index, // number
+            label: item.textContent.trim(), // string
+            item // HTMLElement
+          });
+        }
+      );
 
-      this.$el.addEventListener(MDC_MENU.EVENT.CANCEL, () => {
+      this.$el.addEventListener(`MDCMenu:${UI_MENU.EVENT.CANCEL}`, () => {
         this.$emit(UI_MENU.EVENT.CHANGE, false);
         this.$emit(UI_MENU.EVENT.CANCEL);
       });

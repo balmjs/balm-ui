@@ -1,4 +1,8 @@
 .demo--chips {
+  #input-chip-icon-clones {
+    display: none;
+  }
+
   .custom-chip-primary {
     @include mdc-chip-fill-color-accessible($mdc-theme-primary);
   }

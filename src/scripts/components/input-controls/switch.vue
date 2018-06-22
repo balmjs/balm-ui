@@ -1,19 +1,22 @@
 <template>
-  <ui-form-field :noWrap="noWrap" :block="block" :alignEnd="alignEnd" :dark="dark">
+  <ui-form-field :block="block" :alignEnd="alignEnd">
     <slot name="before"></slot>
-    <div :class="className">
+    <div class="mdc-switch">
       <input :id="id"
-             v-model="currentValue"
+             v-model="toggleValue"
              type="checkbox"
              class="mdc-switch__native-control"
+             role="switch"
              :name="name"
+             :true-value="trueValue"
+             :false-value="falseValue"
              :disabled="disabled"
              @change="handleChange">
       <div class="mdc-switch__background">
         <div class="mdc-switch__knob"></div>
       </div>
     </div>
-    <label class="mdc-switch-label" :for="id">
+    <label :for="id">
       <slot>{{ label }}</slot>
     </label>
     <slot name="after"></slot>
@@ -23,51 +26,61 @@
 <script>
 import UiFormField from './form-field';
 import formFieldMixin from '../../mixins/form-field';
+import elementMixin from '../../mixins/element';
 
-const UI_EVENT_CHANGE = 'change';
+const UI_SWITCH = {
+  EVENT: {
+    CHANGE: 'change'
+  }
+};
 
 export default {
   name: 'ui-switch',
   components: {
     UiFormField
   },
-  mixins: [
-    formFieldMixin
-  ],
+  mixins: [formFieldMixin, elementMixin],
+  model: {
+    prop: 'model',
+    event: UI_SWITCH.EVENT.CHANGE
+  },
   props: {
-    // state
-    model: [Boolean, Number, String],
-    // element attributes
-    id: String,
-    name: String,
+    // States
+    model: {
+      type: [String, Number, Boolean],
+      default: false
+    },
     disabled: {
       type: Boolean,
       default: false
     },
-    // ui attributes
+    // Element attributes
+    id: String,
+    name: String,
+    // UI attributes
+    trueValue: {
+      type: [String, Number, Boolean],
+      default: true
+    },
+    falseValue: {
+      type: [String, Number, Boolean],
+      default: false
+    },
     label: String
   },
   data() {
     return {
-      currentValue: this.model
+      toggleValue: this.model
     };
-  },
-  computed: {
-    className() {
-      return {
-        'mdc-switch': true,
-        'mdc-switch--disabled': this.disabled
-      };
-    }
   },
   watch: {
     model(val) {
-      this.currentValue = val;
+      this.toggleValue = val;
     }
   },
   methods: {
     handleChange() {
-      this.$emit(UI_EVENT_CHANGE, this.currentValue);
+      this.$emit(UI_SWITCH.EVENT.CHANGE, this.toggleValue);
     }
   }
 };

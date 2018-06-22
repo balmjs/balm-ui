@@ -1,7 +1,7 @@
 const FormField = () => import('../views/form-field');
 const Checkbox = () => import('../views/components/checkbox');
 const Radio = () => import('../views/components/radio');
-const Switch = () => import('../views/switch');
+const Switch = () => import('../views/components/switch');
 const Textfield = () => import('../views/components/textfield');
 const Select = () => import('../views/components/select');
 const Slider = () => import('../views/slider');

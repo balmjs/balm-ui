@@ -1,81 +1,46 @@
 const FormField = () => import('../views/form-field');
+const Textfield = () => import('../views/components/textfield');
 const Checkbox = () => import('../views/components/checkbox');
 const Radio = () => import('../views/components/radio');
-const Switch = () => import('../views/components/switch');
-const Textfield = () => import('../views/components/textfield');
 const Select = () => import('../views/components/select');
-const Slider = () => import('../views/slider');
+const Switch = () => import('../views/components/switch');
+const Slider = () => import('../views/components/slider');
 
 const formRoutes = [
   {
     path: '/form-field',
     name: 'form-field',
-    component: FormField,
-    meta: {
-      title: 'BalmUI - FormField',
-      keywords: '',
-      description: ''
-    }
-  },
-  {
-    path: '/checkbox',
-    name: 'checkbox',
-    component: Checkbox,
-    meta: {
-      title: 'BalmUI - Checkbox',
-      keywords: '',
-      description: ''
-    }
-  },
-  {
-    path: '/radio',
-    name: 'radio',
-    component: Radio,
-    meta: {
-      title: 'BalmUI - Radio button',
-      keywords: '',
-      description: ''
-    }
-  },
-  {
-    path: '/switch',
-    name: 'switch',
-    component: Switch,
-    meta: {
-      title: 'BalmUI - Switch',
-      keywords: '',
-      description: ''
-    }
+    component: FormField
   },
   {
     path: '/textfield',
     name: 'textfield',
-    component: Textfield,
-    meta: {
-      title: 'BalmUI - Textfield',
-      keywords: '',
-      description: ''
-    }
+    component: Textfield
+  },
+  {
+    path: '/checkbox',
+    name: 'checkbox',
+    component: Checkbox
+  },
+  {
+    path: '/radio',
+    name: 'radio',
+    component: Radio
   },
   {
     path: '/select',
     name: 'select',
-    component: Select,
-    meta: {
-      title: 'BalmUI - Select',
-      keywords: '',
-      description: ''
-    }
+    component: Select
+  },
+  {
+    path: '/switch',
+    name: 'switch',
+    component: Switch
   },
   {
     path: '/slider',
     name: 'slider',
-    component: Slider,
-    meta: {
-      title: 'BalmUI - Slider',
-      keywords: '',
-      description: ''
-    }
+    component: Slider
   }
 ];
 

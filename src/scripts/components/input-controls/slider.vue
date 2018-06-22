@@ -6,7 +6,7 @@
        :aria-valuemin="+min"
        :aria-valuemax="+max"
        :data-step="+step"
-       :aria-label="label"
+       :aria-label="label || false"
        :aria-disabled="disabled">
     <div class="mdc-slider__track-container">
       <div class="mdc-slider__track"></div>
@@ -14,7 +14,7 @@
     </div>
     <div class="mdc-slider__thumb-container">
       <div v-if="discrete || displayMarkers" class="mdc-slider__pin">
-        <span class="mdc-slider__pin-value-marker">{{ currentValue }}</span>
+        <span class="mdc-slider__pin-value-marker"></span>
       </div>
       <svg class="mdc-slider__thumb" width="21" height="21">
         <circle cx="10.5" cy="10.5" r="7.875"></circle>
@@ -25,40 +25,42 @@
 </template>
 
 <script>
-import {MDCSlider} from '../../../material-components-web/slider';
+import { MDCSlider } from '../../../material-components-web/slider';
 
-const MDC_EVENT_INPUT = 'MDCSlider:input';
-const MDC_EVENT_CHANGE = 'MDCSlider:change';
-const UI_EVENT_INPUT = 'input';
-const UI_EVENT_CHANGE = 'change';
+const UI_SLIDER = {
+  EVENT: {
+    INPUT: 'input',
+    CHANGE: 'change'
+  }
+};
 
 export default {
   name: 'ui-slider',
+  model: {
+    prop: 'model',
+    event: UI_SLIDER.EVENT.CHANGE
+  },
   props: {
-    // state
-    model: [Number, String],
-    // element attributes
+    // States
+    model: [String, Number],
     min: {
-      type: [Number, String],
+      type: [String, Number],
       default: 0
     },
     max: {
-      type: [Number, String],
+      type: [String, Number],
       default: 100
     },
     step: {
-      type: [Number, String],
+      type: [String, Number],
       default: 1
     },
     disabled: {
       type: Boolean,
       default: false
     },
-    // ui attributes
-    label: {
-      type: String,
-      default: ''
-    },
+    // UI attributes
+    label: String,
     discrete: {
       type: Boolean,
       default: false
@@ -86,21 +88,31 @@ export default {
   watch: {
     model(val) {
       this.currentValue = val;
-      if (this.$slider) {
-        this.$slider.value = val;
-      }
+      this.$slider.value = val;
+    },
+    min(val) {
+      this.$slider.min = val;
+    },
+    max(val) {
+      this.$slider.max = val;
+    },
+    step(val) {
+      this.$slider.step = val;
+    },
+    disabled(val) {
+      this.$slider.disabled = val;
     }
   },
   mounted() {
     if (!this.$slider) {
       this.$slider = new MDCSlider(this.$el);
 
-      this.$slider.listen(MDC_EVENT_INPUT, () => {
-        this.$emit(UI_EVENT_INPUT, this.$slider.value);
+      this.$slider.listen(`MDCSlider:${UI_SLIDER.EVENT.INPUT}`, () => {
+        this.$emit(UI_SLIDER.EVENT.INPUT, this.$slider.value);
       });
 
-      this.$slider.listen(MDC_EVENT_CHANGE, () => {
-        this.$emit(UI_EVENT_CHANGE, this.$slider.value);
+      this.$slider.listen(`MDCSlider:${UI_SLIDER.EVENT.CHANGE}`, () => {
+        this.$emit(UI_SLIDER.EVENT.CHANGE, this.$slider.value);
       });
     }
   }

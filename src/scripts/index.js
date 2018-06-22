@@ -21,7 +21,7 @@ import UiToolbarSpan from './components/toolbar/icons/toolbar-span';
 import UiToolbarButton from './components/toolbar/icons/toolbar-button';
 import UiGrid from './components/grid/grid';
 import UiGridInner from './components/grid/grid-inner';
-import UiCell from './components/grid/cell';
+import UiGridCell from './components/grid/grid-cell';
 import UiTabs from './components/tabs/tabs';
 import UiTabBar from './components/tabs/tab-bar';
 import UiTabBarScroller from './components/tabs/tab-bar-scroller';
@@ -132,7 +132,7 @@ const components = {
   UiToolbarButton,
   UiGrid,
   UiGridInner,
-  UiCell,
+  UiGridCell,
   UiTabs,
   UiTabBar,
   UiTabBarScroller,

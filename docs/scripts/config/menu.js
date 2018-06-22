@@ -115,26 +115,6 @@ const MATERIAL_COMPONENTS = [
     name: 'Inputs and Controls',
     children: [
       {
-        icon: 'component',
-        name: 'Form Field',
-        url: 'form-field'
-      },
-      {
-        icon: 'component',
-        name: 'Floating Label',
-        url: 'floating-label'
-      },
-      {
-        icon: 'component',
-        name: 'Line Ripple',
-        url: 'line-ripple'
-      },
-      {
-        icon: 'text_field',
-        name: 'Notched Outline',
-        url: 'notched-outline'
-      },
-      {
         icon: 'text_field',
         name: 'Text Field',
         description: 'Single and multiline text fields',

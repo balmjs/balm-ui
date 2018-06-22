@@ -9,7 +9,9 @@
 <script>
 import UiGridInner from './grid-inner';
 
-const ALIGNMENT = ['left', 'right']; // mdc-layout-grid--align-<GRID_POSITION>
+const UI_GRID = {
+  POSITIONS: ['left', 'right']
+};
 
 export default {
   name: 'ui-grid',
@@ -17,12 +19,12 @@ export default {
     UiGridInner
   },
   props: {
-    // ui attributes
+    // UI attributes
     fixedColumnWidth: {
       type: Boolean,
       default: false
     },
-    align: String
+    position: String
   },
   computed: {
     className() {
@@ -35,9 +37,13 @@ export default {
 
       // Optional, specifies the alignment of the whole grid
       // mdc-layout-grid--align-<GRID_POSITION>
-      let currentAlign = this.align ? this.align.toLowerCase() : '';
-      if (ALIGNMENT.includes(currentAlign)) {
-        result.push(`mdc-layout-grid--align-${currentAlign}`);
+      if (this.position) {
+        let gridPosition = this.position.toLowerCase();
+        if (UI_GRID.POSITIONS.includes(gridPosition)) {
+          result.push(`mdc-layout-grid--align-${gridPosition}`);
+        } else {
+          console.warn('Invalid <GRID_POSITION>');
+        }
       }
 
       return result;

@@ -1,0 +1,55 @@
+.demo--top-app-bar {
+  .demo-paragraph {
+    margin: 0;
+    padding: 20px 28px;
+  }
+
+  @media (max-width: $mdc-top-app-bar-mobile-breakpoint) {
+    .demo-paragraph {
+      padding: 16px;
+    }
+  }
+
+  .demo-body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  .demo-main {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 16px;
+    overflow: auto;
+  }
+
+  .demo-controls-container {
+    @include mdc-elevation(4);
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    padding: 10px;
+  }
+
+  input[type='checkbox']:disabled + label {
+    opacity: 0.4;
+  }
+
+  .demo-col {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    margin: 10px;
+  }
+
+  .demo-row {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: row;
+  }
+
+  .demo-options-heading {
+    margin-bottom: 20px;
+  }
+}

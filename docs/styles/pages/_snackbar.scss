@@ -1,9 +1,10 @@
 .demo--snackbar {
-  // initialize it off screen.
+  /* initialize it off screen. */
   .loading .example .mdc-snackbar {
-    transform: translateY(100%);
+    transform: translateY(200%);
   }
-  // Override style for hero example.
+
+  /* Override style for hero example. */
   .hero .mdc-snackbar {
     position: relative;
     left: auto;
@@ -11,8 +12,13 @@
   .hero .mdc-snackbar--active {
     transform: none;
   }
+
   .field {
     padding-top: 8px;
     padding-bottom: 8px;
+  }
+
+  .demo-activate-button {
+    margin-top: 14px;
   }
 }

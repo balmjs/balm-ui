@@ -16,7 +16,7 @@
       <span class="mdc-tab__icon-text">{{ text }}</span>
     </template>
     <template v-else>
-      <slot></slot>
+      <slot><!-- Text Label --></slot>
     </template>
     <slot name="after"></slot>
   </a>
@@ -29,7 +29,7 @@ export default {
   name: 'ui-tab',
   mixins: [iconMixin],
   props: {
-    // ui attributes
+    // UI attributes
     icon: {
       type: [String, Boolean],
       default: false

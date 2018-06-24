@@ -6,15 +6,18 @@
 </template>
 
 <script>
-import {MDCTabBar} from '../../../material-components-web/tabs';
-import tabBarMixin from '../../mixins/tab-bar';
+import { MDCTabBar } from '../../../material-components-web/tabs';
+import tabsMixin from '../../mixins/tabs';
 
-const MDC_EVENT_CHANGE = 'MDCTabBar:change';
-const UI_EVENT_CHANGE = 'change';
+const UI_TABS = {
+  EVENT: {
+    CHANGE: 'change'
+  }
+};
 
 export default {
   name: 'ui-tab-bar',
-  mixins: [tabBarMixin],
+  mixins: [tabsMixin],
   data() {
     return {
       $tabBar: null
@@ -25,25 +28,22 @@ export default {
       return {
         'mdc-tab-bar': true,
         'mdc-tab-bar--icon-tab-bar': this.iconOnly,
-        'mdc-tab-bar--icons-with-text': this.textWithIcon,
-        'mdc-tab-bar--indicator-primary': this.primary,
-        'mdc-tab-bar--indicator-accent': this.accent,
-        'mdc-tab-bar--theme-dark': this.dark
-      }
+        'mdc-tab-bar--icons-with-text': this.textWithIcon
+      };
     }
   },
   mounted() {
     if (!this.$tabBar) {
       this.$tabBar = new MDCTabBar(this.$el);
-      this.$tabBar.listen(MDC_EVENT_CHANGE, ({detail: tabs}) => {
-        this.$emit(UI_EVENT_CHANGE, +tabs.activeTabIndex); // activeTabIndex: number
-      });
 
-      let activeIndex = this.active;
-      if (activeIndex && activeIndex < this.$tabBar.tabs.length) {
-        this.$tabBar.activeTab = this.$tabBar.tabs[activeIndex];
-        this.$tabBar.activeTabIndex = activeIndex;
-      }
+      this.$tabBar.listen(
+        `MDCTabBar:${UI_TABS.EVENT.CHANGE}`,
+        ({ detail: tabs }) => {
+          this.handleChange(tabs.activeTabIndex);
+        }
+      );
+
+      this.$tabBar.activeTabIndex = this.active;
     }
   }
 };

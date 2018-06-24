@@ -10,7 +10,7 @@
     </div>
     <div class="mdc-tab-bar-scroller__scroll-frame">
       <nav class="mdc-tab-bar mdc-tab-bar-scroller__scroll-frame__tabs">
-        <slot></slot>
+        <slot><!-- Tab Items --></slot>
         <span class="mdc-tab-bar__indicator"></span>
       </nav>
     </div>
@@ -26,10 +26,18 @@
 </template>
 
 <script>
-import {MDCTabBarScroller} from '../../../material-components-web/tabs';
+import { MDCTabBarScroller } from '../../../material-components-web/tabs';
+import tabsMixin from '../../mixins/tabs';
+
+const UI_TABS = {
+  EVENT: {
+    CHANGE: 'change'
+  }
+};
 
 export default {
   name: 'ui-tab-bar-scroller',
+  mixins: [tabsMixin],
   data() {
     return {
       $tabBarScroller: null
@@ -38,6 +46,15 @@ export default {
   mounted() {
     if (!this.$tabBarScroller) {
       this.$tabBarScroller = new MDCTabBarScroller(this.$el);
+
+      this.$tabBarScroller.tabBar.listen(
+        `MDCTabBar:${UI_TABS.EVENT.CHANGE}`,
+        ({ detail: tabs }) => {
+          this.handleChange(tabs.activeTabIndex);
+        }
+      );
+
+      this.$tabBarScroller.tabBar.activeTabIndex = this.active;
     }
   }
 };

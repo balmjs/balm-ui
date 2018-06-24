@@ -267,8 +267,13 @@ export default {
       }
     };
   },
+  mounted() {
+    // this.showCode('grid');
+    window.addEventListener('resize', this.initRuler);
+    this.initRuler();
+  },
   methods: {
-    update() {
+    initRuler() {
       let size = '(phone)';
       if (window.innerWidth >= 840) {
         size = '(desktop)';
@@ -279,11 +284,6 @@ export default {
         this.$refs.ruler.textContent = window.innerWidth + 'px ' + size;
       }
     }
-  },
-  mounted() {
-    // this.showCode('grid');
-    window.addEventListener('resize', this.update);
-    this.update();
   }
 };
 </script>

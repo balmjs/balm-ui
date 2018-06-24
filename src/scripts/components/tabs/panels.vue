@@ -5,14 +5,18 @@
 </template>
 
 <script>
-import {CLASSNAME_PANEL, CLASSNAME_ACTIVE} from './constants';
+const CLASSNAME_ACTIVE = 'active';
 
 export default {
   name: 'ui-panels',
+  model: {
+    prop: 'active',
+    event: 'change'
+  },
   props: {
-    // state
+    // States
     active: {
-      type: [Number, String],
+      type: Number,
       default: 0
     }
   },
@@ -26,10 +30,13 @@ export default {
   },
   methods: {
     updatePanel(activeIndex) {
-      let panels = this.$el.querySelectorAll(`.${CLASSNAME_PANEL}`);
+      let panels = this.$el.querySelectorAll('.mdc-panel');
       if (panels.length) {
         panels.forEach((panel, index) => {
-          if (index === activeIndex && !panel.classList.contains(CLASSNAME_ACTIVE)) {
+          if (
+            index === activeIndex &&
+            !panel.classList.contains(CLASSNAME_ACTIVE)
+          ) {
             panel.classList.add(CLASSNAME_ACTIVE);
           } else {
             panel.classList.remove(CLASSNAME_ACTIVE);

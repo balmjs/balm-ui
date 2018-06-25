@@ -1,5 +1,5 @@
 <template>
-  <button type="button" :class="className">
+  <button type="button" :class="className" @click="handleClick">
     <slot>{{ isMenu ? 'menu' : '' }}</slot>
   </button>
 </template>
@@ -9,6 +9,11 @@ import toolbarIconMixin from '../../../mixins/toolbar-icon';
 
 export default {
   name: 'ui-toolbar-button',
-  mixins: [toolbarIconMixin]
+  mixins: [toolbarIconMixin],
+  methods: {
+    handleClick(event) {
+      this.$emit('click', event);
+    }
+  }
 };
 </script>

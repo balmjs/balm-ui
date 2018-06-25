@@ -6,10 +6,10 @@
           <ui-toolbar-anchor type="menu"></ui-toolbar-anchor>
           <ui-toolbar-title>Title</ui-toolbar-title>
         </ui-toolbar-section>
-        <ui-toolbar-section align="end" noTitle>
-          <ui-toolbar-anchor href="javascript:void(0)" alt="Download">file_download</ui-toolbar-anchor>
-          <ui-toolbar-anchor href="javascript:void(0)" alt="Print this page">print</ui-toolbar-anchor>
-          <ui-toolbar-anchor href="javascript:void(0)" alt="Bookmark this page">more_vert</ui-toolbar-anchor>
+        <ui-toolbar-section align="end">
+          <ui-toolbar-anchor alt="Download">file_download</ui-toolbar-anchor>
+          <ui-toolbar-anchor alt="Print this page">print</ui-toolbar-anchor>
+          <ui-toolbar-anchor alt="Bookmark this page">bookmark</ui-toolbar-anchor>
         </ui-toolbar-section>
       </ui-toolbar-row>
     </ui-toolbar>

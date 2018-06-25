@@ -1,6 +1,6 @@
 <template>
   <span class="mdc-toolbar__title">
-    <slot></slot>
+    <slot><!-- Toolbar title --></slot>
   </span>
 </template>
 

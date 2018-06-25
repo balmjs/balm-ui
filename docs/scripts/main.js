@@ -14,7 +14,9 @@ import UiLogo from './components/logo';
 // syntax highlighting
 import prismjs from 'prismjs';
 // ready translated locales
-import { locales } from './config/lang';
+import {
+  locales
+} from './config/lang';
 
 const CLASS_NAMESPACE = 'balmui';
 const DEBUG = process.env.NODE_ENV === 'production' ? false : true;
@@ -101,6 +103,8 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App },
+  components: {
+    App
+  },
   i18n
 });

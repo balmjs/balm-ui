@@ -1,17 +1,19 @@
-const TYPE_MENU = 'menu';
-const TYPE_ICON = 'icon';
+const TYPE = {
+  MENU: 'menu',
+  ICON: 'icon'
+};
 
 export default {
   props: {
-    // ui attributes
+    // UI attributes
     type: {
       type: String,
-      default: TYPE_ICON
+      default: TYPE.ICON
     }
   },
   computed: {
     isMenu() {
-      return this.type.toLowerCase() === TYPE_MENU;
+      return this.type.toLowerCase() === TYPE.MENU;
     },
     className() {
       return [

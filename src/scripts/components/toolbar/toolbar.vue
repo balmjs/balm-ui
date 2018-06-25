@@ -1,32 +1,42 @@
 <template>
   <header :class="className">
-    <slot><!-- toolbar row --></slot>
+    <slot><!-- Toolbar row --></slot>
   </header>
 </template>
 
 <script>
-import {MDCToolbar} from '../../../material-components-web/toolbar';
-import getType from '../../helpers/typeof';
+import { MDCToolbar } from '../../../material-components-web/toolbar';
 
-const FIXED_LASTROW_ONLY = 'lastrow';
-const FLEXIBLE_CUSTOM_BEHAVIOR = 'custom';
-const MDC_EVENT_CHANGE = 'MDCToolbar:change';
-const UI_EVENT_CHANGE = 'change';
+const UI_TOOLBAR = {
+  FIXED_LASTROW_ONLY: 'lastrow',
+  FLEXIBLE_CUSTOM_BEHAVIOR: 'custom',
+  EVENT: {
+    CHANGE: 'change'
+  }
+};
 
 export default {
   name: 'ui-toolbar',
   props: {
-    // ui attributes
+    // UI attributes
     fixed: {
-      type: [Boolean, String],
+      type: Boolean,
       default: false
     },
     waterfall: {
       type: Boolean,
       default: false
     },
+    fixedLastrow: {
+      type: Boolean,
+      default: false
+    },
     flexible: {
-      type: [Boolean, String],
+      type: Boolean,
+      default: false
+    },
+    defaultFlexible: {
+      type: Boolean,
       default: false
     },
     contentSelector: {
@@ -40,36 +50,38 @@ export default {
     };
   },
   computed: {
-    isFixedLastrowOnly() {
-      return getType(this.fixed) === 'string' && this.fixed.toLowerCase() === FIXED_LASTROW_ONLY;
-    },
-    noFlexibleDefaultBehavior() {
-      return getType(this.flexible) === 'string' && this.flexible.toLowerCase() === FLEXIBLE_CUSTOM_BEHAVIOR;
-    },
     className() {
+      let isFixed = this.fixed || this.waterfall || this.fixedLastrow;
+      let isFlexible = this.flexible || this.defaultFlexible;
+
       return {
         'mdc-toolbar': true,
-        'mdc-toolbar--fixed': this.fixed || this.waterfall,
+        'mdc-toolbar--fixed': isFixed,
         'mdc-toolbar--waterfall': this.waterfall,
-        'mdc-toolbar--fixed-lastrow-only': this.fixed && this.isFixedLastrowOnly,
-        'mdc-toolbar--flexible': this.flexible,
-        'mdc-toolbar--flexible-default-behavior': this.flexible && !this.noFlexibleDefaultBehavior
+        'mdc-toolbar--fixed-lastrow-only': this.fixedLastrow,
+        'mdc-toolbar--flexible': isFlexible,
+        'mdc-toolbar--flexible-default-behavior': this.defaultFlexible
       };
     }
   },
-  watch: {
-    fixedAdjustElement(val) {
-      if (this.$toolbar) {
-        this.fixedAdjustContent(val);
-      }
-    }
-  },
+  // watch: {
+  //   fixedAdjustElement(val) {
+  //     if (this.$toolbar) {
+  //       this.fixedAdjustContent(val);
+  //     }
+  //   }
+  // },
   mounted() {
     if (!this.$toolbar) {
       this.$toolbar = new MDCToolbar(this.$el);
-      this.$toolbar.listen(MDC_EVENT_CHANGE, ({detail}) => {
-        this.$emit(UI_EVENT_CHANGE, detail.flexibleExpansionRatio); // flexibleExpansionRatio: number
-      });
+
+      this.$toolbar.listen(
+        `MDCToolbar:${UI_TOOLBAR.EVENT.CHANGE}`,
+        ({ detail }) => {
+          this.$emit(UI_TOOLBAR.EVENT.CHANGE, detail.flexibleExpansionRatio); // flexibleExpansionRatio: number
+        }
+      );
+
       this.fixedAdjustContent();
     }
   },

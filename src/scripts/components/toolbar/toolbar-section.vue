@@ -1,16 +1,16 @@
 <template>
   <section :class="className">
-    <slot><!-- toolbar icon + title --></slot>
+    <slot><!-- Toolbar icon + title --></slot>
   </section>
 </template>
 
 <script>
-const ALIGNMENT = ['start', 'end'];
+const ALIGNMENTS = ['start', 'end'];
 
 export default {
   name: 'ui-toolbar-section',
   props: {
-    // ui attributes
+    // UI attributes
     align: {
       type: String,
       default: ''
@@ -24,9 +24,11 @@ export default {
     className() {
       let result = ['mdc-toolbar__section'];
 
-      let currentAlign = this.align ? this.align.toLowerCase() : '';
-      if (ALIGNMENT.includes(currentAlign)) {
-        result.push(`mdc-toolbar__section--align-${currentAlign}`);
+      if (this.align) {
+        let currentAlign = this.align.toLowerCase();
+        if (ALIGNMENTS.includes(currentAlign)) {
+          result.push(`mdc-toolbar__section--align-${currentAlign}`);
+        }
       }
 
       if (this.fit) {

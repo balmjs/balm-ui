@@ -5,7 +5,7 @@ const PermanentDrawerAboveToolbar = () =>
 const PermanentDrawerBelowToolbar = () =>
   import('../views/drawer/permanent-drawer-below-toolbar');
 const Grid = () => import('../views/components/grid');
-const Tabs = () => import('../views/tabs');
+const Tabs = () => import('../views/components/tabs');
 const Toolbar = () => import('../views/toolbar');
 const DefaultToolbar = () => import('../views/toolbar/default-toolbar');
 const FixedToolbar = () => import('../views/toolbar/fixed-toolbar');

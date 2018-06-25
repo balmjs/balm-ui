@@ -185,7 +185,6 @@
             </ui-toolbar-section>
           </ui-toolbar-row>
         </ui-toolbar>
-        {{ active }}
         <section>
           <ui-panels class="panels" v-model="active">
             <ui-panel>Panel One</ui-panel>
@@ -202,7 +201,7 @@
 </template>
 
 <script>
-import snippets from '../mixins/snippets';
+import snippets from '../../mixins/snippets';
 
 export default {
   mixins: [snippets],

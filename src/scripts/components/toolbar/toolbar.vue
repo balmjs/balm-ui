@@ -64,13 +64,6 @@ export default {
       };
     }
   },
-  // watch: {
-  //   fixedAdjustElement(val) {
-  //     if (this.$toolbar) {
-  //       this.fixedAdjustContent(val);
-  //     }
-  //   }
-  // },
   mounted() {
     if (!this.$toolbar) {
       this.$toolbar = new MDCToolbar(this.$el);
@@ -86,8 +79,8 @@ export default {
     }
   },
   methods: {
-    fixedAdjustContent(selectors = this.contentSelector) {
-      let element = document.querySelector(selectors);
+    fixedAdjustContent() {
+      let element = document.querySelector(this.contentSelector);
       if (element) {
         this.$toolbar.fixedAdjustElement = element;
       }

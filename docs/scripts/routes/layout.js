@@ -1,163 +1,107 @@
-const TemporaryDrawer = () => import('../views/drawer/temporary-drawer');
-const PersistentDrawer = () => import('../views/drawer/persistent-drawer');
+const TemporaryDrawer = () =>
+  import ('../views/drawer/temporary-drawer');
+const PersistentDrawer = () =>
+  import ('../views/drawer/persistent-drawer');
 const PermanentDrawerAboveToolbar = () =>
-  import('../views/drawer/permanent-drawer-above-toolbar');
+  import ('../views/drawer/permanent-drawer-above-toolbar');
 const PermanentDrawerBelowToolbar = () =>
-  import('../views/drawer/permanent-drawer-below-toolbar');
-const Grid = () => import('../views/components/grid');
-const Tabs = () => import('../views/components/tabs');
-const Toolbar = () => import('../views/toolbar');
-const DefaultToolbar = () => import('../views/toolbar/default-toolbar');
-const FixedToolbar = () => import('../views/toolbar/fixed-toolbar');
-const WaterfallToolbar = () => import('../views/toolbar/waterfall-toolbar');
+  import ('../views/drawer/permanent-drawer-below-toolbar');
+const Grid = () =>
+  import ('../views/components/grid');
+const Tabs = () =>
+  import ('../views/components/tabs');
+const Toolbar = () =>
+  import ('../views/toolbar');
+const DefaultToolbar = () =>
+  import ('../views/toolbar/default-toolbar');
+const FixedToolbar = () =>
+  import ('../views/toolbar/fixed-toolbar');
+const WaterfallToolbar = () =>
+  import ('../views/toolbar/waterfall-toolbar');
 const DefaultFlexibleToolbar = () =>
-  import('../views/toolbar/default-flexible-toolbar');
+  import ('../views/toolbar/default-flexible-toolbar');
 const WaterfallFlexibleToolbar = () =>
-  import('../views/toolbar/waterfall-flexible-toolbar');
+  import ('../views/toolbar/waterfall-flexible-toolbar');
 const WaterfallToolbarFixLastRow = () =>
-  import('../views/toolbar/waterfall-toolbar-fix-last-row');
-const MenuToolbar = () => import('../views/toolbar/menu-toolbar');
+  import ('../views/toolbar/waterfall-toolbar-fix-last-row');
+const MenuToolbar = () =>
+  import ('../views/toolbar/menu-toolbar');
+const TopAppBar = () =>
+  import ('../views/toolbar/top-app-bar');
 
-const layoutRoutes = [
-  {
+const layoutRoutes = [{
     path: '/temporary-drawer',
     name: 'temporary-drawer',
-    component: TemporaryDrawer,
-    meta: {
-      title: 'BalmUI - Temporary Drawer',
-      keywords: '',
-      description: ''
-    }
+    component: TemporaryDrawer
   },
   {
     path: '/persistent-drawer',
     name: 'persistent-drawer',
-    component: PersistentDrawer,
-    meta: {
-      title: 'BalmUI - Persistent Drawer',
-      keywords: '',
-      description: ''
-    }
+    component: PersistentDrawer
   },
   {
     path: '/permanent-drawer-above-toolbar',
     name: 'permanent-drawer-above-toolbar',
-    component: PermanentDrawerAboveToolbar,
-    meta: {
-      title: 'BalmUI - Permanent Drawer Above Toolbar',
-      keywords: '',
-      description: ''
-    }
+    component: PermanentDrawerAboveToolbar
   },
   {
     path: '/permanent-drawer-below-toolbar',
     name: 'permanent-drawer-below-toolbar',
-    component: PermanentDrawerBelowToolbar,
-    meta: {
-      title: 'BalmUI - Permanent Drawer Below Toolbar',
-      keywords: '',
-      description: ''
-    }
+    component: PermanentDrawerBelowToolbar
   },
   {
     path: '/grid',
     name: 'grid',
-    component: Grid,
-    meta: {
-      title: 'BalmUI - Grid',
-      keywords: '',
-      description: ''
-    }
+    component: Grid
   },
   {
     path: '/tabs',
     name: 'tabs',
-    component: Tabs,
-    meta: {
-      title: 'BalmUI - Tabs',
-      keywords: '',
-      description: ''
-    }
+    component: Tabs
   },
   {
     path: '/toolbar',
     name: 'toolbar',
-    component: Toolbar,
-    meta: {
-      title: 'BalmUI - Toolbar',
-      keywords: '',
-      description: ''
-    }
+    component: Toolbar
   },
   {
     path: '/default-toolbar',
     name: 'default-toolbar',
-    component: DefaultToolbar,
-    meta: {
-      title: 'BalmUI - Default Toolbar',
-      keywords: '',
-      description: ''
-    }
+    component: DefaultToolbar
   },
   {
     path: '/fixed-toolbar',
     name: 'fixed-toolbar',
-    component: FixedToolbar,
-    meta: {
-      title: 'BalmUI - Fixed Toolbar',
-      keywords: '',
-      description: ''
-    }
+    component: FixedToolbar
   },
   {
     path: '/waterfall-toolbar',
     name: 'waterfall-toolbar',
-    component: WaterfallToolbar,
-    meta: {
-      title: 'BalmUI - Waterfall Toolbar',
-      keywords: '',
-      description: ''
-    }
+    component: WaterfallToolbar
   },
   {
     path: '/default-flexible-toolbar',
     name: 'default-flexible-toolbar',
-    component: DefaultFlexibleToolbar,
-    meta: {
-      title: 'BalmUI - Default Flexible Toolbar',
-      keywords: '',
-      description: ''
-    }
+    component: DefaultFlexibleToolbar
   },
   {
     path: '/waterfall-flexible-toolbar',
     name: 'waterfall-flexible-toolbar',
-    component: WaterfallFlexibleToolbar,
-    meta: {
-      title: 'BalmUI - Waterfall Flexible Toolbar',
-      keywords: '',
-      description: ''
-    }
+    component: WaterfallFlexibleToolbar
   },
   {
     path: '/waterfall-toolbar-fix-last-row',
     name: 'waterfall-toolbar-fix-last-row',
-    component: WaterfallToolbarFixLastRow,
-    meta: {
-      title: 'BalmUI - Waterfall Toolbar Fix LastRow',
-      keywords: '',
-      description: ''
-    }
+    component: WaterfallToolbarFixLastRow
   },
   {
     path: '/menu-toolbar',
     name: 'menu-toolbar',
-    component: MenuToolbar,
-    meta: {
-      title: 'BalmUI - Fixed Toolbar with Menu',
-      keywords: '',
-      description: ''
-    }
+    component: MenuToolbar
+  }, {
+    path: '/top-app-bar',
+    name: 'top-app-bar',
+    component: TopAppBar
   }
 ];
 

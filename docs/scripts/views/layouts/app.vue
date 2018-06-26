@@ -31,6 +31,7 @@
                 <template v-for="(item, index) in menu">
                   <router-link
                     v-if="item.icon"
+                    :key="index"
                     :class="[props.className.item, {'submenu': item.isSubmenu}]"
                     :to="item.url"
                     :active-class="props.className.active">
@@ -42,8 +43,8 @@
                     </ui-item-start>
                     {{ item.name }}
                   </router-link>
-                  <ui-list-divider v-else-if="item === '-'"></ui-list-divider>
-                  <h3 v-else>{{ item.name }}</h3>
+                  <ui-list-divider v-else-if="item === '-'" :key="index"></ui-list-divider>
+                  <h3 v-else :key="index">{{ item.name }}</h3>
                 </template>
               </ui-list-nav>
               <ui-list-divider></ui-list-divider>
@@ -59,7 +60,7 @@
 </template>
 
 <script>
-import {lang} from '../../config/lang';
+import { lang } from '../../config/lang';
 import menu from '../../config/menu';
 import logo from '../../../images/icon/ic_component_24px_white.svg';
 
@@ -74,10 +75,13 @@ export default {
   computed: {
     noLayout() {
       let routeName = this.$route.name;
-      return routeName
-        && (routeName.indexOf('-drawer') > -1
-        || routeName.indexOf('-toolbar') > -1)
-        || routeName === 'grid';
+      return (
+        (routeName &&
+          (routeName.indexOf('-drawer') > -1 ||
+            routeName.indexOf('-toolbar') > -1)) ||
+        routeName === 'grid' ||
+        routeName === 'top-app-bar'
+      );
     }
   },
   watch: {

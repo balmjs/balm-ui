@@ -1,8 +1,6 @@
-const MATERIAL_COMPONENTS = [
-  {
+const MATERIAL_COMPONENTS = [{
     name: 'Layout',
-    children: [
-      {
+    children: [{
         icon: 'card',
         name: 'Layout grid',
         description: 'Grid and gutter support',
@@ -17,14 +15,19 @@ const MATERIAL_COMPONENTS = [
         icon: 'toolbar',
         name: 'Toolbar',
         description: 'Header and footers'
+      },
+      {
+        icon: 'toolbar',
+        name: 'Top App Bar',
+        description: 'Container for application title, navigation icon, and action items',
+        url: 'top-app-bar'
       }
     ]
   },
   '-',
   {
     name: 'Drawers',
-    children: [
-      {
+    children: [{
         icon: 'side_navigation',
         name: 'Temporary',
         url: 'temporary-drawer'
@@ -51,8 +54,7 @@ const MATERIAL_COMPONENTS = [
   '-',
   {
     name: 'Buttons',
-    children: [
-      {
+    children: [{
         icon: 'button',
         name: 'Button',
         description: 'Raised and flat buttons'
@@ -74,8 +76,7 @@ const MATERIAL_COMPONENTS = [
   '-',
   {
     name: 'Data View',
-    children: [
-      {
+    children: [{
         icon: 'card',
         name: 'Card',
         description: 'Various card layout styles'
@@ -113,8 +114,7 @@ const MATERIAL_COMPONENTS = [
   '-',
   {
     name: 'Inputs and Controls',
-    children: [
-      {
+    children: [{
         icon: 'text_field',
         name: 'Text Field',
         description: 'Single and multiline text fields',
@@ -150,8 +150,7 @@ const MATERIAL_COMPONENTS = [
   '-',
   {
     name: 'Modal',
-    children: [
-      {
+    children: [{
         icon: 'dialog',
         name: 'Dialog',
         description: 'Secondary text'
@@ -172,8 +171,7 @@ const MATERIAL_COMPONENTS = [
   '-',
   {
     name: 'Others',
-    children: [
-      {
+    children: [{
         icon: 'typography',
         name: 'Typography',
         description: 'Type hierarchy'
@@ -222,9 +220,9 @@ for (let component of MATERIAL_COMPONENTS) {
       icon: getComponentIcon(component),
       name: component.name,
       description: component.description,
-      url: component.icon
-        ? component.url || component.name.toLowerCase()
-        : false
+      url: component.icon ?
+        component.url || component.name.toLowerCase() :
+        false
     });
     if (component.children) {
       for (let subComponent of component.children) {

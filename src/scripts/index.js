@@ -19,6 +19,7 @@ import UiToolbarTitle from './components/toolbar/toolbar-title';
 import UiToolbarAnchor from './components/toolbar/icons/toolbar-anchor';
 import UiToolbarSpan from './components/toolbar/icons/toolbar-span';
 import UiToolbarButton from './components/toolbar/icons/toolbar-button';
+import UiTopAppBar from './components/toolbar/top-app-bar';
 import UiGrid from './components/grid/grid';
 import UiGridInner from './components/grid/grid-inner';
 import UiGridCell from './components/grid/grid-cell';
@@ -130,6 +131,7 @@ const components = {
   UiToolbarAnchor,
   UiToolbarSpan,
   UiToolbarButton,
+  UiTopAppBar,
   UiGrid,
   UiGridInner,
   UiGridCell,
@@ -235,16 +237,21 @@ const registers = {
   }
 };
 
-const BalmUI = Object.assign(
-  {},
-  { version },
-  { helpers },
-  { components },
-  { plugins },
+const BalmUI = Object.assign({}, {
+    version
+  }, {
+    helpers
+  }, {
+    components
+  }, {
+    plugins
+  },
   registers
 );
 
 autoInstall(BalmUI);
 
 export default BalmUI;
-export { helpers };
+export {
+  helpers
+};

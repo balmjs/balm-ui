@@ -87,9 +87,7 @@ export default {
   },
   watch: {
     model(val) {
-      if (!this.disabled) {
-        this.updateStatus(MDC_ICONTOGGLE.STATUS.ON, val);
-      }
+      this.updateStatus(MDC_ICONTOGGLE.STATUS.ON, val);
     },
     disabled(val) {
       this.updateStatus(MDC_ICONTOGGLE.STATUS.DISABLED, val);

@@ -61,6 +61,7 @@ import elementMixin from '../../mixins/element';
 import floatingLabelMixin from '../../mixins/floating-label';
 import getType from '../../helpers/typeof';
 
+// Define constants
 const UI_SELECT = {
   EVENT: {
     CHANGE: 'change',

@@ -9,6 +9,7 @@
 import { MDCTabBar } from '../../../material-components-web/tabs';
 import tabsMixin from '../../mixins/tabs';
 
+// Define constants
 const UI_TABS = {
   EVENT: {
     CHANGE: 'change'

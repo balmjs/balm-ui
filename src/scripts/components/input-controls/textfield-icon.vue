@@ -9,6 +9,8 @@
 
 <script>
 const noop = () => {};
+
+// Define constants
 const UI_TEXTFIELD_ICON = {
   EVENT: {
     CLICK: 'click'

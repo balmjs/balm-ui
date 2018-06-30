@@ -7,6 +7,7 @@
 <script>
 import getType from '../../helpers/typeof';
 
+// Define constants
 const BUTTON_POSITIONS = [
   'top left',
   'top right',

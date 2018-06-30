@@ -5,6 +5,7 @@
 </template>
 
 <script>
+// Define constants
 const CLASSNAME_ACTIVE = 'active';
 
 export default {

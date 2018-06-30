@@ -9,6 +9,7 @@
 <script>
 import UiGridInner from './grid-inner';
 
+// Define constants
 const UI_GRID = {
   POSITIONS: ['left', 'right']
 };

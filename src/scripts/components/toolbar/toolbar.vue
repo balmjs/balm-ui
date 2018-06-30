@@ -7,6 +7,7 @@
 <script>
 import { MDCToolbar } from '../../../material-components-web/toolbar';
 
+// Define constants
 const UI_TOOLBAR = {
   FIXED_LASTROW_ONLY: 'lastrow',
   FLEXIBLE_CUSTOM_BEHAVIOR: 'custom',

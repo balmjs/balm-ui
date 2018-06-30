@@ -95,8 +95,9 @@ import elementMixin from '../../mixins/element';
 import floatingLabelMixin from '../../mixins/floating-label';
 import getType from '../../helpers/typeof';
 
-// const INPUT_TYPES = ['text', 'number', 'password'];
+// Define constants
 const UI_TEXTFIELD = {
+  // INPUT_TYPES: ['text', 'number', 'password'],
   EVENT: {
     FOCUS: 'focus',
     KEYDOWN: 'keydown',

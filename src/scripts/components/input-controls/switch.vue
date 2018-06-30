@@ -28,6 +28,7 @@ import UiFormField from './form-field';
 import formFieldMixin from '../../mixins/form-field';
 import elementMixin from '../../mixins/element';
 
+// Define constants
 const UI_SWITCH = {
   EVENT: {
     CHANGE: 'change'

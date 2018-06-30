@@ -29,6 +29,7 @@
 <script>
 import { MDCTopAppBar } from '../../../material-components-web/top-app-bar';
 
+// Define constants
 const UI_TOP_APP_BAR = {
   ADJUST: {
     DEFAULT: 'mdc-top-app-bar--fixed-adjust',

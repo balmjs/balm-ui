@@ -27,6 +27,7 @@
 <script>
 import { MDCSlider } from '../../../material-components-web/slider';
 
+// Define constants
 const UI_SLIDER = {
   EVENT: {
     INPUT: 'input',

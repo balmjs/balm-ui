@@ -21,6 +21,7 @@ import UiMenuItem from './menuitem';
 import UiItemDivider from '../list/item-divider';
 import getType from '../../helpers/typeof';
 
+// Define constants
 const UI_MENU = {
   DIVIDER: '-',
   MENU_POSITIONS: [

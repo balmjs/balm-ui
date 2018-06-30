@@ -2,7 +2,8 @@
   <header :class="className">
     <div class="mdc-top-app-bar__row">
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-        <a class="material-icons mdc-top-app-bar__navigation-icon">
+        <a class="material-icons mdc-top-app-bar__navigation-icon"
+          @click="$emit(UI_TOP_APP_BAR.EVENT.NAV)">
           <slot name="navigation-icon">menu</slot>
         </a>
         <span class="mdc-top-app-bar__title">
@@ -36,7 +37,9 @@ const UI_TOP_APP_BAR = {
     DENSE_PROMINENT: 'mdc-top-app-bar--dense-prominent-fixed-adjust',
     SHORT: 'mdc-top-app-bar--short-fixed-adjust'
   },
-  EVENT: {}
+  EVENT: {
+    NAV: 'nav'
+  }
 };
 
 export default {
@@ -81,8 +84,9 @@ export default {
   },
   data() {
     return {
+      UI_TOP_APP_BAR,
       $topAppBar: null,
-      element: null
+      contentElement: null
     };
   },
   computed: {
@@ -98,42 +102,64 @@ export default {
     }
   },
   watch: {
+    fixed() {
+      this.reset();
+    },
     prominent(val) {
-      this.element.classList.toggle(UI_TOP_APP_BAR.ADJUST.PROMINENT);
+      this.reset();
+      this.contentElement.classList.toggle(UI_TOP_APP_BAR.ADJUST.PROMINENT);
       this.updateDenseProminentFixedAdjust();
     },
     dense(val) {
-      this.element.classList.toggle(UI_TOP_APP_BAR.ADJUST.DENSE);
+      this.reset();
+      this.contentElement.classList.toggle(UI_TOP_APP_BAR.ADJUST.DENSE);
       this.updateDenseProminentFixedAdjust();
     },
     short(val) {
-      this.element.classList.toggle(UI_TOP_APP_BAR.ADJUST.SHORT);
+      this.reset();
+      this.contentElement.classList.toggle(UI_TOP_APP_BAR.ADJUST.SHORT);
+    },
+    alwaysClosed() {
+      this.reset();
     }
   },
   mounted() {
     if (!this.$topAppBar) {
-      this.$topAppBar = new MDCTopAppBar(this.$el);
+      this.init();
 
-      this.$topAppBar.listen('MDCTopAppBar:nav', () => {});
-
-      this.initFixedAdjustElement();
+      this.createFixedAdjustElement();
     }
   },
   methods: {
-    initFixedAdjustElement() {
+    init() {
+      this.$nextTick(() => {
+        this.$topAppBar = new MDCTopAppBar(this.$el);
+      });
+    },
+    reset() {
+      this.$topAppBar.destroy();
+      this.init();
+    },
+    createFixedAdjustElement() {
       if (this.contentSelector) {
-        this.element = document.querySelector(this.contentSelector);
+        this.contentElement = document.querySelector(this.contentSelector);
 
-        if (!this.element.classList.contains(UI_TOP_APP_BAR.ADJUST.DEFAULT)) {
-          this.element.classList.add(UI_TOP_APP_BAR.ADJUST.DEFAULT);
+        if (
+          !this.contentElement.classList.contains(UI_TOP_APP_BAR.ADJUST.DEFAULT)
+        ) {
+          this.contentElement.classList.add(UI_TOP_APP_BAR.ADJUST.DEFAULT);
         }
       }
     },
     updateDenseProminentFixedAdjust() {
       if (this.dense && this.prominent) {
-        this.element.classList.add(UI_TOP_APP_BAR.ADJUST.DENSE_PROMINENT);
+        this.contentElement.classList.add(
+          UI_TOP_APP_BAR.ADJUST.DENSE_PROMINENT
+        );
       } else {
-        this.element.classList.remove(UI_TOP_APP_BAR.ADJUST.DENSE_PROMINENT);
+        this.contentElement.classList.remove(
+          UI_TOP_APP_BAR.ADJUST.DENSE_PROMINENT
+        );
       }
     }
   }

@@ -1,18 +1,14 @@
 <template>
   <div class="demo--drawer demo--permanent-drawer-below-toolbar">
-    <ui-toolbar :fixed="true">
-      <ui-toolbar-row>
-        <ui-toolbar-section align="start">
-          <span class="catalog-back">
-            <ui-toolbar-anchor type="menu" href="javascript:void(0)"
-              @click.native="() => { $router.back(); }">&#xE5C4;</ui-toolbar-anchor>
-          </span>
-          <ui-toolbar-title class="catalog-title">Permanent Drawer Below Toolbar</ui-toolbar-title>
-        </ui-toolbar-section>
-      </ui-toolbar-row>
-    </ui-toolbar>
+    <ui-top-app-bar fixed contentSelector=".demo-content" :class="$shadow(4)">
+      <template slot="navigation-icon">
+        <ui-toolbar-anchor type="menu" href="javascript:void(0)"
+          @click.native="() => { $router.back(); }">&#xE5C4;</ui-toolbar-anchor>
+      </template>
+      Permanent Drawer Below Toolbar
+    </ui-top-app-bar>
 
-    <div class="demo-content mdc-toolbar-fixed-adjust">
+    <div class="demo-content">
       <ui-permanent-drawer>
         <ui-drawer-content>
           <ui-list-group>
@@ -34,7 +30,7 @@
       </ui-permanent-drawer>
 
       <main class="demo-main">
-        <h1 :class="$tt('display1')">Permanent Drawer</h1>
+        <h1 :class="$tt('headline4')">Permanent Drawer</h1>
         <p :class="$tt('body1')">It sits to the left of this content.</p>
       </main>
     </div>

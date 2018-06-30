@@ -32,9 +32,9 @@
                   <router-link
                     v-if="item.icon"
                     :key="index"
-                    :class="[props.className.item, {'submenu': item.isSubmenu}]"
+                    :class="['mdc-list-item', {'submenu': item.isSubmenu}]"
                     :to="item.url"
-                    :active-class="props.className.active">
+                    active-class="mdc-list-item--activated">
                     <ui-item-start>
                       <img v-if="item.icon"
                         class="catalog-component-icon"

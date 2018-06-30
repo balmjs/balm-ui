@@ -12,7 +12,7 @@ const TYPES = ['temporary', 'persistent', 'permanent'];
 export default {
   name: 'ui-drawer',
   props: {
-    // ui attributes
+    // UI attributes
     type: {
       type: String,
       required: true
@@ -23,7 +23,7 @@ export default {
       let type = this.type;
 
       return {
-        outer: `mdc-drawer--${type}`,
+        outer: `mdc-drawer mdc-drawer--${type}`,
         inner: `mdc-drawer__drawer`
       };
     }

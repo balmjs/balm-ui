@@ -22,20 +22,16 @@
     </ui-permanent-drawer>
 
     <div class="demo-content">
-      <ui-toolbar :class="$shadow(4)">
-        <ui-toolbar-row>
-          <ui-toolbar-section align="start">
-            <span class="catalog-back">
-              <ui-toolbar-anchor type="menu" href="javascript:void(0)"
-                @click.native="() => { $router.back(); }">&#xE5C4;</ui-toolbar-anchor>
-            </span>
-            <ui-toolbar-title class="catalog-title">Permanent Drawer Above Toolbar</ui-toolbar-title>
-          </ui-toolbar-section>
-        </ui-toolbar-row>
-      </ui-toolbar>
+      <ui-top-app-bar contentSelector=".demo-main" :class="$shadow(4)">
+        <template slot="navigation-icon">
+          <ui-toolbar-anchor type="menu" href="javascript:void(0)"
+            @click.native="() => { $router.back(); }">&#xE5C4;</ui-toolbar-anchor>
+        </template>
+        Permanent Drawer Above Toolbar
+      </ui-top-app-bar>
 
       <main class="demo-main">
-        <h1 :class="$tt('display1')">Permanent Drawer</h1>
+        <h1 :class="$tt('headline4')">Permanent Drawer</h1>
         <p :class="$tt('body1')">It sits to the left of this content.</p>
       </main>
     </div>

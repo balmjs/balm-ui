@@ -1,11 +1,15 @@
 export default {
+  model: {
+    prop: 'open',
+    event: 'change'
+  },
   props: {
-    // state
+    // States
     open: {
       type: Boolean,
       default: false
     },
-    // ui attributes
+    // UI attributes
     menuSelector: String
   },
   data() {
@@ -15,9 +19,7 @@ export default {
   },
   watch: {
     open(val) {
-      if (this.$drawer) {
-        this.$drawer.open = val;
-      }
+      this.$drawer.open = val;
     }
   },
   methods: {

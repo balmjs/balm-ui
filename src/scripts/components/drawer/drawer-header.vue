@@ -1,6 +1,6 @@
 <template>
-  <header :class="className.outer">
-    <div :class="[className.inner, contentClass]">
+  <header class="mdc-drawer__header">
+    <div :class="['mdc-drawer__header-content', innerClass]">
       <slot></slot>
     </div>
   </header>
@@ -10,21 +10,8 @@
 export default {
   name: 'ui-drawer-header',
   props: {
-    // ui attributes
-    contentClass: [String, Array]
-  },
-  data() {
-    return {
-      type: this.$parent.type
-    };
-  },
-  computed: {
-    className() {
-      return {
-        outer: `mdc-${this.type}-drawer__header`,
-        inner: `mdc-${this.type}-drawer__header-content`
-      };
-    }
+    // UI attributes
+    innerClass: [String, Array]
   }
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="demo--drawer demo--persistent-drawer">
-    <ui-persistent-drawer menuSelector=".demo-menu">
+    <ui-persistent-drawer menuSelector="#demo-menu">
       <ui-drawer-toolbar-spacer></ui-drawer-toolbar-spacer>
       <ui-drawer-content>
         <ui-list-group>
@@ -22,17 +22,12 @@
     </ui-persistent-drawer>
 
     <div class="demo-content">
-      <ui-toolbar contentSelector=".demo-main" :class="$shadow(4)">
-        <ui-toolbar-row>
-          <ui-toolbar-section align="start">
-            <ui-toolbar-button type="menu" class="demo-menu"></ui-toolbar-button>
-            <ui-toolbar-title class="catalog-title">Persistent Drawer</ui-toolbar-title>
-          </ui-toolbar-section>
-        </ui-toolbar-row>
-      </ui-toolbar>
+      <ui-top-app-bar contentSelector=".demo-main" menuId="demo-menu" :class="$shadow(4)">
+        Persistent Drawer
+      </ui-top-app-bar>
 
       <main class="demo-main">
-        <h1 :class="$tt('display1')">Persistent Drawer</h1>
+        <h1 :class="$tt('headline4')">Persistent Drawer</h1>
         <p :class="$tt('body1')">Click the menu icon above to open and close the drawer.</p>
       </main>
     </div>

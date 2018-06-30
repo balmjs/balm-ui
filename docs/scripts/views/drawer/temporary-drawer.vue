@@ -1,16 +1,11 @@
 <template>
   <div class="demo--drawer demo--temporary-drawer">
-    <ui-toolbar :fixed="true" contentSelector=".demo-main">
-      <ui-toolbar-row>
-        <ui-toolbar-section align="start">
-          <ui-toolbar-button type="menu" class="demo-menu"></ui-toolbar-button>
-          <ui-toolbar-title class="catalog-title">Temporary Drawer</ui-toolbar-title>
-        </ui-toolbar-section>
-      </ui-toolbar-row>
-    </ui-toolbar>
+    <ui-top-app-bar fixed contentSelector=".demo-main" menuId="demo-menu">
+      Temporary Drawer
+    </ui-top-app-bar>
 
-    <ui-temporary-drawer menuSelector=".demo-menu">
-      <ui-drawer-header :contentClass="[$themeColor('primary', true), $textColor('primary', 'primary')]">
+    <ui-temporary-drawer class="demo-drawer" menuSelector="#demo-menu">
+      <ui-drawer-header :innerClass="[$themeColor('primary', true), $textColor('primary', 'primary')]">
         Header here
       </ui-drawer-header>
       <ui-drawer-content>
@@ -33,7 +28,7 @@
     </ui-temporary-drawer>
 
     <main class="demo-main">
-      <h1 :class="$tt('display1')">Temporary Drawer</h1>
+      <h1 :class="$tt('headline4')">Temporary Drawer</h1>
       <p :class="$tt('body1')">Click the menu icon above to open.</p>
     </main>
   </div>

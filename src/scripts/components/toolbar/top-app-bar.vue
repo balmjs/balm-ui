@@ -3,6 +3,7 @@
     <div class="mdc-top-app-bar__row">
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
         <a class="material-icons mdc-top-app-bar__navigation-icon"
+          :id="menuId"
           @click="$emit(UI_TOP_APP_BAR.EVENT.NAV)">
           <slot name="navigation-icon">menu</slot>
         </a>
@@ -81,7 +82,8 @@ export default {
     contentSelector: {
       type: String,
       required: true
-    }
+    },
+    menuId: String
   },
   data() {
     return {

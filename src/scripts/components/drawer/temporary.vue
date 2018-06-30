@@ -5,14 +5,17 @@
 </template>
 
 <script>
-import {MDCTemporaryDrawer} from '../../../material-components-web/drawer';
-import drawerMixin from '../../mixins/drawer';
+import { MDCTemporaryDrawer } from '../../../material-components-web/drawer';
 import UiDrawer from './drawer';
+import drawerMixin from '../../mixins/drawer';
 
-const MDC_EVENT_OPEN = 'MDCTemporaryDrawer:open';
-const MDC_EVENT_CLOSE = 'MDCTemporaryDrawer:close';
-const UI_EVENT_OPEN = 'open';
-const UI_EVENT_CLOSE = 'close';
+// Define constants
+const UI_DRAWER = {
+  EVENT: {
+    OPEN: 'open',
+    CLOSE: 'close'
+  }
+};
 
 export default {
   name: 'ui-temporary-drawer',
@@ -23,9 +26,15 @@ export default {
   mounted() {
     if (!this.$drawer) {
       this.$drawer = new MDCTemporaryDrawer(this.$el);
+
       this.init();
-      this.$drawer.listen(MDC_EVENT_OPEN, () => this.$emit(UI_EVENT_OPEN, true));
-      this.$drawer.listen(MDC_EVENT_CLOSE, () => this.$emit(UI_EVENT_CLOSE, false));
+
+      this.$drawer.listen(`MDCTemporaryDrawer:${UI_DRAWER.EVENT.OPEN}`, () =>
+        this.$emit(UI_DRAWER.EVENT.OPEN, true)
+      );
+      this.$drawer.listen(`MDCTemporaryDrawer:${UI_DRAWER.EVENT.CLOSE}`, () =>
+        this.$emit(UI_DRAWER.EVENT.CLOSE, false)
+      );
     }
   }
 };

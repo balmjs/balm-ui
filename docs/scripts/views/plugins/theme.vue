@@ -10,6 +10,34 @@
     </section>
 
     <div class="demo-main">
+      <ui-menu-anchor>
+        <ui-button ref="colorButton"
+          id="theme-color-action"
+          title="Change theme colors"
+          data-theme="baseline"
+          @click="balmUI.onShow('open')">
+          <i class="demo-theme-color-radio">
+            <span class="demo-theme-color-radio__inner"></span>
+          </i>
+        </ui-button>
+
+        <ui-menu id="theme-color-menu"
+          class="demo-theme-menu"
+          v-model="open"
+          @selected="onSelected">
+          <ui-menuitem v-for="(item, index) in colorItems"
+            :key="index"
+            :data-theme="item.value">
+            <div class="mdc-list-item__graphic">
+              <i class="demo-theme-color-radio">
+                <span class="demo-theme-color-radio__inner"></span>
+              </i>
+            </div>
+            {{ item.label }}
+          </ui-menuitem>
+        </ui-menu>
+      </ui-menu-anchor>
+
       <h2 :class="$tt('headline4')">Baseline Colors</h2>
 
       <section class="demo-component-section">
@@ -140,3 +168,61 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      open: false,
+      colorItems: [
+        {
+          label: 'Baseline (default)',
+          value: 'baseline'
+        },
+        {
+          label: 'Dark background (custom)',
+          value: 'dark'
+        },
+        {
+          label: 'Black primary (custom)',
+          value: 'black'
+        },
+        {
+          label: 'Shrine (custom)',
+          value: 'shrine'
+        }
+      ]
+    };
+  },
+  methods: {
+    onSelected(data) {
+      let themeValue = this.colorItems[data.index].value;
+
+      switch (themeValue) {
+        case 'dark':
+          this.$setTheme('primary', '#ffd54f');
+          this.$setTheme('secondary', '#ec407a');
+          this.$setTheme('background', '#212121');
+          break;
+        case 'black':
+          this.$setTheme('primary', '#212121');
+          this.$setTheme('secondary', '#64dd17');
+          break;
+        case 'shrine':
+          this.$setTheme('primary', '#fcb8ab');
+          this.$setTheme('secondary', '#feeae6');
+          this.$setTheme('on-primary', '#442b2d');
+          this.$setTheme('on-secondary', '#442b2d');
+          break;
+        default:
+          this.$setTheme('primary', '#6200ee');
+          this.$setTheme('secondary', '#018786');
+          this.$setTheme('background', '');
+          break;
+      }
+
+      this.$refs.colorButton.$el.dataset.theme = themeValue;
+    }
+  }
+};
+</script>

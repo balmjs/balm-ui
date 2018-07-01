@@ -1,50 +1,48 @@
 import autoInstall from '../config/auto-install';
 
-const THEME_COLORS = [
+// Define constants
+const THEME_STYLES = [
   'primary',
-  'primary-light',
-  'primary-dark',
   'secondary',
-  'secondary-light',
-  'secondary-dark',
-  'background'
+  'background',
+  'surface',
+  'on-primary',
+  'on-secondary',
+  'on-surface',
+  'primary-bg',
+  'secondary-bg'
 ];
 const TEXT_STYLES = ['primary', 'secondary', 'hint', 'disabled', 'icon'];
-const THEME_STYLES = ['light', 'dark'];
-const TEXT_THEME_COLORS = THEME_COLORS.concat(THEME_STYLES);
+const THEME_TONES = ['background', 'light', 'dark'];
 
-const themeColor = (color = '', bg = false) => {
+const themeColor = (style = '') => {
   let className = '';
-  let currentColor = color.toLowerCase();
+  let currentStyle = style.toLowerCase();
 
-  if (THEME_COLORS.includes(currentColor)) {
-    className = `mdc-theme--${currentColor}`;
-    let hasBackground = bg && currentColor !== 'background';
-    if (hasBackground) {
-      className += '-bg';
-    }
+  if (THEME_STYLES.includes(currentStyle)) {
+    className = `mdc-theme--${currentStyle}`;
   } else {
     console.warn(
-      'Please choose a theme color: ' + JSON.stringify(THEME_COLORS)
+      'Please choose a theme style: ' + JSON.stringify(THEME_STYLES)
     );
   }
 
   return className;
 };
 
-const textColor = (color = '', bgColor = '') => {
+const textColor = (style = '', tone = 'background') => {
   let className = '';
 
-  if (TEXT_STYLES.includes(color.toLowerCase())) {
-    if (TEXT_THEME_COLORS.includes(bgColor.toLowerCase())) {
-      className = `mdc-theme--text-${color}-on-${bgColor}`;
+  if (TEXT_STYLES.includes(style.toLowerCase())) {
+    if (THEME_TONES.includes(tone.toLowerCase())) {
+      className = `mdc-theme--text-${style}-on-${tone}`;
     } else {
       console.warn(
-        'Please choose a text theme color: ' + JSON.stringify(TEXT_THEME_COLORS)
+        'Please choose a theme tone: ' + JSON.stringify(THEME_TONES)
       );
     }
   } else {
-    console.warn('Please choose a text color: ' + JSON.stringify(TEXT_STYLES));
+    console.warn('Please choose a text style: ' + JSON.stringify(TEXT_STYLES));
   }
 
   return className;

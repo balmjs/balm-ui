@@ -3,11 +3,11 @@ import autoInstall from '../config/auto-install';
 const GRID_PROPERTY = ['margin', 'gutter', 'column-width'];
 const SCREEN_SIZE = ['desktop', 'tablet', 'phone'];
 
-const setGrid = (_property, screenSize, value) => {
+const setGrid = (_property, size, value) => {
   if (GRID_PROPERTY.includes(_property)) {
-    if (SCREEN_SIZE.includes(screenSize)) {
+    if (SCREEN_SIZE.includes(size)) {
       document.documentElement.style.setProperty(
-        `--mdc-layout-grid-${_property}-${screenSize}`,
+        `--mdc-layout-grid-${_property}-${size}`,
         value
       );
     } else {

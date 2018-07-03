@@ -11,10 +11,6 @@ body,
   height: 100%;
 }
 
-.balmui-head {
-  padding-right: 20px;
-}
-
 .balmui-body {
   display: flex;
   width: 100%;
@@ -28,10 +24,6 @@ body,
   & > * {
     padding-bottom: 20px;
   }
-}
-
-.balmui-menu {
-  width: 240px;
 }
 
 .balmui-content {

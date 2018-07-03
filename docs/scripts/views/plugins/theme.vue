@@ -86,7 +86,7 @@
                   <div :class="[
                     'demo-theme-color-swatch demo-theme-color-swatch--elevated',
                     $themeColor('background'),
-                    $themeColor('on-background')]">Background</div>
+                    $textColor('primary')]">Background</div>
                 </div>
               </div>
             </fieldset>
@@ -202,11 +202,14 @@ export default {
         case 'dark':
           this.$setTheme('primary', '#ffd54f');
           this.$setTheme('secondary', '#ec407a');
-          this.$setTheme('background', '#212121');
+          this.$setTheme('on-primary', '#000');
+          this.$setTheme('on-secondary', '#fff');
           break;
         case 'black':
           this.$setTheme('primary', '#212121');
           this.$setTheme('secondary', '#64dd17');
+          this.$setTheme('on-primary', '#fff');
+          this.$setTheme('on-secondary', '#000');
           break;
         case 'shrine':
           this.$setTheme('primary', '#fcb8ab');
@@ -217,8 +220,25 @@ export default {
         default:
           this.$setTheme('primary', '#6200ee');
           this.$setTheme('secondary', '#018786');
-          this.$setTheme('background', '');
+          this.$setTheme('on-primary', '#fff');
+          this.$setTheme('on-secondary', '#fff');
           break;
+      }
+
+      if (themeValue === 'dark') {
+        this.$setTheme('background', '#212121');
+        this.$setTextTheme('primary', 'background', 'white');
+        this.$setTextTheme('secondary', 'background', 'rgba(255, 255, 255, 0.7)');
+        this.$setTextTheme('hint', 'background', 'rgba(255, 255, 255, 0.5)');
+        this.$setTextTheme('disabled', 'background', 'rgba(255, 255, 255, 0.5)');
+        this.$setTextTheme('icon', 'background', 'rgba(255, 255, 255, 0.5)');
+      } else {
+        this.$setTheme('background', '#fff');
+        this.$setTextTheme('primary', 'background', 'rgba(0, 0, 0, 0.87)');
+        this.$setTextTheme('secondary', 'background', 'rgba(0, 0, 0, 0.54)');
+        this.$setTextTheme('hint', 'background', 'rgba(0, 0, 0, 0.38)');
+        this.$setTextTheme('disabled', 'background', 'rgba(0, 0, 0, 0.38)');
+        this.$setTextTheme('icon', 'background', 'rgba(0, 0, 0, 0.38)');
       }
 
       this.$refs.colorButton.$el.dataset.theme = themeValue;

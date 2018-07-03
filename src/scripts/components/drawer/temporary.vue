@@ -12,8 +12,7 @@ import drawerMixin from '../../mixins/drawer';
 // Define constants
 const UI_DRAWER = {
   EVENT: {
-    OPEN: 'open',
-    CLOSE: 'close'
+    NAV: 'nav'
   }
 };
 
@@ -29,11 +28,11 @@ export default {
 
       this.init();
 
-      this.$drawer.listen(`MDCTemporaryDrawer:${UI_DRAWER.EVENT.OPEN}`, () =>
-        this.$emit(UI_DRAWER.EVENT.OPEN, true)
+      this.$drawer.listen('MDCTemporaryDrawer:open', () =>
+        this.$emit(UI_DRAWER.EVENT.NAV, true)
       );
-      this.$drawer.listen(`MDCTemporaryDrawer:${UI_DRAWER.EVENT.CLOSE}`, () =>
-        this.$emit(UI_DRAWER.EVENT.CLOSE, false)
+      this.$drawer.listen('MDCTemporaryDrawer:close', () =>
+        this.$emit(UI_DRAWER.EVENT.NAV, false)
       );
     }
   }

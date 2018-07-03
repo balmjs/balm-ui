@@ -5,18 +5,18 @@
         <a class="material-icons mdc-top-app-bar__navigation-icon"
           :id="menuId"
           @click="$emit(UI_TOP_APP_BAR.EVENT.NAV)">
-          <slot name="navigation-icon">menu</slot>
+          <slot name="logo">menu</slot>
         </a>
         <span class="mdc-top-app-bar__title">
           <slot>{{ title }}</slot>
         </span>
       </section>
-      <section v-if="actionItems.length" class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-        <slot name="toolbar">
+      <section v-if="actionItems" class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+        <slot name="toolbar" :className="UI_TOP_APP_BAR.SLOT_CLASS">
           <a v-for="(item, index) in actionItems"
             :key="index"
             :href="item.url"
-            class="material-icons mdc-top-app-bar__action-item"
+            :class="[UI_TOP_APP_BAR.SLOT_CLASS.icon, UI_TOP_APP_BAR.SLOT_CLASS.item]"
             :aria-label="item.label"
             :alt="item.label">
             {{ item.icon }}
@@ -41,6 +41,10 @@ const UI_TOP_APP_BAR = {
   },
   EVENT: {
     NAV: 'nav'
+  },
+  SLOT_CLASS: {
+    icon: 'material-icons',
+    item: 'mdc-top-app-bar__action-item'
   }
 };
 
@@ -151,6 +155,22 @@ export default {
           !this.contentElement.classList.contains(UI_TOP_APP_BAR.ADJUST.DEFAULT)
         ) {
           this.contentElement.classList.add(UI_TOP_APP_BAR.ADJUST.DEFAULT);
+        }
+
+        if (this.short) {
+          this.contentElement.classList.add(UI_TOP_APP_BAR.ADJUST.SHORT);
+        } else {
+          if (this.prominent) {
+            this.contentElement.classList.add(UI_TOP_APP_BAR.ADJUST.PROMINENT);
+          }
+
+          if (this.dense) {
+            this.contentElement.classList.add(UI_TOP_APP_BAR.ADJUST.DENSE);
+          }
+
+          if (this.dense && this.prominent) {
+            this.contentElement.classList.add(UI_TOP_APP_BAR.ADJUST.DENSE_PROMINENT);
+          }
         }
       }
     },

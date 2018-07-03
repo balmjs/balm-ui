@@ -14,7 +14,7 @@
 
     <main class="demo-main">
       <div id="content-main">
-        <p v-for="i in 12" class="demo-paragraph">
+        <p v-for="i in 12" :key="i" class="demo-paragraph">
           Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.
         </p>
       </div>

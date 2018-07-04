@@ -52,10 +52,6 @@ export default {
   name: 'ui-top-app-bar',
   props: {
     // States
-    title: {
-      type: String,
-      default: ''
-    },
     actionItems: {
       type: Array,
       default() {
@@ -63,6 +59,10 @@ export default {
       }
     },
     // UI attributes
+    title: {
+      type: String,
+      default: ''
+    },
     fixed: {
       type: Boolean,
       default: false

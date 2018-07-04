@@ -1,18 +1,16 @@
 <template>
   <div class="demo--grid">
-    <ui-toolbar :fixed="true">
-      <ui-toolbar-row>
-        <ui-toolbar-section align="start">
-          <span class="catalog-back">
-            <ui-toolbar-anchor type="menu" href="javascript:void(0)"
-              @click.native="() => { $router.back(); }">&#xE5C4;</ui-toolbar-anchor>
-          </span>
-          <ui-toolbar-title class="catalog-title">Layout Grid</ui-toolbar-title>
-        </ui-toolbar-section>
-      </ui-toolbar-row>
-    </ui-toolbar>
+    <ui-top-app-bar fixed contentSelector=".demo-content">
+      <template slot="logo">
+        <span class="catalog-back">
+          <ui-toolbar-anchor type="menu" href="javascript:void(0)"
+            @click.native="() => { $router.back(); }">&#xE5C4;</ui-toolbar-anchor>
+        </span>
+      </template>
+      <span class="['catalog-title', $themeColor('on-primary')]">Layout Grid</span>
+    </ui-top-app-bar>
 
-    <div class="demo-content mdc-toolbar-fixed-adjust">
+    <div class="demo-content">
       <section class="hero">
         <ui-grid class="demo-grid">
           <ui-grid-cell class="demo-cell"></ui-grid-cell>

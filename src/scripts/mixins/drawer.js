@@ -1,7 +1,9 @@
+import UI_DRAWER from '../components/drawer/constants';
+
 export default {
   model: {
     prop: 'open',
-    event: 'change'
+    event: UI_DRAWER.EVENT.NAV
   },
   props: {
     // States
@@ -30,6 +32,8 @@ export default {
           .addEventListener('click', () => {
             this.$drawer.open = !this.$drawer.open;
           });
+
+        this.$drawer.open = this.open;
       }
     }
   }

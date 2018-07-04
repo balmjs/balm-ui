@@ -194,7 +194,22 @@ export default {
       ]
     };
   },
+  beforeDestroy() {
+    this.reset();
+  },
   methods: {
+    reset() {
+      this.$setTheme('primary', '#6200ee');
+      this.$setTheme('secondary', '#018786');
+      this.$setTheme('background', '#fff');
+      this.$setTheme('on-primary', '#fff');
+      this.$setTheme('on-secondary', '#fff');
+      this.$setTextTheme('primary', 'background', 'rgba(0, 0, 0, 0.87)');
+      this.$setTextTheme('secondary', 'background', 'rgba(0, 0, 0, 0.54)');
+      this.$setTextTheme('hint', 'background', 'rgba(0, 0, 0, 0.38)');
+      this.$setTextTheme('disabled', 'background', 'rgba(0, 0, 0, 0.38)');
+      this.$setTextTheme('icon', 'background', 'rgba(0, 0, 0, 0.38)');
+    },
     onSelected(data) {
       let themeValue = this.colorItems[data.index].value;
 
@@ -218,27 +233,26 @@ export default {
           this.$setTheme('on-secondary', '#442b2d');
           break;
         default:
-          this.$setTheme('primary', '#6200ee');
-          this.$setTheme('secondary', '#018786');
-          this.$setTheme('on-primary', '#fff');
-          this.$setTheme('on-secondary', '#fff');
+          this.reset();
           break;
       }
 
-      if (themeValue === 'dark') {
-        this.$setTheme('background', '#212121');
-        this.$setTextTheme('primary', 'background', 'white');
-        this.$setTextTheme('secondary', 'background', 'rgba(255, 255, 255, 0.7)');
-        this.$setTextTheme('hint', 'background', 'rgba(255, 255, 255, 0.5)');
-        this.$setTextTheme('disabled', 'background', 'rgba(255, 255, 255, 0.5)');
-        this.$setTextTheme('icon', 'background', 'rgba(255, 255, 255, 0.5)');
-      } else {
-        this.$setTheme('background', '#fff');
-        this.$setTextTheme('primary', 'background', 'rgba(0, 0, 0, 0.87)');
-        this.$setTextTheme('secondary', 'background', 'rgba(0, 0, 0, 0.54)');
-        this.$setTextTheme('hint', 'background', 'rgba(0, 0, 0, 0.38)');
-        this.$setTextTheme('disabled', 'background', 'rgba(0, 0, 0, 0.38)');
-        this.$setTextTheme('icon', 'background', 'rgba(0, 0, 0, 0.38)');
+      if (themeValue !== 'baseline') {
+        if (themeValue === 'dark') {
+          this.$setTheme('background', '#212121');
+          this.$setTextTheme('primary', 'background', 'white');
+          this.$setTextTheme('secondary', 'background', 'rgba(255, 255, 255, 0.7)');
+          this.$setTextTheme('hint', 'background', 'rgba(255, 255, 255, 0.5)');
+          this.$setTextTheme('disabled', 'background', 'rgba(255, 255, 255, 0.5)');
+          this.$setTextTheme('icon', 'background', 'rgba(255, 255, 255, 0.5)');
+        } else {
+          this.$setTheme('background', '#fff');
+          this.$setTextTheme('primary', 'background', 'rgba(0, 0, 0, 0.87)');
+          this.$setTextTheme('secondary', 'background', 'rgba(0, 0, 0, 0.54)');
+          this.$setTextTheme('hint', 'background', 'rgba(0, 0, 0, 0.38)');
+          this.$setTextTheme('disabled', 'background', 'rgba(0, 0, 0, 0.38)');
+          this.$setTextTheme('icon', 'background', 'rgba(0, 0, 0, 0.38)');
+        }
       }
 
       this.$refs.colorButton.$el.dataset.theme = themeValue;

@@ -8,13 +8,7 @@
 import { MDCPersistentDrawer } from '../../../material-components-web/drawer';
 import UiDrawer from './drawer';
 import drawerMixin from '../../mixins/drawer';
-
-// Define constants
-const UI_DRAWER = {
-  EVENT: {
-    NAV: 'nav'
-  }
-};
+import UI_DRAWER from './constants';
 
 export default {
   name: 'ui-persistent-drawer',

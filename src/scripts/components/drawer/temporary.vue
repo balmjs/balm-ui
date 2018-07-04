@@ -8,13 +8,7 @@
 import { MDCTemporaryDrawer } from '../../../material-components-web/drawer';
 import UiDrawer from './drawer';
 import drawerMixin from '../../mixins/drawer';
-
-// Define constants
-const UI_DRAWER = {
-  EVENT: {
-    NAV: 'nav'
-  }
-};
+import UI_DRAWER from './constants';
 
 export default {
   name: 'ui-temporary-drawer',
@@ -28,12 +22,12 @@ export default {
 
       this.init();
 
-      this.$drawer.listen('MDCTemporaryDrawer:open', () =>
-        this.$emit(UI_DRAWER.EVENT.NAV, true)
-      );
-      this.$drawer.listen('MDCTemporaryDrawer:close', () =>
-        this.$emit(UI_DRAWER.EVENT.NAV, false)
-      );
+      this.$drawer.listen('MDCTemporaryDrawer:open', () => {
+        this.$emit(UI_DRAWER.EVENT.NAV, true);
+      });
+      this.$drawer.listen('MDCTemporaryDrawer:close', () => {
+        this.$emit(UI_DRAWER.EVENT.NAV, false);
+      });
     }
   }
 };

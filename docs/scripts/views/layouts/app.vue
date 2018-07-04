@@ -44,7 +44,8 @@
                   :key="index"
                   :class="['mdc-list-item', {'submenu': item.isSubmenu}, $textColor('primary', 'light')]"
                   :to="item.url"
-                  active-class="mdc-list-item--activated">
+                  active-class="mdc-list-item--activated"
+                  @click.native="handleMenu">
                   <ui-item-start>
                     <img v-if="item.icon"
                       class="catalog-component-icon"
@@ -80,7 +81,7 @@ export default {
       logo,
       lang,
       menu,
-      open: false
+      open: true
     };
   },
   computed: {
@@ -101,6 +102,8 @@ export default {
       if (content) {
         content.scrollTop = 0;
       }
+
+      this.open = this.noLayout ? false : window.innerWidth >= 1024;
     }
   },
   mounted() {
@@ -115,6 +118,11 @@ export default {
     },
     switchLang(lang) {
       this.$i18n.locale = lang;
+    },
+    handleMenu() {
+      if (window.innerWidth < 1024) {
+        this.open = false;
+      }
     }
   }
 };

@@ -1,11 +1,17 @@
 <template>
   <button type="button" :class="className" @click="handleClick">
+    <span v-if="beforeLabel" class="mdc-fab__label">
+      <slot name="label">{{ label }}</slot>
+    </span>
     <template v-if="materialIcon">
-      <span :class="UI_FAB.CLASSNAME.ICON">{{ materialIcon }}</span>
+      <span :class="[UI_FAB.SLOT_CLASS.icon, 'material-icons']">{{ materialIcon }}</span>
     </template>
     <template v-else>
-      <slot :className="slotClass"><!-- Custom Icon --></slot>
+      <slot :className="UI_FAB.SLOT_CLASS"><!-- Custom Icon --></slot>
     </template>
+    <span v-if="afterLabel" class="mdc-fab__label">
+      <slot name="label">{{ label }}</slot>
+    </span>
   </button>
 </template>
 
@@ -15,11 +21,11 @@ import getType from '../../helpers/typeof';
 
 // Define constants
 const UI_FAB = {
-  CLASSNAME: {
-    ICON: 'mdc-fab__icon'
-  },
   EVENT: {
     CLICK: 'click'
+  },
+  SLOT_CLASS: {
+    icon: 'mdc-fab__icon'
   }
 };
 
@@ -27,20 +33,21 @@ export default {
   name: 'ui-fab',
   mixins: [rippleMixin],
   props: {
-    // Mandatory, for the icon element
+    // UI attributes
     icon: String,
-    // Optional, modifies the FAB to a smaller size
     mini: {
       type: Boolean,
       default: false
     },
-    // Optional, animates the FAB out of view.
-    // When this class is removed, the FAB will return to view.
+    extended: {
+      type: [Boolean, String],
+      default: false
+    },
+    label: String,
     exited: {
       type: Boolean,
       default: false
     },
-    // UI attributes
     cssOnly: {
       type: Boolean,
       default: false
@@ -48,23 +55,26 @@ export default {
   },
   data() {
     return {
-      UI_FAB,
-      slotClass: {
-        icon: UI_FAB.CLASSNAME.ICON
-      }
+      UI_FAB
     };
   },
   computed: {
-    materialIcon() {
-      return getType(this.icon) === 'string' ? this.icon : false;
-    },
     className() {
       return {
         'mdc-fab': true,
         'mdc-fab--mini': this.mini,
-        'mdc-fab--exited': this.exited,
-        'material-icons': this.materialIcon
+        'mdc-fab--extended': this.extended,
+        'mdc-fab--exited': this.exited
       };
+    },
+    materialIcon() {
+      return getType(this.icon) === 'string' ? this.icon : false;
+    },
+    beforeLabel() {
+      return this.extended === 'before';
+    },
+    afterLabel() {
+      return this.extended === true || this.extended === 'after';
     }
   },
   mounted() {

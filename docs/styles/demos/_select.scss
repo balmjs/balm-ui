@@ -15,11 +15,11 @@
   @include mdc-select-container-fill-color(rgba(blue, 0.1));
 }
 
-// .demo-select-custom-colors.mdc-select--outlined {
-//   @include mdc-select-outline-color(rgba(blue, 0.6));
-//   @include mdc-select-hover-outline-color(rgba(blue, 0.87));
-//   @include mdc-select-focused-outline-color(green);
-// }
+.demo-select-custom-colors.mdc-select--outlined {
+  @include mdc-select-outline-color(rgba(blue, 0.6));
+  @include mdc-select-hover-outline-color(rgba(blue, 0.87));
+  @include mdc-select-focused-outline-color(green);
+}
 
 .button-container {
   margin: 8px 0;

@@ -79,7 +79,7 @@
       </div>
     </section>
 
-    <!-- <section class="example">
+    <section class="example">
       <h2 :class="$tt('headline6')">Outlined Select</h2>
       <section :dir="controls.rtl ? 'rtl' : false">
         <ui-select id="outlined-select"
@@ -113,7 +113,7 @@
           Set Value to Meat
         </ui-button>
       </div>
-    </section> -->
+    </section>
 
     <section class="example">
       <h2 :class="$tt('headline6')">Pre-selected option via HTML</h2>

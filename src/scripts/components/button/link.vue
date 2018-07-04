@@ -1,12 +1,12 @@
 <template>
   <a :class="[className, actionClassName]" :href="url">
     <ui-icon v-if="materialIcon"
-      :class="UI_LINK.CLASSNAME.ICON"
+      :class="UI_LINK.SLOT_CLASS.icon"
       :size="iconSize"
       :dark="iconDark"
       :light="iconLight"
       :inactive="iconInactive">{{ materialIcon }}</ui-icon>
-    <slot :className="slotClass"></slot>
+    <slot :className="UI_LINK.SLOT_CLASS"></slot>
   </a>
 </template>
 
@@ -16,8 +16,8 @@ import linkMixin from '../../mixins/link';
 
 // Define constants
 const UI_LINK = {
-  CLASSNAME: {
-    ICON: 'mdc-button__icon'
+  SLOT_CLASS: {
+    icon: 'mdc-button__icon'
   }
 };
 
@@ -26,10 +26,7 @@ export default {
   mixins: [buttonMixin, linkMixin],
   data() {
     return {
-      UI_LINK,
-      slotClass: {
-        icon: UI_LINK.CLASSNAME.ICON
-      }
+      UI_LINK
     };
   }
 };

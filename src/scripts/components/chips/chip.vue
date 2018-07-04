@@ -1,5 +1,5 @@
 <template>
-  <div :class="className" @click="$parent.choice ? $parent.handleClick : () => {}">
+  <div :class="className" @click="$parent.handleClick">
     <slot></slot>
   </div>
 </template>

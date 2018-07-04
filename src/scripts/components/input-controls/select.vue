@@ -12,16 +12,18 @@
               :disabled="!defaultLabel"
               selected>{{ defaultLabel }}</option>
       <template v-if="group">
-        <template v-for="option in options">
+        <template v-for="(option, optionIndex) in options">
           <!-- A group of options -->
           <optgroup v-if="option[optgroupLabel] && option[optgroupItems] && option[optgroupItems].length"
+                    :key="optionIndex"
                     :label="option[optgroupLabel]">
-            <option v-for="(item, index) in option[optgroupItems]"
-                    :key="index"
+            <option v-for="(item, itemIndex) in option[optgroupItems]"
+                    :key="itemIndex"
                     :value="item[optionValue]">{{ item[optionLabel] }}</option>
           </optgroup>
           <!-- An option -->
           <option v-if="option[optionLabel] && option[optionValue]"
+                  :key="optionIndex"
                   :value="option[optionValue]">{{ option[optionLabel] }}</option>
         </template>
       </template>

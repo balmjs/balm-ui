@@ -25,22 +25,21 @@
         @click="removeLastOne">
         Delete Last Chip
       </ui-button>
-      <ui-chip-set input id="input-chip-set">
+      <ui-chip-set input id="input-chip-set" :items="list">
         <ui-chip v-for="item in list" :key="item.id" class="demo-chip">
           <ui-chip-leading-icon>face</ui-chip-leading-icon>
-          <div class="mdc-chip__text">{{ item.name }}</div>
+          <ui-chip-text>{{ item.name }}</ui-chip-text>
           <ui-chip-trailing-icon @click="removeOneById(item.id)"></ui-chip-trailing-icon>
         </ui-chip>
       </ui-chip-set>
     </section>
 
     <section class="example">
-      <h2>Choice Chips</h2>
-      <ui-chip-set choice>
-        <ui-chip v-for="(item, index) in choiceList" :key="index"
-          class="demo-chip"
-          :selected="index === 2"
-          @change="onChoice">
+      <h2>Choice Chips (selectedIndex: {{ selectedIndex }})</h2>
+      <ui-chip-set choice v-model="selectedIndex">
+        <ui-chip v-for="(item, index) in choiceList"
+          :key="index"
+          class="demo-chip">
           <ui-chip-text>{{ item }}</ui-chip-text>
         </ui-chip>
       </ui-chip-set>
@@ -52,7 +51,7 @@
 export default {
   data() {
     return {
-      id: 2,
+      lastId: 2,
       name: '',
       list: [
         {
@@ -64,6 +63,7 @@ export default {
           name: 'John Doe'
         }
       ],
+      selectedIndex: 2,
       choiceList: ['Extra Small', 'Small', 'Medium', 'Large', 'Extra Large']
     };
   },
@@ -71,9 +71,9 @@ export default {
     // Demo1
     addOne() {
       if (this.name.trim().length) {
-        this.id++;
+        this.lastId++;
         this.list.push({
-          id: this.id,
+          id: this.lastId,
           name: this.name
         });
         this.name = '';

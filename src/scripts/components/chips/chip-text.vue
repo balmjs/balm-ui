@@ -1,6 +1,6 @@
 <template>
   <div class="mdc-chip__text">
-    <slot><!-- Chip content --></slot>
+    <slot></slot>
   </div>
 </template>
 

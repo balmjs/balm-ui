@@ -6,7 +6,7 @@
 
     <section>
       <fieldset>
-        <legend class="mdc-typography--title">Linear Progress Indicators</legend>
+        <legend :class="$tt('headline6')">Linear Progress Indicators</legend>
 
         <figure class="linear-progress-demo">
           <ui-linear-progress :progress="progress"></ui-linear-progress>
@@ -39,8 +39,8 @@
         </figure>
 
         <figure class="linear-progress-demo">
-          <ui-linear-progress accent progress="0.5"></ui-linear-progress>
-          <figcaption>Accent</figcaption>
+          <ui-linear-progress class="demo-linear-progress--custom" progress="0.5" data-buffer="true" buffer="0.75"></ui-linear-progress>
+          <figcaption>Custom Colors with Buffer</figcaption>
         </figure>
 
       </fieldset>
@@ -52,17 +52,26 @@
 export default {
   data() {
     return {
-      progress: 0
+      progress: 0,
+      timer: null
     };
   },
   created() {
-    setInterval(() => {
-      if (this.progress < 1) {
-        this.progress += 0.1;
-      } else {
-        this.progress = 0;
-      }
-    }, 1000);
+    this.setProgress();
+  },
+  methods: {
+    setProgress() {
+      this.timer = setInterval(() => {
+        if (this.progress === 1) {
+          clearInterval(this.timer);
+          this.progress = 0;
+          this.setProgress();
+        } else {
+          this.progress += 0.1;
+          this.progress = +this.progress.toFixed(2);
+        }
+      }, 1000);
+    }
   }
 };
 </script>

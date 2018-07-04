@@ -10,7 +10,7 @@ const Elevation = () => import('../views/plugins/elevation');
 const Theme = () => import('../views/plugins/theme');
 const Typography = () => import('../views/plugins/typography');
 const Icons = () => import('../views/icons');
-const LinearProgress = () => import('../views/linear-progress');
+const LinearProgress = () => import('../views/components/linear-progress');
 
 const commonRoutes = [
   {

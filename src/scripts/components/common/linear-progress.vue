@@ -12,21 +12,29 @@
 </template>
 
 <script>
-import {MDCLinearProgress} from '../../../material-components-web/linear-progress';
+import { MDCLinearProgress } from '../../../material-components-web/linear-progress';
+
+// Define constants
+const UI_LINEAR_PROGRESS = {
+  VALUE: {
+    MIN: 0,
+    MAX: 1
+  }
+};
 
 export default {
   name: 'ui-linear-progress',
   props: {
-    // state
+    // States
     progress: {
-      type: [Number, String],
+      type: [String, Number],
       default: 0
     },
     buffer: {
-      type: [Number, String],
+      type: [String, Number],
       default: 0
     },
-    // ui attributes
+    // UI attributes
     indeterminate: {
       type: Boolean,
       default: false
@@ -35,7 +43,7 @@ export default {
       type: Boolean,
       default: false
     },
-    accent: {
+    closed: {
       type: Boolean,
       default: false
     }
@@ -51,7 +59,7 @@ export default {
         'mdc-linear-progress': true,
         'mdc-linear-progress--indeterminate': this.indeterminate,
         'mdc-linear-progress--reversed': this.reversed,
-        'mdc-linear-progress--accent': this.accent
+        'mdc-linear-progress--closed': this.closed
       };
     }
   },
@@ -66,6 +74,7 @@ export default {
   mounted() {
     if (!this.$linearProgress) {
       this.$linearProgress = new MDCLinearProgress(this.$el);
+
       this.setProgress(this.progress);
       if (this.$el.dataset.buffer) {
         this.setBuffer(this.buffer);
@@ -74,13 +83,25 @@ export default {
   },
   methods: {
     setProgress(value) {
-      if (this.$linearProgress && value >= 0 && value <= 1) {
-        this.$linearProgress.progress = value;
+      if (
+        this.$linearProgress &&
+        value >= UI_LINEAR_PROGRESS.VALUE.MIN &&
+        value <= UI_LINEAR_PROGRESS.VALUE.MAX
+      ) {
+        this.$linearProgress.progress = +value;
+      } else {
+        console.warn('Progress value should be between [0, 1]');
       }
     },
     setBuffer(value) {
-      if (this.$linearProgress && value >= 0 && value <= 1) {
-        this.$linearProgress.buffer = value;
+      if (
+        this.$linearProgress &&
+        value >= UI_LINEAR_PROGRESS.VALUE.MIN &&
+        value <= UI_LINEAR_PROGRESS.VALUE.MAX
+      ) {
+        this.$linearProgress.buffer = +value;
+      } else {
+        console.warn('Buffer value should be between [0, 1]');
       }
     }
   }

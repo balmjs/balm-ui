@@ -18,12 +18,7 @@
 /* eslint no-unused-vars: [2, {"args": "none"}] */
 
 /**
- * Adapter for MDC Icon Button Toggle. Provides an interface for managing
- * - classes
- * - dom
- * - inner text
- * - event handlers
- * - event dispatch
+ * Adapter for MDC List. Provides an interface for managing focus.
  *
  * Additionally, provides type information for the adapter to the Closure
  * compiler.
@@ -35,50 +30,30 @@
  *
  * @record
  */
-
-class MDCIconButtonToggleAdapter {
-  /** @param {string} className */
-  addClass(className) {}
-
-  /** @param {string} className */
-  removeClass(className) {}
+class MDCListAdapter {
+  /** @return {Number} */
+  getListItemCount() {}
 
   /**
-   * @param {string} type
-   * @param {!EventListener} handler
-   */
-  registerInteractionHandler(type, handler) {}
+   * @return {Number} */
+  getFocusedElementIndex() {}
+
+  /** @param {Element} node */
+  getListItemIndex(node) {}
 
   /**
-   * @param {string} type
-   * @param {!EventListener} handler
+   * Focuses list item at the index specified.
+   * @param {Number} ndx
    */
-  deregisterInteractionHandler(type, handler) {}
-
-  /** @param {string} text */
-  setText(text) {}
+  focusItemAtIndex(ndx) {}
 
   /**
-   * @param {string} name
-   * @return {string}
+   * Sets the tabindex to the value specified for all button/a element children of
+   * the list item at the index specified.
+   * @param {Number} listItemIndex
+   * @param {Number} tabIndexValue
    */
-  getAttr(name) {}
-
-  /**
-   * @param {string} name
-   * @param {string} value
-   */
-  setAttr(name, value) {}
-
-  /** @param {!IconButtonToggleEvent} evtData */
-  notifyChange(evtData) {}
+  setTabIndexForListItemChildren(listItemIndex, tabIndexValue) {}
 }
 
-/**
- * @typedef {{
- *   isOn: boolean,
- * }}
- */
-let IconButtonToggleEvent;
-
-export {MDCIconButtonToggleAdapter, IconButtonToggleEvent};
+export {MDCListAdapter};

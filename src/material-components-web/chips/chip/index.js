@@ -19,7 +19,7 @@ import MDCComponent from '../../base/component';
 import {MDCRipple, MDCRippleFoundation} from '../../ripple/index';
 
 import MDCChipAdapter from './adapter';
-import MDCChipFoundation from './foundation';
+import {MDCChipFoundation} from './foundation';
 import {strings} from './constants';
 
 /**
@@ -83,10 +83,33 @@ class MDCChip extends MDCComponent {
   }
 
   /**
+   * Begins the exit animation which leads to removal of the chip.
+   */
+  beginExit() {
+    this.foundation_.beginExit();
+  }
+
+  /**
    * @return {!MDCChipFoundation}
    */
   get foundation() {
     return this.foundation_;
+  }
+
+  /**
+   * Returns whether a trailing icon click should trigger exit/removal of the chip.
+   * @return {boolean}
+   */
+  get shouldRemoveOnTrailingIconClick() {
+    return this.foundation_.getShouldRemoveOnTrailingIconClick();
+  }
+
+  /**
+   * Sets whether a trailing icon click should trigger exit/removal of the chip.
+   * @param {boolean} shouldRemove
+   */
+  set shouldRemoveOnTrailingIconClick(shouldRemove) {
+    return this.foundation_.setShouldRemoveOnTrailingIconClick(shouldRemove);
   }
 
   /**

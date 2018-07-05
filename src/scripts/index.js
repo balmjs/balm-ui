@@ -77,6 +77,9 @@ import UiGridTilePrimary from './components/grid-list/grid-tile-primary';
 import UiGridTileSecondary from './components/grid-list/grid-tile-secondary';
 import UiGridTileTitle from './components/grid-list/grid-tile-title';
 import UiGridTileSubtitle from './components/grid-list/grid-tile-subtitle';
+import UiImageList from './components/image-list/image-list';
+import UiImageItem from './components/image-list/image-item';
+import UiImageLabel from './components/image-list/image-label';
 import UiListGroup from './components/list/list-group';
 import UiListGroupSubheader from './components/list/list-group-subheader';
 import UiList from './components/list/list';
@@ -185,6 +188,9 @@ const components = {
   UiGridTileSecondary,
   UiGridTileTitle,
   UiGridTileSubtitle,
+  UiImageList,
+  UiImageItem,
+  UiImageLabel,
   UiListGroup,
   UiListGroupSubheader,
   UiList,
@@ -241,13 +247,18 @@ const registers = {
   }
 };
 
-const BalmUI = Object.assign({}, {
+const BalmUI = Object.assign(
+  {},
+  {
     version
-  }, {
+  },
+  {
     helpers
-  }, {
+  },
+  {
     components
-  }, {
+  },
+  {
     plugins
   },
   registers
@@ -256,6 +267,4 @@ const BalmUI = Object.assign({}, {
 autoInstall(BalmUI);
 
 export default BalmUI;
-export {
-  helpers
-};
+export { helpers };

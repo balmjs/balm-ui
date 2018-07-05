@@ -1,15 +1,15 @@
 <template>
   <div class="demo--switch">
     <section class="hero">
-      <ui-switch v-model="toggle"></ui-switch>
+      <ui-switch v-model="toggle">{{ toggle }}</ui-switch>
     </section>
 
     <section class="example">
       <h2>Enabled</h2>
       <div class="demo-switch-wrapper">
         <ui-switch id="basic-switch"
-          trueValue="on"
-          falseValue="off"
+          :trueValue="1"
+          :falseValue="0"
           v-model="toggle1">
           {{ toggle1 }}
         </ui-switch>
@@ -17,8 +17,10 @@
       <div class="demo-switch-wrapper">
         <ui-switch id="basic-switch"
           class="demo-switch--custom"
+          trueValue="on"
+          falseValue="off"
           v-model="toggle2">
-          custom color
+          {{ toggle2 }} (custom color)
         </ui-switch>
       </div>
     </section>
@@ -42,8 +44,8 @@ export default {
   data() {
     return {
       toggle: false,
-      toggle1: 'off',
-      toggle2: true
+      toggle1: 0,
+      toggle2: 'on'
     };
   },
   created() {

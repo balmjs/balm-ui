@@ -43,17 +43,17 @@ export default {
   },
   props: {
     // States
-    model: [String, Number],
+    model: [Number, String],
     min: {
-      type: [String, Number],
+      type: [Number, String],
       default: 0
     },
     max: {
-      type: [String, Number],
+      type: [Number, String],
       default: 100
     },
     step: {
-      type: [String, Number],
+      type: [Number, String],
       default: 1
     },
     disabled: {

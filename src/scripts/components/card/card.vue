@@ -8,7 +8,6 @@
 export default {
   name: 'ui-card',
   props: {
-    // Removes the shadow and displays a hairline outline instead
     outlined: {
       type: Boolean,
       default: false

@@ -141,11 +141,11 @@ export default {
     pattern: String,
     // <textarea> attributes
     rows: {
-      type: [String, Number],
+      type: [Number, String],
       default: 1
     },
     cols: {
-      type: [String, Number],
+      type: [Number, String],
       default: 20
     },
     // UI attributes
@@ -154,44 +154,36 @@ export default {
       default: false
     },
     label: String,
-    // Styles the text field as a box text field.
     box: {
       type: Boolean,
       default: false
     },
-    // Styles the text field as an outlined text field.
     outlined: {
       type: Boolean,
       default: false
     },
-    // Styles the text field as a full width text field.
     fullwidth: {
       type: Boolean,
       default: false
     },
-    // Styles the text field as a disabled text field.
     disabled: {
       type: Boolean,
       default: false
     },
-    // Styles the text field as a dense text field.
     dense: {
       type: Boolean,
       default: false
     },
-    // Styles the text field as a text field with a leading icon.
     leadingIcon: String,
     leadingIconUnclickable: {
       type: Boolean,
       default: false
     },
-    // Styles the text field as a text field with a trailing icon.
     trailingIcon: String,
     trailingIconUnclickable: {
       type: Boolean,
       default: false
     },
-    // Styles the text field as a text field in focus.
     // focused: {
     //   type: Boolean,
     //   default: false

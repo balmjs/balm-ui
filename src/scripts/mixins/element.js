@@ -1,5 +1,6 @@
 export default {
   props: {
+    // Element attributes
     attrs: Object
   },
   data() {

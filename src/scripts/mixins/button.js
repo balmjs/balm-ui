@@ -6,29 +6,24 @@ import getType from '../helpers/typeof';
 export default {
   mixins: [rippleMixin, iconMixin, cardButtonMixin],
   props: {
-    // Optional. Styles a contained button that is elevated above the surface.
+    // UI attributes
     raised: {
       type: Boolean,
       default: false
     },
-    // Optional. Styles a contained button that is flush with the surface.
     unelevated: {
       type: Boolean,
       default: false
     },
-    // Optional. Styles an outlined button that is flush with the surface.
     outlined: {
       type: Boolean,
       default: false
     },
-    // Optional. Makes the button text and container slightly smaller.
     dense: {
       type: Boolean,
       default: false
     },
-    // Optional. Indicates an icon element.
     icon: String,
-    // UI attributes
     cssOnly: {
       type: Boolean,
       default: false

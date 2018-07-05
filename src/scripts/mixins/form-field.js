@@ -9,7 +9,6 @@ export default {
       type: Boolean,
       default: false
     },
-    // Position the input after the label
     alignEnd: {
       type: Boolean,
       default: false

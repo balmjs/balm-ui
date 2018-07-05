@@ -48,7 +48,7 @@ export default {
   props: {
     // States
     model: {
-      type: [String, Number, Boolean],
+      type: [Boolean, Number, String],
       default: false
     },
     disabled: {
@@ -60,11 +60,11 @@ export default {
     name: String,
     // UI attributes
     trueValue: {
-      type: [String, Number, Boolean],
+      type: [Boolean, Number, String],
       default: true
     },
     falseValue: {
-      type: [String, Number, Boolean],
+      type: [Boolean, Number, String],
       default: false
     },
     label: String

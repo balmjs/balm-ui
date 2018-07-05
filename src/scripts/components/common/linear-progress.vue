@@ -27,11 +27,11 @@ export default {
   props: {
     // States
     progress: {
-      type: [String, Number],
+      type: [Number, String],
       default: 0
     },
     buffer: {
-      type: [String, Number],
+      type: [Number, String],
       default: 0
     },
     // UI attributes

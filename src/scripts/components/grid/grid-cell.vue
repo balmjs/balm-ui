@@ -23,8 +23,8 @@ export default {
   name: 'ui-grid-cell',
   props: {
     // UI attributes
-    colspan: [String, Number, Object], // default: 4
-    order: [String, Number],
+    colspan: [Number, String, Object], // default: 4
+    order: [Number, String],
     align: String
   },
   computed: {

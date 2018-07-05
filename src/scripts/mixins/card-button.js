@@ -1,11 +1,10 @@
 export default {
   props: {
-    // An action button with text
+    // UI attributes
     actionButton: {
       type: Boolean,
       default: false
     },
-    // An action icon with no text
     actionIcon: {
       type: Boolean,
       default: false

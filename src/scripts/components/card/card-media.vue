@@ -8,12 +8,10 @@
 export default {
   name: 'ui-card-media',
   props: {
-    // Automatically scales the media area's height to equal its width
     square: {
       type: Boolean,
       default: false
     },
-    // Automatically scales the media area's height according to its width, maintaining a 16:9 aspect ratio
     rectangle: {
       type: Boolean,
       default: false

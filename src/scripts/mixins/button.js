@@ -1,10 +1,9 @@
 import rippleMixin from './ripple';
-import iconMixin from './icon';
 import cardButtonMixin from './card-button';
 import getType from '../helpers/typeof';
 
 export default {
-  mixins: [rippleMixin, iconMixin, cardButtonMixin],
+  mixins: [rippleMixin, cardButtonMixin],
   props: {
     // UI attributes
     raised: {

@@ -3,9 +3,7 @@
     <span v-if="beforeLabel" class="mdc-fab__label">
       <slot name="label">{{ label }}</slot>
     </span>
-    <template v-if="materialIcon">
-      <span :class="[UI_FAB.SLOT_CLASS.icon, 'material-icons']">{{ materialIcon }}</span>
-    </template>
+    <span v-if="materialIcon" :class="[UI_FAB.SLOT_CLASS.icon, 'material-icons']">{{ materialIcon }}</span>
     <template v-else>
       <slot :className="UI_FAB.SLOT_CLASS"><!-- Custom Icon --></slot>
     </template>

@@ -1,20 +1,11 @@
 <template>
   <a class="mdc-tab" role="tab" @click.prevent>
     <slot name="before"></slot>
-    <template v-if="materialIcon">
-      <ui-icon
-        :class="'mdc-tab__icon'"
-        :size="iconSize"
-        :dark="iconDark"
-        :light="iconLight"
-        :inactive="iconInactive">{{ materialIcon }}</ui-icon>
-    </template>
+    <i v-if="materialIcon" class="material-icons mdc-tab__icon">{{ materialIcon }}</i>
     <template v-else>
       <slot name="icon"><!-- Custom Icon --></slot>
     </template>
-    <template v-if="text">
-      <span class="mdc-tab__icon-text">{{ text }}</span>
-    </template>
+    <span v-if="text" class="mdc-tab__icon-text">{{ text }}</span>
     <template v-else>
       <slot><!-- Text Label --></slot>
     </template>
@@ -23,16 +14,20 @@
 </template>
 
 <script>
-import iconMixin from '../../mixins/icon';
 import getType from '../../helpers/typeof';
 
 export default {
   name: 'ui-tab',
-  mixins: [iconMixin],
   props: {
     // UI attributes
-    icon: String,
-    text: String
+    icon: {
+      type: [String, Boolean],
+      default: false
+    },
+    text: {
+      type: [String, Boolean],
+      default: false
+    }
   },
   computed: {
     materialIcon() {

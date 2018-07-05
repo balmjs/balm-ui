@@ -5,7 +5,7 @@
     </ui-top-app-bar>
 
     <ui-temporary-drawer class="demo-drawer" menuSelector="#demo-menu">
-      <ui-drawer-header :innerClass="[$themeColor('primary', true), $textColor('primary', 'primary')]">
+      <ui-drawer-header :innerClass="[$themeColor('on-primary'), $themeColor('primary-bg')]">
         Header here
       </ui-drawer-header>
       <ui-drawer-content>

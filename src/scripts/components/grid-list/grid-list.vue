@@ -1,5 +1,5 @@
 <template>
-  <div :class="[className, tileAspect]">
+  <div :class="[className, tileAspectRatio]">
     <ul class="mdc-grid-list__tiles">
       <slot></slot>
     </ul>
@@ -8,19 +8,12 @@
 
 <script>
 const DEFAULT_ASPECT_RATIO = '1x1';
-const ASPECT_RATIO = [
-  DEFAULT_ASPECT_RATIO,
-  '16x9',
-  '2x3',
-  '3x2',
-  '4x3',
-  '3x4'
-];
+const ASPECT_RATIO = [DEFAULT_ASPECT_RATIO, '16x9', '2x3', '3x2', '4x3', '3x4'];
 
 export default {
   name: 'ui-grid-list',
   props: {
-    // ui attributes
+    // UI attributes
     gutter1: {
       type: Boolean,
       default: false
@@ -57,7 +50,7 @@ export default {
         'mdc-grid-list--with-icon-align-end': this.iconEnd
       };
     },
-    tileAspect() {
+    tileAspectRatio() {
       return ASPECT_RATIO.includes(this.ratio)
         ? `mdc-grid-list--tile-aspect-${this.ratio}`
         : '';

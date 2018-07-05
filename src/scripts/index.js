@@ -73,8 +73,10 @@ import UiChipTrailingIcon from './components/chips/chip-icon-trailing';
 import UiChipCheckmark from './components/chips/chip-checkmark';
 import UiGridList from './components/grid-list/grid-list';
 import UiGridTile from './components/grid-list/grid-tile';
+import UiGridTilePrimary from './components/grid-list/grid-tile-primary';
+import UiGridTileSecondary from './components/grid-list/grid-tile-secondary';
 import UiGridTileTitle from './components/grid-list/grid-tile-title';
-import UiGridTileText from './components/grid-list/grid-tile-text';
+import UiGridTileSubtitle from './components/grid-list/grid-tile-subtitle';
 import UiListGroup from './components/list/list-group';
 import UiListGroupSubheader from './components/list/list-group-subheader';
 import UiList from './components/list/list';
@@ -179,8 +181,10 @@ const components = {
   UiChipCheckmark,
   UiGridList,
   UiGridTile,
+  UiGridTilePrimary,
+  UiGridTileSecondary,
   UiGridTileTitle,
-  UiGridTileText,
+  UiGridTileSubtitle,
   UiListGroup,
   UiListGroupSubheader,
   UiList,

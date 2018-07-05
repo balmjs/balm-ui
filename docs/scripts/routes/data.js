@@ -1,12 +1,15 @@
-const Card = () => import('../views/components/card');
-const Chips = () => import('../views/components/chips');
-const GridList = () => import('../views/grid-list');
-const List = () => import('../views/list');
+const Card = () =>
+  import ('../views/components/card');
+const Chips = () =>
+  import ('../views/components/chips');
+const GridList = () =>
+  import ('../views/components/grid-list');
+const List = () =>
+  import ('../views/list');
 // const Table = () => import('../views/table');
 // const Pagination = () => import('../views/pagination');
 
-const dataRoutes = [
-  {
+const dataRoutes = [{
     path: '/card',
     name: 'card',
     component: Card

@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ui-grid-tile-text'
+  name: 'ui-grid-tile-subtitle'
 };
 </script>

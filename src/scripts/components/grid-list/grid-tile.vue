@@ -1,58 +1,36 @@
 <template>
   <li class="mdc-grid-tile">
-    <div v-if="!noImage" class="mdc-grid-tile__primary">
-      <template v-if="imgUrl">
-        <img class="mdc-grid-tile__primary-content" :src="imgUrl" :alt="title">
-      </template>
-      <template v-else>
-        <div :class="['mdc-grid-tile__primary-content', imgClass]"></div>
-      </template>
-    </div>
-    <span v-if="!imageOnly" class="mdc-grid-tile__secondary">
-      <template v-if="icon">
-        <ui-icon
-          :class="CLASSNAME_ICON"
-          :size="iconSize"
-          :dark="iconDark"
-          :light="iconLight"
-          :inactive="iconInactive">{{ icon }}</ui-icon>
-      </template>
-      <template v-else>
-        <slot name="icon" :className="CLASSNAME_ICON"></slot>
-      </template>
-      <slot></slot>
-    </span>
+    <slot>
+      <ui-grid-tile-primary :image="image" :imageClass="imageClass"></ui-grid-tile-primary>
+      <ui-grid-tile-secondary v-if="title" :icon="icon">
+        <ui-grid-tile-title>{{ title }}</ui-grid-tile-title>
+        <ui-grid-tile-subtitle v-if="subtitle">{{ subtitle }}</ui-grid-tile-subtitle>
+      </ui-grid-tile-secondary>
+    </slot>
   </li>
 </template>
 
 <script>
-import iconMixin from '../../mixins/icon';
-
-const CLASSNAME_ICON = 'mdc-grid-tile__icon';
+import UiGridTilePrimary from './grid-tile-primary';
+import UiGridTileSecondary from './grid-tile-secondary';
+import UiGridTileTitle from './grid-tile-title';
+import UiGridTileSubtitle from './grid-tile-subtitle';
 
 export default {
   name: 'ui-grid-tile',
-  mixins: [iconMixin],
-  props: {
-    // ui attributes
-    imgUrl: String,
-    title: String,
-    imgClass: [String, Array, Object],
-    icon: String,
-    // layout
-    imageOnly: {
-      type: Boolean,
-      default: false
-    },
-    noImage: {
-      type: Boolean,
-      default: false
-    }
+  components: {
+    UiGridTilePrimary,
+    UiGridTileSecondary,
+    UiGridTileTitle,
+    UiGridTileSubtitle
   },
-  data() {
-    return {
-      CLASSNAME_ICON
-    };
+  props: {
+    // UI attributes
+    image: String,
+    imageClass: String,
+    icon: String,
+    title: String,
+    subtitle: String
   }
 };
 </script>

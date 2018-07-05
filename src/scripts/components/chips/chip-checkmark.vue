@@ -1,23 +1,13 @@
 <template>
   <div class="mdc-chip__checkmark">
-    <slot :className="UI_CHIP.SLOT_CLASS"></slot>
+    <svg class="mdc-chip__checkmark-svg" viewBox="-2 -3 30 30">
+      <path class="mdc-chip__checkmark-path" fill="none" stroke="black" d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+    </svg>
   </div>
 </template>
 
 <script>
-const UI_CHIP = {
-  SLOT_CLASS: {
-    svg: 'mdc-chip__checkmark-svg',
-    path: 'mdc-chip__checkmark-path'
-  }
-};
-
 export default {
-  name: 'ui-chip-checkmark',
-  data() {
-    return {
-      UI_CHIP
-    };
-  }
+  name: 'ui-chip-checkmark'
 };
 </script>

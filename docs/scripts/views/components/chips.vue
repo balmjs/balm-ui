@@ -44,6 +44,60 @@
         </ui-chip>
       </ui-chip-set>
     </section>
+
+    <section class="example">
+      <h2>Filter Chips</h2>
+      <h4>No leading icon (selectedIndexes: {{ selectedValue }})</h4>
+      <ui-chip-set filter v-model="selectedValue">
+        <ui-chip v-for="(item, index) in filterList"
+          :key="index"
+          class="demo-chip">
+          <ui-chip-checkmark></ui-chip-checkmark>
+          <ui-chip-text>{{ item }}</ui-chip-text>
+        </ui-chip>
+      </ui-chip-set>
+
+      <h4>With leading icon (selectedIndexes: {{ selectedValue2 }})</h4>
+      <ui-chip-set filter v-model="selectedValue2">
+        <ui-chip v-for="(item, index) in filterList2"
+          :key="index"
+          class="demo-chip">
+          <ui-chip-leading-icon :hidden="selectedValue2.includes(index)">face</ui-chip-leading-icon>
+          <ui-chip-checkmark></ui-chip-checkmark>
+          <ui-chip-text>{{ item }}</ui-chip-text>
+        </ui-chip>
+      </ui-chip-set>
+    </section>
+
+    <section class="example">
+      <h2>Action Chips</h2>
+      <ui-chip-set class="mdc-chip-set">
+        <ui-chip v-for="(item, index) in actionList"
+          :key="index"
+          class="demo-chip">
+          <ui-chip-leading-icon>{{ item.icon }}</ui-chip-leading-icon>
+          <ui-chip-text>{{ item.name }}</ui-chip-text>
+        </ui-chip>
+      </ui-chip-set>
+    </section>
+
+    <section class="example">
+      <h2>Custom theme</h2>
+      <ui-chip-set class="mdc-chip-set">
+        <ui-chip v-for="(item, index) in actionList"
+          :key="index"
+          class="demo-chip custom-chip-primary">
+          <ui-chip-text>{{ item.name }}</ui-chip-text>
+        </ui-chip>
+      </ui-chip-set>
+      <ui-chip-set class="mdc-chip-set">
+        <ui-chip v-for="(item, index) in actionList"
+          :key="index"
+          class="demo-chip custom-chip-secondary">
+          <ui-chip-text>{{ item.name }}</ui-chip-text>
+        </ui-chip>
+      </ui-chip-set>
+    </section>
   </div>
 </template>
 
@@ -64,7 +118,29 @@ export default {
         }
       ],
       selectedIndex: 2,
-      choiceList: ['Extra Small', 'Small', 'Medium', 'Large', 'Extra Large']
+      selectedValue: [1, 2],
+      selectedValue2: [0],
+      choiceList: ['Extra Small', 'Small', 'Medium', 'Large', 'Extra Large'],
+      filterList: ['Tops', 'Bottoms', 'Shoes', 'Accessories'],
+      filterList2: ['Alice', 'Bob', 'Charlie', 'David'],
+      actionList: [
+        {
+          icon: 'wb_sunny',
+          name: 'Turn on lights'
+        },
+        {
+          icon: 'bookmark',
+          name: 'Bookmark'
+        },
+        {
+          icon: 'alarm',
+          name: 'Set alarm'
+        },
+        {
+          icon: 'directions',
+          name: 'Get directions'
+        }
+      ]
     };
   },
   methods: {

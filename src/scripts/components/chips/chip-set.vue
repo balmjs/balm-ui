@@ -16,7 +16,7 @@ const UI_CHIPSET = {
 export default {
   name: 'ui-chip-set',
   model: {
-    prop: 'selectedIndex',
+    prop: 'model',
     event: UI_CHIPSET.EVENT.CHANGE
   },
   props: {
@@ -27,8 +27,8 @@ export default {
         return [];
       }
     },
-    selectedIndex: {
-      type: Number,
+    model: {
+      type: [Number, Array],
       default: -1
     },
     // UI attributes
@@ -48,6 +48,7 @@ export default {
   data() {
     return {
       $chipSet: null,
+      selectedValue: this.model,
       chipsCount: this.items.length
     };
   },
@@ -69,16 +70,24 @@ export default {
         this.chipsCount--;
       }
     },
-    selectedIndex(val) {
-      this.$emit(UI_CHIPSET.EVENT.CHANGE, val);
+    model(val) {
+      this.selectedValue = val;
     }
   },
   mounted() {
     if (!this.$chipSet) {
       this.$chipSet = new MDCChipSet(this.$el);
 
-      if (this.choice && this.selectedIndex > -1) {
-        this.$chipSet.chips[this.selectedIndex].foundation_.setSelected(true);
+      if (this.choice && this.selectedValue > -1) {
+        this.$chipSet.chips[this.selectedValue].foundation_.setSelected(true);
+      }
+
+      if (this.filter) {
+        this.$chipSet.chips.forEach((chip, index) => {
+          if (this.selectedValue.includes(index)) {
+            chip.foundation_.setSelected(true);
+          }
+        });
       }
     }
   },
@@ -92,20 +101,31 @@ export default {
       });
     },
     handleClick() {
-      if (this.choice) {
-        this.$nextTick(() => {
+      this.$nextTick(() => {
+        if (this.choice) {
           let hasMultipleChoice =
             this.$chipSet.chips.filter(chip => chip.isSelected()).length > 1;
           if (hasMultipleChoice) {
-            this.$chipSet.chips[this.selectedIndex].foundation_.setSelected(
+            this.$chipSet.chips[this.selectedValue].foundation_.setSelected(
               false
             );
           }
 
-          let index = this.$chipSet.chips.findIndex(chip => chip.isSelected());
-          this.$emit(UI_CHIPSET.EVENT.CHANGE, index);
-        });
-      }
+          let selectedIndex = this.$chipSet.chips.findIndex(chip =>
+            chip.isSelected()
+          );
+          this.$emit(UI_CHIPSET.EVENT.CHANGE, selectedIndex);
+        } else if (this.filter) {
+          let selectedIndexes = [];
+          this.$chipSet.chips.forEach((chip, index) => {
+            if (chip.isSelected()) {
+              selectedIndexes.push(index);
+            }
+          });
+
+          this.$emit(UI_CHIPSET.EVENT.CHANGE, selectedIndexes);
+        }
+      });
     }
   }
 };

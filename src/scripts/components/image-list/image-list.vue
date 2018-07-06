@@ -16,10 +16,6 @@ export default {
     withTextProtection: {
       type: Boolean,
       default: false
-    },
-    withImageWrapper: {
-      type: Boolean,
-      default: false
     }
   },
   computed: {

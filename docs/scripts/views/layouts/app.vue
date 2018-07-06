@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import logo from '../../../images/icon/ic_component_24px_white.svg';
+// import logo from '../../../images/icon/ic_component_24px_white.svg';
 import { lang } from '../../config/lang';
 import menu from '../../config/menu';
 import '../../helpers';
@@ -78,7 +78,6 @@ import '../../helpers';
 export default {
   data() {
     return {
-      logo,
       lang,
       menu,
       open: true

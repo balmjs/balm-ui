@@ -1,13 +1,13 @@
 <template>
   <li class="mdc-image-list__item">
-    <div v-if="withWrapper" class="mdc-image-list__image-aspect-container">
+    <template v-if="$parent.masonry">
       <div v-if="block" :class="UI_IMAGE_LIST.CLASSNAME.IMAGE" :style="style"></div>
-      <img v-else :class="UI_IMAGE_LIST.CLASSNAME.IMAGE" :src="src">
-    </div>
-    <template v-else>
-      <div v-if="block" :class="UI_IMAGE_LIST.CLASSNAME.IMAGE" :style="style"></div>
-      <img v-else :class="UI_IMAGE_LIST.CLASSNAME.IMAGE" :src="src">
+      <img v-else :class="UI_IMAGE_LIST.CLASSNAME.IMAGE" :src="src" :alt="alt">
     </template>
+    <div v-else class="mdc-image-list__image-aspect-container">
+      <div v-if="block" :class="UI_IMAGE_LIST.CLASSNAME.IMAGE" :style="style"></div>
+      <img v-else :class="UI_IMAGE_LIST.CLASSNAME.IMAGE" :src="src" :alt="alt">
+    </div>
     <slot><!-- The text label --></slot>
   </li>
 </template>
@@ -25,10 +25,7 @@ export default {
   props: {
     // UI attributes
     src: String,
-    withWrapper: {
-      type: Boolean,
-      default: false
-    },
+    alt: String,
     block: {
       type: Boolean,
       default: false

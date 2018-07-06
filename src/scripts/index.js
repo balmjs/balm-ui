@@ -73,8 +73,6 @@ import UiChipTrailingIcon from './components/chips/chip-icon-trailing';
 import UiChipCheckmark from './components/chips/chip-checkmark';
 import UiGridList from './components/grid-list/grid-list';
 import UiGridTile from './components/grid-list/grid-tile';
-import UiGridTilePrimary from './components/grid-list/grid-tile-primary';
-import UiGridTileSecondary from './components/grid-list/grid-tile-secondary';
 import UiGridTileTitle from './components/grid-list/grid-tile-title';
 import UiGridTileSubtitle from './components/grid-list/grid-tile-subtitle';
 import UiImageList from './components/image-list/image-list';
@@ -184,8 +182,6 @@ const components = {
   UiChipCheckmark,
   UiGridList,
   UiGridTile,
-  UiGridTilePrimary,
-  UiGridTileSecondary,
   UiGridTileTitle,
   UiGridTileSubtitle,
   UiImageList,
@@ -247,18 +243,13 @@ const registers = {
   }
 };
 
-const BalmUI = Object.assign(
-  {},
-  {
+const BalmUI = Object.assign({}, {
     version
-  },
-  {
+  }, {
     helpers
-  },
-  {
+  }, {
     components
-  },
-  {
+  }, {
     plugins
   },
   registers
@@ -267,4 +258,6 @@ const BalmUI = Object.assign(
 autoInstall(BalmUI);
 
 export default BalmUI;
-export { helpers };
+export {
+  helpers
+};

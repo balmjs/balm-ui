@@ -1,36 +1,47 @@
 <template>
   <li class="mdc-grid-tile">
-    <slot>
-      <ui-grid-tile-primary :image="image" :imageClass="imageClass"></ui-grid-tile-primary>
-      <ui-grid-tile-secondary v-if="title" :icon="icon">
-        <ui-grid-tile-title>{{ title }}</ui-grid-tile-title>
-        <ui-grid-tile-subtitle v-if="subtitle">{{ subtitle }}</ui-grid-tile-subtitle>
-      </ui-grid-tile-secondary>
-    </slot>
+    <div class="mdc-grid-tile__primary">
+      <slot name="image" :className="UI_GRID_LIST.SLOT_CLASS.image">
+        <img v-if="src" :class="[UI_GRID_LIST.SLOT_CLASS.image, imageClass]" :src="src" :alt="alt">
+        <div v-else :class="[UI_GRID_LIST.SLOT_CLASS.image, imageClass]"></div>
+      </slot>
+    </div>
+    <span v-if="!imageOnly" class="mdc-grid-tile__secondary">
+      <i v-if="icon" :class="[UI_GRID_LIST.SLOT_CLASS.icon, 'material-icons']">{{ icon }}</i>
+      <template v-else>
+        <slot name="icon" :className="UI_GRID_LIST.SLOT_CLASS.icon"></slot>
+      </template>
+      <slot><!-- Title --></slot>
+    </span>
   </li>
 </template>
 
 <script>
-import UiGridTilePrimary from './grid-tile-primary';
-import UiGridTileSecondary from './grid-tile-secondary';
-import UiGridTileTitle from './grid-tile-title';
-import UiGridTileSubtitle from './grid-tile-subtitle';
+// Define constants
+const UI_GRID_LIST = {
+  SLOT_CLASS: {
+    image: 'mdc-grid-tile__primary-content',
+    icon: 'mdc-grid-tile__icon'
+  }
+};
 
 export default {
   name: 'ui-grid-tile',
-  components: {
-    UiGridTilePrimary,
-    UiGridTileSecondary,
-    UiGridTileTitle,
-    UiGridTileSubtitle
-  },
   props: {
     // UI attributes
-    image: String,
+    src: String,
+    alt: String,
     imageClass: String,
     icon: String,
-    title: String,
-    subtitle: String
+    imageOnly: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data() {
+    return {
+      UI_GRID_LIST
+    };
   }
 };
 </script>

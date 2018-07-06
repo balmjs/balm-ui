@@ -1,14 +1,12 @@
 <template>
   <div :class="className">
-    <ui-grid-inner>
+    <div class="mdc-layout-grid__inner">
       <slot></slot>
-    </ui-grid-inner>
+    </div>
   </div>
 </template>
 
 <script>
-import UiGridInner from './grid-inner';
-
 // Define constants
 const UI_GRID = {
   POSITIONS: ['left', 'right']
@@ -16,9 +14,6 @@ const UI_GRID = {
 
 export default {
   name: 'ui-grid',
-  components: {
-    UiGridInner
-  },
   props: {
     // UI attributes
     fixedColumnWidth: {

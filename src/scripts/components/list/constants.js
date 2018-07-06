@@ -1,5 +1,7 @@
-const CLASSNAME_ITEM = 'mdc-list-item';
-
+// Define list constants
 export default {
-  item: CLASSNAME_ITEM
+  SLOT_CLASS: {
+    subheader: 'mdc-list-group__subheader',
+    item: 'mdc-list-item'
+  }
 };

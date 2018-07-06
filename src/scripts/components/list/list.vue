@@ -1,53 +1,38 @@
 <template>
-  <ul :class="className">
+  <ul :class="className" aria-orientation="vertical">
     <slot></slot>
   </ul>
 </template>
 
 <script>
+import listMixin from '../../mixins/list';
 import rippleMixin from '../../mixins/ripple';
-import cssClasses from './constants';
+import UI_LIST from './constants';
 
 export default {
   name: 'ui-list',
-  mixins: [rippleMixin],
+  mixins: [listMixin, rippleMixin],
   props: {
-    // ui attributes
-    dense: {
-      type: Boolean,
-      default: false
+    // States
+    selected: {
+      type: Array,
+      default() {
+        return [];
+      }
     },
-    twoLine: {
-      type: Boolean,
-      default: false
+    activated: {
+      type: Number,
+      default: -1
     },
-    avatar: {
+    // UI attributes
+    ripple: {
       type: Boolean,
       default: false
-    },
-    effect: {
-      type: Boolean,
-      default: false
-    }
-    // NOTE: coming soon
-    // threeLine: {
-    //   type: Boolean,
-    //   default: false
-    // }
-  },
-  computed: {
-    className() {
-      return {
-        'mdc-list': true,
-        'mdc-list--dense': this.dense,
-        'mdc-list--two-line': this.twoLine,
-        'mdc-list--avatar-list': this.avatar
-      };
     }
   },
   mounted() {
-    if (this.effect) {
-      this.$el.querySelectorAll(`.${cssClasses.item}`).forEach(item => {
+    if (this.ripple) {
+      this.$el.querySelectorAll(`.${UI_LIST.SLOT_CLASS.item}`).forEach(item => {
         this.initRipple(item);
       });
     }

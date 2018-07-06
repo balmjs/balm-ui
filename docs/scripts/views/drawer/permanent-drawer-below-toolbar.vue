@@ -14,14 +14,14 @@
           <ui-list-group>
             <ui-list-nav>
               <ui-item-link v-for="(item, index) in menu1" :key="index">
-                <ui-item-start :icon="item.icon"></ui-item-start>
+                <ui-item-first :icon="item.icon"></ui-item-first>
                 {{ item.name }}
               </ui-item-link>
             </ui-list-nav>
             <ui-list-divider></ui-list-divider>
             <ui-list-nav>
               <ui-item-link v-for="(item, index) in menu2" :key="index">
-                <ui-item-start :icon="item.icon"></ui-item-start>
+                <ui-item-first :icon="item.icon"></ui-item-first>
                 {{ item.name }}
               </ui-item-link>
             </ui-list-nav>

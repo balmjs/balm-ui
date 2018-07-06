@@ -1,18 +1,19 @@
 <template>
-  <a :class="cssClasses.item">
+  <a :class="UI_LIST.SLOT_CLASS.item" :href="url">
     <slot></slot>
   </a>
 </template>
 
 <script>
+import linkMixin from '../../mixins/link';
 import rippleMixin from '../../mixins/ripple';
-import cssClasses from './constants';
+import UI_LIST from './constants';
 
 export default {
   name: 'ui-item-link',
-  mixins: [rippleMixin],
+  mixins: [linkMixin, rippleMixin],
   props: {
-    // ui attributes
+    // UI attributes
     cssOnly: {
       type: Boolean,
       default: false
@@ -20,7 +21,7 @@ export default {
   },
   data() {
     return {
-      cssClasses
+      UI_LIST
     };
   },
   mounted() {

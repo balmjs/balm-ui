@@ -46,12 +46,11 @@
                   :to="item.url"
                   active-class="mdc-list-item--activated"
                   @click.native="handleMenu">
-                  <ui-item-start>
+                  <ui-item-first class="demo-catalog-list-icon">
                     <img v-if="item.icon"
-                      class="catalog-component-icon"
                       :src="require(`../../../images/icon/${item.icon}`)"
                       :alt="item.name">
-                  </ui-item-start>
+                  </ui-item-first>
                   {{ item.name }}
                 </router-link>
                 <ui-list-divider v-else-if="item === '-'" :key="index"></ui-list-divider>

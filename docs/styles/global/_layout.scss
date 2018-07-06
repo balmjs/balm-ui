@@ -28,8 +28,16 @@ body,
 
 .catalog-list {
   h3 {
-    padding: 0 10px;
+    padding: 0 12px;
   }
+}
+
+.demo-catalog-list a {
+  color: $material-color-grey-900;
+}
+
+.demo-catalog-list-icon {
+  margin: 0 24px 0 12px;
 }
 
 /// lang

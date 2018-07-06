@@ -1,5 +1,5 @@
 <template>
-  <span class="mdc-list-item__text__secondary">
+  <span class="mdc-list-item__secondary-text">
     <slot></slot>
   </span>
 </template>

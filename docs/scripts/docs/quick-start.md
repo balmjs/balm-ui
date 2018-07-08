@@ -8,39 +8,18 @@
 ### 1. Install
 
 ```sh
-yarn add balm-ui
-// or
 npm install --save balm-ui
+// or
+yarn add balm-ui
 ```
 
-### 2. Setup
-
-2.1 CSS Config (**`/path/to/_vendor.scss`**)
+### 2. CSS Config
 
 ```css
-@import 'node_modules/balm-ui/src/styles/main.scss';
-```
+/* `/path/to/_vendor.scss` */
 
-2.2 JS Config (**`./gulpfile.js`**)
-
-```js
-balm.config = {
-  ...
-  scripts: {
-    loaders: [{
-      test: /\.vue$/,
-      loader: 'vue' // You need install `vue-loader`
-    }, {
-      test: /balm-ui.src.*?js$/,
-      loader: 'babel' // BalmJS include `babel-loader` by default
-    }],
-    alias: {
-      'vue$': balm.config.production ? 'vue/dist/vue.min.js' : 'vue/dist/vue.esm.js',
-      'balm-ui': 'balm-ui/src/index.js'
-    }
-  },
-  ...
-};
+/* Sass code  */
+@import 'node_modules/balm-ui/src/styles/balm-ui.scss';
 ```
 
 ### 3. Usage

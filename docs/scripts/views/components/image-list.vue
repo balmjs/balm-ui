@@ -17,7 +17,7 @@
         class="standard-image-list"
         :withTextProtection="controls1.labelsType === 2">
         <ui-image-item v-for="i in 15" :key="i"
-          :src="`images/photos/3x2/${i}.jpg`">
+          :src="require(`../../../images/photos/3x2/${i}.jpg`)">
           <ui-image-label v-if="controls1.labelsType">Text label</ui-image-label>
         </ui-image-item>
       </ui-image-list>
@@ -30,7 +30,7 @@
         masonry
         :withTextProtection="controls2.labelsType === 2">
         <ui-image-item v-for="(item, index) in list" :key="index"
-          :src="`images/photos/${item}.jpg`">
+          :src="require(`../../../images/photos/${item}.jpg`)">
           <ui-image-label v-if="controls2.labelsType">Text label</ui-image-label>
         </ui-image-item>
       </ui-image-list>

@@ -465,21 +465,21 @@ export default {
         {
           icon: 'network_wifi',
           text: 'Wi-Fi',
-          avatar: 'images/animal1.svg',
+          avatar: require('../../../images/animal1.svg'),
           name: 'Panda',
           favorite: true
         },
         {
           icon: 'bluetooth',
           text: 'Bluetooth',
-          avatar: 'images/animal2.svg',
+          avatar: require('../../../images/animal2.svg'),
           name: 'Sleuth',
           favorite: false
         },
         {
           icon: 'data_usage',
           text: 'Data Usage',
-          avatar: 'images/animal3.svg',
+          avatar: require('../../../images/animal3.svg'),
           name: 'Brown Bear',
           favorite: false
         }

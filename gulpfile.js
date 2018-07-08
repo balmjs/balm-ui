@@ -11,6 +11,7 @@ balm.afterTask = 'update:mdc';
 balm.go(function(mix) {
   if (env.buildDocs) {
     mix.copy('./docs/data/*', './dist/data');
+    mix.remove('./dist/img/photos');
   } else {
     if (env.updateMDC) {
       // clear

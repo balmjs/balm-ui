@@ -43,6 +43,7 @@ import UiMenuAnchor from './components/menu/menu-anchor';
 import UiMenu from './components/menu/menu';
 import UiMenuItem from './components/menu/menuitem';
 import UiLinearProgress from './components/common/linear-progress';
+import UiShape from './components/common/shape';
 /**
  * Input Controls
  */
@@ -153,6 +154,7 @@ const components = {
   UiMenu,
   UiMenuItem,
   UiLinearProgress,
+  UiShape,
   // Input Controls
   UiFormField,
   UiTextfield,
@@ -243,13 +245,18 @@ const registers = {
   }
 };
 
-const BalmUI = Object.assign({}, {
+const BalmUI = Object.assign(
+  {},
+  {
     version
-  }, {
+  },
+  {
     helpers
-  }, {
+  },
+  {
     components
-  }, {
+  },
+  {
     plugins
   },
   registers
@@ -258,6 +265,4 @@ const BalmUI = Object.assign({}, {
 autoInstall(BalmUI);
 
 export default BalmUI;
-export {
-  helpers
-};
+export { helpers };

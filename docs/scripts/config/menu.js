@@ -200,6 +200,11 @@ const MATERIAL_COMPONENTS = [
         icon: 'shadow',
         name: 'Elevation',
         description: 'Shadow for different elevations'
+      },
+      {
+        icon: 'component',
+        name: 'Shape',
+        description: 'Mixins for angled corners on unelevated components'
       }
     ]
   }

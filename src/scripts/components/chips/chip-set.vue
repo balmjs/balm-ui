@@ -7,6 +7,7 @@
 <script>
 import { MDCChipSet } from '../../../material-components-web/chips';
 
+// Define constants
 const UI_CHIPSET = {
   EVENT: {
     CHANGE: 'change'

@@ -8,6 +8,7 @@
 </template>
 
 <script>
+// Define constants
 const UI_CHIP = {
   EVENT: {
     CLICK: 'click'

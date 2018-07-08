@@ -11,97 +11,58 @@ const Theme = () => import('../views/plugins/theme');
 const Typography = () => import('../views/plugins/typography');
 const Icons = () => import('../views/icons');
 const LinearProgress = () => import('../views/components/linear-progress');
+const Shape = () => import('../views/components/shape');
 
 const commonRoutes = [
   {
     path: '/button',
     name: 'button',
-    component: Button,
-    meta: {
-      title: 'BalmUI - Button',
-      keywords: '',
-      description: ''
-    }
+    component: Button
   },
   {
     path: '/fab',
     name: 'fab',
-    component: Fab,
-    meta: {
-      title: 'BalmUI - Fab',
-      keywords: '',
-      description: ''
-    }
+    component: Fab
   },
   {
     path: '/icon-button',
     name: 'icon-button',
-    component: IconButton,
-    meta: {
-      title: 'BalmUI - Icon button',
-      keywords: '',
-      description: ''
-    }
+    component: IconButton
   },
   {
     path: '/menu',
     name: 'menu',
-    component: Menu,
-    meta: {
-      title: 'BalmUI - Menu',
-      keywords: '',
-      description: ''
-    }
+    component: Menu
   },
   {
     path: '/elevation',
     name: 'elevation',
-    component: Elevation,
-    meta: {
-      title: 'BalmUI - Elevation',
-      keywords: '',
-      description: ''
-    }
+    component: Elevation
   },
   {
     path: '/theme',
     name: 'theme',
-    component: Theme,
-    meta: {
-      title: 'BalmUI - Theme',
-      keywords: '',
-      description: ''
-    }
+    component: Theme
   },
   {
     path: '/typography',
     name: 'typography',
-    component: Typography,
-    meta: {
-      title: 'BalmUI - Typography',
-      keywords: '',
-      description: ''
-    }
+    component: Typography
   },
   {
     path: '/icons',
     name: 'icons',
-    component: Icons,
-    meta: {
-      title: 'BalmUI - Icons',
-      keywords: '',
-      description: ''
-    }
+    component: Icons
   },
   {
     path: '/linear-progress',
     name: 'linear-progress',
-    component: LinearProgress,
-    meta: {
-      title: 'BalmUI - Linear Progress',
-      keywords: '',
-      description: ''
-    }
+    component: LinearProgress
+  },
+  {
+    path: '/shape',
+    name: 'shape',
+    component: Shape
   }
 ];
 

@@ -1,5 +1,5 @@
 <template>
-  <section :class="className" :style="style">
+  <section :class="className">
     <slot></slot>
   </section>
 </template>
@@ -11,16 +11,7 @@ export default {
     scrollable: {
       type: Boolean,
       default: false
-    },
-    maxHeight: {
-      type: Number,
-      default: 0
     }
-  },
-  data() {
-    return {
-      currentWindowHeight: 0
-    };
   },
   computed: {
     className() {
@@ -28,15 +19,6 @@ export default {
         'mdc-dialog__body': true,
         'mdc-dialog__body--scrollable': this.scrollable
       };
-    },
-    style() {
-      let result = {};
-
-      if (this.maxHeight) {
-        result['max-height'] = this.maxHeight + 'px';
-      }
-
-      return result;
     }
   }
 };

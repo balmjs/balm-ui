@@ -1,36 +1,44 @@
 <template>
   <footer class="mdc-dialog__footer">
-    <slot>
-      <ui-button :class="[
-        'mdc-dialog__footer__button',
-        {'mdc-dialog__footer__button--cancel': notifyCancel}
-      ]" @click.native="$parent.handleCancel">{{ cancelText }}</ui-button>
-      <ui-button :class="[
-        'mdc-dialog__footer__button',
-        {'mdc-dialog__footer__button--accept': notifyAccept}
-      ]" @click.native="$parent.handleAccept">{{ acceptText }}</ui-button>
+    <slot :className="UI_DIALOG.SLOT_CLASS.button">
+      <template v-if="$parent.closable">
+        <button type="button"
+          :class="`mdc-button ${UI_DIALOG.SLOT_CLASS.button} mdc-dialog__footer__button--cancel`">
+          {{ cancelText }}
+        </button>
+        <button type="button"
+          :class="`mdc-button ${UI_DIALOG.SLOT_CLASS.button} mdc-dialog__footer__button--accept`">
+          {{ acceptText }}
+        </button>
+      </template>
+      <template v-else>
+        <button type="button"
+          :class="`mdc-button ${UI_DIALOG.SLOT_CLASS.button}`"
+          @click="$parent.handleCancel">
+          {{ cancelText }}
+        </button>
+        <button type="button"
+          :class="`mdc-button ${UI_DIALOG.SLOT_CLASS.button}`"
+          @click="$parent.handleAccept">
+          {{ acceptText }}
+        </button>
+      </template>
     </slot>
   </footer>
 </template>
 
 <script>
-import UiButton from '../button/button';
+// Define constants
+const UI_DIALOG = {
+  SLOT_CLASS: {
+    button: 'mdc-dialog__footer__button'
+  }
+};
 
 export default {
   name: 'ui-dialog-footer',
-  components: {
-    UiButton
-  },
   props: {
-    // ui attributes
-    notifyAccept: {
-      type: Boolean,
-      default: false
-    },
-    notifyCancel: {
-      type: Boolean,
-      default: false
-    },
+    // UI attributes
     acceptText: {
       type: String,
       default: 'Accept'
@@ -38,6 +46,26 @@ export default {
     cancelText: {
       type: String,
       default: 'Cancel'
+    }
+  },
+  data() {
+    return {
+      UI_DIALOG
+    };
+  },
+  mounted() {
+    let $this = this.$parent;
+
+    if ($this.closable) {
+      $this.$nextTick(() => {
+        $this.$dialog.listen('MDCDialog:accept', () => {
+          $this.handleAccept();
+        });
+
+        $this.$dialog.listen('MDCDialog:cancel', () => {
+          $this.handleCancel();
+        });
+      });
     }
   }
 };

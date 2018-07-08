@@ -1,43 +1,51 @@
 <template>
-  <aside :class="className">
+  <aside class="mdc-dialog" role="alertdialog">
     <div class="mdc-dialog__surface">
       <slot></slot>
     </div>
-    <div v-if="!noMask" class="mdc-dialog__backdrop" @click="handleClose"></div>
+    <template v-if="!noBackdrop">
+      <div v-if="maskClosable" class="mdc-dialog__backdrop" @click="handleClose"></div>
+      <div v-else class="mdc-dialog__backdrop" @click.stop></div>
+    </template>
   </aside>
 </template>
 
 <script>
-// NOTE: remove 'focus-trap' in MDC Dialog
-import {MDCDialog} from '../../../material-components-web/dialog';
+import { MDCDialog } from '../../../material-components-web/dialog';
 
-const UI_EVENT_CLOSE = 'close';
-const UI_EVENT_CONFIRM = 'confirm';
+// Define constants
+const UI_DIALOG = {
+  EVENT: {
+    CHANGE: 'change',
+    CLOSE: 'close',
+    CONFIRM: 'confirm',
+    ACCEPT: 'accept',
+    CANCEL: 'cancel'
+  }
+};
 
 export default {
   name: 'ui-dialog',
+  model: {
+    prop: 'open',
+    event: UI_DIALOG.EVENT.CHANGE
+  },
   props: {
-    // state
+    // States
     open: {
       type: Boolean,
       default: false
     },
-    // ui attributes
-    cssOnly: {
-      type: Boolean,
-      default: false
-    },
+    // UI attributes
     closable: {
       type: Boolean,
       default: true
     },
-    // layout
-    noMask: {
+    maskClosable: {
       type: Boolean,
       default: false
     },
-    // theme
-    dark: {
+    noBackdrop: {
       type: Boolean,
       default: false
     }
@@ -45,15 +53,7 @@ export default {
   data() {
     return {
       $dialog: null
-    }
-  },
-  computed: {
-    className() {
-      return {
-        'mdc-dialog': true,
-        'mdc-dialog--theme-dark': this.dark
-      };
-    }
+    };
   },
   watch: {
     open(val) {
@@ -65,25 +65,27 @@ export default {
     }
   },
   mounted() {
-    if (!this.$dialog && !this.cssOnly) {
+    if (!this.$dialog) {
       this.$dialog = new MDCDialog(this.$el);
     }
   },
   methods: {
     handleClose() {
-      this.$emit(UI_EVENT_CLOSE);
+      if (this.closable) {
+        this.$emit(UI_DIALOG.EVENT.CHANGE, false);
+      } else {
+        this.$emit(UI_DIALOG.EVENT.CLOSE);
+      }
     },
     handleAccept() {
-      this.$emit(UI_EVENT_CONFIRM, true);
-      if (this.closable) {
-        this.handleClose();
-      }
+      this.$emit(UI_DIALOG.EVENT.ACCEPT);
+      this.$emit(UI_DIALOG.EVENT.CONFIRM, true);
+      this.handleClose();
     },
     handleCancel() {
-      this.$emit(UI_EVENT_CONFIRM, false);
-      if (this.closable) {
-        this.handleClose();
-      }
+      this.$emit(UI_DIALOG.EVENT.CANCEL);
+      this.$emit(UI_DIALOG.EVENT.CONFIRM, false);
+      this.handleClose();
     }
   }
 };

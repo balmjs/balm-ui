@@ -88,7 +88,7 @@ const MATERIAL_COMPONENTS = [
         description: 'Various card layout styles'
       },
       {
-        icon: 'component',
+        icon: 'chips',
         name: 'Chips',
         description: 'Chips for actions, selection, and input '
       },
@@ -200,12 +200,12 @@ const MATERIAL_COMPONENTS = [
         icon: 'shadow',
         name: 'Elevation',
         description: 'Shadow for different elevations'
-      },
-      {
-        icon: 'component',
-        name: 'Shape',
-        description: 'Mixins for angled corners on unelevated components'
       }
+      // {
+      //   icon: 'component',
+      //   name: 'Shape',
+      //   description: 'Mixins for angled corners on unelevated components'
+      // }
     ]
   }
 ];
@@ -222,6 +222,9 @@ const getComponentIcon = component => {
         break;
       case 'slider':
         icon = 'slider.svg';
+        break;
+      case 'chips':
+        icon = `ic_${component.icon}_24dp.svg`;
         break;
       default:
         icon = `ic_${component.icon}_24px.svg`;

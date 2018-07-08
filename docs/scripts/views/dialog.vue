@@ -1,7 +1,7 @@
 <template>
   <div class="demo--dialog">
     <section class="hero">
-      <ui-dialog cssOnly noMask class="catalog-dialog-demo mdc-dialog--open" style="visibility: visible;">
+      <ui-dialog noBackdrop class="catalog-dialog-demo mdc-dialog--open" style="visibility: visible;">
         <ui-dialog-header>Are you happy?</ui-dialog-header>
         <ui-dialog-body>
           <p>Please check the left and right side of this element for fun.</p>
@@ -14,19 +14,12 @@
     </section>
 
     <section class="example">
-      <ui-button primary raised @click.native="balmUI.onOpen('open')">Show Dialog</ui-button>
-      <ui-button primary raised @click.native="balmUI.onShow('open2')">Show Scrolling Dialog</ui-button>
-    </section>
-
-    <section class="example">
-      <ui-button primary raised @click.native="showAlert">Show Alert</ui-button>
-      <ui-button primary raised @click.native="showConfirm">Show Confirm</ui-button>
-      <ui-button primary raised @click.native="showToast">Show Toast</ui-button>
+      <ui-button raised @click="balmUI.onOpen('open')">Show Dialog</ui-button>
+      <ui-button raised @click="balmUI.onShow('open2')">Show Scrolling Dialog</ui-button>
     </section>
 
     <ui-dialog
-      :open="open"
-      @close="balmUI.onClose('open')"
+      v-model="open"
       @confirm="onConfirm">
       <ui-dialog-header>Use Google's location service?</ui-dialog-header>
       <ui-dialog-body>
@@ -36,24 +29,15 @@
     </ui-dialog>
 
     <ui-dialog
-      :open="open2"
-      @close="balmUI.onHide('open2')"
+      v-model="open2"
       @confirm="onConfirm">
       <ui-dialog-header>Choose a Ringtone</ui-dialog-header>
       <ui-dialog-body scrollable>
-        <ul class="mdc-list">
-          <li class="mdc-list-item">None</li>
-          <li class="mdc-list-item">Callisto</li>
-          <li class="mdc-list-item">Ganymede</li>
-          <li class="mdc-list-item">Luna</li>
-          <li class="mdc-list-item">Marimba</li>
-          <li class="mdc-list-item">Schwifty</li>
-          <li class="mdc-list-item">Callisto</li>
-          <li class="mdc-list-item">Ganymede</li>
-          <li class="mdc-list-item">Luna</li>
-          <li class="mdc-list-item">Marimba</li>
-          <li class="mdc-list-item">Schwifty</li>
-        </ul>
+        <ui-list>
+          <ui-item v-for="(item, index) in list" :key="index">
+            {{ item }}
+          </ui-item>
+        </ui-list>
       </ui-dialog-body>
       <ui-dialog-footer></ui-dialog-footer>
     </ui-dialog>
@@ -71,9 +55,20 @@ export default {
     return {
       open: false,
       open2: false,
-      open3: false,
-      open4: false
-    }
+      list: [
+        'None',
+        'Callisto',
+        'Ganymede',
+        'Luna',
+        'Marimba',
+        'Schwifty',
+        'Callisto',
+        'Ganymede',
+        'Luna',
+        'Marimba',
+        'Schwifty'
+      ]
+    };
   },
   methods: {
     onConfirm(result) {
@@ -82,41 +77,10 @@ export default {
       } else {
         console.log('cancel');
       }
-    },
-    showAlert() {
-      // this.$alert('Hello').then(() => {
-      //   console.log('World');
-      // });
-
-      this.$alert({
-        message: 'Hello',
-        callback: () => {
-          console.log('World');
-        }
-      });
-    },
-    showConfirm() {
-      // this.$confirm({
-      //   message: 'Are you sure?'
-      // }).then(() => {
-      //   console.log('OK');
-      // }).catch(() => {
-      //   console.log('Cancel');
-      // });
-
-      this.$confirm({
-        message: 'Are you sure?',
-        callback: result => {
-          console.log(result);
-        }
-      });
-    },
-    showToast() {
-      this.$toast('Hello World');
     }
   },
   created() {
     // this.showCode('dialog', 2);
   }
-}
+};
 </script>

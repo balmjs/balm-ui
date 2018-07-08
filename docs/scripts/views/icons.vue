@@ -3,16 +3,17 @@
     <p>
       <ui-textfield type="search"
         id="search"
+        helptextId="my-icons"
         fullwidth
         :model="keywords"
         @input="onInput">
         Search
       </ui-textfield>
-      <ui-textfield-helptext class="search-helper" show>
+      <ui-textfield-helptext id="my-icons" class="search-helper" visible>
         TIPS: Click icon to copy icon name, then you can use <b>`&lt;ui-icon&gt;${icon_name}&lt;/ui-icon&gt;`</b>
       </ui-textfield-helptext>
     </p>
-    <ui-list>
+    <ui-list nonInteractive>
       <template v-for="(group, index) in groups">
         <ui-item>
           <h2>{{ group.name }}</h2>
@@ -23,9 +24,10 @@
                 :key="i"
                 noImage
                 class="btn-clipboard"
-                :icon="icon.id"
-                :iconSize="48"
                 :data-clipboard-text="icon.id">
+                <template slot="icon">
+                  <ui-icon size="48">{{ icon.id }}</ui-icon>
+                </template>
                 <div v-if="icon.isNew" class="new-badge">New</div>
                 <ui-grid-tile-title :title="icon.name">{{ icon.name }}</ui-grid-tile-title>
               </ui-grid-tile>
@@ -73,7 +75,7 @@ export default {
   },
   async created() {
     let response = await this.$http.get(`${this.$domain}/data/grid.json`);
-    let {groups, icons} = response.data;
+    let { groups, icons } = response.data;
 
     groups.map(group => {
       this.groups.push({

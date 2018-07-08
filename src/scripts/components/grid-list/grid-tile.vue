@@ -1,6 +1,6 @@
 <template>
   <li class="mdc-grid-tile">
-    <div class="mdc-grid-tile__primary">
+    <div v-if="!noImage" class="mdc-grid-tile__primary">
       <slot name="image" :className="UI_GRID_LIST.SLOT_CLASS.image">
         <img v-if="src" :class="[UI_GRID_LIST.SLOT_CLASS.image, imageClass]" :src="src" :alt="alt">
         <div v-else :class="[UI_GRID_LIST.SLOT_CLASS.image, imageClass]"></div>
@@ -34,6 +34,10 @@ export default {
     imageClass: String,
     icon: String,
     imageOnly: {
+      type: Boolean,
+      default: false
+    },
+    noImage: {
       type: Boolean,
       default: false
     }

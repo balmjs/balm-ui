@@ -10,30 +10,28 @@
       <h2>Basic Example</h2>
       <div>
         <ui-checkbox id="multiline"
-          :model="multiline"
-          @change="balmUI.onChange('multiline', $event)">Multiline</ui-checkbox><br>
+          v-model="multiline">Multiline</ui-checkbox><br>
         <ui-checkbox id="action-on-bottom"
-          :model="actionOnBottom"
-          :disabled="!multiline"
-          @change="balmUI.onChange('actionOnBottom', $event)">Action On Bottom</ui-checkbox><br>
+          v-model="actionOnBottom"
+          :disabled="!multiline">Action On Bottom</ui-checkbox><br>
+        <ui-checkbox id="dismiss-on-action"
+          v-model="dismiss">Dismiss On Action</ui-checkbox><br>
 
         <ui-textfield id="message"
-          :model="message"
-          @input="balmUI.onChange('message', $event)">Message Text</ui-textfield><br>
+          v-model="message">Message Text</ui-textfield><br>
         <ui-textfield id="action"
-          :model="actionText"
-          @input="balmUI.onChange('actionText', $event)">Action Text</ui-textfield><br>
+          v-model="actionText">Action Text</ui-textfield><br>
 
-        <ui-button raised @click.native="balmUI.onShow('active')">Show</ui-button>
+        <ui-button raised @click="balmUI.onShow('active')">Show</ui-button>
 
         <ui-snackbar
-          :active="active"
+          v-model="active"
           :message="message"
           :actionHandler="actionHandler"
           :multiline="multiline"
           :actionOnBottom="actionOnBottom"
           :actionText="actionText"
-          @callback="balmUI.onHide('active')"></ui-snackbar>
+          :dismiss="dismiss"></ui-snackbar>
       </div>
     </section>
 
@@ -42,7 +40,7 @@
 </template>
 
 <script>
-import snippets from '../mixins/snippets';
+import snippets from '../../mixins/snippets';
 
 export default {
   mixins: [snippets],
@@ -50,9 +48,10 @@ export default {
     return {
       active: false,
       message: 'Hello Snackbar',
-      actionText: 'Undo',
       multiline: false,
-      actionOnBottom: false
+      actionOnBottom: false,
+      actionText: 'Undo',
+      dismiss: true
     };
   },
   methods: {

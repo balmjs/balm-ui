@@ -1,10 +1,12 @@
 <template>
-  <div class="mdc-snackbar"
+  <div :class="className"
        aria-live="assertive"
        aria-atomic="true"
        aria-hidden="true"
        :style="style">
-    <div class="mdc-snackbar__text">{{ message }}</div>
+    <div class="mdc-snackbar__text">
+      <slot>{{ message }}</slot>
+    </div>
     <div v-show="hasAction" class="mdc-snackbar__action-wrapper">
       <button type="button" class="mdc-snackbar__action-button">
         {{ actionText }}
@@ -14,29 +16,36 @@
 </template>
 
 <script>
-import {MDCSnackbar} from '../../../material-components-web/snackbar';
+import { MDCSnackbar } from '../../../material-components-web/snackbar';
 
-const UI_EVENT_CALLBACK = 'callback';
+const UI_SNACKBAR = {
+  EVENT: {
+    CHANGE: 'change'
+  }
+};
 
 export default {
   name: 'ui-snackbar',
+  model: {
+    prop: 'active',
+    event: UI_SNACKBAR.EVENT.CHANGE
+  },
   props: {
-    // state
+    // States
     active: {
       type: Boolean,
       default: false
     },
-    // ui attributes
-    cssOnly: {
-      type: Boolean,
-      default: false
-    },
+    // UI attributes
     alignStart: {
       type: Boolean,
       default: false
     },
     // Showing a message and action
-    message: String,
+    message: {
+      type: String,
+      default: ''
+    },
     timeout: {
       type: [Number, String],
       default: 2750
@@ -45,7 +54,7 @@ export default {
     actionText: String,
     multiline: Boolean,
     actionOnBottom: Boolean,
-    dismissesOnAction: {
+    dismiss: {
       type: Boolean,
       default: true
     },
@@ -68,12 +77,14 @@ export default {
       };
     },
     hasAction() {
-      return this.actionHandler && this.actionText;
+      return !!(this.actionHandler && this.actionText);
     },
     style() {
-      return this.fouc ? {
-        transform: 'translateY(100%)'
-      } : {};
+      return this.fouc
+        ? {
+            transform: 'translateY(100%)'
+          }
+        : {};
     }
   },
   watch: {
@@ -82,10 +93,8 @@ export default {
         this.show();
       }
     },
-    dismissesOnAction(val) {
-      if (this.$snackbar) {
-        this.$snackbar.dismissesOnAction = val;
-      }
+    dismiss(val) {
+      this.$snackbar.dismissesOnAction = val;
     }
   },
   created() {
@@ -97,28 +106,34 @@ export default {
     }
   },
   mounted() {
-    if (!this.$snackbar && !this.cssOnly) {
+    if (!this.$snackbar) {
       this.$snackbar = new MDCSnackbar(this.$el);
+
+      this.$snackbar.listen('MDCSnackbar:hide', () => {
+        this.$emit(UI_SNACKBAR.EVENT.CHANGE, false);
+      });
     }
   },
   methods: {
     show() {
-      if (this.$snackbar && this.message) {
-        let dataObj =  {
+      if (this.message) {
+        let dataObj = {
           message: this.message,
           timeout: this.timeout,
           multiline: this.multiline
         };
+
         if (this.hasAction) {
           dataObj.actionHandler = this.actionHandler;
           dataObj.actionText = this.actionText;
         }
+
         if (this.multiline) {
           dataObj.actionOnBottom = this.actionOnBottom;
         }
+
         this.$snackbar.show(dataObj);
       }
-      this.$emit(UI_EVENT_CALLBACK);
     }
   }
 };

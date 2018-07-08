@@ -1,24 +1,17 @@
 const Dialog = () => import('../views/dialog');
-const Snackbar = () => import('../views/snackbar');
+const Snackbar = () => import('../views/components/snackbar');
 
-const popupRoutes = [{
-  path: '/dialog',
-  name: 'dialog',
-  component: Dialog,
-  meta: {
-    title: 'BalmUI - Dialog',
-    keywords: '',
-    description: ''
+const popupRoutes = [
+  {
+    path: '/dialog',
+    name: 'dialog',
+    component: Dialog
+  },
+  {
+    path: '/snackbar',
+    name: 'snackbar',
+    component: Snackbar
   }
-}, {
-  path: '/snackbar',
-  name: 'snackbar',
-  component: Snackbar,
-  meta: {
-    title: 'BalmUI - Snackbar',
-    keywords: '',
-    description: ''
-  }
-}];
+];
 
 export default popupRoutes;

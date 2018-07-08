@@ -61,7 +61,8 @@ module.exports = {
     svg: ['icon']
   },
   extras: {
-    excludes: ['index.js']
+    excludes: ['index.js'],
+    includes: ['CNAME']
   },
   assets: {
     publicUrl: env.buildDocs ? '//material.balmjs.com/' : ''

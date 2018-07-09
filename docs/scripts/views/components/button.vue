@@ -10,8 +10,7 @@
 
     <section class="demo-wrapper">
       <ui-checkbox id="toggle-disabled"
-        :model="disabled"
-        @change="balmUI.onChange('disabled', $event)">
+        v-model="disabled">
         Disabled buttons (excluding links)
       </ui-checkbox>
 

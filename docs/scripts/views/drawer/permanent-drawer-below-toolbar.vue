@@ -41,6 +41,9 @@
 import DrawerMixin from '../../mixins/drawer';
 
 export default {
+  metaInfo: {
+    titleTemplate: '%s - Permanent Drawer Below Toolbar'
+  },
   mixins: [DrawerMixin]
 };
 </script>

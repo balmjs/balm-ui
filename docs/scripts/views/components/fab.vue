@@ -173,6 +173,9 @@
 import snippets from '../../mixins/snippets';
 
 export default {
+  metaInfo: {
+    titleTemplate: '%s - Fab'
+  },
   mixins: [snippets],
   data() {
     return {

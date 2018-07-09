@@ -174,6 +174,9 @@
 
 <script>
 export default {
+  metaInfo: {
+    titleTemplate: '%s - Theme'
+  },
   data() {
     return {
       open: false,

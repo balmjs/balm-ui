@@ -169,6 +169,9 @@
 import snippets from '../../mixins/snippets';
 
 export default {
+  metaInfo: {
+    titleTemplate: '%s - Menu'
+  },
   mixins: [snippets],
   data() {
     return {

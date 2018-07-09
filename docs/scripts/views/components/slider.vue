@@ -109,6 +109,9 @@
 
 <script>
 export default {
+  metaInfo: {
+    titleTemplate: '%s - Slider'
+  },
   data() {
     return {
       value: 20,

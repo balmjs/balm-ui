@@ -204,6 +204,9 @@
 import snippets from '../../mixins/snippets';
 
 export default {
+  metaInfo: {
+    titleTemplate: '%s - Tabs'
+  },
   mixins: [snippets],
   data() {
     return {

@@ -51,6 +51,9 @@ import snippets from '../../mixins/snippets';
 import UiCheckboxDemo from '../../components/checkbox';
 
 export default {
+  metaInfo: {
+    titleTemplate: '%s - Checkbox'
+  },
   components: {
     UiCheckboxDemo
   },

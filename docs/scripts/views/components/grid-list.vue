@@ -108,3 +108,11 @@
     </section>
   </div>
 </template>
+
+<script>
+export default {
+  metaInfo: {
+    titleTemplate: '%s - Grid List'
+  }
+};
+</script>

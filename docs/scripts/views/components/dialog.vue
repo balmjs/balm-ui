@@ -50,6 +50,9 @@
 import snippets from '../../mixins/snippets';
 
 export default {
+  metaInfo: {
+    titleTemplate: '%s - Dialog'
+  },
   mixins: [snippets],
   data() {
     return {

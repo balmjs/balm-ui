@@ -39,6 +39,9 @@
 import DrawerMixin from '../../mixins/drawer';
 
 export default {
+  metaInfo: {
+    titleTemplate: '%s - Persistent Drawer'
+  },
   mixins: [DrawerMixin]
 };
 </script>

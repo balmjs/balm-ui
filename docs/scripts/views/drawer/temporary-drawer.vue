@@ -38,6 +38,9 @@
 import DrawerMixin from '../../mixins/drawer';
 
 export default {
+  metaInfo: {
+    titleTemplate: '%s - Temporary Drawer'
+  },
   mixins: [DrawerMixin]
 };
 </script>

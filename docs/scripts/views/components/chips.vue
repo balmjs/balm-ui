@@ -103,6 +103,9 @@
 
 <script>
 export default {
+  metaInfo: {
+    titleTemplate: '%s - Chips'
+  },
   data() {
     return {
       lastId: 2,

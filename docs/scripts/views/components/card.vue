@@ -121,6 +121,9 @@
 import snippets from '../../mixins/snippets';
 
 export default {
+  metaInfo: {
+    titleTemplate: '%s - Card'
+  },
   mixins: [snippets],
   data() {
     return {

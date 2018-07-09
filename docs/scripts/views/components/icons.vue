@@ -47,6 +47,9 @@
 import Clipboard from 'clipboard';
 
 export default {
+  metaInfo: {
+    titleTemplate: '%s - Icons'
+  },
   data() {
     return {
       number: 0,

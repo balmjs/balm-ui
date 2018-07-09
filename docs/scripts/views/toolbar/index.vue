@@ -70,3 +70,11 @@
     </section>
   </div>
 </template>
+
+<script>
+export default {
+  metaInfo: {
+    titleTemplate: '%s - Toolbar'
+  }
+};
+</script>

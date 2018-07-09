@@ -29,3 +29,11 @@
     </section>
   </div>
 </template>
+
+<script>
+export default {
+  metaInfo: {
+    titleTemplate: '%s - Elevation'
+  }
+};
+</script>

@@ -77,6 +77,9 @@ import menu from '../../config/menu';
 import '../../helpers';
 
 export default {
+  metaInfo: {
+    title: 'BalmUI'
+  },
   data() {
     return {
       lang,

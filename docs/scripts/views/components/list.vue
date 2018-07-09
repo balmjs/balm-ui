@@ -420,6 +420,9 @@
 import snippets from '../../mixins/snippets';
 
 export default {
+  metaInfo: {
+    titleTemplate: '%s - List'
+  },
   mixins: [snippets],
   data() {
     return {

@@ -277,6 +277,9 @@ const options3 = [
 ];
 
 export default {
+  metaInfo: {
+    titleTemplate: '%s - Select'
+  },
   components: {
     UiSelectControls
   },

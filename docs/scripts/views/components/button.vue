@@ -32,6 +32,9 @@ import snippets from '../../mixins/snippets';
 import UiButtonDemo from '../../components/button';
 
 export default {
+  metaInfo: {
+    titleTemplate: '%s - Button'
+  },
   components: {
     UiButtonDemo
   },

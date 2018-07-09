@@ -32,6 +32,9 @@ import snippets from '../../mixins/snippets';
 import UiRadioDemo from '../../components/radio';
 
 export default {
+  metaInfo: {
+    titleTemplate: '%s - Radio'
+  },
   components: {
     UiRadioDemo
   },

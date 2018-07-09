@@ -243,6 +243,9 @@ const widthOptions = [
 ];
 
 export default {
+  metaInfo: {
+    titleTemplate: '%s - Layout Grid'
+  },
   mixins: [snippets],
   data() {
     return {

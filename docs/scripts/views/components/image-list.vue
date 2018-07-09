@@ -42,6 +42,9 @@
 import UiImageListControls from '../../components/image-list-controls';
 
 export default {
+  metaInfo: {
+    titleTemplate: '%s - Image List'
+  },
   components: {
     UiImageListControls
   },

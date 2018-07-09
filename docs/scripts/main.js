@@ -2,6 +2,7 @@ import './polyfill';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import axios from 'axios';
+import VueMeta from 'vue-meta';
 import VueI18n from 'vue-i18n';
 import BalmUI from '../../src/scripts/index'; // 'balm-ui'
 import routes from './routes/index';
@@ -13,9 +14,7 @@ import UiLogo from './components/logo';
 // syntax highlighting
 import prismjs from 'prismjs';
 // ready translated locales
-import {
-  locales
-} from './config/lang';
+import { locales } from './config/lang';
 
 const CLASS_NAMESPACE = 'balmui';
 const DEBUG = process.env.NODE_ENV === 'production' ? false : true;
@@ -24,17 +23,9 @@ Vue.config.productionTip = false;
 Vue.prototype.DEBUG = DEBUG;
 Vue.use(VueRouter);
 Vue.prototype.$http = axios;
+Vue.use(VueMeta);
 Vue.use(VueI18n);
 Vue.use(BalmUI);
-
-// Vue.use(BalmUI.plugins.event);
-// Vue.use(BalmUI.plugins.elevation);
-// Vue.use(BalmUI.plugins.grid);
-// Vue.use(BalmUI.plugins.theme);
-// Vue.use(BalmUI.plugins.typography);
-// Vue.use(BalmUI.plugins.alert);
-// Vue.use(BalmUI.plugins.confirm);
-// Vue.use(BalmUI.plugins.toast);
 
 Vue.component(UiMarkdown.name, UiMarkdown);
 Vue.component(UiApidocs.name, UiApidocs);
@@ -81,8 +72,6 @@ const router = new VueRouter({
 });
 
 router.afterEach((to, from) => {
-  document.querySelector('title').innerHTML = to.meta.title;
-
   let pageClassList = document.querySelector('html').classList;
   if (from.name) {
     pageClassList.remove(`${CLASS_NAMESPACE}--${from.name}`);

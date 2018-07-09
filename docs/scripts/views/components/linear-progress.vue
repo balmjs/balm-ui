@@ -50,6 +50,9 @@
 
 <script>
 export default {
+  metaInfo: {
+    titleTemplate: '%s - Linear Progress'
+  },
   data() {
     return {
       progress: 0,

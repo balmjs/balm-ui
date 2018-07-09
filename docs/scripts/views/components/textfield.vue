@@ -219,6 +219,9 @@ import snippets from '../../mixins/snippets';
 import UiTextfieldControls from '../../components/textfield-controls';
 
 export default {
+  metaInfo: {
+    titleTemplate: '%s - Textfield'
+  },
   components: {
     UiTextfieldControls
   },

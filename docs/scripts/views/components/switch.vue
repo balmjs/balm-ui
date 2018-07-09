@@ -40,6 +40,9 @@
 import snippets from '../../mixins/snippets';
 
 export default {
+  metaInfo: {
+    titleTemplate: '%s - Switch'
+  },
   mixins: [snippets],
   data() {
     return {

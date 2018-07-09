@@ -76,6 +76,9 @@
 
 <script>
 export default {
+  metaInfo: {
+    titleTemplate: '%s - Top App Bar'
+  },
   data() {
     return {
       items: [

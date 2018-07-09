@@ -1,13 +1,16 @@
+// Define constants
+const UI_CARD = {
+  CLASSNAME: {
+    BUTTON: 'mdc-card__action-buttons',
+    ICON: 'mdc-card__action-icons'
+  }
+};
+
 export default {
-  props: {
-    // UI attributes
-    actionButton: {
-      type: Boolean,
-      default: false
-    },
-    actionIcon: {
-      type: Boolean,
-      default: false
+  data() {
+    return {
+      actionButton: false,
+      actionIcon: false
     }
   },
   computed: {
@@ -18,5 +21,11 @@ export default {
         'mdc-card__action--icon': this.actionIcon
       };
     }
+  },
+  created() {
+    this.$parent.$nextTick(() => {
+      this.actionButton = this.$parent.$el.classList.contains(UI_CARD.CLASSNAME.BUTTON);
+      this.actionIcon = this.$parent.$el.classList.contains(UI_CARD.CLASSNAME.ICON);
+    });
   }
 };

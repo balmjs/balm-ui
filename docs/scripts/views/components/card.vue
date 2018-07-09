@@ -14,13 +14,13 @@
         </ui-card-primary-action>
         <ui-card-actions>
           <ui-card-buttons>
-            <ui-button actionButton>Read</ui-button>
-            <ui-button actionButton>Bookmark</ui-button>
+            <ui-button>Read</ui-button>
+            <ui-button>Bookmark</ui-button>
           </ui-card-buttons>
           <ui-card-icons>
-            <ui-icon-button actionIcon :on="icon1.on" :off="icon1.off"></ui-icon-button>
-            <ui-icon-button actionIcon>share</ui-icon-button>
-            <ui-icon-button actionIcon>more_vert</ui-icon-button>
+            <ui-icon-button :on="icon1.on" :off="icon1.off"></ui-icon-button>
+            <ui-icon-button>share</ui-icon-button>
+            <ui-icon-button>more_vert</ui-icon-button>
           </ui-card-icons>
         </ui-card-actions>
       </ui-card>
@@ -35,16 +35,16 @@
         <div :class="[$tt('subtitle2'), 'demo-card-article-group-heading']">Headlines</div>
         <hr class="mdc-list-divider">
 
-        <template v-for="item in list">
-          <a class="demo-card-article mdc-ripple-surface">
+        <template v-for="(item, index) in list">
+          <a :key="`item${index}`" class="demo-card-article mdc-ripple-surface">
             <h2 :class="[$tt('headline5'), 'demo-card-article__title']">{{ item.title }}</h2>
             <p :class="[$tt('body2'), 'demo-card-article__snippet']">{{ item.content }}</p>
           </a>
-          <hr class="mdc-list-divider">
+          <hr :key="`divider${index}`" class="mdc-list-divider">
         </template>
 
         <ui-card-actions fullBleed>
-          <ui-link actionButton class="demo-card-action">
+          <ui-link class="demo-card-action">
             All Business Headlines
             <ui-icon>arrow_forward</ui-icon>
           </ui-link>
@@ -68,9 +68,9 @@
         </ui-card-primary-action>
         <ui-card-actions>
           <ui-card-icons>
-            <ui-icon-button actionIcon :on="icon1.on" :off="icon1.off"></ui-icon-button>
-            <ui-icon-button actionIcon :on="icon2.on" :off="icon2.off"></ui-icon-button>
-            <ui-icon-button actionIcon>share</ui-icon-button>
+            <ui-icon-button :on="icon1.on" :off="icon1.off"></ui-icon-button>
+            <ui-icon-button :on="icon2.on" :off="icon2.off"></ui-icon-button>
+            <ui-icon-button>share</ui-icon-button>
           </ui-card-icons>
         </ui-card-actions>
       </ui-card>

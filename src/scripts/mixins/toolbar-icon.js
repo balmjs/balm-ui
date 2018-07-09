@@ -1,3 +1,4 @@
+// Define constants
 const TYPE = {
   MENU: 'menu',
   ICON: 'icon'

@@ -1,18 +1,18 @@
-import { MDCIconButtonToggle } from '../../material-components-web/icon-button';
+import {
+  MDCIconButtonToggle
+} from '../../material-components-web/icon-button';
 import cardButtonMixin from './card-button';
 import getType from '../helpers/typeof';
 
 // Define constants
 const UI_ICONBUTTON = {
-  EVENT: {
-    CLICK: 'click',
-    CHANGE: 'change'
-  }
-};
-const MDC_ICONBUTTON = {
   TOGGLE_STATES: ['label', 'content', 'class'],
   TOGGLE_STATUS: {
     ON: 'on'
+  },
+  EVENT: {
+    CLICK: 'click',
+    CHANGE: 'change'
   }
 };
 
@@ -49,7 +49,7 @@ export default {
   watch: {
     model(val) {
       if (this.isToggleButton) {
-        this.updateStatus(MDC_ICONBUTTON.TOGGLE_STATUS.ON, val);
+        this.updateStatus(UI_ICONBUTTON.TOGGLE_STATUS.ON, val);
       }
     }
   },
@@ -79,12 +79,14 @@ export default {
 
         this.$iconButton.listen(
           `MDCIconButtonToggle:${UI_ICONBUTTON.EVENT.CHANGE}`,
-          ({ detail }) => {
+          ({
+            detail
+          }) => {
             this.$emit(UI_ICONBUTTON.EVENT.CHANGE, detail.isOn);
           }
         );
 
-        this.updateStatus(MDC_ICONBUTTON.TOGGLE_STATUS.ON, this.model);
+        this.updateStatus(UI_ICONBUTTON.TOGGLE_STATUS.ON, this.model);
       } else {
         new MDCIconButtonToggle(this.$el);
       }
@@ -92,11 +94,11 @@ export default {
   },
   methods: {
     isValidToggleState(states) {
-      return states
-        ? Object.keys(states).some(state =>
-            MDC_ICONBUTTON.TOGGLE_STATES.includes(state)
-          )
-        : false;
+      return states ?
+        Object.keys(states).some(state =>
+          UI_ICONBUTTON.TOGGLE_STATES.includes(state)
+        ) :
+        false;
     },
     initToggleState(key) {
       let value = this[key];

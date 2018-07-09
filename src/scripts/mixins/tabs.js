@@ -1,3 +1,4 @@
+// Define constants
 const UI_TABS = {
   LABEL: {
     TEXT: 'text', // text
@@ -12,7 +13,7 @@ const UI_TABS = {
 export default {
   model: {
     prop: 'active',
-    event: 'change'
+    event: UI_TABS.EVENT.CHANGE
   },
   props: {
     // States

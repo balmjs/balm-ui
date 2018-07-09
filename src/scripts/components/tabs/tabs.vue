@@ -26,7 +26,7 @@ export default {
   },
   mixins: [tabsMixin],
   props: {
-    // state
+    // States
     items: {
       type: Array,
       default() {

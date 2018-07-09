@@ -38,23 +38,25 @@
         <ui-persistent-drawer v-model="open" class="balmui-menu" menuSelector="#balmui-menu">
           <ui-drawer-content>
             <ui-list-nav class="catalog-list">
-              <template v-for="(item, index) in menu">
-                <router-link
-                  v-if="item.icon"
-                  :key="index"
-                  :class="['mdc-list-item', {'submenu': item.isSubmenu}, $textColor('primary', 'light')]"
-                  :to="item.url"
-                  active-class="mdc-list-item--activated"
-                  @click.native="handleMenu">
-                  <ui-item-first class="demo-catalog-list-icon">
-                    <img v-if="item.icon"
-                      :src="require(`../../../images/icon/${item.icon}`)"
-                      :alt="item.name">
-                  </ui-item-first>
-                  {{ item.name }}
-                </router-link>
-                <ui-list-divider v-else-if="item === '-'" :key="index"></ui-list-divider>
-                <h3 v-else :key="index" :class="$textColor('primary', 'light')">{{ item.name }}</h3>
+              <template slot-scope="{className}">
+                <template v-for="(item, index) in menu">
+                  <router-link
+                    v-if="item.icon"
+                    :key="`item${index}`"
+                    :class="[className.item, {'submenu': item.isSubmenu}, $textColor('primary', 'light')]"
+                    :to="item.url"
+                    :active-class="className.activated"
+                    @click.native="handleMenu">
+                    <ui-item-first class="demo-catalog-list-icon">
+                      <img v-if="item.icon"
+                        :src="require(`../../../images/icon/${item.icon}`)"
+                        :alt="item.name">
+                    </ui-item-first>
+                    {{ item.name }}
+                  </router-link>
+                  <ui-list-divider v-else-if="item === '-'" :key="`divider${index}`"></ui-list-divider>
+                  <h3 v-else :key="`head${index}`" :class="$textColor('primary', 'light')">{{ item.name }}</h3>
+                </template>
               </template>
             </ui-list-nav>
             <ui-list-divider></ui-list-divider>

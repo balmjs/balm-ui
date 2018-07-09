@@ -60,7 +60,7 @@ import UiSlider from './components/input-controls/slider';
  * Data
  */
 import UiCard from './components/card/card';
-import UiCardPrimaryAction from './components/card/card-primary-action';
+import UiCardContent from './components/card/card-content';
 import UiCardMedia from './components/card/card-media';
 import UiCardMediaContent from './components/card/card-media-content';
 import UiCardActions from './components/card/card-actions';
@@ -112,6 +112,7 @@ import alert from './plugins/alert';
 import confirm from './plugins/confirm';
 import toast from './plugins/toast';
 import validator from './plugins/validator';
+import ripple from './plugins/ripple';
 /**
  * Auto install
  */
@@ -170,7 +171,7 @@ const components = {
   UiSlider,
   // Data
   UiCard,
-  UiCardPrimaryAction,
+  UiCardContent,
   UiCardMedia,
   UiCardMediaContent,
   UiCardActions,
@@ -219,7 +220,8 @@ const plugins = {
   alert,
   confirm,
   toast,
-  validator
+  validator,
+  ripple
 };
 
 const registers = {
@@ -245,18 +247,13 @@ const registers = {
   }
 };
 
-const BalmUI = Object.assign(
-  {},
-  {
+const BalmUI = Object.assign({}, {
     version
-  },
-  {
+  }, {
     helpers
-  },
-  {
+  }, {
     components
-  },
-  {
+  }, {
     plugins
   },
   registers
@@ -265,4 +262,6 @@ const BalmUI = Object.assign(
 autoInstall(BalmUI);
 
 export default BalmUI;
-export { helpers };
+export {
+  helpers
+};

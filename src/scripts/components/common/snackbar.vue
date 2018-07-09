@@ -18,6 +18,7 @@
 <script>
 import { MDCSnackbar } from '../../../material-components-web/snackbar';
 
+// Define constants
 const UI_SNACKBAR = {
   EVENT: {
     CHANGE: 'change'

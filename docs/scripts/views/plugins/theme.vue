@@ -31,11 +31,11 @@
             :class="{
               'demo-theme-menu__list-item--selected': selectedTheme === item.value
             }">
-            <div class="mdc-list-item__graphic">
+            <ui-item-first>
               <i class="demo-theme-color-radio">
                 <span class="demo-theme-color-radio__inner"></span>
               </i>
-            </div>
+            </ui-item-first>
             {{ item.label }}
           </ui-menuitem>
         </ui-menu>
@@ -153,7 +153,7 @@
             </fieldset>
 
             <fieldset class="demo-fieldset--color">
-              <legend class="mdc-typography--subtitle1">Text on user-defined dark background</legend>
+              <legend :class="$tt('subtitle1')">Text on user-defined dark background</legend>
 
               <div class="demo-theme-color-group">
                 <div :class="['demo-theme-text-row demo-theme-bg--custom-dark', $tt('body2')]">

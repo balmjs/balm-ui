@@ -8,7 +8,7 @@
 import linkMixin from '../../mixins/link';
 
 export default {
-  name: 'ui-card-primary-action',
+  name: 'ui-card-content',
   mixins: [linkMixin]
 };
 </script>

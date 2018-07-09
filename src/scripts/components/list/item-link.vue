@@ -1,6 +1,6 @@
 <template>
   <a :class="UI_LIST.SLOT_CLASS.item" :href="url">
-    <slot></slot>
+    <slot :className="UI_LIST.SLOT_CLASS"></slot>
   </a>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="mdc-list-group">
-    <slot :className="UI_LIST.SLOT_CLASS.subheader"></slot>
+    <slot :className="UI_LIST.SLOT_CLASS"></slot>
   </div>
 </template>
 

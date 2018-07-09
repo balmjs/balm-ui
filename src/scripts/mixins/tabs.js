@@ -1,14 +1,4 @@
-// Define constants
-const UI_TABS = {
-  LABEL: {
-    TEXT: 'text', // text
-    ICON: 'icon', // icon-only
-    TEXT_WITH_ICON: 'both' // text with icon
-  },
-  EVENT: {
-    CHANGE: 'change'
-  }
-};
+import UI_TABS from '../components/tabs/constants';
 
 export default {
   model: {

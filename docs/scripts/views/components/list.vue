@@ -32,7 +32,7 @@
             </ui-list>
             <ui-list-divider inset></ui-list-divider>
             <ui-list-group-subheader>Files</ui-list-group-subheader>
-            <ul class="mdc-list mdc-list--two-line mdc-list--avatar-list demo-list demo-list--with-avatars demo-list--custom demo-list--icon-placeholders">
+            <ui-list twoLine avatar class="demo-list demo-list--with-avatars demo-list--custom demo-list--icon-placeholders">
               <ui-item v-for="(item, index) in files" :key="index">
                 <ui-item-first :icon="item.first"></ui-item-first>
                 <ui-item-text>
@@ -41,7 +41,7 @@
                 </ui-item-text>
                 <ui-item-last :icon="item.last"></ui-item-last>
               </ui-item>
-            </ul>
+            </ui-list>
           </ui-list-group>
         </section>
       </section>

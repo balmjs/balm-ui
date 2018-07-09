@@ -13,17 +13,17 @@ export default {
   name: 'ui-list',
   mixins: [listMixin, rippleMixin],
   props: {
-    // States
-    selected: {
-      type: Array,
-      default() {
-        return [];
-      }
-    },
-    activated: {
-      type: Number,
-      default: -1
-    },
+    // TODO: States
+    // selected: {
+    //   type: Array,
+    //   default() {
+    //     return [];
+    //   }
+    // },
+    // activated: {
+    //   type: Number,
+    //   default: -1
+    // },
     // UI attributes
     ripple: {
       type: Boolean,

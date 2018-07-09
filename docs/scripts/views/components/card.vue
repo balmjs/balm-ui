@@ -2,7 +2,7 @@
   <div class="demo--card">
     <section class="hero">
       <ui-card class="demo-card">
-        <ui-card-primary-action>
+        <ui-card-content>
           <ui-card-media rectangle class="demo-card__media demo-card__media--16-9"></ui-card-media>
           <div class="demo-card__primary">
             <h2 :class="[$tt('headline6'), 'demo-card__title']">Our Changing Planet</h2>
@@ -11,7 +11,7 @@
           <div :class="[$tt('body2'), 'demo-card__secondary']">
             Visit ten places on our planet that are undergoing the biggest changes today.
           </div>
-        </ui-card-primary-action>
+        </ui-card-content>
         <ui-card-actions>
           <ui-card-buttons>
             <ui-button>Read</ui-button>
@@ -33,14 +33,14 @@
     <section class="demo-card-collection">
       <ui-card outlined class="demo-card">
         <div :class="[$tt('subtitle2'), 'demo-card-article-group-heading']">Headlines</div>
-        <hr class="mdc-list-divider">
+        <ui-list-divider></ui-list-divider>
 
         <template v-for="(item, index) in list">
-          <a :key="`item${index}`" class="demo-card-article mdc-ripple-surface">
+          <a :key="`item${index}`" :class="['demo-card-article', $ripple()]">
             <h2 :class="[$tt('headline5'), 'demo-card-article__title']">{{ item.title }}</h2>
             <p :class="[$tt('body2'), 'demo-card-article__snippet']">{{ item.content }}</p>
           </a>
-          <hr :key="`divider${index}`" class="mdc-list-divider">
+          <ui-list-divider :key="`divider${index}`"></ui-list-divider>
         </template>
 
         <ui-card-actions fullBleed>
@@ -57,7 +57,7 @@
 
     <section class="demo-card-collection">
       <ui-card class="demo-card demo-card--photo">
-        <ui-card-primary-action class="demo-card__primary-action">
+        <ui-card-content class="demo-card__primary-action">
           <ui-card-media square class="demo-card__media">
             <ui-card-media-content class="demo-card__media-content--with-title">
               <div :class="[$tt('subtitle2'), 'demo-card__media-title']">
@@ -65,7 +65,7 @@
               </div>
             </ui-card-media-content>
           </ui-card-media>
-        </ui-card-primary-action>
+        </ui-card-content>
         <ui-card-actions>
           <ui-card-icons>
             <ui-icon-button :on="icon1.on" :off="icon1.off"></ui-icon-button>
@@ -81,7 +81,7 @@
 
     <section class="demo-card-collection">
       <ui-card class="demo-card demo-card--music">
-        <ui-card-primary-action class="demo-card__primary-action">
+        <ui-card-content class="demo-card__primary-action">
           <div class="demo-card__music-row">
             <ui-card-media square class="demo-card__media demo-card__media--music"></ui-card-media>
             <div class="demo-card__music-info">
@@ -90,8 +90,8 @@
               <div :class="[$tt('body2'), 'demo-card__music-year']">(2016)</div>
             </div>
           </div>
-        </ui-card-primary-action>
-        <hr class="mdc-list-divider">
+        </ui-card-content>
+        <ui-list-divider></ui-list-divider>
         <ui-card-actions>
           <ui-card-buttons class="demo-card__action-buttons--text-only">Rate this album</ui-card-buttons>
           <ui-card-icons>

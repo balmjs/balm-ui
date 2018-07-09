@@ -28,13 +28,7 @@
 <script>
 import { MDCTabBarScroller } from '../../../material-components-web/tabs';
 import tabsMixin from '../../mixins/tabs';
-
-// Define constants
-const UI_TABS = {
-  EVENT: {
-    CHANGE: 'change'
-  }
-};
+import UI_TABS from './constants';
 
 export default {
   name: 'ui-tab-bar-scroller',

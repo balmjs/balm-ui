@@ -71,7 +71,7 @@
 
     <section class="example">
       <h2>Action Chips</h2>
-      <ui-chip-set class="mdc-chip-set">
+      <ui-chip-set>
         <ui-chip v-for="(item, index) in actionList"
           :key="index"
           class="demo-chip">
@@ -83,14 +83,14 @@
 
     <section class="example">
       <h2>Custom theme</h2>
-      <ui-chip-set class="mdc-chip-set">
+      <ui-chip-set>
         <ui-chip v-for="(item, index) in actionList"
           :key="index"
           class="demo-chip custom-chip-primary">
           <ui-chip-text>{{ item.name }}</ui-chip-text>
         </ui-chip>
       </ui-chip-set>
-      <ui-chip-set class="mdc-chip-set">
+      <ui-chip-set>
         <ui-chip v-for="(item, index) in actionList"
           :key="index"
           class="demo-chip custom-chip-secondary">

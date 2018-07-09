@@ -5,6 +5,7 @@
 </template>
 
 <script>
+// Define constants
 const UI_ICON = {
   DEFAULT_SIZE: 24,
   EVENT: {

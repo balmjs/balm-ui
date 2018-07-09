@@ -1,8 +1,9 @@
-const Dialog = () => import('../views/dialog');
-const Snackbar = () => import('../views/components/snackbar');
+const Dialog = () =>
+  import ('../views/components/dialog');
+const Snackbar = () =>
+  import ('../views/components/snackbar');
 
-const popupRoutes = [
-  {
+const popupRoutes = [{
     path: '/dialog',
     name: 'dialog',
     component: Dialog

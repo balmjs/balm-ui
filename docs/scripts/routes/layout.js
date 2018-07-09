@@ -11,7 +11,7 @@ const Grid = () =>
 const Tabs = () =>
   import ('../views/components/tabs');
 const Toolbar = () =>
-  import ('../views/toolbar');
+  import ('../views/toolbar/index');
 const DefaultToolbar = () =>
   import ('../views/toolbar/default-toolbar');
 const FixedToolbar = () =>

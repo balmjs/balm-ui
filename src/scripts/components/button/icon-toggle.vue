@@ -17,20 +17,22 @@ import getType from '../../helpers/typeof';
 
 // Define constants
 const UI_ICONTOGGLE = {
-  EVENT: {
-    CHANGE: 'change'
-  }
-};
-const MDC_ICONTOGGLE = {
   DATA_STATES: ['label', 'content', 'cssClass'],
   STATUS: {
     ON: 'on',
     DISABLED: 'disabled'
+  },
+  EVENT: {
+    CHANGE: 'change'
   }
 };
 
 export default {
   name: 'ui-icon-toggle',
+  model: {
+    prop: 'model',
+    event: UI_ICONTOGGLE.EVENT.CHANGE
+  },
   props: {
     // States
     model: {
@@ -87,10 +89,10 @@ export default {
   },
   watch: {
     model(val) {
-      this.updateStatus(MDC_ICONTOGGLE.STATUS.ON, val);
+      this.updateStatus(UI_ICONTOGGLE.STATUS.ON, val);
     },
     disabled(val) {
-      this.updateStatus(MDC_ICONTOGGLE.STATUS.DISABLED, val);
+      this.updateStatus(UI_ICONTOGGLE.STATUS.DISABLED, val);
     }
   },
   created() {
@@ -113,15 +115,15 @@ export default {
         }
       );
 
-      this.updateStatus(MDC_ICONTOGGLE.STATUS.ON, this.model);
-      this.updateStatus(MDC_ICONTOGGLE.STATUS.DISABLED, this.disabled);
+      this.updateStatus(UI_ICONTOGGLE.STATUS.ON, this.model);
+      this.updateStatus(UI_ICONTOGGLE.STATUS.DISABLED, this.disabled);
     }
   },
   methods: {
     isValidToggleState(states) {
       return states
         ? Object.keys(states).some(prop =>
-            MDC_ICONTOGGLE.DATA_STATES.includes(prop)
+            UI_ICONTOGGLE.DATA_STATES.includes(prop)
           )
         : false;
     },

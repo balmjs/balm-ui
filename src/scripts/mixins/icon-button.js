@@ -18,6 +18,10 @@ const UI_ICONBUTTON = {
 
 export default {
   mixins: [cardButtonMixin],
+  model: {
+    prop: 'model',
+    event: UI_ICONBUTTON.EVENT.CHANGE
+  },
   props: {
     // States
     model: {

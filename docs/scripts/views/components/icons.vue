@@ -15,7 +15,7 @@
     </p>
     <ui-list nonInteractive>
       <template v-for="(group, index) in groups">
-        <ui-item>
+        <ui-item :key="`item${index}`">
           <h2>{{ group.name }}</h2>
           <template v-if="Object.keys(currentIcons).length">
             <ui-grid-list>
@@ -37,7 +37,7 @@
             <p>No Icons</p>
           </template>
         </ui-item>
-        <ui-item-divider v-if="index < group.count - 1"></ui-item-divider>
+        <ui-item-divider :key="`divider${index}`" v-if="index < group.count - 1"></ui-item-divider>
       </template>
     </ui-list>
   </div>

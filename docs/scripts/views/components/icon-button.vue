@@ -2,7 +2,7 @@
   <div class="demo--icon-button">
     <section class="hero">
       <div class="demo-wrapper">
-        <ui-icon-button :model="icon1.value" :on="icon1.on" :off="icon1.off">
+        <ui-icon-button v-model="icon1.value" :on="icon1.on" :off="icon1.off">
         </ui-icon-button>
       </div>
     </section>
@@ -70,10 +70,9 @@
             <h2 :class="$tt('headline6')">Using Material Icons</h2>
             <div class="demo-wrapper">
               <ui-icon-button
-                :model="icon1.value"
+                v-model="icon1.value"
                 :on="icon1.on"
-                :off="icon1.off"
-                @change="balmUI.onChange('icon1.value', $event)">
+                :off="icon1.off">
               </ui-icon-button>
             </div>
             <p>Favorited? <span id="favorited-status">{{ icon1.value }}</span></p>
@@ -84,10 +83,9 @@
             <div class="demo-wrapper">
               <ui-icon-button
                 iconInnerSelector=".fa"
-                :model="icon2.value"
+                v-model="icon2.value"
                 :on="icon2.on"
-                :off="icon2.off"
-                @change="balmUI.onChange('icon2.value', $event)">
+                :off="icon2.off">
                 <i class="fa fa-star" aria-hidden="true"></i>
               </ui-icon-button>
             </div>
@@ -113,12 +111,12 @@
           <div id="demo-color-combos">
             <div id="light-on-bg" class="demo-color-combo">
               <div>
-                <ui-icon-button :class="$textColor('primary', 'primary')"
+                <ui-icon-button :class="$themeColor('on-primary')"
                   :on="icon1.on"
                   :off="icon1.off">
                 </ui-icon-button>
               </div>
-              <div class="mdc-theme--on-primary">Light icon on background</div>
+              <div :class="$themeColor('on-primary')">Light icon on background</div>
             </div>
             <div id="dark-on-bg" class="demo-color-combo">
               <div :class="$themeColor('primary')">

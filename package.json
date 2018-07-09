@@ -15,7 +15,7 @@
     "components",
     "plugins",
     "directives",
-    "helpers"
+    "utilities"
   ],
   "main": "dist/js/balm-ui.js",
   "scripts": {

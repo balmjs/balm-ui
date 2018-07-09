@@ -37,11 +37,9 @@ const plugins = [
   'event.js',
   'elevation.js',
   'grid.js',
+  'ripple.js',
   'theme.js',
   'typography.js',
-  'alert.js',
-  'confirm.js',
-  'toast.js',
   'validator.js'
 ];
 

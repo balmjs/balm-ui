@@ -1,6 +1,6 @@
 const input = {
   components: './src/scripts/components',
-  helpers: './src/scripts/helpers',
+  utilities: './src/scripts/utilities',
   plugins: './src/scripts/plugins'
 };
 
@@ -10,13 +10,13 @@ const components = [
   'button.js',
   'card.js',
   'checkbox.js',
+  'chips.js',
   'dialog.js',
   'drawer.js',
-  'fab.js',
   'form-field.js',
   'grid-list.js',
-  'icon-toggle.js',
   'grid.js',
+  'image-list.js',
   'linear-progress.js',
   'list.js',
   'menu.js',
@@ -28,10 +28,11 @@ const components = [
   'tabs.js',
   'textfield.js',
   'toolbar.js',
+  'top-app-bar.js'
   // Plus
-  'pagination.js'
+  // 'pagination.js'
 ];
-const helpers = ['is.js', 'utils.js', 'detect-ie.js'];
+const utilities = ['ie.js', 'type.js', 'util.js'];
 const plugins = [
   'event.js',
   'elevation.js',
@@ -46,14 +47,14 @@ const plugins = [
 
 const output = {
   components: './components',
-  helpers: './helpers',
+  utilities: './utilities',
   plugins: './plugins'
 };
 
 module.exports = {
   input,
   components,
-  helpers,
+  utilities,
   plugins,
   output
 };

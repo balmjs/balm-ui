@@ -1,15 +1,19 @@
 import multiBootstrap from '../config/multi-bootstrap';
 import UiGrid from './grid/grid';
 import UiGridInner from './grid/grid-inner';
-import UiCell from './grid/cell';
+import UiGridCell from './grid/grid-cell';
 
 const components = {
   UiGrid,
   UiGridInner,
-  UiCell
+  UiGridCell
 };
 
 multiBootstrap(components);
 
 export default components;
-export { UiGrid, UiGridInner, UiCell };
+export {
+  UiGrid,
+  UiGridInner,
+  UiGridCell
+};

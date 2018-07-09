@@ -1,28 +1,28 @@
 import multiBootstrap from '../config/multi-bootstrap';
-import UiPermanentDrawer from './drawer/permanent';
-import UiPersistentDrawer from './drawer/persistent';
 import UiTemporaryDrawer from './drawer/temporary';
+import UiPersistentDrawer from './drawer/persistent';
+import UiPermanentDrawer from './drawer/permanent';
 import UiDrawerHeader from './drawer/drawer-header';
-import UiDrawerToolbarSpacer from './drawer/drawer-toolbar-spacer';
 import UiDrawerContent from './drawer/drawer-content';
+import UiDrawerToolbarSpacer from './drawer/drawer-toolbar-spacer';
 
 const components = {
-  UiPermanentDrawer,
-  UiPersistentDrawer,
   UiTemporaryDrawer,
+  UiPersistentDrawer,
+  UiPermanentDrawer,
   UiDrawerHeader,
-  UiDrawerToolbarSpacer,
-  UiDrawerContent
+  UiDrawerContent,
+  UiDrawerToolbarSpacer
 };
 
 multiBootstrap(components);
 
 export default components;
 export {
-  UiPermanentDrawer,
-  UiPersistentDrawer,
   UiTemporaryDrawer,
+  UiPersistentDrawer,
+  UiPermanentDrawer,
   UiDrawerHeader,
-  UiDrawerToolbarSpacer,
-  UiDrawerContent
+  UiDrawerContent,
+  UiDrawerToolbarSpacer
 };

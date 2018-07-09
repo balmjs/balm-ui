@@ -8,7 +8,7 @@ require('./config/update');
 balm.config = balmConfig;
 balm.afterTask = 'update:mdc';
 
-balm.go(function(mix) {
+balm.go(function (mix) {
   if (env.buildDocs) {
     mix.copy('./docs/data/*', './dist/data');
     mix.remove('./dist/img/photos');
@@ -31,7 +31,7 @@ balm.go(function(mix) {
         constants.DMC_SOURCE.mdc + '/material-components-web.scss',
         constants.DEV_SOURCE.mdc
       );
-      constants.DMC_COMPONENTS.forEach(function(item) {
+      constants.DMC_COMPONENTS.forEach(function (item) {
         mix.copy(
           constants.DMC_SOURCE.material + '/' + item + '/**/{*.scss,*.js}',
           constants.DEV_SOURCE.mdc + '/' + item
@@ -52,12 +52,12 @@ balm.go(function(mix) {
         // clear individual
         mix.remove([
           individual.output.components,
-          individual.output.helpers,
+          individual.output.utilities,
           individual.output.plugins
         ]);
 
         // build individual
-        const individualBuild = ['components', 'plugins', 'helpers']; // , 'directives'
+        const individualBuild = ['components', 'plugins', 'utilities']; // , 'directives'
         individualBuild.forEach(buildName => {
           let buildFiles = individual[buildName].map(item => {
             return individual.input[buildName] + '/' + item;

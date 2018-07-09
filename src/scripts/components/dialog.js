@@ -14,4 +14,9 @@ const components = {
 multiBootstrap(components);
 
 export default components;
-export { UiDialog, UiDialogHeader, UiDialogBody, UiDialogFooter };
+export {
+  UiDialog,
+  UiDialogHeader,
+  UiDialogBody,
+  UiDialogFooter
+};

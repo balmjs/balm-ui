@@ -41,7 +41,7 @@ import UiIconLink from './components/button/icon-link';
 import UiIconToggle from './components/button/icon-toggle';
 import UiMenuAnchor from './components/menu/menu-anchor';
 import UiMenu from './components/menu/menu';
-import UiMenuItem from './components/menu/menuitem';
+import UiMenuitem from './components/menu/menuitem';
 import UiLinearProgress from './components/common/linear-progress';
 import UiShape from './components/common/shape';
 /**
@@ -153,7 +153,7 @@ const components = {
   UiFab,
   UiMenuAnchor,
   UiMenu,
-  UiMenuItem,
+  UiMenuitem,
   UiLinearProgress,
   UiShape,
   // Input Controls

@@ -1,24 +1,20 @@
 import multiBootstrap from '../config/multi-bootstrap';
 import UiCard from './card/card';
-import UiCardMedia from './card/content-blocks/card-media';
-import UiCardHead from './card/content-blocks/card-head';
-import UiCardTitle from './card/content-blocks/card-title';
-import UiCardSubtitle from './card/content-blocks/card-subtitle';
-import UiCardBody from './card/content-blocks/card-body';
-import UiCardActions from './card/content-blocks/card-actions';
-import UiCardHorizontalBlock from './card/horizontal-blocks/card-horizontal-block';
-import UiCardMediaItem from './card/horizontal-blocks/card-media-item';
+import UiCardContent from './card/card-content';
+import UiCardMedia from './card/card-media';
+import UiCardMediaContent from './card/card-media-content';
+import UiCardActions from './card/card-actions';
+import UiCardButtons from './card/card-buttons';
+import UiCardIcons from './card/card-icons';
 
 const components = {
   UiCard,
+  UiCardContent,
   UiCardMedia,
-  UiCardHead,
-  UiCardTitle,
-  UiCardSubtitle,
-  UiCardBody,
+  UiCardMediaContent,
   UiCardActions,
-  UiCardHorizontalBlock,
-  UiCardMediaItem
+  UiCardButtons,
+  UiCardIcons
 };
 
 multiBootstrap(components);
@@ -26,12 +22,10 @@ multiBootstrap(components);
 export default components;
 export {
   UiCard,
+  UiCardContent,
   UiCardMedia,
-  UiCardHead,
-  UiCardTitle,
-  UiCardSubtitle,
-  UiCardBody,
+  UiCardMediaContent,
   UiCardActions,
-  UiCardHorizontalBlock,
-  UiCardMediaItem
+  UiCardButtons,
+  UiCardIcons
 };

@@ -12,6 +12,7 @@
 </template>
 
 <script>
+// NOTE: Deprecated
 import { MDCIconToggle } from '../../../material-components-web/icon-toggle';
 import getType from '../../helpers/typeof';
 

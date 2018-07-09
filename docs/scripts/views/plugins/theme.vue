@@ -27,7 +27,10 @@
           @selected="onSelected">
           <ui-menuitem v-for="(item, index) in colorItems"
             :key="index"
-            :data-theme="item.value">
+            :data-theme="item.value"
+            :class="{
+              'demo-theme-menu__list-item--selected': selectedTheme === item.value
+            }">
             <div class="mdc-list-item__graphic">
               <i class="demo-theme-color-radio">
                 <span class="demo-theme-color-radio__inner"></span>
@@ -174,6 +177,7 @@ export default {
   data() {
     return {
       open: false,
+      selectedTheme: 'baseline',
       colorItems: [
         {
           label: 'Baseline (default)',
@@ -241,9 +245,17 @@ export default {
         if (themeValue === 'dark') {
           this.$setTheme('background', '#212121');
           this.$setTextTheme('primary', 'background', 'white');
-          this.$setTextTheme('secondary', 'background', 'rgba(255, 255, 255, 0.7)');
+          this.$setTextTheme(
+            'secondary',
+            'background',
+            'rgba(255, 255, 255, 0.7)'
+          );
           this.$setTextTheme('hint', 'background', 'rgba(255, 255, 255, 0.5)');
-          this.$setTextTheme('disabled', 'background', 'rgba(255, 255, 255, 0.5)');
+          this.$setTextTheme(
+            'disabled',
+            'background',
+            'rgba(255, 255, 255, 0.5)'
+          );
           this.$setTextTheme('icon', 'background', 'rgba(255, 255, 255, 0.5)');
         } else {
           this.$setTheme('background', '#fff');
@@ -255,6 +267,7 @@ export default {
         }
       }
 
+      this.selectedTheme = themeValue;
       this.$refs.colorButton.$el.dataset.theme = themeValue;
     }
   }

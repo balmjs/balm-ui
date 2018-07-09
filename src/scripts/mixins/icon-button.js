@@ -2,7 +2,7 @@ import {
   MDCIconButtonToggle
 } from '../../material-components-web/icon-button';
 import cardButtonMixin from './card-button';
-import getType from '../helpers/typeof';
+import getType from '../utilities/typeof';
 
 // Define constants
 const UI_ICONBUTTON = {

@@ -15,7 +15,7 @@
 
 <script>
 import rippleMixin from '../../mixins/ripple';
-import getType from '../../helpers/typeof';
+import getType from '../../utilities/typeof';
 
 // Define constants
 const UI_FAB = {

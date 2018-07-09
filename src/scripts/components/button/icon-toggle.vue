@@ -14,7 +14,7 @@
 <script>
 // NOTE: Deprecated
 import { MDCIconToggle } from '../../../material-components-web/icon-toggle';
-import getType from '../../helpers/typeof';
+import getType from '../../utilities/typeof';
 
 // Define constants
 const UI_ICONTOGGLE = {

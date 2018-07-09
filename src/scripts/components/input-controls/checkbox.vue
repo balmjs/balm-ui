@@ -34,7 +34,7 @@ import { MDCCheckbox } from '../../../material-components-web/checkbox';
 import UiFormField from './form-field';
 import formFieldMixin from '../../mixins/form-field';
 import elementMixin from '../../mixins/element';
-import getType from '../../helpers/typeof';
+import getType from '../../utilities/typeof';
 
 // Define constants
 const UI_CHECKBOX = {

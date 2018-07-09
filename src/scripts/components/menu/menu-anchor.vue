@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import getType from '../../helpers/typeof';
+import getType from '../../utilities/typeof';
 
 // Define constants
 const BUTTON_POSITIONS = [

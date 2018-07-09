@@ -93,7 +93,7 @@ import UiFloatingLabel from './floating-label';
 import UiTextfieldIcon from './textfield-icon';
 import elementMixin from '../../mixins/element';
 import floatingLabelMixin from '../../mixins/floating-label';
-import getType from '../../helpers/typeof';
+import getType from '../../utilities/typeof';
 
 // Define constants
 const UI_TEXTFIELD = {

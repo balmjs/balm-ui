@@ -1,6 +1,6 @@
 import rippleMixin from './ripple';
 import cardButtonMixin from './card-button';
-import getType from '../helpers/typeof';
+import getType from '../utilities/typeof';
 
 export default {
   mixins: [rippleMixin, cardButtonMixin],

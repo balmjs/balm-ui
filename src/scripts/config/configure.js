@@ -1,5 +1,5 @@
 import merge from 'deepmerge';
-import getType from '../helpers/typeof';
+import getType from '../utilities/typeof';
 
 const configure = (Component, props) => {
   Object.keys(props).forEach(propName => {

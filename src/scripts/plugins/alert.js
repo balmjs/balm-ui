@@ -1,4 +1,4 @@
-import getType from '../helpers/typeof';
+import getType from '../utilities/typeof';
 import UiDialog from '../components/dialog/dialog';
 import UiDialogHeader from '../components/dialog/dialog-header';
 import UiDialogBody from '../components/dialog/dialog-body';

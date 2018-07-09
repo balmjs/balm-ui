@@ -2,7 +2,7 @@ import multiConfigure from './config/multi-configure';
 /**
  * Helpers
  */
-import * as BalmUI_Helpers from './helpers';
+import * as BalmUI_Helpers from './utilities';
 /**
  * Layout
  */
@@ -108,9 +108,9 @@ import elevation from './plugins/elevation';
 import grid from './plugins/grid';
 import theme from './plugins/theme';
 import typography from './plugins/typography';
-import alert from './plugins/alert';
-import confirm from './plugins/confirm';
-import toast from './plugins/toast';
+// import alert from './plugins/alert';
+// import confirm from './plugins/confirm';
+// import toast from './plugins/toast';
 import validator from './plugins/validator';
 import ripple from './plugins/ripple';
 /**
@@ -217,9 +217,9 @@ const plugins = {
   grid,
   theme,
   typography,
-  alert,
-  confirm,
-  toast,
+  // alert,
+  // confirm,
+  // toast,
   validator,
   ripple
 };

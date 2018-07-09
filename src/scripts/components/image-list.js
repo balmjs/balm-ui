@@ -12,8 +12,4 @@ const components = {
 multiBootstrap(components);
 
 export default components;
-export {
-  UiImageList,
-  UiImageItem,
-  UiImageLabel
-};
+export { UiImageList, UiImageItem, UiImageLabel };

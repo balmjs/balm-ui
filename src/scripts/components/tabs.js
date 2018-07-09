@@ -18,11 +18,4 @@ const components = {
 multiBootstrap(components);
 
 export default components;
-export {
-  UiTabs,
-  UiTabBar,
-  UiTabBarScroller,
-  UiTab,
-  UiPanels,
-  UiPanel
-};
+export { UiTabs, UiTabBar, UiTabBarScroller, UiTab, UiPanels, UiPanel };

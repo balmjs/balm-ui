@@ -12,7 +12,7 @@ export default {
     return {
       actionButton: false,
       actionIcon: false
-    }
+    };
   },
   computed: {
     actionClassName() {
@@ -25,9 +25,12 @@ export default {
   },
   created() {
     this.$parent.$nextTick(() => {
-      this.actionButton = this.$parent.$el.classList.contains(UI_CARD.CLASSNAME.BUTTON) ||
+      this.actionButton =
+        this.$parent.$el.classList.contains(UI_CARD.CLASSNAME.BUTTON) ||
         this.$parent.$el.classList.contains(UI_CARD.CLASSNAME.ACTION);
-      this.actionIcon = this.$parent.$el.classList.contains(UI_CARD.CLASSNAME.ICON);
+      this.actionIcon = this.$parent.$el.classList.contains(
+        UI_CARD.CLASSNAME.ICON
+      );
     });
   }
 };

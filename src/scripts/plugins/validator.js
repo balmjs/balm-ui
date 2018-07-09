@@ -1,5 +1,5 @@
-import getType from '../utilities/typeof';
 import autoInstall from '../config/auto-install';
+import getType from '../utilities/typeof';
 
 const defaultRules = {
   required: {
@@ -16,7 +16,7 @@ const BalmUI_ValidatorPlugin = {
   install(Vue, customRules = {}) {
     let validationRules = Object.assign({}, defaultRules, customRules);
 
-    const $validate = function (formData = {}, rules = {}) {
+    const validate = function(formData = {}, rules = {}) {
       let currentFormData = Object.assign({}, formData);
       let currentRules = Object.assign({}, validationRules, rules);
 
@@ -51,10 +51,12 @@ const BalmUI_ValidatorPlugin = {
           let rule = fieldOption[ruleName] || currentRules[ruleName]; // 当前验证方法
 
           if (rule && getType(rule.validate) === 'function') {
-            if (!rule.validate.apply(this, [
+            if (
+              !rule.validate.apply(this, [
                 currentFormData[fieldName],
                 currentFormData
-              ])) {
+              ])
+            ) {
               fieldAllValid = false;
               let message = '';
 
@@ -93,7 +95,7 @@ const BalmUI_ValidatorPlugin = {
       return result;
     };
 
-    Vue.prototype.$validate = $validate; // NOTE: named '$validate'
+    Vue.prototype.$validate = validate; // NOTE: named '$validate'
   }
 };
 

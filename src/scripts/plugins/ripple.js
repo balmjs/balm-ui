@@ -5,7 +5,7 @@ const RIPPLE_COLOR = {
   SECONDARY: 'mdc-ripple-surface--accent'
 };
 
-const setRipple = (states = '') => {
+const ripple = (states = '') => {
   let classes = ['mdc-ripple-surface'];
 
   switch (states) {
@@ -24,7 +24,7 @@ const setRipple = (states = '') => {
 
 const BalmUI_RipplePlugin = {
   install(Vue) {
-    Vue.prototype.$ripple = setRipple;
+    Vue.prototype.$ripple = ripple;
   }
 };
 

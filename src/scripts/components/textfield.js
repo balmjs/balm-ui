@@ -12,8 +12,4 @@ const components = {
 multiBootstrap(components);
 
 export default components;
-export {
-  UiTextfield,
-  UiTextfieldHelptext,
-  UiTextfieldIcon
-};
+export { UiTextfield, UiTextfieldHelptext, UiTextfieldIcon };

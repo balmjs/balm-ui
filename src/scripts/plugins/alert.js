@@ -1,10 +1,10 @@
-import getType from '../utilities/typeof';
+import autoInstall from '../config/auto-install';
 import UiDialog from '../components/dialog/dialog';
 import UiDialogHeader from '../components/dialog/dialog-header';
 import UiDialogBody from '../components/dialog/dialog-body';
 import UiDialogFooter from '../components/dialog/dialog-footer';
 import UiButton from '../components/button/button';
-import autoInstall from '../config/auto-install';
+import getType from '../utilities/typeof';
 
 const DEFAULT_OPTIONS = {
   className: '',

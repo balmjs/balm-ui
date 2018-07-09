@@ -14,9 +14,4 @@ const components = {
 multiBootstrap(components);
 
 export default components;
-export {
-  UiGridList,
-  UiGridTile,
-  UiGridTileTitle,
-  UiGridTileSubtitle
-};
+export { UiGridList, UiGridTile, UiGridTileTitle, UiGridTileSubtitle };

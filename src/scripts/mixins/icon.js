@@ -1,3 +1,4 @@
+// NOTE: unused
 import UiIcon from '../components/common/icon';
 
 export default {

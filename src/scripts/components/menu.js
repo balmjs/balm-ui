@@ -12,8 +12,4 @@ const components = {
 multiBootstrap(components);
 
 export default components;
-export {
-  UiMenuAnchor,
-  UiMenu,
-  UiMenuitem
-};
+export { UiMenuAnchor, UiMenu, UiMenuitem };

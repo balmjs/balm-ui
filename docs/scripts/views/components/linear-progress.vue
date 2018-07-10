@@ -10,7 +10,7 @@
 
         <figure class="linear-progress-demo">
           <ui-linear-progress :progress="progress"></ui-linear-progress>
-          <figcaption>Determinate</figcaption>
+          <figcaption>Determinate (Progress: {{progress }})</figcaption>
         </figure>
 
         <figure class="linear-progress-demo">
@@ -73,7 +73,7 @@ export default {
           this.progress += 0.1;
           this.progress = +this.progress.toFixed(2);
         }
-      }, 1000);
+      }, 1e3);
     }
   }
 };

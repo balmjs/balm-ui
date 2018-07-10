@@ -15,10 +15,10 @@
         </ui-button>
         <ui-link :cssOnly="cssOnly">Link</ui-link>
       </div>
+      <ui-accordion v-if="!cssOnly">
+        <ui-markdown :code="code[1]"></ui-markdown>
+      </ui-accordion>
     </fieldset>
-    <ui-accordion v-if="!cssOnly">
-      <ui-markdown :code="code[1]"></ui-markdown>
-    </ui-accordion>
 
     <fieldset>
       <legend :class="$tt('headline6')">{{ categoryNumber }}.2 Raised Button</legend>
@@ -35,10 +35,10 @@
         </ui-button>
         <ui-link :cssOnly="cssOnly" raised>Link</ui-link>
       </div>
+      <ui-accordion v-if="!cssOnly">
+        <ui-markdown :code="code[2]"></ui-markdown>
+      </ui-accordion>
     </fieldset>
-    <ui-accordion v-if="!cssOnly">
-      <ui-markdown :code="code[2]"></ui-markdown>
-    </ui-accordion>
 
     <fieldset>
       <legend :class="$tt('headline6')">{{ categoryNumber }}.3 Unelevated Button (Experimental)</legend>
@@ -55,10 +55,10 @@
         </ui-button>
         <ui-link :cssOnly="cssOnly" unelevated>Link</ui-link>
       </div>
+      <ui-accordion v-if="!cssOnly">
+        <ui-markdown :code="code[3]"></ui-markdown>
+      </ui-accordion>
     </fieldset>
-    <ui-accordion v-if="!cssOnly">
-      <ui-markdown :code="code[3]"></ui-markdown>
-    </ui-accordion>
 
     <fieldset>
       <legend :class="$tt('headline6')">{{ categoryNumber }}.4 Outlined Button (Experimental)</legend>
@@ -75,10 +75,10 @@
         </ui-button>
         <ui-link :cssOnly="cssOnly" outlined>Link</ui-link>
       </div>
+      <ui-accordion v-if="!cssOnly">
+        <ui-markdown :code="code[4]"></ui-markdown>
+      </ui-accordion>
     </fieldset>
-    <ui-accordion v-if="!cssOnly">
-      <ui-markdown :code="code[4]"></ui-markdown>
-    </ui-accordion>
 
     <fieldset>
       <legend :class="$tt('headline6')">{{ categoryNumber }}.5 Custom button (Experimental)</legend>
@@ -86,10 +86,10 @@
         <ui-button :cssOnly="cssOnly" unelevated class="big-round-corner-button" :disabled="useDisabled">Big Corner Radius</ui-button>
         <ui-button :cssOnly="cssOnly" outlined class="thick-outlined-button" :disabled="useDisabled">Thick Outline Width</ui-button>
       </div>
+      <ui-accordion v-if="!cssOnly">
+        <ui-markdown :code="code[5]"></ui-markdown>
+      </ui-accordion>
     </fieldset>
-    <ui-accordion v-if="!cssOnly">
-      <ui-markdown :code="code[5]"></ui-markdown>
-    </ui-accordion>
 
     <fieldset>
       <legend :class="$tt('headline6')">{{ categoryNumber }}.6 Different Color Icons/Ink</legend>
@@ -97,10 +97,10 @@
         <ui-button :cssOnly="cssOnly" unelevated class="demo-ink-color" icon="favorite" :disabled="useDisabled">Ink Color</ui-button>
         <ui-button :cssOnly="cssOnly" outlined class="demo-icon-color" icon="favorite" :disabled="useDisabled">Icon Color</ui-button>
       </div>
+       <ui-accordion v-if="!cssOnly">
+        <ui-markdown :code="code[6]"></ui-markdown>
+      </ui-accordion>
     </fieldset>
-    <ui-accordion v-if="!cssOnly">
-      <ui-markdown :code="code[6]"></ui-markdown>
-    </ui-accordion>
   </div>
 </template>
 

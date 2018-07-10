@@ -2,7 +2,7 @@
 
 | Name              | Type      | Default                | Description                                   |
 | ----------------- | --------- | ---------------------- | --------------------------------------------- |
-| model             | `Boolean` | `false`                | Sets the toggle state.                        |
+| model (v-model)   | `Boolean` | `false`                | Sets the toggle state.                        |
 | on                | `Object`  | `undefined`            | Icon button toggle state. (**ON** state)      |
 | off               | `Object`  | `undefined`            | Icon button toggle state. (**OFF** state)     |
 | iconInnerSelector | `String`  | `undefined`            | Using custom icon font selector.              |

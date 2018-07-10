@@ -7,17 +7,17 @@
       </div>
     </section>
 
-    <h1 :class="$tt('headline5')">0. Usage</h1>
+    <h3 :class="$tt('headline3')">0. Usage</h3>
     <ui-markdown :text="code[0]"></ui-markdown>
 
     <section class="example">
       <div>
         <div>
-          <h1 :class="$tt('headline5')">1. Buttons</h1>
+          <h3 :class="$tt('headline3')">1. Buttons</h3>
         </div>
         <div class="toggle-examples-container">
           <div class="toggle-example">
-            <h2 :class="$tt('headline6')">Material Icons</h2>
+            <h6 :class="$tt('headline6')">Material Icons</h6>
             <div class="demo-wrapper">
               <ui-icon-button>favorite</ui-icon-button>
               <ui-icon-button>airplanemode_active</ui-icon-button>
@@ -26,7 +26,7 @@
           </div>
 
           <div class="toggle-example">
-            <h2 :class="$tt('headline6')">SVG Icon</h2>
+            <h6 :class="$tt('headline6')">SVG Icon</h6>
             <div class="demo-wrapper">
               <ui-icon-button>
                 <ui-logo></ui-logo>
@@ -35,7 +35,7 @@
           </div>
 
           <div class="toggle-example">
-            <h2 :class="$tt('headline6')">Disabled Buttons</h2>
+            <h6 :class="$tt('headline6')">Disabled Buttons</h6>
             <div class="demo-wrapper">
               <ui-icon-button disabled>airplanemode_active</ui-icon-button>
               <ui-icon-button disabled>
@@ -45,7 +45,7 @@
           </div>
 
           <div class="toggle-example">
-            <h2 :class="$tt('headline6')">Larger Buttons</h2>
+            <h6 :class="$tt('headline6')">Larger Buttons</h6>
             <div class="demo-wrapper">
               <ui-icon-button class="demo-icon-button-large">airplanemode_active</ui-icon-button>
               <ui-icon-button class="demo-icon-button-large">
@@ -55,19 +55,19 @@
           </div>
         </div>
       </div>
+      <ui-accordion>
+        <ui-markdown :code="code[1]"></ui-markdown>
+      </ui-accordion>
     </section>
-    <ui-accordion>
-      <ui-markdown :code="code[1]"></ui-markdown>
-    </ui-accordion>
 
     <section class="example">
       <div>
         <div>
-          <h1 :class="$tt('headline5')">2. Button Toggles</h1>
+          <h3 :class="$tt('headline3')">2. Button Toggles</h3>
         </div>
         <div class="toggle-examples-container">
           <div class="toggle-example">
-            <h2 :class="$tt('headline6')">Using Material Icons</h2>
+            <h6 :class="$tt('headline6')">Using Material Icons</h6>
             <div class="demo-wrapper">
               <ui-icon-button
                 v-model="icon1.value"
@@ -79,7 +79,7 @@
           </div>
 
           <div class="toggle-example">
-            <h2 :class="$tt('headline6')">Using Font Awesome</h2>
+            <h6 :class="$tt('headline6')">Using Font Awesome</h6>
             <div class="demo-wrapper">
               <ui-icon-button
                 iconInnerSelector=".fa"
@@ -92,7 +92,7 @@
           </div>
 
           <div class="toggle-example">
-            <h2 :class="$tt('headline6')">Disabled Icons</h2>
+            <h6 :class="$tt('headline6')">Disabled Icons</h6>
             <div class="demo-wrapper">
               <ui-icon-button
                 :on="icon1.on"
@@ -107,7 +107,7 @@
         </ui-accordion>
 
         <div class="toggle-example">
-          <h2 :class="$tt('headline6')">Additional Color Combinations</h2>
+          <h6 :class="$tt('headline6')">Additional Color Combinations</h6>
           <div id="demo-color-combos">
             <div id="light-on-bg" class="demo-color-combo">
               <div>
@@ -144,7 +144,7 @@
       </div>
     </section>
 
-    <h1 :class="$tt('headline5')">4. API</h1>
+    <h3 :class="$tt('headline3')">4. API</h3>
     <ui-apidocs name="icon-button"></ui-apidocs>
   </div>
 </template>

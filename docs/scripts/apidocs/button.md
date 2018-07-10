@@ -11,18 +11,23 @@
 | disabled   | `Boolean` | `false`                | To disable a button.                                                       |
 | cssOnly    | `Boolean` | `false`                | Ripple effect is disabled.                                                 |
 | url        | `String`  | `'javascript:void(0)'` | The _href_ attribute of the `<ui-link>`.                                   |
-| cardAction | `Boolean` | `false`                |                                                                            |
 
 ### Slots
 
-| Name      | Description                                                  | `slot-scope`                               |
-| --------- | ------------------------------------------------------------ | ------------------------------------------ |
-| (default) | The default slot holds the button text and can contain HTML. | `className = { icon: 'mdc-button__icon' }` |
+| Name      | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| (default) | The default slot holds the button text and can contain HTML. |
+
+- `slot-scope`
+
+```json
+{
+  "icon": "mdc-button__icon"
+}
+```
 
 ### Events
 
 | Name  | Type                      | Description                       |
 | ----- | ------------------------- | --------------------------------- |
 | click | `Function(event: object)` | Emits when the button is clicked. |
-
-### Sass

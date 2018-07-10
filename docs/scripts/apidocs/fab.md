@@ -1,17 +1,27 @@
 ### Props
 
-| Name    | Type      | Default     | Description                                                                                      |
-| ------- | --------- | ----------- | ------------------------------------------------------------------------------------------------ |
-| icon    | `String`  | `undefined` | Mandatory, for the icon element. See [Material Icons](/#/icons) usage.                           |
-| mini    | `Boolean` | `false`     | Optional, modifies the FAB to a smaller size                                                     |
-| exited  | `Boolean` | `false`     | Optional, animates the FAB out of view. When this class is removed, the FAB will return to view. |
-| cssOnly | `Boolean` | `false`     | Ripple effect is disabled.                                                                       |
+| Name     | Type                | Default     | Description                                                                                      |
+| -------- | ------------------- | ----------- | ------------------------------------------------------------------------------------------------ |
+| icon     | `String`            | `undefined` | Mandatory, for the icon element. See [Material Icons](/#/icons) usage.                           |
+| mini     | `Boolean`           | `false`     | Optional, modifies the FAB to a smaller size                                                     |
+| extended | `Boolean`, `String` | `false`     | Optional, modifies the FAB to wider size which includes a text label.                            |
+| label    | `String`            | `undefined` | A text label.                                                                                    |
+| exited   | `Boolean`           | `false`     | Optional, animates the FAB out of view. When this class is removed, the FAB will return to view. |
+| cssOnly  | `Boolean`           | `false`     | Ripple effect is disabled.                                                                       |
 
 ### Slots
 
-| Name      | Description                                                                  | `slot-scope`                            |
-| --------- | ---------------------------------------------------------------------------- | --------------------------------------- |
-| (default) | The default slot holds the floating action button text and can contain HTML. | `className = { icon: 'mdc-fab__icon' }` |
+| Name      | Description                                                                  |
+| --------- | ---------------------------------------------------------------------------- |
+| (default) | The default slot holds the floating action button text and can contain HTML. |
+
+- `slot-scope`
+
+```json
+{
+  "icon": "mdc-fab__icon"
+}
+```
 
 ### Events
 

@@ -9,6 +9,7 @@
              :name="name"
              :value="value"
              :disabled="disabled"
+             v-bind="attrs"
              @change="handleChange">
       <div class="mdc-checkbox__background">
         <svg class="mdc-checkbox__checkmark"
@@ -102,12 +103,9 @@ export default {
     }
   },
   mounted() {
-    const checkbox = this.$refs.checkbox;
-    this.initAttributes(checkbox.querySelector('input'));
-
     if (!this.$checkbox && !this.cssOnly) {
       const formField = new MDCFormField(this.$el);
-      this.$checkbox = new MDCCheckbox(checkbox);
+      this.$checkbox = new MDCCheckbox(this.$refs.checkbox);
       formField.input = this.$checkbox;
 
       this.$checkbox.indeterminate = this.indeterminate;

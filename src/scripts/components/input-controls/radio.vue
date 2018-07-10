@@ -9,6 +9,7 @@
              :name="name"
              :value="value"
              :disabled="disabled"
+             v-bind="attrs"
              @change="handleChange">
       <div class="mdc-radio__background">
         <div class="mdc-radio__outer-circle"></div>
@@ -87,12 +88,9 @@ export default {
     }
   },
   mounted() {
-    const radio = this.$refs.radio;
-    this.initAttributes(radio.querySelector('input'));
-
     if (!this.$radio && !this.cssOnly) {
       const formField = new MDCFormField(this.$el);
-      this.$radio = new MDCRadio(radio);
+      this.$radio = new MDCRadio(this.$refs.radio);
       formField.input = this.$radio;
 
       this.$radio.checked = this.checkedValue == this.value;

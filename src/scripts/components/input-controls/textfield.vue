@@ -28,6 +28,7 @@
               :autocomplete="autocomplete"
               :aria-controls="helptextId"
               :aria-describedby="helptextId"
+              v-bind="attrs"
               @focus="handleFocus"
               @keydown="handleKeydown"
               @input="handleInput"
@@ -47,6 +48,7 @@
            :autocomplete="autocomplete"
            :aria-controls="helptextId"
            :aria-describedby="helptextId"
+           v-bind="attrs"
            @focus="handleFocus"
            @keydown="handleKeydown"
            @input="handleInput"
@@ -236,10 +238,6 @@ export default {
   },
   mounted() {
     const textfield = this.$el;
-    const element = this.isMultiLine
-      ? textfield.querySelector('textarea')
-      : textfield.querySelector('input');
-    this.initAttributes(element);
 
     if (!this.$textfield && !this.cssOnly) {
       this.$textfield = new MDCTextField(textfield);

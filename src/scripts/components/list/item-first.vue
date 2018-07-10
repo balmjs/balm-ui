@@ -2,7 +2,7 @@
   <span class="mdc-list-item__graphic">
     <slot>
       <i v-if="icon" class="material-icons">{{ icon }}</i>
-      <img v-if="image" ref="image" :src="image">
+      <img v-if="image" :src="image" v-bind="attrs">
     </slot>
   </span>
 </template>
@@ -21,9 +21,6 @@ export default {
     if (this.icon && this.image) {
       console.warn('You can only set an icon or image');
     }
-  },
-  mounted() {
-    this.initAttributes(this.$refs.image);
   }
 };
 </script>

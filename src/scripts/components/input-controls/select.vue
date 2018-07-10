@@ -5,6 +5,7 @@
     <select v-model="selectedValue"
             class="mdc-select__native-control"
             :disabled="disabled"
+            v-bind="attrs"
             @change="handleChange">
       <!-- Default option -->
       <option v-if="placeholder"
@@ -182,7 +183,6 @@ export default {
   },
   mounted() {
     const select = this.$el;
-    this.initAttributes(select.querySelector('select'));
 
     if (!this.$select && !this.cssOnly) {
       this.$select = new MDCSelect(select);

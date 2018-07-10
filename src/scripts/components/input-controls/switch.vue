@@ -1,7 +1,7 @@
 <template>
   <ui-form-field :block="block" :alignEnd="alignEnd">
     <slot name="before"></slot>
-    <div ref="switch" class="mdc-switch">
+    <div class="mdc-switch">
       <input :id="id"
              v-model="toggleValue"
              type="checkbox"
@@ -11,6 +11,7 @@
              :true-value="trueValue"
              :false-value="falseValue"
              :disabled="disabled"
+             v-bind="attrs"
              @change="handleChange">
       <div class="mdc-switch__background">
         <div class="mdc-switch__knob"></div>
@@ -78,9 +79,6 @@ export default {
     model(val) {
       this.toggleValue = val;
     }
-  },
-  mounted() {
-    this.initAttributes(this.$refs.switch.querySelector('input'));
   },
   methods: {
     handleChange() {

@@ -8,14 +8,14 @@
 
 <ui-textfield outlined leadingIcon>
   <template slot="before">
-    <ui-icon>event</ui-icon>
+    <i class="fa fa-smile-o fa-lg"></i>
   </template>
   Your other name
 </ui-textfield>
 <ui-textfield outlined trailingIcon>
   Your other name
   <template slot="after">
-    <ui-icon>event</ui-icon>
+    <i class="fa fa-close fa-lg"></i>
   </template>
 </ui-textfield>
 ```

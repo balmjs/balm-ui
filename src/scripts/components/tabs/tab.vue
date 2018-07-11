@@ -1,7 +1,7 @@
 <template>
   <a class="mdc-tab" role="tab" @click.prevent>
     <slot name="before"></slot>
-    <i v-if="materialIcon" class="material-icons mdc-tab__icon">{{ materialIcon }}</i>
+    <i v-if="icon" class="material-icons mdc-tab__icon">{{ icon }}</i>
     <template v-else>
       <slot name="icon"><!-- Custom Icon --></slot>
     </template>
@@ -20,19 +20,8 @@ export default {
   name: 'ui-tab',
   props: {
     // UI attributes
-    icon: {
-      type: [String, Boolean],
-      default: false
-    },
-    text: {
-      type: [String, Boolean],
-      default: false
-    }
-  },
-  computed: {
-    materialIcon() {
-      return getType(this.icon) === 'string' ? this.icon : false;
-    }
+    icon: String,
+    text: String
   }
 };
 </script>

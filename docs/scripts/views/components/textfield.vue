@@ -157,7 +157,7 @@
             minlength: controls.min ? 8 : 0
           }">
           <template slot="before">
-            <ui-icon>event</ui-icon>
+            <i class="fa fa-smile-o fa-lg"></i>
           </template>
           Your other name
         </ui-textfield>
@@ -175,7 +175,7 @@
           }">
           Your other name
           <template slot="after">
-            <ui-icon>delete</ui-icon>
+            <i class="fa fa-close fa-lg"></i>
           </template>
         </ui-textfield>
       </div>

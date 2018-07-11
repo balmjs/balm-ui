@@ -1,15 +1,13 @@
 <template>
   <i class="material-icons mdc-text-field__icon"
-    :tabindex="unclickable ? false : 0"
-    :role="unclickable ? false : 'button'"
-    @click="unclickable ? noop : handleClick">
+    :tabindex="unclickable ? null : 0"
+    :role="unclickable ? null : 'button'"
+    @click="unclickable ? null : handleClick">
     <slot><!-- Material Icon --></slot>
   </i>
 </template>
 
 <script>
-const noop = () => {};
-
 // Define constants
 const UI_TEXTFIELD_ICON = {
   EVENT: {
@@ -24,11 +22,6 @@ export default {
       type: Boolean,
       default: false
     }
-  },
-  data() {
-    return {
-      noop
-    };
   },
   methods: {
     handleClick(event) {

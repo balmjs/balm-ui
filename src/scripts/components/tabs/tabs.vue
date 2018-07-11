@@ -5,8 +5,8 @@
     @change="handleChange">
     <ui-tab v-for="(tabItem, tabIndex) in items"
       :key="tabIndex"
-      :icon="iconOnly || textWithIcon ? tabItem[tabIcon] : false"
-      :text="textWithIcon ? tabItem[tabText] : false"
+      :icon="iconOnly || textWithIcon ? tabItem[tabIcon] : null"
+      :text="textWithIcon ? tabItem[tabText] : null"
       :href="tabItem[tabUrl]">
       {{ textOnly && tabItem[tabLabel] ? tabItem[tabLabel] : '' }}
     </ui-tab>

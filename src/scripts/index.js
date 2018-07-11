@@ -247,13 +247,18 @@ const registers = {
   }
 };
 
-const BalmUI = Object.assign({}, {
+const BalmUI = Object.assign(
+  {},
+  {
     version
-  }, {
+  },
+  {
     helpers
-  }, {
+  },
+  {
     components
-  }, {
+  },
+  {
     plugins
   },
   registers
@@ -262,6 +267,4 @@ const BalmUI = Object.assign({}, {
 autoInstall(BalmUI);
 
 export default BalmUI;
-export {
-  helpers
-};
+export { helpers };

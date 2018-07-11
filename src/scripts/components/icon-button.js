@@ -10,7 +10,4 @@ const components = {
 multiBootstrap(components);
 
 export default components;
-export {
-  UiIconButton,
-  UiIconLink
-};
+export { UiIconButton, UiIconLink };

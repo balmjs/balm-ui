@@ -22,7 +22,10 @@ export default {
       type: Boolean,
       default: false
     },
-    icon: String,
+    icon: {
+      type: String,
+      default: ''
+    },
     cssOnly: {
       type: Boolean,
       default: false

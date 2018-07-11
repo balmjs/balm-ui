@@ -1,5 +1,5 @@
 <template>
-  <button :type="type"
+  <button type="button"
     :class="[className, actionClassName]"
     @click="handleClick">
     <i v-if="materialIcon" :class="['material-icons', UI_BUTTON.SLOT_CLASS.icon]">{{ materialIcon }}</i>
@@ -14,13 +14,6 @@ import UI_BUTTON from './constants';
 export default {
   name: 'ui-button',
   mixins: [buttonMixin],
-  props: {
-    // Element attributes
-    type: {
-      type: String,
-      default: 'button'
-    }
-  },
   data() {
     return {
       UI_BUTTON

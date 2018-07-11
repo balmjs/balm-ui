@@ -32,7 +32,10 @@ export default {
   mixins: [rippleMixin],
   props: {
     // UI attributes
-    icon: String,
+    icon: {
+      type: String,
+      default: ''
+    },
     mini: {
       type: Boolean,
       default: false
@@ -41,7 +44,10 @@ export default {
       type: [Boolean, String],
       default: false
     },
-    label: String,
+    label: {
+      type: String,
+      default: ''
+    },
     exited: {
       type: Boolean,
       default: false

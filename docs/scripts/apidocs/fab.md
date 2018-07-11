@@ -1,13 +1,13 @@
 ### Props
 
-| Name     | Type                | Default     | Description                                                                                      |
-| -------- | ------------------- | ----------- | ------------------------------------------------------------------------------------------------ |
-| icon     | `String`            | `undefined` | Mandatory, for the icon element. See [Material Icons](/#/icons) usage.                           |
-| mini     | `Boolean`           | `false`     | Optional, modifies the FAB to a smaller size                                                     |
-| extended | `Boolean`, `String` | `false`     | Optional, modifies the FAB to wider size which includes a text label.                            |
-| label    | `String`            | `undefined` | A text label.                                                                                    |
-| exited   | `Boolean`           | `false`     | Optional, animates the FAB out of view. When this class is removed, the FAB will return to view. |
-| cssOnly  | `Boolean`           | `false`     | Ripple effect is disabled.                                                                       |
+| Name     | Type                | Default | Description                                                                                      |
+| -------- | ------------------- | ------- | ------------------------------------------------------------------------------------------------ |
+| icon     | `String`            | `''`    | Mandatory, for the icon element. See [Material Icons](/#/icons) usage.                           |
+| label    | `String`            | `''`    | Optional, for the text label. Applicable only for Extended FAB.                                  |
+| mini     | `Boolean`           | `false` | Optional, modifies the FAB to a smaller size                                                     |
+| extended | `Boolean`, `String` | `false` | Optional, modifies the FAB to wider size which includes a text label.                            |
+| exited   | `Boolean`           | `false` | Optional, animates the FAB out of view. When this class is removed, the FAB will return to view. |
+| cssOnly  | `Boolean`           | `false` | Ripple effect is disabled.                                                                       |
 
 ### Slots
 

@@ -1,12 +1,12 @@
 ### Props
 
-| Name              | Type      | Default                | Description                                   |
-| ----------------- | --------- | ---------------------- | --------------------------------------------- |
-| model (v-model)   | `Boolean` | `false`                | Sets the toggle state.                        |
-| on                | `Object`  | `undefined`            | Icon button toggle state. (**ON** state)      |
-| off               | `Object`  | `undefined`            | Icon button toggle state. (**OFF** state)     |
-| iconInnerSelector | `String`  | `undefined`            | Using custom icon font selector.              |
-| url               | `String`  | `'javascript:void(0)'` | The _href_ attribute of the `<ui-icon-link>`. |
+| Name              | Type      | Default                | Description                                                                  |
+| ----------------- | --------- | ---------------------- | ---------------------------------------------------------------------------- |
+| model (v-model)   | `Boolean` | `false`                | Sets the toggle state.                                                       |
+| on                | `Object`  | `null`                 | Icon button toggle **ON** state.                                             |
+| off               | `Object`  | `null`                 | Icon button toggle **OFF** state.                                            |
+| iconInnerSelector | `String`  | `null`                 | Using custom icon font selector.                                             |
+| url               | `String`  | `'javascript:void(0)'` | The _href_ attribute of the `<a>`. Applicable only for the `<ui-icon-link>`. |
 
 > Configuring the icon button toggle states by `on` and `off` props.
 
@@ -26,7 +26,6 @@
 
 ### Events
 
-| Name   | Type                      | Description                            |
-| ------ | ------------------------- | -------------------------------------- |
-| click  | `Function(event: object)` | Emits when the icon button is clicked. |
-| change | `Function(isOn: boolean)` | Emits when the icon toggle is toggled. |
+| Name   | Type                       | Description                            |
+| ------ | -------------------------- | -------------------------------------- |
+| change | `Function(model: boolean)` | Emits when the icon button is toggled. |

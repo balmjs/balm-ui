@@ -20,9 +20,9 @@
 
 ### Slots
 
-| Name      | Description                                                          |
-| --------- | -------------------------------------------------------------------- |
-| (default) | The default slot holds the icon button content and can contain HTML. |
+| Name      | Description                                                          | `slot-scope` |
+| --------- | -------------------------------------------------------------------- | ------------ |
+| (default) | The default slot holds the icon button content and can contain HTML. |              |
 
 ### Events
 

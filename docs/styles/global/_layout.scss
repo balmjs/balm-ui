@@ -1,6 +1,7 @@
 /// Ensure layout covers the entire screen.
 html {
   height: 100%;
+  overflow: hidden; // bugfix for some browsers
 }
 
 body,

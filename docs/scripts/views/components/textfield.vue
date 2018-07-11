@@ -146,7 +146,7 @@
         </ui-textfield>
       </div>
       <div id="demo-tf-outlined-leading-wrapper" :dir="controls.rtl ? 'rtl' : false">
-        <ui-textfield id="tf-outlined-leading" outlined leadingIcon="event"
+        <ui-textfield id="tf-outlined-leading" outlined leadingIcon
           :class="{'demo-text-field-custom-colors': controls.customColor}"
           :disabled="controls.disabled"
           :dense="controls.dense"
@@ -156,11 +156,14 @@
           :attrs="{
             minlength: controls.min ? 8 : 0
           }">
+          <template slot="before">
+            <ui-icon>event</ui-icon>
+          </template>
           Your other name
         </ui-textfield>
       </div>
       <div id="demo-tf-outlined-trailing-wrapper" :dir="controls.rtl ? 'rtl' : false">
-        <ui-textfield id="tf-outlined-trailing" outlined trailingIcon="delete"
+        <ui-textfield id="tf-outlined-trailing" outlined trailingIcon
           :class="{'demo-text-field-custom-colors': controls.customColor}"
           :disabled="controls.disabled"
           :dense="controls.dense"
@@ -171,6 +174,9 @@
             minlength: controls.min ? 8 : 0
           }">
           Your other name
+          <template slot="after">
+            <ui-icon>delete</ui-icon>
+          </template>
         </ui-textfield>
       </div>
       <ui-textfield-controls

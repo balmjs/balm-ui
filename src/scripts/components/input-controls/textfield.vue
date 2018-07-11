@@ -1,12 +1,13 @@
 <template>
   <div :class="className.outer">
     <template v-if="hasIcon">
-      <ui-textfield-icon v-if="isMaterialIcon"
+      <ui-textfield-icon v-if="hasLeadingIcon"
         :unclickable="leadingIconUnclickable"
         @click="handleLeadingIcon">
         {{ leadingIcon }}
       </ui-textfield-icon>
-      <span v-else class="mdc-text-field__custom-icon">
+      <span v-else
+        :class="[UI_TEXTFIELD.SLOT_CLASS.icon, UI_TEXTFIELD.SLOT_CLASS.customIcon]">
         <slot name="before"></slot>
       </span>
     </template>
@@ -60,12 +61,13 @@
     </ui-floating-label>
 
     <template v-if="hasIcon">
-      <ui-textfield-icon v-if="isMaterialIcon"
+      <ui-textfield-icon v-if="hasTrailingIcon"
         :unclickable="trailingIconUnclickable"
         @click="handleTrailingIcon">
         {{ trailingIcon }}
       </ui-textfield-icon>
-      <span v-else class="mdc-text-field__custom-icon">
+      <span v-else
+        :class="[UI_TEXTFIELD.SLOT_CLASS.icon, UI_TEXTFIELD.SLOT_CLASS.customIcon]">
         <slot name="after"></slot>
       </span>
     </template>
@@ -107,6 +109,10 @@ const UI_TEXTFIELD = {
     ENTER: 'enter',
     BLUR: 'blur',
     ICON: 'icon-action'
+  },
+  SLOT_CLASS: {
+    icon: 'mdc-text-field__icon',
+    customIcon: 'mdc-text-field__custom-icon'
   }
 };
 
@@ -175,12 +181,18 @@ export default {
       type: Boolean,
       default: false
     },
-    leadingIcon: String,
+    leadingIcon: {
+      type: [Boolean, String],
+      default: false
+    },
     leadingIconUnclickable: {
       type: Boolean,
       default: false
     },
-    trailingIcon: String,
+    trailingIcon: {
+      type: [Boolean, String],
+      default: false
+    },
     trailingIconUnclickable: {
       type: Boolean,
       default: false
@@ -194,6 +206,7 @@ export default {
   },
   data() {
     return {
+      UI_TEXTFIELD,
       $textfield: null,
       inputValue: this.model
     };
@@ -223,11 +236,11 @@ export default {
     hasIcon() {
       return this.box || this.outlined;
     },
-    isMaterialIcon() {
-      return (
-        getType(this.leadingIcon) === 'string' ||
-        getType(this.trailingIcon) === 'string'
-      );
+    hasLeadingIcon() {
+      return getType(this.leadingIcon) === 'string';
+    },
+    hasTrailingIcon() {
+      return getType(this.trailingIcon) === 'string';
     }
   },
   watch: {

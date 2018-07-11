@@ -1,6 +1,15 @@
 ```html
-<ui-textfield :model="text2" @input.native="onInputChange('text2', $event)"
-  label="Number..."
-  pattern="-?[0-9]*(\.[0-9]+)?"
-  error="Input is not a number!"></ui-textfield>
+<ui-textfield type="password"
+  id="pw"
+  required
+  pattern=".{8,}"
+  helptextId="pw-validation-msg"
+  :attrs="{autocomplete: 'current-password'}">
+  Choose password
+</ui-textfield>
+<ui-textfield-helptext id="pw-validation-msg"
+  visible
+  validMsg>
+  Must be at least 8 characters long
+</ui-textfield-helptext>
 ```

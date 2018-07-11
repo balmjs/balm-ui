@@ -5,7 +5,7 @@
 | model (v-model)   | `Boolean` | `false`                | Sets the toggle state.                                                       |
 | on                | `Object`  | `null`                 | Icon button toggle **ON** state.                                             |
 | off               | `Object`  | `null`                 | Icon button toggle **OFF** state.                                            |
-| iconInnerSelector | `String`  | `null`                 | Using custom icon font selector.                                             |
+| iconInnerSelector | `String`  | `null`                 | Using custom icon font selector. (e.g., `.fa` for Font Awesome)              |
 | url               | `String`  | `'javascript:void(0)'` | The _href_ attribute of the `<a>`. Applicable only for the `<ui-icon-link>`. |
 
 > Configuring the icon button toggle states by `on` and `off` props.
@@ -29,3 +29,5 @@
 | Name   | Type                       | Description                            |
 | ------ | -------------------------- | -------------------------------------- |
 | change | `Function(model: boolean)` | Emits when the icon button is toggled. |
+
+> NOTE: If you are not using `v-model`, you should listen for the icon button using `@change` and update the `model` prop.

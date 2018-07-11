@@ -1,9 +1,15 @@
 ```html
-<ui-textfield :model="text7" @input.native="onInputChange('text7', $event)"
-  label="Plus Text..."
-  plus>
-  <template slot="plus">
-    <a href="javascript:void(0)">Button</a>
-  </template>
+<ui-textfield id="fouc" v-model="value">
+  Label floating above
 </ui-textfield>
+```
+
+```js
+export default {
+  data() {
+    return {
+      value: 'Pre-filled value'
+    };
+  }
+};
 ```

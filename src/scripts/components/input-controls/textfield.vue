@@ -25,7 +25,6 @@
               :cols="cols"
               :disabled="disabled"
               :required="required"
-              :autocomplete="autocomplete"
               :aria-controls="helptextId"
               :aria-describedby="helptextId"
               v-bind="attrs"
@@ -45,7 +44,6 @@
            :pattern="pattern"
            :disabled="disabled"
            :required="required"
-           :autocomplete="autocomplete"
            :aria-controls="helptextId"
            :aria-describedby="helptextId"
            v-bind="attrs"
@@ -108,8 +106,7 @@ const UI_TEXTFIELD = {
     CHANGE: 'change',
     ENTER: 'enter',
     BLUR: 'blur',
-    LEADING: 'leading-action',
-    TRAILING: 'trailing-action'
+    ICON: 'icon-action'
   }
 };
 
@@ -126,11 +123,13 @@ export default {
   },
   props: {
     // States
-    model: [String, Number],
+    model: {
+      type: [String, Number],
+      default: ''
+    },
     // Element attributes
     id: String,
     placeholder: String,
-    autocomplete: String,
     required: {
       type: Boolean,
       default: false
@@ -275,10 +274,10 @@ export default {
       this.$emit(UI_TEXTFIELD.EVENT.BLUR, result);
     },
     handleLeadingIcon() {
-      this.$emit(UI_TEXTFIELD.EVENT.LEADING);
+      this.$emit(UI_TEXTFIELD.EVENT.ICON, 0);
     },
     handleTrailingIcon() {
-      this.$emit(UI_TEXTFIELD.EVENT.TRAILING);
+      this.$emit(UI_TEXTFIELD.EVENT.ICON, 1);
     }
   }
 };

@@ -56,7 +56,7 @@
 
     <section class="example">
       <h3>1.3 Outlined Text Field</h3>
-      <div id="demo-tf-outlined-wrapper" :dir="controls.rtl ? 'rtl' : false">
+      <div id="demo-tf-outlined-wrapper" :dir="controls.rtl ? 'rtl' : null">
         <ui-textfield id="tf-outlined-input"
           outlined
           helptextId="name-validation-message"
@@ -86,7 +86,7 @@
 
     <section class="example" id="text-field-box-example">
       <h3>1.4 Text Field box</h3>
-      <div id="demo-tf-box-wrapper" :dir="controls.rtl ? 'rtl' : false">
+      <div id="demo-tf-box-wrapper" :dir="controls.rtl ? 'rtl' : null">
         <ui-textfield id="tf-box"
           box
           helptextId="box-name-validation-message"
@@ -117,7 +117,7 @@
 
     <section class="example" id="demo-tf-icon-container">
       <h3>1.5 Text Field - Leading/Trailing icons</h3>
-      <div id="demo-tf-box-leading-wrapper" :dir="controls.rtl ? 'rtl' : false">
+      <div id="demo-tf-box-leading-wrapper" :dir="controls.rtl ? 'rtl' : null">
         <ui-textfield id="tf-box-leading" box leadingIcon
           :class="{'demo-text-field-custom-colors': controls.customColor}"
           :disabled="controls.disabled"
@@ -132,7 +132,7 @@
           Your name
         </ui-textfield>
       </div>
-      <div id="demo-tf-box-trailing-wrapper" :dir="controls.rtl ? 'rtl' : false">
+      <div id="demo-tf-box-trailing-wrapper" :dir="controls.rtl ? 'rtl' : null">
         <ui-textfield id="tf-box-trailing" box trailingIcon
           :class="{'demo-text-field-custom-colors': controls.customColor}"
           :disabled="controls.disabled"
@@ -147,7 +147,7 @@
           </template>
         </ui-textfield>
       </div>
-      <div id="demo-tf-outlined-leading-wrapper" :dir="controls.rtl ? 'rtl' : false">
+      <div id="demo-tf-outlined-leading-wrapper" :dir="controls.rtl ? 'rtl' : null">
         <ui-textfield id="tf-outlined-leading" outlined leadingIcon
           :class="{'demo-text-field-custom-colors': controls.customColor}"
           :disabled="controls.disabled"
@@ -164,14 +164,12 @@
           Your other name
         </ui-textfield>
       </div>
-      <div id="demo-tf-outlined-trailing-wrapper" :dir="controls.rtl ? 'rtl' : false">
+      <div id="demo-tf-outlined-trailing-wrapper" :dir="controls.rtl ? 'rtl' : null">
         <ui-textfield id="tf-outlined-trailing" outlined trailingIcon
           :class="{'demo-text-field-custom-colors': controls.customColor}"
           :disabled="controls.disabled"
           :dense="controls.dense"
           :required="controls.required"
-          :leadingIconUnclickable="controls.unclickable"
-          :trailingIconUnclickable="controls.unclickable"
           :attrs="{
             minlength: controls.min ? 8 : 0
           }">
@@ -203,7 +201,7 @@
 
     <section class="example">
       <h3>1.7 Textarea</h3>
-      <section id="demo-text-field-textarea-wrapper" :dir="controls.rtl ? 'rtl' : false">
+      <section id="demo-text-field-textarea-wrapper" :dir="controls.rtl ? 'rtl' : null">
         <ui-textfield type="textarea" id="textarea" rows="8" cols="40"
           :class="{'demo-text-field-custom-colors': controls.customColor}"
           :disabled="controls.disabled"

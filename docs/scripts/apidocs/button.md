@@ -1,4 +1,4 @@
-### `<ui-button>`
+### `<ui-button>` &amp; `<ui-link>`
 
 #### Props
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="demo--top-app-bar" :dir="controls.rtl ? 'rtl' : false">
+  <div class="demo--top-app-bar" :dir="controls.rtl ? 'rtl' : null">
     <ui-top-app-bar id="demo-top-app-bar"
       contentSelector="#content-main"
       :actionItems="controls.noAction ? [] : items"

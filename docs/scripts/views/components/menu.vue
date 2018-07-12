@@ -15,7 +15,7 @@
     </section>
 
     <div class="demo-content">
-      <div id="demo-wrapper" :dir="controls.rtl ? 'rtl' : false">
+      <div id="demo-wrapper" :dir="controls.rtl ? 'rtl' : null">
         <ui-menu-anchor :position="controls.buttonPosition">
           <ui-button id="menu-button"
             :class="[

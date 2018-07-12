@@ -6,7 +6,7 @@
        :aria-valuemin="+min"
        :aria-valuemax="+max"
        :data-step="+step"
-       :aria-label="label || false"
+       :aria-label="label || null"
        :aria-disabled="disabled">
     <div class="mdc-slider__track-container">
       <div class="mdc-slider__track"></div>
@@ -39,7 +39,7 @@ export default {
   name: 'ui-slider',
   model: {
     prop: 'model',
-    event: UI_SLIDER.EVENT.CHANGE
+    event: UI_SLIDER.EVENT.INPUT
   },
   props: {
     // States

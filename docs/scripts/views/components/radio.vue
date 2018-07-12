@@ -3,7 +3,11 @@
     <section class="hero">
       <ui-radio cssOnly name="hero" value="0" v-model="hero"></ui-radio>
       <ui-radio cssOnly name="hero" value="1" v-model="hero"></ui-radio>
+      {{ hero }}
     </section>
+
+    <h3 :class="$tt('headline3')">0. Usage</h3>
+    <ui-markdown :text="code[0]"></ui-markdown>
 
     <section class="example">
       <h2>With JavaScript</h2>
@@ -23,7 +27,7 @@
       </div>
     </section>
 
-    <!-- <ui-apidoc name="radio"></ui-apidoc> -->
+    <ui-apidocs name="radio"></ui-apidocs>
   </div>
 </template>
 
@@ -45,7 +49,7 @@ export default {
     };
   },
   created() {
-    // this.showCode('radio');
+    this.showCode('radio');
   }
 };
 </script>

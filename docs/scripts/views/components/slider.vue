@@ -9,10 +9,14 @@
       </div>
     </section>
 
+    <h3 :class="$tt('headline3')">0. Usage</h3>
+    <ui-markdown :text="code[0]"></ui-markdown>
+
+    <h3 :class="$tt('headline3')">1. Example</h3>
     <section id="slider-example" class="example">
       <h2>Continuous Slider</h2>
       <div class="slider-example">
-        <div :class="['example-slider-wrapper', {'custom-bg': controls.customColor}]" :dir="controls.rtl ? 'rtl' : false">
+        <div :class="['example-slider-wrapper', {'custom-bg': controls.customColor}]" :dir="controls.rtl ? 'rtl' : null">
           <ui-slider id="continuous-mdc-slider"
             :min="min"
             :max="max"
@@ -29,7 +33,7 @@
 
       <h2>Discrete Slider</h2>
       <div class="slider-example">
-        <div :class="['example-slider-wrapper', {'custom-bg': controls.customColor}]" :dir="controls.rtl ? 'rtl' : false">
+        <div :class="['example-slider-wrapper', {'custom-bg': controls.customColor}]" :dir="controls.rtl ? 'rtl' : null">
           <ui-slider id="discrete-mdc-slider"
             discrete
             :min="min"
@@ -45,7 +49,7 @@
 
       <h2>Discrete Slider with Tick Marks</h2>
       <div class="slider-example">
-        <div :class="['example-slider-wrapper', {'custom-bg': controls.customColor}]" :dir="controls.rtl ? 'rtl' : false">
+        <div :class="['example-slider-wrapper', {'custom-bg': controls.customColor}]" :dir="controls.rtl ? 'rtl' : null">
           <ui-slider id="discrete-mdc-slider-w-marker"
             discrete
             displayMarkers
@@ -62,7 +66,7 @@
 
       <h2>Custom Colored Discrete Slider with Tick Marks</h2>
       <div class="slider-example">
-        <div :class="['example-slider-wrapper', {'custom-bg': controls.customColor}]" :dir="controls.rtl ? 'rtl' : false">
+        <div :class="['example-slider-wrapper', {'custom-bg': controls.customColor}]" :dir="controls.rtl ? 'rtl' : null">
           <ui-slider id="custom-discrete-mdc-slider-w-marker"
             discrete
             displayMarkers
@@ -104,14 +108,20 @@
         </div>
       </div>
     </section>
+
+    <h3 :class="$tt('headline3')">2. API</h3>
+    <ui-apidocs name="slider"></ui-apidocs>
   </div>
 </template>
 
 <script>
+import snippets from '../../mixins/snippets';
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Slider'
   },
+  mixins: [snippets],
   data() {
     return {
       value: 20,
@@ -128,6 +138,9 @@ export default {
         rtl: false
       }
     };
+  },
+  created() {
+    this.showCode('slider');
   },
   methods: {
     onInput(value) {

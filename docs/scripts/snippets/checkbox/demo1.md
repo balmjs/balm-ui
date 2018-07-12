@@ -1,20 +1,15 @@
 ```html
-<ui-checkbox value="1" :model="options" @change="onChange">Option A</ui-checkbox>
-<ui-checkbox value="2" :model="options" @change="onChange">Option B</ui-checkbox>
-<ui-checkbox value="3" :model="options" @change="onChange">Option C</ui-checkbox>
+<ui-checkbox id="checkbox" v-model="checked">
+  {{checked}}
+</ui-checkbox>
 ```
 
 ```js
 export default {
   data() {
     return {
-      options: []
+      checked: false
     };
-  },
-  methods: {
-    onChange(val) {
-      this.options = val;
-    }
   }
 };
 ```

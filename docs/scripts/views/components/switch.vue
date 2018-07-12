@@ -4,8 +4,12 @@
       <ui-switch v-model="toggle">{{ toggle }}</ui-switch>
     </section>
 
+    <h3 :class="$tt('headline3')">0. Usage</h3>
+    <ui-markdown :text="code[0]"></ui-markdown>
+
+    <h3 :class="$tt('headline3')">1. Example</h3>
     <section class="example">
-      <h2>Enabled</h2>
+      <h2>1.1 Enabled</h2>
       <div class="demo-switch-wrapper">
         <ui-switch id="basic-switch"
           :trueValue="1"
@@ -15,7 +19,7 @@
         </ui-switch>
       </div>
       <div class="demo-switch-wrapper">
-        <ui-switch id="basic-switch"
+        <ui-switch id="basic-switch-custom"
           class="demo-switch--custom"
           trueValue="on"
           falseValue="off"
@@ -24,15 +28,19 @@
         </ui-switch>
       </div>
     </section>
+    <ui-accordion>
+      <ui-markdown :code="code[1]"></ui-markdown>
+    </ui-accordion>
 
     <section class="example">
-      <h2>Disabled</h2>
+      <h2>1.2 Disabled</h2>
       <div class="demo-switch-wrapper">
         <ui-switch disabled>off/on</ui-switch>
       </div>
     </section>
 
-    <!-- <ui-apidoc name="switch"></ui-apidoc> -->
+    <h3 :class="$tt('headline3')">2. API</h3>
+    <ui-apidocs name="switch"></ui-apidocs>
   </div>
 </template>
 
@@ -52,7 +60,7 @@ export default {
     };
   },
   created() {
-    // this.showCode('switch');
+    this.showCode('switch');
   }
 };
 </script>

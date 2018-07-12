@@ -15,10 +15,10 @@
       <template v-if="group">
         <template v-for="(option, optionIndex) in options">
           <!-- A group of options -->
-          <optgroup v-if="option[optgroupLabel] && option[optgroupItems] && option[optgroupItems].length"
+          <optgroup v-if="option[groupLabel] && option[groupItems] && option[groupItems].length"
                     :key="optionIndex"
-                    :label="option[optgroupLabel]">
-            <option v-for="(item, itemIndex) in option[optgroupItems]"
+                    :label="option[groupLabel]">
+            <option v-for="(item, itemIndex) in option[groupItems]"
                     :key="itemIndex"
                     :value="item[optionValue]">{{ item[optionLabel] }}</option>
           </optgroup>
@@ -84,12 +84,20 @@ export default {
   },
   props: {
     // States
-    model: null,
+    model: [String, Number],
     options: {
       type: Array,
       default() {
         return [];
       }
+    },
+    optionLabel: {
+      type: String,
+      default: 'label'
+    },
+    optionValue: {
+      type: String,
+      default: 'value'
     },
     selectedIndex: {
       type: Number,
@@ -115,14 +123,6 @@ export default {
       type: Boolean,
       default: false
     },
-    optionLabel: {
-      type: String,
-      default: 'label'
-    },
-    optionValue: {
-      type: String,
-      default: 'value'
-    },
     placeholder: {
       type: Boolean,
       default: false
@@ -136,11 +136,11 @@ export default {
       type: Boolean,
       default: false
     },
-    optgroupLabel: {
+    groupLabel: {
       type: String,
       default: 'label'
     },
-    optgroupItems: {
+    groupItems: {
       type: String,
       default: 'items'
     }

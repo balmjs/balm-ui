@@ -1,4 +1,4 @@
-### `<ui-icon-button>`
+### `<ui-icon-button>` &amp; `<ui-icon-link>`
 
 #### Props
 
@@ -33,3 +33,11 @@
 | change | `Function(model: boolean)` | Emits when the icon button is toggled. |
 
 > NOTE: If you are not using `v-model`, you should listen for the icon button using `@change` and update the `model` prop.
+
+```html
+// Automatic
+<ui-icon-button v-model="value"></ui-icon-button>
+
+// Manual
+<ui-icon-button :model="value" @change="balmUI.onChange('value', $event)"></ui-icon-button>
+```

@@ -8,12 +8,16 @@
       </ui-select>
     </section>
 
+    <h3 :class="$tt('headline3')">0. Usage</h3>
+    <ui-markdown :text="code[0]"></ui-markdown>
+
+    <h3 :class="$tt('headline3')">1. Example</h3>
     <section class="example">
-      <h2 :class="$tt('headline6')">Fully-Featured JS Component</h2>
-      <section id="demo-wrapper" :dir="controls.rtl ? 'rtl' : false">
+      <h6 :class="$tt('headline6')">1.1 Fully-Featured JS Component</h6>
+      <section id="demo-wrapper" :dir="controls.rtl ? 'rtl' : null">
         <ui-select id="full-func-js-select"
-          placeholder
           v-model="selected1.value"
+          placeholder
           :selectedIndex="selected1.index"
           :options="options1"
           :class="{'demo-select-custom-colors': controls.customColor}"
@@ -42,10 +46,13 @@
         </ui-button>
       </div>
     </section>
+    <ui-accordion>
+      <ui-markdown :code="code[1]"></ui-markdown>
+    </ui-accordion>
 
     <section class="example">
-      <h2 :class="$tt('headline6')">Select box</h2>
-      <section id="box-demo-wrapper" :dir="controls.rtl ? 'rtl' : false">
+      <h6 :class="$tt('headline6')">1.2 Select box</h6>
+      <section id="box-demo-wrapper" :dir="controls.rtl ? 'rtl' : null">
         <ui-select id="select-box"
           box
           placeholder
@@ -78,10 +85,13 @@
         </ui-button>
       </div>
     </section>
+    <ui-accordion>
+      <ui-markdown :code="code[2]"></ui-markdown>
+    </ui-accordion>
 
     <section class="example">
-      <h2 :class="$tt('headline6')">Outlined Select</h2>
-      <section :dir="controls.rtl ? 'rtl' : false">
+      <h6 :class="$tt('headline6')">1.3 Outlined Select</h6>
+      <section :dir="controls.rtl ? 'rtl' : null">
         <ui-select id="outlined-select"
           outlined
           placeholder
@@ -114,9 +124,12 @@
         </ui-button>
       </div>
     </section>
+    <ui-accordion>
+      <ui-markdown :code="code[3]"></ui-markdown>
+    </ui-accordion>
 
     <section class="example">
-      <h2 :class="$tt('headline6')">Pre-selected option via HTML</h2>
+      <h6 :class="$tt('headline6')">1.4 Pre-selected option via HTML</h6>
       <section>
         <ui-select id="select-preselected"
           v-model="selected3"
@@ -125,34 +138,45 @@
         </ui-select>
       </section>
     </section>
+    <ui-accordion>
+      <ui-markdown :code="code[4]"></ui-markdown>
+    </ui-accordion>
 
     <section class="example">
-      <h2 :class="$tt('headline6')">MDC Select with optgroups</h2>
-      <ui-select id="select-preselected"
+      <h6 :class="$tt('headline6')">1.5 MDC Select with optgroups</h6>
+      <ui-select id="select-optgroups"
         group
         v-model="selected4"
         :options="options3">
         Food Group
       </ui-select>
     </section>
+    <ui-accordion>
+      <ui-markdown :code="code[5]"></ui-markdown>
+    </ui-accordion>
 
     <section class="example">
+      <h6 :class="$tt('headline6')">1.6 Custom Select</h6>
       <ui-select
         placeholder
         defaultLabel="Province"
         :options="provinces"
         v-model="formData.province"
-        @change="onSelectChange('province', $event, changeCity)"></ui-select>
+        @change="onChangeProvince($event)"></ui-select>
 
       <ui-select
         :placeholder="!cities.length"
         defaultLabel="City"
         :options="cities"
-        v-model="formData.city"
-        @change="onSelectChange('city', $event)"></ui-select>
-    </section>
+        v-model="formData.city"></ui-select>
 
-    <!-- <ui-apidoc name="select"></ui-apidoc> -->
+      Province: {{ formData.province }} - City: {{ formData.city }}
+    </section>
+    <ui-accordion>
+      <ui-markdown :code="code[6]"></ui-markdown>
+    </ui-accordion>
+
+    <ui-apidocs name="select"></ui-apidocs>
   </div>
 </template>
 
@@ -318,19 +342,16 @@ export default {
       this[`selected${key}`].value = result.value;
       this[`selected${key}`].index = result.index;
     },
-    onSelectChange(field, value, fn) {
-      this.formData[field] = value;
+    onChangeProvince(value, fn) {
+      this.formData.provinces = value;
 
       let key = value || -1;
-      fn && fn(key);
-    },
-    changeCity(key) {
       this.cities = key > -1 ? CITIES[key] : [];
       this.formData.city = this.cities.length ? this.cities[0].value : '';
     }
   },
   created() {
-    // this.showCode('select', 2);
+    this.showCode('select', 6);
   }
 };
 </script>

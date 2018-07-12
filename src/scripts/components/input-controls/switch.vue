@@ -52,14 +52,6 @@ export default {
       type: [Boolean, Number, String],
       default: false
     },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    // Element attributes
-    id: String,
-    name: String,
-    // UI attributes
     trueValue: {
       type: [Boolean, Number, String],
       default: true
@@ -68,6 +60,14 @@ export default {
       type: [Boolean, Number, String],
       default: false
     },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    // Element attributes
+    id: String,
+    name: String,
+    // UI attributes
     label: String
   },
   data() {

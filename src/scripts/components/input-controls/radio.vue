@@ -49,10 +49,7 @@ export default {
   },
   props: {
     // States
-    model: {
-      type: [String, Number, Boolean],
-      default: false
-    },
+    model: [String, Number],
     disabled: {
       type: Boolean,
       default: false
@@ -60,7 +57,7 @@ export default {
     // Element attributes
     id: String,
     name: String,
-    value: [String, Number, Boolean],
+    value: [String, Number],
     // UI attributes
     cssOnly: {
       type: Boolean,

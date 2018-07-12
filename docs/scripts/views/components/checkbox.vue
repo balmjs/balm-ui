@@ -6,6 +6,9 @@
       </ui-checkbox>
     </section>
 
+    <h3 :class="$tt('headline3')">0. Usage</h3>
+    <ui-markdown :text="code[0]"></ui-markdown>
+
     <section class="example">
       <h2>CSS Only</h2>
       <ui-checkbox-demo cssOnly></ui-checkbox-demo>
@@ -28,6 +31,9 @@
       <!-- <ui-checkbox id="checkbox" :model="checked" @change="balmUI.onChange('checked', $event)">
         {{checked}}
       </ui-checkbox> -->
+      <ui-accordion>
+        <ui-markdown :code="code[1]"></ui-markdown>
+      </ui-accordion>
     </section>
 
     <section class="example">
@@ -40,9 +46,12 @@
       <!-- <ui-checkbox id="jack" value="Jack" :model="checkedNames" @change="balmUI.onChange('checkedNames', $event)">Jack</ui-checkbox>
       <ui-checkbox id="john" value="John" :model="checkedNames" @change="balmUI.onChange('checkedNames', $event)">John</ui-checkbox>
       <ui-checkbox id="mike" value="Mike" :model="checkedNames" @change="balmUI.onChange('checkedNames', $event)">Mike</ui-checkbox> -->
+      <ui-accordion>
+        <ui-markdown :code="code[2]"></ui-markdown>
+      </ui-accordion>
     </section>
 
-    <!-- <ui-apidoc name="checkbox"></ui-apidoc> -->
+    <ui-apidocs name="checkbox"></ui-apidocs>
   </div>
 </template>
 
@@ -65,7 +74,7 @@ export default {
     };
   },
   created() {
-    // this.showCode('checkbox');
+    this.showCode('checkbox', 2);
   }
 };
 </script>

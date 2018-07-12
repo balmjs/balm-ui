@@ -5,8 +5,6 @@
 </template>
 
 <script>
-// import { MDCTextFieldHelperText } from '../../../material-components-web/textfield/helper-text';
-
 export default {
   name: 'ui-textfield-helptext',
   props: {
@@ -34,8 +32,5 @@ export default {
       };
     }
   }
-  // mounted() {
-  //   new MDCTextFieldHelperText(this.$el);
-  // }
 };
 </script>

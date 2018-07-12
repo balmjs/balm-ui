@@ -1,9 +1,6 @@
 export default {
   props: {
     // Element attributes
-    url: {
-      type: String,
-      default: 'javascript:void(0)'
-    }
+    url: String
   }
 };

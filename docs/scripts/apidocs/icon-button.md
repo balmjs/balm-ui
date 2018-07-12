@@ -1,12 +1,14 @@
-### Props
+### `<ui-icon-button>`
 
-| Name              | Type      | Default                | Description                                                                  |
-| ----------------- | --------- | ---------------------- | ---------------------------------------------------------------------------- |
-| model (v-model)   | `Boolean` | `false`                | Sets the toggle state.                                                       |
-| on                | `Object`  | `null`                 | Icon button toggle **ON** state.                                             |
-| off               | `Object`  | `null`                 | Icon button toggle **OFF** state.                                            |
-| iconInnerSelector | `String`  | `null`                 | Using custom icon font selector. (e.g., `.fa` for Font Awesome)              |
-| url               | `String`  | `'javascript:void(0)'` | The _href_ attribute of the `<a>`. Applicable only for the `<ui-icon-link>`. |
+#### Props
+
+| Name              | Type      | Default | Description                                                                  |
+| ----------------- | --------- | ------- | ---------------------------------------------------------------------------- |
+| model (v-model)   | `Boolean` | `false` | Sets the toggle state.                                                       |
+| on                | `Object`  | `null`  | Icon button toggle **ON** state.                                             |
+| off               | `Object`  | `null`  | Icon button toggle **OFF** state.                                            |
+| iconInnerSelector | `String`  | `null`  | Using custom icon font selector. (e.g., `.fa` for Font Awesome)              |
+| url               | `String`  | `null`  | The _href_ attribute of the `<a>`. Applicable only for the `<ui-icon-link>`. |
 
 > Configuring the icon button toggle states by `on` and `off` props.
 
@@ -18,13 +20,13 @@
 }
 ```
 
-### Slots
+#### Slots
 
-| Name      | Description                                                          | `slot-scope` |
-| --------- | -------------------------------------------------------------------- | ------------ |
-| (default) | The default slot holds the icon button content and can contain HTML. |              |
+| Name      | Description                                                          |
+| --------- | -------------------------------------------------------------------- |
+| (default) | The default slot holds the icon button content and can contain HTML. |
 
-### Events
+##### Events
 
 | Name   | Type                       | Description                            |
 | ------ | -------------------------- | -------------------------------------- |

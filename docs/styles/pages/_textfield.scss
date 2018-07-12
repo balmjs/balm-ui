@@ -1,24 +1,34 @@
 .demo--textfield {
-  input[type='checkbox']:disabled + label {
+  input[type='checkbox']:disabled+label {
     opacity: 0.4;
   }
-
   .example {
     margin: 24px;
     padding: 24px;
   }
-
   .hero .mdc-text-field {
     min-width: 240px;
   }
-
   .demo-note {
     padding: 20px;
     margin: 20px 0;
     background-color: #f2f2f2;
   }
-
   .full-width-textarea-example {
     margin-top: 16px;
+  }
+  .mdc-text-field__custom-icon {
+    position: absolute;
+    top: 16px;
+  }
+  .mdc-text-field--with-leading-icon {
+    .mdc-text-field__custom-icon {
+      left: 15px;
+    }
+  }
+  .mdc-text-field--with-trailing-icon {
+    .mdc-text-field__custom-icon {
+      right: 15px;
+    }
   }
 }

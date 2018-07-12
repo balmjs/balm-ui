@@ -2,7 +2,7 @@
   <div class="mdc-tab-bar-scroller">
     <div class="mdc-tab-bar-scroller__indicator mdc-tab-bar-scroller__indicator--back">
       <a class="mdc-tab-bar-scroller__indicator__inner material-icons"
-         href="javascript:void(0)"
+         href="javascript:void(0);"
          aria-label="scroll back button"
          @click.prevent>
         <slot name="prev">navigate_before</slot>
@@ -16,7 +16,7 @@
     </div>
     <div class="mdc-tab-bar-scroller__indicator mdc-tab-bar-scroller__indicator--forward">
       <a class="mdc-tab-bar-scroller__indicator__inner material-icons"
-         href="javascript:void(0)"
+         href="javascript:void(0);"
          aria-label="scroll forward button"
          @click.prevent>
         <slot name="next">navigate_next</slot>

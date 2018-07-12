@@ -1,17 +1,6 @@
 <template>
   <div :class="className.outer">
     <template v-if="hasIcon">
-      <ui-textfield-icon v-if="hasLeadingIcon"
-        :unclickable="leadingIconUnclickable"
-        @click="handleLeadingIcon">
-        {{ leadingIcon }}
-      </ui-textfield-icon>
-      <span v-else
-        :class="[UI_TEXTFIELD.SLOT_CLASS.icon, UI_TEXTFIELD.SLOT_CLASS.customIcon]">
-        <slot name="before"></slot>
-      </span>
-    </template>
-    <template v-else>
       <slot name="before"></slot>
     </template>
 
@@ -61,17 +50,6 @@
     </ui-floating-label>
 
     <template v-if="hasIcon">
-      <ui-textfield-icon v-if="hasTrailingIcon"
-        :unclickable="trailingIconUnclickable"
-        @click="handleTrailingIcon">
-        {{ trailingIcon }}
-      </ui-textfield-icon>
-      <span v-else
-        :class="[UI_TEXTFIELD.SLOT_CLASS.icon, UI_TEXTFIELD.SLOT_CLASS.customIcon]">
-        <slot name="after"></slot>
-      </span>
-    </template>
-    <template v-else>
       <slot name="after"></slot>
     </template>
 
@@ -92,7 +70,6 @@
 <script>
 import { MDCTextField } from '../../../material-components-web/textfield';
 import UiFloatingLabel from './floating-label';
-import UiTextfieldIcon from './textfield-icon';
 import elementMixin from '../../mixins/element';
 import floatingLabelMixin from '../../mixins/floating-label';
 import getType from '../../utilities/typeof';
@@ -109,18 +86,13 @@ const UI_TEXTFIELD = {
     ENTER: 'enter',
     BLUR: 'blur',
     ICON: 'icon-action'
-  },
-  SLOT_CLASS: {
-    icon: 'mdc-text-field__icon',
-    customIcon: 'mdc-text-field__custom-icon'
   }
 };
 
 export default {
   name: 'ui-textfield',
   components: {
-    UiFloatingLabel,
-    UiTextfieldIcon
+    UiFloatingLabel
   },
   mixins: [elementMixin, floatingLabelMixin],
   model: {
@@ -182,18 +154,10 @@ export default {
       default: false
     },
     leadingIcon: {
-      type: [Boolean, String],
-      default: false
-    },
-    leadingIconUnclickable: {
       type: Boolean,
       default: false
     },
     trailingIcon: {
-      type: [Boolean, String],
-      default: false
-    },
-    trailingIconUnclickable: {
       type: Boolean,
       default: false
     },
@@ -285,12 +249,6 @@ export default {
       };
 
       this.$emit(UI_TEXTFIELD.EVENT.BLUR, result);
-    },
-    handleLeadingIcon() {
-      this.$emit(UI_TEXTFIELD.EVENT.ICON, 0);
-    },
-    handleTrailingIcon() {
-      this.$emit(UI_TEXTFIELD.EVENT.ICON, 1);
     }
   }
 };

@@ -118,31 +118,33 @@
     <section class="example" id="demo-tf-icon-container">
       <h3>1.5 Text Field - Leading/Trailing icons</h3>
       <div id="demo-tf-box-leading-wrapper" :dir="controls.rtl ? 'rtl' : false">
-        <ui-textfield id="tf-box-leading" box leadingIcon="event"
+        <ui-textfield id="tf-box-leading" box leadingIcon
           :class="{'demo-text-field-custom-colors': controls.customColor}"
           :disabled="controls.disabled"
           :dense="controls.dense"
           :required="controls.required"
-          :leadingIconUnclickable="controls.unclickable"
-          :trailingIconUnclickable="controls.unclickable"
           :attrs="{
             minlength: controls.min ? 8 : 0
           }">
+          <template slot="before">
+            <ui-textfield-icon :unclickable="controls.unclickable">event</ui-textfield-icon>
+          </template>
           Your name
         </ui-textfield>
       </div>
       <div id="demo-tf-box-trailing-wrapper" :dir="controls.rtl ? 'rtl' : false">
-        <ui-textfield id="tf-box-trailing" box trailingIcon="delete"
+        <ui-textfield id="tf-box-trailing" box trailingIcon
           :class="{'demo-text-field-custom-colors': controls.customColor}"
           :disabled="controls.disabled"
           :dense="controls.dense"
           :required="controls.required"
-          :leadingIconUnclickable="controls.unclickable"
-          :trailingIconUnclickable="controls.unclickable"
           :attrs="{
             minlength: controls.min ? 8 : 0
           }">
           Your name
+          <template slot="after">
+            <ui-textfield-icon :unclickable="controls.unclickable">delete</ui-textfield-icon>
+          </template>
         </ui-textfield>
       </div>
       <div id="demo-tf-outlined-leading-wrapper" :dir="controls.rtl ? 'rtl' : false">
@@ -151,13 +153,13 @@
           :disabled="controls.disabled"
           :dense="controls.dense"
           :required="controls.required"
-          :leadingIconUnclickable="controls.unclickable"
-          :trailingIconUnclickable="controls.unclickable"
           :attrs="{
             minlength: controls.min ? 8 : 0
           }">
           <template slot="before">
-            <i class="fa fa-smile-o fa-lg"></i>
+            <span class="mdc-text-field__custom-icon">
+              <i class="fa fa-smile-o fa-lg"></i>
+            </span>
           </template>
           Your other name
         </ui-textfield>
@@ -175,7 +177,9 @@
           }">
           Your other name
           <template slot="after">
-            <i class="fa fa-close fa-lg"></i>
+            <span class="mdc-text-field__custom-icon">
+              <i class="fa fa-close fa-lg"></i>
+            </span>
           </template>
         </ui-textfield>
       </div>
@@ -250,6 +254,8 @@
 
     <h3 :class="$tt('headline3')">2. API</h3>
     <ui-apidocs name="textfield"></ui-apidocs>
+    <ui-apidocs name="textfield-helptext"></ui-apidocs>
+    <ui-apidocs name="textfield-icon"></ui-apidocs>
   </div>
 </template>
 

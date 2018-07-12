@@ -50,6 +50,7 @@ import UiShape from './components/common/shape';
 import UiFormField from './components/input-controls/form-field';
 import UiTextfield from './components/input-controls/textfield';
 import UiTextfieldHelptext from './components/input-controls/textfield-helptext';
+import UiTextfieldIcon from './components/input-controls/textfield-icon';
 import UiCheckbox from './components/input-controls/checkbox';
 import UiRadio from './components/input-controls/radio';
 import UiSelect from './components/input-controls/select';
@@ -160,6 +161,7 @@ const components = {
   UiFormField,
   UiTextfield,
   UiTextfieldHelptext,
+  UiTextfieldIcon,
   UiCheckbox,
   UiRadio,
   UiIconButton,
@@ -247,18 +249,13 @@ const registers = {
   }
 };
 
-const BalmUI = Object.assign(
-  {},
-  {
+const BalmUI = Object.assign({}, {
     version
-  },
-  {
+  }, {
     helpers
-  },
-  {
+  }, {
     components
-  },
-  {
+  }, {
     plugins
   },
   registers
@@ -267,4 +264,6 @@ const BalmUI = Object.assign(
 autoInstall(BalmUI);
 
 export default BalmUI;
-export { helpers };
+export {
+  helpers
+};

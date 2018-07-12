@@ -14,6 +14,13 @@
       </ui-menu>
     </section>
 
+    <h3 :class="$tt('headline3')">0. Usage</h3>
+    <ui-markdown :text="code[0]"></ui-markdown>
+
+    <h3 :class="$tt('headline3')">1. Example</h3>
+    <ui-accordion>
+      <ui-markdown :code="code[1]"></ui-markdown>
+    </ui-accordion>
     <div class="demo-content">
       <div id="demo-wrapper" :dir="controls.rtl ? 'rtl' : null">
         <ui-menu-anchor :position="controls.buttonPosition">
@@ -100,7 +107,7 @@
               <ui-radio name="menu-position" value="bottom end" v-model="controls.menuPosition"> Bottom end</ui-radio>
             </div>
           </div>
-          <p>
+          <div>
             Anchor Margins:
             <div id="margin-inputs" class="margin-inputs">
               <ui-textfield id="top-margin" v-model="controls.anchorMargin.top">T:</ui-textfield>
@@ -108,7 +115,7 @@
               <ui-textfield id="left-margin" v-model="controls.anchorMargin.left">L:</ui-textfield>
               <ui-textfield id="right-margin" v-model="controls.anchorMargin.right">R:</ui-textfield>
             </div>
-          </p>
+          </div>
           <div>
             <ui-checkbox id="is-rtl" v-model="controls.rtl"> RTL</ui-checkbox>
           </div>
@@ -118,7 +125,7 @@
           <div>
             <ui-checkbox id="animation" v-model="controls.disableAnimation"> Disable Open Animation</ui-checkbox>
           </div>
-          <p>
+          <div>
             <div class="left-column-controls">
               Menu Sizes:
               <div>
@@ -143,7 +150,7 @@
                 <ui-radio name="anchor-width" value="wide" v-model="controls.anchorWidth"> Wider than menu</ui-radio>
               </div>
             </div>
-          </p>
+          </div>
           <hr>
           <div>
             <span>Last Selected item:
@@ -160,8 +167,10 @@
       </div>
     </div>
 
-    <!-- <ui-apidoc name="menu"></ui-apidoc>
-    <ui-apidoc name="menuitem"></ui-apidoc> -->
+    <h3 :class="$tt('headline3')">2. API</h3>
+    <ui-apidocs name="menu"></ui-apidocs>
+    <ui-apidocs name="menuitem"></ui-apidocs>
+    <ui-apidocs name="menu-anchor"></ui-apidocs>
   </div>
 </template>
 
@@ -228,7 +237,7 @@ export default {
     }
   },
   created() {
-    // this.showCode('menu', 2);
+    this.showCode('menu');
   }
 };
 </script>

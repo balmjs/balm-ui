@@ -2,10 +2,12 @@
   <div class="mdc-menu" tabindex="-1">
     <ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
       <slot>
-        <template v-for="item in currentItems">
-          <ui-item-divider v-if="item === UI_MENU.DIVIDER">
+        <template v-for="(item, index) in currentItems">
+          <ui-item-divider v-if="item === UI_MENU.DIVIDER" :key="`divider${index}`">
           </ui-item-divider>
-          <ui-menuitem v-else :item="getType(item) === 'object' ? item : {}">
+          <ui-menuitem v-else
+            :key="`item${index}`"
+            :item="getType(item) === 'object' ? item : {}">
             {{ getType(item) === 'string' ? item : '' }}
           </ui-menuitem>
         </template>
@@ -68,10 +70,6 @@ export default {
       default: false
     },
     // UI attributes
-    cssOnly: {
-      type: Boolean,
-      default: false
-    },
     position: {
       type: String,
       default: 'TOP_LEFT'
@@ -115,7 +113,7 @@ export default {
     }
   },
   mounted() {
-    if (!this.$menu && !this.cssOnly) {
+    if (!this.$menu) {
       this.$menu = new MDCMenu(this.$el);
 
       // Listen for selected item

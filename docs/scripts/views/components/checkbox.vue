@@ -9,6 +9,7 @@
     <h3 :class="$tt('headline3')">0. Usage</h3>
     <ui-markdown :text="code[0]"></ui-markdown>
 
+    <h3 :class="$tt('headline3')">1. Example</h3>
     <section class="example">
       <h2>CSS Only</h2>
       <ui-checkbox-demo cssOnly></ui-checkbox-demo>
@@ -51,6 +52,7 @@
       </ui-accordion>
     </section>
 
+    <h3 :class="$tt('headline3')">2. API</h3>
     <ui-apidocs name="checkbox"></ui-apidocs>
   </div>
 </template>

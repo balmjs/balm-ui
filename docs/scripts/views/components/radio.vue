@@ -9,6 +9,7 @@
     <h3 :class="$tt('headline3')">0. Usage</h3>
     <ui-markdown :text="code[0]"></ui-markdown>
 
+    <h3 :class="$tt('headline3')">1. Example</h3>
     <section class="example">
       <h2>With JavaScript</h2>
       <ui-radio-demo></ui-radio-demo>
@@ -27,6 +28,7 @@
       </div>
     </section>
 
+    <h3 :class="$tt('headline3')">2. API</h3>
     <ui-apidocs name="radio"></ui-apidocs>
   </div>
 </template>

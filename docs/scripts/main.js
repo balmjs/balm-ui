@@ -3,7 +3,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import axios from 'axios';
 import VueMeta from 'vue-meta';
-import VueI18n from 'vue-i18n';
+// import VueI18n from 'vue-i18n';
 import BalmUI from '../../src/scripts/index'; // 'balm-ui'
 import routes from './routes/index';
 import App from './views/layouts/app';
@@ -14,7 +14,7 @@ import UiLogo from './components/logo';
 // syntax highlighting
 import prismjs from 'prismjs';
 // ready translated locales
-import { locales } from './config/lang';
+// import { locales } from './config/lang';
 
 const CLASS_NAMESPACE = 'balmui';
 const DEBUG = process.env.NODE_ENV === 'production' ? false : true;
@@ -24,7 +24,7 @@ Vue.prototype.DEBUG = DEBUG;
 Vue.use(VueRouter);
 Vue.prototype.$http = axios;
 Vue.use(VueMeta);
-Vue.use(VueI18n);
+// Vue.use(VueI18n);
 Vue.use(BalmUI);
 
 Vue.component(UiMarkdown.name, UiMarkdown);
@@ -82,10 +82,10 @@ router.afterEach((to, from) => {
 });
 
 // Create VueI18n instance with options
-const i18n = new VueI18n({
-  locale: 'en', // set locale
-  messages: locales // set locale messages
-});
+// const i18n = new VueI18n({
+//   locale: 'en', // set locale
+//   messages: locales // set locale messages
+// });
 
 new Vue({
   el: '#app',
@@ -94,5 +94,5 @@ new Vue({
   components: {
     App
   },
-  i18n
+  // i18n
 });

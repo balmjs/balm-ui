@@ -240,8 +240,8 @@ const registers = {
     // Install the plugins
     for (let key in BalmUI.plugins) {
       let Plugin = BalmUI.plugins[key];
-      if (options[`$${key}`]) {
-        Vue.use(Plugin, options[`$${key}`]);
+      if (options[key]) {
+        Vue.use(Plugin, options[key]);
       } else {
         Vue.use(Plugin);
       }

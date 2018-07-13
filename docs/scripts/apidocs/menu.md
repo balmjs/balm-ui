@@ -2,14 +2,14 @@
 
 #### Props
 
-| Name              | Type      | Default    | Description                                                    |
-| ----------------- | --------- | ---------- | -------------------------------------------------------------- |
-| open (v-model)    | `Boolean` | `false`    | Mandatory.                                                     |
-| items             | `Array`   | `[]`       | Menu items.                                                    |
-| quickOpen         | `Boolean` | `false`    | Turn off menu open animations.                                 |
-| position          | `String`  | `TOP_LEFT` | Menu position to the menu button.                              |
-| margin            | `String`  | `null`     | Anchor margin. Value: `top(px) right(px) bottom(px) left(px)`. |
-| rememberSelection | `Boolean` | `false`    | Show last selection.                                           |
+| Name              | Type      | Default      | Description                                                    |
+| ----------------- | --------- | ------------ | -------------------------------------------------------------- |
+| open (v-model)    | `Boolean` | `false`      | Mandatory.                                                     |
+| items             | `Array`   | `[]`         | Menu items.                                                    |
+| quickOpen         | `Boolean` | `false`      | Turn off menu open animations.                                 |
+| position          | `String`  | `'TOP_LEFT'` | Menu position to the menu button.                              |
+| margin            | `String`  | `null`       | Anchor margin. Value: `top(px) right(px) bottom(px) left(px)`. |
+| rememberSelection | `Boolean` | `false`      | Show last selection.                                           |
 
 - Anchor corners: '`TOP_LEFT`', '`TOP_RIGHT`', '`BOTTOM_LEFT`', '`BOTTOM_RIGHT`', '`TOP_START`', '`TOP_END`', '`BOTTOM_START`', '`BOTTOM_END`'.
 
@@ -31,9 +31,9 @@
 
 ```js
 {
-  index: 'menuitem index', // number
-  label: 'menuitem text', // string
-  item: 'menuitem' // HTMLElement
+  index: number, // menuitem index
+  label: string, // menuitem text
+  item: object   // menuitem HTMLElement
 }
 ```
 

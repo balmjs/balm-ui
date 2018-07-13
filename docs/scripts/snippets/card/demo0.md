@@ -5,15 +5,15 @@ import Vue from 'vue';
 import BalmUI from 'balm-ui';
 
 Vue.use(BalmUI, {
-  // (Optional) Overwrite <ui-card> props
+  // Optional. Overwrite `<ui-card>` props.
   UiCard: {
     // some props
   },
-  // (Optional) Overwrite <ui-card-media> props
+  // Optional. Overwrite `<ui-card-media>` props.
   UiCardMedia: {
     // some props
   },
-  // (Optional) Overwrite <ui-card-actions> props
+  // Optional. Overwrite `<ui-card-actions>` props.
   UiCardActions: {
     // some props
   }
@@ -26,21 +26,21 @@ Standalone Usage
 import Vue from 'vue';
 import UiCardComponents from 'balm-ui/components/card';
 
-// (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage
+// (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
 import 'balm-ui/components/core.css';
 import 'balm-ui/components/card.css';
 
-// (Optional)
+// Optional.
 UiCardComponents.config({
-  // Overwrite <ui-card> props
+  // Overwrite `<ui-card>` props.
   UiCard: {
     // some props
   },
-  // Overwrite <ui-card-media> props
+  // Overwrite `<ui-card-media>` props.
   UiCardMedia: {
     // some props
   },
-  // Overwrite <ui-card-actions> props
+  // Overwrite `<ui-card-actions>` props.
   UiCardActions: {
     // some props
   }

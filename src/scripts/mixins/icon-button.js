@@ -1,8 +1,6 @@
-import {
-  MDCIconButtonToggle
-} from '../../material-components-web/icon-button';
+import { MDCIconButtonToggle } from '../../material-components-web/icon-button';
 import cardButtonMixin from './card-button';
-import getType from '../utilities/typeof';
+import getType from '../utils/typeof';
 
 // Define constants
 const UI_ICONBUTTON = {
@@ -82,9 +80,7 @@ export default {
 
         this.$iconButton.listen(
           `MDCIconButtonToggle:${UI_ICONBUTTON.EVENT.CHANGE}`,
-          ({
-            detail
-          }) => {
+          ({ detail }) => {
             this.$emit(UI_ICONBUTTON.EVENT.CHANGE, detail.isOn);
           }
         );
@@ -97,11 +93,11 @@ export default {
   },
   methods: {
     isValidToggleState(states) {
-      return states ?
-        Object.keys(states).some(state =>
-          UI_ICONBUTTON.TOGGLE_STATES.includes(state)
-        ) :
-        false;
+      return states
+        ? Object.keys(states).some(state =>
+            UI_ICONBUTTON.TOGGLE_STATES.includes(state)
+          )
+        : false;
     },
     initToggleState(key) {
       let value = this[key];

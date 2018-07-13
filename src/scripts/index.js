@@ -1,11 +1,9 @@
+import autoInstall from './config/auto-install';
 import multiConfigure from './config/multi-configure';
 /**
- * Helpers
+ * Components
  */
-import * as BalmUI_Helpers from './utilities';
-/**
- * Layout
- */
+// Layout
 import UiPermanentDrawer from './components/drawer/permanent';
 import UiPersistentDrawer from './components/drawer/persistent';
 import UiTemporaryDrawer from './components/drawer/temporary';
@@ -29,9 +27,7 @@ import UiTabBarScroller from './components/tabs/tab-bar-scroller';
 import UiTab from './components/tabs/tab';
 import UiPanels from './components/tabs/panels';
 import UiPanel from './components/tabs/panel';
-/**
- * Common
- */
+// Common
 import UiIcon from './components/common/icon';
 import UiButton from './components/button/button';
 import UiLink from './components/button/link';
@@ -44,22 +40,7 @@ import UiMenu from './components/menu/menu';
 import UiMenuitem from './components/menu/menuitem';
 import UiLinearProgress from './components/common/linear-progress';
 import UiShape from './components/common/shape';
-/**
- * Input Controls
- */
-import UiFormField from './components/input-controls/form-field';
-import UiTextfield from './components/input-controls/textfield';
-import UiTextfieldHelptext from './components/input-controls/textfield-helptext';
-import UiTextfieldIcon from './components/input-controls/textfield-icon';
-import UiCheckbox from './components/input-controls/checkbox';
-import UiRadio from './components/input-controls/radio';
-import UiSelect from './components/input-controls/select';
-import UiSelectmenu from './components/input-controls/selectmenu';
-import UiSwitch from './components/input-controls/switch';
-import UiSlider from './components/input-controls/slider';
-/**
- * Data
- */
+// Data View
 import UiCard from './components/card/card';
 import UiCardContent from './components/card/card-content';
 import UiCardMedia from './components/card/card-media';
@@ -93,9 +74,18 @@ import UiItemDivider from './components/list/item-divider';
 import UiListNav from './components/list/list-nav';
 import UiItemLink from './components/list/item-link';
 import UiPagination from './components/data/pagination';
-/**
- * Dialog
- */
+// Input Controls
+import UiFormField from './components/input-controls/form-field';
+import UiTextfield from './components/input-controls/textfield';
+import UiTextfieldHelptext from './components/input-controls/textfield-helptext';
+import UiTextfieldIcon from './components/input-controls/textfield-icon';
+import UiCheckbox from './components/input-controls/checkbox';
+import UiRadio from './components/input-controls/radio';
+import UiSelect from './components/input-controls/select';
+import UiSelectmenu from './components/input-controls/selectmenu';
+import UiSwitch from './components/input-controls/switch';
+import UiSlider from './components/input-controls/slider';
+// Dialog
 import UiDialog from './components/dialog/dialog';
 import UiDialogHeader from './components/dialog/dialog-header';
 import UiDialogBody from './components/dialog/dialog-body';
@@ -105,22 +95,26 @@ import UiSnackbar from './components/common/snackbar';
  * Plugins
  */
 import event from './plugins/event';
-import elevation from './plugins/elevation';
+import ripple from './plugins/ripple';
 import grid from './plugins/grid';
-import theme from './plugins/theme';
 import typography from './plugins/typography';
+import theme from './plugins/theme';
+import elevation from './plugins/elevation';
+import validator from './plugins/validator';
 // import alert from './plugins/alert';
 // import confirm from './plugins/confirm';
+// import prompt from './plugins/prompt';
 // import toast from './plugins/toast';
-import validator from './plugins/validator';
-import ripple from './plugins/ripple';
 /**
- * Auto install
+ * Directives
  */
-import autoInstall from './config/auto-install';
+// import directives from './directives';
+/**
+ * Utilities
+ */
+import * as utils from './utils';
 
 const version = require('../../package.json').version;
-const helpers = Object.assign({}, BalmUI_Helpers);
 
 const components = {
   // Layout
@@ -249,21 +243,17 @@ const registers = {
   }
 };
 
-const BalmUI = Object.assign({}, {
-    version
-  }, {
-    helpers
-  }, {
-    components
-  }, {
-    plugins
-  },
+const BalmUI = Object.assign(
+  {},
+  { version },
+  { components },
+  { plugins },
+  // { directives },
+  { utils },
   registers
 );
 
 autoInstall(BalmUI);
 
 export default BalmUI;
-export {
-  helpers
-};
+export { utils };

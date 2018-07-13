@@ -21,7 +21,7 @@ import { MDCMenu } from '../../../material-components-web/menu';
 import { Corner } from '../../../material-components-web/menu/constants';
 import UiMenuItem from './menuitem';
 import UiItemDivider from '../list/item-divider';
-import getType from '../../utilities/typeof';
+import getType from '../../utils/typeof';
 
 // Define constants
 const UI_MENU = {

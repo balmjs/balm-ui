@@ -1,5 +1,5 @@
 import autoInstall from '../config/auto-install';
-import getType from '../utilities/typeof';
+import getType from '../utils/typeof';
 
 const T_BASE = 'mdc-typography';
 const T_DEFAULT_STYLES = [
@@ -22,18 +22,20 @@ const BalmUI_TypographyPlugin = {
   install(Vue, customStyles = []) {
     document.querySelector('body').classList.add(T_BASE);
 
-    const T_STYLES = getType(customStyles) === 'array' ?
-      T_DEFAULT_STYLES.concat(customStyles) :
-      T_DEFAULT_STYLES;
+    const T_STYLES =
+      getType(customStyles) === 'array'
+        ? T_DEFAULT_STYLES.concat(customStyles)
+        : T_DEFAULT_STYLES;
 
-    const $tt = (style) => {
+    const $tt = style => {
       let className = '';
 
       if (T_STYLES.includes(style)) {
         className = `${T_BASE}--${style}`;
       } else {
         console.warn(
-          '[BalmUI] Please set a valid typographic style:\n' + JSON.stringify(T_STYLES)
+          '[BalmUI] Please set a valid typographic style:\n' +
+            JSON.stringify(T_STYLES)
         );
       }
 

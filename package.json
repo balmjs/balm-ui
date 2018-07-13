@@ -15,9 +15,9 @@
     "components",
     "plugins",
     "directives",
-    "utilities"
+    "utils"
   ],
-  "main": "dist/js/balm-ui.js",
+  "main": "dist/balm-ui.js",
   "scripts": {
     "mdc": "gulp --silent --mdc",
     "dev": "gulp --silent",

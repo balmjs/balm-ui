@@ -1,6 +1,6 @@
 import autoInstall from '../config/auto-install';
 import UiSnackbar from '../components/common/snackbar';
-import getType from '../utilities/typeof';
+import getType from '../utils/typeof';
 
 const DEFAULT_OPTIONS = {
   className: '',

@@ -4,7 +4,7 @@ import UiDialogHeader from '../components/dialog/dialog-header';
 import UiDialogBody from '../components/dialog/dialog-body';
 import UiDialogFooter from '../components/dialog/dialog-footer';
 import UiButton from '../components/button/button';
-import getType from '../utilities/typeof';
+import getType from '../utils/typeof';
 
 const DEFAULT_OPTIONS = {
   className: '',

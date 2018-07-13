@@ -1,5 +1,5 @@
 import autoInstall from '../config/auto-install';
-import getType from '../utilities/typeof';
+import getType from '../utils/typeof';
 
 const defaultRules = {
   required: {

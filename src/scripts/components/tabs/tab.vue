@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import getType from '../../utilities/typeof';
+import getType from '../../utils/typeof';
 
 export default {
   name: 'ui-tab',

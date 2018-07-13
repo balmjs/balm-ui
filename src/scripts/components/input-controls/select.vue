@@ -62,7 +62,7 @@ import { MDCSelect } from '../../../material-components-web/select';
 import UiFloatingLabel from './floating-label';
 import elementMixin from '../../mixins/element';
 import floatingLabelMixin from '../../mixins/floating-label';
-import getType from '../../utilities/typeof';
+import getType from '../../utils/typeof';
 
 // Define constants
 const UI_SELECT = {

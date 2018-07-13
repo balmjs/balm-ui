@@ -20,7 +20,7 @@ const MESSAGE = {
   THEME_TONE: 'Please choose a theme tone: ' + JSON.stringify(THEME_TONES)
 };
 
-const themeColor = (style = '') => {
+const $themeColor = (style = '') => {
   let className = '';
 
   if (THEME_STYLES.includes(style)) {
@@ -32,7 +32,7 @@ const themeColor = (style = '') => {
   return className;
 };
 
-const textColor = (style = '', tone = 'background') => {
+const $textColor = (style = '', tone = 'background') => {
   let className = '';
 
   if (TEXT_STYLES.includes(style)) {
@@ -48,7 +48,7 @@ const textColor = (style = '', tone = 'background') => {
   return className;
 };
 
-const setTheme = (style, value) => {
+const $setTheme = (style, value) => {
   if (THEME_STYLES.includes(style)) {
     document.documentElement.style.setProperty(`--mdc-theme-${style}`, value);
   } else {
@@ -56,7 +56,7 @@ const setTheme = (style, value) => {
   }
 };
 
-const setTextTheme = (style, tone, value) => {
+const $setTextTheme = (style, tone, value) => {
   if (TEXT_STYLES.includes(style)) {
     if (THEME_TONES.includes(tone)) {
       document.documentElement.style.setProperty(
@@ -73,10 +73,10 @@ const setTextTheme = (style, tone, value) => {
 
 const BalmUI_ThemePlugin = {
   install(Vue) {
-    Vue.prototype.$themeColor = themeColor;
-    Vue.prototype.$textColor = textColor;
-    Vue.prototype.$setTheme = setTheme;
-    Vue.prototype.$setTextTheme = setTextTheme;
+    Vue.prototype.$themeColor = $themeColor;
+    Vue.prototype.$textColor = $textColor;
+    Vue.prototype.$setTheme = $setTheme;
+    Vue.prototype.$setTextTheme = $setTextTheme;
   }
 };
 

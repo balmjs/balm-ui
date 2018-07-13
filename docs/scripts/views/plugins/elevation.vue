@@ -12,6 +12,10 @@
       </figure>
     </section>
 
+    <h3 :class="$tt('headline3')">0. Usage</h3>
+    <ui-markdown :text="code[0]"></ui-markdown>
+
+    <h3 :class="$tt('headline3')">1. Example</h3>
     <section class="demo-surfaces">
       <figure :class="['demo-surface', $shadow()]">
         <figcaption>0dp (<code>mdc-elevation--z0</code>)</figcaption>
@@ -27,13 +31,22 @@
         <p>Hover over or tap me for a transition</p>
       </div>
     </section>
+
+    <h3 :class="$tt('headline3')">2. API</h3>
+    <ui-apidocs name="elevation"></ui-apidocs>
   </div>
 </template>
 
 <script>
+import snippets from '../../mixins/snippets';
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Elevation'
+  },
+  mixins: [snippets],
+  created() {
+    this.showCode('elevation');
   }
 };
 </script>

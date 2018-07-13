@@ -9,6 +9,10 @@
       ]">Secondary</ui-button>
     </section>
 
+    <h3 :class="$tt('headline3')">0. Usage</h3>
+    <ui-markdown :text="code[0]"></ui-markdown>
+
+    <h3 :class="$tt('headline3')">1. Example</h3>
     <div class="demo-main">
       <ui-menu-anchor>
         <ui-button ref="colorButton"
@@ -169,14 +173,20 @@
         </div>
       </section>
     </div>
+
+    <h3 :class="$tt('headline3')">2. API</h3>
+    <ui-apidocs name="theme"></ui-apidocs>
   </div>
 </template>
 
 <script>
+import snippets from '../../mixins/snippets';
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Theme'
   },
+  mixins: [snippets],
   data() {
     return {
       open: false,
@@ -200,6 +210,9 @@ export default {
         }
       ]
     };
+  },
+  created() {
+    this.showCode('theme');
   },
   beforeDestroy() {
     this.reset();

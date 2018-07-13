@@ -3,7 +3,7 @@ import autoInstall from '../config/auto-install';
 const Z_SPACE_MIN = 0;
 const Z_SPACE_MAX = 24;
 
-const shadow = (z = 0, zTransition = false) => {
+const $shadow = (z = 0, zTransition = false) => {
   let N = z;
   let result = zTransition ? ['mdc-elevation-transition'] : [];
 
@@ -20,7 +20,7 @@ const shadow = (z = 0, zTransition = false) => {
 
 const BalmUI_ElevationPlugin = {
   install(Vue) {
-    Vue.prototype.$shadow = shadow;
+    Vue.prototype.$shadow = $shadow;
   }
 };
 

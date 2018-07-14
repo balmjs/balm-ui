@@ -1,28 +1,34 @@
 ```html
-<ui-tabs effect :active="tab" @switched="onChange">
-  <ui-panel tab="Tab1">
-    <p>Panel1</p>
-  </ui-panel>
-  <ui-panel tab="Tab2">
-    <p>Panel2</p>
-  </ui-panel>
-  <ui-panel tab="Tab3">
-    <p>Panel3</p>
-  </ui-panel>
-</ui-tabs>
+<ui-tab-bar v-model="active">
+  <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
+    {{ tab.label }}
+  </ui-tab>
+</ui-tab-bar>
 ```
 
 ```js
 export default {
   data() {
     return {
-      tab: 0
+      active: 0,
+      tabs: [
+        {
+          label: 'Item One',
+          url: '#one',
+          panel: 'panel-1'
+        },
+        {
+          label: 'Item Two',
+          url: '#two',
+          panel: 'panel-2'
+        },
+        {
+          label: 'Item Three',
+          url: '#three',
+          panel: 'panel-3'
+        }
+      ]
     };
-  },
-  methods: {
-    onChange(tab) {
-      this.tab = tab;
-    }
   }
 };
 ```

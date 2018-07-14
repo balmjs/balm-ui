@@ -1,7 +1,7 @@
 ```html
-<ui-tab-bar type="1" v-model="active">
+<ui-tab-bar type="2" v-model="active">
   <ui-tab v-for="(tab, index) in tabs" :key="index"
-    :icon="tab.icon" :href="tab.url">
+    :icon="tab.icon" :text="tab.text" :href="tab.url">
   </ui-tab>
 </ui-tab-bar>
 ```
@@ -14,15 +14,18 @@ export default {
       tabs: [
         {
           icon: 'phone',
-          url: '#recents'
+          url: '#recents',
+          text: 'Recents'
         },
         {
           icon: 'favorite',
-          url: '#favorites'
+          url: '#favorites',
+          text: 'Favorites'
         },
         {
           icon: 'person_pin',
-          url: '#nearby'
+          url: '#nearby',
+          text: 'Nearby'
         }
       ]
     };

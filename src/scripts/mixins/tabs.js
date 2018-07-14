@@ -19,13 +19,13 @@ export default {
   },
   computed: {
     textOnly() {
-      return this.type.toLowerCase() === UI_TABS.LABEL.TEXT;
+      return this.type === UI_TABS.LABEL.TEXT;
     },
     iconOnly() {
-      return this.type.toLowerCase() === UI_TABS.LABEL.ICON;
+      return this.type === UI_TABS.LABEL.ICON;
     },
     textWithIcon() {
-      return this.type.toLowerCase() === UI_TABS.LABEL.TEXT_WITH_ICON;
+      return this.type === UI_TABS.LABEL.TEXT_WITH_ICON;
     }
   },
   methods: {

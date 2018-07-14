@@ -19,8 +19,12 @@
         </ui-grid>
       </section>
 
+      <h3 :class="$tt('headline3')">0. Usage</h3>
+      <ui-markdown :text="code[0]"></ui-markdown>
+
+      <h3 :class="$tt('headline3')">1. Example</h3>
       <section class="examples">
-        <h2 class="demo-grid-legend">Layout grid (in fluid container)</h2>
+        <h2 class="demo-grid-legend">1.1 Layout grid (in fluid container)</h2>
         <ui-grid>
           <ui-grid-cell>
             <div class="demo-controls">
@@ -87,22 +91,20 @@
           <ui-grid-cell class="demo-cell">4</ui-grid-cell>
           <ui-grid-cell class="demo-cell">4</ui-grid-cell>
         </ui-grid>
+        <ui-accordion>
+          <ui-markdown :code="code[1]"></ui-markdown>
+        </ui-accordion>
 
         <div class="demo-grid-legend">Grid of 1 column wide items</div>
         <ui-grid class="demo-grid">
-          <ui-grid-cell class="demo-cell" colspan="1">1</ui-grid-cell>
-          <ui-grid-cell class="demo-cell" colspan="1">1</ui-grid-cell>
-          <ui-grid-cell class="demo-cell" colspan="1">1</ui-grid-cell>
-          <ui-grid-cell class="demo-cell" colspan="1">1</ui-grid-cell>
-          <ui-grid-cell class="demo-cell" colspan="1">1</ui-grid-cell>
-          <ui-grid-cell class="demo-cell" colspan="1">1</ui-grid-cell>
-          <ui-grid-cell class="demo-cell" colspan="1">1</ui-grid-cell>
-          <ui-grid-cell class="demo-cell" colspan="1">1</ui-grid-cell>
-          <ui-grid-cell class="demo-cell" colspan="1">1</ui-grid-cell>
-          <ui-grid-cell class="demo-cell" colspan="1">1</ui-grid-cell>
-          <ui-grid-cell class="demo-cell" colspan="1">1</ui-grid-cell>
-          <ui-grid-cell class="demo-cell" colspan="1">1</ui-grid-cell>
+          <ui-grid-cell v-for="i in 12"
+            :key="i"
+            class="demo-cell"
+            colspan="1">1</ui-grid-cell>
         </ui-grid>
+        <ui-accordion>
+          <ui-markdown :code="code[2]"></ui-markdown>
+        </ui-accordion>
 
         <div class="demo-grid-legend">Grid of differently sized items</div>
         <ui-grid class="demo-grid">
@@ -110,6 +112,9 @@
           <ui-grid-cell class="demo-cell" colspan="4">4</ui-grid-cell>
           <ui-grid-cell class="demo-cell" colspan="2">2</ui-grid-cell>
         </ui-grid>
+        <ui-accordion>
+          <ui-markdown :code="code[3]"></ui-markdown>
+        </ui-accordion>
 
         <div class="demo-grid-legend">Grid of items with tweaks at different screen sizes</div>
         <ui-grid class="demo-grid">
@@ -117,6 +122,9 @@
           <ui-grid-cell class="demo-cell" :colspan="{default:4, tablet:6}">4 (6 tablet)</ui-grid-cell>
           <ui-grid-cell class="demo-cell" :colspan="{default:2, phone:4}">2 (4 phone)</ui-grid-cell>
         </ui-grid>
+        <ui-accordion>
+          <ui-markdown :code="code[4]"></ui-markdown>
+        </ui-accordion>
 
         <div class="demo-grid-legend">Grid nested within parent grid cell</div>
         <ui-grid class="demo-grid">
@@ -137,6 +145,9 @@
           <ui-grid-cell class="demo-cell" colspan="4">4</ui-grid-cell>
           <ui-grid-cell class="demo-cell" colspan="4">4</ui-grid-cell>
         </ui-grid>
+        <ui-accordion>
+          <ui-markdown :code="code[5]"></ui-markdown>
+        </ui-accordion>
 
         <h3 class="demo-grid-legend">Grid with max width</h3>
         <div class="demo-grid-legend">Grid with max width (1280px) and center alignment by default</div>
@@ -145,6 +156,9 @@
           <ui-grid-cell class="demo-cell" colspan="4"></ui-grid-cell>
           <ui-grid-cell class="demo-cell" colspan="4"></ui-grid-cell>
         </ui-grid>
+        <ui-accordion>
+          <ui-markdown :code="code[6]"></ui-markdown>
+        </ui-accordion>
 
         <div class="demo-grid-legend">Grid with max width (1280px) and left alignment</div>
         <ui-grid class="demo-grid max-width" position="left">
@@ -152,8 +166,11 @@
           <ui-grid-cell class="demo-cell" colspan="4"></ui-grid-cell>
           <ui-grid-cell class="demo-cell" colspan="4"></ui-grid-cell>
         </ui-grid>
+        <ui-accordion>
+          <ui-markdown :code="code[7]"></ui-markdown>
+        </ui-accordion>
 
-        <h2 class="demo-grid-legend">Fixed column width layout grid</h2>
+        <h2 class="demo-grid-legend">1.2 Fixed column width layout grid</h2>
         <ui-grid>
           <ui-grid-cell>
             <div class="demo-controls">
@@ -193,6 +210,9 @@
           <ui-grid-cell class="demo-cell" colspan="1"></ui-grid-cell>
           <ui-grid-cell class="demo-cell" colspan="1"></ui-grid-cell>
         </ui-grid>
+        <ui-accordion>
+          <ui-markdown :code="code[8]"></ui-markdown>
+        </ui-accordion>
 
         <div class="demo-grid-legend">Fixed column width layout grid and right alignment</div>
         <ui-grid class="demo-grid" fixedColumnWidth position="right">
@@ -200,12 +220,16 @@
           <ui-grid-cell class="demo-cell" colspan="1"></ui-grid-cell>
           <ui-grid-cell class="demo-cell" colspan="1"></ui-grid-cell>
         </ui-grid>
+        <ui-accordion>
+          <ui-markdown :code="code[9]"></ui-markdown>
+        </ui-accordion>
 
         <div class="demo-ruler"><div id="current" ref="ruler"></div></div>
       </section>
 
-      <!-- <ui-apidoc name="grid"></ui-apidoc>
-      <ui-apidoc name="cell"></ui-apidoc> -->
+      <h3 :class="$tt('headline3')">3. API</h3>
+      <ui-apidocs name="grid"></ui-apidocs>
+      <ui-apidocs name="grid-cell"></ui-apidocs>
     </div>
   </div>
 </template>
@@ -267,6 +291,9 @@ export default {
         width: '72px'
       }
     };
+  },
+  created() {
+    this.showCode('grid', 10);
   },
   mounted() {
     // this.showCode('grid');

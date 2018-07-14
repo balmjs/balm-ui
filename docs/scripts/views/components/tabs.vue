@@ -4,6 +4,11 @@
       <ui-tabs id="demo-tab-bar" :items="tabs"></ui-tabs>
     </section>
 
+    <h3 :class="$tt('headline3')">0. Usage</h3>
+    <ui-markdown :text="code[0]"></ui-markdown>
+
+    <h3 :class="$tt('headline3')">1. Example</h3>
+
     <section>
       <fieldset>
         <legend :class="$tt('headline6')">Basic Tab Bar</legend>
@@ -12,6 +17,9 @@
             {{ tab.label }}
           </ui-tab>
         </ui-tab-bar>
+        <ui-accordion>
+          <ui-markdown :code="code[1]"></ui-markdown>
+        </ui-accordion>
       </fieldset>
     </section>
 
@@ -30,10 +38,13 @@
       <div class="demo-tabs__scroller">
         <h2 :class="[$tt('headline6'), 'demo-title']">Tab Bar with Scroller</h2>
         <ui-tab-bar-scroller id="tab-bar-scroller">
-          <ui-tab v-for="(tab, index) in 9" :key="index" :href="`#${tab}`">
-            Item {{ tab }}
+          <ui-tab v-for="i in 9" :key="i" :href="`#${i}`">
+            Item {{ i }}
           </ui-tab>
         </ui-tab-bar-scroller>
+        <ui-accordion>
+          <ui-markdown :code="code[2]"></ui-markdown>
+        </ui-accordion>
       </div>
     </section>
 
@@ -45,6 +56,9 @@
             :icon="tab.icon" :href="tab.url">
           </ui-tab>
         </ui-tab-bar>
+        <ui-accordion>
+          <ui-markdown :code="code[3]"></ui-markdown>
+        </ui-accordion>
       </fieldset>
     </section>
 
@@ -67,6 +81,9 @@
             :icon="tab.icon" :text="tab.text" :href="tab.url">
           </ui-tab>
         </ui-tab-bar>
+        <ui-accordion>
+          <ui-markdown :code="code[4]"></ui-markdown>
+        </ui-accordion>
       </fieldset>
     </section>
 
@@ -111,6 +128,9 @@
             </ui-toolbar-section>
           </ui-toolbar-row>
         </ui-toolbar>
+        <ui-accordion>
+          <ui-markdown :code="code[5]"></ui-markdown>
+        </ui-accordion>
       </fieldset>
     </section>
 
@@ -178,7 +198,7 @@
         <ui-toolbar id="dynamic-demo-toolbar">
           <ui-toolbar-row>
             <ui-toolbar-section fit align="start">
-              <ui-tabs accent
+              <ui-tabs
                 id="dynamic-tab-bar"
                 :items="tabs"
                 v-model="active"></ui-tabs>
@@ -192,11 +212,15 @@
             <ui-panel>Panel Three</ui-panel>
           </ui-panels>
         </section>
+        <ui-accordion>
+          <ui-markdown :code="code[6]"></ui-markdown>
+        </ui-accordion>
       </fieldset>
     </section>
 
-    <!-- <ui-apidoc name="tabs"></ui-apidoc>
-    <ui-apidoc name="panel"></ui-apidoc> -->
+    <ui-apidocs name="tabs"></ui-apidocs>
+    <ui-apidocs name="tab"></ui-apidocs>
+    <ui-apidocs name="panels"></ui-apidocs>
   </div>
 </template>
 
@@ -248,7 +272,7 @@ export default {
     };
   },
   created() {
-    // this.showCode('tabs', 3);
+    this.showCode('tabs', 6);
   }
 };
 </script>

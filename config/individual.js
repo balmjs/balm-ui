@@ -1,7 +1,7 @@
 const input = {
   components: './src/scripts/components',
-  utilities: './src/scripts/utilities',
-  plugins: './src/scripts/plugins'
+  plugins: './src/scripts/plugins',
+  utils: './src/scripts/utils'
 };
 
 const components = [
@@ -34,7 +34,6 @@ const components = [
   // Plus
   // 'pagination.js'
 ];
-const utilities = ['ie.js', 'type.js', 'util.js'];
 const plugins = [
   'event.js',
   'elevation.js',
@@ -44,17 +43,18 @@ const plugins = [
   'typography.js',
   'validator.js'
 ];
+const utils = ['ie.js', 'type.js', 'util.js'];
 
 const output = {
   components: './components',
-  utilities: './utilities',
-  plugins: './plugins'
+  plugins: './plugins',
+  utils: './utils'
 };
 
 module.exports = {
   input,
   components,
-  utilities,
   plugins,
+  utils,
   output
 };

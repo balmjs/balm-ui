@@ -293,7 +293,7 @@ export default {
     };
   },
   created() {
-    this.showCode('grid', 10);
+    this.showCode('grid', 9);
   },
   mounted() {
     // this.showCode('grid');

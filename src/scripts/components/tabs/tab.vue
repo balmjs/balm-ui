@@ -1,13 +1,14 @@
 <template>
   <a class="mdc-tab" role="tab" @click.prevent>
     <slot name="before"></slot>
-    <i v-if="icon" class="material-icons mdc-tab__icon">{{ icon }}</i>
-    <template v-else>
-      <slot name="icon"><!-- Custom Icon --></slot>
+    <template v-if="icon">
+      <slot name="icon" :className="UI_TAB.SLOT_CLASS">
+        <i :class="['material-icons', UI_TAB.SLOT_CLASS.icon]">{{ icon }}</i>
+      </slot>
+      <span v-if="text" class="mdc-tab__icon-text">{{ text }}</span>
     </template>
-    <span v-if="text" class="mdc-tab__icon-text">{{ text }}</span>
     <template v-else>
-      <slot><!-- Text Label --></slot>
+      <slot>{{ text }}</slot>
     </template>
     <slot name="after"></slot>
   </a>
@@ -16,12 +17,23 @@
 <script>
 import getType from '../../utils/typeof';
 
+const UI_TAB = {
+  SLOT_CLASS: {
+    icon: 'mdc-tab__icon'
+  }
+};
+
 export default {
   name: 'ui-tab',
   props: {
     // UI attributes
-    icon: String,
-    text: String
+    text: String,
+    icon: String
+  },
+  data() {
+    return {
+      UI_TAB
+    };
   }
 };
 </script>

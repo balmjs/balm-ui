@@ -93,6 +93,6 @@ new Vue({
   template: '<App/>',
   components: {
     App
-  },
+  }
   // i18n
 });

@@ -30,17 +30,24 @@
     <main class="demo-main">
       <h1 :class="$tt('headline4')">Temporary Drawer</h1>
       <p :class="$tt('body1')">Click the menu icon above to open.</p>
+      <ui-accordion>
+        <ui-markdown :code="code[1]"></ui-markdown>
+      </ui-accordion>
     </main>
   </div>
 </template>
 
 <script>
+import snippets from '../../mixins/snippets';
 import DrawerMixin from '../../mixins/drawer';
 
 export default {
   metaInfo: {
     titleTemplate: '%s - Temporary Drawer'
   },
-  mixins: [DrawerMixin]
+  mixins: [snippets, DrawerMixin],
+  created() {
+    this.showCode('drawer', 4);
+  }
 };
 </script>

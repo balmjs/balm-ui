@@ -1,8 +1,8 @@
 <template>
   <div class="demo--drawer demo--permanent-drawer-below-toolbar">
     <ui-top-app-bar fixed contentSelector=".demo-content" :class="$shadow(4)">
-      <template slot="navigation-icon">
-        <ui-toolbar-anchor type="menu" href="javascript:void(0)"
+      <template slot="logo">
+        <ui-toolbar-anchor type="menu"
           @click.native="() => { $router.back(); }">&#xE5C4;</ui-toolbar-anchor>
       </template>
       Permanent Drawer Below Toolbar
@@ -32,18 +32,25 @@
       <main class="demo-main">
         <h1 :class="$tt('headline4')">Permanent Drawer</h1>
         <p :class="$tt('body1')">It sits to the left of this content.</p>
+        <ui-accordion>
+          <ui-markdown :code="code[4]"></ui-markdown>
+        </ui-accordion>
       </main>
     </div>
   </div>
 </template>
 
 <script>
+import snippets from '../../mixins/snippets';
 import DrawerMixin from '../../mixins/drawer';
 
 export default {
   metaInfo: {
     titleTemplate: '%s - Permanent Drawer Below Toolbar'
   },
-  mixins: [DrawerMixin]
+  mixins: [snippets, DrawerMixin],
+  created() {
+    this.showCode('drawer', 4);
+  }
 };
 </script>

@@ -1,15 +1,23 @@
-### `<ui-tab`>
+### `<ui-tab>`
 
 #### Props
 
-| Name | Type     | Default | Description        |
-| ---- | -------- | ------- | ------------------ |
-| icon | `String` | `null`  | Tab icon.          |
-| text | `String` | `null`  | Tab text for icon. |
+| Name | Type     | Default | Description |
+| ---- | -------- | ------- | ----------- |
+| text | `String` | `null`  | Tab text.   |
+| icon | `String` | `null`  | Tab icon.   |
 
 #### Slots
 
-| Name      | Description                                                      |
-| --------- | ---------------------------------------------------------------- |
-| (default) | The default slot holds the tab labels and can contain HTML.      |
-| icon      | The default slot holds the custom tab icon and can contain HTML. |
+| Name      | Description                                                      | `slot-scope` |
+| --------- | ---------------------------------------------------------------- | ------------ |
+| (default) | The default slot holds the tab labels and can contain HTML.      |              |
+| icon      | The default slot holds the custom tab icon and can contain HTML. | ☑            |
+
+- `slot-scope`
+
+```json
+{
+  "icon": "mdc-tab__icon"
+}
+```

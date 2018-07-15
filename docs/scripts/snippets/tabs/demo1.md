@@ -1,7 +1,7 @@
 ```html
 <ui-tab-bar v-model="active">
   <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
-    {{ tab.label }}
+    {{ tab.text }}
   </ui-tab>
 </ui-tab-bar>
 ```
@@ -13,19 +13,16 @@ export default {
       active: 0,
       tabs: [
         {
-          label: 'Item One',
-          url: '#one',
-          panel: 'panel-1'
+          text: 'Item One',
+          url: '#one'
         },
         {
-          label: 'Item Two',
-          url: '#two',
-          panel: 'panel-2'
+          text: 'Item Two',
+          url: '#two'
         },
         {
-          label: 'Item Three',
-          url: '#three',
-          panel: 'panel-3'
+          text: 'Item Three',
+          url: '#three'
         }
       ]
     };

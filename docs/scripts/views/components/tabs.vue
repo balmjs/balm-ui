@@ -14,7 +14,7 @@
         <legend :class="$tt('headline6')">Basic Tab Bar</legend>
         <ui-tab-bar id="basic-tab-bar">
           <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
-            {{ tab.label }}
+            {{ tab.text }}
           </ui-tab>
         </ui-tab-bar>
         <ui-accordion>
@@ -28,7 +28,7 @@
         <legend :class="$tt('headline6')">Basic Tab Bar / Custom Label Color</legend>
         <ui-tab-bar id="basic-tab-bar-custom-label-color" class="custom-label-color-tab">
           <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
-            {{ tab.label }}
+            {{ tab.text }}
           </ui-tab>
         </ui-tab-bar>
       </fieldset>
@@ -103,7 +103,7 @@
         <legend :class="$tt('headline6')">Custom Indicator Colors</legend>
         <ui-tab-bar id="custom-indicator-tab-bar" class="custom-indicator-tab-bar">
           <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
-            {{ tab.label }}
+            {{ tab.text }}
           </ui-tab>
         </ui-tab-bar>
       </fieldset>
@@ -121,7 +121,7 @@
               <div>
                 <ui-tab-bar class="custom-tab-bar-in-toolbar">
                   <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
-                    {{ tab.label }}
+                    {{ tab.text }}
                   </ui-tab>
                 </ui-tab-bar>
               </div>
@@ -158,7 +158,7 @@
             <ui-toolbar-section class="my-modified-toolbar-section">
               <ui-tab-bar class="custom-tab-bar-in-toolbar">
                 <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
-                  {{ tab.label }}
+                  {{ tab.text }}
                 </ui-tab>
               </ui-tab-bar>
             </ui-toolbar-section>
@@ -182,7 +182,7 @@
               <div>
                 <ui-tab-bar class="custom-indicator-tab-bar-in-toolbar">
                   <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
-                    {{ tab.label }}
+                    {{ tab.text }}
                   </ui-tab>
                 </ui-tab-bar>
               </div>
@@ -237,36 +237,33 @@ export default {
       active: 0,
       tabs: [
         {
-          label: 'Item One',
-          url: '#one',
-          panel: 'panel-1'
+          text: 'Item One',
+          url: '#one'
         },
         {
-          label: 'Item Two',
-          url: '#two',
-          panel: 'panel-2'
+          text: 'Item Two',
+          url: '#two'
         },
         {
-          label: 'Item Three',
-          url: '#three',
-          panel: 'panel-3'
+          text: 'Item Three',
+          url: '#three'
         }
       ],
       tabs2: [
         {
+          text: 'Recents',
           icon: 'phone',
-          url: '#recents',
-          text: 'Recents'
+          url: '#recents'
         },
         {
+          text: 'Favorites',
           icon: 'favorite',
-          url: '#favorites',
-          text: 'Favorites'
+          url: '#favorites'
         },
         {
+          text: 'Nearby',
           icon: 'person_pin',
-          url: '#nearby',
-          text: 'Nearby'
+          url: '#nearby'
         }
       ]
     };

@@ -29,6 +29,9 @@
       <main class="demo-main">
         <h1 :class="$tt('headline4')">Persistent Drawer</h1>
         <p :class="$tt('body1')">Click the menu icon above to open and close the drawer.</p>
+        <ui-accordion>
+          <ui-markdown :code="code[2]"></ui-markdown>
+        </ui-accordion>
       </main>
     </div>
 
@@ -36,12 +39,16 @@
 </template>
 
 <script>
+import snippets from '../../mixins/snippets';
 import DrawerMixin from '../../mixins/drawer';
 
 export default {
   metaInfo: {
     titleTemplate: '%s - Persistent Drawer'
   },
-  mixins: [DrawerMixin]
+  mixins: [snippets, DrawerMixin],
+  created() {
+    this.showCode('drawer', 4);
+  }
 };
 </script>

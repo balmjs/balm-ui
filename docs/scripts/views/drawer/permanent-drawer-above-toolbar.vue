@@ -23,8 +23,8 @@
 
     <div class="demo-content">
       <ui-top-app-bar contentSelector=".demo-main" :class="$shadow(4)">
-        <template slot="navigation-icon">
-          <ui-toolbar-anchor type="menu" href="javascript:void(0)"
+        <template slot="logo">
+          <ui-toolbar-anchor type="menu"
             @click.native="() => { $router.back(); }">&#xE5C4;</ui-toolbar-anchor>
         </template>
         Permanent Drawer Above Toolbar
@@ -33,18 +33,25 @@
       <main class="demo-main">
         <h1 :class="$tt('headline4')">Permanent Drawer</h1>
         <p :class="$tt('body1')">It sits to the left of this content.</p>
+        <ui-accordion>
+          <ui-markdown :code="code[3]"></ui-markdown>
+        </ui-accordion>
       </main>
     </div>
   </div>
 </template>
 
 <script>
+import snippets from '../../mixins/snippets';
 import DrawerMixin from '../../mixins/drawer';
 
 export default {
   metaInfo: {
     titleTemplate: '%s - Permanent Drawer Above Toolbar'
   },
-  mixins: [DrawerMixin]
+  mixins: [snippets, DrawerMixin],
+  created() {
+    this.showCode('drawer', 4);
+  }
 };
 </script>

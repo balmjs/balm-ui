@@ -13,19 +13,19 @@ export default {
       active: 0,
       tabs: [
         {
+          text: 'Recents',
           icon: 'phone',
-          url: '#recents',
-          text: 'Recents'
+          url: '#recents'
         },
         {
+          text: 'Favorites',
           icon: 'favorite',
-          url: '#favorites',
-          text: 'Favorites'
+          url: '#favorites'
         },
         {
+          text: 'Nearby',
           icon: 'person_pin',
-          url: '#nearby',
-          text: 'Nearby'
+          url: '#nearby'
         }
       ]
     };

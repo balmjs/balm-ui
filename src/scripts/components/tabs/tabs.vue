@@ -5,10 +5,10 @@
     @change="handleChange">
     <ui-tab v-for="(tabItem, tabIndex) in items"
       :key="tabIndex"
-      :icon="iconOnly || textWithIcon ? tabItem[tabKeys.icon] : null"
       :text="textWithIcon ? tabItem[tabKeys.text] : null"
+      :icon="iconOnly || textWithIcon ? tabItem[tabKeys.icon] : null"
       :href="tabItem[tabKeys.url]">
-      {{ textOnly && tabItem[tabKeys.label] ? tabItem[tabKeys.label] : '' }}
+      {{ textOnly && tabItem[tabKeys.text] ? tabItem[tabKeys.text] : '' }}
     </ui-tab>
   </ui-tab-bar>
 </template>
@@ -20,9 +20,8 @@ import tabsMixin from '../../mixins/tabs';
 
 // Define constants
 const DEFAULT_TAB_KEYS = {
-  label: 'label',
-  icon: 'icon',
   text: 'text',
+  icon: 'icon',
   url: 'url'
 };
 const TAB_ITEM_KEYS = Object.keys(DEFAULT_TAB_KEYS);

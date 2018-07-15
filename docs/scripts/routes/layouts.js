@@ -20,7 +20,7 @@ const PermanentDrawerBelowToolbar = () =>
   import('../views/drawer/permanent-drawer-below-toolbar');
 const Tabs = () => import('../views/components/tabs');
 
-const layoutRoutes = [
+export default [
   {
     path: '/grid',
     name: 'grid',
@@ -102,5 +102,3 @@ const layoutRoutes = [
     component: Tabs
   }
 ];
-
-export default layoutRoutes;

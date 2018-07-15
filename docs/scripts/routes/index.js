@@ -1,22 +1,19 @@
-import layoutRoutes from './layout';
-import commonRoutes from './common';
-import formRoutes from './form';
-import dataRoutes from './data';
-import popupRoutes from './popup';
+import layoutRoutes from './layouts';
+import buttonRoutes from './buttons';
+import dataRoutes from './data-view';
+import formRoutes from './inputs-and-controls';
+import modalRoutes from './modal';
+import otherRoutes from './others';
 
 import Home from '../views/home';
 // const Test = import('../views/test');
 
-const baseRoutes = [{
+const baseRoutes = [
+  {
     path: '/',
     name: 'home',
-    component: Home,
-    meta: {
-      title: 'BalmUI - Home',
-      keywords: '',
-      description: ''
-    }
-  },
+    component: Home
+  }
   // {
   //   path: '/test',
   //   name: 'test',
@@ -24,6 +21,13 @@ const baseRoutes = [{
   // }
 ];
 
-const routes = baseRoutes.concat(layoutRoutes, commonRoutes, formRoutes, dataRoutes, popupRoutes);
+const routes = baseRoutes.concat(
+  layoutRoutes,
+  buttonRoutes,
+  dataRoutes,
+  formRoutes,
+  modalRoutes,
+  otherRoutes
+);
 
 export default routes;

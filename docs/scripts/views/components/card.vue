@@ -36,7 +36,7 @@
         <ui-list-divider></ui-list-divider>
 
         <template v-for="(item, index) in list">
-          <a :key="`item${index}`" :class="['demo-card-article', $ripple()]">
+          <a :key="`item${index}`" class="demo-card-article" v-ripple>
             <h2 :class="[$tt('headline5'), 'demo-card-article__title']">{{ item.title }}</h2>
             <p :class="[$tt('body2'), 'demo-card-article__snippet']">{{ item.content }}</p>
           </a>

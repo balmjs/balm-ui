@@ -16,7 +16,7 @@ const BalmUI_ValidatorPlugin = {
   install(Vue, customRules = {}) {
     let validationRules = Object.assign({}, defaultRules, customRules);
 
-    const validate = function(formData = {}, rules = {}) {
+    const $validate = function(formData = {}, rules = {}) {
       let currentFormData = Object.assign({}, formData);
       let currentRules = Object.assign({}, validationRules, rules);
 
@@ -95,7 +95,7 @@ const BalmUI_ValidatorPlugin = {
       return result;
     };
 
-    Vue.prototype.$validate = validate; // NOTE: named '$validate'
+    Vue.prototype.$validate = $validate;
   }
 };
 

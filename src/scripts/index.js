@@ -95,7 +95,6 @@ import UiSnackbar from './components/common/snackbar';
  * Plugins
  */
 import event from './plugins/event';
-import ripple from './plugins/ripple';
 import grid from './plugins/grid';
 import typography from './plugins/typography';
 import theme from './plugins/theme';
@@ -108,7 +107,7 @@ import validator from './plugins/validator';
 /**
  * Directives
  */
-// import directives from './directives';
+import vRipple from './directives/ripple';
 /**
  * Utilities
  */
@@ -216,8 +215,11 @@ const plugins = {
   // alert,
   // confirm,
   // toast,
-  validator,
-  ripple
+  validator
+};
+
+const directives = {
+  vRipple
 };
 
 const registers = {
@@ -240,6 +242,12 @@ const registers = {
         Vue.use(Plugin);
       }
     }
+
+    // Init the directives
+    for (let key in BalmUI.directives) {
+      let Directive = BalmUI.directives[key];
+      Vue.directive(Directive.name, Directive);
+    }
   }
 };
 
@@ -248,7 +256,7 @@ const BalmUI = Object.assign(
   { version },
   { components },
   { plugins },
-  // { directives },
+  { directives },
   { utils },
   registers
 );

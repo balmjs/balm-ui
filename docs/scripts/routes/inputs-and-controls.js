@@ -1,17 +1,12 @@
-const Textfield = () =>
-  import ('../views/components/textfield');
-const Checkbox = () =>
-  import ('../views/components/checkbox');
-const Radio = () =>
-  import ('../views/components/radio');
-const Select = () =>
-  import ('../views/components/select');
-const Switch = () =>
-  import ('../views/components/switch');
-const Slider = () =>
-  import ('../views/components/slider');
+const Textfield = () => import('../views/components/textfield');
+const Checkbox = () => import('../views/components/checkbox');
+const Radio = () => import('../views/components/radio');
+const Select = () => import('../views/components/select');
+const Switch = () => import('../views/components/switch');
+const Slider = () => import('../views/components/slider');
 
-const formRoutes = [{
+export default [
+  {
     path: '/textfield',
     name: 'textfield',
     component: Textfield
@@ -42,5 +37,3 @@ const formRoutes = [{
     component: Slider
   }
 ];
-
-export default formRoutes;

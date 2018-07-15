@@ -175,6 +175,11 @@ const MATERIAL_COMPONENTS = [
         description: 'Using primary and accent colors'
       },
       {
+        icon: 'ripple',
+        name: 'Ripple',
+        description: 'Touch ripple'
+      },
+      {
         icon: 'shadow',
         name: 'Elevation',
         description: 'Shadow for different elevations'

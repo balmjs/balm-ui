@@ -1,6 +1,7 @@
 const input = {
   components: './src/scripts/components',
   plugins: './src/scripts/plugins',
+  directives: './src/scripts/directives',
   utils: './src/scripts/utils'
 };
 
@@ -43,11 +44,15 @@ const plugins = [
   'typography.js',
   'validator.js'
 ];
+const directives = [
+  'ripple.js'
+];
 const utils = ['ie.js', 'type.js', 'util.js'];
 
 const output = {
   components: './components',
   plugins: './plugins',
+  directives: './src/scripts/directives',
   utils: './utils'
 };
 
@@ -55,6 +60,7 @@ module.exports = {
   input,
   components,
   plugins,
+  directives,
   utils,
   output
 };

@@ -53,11 +53,12 @@ balm.go(function(mix) {
         mix.remove([
           individual.output.components,
           individual.output.plugins,
+          individual.output.directives,
           individual.output.utils
         ]);
 
         // build individual
-        const individualBuild = ['components', 'plugins', 'utils']; // , 'directives'
+        const individualBuild = ['components', 'plugins', 'directives', 'utils'];
         individualBuild.forEach(buildName => {
           let buildFiles = individual[buildName].map(item => {
             return individual.input[buildName] + '/' + item;
@@ -68,6 +69,7 @@ balm.go(function(mix) {
         mix.copy(['./dist/css/*.css', './dist/js/*.js'], './dist');
         mix.copy('./dist/css/components/*', './components');
         mix.copy('./dist/css/plugins/*', './plugins');
+        mix.copy('./dist/css/directives/*', './directives');
         mix.copy('./dist/font/*', './font');
         mix.remove(['./dist/css', './dist/js', './dist/font']);
       }

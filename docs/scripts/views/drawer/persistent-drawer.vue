@@ -28,7 +28,7 @@
     </ui-persistent-drawer>
 
     <div class="demo-content">
-      <ui-top-app-bar contentSelector=".demo-main" menuId="demo-menu" :class="$shadow(4)">
+      <ui-top-app-bar contentSelector=".demo-main" menuId="demo-menu" v-shadow="4">
         Persistent Drawer
       </ui-top-app-bar>
 

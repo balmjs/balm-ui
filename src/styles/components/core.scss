@@ -1,8 +1,3 @@
-@import '../global/reset';
-@import '../../material-components-web/ripple/mdc-ripple';
-/// For Form Field
-@import '../../material-components-web/form-field/mdc-form-field';
-@import './ui-form-field';
-/// For Text Field and Select
-@import '../../material-components-web/notched-outline/mdc-notched-outline';
-@import '../../material-components-web/floating-label/mdc-floating-label';
+@import '../../material-components-web/top-app-bar/mdc-top-app-bar';
+@import '../../material-components-web/typography/mdc-typography';
+@import '../../material-components-web/theme/mdc-theme';

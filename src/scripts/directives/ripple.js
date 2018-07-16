@@ -27,10 +27,6 @@ const initRipple = (el, {
   }
 
   el.classList.add(...classes);
-
-  if (modifiers.unbounded) {
-    el.setAttribute('data-mdc-ripple-is-unbounded', '');
-  }
 };
 
 const BalmUI_RippleDirective = {

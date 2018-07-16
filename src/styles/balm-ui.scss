@@ -1,7 +1,5 @@
-@import './global/var';
-@import './global/reset';
 @import './global/vendor';
-/// Components
+/// Components Custom Styles
 @import './components/ui-form-field';
 @import './components/ui-list';
 @import './components/ui-icon';
@@ -9,4 +7,3 @@
 @import './components/ui-tabs';
 @import './components/ui-textfield';
 @import './components/ui-toolbar';
-/// Plugins

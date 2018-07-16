@@ -23,7 +23,6 @@ import Vue from 'vue';
 import UiGridComponents from 'balm-ui/components/grid';
 
 // (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
-import 'balm-ui/components/core.css';
 import 'balm-ui/components/grid.css';
 
 // Optional.

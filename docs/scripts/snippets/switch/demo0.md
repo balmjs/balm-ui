@@ -19,7 +19,7 @@ import Vue from 'vue';
 import UiSwitch from 'balm-ui/components/switch';
 
 // (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
-import 'balm-ui/components/core.css';
+import 'balm-ui/components/form.css';
 import 'balm-ui/components/switch.css';
 
 // Optional. Overwrite `<ui-switch>` props.

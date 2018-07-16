@@ -10,23 +10,24 @@
     user-select: none;
     -webkit-user-select: none;
   }
-
   .demo-surface[data-mdc-ripple-is-unbounded] {
     /* Override width/height from above to match icon size, and adjust padding for hitbox */
     width: 24px;
     height: 24px;
     padding: 12px;
   }
-
   button.demo-surface {
-    display: inline-block; /* Safari does not center button text otherwise :( */
+    display: inline-block;
+    /* Safari does not center button text otherwise :( */
     background: none;
     border: none;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
   }
-
+  body {
+    font-family: sans-serif;
+  }
   #unsupported-msg {
     padding: 1rem;
     border: 1px solid red;
@@ -36,25 +37,21 @@
     position: absolute;
     z-index: 10;
   }
-
   .unsupported #unsupported-msg {
     display: block;
   }
-
   .unsupported main {
     opacity: .2;
     pointer-events: none;
     user-select: none;
     -webkit-user-select: none;
   }
-
   @media (max-width: 565px) {
     .example {
       flex-direction: column;
       width: 100%;
     }
   }
-
   .example {
     margin: 24px;
     padding: 24px;
@@ -62,12 +59,10 @@
     display: flex;
     margin-left: 10px;
   }
-
-  .example > div {
+  .example>div {
     margin: 48px 0;
     width: 400px;
   }
-
   .example h2 {
     font-size: 1.2em;
     margin-bottom: 0.8em;

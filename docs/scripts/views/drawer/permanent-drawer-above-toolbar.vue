@@ -22,7 +22,7 @@
     </ui-permanent-drawer>
 
     <div class="demo-content">
-      <ui-top-app-bar contentSelector=".demo-main" :class="$shadow(4)">
+      <ui-top-app-bar contentSelector=".demo-main" v-shadow="4">
         <template slot="logo">
           <ui-toolbar-anchor type="menu"
             @click.native="() => { $router.back(); }">&#xE5C4;</ui-toolbar-anchor>

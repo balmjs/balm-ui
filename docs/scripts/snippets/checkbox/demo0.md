@@ -19,7 +19,7 @@ import Vue from 'vue';
 import UiCheckbox from 'balm-ui/components/checkbox';
 
 // (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
-import 'balm-ui/components/core.css';
+import 'balm-ui/components/form.css';
 import 'balm-ui/components/checkbox.css';
 
 // Optional. Overwrite `<ui-checkbox>` props.

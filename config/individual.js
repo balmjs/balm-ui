@@ -39,7 +39,6 @@ const plugins = [
   'event.js',
   'elevation.js',
   'grid.js',
-  'ripple.js',
   'theme.js',
   'typography.js',
   'validator.js'
@@ -52,7 +51,7 @@ const utils = ['ie.js', 'type.js', 'util.js'];
 const output = {
   components: './components',
   plugins: './plugins',
-  directives: './src/scripts/directives',
+  directives: './directives',
   utils: './utils'
 };
 

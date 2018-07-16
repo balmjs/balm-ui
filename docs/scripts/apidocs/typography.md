@@ -1,5 +1,3 @@
-### Typography
-
 - `$tt(style)`
 
 | Param | Type   | Default | Description           |

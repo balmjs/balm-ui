@@ -27,13 +27,20 @@
         <figcaption>{{ i }}dp (<code>mdc-elevation--z{{ i }}</code>)</figcaption>
       </figure>
     </section>
+    <ui-accordion>
+      <ui-markdown :code="code[1]"></ui-markdown>
+    </ui-accordion>
+
     <section>
-      <div id="hover-el" v-shadow.transition="2">
+      <div id="hover-el" v-shadow.transition="[2, 8]">
         <p>Hover over or tap me for a transition</p>
       </div>
     </section>
+    <ui-accordion>
+      <ui-markdown :code="code[2]"></ui-markdown>
+    </ui-accordion>
 
-    <h3 :class="$tt('headline3')">2. API</h3>
+    <h3 :class="$tt('headline3')">2. Elevation Directive API</h3>
     <ui-apidocs name="elevation"></ui-apidocs>
   </div>
 </template>
@@ -47,7 +54,7 @@ export default {
   },
   mixins: [snippets],
   created() {
-    this.showCode('elevation');
+    this.showCode('elevation', 2);
   }
 };
 </script>

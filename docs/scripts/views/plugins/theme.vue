@@ -174,7 +174,7 @@
       </section>
     </div>
 
-    <h3 :class="$tt('headline3')">2. API</h3>
+    <h3 :class="$tt('headline3')">2. Theme Plugin API</h3>
     <ui-apidocs name="theme"></ui-apidocs>
   </div>
 </template>

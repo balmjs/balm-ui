@@ -1,4 +1,4 @@
-### Theme color (`mdc-theme--<THEME_STYLE>`)
+### 2.1 Theme color (`mdc-theme--<THEME_STYLE>`)
 
 - `$themeColor(style)`
 - `$setTheme(style, value)`
@@ -22,7 +22,7 @@
 | primary-bg   | `mdc-theme--primary-bg`   |
 | secondary-bg | `mdc-theme--secondary-bg` |
 
-### Text color (`mdc-theme--text-<TEXT_STYLE>-on-<THEME_TONE>`)
+### 2.2 Text color (`mdc-theme--text-<TEXT_STYLE>-on-<THEME_TONE>`)
 
 - `$textColor(style, tone)`
 - `$setTextTheme(style, tone, value)`

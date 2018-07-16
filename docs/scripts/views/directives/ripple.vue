@@ -2,6 +2,11 @@
   <div class="demo--ripple">
     <section :class="['hero']" v-ripple></section>
 
+    <h3 :class="$tt('headline3')">0. Usage</h3>
+    <ui-markdown :text="code[0]"></ui-markdown>
+
+    <h3 :class="$tt('headline3')">1. Example</h3>
+
     <section class="example">
       <div>
         <h2>Bounded</h2>
@@ -16,6 +21,9 @@
         </div>
       </div>
     </section>
+    <ui-accordion>
+      <ui-markdown :code="code[1]"></ui-markdown>
+    </ui-accordion>
 
     <section class="example">
       <div>
@@ -31,6 +39,9 @@
         </div>
       </div>
     </section>
+    <ui-accordion>
+      <ui-markdown :code="code[2]"></ui-markdown>
+    </ui-accordion>
 
     <section class="example">
       <div>
@@ -60,5 +71,25 @@
         </div>
       </div>
     </section>
+    <ui-accordion>
+      <ui-markdown :code="code[3]"></ui-markdown>
+    </ui-accordion>
+
+    <h3 :class="$tt('headline3')">2. Ripple Directive API</h3>
+    <ui-apidocs name="ripple"></ui-apidocs>
   </div>
 </template>
+
+<script>
+import snippets from '../../mixins/snippets';
+
+export default {
+  metaInfo: {
+    titleTemplate: '%s - Ripple'
+  },
+  mixins: [snippets],
+  created() {
+    this.showCode('ripple', 3);
+  }
+};
+</script>

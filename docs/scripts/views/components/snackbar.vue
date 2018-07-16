@@ -6,8 +6,11 @@
         message="Message sent"></ui-snackbar>
     </section>
 
+    <h3 :class="$tt('headline3')">0. Usage</h3>
+    <ui-markdown :text="code[0]"></ui-markdown>
+
+    <h3 :class="$tt('headline3')">1. Example</h3>
     <section class="example">
-      <h2>Basic Example</h2>
       <div>
         <ui-checkbox id="multiline"
           v-model="multiline">Multiline</ui-checkbox><br>
@@ -34,8 +37,11 @@
           :dismiss="dismiss"></ui-snackbar>
       </div>
     </section>
+    <ui-accordion>
+      <ui-markdown :code="code[1]"></ui-markdown>
+    </ui-accordion>
 
-    <!-- <ui-apidoc name="snackbar"></ui-apidoc> -->
+    <ui-apidocs name="snackbar"></ui-apidocs>
   </div>
 </template>
 
@@ -63,7 +69,7 @@ export default {
     }
   },
   created() {
-    // this.showCode('snackbar', 2);
+    this.showCode('snackbar');
   }
 };
 </script>

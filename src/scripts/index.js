@@ -98,7 +98,6 @@ import event from './plugins/event';
 import grid from './plugins/grid';
 import typography from './plugins/typography';
 import theme from './plugins/theme';
-import elevation from './plugins/elevation';
 import validator from './plugins/validator';
 // import alert from './plugins/alert';
 // import confirm from './plugins/confirm';
@@ -107,7 +106,9 @@ import validator from './plugins/validator';
 /**
  * Directives
  */
+import vIcon from './directives/icon';
 import vRipple from './directives/ripple';
+import VShadow from './directives/elevation';
 /**
  * Utilities
  */
@@ -208,10 +209,9 @@ const components = {
 
 const plugins = {
   event,
-  elevation,
   grid,
-  theme,
   typography,
+  theme,
   // alert,
   // confirm,
   // toast,
@@ -219,7 +219,9 @@ const plugins = {
 };
 
 const directives = {
-  vRipple
+  vIcon,
+  vRipple,
+  VShadow
 };
 
 const registers = {
@@ -251,17 +253,23 @@ const registers = {
   }
 };
 
-const BalmUI = Object.assign(
-  {},
-  { version },
-  { components },
-  { plugins },
-  { directives },
-  { utils },
+const BalmUI = Object.assign({}, {
+    version
+  }, {
+    components
+  }, {
+    plugins
+  }, {
+    directives
+  }, {
+    utils
+  },
   registers
 );
 
 autoInstall(BalmUI);
 
 export default BalmUI;
-export { utils };
+export {
+  utils
+};

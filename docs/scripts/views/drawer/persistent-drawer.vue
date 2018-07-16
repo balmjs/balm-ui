@@ -5,6 +5,12 @@
       <ui-drawer-content>
         <ui-list-group>
           <ui-list-nav>
+            <ui-item-link @click.native="() => { $router.back(); }">
+              <ui-item-first>
+                <ui-icon>&#xE5C4;</ui-icon>
+              </ui-item-first>
+              Back
+            </ui-item-link>
             <ui-item-link v-for="(item, index) in menu1" :key="index">
               <ui-item-first :icon="item.icon"></ui-item-first>
               {{ item.name }}

@@ -37,14 +37,15 @@ const components = [
 ];
 const plugins = [
   'event.js',
-  'elevation.js',
   'grid.js',
   'theme.js',
   'typography.js',
   'validator.js'
 ];
 const directives = [
-  'ripple.js'
+  'icon.js',
+  'ripple.js',
+  'elevation.js'
 ];
 const utils = ['ie.js', 'type.js', 'util.js'];
 

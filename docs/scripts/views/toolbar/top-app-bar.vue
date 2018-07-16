@@ -1,7 +1,8 @@
 <template>
   <div class="demo--top-app-bar" :dir="controls.rtl ? 'rtl' : null">
-    <ui-top-app-bar id="demo-top-app-bar"
+    <ui-top-app-bar
       contentSelector="#content-main"
+      menuId="demo-menu"
       :actionItems="controls.noAction ? [] : items"
       :dense="controls.dense"
       :fixed="controls.fixed"
@@ -11,6 +12,35 @@
       @nav="showMenu">
       San Francisco, CA
     </ui-top-app-bar>
+
+    <ui-temporary-drawer v-model="open" menuSelector="#demo-menu">
+      <ui-drawer-header :innerClass="[$themeColor('on-primary'), $themeColor('primary-bg')]">
+        Header here
+      </ui-drawer-header>
+      <ui-drawer-content>
+        <ui-list-group>
+          <ui-list-nav>
+            <ui-item-link @click.native="() => { $router.back(); }">
+              <ui-item-first>
+                <ui-icon>&#xE5C4;</ui-icon>
+              </ui-item-first>
+              Back
+            </ui-item-link>
+            <ui-item-link v-for="(item, index) in menu1" :key="index">
+              <ui-item-first :icon="item.icon"></ui-item-first>
+              {{ item.name }}
+            </ui-item-link>
+          </ui-list-nav>
+          <ui-list-divider></ui-list-divider>
+          <ui-list-nav>
+            <ui-item-link v-for="(item, index) in menu2" :key="index">
+              <ui-item-first :icon="item.icon"></ui-item-first>
+              {{ item.name }}
+            </ui-item-link>
+          </ui-list-nav>
+        </ui-list-group>
+      </ui-drawer-content>
+    </ui-temporary-drawer>
 
     <main class="demo-main">
       <div id="content-main">
@@ -75,12 +105,16 @@
 </template>
 
 <script>
+import DrawerMixin from '../../mixins/drawer';
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Top App Bar'
   },
+  mixins: [DrawerMixin],
   data() {
     return {
+      open: false,
       items: [
         {
           icon: 'file_download',

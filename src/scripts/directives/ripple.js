@@ -1,5 +1,7 @@
 import autoInit from './register';
-import { MDCRipple } from '../../material-components-web/ripple';
+import {
+  MDCRipple
+} from '../../material-components-web/ripple';
 
 const RIPPLE_COLOR = {
   BASE: 'mdc-ripple-surface',
@@ -7,7 +9,10 @@ const RIPPLE_COLOR = {
   SECONDARY: 'mdc-ripple-surface--accent'
 };
 
-const initRipple = (el, { value, modifiers }) => {
+const initRipple = (el, {
+  value,
+  modifiers
+}) => {
   let classes = [RIPPLE_COLOR.BASE];
 
   switch (value) {
@@ -21,17 +26,16 @@ const initRipple = (el, { value, modifiers }) => {
       break;
   }
 
-  classes.forEach(className => {
-    el.classList.add(className);
-    // if (modifiers.unbounded) {
-    //   el.setAttribute('data-mdc-ripple-is-unbounded', '');
-    // }
-  });
+  el.classList.add(...classes);
+
+  if (modifiers.unbounded) {
+    el.setAttribute('data-mdc-ripple-is-unbounded', '');
+  }
 };
 
 const BalmUI_RippleDirective = {
   name: 'ripple',
-  bind: function(el, binding) {
+  bind: function (el, binding) {
     initRipple(el, binding);
   },
   inserted(el, binding) {

@@ -2,7 +2,7 @@
   <div class="demo--card">
     <section class="hero">
       <ui-card class="demo-card">
-        <ui-card-content>
+        <ui-card-content v-ripple>
           <ui-card-media rectangle class="demo-card__media demo-card__media--16-9"></ui-card-media>
           <div class="demo-card__primary">
             <h2 :class="[$tt('headline6'), 'demo-card__title']">Our Changing Planet</h2>
@@ -57,7 +57,7 @@
 
     <section class="demo-card-collection">
       <ui-card class="demo-card demo-card--photo">
-        <ui-card-content class="demo-card__primary-action">
+        <ui-card-content class="demo-card__primary-action" v-ripple>
           <ui-card-media square class="demo-card__media">
             <ui-card-media-content class="demo-card__media-content--with-title">
               <div :class="[$tt('subtitle2'), 'demo-card__media-title']">
@@ -81,7 +81,7 @@
 
     <section class="demo-card-collection">
       <ui-card class="demo-card demo-card--music">
-        <ui-card-content class="demo-card__primary-action">
+        <ui-card-content class="demo-card__primary-action" v-ripple>
           <div class="demo-card__music-row">
             <ui-card-media square class="demo-card__media demo-card__media--music"></ui-card-media>
             <div class="demo-card__music-info">

@@ -43,7 +43,6 @@ const plugins = [
   'validator.js'
 ];
 const directives = [
-  'icon.js',
   'ripple.js',
   'elevation.js'
 ];

@@ -23,10 +23,7 @@ const getElevation = value => {
   return result;
 };
 
-const initElevation = (el, {
-  value,
-  modifiers
-}) => {
+const initElevation = (el, { value, modifiers }) => {
   let classes = [];
 
   if (modifiers.transition) {
@@ -55,7 +52,7 @@ const initElevation = (el, {
 
 const BalmUI_ElevationDirective = {
   name: 'shadow',
-  bind: function (el, binding) {
+  bind: function(el, binding) {
     initElevation(el, binding);
   }
 };

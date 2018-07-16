@@ -106,7 +106,6 @@ import validator from './plugins/validator';
 /**
  * Directives
  */
-import vIcon from './directives/icon';
 import vRipple from './directives/ripple';
 import VShadow from './directives/elevation';
 /**
@@ -219,7 +218,6 @@ const plugins = {
 };
 
 const directives = {
-  vIcon,
   vRipple,
   VShadow
 };
@@ -253,15 +251,21 @@ const registers = {
   }
 };
 
-const BalmUI = Object.assign({}, {
+const BalmUI = Object.assign(
+  {},
+  {
     version
-  }, {
+  },
+  {
     components
-  }, {
+  },
+  {
     plugins
-  }, {
+  },
+  {
     directives
-  }, {
+  },
+  {
     utils
   },
   registers
@@ -270,6 +274,4 @@ const BalmUI = Object.assign({}, {
 autoInstall(BalmUI);
 
 export default BalmUI;
-export {
-  utils
-};
+export { utils };

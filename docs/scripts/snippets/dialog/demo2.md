@@ -1,9 +1,36 @@
 ```html
-<ui-button primary effect raised @click.native="showDialog('showTransparent')">dialog with transparent mask</ui-button>
-```
-```html
-<ui-dialog :show="showTransparent"  @on-close="closeDialog('showTransparent')" transparent>
-  <h4>I'm a dialog width a transparent mask.</h4>
-  <br>:use { transparent } prop.
+<ui-button raised @click="balmUI.onShow('open')">Show Scrolling Dialog</ui-button>
+
+<ui-dialog
+  v-model="open"
+  @confirm="onConfirm">
+  <ui-dialog-header>Choose a Ringtone</ui-dialog-header>
+  <ui-dialog-body scrollable>
+    <ui-list>
+      <ui-item v-for="(item, index) in list" :key="index">
+        {{ item }}
+      </ui-item>
+    </ui-list>
+  </ui-dialog-body>
+  <ui-dialog-footer></ui-dialog-footer>
 </ui-dialog>
+```
+
+```js
+export default {
+  data() {
+    return {
+      open: false
+    };
+  },
+  methods: {
+    onConfirm(result) {
+      if (result) {
+        console.log('ok');
+      } else {
+        console.log('cancel');
+      }
+    }
+  }
+};
 ```

@@ -13,9 +13,22 @@
       </ui-dialog>
     </section>
 
+    <h3 :class="$tt('headline3')">0. Usage</h3>
+    <ui-markdown :text="code[0]"></ui-markdown>
+
+    <h3 :class="$tt('headline3')">1. Example</h3>
     <section class="example">
       <ui-button raised @click="balmUI.onOpen('open')">Show Dialog</ui-button>
+      <ui-accordion>
+        <ui-markdown :code="code[1]"></ui-markdown>
+      </ui-accordion>
+    </section>
+
+    <section class="example">
       <ui-button raised @click="balmUI.onShow('open2')">Show Scrolling Dialog</ui-button>
+      <ui-accordion>
+        <ui-markdown :code="code[2]"></ui-markdown>
+      </ui-accordion>
     </section>
 
     <ui-dialog
@@ -42,7 +55,10 @@
       <ui-dialog-footer></ui-dialog-footer>
     </ui-dialog>
 
-    <!-- <ui-apidoc name="dialog"></ui-apidoc> -->
+    <h3 :class="$tt('headline3')">2. API</h3>
+    <ui-apidocs name="dialog"></ui-apidocs>
+    <ui-apidocs name="dialog-body"></ui-apidocs>
+    <ui-apidocs name="dialog-footer"></ui-apidocs>
   </div>
 </template>
 
@@ -83,7 +99,7 @@ export default {
     }
   },
   created() {
-    // this.showCode('dialog', 2);
+    this.showCode('dialog', 2);
   }
 };
 </script>

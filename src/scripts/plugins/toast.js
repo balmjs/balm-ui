@@ -2,24 +2,30 @@ import autoInstall from '../config/auto-install';
 import UiSnackbar from '../components/common/snackbar';
 import getType from '../utils/typeof';
 
-const DEFAULT_OPTIONS = {
+const DEFAULT_PROPS = {
   className: '',
+  alignStart: false,
   message: '',
-  timeout: 3000,
-  multiline: false
+  timeout: 2750,
+  multiline: false,
+  fouc: false
 };
 const DELAY = 200;
 
 const template = `<ui-snackbar
-  :class="['mdc-toast', options.className]"
   :active="active"
-  :message="options.message"
-  :multiline="options.multiline">
+  :class="['mdc-toast', props.className]"
+  :alignStart="props.alignStart"
+  :message="props.message"
+  :timeout="props.timeout"
+  :multiline="props.multiline"
+  :fouc="props.fouc"
+  @change="handleChange">
 </ui-snackbar>`;
 
 const BalmUI_ToastPlugin = {
-  install(Vue, config = {}) {
-    let options = Object.assign({}, DEFAULT_OPTIONS, config);
+  install(Vue, configs = {}) {
+    let props = Object.assign({}, DEFAULT_PROPS, configs);
 
     const $toast = (customOptions = {}) => {
       if (!document.querySelector('.mdc-toast')) {
@@ -30,13 +36,13 @@ const BalmUI_ToastPlugin = {
           },
           data: {
             active: false,
-            options
+            props
           },
           created() {
             if (getType(customOptions) === 'string') {
-              this.options.message = customOptions;
+              this.props.message = customOptions;
             } else if (getType(customOptions) === 'object') {
-              this.options = Object.assign({}, this.options, customOptions);
+              this.props = Object.assign({}, this.props, customOptions);
             }
 
             this.$nextTick(() => {
@@ -45,15 +51,17 @@ const BalmUI_ToastPlugin = {
               setTimeout(() => {
                 this.active = true;
               }, DELAY);
+            });
+          },
+          methods: {
+            handleChange() {
+              this.active = false;
 
               setTimeout(() => {
-                this.active = false;
-                setTimeout(() => {
-                  document.body.removeChild(vm.$el);
-                  vm = null;
-                }, DELAY);
-              }, this.options.timeout);
-            });
+                document.body.removeChild(vm.$el);
+                vm = null;
+              }, DELAY);
+            }
           },
           template
         });

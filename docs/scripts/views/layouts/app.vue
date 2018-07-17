@@ -111,7 +111,7 @@ export default {
   },
   mounted() {
     this.open = window.innerWidth >= 1024;
-    window.addEventListener('optimizedResize', () => {
+    window.addEventListener('balmResize', () => {
       this.open = window.innerWidth >= 1024;
     });
   },

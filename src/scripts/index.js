@@ -101,7 +101,7 @@ import validator from './plugins/validator';
 // import alert from './plugins/alert';
 // import confirm from './plugins/confirm';
 // import prompt from './plugins/prompt';
-// import toast from './plugins/toast';
+import toast from './plugins/toast';
 /**
  * Directives
  */
@@ -210,10 +210,11 @@ const plugins = {
   grid,
   typography,
   theme,
+  validator,
   // alert,
   // confirm,
-  // toast,
-  validator
+  // prompt,
+  toast
 };
 
 const directives = {

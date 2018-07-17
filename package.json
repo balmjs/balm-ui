@@ -44,7 +44,7 @@
     "font-awesome": "^4.7.0",
     "gulp": "^3.9.1",
     "markdown-loader": "^3.0.0",
-    "material-components-web": "0.37.0",
+    "material-components-web": "0.37.1",
     "material-design-icons": "^3.0.1",
     "normalize.css": "^8.0.0",
     "prismjs": "^1.15.0",

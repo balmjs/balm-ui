@@ -98,6 +98,9 @@
               </div>
             </fieldset>
           </div>
+          <ui-accordion>
+            <ui-markdown :code="code[1]"></ui-markdown>
+          </ui-accordion>
         </div>
 
         <div class="demo-theme-color-section">
@@ -116,6 +119,9 @@
               </div>
             </fieldset>
           </div>
+          <ui-accordion>
+            <ui-markdown :code="code[2]"></ui-markdown>
+          </ui-accordion>
 
           <div class="demo-theme-color-section__row">
             <fieldset class="demo-fieldset--color">
@@ -140,6 +146,9 @@
               </div>
             </fieldset>
           </div>
+          <ui-accordion>
+            <ui-markdown :code="code[3]"></ui-markdown>
+          </ui-accordion>
 
           <div class="demo-theme-color-section__row">
             <fieldset class="demo-fieldset--color">
@@ -170,6 +179,9 @@
               </div>
             </fieldset>
           </div>
+          <ui-accordion>
+            <ui-markdown :code="code[4]"></ui-markdown>
+          </ui-accordion>
         </div>
       </section>
     </div>
@@ -212,7 +224,7 @@ export default {
     };
   },
   created() {
-    this.showCode('theme');
+    this.showCode('theme', 4);
   },
   beforeDestroy() {
     this.reset();

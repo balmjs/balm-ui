@@ -23,6 +23,7 @@ import Vue from 'vue';
 import UiIconButtonComponents from 'balm-ui/components/icon-button';
 
 // (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
+import 'balm-ui/components/core.css';
 import 'balm-ui/components/icon-button.css';
 import 'balm-ui/components/icon.css';
 

@@ -19,6 +19,7 @@ import Vue from 'vue';
 import UiFab from 'balm-ui/components/fab';
 
 // (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
+import 'balm-ui/components/core.css';
 import 'balm-ui/components/fab.css';
 import 'balm-ui/components/icon.css';
 

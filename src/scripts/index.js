@@ -39,7 +39,6 @@ import UiMenuAnchor from './components/menu/menu-anchor';
 import UiMenu from './components/menu/menu';
 import UiMenuitem from './components/menu/menuitem';
 import UiLinearProgress from './components/common/linear-progress';
-import UiShape from './components/common/shape';
 // Data View
 import UiCard from './components/card/card';
 import UiCardContent from './components/card/card-content';
@@ -108,6 +107,7 @@ import validator from './plugins/validator';
  */
 import vRipple from './directives/ripple';
 import VShadow from './directives/elevation';
+import vShape from './directives/shape';
 /**
  * Utilities
  */
@@ -149,7 +149,6 @@ const components = {
   UiMenu,
   UiMenuitem,
   UiLinearProgress,
-  UiShape,
   // Input Controls
   UiFormField,
   UiTextfield,
@@ -219,7 +218,8 @@ const plugins = {
 
 const directives = {
   vRipple,
-  VShadow
+  VShadow,
+  vShape
 };
 
 const registers = {
@@ -251,21 +251,15 @@ const registers = {
   }
 };
 
-const BalmUI = Object.assign(
-  {},
-  {
+const BalmUI = Object.assign({}, {
     version
-  },
-  {
+  }, {
     components
-  },
-  {
+  }, {
     plugins
-  },
-  {
+  }, {
     directives
-  },
-  {
+  }, {
     utils
   },
   registers
@@ -274,4 +268,6 @@ const BalmUI = Object.assign(
 autoInstall(BalmUI);
 
 export default BalmUI;
-export { utils };
+export {
+  utils
+};

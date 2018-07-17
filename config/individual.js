@@ -18,6 +18,7 @@ const components = [
   'form-field.js',
   'grid-list.js',
   'grid.js',
+  'icon-toggle.js',
   'icon-button.js',
   'image-list.js',
   'linear-progress.js',
@@ -44,7 +45,8 @@ const plugins = [
 ];
 const directives = [
   'ripple.js',
-  'elevation.js'
+  'elevation.js',
+  'shape.js'
 ];
 const utils = ['ie.js', 'type.js', 'util.js'];
 

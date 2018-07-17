@@ -1,3 +1,4 @@
-@import '../../material-components-web/top-app-bar/mdc-top-app-bar';
-@import '../../material-components-web/typography/mdc-typography';
-@import '../../material-components-web/theme/mdc-theme';
+@import '../plugins/typography';
+@import '../plugins/theme';
+@import '../directives/ripple';
+@import '../directives/elevation'

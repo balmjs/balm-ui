@@ -14,8 +14,12 @@
       </ui-chip-set>
     </section>
 
+    <h3 :class="$tt('headline3')">0. Usage</h3>
+    <ui-markdown :text="code[0]"></ui-markdown>
+
+    <h3 :class="$tt('headline3')">1. Example</h3>
     <section class="example">
-      <h2>Input Chips</h2>
+      <h2>1.1 Input Chips</h2>
       <input id="input-chip-set-input" v-model="name" placeholder="Chip text">
       <ui-button dense id="input-chip-set-button"
         @click="addOne">
@@ -32,10 +36,13 @@
           <ui-chip-trailing-icon @click="removeOneById(item.id)"></ui-chip-trailing-icon>
         </ui-chip>
       </ui-chip-set>
+      <ui-accordion>
+        <ui-markdown :code="code[1]"></ui-markdown>
+      </ui-accordion>
     </section>
 
     <section class="example">
-      <h2>Choice Chips (selectedIndex: {{ selectedIndex }})</h2>
+      <h2>1.2 Choice Chips (selectedIndex: {{ selectedIndex }})</h2>
       <ui-chip-set choice v-model="selectedIndex">
         <ui-chip v-for="(item, index) in choiceList"
           :key="index"
@@ -43,10 +50,13 @@
           <ui-chip-text>{{ item }}</ui-chip-text>
         </ui-chip>
       </ui-chip-set>
+      <ui-accordion>
+        <ui-markdown :code="code[2]"></ui-markdown>
+      </ui-accordion>
     </section>
 
     <section class="example">
-      <h2>Filter Chips</h2>
+      <h2>1.3 Filter Chips</h2>
       <h4>No leading icon (selectedIndexes: {{ selectedValue }})</h4>
       <ui-chip-set filter v-model="selectedValue">
         <ui-chip v-for="(item, index) in filterList"
@@ -67,10 +77,13 @@
           <ui-chip-text>{{ item }}</ui-chip-text>
         </ui-chip>
       </ui-chip-set>
+      <ui-accordion>
+        <ui-markdown :code="code[3]"></ui-markdown>
+      </ui-accordion>
     </section>
 
     <section class="example">
-      <h2>Action Chips</h2>
+      <h2>1.4 Action Chips</h2>
       <ui-chip-set>
         <ui-chip v-for="(item, index) in actionList"
           :key="index"
@@ -79,10 +92,13 @@
           <ui-chip-text>{{ item.name }}</ui-chip-text>
         </ui-chip>
       </ui-chip-set>
+      <ui-accordion>
+        <ui-markdown :code="code[4]"></ui-markdown>
+      </ui-accordion>
     </section>
 
     <section class="example">
-      <h2>Custom theme</h2>
+      <h2>1.5 Custom theme</h2>
       <ui-chip-set>
         <ui-chip v-for="(item, index) in actionList"
           :key="index"
@@ -97,15 +113,24 @@
           <ui-chip-text>{{ item.name }}</ui-chip-text>
         </ui-chip>
       </ui-chip-set>
+      <ui-accordion>
+        <ui-markdown :code="code[5]"></ui-markdown>
+      </ui-accordion>
     </section>
+
+    <h3 :class="$tt('headline3')">2. APIs</h3>
+    <ui-apidocs name="chip-set"></ui-apidocs>
   </div>
 </template>
 
 <script>
+import snippets from '../../mixins/snippets';
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Chips'
   },
+  mixins: [snippets],
   data() {
     return {
       lastId: 2,
@@ -145,6 +170,9 @@ export default {
         }
       ]
     };
+  },
+  created() {
+    this.showCode('chips', 5);
   },
   methods: {
     // Demo1

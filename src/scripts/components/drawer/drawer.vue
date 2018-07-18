@@ -8,6 +8,7 @@
 
 <script>
 const TYPES = ['temporary', 'persistent', 'permanent'];
+const SCROLL_LOCK = 'mdc-drawer-scroll-lock';
 
 export default {
   name: 'ui-drawer',
@@ -32,6 +33,10 @@ export default {
     if (!this.type) {
       console.warn('Please set a drawer type: ' + JSON.stringify(TYPES));
     }
+  },
+  beforeDestroy() {
+    // IMPORTANT
+    document.querySelector(`.${SCROLL_LOCK}`).classList.remove(SCROLL_LOCK);
   }
 };
 </script>

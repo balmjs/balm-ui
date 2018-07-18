@@ -50,3 +50,29 @@
     background: #fe6363;
   }
 }
+
+.icons-preview-code {
+  display: flex;
+}
+
+.icons-preview {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  background-color: #f9f9f9;
+  width: 128px;
+  padding: 16px;
+  .icon-caption {
+    font-size: 13px;
+    margin-top: 8px;
+  }
+  &.icons-dark-bg {
+    background-color: #333;
+    .icon-caption {
+      color: #fff;
+    }
+  }
+  .orange600 {
+    color: #FB8C00;
+  }
+}

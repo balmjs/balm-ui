@@ -36,7 +36,7 @@ export default {
   },
   beforeDestroy() {
     // IMPORTANT
-    document.querySelector(`.${SCROLL_LOCK}`).classList.remove(SCROLL_LOCK);
+    document.querySelector('body').classList.remove(SCROLL_LOCK);
   }
 };
 </script>

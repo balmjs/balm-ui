@@ -1,5 +1,5 @@
-const Icons = () =>
-  import ('../views/components/icons');
+const Icon = () =>
+  import ('../views/components/icon');
 const Typography = () =>
   import ('../views/plugins/typography');
 const Theme = () =>
@@ -12,9 +12,9 @@ const Shape = () =>
   import ('../views/directives/shape');
 
 export default [{
-    path: '/icons',
-    name: 'icons',
-    component: Icons
+    path: '/icon',
+    name: 'icon',
+    component: Icon
   },
   {
     path: '/typography',

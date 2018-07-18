@@ -50,6 +50,9 @@
         <p v-for="i in 12" :key="i" class="demo-paragraph">
           Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.
         </p>
+        <ui-accordion>
+          <ui-markdown :text="code[1]"></ui-markdown>
+        </ui-accordion>
 
         <h3 :class="$tt('headline3')">2. APIs</h3>
         <ui-apidocs name="top-app-bar"></ui-apidocs>

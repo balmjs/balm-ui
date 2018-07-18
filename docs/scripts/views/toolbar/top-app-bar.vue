@@ -56,7 +56,7 @@
       </div>
     </main>
 
-    <div class="demo-controls-container" dir="ltr">
+    <div class="demo-controls-container" dir="ltr" v-shadow.transition="showControls ? 4 : [4, 12]">
       <template v-if="showControls">
         <h3 :class="$tt('headline6')">
           <span>Demo Controls</span>
@@ -111,7 +111,9 @@
           </div>
         </div>
       </template>
-      <ui-icon v-else @click="balmUI.onShow('showControls')" title="Show Controls">add</ui-icon>
+      <ui-icon v-else
+        title="Show Controls"
+        @click="balmUI.onShow('showControls')">add</ui-icon>
     </div>
   </div>
 </template>

@@ -186,8 +186,8 @@
       </section>
     </div>
 
-    <h3 :class="$tt('headline3')">2. Theme Plugin API</h3>
-    <ui-apidocs name="theme"></ui-apidocs>
+    <h3 :class="$tt('headline3')">2. APIs</h3>
+    <ui-apidocs name="theme" type="plugin"></ui-apidocs>
   </div>
 </template>
 

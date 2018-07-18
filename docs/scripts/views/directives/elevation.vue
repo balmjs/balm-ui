@@ -40,8 +40,8 @@
       <ui-markdown :code="code[2]"></ui-markdown>
     </ui-accordion>
 
-    <h3 :class="$tt('headline3')">2. Elevation Directive API</h3>
-    <ui-apidocs name="elevation"></ui-apidocs>
+    <h3 :class="$tt('headline3')">2. APIs</h3>
+    <ui-apidocs name="elevation" type="directive"></ui-apidocs>
   </div>
 </template>
 

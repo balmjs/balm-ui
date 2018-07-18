@@ -227,7 +227,7 @@
         <div class="demo-ruler"><div id="current" ref="ruler"></div></div>
       </section>
 
-      <h3 :class="$tt('headline3')">3. API</h3>
+      <h3 :class="$tt('headline3')">2. APIs</h3>
       <ui-apidocs name="grid"></ui-apidocs>
       <ui-apidocs name="grid-cell"></ui-apidocs>
     </div>

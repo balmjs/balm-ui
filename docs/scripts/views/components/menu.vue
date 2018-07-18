@@ -167,7 +167,7 @@
       </div>
     </div>
 
-    <h3 :class="$tt('headline3')">2. API</h3>
+    <h3 :class="$tt('headline3')">2. APIs</h3>
     <ui-apidocs name="menu"></ui-apidocs>
     <ui-apidocs name="menuitem"></ui-apidocs>
     <ui-apidocs name="menu-anchor"></ui-apidocs>

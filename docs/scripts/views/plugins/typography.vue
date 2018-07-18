@@ -43,8 +43,8 @@
       <ui-markdown :code="code[1]"></ui-markdown>
     </ui-accordion>
 
-    <h3 :class="$tt('headline3')">2. Typography Plugin API</h3>
-    <ui-apidocs name="typography"></ui-apidocs>
+    <h3 :class="$tt('headline3')">2. APIs</h3>
+    <ui-apidocs name="typography" type="plugin"></ui-apidocs>
   </div>
 </template>
 

@@ -14,8 +14,10 @@
     <h3 :class="$tt('headline3')">0. Usage</h3>
     <ui-markdown :text="code[0]"></ui-markdown>
 
-    <h3 :class="$tt('headline3')">2. Shape Directive API</h3>
-    <ui-apidocs name="shape"></ui-apidocs>
+    <h3 :class="$tt('headline3')">1. Example</h3>
+
+    <h3 :class="$tt('headline3')">2. APIs</h3>
+    <ui-apidocs name="shape" type="directive"></ui-apidocs>
   </div>
 </template>
 

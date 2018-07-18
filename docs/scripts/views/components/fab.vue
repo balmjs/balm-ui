@@ -9,8 +9,9 @@
 
     <ui-fab class="demo-fixed-fab" icon="mode_edit"></ui-fab>
 
+    <h3 :class="$tt('headline3')">1. Example</h3>
     <section>
-      <legend :class="$tt('headline6')">1. FABs with Ripple</legend>
+      <legend :class="$tt('headline6')">1.1 FABs with Ripple</legend>
       <div class="demo-fabs">
         <figure>
           <ui-fab icon="favorite_border"></ui-fab>
@@ -102,7 +103,7 @@
     </section>
 
     <section>
-      <legend :class="$tt('headline6')">2. CSS Only FABs</legend>
+      <legend :class="$tt('headline6')">1.2 CSS Only FABs</legend>
       <div class="demo-fabs">
         <figure>
           <ui-fab cssOnly icon="favorite_border"></ui-fab>
@@ -123,7 +124,7 @@
     </section>
 
     <section>
-      <legend :class="$tt('headline6')">3. Example of Enter and Exit Motions</legend>
+      <legend :class="$tt('headline6')">1.3 Example of Enter and Exit Motions</legend>
       <div class="fab-motion-container">
         <div class="fab-motion-container__view">
           <p>View one (with FAB)</p>
@@ -145,7 +146,7 @@
 
     <section>
       <fieldset>
-        <legend :class="$tt('headline6')">4. Custom FABs (Font awesome)</legend>
+        <legend :class="$tt('headline6')">1.4 Custom FABs (Font awesome)</legend>
         <ui-fab>
           <i class="fa fa-flag fa-lg"></i>
         </ui-fab>
@@ -164,7 +165,7 @@
       </ui-accordion>
     </section>
 
-    <h3 :class="$tt('headline3')">5. API</h3>
+    <h3 :class="$tt('headline3')">2. APIs</h3>
     <ui-apidocs name="fab"></ui-apidocs>
   </div>
 </template>

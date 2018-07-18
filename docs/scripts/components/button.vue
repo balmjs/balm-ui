@@ -1,7 +1,7 @@
 <template>
   <div>
     <fieldset>
-      <legend :class="$tt('headline6')">{{ categoryNumber }}.1 Text Button</legend>
+      <legend :class="$tt('headline6')">Text Button</legend>
       <div>
         <ui-button :cssOnly="cssOnly" :disabled="useDisabled">Baseline</ui-button>
         <ui-button :cssOnly="cssOnly" dense :disabled="useDisabled">Dense</ui-button>
@@ -21,7 +21,7 @@
     </fieldset>
 
     <fieldset>
-      <legend :class="$tt('headline6')">{{ categoryNumber }}.2 Raised Button</legend>
+      <legend :class="$tt('headline6')">Raised Button</legend>
       <div>
         <ui-button :cssOnly="cssOnly" raised :disabled="useDisabled">Baseline</ui-button>
         <ui-button :cssOnly="cssOnly" raised dense :disabled="useDisabled">Dense</ui-button>
@@ -41,7 +41,7 @@
     </fieldset>
 
     <fieldset>
-      <legend :class="$tt('headline6')">{{ categoryNumber }}.3 Unelevated Button (Experimental)</legend>
+      <legend :class="$tt('headline6')">Unelevated Button (Experimental)</legend>
       <div>
         <ui-button :cssOnly="cssOnly" unelevated :disabled="useDisabled">Baseline</ui-button>
         <ui-button :cssOnly="cssOnly" unelevated dense :disabled="useDisabled">Dense</ui-button>
@@ -61,7 +61,7 @@
     </fieldset>
 
     <fieldset>
-      <legend :class="$tt('headline6')">{{ categoryNumber }}.4 Outlined Button (Experimental)</legend>
+      <legend :class="$tt('headline6')">Outlined Button (Experimental)</legend>
       <div>
         <ui-button :cssOnly="cssOnly" outlined :disabled="useDisabled">Baseline</ui-button>
         <ui-button :cssOnly="cssOnly" outlined dense :disabled="useDisabled">Dense</ui-button>
@@ -81,7 +81,7 @@
     </fieldset>
 
     <fieldset>
-      <legend :class="$tt('headline6')">{{ categoryNumber }}.5 Custom button (Experimental)</legend>
+      <legend :class="$tt('headline6')">Custom button (Experimental)</legend>
       <div>
         <ui-button :cssOnly="cssOnly" unelevated class="big-round-corner-button" :disabled="useDisabled">Big Corner Radius</ui-button>
         <ui-button :cssOnly="cssOnly" outlined class="thick-outlined-button" :disabled="useDisabled">Thick Outline Width</ui-button>
@@ -92,7 +92,7 @@
     </fieldset>
 
     <fieldset>
-      <legend :class="$tt('headline6')">{{ categoryNumber }}.6 Different Color Icons/Ink</legend>
+      <legend :class="$tt('headline6')">Different Color Icons/Ink</legend>
       <div>
         <ui-button :cssOnly="cssOnly" unelevated class="demo-ink-color" icon="favorite" :disabled="useDisabled">Ink Color</ui-button>
         <ui-button :cssOnly="cssOnly" outlined class="demo-icon-color" icon="favorite" :disabled="useDisabled">Icon Color</ui-button>
@@ -121,11 +121,6 @@ export default {
     return {
       useDisabled: this.disabled
     };
-  },
-  computed: {
-    categoryNumber() {
-      return this.cssOnly ? 2 : 1;
-    }
   },
   watch: {
     disabled(val) {

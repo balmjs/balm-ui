@@ -10,10 +10,11 @@
     <h3 :class="$tt('headline3')">0. Usage</h3>
     <ui-markdown :text="code[0]"></ui-markdown>
 
+    <h3 :class="$tt('headline3')">1. Example</h3>
     <section class="example">
       <div>
         <div>
-          <h3 :class="$tt('headline3')">1. Buttons</h3>
+          <h3 :class="$tt('headline3')">1.1 Buttons</h3>
         </div>
         <div class="toggle-examples-container">
           <div class="toggle-example">
@@ -63,7 +64,7 @@
     <section class="example">
       <div>
         <div>
-          <h3 :class="$tt('headline3')">2. Button Toggles</h3>
+          <h3 :class="$tt('headline3')">1.2 Button Toggles</h3>
         </div>
         <div class="toggle-examples-container">
           <div class="toggle-example">
@@ -144,7 +145,7 @@
       </div>
     </section>
 
-    <h3 :class="$tt('headline3')">4. API</h3>
+    <h3 :class="$tt('headline3')">2. APIs</h3>
     <ui-apidocs name="icon-button"></ui-apidocs>
   </div>
 </template>

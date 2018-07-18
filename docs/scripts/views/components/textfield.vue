@@ -250,7 +250,7 @@
       </ui-accordion>
     </section>
 
-    <h3 :class="$tt('headline3')">2. API</h3>
+    <h3 :class="$tt('headline3')">2. APIs</h3>
     <ui-apidocs name="textfield"></ui-apidocs>
     <ui-apidocs name="textfield-helptext"></ui-apidocs>
     <ui-apidocs name="textfield-icon"></ui-apidocs>

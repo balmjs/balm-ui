@@ -55,7 +55,7 @@
       <ui-dialog-footer></ui-dialog-footer>
     </ui-dialog>
 
-    <h3 :class="$tt('headline3')">2. API</h3>
+    <h3 :class="$tt('headline3')">2. APIs</h3>
     <ui-apidocs name="dialog"></ui-apidocs>
     <ui-apidocs name="dialog-body"></ui-apidocs>
     <ui-apidocs name="dialog-footer"></ui-apidocs>

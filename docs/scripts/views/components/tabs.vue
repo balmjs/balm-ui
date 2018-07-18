@@ -218,6 +218,7 @@
       </fieldset>
     </section>
 
+    <h3 :class="$tt('headline3')">2. APIs</h3>
     <ui-apidocs name="tabs"></ui-apidocs>
     <ui-apidocs name="tab"></ui-apidocs>
     <ui-apidocs name="panels"></ui-apidocs>

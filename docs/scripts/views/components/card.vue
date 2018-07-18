@@ -106,7 +106,7 @@
       <ui-markdown :text="code[3]"></ui-markdown>
     </ui-accordion>
 
-    <h1 :class="$tt('headline3')">2. API</h1>
+    <h1 :class="$tt('headline3')">2. APIs</h1>
     <ui-apidocs name="card"></ui-apidocs>
     <ui-apidocs name="card-primary-action"></ui-apidocs>
     <ui-apidocs name="card-media"></ui-apidocs>

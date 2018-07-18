@@ -6,7 +6,6 @@
     <ui-markdown :text="code[0]"></ui-markdown>
 
     <h3 :class="$tt('headline3')">1. Example</h3>
-
     <section class="example">
       <div>
         <h2>Bounded</h2>
@@ -75,8 +74,8 @@
       <ui-markdown :code="code[3]"></ui-markdown>
     </ui-accordion>
 
-    <h3 :class="$tt('headline3')">2. Ripple Directive API</h3>
-    <ui-apidocs name="ripple"></ui-apidocs>
+    <h3 :class="$tt('headline3')">2. APIs</h3>
+    <ui-apidocs name="ripple" type="directive"></ui-apidocs>
   </div>
 </template>
 

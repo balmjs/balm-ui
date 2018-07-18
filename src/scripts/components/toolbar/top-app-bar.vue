@@ -3,9 +3,9 @@
     <div class="mdc-top-app-bar__row">
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
         <a class="material-icons mdc-top-app-bar__navigation-icon"
-          :id="menuId"
+          :id="navId"
           @click="$emit(UI_TOP_APP_BAR.EVENT.NAV)">
-          <slot name="logo">menu</slot>
+          <slot name="nav-icon">menu</slot>
         </a>
         <span class="mdc-top-app-bar__title">
           <slot>{{ title }}</slot>
@@ -51,17 +51,21 @@ const UI_TOP_APP_BAR = {
 export default {
   name: 'ui-top-app-bar',
   props: {
-    // States
+    // UI attributes
+    contentSelector: {
+      type: String,
+      required: true
+    },
+    navId: String,
+    title: {
+      type: String,
+      default: ''
+    },
     actionItems: {
       type: Array,
       default() {
         return [];
       }
-    },
-    // UI attributes
-    title: {
-      type: String,
-      default: ''
     },
     fixed: {
       type: Boolean,
@@ -82,12 +86,7 @@ export default {
     alwaysClosed: {
       type: Boolean,
       default: false
-    },
-    contentSelector: {
-      type: String,
-      required: true
-    },
-    menuId: String
+    }
   },
   data() {
     return {
@@ -169,7 +168,9 @@ export default {
           }
 
           if (this.dense && this.prominent) {
-            this.contentElement.classList.add(UI_TOP_APP_BAR.ADJUST.DENSE_PROMINENT);
+            this.contentElement.classList.add(
+              UI_TOP_APP_BAR.ADJUST.DENSE_PROMINENT
+            );
           }
         }
       }

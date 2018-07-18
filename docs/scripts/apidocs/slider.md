@@ -26,7 +26,7 @@
 | input  | `Function(model: number\|string)` | Emits when a user is dragging the slider or changing the value.   |
 | change | `Function(value: number\|string)` | Emits when a user stops dragging the slider or changes the value. |
 
-> NOTE: If you are not using `v-model`, you should listen for the checkbox using `@input` and update the `model` prop.
+> NOTE: If you are not using `v-model`, you should listen for the slider using `@input` and update the `model` prop.
 
 ```html
 // Automatic

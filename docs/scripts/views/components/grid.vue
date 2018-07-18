@@ -1,7 +1,7 @@
 <template>
   <div class="demo--grid">
     <ui-top-app-bar fixed contentSelector=".demo-content">
-      <template slot="logo">
+      <template slot="nav-icon">
         <span class="catalog-back">
           <ui-toolbar-anchor type="menu" href="javascript:void(0)"
             @click.native="() => { $router.back(); }">&#xE5C4;</ui-toolbar-anchor>

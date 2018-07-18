@@ -29,7 +29,7 @@
 | accept  | `Function()`                | Emits when the accept button is clicked.  |
 | cancel  | `Function()`                | Emits when the cancel button is clicked.  |
 
-> NOTE: If you are not using `v-model`, you should listen for the checkbox using `@change` and update the `open` prop.
+> NOTE: If you are not using `v-model`, you should listen for the dialog using `@change` and update the `open` prop.
 
 ```html
 // Automatic

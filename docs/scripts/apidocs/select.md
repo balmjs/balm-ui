@@ -36,7 +36,7 @@
 | change   | `Function(model: string\|number)` | Emits when the select value is changed. |
 | selected | `Function(option: object)`        | Emits when an option is selected.       |
 
-> NOTE: If you are not using `v-model`, you should listen for the checkbox using `@change` and update the `model` prop.
+> NOTE: If you are not using `v-model`, you should listen for the select using `@change` and update the `model` prop.
 
 ```html
 // Automatic

@@ -27,7 +27,7 @@
 | ------ | --------------------------- | ---------------------------------- |
 | change | `Function(active: boolean)` | Emits when the snackbar is hidden. |
 
-> NOTE: If you are not using `v-model`, you should listen for the checkbox using `@change` and update the `active` prop.
+> NOTE: If you are not using `v-model`, you should listen for the snackbar using `@change` and update the `active` prop.
 
 ```html
 // Automatic

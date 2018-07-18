@@ -1,7 +1,7 @@
 <template>
   <div class="demo--drawer demo--permanent-drawer-below-toolbar">
     <ui-top-app-bar fixed contentSelector=".demo-content" v-shadow="4">
-      <template slot="logo">
+      <template slot="nav-icon">
         <ui-toolbar-anchor type="menu"
           @click.native="() => { $router.back(); }">&#xE5C4;</ui-toolbar-anchor>
       </template>

@@ -23,7 +23,7 @@
 
     <div class="demo-content">
       <ui-top-app-bar contentSelector=".demo-main" v-shadow="4">
-        <template slot="logo">
+        <template slot="nav-icon">
           <ui-toolbar-anchor type="menu"
             @click.native="() => { $router.back(); }">&#xE5C4;</ui-toolbar-anchor>
         </template>

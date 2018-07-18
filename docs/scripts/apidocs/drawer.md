@@ -21,7 +21,7 @@
 | ---- | ------------------------- | ------------------------------------------ |
 | nav  | `Function(open: boolean)` | Emits when the drawer is opened or closed. |
 
-> NOTE: If you are not using `v-model`, you should listen for the checkbox using `@nav` and update the `open` prop.
+> NOTE: If you are not using `v-model`, you should listen for the drawer using `@nav` and update the `open` prop.
 
 ```html
 // Automatic

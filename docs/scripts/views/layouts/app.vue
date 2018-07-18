@@ -22,8 +22,8 @@
           </ui-toolbar-section>
         </ui-toolbar-row>
       </ui-toolbar> -->
-      <ui-top-app-bar class="balmui-head" fixed contentSelector=".balmui-body" menuId="balmui-menu">
-        <!-- <template slot="logo">
+      <ui-top-app-bar class="balmui-head" fixed contentSelector=".balmui-body" navId="balmui-menu">
+        <!-- <template slot="nav-icon">
           <img :src="logo" alt="BalmUI">
         </template> -->
         <router-link to="/" :class="['catalog-title', $themeColor('on-primary')]">BalmUI</router-link>

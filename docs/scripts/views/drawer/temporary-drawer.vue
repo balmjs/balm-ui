@@ -1,6 +1,6 @@
 <template>
   <div class="demo--drawer demo--temporary-drawer">
-    <ui-top-app-bar fixed contentSelector=".demo-main" menuId="demo-menu">
+    <ui-top-app-bar fixed contentSelector=".demo-main" navId="demo-menu">
       Temporary Drawer
     </ui-top-app-bar>
 

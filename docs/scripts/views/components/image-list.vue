@@ -7,10 +7,14 @@
       </ui-image-list>
     </section>
 
+    <h3 :class="$tt('headline3')">0. Usage</h3>
+    <ui-markdown :text="code[0]"></ui-markdown>
+
+    <h3 :class="$tt('headline3')">1. Example</h3>
     <section :class="['example', {'rounded-corners': radius}]">
       <ui-checkbox id="toggle-radius" v-model="radius">Toggle Rounded Corners</ui-checkbox>
 
-      <h1 :class="$tt('headline5')">Standard Image List</h1>
+      <h1 :class="$tt('headline5')">1.1 Standard Image List</h1>
       <ui-image-list-controls v-model="controls1"></ui-image-list-controls>
       <ui-image-list
         id="standard-image-list"
@@ -21,8 +25,11 @@
           <ui-image-label v-if="controls1.labelsType">Text label</ui-image-label>
         </ui-image-item>
       </ui-image-list>
+      <ui-accordion>
+        <ui-markdown :code="code[1]"></ui-markdown>
+      </ui-accordion>
 
-      <h1 :class="$tt('headline5')">Masonry Image List</h1>
+      <h1 :class="$tt('headline5')">1.2 Masonry Image List</h1>
       <ui-image-list-controls idPrefix="masonry" v-model="controls2"></ui-image-list-controls>
       <ui-image-list
         id="masonry-image-list"
@@ -34,11 +41,19 @@
           <ui-image-label v-if="controls2.labelsType">Text label</ui-image-label>
         </ui-image-item>
       </ui-image-list>
+      <ui-accordion>
+        <ui-markdown :code="code[2]"></ui-markdown>
+      </ui-accordion>
     </section>
+
+    <h3 :class="$tt('headline3')">2. APIs</h3>
+    <ui-apidocs name="image-list"></ui-apidocs>
+    <ui-apidocs name="image-item"></ui-apidocs>
   </div>
 </template>
 
 <script>
+import snippets from '../../mixins/snippets';
 import UiImageListControls from '../../components/image-list-controls';
 
 export default {
@@ -48,6 +63,7 @@ export default {
   components: {
     UiImageListControls
   },
+  mixins: [snippets],
   data() {
     return {
       radius: false,
@@ -75,6 +91,9 @@ export default {
         '3x2/7'
       ]
     };
+  },
+  created() {
+    this.showCode('image-list', 2);
   }
 };
 </script>

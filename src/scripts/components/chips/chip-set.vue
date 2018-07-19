@@ -22,12 +22,6 @@ export default {
   },
   props: {
     // States
-    items: {
-      type: Array,
-      default() {
-        return [];
-      }
-    },
     model: {
       type: [Number, Array],
       default: -1
@@ -36,6 +30,12 @@ export default {
     input: {
       type: Boolean,
       default: false
+    },
+    options: {
+      type: Array,
+      default() {
+        return [];
+      }
     },
     choice: {
       type: Boolean,
@@ -50,7 +50,7 @@ export default {
     return {
       $chipSet: null,
       selectedValue: this.model,
-      chipsCount: this.items.length
+      chipsCount: this.options.length
     };
   },
   computed: {
@@ -64,7 +64,7 @@ export default {
     }
   },
   watch: {
-    items(val) {
+    options(val) {
       if (val.length > this.chipsCount) {
         this.addChip(val.length);
       } else if (val.length < this.chipsCount) {

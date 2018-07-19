@@ -29,7 +29,7 @@
         @click="removeLastOne">
         Delete Last Chip
       </ui-button>
-      <ui-chip-set input id="input-chip-set" :items="list">
+      <ui-chip-set input id="input-chip-set" :options="list">
         <ui-chip v-for="item in list" :key="item.id" class="demo-chip">
           <ui-chip-leading-icon>face</ui-chip-leading-icon>
           <ui-chip-text>{{ item.name }}</ui-chip-text>
@@ -120,6 +120,11 @@
 
     <h3 :class="$tt('headline3')">2. APIs</h3>
     <ui-apidocs name="chip-set"></ui-apidocs>
+    <ui-apidocs name="chip"></ui-apidocs>
+    <ui-apidocs name="chip-text"></ui-apidocs>
+    <ui-apidocs name="chip-leading-icon"></ui-apidocs>
+    <ui-apidocs name="chip-trailing-icon"></ui-apidocs>
+    <ui-apidocs name="chip-checkmark"></ui-apidocs>
   </div>
 </template>
 

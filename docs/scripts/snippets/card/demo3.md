@@ -1,6 +1,6 @@
 ```html
 <ui-card class="demo-card demo-card--music">
-  <ui-card-primary-action class="demo-card__primary-action">
+  <ui-card-content class="demo-card__primary-action" v-ripple>
     <div class="demo-card__music-row">
       <ui-card-media square class="demo-card__media demo-card__media--music"></ui-card-media>
       <div class="demo-card__music-info">
@@ -9,7 +9,7 @@
         <div :class="[$tt('body2'), 'demo-card__music-year']">(2016)</div>
       </div>
     </div>
-  </ui-card-primary-action>
+  </ui-card-content>
   <hr class="mdc-list-divider">
   <ui-card-actions>
     <ui-card-buttons class="demo-card__action-buttons--text-only">Rate this album</ui-card-buttons>

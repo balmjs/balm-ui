@@ -1,6 +1,6 @@
 ```html
 <ui-card class="demo-card demo-card--photo">
-  <ui-card-primary-action class="demo-card__primary-action">
+  <ui-card-content class="demo-card__primary-action" v-ripple>
     <ui-card-media square class="demo-card__media">
       <ui-card-media-content class="demo-card__media-content--with-title">
         <div :class="[$tt('subtitle2'), 'demo-card__media-title']">
@@ -8,7 +8,7 @@
         </div>
       </ui-card-media-content>
     </ui-card-media>
-  </ui-card-primary-action>
+  </ui-card-content>
   <ui-card-actions>
     <ui-card-icons>
       <ui-icon-button actionIcon :on="icon1.on" :off="icon1.off"></ui-icon-button>

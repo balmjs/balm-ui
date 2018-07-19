@@ -1,7 +1,11 @@
-## `<ui-card-icons>`
+```html
+<ui-card-icons><!-- the icon components --></ui-card-icons>
+```
+
+> A group of supplemental action icons, displayed on the right side of the card (in LTR), adjacent to `<ui-card-buttons>`.
 
 ### Slots
 
-| Name      | Description                                                                                                             |
-| --------- | ----------------------------------------------------------------------------------------------------------------------- |
-| (default) | A group of supplemental action icons, displayed on the right side of the card (in LTR), adjacent to `<ui-card-buttons>` |
+| Name      | Description                                                      |
+| --------- | ---------------------------------------------------------------- |
+| (default) | The default slot holds the icon components and can contain HTML. |

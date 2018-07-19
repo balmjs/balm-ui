@@ -4,7 +4,7 @@
   <hr class="mdc-list-divider">
 
   <template v-for="item in list">
-    <a class="demo-card-article mdc-ripple-surface">
+    <a class="demo-card-article" v-ripple>
       <h2 :class="[$tt('headline5'), 'demo-card-article__title']">{{ item.title }}</h2>
       <p :class="[$tt('body2'), 'demo-card-article__snippet']">{{ item.content }}</p>
     </a>

@@ -108,7 +108,7 @@
 
     <h1 :class="$tt('headline3')">2. APIs</h1>
     <ui-apidocs name="card"></ui-apidocs>
-    <ui-apidocs name="card-primary-action"></ui-apidocs>
+    <ui-apidocs name="card-content"></ui-apidocs>
     <ui-apidocs name="card-media"></ui-apidocs>
     <ui-apidocs name="card-media-content"></ui-apidocs>
     <ui-apidocs name="card-actions"></ui-apidocs>

@@ -1,7 +1,11 @@
-## `<ui-card-buttons>`
+```html
+<ui-card-buttons><!-- the button components --></ui-card-buttons>
+```
+
+> A group of action buttons, displayed on the left side of the card (in LTR), adjacent to `<ui-card-icons>`.
 
 ### Slots
 
-| Name      | Description                                                                                               |
-| --------- | --------------------------------------------------------------------------------------------------------- |
-| (default) | A group of action buttons, displayed on the left side of the card (in LTR), adjacent to `<ui-card-icons>` |
+| Name      | Description                                                        |
+| --------- | ------------------------------------------------------------------ |
+| (default) | The default slot holds the button components and can contain HTML. |

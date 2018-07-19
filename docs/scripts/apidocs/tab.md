@@ -1,4 +1,6 @@
-### `<ui-tab>`
+```html
+<ui-tab></ui-tab>
+```
 
 #### Props
 

@@ -1,4 +1,8 @@
-### Props
+```html
+<ui-icon-toggle><!-- the toggle icon --></ui-icon-toggle>
+```
+
+#### Props
 
 | Name     | Type               | Default | Description                      |
 | -------- | ------------------ | ------- | -------------------------------- |
@@ -19,16 +23,14 @@
 }
 ```
 
-### Slots
+#### Slots
 
-| Name      | Description                                                        |
-| --------- | ------------------------------------------------------------------ |
-| (default) | The default slot holds the icon toggle label and can contain HTML. |
+| Name      | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| (default) | The default slot holds the toggle icon and can contain HTML. |
 
-### Events
+#### Events
 
 | Name   | Type                      | Description                                                                |
 | ------ | ------------------------- | -------------------------------------------------------------------------- |
 | change | `Function(isOn: boolean)` | Returns `true` if the foundation's state is toggled on, `false` otherwise. |
-
-### Sass

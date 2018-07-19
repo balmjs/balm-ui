@@ -1,4 +1,6 @@
-### `<ui-snackbar>`
+```html
+<ui-snackbar><!-- the message --></ui-snackbar>
+```
 
 #### Props
 
@@ -17,9 +19,9 @@
 
 #### Slots
 
-| Name      | Description                                          | `slot-scope` |
-| --------- | ---------------------------------------------------- | ------------ |
-| (default) | The default slot holds the message for the snackbar. |              |
+| Name      | Description                                          |
+| --------- | ---------------------------------------------------- |
+| (default) | The default slot holds the message for the snackbar. |
 
 #### Events
 

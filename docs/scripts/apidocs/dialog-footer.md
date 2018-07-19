@@ -1,4 +1,6 @@
-### `<ui-dialog-footer>`
+```html
+<ui-dialog-footer><!-- the dialog actions --></ui-dialog-footer>
+```
 
 #### Props
 

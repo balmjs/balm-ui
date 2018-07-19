@@ -1,4 +1,6 @@
-### `<ui-dialog>`
+```html
+<ui-dialog><!-- the dialog child components --></ui-dialog>
+```
 
 #### Props
 
@@ -11,9 +13,11 @@
 
 #### Slots
 
-| Name      | Description                                                              |
-| --------- | ------------------------------------------------------------------------ |
-| (default) | The default slot holds the dialog child components and can contain HTML. |
+| Name      | Description                                         |
+| --------- | --------------------------------------------------- |
+| (default) | The default slot holds the dialog child components. |
+
+**Dialog child components:**
 
 - `<ui-dialog-header>`
 - `<ui-dialog-body>`

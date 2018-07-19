@@ -1,6 +1,6 @@
 <template>
   <i :class="className" aria-hidden="true" @click="handleClick">
-    <slot><!-- Custom Icon --></slot>
+    <slot><!-- Custom icon --></slot>
   </i>
 </template>
 

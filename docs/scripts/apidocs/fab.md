@@ -1,6 +1,8 @@
-### `<ui-fab>`
+```html
+<ui-fab><!-- the button icon --></ui-fab>
+```
 
-##### Props
+#### Props
 
 | Name     | Type                | Default | Description                                                                                      |
 | -------- | ------------------- | ------- | ------------------------------------------------------------------------------------------------ |
@@ -13,9 +15,10 @@
 
 #### Slots
 
-| Name      | Description                                                                  | `slot-scope` |
-| --------- | ---------------------------------------------------------------------------- | ------------ |
-| (default) | The default slot holds the floating action button text and can contain HTML. | ☑            |
+| Name      | Description                                                                                    | `slot-scope` |
+| --------- | ---------------------------------------------------------------------------------------------- | ------------ |
+| (default) | The default slot holds the floating action button content or custom icon and can contain HTML. | ☑            |
+| label     | The label slot holds the label text of the extended FAB.                                       |              |
 
 - `slot-scope`
 

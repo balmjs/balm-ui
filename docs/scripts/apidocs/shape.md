@@ -1,3 +1,7 @@
+```html
+<div v-shape></div>
+```
+
 - `v-shape`
 - `v-shape="corner"`
 

@@ -1,6 +1,6 @@
 <template>
   <div :class="className">
-    <slot><!-- Form Item: input + label --></slot>
+    <slot><!-- Form item: input + label --></slot>
   </div>
 </template>
 

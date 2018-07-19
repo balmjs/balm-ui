@@ -31,6 +31,7 @@
 
     <h3 :class="$tt('headline3')">2. APIs</h3>
     <ui-apidocs name="drawer"></ui-apidocs>
+    <ui-apidocs name="drawer-header"></ui-apidocs>
     <ui-apidocs name="drawer-content"></ui-apidocs>
   </div>
 </template>

@@ -1,7 +1,9 @@
 ### 2.1 Theme color (`mdc-theme--<THEME_STYLE>`)
 
-- `$themeColor(style)`
-- `$setTheme(style, value)`
+```js
+$themeColor(style);
+$setTheme(style, value);
+```
 
 | Param | Type   | Default | Description       |
 | ----- | ------ | ------- | ----------------- |
@@ -24,8 +26,10 @@
 
 ### 2.2 Text color (`mdc-theme--text-<TEXT_STYLE>-on-<THEME_TONE>`)
 
-- `$textColor(style, tone)`
-- `$setTextTheme(style, tone, value)`
+```js
+$textColor(style, tone);
+$setTextTheme(style, tone, value);
+```
 
 | Param | Type   | Default        | Description      |
 | ----- | ------ | -------------- | ---------------- |

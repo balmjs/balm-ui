@@ -1,4 +1,6 @@
-### `<ui-radio>`
+```html
+<ui-radio><!-- the label text --></ui-radio>
+```
 
 #### Props
 
@@ -15,9 +17,9 @@
 
 #### Slots
 
-| Name      | Description                                            | `slot-scope` |
-| --------- | ------------------------------------------------------ | ------------ |
-| (default) | The default slot holds the label for the radio button. |              |
+| Name      | Description                                            |
+| --------- | ------------------------------------------------------ |
+| (default) | The default slot holds the label for the radio button. |
 
 #### Events
 

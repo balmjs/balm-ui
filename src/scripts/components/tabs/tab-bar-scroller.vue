@@ -10,7 +10,7 @@
     </div>
     <div class="mdc-tab-bar-scroller__scroll-frame">
       <nav class="mdc-tab-bar mdc-tab-bar-scroller__scroll-frame__tabs">
-        <slot><!-- Tab Items --></slot>
+        <slot><!-- Tab items --></slot>
         <span class="mdc-tab-bar__indicator"></span>
       </nav>
     </div>

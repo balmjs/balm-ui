@@ -1,4 +1,8 @@
-### `<ui-temporary-drawer>` & `<ui-persistent-drawer>`
+```html
+<ui-temporary-drawer><!-- the drawer child components --></ui-temporary-drawer>
+<ui-persistent-drawer><!-- the drawer child components --></ui-persistent-drawer>
+<ui-permanent-drawer><!-- the drawer child components --></ui-permanent-drawer>
+```
 
 > NOTE: `<ui-permanent-drawer>` has not props and events.
 
@@ -11,9 +15,14 @@
 
 #### Slots
 
-| Name      | Description                                                     |
-| --------- | --------------------------------------------------------------- |
-| (default) | The default slot holds the drawer content and can contain HTML. |
+| Name      | Description                                         |
+| --------- | --------------------------------------------------- |
+| (default) | The default slot holds the drawer child components. |
+
+**Drawer child components:**
+
+- `<ui-drawer-header>` or `<ui-drawer-toolbar-spacer>`
+- `<ui-drawer-content>`
 
 #### Events
 
@@ -31,9 +40,3 @@
 <ui-temporary-drawer :open="open" @nav="balmUI.onChange('open', $event)">
 </ui-temporary-drawer>
 ```
-
-**Drawer inner components:**
-
-- `<ui-drawer-header>`
-- `<ui-drawer-content>`
-- `<ui-drawer-toolbar-spacer>`

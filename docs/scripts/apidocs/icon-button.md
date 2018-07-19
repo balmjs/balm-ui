@@ -1,4 +1,7 @@
-### `<ui-icon-button>` &amp; `<ui-icon-link>`
+```html
+<ui-icon-button><!-- the toggle default icon --></ui-icon-button>
+<ui-icon-link><!-- the link icon --></ui-icon-link>
+```
 
 #### Props
 
@@ -24,7 +27,7 @@
 
 | Name      | Description                                                          |
 | --------- | -------------------------------------------------------------------- |
-| (default) | The default slot holds the icon button content and can contain HTML. |
+| (default) | The default slot holds the toggle or link icon and can contain HTML. |
 
 ##### Events
 

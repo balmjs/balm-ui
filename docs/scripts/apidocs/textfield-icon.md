@@ -1,4 +1,6 @@
-### `<ui-textfield-icon>`
+```html
+<ui-textfield-icon><!-- the material design icon name --></ui-textfield-icon>
+```
 
 #### Props
 
@@ -8,9 +10,9 @@
 
 #### Slots
 
-| Name      | Description                                                      |
-| --------- | ---------------------------------------------------------------- |
-| (default) | The default slot holds the text field icon and can contain HTML. |
+| Name      | Description                                                                                           |
+| --------- | ----------------------------------------------------------------------------------------------------- |
+| (default) | The default slot holds the text field icon and can contain HTML. See [Material Icons](/#/icons) list. |
 
 #### Events
 

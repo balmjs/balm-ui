@@ -1,4 +1,6 @@
-### `v-ripple`
+```html
+<a v-ripple></a>
+```
 
 #### Default ripple
 

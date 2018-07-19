@@ -1,4 +1,6 @@
-### `<ui-slider>`
+```html
+<ui-slider></ui-slider>
+```
 
 #### Props
 
@@ -15,9 +17,9 @@
 
 #### Slots
 
-| Name      | Description                                      | `slot-scope` |
-| --------- | ------------------------------------------------ | ------------ |
-| (default) | The default slot holds the label for the slider. |              |
+| Name      | Description                                      |
+| --------- | ------------------------------------------------ |
+| (default) | The default slot holds the label for the slider. |
 
 #### Events
 

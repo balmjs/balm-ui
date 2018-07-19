@@ -1,4 +1,6 @@
-### `<ui-icon>`
+```html
+<ui-icon><!-- the material design icon name --></ui-icon>
+```
 
 #### Props
 
@@ -13,6 +15,6 @@
 
 #### Slots
 
-| Name      | Description                                           |
-| --------- | ----------------------------------------------------- |
-| (default) | The default slot holds the material design icon name. |
+| Name      | Description                                                                |
+| --------- | -------------------------------------------------------------------------- |
+| (default) | The default slot holds the material design icon name and can contain HTML. |

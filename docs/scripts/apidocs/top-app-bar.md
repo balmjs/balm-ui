@@ -1,4 +1,6 @@
-### `<ui-top-app-bar>`
+```html
+<ui-top-app-bar><!-- the application title --></ui-top-app-bar>
+```
 
 #### Props
 

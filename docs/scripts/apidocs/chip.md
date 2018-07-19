@@ -1,14 +1,14 @@
 ```html
-<ui-chip><!-- chip inner components --></ui-chip>
+<ui-chip><!-- the chip child components --></ui-chip>
 ```
 
 #### Slots
 
 | Name      | Description                                       |
 | --------- | ------------------------------------------------- |
-| (default) | The default slot holds the chip inner components. |
+| (default) | The default slot holds the chip child components. |
 
-The inner components:
+**Chip child components:**
 
 - `<ui-chip-text>`
 - `<ui-chip-leading-icon>`

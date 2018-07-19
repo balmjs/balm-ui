@@ -1,5 +1,5 @@
 ```html
-<ui-chip-set><!-- chip --></ui-chip-set>
+<ui-chip-set><!-- the chip components --></ui-chip-set>
 ```
 
 #### Props
@@ -14,9 +14,9 @@
 
 #### Slots
 
-| Name      | Description                                |
-| --------- | ------------------------------------------ |
-| (default) | The default slot holds the chip component. |
+| Name      | Description                                                      |
+| --------- | ---------------------------------------------------------------- |
+| (default) | The default slot holds the chip components and can contain HTML. |
 
 #### Events
 

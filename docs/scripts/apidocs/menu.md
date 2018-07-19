@@ -1,4 +1,6 @@
-### `<ui-menu>`
+```html
+<ui-menu><!-- the menuitem components --></ui-menu>
+```
 
 #### Props
 
@@ -15,9 +17,9 @@
 
 #### Slots
 
-| Name      | Description                                                 |
-| --------- | ----------------------------------------------------------- |
-| (default) | The default slot holds the menu items and can contain HTML. |
+| Name      | Description                                     |
+| --------- | ----------------------------------------------- |
+| (default) | The default slot holds the menuitem components. |
 
 #### Events
 

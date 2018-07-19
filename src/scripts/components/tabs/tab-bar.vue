@@ -1,6 +1,6 @@
 <template>
   <nav :class="className" role="tablist">
-    <slot></slot>
+    <slot><!-- Tab items --></slot>
     <span class="mdc-tab-bar__indicator"></span>
   </nav>
 </template>

@@ -1,4 +1,10 @@
-### `<ui-tabs>` & `<ui-tab-bar>` & `<ui-tab-bar-scroller>`
+```html
+<ui-tabs></ui-tabs>
+<ui-tab-bar><!-- the tab components --></ui-tab-bar>
+<ui-tab-bar-scroller><!-- the tab components --></ui-tab-bar-scroller>
+```
+
+> `<ui-tabs>` is shorthand for `<ui-tab-bar>`.
 
 #### Props
 
@@ -17,9 +23,9 @@
 
 #### Slots
 
-| Name      | Description                                                                          |
-| --------- | ------------------------------------------------------------------------------------ |
-| (default) | The default slot holds the tab item and can contain HTML. (`<ui-tabs>` has not slot) |
+| Name      | Description                                                                                |
+| --------- | ------------------------------------------------------------------------------------------ |
+| (default) | The default slot holds the tab components and can contain HTML. (`<ui-tabs>` has not slot) |
 
 #### Events
 
@@ -39,7 +45,9 @@
 
 ---
 
-### `<ui-tabs>`
+```html
+<ui-tabs></ui-tabs>
+```
 
 #### Props
 

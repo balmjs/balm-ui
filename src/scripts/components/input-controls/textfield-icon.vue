@@ -3,7 +3,7 @@
     :tabindex="unclickable ? null : 0"
     :role="unclickable ? null : 'button'"
     @click="unclickable ? null : handleClick">
-    <slot><!-- Material Icon --></slot>
+    <slot><!-- Material icon --></slot>
   </i>
 </template>
 

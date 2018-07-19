@@ -1,4 +1,9 @@
-### `<ui-panels>`
+```html
+<ui-panels>
+  <!-- the panel components -->
+  <ui-panel><!-- the panel content --></ui-panel>
+</ui-panels>
+```
 
 #### Props
 
@@ -8,9 +13,9 @@
 
 #### Slots
 
-| Name      | Description                                            |
-| --------- | ------------------------------------------------------ |
-| (default) | The default slot holds the panel and can contain HTML. |
+| Name      | Description                                                       |
+| --------- | ----------------------------------------------------------------- |
+| (default) | The default slot holds the panel components and can contain HTML. |
 
 ```html
 <ui-tab-bar v-model="active">

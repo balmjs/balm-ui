@@ -1,4 +1,6 @@
-### `<ui-menu-anchor>`
+```html
+<ui-menu-anchor><!-- the menu component --></ui-menu-anchor>
+```
 
 #### Props
 
@@ -10,6 +12,6 @@
 
 #### Slots
 
-| Name      | Description                                           |
-| --------- | ----------------------------------------------------- |
-| (default) | The default slot holds the menu and can contain HTML. |
+| Name      | Description                                |
+| --------- | ------------------------------------------ |
+| (default) | The default slot holds the menu component. |

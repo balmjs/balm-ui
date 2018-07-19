@@ -1,3 +1,7 @@
+```html
+<div v-shadow="4"></div>
+```
+
 #### Default elevation
 
 - `v-shadow="z"`

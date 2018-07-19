@@ -1,4 +1,6 @@
-### `<ui-textfield-helptext>`
+```html
+<ui-textfield-helptext><!-- the helper text --></ui-textfield-helptext>
+```
 
 #### Props
 

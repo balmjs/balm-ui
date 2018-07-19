@@ -1,4 +1,6 @@
-### `<ui-checkbox>`
+```html
+<ui-checkbox><!-- the label text --></ui-checkbox>
+```
 
 #### Props
 
@@ -16,9 +18,9 @@
 
 #### Slots
 
-| Name      | Description                                        | `slot-scope` |
-| --------- | -------------------------------------------------- | ------------ |
-| (default) | The default slot holds the label for the checkbox. |              |
+| Name      | Description                                        |
+| --------- | -------------------------------------------------- |
+| (default) | The default slot holds the label for the checkbox. |
 
 #### Events
 

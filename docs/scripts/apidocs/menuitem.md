@@ -1,4 +1,6 @@
-### `<ui-menuitem>`
+```html
+<ui-menuitem><!-- the label text --></ui-menuitem>
+```
 
 #### Props
 

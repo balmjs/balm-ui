@@ -10,6 +10,6 @@
 
 #### Slots
 
-| Name      | Description                                                                                     |
-| --------- | ----------------------------------------------------------------------------------------------- |
-| (default) | The default slot holds the material design icon name. Refer to [Material Icons](/#/icons) list. |
+| Name      | Description                                                                                |
+| --------- | ------------------------------------------------------------------------------------------ |
+| (default) | The default slot holds the material design icon name. See [Material Icons](/#/icons) list. |

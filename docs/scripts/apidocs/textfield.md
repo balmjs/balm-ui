@@ -1,4 +1,6 @@
-### `<ui-textfield>`
+```html
+<ui-textfield><!-- the label text --></ui-textfield>
+```
 
 #### Props
 

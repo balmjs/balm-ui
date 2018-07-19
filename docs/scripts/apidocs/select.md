@@ -1,4 +1,6 @@
-### `<ui-select>`
+```html
+<ui-select><!-- the label text --></ui-select>
+```
 
 #### Props
 
@@ -25,9 +27,9 @@
 
 #### Slots
 
-| Name      | Description                                      | `slot-scope` |
-| --------- | ------------------------------------------------ | ------------ |
-| (default) | The default slot holds the label for the select. |              |
+| Name      | Description                                      |
+| --------- | ------------------------------------------------ |
+| (default) | The default slot holds the label for the select. |
 
 #### Events
 

@@ -1,4 +1,6 @@
-### `<ui-dialog-body>`
+```html
+<ui-dialog-body><!-- the dialog content --></ui-dialog-body>
+```
 
 #### Props
 

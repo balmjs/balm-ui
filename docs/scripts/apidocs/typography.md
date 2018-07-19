@@ -1,4 +1,6 @@
-- `$tt(style)`
+```js
+$tt(style);
+```
 
 | Param | Type   | Default | Description           |
 | ----- | ------ | ------- | --------------------- |

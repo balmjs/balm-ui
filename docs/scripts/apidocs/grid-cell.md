@@ -1,4 +1,6 @@
-### `<ui-grid-cell>`
+```html
+<ui-grid-cell><!-- the grid inner or cell content --></ui-grid-cell>
+```
 
 | Name    | Type                         | Default | Description                                                                  |
 | ------- | ---------------------------- | ------- | ---------------------------------------------------------------------------- |
@@ -12,7 +14,7 @@
 | --------- | --------------------------------------------------------------------------- |
 | (default) | The default slot holds the grid inner or cell content and can contain HTML. |
 
-- Nested grid by `<ui-grid-inner>`
+> When your contents need extra structure that cannot be supported by single layout grid, you can nest layout grid within each other. To nest layout grid, using `<ui-grid-inner>`.
 
 ```html
 <ui-grid>

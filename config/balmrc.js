@@ -13,25 +13,24 @@ module.exports = {
     // includePaths: ['node_modules']
   },
   scripts: {
-    entry: env.useDocs
-      ? {
-          mylib: [
-            'vue',
-            'vue-router',
-            'vue-meta',
-            'axios',
-            'prismjs',
-            'clipboard'
-          ],
-          main: './docs/scripts/main.js'
-        }
-      : {
-          'balm-ui': './src/scripts/index.js'
-        },
-    library: 'BalmUI',
-    libraryTarget: 'umd',
-    loaders: [
-      {
+    entry: env.useDocs ? {
+      mylib: [
+        'vue',
+        'vue-router',
+        'vue-meta',
+        'axios',
+        'prismjs',
+        'clipboard'
+      ],
+      main: './docs/scripts/main.js'
+    } : {
+      'balm-ui': './src/scripts/index.js',
+      'balm-ui-plus': './src/scripts/plus.js',
+      'balm-ui-migrate': './src/scripts/migrate.js'
+    },
+    // library: 'BalmUI',
+    // libraryTarget: 'umd',
+    loaders: [{
         test: /\.vue$/,
         loader: 'vue-loader'
       },
@@ -50,12 +49,10 @@ module.exports = {
         drop_console: false
       }
     },
-    include: env.useDocs
-      ? [
-          path.resolve('./src/material-components-web'),
-          path.resolve('./src/scripts')
-        ]
-      : [path.resolve('./src/material-components-web')]
+    include: env.useDocs ? [
+      path.resolve('./src/material-components-web'),
+      path.resolve('./src/scripts')
+    ] : [path.resolve('./src/material-components-web')]
   },
   sprites: {
     svg: ['icon']

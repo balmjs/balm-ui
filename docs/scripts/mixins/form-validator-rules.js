@@ -1,12 +1,14 @@
-import { helpers } from '../../../src/scripts/balm-ui'; // 'balm-ui'
+import {
+  utils
+} from '../../../src/scripts/plus'; // 'balm-ui-plus'
 
 export default {
   required: {
     validate(value) {
       let result = false;
-      if (helpers.isString(value)) {
+      if (utils.isString(value)) {
         result = value.trim() !== '';
-      } else if (helpers.isArray(value)) {
+      } else if (utils.isArray(value)) {
         return value.length;
       } else {
         result = value;
@@ -28,7 +30,7 @@ export default {
     message: 'Invalid E-mail'
   },
   idNumberRule: {
-    validate: function(value) {
+    validate: function (value) {
       return /^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/.test(value);
     },
     message: 'Invalid ID card No.'

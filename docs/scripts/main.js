@@ -5,6 +5,7 @@ import axios from 'axios';
 import VueMeta from 'vue-meta';
 // import VueI18n from 'vue-i18n';
 import BalmUI from '../../src/scripts/index'; // 'balm-ui'
+import BalmUIMigrate from '../../src/scripts/migrate'; // 'balm-ui-migrate'
 import routes from './routes/index';
 import App from './views/layouts/app';
 import UiMarkdown from './components/markdown';
@@ -26,6 +27,7 @@ Vue.prototype.$http = axios;
 Vue.use(VueMeta);
 // Vue.use(VueI18n);
 Vue.use(BalmUI);
+Vue.use(BalmUIMigrate);
 
 Vue.component(UiMarkdown.name, UiMarkdown);
 Vue.component(UiApidocs.name, UiApidocs);

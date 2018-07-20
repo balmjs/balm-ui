@@ -3,20 +3,13 @@ import multiConfigure from './config/multi-configure';
 /**
  * Components
  */
-// Layout
+// Layouts
 import UiPermanentDrawer from './components/drawer/permanent';
 import UiPersistentDrawer from './components/drawer/persistent';
 import UiTemporaryDrawer from './components/drawer/temporary';
 import UiDrawerHeader from './components/drawer/drawer-header';
 import UiDrawerToolbarSpacer from './components/drawer/drawer-toolbar-spacer';
 import UiDrawerContent from './components/drawer/drawer-content';
-import UiToolbar from './components/toolbar/toolbar';
-import UiToolbarRow from './components/toolbar/toolbar-row';
-import UiToolbarSection from './components/toolbar/toolbar-section';
-import UiToolbarTitle from './components/toolbar/toolbar-title';
-import UiToolbarAnchor from './components/toolbar/icons/toolbar-anchor';
-import UiToolbarSpan from './components/toolbar/icons/toolbar-span';
-import UiToolbarButton from './components/toolbar/icons/toolbar-button';
 import UiTopAppBar from './components/toolbar/top-app-bar';
 import UiGrid from './components/grid/grid';
 import UiGridInner from './components/grid/grid-inner';
@@ -27,39 +20,13 @@ import UiTabBarScroller from './components/tabs/tab-bar-scroller';
 import UiTab from './components/tabs/tab';
 import UiPanels from './components/tabs/panels';
 import UiPanel from './components/tabs/panel';
-// Common
-import UiIcon from './components/common/icon';
+// Buttons
 import UiButton from './components/button/button';
 import UiLink from './components/button/link';
 import UiFab from './components/button/fab';
 import UiIconButton from './components/button/icon-button';
 import UiIconLink from './components/button/icon-link';
-import UiIconToggle from './components/button/icon-toggle';
-import UiMenuAnchor from './components/menu/menu-anchor';
-import UiMenu from './components/menu/menu';
-import UiMenuitem from './components/menu/menuitem';
-import UiLinearProgress from './components/common/linear-progress';
 // Data View
-import UiCard from './components/card/card';
-import UiCardContent from './components/card/card-content';
-import UiCardMedia from './components/card/card-media';
-import UiCardMediaContent from './components/card/card-media-content';
-import UiCardActions from './components/card/card-actions';
-import UiCardButtons from './components/card/card-buttons';
-import UiCardIcons from './components/card/card-icons';
-import UiChipSet from './components/chips/chip-set';
-import UiChip from './components/chips/chip';
-import UiChipText from './components/chips/chip-text';
-import UiChipLeadingIcon from './components/chips/chip-icon-leading';
-import UiChipTrailingIcon from './components/chips/chip-icon-trailing';
-import UiChipCheckmark from './components/chips/chip-checkmark';
-import UiGridList from './components/grid-list/grid-list';
-import UiGridTile from './components/grid-list/grid-tile';
-import UiGridTileTitle from './components/grid-list/grid-tile-title';
-import UiGridTileSubtitle from './components/grid-list/grid-tile-subtitle';
-import UiImageList from './components/image-list/image-list';
-import UiImageItem from './components/image-list/image-item';
-import UiImageLabel from './components/image-list/image-label';
 import UiListGroup from './components/list/list-group';
 import UiListGroupSubheader from './components/list/list-group-subheader';
 import UiList from './components/list/list';
@@ -73,7 +40,23 @@ import UiItemDivider from './components/list/item-divider';
 import UiListNav from './components/list/list-nav';
 import UiItemLink from './components/list/item-link';
 import UiPagination from './components/data/pagination';
-// Input Controls
+import UiImageList from './components/image-list/image-list';
+import UiImageItem from './components/image-list/image-item';
+import UiImageLabel from './components/image-list/image-label';
+import UiCard from './components/card/card';
+import UiCardContent from './components/card/card-content';
+import UiCardMedia from './components/card/card-media';
+import UiCardMediaContent from './components/card/card-media-content';
+import UiCardActions from './components/card/card-actions';
+import UiCardButtons from './components/card/card-buttons';
+import UiCardIcons from './components/card/card-icons';
+import UiChipSet from './components/chips/chip-set';
+import UiChip from './components/chips/chip';
+import UiChipText from './components/chips/chip-text';
+import UiChipLeadingIcon from './components/chips/chip-icon-leading';
+import UiChipTrailingIcon from './components/chips/chip-icon-trailing';
+import UiChipCheckmark from './components/chips/chip-checkmark';
+// Inputs and Controls
 import UiFormField from './components/input-controls/form-field';
 import UiTextfield from './components/input-controls/textfield';
 import UiTextfieldHelptext from './components/input-controls/textfield-helptext';
@@ -81,15 +64,20 @@ import UiTextfieldIcon from './components/input-controls/textfield-icon';
 import UiCheckbox from './components/input-controls/checkbox';
 import UiRadio from './components/input-controls/radio';
 import UiSelect from './components/input-controls/select';
-import UiSelectmenu from './components/input-controls/selectmenu';
 import UiSwitch from './components/input-controls/switch';
 import UiSlider from './components/input-controls/slider';
-// Dialog
+// Modal
 import UiDialog from './components/dialog/dialog';
 import UiDialogHeader from './components/dialog/dialog-header';
 import UiDialogBody from './components/dialog/dialog-body';
 import UiDialogFooter from './components/dialog/dialog-footer';
 import UiSnackbar from './components/common/snackbar';
+// Common
+import UiIcon from './components/common/icon';
+import UiMenuAnchor from './components/menu/menu-anchor';
+import UiMenu from './components/menu/menu';
+import UiMenuitem from './components/menu/menuitem';
+import UiLinearProgress from './components/common/linear-progress';
 /**
  * Plugins
  */
@@ -97,39 +85,23 @@ import event from './plugins/event';
 import grid from './plugins/grid';
 import typography from './plugins/typography';
 import theme from './plugins/theme';
-import validator from './plugins/validator';
-// import alert from './plugins/alert';
-// import confirm from './plugins/confirm';
-// import prompt from './plugins/prompt';
-import toast from './plugins/toast';
 /**
  * Directives
  */
 import vRipple from './directives/ripple';
 import VShadow from './directives/elevation';
 import vShape from './directives/shape';
-/**
- * Utilities
- */
-import * as utils from './utils';
 
 const version = require('../../package.json').version;
 
 const components = {
-  // Layout
+  // Layouts
   UiPermanentDrawer,
   UiPersistentDrawer,
   UiTemporaryDrawer,
   UiDrawerHeader,
   UiDrawerToolbarSpacer,
   UiDrawerContent,
-  UiToolbar,
-  UiToolbarRow,
-  UiToolbarSection,
-  UiToolbarTitle,
-  UiToolbarAnchor,
-  UiToolbarSpan,
-  UiToolbarButton,
   UiTopAppBar,
   UiGrid,
   UiGridInner,
@@ -140,30 +112,28 @@ const components = {
   UiTab,
   UiPanels,
   UiPanel,
-  // Common
-  UiIcon,
+  // Buttons
   UiButton,
   UiLink,
   UiFab,
-  UiMenuAnchor,
-  UiMenu,
-  UiMenuitem,
-  UiLinearProgress,
-  // Input Controls
-  UiFormField,
-  UiTextfield,
-  UiTextfieldHelptext,
-  UiTextfieldIcon,
-  UiCheckbox,
-  UiRadio,
   UiIconButton,
   UiIconLink,
-  UiIconToggle,
-  UiSelect,
-  UiSelectmenu,
-  UiSwitch,
-  UiSlider,
-  // Data
+  // Data View
+  UiListGroup,
+  UiListGroupSubheader,
+  UiList,
+  UiListDivider,
+  UiItem,
+  UiItemFirst,
+  UiItemText,
+  UiItemSubtext,
+  UiItemLast,
+  UiItemDivider,
+  UiListNav,
+  UiItemLink,
+  UiImageList,
+  UiImageItem,
+  UiImageLabel,
   UiCard,
   UiCardContent,
   UiCardMedia,
@@ -177,44 +147,35 @@ const components = {
   UiChipLeadingIcon,
   UiChipTrailingIcon,
   UiChipCheckmark,
-  UiGridList,
-  UiGridTile,
-  UiGridTileTitle,
-  UiGridTileSubtitle,
-  UiImageList,
-  UiImageItem,
-  UiImageLabel,
-  UiListGroup,
-  UiListGroupSubheader,
-  UiList,
-  UiListDivider,
-  UiItem,
-  UiItemFirst,
-  UiItemText,
-  UiItemSubtext,
-  UiItemLast,
-  UiItemDivider,
-  UiListNav,
-  UiItemLink,
-  UiPagination,
-  // Dialog
+  // Inputs and Controls
+  UiFormField,
+  UiTextfield,
+  UiTextfieldHelptext,
+  UiTextfieldIcon,
+  UiCheckbox,
+  UiRadio,
+  UiSelect,
+  UiSwitch,
+  UiSlider,
+  // Modal
   UiDialog,
   UiDialogHeader,
   UiDialogBody,
   UiDialogFooter,
-  UiSnackbar
+  UiSnackbar,
+  // Common
+  UiIcon,
+  UiMenuAnchor,
+  UiMenu,
+  UiMenuitem,
+  UiLinearProgress
 };
 
 const plugins = {
   event,
   grid,
   typography,
-  theme,
-  validator,
-  // alert,
-  // confirm,
-  // prompt,
-  toast
+  theme
 };
 
 const directives = {
@@ -260,8 +221,6 @@ const BalmUI = Object.assign({}, {
     plugins
   }, {
     directives
-  }, {
-    utils
   },
   registers
 );
@@ -269,6 +228,3 @@ const BalmUI = Object.assign({}, {
 autoInstall(BalmUI);
 
 export default BalmUI;
-export {
-  utils
-};

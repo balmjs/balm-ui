@@ -184,20 +184,22 @@ const directives = {
   vShape
 };
 
-const registers = {
+const BalmUI = {
   install(Vue, options = {}) {
+    Vue.BalmUIVersion = version;
+
     // Configure the components' props
-    multiConfigure(BalmUI.components, options);
+    multiConfigure(components, options);
 
     // Install the components
-    for (let key in BalmUI.components) {
-      let Component = BalmUI.components[key];
+    for (let key in components) {
+      let Component = components[key];
       Vue.component(Component.name, Component);
     }
 
     // Install the plugins
-    for (let key in BalmUI.plugins) {
-      let Plugin = BalmUI.plugins[key];
+    for (let key in plugins) {
+      let Plugin = plugins[key];
       if (options[key]) {
         Vue.use(Plugin, options[key]);
       } else {
@@ -206,24 +208,12 @@ const registers = {
     }
 
     // Init the directives
-    for (let key in BalmUI.directives) {
-      let Directive = BalmUI.directives[key];
+    for (let key in directives) {
+      let Directive = directives[key];
       Vue.directive(Directive.name, Directive);
     }
   }
 };
-
-const BalmUI = Object.assign({}, {
-    version
-  }, {
-    components
-  }, {
-    plugins
-  }, {
-    directives
-  },
-  registers
-);
 
 autoInstall(BalmUI);
 

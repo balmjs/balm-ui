@@ -22,11 +22,13 @@ const plugins = {
   toast
 };
 
-const registers = {
+const BalmUIPlus = {
   install(Vue, options = {}) {
+    Vue.BalmUIVersion = version;
+
     // Install the plugins
-    for (let key in BalmUIPlus.plugins) {
-      let Plugin = BalmUIPlus.plugins[key];
+    for (let key in plugins) {
+      let Plugin = plugins[key];
       if (options[key]) {
         Vue.use(Plugin, options[key]);
       } else {
@@ -35,16 +37,6 @@ const registers = {
     }
   }
 };
-
-const BalmUIPlus = Object.assign({}, {
-    version
-  }, {
-    plugins
-  }, {
-    utils
-  },
-  registers
-);
 
 autoInstall(BalmUIPlus);
 

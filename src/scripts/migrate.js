@@ -39,26 +39,20 @@ const components = {
   UiGridTileSubtitle
 };
 
-const registers = {
+const BalmUIMigrate = {
   install(Vue, options = {}) {
+    Vue.BalmUIVersion = version;
+
     // Configure the components' props
-    multiConfigure(BalmUIMigrate.components, options);
+    multiConfigure(components, options);
 
     // Install the components
-    for (let key in BalmUIMigrate.components) {
-      let Component = BalmUIMigrate.components[key];
+    for (let key in components) {
+      let Component = components[key];
       Vue.component(Component.name, Component);
     }
   }
 };
-
-const BalmUIMigrate = Object.assign({}, {
-    version
-  }, {
-    components
-  },
-  registers
-);
 
 autoInstall(BalmUIMigrate);
 

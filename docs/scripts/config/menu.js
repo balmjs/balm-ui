@@ -166,6 +166,11 @@ const MATERIAL_COMPONENTS = [
     name: 'Others',
     children: [
       {
+        icon: 'component',
+        name: 'Event',
+        description: 'Global event handler'
+      },
+      {
         icon: 'typography',
         name: 'Typography',
         description: 'Type hierarchy'

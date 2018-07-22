@@ -31,24 +31,18 @@ import 'balm-ui/components/core.css';
 import 'balm-ui/components/textfield.css';
 import 'balm-ui/components/icon.css'; // Optional
 
-// Optional.
-UiTextfieldComponents.config({
-  // Overwrite `<ui-textfield>` props.
+Vue.use(UiTextfieldComponents, {
+  // Optional. Overwrite `<ui-textfield>` props.
   UiTextfield: {
     // some props
   },
-  // Overwrite `<ui-textfield-helptext>` props.
+  // Optional. Overwrite `<ui-textfield-helptext>` props.
   UiTextfieldHelptext: {
     // some props
   },
-  // Overwrite `<ui-textfield-icon>` props.
+  // Optional. Overwrite `<ui-textfield-icon>` props.
   UiTextfieldIcon: {
     // some props
   }
 });
-
-for (let key in UiTextfieldComponents) {
-  let Component = UiTextfieldComponents[key];
-  Vue.component(Component.name, Component);
-}
 ```

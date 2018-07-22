@@ -23,9 +23,7 @@ import 'balm-ui/components/core.css';
 import 'balm-ui/components/linear-progress.css';
 
 // Optional. Overwrite `<ui-linear-progress>` props.
-UiLinearProgress.config({
+Vue.use(UiLinearProgress, {
   // some props
 });
-
-Vue.component(UiLinearProgress.name, UiLinearProgress);
 ```

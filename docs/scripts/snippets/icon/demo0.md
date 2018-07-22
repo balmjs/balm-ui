@@ -23,9 +23,7 @@ import 'balm-ui/components/core.css';
 import 'balm-ui/components/icon.css';
 
 // Optional. Overwrite `<ui-icon>` props.
-UiIcon.config({
+Vue.use(UiIcon, {
   // some props
 });
-
-Vue.component(UiIcon.name, UiIcon);
 ```

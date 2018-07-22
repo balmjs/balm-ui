@@ -23,16 +23,10 @@ import 'balm-ui/components/core.css';
 import 'balm-ui/components/chips.css';
 import 'balm-ui/components/icon.css'; // Optional.
 
-// Optional.
-UiChipsComponents.config({
-  // Overwrite `<ui-chip-set>` props.
+Vue.use(UiChipsComponents, {
+  // Optional. Overwrite `<ui-chip-set>` props.
   UiChipSet: {
     // some props
   }
 });
-
-for (let key in UiChipsComponents) {
-  let Component = UiChipsComponents[key];
-  Vue.component(Component.name, Component);
-}
 ```

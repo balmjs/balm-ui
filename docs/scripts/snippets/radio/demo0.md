@@ -23,9 +23,7 @@ import 'balm-ui/components/core.css';
 import 'balm-ui/components/radio.css';
 
 // Optional. Overwrite `<ui-radio>` props.
-UiRadio.config({
+Vue.use(UiRadio, {
   // some props
 });
-
-Vue.component(UiRadio.name, UiRadio);
 ```

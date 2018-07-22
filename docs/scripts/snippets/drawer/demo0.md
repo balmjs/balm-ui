@@ -4,20 +4,7 @@ Default Usage
 import Vue from 'vue';
 import BalmUI from 'balm-ui';
 
-Vue.use(BalmUI, {
-  // Optional. Overwrite `<ui-permanent-drawer>` props.
-  UiPermanentDrawer: {
-    // some props
-  },
-  // Optional. Overwrite `<ui-persistent-drawer>` props.
-  UiPersistentDrawer: {
-    // some props
-  },
-  // Optional. Overwrite `<ui-drawer-content>` props.
-  UiDrawerContent: {
-    // some props
-  }
-});
+Vue.use(BalmUI);
 ```
 
 Standalone Usage
@@ -30,24 +17,5 @@ import UiDrawerComponents from 'balm-ui/components/drawer';
 import 'balm-ui/components/core.css';
 import 'balm-ui/components/drawer.css';
 
-// Optional.
-UiDrawerComponents.config({
-  // Overwrite `<ui-permanent-drawer>` props.
-  UiPermanentDrawer: {
-    // some props
-  },
-  // Overwrite `<ui-persistent-drawer>` props.
-  UiPersistentDrawer: {
-    // some props
-  },
-  // Overwrite `<ui-drawer-content>` props.
-  UiDrawerContent: {
-    // some props
-  }
-});
-
-for (let key in UiDrawerComponents) {
-  let Component = UiDrawerComponents[key];
-  Vue.component(Component.name, Component);
-}
+Vue.use(UiDrawerComponents);
 ```

@@ -23,9 +23,7 @@ import 'balm-ui/components/core.css';
 import 'balm-ui/components/slider.css';
 
 // Optional. Overwrite `<ui-slider>` props.
-UiSlider.config({
+Vue.use(UiSlider, {
   // some props
 });
-
-Vue.component(UiSlider.name, UiSlider);
 ```

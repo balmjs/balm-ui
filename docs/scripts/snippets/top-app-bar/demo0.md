@@ -23,9 +23,7 @@ import 'balm-ui/components/core.css';
 import 'balm-ui/components/top-app-bar.css';
 
 // Optional. Overwrite `<ui-top-app-bar>` props.
-UiTopAppBar.config({
+Vue.use(UiTopAppBar, {
   // some props
 });
-
-Vue.component(UiTopAppBar.name, UiTopAppBar);
 ```

@@ -23,9 +23,7 @@ import 'balm-ui/components/core.css';
 import 'balm-ui/components/select.css';
 
 // Optional. Overwrite `<ui-select>` props.
-UiSelect.config({
+Vue.use(UiSelect, {
   // some props
 });
-
-Vue.component(UiSelect.name, UiSelect);
 ```

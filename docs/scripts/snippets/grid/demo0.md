@@ -8,10 +8,6 @@ Vue.use(BalmUI, {
   // Optional. Overwrite `<ui-grid>` props.
   UiGrid: {
     // some props
-  },
-  // Optional. Overwrite `<ui-grid-cell>` props.
-  UiGridCell: {
-    // some props
   }
 });
 ```
@@ -26,20 +22,10 @@ import UiGridComponents from 'balm-ui/components/grid';
 import 'balm-ui/components/core.css';
 import 'balm-ui/components/grid.css';
 
-// Optional.
-UiGridComponents.config({
-  // Overwrite `<ui-grid>` props.
+Vue.use(UiGridComponents, {
+  // Optional. Overwrite `<ui-grid>` props.
   UiGrid: {
-    // some props
-  },
-  // Overwrite `<ui-grid-cell>` props.
-  UiGridCell: {
     // some props
   }
 });
-
-for (let key in UiGridComponents) {
-  let Component = UiGridComponents[key];
-  Vue.component(Component.name, Component);
-}
 ```

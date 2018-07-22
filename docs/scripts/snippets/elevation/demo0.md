@@ -18,5 +18,5 @@ import 'balm-ui/components/core.css'; // (Include 'directives/elevation.css')
 // OR
 import 'balm-ui/directives/elevation.css';
 
-Vue.use(elevation);
+Vue.directive(elevation.name, elevation);
 ```

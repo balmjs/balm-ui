@@ -23,9 +23,7 @@ import 'balm-ui/components/core.css';
 import 'balm-ui/components/switch.css';
 
 // Optional. Overwrite `<ui-switch>` props.
-UiSwitch.config({
+Vue.use(UiSwitch, {
   // some props
 });
-
-Vue.component(UiSwitch.name, UiSwitch);
 ```

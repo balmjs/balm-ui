@@ -5,10 +5,6 @@ import Vue from 'vue';
 import BalmUI from 'balm-ui';
 
 Vue.use(BalmUI, {
-  // Optional. Overwrite `<ui-menu-anchor>` props.
-  UiMenuAnchor: {
-    // some props
-  },
   // Optional. Overwrite `<ui-menu>` props.
   UiMenu: {
     // some props
@@ -26,20 +22,10 @@ import UiMenuComponents from 'balm-ui/components/menu';
 import 'balm-ui/components/core.css';
 import 'balm-ui/components/menu.css';
 
-// Optional.
-UiMenuComponents.config({
-  // Overwrite `<ui-menu-anchor>` props.
-  UiMenuAnchor: {
-    // some props
-  },
-  // Overwrite `<ui-menu>` props.
+Vue.use(UiMenuComponents, {
+  // Optional. Overwrite `<ui-menu>` props.
   UiMenu: {
     // some props
   }
 });
-
-for (let key in UiMenuComponents) {
-  let Component = UiMenuComponents[key];
-  Vue.component(Component.name, Component);
-}
 ```

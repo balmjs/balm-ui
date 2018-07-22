@@ -23,16 +23,10 @@ import 'balm-ui/components/core.css';
 import 'balm-ui/components/tabs.css';
 import 'balm-ui/components/icon.css'; // Optional.
 
-// Optional.
-UiTabsComponents.config({
-  // Overwrite `<ui-tabs>` props.
+Vue.use(UiTabsComponents, {
+  // Optional. Overwrite `<ui-tabs>` props.
   UiTabs: {
     // some props
   }
 });
-
-for (let key in UiTabsComponents) {
-  let Component = UiTabsComponents[key];
-  Vue.component(Component.name, Component);
-}
 ```

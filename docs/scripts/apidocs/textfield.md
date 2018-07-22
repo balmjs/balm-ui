@@ -15,7 +15,7 @@
 | rows            | `Number`, `String`  | `1`      | The _rows_ attribute of the `<textarea>`.                                                                       |
 | cols            | `Number`, `String`  | `20`     | The _cols_ attribute of the `<textarea>`.                                                                       |
 | cssOnly         | `Boolean`           | `false`  | Ripple effect is disabled.                                                                                      |
-| label           | `String`            | `''`     | A text caption or description for the text field, which use the input's `placeholder` attribute instead.        |
+| label           | `String`            | `null`   | A text caption or description for the text field, which use the input's `placeholder` attribute instead.        |
 | box             | `Boolean`           | `false`  | Styles the text field as a box text field.                                                                      |
 | outlined        | `Boolean`           | `false`  | Styles the text field as an outlined text field.                                                                |
 | fullwidth       | `Boolean`           | `false`  | Styles the text field as a full width text field.                                                               |

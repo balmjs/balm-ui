@@ -30,24 +30,18 @@ import UiCardComponents from 'balm-ui/components/card';
 import 'balm-ui/components/core.css';
 import 'balm-ui/components/card.css';
 
-// Optional.
-UiCardComponents.config({
-  // Overwrite `<ui-card>` props.
+Vue.use(UiCardComponents, {
+  // Optional. Overwrite `<ui-card>` props.
   UiCard: {
     // some props
   },
-  // Overwrite `<ui-card-media>` props.
+  // Optional. Overwrite `<ui-card-media>` props.
   UiCardMedia: {
     // some props
   },
-  // Overwrite `<ui-card-actions>` props.
+  // Optional. Overwrite `<ui-card-actions>` props.
   UiCardActions: {
     // some props
   }
 });
-
-for (let key in UiCardComponents) {
-  let Component = UiCardComponents[key];
-  Vue.component(Component.name, Component);
-}
 ```

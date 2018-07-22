@@ -24,9 +24,7 @@ import 'balm-ui/components/fab.css';
 import 'balm-ui/components/icon.css';
 
 // Optional. Overwrite `<ui-fab>` props.
-UiFab.config({
+Vue.use(UiFab, {
   // some props
 });
-
-Vue.component(UiFab.name, UiFab);
 ```

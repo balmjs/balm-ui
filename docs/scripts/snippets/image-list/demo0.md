@@ -26,20 +26,14 @@ import UiImageListComponents from 'balm-ui/components/image-list';
 import 'balm-ui/components/core.css';
 import 'balm-ui/components/image-list.css';
 
-// Optional.
-UiImageListComponents.config({
-  // Overwrite `<ui-image-list>` props.
+Vue.use(UiImageListComponents, {
+  // Optional. Overwrite `<ui-image-list>` props.
   UiImageList: {
     // some props
   },
-  // Overwrite `<ui-image-item>` props.
+  // Optional. Overwrite `<ui-image-item>` props.
   UiImageItem: {
     // some props
   }
 });
-
-for (let key in UiImageListComponents) {
-  let Component = UiImageListComponents[key];
-  Vue.component(Component.name, Component);
-}
 ```

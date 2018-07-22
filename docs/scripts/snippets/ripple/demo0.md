@@ -18,5 +18,5 @@ import 'balm-ui/components/core.css'; // (Include 'directives/ripple.css')
 // OR
 import 'balm-ui/directives/ripple.css';
 
-Vue.use(ripple);
+Vue.directive(ripple.name, ripple);
 ```

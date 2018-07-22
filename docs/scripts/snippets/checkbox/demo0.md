@@ -23,9 +23,7 @@ import 'balm-ui/components/core.css';
 import 'balm-ui/components/checkbox.css';
 
 // Optional. Overwrite `<ui-checkbox>` props.
-UiCheckbox.config({
+Vue.use(UiCheckbox, {
   // some props
 });
-
-Vue.component(UiCheckbox.name, UiCheckbox);
 ```

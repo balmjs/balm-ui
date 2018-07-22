@@ -20,7 +20,10 @@ export default {
       type: Boolean,
       default: false
     },
-    position: String
+    position: {
+      type: String,
+      default: ''
+    }
   },
   computed: {
     className() {
@@ -34,7 +37,7 @@ export default {
       // Optional, specifies the alignment of the whole grid
       // mdc-layout-grid--align-<GRID_POSITION>
       if (this.position) {
-        let gridPosition = this.position.toLowerCase();
+        let gridPosition = this.position;
         if (UI_GRID.POSITIONS.includes(gridPosition)) {
           result.push(`mdc-layout-grid--align-${gridPosition}`);
         } else {

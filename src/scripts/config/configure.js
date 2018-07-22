@@ -1,20 +1,60 @@
 import merge from 'deepmerge';
 import getType from '../utils/typeof';
 
+const setPropsDefaultValue = ({ componentProps, propName, props }) => {
+  let defaultValue = componentProps[propName].default;
+  let newValue = props[propName];
+
+  if (getType(defaultValue) === 'object') {
+    componentProps[propName].default = merge(defaultValue, newValue);
+    return;
+  }
+
+  componentProps[propName].default = newValue;
+};
+
+const setPropsInMixins = ({ componentMixins, propName, props }) => {
+  if (componentMixins.length) {
+    let i = componentMixins.length;
+    while (i--) {
+      if (componentMixins[i].props[propName] !== undefined) {
+        setPropsDefaultValue({
+          componentProps: componentMixins[i].props,
+          propName,
+          props
+        });
+        break;
+      }
+    }
+  }
+};
+
 const configure = (Component, props) => {
   Object.keys(props).forEach(propName => {
-    if (Component.props[propName] === undefined) {
-      return;
+    if (Component.props) {
+      if (Component.props[propName] === undefined) {
+        // Overwrite props in mixins
+        setPropsInMixins({
+          componentMixins: Component.mixins,
+          propName,
+          props
+        });
+      } else {
+        // Overwrite props
+        setPropsDefaultValue({
+          componentProps: Component.props,
+          propName,
+          props
+        });
+      }
+    } else {
+      // Overwrite props in mixins
+      setPropsInMixins({
+        componentMixins: Component.mixins,
+        propName,
+        props
+      });
     }
-
-    let defaultValue = Component.props[propName].default;
-
-    if (getType(defaultValue) === 'object') {
-      Component.props[propName].default = merge(defaultValue, props[propName]);
-      return;
-    }
-
-    Component.props[propName].default = props[propName];
   });
 };
 

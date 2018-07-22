@@ -23,9 +23,7 @@ import 'balm-ui/components/core.css';
 import 'balm-ui/components/snackbar.css';
 
 // Optional. Overwrite `<ui-snackbar>` props.
-UiSnackbar.config({
+Vue.use(UiSnackbar, {
   // some props
 });
-
-Vue.component(UiSnackbar.name, UiSnackbar);
 ```

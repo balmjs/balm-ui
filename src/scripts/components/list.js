@@ -12,7 +12,7 @@ import UiItemDivider from './list/item-divider';
 import UiListNav from './list/list-nav';
 import UiItemLink from './list/item-link';
 
-const components = {
+export default multiBootstrap({
   UiListGroup,
   UiListGroupSubheader,
   UiList,
@@ -25,22 +25,4 @@ const components = {
   UiItemDivider,
   UiListNav,
   UiItemLink
-};
-
-multiBootstrap(components);
-
-export default components;
-export {
-  UiListGroup,
-  UiListGroupSubheader,
-  UiList,
-  UiListDivider,
-  UiItem,
-  UiItemFirst,
-  UiItemText,
-  UiItemSubtext,
-  UiItemLast,
-  UiItemDivider,
-  UiListNav,
-  UiItemLink
-};
+});

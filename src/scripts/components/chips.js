@@ -6,23 +6,11 @@ import UiChipLeadingIcon from './chips/chip-icon-leading';
 import UiChipTrailingIcon from './chips/chip-icon-trailing';
 import UiChipCheckmark from './chips/chip-checkmark';
 
-const components = {
+export default multiBootstrap({
   UiChipSet,
   UiChip,
   UiChipText,
   UiChipLeadingIcon,
   UiChipTrailingIcon,
   UiChipCheckmark
-};
-
-multiBootstrap(components);
-
-export default components;
-export {
-  UiChipSet,
-  UiChip,
-  UiChipText,
-  UiChipLeadingIcon,
-  UiChipTrailingIcon,
-  UiChipCheckmark
-};
+});

@@ -23,9 +23,8 @@ const plugins = {
 };
 
 const BalmUIPlus = {
+  version,
   install(Vue, options = {}) {
-    Vue.BalmUIVersion = version;
-
     // Install the plugins
     for (let key in plugins) {
       let Plugin = plugins[key];
@@ -41,6 +40,4 @@ const BalmUIPlus = {
 autoInstall(BalmUIPlus);
 
 export default BalmUIPlus;
-export {
-  utils
-};
+export { utils };

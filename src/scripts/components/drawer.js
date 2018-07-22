@@ -6,23 +6,11 @@ import UiDrawerHeader from './drawer/drawer-header';
 import UiDrawerContent from './drawer/drawer-content';
 import UiDrawerToolbarSpacer from './drawer/drawer-toolbar-spacer';
 
-const components = {
+export default multiBootstrap({
   UiTemporaryDrawer,
   UiPersistentDrawer,
   UiPermanentDrawer,
   UiDrawerHeader,
   UiDrawerContent,
   UiDrawerToolbarSpacer
-};
-
-multiBootstrap(components);
-
-export default components;
-export {
-  UiTemporaryDrawer,
-  UiPersistentDrawer,
-  UiPermanentDrawer,
-  UiDrawerHeader,
-  UiDrawerContent,
-  UiDrawerToolbarSpacer
-};
+});

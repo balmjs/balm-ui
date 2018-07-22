@@ -7,7 +7,7 @@ import UiToolbarAnchor from './toolbar/icons/toolbar-anchor';
 import UiToolbarSpan from './toolbar/icons/toolbar-span';
 import UiToolbarButton from './toolbar/icons/toolbar-button';
 
-const components = {
+export default multiBootstrap({
   UiToolbar,
   UiToolbarRow,
   UiToolbarSection,
@@ -15,17 +15,4 @@ const components = {
   UiToolbarAnchor,
   UiToolbarSpan,
   UiToolbarButton
-};
-
-multiBootstrap(components);
-
-export default components;
-export {
-  UiToolbar,
-  UiToolbarRow,
-  UiToolbarSection,
-  UiToolbarTitle,
-  UiToolbarAnchor,
-  UiToolbarSpan,
-  UiToolbarButton
-};
+});

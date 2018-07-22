@@ -1,17 +1,20 @@
+import autoInstall from './auto-install';
 import configure from './configure';
 
 const bootstrap = Component => {
-  Object.defineProperty(Component, 'config', {
-    get() {
-      return function(props = {}) {
-        configure(Component, props);
-      };
-    }
-  });
+  const UiComponent = {
+    install(Vue, options = {}) {
+      // Configure the component's props
+      configure(Component, options);
 
-  if (typeof window !== 'undefined' && window.Vue) {
-    window.Vue.component(Component.name, Component);
-  }
+      // Install the component
+      Vue.component(Component.name, Component);
+    }
+  };
+
+  autoInstall(UiComponent);
+
+  return UiComponent;
 };
 
 export default bootstrap;

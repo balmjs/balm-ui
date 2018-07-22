@@ -3,13 +3,8 @@ import UiMenuAnchor from './menu/menu-anchor';
 import UiMenu from './menu/menu';
 import UiMenuitem from './menu/menuitem';
 
-const components = {
+export default multiBootstrap({
   UiMenuAnchor,
   UiMenu,
   UiMenuitem
-};
-
-multiBootstrap(components);
-
-export default components;
-export { UiMenuAnchor, UiMenu, UiMenuitem };
+});

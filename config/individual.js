@@ -41,7 +41,11 @@ const plugins = [
   'grid.js',
   'theme.js',
   'typography.js',
-  'validator.js'
+  'validator.js',
+  // 'alert.js',
+  // 'confirm.js',
+  // 'prompt.js',
+  'toast.js'
 ];
 const directives = [
   'ripple.js',

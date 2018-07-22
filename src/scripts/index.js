@@ -26,6 +26,7 @@ import UiLink from './components/button/link';
 import UiFab from './components/button/fab';
 import UiIconButton from './components/button/icon-button';
 import UiIconLink from './components/button/icon-link';
+import UiIcon from './components/common/icon';
 // Data View
 import UiListGroup from './components/list/list-group';
 import UiListGroupSubheader from './components/list/list-group-subheader';
@@ -56,6 +57,7 @@ import UiChipText from './components/chips/chip-text';
 import UiChipLeadingIcon from './components/chips/chip-icon-leading';
 import UiChipTrailingIcon from './components/chips/chip-icon-trailing';
 import UiChipCheckmark from './components/chips/chip-checkmark';
+import UiLinearProgress from './components/common/linear-progress';
 // Inputs and Controls
 import UiFormField from './components/input-controls/form-field';
 import UiTextfield from './components/input-controls/textfield';
@@ -72,12 +74,10 @@ import UiDialogHeader from './components/dialog/dialog-header';
 import UiDialogBody from './components/dialog/dialog-body';
 import UiDialogFooter from './components/dialog/dialog-footer';
 import UiSnackbar from './components/common/snackbar';
-// Common
-import UiIcon from './components/common/icon';
+// Others
 import UiMenuAnchor from './components/menu/menu-anchor';
 import UiMenu from './components/menu/menu';
 import UiMenuitem from './components/menu/menuitem';
-import UiLinearProgress from './components/common/linear-progress';
 /**
  * Plugins
  */
@@ -118,6 +118,7 @@ const components = {
   UiFab,
   UiIconButton,
   UiIconLink,
+  UiIcon,
   // Data View
   UiListGroup,
   UiListGroupSubheader,
@@ -147,6 +148,7 @@ const components = {
   UiChipLeadingIcon,
   UiChipTrailingIcon,
   UiChipCheckmark,
+  UiLinearProgress,
   // Inputs and Controls
   UiFormField,
   UiTextfield,
@@ -163,12 +165,10 @@ const components = {
   UiDialogBody,
   UiDialogFooter,
   UiSnackbar,
-  // Common
-  UiIcon,
+  // Others
   UiMenuAnchor,
   UiMenu,
-  UiMenuitem,
-  UiLinearProgress
+  UiMenuitem
 };
 
 const plugins = {
@@ -185,9 +185,8 @@ const directives = {
 };
 
 const BalmUI = {
+  version,
   install(Vue, options = {}) {
-    Vue.BalmUIVersion = version;
-
     // Configure the components' props
     multiConfigure(components, options);
 

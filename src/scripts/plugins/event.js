@@ -29,7 +29,7 @@ const EventMethods = {
 
 const BalmUI_EventPlugin = {
   install(Vue, options = { namespace }) {
-    Object.defineProperty(Vue.prototype, options.namespace, {
+    Object.defineProperty(Vue.prototype, `$${options.namespace}`, {
       get() {
         let balmUI = {};
 

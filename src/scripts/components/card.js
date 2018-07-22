@@ -7,7 +7,7 @@ import UiCardActions from './card/card-actions';
 import UiCardButtons from './card/card-buttons';
 import UiCardIcons from './card/card-icons';
 
-const components = {
+export default multiBootstrap({
   UiCard,
   UiCardContent,
   UiCardMedia,
@@ -15,17 +15,4 @@ const components = {
   UiCardActions,
   UiCardButtons,
   UiCardIcons
-};
-
-multiBootstrap(components);
-
-export default components;
-export {
-  UiCard,
-  UiCardContent,
-  UiCardMedia,
-  UiCardMediaContent,
-  UiCardActions,
-  UiCardButtons,
-  UiCardIcons
-};
+});

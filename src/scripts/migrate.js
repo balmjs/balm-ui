@@ -40,9 +40,8 @@ const components = {
 };
 
 const BalmUIMigrate = {
+  version,
   install(Vue, options = {}) {
-    Vue.BalmUIVersion = version;
-
     // Configure the components' props
     multiConfigure(components, options);
 

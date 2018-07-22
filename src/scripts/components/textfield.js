@@ -3,13 +3,8 @@ import UiTextfield from './input-controls/textfield';
 import UiTextfieldHelptext from './input-controls/textfield-helptext';
 import UiTextfieldIcon from './input-controls/textfield-icon';
 
-const components = {
+export default multiBootstrap({
   UiTextfield,
   UiTextfieldHelptext,
   UiTextfieldIcon
-};
-
-multiBootstrap(components);
-
-export default components;
-export { UiTextfield, UiTextfieldHelptext, UiTextfieldIcon };
+});

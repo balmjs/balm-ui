@@ -6,16 +6,11 @@ import UiTab from './tabs/tab';
 import UiPanels from './tabs/panels';
 import UiPanel from './tabs/panel';
 
-const components = {
+export default multiBootstrap({
   UiTabs,
   UiTabBar,
   UiTabBarScroller,
   UiTab,
   UiPanels,
   UiPanel
-};
-
-multiBootstrap(components);
-
-export default components;
-export { UiTabs, UiTabBar, UiTabBarScroller, UiTab, UiPanels, UiPanel };
+});

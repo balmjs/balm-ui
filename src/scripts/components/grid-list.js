@@ -4,14 +4,9 @@ import UiGridTile from './grid-list/grid-tile';
 import UiGridTileTitle from './grid-list/grid-tile-title';
 import UiGridTileSubtitle from './grid-list/grid-tile-subtitle';
 
-const components = {
+export default multiBootstrap({
   UiGridList,
   UiGridTile,
   UiGridTileTitle,
   UiGridTileSubtitle
-};
-
-multiBootstrap(components);
-
-export default components;
-export { UiGridList, UiGridTile, UiGridTileTitle, UiGridTileSubtitle };
+});

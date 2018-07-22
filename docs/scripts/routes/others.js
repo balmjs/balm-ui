@@ -1,21 +1,10 @@
-const Icon = () =>
-  import ('../views/components/icon');
-const Typography = () =>
-  import ('../views/plugins/typography');
-const Theme = () =>
-  import ('../views/plugins/theme');
-const Ripple = () =>
-  import ('../views/directives/ripple');
-const Elevation = () =>
-  import ('../views/directives/elevation');
-const Shape = () =>
-  import ('../views/directives/shape');
+const Typography = () => import('../views/plugins/typography');
+const Theme = () => import('../views/plugins/theme');
+const Ripple = () => import('../views/directives/ripple');
+const Elevation = () => import('../views/directives/elevation');
+const Shape = () => import('../views/directives/shape');
 
-export default [{
-    path: '/icon',
-    name: 'icon',
-    component: Icon
-  },
+export default [
   {
     path: '/typography',
     name: 'typography',

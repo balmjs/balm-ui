@@ -2,12 +2,7 @@ import multiBootstrap from '../config/multi-bootstrap';
 import UiIconButton from './button/icon-button';
 import UiIconLink from './button/icon-link';
 
-const components = {
+export default multiBootstrap({
   UiIconButton,
   UiIconLink
-};
-
-multiBootstrap(components);
-
-export default components;
-export { UiIconButton, UiIconLink };
+});

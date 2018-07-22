@@ -37,6 +37,6 @@
 <ui-temporary-drawer v-model="open"></ui-temporary-drawer>
 
 // Manual
-<ui-temporary-drawer :open="open" @nav="balmUI.onChange('open', $event)">
+<ui-temporary-drawer :open="open" @nav="$balmUI.onChange('open', $event)">
 </ui-temporary-drawer>
 ```

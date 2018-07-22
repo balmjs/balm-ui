@@ -49,6 +49,6 @@
 <ui-temporary-drawer menuSelector="#demo-menu"></ui-temporary-drawer>
 
 // Manual
-<ui-top-app-bar @nav="balmUI.onShow('open')"></ui-top-app-bar>
+<ui-top-app-bar @nav="$balmUI.onShow('open')"></ui-top-app-bar>
 <ui-temporary-drawer v-model="open"></ui-temporary-drawer>
 ```

@@ -1,5 +1,5 @@
 ```html
-<ui-button raised @click="balmUI.onShow('open')">Show Scrolling Dialog</ui-button>
+<ui-button raised @click="$balmUI.onShow('open')">Show Scrolling Dialog</ui-button>
 
 <ui-dialog
   v-model="open"

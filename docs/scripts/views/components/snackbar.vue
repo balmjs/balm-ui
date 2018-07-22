@@ -25,7 +25,7 @@
         <ui-textfield id="action"
           v-model="actionText">Action Text</ui-textfield><br>
 
-        <ui-button raised @click="balmUI.onShow('active')">Show</ui-button>
+        <ui-button raised @click="$balmUI.onShow('active')">Show</ui-button>
 
         <ui-snackbar
           v-model="active"

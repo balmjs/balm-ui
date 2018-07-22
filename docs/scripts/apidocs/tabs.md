@@ -40,7 +40,7 @@
 <ui-tabs v-model="active"></ui-tabs>
 
 // Manual
-<ui-tabs :active="active" @change="balmUI.onChange('active', $event)"></ui-tabs>
+<ui-tabs :active="active" @change="$balmUI.onChange('active', $event)"></ui-tabs>
 ```
 
 ---

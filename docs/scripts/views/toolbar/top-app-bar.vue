@@ -63,7 +63,7 @@
       <template v-if="showControls">
         <h3 :class="$tt('headline6')">
           <span>Demo Controls</span>
-          <ui-icon @click="balmUI.onHide('showControls')" title="Hide Controls">close</ui-icon>
+          <ui-icon @click="$balmUI.onHide('showControls')" title="Hide Controls">close</ui-icon>
         </h3>
         <div class="demo-row">
           <div class="demo-col">
@@ -116,7 +116,7 @@
       </template>
       <ui-icon v-else
         title="Show Controls"
-        @click="balmUI.onShow('showControls')">add</ui-icon>
+        @click="$balmUI.onShow('showControls')">add</ui-icon>
     </div>
   </div>
 </template>

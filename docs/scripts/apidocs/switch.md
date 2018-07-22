@@ -34,5 +34,5 @@
 <ui-switch v-model="value"></ui-switch>
 
 // Manual
-<ui-switch :model="value" @change="balmUI.onChange('value', $event)"></ui-switch>
+<ui-switch :model="value" @change="$balmUI.onChange('value', $event)"></ui-switch>
 ```

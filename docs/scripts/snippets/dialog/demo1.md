@@ -1,5 +1,5 @@
 ```html
-<ui-button raised @click="balmUI.onOpen('open')">Show Dialog</ui-button>
+<ui-button raised @click="$balmUI.onOpen('open')">Show Dialog</ui-button>
 
 <ui-dialog
   v-model="open"

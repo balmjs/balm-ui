@@ -12,11 +12,11 @@
   </ui-select>
 
   <ui-button raised
-    @click="balmUI.onChange('selected.index', 0)">
+    @click="$balmUI.onChange('selected.index', 0)">
     Set Selected Index (0)
   </ui-button>
   <ui-button raised
-    @click="balmUI.onChange('selected.value', 'meat')">
+    @click="$balmUI.onChange('selected.value', 'meat')">
     Set Value to Meat
   </ui-button>
 </section>

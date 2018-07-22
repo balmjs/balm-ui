@@ -29,7 +29,7 @@
         {{checked}}
       </ui-checkbox>
       <!-- model -->
-      <!-- <ui-checkbox id="checkbox" :model="checked" @change="balmUI.onChange('checked', $event)">
+      <!-- <ui-checkbox id="checkbox" :model="checked" @change="$balmUI.onChange('checked', $event)">
         {{checked}}
       </ui-checkbox> -->
       <ui-accordion>
@@ -44,9 +44,9 @@
       <ui-checkbox id="john" value="John" v-model="checkedNames">John</ui-checkbox>
       <ui-checkbox id="mike" value="Mike" v-model="checkedNames">Mike</ui-checkbox>
       <!-- model -->
-      <!-- <ui-checkbox id="jack" value="Jack" :model="checkedNames" @change="balmUI.onChange('checkedNames', $event)">Jack</ui-checkbox>
-      <ui-checkbox id="john" value="John" :model="checkedNames" @change="balmUI.onChange('checkedNames', $event)">John</ui-checkbox>
-      <ui-checkbox id="mike" value="Mike" :model="checkedNames" @change="balmUI.onChange('checkedNames', $event)">Mike</ui-checkbox> -->
+      <!-- <ui-checkbox id="jack" value="Jack" :model="checkedNames" @change="$balmUI.onChange('checkedNames', $event)">Jack</ui-checkbox>
+      <ui-checkbox id="john" value="John" :model="checkedNames" @change="$balmUI.onChange('checkedNames', $event)">John</ui-checkbox>
+      <ui-checkbox id="mike" value="Mike" :model="checkedNames" @change="$balmUI.onChange('checkedNames', $event)">Mike</ui-checkbox> -->
       <ui-accordion>
         <ui-markdown :code="code[2]"></ui-markdown>
       </ui-accordion>

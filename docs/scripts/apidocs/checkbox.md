@@ -35,5 +35,5 @@
 <ui-checkbox v-model="value"></ui-checkbox>
 
 // Manual
-<ui-checkbox :model="value" @change="balmUI.onChange('value', $event)"></ui-checkbox>
+<ui-checkbox :model="value" @change="$balmUI.onChange('value', $event)"></ui-checkbox>
 ```

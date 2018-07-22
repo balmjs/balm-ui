@@ -8,7 +8,7 @@
         Default checkbox
       </ui-checkbox>
       <div class="demo-toggle-group">
-        <ui-button outlined @click="balmUI.onChange('alignEnd', !alignEnd)">
+        <ui-button outlined @click="$balmUI.onChange('alignEnd', !alignEnd)">
           Toggle <code>--align-end</code>
         </ui-button>
       </div>
@@ -21,7 +21,7 @@
         Disabled checkbox
       </ui-checkbox>
       <div class="demo-toggle-group">
-        <ui-button outlined @click="balmUI.onChange('disabled', !disabled)">
+        <ui-button outlined @click="$balmUI.onChange('disabled', !disabled)">
           Toggle <code>disabled</code>
         </ui-button>
       </div>
@@ -34,7 +34,7 @@
         Indeterminate checkbox
       </ui-checkbox>
       <div class="demo-toggle-group">
-        <ui-button outlined @click="balmUI.onChange('indeterminate', !indeterminate)">
+        <ui-button outlined @click="$balmUI.onChange('indeterminate', !indeterminate)">
           Toggle <code>indeterminate</code>
         </ui-button>
       </div>

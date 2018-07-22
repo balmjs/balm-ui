@@ -1,6 +1,6 @@
 ```html
 <ui-menu-anchor>
-  <ui-button raised @click="balmUI.onShow('open')">Show</ui-button>
+  <ui-button raised @click="$balmUI.onShow('open')">Show</ui-button>
 
   <ui-menu
     v-model="open"

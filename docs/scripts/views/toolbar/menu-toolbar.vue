@@ -11,7 +11,7 @@
           <ui-toolbar-anchor alt="Print this page">print</ui-toolbar-anchor>
 
           <ui-menu-anchor>
-            <ui-toolbar-anchor alt="More" @click.native="balmUI.onOpen('open')">more_vert</ui-toolbar-anchor>
+            <ui-toolbar-anchor alt="More" @click.native="$balmUI.onOpen('open')">more_vert</ui-toolbar-anchor>
             <ui-menu v-model="open"
               :items="menu"
               @selected="onSelected">

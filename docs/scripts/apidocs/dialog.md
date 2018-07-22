@@ -40,5 +40,5 @@
 <ui-dialog v-model="open"></ui-dialog>
 
 // Manual
-<ui-dialog :open="open" @change="balmUI.onChange('open', $event)"></ui-dialog>
+<ui-dialog :open="open" @change="$balmUI.onChange('open', $event)"></ui-dialog>
 ```

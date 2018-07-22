@@ -31,7 +31,7 @@
               {'demo-button--long': isWideWidth}
             ]"
             raised
-            @click="balmUI.onShow('open')">
+            @click="$balmUI.onShow('open')">
             Show
             <span v-if="isWideWidth || isRegularWidth" class="demo-button__normal-text"> Menu</span>
             <span v-if="isWideWidth" class="demo-button__long-text"> From Here Now!</span>

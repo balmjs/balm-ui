@@ -19,7 +19,7 @@
           id="theme-color-action"
           title="Change theme colors"
           data-theme="baseline"
-          @click="balmUI.onShow('open')">
+          @click="$balmUI.onShow('open')">
           <i class="demo-theme-color-radio">
             <span class="demo-theme-color-radio__inner"></span>
           </i>

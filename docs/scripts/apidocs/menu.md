@@ -46,5 +46,5 @@
 <ui-menu v-model="open"></ui-menu>
 
 // Manual
-<ui-menu :open="open" @change="balmUI.onChange('open', $event)"></ui-menu>
+<ui-menu :open="open" @change="$balmUI.onChange('open', $event)"></ui-menu>
 ```

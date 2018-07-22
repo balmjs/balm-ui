@@ -35,5 +35,5 @@
 <ui-slider v-model="value"></ui-slider>
 
 // Manual
-<ui-slider :model="value" @input="balmUI.onChange('value', $event)"></ui-slider>
+<ui-slider :model="value" @input="$balmUI.onChange('value', $event)"></ui-slider>
 ```

@@ -18,14 +18,14 @@
 
     <h3 :class="$tt('headline3')">1. Example</h3>
     <section class="example">
-      <ui-button raised @click="balmUI.onOpen('open')">Show Dialog</ui-button>
+      <ui-button raised @click="$balmUI.onOpen('open')">Show Dialog</ui-button>
       <ui-accordion>
         <ui-markdown :code="code[1]"></ui-markdown>
       </ui-accordion>
     </section>
 
     <section class="example">
-      <ui-button raised @click="balmUI.onShow('open2')">Show Scrolling Dialog</ui-button>
+      <ui-button raised @click="$balmUI.onShow('open2')">Show Scrolling Dialog</ui-button>
       <ui-accordion>
         <ui-markdown :code="code[2]"></ui-markdown>
       </ui-accordion>

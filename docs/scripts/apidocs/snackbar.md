@@ -36,5 +36,5 @@
 <ui-snackbar v-model="active"></ui-snackbar>
 
 // Manual
-<ui-snackbar :active="active" @change="balmUI.onChange('active', $event)"></ui-snackbar>
+<ui-snackbar :active="active" @change="$balmUI.onChange('active', $event)"></ui-snackbar>
 ```

@@ -34,5 +34,5 @@
 <ui-radio v-model="value"></ui-radio>
 
 // Manual
-<ui-radio :model="value" @change="balmUI.onChange('value', $event)"></ui-radio>
+<ui-radio :model="value" @change="$balmUI.onChange('value', $event)"></ui-radio>
 ```

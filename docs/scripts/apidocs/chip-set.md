@@ -31,5 +31,5 @@
 <ui-chip-set v-model="selected"></ui-chip-set>
 
 // Manual
-<ui-chip-set :model="selected" @change="balmUI.onChange('selected', $event)"></ui-chip-set>
+<ui-chip-set :model="selected" @change="$balmUI.onChange('selected', $event)"></ui-chip-set>
 ```

@@ -7,11 +7,11 @@
     <p>View two (without FAB)</p>
     <p><button type="button" id="enter-exit-back"
       :disabled="!exited"
-      @click="balmUI.onHide('exited')">Go back</button></p>
+      @click="$balmUI.onHide('exited')">Go back</button></p>
   </div>
   <ui-fab id="enter-exit-add" class="demo-absolute-fab" icon="add"
     :exited="exited"
-    @click="balmUI.onShow('exited')">add</ui-fab>
+    @click="$balmUI.onShow('exited')">add</ui-fab>
 </div>
 ```
 

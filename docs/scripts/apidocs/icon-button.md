@@ -42,5 +42,5 @@
 <ui-icon-button v-model="value"></ui-icon-button>
 
 // Manual
-<ui-icon-button :model="value" @change="balmUI.onChange('value', $event)"></ui-icon-button>
+<ui-icon-button :model="value" @change="$balmUI.onChange('value', $event)"></ui-icon-button>
 ```

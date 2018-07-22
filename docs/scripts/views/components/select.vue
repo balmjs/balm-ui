@@ -35,13 +35,13 @@
       <ui-select-controls v-model="controls"></ui-select-controls>
       <div class="button-container">
         <ui-button raised id="set-selected-index-zero-button"
-          @click="balmUI.onChange('selected1.index', 0)">
+          @click="$balmUI.onChange('selected1.index', 0)">
           Set Selected Index (0)
         </ui-button>
       </div>
       <div class="button-container">
         <ui-button raised id="set-value-meat-button"
-          @click="balmUI.onChange('selected1.value', 'meat')">
+          @click="$balmUI.onChange('selected1.value', 'meat')">
           Set Value to Meat
         </ui-button>
       </div>
@@ -74,13 +74,13 @@
       <ui-select-controls idPrefix="box" v-model="controls"></ui-select-controls>
       <div class="button-container">
         <ui-button raised id="box-set-selected-index-zero-button"
-          @click="balmUI.onChange('selected2.index', 0)">
+          @click="$balmUI.onChange('selected2.index', 0)">
           Set Selected Index (0)
         </ui-button>
       </div>
       <div class="button-container">
         <ui-button raised id="box-set-value-fruit-roll-up-button"
-          @click="balmUI.onChange('selected2.value', 'fruit-roll-ups')">
+          @click="$balmUI.onChange('selected2.value', 'fruit-roll-ups')">
           Set Value to Fruit Roll Ups
         </ui-button>
       </div>
@@ -113,13 +113,13 @@
       <ui-select-controls idPrefix="outline" v-model="controls"></ui-select-controls>
       <div class="button-container">
         <ui-button raised id="set-selected-index-zero-button-outline"
-          @click="balmUI.onChange('selected1.index', 0)">
+          @click="$balmUI.onChange('selected1.index', 0)">
           Set Selected Index (0)
         </ui-button>
       </div>
       <div class="button-container">
         <ui-button raised id="set-value-meat-button-outline"
-          @click="balmUI.onChange('selected1.value', 'meat')">
+          @click="$balmUI.onChange('selected1.value', 'meat')">
           Set Value to Meat
         </ui-button>
       </div>

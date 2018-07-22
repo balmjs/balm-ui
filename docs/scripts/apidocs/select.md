@@ -45,5 +45,5 @@
 <ui-select v-model="value"></ui-select>
 
 // Manual
-<ui-select :model="value" @change="balmUI.onChange('value', $event)"></ui-select>
+<ui-select :model="value" @change="$balmUI.onChange('value', $event)"></ui-select>
 ```

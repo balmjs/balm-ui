@@ -12,6 +12,11 @@
     <h3 :class="$tt('headline3')">1. Example</h3>
     <div class="example">
       <h6 :class="$tt('headline6')">1.1 `onChange`</h6>
+      <label>Vue methods</label>
+      <ui-button @click="showMessage">Show message</ui-button>
+      <ui-button @click="clearMessage">Clear</ui-button>
+      <hr>
+      <label>$balmUI</label>
       <ui-button @click="$balmUI.onChange('message', 'Hello BalmUI')">Show message</ui-button>
       <ui-button @click="$balmUI.onChange('message', '')">Clear</ui-button>
       <p>{{ message }}</p>
@@ -22,6 +27,10 @@
 
     <div class="example">
       <h6 :class="$tt('headline6')">1.2 `onShow/onHide`</h6>
+      <label>Vue methods</label>
+      <ui-button raised @click="openDialog">Open dialog</ui-button>
+      <hr>
+      <label>$balmUI</label>
       <ui-button raised @click="$balmUI.onShow('open')">Open dialog</ui-button>
       <ui-dialog v-model="open">
         <ui-dialog-header>
@@ -61,6 +70,20 @@ export default {
   },
   created() {
     this.showCode('event', 2);
+  },
+  methods: {
+    showMessage() {
+      this.message = 'Hello BalmUI';
+    },
+    clearMessage() {
+      this.message = '';
+    },
+    openDialog() {
+      this.open = true;
+    },
+    closeDialog() {
+      this.open = false;
+    }
   }
 };
 </script>

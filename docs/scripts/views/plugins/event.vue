@@ -15,39 +15,55 @@
       <label>Vue methods</label>
       <ui-button @click="showMessage">Show message</ui-button>
       <ui-button @click="clearMessage">Clear</ui-button>
+      <p>{{ message1 }}</p>
+      <ui-accordion>
+        <ui-markdown :code="code[1]"></ui-markdown>
+      </ui-accordion>
       <hr>
       <label>$balmUI</label>
-      <ui-button @click="$balmUI.onChange('message', 'Hello BalmUI')">Show message</ui-button>
-      <ui-button @click="$balmUI.onChange('message', '')">Clear</ui-button>
-      <p>{{ message }}</p>
+      <ui-button @click="$balmUI.onChange('message2', 'Hello BalmUI')">Show message</ui-button>
+      <ui-button @click="$balmUI.onChange('message2', '')">Clear</ui-button>
+      <p>{{ message2 }}</p>
+      <ui-accordion>
+        <ui-markdown :code="code[2]"></ui-markdown>
+      </ui-accordion>
     </div>
-    <ui-accordion>
-      <ui-markdown :code="code[1]"></ui-markdown>
-    </ui-accordion>
 
     <div class="example">
       <h6 :class="$tt('headline6')">1.2 `onShow/onHide`</h6>
       <label>Vue methods</label>
       <ui-button raised @click="openDialog">Open dialog</ui-button>
+
+      <ui-dialog v-model="open1">
+        <ui-dialog-body>
+          Dialog content
+        </ui-dialog-body>
+        <ui-dialog-footer>
+          <ui-button @click="closeDialog">Close dialog</ui-button>
+        </ui-dialog-footer>
+      </ui-dialog>
+
+      <ui-accordion>
+        <ui-markdown :text="code[3]"></ui-markdown>
+      </ui-accordion>
       <hr>
       <label>$balmUI</label>
-      <ui-button raised @click="$balmUI.onShow('open')">Open dialog</ui-button>
-      <ui-dialog v-model="open">
-        <ui-dialog-header>
-          Dialog content
-        </ui-dialog-header>
+      <ui-button raised @click="$balmUI.onShow('open2')">Open dialog</ui-button>
+
+      <ui-dialog v-model="open2">
         <ui-dialog-body>
           <p> Open dialog: `$balmUI.onShow('open')`</p>
           <p>Close dialog: `$balmUI.onHide('open')`</p>
         </ui-dialog-body>
         <ui-dialog-footer>
-          <ui-button @click="$balmUI.onHide('open')">Close dialog</ui-button>
+          <ui-button @click="$balmUI.onHide('open2')">Close dialog</ui-button>
         </ui-dialog-footer>
       </ui-dialog>
+
+      <ui-accordion>
+        <ui-markdown :text="code[4]"></ui-markdown>
+      </ui-accordion>
     </div>
-    <ui-accordion>
-      <ui-markdown :text="code[2]"></ui-markdown>
-    </ui-accordion>
 
     <h3 :class="$tt('headline3')">2. APIs</h3>
     <ui-apidocs name="event" type="plugin"></ui-apidocs>
@@ -64,25 +80,27 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      message: 'No message',
-      open: false
+      message1: 'No message',
+      message2: 'No message',
+      open1: false,
+      open2: false
     };
   },
   created() {
-    this.showCode('event', 2);
+    this.showCode('event', 4);
   },
   methods: {
     showMessage() {
-      this.message = 'Hello BalmUI';
+      this.message1 = 'Hello BalmUI';
     },
     clearMessage() {
-      this.message = '';
+      this.message1 = '';
     },
     openDialog() {
-      this.open = true;
+      this.open1 = true;
     },
     closeDialog() {
-      this.open = false;
+      this.open1 = false;
     }
   }
 };

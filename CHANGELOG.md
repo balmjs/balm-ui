@@ -1,23 +1,26 @@
 ## 0.6.0
 
+### Components
+
 - Layouts
   - Layout Grid
-  - Toolbar
+  - Toolbar (deprecated)
   - Top App Bar
   - Drawer
   - Tabs
 - Buttons
   - Button
   - Floating Action
+  - Icon Toggle (deprecated)
   - Icon Button
+- Icon
 - Data View
   - List
-  - Grid List
+  - Grid List (deprecated)
   - Image List
   - Card
   - Chips
-  - Linear Progress
-- Icons
+- Linear Progress
 - Inputs and Controls
   - Text Field
   - Checkbox
@@ -29,11 +32,29 @@
   - Dialog
   - Snackbar
 - Menu
-- Others
-  - Typography
-  - Theme
-  - Ripple
-  - Elevation
+
+### Plugins
+
+- Event
+- Grid
+- Typography
+- Theme
+- Validator
+- Alert
+- Confirm
+- Toast
+
+### Directives
+
+- Ripple
+- Elevation
+- Shape
+
+### Utilities
+
+- IE Detection
+- Type Detection
+- Util Function
 
 ---
 

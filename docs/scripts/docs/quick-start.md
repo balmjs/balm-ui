@@ -2,8 +2,8 @@
 
 ### 0. Requirement
 
-* [BalmJS](https://balmjs.com/)
-* [Vue.js](https://vuejs.org/)@2.1.0+
+- [BalmJS](https://balmjs.com/)
+- [Vue.js](https://vuejs.org/)@2.x
 
 ### 1. Install
 

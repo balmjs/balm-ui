@@ -2,7 +2,7 @@
   <div class="demo--home">
     <section class="hero">
       <h2 :class="$tt('headline4')">
-        BalmUI@next<br><br>Coming Up...
+        Next Generation Material UI for Vue.js
       </h2>
     </section>
     <ui-markdown class="quick-start" :text="docs"></ui-markdown>

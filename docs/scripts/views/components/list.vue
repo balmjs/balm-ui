@@ -2,7 +2,7 @@
   <div class="demo--list">
     <section class="hero">
       <ui-list twoLine avatar ripple class="demo-list demo-list--with-avatars">
-        <ui-item v-for="(item, index) in folders" :key="index">
+        <ui-item v-for="(item, index) in folders" :key="index" v-ripple>
           <ui-item-first :icon="item.first"></ui-item-first>
           <ui-item-text>
             {{ item.text }}
@@ -13,6 +13,10 @@
       </ui-list>
     </section>
 
+    <h3 :class="$tt('headline3')">0. Usage</h3>
+    <ui-markdown :text="code[0]"></ui-markdown>
+
+    <h3 :class="$tt('headline3')">1. Example</h3>
     <div id="demo-wrapper">
       <section>
         <h2>Custom Colors</h2>
@@ -402,7 +406,7 @@
         <section>
           <h3>Example - Interactive List</h3>
           <ui-list-nav class="demo-list">
-            <ui-item-link v-for="(item, index) in items" :key="index">
+            <ui-item-link v-for="(item, index) in items" :key="index" v-ripple>
               <ui-item-first :icon="item.icon"></ui-item-first>
               {{ item.text }}
             </ui-item-link>
@@ -490,7 +494,7 @@ export default {
     };
   },
   created() {
-    // this.showCode('list', 6);
+    this.showCode('list');
   }
 };
 </script>

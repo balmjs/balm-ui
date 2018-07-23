@@ -6,28 +6,15 @@
 
 <script>
 import linkMixin from '../../mixins/link';
-import rippleMixin from '../../mixins/ripple';
 import UI_LIST from './constants';
 
 export default {
   name: 'ui-item-link',
-  mixins: [linkMixin, rippleMixin],
-  props: {
-    // UI attributes
-    cssOnly: {
-      type: Boolean,
-      default: false
-    }
-  },
+  mixins: [linkMixin],
   data() {
     return {
       UI_LIST
     };
-  },
-  mounted() {
-    if (!this.cssOnly) {
-      this.initRipple(this.$el);
-    }
   }
 };
 </script>

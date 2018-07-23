@@ -6,12 +6,10 @@
 
 <script>
 import listMixin from '../../mixins/list';
-import rippleMixin from '../../mixins/ripple';
-import UI_LIST from './constants';
 
 export default {
   name: 'ui-list',
-  mixins: [listMixin, rippleMixin],
+  mixins: [listMixin],
   props: {
     // TODO: States
     // selected: {
@@ -23,19 +21,7 @@ export default {
     // activated: {
     //   type: Number,
     //   default: -1
-    // },
-    // UI attributes
-    ripple: {
-      type: Boolean,
-      default: false
-    }
-  },
-  mounted() {
-    if (this.ripple) {
-      this.$el.querySelectorAll(`.${UI_LIST.SLOT_CLASS.item}`).forEach(item => {
-        this.initRipple(item);
-      });
-    }
+    // }
   }
 };
 </script>

@@ -1,29 +1,30 @@
 ```html
-<ui-list class="demo-list-action">
-  <ui-item v-for="item in items">
-    <template scope="props">
-      <i :class="props.className.avatar">person</i>
-      {{ item }}
-    </template>
-    <template slot="action" scope="props">
-      <a :class="props.className.action" href="#">
-        <i class="material-icons">star</i>
-      </a>
-    </template>
-  </ui-item>
-</ui-list>
-```
+<section>
+  <h3>Graphic</h3>
+  <ui-list class="demo-list demo-list--icon-placeholders">
+    <ui-item v-for="i in 3" :key="i" firstPlaceholder>
+      Single-line item
+    </ui-item>
+  </ui-list>
+</section>
 
-```js
-export default {
-  data() {
-    return {
-      items: [
-        'Bryan Cranston',
-        'Aaron Paul',
-        'Bob Odenkirk'
-      ]
-    };
-  }
-};
+<section>
+  <h3>Graphic (dense)</h3>
+  <ui-list dense class="demo-list demo-list--icon-placeholders">
+    <ui-item v-for="i in 3" :key="i" firstPlaceholder>
+      Single-line item
+    </ui-item>
+  </ui-list>
+</section>
+
+<section>
+  <h3>Graphic Example - Icon with Text</h3>
+  <ui-list class="demo-list">
+    <ui-item v-for="(item, index) in items"
+      :key="index"
+      :firstIcon="item.icon">
+      {{ item.text }}
+    </ui-item>
+  </ui-list>
+</section>
 ```

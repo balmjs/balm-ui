@@ -1,18 +1,11 @@
 <template>
   <div class="mdc-list-group">
-    <slot :className="UI_LIST.SLOT_CLASS"></slot>
+    <slot></slot>
   </div>
 </template>
 
 <script>
-import UI_LIST from './constants';
-
 export default {
-  name: 'ui-list-group',
-  data() {
-    return {
-      UI_LIST
-    };
-  }
+  name: 'ui-list-group'
 };
 </script>

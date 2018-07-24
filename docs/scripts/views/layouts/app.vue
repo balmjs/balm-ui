@@ -47,11 +47,11 @@
                     :to="item.url"
                     :active-class="className.activated"
                     @click.native="handleMenu">
-                    <ui-item-first class="demo-catalog-list-icon">
+                    <span class="demo-catalog-list-icon">
                       <img v-if="item.icon"
                         :src="require(`../../../images/icon/${item.icon}`)"
                         :alt="item.name">
-                    </ui-item-first>
+                    </span>
                     {{ item.name }}
                   </router-link>
                   <ui-list-divider v-else-if="item === '-'" :key="`divider${index}`"></ui-list-divider>

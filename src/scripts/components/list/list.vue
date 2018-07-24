@@ -1,11 +1,12 @@
 <template>
   <ul :class="className" aria-orientation="vertical">
-    <slot></slot>
+    <slot :className="UI_LIST.SLOT_CLASS"></slot>
   </ul>
 </template>
 
 <script>
 import listMixin from '../../mixins/list';
+import UI_LIST from './constants';
 
 export default {
   name: 'ui-list',
@@ -22,6 +23,11 @@ export default {
     //   type: Number,
     //   default: -1
     // }
+  },
+  data() {
+    return {
+      UI_LIST
+    };
   }
 };
 </script>

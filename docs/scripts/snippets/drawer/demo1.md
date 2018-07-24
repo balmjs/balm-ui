@@ -10,15 +10,13 @@
   <ui-drawer-content>
     <ui-list-group>
       <ui-list-nav>
-        <ui-item-link v-for="(item, index) in menu1" :key="index">
-          <ui-item-first :icon="item.icon"></ui-item-first>
+        <ui-item-link v-for="(item, index) in menu1" :key="index" :firstIcon="item.icon">
           {{ item.name }}
         </ui-item-link>
       </ui-list-nav>
       <ui-list-divider></ui-list-divider>
       <ui-list-nav>
-        <ui-item-link v-for="(item, index) in menu2" :key="index">
-          <ui-item-first :icon="item.icon"></ui-item-first>
+        <ui-item-link v-for="(item, index) in menu2" :key="index" :firstIcon="item.icon">
           {{ item.name }}
         </ui-item-link>
       </ui-list-nav>

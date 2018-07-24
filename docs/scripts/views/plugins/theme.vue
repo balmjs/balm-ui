@@ -35,11 +35,11 @@
             :class="{
               'demo-theme-menu__list-item--selected': selectedTheme === item.value
             }">
-            <ui-item-first>
+            <span class="mdc-list-item__graphic">
               <i class="demo-theme-color-radio">
                 <span class="demo-theme-color-radio__inner"></span>
               </i>
-            </ui-item-first>
+            </span>
             {{ item.label }}
           </ui-menuitem>
         </ui-menu>

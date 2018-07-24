@@ -13,20 +13,22 @@ npm install --save balm-ui
 yarn add balm-ui
 ```
 
-### 2. CSS Config
+### 2. Config
+
+2.1 Edit `/path/to/project/styles/_vendor.scss`
 
 ```css
-/* `/path/to/_vendor.scss` */
-
 /* Sass code  */
 @import 'node_modules/balm-ui/src/styles/balm-ui.scss';
 ```
 
+2.2 Download [Material Design Icons](https://material.balmjs.com/MaterialIcons.zip) and extract to `/path/to/project/fonts`.
+
 ### 3. Usage
 
-```js
-// `/path/to/your_main.js`
+Edit `/path/to/project/scripts/main.js`
 
+```js
 import Vue from 'vue';
 import BalmUI from 'balm-ui';
 

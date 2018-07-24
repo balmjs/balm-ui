@@ -1,6 +1,6 @@
 <template>
   <div class="demo--home">
-    <section class="hero">
+    <section class="hero" v-ripple>
       <h2 :class="$tt('headline4')">
         Next Generation Material UI for Vue.js
       </h2>

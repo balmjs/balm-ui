@@ -59,7 +59,7 @@ module.exports = {
   },
   extras: {
     excludes: ['index.js'],
-    includes: ['CNAME']
+    includes: ['CNAME', 'MaterialIcons.zip']
   },
   assets: {
     publicUrl: env.buildDocs ? '//material.balmjs.com/' : ''

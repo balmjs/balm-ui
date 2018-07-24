@@ -3,9 +3,8 @@ import autoInstall from './config/auto-install';
  * Plugins
  */
 import validator from './plugins/validator';
-// import alert from './plugins/alert';
+import alert from './plugins/alert';
 // import confirm from './plugins/confirm';
-// import prompt from './plugins/prompt';
 import toast from './plugins/toast';
 /**
  * Utilities
@@ -16,9 +15,8 @@ const version = require('../../package.json').version;
 
 const plugins = {
   validator,
-  // alert,
+  alert,
   // confirm,
-  // prompt,
   toast
 };
 

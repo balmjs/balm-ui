@@ -1,0 +1,18 @@
+$mdc-alert-width: 480px !default;
+
+.mdc-alert {
+  .mdc-dialog__surface {
+    width: $mdc-alert-width;
+    min-width: $mdc-alert-width;
+  }
+  .mdc-dialog__footer {
+    justify-content: center;
+  }
+
+  @media (max-width: 640px) {
+    .mdc-dialog__surface {
+      width: calc(100% - 30px);
+      min-width: $mdc-alert-width / 2;
+    }
+  }
+}

@@ -10,7 +10,6 @@ const DEFAULT_PROPS = {
   multiline: false,
   fouc: false
 };
-const DELAY = 200;
 
 const template = `<ui-snackbar
   :active="active"
@@ -27,7 +26,7 @@ const BalmUI_ToastPlugin = {
   install(Vue, configs = {}) {
     let props = Object.assign({}, DEFAULT_PROPS, configs);
 
-    const $toast = (customOptions = {}) => {
+    const $toast = (customProps = {}) => {
       if (!document.querySelector('.mdc-toast')) {
         let vm = new Vue({
           el: document.createElement('div'),
@@ -39,28 +38,26 @@ const BalmUI_ToastPlugin = {
             props
           },
           created() {
-            if (getType(customOptions) === 'string') {
-              this.props.message = customOptions;
-            } else if (getType(customOptions) === 'object') {
-              this.props = Object.assign({}, this.props, customOptions);
+            if (getType(customProps) === 'string') {
+              this.props.message = customProps;
+            } else if (getType(customProps) === 'object') {
+              this.props = Object.assign({}, this.props, customProps);
             }
 
             this.$nextTick(() => {
-              document.body.appendChild(vm.$el);
-
+              document.body.appendChild(this.$el);
               setTimeout(() => {
                 this.active = true;
-              }, DELAY);
+              }, 1);
             });
           },
           methods: {
             handleChange() {
               this.active = false;
-
-              setTimeout(() => {
-                document.body.removeChild(vm.$el);
+              this.$nextTick(() => {
+                document.body.removeChild(this.$el);
                 vm = null;
-              }, DELAY);
+              });
             }
           },
           template

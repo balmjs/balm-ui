@@ -4,10 +4,8 @@ import UiListGroupSubheader from './list/list-group-subheader';
 import UiList from './list/list';
 import UiListDivider from './list/list-divider';
 import UiItem from './list/item';
-import UiItemFirst from './list/item-first';
 import UiItemText from './list/item-text';
 import UiItemSubtext from './list/item-subtext';
-import UiItemLast from './list/item-last';
 import UiItemDivider from './list/item-divider';
 import UiListNav from './list/list-nav';
 import UiItemLink from './list/item-link';
@@ -18,10 +16,8 @@ export default multiBootstrap({
   UiList,
   UiListDivider,
   UiItem,
-  UiItemFirst,
   UiItemText,
   UiItemSubtext,
-  UiItemLast,
   UiItemDivider,
   UiListNav,
   UiItemLink

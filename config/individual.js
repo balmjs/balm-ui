@@ -42,9 +42,8 @@ const plugins = [
   'theme.js',
   'typography.js',
   'validator.js',
-  // 'alert.js',
+  'alert.js',
   // 'confirm.js',
-  // 'prompt.js',
   'toast.js'
 ];
 const directives = [

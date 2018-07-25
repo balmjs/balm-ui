@@ -39,7 +39,7 @@ const BalmUI_ToastPlugin = {
           },
           created() {
             if (getType(customProps) === 'string') {
-              this.props.message = customProps;
+              this.props.message = `${customProps}`; // To string
             } else if (getType(customProps) === 'object') {
               this.props = Object.assign({}, this.props, customProps);
             }

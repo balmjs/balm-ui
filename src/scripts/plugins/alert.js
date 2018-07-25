@@ -3,7 +3,6 @@ import UiDialog from '../components/dialog/dialog';
 import UiDialogHeader from '../components/dialog/dialog-header';
 import UiDialogBody from '../components/dialog/dialog-body';
 import UiDialogFooter from '../components/dialog/dialog-footer';
-import UiButton from '../components/button/button';
 import getType from '../utils/typeof';
 
 const DEFAULT_PROPS = {
@@ -21,9 +20,9 @@ const template = `<ui-dialog
   <ui-dialog-header v-if="props.title">{{ props.title }}</ui-dialog-header>
   <ui-dialog-body>{{ props.message }}</ui-dialog-body>
   <ui-dialog-footer>
-    <ui-button primary @click="handleClick">
+    <button type="button" class="mdc-button" @click="handleClick">
       {{ props.buttonText }}
-    </ui-button>
+    </button>
   </ui-dialog-footer>
 </ui-dialog>`;
 
@@ -39,8 +38,7 @@ const BalmUI_AlertPlugin = {
             UiDialog,
             UiDialogHeader,
             UiDialogBody,
-            UiDialogFooter,
-            UiButton
+            UiDialogFooter
           },
           data: {
             open: false,
@@ -48,7 +46,7 @@ const BalmUI_AlertPlugin = {
           },
           created() {
             if (getType(customProps) === 'string') {
-              this.props.message = customProps;
+              this.props.message = `${customProps}`; // To string
             } else if (getType(customProps) === 'object') {
               this.props = Object.assign({}, this.props, customProps);
             }

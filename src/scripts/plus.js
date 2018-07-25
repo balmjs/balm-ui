@@ -4,7 +4,7 @@ import autoInstall from './config/auto-install';
  */
 import validator from './plugins/validator';
 import alert from './plugins/alert';
-// import confirm from './plugins/confirm';
+import confirm from './plugins/confirm';
 import toast from './plugins/toast';
 /**
  * Utilities
@@ -16,7 +16,7 @@ const version = require('../../package.json').version;
 const plugins = {
   validator,
   alert,
-  // confirm,
+  confirm,
   toast
 };
 
@@ -38,4 +38,6 @@ const BalmUIPlus = {
 autoInstall(BalmUIPlus);
 
 export default BalmUIPlus;
-export { utils };
+export {
+  utils
+};

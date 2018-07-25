@@ -1,16 +1,14 @@
 /// Base Styles
 @import './global/reset';
 @import './global/vendor';
-
 /// Components Custom Styles
 @import './components/ui-form-field';
 @import './components/ui-icon';
 @import './components/ui-tabs';
 @import './components/ui-toolbar';
 @import './components/ui-textfield';
-
 /// Plugins Custom Styles
 @import './plugins/ui-alert';
-
+@import './plugins/ui-confirm';
 /// Directives Custom Styles
 @import './directives/ui-ripple';

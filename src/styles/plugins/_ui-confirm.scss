@@ -1,7 +1,7 @@
 @import '../../material-components-web/button/mixins';
 @import '../../material-components-web/button/variables';
 $mdc-alert-width: 480px !default;
-.mdc-alert {
+.mdc-confirm {
   .mdc-dialog__surface {
     width: $mdc-alert-width;
     min-width: $mdc-alert-width;
@@ -9,10 +9,18 @@ $mdc-alert-width: 480px !default;
   .mdc-dialog__footer {
     justify-content: center;
     .mdc-button {
+      margin: 0 5px;
+    }
+    .mdc-confirm-primary-button {
       @include mdc-button--filled_;
       @include mdc-button-container-fill-color(primary);
       @include mdc-button-ink-color(on-primary);
       @include mdc-states(on-primary);
+    }
+    .mdc-confirm-secondary-button {
+      @include mdc-button--outlined_;
+      @include mdc-button-outline-width(2px);
+      @include mdc-button-outline-color(primary);
     }
   }
   @media (max-width: 640px) {

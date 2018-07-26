@@ -1,8 +1,8 @@
 <template>
-  <div class="demo--confirm">
+  <div class="demo--toast">
     <section class="hero plugin">
       <h2 :class="$tt('headline4')">
-        $confirm
+        $toast
       </h2>
     </section>
   </div>

@@ -1,6 +1,6 @@
 <template>
   <div class="demo--shape">
-    <section class="hero">
+    <section class="hero directive">
       <div class="four-corner-container"
         v-shape>
         <ui-button unelevated>Filled Button</ui-button>

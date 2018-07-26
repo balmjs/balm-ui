@@ -1,6 +1,6 @@
 <template>
   <div class="demo--select">
-    <section class="hero">
+    <section class="hero component">
       <ui-select id="my-select"
         v-model="selected"
         :options="options1">

@@ -1,6 +1,6 @@
 <template>
   <div class="demo--card">
-    <section class="hero">
+    <section class="hero component">
       <ui-card class="demo-card">
         <ui-card-content v-ripple>
           <ui-card-media rectangle class="demo-card__media demo-card__media--16-9"></ui-card-media>

@@ -1,6 +1,8 @@
 <template>
   <div class="demo--ripple">
-    <section :class="['hero']" v-ripple></section>
+    <section class="hero directive">
+      <div v-ripple></div>
+    </section>
 
     <h3 :class="$tt('headline3')">0. Usage</h3>
     <ui-markdown :text="code[0]"></ui-markdown>
@@ -92,3 +94,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.hero > div {
+  width: 100%;
+  height: 100%;
+}
+</style>

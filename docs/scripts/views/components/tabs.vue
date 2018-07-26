@@ -1,6 +1,6 @@
 <template>
   <div class="demo--tabs">
-    <section class="hero">
+    <section class="hero component">
       <ui-tabs id="demo-tab-bar" :items="tabs"></ui-tabs>
     </section>
 

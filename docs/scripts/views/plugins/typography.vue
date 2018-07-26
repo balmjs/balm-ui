@@ -1,6 +1,6 @@
 <template>
   <div class="demo--typography">
-    <section class="hero">
+    <section class="hero plugin">
       <h1 :class="$tt('headline1')">Tt</h1>
     </section>
 

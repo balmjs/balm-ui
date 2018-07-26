@@ -1,6 +1,6 @@
 <template>
   <div class="docs--radio">
-    <section class="hero">
+    <section class="hero component">
       <ui-radio cssOnly name="hero" value="0" v-model="hero"></ui-radio>
       <ui-radio cssOnly name="hero" value="1" v-model="hero"></ui-radio>
       {{ hero }}

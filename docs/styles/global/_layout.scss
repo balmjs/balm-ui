@@ -42,6 +42,45 @@ body,
   margin: 0 24px 0 12px;
 }
 
+.hero {
+  position: relative;
+  &::before,
+  &::after {
+    position: absolute;
+    color: white;
+    padding: 4px;
+  }
+  &::before {
+    top: 0;
+    left: 0;
+  }
+  &::after {
+    bottom: 0;
+    right: 0;
+  }
+  &.component {
+    &::before,
+    &::after {
+      content: 'component';
+      background-color: #2979FF;
+    }
+  }
+  &.plugin {
+    &::before,
+    &::after {
+      content: 'plugin';
+      background-color: #FF1744;
+    }
+  }
+  &.directive {
+    &::before,
+    &::after {
+      content: 'directive';
+      background-color: #00BFA5;
+    }
+  }
+}
+
 /// lang
 .supported-lang {
   margin: 0;

@@ -1,6 +1,6 @@
 <template>
   <div class="demo--checkbox">
-    <section class="hero">
+    <section class="hero component">
       <ui-checkbox cssOnly id="hero-checkbox-label">
         Checkbox
       </ui-checkbox>

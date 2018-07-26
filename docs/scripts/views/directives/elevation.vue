@@ -1,6 +1,6 @@
 <template>
   <div class="demo--elevation">
-    <section class="hero">
+    <section class="hero directive">
       <figure class="demo-surface" v-shadow="0">
         <figcaption>FLAT 0dp</figcaption>
       </figure>

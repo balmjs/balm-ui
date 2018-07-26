@@ -1,6 +1,6 @@
 <template>
   <div class="demo--toolbar">
-    <div class="hero">
+    <div class="hero component">
       <div class="catalog-toolbar-container">
         <ui-toolbar>
           <ui-toolbar-row>

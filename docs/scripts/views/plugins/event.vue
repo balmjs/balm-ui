@@ -1,6 +1,6 @@
 <template>
   <div class="demo--event">
-    <section class="hero">
+    <section class="hero plugin">
       <h2 :class="$tt('headline4')">
         $balmUI
       </h2>

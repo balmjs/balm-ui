@@ -1,6 +1,6 @@
 <template>
   <div class="demo--grid-list">
-    <section class="hero">
+    <section class="hero component">
       <ui-grid-list>
         <ui-grid-tile v-for="i in 12" :key="i" imageOnly>
         </ui-grid-tile>

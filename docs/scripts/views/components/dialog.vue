@@ -1,6 +1,6 @@
 <template>
   <div class="demo--dialog">
-    <section class="hero">
+    <section class="hero component">
       <ui-dialog noBackdrop class="catalog-dialog-demo mdc-dialog--open" style="visibility: visible;">
         <ui-dialog-header>Are you happy?</ui-dialog-header>
         <ui-dialog-body>

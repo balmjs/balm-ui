@@ -1,6 +1,6 @@
 <template>
   <div class="demo--switch">
-    <section class="hero">
+    <section class="hero component">
       <ui-switch v-model="toggle">{{ toggle }}</ui-switch>
     </section>
 

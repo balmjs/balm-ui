@@ -1,6 +1,6 @@
 <template>
   <div class="demo--list">
-    <section class="hero">
+    <section class="hero component">
       <ui-list twoLine avatar ripple class="demo-list demo-list--with-avatars">
         <ui-item v-for="(item, index) in folders"
           :key="index"

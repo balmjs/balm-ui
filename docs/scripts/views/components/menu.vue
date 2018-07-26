@@ -1,6 +1,6 @@
 <template>
   <div class="demo--menu">
-    <section class="hero">
+    <section class="hero component">
       <ui-menu cssOnly
         class="mdc-menu--open"
         :items="[

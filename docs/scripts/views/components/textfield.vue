@@ -1,6 +1,6 @@
 <template>
   <div class="demo--textfield">
-    <section class="hero">
+    <section class="hero component">
       <ui-textfield id="my-text-field">Text Field</ui-textfield>
     </section>
 

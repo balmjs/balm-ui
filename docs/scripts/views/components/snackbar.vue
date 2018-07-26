@@ -1,6 +1,6 @@
 <template>
   <div class="demo--snackbar">
-    <section class="hero">
+    <section class="hero component">
       <ui-snackbar cssOnly
         class="mdc-snackbar--active"
         message="Message sent"></ui-snackbar>

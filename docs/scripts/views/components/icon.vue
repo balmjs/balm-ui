@@ -1,5 +1,12 @@
 <template>
   <div class="demo--material-icons">
+    <section class="hero component">
+      <ui-icon>add</ui-icon>
+      <ui-icon>description</ui-icon>
+      <ui-icon>edit</ui-icon>
+      <ui-icon>delete</ui-icon>
+    </section>
+
     <h3 :class="$tt('headline3')">0. Usage</h3>
     <ui-markdown :text="code[0]"></ui-markdown>
 

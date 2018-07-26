@@ -1,6 +1,6 @@
 <template>
   <div class="demo--theme">
-    <section class="hero">
+    <section class="hero plugin">
       <ui-button raised :class="[
         $themeColor('primary-bg')
       ]">Primary</ui-button>

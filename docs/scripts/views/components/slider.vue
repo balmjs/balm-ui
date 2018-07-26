@@ -1,6 +1,6 @@
 <template>
   <div class="demo--slider">
-    <section class="hero">
+    <section class="hero component">
       <div id="hero-slider-wrapper">
         <ui-slider id="hero-slider"
           max="50"

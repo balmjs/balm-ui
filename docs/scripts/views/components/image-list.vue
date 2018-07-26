@@ -1,6 +1,6 @@
 <template>
   <div class="demo--image-list">
-    <section class="hero">
+    <section class="hero component">
       <ui-image-list class="hero-image-list">
         <ui-image-item v-for="i in 15" :key="i" block>
         </ui-image-item>

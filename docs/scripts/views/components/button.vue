@@ -1,6 +1,6 @@
 <template>
   <div class="demo--button">
-    <section class="hero">
+    <section class="hero component">
       <ui-button :disabled="disabled">Flat</ui-button>
       <ui-button raised :disabled="disabled">Raised</ui-button>
     </section>

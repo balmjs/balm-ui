@@ -1,6 +1,6 @@
 <template>
   <div class="demo--linear-progress">
-    <section class="hero">
+    <section class="hero component">
       <ui-linear-progress indeterminate></ui-linear-progress>
     </section>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="demo--icon-button">
-    <section class="hero">
+    <section class="hero component">
       <div class="demo-wrapper">
         <ui-icon-button v-model="icon1.value" :on="icon1.on" :off="icon1.off">
         </ui-icon-button>

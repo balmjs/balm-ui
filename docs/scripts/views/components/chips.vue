@@ -1,6 +1,6 @@
 <template>
   <div class="demo--chips">
-    <section class="hero">
+    <section class="hero component">
       <ui-chip-set>
         <ui-chip class="demo-chip">
           <ui-chip-text>Chip One</ui-chip-text>

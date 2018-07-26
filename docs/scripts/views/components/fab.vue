@@ -1,6 +1,6 @@
 <template>
   <div class="demo--fab">
-    <section class="hero">
+    <section class="hero component">
       <ui-fab icon="favorite_border"></ui-fab>
     </section>
 

@@ -11,7 +11,7 @@
     </ui-top-app-bar>
 
     <div class="demo-content">
-      <section class="hero">
+      <section class="hero component">
         <ui-grid class="demo-grid">
           <ui-grid-cell class="demo-cell"></ui-grid-cell>
           <ui-grid-cell class="demo-cell" colspan="4"></ui-grid-cell>

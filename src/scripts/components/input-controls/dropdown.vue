@@ -1,88 +1,52 @@
 <template>
-  <!-- Custom MDC Select, shown on desktop -->
-  <div :class="className"
-       role="listbox"
-       :aria-disabled="disabled">
-    <div class="mdc-select__surface" tabindex="0">
-      <div class="mdc-select__label">Pick a Food Group</div>
-      <div class="mdc-select__selected-text">
-        <slot>{{ selectedOption[optionValue] || placeholder }}</slot>
+  <div :class="className">
+    <div class="mdc-dropdown__surface" @click="handleOpen">
+      <div class="mdc-dropdown__selected-text">
+        <slot>{{ currentOption[optionLabel] }}</slot>
       </div>
-      <div class="mdc-select__bottom-line"></div>
     </div>
-    <ui-menu :class="'mdc-select__menu'" :dark="dark">
-      <ui-menuitem v-for="(option, index) in currentOptions"
-                   :key="index"
-                   role="option"
-                   :item="option"
-                   :aria-selected="index === $select.selectedIndex"></ui-menuitem>
+    <ui-menu v-model="open" class="mdc-dropdown__menu">
+      <!-- Default option -->
+      <!-- <ui-menuitem v-if="placeholder">{{ defaultLabel }}</ui-menuitem> -->
+      <ui-menuitem v-for="(option, index) in options" :key="index">
+        {{ option[optionLabel] }}
+      </ui-menuitem>
     </ui-menu>
   </div>
 </template>
 
 <script>
-import { MDCSelect } from '../../../material-components-web/select';
 import UiMenu from '../menu/menu';
-import UiMenuItem from '../menu/menuitem';
+import UiMenuitem from '../menu/menuitem';
+import selectMixin from '../../mixins/select';
 
-const MDC_EVENT_CHANGE = 'MDCSelect:change';
-const UI_EVENT_CHANGE = 'change';
+// Define constants
+const UI_DROPDOWN = {
+  EVENT: {
+    CHANGE: 'change',
+    SELECTED: 'selected'
+  }
+};
 
 export default {
-  name: 'ui-selectmenu',
+  name: 'ui-dropdown',
   components: {
     UiMenu,
-    UiMenuItem
+    UiMenuitem
   },
-  props: {
-    // state
-    model: null,
-    // element attributes
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    // ui attributes
-    options: {
-      required: true,
-      type: Array,
-      default() {
-        return [];
-      }
-    },
-    optionKey: {
-      type: String,
-      default: 'value'
-    },
-    optionValue: {
-      type: String,
-      default: 'label'
-    },
-    defaultKey: {
-      type: String,
-      default: ''
-    },
-    defaultValue: String,
-    placeholder: String,
-    // theme
-    dark: {
-      type: Boolean,
-      default: false
-    }
-  },
+  mixins: [selectMixin],
   data() {
     return {
-      $select: null,
-      currentValue: this.model,
-      currentOptions: [],
-      selectedOption: {}
+      open: false,
+      selectedValue: this.model,
+      currentOption: {}
     };
   },
   computed: {
     className() {
       return {
-        'mdc-select': true,
-        'mdc-select--disabled': this.disabled
+        'mdc-selectmenu': true,
+        'mdc-selectmenu--disabled': this.disabled
       };
     },
     hasDefaultOption() {
@@ -101,14 +65,12 @@ export default {
     }
   },
   mounted() {
-    if (!this.disabled) {
-      this.$select = new MDCSelect(this.$el);
-      this.$select.listen(MDC_EVENT_CHANGE, this.changeHandler);
-    }
-
-    this.currentOptions = this.init();
+    // this.currentOptions = this.init();
   },
   methods: {
+    handleOpen() {
+      this.open = true;
+    },
     changeHandler() {
       let index = this.$select.selectedIndex;
       if (this.options[index]) {
@@ -122,7 +84,7 @@ export default {
           key = this.selectedOption[this.optionKey];
           value = this.selectedOption[this.optionValue];
         }
-        this.$emit(UI_EVENT_CHANGE, {
+        this.$emit(UI_DROPDOWN.EVENT.CHANGE, {
           index,
           key,
           value
@@ -164,7 +126,10 @@ export default {
       if (selectedOption[this.optionValue]) {
         this.selectedOption = selectedOption;
         // this.setSelectedTextContent(this.selectedOption[this.optionValue]);
-        this.$emit(UI_EVENT_CHANGE, this.selectedOption[this.optionKey]);
+        this.$emit(
+          UI_DROPDOWN.EVENT.CHANGE,
+          this.selectedOption[this.optionKey]
+        );
       }
     },
     init(options = this.options) {

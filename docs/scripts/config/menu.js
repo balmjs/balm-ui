@@ -130,6 +130,11 @@ const MATERIAL_COMPONENTS = [{
         icon: 'slider',
         name: 'Slider',
         description: 'Range Controls'
+      },
+      {
+        icon: 'menu',
+        name: 'Dropdown',
+        description: 'Dropdown'
       }
     ]
   },

@@ -1,4 +1,9 @@
 import autoInstall from './config/auto-install';
+import multiConfigure from './config/multi-configure';
+/**
+ * Components
+ */
+import UiDropdown from './components/input-controls/dropdown';
 /**
  * Plugins
  */
@@ -13,6 +18,10 @@ import * as utils from './utils';
 
 const version = require('../../package.json').version;
 
+const components = {
+  UiDropdown
+};
+
 const plugins = {
   validator,
   alert,
@@ -23,6 +32,15 @@ const plugins = {
 const BalmUIPlus = {
   version,
   install(Vue, options = {}) {
+    // Configure the components' props
+    multiConfigure(components, options);
+
+    // Install the components
+    for (let key in components) {
+      let Component = components[key];
+      Vue.component(Component.name, Component);
+    }
+
     // Install the plugins
     for (let key in plugins) {
       let Plugin = plugins[key];

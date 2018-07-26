@@ -8,9 +8,8 @@
             v-bind="attrs"
             @change="handleChange">
       <!-- Default option -->
-      <option v-if="placeholder"
+      <option v-if="defaultLabel"
               :value="defaultValue"
-              :disabled="!defaultLabel"
               selected>{{ defaultLabel }}</option>
       <template v-if="group">
         <template v-for="(option, optionIndex) in options">
@@ -60,6 +59,7 @@
 <script>
 import { MDCSelect } from '../../../material-components-web/select';
 import UiFloatingLabel from './floating-label';
+import selectMixin from '../../mixins/select';
 import elementMixin from '../../mixins/element';
 import floatingLabelMixin from '../../mixins/floating-label';
 import getType from '../../utils/typeof';
@@ -77,38 +77,10 @@ export default {
   components: {
     UiFloatingLabel
   },
-  mixins: [elementMixin, floatingLabelMixin],
-  model: {
-    prop: 'model',
-    event: UI_SELECT.EVENT.CHANGE
-  },
+  mixins: [selectMixin, elementMixin, floatingLabelMixin],
   props: {
-    // States
-    model: [String, Number],
-    options: {
-      type: Array,
-      default() {
-        return [];
-      }
-    },
-    optionLabel: {
-      type: String,
-      default: 'label'
-    },
-    optionValue: {
-      type: String,
-      default: 'value'
-    },
-    selectedIndex: {
-      type: Number,
-      default: 0
-    },
     // Element attributes
     id: String,
-    disabled: {
-      type: Boolean,
-      default: false
-    },
     // UI attributes
     cssOnly: {
       type: Boolean,
@@ -122,15 +94,6 @@ export default {
     outlined: {
       type: Boolean,
       default: false
-    },
-    placeholder: {
-      type: Boolean,
-      default: false
-    },
-    defaultLabel: String,
-    defaultValue: {
-      type: String,
-      default: ''
     },
     group: {
       type: Boolean,
@@ -147,7 +110,6 @@ export default {
   },
   data() {
     return {
-      UI_SELECT,
       $select: null,
       selectedValue: this.model
     };
@@ -171,7 +133,7 @@ export default {
       );
       this.$emit(UI_SELECT.EVENT.SELECTED, {
         value: val,
-        index: this.placeholder ? selectedIndex + 1 : selectedIndex
+        index: this.defaultLabel ? selectedIndex + 1 : selectedIndex
       });
     },
     selectedIndex(val) {

@@ -1,17 +1,12 @@
-const Dialog = () =>
-  import ('../views/components/dialog');
-const Alert = () =>
-  import ('../views/plugins/alert');
-const Confirm = () =>
-  import ('../views/plugins/confirm');
-const Snackbar = () =>
-  import ('../views/components/snackbar');
-const Toast = () =>
-  import ('../views/plugins/toast');
-const Menu = () =>
-  import ('../views/components/menu');
+const Dialog = () => import('../views/components/dialog');
+const Alert = () => import('../views/plugins/alert');
+const Confirm = () => import('../views/plugins/confirm');
+const Snackbar = () => import('../views/components/snackbar');
+const Toast = () => import('../views/plugins/toast');
+const Menu = () => import('../views/components/menu');
 
-export default [{
+export default [
+  {
     path: '/dialog',
     name: 'dialog',
     component: Dialog

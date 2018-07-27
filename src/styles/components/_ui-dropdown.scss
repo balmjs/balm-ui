@@ -1,0 +1,26 @@
+@import '../../material-components-web/theme/mixins';
+@import '../global/mixins';
+$mdc-dropdown-min-width: 240px !default;
+$mdc-dropdown-height: 40px !default;
+$mdc-dropdown-outlined-idle-border: rgba(mdc-theme-prop-value(on-surface), .24) !default;
+$mdc-dropdown-outlined-hover-border: rgba(mdc-theme-prop-value(on-surface), .87) !default;
+.mdc-dropdown {
+  min-width: $mdc-dropdown-min-width;
+  height: $mdc-dropdown-height;
+  line-height: $mdc-dropdown-height;
+  border: 1px solid $mdc-dropdown-outlined-idle-border;
+  &:hover {
+    border-color: $mdc-dropdown-outlined-hover-border;
+  }
+  &.mdc-dropdown--active {
+    @include mdc-theme-prop(border-color, 'primary');
+  }
+}
+
+.mdc-dropdown__surface {
+  height: 100%;
+}
+
+.mdc-dropdown__selected-text {
+  @include ellipsis();
+}

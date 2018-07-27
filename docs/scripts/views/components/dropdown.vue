@@ -3,8 +3,9 @@
     <section class="hero component">
       <ui-dropdown
         v-model="selected"
-        :options="options1">
-        Pick a Food Group
+        :options="options1"
+        defaultLabel="Pick a Food Group"
+        @selected="onSelected">
       </ui-dropdown>
     </section>
   </div>
@@ -164,9 +165,10 @@ export default {
     };
   },
   methods: {
-    onSelected(result, key) {
-      this[`selected${key}`].value = result.value;
-      this[`selected${key}`].index = result.index;
+    onSelected(result) {
+      // console.log('onSelected', result);
+      // this[`selected${key}`].value = result.value;
+      // this[`selected${key}`].index = result.index;
     },
     onChangeProvince(value, fn) {
       this.formData.provinces = value;

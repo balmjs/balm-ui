@@ -1,21 +1,30 @@
 <template>
-  <div :class="className">
+  <ui-menu-anchor :class="className">
     <div class="mdc-dropdown__surface" @click="handleOpen">
       <div class="mdc-dropdown__selected-text">
         <slot>{{ currentOption[optionLabel] }}</slot>
       </div>
     </div>
-    <ui-menu v-model="open" class="mdc-dropdown__menu">
+    <ui-menu v-model="open"
+      class="mdc-dropdown__menu"
+      position="BOTTOM_START"
+      @selected="handleChange">
       <!-- Default option -->
-      <!-- <ui-menuitem v-if="placeholder">{{ defaultLabel }}</ui-menuitem> -->
-      <ui-menuitem v-for="(option, index) in options" :key="index">
+      <ui-menuitem v-if="defaultLabel"
+        :class="{'mdc-list-item--selected': defaultValue === selectedValue}">
+        {{ defaultLabel }}
+      </ui-menuitem>
+      <ui-menuitem v-for="(option, index) in options"
+        :key="index"
+        :class="{'mdc-list-item--selected': option[optionValue] === selectedValue}">
         {{ option[optionLabel] }}
       </ui-menuitem>
     </ui-menu>
-  </div>
+  </ui-menu-anchor>
 </template>
 
 <script>
+import UiMenuAnchor from '../menu/menu-anchor';
 import UiMenu from '../menu/menu';
 import UiMenuitem from '../menu/menuitem';
 import selectMixin from '../../mixins/select';
@@ -23,14 +32,15 @@ import selectMixin from '../../mixins/select';
 // Define constants
 const UI_DROPDOWN = {
   EVENT: {
-    CHANGE: 'change',
-    SELECTED: 'selected'
+    CHANGE: 'change', // return option[optionValue]
+    SELECTED: 'selected' // return option
   }
 };
 
 export default {
   name: 'ui-dropdown',
   components: {
+    UiMenuAnchor,
     UiMenu,
     UiMenuitem
   },
@@ -38,140 +48,59 @@ export default {
   data() {
     return {
       open: false,
-      selectedValue: this.model,
+      currentOptions: [],
       currentOption: {}
     };
   },
   computed: {
     className() {
       return {
-        'mdc-selectmenu': true,
-        'mdc-selectmenu--disabled': this.disabled
+        'mdc-dropdown': true,
+        'mdc-dropdown--active': this.open,
+        'mdc-dropdown--disabled': this.disabled
       };
-    },
-    hasDefaultOption() {
-      return this.defaultValue ? this.defaultValue.trim() : false;
-    }
-  },
-  watch: {
-    model(val) {
-      this.currentValue = val;
-    },
-    options(val) {
-      this.currentOptions = this.init(val);
-      if (this.currentOptions.length) {
-        // this.setSelectedTextContent(this.selectedOption[this.optionValue]);
-      }
     }
   },
   mounted() {
-    // this.currentOptions = this.init();
+    this.init();
   },
   methods: {
     handleOpen() {
       this.open = true;
     },
-    changeHandler() {
-      let index = this.$select.selectedIndex;
-      if (this.options[index]) {
-        let key = this.defaultKey;
-        let value = this.defaultValue;
-        if (this.hasDefaultOption) {
-          index -= 1;
-        }
-        if (index > -1) {
-          this.selectedOption = this.options[index];
-          key = this.selectedOption[this.optionKey];
-          value = this.selectedOption[this.optionValue];
-        }
-        this.$emit(UI_DROPDOWN.EVENT.CHANGE, {
-          index,
-          key,
-          value
-        });
-      } else {
-        console.warn('Invalid Options!');
-      }
-    },
-    setSelectedTextContent(selectedTextContent = '') {
-      if (this.$select) {
-        this.$select.foundation_.adapter_.setSelectedTextContent(
-          selectedTextContent
+    handleChange({ index }) {
+      if (index > -1 && this.currentOptions[index]) {
+        this.currentOption = this.currentOptions[index];
+        this.selectedValue = this.currentOption[this.optionValue];
+
+        this.$emit(UI_DROPDOWN.EVENT.CHANGE, this.selectedValue);
+        this.$emit(
+          UI_DROPDOWN.EVENT.SELECTED,
+          Object.assign({}, this.currentOption)
         );
+      } else {
+        console.warn('Invalid Option!');
       }
     },
-    initSelected(currentOptions = this.currentOptions) {
-      let selectedOption = {};
-      if (this.$select) {
-        this.$select.disabled = false;
-        this.$select.selectedIndex = 0; // default index
+    init() {
+      this.currentOptions = Object.assign([], this.options);
+
+      // Set default option
+      if (this.defaultLabel) {
+        let defaultOption = {};
+        defaultOption[this.optionLabel] = this.defaultLabel;
+        defaultOption[this.optionValue] = this.defaultValue;
+        this.currentOptions.unshift(defaultOption);
       }
 
-      for (let i = 0, len = currentOptions.length; i < len; i++) {
-        let currentOption = currentOptions[i];
-        let selected = currentOption[this.optionKey] == this.currentValue;
-
-        if (selected || i === 0) {
-          selectedOption = currentOption;
-        }
-
-        if (selected) {
-          if (this.$select && i > 0) {
-            this.$select.selectedIndex = i; // selected index
-          }
+      // Set current option
+      for (let i = 0, len = this.currentOptions.length; i < len; i++) {
+        let currentOption = this.currentOptions[i];
+        if (currentOption[this.optionValue] == this.selectedValue) {
+          this.currentOption = currentOption;
           break;
         }
       }
-
-      if (selectedOption[this.optionValue]) {
-        this.selectedOption = selectedOption;
-        // this.setSelectedTextContent(this.selectedOption[this.optionValue]);
-        this.$emit(
-          UI_DROPDOWN.EVENT.CHANGE,
-          this.selectedOption[this.optionKey]
-        );
-      }
-    },
-    init(options = this.options) {
-      let result = [];
-      let currentOptions = [];
-
-      // default value
-      if (this.hasDefaultOption) {
-        let defaultOption = {};
-        defaultOption[this.optionKey] = this.defaultKey;
-        defaultOption[this.optionValue] = this.defaultValue;
-        currentOptions.push(defaultOption);
-      }
-
-      currentOptions = currentOptions.concat(options);
-
-      // default selected
-      if (currentOptions.length) {
-        // init selected
-        let needInit =
-          !this.placeholder || (this.placeholder && this.currentValue);
-        if (needInit) {
-          this.initSelected(currentOptions);
-        }
-        // menu items
-        result = currentOptions.map(option => {
-          return {
-            index: option.index || 0,
-            label: option[this.optionValue],
-            disabled: option.disabled
-          };
-        });
-      } else {
-        // reset selected
-        if (this.$select) {
-          this.selectedOption = {};
-          this.$select.selectedIndex = -1;
-          this.$select.disabled = true;
-        }
-      }
-
-      return result;
     }
   }
 };

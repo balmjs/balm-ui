@@ -110,8 +110,7 @@ export default {
   },
   data() {
     return {
-      $select: null,
-      selectedValue: this.model
+      $select: null
     };
   },
   computed: {
@@ -125,17 +124,6 @@ export default {
     }
   },
   watch: {
-    model(val) {
-      this.selectedValue = val;
-
-      let selectedIndex = this.options.findIndex(
-        option => option[this.optionValue] === val
-      );
-      this.$emit(UI_SELECT.EVENT.SELECTED, {
-        value: val,
-        index: this.defaultLabel ? selectedIndex + 1 : selectedIndex
-      });
-    },
     selectedIndex(val) {
       if (this.$select) {
         this.$select.selectedIndex = val;

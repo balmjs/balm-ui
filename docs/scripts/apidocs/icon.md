@@ -18,3 +18,9 @@
 | Name      | Description                                                                |
 | --------- | -------------------------------------------------------------------------- |
 | (default) | The default slot holds the material design icon name and can contain HTML. |
+
+#### Events
+
+| Name  | Type                      | Description                     |
+| ----- | ------------------------- | ------------------------------- |
+| click | `Function(event: object)` | Emits when the icon is clicked. |

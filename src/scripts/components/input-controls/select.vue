@@ -34,9 +34,9 @@
                 :disabled="option.disabled || false">{{ option[optionLabel] }}</option>
       </template>
     </select>
-    <ui-floating-label
+    <ui-floating-label v-if="!defaultLabel"
       :for="id"
-      :floatAbove="!!selectedValue">
+      :floatAbove="!!`${selectedValue}`">
       <slot>{{ label }}</slot>
     </ui-floating-label>
 

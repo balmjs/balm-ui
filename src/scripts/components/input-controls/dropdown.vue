@@ -4,6 +4,11 @@
       <div class="mdc-dropdown__selected-text">
         <slot>{{ currentOption[optionLabel] }}</slot>
       </div>
+      <div class="mdc-dropdown__icon">
+        <slot name="icon">
+          <i class="material-icons">{{ open ? 'expand_less' : 'expand_more' }}</i>
+        </slot>
+      </div>
     </div>
     <ui-menu v-model="open"
       class="mdc-dropdown__menu"
@@ -16,6 +21,7 @@
       </ui-menuitem>
       <ui-menuitem v-for="(option, index) in options"
         :key="index"
+        :item="option"
         :class="{'mdc-list-item--selected': option[optionValue] === selectedValue}">
         {{ option[optionLabel] }}
       </ui-menuitem>
@@ -74,10 +80,6 @@ export default {
         this.selectedValue = this.currentOption[this.optionValue];
 
         this.$emit(UI_DROPDOWN.EVENT.CHANGE, this.selectedValue);
-        this.$emit(
-          UI_DROPDOWN.EVENT.SELECTED,
-          Object.assign({}, this.currentOption)
-        );
       } else {
         console.warn('Invalid Option!');
       }

@@ -1,9 +1,11 @@
 @import '../../material-components-web/theme/mixins';
 @import '../global/mixins';
+
 $mdc-dropdown-min-width: 240px !default;
 $mdc-dropdown-height: 40px !default;
 $mdc-dropdown-outlined-idle-border: rgba(mdc-theme-prop-value(on-surface), .24) !default;
 $mdc-dropdown-outlined-hover-border: rgba(mdc-theme-prop-value(on-surface), .87) !default;
+
 .mdc-dropdown {
   min-width: $mdc-dropdown-min-width;
   height: $mdc-dropdown-height;
@@ -18,9 +20,15 @@ $mdc-dropdown-outlined-hover-border: rgba(mdc-theme-prop-value(on-surface), .87)
 }
 
 .mdc-dropdown__surface {
-  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .mdc-dropdown__selected-text {
   @include ellipsis();
+}
+
+.mdc-dropdown__icon {
+  display: flex;
 }

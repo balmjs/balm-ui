@@ -28,9 +28,13 @@
   - Select
   - Switch
   - Slider
+  - Dropdown
 - Modal
   - Dialog
+  - Alert
+  - Confirm
   - Snackbar
+  - Toast
 - Menu
 
 ### Plugins

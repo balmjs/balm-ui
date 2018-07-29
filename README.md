@@ -69,6 +69,7 @@ Enjoy 👻
   - Select
   - Switch
   - Slider
+  - Dropdown
 - Modal
   - Dialog
   - Snackbar

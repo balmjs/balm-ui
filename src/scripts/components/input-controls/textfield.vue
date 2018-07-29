@@ -64,6 +64,10 @@
       </template>
       <div v-else class="mdc-line-ripple"></div>
     </template>
+
+    <div v-if="expand" class="mdc-textfield__expand">
+      <slot name="expand"><!-- autocomplete --></slot>
+    </div>
   </div>
 </template>
 
@@ -84,8 +88,7 @@ const UI_TEXTFIELD = {
     KEYUP: 'keyup',
     CHANGE: 'change',
     ENTER: 'enter',
-    BLUR: 'blur',
-    ICON: 'icon-action'
+    BLUR: 'blur'
   }
 };
 
@@ -166,7 +169,12 @@ export default {
     //   default: false
     // },
     // For helper text
-    helptextId: String
+    helptextId: String,
+    // For plus
+    expand: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {

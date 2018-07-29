@@ -1,6 +1,8 @@
 @import '../../material-components-web/button/mixins';
 @import '../../material-components-web/button/variables';
+
 $mdc-alert-width: 480px !default;
+
 .mdc-confirm {
   .mdc-dialog__surface {
     width: $mdc-alert-width;

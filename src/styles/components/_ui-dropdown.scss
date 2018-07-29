@@ -3,14 +3,23 @@
 
 $mdc-dropdown-min-width: 240px !default;
 $mdc-dropdown-height: 40px !default;
-$mdc-dropdown-outlined-idle-border: rgba(mdc-theme-prop-value(on-surface), .24) !default;
-$mdc-dropdown-outlined-hover-border: rgba(mdc-theme-prop-value(on-surface), .87) !default;
+$mdc-dropdown-outlined-idle-border: rgba(
+  mdc-theme-prop-value(on-surface),
+  0.24
+) !default;
+$mdc-dropdown-outlined-hover-border: rgba(
+  mdc-theme-prop-value(on-surface),
+  0.87
+) !default;
 
 .mdc-dropdown {
+  line-height: $mdc-dropdown-height;
+
   display: inline-block;
+
   min-width: $mdc-dropdown-min-width;
   height: $mdc-dropdown-height;
-  line-height: $mdc-dropdown-height;
+
   border: 1px solid $mdc-dropdown-outlined-idle-border;
   &:hover {
     border-color: $mdc-dropdown-outlined-hover-border;
@@ -22,6 +31,7 @@ $mdc-dropdown-outlined-hover-border: rgba(mdc-theme-prop-value(on-surface), .87)
 
 .mdc-dropdown__surface {
   display: flex;
+
   justify-content: space-between;
   align-items: center;
 }

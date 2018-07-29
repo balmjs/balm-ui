@@ -15,7 +15,7 @@
             :key="index"
             :data-index="index"
             :class="{'active': index === currentSuggestionIndex}"
-            @click="onSelected(item)">
+            @click="handleSelected(item)">
         </li>
       </ul>
     </template>
@@ -313,7 +313,7 @@ export default {
             let selectedItem = this.currentSuggestion[
               this.currentSuggestionIndex
             ];
-            this.onSelect(selectedItem);
+            this.handleSelected(selectedItem);
             event.preventDefault();
             break;
         }
@@ -371,7 +371,7 @@ export default {
     handleMouseleave() {
       this.currentSelectedItem.classList.remove(UI_AUTOCOMPLETE.ITEM.ACTIVE);
     },
-    onSelected(selectedItem) {
+    handleSelected(selectedItem) {
       this.hide();
 
       delete selectedItem[UI_AUTOCOMPLETE.ITEM.ACTIVE];

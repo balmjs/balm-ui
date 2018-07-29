@@ -5,6 +5,7 @@ const Select = () => import('../views/components/select');
 const Switch = () => import('../views/components/switch');
 const Slider = () => import('../views/components/slider');
 const Dropdown = () => import('../views/components/dropdown');
+const Autocomplete = () => import('../views/components/autocomplete');
 
 export default [
   {
@@ -41,5 +42,10 @@ export default [
     path: '/dropdown',
     name: 'dropdown',
     component: Dropdown
+  },
+  {
+    path: '/autocomplete',
+    name: 'autocomplete',
+    component: Autocomplete
   }
 ];

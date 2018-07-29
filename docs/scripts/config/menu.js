@@ -142,6 +142,11 @@ const MATERIAL_COMPONENTS = [
         name: 'Dropdown',
         description: 'Dropdown'
       }
+      // {
+      //   icon: 'text_field',
+      //   name: 'Autocomplete',
+      //   description: 'Autocomplete'
+      // }
     ]
   },
   '-',

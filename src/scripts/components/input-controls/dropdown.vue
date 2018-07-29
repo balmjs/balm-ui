@@ -1,6 +1,6 @@
 <template>
   <ui-menu-anchor :class="className">
-    <div class="mdc-dropdown__surface" @click="handleOpen">
+    <div class="mdc-dropdown__surface" @click="handleExpand">
       <div class="mdc-dropdown__selected-text">
         <slot>{{ currentOption[optionLabel] }}</slot>
       </div>
@@ -13,7 +13,7 @@
     <ui-menu v-model="open"
       class="mdc-dropdown__menu"
       position="BOTTOM_START"
-      @selected="handleChange">
+      @selected="handleSelected">
       <!-- Default option -->
       <ui-menuitem v-if="defaultLabel"
         :class="{'mdc-list-item--selected': defaultValue === selectedValue}">
@@ -83,10 +83,10 @@ export default {
     this.init();
   },
   methods: {
-    handleOpen() {
+    handleExpand() {
       this.open = true;
     },
-    handleChange({ index }) {
+    handleSelected({ index }) {
       if (index > -1 && this.currentOptions[index]) {
         this.currentOption = this.currentOptions[index];
         this.selectedValue = this.currentOption[this.optionValue];

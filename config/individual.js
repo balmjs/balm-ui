@@ -32,8 +32,9 @@ const components = [
   'tabs.js',
   'textfield.js',
   'toolbar.js',
-  'top-app-bar.js'
+  'top-app-bar.js',
   // Plus
+  'dropdown.js'
   // 'pagination.js'
 ];
 const plugins = [

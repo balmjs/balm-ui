@@ -17,7 +17,6 @@
       <section id="demo-wrapper" :dir="controls.rtl ? 'rtl' : null">
         <ui-select id="full-func-js-select"
           v-model="selected1.value"
-          placeholder
           :selectedIndex="selected1.index"
           :options="options1"
           :class="{'demo-select-custom-colors': controls.customColor}"
@@ -55,7 +54,6 @@
       <section id="box-demo-wrapper" :dir="controls.rtl ? 'rtl' : null">
         <ui-select id="select-box"
           box
-          placeholder
           v-model="selected2.value"
           :selectedIndex="selected2.index"
           :options="options2"
@@ -94,7 +92,6 @@
       <section :dir="controls.rtl ? 'rtl' : null">
         <ui-select id="outlined-select"
           outlined
-          placeholder
           v-model="selected1.value"
           :selectedIndex="selected1.index"
           :options="options1"
@@ -158,14 +155,12 @@
     <section class="example">
       <h6 :class="$tt('headline6')">1.6 Custom Select</h6>
       <ui-select
-        placeholder
         defaultLabel="Province"
         :options="provinces"
         v-model="formData.province"
         @change="onChangeProvince($event)"></ui-select>
 
       <ui-select
-        :placeholder="!cities.length"
         defaultLabel="City"
         :options="cities"
         v-model="formData.city"></ui-select>
@@ -280,7 +275,7 @@ export default {
       this[`selected${key}`].value = result.value;
       this[`selected${key}`].index = result.index;
     },
-    onChangeProvince(value, fn) {
+    onChangeProvince(value) {
       this.formData.provinces = value;
 
       let key = value || -1;

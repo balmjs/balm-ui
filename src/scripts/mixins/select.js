@@ -16,7 +16,7 @@ export default {
     model: [String, Number],
     options: {
       type: Array,
-      default () {
+      default() {
         return [];
       }
     },
@@ -34,7 +34,7 @@ export default {
     },
     defaultLabel: String,
     defaultValue: {
-      type: String,
+      type: [String, Number],
       default: ''
     },
     // Element attributes

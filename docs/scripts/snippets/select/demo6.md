@@ -1,13 +1,11 @@
 ```html
 <ui-select
-  placeholder
   defaultLabel="Province"
   :options="provinces"
   v-model="formData.province"
   @change="onChangeProvince($event)"></ui-select>
 
 <ui-select
-  :placeholder="!cities.length"
   defaultLabel="City"
   :options="cities"
   v-model="formData.city"></ui-select>

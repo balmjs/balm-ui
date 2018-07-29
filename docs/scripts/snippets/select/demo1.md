@@ -2,7 +2,6 @@
 <section :dir="controls.rtl ? 'rtl' : null">
   <ui-select id="full-func-js-select"
     v-model="selected.value"
-    placeholder
     :selectedIndex="selected.index"
     :options="options"
     :class="{'demo-select-custom-colors': controls.customColor}"

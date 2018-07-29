@@ -7,6 +7,7 @@ $mdc-dropdown-outlined-idle-border: rgba(mdc-theme-prop-value(on-surface), .24) 
 $mdc-dropdown-outlined-hover-border: rgba(mdc-theme-prop-value(on-surface), .87) !default;
 
 .mdc-dropdown {
+  display: inline-block;
   min-width: $mdc-dropdown-min-width;
   height: $mdc-dropdown-height;
   line-height: $mdc-dropdown-height;

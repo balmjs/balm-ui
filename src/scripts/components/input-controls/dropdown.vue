@@ -67,6 +67,18 @@ export default {
       };
     }
   },
+  watch: {
+    selectedIndex(val) {
+      this.currentOption = this.currentOptions.find(
+        (option, index) => index === val
+      );
+      this.selectedValue = this.currentOption[this.optionValue];
+      this.$emit(UI_DROPDOWN.EVENT.CHANGE, this.selectedValue);
+    },
+    options(val) {
+      this.init(val);
+    }
+  },
   mounted() {
     this.init();
   },
@@ -84,8 +96,8 @@ export default {
         console.warn('Invalid Option!');
       }
     },
-    init() {
-      this.currentOptions = Object.assign([], this.options);
+    init(options = this.options) {
+      this.currentOptions = Object.assign([], options);
 
       // Set default option
       if (this.defaultLabel) {

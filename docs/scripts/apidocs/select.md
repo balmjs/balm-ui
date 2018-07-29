@@ -11,15 +11,14 @@
 | optionLabel     | `String`           | `'label'` | Option item label's name of the `options`.                                                                                                       |
 | optionValue     | `String`           | `'value'` | Option item value's name of the `options`.                                                                                                       |
 | selectedIndex   | `Number`           | `0`       | The index of the currently selected option. Set to -1 if no option is currently selected. Changing this property will update the select element. |
+| defaultLabel    | `String`           | `null`    | Placeholder item label.                                                                                                                          |
+| defaultValue    | `String`, `Number` | `''`      | Placeholder item value.                                                                                                                          |
 | id              | `String`           | `null`    | The _id_ attribute of the `<select>` and the _for_ attribute of the `<label>`.                                                                   |
 | disabled        | `Boolean`          | `false`   | Styles the select as disabled.                                                                                                                   |
 | cssOnly         | `Boolean`          | `false`   | Ripple effect is disabled.                                                                                                                       |
 | label           | `String`           | `null`    | A text caption or description for the select.                                                                                                    |
 | box             | `Boolean`          | `false`   | Styles the select as a box select.                                                                                                               |
 | outlined        | `Boolean`          | `false`   | Styles the select as an outlined select.                                                                                                         |
-| placeholder     | `Boolean`          | `false`   | Text to display in the select when no option is selected.                                                                                        |
-| defaultLabel    | `String`           | `null`    | Placeholder item label                                                                                                                           |
-| defaultValue    | `String`           | `''`      | Placeholder item value                                                                                                                           |
 | group           | `Boolean`          | `false`   | Creates a grouping of `options`.                                                                                                                 |
 | groupLabel      | `String`           | `'label'` | Option label's name of the group `options`.                                                                                                      |
 | groupItems      | `String`           | `'items'` | Option items's name of the group `options`.                                                                                                      |

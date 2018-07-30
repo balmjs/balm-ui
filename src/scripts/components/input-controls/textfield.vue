@@ -7,7 +7,6 @@
     <!-- Textarea -->
     <textarea v-if="isMultiLine"
               :id="id"
-              ref="input"
               v-model="inputValue"
               :class="className.input"
               :placeholder="placeholder"
@@ -26,7 +25,6 @@
     <!-- Input -->
     <input v-else
            :id="id"
-           ref="input"
            v-model="inputValue"
            :type="type"
            :class="className.input"
@@ -243,20 +241,8 @@ export default {
     handleEnter(event) {
       this.$emit(UI_TEXTFIELD.EVENT.ENTER, event.target.value);
     },
-    handleBlur() {
-      let input = this.$refs.input;
-
-      let valid = input.checkValidity();
-      let validity = input.validity;
-      let message = input.validationMessage;
-
-      let result = {
-        valid,
-        validity,
-        message
-      };
-
-      this.$emit(UI_TEXTFIELD.EVENT.BLUR, result);
+    handleBlur(event) {
+      this.$emit(UI_TEXTFIELD.EVENT.BLUR, event);
     }
   }
 };

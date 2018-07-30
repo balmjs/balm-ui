@@ -29,7 +29,7 @@
 | selected | `Function(menuitem: object)` | Emits when an element has been selected. |
 | cancel   | `Function()`                 | Emits when the menu is closed.           |
 
-- `selected` event return data
+- `selected` event return data:
 
 ```js
 {

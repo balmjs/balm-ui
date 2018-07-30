@@ -36,14 +36,14 @@
 
 #### Events
 
-| Name    | Type                              | Description                                               |
-| ------- | --------------------------------- | --------------------------------------------------------- |
-| focus   | `Function(event: object)`         | Emits when the text field is focused.                     |
-| keydown | `Function(event: object)`         | Emits when a key is pressed in the text field.            |
-| input   | `Function(model: string)`         | Emits when the text field value is changed.               |
-| change  | `Function(event: object)`         | Emits when a change in the text field value is committed. |
-| enter   | `Function(model: string)`         | Emits when the _Enter_ key is pressed in the input.       |
-| blur    | `Function(validityState: object)` | Emits when the text field loses focus.                    |
+| Name    | Type                      | Description                                               |
+| ------- | ------------------------- | --------------------------------------------------------- |
+| focus   | `Function(event: object)` | Emits when the text field is focused.                     |
+| keydown | `Function(event: object)` | Emits when a key is pressed in the text field.            |
+| input   | `Function(model: string)` | Emits when the text field value is changed.               |
+| change  | `Function(event: object)` | Emits when a change in the text field value is committed. |
+| enter   | `Function(model: string)` | Emits when the _Enter_ key is pressed in the input.       |
+| blur    | `Function(event: object)` | Emits when the text field loses focus.                    |
 
 > NOTE: If you are not using `v-model`, you should listen for the text field using `@input` and update the `model` prop.
 

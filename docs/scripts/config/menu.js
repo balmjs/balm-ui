@@ -141,12 +141,12 @@ const MATERIAL_COMPONENTS = [
         icon: 'menu',
         name: 'Dropdown',
         description: 'Dropdown'
+      },
+      {
+        icon: 'text_field',
+        name: 'Autocomplete',
+        description: 'Autocomplete'
       }
-      // {
-      //   icon: 'text_field',
-      //   name: 'Autocomplete',
-      //   description: 'Autocomplete'
-      // }
     ]
   },
   '-',

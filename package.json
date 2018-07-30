@@ -57,6 +57,7 @@
   },
   "dependencies": {
     "deepmerge": "^2.1.1",
+    "flatpickr": "^4.5.1",
     "focus-trap": "^2.3.0"
   }
 }

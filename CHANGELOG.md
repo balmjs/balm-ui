@@ -29,6 +29,7 @@
   - Switch
   - Slider
   - Dropdown
+  - Autocomplete
 - Modal
   - Dialog
   - Alert

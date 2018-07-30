@@ -70,6 +70,7 @@ Enjoy 👻
   - Switch
   - Slider
   - Dropdown
+  - Autocomplete
 - Modal
   - Dialog
   - Snackbar

@@ -3,6 +3,7 @@
 .mdc-autocomplete {
   .mdc-textfield__expand {
     position: absolute;
+    top: 48px;
     z-index: 999;
 
     display: none;
@@ -14,10 +15,10 @@
 
     text-align: left;
 
-    border: 1px solid;
+    border-width: 0 1px 1px;
+    border-style: solid;
+    border-color: gray;
     background: white;
-
-    @include mdc-theme-prop(border-color, 'primary');
     ul {
       margin: 0;
       padding: 0;
@@ -44,6 +45,7 @@
     }
   }
   &.mdc-autocomplete--expand {
+    z-index: 1;
     .mdc-textfield__expand {
       display: block;
     }

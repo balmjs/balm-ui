@@ -1,5 +1,5 @@
 @import '../../material-components-web/theme/mixins';
-@import '../global/mixins';
+@import '../../material-components-web/typography/mixins';
 
 $mdc-dropdown-min-width: 240px !default;
 $mdc-dropdown-height: 40px !default;
@@ -35,7 +35,7 @@ $mdc-dropdown-outlined-hover-border: rgba(
   justify-content: space-between;
   align-items: center;
   .mdc-dropdown__selected-text {
-    @include ellipsis();
+    @include mdc-typography-overflow-ellipsis;
   }
 
   .mdc-dropdown__icon {

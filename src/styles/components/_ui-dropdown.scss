@@ -34,12 +34,18 @@ $mdc-dropdown-outlined-hover-border: rgba(
 
   justify-content: space-between;
   align-items: center;
+  .mdc-dropdown__selected-text {
+    @include ellipsis();
+  }
+
+  .mdc-dropdown__icon {
+    display: flex;
+  }
 }
 
-.mdc-dropdown__selected-text {
-  @include ellipsis();
-}
-
-.mdc-dropdown__icon {
-  display: flex;
+.mdc-dropdown__menu {
+  min-width: 100%;
+  .mdc-list {
+    padding: 0;
+  }
 }

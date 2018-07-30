@@ -1,40 +1,72 @@
 <template>
   <div class="demo--autocomplete">
     <section class="hero component">
-      <ui-autocomplete placeholder="Input"></ui-autocomplete>
+      <ui-autocomplete
+        v-model="keywords"
+        :source="source"
+        placeholder="Input 'balm'"
+        @selected="onSelected"></ui-autocomplete>
     </section>
 
     <h3 :class="$tt('headline3')">0. Usage</h3>
-    <!-- <ui-markdown :text="code[0]"></ui-markdown> -->
+    <ui-markdown :text="code[0]"></ui-markdown>
 
     <h3 :class="$tt('headline3')">1. Example</h3>
     <div class="example">
+      <h6 :class="$tt('headline6')">1.1 Static data</h6>
       <ui-autocomplete
-        placeholder="try to type"
         v-model="keywords1"
         :source="source1"
-        @selected="$balmUI.onChange('keywords1', $event.value)">
+        placeholder="Try to type">
       </ui-autocomplete>
-      {{ keywords1 }}
     </div>
+    <ui-accordion>
+      <ui-markdown :code="code[1]"></ui-markdown>
+    </ui-accordion>
 
     <div class="example">
+      <h6 :class="$tt('headline6')">1.2 Dynamic data</h6>
       <ui-autocomplete
-        placeholder="type 'a' and 'b'"
         v-model="keywords2"
         :source="source2"
+        placeholder="Type 'a' and 'b'"
         delay="500"
         remote
         autoFocus
-        @search="onSearch"
-        @selected="$balmUI.onChange('keywords2', $event.value)">
+        @search="onSearch">
       </ui-autocomplete>
-      {{ keywords2 }}
     </div>
+    <ui-accordion>
+      <ui-markdown :code="code[2]"></ui-markdown>
+    </ui-accordion>
+
+    <h3 :class="$tt('headline3')">2. APIs</h3>
+    <ui-apidocs name="autocomplete"></ui-apidocs>
   </div>
 </template>
 
 <script>
+import snippets from '../../mixins/snippets';
+
+const source = [
+  {
+    label: 'BalmJS',
+    value: 1
+  },
+  {
+    label: 'BalmCLI',
+    value: 0
+  },
+  {
+    label: 'BalmUI Lite',
+    value: 2
+  },
+  {
+    label: 'BalmUI',
+    value: 4
+  }
+];
+
 const source1 = [
   'ActionScript',
   'AppleScript',
@@ -61,8 +93,14 @@ const source1 = [
 ];
 
 export default {
+  metaInfo: {
+    titleTemplate: '%s - Autocomplete'
+  },
+  mixins: [snippets],
   data() {
     return {
+      keywords: '',
+      source,
       keywords1: '',
       source1,
       url: `${this.$domain}/data/autocomplete.json`,
@@ -77,10 +115,16 @@ export default {
           text: keywords
         }
       });
-      let data = response.data;
+      let { data } = response;
       // mock data
       this.source2 = data[keywords] ? data[keywords] : [];
+    },
+    onSelected(item) {
+      console.log(item);
     }
+  },
+  created() {
+    this.showCode('autocomplete', 2);
   }
 };
 </script>

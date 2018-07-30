@@ -9,12 +9,12 @@
     @input="handleInput"
     @blur="handleBlur">
     <template slot="expand">
-      <ul ref="autocomplete">
-        <li v-for="(item, index) in currentSuggestion"
-            v-html="item[UI_AUTOCOMPLETE.ITEM.VALUE]"
+      <ul ref="autocomplete" class="ui-autocomplete__list">
+        <li v-for="(item, index) in currentSuggestion.data"
+            v-html="item[UI_AUTOCOMPLETE.ITEM.LABEL]"
             :key="index"
             :data-index="index"
-            :class="{'active': index === currentSuggestionIndex}"
+            :class="{'selected': index === currentSuggestion.index}"
             @click="handleSelected(item)">
         </li>
       </ul>
@@ -27,29 +27,30 @@ import UiTextfield from './textfield';
 import getType from '../../utils/typeof';
 
 // Define constants
+const UI_AUTOCOMPLETE = {
+  ITEM: {
+    LABEL: 'label',
+    VALUE: 'value',
+    SELECTED: 'selected'
+  },
+  EVENT: {
+    INPUT: 'input',
+    SEARCH: 'search',
+    SELECTED: 'selected'
+  },
+  escapeRegex: new RegExp('<[^>]+>', 'g')
+};
+
 const KEYCODE = {
   UP: 38,
   DOWN: 40,
   ENTER: 13
 };
 
-const UI_AUTOCOMPLETE = {
-  ITEM: {
-    ACTIVE: 'active',
-    KEY: 'key',
-    VALUE: 'value'
-  },
-  EVENT: {
-    INPUT: 'input',
-    SEARCH: 'search',
-    SELECTED: 'selected',
-    CLICK: 'click',
-    MOUSEMOVE: 'mousemove',
-    MOUSELEAVE: 'mouseleave'
-  },
-  REGEX: {
-    REMOVE_HTML_TAG: new RegExp('<[^>]+>', 'g')
-  }
+const GLOBAL_EVENT = {
+  CLICK: 'click',
+  MOUSEMOVE: 'mousemove',
+  MOUSELEAVE: 'mouseleave'
 };
 
 export default {
@@ -66,6 +67,10 @@ export default {
     model: {
       type: [String, Number],
       default: ''
+    },
+    source: {
+      type: Array, // Two supported formats: ['Choice1', 'Choice2'] or [{label: 'Choice1', value: 'value1'}, ...]
+      required: true
     },
     // Element attributes
     placeholder: String,
@@ -86,7 +91,6 @@ export default {
       type: [Number, String],
       default: 1
     },
-    source: [Array, Function], // Two supported formats: ['value1', 'value2'] or [{key1: 'value1'}, {key2: 'value2'}]
     remote: {
       type: Boolean,
       default: false
@@ -96,12 +100,14 @@ export default {
     return {
       UI_AUTOCOMPLETE,
       $autocomplete: null,
-      _callback: null,
+      $callback: null,
       isExpand: false,
       inputValue: this.model,
       currentSource: [], // source data
-      currentSuggestion: [], // filter data
-      currentSuggestionIndex: -1,
+      currentSuggestion: {
+        data: [], // filter data
+        index: -1
+      },
       currentSelectedItem: null,
       timer: null,
       scroll: {
@@ -140,26 +146,26 @@ export default {
   mounted() {
     this.$autocomplete = this.$refs.autocomplete;
     this.$autocomplete.addEventListener(
-      UI_AUTOCOMPLETE.EVENT.MOUSEMOVE,
+      GLOBAL_EVENT.MOUSEMOVE,
       this.handleMousemove
     );
     this.$autocomplete.addEventListener(
-      UI_AUTOCOMPLETE.EVENT.MOUSELEAVE,
+      GLOBAL_EVENT.MOUSELEAVE,
       this.handleMouseleave
     );
 
     this.setDataSource(this.source);
   },
   beforeDestroy() {
-    if (this._callback) {
-      document.removeEventListener(UI_AUTOCOMPLETE.EVENT.CLICK, this._callback);
+    if (this.$callback) {
+      document.removeEventListener(GLOBAL_EVENT.CLICK, this.$callback);
     }
     this.$autocomplete.removeEventListener(
-      UI_AUTOCOMPLETE.EVENT.MOUSEMOVE,
+      GLOBAL_EVENT.MOUSEMOVE,
       this.handleMousemove
     );
     this.$autocomplete.removeEventListener(
-      UI_AUTOCOMPLETE.EVENT.MOUSELEAVE,
+      GLOBAL_EVENT.MOUSELEAVE,
       this.handleMouseleave
     );
   },
@@ -183,7 +189,7 @@ export default {
       this.scroll.defaultFirstIndex = 0;
       this.scroll.defaultLastIndex =
         parseInt(this.scroll.viewHeight / this.scroll.itemHeight, 10) - 1;
-      let maxHeight = this.currentSuggestion.length - 1;
+      let maxHeight = this.currentSuggestion.data.length - 1;
       if (this.scroll.defaultReversedLastIndex !== maxHeight) {
         this.scroll.defaultReversedLastIndex = maxHeight;
         this.scroll.defaultReversedFirstIndex =
@@ -194,7 +200,10 @@ export default {
     },
     show() {
       let keywords = this.inputValue.trim();
-      if (keywords.length >= this.minLength && this.currentSuggestion.length) {
+      if (
+        keywords.length >= this.minLength &&
+        this.currentSuggestion.data.length
+      ) {
         this.isExpand = true;
         this.$nextTick(() => {
           this.initClientHeight();
@@ -203,12 +212,12 @@ export default {
     },
     hide() {
       this.isExpand = false;
-      this.currentSuggestionIndex = -1;
+      this.currentSuggestion.index = -1;
       this.clearSelected();
     },
     search(keywords) {
       if (this.remote) {
-        // remote datasource
+        // Remote datasource
         if (this.timer) {
           clearTimeout(this.timer);
         }
@@ -217,9 +226,9 @@ export default {
           this.$emit(UI_AUTOCOMPLETE.EVENT.SEARCH, keywords); // AJAX
         }, this.delay);
       } else {
-        // local datasource
-        this.currentSuggestion = this.currentSource.filter(word => {
-          return RegExp(keywords, 'i').test(word.value);
+        // Local datasource
+        this.currentSuggestion.data = this.currentSource.filter(word => {
+          return RegExp(keywords, 'i').test(word[UI_AUTOCOMPLETE.ITEM.LABEL]);
         });
 
         this.show();
@@ -231,7 +240,7 @@ export default {
           let item = {};
 
           if (getType(data) === 'string' || getType(data) === 'number') {
-            item[UI_AUTOCOMPLETE.ITEM.KEY] = data;
+            item[UI_AUTOCOMPLETE.ITEM.LABEL] = data;
             item[UI_AUTOCOMPLETE.ITEM.VALUE] = data;
           } else if (getType(data) === 'object') {
             item = data;
@@ -242,63 +251,63 @@ export default {
           return item;
         });
 
-        this.currentSuggestion = this.currentSource;
+        this.currentSuggestion.data = this.currentSource;
       }
     },
-    handleFocus(event) {
+    handleFocus() {
       if (this.autoFocus) {
         this.show();
       }
     },
     handleKeydown(event) {
-      if (this.currentSuggestion.length) {
+      if (this.currentSuggestion.data.length) {
         const MIN = 0;
-        const MAX = this.currentSuggestion.length - 1;
+        const MAX = this.currentSuggestion.data.length - 1;
 
         switch (event.keyCode) {
           case KEYCODE.DOWN:
             this.clearSelected();
 
-            if (this.currentSuggestionIndex === MAX) {
-              this.currentSuggestionIndex = MIN;
+            if (this.currentSuggestion.index === MAX) {
+              this.currentSuggestion.index = MIN;
 
               this.scroll.currentFirstIndex = this.scroll.defaultFirstIndex;
               this.scroll.currentLastIndex = this.scroll.defaultLastIndex;
               this.scroll.$view.scrollTop = 0;
             } else {
-              this.currentSuggestionIndex++;
+              this.currentSuggestion.index++;
 
-              if (this.currentSuggestionIndex > this.scroll.currentLastIndex) {
+              if (this.currentSuggestion.index > this.scroll.currentLastIndex) {
                 this.scroll.currentFirstIndex++;
                 this.scroll.currentLastIndex++;
                 this.scroll.$view.scrollTop += this.scroll.itemHeight;
               }
             }
 
-            this.$autocomplete.blur(); // hide mouse
+            this.$autocomplete.blur(); // Hide mouse
             event.preventDefault();
             break;
           case KEYCODE.UP:
             this.clearSelected();
 
             if (
-              this.currentSuggestionIndex === MIN ||
-              this.currentSuggestionIndex === -1
+              this.currentSuggestion.index === MIN ||
+              this.currentSuggestion.index === -1
             ) {
-              this.currentSuggestionIndex = MAX;
+              this.currentSuggestion.index = MAX;
 
               this.scroll.currentFirstIndex = this.scroll.defaultReversedFirstIndex;
               this.scroll.currentLastIndex = this.scroll.defaultReversedLastIndex;
               this.scroll.$view.scrollTop =
                 this.scroll.itemHeight * this.scroll.defaultReversedFirstIndex;
             } else {
-              this.currentSuggestionIndex--;
+              this.currentSuggestion.index--;
 
-              if (this.currentSuggestionIndex < this.scroll.currentLastIndex) {
+              if (this.currentSuggestion.index < this.scroll.currentLastIndex) {
                 this.scroll.currentFirstIndex--;
                 this.scroll.currentLastIndex--;
                 if (
-                  this.currentSuggestionIndex <
+                  this.currentSuggestion.index <
                   this.scroll.defaultReversedFirstIndex
                 ) {
                   this.scroll.$view.scrollTop -= this.scroll.itemHeight;
@@ -306,12 +315,12 @@ export default {
               }
             }
 
-            this.$autocomplete.blur(); // hide mouse
+            this.$autocomplete.blur(); // Hide mouse
             event.preventDefault();
             break;
           case KEYCODE.ENTER:
-            let selectedItem = this.currentSuggestion[
-              this.currentSuggestionIndex
+            let selectedItem = this.currentSuggestion.data[
+              this.currentSuggestion.index
             ];
             this.handleSelected(selectedItem);
             event.preventDefault();
@@ -331,10 +340,10 @@ export default {
       }
     },
     handleBlur(event) {
-      if (!this._callback) {
-        this._callback = e => {
+      if (!this.$callback) {
+        this.$callback = e => {
           let inTextfield = false;
-          let parentEl = e.target.parentNode;
+          let parentEl = e.target;
 
           while (parentEl && parentEl !== this.$el) {
             parentEl = parentEl.parentNode;
@@ -344,52 +353,49 @@ export default {
           }
 
           if (e !== event && this.isExpand && !inTextfield) {
-            document.removeEventListener(
-              UI_AUTOCOMPLETE.EVENT.CLICK,
-              this._callback
-            );
+            document.removeEventListener(GLOBAL_EVENT.CLICK, this.$callback);
             this.hide();
           }
         };
       }
-      document.addEventListener(UI_AUTOCOMPLETE.EVENT.CLICK, this._callback);
+      document.addEventListener(GLOBAL_EVENT.CLICK, this.$callback);
     },
     handleMousemove(event) {
       let el = event.target;
       if (
         el.tagName === 'LI' &&
-        !el.classList.contains(UI_AUTOCOMPLETE.ITEM.ACTIVE)
+        !el.classList.contains(UI_AUTOCOMPLETE.ITEM.SELECTED)
       ) {
         this.currentSelectedItem = el;
 
         this.clearSelected();
 
-        el.classList.add(UI_AUTOCOMPLETE.ITEM.ACTIVE);
-        this.currentSuggestionIndex = el.dataset.index;
+        el.classList.add(UI_AUTOCOMPLETE.ITEM.SELECTED);
+        this.currentSuggestion.index = el.dataset.index;
       }
     },
     handleMouseleave() {
-      this.currentSelectedItem.classList.remove(UI_AUTOCOMPLETE.ITEM.ACTIVE);
+      this.currentSelectedItem.classList.remove(UI_AUTOCOMPLETE.ITEM.SELECTED);
     },
     handleSelected(selectedItem) {
       this.hide();
 
-      delete selectedItem[UI_AUTOCOMPLETE.ITEM.ACTIVE];
+      delete selectedItem[UI_AUTOCOMPLETE.ITEM.SELECTED];
 
       let result = Object.assign({}, selectedItem);
-      result[UI_AUTOCOMPLETE.ITEM.VALUE] = result[
-        UI_AUTOCOMPLETE.ITEM.VALUE
-      ].replace(UI_AUTOCOMPLETE.REGEX.REMOVE_HTML_TAG, '');
-      this.inputValue = result[UI_AUTOCOMPLETE.ITEM.VALUE];
+      result[UI_AUTOCOMPLETE.ITEM.LABEL] = result[
+        UI_AUTOCOMPLETE.ITEM.LABEL
+      ].replace(UI_AUTOCOMPLETE.escapeRegex, '');
+      this.inputValue = result[UI_AUTOCOMPLETE.ITEM.LABEL];
 
       this.$emit(UI_AUTOCOMPLETE.EVENT.SELECTED, result); // result: any
     },
     clearSelected() {
-      let activeItem = this.$autocomplete.querySelector(
-        `li.${UI_AUTOCOMPLETE.ITEM.ACTIVE}`
+      let selectedItem = this.$autocomplete.querySelector(
+        `li.${UI_AUTOCOMPLETE.ITEM.SELECTED}`
       );
-      if (activeItem) {
-        activeItem.classList.remove(UI_AUTOCOMPLETE.ITEM.ACTIVE);
+      if (selectedItem) {
+        selectedItem.classList.remove(UI_AUTOCOMPLETE.ITEM.SELECTED);
       }
     }
   }

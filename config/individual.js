@@ -34,7 +34,8 @@ const components = [
   'toolbar.js',
   'top-app-bar.js',
   // Plus
-  'dropdown.js'
+  'dropdown.js',
+  'autocomplete.js'
   // 'pagination.js'
 ];
 const plugins = [

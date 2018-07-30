@@ -1,5 +1,14 @@
 @import '../../material-components-web/theme/mixins';
 
+$mdc-autocomplete-outlined-idle-border: rgba(
+  mdc-theme-prop-value(on-surface),
+  0.24
+) !default;
+$mdc-autocomplete-item-selected-bgcolor: rgba(
+  mdc-theme-prop-value(primary),
+  0.54
+) !default;
+
 .mdc-autocomplete {
   .mdc-textfield__expand {
     position: absolute;
@@ -17,37 +26,36 @@
 
     border-width: 0 1px 1px;
     border-style: solid;
-    border-color: gray;
-    background: white;
-    ul {
-      margin: 0;
-      padding: 0;
-
-      list-style: none;
-
-      border: 0;
-    }
-    li {
-      line-height: 30px;
-
-      height: 30px;
-      margin: 0;
-      padding: 0;
-
-      border: 0;
-      b {
-        font-weight: bold;
-      }
-      &.active {
-        color: white;
-        background: black;
-      }
-    }
+    border-color: $mdc-autocomplete-outlined-idle-border;
+    background-color: white;
   }
   &.mdc-autocomplete--expand {
     z-index: 1;
     .mdc-textfield__expand {
       display: block;
+    }
+  }
+}
+
+.ui-autocomplete__list,
+.ui-autocomplete__list li {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.ui-autocomplete__list {
+  list-style: none;
+  li {
+    line-height: 30px;
+
+    height: 30px;
+    b {
+      font-weight: bold;
+    }
+    &.selected {
+      color: white;
+      background-color: $mdc-autocomplete-item-selected-bgcolor;
     }
   }
 }

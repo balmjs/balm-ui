@@ -1,6 +1,6 @@
 <template>
   <ui-menu-anchor :class="className">
-    <div class="mdc-dropdown__surface" @click="handleExpand">
+    <div ref="dropdown" class="mdc-dropdown__surface" @click="handleExpand">
       <div class="mdc-dropdown__selected-text">
         <slot>{{ currentOption[optionLabel] }}</slot>
       </div>

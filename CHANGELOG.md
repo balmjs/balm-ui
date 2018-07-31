@@ -4,20 +4,20 @@
 
 - Layouts
   - Layout Grid
-  - Toolbar (deprecated)
-  - Top App Bar
+  - Toolbar (:skull:)
+  - Top App Bar (migrate from Toolbar)
   - Drawer
   - Tabs
 - Buttons
   - Button
   - Floating Action
-  - Icon Toggle (deprecated)
-  - Icon Button
+  - Icon Toggle (:skull:)
+  - Icon Button (migrate from Icon Toggle)
 - Icon
 - Data View
   - List
-  - Grid List (deprecated)
-  - Image List
+  - Grid List (:skull:)
+  - Image List (migrate from Grid List)
   - Card
   - Chips
 - Linear Progress
@@ -28,8 +28,8 @@
   - Select
   - Switch
   - Slider
-  - Dropdown
-  - Autocomplete
+  - Dropdown (:bulb:)
+  - Autocomplete (:bulb:)
 - Modal
   - Dialog
   - Alert
@@ -44,10 +44,10 @@
 - Grid
 - Typography
 - Theme
-- Validator
-- Alert
-- Confirm
-- Toast
+- Validator (:bulb:)
+- Alert (:bulb:)
+- Confirm (:bulb:)
+- Toast (:bulb:)
 
 ### Directives
 
@@ -60,6 +60,8 @@
 - IE Detection
 - Type Detection
 - Util Function
+
+> :bulb: : Plus UI, :skull: : Deprecated
 
 ---
 

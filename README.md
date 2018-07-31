@@ -45,20 +45,20 @@ Enjoy 👻
 
 - Layouts
   - Layout Grid
-  - Toolbar (deprecated)
-  - Top App Bar
+  - Toolbar (:skull:)
+  - Top App Bar (migrate from Toolbar)
   - Drawer
   - Tabs
 - Buttons
   - Button
   - Floating Action
-  - Icon Toggle (deprecated)
-  - Icon Button
+  - Icon Toggle (:skull:)
+  - Icon Button (migrate from Icon Toggle)
 - Icon
 - Data View
   - List
-  - Grid List (deprecated)
-  - Image List
+  - Grid List (:skull:)
+  - Image List (migrate from Grid List)
   - Card
   - Chips
 - Linear Progress
@@ -69,8 +69,8 @@ Enjoy 👻
   - Select
   - Switch
   - Slider
-  - Dropdown
-  - Autocomplete
+  - Dropdown (:bulb:)
+  - Autocomplete (:bulb:)
 - Modal
   - Dialog
   - Snackbar
@@ -82,10 +82,10 @@ Enjoy 👻
 - Grid
 - Typography
 - Theme
-- Validator
-- Alert
-- Confirm
-- Toast
+- Validator (:bulb:)
+- Alert (:bulb:)
+- Confirm (:bulb:)
+- Toast (:bulb:)
 
 ### Directives
 
@@ -98,6 +98,8 @@ Enjoy 👻
 - IE Detection
 - Type Detection
 - Util Function
+
+> :bulb: : Plus UI, :skull: : Deprecated
 
 [balm-ui-image]: https://badge.fury.io/js/balm-ui.svg
 [balm-ui-url]: https://npmjs.org/package/balm-ui

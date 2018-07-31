@@ -16,18 +16,7 @@ $mdc-autocomplete-item-selected-bgcolor: rgba(
     z-index: 999;
 
     display: none;
-    overflow-x: hidden;
-    overflow-y: auto;
-
     width: 100%;
-    max-height: 210px;
-
-    text-align: left;
-
-    border-width: 0 1px 1px;
-    border-style: solid;
-    border-color: $mdc-autocomplete-outlined-idle-border;
-    background-color: white;
   }
   &.mdc-autocomplete--expand {
     z-index: 1;
@@ -37,15 +26,25 @@ $mdc-autocomplete-item-selected-bgcolor: rgba(
   }
 }
 
-.ui-autocomplete__list,
+.ui-autocomplete__list ul,
 .ui-autocomplete__list li {
   margin: 0;
   padding: 0;
   border: 0;
+  list-style: none;
 }
 
 .ui-autocomplete__list {
-  list-style: none;
+  position: relative;
+  border-width: 0 1px 1px;
+  border-style: solid;
+  border-color: $mdc-autocomplete-outlined-idle-border;
+  background-color: white;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 210px;
+  text-align: left;
   li {
     line-height: 30px;
 

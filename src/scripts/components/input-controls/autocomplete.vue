@@ -9,15 +9,17 @@
     @input="handleInput"
     @blur="handleBlur">
     <template slot="expand">
-      <ul ref="autocomplete" class="ui-autocomplete__list">
-        <li v-for="(item, index) in currentSuggestion.data"
-            v-html="item[UI_AUTOCOMPLETE.ITEM.LABEL]"
-            :key="index"
-            :data-index="index"
-            :class="{'selected': index === currentSuggestion.index}"
-            @click="handleSelected(item)">
-        </li>
-      </ul>
+      <div ref="autocomplete" class="ui-autocomplete__list">
+        <ul>
+          <li v-for="(item, index) in currentSuggestion.data"
+              v-html="item[UI_AUTOCOMPLETE.ITEM.LABEL]"
+              :key="index"
+              :data-index="index"
+              :class="{'selected': index === currentSuggestion.index}"
+              @click="handleSelected(item)">
+          </li>
+        </ul>
+      </div>
     </template>
   </ui-textfield>
 </template>
@@ -171,7 +173,7 @@ export default {
   },
   methods: {
     initClientHeight() {
-      let view = this.$autocomplete.parentNode;
+      let view = this.$autocomplete;
       let list = view.querySelector('ul');
       let item = view.querySelector('li');
 

@@ -28,6 +28,7 @@
 | -------- | --------------------------------- | ----------------------------------------- |
 | change   | `Function(model: string\|number)` | Emits when the dropdown value is changed. |
 | selected | `Function(option: object)`        | Emits when an option is selected.         |
+| cancel   | `Function()`                      | Emits when the dropdown is closed.        |
 
 > NOTE: If you are not using `v-model`, you should listen for the dropdown using `@change` and update the `model` prop.
 

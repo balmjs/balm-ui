@@ -13,7 +13,8 @@
     <ui-menu v-model="open"
       class="mdc-dropdown__menu"
       position="BOTTOM_START"
-      @selected="handleSelected">
+      @selected="handleSelected"
+      @cancel="$emit(UI_DROPDOWN.EVENT.CANCEL)">
       <!-- Default option -->
       <ui-menuitem v-if="defaultLabel"
         :class="{'mdc-list-item--selected': defaultValue === selectedValue}">
@@ -39,7 +40,8 @@ import selectMixin from '../../mixins/select';
 const UI_DROPDOWN = {
   EVENT: {
     CHANGE: 'change', // return option[optionValue]
-    SELECTED: 'selected' // return option
+    SELECTED: 'selected', // return option
+    CANCEL: 'cancel'
   }
 };
 
@@ -53,6 +55,7 @@ export default {
   mixins: [selectMixin],
   data() {
     return {
+      UI_DROPDOWN,
       open: false,
       currentOptions: [],
       currentOption: {}

@@ -1,4 +1,4 @@
-# BalmUI
+# [BalmUI](https://material.balmjs.com/) [![NPM version][balm-ui-image]][balm-ui-url]
 
 > Next Generation Material UI for Vue.js
 
@@ -98,5 +98,8 @@ Enjoy 👻
 - IE Detection
 - Type Detection
 - Util Function
+
+[balm-ui-image]: https://badge.fury.io/js/balm-ui.svg
+[balm-ui-url]: https://npmjs.org/package/balm-ui
 
 > **thx [BalmJS](https://balmjs.com/) & [Vue.js](https://vuejs.org/)**

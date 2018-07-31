@@ -61,7 +61,7 @@
 - Type Detection
 - Util Function
 
-> :bulb: : Plus UI, :skull: : Deprecated
+> :bulb:: Plus UI, :skull:: Deprecated
 
 ---
 

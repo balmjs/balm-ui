@@ -99,7 +99,7 @@ Enjoy 👻
 - Type Detection
 - Util Function
 
-> :bulb: : Plus UI, :skull: : Deprecated
+> :bulb:: Plus UI, :skull:: Deprecated
 
 [balm-ui-image]: https://badge.fury.io/js/balm-ui.svg
 [balm-ui-url]: https://npmjs.org/package/balm-ui

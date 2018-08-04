@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { MDCTabBar } from '../../../material-components-web/tabs';
+import { MDCTabBar } from '../../../mdc-deprecated/0.37/tabs';
 import tabsMixin from '../../mixins/tabs';
 import UI_TABS from './constants';
 

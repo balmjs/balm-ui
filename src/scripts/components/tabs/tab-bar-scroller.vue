@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { MDCTabBarScroller } from '../../../material-components-web/tabs';
+import { MDCTabBarScroller } from '../../../mdc-deprecated/0.37/tabs';
 import tabsMixin from '../../mixins/tabs';
 import UI_TABS from './constants';
 

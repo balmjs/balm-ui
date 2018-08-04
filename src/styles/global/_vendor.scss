@@ -1,4 +1,5 @@
 /// Material Icons
 @import './material-icons';
 /// Material Components for the web
-@import '../../material-components-web/material-components-web.scss';
+@import '../../material-components-web/material-components-web';
+@import '../../mdc-deprecated/0.37/material-components-web';

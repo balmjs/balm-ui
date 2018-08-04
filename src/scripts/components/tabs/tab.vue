@@ -17,6 +17,7 @@
 <script>
 import getType from '../../utils/typeof';
 
+// Define constants
 const UI_TAB = {
   SLOT_CLASS: {
     icon: 'mdc-tab__icon'

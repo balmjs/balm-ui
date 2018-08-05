@@ -1,5 +1,5 @@
 <template>
-  <div class="demo--top-app-bar" :dir="controls.rtl ? 'rtl' : null">
+  <div :class="[$tt('body1'), 'demo--top-app-bar']" :dir="controls.rtl ? 'rtl' : null">
     <ui-top-app-bar
       contentSelector="#content-main"
       navId="demo-menu"
@@ -38,23 +38,25 @@
 
     <main class="demo-main">
       <div id="content-main">
-        <h3 :class="$tt('headline3')">0. Usage</h3>
-        <ui-markdown :text="code[0]"></ui-markdown>
+        <div :class="$tt('body2')">
+          <h4 :class="$tt('headline4')">0. Usage</h4>
+          <ui-markdown :text="code[0]"></ui-markdown>
 
-        <h3 :class="$tt('headline3')">1. Example</h3>
-        <p v-for="i in 12" :key="i" class="demo-paragraph">
-          Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.
-        </p>
-        <ui-accordion>
-          <ui-markdown :text="code[1]"></ui-markdown>
-        </ui-accordion>
+          <h4 :class="$tt('headline4')">1. Example</h4>
+          <p v-for="i in 12" :key="i" class="demo-paragraph">
+            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.
+          </p>
+          <ui-accordion>
+            <ui-markdown :text="code[1]"></ui-markdown>
+          </ui-accordion>
 
-        <h3 :class="$tt('headline3')">2. APIs</h3>
-        <ui-apidocs name="top-app-bar"></ui-apidocs>
+          <h4 :class="$tt('headline4')">2. APIs</h4>
+          <ui-apidocs name="top-app-bar"></ui-apidocs>
+        </div>
       </div>
     </main>
 
-    <div class="demo-controls-container" dir="ltr" v-shadow.transition="showControls ? 4 : [4, 12]">
+    <div :class="['demo-controls-container', {'show': showControls}]" dir="ltr" v-shadow.transition="showControls ? 4 : [4, 12]">
       <template v-if="showControls">
         <h3 :class="$tt('headline6')">
           <span>Demo Controls</span>
@@ -151,4 +153,3 @@ export default {
   }
 };
 </script>
-

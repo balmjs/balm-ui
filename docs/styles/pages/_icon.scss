@@ -1,4 +1,4 @@
-.demo--material-icons {
+.demo--icon {
   #search {
     text-indent: 60px;
   }
@@ -21,7 +21,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    transition: all .4s;
+    transition: all 0.4s;
     color: #757575;
     background: transparent;
     justify-content: space-around;
@@ -73,6 +73,6 @@
     }
   }
   .orange600 {
-    color: #FB8C00;
+    color: #fb8c00;
   }
 }

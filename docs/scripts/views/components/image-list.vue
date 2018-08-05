@@ -1,5 +1,5 @@
 <template>
-  <div class="demo--image-list">
+  <div <div :class="[$tt('body1'), 'demo--image-list']">
     <section class="hero component">
       <ui-image-list class="hero-image-list">
         <ui-image-item v-for="i in 15" :key="i" block>
@@ -7,48 +7,50 @@
       </ui-image-list>
     </section>
 
-    <h3 :class="$tt('headline3')">0. Usage</h3>
-    <ui-markdown :text="code[0]"></ui-markdown>
+    <div :class="$tt('body2')">
+      <h4 :class="$tt('headline4')">0. Usage</h4>
+      <ui-markdown :text="code[0]"></ui-markdown>
 
-    <h3 :class="$tt('headline3')">1. Example</h3>
-    <section :class="['example', {'rounded-corners': radius}]">
-      <ui-checkbox id="toggle-radius" v-model="radius">Toggle Rounded Corners</ui-checkbox>
+      <h4 :class="$tt('headline4')">1. Example</h4>
+      <section :class="['example', {'rounded-corners': radius}]">
+        <ui-checkbox id="toggle-radius" v-model="radius">Toggle Rounded Corners</ui-checkbox>
 
-      <h1 :class="$tt('headline5')">1.1 Standard Image List</h1>
-      <ui-image-list-controls v-model="controls1"></ui-image-list-controls>
-      <ui-image-list
-        id="standard-image-list"
-        class="standard-image-list"
-        :withTextProtection="controls1.labelsType === 2">
-        <ui-image-item v-for="i in 15" :key="i"
-          :src="require(`../../../images/photos/3x2/${i}.jpg`)">
-          <ui-image-label v-if="controls1.labelsType">Text label</ui-image-label>
-        </ui-image-item>
-      </ui-image-list>
-      <ui-accordion>
-        <ui-markdown :code="code[1]"></ui-markdown>
-      </ui-accordion>
+        <h5 :class="$tt('headline5')">1.1 Standard Image List</h5>
+        <ui-image-list-controls v-model="controls1"></ui-image-list-controls>
+        <ui-image-list
+          id="standard-image-list"
+          class="standard-image-list"
+          :withTextProtection="controls1.labelsType === 2">
+          <ui-image-item v-for="i in 15" :key="i"
+            :src="require(`../../../images/photos/3x2/${i}.jpg`)">
+            <ui-image-label v-if="controls1.labelsType">Text label</ui-image-label>
+          </ui-image-item>
+        </ui-image-list>
+        <ui-accordion>
+          <ui-markdown :code="code[1]"></ui-markdown>
+        </ui-accordion>
 
-      <h1 :class="$tt('headline5')">1.2 Masonry Image List</h1>
-      <ui-image-list-controls idPrefix="masonry" v-model="controls2"></ui-image-list-controls>
-      <ui-image-list
-        id="masonry-image-list"
-        class="masonry-image-list"
-        masonry
-        :withTextProtection="controls2.labelsType === 2">
-        <ui-image-item v-for="(item, index) in list" :key="index"
-          :src="require(`../../../images/photos/${item}.jpg`)">
-          <ui-image-label v-if="controls2.labelsType">Text label</ui-image-label>
-        </ui-image-item>
-      </ui-image-list>
-      <ui-accordion>
-        <ui-markdown :code="code[2]"></ui-markdown>
-      </ui-accordion>
-    </section>
+        <h5 :class="$tt('headline5')">1.2 Masonry Image List</h5>
+        <ui-image-list-controls idPrefix="masonry" v-model="controls2"></ui-image-list-controls>
+        <ui-image-list
+          id="masonry-image-list"
+          class="masonry-image-list"
+          masonry
+          :withTextProtection="controls2.labelsType === 2">
+          <ui-image-item v-for="(item, index) in list" :key="index"
+            :src="require(`../../../images/photos/${item}.jpg`)">
+            <ui-image-label v-if="controls2.labelsType">Text label</ui-image-label>
+          </ui-image-item>
+        </ui-image-list>
+        <ui-accordion>
+          <ui-markdown :code="code[2]"></ui-markdown>
+        </ui-accordion>
+      </section>
 
-    <h3 :class="$tt('headline3')">2. APIs</h3>
-    <ui-apidocs name="image-list"></ui-apidocs>
-    <ui-apidocs name="image-item"></ui-apidocs>
+      <h4 :class="$tt('headline4')">2. APIs</h4>
+      <ui-apidocs name="image-list"></ui-apidocs>
+      <ui-apidocs name="image-item"></ui-apidocs>
+    </div>
   </div>
 </template>
 

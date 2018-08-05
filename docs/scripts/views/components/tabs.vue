@@ -1,227 +1,229 @@
 <template>
-  <div class="demo--tabs">
+  <div :class="[$tt('body1'), 'demo--tabs']">
     <section class="hero component">
       <ui-tabs id="demo-tab-bar" :items="tabs"></ui-tabs>
     </section>
 
-    <h3 :class="$tt('headline3')">0. Usage</h3>
-    <ui-markdown :text="code[0]"></ui-markdown>
+    <div :class="$tt('body2')">
+      <h4 :class="$tt('headline4')">0. Usage</h4>
+      <ui-markdown :text="code[0]"></ui-markdown>
 
-    <h3 :class="$tt('headline3')">1. Example</h3>
+      <h4 :class="$tt('headline4')">1. Example</h4>
 
-    <section>
-      <fieldset>
-        <legend :class="$tt('headline6')">Basic Tab Bar</legend>
-        <ui-tab-bar id="basic-tab-bar">
-          <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
-            {{ tab.text }}
-          </ui-tab>
-        </ui-tab-bar>
-        <ui-accordion>
-          <ui-markdown :code="code[1]"></ui-markdown>
-        </ui-accordion>
-      </fieldset>
-    </section>
+      <section>
+        <fieldset>
+          <legend :class="$tt('headline6')">Basic Tab Bar</legend>
+          <ui-tab-bar id="basic-tab-bar">
+            <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
+              {{ tab.text }}
+            </ui-tab>
+          </ui-tab-bar>
+          <ui-accordion>
+            <ui-markdown :code="code[1]"></ui-markdown>
+          </ui-accordion>
+        </fieldset>
+      </section>
 
-    <section>
-      <fieldset>
-        <legend :class="$tt('headline6')">Basic Tab Bar / Custom Label Color</legend>
-        <ui-tab-bar id="basic-tab-bar-custom-label-color" class="custom-label-color-tab">
-          <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
-            {{ tab.text }}
-          </ui-tab>
-        </ui-tab-bar>
-      </fieldset>
-    </section>
+      <section>
+        <fieldset>
+          <legend :class="$tt('headline6')">Basic Tab Bar / Custom Label Color</legend>
+          <ui-tab-bar id="basic-tab-bar-custom-label-color" class="custom-label-color-tab">
+            <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
+              {{ tab.text }}
+            </ui-tab>
+          </ui-tab-bar>
+        </fieldset>
+      </section>
 
-    <section>
-      <div class="demo-tabs__scroller">
-        <h2 :class="[$tt('headline6'), 'demo-title']">Tab Bar with Scroller</h2>
-        <ui-tab-bar-scroller id="tab-bar-scroller">
-          <ui-tab v-for="i in 9" :key="i" :href="`#${i}`">
-            Item {{ i }}
-          </ui-tab>
-        </ui-tab-bar-scroller>
-        <ui-accordion>
-          <ui-markdown :code="code[2]"></ui-markdown>
-        </ui-accordion>
-      </div>
-    </section>
+      <section>
+        <div class="demo-tabs__scroller">
+          <h2 :class="[$tt('headline6'), 'demo-title']">Tab Bar with Scroller</h2>
+          <ui-tab-bar-scroller id="tab-bar-scroller">
+            <ui-tab v-for="i in 9" :key="i" :href="`#${i}`">
+              Item {{ i }}
+            </ui-tab>
+          </ui-tab-bar-scroller>
+          <ui-accordion>
+            <ui-markdown :code="code[2]"></ui-markdown>
+          </ui-accordion>
+        </div>
+      </section>
 
-    <section>
-      <fieldset>
-        <legend :class="$tt('headline6')">Icon Tab Labels</legend>
-        <ui-tab-bar type="1" id="icon-tab-bar">
-          <ui-tab v-for="(tab, index) in tabs2" :key="index"
-            :icon="tab.icon" :href="tab.url">
-          </ui-tab>
-        </ui-tab-bar>
-        <ui-accordion>
-          <ui-markdown :code="code[3]"></ui-markdown>
-        </ui-accordion>
-      </fieldset>
-    </section>
+      <section>
+        <fieldset>
+          <legend :class="$tt('headline6')">Icon Tab Labels</legend>
+          <ui-tab-bar type="1" id="icon-tab-bar">
+            <ui-tab v-for="(tab, index) in tabs2" :key="index"
+              :icon="tab.icon" :href="tab.url">
+            </ui-tab>
+          </ui-tab-bar>
+          <ui-accordion>
+            <ui-markdown :code="code[3]"></ui-markdown>
+          </ui-accordion>
+        </fieldset>
+      </section>
 
-    <section>
-      <fieldset>
-        <legend :class="$tt('headline6')">Icon Tab Labels / Custom Icon Color</legend>
-        <ui-tab-bar type="1" id="icon-tab-bar-custom-icon-color" class="custom-icon-color-tab">
-          <ui-tab v-for="(tab, index) in tabs2" :key="index"
-            :icon="tab.icon" :href="tab.url">
-          </ui-tab>
-        </ui-tab-bar>
-      </fieldset>
-    </section>
+      <section>
+        <fieldset>
+          <legend :class="$tt('headline6')">Icon Tab Labels / Custom Icon Color</legend>
+          <ui-tab-bar type="1" id="icon-tab-bar-custom-icon-color" class="custom-icon-color-tab">
+            <ui-tab v-for="(tab, index) in tabs2" :key="index"
+              :icon="tab.icon" :href="tab.url">
+            </ui-tab>
+          </ui-tab-bar>
+        </fieldset>
+      </section>
 
-    <section>
-      <fieldset>
-        <legend :class="$tt('headline6')">Icon &amp; Text Labels</legend>
-        <ui-tab-bar type="2" id="icon-text-tab-bar">
-          <ui-tab v-for="(tab, index) in tabs2" :key="index"
-            :icon="tab.icon" :text="tab.text" :href="tab.url">
-          </ui-tab>
-        </ui-tab-bar>
-        <ui-accordion>
-          <ui-markdown :code="code[4]"></ui-markdown>
-        </ui-accordion>
-      </fieldset>
-    </section>
+      <section>
+        <fieldset>
+          <legend :class="$tt('headline6')">Icon &amp; Text Labels</legend>
+          <ui-tab-bar type="2" id="icon-text-tab-bar">
+            <ui-tab v-for="(tab, index) in tabs2" :key="index"
+              :icon="tab.icon" :text="tab.text" :href="tab.url">
+            </ui-tab>
+          </ui-tab-bar>
+          <ui-accordion>
+            <ui-markdown :code="code[4]"></ui-markdown>
+          </ui-accordion>
+        </fieldset>
+      </section>
 
-    <section>
-      <fieldset>
-        <legend :class="$tt('headline6')">Icon &amp; Text Labels / Custom Colors</legend>
-        <ui-tab-bar type="2" id="icon-text-tab-bar-custom-colors" class="custom-ink-color-tab">
-          <ui-tab v-for="(tab, index) in tabs2" :key="index"
-            :icon="tab.icon" :text="tab.text" :href="tab.url">
-          </ui-tab>
-        </ui-tab-bar>
-      </fieldset>
-    </section>
+      <section>
+        <fieldset>
+          <legend :class="$tt('headline6')">Icon &amp; Text Labels / Custom Colors</legend>
+          <ui-tab-bar type="2" id="icon-text-tab-bar-custom-colors" class="custom-ink-color-tab">
+            <ui-tab v-for="(tab, index) in tabs2" :key="index"
+              :icon="tab.icon" :text="tab.text" :href="tab.url">
+            </ui-tab>
+          </ui-tab-bar>
+        </fieldset>
+      </section>
 
-    <section>
-      <fieldset>
-        <legend :class="$tt('headline6')">Custom Indicator Colors</legend>
-        <ui-tab-bar id="custom-indicator-tab-bar" class="custom-indicator-tab-bar">
-          <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
-            {{ tab.text }}
-          </ui-tab>
-        </ui-tab-bar>
-      </fieldset>
-    </section>
+      <section>
+        <fieldset>
+          <legend :class="$tt('headline6')">Custom Indicator Colors</legend>
+          <ui-tab-bar id="custom-indicator-tab-bar" class="custom-indicator-tab-bar">
+            <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
+              {{ tab.text }}
+            </ui-tab>
+          </ui-tab-bar>
+        </fieldset>
+      </section>
 
-    <section>
-      <fieldset>
-        <legend :class="$tt('headline6')">Within mdc-toolbar</legend>
-        <ui-toolbar>
-          <ui-toolbar-row>
-            <ui-toolbar-section fit align="start">
-              <ui-toolbar-title>Title</ui-toolbar-title>
-            </ui-toolbar-section>
-            <ui-toolbar-section align="end">
-              <div>
+      <section>
+        <fieldset>
+          <legend :class="$tt('headline6')">Within mdc-toolbar</legend>
+          <ui-toolbar>
+            <ui-toolbar-row>
+              <ui-toolbar-section fit align="start">
+                <ui-toolbar-title>Title</ui-toolbar-title>
+              </ui-toolbar-section>
+              <ui-toolbar-section align="end">
+                <div>
+                  <ui-tab-bar class="custom-tab-bar-in-toolbar">
+                    <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
+                      {{ tab.text }}
+                    </ui-tab>
+                  </ui-tab-bar>
+                </div>
+              </ui-toolbar-section>
+            </ui-toolbar-row>
+          </ui-toolbar>
+          <ui-accordion>
+            <ui-markdown :code="code[5]"></ui-markdown>
+          </ui-accordion>
+        </fieldset>
+      </section>
+
+      <section>
+        <fieldset>
+          <legend :class="$tt('headline6')">Within MDCToolbar - fixed to bottom of toolbar</legend>
+          <div class="demo-note">
+            <em>Note: The style used to acheive this example is:</em>
+            <pre><code>.my-modified-toolbar-section {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+
+  [dir="rtl"] .my-modified-toolbar-section {
+    right: auto;
+    left: 0;
+  }</code></pre>
+          </div>
+          <ui-toolbar>
+            <ui-toolbar-row>
+              <ui-toolbar-section fit align="start">
+                <ui-toolbar-title>Title</ui-toolbar-title>
+              </ui-toolbar-section>
+              <ui-toolbar-section class="my-modified-toolbar-section">
                 <ui-tab-bar class="custom-tab-bar-in-toolbar">
                   <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
                     {{ tab.text }}
                   </ui-tab>
                 </ui-tab-bar>
-              </div>
-            </ui-toolbar-section>
-          </ui-toolbar-row>
-        </ui-toolbar>
-        <ui-accordion>
-          <ui-markdown :code="code[5]"></ui-markdown>
-        </ui-accordion>
-      </fieldset>
-    </section>
+              </ui-toolbar-section>
+            </ui-toolbar-row>
+          </ui-toolbar>
+        </fieldset>
+      </section>
 
-    <section>
-      <fieldset>
-        <legend :class="$tt('headline6')">Within MDCToolbar - fixed to bottom of toolbar</legend>
-        <div class="demo-note">
-          <em>Note: The style used to acheive this example is:</em>
-          <pre><code>.my-modified-toolbar-section {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
+      <section>
+        <fieldset>
+          <legend :class="$tt('headline6')">Within mdc-toolbar + custom color indicator</legend>
+          <div class="demo-note">
+            <em>Note: Changing the toolbar's background color here so that the primary indicator can be visible</em>
+          </div>
+          <ui-toolbar>
+            <ui-toolbar-row>
+              <ui-toolbar-section fit align="start">
+                <ui-toolbar-title>Title</ui-toolbar-title>
+              </ui-toolbar-section>
+              <ui-toolbar-section align="end">
+                <div>
+                  <ui-tab-bar class="custom-indicator-tab-bar-in-toolbar">
+                    <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
+                      {{ tab.text }}
+                    </ui-tab>
+                  </ui-tab-bar>
+                </div>
+              </ui-toolbar-section>
+            </ui-toolbar-row>
+          </ui-toolbar>
+        </fieldset>
+      </section>
 
-[dir="rtl"] .my-modified-toolbar-section {
-  right: auto;
-  left: 0;
-}</code></pre>
-        </div>
-        <ui-toolbar>
-          <ui-toolbar-row>
-            <ui-toolbar-section fit align="start">
-              <ui-toolbar-title>Title</ui-toolbar-title>
-            </ui-toolbar-section>
-            <ui-toolbar-section class="my-modified-toolbar-section">
-              <ui-tab-bar class="custom-tab-bar-in-toolbar">
-                <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
-                  {{ tab.text }}
-                </ui-tab>
-              </ui-tab-bar>
-            </ui-toolbar-section>
-          </ui-toolbar-row>
-        </ui-toolbar>
-      </fieldset>
-    </section>
+      <section>
+        <fieldset>
+          <legend :class="$tt('headline6')">Within Toolbar, Dynamic Content Control</legend>
+          <ui-toolbar id="dynamic-demo-toolbar">
+            <ui-toolbar-row>
+              <ui-toolbar-section fit align="start">
+                <ui-tabs
+                  id="dynamic-tab-bar"
+                  :items="tabs"
+                  v-model="active"></ui-tabs>
+              </ui-toolbar-section>
+            </ui-toolbar-row>
+          </ui-toolbar>
+          <section>
+            <ui-panels class="panels" v-model="active">
+              <ui-panel>Panel One</ui-panel>
+              <ui-panel>Panel Two</ui-panel>
+              <ui-panel>Panel Three</ui-panel>
+            </ui-panels>
+          </section>
+          <ui-accordion>
+            <ui-markdown :code="code[6]"></ui-markdown>
+          </ui-accordion>
+        </fieldset>
+      </section>
 
-    <section>
-      <fieldset>
-        <legend :class="$tt('headline6')">Within mdc-toolbar + custom color indicator</legend>
-        <div class="demo-note">
-          <em>Note: Changing the toolbar's background color here so that the primary indicator can be visible</em>
-        </div>
-        <ui-toolbar>
-          <ui-toolbar-row>
-            <ui-toolbar-section fit align="start">
-              <ui-toolbar-title>Title</ui-toolbar-title>
-            </ui-toolbar-section>
-            <ui-toolbar-section align="end">
-              <div>
-                <ui-tab-bar class="custom-indicator-tab-bar-in-toolbar">
-                  <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
-                    {{ tab.text }}
-                  </ui-tab>
-                </ui-tab-bar>
-              </div>
-            </ui-toolbar-section>
-          </ui-toolbar-row>
-        </ui-toolbar>
-      </fieldset>
-    </section>
-
-    <section>
-      <fieldset>
-        <legend :class="$tt('headline6')">Within Toolbar, Dynamic Content Control</legend>
-        <ui-toolbar id="dynamic-demo-toolbar">
-          <ui-toolbar-row>
-            <ui-toolbar-section fit align="start">
-              <ui-tabs
-                id="dynamic-tab-bar"
-                :items="tabs"
-                v-model="active"></ui-tabs>
-            </ui-toolbar-section>
-          </ui-toolbar-row>
-        </ui-toolbar>
-        <section>
-          <ui-panels class="panels" v-model="active">
-            <ui-panel>Panel One</ui-panel>
-            <ui-panel>Panel Two</ui-panel>
-            <ui-panel>Panel Three</ui-panel>
-          </ui-panels>
-        </section>
-        <ui-accordion>
-          <ui-markdown :code="code[6]"></ui-markdown>
-        </ui-accordion>
-      </fieldset>
-    </section>
-
-    <h3 :class="$tt('headline3')">2. APIs</h3>
-    <ui-apidocs name="tabs"></ui-apidocs>
-    <ui-apidocs name="tab"></ui-apidocs>
-    <ui-apidocs name="panels"></ui-apidocs>
+      <h4 :class="$tt('headline4')">2. APIs</h4>
+      <ui-apidocs name="tabs"></ui-apidocs>
+      <ui-apidocs name="tab"></ui-apidocs>
+      <ui-apidocs name="panels"></ui-apidocs>
+    </div>
   </div>
 </template>
 

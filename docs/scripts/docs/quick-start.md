@@ -31,8 +31,10 @@ Edit `/path/to/project/scripts/main.js`
 ```js
 import Vue from 'vue';
 import BalmUI from 'balm-ui';
+import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // Optional
 
 Vue.use(BalmUI);
+Vue.use(BalmUIPlus); // Optional
 ```
 
 Enjoy 👻

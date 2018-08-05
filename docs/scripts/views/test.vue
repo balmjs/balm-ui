@@ -1,5 +1,5 @@
 <template>
-  <div class="demo-test">
+  <div :class="[$tt('body1'), 'demo--test']">
     <ui-chip>Chip</ui-chip>
     <hr>
     <ui-button primary effect raised @click.native="showDialog('show')">有色遮罩无动画对话框</ui-button>
@@ -76,20 +76,20 @@ export default {
     };
   },
   methods: {
-    showDialog(name){
+    showDialog(name) {
       this[name] = true;
     },
-    closeDialog(name, fn){
+    closeDialog(name, fn) {
       this[name] = false;
       typeof fn === 'function' && fn();
     },
-    clickButton(){
+    clickButton() {
       console.log('Hello, 你点击了按钮！');
     },
-    onCancel(){
+    onCancel() {
       console.log('你点击了取消按钮！');
     },
-    onConfirm(){
+    onConfirm() {
       console.log('你点击了确定按钮！');
     },
     showSnackbar() {

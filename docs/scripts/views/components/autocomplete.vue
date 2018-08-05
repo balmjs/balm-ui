@@ -1,5 +1,5 @@
 <template>
-  <div class="demo--autocomplete">
+  <div :class="[$tt('body1'), 'demo--autocomplete']">
     <section class="hero component">
       <ui-autocomplete
         v-model="keywords"
@@ -8,40 +8,42 @@
         @selected="onSelected"></ui-autocomplete>
     </section>
 
-    <h3 :class="$tt('headline3')">0. Usage</h3>
-    <ui-markdown :text="code[0]"></ui-markdown>
+    <div :class="$tt('body2')">
+      <h4 :class="$tt('headline4')">0. Usage</h4>
+      <ui-markdown :text="code[0]"></ui-markdown>
 
-    <h3 :class="$tt('headline3')">1. Example</h3>
-    <div class="example">
-      <h6 :class="$tt('headline6')">1.1 Static data</h6>
-      <ui-autocomplete
-        v-model="keywords1"
-        :source="source1"
-        placeholder="Try to type">
-      </ui-autocomplete>
+      <h4 :class="$tt('headline4')">1. Example</h4>
+      <div class="example">
+        <h6 :class="$tt('headline6')">1.1 Static data</h6>
+        <ui-autocomplete
+          v-model="keywords1"
+          :source="source1"
+          placeholder="Try to type">
+        </ui-autocomplete>
+      </div>
+      <ui-accordion>
+        <ui-markdown :code="code[1]"></ui-markdown>
+      </ui-accordion>
+
+      <div class="example">
+        <h6 :class="$tt('headline6')">1.2 Dynamic data</h6>
+        <ui-autocomplete
+          v-model="keywords2"
+          :source="source2"
+          placeholder="Type 'a' and 'b'"
+          delay="500"
+          remote
+          autoFocus
+          @search="onSearch">
+        </ui-autocomplete>
+      </div>
+      <ui-accordion>
+        <ui-markdown :code="code[2]"></ui-markdown>
+      </ui-accordion>
+
+      <h4 :class="$tt('headline4')">2. APIs</h4>
+      <ui-apidocs name="autocomplete"></ui-apidocs>
     </div>
-    <ui-accordion>
-      <ui-markdown :code="code[1]"></ui-markdown>
-    </ui-accordion>
-
-    <div class="example">
-      <h6 :class="$tt('headline6')">1.2 Dynamic data</h6>
-      <ui-autocomplete
-        v-model="keywords2"
-        :source="source2"
-        placeholder="Type 'a' and 'b'"
-        delay="500"
-        remote
-        autoFocus
-        @search="onSearch">
-      </ui-autocomplete>
-    </div>
-    <ui-accordion>
-      <ui-markdown :code="code[2]"></ui-markdown>
-    </ui-accordion>
-
-    <h3 :class="$tt('headline3')">2. APIs</h3>
-    <ui-apidocs name="autocomplete"></ui-apidocs>
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="demo--shape">
+  <div :class="[$tt('body1'), 'demo--shape']">
     <section class="hero directive">
       <div class="four-corner-container"
         v-shape>
@@ -11,13 +11,15 @@
       </div>
     </section>
 
-    <h3 :class="$tt('headline3')">0. Usage</h3>
-    <ui-markdown :text="code[0]"></ui-markdown>
+    <div :class="$tt('body2')">
+      <h4 :class="$tt('headline4')">0. Usage</h4>
+      <ui-markdown :text="code[0]"></ui-markdown>
 
-    <h3 :class="$tt('headline3')">1. Example</h3>
+      <h4 :class="$tt('headline4')">1. Example</h4>
 
-    <h3 :class="$tt('headline3')">2. APIs</h3>
-    <ui-apidocs name="shape" type="directive"></ui-apidocs>
+      <h4 :class="$tt('headline4')">2. APIs</h4>
+      <ui-apidocs name="shape" type="directive"></ui-apidocs>
+    </div>
   </div>
 </template>
 

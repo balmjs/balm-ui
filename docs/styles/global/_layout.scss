@@ -6,13 +6,16 @@ html {
 body,
 .balmui-container {
   position: relative;
+
   display: flex;
+
   width: 100%;
   height: 100%;
 }
 
 .balmui-body {
   display: flex;
+
   width: 100%;
 }
 
@@ -47,36 +50,41 @@ body,
   &::before,
   &::after {
     position: absolute;
-    color: white;
+
     padding: 4px;
+
+    color: white;
   }
   &::before {
     top: 0;
     left: 0;
   }
   &::after {
-    bottom: 0;
     right: 0;
+    bottom: 0;
   }
   &.component {
     &::before,
     &::after {
       content: 'component';
-      background-color: #2979FF;
+
+      background-color: #2979ff;
     }
   }
   &.plugin {
     &::before,
     &::after {
       content: 'plugin';
-      background-color: #FF1744;
+
+      background-color: #ff1744;
     }
   }
   &.directive {
     &::before,
     &::after {
       content: 'directive';
-      background-color: #00BFA5;
+
+      background-color: #00bfa5;
     }
   }
 }
@@ -84,9 +92,11 @@ body,
 /// lang
 .supported-lang {
   margin: 0;
+
   cursor: pointer;
   a.active {
     font-weight: bolder;
+
     color: white;
   }
 }

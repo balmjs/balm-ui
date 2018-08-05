@@ -1,5 +1,5 @@
 <template>
-  <div class="demo--dropdown">
+  <div :class="[$tt('body1'), 'demo--dropdown']">
     <section class="hero component">
       <ui-dropdown
         v-model="selectedValue"
@@ -7,65 +7,67 @@
       </ui-dropdown>
     </section>
 
-    <h3 :class="$tt('headline3')">0. Usage</h3>
-    <ui-markdown :text="code[0]"></ui-markdown>
+    <div :class="$tt('body2')">
+      <h4 :class="$tt('headline4')">0. Usage</h4>
+      <ui-markdown :text="code[0]"></ui-markdown>
 
-    <h3 :class="$tt('headline3')">1. Example</h3>
-    <div class="example">
-      <h6 :class="$tt('headline6')">1.1 Default dropdown</h6>
-      <label>Pick a Food Group:</label>
-      <ui-dropdown
-        v-model="selected.value"
-        :selectedIndex="selected.index"
-        :options="options"
-        defaultLabel="All"
-        :defaultValue="0"
-        @selected="$balmUI.onChange('selected', $event)">
-      </ui-dropdown>
-      <p>
-        Currently selected:
-        <span id="currently-selected">
-          {{ selected.value ? `${selected.value} at index ${selected.index}` : '(none)' }}
-        </span>
-      </p>
-      <div class="button-container">
-        <ui-button raised
-          @click="$balmUI.onChange('selected.index', 0)">
-          Set Selected Index (0)
-        </ui-button>
+      <h4 :class="$tt('headline4')">1. Example</h4>
+      <div class="example">
+        <h6 :class="$tt('headline6')">1.1 Default dropdown</h6>
+        <label>Pick a Food Group:</label>
+        <ui-dropdown
+          v-model="selected.value"
+          :selectedIndex="selected.index"
+          :options="options"
+          defaultLabel="All"
+          :defaultValue="0"
+          @selected="$balmUI.onChange('selected', $event)">
+        </ui-dropdown>
+        <p>
+          Currently selected:
+          <span id="currently-selected">
+            {{ selected.value ? `${selected.value} at index ${selected.index}` : '(none)' }}
+          </span>
+        </p>
+        <div class="button-container">
+          <ui-button raised
+            @click="$balmUI.onChange('selected.index', 0)">
+            Set Selected Index (0)
+          </ui-button>
+        </div>
+        <div class="button-container">
+          <ui-button raised
+            @click="$balmUI.onChange('selected.value', 'meat')">
+            Set Value to Meat
+          </ui-button>
+        </div>
       </div>
-      <div class="button-container">
-        <ui-button raised
-          @click="$balmUI.onChange('selected.value', 'meat')">
-          Set Value to Meat
-        </ui-button>
+      <ui-accordion>
+        <ui-markdown :code="code[1]"></ui-markdown>
+      </ui-accordion>
+
+      <div class="example">
+        <h6 :class="$tt('headline6')">1.2 Custom dropdown</h6>
+        <ui-dropdown
+          defaultLabel="Province"
+          :options="provinces"
+          v-model="formData.province"
+          @change="onChangeProvince($event)"></ui-dropdown>
+
+        <ui-dropdown
+          defaultLabel="City"
+          :options="cities"
+          v-model="formData.city"></ui-dropdown>
+
+        Province: {{ formData.province }} - City: {{ formData.city }}
       </div>
+      <ui-accordion>
+        <ui-markdown :code="code[2]"></ui-markdown>
+      </ui-accordion>
+
+      <h4 :class="$tt('headline4')">2. APIs</h4>
+      <ui-apidocs name="dropdown"></ui-apidocs>
     </div>
-    <ui-accordion>
-      <ui-markdown :code="code[1]"></ui-markdown>
-    </ui-accordion>
-
-    <div class="example">
-      <h6 :class="$tt('headline6')">1.2 Custom dropdown</h6>
-      <ui-dropdown
-        defaultLabel="Province"
-        :options="provinces"
-        v-model="formData.province"
-        @change="onChangeProvince($event)"></ui-dropdown>
-
-      <ui-dropdown
-        defaultLabel="City"
-        :options="cities"
-        v-model="formData.city"></ui-dropdown>
-
-      Province: {{ formData.province }} - City: {{ formData.city }}
-    </div>
-    <ui-accordion>
-      <ui-markdown :code="code[2]"></ui-markdown>
-    </ui-accordion>
-
-    <h3 :class="$tt('headline3')">2. APIs</h3>
-    <ui-apidocs name="dropdown"></ui-apidocs>
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="demo--chips">
+  <div :class="[$tt('body1'), 'demo--chips']">
     <section class="hero component">
       <ui-chip-set>
         <ui-chip class="demo-chip">
@@ -14,117 +14,119 @@
       </ui-chip-set>
     </section>
 
-    <h3 :class="$tt('headline3')">0. Usage</h3>
-    <ui-markdown :text="code[0]"></ui-markdown>
+    <div :class="$tt('body2')">
+      <h4 :class="$tt('headline4')">0. Usage</h4>
+      <ui-markdown :text="code[0]"></ui-markdown>
 
-    <h3 :class="$tt('headline3')">1. Example</h3>
-    <section class="example">
-      <h2>1.1 Input Chips</h2>
-      <input id="input-chip-set-input" v-model="name" placeholder="Chip text">
-      <ui-button dense id="input-chip-set-button"
-        @click="addOne">
-        Add Input Chip
-      </ui-button>
-      <ui-button dense id="input-chip-set-delete-button"
-        @click="removeLastOne">
-        Delete Last Chip
-      </ui-button>
-      <ui-chip-set input id="input-chip-set" :options="list">
-        <ui-chip v-for="item in list" :key="item.id" class="demo-chip">
-          <ui-chip-leading-icon>face</ui-chip-leading-icon>
-          <ui-chip-text>{{ item.name }}</ui-chip-text>
-          <ui-chip-trailing-icon @click="removeOneById(item.id)"></ui-chip-trailing-icon>
-        </ui-chip>
-      </ui-chip-set>
-      <ui-accordion>
-        <ui-markdown :code="code[1]"></ui-markdown>
-      </ui-accordion>
-    </section>
+      <h4 :class="$tt('headline4')">1. Example</h4>
+      <section class="example">
+        <h2>1.1 Input Chips</h2>
+        <input id="input-chip-set-input" v-model="name" placeholder="Chip text">
+        <ui-button dense id="input-chip-set-button"
+          @click="addOne">
+          Add Input Chip
+        </ui-button>
+        <ui-button dense id="input-chip-set-delete-button"
+          @click="removeLastOne">
+          Delete Last Chip
+        </ui-button>
+        <ui-chip-set input id="input-chip-set" :options="list">
+          <ui-chip v-for="item in list" :key="item.id" class="demo-chip">
+            <ui-chip-leading-icon>face</ui-chip-leading-icon>
+            <ui-chip-text>{{ item.name }}</ui-chip-text>
+            <ui-chip-trailing-icon @click="removeOneById(item.id)"></ui-chip-trailing-icon>
+          </ui-chip>
+        </ui-chip-set>
+        <ui-accordion>
+          <ui-markdown :code="code[1]"></ui-markdown>
+        </ui-accordion>
+      </section>
 
-    <section class="example">
-      <h2>1.2 Choice Chips (selectedIndex: {{ selectedIndex }})</h2>
-      <ui-chip-set choice v-model="selectedIndex">
-        <ui-chip v-for="(item, index) in choiceList"
-          :key="index"
-          class="demo-chip">
-          <ui-chip-text>{{ item }}</ui-chip-text>
-        </ui-chip>
-      </ui-chip-set>
-      <ui-accordion>
-        <ui-markdown :code="code[2]"></ui-markdown>
-      </ui-accordion>
-    </section>
+      <section class="example">
+        <h2>1.2 Choice Chips (selectedIndex: {{ selectedIndex }})</h2>
+        <ui-chip-set choice v-model="selectedIndex">
+          <ui-chip v-for="(item, index) in choiceList"
+            :key="index"
+            class="demo-chip">
+            <ui-chip-text>{{ item }}</ui-chip-text>
+          </ui-chip>
+        </ui-chip-set>
+        <ui-accordion>
+          <ui-markdown :code="code[2]"></ui-markdown>
+        </ui-accordion>
+      </section>
 
-    <section class="example">
-      <h2>1.3 Filter Chips</h2>
-      <h4>No leading icon (selectedIndexes: {{ selectedValue }})</h4>
-      <ui-chip-set filter v-model="selectedValue">
-        <ui-chip v-for="(item, index) in filterList"
-          :key="index"
-          class="demo-chip">
-          <ui-chip-checkmark></ui-chip-checkmark>
-          <ui-chip-text>{{ item }}</ui-chip-text>
-        </ui-chip>
-      </ui-chip-set>
+      <section class="example">
+        <h2>1.3 Filter Chips</h2>
+        <h4>No leading icon (selectedIndexes: {{ selectedValue }})</h4>
+        <ui-chip-set filter v-model="selectedValue">
+          <ui-chip v-for="(item, index) in filterList"
+            :key="index"
+            class="demo-chip">
+            <ui-chip-checkmark></ui-chip-checkmark>
+            <ui-chip-text>{{ item }}</ui-chip-text>
+          </ui-chip>
+        </ui-chip-set>
 
-      <h4>With leading icon (selectedIndexes: {{ selectedValue2 }})</h4>
-      <ui-chip-set filter v-model="selectedValue2">
-        <ui-chip v-for="(item, index) in filterList2"
-          :key="index"
-          class="demo-chip">
-          <ui-chip-leading-icon :hidden="selectedValue2.includes(index)">face</ui-chip-leading-icon>
-          <ui-chip-checkmark></ui-chip-checkmark>
-          <ui-chip-text>{{ item }}</ui-chip-text>
-        </ui-chip>
-      </ui-chip-set>
-      <ui-accordion>
-        <ui-markdown :code="code[3]"></ui-markdown>
-      </ui-accordion>
-    </section>
+        <h4>With leading icon (selectedIndexes: {{ selectedValue2 }})</h4>
+        <ui-chip-set filter v-model="selectedValue2">
+          <ui-chip v-for="(item, index) in filterList2"
+            :key="index"
+            class="demo-chip">
+            <ui-chip-leading-icon :hidden="selectedValue2.includes(index)">face</ui-chip-leading-icon>
+            <ui-chip-checkmark></ui-chip-checkmark>
+            <ui-chip-text>{{ item }}</ui-chip-text>
+          </ui-chip>
+        </ui-chip-set>
+        <ui-accordion>
+          <ui-markdown :code="code[3]"></ui-markdown>
+        </ui-accordion>
+      </section>
 
-    <section class="example">
-      <h2>1.4 Action Chips</h2>
-      <ui-chip-set>
-        <ui-chip v-for="(item, index) in actionList"
-          :key="index"
-          class="demo-chip">
-          <ui-chip-leading-icon>{{ item.icon }}</ui-chip-leading-icon>
-          <ui-chip-text>{{ item.name }}</ui-chip-text>
-        </ui-chip>
-      </ui-chip-set>
-      <ui-accordion>
-        <ui-markdown :code="code[4]"></ui-markdown>
-      </ui-accordion>
-    </section>
+      <section class="example">
+        <h2>1.4 Action Chips</h2>
+        <ui-chip-set>
+          <ui-chip v-for="(item, index) in actionList"
+            :key="index"
+            class="demo-chip">
+            <ui-chip-leading-icon>{{ item.icon }}</ui-chip-leading-icon>
+            <ui-chip-text>{{ item.name }}</ui-chip-text>
+          </ui-chip>
+        </ui-chip-set>
+        <ui-accordion>
+          <ui-markdown :code="code[4]"></ui-markdown>
+        </ui-accordion>
+      </section>
 
-    <section class="example">
-      <h2>1.5 Custom theme</h2>
-      <ui-chip-set>
-        <ui-chip v-for="(item, index) in actionList"
-          :key="index"
-          class="demo-chip custom-chip-primary">
-          <ui-chip-text>{{ item.name }}</ui-chip-text>
-        </ui-chip>
-      </ui-chip-set>
-      <ui-chip-set>
-        <ui-chip v-for="(item, index) in actionList"
-          :key="index"
-          class="demo-chip custom-chip-secondary">
-          <ui-chip-text>{{ item.name }}</ui-chip-text>
-        </ui-chip>
-      </ui-chip-set>
-      <ui-accordion>
-        <ui-markdown :code="code[5]"></ui-markdown>
-      </ui-accordion>
-    </section>
+      <section class="example">
+        <h2>1.5 Custom theme</h2>
+        <ui-chip-set>
+          <ui-chip v-for="(item, index) in actionList"
+            :key="index"
+            class="demo-chip custom-chip-primary">
+            <ui-chip-text>{{ item.name }}</ui-chip-text>
+          </ui-chip>
+        </ui-chip-set>
+        <ui-chip-set>
+          <ui-chip v-for="(item, index) in actionList"
+            :key="index"
+            class="demo-chip custom-chip-secondary">
+            <ui-chip-text>{{ item.name }}</ui-chip-text>
+          </ui-chip>
+        </ui-chip-set>
+        <ui-accordion>
+          <ui-markdown :code="code[5]"></ui-markdown>
+        </ui-accordion>
+      </section>
 
-    <h3 :class="$tt('headline3')">2. APIs</h3>
-    <ui-apidocs name="chip-set"></ui-apidocs>
-    <ui-apidocs name="chip"></ui-apidocs>
-    <ui-apidocs name="chip-text"></ui-apidocs>
-    <ui-apidocs name="chip-leading-icon"></ui-apidocs>
-    <ui-apidocs name="chip-trailing-icon"></ui-apidocs>
-    <ui-apidocs name="chip-checkmark"></ui-apidocs>
+      <h4 :class="$tt('headline4')">2. APIs</h4>
+      <ui-apidocs name="chip-set"></ui-apidocs>
+      <ui-apidocs name="chip"></ui-apidocs>
+      <ui-apidocs name="chip-text"></ui-apidocs>
+      <ui-apidocs name="chip-leading-icon"></ui-apidocs>
+      <ui-apidocs name="chip-trailing-icon"></ui-apidocs>
+      <ui-apidocs name="chip-checkmark"></ui-apidocs>
+    </div>
   </div>
 </template>
 

@@ -1,60 +1,62 @@
 <template>
-  <div class="demo--linear-progress">
+  <div :class="[$tt('body1'), 'demo--linear-progress']">
     <section class="hero component">
       <ui-linear-progress indeterminate></ui-linear-progress>
     </section>
 
-    <h3 :class="$tt('headline3')">0. Usage</h3>
-    <ui-markdown :text="code[0]"></ui-markdown>
+    <div :class="$tt('body2')">
+      <h4 :class="$tt('headline4')">0. Usage</h4>
+      <ui-markdown :text="code[0]"></ui-markdown>
 
-    <h3 :class="$tt('headline3')">1. Example</h3>
-    <section>
-      <fieldset>
-        <legend :class="$tt('headline6')">Linear Progress Indicators</legend>
+      <h4 :class="$tt('headline4')">1. Example</h4>
+      <section>
+        <fieldset>
+          <legend :class="$tt('headline6')">Linear Progress Indicators</legend>
 
-        <figure class="linear-progress-demo">
-          <ui-linear-progress :progress="progress"></ui-linear-progress>
-          <figcaption>Determinate (Progress: {{progress }})</figcaption>
-        </figure>
+          <figure class="linear-progress-demo">
+            <ui-linear-progress :progress="progress"></ui-linear-progress>
+            <figcaption>Determinate (Progress: {{progress }})</figcaption>
+          </figure>
 
-        <figure class="linear-progress-demo">
-          <ui-linear-progress indeterminate></ui-linear-progress>
-          <figcaption>Indeterminate</figcaption>
-        </figure>
+          <figure class="linear-progress-demo">
+            <ui-linear-progress indeterminate></ui-linear-progress>
+            <figcaption>Indeterminate</figcaption>
+          </figure>
 
-        <figure class="linear-progress-demo">
-          <ui-linear-progress progress="0.5" data-buffer="true" buffer="0.75"></ui-linear-progress>
-          <figcaption>Buffer</figcaption>
-        </figure>
+          <figure class="linear-progress-demo">
+            <ui-linear-progress progress="0.5" data-buffer="true" buffer="0.75"></ui-linear-progress>
+            <figcaption>Buffer</figcaption>
+          </figure>
 
-        <figure class="linear-progress-demo">
-          <ui-linear-progress reversed progress="0.5"></ui-linear-progress>
-          <figcaption>Reversed</figcaption>
-        </figure>
+          <figure class="linear-progress-demo">
+            <ui-linear-progress reversed progress="0.5"></ui-linear-progress>
+            <figcaption>Reversed</figcaption>
+          </figure>
 
-        <figure class="linear-progress-demo">
-          <ui-linear-progress indeterminate reversed></ui-linear-progress>
-          <figcaption>Indeterminate Reversed</figcaption>
-        </figure>
+          <figure class="linear-progress-demo">
+            <ui-linear-progress indeterminate reversed></ui-linear-progress>
+            <figcaption>Indeterminate Reversed</figcaption>
+          </figure>
 
-        <figure class="linear-progress-demo">
-          <ui-linear-progress reversed progress="0.5" data-buffer="true" buffer="0.75"></ui-linear-progress>
-          <figcaption>Buffer Reversed</figcaption>
-        </figure>
+          <figure class="linear-progress-demo">
+            <ui-linear-progress reversed progress="0.5" data-buffer="true" buffer="0.75"></ui-linear-progress>
+            <figcaption>Buffer Reversed</figcaption>
+          </figure>
 
-        <figure class="linear-progress-demo">
-          <ui-linear-progress class="demo-linear-progress--custom" progress="0.5" data-buffer="true" buffer="0.75"></ui-linear-progress>
-          <figcaption>Custom Colors with Buffer</figcaption>
-        </figure>
+          <figure class="linear-progress-demo">
+            <ui-linear-progress class="demo-linear-progress--custom" progress="0.5" data-buffer="true" buffer="0.75"></ui-linear-progress>
+            <figcaption>Custom Colors with Buffer</figcaption>
+          </figure>
 
-      </fieldset>
-      <ui-accordion>
-        <ui-markdown :text="code[1]"></ui-markdown>
-      </ui-accordion>
-    </section>
+        </fieldset>
+        <ui-accordion>
+          <ui-markdown :text="code[1]"></ui-markdown>
+        </ui-accordion>
+      </section>
 
-    <h3 :class="$tt('headline3')">2. APIs</h3>
-    <ui-apidocs name="linear-progress"></ui-apidocs>
+      <h4 :class="$tt('headline4')">2. APIs</h4>
+      <ui-apidocs name="linear-progress"></ui-apidocs>
+    </div>
   </div>
 </template>
 

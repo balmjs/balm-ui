@@ -64,5 +64,6 @@ module.exports = {
   assets: {
     publicUrl: env.buildDocs ? '//material.balmjs.com/' : ''
   },
+  cache: env.buildDocs,
   useDefault: env.useDefault
 };

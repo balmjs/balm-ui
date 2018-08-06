@@ -23,6 +23,18 @@ export default {
     },
     message: 'Invalid phone number'
   },
+  password: {
+    validate(value) {
+      return /\w{6, 8}/.test(value);
+    },
+    message: 'Invalid password'
+  },
+  repassword: {
+    validate(value) {
+      return /\w{6, 8}/.test(value);
+    },
+    message: 'repassword !== password'
+  },
   email: {
     validate(value) {
       return /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(value);

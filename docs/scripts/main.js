@@ -13,6 +13,7 @@ import UiMarkdown from './components/markdown';
 import UiApidocs from './components/apidocs';
 import UiAccordion from './components/accordion';
 import UiLogo from './components/logo';
+import validatorRules from './config/validator-rules';
 // syntax highlighting
 import prismjs from 'prismjs';
 // ready translated locales
@@ -28,7 +29,9 @@ Vue.prototype.$http = axios;
 Vue.use(VueMeta);
 // Vue.use(VueI18n);
 Vue.use(BalmUI);
-Vue.use(BalmUIPlus);
+Vue.use(BalmUIPlus, {
+  validator: validatorRules
+});
 Vue.use(BalmUIMigrate);
 
 Vue.component(UiMarkdown.name, UiMarkdown);

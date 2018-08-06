@@ -1,6 +1,7 @@
 import autoInstall from '../config/auto-install';
 
-const namespace = 'balmUI';
+// Define constants
+const DEFAULT_NAMESPACE = 'balmUI';
 
 const noop = () => {};
 
@@ -28,18 +29,22 @@ const EventMethods = {
 };
 
 const BalmUI_EventPlugin = {
-  install(Vue, options = { namespace }) {
-    Object.defineProperty(Vue.prototype, `$${options.namespace}`, {
-      get() {
-        let balmUI = {};
+  install(Vue, customNamespace = DEFAULT_NAMESPACE) {
+    if (customNamespace) {
+      Object.defineProperty(Vue.prototype, `$${customNamespace}`, {
+        get() {
+          let balmUI = {};
 
-        Object.keys(EventMethods).forEach(key => {
-          balmUI[key] = EventMethods[key].bind(this);
-        });
+          Object.keys(EventMethods).forEach(key => {
+            balmUI[key] = EventMethods[key].bind(this);
+          });
 
-        return balmUI; // Return new object for every vm !important
-      }
-    });
+          return balmUI; // Return new object for every vm !important
+        }
+      });
+    } else {
+      console.error('[BalmUI] The namespace of the event plugin is required.');
+    }
   }
 };
 

@@ -1,13 +1,14 @@
 import autoInit from './register';
 import { MDCRipple } from '../../material-components-web/ripple';
 
+// Define constants
 const RIPPLE_COLOR = {
   BASE: 'mdc-ripple-surface',
   PRIMARY: 'mdc-ripple-surface--primary',
   SECONDARY: 'mdc-ripple-surface--accent'
 };
 
-const initRipple = (el, { value, modifiers }) => {
+const initRipple = (el, { value }) => {
   let classes = [RIPPLE_COLOR.BASE];
 
   switch (value) {
@@ -26,7 +27,7 @@ const initRipple = (el, { value, modifiers }) => {
 
 const BalmUI_RippleDirective = {
   name: 'ripple',
-  bind: function(el, binding) {
+  bind(el, binding) {
     initRipple(el, binding);
   },
   inserted(el, binding) {

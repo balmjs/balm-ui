@@ -1,5 +1,6 @@
 import autoInit from './register';
 
+// Define constants
 const SHAPE = {
   OUTTER: 'mdc-shape-container',
   INNER: {
@@ -11,10 +12,7 @@ const SHAPE = {
   }
 };
 
-const initShape = (el, {
-  value,
-  modifiers
-}) => {
+const initShape = (el, { value, modifiers }) => {
   let cornerOutput = '';
   let topLeft = false;
   let topRight = false;
@@ -76,16 +74,24 @@ const initShape = (el, {
   // });
 
   if (topLeft) {
-    cornerOutput += `<div class="${SHAPE.INNER.BASE} ${SHAPE.INNER.TOP_LEFT}"></div>`;
+    cornerOutput += `<div class="${SHAPE.INNER.BASE} ${
+      SHAPE.INNER.TOP_LEFT
+    }"></div>`;
   }
   if (topRight) {
-    cornerOutput += `<div class="${SHAPE.INNER.BASE} ${SHAPE.INNER.TOP_RIGHT}"></div>`;
+    cornerOutput += `<div class="${SHAPE.INNER.BASE} ${
+      SHAPE.INNER.TOP_RIGHT
+    }"></div>`;
   }
   if (bottomRight) {
-    cornerOutput += `<div class="${SHAPE.INNER.BASE} ${SHAPE.INNER.BOTTOM_RIGHT}"></div>`;
+    cornerOutput += `<div class="${SHAPE.INNER.BASE} ${
+      SHAPE.INNER.BOTTOM_RIGHT
+    }"></div>`;
   }
   if (bottomLeft) {
-    cornerOutput += `<div class="${SHAPE.INNER.BASE} ${SHAPE.INNER.BOTTOM_LEFT}"></div>`;
+    cornerOutput += `<div class="${SHAPE.INNER.BASE} ${
+      SHAPE.INNER.BOTTOM_LEFT
+    }"></div>`;
   }
 
   el.classList.add(SHAPE.OUTTER);
@@ -94,7 +100,7 @@ const initShape = (el, {
 
 const BalmUI_ShapeDirective = {
   name: 'shape',
-  bind: function (el, binding) {
+  bind(el, binding) {
     initShape(el, binding);
   }
 };

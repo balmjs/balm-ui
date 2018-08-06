@@ -1,5 +1,6 @@
 import autoInstall from '../config/auto-install';
 
+// Define constants
 const GRID_PROPERTY = ['margin', 'gutter', 'column-width'];
 const SCREEN_SIZE = ['desktop', 'tablet', 'phone'];
 

@@ -1,6 +1,7 @@
 import autoInit from './register';
 import getType from '../utils/typeof';
 
+// Define constants
 const ELEVATION = {
   Z_SPACE: {
     MIN: 0,
@@ -52,7 +53,7 @@ const initElevation = (el, { value, modifiers }) => {
 
 const BalmUI_ElevationDirective = {
   name: 'shadow',
-  bind: function(el, binding) {
+  bind(el, binding) {
     initElevation(el, binding);
   }
 };

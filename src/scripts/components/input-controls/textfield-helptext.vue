@@ -15,7 +15,7 @@ export default {
     },
     // UI attributes
     visible: {
-      type: Boolean,
+      type: [Boolean, String],
       default: false
     },
     validMsg: {
@@ -27,7 +27,7 @@ export default {
     className() {
       return {
         'mdc-text-field-helper-text': true,
-        'mdc-text-field-helper-text--persistent': this.visible,
+        'mdc-text-field-helper-text--persistent': !!this.visible,
         'mdc-text-field-helper-text--validation-msg': this.validMsg
       };
     }

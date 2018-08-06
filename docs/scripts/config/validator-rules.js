@@ -1,6 +1,4 @@
-import {
-  utils
-} from '../../../src/scripts/plus'; // 'balm-ui-plus'
+import { utils } from '../../../src/scripts/plus'; // 'balm-ui-plus'
 
 export default {
   required: {
@@ -23,15 +21,9 @@ export default {
     },
     message: 'Invalid phone number'
   },
-  password: {
-    validate(value) {
-      return /\w{6, 8}/.test(value);
-    },
-    message: 'Invalid password'
-  },
   repassword: {
-    validate(value) {
-      return /\w{6, 8}/.test(value);
+    validate(value, data) {
+      return value === data.password;
     },
     message: 'repassword !== password'
   },
@@ -42,8 +34,10 @@ export default {
     message: 'Invalid E-mail'
   },
   idNumberRule: {
-    validate: function (value) {
-      return /^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/.test(value);
+    validate: function(value) {
+      return /^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/.test(
+        value
+      );
     },
     message: 'Invalid ID card No.'
   }

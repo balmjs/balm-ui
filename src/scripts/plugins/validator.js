@@ -10,44 +10,47 @@ const defaultRules = {
   }
 };
 
+// Define constants
+const FIELD_LABEL = 'label';
+const FIELD_VALIDATOR = 'validator';
 const LABEL_PLACEHOLDER = '%s';
 
 const BalmUI_ValidatorPlugin = {
-  install(Vue, customRules = {}) {
-    let validationRules = Object.assign({}, defaultRules, customRules);
+  install(Vue, customGlobalRules = {}) {
+    let validationRules = Object.assign({}, defaultRules, customGlobalRules);
 
-    const $validate = function(formData = {}, rules = {}) {
+    const $validate = function(formData = {}, customLocalRules = {}) {
       let currentFormData = Object.assign({}, formData);
-      let currentRules = Object.assign({}, validationRules, rules);
+      let currentRules = Object.assign({}, validationRules, customLocalRules);
 
       let result = {
         isValid: true, // 是否验证通过
         valid: [], // 有效字段
         invalid: [], // 无效字段
+        messages: [], // 所有无效字段的提示语
         message: '', // 第一个无效字段的提示语
-        messages: [] // 所有无效字段的提示语
+        errorMsg: {}
       };
 
-      let validations = this.$options.validations || {};
       // 获取待验证字段
-      let files = Object.keys(validations);
-      let l = files.length;
-      let i = 0;
+      let validations = this.$options.validations || {};
+      let validationFields = Object.keys(validations);
 
-      for (; i < l; i++) {
-        let fieldName = files[i]; // 字段名
+      for (
+        let i = 0, fieldCount = validationFields.length;
+        i < fieldCount;
+        i++
+      ) {
+        let fieldName = validationFields[i]; // 字段名
         let fieldOption = validations[fieldName]; // 对应验证配置
-        let label = fieldOption.label || ''; // 字段别名
+        let fieldLabel = fieldOption[FIELD_LABEL] || ''; // 字段别名
+        let fieldRules = fieldOption[FIELD_VALIDATOR].split(',').map(
+          validator => validator.trim()
+        ); // 当前字段需要的所有验证方法
+        let isAllValidOfField = true; // 当前字段通过全部验证规则
 
-        let filedRules = fieldOption.validator
-          .split(',')
-          .map(validator => validator.trim()); // 当前字段需要的所有验证方法
-        let rulesLength = filedRules.length;
-        let x = 0;
-        let fieldAllValid = true;
-
-        for (; x < rulesLength; x++) {
-          let ruleName = filedRules[x];
+        for (let j = 0, rulesCount = fieldRules.length; j < rulesCount; j++) {
+          let ruleName = fieldRules[j];
           let rule = fieldOption[ruleName] || currentRules[ruleName]; // 当前验证方法
 
           if (rule && getType(rule.validate) === 'function') {
@@ -57,40 +60,46 @@ const BalmUI_ValidatorPlugin = {
                 currentFormData
               ])
             ) {
-              fieldAllValid = false;
-              let message = '';
+              isAllValidOfField = false;
 
-              // 错误提示
-              if (getType(rule.message) === 'function') {
-                message = rule.message.apply(this, [
-                  fieldName,
-                  currentFormData[fieldName],
-                  currentFormData
-                ]);
-              } else {
-                message = rule.message.replace(LABEL_PLACEHOLDER, label);
-              }
-
-              if (!result.message) {
-                result.message = message;
-              }
+              let message =
+                getType(rule.message) === 'function'
+                  ? rule.message.apply(this, [
+                      fieldName,
+                      currentFormData[fieldName],
+                      currentFormData
+                    ])
+                  : rule.message.replace(LABEL_PLACEHOLDER, fieldLabel);
 
               result.messages.push(message);
+              break;
             }
           } else {
             console.warn(
-              `The field [${fieldName}] is missing a validation rule: '${ruleName}'`
+              `The field [${fieldName}] is missing a validation rule: '${ruleName}'.`
             );
           }
         }
 
-        if (fieldAllValid) {
+        if (isAllValidOfField) {
           result.valid.push(fieldName);
         } else {
-          result.isValid = false;
           result.invalid.push(fieldName);
         }
       }
+
+      if (result.messages.length) {
+        result.isValid = false;
+        result.message = result.messages[0];
+
+        result.invalid.forEach((field, index) => {
+          result.errorMsg[field] = result.messages[index];
+        });
+      }
+
+      result.valid.forEach(field => {
+        result.errorMsg[field] = '';
+      });
 
       return result;
     };

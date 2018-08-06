@@ -14,18 +14,35 @@
           <ui-textfield id="mobile"
             v-model="formData.mobile"
             helptextId="mobile-helper-text">Mobile</ui-textfield>
-          <ui-textfield-helptext id="mobile-helper-text">
-            {{ validMsg.mobile }}
+          <ui-textfield-helptext id="mobile-helper-text" :visible="errorMsg.mobile">
+            {{ errorMsg.mobile }}
           </ui-textfield-helptext>
         </p>
         <p class="form-item">
-          <ui-textfield type="password" id="password" v-model="formData.password">Password</ui-textfield>
+          <ui-textfield type="password"
+            id="password"
+            v-model="formData.password"
+            helptextId="password-helper-text">Password</ui-textfield>
+          <ui-textfield-helptext id="password-helper-text" :visible="errorMsg.password">
+            {{ errorMsg.password }}
+          </ui-textfield-helptext>
         </p>
         <p class="form-item">
-          <ui-textfield type="password" id="repassword" v-model="formData.repassword">Repeat Password</ui-textfield>
+          <ui-textfield type="password"
+            id="repassword"
+            v-model="formData.repassword"
+            helptextId="repassword-helper-text">Repeat Password</ui-textfield>
+          <ui-textfield-helptext id="repassword-helper-text" :visible="errorMsg.repassword">
+            {{ errorMsg.repassword }}
+          </ui-textfield-helptext>
         </p>
         <p class="form-item">
-          <ui-textfield id="email" v-model="formData.email">Email</ui-textfield>
+          <ui-textfield id="email"
+            v-model="formData.email"
+            helptextId="email-helper-text">Email</ui-textfield>
+          <ui-textfield-helptext id="email-helper-text" :visible="errorMsg.email">
+            {{ errorMsg.email }}
+          </ui-textfield-helptext>
         </p>
         <p class="form-actions">
           <ui-button raised @click="submit">Submit</ui-button>
@@ -44,14 +61,20 @@ export default {
     },
     password: {
       label: 'Password',
-      validator: 'required, password'
+      validator: 'required, password',
+      password: {
+        validate(value) {
+          return /^\w{6,8}$/.test(value);
+        },
+        message: 'Invalid password'
+      }
     },
     repassword: {
-      label: '联系电话',
+      label: 'Repeat Password',
       validator: 'required, password, repassword'
     },
     email: {
-      label: '省',
+      label: 'E-mail',
       validator: 'required, email'
     }
   },
@@ -63,15 +86,21 @@ export default {
         repassword: '',
         email: ''
       },
-      validMsg: {}
+      errorMsg: {}
     };
   },
   methods: {
     submit() {
       let result = this.$validate(this.formData);
+      let { isValid, errorMsg } = result;
+      this.errorMsg = errorMsg;
+
       console.log(result);
+
+      if (isValid) {
+        console.log('gg');
+      }
     }
   }
 };
 </script>
-

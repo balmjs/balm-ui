@@ -5,10 +5,10 @@ $themeColor(style);
 $setTheme(style, value);
 ```
 
-| Param | Type   | Default | Description       |
-| ----- | ------ | ------- | ----------------- |
-| style | String | `null`  | Theme style name  |
-| value | String | `null`  | Theme color value |
+| Param | Type     | Default | Description       |
+| ----- | -------- | ------- | ----------------- |
+| style | `String` | `null`  | Theme style name  |
+| value | `String` | `null`  | Theme color value |
 
 #### Theme styles
 

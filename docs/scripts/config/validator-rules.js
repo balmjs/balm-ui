@@ -21,11 +21,11 @@ export default {
     },
     message: 'Invalid phone number'
   },
-  repassword: {
-    validate(value, data) {
-      return value === data.password;
+  password: {
+    validate(value) {
+      return /^\w{6,8}$/.test(value);
     },
-    message: 'repassword !== password'
+    message: 'Invalid password [6, 8]'
   },
   email: {
     validate(value) {

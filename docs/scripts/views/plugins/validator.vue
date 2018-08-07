@@ -7,6 +7,9 @@
     </section>
 
     <div :class="$tt('body2')">
+      <h4 :class="$tt('headline4')">0. Usage</h4>
+      <ui-markdown :text="code[0]"></ui-markdown>
+
       <h4 :class="$tt('headline4')">1. Example</h4>
       <fieldset>
         <legend>Form Area</legend>
@@ -36,24 +39,28 @@
             {{ errorMsg.repassword }}
           </ui-textfield-helptext>
         </p>
-        <p class="form-item">
-          <ui-textfield id="email"
-            v-model="formData.email"
-            helptextId="email-helper-text">Email</ui-textfield>
-          <ui-textfield-helptext id="email-helper-text" :visible="errorMsg.email">
-            {{ errorMsg.email }}
-          </ui-textfield-helptext>
-        </p>
         <p class="form-actions">
           <ui-button raised @click="submit">Submit</ui-button>
         </p>
       </fieldset>
+      <ui-accordion>
+        <ui-markdown :code="code[1]"></ui-markdown>
+      </ui-accordion>
+
+      <h4 :class="$tt('headline4')">2. APIs</h4>
+      <ui-apidocs name="validator" type="plugin"></ui-apidocs>
     </div>
   </div>
 </template>
 
 <script>
+import snippets from '../../mixins/snippets';
+
 export default {
+  metaInfo: {
+    titleTemplate: '%s - Validator'
+  },
+  mixins: [snippets],
   validations: {
     mobile: {
       label: 'Mobile',
@@ -61,21 +68,17 @@ export default {
     },
     password: {
       label: 'Password',
-      validator: 'required, password',
-      password: {
-        validate(value) {
-          return /^\w{6,8}$/.test(value);
-        },
-        message: 'Invalid password'
-      }
+      validator: 'required, password'
     },
     repassword: {
       label: 'Repeat Password',
-      validator: 'required, password, repassword'
-    },
-    email: {
-      label: 'E-mail',
-      validator: 'required, email'
+      validator: 'required, password, repassword',
+      repassword: {
+        validate(value, data) {
+          return value === data.password;
+        },
+        message: 'repassword !== password'
+      }
     }
   },
   data() {
@@ -83,11 +86,13 @@ export default {
       formData: {
         mobile: '',
         password: '',
-        repassword: '',
-        email: ''
+        repassword: ''
       },
       errorMsg: {}
     };
+  },
+  created() {
+    this.showCode('validator');
   },
   methods: {
     submit() {

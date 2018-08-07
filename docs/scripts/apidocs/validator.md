@@ -2,26 +2,28 @@
 $validate(formData, customLocalRules);
 ```
 
-| Param            | Type     | Default | Description                           |
-| ---------------- | -------- | ------- | ------------------------------------- |
-| formData         | `Object` | `{}`    | Mandatory. A form data object.        |
-| customLocalRules | `Object` | `{}`    | Optional. A validator rule of BalmUI. |
+| Param            | Type     | Default | Description                       |
+| ---------------- | -------- | ------- | --------------------------------- |
+| formData         | `Object` | `{}`    | Mandatory. A form data object.    |
+| customLocalRules | `Object` | `{}`    | Optional. BalmUI validator rules. |
 
-- BalmUI validator rule format:
+- BalmUI validator rules format:
 
 ```js
 {
-  fieldName: {
-    validate(fieldValue, formData) {
+  fieldName1: {
+    validate(fieldValue1, formData) {
       // Validation method
       return true;
     },
     message: '%s is required'
-  }
+  },
+  // More rules
+  // fieldName2: { ... }
 }
 ```
 
-The usage in a vue component:
+- Usage in a vue component:
 
 ```js
 export default {
@@ -29,14 +31,15 @@ export default {
   validations: {
     fieldName: {
       label: 'Field Label',
-      validator: 'required, customValidation',
-      customValidation: {
+      validator: 'required, customRule1',
+      customRule1: {
         validate(fieldValue, formData) {
           // Validation method
           return true;
         },
         message: 'Invalid format'
       }
+      // customRule2: { ... }
     }
   },
   data() {
@@ -51,8 +54,14 @@ export default {
   },
   methods: {
     submit() {
-      let result = this.$validate(this.formData);
-      let { isValid, valid, invalid, messages, message, errorMsg } = result;
+      let {
+        isValid,
+        valid,
+        invalid,
+        messages,
+        message,
+        errorMsg
+      } = this.$validate(this.formData);
 
       this.errorMsg = errorMsg;
     }
@@ -60,11 +69,11 @@ export default {
 };
 ```
 
-| Result   | Type      | Description                             |
-| -------- | --------- | --------------------------------------- |
-| isValid  | `Boolean` | The validator result.                   |
-| valid    | `Array`   | Valid fields.                           |
-| invalid  | `Array`   | Invalid fields.                         |
-| messages | `Array`   | The messages of all invalid fields.     |
-| message  | `String`  | The message of the first invalid field. |
-| errorMsg | `Object`  | The messages as an object.              |
+| Result   | Type      | Description                                            |
+| -------- | --------- | ------------------------------------------------------ |
+| isValid  | `Boolean` | The validator result.                                  |
+| valid    | `Array`   | Valid fields.                                          |
+| invalid  | `Array`   | Invalid fields.                                        |
+| messages | `Array`   | The messages of all invalid fields.                    |
+| message  | `String`  | The message of the first invalid field.                |
+| errorMsg | `Object`  | The messages as an object. (Same format as `formData`) |

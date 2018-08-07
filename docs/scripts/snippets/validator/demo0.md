@@ -3,7 +3,7 @@ Default Usage
 ```js
 import Vue from 'vue';
 import BalmUIPlus from 'balm-ui/dist/balm-ui-plus';
-import validatorRules from './config/custom-validator-rules';
+import validatorRules from './config/validator-rules';
 
 Vue.use(BalmUIPlus, {
   // Optional. Set global validator rules.
@@ -16,13 +16,13 @@ Standalone Usage
 ```js
 import Vue from 'vue';
 import validator from 'balm-ui/plugins/validator';
-import validatorRules from './config/custom-validator-rules';
+import validatorRules from './config/validator-rules';
 
 // Optional. Set global validator rules.
 Vue.use(validator, validatorRules);
 ```
 
-Custom validator rules
+Custom global validator rules
 
 ```js
 import { utils } from 'balm-ui/dist/balm-ui-plus'; // Default Usage
@@ -52,9 +52,9 @@ export default {
   },
   password: {
     validate(value) {
-      return /^\w{6,8}$/.test(value);
+      return /^\w+$/.test(value);
     },
-    message: 'Invalid password'
+    message: 'Invalid password: must be a letter, digit or underline'
   }
 };
 ```

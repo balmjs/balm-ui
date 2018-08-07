@@ -68,12 +68,24 @@ export default {
     },
     password: {
       label: 'Password',
-      validator: 'required, password'
+      validator: 'required, password, minRule, maxRule',
+      minRule: {
+        validate(value) {
+          return value.trim().length >= 6;
+        },
+        message: '%s minLength >= 6'
+      },
+      maxRule: {
+        validate(value) {
+          return value.trim().length <= 8;
+        },
+        message: '%s maxLength <= 8'
+      }
     },
     repassword: {
       label: 'Repeat Password',
-      validator: 'required, password, repassword',
-      repassword: {
+      validator: 'required, password, repasswordRule',
+      repasswordRule: {
         validate(value, data) {
           return value === data.password;
         },

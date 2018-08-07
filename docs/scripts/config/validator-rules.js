@@ -23,9 +23,9 @@ export default {
   },
   password: {
     validate(value) {
-      return /^\w{6,8}$/.test(value);
+      return /^\w+$/.test(value);
     },
-    message: 'Invalid password [6, 8]'
+    message: 'Invalid password: must be a letter, digit or underline'
   },
   email: {
     validate(value) {

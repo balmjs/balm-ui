@@ -393,8 +393,11 @@ export default {
       result[UI_AUTOCOMPLETE.ITEM.LABEL] = result[
         UI_AUTOCOMPLETE.ITEM.LABEL
       ].replace(UI_AUTOCOMPLETE.escapeRegex, '');
-      this.inputValue = result[UI_AUTOCOMPLETE.ITEM.LABEL];
 
+      this.$emit(
+        UI_AUTOCOMPLETE.EVENT.INPUT,
+        result[UI_AUTOCOMPLETE.ITEM.LABEL]
+      );
       this.$emit(UI_AUTOCOMPLETE.EVENT.SELECTED, result); // result: any
     },
     clearSelected() {

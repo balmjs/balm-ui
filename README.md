@@ -6,6 +6,8 @@
 
 Following the [Material Design](https://material.io/components/) UI components for the web specification, we developed a BalmUI library antd that contains a set of high quality components and demos for building rich, interactive user interfaces.
 
+## [Demos & Documentation](https://material.balmjs.com/)(updated with every release)
+
 ## Quick Start
 
 ### 0. Requirement
@@ -36,6 +38,8 @@ Download [Material Design Icons](https://material.balmjs.com/MaterialIcons.zip) 
 
 Edit `my-project/app/scripts/main.js`
 
+#### 3.1 Default Usage
+
 ```js
 import Vue from 'vue';
 import BalmUI from 'balm-ui'; // Mandatory
@@ -45,9 +49,21 @@ Vue.use(BalmUI); // Mandatory
 Vue.use(BalmUIPlus); // Optional
 ```
 
-Enjoy 👻
+#### 3.2 Standalone Usage
 
-## [Documentation](https://material.balmjs.com/)
+```js
+import Vue from 'vue';
+import UiButtonComponents from 'balm-ui/components/button';
+
+// (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
+import 'balm-ui/components/core.css';
+import 'balm-ui/components/button.css';
+import 'balm-ui/components/icon.css'; // Optional.
+
+Vue.use(UiButtonComponents);
+```
+
+Enjoy 👻
 
 ## Reusability & Composition
 

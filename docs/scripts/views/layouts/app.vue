@@ -41,16 +41,17 @@
               <template slot-scope="{className}">
                 <template v-for="(item, index) in menu">
                   <router-link
-                    v-if="item.icon"
+                    v-if="item.icon || item.isSubmenu"
                     :key="`item${index}`"
-                    :class="[className.item, {'submenu': item.isSubmenu}, $textColor('primary', 'light')]"
+                    :class="[className.item, {
+                      'submenu': item.isSubmenu,
+                      'no-icon': !item.icon
+                    }, $textColor('primary', 'light')]"
                     :to="item.url"
                     :active-class="className.activated"
                     @click.native="handleMenu">
-                    <span class="demo-catalog-list-icon">
-                      <img v-if="item.icon"
-                        :src="require(`../../../images/icon/${item.icon}`)"
-                        :alt="item.name">
+                    <span v-if="item.icon" class="demo-catalog-list-icon">
+                      <img :src="require(`../../../images/icon/${item.icon}`)" :alt="item.name">
                     </span>
                     {{ item.name }}
                   </router-link>

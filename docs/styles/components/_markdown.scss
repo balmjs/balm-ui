@@ -64,7 +64,17 @@
   padding: 0 1em;
 
   color: #6a737d;
-  border-left: 0.25em solid #dfe2e5;
+  border-left: 0.25em solid #1976d2; // #dfe2e5;
+  background: rgba(25, 118, 210, 0.05);
+  &::before,
+  &::after {
+    content: '';
+  }
+  p {
+    display: inline-block;
+
+    padding: 14px 0;
+  }
 }
 .markdown-body blockquote > :first-child {
   margin-top: 0;

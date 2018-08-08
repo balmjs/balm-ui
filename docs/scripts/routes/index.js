@@ -1,3 +1,4 @@
+import GuideRoutes from './guide';
 import layoutRoutes from './layouts';
 import buttonRoutes from './buttons';
 import dataRoutes from './data-view';
@@ -8,8 +9,7 @@ import otherRoutes from './others';
 import Home from '../views/home';
 // const Test = import('../views/test');
 
-const baseRoutes = [
-  {
+const baseRoutes = [{
     path: '/',
     name: 'home',
     component: Home
@@ -22,6 +22,7 @@ const baseRoutes = [
 ];
 
 const routes = baseRoutes.concat(
+  GuideRoutes,
   layoutRoutes,
   buttonRoutes,
   dataRoutes,

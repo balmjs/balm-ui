@@ -6,16 +6,17 @@ html {
 body,
 .balmui-container {
   position: relative;
-
   display: flex;
-
   width: 100%;
   height: 100%;
 }
 
+a {
+  color: $mdc-theme-primary;
+}
+
 .balmui-body {
   display: flex;
-
   width: 100%;
 }
 
@@ -32,6 +33,9 @@ body,
 .catalog-list {
   h3 {
     padding: 0 12px;
+  }
+  .no-icon {
+    padding-left: 28px;
   }
 }
 
@@ -50,9 +54,7 @@ body,
   &::before,
   &::after {
     position: absolute;
-
     padding: 4px;
-
     color: white;
   }
   &::before {
@@ -67,7 +69,6 @@ body,
     &::before,
     &::after {
       content: 'component';
-
       background-color: #2979ff;
     }
   }
@@ -75,7 +76,6 @@ body,
     &::before,
     &::after {
       content: 'plugin';
-
       background-color: #ff1744;
     }
   }
@@ -83,7 +83,6 @@ body,
     &::before,
     &::after {
       content: 'directive';
-
       background-color: #00bfa5;
     }
   }
@@ -92,11 +91,9 @@ body,
 /// lang
 .supported-lang {
   margin: 0;
-
   cursor: pointer;
   a.active {
     font-weight: bolder;
-
     color: white;
   }
 }

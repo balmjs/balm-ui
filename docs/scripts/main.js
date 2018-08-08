@@ -11,8 +11,9 @@ import routes from './routes/index';
 import App from './views/layouts/app';
 import UiMarkdown from './components/markdown';
 import UiApidocs from './components/apidocs';
-import UiAccordion from './components/accordion';
 import UiLogo from './components/logo';
+import UiAccordion from './components/accordion';
+import UiFooterNav from './components/footer-nav';
 import validatorRules from './config/validator-rules';
 // syntax highlighting
 import prismjs from 'prismjs';
@@ -38,6 +39,7 @@ Vue.component(UiMarkdown.name, UiMarkdown);
 Vue.component(UiApidocs.name, UiApidocs);
 Vue.component(UiLogo.name, UiLogo);
 Vue.component(UiAccordion.name, UiAccordion);
+Vue.component(UiFooterNav.name, UiFooterNav);
 
 Vue.prototype.$prism = prismjs;
 Vue.prototype.$docs = {

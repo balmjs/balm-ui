@@ -1,4 +1,21 @@
 const MATERIAL_COMPONENTS = [{
+    name: 'Guide',
+    children: [{
+      name: 'Introduction',
+      url: 'intro'
+    }, {
+      name: 'Getting Started',
+      url: 'quickstart'
+    }, {
+      name: 'Advanced',
+      url: 'advanced'
+    }, {
+      name: 'Kill IE',
+      url: 'kill-ie'
+    }]
+  },
+  '-',
+  {
     name: 'Layouts',
     children: [{
         icon: 'card',
@@ -260,7 +277,7 @@ for (let component of MATERIAL_COMPONENTS) {
     menu.push({
       icon: getComponentIcon(component),
       name: component.name,
-      description: component.description,
+      description: component.description || false,
       url: component.icon ?
         component.url || component.name.toLowerCase() : false
     });
@@ -269,7 +286,7 @@ for (let component of MATERIAL_COMPONENTS) {
         menu.push({
           icon: getComponentIcon(subComponent),
           name: subComponent.name,
-          description: subComponent.description,
+          description: subComponent.description || false,
           url: subComponent.url || subComponent.name.toLowerCase(),
           isSubmenu: true
         });

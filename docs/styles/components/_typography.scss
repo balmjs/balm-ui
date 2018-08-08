@@ -1,3 +1,11 @@
 .mdc-typography--body2 {
   padding: 0 20px 40px;
+  &.pure-docs {
+    padding-top: 20px;
+  }
+  footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
 }

@@ -1,7 +1,7 @@
 <template>
   <div :class="[$tt('body1'), 'demo--drawer']">
     <div :class="$tt('body2')">
-      <h2 :class="$tt('headline2')">Drawer</h2>
+      <h3 :class="$tt('headline3')">Drawer</h3>
 
       <h4 :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>

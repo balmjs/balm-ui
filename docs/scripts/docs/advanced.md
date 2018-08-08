@@ -76,10 +76,10 @@ Edit `/path/to/my-project/app/scripts/main.js`
 ```js
 import Vue from 'vue';
 import App from './views/layouts/app';
-import BalmUI from 'balm-ui'; // Mandatory.
+import BalmUI from 'balm-ui'; // Mandatory
 import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // Optional
 
-Vue.use(BalmUI); // Mandatory.
+Vue.use(BalmUI); // Mandatory
 Vue.use(BalmUIPlus); // Optional
 
 new Vue({

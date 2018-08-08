@@ -45,9 +45,9 @@ cd my-project
 2.1 Install dependencies
 
 ```sh
-yarn
-# OR
 npm install
+# OR
+yarn
 ```
 
 Installs the necessary npm packages, This can take some time.
@@ -57,9 +57,9 @@ Installs the necessary npm packages, This can take some time.
 2.2 Install **BalmUI**
 
 ```sh
-yarn add balm-ui
-# OR
 npm i --save balm-ui
+# OR
+yarn add balm-ui
 ```
 
 ### 3. Config
@@ -78,11 +78,11 @@ npm i --save balm-ui
 ```js
 import Vue from 'vue';
 import App from './views/layouts/app';
-import BalmUI from 'balm-ui'; // Mandatory.
+import BalmUI from 'balm-ui'; // Mandatory
 import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // Optional
 
 Vue.config.productionTip = false;
-Vue.use(BalmUI); // Mandatory.
+Vue.use(BalmUI); // Mandatory
 Vue.use(BalmUIPlus); // Optional
 
 new Vue({

@@ -19,56 +19,48 @@
     </div>
 
     <div :class="$tt('body2')">
-      <div class="intro">
-        <p>
-          To best show the functionality of toolbars, we put both demos in iframes.
-          Click the links above the iframe to view the demo in a full browser window.
-        </p>
-      </div>
-
-      <section class="examples">
-        <div class="example">
-          <h2>Normal Toolbar</h2>
-          <p><router-link to="default-toolbar" target="_blank">View in separate window</router-link></p>
-          <iframe v-if="!DEBUG" class="demo-container" :src="`${$domain}/#/default-toolbar`"></iframe>
-        </div>
-
-        <div class="example">
-          <h2>Fixed Toolbar</h2>
-          <p><router-link to="fixed-toolbar" target="_blank">View in separate window</router-link></p>
-          <iframe v-if="!DEBUG" class="demo-container" :src="`${$domain}/#/fixed-toolbar`"></iframe>
-        </div>
-
-        <div class="example">
-          <h2>Fixed Toolbar with Menu</h2>
-          <p><router-link to="menu-toolbar" target="_blank">View in separate window</router-link></p>
-          <iframe v-if="!DEBUG" class="demo-container" :src="`${$domain}/#/menu-toolbar`"></iframe>
-        </div>
-
-        <div class="example">
-          <h2>Waterfall Toolbar</h2>
-          <p><router-link to="waterfall-toolbar" target="_blank">View in separate window</router-link></p>
-          <iframe v-if="!DEBUG" class="demo-container" :src="`${$domain}/#/waterfall-toolbar`"></iframe>
-        </div>
-
-        <div class="example">
-          <h2>Default Flexible Toolbar</h2>
-          <p><router-link to="default-flexible-toolbar" target="_blank">View in separate window</router-link></p>
-          <iframe v-if="!DEBUG" class="demo-container" :src="`${$domain}/#/default-flexible-toolbar`"></iframe>
-        </div>
-
-        <div class="example">
-          <h2>Waterfall Flexible Toolbar</h2>
-          <p><router-link to="waterfall-flexible-toolbar" target="_blank">View in separate window</router-link></p>
-          <iframe v-if="!DEBUG" class="demo-container" :src="`${$domain}/#/waterfall-flexible-toolbar`"></iframe>
-        </div>
-
-        <div class="example">
-          <h2>Waterfall Toolbar Fix Last Row</h2>
-          <p><router-link to="waterfall-toolbar-fix-last-row" target="_blank">View in separate window</router-link></p>
-          <iframe v-if="!DEBUG" class="demo-container" :src="`${$domain}/#/waterfall-toolbar-fix-last-row`"></iframe>
-        </div>
-      </section>
+      <h4 :class="$tt('headline4')">1. Example</h4>
+      <p>
+        To best show the functionality of toolbars, we put both demos in iframes.
+        Click the links above the iframe to view the demo in a full browser window.
+      </p>
+      <ui-list twoLine nonInteractive>
+        <ui-item>
+          <ui-item-text>
+            1.1 <router-link :to="{name: 'layouts.default-toolbar'}">Normal Toolbar</router-link>
+          </ui-item-text>
+        </ui-item>
+        <ui-item>
+          <ui-item-text>
+            1.2 <router-link :to="{name: 'layouts.fixed-toolbar'}">Fixed Toolbar</router-link>
+          </ui-item-text>
+        </ui-item>
+        <ui-item>
+          <ui-item-text>
+            1.3 <router-link :to="{name: 'layouts.menu-toolbar'}">Fixed Toolbar with Menu</router-link>
+          </ui-item-text>
+        </ui-item>
+        <ui-item>
+          <ui-item-text>
+            1.4 <router-link :to="{name: 'layouts.waterfall-toolbar'}">Waterfall Toolbar</router-link>
+          </ui-item-text>
+        </ui-item>
+        <ui-item>
+          <ui-item-text>
+            1.5 <router-link :to="{name: 'layouts.default-flexible-toolbar'}">Default Flexible Toolbar</router-link>
+          </ui-item-text>
+        </ui-item>
+        <ui-item>
+          <ui-item-text>
+            1.6 <router-link :to="{name: 'layouts.waterfall-flexible-toolbar'}">Waterfall Flexible Toolbar</router-link>
+          </ui-item-text>
+        </ui-item>
+        <ui-item>
+          <ui-item-text>
+            1.7 <router-link :to="{name: 'layouts.waterfall-toolbar-fix-last-row'}">Waterfall Toolbar Fix Last Row</router-link>
+          </ui-item-text>
+        </ui-item>
+      </ui-list>
     </div>
   </div>
 </template>

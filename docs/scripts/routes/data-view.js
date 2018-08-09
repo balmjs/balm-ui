@@ -1,19 +1,14 @@
-const List = () =>
-  import ('../views/components/list');
-const GridList = () =>
-  import ('../views/components/grid-list');
-const ImageList = () =>
-  import ('../views/components/image-list');
-const Card = () =>
-  import ('../views/components/card');
-const Chips = () =>
-  import ('../views/components/chips');
-const LinearProgress = () =>
-  import ('../views/components/linear-progress');
+const List = () => import('../views/components/list');
+const GridList = () => import('../views/components/grid-list');
+const ImageList = () => import('../views/components/image-list');
+const Card = () => import('../views/components/card');
+const Chips = () => import('../views/components/chips');
+const LinearProgress = () => import('../views/components/linear-progress');
 // const Table = () => import('../views/table');
 // const Pagination = () => import('../views/pagination');
 
-export default [{
+export default [
+  {
     path: 'list',
     name: 'data.list',
     component: List

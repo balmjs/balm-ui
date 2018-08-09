@@ -2,19 +2,18 @@ import BlankLayout from '../views/layouts/blank';
 import guideRoutes from './guide';
 import layoutsRoutes from './layouts';
 import buttonsRoutes from './buttons';
-const Icon = () =>
-  import ('../views/components/icon');
+const Icon = () => import('../views/components/icon');
 import dataRoutes from './data-view';
 import formRoutes from './inputs-and-controls';
 import modalRoutes from './modal';
-const Menu = () =>
-  import ('../views/components/menu');
+const Menu = () => import('../views/components/menu');
 import othersRoutes from './others';
 
 import Home from '../views/home';
 // const Test = import('../views/test');
 
-const routes = [{
+const routes = [
+  {
     path: '/',
     name: 'home',
     component: Home
@@ -77,7 +76,7 @@ const routes = [{
     redirect: '/others/event',
     component: BlankLayout,
     children: othersRoutes
-  },
+  }
   // {
   //   path: '/test',
   //   name: 'test',

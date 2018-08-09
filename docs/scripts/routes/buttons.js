@@ -1,11 +1,9 @@
-const Button = () =>
-  import ('../views/components/button');
-const Fab = () =>
-  import ('../views/components/fab');
-const IconButton = () =>
-  import ('../views/components/icon-button');
+const Button = () => import('../views/components/button');
+const Fab = () => import('../views/components/fab');
+const IconButton = () => import('../views/components/icon-button');
 
-export default [{
+export default [
+  {
     path: 'button',
     name: 'buttons.button',
     component: Button

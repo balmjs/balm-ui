@@ -1,17 +1,12 @@
-const Event = () =>
-  import ('../views/plugins/event');
-const Typography = () =>
-  import ('../views/plugins/typography');
-const Theme = () =>
-  import ('../views/plugins/theme');
-const Ripple = () =>
-  import ('../views/directives/ripple');
-const Elevation = () =>
-  import ('../views/directives/elevation');
-const Shape = () =>
-  import ('../views/directives/shape');
+const Event = () => import('../views/plugins/event');
+const Typography = () => import('../views/plugins/typography');
+const Theme = () => import('../views/plugins/theme');
+const Ripple = () => import('../views/directives/ripple');
+const Elevation = () => import('../views/directives/elevation');
+const Shape = () => import('../views/directives/shape');
 
-export default [{
+export default [
+  {
     path: 'event',
     name: 'others.event',
     component: Event

@@ -22,7 +22,7 @@ module.exports = {
         'prismjs',
         'clipboard'
       ],
-      main: './docs/scripts/main.js'
+      app: './docs/scripts/main.js'
     } : {
       'balm-ui': './src/scripts/index.js',
       'balm-ui-plus': './src/scripts/plus.js',

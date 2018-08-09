@@ -83,10 +83,12 @@ const router = new VueRouter({
 router.afterEach((to, from) => {
   let pageClassList = document.querySelector('html').classList;
   if (from.name) {
-    pageClassList.remove(`${CLASS_NAMESPACE}--${from.name}`);
+    let fromName = from.name.replace('.', '-');
+    pageClassList.remove(`${CLASS_NAMESPACE}--${fromName}`);
   }
   if (to.name) {
-    pageClassList.add(`${CLASS_NAMESPACE}--${to.name}`);
+    let toName = to.name.replace('.', '-');
+    pageClassList.add(`${CLASS_NAMESPACE}--${toName}`);
   }
 });
 

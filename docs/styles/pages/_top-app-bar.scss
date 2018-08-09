@@ -1,12 +1,8 @@
 .demo--top-app-bar {
+  width: 100%;
   .demo-paragraph {
     margin: 0;
     padding: 20px 28px;
-  }
-  @media (max-width: $mdc-top-app-bar-mobile-breakpoint) {
-    .demo-paragraph {
-      padding: 16px;
-    }
   }
   .demo-body {
     padding: 0;
@@ -14,10 +10,10 @@
     box-sizing: border-box;
   }
   .demo-main {
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-bottom: 16px;
-    overflow: auto;
+    // padding-left: 16px;
+    // padding-right: 16px;
+    // padding-bottom: 16px;
+    // overflow: auto;
   }
   .demo-controls-container {
     position: fixed;
@@ -30,7 +26,7 @@
       background-color: white;
       color: black;
     }
-    & > h3 {
+    &>h3 {
       display: flex;
       justify-content: space-between;
     }
@@ -38,7 +34,7 @@
       cursor: pointer;
     }
   }
-  input[type='checkbox']:disabled + label {
+  input[type='checkbox']:disabled+label {
     opacity: 0.4;
   }
   .demo-col {
@@ -54,5 +50,16 @@
   }
   .demo-options-heading {
     margin-bottom: 20px;
+  }
+  @media (max-width: $mdc-top-app-bar-mobile-breakpoint) {
+    .demo-paragraph {
+      padding: 16px;
+    }
+    .demo-controls-container.show {
+      width: 100%;
+    }
+    .demo-col {
+      margin: 5px;
+    }
   }
 }

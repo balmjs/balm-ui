@@ -14,9 +14,7 @@
       <h4 :class="$tt('headline4')">1. Example</h4>
       <section class="example">
         <div>
-          <div>
-            <h5 :class="$tt('headline5')">1.1 Buttons</h5>
-          </div>
+          <h5 :class="$tt('headline5')">1.1 Buttons</h5>
           <div class="toggle-examples-container">
             <div class="toggle-example">
               <h6 :class="$tt('headline6')">Material Icons</h6>
@@ -108,7 +106,7 @@
             <ui-markdown :code="code[2]"></ui-markdown>
           </ui-accordion>
 
-          <div class="toggle-example">
+          <div class="custom-toggle-example">
             <h6 :class="$tt('headline6')">Additional Color Combinations</h6>
             <div id="demo-color-combos">
               <div id="light-on-bg" class="demo-color-combo">

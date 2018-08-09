@@ -41,8 +41,8 @@ const routes = [{
     children: buttonsRoutes
   },
   {
-    path: '/icon',
-    name: 'icon',
+    path: '/icons',
+    name: 'icons',
     component: Icon
   },
   {

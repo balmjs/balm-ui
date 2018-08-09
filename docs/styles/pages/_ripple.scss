@@ -53,18 +53,24 @@
     }
   }
   .example {
-    margin: 24px;
-    padding: 24px;
-    align-items: center;
     display: flex;
-    margin-left: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   .example>div {
-    margin: 48px 0;
+    margin: 20px 0;
     width: 400px;
   }
   .example h2 {
     font-size: 1.2em;
     margin-bottom: 0.8em;
+  }
+  @media (max-width: $mdc-top-app-bar-mobile-breakpoint) {
+    .demo-surface {
+      margin: 0 auto;
+    }
+    .example>div {
+      width: 100%;
+    }
   }
 }

@@ -29,11 +29,13 @@
       </ui-top-app-bar>
 
       <main class="demo-main">
-        <h1 :class="$tt('headline4')">Permanent Drawer</h1>
-        <p :class="$tt('body1')">It sits to the left of this content.</p>
-        <ui-accordion>
-          <ui-markdown :code="code[3]"></ui-markdown>
-        </ui-accordion>
+        <div :class="$tt('body2')">
+          <h1 :class="$tt('headline4')">Permanent Drawer</h1>
+          <p :class="$tt('body1')">It sits to the left of this content.</p>
+          <ui-accordion>
+            <ui-markdown :code="code[3]"></ui-markdown>
+          </ui-accordion>
+        </div>
       </main>
     </div>
   </div>

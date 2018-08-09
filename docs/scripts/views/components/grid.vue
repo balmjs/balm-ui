@@ -171,59 +171,64 @@
             <ui-markdown :code="code[7]"></ui-markdown>
           </ui-accordion>
 
-          <h2 class="demo-grid-legend">1.2 Fixed column width layout grid</h2>
-          <ui-grid>
-            <ui-grid-cell>
-              <div class="demo-controls">
-                Desktop Column Width:
-                <ui-select
-                  :options="widthOptions"
-                  :model="desktop.width"
-                  @change="$setGrid('column-width', 'desktop', $event)">
-                </ui-select>
-              </div>
-            </ui-grid-cell>
-            <ui-grid-cell>
-              <div class="demo-controls">
-                Tablet Column Width:
-                <ui-select
-                  :options="widthOptions"
-                  :model="tablet.width"
-                  @change="$setGrid('column-width', 'tablet', $event)">
-                </ui-select>
-              </div>
-            </ui-grid-cell>
-            <ui-grid-cell>
-              <div class="demo-controls">
-                Phone Column Width:
-                <ui-select
-                  :options="widthOptions"
-                  :model="phone.width"
-                  @change="$setGrid('column-width', 'phone', $event)">
-                </ui-select>
-              </div>
-            </ui-grid-cell>
-          </ui-grid>
+          <h2 class="demo-grid-legend">1.2 Fixed column width layout grid (Widescreen Only)</h2>
+          <template v-if="isWidescreen">
+            <ui-grid>
+              <ui-grid-cell>
+                <div class="demo-controls">
+                  Desktop Column Width:
+                  <ui-select
+                    :options="widthOptions"
+                    :model="desktop.width"
+                    @change="$setGrid('column-width', 'desktop', $event)">
+                  </ui-select>
+                </div>
+              </ui-grid-cell>
+              <ui-grid-cell>
+                <div class="demo-controls">
+                  Tablet Column Width:
+                  <ui-select
+                    :options="widthOptions"
+                    :model="tablet.width"
+                    @change="$setGrid('column-width', 'tablet', $event)">
+                  </ui-select>
+                </div>
+              </ui-grid-cell>
+              <ui-grid-cell>
+                <div class="demo-controls">
+                  Phone Column Width:
+                  <ui-select
+                    :options="widthOptions"
+                    :model="phone.width"
+                    @change="$setGrid('column-width', 'phone', $event)">
+                  </ui-select>
+                </div>
+              </ui-grid-cell>
+            </ui-grid>
 
-          <div class="demo-grid-legend">Fixed column width layout grid and center alignment by default</div>
-          <ui-grid class="demo-grid" fixedColumnWidth>
-            <ui-grid-cell class="demo-cell" colspan="1"></ui-grid-cell>
-            <ui-grid-cell class="demo-cell" colspan="1"></ui-grid-cell>
-            <ui-grid-cell class="demo-cell" colspan="1"></ui-grid-cell>
-          </ui-grid>
-          <ui-accordion>
-            <ui-markdown :code="code[8]"></ui-markdown>
-          </ui-accordion>
+            <div class="demo-grid-legend">Fixed column width layout grid and center alignment by default</div>
+            <ui-grid class="demo-grid" fixedColumnWidth>
+              <ui-grid-cell class="demo-cell" colspan="1"></ui-grid-cell>
+              <ui-grid-cell class="demo-cell" colspan="1"></ui-grid-cell>
+              <ui-grid-cell class="demo-cell" colspan="1"></ui-grid-cell>
+            </ui-grid>
+            <ui-accordion>
+              <ui-markdown :code="code[8]"></ui-markdown>
+            </ui-accordion>
 
-          <div class="demo-grid-legend">Fixed column width layout grid and right alignment</div>
-          <ui-grid class="demo-grid" fixedColumnWidth position="right">
-            <ui-grid-cell class="demo-cell" colspan="1"></ui-grid-cell>
-            <ui-grid-cell class="demo-cell" colspan="1"></ui-grid-cell>
-            <ui-grid-cell class="demo-cell" colspan="1"></ui-grid-cell>
-          </ui-grid>
-          <ui-accordion>
-            <ui-markdown :code="code[9]"></ui-markdown>
-          </ui-accordion>
+            <div class="demo-grid-legend">Fixed column width layout grid and right alignment</div>
+            <ui-grid class="demo-grid" fixedColumnWidth position="right">
+              <ui-grid-cell class="demo-cell" colspan="1"></ui-grid-cell>
+              <ui-grid-cell class="demo-cell" colspan="1"></ui-grid-cell>
+              <ui-grid-cell class="demo-cell" colspan="1"></ui-grid-cell>
+            </ui-grid>
+            <ui-accordion>
+              <ui-markdown :code="code[9]"></ui-markdown>
+            </ui-accordion>
+          </template>
+          <template v-else>
+            <p>Your browser is not widescreen(Screen Size >= 1440px).</p>
+          </template>
 
           <div class="demo-ruler"><div id="current" ref="ruler"></div></div>
         </section>
@@ -238,6 +243,8 @@
 
 <script>
 import snippets from '../../mixins/snippets';
+
+const widescreenSize = 1440;
 
 const gutterOptions = [
   {
@@ -291,7 +298,8 @@ export default {
         margin: '16px',
         gutter: '16px',
         width: '72px'
-      }
+      },
+      isWidescreen: false
     };
   },
   created() {
@@ -299,7 +307,7 @@ export default {
   },
   mounted() {
     // this.showCode('grid');
-    window.addEventListener('resize', this.initRuler);
+    window.addEventListener('balmResize', this.initRuler);
     this.initRuler();
   },
   methods: {
@@ -313,6 +321,7 @@ export default {
       if (this.$refs.ruler) {
         this.$refs.ruler.textContent = window.innerWidth + 'px ' + size;
       }
+      this.isWidescreen = window.innerWidth >= widescreenSize;
     }
   }
 };

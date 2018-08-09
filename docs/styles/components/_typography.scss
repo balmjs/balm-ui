@@ -9,3 +9,9 @@
     margin-top: 20px;
   }
 }
+
+@media (max-width: 640px) {
+  .mdc-typography--body2 {
+    padding: 0 10px 20px;
+  }
+}

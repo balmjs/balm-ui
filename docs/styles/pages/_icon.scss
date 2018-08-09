@@ -1,4 +1,8 @@
 .demo--icon {
+  .icons-preview-code {
+    display: flex;
+    text-align: center;
+  }
   #search {
     text-indent: 60px;
   }
@@ -49,10 +53,22 @@
     border-radius: 2px;
     background: #fe6363;
   }
-}
-
-.icons-preview-code {
-  display: flex;
+  @media (max-width: $mdc-top-app-bar-mobile-breakpoint) {
+    .coloring-example {
+      .icons-preview-code {
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    .mdc-list>.mdc-list-item {
+      padding: 0;
+    }
+    .mdc-grid-tile {
+      width: 88px;
+      height: 88px;
+    }
+  }
 }
 
 .icons-preview {

@@ -1,9 +1,9 @@
-.balmui--default-toolbar,
-.balmui--fixed-toolbar,
-.balmui--waterfall-toolbar,
-.balmui--default-flexible-toolbar,
-.balmui--waterfall-flexible-toolbar,
-.balmui--waterfall-toolbar-fix-last-row {
+.balmui--layouts-default-toolbar,
+.balmui--layouts-fixed-toolbar,
+.balmui--layouts-waterfall-toolbar,
+.balmui--layouts-default-flexible-toolbar,
+.balmui--layouts-waterfall-flexible-toolbar,
+.balmui--layouts-waterfall-toolbar-fix-last-row {
   height: auto;
 }
 
@@ -22,10 +22,7 @@
     height: 72px;
   }
   .hero .catalog-toolbar-container .mdc-toolbar {
-    box-shadow:
-      0px 2px 4px -1px rgba(0, 0, 0, 0.2),
-      0px 4px 5px 0px rgba(0, 0, 0, 0.14),
-      0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
   }
   .examples {
     display: block;

@@ -1,31 +1,28 @@
 .demo--icon-button {
-  .demo-wrapper {
-    margin-left: 1rem;
+  .mdc-typography--headline5 {
+    margin: 0;
   }
-
   .example {
     display: flex;
     flex-flow: row wrap;
-    align-content: left;
     justify-content: left;
   }
-
   .toggle-example {
-    min-width: 260px;
-    margin: 24px;
-    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    margin: 0 20px;
   }
-
   .toggle-examples-container {
     display: flex;
+    flex-wrap: wrap;
   }
-
   #demo-color-combos {
     display: flex;
     align-items: center;
     justify-content: flex-start;
   }
-
   .demo-color-combo {
     width: 250px;
     padding: 1rem;
@@ -34,9 +31,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-right: 8px;
+    margin: 0 8px 8px 0;
   }
-
   #light-on-bg {
     background-color: #3e82f7;
   }
@@ -47,7 +43,6 @@
     @include mdc-states-focus-opacity(0.3);
     @include mdc-states-press-opacity(0.4);
   }
-
   #dark-on-bg {
     background-color: #00bcd6;
   }
@@ -55,7 +50,6 @@
     @include mdc-icon-button-ink-color(black);
     @include mdc-states(black);
   }
-
   #custom-color-combo .mdc-icon-button {
     @include mdc-icon-button-ink-color(#de442c);
     @include mdc-states-base-color(#de442c);
@@ -63,8 +57,13 @@
     @include mdc-states-focus-opacity(0.26);
     @include mdc-states-press-opacity(0.35);
   }
-
   .demo-icon-button-large {
     @include mdc-icon-button-size(36px);
+  }
+  @media (max-width: $mdc-top-app-bar-mobile-breakpoint) {
+    .toggle-examples-container,
+    #demo-color-combos {
+      flex-direction: column;
+    }
   }
 }

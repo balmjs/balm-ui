@@ -1,18 +1,16 @@
 /// Ensure layout covers the entire screen.
-.balmui--persistent-drawer,
-.balmui--permanent-drawer-above-toolbar,
-.balmui--permanent-drawer-below-toolbar {
+.balmui--layouts-persistent-drawer,
+.balmui--layouts-permanent-drawer-above-toolbar,
+.balmui--layouts-permanent-drawer-below-toolbar {
   height: 100%;
 }
 
 .demo--temporary-drawer {
-  .demo-main {
-    padding-left: 16px;
-    overflow: auto;
-  }
+  width: 100%;
 }
 
 /* Stack toolbar and main on top of each other. */
+
 .demo--persistent-drawer,
 .demo--permanent-drawer-above-toolbar {
   display: flex;
@@ -27,11 +25,9 @@
     display: inline-flex;
     flex-direction: column;
     flex-grow: 1;
+    width: 100%;
     height: 100%;
     box-sizing: border-box;
-  }
-  .demo-main {
-    padding-left: 16px;
   }
 }
 
@@ -61,6 +57,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  width: 100%;
   height: 100%;
   /* Place drawer and main next to each other. */
   .demo-content {
@@ -70,6 +67,6 @@
     box-sizing: border-box;
   }
   .demo-main {
-    padding-left: 16px;
+    width: 100%;
   }
 }

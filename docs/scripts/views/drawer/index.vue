@@ -7,26 +7,28 @@
       <ui-markdown :text="code[0]"></ui-markdown>
 
       <h4 :class="$tt('headline4')">1. Example</h4>
-      <ui-list>
+      <ui-list twoLine nonInteractive>
         <ui-item>
-          <router-link :to="{name: 'layouts.temporary-drawer'}">
-            1.1 Temporary Drawer
-          </router-link>
+          <ui-item-text>
+            1.1 <router-link :to="{name: 'layouts.temporary-drawer'}">Temporary Drawer</router-link>
+          </ui-item-text>
         </ui-item>
         <ui-item>
-          <router-link :to="{name: 'layouts.persistent-drawer'}">
-            1.2 Persistent Drawer
-          </router-link>
+          <ui-item-text>
+            1.2 <router-link :to="{name: 'layouts.persistent-drawer'}">Persistent Drawer</router-link>
+          </ui-item-text>
         </ui-item>
         <ui-item>
-          <router-link :to="{name: 'layouts.permanent-drawer-above-toolbar'}">
-            1.3 Permanent Drawer Above Toolbar
-          </router-link>
+          <ui-item-text>
+            1.3 <router-link :to="{name: 'layouts.permanent-drawer-above-toolbar'}">Permanent Drawer Above Toolbar</router-link>
+            <ui-item-subtext>Desktop Only</ui-item-subtext>
+          </ui-item-text>
         </ui-item>
         <ui-item>
-          <router-link :to="{name: 'layouts.permanent-drawer-below-toolbar'}">
-            1.4 Permanent Drawer Below Toolbar
-          </router-link>
+          <ui-item-text>
+            1.4 <router-link :to="{name: 'layouts.permanent-drawer-below-toolbar'}">Permanent Drawer Below Toolbar</router-link>
+            <ui-item-subtext>Desktop Only</ui-item-subtext>
+          </ui-item-text>
         </ui-item>
       </ui-list>
 

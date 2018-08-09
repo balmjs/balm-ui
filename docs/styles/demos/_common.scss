@@ -21,7 +21,6 @@ fieldset {
 
 // Use full-opacity equivalent of rgba(0, 0, 0, .05) and expose for demos to reference
 $hero-background-color: #f2f2f2;
-
 .hero {
   display: flex;
   flex-flow: row nowrap;
@@ -34,8 +33,8 @@ $hero-background-color: #f2f2f2;
 
 // Default padding on all examples.
 section.example {
-  margin: 24px;
-  padding: 24px;
+  // margin: 24px;
+  // padding: 24px;
 }
 
 section.example {

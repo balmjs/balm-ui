@@ -72,7 +72,7 @@ const MATERIAL_COMPONENTS = [{
   '-',
   {
     icon: 'icons',
-    name: 'Icon',
+    name: 'Icons',
     description: 'Material Icons'
   },
   '-',

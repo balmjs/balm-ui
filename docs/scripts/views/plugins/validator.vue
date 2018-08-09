@@ -116,6 +116,7 @@ export default {
 
       if (isValid) {
         console.log('gg');
+        this.$toast('gg');
       }
     }
   }

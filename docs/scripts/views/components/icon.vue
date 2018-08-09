@@ -8,11 +8,11 @@
     </section>
 
     <div :class="$tt('body2')">
-      <h3 :class="$tt('headline3')">0. Usage</h3>
+      <h4 :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h3 :class="$tt('headline3')">1. Example</h3>
-      <section clsss="example">
+      <h4 :class="$tt('headline4')">1. Example</h4>
+      <section class="sizing-example">
         <h6 :class="$tt('headline6')">1.1 Sizing</h6>
         <div class="icons-preview-code">
           <div v-for="i in [18, 24, 36, 48]" :key="i" class="icons-preview">
@@ -28,7 +28,7 @@
         <ui-markdown :text="code[1]"></ui-markdown>
       </ui-accordion>
 
-      <section clsss="example">
+      <section class="coloring-example">
         <h6 :class="$tt('headline6')">1.2 Coloring</h6>
         <div class="icons-preview-code">
           <div class="icons-preview">
@@ -57,18 +57,22 @@
         <ui-markdown :text="code[2]"></ui-markdown>
       </ui-accordion>
 
-      <h3 :class="$tt('headline3')">2. APIs</h3>
+      <h4 :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="icon"></ui-apidocs>
 
-      <h3 :class="$tt('headline3')">3. Icon List</h3>
+      <h4 :class="$tt('headline4')">3. Icon List</h4>
       <p>
-        <ui-textfield type="search"
+        <ui-textfield box leadingIcon
+          type="search"
           id="search"
+          placeholder="Icon keywords"
           helptextId="my-icons"
           fullwidth
           :model="keywords"
           @input="onInput">
-          Search Icon
+          <template slot="before">
+            <ui-textfield-icon>search</ui-textfield-icon>
+          </template>
         </ui-textfield>
         <ui-textfield-helptext id="my-icons" class="search-helper" visible>
           TIPS: Click an icon to copy icon name, then you can use <b>`&lt;ui-icon&gt;${icon_name}&lt;/ui-icon&gt;`</b>.

@@ -29,11 +29,13 @@
     </ui-temporary-drawer>
 
     <main class="demo-main">
-      <h1 :class="$tt('headline4')">Temporary Drawer</h1>
-      <p :class="$tt('body1')">Click the menu icon above to open.</p>
-      <ui-accordion>
-        <ui-markdown :code="code[1]"></ui-markdown>
-      </ui-accordion>
+      <div :class="$tt('body2')">
+        <h1 :class="$tt('headline4')">Temporary Drawer</h1>
+        <p :class="$tt('body1')">Click the menu icon above to open.</p>
+        <ui-accordion>
+          <ui-markdown :code="code[1]"></ui-markdown>
+        </ui-accordion>
+      </div>
     </main>
   </div>
 </template>

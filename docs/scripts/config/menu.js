@@ -78,6 +78,7 @@ const MATERIAL_COMPONENTS = [{
   '-',
   {
     name: 'Data View',
+    url: 'data',
     children: [{
         icon: 'list',
         name: 'List',
@@ -104,19 +105,19 @@ const MATERIAL_COMPONENTS = [{
         icon: 'chips',
         name: 'Chips',
         description: 'Chips for actions, selection, and input '
+      },
+      {
+        icon: 'progress',
+        name: 'Linear Progress',
+        description: 'Fills from 0% to 100%, represented by bars',
+        url: 'linear-progress'
       }
     ]
   },
   '-',
   {
-    icon: 'progress',
-    name: 'Linear Progress',
-    description: 'Fills from 0% to 100%, represented by bars',
-    url: 'linear-progress'
-  },
-  '-',
-  {
     name: 'Inputs and Controls',
+    url: 'form',
     children: [{
         icon: 'text_field',
         name: 'Text Field',
@@ -157,14 +158,13 @@ const MATERIAL_COMPONENTS = [{
         icon: 'text_field',
         name: 'Autocomplete',
         description: 'Autocomplete'
+      },
+      {
+        icon: 'component',
+        name: 'Validator',
+        description: 'validator'
       }
     ]
-  },
-  '-',
-  {
-    icon: 'component',
-    name: 'Validator',
-    description: 'validator'
   },
   '-',
   {
@@ -274,20 +274,23 @@ for (let component of MATERIAL_COMPONENTS) {
   if (component === '-') {
     menu.push('-');
   } else {
+    let baseUrl = '/' + (component.url || component.name.toLowerCase());
+
     menu.push({
       icon: getComponentIcon(component),
       name: component.name,
       description: component.description || false,
-      url: component.icon ?
-        component.url || component.name.toLowerCase() : false
+      url: component.icon ? baseUrl : false
     });
+
     if (component.children) {
       for (let subComponent of component.children) {
+        let url = baseUrl + '/' + (subComponent.url || subComponent.name.toLowerCase());
         menu.push({
           icon: getComponentIcon(subComponent),
           name: subComponent.name,
           description: subComponent.description || false,
-          url: subComponent.url || subComponent.name.toLowerCase(),
+          url,
           isSubmenu: true
         });
       }

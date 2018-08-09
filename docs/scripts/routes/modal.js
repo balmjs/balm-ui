@@ -1,39 +1,38 @@
-const Dialog = () => import('../views/components/dialog');
-const Alert = () => import('../views/plugins/alert');
-const Confirm = () => import('../views/plugins/confirm');
-const Snackbar = () => import('../views/components/snackbar');
-const Toast = () => import('../views/plugins/toast');
-const Menu = () => import('../views/components/menu');
+const Dialog = () =>
+  import ('../views/components/dialog');
+const Alert = () =>
+  import ('../views/plugins/alert');
+const Confirm = () =>
+  import ('../views/plugins/confirm');
+const Snackbar = () =>
+  import ('../views/components/snackbar');
+const Toast = () =>
+  import ('../views/plugins/toast');
 
-export default [
-  {
-    path: '/dialog',
-    name: 'dialog',
+
+export default [{
+    path: 'dialog',
+    name: 'modal.dialog',
     component: Dialog
   },
   {
-    path: '/alert',
-    name: 'alert',
+    path: 'alert',
+    name: 'modal.alert',
     component: Alert
   },
   {
-    path: '/confirm',
-    name: 'confirm',
+    path: 'confirm',
+    name: 'modal.confirm',
     component: Confirm
   },
   {
-    path: '/snackbar',
-    name: 'snackbar',
+    path: 'snackbar',
+    name: 'modal.snackbar',
     component: Snackbar
   },
   {
-    path: '/toast',
-    name: 'toast',
+    path: 'toast',
+    name: 'modal.toast',
     component: Toast
-  },
-  {
-    path: '/menu',
-    name: 'menu',
-    component: Menu
   }
 ];

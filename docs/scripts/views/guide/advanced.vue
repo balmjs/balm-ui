@@ -3,8 +3,8 @@
     <div :class="[$tt('body2'), 'pure-docs']">
       <ui-markdown :text="docs"></ui-markdown>
       <ui-footer-nav
-        :prev="{name: 'Getting Started', url: 'quickstart'}"
-        :next="{name: 'Kill IE', url: 'kill-ie'}"></ui-footer-nav>
+        :prev="{name: 'Getting Started', url: 'guide.quickstart'}"
+        :next="{name: 'Kill IE', url: 'guide.kill-ie'}"></ui-footer-nav>
     </div>
   </div>
 </template>

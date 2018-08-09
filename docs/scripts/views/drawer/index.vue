@@ -9,22 +9,22 @@
       <h4 :class="$tt('headline4')">1. Example</h4>
       <ui-list>
         <ui-item>
-          <router-link :to="{name: 'temporary-drawer'}">
+          <router-link :to="{name: 'layouts.temporary-drawer'}">
             1.1 Temporary Drawer
           </router-link>
         </ui-item>
         <ui-item>
-          <router-link :to="{name: 'persistent-drawer'}">
+          <router-link :to="{name: 'layouts.persistent-drawer'}">
             1.2 Persistent Drawer
           </router-link>
         </ui-item>
         <ui-item>
-          <router-link :to="{name: 'permanent-drawer-above-toolbar'}">
+          <router-link :to="{name: 'layouts.permanent-drawer-above-toolbar'}">
             1.3 Permanent Drawer Above Toolbar
           </router-link>
         </ui-item>
         <ui-item>
-          <router-link :to="{name: 'permanent-drawer-below-toolbar'}">
+          <router-link :to="{name: 'layouts.permanent-drawer-below-toolbar'}">
             1.4 Permanent Drawer Below Toolbar
           </router-link>
         </ui-item>

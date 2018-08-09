@@ -95,8 +95,8 @@ export default {
         (routeName &&
           (routeName.indexOf('-drawer') > -1 ||
             routeName.indexOf('-toolbar') > -1)) ||
-        routeName === 'grid' ||
-        routeName === 'top-app-bar'
+        routeName === 'layouts.grid' ||
+        routeName === 'layouts.top-app-bar'
       );
     }
   },

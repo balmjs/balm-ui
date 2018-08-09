@@ -214,7 +214,7 @@ module.exports = {
     alias: {
       ...
       // Reassign the entry file
-      'balm-ui': 'balm-ui/src/scripts/index.js',
+      'balm-ui': 'balm-ui/src/scripts',
       'balm-ui-plus': 'balm-ui/src/scripts/plus.js'
     },
     include: [

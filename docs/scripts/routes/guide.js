@@ -7,20 +7,20 @@ const Advanced = () =>
 const KillIE = () =>
   import ('../views/guide/kill-ie');
 
-export default [, {
-  path: '/intro',
-  name: 'intro',
+export default [{
+  path: 'intro',
+  name: 'guide.intro',
   component: Intro
 }, {
-  path: '/quickstart',
-  name: 'quickstart',
+  path: 'quickstart',
+  name: 'guide.quickstart',
   component: Quickstart
 }, {
-  path: '/advanced',
-  name: 'advanced',
+  path: 'advanced',
+  name: 'guide.advanced',
   component: Advanced
 }, {
-  path: '/kill-ie',
-  name: 'kill-ie',
+  path: 'kill-ie',
+  name: 'guide.kill-ie',
   component: KillIE
 }];

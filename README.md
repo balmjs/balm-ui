@@ -12,7 +12,7 @@ Following the [Material Design](https://material.io/components/) UI components f
 
 ### 0. Requirement
 
-- [BalmJS](https://balmjs.com/)
+- [BalmJS](https://balmjs.com/)(Recommended) or other toolchains
 - [Vue.js](https://vuejs.org/)@2.x
 
 ### 1. Install

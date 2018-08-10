@@ -11,3 +11,15 @@ $balmUI.onClose(property, fn); / $balmUI.onHide(property, fn); // update propert
 | property | `String`   | `null`  | Update a specified `vm.$data`.                                               |
 | value    | `any`      | `null`  | New value of a specified `vm.$data`. Applicable only for `$balmUI.onChange`. |
 | fn       | `Function` | `noop`  | After method to handle.                                                      |
+
+---
+
+#### Optimized Custom Event
+
+- `balmResize` (better than `resize`)
+
+```js
+window.addEventListener('balmResize', () => {
+  // ...
+});
+```

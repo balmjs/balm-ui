@@ -2,7 +2,7 @@ import autoInstall from '../config/auto-install';
 import UiSnackbar from '../components/common/snackbar';
 import getType from '../utils/typeof';
 
-const DEFAULT_PROPS = {
+const DEFAULT_OPTIONS = {
   className: '',
   alignStart: false,
   message: '',
@@ -13,20 +13,20 @@ const DEFAULT_PROPS = {
 
 const template = `<ui-snackbar
   :active="active"
-  :class="['mdc-toast', props.className]"
-  :alignStart="props.alignStart"
-  :message="props.message"
-  :timeout="props.timeout"
-  :multiline="props.multiline"
-  :fouc="props.fouc"
+  :class="['mdc-toast', options.className]"
+  :alignStart="options.alignStart"
+  :message="options.message"
+  :timeout="options.timeout"
+  :multiline="options.multiline"
+  :fouc="options.fouc"
   @change="handleChange">
 </ui-snackbar>`;
 
 const BalmUI_ToastPlugin = {
   install(Vue, configs = {}) {
-    let props = Object.assign({}, DEFAULT_PROPS, configs);
+    let options = Object.assign({}, DEFAULT_OPTIONS, configs);
 
-    const $toast = (customProps = {}) => {
+    const $toast = (customOptions = {}) => {
       if (!document.querySelector('.mdc-toast')) {
         let vm = new Vue({
           el: document.createElement('div'),
@@ -35,13 +35,13 @@ const BalmUI_ToastPlugin = {
           },
           data: {
             active: false,
-            props
+            options
           },
           created() {
-            if (getType(customProps) === 'string') {
-              this.props.message = `${customProps}`; // To string
-            } else if (getType(customProps) === 'object') {
-              this.props = Object.assign({}, this.props, customProps);
+            if (getType(customOptions) === 'string') {
+              this.options.message = `${customOptions}`; // To string
+            } else if (getType(customOptions) === 'object') {
+              this.options = Object.assign({}, this.options, customOptions);
             }
 
             this.$nextTick(() => {

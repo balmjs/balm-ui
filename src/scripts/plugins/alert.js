@@ -5,7 +5,7 @@ import UiDialogBody from '../components/dialog/dialog-body';
 import UiDialogFooter from '../components/dialog/dialog-footer';
 import getType from '../utils/typeof';
 
-const DEFAULT_PROPS = {
+const DEFAULT_OPTIONS = {
   className: '',
   title: '',
   message: '',
@@ -15,22 +15,22 @@ const DEFAULT_PROPS = {
 
 const template = `<ui-dialog
   :open="open"
-  :class="['mdc-alert', props.className]"
+  :class="['mdc-alert', options.className]"
   @close="handleClose">
-  <ui-dialog-header v-if="props.title">{{ props.title }}</ui-dialog-header>
-  <ui-dialog-body>{{ props.message }}</ui-dialog-body>
+  <ui-dialog-header v-if="options.title">{{ options.title }}</ui-dialog-header>
+  <ui-dialog-body>{{ options.message }}</ui-dialog-body>
   <ui-dialog-footer>
     <button type="button" class="mdc-button" @click="handleClick">
-      {{ props.buttonText }}
+      {{ options.buttonText }}
     </button>
   </ui-dialog-footer>
 </ui-dialog>`;
 
 const BalmUI_AlertPlugin = {
   install(Vue, configs = {}) {
-    let props = Object.assign({}, DEFAULT_PROPS, configs);
+    let options = Object.assign({}, DEFAULT_OPTIONS, configs);
 
-    const $alert = (customProps = {}) => {
+    const $alert = (customOptions = {}) => {
       return new Promise(resolve => {
         let vm = new Vue({
           el: document.createElement('div'),
@@ -42,13 +42,13 @@ const BalmUI_AlertPlugin = {
           },
           data: {
             open: false,
-            props
+            options
           },
           created() {
-            if (getType(customProps) === 'string') {
-              this.props.message = `${customProps}`; // To string
-            } else if (getType(customProps) === 'object') {
-              this.props = Object.assign({}, this.props, customProps);
+            if (getType(customOptions) === 'string') {
+              this.options.message = `${customOptions}`; // To string
+            } else if (getType(customOptions) === 'object') {
+              this.options = Object.assign({}, this.options, customOptions);
             }
 
             this.$nextTick(() => {
@@ -68,8 +68,8 @@ const BalmUI_AlertPlugin = {
             },
             handleClick() {
               this.handleClose();
-              if (getType(this.props.callback) === 'function') {
-                this.props.callback();
+              if (getType(this.options.callback) === 'function') {
+                this.options.callback();
               } else {
                 resolve();
               }

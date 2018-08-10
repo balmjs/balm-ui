@@ -5,7 +5,7 @@ import UiDialogBody from '../components/dialog/dialog-body';
 import UiDialogFooter from '../components/dialog/dialog-footer';
 import getType from '../utils/typeof';
 
-const DEFAULT_PROPS = {
+const DEFAULT_OPTIONS = {
   className: '',
   title: '',
   message: '',
@@ -16,29 +16,29 @@ const DEFAULT_PROPS = {
 
 const template = `<ui-dialog
   :open="open"
-  :class="['mdc-confirm', props.className]"
+  :class="['mdc-confirm', options.className]"
   @close="handleClose">
-  <ui-dialog-header v-if="props.title">{{ props.title }}</ui-dialog-header>
-  <ui-dialog-body>{{ props.message }}</ui-dialog-body>
+  <ui-dialog-header v-if="options.title">{{ options.title }}</ui-dialog-header>
+  <ui-dialog-body>{{ options.message }}</ui-dialog-body>
   <ui-dialog-footer>
     <button type="button"
       class="mdc-button mdc-confirm-primary-button"
       @click="handleConfirm(true)">
-      {{ props.acceptText }}
+      {{ options.acceptText }}
     </button>
     <button type="button"
       class="mdc-button mdc-confirm-secondary-button"
       @click="handleConfirm(false)">
-      {{ props.cancelText }}
+      {{ options.cancelText }}
     </button>
   </ui-dialog-footer>
 </ui-dialog>`;
 
 const BalmUI_ConfirmPlugin = {
   install(Vue, configs = {}) {
-    let props = Object.assign({}, DEFAULT_PROPS, configs);
+    let options = Object.assign({}, DEFAULT_OPTIONS, configs);
 
-    const $confirm = (customProps = {}) => {
+    const $confirm = (customOptions = {}) => {
       return new Promise(resolve => {
         let vm = new Vue({
           el: document.createElement('div'),
@@ -50,13 +50,13 @@ const BalmUI_ConfirmPlugin = {
           },
           data: {
             open: false,
-            props
+            options
           },
           created() {
-            if (getType(customProps) === 'string') {
-              this.props.message = `${customProps}`; // To string
-            } else if (getType(customProps) === 'object') {
-              this.props = Object.assign({}, this.props, customProps);
+            if (getType(customOptions) === 'string') {
+              this.options.message = `${customOptions}`; // To string
+            } else if (getType(customOptions) === 'object') {
+              this.options = Object.assign({}, this.options, customOptions);
             }
 
             this.$nextTick(() => {
@@ -76,8 +76,8 @@ const BalmUI_ConfirmPlugin = {
             },
             handleConfirm(result) {
               this.handleClose();
-              if (getType(this.props.callback) === 'function') {
-                this.props.callback(result);
+              if (getType(this.options.callback) === 'function') {
+                this.options.callback(result);
               } else {
                 resolve(result);
               }

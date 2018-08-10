@@ -53,7 +53,7 @@ const directives = [
   'elevation.js',
   'shape.js'
 ];
-const utils = ['ie.js', 'type.js', 'util.js'];
+const utils = ['ie.js', 'types.js', 'helpers.js'];
 
 const output = {
   components: './components',

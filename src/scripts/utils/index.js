@@ -1,5 +1,5 @@
 import detectIE from './ie';
 
-export * from './type';
-export * from './util';
+export * from './types';
+export * from './helpers';
 export { detectIE };

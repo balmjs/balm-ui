@@ -25,6 +25,20 @@ const isFunction = fn => {
   return type === 'function' || type === 'generatorfunction';
 };
 
+const types = {
+  getType,
+  isUndefined,
+  isNull,
+  isBoolean,
+  isNumber,
+  isString,
+  isSymbol,
+  isObject,
+  isArray,
+  isFunction
+};
+
+export default types;
 export {
   getType,
   isUndefined,

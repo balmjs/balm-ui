@@ -64,6 +64,13 @@ const isDeepEqual = (obj1, obj2, testPrototypes = false) => {
   );
 };
 
+const helpers = {
+  isEmpty,
+  jsonEqual,
+  isDeepEqual
+};
+
+export default helpers;
 export {
   isEmpty,
   jsonEqual,

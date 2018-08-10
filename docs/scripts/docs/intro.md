@@ -60,9 +60,9 @@ Following the [Material Design](https://material.io/components/) UI components f
 
 #### 4. Utilities (💡)
 
-- IE Detection
 - Type Detections
-- Util Functions
+- Helper Functions
+- IE Detection
 
 > 💡: Extra, 💀: Deprecated
 

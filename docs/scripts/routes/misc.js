@@ -8,27 +8,27 @@ const Shape = () => import('../views/directives/shape');
 export default [
   {
     path: 'event',
-    name: 'others.event',
+    name: 'misc.event',
     component: Event
   },
   {
     path: 'typography',
-    name: 'others.typography',
+    name: 'misc.typography',
     component: Typography
   },
   {
     path: 'theme',
-    name: 'others.theme',
+    name: 'misc.theme',
     component: Theme
   },
   {
     path: 'ripple',
-    name: 'others.ripple',
+    name: 'misc.ripple',
     component: Ripple
   },
   {
     path: 'elevation',
-    name: 'others.elevation',
+    name: 'misc.elevation',
     component: Elevation
   },
   {

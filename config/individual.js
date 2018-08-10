@@ -36,22 +36,26 @@ const components = [
   // Plus
   'dropdown.js',
   'autocomplete.js'
-  // 'pagination.js'
 ];
 const plugins = [
+  // MDC plugins
   'event.js',
   'grid.js',
   'theme.js',
   'typography.js',
+  // Plus
   'validator.js',
   'alert.js',
   'confirm.js',
   'toast.js'
 ];
 const directives = [
+  // MDC directives
   'ripple.js',
   'elevation.js',
-  'shape.js'
+  'shape.js',
+  // Plus
+  'anchor.js'
 ];
 const utils = ['ie.js', 'types.js', 'helpers.js'];
 

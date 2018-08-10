@@ -7,7 +7,8 @@ import dataRoutes from './data-view';
 import formRoutes from './inputs-and-controls';
 import modalRoutes from './modal';
 const Menu = () => import('../views/components/menu');
-import othersRoutes from './others';
+import miscRoutes from './misc';
+const Utils = () => import('../views/utils');
 
 import Home from '../views/home';
 // const Test = import('../views/test');
@@ -71,11 +72,16 @@ const routes = [
     component: Menu
   },
   {
-    path: '/others',
-    name: 'others',
-    redirect: '/others/event',
+    path: '/misc',
+    name: 'misc',
+    redirect: '/misc/event',
     component: BlankLayout,
-    children: othersRoutes
+    children: miscRoutes
+  },
+  {
+    path: '/utils',
+    name: 'utils',
+    component: Utils
   }
   // {
   //   path: '/test',

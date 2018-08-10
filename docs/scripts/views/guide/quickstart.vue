@@ -13,6 +13,9 @@
 import docs from '../../docs/quickstart.md';
 
 export default {
+  metaInfo: {
+    titleTemplate: '%s - Quick Start'
+  },
   data() {
     return {
       docs

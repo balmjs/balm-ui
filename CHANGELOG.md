@@ -57,9 +57,9 @@
 
 ### Utilities
 
+- Type Detections
+- Helper Functions
 - IE Detection
-- Type Detection
-- Util Function
 
 > :bulb:: Plus UI, :skull:: Deprecated
 

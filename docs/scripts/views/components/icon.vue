@@ -116,7 +116,7 @@ import snippets from '../../mixins/snippets';
 
 export default {
   metaInfo: {
-    titleTemplate: '%s - Icon'
+    titleTemplate: '%s - Icons'
   },
   mixins: [snippets],
   data() {

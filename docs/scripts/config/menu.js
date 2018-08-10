@@ -204,7 +204,7 @@ const MATERIAL_COMPONENTS = [{
   },
   '-',
   {
-    name: 'Others',
+    name: 'Misc',
     children: [{
         icon: 'component',
         name: 'Event',
@@ -236,13 +236,13 @@ const MATERIAL_COMPONENTS = [{
       //   description: 'Mixins for angled corners on unelevated components'
       // }
     ]
+  },
+  '-',
+  {
+    icon: 'component',
+    name: 'Utils',
+    description: 'Utils'
   }
-  // '-',
-  // {
-  //   icon: 'component',
-  //   name: 'Utils',
-  //   description: 'Utils'
-  // }
 ];
 
 const getComponentIcon = component => {

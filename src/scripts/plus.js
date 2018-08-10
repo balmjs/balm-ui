@@ -19,7 +19,9 @@ import vAnchor from './directives/anchor';
 /**
  * Utilities
  */
-import * as utils from './utils';
+import types from './utils/types';
+import helpers from './utils/helpers';
+import detectIE from './utils/ie';
 
 const version = require('../../package.json').version;
 
@@ -38,8 +40,6 @@ const plugins = {
 const directives = {
   vAnchor
 };
-
-const util = Object.assign({}, utils);
 
 const BalmUIPlus = {
   version,
@@ -68,11 +68,10 @@ const BalmUIPlus = {
       let Directive = directives[key];
       Vue.directive(Directive.name, Directive);
     }
-  },
-  util
+  }
 };
 
 autoInstall(BalmUIPlus);
 
 export default BalmUIPlus;
-export { util };
+export { types, helpers, detectIE };

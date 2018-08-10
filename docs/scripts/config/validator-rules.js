@@ -1,12 +1,12 @@
-import { util } from '../../../src/scripts/plus'; // 'balm-ui-plus'
+import { types } from '../../../src/scripts/plus'; // 'balm-ui-plus'
 
 export default {
   required: {
     validate(value) {
       let result = false;
-      if (util.isString(value)) {
+      if (types.isString(value)) {
         result = value.trim() !== '';
-      } else if (util.isArray(value)) {
+      } else if (types.isArray(value)) {
         return value.length;
       } else {
         result = value;

@@ -25,17 +25,17 @@ Vue.use(validator, validatorRules);
 Custom global validator rules
 
 ```js
-import { util } from 'balm-ui/dist/balm-ui-plus'; // Default Usage
+import { types } from 'balm-ui/dist/balm-ui-plus'; // Default Usage
 // OR
-// import * as util from 'balm-ui/utils/type'; // Standalone Usage
+// import types from 'balm-ui/utils/types'; // Standalone Usage
 
 export default {
   required: {
     validate(value) {
       let result = false;
-      if (util.isString(value)) {
+      if (types.isString(value)) {
         result = value.trim() !== '';
-      } else if (util.isArray(value)) {
+      } else if (types.isArray(value)) {
         return value.length;
       } else {
         result = value;

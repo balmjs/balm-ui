@@ -13,6 +13,10 @@ import alert from './plugins/alert';
 import confirm from './plugins/confirm';
 import toast from './plugins/toast';
 /**
+ * Directives
+ */
+import vAnchor from './directives/anchor';
+/**
  * Utilities
  */
 import * as utils from './utils';
@@ -29,6 +33,10 @@ const plugins = {
   alert,
   confirm,
   toast
+};
+
+const directives = {
+  vAnchor
 };
 
 const BalmUIPlus = {
@@ -51,6 +59,12 @@ const BalmUIPlus = {
       } else {
         Vue.use(Plugin);
       }
+    }
+
+    // Init the directives
+    for (let key in directives) {
+      let Directive = directives[key];
+      Vue.directive(Directive.name, Directive);
     }
   }
 };

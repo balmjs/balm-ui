@@ -39,6 +39,8 @@ const directives = {
   vAnchor
 };
 
+const util = Object.assign({}, utils);
+
 const BalmUIPlus = {
   version,
   install(Vue, options = {}) {
@@ -66,10 +68,11 @@ const BalmUIPlus = {
       let Directive = directives[key];
       Vue.directive(Directive.name, Directive);
     }
-  }
+  },
+  util
 };
 
 autoInstall(BalmUIPlus);
 
 export default BalmUIPlus;
-export { utils };
+export { util };

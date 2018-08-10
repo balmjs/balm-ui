@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import '../../utils/resize';
 import getType from '../../utils/typeof';
 
 export default {

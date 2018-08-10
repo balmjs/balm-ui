@@ -1,4 +1,5 @@
 import autoInstall from '../config/auto-install';
+import '../polyfills/resize';
 
 // Define constants
 const DEFAULT_NAMESPACE = 'balmUI';

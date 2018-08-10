@@ -1,8 +1,7 @@
-import './resize';
 import getType from './typeof';
 
 // Reference http://php.net/manual/en/function.empty.php
-const emptyValues = [undefined, null, false, 0, '', '0'];
+const EMPTY_VALUES = [undefined, null, false, 0, '', '0'];
 
 const isEmpty = value => {
   let result = false;
@@ -20,9 +19,9 @@ const isEmpty = value => {
       result = !Object.keys(value).length;
       break;
     default:
-      let len = emptyValues.length;
+      let len = EMPTY_VALUES.length;
       while (len--) {
-        if (value === emptyValues[len]) {
+        if (value === EMPTY_VALUES[len]) {
           result = true;
           break;
         }

@@ -1,4 +1,4 @@
-import '../polyfills/CustomEvent';
+import './CustomEvent';
 
 (function () {
   var throttle = function (type, name, obj) {

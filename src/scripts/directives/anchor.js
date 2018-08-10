@@ -18,7 +18,6 @@ const initAnchor = (el, { value, rawName, modifiers }) => {
     if (modifiers.offset) {
       anchorOffset = value;
     }
-    // console.log(anchorBody, anchorOffset);
   }
 };
 

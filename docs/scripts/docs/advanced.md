@@ -2,7 +2,20 @@
 
 > The following configuration is still the Vue scaffold built based on [Balm CLI](https://github.com/balmjs/balm-cli).
 
+## TOC
+
+1.  Modular CSS
+    - <a href="javascript:void(0)" class="v-anchor" data-href="#use-sass">Use Sass</a>
+    - <a href="javascript:void(0)" class="v-anchor" data-href="#use-css">Use CSS</a>
+2.  Modular JS
+    - <a href="javascript:void(0)" class="v-anchor" data-href="#default-usage">Default Usage</a>
+    - <a href="javascript:void(0)" class="v-anchor" data-href="#standalone-usage">Standalone Usage</a>
+    - <a href="javascript:void(0)" class="v-anchor" data-href="#source-code-usage">Source Code Usage</a>
+3.  <a href="javascript:void(0)" class="v-anchor" data-href="#mdi">Get Material Design Icons without downloading</a>
+
 ## 1. Modular CSS
+
+<div id="use-sass"></div>
 
 ### 1.1 Use Sass (Recommended)
 
@@ -40,6 +53,8 @@ Then, you can overwrite or redefine UI styles by editing `/path/to/my-project/ap
 
 > If the third-party provides sass file, recommended to manage in `/path/to/my-project/app/styles/global/_vendor.scss`
 
+<div id="use-css"></div>
+
 ### 1.2 Use CSS
 
 ```html
@@ -65,7 +80,9 @@ Then, you can overwrite or redefine UI styles by editing `/path/to/my-project/ap
 
 ## 2. Modular JS
 
-### 2.1 Default usage
+<div id="default-usage"></div>
+
+### 2.1 Default Usage
 
 > Recommended to use for **desktop**
 
@@ -125,7 +142,9 @@ Edit `/path/to/my-project/app/index.html`
 </html>
 ```
 
-### 2.2 Standalone usage
+<div id="standalone-usage"></div>
+
+### 2.2 Standalone Usage
 
 > Recommended to use for **mobile**, because the building volume is relatively small.
 
@@ -198,7 +217,9 @@ Edit `/path/to/my-project/app/index.html`
 </html>
 ```
 
-### 2.3 Source code usage
+<div id="source-code-usage"></div>
+
+### 2.3 Source Code Usage
 
 > Just for developing and debugging components, the building production is the same as the default usage.
 
@@ -227,6 +248,8 @@ module.exports = {
 ```
 
 > Now, the `balm-ui` referenced in the code points directly to the source code, which can be used to debug BalmUI.
+
+<div id="mdi"></div>
 
 ## 3. Get [Material Design Icons](https://material.balmjs.com/MaterialIcons.zip) without downloading
 

@@ -4,6 +4,8 @@ Good tools make application development quicker and easier to maintain than if y
 
 The [Balm CLI](https://github.com/balmjs/balm-cli) is a command line interface tool that scaffolds out a [BalmJS](https://balmjs.com/) project.
 
+> [BalmJS](https://balmjs.com/)(Recommended) or other toolchains 🚀
+
 ### 0. Set up the Development Environment
 
 You need to set up your development environment before you can do anything.

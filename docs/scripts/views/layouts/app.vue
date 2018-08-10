@@ -63,7 +63,7 @@
             <ui-list-divider></ui-list-divider>
           </ui-drawer-content>
         </ui-persistent-drawer>
-        <main class="balmui-content">
+        <main class="balmui-content" v-anchor.offset="60">
           <router-view></router-view>
         </main>
       </div>

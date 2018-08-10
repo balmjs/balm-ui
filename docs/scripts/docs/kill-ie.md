@@ -9,6 +9,7 @@ import { util } from 'balm-ui/dist/balm-ui-plus'; // Default Usage
 const IE = util.detectIE();
 // OR
 // import detectIE from 'balm-ui/utils/ie'; // Standalone Usage
+// const IE = detectIE();
 
 const isIE = IE && IE < 11; // Browser support IE 11+
 

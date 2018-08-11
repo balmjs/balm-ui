@@ -17,7 +17,7 @@ const getElevation = value => {
     result = `mdc-elevation--z${value}`;
   } else {
     console.warn(
-      'The elevation values are mapped out in a "z-space" and range from 0 to 24.'
+      'The elevation values are mapped out in a "z-space" and range from 0 to 24'
     );
   }
 
@@ -55,7 +55,7 @@ const updateElevation = (method, el, { value, modifiers }) => {
         default:
       }
     } else {
-      console.warn('Invalid elevation value.');
+      console.warn('Invalid elevation value');
     }
   } else {
     classes.push(getElevation(value));

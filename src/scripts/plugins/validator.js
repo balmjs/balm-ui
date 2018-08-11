@@ -76,7 +76,7 @@ const BalmUI_ValidatorPlugin = {
             }
           } else {
             console.warn(
-              `The field [${fieldName}] is missing a validation rule: '${ruleName}'.`
+              `The field [${fieldName}] is missing a validation rule: '${ruleName}'`
             );
           }
         }

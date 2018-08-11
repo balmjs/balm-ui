@@ -96,7 +96,7 @@ export default {
 
         this.$emit(UI_DROPDOWN.EVENT.CHANGE, this.selectedValue);
       } else {
-        console.warn('Invalid Option!');
+        console.warn('Invalid option');
       }
     },
     init(options = this.options) {

@@ -252,7 +252,7 @@ export default {
           } else if (getType(data) === 'object') {
             item = data;
           } else {
-            console.warn("DataSource's item must be a string or object.");
+            console.warn("DataSource's item must be a string or object");
           }
 
           return item;

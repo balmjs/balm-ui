@@ -100,10 +100,10 @@ export default {
   },
   created() {
     if (this.actionHandler && !this.actionText) {
-      console.warn('`actionHandler` and `actionText` need be settled.');
+      console.warn('`actionHandler` and `actionText` need be settled');
     }
     if (!this.multiline && this.actionOnBottom) {
-      console.warn('`actionOnBottom` applies when `multiline` is true.');
+      console.warn('`actionOnBottom` applies when `multiline` is true');
     }
   },
   mounted() {

@@ -8,7 +8,7 @@ const RIPPLE_COLOR = {
   SECONDARY: 'mdc-ripple-surface--accent'
 };
 
-const initRipple = (el, { value }) => {
+const updateRipple = (method, el, { value }) => {
   let classes = [RIPPLE_COLOR.BASE];
 
   switch (value) {
@@ -22,13 +22,13 @@ const initRipple = (el, { value }) => {
       break;
   }
 
-  el.classList.add(...classes);
+  el.classList[method](...classes);
 };
 
 const BalmUI_RippleDirective = {
   name: 'ripple',
   bind(el, binding) {
-    initRipple(el, binding);
+    updateRipple('add', el, binding);
   },
   inserted(el, binding) {
     if (binding.arg !== 'cssOnly') {
@@ -37,6 +37,9 @@ const BalmUI_RippleDirective = {
         ripple.unbounded = true;
       }
     }
+  },
+  unbind(el, binding) {
+    updateRipple('remove', el, binding);
   }
 };
 

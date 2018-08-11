@@ -12,7 +12,7 @@ const SHAPE = {
   }
 };
 
-const initShape = (el, { value, modifiers }) => {
+const updateShape = (method, el, { value, modifiers }) => {
   let cornerOutput = '';
   let topLeft = false;
   let topRight = false;
@@ -94,14 +94,20 @@ const initShape = (el, { value, modifiers }) => {
     }"></div>`;
   }
 
-  el.classList.add(SHAPE.OUTTER);
-  el.insertAdjacentHTML('beforeend', cornerOutput);
+  el.classList[method](SHAPE.OUTTER);
+
+  if (method === 'add') {
+    el.insertAdjacentHTML('beforeend', cornerOutput);
+  }
 };
 
 const BalmUI_ShapeDirective = {
   name: 'shape',
   bind(el, binding) {
-    initShape(el, binding);
+    updateShape('add', el, binding);
+  },
+  unbind(el, binding) {
+    updateShape('remove', el, binding);
   }
 };
 

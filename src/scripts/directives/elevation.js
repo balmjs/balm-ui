@@ -24,7 +24,7 @@ const getElevation = value => {
   return result;
 };
 
-const initElevation = (el, { value, modifiers }) => {
+const updateElevation = (method, el, { value, modifiers }) => {
   let classes = [];
 
   if (modifiers.transition) {
@@ -35,12 +35,25 @@ const initElevation = (el, { value, modifiers }) => {
       classes.push(defaultClass);
       classes.push(ELEVATION.TRANSITION);
 
-      el.addEventListener('mouseenter', () => {
-        el.classList.add(hoverClass);
-      });
-      el.addEventListener('mouseleave', () => {
-        el.classList.remove(hoverClass);
-      });
+      switch (method) {
+        case 'add':
+          el.addEventListener('mouseenter', () => {
+            el.classList.add(hoverClass);
+          });
+          el.addEventListener('mouseleave', () => {
+            el.classList.remove(hoverClass);
+          });
+          break;
+        case 'remove':
+          el.removeEventListener('mouseenter', () => {
+            el.classList.add(hoverClass);
+          });
+          el.removeEventListener('mouseleave', () => {
+            el.classList.remove(hoverClass);
+          });
+          break;
+        default:
+      }
     } else {
       console.warn('Invalid elevation value.');
     }
@@ -48,13 +61,16 @@ const initElevation = (el, { value, modifiers }) => {
     classes.push(getElevation(value));
   }
 
-  el.classList.add(...classes);
+  el.classList[method](...classes);
 };
 
 const BalmUI_ElevationDirective = {
   name: 'shadow',
   bind(el, binding) {
-    initElevation(el, binding);
+    updateElevation('add', el, binding);
+  },
+  unbind(el, binding) {
+    updateElevation('remove', el, binding);
   }
 };
 

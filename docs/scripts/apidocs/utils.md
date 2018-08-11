@@ -1,5 +1,89 @@
 ## Utilities
 
+### 1. Types
+
+Default Usage
+
+```js
+import { types } from 'balm-ui/dist/balm-ui-plus';
 ```
-Coming up...
+
+Standalone Usage
+
+```js
+import types from 'balm-ui/utils/types';
 ```
+
+Methods
+
+```js
+types.getType(any);
+
+types.isUndefined(value);
+types.isNull(value);
+types.isBoolean(value);
+types.isNumber(value);
+types.isString(value);
+types.isSymbol(value);
+types.isObject(value);
+types.isArray(value);
+types.isFunction(value);
+```
+
+> `getType` returns a string, others return a boolean.
+
+### 2. Helpers
+
+Default Usage
+
+```js
+import { helpers } from 'balm-ui/dist/balm-ui-plus';
+```
+
+Standalone Usage
+
+```js
+import helpers from 'balm-ui/utils/helpers';
+```
+
+Methods
+
+```js
+helpers.isEmpty(value);
+
+helpers.jsonEqual(jsonA, jsonB); // The order of the properties IS IMPORTANT
+helpers.isDeepEqual(obj1, obj2);
+```
+
+- `isEmpty` - The following values are considered to be empty:
+  - `undefined`
+  - `null`
+  - `false`
+  - `0`
+  - `''`
+  - `'0'`
+  - `{}`
+  - `[]`
+  - an empty `map` or `set`
+
+### 3. IE
+
+Default Usage
+
+```js
+import { detectIE } from 'balm-ui/dist/balm-ui-plus';
+```
+
+Standalone Usage
+
+```js
+import detectIE from 'balm-ui/utils/ie';
+```
+
+Methods
+
+```js
+detectIE();
+```
+
+> IE browser returns version, other browsers return `false`.

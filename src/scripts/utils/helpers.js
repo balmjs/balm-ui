@@ -46,13 +46,13 @@ const isDeepEqual = (obj1, obj2, testPrototypes = false) => {
     return obj1.getTime() === obj2.getTime();
   }
 
-  const prototypesAreEqual = testPrototypes ?
-    isDeepEqual(
-      Object.getPrototypeOf(obj1),
-      Object.getPrototypeOf(obj2),
-      true
-    ) :
-    true;
+  const prototypesAreEqual = testPrototypes
+    ? isDeepEqual(
+        Object.getPrototypeOf(obj1),
+        Object.getPrototypeOf(obj2),
+        true
+      )
+    : true;
 
   const obj1Props = Object.getOwnPropertyNames(obj1);
   const obj2Props = Object.getOwnPropertyNames(obj2);
@@ -71,8 +71,4 @@ const helpers = {
 };
 
 export default helpers;
-export {
-  isEmpty,
-  jsonEqual,
-  isDeepEqual
-};
+export { isEmpty, jsonEqual, isDeepEqual };

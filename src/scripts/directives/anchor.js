@@ -1,55 +1,83 @@
 import autoInit from './register';
 
-const ANCHOR_CLASSNAME = 'v-anchor';
-let anchorBody = document.body;
-let anchorOffset = 0;
+let ANCHOR = {
+  CLASSNAME: {
+    OUTER: 'v-anchor--html',
+    INNER: 'v-anchor'
+  },
+  body: document.body,
+  offset: 0,
+  isMounted: false
+};
 
 const goAnchor = selector => {
   let anchor = document.querySelector(selector);
-  anchorBody.scrollTop = anchor.offsetTop - anchorOffset;
+  if (anchor) {
+    ANCHOR.body.scrollTop = anchor.offsetTop - ANCHOR.offset;
+  } else {
+    console.warn(`Invalid anchor: ${selector}`);
+  }
+};
+
+const updateAnchor = (method, el, { value, arg, modifiers }) => {
+  switch (arg) {
+    case 'href':
+      el.dataset.href = value;
+      el[`${method}EventListener`]('click', () => {
+        goAnchor(value);
+      });
+      break;
+    case 'id':
+      el.setAttribute('id', value);
+      break;
+    default:
+  }
+
+  if (modifiers.html) {
+    el.classList[method](ANCHOR.CLASSNAME.OUTER);
+  }
 };
 
 const initAnchor = (el, { value, rawName, modifiers }) => {
   if (
-    anchorBody.tagName === 'BODY' &&
-    (rawName === ANCHOR_CLASSNAME || modifiers.offset)
+    ANCHOR.body.tagName === 'BODY' &&
+    (rawName === ANCHOR.CLASSNAME.INNER || modifiers.offset)
   ) {
-    anchorBody = el;
+    ANCHOR.body = el;
     if (modifiers.offset) {
-      anchorOffset = value;
+      ANCHOR.offset = value;
     }
+  }
+};
+
+const bindAnchor = method => {
+  let anchorElementList = document.querySelectorAll(
+    `.${ANCHOR.CLASSNAME.OUTER} .${ANCHOR.CLASSNAME.INNER}`
+  );
+  if (anchorElementList.length) {
+    anchorElementList.forEach(anchorEl => {
+      anchorEl[`${method}EventListener`]('click', () => {
+        goAnchor(anchorEl.dataset.href);
+      });
+    });
   }
 };
 
 const BalmUI_AnchorDirective = {
   name: 'anchor',
   bind(el, binding) {
-    let { value, arg } = binding;
-
-    switch (arg) {
-      case 'href':
-        el.dataset.href = value;
-        el.addEventListener('click', () => {
-          goAnchor(value);
-        });
-        break;
-      case 'id':
-        el.setAttribute('id', value);
-        break;
-      default:
-    }
+    updateAnchor('add', el, binding);
   },
   inserted(el, binding) {
     initAnchor(el, binding);
+    if (binding.modifiers.html) {
+      bindAnchor('add');
+    }
   },
-  componentUpdated(el, binding) {
-    let anchorElementList = document.querySelectorAll(`.${ANCHOR_CLASSNAME}`);
-    if (anchorElementList.length) {
-      anchorElementList.forEach(anchorEl => {
-        anchorEl.addEventListener('click', () => {
-          goAnchor(anchorEl.dataset.href);
-        });
-      });
+  unbind(el, binding) {
+    updateAnchor('remove', el, binding);
+    if (binding.modifiers.html) {
+      bindAnchor('remove');
     }
   }
 };

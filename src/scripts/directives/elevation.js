@@ -35,25 +35,12 @@ const updateElevation = (method, el, { value, modifiers }) => {
       classes.push(defaultClass);
       classes.push(ELEVATION.TRANSITION);
 
-      switch (method) {
-        case 'add':
-          el.addEventListener('mouseenter', () => {
-            el.classList.add(hoverClass);
-          });
-          el.addEventListener('mouseleave', () => {
-            el.classList.remove(hoverClass);
-          });
-          break;
-        case 'remove':
-          el.removeEventListener('mouseenter', () => {
-            el.classList.add(hoverClass);
-          });
-          el.removeEventListener('mouseleave', () => {
-            el.classList.remove(hoverClass);
-          });
-          break;
-        default:
-      }
+      el[`${method}EventListener`]('mouseenter', () => {
+        el.classList.add(hoverClass);
+      });
+      el[`${method}EventListener`]('mouseleave', () => {
+        el.classList.remove(hoverClass);
+      });
     } else {
       console.warn('Invalid elevation value');
     }

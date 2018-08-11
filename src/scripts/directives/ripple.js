@@ -25,18 +25,22 @@ const updateRipple = (method, el, { value }) => {
   el.classList[method](...classes);
 };
 
+const initRipple = (el, { arg, modifiers }) => {
+  if (arg !== 'cssOnly') {
+    const ripple = new MDCRipple(el);
+    if (modifiers.unbounded) {
+      ripple.unbounded = true;
+    }
+  }
+};
+
 const BalmUI_RippleDirective = {
   name: 'ripple',
   bind(el, binding) {
     updateRipple('add', el, binding);
   },
   inserted(el, binding) {
-    if (binding.arg !== 'cssOnly') {
-      const ripple = new MDCRipple(el);
-      if (binding.modifiers.unbounded) {
-        ripple.unbounded = true;
-      }
-    }
+    initRipple(el, binding);
   },
   unbind(el, binding) {
     updateRipple('remove', el, binding);

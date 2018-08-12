@@ -6478,7 +6478,7 @@ marked@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/marked/-/marked-0.4.0.tgz#9ad2c2a7a1791f10a852e0112f77b571dce10c66"
 
-material-components-web@0.38.0:
+material-components-web@^0.38.0:
   version "0.38.0"
   resolved "https://registry.yarnpkg.com/material-components-web/-/material-components-web-0.38.0.tgz#036f358c1f67e2d5bdedfce4b958aa7b3d244ffb"
   dependencies:

@@ -30,6 +30,10 @@ var level1 = [
   'slider',
   'snackbar',
   'switch',
+  'tab',
+  'tab-bar',
+  'tab-indicator',
+  'tab-scroller',
   'textfield',
   'toolbar',
   'top-app-bar'

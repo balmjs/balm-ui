@@ -14,7 +14,7 @@ var DMC_COMPONENTS = [
   'button',
   'card',
   'checkbox',
-  'chips',
+  'chips', // New in mdc@0.30.0
   'dialog',
   'drawer',
   'elevation',
@@ -22,9 +22,9 @@ var DMC_COMPONENTS = [
   'floating-label',
   'form-field',
   'grid-list',
-  'icon-button',
-  'icon-toggle',
-  'image-list',
+  'icon-button', // New in mdc@0.36.0
+  'icon-toggle', // Deprecated in mdc@0.36.0
+  'image-list', // New in mdc@0.33.0
   'layout-grid',
   'line-ripple',
   'linear-progress',
@@ -40,11 +40,15 @@ var DMC_COMPONENTS = [
   'slider',
   'snackbar',
   'switch',
-  'tabs',
+  'tabs', // Deprecated in mdc@0.38.0
+  'tab', // New in mdc@0.38.0
+  'tab-bar', // New in mdc@0.38.0
+  'tab-indicator', // New in mdc@0.38.0
+  'tab-scroller', // New in mdc@0.38.0
   'textfield',
   'theme',
   'toolbar',
-  'top-app-bar',
+  'top-app-bar', // New in mdc@0.32.0
   'typography'
 ];
 

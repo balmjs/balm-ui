@@ -24,3 +24,20 @@
 
 - `<ui-item-text>`
 - `<ui-item-subtext>`
+
+```html
+<!-- Default List -->
+<ui-list>
+  <ui-item>
+    <ui-item-text><!-- Primary text --></ui-item-text>
+  </ui-item>
+</ui-list>
+
+<!-- Two-Line List -->
+<ui-list twoLine>
+  <ui-item>
+    <ui-item-text><!-- Primary text --></ui-item-text>
+    <ui-item-subtext><!-- Secondary text --></ui-item-subtext>
+  </ui-item>
+</ui-list>
+```

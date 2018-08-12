@@ -1,20 +1,22 @@
 <template>
   <ui-form-field :block="block" :alignEnd="alignEnd">
     <slot name="before"></slot>
-    <div class="mdc-switch">
-      <input :id="id"
-             v-model="toggleValue"
-             type="checkbox"
-             class="mdc-switch__native-control"
-             role="switch"
-             :name="name"
-             :true-value="trueValue"
-             :false-value="falseValue"
-             :disabled="disabled"
-             v-bind="attrs"
-             @change="handleChange">
-      <div class="mdc-switch__background">
-        <div class="mdc-switch__knob"></div>
+    <div ref="switch" :class="className">
+      <div class="mdc-switch__track"></div>
+      <div class="mdc-switch__thumb-underlay">
+        <div class="mdc-switch__thumb">
+          <input :id="id"
+            v-model="toggleValue"
+            type="checkbox"
+            class="mdc-switch__native-control"
+            role="switch"
+            :name="name"
+            :true-value="trueValue"
+            :false-value="falseValue"
+            :disabled="disabled"
+            v-bind="attrs"
+            @change="handleChange">
+        </div>
       </div>
     </div>
     <label :for="id">
@@ -25,6 +27,7 @@
 </template>
 
 <script>
+import { MDCSwitch } from '../../../material-components-web/switch';
 import UiFormField from './form-field';
 import formFieldMixin from '../../mixins/form-field';
 import elementMixin from '../../mixins/element';
@@ -75,10 +78,21 @@ export default {
       toggleValue: this.model
     };
   },
+  computed: {
+    className() {
+      return {
+        'mdc-switch': true,
+        'mdc-switch--disabled': this.disabled
+      };
+    }
+  },
   watch: {
     model(val) {
       this.toggleValue = val;
     }
+  },
+  mounted() {
+    new MDCSwitch(this.$refs.switch);
   },
   methods: {
     handleChange() {

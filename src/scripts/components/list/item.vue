@@ -6,7 +6,16 @@
         <img v-if="firstImage" :src="firstImage">
       </slot>
     </span>
-    <slot><!-- Item Text --></slot>
+
+    <template v-if="$parent.twoLine">
+      <span class="mdc-list-item__text">
+        <slot><!-- Item text --></slot>
+      </span>
+    </template>
+    <template v-else>
+      <slot><!-- Item text --></slot>
+    </template>
+
     <span v-if="hasLastTile" class="mdc-list-item__meta">
       <slot name="after">
         {{ lastText }}

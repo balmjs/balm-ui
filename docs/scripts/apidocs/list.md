@@ -5,12 +5,13 @@
 
 #### Props
 
-| Name           | Type      | Default | Description                                                                                                                                  |
-| -------------- | --------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| nonInteractive | `Boolean` | `false` | Optional, disables interactivity affordances.                                                                                                |
-| dense          | `Boolean` | `false` | Optional, styles the density of the list, making it appear more compact.                                                                     |
-| avatar         | `Boolean` | `false` | Optional, configures the leading tiles of each row to display images instead of icons. This will make the graphics of the list items larger. |
-| twoLine        | `Boolean` | `false` | Optional, modifier to style list with two lines (primary and secondary lines).                                                               |
+| Name            | Type      | Default | Description                                                                                                                                  |
+| --------------- | --------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| nonInteractive  | `Boolean` | `false` | Optional, disables interactivity affordances.                                                                                                |
+| dense           | `Boolean` | `false` | Optional, styles the density of the list, making it appear more compact.                                                                     |
+| avatar          | `Boolean` | `false` | Optional, configures the leading tiles of each row to display images instead of icons. This will make the graphics of the list items larger. |
+| twoLine         | `Boolean` | `false` | Optional, modifier to style list with two lines (primary and secondary lines).                                                               |
+| singleSelection | `Boolean` | `false` | The list can handle selecting/deselecting list elements based on click or keyboard action.                                                   |
 
 #### Slots
 

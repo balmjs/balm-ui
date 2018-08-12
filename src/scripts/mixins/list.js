@@ -1,3 +1,5 @@
+import { MDCList } from '../../material-components-web/list';
+
 export default {
   props: {
     // UI attributes
@@ -16,7 +18,16 @@ export default {
     twoLine: {
       type: Boolean,
       default: false
+    },
+    singleSelection: {
+      type: Boolean,
+      default: false
     }
+  },
+  data() {
+    return {
+      $list: null
+    };
   },
   computed: {
     className() {
@@ -27,6 +38,14 @@ export default {
         'mdc-list--avatar-list': this.avatar,
         'mdc-list--two-line': this.twoLine
       };
+    }
+  },
+  mounted() {
+    if (!this.$list) {
+      this.$list = new MDCList(this.$el);
+      if (this.singleSelection) {
+        this.$list.singleSelection = true;
+      }
     }
   }
 };

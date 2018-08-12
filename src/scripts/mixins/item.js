@@ -34,8 +34,9 @@ export default {
       }
     },
     checkLastTile() {
-      let hasMultiValue = [this.lastText, this.lastIcon, this.lastImage].filter(value => value)
-        .length > 1;
+      let hasMultiValue =
+        [this.lastText, this.lastIcon, this.lastImage].filter(value => value)
+          .length > 1;
 
       if (hasMultiValue) {
         console.warn(

@@ -12,10 +12,11 @@ $mdc-autocomplete-item-selected-bgcolor: rgba(
 .mdc-autocomplete {
   .mdc-textfield__expand {
     position: absolute;
-    top: 48px;
     z-index: 999;
+    top: 48px;
 
     display: none;
+
     width: 100%;
   }
   &.mdc-autocomplete--expand {
@@ -30,21 +31,26 @@ $mdc-autocomplete-item-selected-bgcolor: rgba(
 .ui-autocomplete__list li {
   margin: 0;
   padding: 0;
-  border: 0;
+
   list-style: none;
+
+  border: 0;
 }
 
 .ui-autocomplete__list {
   position: relative;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  max-height: 210px;
+
+  text-align: left;
+
   border-width: 0 1px 1px;
   border-style: solid;
   border-color: $mdc-autocomplete-outlined-idle-border;
   background-color: white;
-
-  overflow-x: hidden;
-  overflow-y: auto;
-  max-height: 210px;
-  text-align: left;
   li {
     line-height: 30px;
 

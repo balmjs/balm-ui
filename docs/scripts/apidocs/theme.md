@@ -5,10 +5,10 @@ $themeColor(style);
 $setTheme(style, value);
 ```
 
-| Param | Type     | Default | Description       |
-| ----- | -------- | ------- | ----------------- |
-| style | `String` | `null`  | Theme style name  |
-| value | `String` | `null`  | Theme color value |
+| Param | Type     | Default | Description        |
+| ----- | -------- | ------- | ------------------ |
+| style | `String` | `null`  | Theme style name.  |
+| value | `String` | `null`  | Theme color value. |
 
 #### Theme styles
 
@@ -31,11 +31,11 @@ $textColor(style, tone);
 $setTextTheme(style, tone, value);
 ```
 
-| Param | Type   | Default        | Description      |
-| ----- | ------ | -------------- | ---------------- |
-| style | String | `null`         | Text style name  |
-| tone  | String | `'background'` | Theme tone name  |
-| value | String | `null`         | Text color value |
+| Param | Type   | Default        | Description       |
+| ----- | ------ | -------------- | ----------------- |
+| style | String | `null`         | Text style name.  |
+| tone  | String | `'background'` | Theme tone name.  |
+| value | String | `null`         | Text color value. |
 
 #### Text styles
 
@@ -52,3 +52,15 @@ $setTextTheme(style, tone, value);
 - dark
 
 > You can overwrite theme by `$setTheme` and `$setTextTheme` methods.
+
+### 2.3 Sass
+
+| Sass Variable             | Description                                              |
+| ------------------------- | -------------------------------------------------------- |
+| `$mdc-theme-primary`      | Sets the text color to the theme primary color.          |
+| `$mdc-theme-secondary`    | Sets the text color to the theme secondary color.        |
+| `$mdc-theme-background`   | Sets the background color to the theme background color. |
+| `$mdc-theme-surface`      | Sets the surface color to the theme surface color.       |
+| `$mdc-theme-on-primary`   | Sets the text color to the theme on-primary color.       |
+| `$mdc-theme-on-secondary` | Sets the text color to the theme on-secondary color.     |
+| `$mdc-theme-on-surface`   | Sets the text color to the theme on-surface color.       |

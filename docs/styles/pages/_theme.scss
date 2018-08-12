@@ -26,7 +26,9 @@
     transform: translateY(100%);
     transition: mdc-animation-exit-temporary(transform, 150ms);
     @include mdc-linear-progress-bar-color($demo-toolbar-progress-bar-color);
-    @include mdc-linear-progress-buffer-color($demo-toolbar-progress-buffer-color);
+    @include mdc-linear-progress-buffer-color(
+      $demo-toolbar-progress-buffer-color
+    );
   }
   .demo-toolbar-progress-bar--active {
     transform: none;
@@ -53,7 +55,7 @@
   .demo-component-section {
     position: relative;
   }
-  .demo-component-section+.demo-component-section {
+  .demo-component-section + .demo-component-section {
     margin-top: $demo-section-margin;
   }
   .demo-component-section::before {
@@ -83,7 +85,7 @@
   } //
   // CSS class demo
   //
-  .demo-theme-color-section+.demo-theme-color-section {
+  .demo-theme-color-section + .demo-theme-color-section {
     margin-top: 36px;
   }
   .demo-theme-color-section__row {
@@ -142,7 +144,7 @@
   } //
   // Button demo
   //
-  .demo-fieldset--button+.demo-fieldset--button {
+  .demo-fieldset--button + .demo-fieldset--button {
     margin-top: 16px;
   }
   .demo-button__code {
@@ -173,7 +175,7 @@
   .demo-checkbox-toggle-button {
     margin-right: 10px;
   }
-  .demo-checkbox-wrapper+.demo-checkbox-toggle-button {
+  .demo-checkbox-wrapper + .demo-checkbox-toggle-button {
     margin-left: 20px;
   } //
   // Dialog demo
@@ -231,7 +233,7 @@
   .demo-linear-progress-row {
     margin: 32px 0;
   }
-  .demo-linear-progress-row+.demo-linear-progress-row {
+  .demo-linear-progress-row + .demo-linear-progress-row {
     margin-top: 64px;
   } //
   // Radio Button demo
@@ -251,7 +253,7 @@
   } //
   // Tab Bar demo
   //
-  .demo-figure--tab-bar+.demo-figure--tab-bar {
+  .demo-figure--tab-bar + .demo-figure--tab-bar {
     margin-top: 36px;
   }
   .demo-tab-bar {
@@ -272,8 +274,7 @@
     background-color: $material-color-grey-400;
   }
   .demo-theme-list {
-    @include mdc-theme-prop(color,
-    text-primary-on-light);
+    @include mdc-theme-prop(color, text-primary-on-light);
   } //
   // Radios
   //
@@ -288,15 +289,45 @@
     border-radius: 50%;
   }
   [data-theme='baseline'] .demo-theme-color-radio__inner {
-    border-color: $material-color-deep-purple-a700 $material-color-teal-a400 $material-color-teal-a400 $material-color-deep-purple-a700;
+    border-color: $material-color-deep-purple-a700 $material-color-teal-a400
+      $material-color-teal-a400 $material-color-deep-purple-a700;
   }
   [data-theme='black'] .demo-theme-color-radio__inner {
-    border-color: $material-color-grey-900 $material-color-light-green-a700 $material-color-light-green-a700 $material-color-grey-900;
+    border-color: $material-color-grey-900 $material-color-light-green-a700
+      $material-color-light-green-a700 $material-color-grey-900;
   }
   [data-theme='dark'] .demo-theme-color-radio__inner {
-    border-color: $material-color-amber-300 $material-color-pink-400 $material-color-pink-400 $material-color-amber-300;
+    border-color: $material-color-amber-300 $material-color-pink-400
+      $material-color-pink-400 $material-color-amber-300;
   }
   [data-theme='shrine'] .demo-theme-color-radio__inner {
     border-color: #442b2d #fcb8ab #fcb8ab #442b2d;
+  }
+}
+
+.demo--theme-sass {
+  width: 100%;
+  height: 360px;
+  margin-top: 20px;
+  border: 1px solid;
+  .demo--theme-sass-inner {
+    width: 85%;
+    height: 75%;
+    margin: 0 auto;
+    border: 1px solid;
+  }
+  .demo--theme-sass-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+    border: 1px solid;
+    span {
+      margin: 5px 10px;
+      padding: 10px;
+      border: 1px solid;
+    }
   }
 }

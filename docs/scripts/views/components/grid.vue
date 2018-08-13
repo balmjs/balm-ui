@@ -172,7 +172,7 @@
           </ui-accordion>
 
           <h2 class="demo-grid-legend">1.2 Fixed column width layout grid (Widescreen Only)</h2>
-          <template v-if="isWidescreen">
+          <template v-if="isWideScreen">
             <ui-grid>
               <ui-grid-cell>
                 <div class="demo-controls">
@@ -244,7 +244,7 @@
 <script>
 import snippets from '../../mixins/snippets';
 
-const widescreenSize = 1440;
+const wideScreenSize = 1440;
 
 const gutterOptions = [
   {
@@ -299,7 +299,7 @@ export default {
         gutter: '16px',
         width: '72px'
       },
-      isWidescreen: false
+      isWideScreen: false
     };
   },
   created() {
@@ -321,7 +321,7 @@ export default {
       if (this.$refs.ruler) {
         this.$refs.ruler.textContent = window.innerWidth + 'px ' + size;
       }
-      this.isWidescreen = window.innerWidth >= widescreenSize;
+      this.isWideScreen = window.innerWidth >= wideScreenSize;
     }
   }
 };

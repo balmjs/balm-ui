@@ -2,7 +2,7 @@
   <ui-tab-bar
     :active="active"
     @change="handleChange">
-    <ui-tab-scroller>
+    <ui-tab-scroller :align="align">
       <ui-tab v-for="(tabItem, tabIndex) in items"
         :key="tabIndex"
         :type="type"
@@ -22,6 +22,7 @@ import UiTabScroller from './tab-scroller';
 import UiTab from './tab';
 import tabsMixin from '../../mixins/tabs';
 import tabMixin from '../../mixins/tab';
+import tabScrollerMixin from '../../mixins/tab-scroller';
 
 // Define constants
 const DEFAULT_TAB_KEYS = {
@@ -37,7 +38,7 @@ export default {
     UiTabScroller,
     UiTab
   },
-  mixins: [tabsMixin, tabMixin],
+  mixins: [tabsMixin, tabMixin, tabScrollerMixin],
   props: {
     // States
     items: {

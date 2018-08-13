@@ -24,6 +24,7 @@ export default {
     event: UI_TABS.EVENT.CHANGE
   },
   props: {
+    // States
     scrollX: {
       type: Number,
       default: 0
@@ -58,12 +59,12 @@ export default {
   methods: {
     increment(scrollX = 0) {
       let offsetScrollX = +scrollX;
-      console.log('increment', offsetScrollX);
+      // console.log('increment', offsetScrollX);
       this.$tabScroller.incrementScroll(offsetScrollX);
-      // TODO
+      // TODO: sync scrollX
       this.$nextTick(() => {
         this.scrollValue = this.$tabScroller.getScrollPosition();
-        console.log(this.scrollValue);
+        // console.log(this.scrollValue);
         this.$emit(UI_TABS.EVENT.CHANGE, this.scrollValue);
       });
     }

@@ -35,7 +35,10 @@
       </ui-top-app-bar>
       <!-- content -->
       <div class="balmui-body">
-        <ui-persistent-drawer v-model="open" class="balmui-menu" menuSelector="#balmui-menu">
+        <ui-persistent-drawer
+          v-model="open"
+          class="balmui-menu"
+          menuSelector="#balmui-menu">
           <ui-drawer-content>
             <ui-list-nav class="catalog-list">
               <template slot-scope="{className}">
@@ -63,7 +66,7 @@
             <ui-list-divider></ui-list-divider>
           </ui-drawer-content>
         </ui-persistent-drawer>
-        <main class="balmui-content" v-anchor.offset="60">
+        <main ref="body" class="balmui-content" v-anchor.offset="60">
           <router-view></router-view>
         </main>
       </div>
@@ -102,10 +105,11 @@ export default {
   },
   watch: {
     $route() {
-      let content = this.$el.querySelector('.balmui-content');
-      if (content) {
-        content.scrollTop = 0;
-      }
+      this.$nextTick(() => {
+        if (this.$refs.body) {
+          this.$refs.body.scrollTop = 0;
+        }
+      });
 
       this.open = this.noLayout ? false : window.innerWidth >= 1024;
     }
@@ -117,12 +121,12 @@ export default {
     });
   },
   methods: {
-    isActiveLang(lang) {
-      return lang === this.$i18n.locale;
-    },
-    switchLang(lang) {
-      this.$i18n.locale = lang;
-    },
+    // isActiveLang(lang) {
+    //   return lang === this.$i18n.locale;
+    // },
+    // switchLang(lang) {
+    //   this.$i18n.locale = lang;
+    // },
     handleMenu() {
       if (window.innerWidth < 1024) {
         this.open = false;

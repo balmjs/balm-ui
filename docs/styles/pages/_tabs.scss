@@ -25,7 +25,7 @@
   /* tab bar */
   .hero-demo-tab-bar {
     background-color: #f2f2f2;
-    @include mdc-tab-bar-width(420px);
+    max-width: 420px;
   }
   .custom-demo-tab-bar {
     .mdc-tab {
@@ -58,7 +58,11 @@
   }
   @for $i from 1 through 34 {
     .demo-cube:nth-child(#{$i}) {
-      background-color: rgb(10 + random(230), 10 + random(230), 10 + random(230));
+      background-color: rgb(
+        10 + random(230),
+        10 + random(230),
+        10 + random(230)
+      );
     }
   }
   .demo-controller {

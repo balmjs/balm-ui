@@ -1,3 +1,6 @@
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import VueMeta from 'vue-meta';
 import BlankLayout from '../views/layouts/blank';
 import guideRoutes from './guide';
 import layoutsRoutes from './layouts';
@@ -12,6 +15,9 @@ const Utils = () => import('../views/utils');
 
 import Home from '../views/home';
 // const Test = import('../views/test');
+
+Vue.use(VueRouter);
+Vue.use(VueMeta);
 
 const routes = [
   {
@@ -90,4 +96,22 @@ const routes = [
   // }
 ];
 
-export default routes;
+const router = new VueRouter({
+  routes
+});
+
+const CLASS_NAMESPACE = 'balmui';
+
+router.afterEach((to, from) => {
+  let pageClassList = document.querySelector('html').classList;
+  if (from.name) {
+    let fromName = from.name.replace('.', '-');
+    pageClassList.remove(`${CLASS_NAMESPACE}--${fromName}`);
+  }
+  if (to.name) {
+    let toName = to.name.replace('.', '-');
+    pageClassList.add(`${CLASS_NAMESPACE}--${toName}`);
+  }
+});
+
+export default router;

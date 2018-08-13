@@ -1,33 +1,23 @@
 ```html
-<ui-tabs></ui-tabs>
 <ui-tab-bar><!-- the tab components --></ui-tab-bar>
-<ui-tab-bar-scroller><!-- the tab components --></ui-tab-bar-scroller>
 ```
 
-> `<ui-tabs>` is shorthand for `<ui-tab-bar>`.
+#### `<ui-tab-bar>` & `<ui-tabs>` Props
 
-#### Props
+| Name             | Type     | Default | Description                                 |
+| ---------------- | -------- | ------- | ------------------------------------------- |
+| active (v-model) | `Number` | `0`     | Mandatory.                                  |
+| align            | `String` | `null`  | Tab alignment. `['start', 'center', 'end']` |
 
-| Name             | Type     | Default  | Description                    |
-| ---------------- | -------- | -------- | ------------------------------ |
-| active (v-model) | `Number` | `0`      | Mandatory.                     |
-| type             | `String` | `'text'` | The permutation of tab labels. |
+#### `<ui-tab-bar>` Slots
 
-- type
+| Name      | Description                                                     |
+| --------- | --------------------------------------------------------------- |
+| (default) | The default slot holds the tab components and can contain HTML. |
 
-| Name     | Description    |
-| -------- | -------------- |
-| `'text'` | text only      |
-| `'icon'` | icon only      |
-| `'both'` | text with icon |
+> `<ui-tabs>` has not slot.
 
-#### Slots
-
-| Name      | Description                                                                                |
-| --------- | ------------------------------------------------------------------------------------------ |
-| (default) | The default slot holds the tab components and can contain HTML. (`<ui-tabs>` has not slot) |
-
-#### Events
+#### `<ui-tab-bar>` & `<ui-tabs>` Events
 
 | Name   | Type                      | Description                    |
 | ------ | ------------------------- | ------------------------------ |
@@ -37,9 +27,11 @@
 
 ```html
 // Automatic
+<ui-tab-bar v-model="active"></ui-tab-bar>
 <ui-tabs v-model="active"></ui-tabs>
 
 // Manual
+<ui-tab-bar :active="active" @change="$balmUI.onChange('active', $event)"></ui-tab-bar>
 <ui-tabs :active="active" @change="$balmUI.onChange('active', $event)"></ui-tabs>
 ```
 
@@ -62,11 +54,10 @@
 {
   text: 'text', // label text
   icon: 'icon', // label icon
-  url: 'url'    // label link (for hash symbol)
 }
 ```
 
-- `<ui-tabs>` = `<ui-tab-bar>` + `<ui-tab>`
+> `<ui-tabs>` is shorthand for `<ui-tab-bar>` and `<ui-tab>`.
 
 ```html
 <!-- full syntax -->

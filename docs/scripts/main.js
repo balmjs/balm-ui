@@ -1,13 +1,15 @@
 import './polyfill';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import axios from 'axios';
 import VueMeta from 'vue-meta';
 // import VueI18n from 'vue-i18n';
+import $http from './plugins/$http';
+// import $bus from './plugins/$bus';
+// import $store from './plugins/$store';
 import BalmUI from '../../src/scripts/index'; // 'balm-ui'
 import BalmUIPlus from '../../src/scripts/plus'; // 'balm-ui-plus'
 import BalmUIMigrate from '../../src/scripts/migrate'; // 'balm-ui-migrate'
-import routes from './routes/index';
+import router from './routes';
 import App from './views/layouts/app';
 import UiMarkdown from './components/markdown';
 import UiApidocs from './components/apidocs';
@@ -20,15 +22,14 @@ import prismjs from 'prismjs';
 // ready translated locales
 // import { locales } from './config/lang';
 
-const CLASS_NAMESPACE = 'balmui';
 const DEBUG = process.env.NODE_ENV === 'production' ? false : true;
 
 Vue.config.productionTip = false;
 Vue.prototype.DEBUG = DEBUG;
-Vue.use(VueRouter);
-Vue.prototype.$http = axios;
-Vue.use(VueMeta);
 // Vue.use(VueI18n);
+Vue.use($http);
+// Vue.use($bus);
+// Vue.use($store);
 Vue.use(BalmUI);
 Vue.use(BalmUIPlus, {
   validator: validatorRules
@@ -75,22 +76,6 @@ Vue.prototype.$docs = {
   }
 };
 Vue.prototype.$domain = DEBUG ? '' : '//material.balmjs.com';
-
-const router = new VueRouter({
-  routes
-});
-
-router.afterEach((to, from) => {
-  let pageClassList = document.querySelector('html').classList;
-  if (from.name) {
-    let fromName = from.name.replace('.', '-');
-    pageClassList.remove(`${CLASS_NAMESPACE}--${fromName}`);
-  }
-  if (to.name) {
-    let toName = to.name.replace('.', '-');
-    pageClassList.add(`${CLASS_NAMESPACE}--${toName}`);
-  }
-});
 
 // Create VueI18n instance with options
 // const i18n = new VueI18n({

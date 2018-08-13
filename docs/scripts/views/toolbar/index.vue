@@ -20,10 +20,6 @@
 
     <div :class="$tt('body2')">
       <h4 :class="$tt('headline4')">1. Example</h4>
-      <p>
-        To best show the functionality of toolbars, we put both demos in iframes.
-        Click the links above the iframe to view the demo in a full browser window.
-      </p>
       <ui-list twoLine nonInteractive>
         <ui-item>
           <ui-item-text>

@@ -1,18 +1,14 @@
 ```html
-<ui-toolbar>
-  <ui-toolbar-row>
-    <ui-toolbar-section fit align="start">
-      <ui-toolbar-title>Title</ui-toolbar-title>
-    </ui-toolbar-section>
-    <ui-toolbar-section align="end">
-      <div>
-        <ui-tab-bar v-model="active" class="custom-tab-bar-in-toolbar">
-          <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
-            {{ tab.label }}
-          </ui-tab>
-        </ui-tab-bar>
-      </div>
-    </ui-toolbar-section>
-  </ui-toolbar-row>
-</ui-toolbar>
+<ui-tab-bar class="hero-demo-tab-bar" v-model="active">
+  <ui-tab v-for="(item, index) in list" :key="index">
+    {{ item }}
+  </ui-tab>
+</ui-tab-bar>
+```
+
+```css
+.hero-demo-tab-bar {
+  background-color: #f2f2f2;
+  max-width: 420px;
+}
 ```

@@ -1,9 +1,24 @@
 ```html
-<ui-tab-bar type="1" v-model="active">
-  <ui-tab v-for="(tab, index) in tabs" :key="index"
-    :icon="tab.icon" :href="tab.url">
-  </ui-tab>
-</ui-tab-bar>
+<h6 :class="$tt('headline6')">Text Label Width-Matching Indicator</h6>
+<div class="example">
+  <ui-tab-bar v-model="active">
+    <ui-tab v-for="(tab, index) in tabs" :key="index" contentIndicator>
+      {{ tab.text }}
+    </ui-tab>
+  </ui-tab-bar>
+</div>
+
+<h6 :class="$tt('headline6')">Text Label with Icon Indicator</h6>
+<div class="example">
+  <ui-tab-bar v-model="active">
+    <ui-tab v-for="(tab, index) in tabs" :key="index">
+      {{ tab.text }}
+      <template slot="indicator">
+        <ui-tab-indicator type="icon">{{ tab.indicator }}</ui-tab-indicator>
+      </template>
+    </ui-tab>
+  </ui-tab-bar>
+</div>
 ```
 
 ```js
@@ -13,16 +28,19 @@ export default {
       active: 0,
       tabs: [
         {
-          icon: 'phone',
-          url: '#recents'
-        },
-        {
+          text: 'Favorites',
           icon: 'favorite',
-          url: '#favorites'
+          indicator: 'crop_square'
         },
         {
-          icon: 'person_pin',
-          url: '#nearby'
+          text: 'Recents',
+          icon: 'phone',
+          indicator: 'panorama_fish_eye'
+        },
+        {
+          text: 'Nearby',
+          icon: 'near_me',
+          indicator: 'change_history'
         }
       ]
     };

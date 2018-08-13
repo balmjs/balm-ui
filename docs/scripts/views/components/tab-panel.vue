@@ -13,11 +13,17 @@
       <ui-panel>Panel Two</ui-panel>
       <ui-panel>Panel Three</ui-panel>
     </ui-panels>
+    <ui-accordion>
+      <ui-markdown :text="code[9]"></ui-markdown>
+    </ui-accordion>
   </section>
 </template>
 
 <script>
 export default {
+  props: {
+    code: Array
+  },
   data() {
     return {
       active: 0

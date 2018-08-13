@@ -9,6 +9,9 @@
         </ui-tab>
       </ui-tab-bar>
     </div>
+    <ui-accordion>
+      <ui-markdown :text="code[5]"></ui-markdown>
+    </ui-accordion>
 
     <template v-if="isLargeScreen">
       <h6 :class="$tt('headline6')">Start Alignment</h6>
@@ -37,6 +40,9 @@
           </ui-tab>
         </ui-tab-bar>
       </div>
+      <ui-accordion>
+        <ui-markdown :text="code[6]"></ui-markdown>
+      </ui-accordion>
     </template>
     <template v-else>
       <h6 :class="$tt('headline6')">Alignment Demos</h6>
@@ -55,6 +61,9 @@
         </ui-tab>
       </ui-tab-bar>
     </div>
+    <ui-accordion>
+      <ui-markdown :text="code[7]"></ui-markdown>
+    </ui-accordion>
   </section>
 </template>
 
@@ -70,7 +79,8 @@ export default {
     isLargeScreen: {
       type: Boolean,
       default: false
-    }
+    },
+    code: Array
   },
   data() {
     return {

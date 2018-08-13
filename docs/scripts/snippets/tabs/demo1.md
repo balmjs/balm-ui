@@ -1,9 +1,22 @@
 ```html
-<ui-tab-bar v-model="active">
-  <ui-tab v-for="(tab, index) in tabs" :key="index" :href="tab.url">
-    {{ tab.text }}
-  </ui-tab>
-</ui-tab-bar>
+<h6 :class="$tt('headline6')">Text Label</h6>
+<div class="demo">
+  <ui-tab-bar v-model="active">
+    <ui-tab v-for="(tab, index) in tabs" :key="index">
+      {{ tab.text }}
+    </ui-tab>
+  </ui-tab-bar>
+</div>
+
+<h6 :class="$tt('headline6')">Icon</h6>
+<div class="demo">
+  <ui-tab-bar v-model="active">
+    <ui-tab v-for="(tab, index) in tabs" :key="index"
+      type="icon"
+      :icon="tab.icon">
+    </ui-tab>
+  </ui-tab-bar>
+</div>
 ```
 
 ```js
@@ -13,16 +26,16 @@ export default {
       active: 0,
       tabs: [
         {
-          text: 'Item One',
-          url: '#one'
+          text: 'Favorites',
+          icon: 'favorite'
         },
         {
-          text: 'Item Two',
-          url: '#two'
+          text: 'Recents',
+          icon: 'phone'
         },
         {
-          text: 'Item Three',
-          url: '#three'
+          text: 'Nearby',
+          icon: 'near_me'
         }
       ]
     };

@@ -22,11 +22,17 @@
           @click="$refs.scroller.increment(+50)">+50</button>
       </div>
     </div>
+    <ui-accordion>
+      <ui-markdown :text="code[8]"></ui-markdown>
+    </ui-accordion>
   </section>
 </template>
 
 <script>
 export default {
+  props: {
+    code: Array
+  },
   data() {
     return {
       value: 0,

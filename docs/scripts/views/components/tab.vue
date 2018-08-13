@@ -20,6 +20,9 @@
         </ui-tab>
       </ui-tab-bar>
     </div>
+    <ui-accordion>
+      <ui-markdown :text="code[1]"></ui-markdown>
+    </ui-accordion>
 
     <h6 :class="$tt('headline6')">Text Label and Icon</h6>
     <div class="demo">
@@ -43,6 +46,9 @@
         </ui-tab>
       </ui-tab-bar>
     </div>
+    <ui-accordion>
+      <ui-markdown :text="code[2]"></ui-markdown>
+    </ui-accordion>
 
     <h6 :class="$tt('headline6')">Text Label Width-Matching Indicator</h6>
     <div class="example">
@@ -64,6 +70,9 @@
         </ui-tab>
       </ui-tab-bar>
     </div>
+    <ui-accordion>
+      <ui-markdown :text="code[3]"></ui-markdown>
+    </ui-accordion>
 
     <h6 :class="$tt('headline6')">Customization</h6>
     <div class="example">
@@ -81,6 +90,9 @@
         </ui-tab>
       </ui-tab-bar>
     </div>
+    <ui-accordion>
+      <ui-markdown :text="code[4]"></ui-markdown>
+    </ui-accordion>
   </section>
 </template>
 
@@ -92,7 +104,8 @@ export default {
       default() {
         return [];
       }
-    }
+    },
+    code: Array
   },
   data() {
     return {
@@ -101,4 +114,3 @@ export default {
   }
 };
 </script>
-

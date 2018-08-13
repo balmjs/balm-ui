@@ -14,10 +14,10 @@
       <ui-markdown :text="code[0]"></ui-markdown>
 
       <h4 :class="$tt('headline4')">1. Example</h4>
-      <ui-tab-demo :tabs="tabs"></ui-tab-demo>
-      <ui-tab-bar-demo :tabs="tabs" :isLargeScreen="isLargeScreen"></ui-tab-bar-demo>
-      <ui-tab-scroller-demo></ui-tab-scroller-demo>
-      <ui-tab-panel-demo></ui-tab-panel-demo>
+      <ui-tab-demo :tabs="tabs" :code="demoCode"></ui-tab-demo>
+      <ui-tab-bar-demo :tabs="tabs" :isLargeScreen="isLargeScreen" :code="demoCode"></ui-tab-bar-demo>
+      <ui-tab-scroller-demo :code="demoCode"></ui-tab-scroller-demo>
+      <ui-tab-panel-demo :code="demoCode"></ui-tab-panel-demo>
 
       <h4 :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="tab"></ui-apidocs>
@@ -72,8 +72,13 @@ export default {
       isLargeScreen: false
     };
   },
+  computed: {
+    demoCode() {
+      return this.code;
+    }
+  },
   created() {
-    this.showCode('tabs', 6);
+    this.showCode('tabs', 9);
   },
   mounted() {
     window.addEventListener('balmResize', this.init);

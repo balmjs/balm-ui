@@ -15,4 +15,4 @@
 | --------- | ------------------------------------------------------------------- |
 | (default) | The default slot holds the tab indicator icon and can contain HTML. |
 
-> `underline` type has not slot. `icon` type only.
+> `underline` type has not slot.

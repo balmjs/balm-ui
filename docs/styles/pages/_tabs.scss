@@ -1,104 +1,70 @@
 .demo--tabs {
-  fieldset {
-    padding: 24px;
-    padding-top: 0;
-    padding-bottom: 16px;
-  }
-
-  fieldset .mdc-button {
-    margin: 16px;
-  }
-
-  .demo-header-toolbar {
-    z-index: 10;
-  }
-
-  .hero button {
-    margin-left: 32px;
-    margin-right: 32px;
-  }
-
-  .demo-buttons {
-    padding: 40px 40px 0 40px;
-  }
-
-  fieldset legend {
-    display: block;
-    padding: 16px;
-    padding-top: 64px;
-    padding-bottom: 24px;
-  }
-
-  .demo-tabs__scroller {
-    margin-top: 64px;
-    padding-bottom: 1px;
-  }
-
-  .demo-title {
-    padding: 0 40px 40px;
-  }
-
-  .mdc-tab-bar-scroller {
-    margin-bottom: 16px;
-  }
-
-  .demo-note {
-    padding: 20px;
-    margin: 20px 0;
-    background-color: #f2f2f2;
-  }
-
-  #dynamic-demo-toolbar h1 {
-    margin-left: 64px;
-  }
-
-  .panels {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-top: 8px;
-  }
-
-  .panel {
-    display: none;
-  }
-
-  .panel.active {
-    display: block;
-  }
-
-  .dots {
+  .demo {
     display: flex;
-    justify-content: flex-start;
-    margin-top: 4px;
-    padding-bottom: 16px;
+    align-items: center;
   }
-
-  .dot {
-    margin: 0 4px;
-    border-radius: 50%;
-    border: 1px solid #64dd17;
-    width: 20px;
-    height: 20px;
+  .demo-tab {
+    flex: 0 1 auto;
   }
-
-  .dot:last-child {
-    margin-right: 0;
+  .custom-tab {
+    @include mdc-tab-text-label-color($material-color-blue-300);
+    @include mdc-tab-icon-color($material-color-orange-300);
+    .custom-tab-indicator {
+      @include mdc-tab-indicator-underline-color($material-color-pink-a700);
+      @include mdc-tab-indicator-underline-height(5px);
+      @include mdc-tab-indicator-underline-top-corner-radius(5px);
+    }
+    .mdc-tab__ripple {
+      @include mdc-states($material-color-pink-100);
+    }
+    &.mdc-tab--active {
+      @include mdc-tab-text-label-color($material-color-blue-900);
+      @include mdc-tab-icon-color($material-color-orange-900);
+    }
   }
-
-  .dot.active {
-    background-color: #64dd17;
-    border-color: #64dd17;
+  /* tab bar */
+  .hero-demo-tab-bar {
+    background-color: #f2f2f2;
+    @include mdc-tab-bar-width(420px);
   }
-
-  .my-modified-toolbar-section {
-    position: absolute;
-    right: 0;
-    bottom: 0;
+  .custom-demo-tab-bar {
+    .mdc-tab {
+      @include mdc-typography(subtitle1);
+      @include mdc-tab-fixed-width(120px);
+      @include mdc-tab-text-label-color($material-color-blue-600);
+      @include mdc-tab-icon-color($material-color-blue-600);
+    }
+    .mdc-tab__ripple {
+      @include mdc-states($material-color-yellow-700);
+    }
+    .mdc-tab--active {
+      @include mdc-tab-text-label-color($material-color-blue-900);
+      @include mdc-tab-icon-color($material-color-blue-900);
+    }
+    .mdc-tab-indicator {
+      @include mdc-tab-indicator-underline-height(5px);
+      @include mdc-tab-indicator-underline-color($material-color-yellow-700);
+    }
   }
-
-  [dir='rtl'] .my-modified-toolbar-section {
-    right: auto;
-    left: 0;
+  /* tab scroller */
+  .demo-scroller {
+    width: 360px;
+    outline: 1px solid $material-color-grey-400;
+  }
+  .demo-cube {
+    width: 43px;
+    height: 43px;
+    margin: 10px;
+  }
+  @for $i from 1 through 34 {
+    .demo-cube:nth-child(#{$i}) {
+      background-color: rgb(10 + random(230), 10 + random(230), 10 + random(230));
+    }
+  }
+  .demo-controller {
+    padding: 10px 0;
+  }
+  .demo-controller-row {
+    padding: 5px 0;
   }
 }

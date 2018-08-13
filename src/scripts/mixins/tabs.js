@@ -10,22 +10,6 @@ export default {
     active: {
       type: Number,
       default: 0
-    },
-    // UI attributes
-    type: {
-      type: String,
-      default: UI_TABS.LABEL.TEXT
-    }
-  },
-  computed: {
-    textOnly() {
-      return this.type === UI_TABS.LABEL.TEXT;
-    },
-    iconOnly() {
-      return this.type === UI_TABS.LABEL.ICON;
-    },
-    textWithIcon() {
-      return this.type === UI_TABS.LABEL.TEXT_WITH_ICON;
     }
   },
   methods: {

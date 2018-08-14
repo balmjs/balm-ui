@@ -16,6 +16,12 @@
       <ui-markdown :text="code[0]"></ui-markdown>
 
       <h4 :class="$tt('headline4')">1. Example</h4>
+      <div>
+        // TODO
+      </div>
+      <!-- <ui-accordion>
+        <ui-markdown :code="code[1]"></ui-markdown>
+      </ui-accordion> -->
 
       <h4 :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="shape" type="directive"></ui-apidocs>

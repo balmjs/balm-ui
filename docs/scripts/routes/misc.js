@@ -4,6 +4,7 @@ const Theme = () => import('../views/plugins/theme');
 const Ripple = () => import('../views/directives/ripple');
 const Elevation = () => import('../views/directives/elevation');
 const Shape = () => import('../views/directives/shape');
+const Anchor = () => import('../views/directives/anchor');
 
 export default [
   {
@@ -35,5 +36,10 @@ export default [
     path: 'shape',
     name: 'others.shape',
     component: Shape
+  },
+  {
+    path: 'anchor',
+    name: 'others.anchor',
+    component: Anchor
   }
 ];

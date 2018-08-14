@@ -1,5 +1,4 @@
-export const OPTIONS = [
-  {
+export const OPTIONS = [{
     label: 'Bread, Cereal, Rice, and Pasta',
     value: 'grains'
   },
@@ -26,8 +25,7 @@ export const OPTIONS = [
   }
 ];
 
-export const PROVINCES = [
-  {
+export const PROVINCES = [{
     value: 1,
     label: 'Beijing'
   },
@@ -43,24 +41,22 @@ export const PROVINCES = [
 
 export const CITIES = [
   [],
-  [
-    {
+  [{
       value: 11,
-      label: '海定'
+      label: 'Haidian'
     },
     {
       value: 12,
-      label: '朝阳'
+      label: 'Chao Yang'
     }
   ],
-  [
-    {
+  [{
       value: 21,
-      label: '黄浦'
+      label: 'Huangpu'
     },
     {
       value: 22,
-      label: '徐汇'
+      label: 'Xuhui'
     }
   ],
   []

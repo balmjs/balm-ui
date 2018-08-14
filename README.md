@@ -118,6 +118,7 @@ Enjoy 👻
 - Ripple
 - Elevation
 - Shape
+- Anchor (:bulb:)
 
 ### Utilities
 

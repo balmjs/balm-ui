@@ -66,18 +66,16 @@ export default {
     }
   },
   mounted() {
-    if (!this.$toolbar) {
-      this.$toolbar = new MDCToolbar(this.$el);
+    this.$toolbar = new MDCToolbar(this.$el);
 
-      this.$toolbar.listen(
-        `MDCToolbar:${UI_TOOLBAR.EVENT.CHANGE}`,
-        ({ detail }) => {
-          this.$emit(UI_TOOLBAR.EVENT.CHANGE, detail.flexibleExpansionRatio); // flexibleExpansionRatio: number
-        }
-      );
+    this.$toolbar.listen(
+      `MDCToolbar:${UI_TOOLBAR.EVENT.CHANGE}`,
+      ({ detail }) => {
+        this.$emit(UI_TOOLBAR.EVENT.CHANGE, detail.flexibleExpansionRatio); // flexibleExpansionRatio: number
+      }
+    );
 
-      this.fixedAdjustContent();
-    }
+    this.fixedAdjustContent();
   },
   methods: {
     fixedAdjustContent() {

@@ -41,11 +41,9 @@ export default {
     }
   },
   mounted() {
-    if (!this.$list) {
-      this.$list = new MDCList(this.$el);
-      if (this.singleSelection) {
-        this.$list.singleSelection = true;
-      }
+    this.$list = new MDCList(this.$el);
+    if (this.singleSelection) {
+      this.$list.singleSelection = true;
     }
   }
 };

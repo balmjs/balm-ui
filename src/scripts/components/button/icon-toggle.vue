@@ -106,7 +106,7 @@ export default {
     }
   },
   mounted() {
-    if (this.canRendering && !this.$iconToggle) {
+    if (this.canRendering) {
       this.$iconToggle = new MDCIconToggle(this.$el);
 
       this.$iconToggle.listen(

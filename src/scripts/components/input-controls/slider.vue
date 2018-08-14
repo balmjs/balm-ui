@@ -105,17 +105,15 @@ export default {
     }
   },
   mounted() {
-    if (!this.$slider) {
-      this.$slider = new MDCSlider(this.$el);
+    this.$slider = new MDCSlider(this.$el);
 
-      this.$slider.listen(`MDCSlider:${UI_SLIDER.EVENT.INPUT}`, () => {
-        this.$emit(UI_SLIDER.EVENT.INPUT, this.$slider.value);
-      });
+    this.$slider.listen(`MDCSlider:${UI_SLIDER.EVENT.INPUT}`, () => {
+      this.$emit(UI_SLIDER.EVENT.INPUT, this.$slider.value);
+    });
 
-      this.$slider.listen(`MDCSlider:${UI_SLIDER.EVENT.CHANGE}`, () => {
-        this.$emit(UI_SLIDER.EVENT.CHANGE, this.$slider.value);
-      });
-    }
+    this.$slider.listen(`MDCSlider:${UI_SLIDER.EVENT.CHANGE}`, () => {
+      this.$emit(UI_SLIDER.EVENT.CHANGE, this.$slider.value);
+    });
   }
 };
 </script>

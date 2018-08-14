@@ -221,7 +221,7 @@ export default {
   mounted() {
     const textfield = this.$el;
 
-    if (!this.$textfield && !this.cssOnly) {
+    if (!this.cssOnly) {
       this.$textfield = new MDCTextField(textfield);
     }
   },

@@ -71,7 +71,7 @@ export default {
     }
   },
   mounted() {
-    if (this.canRendering && !this.$iconButton) {
+    if (this.canRendering) {
       if (this.isToggleButton) {
         this.initToggleState('on');
         this.initToggleState('off');

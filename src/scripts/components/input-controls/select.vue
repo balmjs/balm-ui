@@ -134,7 +134,7 @@ export default {
   mounted() {
     const select = this.$el;
 
-    if (!this.$select && !this.cssOnly) {
+    if (!this.cssOnly) {
       this.$select = new MDCSelect(select);
     }
   },

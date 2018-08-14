@@ -17,18 +17,16 @@ export default {
   },
   mixins: [drawerMixin],
   mounted() {
-    if (!this.$drawer) {
-      this.$drawer = new MDCPersistentDrawer(this.$el);
+    this.$drawer = new MDCPersistentDrawer(this.$el);
 
-      this.init();
+    this.init();
 
-      this.$drawer.listen('MDCPersistentDrawer:open', () =>
-        this.$emit(UI_DRAWER.EVENT.NAV, true)
-      );
-      this.$drawer.listen('MDCPersistentDrawer:close', () =>
-        this.$emit(UI_DRAWER.EVENT.NAV, false)
-      );
-    }
+    this.$drawer.listen('MDCPersistentDrawer:open', () =>
+      this.$emit(UI_DRAWER.EVENT.NAV, true)
+    );
+    this.$drawer.listen('MDCPersistentDrawer:close', () =>
+      this.$emit(UI_DRAWER.EVENT.NAV, false)
+    );
   }
 };
 </script>

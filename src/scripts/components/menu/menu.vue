@@ -113,33 +113,31 @@ export default {
     }
   },
   mounted() {
-    if (!this.$menu) {
-      this.$menu = new MDCMenu(this.$el);
+    this.$menu = new MDCMenu(this.$el);
 
-      // Listen for selected item
-      this.$el.addEventListener(
-        `MDCMenu:${UI_MENU.EVENT.SELECTED}`,
-        ({ detail }) => {
-          let item = detail.item;
-          this.$emit(UI_MENU.EVENT.CHANGE, false);
-          this.$emit(UI_MENU.EVENT.SELECTED, {
-            index: detail.index, // number
-            label: item.textContent.trim(), // string
-            item // HTMLElement
-          });
-        }
-      );
-
-      this.$el.addEventListener(`MDCMenu:${UI_MENU.EVENT.CANCEL}`, () => {
+    // Listen for selected item
+    this.$el.addEventListener(
+      `MDCMenu:${UI_MENU.EVENT.SELECTED}`,
+      ({ detail }) => {
+        let item = detail.item;
         this.$emit(UI_MENU.EVENT.CHANGE, false);
-        this.$emit(UI_MENU.EVENT.CANCEL);
-      });
+        this.$emit(UI_MENU.EVENT.SELECTED, {
+          index: detail.index, // number
+          label: item.textContent.trim(), // string
+          item // HTMLElement
+        });
+      }
+    );
 
-      this.setQuickOpen();
-      this.setAnchorCorner();
-      this.setAnchorMargin();
-      this.setRememberSelection();
-    }
+    this.$el.addEventListener(`MDCMenu:${UI_MENU.EVENT.CANCEL}`, () => {
+      this.$emit(UI_MENU.EVENT.CHANGE, false);
+      this.$emit(UI_MENU.EVENT.CANCEL);
+    });
+
+    this.setQuickOpen();
+    this.setAnchorCorner();
+    this.setAnchorMargin();
+    this.setRememberSelection();
   },
   methods: {
     setQuickOpen(quickOpen = this.quickOpen) {

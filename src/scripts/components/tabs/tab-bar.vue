@@ -24,15 +24,13 @@ export default {
     };
   },
   mounted() {
-    if (!this.$tabBar) {
-      this.$tabBar = new MDCTabBar(this.$el);
+    this.$tabBar = new MDCTabBar(this.$el);
 
-      this.initActivateTab();
+    this.initActivateTab();
 
-      this.$tabBar.listen('MDCTabBar:activated', ({ detail: tab }) => {
-        this.handleChange(tab.index);
-      });
-    }
+    this.$tabBar.listen('MDCTabBar:activated', ({ detail: tab }) => {
+      this.handleChange(tab.index);
+    });
   },
   methods: {
     initActivateTab() {

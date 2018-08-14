@@ -107,13 +107,11 @@ export default {
     }
   },
   mounted() {
-    if (!this.$snackbar) {
-      this.$snackbar = new MDCSnackbar(this.$el);
+    this.$snackbar = new MDCSnackbar(this.$el);
 
-      this.$snackbar.listen('MDCSnackbar:hide', () => {
-        this.$emit(UI_SNACKBAR.EVENT.CHANGE, false);
-      });
-    }
+    this.$snackbar.listen('MDCSnackbar:hide', () => {
+      this.$emit(UI_SNACKBAR.EVENT.CHANGE, false);
+    });
   },
   methods: {
     show() {

@@ -76,20 +76,18 @@ export default {
     }
   },
   mounted() {
-    if (!this.$chipSet) {
-      this.$chipSet = new MDCChipSet(this.$el);
+    this.$chipSet = new MDCChipSet(this.$el);
 
-      if (this.choice && this.selectedValue > -1) {
-        this.$chipSet.chips[this.selectedValue].foundation_.setSelected(true);
-      }
+    if (this.choice && this.selectedValue > -1) {
+      this.$chipSet.chips[this.selectedValue].foundation_.setSelected(true);
+    }
 
-      if (this.filter) {
-        this.$chipSet.chips.forEach((chip, index) => {
-          if (this.selectedValue.includes(index)) {
-            chip.foundation_.setSelected(true);
-          }
-        });
-      }
+    if (this.filter) {
+      this.$chipSet.chips.forEach((chip, index) => {
+        if (this.selectedValue.includes(index)) {
+          chip.foundation_.setSelected(true);
+        }
+      });
     }
   },
   methods: {

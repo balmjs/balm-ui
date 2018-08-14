@@ -103,7 +103,7 @@ export default {
     }
   },
   mounted() {
-    if (!this.$checkbox && !this.cssOnly) {
+    if (!this.cssOnly) {
       const formField = new MDCFormField(this.$el);
       this.$checkbox = new MDCCheckbox(this.$refs.checkbox);
       formField.input = this.$checkbox;

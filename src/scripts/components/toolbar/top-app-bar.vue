@@ -130,11 +130,9 @@ export default {
     }
   },
   mounted() {
-    if (!this.$topAppBar) {
-      this.init();
+    this.init();
 
-      this.createFixedAdjustElement();
-    }
+    this.createFixedAdjustElement();
   },
   methods: {
     init() {

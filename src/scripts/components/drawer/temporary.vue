@@ -17,18 +17,16 @@ export default {
   },
   mixins: [drawerMixin],
   mounted() {
-    if (!this.$drawer) {
-      this.$drawer = new MDCTemporaryDrawer(this.$el);
+    this.$drawer = new MDCTemporaryDrawer(this.$el);
 
-      this.init();
+    this.init();
 
-      this.$drawer.listen('MDCTemporaryDrawer:open', () => {
-        this.$emit(UI_DRAWER.EVENT.NAV, true);
-      });
-      this.$drawer.listen('MDCTemporaryDrawer:close', () => {
-        this.$emit(UI_DRAWER.EVENT.NAV, false);
-      });
-    }
+    this.$drawer.listen('MDCTemporaryDrawer:open', () => {
+      this.$emit(UI_DRAWER.EVENT.NAV, true);
+    });
+    this.$drawer.listen('MDCTemporaryDrawer:close', () => {
+      this.$emit(UI_DRAWER.EVENT.NAV, false);
+    });
   }
 };
 </script>

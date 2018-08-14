@@ -72,13 +72,11 @@ export default {
     }
   },
   mounted() {
-    if (!this.$linearProgress) {
-      this.$linearProgress = new MDCLinearProgress(this.$el);
+    this.$linearProgress = new MDCLinearProgress(this.$el);
 
-      this.setProgress(this.progress);
-      if (this.$el.dataset.buffer) {
-        this.setBuffer(this.buffer);
-      }
+    this.setProgress(this.progress);
+    if (this.$el.dataset.buffer) {
+      this.setBuffer(this.buffer);
     }
   },
   methods: {

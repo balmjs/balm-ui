@@ -49,6 +49,10 @@ export default {
     noBackdrop: {
       type: Boolean,
       default: false
+    },
+    resetScroll: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -71,11 +75,13 @@ export default {
   },
   mounted() {
     this.$dialog = new MDCDialog(this.$el);
-    this.$nextTick(() => {
-      this.$dialogBody = this.$refs.dialog.querySelector(
-        `.${UI_DIALOG.BODY_CLASS}`
-      );
-    });
+    if (this.resetScroll) {
+      this.$nextTick(() => {
+        this.$dialogBody = this.$refs.dialog.querySelector(
+          `.${UI_DIALOG.BODY_CLASS}`
+        );
+      });
+    }
   },
   methods: {
     handleClose() {

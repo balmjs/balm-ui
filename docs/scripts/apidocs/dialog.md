@@ -10,6 +10,7 @@
 | closable       | `Boolean` | `true`  | Closes the dialog, when a user actions on the accept or cancel button. |
 | maskClosable   | `Boolean` | `false` | Closes the dialog, when the dialog backdrop is clicked.                |
 | noBackdrop     | `Boolean` | `false` | Hides the dialog backdrop.                                             |
+| resetScroll    | `Boolean` | `false` | Reset scroll bar, when the dialog is closed.                           |
 
 #### Slots
 

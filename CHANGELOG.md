@@ -54,6 +54,7 @@
 - Ripple
 - Elevation
 - Shape
+- Anchor (:bulb:)
 
 ### Utilities
 

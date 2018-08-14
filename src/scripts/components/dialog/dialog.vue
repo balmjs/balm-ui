@@ -1,6 +1,6 @@
 <template>
   <aside class="mdc-dialog" role="alertdialog">
-    <div class="mdc-dialog__surface">
+    <div ref="dialog" class="mdc-dialog__surface">
       <slot></slot>
     </div>
     <template v-if="!noBackdrop">
@@ -15,6 +15,7 @@ import { MDCDialog } from '../../../material-components-web/dialog';
 
 // Define constants
 const UI_DIALOG = {
+  BODY_CLASS: 'mdc-dialog__body--scrollable',
   EVENT: {
     CHANGE: 'change',
     CLOSE: 'close',
@@ -52,7 +53,8 @@ export default {
   },
   data() {
     return {
-      $dialog: null
+      $dialog: null,
+      $dialogBody: null
     };
   },
   watch: {
@@ -61,13 +63,19 @@ export default {
         this.$dialog.show();
       } else {
         this.$dialog.close();
+        if (this.$dialogBody) {
+          this.$dialogBody.scrollTop = 0;
+        }
       }
     }
   },
   mounted() {
-    if (!this.$dialog) {
-      this.$dialog = new MDCDialog(this.$el);
-    }
+    this.$dialog = new MDCDialog(this.$el);
+    this.$nextTick(() => {
+      this.$dialogBody = this.$refs.dialog.querySelector(
+        `.${UI_DIALOG.BODY_CLASS}`
+      );
+    });
   },
   methods: {
     handleClose() {

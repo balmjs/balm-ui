@@ -1,8 +1,10 @@
 <template>
   <div :class="[$tt('body1'), 'demo--anchor']">
-    <div :class="$tt('body2')">
-      <h3 :class="$tt('headline3')">Anchor</h3>
+    <section class="hero directive">
+      <h2 :class="$tt('headline4')">Anchor</h2>
+    </section>
 
+    <div :class="$tt('body2')">
       <h4 :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 

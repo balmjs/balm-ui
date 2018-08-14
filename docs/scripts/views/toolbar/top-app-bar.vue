@@ -38,6 +38,10 @@
 
     <main class="demo-main">
       <div id="content-main">
+        <section class="hero component">
+          <h2 :class="$tt('headline4')">Top App Bar</h2>
+        </section>
+
         <div :class="$tt('body2')">
           <h4 :class="$tt('headline4')">0. Usage</h4>
           <ui-markdown :text="code[0]"></ui-markdown>

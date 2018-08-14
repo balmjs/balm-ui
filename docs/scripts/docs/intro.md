@@ -17,7 +17,7 @@ Following the [Material Design](https://material.io/components/) UI components f
 - Buttons
   - Button
   - Floating Action
-  - Icon Toggle (💀)
+  - <del>Icon Toggle</del> (💀)
   - Icon Button (migrate from Icon Toggle)
 - Icon
 - Data View

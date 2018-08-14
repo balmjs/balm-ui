@@ -78,7 +78,7 @@ Enjoy 👻
 - Buttons
   - Button
   - Floating Action
-  - Icon Toggle (:skull:)
+  - <del>Icon Toggle</del> (:skull:)
   - Icon Button (migrate from Icon Toggle)
 - Icon
 - Data View

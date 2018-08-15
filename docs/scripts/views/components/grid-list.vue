@@ -8,6 +8,7 @@
     </section>
 
     <div :class="$tt('body2')">
+      <h4 :class="$tt('headline4')">1. Example</h4>
       <section class="example examples">
         <h2>Grid List (Default): empty grid</h2>
         <ui-grid-list></ui-grid-list>

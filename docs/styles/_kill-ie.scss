@@ -1,0 +1,21 @@
+.kill-ie {
+  display: table;
+  width: 100%;
+  height: 80%;
+  a {
+    text-decoration: none;
+    color: red;
+  }
+  b {
+    border-bottom: 1px solid;
+  }
+  .container {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .content {
+    display: inline-block;
+    text-align: center;
+  }
+}

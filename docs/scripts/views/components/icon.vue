@@ -61,11 +61,11 @@
       <ui-apidocs name="icon"></ui-apidocs>
 
       <h4 :class="$tt('headline4')">3. Icon List</h4>
-      <p>
+      <div class="search-area" v-shadow="1">
         <ui-textfield box leadingIcon
           type="search"
           id="search"
-          placeholder="Icon keywords"
+          placeholder="Icon name keywords"
           helptextId="my-icons"
           fullwidth
           :model="keywords"
@@ -75,9 +75,9 @@
           </template>
         </ui-textfield>
         <ui-textfield-helptext id="my-icons" class="search-helper" visible>
-          TIPS: Click an icon to copy icon name, then you can use <b>`&lt;ui-icon&gt;${icon_name}&lt;/ui-icon&gt;`</b>.
+          TIPS: Click an icon to copy icon name, then you can use `<b>&lt;ui-icon&gt;${icon_name}&lt;/ui-icon&gt;</b>`.
         </ui-textfield-helptext>
-      </p>
+      </div>
 
       <ui-list nonInteractive>
         <template v-for="(group, index) in groups">

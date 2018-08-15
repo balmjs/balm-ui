@@ -3,12 +3,22 @@
     display: flex;
     text-align: center;
   }
+  .search-area {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: white;
+    margin: 0;
+  }
   #search {
     text-indent: 60px;
   }
   .search-helper {
-    margin: 20px;
+    padding: 20px;
     font-size: 14px;
+    b {
+      color: $mdc-theme-primary;
+    }
   }
   .material-icons {
     overflow: hidden;

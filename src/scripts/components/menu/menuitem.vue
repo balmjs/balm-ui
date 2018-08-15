@@ -1,8 +1,8 @@
 <template>
   <li class="mdc-list-item"
-      role="menuitem"
-      :tabindex="tabindex(item)"
-      :aria-disabled="item.disabled">
+    role="menuitem"
+    :tabindex="tabindex(item)"
+    :aria-disabled="item.disabled">
     <slot>{{ item[label] }}</slot>
   </li>
 </template>

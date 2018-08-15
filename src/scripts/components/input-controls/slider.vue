@@ -1,13 +1,13 @@
 <template>
   <div :class="className"
-       tabindex="0"
-       role="slider"
-       :aria-valuenow="+currentValue"
-       :aria-valuemin="+min"
-       :aria-valuemax="+max"
-       :data-step="+step"
-       :aria-label="label || null"
-       :aria-disabled="disabled">
+    tabindex="0"
+    role="slider"
+    :aria-valuenow="+currentValue"
+    :aria-valuemin="+min"
+    :aria-valuemax="+max"
+    :data-step="+step"
+    :aria-label="label || null"
+    :aria-disabled="disabled">
     <div class="mdc-slider__track-container">
       <div class="mdc-slider__track"></div>
       <div v-if="displayMarkers" class="mdc-slider__track-marker-container"></div>

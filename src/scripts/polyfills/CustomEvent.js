@@ -1,6 +1,5 @@
 // For IE9+
-(function () {
-
+(function() {
   if (typeof window.CustomEvent === 'function') return false;
 
   function CustomEvent(event, params) {
@@ -9,8 +8,13 @@
       cancelable: false,
       detail: undefined
     };
-    var evt = document.createEvent('CustomEvent');
-    evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+    let evt = document.createEvent('CustomEvent');
+    evt.initCustomEvent(
+      event,
+      params.bubbles,
+      params.cancelable,
+      params.detail
+    );
     return evt;
   }
 

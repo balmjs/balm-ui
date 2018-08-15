@@ -2,18 +2,17 @@
   <div v-if="recordCount" :class="className">
     <div v-if="!mini && showRecord" class="mdc-pagination__record">
       <slot name="record"
-            :recordCount="recordCount"
-            :pageSize="pageSize"
-            :pageCount="pageCount"></slot>
+        :recordCount="recordCount"
+        :pageSize="pageSize"
+        :pageCount="pageCount"></slot>
     </div>
 
     <div class="mdc-pagination__paging">
       <a class="mdc-pagination__paging-previous"
-         @click="handleClick(currentPage === 1 ? 1 : currentPage - 1)">
+        @click="handleClick(currentPage === 1 ? 1 : currentPage - 1)">
         <span v-html="currentPrev" class="material-icons"></span>
       </a>
-      <template v-for="(page, index) in pageCount"
-                v-if="!mini && isShow(page)">
+      <template v-for="(page, index) in pageCount" v-if="!mini && isShow(page)">
         <a v-if="showPage(page)"
           :key="index"
           :class="{active: page === currentPage}"
@@ -26,21 +25,21 @@
         <slot></slot>
       </template>
       <a class="mdc-pagination__paging-next"
-         @click="handleClick(currentPage === pageCount ? pageCount : currentPage + 1)">
+        @click="handleClick(currentPage === pageCount ? pageCount : currentPage + 1)">
         <span v-html="currentNext" class="material-icons"></span>
       </a>
 
       <div v-if="!mini && showJumper" class="mdc-pagination__jumper">
         <span>{{ jumperBefore }}</span>
         <input type="number"
-               min="1"
-               :max="pageCount"
-               v-model="pager"
-               @keydown.prevent.enter="handleClick($event.target.value)">
+          min="1"
+          :max="pageCount"
+          v-model="pager"
+          @keydown.prevent.enter="handleClick($event.target.value)">
         <span>{{ jumperAfter }}</span>
         <button v-if="jumperButton"
-                type="button"
-                @click="handleClick(pager)">{{ jumperButton }}</button>
+          type="button"
+          @click="handleClick(pager)">{{ jumperButton }}</button>
       </div>
     </div>
   </div>

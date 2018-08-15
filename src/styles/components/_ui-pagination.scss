@@ -1,14 +1,16 @@
-$mdc-pagination-color: rgba(0, 0, 0, 0.65) !default;
-$mdc-pagination-border-color: #d9d9d9 !default;
+$mdc-pagination-color: $mdc-theme-primary !default;
+$mdc-pagination-border-color: $mdc-theme-primary !default;
 $mdc-pagination-bg-color: white !default;
-$mdc-pagination-hover-color: #49a9ee !default;
+$mdc-pagination-hover-color: $mdc-theme-primary !default;
 $mdc-pagination-hover-border-color: $mdc-pagination-hover-color !default;
 $mdc-pagination-hover-bg-color: $mdc-pagination-bg-color !default;
 $mdc-pagination-active-color: $mdc-pagination-bg-color !default;
-$mdc-pagination-active-bg-color: #108ee9 !default;
+$mdc-pagination-active-bg-color: $mdc-theme-primary !default;
 $mdc-pagination-active-border-color: $mdc-pagination-active-bg-color !default;
+
 .mdc-pagination {
   display: flex;
+
   justify-content: center;
   &.mdc-pagination--left {
     justify-content: flex-start;
@@ -26,21 +28,26 @@ $mdc-pagination-active-border-color: $mdc-pagination-active-bg-color !default;
   .mdc-pagination__paging {
     a,
     .ellipsis {
+      line-height: 30px;
+
       display: inline-block;
+
       min-width: 32px;
       height: 32px;
-      line-height: 30px;
       margin-right: 8px;
+
       text-align: center;
       vertical-align: middle;
+
       color: $mdc-pagination-color;
     }
     a {
       cursor: pointer;
       transition: all 0.3s;
+
       border: 1px solid $mdc-pagination-border-color;
       background-color: $mdc-pagination-bg-color;
-      &>span {
+      & > span {
         line-height: inherit;
       }
       &:hover {
@@ -50,6 +57,7 @@ $mdc-pagination-active-border-color: $mdc-pagination-active-bg-color !default;
       }
       &.active {
         cursor: default;
+
         color: $mdc-pagination-active-color;
         border-color: $mdc-pagination-active-border-color;
         background-color: $mdc-pagination-active-bg-color;
@@ -60,7 +68,9 @@ $mdc-pagination-active-border-color: $mdc-pagination-active-bg-color !default;
     display: inline-block;
     input {
       width: 50px;
+
       transition: all 0.3s;
+
       color: rgba(0, 0, 0, 0.65);
       border: 1px solid #d9d9d9;
       &:hover,
@@ -74,8 +84,10 @@ $mdc-pagination-active-border-color: $mdc-pagination-active-bg-color !default;
     }
     button {
       line-height: 24px;
+
       height: 24px;
       padding: 0;
+
       color: rgba(0, 0, 0, 0.65);
       border: 1px solid #d9d9d9;
       &:hover {
@@ -89,12 +101,13 @@ $mdc-pagination-active-border-color: $mdc-pagination-active-bg-color !default;
     display: block;
     .mdc-pagination__paging {
       display: flex;
+
       justify-content: space-between;
     }
     a {
       min-width: auto;
       margin: 0;
-      &>span {
+      & > span {
         padding: 0 10px;
       }
     }

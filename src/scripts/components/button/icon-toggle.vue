@@ -1,12 +1,12 @@
 <template>
   <span role="button"
-        :class="className"
-        :tabindex="currentTabindex"
-        :aria-pressed="model"
-        :aria-disabled="disabled"
-        :data-icon-inner-selector="iconInnerSelector"
-        :data-toggle-on="toggleOnState"
-        :data-toggle-off="toggleOffState">
+    :class="className"
+    :tabindex="currentTabindex"
+    :aria-pressed="model"
+    :aria-disabled="disabled"
+    :data-icon-inner-selector="iconInnerSelector"
+    :data-toggle-on="toggleOnState"
+    :data-toggle-off="toggleOffState">
     <slot></slot>
   </span>
 </template>

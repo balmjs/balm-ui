@@ -1,5 +1,6 @@
 import autoInit from './register';
 
+// Define
 let ANCHOR = {
   CLASSNAME: {
     OUTER: 'v-anchor--html',

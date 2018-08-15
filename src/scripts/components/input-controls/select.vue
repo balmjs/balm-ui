@@ -3,35 +3,35 @@
     <slot name="before"></slot>
 
     <select v-model="selectedValue"
-            class="mdc-select__native-control"
-            :disabled="disabled"
-            v-bind="attrs"
-            @change="handleChange">
+      class="mdc-select__native-control"
+      :disabled="disabled"
+      v-bind="attrs"
+      @change="handleChange">
       <!-- Default option -->
-      <option v-if="defaultLabel"
-              :value="defaultValue"
-              selected>{{ defaultLabel }}</option>
+      <option v-if="defaultLabel" :value="defaultValue" selected>
+        {{ defaultLabel }}
+      </option>
       <template v-if="group">
         <template v-for="(option, optionIndex) in options">
           <!-- A group of options -->
           <optgroup v-if="option[groupLabel] && option[groupItems] && option[groupItems].length"
-                    :key="optionIndex"
-                    :label="option[groupLabel]">
+            :key="optionIndex"
+            :label="option[groupLabel]">
             <option v-for="(item, itemIndex) in option[groupItems]"
-                    :key="itemIndex"
-                    :value="item[optionValue]">{{ item[optionLabel] }}</option>
+              :key="itemIndex"
+              :value="item[optionValue]">{{ item[optionLabel] }}</option>
           </optgroup>
           <!-- An option -->
           <option v-if="option[optionLabel] && option[optionValue]"
-                  :key="optionIndex"
-                  :value="option[optionValue]">{{ option[optionLabel] }}</option>
+            :key="optionIndex"
+            :value="option[optionValue]">{{ option[optionLabel] }}</option>
         </template>
       </template>
       <template v-else>
         <option v-for="(option, index) in options"
-                :key="index"
-                :value="option[optionValue]"
-                :disabled="option.disabled || false">{{ option[optionLabel] }}</option>
+          :key="index"
+          :value="option[optionValue]"
+          :disabled="option.disabled || false">{{ option[optionLabel] }}</option>
       </template>
     </select>
     <ui-floating-label v-if="!defaultLabel"

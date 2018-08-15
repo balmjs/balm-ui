@@ -1,6 +1,8 @@
 <template>
   <a :class="[className, actionClassName]" :href="url">
-    <i v-if="materialIcon" :class="['material-icons', UI_BUTTON.SLOT_CLASS.icon]">{{ materialIcon }}</i>
+    <i v-if="materialIcon" :class="[UI_BUTTON.SLOT_CLASS.icon, 'material-icons']">
+      {{ materialIcon }}
+    </i>
     <slot :className="UI_BUTTON.SLOT_CLASS"></slot>
   </a>
 </template>

@@ -76,8 +76,4 @@ const BalmUIPlus = {
 autoInstall(BalmUIPlus);
 
 export default BalmUIPlus;
-export {
-  types,
-  helpers,
-  detectIE
-};
+export { types, helpers, detectIE };

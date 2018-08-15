@@ -1,23 +1,30 @@
-const MATERIAL_COMPONENTS = [{
+const MATERIAL_COMPONENTS = [
+  {
     name: 'Guide',
-    children: [{
-      name: 'Introduction',
-      url: 'intro'
-    }, {
-      name: 'Getting Started',
-      url: 'quickstart'
-    }, {
-      name: 'Advanced',
-      url: 'advanced'
-    }, {
-      name: 'Kill IE',
-      url: 'kill-ie'
-    }]
+    children: [
+      {
+        name: 'Introduction',
+        url: 'intro'
+      },
+      {
+        name: 'Getting Started',
+        url: 'quickstart'
+      },
+      {
+        name: 'Advanced',
+        url: 'advanced'
+      },
+      {
+        name: 'Kill IE',
+        url: 'kill-ie'
+      }
+    ]
   },
   '-',
   {
     name: 'Layouts',
-    children: [{
+    children: [
+      {
         icon: 'card',
         name: 'Layout grid',
         description: 'Grid and gutter support',
@@ -31,7 +38,8 @@ const MATERIAL_COMPONENTS = [{
       {
         icon: 'toolbar',
         name: 'Top App Bar',
-        description: 'Container for application title, navigation icon, and action items',
+        description:
+          'Container for application title, navigation icon, and action items',
         url: 'top-app-bar'
       },
       {
@@ -50,7 +58,8 @@ const MATERIAL_COMPONENTS = [{
   '-',
   {
     name: 'Buttons',
-    children: [{
+    children: [
+      {
         icon: 'button',
         name: 'Button',
         description: 'Raised and flat buttons'
@@ -79,7 +88,8 @@ const MATERIAL_COMPONENTS = [{
   {
     name: 'Data View',
     url: 'data',
-    children: [{
+    children: [
+      {
         icon: 'list',
         name: 'List',
         description: 'Item layouts in lists'
@@ -111,19 +121,20 @@ const MATERIAL_COMPONENTS = [{
         name: 'Linear Progress',
         description: 'Fills from 0% to 100%, represented by bars',
         url: 'linear-progress'
-      },
-      {
-        icon: 'component',
-        name: 'Pagination',
-        description: 'Pagination'
       }
+      // {
+      //   icon: 'component',
+      //   name: 'Pagination',
+      //   description: 'Pagination'
+      // }
     ]
   },
   '-',
   {
     name: 'Inputs and Controls',
     url: 'form',
-    children: [{
+    children: [
+      {
         icon: 'text_field',
         name: 'Text Field',
         description: 'Single and multiline text fields',
@@ -174,7 +185,8 @@ const MATERIAL_COMPONENTS = [{
   '-',
   {
     name: 'Modal',
-    children: [{
+    children: [
+      {
         icon: 'dialog',
         name: 'Dialog',
         description: 'Secondary text'
@@ -210,7 +222,8 @@ const MATERIAL_COMPONENTS = [{
   '-',
   {
     name: 'Misc',
-    children: [{
+    children: [
+      {
         icon: 'component',
         name: 'Event',
         description: 'Global event handler'
@@ -295,7 +308,8 @@ for (let component of MATERIAL_COMPONENTS) {
 
     if (component.children) {
       for (let subComponent of component.children) {
-        let url = baseUrl + '/' + (subComponent.url || subComponent.name.toLowerCase());
+        let url =
+          baseUrl + '/' + (subComponent.url || subComponent.name.toLowerCase());
         menu.push({
           icon: getComponentIcon(subComponent),
           name: subComponent.name,

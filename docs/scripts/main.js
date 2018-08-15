@@ -1,7 +1,4 @@
-import {
-  isIE,
-  killIE
-} from './kill-ie';
+import { isIE, killIE } from './kill-ie';
 import './polyfill';
 import Vue from 'vue';
 // import VueI18n from 'vue-i18n';

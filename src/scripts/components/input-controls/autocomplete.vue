@@ -13,11 +13,11 @@
       <div ref="autocomplete" class="ui-autocomplete__list">
         <ul>
           <li v-for="(item, index) in currentSuggestion.data"
-              v-html="item[UI_AUTOCOMPLETE.ITEM.LABEL]"
-              :key="index"
-              :data-index="index"
-              :class="{'selected': index === currentSuggestion.index}"
-              @click="handleSelected(item)">
+            v-html="item[UI_AUTOCOMPLETE.ITEM.LABEL]"
+            :key="index"
+            :data-index="index"
+            :class="{'selected': index === currentSuggestion.index}"
+            @click="handleSelected(item)">
           </li>
         </ul>
       </div>

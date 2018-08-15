@@ -1,9 +1,9 @@
 <template>
   <div :class="className"
-       aria-live="assertive"
-       aria-atomic="true"
-       aria-hidden="true"
-       :style="style">
+    aria-live="assertive"
+    aria-atomic="true"
+    aria-hidden="true"
+    :style="style">
     <div class="mdc-snackbar__text">
       <slot>{{ message }}</slot>
     </div>

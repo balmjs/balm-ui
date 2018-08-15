@@ -1,6 +1,4 @@
-import {
-  detectIE
-} from '../../src/scripts/plus'; // Default Usage
+import { detectIE } from '../../src/scripts/plus'; // Default Usage
 
 const IE = detectIE();
 
@@ -25,7 +23,4 @@ const killIE = () => {
   body.innerHTML = template;
 };
 
-export {
-  isIE,
-  killIE
-};
+export { isIE, killIE };

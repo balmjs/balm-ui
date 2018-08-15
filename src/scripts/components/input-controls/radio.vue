@@ -3,14 +3,14 @@
     <slot name="before"></slot>
     <div ref="radio" :class="className">
       <input :id="id"
-             v-model="checkedValue"
-             type="radio"
-             class="mdc-radio__native-control"
-             :name="name"
-             :value="value"
-             :disabled="disabled"
-             v-bind="attrs"
-             @change="handleChange">
+        v-model="checkedValue"
+        type="radio"
+        class="mdc-radio__native-control"
+        :name="name"
+        :value="value"
+        :disabled="disabled"
+        v-bind="attrs"
+        @change="handleChange">
       <div class="mdc-radio__background">
         <div class="mdc-radio__outer-circle"></div>
         <div class="mdc-radio__inner-circle"></div>

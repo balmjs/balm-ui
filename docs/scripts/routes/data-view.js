@@ -5,7 +5,7 @@ const Card = () => import('../views/components/card');
 const Chips = () => import('../views/components/chips');
 const LinearProgress = () => import('../views/components/linear-progress');
 // const Table = () => import('../views/table');
-// const Pagination = () => import('../views/pagination');
+const Pagination = () => import('../views/components/pagination');
 
 export default [
   {
@@ -37,5 +37,10 @@ export default [
     path: 'linear-progress',
     name: 'data.linear-progress',
     component: LinearProgress
+  },
+  {
+    path: 'pagination',
+    name: 'data.pagination',
+    component: Pagination
   }
 ];

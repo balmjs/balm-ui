@@ -1,67 +1,81 @@
 <template>
   <div v-if="recordCount" :class="className">
-    <div v-if="showRecord" class="mdc-pagination--record">
-      <slot :recordCount="recordCount"
+    <div v-if="!mini && showRecord" class="mdc-pagination__record">
+      <slot name="record"
+            :recordCount="recordCount"
             :pageSize="pageSize"
             :pageCount="pageCount"></slot>
     </div>
-    <div class="mdc-pagination--paging">
-      <a class="mdc-pagination--paging-previous">
-        <span @click="handleClick(currentPage === 1 ? 1 : currentPage - 1)"
-              v-html="currentPrev"></span>
+
+    <div class="mdc-pagination__paging">
+      <a class="mdc-pagination__paging-previous"
+         @click="handleClick(currentPage === 1 ? 1 : currentPage - 1)">
+        <span v-html="currentPrev" class="material-icons"></span>
       </a>
-      <a v-for="(page, index) in pageCount"
-        v-if="!mini && isShow(page)"
-        :key="index"
-        :class="{active: page === currentPage}">
-        <span v-if="showPage(page)" @click="handleClick(page)">{{ page }}</span>
-        <span v-else class="ellipsis">...</span>
+      <template v-for="(page, index) in pageCount"
+                v-if="!mini && isShow(page)">
+        <a v-if="showPage(page)"
+          :key="index"
+          :class="{active: page === currentPage}"
+          @click="handleClick(page)">
+          <span>{{ page }}</span>
+        </a>
+        <span v-else :key="index" class="ellipsis">...</span>
+      </template>
+      <template v-if="mini && !showRecord">
+        <slot></slot>
+      </template>
+      <a class="mdc-pagination__paging-next"
+         @click="handleClick(currentPage === pageCount ? pageCount : currentPage + 1)">
+        <span v-html="currentNext" class="material-icons"></span>
       </a>
-      <a class="mdc-pagination--paging-next">
-        <span @click="handleClick(currentPage === pageCount ? pageCount : currentPage + 1)"
-              v-html="currentNext"></span>
-      </a>
-      <div v-if="!mini && showJumper" class="mdc-pagination--jumper">
+
+      <div v-if="!mini && showJumper" class="mdc-pagination__jumper">
         <span>{{ jumperBefore }}</span>
-        <input v-model="pager"
-               type="number"
+        <input type="number"
                min="1"
                :max="pageCount"
+               v-model="pager"
                @keydown.prevent.enter="handleClick($event.target.value)">
         <span>{{ jumperAfter }}</span>
-        <ui-button v-if="jumperButton"
-                   @click.native="handleClick(pager)">{{ jumperButton }}</ui-button>
+        <button v-if="jumperButton"
+                type="button"
+                @click="handleClick(pager)">{{ jumperButton }}</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-const DOUBLE_ARROW_LEFT = '&laquo;';
-const DOUBLE_ARROW_RIGHT = '&raquo;';
-const SINGLE_ARROW_LEFT = '&lsaquo;';
-const SINGLE_ARROW_RIGHT = '&rsaquo;';
-const POSITION_LEFT = 'left';
-const POSITION_RIGHT = 'right';
-const UI_EVENT_CHANGE = 'change';
+// Define constants
+const UI_PAGINATION = {
+  POSITIONS: ['left', 'right'],
+  EVENT: {
+    CHANGE: 'change'
+  }
+};
 
 export default {
   name: 'ui-pagination',
+  model: {
+    prop: 'page',
+    event: UI_PAGINATION.EVENT.CHANGE
+  },
   props: {
-    // state
+    // States
     page: {
       type: Number,
       default: 1
     },
-    // ui attributes
     recordCount: {
       type: Number,
-      required: true
+      default: 0
     },
     pageSize: {
       type: Number,
-      required: true
+      default: 10
     },
+    // UI attributes
     prev: String,
     next: String,
     pageSpan: {
@@ -109,7 +123,7 @@ export default {
       } else {
         if (this.showRecord) {
           result.push(`mdc-pagination--between`);
-        } else if ([POSITION_LEFT, POSITION_RIGHT].includes(this.position)) {
+        } else if (UI_PAGINATION.POSITIONS.indexOf(this.position) > -1) {
           result.push(`mdc-pagination--${this.position}`);
         }
       }
@@ -120,12 +134,10 @@ export default {
       return Math.ceil(this.recordCount / this.pageSize);
     },
     currentPrev() {
-      let arrow = this.mini ? SINGLE_ARROW_LEFT : DOUBLE_ARROW_LEFT;
-      return this.prev || arrow;
+      return this.prev || 'keyboard_arrow_left';
     },
     currentNext() {
-      let arrow = this.mini ? SINGLE_ARROW_RIGHT : DOUBLE_ARROW_RIGHT;
-      return this.next || arrow;
+      return this.next || 'keyboard_arrow_right';
     }
   },
   watch: {
@@ -137,34 +149,39 @@ export default {
     isShow(page) {
       let show = false;
       switch (true) {
-        case (page === 1):
-        case (page === this.pageCount):
-        case (this.currentPage >= page && page >= this.currentPage - this.pageSpan):
-        case (this.currentPage <= page && page <= this.currentPage + this.pageSpan):
+        case page === 1:
+        case page === this.pageCount:
+        case this.currentPage >= page &&
+          page >= this.currentPage - this.pageSpan:
+        case this.currentPage <= page &&
+          page <= this.currentPage + this.pageSpan:
           show = true;
           break;
       }
       return show;
     },
     showPage(page) {
-      let isExisted = (this.currentPage === page - this.pageSpan || this.currentPage === page + this.pageSpan);
-      let noFirstOrLast = (page !== 1 && page !== this.pageCount);
-      return !(isExisted && noFirstOrLast);
+      let isExisted =
+        this.currentPage === page - this.pageSpan ||
+        this.currentPage === page + this.pageSpan;
+      let nonFirstOrLast = page !== 1 && page !== this.pageCount;
+      return !(isExisted && nonFirstOrLast);
     },
-    handleClick(page) { // page: number
-      if (!isNaN(page)) {
+    handleClick(page) {
+      // page: number
+      if (isNaN(page)) {
+        this.pager = this.currentPage;
+      } else {
         switch (true) {
-          case (page > this.pageCount):
+          case page > this.pageCount:
             page = this.pageCount;
             break;
-          case (page < 1):
+          case page < 1:
             page = 1;
             break;
         }
-        this.$emit(UI_EVENT_CHANGE, +page);
         this.pager = page;
-      } else {
-        this.pager = this.currentPage;
+        this.$emit(UI_PAGINATION.EVENT.CHANGE, +page);
       }
     }
   }

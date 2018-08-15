@@ -5,6 +5,7 @@ import multiConfigure from './config/multi-configure';
  */
 import UiDropdown from './components/input-controls/dropdown';
 import UiAutocomplete from './components/input-controls/autocomplete';
+import UiPagination from './components/data/pagination';
 /**
  * Plugins
  */
@@ -27,7 +28,8 @@ const version = require('../../package.json').version;
 
 const components = {
   UiDropdown,
-  UiAutocomplete
+  UiAutocomplete,
+  UiPagination
 };
 
 const plugins = {
@@ -74,4 +76,8 @@ const BalmUIPlus = {
 autoInstall(BalmUIPlus);
 
 export default BalmUIPlus;
-export { types, helpers, detectIE };
+export {
+  types,
+  helpers,
+  detectIE
+};

@@ -14,33 +14,7 @@
 // limitations under the License.
 //
 
-// postcss-bem-linter: define icon-button
-
-@import "./mixins";
-
-.mdc-icon-button {
-  @include mdc-icon-button-base_;
-  @include mdc-states;
-}
-
-.mdc-icon-button__icon {
-  display: inline-block;
-
-  // stylelint-disable-next-line plugin/selector-bem-pattern
-  &.mdc-icon-button__icon--on {
-    display: none;
-  }
-}
-
-.mdc-icon-button--on {
-  .mdc-icon-button__icon {
-    display: none;
-
-    // stylelint-disable-next-line plugin/selector-bem-pattern
-    &.mdc-icon-button__icon--on {
-      display: inline-block;
-    }
-  }
-}
-
-// postcss-bem-linter: end
+$mdc-menu-surface-fade-in-duration: .03s;
+$mdc-menu-surface-fade-out-duration: .075s;
+$mdc-menu-surface-scale-duration: .12s;
+$mdc-menu-surface-min-distance-from-edge: 32px;

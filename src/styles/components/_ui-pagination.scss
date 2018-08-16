@@ -1,27 +1,26 @@
+@import '../../material-components-web/theme/mixins';
+@import '../../material-components-web/button/mixins';
+
 $mdc-pagination-color: $mdc-theme-primary !default;
-$mdc-pagination-border-color: $mdc-theme-primary !default;
-$mdc-pagination-bg-color: white !default;
-$mdc-pagination-hover-color: $mdc-theme-primary !default;
-$mdc-pagination-hover-border-color: $mdc-pagination-hover-color !default;
-$mdc-pagination-hover-bg-color: $mdc-pagination-bg-color !default;
-$mdc-pagination-active-color: $mdc-pagination-bg-color !default;
-$mdc-pagination-active-bg-color: $mdc-theme-primary !default;
-$mdc-pagination-active-border-color: $mdc-pagination-active-bg-color !default;
+$mdc-pagination-corner-radius: 0 !default;
+
+$mdc-pagination-text-color: rgba(black, .87) !default;
+$mdc-pagination-border-color: rgba(black, .38) !default;
+$mdc-pagination-fill-color: white !default;
+
+$mdc-pagination-hover-text-color: $mdc-pagination-color !default;
+$mdc-pagination-hover-border-color: $mdc-pagination-color !default;
+$mdc-pagination-hover-fill-color: $mdc-pagination-fill-color !default;
+
+$mdc-pagination-active-text-color: $mdc-pagination-fill-color !default;
+$mdc-pagination-active-border-color: $mdc-pagination-color !default;
+$mdc-pagination-active-fill-color: rgba($mdc-pagination-color, .7) !default;
 
 .mdc-pagination {
   display: flex;
 
   justify-content: center;
-  &.mdc-pagination--left {
-    justify-content: flex-start;
-  }
-  &.mdc-pagination--right {
-    justify-content: flex-end;
-  }
-  &.mdc-pagination--between {
-    justify-content: space-between;
-    align-items: center;
-  }
+  line-height: 32px;
   .mdc-pagination__record {
     flex: 1;
   }
@@ -39,39 +38,53 @@ $mdc-pagination-active-border-color: $mdc-pagination-active-bg-color !default;
       text-align: center;
       vertical-align: middle;
 
-      color: $mdc-pagination-color;
+      @include mdc-button-corner-radius($mdc-pagination-corner-radius);
     }
     a {
       cursor: pointer;
       transition: all 0.3s;
 
+      color: $mdc-pagination-text-color;
       border: 1px solid $mdc-pagination-border-color;
-      background-color: $mdc-pagination-bg-color;
-      & > span {
-        line-height: inherit;
+      background-color: $mdc-pagination-fill-color;
+      span {
+        margin: 0 5px;
       }
       &:hover {
-        color: $mdc-pagination-hover-color;
+        color: $mdc-pagination-hover-text-color;
         border-color: $mdc-pagination-hover-border-color;
-        background-color: $mdc-pagination-hover-bg-color;
+        background-color: $mdc-pagination-hover-fill-color;
       }
       &.active {
         cursor: default;
 
-        color: $mdc-pagination-active-color;
+        color: $mdc-pagination-active-text-color;
         border-color: $mdc-pagination-active-border-color;
-        background-color: $mdc-pagination-active-bg-color;
+        background-color: $mdc-pagination-active-fill-color;
       }
+    }
+  }
+  .mdc-pagination__previous,
+  .mdc-pagination__next {
+    i, span {
+      margin: 0;
+      line-height: inherit;
+      font-size: inherit;
+    }
+    &.disabled {
+      cursor: not-allowed;
     }
   }
   .mdc-pagination__jumper {
     display: inline-block;
     input {
-      width: 50px;
+      width: 44px;
+      height: 24px;
+      text-indent: 3px;
 
       transition: all 0.3s;
 
-      color: rgba(0, 0, 0, 0.65);
+      color: $mdc-pagination-text-color;
       border: 1px solid #d9d9d9;
       &:hover,
       &:focus {
@@ -83,19 +96,29 @@ $mdc-pagination-active-border-color: $mdc-pagination-active-bg-color !default;
       }
     }
     button {
-      line-height: 24px;
+      line-height: 22px;
 
       height: 24px;
       padding: 0;
 
-      color: rgba(0, 0, 0, 0.65);
+      color: $mdc-pagination-text-color;
       border: 1px solid #d9d9d9;
       &:hover {
-        color: $mdc-pagination-hover-color;
+        color: $mdc-pagination-hover-text-color;
         border-color: $mdc-pagination-hover-border-color;
         background: none;
       }
     }
+  }
+  &.mdc-pagination--left {
+    justify-content: flex-start;
+  }
+  &.mdc-pagination--right {
+    justify-content: flex-end;
+  }
+  &.mdc-pagination--between {
+    justify-content: space-between;
+    align-items: center;
   }
   &.mdc-pagination--mini {
     display: block;
@@ -107,9 +130,6 @@ $mdc-pagination-active-border-color: $mdc-pagination-active-bg-color !default;
     a {
       min-width: auto;
       margin: 0;
-      & > span {
-        padding: 0 10px;
-      }
     }
   }
 }

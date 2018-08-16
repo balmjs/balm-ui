@@ -1,16 +1,14 @@
 <template>
   <div v-if="recordCount" :class="className">
     <div v-if="!mini && showRecord" class="mdc-pagination__record">
-      <slot name="record"
-        :recordCount="recordCount"
-        :pageSize="pageSize"
-        :pageCount="pageCount"></slot>
+      <slot :pageCount="pageCount"></slot>
     </div>
 
     <div class="mdc-pagination__paging">
-      <a class="mdc-pagination__paging-previous"
-        @click="handleClick(currentPage === 1 ? 1 : currentPage - 1)">
-        <span v-html="currentPrev" class="material-icons"></span>
+      <a :class="['mdc-pagination__previous', {'disabled': currentPage === 1}]"
+        @click="currentPage === 1 ? noop : handleClick(currentPage - 1)">
+        <i v-if="materialIcon" class="material-icons">{{ currentPrev }}</i>
+        <span v-else>{{ currentPrev }}</span>
       </a>
       <template v-for="(page, index) in pageCount" v-if="!mini && isShow(page)">
         <a v-if="showPage(page)"
@@ -22,11 +20,12 @@
         <span v-else :key="index" class="ellipsis">...</span>
       </template>
       <template v-if="mini && !showRecord">
-        <slot></slot>
+        <slot :pageCount="pageCount"></slot>
       </template>
-      <a class="mdc-pagination__paging-next"
-        @click="handleClick(currentPage === pageCount ? pageCount : currentPage + 1)">
-        <span v-html="currentNext" class="material-icons"></span>
+      <a :class="['mdc-pagination__next', {'disabled': currentPage === pageCount}]"
+        @click="currentPage === pageCount ? noop : handleClick(currentPage + 1)">
+        <i v-if="materialIcon" class="material-icons">{{ currentNext }}</i>
+        <span v-else>{{ currentNext }}</span>
       </a>
 
       <div v-if="!mini && showJumper" class="mdc-pagination__jumper">
@@ -39,6 +38,7 @@
         <span>{{ jumperAfter }}</span>
         <button v-if="jumperButton"
           type="button"
+          class="mdc-button"
           @click="handleClick(pager)">{{ jumperButton }}</button>
       </div>
     </div>
@@ -53,6 +53,8 @@ const UI_PAGINATION = {
     CHANGE: 'change'
   }
 };
+
+const noop = () => {};
 
 export default {
   name: 'ui-pagination',
@@ -75,16 +77,12 @@ export default {
       default: 10
     },
     // UI attributes
-    prev: String,
-    next: String,
     pageSpan: {
       type: Number,
       default: 3
     },
-    showRecord: {
-      type: Boolean,
-      default: false
-    },
+    prev: String,
+    next: String,
     showJumper: {
       type: Boolean,
       default: false
@@ -102,6 +100,10 @@ export default {
       default: ''
     },
     position: String,
+    showRecord: {
+      type: Boolean,
+      default: false
+    },
     mini: {
       type: Boolean,
       default: false
@@ -109,6 +111,7 @@ export default {
   },
   data() {
     return {
+      noop,
       currentPage: this.page,
       pager: this.page
     };
@@ -131,6 +134,9 @@ export default {
     },
     pageCount() {
       return Math.ceil(this.recordCount / this.pageSize);
+    },
+    materialIcon() {
+      return !(this.prev && this.next);
     },
     currentPrev() {
       return this.prev || 'keyboard_arrow_left';
@@ -167,20 +173,21 @@ export default {
       return !(isExisted && nonFirstOrLast);
     },
     handleClick(page) {
-      // page: number
-      if (isNaN(page)) {
-        this.pager = this.currentPage;
-      } else {
-        switch (true) {
-          case page > this.pageCount:
-            page = this.pageCount;
-            break;
-          case page < 1:
-            page = 1;
-            break;
+      if (this.currentPage !== page) {
+        if (isNaN(page)) {
+          this.pager = this.currentPage;
+        } else {
+          switch (true) {
+            case page > this.pageCount:
+              page = this.pageCount;
+              break;
+            case page < 1:
+              page = 1;
+              break;
+          }
+          this.pager = page;
+          this.$emit(UI_PAGINATION.EVENT.CHANGE, +page);
         }
-        this.pager = page;
-        this.$emit(UI_PAGINATION.EVENT.CHANGE, +page);
       }
     }
   }

@@ -121,12 +121,12 @@ const MATERIAL_COMPONENTS = [
         name: 'Linear Progress',
         description: 'Fills from 0% to 100%, represented by bars',
         url: 'linear-progress'
+      },
+      {
+        icon: 'component',
+        name: 'Pagination',
+        description: 'Pagination'
       }
-      // {
-      //   icon: 'component',
-      //   name: 'Pagination',
-      //   description: 'Pagination'
-      // }
     ]
   },
   '-',

@@ -87,6 +87,7 @@ Enjoy 👻
   - Image List (migrate from Grid List)
   - Card
   - Chips
+  - Pagination (:bulb:)
 - Linear Progress
 - Inputs and Controls
   - Text Field

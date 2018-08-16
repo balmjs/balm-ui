@@ -117,15 +117,15 @@ const MATERIAL_COMPONENTS = [
         description: 'Chips for actions, selection, and input '
       },
       {
+        icon: 'component',
+        name: 'Pagination',
+        description: 'Pagination'
+      },
+      {
         icon: 'progress',
         name: 'Linear Progress',
         description: 'Fills from 0% to 100%, represented by bars',
         url: 'linear-progress'
-      },
-      {
-        icon: 'component',
-        name: 'Pagination',
-        description: 'Pagination'
       }
     ]
   },

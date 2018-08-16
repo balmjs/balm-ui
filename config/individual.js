@@ -35,7 +35,8 @@ const components = [
   'top-app-bar.js',
   // Plus
   'dropdown.js',
-  'autocomplete.js'
+  'autocomplete.js',
+  'pagination.js'
 ];
 const plugins = [
   // MDC plugins

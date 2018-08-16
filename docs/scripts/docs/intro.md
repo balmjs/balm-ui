@@ -26,6 +26,7 @@ Following the [Material Design](https://material.io/components/) UI components f
   - Image List (migrate from Grid List)
   - Card
   - Chips
+  - Pagination (💡)
 - Linear Progress
 - Inputs and Controls
   - Text Field

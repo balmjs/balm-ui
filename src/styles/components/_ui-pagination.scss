@@ -4,8 +4,8 @@
 $mdc-pagination-color: $mdc-theme-primary !default;
 $mdc-pagination-corner-radius: 0 !default;
 
-$mdc-pagination-text-color: rgba(black, .87) !default;
-$mdc-pagination-border-color: rgba(black, .38) !default;
+$mdc-pagination-text-color: rgba(black, 0.87) !default;
+$mdc-pagination-border-color: rgba(black, 0.38) !default;
 $mdc-pagination-fill-color: white !default;
 
 $mdc-pagination-hover-text-color: $mdc-pagination-color !default;
@@ -14,13 +14,15 @@ $mdc-pagination-hover-fill-color: $mdc-pagination-fill-color !default;
 
 $mdc-pagination-active-text-color: $mdc-pagination-fill-color !default;
 $mdc-pagination-active-border-color: $mdc-pagination-color !default;
-$mdc-pagination-active-fill-color: rgba($mdc-pagination-color, .7) !default;
+$mdc-pagination-active-fill-color: rgba($mdc-pagination-color, 0.7) !default;
 
 .mdc-pagination {
+  line-height: 32px;
+
   display: flex;
 
+  flex-flow: wrap;
   justify-content: center;
-  line-height: 32px;
   .mdc-pagination__record {
     flex: 1;
   }
@@ -66,10 +68,12 @@ $mdc-pagination-active-fill-color: rgba($mdc-pagination-color, .7) !default;
   }
   .mdc-pagination__previous,
   .mdc-pagination__next {
-    i, span {
-      margin: 0;
-      line-height: inherit;
+    i,
+    span {
       font-size: inherit;
+      line-height: inherit;
+
+      margin: 0;
     }
     &.disabled {
       cursor: not-allowed;
@@ -80,9 +84,9 @@ $mdc-pagination-active-fill-color: rgba($mdc-pagination-color, .7) !default;
     input {
       width: 44px;
       height: 24px;
-      text-indent: 3px;
 
       transition: all 0.3s;
+      text-indent: 3px;
 
       color: $mdc-pagination-text-color;
       border: 1px solid #d9d9d9;

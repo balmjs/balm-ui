@@ -8,6 +8,7 @@ import $http from './plugins/$http';
 import BalmUI from '../../src/scripts/index'; // 'balm-ui'
 import BalmUIPlus from '../../src/scripts/plus'; // 'balm-ui-plus'
 import BalmUIMigrate from '../../src/scripts/migrate'; // 'balm-ui-migrate'
+import UiSpinner from 'balm-ui-lite/components/spinner';
 import router from './routes';
 import App from './views/layouts/app';
 import UiMarkdown from './components/markdown';
@@ -38,6 +39,7 @@ if (isIE) {
   });
   Vue.use(BalmUIMigrate);
 
+  Vue.component(UiSpinner.name, UiSpinner);
   Vue.component(UiMarkdown.name, UiMarkdown);
   Vue.component(UiApidocs.name, UiApidocs);
   Vue.component(UiLogo.name, UiLogo);

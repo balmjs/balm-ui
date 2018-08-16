@@ -33,6 +33,7 @@
     "url": "https://github.com/balmjs/ui-vue/issues"
   },
   "dependencies": {
+    "balm-ui-lite": "^1.4.1",
     "deepmerge": "^2.1.1",
     "flatpickr": "^4.5.1",
     "focus-trap": "^2.3.0"

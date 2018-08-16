@@ -1,0 +1,29 @@
+.loading-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 200px;
+  .mdl-spinner {
+    width: 88px;
+    height: 88px;
+  }
+  .mdl-spinner__circle {
+    border-width: 5px;
+  }
+}
+
+.loading-enter-active,
+.loading-leave-active {
+  transition: opacity 0.4s;
+}
+
+.loading-enter,
+.loading-leave-to {
+  opacity: 0;
+}
+
+.loading-leave-active {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+}

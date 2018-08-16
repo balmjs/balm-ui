@@ -67,7 +67,12 @@
           </ui-drawer-content>
         </ui-persistent-drawer>
         <main ref="body" class="balmui-content" v-anchor.offset="60">
-          <router-view></router-view>
+          <transition name="loading">
+            <div v-if="loading" class="loading-container">
+              <ui-spinner active></ui-spinner>
+            </div>
+            <router-view v-else></router-view>
+          </transition>
         </main>
       </div>
     </template>
@@ -88,7 +93,8 @@ export default {
     return {
       lang,
       menu,
-      open: true
+      open: true,
+      loading: false
     };
   },
   computed: {
@@ -113,6 +119,17 @@ export default {
 
       this.open = this.noLayout ? false : window.innerWidth >= 1024;
     }
+  },
+  created() {
+    this.$router.beforeEach((to, from, next) => {
+      this.open = true;
+      this.loading = true;
+      next();
+    });
+
+    this.$router.afterEach(() => {
+      this.loading = false;
+    });
   },
   mounted() {
     this.open = window.innerWidth >= 1024;

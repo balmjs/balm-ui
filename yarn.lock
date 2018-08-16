@@ -1645,6 +1645,13 @@ balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
 
+balm-ui-lite@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/balm-ui-lite/-/balm-ui-lite-1.4.1.tgz#66ad4afde233d22365ec9b6f6a41a83a3407aa6b"
+  dependencies:
+    deepmerge "^2.1.1"
+    flatpickr "^4.5.1"
+
 balm@^0.23.10:
   version "0.23.10"
   resolved "https://registry.yarnpkg.com/balm/-/balm-0.23.10.tgz#6e81f9cdf209bdfcafb5ddb05fd4d7f6951aaee8"

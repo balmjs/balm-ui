@@ -28,11 +28,13 @@
 
 - `slot-scope`
 
-```json
+```js
 {
-  "pageCount": "$pageCount"
+  pageCount
 }
 ```
+
+> `pageCount`: Total number of the pages.
 
 #### Events
 

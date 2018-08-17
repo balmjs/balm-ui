@@ -2,7 +2,7 @@
   <div :class="[$tt('body1'), 'demo--icon-button']">
     <section class="hero component">
       <div class="demo-wrapper">
-        <ui-icon-button v-model="icon1.value" :on="icon1.on" :off="icon1.off">
+        <ui-icon-button :toggle="icon1">
         </ui-icon-button>
       </div>
     </section>
@@ -19,9 +19,9 @@
             <div class="toggle-example">
               <h6 :class="$tt('headline6')">Material Icons</h6>
               <div class="demo-wrapper">
-                <ui-icon-button>favorite</ui-icon-button>
-                <ui-icon-button>airplanemode_active</ui-icon-button>
-                <ui-icon-link>directions_transit</ui-icon-link>
+                <ui-icon-button icon="favorite"></ui-icon-button>
+                <ui-icon-button icon="airplanemode_active"></ui-icon-button>
+                <ui-icon-link icon="directions_transit"></ui-icon-link>
               </div>
             </div>
 
@@ -37,7 +37,7 @@
             <div class="toggle-example">
               <h6 :class="$tt('headline6')">Disabled Buttons</h6>
               <div class="demo-wrapper">
-                <ui-icon-button disabled>airplanemode_active</ui-icon-button>
+                <ui-icon-button icon="airplanemode_active" disabled></ui-icon-button>
                 <ui-icon-button disabled>
                   <ui-logo></ui-logo>
                 </ui-icon-button>
@@ -47,7 +47,7 @@
             <div class="toggle-example">
               <h6 :class="$tt('headline6')">Larger Buttons</h6>
               <div class="demo-wrapper">
-                <ui-icon-button class="demo-icon-button-large">airplanemode_active</ui-icon-button>
+                <ui-icon-button class="demo-icon-button-large" icon="airplanemode_active"></ui-icon-button>
                 <ui-icon-button class="demo-icon-button-large">
                   <ui-logo></ui-logo>
                 </ui-icon-button>
@@ -69,24 +69,51 @@
             <div class="toggle-example">
               <h6 :class="$tt('headline6')">Using Material Icons</h6>
               <div class="demo-wrapper">
-                <ui-icon-button
-                  v-model="icon1.value"
-                  :on="icon1.on"
-                  :off="icon1.off">
+                <ui-icon-button v-model="value1" :toggle="icon1">
                 </ui-icon-button>
               </div>
-              <p>Favorited? <span id="favorited-status">{{ icon1.value }}</span></p>
+              <p>Favorited? <span id="favorited-status">{{ value1 }}</span></p>
             </div>
 
             <div class="toggle-example">
               <h6 :class="$tt('headline6')">Using Font Awesome</h6>
               <div class="demo-wrapper">
-                <ui-icon-button
-                  iconInnerSelector=".fa"
-                  v-model="icon2.value"
-                  :on="icon2.on"
-                  :off="icon2.off">
-                  <i class="fa fa-star" aria-hidden="true"></i>
+                <ui-icon-button v-model="value2">
+                  <template slot-scope="{ onClass, offClass }">
+                    <i :class="[onClass, icon2.on]"></i>
+                    <i :class="[offClass, icon2.off]"></i>
+                  </template>
+                </ui-icon-button>
+                <p>Result: {{ value2 }}</p>
+              </div>
+            </div>
+
+            <div class="toggle-example">
+              <h6 :class="$tt('headline6')">Using SVG Icons</h6>
+              <div class="demo-wrapper">
+                <ui-icon-button>
+                  <template slot-scope="{ onClass, offClass }">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="onClass">
+                      <path d="M0 0h24v24H0z" fill="none"></path>
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="offClass">
+                      <path d="M0 0h24v24H0z" fill="none"></path>
+                      <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path>
+                    </svg>
+                  </template>
+                </ui-icon-button>
+              </div>
+            </div>
+
+            <div class="toggle-example">
+              <h6 :class="$tt('headline6')">Using Image Icons</h6>
+              <div class="demo-wrapper">
+                <ui-icon-button>
+                  <template slot-scope="{ onClass, offClass }">
+                    <img :src="imageOn" :class="onClass">
+                    <img :src="imageOff" :class="offClass">
+                  </template>
                 </ui-icon-button>
               </div>
             </div>
@@ -94,10 +121,7 @@
             <div class="toggle-example">
               <h6 :class="$tt('headline6')">Disabled Icons</h6>
               <div class="demo-wrapper">
-                <ui-icon-button
-                  :on="icon1.on"
-                  :off="icon1.off"
-                  disabled>
+                <ui-icon-button :toggle="icon1" disabled>
                 </ui-icon-button>
               </div>
             </div>
@@ -111,27 +135,21 @@
             <div id="demo-color-combos">
               <div id="light-on-bg" class="demo-color-combo">
                 <div>
-                  <ui-icon-button :class="$themeColor('on-primary')"
-                    :on="icon1.on"
-                    :off="icon1.off">
+                  <ui-icon-button :class="$themeColor('on-primary')" :toggle="icon1">
                   </ui-icon-button>
                 </div>
                 <div :class="$themeColor('on-primary')">Light icon on background</div>
               </div>
               <div id="dark-on-bg" class="demo-color-combo">
                 <div :class="$themeColor('primary')">
-                  <ui-icon-button
-                    :on="icon1.on"
-                    :off="icon1.off">
+                  <ui-icon-button :toggle="icon1">
                   </ui-icon-button>
                 </div>
                 <div>Dark icon on background</div>
               </div>
               <div id="custom-color-combo" class="demo-color-combo">
                 <div>
-                  <ui-icon-button
-                    :on="icon1.on"
-                    :off="icon1.off">
+                  <ui-icon-button :toggle="icon1">
                   </ui-icon-button>
                 </div>
                 <div>Custom color</div>
@@ -152,6 +170,8 @@
 
 <script>
 import snippets from '../../mixins/snippets';
+import imageOn from '../../../images/icon/ic_button_24px.svg';
+import imageOff from '../../../images/icon/ic_card_24px.svg';
 
 export default {
   metaInfo: {
@@ -160,28 +180,18 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      value1: false,
       icon1: {
-        value: false,
-        on: {
-          content: 'favorite',
-          label: 'Remove From Favorites'
-        },
-        off: {
-          content: 'favorite_border',
-          label: 'Add to Favorites'
-        }
+        on: 'favorite',
+        off: 'favorite_border'
       },
+      value2: true,
       icon2: {
-        value: true,
-        on: {
-          class: 'fa-star',
-          label: 'Unstar this item'
-        },
-        off: {
-          class: 'fa-star-o',
-          label: 'Star this item'
-        }
-      }
+        on: 'fa fa-star',
+        off: 'fa fa-star-o'
+      },
+      imageOn,
+      imageOff
     };
   },
   created() {

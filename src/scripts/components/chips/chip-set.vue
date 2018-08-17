@@ -79,13 +79,16 @@ export default {
     this.$chipSet = new MDCChipSet(this.$el);
 
     if (this.choice && this.selectedValue > -1) {
-      this.$chipSet.chips[this.selectedValue].selected = true;
+      let selectedChip = this.$chipSet.chips[this.selectedValue];
+      selectedChip.selected = true;
+      this.$chipSet.selectedChipIds.push(selectedChip.id);
     }
 
     if (this.filter) {
       this.$chipSet.chips.forEach((chip, index) => {
         if (this.selectedValue.includes(index)) {
           chip.selected = true;
+          this.$chipSet.selectedChipIds.push(chip.id);
         }
       });
     }

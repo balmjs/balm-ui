@@ -1,17 +1,21 @@
-.mdc-typography--body2 {
-  padding: 0 20px 40px;
-  &.pure-docs {
-    padding-top: 20px;
-  }
-  & > footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-}
+.balmui-content {
+  .mdc-typography--body1 {
+    & > .mdc-typography--body2 {
+      padding: 0 20px 40px;
+      &.pure-docs {
+        padding-top: 20px;
+      }
+      & > footer {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+    }
 
-@media (max-width: 640px) {
-  .mdc-typography--body2 {
-    padding: 0 10px 20px;
+    @media (max-width: 640px) {
+      & > .mdc-typography--body2 {
+        padding: 0 10px 20px;
+      }
+    }
   }
 }

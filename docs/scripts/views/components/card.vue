@@ -18,9 +18,9 @@
             <ui-button>Bookmark</ui-button>
           </ui-card-buttons>
           <ui-card-icons>
-            <ui-icon-button :on="icon1.on" :off="icon1.off"></ui-icon-button>
-            <ui-icon-button>share</ui-icon-button>
-            <ui-icon-button>more_vert</ui-icon-button>
+            <ui-icon-button :toggle="icon1"></ui-icon-button>
+            <ui-icon-button icon="share"></ui-icon-button>
+            <ui-icon-button icon="more_vert"></ui-icon-button>
           </ui-card-icons>
         </ui-card-actions>
       </ui-card>
@@ -69,9 +69,9 @@
           </ui-card-content>
           <ui-card-actions>
             <ui-card-icons>
-              <ui-icon-button :on="icon1.on" :off="icon1.off"></ui-icon-button>
-              <ui-icon-button :on="icon2.on" :off="icon2.off"></ui-icon-button>
-              <ui-icon-button>share</ui-icon-button>
+              <ui-icon-button :toggle="icon1"></ui-icon-button>
+              <ui-icon-button :toggle="icon2"></ui-icon-button>
+              <ui-icon-button icon="share"></ui-icon-button>
             </ui-card-icons>
           </ui-card-actions>
         </ui-card>
@@ -147,24 +147,12 @@ export default {
         }
       ],
       icon1: {
-        on: {
-          content: 'favorite',
-          label: 'Remove From Favorites'
-        },
-        off: {
-          content: 'favorite_border',
-          label: 'Add to Favorites'
-        }
+        on: 'favorite',
+        off: 'favorite_border'
       },
       icon2: {
-        on: {
-          content: 'bookmark',
-          label: 'Remove bookmark'
-        },
-        off: {
-          content: 'bookmark_border',
-          label: 'Add bookmark'
-        }
+        on: 'bookmark',
+        off: 'bookmark_border'
       }
     };
   },

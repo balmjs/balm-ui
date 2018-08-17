@@ -1,5 +1,5 @@
 <template>
-  <div class="mdc-menu mdc-menu-surface" tabindex="-1">
+  <div :class="className" tabindex="-1">
     <ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
       <slot>
         <template v-for="(item, index) in currentItems">
@@ -108,6 +108,15 @@ export default {
       $menu: null,
       currentItems: this.items
     };
+  },
+  computed: {
+    className() {
+      return {
+        'mdc-menu': true,
+        'mdc-menu-surface': true,
+        'mdc-menu-surface--open': this.cssOnly
+      };
+    }
   },
   watch: {
     open(val) {

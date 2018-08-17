@@ -1,11 +1,11 @@
 <template>
   <li class="mdc-list-item" role="menuitem" :tabindex="tabindex(item)">
-    <span v-if="item[tabKeys.icon]" class="mdc-menu__selection-group-icon">
-      {{ item[tabKeys.icon] }}
-      <slot>{{ item[tabKeys.label] }}</slot>
+    <span v-if="item[itemKeys.icon]" class="mdc-menu__selection-group-icon">
+      {{ item[itemKeys.icon] }}
+      <slot>{{ item[itemKeys.label] }}</slot>
     </span>
     <template v-else>
-      <slot>{{ item[tabKeys.label] }}</slot>
+      <slot>{{ item[itemKeys.label] }}</slot>
     </template>
   </li>
 </template>

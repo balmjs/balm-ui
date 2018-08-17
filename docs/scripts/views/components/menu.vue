@@ -2,7 +2,7 @@
   <div :class="[$tt('body1'), 'demo--menu']">
     <section class="hero component">
       <ui-menu cssOnly
-        class="mdc-menu--open"
+        class="mdc-menu-surface--open"
         :items="[
           'Back',
           'Forward',
@@ -49,7 +49,7 @@
               :rememberSelection="controls.rememberSelection"
               :quickOpen="controls.disableAnimation"
               @selected="onSelected"
-              @cancel="onCancel">
+              @closed="onClosed">
               <ui-menuitem v-for="(item, index) in items" :key="index">
                 {{ item }}
               </ui-menuitem>
@@ -234,8 +234,8 @@ export default {
       console.log('onSelected', data);
       this.selectedValue = data;
     },
-    onCancel() {
-      console.log('onCancel');
+    onClosed() {
+      console.log('onClosed');
     }
   },
   created() {

@@ -1,5 +1,5 @@
 <template>
-  <div class="mdc-menu" tabindex="-1">
+  <div class="mdc-menu mdc-menu-surface" tabindex="-1">
     <ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
       <slot>
         <template v-for="(item, index) in currentItems">
@@ -53,6 +53,8 @@ const UI_MENU = {
   ],
   EVENT: {
     SELECTED: 'selected',
+    CLOSED: 'closed',
+    OPENED: 'opened',
     CANCEL: 'cancel',
     CHANGE: 'change'
   }
@@ -85,6 +87,10 @@ export default {
       default: false
     },
     // UI attributes
+    cssOnly: {
+      type: Boolean,
+      default: false
+    },
     position: {
       type: String,
       default: 'TOP_LEFT'
@@ -105,10 +111,8 @@ export default {
   },
   watch: {
     open(val) {
-      if (val) {
-        this.$menu.show();
-      } else {
-        this.$menu.hide();
+      if (this.$menu.open !== val) {
+        this.$menu.open = val;
       }
     },
     items(val) {
@@ -128,31 +132,42 @@ export default {
     }
   },
   mounted() {
-    this.$menu = new MDCMenu(this.$el);
+    if (!this.cssOnly) {
+      this.$menu = new MDCMenu(this.$el);
 
-    // Listen for selected item
-    this.$el.addEventListener(
-      `MDCMenu:${UI_MENU.EVENT.SELECTED}`,
-      ({ detail }) => {
-        let item = detail.item;
-        this.$emit(UI_MENU.EVENT.CHANGE, false);
-        this.$emit(UI_MENU.EVENT.SELECTED, {
-          index: detail.index, // number
-          label: item.textContent.trim(), // string
-          item // HTMLElement
-        });
-      }
-    );
+      // Listen for selected item
+      this.$el.addEventListener(
+        `MDCMenu:${UI_MENU.EVENT.SELECTED}`,
+        ({ detail }) => {
+          let item = detail.item;
+          this.$emit(UI_MENU.EVENT.SELECTED, {
+            index: detail.index, // number
+            label: item.textContent.trim(), // string
+            item // HTMLElement
+          });
+        }
+      );
 
-    this.$el.addEventListener(`MDCMenu:${UI_MENU.EVENT.CANCEL}`, () => {
-      this.$emit(UI_MENU.EVENT.CHANGE, false);
-      this.$emit(UI_MENU.EVENT.CANCEL);
-    });
+      this.$el.addEventListener(
+        `MDCMenuSurface:${UI_MENU.EVENT.CLOSED}`,
+        () => {
+          this.$emit(UI_MENU.EVENT.CHANGE, false);
+          this.$emit(UI_MENU.EVENT.CLOSED);
+        }
+      );
 
-    this.setQuickOpen();
-    this.setAnchorCorner();
-    this.setAnchorMargin();
-    this.setRememberSelection();
+      this.$el.addEventListener(
+        `MDCMenuSurface:${UI_MENU.EVENT.OPENED}`,
+        () => {
+          this.$emit(UI_MENU.EVENT.OPENED);
+        }
+      );
+
+      this.setQuickOpen();
+      this.setAnchorCorner();
+      this.setAnchorMargin();
+      this.setRememberSelection();
+    }
   },
   methods: {
     setQuickOpen(quickOpen = this.quickOpen) {
@@ -161,7 +176,7 @@ export default {
     hasAnchor() {
       return (
         this.$el.parentElement &&
-        this.$el.parentElement.classList.contains('mdc-menu-anchor')
+        this.$el.parentElement.classList.contains('mdc-menu-surface--anchor')
       );
     },
     setAnchorCorner(menuPosition = this.position) {

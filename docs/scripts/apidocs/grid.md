@@ -4,10 +4,10 @@
 
 #### Props
 
-| Name             | Type      | Default | Description                                                                             |
-| ---------------- | --------- | ------- | --------------------------------------------------------------------------------------- |
-| fixedColumnWidth | `Boolean` | `false` | Optional, specifies the grid should have fixed column width.                            |
-| position         | `String`  | `''`    | Optional, specifies the alignment of the whole grid. (Grid position: `left` or `right`) |
+| Name             | Type      | Default | Description                                                                                 |
+| ---------------- | --------- | ------- | ------------------------------------------------------------------------------------------- |
+| fixedColumnWidth | `Boolean` | `false` | Optional, specifies the grid should have fixed column width.                                |
+| position         | `String`  | `''`    | Optional, specifies the alignment of the whole grid. (Grid position: `'left'` or `'right'`) |
 
 #### Slots
 

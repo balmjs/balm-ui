@@ -16,7 +16,7 @@
     position: relative;
     background-color: #aaaaaa;
   }
-  .demo-parent-cell>span {
+  .demo-parent-cell .mdc-layout-grid__inner > span {
     position: absolute;
     top: 8px;
     left: 8px;
@@ -26,7 +26,7 @@
   .demo-child-cell {
     position: relative;
   }
-  .demo-child-cell>span {
+  .demo-child-cell > span {
     position: absolute;
     bottom: 8px;
     right: 8px;

@@ -1,10 +1,16 @@
 <template>
   <div :class="className">
-    <slot></slot>
+    <ui-grid-inner v-if="nested">
+      <slot></slot>
+    </ui-grid-inner>
+    <template v-else>
+      <slot></slot>
+    </template>
   </div>
 </template>
 
 <script>
+import UiGridInner from './grid-inner';
 import getType from '../../utils/typeof';
 
 // Define constants
@@ -21,7 +27,15 @@ const UI_GRID_CELL = {
 
 export default {
   name: 'ui-grid-cell',
+  components: {
+    UiGridInner
+  },
   props: {
+    // UI layout
+    nested: {
+      type: Boolean,
+      default: false
+    },
     // UI attributes
     colspan: [Number, String, Object], // default: 4
     order: [Number, String],

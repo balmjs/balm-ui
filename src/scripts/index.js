@@ -12,7 +12,6 @@ import UiDrawerToolbarSpacer from './components/drawer/drawer-toolbar-spacer';
 import UiDrawerContent from './components/drawer/drawer-content';
 import UiTopAppBar from './components/toolbar/top-app-bar';
 import UiGrid from './components/grid/grid';
-import UiGridInner from './components/grid/grid-inner';
 import UiGridCell from './components/grid/grid-cell';
 import UiTabs from './components/tabs/tabs';
 import UiTab from './components/tabs/tab';
@@ -102,7 +101,6 @@ const components = {
   UiDrawerContent,
   UiTopAppBar,
   UiGrid,
-  UiGridInner,
   UiGridCell,
   UiTabs,
   UiTab,

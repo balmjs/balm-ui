@@ -3,13 +3,28 @@
     <ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
       <slot>
         <template v-for="(item, index) in currentItems">
-          <ui-item-divider v-if="item === UI_MENU.DIVIDER" :key="`divider${index}`">
-          </ui-item-divider>
-          <ui-menuitem v-else
-            :key="`item${index}`"
-            :item="getType(item) === 'object' ? item : {}">
-            {{ getType(item) === 'string' ? item : '' }}
-          </ui-menuitem>
+          <template v-if="getType(item) === 'array'">
+            <ul class="mdc-menu__selection-group" :key="`group${index}`">
+              <template v-for="(subItem, subIndex) in item">
+                <ui-item-divider v-if="subItem === UI_MENU.DIVIDER" :key="`subdivider${subIndex}`">
+                </ui-item-divider>
+                <ui-menuitem v-else
+                  :key="`subitem${subIndex}`"
+                  :item="getType(subItem) === 'object' ? subItem : {}">
+                  {{ getType(subItem) === 'string' ? subItem : '' }}
+                </ui-menuitem>
+              </template>
+            </ul>
+          </template>
+          <template v-else>
+            <ui-item-divider v-if="item === UI_MENU.DIVIDER" :key="`divider${index}`">
+            </ui-item-divider>
+            <ui-menuitem v-else
+              :key="`item${index}`"
+              :item="getType(item) === 'object' ? item : {}">
+              {{ getType(item) === 'string' ? item : '' }}
+            </ui-menuitem>
+          </template>
         </template>
       </slot>
     </ul>
@@ -18,7 +33,7 @@
 
 <script>
 import { MDCMenu } from '../../../material-components-web/menu';
-import { Corner } from '../../../material-components-web/menu/constants';
+import { Corner } from '../../../material-components-web/menu-surface/constants';
 import UiMenuItem from './menuitem';
 import UiItemDivider from '../list/item-divider';
 import getType from '../../utils/typeof';

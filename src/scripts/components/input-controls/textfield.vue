@@ -186,7 +186,6 @@ export default {
       return {
         outer: {
           'mdc-text-field': true,
-          'mdc-text-field--upgraded': !this.cssOnly,
           'mdc-text-field--box': this.box,
           'mdc-text-field--outlined': this.outlined,
           'mdc-text-field--fullwidth': this.fullwidth,

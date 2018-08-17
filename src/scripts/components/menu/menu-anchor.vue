@@ -1,5 +1,5 @@
 <template>
-  <div class="mdc-menu-anchor" :style="positionStyle">
+  <div class="mdc-menu-surface--anchor" :style="positionStyle">
     <slot></slot>
   </div>
 </template>

@@ -1,13 +1,23 @@
 <template>
-  <li class="mdc-list-item"
-    role="menuitem"
-    :tabindex="tabindex(item)"
-    :aria-disabled="item.disabled">
-    <slot>{{ item[label] }}</slot>
+  <li class="mdc-list-item" role="menuitem" :tabindex="tabindex(item)">
+    <span v-if="item[tabKeys.icon]" class="mdc-menu__selection-group-icon">
+      {{ item[tabKeys.icon] }}
+      <slot>{{ item[tabKeys.label] }}</slot>
+    </span>
+    <template v-else>
+      <slot>{{ item[tabKeys.label] }}</slot>
+    </template>
   </li>
 </template>
 
 <script>
+// Define constants
+const DEFAULT_MENUITEM_KEYS = {
+  label: 'label',
+  icon: 'icon'
+};
+const MENUITEM_KEYS = Object.keys(DEFAULT_MENUITEM_KEYS);
+
 export default {
   name: 'ui-menuitem',
   props: {
@@ -18,9 +28,24 @@ export default {
         return {};
       }
     },
-    label: {
-      type: String,
-      default: 'label'
+    keys: {
+      type: Object,
+      default() {
+        return {};
+      }
+    }
+  },
+  computed: {
+    itemKeys() {
+      let currentItemKeys = DEFAULT_MENUITEM_KEYS;
+
+      Object.keys(this.keys).forEach(key => {
+        if (MENUITEM_KEYS.includes(key) && this.keys[key]) {
+          currentItemKeys[key] = this.keys[key];
+        }
+      });
+
+      return currentItemKeys;
     }
   },
   methods: {

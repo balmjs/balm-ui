@@ -1,5 +1,5 @@
 <template>
-  <div class="mdc-menu" tabindex="-1">
+  <div :class="className" tabindex="-1">
     <ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
       <slot>
         <template v-for="(item, index) in currentItems">
@@ -70,6 +70,10 @@ export default {
       default: false
     },
     // UI attributes
+    cssOnly: {
+      type: Boolean,
+      default: false
+    },
     position: {
       type: String,
       default: 'TOP_LEFT'
@@ -87,6 +91,14 @@ export default {
       $menu: null,
       currentItems: this.items
     };
+  },
+  computed: {
+    className() {
+      return {
+        'mdc-menu': true,
+        'mdc-menu--open': this.cssOnly
+      };
+    }
   },
   watch: {
     open(val) {
@@ -113,31 +125,33 @@ export default {
     }
   },
   mounted() {
-    this.$menu = new MDCMenu(this.$el);
+    if (!this.cssOnly) {
+      this.$menu = new MDCMenu(this.$el);
 
-    // Listen for selected item
-    this.$el.addEventListener(
-      `MDCMenu:${UI_MENU.EVENT.SELECTED}`,
-      ({ detail }) => {
-        let item = detail.item;
+      // Listen for selected item
+      this.$el.addEventListener(
+        `MDCMenu:${UI_MENU.EVENT.SELECTED}`,
+        ({ detail }) => {
+          let item = detail.item;
+          this.$emit(UI_MENU.EVENT.CHANGE, false);
+          this.$emit(UI_MENU.EVENT.SELECTED, {
+            index: detail.index, // number
+            label: item.textContent.trim(), // string
+            item // HTMLElement
+          });
+        }
+      );
+
+      this.$el.addEventListener(`MDCMenu:${UI_MENU.EVENT.CANCEL}`, () => {
         this.$emit(UI_MENU.EVENT.CHANGE, false);
-        this.$emit(UI_MENU.EVENT.SELECTED, {
-          index: detail.index, // number
-          label: item.textContent.trim(), // string
-          item // HTMLElement
-        });
-      }
-    );
+        this.$emit(UI_MENU.EVENT.CANCEL);
+      });
 
-    this.$el.addEventListener(`MDCMenu:${UI_MENU.EVENT.CANCEL}`, () => {
-      this.$emit(UI_MENU.EVENT.CHANGE, false);
-      this.$emit(UI_MENU.EVENT.CANCEL);
-    });
-
-    this.setQuickOpen();
-    this.setAnchorCorner();
-    this.setAnchorMargin();
-    this.setRememberSelection();
+      this.setQuickOpen();
+      this.setAnchorCorner();
+      this.setAnchorMargin();
+      this.setRememberSelection();
+    }
   },
   methods: {
     setQuickOpen(quickOpen = this.quickOpen) {

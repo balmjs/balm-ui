@@ -2,7 +2,6 @@
   <div :class="[$tt('body1'), 'demo--menu']">
     <section class="hero component">
       <ui-menu cssOnly
-        class="mdc-menu--open"
         :items="[
           'Back',
           'Forward',

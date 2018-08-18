@@ -79,13 +79,16 @@ export default {
     this.$chipSet = new MDCChipSet(this.$el);
 
     if (this.choice && this.selectedValue > -1) {
-      this.$chipSet.chips[this.selectedValue].foundation_.setSelected(true);
+      let selectedChip = this.$chipSet.chips[this.selectedValue];
+      selectedChip.selected = true;
+      this.$chipSet.selectedChipIds.push(selectedChip.id);
     }
 
     if (this.filter) {
       this.$chipSet.chips.forEach((chip, index) => {
         if (this.selectedValue.includes(index)) {
-          chip.foundation_.setSelected(true);
+          chip.selected = true;
+          this.$chipSet.selectedChipIds.push(chip.id);
         }
       });
     }
@@ -103,21 +106,19 @@ export default {
       this.$nextTick(() => {
         if (this.choice) {
           let hasMultipleChoice =
-            this.$chipSet.chips.filter(chip => chip.isSelected()).length > 1;
+            this.$chipSet.chips.filter(chip => chip.selected).length > 1;
           if (hasMultipleChoice) {
-            this.$chipSet.chips[this.selectedValue].foundation_.setSelected(
-              false
-            );
+            this.$chipSet.chips[this.selectedValue].selected = false;
           }
 
-          let selectedIndex = this.$chipSet.chips.findIndex(chip =>
-            chip.isSelected()
+          let selectedIndex = this.$chipSet.chips.findIndex(
+            chip => chip.selected
           );
           this.$emit(UI_CHIPSET.EVENT.CHANGE, selectedIndex);
         } else if (this.filter) {
           let selectedIndexes = [];
           this.$chipSet.chips.forEach((chip, index) => {
-            if (chip.isSelected()) {
+            if (chip.selected) {
               selectedIndexes.push(index);
             }
           });

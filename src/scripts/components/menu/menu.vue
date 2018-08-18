@@ -3,13 +3,28 @@
     <ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
       <slot>
         <template v-for="(item, index) in currentItems">
-          <ui-item-divider v-if="item === UI_MENU.DIVIDER" :key="`divider${index}`">
-          </ui-item-divider>
-          <ui-menuitem v-else
-            :key="`item${index}`"
-            :item="getType(item) === 'object' ? item : {}">
-            {{ getType(item) === 'string' ? item : '' }}
-          </ui-menuitem>
+          <template v-if="getType(item) === 'array'">
+            <ui-menuitem group :key="`group${index}`">
+              <template v-for="(subItem, subIndex) in item">
+                <ui-item-divider v-if="subItem === UI_MENU.DIVIDER" :key="`subdivider${subIndex}`">
+                </ui-item-divider>
+                <ui-menuitem v-else
+                  :key="`subitem${subIndex}`"
+                  :item="getType(subItem) === 'object' ? subItem : {}">
+                  {{ getType(subItem) === 'string' ? subItem : '' }}
+                </ui-menuitem>
+              </template>
+            </ui-menuitem>
+          </template>
+          <template v-else>
+            <ui-item-divider v-if="item === UI_MENU.DIVIDER" :key="`divider${index}`">
+            </ui-item-divider>
+            <ui-menuitem v-else
+              :key="`item${index}`"
+              :item="getType(item) === 'object' ? item : {}">
+              {{ getType(item) === 'string' ? item : '' }}
+            </ui-menuitem>
+          </template>
         </template>
       </slot>
     </ul>
@@ -18,7 +33,7 @@
 
 <script>
 import { MDCMenu } from '../../../material-components-web/menu';
-import { Corner } from '../../../material-components-web/menu/constants';
+import { Corner } from '../../../material-components-web/menu-surface/constants';
 import UiMenuItem from './menuitem';
 import UiItemDivider from '../list/item-divider';
 import getType from '../../utils/typeof';
@@ -38,7 +53,8 @@ const UI_MENU = {
   ],
   EVENT: {
     SELECTED: 'selected',
-    CANCEL: 'cancel',
+    CLOSED: 'closed',
+    OPENED: 'opened',
     CHANGE: 'change'
   }
 };
@@ -79,7 +95,7 @@ export default {
       default: 'TOP_LEFT'
     },
     margin: String,
-    rememberSelection: {
+    fixed: {
       type: Boolean,
       default: false
     }
@@ -96,16 +112,16 @@ export default {
     className() {
       return {
         'mdc-menu': true,
-        'mdc-menu--open': this.cssOnly
+        'mdc-menu-surface': true,
+        'mdc-menu-surface--fixed': this.fixed,
+        'mdc-menu-surface--open': this.cssOnly
       };
     }
   },
   watch: {
     open(val) {
-      if (val) {
-        this.$menu.show();
-      } else {
-        this.$menu.hide();
+      if (this.$menu.open !== val) {
+        this.$menu.open = val;
       }
     },
     items(val) {
@@ -119,9 +135,6 @@ export default {
     },
     margin(val) {
       this.setAnchorMargin(val);
-    },
-    rememberSelection(val) {
-      this.setRememberSelection(val);
     }
   },
   mounted() {
@@ -133,24 +146,32 @@ export default {
         `MDCMenu:${UI_MENU.EVENT.SELECTED}`,
         ({ detail }) => {
           let item = detail.item;
-          this.$emit(UI_MENU.EVENT.CHANGE, false);
           this.$emit(UI_MENU.EVENT.SELECTED, {
+            item, // HTMLElement
             index: detail.index, // number
-            label: item.textContent.trim(), // string
-            item // HTMLElement
+            label: item.textContent.trim() // string
           });
         }
       );
 
-      this.$el.addEventListener(`MDCMenu:${UI_MENU.EVENT.CANCEL}`, () => {
-        this.$emit(UI_MENU.EVENT.CHANGE, false);
-        this.$emit(UI_MENU.EVENT.CANCEL);
-      });
+      this.$el.addEventListener(
+        `MDCMenuSurface:${UI_MENU.EVENT.CLOSED}`,
+        () => {
+          this.$emit(UI_MENU.EVENT.CHANGE, false);
+          this.$emit(UI_MENU.EVENT.CLOSED);
+        }
+      );
+
+      this.$el.addEventListener(
+        `MDCMenuSurface:${UI_MENU.EVENT.OPENED}`,
+        () => {
+          this.$emit(UI_MENU.EVENT.OPENED);
+        }
+      );
 
       this.setQuickOpen();
       this.setAnchorCorner();
       this.setAnchorMargin();
-      this.setRememberSelection();
     }
   },
   methods: {
@@ -160,7 +181,7 @@ export default {
     hasAnchor() {
       return (
         this.$el.parentElement &&
-        this.$el.parentElement.classList.contains('mdc-menu-anchor')
+        this.$el.parentElement.classList.contains('mdc-menu-surface--anchor')
       );
     },
     setAnchorCorner(menuPosition = this.position) {
@@ -181,9 +202,6 @@ export default {
         });
         this.$menu.setAnchorMargin(margin);
       }
-    },
-    setRememberSelection(rememberSelection = this.rememberSelection) {
-      this.$menu.rememberSelection = rememberSelection;
     }
   }
 };

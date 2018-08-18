@@ -6,7 +6,7 @@
 <ui-button outlined>
   <template slot-scope="{ className }">
     <!-- Custom SVG -->
-    <ui-logo :class="className.icon"></ui-logo>
+    <svg-logo :class="className.icon"></svg-logo>
     SVG Icon
   </template>
 </ui-button>

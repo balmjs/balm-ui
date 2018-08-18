@@ -21,136 +21,91 @@
       <ui-accordion>
         <ui-markdown :code="code[1]"></ui-markdown>
       </ui-accordion>
+
       <div class="demo-content">
-        <div id="demo-wrapper" :dir="controls.rtl ? 'rtl' : null">
-          <ui-menu-anchor :position="controls.buttonPosition">
-            <ui-button id="menu-button"
-              :class="[
-                'demo-button',
-                {'demo-button--normal': isRegularWidth},
-                {'demo-button--long': isWideWidth}
-              ]"
-              raised
-              @click="$balmUI.onShow('open')">
-              Show
-              <span v-if="isWideWidth || isRegularWidth" class="demo-button__normal-text"> Menu</span>
-              <span v-if="isWideWidth" class="demo-button__long-text"> From Here Now!</span>
-            </ui-button>
-
-            <ui-menu id="demo-menu"
-              :class="[
-                {'demo-menu--long': controls.menuLength === 'large'},
-                {'demo-menu--extra-long': controls.menuLength === 'tall'}
-              ]"
-              v-model="open"
-              :position="menuPosition"
-              :margin="anchorMargin"
-              :rememberSelection="controls.rememberSelection"
-              :quickOpen="controls.disableAnimation"
-              @selected="onSelected"
-              @cancel="onCancel">
-              <ui-menuitem v-for="(item, index) in items" :key="index">
-                {{ item }}
-              </ui-menuitem>
-              <ui-item-divider></ui-item-divider>
-              <ui-menuitem>Save As...</ui-menuitem>
-              <ui-menuitem>Help</ui-menuitem>
-              <span class="demo-menu__long-items">
-                <ui-menuitem v-for="(item, index) in longItems" :key="index">
-                  {{ item }}
-                </ui-menuitem>
-              </span>
-              <span class="demo-menu__extra-long-items">
-                <ui-menuitem v-for="(item, index) in extraLongItems" :key="index">
-                  {{ item }}
-                </ui-menuitem>
-              </span>
-            </ui-menu>
-          </ui-menu-anchor>
-        </div>
-
-        <div class="demo-controls-container">
+        <div class="demo-controls-container" dir="ltr">
           <div class="demo-controls">
             <div class="left-column-controls">
               Button Position:
               <div>
-                <ui-radio name="position" value="top left" v-model="controls.buttonPosition"> Top left</ui-radio>
+                <ui-radio name="position"
+                  value="top left"
+                  v-model="controls.buttonPosition">Top left</ui-radio>
               </div>
               <div>
-                <ui-radio name="position" value="top right" v-model="controls.buttonPosition"> Top right</ui-radio>
+                <ui-radio name="position"
+                  value="top right"
+                  v-model="controls.buttonPosition">Top right</ui-radio>
               </div>
               <div>
-                <ui-radio name="position" value="middle left" v-model="controls.buttonPosition"> Middle left</ui-radio>
+                <ui-radio name="position"
+                  value="middle left"
+                  v-model="controls.buttonPosition">Middle left</ui-radio>
               </div>
               <div>
-                <ui-radio name="position" value="middle right" v-model="controls.buttonPosition"> Middle right</ui-radio>
+                <ui-radio name="position"
+                  value="middle right"
+                  v-model="controls.buttonPosition">Middle right</ui-radio>
               </div>
               <div>
-                <ui-radio name="position" value="bottom left" v-model="controls.buttonPosition"> Bottom left</ui-radio>
+                <ui-radio name="position"
+                  value="bottom left"
+                  v-model="controls.buttonPosition">Bottom left</ui-radio>
               </div>
               <div>
-                <ui-radio name="position" value="bottom right" v-model="controls.buttonPosition"> Bottom right</ui-radio>
+                <ui-radio name="position"
+                  value="bottom right"
+                  v-model="controls.buttonPosition">Bottom right</ui-radio>
               </div>
             </div>
             <div class="right-column-controls">
               Default Menu Position:
               <div>
-                <ui-radio name="menu-position" value="top start" v-model="controls.menuPosition"> Top start</ui-radio>
+                <ui-radio name="menu-position"
+                  value="top start"
+                  v-model="controls.menuPosition">Top start</ui-radio>
               </div>
               <div>
-                <ui-radio name="menu-position" value="top end" v-model="controls.menuPosition"> Top end</ui-radio>
+                <ui-radio name="menu-position"
+                  value="top end"
+                  v-model="controls.menuPosition">Top end</ui-radio>
               </div>
               <div>
-                <ui-radio name="menu-position" value="bottom start" v-model="controls.menuPosition"> Bottom start</ui-radio>
+                <ui-radio name="menu-position"
+                  value="bottom start"
+                  v-model="controls.menuPosition">Bottom start</ui-radio>
               </div>
               <div>
-                <ui-radio name="menu-position" value="bottom end" v-model="controls.menuPosition"> Bottom end</ui-radio>
+                <ui-radio name="menu-position"
+                  value="bottom end"
+                  v-model="controls.menuPosition">Bottom end</ui-radio>
               </div>
             </div>
-            <div>
+            <p>
               Anchor Margins:
-              <div id="margin-inputs" class="margin-inputs">
-                <ui-textfield id="top-margin" v-model="controls.anchorMargin.top">T:</ui-textfield>
-                <ui-textfield id="bottom-margin" v-model="controls.anchorMargin.bottom">B:</ui-textfield>
-                <ui-textfield id="left-margin" v-model="controls.anchorMargin.left">L:</ui-textfield>
-                <ui-textfield id="right-margin" v-model="controls.anchorMargin.right">R:</ui-textfield>
-              </div>
+              <span class="margin-inputs">
+                <ui-textfield id="top-margin"
+                  v-model="controls.anchorMargin.top">T:</ui-textfield>
+                <ui-textfield id="bottom-margin"
+                  v-model="controls.anchorMargin.bottom">B:</ui-textfield>
+                <ui-textfield id="left-margin"
+                  v-model="controls.anchorMargin.left">L:</ui-textfield>
+                <ui-textfield id="right-margin"
+                  v-model="controls.anchorMargin.right">R:</ui-textfield>
+              </span>
+            </p>
+            <div>
+              <ui-checkbox id="is-rtl" v-model="controls.rtl">RTL</ui-checkbox>
             </div>
             <div>
-              <ui-checkbox id="is-rtl" v-model="controls.rtl"> RTL</ui-checkbox>
+              <ui-checkbox id="animation" v-model="controls.disableAnimation">Disable Open Animation</ui-checkbox>
             </div>
             <div>
-              <ui-checkbox id="remember" v-model="controls.rememberSelection"> Remember Selected Item</ui-checkbox>
+              <ui-checkbox id="fixed-position" v-model="controls.fixedPosition">Fixed Position Menu Surface</ui-checkbox>
             </div>
-            <div>
-              <ui-checkbox id="animation" v-model="controls.disableAnimation"> Disable Open Animation</ui-checkbox>
-            </div>
-            <div>
-              <div class="left-column-controls">
-                Menu Sizes:
-                <div>
-                  <ui-radio name="menu-length" value="small" v-model="controls.menuLength"> Regular menu</ui-radio>
-                </div>
-                <div>
-                  <ui-radio name="menu-length" value="large" v-model="controls.menuLength"> Large menu</ui-radio>
-                </div>
-                <div>
-                  <ui-radio name="menu-length" value="tall" v-model="controls.menuLength"> Extra tall menu</ui-radio>
-                </div>
-              </div>
-              <div class="right-column-controls">
-                Anchor Widths
-                <div>
-                  <ui-radio name="anchor-width" value="tiny" v-model="controls.anchorWidth"> Small button</ui-radio>
-                </div>
-                <div>
-                  <ui-radio name="anchor-width" value="regular" v-model="controls.anchorWidth"> Comparable to menu</ui-radio>
-                </div>
-                <div>
-                  <ui-radio name="anchor-width" value="wide" v-model="controls.anchorWidth"> Wider than menu</ui-radio>
-                </div>
-              </div>
-            </div>
+            <!-- <div>
+              <ui-checkbox id="right-click" v-model="controls.rightClick">Enable Right-Click Menu Surface</ui-checkbox>
+            </div> -->
             <hr>
             <div>
               <span>Last Selected item:
@@ -165,6 +120,58 @@
             </div>
           </div>
         </div>
+
+        <div id="demo-wrapper" :dir="controls.rtl ? 'rtl' : null">
+          <ui-menu-anchor :position="controls.buttonPosition">
+            <ui-button raised class="demo-button demo-button--normal"
+              @click="$balmUI.onOpen('open')">
+              <span>
+                Show Menu
+              </span>
+            </ui-button>
+
+            <ui-menu id="demo-menu"
+              v-model="open"
+              :position="menuPosition"
+              :margin="anchorMargin"
+              :quickOpen="controls.disableAnimation"
+              :fixed="controls.fixedPosition"
+              @selected="onSelected"
+              @closed="onClosed">
+              <ui-menuitem nested>
+                <ui-menuitem>
+                  <ui-menuitem-icon>
+                    <svg-selected></svg-selected>
+                  </ui-menuitem-icon>
+                  Single
+                </ui-menuitem>
+                <ui-menuitem disabled>
+                  <ui-menuitem-icon>
+                    <svg-selected></svg-selected>
+                  </ui-menuitem-icon>
+                  1.15
+                </ui-menuitem>
+                <ui-menuitem>
+                  <ui-menuitem-icon>
+                    <svg-selected></svg-selected>
+                  </ui-menuitem-icon>
+                  Double
+                </ui-menuitem>
+                <ui-menuitem selected>
+                  <ui-menuitem-icon>
+                    <svg-selected></svg-selected>
+                  </ui-menuitem-icon>
+                  Custom: 1.2
+                </ui-menuitem>
+              </ui-menuitem>
+              <ui-item-divider></ui-item-divider>
+              <ui-menuitem>Add space before paragraph</ui-menuitem>
+              <ui-menuitem>Add space after paragraph</ui-menuitem>
+              <ui-item-divider></ui-item-divider>
+              <ui-menuitem>Custom spacing...</ui-menuitem>
+            </ui-menu>
+          </ui-menu-anchor>
+        </div>
       </div>
 
       <h4 :class="$tt('headline4')">2. APIs</h4>
@@ -176,19 +183,20 @@
 </template>
 
 <script>
+import SvgSelected from '../../components/selected';
 import snippets from '../../mixins/snippets';
 
 export default {
   metaInfo: {
     titleTemplate: '%s - Menu'
   },
+  components: {
+    SvgSelected
+  },
   mixins: [snippets],
   data() {
     return {
       open: false,
-      items: ['Back', 'Forward', 'Reload'],
-      longItems: ['Settings', 'Feedback', 'Options...', 'Item 1', 'Item 2'],
-      extraLongItems: [3, 4, 5, 6, 7, 8, 9].map(i => `Item ${i}`),
       selectedValue: null,
       controls: {
         buttonPosition: 'top left',
@@ -200,10 +208,9 @@ export default {
           right: 0
         },
         rtl: false,
-        rememberSelection: false,
         disableAnimation: false,
-        menuLength: 'small',
-        anchorWidth: 'regular'
+        fixedPosition: false,
+        rightClick: false
       }
     };
   },
@@ -220,12 +227,6 @@ export default {
       } ${this.controls.anchorMargin.bottom} ${
         this.controls.anchorMargin.left
       }`;
-    },
-    isRegularWidth() {
-      return this.controls.anchorWidth === 'regular';
-    },
-    isWideWidth() {
-      return this.controls.anchorWidth === 'wide';
     }
   },
   methods: {
@@ -233,8 +234,8 @@ export default {
       console.log('onSelected', data);
       this.selectedValue = data;
     },
-    onCancel() {
-      console.log('onCancel');
+    onClosed() {
+      console.log('onClosed');
     }
   },
   created() {

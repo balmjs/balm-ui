@@ -1,21 +1,13 @@
 .demo--switch {
-  section.example {
-    margin-bottom: 0.5rem;
+  .demo-switch-wrapper {
+    display: inline-block;
+    margin-right: 16px;
+  }
+  .demo-switch--custom .mdc-switch {
+    $color: $material-color-red-500;
+    @include mdc-switch-toggled-on-color($color);
+  }
+  .rtl-toggle {
     margin: 16px;
-    padding: 40px;
-    background-color: #eee;
-  }
-
-  .demo-header-toolbar {
-    z-index: 10;
-  }
-
-  h2 {
-    margin: 0;
-    margin-bottom: 20px;
-  }
-
-  label {
-    font-size: 16px;
   }
 }

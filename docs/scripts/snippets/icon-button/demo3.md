@@ -1,19 +1,15 @@
 ```html
 <div id="light-on-bg" class="demo-color-combo">
   <div>
-    <ui-icon-button :class="$textColor('primary', 'primary')"
-      :on="icon1.on"
-      :off="icon1.off">
+    <ui-icon-button :class="$themeColor('on-primary')" :toggle="icon1">
     </ui-icon-button>
   </div>
-  <div class="mdc-theme--on-primary">Light icon on background</div>
+  <div :class="$themeColor('on-primary')">Light icon on background</div>
 </div>
 
 <div id="dark-on-bg" class="demo-color-combo">
   <div :class="$themeColor('primary')">
-    <ui-icon-button
-      :on="icon1.on"
-      :off="icon1.off">
+    <ui-icon-button :toggle="icon1">
     </ui-icon-button>
   </div>
   <div>Dark icon on background</div>
@@ -21,9 +17,7 @@
 
 <div id="custom-color-combo" class="demo-color-combo">
   <div>
-    <ui-icon-button
-      :on="icon1.on"
-      :off="icon1.off">
+    <ui-icon-button :toggle="icon1">
     </ui-icon-button>
   </div>
   <div>Custom color</div>

@@ -1,5 +1,5 @@
 <template>
-  <div :class="[$tt('body1'), 'demo--top-app-bar']" :dir="controls.rtl ? 'rtl' : null">
+  <div class="demo--top-app-bar" :dir="controls.rtl ? 'rtl' : null">
     <ui-top-app-bar
       contentSelector="#content-main"
       navId="demo-menu"
@@ -37,7 +37,7 @@
     </ui-temporary-drawer>
 
     <main class="demo-main">
-      <div id="content-main">
+      <div :class="$tt('body1')" id="content-main">
         <section class="hero component">
           <h2 :class="$tt('headline4')">Top App Bar</h2>
         </section>

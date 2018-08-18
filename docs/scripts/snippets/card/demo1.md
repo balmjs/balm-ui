@@ -6,7 +6,7 @@
   <template v-for="item in list">
     <a class="demo-card-article" v-ripple>
       <h2 :class="[$tt('headline5'), 'demo-card-article__title']">{{ item.title }}</h2>
-      <p :class="[$tt('body2'), 'demo-card-article__snippet']">{{ item.content }}</p>
+      <p class="demo-card-article__snippet">{{ item.content }}</p>
     </a>
     <hr class="mdc-list-divider">
   </template>

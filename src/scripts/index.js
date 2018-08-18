@@ -12,7 +12,6 @@ import UiDrawerToolbarSpacer from './components/drawer/drawer-toolbar-spacer';
 import UiDrawerContent from './components/drawer/drawer-content';
 import UiTopAppBar from './components/toolbar/top-app-bar';
 import UiGrid from './components/grid/grid';
-import UiGridInner from './components/grid/grid-inner';
 import UiGridCell from './components/grid/grid-cell';
 import UiTabs from './components/tabs/tabs';
 import UiTab from './components/tabs/tab';
@@ -76,6 +75,7 @@ import UiSnackbar from './components/common/snackbar';
 import UiMenuAnchor from './components/menu/menu-anchor';
 import UiMenu from './components/menu/menu';
 import UiMenuitem from './components/menu/menuitem';
+import UiMenuitemIcon from './components/menu/menuitem-icon';
 /**
  * Plugins
  */
@@ -102,7 +102,6 @@ const components = {
   UiDrawerContent,
   UiTopAppBar,
   UiGrid,
-  UiGridInner,
   UiGridCell,
   UiTabs,
   UiTab,
@@ -165,7 +164,8 @@ const components = {
   // Others
   UiMenuAnchor,
   UiMenu,
-  UiMenuitem
+  UiMenuitem,
+  UiMenuitemIcon
 };
 
 const plugins = {

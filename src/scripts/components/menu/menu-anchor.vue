@@ -1,12 +1,10 @@
 <template>
-  <div class="mdc-menu-anchor" :style="positionStyle">
+  <div class="mdc-menu-surface--anchor" :style="positionStyle">
     <slot></slot>
   </div>
 </template>
 
 <script>
-import getType from '../../utils/typeof';
-
 // Define constants
 const BUTTON_POSITIONS = [
   'top left',
@@ -21,7 +19,11 @@ export default {
   name: 'ui-menu-anchor',
   props: {
     // UI attributes
-    position: String
+    position: String,
+    middleValue: {
+      type: String,
+      default: '35%'
+    }
   },
   computed: {
     positionStyle() {
@@ -33,7 +35,7 @@ export default {
           let positions = buttonPosition.split(' ');
 
           if (positions[0] === 'middle') {
-            result = `top:35%;${positions[1]}:0`;
+            result = `top:${middleValue};${positions[1]}:0`;
           } else {
             result = positions.map(position => `${position}:0`).join(';');
           }

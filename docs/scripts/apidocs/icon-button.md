@@ -5,31 +5,29 @@
 
 #### Props
 
-| Name              | Type      | Default | Description                                                                  |
-| ----------------- | --------- | ------- | ---------------------------------------------------------------------------- |
-| model (v-model)   | `Boolean` | `false` | Sets the toggle state.                                                       |
-| on                | `Object`  | `null`  | Icon button toggle **ON** state.                                             |
-| off               | `Object`  | `null`  | Icon button toggle **OFF** state.                                            |
-| iconInnerSelector | `String`  | `null`  | Using custom icon font selector. (e.g., `.fa` for Font Awesome)              |
-| url               | `String`  | `null`  | The _href_ attribute of the `<a>`. Applicable only for the `<ui-icon-link>`. |
+| Name            | Type      | Default | Description                                                                  |
+| --------------- | --------- | ------- | ---------------------------------------------------------------------------- |
+| model (v-model) | `Boolean` | `false` | Sets the toggle state.                                                       |
+| icon            | `String`  | `null`  | A material icon of the icon button. See [Material Icons](/#/icons) list.     |
+| toggle          | `Object`  | `null`  | Two icons of the icon button toggle. (Format: `{on, off}`)                   |
+| url             | `String`  | `null`  | The _href_ attribute of the `<a>`. Applicable only for the `<ui-icon-link>`. |
 
-> Configuring the icon button toggle states by `on` and `off` props.
-
-```js
-{
-  label: "Some label", // The value to apply to the element's "aria-label" attribute.
-  content: "Some content", // The text content to set on the element. Note that if an inner icon is used, the text content will be set on that element instead.
-  class: "Some css class" // A CSS class to apply to the icon element. The same rules regarding inner icon elements described for content apply here as well.
-}
-```
+> Configuring the icon button toggle states by `toggle.on` and `toggle.off` props.
 
 #### Slots
 
-| Name      | Description                                                          |
-| --------- | -------------------------------------------------------------------- |
-| (default) | The default slot holds the toggle or link icon and can contain HTML. |
+| Name      | Description                                                          | `slot-scope`            |
+| --------- | -------------------------------------------------------------------- | ----------------------- |
+| (default) | The default slot holds the toggle or link icon and can contain HTML. | `{ onClass, offClass }` |
 
-##### Events
+```html
+<template slot-scope="{ onClass, offClass }">
+  <i :class="onClass">ON</i>
+  <i :class="offClass">OFF</i>
+</template>
+```
+
+#### Events
 
 | Name   | Type                       | Description                            |
 | ------ | -------------------------- | -------------------------------------- |

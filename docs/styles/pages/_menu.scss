@@ -1,52 +1,82 @@
 .demo--menu {
-  .hero .mdc-menu {
-    position: static; // just for hero
-    z-index: initial;
+  .hero .mdc-menu-surface {
+    position: static; // Required for proper IE11 alignment.
+    z-index: 1;
   }
+
   .demo-content {
     position: relative;
+    top: 64px;
   }
+
   .demo-controls-container {
     width: 100%;
-    height: calc(100vh - 40px);
+    height: calc(100vh - 80px);
   }
+
   .demo-controls {
+    max-width: 500px;
     margin-left: auto;
     margin-right: auto;
-    width: 400px;
   }
-  .mdc-menu-anchor {
+
+  .mdc-menu-surface--anchor {
     position: absolute;
     margin: 16px;
   }
+
+  .demo-controls-container {
+    width: 100%;
+    height: calc(100vh - 80px);
+  }
+
+  .mdc-menu-surface--anchor {
+    position: absolute;
+    margin: 16px;
+  }
+
   .margin-inputs input {
     width: 2em;
   }
+
   .left-column-controls {
     display: inline-block;
     vertical-align: top;
   }
+
   .right-column-controls {
     display: inline-block;
     margin-left: 2em;
     vertical-align: top;
   }
+
   .demo-button__normal-text,
   .demo-button__long-text {
     display: none;
   }
+
   .demo-button--normal .demo-button__normal-text,
   .demo-button--long .demo-button__normal-text,
   .demo-button--long .demo-button__long-text {
     display: inline;
   }
-  .demo-menu__long-items,
-  .demo-menu__extra-long-items {
-    display: none;
+
+  .standard-image-list {
+    @include mdc-image-list-aspect(1.5); // Images are 3:2
+    @include mdc-image-list-standard-columns(1);
+
+    width: 200px;
   }
-  .demo-menu--long .demo-menu__long-items,
-  .demo-menu--extra-long .demo-menu__long-items,
-  .demo-menu--extra-long .demo-menu__extra-long-items {
-    display: inline;
+
+  #demo-menu {
+    @include mdc-menu-width(6);
+  }
+
+  #demo-menu-2 {
+    @include mdc-menu-width(5);
+  }
+
+  #demo-menu-3 {
+    @include mdc-menu-width(4);
   }
 }

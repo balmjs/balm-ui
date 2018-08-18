@@ -22,6 +22,7 @@ var level1 = [
   'linear-progress',
   'list',
   'menu',
+  'menu-surface',
   'notched-outline',
   'radio',
   'ripple',

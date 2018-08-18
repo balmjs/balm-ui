@@ -1,5 +1,5 @@
 <template>
-  <div :class="[$tt('body1'), 'demo--grid']">
+  <div class="demo--grid">
     <ui-top-app-bar fixed contentSelector=".demo-content">
       <template slot="nav-icon">
         <span class="catalog-back">
@@ -10,7 +10,7 @@
       <span class="['catalog-title', $themeColor('on-primary')]">Layout Grid</span>
     </ui-top-app-bar>
 
-    <div class="demo-content">
+    <div :class="[$tt('body1'), 'demo-content']">
       <section class="hero component">
         <ui-grid class="demo-grid">
           <ui-grid-cell class="demo-cell"></ui-grid-cell>
@@ -129,18 +129,16 @@
 
           <div class="demo-grid-legend">Grid nested within parent grid cell</div>
           <ui-grid class="demo-grid">
-            <ui-grid-cell class="demo-parent-cell" colspan="4">
-              <ui-grid-inner>
-                <ui-grid-cell class="demo-child-cell demo-cell" colspan="4">
-                  <span>Child 4</span>
-                </ui-grid-cell>
-                <ui-grid-cell class="demo-child-cell demo-cell" colspan="4">
-                  <span>Child 4</span>
-                </ui-grid-cell>
-                <ui-grid-cell class="demo-child-cell demo-cell" colspan="4">
-                  <span>Child 4</span>
-                </ui-grid-cell>
-              </ui-grid-inner>
+            <ui-grid-cell nested class="demo-parent-cell" colspan="4">
+              <ui-grid-cell class="demo-child-cell demo-cell" colspan="4">
+                <span>Child 4</span>
+              </ui-grid-cell>
+              <ui-grid-cell class="demo-child-cell demo-cell" colspan="4">
+                <span>Child 4</span>
+              </ui-grid-cell>
+              <ui-grid-cell class="demo-child-cell demo-cell" colspan="4">
+                <span>Child 4</span>
+              </ui-grid-cell>
               <span>Parent 4</span>
             </ui-grid-cell>
             <ui-grid-cell class="demo-cell" colspan="4">4</ui-grid-cell>

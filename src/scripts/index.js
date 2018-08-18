@@ -75,6 +75,7 @@ import UiSnackbar from './components/common/snackbar';
 import UiMenuAnchor from './components/menu/menu-anchor';
 import UiMenu from './components/menu/menu';
 import UiMenuitem from './components/menu/menuitem';
+import UiMenuitemIcon from './components/menu/menuitem-icon';
 /**
  * Plugins
  */
@@ -163,7 +164,8 @@ const components = {
   // Others
   UiMenuAnchor,
   UiMenu,
-  UiMenuitem
+  UiMenuitem,
+  UiMenuitemIcon
 };
 
 const plugins = {

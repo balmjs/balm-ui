@@ -1,54 +1,55 @@
 <template>
-  <li class="mdc-list-item" role="menuitem" :tabindex="tabindex(item)">
-    <span v-if="item[itemKeys.icon]" class="mdc-menu__selection-group-icon">
-      {{ item[itemKeys.icon] }}
-      <slot>{{ item[itemKeys.label] }}</slot>
-    </span>
+  <li :class="nested ? null : getClass(item)"
+    :role="nested ? null : 'menuitem'"
+    :tabindex="nested ? null : tabindex(item)">
+    <template v-if="nested">
+      <ul class="mdc-menu__selection-group">
+        <slot></slot>
+      </ul>
+    </template>
     <template v-else>
-      <slot>{{ item[itemKeys.label] }}</slot>
+      <slot>{{ item[label] }}</slot>
     </template>
   </li>
 </template>
 
 <script>
-// Define constants
-const DEFAULT_MENUITEM_KEYS = {
-  label: 'label',
-  icon: 'icon'
-};
-const MENUITEM_KEYS = Object.keys(DEFAULT_MENUITEM_KEYS);
-
 export default {
   name: 'ui-menuitem',
   props: {
-    // UI attributes
+    // States
     item: {
       type: Object,
       default: function() {
         return {};
       }
     },
-    keys: {
-      type: Object,
-      default() {
-        return {};
-      }
-    }
-  },
-  computed: {
-    itemKeys() {
-      let currentItemKeys = DEFAULT_MENUITEM_KEYS;
-
-      Object.keys(this.keys).forEach(key => {
-        if (MENUITEM_KEYS.includes(key) && this.keys[key]) {
-          currentItemKeys[key] = this.keys[key];
-        }
-      });
-
-      return currentItemKeys;
+    // UI attributes
+    label: {
+      type: String,
+      default: 'label'
+    },
+    nested: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    selected: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
+    getClass(item) {
+      return {
+        'mdc-list-item': true,
+        'mdc-list-item--disabled': this.disabled || item.disabled,
+        'mdc-menu-item--selected': this.selected || item.selected
+      };
+    },
     tabindex(item) {
       return item.disabled ? -1 : item.tabindex || 0;
     }

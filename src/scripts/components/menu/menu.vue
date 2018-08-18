@@ -4,7 +4,7 @@
       <slot>
         <template v-for="(item, index) in currentItems">
           <template v-if="getType(item) === 'array'">
-            <ul class="mdc-menu__selection-group" :key="`group${index}`">
+            <ui-menuitem group :key="`group${index}`">
               <template v-for="(subItem, subIndex) in item">
                 <ui-item-divider v-if="subItem === UI_MENU.DIVIDER" :key="`subdivider${subIndex}`">
                 </ui-item-divider>
@@ -14,7 +14,7 @@
                   {{ getType(subItem) === 'string' ? subItem : '' }}
                 </ui-menuitem>
               </template>
-            </ul>
+            </ui-menuitem>
           </template>
           <template v-else>
             <ui-item-divider v-if="item === UI_MENU.DIVIDER" :key="`divider${index}`">
@@ -96,7 +96,7 @@ export default {
       default: 'TOP_LEFT'
     },
     margin: String,
-    rememberSelection: {
+    fixed: {
       type: Boolean,
       default: false
     }
@@ -114,6 +114,7 @@ export default {
       return {
         'mdc-menu': true,
         'mdc-menu-surface': true,
+        'mdc-menu-surface--fixed': this.fixed,
         'mdc-menu-surface--open': this.cssOnly
       };
     }
@@ -135,9 +136,6 @@ export default {
     },
     margin(val) {
       this.setAnchorMargin(val);
-    },
-    rememberSelection(val) {
-      this.setRememberSelection(val);
     }
   },
   mounted() {
@@ -150,9 +148,9 @@ export default {
         ({ detail }) => {
           let item = detail.item;
           this.$emit(UI_MENU.EVENT.SELECTED, {
+            item, // HTMLElement
             index: detail.index, // number
-            label: item.textContent.trim(), // string
-            item // HTMLElement
+            label: item.textContent.trim() // string
           });
         }
       );
@@ -175,7 +173,6 @@ export default {
       this.setQuickOpen();
       this.setAnchorCorner();
       this.setAnchorMargin();
-      this.setRememberSelection();
     }
   },
   methods: {
@@ -206,9 +203,6 @@ export default {
         });
         this.$menu.setAnchorMargin(margin);
       }
-    },
-    setRememberSelection(rememberSelection = this.rememberSelection) {
-      this.$menu.rememberSelection = rememberSelection;
     }
   }
 };

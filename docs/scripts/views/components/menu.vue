@@ -18,9 +18,9 @@
       <ui-markdown :text="code[0]"></ui-markdown>
 
       <h4 :class="$tt('headline4')">1. Example</h4>
-      <!-- <ui-accordion>
+      <ui-accordion>
         <ui-markdown :code="code[1]"></ui-markdown>
-      </ui-accordion> -->
+      </ui-accordion>
 
       <div class="demo-content">
         <div class="demo-controls-container" dir="ltr">

@@ -55,7 +55,6 @@ const UI_MENU = {
     SELECTED: 'selected',
     CLOSED: 'closed',
     OPENED: 'opened',
-    CANCEL: 'cancel',
     CHANGE: 'change'
   }
 };

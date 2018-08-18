@@ -15,9 +15,9 @@
   }
 
   .demo-controls {
+    max-width: 500px;
     margin-left: auto;
     margin-right: auto;
-    width: 360px;
   }
 
   .mdc-menu-surface--anchor {
@@ -28,12 +28,6 @@
   .demo-controls-container {
     width: 100%;
     height: calc(100vh - 80px);
-  }
-
-  .demo-controls {
-    width: 500px;
-    margin-right: auto;
-    margin-left: auto;
   }
 
   .mdc-menu-surface--anchor {

@@ -9,7 +9,7 @@
         <ui-button :cssOnly="cssOnly" icon="favorite" :disabled="useDisabled">Icon</ui-button>
         <ui-button :cssOnly="cssOnly" :disabled="useDisabled">
           <template slot-scope="{ className }">
-            <ui-logo :class="className.icon"></ui-logo>
+            <svg-logo :class="className.icon"></svg-logo>
             SVG Icon
           </template>
         </ui-button>
@@ -29,7 +29,7 @@
         <ui-button :cssOnly="cssOnly" raised icon="favorite" :disabled="useDisabled">Icon</ui-button>
         <ui-button :cssOnly="cssOnly" raised :disabled="useDisabled">
           <template slot-scope="{ className }">
-            <ui-logo :class="className.icon"></ui-logo>
+            <svg-logo :class="className.icon"></svg-logo>
             SVG Icon
           </template>
         </ui-button>
@@ -49,7 +49,7 @@
         <ui-button :cssOnly="cssOnly" unelevated icon="favorite" :disabled="useDisabled">Icon</ui-button>
         <ui-button :cssOnly="cssOnly" unelevated :disabled="useDisabled">
           <template slot-scope="{ className }">
-            <ui-logo :class="className.icon"></ui-logo>
+            <svg-logo :class="className.icon"></svg-logo>
             SVG Icon
           </template>
         </ui-button>
@@ -69,7 +69,7 @@
         <ui-button :cssOnly="cssOnly" outlined icon="favorite" :disabled="useDisabled">Icon</ui-button>
         <ui-button :cssOnly="cssOnly" outlined :disabled="useDisabled">
           <template slot-scope="{ className }">
-            <ui-logo :class="className.icon"></ui-logo>
+            <svg-logo :class="className.icon"></svg-logo>
             SVG Icon
           </template>
         </ui-button>

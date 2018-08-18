@@ -6,19 +6,19 @@
 
 <!-- SVG Icon -->
 <ui-icon-button>
-  <ui-logo></ui-logo>
+  <svg-logo></svg-logo>
 </ui-icon-button>
 
 <!-- Disabled Buttons -->
 <ui-icon-button disabled>airplanemode_active</ui-icon-button>
 <ui-icon-button disabled>
-  <ui-logo></ui-logo>
+  <svg-logo></svg-logo>
 </ui-icon-button>
 
 <!-- Larger Buttons -->
 <ui-icon-button class="demo-icon-button-large">airplanemode_active</ui-icon-button>
 <ui-icon-button class="demo-icon-button-large">
-  <ui-logo></ui-logo>
+  <svg-logo></svg-logo>
 </ui-icon-button>
 ```
 

@@ -29,7 +29,7 @@
               <h6 :class="$tt('headline6')">SVG Icon</h6>
               <div class="demo-wrapper">
                 <ui-icon-button>
-                  <ui-logo></ui-logo>
+                  <svg-logo></svg-logo>
                 </ui-icon-button>
               </div>
             </div>
@@ -39,7 +39,7 @@
               <div class="demo-wrapper">
                 <ui-icon-button icon="airplanemode_active" disabled></ui-icon-button>
                 <ui-icon-button disabled>
-                  <ui-logo></ui-logo>
+                  <svg-logo></svg-logo>
                 </ui-icon-button>
               </div>
             </div>
@@ -49,7 +49,7 @@
               <div class="demo-wrapper">
                 <ui-icon-button class="demo-icon-button-large" icon="airplanemode_active"></ui-icon-button>
                 <ui-icon-button class="demo-icon-button-large">
-                  <ui-logo></ui-logo>
+                  <svg-logo></svg-logo>
                 </ui-icon-button>
               </div>
             </div>

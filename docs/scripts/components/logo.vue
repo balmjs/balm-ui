@@ -7,6 +7,6 @@
 
 <script>
 export default {
-  name: 'ui-logo'
+  name: 'svg-logo'
 };
 </script>

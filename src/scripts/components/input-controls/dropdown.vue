@@ -14,7 +14,7 @@
       class="mdc-dropdown__menu"
       position="BOTTOM_START"
       @selected="handleSelected"
-      @cancel="$emit(UI_DROPDOWN.EVENT.CANCEL)">
+      @closed="$emit(UI_DROPDOWN.EVENT.CANCEL)">
       <!-- Default option -->
       <ui-menuitem v-if="defaultLabel"
         :class="{'mdc-list-item--selected': defaultValue === selectedValue}">

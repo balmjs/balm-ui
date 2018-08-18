@@ -20,19 +20,16 @@
 
 #### Slots
 
-| Name      | Description                                                        | `slot-scope` |
-| --------- | ------------------------------------------------------------------ | ------------ |
-| (default) | The default slot holds the application title and can contain HTML. |              |
-| nav-icon  | The default slot holds the navigation icon and can contain HTML.   |              |
-| toolbar   | The default slot holds the action items and can contain HTML.      | ☑            |
+| Name      | Description                                                        | `slot-scope`               |
+| --------- | ------------------------------------------------------------------ | -------------------------- |
+| (default) | The default slot holds the application title and can contain HTML. |                            |
+| nav-icon  | The default slot holds the navigation icon and can contain HTML.   |                            |
+| toolbar   | The default slot holds the action items and can contain HTML.      | `{ iconClass, itemClass }` |
 
-- `slot-scope`
-
-```json
-{
-  "icon": "material-icons",
-  "item": "mdc-top-app-bar__action-item"
-}
+```html
+<template slot-scope="{ iconClass, itemClass }">
+  <ui-icon :class="iconClass">ICON</ui-icon>
+</template>
 ```
 
 #### Events

@@ -15,17 +15,15 @@
 
 #### Slots
 
-| Name      | Description                                                                                    | `slot-scope` |
-| --------- | ---------------------------------------------------------------------------------------------- | ------------ |
-| (default) | The default slot holds the floating action button content or custom icon and can contain HTML. | ☑            |
-| label     | The label slot holds the label text of the extended FAB.                                       |              |
+| Name      | Description                                                                                    | `slot-scope`    |
+| --------- | ---------------------------------------------------------------------------------------------- | --------------- |
+| (default) | The default slot holds the floating action button content or custom icon and can contain HTML. | `{ iconClass }` |
+| label     | The label slot holds the label text of the extended FAB.                                       |                 |
 
-- `slot-scope`
-
-```json
-{
-  "icon": "mdc-fab__icon"
-}
+```html
+<template slot-scope="{ iconClass }">
+  <ui-icon :class="iconClass">ICON</ui-icon>
+</template>
 ```
 
 #### Events

@@ -12,7 +12,9 @@
         </span>
       </section>
       <section v-if="actionItems" class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-        <slot name="toolbar" :className="UI_TOP_APP_BAR.SLOT_CLASS">
+        <slot name="toolbar"
+          :iconClass="UI_TOP_APP_BAR.SLOT_CLASS.icon"
+          :itemClass="UI_TOP_APP_BAR.SLOT_CLASS.item">
           <a v-for="(item, index) in actionItems"
             :key="index"
             :href="item.url"

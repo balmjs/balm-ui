@@ -8,8 +8,8 @@
         <ui-button :cssOnly="cssOnly" class="secondary-text-button" :disabled="useDisabled">Secondary</ui-button>
         <ui-button :cssOnly="cssOnly" icon="favorite" :disabled="useDisabled">Icon</ui-button>
         <ui-button :cssOnly="cssOnly" :disabled="useDisabled">
-          <template slot-scope="{ className }">
-            <svg-logo :class="className.icon"></svg-logo>
+          <template slot-scope="{ iconClass }">
+            <svg-logo :class="iconClass"></svg-logo>
             SVG Icon
           </template>
         </ui-button>
@@ -28,8 +28,8 @@
         <ui-button :cssOnly="cssOnly" raised class="secondary-filled-button" :disabled="useDisabled">Secondary</ui-button>
         <ui-button :cssOnly="cssOnly" raised icon="favorite" :disabled="useDisabled">Icon</ui-button>
         <ui-button :cssOnly="cssOnly" raised :disabled="useDisabled">
-          <template slot-scope="{ className }">
-            <svg-logo :class="className.icon"></svg-logo>
+          <template slot-scope="{ iconClass }">
+            <svg-logo :class="iconClass"></svg-logo>
             SVG Icon
           </template>
         </ui-button>
@@ -48,8 +48,8 @@
         <ui-button :cssOnly="cssOnly" unelevated class="secondary-filled-button" :disabled="useDisabled">Secondary</ui-button>
         <ui-button :cssOnly="cssOnly" unelevated icon="favorite" :disabled="useDisabled">Icon</ui-button>
         <ui-button :cssOnly="cssOnly" unelevated :disabled="useDisabled">
-          <template slot-scope="{ className }">
-            <svg-logo :class="className.icon"></svg-logo>
+          <template slot-scope="{ iconClass }">
+            <svg-logo :class="iconClass"></svg-logo>
             SVG Icon
           </template>
         </ui-button>
@@ -68,8 +68,8 @@
         <ui-button :cssOnly="cssOnly" outlined class="secondary-outlined-button" :disabled="useDisabled">Secondary</ui-button>
         <ui-button :cssOnly="cssOnly" outlined icon="favorite" :disabled="useDisabled">Icon</ui-button>
         <ui-button :cssOnly="cssOnly" outlined :disabled="useDisabled">
-          <template slot-scope="{ className }">
-            <svg-logo :class="className.icon"></svg-logo>
+          <template slot-scope="{ iconClass }">
+            <svg-logo :class="iconClass"></svg-logo>
             SVG Icon
           </template>
         </ui-button>

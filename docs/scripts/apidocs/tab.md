@@ -23,16 +23,14 @@
 
 #### Slots
 
-| Name      | Description                                                 | `slot-scope` |
-| --------- | ----------------------------------------------------------- | ------------ |
-| (default) | The default slot holds the tab labels and can contain HTML. |              |
-| icon      | The icon slot holds the custom icon and can contain HTML.   | ☑            |
-| indicator | The indicator slot holds the tab indicator component.       |              |
+| Name      | Description                                                 | `slot-scope`    |
+| --------- | ----------------------------------------------------------- | --------------- |
+| (default) | The default slot holds the tab labels and can contain HTML. |                 |
+| icon      | The icon slot holds the custom icon and can contain HTML.   | `{ iconClass }` |
+| indicator | The indicator slot holds the tab indicator component.       |                 |
 
-- `slot-scope`
-
-```json
-{
-  "icon": "mdc-tab__icon"
-}
+```html
+<template slot-scope="{ iconClass }">
+  <ui-icon :class="iconClass">ICON</ui-icon>
+</template>
 ```

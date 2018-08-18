@@ -4,9 +4,9 @@
 <ui-button raised class="secondary-filled-button">Secondary</ui-button>
 <ui-button raised icon="favorite">Icon</ui-button>
 <ui-button raised>
-  <template slot-scope="{ className }">
+  <template slot-scope="{ iconClass }">
     <!-- Custom SVG -->
-    <svg-logo :class="className.icon"></svg-logo>
+    <svg-logo :class="iconCLass"></svg-logo>
     SVG Icon
   </template>
 </ui-button>

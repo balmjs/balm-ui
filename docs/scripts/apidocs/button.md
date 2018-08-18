@@ -18,16 +18,14 @@
 
 #### Slots
 
-| Name      | Description                                                          | `slot-scope` |
-| --------- | -------------------------------------------------------------------- | ------------ |
-| (default) | The default slot holds the button or link text and can contain HTML. | ☑            |
+| Name      | Description                                                          | `slot-scope`    |
+| --------- | -------------------------------------------------------------------- | --------------- |
+| (default) | The default slot holds the button or link text and can contain HTML. | `{ iconClass }` |
 
-- `slot-scope`
-
-```json
-{
-  "icon": "mdc-button__icon"
-}
+```html
+<template slot-scope="{ iconClass }">
+  <ui-icon :class="iconClass">ICON</ui-icon>
+</template>
 ```
 
 #### Events

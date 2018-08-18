@@ -1,6 +1,6 @@
 <template>
   <footer class="mdc-dialog__footer">
-    <slot :className="UI_DIALOG.SLOT_CLASS.button">
+    <slot :buttonClass="UI_DIALOG.SLOT_CLASS.button">
       <template v-if="$parent.closable">
         <button type="button"
           :class="`mdc-button ${UI_DIALOG.SLOT_CLASS.button} mdc-dialog__footer__button--cancel`">

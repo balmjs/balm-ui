@@ -7,7 +7,7 @@
       {{ materialIcon }}
     </i>
     <template v-else>
-      <slot :className="UI_FAB.SLOT_CLASS"><!-- Custom icon --></slot>
+      <slot :iconClass="UI_FAB.SLOT_CLASS.icon"><!-- Custom icon --></slot>
     </template>
     <span v-if="afterLabel" class="mdc-fab__label">
       <slot name="label">{{ label }}</slot>

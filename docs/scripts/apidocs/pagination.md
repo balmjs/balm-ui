@@ -22,16 +22,14 @@
 
 #### Slots
 
-| Name      | Description                                                         | `slot-scope` |
-| --------- | ------------------------------------------------------------------- | ------------ |
-| (default) | The default slot holds the custom record info and can contain HTML. | ☑            |
+| Name      | Description                                                         | `slot-scope`    |
+| --------- | ------------------------------------------------------------------- | --------------- |
+| (default) | The default slot holds the custom record info and can contain HTML. | `{ pageCount }` |
 
-- `slot-scope`
-
-```js
-{
-  pageCount
-}
+```html
+<template slot-scope="{ pageCount }">
+  {{ pageCount }}
+</template>
 ```
 
 > `pageCount`: Total number of the pages.

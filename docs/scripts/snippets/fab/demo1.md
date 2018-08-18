@@ -3,13 +3,13 @@
 <ui-fab icon="favorite_border" mini></ui-fab>
 
 <ui-fab>
-  <template slot-scope="{ className }">
-    <svg-logo :class="className.icon"></svg-logo>
+  <template slot-scope="{ iconClass }">
+    <svg-logo :class="iconCLass"></svg-logo>
   </template>
 </ui-fab>
 <ui-fab mini>
-  <template slot-scope="{ className }">
-    <svg-logo :class="className.icon"></svg-logo>
+  <template slot-scope="{ iconClass }">
+    <svg-logo :class="iconCLass"></svg-logo>
   </template>
 </ui-fab>
 

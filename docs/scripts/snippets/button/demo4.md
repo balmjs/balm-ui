@@ -4,9 +4,9 @@
 <ui-button outlined class="secondary-outlined-button">Secondary</ui-button>
 <ui-button outlined icon="favorite">Icon</ui-button>
 <ui-button outlined>
-  <template slot-scope="{ className }">
+  <template slot-scope="{ iconClass }">
     <!-- Custom SVG -->
-    <svg-logo :class="className.icon"></svg-logo>
+    <svg-logo :class="iconCLass"></svg-logo>
     SVG Icon
   </template>
 </ui-button>

@@ -28,8 +28,8 @@
           </figure>
           <figure>
             <ui-fab>
-              <template slot-scope="{ className }">
-                <svg-logo :class="className.icon"></svg-logo>
+              <template slot-scope="{ iconClass }">
+                <svg-logo :class="iconClass"></svg-logo>
               </template>
             </ui-fab>
             <figcaption>
@@ -38,8 +38,8 @@
           </figure>
           <figure>
             <ui-fab mini>
-              <template slot-scope="{ className }">
-                <svg-logo :class="className.icon"></svg-logo>
+              <template slot-scope="{ iconClass }">
+                <svg-logo :class="iconClass"></svg-logo>
               </template>
             </ui-fab>
             <figcaption>

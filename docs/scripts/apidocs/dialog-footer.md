@@ -11,6 +11,12 @@
 
 #### Slots
 
-| Name      | Description                                                     |
-| --------- | --------------------------------------------------------------- |
-| (default) | The default slot holds the dialog actions and can contain HTML. |
+| Name      | Description                                                     | `slot-scope`      |
+| --------- | --------------------------------------------------------------- | ----------------- |
+| (default) | The default slot holds the dialog actions and can contain HTML. | `{ buttonClass }` |
+
+```html
+<template slot-scope="{ buttonClass }">
+  <ui-button :class="buttonClass">BUTTON</ui-button>
+</template>
+```

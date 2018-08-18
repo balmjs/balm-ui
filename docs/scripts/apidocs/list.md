@@ -15,17 +15,18 @@
 
 #### Slots
 
-| Name      | Description                                                      | `slot-scope` |
-| --------- | ---------------------------------------------------------------- | ------------ |
-| (default) | The default slot holds the item components and can contain HTML. | ☑            |
+| Name      | Description                                                      | `slot-scope`                                |
+| --------- | ---------------------------------------------------------------- | ------------------------------------------- |
+| (default) | The default slot holds the item components and can contain HTML. | `{ itemClass, selectedClass, activeClass }` |
 
-- `slot-scope`
+```html
+<template slot-scope="{ itemClass, selectedClass, activeClass }">
+  <ui-item :class="itemClass">Item</ui-item>
 
-```json
-{
-  "selected": "mdc-list-item--selected",
-  "activated": "mdc-list-item--activated"
-}
+  <div :class="selectedClass"></div>
+
+  <a :class="activeClass"></a>
+</template>
 ```
 
 > Optional, styles the row in a selected or activated state.

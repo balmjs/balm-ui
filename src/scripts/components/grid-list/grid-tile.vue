@@ -1,7 +1,7 @@
 <template>
   <li class="mdc-grid-tile">
     <div v-if="!noImage" class="mdc-grid-tile__primary">
-      <slot name="image" :className="UI_GRID_LIST.SLOT_CLASS.image">
+      <slot name="image" :imageClass="UI_GRID_LIST.SLOT_CLASS.image">
         <img v-if="src" :class="[UI_GRID_LIST.SLOT_CLASS.image, imageClass]" :src="src" :alt="alt">
         <div v-else :class="[UI_GRID_LIST.SLOT_CLASS.image, imageClass]"></div>
       </slot>
@@ -9,7 +9,7 @@
     <span v-if="!imageOnly" class="mdc-grid-tile__secondary">
       <i v-if="icon" :class="[UI_GRID_LIST.SLOT_CLASS.icon, 'material-icons']">{{ icon }}</i>
       <template v-else>
-        <slot name="icon" :className="UI_GRID_LIST.SLOT_CLASS.icon"></slot>
+        <slot name="icon" :iconClass="UI_GRID_LIST.SLOT_CLASS.icon"></slot>
       </template>
       <slot><!-- Title --></slot>
     </span>

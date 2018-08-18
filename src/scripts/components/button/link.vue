@@ -3,7 +3,7 @@
     <i v-if="materialIcon" :class="[UI_BUTTON.SLOT_CLASS.icon, 'material-icons']">
       {{ materialIcon }}
     </i>
-    <slot :className="UI_BUTTON.SLOT_CLASS"></slot>
+    <slot :iconClass="UI_BUTTON.SLOT_CLASS.icon"></slot>
   </a>
 </template>
 

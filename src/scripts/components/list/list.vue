@@ -1,6 +1,9 @@
 <template>
   <ul :class="className" aria-orientation="vertical">
-    <slot :className="UI_LIST.SLOT_CLASS"></slot>
+    <slot
+      :itemClass="UI_LIST.SLOT_CLASS.item"
+      :selectedClass="UI_LIST.SLOT_CLASS.selected"
+      :activeClass="UI_LIST.SLOT_CLASS.activated"></slot>
   </ul>
 </template>
 

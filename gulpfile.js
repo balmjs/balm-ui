@@ -47,7 +47,8 @@ balm.go(function(mix) {
       );
     } else {
       if (balm.config.production) {
-        mix.remove('./dist/font/*.css');
+        mix.remove('dist/font/*.css');
+        mix.remove('dist/memo.md');
 
         // clear individual
         mix.remove([

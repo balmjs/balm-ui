@@ -62,14 +62,12 @@
                   <div class="demo-theme-color-swatches">
                     <div :class="[
                       'demo-theme-color-swatch demo-theme-color-swatch--elevated',
-                      $themeColor('primary'),
-                      $tt('body2')]">Primary</div>
+                      $themeColor('primary')]">Primary</div>
                   </div>
                   <div class="demo-theme-color-swatches">
                     <div :class="[
                       'demo-theme-color-swatch demo-theme-color-swatch--elevated',
-                      $themeColor('secondary'),
-                      $tt('body2')]">Secondary</div>
+                      $themeColor('secondary')]">Secondary</div>
                   </div>
                 </div>
               </fieldset>
@@ -110,7 +108,7 @@
                 <legend :class="$tt('subtitle1')">Text on background</legend>
 
                 <div class="demo-theme-color-group">
-                  <div :class="['demo-theme-text-row', $themeColor('background'), $tt('body2')]">
+                  <div :class="['demo-theme-text-row', $themeColor('background')]">
                     <span :class="['demo-theme-text-style', $textColor('primary')]">Primary</span>
                     <span :class="['demo-theme-text-style', $textColor('secondary')]">Secondary</span>
                     <span :class="['demo-theme-text-style', $textColor('hint')]">Hint</span>
@@ -129,7 +127,7 @@
                 <legend :class="$tt('subtitle1')">Text on primary</legend>
 
                 <div class="demo-theme-color-group">
-                  <div :class="['demo-theme-text-row', $themeColor('primary-bg'), $tt('body2')]">
+                  <div :class="['demo-theme-text-row', $themeColor('primary-bg')]">
                     <span :class="['demo-theme-text-style', $themeColor('on-primary')]">Text</span>
                     <span :class="['demo-theme-text-style', $themeColor('on-primary'), 'material-icons']">favorite</span>
                   </div>
@@ -140,7 +138,7 @@
                 <legend :class="$tt('subtitle1')">Text on secondary</legend>
 
                 <div class="demo-theme-color-group">
-                  <div :class="['demo-theme-text-row', $themeColor('secondary-bg'), $tt('body2')]">
+                  <div :class="['demo-theme-text-row', $themeColor('secondary-bg')]">
                     <span :class="['demo-theme-text-style', $themeColor('on-secondary')]">Text</span>
                     <span :class="['demo-theme-text-style', $themeColor('on-secondary'), 'material-icons']">favorite</span>
                   </div>
@@ -156,7 +154,7 @@
                 <legend :class="$tt('subtitle1')">Text on user-defined light background</legend>
 
                 <div class="demo-theme-color-group">
-                  <div :class="['demo-theme-text-row demo-theme-bg--custom-light', $tt('body2')]">
+                  <div :class="['demo-theme-text-row demo-theme-bg--custom-light']">
                     <span :class="['demo-theme-text-style', $textColor('primary', 'light')]">Primary</span>
                     <span :class="['demo-theme-text-style', $textColor('secondary', 'light')]">Secondary</span>
                     <span :class="['demo-theme-text-style', $textColor('hint', 'light')]">Hint</span>
@@ -170,7 +168,7 @@
                 <legend :class="$tt('subtitle1')">Text on user-defined dark background</legend>
 
                 <div class="demo-theme-color-group">
-                  <div :class="['demo-theme-text-row demo-theme-bg--custom-dark', $tt('body2')]">
+                  <div :class="['demo-theme-text-row demo-theme-bg--custom-dark']">
                     <span :class="['demo-theme-text-style', $textColor('primary', 'dark')]">Primary</span>
                     <span :class="['demo-theme-text-style', $textColor('secondary', 'dark')]">Secondary</span>
                     <span :class="['demo-theme-text-style', $textColor('hint', 'dark')]">Hint</span>

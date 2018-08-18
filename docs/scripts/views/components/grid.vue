@@ -1,5 +1,5 @@
 <template>
-  <div :class="[$tt('body1'), 'demo--grid']">
+  <div class="demo--grid">
     <ui-top-app-bar fixed contentSelector=".demo-content">
       <template slot="nav-icon">
         <span class="catalog-back">
@@ -10,7 +10,7 @@
       <span class="['catalog-title', $themeColor('on-primary')]">Layout Grid</span>
     </ui-top-app-bar>
 
-    <div class="demo-content">
+    <div :class="[$tt('body1'), 'demo-content']">
       <section class="hero component">
         <ui-grid class="demo-grid">
           <ui-grid-cell class="demo-cell"></ui-grid-cell>

@@ -4,7 +4,7 @@
     <legend :class="$tt('subtitle1')">Text on primary</legend>
 
     <div class="demo-theme-color-group">
-      <div :class="['demo-theme-text-row', $themeColor('primary-bg'), $tt('body2')]">
+      <div :class="['demo-theme-text-row', $themeColor('primary-bg')]">
         <span :class="['demo-theme-text-style', $themeColor('on-primary')]">Text</span>
         <span :class="['demo-theme-text-style', $themeColor('on-primary'), 'material-icons']">favorite</span>
       </div>
@@ -15,7 +15,7 @@
     <legend :class="$tt('subtitle1')">Text on secondary</legend>
 
     <div class="demo-theme-color-group">
-      <div :class="['demo-theme-text-row', $themeColor('secondary-bg'), $tt('body2')]">
+      <div :class="['demo-theme-text-row', $themeColor('secondary-bg')]">
         <span :class="['demo-theme-text-style', $themeColor('on-secondary')]">Text</span>
         <span :class="['demo-theme-text-style', $themeColor('on-secondary'), 'material-icons']">favorite</span>
       </div>

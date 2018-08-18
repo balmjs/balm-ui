@@ -27,10 +27,10 @@
         Persistent Drawer
       </ui-top-app-bar>
 
-      <main class="demo-main">
+      <main :class="[$tt('body1'), 'demo-main']">
         <div :class="$tt('body2')">
           <h1 :class="$tt('headline4')">Persistent Drawer</h1>
-          <p :class="$tt('body1')">Click the menu icon above to open and close the drawer.</p>
+          <p>Click the menu icon above to open and close the drawer.</p>
           <ui-accordion>
             <ui-markdown :code="code[2]"></ui-markdown>
           </ui-accordion>

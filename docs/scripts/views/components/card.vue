@@ -8,7 +8,7 @@
             <h2 :class="[$tt('headline6'), 'demo-card__title']">Our Changing Planet</h2>
             <h3 :class="[$tt('subtitle2'), 'demo-card__subtitle']">by Kurt Wagner</h3>
           </div>
-          <div :class="[$tt('body2'), 'demo-card__secondary']">
+          <div class="demo-card__secondary">
             Visit ten places on our planet that are undergoing the biggest changes today.
           </div>
         </ui-card-content>
@@ -39,7 +39,7 @@
           <template v-for="(item, index) in list">
             <a :key="`item${index}`" class="demo-card-article" v-ripple>
               <h2 :class="[$tt('headline5'), 'demo-card-article__title']">{{ item.title }}</h2>
-              <p :class="[$tt('body2'), 'demo-card-article__snippet']">{{ item.content }}</p>
+              <p class="demo-card-article__snippet">{{ item.content }}</p>
             </a>
             <ui-list-divider :key="`divider${index}`"></ui-list-divider>
           </template>
@@ -87,8 +87,8 @@
               <ui-card-media square class="demo-card__media demo-card__media--music"></ui-card-media>
               <div class="demo-card__music-info">
                 <div :class="[$tt('headline5'), 'demo-card__music-title']">Rozes</div>
-                <div :class="[$tt('body2'), 'demo-card__music-artist']">Under the Grave</div>
-                <div :class="[$tt('body2'), 'demo-card__music-year']">(2016)</div>
+                <div class="demo-card__music-artist">Under the Grave</div>
+                <div class="demo-card__music-year">(2016)</div>
               </div>
             </div>
           </ui-card-content>

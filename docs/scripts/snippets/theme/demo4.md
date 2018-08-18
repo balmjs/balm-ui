@@ -4,7 +4,7 @@
     <legend :class="$tt('subtitle1')">Text on user-defined light background</legend>
 
     <div class="demo-theme-color-group">
-      <div :class="['demo-theme-text-row demo-theme-bg--custom-light', $tt('body2')]">
+      <div :class="['demo-theme-text-row demo-theme-bg--custom-light']">
         <span :class="['demo-theme-text-style', $textColor('primary', 'light')]">Primary</span>
         <span :class="['demo-theme-text-style', $textColor('secondary', 'light')]">Secondary</span>
         <span :class="['demo-theme-text-style', $textColor('hint', 'light')]">Hint</span>
@@ -18,7 +18,7 @@
     <legend :class="$tt('subtitle1')">Text on user-defined dark background</legend>
 
     <div class="demo-theme-color-group">
-      <div :class="['demo-theme-text-row demo-theme-bg--custom-dark', $tt('body2')]">
+      <div :class="['demo-theme-text-row demo-theme-bg--custom-dark']">
         <span :class="['demo-theme-text-style', $textColor('primary', 'dark')]">Primary</span>
         <span :class="['demo-theme-text-style', $textColor('secondary', 'dark')]">Secondary</span>
         <span :class="['demo-theme-text-style', $textColor('hint', 'dark')]">Hint</span>

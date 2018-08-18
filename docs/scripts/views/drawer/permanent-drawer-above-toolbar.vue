@@ -28,10 +28,10 @@
         Permanent Drawer Above Toolbar
       </ui-top-app-bar>
 
-      <main class="demo-main">
+      <main :class="[$tt('body1'), 'demo-main']">
         <div :class="$tt('body2')">
           <h1 :class="$tt('headline4')">Permanent Drawer</h1>
-          <p :class="$tt('body1')">It sits to the left of this content.</p>
+          <p>It sits to the left of this content.</p>
           <ui-accordion>
             <ui-markdown :code="code[3]"></ui-markdown>
           </ui-accordion>

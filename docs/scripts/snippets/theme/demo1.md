@@ -6,14 +6,12 @@
     <div class="demo-theme-color-swatches">
       <div :class="[
         'demo-theme-color-swatch demo-theme-color-swatch--elevated',
-        $themeColor('primary'),
-        $tt('body2')]">Primary</div>
+        $themeColor('primary')]">Primary</div>
     </div>
     <div class="demo-theme-color-swatches">
       <div :class="[
         'demo-theme-color-swatch demo-theme-color-swatch--elevated',
-        $themeColor('secondary'),
-        $tt('body2')]">Secondary</div>
+        $themeColor('secondary')]">Secondary</div>
     </div>
   </div>
 </fieldset>

@@ -14,7 +14,7 @@ import miscRoutes from './misc';
 const Utils = () => import('../views/utils');
 
 import Home from '../views/home';
-// const Test = import('../views/test');
+// const Test = () => import('../views/test');
 
 Vue.use(VueRouter);
 Vue.use(VueMeta);

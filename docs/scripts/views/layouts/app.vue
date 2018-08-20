@@ -104,8 +104,7 @@ export default {
         (routeName &&
           (routeName.indexOf('-drawer') > -1 ||
             routeName.indexOf('-toolbar') > -1)) ||
-        routeName === 'layouts.grid' ||
-        routeName === 'layouts.top-app-bar'
+        ['layouts.grid', 'layouts.top-app-bar', 'test'].includes(routeName)
       );
     }
   },

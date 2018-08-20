@@ -67,27 +67,27 @@ project
 ├── directives // contains all standalone directives for distribution.
 ├── dist       // contains built files for distribution.
 ├── docs       // BalmUI demos and documentation. (DEV)
+│ ├── data     // mock data
+│ ├── ...
+│ ├── scripts
+│ │ ├── apidocs  // API docs
+│ │ ├── ...
+│ │ ├── snippets // code snippets
+│ │ ├── ...
+│ │ └── views    // official demos
+│ └── styles
 ├── font       // Material Icons
 ├── plugins    // contains all standalone plugins for distribution.
 ├─┬ src        // contains the source code, obviously.
 │ ├── fonts    // Material source icons.
 │ ├── material-components-web // Stable mdc source code for the BalmUI.
 │ ├── scripts        // BalmUI core scripts (DEV)
-│ │ ├── components
-│ │ ├── config
-│ │ ├── directives
-│ │ ├── mixins
-│ │ ├── plugins
-│ │ ├── polyfills
-│ │ ├── utils
+│ │ ├── ...
 │ │ ├── index.js     // MDC UI entry.
 │ │ ├── migrate.js   // Deprecated MDC UI entry.
 │ │ └── plus.js      // Custom feature UI entry.
 │ └── styles         // BalmUI core styles (DEV)
-│   ├── components
-│   ├── directives
-│   ├── global
-│   ├── plugins
+│   ├── ...
 │   ├── _color.scss  // Google color palette.
 │   └── balm-ui.scss // BalmUI style entry.
 ├── test       // contains all tests. (TODO)
@@ -101,4 +101,4 @@ project
 
 > `src/fonts` and `src/material-components-web`: Note these directories are only updated in `next` branch.
 
-> `docs`, `src/scripts`, `src/styles` and `test`: **Welcome to improve me;)**
+> `docs/scripts`, `docs/styles`, `src/scripts`, `src/styles` and `test`: **Welcome to improve me;)**

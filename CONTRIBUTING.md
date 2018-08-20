@@ -101,4 +101,4 @@ project
 
 > `src/fonts` and `src/material-components-web`: Note these directories are only updated in `next` branch.
 
-> `docs`, `src/scripts` and `src/styles`: **Welcome to improve me;)**
+> `docs`, `src/scripts`, `src/styles` and `test`: **Welcome to improve me;)**

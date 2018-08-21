@@ -40,3 +40,17 @@
 <ui-temporary-drawer :open="open" @nav="$balmUI.onChange('open', $event)">
 </ui-temporary-drawer>
 ```
+
+#### Sass Variables
+
+- Temporary drawer
+  - `$mdc-temporary-drawer-fill-color`
+  - `$mdc-temporary-drawer-ink-color`
+  - `$mdc-temporary-drawer-scrim-color`
+  - `$mdc-temporary-drawer-scrim-opacity`
+- Persistent drawer
+  - `$mdc-persistent-drawer-fill-color`
+  - `$mdc-persistent-drawer-ink-color`
+- Permanent drawer
+  - `$mdc-permanent-drawer-fill-color`
+  - `$mdc-permanent-drawer-ink-color`

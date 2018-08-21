@@ -25,3 +25,7 @@ The typographic styles in this module are derived from thirteen styles:
 | overline  | `mdc-typography--overline`  |
 
 > You can overwrite typography CSS Classes for your project so easy.
+
+#### Sass Variables
+
+- `$mdc-typography-font-family`

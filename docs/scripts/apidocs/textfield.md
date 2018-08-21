@@ -54,3 +54,7 @@
 // Manual
 <ui-textfield :model="value" @input="$balmUI.onChange('value', $event)"></ui-textfield>
 ```
+
+#### Sass Variables
+
+- `$mdc-text-field-border-radius`

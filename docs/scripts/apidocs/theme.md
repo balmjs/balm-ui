@@ -53,14 +53,16 @@ $setTextTheme(style, tone, value);
 
 > You can overwrite theme by `$setTheme` and `$setTextTheme` methods.
 
-### 2.3 Sass
+### 2.3 Sass Variables
 
-| Sass Variable             | Description                                              |
-| ------------------------- | -------------------------------------------------------- |
-| `$mdc-theme-primary`      | Sets the text color to the theme primary color.          |
-| `$mdc-theme-secondary`    | Sets the text color to the theme secondary color.        |
-| `$mdc-theme-background`   | Sets the background color to the theme background color. |
-| `$mdc-theme-surface`      | Sets the surface color to the theme surface color.       |
-| `$mdc-theme-on-primary`   | Sets the text color to the theme on-primary color.       |
-| `$mdc-theme-on-secondary` | Sets the text color to the theme on-secondary color.     |
-| `$mdc-theme-on-surface`   | Sets the text color to the theme on-surface color.       |
+- Background
+  - `$mdc-theme-background`
+- Surface
+  - `$mdc-theme-surface`
+  - `$mdc-theme-on-surface`
+- Primary
+  - `$mdc-theme-primary`
+  - `$mdc-theme-on-primary`
+- Secondary
+  - `$mdc-theme-secondary`
+  - `$mdc-theme-on-secondary`

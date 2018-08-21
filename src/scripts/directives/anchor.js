@@ -41,8 +41,8 @@ const updateAnchor = (method, el, { value, arg, modifiers }) => {
 
 const initAnchor = (el, { value, rawName, modifiers }) => {
   if (
-    ANCHOR.body.tagName === 'BODY' &&
-    (rawName === ANCHOR.CLASSNAME.INNER || modifiers.offset)
+    rawName === ANCHOR.CLASSNAME.INNER ||
+    rawName === `${ANCHOR.CLASSNAME.INNER}.offset`
   ) {
     ANCHOR.body = el;
     if (modifiers.offset) {

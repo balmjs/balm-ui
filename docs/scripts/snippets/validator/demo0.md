@@ -46,7 +46,7 @@ export default {
   },
   mobile: {
     validate(value) {
-      return /^1[34578]\d{9}$/.test(value);
+      return /^1[0-9]\d{9}$/.test(value);
     },
     message: 'Invalid phone number'
   },

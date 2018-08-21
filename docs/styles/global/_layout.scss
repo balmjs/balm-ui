@@ -1,6 +1,10 @@
 /// Ensure layout covers the entire screen.
 html {
   height: 100%;
+  overflow-y: hidden; // Bugfix for Firefox & Safari
+  &.balmui--no-layout {
+    overflow-y: auto;
+  }
 }
 
 body,

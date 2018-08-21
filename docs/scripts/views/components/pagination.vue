@@ -15,7 +15,7 @@
       <section class="example">
         <h6 :class="$tt('headline6')">1.1 Default Usage</h6>
         <ui-pagination
-          v-model="page"
+          v-model="page1"
           :pageSize="pageSize"
           :recordCount="recordCount"
           showJumper>
@@ -28,7 +28,7 @@
       <section class="example">
         <h6 :class="$tt('headline6')">1.2 Custom Record</h6>
         <ui-pagination
-          v-model="page"
+          v-model="page2"
           :pageSize="pageSize"
           :recordCount="recordCount"
           showRecord
@@ -50,12 +50,12 @@
       <section class="example">
         <h6 :class="$tt('headline6')">1.3 Mini Mode</h6>
         <ui-pagination mini
-          v-model="page"
+          v-model="page3"
           :pageSize="pageSize"
           :recordCount="recordCount"
           prev="Prev"
           next="Next">
-          <span>Page {{ page }}</span>
+          <span>Page {{ page3 }}</span>
         </ui-pagination>
       </section>
       <ui-accordion>
@@ -79,6 +79,9 @@ export default {
   data() {
     return {
       page: 1,
+      page1: 1,
+      page2: 1,
+      page3: 1,
       pageSize: 5,
       recordCount: 100,
       pageSizeOptions: [

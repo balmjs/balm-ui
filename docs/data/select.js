@@ -35,7 +35,7 @@ export const PROVINCES = [{
   },
   {
     value: 3,
-    label: 'Guangzhou'
+    label: 'Guangdong'
   }
 ];
 
@@ -59,5 +59,8 @@ export const CITIES = [
       label: 'Xuhui'
     }
   ],
-  []
+  [{
+    value: 31,
+    label: 'Guangzhou'
+  }]
 ];

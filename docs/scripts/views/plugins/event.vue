@@ -13,57 +13,79 @@
       <h4 :class="$tt('headline4')">1. Example</h4>
       <div class="example">
         <h6 :class="$tt('headline6')">1.1 `onChange`</h6>
-        <label>Vue methods</label>
-        <ui-button @click="showMessage">Show message</ui-button>
-        <ui-button @click="clearMessage">Clear</ui-button>
-        <p>{{ message1 }}</p>
-        <ui-accordion>
-          <ui-markdown :code="code[1]"></ui-markdown>
-        </ui-accordion>
-        <hr>
-        <label>$balmUI</label>
-        <ui-button @click="$balmUI.onChange('message2', 'Hello BalmUI')">Show message</ui-button>
-        <ui-button @click="$balmUI.onChange('message2', '')">Clear</ui-button>
-        <p>{{ message2 }}</p>
-        <ui-accordion>
-          <ui-markdown :code="code[2]"></ui-markdown>
-        </ui-accordion>
+        <ui-grid>
+          <ui-grid-cell colspan="6">
+            <label>Vue methods</label>
+
+            <p>
+              <ui-button raised @click="showMessage">Show message</ui-button>
+              <ui-button outlined @click="clearMessage">Clear</ui-button>
+            </p>
+            <p>{{ message1 }}</p>
+
+            <ui-accordion>
+              <ui-markdown :code="code[1]"></ui-markdown>
+            </ui-accordion>
+          </ui-grid-cell>
+          <ui-grid-cell colspan="6">
+            <label>$balmUI</label>
+
+            <p>
+              <ui-button raised @click="$balmUI.onChange('message2', 'Hello BalmUI')">Show message</ui-button>
+              <ui-button outlined @click="$balmUI.onChange('message2', '')">Clear</ui-button>
+            </p>
+            <p>{{ message2 }}</p>
+
+            <ui-accordion>
+              <ui-markdown :code="code[2]"></ui-markdown>
+            </ui-accordion>
+          </ui-grid-cell>
+        </ui-grid>
       </div>
 
       <div class="example">
         <h6 :class="$tt('headline6')">1.2 `onShow/onHide`</h6>
-        <label>Vue methods</label>
-        <ui-button raised @click="openDialog">Open dialog</ui-button>
+        <ui-grid>
+          <ui-grid-cell colspan="6">
+            <label>Vue methods</label>
 
-        <ui-dialog v-model="open1">
-          <ui-dialog-body>
-            Dialog content
-          </ui-dialog-body>
-          <ui-dialog-footer>
-            <ui-button @click="closeDialog">Close dialog</ui-button>
-          </ui-dialog-footer>
-        </ui-dialog>
+            <p>
+              <ui-button raised @click="openDialog">Open dialog</ui-button>
+            </p>
+            <ui-dialog v-model="open1">
+              <ui-dialog-body>
+                Dialog content
+              </ui-dialog-body>
+              <ui-dialog-footer>
+                <ui-button @click="closeDialog">Close dialog</ui-button>
+              </ui-dialog-footer>
+            </ui-dialog>
 
-        <ui-accordion>
-          <ui-markdown :text="code[3]"></ui-markdown>
-        </ui-accordion>
-        <hr>
-        <label>$balmUI</label>
-        <ui-button raised @click="$balmUI.onShow('open2')">Open dialog</ui-button>
+            <ui-accordion>
+              <ui-markdown :text="code[3]"></ui-markdown>
+            </ui-accordion>
+          </ui-grid-cell>
+          <ui-grid-cell colspan="6">
+            <label>$balmUI</label>
 
-        <ui-dialog v-model="open2">
-          <ui-dialog-body>
-            <p> Open dialog: `$balmUI.onShow('open')`</p>
-            <p>Close dialog: `$balmUI.onHide('open')`</p>
-          </ui-dialog-body>
-          <ui-dialog-footer>
-            <ui-button @click="$balmUI.onHide('open2')">Close dialog</ui-button>
-          </ui-dialog-footer>
-        </ui-dialog>
+            <p>
+              <ui-button raised @click="$balmUI.onShow('open2')">Open dialog</ui-button>
+            </p>
+            <ui-dialog v-model="open2">
+              <ui-dialog-body>
+                <p> Open dialog: `$balmUI.onShow('open')`</p>
+                <p>Close dialog: `$balmUI.onHide('open')`</p>
+              </ui-dialog-body>
+              <ui-dialog-footer>
+                <ui-button @click="$balmUI.onHide('open2')">Close dialog</ui-button>
+              </ui-dialog-footer>
+            </ui-dialog>
 
-        <ui-accordion>
-          <ui-markdown :text="code[4]"></ui-markdown>
-        </ui-accordion>
+            <ui-accordion>
+              <ui-markdown :text="code[4]"></ui-markdown>
+            </ui-accordion>
+          </ui-grid-cell>
+        </ui-grid>
       </div>
 
       <h4 :class="$tt('headline4')">2. APIs</h4>

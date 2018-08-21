@@ -24,3 +24,11 @@
 | Name  | Type                      | Description                     |
 | ----- | ------------------------- | ------------------------------- |
 | click | `Function(event: object)` | Emits when the icon is clicked. |
+
+#### Sass Variables
+
+- `$mdc-icon-sizes` (default: `18 24 36 48`)
+- `$mdc-icon-color-dark`
+- `$mdc-icon-color-dark-inactive`
+- `$mdc-icon-color-light`
+- `$mdc-icon-color-light-inactive`

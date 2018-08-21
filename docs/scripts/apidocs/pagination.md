@@ -49,3 +49,21 @@
 // Manual
 <ui-pagination :page="page" @change="$balmUI.onChange('page', $event)"></ui-pagination>
 ```
+
+#### Sass Variables
+
+- Global
+  - `$mdc-pagination-color`
+  - `$mdc-pagination-corner-radius`
+- Default
+  - `$mdc-pagination-fill-color`
+  - `$mdc-pagination-text-color`
+  - `$mdc-pagination-border-color`
+- Hover
+  - `$mdc-pagination-hover-fill-color`
+  - `$mdc-pagination-hover-text-color`
+  - `$mdc-pagination-hover-border-color`
+- Activated
+  - `$mdc-pagination-active-fill-color`
+  - `$mdc-pagination-active-text-color`
+  - `$mdc-pagination-active-border-color`

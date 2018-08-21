@@ -1,20 +1,21 @@
 @import '../../material-components-web/theme/mixins';
 @import '../../material-components-web/button/mixins';
 
+/// Global
 $mdc-pagination-color: $mdc-theme-primary !default;
 $mdc-pagination-corner-radius: 0 !default;
-
+/// Default
+$mdc-pagination-fill-color: white !default;
 $mdc-pagination-text-color: rgba(black, 0.87) !default;
 $mdc-pagination-border-color: rgba(black, 0.38) !default;
-$mdc-pagination-fill-color: white !default;
-
+/// Hover
+$mdc-pagination-hover-fill-color: $mdc-pagination-fill-color !default;
 $mdc-pagination-hover-text-color: $mdc-pagination-color !default;
 $mdc-pagination-hover-border-color: $mdc-pagination-color !default;
-$mdc-pagination-hover-fill-color: $mdc-pagination-fill-color !default;
-
+/// Activated
+$mdc-pagination-active-fill-color: rgba($mdc-pagination-color, 0.7) !default;
 $mdc-pagination-active-text-color: $mdc-pagination-fill-color !default;
 $mdc-pagination-active-border-color: $mdc-pagination-color !default;
-$mdc-pagination-active-fill-color: rgba($mdc-pagination-color, 0.7) !default;
 
 .mdc-pagination {
   line-height: 32px;

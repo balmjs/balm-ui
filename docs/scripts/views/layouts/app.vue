@@ -93,7 +93,7 @@ export default {
     return {
       lang,
       menu,
-      open: true,
+      open: false,
       loading: false
     };
   },

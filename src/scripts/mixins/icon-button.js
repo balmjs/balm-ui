@@ -1,6 +1,4 @@
-import {
-  MDCIconButtonToggle
-} from '../../material-components-web/icon-button';
+import { MDCIconButtonToggle } from '../../material-components-web/icon-button';
 import cardButtonMixin from './card-button';
 import UI_ICONBUTTON from '../components/button/icon-constants';
 
@@ -50,9 +48,7 @@ export default {
 
     this.$iconButton.listen(
       `MDCIconButtonToggle:${UI_ICONBUTTON.EVENT.CHANGE}`,
-      ({
-        detail
-      }) => {
+      ({ detail }) => {
         this.$emit(UI_ICONBUTTON.EVENT.CHANGE, detail.isOn);
       }
     );

@@ -36,7 +36,8 @@ const components = [
   // Plus
   'dropdown.js',
   'autocomplete.js',
-  'pagination.js'
+  'pagination.js',
+  'file.js'
 ];
 const plugins = [
   // MDC plugins

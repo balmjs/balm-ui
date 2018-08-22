@@ -1,4 +1,4 @@
-## Kill IE (Just for China)
+## Kill IE (China Only)
 
 > Please `Copy` + `Paste`
 

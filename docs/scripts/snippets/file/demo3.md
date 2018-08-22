@@ -31,7 +31,7 @@
 <p>
   <ui-button raised @click="uploadAllFiles">
     <ui-icon>file_upload</ui-icon>
-    全部上传
+    Upload All
   </ui-button>
 </p>
 ```

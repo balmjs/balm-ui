@@ -4,13 +4,13 @@
 
 > Row containing action buttons and/or icons.
 
-### Props
+#### Props
 
 | Name      | Type      | Default | Description                                                                                                                            |
 | --------- | --------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | fullBleed | `Boolean` | `false` | Removes the action area's padding and causes its only child (an `mdc-card__action` element) to consume 100% of the action area's width |
 
-### Slots
+#### Slots
 
 | Name      | Description                                                |
 | --------- | ---------------------------------------------------------- |

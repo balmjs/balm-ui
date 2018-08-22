@@ -54,7 +54,7 @@ yarn
 
 Installs the necessary npm packages, This can take some time.
 
-> (Just for China) 如果“网络”不科学，请走[淘宝源](https://npm.taobao.org/)
+> (China Only) 如果“网络”不科学，请走[淘宝源](https://npm.taobao.org/)
 
 2.2 Install **BalmUI**
 

@@ -163,7 +163,12 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'slider',
         name: 'Slider',
-        description: 'Range Controls'
+        description: 'Range controls'
+      },
+      {
+        icon: 'component',
+        name: 'File',
+        description: 'File upload'
       },
       {
         icon: 'menu',
@@ -178,7 +183,7 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'component',
         name: 'Validator',
-        description: 'validator'
+        description: 'Validator'
       }
     ]
   },

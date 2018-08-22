@@ -4,6 +4,7 @@ const Radio = () => import('../views/components/radio');
 const Select = () => import('../views/components/select');
 const Switch = () => import('../views/components/switch');
 const Slider = () => import('../views/components/slider');
+const File = () => import('../views/components/file');
 const Dropdown = () => import('../views/components/dropdown');
 const Autocomplete = () => import('../views/components/autocomplete');
 const Validator = () => import('../views/plugins/validator');
@@ -38,6 +39,11 @@ export default [
     path: 'slider',
     name: 'form.slider',
     component: Slider
+  },
+  {
+    path: 'file',
+    name: 'form.file',
+    component: File
   },
   {
     path: 'dropdown',

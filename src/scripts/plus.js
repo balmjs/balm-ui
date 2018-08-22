@@ -6,6 +6,7 @@ import multiConfigure from './config/multi-configure';
 import UiDropdown from './components/input-controls/dropdown';
 import UiAutocomplete from './components/input-controls/autocomplete';
 import UiPagination from './components/data/pagination';
+import UiFile from './components/input-controls/file';
 /**
  * Plugins
  */
@@ -29,7 +30,8 @@ const version = require('../../package.json').version;
 const components = {
   UiDropdown,
   UiAutocomplete,
-  UiPagination
+  UiPagination,
+  UiFile
 };
 
 const plugins = {

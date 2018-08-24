@@ -12,7 +12,7 @@
     flex-wrap: wrap;
     padding: 1em 0 0 1em;
     position: relative;
-    &>.item {
+    & > .item {
       width: 12.5%;
       padding-right: 1em;
       margin-bottom: 1em;
@@ -67,6 +67,11 @@
           font-size: 48px;
         }
       }
+    }
+  }
+  @media (max-width: 640px) {
+    .preview-list > .item {
+      width: 33.333%;
     }
   }
 }

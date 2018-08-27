@@ -1,6 +1,18 @@
 .DS_Store
-node_modules
-bower_components
+.nyc_output/
+coverage/
+node_modules/
+bower_components/
+npm-debug.log
+yarn-error.log
 .tmp
+
+# Editor directories and files
 .idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Others
 docs/styles/svg

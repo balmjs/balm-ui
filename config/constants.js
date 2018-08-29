@@ -30,7 +30,7 @@ var DMC_COMPONENTS = [
   'linear-progress',
   'list',
   'menu',
-  'menu-surface', // New in mdc@0.39.0-0
+  'menu-surface', // New in mdc@0.39.0
   'notched-outline',
   'radio',
   'ripple',

@@ -42,10 +42,12 @@ var level1 = [
 var level2 = [
   'chips/chip',
   'chips/chip-set',
-  'drawer/permanent',
-  'drawer/persistent',
-  'drawer/slidable',
-  'drawer/temporary',
+  // 'drawer/permanent',
+  // 'drawer/persistent',
+  // 'drawer/slidable',
+  // 'drawer/temporary',
+  'drawer/dismissible',
+  'drawer/modal',
   // 'tabs/tab',
   // 'tabs/tab-bar',
   // 'tabs/tab-bar-scroller',
@@ -55,8 +57,8 @@ var level2 = [
 
 var index = 0;
 
-level0.forEach(function(file) {
-  gulp.task('update:mdc:' + index, function() {
+level0.forEach(function (file) {
+  gulp.task('update:mdc:' + index, function () {
     return gulp
       .src(mdcDir + file)
       .pipe($replace('@material/', './'))
@@ -65,8 +67,8 @@ level0.forEach(function(file) {
   index++;
 });
 
-level1.forEach(function(file) {
-  gulp.task('update:mdc:' + index, function() {
+level1.forEach(function (file) {
+  gulp.task('update:mdc:' + index, function () {
     return gulp
       .src(mdcDir + file + '/*')
       .pipe($replace('@material/', '../'))
@@ -75,8 +77,8 @@ level1.forEach(function(file) {
   index++;
 });
 
-level2.forEach(function(file) {
-  gulp.task('update:mdc:' + index, function() {
+level2.forEach(function (file) {
+  gulp.task('update:mdc:' + index, function () {
     return gulp
       .src(mdcDir + file + '/*')
       .pipe($replace('@material/', '../../'))

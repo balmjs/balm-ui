@@ -1,6 +1,8 @@
 // Define drawer constants
 export default {
   EVENT: {
-    NAV: 'nav'
+    NAV: 'nav',
+    OPENED: 'opened',
+    CLOSED: 'closed'
   }
 };

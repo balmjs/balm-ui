@@ -1,42 +1,29 @@
 <template>
-  <aside :class="className.outer">
-    <nav :class="className.inner">
-      <slot></slot>
-    </nav>
+  <aside :class="className">
+    <slot></slot>
   </aside>
 </template>
 
 <script>
-const TYPES = ['temporary', 'persistent', 'permanent'];
-const SCROLL_LOCK = 'mdc-drawer-scroll-lock';
+// Define drawer constants
+const TYPES = ['dismissible', 'modal']; // default: 'permanent'
 
 export default {
   name: 'ui-drawer',
   props: {
     // UI attributes
-    type: {
-      type: String,
-      required: true
-    }
+    type: String
   },
   computed: {
     className() {
-      let type = this.type;
+      let result = ['mdc-drawer'];
 
-      return {
-        outer: `mdc-drawer mdc-drawer--${type}`,
-        inner: `mdc-drawer__drawer`
-      };
+      if (TYPES.includes(this.type)) {
+        result.push(`mdc-drawer--${this.type}`);
+      }
+
+      return result.join(' ');
     }
-  },
-  created() {
-    if (!this.type) {
-      console.warn('Please set a drawer type: ' + JSON.stringify(TYPES));
-    }
-  },
-  beforeDestroy() {
-    // IMPORTANT
-    document.querySelector('body').classList.remove(SCROLL_LOCK);
   }
 };
 </script>

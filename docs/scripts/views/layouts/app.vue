@@ -35,7 +35,7 @@
       </ui-top-app-bar>
       <!-- content -->
       <div class="balmui-body">
-        <ui-persistent-drawer
+        <ui-dismissible-drawer
           v-model="open"
           class="balmui-menu"
           menuSelector="#balmui-menu">
@@ -65,7 +65,7 @@
             </ui-list-nav>
             <ui-list-divider></ui-list-divider>
           </ui-drawer-content>
-        </ui-persistent-drawer>
+        </ui-dismissible-drawer>
         <main ref="body" class="balmui-content" v-anchor.offset="60">
           <transition name="loading">
             <div v-if="loading" class="loading-container">

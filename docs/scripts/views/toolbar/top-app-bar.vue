@@ -12,9 +12,9 @@
       San Francisco, CA
     </ui-top-app-bar>
 
-    <ui-temporary-drawer menuSelector="#demo-menu">
+    <ui-modal-drawer menuSelector="#demo-menu">
       <ui-drawer-header :innerClass="[$themeColor('on-primary'), $themeColor('primary-bg')]">
-        Header here
+        <ui-drawer-title>Header here</ui-drawer-title>
       </ui-drawer-header>
       <ui-drawer-content>
         <ui-list-group>
@@ -34,7 +34,9 @@
           </ui-list-nav>
         </ui-list-group>
       </ui-drawer-content>
-    </ui-temporary-drawer>
+    </ui-modal-drawer>
+
+    <ui-drawer-scrim></ui-drawer-scrim>
 
     <main class="demo-main">
       <div :class="$tt('body1')" id="content-main">

@@ -22,6 +22,11 @@ a {
   height: 100%;
 }
 
+.balmui-menu {
+  position: static;
+  top: 64px;
+}
+
 .balmui-menu .mdc-drawer__content,
 .balmui-content {
   overflow-x: hidden;

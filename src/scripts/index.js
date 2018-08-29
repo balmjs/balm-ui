@@ -5,11 +5,14 @@ import multiConfigure from './config/multi-configure';
  */
 // Layouts
 import UiPermanentDrawer from './components/drawer/permanent';
-import UiPersistentDrawer from './components/drawer/persistent';
-import UiTemporaryDrawer from './components/drawer/temporary';
+import UiDismissibleDrawer from './components/drawer/dismissible';
+import UiModalDrawer from './components/drawer/modal';
 import UiDrawerHeader from './components/drawer/drawer-header';
-import UiDrawerToolbarSpacer from './components/drawer/drawer-toolbar-spacer';
+import UiDrawerTitle from './components/drawer/drawer-title';
+import UiDrawerSubtitle from './components/drawer/drawer-subtitle';
 import UiDrawerContent from './components/drawer/drawer-content';
+import UiDrawerAppContent from './components/drawer/drawer-app-content';
+import UiDrawerScrim from './components/drawer/drawer-scrim';
 import UiTopAppBar from './components/toolbar/top-app-bar';
 import UiGrid from './components/grid/grid';
 import UiGridCell from './components/grid/grid-cell';
@@ -95,11 +98,14 @@ const version = require('../../package.json').version;
 const components = {
   // Layouts
   UiPermanentDrawer,
-  UiPersistentDrawer,
-  UiTemporaryDrawer,
+  UiDismissibleDrawer,
+  UiModalDrawer,
   UiDrawerHeader,
-  UiDrawerToolbarSpacer,
+  UiDrawerTitle,
+  UiDrawerSubtitle,
   UiDrawerContent,
+  UiDrawerAppContent,
+  UiDrawerScrim,
   UiTopAppBar,
   UiGrid,
   UiGridCell,

@@ -1,3 +1,4 @@
+import { MDCDrawer } from '../../material-components-web/drawer';
 import UI_DRAWER from '../components/drawer/constants';
 
 export default {
@@ -23,6 +24,18 @@ export default {
     open(val) {
       this.$drawer.open = val;
     }
+  },
+  mounted() {
+    this.$drawer = new MDCDrawer(this.$el);
+
+    this.init();
+
+    this.$drawer.listen(`MDCDrawer:${UI_DRAWER.EVENT.OPENED}`, () => {
+      this.$emit(UI_DRAWER.EVENT.NAV, true);
+    });
+    this.$drawer.listen(`MDCDrawer:${UI_DRAWER.EVENT.CLOSED}`, () => {
+      this.$emit(UI_DRAWER.EVENT.NAV, false);
+    });
   },
   methods: {
     init() {

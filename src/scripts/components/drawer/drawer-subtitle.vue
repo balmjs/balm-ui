@@ -1,11 +1,11 @@
 <template>
-  <header class="mdc-drawer__header">
+  <h6 class="mdc-drawer__subtitle">
     <slot></slot>
-  </header>
+  </h6>
 </template>
 
 <script>
 export default {
-  name: 'ui-drawer-header'
+  name: 'ui-drawer-subtitle'
 };
 </script>

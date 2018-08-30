@@ -22,39 +22,25 @@
       <h4 :class="$tt('headline4')">1. Example</h4>
       <ui-list twoLine nonInteractive>
         <ui-item>
-          <ui-item-text>
-            1.1 <router-link :to="{name: 'layouts.default-toolbar'}">Normal Toolbar</router-link>
-          </ui-item-text>
+          1.1 <router-link :to="{name: 'layouts.default-toolbar'}">Normal Toolbar</router-link>
         </ui-item>
         <ui-item>
-          <ui-item-text>
-            1.2 <router-link :to="{name: 'layouts.fixed-toolbar'}">Fixed Toolbar</router-link>
-          </ui-item-text>
+          1.2 <router-link :to="{name: 'layouts.fixed-toolbar'}">Fixed Toolbar</router-link>
         </ui-item>
         <ui-item>
-          <ui-item-text>
-            1.3 <router-link :to="{name: 'layouts.menu-toolbar'}">Fixed Toolbar with Menu</router-link>
-          </ui-item-text>
+          1.3 <router-link :to="{name: 'layouts.menu-toolbar'}">Fixed Toolbar with Menu</router-link>
         </ui-item>
         <ui-item>
-          <ui-item-text>
-            1.4 <router-link :to="{name: 'layouts.waterfall-toolbar'}">Waterfall Toolbar</router-link>
-          </ui-item-text>
+          1.4 <router-link :to="{name: 'layouts.waterfall-toolbar'}">Waterfall Toolbar</router-link>
         </ui-item>
         <ui-item>
-          <ui-item-text>
-            1.5 <router-link :to="{name: 'layouts.default-flexible-toolbar'}">Default Flexible Toolbar</router-link>
-          </ui-item-text>
+          1.5 <router-link :to="{name: 'layouts.default-flexible-toolbar'}">Default Flexible Toolbar</router-link>
         </ui-item>
         <ui-item>
-          <ui-item-text>
-            1.6 <router-link :to="{name: 'layouts.waterfall-flexible-toolbar'}">Waterfall Flexible Toolbar</router-link>
-          </ui-item-text>
+          1.6 <router-link :to="{name: 'layouts.waterfall-flexible-toolbar'}">Waterfall Flexible Toolbar</router-link>
         </ui-item>
         <ui-item>
-          <ui-item-text>
-            1.7 <router-link :to="{name: 'layouts.waterfall-toolbar-fix-last-row'}">Waterfall Toolbar Fix Last Row</router-link>
-          </ui-item-text>
+          1.7 <router-link :to="{name: 'layouts.waterfall-toolbar-fix-last-row'}">Waterfall Toolbar Fix Last Row</router-link>
         </ui-item>
       </ui-list>
     </div>

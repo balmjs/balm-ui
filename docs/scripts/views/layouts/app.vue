@@ -43,7 +43,6 @@
                 </template>
               </template>
             </ui-list-nav>
-            <ui-list-divider></ui-list-divider>
           </ui-drawer-content>
         </ui-dismissible-drawer>
         <main ref="body" class="balmui-content" v-anchor.offset="60">
@@ -92,8 +91,6 @@ export default {
           this.$refs.body.scrollTop = 0;
         }
       });
-
-      // this.open = this.noLayout ? false : window.innerWidth >= 1024;
     }
   },
   created() {

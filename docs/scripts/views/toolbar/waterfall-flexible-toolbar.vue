@@ -1,7 +1,7 @@
 <template>
   <div class="demo--waterfall-flexible-toolbar">
-    <ui-toolbar waterfall defaultFlexible @change="onChange">
-      <ui-toolbar-row>
+    <ui-toolbar class="demo-toolbar" waterfall defaultFlexible @change="onChange">
+      <ui-toolbar-row class="demo-toolbar__row--with-image">
         <ui-toolbar-section align="start">
           <ui-toolbar-anchor type="menu"></ui-toolbar-anchor>
           <ui-toolbar-title>Title</ui-toolbar-title>
@@ -15,18 +15,12 @@
     </ui-toolbar>
     <main>
       <div class="mdc-toolbar-fixed-adjust">
-        <p class="demo-paragraph">
-          Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.
-        </p>
-        <p class="demo-paragraph">
-          Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.
-        </p>
-        <p class="demo-paragraph">
+        <p v-for="i in 12" :key="i" class="demo-paragraph">
           Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.
         </p>
       </div>
     </main>
-    <footer>
+    <footer class="demo-toolbar-floating-footer">
       <span>Flexible Expansion Ratio: <span id="ratio">{{ ratio }}</span></span>
     </footer>
   </div>

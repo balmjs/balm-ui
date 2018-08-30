@@ -51,13 +51,15 @@ export default {
     };
   },
   computed: {
+    isFixed() {
+      return this.fixed || this.waterfall || this.fixedLastrow;
+    },
     className() {
-      let isFixed = this.fixed || this.waterfall || this.fixedLastrow;
       let isFlexible = this.flexible || this.defaultFlexible;
 
       return {
         'mdc-toolbar': true,
-        'mdc-toolbar--fixed': isFixed,
+        'mdc-toolbar--fixed': this.isFixed,
         'mdc-toolbar--waterfall': this.waterfall,
         'mdc-toolbar--fixed-lastrow-only': this.fixedLastrow,
         'mdc-toolbar--flexible': isFlexible,
@@ -75,7 +77,9 @@ export default {
       }
     );
 
-    this.fixedAdjustContent();
+    if (this.isFixed) {
+      this.fixedAdjustContent();
+    }
   },
   methods: {
     fixedAdjustContent() {

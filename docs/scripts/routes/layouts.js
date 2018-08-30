@@ -24,7 +24,8 @@ export default [
   {
     path: 'grid',
     name: 'layouts.grid',
-    component: Grid
+    component: Grid,
+    meta: { noLayout: true }
   },
   {
     path: 'toolbar',
@@ -34,42 +35,50 @@ export default [
   {
     path: 'default-toolbar',
     name: 'layouts.default-toolbar',
-    component: DefaultToolbar
+    component: DefaultToolbar,
+    meta: { noLayout: true }
   },
   {
     path: 'fixed-toolbar',
     name: 'layouts.fixed-toolbar',
-    component: FixedToolbar
+    component: FixedToolbar,
+    meta: { noLayout: true }
   },
   {
     path: 'waterfall-toolbar',
     name: 'layouts.waterfall-toolbar',
-    component: WaterfallToolbar
+    component: WaterfallToolbar,
+    meta: { noLayout: true }
   },
   {
     path: 'default-flexible-toolbar',
     name: 'layouts.default-flexible-toolbar',
-    component: DefaultFlexibleToolbar
+    component: DefaultFlexibleToolbar,
+    meta: { noLayout: true }
   },
   {
     path: 'waterfall-flexible-toolbar',
     name: 'layouts.waterfall-flexible-toolbar',
-    component: WaterfallFlexibleToolbar
+    component: WaterfallFlexibleToolbar,
+    meta: { noLayout: true }
   },
   {
     path: 'waterfall-toolbar-fix-last-row',
     name: 'layouts.waterfall-toolbar-fix-last-row',
-    component: WaterfallToolbarFixLastRow
+    component: WaterfallToolbarFixLastRow,
+    meta: { noLayout: true }
   },
   {
     path: 'menu-toolbar',
     name: 'layouts.menu-toolbar',
-    component: MenuToolbar
+    component: MenuToolbar,
+    meta: { noLayout: true }
   },
   {
     path: 'top-app-bar',
     name: 'layouts.top-app-bar',
-    component: TopAppBar
+    component: TopAppBar,
+    meta: { noLayout: true }
   },
   {
     path: 'drawer',
@@ -79,22 +88,26 @@ export default [
   {
     path: 'temporary-drawer',
     name: 'layouts.temporary-drawer',
-    component: TemporaryDrawer
+    component: TemporaryDrawer,
+    meta: { noLayout: true }
   },
   {
     path: 'persistent-drawer',
     name: 'layouts.persistent-drawer',
-    component: PersistentDrawer
+    component: PersistentDrawer,
+    meta: { noLayout: true }
   },
   {
     path: 'permanent-drawer-above-toolbar',
     name: 'layouts.permanent-drawer-above-toolbar',
-    component: PermanentDrawerAboveToolbar
+    component: PermanentDrawerAboveToolbar,
+    meta: { noLayout: true }
   },
   {
     path: 'permanent-drawer-below-toolbar',
     name: 'layouts.permanent-drawer-below-toolbar',
-    component: PermanentDrawerBelowToolbar
+    component: PermanentDrawerBelowToolbar,
+    meta: { noLayout: true }
   },
   {
     path: 'tabs',

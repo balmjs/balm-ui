@@ -1,7 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueMeta from 'vue-meta';
+// Layout
 import BlankLayout from '../views/layouts/blank';
+// Routes
 import guideRoutes from './guide';
 import layoutsRoutes from './layouts';
 import buttonsRoutes from './buttons';
@@ -12,14 +14,15 @@ import modalRoutes from './modal';
 const Menu = () => import('../views/components/menu');
 import miscRoutes from './misc';
 const Utils = () => import('../views/utils');
-
+// Pages
 import Home from '../views/home';
-// const Test = () => import('../views/test');
+import NotFound from '../views/not-found';
+import testRoutes from './test';
 
 Vue.use(VueRouter);
 Vue.use(VueMeta);
 
-const routes = [
+const baseRoutes = [
   {
     path: '/',
     name: 'home',
@@ -88,24 +91,26 @@ const routes = [
     path: '/utils',
     name: 'utils',
     component: Utils
+  },
+  {
+    path: '*',
+    component: NotFound
   }
-  // {
-  //   path: '/test',
-  //   name: 'test',
-  //   component: Test,
-  // }
 ];
-
+const routes = baseRoutes.concat(testRoutes);
 const router = new VueRouter({
   routes
 });
 
 const CLASS_NAMESPACE = 'balmui';
-
 router.afterEach((to, from) => {
   let pageClassList = document.querySelector('html').classList;
   let routeName = to.name;
-  let isNoLayout = routeName.indexOf('-drawer') > -1 || routeName.indexOf('-toolbar') > -1 || ['layouts.grid', 'layouts.top-app-bar', 'test'].includes(routeName);
+  let isNoLayout = routeName
+    ? routeName.indexOf('-drawer') > -1 ||
+      routeName.indexOf('-toolbar') > -1 ||
+      ['layouts.grid', 'layouts.top-app-bar', 'test'].includes(routeName)
+    : true;
 
   if (isNoLayout) {
     pageClassList.add(`${CLASS_NAMESPACE}--no-layout`);

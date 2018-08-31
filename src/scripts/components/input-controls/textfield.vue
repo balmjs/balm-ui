@@ -1,8 +1,8 @@
 <template>
   <div :class="className.outer">
-    <template v-if="hasIcon">
-      <slot name="before"></slot>
-    </template>
+    <!-- Leading icon -->
+    <slot name="before"
+      :customIconClass="UI_TEXTFIELD.SLOT_CLASS.customIcon"></slot>
 
     <!-- Textarea -->
     <textarea v-if="isMultiLine"
@@ -41,15 +41,15 @@
       @keyup="handleKeyup"
       @keyup.enter="handleEnter"
       @blur="handleBlur">
-    <ui-floating-label v-if="!placeholder"
+    <ui-floating-label v-if="hasLabel"
       :for="id"
       :floatAbove="!!inputValue">
       <slot>{{ label }}</slot>
     </ui-floating-label>
 
-    <template v-if="hasIcon">
-      <slot name="after"></slot>
-    </template>
+    <!-- Trailing icon -->
+    <slot name="after"
+      :customIconClass="UI_TEXTFIELD.SLOT_CLASS.customIcon"></slot>
 
     <template v-if="!(cssOnly || isMultiLine)">
       <template v-if="outlined">
@@ -87,6 +87,9 @@ const UI_TEXTFIELD = {
     CHANGE: 'change',
     ENTER: 'enter',
     BLUR: 'blur'
+  },
+  SLOT_CLASS: {
+    customIcon: 'mdc-text-field__custom-icon'
   }
 };
 
@@ -134,10 +137,6 @@ export default {
       default: false
     },
     label: String,
-    box: {
-      type: Boolean,
-      default: false
-    },
     outlined: {
       type: Boolean,
       default: false
@@ -162,10 +161,6 @@ export default {
       type: Boolean,
       default: false
     },
-    // focused: {
-    //   type: Boolean,
-    //   default: false
-    // },
     // For helper text
     helptextId: String,
     // For plus
@@ -186,15 +181,13 @@ export default {
       return {
         outer: {
           'mdc-text-field': true,
-          'mdc-text-field--box': this.box,
           'mdc-text-field--outlined': this.outlined,
-          'mdc-text-field--fullwidth': this.fullwidth,
+          'mdc-text-field--fullwidth': this.fullwidth && !this.outlined,
           'mdc-text-field--textarea': this.isMultiLine,
           'mdc-text-field--disabled': this.disabled,
           'mdc-text-field--dense': this.dense,
           'mdc-text-field--with-leading-icon': this.leadingIcon,
           'mdc-text-field--with-trailing-icon': this.trailingIcon
-          // 'mdc-text-field--focused': this.focused
         },
         input: 'mdc-text-field__input'
       };
@@ -202,14 +195,8 @@ export default {
     isMultiLine() {
       return this.type.toLowerCase() === 'textarea';
     },
-    hasIcon() {
-      return this.box || this.outlined;
-    },
-    hasLeadingIcon() {
-      return getType(this.leadingIcon) === 'string';
-    },
-    hasTrailingIcon() {
-      return getType(this.trailingIcon) === 'string';
+    hasLabel() {
+      return this.isMultiLine || !(this.fullwidth || this.placeholder);
     }
   },
   watch: {

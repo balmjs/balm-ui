@@ -1,6 +1,6 @@
 ```html
-<ui-button unelevated class="big-round-corner-button">Big Corner Radius</ui-button>
-<ui-button outlined class="thick-outlined-button">Thick Outline Width</ui-button>
+<ui-button unelevated class="big-round-corner-button">Corner Radius</ui-button>
+<ui-button outlined class="thick-outline-button">Thick Outline Width</ui-button>
 ```
 
 ```css
@@ -9,8 +9,7 @@
   @include mdc-button-corner-radius(8px);
 }
 
-.mdc-button.secondary-outlined-button {
-  @include mdc-button-ink-color($mdc-theme-secondary);
-  @include mdc-button-outline-color($mdc-theme-secondary);
+.mdc-button.thick-outline-button {
+  @include mdc-button-outline-width(4px);
 }
 ```

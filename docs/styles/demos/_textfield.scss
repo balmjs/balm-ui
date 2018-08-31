@@ -1,3 +1,4 @@
+// stylelint-disable selector-class-pattern
 .demo-text-field-custom-colors:not(.mdc-text-field--invalid) {
   $idle-border: rgba(blue, 0.38);
   $hover-border: rgba(blue, 0.6);
@@ -14,7 +15,7 @@
   @include mdc-text-field-helper-text-color($idle-border);
   @include mdc-text-field-textarea-stroke-color($idle-border);
   @include mdc-text-field-icon-color($hover-border);
-  // @include mdc-text-field-caret-color($focused-border);
+  @include mdc-text-field-caret-color($focused-border);
 
   &.mdc-text-field--focused {
     @include mdc-text-field-label-color(rgba(blue, 0.87));
@@ -30,7 +31,7 @@
   @include mdc-text-field-ink-color(black);
   @include mdc-text-field-label-color(rgba(blue, 0.5));
   @include mdc-text-field-textarea-stroke-color($idle-border);
-  // @include mdc-text-field-caret-color($focused-border);
+  @include mdc-text-field-caret-color($focused-border);
 
   &.mdc-text-field--focused {
     @include mdc-text-field-label-color(rgba(blue, 0.87));
@@ -42,7 +43,7 @@
   @include mdc-text-field-ink-color(orange);
   @include mdc-text-field-label-color(rgba(orange, 0.5));
   @include mdc-text-field-textarea-stroke-color(rgba(orange, 0.38));
-  // @include mdc-text-field-caret-color(orange);
+  @include mdc-text-field-caret-color(orange);
 
   &.mdc-text-field--focused {
     @include mdc-text-field-label-color(rgba(orange, 0.87));
@@ -55,7 +56,7 @@
   @include mdc-text-field-ink-color(black);
   @include mdc-text-field-label-color(rgba(blue, 0.5));
   @include mdc-text-field-line-ripple-color(blue);
-  // @include mdc-text-field-caret-color(blue);
+  @include mdc-text-field-caret-color(blue);
 
   &.mdc-text-field--focused {
     @include mdc-text-field-label-color(rgba(blue, 0.87));
@@ -67,7 +68,7 @@
   @include mdc-text-field-ink-color(orange);
   @include mdc-text-field-label-color(rgba(orange, 0.5));
   @include mdc-text-field-line-ripple-color(orange);
-  // @include mdc-text-field-caret-color(orange);
+  @include mdc-text-field-caret-color(orange);
 
   &.mdc-text-field--focused {
     @include mdc-text-field-label-color(rgba(orange, 0.87));
@@ -90,9 +91,18 @@
   @include mdc-text-field-focused-outline-color($focused-border);
   @include mdc-text-field-helper-text-validation-color($hover-border);
   @include mdc-text-field-textarea-stroke-color($idle-border);
-  // @include mdc-text-field-caret-color($focused-border);
+  @include mdc-text-field-caret-color($focused-border);
   @include mdc-text-field-icon-color($focused-border);
 
   // Example for --invalid textfield when helper text is not a validation message.
   @include mdc-text-field-helper-text-color(rgba(blue, 0.6));
+}
+// stylelint-enable selector-class-pattern
+
+.demo-text-field-wrapper {
+  margin-bottom: 8px;
+}
+
+.demo-tf-add-space {
+  margin: 10px 0;
 }

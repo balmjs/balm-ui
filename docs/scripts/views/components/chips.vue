@@ -21,7 +21,12 @@
       <h4 :class="$tt('headline4')">1. Example</h4>
       <section class="example">
         <h2>1.1 Input Chips</h2>
-        <ui-textfield outlined id="input-chip-set-input" v-model="name" placeholder="Chip text"></ui-textfield><br>
+        <ui-textfield outlined
+          v-model="name"
+          class="demo-tf-add-space"
+          id="input-chip-set-input"
+          placeholder="Chip text"></ui-textfield>
+        <br>
         <ui-button raised dense id="input-chip-set-button"
           @click="addOne">
           Add Input Chip

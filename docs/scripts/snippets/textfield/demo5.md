@@ -13,8 +13,8 @@
 </ui-textfield>
 
 <ui-textfield outlined leadingIcon>
-  <template slot="before">
-    <span class="mdc-text-field__custom-icon">
+  <template slot="before" slot-scope="{ customIconClass }">
+    <span :class="customIconClass">
       <i class="fa fa-smile-o fa-lg"></i>
     </span>
   </template>
@@ -22,8 +22,8 @@
 </ui-textfield>
 <ui-textfield outlined trailingIcon>
   Your other name
-  <template slot="after">
-    <span class="mdc-text-field__custom-icon">
+  <template slot="after" slot-scope="{ customIconClass }">
+    <span :class="customIconClass">
       <i class="fa fa-close fa-lg"></i>
     </span>
   </template>

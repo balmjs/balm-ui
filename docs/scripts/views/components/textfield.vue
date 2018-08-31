@@ -85,40 +85,11 @@
         </ui-accordion>
       </section>
 
-      <section class="example" id="text-field-box-example">
-        <h3>1.4 Text Field box</h3>
-        <div id="demo-tf-box-wrapper" :dir="controls.rtl ? 'rtl' : null">
-          <ui-textfield id="tf-box"
-            box
-            helptextId="box-name-validation-message"
-            :class="{'demo-text-field-custom-colors': controls.customColor}"
-            :disabled="controls.disabled"
-            :dense="controls.dense"
-            :required="controls.required"
-            :attrs="{
-              minlength: controls.min ? 8 : 0
-            }">
-            Your Name
-          </ui-textfield>
-          <ui-textfield-helptext v-if="controls.helperText"
-            id="box-name-validation-message"
-            :visible="controls.isVisible">
-            {{ controls.min
-                ? 'Must be at least 8 characters'
-                : 'Helper Text (possibly validation message)' }}
-          </ui-textfield-helptext>
-        </div>
-        <ui-textfield-controls
-          :options="['disabled', 'rtl', 'dense', 'required', 'customColor', 'helperText', 'min']"
-          v-model="controls"></ui-textfield-controls>
-        <ui-accordion>
-          <ui-markdown :code="code[4]"></ui-markdown>
-        </ui-accordion>
-      </section>
-
       <section class="example" id="demo-tf-icon-container">
-        <h3>1.5 Text Field - Leading/Trailing icons</h3>
-        <div id="demo-tf-box-leading-wrapper" :dir="controls.rtl ? 'rtl' : null">
+        <h3>1.4 Text Field - Leading/Trailing icons</h3>
+        <div class="demo-tf-add-space"
+          id="demo-tf-box-leading-wrapper"
+          :dir="controls.rtl ? 'rtl' : null">
           <ui-textfield id="tf-box-leading" box leadingIcon
             :class="{'demo-text-field-custom-colors': controls.customColor}"
             :disabled="controls.disabled"
@@ -133,7 +104,9 @@
             Your name
           </ui-textfield>
         </div>
-        <div id="demo-tf-box-trailing-wrapper" :dir="controls.rtl ? 'rtl' : null">
+        <div class="demo-tf-add-space"
+          id="demo-tf-box-trailing-wrapper"
+          :dir="controls.rtl ? 'rtl' : null">
           <ui-textfield id="tf-box-trailing" box trailingIcon
             :class="{'demo-text-field-custom-colors': controls.customColor}"
             :disabled="controls.disabled"
@@ -148,7 +121,9 @@
             </template>
           </ui-textfield>
         </div>
-        <div id="demo-tf-outlined-leading-wrapper" :dir="controls.rtl ? 'rtl' : null">
+        <div class="demo-tf-add-space"
+          id="demo-tf-outlined-leading-wrapper"
+          :dir="controls.rtl ? 'rtl' : null">
           <ui-textfield id="tf-outlined-leading" outlined leadingIcon
             :class="{'demo-text-field-custom-colors': controls.customColor}"
             :disabled="controls.disabled"
@@ -157,15 +132,17 @@
             :attrs="{
               minlength: controls.min ? 8 : 0
             }">
-            <template slot="before">
-              <span class="mdc-text-field__custom-icon">
+            <template slot="before" slot-scope="{ customIconClass }">
+              <span :class="customIconClass">
                 <i class="fa fa-smile-o fa-lg"></i>
               </span>
             </template>
             Your other name
           </ui-textfield>
         </div>
-        <div id="demo-tf-outlined-trailing-wrapper" :dir="controls.rtl ? 'rtl' : null">
+        <div class="demo-tf-add-space"
+          id="demo-tf-outlined-trailing-wrapper"
+          :dir="controls.rtl ? 'rtl' : null">
           <ui-textfield id="tf-outlined-trailing" outlined trailingIcon
             :class="{'demo-text-field-custom-colors': controls.customColor}"
             :disabled="controls.disabled"
@@ -175,8 +152,8 @@
               minlength: controls.min ? 8 : 0
             }">
             Your other name
-            <template slot="after">
-              <span class="mdc-text-field__custom-icon">
+            <template slot="after" slot-scope="{ customIconClass }">
+              <span :class="customIconClass">
                 <i class="fa fa-close fa-lg"></i>
               </span>
             </template>
@@ -191,7 +168,7 @@
       </section>
 
       <section class="example">
-        <h3>1.6 Preventing FOUC</h3>
+        <h3>1.5 Preventing FOUC</h3>
         <ui-textfield id="fouc" v-model="value">
           Label floating above
         </ui-textfield>
@@ -201,7 +178,7 @@
       </section>
 
       <section class="example">
-        <h3>1.7 Textarea</h3>
+        <h3>1.6 Textarea</h3>
         <section id="demo-text-field-textarea-wrapper" :dir="controls.rtl ? 'rtl' : null">
           <ui-textfield type="textarea" id="textarea" rows="8" cols="40"
             :class="{'demo-text-field-custom-colors': controls.customColor}"
@@ -219,7 +196,7 @@
       </section>
 
       <section class="example">
-        <h3>1.8 Full-Width Text Field and Textarea</h3>
+        <h3>1.7 Full-Width Text Field and Textarea</h3>
         <div id="demo-fullwidth-wrapper">
           <ui-textfield
             v-model="title"

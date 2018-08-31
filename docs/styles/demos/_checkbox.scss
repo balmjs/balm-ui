@@ -6,11 +6,13 @@
   @include mdc-checkbox-container-colors(
     $unmarked-stroke-color: $color,
     $unmarked-fill-color: rgba($color, 0.25),
-    $marked-fill-color: $color);
+    $marked-fill-color: $color
+  );
 }
 
 .demo-checkbox--custom-stroke-and-fill {
   @include mdc-checkbox-container-colors(
     $unmarked-stroke-color: $material-color-blue-500,
-    $marked-fill-color: $material-color-purple-500);
+    $marked-fill-color: $material-color-purple-500
+  );
 }

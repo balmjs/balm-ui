@@ -83,8 +83,8 @@
     <fieldset>
       <legend :class="$tt('headline6')">Custom button (Experimental)</legend>
       <div>
-        <ui-button :cssOnly="cssOnly" unelevated class="big-round-corner-button" :disabled="useDisabled">Big Corner Radius</ui-button>
-        <ui-button :cssOnly="cssOnly" outlined class="thick-outlined-button" :disabled="useDisabled">Thick Outline Width</ui-button>
+        <ui-button :cssOnly="cssOnly" unelevated class="big-round-corner-button" :disabled="useDisabled">Corner Radius</ui-button>
+        <ui-button :cssOnly="cssOnly" outlined class="thick-outline-button" :disabled="useDisabled">Thick Outline Width</ui-button>
       </div>
       <ui-accordion v-if="!cssOnly">
         <ui-markdown :code="code[5]"></ui-markdown>

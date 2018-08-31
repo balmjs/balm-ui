@@ -16,7 +16,6 @@
 | cols            | `Number`, `String`  | `20`     | The _cols_ attribute of the `<textarea>`.                                                                       |
 | cssOnly         | `Boolean`           | `false`  | Ripple effect is disabled.                                                                                      |
 | label           | `String`            | `null`   | A text caption or description for the text field, which use the input's `placeholder` attribute instead.        |
-| box             | `Boolean`           | `false`  | Styles the text field as a box text field.                                                                      |
 | outlined        | `Boolean`           | `false`  | Styles the text field as an outlined text field.                                                                |
 | fullwidth       | `Boolean`           | `false`  | Styles the text field as a full width text field.                                                               |
 | disabled        | `Boolean`           | `false`  | Styles the text field as a disabled text field.                                                                 |
@@ -28,11 +27,11 @@
 
 #### Slots
 
-| Name      | Description                                          |
-| --------- | ---------------------------------------------------- |
-| (default) | The default slot holds the label for the text field. |
-| before    | The before slot holds a custom leading icon.         |
-| after     | The before slot holds a custom trailing icon.        |
+| Name      | Description                                          | `slot-scope`          |
+| --------- | ---------------------------------------------------- | --------------------- |
+| (default) | The default slot holds the label for the text field. |                       |
+| before    | The before slot holds a custom leading icon.         | `{ customIconClass }` |
+| after     | The before slot holds a custom trailing icon.        | `{ customIconClass }` |
 
 #### Events
 

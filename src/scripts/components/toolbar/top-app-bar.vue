@@ -133,13 +133,13 @@ export default {
   },
   mounted() {
     this.init();
-
-    this.createFixedAdjustElement();
   },
   methods: {
     init() {
       this.$nextTick(() => {
         this.$topAppBar = new MDCTopAppBar(this.$el);
+
+        this.createFixedAdjustElement();
       });
     },
     reset() {
@@ -149,6 +149,7 @@ export default {
     createFixedAdjustElement() {
       if (this.contentSelector) {
         this.contentElement = document.querySelector(this.contentSelector);
+        this.$topAppBar.setScrollTarget(this.contentElement);
 
         if (
           !this.contentElement.classList.contains(UI_TOP_APP_BAR.ADJUST.DEFAULT)

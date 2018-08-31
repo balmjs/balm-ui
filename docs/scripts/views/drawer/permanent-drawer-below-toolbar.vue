@@ -1,7 +1,7 @@
 <template>
   <div class="demo--drawer demo--permanent-drawer-below-toolbar">
 
-    <ui-top-app-bar contentSelector=".demo-main" v-shadow="4">
+    <ui-top-app-bar contentSelector=".demo-main">
       <template slot="nav-icon">
         <ui-toolbar-anchor type="menu"
           @click.native="() => { $router.back(); }">&#xE5C4;</ui-toolbar-anchor>
@@ -10,7 +10,13 @@
     </ui-top-app-bar>
 
     <main class="demo-main">
-      <ui-common-drawer></ui-common-drawer>
+      <ui-permanent-drawer>
+        <ui-drawer-header>
+          <ui-drawer-title>{{ title }}</ui-drawer-title>
+          <ui-drawer-subtitle>{{ subtitle }}</ui-drawer-subtitle>
+        </ui-drawer-header>
+        <ui-drawer-common-conntent></ui-drawer-common-conntent>
+      </ui-permanent-drawer>
 
       <div :class="[$tt('body1'), 'demo-content']">
         <div :class="$tt('body2')">
@@ -27,7 +33,7 @@
 </template>
 
 <script>
-import UiCommonDrawer from './common-drawer';
+import UiDrawerCommonConntent from './drawer-common-conntent';
 import snippets from '../../mixins/snippets';
 
 export default {
@@ -35,7 +41,7 @@ export default {
     titleTemplate: '%s - Permanent Drawer Below Toolbar'
   },
   components: {
-    UiCommonDrawer
+    UiDrawerCommonConntent
   },
   mixins: [snippets],
   created() {

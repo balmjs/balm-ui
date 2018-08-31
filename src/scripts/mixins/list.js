@@ -74,6 +74,11 @@ export default {
         });
       });
     }
+
+    this.$nextTick(() => {
+      // NOTE: fix `focus-trap` bug
+      this.$list.listElements_[0].tabIndex = 0;
+    });
   },
   methods: {
     onChange() {

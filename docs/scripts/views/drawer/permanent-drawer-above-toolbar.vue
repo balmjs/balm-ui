@@ -1,7 +1,13 @@
 <template>
   <div class="demo--drawer demo--permanent-drawer-above-toolbar">
 
-    <ui-common-drawer></ui-common-drawer>
+    <ui-permanent-drawer>
+      <ui-drawer-header>
+        <ui-drawer-title>{{ title }}</ui-drawer-title>
+        <ui-drawer-subtitle>{{ subtitle }}</ui-drawer-subtitle>
+      </ui-drawer-header>
+      <ui-drawer-common-conntent></ui-drawer-common-conntent>
+    </ui-permanent-drawer>
 
     <main class="demo-main">
       <ui-top-app-bar
@@ -30,7 +36,7 @@
 </template>
 
 <script>
-import UiCommonDrawer from './common-drawer';
+import UiDrawerCommonConntent from './drawer-common-conntent';
 import snippets from '../../mixins/snippets';
 
 export default {
@@ -38,7 +44,7 @@ export default {
     titleTemplate: '%s - Permanent Drawer Above Toolbar'
   },
   components: {
-    UiCommonDrawer
+    UiDrawerCommonConntent
   },
   mixins: [snippets],
   created() {

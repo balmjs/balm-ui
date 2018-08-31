@@ -1,6 +1,8 @@
 /// Ensure layout covers the entire screen.
 .balmui--layouts-permanent-drawer-above-toolbar,
-.balmui--layouts-permanent-drawer-below-toolbar {
+.balmui--layouts-permanent-drawer-below-toolbar,
+.balmui--layouts-dismissible-drawer,
+.balmui--layouts-modal-drawer {
   .demo--drawer {
     display: flex;
     height: 100vh;

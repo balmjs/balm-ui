@@ -9,7 +9,7 @@
       :prominent="controls.prominent"
       :short="controls.short"
       :alwaysClosed="controls.alwaysCollapsed">
-      San Francisco, CA
+      Hello BalmUI
     </ui-top-app-bar>
 
     <ui-modal-drawer menuSelector="#demo-menu">
@@ -17,22 +17,12 @@
         <ui-drawer-title>Header here</ui-drawer-title>
       </ui-drawer-header>
       <ui-drawer-content>
-        <ui-list-group>
-          <ui-list-nav>
-            <ui-item-link @click.native="() => { $router.back(); }" firstIcon="arrow_back">
-              Back
-            </ui-item-link>
-            <ui-item-link v-for="(item, index) in menu1" :key="index" :firstIcon="item.icon">
-              {{ item.name }}
-            </ui-item-link>
-          </ui-list-nav>
+        <ui-list-nav>
+          <ui-item-link @click.native="() => { $router.back(); }" firstIcon="arrow_back">
+            Back
+          </ui-item-link>
           <ui-list-divider></ui-list-divider>
-          <ui-list-nav>
-            <ui-item-link v-for="(item, index) in menu2" :key="index" :firstIcon="item.icon">
-              {{ item.name }}
-            </ui-item-link>
-          </ui-list-nav>
-        </ui-list-group>
+        </ui-list-nav>
       </ui-drawer-content>
     </ui-modal-drawer>
 

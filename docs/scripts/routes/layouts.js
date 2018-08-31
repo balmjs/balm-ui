@@ -12,12 +12,12 @@ const WaterfallToolbarFixLastRow = () =>
 const MenuToolbar = () => import('../views/toolbar/menu-toolbar');
 const TopAppBar = () => import('../views/toolbar/top-app-bar');
 const Drawer = () => import('../views/drawer/index');
-const TemporaryDrawer = () => import('../views/drawer/temporary-drawer');
-const PersistentDrawer = () => import('../views/drawer/persistent-drawer');
 const PermanentDrawerAboveToolbar = () =>
   import('../views/drawer/permanent-drawer-above-toolbar');
 const PermanentDrawerBelowToolbar = () =>
   import('../views/drawer/permanent-drawer-below-toolbar');
+const DismissibleDrawer = () => import('../views/drawer/dismissible-drawer');
+const ModalDrawer = () => import('../views/drawer/modal-drawer');
 const Tabs = () => import('../views/components/tabs');
 
 export default [
@@ -86,18 +86,6 @@ export default [
     component: Drawer
   },
   {
-    path: 'temporary-drawer',
-    name: 'layouts.temporary-drawer',
-    component: TemporaryDrawer,
-    meta: { noLayout: true }
-  },
-  {
-    path: 'persistent-drawer',
-    name: 'layouts.persistent-drawer',
-    component: PersistentDrawer,
-    meta: { noLayout: true }
-  },
-  {
     path: 'permanent-drawer-above-toolbar',
     name: 'layouts.permanent-drawer-above-toolbar',
     component: PermanentDrawerAboveToolbar,
@@ -107,6 +95,18 @@ export default [
     path: 'permanent-drawer-below-toolbar',
     name: 'layouts.permanent-drawer-below-toolbar',
     component: PermanentDrawerBelowToolbar,
+    meta: { noLayout: true }
+  },
+  {
+    path: 'dismissible-drawer',
+    name: 'layouts.dismissible-drawer',
+    component: DismissibleDrawer,
+    meta: { noLayout: true }
+  },
+  {
+    path: 'modal-drawer',
+    name: 'layouts.modal-drawer',
+    component: ModalDrawer,
     meta: { noLayout: true }
   },
   {

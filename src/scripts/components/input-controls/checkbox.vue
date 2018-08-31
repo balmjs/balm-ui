@@ -18,7 +18,7 @@
         <div class="mdc-checkbox__mixedmark"></div>
       </div>
     </div>
-    <label :for="id">
+    <label v-if="!noLabel" :for="id">
       <slot>{{ label }}</slot>
     </label>
     <slot name="after"></slot>
@@ -73,7 +73,12 @@ export default {
       type: Boolean,
       default: false
     },
-    label: String
+    label: String,
+    // For `<ui-item>`
+    noLabel: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
@@ -100,11 +105,14 @@ export default {
   },
   mounted() {
     if (!this.cssOnly) {
-      const formField = new MDCFormField(this.$el);
       this.$checkbox = new MDCCheckbox(this.$refs.checkbox);
-      formField.input = this.$checkbox;
 
       this.$checkbox.indeterminate = this.indeterminate;
+
+      if (!this.noLabel) {
+        const formField = new MDCFormField(this.$el);
+        formField.input = this.$checkbox;
+      }
     }
   },
   methods: {

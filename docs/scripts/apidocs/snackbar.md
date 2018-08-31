@@ -7,7 +7,7 @@
 | Name             | Type               | Default | Description                                                                                            |
 | ---------------- | ------------------ | ------- | ------------------------------------------------------------------------------------------------------ |
 | active (v-model) | `Boolean`          | `false` | Mandatory.                                                                                             |
-| alignStart       | `Boolean`          | `false` | To create a start-aligned snackbar.                                                                    |
+| alignStart       | `Boolean`          | `false` | To create a start-aligned snackbar. (tablet and desktop only)                                          |
 | message          | `String`           | `''`    | Required. The text message to display.                                                                 |
 | timeout          | `Number`, `String` | `2750`  | Optional. The amount of time in milliseconds to show the snackbar.                                     |
 | actionHandler    | `Function`         | `null`  | Optional. The function to execute when the action is clicked.                                          |

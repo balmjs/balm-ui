@@ -12,18 +12,17 @@ a {
 }
 
 .balmui-container {
-  // position: relative;
   height: 100vh;
 }
 
 .balmui-body {
   display: flex;
-
   height: 100%;
 }
 
 .balmui-menu {
   position: static;
+  z-index: 0;
 }
 
 .balmui-menu .mdc-drawer__content,
@@ -34,7 +33,6 @@ a {
 
 .balmui-content {
   position: relative;
-
   flex: 1;
 }
 
@@ -42,6 +40,7 @@ a {
   h3 {
     padding: 0 12px;
   }
+
   .no-icon {
     padding-left: 28px;
   }
@@ -59,43 +58,47 @@ a {
 
 .hero {
   position: relative;
+
   &::before,
   &::after {
     position: absolute;
-
     padding: 4px;
-
     color: white;
   }
+
   &::before {
     top: 0;
     left: 0;
   }
+
   &::after {
     right: 0;
     bottom: 0;
   }
+
   &.component {
+
     &::before,
     &::after {
       content: 'component';
-
       background-color: #2979ff;
     }
   }
+
   &.plugin {
+
     &::before,
     &::after {
       content: 'plugin';
-
       background-color: #ff1744;
     }
   }
+
   &.directive {
+
     &::before,
     &::after {
       content: 'directive';
-
       background-color: #00bfa5;
     }
   }
@@ -104,11 +107,10 @@ a {
 /// lang
 .supported-lang {
   margin: 0;
-
   cursor: pointer;
+
   a.active {
     font-weight: bolder;
-
     color: white;
   }
 }

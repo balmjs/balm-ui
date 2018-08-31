@@ -3,9 +3,8 @@
   margin-right: 16px;
 }
 
-.demo-switch--custom {
+.demo-switch--custom .mdc-switch {
   $color: $material-color-red-500;
-
   @include mdc-switch-toggled-on-color($color);
 }
 

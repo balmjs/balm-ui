@@ -6,7 +6,9 @@
           :key="index"
           v-ripple
           :firstIcon="item.first"
-          :lastIcon="item.last">
+          :lastIcon="item.last"
+          :selected="item.selected"
+          :activated="item.activated">
           <ui-item-text>{{ item.text }}</ui-item-text>
           <ui-item-subtext>{{ item.subtext }}</ui-item-subtext>
         </ui-item>
@@ -118,6 +120,18 @@
           </ui-accordion>
 
           <section>
+            <h3>Leading Checkbox</h3>
+            <ui-list avatar withCheckbox class="demo-list demo-list">
+              <ui-item v-for="(item, index) in items" :key="index" firstPlaceholder v-ripple>
+                <template slot="before">
+                  <ui-checkbox :id="`leading-${index}`" noLabel></ui-checkbox>
+                </template>
+                <label :for="`leading-${index}`">{{ item.text }}</label>
+              </ui-item>
+            </ui-list>
+          </section>
+
+          <section>
             <h3>Avatar List</h3>
             <ui-list avatar class="demo-list demo-list--with-avatars demo-list--icon-placeholders">
               <ui-item v-for="i in 3" :key="i" firstPlaceholder>
@@ -168,6 +182,18 @@
                 :key="i"
                 :lastText="`$${i}0.00`">
                 Single-line item
+              </ui-item>
+            </ui-list>
+          </section>
+
+          <section>
+            <h3>Trailing Checkbox</h3>
+            <ui-list avatar withCheckbox class="demo-list demo-list">
+              <ui-item v-for="(item, index) in items" :key="index" lastPlaceholder v-ripple>
+                <label :for="`trailing-${index}`">{{ item.text }}</label>
+                <template slot="after">
+                  <ui-checkbox :id="`trailing-${index}`" noLabel></ui-checkbox>
+                </template>
               </ui-item>
             </ui-list>
           </section>
@@ -336,7 +362,7 @@
                 :key="index"
                 :firstIcon="item.first"
                 :lastIcon="item.last">
-                <ui-item-text>{{ item.text }}</ui-item-text>
+                <ui-item-text>{{ item.title }}</ui-item-text>
                 <ui-item-subtext>{{ item.description }}</ui-item-subtext>
               </ui-item>
             </ui-list>
@@ -468,6 +494,7 @@ export default {
           first: 'folder',
           text: 'Photos',
           subtext: 'Jan 9, 2014',
+          title: 'Photos',
           description: 'This is some secondary text',
           last: 'info'
         },
@@ -475,13 +502,16 @@ export default {
           first: 'folder',
           text: 'Recipes',
           subtext: 'Jan 9, 2014',
+          title: 'Photos of my best photography using my finely tuned skills and eye',
           description: 'This is some secondary text',
-          last: 'info'
+          last: 'info',
+          selected: true
         },
         {
           first: 'folder',
           text: 'Work',
           subtext: 'Jan 9, 2014',
+          title: 'Work Photos',
           description:
             'This is a description of work photos from the years 2018 to present time while I was a barista',
           last: 'info'

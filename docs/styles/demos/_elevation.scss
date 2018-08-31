@@ -1,3 +1,3 @@
 .demo-elevation--custom-color {
-  @include mdc-elevation(16, secondary, $opacity-boost: 0.1);
+  @include mdc-elevation(16, secondary, $opacity-boost: .1);
 }

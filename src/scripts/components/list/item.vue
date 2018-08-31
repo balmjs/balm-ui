@@ -1,20 +1,15 @@
 <template>
-  <li :class="UI_LIST.SLOT_CLASS.item">
+  <li :class="className" @click="$parent.onChange">
     <span v-if="hasFirstTile" class="mdc-list-item__graphic">
-      <slot name="first">
+      <slot name="before">
         <i v-if="firstIcon" class="material-icons">{{ firstIcon }}</i>
         <img v-if="firstImage" :src="firstImage">
       </slot>
     </span>
 
-    <template v-if="$parent.twoLine">
-      <span class="mdc-list-item__text">
-        <slot><!-- Item text --></slot>
-      </span>
-    </template>
-    <template v-else>
+    <span class="mdc-list-item__text">
       <slot><!-- Item text --></slot>
-    </template>
+    </span>
 
     <span v-if="hasLastTile" class="mdc-list-item__meta">
       <slot name="after">
@@ -28,15 +23,9 @@
 
 <script>
 import itemMixin from '../../mixins/item';
-import UI_LIST from './constants';
 
 export default {
   name: 'ui-item',
-  mixins: [itemMixin],
-  data() {
-    return {
-      UI_LIST
-    };
-  }
+  mixins: [itemMixin]
 };
 </script>

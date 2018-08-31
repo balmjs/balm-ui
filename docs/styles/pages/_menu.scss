@@ -36,7 +36,7 @@
   }
 
   .margin-inputs input {
-    width: 2em;
+    width: 3em;
   }
 
   .left-column-controls {
@@ -64,7 +64,6 @@
   .standard-image-list {
     @include mdc-image-list-aspect(1.5); // Images are 3:2
     @include mdc-image-list-standard-columns(1);
-
     width: 200px;
   }
 

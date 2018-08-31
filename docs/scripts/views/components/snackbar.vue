@@ -24,7 +24,7 @@
           <ui-textfield id="message"
             v-model="message">Message Text</ui-textfield><br>
           <ui-textfield id="action"
-            v-model="actionText">Action Text</ui-textfield><br>
+            v-model="actionText">Action Text</ui-textfield><br><br>
 
           <ui-button raised @click="$balmUI.onShow('active')">Show</ui-button>
 

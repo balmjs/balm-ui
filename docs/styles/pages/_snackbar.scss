@@ -1,4 +1,5 @@
 .demo--snackbar {
+
   /* initialize it off screen. */
   .loading .example .mdc-snackbar {
     transform: translateY(200%);
@@ -9,6 +10,7 @@
     position: relative;
     left: auto;
   }
+
   .hero .mdc-snackbar--active {
     transform: none;
   }

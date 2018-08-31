@@ -12,7 +12,7 @@
 
       <h4 :class="$tt('headline4')">1. Example</h4>
       <div class="example">
-        <h6 :class="$tt('headline6')">1.1 `onChange`</h6>
+        <h6 :class="$tt('headline6')">1.1 onChange</h6>
         <ui-grid>
           <ui-grid-cell colspan="6">
             <label>Vue methods</label>
@@ -44,7 +44,7 @@
       </div>
 
       <div class="example">
-        <h6 :class="$tt('headline6')">1.2 `onShow/onHide`</h6>
+        <h6 :class="$tt('headline6')">1.2 onShow/onHide</h6>
         <ui-grid>
           <ui-grid-cell colspan="6">
             <label>Vue methods</label>

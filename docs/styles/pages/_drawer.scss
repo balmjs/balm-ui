@@ -1,72 +1,36 @@
 /// Ensure layout covers the entire screen.
-.balmui--layouts-persistent-drawer,
 .balmui--layouts-permanent-drawer-above-toolbar,
 .balmui--layouts-permanent-drawer-below-toolbar {
-  height: 100%;
-}
-
-.demo--temporary-drawer {
-  width: 100%;
-}
-
-/* Stack toolbar and main on top of each other. */
-
-.demo--persistent-drawer,
-.demo--permanent-drawer-above-toolbar {
-  display: flex;
-  flex-direction: row;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  height: 100%;
-  width: 100%;
-  /* Stack toolbar and main on top of each other. */
-  .demo-content {
-    display: inline-flex;
-    flex-direction: column;
-    flex-grow: 1;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-  }
-}
-
-.demo--permanent-drawer-above-toolbar,
-.demo--permanent-drawer-below-toolbar {
-  .extra-content-wrapper {
-    padding: 10px;
-  }
-  #extra-wide-content {
-    width: 200vw;
-  }
-  #extra-tall-content {
-    height: 200vh;
-  }
-}
-
-.demo--permanent-drawer-above-toolbar {
-  /* Place drawer above toolbar shadow. */
-  .mdc-permanent-drawer {
-    z-index: 2;
-  }
-}
-
-.demo--permanent-drawer-below-toolbar {
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  /* Place drawer and main next to each other. */
-  .demo-content {
+  .demo--drawer {
     display: flex;
-    flex: 1 1 auto;
+    height: 100vh;
+  }
+}
+
+.demo--drawer {
+  .demo-main {
+    position: relative;
+    flex: auto;
+    overflow: auto;
+    background: #fff;
+  }
+
+  .demo-top-app-bar {
+    position: absolute;
+  }
+
+  .demo-content {
+    padding-left: 16px;
+    padding-right: 16px;
+    overflow: auto;
     height: 100%;
+    width: 100%;
     box-sizing: border-box;
   }
+}
+
+.balmui--layouts-permanent-drawer-below-toolbar {
   .demo-main {
-    width: 100%;
+    display: flex;
   }
 }

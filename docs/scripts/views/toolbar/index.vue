@@ -20,7 +20,7 @@
 
     <div :class="$tt('body2')">
       <h4 :class="$tt('headline4')">1. Example</h4>
-      <ui-list twoLine nonInteractive>
+      <ui-list nonInteractive>
         <ui-item>
           1.1 <router-link :to="{name: 'layouts.default-toolbar'}">Normal Toolbar</router-link>
         </ui-item>

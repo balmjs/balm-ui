@@ -38,7 +38,7 @@ export default {
     singleSelection: {
       type: Boolean,
       default: false
-    }.listElements_,
+    },
     withCheckbox: {
       type: Boolean,
       default: false

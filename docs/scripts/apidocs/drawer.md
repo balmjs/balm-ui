@@ -1,7 +1,7 @@
 ```html
-<ui-temporary-drawer><!-- the drawer child components --></ui-temporary-drawer>
-<ui-persistent-drawer><!-- the drawer child components --></ui-persistent-drawer>
 <ui-permanent-drawer><!-- the drawer child components --></ui-permanent-drawer>
+<ui-dismissible-drawer><!-- the drawer child components --></ui-dismissible-drawer>
+<ui-modal-drawer><!-- the drawer child components --></ui-modal-drawer>
 ```
 
 > NOTE: `<ui-permanent-drawer>` has not props and events.
@@ -21,7 +21,7 @@
 
 **Drawer child components:**
 
-- `<ui-drawer-header>` or `<ui-drawer-toolbar-spacer>`
+- `<ui-drawer-header>`
 - `<ui-drawer-content>`
 
 #### Events
@@ -34,23 +34,9 @@
 
 ```html
 // Automatic
-<ui-temporary-drawer v-model="open"></ui-temporary-drawer>
+<ui-modal-drawer v-model="open"></ui-modal-drawer>
 
 // Manual
-<ui-temporary-drawer :open="open" @nav="$balmUI.onChange('open', $event)">
-</ui-temporary-drawer>
+<ui-modal-drawer :open="open" @nav="$balmUI.onChange('open', $event)">
+</ui-modal-drawer>
 ```
-
-#### Sass Variables
-
-- Temporary drawer
-  - `$mdc-temporary-drawer-fill-color`
-  - `$mdc-temporary-drawer-ink-color`
-  - `$mdc-temporary-drawer-scrim-color`
-  - `$mdc-temporary-drawer-scrim-opacity`
-- Persistent drawer
-  - `$mdc-persistent-drawer-fill-color`
-  - `$mdc-persistent-drawer-ink-color`
-- Permanent drawer
-  - `$mdc-permanent-drawer-fill-color`
-  - `$mdc-permanent-drawer-ink-color`

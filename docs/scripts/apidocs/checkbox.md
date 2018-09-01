@@ -15,6 +15,7 @@
 | cssOnly         | `Boolean`          | `false` | Ripple effect is disabled.                                                    |
 | label           | `String`           | `null`  | A text caption or description for the checkbox.                               |
 | attrs           | `Object`           | `null`  | Other attributes for `<input>`.                                               |
+| noLabel         | `Boolean`          | `false` | The checkbox without the label.                                               |
 
 #### Slots
 

@@ -7,9 +7,12 @@
 
 | Name             | Type      | Default | Description                                           |
 | ---------------- | --------- | ------- | ----------------------------------------------------- |
+| selected         | `Boolean` | `false` | Optional, styles the row in an selected state.        |
+| activated        | `Boolean` | `false` | Optional, styles the row in an activated state.       |
 | firstPlaceholder | `Boolean` | `false` | Optional, a placeholder of the first tile in the row. |
 | firstIcon        | `String`  | `null`  | Optional, an icon of the first tile in the row.       |
 | firstImage       | `String`  | `null`  | Optional, an image of the first tile in the row.      |
+| lastPlaceholder  | `Boolean` | `false` | Optional, a placeholder of the last tile in the row.  |
 | lastText         | `String`  | `''`    | Optional, a small text of the last tile in the row.   |
 | lastIcon         | `String`  | `null`  | Optional, an icon of the last tile in the row.        |
 | lastImage        | `String`  | `null`  | Optional, an image of the last tile in the row.       |

@@ -1,10 +1,14 @@
 ```html
-<ui-drawer-header><!-- the drawer header content --></ui-drawer-header>
-<ui-drawer-toolbar-spacer><!-- the drawer header content --></ui-drawer-toolbar-spacer>
+<ui-drawer-header><!-- the drawer header child components --></ui-drawer-header>
 ```
 
 #### Slots
 
-| Name      | Description                                                            |
-| --------- | ---------------------------------------------------------------------- |
-| (default) | The default slot holds the drawer header content and can contain HTML. |
+| Name      | Description                                                                     |
+| --------- | ------------------------------------------------------------------------------- |
+| (default) | The default slot holds the drawer header child components and can contain HTML. |
+
+**Drawer header child components:**
+
+- `<ui-drawer-title>`
+- `<ui-drawer-subtitle>`

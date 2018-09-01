@@ -26,7 +26,7 @@
         <h1 :class="$tt('headline4')">Temporary Drawer</h1>
         <p>Click the menu icon above to open.</p>
         <ui-accordion>
-          <ui-markdown :code="code[1]"></ui-markdown>
+          <ui-markdown :code="code[4]"></ui-markdown>
         </ui-accordion>
       </div>
     </main>

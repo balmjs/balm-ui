@@ -20,7 +20,7 @@
           class="balmui-menu"
           menuSelector="#balmui-menu">
           <ui-drawer-content>
-            <ui-list-nav class="catalog-list">
+            <ui-list-nav ref="mainmenu" class="catalog-list">
               <template slot-scope="{ itemClass, activeClass }">
                 <template v-for="(item, index) in menu">
                   <router-link
@@ -81,7 +81,9 @@ export default {
   },
   computed: {
     noLayout() {
-      return this.$route.name ? this.$route.meta && this.$route.meta.noLayout : true;
+      return this.$route.name
+        ? this.$route.meta && this.$route.meta.noLayout
+        : true;
     }
   },
   watch: {

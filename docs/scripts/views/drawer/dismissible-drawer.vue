@@ -29,7 +29,7 @@
           <h1 :class="$tt('headline4')">Persistent Drawer</h1>
           <p>Click the menu icon above to open and close the drawer.</p>
           <ui-accordion>
-            <ui-markdown :code="code[2]"></ui-markdown>
+            <ui-markdown :code="code[3]"></ui-markdown>
           </ui-accordion>
         </div>
       </div>

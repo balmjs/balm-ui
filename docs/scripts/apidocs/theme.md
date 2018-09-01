@@ -57,7 +57,7 @@ $setTextTheme(style, tone, value);
 
 - Background
   - `$mdc-theme-background`
-- Surface
+- Foreground
   - `$mdc-theme-surface`
   - `$mdc-theme-on-surface`
 - Primary

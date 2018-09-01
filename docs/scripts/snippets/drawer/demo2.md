@@ -1,31 +1,42 @@
 ```html
-<ui-persistent-drawer menuSelector="#demo-menu">
-  <ui-drawer-toolbar-spacer></ui-drawer-toolbar-spacer>
-  <ui-drawer-content>
-    <ui-list-group>
-      <ui-list-nav>
-        <ui-item-link v-for="(item, index) in menu1" :key="index" :firstIcon="item.icon">
-          {{ item.name }}
-        </ui-item-link>
-      </ui-list-nav>
-      <ui-list-divider></ui-list-divider>
-      <ui-list-nav>
-        <ui-item-link v-for="(item, index) in menu2" :key="index" :firstIcon="item.icon">
-          {{ item.name }}
-        </ui-item-link>
-      </ui-list-nav>
-    </ui-list-group>
-  </ui-drawer-content>
-</ui-persistent-drawer>
+<ui-top-app-bar contentSelector=".demo-main">
+  <template slot="nav-icon">
+    <ui-toolbar-anchor type="menu"
+      @click.native="() => { $router.back(); }">&#xE5C4;</ui-toolbar-anchor>
+  </template>
+  Permanent Drawer Below Toolbar
+</ui-top-app-bar>
 
-<div class="demo-content">
-  <ui-top-app-bar contentSelector=".demo-main" menuId="demo-menu" :class="$shadow(4)">
-    Persistent Drawer
-  </ui-top-app-bar>
+<main class="demo-main">
+  <ui-permanent-drawer>
+    <ui-drawer-header>
+      <ui-drawer-title>{{ title }}</ui-drawer-title>
+      <ui-drawer-subtitle>{{ subtitle }}</ui-drawer-subtitle>
+    </ui-drawer-header>
+    <ui-drawer-content>
+      <ui-list-nav>
+        <template v-for="(item, index) in menu">
+          <ui-list-divider v-if="item === '-'" :key="`divider-${index}`"></ui-list-divider>
+          <template v-else>
+            <ui-list-group-subheader v-if="item.subheader" :key="`subheader-${index}`">
+              {{ item.subheader }}
+            </ui-list-group-subheader>
+            <ui-item-link v-for="(subItem, subIndex) in item.items"
+              :key="`item-${index}-${subIndex}`"
+              :firstIcon="subItem.icon">
+              {{ subItem.name }}
+            </ui-item-link>
+          </template>
+        </template>
+      </ui-list-nav>
+    </ui-drawer-content>
+  </ui-permanent-drawer>
 
-  <main class="demo-main">
-    <h1 :class="$tt('headline4')">Persistent Drawer</h1>
-    <p :class="$tt('body1')">Click the menu icon above to open and close the drawer.</p>
-  </main>
-</div>
+  <div :class="[$tt('body1'), 'demo-content']">
+    <div :class="$tt('body2')">
+      <h1 :class="$tt('headline4')">Permanent Drawer</h1>
+      <p>It sits to the left of this content.</p>
+    </div>
+  </div>
+</main>
 ```

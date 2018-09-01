@@ -36,6 +36,19 @@ export default {
     this.$drawer.listen(`MDCDrawer:${UI_DRAWER.EVENT.CLOSED}`, () => {
       this.$emit(UI_DRAWER.EVENT.NAV, false);
     });
+
+    // NOTE: fix `focus-trap` bug from mdc@0.39.0
+    if (this.$el.classList.contains('mdc-drawer--modal')) {
+      this.$nextTick(() => {
+        if (this.$el.querySelector('.mdc-list')) {
+          this.$drawer.list_.selectedIndex = 0;
+        } else {
+          console.warn(
+            '`<ui-list>` or `<ui-list-nav>` is required in the drawer'
+          );
+        }
+      });
+    }
   },
   methods: {
     init() {

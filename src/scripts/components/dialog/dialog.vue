@@ -75,13 +75,18 @@ export default {
   },
   mounted() {
     this.$dialog = new MDCDialog(this.$el);
-    if (this.resetScroll) {
-      this.$nextTick(() => {
+
+    this.$nextTick(() => {
+      if (this.resetScroll) {
         this.$dialogBody = this.$refs.dialog.querySelector(
           `.${UI_DIALOG.BODY_CLASS}`
         );
-      });
-    }
+      }
+
+      if (!this.$el.querySelector('.mdc-button')) {
+        console.warn('`<ui-button>` is required in the dialog');
+      }
+    });
   },
   methods: {
     handleClose() {

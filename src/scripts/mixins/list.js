@@ -74,13 +74,6 @@ export default {
         });
       });
     }
-
-    // NOTE: fix `focus-trap` bug from mdc@0.39.0
-    if (this.$parent.$el.classList.contains('mdc-drawer__content')) {
-      this.$nextTick(() => {
-        this.$list.selectedIndex = 0;
-      });
-    }
   },
   methods: {
     onChange() {

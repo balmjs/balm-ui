@@ -6,6 +6,8 @@
 
 > NOTE: `<ui-permanent-drawer>` has not props and events.
 
+> NOTE: `<ui-modal-drawer>` must be including a `<ui-list>`.
+
 #### Props
 
 | Name           | Type      | Default | Description                        |

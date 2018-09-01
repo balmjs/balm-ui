@@ -1,10 +1,10 @@
 <template>
   <div class="demo--drawer demo--modal-drawer">
     <ui-top-app-bar fixed contentSelector=".demo-main" navId="demo-menu">
-      Temporary Drawer
+      Modal Drawer
     </ui-top-app-bar>
 
-    <ui-modal-drawer menuSelector="#demo-menu">
+    <ui-modal-drawer v-model="open" menuSelector="#demo-menu">
       <ui-drawer-header>
         <ui-drawer-title>{{ title }}</ui-drawer-title>
         <ui-drawer-subtitle>{{ subtitle }}</ui-drawer-subtitle>
@@ -23,7 +23,7 @@
 
     <main :class="[$tt('body1'), 'demo-main']">
       <div :class="$tt('body2')">
-        <h1 :class="$tt('headline4')">Temporary Drawer</h1>
+        <h1 :class="$tt('headline4')">Modal Drawer</h1>
         <p>Click the menu icon above to open.</p>
         <ui-accordion>
           <ui-markdown :code="code[4]"></ui-markdown>
@@ -40,7 +40,7 @@ import snippets from '../../mixins/snippets';
 
 export default {
   metaInfo: {
-    titleTemplate: '%s - Temporary Drawer'
+    titleTemplate: '%s - Modal Drawer'
   },
   components: {
     UiDrawerCommonConntent

@@ -2,6 +2,8 @@
 <ui-dialog><!-- the dialog child components --></ui-dialog>
 ```
 
+> NOTE: `<ui-dialog>` must be including a `<ui-button>`.
+
 #### Props
 
 | Name           | Type      | Default | Description                                                            |

@@ -1,5 +1,14 @@
 # BalmUI ChangeLog
 
+## 0.6.1 (2018.09.01)
+
+### Bug Fixes
+
+- `<ui-dialog>:` fix focusable element bug
+- `<ui-modal-drawer>:` fix focusable element bug
+
+---
+
 ## 0.6.0 (2018.09.01)
 
 :tada: BalmUI released, base on `mdc@0.39.1`

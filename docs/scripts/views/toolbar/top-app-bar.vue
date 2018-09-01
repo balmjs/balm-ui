@@ -12,7 +12,7 @@
       Hello BalmUI
     </ui-top-app-bar>
 
-    <ui-modal-drawer menuSelector="#demo-menu">
+    <ui-modal-drawer v-model="open" menuSelector="#demo-menu">
       <ui-drawer-header :innerClass="[$themeColor('on-primary'), $themeColor('primary-bg')]">
         <ui-drawer-title>Header here</ui-drawer-title>
       </ui-drawer-header>

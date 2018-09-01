@@ -37,6 +37,7 @@ Following the [Material Design](https://material.io/components/) UI components f
   - Slider
   - Dropdown (💡)
   - Autocomplete (💡)
+  - File (💡)
 - Modal
   - Dialog
   - Snackbar
@@ -45,7 +46,7 @@ Following the [Material Design](https://material.io/components/) UI components f
 #### 2. Plugins
 
 - Event
-- Grid
+- Grid (TODO)
 - Typography
 - Theme
 - Validator (💡)

@@ -98,6 +98,7 @@ Enjoy 👻
   - Slider
   - Dropdown (:bulb:)
   - Autocomplete (:bulb:)
+  - File (:bulb:)
 - Modal
   - Dialog
   - Snackbar
@@ -106,7 +107,7 @@ Enjoy 👻
 ### Plugins
 
 - Event
-- Grid
+- Grid (TODO)
 - Typography
 - Theme
 - Validator (:bulb:)

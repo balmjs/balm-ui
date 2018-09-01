@@ -1,4 +1,8 @@
-## 0.6.0
+# BalmUI ChangeLog
+
+## 0.6.0 (2018.09.01)
+
+:tada: BalmUI released, base on `mdc@0.39.1`
 
 ### Components
 
@@ -31,18 +35,16 @@
   - Slider
   - Dropdown (:bulb:)
   - Autocomplete (:bulb:)
+  - File (:bulb:)
 - Modal
   - Dialog
-  - Alert
-  - Confirm
   - Snackbar
-  - Toast
 - Menu
 
 ### Plugins
 
 - Event
-- Grid
+- Grid (TODO)
 - Typography
 - Theme
 - Validator (:bulb:)
@@ -67,22 +69,7 @@
 
 ---
 
-TODO:
-
-- backdrop
-- banner
-- bottom-app-bar
-- bottom-navigation
-- bottom-sheet
-- data-table
-- divider
-- extended-fab
-- side-sheet
-- tooltip
-
----
-
-## 0.5.0
+## 0.5.0 (Deprecated)
 
 > Modular and customizable Material Design UI components for the web
 

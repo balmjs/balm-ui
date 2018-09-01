@@ -62,7 +62,6 @@
 import SvgGithub from '../../components/github';
 import { lang } from '../../config/lang';
 import menu from '../../config/menu';
-import '../../helpers';
 
 export default {
   metaInfo: {

@@ -68,17 +68,19 @@ export default {
     }
 
     if (this.withCheckbox) {
-      this.$list.listElements_.forEach(item => {
+      this.$list.listElements.forEach(item => {
         item.addEventListener('click', e => {
           this.clickHandler(e, item);
         });
       });
     }
 
-    this.$nextTick(() => {
-      // NOTE: fix `focus-trap` bug
-      this.$list.listElements_[0].tabIndex = 0;
-    });
+    // NOTE: fix `focus-trap` bug from mdc@0.39.0
+    if (this.$parent.$el.classList.contains('mdc-drawer__content')) {
+      this.$nextTick(() => {
+        this.$list.selectedIndex = 0;
+      });
+    }
   },
   methods: {
     onChange() {

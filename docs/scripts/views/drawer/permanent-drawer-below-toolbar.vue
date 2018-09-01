@@ -34,6 +34,7 @@
 
 <script>
 import UiDrawerCommonConntent from './drawer-common-conntent';
+import DrawerMixin from '../../mixins/drawer';
 import snippets from '../../mixins/snippets';
 
 export default {
@@ -43,7 +44,7 @@ export default {
   components: {
     UiDrawerCommonConntent
   },
-  mixins: [snippets],
+  mixins: [DrawerMixin, snippets],
   created() {
     this.showCode('drawer', 4);
   }

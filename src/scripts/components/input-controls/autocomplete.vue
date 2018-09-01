@@ -1,5 +1,6 @@
 <template>
   <ui-textfield expand
+    outlined
     v-model="inputValue"
     :class="className"
     :placeholder="placeholder"

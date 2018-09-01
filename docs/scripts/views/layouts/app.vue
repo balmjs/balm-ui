@@ -75,7 +75,7 @@ export default {
     return {
       lang,
       menu,
-      open: window.innerWidth >= 1024,
+      open: false,
       loading: false
     };
   },
@@ -86,27 +86,24 @@ export default {
         : true;
     }
   },
-  watch: {
-    $route() {
-      this.$nextTick(() => {
-        if (this.$refs.body) {
-          this.$refs.body.scrollTop = 0;
-        }
-      });
-    }
-  },
   created() {
     this.$router.beforeEach((to, from, next) => {
-      this.open = true;
       this.loading = true;
       next();
     });
 
     this.$router.afterEach((to, from) => {
       this.loading = false;
+      this.$nextTick(() => {
+        if (this.$refs.body) {
+          this.$refs.body.scrollTop = 0;
+        }
+      });
     });
   },
   mounted() {
+    this.open = window.innerWidth >= 1024;
+
     window.addEventListener('balmResize', () => {
       this.open = window.innerWidth >= 1024;
     });

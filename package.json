@@ -87,8 +87,11 @@
     "vue": ">=2.5.0"
   },
   "nyc": {
+    "require": [
+      "@babel/register"
+    ],
     "include": [
-      "src/scripts/**/*.(js|vue)"
+      "src/scripts/**"
     ],
     "instrument": false,
     "sourceMap": false

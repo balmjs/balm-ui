@@ -75,6 +75,7 @@
     "nyc": "^13.0.1",
     "prettier": "^1.14.2",
     "prismjs": "^1.15.0",
+    "sinon": "^6.1.5",
     "vue": "^2.5.17",
     "vue-i18n": "^8.1.0",
     "vue-loader": "^15.4.1",
@@ -94,7 +95,11 @@
       "src/scripts/**"
     ],
     "instrument": false,
-    "sourceMap": false
+    "sourceMap": false,
+    "reporter": [
+      "text",
+      "text-summary"
+    ]
   },
   "private": true
 }

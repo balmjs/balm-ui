@@ -1,0 +1,20 @@
+{
+  "require": [
+    "@babel/register"
+  ],
+  "include": [
+    "src/scripts/**"
+  ],
+  "exclude": [
+    "node_modules",
+    "coverage",
+    "test/**/*"
+  ],
+  "reporter": [
+    "lcov",
+    "text",
+    "text-summary"
+  ],
+  "sourceMap": false,
+  "instrument": false
+}

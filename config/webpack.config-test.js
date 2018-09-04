@@ -5,7 +5,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 module.exports = {
   mode: 'none',
   externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
-  devtool: 'inline-cheap-module-source-map', // Use inline source map so that it works with mocha-webpack
+  // devtool: 'inline-cheap-module-source-map', // Use inline source map so that it works with mocha-webpack
   module: {
     rules: [
       {

@@ -1,6 +1,5 @@
 import rippleMixin from './ripple';
 import cardButtonMixin from './card-button';
-import getType from '../utils/typeof';
 
 export default {
   mixins: [rippleMixin, cardButtonMixin],
@@ -42,7 +41,7 @@ export default {
       };
     },
     materialIcon() {
-      return getType(this.icon) === 'string' ? this.icon : false;
+      return this.icon || false;
     }
   },
   mounted() {

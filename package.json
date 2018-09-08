@@ -23,7 +23,7 @@
     "dev": "gulp --silent",
     "prod": "gulp --silent --production",
     "docs": "gulp --silent --production --docs",
-    "test": "cross-env NODE_ENV=test nyc mocha-webpack --webpack-config config/webpack.config-test.js --require test/setup.js test/**/*.spec.js"
+    "test": "cross-env NODE_ENV=test nyc mocha-webpack --webpack-config config/webpack.config-test.js --require test/setup.js test/index.js"
   },
   "repository": {
     "type": "git",

@@ -1,5 +1,14 @@
 # BalmUI ChangeLog
 
+## 0.7.0 (2018.09.12)
+
+Features
+
+- update `balm@0.24` base on `babel@7`
+- update `mdc@0.39.3`
+
+---
+
 ## 0.6.2 (2018.09.01)
 
 ### Bug Fixes

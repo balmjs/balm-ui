@@ -56,7 +56,7 @@ describe('<ui-button>', () => {
     expect(wrapper.text()).toBe('mdc-button__icon');
   });
 
-  it('click on button calls our method', () => {
+  it('renders button with @click', () => {
     const wrapper = shallowMount(UiButton);
     const spy = sinon.spy(wrapper.vm, 'handleClick');
     wrapper.vm.handleClick();

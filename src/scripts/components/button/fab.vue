@@ -17,7 +17,6 @@
 
 <script>
 import rippleMixin from '../../mixins/ripple';
-import getType from '../../utils/typeof';
 
 // Define constants
 const UI_FAB = {
@@ -74,7 +73,7 @@ export default {
       };
     },
     materialIcon() {
-      return getType(this.icon) === 'string' ? this.icon : false;
+      return this.icon || false;
     },
     beforeLabel() {
       return this.extended === 'before';

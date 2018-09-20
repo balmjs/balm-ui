@@ -15,7 +15,12 @@ export default {
       default: false
     },
     icon: String,
-    toggle: Object
+    toggle: {
+      type: Object,
+      default() {
+        return {};
+      }
+    }
   },
   data() {
     return {
@@ -24,12 +29,12 @@ export default {
   },
   computed: {
     isToggleButton() {
-      return this.toggle && (this.toggle.on && this.toggle.off);
+      return this.toggle.on && this.toggle.off;
     },
     className() {
       return {
         'mdc-icon-button': true,
-        'material-icons': this.icon && !this.isToggleButton
+        'material-icons': !this.isToggleButton && this.icon
       };
     }
   },
@@ -38,21 +43,18 @@ export default {
       this.$iconButton.on = val;
     }
   },
-  created() {
-    if (this.toggle && !(this.toggle.on && this.toggle.off)) {
-      console.warn('Invalid icon for `on` or `off` status');
-    }
-  },
   mounted() {
     this.$iconButton = new MDCIconButtonToggle(this.$el);
 
-    this.$iconButton.listen(
-      `MDCIconButtonToggle:${UI_ICONBUTTON.EVENT.CHANGE}`,
-      ({ detail }) => {
-        this.$emit(UI_ICONBUTTON.EVENT.CHANGE, detail.isOn);
-      }
-    );
+    if (this.isToggleButton) {
+      this.$iconButton.listen(
+        `MDCIconButtonToggle:${UI_ICONBUTTON.EVENT.CHANGE}`,
+        ({ detail }) => {
+          this.$emit(UI_ICONBUTTON.EVENT.CHANGE, detail.isOn);
+        }
+      );
 
-    this.$iconButton.on = this.model;
+      this.$iconButton.on = this.model;
+    }
   }
 };

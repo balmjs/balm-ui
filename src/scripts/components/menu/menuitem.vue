@@ -20,7 +20,7 @@ export default {
     // States
     item: {
       type: Object,
-      default: function() {
+      default() {
         return {};
       }
     },

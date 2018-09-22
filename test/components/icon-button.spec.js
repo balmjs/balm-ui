@@ -23,7 +23,6 @@ describe('<ui-icon-button>', () => {
         }
       }
     });
-    const emitted = wrapper.emitted();
 
     if (DEBUG) {
       console.log('[OUTPUT]:', wrapper.html());
@@ -33,10 +32,10 @@ describe('<ui-icon-button>', () => {
 
     wrapper.trigger('click');
     expect(wrapper.classes()).toContain('mdc-icon-button--on');
-    expect(emitted.change[0][0]).toBe(true);
+    expect(wrapper.vm.$iconButton.on).toBe(true);
 
     wrapper.trigger('click');
-    expect(emitted.change[1][0]).toBe(false);
+    expect(wrapper.vm.$iconButton.on).toBe(false);
   });
 
 });

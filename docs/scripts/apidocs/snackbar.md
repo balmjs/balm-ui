@@ -38,3 +38,8 @@
 // Manual
 <ui-snackbar :active="active" @change="$balmUI.onChange('active', $event)"></ui-snackbar>
 ```
+
+#### Sass Variables
+
+- `$mdc-snackbar-background-color`
+- `$mdc-snackbar-foreground-color`

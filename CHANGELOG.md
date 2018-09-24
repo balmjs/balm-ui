@@ -1,11 +1,36 @@
 # BalmUI ChangeLog
 
+## 0.7.1 (2018.09.25)
+
+### Chores
+
+- `<ui-fab>`: code cleanup
+- `<ui-icon-button>`: code cleanup
+
+### Features
+
+- update snackbar docs for sass
+
+### Tests
+
+- components test:
+  - add `<ui-fab>` test
+  - add `<ui-icon-button>` test
+
+---
+
 ## 0.7.0 (2018.09.12)
 
-Features
+### Features
 
 - update `balm@0.24` base on `babel@7`
 - update `mdc@0.39.3`
+
+### Tests
+
+- components test:
+  - add `<ui-button>` test
+  - add `<ui-icon>` test
 
 ---
 

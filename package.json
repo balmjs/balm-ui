@@ -1,6 +1,6 @@
 {
   "name": "balm-ui",
-  "version": "0.7.1",
+  "version": "0.8.0-0",
   "description": "Next Generation Material UI for Vue.js",
   "homepage": "https://material.balmjs.com/",
   "author": {
@@ -58,7 +58,7 @@
     "core-js": "^2.5.7",
     "cross-env": "^5.2.0",
     "eslint": "^5.6.0",
-    "eslint-config-prettier": "^3.0.1",
+    "eslint-config-prettier": "^3.1.0",
     "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-vue": "^4.7.1",
     "expect": "^23.6.0",
@@ -67,7 +67,7 @@
     "jsdom": "^12.0.0",
     "jsdom-global": "^3.0.2",
     "markdown-loader": "^4.0.0",
-    "material-components-web": "^0.39.3",
+    "material-components-web": "^0.40.0",
     "material-design-icons": "^3.0.1",
     "mocha": "^5.2.0",
     "mocha-webpack": "^2.0.0-beta.0",
@@ -79,7 +79,7 @@
     "vue": "^2.5.17",
     "vue-i18n": "^8.1.0",
     "vue-loader": "^15.4.2",
-    "vue-meta": "^1.5.3",
+    "vue-meta": "^1.5.4",
     "vue-router": "^3.0.1",
     "vue-template-compiler": "^2.5.17",
     "webpack-node-externals": "^1.7.2"

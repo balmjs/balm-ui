@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2016 Google Inc.
+ * Copyright 2018 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,16 +21,13 @@
  * THE SOFTWARE.
  */
 
-/* eslint-disable no-unused-vars */
-import {MDCSelectionControlState} from '../selection-control/index';
-
 /* eslint no-unused-vars: [2, {"args": "none"}] */
 
 /**
- * Adapter for MDC Checkbox. Provides an interface for managing
- * - classes
- * - dom
- * - event handlers
+ * Adapter for MDC Dialog. Provides an interface for managing:
+ * - CSS classes
+ * - DOM
+ * - Event handlers
  *
  * Additionally, provides type information for the adapter to the Closure
  * compiler.
@@ -42,7 +39,7 @@ import {MDCSelectionControlState} from '../selection-control/index';
  *
  * @record
  */
-class MDCCheckboxAdapter {
+class MDCDialogAdapter {
   /** @param {string} className */
   addClass(className) {}
 
@@ -50,37 +47,57 @@ class MDCCheckboxAdapter {
   removeClass(className) {}
 
   /**
-   * Sets an attribute with a given value on the input element.
-   * @param {string} attr
-   * @param {string} value
+   * @param {string} className
+   * @return {boolean}
    */
-  setNativeControlAttr(attr, value) {}
+  hasClass(className) {}
+
+  /** @param {string} className */
+  addBodyClass(className) {}
+
+  /** @param {string} className */
+  removeBodyClass(className) {}
 
   /**
-   * Removes an attribute from the input element.
-   * @param {string} attr
+   * @param {!EventTarget} target
+   * @param {string} selector
+   * @return {boolean}
    */
-  removeNativeControlAttr(attr) {}
+  eventTargetMatches(target, selector) {}
 
-  /** @return {!MDCSelectionControlState} */
-  getNativeControl() {}
+  /** @return {!ClientRect} */
+  computeBoundingRect() {}
 
-  forceLayout() {}
-
-  /** @return {boolean} */
-  isAttachedToDOM() {}
+  trapFocus() {}
+  releaseFocus() {}
 
   /** @return {boolean} */
-  isIndeterminate() {}
+  isContentScrollable() {}
 
   /** @return {boolean} */
-  isChecked() {}
+  areButtonsStacked() {}
 
-  /** @return {boolean} */
-  hasNativeControl() {}
+  /**
+   * @param {!Event} event
+   * @return {?string}
+   */
+  getActionFromEvent(event) {}
 
-  /** @param {boolean} disabled */
-  setNativeControlDisabled(disabled) {}
+  clickDefaultButton() {}
+  reverseButtons() {}
+
+  notifyOpening() {}
+  notifyOpened() {}
+
+  /**
+   * @param {string} action
+   */
+  notifyClosing(action) {}
+
+  /**
+   * @param {string} action
+   */
+  notifyClosed(action) {}
 }
 
-export default MDCCheckboxAdapter;
+export default MDCDialogAdapter;

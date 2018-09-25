@@ -1,13 +1,15 @@
 <template>
-  <aside class="mdc-dialog" role="alertdialog">
-    <div ref="dialog" class="mdc-dialog__surface">
-      <slot></slot>
+  <div :class="className" role="alertdialog">
+    <div class="mdc-dialog__container">
+      <div ref="dialog" class="mdc-dialog__surface">
+        <slot></slot>
+      </div>
     </div>
     <template v-if="!noBackdrop">
-      <div v-if="maskClosable" class="mdc-dialog__backdrop" @click="handleClose"></div>
-      <div v-else class="mdc-dialog__backdrop" @click.stop></div>
+      <div v-if="maskClosable" class="mdc-dialog__scrim" @click="handleClose"></div>
+      <div v-else class="mdc-dialog__scrim" @click.stop></div>
     </template>
-  </aside>
+  </div>
 </template>
 
 <script>
@@ -15,7 +17,7 @@ import { MDCDialog } from '../../../material-components-web/dialog';
 
 // Define constants
 const UI_DIALOG = {
-  BODY_CLASS: 'mdc-dialog__body--scrollable',
+  BODY_CLASS: 'mdc-dialog__content',
   EVENT: {
     CHANGE: 'change',
     CLOSE: 'close',
@@ -53,6 +55,14 @@ export default {
     resetScroll: {
       type: Boolean,
       default: false
+    },
+    scrollable: {
+      type: Boolean,
+      default: false
+    },
+    stacked: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -61,10 +71,19 @@ export default {
       $dialogBody: null
     };
   },
+  computed: {
+    className() {
+      return {
+        'mdc-dialog': true,
+        'mdc-dialog--scrollable': this.scrollable,
+        'mdc-dialog--stacked': this.stacked
+      };
+    }
+  },
   watch: {
     open(val) {
       if (val) {
-        this.$dialog.show();
+        this.$dialog.open();
       } else {
         this.$dialog.close();
         if (this.$dialogBody) {

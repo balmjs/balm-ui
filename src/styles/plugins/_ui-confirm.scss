@@ -8,7 +8,7 @@ $mdc-alert-width: 480px !default;
     width: $mdc-alert-width;
     min-width: $mdc-alert-width;
   }
-  .mdc-dialog__footer {
+  .mdc-dialog__actions {
     justify-content: center;
     .mdc-button {
       margin: 0 5px;

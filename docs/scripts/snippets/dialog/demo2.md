@@ -1,11 +1,11 @@
 ```html
 <ui-button raised @click="$balmUI.onShow('open')">Show Scrolling Dialog</ui-button>
 
-<ui-dialog
+<ui-dialog scrollable
   v-model="open"
   @confirm="onConfirm">
   <ui-dialog-header>Choose a Ringtone</ui-dialog-header>
-  <ui-dialog-body scrollable>
+  <ui-dialog-body>
     <ui-list>
       <ui-item v-for="(item, index) in list" :key="index">
         {{ item }}

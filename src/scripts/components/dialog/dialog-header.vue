@@ -1,11 +1,7 @@
 <template>
-  <header class="mdc-dialog__header">
-    <slot name="before"></slot>
-    <h2 class="mdc-dialog__header__title">
-      <slot></slot>
-    </h2>
-    <slot name="after"></slot>
-  </header>
+  <h2 class="mdc-dialog__title">
+    <slot></slot>
+  </h2>
 </template>
 
 <script>

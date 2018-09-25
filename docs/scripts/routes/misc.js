@@ -3,7 +3,6 @@ const Typography = () => import('../views/plugins/typography');
 const Theme = () => import('../views/plugins/theme');
 const Ripple = () => import('../views/directives/ripple');
 const Elevation = () => import('../views/directives/elevation');
-const Shape = () => import('../views/directives/shape');
 const Anchor = () => import('../views/directives/anchor');
 
 export default [
@@ -31,11 +30,6 @@ export default [
     path: 'elevation',
     name: 'misc.elevation',
     component: Elevation
-  },
-  {
-    path: 'shape',
-    name: 'others.shape',
-    component: Shape
   },
   {
     path: 'anchor',

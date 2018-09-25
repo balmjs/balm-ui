@@ -16,6 +16,7 @@ var DMC_COMPONENTS = [
   'checkbox',
   'chips', // New in mdc@0.30.0
   'dialog',
+  'dom', // New in mdc@0.40.0
   'drawer',
   'elevation',
   'fab',
@@ -41,7 +42,7 @@ var DMC_COMPONENTS = [
   'slider',
   'snackbar',
   'switch',
-  'tabs', // Deprecated in mdc@0.38.0
+  // 'tabs', // Deprecated in mdc@0.38.0
   'tab', // New in mdc@0.38.0
   'tab-bar', // New in mdc@0.38.0
   'tab-indicator', // New in mdc@0.38.0

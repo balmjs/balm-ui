@@ -1,5 +1,5 @@
 @import '../../material-components-web/theme/mixins';
-@import '../../material-components-web/button/mixins';
+@import '../../material-components-web/shape/mixins';
 
 /// Global
 $mdc-pagination-color: $mdc-theme-primary !default;
@@ -41,7 +41,7 @@ $mdc-pagination-active-border-color: $mdc-pagination-color !default;
       text-align: center;
       vertical-align: middle;
 
-      @include mdc-button-corner-radius($mdc-pagination-corner-radius);
+      @include mdc-shape-radius($mdc-pagination-corner-radius);
     }
     a {
       cursor: pointer;

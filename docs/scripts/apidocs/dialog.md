@@ -6,13 +6,15 @@
 
 #### Props
 
-| Name           | Type      | Default | Description                                                            |
-| -------------- | --------- | ------- | ---------------------------------------------------------------------- |
-| open (v-model) | `Boolean` | `false` | Mandatory.                                                             |
-| closable       | `Boolean` | `true`  | Closes the dialog, when a user actions on the accept or cancel button. |
-| maskClosable   | `Boolean` | `false` | Closes the dialog, when the dialog backdrop is clicked.                |
-| noBackdrop     | `Boolean` | `false` | Hides the dialog backdrop.                                             |
-| resetScroll    | `Boolean` | `false` | Reset scroll bar, when the dialog is closed.                           |
+| Name           | Type      | Default | Description                                                                                                      |
+| -------------- | --------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
+| open (v-model) | `Boolean` | `false` | Mandatory.                                                                                                       |
+| closable       | `Boolean` | `true`  | Closes the dialog, when a user actions on the accept or cancel button.                                           |
+| maskClosable   | `Boolean` | `false` | Closes the dialog, when the dialog backdrop is clicked.                                                          |
+| noBackdrop     | `Boolean` | `false` | Hides the dialog backdrop.                                                                                       |
+| resetScroll    | `Boolean` | `false` | Reset scroll bar, when the dialog is closed.                                                                     |
+| scrollable     | `Boolean` | `false` | Optional. Applied automatically when the dialog has overflowing content to warrant scrolling.                    |
+| stacked        | `Boolean` | `false` | Optional. Applied automatically when the dialog's action buttons can't fit on a single line and must be stacked. |
 
 #### Slots
 

@@ -2,13 +2,6 @@
 <ui-dialog-body><!-- the dialog content --></ui-dialog-body>
 ```
 
-#### Props
-
-| Name       | Type               | Default | Description                                   |
-| ---------- | ------------------ | ------- | --------------------------------------------- |
-| scrollable | `Boolean`          | `false` | The dialog with scrollable content.           |
-| maxHeight  | `Number`, `String` | `0`     | The body `max-height` of a scrollable dialog. |
-
 #### Slots
 
 | Name      | Description                                                     |

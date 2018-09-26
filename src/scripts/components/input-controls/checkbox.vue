@@ -106,7 +106,6 @@ export default {
   mounted() {
     if (!this.cssOnly) {
       this.$checkbox = new MDCCheckbox(this.$refs.checkbox);
-
       this.$checkbox.indeterminate = this.indeterminate;
 
       if (!this.noLabel) {

@@ -12,7 +12,6 @@
 | avatar          | `Boolean` | `false` | Optional, configures the leading tiles of each row to display images instead of icons. This will make the graphics of the list items larger. |
 | twoLine         | `Boolean` | `false` | Optional, modifier to style list with two lines (primary and secondary lines).                                                               |
 | singleSelection | `Boolean` | `false` | The list can handle selecting/deselecting list elements based on click or keyboard action.                                                   |
-| withCheckbox    | `Boolean` | `false` | The list includes the checkbox.                                                                                                              |
 
 #### Slots
 

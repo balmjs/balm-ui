@@ -16,7 +16,7 @@
         <div class="mdc-radio__inner-circle"></div>
       </div>
     </div>
-    <label :for="id">
+    <label v-if="!noLabel" :for="id">
       <slot>{{ label }}</slot>
     </label>
     <slot name="after"></slot>
@@ -63,7 +63,12 @@ export default {
       type: Boolean,
       default: false
     },
-    label: String
+    label: String,
+    // For `<ui-item>`
+    noLabel: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
@@ -86,11 +91,13 @@ export default {
   },
   mounted() {
     if (!this.cssOnly) {
-      const formField = new MDCFormField(this.$el);
       this.$radio = new MDCRadio(this.$refs.radio);
-      formField.input = this.$radio;
-
       this.$radio.checked = this.checkedValue == this.value;
+
+      if (!this.noLabel) {
+        const formField = new MDCFormField(this.$el);
+        formField.input = this.$radio;
+      }
     }
   },
   methods: {

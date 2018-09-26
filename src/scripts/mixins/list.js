@@ -38,10 +38,6 @@ export default {
     singleSelection: {
       type: Boolean,
       default: false
-    },
-    withCheckbox: {
-      type: Boolean,
-      default: false
     }
   },
   data() {
@@ -66,26 +62,12 @@ export default {
     if (this.singleSelection) {
       this.$list.singleSelection = true;
     }
-
-    if (this.withCheckbox) {
-      this.$list.listElements.forEach(item => {
-        item.addEventListener('click', e => {
-          this.clickHandler(e, item);
-        });
-      });
-    }
   },
   methods: {
     onChange() {
       this.$nextTick(() => {
         this.$emit(UI_LIST.EVENT.CHANGE, this.$list.foundation_.selectedIndex_);
       });
-    },
-    clickHandler(evt, li) {
-      if (evt.target === li) {
-        let checkbox = li.querySelector('.mdc-checkbox__native-control');
-        checkbox.checked = !checkbox.checked;
-      }
     }
   }
 };

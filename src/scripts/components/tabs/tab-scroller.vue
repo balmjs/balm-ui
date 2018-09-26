@@ -38,7 +38,7 @@ export default {
   },
   watch: {
     scrollX(val) {
-      console.log('watch', val);
+      // console.log('watch', val);
       let newScrollValue = +val;
       this.$tabScroller.scrollTo(newScrollValue);
       this.scrollValue = newScrollValue;

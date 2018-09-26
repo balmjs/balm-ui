@@ -46,15 +46,14 @@ export default {
   mounted() {
     this.$iconButton = new MDCIconButtonToggle(this.$el);
 
-    if (this.isToggleButton) {
-      this.$iconButton.listen(
-        `MDCIconButtonToggle:${UI_ICONBUTTON.EVENT.CHANGE}`,
-        ({ detail }) => {
-          this.$emit(UI_ICONBUTTON.EVENT.CHANGE, detail.isOn);
-        }
-      );
+    // For default and custom icon button
+    this.$iconButton.listen(
+      `MDCIconButtonToggle:${UI_ICONBUTTON.EVENT.CHANGE}`,
+      ({ detail }) => {
+        this.$emit(UI_ICONBUTTON.EVENT.CHANGE, detail.isOn);
+      }
+    );
 
-      this.$iconButton.on = this.model;
-    }
+    this.$iconButton.on = this.model;
   }
 };

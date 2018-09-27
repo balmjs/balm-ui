@@ -1,3 +1,4 @@
+// Deprecated in 0.8.0
 import autoInit from './register';
 
 // Define constants

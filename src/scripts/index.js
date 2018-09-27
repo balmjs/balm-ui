@@ -91,7 +91,6 @@ import theme from './plugins/theme';
  */
 import vRipple from './directives/ripple';
 import VShadow from './directives/elevation';
-import vShape from './directives/shape';
 
 const version = require('../../package.json').version;
 
@@ -183,8 +182,7 @@ const plugins = {
 
 const directives = {
   vRipple,
-  VShadow,
-  vShape
+  VShadow
 };
 
 const BalmUI = {

@@ -1,5 +1,35 @@
 # BalmUI ChangeLog
 
+## 0.8.0 (2018.09.28)
+
+### Bug Fixes
+
+- `<ui-icon-button>`: fix initialization assignment bug
+- `<ui-list>`: fix initialization assignment bug
+
+### Chores
+
+- `material-icons`: add `font-display`
+- `<ui-autocomplete>`: update css
+
+### Code Refactoring
+
+- `<ui-dialog>`
+
+### Features
+
+- update `mdc@0.40.0`
+- `<ui-dialog>`: add `scrollable` and `stacked` props
+- `<ui-radio>`: add `noLabel` props
+
+### BREAKING CHANGES
+
+- `v-shape`: deprecated
+- `<ui-dialog-body>`: remove `scrollable` and `maxHeight` props
+- `<ui-list>`: remove `withCheckbox` props
+
+---
+
 ## 0.7.1 (2018.09.25)
 
 ### Chores

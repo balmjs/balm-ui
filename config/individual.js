@@ -55,7 +55,7 @@ const directives = [
   // MDC directives
   'ripple.js',
   'elevation.js',
-  'shape.js',
+  // 'shape.js', // Deprecated in 0.8.0
   // Plus
   'anchor.js'
 ];

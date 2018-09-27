@@ -57,11 +57,18 @@ export default {
     }
   },
   mounted() {
-    this.$list = new MDCList(this.$el);
+    this.$nextTick(() => {
+      this.$list = new MDCList(this.$el);
 
-    if (this.singleSelection) {
-      this.$list.singleSelection = true;
-    }
+      if (this.singleSelection) {
+        this.$list.singleSelection = true;
+      }
+
+      const selectedIndex = this.$list.foundation_.selectedIndex_;
+      if (selectedIndex !== this.selectedIndex) {
+        this.$emit(UI_LIST.EVENT.CHANGE, selectedIndex);
+      }
+    });
   },
   methods: {
     onChange() {

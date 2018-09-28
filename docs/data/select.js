@@ -1,4 +1,5 @@
-export const OPTIONS = [{
+export var OPTIONS = [
+  {
     label: 'Bread, Cereal, Rice, and Pasta',
     value: 'grains'
   },
@@ -25,7 +26,8 @@ export const OPTIONS = [{
   }
 ];
 
-export const PROVINCES = [{
+export var PROVINCES = [
+  {
     value: 1,
     label: 'Beijing'
   },
@@ -39,9 +41,10 @@ export const PROVINCES = [{
   }
 ];
 
-export const CITIES = [
+export var CITIES = [
   [],
-  [{
+  [
+    {
       value: 11,
       label: 'Haidian'
     },
@@ -50,7 +53,8 @@ export const CITIES = [
       label: 'Chao Yang'
     }
   ],
-  [{
+  [
+    {
       value: 21,
       label: 'Huangpu'
     },
@@ -59,8 +63,10 @@ export const CITIES = [
       label: 'Xuhui'
     }
   ],
-  [{
-    value: 31,
-    label: 'Guangzhou'
-  }]
+  [
+    {
+      value: 31,
+      label: 'Guangzhou'
+    }
+  ]
 ];

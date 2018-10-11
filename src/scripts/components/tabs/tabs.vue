@@ -43,9 +43,7 @@ export default {
     // States
     items: {
       type: Array,
-      default() {
-        return [];
-      }
+      required: true
     },
     // UI attributes
     keys: {
@@ -60,7 +58,7 @@ export default {
       let currentTabKeys = DEFAULT_TAB_KEYS;
 
       Object.keys(this.keys).forEach(key => {
-        if (TAB_ITEM_KEYS.includes(key) && this.keys[key]) {
+        if (TAB_ITEM_KEYS.includes(key)) {
           currentTabKeys[key] = this.keys[key];
         }
       });

@@ -39,8 +39,10 @@ export default {
         this.active > -1 && this.active < tabList.length ? this.active : 0;
 
       // this.$tabBar.activateTab(activeTabIndex); // TODO: mdc's bug?
-      let $tab = this.$tabBar.tabList_[activeTabIndex];
-      $tab.activate($tab.computeIndicatorClientRect());
+      if (this.$tabBar.tabList_.length) {
+        let $tab = this.$tabBar.tabList_[activeTabIndex];
+        $tab.activate($tab.computeIndicatorClientRect());
+      }
     }
   }
 };

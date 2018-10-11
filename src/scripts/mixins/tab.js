@@ -26,9 +26,6 @@ export default {
     }
   },
   computed: {
-    textOnly() {
-      return this.type === UI_TAB_LABEL.TEXT;
-    },
     iconOnly() {
       return this.type === UI_TAB_LABEL.ICON;
     },

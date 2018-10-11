@@ -1,5 +1,6 @@
 // setup JSDOM
 require('jsdom-global')();
+require('./requestanimationframe');
 
 const {
   mount,

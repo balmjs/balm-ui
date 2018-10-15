@@ -1,5 +1,5 @@
 <template>
-  <li :class="className" @click="$parent.onChange">
+  <li :class="className" @click="$parent.onChange || null">
     <span v-if="hasFirstTile" class="mdc-list-item__graphic">
       <slot name="before">
         <i v-if="firstIcon" class="material-icons">{{ firstIcon }}</i>

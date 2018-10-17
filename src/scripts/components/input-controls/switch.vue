@@ -1,35 +1,26 @@
 <template>
-  <ui-form-field :block="block" :alignEnd="alignEnd">
-    <slot name="before"></slot>
-    <div ref="switch" :class="className">
-      <div class="mdc-switch__track"></div>
-      <div class="mdc-switch__thumb-underlay">
-        <div class="mdc-switch__thumb">
-          <input :id="id"
-            v-model="toggleValue"
-            type="checkbox"
-            class="mdc-switch__native-control"
-            role="switch"
-            :name="name"
-            :true-value="trueValue"
-            :false-value="falseValue"
-            :disabled="disabled"
-            v-bind="attrs"
-            @change="handleChange">
-        </div>
+  <div :class="className">
+    <div class="mdc-switch__track"></div>
+    <div class="mdc-switch__thumb-underlay">
+      <div class="mdc-switch__thumb">
+        <input :id="id"
+          v-model="toggleValue"
+          type="checkbox"
+          class="mdc-switch__native-control"
+          role="switch"
+          :name="name"
+          :true-value="trueValue"
+          :false-value="falseValue"
+          :disabled="disabled"
+          v-bind="attrs"
+          @change="handleChange">
       </div>
     </div>
-    <label :for="id">
-      <slot>{{ label }}</slot>
-    </label>
-    <slot name="after"></slot>
-  </ui-form-field>
+  </div>
 </template>
 
 <script>
 import { MDCSwitch } from '../../../material-components-web/switch';
-import UiFormField from './form-field';
-import formFieldMixin from '../../mixins/form-field';
 import elementMixin from '../../mixins/element';
 
 // Define constants
@@ -41,10 +32,7 @@ const UI_SWITCH = {
 
 export default {
   name: 'ui-switch',
-  components: {
-    UiFormField
-  },
-  mixins: [formFieldMixin, elementMixin],
+  mixins: [elementMixin],
   model: {
     prop: 'model',
     event: UI_SWITCH.EVENT.CHANGE
@@ -69,9 +57,7 @@ export default {
     },
     // Element attributes
     id: String,
-    name: String,
-    // UI attributes
-    label: String
+    name: String
   },
   data() {
     return {
@@ -92,7 +78,7 @@ export default {
     }
   },
   mounted() {
-    new MDCSwitch(this.$refs.switch);
+    new MDCSwitch(this.$el);
   },
   methods: {
     handleChange() {

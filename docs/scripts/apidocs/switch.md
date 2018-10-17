@@ -1,5 +1,5 @@
 ```html
-<ui-switch><!-- the label text --></ui-switch>
+<ui-switch></ui-switch>
 ```
 
 #### Props
@@ -12,14 +12,7 @@
 | disabled        | `Boolean`                     | `false` | Styles the switch as a disabled switch.                                       |
 | id              | `String`                      | `null`  | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`. |
 | name            | `String`                      | `null`  | The _name_ attribute of the `<input>`.                                        |
-| label           | `String`                      | `null`  | A text caption or description for the switch.                                 |
 | attrs           | `Object`                      | `null`  | Other attributes for `<input>`.                                               |
-
-#### Slots
-
-| Name      | Description                                      |
-| --------- | ------------------------------------------------ |
-| (default) | The default slot holds the label for the switch. |
 
 #### Events
 

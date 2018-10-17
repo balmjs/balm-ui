@@ -1,7 +1,8 @@
 <template>
   <div :class="[$tt('body1'), 'demo--switch']">
     <section class="hero component">
-      <ui-switch v-model="toggle">{{ toggle }}</ui-switch>
+      <ui-switch id="my-switch" v-model="toggle"></ui-switch>
+      <label for="my-switch">{{ toggle }}</label>
     </section>
 
     <div :class="$tt('body2')">
@@ -16,8 +17,8 @@
             :trueValue="1"
             :falseValue="0"
             v-model="toggle1">
-            {{ toggle1 }}
           </ui-switch>
+          <label for="basic-switch">{{ toggle1 }}</label>
         </div>
         <div class="demo-switch-wrapper">
           <ui-switch id="basic-switch-custom"
@@ -25,8 +26,8 @@
             trueValue="on"
             falseValue="off"
             v-model="toggle2">
-            {{ toggle2 }} (custom color)
           </ui-switch>
+          <label for="basic-switch-custom">{{ toggle2 }} (custom color)</label>
         </div>
       </section>
       <ui-accordion>
@@ -36,7 +37,8 @@
       <section class="example">
         <h2>1.2 Disabled</h2>
         <div class="demo-switch-wrapper">
-          <ui-switch disabled>off/on</ui-switch>
+          <ui-switch id="basic-switch--disabled" disabled></ui-switch>
+          <label for="basic-switch--disabled">off/on</label>
         </div>
       </section>
 

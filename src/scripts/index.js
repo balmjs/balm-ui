@@ -13,7 +13,7 @@ import UiDrawerSubtitle from './components/drawer/drawer-subtitle';
 import UiDrawerContent from './components/drawer/drawer-content';
 import UiDrawerAppContent from './components/drawer/drawer-app-content';
 import UiDrawerScrim from './components/drawer/drawer-scrim';
-import UiTopAppBar from './components/toolbar/top-app-bar';
+import UiTopAppBar from './components/app-bar/top-app-bar';
 import UiGrid from './components/grid/grid';
 import UiGridCell from './components/grid/grid-cell';
 import UiTabs from './components/tabs/tabs';
@@ -57,7 +57,7 @@ import UiChipText from './components/chips/chip-text';
 import UiChipLeadingIcon from './components/chips/chip-icon-leading';
 import UiChipTrailingIcon from './components/chips/chip-icon-trailing';
 import UiChipCheckmark from './components/chips/chip-checkmark';
-import UiLinearProgress from './components/common/linear-progress';
+import UiLinearProgress from './components/progress/linear-progress';
 // Inputs and Controls
 import UiFormField from './components/input-controls/form-field';
 import UiTextfield from './components/input-controls/textfield';

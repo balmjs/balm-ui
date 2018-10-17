@@ -1,9 +1,10 @@
 <template>
   <a :class="[className, actionClassName]" :href="url">
+    <!-- Icon (optional) -->
     <i v-if="materialIcon" :class="[UI_BUTTON.SLOT_CLASS.icon, 'material-icons']">
       {{ materialIcon }}
     </i>
-    <slot :iconClass="UI_BUTTON.SLOT_CLASS.icon"></slot>
+    <slot :iconClass="UI_BUTTON.SLOT_CLASS.icon"><!-- Text label --></slot>
   </a>
 </template>
 

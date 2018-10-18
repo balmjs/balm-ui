@@ -33,10 +33,14 @@ export default {
   computed: {
     className() {
       return {
+        // Text button
         'mdc-button': true,
+        // Contained button
         'mdc-button--raised': this.raised,
         'mdc-button--unelevated': this.unelevated,
+        // Outlined button
         'mdc-button--outlined': this.outlined,
+        // Others
         'mdc-button--dense': this.dense
       };
     },

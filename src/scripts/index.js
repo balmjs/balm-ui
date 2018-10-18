@@ -25,7 +25,7 @@ import UiPanels from './components/tabs/panels';
 import UiPanel from './components/tabs/panel';
 // Buttons
 import UiButton from './components/button/button';
-import UiLink from './components/button/link';
+import UiA from './components/button/a';
 import UiFab from './components/button/fab';
 import UiIconButton from './components/button/icon-button';
 import UiIconLink from './components/button/icon-link';
@@ -117,7 +117,7 @@ const components = {
   UiPanel,
   // Buttons
   UiButton,
-  UiLink,
+  UiA,
   UiFab,
   UiIconButton,
   UiIconLink,

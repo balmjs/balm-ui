@@ -5,7 +5,7 @@ import Vue from 'vue';
 import BalmUI from 'balm-ui';
 
 Vue.use(BalmUI, {
-  // Optional. Overwrite `<ui-icon-button>` and `<ui-icon-link>` props.
+  // Optional. Overwrite `<ui-icon-button>` and `<ui-icon-a>` props.
   UiIconButton: {
     // some props
   }
@@ -24,7 +24,7 @@ import 'balm-ui/components/icon.css';
 import 'balm-ui/components/icon-button.css';
 
 Vue.use(UiIconButtonComponents, {
-  // Optional. Overwrite `<ui-icon-button>` and `<ui-icon-link>` props.
+  // Optional. Overwrite `<ui-icon-button>` and `<ui-icon-a>` props.
   UiIconButton: {
     // some props
   }

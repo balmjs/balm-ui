@@ -12,10 +12,10 @@
   </template>
 
   <ui-card-actions fullBleed>
-    <ui-link actionButton class="demo-card-action">
+    <ui-a actionButton class="demo-card-action">
       All Business Headlines
       <ui-icon>arrow_forward</ui-icon>
-    </ui-link>
+    </ui-a>
   </ui-card-actions>
 </ui-card>
 ```

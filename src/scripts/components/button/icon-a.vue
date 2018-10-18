@@ -1,6 +1,6 @@
 <template>
   <!-- Container -->
-  <button type="button" :class="[className, actionClassName]">
+  <a :class="[className, actionClassName]" :href="url">
     <!-- Icon -->
     <template v-if="isToggleButton">
       <i :class="[UI_GLOBAL.mdi, UI_ICON_BUTTON.SLOT_CLASS.off]">
@@ -17,17 +17,18 @@
         {{ icon }}
       </slot>
     </template>
-  </button>
+  </a>
 </template>
 
 <script>
 import iconButtonMixin from '../../mixins/icon-button';
+import anchorMixin from '../../mixins/anchor';
 import UI_GLOBAL from '../../config/constants';
 import UI_ICON_BUTTON from './icon-constants';
 
 export default {
-  name: 'ui-icon-button',
-  mixins: [iconButtonMixin],
+  name: 'ui-icon-a',
+  mixins: [iconButtonMixin, anchorMixin],
   data() {
     return {
       UI_GLOBAL,

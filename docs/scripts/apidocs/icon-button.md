@@ -1,6 +1,6 @@
 ```html
 <ui-icon-button><!-- the toggle default icon --></ui-icon-button>
-<ui-icon-link><!-- the link icon --></ui-icon-link>
+<ui-icon-a><!-- the link icon --></ui-icon-a>
 ```
 
 #### Props
@@ -10,7 +10,7 @@
 | model (v-model) | `Boolean` | `false` | Sets the toggle state.                                                       |
 | icon            | `String`  | `null`  | A material icon of the icon button. See [Material Icons](/#/icons) list.     |
 | toggle          | `Object`  | `null`  | Two icons of the icon button toggle. (Format: `{on, off}`)                   |
-| url             | `String`  | `null`  | The _href_ attribute of the `<a>`. Applicable only for the `<ui-icon-link>`. |
+| url             | `String`  | `null`  | The _href_ attribute of the `<a>`. Applicable only for the `<ui-icon-a>`. |
 
 > Configuring the icon button toggle states by `toggle.on` and `toggle.off` props.
 

@@ -28,7 +28,7 @@ import UiButton from './components/button/button';
 import UiA from './components/button/a';
 import UiFab from './components/button/fab';
 import UiIconButton from './components/button/icon-button';
-import UiIconLink from './components/button/icon-link';
+import UiIconA from './components/button/icon-a';
 import UiIcon from './components/common/icon';
 // Data View
 import UiListGroup from './components/list/list-group';
@@ -120,7 +120,7 @@ const components = {
   UiA,
   UiFab,
   UiIconButton,
-  UiIconLink,
+  UiIconA,
   UiIcon,
   // Data View
   UiListGroup,

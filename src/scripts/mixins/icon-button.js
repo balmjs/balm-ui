@@ -1,12 +1,12 @@
 import { MDCIconButtonToggle } from '../../material-components-web/icon-button';
 import cardButtonMixin from './card-button';
-import UI_ICONBUTTON from '../components/button/icon-constants';
+import UI_ICON_BUTTON from '../components/button/icon-constants';
 
 export default {
   mixins: [cardButtonMixin],
   model: {
     prop: 'model',
-    event: UI_ICONBUTTON.EVENT.CHANGE
+    event: UI_ICON_BUTTON.EVENT.CHANGE
   },
   props: {
     // States
@@ -48,9 +48,9 @@ export default {
 
     // For default and custom icon button
     this.$iconButton.listen(
-      `MDCIconButtonToggle:${UI_ICONBUTTON.EVENT.CHANGE}`,
+      `MDCIconButtonToggle:${UI_ICON_BUTTON.EVENT.CHANGE}`,
       ({ detail }) => {
-        this.$emit(UI_ICONBUTTON.EVENT.CHANGE, detail.isOn);
+        this.$emit(UI_ICON_BUTTON.EVENT.CHANGE, detail.isOn);
       }
     );
 

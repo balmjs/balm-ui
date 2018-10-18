@@ -1,8 +1,8 @@
 import multiBootstrap from '../config/multi-bootstrap';
 import UiIconButton from './button/icon-button';
-import UiIconLink from './button/icon-link';
+import UiIconA from './button/icon-a';
 
 export default multiBootstrap({
   UiIconButton,
-  UiIconLink
+  UiIconA
 });

@@ -21,7 +21,7 @@
               <div class="demo-wrapper">
                 <ui-icon-button icon="favorite"></ui-icon-button>
                 <ui-icon-button icon="airplanemode_active"></ui-icon-button>
-                <ui-icon-link icon="directions_transit"></ui-icon-link>
+                <ui-icon-a icon="directions_transit"></ui-icon-a>
               </div>
             </div>
 

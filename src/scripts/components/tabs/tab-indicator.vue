@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import UI_GLOBAL from '../../config/constants';
+
 // Define constants
 const UI_TAB_INDICATOR = {
   UNDERLINE: 'underline',
@@ -47,7 +49,7 @@ export default {
         `mdc-tab-indicator__content--${this.type}`
       ];
       if (this.type === UI_TAB_INDICATOR.ICON) {
-        result.push('material-icons');
+        result.push(UI_GLOBAL.mdi);
       }
       return result.join(' ');
     }

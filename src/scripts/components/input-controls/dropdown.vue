@@ -6,7 +6,7 @@
       </div>
       <div class="mdc-dropdown__icon">
         <slot name="icon">
-          <i class="material-icons">{{ open ? 'expand_less' : 'expand_more' }}</i>
+          <i :class="UI_GLOBAL.mdi">{{ open ? 'expand_less' : 'expand_more' }}</i>
         </slot>
       </div>
     </div>
@@ -35,6 +35,7 @@ import UiMenuAnchor from '../menu/menu-anchor';
 import UiMenu from '../menu/menu';
 import UiMenuitem from '../menu/menuitem';
 import selectMixin from '../../mixins/select';
+import UI_GLOBAL from '../../config/constants';
 
 // Define constants
 const UI_DROPDOWN = {
@@ -55,6 +56,7 @@ export default {
   mixins: [selectMixin],
   data() {
     return {
+      UI_GLOBAL,
       UI_DROPDOWN,
       open: false,
       currentOptions: [],

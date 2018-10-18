@@ -1,5 +1,5 @@
 <template>
-  <i class="material-icons mdc-chip__icon mdc-chip__icon--trailing"
+  <i :class="[UI_GLOBAL.mdi, 'mdc-chip__icon mdc-chip__icon--trailing']"
     tabindex="0"
     role="button"
     @click="handleClick">
@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import UI_GLOBAL from '../../config/constants';
+
 // Define constants
 const UI_CHIP = {
   EVENT: {
@@ -17,6 +19,11 @@ const UI_CHIP = {
 
 export default {
   name: 'ui-chip-trailing-icon',
+  data() {
+    return {
+      UI_GLOBAL
+    };
+  },
   methods: {
     handleClick(event) {
       this.$emit(UI_CHIP.EVENT.CLICK, event);

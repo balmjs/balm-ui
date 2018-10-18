@@ -2,7 +2,7 @@
   <header :class="className">
     <div class="mdc-top-app-bar__row">
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-        <a class="material-icons mdc-top-app-bar__navigation-icon"
+        <a :class="[UI_TOP_APP_BAR.SLOT_CLASS.icon, 'mdc-top-app-bar__navigation-icon']"
           :id="navId"
           @click="$emit(UI_TOP_APP_BAR.EVENT.NAV)">
           <slot name="nav-icon">menu</slot>
@@ -31,6 +31,7 @@
 
 <script>
 import { MDCTopAppBar } from '../../../material-components-web/top-app-bar';
+import UI_GLOBAL from '../../config/constants';
 
 // Define constants
 const UI_TOP_APP_BAR = {
@@ -45,7 +46,7 @@ const UI_TOP_APP_BAR = {
     NAV: 'nav'
   },
   SLOT_CLASS: {
-    icon: 'material-icons',
+    icon: UI_GLOBAL.mdi,
     item: 'mdc-top-app-bar__action-item'
   }
 };

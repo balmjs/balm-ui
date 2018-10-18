@@ -3,7 +3,7 @@
     <span class="mdc-tab__content">
       <template v-if="textWithIcon">
         <slot name="icon" :iconClass="UI_TAB.SLOT_CLASS.icon">
-          <i :class="[UI_TAB.SLOT_CLASS.icon, 'material-icons']">{{ icon }}</i>
+          <i :class="[UI_GLOBAL.mdi, UI_TAB.SLOT_CLASS.icon]">{{ icon }}</i>
         </slot>
         <span class="mdc-tab__text-label">
           <slot>{{ text }}</slot>
@@ -11,7 +11,7 @@
       </template>
       <template v-else-if="iconOnly">
         <slot name="icon" :iconClass="UI_TAB.SLOT_CLASS.icon">
-          <i :class="[UI_TAB.SLOT_CLASS.icon, 'material-icons']">{{ icon }}</i>
+          <i :class="[UI_GLOBAL.mdi, UI_TAB.SLOT_CLASS.icon]">{{ icon }}</i>
         </slot>
       </template>
       <span v-else class="mdc-tab__text-label">
@@ -38,6 +38,7 @@
 <script>
 import UiTabIndicator from './tab-indicator';
 import tabMixin from '../../mixins/tab';
+import UI_GLOBAL from '../../config/constants';
 
 // Define constants
 const UI_TAB = {
@@ -59,6 +60,7 @@ export default {
   },
   data() {
     return {
+      UI_GLOBAL,
       UI_TAB
     };
   },

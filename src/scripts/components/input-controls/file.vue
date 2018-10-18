@@ -8,7 +8,7 @@
       @change="handleChange">
     <slot>
       <button :class="className.button">
-        <i class="material-icons">file_upload</i>
+        <i :class="UI_GLOBAL.mdi">file_upload</i>
         {{ text }}
       </button>
     </slot>
@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import UI_GLOBAL from '../../config/constants';
+
 // Define constants
 const UI_FILE = {
   EVENT: {
@@ -90,6 +92,11 @@ export default {
       type: String,
       default: 'Upload'
     }
+  },
+  data() {
+    return {
+      UI_GLOBAL
+    };
   },
   computed: {
     className() {

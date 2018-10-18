@@ -1,3 +1,5 @@
+import UI_GLOBAL from '../config/constants';
+
 // Define constants
 const TYPE = {
   MENU: 'menu',
@@ -18,7 +20,7 @@ export default {
     },
     className() {
       return [
-        'material-icons',
+        UI_GLOBAL.mdi,
         this.isMenu ? 'mdc-toolbar__menu-icon' : 'mdc-toolbar__icon'
       ];
     }

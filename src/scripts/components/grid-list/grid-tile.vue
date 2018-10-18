@@ -7,7 +7,7 @@
       </slot>
     </div>
     <span v-if="!imageOnly" class="mdc-grid-tile__secondary">
-      <i v-if="icon" :class="[UI_GRID_LIST.SLOT_CLASS.icon, 'material-icons']">{{ icon }}</i>
+      <i v-if="icon" :class="[UI_GLOBAL.mdi, UI_GRID_LIST.SLOT_CLASS.icon]">{{ icon }}</i>
       <template v-else>
         <slot name="icon" :iconClass="UI_GRID_LIST.SLOT_CLASS.icon"></slot>
       </template>
@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import UI_GLOBAL from '../../config/constants';
+
 // Define constants
 const UI_GRID_LIST = {
   SLOT_CLASS: {
@@ -44,6 +46,7 @@ export default {
   },
   data() {
     return {
+      UI_GLOBAL,
       UI_GRID_LIST
     };
   }

@@ -7,7 +7,7 @@
     <div class="mdc-pagination__paging">
       <a :class="['mdc-pagination__previous', {'disabled': currentPage === 1}]"
         @click="currentPage === 1 ? noop : handleClick(currentPage - 1)">
-        <i v-if="materialIcon" class="material-icons">{{ currentPrev }}</i>
+        <i v-if="materialIcon" :class="UI_GLOBAL.mdi">{{ currentPrev }}</i>
         <span v-else>{{ currentPrev }}</span>
       </a>
       <template v-for="(page, index) in pageCount" v-if="!mini && isShow(page)">
@@ -24,7 +24,7 @@
       </template>
       <a :class="['mdc-pagination__next', {'disabled': currentPage === pageCount}]"
         @click="currentPage === pageCount ? noop : handleClick(currentPage + 1)">
-        <i v-if="materialIcon" class="material-icons">{{ currentNext }}</i>
+        <i v-if="materialIcon" :class="UI_GLOBAL.mdi">{{ currentNext }}</i>
         <span v-else>{{ currentNext }}</span>
       </a>
 
@@ -46,6 +46,8 @@
 </template>
 
 <script>
+import UI_GLOBAL from '../../config/constants';
+
 // Define constants
 const UI_PAGINATION = {
   POSITIONS: ['left', 'right'],
@@ -111,6 +113,7 @@ export default {
   },
   data() {
     return {
+      UI_GLOBAL,
       noop,
       currentPage: this.page,
       pager: this.page

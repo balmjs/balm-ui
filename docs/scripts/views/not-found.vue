@@ -5,7 +5,7 @@
     </section>
     <div :class="$tt('body2')">
       <p>
-        <ui-link href="/">Back</ui-link>
+        <ui-a href="/">Back</ui-a>
       </p>
     </div>
   </div>

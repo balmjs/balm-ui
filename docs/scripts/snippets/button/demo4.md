@@ -10,7 +10,7 @@
     SVG Icon
   </template>
 </ui-button>
-<ui-link outlined>Link</ui-link>
+<ui-a outlined>Link</ui-a>
 ```
 
 ```css

@@ -13,7 +13,7 @@
             SVG Icon
           </template>
         </ui-button>
-        <ui-link :cssOnly="cssOnly">Link</ui-link>
+        <ui-a :cssOnly="cssOnly">Link</ui-a>
       </div>
       <ui-accordion v-if="!cssOnly">
         <ui-markdown :code="code[1]"></ui-markdown>
@@ -33,7 +33,7 @@
             SVG Icon
           </template>
         </ui-button>
-        <ui-link :cssOnly="cssOnly" raised>Link</ui-link>
+        <ui-a :cssOnly="cssOnly" raised>Link</ui-a>
       </div>
       <ui-accordion v-if="!cssOnly">
         <ui-markdown :code="code[2]"></ui-markdown>
@@ -53,7 +53,7 @@
             SVG Icon
           </template>
         </ui-button>
-        <ui-link :cssOnly="cssOnly" unelevated>Link</ui-link>
+        <ui-a :cssOnly="cssOnly" unelevated>Link</ui-a>
       </div>
       <ui-accordion v-if="!cssOnly">
         <ui-markdown :code="code[3]"></ui-markdown>
@@ -73,7 +73,7 @@
             SVG Icon
           </template>
         </ui-button>
-        <ui-link :cssOnly="cssOnly" outlined>Link</ui-link>
+        <ui-a :cssOnly="cssOnly" outlined>Link</ui-a>
       </div>
       <ui-accordion v-if="!cssOnly">
         <ui-markdown :code="code[4]"></ui-markdown>

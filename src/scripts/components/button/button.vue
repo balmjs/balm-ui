@@ -18,7 +18,7 @@ import UI_GLOBAL from '../../config/constants';
 import UI_BUTTON from './constants';
 
 export default {
-  name: 'ui-a',
+  name: 'ui-button',
   mixins: [buttonMixin],
   data() {
     return {

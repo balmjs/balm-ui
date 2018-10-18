@@ -45,10 +45,10 @@
           </template>
 
           <ui-card-actions fullBleed>
-            <ui-link class="demo-card-action">
+            <ui-a class="demo-card-action">
               All Business Headlines
               <ui-icon>arrow_forward</ui-icon>
-            </ui-link>
+            </ui-a>
           </ui-card-actions>
         </ui-card>
       </section>

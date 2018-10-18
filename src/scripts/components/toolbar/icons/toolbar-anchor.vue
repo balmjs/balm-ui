@@ -6,10 +6,10 @@
 
 <script>
 import toolbarIconMixin from '../../../mixins/toolbar-icon';
-import linkMixin from '../../../mixins/link';
+import anchorMixin from '../../../mixins/anchor';
 
 export default {
   name: 'ui-toolbar-anchor',
-  mixins: [toolbarIconMixin, linkMixin]
+  mixins: [toolbarIconMixin, anchorMixin]
 };
 </script>

@@ -23,10 +23,10 @@
 
 <script>
 import itemMixin from '../../mixins/item';
-import linkMixin from '../../mixins/link';
+import anchorMixin from '../../mixins/anchor';
 
 export default {
-  name: 'ui-item-link',
-  mixins: [itemMixin, linkMixin]
+  name: 'ui-item-a',
+  mixins: [itemMixin, anchorMixin]
 };
 </script>

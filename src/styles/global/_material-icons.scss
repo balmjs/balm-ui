@@ -8,7 +8,7 @@ $mdi-font-path: '../fonts' !default; // Define MDI default path
     url('#{$mdi-font-path}/MaterialIcons-Regular.woff2') format('woff2'),
     url('#{$mdi-font-path}/MaterialIcons-Regular.woff') format('woff'),
     url('#{$mdi-font-path}/MaterialIcons-Regular.ttf') format('truetype');
-  font-display: swap;
+  font-display: swap; // [Intervention] Slow network is detected. See https://www.chromestatus.com/feature/5636954674692096 for more details.
 }
 
 .material-icons {

@@ -5,10 +5,10 @@
 </template>
 
 <script>
-import linkMixin from '../../mixins/link';
+import anchorMixin from '../../mixins/anchor';
 
 export default {
   name: 'ui-card-content',
-  mixins: [linkMixin]
+  mixins: [anchorMixin]
 };
 </script>

@@ -1,6 +1,6 @@
 ```html
-<ui-button><!-- the button text --></ui-button>
-<ui-a><!-- the anchor text --></ui-a>
+<ui-button><!-- the button text label --></ui-button>
+<ui-a><!-- the anchor text label --></ui-a>
 ```
 
 #### Props
@@ -14,7 +14,7 @@
 | icon       | `String`  | `''`    | Optional. Indicates an icon element. See [Material Icons](/#/icons) list. |
 | disabled   | `Boolean` | `false` | To disable a button.                                                      |
 | cssOnly    | `Boolean` | `false` | Ripple effect is disabled.                                                |
-| url        | `String`  | `null`  | The _href_ attribute of the `<a>`. Applicable only for the `<ui-a>`.   |
+| url        | `String`  | `null`  | The _href_ attribute of the `<a>`. Applicable only for the `<ui-a>`.      |
 
 #### Slots
 

@@ -1,24 +1,24 @@
 ```html
-<ui-icon-button><!-- the toggle default icon --></ui-icon-button>
-<ui-icon-a><!-- the link icon --></ui-icon-a>
+<ui-icon-button></ui-icon-button>
+<ui-icon-a></ui-icon-a>
 ```
 
 #### Props
 
-| Name            | Type      | Default | Description                                                                  |
-| --------------- | --------- | ------- | ---------------------------------------------------------------------------- |
-| model (v-model) | `Boolean` | `false` | Sets the toggle state.                                                       |
-| icon            | `String`  | `null`  | A material icon of the icon button. See [Material Icons](/#/icons) list.     |
-| toggle          | `Object`  | `null`  | Two icons of the icon button toggle. (Format: `{on, off}`)                   |
+| Name            | Type      | Default | Description                                                               |
+| --------------- | --------- | ------- | ------------------------------------------------------------------------- |
+| model (v-model) | `Boolean` | `false` | Sets the toggle state.                                                    |
+| icon            | `String`  | `null`  | A material icon of the icon button. See [Material Icons](/#/icons) list.  |
+| toggle          | `Object`  | `null`  | Two icons of the icon button toggle. (Format: `{on, off}`)                |
 | url             | `String`  | `null`  | The _href_ attribute of the `<a>`. Applicable only for the `<ui-icon-a>`. |
 
 > Configuring the icon button toggle states by `toggle.on` and `toggle.off` props.
 
 #### Slots
 
-| Name      | Description                                                          | `slot-scope`            |
-| --------- | -------------------------------------------------------------------- | ----------------------- |
-| (default) | The default slot holds the toggle or link icon and can contain HTML. | `{ onClass, offClass }` |
+| Name      | Description                                                                  | `slot-scope`            |
+| --------- | ---------------------------------------------------------------------------- | ----------------------- |
+| (default) | The default slot holds the toggle or link custom icons and can contain HTML. | `{ onClass, offClass }` |
 
 ```html
 <template slot-scope="{ onClass, offClass }">

@@ -68,10 +68,11 @@
         <legend :class="$tt('headline6')">Extended FAB</legend>
         <div class="demo-fabs">
           <figure class="demo-figure-fab-extended">
-            <ui-fab class="demo-fab-extended-fluid"
-              icon="add"
-              extended="after"
-              label="Create">
+            <ui-fab extended class="demo-fab-extended-fluid">
+              <template slot="before" slot-scope="{ iconClass }">
+                <ui-icon :class="iconClass">add</ui-icon>
+              </template>
+              Create
             </ui-fab>
             <figcaption>
               <div>Auto width extended FAB (Responsive)</div>
@@ -80,10 +81,11 @@
         </div>
         <div class="demo-fabs">
           <figure class="demo-figure-fab-extended">
-            <ui-fab class="demo-fab-extended-fluid"
-              icon="add"
-              extended="before"
-              label="Create">
+            <ui-fab extended class="demo-fab-extended-fluid">
+              Create
+              <template slot="after" slot-scope="{ iconClass }">
+                <ui-icon :class="iconClass">add</ui-icon>
+              </template>
             </ui-fab>
             <figcaption>
               <div>Auto width extended FAB (Text label followed by Icon)</div>
@@ -92,9 +94,8 @@
         </div>
         <div class="demo-fabs">
           <figure class="demo-figure-fab-extended">
-            <ui-fab class="demo-fab-extended-without-icon"
-              extended
-              label="Create">
+            <ui-fab extended class="demo-fab-extended-without-icon">
+              Create
             </ui-fab>
             <figcaption>
               <div>Extended FAB (without Icon)</div>

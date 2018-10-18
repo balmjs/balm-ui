@@ -1,22 +1,31 @@
 <template>
+  <!-- Container -->
   <button type="button" :class="className" @click="handleClick">
-    <span v-if="beforeLabel" class="mdc-fab__label">
-      <slot name="label">{{ label }}</slot>
-    </span>
-    <i v-if="materialIcon" :class="[UI_FAB.SLOT_CLASS.icon, 'material-icons']">
-      {{ materialIcon }}
-    </i>
-    <template v-else>
-      <slot :iconClass="UI_FAB.SLOT_CLASS.icon"><!-- Custom icon --></slot>
+    <template v-if="extended">
+      <!-- Icon (optional) -->
+      <slot name="before" :iconClass="UI_FAB.SLOT_CLASS.icon"></slot>
+      <!-- Text label -->
+      <span class="mdc-fab__label">
+        <slot></slot>
+      </span>
+      <!-- Icon (optional) -->
+      <slot name="after" :iconClass="UI_FAB.SLOT_CLASS.icon"></slot>
     </template>
-    <span v-if="afterLabel" class="mdc-fab__label">
-      <slot name="label">{{ label }}</slot>
-    </span>
+    <template v-else>
+      <!-- Icon -->
+      <i v-if="materialIcon" :class="[UI_GLOBAL.mdi, UI_FAB.SLOT_CLASS.icon]">
+        {{ materialIcon }}
+      </i>
+      <template v-else>
+        <slot :iconClass="UI_FAB.SLOT_CLASS.icon"></slot>
+      </template>
+    </template>
   </button>
 </template>
 
 <script>
 import rippleMixin from '../../mixins/ripple';
+import UI_GLOBAL from '../../config/constants';
 
 // Define constants
 const UI_FAB = {
@@ -42,12 +51,8 @@ export default {
       default: false
     },
     extended: {
-      type: [Boolean, String],
+      type: Boolean,
       default: false
-    },
-    label: {
-      type: String,
-      default: ''
     },
     exited: {
       type: Boolean,
@@ -60,6 +65,7 @@ export default {
   },
   data() {
     return {
+      UI_GLOBAL,
       UI_FAB
     };
   },
@@ -74,12 +80,6 @@ export default {
     },
     materialIcon() {
       return this.icon || false;
-    },
-    beforeLabel() {
-      return this.extended === 'before';
-    },
-    afterLabel() {
-      return this.extended === true || this.extended === 'after';
     }
   },
   mounted() {

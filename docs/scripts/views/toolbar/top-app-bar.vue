@@ -18,9 +18,9 @@
       </ui-drawer-header>
       <ui-drawer-content>
         <ui-list-nav>
-          <ui-item-link @click.native="() => { $router.back(); }" firstIcon="arrow_back">
+          <ui-item-a @click.native="() => { $router.back(); }" firstIcon="arrow_back">
             Back
-          </ui-item-link>
+          </ui-item-a>
           <ui-list-divider></ui-list-divider>
         </ui-list-nav>
       </ui-drawer-content>

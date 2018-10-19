@@ -1,17 +1,24 @@
 <template>
+  <!-- Container -->
   <header :class="className">
     <div class="mdc-top-app-bar__row">
-      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+      <section
+        class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+        <!-- Navigation icon (optional) -->
         <a :class="[UI_TOP_APP_BAR.SLOT_CLASS.icon, 'mdc-top-app-bar__navigation-icon']"
           :id="navId"
           @click="$emit(UI_TOP_APP_BAR.EVENT.NAV)">
-          <slot name="nav-icon">menu</slot>
+          <slot name="nav-icon">{{ navIcon }}</slot>
         </a>
+        <!-- Title (optional) -->
         <span class="mdc-top-app-bar__title">
           <slot>{{ title }}</slot>
         </span>
       </section>
-      <section v-if="actionItems" class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+      <section v-if="actionItems"
+        class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end"
+        role="toolbar">
+        <!-- Action items and Overflow menu (optional) -->
         <slot name="toolbar"
           :iconClass="UI_TOP_APP_BAR.SLOT_CLASS.icon"
           :itemClass="UI_TOP_APP_BAR.SLOT_CLASS.item">
@@ -60,6 +67,10 @@ export default {
       required: true
     },
     navId: String,
+    navIcon: {
+      type: String,
+      default: 'menu'
+    },
     title: {
       type: String,
       default: ''

@@ -36,9 +36,10 @@
 
 #### Events
 
-| Name | Type         | Description                                |
-| ---- | ------------ | ------------------------------------------ |
-| nav  | `Function()` | Emits when the navigation icon is clicked. |
+| Name  | Type         | Description                                |
+| ----- | ------------ | ------------------------------------------ |
+| nav   | `Function()` | Emits when the navigation icon is clicked. |
+| close | `Function()` | Emits when the navigation icon is clicked. Applicable only for `navIcon='close'`. |
 
 > NOTE: If you are not using `navId` of the top app bar and `menuSelector` of the drawer, you should listen for the top app bar using `@nav` and update the `v-model` prop of the drawer.
 

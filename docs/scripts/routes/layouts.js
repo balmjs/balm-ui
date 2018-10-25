@@ -10,7 +10,7 @@ const WaterfallFlexibleToolbar = () =>
 const WaterfallToolbarFixLastRow = () =>
   import('../views/toolbar/waterfall-toolbar-fix-last-row');
 const MenuToolbar = () => import('../views/toolbar/menu-toolbar');
-const TopAppBar = () => import('../views/toolbar/top-app-bar');
+const TopAppBar = () => import('../views/app-bar/top-app-bar');
 const Drawer = () => import('../views/drawer/index');
 const PermanentDrawerAboveToolbar = () =>
   import('../views/drawer/permanent-drawer-above-toolbar');

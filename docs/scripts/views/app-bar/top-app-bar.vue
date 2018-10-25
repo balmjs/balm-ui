@@ -3,13 +3,27 @@
     <ui-top-app-bar
       contentSelector="#content-main"
       navId="demo-menu"
-      :actionItems="controls.noAction ? [] : items"
       :dense="controls.dense"
       :fixed="controls.fixed"
       :prominent="controls.prominent"
       :short="controls.short"
       :alwaysClosed="controls.alwaysCollapsed">
       Hello BalmUI
+      <template slot="toolbar" slot-scope="{ iconClass, itemClass }">
+        <a v-if="!controls.short && !controls.noAction" :class="[iconClass, itemClass]">file_download</a>
+        <ui-menu-anchor v-if="controls.short">
+          <a :class="[iconClass, itemClass]" @click="$balmUI.onOpen('showMoreActions')">more_vert</a>
+          <ui-menu v-model="showMoreActions"
+            :items="[
+              'Back',
+              'Forward',
+              'Reload',
+              '-',
+              'Settings'
+            ]">
+          </ui-menu>
+        </ui-menu-anchor>
+      </template>
     </ui-top-app-bar>
 
     <ui-modal-drawer v-model="open" menuSelector="#demo-menu">
@@ -126,12 +140,6 @@ export default {
   data() {
     return {
       open: false,
-      items: [
-        {
-          icon: 'file_download',
-          label: 'Download'
-        }
-      ],
       controls: {
         rtl: false,
         noAction: false,
@@ -141,7 +149,8 @@ export default {
         short: false,
         alwaysCollapsed: false
       },
-      showControls: false
+      showControls: false,
+      showMoreActions: false
     };
   },
   created() {

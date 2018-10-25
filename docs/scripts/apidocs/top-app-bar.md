@@ -8,6 +8,7 @@
 | --------------- | --------- | ---------- | ----------------------------------------------------------------------------------------------------------- |
 | contentSelector | `String`  | (required) | Selector used to style the content below the top app bar, to prevent the top app bar from covering it.      |
 | navId           | `String`  | `null`     | Control the navigation drawer is opened or closed. (See the `menuSelector` prop of the [drawer](/#/drawer)) |
+| navIcon         | `String`  | `'menu'`   | A navigation icon.                                                                                          |
 | title           | `String`  | `''`       | Application title.                                                                                          |
 | actionItems     | `Array`   | `[]`       | Action items which are placed on the side opposite the navigation icon.                                     |
 | fixed           | `Boolean` | `false`    | Fixed top app bars stay at the top of the page and elevate above the content when scrolled.                 |
@@ -28,7 +29,8 @@
 
 ```html
 <template slot-scope="{ iconClass, itemClass }">
-  <ui-icon :class="iconClass">ICON</ui-icon>
+  <a :class="[iconClass, itemClass]">ICON</a>
+  <ui-icon :class="itemClass">ICON</ui-icon>
 </template>
 ```
 

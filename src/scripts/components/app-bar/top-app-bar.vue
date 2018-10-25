@@ -4,32 +4,25 @@
     <div class="mdc-top-app-bar__row">
       <section
         class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-        <!-- Navigation icon (optional) -->
+        <!-- Navigation icon (optional) / Close button (instead of a navigation icon) -->
         <a :class="[UI_TOP_APP_BAR.SLOT_CLASS.icon, 'mdc-top-app-bar__navigation-icon']"
-          :id="navId"
-          @click="$emit(UI_TOP_APP_BAR.EVENT.NAV)">
+          :id="navIcon === UI_TOP_APP_BAR.EVENT.CLOSE ? null : navId"
+          @click="handleClick">
           <slot name="nav-icon">{{ navIcon }}</slot>
         </a>
-        <!-- Title (optional) -->
+        <!-- Title (optional) / Contextual title -->
         <span class="mdc-top-app-bar__title">
           <slot>{{ title }}</slot>
         </span>
       </section>
-      <section v-if="actionItems"
+      <section
         class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end"
         role="toolbar">
-        <!-- Action items and Overflow menu (optional) -->
+        <!-- Action items (optional) / Contextual actions -->
+        <!-- Overflow menu (optional, or "short" mode only) -->
         <slot name="toolbar"
           :iconClass="UI_TOP_APP_BAR.SLOT_CLASS.icon"
           :itemClass="UI_TOP_APP_BAR.SLOT_CLASS.item">
-          <a v-for="(item, index) in actionItems"
-            :key="index"
-            :href="item.url"
-            :class="[UI_TOP_APP_BAR.SLOT_CLASS.icon, UI_TOP_APP_BAR.SLOT_CLASS.item]"
-            :aria-label="item.label"
-            :alt="item.label">
-            {{ item.icon }}
-          </a>
         </slot>
       </section>
     </div>
@@ -50,7 +43,8 @@ const UI_TOP_APP_BAR = {
     SHORT: 'mdc-top-app-bar--short-fixed-adjust'
   },
   EVENT: {
-    NAV: 'nav'
+    NAV: 'nav',
+    CLOSE: 'close'
   },
   SLOT_CLASS: {
     icon: UI_GLOBAL.mdi,
@@ -74,12 +68,6 @@ export default {
     title: {
       type: String,
       default: ''
-    },
-    actionItems: {
-      type: Array,
-      default() {
-        return [];
-      }
     },
     fixed: {
       type: Boolean,
@@ -198,6 +186,13 @@ export default {
           UI_TOP_APP_BAR.ADJUST.DENSE_PROMINENT
         );
       }
+    },
+    handleClick() {
+      this.$emit(
+        this.navIcon === UI_TOP_APP_BAR.EVENT.CLOSE
+          ? UI_TOP_APP_BAR.EVENT.CLOSE
+          : UI_TOP_APP_BAR.EVENT.NAV
+      );
     }
   }
 };

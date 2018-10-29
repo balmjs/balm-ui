@@ -1,5 +1,5 @@
 ```html
-<ui-chip-trailing-icon><!-- a trailing icon --></ui-chip-trailing-icon>
+<ui-chip-remove-icon><!-- a trailing icon --></ui-chip-remove-icon>
 ```
 
 > Only use with input chips.

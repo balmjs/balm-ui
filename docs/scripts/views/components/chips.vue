@@ -37,9 +37,9 @@
         </ui-button>
         <ui-chip-set input id="input-chip-set" :options="list">
           <ui-chip v-for="item in list" :key="item.id" class="demo-chip">
-            <ui-chip-leading-icon>face</ui-chip-leading-icon>
+            <ui-chip-thumbnail>face</ui-chip-thumbnail>
             <ui-chip-text>{{ item.name }}</ui-chip-text>
-            <ui-chip-trailing-icon @click="removeOneById(item.id)"></ui-chip-trailing-icon>
+            <ui-chip-remove-icon @click="removeOneById(item.id)"></ui-chip-remove-icon>
           </ui-chip>
         </ui-chip-set>
         <ui-accordion>
@@ -78,7 +78,7 @@
           <ui-chip v-for="(item, index) in filterList2"
             :key="index"
             class="demo-chip">
-            <ui-chip-leading-icon :hidden="selectedValue2.includes(index)">face</ui-chip-leading-icon>
+            <ui-chip-thumbnail :hidden="selectedValue2.includes(index)">face</ui-chip-thumbnail>
             <ui-chip-checkmark></ui-chip-checkmark>
             <ui-chip-text>{{ item }}</ui-chip-text>
           </ui-chip>
@@ -94,7 +94,7 @@
           <ui-chip v-for="(item, index) in actionList"
             :key="index"
             class="demo-chip">
-            <ui-chip-leading-icon>{{ item.icon }}</ui-chip-leading-icon>
+            <ui-chip-thumbnail>{{ item.icon }}</ui-chip-thumbnail>
             <ui-chip-text>{{ item.name }}</ui-chip-text>
           </ui-chip>
         </ui-chip-set>
@@ -128,8 +128,8 @@
       <ui-apidocs name="chip-set"></ui-apidocs>
       <ui-apidocs name="chip"></ui-apidocs>
       <ui-apidocs name="chip-text"></ui-apidocs>
-      <ui-apidocs name="chip-leading-icon"></ui-apidocs>
-      <ui-apidocs name="chip-trailing-icon"></ui-apidocs>
+      <ui-apidocs name="chip-thumbnail"></ui-apidocs>
+      <ui-apidocs name="chip-remove-icon"></ui-apidocs>
       <ui-apidocs name="chip-checkmark"></ui-apidocs>
     </div>
   </div>

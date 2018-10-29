@@ -1,4 +1,5 @@
 <template>
+  <!-- Remove icon [optional] -->
   <i :class="[UI_GLOBAL.mdi, 'mdc-chip__icon mdc-chip__icon--trailing']"
     tabindex="0"
     role="button"
@@ -18,7 +19,7 @@ const UI_CHIP = {
 };
 
 export default {
-  name: 'ui-chip-trailing-icon',
+  name: 'ui-chip-remove-icon',
   data() {
     return {
       UI_GLOBAL

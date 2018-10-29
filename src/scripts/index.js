@@ -54,8 +54,8 @@ import UiCardIcons from './components/card/card-icons';
 import UiChipSet from './components/chips/chip-set';
 import UiChip from './components/chips/chip';
 import UiChipText from './components/chips/chip-text';
-import UiChipLeadingIcon from './components/chips/chip-icon-leading';
-import UiChipTrailingIcon from './components/chips/chip-icon-trailing';
+import UiChipThumbnail from './components/chips/chip-thumbnail';
+import UiChipRemoveIcon from './components/chips/chip-remove-icon';
 import UiChipCheckmark from './components/chips/chip-checkmark';
 import UiLinearProgress from './components/progress/linear-progress';
 // Inputs and Controls
@@ -146,8 +146,8 @@ const components = {
   UiChipSet,
   UiChip,
   UiChipText,
-  UiChipLeadingIcon,
-  UiChipTrailingIcon,
+  UiChipThumbnail,
+  UiChipRemoveIcon,
   UiChipCheckmark,
   UiLinearProgress,
   // Inputs and Controls

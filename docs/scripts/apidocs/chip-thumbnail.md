@@ -1,5 +1,5 @@
 ```html
-<ui-chip-leading-icon><!-- a leading icon --></ui-chip-leading-icon>
+<ui-chip-thumbnail><!-- a leading icon --></ui-chip-thumbnail>
 ```
 
 #### Props

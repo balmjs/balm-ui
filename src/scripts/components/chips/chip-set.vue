@@ -102,7 +102,7 @@ export default {
         this.chipsCount++;
       });
     },
-    handleClick() {
+    onChange() {
       this.$nextTick(() => {
         if (this.choice) {
           let hasMultipleChoice =

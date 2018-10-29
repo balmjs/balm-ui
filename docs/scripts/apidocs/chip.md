@@ -11,6 +11,6 @@
 **Chip child components:**
 
 - `<ui-chip-text>`
-- `<ui-chip-leading-icon>`
-- `<ui-chip-trailing-icon>`
+- `<ui-chip-thumbnail>`
+- `<ui-chip-remove-icon>`
 - `<ui-chip-checkmark>`

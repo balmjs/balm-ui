@@ -1,4 +1,5 @@
 <template>
+  <!-- Text -->
   <div class="mdc-chip__text">
     <slot></slot>
   </div>

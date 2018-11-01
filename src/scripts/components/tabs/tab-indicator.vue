@@ -1,4 +1,5 @@
 <template>
+  <!-- Active tab indicator -->
   <span :class="className">
     <span :class="innerClassName">
       <template v-if="type === UI_TAB_INDICATOR.ICON">

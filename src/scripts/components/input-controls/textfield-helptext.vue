@@ -1,4 +1,5 @@
 <template>
+  <!-- Helper text (optional) -->
   <p :id="id" :class="className" aria-hidden="true">
     <slot></slot>
   </p>

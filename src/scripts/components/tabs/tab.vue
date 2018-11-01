@@ -1,10 +1,13 @@
 <template>
+  <!-- Tab item -->
   <button :class="className" role="tab" aria-selected="false" tabindex="-1">
     <span class="mdc-tab__content">
       <template v-if="textWithIcon">
+        <!-- Icon -->
         <slot name="icon" :iconClass="UI_TAB.SLOT_CLASS.icon">
           <i :class="[UI_GLOBAL.mdi, UI_TAB.SLOT_CLASS.icon]">{{ icon }}</i>
         </slot>
+        <!-- Text label -->
         <span class="mdc-tab__text-label">
           <slot>{{ text }}</slot>
         </span>

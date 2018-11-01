@@ -1,4 +1,5 @@
 <template>
+  <!-- Container -->
   <div class="mdc-tab-bar" role="tablist">
     <ui-tab-scroller :align="align">
       <slot><!-- Tab components --></slot>

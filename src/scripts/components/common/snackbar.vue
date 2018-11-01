@@ -1,12 +1,15 @@
 <template>
+  <!-- Container -->
   <div :class="className"
     aria-live="assertive"
     aria-atomic="true"
     aria-hidden="true"
     :style="style">
+    <!-- Text label -->
     <div class="mdc-snackbar__text">
       <slot>{{ message }}</slot>
     </div>
+    <!-- Action (optional) -->
     <div v-show="hasAction" class="mdc-snackbar__action-wrapper">
       <button type="button" class="mdc-snackbar__action-button">
         {{ actionText }}

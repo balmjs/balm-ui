@@ -1,6 +1,7 @@
 <template>
+  <!-- Container -->
   <div :class="className.outer">
-    <!-- Leading icon -->
+    <!-- Leading icon (optional) -->
     <slot name="before"
       :customIconClass="UI_TEXTFIELD.SLOT_CLASS.customIcon"></slot>
 
@@ -22,7 +23,7 @@
       @input="handleInput"
       @keyup="handleKeyup"
       @blur="handleBlur"></textarea>
-    <!-- Input -->
+    <!-- Input text -->
     <input v-else
       :id="id"
       v-model="inputValue"
@@ -41,16 +42,18 @@
       @keyup="handleKeyup"
       @keyup.enter="handleEnter"
       @blur="handleBlur">
+    <!-- Label text -->
     <ui-floating-label v-if="hasLabel"
       :for="id"
       :floatAbove="!!inputValue">
       <slot>{{ label }}</slot>
     </ui-floating-label>
 
-    <!-- Trailing icon -->
+    <!-- Trailing icon (optional) -->
     <slot name="after"
       :customIconClass="UI_TEXTFIELD.SLOT_CLASS.customIcon"></slot>
 
+    <!-- Activation indicator -->
     <template v-if="!(cssOnly || isMultiLine)">
       <template v-if="outlined">
         <div class="mdc-notched-outline">
@@ -64,7 +67,7 @@
     </template>
 
     <div v-if="expand" class="mdc-textfield__expand">
-      <slot name="expand"><!-- autocomplete --></slot>
+      <slot name="expand"><!-- For autocomplete --></slot>
     </div>
   </div>
 </template>

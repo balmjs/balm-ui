@@ -7,16 +7,16 @@
   <ui-drawer-content>
     <ui-list-nav>
       <template v-for="(item, index) in menu">
-        <ui-list-divider v-if="item === '-'" :key="`divider-${index}`"></ui-list-divider>
+        <ui-divider v-if="item === '-'" :key="`divider-${index}`"></ui-divider>
         <template v-else>
           <ui-list-group-subheader v-if="item.subheader" :key="`subheader-${index}`">
             {{ item.subheader }}
           </ui-list-group-subheader>
-          <ui-item-link v-for="(subItem, subIndex) in item.items"
+          <ui-item-a v-for="(subItem, subIndex) in item.items"
             :key="`item-${index}-${subIndex}`"
             :firstIcon="subItem.icon">
             {{ subItem.name }}
-          </ui-item-link>
+          </ui-item-a>
         </template>
       </template>
     </ui-list-nav>

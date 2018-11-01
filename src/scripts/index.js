@@ -34,13 +34,13 @@ import UiIcon from './components/common/icon';
 import UiListGroup from './components/list/list-group';
 import UiListGroupSubheader from './components/list/list-group-subheader';
 import UiList from './components/list/list';
-import UiListDivider from './components/list/list-divider';
 import UiItem from './components/list/item';
 import UiItemText from './components/list/item-text';
 import UiItemSubtext from './components/list/item-subtext';
-import UiItemDivider from './components/list/item-divider';
 import UiListNav from './components/list/list-nav';
-import UiItemLink from './components/list/item-link';
+import UiItemA from './components/list/item-a';
+import UiDivider from './components/divider/divider';
+import UiItemDivider from './components/divider/item-divider';
 import UiImageList from './components/image-list/image-list';
 import UiImageItem from './components/image-list/image-item';
 import UiImageSupporting from './components/image-list/image-supporting';
@@ -126,13 +126,13 @@ const components = {
   UiListGroup,
   UiListGroupSubheader,
   UiList,
-  UiListDivider,
   UiItem,
   UiItemText,
   UiItemSubtext,
-  UiItemDivider,
   UiListNav,
-  UiItemLink,
+  UiItemA,
+  UiDivider,
+  UiItemDivider,
   UiImageList,
   UiImageItem,
   UiImageSupporting,

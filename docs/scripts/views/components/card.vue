@@ -34,14 +34,14 @@
       <section class="demo-card-collection">
         <ui-card outlined class="demo-card">
           <div :class="[$tt('subtitle2'), 'demo-card-article-group-heading']">Headlines</div>
-          <ui-list-divider></ui-list-divider>
+          <ui-divider></ui-divider>
 
           <template v-for="(item, index) in list">
             <a :key="`item${index}`" class="demo-card-article" v-ripple>
               <h2 :class="[$tt('headline5'), 'demo-card-article__title']">{{ item.title }}</h2>
               <p class="demo-card-article__snippet">{{ item.content }}</p>
             </a>
-            <ui-list-divider :key="`divider${index}`"></ui-list-divider>
+            <ui-divider :key="`divider${index}`"></ui-divider>
           </template>
 
           <ui-card-actions fullBleed>
@@ -92,7 +92,7 @@
               </div>
             </div>
           </ui-card-content>
-          <ui-list-divider></ui-list-divider>
+          <ui-divider></ui-divider>
           <ui-card-actions>
             <ui-card-buttons class="demo-card__action-buttons--text-only">Rate this album</ui-card-buttons>
             <ui-card-icons>

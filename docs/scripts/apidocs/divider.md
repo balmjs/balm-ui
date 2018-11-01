@@ -1,5 +1,5 @@
 ```html
-<ui-list-divider></ui-list-divider>
+<ui-divider></ui-divider>
 <ui-item-divider></ui-item-divider>
 ```
 

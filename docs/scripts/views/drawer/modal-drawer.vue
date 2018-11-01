@@ -10,12 +10,12 @@
         <ui-drawer-subtitle>{{ subtitle }}</ui-drawer-subtitle>
       </ui-drawer-header>
       <ui-drawer-common-conntent>
-        <ui-item-link
+        <ui-item-a
           firstIcon="arrow_back"
           @click.native="() => { $router.back(); }">
           Back
-        </ui-item-link>
-        <ui-list-divider></ui-list-divider>
+        </ui-item-a>
+        <ui-divider></ui-divider>
       </ui-drawer-common-conntent>
     </ui-modal-drawer>
 

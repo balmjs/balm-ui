@@ -1,16 +1,17 @@
 <template>
   <li :class="className" @click="$parent.onChange">
+    <!-- Supporting visuals -->
     <span v-if="hasFirstTile" class="mdc-list-item__graphic">
       <slot name="before">
         <i v-if="firstIcon" :class="UI_GLOBAL.mdi">{{ firstIcon }}</i>
         <img v-if="firstImage" :src="firstImage">
       </slot>
     </span>
-
+    <!-- Primary text -->
     <span class="mdc-list-item__text">
-      <slot><!-- Item text --></slot>
+      <slot></slot>
     </span>
-
+    <!-- Metadata / List control -->
     <span v-if="hasLastTile" class="mdc-list-item__meta">
       <slot name="after">
         {{ lastText }}

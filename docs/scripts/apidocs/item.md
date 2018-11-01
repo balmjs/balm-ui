@@ -1,6 +1,6 @@
 ```html
 <ui-item><!-- the item child components --></ui-item>
-<ui-item-link><!-- the item child components --></ui-item-link>
+<ui-item-a><!-- the item child components --></ui-item-a>
 ```
 
 #### Props
@@ -37,7 +37,7 @@
 </ui-list>
 
 <!-- Two-Line List -->
-<ui-list twoLine>
+<ui-list type="2">
   <ui-item>
     <ui-item-text><!-- Primary text --></ui-item-text>
     <ui-item-subtext><!-- Secondary text --></ui-item-subtext>

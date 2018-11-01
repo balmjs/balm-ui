@@ -2,6 +2,11 @@ import { MDCList } from '../../material-components-web/list';
 
 // Define constants
 const UI_LIST = {
+  TYPES: {
+    singleLine: 1,
+    twoLine: 2,
+    threeLine: 3 // TODO
+  },
   EVENT: {
     CHANGE: 'change'
   }
@@ -19,6 +24,10 @@ export default {
       default: -1
     },
     // UI attributes
+    type: {
+      type: [Number, String],
+      default: 1
+    },
     nonInteractive: {
       type: Boolean,
       default: false
@@ -28,10 +37,6 @@ export default {
       default: false
     },
     avatar: {
-      type: Boolean,
-      default: false
-    },
-    twoLine: {
       type: Boolean,
       default: false
     },
@@ -52,7 +57,7 @@ export default {
         'mdc-list--non-interactive': this.nonInteractive,
         'mdc-list--dense': this.dense,
         'mdc-list--avatar-list': this.avatar,
-        'mdc-list--two-line': this.twoLine
+        'mdc-list--two-line': +this.type === UI_LIST.TYPES.twoLine
       };
     }
   },

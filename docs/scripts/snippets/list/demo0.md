@@ -8,10 +8,6 @@ Vue.use(BalmUI, {
   // Optional. Overwrite `<ui-list>` and `<ui-list-nav>` props.
   UiList: {
     // some props
-  },
-  // Optional. Overwrite `<ui-list-divider>` and `<ui-item-divider>` props.
-  UiListDivider: {
-    // some props
   }
 });
 ```
@@ -30,10 +26,6 @@ import 'balm-ui/components/icon.css'; // Optional.
 Vue.use(UiListComponents, {
   // Optional. Overwrite `<ui-list>` and `<ui-list-nav>` props.
   UiList: {
-    // some props
-  },
-  // Optional. Overwrite `<ui-list-divider>` and `<ui-item-divider>` props.
-  UiListDivider: {
     // some props
   }
 });

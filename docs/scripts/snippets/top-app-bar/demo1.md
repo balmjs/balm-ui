@@ -33,18 +33,18 @@
     <ui-drawer-content>
       <ui-list-group>
         <ui-list-nav>
-          <ui-item-link @click.native="() => { $router.back(); }" firstIcon="arrow_back">
+          <ui-item-a @click.native="() => { $router.back(); }" firstIcon="arrow_back">
             Back
-          </ui-item-link>
-          <ui-item-link v-for="(item, index) in menu1" :key="index" :firstIcon="item.icon">
+          </ui-item-a>
+          <ui-item-a v-for="(item, index) in menu1" :key="index" :firstIcon="item.icon">
             {{ item.name }}
-          </ui-item-link>
+          </ui-item-a>
         </ui-list-nav>
-        <ui-list-divider></ui-list-divider>
+        <ui-divider></ui-divider>
         <ui-list-nav>
-          <ui-item-link v-for="(item, index) in menu2" :key="index" :firstIcon="item.icon">
+          <ui-item-a v-for="(item, index) in menu2" :key="index" :firstIcon="item.icon">
             {{ item.name }}
-          </ui-item-link>
+          </ui-item-a>
         </ui-list-nav>
       </ui-list-group>
     </ui-drawer-content>

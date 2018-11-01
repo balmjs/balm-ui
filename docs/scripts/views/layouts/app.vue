@@ -38,7 +38,7 @@
                     </span>
                     {{ item.name }}
                   </router-link>
-                  <ui-list-divider v-else-if="item === '-'" :key="`divider${index}`"></ui-list-divider>
+                  <ui-divider v-else-if="item === '-'" :key="`divider${index}`"></ui-divider>
                   <h3 v-else :key="`head${index}`" :class="$textColor('primary', 'light')">{{ item.name }}</h3>
                 </template>
               </template>

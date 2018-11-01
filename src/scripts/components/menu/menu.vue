@@ -35,7 +35,7 @@
 import { MDCMenu } from '../../../material-components-web/menu';
 import { Corner } from '../../../material-components-web/menu-surface/constants';
 import UiMenuItem from './menuitem';
-import UiItemDivider from '../list/item-divider';
+import UiItemDivider from '../divider/item-divider';
 import getType from '../../utils/typeof';
 
 // Define constants

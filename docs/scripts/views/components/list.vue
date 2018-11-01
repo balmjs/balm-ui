@@ -1,7 +1,7 @@
 <template>
   <div :class="[$tt('body1'), 'demo--list']">
     <section class="hero component">
-      <ui-list twoLine avatar ripple singleSelection class="demo-list demo-list--with-avatars">
+      <ui-list type="2" avatar ripple singleSelection class="demo-list demo-list--with-avatars">
         <ui-item v-for="(item, index) in folders"
           :key="index"
           v-ripple
@@ -27,7 +27,7 @@
             <h3>Example - Two-Line Lists, Avatars, Metadata, Inset Dividers</h3>
             <ui-list-group class="demo-list-group--custom">
               <ui-list-group-subheader>Folders</ui-list-group-subheader>
-              <ui-list twoLine avatar class="demo-list demo-list--with-avatars demo-list--custom demo-list--icon-placeholders">
+              <ui-list type="2" avatar class="demo-list demo-list--with-avatars demo-list--custom demo-list--icon-placeholders">
                 <ui-item v-for="(item, index) in folders"
                   :key="index"
                   :firstIcon="item.first"
@@ -37,10 +37,10 @@
                 </ui-item>
               </ui-list>
 
-              <ui-list-divider inset></ui-list-divider>
+              <ui-divider inset></ui-divider>
 
               <ui-list-group-subheader>Files</ui-list-group-subheader>
-              <ui-list twoLine avatar class="demo-list demo-list--with-avatars demo-list--custom demo-list--icon-placeholders">
+              <ui-list type="2" avatar class="demo-list demo-list--with-avatars demo-list--custom demo-list--icon-placeholders">
                 <ui-item v-for="(item, index) in files"
                   :key="index"
                   :firstIcon="item.first"
@@ -269,7 +269,7 @@
           <h2>1.3 Two-Line List</h2>
           <section>
             <h3>Text-Only</h3>
-            <ui-list twoLine class="demo-list">
+            <ui-list type="2" class="demo-list">
               <ui-item v-for="i in 3" :key="i">
                 <ui-item-text>Two-line item</ui-item-text>
                 <ui-item-subtext>Secondary text</ui-item-subtext>
@@ -279,7 +279,7 @@
 
           <section>
             <h3>Text-Only (Dense)</h3>
-            <ui-list twoLine dense class="demo-list">
+            <ui-list type="2" dense class="demo-list">
               <ui-item v-for="i in 3" :key="i">
                 <ui-item-text>Two-line item</ui-item-text>
                 <ui-item-subtext>Secondary text</ui-item-subtext>
@@ -289,7 +289,7 @@
 
           <section>
             <h3>Graphic</h3>
-            <ui-list twoLine class="demo-list demo-list--icon-placeholders">
+            <ui-list type="2" class="demo-list demo-list--icon-placeholders">
               <ui-item v-for="i in 3" :key="i" firstPlaceholder>
                 <ui-item-text>Two-line item</ui-item-text>
                 <ui-item-subtext>Secondary text</ui-item-subtext>
@@ -303,7 +303,7 @@
 
           <section>
             <h3>Graphic (Dense)</h3>
-            <ui-list twoLine dense class="demo-list demo-list--icon-placeholders">
+            <ui-list type="2" dense class="demo-list demo-list--icon-placeholders">
               <ui-item v-for="i in 3" :key="i" firstPlaceholder>
                 <ui-item-text>Two-line item</ui-item-text>
                 <ui-item-subtext>Secondary text</ui-item-subtext>
@@ -313,7 +313,7 @@
 
           <section>
             <h3>Avatar List</h3>
-            <ui-list twoLine avatar class="demo-list demo-list--with-avatars demo-list--icon-placeholders">
+            <ui-list type="2" avatar class="demo-list demo-list--with-avatars demo-list--icon-placeholders">
               <ui-item v-for="i in 3" :key="i" firstPlaceholder>
                 <ui-item-text>Two-line item</ui-item-text>
                 <ui-item-subtext>Secondary text</ui-item-subtext>
@@ -323,7 +323,7 @@
 
           <section>
             <h3>Avatar List (dense)</h3>
-            <ui-list twoLine dense avatar class="demo-list demo-list--with-avatars demo-list--icon-placeholders">
+            <ui-list type="2" dense avatar class="demo-list demo-list--with-avatars demo-list--icon-placeholders">
               <ui-item v-for="i in 3" :key="i" firstPlaceholder>
                 <ui-item-text>Two-line item</ui-item-text>
                 <ui-item-subtext>Secondary text</ui-item-subtext>
@@ -333,7 +333,7 @@
 
           <section>
             <h3>Metadata</h3>
-            <ui-list twoLine class="demo-list">
+            <ui-list type="2" class="demo-list">
               <ui-item v-for="i in 3"
                 :key="i"
                 :lastText="`$${i}0.00`">
@@ -349,7 +349,7 @@
 
           <section>
             <h3>Metadata (Dense)</h3>
-            <ui-list twoLine dense class="demo-list">
+            <ui-list type="2" dense class="demo-list">
               <ui-item v-for="i in 3"
                 :key="i"
                 :lastText="`$${i}0.00`">
@@ -361,7 +361,7 @@
 
           <section>
             <h3>Example - Two-line Avatar + Text + Icon</h3>
-            <ui-list twoLine avatar class="demo-list demo-list--with-avatars demo-list--icon-placeholders">
+            <ui-list type="2" avatar class="demo-list demo-list--with-avatars demo-list--icon-placeholders">
               <ui-item v-for="(item, index) in folders"
                 :key="index"
                 :firstIcon="item.first"
@@ -378,7 +378,7 @@
 
           <section>
             <h3>Lists w/ Ellipsis</h3>
-            <ui-list twoLine avatar class="demo-list demo-list--with-avatars demo-list--icon-placeholders">
+            <ui-list type="2" avatar class="demo-list demo-list--with-avatars demo-list--icon-placeholders">
               <ui-item v-for="(item, index) in folders"
                 :key="index"
                 :firstIcon="item.first"
@@ -429,7 +429,7 @@
               <ui-list class="demo-list">
                 <ui-item v-for="i in 3" :key="i">Single-line item</ui-item>
               </ui-list>
-              <ui-list-divider></ui-list-divider>
+              <ui-divider></ui-divider>
               <ui-list-group-subheader>List 2</ui-list-group-subheader>
               <ui-list class="demo-list">
                 <ui-item v-for="i in 3" :key="i">Single-line item</ui-item>
@@ -445,7 +445,7 @@
             <h3>Example - Two-Line Lists, Avatars, Metadata, Inset Dividers</h3>
             <ui-list-group>
               <ui-list-group-subheader>Folders</ui-list-group-subheader>
-              <ui-list twoLine avatar class="demo-list demo-list--with-avatars demo-list--icon-placeholders">
+              <ui-list type="2" avatar class="demo-list demo-list--with-avatars demo-list--icon-placeholders">
                 <ui-item v-for="(item, index) in folders"
                   :key="index"
                   :firstIcon="item.first"
@@ -455,10 +455,10 @@
                 </ui-item>
               </ui-list>
 
-              <ui-list-divider inset></ui-list-divider>
+              <ui-divider inset></ui-divider>
 
               <ui-list-group-subheader>Files</ui-list-group-subheader>
-              <ui-list twoLine avatar class="demo-list demo-list--with-avatars demo-list--icon-placeholders">
+              <ui-list type="2" avatar class="demo-list demo-list--with-avatars demo-list--icon-placeholders">
                 <ui-item v-for="(item, index) in files"
                   :key="index"
                   :firstIcon="item.first"
@@ -477,12 +477,12 @@
           <section>
             <h3>Example - Interactive List</h3>
             <ui-list-nav class="demo-list">
-              <ui-item-link v-for="(item, index) in items"
+              <ui-item-a v-for="(item, index) in items"
                 :key="index"
                 v-ripple
                 :firstIcon="item.icon">
                 {{ item.text }}
-              </ui-item-link>
+              </ui-item-a>
             </ui-list-nav>
           </section>
           <ui-accordion>
@@ -494,7 +494,7 @@
       <h4 :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="list"></ui-apidocs>
       <ui-apidocs name="item"></ui-apidocs>
-      <ui-apidocs name="item-divider"></ui-apidocs>
+      <ui-apidocs name="divider"></ui-apidocs>
       <ui-apidocs name="list-group"></ui-apidocs>
     </div>
   </div>

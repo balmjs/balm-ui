@@ -43,7 +43,7 @@ import UiListNav from './components/list/list-nav';
 import UiItemLink from './components/list/item-link';
 import UiImageList from './components/image-list/image-list';
 import UiImageItem from './components/image-list/image-item';
-import UiImageLabel from './components/image-list/image-label';
+import UiImageSupporting from './components/image-list/image-supporting';
 import UiCard from './components/card/card';
 import UiCardContent from './components/card/card-content';
 import UiCardMedia from './components/card/card-media';
@@ -135,7 +135,7 @@ const components = {
   UiItemLink,
   UiImageList,
   UiImageItem,
-  UiImageLabel,
+  UiImageSupporting,
   UiCard,
   UiCardContent,
   UiCardMedia,

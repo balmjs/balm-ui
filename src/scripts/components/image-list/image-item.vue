@@ -1,5 +1,7 @@
 <template>
+  <!-- Image list item -->
   <li class="mdc-image-list__item">
+    <!-- Image container -->
     <template v-if="$parent.masonry">
       <div v-if="block" :class="UI_IMAGE_LIST.CLASSNAME.IMAGE" :style="style"></div>
       <img v-else :class="UI_IMAGE_LIST.CLASSNAME.IMAGE" :src="src" :alt="alt">
@@ -8,7 +10,8 @@
       <div v-if="block" :class="UI_IMAGE_LIST.CLASSNAME.IMAGE" :style="style"></div>
       <img v-else :class="UI_IMAGE_LIST.CLASSNAME.IMAGE" :src="src" :alt="alt">
     </div>
-    <slot><!-- The text label --></slot>
+    <!-- Supporting content (optional) -->
+    <slot></slot>
   </li>
 </template>
 

@@ -23,7 +23,7 @@
           :withTextProtection="controls1.labelsType === 2">
           <ui-image-item v-for="i in 15" :key="i"
             :src="require(`../../../images/photos/3x2/${i}.jpg`)">
-            <ui-image-label v-if="controls1.labelsType">Text label</ui-image-label>
+            <ui-image-supporting v-if="controls1.labelsType">Text label</ui-image-supporting>
           </ui-image-item>
         </ui-image-list>
         <ui-accordion>
@@ -39,7 +39,7 @@
           :withTextProtection="controls2.labelsType === 2">
           <ui-image-item v-for="(item, index) in list" :key="index"
             :src="require(`../../../images/photos/${item}.jpg`)">
-            <ui-image-label v-if="controls2.labelsType">Text label</ui-image-label>
+            <ui-image-supporting v-if="controls2.labelsType">Text label</ui-image-supporting>
           </ui-image-item>
         </ui-image-list>
         <ui-accordion>
@@ -50,6 +50,7 @@
       <h4 :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="image-list"></ui-apidocs>
       <ui-apidocs name="image-item"></ui-apidocs>
+      <ui-apidocs name="image-supporting"></ui-apidocs>
     </div>
   </div>
 </template>

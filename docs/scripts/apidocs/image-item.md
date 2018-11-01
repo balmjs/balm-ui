@@ -1,7 +1,7 @@
 ```html
 <ui-image-item>
-  <!-- the image label component -->
-  <ui-image-label></ui-image-label>
+  <!-- the image supporting content (optional) -->
+  <ui-image-supporting></ui-image-supporting>
 </ui-image-item>
 ```
 
@@ -15,6 +15,6 @@
 
 #### Slots
 
-| Name      | Description                                       |
-| --------- | ------------------------------------------------- |
-| (default) | The default slot holds the image label component. |
+| Name      | Description                                                                                                                 |
+| --------- | --------------------------------------------------------------------------------------------------------------------------- |
+| (default) | Optional. Indicates the area within each item containing the supporting text label, if the Image List contains text labels. |

@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2016 Google Inc.
+ * Copyright 2018 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,35 +21,56 @@
  * THE SOFTWARE.
  */
 
-/* eslint-disable no-unused-vars */
-import {MDCSelectionControlState} from '../selection-control/index';
-
 /* eslint no-unused-vars: [2, {"args": "none"}] */
 
 /**
- * Adapter for MDC Radio. Provides an interface for managing
- * - classes
- * - dom
+ * Adapter for MDC Select Helper Text.
  *
- * Additionally, provides type information for the adapter to the Closure
- * compiler.
- *
- * Implement this adapter for your framework of choice to delegate updates to
- * the component in your framework of choice. See architecture documentation
- * for more details.
- * https://github.com/material-components/material-components-web/blob/master/docs/code/architecture.md
+ * Defines the shape of the adapter expected by the foundation. Implement this
+ * adapter to integrate the Select helper text into your framework. See
+ * https://github.com/material-components/material-components-web/blob/master/docs/authoring-components.md
+ * for more information.
  *
  * @record
  */
-class MDCRadioAdapter {
-  /** @param {string} className */
+class MDCSelectHelperTextAdapter {
+  /**
+   * Adds a class to the helper text element.
+   * @param {string} className
+   */
   addClass(className) {}
 
-  /** @param {string} className */
+  /**
+   * Removes a class from the helper text element.
+   * @param {string} className
+   */
   removeClass(className) {}
 
-  /** @param {boolean} disabled */
-  setNativeControlDisabled(disabled) {}
+  /**
+   * Returns whether or not the helper text element contains the given class.
+   * @param {string} className
+   * @return {boolean}
+   */
+  hasClass(className) {}
+
+  /**
+   * Sets an attribute with a given value on the helper text element.
+   * @param {string} attr
+   * @param {string} value
+   */
+  setAttr(attr, value) {}
+
+  /**
+   * Removes an attribute from the helper text element.
+   * @param {string} attr
+   */
+  removeAttr(attr) {}
+
+  /**
+   * Sets the text content for the helper text element.
+   * @param {string} content
+   */
+  setContent(content) {}
 }
 
-export default MDCRadioAdapter;
+export default MDCSelectHelperTextAdapter;

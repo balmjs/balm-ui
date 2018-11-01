@@ -48,6 +48,8 @@ var level2 = [
   // 'drawer/temporary',
   'drawer/dismissible',
   'drawer/modal',
+  'select/helper-text',
+  'select/icon',
   // 'tabs/tab',
   // 'tabs/tab-bar',
   // 'tabs/tab-bar-scroller',

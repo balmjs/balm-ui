@@ -21,35 +21,46 @@
  * THE SOFTWARE.
  */
 
-import MDCDrawerAdapter from '../adapter';
-import MDCDismissibleDrawerFoundation from '../dismissible/foundation';
+import MDCComponent from '../../base/component';
+
+import MDCSelectHelperTextAdapter from './adapter';
+import MDCSelectHelperTextFoundation from './foundation';
 
 /**
- * @extends {MDCDismissibleDrawerFoundation}
+ * @extends {MDCComponent<!MDCSelectHelperTextFoundation>}
+ * @final
  */
-class MDCModalDrawerFoundation extends MDCDismissibleDrawerFoundation {
+class MDCSelectHelperText extends MDCComponent {
   /**
-   * Called when drawer finishes open animation.
-   * @override
+   * @param {!Element} root
+   * @return {!MDCSelectHelperText}
    */
-  opened() {
-    this.adapter_.trapFocus();
+  static attachTo(root) {
+    return new MDCSelectHelperText(root);
   }
 
   /**
-   * Called when drawer finishes close animation.
-   * @override
+   * @return {!MDCSelectHelperTextFoundation}
    */
-  closed() {
-    this.adapter_.releaseFocus();
+  get foundation() {
+    return this.foundation_;
   }
 
   /**
-   * Handles click event on scrim.
+   * @return {!MDCSelectHelperTextFoundation}
    */
-  handleScrimClick() {
-    this.close();
+  getDefaultFoundation() {
+    return new MDCSelectHelperTextFoundation(/** @type {!MDCSelectHelperTextAdapter} */ (Object.assign({
+      addClass: (className) => this.root_.classList.add(className),
+      removeClass: (className) => this.root_.classList.remove(className),
+      hasClass: (className) => this.root_.classList.contains(className),
+      setAttr: (attr, value) => this.root_.setAttribute(attr, value),
+      removeAttr: (attr) => this.root_.removeAttribute(attr),
+      setContent: (content) => {
+        this.root_.textContent = content;
+      },
+    })));
   }
 }
 
-export default MDCModalDrawerFoundation;
+export {MDCSelectHelperText, MDCSelectHelperTextFoundation};

@@ -1,6 +1,40 @@
 # BalmUI ChangeLog
 
+## 0.9.0 (2018.11.01)
+
+### Code Refactoring
+
+- `<ui-switch>`
+- `<ui-fab>`
+
+### Features
+
+- `<ui-fab>`: add `before` and `after` slots for the extended FAB
+- `<ui-top-app-bar>`: add `navIcon` props and `close` event
+- `<ui-list>`: add `type` props
+
+### BREAKING CHANGES
+
+- `<ui-link>`: is deprecated. Use `<ui-a>` instead.
+- `<ui-icon-link>`: is deprecated. Use `<ui-icon-a>` instead.
+- `<ui-fab>`: remove `label` props
+- `<ui-chip-leading-icon>`: is deprecated. Use `<ui-chip-thumbnail>` instead.
+- `<ui-chip-trailing-icon>`: is deprecated. Use `<ui-chip-remove-icon>` instead.
+- `<ui-dialog-header>`: is deprecated. Use `<ui-dialog-title>` instead.
+- `<ui-dialog-body>`: is deprecated. Use `<ui-dialog-content>` instead.
+- `<ui-dialog-footer>`: is deprecated. Use `<ui-dialog-actions>` instead.
+- `<ui-image-label>`: is deprecated. Use `<ui-image-supporting>` instead.
+- `<ui-item-link>`: is deprecated. Use `<ui-item-a>` instead.
+- `<ui-list-divider>`: is deprecated. Use `<ui-divider>` instead.
+- `<ui-list>`: remove `twoLine` props
+
+---
+
 ## 0.8.1 (2018.10.10)
+
+### Features
+
+- update `mdc@0.40.1`
 
 ---
 

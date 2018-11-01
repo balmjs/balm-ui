@@ -4,15 +4,15 @@
 <ui-dialog scrollable
   v-model="open"
   @confirm="onConfirm">
-  <ui-dialog-header>Choose a Ringtone</ui-dialog-header>
-  <ui-dialog-body>
+  <ui-dialog-title>Choose a Ringtone</ui-dialog-title>
+  <ui-dialog-content>
     <ui-list>
       <ui-item v-for="(item, index) in list" :key="index">
         {{ item }}
       </ui-item>
     </ui-list>
-  </ui-dialog-body>
-  <ui-dialog-footer></ui-dialog-footer>
+  </ui-dialog-content>
+  <ui-dialog-actions></ui-dialog-actions>
 </ui-dialog>
 ```
 

@@ -70,9 +70,9 @@ import UiSwitch from './components/input-controls/switch';
 import UiSlider from './components/input-controls/slider';
 // Modal
 import UiDialog from './components/dialog/dialog';
-import UiDialogHeader from './components/dialog/dialog-header';
-import UiDialogBody from './components/dialog/dialog-body';
-import UiDialogFooter from './components/dialog/dialog-footer';
+import UiDialogTitle from './components/dialog/dialog-title';
+import UiDialogContent from './components/dialog/dialog-content';
+import UiDialogActions from './components/dialog/dialog-actions';
 import UiSnackbar from './components/common/snackbar';
 // Others
 import UiMenuAnchor from './components/menu/menu-anchor';
@@ -162,9 +162,9 @@ const components = {
   UiSlider,
   // Modal
   UiDialog,
-  UiDialogHeader,
-  UiDialogBody,
-  UiDialogFooter,
+  UiDialogTitle,
+  UiDialogContent,
+  UiDialogActions,
   UiSnackbar,
   // Others
   UiMenuAnchor,

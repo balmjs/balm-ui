@@ -4,11 +4,11 @@
 <ui-dialog
   v-model="open"
   @confirm="onConfirm">
-  <ui-dialog-header>Use Google's location service?</ui-dialog-header>
-  <ui-dialog-body>
+  <ui-dialog-title>Use Google's location service?</ui-dialog-title>
+  <ui-dialog-content>
     <p>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</p>
-  </ui-dialog-body>
-  <ui-dialog-footer></ui-dialog-footer>
+  </ui-dialog-content>
+  <ui-dialog-actions></ui-dialog-actions>
 </ui-dialog>
 ```
 

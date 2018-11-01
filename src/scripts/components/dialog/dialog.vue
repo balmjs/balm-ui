@@ -1,10 +1,12 @@
 <template>
   <div :class="className" role="alertdialog">
+    <!-- Container -->
     <div class="mdc-dialog__container">
       <div ref="dialog" class="mdc-dialog__surface">
         <slot></slot>
       </div>
     </div>
+    <!-- Scrim -->
     <template v-if="!noBackdrop">
       <div v-if="maskClosable" class="mdc-dialog__scrim" @click="handleClose"></div>
       <div v-else class="mdc-dialog__scrim" @click.stop></div>

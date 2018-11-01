@@ -2,12 +2,12 @@
 <ui-button raised @click="$balmUI.onShow('open')">Open dialog</ui-button>
 
 <ui-dialog v-model="open">
-  <ui-dialog-body>
+  <ui-dialog-content>
     Dialog content
-  </ui-dialog-body>
-  <ui-dialog-footer>
+  </ui-dialog-content>
+  <ui-dialog-actions>
     <ui-button @click="$balmUI.onHide('open')">Close dialog</ui-button>
-  </ui-dialog-footer>
+  </ui-dialog-actions>
 </ui-dialog>
 ```
 

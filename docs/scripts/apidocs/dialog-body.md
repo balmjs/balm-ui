@@ -1,5 +1,5 @@
 ```html
-<ui-dialog-body><!-- the dialog content --></ui-dialog-body>
+<ui-dialog-content><!-- the dialog content --></ui-dialog-content>
 ```
 
 #### Slots

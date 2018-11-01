@@ -2,14 +2,14 @@
   <div :class="[$tt('body1'), 'demo--dialog']">
     <section class="hero component">
       <ui-dialog noBackdrop class="catalog-dialog-demo mdc-dialog--open" style="visibility: visible;">
-        <ui-dialog-header>Are you happy?</ui-dialog-header>
-        <ui-dialog-body>
+        <ui-dialog-title>Are you happy?</ui-dialog-title>
+        <ui-dialog-content>
           <p>Please check the left and right side of this element for fun.</p>
-        </ui-dialog-body>
-        <ui-dialog-footer>
+        </ui-dialog-content>
+        <ui-dialog-actions>
           <ui-button>Cancel</ui-button>
           <ui-button>Continue</ui-button>
-        </ui-dialog-footer>
+        </ui-dialog-actions>
       </ui-dialog>
     </section>
 
@@ -35,25 +35,25 @@
       <ui-dialog
         v-model="open"
         @confirm="onConfirm">
-        <ui-dialog-header>Use Google's location service?</ui-dialog-header>
-        <ui-dialog-body>
+        <ui-dialog-title>Use Google's location service?</ui-dialog-title>
+        <ui-dialog-content>
           <p>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</p>
-        </ui-dialog-body>
-        <ui-dialog-footer></ui-dialog-footer>
+        </ui-dialog-content>
+        <ui-dialog-actions></ui-dialog-actions>
       </ui-dialog>
 
       <ui-dialog scrollable
         v-model="open2"
         @confirm="onConfirm">
-        <ui-dialog-header>Choose a Ringtone</ui-dialog-header>
-        <ui-dialog-body>
+        <ui-dialog-title>Choose a Ringtone</ui-dialog-title>
+        <ui-dialog-content>
           <ui-list>
             <ui-item v-for="(item, index) in list" :key="index">
               {{ item }}
             </ui-item>
           </ui-list>
-        </ui-dialog-body>
-        <ui-dialog-footer></ui-dialog-footer>
+        </ui-dialog-content>
+        <ui-dialog-actions></ui-dialog-actions>
       </ui-dialog>
 
       <h4 :class="$tt('headline4')">2. APIs</h4>

@@ -1,12 +1,12 @@
 import multiBootstrap from '../config/multi-bootstrap';
 import UiDialog from './dialog/dialog';
-import UiDialogHeader from './dialog/dialog-header';
-import UiDialogBody from './dialog/dialog-body';
-import UiDialogFooter from './dialog/dialog-footer';
+import UiDialogTitle from './dialog/dialog-title';
+import UiDialogContent from './dialog/dialog-content';
+import UiDialogActions from './dialog/dialog-actions';
 
 export default multiBootstrap({
   UiDialog,
-  UiDialogHeader,
-  UiDialogBody,
-  UiDialogFooter
+  UiDialogTitle,
+  UiDialogContent,
+  UiDialogActions
 });

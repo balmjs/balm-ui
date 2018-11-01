@@ -1,8 +1,8 @@
 import autoInstall from '../config/auto-install';
 import UiDialog from '../components/dialog/dialog';
-import UiDialogHeader from '../components/dialog/dialog-header';
-import UiDialogBody from '../components/dialog/dialog-body';
-import UiDialogFooter from '../components/dialog/dialog-footer';
+import UiDialogTitle from '../components/dialog/dialog-title';
+import UiDialogContent from '../components/dialog/dialog-content';
+import UiDialogActions from '../components/dialog/dialog-actions';
 import getType from '../utils/typeof';
 
 const DEFAULT_OPTIONS = {
@@ -18,9 +18,9 @@ const template = `<ui-dialog
   :open="open"
   :class="['mdc-confirm', options.className]"
   @close="handleClose">
-  <ui-dialog-header v-if="options.title">{{ options.title }}</ui-dialog-header>
-  <ui-dialog-body>{{ options.message }}</ui-dialog-body>
-  <ui-dialog-footer>
+  <ui-dialog-title v-if="options.title">{{ options.title }}</ui-dialog-title>
+  <ui-dialog-content>{{ options.message }}</ui-dialog-content>
+  <ui-dialog-actions>
     <button type="button"
       class="mdc-button mdc-confirm-primary-button"
       @click="handleConfirm(true)">
@@ -31,7 +31,7 @@ const template = `<ui-dialog
       @click="handleConfirm(false)">
       {{ options.cancelText }}
     </button>
-  </ui-dialog-footer>
+  </ui-dialog-actions>
 </ui-dialog>`;
 
 const BalmUI_ConfirmPlugin = {
@@ -44,9 +44,9 @@ const BalmUI_ConfirmPlugin = {
           el: document.createElement('div'),
           components: {
             UiDialog,
-            UiDialogHeader,
-            UiDialogBody,
-            UiDialogFooter
+            UiDialogTitle,
+            UiDialogContent,
+            UiDialogActions
           },
           data: {
             open: false,

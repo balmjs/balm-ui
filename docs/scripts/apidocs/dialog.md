@@ -24,9 +24,9 @@
 
 **Dialog child components:**
 
-- `<ui-dialog-header>`
-- `<ui-dialog-body>`
-- `<ui-dialog-footer>`
+- `<ui-dialog-title>`
+- `<ui-dialog-content>`
+- `<ui-dialog-actions>`
 
 #### Events
 

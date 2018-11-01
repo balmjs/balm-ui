@@ -9,8 +9,8 @@ Vue.use(BalmUI, {
   UiDialog: {
     // some props
   },
-  // Optional. Overwrite `<ui-dialog-footer>` props.
-  UiDialogFooter: {
+  // Optional. Overwrite `<ui-dialog-actions>` props.
+  UiDialogActions: {
     // some props
   }
 });
@@ -31,8 +31,8 @@ Vue.use(UiDialogComponents, {
   UiDialog: {
     // some props
   },
-  // Optional. Overwrite `<ui-dialog-footer>` props.
-  UiDialogFooter: {
+  // Optional. Overwrite `<ui-dialog-actions>` props.
+  UiDialogActions: {
     // some props
   }
 });

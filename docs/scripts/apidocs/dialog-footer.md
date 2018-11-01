@@ -1,5 +1,5 @@
 ```html
-<ui-dialog-footer><!-- the dialog actions --></ui-dialog-footer>
+<ui-dialog-actions><!-- the dialog actions --></ui-dialog-actions>
 ```
 
 #### Props

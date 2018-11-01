@@ -1,4 +1,5 @@
 <template>
+  <!-- Title (optional) -->
   <h2 class="mdc-dialog__title">
     <slot></slot>
   </h2>
@@ -6,6 +7,6 @@
 
 <script>
 export default {
-  name: 'ui-dialog-header'
+  name: 'ui-dialog-title'
 };
 </script>

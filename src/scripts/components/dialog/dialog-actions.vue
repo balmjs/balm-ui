@@ -1,4 +1,5 @@
 <template>
+  <!-- Buttons -->
   <footer class="mdc-dialog__actions">
     <slot :buttonClass="UI_DIALOG.SLOT_CLASS.button">
       <button type="button"
@@ -24,7 +25,7 @@ const UI_DIALOG = {
 };
 
 export default {
-  name: 'ui-dialog-footer',
+  name: 'ui-dialog-actions',
   props: {
     // UI attributes
     acceptText: {

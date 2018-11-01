@@ -53,12 +53,12 @@
               <ui-button raised @click="openDialog">Open dialog</ui-button>
             </p>
             <ui-dialog v-model="open1">
-              <ui-dialog-body>
+              <ui-dialog-content>
                 Dialog content
-              </ui-dialog-body>
-              <ui-dialog-footer>
+              </ui-dialog-content>
+              <ui-dialog-actions>
                 <ui-button @click="closeDialog">Close dialog</ui-button>
-              </ui-dialog-footer>
+              </ui-dialog-actions>
             </ui-dialog>
 
             <ui-accordion>
@@ -72,13 +72,13 @@
               <ui-button raised @click="$balmUI.onShow('open2')">Open dialog</ui-button>
             </p>
             <ui-dialog v-model="open2">
-              <ui-dialog-body>
+              <ui-dialog-content>
                 <p> Open dialog: `$balmUI.onShow('open')`</p>
                 <p>Close dialog: `$balmUI.onHide('open')`</p>
-              </ui-dialog-body>
-              <ui-dialog-footer>
+              </ui-dialog-content>
+              <ui-dialog-actions>
                 <ui-button @click="$balmUI.onHide('open2')">Close dialog</ui-button>
-              </ui-dialog-footer>
+              </ui-dialog-actions>
             </ui-dialog>
 
             <ui-accordion>

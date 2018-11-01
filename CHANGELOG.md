@@ -1,5 +1,13 @@
 # BalmUI ChangeLog
 
+## 0.10.0 (2018.11.01)
+
+### Features
+
+- update `mdc@0.41.0`
+
+---
+
 ## 0.9.0 (2018.11.01)
 
 ### Code Refactoring

@@ -5,6 +5,7 @@
   v-model="toggle1">
   {{ toggle1 }}
 </ui-switch>
+<label for="basic-switch">{{ toggle1 }}</label>
 
 <ui-switch id="basic-switch-custom"
   class="demo-switch--custom"
@@ -13,6 +14,7 @@
   v-model="toggle2">
   {{ toggle2 }} (custom color)
 </ui-switch>
+<label for="basic-switch-custom">{{ toggle2 }} (custom color)</label>
 ```
 
 ```js

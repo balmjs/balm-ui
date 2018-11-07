@@ -37,7 +37,7 @@
                 </ui-item>
               </ui-list>
 
-              <ui-divider inset></ui-divider>
+              <ui-list-divider inset></ui-list-divider>
 
               <ui-list-group-subheader>Files</ui-list-group-subheader>
               <ui-list type="2" avatar class="demo-list demo-list--with-avatars demo-list--custom demo-list--icon-placeholders">
@@ -429,7 +429,7 @@
               <ui-list class="demo-list">
                 <ui-item v-for="i in 3" :key="i">Single-line item</ui-item>
               </ui-list>
-              <ui-divider></ui-divider>
+              <ui-list-divider></ui-list-divider>
               <ui-list-group-subheader>List 2</ui-list-group-subheader>
               <ui-list class="demo-list">
                 <ui-item v-for="i in 3" :key="i">Single-line item</ui-item>
@@ -455,7 +455,7 @@
                 </ui-item>
               </ui-list>
 
-              <ui-divider inset></ui-divider>
+              <ui-list-divider inset></ui-list-divider>
 
               <ui-list-group-subheader>Files</ui-list-group-subheader>
               <ui-list type="2" avatar class="demo-list demo-list--with-avatars demo-list--icon-placeholders">
@@ -493,8 +493,8 @@
 
       <h4 :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="list"></ui-apidocs>
-      <ui-apidocs name="item"></ui-apidocs>
-      <ui-apidocs name="divider"></ui-apidocs>
+      <ui-apidocs name="list-item"></ui-apidocs>
+      <ui-apidocs name="list-divider"></ui-apidocs>
       <ui-apidocs name="list-group"></ui-apidocs>
     </div>
   </div>

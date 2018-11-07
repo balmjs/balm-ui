@@ -16,7 +16,7 @@
     <ui-drawer-content>
       <ui-list-nav>
         <template v-for="(item, index) in menu">
-          <ui-divider v-if="item === '-'" :key="`divider-${index}`"></ui-divider>
+          <ui-list-divider v-if="item === '-'" :key="`divider-${index}`"></ui-list-divider>
           <template v-else>
             <ui-list-group-subheader v-if="item.subheader" :key="`subheader-${index}`">
               {{ item.subheader }}

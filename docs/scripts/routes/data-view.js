@@ -6,6 +6,7 @@ const Chips = () => import('../views/components/chips');
 const LinearProgress = () => import('../views/components/linear-progress');
 // const Table = () => import('../views/table');
 const Pagination = () => import('../views/components/pagination');
+const TextDivider = () => import('../views/components/text-divider');
 
 export default [
   {
@@ -42,5 +43,10 @@ export default [
     path: 'pagination',
     name: 'data.pagination',
     component: Pagination
+  },
+  {
+    path: 'text-divider',
+    name: 'data.text-divider',
+    component: TextDivider
   }
 ];

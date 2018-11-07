@@ -15,7 +15,7 @@
           @click.native="() => { $router.back(); }">
           Back
         </ui-item-a>
-        <ui-divider></ui-divider>
+        <ui-list-divider></ui-list-divider>
       </ui-drawer-common-conntent>
     </ui-modal-drawer>
 

@@ -88,6 +88,7 @@ Enjoy 👻
   - Card
   - Chips
   - Pagination (:bulb:)
+  - Text Divider (:bulb:)
 - Linear Progress
 - Inputs and Controls
   - Text Field
@@ -119,7 +120,6 @@ Enjoy 👻
 
 - Ripple
 - Elevation
-- Shape
 - Anchor (:bulb:)
 
 ### Utilities

@@ -126,6 +126,12 @@ const MATERIAL_COMPONENTS = [
         name: 'Linear Progress',
         description: 'Fills from 0% to 100%, represented by bars',
         url: 'linear-progress'
+      },
+      {
+        icon: 'component',
+        name: 'Text Divider',
+        description: 'Text Divider',
+        url: 'text-divider'
       }
     ]
   },

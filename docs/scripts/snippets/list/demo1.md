@@ -11,7 +11,7 @@
     </ui-item>
   </ui-list>
 
-  <ui-divider inset></ui-divider>
+  <ui-list-divider inset></ui-list-divider>
 
   <ui-list-group-subheader>Files</ui-list-group-subheader>
   <ui-list type="2" avatar class="demo-list demo-list--with-avatars demo-list--custom demo-list--icon-placeholders">

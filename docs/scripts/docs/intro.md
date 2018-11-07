@@ -27,6 +27,7 @@ Following the [Material Design](https://material.io/components/) UI components f
   - Card
   - Chips
   - Pagination (💡)
+  - Text Divider (💡)
 - Linear Progress
 - Inputs and Controls
   - Text Field
@@ -58,7 +59,6 @@ Following the [Material Design](https://material.io/components/) UI components f
 
 - Ripple
 - Elevation
-- Shape
 - Anchor (💡)
 
 #### 4. Utilities (💡)

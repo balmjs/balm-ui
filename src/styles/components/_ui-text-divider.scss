@@ -1,0 +1,51 @@
+.mdc-text-divider {
+  display: flex;
+
+  &::before,
+  &::after {
+    display: block;
+    content: '';
+  }
+
+  span {
+    display: inline-block;
+    flex-shrink: 0;
+    font-size: inherit;
+    text-transform: uppercase;
+  }
+}
+
+.mdc-text-divider--horizontal {
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+
+  &::before,
+  &::after {
+    height: 1px;
+    width: 50%;
+    border-bottom: 1px solid currentColor;
+  }
+
+  span {
+    padding: 0.5em 1em;
+  }
+}
+
+.mdc-text-divider--vertical {
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 2em;
+
+  &::before,
+  &::after {
+    height: 50%;
+    width: 1px;
+    border-left: 1px solid currentColor;
+  }
+
+  span {
+    padding: 0.5em;
+  }
+}

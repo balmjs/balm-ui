@@ -1,0 +1,26 @@
+.demo--divider {
+  .vertical-divider-demo {
+    display: flex;
+
+    width: 280px;
+    height: 100px;
+    padding: 10px;
+
+    border: 1px solid currentColor;
+
+    justify-content: space-between;
+
+    .block {
+      width: 80px;
+      height: 80px;
+    }
+
+    .red {
+      background-color: red;
+    }
+
+    .blue {
+      background-color: blue;
+    }
+  }
+}

@@ -39,8 +39,8 @@ import UiItemText from './components/list/item-text';
 import UiItemSubtext from './components/list/item-subtext';
 import UiListNav from './components/list/list-nav';
 import UiItemA from './components/list/item-a';
-import UiDivider from './components/divider/divider';
-import UiItemDivider from './components/divider/item-divider';
+import UiListDivider from './components/list/list-divider';
+import UiItemDivider from './components/list/item-divider';
 import UiImageList from './components/image-list/image-list';
 import UiImageItem from './components/image-list/image-item';
 import UiImageSupporting from './components/image-list/image-supporting';
@@ -131,7 +131,7 @@ const components = {
   UiItemSubtext,
   UiListNav,
   UiItemA,
-  UiDivider,
+  UiListDivider,
   UiItemDivider,
   UiImageList,
   UiImageItem,

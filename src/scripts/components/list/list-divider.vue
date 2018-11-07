@@ -6,7 +6,7 @@
 import dividerMixin from '../../mixins/divider';
 
 export default {
-  name: 'ui-divider',
+  name: 'ui-list-divider',
   mixins: [dividerMixin]
 };
 </script>

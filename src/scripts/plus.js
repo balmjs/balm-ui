@@ -7,6 +7,7 @@ import UiDropdown from './components/input-controls/dropdown';
 import UiAutocomplete from './components/input-controls/autocomplete';
 import UiPagination from './components/data/pagination';
 import UiFile from './components/input-controls/file';
+import UiTextDivider from './components/divider/text-divider';
 /**
  * Plugins
  */
@@ -31,7 +32,8 @@ const components = {
   UiDropdown,
   UiAutocomplete,
   UiPagination,
-  UiFile
+  UiFile,
+  UiTextDivider
 };
 
 const plugins = {

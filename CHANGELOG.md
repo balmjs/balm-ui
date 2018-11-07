@@ -1,5 +1,18 @@
 # BalmUI ChangeLog
 
+## 0.11.0 (2018.11.07)
+
+### Features
+
+- optimize divider components
+- new components: `<ui-text-divider>`
+
+### BREAKING CHANGES
+
+- `<ui-divider>`: is deprecated. Use `<ui-list-divider>` instead.
+
+---
+
 ## 0.10.0 (2018.11.01)
 
 ### Features

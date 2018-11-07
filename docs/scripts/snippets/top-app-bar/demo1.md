@@ -40,7 +40,7 @@
             {{ item.name }}
           </ui-item-a>
         </ui-list-nav>
-        <ui-divider></ui-divider>
+        <ui-list-divider></ui-list-divider>
         <ui-list-nav>
           <ui-item-a v-for="(item, index) in menu2" :key="index" :firstIcon="item.icon">
             {{ item.name }}

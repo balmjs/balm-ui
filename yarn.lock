@@ -1951,13 +1951,13 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
 
-balm-ui-lite@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/balm-ui-lite/-/balm-ui-lite-1.4.1.tgz#66ad4afde233d22365ec9b6f6a41a83a3407aa6b"
-  integrity sha512-6BEhd2ct4Ez68j6+plxAwdqgPRMzEp7R/Tt0qk0OIM9WK1ZnNQ02nIQ278Lc8E+bCnkcM2pXPbwVTGTa7qnVug==
+balm-ui-lite@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/balm-ui-lite/-/balm-ui-lite-1.5.0.tgz#0b3a4dc6130ded77c22c25087b33a7fab1e76127"
+  integrity sha512-EaPv/SMdoxYo3hybp81ZbIM50ICZ0UM/JFH4RB6A9SLyWXwFbbajNZoTVF5lzmPJIHQbwg+cysBMs8v4kEGjQQ==
   dependencies:
-    deepmerge "^2.1.1"
-    flatpickr "^4.5.1"
+    deepmerge "^2.2.1"
+    flatpickr "^4.5.2"
 
 balm@^0.24.6:
   version "0.24.6"
@@ -3611,7 +3611,7 @@ deep-is@~0.1.3:
   resolved "https://registry.yarnpkg.com/deep-is/-/deep-is-0.1.3.tgz#b369d6fb5dbc13eecf524f91b070feedc357cf34"
   integrity sha1-s2nW+128E+7PUk+RsHD+7cNXzzQ=
 
-deepmerge@^2.0.0, deepmerge@^2.1.1, deepmerge@^2.2.1:
+deepmerge@^2.0.0, deepmerge@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-2.2.1.tgz#5d3ff22a01c00f645405a2fbc17d0778a1801170"
   integrity sha512-R9hc1Xa/NOBi9WRVUWg19rl1UB7Tt4kuPd+thNJgFZoxXsTz7ncaPaeIm+40oSGuP33DfMb4sZt1QIGiJzC4EA==
@@ -4855,7 +4855,7 @@ flat-cache@^1.2.1:
     graceful-fs "^4.1.2"
     write "^0.2.1"
 
-flatpickr@^4.5.1:
+flatpickr@^4.5.2:
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.5.2.tgz#47c8ad472a096e5fb7e74b809b0703535383f20d"
   integrity sha512-jDy4QYGpmiy7+Qk8QvKJ4spjDdxcx9cxMydmq1x427HkKWBw0qizLYeYM2F6tMcvvqGjU5VpJS55j4LnsaBblA==
@@ -9953,10 +9953,10 @@ prettier@1.13.7:
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.13.7.tgz#850f3b8af784a49a6ea2d2eaa7ed1428a34b7281"
   integrity sha512-KIU72UmYPGk4MujZGYMFwinB7lOf2LsDNGSOC8ufevsrPLISrZbNJlWstRi3m0AMuszbH+EFSQ/r6w56RSPK6w==
 
-prettier@^1.14.3:
-  version "1.14.3"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.14.3.tgz#90238dd4c0684b7edce5f83b0fb7328e48bd0895"
-  integrity sha512-qZDVnCrnpsRJJq5nSsiHCE3BYMED2OtsI+cmzIzF1QIfqm5ALf8tEJcO27zV1gKNKRPdhjO0dNWnrzssDQ1tFg==
+prettier@^1.15.1:
+  version "1.15.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.15.1.tgz#06c67106afb1b40e74b002353b2079cc7e0e67bf"
+  integrity sha512-4rgV2hyc/5Pk0XHH4VjJWHRgVjgRbpMfLQjREAhHBtyW1UvTFkjJEsueGYNYYZd9mn97K+1qv0EBwm11zoaSgA==
 
 pretty-bytes@^4.0.2:
   version "4.0.2"

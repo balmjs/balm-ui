@@ -128,7 +128,7 @@ export default {
       } else {
         if (this.showRecord) {
           result.push(`mdc-pagination--between`);
-        } else if (UI_PAGINATION.POSITIONS.indexOf(this.position) > -1) {
+        } else if (UI_PAGINATION.POSITIONS.includes(this.position)) {
           result.push(`mdc-pagination--${this.position}`);
         }
       }

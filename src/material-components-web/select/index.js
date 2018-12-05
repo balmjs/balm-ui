@@ -304,6 +304,7 @@ class MDCSelect extends MDCComponent {
     this.menu_.hoistMenuToBody();
     this.menu_.setAnchorElement(/** @type {!HTMLElement} */ (this.root_));
     this.menu_.setAnchorCorner(menuSurfaceConstants.Corner.BOTTOM_START);
+    this.menu_.wrapFocus = false;
   }
 
   /**
@@ -541,7 +542,6 @@ class MDCSelect extends MDCComponent {
    *   addClass: function(string): void,
    *   removeClass: function(string): void,
    *   hasClass: function(string): void,
-   *   isRtl: function(): boolean,
    *   setRippleCenter: function(number): void,
    *   activateBottomLine: function(): void,
    *   deactivateBottomLine: function(): void,
@@ -554,7 +554,6 @@ class MDCSelect extends MDCComponent {
       addClass: (className) => this.root_.classList.add(className),
       removeClass: (className) => this.root_.classList.remove(className),
       hasClass: (className) => this.root_.classList.contains(className),
-      isRtl: () => window.getComputedStyle(this.root_).getPropertyValue('direction') === 'rtl',
       setRippleCenter: (normalizedX) => this.lineRipple_ && this.lineRipple_.setRippleCenter(normalizedX),
       activateBottomLine: () => this.lineRipple_ && this.lineRipple_.activate(),
       deactivateBottomLine: () => this.lineRipple_ && this.lineRipple_.deactivate(),
@@ -575,9 +574,9 @@ class MDCSelect extends MDCComponent {
   getOutlineAdapterMethods_() {
     return {
       hasOutline: () => !!this.outline_,
-      notchOutline: (labelWidth, isRtl) => {
+      notchOutline: (labelWidth) => {
         if (this.outline_) {
-          this.outline_.notch(labelWidth, isRtl);
+          this.outline_.notch(labelWidth);
         }
       },
       closeOutline: () => {
@@ -702,4 +701,6 @@ class MDCSelect extends MDCComponent {
   };
 }
 
-export {MDCSelect, MDCSelectFoundation};
+export {MDCSelect, MDCSelectFoundation,
+  MDCSelectHelperText, MDCSelectHelperTextFoundation,
+  MDCSelectIcon, MDCSelectIconFoundation};

@@ -43,7 +43,7 @@
       @keyup.enter="handleEnter"
       @blur="handleBlur">
     <!-- Label text -->
-    <ui-floating-label v-if="hasLabel"
+    <ui-floating-label v-if="!outlined && hasLabel"
       :for="id"
       :floatAbove="!!inputValue">
       <slot>{{ label }}</slot>
@@ -55,14 +55,17 @@
 
     <!-- Activation indicator -->
     <template v-if="!(cssOnly || isMultiLine)">
-      <template v-if="outlined">
-        <div class="mdc-notched-outline">
-          <svg>
-            <path class="mdc-notched-outline__path"/>
-          </svg>
+      <div v-if="outlined" class="mdc-notched-outline">
+        <div class="mdc-notched-outline__leading"></div>
+        <div class="mdc-notched-outline__notch">
+          <ui-floating-label v-if="hasLabel"
+            :for="id"
+            :floatAbove="!!inputValue">
+            <slot>{{ label }}</slot>
+          </ui-floating-label>
         </div>
-        <div class="mdc-notched-outline__idle"></div>
-      </template>
+        <div class="mdc-notched-outline__trailing"></div>
+      </div>
       <div v-else class="mdc-line-ripple"></div>
     </template>
 

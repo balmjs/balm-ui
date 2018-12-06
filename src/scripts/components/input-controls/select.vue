@@ -34,7 +34,7 @@
           :disabled="option.disabled || false">{{ option[optionLabel] }}</option>
       </template>
     </select>
-    <ui-floating-label v-if="!defaultLabel"
+    <ui-floating-label v-if="!outlined && !defaultLabel"
       :for="id"
       :floatAbove="!!`${selectedValue}`">
       <slot>{{ label }}</slot>
@@ -43,14 +43,17 @@
     <slot name="after"></slot>
 
     <template v-if="!cssOnly">
-      <template v-if="outlined">
-        <div class="mdc-notched-outline">
-         <svg>
-           <path class="mdc-notched-outline__path"/>
-         </svg>
-       </div>
-       <div class="mdc-notched-outline__idle"></div>
-      </template>
+      <div v-if="outlined" class="mdc-notched-outline">
+        <div class="mdc-notched-outline__leading"></div>
+        <div class="mdc-notched-outline__notch">
+          <ui-floating-label v-if="!defaultLabel"
+            :for="id"
+            :floatAbove="!!`${selectedValue}`">
+            <slot>{{ label }}</slot>
+          </ui-floating-label>
+        </div>
+        <div class="mdc-notched-outline__trailing"></div>
+      </div>
       <div v-else class="mdc-line-ripple"></div>
     </template>
   </div>

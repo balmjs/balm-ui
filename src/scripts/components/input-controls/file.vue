@@ -1,6 +1,6 @@
 <template>
   <div :class="className.outer" @click="handleClick">
-    <input v-show="false" type="file" :accept="accept" :multiple="multiple" @change="handleChange">
+    <input v-show="false" type="file" :accept="accept" :multiple="multiple" @change="handleChange($event)">
     <slot>
       <button :class="className.button">
         <i :class="UI_GLOBAL.mdi">file_upload</i>

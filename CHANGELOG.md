@@ -1,5 +1,21 @@
 # BalmUI ChangeLog
 
+## 0.12.0 (2018.12.06)
+
+### Features
+
+- update `mdc@0.42.0`
+
+### Chores
+
+- `$validate`: update `$validate(formData, customFieldset)`
+- `<ui-file>`: update change handler
+- `<ui-text-divider>`: add props: `noText`
+- `<ui-textfield>`: update for `mdc@0.42.0`, fix some css bug
+- `<ui-select>`: update for `mdc@0.42.0`
+
+---
+
 ## 0.11.1 (2018.11.15)
 
 ### Features

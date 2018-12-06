@@ -1,11 +1,6 @@
 <template>
   <div :class="className.outer" @click="handleClick">
-    <input
-      v-show="false"
-      type="file"
-      :accept="accept"
-      :multiple="multiple"
-      @change="handleChange">
+    <input v-show="false" type="file" :accept="accept" :multiple="multiple" @change="handleChange">
     <slot>
       <button :class="className.button">
         <i :class="UI_GLOBAL.mdi">file_upload</i>
@@ -123,19 +118,11 @@ export default {
       let files = [].slice.call(event.target.files);
 
       if (files.length) {
-        let result = [];
-
-        if (this.multiple) {
-          result = files.map(file => {
-            let fileObj = UI_FILE.createFileObject(file);
-            this.preview && this.handlePreview(fileObj);
-            return fileObj;
-          });
-        } else {
-          let fileObj = UI_FILE.createFileObject(files[0]);
+        let result = files.map(file => {
+          let fileObj = UI_FILE.createFileObject(file);
           this.preview && this.handlePreview(fileObj);
-          result = [fileObj];
-        }
+          return fileObj;
+        });
 
         this.$emit(UI_FILE.EVENT.CHANGE, result);
         // event.target.value = '';

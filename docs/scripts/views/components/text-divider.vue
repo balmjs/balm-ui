@@ -11,7 +11,7 @@
       <h4 :class="$tt('headline4')">1. Example</h4>
       <section class="example">
         <h6 :class="$tt('headline6')">1.1 Default Usage</h6>
-        <ui-text-divider></ui-text-divider>
+        <ui-text-divider>Text</ui-text-divider>
       </section>
       <ui-accordion>
         <ui-markdown :code="code[1]"></ui-markdown>

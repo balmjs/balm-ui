@@ -4,9 +4,10 @@
 
 #### Props
 
-| Name | Type               | Default        | Description                                                   |
-| ---- | ------------------ | -------------- | ------------------------------------------------------------- |
-| type | `String`, `Number` | `'horizontal'` | The direction type of divider. [`'horizontal'`, `'vertical'`] |
+| Name   | Type               | Default        | Description                                                   |
+| ------ | ------------------ | -------------- | ------------------------------------------------------------- |
+| type   | `String`, `Number` | `'horizontal'` | The direction type of divider. [`'horizontal'`, `'vertical'`] |
+| noText | `Boolean`          | `false`        | Show divider without text.                                    |
 
 #### Slots
 

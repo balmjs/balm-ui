@@ -1,6 +1,6 @@
 <template>
   <div :class="className">
-    <span>
+    <span v-if="!noText">
       <slot></slot>
     </span>
   </div>
@@ -21,6 +21,10 @@ export default {
     type: {
       type: [String, Number],
       default: UI_TEXT_DIVIDER.TYPES[0]
+    },
+    noText: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -32,7 +36,7 @@ export default {
         'mdc-text-divider': true,
         'mdc-text-divider--horizontal': !this.isVertical,
         'mdc-text-divider--vertical': this.isVertical
-      }
+      };
     }
   }
 };

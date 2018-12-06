@@ -1,3 +1,3 @@
 ```html
-<ui-text-divider>Horizontal Text</ui-text-divider>
+<ui-text-divider>Text</ui-text-divider>
 ```

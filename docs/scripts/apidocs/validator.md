@@ -1,11 +1,11 @@
 ```js
-$validate(formData, customLocalRules);
+$validate(formData, customFieldset);
 ```
 
-| Param            | Type     | Default | Description                       |
-| ---------------- | -------- | ------- | --------------------------------- |
-| formData         | `Object` | `{}`    | Mandatory. A form data object.    |
-| customLocalRules | `Object` | `{}`    | Optional. BalmUI validator rules. |
+| Param          | Type     | Default | Description                                   |
+| -------------- | -------- | ------- | --------------------------------------------- |
+| formData       | `Object` | `{}`    | Mandatory. A form data object.                |
+| customFieldset | `Array`  | `[]`    | Optional. The field names of the validations. |
 
 - BalmUI validator rules format:
 

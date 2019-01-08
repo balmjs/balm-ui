@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import {MDCFoundation} from '../base/index';
+import MDCFoundation from '../base/foundation';
 import {transformStyleProperties} from '../animation/index';
 
 import {cssClasses, strings} from './constants';

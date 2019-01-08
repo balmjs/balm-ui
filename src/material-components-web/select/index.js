@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import {MDCComponent} from '../base/index';
+import MDCComponent from '../base/component';
 import {MDCFloatingLabel} from '../floating-label/index';
 import {MDCLineRipple} from '../line-ripple/index';
 import {MDCMenu} from '../menu/index';

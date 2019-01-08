@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import {MDCComponent} from '../base/index';
+import MDCComponent from '../base/component';
 
 import MDCGridListFoundation from './foundation';
 

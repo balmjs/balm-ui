@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import {MDCFoundation} from '../base/index';
+import MDCFoundation from '../base/foundation';
 /* eslint-disable no-unused-vars */
 import {MDCSelectAdapter, FoundationMapType} from './adapter';
 import {MDCSelectIconFoundation} from './icon/index';

@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import {MDCFoundation} from '../base/index';
+import MDCFoundation from '../base/foundation';
 import {strings} from './constants';
 
 export default class MDCGridListFoundation extends MDCFoundation {

@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2017 Google Inc.
+ * Copyright 2018 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,38 +24,41 @@
 /* eslint no-unused-vars: [2, {"args": "none"}] */
 
 /**
- * Adapter for MDC Notched Outline.
+ * Adapter for MDC Snackbar. Provides an interface for managing:
+ * - CSS classes
+ * - Event handlers
  *
- * Defines the shape of the adapter expected by the foundation. Implement this
- * adapter to integrate the Notched Outline into your framework. See
- * https://github.com/material-components/material-components-web/blob/master/docs/authoring-components.md
- * for more information.
+ * Additionally, provides type information for the adapter to the Closure
+ * compiler.
+ *
+ * Implement this adapter for your framework of choice to delegate updates to
+ * the component in your framework of choice. See architecture documentation
+ * for more details.
+ * https://github.com/material-components/material-components-web/blob/master/docs/code/architecture.md
  *
  * @record
  */
-class MDCNotchedOutlineAdapter {
-  /**
-   * Adds a class to the root element.
-   * @param {string} className
-   */
+class MDCSnackbarAdapter {
+  /** @param {string} className */
   addClass(className) {}
 
-  /**
-   * Removes a class from the root element.
-   * @param {string} className
-   */
+  /** @param {string} className */
   removeClass(className) {}
 
-  /**
-   * Sets the width style property of the notch element.
-   * @param {number} width
-   */
-  setNotchWidthProperty(width) {}
+  announce() {}
+
+  notifyOpening() {}
+  notifyOpened() {}
 
   /**
-   * Removes the width style property from the notch element.
+   * @param {string} reason
    */
-  removeNotchWidthProperty() {}
+  notifyClosing(reason) {}
+
+  /**
+   * @param {string} reason
+   */
+  notifyClosed(reason) {}
 }
 
-export default MDCNotchedOutlineAdapter;
+export default MDCSnackbarAdapter;

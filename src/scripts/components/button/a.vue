@@ -2,11 +2,19 @@
   <!-- Container -->
   <a :class="[className, actionClassName]" :href="url">
     <!-- Icon (optional) -->
-    <i v-if="materialIcon" :class="[UI_GLOBAL.mdi, UI_BUTTON.SLOT_CLASS.icon]">
-      {{ materialIcon }}
-    </i>
+    <slot name="before" :iconClass="UI_BUTTON.SLOT_CLASS.icon">
+      <i
+        v-if="materialIcon"
+        :class="[UI_GLOBAL.mdi, UI_BUTTON.SLOT_CLASS.icon]"
+        aria-hidden="true"
+      >{{ materialIcon }}</i>
+    </slot>
     <!-- Text label -->
-    <slot :iconClass="UI_BUTTON.SLOT_CLASS.icon"></slot>
+    <span class="mdc-button__label">
+      <slot></slot>
+    </span>
+    <!-- Icon (optional) -->
+    <slot name="after" :iconClass="UI_BUTTON.SLOT_CLASS.icon"></slot>
   </a>
 </template>
 

@@ -1,14 +1,20 @@
 <template>
   <!-- Container -->
-  <button type="button"
-    :class="[className, actionClassName]"
-    @click="handleClick">
+  <button type="button" :class="[className, actionClassName]" @click="handleClick">
     <!-- Icon (optional) -->
-    <i v-if="materialIcon" :class="[UI_GLOBAL.mdi, UI_BUTTON.SLOT_CLASS.icon]">
-      {{ materialIcon }}
-    </i>
+    <slot name="before" :iconClass="UI_BUTTON.SLOT_CLASS.icon">
+      <i
+        v-if="materialIcon"
+        :class="[UI_GLOBAL.mdi, UI_BUTTON.SLOT_CLASS.icon]"
+        aria-hidden="true"
+      >{{ materialIcon }}</i>
+    </slot>
     <!-- Text label -->
-    <slot :iconClass="UI_BUTTON.SLOT_CLASS.icon"></slot>
+    <span :class="UI_BUTTON.SLOT_CLASS.label">
+      <slot></slot>
+    </span>
+    <!-- Icon (optional) -->
+    <slot name="after" :iconClass="UI_BUTTON.SLOT_CLASS.icon"></slot>
   </button>
 </template>
 

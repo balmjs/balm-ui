@@ -69,7 +69,7 @@ export default {
         this.$list.singleSelection = true;
       }
 
-      const selectedIndex = this.$list.foundation_.selectedIndex_;
+      const selectedIndex = this.$list.selectedIndex;
       if (selectedIndex !== this.selectedIndex) {
         this.$emit(UI_LIST.EVENT.CHANGE, selectedIndex);
       }
@@ -78,7 +78,7 @@ export default {
   methods: {
     onChange() {
       this.$nextTick(() => {
-        this.$emit(UI_LIST.EVENT.CHANGE, this.$list.foundation_.selectedIndex_);
+        this.$emit(UI_LIST.EVENT.CHANGE, this.$list.selectedIndex);
       });
     }
   }

@@ -4,6 +4,7 @@ export default {
     CLICK: 'click'
   },
   SLOT_CLASS: {
-    icon: 'mdc-button__icon'
+    icon: 'mdc-button__icon',
+    label: 'mdc-button__label'
   }
 };

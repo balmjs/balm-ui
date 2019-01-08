@@ -4,11 +4,11 @@
 <ui-button unelevated class="secondary-filled-button">Secondary</ui-button>
 <ui-button unelevated icon="favorite">Icon</ui-button>
 <ui-button unelevated>
-  <template slot-scope="{ iconClass }">
+  <template slot="before" slot-scope="{ iconClass }">
     <!-- Custom SVG -->
     <svg-logo :class="iconCLass"></svg-logo>
-    SVG Icon
   </template>
+  SVG Icon
 </ui-button>
 <ui-a unelevated>Link</ui-a>
 ```

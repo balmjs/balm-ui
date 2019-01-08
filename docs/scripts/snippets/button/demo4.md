@@ -4,11 +4,11 @@
 <ui-button outlined class="secondary-outlined-button">Secondary</ui-button>
 <ui-button outlined icon="favorite">Icon</ui-button>
 <ui-button outlined>
-  <template slot-scope="{ iconClass }">
+  <template slot="before" slot-scope="{ iconClass }">
     <!-- Custom SVG -->
     <svg-logo :class="iconCLass"></svg-logo>
-    SVG Icon
   </template>
+  SVG Icon
 </ui-button>
 <ui-a outlined>Link</ui-a>
 ```

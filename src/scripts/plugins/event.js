@@ -1,31 +1,44 @@
 import autoInstall from '../config/auto-install';
+import getType from '../utils/typeof';
 import '../polyfills/resize';
 
 // Define constants
 const DEFAULT_NAMESPACE = 'balmUI';
 
 const noop = () => {};
+const callback = fn => {
+  let result;
+  let type = getType(fn);
+
+  if (type === 'function' || type === 'generatorfunction') {
+    fn();
+  } else {
+    result = fn;
+  }
+
+  return result;
+};
 
 const EventMethods = {
   onChange(_property, value, fn = noop) {
     new Function('value', `this.${_property} = value;`).call(this, value);
-    fn();
+    return callback(fn);
   },
   onOpen(_property, fn = noop) {
     new Function(`this.${_property} = true;`).call(this);
-    fn();
+    return callback(fn);
   },
   onClose(_property, fn = noop) {
     new Function(`this.${_property} = false;`).call(this);
-    fn();
+    return callback(fn);
   },
   onShow(_property, fn = noop) {
     new Function(`this.${_property} = true;`).call(this);
-    fn();
+    return callback(fn);
   },
   onHide(_property, fn = noop) {
     new Function(`this.${_property} = false;`).call(this);
-    fn();
+    return callback(fn);
   }
 };
 

@@ -1,5 +1,28 @@
 # BalmUI ChangeLog
 
+## 0.13.0 (2019.01.09)
+
+### Code Refactoring
+
+- `<ui-button>` & `<ui-a>`
+- `<ui-snackbar>`
+
+### Features
+
+- update `mdc@0.43.0`
+
+### Bug Fixes
+
+- `$balmUI`: update `fn` argument compatibility
+- `<ui-dialog>`: fix `close` event trigger
+
+### BREAKING CHANGES
+
+- `<ui-snackbar>`: Snackbar's DOM and APIs have changed to match the latest design guidelines. See the Snackbar documentation for more information.
+- `$toast`: follow Snackbar's APIs
+
+---
+
 ## 0.12.1 (2018.12.18)
 
 ### Features

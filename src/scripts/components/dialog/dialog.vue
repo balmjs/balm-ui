@@ -113,9 +113,8 @@ export default {
     handleClose() {
       if (this.closable) {
         this.$emit(UI_DIALOG.EVENT.CHANGE, false);
-      } else {
-        this.$emit(UI_DIALOG.EVENT.CLOSE);
       }
+      this.$emit(UI_DIALOG.EVENT.CLOSE);
     },
     handleAccept() {
       this.$emit(UI_DIALOG.EVENT.ACCEPT);

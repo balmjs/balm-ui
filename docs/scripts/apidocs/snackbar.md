@@ -1,45 +1,45 @@
 ```html
-<ui-snackbar><!-- the message --></ui-snackbar>
+<ui-snackbar><!-- the label text --></ui-snackbar>
 ```
 
 #### Props
 
-| Name             | Type               | Default | Description                                                                                            |
-| ---------------- | ------------------ | ------- | ------------------------------------------------------------------------------------------------------ |
-| active (v-model) | `Boolean`          | `false` | Mandatory.                                                                                             |
-| alignStart       | `Boolean`          | `false` | To create a start-aligned snackbar. (tablet and desktop only)                                          |
-| message          | `String`           | `''`    | Required. The text message to display.                                                                 |
-| timeout          | `Number`, `String` | `2750`  | Optional. The amount of time in milliseconds to show the snackbar.                                     |
-| actionHandler    | `Function`         | `null`  | Optional. The function to execute when the action is clicked.                                          |
-| actionText       | `String`           | `null`  | Required if actionHandler is set. The text to display for the action button.                           |
-| multiline        | `Boolean`          | `false` | Optional. Whether to show the snackbar with space for multiple lines of text.                          |
-| actionOnBottom   | `Boolean`          | `false` | Optional, applies when multiline is true. Whether to show the action below the multiple lines of text. |
-| dismiss          | `Boolean`          | `true`  | By default the snackbar will be dimissed when the user presses the action button.                      |
-| fouc             | `Boolean`          | `false` | Avoiding Flash-Of-Unstyled-Content.                                                                    |
+| Name             | Type               | Default    | Description                                                                                                                                   |
+| ---------------- | ------------------ | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| open (v-model)   | `Boolean`          | `false`    | Mandatory.                                                                                                                                    |
+| timeoutMs        | `Number`, `String` | `5000`     | Optional. The automatic dismiss timeout in milliseconds. Value must be between `4000` and `10000` or an error will be thrown.                 |
+| labelText        | `String`           | `''`       | Mandatory. Message text.                                                                                                                      |
+| actionButtonText | `String`           | `null`     | Optional. The action button/icon elements, if present.                                                                                        |
+| actionType       | `String`           | `'button'` | Optional. Set action button or icon.                                                                                                          |
+| stacked          | `Boolean`          | `false`    | Optional. Positions the action button/icon below the label instead of alongside it.                                                           |
+| leading          | `Boolean`          | `false`    | Optional. Positions the snackbar on the leading edge of the screen (left in LTR, right in RTL) instead of centered. (tablet and desktop only) |
 
 #### Slots
 
-| Name      | Description                                          |
-| --------- | ---------------------------------------------------- |
-| (default) | The default slot holds the message for the snackbar. |
+| Name      | Description                                             |
+| --------- | ------------------------------------------------------- |
+| (default) | The default slot holds the label text for the snackbar. |
 
 #### Events
 
-| Name   | Type                        | Description                        |
-| ------ | --------------------------- | ---------------------------------- |
-| change | `Function(active: boolean)` | Emits when the snackbar is hidden. |
+| Name   | Type                      | Description                        |
+| ------ | ------------------------- | ---------------------------------- |
+| change | `Function(open: boolean)` | Emits when the snackbar is hidden. |
+| closed | `Function()`              | Emits when the snackbar is closed. |
 
-> NOTE: If you are not using `v-model`, you should listen for the snackbar using `@change` and update the `active` prop.
+> NOTE: If you are not using `v-model`, you should listen for the snackbar using `@change` and update the `open` prop.
 
 ```html
 // Automatic
-<ui-snackbar v-model="active"></ui-snackbar>
+<ui-snackbar v-model="open"></ui-snackbar>
 
 // Manual
-<ui-snackbar :active="active" @change="$balmUI.onChange('active', $event)"></ui-snackbar>
+<ui-snackbar
+  :open="open"
+  @change="$balmUI.onChange('open', $event)"
+></ui-snackbar>
 ```
 
 #### Sass Variables
 
-- `$mdc-snackbar-background-color`
-- `$mdc-snackbar-foreground-color`
+Coming Soon...

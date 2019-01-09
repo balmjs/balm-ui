@@ -1,9 +1,7 @@
 <template>
   <div :class="[$tt('body1'), 'demo--snackbar']">
     <section class="hero component">
-      <ui-snackbar cssOnly
-        class="mdc-snackbar--active"
-        message="Message sent"></ui-snackbar>
+      <ui-snackbar class="mdc-snackbar--open">Message sent</ui-snackbar>
     </section>
 
     <div :class="$tt('body2')">
@@ -13,29 +11,26 @@
       <h4 :class="$tt('headline4')">1. Example</h4>
       <section class="example">
         <div>
-          <ui-checkbox id="multiline"
-            v-model="multiline">Multiline</ui-checkbox><br>
-          <ui-checkbox id="action-on-bottom"
-            v-model="actionOnBottom"
-            :disabled="!multiline">Action On Bottom</ui-checkbox><br>
-          <ui-checkbox id="dismiss-on-action"
-            v-model="dismiss">Dismiss On Action</ui-checkbox><br>
+          <label>Timeout: {{ timeout / 1000 }}second</label>
+          <ui-slider id="timeout" min="4000" max="10000" step="1000" v-model="timeout"></ui-slider>
+          <br>
+          <ui-textfield id="message" v-model="message">Message Text</ui-textfield>
+          <br>
+          <ui-textfield id="action" v-model="actionText">Action Text</ui-textfield>
+          <br>
+          <ui-checkbox id="action-type" v-model="actionType">Action Icon Button</ui-checkbox>
+          <br>
+          <br>
 
-          <ui-textfield id="message"
-            v-model="message">Message Text</ui-textfield><br>
-          <ui-textfield id="action"
-            v-model="actionText">Action Text</ui-textfield><br><br>
-
-          <ui-button raised @click="$balmUI.onShow('active')">Show</ui-button>
+          <ui-button raised @click="$balmUI.onOpen('open')">Show</ui-button>
 
           <ui-snackbar
-            v-model="active"
-            :message="message"
-            :actionHandler="actionHandler"
-            :multiline="multiline"
-            :actionOnBottom="actionOnBottom"
-            :actionText="actionText"
-            :dismiss="dismiss"></ui-snackbar>
+            v-model="open"
+            :timeoutMs="timeout"
+            :labelText="message"
+            :actionButtonText="actionText"
+            :actionType="actionType ? 'icon' : 'button'"
+          ></ui-snackbar>
         </div>
       </section>
       <ui-accordion>
@@ -58,12 +53,11 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      active: false,
+      open: false,
+      timeout: 5000,
       message: 'Hello Snackbar',
-      multiline: false,
-      actionOnBottom: false,
-      actionText: 'Undo',
-      dismiss: true
+      actionText: 'close',
+      actionType: false
     };
   },
   methods: {

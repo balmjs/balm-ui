@@ -1,69 +1,70 @@
 <template>
   <!-- Container -->
-  <div :class="className"
-    aria-live="assertive"
-    aria-atomic="true"
-    aria-hidden="true"
-    :style="style">
-    <!-- Text label -->
-    <div class="mdc-snackbar__text">
-      <slot>{{ message }}</slot>
-    </div>
-    <!-- Action (optional) -->
-    <div v-show="hasAction" class="mdc-snackbar__action-wrapper">
-      <button type="button" class="mdc-snackbar__action-button">
-        {{ actionText }}
-      </button>
+  <div :class="className">
+    <div class="mdc-snackbar__surface">
+      <!-- Text label -->
+      <div class="mdc-snackbar__label" role="status" aria-live="polite">
+        <slot>{{ labelText }}</slot>
+      </div>
+      <!-- Action (optional) -->
+      <div v-if="hasAction" class="mdc-snackbar__actions">
+        <button type="button" :class="buttonClassName">{{ actionButtonText || 'close' }}</button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { MDCSnackbar } from '../../../material-components-web/snackbar';
+import UI_GLOBAL from '../../config/constants';
 
 // Define constants
 const UI_SNACKBAR = {
   EVENT: {
-    CHANGE: 'change'
+    CHANGE: 'change',
+    CLOSED: 'closed'
+  },
+  ACTION_TYPE: {
+    BUTTON: 'button',
+    ICON: 'icon'
+  },
+  timeoutMs: {
+    MIN: 4000,
+    MAX: 10000
   }
 };
 
 export default {
   name: 'ui-snackbar',
   model: {
-    prop: 'active',
+    prop: 'open',
     event: UI_SNACKBAR.EVENT.CHANGE
   },
   props: {
     // States
-    active: {
+    open: {
       type: Boolean,
       default: false
     },
-    // UI attributes
-    alignStart: {
-      type: Boolean,
-      default: false
+    timeoutMs: {
+      type: [Number, String],
+      default: 5000
     },
-    // Showing a message and action
-    message: {
+    labelText: {
       type: String,
       default: ''
     },
-    timeout: {
-      type: [Number, String],
-      default: 2750
+    actionButtonText: String,
+    // UI attributes
+    actionType: {
+      type: String,
+      default: UI_SNACKBAR.ACTION_TYPE.BUTTON
     },
-    actionHandler: Function,
-    actionText: String,
-    multiline: Boolean,
-    actionOnBottom: Boolean,
-    dismiss: {
+    stacked: {
       type: Boolean,
-      default: true
+      default: false
     },
-    // Avoiding Flash-Of-Unstyled-Content (FOUC)
-    fouc: {
+    leading: {
       type: Boolean,
       default: false
     }
@@ -77,66 +78,49 @@ export default {
     className() {
       return {
         'mdc-snackbar': true,
-        'mdc-snackbar--align-start': this.alignStart // tablet and desktop only
+        'mdc-snackbar--stacked': this.stacked,
+        'mdc-snackbar--leading': this.leading // tablet and desktop only
       };
     },
     hasAction() {
-      return !!(this.actionHandler && this.actionText);
+      return !!this.actionButtonText;
     },
-    style() {
-      return this.fouc
-        ? {
-            transform: 'translateY(100%)'
-          }
-        : {};
+    buttonClassName() {
+      return this.actionType === UI_SNACKBAR.ACTION_TYPE.ICON
+        ? [UI_GLOBAL.mdi, 'mdc-icon-button mdc-snackbar__dismiss']
+        : 'mdc-button mdc-snackbar__action';
     }
   },
   watch: {
-    active(val) {
+    open(val) {
       if (val) {
-        this.show();
+        this.$snackbar.open();
       }
     },
-    dismiss(val) {
-      this.$snackbar.dismissesOnAction = val;
+    timeoutMs(val) {
+      if (
+        val >= UI_SNACKBAR.timeoutMs.MIN &&
+        val <= UI_SNACKBAR.timeoutMs.MAX
+      ) {
+        this.$snackbar.timeoutMs = +val;
+      } else {
+        console.warn(
+          'The timeoutMs of the snackbar must be between `4000` and `10000`'
+        );
+      }
+    },
+    labelText(val) {
+      this.$snackbar.labelText = val;
     }
-  },
-  created() {
-    if (this.actionHandler && !this.actionText) {
-      console.warn('`actionHandler` and `actionText` need be settled');
-    }
-    if (!this.multiline && this.actionOnBottom) {
-      console.warn('`actionOnBottom` applies when `multiline` is true');
-    }
+    // TODO: `actionButtonText` in `mdc@0.43.0` has bug
   },
   mounted() {
     this.$snackbar = new MDCSnackbar(this.$el);
 
-    this.$snackbar.listen('MDCSnackbar:hide', () => {
+    this.$snackbar.listen('MDCSnackbar:closed', () => {
       this.$emit(UI_SNACKBAR.EVENT.CHANGE, false);
+      this.$emit(UI_SNACKBAR.EVENT.CLOSED);
     });
-  },
-  methods: {
-    show() {
-      if (this.message) {
-        let dataObj = {
-          message: this.message,
-          timeout: this.timeout,
-          multiline: this.multiline
-        };
-
-        if (this.hasAction) {
-          dataObj.actionHandler = this.actionHandler;
-          dataObj.actionText = this.actionText;
-        }
-
-        if (this.multiline) {
-          dataObj.actionOnBottom = this.actionOnBottom;
-        }
-
-        this.$snackbar.show(dataObj);
-      }
-    }
   }
 };
 </script>

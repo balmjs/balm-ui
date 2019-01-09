@@ -4,22 +4,16 @@ import getType from '../utils/typeof';
 
 const DEFAULT_OPTIONS = {
   className: '',
-  alignStart: false,
-  message: '',
-  timeout: 2750,
-  multiline: false,
-  fouc: false
+  timeoutMs: 5000,
+  labelText: ''
 };
 
 const template = `<ui-snackbar
-  :active="active"
+  :open="open"
   :class="['mdc-toast', options.className]"
-  :alignStart="options.alignStart"
-  :message="options.message"
-  :timeout="options.timeout"
-  :multiline="options.multiline"
-  :fouc="options.fouc"
-  @change="handleChange">
+  :timeoutMs="options.timeoutMs"
+  :labelText="options.labelText"
+  @closed="handleClosed">
 </ui-snackbar>`;
 
 const BalmUI_ToastPlugin = {
@@ -34,12 +28,12 @@ const BalmUI_ToastPlugin = {
             UiSnackbar
           },
           data: {
-            active: false,
+            open: false,
             options
           },
           created() {
             if (getType(customOptions) === 'string') {
-              this.options.message = `${customOptions}`; // To string
+              this.options.labelText = `${customOptions}`; // To string
             } else if (getType(customOptions) === 'object') {
               this.options = Object.assign({}, this.options, customOptions);
             }
@@ -47,13 +41,13 @@ const BalmUI_ToastPlugin = {
             this.$nextTick(() => {
               document.body.appendChild(this.$el);
               setTimeout(() => {
-                this.active = true;
+                this.open = true;
               }, 1);
             });
           },
           methods: {
-            handleChange() {
-              this.active = false;
+            handleClosed() {
+              this.open = false;
               this.$nextTick(() => {
                 document.body.removeChild(this.$el);
                 vm = null;

@@ -1,24 +1,22 @@
 ```html
 <ui-snackbar
-  v-model="active"
-  :message="message"
-  :actionHandler="actionHandler"
-  :multiline="multiline"
-  :actionOnBottom="actionOnBottom"
-  :actionText="actionText"
-  :dismiss="dismiss"></ui-snackbar>
+  v-model="open"
+  :timeoutMs="timeout"
+  :labelText="message"
+  :actionButtonText="actionText"
+  :actionType="actionType ? 'icon' : 'button'"
+></ui-snackbar>
 ```
 
 ```js
 export default {
   data() {
     return {
-      active: false,
+      open: false,
+      timeout: 5000,
       message: 'Hello Snackbar',
-      multiline: false,
-      actionOnBottom: false,
-      actionText: 'Undo',
-      dismiss: true
+      actionText: 'close',
+      actionType: false
     };
   }
 };

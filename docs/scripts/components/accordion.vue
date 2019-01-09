@@ -4,12 +4,10 @@
       <slot name="toggle-button">
         <ui-button>
           <template v-if="show">
-            <ui-icon size="18">code</ui-icon>
-            Hide Code
+            <ui-icon slot="before" size="18">code</ui-icon>Hide Code
           </template>
           <template v-else>
-            <ui-icon size="18">settings_ethernet</ui-icon>
-            Show Code
+            <ui-icon slot="before" size="18">settings_ethernet</ui-icon>Show Code
           </template>
         </ui-button>
       </slot>

@@ -8,9 +8,9 @@
             <h2 :class="[$tt('headline6'), 'demo-card__title']">Our Changing Planet</h2>
             <h3 :class="[$tt('subtitle2'), 'demo-card__subtitle']">by Kurt Wagner</h3>
           </div>
-          <div class="demo-card__secondary">
-            Visit ten places on our planet that are undergoing the biggest changes today.
-          </div>
+          <div
+            class="demo-card__secondary"
+          >Visit ten places on our planet that are undergoing the biggest changes today.</div>
         </ui-card-content>
         <ui-card-actions>
           <ui-card-buttons>
@@ -45,9 +45,8 @@
           </template>
 
           <ui-card-actions fullBleed>
-            <ui-a class="demo-card-action">
-              All Business Headlines
-              <ui-icon>arrow_forward</ui-icon>
+            <ui-a class="demo-card-action">All Business Headlines
+              <ui-icon slot="after">arrow_forward</ui-icon>
             </ui-a>
           </ui-card-actions>
         </ui-card>
@@ -61,9 +60,7 @@
           <ui-card-content class="demo-card__primary-action" v-ripple>
             <ui-card-media square class="demo-card__media">
               <ui-card-media-content class="demo-card__media-content--with-title">
-                <div :class="[$tt('subtitle2'), 'demo-card__media-title']">
-                  Vacation Photos
-                </div>
+                <div :class="[$tt('subtitle2'), 'demo-card__media-title']">Vacation Photos</div>
               </ui-card-media-content>
             </ui-card-media>
           </ui-card-content>
@@ -96,9 +93,12 @@
           <ui-card-actions>
             <ui-card-buttons class="demo-card__action-buttons--text-only">Rate this album</ui-card-buttons>
             <ui-card-icons>
-              <ui-icon v-for="i in 5" :key="i"
+              <ui-icon
+                v-for="i in 5"
+                :key="i"
                 class="demo-card__action-icon--star"
-                :title="`${i} star${ i > 1 ? 's' : '' }`">star_border</ui-icon>
+                :title="`${i} star${ i > 1 ? 's' : '' }`"
+              >star_border</ui-icon>
             </ui-card-icons>
           </ui-card-actions>
         </ui-card>

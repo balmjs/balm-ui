@@ -11,7 +11,7 @@ const callback = fn => {
   let type = getType(fn);
 
   if (type === 'function' || type === 'generatorfunction') {
-    fn();
+    result = fn();
   } else {
     result = fn;
   }

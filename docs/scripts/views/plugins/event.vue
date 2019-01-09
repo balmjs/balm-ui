@@ -1,9 +1,7 @@
 <template>
   <div :class="[$tt('body1'), 'demo--event']">
     <section class="hero plugin">
-      <h2 :class="$tt('headline4')">
-        $balmUI
-      </h2>
+      <h2 :class="$tt('headline4')">$balmUI</h2>
     </section>
 
     <div :class="$tt('body2')">
@@ -53,9 +51,7 @@
               <ui-button raised @click="openDialog">Open dialog</ui-button>
             </p>
             <ui-dialog v-model="open1">
-              <ui-dialog-content>
-                Dialog content
-              </ui-dialog-content>
+              <ui-dialog-content>Dialog content</ui-dialog-content>
               <ui-dialog-actions>
                 <ui-button @click="closeDialog">Close dialog</ui-button>
               </ui-dialog-actions>
@@ -73,7 +69,7 @@
             </p>
             <ui-dialog v-model="open2">
               <ui-dialog-content>
-                <p> Open dialog: `$balmUI.onShow('open')`</p>
+                <p>Open dialog: `$balmUI.onShow('open')`</p>
                 <p>Close dialog: `$balmUI.onHide('open')`</p>
               </ui-dialog-content>
               <ui-dialog-actions>

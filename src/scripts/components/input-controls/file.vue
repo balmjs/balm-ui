@@ -1,10 +1,16 @@
 <template>
   <div :class="className.outer" @click="handleClick">
-    <input v-show="false" type="file" :accept="accept" :multiple="multiple" @change="handleChange($event)">
+    <input
+      v-show="false"
+      type="file"
+      :accept="accept"
+      :multiple="multiple"
+      @change="handleChange($event)"
+    >
     <slot>
       <button :class="className.button">
-        <i :class="UI_GLOBAL.mdi">file_upload</i>
-        {{ text }}
+        <i :class="[UI_GLOBAL.mdi, className.icon]">file_upload</i>
+        <span :class="className.label">{{ text }}</span>
       </button>
     </slot>
   </div>
@@ -105,7 +111,9 @@ export default {
           'mdc-button': true,
           'mdc-button--unelevated': !this.outlined,
           'mdc-button--outlined': this.outlined
-        }
+        },
+        icon: 'mdc-button__icon',
+        label: 'mdc-button__label'
       };
     }
   },

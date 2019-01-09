@@ -11,9 +11,7 @@
       <h4 :class="$tt('headline4')">1. Example</h4>
       <div class="example">
         <h6 :class="$tt('headline6')">1.1 Default Usage</h6>
-        <ui-file
-          accept="image/*"
-          @change="$balmUI.onChange('files1', $event)"></ui-file>
+        <ui-file accept="image/*" @change="$balmUI.onChange('files1', $event)"></ui-file>
         <p>Files: {{ files1 }}</p>
       </div>
       <ui-accordion>
@@ -22,11 +20,7 @@
 
       <div class="example">
         <h6 :class="$tt('headline6')">1.2 Multiple + Preview</h6>
-        <ui-file
-          accept="image/*"
-          multiple
-          preview
-          @change="$balmUI.onChange('files2', $event)"></ui-file>
+        <ui-file accept="image/*" multiple preview @change="$balmUI.onChange('files2', $event)"></ui-file>
         <transition-group class="preview-list" name="list" tag="ul">
           <li class="item" v-for="(file, index) in files2" :key="file.uuid">
             <div class="inner">
@@ -47,25 +41,14 @@
             <div class="inner">
               <span class="preview" :style="setBg(file)"></span>
               <span class="actions">
-                <ui-fab
-                  v-if="!file.uploaded"
-                  icon="file_upload"
-                  mini
-                  @click="upload(file)"></ui-fab>
-                <ui-fab
-                  icon="delete"
-                  mini
-                  @click="remove(index)"></ui-fab>
+                <ui-fab v-if="!file.uploaded" icon="file_upload" mini @click="upload(file)"></ui-fab>
+                <ui-fab icon="delete" mini @click="remove(index)"></ui-fab>
               </span>
             </div>
           </li>
           <li v-if="files3.length < limit" key="add" class="item add-btn">
             <div class="inner">
-              <ui-file
-                accept="image/*"
-                multiple
-                preview
-                @change="onChange">
+              <ui-file accept="image/*" multiple preview @change="onChange">
                 <ui-icon class="add-icon">add</ui-icon>
               </ui-file>
             </div>
@@ -73,8 +56,9 @@
         </transition-group>
         <p>
           <ui-button raised @click="uploadAllFiles">
-            <ui-icon>file_upload</ui-icon>
-            Upload All
+            <template slot="before" slot-scope="{ iconClass }">
+              <ui-icon :class="iconClass">file_upload</ui-icon>
+            </template>Upload All
           </ui-button>
         </p>
       </div>

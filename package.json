@@ -19,10 +19,10 @@
   ],
   "main": "dist/balm-ui.js",
   "scripts": {
-    "mdc": "gulp --silent --mdc",
+    "mdc": "gulp --mdc",
     "dev": "gulp",
     "prod": "gulp -p",
-    "docs": "gulp -p --silent --docs",
+    "docs": "gulp -p --docs",
     "test": "cross-env NODE_ENV=test nyc mocha-webpack --webpack-config config/webpack.config-test.js --require test/setup.js test/index.js"
   },
   "repository": {
@@ -51,7 +51,7 @@
     "axios": "^0.18.0",
     "babel-eslint": "^10.0.1",
     "babel-plugin-istanbul": "^5.1.0",
-    "balm": "^1.0.0-beta.3",
+    "balm": "^1.0.0-beta.4",
     "balm-ui-lite": "^1.5.4",
     "clipboard": "^2.0.4",
     "core-js": "^2.6.3",

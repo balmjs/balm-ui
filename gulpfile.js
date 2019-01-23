@@ -1,14 +1,16 @@
-var balm = require('balm');
-var balmConfig = require('./config/balmrc');
-var env = require('./config/env');
-var constants = require('./config/constants');
-var individual = require('./config/individual');
+const balm = require('balm');
+const balmConfig = require('./config/balmrc');
+const env = require('./config/env');
+const constants = require('./config/constants');
+const individual = require('./config/individual');
 require('./config/update');
 
 balm.config = balmConfig;
-balm.afterTask = 'update:mdc';
+if (env.updateMDC) {
+  balm.afterTask = 'update:mdc';
+}
 
-balm.go(function(mix) {
+balm.go(mix => {
   if (env.buildDocs) {
     mix.copy('./docs/data/*', './dist/data');
     mix.remove('./dist/img/photos');
@@ -16,8 +18,8 @@ balm.go(function(mix) {
     if (env.updateMDC) {
       // clear
       mix.remove([
-        constants.DEV_SOURCE.mdc + '/*',
-        constants.DEV_SOURCE.font + '/*'
+        `${constants.DEV_SOURCE.mdc}/*`,
+        `${constants.DEV_SOURCE.font}/*`
       ]);
 
       // update css reset for docs
@@ -28,25 +30,25 @@ balm.go(function(mix) {
 
       // get Material
       mix.copy(
-        constants.DMC_SOURCE.mdc + '/material-components-web.scss',
+        `${constants.DMC_SOURCE.mdc}/material-components-web.scss`,
         constants.DEV_SOURCE.mdc
       );
-      constants.DMC_COMPONENTS.forEach(function(item) {
+      constants.DMC_COMPONENTS.forEach(item => {
         mix.copy(
-          constants.DMC_SOURCE.material + '/' + item + '/**/{*.scss,*.js}',
-          constants.DEV_SOURCE.mdc + '/' + item
+          `${constants.DMC_SOURCE.material}/${item}/**/{*.scss,*.js}`,
+          `${constants.DEV_SOURCE.mdc}/${item}`
         );
-        mix.remove(constants.DEV_SOURCE.mdc + '/' + item + '/dist');
-        mix.remove(constants.DEV_SOURCE.mdc + '/' + item + '/node_modules');
+        mix.remove(`${constants.DEV_SOURCE.mdc}/${item}/dist`);
+        mix.remove(`${constants.DEV_SOURCE.mdc}/${item}/node_modules`);
       });
 
       // get Material Icons
       mix.copy(
-        constants.DMC_SOURCE.icon + '/iconfont/*.{css,eot,svg,ttf,woff,woff2}',
+        `${constants.DMC_SOURCE.icon}/iconfont/*.{css,eot,svg,ttf,woff,woff2}`,
         constants.DEV_SOURCE.font
       );
     } else {
-      if (balm.config.production) {
+      if (balm.config.isProd) {
         mix.remove('dist/font/*.css');
         // mix.remove('dist/memo.md');
 
@@ -59,10 +61,15 @@ balm.go(function(mix) {
         ]);
 
         // build individual
-        const individualBuild = ['components', 'plugins', 'directives', 'utils'];
+        const individualBuild = [
+          'components',
+          'plugins',
+          'directives',
+          'utils'
+        ];
         individualBuild.forEach(buildName => {
           let buildFiles = individual[buildName].map(item => {
-            return individual.input[buildName] + '/' + item;
+            return `${individual.input[buildName]}/${item}`;
           });
           mix.js(buildFiles, individual.output[buildName]);
         });

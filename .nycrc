@@ -5,11 +5,6 @@
   "include": [
     "src/scripts/**"
   ],
-  "exclude": [
-    "node_modules",
-    "coverage",
-    "test/**/*"
-  ],
   "reporter": [
     "lcov",
     "text",

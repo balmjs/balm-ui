@@ -1,9 +1,9 @@
-var gulp = require('gulp');
-var $replace = require('gulp-replace');
+const { src, dest, task, series } = require('gulp');
+const $replace = require('gulp-replace');
 
-var mdcDir = './src/material-components-web/';
-var level0 = ['material-components-web.scss'];
-var level1 = [
+const mdcDir = './src/material-components-web/';
+const level0 = ['material-components-web.scss'];
+const level1 = [
   'button',
   'card',
   'checkbox',
@@ -39,7 +39,7 @@ var level1 = [
   'toolbar',
   'top-app-bar'
 ];
-var level2 = [
+const level2 = [
   'chips/chip',
   'chips/chip-set',
   // 'drawer/permanent',
@@ -57,42 +57,40 @@ var level2 = [
   'textfield/icon'
 ];
 
-var index = 0;
+let index = 0;
+let updateMDCTasks = [];
 
-level0.forEach(function (file) {
-  gulp.task('update:mdc:' + index, function () {
-    return gulp
-      .src(mdcDir + file)
+level0.forEach(function(file) {
+  let name = `update:mdc:${index}`;
+  task(name, () => {
+    return src(mdcDir + file)
       .pipe($replace('@material/', './'))
-      .pipe(gulp.dest(mdcDir));
+      .pipe(dest(mdcDir));
   });
+  updateMDCTasks.push(name);
   index++;
 });
 
-level1.forEach(function (file) {
-  gulp.task('update:mdc:' + index, function () {
-    return gulp
-      .src(mdcDir + file + '/*')
+level1.forEach(function(file) {
+  let name = `update:mdc:${index}`;
+  task(name, () => {
+    return src(mdcDir + file + '/*')
       .pipe($replace('@material/', '../'))
-      .pipe(gulp.dest(mdcDir + file));
+      .pipe(dest(mdcDir + file));
   });
+  updateMDCTasks.push(name);
   index++;
 });
 
-level2.forEach(function (file) {
-  gulp.task('update:mdc:' + index, function () {
-    return gulp
-      .src(mdcDir + file + '/*')
+level2.forEach(function(file) {
+  let name = `update:mdc:${index}`;
+  task(name, () => {
+    return src(mdcDir + file + '/*')
       .pipe($replace('@material/', '../../'))
-      .pipe(gulp.dest(mdcDir + file));
+      .pipe(dest(mdcDir + file));
   });
+  updateMDCTasks.push(name);
   index++;
 });
 
-var updateMDCTasks = [];
-
-for (var i = 0; i < index; i++) {
-  updateMDCTasks.push('update:mdc:' + i);
-}
-
-gulp.task('update:mdc', updateMDCTasks);
+task('update:mdc', series(updateMDCTasks));

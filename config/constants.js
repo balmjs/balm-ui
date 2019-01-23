@@ -1,14 +1,14 @@
-var CSS_RESET = './node_modules/normalize.css/normalize.css';
-var DMC_SOURCE = {
+const CSS_RESET = './node_modules/normalize.css/normalize.css';
+const DMC_SOURCE = {
   mdc: './node_modules/material-components-web',
   material: './node_modules/@material',
   icon: './node_modules/material-design-icons'
 };
-var DEV_SOURCE = {
+const DEV_SOURCE = {
   mdc: './src/material-components-web',
   font: './src/fonts'
 };
-var DMC_COMPONENTS = [
+const DMC_COMPONENTS = [
   'animation',
   'base',
   'button',

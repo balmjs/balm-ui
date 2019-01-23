@@ -1,7 +1,6 @@
-var balm = require('balm');
-var path = require('path');
-var env = require('./env');
-var VueLoaderPlugin = require('vue-loader/lib/plugin');
+const path = require('path');
+const env = require('./env');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
   roots: {
@@ -10,27 +9,29 @@ module.exports = {
   styles: {
     ext: 'scss',
     autoprefixer: ['> 0.5%', 'last 2 versions', 'Firefox ESR', 'not dead']
-    // includePaths: ['node_modules']
   },
   scripts: {
-    entry: env.useDocs ? {
-      mylib: [
-        'vue',
-        'vue-router',
-        'vue-meta',
-        'axios',
-        'prismjs',
-        'clipboard'
-      ],
-      app: './docs/scripts/main.js'
-    } : {
-      'balm-ui': './src/scripts/index.js',
-      'balm-ui-plus': './src/scripts/plus.js',
-      'balm-ui-migrate': './src/scripts/migrate.js'
-    },
+    entry: env.useDocs
+      ? {
+          mylib: [
+            'vue',
+            'vue-router',
+            'vue-meta',
+            'axios',
+            'prismjs',
+            'clipboard'
+          ],
+          app: './docs/scripts/main.js'
+        }
+      : {
+          'balm-ui': './src/scripts/index.js',
+          'balm-ui-plus': './src/scripts/plus.js',
+          'balm-ui-migrate': './src/scripts/migrate.js'
+        },
     library: 'BalmUI',
     libraryTarget: 'umd',
-    loaders: [{
+    loaders: [
+      {
         test: /\.vue$/,
         loader: 'vue-loader'
       },
@@ -49,13 +50,12 @@ module.exports = {
         drop_console: false
       }
     },
-    include: env.useDocs ? [
-      path.resolve('./src/material-components-web'),
-      path.resolve('./src/scripts')
-    ] : [path.resolve('./src/material-components-web')]
-  },
-  sprites: {
-    svg: ['icon']
+    include: env.useDocs
+      ? [
+          path.resolve('./src/material-components-web'),
+          path.resolve('./src/scripts')
+        ]
+      : [path.resolve('./src/material-components-web')]
   },
   extras: {
     excludes: ['index.js'],

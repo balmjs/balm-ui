@@ -2,29 +2,34 @@
   <!-- Container -->
   <div :class="className.outer">
     <!-- Leading icon (optional) -->
-    <slot name="before"
-      :customIconClass="UI_TEXTFIELD.SLOT_CLASS.customIcon"></slot>
+    <slot name="before" :customIconClass="UI_TEXTFIELD.SLOT_CLASS.customIcon"></slot>
 
     <!-- Textarea -->
-    <textarea v-if="isMultiLine"
-      :id="id"
-      v-model="inputValue"
-      :class="className.input"
-      :placeholder="placeholder"
-      :rows="rows"
-      :cols="cols"
-      :disabled="disabled"
-      :required="required"
-      :aria-controls="helptextId"
-      :aria-describedby="helptextId"
-      v-bind="attrs"
-      @focus="handleFocus"
-      @keydown="handleKeydown"
-      @input="handleInput"
-      @keyup="handleKeyup"
-      @blur="handleBlur"></textarea>
+    <template v-if="isMultiLine">
+      <div v-if="maxlength" class="mdc-text-field-character-counter"></div>
+      <textarea
+        :id="id"
+        v-model="inputValue"
+        :class="className.input"
+        :placeholder="placeholder"
+        :rows="rows"
+        :cols="cols"
+        :disabled="disabled"
+        :required="required"
+        :maxlength="maxlength"
+        :aria-controls="helptextId"
+        :aria-describedby="helptextId"
+        v-bind="attrs"
+        @focus="handleFocus"
+        @keydown="handleKeydown"
+        @input="handleInput"
+        @keyup="handleKeyup"
+        @blur="handleBlur"
+      ></textarea>
+    </template>
     <!-- Input text -->
-    <input v-else
+    <input
+      v-else
       :id="id"
       v-model="inputValue"
       :type="type"
@@ -33,6 +38,7 @@
       :pattern="pattern"
       :disabled="disabled"
       :required="required"
+      :maxlength="maxlength"
       :aria-controls="helptextId"
       :aria-describedby="helptextId"
       v-bind="attrs"
@@ -41,36 +47,36 @@
       @input="handleInput"
       @keyup="handleKeyup"
       @keyup.enter="handleEnter"
-      @blur="handleBlur">
+      @blur="handleBlur"
+    >
     <!-- Label text -->
-    <ui-floating-label v-if="!outlined && hasLabel"
+    <ui-floating-label
+      v-if="hasLabel && !(isMultiLine || outlined)"
       :for="id"
-      :floatAbove="!!inputValue">
+      :floatAbove="!!inputValue"
+    >
       <slot>{{ label }}</slot>
     </ui-floating-label>
 
     <!-- Trailing icon (optional) -->
-    <slot name="after"
-      :customIconClass="UI_TEXTFIELD.SLOT_CLASS.customIcon"></slot>
+    <slot name="after" :customIconClass="UI_TEXTFIELD.SLOT_CLASS.customIcon"></slot>
 
     <!-- Activation indicator -->
-    <template v-if="!(cssOnly || isMultiLine)">
-      <div v-if="outlined" class="mdc-notched-outline">
-        <div class="mdc-notched-outline__leading"></div>
-        <div class="mdc-notched-outline__notch">
-          <ui-floating-label v-if="hasLabel"
-            :for="id"
-            :floatAbove="!!inputValue">
-            <slot>{{ label }}</slot>
-          </ui-floating-label>
-        </div>
-        <div class="mdc-notched-outline__trailing"></div>
+    <div v-if="isMultiLine || outlined" class="mdc-notched-outline">
+      <div class="mdc-notched-outline__leading"></div>
+      <div v-if="hasLabel" class="mdc-notched-outline__notch">
+        <ui-floating-label :for="id" :floatAbove="!!inputValue">
+          <slot>{{ label }}</slot>
+        </ui-floating-label>
       </div>
-      <div v-else class="mdc-line-ripple"></div>
-    </template>
+      <div class="mdc-notched-outline__trailing"></div>
+    </div>
+    <div v-else class="mdc-line-ripple"></div>
 
     <div v-if="expand" class="mdc-textfield__expand">
-      <slot name="expand"><!-- For autocomplete --></slot>
+      <slot name="expand">
+        <!-- For autocomplete -->
+      </slot>
     </div>
   </div>
 </template>
@@ -122,6 +128,7 @@ export default {
       type: Boolean,
       default: false
     },
+    maxlength: [String, Number], // Required for counter
     // <input> attributes
     type: {
       type: String,
@@ -138,10 +145,6 @@ export default {
       default: 20
     },
     // UI attributes
-    cssOnly: {
-      type: Boolean,
-      default: false
-    },
     label: String,
     outlined: {
       type: Boolean,
@@ -164,6 +167,10 @@ export default {
       default: false
     },
     trailingIcon: {
+      type: Boolean,
+      default: false
+    },
+    noLabel: {
       type: Boolean,
       default: false
     },
@@ -193,7 +200,8 @@ export default {
           'mdc-text-field--disabled': this.disabled,
           'mdc-text-field--dense': this.dense,
           'mdc-text-field--with-leading-icon': this.leadingIcon,
-          'mdc-text-field--with-trailing-icon': this.trailingIcon
+          'mdc-text-field--with-trailing-icon': this.trailingIcon,
+          'mdc-text-field--no-label': this.noLabel
         },
         input: 'mdc-text-field__input'
       };
@@ -202,7 +210,7 @@ export default {
       return this.type.toLowerCase() === 'textarea';
     },
     hasLabel() {
-      return this.isMultiLine || !(this.fullwidth || this.placeholder);
+      return !(this.noLabel || this.placeholder || this.fullwidth);
     }
   },
   watch: {
@@ -211,11 +219,7 @@ export default {
     }
   },
   mounted() {
-    const textfield = this.$el;
-
-    if (!this.cssOnly) {
-      this.$textfield = new MDCTextField(textfield);
-    }
+    this.$textfield = new MDCTextField(this.$el);
   },
   methods: {
     handleFocus(event) {

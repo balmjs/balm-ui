@@ -1,8 +1,10 @@
 <template>
   <!-- Helper text (optional) -->
-  <p :id="id" :class="className" aria-hidden="true">
-    <slot></slot>
-  </p>
+  <div class="mdc-text-field-helper-line">
+    <div :id="id" :class="className" aria-hidden="true">
+      <slot></slot>
+    </div>
+  </div>
 </template>
 
 <script>

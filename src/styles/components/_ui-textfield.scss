@@ -1,5 +1,3 @@
-@import '../../material-components-web/textfield/variables';
-
 .mdc-text-field__custom-icon {
   position: absolute;
   top: 16px;
@@ -14,32 +12,5 @@
 .mdc-text-field--with-trailing-icon {
   .mdc-text-field__custom-icon {
     right: 15px;
-  }
-}
-
-// NOTE: bugfix for mdc@0.42.0
-.mdc-text-field--textarea {
-  display: flex;
-  border: 1px solid;
-  &.mdc-text-field--focused:not(.mdc-text-field--disabled) {
-    @include mdc-theme-prop(border-color, $mdc-text-field-focused-label-color);
-
-    .mdc-text-field__input:focus {
-      @include mdc-theme-prop(
-        border-color,
-        $mdc-text-field-focused-label-color
-      );
-    }
-  }
-  .mdc-text-field__input {
-    margin: 0;
-    padding: 32px 16px 16px;
-  }
-  .mdc-floating-label {
-    margin-left: 12px;
-  }
-  .mdc-floating-label--float-above {
-    font-size: 1rem;
-    transform: translateY(-50%) scale(0.923);
   }
 }

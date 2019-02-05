@@ -81,7 +81,6 @@ export default {
     if (this.choice && this.selectedValue > -1) {
       let selectedChip = this.$chipSet.chips[this.selectedValue];
       selectedChip.selected = true;
-      this.$chipSet.selectedChipIds.push(selectedChip.id);
     }
 
     if (this.filter) {
@@ -103,17 +102,13 @@ export default {
       });
     },
     onChange() {
-      this.$nextTick(() => {
+      // TODO: `this.$nextTick` has bug since mdc@0.44.0
+      setTimeout(() => {
         if (this.choice) {
-          let hasMultipleChoice =
-            this.$chipSet.chips.filter(chip => chip.selected).length > 1;
-          if (hasMultipleChoice) {
-            this.$chipSet.chips[this.selectedValue].selected = false;
-          }
-
           let selectedIndex = this.$chipSet.chips.findIndex(
             chip => chip.selected
           );
+
           this.$emit(UI_CHIPSET.EVENT.CHANGE, selectedIndex);
         } else if (this.filter) {
           let selectedIndexes = [];
@@ -125,7 +120,7 @@ export default {
 
           this.$emit(UI_CHIPSET.EVENT.CHANGE, selectedIndexes);
         }
-      });
+      }, 1);
     }
   }
 };

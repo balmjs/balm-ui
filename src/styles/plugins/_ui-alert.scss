@@ -1,9 +1,11 @@
+@import '../../material-components-web/feature-targeting/functions';
 @import '../../material-components-web/button/mixins';
-@import '../../material-components-web/button/variables';
 
 $mdc-alert-width: 480px !default;
 
 .mdc-alert {
+  $query: mdc-feature-all(); // New in mdc@0.44.0
+
   .mdc-dialog__surface {
     width: $mdc-alert-width;
     min-width: $mdc-alert-width;
@@ -11,10 +13,10 @@ $mdc-alert-width: 480px !default;
   .mdc-dialog__actions {
     justify-content: center;
     .mdc-button {
-      @include mdc-button--filled_;
-      @include mdc-button-container-fill-color(primary);
-      @include mdc-button-ink-color(on-primary);
-      @include mdc-states(on-primary);
+      @include mdc-button--filled_($query);
+      @include mdc-button-container-fill-color(primary, $query);
+      @include mdc-button-ink-color(on-primary, $query);
+      @include mdc-states(on-primary, false, $query);
     }
   }
   @media (max-width: 640px) {

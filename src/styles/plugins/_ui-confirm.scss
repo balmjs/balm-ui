@@ -1,12 +1,14 @@
+@import '../../material-components-web/feature-targeting/functions';
 @import '../../material-components-web/button/mixins';
-@import '../../material-components-web/button/variables';
 
-$mdc-alert-width: 480px !default;
+$mdc-confirm-width: 480px !default;
 
 .mdc-confirm {
+  $query: mdc-feature-all(); // New in mdc@0.44.0
+
   .mdc-dialog__surface {
-    width: $mdc-alert-width;
-    min-width: $mdc-alert-width;
+    width: $mdc-confirm-width;
+    min-width: $mdc-confirm-width;
   }
   .mdc-dialog__actions {
     justify-content: center;
@@ -14,21 +16,21 @@ $mdc-alert-width: 480px !default;
       margin: 0 5px;
     }
     .mdc-confirm-primary-button {
-      @include mdc-button--filled_;
-      @include mdc-button-container-fill-color(primary);
-      @include mdc-button-ink-color(on-primary);
-      @include mdc-states(on-primary);
+      @include mdc-button--filled_($query);
+      @include mdc-button-container-fill-color(primary, $query);
+      @include mdc-button-ink-color(on-primary, $query);
+      @include mdc-states(on-primary, false, $query);
     }
     .mdc-confirm-secondary-button {
-      @include mdc-button--outlined_;
-      @include mdc-button-outline-width(2px);
-      @include mdc-button-outline-color(primary);
+      @include mdc-button--outlined_($query);
+      @include mdc-button-outline-width(2px, $query: $query);
+      @include mdc-button-outline-color(primary, $query);
     }
   }
   @media (max-width: 640px) {
     .mdc-dialog__surface {
       width: calc(100% - 30px);
-      min-width: $mdc-alert-width / 2;
+      min-width: $mdc-confirm-width / 2;
     }
   }
 }

@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2018 Google Inc.
+ * Copyright 2019 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,34 +21,14 @@
  * THE SOFTWARE.
  */
 
-import MDCDismissibleDrawerFoundation from '../dismissible/foundation';
+/** @enum {string} */
+const cssClasses = {
+  ROOT: 'mdc-text-field-character-counter',
+};
 
-/**
- * @extends {MDCDismissibleDrawerFoundation}
- */
-class MDCModalDrawerFoundation extends MDCDismissibleDrawerFoundation {
-  /**
-   * Called when drawer finishes open animation.
-   * @override
-   */
-  opened() {
-    this.adapter_.trapFocus();
-  }
+/** @enum {string} */
+const strings = {
+  ROOT_SELECTOR: `.${cssClasses.ROOT}`,
+};
 
-  /**
-   * Called when drawer finishes close animation.
-   * @override
-   */
-  closed() {
-    this.adapter_.releaseFocus();
-  }
-
-  /**
-   * Handles click event on scrim.
-   */
-  handleScrimClick() {
-    this.close();
-  }
-}
-
-export default MDCModalDrawerFoundation;
+export {strings, cssClasses};

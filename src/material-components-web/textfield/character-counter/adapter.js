@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2018 Google Inc.
+ * Copyright 2019 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,34 +21,24 @@
  * THE SOFTWARE.
  */
 
-import MDCDismissibleDrawerFoundation from '../dismissible/foundation';
+/* eslint no-unused-vars: [2, {"args": "none"}] */
 
 /**
- * @extends {MDCDismissibleDrawerFoundation}
+ * Adapter for MDC Text Field Character Counter.
+ *
+ * Defines the shape of the adapter expected by the foundation. Implement this
+ * adapter to integrate the TextField character counter into your framework. See
+ * https://github.com/material-components/material-components-web/blob/master/docs/authoring-components.md
+ * for more information.
+ *
+ * @record
  */
-class MDCModalDrawerFoundation extends MDCDismissibleDrawerFoundation {
+class MDCTextFieldCharacterCounterAdapter {
   /**
-   * Called when drawer finishes open animation.
-   * @override
+   * Sets the text content of character counter element.
+   * @param {string} content
    */
-  opened() {
-    this.adapter_.trapFocus();
-  }
-
-  /**
-   * Called when drawer finishes close animation.
-   * @override
-   */
-  closed() {
-    this.adapter_.releaseFocus();
-  }
-
-  /**
-   * Handles click event on scrim.
-   */
-  handleScrimClick() {
-    this.close();
-  }
+  setContent(content) {}
 }
 
-export default MDCModalDrawerFoundation;
+export default MDCTextFieldCharacterCounterAdapter;

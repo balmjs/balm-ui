@@ -1,6 +1,6 @@
 {
   "name": "balm-ui",
-  "version": "0.13.1",
+  "version": "0.14.0",
   "description": "Next Generation Material UI for Vue.js",
   "homepage": "https://material.balmjs.com/",
   "author": {
@@ -66,21 +66,21 @@
     "jsdom": "^13.2.0",
     "jsdom-global": "^3.0.2",
     "markdown-loader": "^5.0.0",
-    "material-components-web": "^0.43.1",
+    "material-components-web": "^0.44.0",
     "material-design-icons": "^3.0.1",
     "mocha": "^5.2.0",
     "mocha-webpack": "^2.0.0-beta.0",
     "normalize.css": "^8.0.1",
-    "nyc": "^13.1.0",
+    "nyc": "^13.2.0",
     "prettier": "^1.16.4",
     "prismjs": "^1.15.0",
     "sinon": "^7.2.3",
-    "vue": "^2.5.22",
+    "vue": "^2.6.1",
     "vue-i18n": "^8.8.0",
     "vue-loader": "^15.6.2",
     "vue-meta": "^1.5.8",
     "vue-router": "^3.0.2",
-    "vue-template-compiler": "^2.5.22",
+    "vue-template-compiler": "^2.6.1",
     "webpack-node-externals": "^1.7.2"
   },
   "peerDependencies": {

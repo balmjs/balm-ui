@@ -37,7 +37,8 @@ const level1 = [
   'tab-scroller',
   'textfield',
   'toolbar',
-  'top-app-bar'
+  'top-app-bar',
+  'typography'
 ];
 const level2 = [
   'chips/chip',
@@ -54,7 +55,8 @@ const level2 = [
   // 'tabs/tab-bar',
   // 'tabs/tab-bar-scroller',
   'textfield/helper-text',
-  'textfield/icon'
+  'textfield/icon',
+  'textfield/character-counter'
 ];
 
 let index = 0;

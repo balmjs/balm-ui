@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2018 Google Inc.
+ * Copyright 2019 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,34 +21,42 @@
  * THE SOFTWARE.
  */
 
-import MDCDismissibleDrawerFoundation from '../dismissible/foundation';
+import MDCComponent from '../../base/component';
+
+import MDCTextFieldCharacterCounterAdapter from './adapter';
+import MDCTextFieldCharacterCounterFoundation from './foundation';
 
 /**
- * @extends {MDCDismissibleDrawerFoundation}
+ * @extends {MDCComponent<!MDCTextFieldCharacterCounterFoundation>}
+ * @final
  */
-class MDCModalDrawerFoundation extends MDCDismissibleDrawerFoundation {
+class MDCTextFieldCharacterCounter extends MDCComponent {
   /**
-   * Called when drawer finishes open animation.
-   * @override
+   * @param {!Element} root
+   * @return {!MDCTextFieldCharacterCounter}
    */
-  opened() {
-    this.adapter_.trapFocus();
+  static attachTo(root) {
+    return new MDCTextFieldCharacterCounter(root);
   }
 
   /**
-   * Called when drawer finishes close animation.
-   * @override
+   * @return {!MDCTextFieldCharacterCounterFoundation}
    */
-  closed() {
-    this.adapter_.releaseFocus();
+  get foundation() {
+    return this.foundation_;
   }
 
   /**
-   * Handles click event on scrim.
+   * @return {!MDCTextFieldCharacterCounterFoundation}
    */
-  handleScrimClick() {
-    this.close();
+  getDefaultFoundation() {
+    return new MDCTextFieldCharacterCounterFoundation(
+      /** @type {!MDCTextFieldCharacterCounterAdapter} */ (Object.assign({
+        setContent: (content) => {
+          this.root_.textContent = content;
+        },
+      })));
   }
 }
 
-export default MDCModalDrawerFoundation;
+export {MDCTextFieldCharacterCounter, MDCTextFieldCharacterCounterFoundation};

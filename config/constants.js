@@ -20,6 +20,7 @@ const DMC_COMPONENTS = [
   'drawer',
   'elevation',
   'fab',
+  'feature-targeting', // New in mdc@0.44.0
   'floating-label',
   'form-field',
   'grid-list',

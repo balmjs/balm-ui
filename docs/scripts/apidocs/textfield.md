@@ -10,11 +10,11 @@
 | id              | `String`            | `null`   | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`.                                   |
 | placeholder     | `String`            | `null`   | The _placeholder_ attribute of the `<input>`.                                                                   |
 | required        | `Boolean`           | `false`  | The _required_ attribute of the `<input>`.                                                                      |
+| maxlength       | `Number`, `String`  | `null`   | The _maxlength_ attribute of the `<input>` and `<textarea>`. (Required for character counter)                   |
 | type            | `String`            | `'text'` | Text field supported types: `text`, `number`, `password` and `textarea`.                                        |
 | pattern         | `String`            | `null`   | The _pattern_ attribute of the `<input>`.                                                                       |
 | rows            | `Number`, `String`  | `1`      | The _rows_ attribute of the `<textarea>`.                                                                       |
 | cols            | `Number`, `String`  | `20`     | The _cols_ attribute of the `<textarea>`.                                                                       |
-| cssOnly         | `Boolean`           | `false`  | Ripple effect is disabled.                                                                                      |
 | label           | `String`            | `null`   | A text caption or description for the text field, which use the input's `placeholder` attribute instead.        |
 | outlined        | `Boolean`           | `false`  | Styles the text field as an outlined text field.                                                                |
 | fullwidth       | `Boolean`           | `false`  | Styles the text field as a full width text field.                                                               |
@@ -22,6 +22,7 @@
 | dense           | `Boolean`           | `false`  | Styles the text field as a dense text field.                                                                    |
 | leadingIcon     | `Boolean`, `String` | `false`  | Styles the text field as a text field with a leading icon. Applicable only for the box or outlined text field.  |
 | trailingIcon    | `Boolean`, `String` | `false`  | Styles the text field as a text field with a trailing icon. Applicable only for the box or outlined text field. |
+| noLabel         | `Boolean`           | `false`  | Styles the text field that has no label.                                                                        |
 | helptextId      | `String`            | `null`   | The _id_ attribute of the `<ui-textfield-helptext>`.                                                            |
 | attrs           | `Object`            | `null`   | Other attributes for `<input>` or `<textarea>`.                                                                 |
 

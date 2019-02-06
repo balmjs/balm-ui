@@ -67,9 +67,9 @@
             :disabled="controls.disabled"
             :dense="controls.dense"
             :required="controls.required"
+            :maxlength="controls.max ? 10 : null"
             :attrs="{
-              minlength: controls.min ? 8 : 0,
-              maxlength: controls.max ? 10 : -1
+              minlength: controls.min ? 8 : 0
             }"
           >Your Name</ui-textfield>
           <ui-textfield-helptext id="name-validation-message" validMsg>
@@ -222,7 +222,7 @@
       </section>
 
       <section class="example">
-        <h3>1.7 Full-Width Text Field and Textarea</h3>
+        <h3>1.7 Full-Width Text Field and Textarea with counter</h3>
         <div id="demo-fullwidth-wrapper">
           <ui-textfield
             v-model="title"
@@ -263,6 +263,7 @@
       <ui-apidocs name="textfield"></ui-apidocs>
       <ui-apidocs name="textfield-helptext"></ui-apidocs>
       <ui-apidocs name="textfield-icon"></ui-apidocs>
+      <ui-apidocs name="textfield-counter"></ui-apidocs>
     </div>
   </div>
 </template>

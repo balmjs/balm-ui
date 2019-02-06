@@ -128,7 +128,7 @@ export default {
       type: Boolean,
       default: false
     },
-    maxlength: [String, Number], // Required for counter
+    maxlength: [Number, String], // Required for counter
     // <input> attributes
     type: {
       type: String,

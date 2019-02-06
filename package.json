@@ -60,7 +60,7 @@
     "eslint-config-prettier": "^4.0.0",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-vue": "^5.1.0",
-    "expect": "^24.0.0",
+    "expect": "^24.1.0",
     "font-awesome": "^4.7.0",
     "gulp": "^4.0.0",
     "jsdom": "^13.2.0",
@@ -75,12 +75,12 @@
     "prettier": "^1.16.4",
     "prismjs": "^1.15.0",
     "sinon": "^7.2.3",
-    "vue": "^2.6.1",
+    "vue": "^2.6.2",
     "vue-i18n": "^8.8.0",
     "vue-loader": "^15.6.2",
     "vue-meta": "^1.5.8",
     "vue-router": "^3.0.2",
-    "vue-template-compiler": "^2.6.1",
+    "vue-template-compiler": "^2.6.2",
     "webpack-node-externals": "^1.7.2"
   },
   "peerDependencies": {

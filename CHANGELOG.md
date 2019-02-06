@@ -1,6 +1,34 @@
 # BalmUI ChangeLog
 
-## 0.13.1 (Coming soon)
+## 0.14.0 (2019.02.06)
+
+> :tada: Happy Lunar New Year
+
+> :rocket: [BalmJS](https://balmjs.com/)@1.0 released
+
+### Features
+
+- update `mdc@0.44.0` and `balm@1.0`
+- new component `<ui-textfield-counter>`
+- `<ui-textfield>`: add `noLabel` and `maxlength` props
+
+### Chores
+
+- `<ui-textfield-helptext>`: update template
+
+### Bug Fixes
+
+- `$confirm`: fix some css bug
+- `<ui-chip-set>`: choice mode bugfix
+- `<ui-top-app-bar>`: short mode bugfix
+
+### BREAKING CHANGES
+
+- `<ui-textfield>`: remove `cssOnly` props
+
+---
+
+## 0.13.1 (2019.01.23)
 
 > Use `balm@next` for experimental
 

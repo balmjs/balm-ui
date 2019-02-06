@@ -2,12 +2,13 @@
   <!-- Container -->
   <header :class="className">
     <div class="mdc-top-app-bar__row">
-      <section
-        class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
         <!-- Navigation icon (optional) / Close button (instead of a navigation icon) -->
-        <a :class="[UI_TOP_APP_BAR.SLOT_CLASS.icon, 'mdc-top-app-bar__navigation-icon']"
+        <a
+          :class="[UI_TOP_APP_BAR.SLOT_CLASS.icon, 'mdc-top-app-bar__navigation-icon']"
           :id="navIcon === UI_TOP_APP_BAR.EVENT.CLOSE ? null : navId"
-          @click="handleClick">
+          @click="handleClick"
+        >
           <slot name="nav-icon">{{ navIcon }}</slot>
         </a>
         <!-- Title (optional) / Contextual title -->
@@ -15,15 +16,14 @@
           <slot>{{ title }}</slot>
         </span>
       </section>
-      <section
-        class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end"
-        role="toolbar">
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
         <!-- Action items (optional) / Contextual actions -->
         <!-- Overflow menu (optional, or "short" mode only) -->
-        <slot name="toolbar"
+        <slot
+          name="toolbar"
           :iconClass="UI_TOP_APP_BAR.SLOT_CLASS.icon"
-          :itemClass="UI_TOP_APP_BAR.SLOT_CLASS.item">
-        </slot>
+          :itemClass="UI_TOP_APP_BAR.SLOT_CLASS.item"
+        ></slot>
       </section>
     </div>
   </header>
@@ -137,9 +137,8 @@ export default {
   methods: {
     init() {
       this.$nextTick(() => {
-        this.$topAppBar = new MDCTopAppBar(this.$el);
-
         this.createFixedAdjustElement();
+        this.$topAppBar = new MDCTopAppBar(this.$el);
       });
     },
     reset() {
@@ -149,7 +148,6 @@ export default {
     createFixedAdjustElement() {
       if (this.contentSelector) {
         this.contentElement = document.querySelector(this.contentSelector);
-        this.$topAppBar.setScrollTarget(this.contentElement);
 
         if (
           !this.contentElement.classList.contains(UI_TOP_APP_BAR.ADJUST.DEFAULT)

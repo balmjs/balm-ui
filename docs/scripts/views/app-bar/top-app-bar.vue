@@ -7,21 +7,25 @@
       :fixed="controls.fixed"
       :prominent="controls.prominent"
       :short="controls.short"
-      :alwaysClosed="controls.alwaysCollapsed">
-      Hello BalmUI
+      :alwaysClosed="controls.alwaysCollapsed"
+    >Hello BalmUI
       <template slot="toolbar" slot-scope="{ iconClass, itemClass }">
-        <a v-if="!controls.short && !controls.noAction" :class="[iconClass, itemClass]">file_download</a>
+        <a
+          v-if="!controls.short && !controls.noAction"
+          :class="[iconClass, itemClass]"
+        >file_download</a>
         <ui-menu-anchor v-if="controls.short">
           <a :class="[iconClass, itemClass]" @click="$balmUI.onOpen('showMoreActions')">more_vert</a>
-          <ui-menu v-model="showMoreActions"
+          <ui-menu
+            v-model="showMoreActions"
             :items="[
               'Back',
               'Forward',
               'Reload',
               '-',
               'Settings'
-            ]">
-          </ui-menu>
+            ]"
+          ></ui-menu>
         </ui-menu-anchor>
       </template>
     </ui-top-app-bar>
@@ -32,9 +36,7 @@
       </ui-drawer-header>
       <ui-drawer-content>
         <ui-list-nav>
-          <ui-item-a @click.native="() => { $router.back(); }" firstIcon="arrow_back">
-            Back
-          </ui-item-a>
+          <ui-item-a @click.native="() => { $router.back(); }" firstIcon="arrow_back">Back</ui-item-a>
           <ui-list-divider></ui-list-divider>
         </ui-list-nav>
       </ui-drawer-content>
@@ -53,9 +55,11 @@
           <ui-markdown :text="code[0]"></ui-markdown>
 
           <h4 :class="$tt('headline4')">1. Example</h4>
-          <p v-for="i in 12" :key="i" class="demo-paragraph">
-            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.
-          </p>
+          <p
+            v-for="i in 12"
+            :key="i"
+            class="demo-paragraph"
+          >Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.</p>
           <ui-accordion>
             <ui-markdown :text="code[1]"></ui-markdown>
           </ui-accordion>
@@ -66,7 +70,11 @@
       </div>
     </main>
 
-    <div :class="['demo-controls-container', {'show': showControls}]" dir="ltr" v-shadow.transition="showControls ? 4 : [4, 12]">
+    <div
+      :class="['demo-controls-container', {'show': showControls}]"
+      dir="ltr"
+      v-shadow.transition="showControls ? 4 : [4, 12]"
+    >
       <template v-if="showControls">
         <h3 :class="$tt('headline6')">
           <span>Demo Controls</span>
@@ -76,54 +84,46 @@
           <div class="demo-col">
             <span :class="[$tt('subtitle1'), 'demo-options-heading']">Common Options</span>
             <div>
-              <ui-checkbox id="rtl-checkbox" v-model="controls.rtl">
-                RTL
-              </ui-checkbox>
+              <ui-checkbox id="rtl-checkbox" v-model="controls.rtl">RTL</ui-checkbox>
             </div>
             <div>
-              <ui-checkbox id="no-action-item-checkbox" v-model="controls.noAction">
-                No Action Item
-              </ui-checkbox>
+              <ui-checkbox id="no-action-item-checkbox" v-model="controls.noAction">No Action Item</ui-checkbox>
             </div>
           </div>
           <div class="demo-col">
             <span :class="[$tt('subtitle1'), 'demo-options-heading']">Top App Bar Specific Options</span>
             <div>
-              <ui-checkbox id="dense-checkbox" v-model="controls.dense">
-                Dense
-              </ui-checkbox>
+              <ui-checkbox id="dense-checkbox" v-model="controls.dense">Dense</ui-checkbox>
             </div>
             <div>
-              <ui-checkbox id="fixed-checkbox" v-model="controls.fixed">
-                Fixed
-              </ui-checkbox>
+              <ui-checkbox id="fixed-checkbox" v-model="controls.fixed">Fixed</ui-checkbox>
             </div>
             <div>
-              <ui-checkbox id="prominent-checkbox" v-model="controls.prominent">
-                Prominent
-              </ui-checkbox>
+              <ui-checkbox id="prominent-checkbox" v-model="controls.prominent">Prominent</ui-checkbox>
             </div>
           </div>
           <div class="demo-col">
-            <span :class="[$tt('subtitle1'), 'demo-options-heading']">Short Top App Bar Specific Options</span>
+            <span
+              :class="[$tt('subtitle1'), 'demo-options-heading']"
+            >Short Top App Bar Specific Options</span>
             <div>
-              <ui-checkbox id="short-checkbox" v-model="controls.short"
-                :disabled="controls.dense || controls.fixed || controls.prominent">
-                Short
-              </ui-checkbox>
+              <ui-checkbox
+                id="short-checkbox"
+                v-model="controls.short"
+                :disabled="controls.dense || controls.fixed || controls.prominent"
+              >Short</ui-checkbox>
             </div>
             <div>
-              <ui-checkbox id="always-collapsed-checkbox" v-model="controls.alwaysCollapsed"
-                :disabled="!controls.short">
-                Always Collapsed (Short Only)
-              </ui-checkbox>
+              <ui-checkbox
+                id="always-collapsed-checkbox"
+                v-model="controls.alwaysCollapsed"
+                :disabled="!controls.short"
+              >Always Collapsed (Short Only)</ui-checkbox>
             </div>
           </div>
         </div>
       </template>
-      <ui-icon v-else
-        title="Show Controls"
-        @click="$balmUI.onShow('showControls')">add</ui-icon>
+      <ui-icon v-else title="Show Controls" @click="$balmUI.onShow('showControls')">add</ui-icon>
     </div>
   </div>
 </template>

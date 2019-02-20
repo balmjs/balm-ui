@@ -1,5 +1,13 @@
 # BalmUI ChangeLog
 
+## 0.14.1 (2019.02.20)
+
+### Features
+
+- update `mdc@0.44.1`
+
+---
+
 ## 0.14.0 (2019.02.06)
 
 > :tada: Happy Lunar New Year

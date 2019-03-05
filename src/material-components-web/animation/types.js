@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2017 Google Inc.
+ * Copyright 2019 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,27 +20,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-/* eslint-disable no-unused-vars */
-import {MDCRipple} from '../ripple/index';
-/* eslint-enable no-unused-vars */
-
-/**
- * @typedef {{
- *   checked: boolean,
- *   indeterminate: boolean,
- *   disabled: boolean,
- *   value: ?string
- * }}
- */
-let MDCSelectionControlState;
-
-/**
- * @record
- */
-class MDCSelectionControl {
-  /** @return {?MDCRipple} */
-  get ripple() {}
-}
-
-export {MDCSelectionControlState, MDCSelectionControl};
+//# sourceMappingURL=types.js.map

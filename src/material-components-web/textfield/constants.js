@@ -20,45 +20,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-/** @enum {string} */
-const strings = {
-  ARIA_CONTROLS: 'aria-controls',
-  INPUT_SELECTOR: '.mdc-text-field__input',
-  LABEL_SELECTOR: '.mdc-floating-label',
-  ICON_SELECTOR: '.mdc-text-field__icon',
-  OUTLINE_SELECTOR: '.mdc-notched-outline',
-  LINE_RIPPLE_SELECTOR: '.mdc-line-ripple',
+var strings = {
+    ARIA_CONTROLS: 'aria-controls',
+    ICON_SELECTOR: '.mdc-text-field__icon',
+    INPUT_SELECTOR: '.mdc-text-field__input',
+    LABEL_SELECTOR: '.mdc-floating-label',
+    LINE_RIPPLE_SELECTOR: '.mdc-line-ripple',
+    OUTLINE_SELECTOR: '.mdc-notched-outline',
 };
-
-/** @enum {string} */
-const cssClasses = {
-  ROOT: 'mdc-text-field',
-  DISABLED: 'mdc-text-field--disabled',
-  DENSE: 'mdc-text-field--dense',
-  FOCUSED: 'mdc-text-field--focused',
-  INVALID: 'mdc-text-field--invalid',
-  TEXTAREA: 'mdc-text-field--textarea',
-  OUTLINED: 'mdc-text-field--outlined',
-  WITH_LEADING_ICON: 'mdc-text-field--with-leading-icon',
-  HELPER_LINE: 'mdc-text-field-helper-line',
+var cssClasses = {
+    DENSE: 'mdc-text-field--dense',
+    DISABLED: 'mdc-text-field--disabled',
+    FOCUSED: 'mdc-text-field--focused',
+    HELPER_LINE: 'mdc-text-field-helper-line',
+    INVALID: 'mdc-text-field--invalid',
+    OUTLINED: 'mdc-text-field--outlined',
+    ROOT: 'mdc-text-field',
+    TEXTAREA: 'mdc-text-field--textarea',
+    WITH_LEADING_ICON: 'mdc-text-field--with-leading-icon',
 };
-
-/** @enum {number} */
-const numbers = {
-  LABEL_SCALE: 0.75,
-  DENSE_LABEL_SCALE: 0.923,
+var numbers = {
+    DENSE_LABEL_SCALE: 0.923,
+    LABEL_SCALE: 0.75,
 };
-
-// whitelist based off of https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation
-// under section: `Validation-related attributes`
-const VALIDATION_ATTR_WHITELIST = [
-  'pattern', 'min', 'max', 'required', 'step', 'minlength', 'maxlength',
+/**
+ * Whitelist based off of https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation
+ * under the "Validation-related attributes" section.
+ */
+var VALIDATION_ATTR_WHITELIST = [
+    'pattern', 'min', 'max', 'required', 'step', 'minlength', 'maxlength',
 ];
-
-// Label should always float for these types as they show some UI even if value is empty.
-const ALWAYS_FLOAT_TYPES = [
-  'color', 'date', 'datetime-local', 'month', 'range', 'time', 'week',
+/**
+ * Label should always float for these types as they show some UI even if value is empty.
+ */
+var ALWAYS_FLOAT_TYPES = [
+    'color', 'date', 'datetime-local', 'month', 'range', 'time', 'week',
 ];
-
-export {cssClasses, strings, numbers, VALIDATION_ATTR_WHITELIST, ALWAYS_FLOAT_TYPES};
+export { cssClasses, strings, numbers, VALIDATION_ATTR_WHITELIST, ALWAYS_FLOAT_TYPES };
+//# sourceMappingURL=constants.js.map

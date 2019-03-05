@@ -20,15 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-/** @enum {string} */
-const cssClasses = {
-  ROOT: 'mdc-text-field-character-counter',
+var cssClasses = {
+    ROOT: 'mdc-text-field-character-counter',
 };
-
-/** @enum {string} */
-const strings = {
-  ROOT_SELECTOR: `.${cssClasses.ROOT}`,
+var strings = {
+    ROOT_SELECTOR: "." + cssClasses.ROOT,
 };
-
-export {strings, cssClasses};
+export { strings, cssClasses };
+//# sourceMappingURL=constants.js.map

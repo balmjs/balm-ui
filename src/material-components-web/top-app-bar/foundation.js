@@ -20,80 +20,98 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import {strings, cssClasses, numbers} from './constants';
-import MDCTopAppBarAdapter from './adapter';
-import MDCFoundation from '../base/foundation';
-
-/**
- * @extends {MDCFoundation<!MDCTopAppBarAdapter>}
- */
-class MDCTopAppBarBaseFoundation extends MDCFoundation {
-  /** @return enum {string} */
-  static get strings() {
-    return strings;
-  }
-
-  /** @return enum {string} */
-  static get cssClasses() {
-    return cssClasses;
-  }
-
-  /** @return enum {number} */
-  static get numbers() {
-    return numbers;
-  }
-
-  /**
-   * {@see MDCTopAppBarAdapter} for typing information on parameters and return
-   * types.
-   * @return {!MDCTopAppBarAdapter}
-   */
-  static get defaultAdapter() {
-    return /** @type {!MDCTopAppBarAdapter} */ ({
-      hasClass: (/* className: string */) => {},
-      addClass: (/* className: string */) => {},
-      removeClass: (/* className: string */) => {},
-      setStyle: (/* property: string, value: string */) => {},
-      getTopAppBarHeight: () => {},
-      registerNavigationIconInteractionHandler: (/* type: string, handler: EventListener */) => {},
-      deregisterNavigationIconInteractionHandler: (/* type: string, handler: EventListener */) => {},
-      notifyNavigationIconClicked: () => {},
-      registerScrollHandler: (/* handler: EventListener */) => {},
-      deregisterScrollHandler: (/* handler: EventListener */) => {},
-      registerResizeHandler: (/* handler: EventListener */) => {},
-      deregisterResizeHandler: (/* handler: EventListener */) => {},
-      getViewportScrollY: () => /* number */ 0,
-      getTotalActionItems: () => /* number */ 0,
+import * as tslib_1 from "tslib";
+import { MDCFoundation } from '../base/foundation';
+import { cssClasses, numbers, strings } from './constants';
+var MDCTopAppBarBaseFoundation = /** @class */ (function (_super) {
+    tslib_1.__extends(MDCTopAppBarBaseFoundation, _super);
+    /* istanbul ignore next: optional argument is not a branch statement */
+    function MDCTopAppBarBaseFoundation(adapter) {
+        var _this = _super.call(this, tslib_1.__assign({}, MDCTopAppBarBaseFoundation.defaultAdapter, adapter)) || this;
+        _this.navClickHandler_ = function () { return _this.adapter_.notifyNavigationIconClicked(); };
+        return _this;
+    }
+    Object.defineProperty(MDCTopAppBarBaseFoundation, "strings", {
+        get: function () {
+            return strings;
+        },
+        enumerable: true,
+        configurable: true
     });
-  }
-
-  /**
-   * @param {!MDCTopAppBarAdapter} adapter
-   */
-  constructor(/** @type {!MDCTopAppBarAdapter} */ adapter) {
-    super(Object.assign(MDCTopAppBarBaseFoundation.defaultAdapter, adapter));
-
-    this.navClickHandler_ = () => this.adapter_.notifyNavigationIconClicked();
-
-    this.scrollHandler_ = () => {};
-  }
-
-  init() {
-    this.adapter_.registerNavigationIconInteractionHandler('click', this.navClickHandler_);
-  }
-
-  destroy() {
-    this.adapter_.deregisterNavigationIconInteractionHandler('click', this.navClickHandler_);
-  }
-
-  initScrollHandler() {
-    this.adapter_.registerScrollHandler(this.scrollHandler_);
-  }
-
-  destroyScrollHandler() {
-    this.adapter_.deregisterScrollHandler(this.scrollHandler_);
-  }
-}
-
+    Object.defineProperty(MDCTopAppBarBaseFoundation, "cssClasses", {
+        get: function () {
+            return cssClasses;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTopAppBarBaseFoundation, "numbers", {
+        get: function () {
+            return numbers;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTopAppBarBaseFoundation, "defaultAdapter", {
+        /**
+         * See {@link MDCTopAppBarAdapter} for typing information on parameters and return types.
+         */
+        get: function () {
+            // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+            return {
+                addClass: function () { return undefined; },
+                removeClass: function () { return undefined; },
+                hasClass: function () { return false; },
+                setStyle: function () { return undefined; },
+                getTopAppBarHeight: function () { return 0; },
+                registerNavigationIconInteractionHandler: function () { return undefined; },
+                deregisterNavigationIconInteractionHandler: function () { return undefined; },
+                notifyNavigationIconClicked: function () { return undefined; },
+                registerScrollHandler: function () { return undefined; },
+                deregisterScrollHandler: function () { return undefined; },
+                registerResizeHandler: function () { return undefined; },
+                deregisterResizeHandler: function () { return undefined; },
+                getViewportScrollY: function () { return 0; },
+                getTotalActionItems: function () { return 0; },
+            };
+            // tslint:enable:object-literal-sort-keys
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCTopAppBarBaseFoundation.prototype.init = function () {
+        this.initScrollHandler();
+        this.initResizeHandler_();
+        this.adapter_.registerNavigationIconInteractionHandler('click', this.navClickHandler_);
+    };
+    MDCTopAppBarBaseFoundation.prototype.destroy = function () {
+        this.destroyScrollHandler();
+        this.destroyResizeHandler_();
+        this.adapter_.deregisterNavigationIconInteractionHandler('click', this.navClickHandler_);
+    };
+    MDCTopAppBarBaseFoundation.prototype.initScrollHandler = function () {
+        if (this.scrollHandler_) {
+            this.adapter_.registerScrollHandler(this.scrollHandler_);
+        }
+    };
+    MDCTopAppBarBaseFoundation.prototype.destroyScrollHandler = function () {
+        if (this.scrollHandler_) {
+            this.adapter_.deregisterScrollHandler(this.scrollHandler_);
+        }
+    };
+    MDCTopAppBarBaseFoundation.prototype.initResizeHandler_ = function () {
+        if (this.resizeHandler_) {
+            this.adapter_.registerResizeHandler(this.resizeHandler_);
+        }
+    };
+    MDCTopAppBarBaseFoundation.prototype.destroyResizeHandler_ = function () {
+        if (this.resizeHandler_) {
+            this.adapter_.deregisterResizeHandler(this.resizeHandler_);
+        }
+    };
+    return MDCTopAppBarBaseFoundation;
+}(MDCFoundation));
+export { MDCTopAppBarBaseFoundation };
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
 export default MDCTopAppBarBaseFoundation;
+//# sourceMappingURL=foundation.js.map

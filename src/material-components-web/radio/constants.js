@@ -20,16 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-/** @enum {string} */
-const strings = {
-  NATIVE_CONTROL_SELECTOR: '.mdc-radio__native-control',
+var strings = {
+    NATIVE_CONTROL_SELECTOR: '.mdc-radio__native-control',
 };
-
-/** @enum {string} */
-const cssClasses = {
-  ROOT: 'mdc-radio',
-  DISABLED: 'mdc-radio--disabled',
+var cssClasses = {
+    DISABLED: 'mdc-radio--disabled',
+    ROOT: 'mdc-radio',
 };
-
-export {strings, cssClasses};
+export { strings, cssClasses };
+//# sourceMappingURL=constants.js.map

@@ -20,42 +20,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-const cssClasses = {
-  OPEN: 'mdc-dialog--open',
-  OPENING: 'mdc-dialog--opening',
-  CLOSING: 'mdc-dialog--closing',
-  SCROLLABLE: 'mdc-dialog--scrollable',
-  STACKED: 'mdc-dialog--stacked',
-  SCROLL_LOCK: 'mdc-dialog-scroll-lock',
+export var cssClasses = {
+    CLOSING: 'mdc-dialog--closing',
+    OPEN: 'mdc-dialog--open',
+    OPENING: 'mdc-dialog--opening',
+    SCROLLABLE: 'mdc-dialog--scrollable',
+    SCROLL_LOCK: 'mdc-dialog-scroll-lock',
+    STACKED: 'mdc-dialog--stacked',
 };
-
-const strings = {
-  SCRIM_SELECTOR: '.mdc-dialog__scrim',
-  CONTAINER_SELECTOR: '.mdc-dialog__container',
-  SURFACE_SELECTOR: '.mdc-dialog__surface',
-  CONTENT_SELECTOR: '.mdc-dialog__content',
-  BUTTON_SELECTOR: '.mdc-dialog__button',
-  DEFAULT_BUTTON_SELECTOR: '.mdc-dialog__button--default',
-  SUPPRESS_DEFAULT_PRESS_SELECTOR: [
-    'textarea',
-    '.mdc-menu .mdc-list-item',
-  ].join(', '),
-
-  OPENING_EVENT: 'MDCDialog:opening',
-  OPENED_EVENT: 'MDCDialog:opened',
-  CLOSING_EVENT: 'MDCDialog:closing',
-  CLOSED_EVENT: 'MDCDialog:closed',
-
-  ACTION_ATTRIBUTE: 'data-mdc-dialog-action',
-
-  CLOSE_ACTION: 'close',
-  DESTROY_ACTION: 'destroy',
+export var strings = {
+    ACTION_ATTRIBUTE: 'data-mdc-dialog-action',
+    BUTTON_SELECTOR: '.mdc-dialog__button',
+    CLOSED_EVENT: 'MDCDialog:closed',
+    CLOSE_ACTION: 'close',
+    CLOSING_EVENT: 'MDCDialog:closing',
+    CONTAINER_SELECTOR: '.mdc-dialog__container',
+    CONTENT_SELECTOR: '.mdc-dialog__content',
+    DEFAULT_BUTTON_SELECTOR: '.mdc-dialog__button--default',
+    DESTROY_ACTION: 'destroy',
+    OPENED_EVENT: 'MDCDialog:opened',
+    OPENING_EVENT: 'MDCDialog:opening',
+    SCRIM_SELECTOR: '.mdc-dialog__scrim',
+    SUPPRESS_DEFAULT_PRESS_SELECTOR: [
+        'textarea',
+        '.mdc-menu .mdc-list-item',
+    ].join(', '),
+    SURFACE_SELECTOR: '.mdc-dialog__surface',
 };
-
-const numbers = {
-  DIALOG_ANIMATION_OPEN_TIME_MS: 150,
-  DIALOG_ANIMATION_CLOSE_TIME_MS: 75,
+export var numbers = {
+    DIALOG_ANIMATION_CLOSE_TIME_MS: 75,
+    DIALOG_ANIMATION_OPEN_TIME_MS: 150,
 };
-
-export {cssClasses, strings, numbers};
+//# sourceMappingURL=constants.js.map

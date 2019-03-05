@@ -20,45 +20,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-const cssClasses = {
-  OPENING: 'mdc-snackbar--opening',
-  OPEN: 'mdc-snackbar--open',
-  CLOSING: 'mdc-snackbar--closing',
+var cssClasses = {
+    CLOSING: 'mdc-snackbar--closing',
+    OPEN: 'mdc-snackbar--open',
+    OPENING: 'mdc-snackbar--opening',
 };
-
-const strings = {
-  SURFACE_SELECTOR: '.mdc-snackbar__surface',
-  LABEL_SELECTOR: '.mdc-snackbar__label',
-  ACTION_SELECTOR: '.mdc-snackbar__action',
-  DISMISS_SELECTOR: '.mdc-snackbar__dismiss',
-
-  OPENING_EVENT: 'MDCSnackbar:opening',
-  OPENED_EVENT: 'MDCSnackbar:opened',
-  CLOSING_EVENT: 'MDCSnackbar:closing',
-  CLOSED_EVENT: 'MDCSnackbar:closed',
-
-  REASON_ACTION: 'action',
-  REASON_DISMISS: 'dismiss',
-
-  ARIA_LIVE_LABEL_TEXT_ATTR: 'data-mdc-snackbar-label-text',
+var strings = {
+    ACTION_SELECTOR: '.mdc-snackbar__action',
+    ARIA_LIVE_LABEL_TEXT_ATTR: 'data-mdc-snackbar-label-text',
+    CLOSED_EVENT: 'MDCSnackbar:closed',
+    CLOSING_EVENT: 'MDCSnackbar:closing',
+    DISMISS_SELECTOR: '.mdc-snackbar__dismiss',
+    LABEL_SELECTOR: '.mdc-snackbar__label',
+    OPENED_EVENT: 'MDCSnackbar:opened',
+    OPENING_EVENT: 'MDCSnackbar:opening',
+    REASON_ACTION: 'action',
+    REASON_DISMISS: 'dismiss',
+    SURFACE_SELECTOR: '.mdc-snackbar__surface',
 };
-
-const numbers = {
-  MIN_AUTO_DISMISS_TIMEOUT_MS: 4000,
-  MAX_AUTO_DISMISS_TIMEOUT_MS: 10000,
-  DEFAULT_AUTO_DISMISS_TIMEOUT_MS: 5000,
-
-  // These variables need to be kept in sync with the values in _variables.scss.
-  SNACKBAR_ANIMATION_OPEN_TIME_MS: 150,
-  SNACKBAR_ANIMATION_CLOSE_TIME_MS: 75,
-
-  /**
-   * Number of milliseconds to wait between temporarily clearing the label text
-   * in the DOM and subsequently restoring it. This is necessary to force IE 11
-   * to pick up the `aria-live` content change and announce it to the user.
-   */
-  ARIA_LIVE_DELAY_MS: 1000,
+var numbers = {
+    DEFAULT_AUTO_DISMISS_TIMEOUT_MS: 5000,
+    MAX_AUTO_DISMISS_TIMEOUT_MS: 10000,
+    MIN_AUTO_DISMISS_TIMEOUT_MS: 4000,
+    // These variables need to be kept in sync with the values in _variables.scss.
+    SNACKBAR_ANIMATION_CLOSE_TIME_MS: 75,
+    SNACKBAR_ANIMATION_OPEN_TIME_MS: 150,
+    /**
+     * Number of milliseconds to wait between temporarily clearing the label text
+     * in the DOM and subsequently restoring it. This is necessary to force IE 11
+     * to pick up the `aria-live` content change and announce it to the user.
+     */
+    ARIA_LIVE_DELAY_MS: 1000,
 };
-
-export {cssClasses, strings, numbers};
+export { cssClasses, strings, numbers };
+//# sourceMappingURL=constants.js.map

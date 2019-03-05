@@ -20,39 +20,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-/* eslint no-unused-vars: [2, {"args": "none"}] */
-
-/**
- * Adapter for MDC Chip Set.
- *
- * Defines the shape of the adapter expected by the foundation. Implement this
- * adapter to integrate the Chip Set into your framework. See
- * https://github.com/material-components/material-components-web/blob/master/docs/authoring-components.md
- * for more information.
- *
- * @record
- */
-class MDCChipSetAdapter {
-  /**
-   * Returns true if the root element contains the given class name.
-   * @param {string} className
-   * @return {boolean}
-   */
-  hasClass(className) {}
-
-  /**
-   * Removes the chip with the given id from the chip set.
-   * @param {string} chipId
-   */
-  removeChip(chipId) {}
-
-  /**
-   * Sets the selected state of the chip with the given id.
-   * @param {string} chipId
-   * @param {boolean} selected
-   */
-  setSelected(chipId, selected) {}
-}
-
-export default MDCChipSetAdapter;
+//# sourceMappingURL=adapter.js.map

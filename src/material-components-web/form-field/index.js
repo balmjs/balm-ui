@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2017 Google Inc.
+ * Copyright 2019 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,64 +20,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import MDCComponent from '../base/component';
-import MDCFormFieldFoundation from './foundation';
-/* eslint-disable no-unused-vars */
-import {MDCSelectionControl} from '../selection-control/index';
-/* eslint-enable no-unused-vars */
-
-/**
- * @extends MDCComponent<!MDCFormFieldFoundation>
- */
-class MDCFormField extends MDCComponent {
-  static attachTo(root) {
-    return new MDCFormField(root);
-  }
-
-  /** @param {?MDCSelectionControl} input */
-  set input(input) {
-    this.input_ = input;
-  }
-
-  /** @return {?MDCSelectionControl} */
-  get input() {
-    return this.input_;
-  }
-
-  constructor(...args) {
-    super(...args);
-
-    /** @private {?MDCSelectionControl} */
-    this.input_;
-  }
-
-  /**
-   * @return {!Element}
-   * @private
-   */
-  get label_() {
-    const {LABEL_SELECTOR} = MDCFormFieldFoundation.strings;
-    return /** @type {!Element} */ (this.root_.querySelector(LABEL_SELECTOR));
-  }
-
-  /** @return {!MDCFormFieldFoundation} */
-  getDefaultFoundation() {
-    return new MDCFormFieldFoundation({
-      registerInteractionHandler: (type, handler) => this.label_.addEventListener(type, handler),
-      deregisterInteractionHandler: (type, handler) => this.label_.removeEventListener(type, handler),
-      activateInputRipple: () => {
-        if (this.input_ && this.input_.ripple) {
-          this.input_.ripple.activate();
-        }
-      },
-      deactivateInputRipple: () => {
-        if (this.input_ && this.input_.ripple) {
-          this.input_.ripple.deactivate();
-        }
-      },
-    });
-  }
-}
-
-export {MDCFormField, MDCFormFieldFoundation};
+export * from './component';
+export * from './foundation';
+//# sourceMappingURL=index.js.map

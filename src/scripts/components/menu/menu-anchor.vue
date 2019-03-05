@@ -35,7 +35,7 @@ export default {
           let positions = buttonPosition.split(' ');
 
           if (positions[0] === 'middle') {
-            result = `top:${middleValue};${positions[1]}:0`;
+            result = `top:${this.middleValue};${positions[1]}:0`;
           } else {
             result = positions.map(position => `${position}:0`).join(';');
           }

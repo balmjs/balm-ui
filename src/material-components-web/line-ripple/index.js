@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2018 Google Inc.
+ * Copyright 2019 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,61 +20,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import MDCComponent from '../base/component';
-
-import MDCLineRippleAdapter from './adapter';
-import MDCLineRippleFoundation from './foundation';
-
-/**
- * @extends {MDCComponent<!MDCLineRippleFoundation>}
- * @final
- */
-class MDCLineRipple extends MDCComponent {
-  /**
-   * @param {!Element} root
-   * @return {!MDCLineRipple}
-   */
-  static attachTo(root) {
-    return new MDCLineRipple(root);
-  }
-
-  /**
-   * Activates the line ripple
-   */
-  activate() {
-    this.foundation_.activate();
-  }
-
-  /**
-   * Deactivates the line ripple
-   */
-  deactivate() {
-    this.foundation_.deactivate();
-  }
-
-  /**
-   * Sets the transform origin given a user's click location. The `rippleCenter` is the
-   * x-coordinate of the middle of the ripple.
-   * @param {number} xCoordinate
-   */
-  setRippleCenter(xCoordinate) {
-    this.foundation_.setRippleCenter(xCoordinate);
-  }
-
-  /**
-   * @return {!MDCLineRippleFoundation}
-   */
-  getDefaultFoundation() {
-    return new MDCLineRippleFoundation(/** @type {!MDCLineRippleAdapter} */ (Object.assign({
-      addClass: (className) => this.root_.classList.add(className),
-      removeClass: (className) => this.root_.classList.remove(className),
-      hasClass: (className) => this.root_.classList.contains(className),
-      setStyle: (propertyName, value) => this.root_.style[propertyName] = value,
-      registerEventHandler: (evtType, handler) => this.root_.addEventListener(evtType, handler),
-      deregisterEventHandler: (evtType, handler) => this.root_.removeEventListener(evtType, handler),
-    })));
-  }
-}
-
-export {MDCLineRipple, MDCLineRippleFoundation};
+export * from './component';
+export * from './foundation';
+//# sourceMappingURL=index.js.map

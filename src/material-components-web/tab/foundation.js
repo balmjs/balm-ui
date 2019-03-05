@@ -20,133 +20,109 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import MDCFoundation from '../base/foundation';
-
-/* eslint-disable no-unused-vars */
-import {MDCTabAdapter, MDCTabDimensions} from './adapter';
-/* eslint-enable no-unused-vars */
-
-import {
-  cssClasses,
-  strings,
-} from './constants';
-
-/**
- * @extends {MDCFoundation<!MDCTabAdapter>}
- * @final
- */
-class MDCTabFoundation extends MDCFoundation {
-  /** @return enum {string} */
-  static get cssClasses() {
-    return cssClasses;
-  }
-
-  /** @return enum {string} */
-  static get strings() {
-    return strings;
-  }
-
-  /**
-   * @see MDCTabAdapter for typing information
-   * @return {!MDCTabAdapter}
-   */
-  static get defaultAdapter() {
-    return /** @type {!MDCTabAdapter} */ ({
-      addClass: () => {},
-      removeClass: () => {},
-      hasClass: () => {},
-      setAttr: () => {},
-      activateIndicator: () => {},
-      deactivateIndicator: () => {},
-      notifyInteracted: () => {},
-      getOffsetLeft: () => {},
-      getOffsetWidth: () => {},
-      getContentOffsetLeft: () => {},
-      getContentOffsetWidth: () => {},
-      focus: () => {},
+import * as tslib_1 from "tslib";
+import { MDCFoundation } from '../base/foundation';
+import { cssClasses, strings } from './constants';
+var MDCTabFoundation = /** @class */ (function (_super) {
+    tslib_1.__extends(MDCTabFoundation, _super);
+    function MDCTabFoundation(adapter) {
+        var _this = _super.call(this, tslib_1.__assign({}, MDCTabFoundation.defaultAdapter, adapter)) || this;
+        _this.focusOnActivate_ = true;
+        return _this;
+    }
+    Object.defineProperty(MDCTabFoundation, "cssClasses", {
+        get: function () {
+            return cssClasses;
+        },
+        enumerable: true,
+        configurable: true
     });
-  }
-
-  /** @param {!MDCTabAdapter} adapter */
-  constructor(adapter) {
-    super(Object.assign(MDCTabFoundation.defaultAdapter, adapter));
-
-    /** @private {boolean} */
-    this.focusOnActivate_ = true;
-  }
-
-  /**
-   * Handles the "click" event
-   */
-  handleClick() {
-    // It's up to the parent component to keep track of the active Tab and
-    // ensure we don't activate a Tab that's already active.
-    this.adapter_.notifyInteracted();
-  }
-
-  /**
-   * Returns the Tab's active state
-   * @return {boolean}
-   */
-  isActive() {
-    return this.adapter_.hasClass(cssClasses.ACTIVE);
-  }
-
-  /**
-   * Sets whether the tab should focus itself when activated
-   * @param {boolean} focusOnActivate
-   */
-  setFocusOnActivate(focusOnActivate) {
-    this.focusOnActivate_ = focusOnActivate;
-  }
-
-  /**
-   * Activates the Tab
-   * @param {!ClientRect=} previousIndicatorClientRect
-   */
-  activate(previousIndicatorClientRect) {
-    this.adapter_.addClass(cssClasses.ACTIVE);
-    this.adapter_.setAttr(strings.ARIA_SELECTED, 'true');
-    this.adapter_.setAttr(strings.TABINDEX, '0');
-    this.adapter_.activateIndicator(previousIndicatorClientRect);
-    if (this.focusOnActivate_) {
-      this.adapter_.focus();
-    }
-  }
-
-  /**
-   * Deactivates the Tab
-   */
-  deactivate() {
-    // Early exit
-    if (!this.isActive()) {
-      return;
-    }
-
-    this.adapter_.removeClass(cssClasses.ACTIVE);
-    this.adapter_.setAttr(strings.ARIA_SELECTED, 'false');
-    this.adapter_.setAttr(strings.TABINDEX, '-1');
-    this.adapter_.deactivateIndicator();
-  }
-
-  /**
-   * Returns the dimensions of the Tab
-   * @return {!MDCTabDimensions}
-   */
-  computeDimensions() {
-    const rootWidth = this.adapter_.getOffsetWidth();
-    const rootLeft = this.adapter_.getOffsetLeft();
-    const contentWidth = this.adapter_.getContentOffsetWidth();
-    const contentLeft = this.adapter_.getContentOffsetLeft();
-
-    return {
-      rootLeft,
-      rootRight: rootLeft + rootWidth,
-      contentLeft: rootLeft + contentLeft,
-      contentRight: rootLeft + contentLeft + contentWidth,
+    Object.defineProperty(MDCTabFoundation, "strings", {
+        get: function () {
+            return strings;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTabFoundation, "defaultAdapter", {
+        get: function () {
+            // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+            return {
+                addClass: function () { return undefined; },
+                removeClass: function () { return undefined; },
+                hasClass: function () { return false; },
+                setAttr: function () { return undefined; },
+                activateIndicator: function () { return undefined; },
+                deactivateIndicator: function () { return undefined; },
+                notifyInteracted: function () { return undefined; },
+                getOffsetLeft: function () { return 0; },
+                getOffsetWidth: function () { return 0; },
+                getContentOffsetLeft: function () { return 0; },
+                getContentOffsetWidth: function () { return 0; },
+                focus: function () { return undefined; },
+            };
+            // tslint:enable:object-literal-sort-keys
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCTabFoundation.prototype.handleClick = function () {
+        // It's up to the parent component to keep track of the active Tab and
+        // ensure we don't activate a Tab that's already active.
+        this.adapter_.notifyInteracted();
     };
-  }
-}
-
+    MDCTabFoundation.prototype.isActive = function () {
+        return this.adapter_.hasClass(cssClasses.ACTIVE);
+    };
+    /**
+     * Sets whether the tab should focus itself when activated
+     */
+    MDCTabFoundation.prototype.setFocusOnActivate = function (focusOnActivate) {
+        this.focusOnActivate_ = focusOnActivate;
+    };
+    /**
+     * Activates the Tab
+     */
+    MDCTabFoundation.prototype.activate = function (previousIndicatorClientRect) {
+        this.adapter_.addClass(cssClasses.ACTIVE);
+        this.adapter_.setAttr(strings.ARIA_SELECTED, 'true');
+        this.adapter_.setAttr(strings.TABINDEX, '0');
+        this.adapter_.activateIndicator(previousIndicatorClientRect);
+        if (this.focusOnActivate_) {
+            this.adapter_.focus();
+        }
+    };
+    /**
+     * Deactivates the Tab
+     */
+    MDCTabFoundation.prototype.deactivate = function () {
+        // Early exit
+        if (!this.isActive()) {
+            return;
+        }
+        this.adapter_.removeClass(cssClasses.ACTIVE);
+        this.adapter_.setAttr(strings.ARIA_SELECTED, 'false');
+        this.adapter_.setAttr(strings.TABINDEX, '-1');
+        this.adapter_.deactivateIndicator();
+    };
+    /**
+     * Returns the dimensions of the Tab
+     */
+    MDCTabFoundation.prototype.computeDimensions = function () {
+        var rootWidth = this.adapter_.getOffsetWidth();
+        var rootLeft = this.adapter_.getOffsetLeft();
+        var contentWidth = this.adapter_.getContentOffsetWidth();
+        var contentLeft = this.adapter_.getContentOffsetLeft();
+        return {
+            contentLeft: rootLeft + contentLeft,
+            contentRight: rootLeft + contentLeft + contentWidth,
+            rootLeft: rootLeft,
+            rootRight: rootLeft + rootWidth,
+        };
+    };
+    return MDCTabFoundation;
+}(MDCFoundation));
+export { MDCTabFoundation };
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
 export default MDCTabFoundation;
+//# sourceMappingURL=foundation.js.map

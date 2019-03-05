@@ -20,11 +20,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-/** @enum {string} */
-const strings = {
-  ICON_EVENT: 'MDCSelect:icon',
-  ICON_ROLE: 'button',
+var strings = {
+    ICON_EVENT: 'MDCSelect:icon',
+    ICON_ROLE: 'button',
 };
-
-export {strings};
+export { strings };
+//# sourceMappingURL=constants.js.map

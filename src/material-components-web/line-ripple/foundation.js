@@ -20,95 +20,72 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import MDCFoundation from '../base/foundation';
-import MDCLineRippleAdapter from './adapter';
-import {cssClasses} from './constants';
-
-
-/**
- * @extends {MDCFoundation<!MDCLineRippleAdapter>}
- * @final
- */
-class MDCLineRippleFoundation extends MDCFoundation {
-  /** @return enum {string} */
-  static get cssClasses() {
-    return cssClasses;
-  }
-
-  /**
-   * {@see MDCLineRippleAdapter} for typing information on parameters and return
-   * types.
-   * @return {!MDCLineRippleAdapter}
-   */
-  static get defaultAdapter() {
-    return /** @type {!MDCLineRippleAdapter} */ ({
-      addClass: () => {},
-      removeClass: () => {},
-      hasClass: () => {},
-      setStyle: () => {},
-      registerEventHandler: () => {},
-      deregisterEventHandler: () => {},
-    });
-  }
-
-  /**
-   * @param {!MDCLineRippleAdapter=} adapter
-   */
-  constructor(adapter) {
-    super(Object.assign(MDCLineRippleFoundation.defaultAdapter, adapter));
-
-    /** @private {function(!Event): undefined} */
-    this.transitionEndHandler_ = (evt) => this.handleTransitionEnd(evt);
-  }
-
-  init() {
-    this.adapter_.registerEventHandler('transitionend', this.transitionEndHandler_);
-  }
-
-  destroy() {
-    this.adapter_.deregisterEventHandler('transitionend', this.transitionEndHandler_);
-  }
-
-  /**
-   * Activates the line ripple
-   */
-  activate() {
-    this.adapter_.removeClass(cssClasses.LINE_RIPPLE_DEACTIVATING);
-    this.adapter_.addClass(cssClasses.LINE_RIPPLE_ACTIVE);
-  }
-
-  /**
-   * Sets the center of the ripple animation to the given X coordinate.
-   * @param {number} xCoordinate
-   */
-  setRippleCenter(xCoordinate) {
-    this.adapter_.setStyle('transform-origin', `${xCoordinate}px center`);
-  }
-
-  /**
-   * Deactivates the line ripple
-   */
-  deactivate() {
-    this.adapter_.addClass(cssClasses.LINE_RIPPLE_DEACTIVATING);
-  }
-
-  /**
-   * Handles a transition end event
-   * @param {!Event} evt
-   */
-  handleTransitionEnd(evt) {
-    // Wait for the line ripple to be either transparent or opaque
-    // before emitting the animation end event
-    const isDeactivating = this.adapter_.hasClass(cssClasses.LINE_RIPPLE_DEACTIVATING);
-
-    if (evt.propertyName === 'opacity') {
-      if (isDeactivating) {
-        this.adapter_.removeClass(cssClasses.LINE_RIPPLE_ACTIVE);
-        this.adapter_.removeClass(cssClasses.LINE_RIPPLE_DEACTIVATING);
-      }
+import * as tslib_1 from "tslib";
+import { MDCFoundation } from '../base/foundation';
+import { cssClasses } from './constants';
+var MDCLineRippleFoundation = /** @class */ (function (_super) {
+    tslib_1.__extends(MDCLineRippleFoundation, _super);
+    function MDCLineRippleFoundation(adapter) {
+        var _this = _super.call(this, tslib_1.__assign({}, MDCLineRippleFoundation.defaultAdapter, adapter)) || this;
+        _this.transitionEndHandler_ = function (evt) { return _this.handleTransitionEnd(evt); };
+        return _this;
     }
-  }
-}
-
+    Object.defineProperty(MDCLineRippleFoundation, "cssClasses", {
+        get: function () {
+            return cssClasses;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCLineRippleFoundation, "defaultAdapter", {
+        /**
+         * See {@link MDCLineRippleAdapter} for typing information on parameters and return types.
+         */
+        get: function () {
+            // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+            return {
+                addClass: function () { return undefined; },
+                removeClass: function () { return undefined; },
+                hasClass: function () { return false; },
+                setStyle: function () { return undefined; },
+                registerEventHandler: function () { return undefined; },
+                deregisterEventHandler: function () { return undefined; },
+            };
+            // tslint:enable:object-literal-sort-keys
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCLineRippleFoundation.prototype.init = function () {
+        this.adapter_.registerEventHandler('transitionend', this.transitionEndHandler_);
+    };
+    MDCLineRippleFoundation.prototype.destroy = function () {
+        this.adapter_.deregisterEventHandler('transitionend', this.transitionEndHandler_);
+    };
+    MDCLineRippleFoundation.prototype.activate = function () {
+        this.adapter_.removeClass(cssClasses.LINE_RIPPLE_DEACTIVATING);
+        this.adapter_.addClass(cssClasses.LINE_RIPPLE_ACTIVE);
+    };
+    MDCLineRippleFoundation.prototype.setRippleCenter = function (xCoordinate) {
+        this.adapter_.setStyle('transform-origin', xCoordinate + "px center");
+    };
+    MDCLineRippleFoundation.prototype.deactivate = function () {
+        this.adapter_.addClass(cssClasses.LINE_RIPPLE_DEACTIVATING);
+    };
+    MDCLineRippleFoundation.prototype.handleTransitionEnd = function (evt) {
+        // Wait for the line ripple to be either transparent or opaque
+        // before emitting the animation end event
+        var isDeactivating = this.adapter_.hasClass(cssClasses.LINE_RIPPLE_DEACTIVATING);
+        if (evt.propertyName === 'opacity') {
+            if (isDeactivating) {
+                this.adapter_.removeClass(cssClasses.LINE_RIPPLE_ACTIVE);
+                this.adapter_.removeClass(cssClasses.LINE_RIPPLE_DEACTIVATING);
+            }
+        }
+    };
+    return MDCLineRippleFoundation;
+}(MDCFoundation));
+export { MDCLineRippleFoundation };
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
 export default MDCLineRippleFoundation;
+//# sourceMappingURL=foundation.js.map

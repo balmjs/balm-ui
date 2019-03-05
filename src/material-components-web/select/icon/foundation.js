@@ -20,100 +20,86 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import MDCFoundation from '../../base/foundation';
-import MDCSelectIconAdapter from './adapter';
-import {strings} from './constants';
-
-
-/**
- * @extends {MDCFoundation<!MDCSelectIconAdapter>}
- * @final
- */
-class MDCSelectIconFoundation extends MDCFoundation {
-  /** @return enum {string} */
-  static get strings() {
-    return strings;
-  }
-
-  /**
-   * {@see MDCSelectIconAdapter} for typing information on parameters and return
-   * types.
-   * @return {!MDCSelectIconAdapter}
-   */
-  static get defaultAdapter() {
-    return /** @type {!MDCSelectIconAdapter} */ ({
-      getAttr: () => {},
-      setAttr: () => {},
-      removeAttr: () => {},
-      setContent: () => {},
-      registerInteractionHandler: () => {},
-      deregisterInteractionHandler: () => {},
-      notifyIconAction: () => {},
-    });
-  }
-
-  /**
-   * @param {!MDCSelectIconAdapter} adapter
-   */
-  constructor(adapter) {
-    super(Object.assign(MDCSelectIconFoundation.defaultAdapter, adapter));
-
-    /** @private {string?} */
-    this.savedTabIndex_ = null;
-
-    /** @private {function(!Event): undefined} */
-    this.interactionHandler_ = (evt) => this.handleInteraction(evt);
-  }
-
-  init() {
-    this.savedTabIndex_ = this.adapter_.getAttr('tabindex');
-
-    ['click', 'keydown'].forEach((evtType) => {
-      this.adapter_.registerInteractionHandler(evtType, this.interactionHandler_);
-    });
-  }
-
-  destroy() {
-    ['click', 'keydown'].forEach((evtType) => {
-      this.adapter_.deregisterInteractionHandler(evtType, this.interactionHandler_);
-    });
-  }
-
-  /** @param {boolean} disabled */
-  setDisabled(disabled) {
-    if (!this.savedTabIndex_) {
-      return;
+import * as tslib_1 from "tslib";
+import { MDCFoundation } from '../../base/foundation';
+import { strings } from './constants';
+var INTERACTION_EVENTS = ['click', 'keydown'];
+var MDCSelectIconFoundation = /** @class */ (function (_super) {
+    tslib_1.__extends(MDCSelectIconFoundation, _super);
+    function MDCSelectIconFoundation(adapter) {
+        var _this = _super.call(this, tslib_1.__assign({}, MDCSelectIconFoundation.defaultAdapter, adapter)) || this;
+        _this.savedTabIndex_ = null;
+        _this.interactionHandler_ = function (evt) { return _this.handleInteraction(evt); };
+        return _this;
     }
-
-    if (disabled) {
-      this.adapter_.setAttr('tabindex', '-1');
-      this.adapter_.removeAttr('role');
-    } else {
-      this.adapter_.setAttr('tabindex', this.savedTabIndex_);
-      this.adapter_.setAttr('role', strings.ICON_ROLE);
-    }
-  }
-
-  /** @param {string} label */
-  setAriaLabel(label) {
-    this.adapter_.setAttr('aria-label', label);
-  }
-
-  /** @param {string} content */
-  setContent(content) {
-    this.adapter_.setContent(content);
-  }
-
-  /**
-   * Handles an interaction event
-   * @param {!Event} evt
-   */
-  handleInteraction(evt) {
-    if (evt.type === 'click' || evt.key === 'Enter' || evt.keyCode === 13) {
-      this.adapter_.notifyIconAction();
-    }
-  }
-}
-
+    Object.defineProperty(MDCSelectIconFoundation, "strings", {
+        get: function () {
+            return strings;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSelectIconFoundation, "defaultAdapter", {
+        /**
+         * See {@link MDCSelectIconAdapter} for typing information on parameters and return types.
+         */
+        get: function () {
+            // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+            return {
+                getAttr: function () { return null; },
+                setAttr: function () { return undefined; },
+                removeAttr: function () { return undefined; },
+                setContent: function () { return undefined; },
+                registerInteractionHandler: function () { return undefined; },
+                deregisterInteractionHandler: function () { return undefined; },
+                notifyIconAction: function () { return undefined; },
+            };
+            // tslint:enable:object-literal-sort-keys
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCSelectIconFoundation.prototype.init = function () {
+        var _this = this;
+        this.savedTabIndex_ = this.adapter_.getAttr('tabindex');
+        INTERACTION_EVENTS.forEach(function (evtType) {
+            _this.adapter_.registerInteractionHandler(evtType, _this.interactionHandler_);
+        });
+    };
+    MDCSelectIconFoundation.prototype.destroy = function () {
+        var _this = this;
+        INTERACTION_EVENTS.forEach(function (evtType) {
+            _this.adapter_.deregisterInteractionHandler(evtType, _this.interactionHandler_);
+        });
+    };
+    MDCSelectIconFoundation.prototype.setDisabled = function (disabled) {
+        if (!this.savedTabIndex_) {
+            return;
+        }
+        if (disabled) {
+            this.adapter_.setAttr('tabindex', '-1');
+            this.adapter_.removeAttr('role');
+        }
+        else {
+            this.adapter_.setAttr('tabindex', this.savedTabIndex_);
+            this.adapter_.setAttr('role', strings.ICON_ROLE);
+        }
+    };
+    MDCSelectIconFoundation.prototype.setAriaLabel = function (label) {
+        this.adapter_.setAttr('aria-label', label);
+    };
+    MDCSelectIconFoundation.prototype.setContent = function (content) {
+        this.adapter_.setContent(content);
+    };
+    MDCSelectIconFoundation.prototype.handleInteraction = function (evt) {
+        var isEnterKey = evt.key === 'Enter' || evt.keyCode === 13;
+        if (evt.type === 'click' || isEnterKey) {
+            this.adapter_.notifyIconAction();
+        }
+    };
+    return MDCSelectIconFoundation;
+}(MDCFoundation));
+export { MDCSelectIconFoundation };
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
 export default MDCSelectIconFoundation;
+//# sourceMappingURL=foundation.js.map

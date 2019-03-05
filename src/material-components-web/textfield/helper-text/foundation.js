@@ -20,111 +20,107 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import MDCFoundation from '../../base/foundation';
-import MDCTextFieldHelperTextAdapter from './adapter';
-import {cssClasses, strings} from './constants';
-
-
-/**
- * @extends {MDCFoundation<!MDCTextFieldHelperTextAdapter>}
- * @final
- */
-class MDCTextFieldHelperTextFoundation extends MDCFoundation {
-  /** @return enum {string} */
-  static get cssClasses() {
-    return cssClasses;
-  }
-
-  /** @return enum {string} */
-  static get strings() {
-    return strings;
-  }
-
-  /**
-   * {@see MDCTextFieldHelperTextAdapter} for typing information on parameters and return
-   * types.
-   * @return {!MDCTextFieldHelperTextAdapter}
-   */
-  static get defaultAdapter() {
-    return /** @type {!MDCTextFieldHelperTextAdapter} */ ({
-      addClass: () => {},
-      removeClass: () => {},
-      hasClass: () => {},
-      setAttr: () => {},
-      removeAttr: () => {},
-      setContent: () => {},
+import * as tslib_1 from "tslib";
+import { MDCFoundation } from '../../base/foundation';
+import { cssClasses, strings } from './constants';
+var MDCTextFieldHelperTextFoundation = /** @class */ (function (_super) {
+    tslib_1.__extends(MDCTextFieldHelperTextFoundation, _super);
+    function MDCTextFieldHelperTextFoundation(adapter) {
+        return _super.call(this, tslib_1.__assign({}, MDCTextFieldHelperTextFoundation.defaultAdapter, adapter)) || this;
+    }
+    Object.defineProperty(MDCTextFieldHelperTextFoundation, "cssClasses", {
+        get: function () {
+            return cssClasses;
+        },
+        enumerable: true,
+        configurable: true
     });
-  }
-
-  /**
-   * @param {!MDCTextFieldHelperTextAdapter} adapter
-   */
-  constructor(adapter) {
-    super(Object.assign(MDCTextFieldHelperTextFoundation.defaultAdapter, adapter));
-  }
-
-  /**
-   * Sets the content of the helper text field.
-   * @param {string} content
-   */
-  setContent(content) {
-    this.adapter_.setContent(content);
-  }
-
-  /** @param {boolean} isPersistent Sets the persistency of the helper text. */
-  setPersistent(isPersistent) {
-    if (isPersistent) {
-      this.adapter_.addClass(cssClasses.HELPER_TEXT_PERSISTENT);
-    } else {
-      this.adapter_.removeClass(cssClasses.HELPER_TEXT_PERSISTENT);
-    }
-  }
-
-  /**
-   * @param {boolean} isValidation True to make the helper text act as an
-   *   error validation message.
-   */
-  setValidation(isValidation) {
-    if (isValidation) {
-      this.adapter_.addClass(cssClasses.HELPER_TEXT_VALIDATION_MSG);
-    } else {
-      this.adapter_.removeClass(cssClasses.HELPER_TEXT_VALIDATION_MSG);
-    }
-  }
-
-  /** Makes the helper text visible to the screen reader. */
-  showToScreenReader() {
-    this.adapter_.removeAttr(strings.ARIA_HIDDEN);
-  }
-
-  /**
-   * Sets the validity of the helper text based on the input validity.
-   * @param {boolean} inputIsValid
-   */
-  setValidity(inputIsValid) {
-    const helperTextIsPersistent = this.adapter_.hasClass(cssClasses.HELPER_TEXT_PERSISTENT);
-    const helperTextIsValidationMsg = this.adapter_.hasClass(cssClasses.HELPER_TEXT_VALIDATION_MSG);
-    const validationMsgNeedsDisplay = helperTextIsValidationMsg && !inputIsValid;
-
-    if (validationMsgNeedsDisplay) {
-      this.adapter_.setAttr(strings.ROLE, 'alert');
-    } else {
-      this.adapter_.removeAttr(strings.ROLE);
-    }
-
-    if (!helperTextIsPersistent && !validationMsgNeedsDisplay) {
-      this.hide_();
-    }
-  }
-
-  /**
-   * Hides the help text from screen readers.
-   * @private
-   */
-  hide_() {
-    this.adapter_.setAttr(strings.ARIA_HIDDEN, 'true');
-  }
-}
-
+    Object.defineProperty(MDCTextFieldHelperTextFoundation, "strings", {
+        get: function () {
+            return strings;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTextFieldHelperTextFoundation, "defaultAdapter", {
+        /**
+         * See {@link MDCTextFieldHelperTextAdapter} for typing information on parameters and return types.
+         */
+        get: function () {
+            // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+            return {
+                addClass: function () { return undefined; },
+                removeClass: function () { return undefined; },
+                hasClass: function () { return false; },
+                setAttr: function () { return undefined; },
+                removeAttr: function () { return undefined; },
+                setContent: function () { return undefined; },
+            };
+            // tslint:enable:object-literal-sort-keys
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Sets the content of the helper text field.
+     */
+    MDCTextFieldHelperTextFoundation.prototype.setContent = function (content) {
+        this.adapter_.setContent(content);
+    };
+    /**
+     * @param isPersistent Sets the persistency of the helper text.
+     */
+    MDCTextFieldHelperTextFoundation.prototype.setPersistent = function (isPersistent) {
+        if (isPersistent) {
+            this.adapter_.addClass(cssClasses.HELPER_TEXT_PERSISTENT);
+        }
+        else {
+            this.adapter_.removeClass(cssClasses.HELPER_TEXT_PERSISTENT);
+        }
+    };
+    /**
+     * @param isValidation True to make the helper text act as an error validation message.
+     */
+    MDCTextFieldHelperTextFoundation.prototype.setValidation = function (isValidation) {
+        if (isValidation) {
+            this.adapter_.addClass(cssClasses.HELPER_TEXT_VALIDATION_MSG);
+        }
+        else {
+            this.adapter_.removeClass(cssClasses.HELPER_TEXT_VALIDATION_MSG);
+        }
+    };
+    /**
+     * Makes the helper text visible to the screen reader.
+     */
+    MDCTextFieldHelperTextFoundation.prototype.showToScreenReader = function () {
+        this.adapter_.removeAttr(strings.ARIA_HIDDEN);
+    };
+    /**
+     * Sets the validity of the helper text based on the input validity.
+     */
+    MDCTextFieldHelperTextFoundation.prototype.setValidity = function (inputIsValid) {
+        var helperTextIsPersistent = this.adapter_.hasClass(cssClasses.HELPER_TEXT_PERSISTENT);
+        var helperTextIsValidationMsg = this.adapter_.hasClass(cssClasses.HELPER_TEXT_VALIDATION_MSG);
+        var validationMsgNeedsDisplay = helperTextIsValidationMsg && !inputIsValid;
+        if (validationMsgNeedsDisplay) {
+            this.adapter_.setAttr(strings.ROLE, 'alert');
+        }
+        else {
+            this.adapter_.removeAttr(strings.ROLE);
+        }
+        if (!helperTextIsPersistent && !validationMsgNeedsDisplay) {
+            this.hide_();
+        }
+    };
+    /**
+     * Hides the help text from screen readers.
+     */
+    MDCTextFieldHelperTextFoundation.prototype.hide_ = function () {
+        this.adapter_.setAttr(strings.ARIA_HIDDEN, 'true');
+    };
+    return MDCTextFieldHelperTextFoundation;
+}(MDCFoundation));
+export { MDCTextFieldHelperTextFoundation };
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
 export default MDCTextFieldHelperTextFoundation;
+//# sourceMappingURL=foundation.js.map

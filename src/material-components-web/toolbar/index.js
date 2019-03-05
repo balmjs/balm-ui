@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2017 Google Inc.
+ * Copyright 2019 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,74 +20,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import MDCComponent from '../base/component';
-import {MDCRipple} from '../ripple/index';
-
-import MDCToolbarFoundation from './foundation';
-
-export {MDCToolbarFoundation};
-
-export class MDCToolbar extends MDCComponent {
-  static attachTo(root) {
-    return new MDCToolbar(root);
-  }
-
-  get firstRowElement_() {
-    return this.root_.querySelector(MDCToolbarFoundation.strings.FIRST_ROW_SELECTOR);
-  }
-
-  get titleElement_() {
-    return this.root_.querySelector(MDCToolbarFoundation.strings.TITLE_SELECTOR);
-  }
-
-  set fixedAdjustElement(fixedAdjustElement) {
-    this.fixedAdjustElement_ = fixedAdjustElement;
-    this.foundation_.updateAdjustElementStyles();
-  }
-
-  get fixedAdjustElement() {
-    return this.fixedAdjustElement_;
-  }
-
-  initialize() {
-    this.ripples_ = [].map.call(this.root_.querySelectorAll(MDCToolbarFoundation.strings.ICON_SELECTOR), (icon) => {
-      const ripple = MDCRipple.attachTo(icon);
-      ripple.unbounded = true;
-      return ripple;
-    });
-  }
-
-  destroy() {
-    this.ripples_.forEach((ripple) => {
-      ripple.destroy();
-    });
-    super.destroy();
-  }
-
-
-  getDefaultFoundation() {
-    return new MDCToolbarFoundation({
-      hasClass: (className) => this.root_.classList.contains(className),
-      addClass: (className) => this.root_.classList.add(className),
-      removeClass: (className) => this.root_.classList.remove(className),
-      registerScrollHandler: (handler) => window.addEventListener('scroll', handler),
-      deregisterScrollHandler: (handler) => window.removeEventListener('scroll', handler),
-      registerResizeHandler: (handler) => window.addEventListener('resize', handler),
-      deregisterResizeHandler: (handler) => window.removeEventListener('resize', handler),
-      getViewportWidth: () => window.innerWidth,
-      getViewportScrollY: () => window.pageYOffset,
-      getOffsetHeight: () => this.root_.offsetHeight,
-      getFirstRowElementOffsetHeight: () => this.firstRowElement_.offsetHeight,
-      notifyChange: (evtData) => this.emit(MDCToolbarFoundation.strings.CHANGE_EVENT, evtData),
-      setStyle: (property, value) => this.root_.style.setProperty(property, value),
-      setStyleForTitleElement: (property, value) => this.titleElement_.style.setProperty(property, value),
-      setStyleForFlexibleRowElement: (property, value) => this.firstRowElement_.style.setProperty(property, value),
-      setStyleForFixedAdjustElement: (property, value) => {
-        if (this.fixedAdjustElement) {
-          this.fixedAdjustElement.style.setProperty(property, value);
-        }
-      },
-    });
-  }
-}
+export * from './component';
+export * from './foundation';
+//# sourceMappingURL=index.js.map

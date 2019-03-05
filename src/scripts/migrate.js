@@ -11,8 +11,6 @@ import UiToolbarTitle from './components/toolbar/toolbar-title';
 import UiToolbarAnchor from './components/toolbar/icons/toolbar-anchor';
 import UiToolbarSpan from './components/toolbar/icons/toolbar-span';
 import UiToolbarButton from './components/toolbar/icons/toolbar-button';
-// Buttons
-import UiIconToggle from './components/button/icon-toggle';
 // Data View
 import UiGridList from './components/grid-list/grid-list';
 import UiGridTile from './components/grid-list/grid-tile';
@@ -30,8 +28,6 @@ const components = {
   UiToolbarAnchor,
   UiToolbarSpan,
   UiToolbarButton,
-  // Buttons
-  UiIconToggle,
   // Data View
   UiGridList,
   UiGridTile,

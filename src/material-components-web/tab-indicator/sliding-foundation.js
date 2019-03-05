@@ -20,44 +20,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import MDCTabIndicatorFoundation from './foundation';
-
-/**
- * @extends {MDCTabIndicatorFoundation}
- * @final
- */
-class MDCSlidingTabIndicatorFoundation extends MDCTabIndicatorFoundation {
-  /** @param {!ClientRect=} previousIndicatorClientRect */
-  activate(previousIndicatorClientRect) {
-    // Early exit if no indicator is present to handle cases where an indicator
-    // may be activated without a prior indicator state
-    if (!previousIndicatorClientRect) {
-      this.adapter_.addClass(MDCTabIndicatorFoundation.cssClasses.ACTIVE);
-      return;
+import * as tslib_1 from "tslib";
+import { MDCTabIndicatorFoundation } from './foundation';
+/* istanbul ignore next: subclass is not a branch statement */
+var MDCSlidingTabIndicatorFoundation = /** @class */ (function (_super) {
+    tslib_1.__extends(MDCSlidingTabIndicatorFoundation, _super);
+    function MDCSlidingTabIndicatorFoundation() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
-
-    // This animation uses the FLIP approach. You can read more about it at the link below:
-    // https://aerotwist.com/blog/flip-your-animations/
-
-    // Calculate the dimensions based on the dimensions of the previous indicator
-    const currentClientRect = this.computeContentClientRect();
-    const widthDelta = previousIndicatorClientRect.width / currentClientRect.width;
-    const xPosition = previousIndicatorClientRect.left - currentClientRect.left;
-    this.adapter_.addClass(MDCTabIndicatorFoundation.cssClasses.NO_TRANSITION);
-    this.adapter_.setContentStyleProperty('transform', `translateX(${xPosition}px) scaleX(${widthDelta})`);
-
-    // Force repaint before updating classes and transform to ensure the transform properly takes effect
-    this.computeContentClientRect();
-
-    this.adapter_.removeClass(MDCTabIndicatorFoundation.cssClasses.NO_TRANSITION);
-    this.adapter_.addClass(MDCTabIndicatorFoundation.cssClasses.ACTIVE);
-    this.adapter_.setContentStyleProperty('transform', '');
-  }
-
-  deactivate() {
-    this.adapter_.removeClass(MDCTabIndicatorFoundation.cssClasses.ACTIVE);
-  }
-}
-
+    MDCSlidingTabIndicatorFoundation.prototype.activate = function (previousIndicatorClientRect) {
+        // Early exit if no indicator is present to handle cases where an indicator
+        // may be activated without a prior indicator state
+        if (!previousIndicatorClientRect) {
+            this.adapter_.addClass(MDCTabIndicatorFoundation.cssClasses.ACTIVE);
+            return;
+        }
+        // This animation uses the FLIP approach. You can read more about it at the link below:
+        // https://aerotwist.com/blog/flip-your-animations/
+        // Calculate the dimensions based on the dimensions of the previous indicator
+        var currentClientRect = this.computeContentClientRect();
+        var widthDelta = previousIndicatorClientRect.width / currentClientRect.width;
+        var xPosition = previousIndicatorClientRect.left - currentClientRect.left;
+        this.adapter_.addClass(MDCTabIndicatorFoundation.cssClasses.NO_TRANSITION);
+        this.adapter_.setContentStyleProperty('transform', "translateX(" + xPosition + "px) scaleX(" + widthDelta + ")");
+        // Force repaint before updating classes and transform to ensure the transform properly takes effect
+        this.computeContentClientRect();
+        this.adapter_.removeClass(MDCTabIndicatorFoundation.cssClasses.NO_TRANSITION);
+        this.adapter_.addClass(MDCTabIndicatorFoundation.cssClasses.ACTIVE);
+        this.adapter_.setContentStyleProperty('transform', '');
+    };
+    MDCSlidingTabIndicatorFoundation.prototype.deactivate = function () {
+        this.adapter_.removeClass(MDCTabIndicatorFoundation.cssClasses.ACTIVE);
+    };
+    return MDCSlidingTabIndicatorFoundation;
+}(MDCTabIndicatorFoundation));
+export { MDCSlidingTabIndicatorFoundation };
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
 export default MDCSlidingTabIndicatorFoundation;
+//# sourceMappingURL=sliding-foundation.js.map

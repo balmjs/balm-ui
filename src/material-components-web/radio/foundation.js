@@ -20,47 +20,52 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import MDCFoundation from '../base/foundation';
-/* eslint-disable no-unused-vars */
-import {MDCSelectionControlState} from '../selection-control/index';
-import MDCRadioAdapter from './adapter';
-/* eslint-enable no-unused-vars */
-import {cssClasses, strings} from './constants';
-
-/**
- * @extends {MDCFoundation<!MDCRadioAdapter>}
- */
-class MDCRadioFoundation extends MDCFoundation {
-  /** @return enum {cssClasses} */
-  static get cssClasses() {
-    return cssClasses;
-  }
-
-  /** @return enum {strings} */
-  static get strings() {
-    return strings;
-  }
-
-  /** @return {!MDCRadioAdapter} */
-  static get defaultAdapter() {
-    return /** @type {!MDCRadioAdapter} */ ({
-      addClass: (/* className: string */) => {},
-      removeClass: (/* className: string */) => {},
-      setNativeControlDisabled: (/* disabled: boolean */) => {},
-    });
-  }
-
-  /** @param {boolean} disabled */
-  setDisabled(disabled) {
-    const {DISABLED} = MDCRadioFoundation.cssClasses;
-    this.adapter_.setNativeControlDisabled(disabled);
-    if (disabled) {
-      this.adapter_.addClass(DISABLED);
-    } else {
-      this.adapter_.removeClass(DISABLED);
+import * as tslib_1 from "tslib";
+import { MDCFoundation } from '../base/foundation';
+import { cssClasses, strings } from './constants';
+var MDCRadioFoundation = /** @class */ (function (_super) {
+    tslib_1.__extends(MDCRadioFoundation, _super);
+    function MDCRadioFoundation(adapter) {
+        return _super.call(this, tslib_1.__assign({}, MDCRadioFoundation.defaultAdapter, adapter)) || this;
     }
-  }
-}
-
+    Object.defineProperty(MDCRadioFoundation, "cssClasses", {
+        get: function () {
+            return cssClasses;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCRadioFoundation, "strings", {
+        get: function () {
+            return strings;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCRadioFoundation, "defaultAdapter", {
+        get: function () {
+            return {
+                addClass: function () { return undefined; },
+                removeClass: function () { return undefined; },
+                setNativeControlDisabled: function () { return undefined; },
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCRadioFoundation.prototype.setDisabled = function (disabled) {
+        var DISABLED = MDCRadioFoundation.cssClasses.DISABLED;
+        this.adapter_.setNativeControlDisabled(disabled);
+        if (disabled) {
+            this.adapter_.addClass(DISABLED);
+        }
+        else {
+            this.adapter_.removeClass(DISABLED);
+        }
+    };
+    return MDCRadioFoundation;
+}(MDCFoundation));
+export { MDCRadioFoundation };
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
 export default MDCRadioFoundation;
+//# sourceMappingURL=foundation.js.map

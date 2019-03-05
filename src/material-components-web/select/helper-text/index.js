@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2018 Google Inc.
+ * Copyright 2019 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,47 +20,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import MDCComponent from '../../base/component';
-
-import MDCSelectHelperTextAdapter from './adapter';
-import MDCSelectHelperTextFoundation from './foundation';
-
-/**
- * @extends {MDCComponent<!MDCSelectHelperTextFoundation>}
- * @final
- */
-class MDCSelectHelperText extends MDCComponent {
-  /**
-   * @param {!Element} root
-   * @return {!MDCSelectHelperText}
-   */
-  static attachTo(root) {
-    return new MDCSelectHelperText(root);
-  }
-
-  /**
-   * @return {!MDCSelectHelperTextFoundation}
-   */
-  get foundation() {
-    return this.foundation_;
-  }
-
-  /**
-   * @return {!MDCSelectHelperTextFoundation}
-   */
-  getDefaultFoundation() {
-    return new MDCSelectHelperTextFoundation(/** @type {!MDCSelectHelperTextAdapter} */ (Object.assign({
-      addClass: (className) => this.root_.classList.add(className),
-      removeClass: (className) => this.root_.classList.remove(className),
-      hasClass: (className) => this.root_.classList.contains(className),
-      setAttr: (attr, value) => this.root_.setAttribute(attr, value),
-      removeAttr: (attr) => this.root_.removeAttribute(attr),
-      setContent: (content) => {
-        this.root_.textContent = content;
-      },
-    })));
-  }
-}
-
-export {MDCSelectHelperText, MDCSelectHelperTextFoundation};
+export * from './component';
+export * from './foundation';
+//# sourceMappingURL=index.js.map

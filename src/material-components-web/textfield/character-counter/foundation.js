@@ -20,52 +20,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import MDCFoundation from '../../base/foundation';
-import MDCTextFieldCharacterCounterAdapter from './adapter';
-import {cssClasses, strings} from './constants';
-
-/**
- * @extends {MDCFoundation<!MDCTextFieldCharacterCounterAdapter>}
- * @final
- */
-class MDCTextFieldCharacterCounterFoundation extends MDCFoundation {
-  /** @return enum {string} */
-  static get cssClasses() {
-    return cssClasses;
-  }
-
-  /** @return enum {string} */
-  static get strings() {
-    return strings;
-  }
-
-  /**
-   * {@see MDCTextFieldCharacterCounterAdapter} for typing information on parameters and return
-   * types.
-   * @return {!MDCTextFieldCharacterCounterAdapter}
-   */
-  static get defaultAdapter() {
-    return /** @type {!MDCTextFieldCharacterCounterAdapter} */ ({
-      setContent: () => {},
+import * as tslib_1 from "tslib";
+import { MDCFoundation } from '../../base/foundation';
+import { cssClasses, strings } from './constants';
+var MDCTextFieldCharacterCounterFoundation = /** @class */ (function (_super) {
+    tslib_1.__extends(MDCTextFieldCharacterCounterFoundation, _super);
+    function MDCTextFieldCharacterCounterFoundation(adapter) {
+        return _super.call(this, tslib_1.__assign({}, MDCTextFieldCharacterCounterFoundation.defaultAdapter, adapter)) || this;
+    }
+    Object.defineProperty(MDCTextFieldCharacterCounterFoundation, "cssClasses", {
+        get: function () {
+            return cssClasses;
+        },
+        enumerable: true,
+        configurable: true
     });
-  }
-
-  /**
-   * @param {!MDCTextFieldCharacterCounterAdapter} adapter
-   */
-  constructor(adapter) {
-    super(Object.assign(MDCTextFieldCharacterCounterFoundation.defaultAdapter, adapter));
-  }
-
-  /**
-   * @param {number} currentLength
-   * @param {number} maxLength
-   */
-  setCounterValue(currentLength, maxLength) {
-    currentLength = Math.min(currentLength, maxLength);
-    this.adapter_.setContent(`${currentLength} / ${maxLength}`);
-  }
-}
-
+    Object.defineProperty(MDCTextFieldCharacterCounterFoundation, "strings", {
+        get: function () {
+            return strings;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTextFieldCharacterCounterFoundation, "defaultAdapter", {
+        /**
+         * See {@link MDCTextFieldCharacterCounterAdapter} for typing information on parameters and return types.
+         */
+        get: function () {
+            return {
+                setContent: function () { return undefined; },
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCTextFieldCharacterCounterFoundation.prototype.setCounterValue = function (currentLength, maxLength) {
+        currentLength = Math.min(currentLength, maxLength);
+        this.adapter_.setContent(currentLength + " / " + maxLength);
+    };
+    return MDCTextFieldCharacterCounterFoundation;
+}(MDCFoundation));
+export { MDCTextFieldCharacterCounterFoundation };
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
 export default MDCTextFieldCharacterCounterFoundation;
+//# sourceMappingURL=foundation.js.map

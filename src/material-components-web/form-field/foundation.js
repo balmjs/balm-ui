@@ -20,56 +20,56 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import MDCFoundation from '../base/foundation';
-import MDCFormFieldAdapter from './adapter';
-import {cssClasses, strings} from './constants';
-
-/**
- * @extends {MDCFoundation<!MDCFormFieldAdapter>}
- */
-class MDCFormFieldFoundation extends MDCFoundation {
-  /** @return enum {cssClasses} */
-  static get cssClasses() {
-    return cssClasses;
-  }
-
-  /** @return enum {strings} */
-  static get strings() {
-    return strings;
-  }
-
-  /** @return {!MDCFormFieldAdapter} */
-  static get defaultAdapter() {
-    return {
-      registerInteractionHandler: (/* type: string, handler: EventListener */) => {},
-      deregisterInteractionHandler: (/* type: string, handler: EventListener */) => {},
-      activateInputRipple: () => {},
-      deactivateInputRipple: () => {},
+import * as tslib_1 from "tslib";
+import { MDCFoundation } from '../base/foundation';
+import { cssClasses, strings } from './constants';
+var MDCFormFieldFoundation = /** @class */ (function (_super) {
+    tslib_1.__extends(MDCFormFieldFoundation, _super);
+    function MDCFormFieldFoundation(adapter) {
+        var _this = _super.call(this, tslib_1.__assign({}, MDCFormFieldFoundation.defaultAdapter, adapter)) || this;
+        _this.clickHandler_ = function () { return _this.handleClick_(); };
+        return _this;
+    }
+    Object.defineProperty(MDCFormFieldFoundation, "cssClasses", {
+        get: function () {
+            return cssClasses;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCFormFieldFoundation, "strings", {
+        get: function () {
+            return strings;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCFormFieldFoundation, "defaultAdapter", {
+        get: function () {
+            return {
+                activateInputRipple: function () { return undefined; },
+                deactivateInputRipple: function () { return undefined; },
+                deregisterInteractionHandler: function () { return undefined; },
+                registerInteractionHandler: function () { return undefined; },
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCFormFieldFoundation.prototype.init = function () {
+        this.adapter_.registerInteractionHandler('click', this.clickHandler_);
     };
-  }
-
-  constructor(adapter) {
-    super(Object.assign(MDCFormFieldFoundation.defaultAdapter, adapter));
-
-    /** @private {!EventListener} */
-    this.clickHandler_ = /** @type {!EventListener} */ (
-      () => this.handleClick_());
-  }
-
-  init() {
-    this.adapter_.registerInteractionHandler('click', this.clickHandler_);
-  }
-
-  destroy() {
-    this.adapter_.deregisterInteractionHandler('click', this.clickHandler_);
-  }
-
-  /** @private */
-  handleClick_() {
-    this.adapter_.activateInputRipple();
-    requestAnimationFrame(() => this.adapter_.deactivateInputRipple());
-  }
-}
-
+    MDCFormFieldFoundation.prototype.destroy = function () {
+        this.adapter_.deregisterInteractionHandler('click', this.clickHandler_);
+    };
+    MDCFormFieldFoundation.prototype.handleClick_ = function () {
+        var _this = this;
+        this.adapter_.activateInputRipple();
+        requestAnimationFrame(function () { return _this.adapter_.deactivateInputRipple(); });
+    };
+    return MDCFormFieldFoundation;
+}(MDCFoundation));
+export { MDCFormFieldFoundation };
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
 export default MDCFormFieldFoundation;
+//# sourceMappingURL=foundation.js.map

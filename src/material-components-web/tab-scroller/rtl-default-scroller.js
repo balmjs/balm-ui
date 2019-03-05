@@ -20,85 +20,54 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import MDCTabScrollerRTL from './rtl-scroller';
-
-/* eslint-disable no-unused-vars */
-import {MDCTabScrollerAnimation, MDCTabScrollerHorizontalEdges} from './adapter';
-/* eslint-enable no-unused-vars */
-
-/**
- * @extends {MDCTabScrollerRTL}
- * @final
- */
-class MDCTabScrollerRTLDefault extends MDCTabScrollerRTL {
-  /**
-   * @return {number}
-   */
-  getScrollPositionRTL() {
-    const currentScrollLeft = this.adapter_.getScrollAreaScrollLeft();
-    const {right} = this.calculateScrollEdges_();
-    // Scroll values on most browsers are ints instead of floats so we round
-    return Math.round(right - currentScrollLeft);
-  }
-
-  /**
-   * @param {number} scrollX
-   * @return {!MDCTabScrollerAnimation}
-   */
-  scrollToRTL(scrollX) {
-    const edges = this.calculateScrollEdges_();
-    const currentScrollLeft = this.adapter_.getScrollAreaScrollLeft();
-    const clampedScrollLeft = this.clampScrollValue_(edges.right - scrollX);
-    return /** @type {!MDCTabScrollerAnimation} */ ({
-      finalScrollPosition: clampedScrollLeft,
-      scrollDelta: clampedScrollLeft - currentScrollLeft,
-    });
-  }
-
-  /**
-   * @param {number} scrollX
-   * @return {!MDCTabScrollerAnimation}
-   */
-  incrementScrollRTL(scrollX) {
-    const currentScrollLeft = this.adapter_.getScrollAreaScrollLeft();
-    const clampedScrollLeft = this.clampScrollValue_(currentScrollLeft - scrollX);
-    return /** @type {!MDCTabScrollerAnimation} */ ({
-      finalScrollPosition: clampedScrollLeft,
-      scrollDelta: clampedScrollLeft - currentScrollLeft,
-    });
-  }
-
-  /**
-   * @param {number} scrollX
-   * @return {number}
-   */
-  getAnimatingScrollPosition(scrollX) {
-    return scrollX;
-  }
-
-  /**
-   * @return {!MDCTabScrollerHorizontalEdges}
-   * @private
-   */
-  calculateScrollEdges_() {
-    const contentWidth = this.adapter_.getScrollContentOffsetWidth();
-    const rootWidth = this.adapter_.getScrollAreaOffsetWidth();
-    return /** @type {!MDCTabScrollerHorizontalEdges} */ ({
-      left: 0,
-      right: contentWidth - rootWidth,
-    });
-  }
-
-  /**
-   * @param {number} scrollX
-   * @return {number}
-   * @private
-   */
-  clampScrollValue_(scrollX) {
-    const edges = this.calculateScrollEdges_();
-    return Math.min(Math.max(edges.left, scrollX), edges.right);
-  }
-}
-
+import * as tslib_1 from "tslib";
+import { MDCTabScrollerRTL } from './rtl-scroller';
+var MDCTabScrollerRTLDefault = /** @class */ (function (_super) {
+    tslib_1.__extends(MDCTabScrollerRTLDefault, _super);
+    function MDCTabScrollerRTLDefault() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCTabScrollerRTLDefault.prototype.getScrollPositionRTL = function () {
+        var currentScrollLeft = this.adapter_.getScrollAreaScrollLeft();
+        var right = this.calculateScrollEdges_().right;
+        // Scroll values on most browsers are ints instead of floats so we round
+        return Math.round(right - currentScrollLeft);
+    };
+    MDCTabScrollerRTLDefault.prototype.scrollToRTL = function (scrollX) {
+        var edges = this.calculateScrollEdges_();
+        var currentScrollLeft = this.adapter_.getScrollAreaScrollLeft();
+        var clampedScrollLeft = this.clampScrollValue_(edges.right - scrollX);
+        return {
+            finalScrollPosition: clampedScrollLeft,
+            scrollDelta: clampedScrollLeft - currentScrollLeft,
+        };
+    };
+    MDCTabScrollerRTLDefault.prototype.incrementScrollRTL = function (scrollX) {
+        var currentScrollLeft = this.adapter_.getScrollAreaScrollLeft();
+        var clampedScrollLeft = this.clampScrollValue_(currentScrollLeft - scrollX);
+        return {
+            finalScrollPosition: clampedScrollLeft,
+            scrollDelta: clampedScrollLeft - currentScrollLeft,
+        };
+    };
+    MDCTabScrollerRTLDefault.prototype.getAnimatingScrollPosition = function (scrollX) {
+        return scrollX;
+    };
+    MDCTabScrollerRTLDefault.prototype.calculateScrollEdges_ = function () {
+        var contentWidth = this.adapter_.getScrollContentOffsetWidth();
+        var rootWidth = this.adapter_.getScrollAreaOffsetWidth();
+        return {
+            left: 0,
+            right: contentWidth - rootWidth,
+        };
+    };
+    MDCTabScrollerRTLDefault.prototype.clampScrollValue_ = function (scrollX) {
+        var edges = this.calculateScrollEdges_();
+        return Math.min(Math.max(edges.left, scrollX), edges.right);
+    };
+    return MDCTabScrollerRTLDefault;
+}(MDCTabScrollerRTL));
+export { MDCTabScrollerRTLDefault };
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
 export default MDCTabScrollerRTLDefault;
+//# sourceMappingURL=rtl-default-scroller.js.map

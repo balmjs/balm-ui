@@ -20,24 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-/** @type {string|undefined} */
-let storedTransformPropertyName_;
-
+var cachedCssTransformPropertyName_;
 /**
  * Returns the name of the correct transform property to use on the current browser.
- * @param {!Window} globalObj
- * @param {boolean=} forceRefresh
- * @return {string}
  */
-function getTransformPropertyName(globalObj, forceRefresh = false) {
-  if (storedTransformPropertyName_ === undefined || forceRefresh) {
-    const el = globalObj.document.createElement('div');
-    const transformPropertyName = ('transform' in el.style ? 'transform' : 'webkitTransform');
-    storedTransformPropertyName_ = transformPropertyName;
-  }
-
-  return storedTransformPropertyName_;
+function getTransformPropertyName(globalObj, forceRefresh) {
+    if (forceRefresh === void 0) { forceRefresh = false; }
+    if (cachedCssTransformPropertyName_ === undefined || forceRefresh) {
+        var el = globalObj.document.createElement('div');
+        cachedCssTransformPropertyName_ = 'transform' in el.style ? 'transform' : 'webkitTransform';
+    }
+    return cachedCssTransformPropertyName_;
 }
-
-export {getTransformPropertyName};
+export { getTransformPropertyName };
+//# sourceMappingURL=util.js.map

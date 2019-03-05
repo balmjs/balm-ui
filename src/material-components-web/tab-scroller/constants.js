@@ -20,21 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-/** @enum {string} */
-const cssClasses = {
-  ANIMATING: 'mdc-tab-scroller--animating',
-  SCROLL_TEST: 'mdc-tab-scroller__test',
-  SCROLL_AREA_SCROLL: 'mdc-tab-scroller__scroll-area--scroll',
+var cssClasses = {
+    ANIMATING: 'mdc-tab-scroller--animating',
+    SCROLL_AREA_SCROLL: 'mdc-tab-scroller__scroll-area--scroll',
+    SCROLL_TEST: 'mdc-tab-scroller__test',
 };
-
-/** @enum {string} */
-const strings = {
-  AREA_SELECTOR: '.mdc-tab-scroller__scroll-area',
-  CONTENT_SELECTOR: '.mdc-tab-scroller__scroll-content',
+var strings = {
+    AREA_SELECTOR: '.mdc-tab-scroller__scroll-area',
+    CONTENT_SELECTOR: '.mdc-tab-scroller__scroll-content',
 };
-
-export {
-  cssClasses,
-  strings,
-};
+export { cssClasses, strings, };
+//# sourceMappingURL=constants.js.map

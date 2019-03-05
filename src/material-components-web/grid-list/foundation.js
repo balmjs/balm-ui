@@ -20,53 +20,68 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import MDCFoundation from '../base/foundation';
-import {strings} from './constants';
-
-export default class MDCGridListFoundation extends MDCFoundation {
-  static get strings() {
-    return strings;
-  }
-
-  static get defaultAdapter() {
-    return {
-      getOffsetWidth: () => /* number */ 0,
-      getNumberOfTiles: () => /* number */ 0,
-      getOffsetWidthForTileAtIndex: (/* index: number */) => /* number */ 0,
-      setStyleForTilesElement: (/* property: string, value: string */) => {},
-      registerResizeHandler: (/* handler: EventListener */) => {},
-      deregisterResizeHandler: (/* handler: EventListener */) => {},
-    };
-  }
-  constructor(adapter) {
-    super(Object.assign(MDCGridListFoundation.defaultAdapter, adapter));
-    this.resizeHandler_ = () => this.alignCenter();
-    this.resizeFrame_ = 0;
-  }
-  init() {
-    this.alignCenter();
-    this.adapter_.registerResizeHandler(this.resizeHandler_);
-  }
-  destroy() {
-    this.adapter_.deregisterResizeHandler(this.resizeHandler_);
-  }
-  alignCenter() {
-    if (this.resizeFrame_ !== 0) {
-      cancelAnimationFrame(this.resizeFrame_);
+import * as tslib_1 from "tslib";
+import { MDCFoundation } from '../base/foundation';
+import { strings } from './constants';
+var MDCGridListFoundation = /** @class */ (function (_super) {
+    tslib_1.__extends(MDCGridListFoundation, _super);
+    /* istanbul ignore next: optional argument is not a branch statement */
+    function MDCGridListFoundation(adapter) {
+        var _this = _super.call(this, tslib_1.__assign({}, MDCGridListFoundation.defaultAdapter, adapter)) || this;
+        _this.resizeFrame_ = 0;
+        _this.resizeHandler_ = _this.alignCenter.bind(_this);
+        return _this;
     }
-    this.resizeFrame_ = requestAnimationFrame(() => {
-      this.alignCenter_();
-      this.resizeFrame_ = 0;
+    Object.defineProperty(MDCGridListFoundation, "strings", {
+        get: function () {
+            return strings;
+        },
+        enumerable: true,
+        configurable: true
     });
-  }
-  alignCenter_() {
-    if (this.adapter_.getNumberOfTiles() == 0) {
-      return;
-    }
-    const gridWidth = this.adapter_.getOffsetWidth();
-    const itemWidth = this.adapter_.getOffsetWidthForTileAtIndex(0);
-    const tilesWidth = itemWidth * Math.floor(gridWidth / itemWidth);
-    this.adapter_.setStyleForTilesElement('width', `${tilesWidth}px`);
-  }
-}
+    Object.defineProperty(MDCGridListFoundation, "defaultAdapter", {
+        get: function () {
+            return {
+                deregisterResizeHandler: function () { return undefined; },
+                getNumberOfTiles: function () { return 0; },
+                getOffsetWidth: function () { return 0; },
+                getOffsetWidthForTileAtIndex: function () { return 0; },
+                registerResizeHandler: function () { return undefined; },
+                setStyleForTilesElement: function () { return undefined; },
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCGridListFoundation.prototype.init = function () {
+        this.alignCenter();
+        this.adapter_.registerResizeHandler(this.resizeHandler_);
+    };
+    MDCGridListFoundation.prototype.destroy = function () {
+        this.adapter_.deregisterResizeHandler(this.resizeHandler_);
+    };
+    MDCGridListFoundation.prototype.alignCenter = function () {
+        var _this = this;
+        if (this.resizeFrame_ !== 0) {
+            cancelAnimationFrame(this.resizeFrame_);
+        }
+        this.resizeFrame_ = requestAnimationFrame(function () {
+            _this.alignCenter_();
+            _this.resizeFrame_ = 0;
+        });
+    };
+    MDCGridListFoundation.prototype.alignCenter_ = function () {
+        if (this.adapter_.getNumberOfTiles() === 0) {
+            return;
+        }
+        var gridWidth = this.adapter_.getOffsetWidth();
+        var itemWidth = this.adapter_.getOffsetWidthForTileAtIndex(0);
+        var tilesWidth = itemWidth * Math.floor(gridWidth / itemWidth);
+        this.adapter_.setStyleForTilesElement('width', tilesWidth + "px");
+    };
+    return MDCGridListFoundation;
+}(MDCFoundation));
+export { MDCGridListFoundation };
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+export default MDCGridListFoundation;
+//# sourceMappingURL=foundation.js.map

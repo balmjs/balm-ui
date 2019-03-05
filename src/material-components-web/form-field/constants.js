@@ -20,15 +20,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-/** @enum {string} */
-const cssClasses = {
-  ROOT: 'mdc-form-field',
+export var cssClasses = {
+    ROOT: 'mdc-form-field',
 };
-
-/** @enum {string} */
-const strings = {
-  LABEL_SELECTOR: '.mdc-form-field > label',
+export var strings = {
+    LABEL_SELECTOR: '.mdc-form-field > label',
 };
-
-export {cssClasses, strings};
+//# sourceMappingURL=constants.js.map

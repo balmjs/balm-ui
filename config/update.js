@@ -16,7 +16,6 @@ const level1 = [
   'form-field',
   'grid-list',
   'icon-button',
-  'icon-toggle',
   'image-list',
   'line-ripple',
   'linear-progress',
@@ -27,8 +26,8 @@ const level1 = [
   'radio',
   'ripple',
   'select',
-  'selection-control',
   'slider',
+  'shape',
   'snackbar',
   'switch',
   'tab',
@@ -36,6 +35,7 @@ const level1 = [
   'tab-indicator',
   'tab-scroller',
   'textfield',
+  'theme',
   'toolbar',
   'top-app-bar',
   'typography'
@@ -43,20 +43,16 @@ const level1 = [
 const level2 = [
   'chips/chip',
   'chips/chip-set',
-  // 'drawer/permanent',
-  // 'drawer/persistent',
-  // 'drawer/slidable',
-  // 'drawer/temporary',
   'drawer/dismissible',
   'drawer/modal',
   'select/helper-text',
   'select/icon',
-  // 'tabs/tab',
-  // 'tabs/tab-bar',
-  // 'tabs/tab-bar-scroller',
   'textfield/helper-text',
   'textfield/icon',
-  'textfield/character-counter'
+  'textfield/character-counter',
+  'top-app-bar/fixed',
+  'top-app-bar/short',
+  'top-app-bar/standard'
 ];
 
 let index = 0;

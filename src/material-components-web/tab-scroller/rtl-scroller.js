@@ -20,51 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-/* eslint no-unused-vars: [2, {"args": "none"}] */
-
-/* eslint-disable no-unused-vars */
-import {MDCTabScrollerAdapter, MDCTabScrollerAnimation} from './adapter';
-/* eslint-enable no-unused-vars */
-
-/**
- * @abstract
- */
-class MDCTabScrollerRTL {
-  /** @param {!MDCTabScrollerAdapter} adapter */
-  constructor(adapter) {
-    /** @private */
-    this.adapter_ = adapter;
-  }
-
-  /**
-   * @param {number} translateX The current translateX position
-   * @return {number}
-   * @abstract
-   */
-  getScrollPositionRTL(translateX) {}
-
-  /**
-   * @param {number} scrollX
-   * @return {!MDCTabScrollerAnimation}
-   * @abstract
-   */
-  scrollToRTL(scrollX) {}
-
-  /**
-   * @param {number} scrollX
-   * @return {!MDCTabScrollerAnimation}
-   * @abstract
-   */
-  incrementScrollRTL(scrollX) {}
-
-  /**
-   * @param {number} scrollX The current scrollX position
-   * @param {number} translateX The current translateX position
-   * @return {number}
-   * @abstract
-   */
-  getAnimatingScrollPosition(scrollX, translateX) {}
-}
-
+var MDCTabScrollerRTL = /** @class */ (function () {
+    function MDCTabScrollerRTL(adapter) {
+        this.adapter_ = adapter;
+    }
+    return MDCTabScrollerRTL;
+}());
+export { MDCTabScrollerRTL };
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
 export default MDCTabScrollerRTL;
+//# sourceMappingURL=rtl-scroller.js.map

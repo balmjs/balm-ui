@@ -20,28 +20,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-export const cssClasses = {
-  FIXED: 'mdc-toolbar--fixed',
-  FIXED_LASTROW: 'mdc-toolbar--fixed-lastrow-only',
-  FIXED_AT_LAST_ROW: 'mdc-toolbar--fixed-at-last-row',
-  TOOLBAR_ROW_FLEXIBLE: 'mdc-toolbar--flexible',
-  FLEXIBLE_DEFAULT_BEHAVIOR: 'mdc-toolbar--flexible-default-behavior',
-  FLEXIBLE_MAX: 'mdc-toolbar--flexible-space-maximized',
-  FLEXIBLE_MIN: 'mdc-toolbar--flexible-space-minimized',
+export var cssClasses = {
+    FIXED: 'mdc-toolbar--fixed',
+    FIXED_AT_LAST_ROW: 'mdc-toolbar--fixed-at-last-row',
+    FIXED_LASTROW: 'mdc-toolbar--fixed-lastrow-only',
+    FLEXIBLE_DEFAULT_BEHAVIOR: 'mdc-toolbar--flexible-default-behavior',
+    FLEXIBLE_MAX: 'mdc-toolbar--flexible-space-maximized',
+    FLEXIBLE_MIN: 'mdc-toolbar--flexible-space-minimized',
+    TOOLBAR_ROW_FLEXIBLE: 'mdc-toolbar--flexible',
 };
-
-export const strings = {
-  TITLE_SELECTOR: '.mdc-toolbar__title',
-  ICON_SELECTOR: '.mdc-toolbar__icon',
-  FIRST_ROW_SELECTOR: '.mdc-toolbar__row:first-child',
-  CHANGE_EVENT: 'MDCToolbar:change',
+export var strings = {
+    CHANGE_EVENT: 'MDCToolbar:change',
+    FIRST_ROW_SELECTOR: '.mdc-toolbar__row:first-child',
+    ICON_SELECTOR: '.mdc-toolbar__icon',
+    TITLE_SELECTOR: '.mdc-toolbar__title',
 };
-
-export const numbers = {
-  MAX_TITLE_SIZE: 2.125,
-  MIN_TITLE_SIZE: 1.25,
-  TOOLBAR_ROW_HEIGHT: 64,
-  TOOLBAR_ROW_MOBILE_HEIGHT: 56,
-  TOOLBAR_MOBILE_BREAKPOINT: 600,
+export var numbers = {
+    MAX_TITLE_SIZE: 2.125,
+    MIN_TITLE_SIZE: 1.25,
+    TOOLBAR_MOBILE_BREAKPOINT: 600,
+    TOOLBAR_ROW_HEIGHT: 64,
+    TOOLBAR_ROW_MOBILE_HEIGHT: 56,
 };
+//# sourceMappingURL=constants.js.map

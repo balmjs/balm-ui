@@ -20,35 +20,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import MDCDismissibleDrawerFoundation from '../dismissible/foundation';
-
-/**
- * @extends {MDCDismissibleDrawerFoundation}
- */
-class MDCModalDrawerFoundation extends MDCDismissibleDrawerFoundation {
-  /**
-   * Called when drawer finishes open animation.
-   * @override
-   */
-  opened() {
-    this.adapter_.trapFocus();
-  }
-
-  /**
-   * Called when drawer finishes close animation.
-   * @override
-   */
-  closed() {
-    this.adapter_.releaseFocus();
-  }
-
-  /**
-   * Handles click event on scrim.
-   */
-  handleScrimClick() {
-    this.close();
-  }
-}
-
+import * as tslib_1 from "tslib";
+import { MDCDismissibleDrawerFoundation } from '../dismissible/foundation';
+/* istanbul ignore next: subclass is not a branch statement */
+var MDCModalDrawerFoundation = /** @class */ (function (_super) {
+    tslib_1.__extends(MDCModalDrawerFoundation, _super);
+    function MDCModalDrawerFoundation() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * Called when drawer finishes open animation.
+     */
+    MDCModalDrawerFoundation.prototype.opened = function () {
+        this.adapter_.trapFocus();
+    };
+    /**
+     * Called when drawer finishes close animation.
+     */
+    MDCModalDrawerFoundation.prototype.closed = function () {
+        this.adapter_.releaseFocus();
+    };
+    /**
+     * Handles click event on scrim.
+     */
+    MDCModalDrawerFoundation.prototype.handleScrimClick = function () {
+        this.close();
+    };
+    return MDCModalDrawerFoundation;
+}(MDCDismissibleDrawerFoundation));
+export { MDCModalDrawerFoundation };
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
 export default MDCModalDrawerFoundation;
+//# sourceMappingURL=foundation.js.map

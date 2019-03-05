@@ -20,39 +20,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import createFocusTrap from 'focus-trap';
-
-/**
- * @param {!Element} surfaceEl
- * @param {?Element=} initialFocusEl
- * @param {function(!Element, !FocusTrapCreateOptions): !FocusTrapInstance} focusTrapFactory
- * @return {!FocusTrapInstance}
- */
-function createFocusTrapInstance(surfaceEl, focusTrapFactory = createFocusTrap, initialFocusEl = null) {
-  return focusTrapFactory(surfaceEl, {
-    initialFocus: initialFocusEl,
-    escapeDeactivates: false, // Dialog foundation handles escape key
-    clickOutsideDeactivates: true, // Allow handling of scrim clicks
-  });
+import * as createFocusTrap from 'focus-trap';
+export function createFocusTrapInstance(surfaceEl, focusTrapFactory, initialFocusEl) {
+    if (focusTrapFactory === void 0) { focusTrapFactory = createFocusTrap; }
+    return focusTrapFactory(surfaceEl, {
+        clickOutsideDeactivates: true,
+        escapeDeactivates: false,
+        initialFocus: initialFocusEl,
+    });
 }
-
-/**
- * @param {!Element} el
- * @return {boolean}
- */
-function isScrollable(el) {
-  return el.scrollHeight > el.offsetHeight;
+export function isScrollable(el) {
+    return el ? el.scrollHeight > el.offsetHeight : false;
 }
-
-/**
- * @param {!Array<!Element>|!NodeList} els
- * @return {boolean}
- */
-function areTopsMisaligned(els) {
-  const tops = new Set();
-  [].forEach.call(els, (el) => tops.add(el.offsetTop));
-  return tops.size > 1;
+export function areTopsMisaligned(els) {
+    var tops = new Set();
+    [].forEach.call(els, function (el) { return tops.add(el.offsetTop); });
+    return tops.size > 1;
 }
-
-export {createFocusTrapInstance, isScrollable, areTopsMisaligned};
+//# sourceMappingURL=util.js.map

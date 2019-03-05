@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2017 Google Inc.
+ * Copyright 2019 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,47 +20,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import MDCComponent from '../../base/component';
-
-import MDCTextFieldHelperTextAdapter from './adapter';
-import MDCTextFieldHelperTextFoundation from './foundation';
-
-/**
- * @extends {MDCComponent<!MDCTextFieldHelperTextFoundation>}
- * @final
- */
-class MDCTextFieldHelperText extends MDCComponent {
-  /**
-   * @param {!Element} root
-   * @return {!MDCTextFieldHelperText}
-   */
-  static attachTo(root) {
-    return new MDCTextFieldHelperText(root);
-  }
-
-  /**
-   * @return {!MDCTextFieldHelperTextFoundation}
-   */
-  get foundation() {
-    return this.foundation_;
-  }
-
-  /**
-   * @return {!MDCTextFieldHelperTextFoundation}
-   */
-  getDefaultFoundation() {
-    return new MDCTextFieldHelperTextFoundation(/** @type {!MDCTextFieldHelperTextAdapter} */ (Object.assign({
-      addClass: (className) => this.root_.classList.add(className),
-      removeClass: (className) => this.root_.classList.remove(className),
-      hasClass: (className) => this.root_.classList.contains(className),
-      setAttr: (attr, value) => this.root_.setAttribute(attr, value),
-      removeAttr: (attr) => this.root_.removeAttribute(attr),
-      setContent: (content) => {
-        this.root_.textContent = content;
-      },
-    })));
-  }
-}
-
-export {MDCTextFieldHelperText, MDCTextFieldHelperTextFoundation};
+export * from './component';
+export * from './foundation';
+//# sourceMappingURL=index.js.map

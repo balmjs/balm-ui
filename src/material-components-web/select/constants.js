@@ -20,39 +20,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-/** @enum {string} */
-const cssClasses = {
-  DISABLED: 'mdc-select--disabled',
-  ROOT: 'mdc-select',
-  OUTLINED: 'mdc-select--outlined',
-  FOCUSED: 'mdc-select--focused',
-  SELECTED_ITEM_CLASS: 'mdc-list-item--selected',
-  WITH_LEADING_ICON: 'mdc-select--with-leading-icon',
-  INVALID: 'mdc-select--invalid',
-  REQUIRED: 'mdc-select--required',
+var cssClasses = {
+    DISABLED: 'mdc-select--disabled',
+    FOCUSED: 'mdc-select--focused',
+    INVALID: 'mdc-select--invalid',
+    OUTLINED: 'mdc-select--outlined',
+    REQUIRED: 'mdc-select--required',
+    ROOT: 'mdc-select',
+    SELECTED_ITEM_CLASS: 'mdc-list-item--selected',
+    WITH_LEADING_ICON: 'mdc-select--with-leading-icon',
 };
-
-/** @enum {string} */
-const strings = {
-  ARIA_CONTROLS: 'aria-controls',
-  CHANGE_EVENT: 'MDCSelect:change',
-  SELECTED_ITEM_SELECTOR: `.${cssClasses.SELECTED_ITEM_CLASS}`,
-  LEADING_ICON_SELECTOR: '.mdc-select__icon',
-  SELECTED_TEXT_SELECTOR: '.mdc-select__selected-text',
-  HIDDEN_INPUT_SELECTOR: 'input[type="hidden"]',
-  MENU_SELECTOR: '.mdc-select__menu',
-  LINE_RIPPLE_SELECTOR: '.mdc-line-ripple',
-  LABEL_SELECTOR: '.mdc-floating-label',
-  NATIVE_CONTROL_SELECTOR: '.mdc-select__native-control',
-  OUTLINE_SELECTOR: '.mdc-notched-outline',
-  ENHANCED_VALUE_ATTR: 'data-value',
-  ARIA_SELECTED_ATTR: 'aria-selected',
+var strings = {
+    ARIA_CONTROLS: 'aria-controls',
+    ARIA_SELECTED_ATTR: 'aria-selected',
+    CHANGE_EVENT: 'MDCSelect:change',
+    ENHANCED_VALUE_ATTR: 'data-value',
+    HIDDEN_INPUT_SELECTOR: 'input[type="hidden"]',
+    LABEL_SELECTOR: '.mdc-floating-label',
+    LEADING_ICON_SELECTOR: '.mdc-select__icon',
+    LINE_RIPPLE_SELECTOR: '.mdc-line-ripple',
+    MENU_SELECTOR: '.mdc-select__menu',
+    NATIVE_CONTROL_SELECTOR: '.mdc-select__native-control',
+    OUTLINE_SELECTOR: '.mdc-notched-outline',
+    SELECTED_ITEM_SELECTOR: "." + cssClasses.SELECTED_ITEM_CLASS,
+    SELECTED_TEXT_SELECTOR: '.mdc-select__selected-text',
 };
-
-/** @enum {number} */
-const numbers = {
-  LABEL_SCALE: 0.75,
+var numbers = {
+    LABEL_SCALE: 0.75,
 };
-
-export {cssClasses, strings, numbers};
+export { cssClasses, strings, numbers };
+//# sourceMappingURL=constants.js.map

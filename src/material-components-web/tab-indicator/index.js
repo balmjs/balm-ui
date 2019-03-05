@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2018 Google Inc.
+ * Copyright 2019 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,77 +20,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import MDCComponent from '../base/component';
-
-import MDCTabIndicatorAdapter from './adapter';
-import MDCTabIndicatorFoundation from './foundation';
-
-import MDCSlidingTabIndicatorFoundation from './sliding-foundation';
-import MDCFadingTabIndicatorFoundation from './fading-foundation';
-
-/**
- * @extends {MDCComponent<!MDCTabIndicatorFoundation>}
- * @final
- */
-class MDCTabIndicator extends MDCComponent {
-  /**
-   * @param {!Element} root
-   * @return {!MDCTabIndicator}
-   */
-  static attachTo(root) {
-    return new MDCTabIndicator(root);
-  }
-
-  /**
-   * @param {...?} args
-   */
-  constructor(...args) {
-    super(...args);
-    /** @type {?Element} */
-    this.content_;
-  }
-
-  initialize() {
-    this.content_ = this.root_.querySelector(MDCTabIndicatorFoundation.strings.CONTENT_SELECTOR);
-  }
-
-  /**
-   * @return {!ClientRect}
-   */
-  computeContentClientRect() {
-    return this.foundation_.computeContentClientRect();
-  }
-
-  /**
-   * @return {!MDCTabIndicatorFoundation}
-   */
-  getDefaultFoundation() {
-    const adapter = /** @type {!MDCTabIndicatorAdapter} */ (Object.assign({
-      addClass: (className) => this.root_.classList.add(className),
-      removeClass: (className) => this.root_.classList.remove(className),
-      computeContentClientRect: () => this.content_.getBoundingClientRect(),
-      setContentStyleProperty: (prop, value) => this.content_.style.setProperty(prop, value),
-    }));
-
-    if (this.root_.classList.contains(MDCTabIndicatorFoundation.cssClasses.FADE)) {
-      return new MDCFadingTabIndicatorFoundation(adapter);
-    }
-
-    // Default to the sliding indicator
-    return new MDCSlidingTabIndicatorFoundation(adapter);
-  }
-
-  /**
-   * @param {!ClientRect=} previousIndicatorClientRect
-   */
-  activate(previousIndicatorClientRect) {
-    this.foundation_.activate(previousIndicatorClientRect);
-  }
-
-  deactivate() {
-    this.foundation_.deactivate();
-  }
-}
-
-export {MDCTabIndicator, MDCTabIndicatorFoundation, MDCSlidingTabIndicatorFoundation, MDCFadingTabIndicatorFoundation};
+export * from './component';
+export * from './foundation';
+export * from './fading-foundation';
+export * from './sliding-foundation';
+//# sourceMappingURL=index.js.map

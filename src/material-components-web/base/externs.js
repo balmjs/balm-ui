@@ -1,6 +1,7 @@
+"use strict";
 /**
  * @license
- * Copyright 2016 Google Inc.
+ * Copyright 2019 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,21 +21,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-/** @enum {string} */
-const cssClasses = {
-  ROOT: 'mdc-icon-toggle',
-  DISABLED: 'mdc-icon-toggle--disabled',
-};
-
-/** @enum {string} */
-const strings = {
-  DATA_TOGGLE_ON: 'data-toggle-on',
-  DATA_TOGGLE_OFF: 'data-toggle-off',
-  ARIA_PRESSED: 'aria-pressed',
-  ARIA_DISABLED: 'aria-disabled',
-  ARIA_LABEL: 'aria-label',
-  CHANGE_EVENT: 'MDCIconToggle:change',
-};
-
-export {cssClasses, strings};
+//# sourceMappingURL=externs.js.map

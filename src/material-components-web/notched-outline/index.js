@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2017 Google Inc.
+ * Copyright 2019 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,75 +20,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import MDCComponent from '../base/component';
-
-import MDCNotchedOutlineAdapter from './adapter';
-import MDCNotchedOutlineFoundation from './foundation';
-import {MDCFloatingLabelFoundation} from '../floating-label/index';
-import {cssClasses, strings} from './constants';
-
-/**
- * @extends {MDCComponent<!MDCNotchedOutlineFoundation>}
- * @final
- */
-class MDCNotchedOutline extends MDCComponent {
-  /**
-   * @param {!Element} root
-   * @return {!MDCNotchedOutline}
-   */
-  static attachTo(root) {
-    return new MDCNotchedOutline(root);
-  }
-  /** @param {...?} args */
-  constructor(...args) {
-    super(...args);
-    /** @private {Element} */
-    this.notchElement_;
-  }
-
-  initialSyncWithDOM() {
-    const label = this.root_.querySelector('.' + MDCFloatingLabelFoundation.cssClasses.ROOT);
-    this.notchElement_ = this.root_.querySelector(strings.NOTCH_ELEMENT_SELECTOR);
-
-    if (label) {
-      label.style.transitionDuration = '0s';
-      this.root_.classList.add(cssClasses.OUTLINE_UPGRADED);
-      requestAnimationFrame(() => {
-        label.style.transitionDuration = '';
-      });
-    } else {
-      this.root_.classList.add(cssClasses.NO_LABEL);
-    }
-  }
-
-  /**
-    * Updates classes and styles to open the notch to the specified width.
-    * @param {number} notchWidth The notch width in the outline.
-    */
-  notch(notchWidth) {
-    this.foundation_.notch(notchWidth);
-  }
-
-  /**
-   * Updates classes and styles to close the notch.
-   */
-  closeNotch() {
-    this.foundation_.closeNotch();
-  }
-
-  /**
-   * @return {!MDCNotchedOutlineFoundation}
-   */
-  getDefaultFoundation() {
-    return new MDCNotchedOutlineFoundation(
-      /** @type {!MDCNotchedOutlineAdapter} */ (Object.assign({
-        addClass: (className) => this.root_.classList.add(className),
-        removeClass: (className) => this.root_.classList.remove(className),
-        setNotchWidthProperty: (width) => this.notchElement_.style.setProperty('width', width + 'px'),
-        removeNotchWidthProperty: () => this.notchElement_.style.removeProperty('width'),
-      })));
-  }
-}
-
-export {MDCNotchedOutline, MDCNotchedOutlineFoundation};
+export * from './component';
+export * from './foundation';
+//# sourceMappingURL=index.js.map

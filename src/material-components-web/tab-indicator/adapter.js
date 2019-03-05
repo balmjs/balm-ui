@@ -20,44 +20,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-/* eslint no-unused-vars: [2, {"args": "none"}] */
-
-/**
- * Adapter for MDC Tab Indicator.
- *
- * Defines the shape of the adapter expected by the foundation. Implement this
- * adapter to integrate the Tab Indicator into your framework. See
- * https://github.com/material-components/material-components-web/blob/master/docs/authoring-components.md
- * for more information.
- *
- * @record
- */
-class MDCTabIndicatorAdapter {
-  /**
-   * Adds the given className to the root element.
-   * @param {string} className The className to add
-   */
-  addClass(className) {}
-
-  /**
-   * Removes the given className from the root element.
-   * @param {string} className The className to remove
-   */
-  removeClass(className) {}
-
-  /**
-   * Returns the client rect of the content element.
-   * @return {!ClientRect}
-   */
-  computeContentClientRect() {}
-
-  /**
-   * Sets a style property of the content element to the passed value
-   * @param {string} propName The style property name to set
-   * @param {string} value The style property value
-   */
-  setContentStyleProperty(propName, value) {}
-}
-
-export default MDCTabIndicatorAdapter;
+//# sourceMappingURL=adapter.js.map

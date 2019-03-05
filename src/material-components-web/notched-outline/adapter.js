@@ -20,42 +20,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-/* eslint no-unused-vars: [2, {"args": "none"}] */
-
-/**
- * Adapter for MDC Notched Outline.
- *
- * Defines the shape of the adapter expected by the foundation. Implement this
- * adapter to integrate the Notched Outline into your framework. See
- * https://github.com/material-components/material-components-web/blob/master/docs/authoring-components.md
- * for more information.
- *
- * @record
- */
-class MDCNotchedOutlineAdapter {
-  /**
-   * Adds a class to the root element.
-   * @param {string} className
-   */
-  addClass(className) {}
-
-  /**
-   * Removes a class from the root element.
-   * @param {string} className
-   */
-  removeClass(className) {}
-
-  /**
-   * Sets the width style property of the notch element.
-   * @param {number} width
-   */
-  setNotchWidthProperty(width) {}
-
-  /**
-   * Removes the width style property from the notch element.
-   */
-  removeNotchWidthProperty() {}
-}
-
-export default MDCNotchedOutlineAdapter;
+//# sourceMappingURL=adapter.js.map

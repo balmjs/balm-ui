@@ -20,88 +20,96 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import MDCFoundation from '../base/foundation';
-import {transformStyleProperties} from '../animation/index';
-
-import {cssClasses, strings} from './constants';
-
-export default class MDCLinearProgressFoundation extends MDCFoundation {
-  static get cssClasses() {
-    return cssClasses;
-  }
-
-  static get strings() {
-    return strings;
-  }
-
-  static get defaultAdapter() {
-    return {
-      addClass: (/* className: string */) => {},
-      getPrimaryBar: () => /* el: Element */ {},
-      getBuffer: () => /* el: Element */ {},
-      hasClass: (/* className: string */) => false,
-      removeClass: (/* className: string */) => {},
-      setStyle: (/* el: Element, styleProperty: string, value: string */) => {},
-    };
-  }
-
-  constructor(adapter) {
-    super(Object.assign(MDCLinearProgressFoundation.defaultAdapter, adapter));
-  }
-
-  init() {
-    this.determinate_ = !this.adapter_.hasClass(cssClasses.INDETERMINATE_CLASS);
-    this.reverse_ = this.adapter_.hasClass(cssClasses.REVERSED_CLASS);
-    this.progress_ = 0;
-  }
-
-  setDeterminate(isDeterminate) {
-    this.determinate_ = isDeterminate;
-    if (this.determinate_) {
-      this.adapter_.removeClass(cssClasses.INDETERMINATE_CLASS);
-      this.setScale_(this.adapter_.getPrimaryBar(), this.progress_);
-    } else {
-      this.adapter_.addClass(cssClasses.INDETERMINATE_CLASS);
-      this.setScale_(this.adapter_.getPrimaryBar(), 1);
-      this.setScale_(this.adapter_.getBuffer(), 1);
+import * as tslib_1 from "tslib";
+import { getCorrectPropertyName } from '../animation/util';
+import { MDCFoundation } from '../base/foundation';
+import { cssClasses, strings } from './constants';
+var MDCLinearProgressFoundation = /** @class */ (function (_super) {
+    tslib_1.__extends(MDCLinearProgressFoundation, _super);
+    function MDCLinearProgressFoundation(adapter) {
+        return _super.call(this, tslib_1.__assign({}, MDCLinearProgressFoundation.defaultAdapter, adapter)) || this;
     }
-  }
-
-  setProgress(value) {
-    this.progress_ = value;
-    if (this.determinate_) {
-      this.setScale_(this.adapter_.getPrimaryBar(), value);
-    }
-  }
-
-  setBuffer(value) {
-    if (this.determinate_) {
-      this.setScale_(this.adapter_.getBuffer(), value);
-    }
-  }
-
-  setReverse(isReversed) {
-    this.reverse_ = isReversed;
-    if (this.reverse_) {
-      this.adapter_.addClass(cssClasses.REVERSED_CLASS);
-    } else {
-      this.adapter_.removeClass(cssClasses.REVERSED_CLASS);
-    }
-  }
-
-  open() {
-    this.adapter_.removeClass(cssClasses.CLOSED_CLASS);
-  }
-
-  close() {
-    this.adapter_.addClass(cssClasses.CLOSED_CLASS);
-  }
-
-  setScale_(el, scaleValue) {
-    const value = 'scaleX(' + scaleValue + ')';
-    transformStyleProperties.forEach((transformStyleProperty) => {
-      this.adapter_.setStyle(el, transformStyleProperty, value);
+    Object.defineProperty(MDCLinearProgressFoundation, "cssClasses", {
+        get: function () {
+            return cssClasses;
+        },
+        enumerable: true,
+        configurable: true
     });
-  }
-}
+    Object.defineProperty(MDCLinearProgressFoundation, "strings", {
+        get: function () {
+            return strings;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCLinearProgressFoundation, "defaultAdapter", {
+        get: function () {
+            return {
+                addClass: function () { return undefined; },
+                getBuffer: function () { return null; },
+                getPrimaryBar: function () { return null; },
+                hasClass: function () { return false; },
+                removeClass: function () { return undefined; },
+                setStyle: function () { return undefined; },
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCLinearProgressFoundation.prototype.init = function () {
+        this.isDeterminate_ = !this.adapter_.hasClass(cssClasses.INDETERMINATE_CLASS);
+        this.isReversed_ = this.adapter_.hasClass(cssClasses.REVERSED_CLASS);
+        this.progress_ = 0;
+    };
+    MDCLinearProgressFoundation.prototype.setDeterminate = function (isDeterminate) {
+        this.isDeterminate_ = isDeterminate;
+        if (this.isDeterminate_) {
+            this.adapter_.removeClass(cssClasses.INDETERMINATE_CLASS);
+            this.setScale_(this.adapter_.getPrimaryBar(), this.progress_);
+        }
+        else {
+            this.adapter_.addClass(cssClasses.INDETERMINATE_CLASS);
+            this.setScale_(this.adapter_.getPrimaryBar(), 1);
+            this.setScale_(this.adapter_.getBuffer(), 1);
+        }
+    };
+    MDCLinearProgressFoundation.prototype.setProgress = function (value) {
+        this.progress_ = value;
+        if (this.isDeterminate_) {
+            this.setScale_(this.adapter_.getPrimaryBar(), value);
+        }
+    };
+    MDCLinearProgressFoundation.prototype.setBuffer = function (value) {
+        if (this.isDeterminate_) {
+            this.setScale_(this.adapter_.getBuffer(), value);
+        }
+    };
+    MDCLinearProgressFoundation.prototype.setReverse = function (isReversed) {
+        this.isReversed_ = isReversed;
+        if (this.isReversed_) {
+            this.adapter_.addClass(cssClasses.REVERSED_CLASS);
+        }
+        else {
+            this.adapter_.removeClass(cssClasses.REVERSED_CLASS);
+        }
+    };
+    MDCLinearProgressFoundation.prototype.open = function () {
+        this.adapter_.removeClass(cssClasses.CLOSED_CLASS);
+    };
+    MDCLinearProgressFoundation.prototype.close = function () {
+        this.adapter_.addClass(cssClasses.CLOSED_CLASS);
+    };
+    MDCLinearProgressFoundation.prototype.setScale_ = function (el, scaleValue) {
+        if (!el) {
+            return;
+        }
+        var value = "scaleX(" + scaleValue + ")";
+        this.adapter_.setStyle(el, getCorrectPropertyName(window, 'transform'), value);
+    };
+    return MDCLinearProgressFoundation;
+}(MDCFoundation));
+export { MDCLinearProgressFoundation };
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+export default MDCLinearProgressFoundation;
+//# sourceMappingURL=foundation.js.map

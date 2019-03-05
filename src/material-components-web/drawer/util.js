@@ -20,21 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import createFocusTrap from 'focus-trap';
-
-/**
- * @param {!Element} surfaceEl
- * @param {!Function} focusTrapFactory
- * @return {!FocusTrapInstance}
- */
-function createFocusTrapInstance(surfaceEl, focusTrapFactory = createFocusTrap) {
-  return focusTrapFactory(surfaceEl, {
-    clickOutsideDeactivates: true,
-    initialFocus: false, // Navigation drawer handles focusing on active nav item.
-    escapeDeactivates: false, // Navigation drawer handles ESC.
-    returnFocusOnDeactivate: false, // Navigation drawer handles restore focus.
-  });
+import * as createFocusTrap from 'focus-trap';
+export function createFocusTrapInstance(surfaceEl, focusTrapFactory) {
+    if (focusTrapFactory === void 0) { focusTrapFactory = createFocusTrap; }
+    return focusTrapFactory(surfaceEl, {
+        clickOutsideDeactivates: true,
+        escapeDeactivates: false,
+        initialFocus: undefined,
+        returnFocusOnDeactivate: false,
+    });
 }
-
-export {createFocusTrapInstance};
+//# sourceMappingURL=util.js.map

@@ -20,56 +20,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import {cssClasses} from '../constants';
-import MDCTopAppBarAdapter from '../adapter';
-import MDCTopAppBarFoundation from '../foundation';
-
-/**
- * @extends {MDCTopAppBarFoundation<!MDCFixedTopAppBarFoundation>}
- * @final
- */
-class MDCFixedTopAppBarFoundation extends MDCTopAppBarFoundation {
-  /**
-   * @param {!MDCTopAppBarAdapter} adapter
-   */
-  constructor(adapter) {
-    super(adapter);
-    /** State variable for the previous scroll iteration top app bar state */
-    this.wasScrolled_ = false;
-
-    this.scrollHandler_ = () => this.fixedScrollHandler_();
-  }
-
-  init() {
-    super.init();
-    this.adapter_.registerScrollHandler(this.scrollHandler_);
-  }
-
-  destroy() {
-    super.destroy();
-    this.adapter_.deregisterScrollHandler(this.scrollHandler_);
-  }
-
-  /**
-   * Scroll handler for applying/removing the modifier class
-   * on the fixed top app bar.
-   */
-  fixedScrollHandler_() {
-    const currentScroll = this.adapter_.getViewportScrollY();
-
-    if (currentScroll <= 0) {
-      if (this.wasScrolled_) {
-        this.adapter_.removeClass(cssClasses.FIXED_SCROLLED_CLASS);
-        this.wasScrolled_ = false;
-      }
-    } else {
-      if (!this.wasScrolled_) {
-        this.adapter_.addClass(cssClasses.FIXED_SCROLLED_CLASS);
-        this.wasScrolled_ = true;
-      }
+import * as tslib_1 from "tslib";
+import { cssClasses } from '../constants';
+import { MDCTopAppBarFoundation } from '../standard/foundation';
+var MDCFixedTopAppBarFoundation = /** @class */ (function (_super) {
+    tslib_1.__extends(MDCFixedTopAppBarFoundation, _super);
+    /* istanbul ignore next: optional argument is not a branch statement */
+    function MDCFixedTopAppBarFoundation(adapter) {
+        var _this = _super.call(this, adapter) || this;
+        /**
+         * State variable for the previous scroll iteration top app bar state
+         */
+        _this.wasScrolled_ = false;
+        _this.scrollHandler_ = function () { return _this.fixedScrollHandler_(); };
+        return _this;
     }
-  }
-}
-
+    /**
+     * Scroll handler for applying/removing the modifier class on the fixed top app bar.
+     */
+    MDCFixedTopAppBarFoundation.prototype.fixedScrollHandler_ = function () {
+        var currentScroll = this.adapter_.getViewportScrollY();
+        if (currentScroll <= 0) {
+            if (this.wasScrolled_) {
+                this.adapter_.removeClass(cssClasses.FIXED_SCROLLED_CLASS);
+                this.wasScrolled_ = false;
+            }
+        }
+        else {
+            if (!this.wasScrolled_) {
+                this.adapter_.addClass(cssClasses.FIXED_SCROLLED_CLASS);
+                this.wasScrolled_ = true;
+            }
+        }
+    };
+    return MDCFixedTopAppBarFoundation;
+}(MDCTopAppBarFoundation));
+export { MDCFixedTopAppBarFoundation };
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
 export default MDCFixedTopAppBarFoundation;
+//# sourceMappingURL=foundation.js.map

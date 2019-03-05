@@ -20,42 +20,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 /**
  * @fileoverview A "ponyfill" is a polyfill that doesn't modify the global prototype chain.
  * This makes ponyfills safer than traditional polyfills, especially for libraries like MDC.
  */
-
-/**
- * @param {!Element} element
- * @param {string} selector
- * @return {?Element}
- */
-function closest(element, selector) {
-  if (element.closest) {
-    return element.closest(selector);
-  }
-
-  let el = element;
-  while (el) {
-    if (matches(el, selector)) {
-      return el;
+export function closest(element, selector) {
+    if (element.closest) {
+        return element.closest(selector);
     }
-    el = el.parentElement;
-  }
-  return null;
+    var el = element;
+    while (el) {
+        if (matches(el, selector)) {
+            return el;
+        }
+        el = el.parentElement;
+    }
+    return null;
 }
-
-/**
- * @param {!Element} element
- * @param {string} selector
- * @return {boolean}
- */
-function matches(element, selector) {
-  const nativeMatches = element.matches
-    || element.webkitMatchesSelector
-    || element.msMatchesSelector;
-  return nativeMatches.call(element, selector);
+export function matches(element, selector) {
+    var nativeMatches = element.matches
+        || element.webkitMatchesSelector
+        || element.msMatchesSelector;
+    return nativeMatches.call(element, selector);
 }
-
-export {closest, matches};
+//# sourceMappingURL=ponyfill.js.map

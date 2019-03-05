@@ -20,16 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-/** @enum {string} */
-const strings = {
-  CHIP_SELECTOR: '.mdc-chip',
+export var strings = {
+    CHIP_SELECTOR: '.mdc-chip',
 };
-
-/** @enum {string} */
-const cssClasses = {
-  CHOICE: 'mdc-chip-set--choice',
-  FILTER: 'mdc-chip-set--filter',
+export var cssClasses = {
+    CHOICE: 'mdc-chip-set--choice',
+    FILTER: 'mdc-chip-set--filter',
 };
-
-export {strings, cssClasses};
+//# sourceMappingURL=constants.js.map

@@ -20,14 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-export const cssClasses = {
-  CLOSED_CLASS: 'mdc-linear-progress--closed',
-  INDETERMINATE_CLASS: 'mdc-linear-progress--indeterminate',
-  REVERSED_CLASS: 'mdc-linear-progress--reversed',
+export var cssClasses = {
+    CLOSED_CLASS: 'mdc-linear-progress--closed',
+    INDETERMINATE_CLASS: 'mdc-linear-progress--indeterminate',
+    REVERSED_CLASS: 'mdc-linear-progress--reversed',
 };
-
-export const strings = {
-  PRIMARY_BAR_SELECTOR: '.mdc-linear-progress__primary-bar',
-  BUFFER_SELECTOR: '.mdc-linear-progress__buffer',
+export var strings = {
+    BUFFER_SELECTOR: '.mdc-linear-progress__buffer',
+    PRIMARY_BAR_SELECTOR: '.mdc-linear-progress__primary-bar',
 };
+//# sourceMappingURL=constants.js.map

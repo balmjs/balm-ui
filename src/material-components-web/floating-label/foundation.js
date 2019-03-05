@@ -20,98 +20,87 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import MDCFoundation from '../base/foundation';
-import MDCFloatingLabelAdapter from './adapter';
-import {cssClasses} from './constants';
-
-/**
- * @extends {MDCFoundation<!MDCFloatingLabelAdapter>}
- * @final
- */
-class MDCFloatingLabelFoundation extends MDCFoundation {
-  /** @return enum {string} */
-  static get cssClasses() {
-    return cssClasses;
-  }
-
-  /**
-   * {@see MDCFloatingLabelAdapter} for typing information on parameters and return
-   * types.
-   * @return {!MDCFloatingLabelAdapter}
-   */
-  static get defaultAdapter() {
-    return /** @type {!MDCFloatingLabelAdapter} */ ({
-      addClass: () => {},
-      removeClass: () => {},
-      getWidth: () => {},
-      registerInteractionHandler: () => {},
-      deregisterInteractionHandler: () => {},
+import * as tslib_1 from "tslib";
+import { MDCFoundation } from '../base/foundation';
+import { cssClasses } from './constants';
+var MDCFloatingLabelFoundation = /** @class */ (function (_super) {
+    tslib_1.__extends(MDCFloatingLabelFoundation, _super);
+    function MDCFloatingLabelFoundation(adapter) {
+        var _this = _super.call(this, tslib_1.__assign({}, MDCFloatingLabelFoundation.defaultAdapter, adapter)) || this;
+        _this.shakeAnimationEndHandler_ = function () { return _this.handleShakeAnimationEnd_(); };
+        return _this;
+    }
+    Object.defineProperty(MDCFloatingLabelFoundation, "cssClasses", {
+        get: function () {
+            return cssClasses;
+        },
+        enumerable: true,
+        configurable: true
     });
-  }
-
-  /**
-   * @param {!MDCFloatingLabelAdapter} adapter
-   */
-  constructor(adapter) {
-    super(Object.assign(MDCFloatingLabelFoundation.defaultAdapter, adapter));
-
-    /** @private {function(!Event): undefined} */
-    this.shakeAnimationEndHandler_ = () => this.handleShakeAnimationEnd_();
-  }
-
-  init() {
-    this.adapter_.registerInteractionHandler('animationend', this.shakeAnimationEndHandler_);
-  }
-
-  destroy() {
-    this.adapter_.deregisterInteractionHandler('animationend', this.shakeAnimationEndHandler_);
-  }
-
-  /**
-   * Returns the width of the label element.
-   * @return {number}
-   */
-  getWidth() {
-    return this.adapter_.getWidth();
-  }
-
-  /**
-   * Styles the label to produce the label shake for errors.
-   * @param {boolean} shouldShake adds shake class if true,
-   * otherwise removes shake class.
-   */
-  shake(shouldShake) {
-    const {LABEL_SHAKE} = MDCFloatingLabelFoundation.cssClasses;
-    if (shouldShake) {
-      this.adapter_.addClass(LABEL_SHAKE);
-    } else {
-      this.adapter_.removeClass(LABEL_SHAKE);
-    }
-  }
-
-  /**
-   * Styles the label to float or dock.
-   * @param {boolean} shouldFloat adds float class if true, otherwise remove
-   * float and shake class to dock label.
-   */
-  float(shouldFloat) {
-    const {LABEL_FLOAT_ABOVE, LABEL_SHAKE} = MDCFloatingLabelFoundation.cssClasses;
-    if (shouldFloat) {
-      this.adapter_.addClass(LABEL_FLOAT_ABOVE);
-    } else {
-      this.adapter_.removeClass(LABEL_FLOAT_ABOVE);
-      this.adapter_.removeClass(LABEL_SHAKE);
-    }
-  }
-
-  /**
-   * Handles an interaction event on the root element.
-   */
-  handleShakeAnimationEnd_() {
-    const {LABEL_SHAKE} = MDCFloatingLabelFoundation.cssClasses;
-    this.adapter_.removeClass(LABEL_SHAKE);
-  }
-}
-
+    Object.defineProperty(MDCFloatingLabelFoundation, "defaultAdapter", {
+        /**
+         * See {@link MDCFloatingLabelAdapter} for typing information on parameters and return types.
+         */
+        get: function () {
+            // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+            return {
+                addClass: function () { return undefined; },
+                removeClass: function () { return undefined; },
+                getWidth: function () { return 0; },
+                registerInteractionHandler: function () { return undefined; },
+                deregisterInteractionHandler: function () { return undefined; },
+            };
+            // tslint:enable:object-literal-sort-keys
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCFloatingLabelFoundation.prototype.init = function () {
+        this.adapter_.registerInteractionHandler('animationend', this.shakeAnimationEndHandler_);
+    };
+    MDCFloatingLabelFoundation.prototype.destroy = function () {
+        this.adapter_.deregisterInteractionHandler('animationend', this.shakeAnimationEndHandler_);
+    };
+    /**
+     * Returns the width of the label element.
+     */
+    MDCFloatingLabelFoundation.prototype.getWidth = function () {
+        return this.adapter_.getWidth();
+    };
+    /**
+     * Styles the label to produce a shake animation to indicate an error.
+     * @param shouldShake If true, adds the shake CSS class; otherwise, removes shake class.
+     */
+    MDCFloatingLabelFoundation.prototype.shake = function (shouldShake) {
+        var LABEL_SHAKE = MDCFloatingLabelFoundation.cssClasses.LABEL_SHAKE;
+        if (shouldShake) {
+            this.adapter_.addClass(LABEL_SHAKE);
+        }
+        else {
+            this.adapter_.removeClass(LABEL_SHAKE);
+        }
+    };
+    /**
+     * Styles the label to float or dock.
+     * @param shouldFloat If true, adds the float CSS class; otherwise, removes float and shake classes to dock the label.
+     */
+    MDCFloatingLabelFoundation.prototype.float = function (shouldFloat) {
+        var _a = MDCFloatingLabelFoundation.cssClasses, LABEL_FLOAT_ABOVE = _a.LABEL_FLOAT_ABOVE, LABEL_SHAKE = _a.LABEL_SHAKE;
+        if (shouldFloat) {
+            this.adapter_.addClass(LABEL_FLOAT_ABOVE);
+        }
+        else {
+            this.adapter_.removeClass(LABEL_FLOAT_ABOVE);
+            this.adapter_.removeClass(LABEL_SHAKE);
+        }
+    };
+    MDCFloatingLabelFoundation.prototype.handleShakeAnimationEnd_ = function () {
+        var LABEL_SHAKE = MDCFloatingLabelFoundation.cssClasses.LABEL_SHAKE;
+        this.adapter_.removeClass(LABEL_SHAKE);
+    };
+    return MDCFloatingLabelFoundation;
+}(MDCFoundation));
+export { MDCFloatingLabelFoundation };
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
 export default MDCFloatingLabelFoundation;
+//# sourceMappingURL=foundation.js.map

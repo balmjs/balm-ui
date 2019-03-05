@@ -20,37 +20,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-/** @enum {string} */
-const cssClasses = {
-  ROOT: 'mdc-list',
-  LIST_ITEM_CLASS: 'mdc-list-item',
-  LIST_ITEM_SELECTED_CLASS: 'mdc-list-item--selected',
-  LIST_ITEM_ACTIVATED_CLASS: 'mdc-list-item--activated',
+var cssClasses = {
+    LIST_ITEM_ACTIVATED_CLASS: 'mdc-list-item--activated',
+    LIST_ITEM_CLASS: 'mdc-list-item',
+    LIST_ITEM_SELECTED_CLASS: 'mdc-list-item--selected',
+    ROOT: 'mdc-list',
 };
-
-/** @enum {string} */
-const strings = {
-  ARIA_ORIENTATION: 'aria-orientation',
-  ARIA_ORIENTATION_HORIZONTAL: 'horizontal',
-  ARIA_SELECTED: 'aria-selected',
-  ARIA_CHECKED: 'aria-checked',
-  ARIA_CHECKED_RADIO_SELECTOR: '[role="radio"][aria-checked="true"]',
-  ARIA_ROLE_CHECKBOX_SELECTOR: '[role="checkbox"]',
-  ARIA_CHECKED_CHECKBOX_SELECTOR: '[role="checkbox"][aria-checked="true"]',
-  RADIO_SELECTOR: 'input[type="radio"]:not(:disabled)',
-  CHECKBOX_SELECTOR: 'input[type="checkbox"]:not(:disabled)',
-  CHECKBOX_RADIO_SELECTOR: 'input[type="checkbox"]:not(:disabled), input[type="radio"]:not(:disabled)',
-  CHILD_ELEMENTS_TO_TOGGLE_TABINDEX: `.${cssClasses.LIST_ITEM_CLASS} button:not(:disabled),
-  .${cssClasses.LIST_ITEM_CLASS} a`,
-  FOCUSABLE_CHILD_ELEMENTS: `.${cssClasses.LIST_ITEM_CLASS} button:not(:disabled), .${cssClasses.LIST_ITEM_CLASS} a,
-  .${cssClasses.LIST_ITEM_CLASS} input[type="radio"]:not(:disabled),
-  .${cssClasses.LIST_ITEM_CLASS} input[type="checkbox"]:not(:disabled)`,
-  ENABLED_ITEMS_SELECTOR: '.mdc-list-item:not(.mdc-list-item--disabled)',
-  ACTION_EVENT: 'MDCList:action',
+var strings = {
+    ACTION_EVENT: 'MDCList:action',
+    ARIA_CHECKED: 'aria-checked',
+    ARIA_CHECKED_CHECKBOX_SELECTOR: '[role="checkbox"][aria-checked="true"]',
+    ARIA_CHECKED_RADIO_SELECTOR: '[role="radio"][aria-checked="true"]',
+    ARIA_ORIENTATION: 'aria-orientation',
+    ARIA_ORIENTATION_HORIZONTAL: 'horizontal',
+    ARIA_ROLE_CHECKBOX_SELECTOR: '[role="checkbox"]',
+    ARIA_SELECTED: 'aria-selected',
+    CHECKBOX_RADIO_SELECTOR: 'input[type="checkbox"]:not(:disabled), input[type="radio"]:not(:disabled)',
+    CHECKBOX_SELECTOR: 'input[type="checkbox"]:not(:disabled)',
+    CHILD_ELEMENTS_TO_TOGGLE_TABINDEX: "\n    ." + cssClasses.LIST_ITEM_CLASS + " button:not(:disabled),\n    ." + cssClasses.LIST_ITEM_CLASS + " a\n  ",
+    ENABLED_ITEMS_SELECTOR: '.mdc-list-item:not(.mdc-list-item--disabled)',
+    FOCUSABLE_CHILD_ELEMENTS: "\n    ." + cssClasses.LIST_ITEM_CLASS + " button:not(:disabled),\n    ." + cssClasses.LIST_ITEM_CLASS + " a,\n    ." + cssClasses.LIST_ITEM_CLASS + " input[type=\"radio\"]:not(:disabled),\n    ." + cssClasses.LIST_ITEM_CLASS + " input[type=\"checkbox\"]:not(:disabled)\n  ",
+    RADIO_SELECTOR: 'input[type="radio"]:not(:disabled)',
 };
-
-/** @typedef {number|!Array<number>} */
-let Index;
-
-export {strings, cssClasses, Index};
+export { strings, cssClasses };
+//# sourceMappingURL=constants.js.map

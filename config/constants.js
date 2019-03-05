@@ -25,7 +25,6 @@ const DMC_COMPONENTS = [
   'form-field',
   'grid-list',
   'icon-button', // New in mdc@0.36.0
-  'icon-toggle', // Deprecated in mdc@0.36.0
   'image-list', // New in mdc@0.33.0
   'layout-grid',
   'line-ripple',
@@ -38,12 +37,10 @@ const DMC_COMPONENTS = [
   'ripple',
   'rtl',
   'select',
-  'selection-control',
   'shape',
   'slider',
   'snackbar',
   'switch',
-  // 'tabs', // Deprecated in mdc@0.38.0
   'tab', // New in mdc@0.38.0
   'tab-bar', // New in mdc@0.38.0
   'tab-indicator', // New in mdc@0.38.0

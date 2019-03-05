@@ -20,23 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-/** @enum {string} */
-const strings = {
-  NOTCH_ELEMENT_SELECTOR: '.mdc-notched-outline__notch',
+var strings = {
+    NOTCH_ELEMENT_SELECTOR: '.mdc-notched-outline__notch',
 };
-
-/** @enum {number} */
-const numbers = {
-  // This should stay in sync with $mdc-notched-outline-padding * 2.
-  NOTCH_ELEMENT_PADDING: 8,
+var numbers = {
+    // This should stay in sync with $mdc-notched-outline-padding * 2.
+    NOTCH_ELEMENT_PADDING: 8,
 };
-
-/** @enum {string} */
-const cssClasses = {
-  OUTLINE_NOTCHED: 'mdc-notched-outline--notched',
-  OUTLINE_UPGRADED: 'mdc-notched-outline--upgraded',
-  NO_LABEL: 'mdc-notched-outline--no-label',
+var cssClasses = {
+    NO_LABEL: 'mdc-notched-outline--no-label',
+    OUTLINE_NOTCHED: 'mdc-notched-outline--notched',
+    OUTLINE_UPGRADED: 'mdc-notched-outline--upgraded',
 };
-
-export {cssClasses, numbers, strings};
+export { cssClasses, numbers, strings };
+//# sourceMappingURL=constants.js.map

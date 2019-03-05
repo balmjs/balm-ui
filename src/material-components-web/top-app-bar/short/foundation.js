@@ -20,67 +20,56 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import MDCTopAppBarAdapter from '../adapter';
-import MDCTopAppBarBaseFoundation from '../foundation';
-import {cssClasses} from '../constants';
-
-/**
- * @extends {MDCTopAppBarBaseFoundation<!MDCShortTopAppBarFoundation>}
- * @final
- */
-class MDCShortTopAppBarFoundation extends MDCTopAppBarBaseFoundation {
-  /**
-   * @param {!MDCTopAppBarAdapter} adapter
-   */
-  constructor(adapter) {
-    super(adapter);
-    // State variable for the current top app bar state
-    this.isCollapsed = false;
-
-    this.scrollHandler_ = () => this.shortAppBarScrollHandler_();
-  }
-
-  init() {
-    super.init();
-    const isAlwaysCollapsed = this.adapter_.hasClass(cssClasses.SHORT_COLLAPSED_CLASS);
-
-    if (this.adapter_.getTotalActionItems() > 0) {
-      this.adapter_.addClass(cssClasses.SHORT_HAS_ACTION_ITEM_CLASS);
+import * as tslib_1 from "tslib";
+import { cssClasses } from '../constants';
+import { MDCTopAppBarBaseFoundation } from '../foundation';
+var MDCShortTopAppBarFoundation = /** @class */ (function (_super) {
+    tslib_1.__extends(MDCShortTopAppBarFoundation, _super);
+    /* istanbul ignore next: optional argument is not a branch statement */
+    function MDCShortTopAppBarFoundation(adapter) {
+        var _this = _super.call(this, adapter) || this;
+        /**
+         * State variable for the current top app bar state
+         */
+        _this.isCollapsed = false;
+        return _this;
     }
-
-    if (!isAlwaysCollapsed) {
-      this.adapter_.registerScrollHandler(this.scrollHandler_);
-      this.shortAppBarScrollHandler_();
-    }
-  }
-
-  destroy() {
-    super.destroy();
-    this.adapter_.deregisterScrollHandler(this.scrollHandler_);
-  }
-
-
-  /**
-   * Scroll handler for applying/removing the collapsed modifier class
-   * on the short top app bar.
-   * @private
-   */
-  shortAppBarScrollHandler_() {
-    const currentScroll = this.adapter_.getViewportScrollY();
-
-    if (currentScroll <= 0) {
-      if (this.isCollapsed) {
-        this.adapter_.removeClass(cssClasses.SHORT_COLLAPSED_CLASS);
-        this.isCollapsed = false;
-      }
-    } else {
-      if (!this.isCollapsed) {
-        this.adapter_.addClass(cssClasses.SHORT_COLLAPSED_CLASS);
-        this.isCollapsed = true;
-      }
-    }
-  }
-}
-
+    MDCShortTopAppBarFoundation.prototype.init = function () {
+        var _this = this;
+        _super.prototype.init.call(this);
+        if (this.adapter_.getTotalActionItems() > 0) {
+            this.adapter_.addClass(cssClasses.SHORT_HAS_ACTION_ITEM_CLASS);
+        }
+        if (!this.adapter_.hasClass(cssClasses.SHORT_COLLAPSED_CLASS)) {
+            this.scrollHandler_ = function () { return _this.shortAppBarScrollHandler_(); };
+            this.adapter_.registerScrollHandler(this.scrollHandler_);
+            this.shortAppBarScrollHandler_();
+        }
+    };
+    MDCShortTopAppBarFoundation.prototype.destroy = function () {
+        _super.prototype.destroy.call(this);
+    };
+    /**
+     * Scroll handler for applying/removing the collapsed modifier class on the short top app bar.
+     */
+    MDCShortTopAppBarFoundation.prototype.shortAppBarScrollHandler_ = function () {
+        var currentScroll = this.adapter_.getViewportScrollY();
+        if (currentScroll <= 0) {
+            if (this.isCollapsed) {
+                this.adapter_.removeClass(cssClasses.SHORT_COLLAPSED_CLASS);
+                this.isCollapsed = false;
+            }
+        }
+        else {
+            if (!this.isCollapsed) {
+                this.adapter_.addClass(cssClasses.SHORT_COLLAPSED_CLASS);
+                this.isCollapsed = true;
+            }
+        }
+    };
+    return MDCShortTopAppBarFoundation;
+}(MDCTopAppBarBaseFoundation));
+export { MDCShortTopAppBarFoundation };
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
 export default MDCShortTopAppBarFoundation;
+//# sourceMappingURL=foundation.js.map

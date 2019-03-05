@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2017 Google Inc.
+ * Copyright 2019 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,49 +20,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import MDCComponent from '../base/component';
-import MDCLinearProgressFoundation from './foundation';
-
-export {MDCLinearProgressFoundation};
-
-export class MDCLinearProgress extends MDCComponent {
-  static attachTo(root) {
-    return new MDCLinearProgress(root);
-  }
-
-  set determinate(value) {
-    this.foundation_.setDeterminate(value);
-  }
-
-  set progress(value) {
-    this.foundation_.setProgress(value);
-  }
-
-  set buffer(value) {
-    this.foundation_.setBuffer(value);
-  }
-
-  set reverse(value) {
-    this.foundation_.setReverse(value);
-  }
-
-  open() {
-    this.foundation_.open();
-  }
-
-  close() {
-    this.foundation_.close();
-  }
-
-  getDefaultFoundation() {
-    return new MDCLinearProgressFoundation({
-      addClass: (className) => this.root_.classList.add(className),
-      getPrimaryBar: () => this.root_.querySelector(MDCLinearProgressFoundation.strings.PRIMARY_BAR_SELECTOR),
-      getBuffer: () => this.root_.querySelector(MDCLinearProgressFoundation.strings.BUFFER_SELECTOR),
-      hasClass: (className) => this.root_.classList.contains(className),
-      removeClass: (className) => this.root_.classList.remove(className),
-      setStyle: (el, styleProperty, value) => el.style[styleProperty] = value,
-    });
-  }
-}
+export * from './component';
+export * from './foundation';
+//# sourceMappingURL=index.js.map

@@ -20,21 +20,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import MDCTabIndicatorFoundation from './foundation';
-
-/**
- * @extends {MDCTabIndicatorFoundation}
- * @final
- */
-class MDCFadingTabIndicatorFoundation extends MDCTabIndicatorFoundation {
-  activate() {
-    this.adapter_.addClass(MDCTabIndicatorFoundation.cssClasses.ACTIVE);
-  }
-
-  deactivate() {
-    this.adapter_.removeClass(MDCTabIndicatorFoundation.cssClasses.ACTIVE);
-  }
-}
-
+import * as tslib_1 from "tslib";
+import { MDCTabIndicatorFoundation } from './foundation';
+/* istanbul ignore next: subclass is not a branch statement */
+var MDCFadingTabIndicatorFoundation = /** @class */ (function (_super) {
+    tslib_1.__extends(MDCFadingTabIndicatorFoundation, _super);
+    function MDCFadingTabIndicatorFoundation() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCFadingTabIndicatorFoundation.prototype.activate = function () {
+        this.adapter_.addClass(MDCTabIndicatorFoundation.cssClasses.ACTIVE);
+    };
+    MDCFadingTabIndicatorFoundation.prototype.deactivate = function () {
+        this.adapter_.removeClass(MDCTabIndicatorFoundation.cssClasses.ACTIVE);
+    };
+    return MDCFadingTabIndicatorFoundation;
+}(MDCTabIndicatorFoundation));
+export { MDCFadingTabIndicatorFoundation };
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
 export default MDCFadingTabIndicatorFoundation;
+//# sourceMappingURL=fading-foundation.js.map

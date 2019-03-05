@@ -20,27 +20,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-/** @enum {string} */
-const strings = {
-  ENTRY_ANIMATION_NAME: 'mdc-chip-entry',
-  INTERACTION_EVENT: 'MDCChip:interaction',
-  SELECTION_EVENT: 'MDCChip:selection',
-  TRAILING_ICON_INTERACTION_EVENT: 'MDCChip:trailingIconInteraction',
-  REMOVAL_EVENT: 'MDCChip:removal',
-  CHECKMARK_SELECTOR: '.mdc-chip__checkmark',
-  LEADING_ICON_SELECTOR: '.mdc-chip__icon--leading',
-  TRAILING_ICON_SELECTOR: '.mdc-chip__icon--trailing',
+export var strings = {
+    CHECKMARK_SELECTOR: '.mdc-chip__checkmark',
+    ENTRY_ANIMATION_NAME: 'mdc-chip-entry',
+    INTERACTION_EVENT: 'MDCChip:interaction',
+    LEADING_ICON_SELECTOR: '.mdc-chip__icon--leading',
+    REMOVAL_EVENT: 'MDCChip:removal',
+    SELECTION_EVENT: 'MDCChip:selection',
+    TRAILING_ICON_INTERACTION_EVENT: 'MDCChip:trailingIconInteraction',
+    TRAILING_ICON_SELECTOR: '.mdc-chip__icon--trailing',
 };
-
-/** @enum {string} */
-const cssClasses = {
-  CHECKMARK: 'mdc-chip__checkmark',
-  CHIP_EXIT: 'mdc-chip--exit',
-  HIDDEN_LEADING_ICON: 'mdc-chip__icon--leading-hidden',
-  LEADING_ICON: 'mdc-chip__icon--leading',
-  TRAILING_ICON: 'mdc-chip__icon--trailing',
-  SELECTED: 'mdc-chip--selected',
+export var cssClasses = {
+    CHECKMARK: 'mdc-chip__checkmark',
+    CHIP_EXIT: 'mdc-chip--exit',
+    HIDDEN_LEADING_ICON: 'mdc-chip__icon--leading-hidden',
+    LEADING_ICON: 'mdc-chip__icon--leading',
+    SELECTED: 'mdc-chip--selected',
+    TRAILING_ICON: 'mdc-chip__icon--trailing',
 };
-
-export {strings, cssClasses};
+//# sourceMappingURL=constants.js.map

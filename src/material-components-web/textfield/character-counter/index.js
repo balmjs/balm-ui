@@ -20,43 +20,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import MDCComponent from '../../base/component';
-
-import MDCTextFieldCharacterCounterAdapter from './adapter';
-import MDCTextFieldCharacterCounterFoundation from './foundation';
-
-/**
- * @extends {MDCComponent<!MDCTextFieldCharacterCounterFoundation>}
- * @final
- */
-class MDCTextFieldCharacterCounter extends MDCComponent {
-  /**
-   * @param {!Element} root
-   * @return {!MDCTextFieldCharacterCounter}
-   */
-  static attachTo(root) {
-    return new MDCTextFieldCharacterCounter(root);
-  }
-
-  /**
-   * @return {!MDCTextFieldCharacterCounterFoundation}
-   */
-  get foundation() {
-    return this.foundation_;
-  }
-
-  /**
-   * @return {!MDCTextFieldCharacterCounterFoundation}
-   */
-  getDefaultFoundation() {
-    return new MDCTextFieldCharacterCounterFoundation(
-      /** @type {!MDCTextFieldCharacterCounterAdapter} */ (Object.assign({
-        setContent: (content) => {
-          this.root_.textContent = content;
-        },
-      })));
-  }
-}
-
-export {MDCTextFieldCharacterCounter, MDCTextFieldCharacterCounterFoundation};
+export * from './component';
+export * from './foundation';
+//# sourceMappingURL=index.js.map

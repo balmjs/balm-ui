@@ -20,20 +20,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-/** @enum {string} */
-const cssClasses = {
-  ROOT: 'mdc-menu',
-  MENU_SELECTED_LIST_ITEM: 'mdc-menu-item--selected',
-  MENU_SELECTION_GROUP: 'mdc-menu__selection-group',
+var cssClasses = {
+    MENU_SELECTED_LIST_ITEM: 'mdc-menu-item--selected',
+    MENU_SELECTION_GROUP: 'mdc-menu__selection-group',
+    ROOT: 'mdc-menu',
 };
-
-/** @enum {string} */
-const strings = {
-  SELECTED_EVENT: 'MDCMenu:selected',
-  ARIA_SELECTED_ATTR: 'aria-selected',
-  LIST_SELECTOR: '.mdc-list',
-  CHECKBOX_SELECTOR: 'input[type="checkbox"]',
+var strings = {
+    ARIA_SELECTED_ATTR: 'aria-selected',
+    CHECKBOX_SELECTOR: 'input[type="checkbox"]',
+    LIST_SELECTOR: '.mdc-list',
+    SELECTED_EVENT: 'MDCMenu:selected',
 };
-
-export {cssClasses, strings};
+export { cssClasses, strings };
+//# sourceMappingURL=constants.js.map

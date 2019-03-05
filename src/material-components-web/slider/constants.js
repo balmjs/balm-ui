@@ -20,37 +20,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-/** @enum {string} */
-const cssClasses = {
-  ACTIVE: 'mdc-slider--active',
-  DISABLED: 'mdc-slider--disabled',
-  DISCRETE: 'mdc-slider--discrete',
-  FOCUS: 'mdc-slider--focus',
-  IN_TRANSIT: 'mdc-slider--in-transit',
-  IS_DISCRETE: 'mdc-slider--discrete',
-  HAS_TRACK_MARKER: 'mdc-slider--display-markers',
+var cssClasses = {
+    ACTIVE: 'mdc-slider--active',
+    DISABLED: 'mdc-slider--disabled',
+    DISCRETE: 'mdc-slider--discrete',
+    FOCUS: 'mdc-slider--focus',
+    HAS_TRACK_MARKER: 'mdc-slider--display-markers',
+    IN_TRANSIT: 'mdc-slider--in-transit',
+    IS_DISCRETE: 'mdc-slider--discrete',
 };
-
-/** @enum {string} */
-const strings = {
-  TRACK_SELECTOR: '.mdc-slider__track',
-  TRACK_MARKER_CONTAINER_SELECTOR: '.mdc-slider__track-marker-container',
-  LAST_TRACK_MARKER_SELECTOR: '.mdc-slider__track-marker:last-child',
-  THUMB_CONTAINER_SELECTOR: '.mdc-slider__thumb-container',
-  PIN_VALUE_MARKER_SELECTOR: '.mdc-slider__pin-value-marker',
-  ARIA_VALUEMIN: 'aria-valuemin',
-  ARIA_VALUEMAX: 'aria-valuemax',
-  ARIA_VALUENOW: 'aria-valuenow',
-  ARIA_DISABLED: 'aria-disabled',
-  STEP_DATA_ATTR: 'data-step',
-  CHANGE_EVENT: 'MDCSlider:change',
-  INPUT_EVENT: 'MDCSlider:input',
+var strings = {
+    ARIA_DISABLED: 'aria-disabled',
+    ARIA_VALUEMAX: 'aria-valuemax',
+    ARIA_VALUEMIN: 'aria-valuemin',
+    ARIA_VALUENOW: 'aria-valuenow',
+    CHANGE_EVENT: 'MDCSlider:change',
+    INPUT_EVENT: 'MDCSlider:input',
+    LAST_TRACK_MARKER_SELECTOR: '.mdc-slider__track-marker:last-child',
+    PIN_VALUE_MARKER_SELECTOR: '.mdc-slider__pin-value-marker',
+    STEP_DATA_ATTR: 'data-step',
+    THUMB_CONTAINER_SELECTOR: '.mdc-slider__thumb-container',
+    TRACK_MARKER_CONTAINER_SELECTOR: '.mdc-slider__track-marker-container',
+    TRACK_SELECTOR: '.mdc-slider__track',
 };
-
-/** @enum {number} */
-const numbers = {
-  PAGE_FACTOR: 4,
+var numbers = {
+    PAGE_FACTOR: 4,
 };
-
-export {cssClasses, strings, numbers};
+export { cssClasses, strings, numbers };
+//# sourceMappingURL=constants.js.map

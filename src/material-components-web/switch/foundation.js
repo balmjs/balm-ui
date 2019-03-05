@@ -20,76 +20,81 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import MDCFoundation from '../base/foundation';
-import MDCSwitchAdapter from './adapter';
-/* eslint-enable no-unused-vars */
-import {cssClasses, strings} from './constants';
-
+import * as tslib_1 from "tslib";
+import { MDCFoundation } from '../base/foundation';
+import { cssClasses, strings } from './constants';
 /**
- * @extends {MDCFoundation<!MDCSwitchAdapter>}
+ * Foundation for the MDC Switch. Encapsulates business logic for the switch.
+ *
+ * See architecture documentation for more details.
+ * https://github.com/material-components/material-components-web/blob/master/docs/code/architecture.md
  */
-class MDCSwitchFoundation extends MDCFoundation {
-  /** @return enum {string} */
-  static get strings() {
-    return strings;
-  }
-
-  /** @return enum {string} */
-  static get cssClasses() {
-    return cssClasses;
-  }
-
-  /** @return {!MDCSwitchAdapter} */
-  static get defaultAdapter() {
-    return /** @type {!MDCSwitchAdapter} */ ({
-      addClass: (/* className: string */) => {},
-      removeClass: (/* className: string */) => {},
-      setNativeControlChecked: (/* checked: boolean */) => {},
-      setNativeControlDisabled: (/* disabled: boolean */) => {},
+var MDCSwitchFoundation = /** @class */ (function (_super) {
+    tslib_1.__extends(MDCSwitchFoundation, _super);
+    function MDCSwitchFoundation(adapter) {
+        return _super.call(this, tslib_1.__assign({}, MDCSwitchFoundation.defaultAdapter, adapter)) || this;
+    }
+    Object.defineProperty(MDCSwitchFoundation, "strings", {
+        /** The string constants used by the switch. */
+        get: function () {
+            return strings;
+        },
+        enumerable: true,
+        configurable: true
     });
-  }
-
-  constructor(adapter) {
-    super(Object.assign(MDCSwitchFoundation.defaultAdapter, adapter));
-  }
-
-  /** @param {boolean} checked */
-  setChecked(checked) {
-    this.adapter_.setNativeControlChecked(checked);
-    this.updateCheckedStyling_(checked);
-  }
-
-  /** @param {boolean} disabled */
-  setDisabled(disabled) {
-    this.adapter_.setNativeControlDisabled(disabled);
-    if (disabled) {
-      this.adapter_.addClass(cssClasses.DISABLED);
-    } else {
-      this.adapter_.removeClass(cssClasses.DISABLED);
-    }
-  }
-
-  /**
-   * Handles the change event for the switch native control.
-   * @param {!Event} evt
-   */
-  handleChange(evt) {
-    this.updateCheckedStyling_(evt.target.checked);
-  }
-
-  /**
-   * Updates the styling of the switch based on its checked state.
-   * @param {boolean} checked
-   * @private
-   */
-  updateCheckedStyling_(checked) {
-    if (checked) {
-      this.adapter_.addClass(cssClasses.CHECKED);
-    } else {
-      this.adapter_.removeClass(cssClasses.CHECKED);
-    }
-  }
-}
-
+    Object.defineProperty(MDCSwitchFoundation, "cssClasses", {
+        /** The CSS classes used by the switch. */
+        get: function () {
+            return cssClasses;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSwitchFoundation, "defaultAdapter", {
+        /** The default Adapter for the switch. */
+        get: function () {
+            return {
+                addClass: function () { return undefined; },
+                removeClass: function () { return undefined; },
+                setNativeControlChecked: function () { return undefined; },
+                setNativeControlDisabled: function () { return undefined; },
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /** Sets the checked state of the switch. */
+    MDCSwitchFoundation.prototype.setChecked = function (checked) {
+        this.adapter_.setNativeControlChecked(checked);
+        this.updateCheckedStyling_(checked);
+    };
+    /** Sets the disabled state of the switch. */
+    MDCSwitchFoundation.prototype.setDisabled = function (disabled) {
+        this.adapter_.setNativeControlDisabled(disabled);
+        if (disabled) {
+            this.adapter_.addClass(cssClasses.DISABLED);
+        }
+        else {
+            this.adapter_.removeClass(cssClasses.DISABLED);
+        }
+    };
+    /** Handles the change event for the switch native control. */
+    MDCSwitchFoundation.prototype.handleChange = function (evt) {
+        var nativeControl = evt.target;
+        this.updateCheckedStyling_(nativeControl.checked);
+    };
+    /** Updates the styling of the switch based on its checked state. */
+    MDCSwitchFoundation.prototype.updateCheckedStyling_ = function (checked) {
+        if (checked) {
+            this.adapter_.addClass(cssClasses.CHECKED);
+        }
+        else {
+            this.adapter_.removeClass(cssClasses.CHECKED);
+        }
+    };
+    return MDCSwitchFoundation;
+}(MDCFoundation));
+export { MDCSwitchFoundation };
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
 export default MDCSwitchFoundation;
+//# sourceMappingURL=foundation.js.map

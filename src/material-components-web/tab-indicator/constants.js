@@ -20,20 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-/** @enum {string} */
-const cssClasses = {
-  ACTIVE: 'mdc-tab-indicator--active',
-  FADE: 'mdc-tab-indicator--fade',
-  NO_TRANSITION: 'mdc-tab-indicator--no-transition',
+var cssClasses = {
+    ACTIVE: 'mdc-tab-indicator--active',
+    FADE: 'mdc-tab-indicator--fade',
+    NO_TRANSITION: 'mdc-tab-indicator--no-transition',
 };
-
-/** @enum {string} */
-const strings = {
-  CONTENT_SELECTOR: '.mdc-tab-indicator__content',
+var strings = {
+    CONTENT_SELECTOR: '.mdc-tab-indicator__content',
 };
-
-export {
-  cssClasses,
-  strings,
-};
+export { cssClasses, strings, };
+//# sourceMappingURL=constants.js.map

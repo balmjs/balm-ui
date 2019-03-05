@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2017 Google Inc.
+ * Copyright 2019 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,8 +20,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-import {MDCChipFoundation, MDCChip} from './chip/index';
-import {MDCChipSetFoundation, MDCChipSet} from './chip-set/index';
-
-export {MDCChipFoundation, MDCChip, MDCChipSetFoundation, MDCChipSet};
+export * from './chip/index';
+export * from './chip-set/index';
+//# sourceMappingURL=index.js.map

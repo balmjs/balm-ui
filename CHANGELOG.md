@@ -1,5 +1,23 @@
 # BalmUI ChangeLog
 
+## 1.0.0 (2019.03.07)
+
+> :tada: 1.0.0 released
+
+### Features
+
+- update `mdc@1.0.0`
+
+### Bug Fixes
+
+- `<ui-menu-anchor>`: fix `middleValue` prop's bug
+
+### BREAKING CHANGES
+
+- The previously deprecated `<ui-icon-toggle>` has been removed; use `<ui-icon-button>` instead.
+
+---
+
 ## 0.14.1 (2019.02.20)
 
 ### Features

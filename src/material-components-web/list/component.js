@@ -164,12 +164,6 @@ var MDCList = /** @class */ (function (_super) {
             notifyAction: function (index) {
                 _this.emit(strings.ACTION_EVENT, { index: index }, /** shouldBubble */ true);
             },
-            removeAttributeForElementIndex: function (index, attr) {
-                var element = _this.listElements[index];
-                if (element) {
-                    element.removeAttribute(attr);
-                }
-            },
             removeClassForElementIndex: function (index, className) {
                 var element = _this.listElements[index];
                 if (element) {

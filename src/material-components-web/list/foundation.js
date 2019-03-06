@@ -67,7 +67,6 @@ var MDCListFoundation = /** @class */ (function (_super) {
                 isCheckboxCheckedAtIndex: function () { return false; },
                 isFocusInsideList: function () { return false; },
                 notifyAction: function () { return undefined; },
-                removeAttributeForElementIndex: function () { return undefined; },
                 removeClassForElementIndex: function () { return undefined; },
                 setAttributeForElementIndex: function () { return undefined; },
                 setCheckedCheckboxOrRadioAtIndex: function () { return undefined; },

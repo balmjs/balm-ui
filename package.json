@@ -1,6 +1,6 @@
 {
   "name": "balm-ui",
-  "version": "1.0.0-beta",
+  "version": "1.0.0",
   "description": "Next Generation Material UI for Vue.js",
   "homepage": "https://material.balmjs.com/",
   "author": {
@@ -38,6 +38,7 @@
     "focus-trap": "^4.0.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
     "@babel/plugin-proposal-decorators": "^7.0.0",
     "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
@@ -66,7 +67,7 @@
     "jsdom": "^13.2.0",
     "jsdom-global": "^3.0.2",
     "markdown-loader": "^5.0.0",
-    "material-components-web": "^1.0.0-1",
+    "material-components-web": "^1.0.0",
     "material-design-icons": "^3.0.1",
     "mocha": "^6.0.2",
     "mocha-webpack": "^2.0.0-beta.0",

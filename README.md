@@ -1,4 +1,4 @@
-# [BalmUI](https://material.balmjs.com/) [![NPM version][balm-ui-image]][balm-ui-url] [![NPM version][mdc-web-image]][mdc-web-url]
+# [BalmUI](https://material.balmjs.com/) [![BalmUI version][balm-ui-image]][balm-ui-url] [![MDC version][mdc-web-image]][mdc-web-url]
 
 > Next Generation Material UI for Vue.js
 
@@ -151,6 +151,6 @@ We officially support the last two versions of every major browser. Specifically
 - [MDC Web](https://material.io/components/)
 
 [balm-ui-image]: https://badge.fury.io/js/balm-ui.svg
-[balm-ui-url]: https://npmjs.org/package/balm-ui
-[mdc-web-image]: https://img.shields.io/badge/mdc--web-1.0.0-brightgreen.svg
+[balm-ui-url]: https://www.npmjs.com/package/balm-ui
+[mdc-web-image]: https://img.shields.io/badge/mdc--web-1.0.0-blue.svg
 [mdc-web-url]: https://www.npmjs.com/package/material-components-web

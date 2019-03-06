@@ -18,7 +18,6 @@ const components = [
   'form-field.js',
   'grid-list.js',
   'grid.js',
-  'icon-toggle.js',
   'icon-button.js',
   'image-list.js',
   'linear-progress.js',

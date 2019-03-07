@@ -58,7 +58,7 @@
         </transition-group>
         <p>
           <ui-button raised @click="uploadAllFiles">
-            <template slot="before" slot-scope="{ iconClass }">
+            <template #before="{ iconClass }">
               <ui-icon :class="iconClass">file_upload</ui-icon>
             </template>Upload All
           </ui-button>

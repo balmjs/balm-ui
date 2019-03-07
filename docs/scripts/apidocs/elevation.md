@@ -6,9 +6,9 @@
 
 - `v-shadow="z"`
 
-| Value | Type     | Default | Description                                         |
-| ----- | -------- | ------- | --------------------------------------------------- |
-| z     | `Number` | `0`     | Sets the elevation to the (N)dp, where 1 <= N <= 24 |
+| Value | Type   | Default | Description                                         |
+| ----- | ------ | ------- | --------------------------------------------------- |
+| `z`   | number | `0`     | Sets the elevation to the (N)dp, where 1 <= N <= 24 |
 
 #### Transition elevation
 

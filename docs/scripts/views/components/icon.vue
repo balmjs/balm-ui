@@ -62,20 +62,24 @@
 
       <h4 :class="$tt('headline4')">3. Icon List</h4>
       <div class="search-area" v-shadow="1">
-        <ui-textfield box leadingIcon
+        <ui-textfield
+          box
+          leadingIcon
           type="search"
           id="search"
           placeholder="Icon name keywords"
           helptextId="my-icons"
           fullwidth
           :model="keywords"
-          @input="onInput">
-          <template slot="before">
+          @input="onInput"
+        >
+          <template #before>
             <ui-textfield-icon>search</ui-textfield-icon>
           </template>
         </ui-textfield>
         <ui-textfield-helptext id="my-icons" class="search-helper" visible>
-          TIPS: Click an icon to copy icon name, then you can use `<b>&lt;ui-icon&gt;${icon_name}&lt;/ui-icon&gt;</b>`.
+          TIPS: Click an icon to copy icon name, then you can use `
+          <b>&lt;ui-icon&gt;${icon_name}&lt;/ui-icon&gt;</b>`.
         </ui-textfield-helptext>
       </div>
 
@@ -90,8 +94,9 @@
                   :key="i"
                   noImage
                   class="btn-clipboard"
-                  :data-clipboard-text="icon.id">
-                  <template slot="icon">
+                  :data-clipboard-text="icon.id"
+                >
+                  <template #icon>
                     <ui-icon size="48">{{ icon.id }}</ui-icon>
                   </template>
                   <div v-if="icon.isNew" class="new-badge">New</div>

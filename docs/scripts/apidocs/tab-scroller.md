@@ -4,7 +4,7 @@
 
 #### Props
 
-| Name    | Type     | Default | Description                                 |
-| ------- | -------- | ------- | ------------------------------------------- |
-| scrollX | `Number` | `0`     | The current scroll value.                   |
-| align   | `String` | `null`  | Tab alignment. `['start', 'center', 'end']` |
+| Name      | Type   | Default | Description                                 |
+| --------- | ------ | ------- | ------------------------------------------- |
+| `scrollX` | number | `0`     | The current scroll value.                   |
+| `align`   | string | `null`  | Tab alignment. `['start', 'center', 'end']` |

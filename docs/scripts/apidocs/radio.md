@@ -4,29 +4,29 @@
 
 #### Props
 
-| Name            | Type               | Default | Description                                                                   |
-| --------------- | ------------------ | ------- | ----------------------------------------------------------------------------- |
-| model (v-model) | `String`, `Number` | `null`  | Mandatory.                                                                    |
-| disabled        | `Boolean`          | `false` | Styles the radio button as a disabled radio button.                           |
-| id              | `String`           | `null`  | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`. |
-| name            | `String`           | `null`  | The _name_ attribute of the `<input>`.                                        |
-| value           | `String`, `Number` | `null`  | The _value_ attribute of the `<input>`.                                       |
-| cssOnly         | `Boolean`          | `false` | Ripple effect is disabled.                                                    |
-| label           | `String`           | `null`  | A text caption or description for the radio button.                           |
-| attrs           | `Object`           | `null`  | Other attributes for `<input>`.                                               |
-| noLabel         | `Boolean`          | `false` | The radio button without the label.                                           |
+| Name                | Type           | Default | Description                                                                   |
+| ------------------- | -------------- | ------- | ----------------------------------------------------------------------------- |
+| `model` (`v-model`) | string, number | `null`  | Mandatory.                                                                    |
+| `disabled`          | boolean        | `false` | Styles the radio button as a disabled radio button.                           |
+| `id`                | string         | `null`  | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`. |
+| `name`              | string         | `null`  | The _name_ attribute of the `<input>`.                                        |
+| `value`             | string, number | `null`  | The _value_ attribute of the `<input>`.                                       |
+| `cssOnly`           | boolean        | `false` | Ripple effect is disabled.                                                    |
+| `label`             | string         | `null`  | A text caption or description for the radio button.                           |
+| `attrs`             | object         | `null`  | Other attributes for `<input>`.                                               |
+| `noLabel`           | boolean        | `false` | The radio button without the label.                                           |
 
 #### Slots
 
-| Name      | Description                                            |
-| --------- | ------------------------------------------------------ |
-| (default) | The default slot holds the label for the radio button. |
+| Name      | Slots | Description                                            |
+| --------- | ----- | ------------------------------------------------------ |
+| `default` |       | The default slot holds the label for the radio button. |
 
 #### Events
 
-| Name   | Type                              | Description                             |
-| ------ | --------------------------------- | --------------------------------------- |
-| change | `Function(model: string\|number)` | Emits when the radio button is changed. |
+| Name     | Type                              | Description                             |
+| -------- | --------------------------------- | --------------------------------------- |
+| `change` | `function(model: string\|number)` | Emits when the radio button is changed. |
 
 > NOTE: If you are not using `v-model`, you should listen for the radio using `@change` and update the `model` prop.
 

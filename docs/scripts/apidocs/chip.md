@@ -4,9 +4,9 @@
 
 #### Slots
 
-| Name      | Description                                       |
-| --------- | ------------------------------------------------- |
-| (default) | The default slot holds the chip child components. |
+| Name      | Slots | Description                                       |
+| --------- | ----- | ------------------------------------------------- |
+| `default` |       | The default slot holds the chip child components. |
 
 **Chip child components:**
 

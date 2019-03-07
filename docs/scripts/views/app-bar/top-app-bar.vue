@@ -9,7 +9,7 @@
       :short="controls.short"
       :alwaysClosed="controls.alwaysCollapsed"
     >Hello BalmUI
-      <template slot="toolbar" slot-scope="{ iconClass, itemClass }">
+      <template #toolbar="{ iconClass, itemClass }">
         <a
           v-if="!controls.short && !controls.noAction"
           :class="[iconClass, itemClass]"

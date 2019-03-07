@@ -130,7 +130,7 @@
             <h3>Leading Checkbox {{ checkedValues }}</h3>
             <ui-list avatar class="demo-list demo-list">
               <ui-item v-for="(item, index) in items" :key="index" firstPlaceholder v-ripple>
-                <template slot="before">
+                <template #before>
                   <ui-checkbox noLabel v-model="checkedValues" :value="index"></ui-checkbox>
                 </template>
                 <label :for="`leading-${index}`">{{ item.text }}</label>
@@ -142,7 +142,7 @@
             <h3>Leading Radio Buttons ({{ checkedValue }})</h3>
             <ui-list avatar class="demo-list demo-list">
               <ui-item v-for="(item, index) in items" :key="index" firstPlaceholder v-ripple>
-                <template slot="before">
+                <template #before>
                   <ui-radio noLabel name="leading-radios" v-model="checkedValue" :value="index"></ui-radio>
                 </template>
                 <label :for="`leading-${index}`">{{ item.text }}</label>
@@ -206,7 +206,7 @@
             <ui-list avatar class="demo-list demo-list">
               <ui-item v-for="(item, index) in items" :key="index" lastPlaceholder v-ripple>
                 <label :for="`trailing-${index}`">{{ item.text }}</label>
-                <template slot="after">
+                <template #after>
                   <ui-checkbox :id="`trailing-${index}`" noLabel></ui-checkbox>
                 </template>
               </ui-item>

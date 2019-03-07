@@ -4,15 +4,15 @@
 
 #### Props
 
-| Name     | Type      | Default | Description                                                |
-| -------- | --------- | ------- | ---------------------------------------------------------- |
-| outlined | `Boolean` | `false` | Removes the shadow and displays a hairline outline instead |
+| Name       | Type    | Default | Description                                                |
+| ---------- | ------- | ------- | ---------------------------------------------------------- |
+| `outlined` | boolean | `false` | Removes the shadow and displays a hairline outline instead |
 
 #### Slots
 
-| Name      | Description                                                            |
-| --------- | ---------------------------------------------------------------------- |
-| (default) | The default slot holds the card child components and can contain HTML. |
+| Name      | Slots | Description                                                            |
+| --------- | ----- | ---------------------------------------------------------------------- |
+| `default` |       | The default slot holds the card child components and can contain HTML. |
 
 **Card child components:**
 

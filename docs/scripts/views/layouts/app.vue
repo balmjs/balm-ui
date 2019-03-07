@@ -7,7 +7,7 @@
       <!-- header -->
       <ui-top-app-bar class="balmui-head" fixed contentSelector=".balmui-body" navId="balmui-menu">
         <router-link to="/" :class="['catalog-title', $themeColor('on-primary')]">BalmUI</router-link>
-        <template slot="toolbar" slot-scope="{ itemClass }">
+        <template #toolbar="{ itemClass }">
           <a :class="itemClass" href="https://github.com/balmjs/ui-vue">
             <svg-github></svg-github>
           </a>
@@ -15,13 +15,10 @@
       </ui-top-app-bar>
       <!-- content -->
       <div class="balmui-body">
-        <ui-dismissible-drawer
-          v-model="open"
-          class="balmui-menu"
-          menuSelector="#balmui-menu">
+        <ui-dismissible-drawer v-model="open" class="balmui-menu" menuSelector="#balmui-menu">
           <ui-drawer-content>
             <ui-list-nav ref="mainmenu" class="catalog-list">
-              <template slot-scope="{ itemClass, activeClass }">
+              <template #default="{ itemClass, activeClass }">
                 <template v-for="(item, index) in menu">
                   <router-link
                     v-if="item.icon || item.isSubmenu"
@@ -32,14 +29,19 @@
                     }, $textColor('primary', 'light')]"
                     :to="item.url"
                     :active-class="activeClass"
-                    @click.native="handleMenu">
+                    @click.native="handleMenu"
+                  >
                     <span v-if="item.icon" class="demo-catalog-list-icon">
                       <img :src="require(`../../../images/icon/${item.icon}`)" :alt="item.name">
                     </span>
                     {{ item.name }}
                   </router-link>
                   <ui-list-divider v-else-if="item === '-'" :key="`divider${index}`"></ui-list-divider>
-                  <h3 v-else :key="`head${index}`" :class="$textColor('primary', 'light')">{{ item.name }}</h3>
+                  <h3
+                    v-else
+                    :key="`head${index}`"
+                    :class="$textColor('primary', 'light')"
+                  >{{ item.name }}</h3>
                 </template>
               </template>
             </ui-list-nav>

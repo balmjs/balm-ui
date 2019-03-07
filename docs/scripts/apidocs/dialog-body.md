@@ -4,6 +4,6 @@
 
 #### Slots
 
-| Name      | Description                                                     |
-| --------- | --------------------------------------------------------------- |
-| (default) | The default slot holds the dialog content and can contain HTML. |
+| Name      | Slots | Description                                                     |
+| --------- | ----- | --------------------------------------------------------------- |
+| `default` |       | The default slot holds the dialog content and can contain HTML. |

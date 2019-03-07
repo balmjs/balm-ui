@@ -2,10 +2,10 @@
 $validate(formData, customFieldset);
 ```
 
-| Param          | Type     | Default | Description                                   |
-| -------------- | -------- | ------- | --------------------------------------------- |
-| formData       | `Object` | `{}`    | Mandatory. A form data object.                |
-| customFieldset | `Array`  | `[]`    | Optional. The field names of the validations. |
+| Param            | Type   | Default | Description                                   |
+| ---------------- | ------ | ------- | --------------------------------------------- |
+| `formData`       | object | `{}`    | Mandatory. A form data object.                |
+| `customFieldset` | array  | `[]`    | Optional. The field names of the validations. |
 
 - BalmUI validator rules format:
 
@@ -69,11 +69,11 @@ export default {
 };
 ```
 
-| Result   | Type      | Description                                            |
-| -------- | --------- | ------------------------------------------------------ |
-| isValid  | `Boolean` | The validator result.                                  |
-| valid    | `Array`   | Valid fields.                                          |
-| invalid  | `Array`   | Invalid fields.                                        |
-| messages | `Array`   | The messages of all invalid fields.                    |
-| message  | `String`  | The message of the first invalid field.                |
-| errorMsg | `Object`  | The messages as an object. (Same format as `formData`) |
+| Result     | Type    | Description                                            |
+| ---------- | ------- | ------------------------------------------------------ |
+| `isValid`  | boolean | The validator result.                                  |
+| `valid`    | array   | Valid fields.                                          |
+| `invalid`  | array   | Invalid fields.                                        |
+| `messages` | array   | The messages of all invalid fields.                    |
+| `message`  | string  | The message of the first invalid field.                |
+| `errorMsg` | object  | The messages as an object. (Same format as `formData`) |

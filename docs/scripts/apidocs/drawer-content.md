@@ -4,6 +4,6 @@
 
 #### Slots
 
-| Name      | Description                                                                       |
-| --------- | --------------------------------------------------------------------------------- |
-| (default) | The default slot holds the list of items (router link list) and can contain HTML. |
+| Name      | Slots | Description                                                                       |
+| --------- | ----- | --------------------------------------------------------------------------------- |
+| `default` |       | The default slot holds the list of items (router link list) and can contain HTML. |

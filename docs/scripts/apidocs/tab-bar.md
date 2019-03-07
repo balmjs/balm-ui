@@ -4,24 +4,24 @@
 
 #### `<ui-tab-bar>` & `<ui-tabs>` Props
 
-| Name             | Type     | Default | Description                                 |
-| ---------------- | -------- | ------- | ------------------------------------------- |
-| active (v-model) | `Number` | `0`     | Mandatory.                                  |
-| align            | `String` | `null`  | Tab alignment. `['start', 'center', 'end']` |
+| Name                 | Type   | Default | Description                                 |
+| -------------------- | ------ | ------- | ------------------------------------------- |
+| `active` (`v-model`) | number | `0`     | Mandatory.                                  |
+| `align`              | string | `null`  | Tab alignment. `['start', 'center', 'end']` |
 
 #### `<ui-tab-bar>` Slots
 
-| Name      | Description                                                     |
-| --------- | --------------------------------------------------------------- |
-| (default) | The default slot holds the tab components and can contain HTML. |
+| Name      | Slots | Description                                                     |
+| --------- | ----- | --------------------------------------------------------------- |
+| `default` |       | The default slot holds the tab components and can contain HTML. |
 
 > `<ui-tabs>` has not slot.
 
 #### `<ui-tab-bar>` & `<ui-tabs>` Events
 
-| Name   | Type                      | Description                    |
-| ------ | ------------------------- | ------------------------------ |
-| change | `Function(model: number)` | Emits when the tab is changed. |
+| Name     | Type                      | Description                    |
+| -------- | ------------------------- | ------------------------------ |
+| `change` | `function(model: number)` | Emits when the tab is changed. |
 
 > NOTE: If you are not using `v-model`, you should listen for the tabs using `@change` and update the `active` prop.
 
@@ -43,10 +43,10 @@
 
 #### Props
 
-| Name  | Type     | Default             | Description               |
-| ----- | -------- | ------------------- | ------------------------- |
-| items | `Array`  | `[]`                | Mandatory. Tab items.     |
-| keys  | `Object` | `{text, icon, url}` | A tab item object's keys. |
+| Name    | Type   | Default             | Description               |
+| ------- | ------ | ------------------- | ------------------------- |
+| `items` | array  | `[]`                | Mandatory. Tab items.     |
+| `keys`  | object | `{text, icon, url}` | A tab item object's keys. |
 
 - Default keys of a tab item object:
 

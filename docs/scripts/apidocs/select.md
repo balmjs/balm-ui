@@ -4,38 +4,38 @@
 
 #### Props
 
-| Name            | Type               | Default   | Description                                                                                                                                      |
-| --------------- | ------------------ | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| model (v-model) | `String`, `Number` | `null`    | The `value` of the currently selected option.                                                                                                    |
-| options         | `Array`            | `[]`      | An array of options to show to the user.                                                                                                         |
-| optionLabel     | `String`           | `'label'` | Option item label's name of the `options`.                                                                                                       |
-| optionValue     | `String`           | `'value'` | Option item value's name of the `options`.                                                                                                       |
-| selectedIndex   | `Number`           | `0`       | The index of the currently selected option. Set to -1 if no option is currently selected. Changing this property will update the select element. |
-| defaultLabel    | `String`           | `null`    | Placeholder item label.                                                                                                                          |
-| defaultValue    | `String`, `Number` | `''`      | Placeholder item value.                                                                                                                          |
-| id              | `String`           | `null`    | The _id_ attribute of the `<select>` and the _for_ attribute of the `<label>`.                                                                   |
-| disabled        | `Boolean`          | `false`   | Styles the select as disabled.                                                                                                                   |
-| cssOnly         | `Boolean`          | `false`   | Ripple effect is disabled.                                                                                                                       |
-| label           | `String`           | `null`    | A text caption or description for the select.                                                                                                    |
-| box             | `Boolean`          | `false`   | Styles the select as a box select.                                                                                                               |
-| outlined        | `Boolean`          | `false`   | Styles the select as an outlined select.                                                                                                         |
-| group           | `Boolean`          | `false`   | Creates a grouping of `options`.                                                                                                                 |
-| groupLabel      | `String`           | `'label'` | Option label's name of the group `options`.                                                                                                      |
-| groupItems      | `String`           | `'items'` | Option items's name of the group `options`.                                                                                                      |
-| attrs           | `Object`           | `null`    | Other attributes for `<select>`.                                                                                                                 |
+| Name                | Type           | Default   | Description                                                                                                                                      |
+| ------------------- | -------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `model` (`v-model`) | string, number | `null`    | The `value` of the currently selected option.                                                                                                    |
+| `options`           | array          | `[]`      | An array of options to show to the user.                                                                                                         |
+| `optionLabel`       | string         | `'label'` | Option item label's name of the `options`.                                                                                                       |
+| `optionValue`       | string         | `'value'` | Option item value's name of the `options`.                                                                                                       |
+| `selectedIndex`     | number         | `0`       | The index of the currently selected option. Set to -1 if no option is currently selected. Changing this property will update the select element. |
+| `defaultLabel`      | string         | `null`    | Placeholder item label.                                                                                                                          |
+| `defaultValue`      | string, number | `''`      | Placeholder item value.                                                                                                                          |
+| `id`                | string         | `null`    | The _id_ attribute of the `<select>` and the _for_ attribute of the `<label>`.                                                                   |
+| `disabled`          | boolean        | `false`   | Styles the select as disabled.                                                                                                                   |
+| `cssOnly`           | boolean        | `false`   | Ripple effect is disabled.                                                                                                                       |
+| `label`             | string         | `null`    | A text caption or description for the select.                                                                                                    |
+| `box`               | boolean        | `false`   | Styles the select as a box select.                                                                                                               |
+| `outlined`          | boolean        | `false`   | Styles the select as an outlined select.                                                                                                         |
+| `group`             | boolean        | `false`   | Creates a grouping of `options`.                                                                                                                 |
+| `groupLabel`        | string         | `'label'` | Option label's name of the group `options`.                                                                                                      |
+| `groupItems`        | string         | `'items'` | Option items's name of the group `options`.                                                                                                      |
+| `attrs`             | object         | `null`    | Other attributes for `<select>`.                                                                                                                 |
 
 #### Slots
 
-| Name      | Description                                      |
-| --------- | ------------------------------------------------ |
-| (default) | The default slot holds the label for the select. |
+| Name      | Slots | Description                                      |
+| --------- | ----- | ------------------------------------------------ |
+| `default` |       | The default slot holds the label for the select. |
 
 #### Events
 
-| Name     | Type                              | Description                             |
-| -------- | --------------------------------- | --------------------------------------- |
-| change   | `Function(model: string\|number)` | Emits when the select value is changed. |
-| selected | `Function(option: object)`        | Emits when an option is selected.       |
+| Name       | Type                              | Description                             |
+| ---------- | --------------------------------- | --------------------------------------- |
+| `change`   | `function(model: string\|number)` | Emits when the select value is changed. |
+| `selected` | `function(option: object)`        | Emits when an option is selected.       |
 
 > NOTE: If you are not using `v-model`, you should listen for the select using `@change` and update the `model` prop.
 

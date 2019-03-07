@@ -1,7 +1,7 @@
 <template>
   <div class="demo--grid">
     <ui-top-app-bar fixed contentSelector=".demo-content">
-      <template slot="nav-icon">
+      <template #nav-icon>
         <span class="catalog-back">
           <ui-toolbar-anchor
             type="menu"

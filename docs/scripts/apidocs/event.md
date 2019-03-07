@@ -6,11 +6,11 @@ $balmUI.onClose(property, fn); / $balmUI.onHide(property, fn); // update propert
 
 #### Props
 
-| Name     | Type       | Default | Description                                                                  |
-| -------- | ---------- | ------- | ---------------------------------------------------------------------------- |
-| property | `String`   | `null`  | Update a specified `vm.$data`.                                               |
-| value    | `any`      | `null`  | New value of a specified `vm.$data`. Applicable only for `$balmUI.onChange`. |
-| fn       | `Function` | `noop`  | After method to handle.                                                      |
+| Name       | Type     | Default | Description                                                                  |
+| ---------- | -------- | ------- | ---------------------------------------------------------------------------- |
+| `property` | string   | `null`  | Update a specified `vm.$data`.                                               |
+| `value`    | any      | `null`  | New value of a specified `vm.$data`. Applicable only for `$balmUI.onChange`. |
+| `fn`       | function | `noop`  | After method to handle.                                                      |
 
 ---
 

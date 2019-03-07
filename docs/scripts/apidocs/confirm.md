@@ -8,14 +8,14 @@ $confirm(options);
 
 #### Options
 
-| Option     | Type       | Default    | Description                                           |
-| ---------- | ---------- | ---------- | ----------------------------------------------------- |
-| className  | `String`   | `''`       | The custom class name for the confirm dialog.         |
-| title      | `String`   | `''`       | The title of the confirm dialog.                      |
-| message    | `String`   | `''`       | The content to be displayed in the confirm dialog.    |
-| acceptText | `String`   | `'OK'`     | Accept button content.                                |
-| cancelText | `String`   | `'Cancel'` | Cancel button content.                                |
-| callback   | `Function` | `false`    | Handle some event when the confirm button is clicked. |
+| Option       | Type     | Default    | Description                                           |
+| ------------ | -------- | ---------- | ----------------------------------------------------- |
+| `className`  | string   | `''`       | The custom class name for the confirm dialog.         |
+| `title`      | string   | `''`       | The title of the confirm dialog.                      |
+| `message`    | string   | `''`       | The content to be displayed in the confirm dialog.    |
+| `acceptText` | string   | `'OK'`     | Accept button content.                                |
+| `cancelText` | string   | `'Cancel'` | Cancel button content.                                |
+| `callback`   | function | `false`    | Handle some event when the confirm button is clicked. |
 
 #### Events
 

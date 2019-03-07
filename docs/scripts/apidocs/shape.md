@@ -5,9 +5,9 @@
 - `v-shape`
 - `v-shape="corner"`
 
-| Value  | Type     | Default | Description                                                  |
-| ------ | -------- | ------- | ------------------------------------------------------------ |
-| corner | `String` | `null`  | Element for masking a specific corner; there may be up to 4. |
+| Value  | Type   | Default | Description                                                  |
+| ------ | ------ | ------- | ------------------------------------------------------------ |
+| corner | string | `null`  | Element for masking a specific corner; there may be up to 4. |
 
 > Syntax is similar to CSS `border-radius` property.
 

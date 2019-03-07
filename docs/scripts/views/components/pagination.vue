@@ -31,7 +31,7 @@
           jumperAfter="page"
           jumperButton="Go"
         >
-          <template slot-scope="{ pageCount }">
+          <template #default="{ pageCount }">
             Showing {{ recordCount }} records,
             <ui-select v-model="pageSize" :options="pageSizeOptions"></ui-select>
             records / page, {{ pageCount }} total pages

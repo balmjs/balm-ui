@@ -6,6 +6,6 @@
 
 #### Slots
 
-| Name      | Description                                                        |
-| --------- | ------------------------------------------------------------------ |
-| (default) | The default slot holds the button components and can contain HTML. |
+| Name      | Slots | Description                                                        |
+| --------- | ----- | ------------------------------------------------------------------ |
+| `default` |       | The default slot holds the button components and can contain HTML. |

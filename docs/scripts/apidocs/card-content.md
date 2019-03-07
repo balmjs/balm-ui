@@ -6,12 +6,12 @@
 
 #### Props
 
-| Name | Type     | Default | Description                                      |
-| ---- | -------- | ------- | ------------------------------------------------ |
-| url  | `String` | `null`  | The _href_ attribute of the `<ui-card-content>`. |
+| Name  | Type   | Default | Description                                      |
+| ----- | ------ | ------- | ------------------------------------------------ |
+| `url` | string | `null`  | The _href_ attribute of the `<ui-card-content>`. |
 
 #### Slots
 
-| Name      | Description                                                   |
-| --------- | ------------------------------------------------------------- |
-| (default) | The default slot holds the card content and can contain HTML. |
+| Name      | Slots | Description                                                   |
+| --------- | ----- | ------------------------------------------------------------- |
+| `default` |       | The default slot holds the card content and can contain HTML. |

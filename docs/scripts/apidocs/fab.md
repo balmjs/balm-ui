@@ -5,33 +5,33 @@
 
 #### Props
 
-| Name     | Type      | Default | Description                                                                                      |
-| -------- | --------- | ------- | ------------------------------------------------------------------------------------------------ |
-| icon     | `String`  | `''`    | Mandatory, for the icon element. See [Material Icons](/#/icons) usage.                           |
-| mini     | `Boolean` | `false` | Optional, modifies the FAB to a smaller size                                                     |
-| extended | `Boolean` | `false` | Optional, modifies the FAB to wider size which includes a text label.                            |
-| exited   | `Boolean` | `false` | Optional, animates the FAB out of view. When this class is removed, the FAB will return to view. |
-| cssOnly  | `Boolean` | `false` | Ripple effect is disabled.                                                                       |
+| Name       | Type    | Default | Description                                                                                      |
+| ---------- | ------- | ------- | ------------------------------------------------------------------------------------------------ |
+| `icon`     | string  | `''`    | Mandatory, for the icon element. See [Material Icons](/#/icons) usage.                           |
+| `mini`     | boolean | `false` | Optional, modifies the FAB to a smaller size                                                     |
+| `extended` | boolean | `false` | Optional, modifies the FAB to wider size which includes a text label.                            |
+| `exited`   | boolean | `false` | Optional, animates the FAB out of view. When this class is removed, the FAB will return to view. |
+| `cssOnly`  | boolean | `false` | Ripple effect is disabled.                                                                       |
 
 #### Slots
 
-| Name      | Description                                                           | `slot-scope`    |
-| --------- | --------------------------------------------------------------------- | --------------- |
-| (default) | The default slot holds the floating action button icon or text label. | `{ iconClass }` |
-| before    | The label slot holds the label text of the extended FAB.              | `{ iconClass }` |
-| after     | The label slot holds the label text of the extended FAB.              | `{ iconClass }` |
+| Name      | Slots           | Description                                                           |
+| --------- | --------------- | --------------------------------------------------------------------- |
+| `default` | `{ iconClass }` | The default slot holds the floating action button icon or text label. |
+| `before`  | `{ iconClass }` | The label slot holds the label text of the extended FAB.              |
+| `after`   | `{ iconClass }` | The label slot holds the label text of the extended FAB.              |
 
 > NOTE: the default slot has not `slot-scope` in the extended FAB.
 
 ```html
 <ui-fab>
-  <template slot-scope="{ iconClass }">
+  <template #default="{ iconClass }">
     <ui-icon :class="iconClass">ICON</ui-icon>
   </template>
 </ui-fab>
 
 <ui-fab extended>
-  <template slot="before" slot-scope="{ iconClass }">
+  <template #before="{ iconClass }">
     <ui-icon :class="iconClass">ICON</ui-icon>
   </template>
   Text label
@@ -40,6 +40,6 @@
 
 #### Events
 
-| Name  | Type                      | Description                                       |
-| ----- | ------------------------- | ------------------------------------------------- |
-| click | `Function(event: object)` | Emits when the floating action button is clicked. |
+| Name    | Type                      | Description                                       |
+| ------- | ------------------------- | ------------------------------------------------- |
+| `click` | `function(event: object)` | Emits when the floating action button is clicked. |

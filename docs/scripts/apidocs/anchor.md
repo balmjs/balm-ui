@@ -7,7 +7,7 @@
 - `v-anchor`
 - `v-anchor.offset="offsetValue"`
 
-> **offsetValue** is a `number`.
+> **offsetValue** is a number.
 
 ```html
 <body class="container" v-anchor>

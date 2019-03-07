@@ -4,18 +4,18 @@
 
 #### Props
 
-| Name        | Type      | Default | Description                 |
-| ----------- | --------- | ------- | --------------------------- |
-| unclickable | `Boolean` | `false` | Display un-clickable icons. |
+| Name          | Type    | Default | Description                 |
+| ------------- | ------- | ------- | --------------------------- |
+| `unclickable` | boolean | `false` | Display un-clickable icons. |
 
 #### Slots
 
-| Name      | Description                                                                                           |
-| --------- | ----------------------------------------------------------------------------------------------------- |
-| (default) | The default slot holds the text field icon and can contain HTML. See [Material Icons](/#/icons) list. |
+| Name      | Slots | Description                                                                                           |
+| --------- | ----- | ----------------------------------------------------------------------------------------------------- |
+| `default` |       | The default slot holds the text field icon and can contain HTML. See [Material Icons](/#/icons) list. |
 
 #### Events
 
-| Name  | Type                      | Description                                |
-| ----- | ------------------------- | ------------------------------------------ |
-| click | `Function(event: object)` | Emits when the text field icon is clicked. |
+| Name    | Type                      | Description                                |
+| ------- | ------------------------- | ------------------------------------------ |
+| `click` | `function(event: object)` | Emits when the text field icon is clicked. |

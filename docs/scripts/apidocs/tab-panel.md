@@ -7,15 +7,15 @@
 
 #### Props
 
-| Name             | Type     | Default | Description |
-| ---------------- | -------- | ------- | ----------- |
-| active (v-model) | `Number` | `0`     | Mandatory.  |
+| Name                 | Type   | Default | Description |
+| -------------------- | ------ | ------- | ----------- |
+| `active` (`v-model`) | number | `0`     | Mandatory.  |
 
 #### Slots
 
-| Name      | Description                                                       |
-| --------- | ----------------------------------------------------------------- |
-| (default) | The default slot holds the panel components and can contain HTML. |
+| Name      | Slots | Description                                                       |
+| --------- | ----- | ----------------------------------------------------------------- |
+| `default` |       | The default slot holds the panel components and can contain HTML. |
 
 ```html
 <ui-tab-bar v-model="active">

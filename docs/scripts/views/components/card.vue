@@ -48,7 +48,9 @@
 
           <ui-card-actions fullBleed>
             <ui-a class="demo-card-action">All Business Headlines
-              <ui-icon slot="after">arrow_forward</ui-icon>
+              <template #after>
+                <ui-icon>arrow_forward</ui-icon>
+              </template>
             </ui-a>
           </ui-card-actions>
         </ui-card>

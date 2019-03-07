@@ -4,6 +4,6 @@
 
 #### Slots
 
-| Name      | Description                                          |
-| --------- | ---------------------------------------------------- |
-| (default) | The default slot holds the text content of the chip. |
+| Name      | Slots | Description                                          |
+| --------- | ----- | ---------------------------------------------------- |
+| `default` |       | The default slot holds the text content of the chip. |

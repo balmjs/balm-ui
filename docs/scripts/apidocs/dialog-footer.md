@@ -4,19 +4,19 @@
 
 #### Props
 
-| Name       | Type     | Default    | Description             |
-| ---------- | -------- | ---------- | ----------------------- |
-| acceptText | `String` | `'Accept'` | The accept button text. |
-| cancelText | `String` | `'Cancel'` | The cancel button text. |
+| Name         | Type   | Default    | Description             |
+| ------------ | ------ | ---------- | ----------------------- |
+| `acceptText` | string | `'Accept'` | The accept button text. |
+| `cancelText` | string | `'Cancel'` | The cancel button text. |
 
 #### Slots
 
-| Name      | Description                                                     | `slot-scope`      |
-| --------- | --------------------------------------------------------------- | ----------------- |
-| (default) | The default slot holds the dialog actions and can contain HTML. | `{ buttonClass }` |
+| Name      | Slots             | Description                                                     |
+| --------- | ----------------- | --------------------------------------------------------------- |
+| `default` | `{ buttonClass }` | The default slot holds the dialog actions and can contain HTML. |
 
 ```html
-<template slot-scope="{ buttonClass }">
+<template #default="{ buttonClass }">
   <ui-button :class="buttonClass">BUTTON</ui-button>
 </template>
 ```

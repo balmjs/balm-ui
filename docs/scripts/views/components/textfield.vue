@@ -109,7 +109,7 @@
               minlength: controls.min ? 8 : 0
             }"
           >
-            <template slot="before">
+            <template #before>
               <ui-textfield-icon :unclickable="controls.unclickable">event</ui-textfield-icon>
             </template>Your name
           </ui-textfield>
@@ -131,7 +131,7 @@
               minlength: controls.min ? 8 : 0
             }"
           >Your name
-            <template slot="after">
+            <template #after>
               <ui-textfield-icon :unclickable="controls.unclickable">delete</ui-textfield-icon>
             </template>
           </ui-textfield>
@@ -153,7 +153,7 @@
               minlength: controls.min ? 8 : 0
             }"
           >
-            <template slot="before" slot-scope="{ customIconClass }">
+            <template #before="{ customIconClass }">
               <span :class="customIconClass">
                 <i class="fa fa-smile-o fa-lg"></i>
               </span>
@@ -177,7 +177,7 @@
               minlength: controls.min ? 8 : 0
             }"
           >Your other name
-            <template slot="after" slot-scope="{ customIconClass }">
+            <template #after="{ customIconClass }">
               <span :class="customIconClass">
                 <i class="fa fa-close fa-lg"></i>
               </span>

@@ -82,7 +82,7 @@
               <h6 :class="$tt('headline6')">Using Font Awesome</h6>
               <div class="demo-wrapper">
                 <ui-icon-button v-model="value2">
-                  <template slot-scope="{ onClass, offClass }">
+                  <template #default="{ onClass, offClass }">
                     <i :class="[onClass, icon2.on]"></i>
                     <i :class="[offClass, icon2.off]"></i>
                   </template>
@@ -95,7 +95,7 @@
               <h6 :class="$tt('headline6')">Using SVG Icons</h6>
               <div class="demo-wrapper">
                 <ui-icon-button>
-                  <template slot-scope="{ onClass, offClass }">
+                  <template #default="{ onClass, offClass }">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -129,7 +129,7 @@
               <h6 :class="$tt('headline6')">Using Image Icons</h6>
               <div class="demo-wrapper">
                 <ui-icon-button>
-                  <template slot-scope="{ onClass, offClass }">
+                  <template #default="{ onClass, offClass }">
                     <img :src="imageOn" :class="onClass">
                     <img :src="imageOff" :class="offClass">
                   </template>

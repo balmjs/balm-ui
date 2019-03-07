@@ -77,7 +77,6 @@ a {
   }
 
   &.component {
-
     &::before,
     &::after {
       content: 'component';
@@ -86,7 +85,6 @@ a {
   }
 
   &.plugin {
-
     &::before,
     &::after {
       content: 'plugin';
@@ -95,13 +93,17 @@ a {
   }
 
   &.directive {
-
     &::before,
     &::after {
       content: 'directive';
       background-color: #00bfa5;
     }
   }
+}
+
+.markdown-body table td:nth-child(2) {
+  color: #c41d7f;
+  font-size: 13px;
 }
 
 /// lang

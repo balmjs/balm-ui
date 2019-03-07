@@ -4,32 +4,32 @@
 
 #### Props
 
-| Name           | Type      | Default      | Description                                                    |
-| -------------- | --------- | ------------ | -------------------------------------------------------------- |
-| open (v-model) | `Boolean` | `false`      | Mandatory.                                                     |
-| items          | `Array`   | `[]`         | Menu items.                                                    |
-| quickOpen      | `Boolean` | `false`      | Turn off menu open animations.                                 |
-| cssOnly        | `Boolean` | `false`      | Show static menu.                                              |
-| position       | `String`  | `'TOP_LEFT'` | Menu position to the menu button.                              |
-| margin         | `String`  | `null`       | Anchor margin. Value: `top(px) right(px) bottom(px) left(px)`. |
-| fixed          | `Boolean` | `false`      | Used to indicate that the menu is using fixed positioning.     |
+| Name               | Type    | Default      | Description                                                    |
+| ------------------ | ------- | ------------ | -------------------------------------------------------------- |
+| `open` (`v-model`) | boolean | `false`      | Mandatory.                                                     |
+| `items`            | array   | `[]`         | Menu items.                                                    |
+| `quickOpen`        | boolean | `false`      | Turn off menu open animations.                                 |
+| `cssOnly`          | boolean | `false`      | Show static menu.                                              |
+| `position`         | string  | `'TOP_LEFT'` | Menu position to the menu button.                              |
+| `margin`           | string  | `null`       | Anchor margin. Value: `top(px) right(px) bottom(px) left(px)`. |
+| `fixed`            | boolean | `false`      | Used to indicate that the menu is using fixed positioning.     |
 
-- Anchor corners: '`TOP_LEFT`', '`TOP_RIGHT`', '`BOTTOM_LEFT`', '`BOTTOM_RIGHT`', '`TOP_START`', '`TOP_END`', '`BOTTOM_START`', '`BOTTOM_END`'.
+- Anchor corners: `TOP_LEFT`, `TOP_RIGHT`, `BOTTOM_LEFT`, `BOTTOM_RIGHT`, `TOP_START`, `TOP_END`, `BOTTOM_START`, `BOTTOM_END`.
 
 #### Slots
 
-| Name      | Description                                     |
-| --------- | ----------------------------------------------- |
-| (default) | The default slot holds the menuitem components. |
+| Name      | Slots | Description                                     |
+| --------- | ----- | ----------------------------------------------- |
+| `default` |       | The default slot holds the menuitem components. |
 
 #### Events
 
-| Name     | Type                         | Description                              |
-| -------- | ---------------------------- | ---------------------------------------- |
-| change   | `Function(open: boolean)`    | Emits when the menu is changed.          |
-| selected | `Function(menuitem: object)` | Emits when an element has been selected. |
-| closed   | `Function()`                 | Emits when the menu is closed.           |
-| opened   | `Function()`                 | Emits when the menu is opened.           |
+| Name       | Type                         | Description                              |
+| ---------- | ---------------------------- | ---------------------------------------- |
+| `change`   | `function(open: boolean)`    | Emits when the menu is changed.          |
+| `selected` | `function(menuitem: object)` | Emits when an element has been selected. |
+| `closed`   | `function()`                 | Emits when the menu is closed.           |
+| `opened`   | `function()`                 | Emits when the menu is opened.           |
 
 - `selected` event return data:
 

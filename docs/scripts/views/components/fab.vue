@@ -30,7 +30,7 @@
           </figure>
           <figure>
             <ui-fab>
-              <template slot-scope="{ iconClass }">
+              <template #default="{ iconClass }">
                 <svg-logo :class="iconClass"></svg-logo>
               </template>
             </ui-fab>
@@ -40,7 +40,7 @@
           </figure>
           <figure>
             <ui-fab mini>
-              <template slot-scope="{ iconClass }">
+              <template #default="{ iconClass }">
                 <svg-logo :class="iconClass"></svg-logo>
               </template>
             </ui-fab>
@@ -71,7 +71,7 @@
         <div class="demo-fabs">
           <figure class="demo-figure-fab-extended">
             <ui-fab extended class="demo-fab-extended-fluid">
-              <template slot="before" slot-scope="{ iconClass }">
+              <template #before="{ iconClass }">
                 <ui-icon :class="iconClass">add</ui-icon>
               </template>Create
             </ui-fab>
@@ -83,7 +83,7 @@
         <div class="demo-fabs">
           <figure class="demo-figure-fab-extended">
             <ui-fab extended class="demo-fab-extended-fluid">Create
-              <template slot="after" slot-scope="{ iconClass }">
+              <template #after="{ iconClass }">
                 <ui-icon :class="iconClass">add</ui-icon>
               </template>
             </ui-fab>

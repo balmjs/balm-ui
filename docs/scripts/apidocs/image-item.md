@@ -7,14 +7,14 @@
 
 #### Props
 
-| Name  | Type      | Default | Description                               |
-| ----- | --------- | ------- | ----------------------------------------- |
-| src   | `String`  | `null`  | The _src_ attribute of the `<img>`.       |
-| alt   | `String`  | `null`  | The _alt_ attribute of the `<img>`.       |
-| block | `Boolean` | `false` | Use a `<div>` instead of `<img>` element. |
+| Name    | Type    | Default | Description                               |
+| ------- | ------- | ------- | ----------------------------------------- |
+| `src`   | string  | `null`  | The _src_ attribute of the `<img>`.       |
+| `alt`   | string  | `null`  | The _alt_ attribute of the `<img>`.       |
+| `block` | boolean | `false` | Use a `<div>` instead of `<img>` element. |
 
 #### Slots
 
-| Name      | Description                                                                                                                 |
-| --------- | --------------------------------------------------------------------------------------------------------------------------- |
-| (default) | Optional. Indicates the area within each item containing the supporting text label, if the Image List contains text labels. |
+| Name      | Slots | Description                                                                                                                 |
+| --------- | ----- | --------------------------------------------------------------------------------------------------------------------------- |
+| `default` |       | Optional. Indicates the area within each item containing the supporting text label, if the Image List contains text labels. |

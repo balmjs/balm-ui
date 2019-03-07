@@ -1,12 +1,9 @@
 <template>
   <div class="demo--drawer demo--permanent-drawer-below-toolbar">
-
     <ui-top-app-bar contentSelector=".demo-main">
-      <template slot="nav-icon">
-        <ui-toolbar-anchor type="menu"
-          @click.native="() => { $router.back(); }">&#xE5C4;</ui-toolbar-anchor>
-      </template>
-      Permanent Drawer Below Toolbar
+      <template #nav-icon>
+        <ui-toolbar-anchor type="menu" @click.native="() => { $router.back(); }">&#xE5C4;</ui-toolbar-anchor>
+      </template>Permanent Drawer Below Toolbar
     </ui-top-app-bar>
 
     <main class="demo-main">
@@ -28,7 +25,6 @@
         </div>
       </div>
     </main>
-
   </div>
 </template>
 

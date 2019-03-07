@@ -6,12 +6,12 @@
 
 #### Slots
 
-| Name      | Description                                                                                |
-| --------- | ------------------------------------------------------------------------------------------ |
-| (default) | The default slot holds the material design icon name. See [Material Icons](/#/icons) list. |
+| Name      | Slots | Description                                                                                |
+| --------- | ----- | ------------------------------------------------------------------------------------------ |
+| `default` |       | The default slot holds the material design icon name. See [Material Icons](/#/icons) list. |
 
 #### Events
 
-| Name  | Type                      | Description                              |
-| ----- | ------------------------- | ---------------------------------------- |
-| click | `Function(event: object)` | Emits when the trailing icon is clicked. |
+| Name    | Type                      | Description                              |
+| ------- | ------------------------- | ---------------------------------------- |
+| `click` | `function(event: object)` | Emits when the trailing icon is clicked. |

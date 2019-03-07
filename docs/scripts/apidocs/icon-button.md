@@ -5,23 +5,23 @@
 
 #### Props
 
-| Name            | Type      | Default | Description                                                               |
-| --------------- | --------- | ------- | ------------------------------------------------------------------------- |
-| model (v-model) | `Boolean` | `false` | Sets the toggle state.                                                    |
-| icon            | `String`  | `null`  | A material icon of the icon button. See [Material Icons](/#/icons) list.  |
-| toggle          | `Object`  | `null`  | Two icons of the icon button toggle. (Format: `{on, off}`)                |
-| url             | `String`  | `null`  | The _href_ attribute of the `<a>`. Applicable only for the `<ui-icon-a>`. |
+| Name                | Type    | Default | Description                                                               |
+| ------------------- | ------- | ------- | ------------------------------------------------------------------------- |
+| `model` (`v-model`) | boolean | `false` | Sets the toggle state.                                                    |
+| `icon`              | string  | `null`  | A material icon of the icon button. See [Material Icons](/#/icons) list.  |
+| `toggle`            | object  | `null`  | Two icons of the icon button toggle. (Format: `{on, off}`)                |
+| `url`               | string  | `null`  | The _href_ attribute of the `<a>`. Applicable only for the `<ui-icon-a>`. |
 
 > Configuring the icon button toggle states by `toggle.on` and `toggle.off` props.
 
 #### Slots
 
-| Name      | Description                                                                  | `slot-scope`            |
-| --------- | ---------------------------------------------------------------------------- | ----------------------- |
-| (default) | The default slot holds the toggle or link custom icons and can contain HTML. | `{ onClass, offClass }` |
+| Name      | Slots                   | Description                                                                  |
+| --------- | ----------------------- | ---------------------------------------------------------------------------- |
+| `default` | `{ onClass, offClass }` | The default slot holds the toggle or link custom icons and can contain HTML. |
 
 ```html
-<template slot-scope="{ onClass, offClass }">
+<template #default="{ onClass, offClass }">
   <i :class="onClass">ON</i>
   <i :class="offClass">OFF</i>
 </template>
@@ -29,9 +29,9 @@
 
 #### Events
 
-| Name   | Type                       | Description                            |
-| ------ | -------------------------- | -------------------------------------- |
-| change | `Function(model: boolean)` | Emits when the icon button is toggled. |
+| Name     | Type                       | Description                            |
+| -------- | -------------------------- | -------------------------------------- |
+| `change` | `function(model: boolean)` | Emits when the icon button is toggled. |
 
 > NOTE: If you are not using `v-model`, you should listen for the icon button using `@change` and update the `model` prop.
 

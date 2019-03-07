@@ -96,7 +96,7 @@ new Vue({
 
 3.3 Font
 
-Download [Material Design Icons](https://material.balmjs.com/MaterialIcons.zip) and extract to `/path/to/my-project/app/fonts`.
+Download [Material Design Icons](https://material.balmjs.com/material-icons.zip) and extract to `/path/to/my-project/app/fonts`.
 
 > More BalmUI usages and font without downloading, see [Advanced Usage](https://material.balmjs.com/#/guide/advanced).
 

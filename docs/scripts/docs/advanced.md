@@ -34,11 +34,11 @@ Then, you can overwrite or redefine UI styles by editing `/path/to/my-project/ap
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     ...
-    <link rel="stylesheet" href="%PUBLIC_URL%/styles/main.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/styles/main.css" />
     <!-- build:css css/plugins.css -->
-    <link rel="stylesheet" href="/node_modules/path/to/some-plugin.css">
+    <link rel="stylesheet" href="/node_modules/path/to/some-plugin.css" />
     ...
     <!-- endbuild -->
   </head>
@@ -61,14 +61,14 @@ Then, you can overwrite or redefine UI styles by editing `/path/to/my-project/ap
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     ...
     <!-- build:css css/vendors.css -->
-    <link rel="stylesheet" href="/node_modules/balm-ui/dist/balm-ui.css">
-    <link rel="stylesheet" href="/node_modules/path/to/some-plugin.css">
+    <link rel="stylesheet" href="/node_modules/balm-ui/dist/balm-ui.css" />
+    <link rel="stylesheet" href="/node_modules/path/to/some-plugin.css" />
     ...
     <!-- endbuild -->
-    <link rel="stylesheet" href="%PUBLIC_URL%/styles/main.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/styles/main.css" />
   </head>
   <body>
     ...
@@ -114,10 +114,10 @@ Edit `/path/to/my-project/app/index.html`
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     ...
     <!-- build:css css/vendors.css -->
-    <link rel="stylesheet" href="/node_modules/balm-ui/dist/balm-ui.css">
+    <link rel="stylesheet" href="/node_modules/balm-ui/dist/balm-ui.css" />
     <!-- endbuild -->
   </head>
   <body>
@@ -131,12 +131,12 @@ Edit `/path/to/my-project/app/index.html`
     <script src="/node_modules/balm-ui/dist/balm-ui-plus.js"></script>
     <!-- endbuild -->
     <script>
-    var app = new Vue({
-      el: '#app',
-      data: {
-        message: 'Hello BalmUI'
-      }
-    });
+      var app = new Vue({
+        el: '#app',
+        data: {
+          message: 'Hello BalmUI'
+        }
+      });
     </script>
   </body>
 </html>
@@ -187,13 +187,13 @@ Edit `/path/to/my-project/app/index.html`
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     ...
     <!-- build:css css/vendors.css -->
-    <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css">
-    <link rel="stylesheet" href="/node_modules/balm-ui/components/button.css">
-    <link rel="stylesheet" href="/node_modules/balm-ui/components/dialog.css">
-    <link rel="stylesheet" href="/node_modules/balm-ui/plugins/alert.css">
+    <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+    <link rel="stylesheet" href="/node_modules/balm-ui/components/button.css" />
+    <link rel="stylesheet" href="/node_modules/balm-ui/components/dialog.css" />
+    <link rel="stylesheet" href="/node_modules/balm-ui/plugins/alert.css" />
     <!-- endbuild -->
   </head>
   <body>
@@ -206,12 +206,12 @@ Edit `/path/to/my-project/app/index.html`
     <script src="/node_modules/balm-ui/plugins/alert.js"></script>
     <!-- endbuild -->
     <script>
-    var app = new Vue({
-      el: '#app',
-      data: {
-        message: 'Hello BalmUI'
-      }
-    });
+      var app = new Vue({
+        el: '#app',
+        data: {
+          message: 'Hello BalmUI'
+        }
+      });
     </script>
   </body>
 </html>
@@ -251,15 +251,15 @@ module.exports = {
 
 <div id="mdi"></div>
 
-## 3. Get [Material Design Icons](https://material.balmjs.com/MaterialIcons.zip) without downloading
+## 3. Get [Material Design Icons](https://material.balmjs.com/material-icons.zip) without downloading
 
 Edit `/path/to/my-project/gulpfile.js`
 
 ```js
 ...
 
-balm.go(function(mix) {
-  if (balm.config.production) {
+balm.go(mix => {
+  if (balm.config.isProd) {
     ...
   } else {
     // Use BalmJS `copy` api

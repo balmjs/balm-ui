@@ -1,12 +1,13 @@
 import autoInit from './register';
 
 // Define
+const DEFAULT_BODY = document.documentElement || document.body;
 let ANCHOR = {
   CLASSNAME: {
     OUTER: 'v-anchor--html',
     INNER: 'v-anchor'
   },
-  body: document.body,
+  body: DEFAULT_BODY,
   offset: 0,
   isMounted: false
 };
@@ -76,6 +77,10 @@ const BalmUI_AnchorDirective = {
     }
   },
   unbind(el, binding) {
+    if (el === ANCHOR.body) {
+      ANCHOR.body = DEFAULT_BODY;
+    }
+
     updateAnchor('remove', el, binding);
     if (binding.modifiers.html) {
       bindAnchor('remove');

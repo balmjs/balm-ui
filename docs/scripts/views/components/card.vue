@@ -26,11 +26,13 @@
       </ui-card>
     </section>
 
+    <ui-toc-affix></ui-toc-affix>
+
     <div :class="$tt('body2')">
-      <h4 :class="$tt('headline4')">0. Usage</h4>
+      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
       <section class="demo-card-collection">
         <ui-card outlined class="demo-card">
           <div :class="[$tt('subtitle2'), 'demo-card-article-group-heading']">Headlines</div>
@@ -107,7 +109,7 @@
         <ui-markdown :text="code[3]"></ui-markdown>
       </ui-accordion>
 
-      <h4 :class="$tt('headline4')">2. APIs</h4>
+      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="card"></ui-apidocs>
       <ui-apidocs name="card-content"></ui-apidocs>
       <ui-apidocs name="card-media"></ui-apidocs>

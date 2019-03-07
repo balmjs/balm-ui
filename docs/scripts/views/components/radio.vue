@@ -6,11 +6,13 @@
       {{ hero }}
     </section>
 
+    <ui-toc-affix></ui-toc-affix>
+
     <div :class="$tt('body2')">
-      <h4 :class="$tt('headline4')">0. Usage</h4>
+      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
       <section class="example">
         <h2>With JavaScript</h2>
         <ui-radio-demo></ui-radio-demo>
@@ -29,7 +31,7 @@
         </div>
       </section>
 
-      <h4 :class="$tt('headline4')">2. APIs</h4>
+      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="radio"></ui-apidocs>
     </div>
   </div>

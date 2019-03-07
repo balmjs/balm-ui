@@ -2,56 +2,66 @@
   <div :class="[$tt('body1'), 'demo--slider']">
     <section class="hero component">
       <div id="hero-slider-wrapper">
-        <ui-slider id="hero-slider"
-          max="50"
-          v-model="value"
-          label="Select Value"></ui-slider>
+        <ui-slider id="hero-slider" max="50" v-model="value" label="Select Value"></ui-slider>
       </div>
     </section>
 
+    <ui-toc-affix></ui-toc-affix>
+
     <div :class="$tt('body2')">
-      <h4 :class="$tt('headline4')">0. Usage</h4>
+      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
       <section id="slider-example" class="example">
         <h2>Continuous Slider</h2>
         <div class="slider-example">
-          <div :class="['example-slider-wrapper', {'custom-bg': controls.customColor}]" :dir="controls.rtl ? 'rtl' : null">
-            <ui-slider id="continuous-mdc-slider"
+          <div
+            :class="['example-slider-wrapper', {'custom-bg': controls.customColor}]"
+            :dir="controls.rtl ? 'rtl' : null"
+          >
+            <ui-slider
+              id="continuous-mdc-slider"
               :min="min"
               :max="max"
               :step="step"
               v-model="value1"
               :disabled="controls.disabled"
               @input="onInput"
-              @change="onChange">
-            </ui-slider>
+              @change="onChange"
+            ></ui-slider>
           </div>
           <p>Value: {{ value1 }}</p>
         </div>
 
-
         <h2>Discrete Slider</h2>
         <div class="slider-example">
-          <div :class="['example-slider-wrapper', {'custom-bg': controls.customColor}]" :dir="controls.rtl ? 'rtl' : null">
-            <ui-slider id="discrete-mdc-slider"
+          <div
+            :class="['example-slider-wrapper', {'custom-bg': controls.customColor}]"
+            :dir="controls.rtl ? 'rtl' : null"
+          >
+            <ui-slider
+              id="discrete-mdc-slider"
               discrete
               :min="min"
               :max="max"
               :step="step"
               v-model="value2"
               :disabled="controls.disabled"
-              label="Select Value">
-            </ui-slider>
+              label="Select Value"
+            ></ui-slider>
           </div>
           <p>Value: {{ value2 }}</p>
         </div>
 
         <h2>Discrete Slider with Tick Marks</h2>
         <div class="slider-example">
-          <div :class="['example-slider-wrapper', {'custom-bg': controls.customColor}]" :dir="controls.rtl ? 'rtl' : null">
-            <ui-slider id="discrete-mdc-slider-w-marker"
+          <div
+            :class="['example-slider-wrapper', {'custom-bg': controls.customColor}]"
+            :dir="controls.rtl ? 'rtl' : null"
+          >
+            <ui-slider
+              id="discrete-mdc-slider-w-marker"
               discrete
               displayMarkers
               :min="min"
@@ -59,16 +69,20 @@
               :step="step"
               v-model="value3"
               :disabled="controls.disabled"
-              label="Select Value">
-            </ui-slider>
+              label="Select Value"
+            ></ui-slider>
           </div>
           <p>Value: {{ value3 }}</p>
         </div>
 
         <h2>Custom Colored Discrete Slider with Tick Marks</h2>
         <div class="slider-example">
-          <div :class="['example-slider-wrapper', {'custom-bg': controls.customColor}]" :dir="controls.rtl ? 'rtl' : null">
-            <ui-slider id="custom-discrete-mdc-slider-w-marker"
+          <div
+            :class="['example-slider-wrapper', {'custom-bg': controls.customColor}]"
+            :dir="controls.rtl ? 'rtl' : null"
+          >
+            <ui-slider
+              id="custom-discrete-mdc-slider-w-marker"
               discrete
               displayMarkers
               class="demo-slider--custom"
@@ -77,8 +91,8 @@
               :step="step"
               v-model="value4"
               :disabled="controls.disabled"
-              label="Select Value">
-            </ui-slider>
+              label="Select Value"
+            ></ui-slider>
           </div>
           <p>Value: {{ value4 }}</p>
         </div>
@@ -110,7 +124,7 @@
         </div>
       </section>
 
-      <h4 :class="$tt('headline4')">2. APIs</h4>
+      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="slider"></ui-apidocs>
     </div>
   </div>

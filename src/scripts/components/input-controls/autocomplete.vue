@@ -1,5 +1,6 @@
 <template>
-  <ui-textfield expand
+  <ui-textfield
+    expand
     outlined
     v-model="inputValue"
     :class="className"
@@ -9,17 +10,19 @@
     @focus="handleFocus"
     @keydown="handleKeydown"
     @input="handleInput"
-    @blur="handleBlur">
+    @blur="handleBlur"
+  >
     <template slot="expand">
       <div ref="autocomplete" class="ui-autocomplete__list">
         <ul>
-          <li v-for="(item, index) in currentSuggestion.data"
+          <li
+            v-for="(item, index) in currentSuggestion.data"
             v-html="item[UI_AUTOCOMPLETE.ITEM.LABEL]"
             :key="index"
             :data-index="index"
             :class="{'selected': index === currentSuggestion.index}"
-            @click="handleSelected(item)">
-          </li>
+            @click="handleSelected(item)"
+          ></li>
         </ul>
       </div>
     </template>
@@ -87,7 +90,7 @@ export default {
       type: Boolean,
       default: false
     },
-    autoFocus: {
+    autofocus: {
       type: Boolean,
       default: false
     },
@@ -95,7 +98,7 @@ export default {
       type: [Number, String],
       default: 300
     },
-    minLength: {
+    minlength: {
       type: [Number, String],
       default: 1
     },
@@ -209,7 +212,7 @@ export default {
     show() {
       let keywords = this.inputValue.trim();
       if (
-        keywords.length >= this.minLength &&
+        keywords.length >= this.minlength &&
         this.currentSuggestion.data.length
       ) {
         this.isExpand = true;
@@ -263,7 +266,7 @@ export default {
       }
     },
     handleFocus() {
-      if (this.autoFocus) {
+      if (this.autofocus) {
         this.show();
       }
     },
@@ -341,7 +344,7 @@ export default {
       this.$emit(UI_AUTOCOMPLETE.EVENT.INPUT, this.inputValue);
 
       let keywords = this.inputValue.trim();
-      if (keywords.length >= this.minLength) {
+      if (keywords.length >= this.minlength) {
         this.search(keywords);
       } else {
         this.hide();

@@ -1,16 +1,16 @@
 <template>
   <div :class="[$tt('body1'), 'demo--checkbox']">
     <section class="hero component">
-      <ui-checkbox cssOnly id="hero-checkbox-label">
-        Checkbox
-      </ui-checkbox>
+      <ui-checkbox cssOnly id="hero-checkbox-label">Checkbox</ui-checkbox>
     </section>
 
+    <ui-toc-affix></ui-toc-affix>
+
     <div :class="$tt('body2')">
-      <h4 :class="$tt('headline4')">0. Usage</h4>
+      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
       <section class="example">
         <h2>CSS Only</h2>
         <ui-checkbox-demo cssOnly></ui-checkbox-demo>
@@ -24,15 +24,13 @@
       <hr>
 
       <section class="example">
-        <p>Single checkbox, boolean value: </p>
+        <p>Single checkbox, boolean value:</p>
         <!-- v-model -->
-        <ui-checkbox id="checkbox" v-model="checked">
-          {{checked}}
-        </ui-checkbox>
+        <ui-checkbox id="checkbox" v-model="checked">{{checked}}</ui-checkbox>
         <!-- model -->
         <!-- <ui-checkbox id="checkbox" :model="checked" @change="$balmUI.onChange('checked', $event)">
           {{checked}}
-        </ui-checkbox> -->
+        </ui-checkbox>-->
         <ui-accordion>
           <ui-markdown :code="code[1]"></ui-markdown>
         </ui-accordion>
@@ -47,13 +45,13 @@
         <!-- model -->
         <!-- <ui-checkbox id="jack" value="Jack" :model="checkedNames" @change="$balmUI.onChange('checkedNames', $event)">Jack</ui-checkbox>
         <ui-checkbox id="john" value="John" :model="checkedNames" @change="$balmUI.onChange('checkedNames', $event)">John</ui-checkbox>
-        <ui-checkbox id="mike" value="Mike" :model="checkedNames" @change="$balmUI.onChange('checkedNames', $event)">Mike</ui-checkbox> -->
+        <ui-checkbox id="mike" value="Mike" :model="checkedNames" @change="$balmUI.onChange('checkedNames', $event)">Mike</ui-checkbox>-->
         <ui-accordion>
           <ui-markdown :code="code[2]"></ui-markdown>
         </ui-accordion>
       </section>
 
-      <h4 :class="$tt('headline4')">2. APIs</h4>
+      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="checkbox"></ui-apidocs>
     </div>
   </div>

@@ -1,43 +1,48 @@
 <template>
   <div :class="[$tt('body1'), 'demo--validator']">
     <section class="hero plugin">
-      <h2 :class="$tt('headline4')">
-        $validate
-      </h2>
+      <h2 :class="$tt('headline4')">$validate</h2>
     </section>
 
+    <ui-toc-affix></ui-toc-affix>
+
     <div :class="$tt('body2')">
-      <h4 :class="$tt('headline4')">0. Usage</h4>
+      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
       <fieldset>
         <legend>Form Area</legend>
         <p class="form-item">
-          <ui-textfield id="mobile"
-            v-model="formData.mobile"
-            helptextId="mobile-helper-text">Mobile</ui-textfield>
-          <ui-textfield-helptext id="mobile-helper-text" :visible="errorMsg.mobile">
-            {{ errorMsg.mobile }}
-          </ui-textfield-helptext>
+          <ui-textfield id="mobile" v-model="formData.mobile" helptextId="mobile-helper-text">Mobile</ui-textfield>
+          <ui-textfield-helptext
+            id="mobile-helper-text"
+            :visible="errorMsg.mobile"
+          >{{ errorMsg.mobile }}</ui-textfield-helptext>
         </p>
         <p class="form-item">
-          <ui-textfield type="password"
+          <ui-textfield
+            type="password"
             id="password"
             v-model="formData.password"
-            helptextId="password-helper-text">Password</ui-textfield>
-          <ui-textfield-helptext id="password-helper-text" :visible="errorMsg.password">
-            {{ errorMsg.password }}
-          </ui-textfield-helptext>
+            helptextId="password-helper-text"
+          >Password</ui-textfield>
+          <ui-textfield-helptext
+            id="password-helper-text"
+            :visible="errorMsg.password"
+          >{{ errorMsg.password }}</ui-textfield-helptext>
         </p>
         <p class="form-item">
-          <ui-textfield type="password"
+          <ui-textfield
+            type="password"
             id="repassword"
             v-model="formData.repassword"
-            helptextId="repassword-helper-text">Repeat Password</ui-textfield>
-          <ui-textfield-helptext id="repassword-helper-text" :visible="errorMsg.repassword">
-            {{ errorMsg.repassword }}
-          </ui-textfield-helptext>
+            helptextId="repassword-helper-text"
+          >Repeat Password</ui-textfield>
+          <ui-textfield-helptext
+            id="repassword-helper-text"
+            :visible="errorMsg.repassword"
+          >{{ errorMsg.repassword }}</ui-textfield-helptext>
         </p>
         <p class="form-actions">
           <ui-button raised @click="submit">Submit</ui-button>
@@ -47,7 +52,7 @@
         <ui-markdown :code="code[1]"></ui-markdown>
       </ui-accordion>
 
-      <h4 :class="$tt('headline4')">2. APIs</h4>
+      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="validator" type="plugin"></ui-apidocs>
     </div>
   </div>

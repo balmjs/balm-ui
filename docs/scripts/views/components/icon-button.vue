@@ -2,16 +2,17 @@
   <div :class="[$tt('body1'), 'demo--icon-button']">
     <section class="hero component">
       <div class="demo-wrapper">
-        <ui-icon-button :toggle="icon1">
-        </ui-icon-button>
+        <ui-icon-button :toggle="icon1"></ui-icon-button>
       </div>
     </section>
 
+    <ui-toc-affix></ui-toc-affix>
+
     <div :class="$tt('body2')">
-      <h4 :class="$tt('headline4')">0. Usage</h4>
+      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
       <section class="example">
         <div>
           <h5 :class="$tt('headline5')">1.1 Buttons</h5>
@@ -69,10 +70,12 @@
             <div class="toggle-example">
               <h6 :class="$tt('headline6')">Using Material Icons</h6>
               <div class="demo-wrapper">
-                <ui-icon-button v-model="value1" :toggle="icon1">
-                </ui-icon-button>
+                <ui-icon-button v-model="value1" :toggle="icon1"></ui-icon-button>
               </div>
-              <p>Favorited? <span id="favorited-status">{{ value1 }}</span></p>
+              <p>
+                Favorited?
+                <span id="favorited-status">{{ value1 }}</span>
+              </p>
             </div>
 
             <div class="toggle-example">
@@ -93,13 +96,29 @@
               <div class="demo-wrapper">
                 <ui-icon-button>
                   <template slot-scope="{ onClass, offClass }">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="onClass">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      :class="onClass"
+                    >
                       <path d="M0 0h24v24H0z" fill="none"></path>
-                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path>
+                      <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"
+                      ></path>
                     </svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="offClass">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      :class="offClass"
+                    >
                       <path d="M0 0h24v24H0z" fill="none"></path>
-                      <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path>
+                      <path
+                        d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
+                      ></path>
                     </svg>
                   </template>
                 </ui-icon-button>
@@ -121,8 +140,7 @@
             <div class="toggle-example">
               <h6 :class="$tt('headline6')">Disabled Icons</h6>
               <div class="demo-wrapper">
-                <ui-icon-button :toggle="icon1" disabled>
-                </ui-icon-button>
+                <ui-icon-button :toggle="icon1" disabled></ui-icon-button>
               </div>
             </div>
           </div>
@@ -135,22 +153,19 @@
             <div id="demo-color-combos">
               <div id="light-on-bg" class="demo-color-combo">
                 <div>
-                  <ui-icon-button :class="$themeColor('on-primary')" :toggle="icon1">
-                  </ui-icon-button>
+                  <ui-icon-button :class="$themeColor('on-primary')" :toggle="icon1"></ui-icon-button>
                 </div>
                 <div :class="$themeColor('on-primary')">Light icon on background</div>
               </div>
               <div id="dark-on-bg" class="demo-color-combo">
                 <div :class="$themeColor('primary')">
-                  <ui-icon-button :toggle="icon1">
-                  </ui-icon-button>
+                  <ui-icon-button :toggle="icon1"></ui-icon-button>
                 </div>
                 <div>Dark icon on background</div>
               </div>
               <div id="custom-color-combo" class="demo-color-combo">
                 <div>
-                  <ui-icon-button :toggle="icon1">
-                  </ui-icon-button>
+                  <ui-icon-button :toggle="icon1"></ui-icon-button>
                 </div>
                 <div>Custom color</div>
               </div>
@@ -162,7 +177,7 @@
         </div>
       </section>
 
-      <h4 :class="$tt('headline4')">2. APIs</h4>
+      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="icon-button"></ui-apidocs>
     </div>
   </div>

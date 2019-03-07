@@ -1,17 +1,18 @@
 <template>
-  <div <div :class="[$tt('body1'), 'demo--image-list']">
+  <div :class="[$tt('body1'), 'demo--image-list']">
     <section class="hero component">
       <ui-image-list class="hero-image-list">
-        <ui-image-item v-for="i in 15" :key="i" block>
-        </ui-image-item>
+        <ui-image-item v-for="i in 15" :key="i" block></ui-image-item>
       </ui-image-list>
     </section>
 
+    <ui-toc-affix></ui-toc-affix>
+
     <div :class="$tt('body2')">
-      <h4 :class="$tt('headline4')">0. Usage</h4>
+      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
       <section :class="['example', {'rounded-corners': radius}]">
         <ui-checkbox id="toggle-radius" v-model="radius">Toggle Rounded Corners</ui-checkbox>
 
@@ -20,9 +21,13 @@
         <ui-image-list
           id="standard-image-list"
           class="standard-image-list"
-          :withTextProtection="controls1.labelsType === 2">
-          <ui-image-item v-for="i in 15" :key="i"
-            :src="require(`../../../images/photos/3x2/${i}.jpg`)">
+          :withTextProtection="controls1.labelsType === 2"
+        >
+          <ui-image-item
+            v-for="i in 15"
+            :key="i"
+            :src="require(`../../../images/photos/3x2/${i}.jpg`)"
+          >
             <ui-image-supporting v-if="controls1.labelsType">Text label</ui-image-supporting>
           </ui-image-item>
         </ui-image-list>
@@ -36,9 +41,13 @@
           id="masonry-image-list"
           class="masonry-image-list"
           masonry
-          :withTextProtection="controls2.labelsType === 2">
-          <ui-image-item v-for="(item, index) in list" :key="index"
-            :src="require(`../../../images/photos/${item}.jpg`)">
+          :withTextProtection="controls2.labelsType === 2"
+        >
+          <ui-image-item
+            v-for="(item, index) in list"
+            :key="index"
+            :src="require(`../../../images/photos/${item}.jpg`)"
+          >
             <ui-image-supporting v-if="controls2.labelsType">Text label</ui-image-supporting>
           </ui-image-item>
         </ui-image-list>
@@ -47,7 +56,7 @@
         </ui-accordion>
       </section>
 
-      <h4 :class="$tt('headline4')">2. APIs</h4>
+      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="image-list"></ui-apidocs>
       <ui-apidocs name="image-item"></ui-apidocs>
       <ui-apidocs name="image-supporting"></ui-apidocs>

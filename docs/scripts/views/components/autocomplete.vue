@@ -5,21 +5,20 @@
         v-model="keywords"
         :source="source"
         placeholder="Input 'balm'"
-        @selected="onSelected"></ui-autocomplete>
+        @selected="onSelected"
+      ></ui-autocomplete>
     </section>
 
+    <ui-toc-affix></ui-toc-affix>
+
     <div :class="$tt('body2')">
-      <h4 :class="$tt('headline4')">0. Usage</h4>
+      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
       <div class="example">
         <h6 :class="$tt('headline6')">1.1 Static data</h6>
-        <ui-autocomplete
-          v-model="keywords1"
-          :source="source1"
-          placeholder="Try to type">
-        </ui-autocomplete>
+        <ui-autocomplete v-model="keywords1" :source="source1" placeholder="Try to type"></ui-autocomplete>
       </div>
       <ui-accordion>
         <ui-markdown :code="code[1]"></ui-markdown>
@@ -33,15 +32,15 @@
           placeholder="Type 'a' and 'b'"
           delay="500"
           remote
-          autoFocus
-          @search="onSearch">
-        </ui-autocomplete>
+          autofocus
+          @search="onSearch"
+        ></ui-autocomplete>
       </div>
       <ui-accordion>
         <ui-markdown :code="code[2]"></ui-markdown>
       </ui-accordion>
 
-      <h4 :class="$tt('headline4')">2. APIs</h4>
+      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="autocomplete"></ui-apidocs>
     </div>
   </div>

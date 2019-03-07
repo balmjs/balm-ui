@@ -12,20 +12,25 @@
       </figure>
     </section>
 
+    <ui-toc-affix></ui-toc-affix>
+
     <div :class="$tt('body2')">
-      <h4 :class="$tt('headline4')">0. Usage</h4>
+      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
       <section class="demo-surfaces">
         <figure class="demo-surface" v-shadow="0">
-          <figcaption>0dp (<code>mdc-elevation--z0</code>)</figcaption>
+          <figcaption>
+            0dp (
+            <code>mdc-elevation--z0</code>)
+          </figcaption>
         </figure>
-        <figure v-for="i in 24"
-          :key="i"
-          class="demo-surface"
-          v-shadow="i">
-          <figcaption>{{ i }}dp (<code>mdc-elevation--z{{ i }}</code>)</figcaption>
+        <figure v-for="i in 24" :key="i" class="demo-surface" v-shadow="i">
+          <figcaption>
+            {{ i }}dp (
+            <code>mdc-elevation--z{{ i }}</code>)
+          </figcaption>
         </figure>
       </section>
       <ui-accordion>
@@ -41,7 +46,7 @@
         <ui-markdown :code="code[2]"></ui-markdown>
       </ui-accordion>
 
-      <h4 :class="$tt('headline4')">2. APIs</h4>
+      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="elevation" type="directive"></ui-apidocs>
     </div>
   </div>

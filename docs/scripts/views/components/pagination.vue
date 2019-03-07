@@ -1,25 +1,19 @@
 <template>
   <div :class="[$tt('body1'), 'demo--pagination']">
     <section class="hero component">
-      <ui-pagination
-        v-model="page"
-        :recordCount="recordCount">
-      </ui-pagination>
+      <ui-pagination v-model="page" :recordCount="recordCount"></ui-pagination>
     </section>
 
+    <ui-toc-affix></ui-toc-affix>
+
     <div :class="$tt('body2')">
-      <h4 :class="$tt('headline4')">0. Usage</h4>
+      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
       <section class="example">
         <h6 :class="$tt('headline6')">1.1 Default Usage</h6>
-        <ui-pagination
-          v-model="page1"
-          :pageSize="pageSize"
-          :recordCount="recordCount"
-          showJumper>
-        </ui-pagination>
+        <ui-pagination v-model="page1" :pageSize="pageSize" :recordCount="recordCount" showJumper></ui-pagination>
       </section>
       <ui-accordion>
         <ui-markdown :code="code[1]"></ui-markdown>
@@ -35,7 +29,8 @@
           showJumper
           jumperBefore="Goto"
           jumperAfter="page"
-          jumperButton="Go">
+          jumperButton="Go"
+        >
           <template slot-scope="{ pageCount }">
             Showing {{ recordCount }} records,
             <ui-select v-model="pageSize" :options="pageSizeOptions"></ui-select>
@@ -49,12 +44,14 @@
 
       <section class="example">
         <h6 :class="$tt('headline6')">1.3 Mini Mode</h6>
-        <ui-pagination mini
+        <ui-pagination
+          mini
           v-model="page3"
           :pageSize="pageSize"
           :recordCount="recordCount"
           prev="Prev"
-          next="Next">
+          next="Next"
+        >
           <span>Page {{ page3 }}</span>
         </ui-pagination>
       </section>
@@ -62,7 +59,7 @@
         <ui-markdown :code="code[3]"></ui-markdown>
       </ui-accordion>
 
-      <h4 :class="$tt('headline4')">2. APIs</h4>
+      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="pagination"></ui-apidocs>
     </div>
   </div>

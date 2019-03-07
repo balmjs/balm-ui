@@ -5,28 +5,27 @@
       <label for="my-switch">{{ toggle }}</label>
     </section>
 
+    <ui-toc-affix></ui-toc-affix>
+
     <div :class="$tt('body2')">
-      <h4 :class="$tt('headline4')">0. Usage</h4>
+      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
       <section class="example">
         <h2>1.1 Enabled</h2>
         <div class="demo-switch-wrapper">
-          <ui-switch id="basic-switch"
-            :trueValue="1"
-            :falseValue="0"
-            v-model="toggle1">
-          </ui-switch>
+          <ui-switch id="basic-switch" :trueValue="1" :falseValue="0" v-model="toggle1"></ui-switch>
           <label for="basic-switch">{{ toggle1 }}</label>
         </div>
         <div class="demo-switch-wrapper">
-          <ui-switch id="basic-switch-custom"
+          <ui-switch
+            id="basic-switch-custom"
             class="demo-switch--custom"
             trueValue="on"
             falseValue="off"
-            v-model="toggle2">
-          </ui-switch>
+            v-model="toggle2"
+          ></ui-switch>
           <label for="basic-switch-custom">{{ toggle2 }} (custom color)</label>
         </div>
       </section>
@@ -42,7 +41,7 @@
         </div>
       </section>
 
-      <h4 :class="$tt('headline4')">2. APIs</h4>
+      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="switch"></ui-apidocs>
     </div>
   </div>

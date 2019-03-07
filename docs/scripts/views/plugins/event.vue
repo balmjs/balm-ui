@@ -4,11 +4,13 @@
       <h2 :class="$tt('headline4')">$balmUI</h2>
     </section>
 
+    <ui-toc-affix></ui-toc-affix>
+
     <div :class="$tt('body2')">
-      <h4 :class="$tt('headline4')">0. Usage</h4>
+      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
       <div class="example">
         <h6 :class="$tt('headline6')">1.1 onChange</h6>
         <ui-grid>
@@ -84,7 +86,7 @@
         </ui-grid>
       </div>
 
-      <h4 :class="$tt('headline4')">2. APIs</h4>
+      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="event" type="plugin"></ui-apidocs>
     </div>
   </div>

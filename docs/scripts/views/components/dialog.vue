@@ -1,7 +1,11 @@
 <template>
   <div :class="[$tt('body1'), 'demo--dialog']">
     <section class="hero component">
-      <ui-dialog noBackdrop class="catalog-dialog-demo mdc-dialog--open" style="visibility: visible;">
+      <ui-dialog
+        noBackdrop
+        class="catalog-dialog-demo mdc-dialog--open"
+        style="visibility: visible;"
+      >
         <ui-dialog-title>Are you happy?</ui-dialog-title>
         <ui-dialog-content>
           <p>Please check the left and right side of this element for fun.</p>
@@ -13,11 +17,13 @@
       </ui-dialog>
     </section>
 
+    <ui-toc-affix></ui-toc-affix>
+
     <div :class="$tt('body2')">
-      <h4 :class="$tt('headline4')">0. Usage</h4>
+      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
       <section class="example">
         <ui-button raised @click="$balmUI.onOpen('open')">Show Dialog</ui-button>
         <ui-accordion>
@@ -32,9 +38,7 @@
         </ui-accordion>
       </section>
 
-      <ui-dialog
-        v-model="open"
-        @confirm="onConfirm">
+      <ui-dialog v-model="open" @confirm="onConfirm">
         <ui-dialog-title>Use Google's location service?</ui-dialog-title>
         <ui-dialog-content>
           <p>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</p>
@@ -42,21 +46,17 @@
         <ui-dialog-actions></ui-dialog-actions>
       </ui-dialog>
 
-      <ui-dialog scrollable
-        v-model="open2"
-        @confirm="onConfirm">
+      <ui-dialog scrollable v-model="open2" @confirm="onConfirm">
         <ui-dialog-title>Choose a Ringtone</ui-dialog-title>
         <ui-dialog-content>
           <ui-list>
-            <ui-item v-for="(item, index) in list" :key="index">
-              {{ item }}
-            </ui-item>
+            <ui-item v-for="(item, index) in list" :key="index">{{ item }}</ui-item>
           </ui-list>
         </ui-dialog-content>
         <ui-dialog-actions></ui-dialog-actions>
       </ui-dialog>
 
-      <h4 :class="$tt('headline4')">2. APIs</h4>
+      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="dialog"></ui-apidocs>
       <ui-apidocs name="dialog-header"></ui-apidocs>
       <ui-apidocs name="dialog-body"></ui-apidocs>

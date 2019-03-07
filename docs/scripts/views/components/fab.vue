@@ -4,13 +4,15 @@
       <ui-fab icon="favorite_border"></ui-fab>
     </section>
 
+    <ui-toc-affix></ui-toc-affix>
+
     <div :class="$tt('body2')">
-      <h4 :class="$tt('headline4')">0. Usage</h4>
+      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
       <ui-fab class="demo-fixed-fab" icon="mode_edit"></ui-fab>
 
-      <h4 :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
       <section>
         <legend :class="$tt('headline6')">1.1 FABs with Ripple</legend>
         <div class="demo-fabs">
@@ -71,8 +73,7 @@
             <ui-fab extended class="demo-fab-extended-fluid">
               <template slot="before" slot-scope="{ iconClass }">
                 <ui-icon :class="iconClass">add</ui-icon>
-              </template>
-              Create
+              </template>Create
             </ui-fab>
             <figcaption>
               <div>Auto width extended FAB (Responsive)</div>
@@ -81,8 +82,7 @@
         </div>
         <div class="demo-fabs">
           <figure class="demo-figure-fab-extended">
-            <ui-fab extended class="demo-fab-extended-fluid">
-              Create
+            <ui-fab extended class="demo-fab-extended-fluid">Create
               <template slot="after" slot-scope="{ iconClass }">
                 <ui-icon :class="iconClass">add</ui-icon>
               </template>
@@ -94,9 +94,7 @@
         </div>
         <div class="demo-fabs">
           <figure class="demo-figure-fab-extended">
-            <ui-fab extended class="demo-fab-extended-without-icon">
-              Create
-            </ui-fab>
+            <ui-fab extended class="demo-fab-extended-without-icon">Create</ui-fab>
             <figcaption>
               <div>Extended FAB (without Icon)</div>
             </figcaption>
@@ -131,15 +129,27 @@
           <div class="fab-motion-container__view">
             <p>View one (with FAB)</p>
           </div>
-          <div class="fab-motion-container__view" :class="{'fab-motion-container__view--exited': !exited}">
+          <div
+            class="fab-motion-container__view"
+            :class="{'fab-motion-container__view--exited': !exited}"
+          >
             <p>View two (without FAB)</p>
-            <p><button type="button" id="enter-exit-back"
-              :disabled="!exited"
-              @click="$balmUI.onHide('exited')">Go back</button></p>
+            <p>
+              <button
+                type="button"
+                id="enter-exit-back"
+                :disabled="!exited"
+                @click="$balmUI.onHide('exited')"
+              >Go back</button>
+            </p>
           </div>
-          <ui-fab id="enter-exit-add" class="demo-absolute-fab" icon="add"
+          <ui-fab
+            id="enter-exit-add"
+            class="demo-absolute-fab"
+            icon="add"
             :exited="exited"
-            @click="$balmUI.onShow('exited')">add</ui-fab>
+            @click="$balmUI.onShow('exited')"
+          >add</ui-fab>
         </div>
         <ui-accordion>
           <ui-markdown :code="code[3]"></ui-markdown>
@@ -167,7 +177,7 @@
         </ui-accordion>
       </section>
 
-      <h4 :class="$tt('headline4')">2. APIs</h4>
+      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="fab"></ui-apidocs>
     </div>
   </div>

@@ -4,11 +4,13 @@
       <ui-linear-progress indeterminate></ui-linear-progress>
     </section>
 
+    <ui-toc-affix></ui-toc-affix>
+
     <div :class="$tt('body2')">
-      <h4 :class="$tt('headline4')">0. Usage</h4>
+      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
       <section>
         <h6 :class="$tt('headline6')">Linear Progress Indicators</h6>
         <figure class="linear-progress-demo">
@@ -42,7 +44,12 @@
         </figure>
 
         <figure class="linear-progress-demo">
-          <ui-linear-progress class="demo-linear-progress--custom" progress="0.5" data-buffer="true" buffer="0.75"></ui-linear-progress>
+          <ui-linear-progress
+            class="demo-linear-progress--custom"
+            progress="0.5"
+            data-buffer="true"
+            buffer="0.75"
+          ></ui-linear-progress>
           <figcaption>Custom Colors with Buffer</figcaption>
         </figure>
         <ui-accordion>
@@ -50,7 +57,7 @@
         </ui-accordion>
       </section>
 
-      <h4 :class="$tt('headline4')">2. APIs</h4>
+      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="linear-progress"></ui-apidocs>
     </div>
   </div>

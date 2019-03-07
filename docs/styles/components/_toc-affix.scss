@@ -1,0 +1,9 @@
+.toc-affix {
+  position: fixed;
+  top: 64px;
+  right: 20px;
+  background: white;
+  .mdc-list-item {
+    cursor: pointer;
+  }
+}

@@ -16,6 +16,7 @@ import UiApidocs from './components/apidocs';
 import SvgLogo from './components/logo';
 import UiAccordion from './components/accordion';
 import UiFooterNav from './components/footer-nav';
+import UiTocAffix from './components/toc-affix';
 import validatorRules from './config/validator-rules';
 // syntax highlighting
 import prismjs from 'prismjs';
@@ -45,6 +46,7 @@ if (isIE) {
   Vue.component(SvgLogo.name, SvgLogo);
   Vue.component(UiAccordion.name, UiAccordion);
   Vue.component(UiFooterNav.name, UiFooterNav);
+  Vue.component(UiTocAffix.name, UiTocAffix);
 
   Vue.prototype.$prism = prismjs;
   Vue.prototype.$docs = {

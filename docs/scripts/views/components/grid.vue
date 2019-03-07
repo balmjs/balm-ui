@@ -3,8 +3,11 @@
     <ui-top-app-bar fixed contentSelector=".demo-content">
       <template slot="nav-icon">
         <span class="catalog-back">
-          <ui-toolbar-anchor type="menu" href="javascript:void(0)"
-            @click.native="() => { $router.back(); }">&#xE5C4;</ui-toolbar-anchor>
+          <ui-toolbar-anchor
+            type="menu"
+            href="javascript:void(0)"
+            @click.native="() => { $router.back(); }"
+          >&#xE5C4;</ui-toolbar-anchor>
         </span>
       </template>
       <span class="['catalog-title', $themeColor('on-primary')]">Layout Grid</span>
@@ -19,69 +22,62 @@
         </ui-grid>
       </section>
 
+      <ui-toc-affix></ui-toc-affix>
+
       <div :class="$tt('body2')">
-        <h4 :class="$tt('headline4')">0. Usage</h4>
+        <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
         <ui-markdown :text="code[0]"></ui-markdown>
 
-        <h4 :class="$tt('headline4')">1. Example</h4>
+        <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
         <section class="examples">
           <h2 class="demo-grid-legend">1.1 Layout grid (in fluid container)</h2>
           <ui-grid>
             <ui-grid-cell>
-              <div class="demo-controls">
-                Desktop Margin:
+              <div class="demo-controls">Desktop Margin:
                 <ui-select
                   :options="gutterOptions"
                   :model="desktop.margin"
-                  @change="$setGrid('margin', 'desktop', $event)">
-                </ui-select>
+                  @change="$setGrid('margin', 'desktop', $event)"
+                ></ui-select>
 
-                <br>
-
-                Desktop Gutter:
+                <br>Desktop Gutter:
                 <ui-select
                   :options="gutterOptions"
                   :model="desktop.gutter"
-                  @change="$setGrid('gutter', 'desktop', $event)">
-                </ui-select>
+                  @change="$setGrid('gutter', 'desktop', $event)"
+                ></ui-select>
               </div>
             </ui-grid-cell>
             <ui-grid-cell>
-              <div class="demo-controls">
-                Tablet Margin:
+              <div class="demo-controls">Tablet Margin:
                 <ui-select
                   :options="gutterOptions"
                   :model="tablet.margin"
-                  @change="$setGrid('margin', 'tablet', $event)">
-                </ui-select>
+                  @change="$setGrid('margin', 'tablet', $event)"
+                ></ui-select>
 
-                <br>
-
-                Tablet Gutter:
+                <br>Tablet Gutter:
                 <ui-select
                   :options="gutterOptions"
                   :model="tablet.gutter"
-                  @change="$setGrid('gutter', 'tablet', $event)">
-                </ui-select>
+                  @change="$setGrid('gutter', 'tablet', $event)"
+                ></ui-select>
               </div>
             </ui-grid-cell>
             <ui-grid-cell>
-              <div class="demo-controls">
-                Phone Margin:
+              <div class="demo-controls">Phone Margin:
                 <ui-select
                   :options="gutterOptions"
                   :model="phone.margin"
-                  @change="$setGrid('margin', 'phone', $event)">
-                </ui-select>
+                  @change="$setGrid('margin', 'phone', $event)"
+                ></ui-select>
 
-                <br>
-
-                Phone Gutter:
+                <br>Phone Gutter:
                 <ui-select
                   :options="gutterOptions"
                   :model="phone.gutter"
-                  @change="$setGrid('gutter', 'phone', $event)">
-                </ui-select>
+                  @change="$setGrid('gutter', 'phone', $event)"
+                ></ui-select>
               </div>
             </ui-grid-cell>
           </ui-grid>
@@ -98,10 +94,7 @@
 
           <div class="demo-grid-legend">Grid of 1 column wide items</div>
           <ui-grid class="demo-grid">
-            <ui-grid-cell v-for="i in 12"
-              :key="i"
-              class="demo-cell"
-              colspan="1">1</ui-grid-cell>
+            <ui-grid-cell v-for="i in 12" :key="i" class="demo-cell" colspan="1">1</ui-grid-cell>
           </ui-grid>
           <ui-accordion>
             <ui-markdown :code="code[2]"></ui-markdown>
@@ -173,38 +166,37 @@
           <template v-if="isWideScreen">
             <ui-grid>
               <ui-grid-cell>
-                <div class="demo-controls">
-                  Desktop Column Width:
+                <div class="demo-controls">Desktop Column Width:
                   <ui-select
                     :options="widthOptions"
                     :model="desktop.width"
-                    @change="$setGrid('column-width', 'desktop', $event)">
-                  </ui-select>
+                    @change="$setGrid('column-width', 'desktop', $event)"
+                  ></ui-select>
                 </div>
               </ui-grid-cell>
               <ui-grid-cell>
-                <div class="demo-controls">
-                  Tablet Column Width:
+                <div class="demo-controls">Tablet Column Width:
                   <ui-select
                     :options="widthOptions"
                     :model="tablet.width"
-                    @change="$setGrid('column-width', 'tablet', $event)">
-                  </ui-select>
+                    @change="$setGrid('column-width', 'tablet', $event)"
+                  ></ui-select>
                 </div>
               </ui-grid-cell>
               <ui-grid-cell>
-                <div class="demo-controls">
-                  Phone Column Width:
+                <div class="demo-controls">Phone Column Width:
                   <ui-select
                     :options="widthOptions"
                     :model="phone.width"
-                    @change="$setGrid('column-width', 'phone', $event)">
-                  </ui-select>
+                    @change="$setGrid('column-width', 'phone', $event)"
+                  ></ui-select>
                 </div>
               </ui-grid-cell>
             </ui-grid>
 
-            <div class="demo-grid-legend">Fixed column width layout grid and center alignment by default</div>
+            <div
+              class="demo-grid-legend"
+            >Fixed column width layout grid and center alignment by default</div>
             <ui-grid class="demo-grid" fixedColumnWidth>
               <ui-grid-cell class="demo-cell" colspan="1"></ui-grid-cell>
               <ui-grid-cell class="demo-cell" colspan="1"></ui-grid-cell>
@@ -228,10 +220,12 @@
             <p>Your browser is not widescreen(Screen Size >= 1440px).</p>
           </template>
 
-          <div class="demo-ruler"><div id="current" ref="ruler"></div></div>
+          <div class="demo-ruler">
+            <div id="current" ref="ruler"></div>
+          </div>
         </section>
 
-        <h4 :class="$tt('headline4')">2. APIs</h4>
+        <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
         <ui-apidocs name="grid"></ui-apidocs>
         <ui-apidocs name="grid-cell"></ui-apidocs>
       </div>

@@ -2,24 +2,23 @@
   <div :class="[$tt('body1'), 'demo--tabs']">
     <section class="hero component">
       <div class="demo">
-        <ui-tabs type="both"
-          v-model="active"
-          :items="tabs"
-          stacked></ui-tabs>
+        <ui-tabs type="both" v-model="active" :items="tabs" stacked></ui-tabs>
       </div>
     </section>
 
+    <ui-toc-affix></ui-toc-affix>
+
     <div :class="$tt('body2')">
-      <h4 :class="$tt('headline4')">0. Usage</h4>
+      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
       <ui-tab-demo :tabs="tabs" :code="demoCode"></ui-tab-demo>
       <ui-tab-bar-demo :tabs="tabs" :isLargeScreen="isLargeScreen" :code="demoCode"></ui-tab-bar-demo>
       <ui-tab-scroller-demo :code="demoCode"></ui-tab-scroller-demo>
       <ui-tab-panel-demo :code="demoCode"></ui-tab-panel-demo>
 
-      <h4 :class="$tt('headline4')">2. APIs</h4>
+      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="tab"></ui-apidocs>
       <ui-apidocs name="tab-bar"></ui-apidocs>
       <ui-apidocs name="tab-indicator"></ui-apidocs>

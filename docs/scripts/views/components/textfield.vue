@@ -4,11 +4,13 @@
       <ui-textfield id="my-text-field">Text Field</ui-textfield>
     </section>
 
+    <ui-toc-affix></ui-toc-affix>
+
     <div :class="$tt('body2')">
-      <h4 :class="$tt('headline4')">0. Usage</h4>
+      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
       <section class="example">
         <h3>1.1 Full Functionality JS Component (Floating Label, Validation)</h3>
         <section id="demo-text-field-wrapper" :dir="controls.rtl ? 'rtl' : null">
@@ -259,7 +261,8 @@
           <ui-markdown :code="code[8]"></ui-markdown>
         </ui-accordion>
       </section>
-      <h4 :class="$tt('headline4')">2. APIs</h4>
+
+      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="textfield"></ui-apidocs>
       <ui-apidocs name="textfield-helptext"></ui-apidocs>
       <ui-apidocs name="textfield-icon"></ui-apidocs>

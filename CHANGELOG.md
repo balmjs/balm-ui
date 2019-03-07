@@ -1,5 +1,21 @@
 # BalmUI ChangeLog
 
+## 1.0.1 (2019.03.07)
+
+### Features
+
+- update docs
+
+### Chores
+
+- `<ui-autocomplete>`: rename props `autoFocus` -> `autofocus`, `minLength` -> `minlength`
+
+### Bug Fixes
+
+- `v-anchor`: fix some bug
+
+---
+
 ## 1.0.0 (2019.03.07)
 
 > :tada: 1.0.0 released

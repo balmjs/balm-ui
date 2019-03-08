@@ -10,6 +10,7 @@
         v-anchor:href="item.id"
       >{{ item.name }}</ui-item>
       <ui-item class="v-anchor" v-anchor:href="'#ui-apis'">APIs</ui-item>
+      <ui-item v-if="!withoutCss" class="v-anchor" v-anchor:href="'#ui-sass'">Sass</ui-item>
     </ui-list>
   </div>
 </template>
@@ -23,6 +24,10 @@ export default {
       default() {
         return {};
       }
+    },
+    withoutCss: {
+      type: Boolean,
+      default: false
     }
   }
 };

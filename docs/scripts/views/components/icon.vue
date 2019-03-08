@@ -60,7 +60,10 @@
       <h4 :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="icon"></ui-apidocs>
 
-      <h4 :class="$tt('headline4')">3. Icon List</h4>
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <ui-cssdocs name="icon"></ui-cssdocs>
+
+      <h4 :class="$tt('headline4')">4. Icon List</h4>
       <div class="search-area" v-shadow="1">
         <ui-textfield
           box

@@ -179,6 +179,9 @@
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="icon-button"></ui-apidocs>
+
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <ui-cssdocs name="icon-button"></ui-cssdocs>
     </div>
   </div>
 </template>

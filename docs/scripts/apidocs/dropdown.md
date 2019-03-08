@@ -39,10 +39,3 @@
 // Manual
 <ui-dropdown :model="value" @change="$balmUI.onChange('value', $event)"></ui-dropdown>
 ```
-
-#### Sass Variables
-
-- `$mdc-dropdown-min-width`
-- `$mdc-dropdown-height`
-- `$mdc-dropdown-outlined-idle-border`
-- `$mdc-dropdown-outlined-hover-border`

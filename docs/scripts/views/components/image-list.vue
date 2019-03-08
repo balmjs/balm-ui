@@ -60,6 +60,9 @@
       <ui-apidocs name="image-list"></ui-apidocs>
       <ui-apidocs name="image-item"></ui-apidocs>
       <ui-apidocs name="image-supporting"></ui-apidocs>
+
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <ui-cssdocs name="image-list"></ui-cssdocs>
     </div>
   </div>
 </template>

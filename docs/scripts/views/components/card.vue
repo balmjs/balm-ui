@@ -119,6 +119,9 @@
       <ui-apidocs name="card-actions"></ui-apidocs>
       <ui-apidocs name="card-buttons"></ui-apidocs>
       <ui-apidocs name="card-icons"></ui-apidocs>
+
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <ui-cssdocs name="card"></ui-cssdocs>
     </div>
   </div>
 </template>

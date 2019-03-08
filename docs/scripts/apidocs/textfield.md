@@ -57,7 +57,3 @@
   @input="$balmUI.onChange('value', $event)"
 ></ui-textfield>
 ```
-
-#### Sass Variables
-
-Coming Soon...

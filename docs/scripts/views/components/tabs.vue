@@ -24,6 +24,9 @@
       <ui-apidocs name="tab-indicator"></ui-apidocs>
       <ui-apidocs name="tab-scroller"></ui-apidocs>
       <ui-apidocs name="tab-panel"></ui-apidocs>
+
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <ui-cssdocs name="tabs"></ui-cssdocs>
     </div>
   </div>
 </template>

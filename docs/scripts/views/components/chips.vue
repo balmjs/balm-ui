@@ -130,6 +130,9 @@
       <ui-apidocs name="chip-thumbnail"></ui-apidocs>
       <ui-apidocs name="chip-remove-icon"></ui-apidocs>
       <ui-apidocs name="chip-checkmark"></ui-apidocs>
+
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <ui-cssdocs name="chips"></ui-cssdocs>
     </div>
   </div>
 </template>

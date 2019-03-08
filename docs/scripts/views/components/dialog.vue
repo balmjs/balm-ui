@@ -61,6 +61,9 @@
       <ui-apidocs name="dialog-header"></ui-apidocs>
       <ui-apidocs name="dialog-body"></ui-apidocs>
       <ui-apidocs name="dialog-footer"></ui-apidocs>
+
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <ui-cssdocs name="dialog"></ui-cssdocs>
     </div>
   </div>
 </template>

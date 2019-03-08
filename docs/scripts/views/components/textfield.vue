@@ -267,6 +267,9 @@
       <ui-apidocs name="textfield-helptext"></ui-apidocs>
       <ui-apidocs name="textfield-icon"></ui-apidocs>
       <ui-apidocs name="textfield-counter"></ui-apidocs>
+
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <ui-cssdocs name="textfield"></ui-cssdocs>
     </div>
   </div>
 </template>

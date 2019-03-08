@@ -13,6 +13,7 @@ import router from './routes';
 import App from './views/layouts/app';
 import UiMarkdown from './components/markdown';
 import UiApidocs from './components/apidocs';
+import UiCssdocs from './components/cssdocs';
 import SvgLogo from './components/logo';
 import UiAccordion from './components/accordion';
 import UiFooterNav from './components/footer-nav';
@@ -43,6 +44,7 @@ if (isIE) {
   Vue.component(UiSpinner.name, UiSpinner);
   Vue.component(UiMarkdown.name, UiMarkdown);
   Vue.component(UiApidocs.name, UiApidocs);
+  Vue.component(UiCssdocs.name, UiCssdocs);
   Vue.component(SvgLogo.name, SvgLogo);
   Vue.component(UiAccordion.name, UiAccordion);
   Vue.component(UiFooterNav.name, UiFooterNav);

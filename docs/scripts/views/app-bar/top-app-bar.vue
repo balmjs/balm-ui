@@ -68,6 +68,9 @@
 
           <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
           <ui-apidocs name="top-app-bar"></ui-apidocs>
+
+          <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+          <ui-cssdocs name="top-app-bar"></ui-cssdocs>
         </div>
       </div>
     </main>

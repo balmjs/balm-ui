@@ -4,7 +4,7 @@
       <div v-ripple></div>
     </section>
 
-    <ui-toc-affix></ui-toc-affix>
+    <ui-toc-affix withoutCss></ui-toc-affix>
 
     <div :class="$tt('body2')">
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>

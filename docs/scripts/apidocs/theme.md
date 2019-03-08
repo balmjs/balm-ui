@@ -50,17 +50,3 @@ $setTextTheme(style, tone, value);
 - `dark`
 
 > You can overwrite theme by `$setTheme` and `$setTextTheme` methods.
-
-### 2.3 Sass Variables
-
-- Background
-  - `$mdc-theme-background`
-- Foreground
-  - `$mdc-theme-surface`
-  - `$mdc-theme-on-surface`
-- Primary
-  - `$mdc-theme-primary`
-  - `$mdc-theme-on-primary`
-- Secondary
-  - `$mdc-theme-secondary`
-  - `$mdc-theme-on-secondary`

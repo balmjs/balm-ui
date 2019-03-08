@@ -34,6 +34,9 @@
       <ui-apidocs name="drawer"></ui-apidocs>
       <ui-apidocs name="drawer-header"></ui-apidocs>
       <ui-apidocs name="drawer-content"></ui-apidocs>
+
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <ui-cssdocs name="drawer"></ui-cssdocs>
     </div>
   </div>
 </template>

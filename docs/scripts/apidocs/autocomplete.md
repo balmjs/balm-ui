@@ -45,8 +45,3 @@
 // Manual
 <ui-autocomplete :model="value" @input="$balmUI.onChange('value', $event)"></ui-autocomplete>
 ```
-
-#### Sass Variables
-
-- `$mdc-autocomplete-outlined-idle-border`
-- `$mdc-autocomplete-item-selected-bgcolor`

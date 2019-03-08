@@ -39,7 +39,3 @@
   @change="$balmUI.onChange('open', $event)"
 ></ui-snackbar>
 ```
-
-#### Sass Variables
-
-Coming Soon...

@@ -35,13 +35,3 @@
 | Name    | Type                      | Description                       |
 | ------- | ------------------------- | --------------------------------- |
 | `click` | `function(event: object)` | Emits when the button is clicked. |
-
-#### Sass Variables
-
-- Size
-  - `$mdc-button-height`: `36px`
-  - `$mdc-button-horizontal-padding`: `8px`
-  - `$mdc-button-contained-horizontal-padding`: `16px`
-  - `$mdc-dense-button-height`: `32px`
-- Color
-  - `$mdc-button-disabled-ink-color`

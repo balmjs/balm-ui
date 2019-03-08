@@ -521,6 +521,9 @@
       <ui-apidocs name="list-item"></ui-apidocs>
       <ui-apidocs name="list-divider"></ui-apidocs>
       <ui-apidocs name="list-group"></ui-apidocs>
+
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <ui-cssdocs name="list"></ui-cssdocs>
     </div>
   </div>
 </template>

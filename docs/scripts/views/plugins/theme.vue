@@ -221,6 +221,10 @@
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="theme" type="plugin"></ui-apidocs>
+
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <ui-cssdocs name="theme"></ui-cssdocs>
+
       <div
         :class="['demo--theme-sass', $themeColor('background')]"
       >$mdc-theme-background: white; (bgColor)

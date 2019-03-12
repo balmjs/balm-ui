@@ -94,8 +94,9 @@ var MDCCheckboxFoundation = /** @class */ (function (_super) {
      */
     MDCCheckboxFoundation.prototype.handleAnimationEnd = function () {
         var _this = this;
-        if (!this.enableAnimationEndHandler_)
+        if (!this.enableAnimationEndHandler_) {
             return;
+        }
         clearTimeout(this.animEndLatchTimer_);
         this.animEndLatchTimer_ = setTimeout(function () {
             _this.adapter_.removeClass(_this.currentAnimationClass_);

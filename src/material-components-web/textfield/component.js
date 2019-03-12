@@ -120,7 +120,7 @@ var MDCTextField = /** @class */ (function (_super) {
      * Initializes the Text Field's internal state based on the environment's
      * state.
      */
-    MDCTextField.prototype.initialSyncWithDom = function () {
+    MDCTextField.prototype.initialSyncWithDOM = function () {
         this.disabled = this.input_.disabled;
     };
     Object.defineProperty(MDCTextField.prototype, "value", {

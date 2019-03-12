@@ -170,12 +170,6 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
             _this.layoutFrame_ = 0;
         });
     };
-    MDCDialogFoundation.prototype.layoutInternal_ = function () {
-        if (this.autoStackButtons_) {
-            this.detectStackedButtons_();
-        }
-        this.detectScrollableContent_();
-    };
     MDCDialogFoundation.prototype.handleInteraction = function (evt) {
         var isClick = evt.type === 'click';
         var isEnter = evt.key === 'Enter' || evt.keyCode === 13;
@@ -201,6 +195,12 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
         if (isEscape && this.escapeKeyAction_ !== '') {
             this.close(this.escapeKeyAction_);
         }
+    };
+    MDCDialogFoundation.prototype.layoutInternal_ = function () {
+        if (this.autoStackButtons_) {
+            this.detectStackedButtons_();
+        }
+        this.detectScrollableContent_();
     };
     MDCDialogFoundation.prototype.handleAnimationTimerEnd_ = function () {
         this.animationTimer_ = 0;

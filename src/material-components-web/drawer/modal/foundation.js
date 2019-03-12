@@ -29,22 +29,22 @@ var MDCModalDrawerFoundation = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
+     * Handles click event on scrim.
+     */
+    MDCModalDrawerFoundation.prototype.handleScrimClick = function () {
+        this.close();
+    };
+    /**
      * Called when drawer finishes open animation.
      */
-    MDCModalDrawerFoundation.prototype.opened = function () {
+    MDCModalDrawerFoundation.prototype.opened_ = function () {
         this.adapter_.trapFocus();
     };
     /**
      * Called when drawer finishes close animation.
      */
-    MDCModalDrawerFoundation.prototype.closed = function () {
+    MDCModalDrawerFoundation.prototype.closed_ = function () {
         this.adapter_.releaseFocus();
-    };
-    /**
-     * Handles click event on scrim.
-     */
-    MDCModalDrawerFoundation.prototype.handleScrimClick = function () {
-        this.close();
     };
     return MDCModalDrawerFoundation;
 }(MDCDismissibleDrawerFoundation));

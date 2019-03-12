@@ -24,7 +24,7 @@ import * as tslib_1 from "tslib";
 import { MDCComponent } from '../base/component';
 import { MDCList } from '../list/component';
 import { MDCListFoundation } from '../list/foundation';
-import * as createFocusTrap from 'focus-trap';
+import { default as createFocusTrap } from 'focus-trap';
 import { MDCDismissibleDrawerFoundation } from './dismissible/foundation';
 import { MDCModalDrawerFoundation } from './modal/foundation';
 import * as util from './util';

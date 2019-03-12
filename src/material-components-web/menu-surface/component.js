@@ -28,11 +28,7 @@ import * as util from './util';
 var MDCMenuSurface = /** @class */ (function (_super) {
     tslib_1.__extends(MDCMenuSurface, _super);
     function MDCMenuSurface() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.previousFocus_ = null;
-        _this.firstFocusableElement_ = null;
-        _this.lastFocusableElement_ = null;
-        return _this;
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     MDCMenuSurface.attachTo = function (root) {
         return new MDCMenuSurface(root);
@@ -65,8 +61,8 @@ var MDCMenuSurface = /** @class */ (function (_super) {
         set: function (value) {
             if (value) {
                 var focusableElements = this.root_.querySelectorAll(strings.FOCUSABLE_ELEMENTS);
-                this.firstFocusableElement_ = focusableElements[0] || null;
-                this.lastFocusableElement_ = focusableElements[focusableElements.length - 1] || null;
+                this.firstFocusableElement_ = focusableElements[0];
+                this.lastFocusableElement_ = focusableElements[focusableElements.length - 1];
                 this.foundation_.open();
             }
             else {

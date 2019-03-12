@@ -25,11 +25,6 @@ import { MDCComponent } from '../base/component';
 import { ponyfill } from '../dom/index';
 import { MDCRipple, MDCRippleFoundation } from '../ripple/index';
 import { MDCSwitchFoundation } from './foundation';
-/**
- * An implementation of the switch component defined by the Material Design spec.
- *
- * https://material.io/design/components/selection-controls.html#switches
- */
 var MDCSwitch = /** @class */ (function (_super) {
     tslib_1.__extends(MDCSwitch, _super);
     function MDCSwitch() {

@@ -62,9 +62,7 @@ var MDCGridListFoundation = /** @class */ (function (_super) {
     };
     MDCGridListFoundation.prototype.alignCenter = function () {
         var _this = this;
-        if (this.resizeFrame_ !== 0) {
-            cancelAnimationFrame(this.resizeFrame_);
-        }
+        cancelAnimationFrame(this.resizeFrame_);
         this.resizeFrame_ = requestAnimationFrame(function () {
             _this.alignCenter_();
             _this.resizeFrame_ = 0;

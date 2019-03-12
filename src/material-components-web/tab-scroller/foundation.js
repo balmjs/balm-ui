@@ -140,7 +140,7 @@ var MDCTabScrollerFoundation = /** @class */ (function (_super) {
         this.scrollTo_(scrollX);
     };
     /**
-     * Returns the appropriate version of the MDCTabScrollerRTL
+     * @return Browser-specific {@link MDCTabScrollerRTL} instance.
      */
     MDCTabScrollerFoundation.prototype.getRTLScroller = function () {
         if (!this.rtlScrollerInstance_) {
@@ -149,7 +149,7 @@ var MDCTabScrollerFoundation = /** @class */ (function (_super) {
         return this.rtlScrollerInstance_;
     };
     /**
-     * Returns the translateX value from a CSS matrix transform function string
+     * @return translateX value from a CSS matrix transform function string.
      */
     MDCTabScrollerFoundation.prototype.calculateCurrentTranslateX_ = function () {
         var transformValue = this.adapter_.getScrollContentStyleValue('transform');
@@ -284,7 +284,7 @@ var MDCTabScrollerFoundation = /** @class */ (function (_super) {
     MDCTabScrollerFoundation.prototype.rtlScrollerFactory_ = function () {
         // Browsers have three different implementations of scrollLeft in RTL mode,
         // dependent on the browser. The behavior is based off the max LTR
-        // scrollleft value and 0.
+        // scrollLeft value and 0.
         //
         // * Default scrolling in RTL *
         //    - Left-most value: 0

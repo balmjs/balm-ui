@@ -77,8 +77,9 @@ var MDCListFoundation = /** @class */ (function (_super) {
         configurable: true
     });
     MDCListFoundation.prototype.layout = function () {
-        if (this.adapter_.getListItemCount() === 0)
+        if (this.adapter_.getListItemCount() === 0) {
             return;
+        }
         if (this.adapter_.hasCheckboxAtIndex(0)) {
             this.isCheckboxList_ = true;
         }
@@ -215,8 +216,9 @@ var MDCListFoundation = /** @class */ (function (_super) {
      * Click handler for the list.
      */
     MDCListFoundation.prototype.handleClick = function (index, toggleCheckbox) {
-        if (index === -1)
+        if (index === -1) {
             return;
+        }
         if (this.isSelectableList_()) {
             this.setSelectedIndexOnAction_(index, toggleCheckbox);
         }

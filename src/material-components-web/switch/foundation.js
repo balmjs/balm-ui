@@ -23,12 +23,6 @@
 import * as tslib_1 from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses, strings } from './constants';
-/**
- * Foundation for the MDC Switch. Encapsulates business logic for the switch.
- *
- * See architecture documentation for more details.
- * https://github.com/material-components/material-components-web/blob/master/docs/code/architecture.md
- */
 var MDCSwitchFoundation = /** @class */ (function (_super) {
     tslib_1.__extends(MDCSwitchFoundation, _super);
     function MDCSwitchFoundation(adapter) {

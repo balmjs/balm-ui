@@ -133,13 +133,13 @@ var MDCDismissibleDrawerFoundation = /** @class */ (function (_super) {
         }
         if (this.isClosing()) {
             this.adapter_.removeClass(OPEN);
-            this.closed();
+            this.closed_();
             this.adapter_.restoreFocus();
             this.adapter_.notifyClose();
         }
         else {
             this.adapter_.focusActiveNavigationItem();
-            this.opened();
+            this.opened_();
             this.adapter_.notifyOpen();
         }
         this.adapter_.removeClass(ANIMATE);
@@ -149,11 +149,11 @@ var MDCDismissibleDrawerFoundation = /** @class */ (function (_super) {
     /**
      * Extension point for when drawer finishes open animation.
      */
-    MDCDismissibleDrawerFoundation.prototype.opened = function () { }; // tslint:disable-line:no-empty
+    MDCDismissibleDrawerFoundation.prototype.opened_ = function () { }; // tslint:disable-line:no-empty
     /**
      * Extension point for when drawer finishes close animation.
      */
-    MDCDismissibleDrawerFoundation.prototype.closed = function () { }; // tslint:disable-line:no-empty
+    MDCDismissibleDrawerFoundation.prototype.closed_ = function () { }; // tslint:disable-line:no-empty
     /**
      * Runs the given logic on the next animation frame, using setTimeout to factor in Firefox reflow behavior.
      */

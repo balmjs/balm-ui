@@ -149,12 +149,6 @@ var MDCMenu = /** @class */ (function (_super) {
     MDCMenu.prototype.setAnchorElement = function (element) {
         this.menuSurface_.anchorElement = element;
     };
-    MDCMenu.prototype.handleAfterOpened_ = function () {
-        var list = this.items;
-        if (list.length > 0) {
-            list[0].focus();
-        }
-    };
     MDCMenu.prototype.getDefaultFoundation = function () {
         var _this = this;
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
@@ -192,6 +186,12 @@ var MDCMenu = /** @class */ (function (_super) {
         };
         // tslint:enable:object-literal-sort-keys
         return new MDCMenuFoundation(adapter);
+    };
+    MDCMenu.prototype.handleAfterOpened_ = function () {
+        var list = this.items;
+        if (list.length > 0) {
+            list[0].focus();
+        }
     };
     return MDCMenu;
 }(MDCComponent));

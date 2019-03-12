@@ -71,13 +71,6 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MDCTextFieldFoundation.prototype, "shouldShake", {
-        get: function () {
-            return !this.isFocused_ && !this.isValid() && Boolean(this.getValue());
-        },
-        enumerable: true,
-        configurable: true
-    });
     Object.defineProperty(MDCTextFieldFoundation.prototype, "shouldAlwaysFloat_", {
         get: function () {
             var type = this.getNativeInput_().type;
@@ -89,6 +82,13 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
     Object.defineProperty(MDCTextFieldFoundation.prototype, "shouldFloat", {
         get: function () {
             return this.shouldAlwaysFloat_ || this.isFocused_ || Boolean(this.getValue()) || this.isBadInput_();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTextFieldFoundation.prototype, "shouldShake", {
+        get: function () {
+            return !this.isFocused_ && !this.isValid() && Boolean(this.getValue());
         },
         enumerable: true,
         configurable: true
@@ -364,8 +364,9 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
      * Sets character counter values that shows characters used and the total character limit.
      */
     MDCTextFieldFoundation.prototype.setCharacterCounter_ = function (currentLength) {
-        if (!this.characterCounter_)
+        if (!this.characterCounter_) {
             return;
+        }
         var maxLength = this.getNativeInput_().maxLength;
         if (maxLength === -1) {
             throw new Error('MDCTextFieldFoundation: Expected maxlength html property on text input or textarea.');

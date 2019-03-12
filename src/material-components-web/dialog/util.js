@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as createFocusTrap from 'focus-trap';
+import { default as createFocusTrap } from 'focus-trap';
 export function createFocusTrapInstance(surfaceEl, focusTrapFactory, initialFocusEl) {
     if (focusTrapFactory === void 0) { focusTrapFactory = createFocusTrap; }
     return focusTrapFactory(surfaceEl, {

@@ -28,12 +28,17 @@ var MDCShortTopAppBarFoundation = /** @class */ (function (_super) {
     /* istanbul ignore next: optional argument is not a branch statement */
     function MDCShortTopAppBarFoundation(adapter) {
         var _this = _super.call(this, adapter) || this;
-        /**
-         * State variable for the current top app bar state
-         */
-        _this.isCollapsed = false;
+        _this.isCollapsed_ = false;
         return _this;
     }
+    Object.defineProperty(MDCShortTopAppBarFoundation.prototype, "isCollapsed", {
+        // Public visibility for backward compatibility.
+        get: function () {
+            return this.isCollapsed_;
+        },
+        enumerable: true,
+        configurable: true
+    });
     MDCShortTopAppBarFoundation.prototype.init = function () {
         var _this = this;
         _super.prototype.init.call(this);
@@ -55,15 +60,15 @@ var MDCShortTopAppBarFoundation = /** @class */ (function (_super) {
     MDCShortTopAppBarFoundation.prototype.shortAppBarScrollHandler_ = function () {
         var currentScroll = this.adapter_.getViewportScrollY();
         if (currentScroll <= 0) {
-            if (this.isCollapsed) {
+            if (this.isCollapsed_) {
                 this.adapter_.removeClass(cssClasses.SHORT_COLLAPSED_CLASS);
-                this.isCollapsed = false;
+                this.isCollapsed_ = false;
             }
         }
         else {
-            if (!this.isCollapsed) {
+            if (!this.isCollapsed_) {
                 this.adapter_.addClass(cssClasses.SHORT_COLLAPSED_CLASS);
-                this.isCollapsed = true;
+                this.isCollapsed_ = true;
             }
         }
     };

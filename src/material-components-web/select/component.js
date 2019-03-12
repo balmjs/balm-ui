@@ -38,9 +38,7 @@ var VALIDATION_ATTR_WHITELIST = ['required', 'aria-required'];
 var MDCSelect = /** @class */ (function (_super) {
     tslib_1.__extends(MDCSelect, _super);
     function MDCSelect() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.menuOpened_ = false;
-        return _this;
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     MDCSelect.attachTo = function (root) {
         return new MDCSelect(root);
@@ -52,6 +50,7 @@ var MDCSelect = /** @class */ (function (_super) {
         if (menuFactory === void 0) { menuFactory = function (el) { return new MDCMenu(el); }; }
         if (iconFactory === void 0) { iconFactory = function (el) { return new MDCSelectIcon(el); }; }
         if (helperTextFactory === void 0) { helperTextFactory = function (el) { return new MDCSelectHelperText(el); }; }
+        this.isMenuOpen_ = false;
         this.nativeControl_ = this.root_.querySelector(strings.NATIVE_CONTROL_SELECTOR);
         this.selectedText_ = this.root_.querySelector(strings.SELECTED_TEXT_SELECTOR);
         var targetElement = this.nativeControl_ || this.selectedText_;
@@ -115,10 +114,10 @@ var MDCSelect = /** @class */ (function (_super) {
             }
         };
         this.handleMenuClosed_ = function () {
-            // menuOpened_ is used to track the state of the menu opening or closing since the menu.open function
+            // isMenuOpen_ is used to track the state of the menu opening or closing since the menu.open function
             // will return false if the menu is still closing and this method listens to the closed event which
             // occurs after the menu is already closed.
-            _this.menuOpened_ = false;
+            _this.isMenuOpen_ = false;
             _this.selectedText_.removeAttribute('aria-expanded');
             if (document.activeElement !== _this.selectedText_) {
                 _this.foundation_.handleBlur();
@@ -381,7 +380,7 @@ var MDCSelect = /** @class */ (function (_super) {
             openMenu: function () {
                 if (_this.menu_ && !_this.menu_.open) {
                     _this.menu_.open = true;
-                    _this.menuOpened_ = true;
+                    _this.isMenuOpen_ = true;
                     _this.selectedText_.setAttribute('aria-expanded', 'true');
                 }
             },
@@ -390,7 +389,7 @@ var MDCSelect = /** @class */ (function (_super) {
                     _this.menu_.open = false;
                 }
             },
-            isMenuOpen: function () { return Boolean(_this.menu_) && _this.menuOpened_; },
+            isMenuOpen: function () { return Boolean(_this.menu_) && _this.isMenuOpen_; },
             setSelectedIndex: function (index) { return _this.setEnhancedSelectedIndex_(index); },
             setDisabled: function (isDisabled) {
                 _this.selectedText_.setAttribute('tabindex', isDisabled ? '-1' : '0');

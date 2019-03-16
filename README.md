@@ -32,7 +32,7 @@ Edit `my-project/app/styles/global/_vendor.scss`
 @import 'node_modules/balm-ui/src/styles/balm-ui.scss';
 ```
 
-Download [Material Design Icons](https://material.balmjs.com/MaterialIcons.zip) and extract to `/path/to/my-project/app/fonts`.
+Download [Material Design Icons](https://material.balmjs.com/material-icons.zip) and extract to `/path/to/my-project/app/fonts`.
 
 ### 3. Usage
 

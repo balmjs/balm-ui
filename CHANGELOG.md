@@ -1,5 +1,13 @@
 # BalmUI ChangeLog
 
+## 1.1.1 (2019.03.27)
+
+### Bug Fixes
+
+- `<ui-file>`: bugfix for preview
+
+---
+
 ## 1.1.0 (2019.03.27)
 
 ### Features

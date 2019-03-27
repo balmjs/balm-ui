@@ -12,7 +12,7 @@ const isString = str => getType(str) === 'string';
 
 const isSymbol = sym => getType(sym) === 'symbol';
 
-const isNumber = num => getType(num) === 'number';
+const isNumber = num => num === +num; // OR, return !isNaN(parseFloat(num)) && isFinite(num)
 
 const isObject = obj => getType(obj) === 'object';
 

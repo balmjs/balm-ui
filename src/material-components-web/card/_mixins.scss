@@ -174,7 +174,7 @@
 
   .mdc-card__action-icons {
     @include mdc-feature-targets($feat-color) {
-      @include mdc-theme-prop(color, text-icon-on-background);
+      @include mdc-theme-prop(color, $mdc-card-action-icon-color);
     }
 
     @include mdc-feature-targets($feat-structure) {
@@ -253,7 +253,8 @@
 
   .mdc-card__action--icon {
     @include mdc-feature-targets($feat-structure) {
-      // Icon buttons are taller than buttons, so we need to adjust their margins to prevent the action row from expanding.
+      // Icon buttons are taller than buttons, so we need to adjust their margins to prevent the action row from
+      // expanding.
       margin: -6px 0;
 
       // Same padding as mdc-icon-button.
@@ -263,7 +264,7 @@
 
   .mdc-card__action--icon:not(:disabled) {
     @include mdc-feature-targets($feat-color) {
-      @include mdc-theme-prop(color, text-icon-on-background);
+      @include mdc-theme-prop(color, $mdc-card-action-icon-color);
     }
   }
 

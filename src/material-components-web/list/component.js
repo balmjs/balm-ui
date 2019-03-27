@@ -143,6 +143,7 @@ var MDCList = /** @class */ (function (_super) {
                     element.focus();
                 }
             },
+            getAttributeForElementIndex: function (index, attr) { return _this.listElements[index].getAttribute(attr); },
             getFocusedElementIndex: function () { return _this.listElements.indexOf(document.activeElement); },
             getListItemCount: function () { return _this.listElements.length; },
             hasCheckboxAtIndex: function (index) {

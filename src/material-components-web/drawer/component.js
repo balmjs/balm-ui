@@ -58,6 +58,13 @@ var MDCDrawer = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(MDCDrawer.prototype, "list", {
+        get: function () {
+            return this.list_;
+        },
+        enumerable: true,
+        configurable: true
+    });
     MDCDrawer.prototype.initialize = function (focusTrapFactory, listFactory) {
         if (focusTrapFactory === void 0) { focusTrapFactory = createFocusTrap; }
         if (listFactory === void 0) { listFactory = function (el) { return new MDCList(el); }; }

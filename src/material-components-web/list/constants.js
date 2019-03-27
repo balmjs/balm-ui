@@ -31,6 +31,7 @@ var strings = {
     ARIA_CHECKED: 'aria-checked',
     ARIA_CHECKED_CHECKBOX_SELECTOR: '[role="checkbox"][aria-checked="true"]',
     ARIA_CHECKED_RADIO_SELECTOR: '[role="radio"][aria-checked="true"]',
+    ARIA_CURRENT: 'aria-current',
     ARIA_ORIENTATION: 'aria-orientation',
     ARIA_ORIENTATION_HORIZONTAL: 'horizontal',
     ARIA_ROLE_CHECKBOX_SELECTOR: '[role="checkbox"]',
@@ -42,5 +43,8 @@ var strings = {
     FOCUSABLE_CHILD_ELEMENTS: "\n    ." + cssClasses.LIST_ITEM_CLASS + " button:not(:disabled),\n    ." + cssClasses.LIST_ITEM_CLASS + " a,\n    ." + cssClasses.LIST_ITEM_CLASS + " input[type=\"radio\"]:not(:disabled),\n    ." + cssClasses.LIST_ITEM_CLASS + " input[type=\"checkbox\"]:not(:disabled)\n  ",
     RADIO_SELECTOR: 'input[type="radio"]:not(:disabled)',
 };
-export { strings, cssClasses };
+var numbers = {
+    UNSET_INDEX: -1,
+};
+export { strings, cssClasses, numbers };
 //# sourceMappingURL=constants.js.map

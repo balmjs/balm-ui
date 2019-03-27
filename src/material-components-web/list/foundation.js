@@ -22,7 +22,7 @@
  */
 import * as tslib_1 from "tslib";
 import { MDCFoundation } from '../base/foundation';
-import { cssClasses, strings } from './constants';
+import { cssClasses, numbers, strings } from './constants';
 var ELEMENTS_KEY_ALLOWED_IN = ['input', 'button', 'textarea', 'select'];
 function isNumberArray(selectedIndex) {
     return selectedIndex instanceof Array;
@@ -34,9 +34,10 @@ var MDCListFoundation = /** @class */ (function (_super) {
         _this.wrapFocus_ = false;
         _this.isVertical_ = true;
         _this.isSingleSelectionList_ = false;
-        _this.selectedIndex_ = -1;
-        _this.focusedItemIndex_ = -1;
+        _this.selectedIndex_ = numbers.UNSET_INDEX;
+        _this.focusedItemIndex_ = numbers.UNSET_INDEX;
         _this.useActivatedClass_ = false;
+        _this.ariaCurrentAttrValue_ = null;
         _this.isCheckboxList_ = false;
         _this.isRadioList_ = false;
         return _this;
@@ -55,11 +56,19 @@ var MDCListFoundation = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(MDCListFoundation, "numbers", {
+        get: function () {
+            return numbers;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(MDCListFoundation, "defaultAdapter", {
         get: function () {
             return {
                 addClassForElementIndex: function () { return undefined; },
                 focusItemAtIndex: function () { return undefined; },
+                getAttributeForElementIndex: function () { return null; },
                 getFocusedElementIndex: function () { return 0; },
                 getListItemCount: function () { return 0; },
                 hasCheckboxAtIndex: function () { return false; },
@@ -167,8 +176,8 @@ var MDCListFoundation = /** @class */ (function (_super) {
         var isEnter = evt.key === 'Enter' || evt.keyCode === 13;
         var isSpace = evt.key === 'Space' || evt.keyCode === 32;
         var currentIndex = this.adapter_.getFocusedElementIndex();
-        var nextIndex = -1;
-        if (currentIndex === -1) {
+        var nextIndex = numbers.UNSET_INDEX;
+        if (currentIndex === numbers.UNSET_INDEX) {
             currentIndex = listItemIndex;
             if (currentIndex < 0) {
                 // If this event doesn't have a mdc-list-item ancestor from the
@@ -216,7 +225,7 @@ var MDCListFoundation = /** @class */ (function (_super) {
      * Click handler for the list.
      */
     MDCListFoundation.prototype.handleClick = function (index, toggleCheckbox) {
-        if (index === -1) {
+        if (index === numbers.UNSET_INDEX) {
             return;
         }
         if (this.isSelectableList_()) {
@@ -282,24 +291,43 @@ var MDCListFoundation = /** @class */ (function (_super) {
         }
     };
     MDCListFoundation.prototype.setSingleSelectionAtIndex_ = function (index) {
+        if (this.selectedIndex_ === index) {
+            return;
+        }
         var selectedClassName = cssClasses.LIST_ITEM_SELECTED_CLASS;
         if (this.useActivatedClass_) {
             selectedClassName = cssClasses.LIST_ITEM_ACTIVATED_CLASS;
         }
-        if (this.selectedIndex_ >= 0 && this.selectedIndex_ !== index) {
+        if (this.selectedIndex_ !== numbers.UNSET_INDEX) {
             this.adapter_.removeClassForElementIndex(this.selectedIndex_, selectedClassName);
-            this.adapter_.setAttributeForElementIndex(this.selectedIndex_, strings.ARIA_SELECTED, 'false');
         }
         this.adapter_.addClassForElementIndex(index, selectedClassName);
-        this.adapter_.setAttributeForElementIndex(index, strings.ARIA_SELECTED, 'true');
+        this.setAriaForSingleSelectionAtIndex_(index);
         this.selectedIndex_ = index;
+    };
+    /**
+     * Sets aria attribute for single selection at given index.
+     */
+    MDCListFoundation.prototype.setAriaForSingleSelectionAtIndex_ = function (index) {
+        // Detect the presence of aria-current and get the value only during list initialization when it is in unset state.
+        if (this.selectedIndex_ === numbers.UNSET_INDEX) {
+            this.ariaCurrentAttrValue_ =
+                this.adapter_.getAttributeForElementIndex(index, strings.ARIA_CURRENT);
+        }
+        var isAriaCurrent = this.ariaCurrentAttrValue_ !== null;
+        var ariaAttribute = isAriaCurrent ? strings.ARIA_CURRENT : strings.ARIA_SELECTED;
+        if (this.selectedIndex_ !== numbers.UNSET_INDEX) {
+            this.adapter_.setAttributeForElementIndex(this.selectedIndex_, ariaAttribute, 'false');
+        }
+        var ariaAttributeValue = isAriaCurrent ? this.ariaCurrentAttrValue_ : 'true';
+        this.adapter_.setAttributeForElementIndex(index, ariaAttribute, ariaAttributeValue);
     };
     /**
      * Toggles radio at give index. Radio doesn't change the checked state if it is already checked.
      */
     MDCListFoundation.prototype.setRadioAtIndex_ = function (index) {
         this.adapter_.setCheckedCheckboxOrRadioAtIndex(index, true);
-        if (this.selectedIndex_ >= 0) {
+        if (this.selectedIndex_ !== numbers.UNSET_INDEX) {
             this.adapter_.setAttributeForElementIndex(this.selectedIndex_, strings.ARIA_CHECKED, 'false');
         }
         this.adapter_.setAttributeForElementIndex(index, strings.ARIA_CHECKED, 'true');
@@ -317,7 +345,7 @@ var MDCListFoundation = /** @class */ (function (_super) {
         this.selectedIndex_ = index;
     };
     MDCListFoundation.prototype.setTabindexAtIndex_ = function (index) {
-        if (this.focusedItemIndex_ === -1 && index !== 0) {
+        if (this.focusedItemIndex_ === numbers.UNSET_INDEX && index !== 0) {
             // If no list item was selected set first list item's tabindex to -1.
             // Generally, tabindex is set to 0 on first list item of list that has no preselected items.
             this.adapter_.setAttributeForElementIndex(0, 'tabindex', '-1');
@@ -336,7 +364,7 @@ var MDCListFoundation = /** @class */ (function (_super) {
     MDCListFoundation.prototype.setTabindexToFirstSelectedItem_ = function () {
         var targetIndex = 0;
         if (this.isSelectableList_()) {
-            if (typeof this.selectedIndex_ === 'number' && this.selectedIndex_ !== -1) {
+            if (typeof this.selectedIndex_ === 'number' && this.selectedIndex_ !== numbers.UNSET_INDEX) {
                 targetIndex = this.selectedIndex_;
             }
             else if (isNumberArray(this.selectedIndex_) && this.selectedIndex_.length > 0) {
@@ -389,7 +417,7 @@ var MDCListFoundation = /** @class */ (function (_super) {
         }
         this.adapter_.setAttributeForElementIndex(index, strings.ARIA_CHECKED, isChecked ? 'true' : 'false');
         // If none of the checkbox items are selected and selectedIndex is not initialized then provide a default value.
-        var selectedIndexes = this.selectedIndex_ === -1 ? [] : this.selectedIndex_.slice();
+        var selectedIndexes = this.selectedIndex_ === numbers.UNSET_INDEX ? [] : this.selectedIndex_.slice();
         if (isChecked) {
             selectedIndexes.push(index);
         }

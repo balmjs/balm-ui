@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import snippets from '../../mixins/snippets';
+import snippets from '@/mixins/snippets';
 import UiRadioDemo from '../../components/radio';
 
 export default {

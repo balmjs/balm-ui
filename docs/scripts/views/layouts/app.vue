@@ -61,9 +61,9 @@
 </template>
 
 <script>
-import SvgGithub from '../../components/github';
-import { lang } from '../../config/lang';
-import menu from '../../config/menu';
+import SvgGithub from '@/components/github';
+import { lang } from '@/config/lang';
+import menu from '@/config/menu';
 
 export default {
   metaInfo: {

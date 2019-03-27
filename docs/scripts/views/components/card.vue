@@ -47,7 +47,8 @@
           </template>
 
           <ui-card-actions fullBleed>
-            <ui-a class="demo-card-action">All Business Headlines
+            <ui-a class="demo-card-action">
+              All Business Headlines
               <template #after>
                 <ui-icon>arrow_forward</ui-icon>
               </template>
@@ -127,7 +128,7 @@
 </template>
 
 <script>
-import snippets from '../../mixins/snippets';
+import snippets from '@/mixins/snippets';
 
 export default {
   metaInfo: {

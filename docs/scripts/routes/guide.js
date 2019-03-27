@@ -1,7 +1,7 @@
-const Intro = () => import('../views/guide/intro');
-const Quickstart = () => import('../views/guide/quickstart');
-const Advanced = () => import('../views/guide/advanced');
-const KillIE = () => import('../views/guide/kill-ie');
+const Intro = () => import('@/views/guide/intro');
+const Quickstart = () => import('@/views/guide/quickstart');
+const Advanced = () => import('@/views/guide/advanced');
+const KillIE = () => import('@/views/guide/kill-ie');
 
 export default [
   {

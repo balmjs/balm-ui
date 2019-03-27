@@ -12,20 +12,24 @@
 
       <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
       <ui-list nonInteractive>
-        <ui-item>1.1
+        <ui-item>
+          1.1
           <router-link
             :to="{name: 'layouts.permanent-drawer-above-toolbar'}"
           >Permanent Drawer Above Toolbar</router-link>
         </ui-item>
-        <ui-item>1.2
+        <ui-item>
+          1.2
           <router-link
             :to="{name: 'layouts.permanent-drawer-below-toolbar'}"
           >Permanent Drawer Below Toolbar</router-link>
         </ui-item>
-        <ui-item>1.3
+        <ui-item>
+          1.3
           <router-link :to="{name: 'layouts.dismissible-drawer'}">Dismissible Drawer</router-link>
         </ui-item>
-        <ui-item>1.4
+        <ui-item>
+          1.4
           <router-link :to="{name: 'layouts.modal-drawer'}">Modal Drawer</router-link>
         </ui-item>
       </ui-list>
@@ -42,7 +46,7 @@
 </template>
 
 <script>
-import snippets from '../../mixins/snippets';
+import snippets from '@/mixins/snippets';
 
 export default {
   metaInfo: {

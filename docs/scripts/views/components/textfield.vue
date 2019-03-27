@@ -275,7 +275,7 @@
 </template>
 
 <script>
-import snippets from '../../mixins/snippets';
+import snippets from '@/mixins/snippets';
 import UiTextfieldControls from '../../components/textfield-controls';
 
 export default {

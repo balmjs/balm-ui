@@ -1,4 +1,4 @@
-import bus from '../store/bus';
+import bus from '@/store/bus';
 
 export default {
   install(Vue) {

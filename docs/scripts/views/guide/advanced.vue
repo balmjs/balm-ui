@@ -4,13 +4,14 @@
       <ui-markdown :text="docs" v-anchor.html></ui-markdown>
       <ui-footer-nav
         :prev="{name: 'Getting Started', url: 'guide.quickstart'}"
-        :next="{name: 'Kill IE', url: 'guide.kill-ie'}"></ui-footer-nav>
+        :next="{name: 'Kill IE', url: 'guide.kill-ie'}"
+      ></ui-footer-nav>
     </div>
   </div>
 </template>
 
 <script>
-import docs from '../../docs/advanced.md';
+import docs from '@/docs/guide/advanced.md';
 
 export default {
   metaInfo: {

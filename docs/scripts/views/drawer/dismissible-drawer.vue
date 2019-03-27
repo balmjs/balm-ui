@@ -6,11 +6,7 @@
         <ui-drawer-subtitle>{{ subtitle }}</ui-drawer-subtitle>
       </ui-drawer-header>
       <ui-drawer-common-conntent>
-        <ui-item-a
-          firstIcon="arrow_back"
-          @click.native="() => { $router.back(); }">
-          Back
-        </ui-item-a>
+        <ui-item-a firstIcon="arrow_back" @click.native="() => { $router.back(); }">Back</ui-item-a>
         <ui-list-divider></ui-list-divider>
       </ui-drawer-common-conntent>
     </ui-dismissible-drawer>
@@ -20,9 +16,8 @@
         contentSelector=".demo-content"
         navId="demo-menu"
         class="demo-top-app-bar"
-        v-shadow="4">
-        Dismissible Drawer
-      </ui-top-app-bar>
+        v-shadow="4"
+      >Dismissible Drawer</ui-top-app-bar>
 
       <div :class="[$tt('body1'), 'demo-content']">
         <div :class="$tt('body2')">
@@ -39,8 +34,8 @@
 
 <script>
 import UiDrawerCommonConntent from './drawer-common-conntent';
-import DrawerMixin from '../../mixins/drawer';
-import snippets from '../../mixins/snippets';
+import DrawerMixin from '@/mixins/drawer';
+import snippets from '@/mixins/snippets';
 
 export default {
   metaInfo: {

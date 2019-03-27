@@ -1,9 +1,9 @@
-const Event = () => import('../views/plugins/event');
-const Typography = () => import('../views/plugins/typography');
-const Theme = () => import('../views/plugins/theme');
-const Ripple = () => import('../views/directives/ripple');
-const Elevation = () => import('../views/directives/elevation');
-const Anchor = () => import('../views/directives/anchor');
+const Event = () => import('@/views/plugins/event');
+const Typography = () => import('@/views/plugins/typography');
+const Theme = () => import('@/views/plugins/theme');
+const Ripple = () => import('@/views/directives/ripple');
+const Elevation = () => import('@/views/directives/elevation');
+const Anchor = () => import('@/views/directives/anchor');
 
 export default [
   {

@@ -1,12 +1,10 @@
 <template>
   <div :class="[$tt('body1'), 'demo--shape']">
     <section class="hero directive">
-      <div class="four-corner-container"
-        v-shape>
+      <div class="four-corner-container" v-shape>
         <ui-button unelevated>Filled Button</ui-button>
       </div>
-      <div class="four-corner-container four-corner-container--outlined"
-         v-shape>
+      <div class="four-corner-container four-corner-container--outlined" v-shape>
         <ui-button outlined>Outlined Button</ui-button>
       </div>
     </section>
@@ -16,12 +14,10 @@
       <ui-markdown :text="code[0]"></ui-markdown>
 
       <h4 :class="$tt('headline4')">1. Example</h4>
-      <div>
-        // TODO
-      </div>
+      <div>// TODO</div>
       <!-- <ui-accordion>
         <ui-markdown :code="code[1]"></ui-markdown>
-      </ui-accordion> -->
+      </ui-accordion>-->
 
       <h4 :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="shape" type="directive"></ui-apidocs>
@@ -30,7 +26,7 @@
 </template>
 
 <script>
-import snippets from '../../mixins/snippets';
+import snippets from '@/mixins/snippets';
 
 export default {
   metaInfo: {

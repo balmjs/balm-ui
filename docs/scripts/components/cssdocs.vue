@@ -15,7 +15,7 @@ export default {
   },
   data() {
     return {
-      docs: require(`../cssdocs/${this.name}.md`)
+      docs: require(`@/docs/cssdocs/${this.name}.md`)
     };
   }
 };

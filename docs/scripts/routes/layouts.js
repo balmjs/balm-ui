@@ -1,24 +1,24 @@
-const Grid = () => import('../views/components/grid');
-const Toolbar = () => import('../views/toolbar/index');
-const DefaultToolbar = () => import('../views/toolbar/default-toolbar');
-const FixedToolbar = () => import('../views/toolbar/fixed-toolbar');
-const WaterfallToolbar = () => import('../views/toolbar/waterfall-toolbar');
+const Grid = () => import('@/views/components/grid');
+const Toolbar = () => import('@/views/toolbar/index');
+const DefaultToolbar = () => import('@/views/toolbar/default-toolbar');
+const FixedToolbar = () => import('@/views/toolbar/fixed-toolbar');
+const WaterfallToolbar = () => import('@/views/toolbar/waterfall-toolbar');
 const DefaultFlexibleToolbar = () =>
-  import('../views/toolbar/default-flexible-toolbar');
+  import('@/views/toolbar/default-flexible-toolbar');
 const WaterfallFlexibleToolbar = () =>
-  import('../views/toolbar/waterfall-flexible-toolbar');
+  import('@/views/toolbar/waterfall-flexible-toolbar');
 const WaterfallToolbarFixLastRow = () =>
-  import('../views/toolbar/waterfall-toolbar-fix-last-row');
-const MenuToolbar = () => import('../views/toolbar/menu-toolbar');
-const TopAppBar = () => import('../views/app-bar/top-app-bar');
-const Drawer = () => import('../views/drawer/index');
+  import('@/views/toolbar/waterfall-toolbar-fix-last-row');
+const MenuToolbar = () => import('@/views/toolbar/menu-toolbar');
+const TopAppBar = () => import('@/views/app-bar/top-app-bar');
+const Drawer = () => import('@/views/drawer/index');
 const PermanentDrawerAboveToolbar = () =>
-  import('../views/drawer/permanent-drawer-above-toolbar');
+  import('@/views/drawer/permanent-drawer-above-toolbar');
 const PermanentDrawerBelowToolbar = () =>
-  import('../views/drawer/permanent-drawer-below-toolbar');
-const DismissibleDrawer = () => import('../views/drawer/dismissible-drawer');
-const ModalDrawer = () => import('../views/drawer/modal-drawer');
-const Tabs = () => import('../views/components/tabs');
+  import('@/views/drawer/permanent-drawer-below-toolbar');
+const DismissibleDrawer = () => import('@/views/drawer/dismissible-drawer');
+const ModalDrawer = () => import('@/views/drawer/modal-drawer');
+const Tabs = () => import('@/views/components/tabs');
 
 export default [
   {

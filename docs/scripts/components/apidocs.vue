@@ -22,7 +22,7 @@ export default {
   },
   data() {
     return {
-      docs: require(`../apidocs/${this.name}.md`)
+      docs: require(`@/docs/apidocs/${this.name}.md`)
     };
   },
   computed: {

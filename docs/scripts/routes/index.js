@@ -2,21 +2,21 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueMeta from 'vue-meta';
 // Layout
-import BlankLayout from '../views/layouts/blank';
+import BlankLayout from '@/views/layouts/blank';
 // Routes
 import guideRoutes from './guide';
 import layoutsRoutes from './layouts';
 import buttonsRoutes from './buttons';
-const Icon = () => import('../views/components/icon');
+const Icon = () => import('@/views/components/icon');
 import dataRoutes from './data-view';
 import formRoutes from './inputs-and-controls';
 import modalRoutes from './modal';
-const Menu = () => import('../views/components/menu');
+const Menu = () => import('@/views/components/menu');
 import miscRoutes from './misc';
-const Utils = () => import('../views/utils');
+const Utils = () => import('@/views/utils');
 // Pages
-import Home from '../views/home';
-import NotFound from '../views/not-found';
+import Home from '@/views/home';
+import NotFound from '@/views/not-found';
 import testRoutes from './test';
 
 Vue.use(VueRouter);

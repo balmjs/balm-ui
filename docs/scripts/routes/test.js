@@ -1,6 +1,5 @@
-const Test = () => import('../views/test');
-
-let isDev = process.env.NODE_ENV === 'development';
+import { isDev } from '@/config';
+const Test = () => import('@/views/test');
 
 let testRoutes = [
   {

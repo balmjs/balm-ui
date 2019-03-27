@@ -120,7 +120,7 @@
 
 <script>
 import Clipboard from 'clipboard';
-import snippets from '../../mixins/snippets';
+import snippets from '@/mixins/snippets';
 
 export default {
   metaInfo: {

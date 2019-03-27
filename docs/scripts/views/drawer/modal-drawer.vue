@@ -36,7 +36,7 @@
 <script>
 import UiDrawerCommonConntent from './drawer-common-conntent';
 import DrawerMixin from '../../mixins/drawer';
-import snippets from '../../mixins/snippets';
+import snippets from '@/mixins/snippets';
 
 export default {
   metaInfo: {

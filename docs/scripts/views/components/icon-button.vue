@@ -187,7 +187,7 @@
 </template>
 
 <script>
-import snippets from '../../mixins/snippets';
+import snippets from '@/mixins/snippets';
 import imageOn from '../../../images/icon/ic_button_24px.svg';
 import imageOff from '../../../images/icon/ic_card_24px.svg';
 

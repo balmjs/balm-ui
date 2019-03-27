@@ -8,7 +8,8 @@
       :prominent="controls.prominent"
       :short="controls.short"
       :alwaysClosed="controls.alwaysCollapsed"
-    >Hello BalmUI
+    >
+      Hello BalmUI
       <template #toolbar="{ iconClass, itemClass }">
         <a
           v-if="!controls.short && !controls.noAction"
@@ -134,8 +135,8 @@
 </template>
 
 <script>
-import snippets from '../../mixins/snippets';
-import DrawerMixin from '../../mixins/drawer';
+import snippets from '@/mixins/snippets';
+import DrawerMixin from '@/mixins/drawer';
 
 export default {
   metaInfo: {

@@ -4,13 +4,14 @@
       <ui-markdown :text="docs"></ui-markdown>
       <ui-footer-nav
         :prev="{name: 'Introduction', url: 'guide.intro'}"
-        :next="{name: 'Advanced Usage', url: 'guide.advanced'}"></ui-footer-nav>
+        :next="{name: 'Advanced Usage', url: 'guide.advanced'}"
+      ></ui-footer-nav>
     </div>
   </div>
 </template>
 
 <script>
-import docs from '../../docs/quickstart.md';
+import docs from '@/docs/guide/quickstart.md';
 
 export default {
   metaInfo: {
@@ -23,4 +24,3 @@ export default {
   }
 };
 </script>
-

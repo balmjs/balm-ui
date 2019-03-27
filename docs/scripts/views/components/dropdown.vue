@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import snippets from '../../mixins/snippets';
+import snippets from '@/mixins/snippets';
 import {
   PROVINCES as provinces,
   CITIES,

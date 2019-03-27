@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import snippets from '../../mixins/snippets';
+import snippets from '@/mixins/snippets';
 import UiTabDemo from './tab';
 import UiTabBarDemo from './tab-bar';
 import UiTabScrollerDemo from './tab-scroller';

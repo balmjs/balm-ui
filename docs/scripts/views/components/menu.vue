@@ -207,7 +207,7 @@
 
 <script>
 import SvgSelected from '../../components/selected';
-import snippets from '../../mixins/snippets';
+import snippets from '@/mixins/snippets';
 
 export default {
   metaInfo: {

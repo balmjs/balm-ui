@@ -1,8 +1,8 @@
-const Dialog = () => import('../views/components/dialog');
-const Alert = () => import('../views/plugins/alert');
-const Confirm = () => import('../views/plugins/confirm');
-const Snackbar = () => import('../views/components/snackbar');
-const Toast = () => import('../views/plugins/toast');
+const Dialog = () => import('@/views/components/dialog');
+const Alert = () => import('@/views/plugins/alert');
+const Confirm = () => import('@/views/plugins/confirm');
+const Snackbar = () => import('@/views/components/snackbar');
+const Toast = () => import('@/views/plugins/toast');
 
 export default [
   {

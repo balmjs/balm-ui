@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import docs from '../apidocs/utils.md';
+import docs from '@/docs/apidocs/utils.md';
 
 export default {
   metaInfo: {

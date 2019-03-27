@@ -174,7 +174,7 @@
 </template>
 
 <script>
-import snippets from '../../mixins/snippets';
+import snippets from '@/mixins/snippets';
 import UiSelectControls from '../../components/select-controls';
 import {
   PROVINCES as provinces,

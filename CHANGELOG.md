@@ -1,5 +1,17 @@
 # BalmUI ChangeLog
 
+## 1.1.0 (2019.03.27)
+
+### Features
+
+- update `mdc@1.1.0`
+
+### Bug Fixes
+
+- `types.isNumber`: bugfix for `NaN`
+
+---
+
 ## 1.0.2 (2019.03.13)
 
 ### Features

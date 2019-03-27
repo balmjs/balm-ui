@@ -1,5 +1,5 @@
 import { isIE, killIE } from './kill-ie';
-import './polyfill';
+import './polyfills';
 import Vue from 'vue';
 // import VueI18n from 'vue-i18n';
 import $http from './plugins/$http';

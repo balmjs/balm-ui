@@ -122,15 +122,17 @@ export default {
       let input = this.$el.querySelector('input');
       input && input.click();
     },
-    handleChange(event) {
+    async handleChange(event) {
       let files = [].slice.call(event.target.files);
 
       if (files.length) {
-        let result = files.map(file => {
-          let fileObj = UI_FILE.createFileObject(file);
-          this.preview && this.handlePreview(fileObj);
-          return fileObj;
-        });
+        let result = await Promise.all(
+          files.map(async file => {
+            let fileObj = UI_FILE.createFileObject(file);
+            this.preview && (await this.handlePreview(fileObj));
+            return Promise.resolve(fileObj);
+          })
+        );
 
         this.$emit(UI_FILE.EVENT.CHANGE, result);
         // event.target.value = '';

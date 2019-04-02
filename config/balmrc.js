@@ -3,6 +3,9 @@ const env = require('./env');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
+  server: {
+    open: false
+  },
   roots: {
     source: env.useDocs ? 'docs' : 'src'
   },
@@ -43,7 +46,7 @@ module.exports = {
     plugins: [new VueLoaderPlugin()],
     alias: {
       vue$: 'vue/dist/vue.esm.js',
-      '@': path.resolve(__dirname, '..', 'docs', 'scripts')
+      '@': path.resolve(__dirname, '../docs/scripts')
     },
     eslint: true,
     options: {
@@ -53,10 +56,10 @@ module.exports = {
     },
     include: env.useDocs
       ? [
-          path.resolve('./src/material-components-web'),
-          path.resolve('./src/scripts')
+          path.resolve(__dirname, '../src/material-components-web'),
+          path.resolve(__dirname, '../src/scripts')
         ]
-      : [path.resolve('./src/material-components-web')]
+      : [path.resolve(__dirname, '../src/material-components-web')]
   },
   extras: {
     excludes: ['index.js'],

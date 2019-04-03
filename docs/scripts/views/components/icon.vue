@@ -87,13 +87,13 @@
       </div>
 
       <ui-list nonInteractive>
-        <template v-for="(group, index) in groups">
+        <template v-for="(category, index) in categories">
           <ui-item :key="`item${index}`">
-            <h2>{{ group.name }}</h2>
+            <h2>{{ category.name }}</h2>
             <template v-if="Object.keys(currentIcons).length">
               <ui-grid-list>
                 <ui-grid-tile
-                  v-for="(icon, i) in currentIcons[group.id]"
+                  v-for="(icon, i) in currentIcons[category.name]"
                   :key="i"
                   noImage
                   class="btn-clipboard"
@@ -102,7 +102,7 @@
                   <template #icon>
                     <ui-icon size="48">{{ icon.id }}</ui-icon>
                   </template>
-                  <div v-if="icon.isNew" class="new-badge">New</div>
+                  <!-- <div v-if="icon.isNew" class="new-badge">New</div> -->
                   <ui-grid-tile-title :title="icon.name">{{ icon.name }}</ui-grid-tile-title>
                 </ui-grid-tile>
               </ui-grid-list>
@@ -111,7 +111,7 @@
               <p>No Icons</p>
             </template>
           </ui-item>
-          <ui-item-divider :key="`divider${index}`" v-if="index < group.count - 1"></ui-item-divider>
+          <ui-item-divider :key="`divider${index}`" v-if="index < category.count - 1"></ui-item-divider>
         </template>
       </ui-list>
     </div>
@@ -122,6 +122,36 @@
 import Clipboard from 'clipboard';
 import snippets from '@/mixins/snippets';
 
+const UNDEFINED_ICONS = [
+  'battery_20',
+  'battery_30',
+  'battery_50',
+  'battery_60',
+  'battery_80',
+  'battery_90',
+  'battery_charging_20',
+  'battery_charging_30',
+  'battery_charging_50',
+  'battery_charging_60',
+  'battery_charging_80',
+  'battery_charging_90',
+  'signal_cellular_0_bar',
+  'signal_cellular_1_bar',
+  'signal_cellular_2_bar',
+  'signal_cellular_3_bar',
+  'signal_cellular_connected_no_internet_0_bar',
+  'signal_cellular_connected_no_internet_1_bar',
+  'signal_cellular_connected_no_internet_2_bar',
+  'signal_cellular_connected_no_internet_3_bar',
+  'signal_wifi_0_bar',
+  'signal_wifi_1_bar',
+  'signal_wifi_1_bar_lock',
+  'signal_wifi_2_bar',
+  'signal_wifi_2_bar_lock',
+  'signal_wifi_3_bar',
+  'signal_wifi_3_bar_lock'
+];
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Icons'
@@ -130,7 +160,7 @@ export default {
   data() {
     return {
       number: 0,
-      groups: [],
+      categories: [],
       icons: {},
       currentIcons: {},
       keywords: ''
@@ -139,26 +169,25 @@ export default {
   async created() {
     this.showCode('icon', 2);
 
-    let response = await this.$http.get(`${this.$domain}/data/grid.json`);
-    let { groups, icons } = response.data;
+    let response = await this.$http.get(`${this.$domain}/data/icons.json`);
+    let { categories } = response.data;
 
-    groups.map(group => {
-      this.groups.push({
-        id: group.data.id,
-        name: group.data.name,
-        count: group.length
+    categories.map(category => {
+      let icons = category.icons.filter(
+        icon => !UNDEFINED_ICONS.includes(icon.id)
+      );
+
+      this.categories.push({
+        name: category.name,
+        count: icons.length
       });
-    });
+      this.$set(this.icons, category.name, []);
 
-    this.groups.forEach(group => {
-      this.icons[group.id] = [];
-    });
-
-    icons.forEach(icon => {
-      this.icons[icon.group_id].push({
-        id: icon.ligature,
-        name: icon.name,
-        isNew: icon.is_new
+      icons.forEach(icon => {
+        this.icons[category.name].push({
+          id: icon.id,
+          name: icon.id
+        });
       });
     });
 
@@ -176,10 +205,12 @@ export default {
   methods: {
     filterIcons() {
       if (this.keywords) {
-        for (let groupId in this.icons) {
-          this.currentIcons[groupId] = this.icons[groupId].filter(icon => {
-            return icon.name.indexOf(this.keywords) > -1;
-          });
+        for (let categoryName in this.icons) {
+          this.currentIcons[categoryName] = this.icons[categoryName].filter(
+            icon => {
+              return icon.name.indexOf(this.keywords) > -1;
+            }
+          );
         }
       } else {
         this.currentIcons = Object.assign({}, this.icons);

@@ -26,6 +26,9 @@
   .mdc-list-item {
     display: block;
     height: auto;
+    h2 {
+      text-transform: capitalize;
+    }
   }
   .mdc-grid-tile {
     width: 128px;
@@ -71,7 +74,7 @@
         justify-content: center;
       }
     }
-    .mdc-list>.mdc-list-item {
+    .mdc-list > .mdc-list-item {
       padding: 0;
     }
     .mdc-grid-tile {

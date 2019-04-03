@@ -2,7 +2,7 @@ const CSS_RESET = './node_modules/normalize.css/normalize.css';
 const DMC_SOURCE = {
   mdc: './node_modules/material-components-web',
   material: './node_modules/@material',
-  icon: './node_modules/material-design-icons'
+  icon: './src/material-design-icons/v41'
 };
 const DEV_SOURCE = {
   mdc: './src/material-components-web',

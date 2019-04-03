@@ -44,7 +44,7 @@ balm.go(mix => {
 
       // get Material Icons
       mix.copy(
-        `${constants.DMC_SOURCE.icon}/iconfont/*.{css,eot,svg,ttf,woff,woff2}`,
+        `${constants.DMC_SOURCE.icon}/*.{css,eot,ttf,woff,woff2}`,
         constants.DEV_SOURCE.font
       );
     } else {

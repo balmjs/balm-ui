@@ -1,13 +1,20 @@
 $mdi-font-path: '../fonts' !default; // Define MDI default path
+$mdi-version: 'v41' !default; // Latest version: v47
+$mdi-font-path-with-version: '#{$mdi-font-path}/materialicons/#{$mdi-version}/MaterialIcons-Regular';
 
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
-  src: local('Material Icons'), local('MaterialIcons-Regular'),
-    url('#{$mdi-font-path}/MaterialIcons-Regular.woff2') format('woff2'),
-    url('#{$mdi-font-path}/MaterialIcons-Regular.woff') format('woff'),
-    url('#{$mdi-font-path}/MaterialIcons-Regular.ttf') format('truetype');
+  @if $mdi-version == 'v47' {
+    src: url('#{$mdi-font-path-with-version}.woff2') format('woff2');
+  } @else {
+    src: local('Material Icons'), local('MaterialIcons-Regular'),
+      url('#{$mdi-font-path-with-version}.woff2') format('woff2'),
+      url('#{$mdi-font-path-with-version}.woff') format('woff'),
+      url('#{$mdi-font-path-with-version}.ttf') format('truetype');
+  }
+
   font-display: swap; // [Intervention] Slow network is detected. See https://www.chromestatus.com/feature/5636954674692096 for more details.
 }
 
@@ -26,12 +33,15 @@ $mdi-font-path: '../fonts' !default; // Define MDI default path
 
   /* Support for all WebKit browsers. */
   -webkit-font-smoothing: antialiased;
-  /* Support for Safari and Chrome. */
-  text-rendering: optimizeLegibility;
 
-  /* Support for Firefox. */
-  -moz-osx-font-smoothing: grayscale;
-
-  /* Support for IE. */
-  font-feature-settings: 'liga';
+  @if $mdi-version == 'latest' {
+    -webkit-font-feature-settings: 'liga';
+  } @else {
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+  }
 }

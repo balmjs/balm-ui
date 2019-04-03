@@ -78,8 +78,8 @@ balm.go(mix => {
         mix.copy('./dist/css/components/*', './components');
         mix.copy('./dist/css/plugins/*', './plugins');
         mix.copy('./dist/css/directives/*', './directives');
-        mix.copy('./dist/font/*', './font');
-        mix.remove(['./dist/css', './dist/js', './dist/font']);
+        mix.remove(['./dist/css', './dist/js']);
+        mix.copy('./src/material-design-icons/**/*', './font');
       }
     }
   }

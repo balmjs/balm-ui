@@ -13,7 +13,7 @@ if (env.updateMDC) {
 balm.go(mix => {
   if (env.buildDocs) {
     mix.copy('./docs/data/*', './dist/data');
-    mix.remove('./dist/img/photos');
+    mix.remove(['./dist/img/photos', './dist/font/materialicons']);
   } else {
     if (env.updateMDC) {
       // clear

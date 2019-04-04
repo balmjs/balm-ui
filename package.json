@@ -11,7 +11,7 @@
   "files": [
     "src",
     "dist",
-    "font",
+    "fonts",
     "components",
     "plugins",
     "directives",

@@ -79,7 +79,7 @@ balm.go(mix => {
 
         mix.copy(
           './src/material-design-icons/v41/*.{ttf,woff,woff2}',
-          './font'
+          './fonts'
         );
       }
     }

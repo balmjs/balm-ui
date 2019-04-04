@@ -263,7 +263,7 @@ balm.go(mix => {
     ...
   } else {
     // Use BalmJS `copy` api
-    mix.copy('node_modules/balm-ui/font/*', 'app/fonts');
+    mix.copy('node_modules/balm-ui/fonts/*', 'app/fonts');
   }
 });
 ```

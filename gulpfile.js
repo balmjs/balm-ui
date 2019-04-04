@@ -49,9 +49,6 @@ balm.go(mix => {
       );
     } else {
       if (balm.config.isProd) {
-        mix.remove('dist/font/*.css');
-        // mix.remove('dist/memo.md');
-
         // clear individual
         mix.remove([
           individual.output.components,
@@ -79,7 +76,11 @@ balm.go(mix => {
         mix.copy('./dist/css/plugins/*', './plugins');
         mix.copy('./dist/css/directives/*', './directives');
         mix.remove(['./dist/css', './dist/js']);
-        mix.copy('./src/material-design-icons/**/*', './font');
+
+        mix.copy(
+          './src/material-design-icons/v41/*.{ttf,woff,woff2}',
+          './font'
+        );
       }
     }
   }

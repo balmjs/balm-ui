@@ -1,18 +1,39 @@
-$mdi-font-path: '../fonts' !default; // Define MDI default path
-$mdi-version: 'v41' !default; // Latest version: v47
-$mdi-font-path-with-version: '#{$mdi-font-path}/materialicons/#{$mdi-version}/MaterialIcons-Regular';
+$mdi-latest-version: 'v47'; // 2019.04.04 updated
+$mdi-dir: 'materialicons';
+
+$mdi-version: 'v41' !default;
+$mdi-font-path: '../fonts' !default;
+$mdi-font-path-with-version: 0 !default; // `../fonts` or `../fonts/materialicons/v41`
+$mdi-font-filename: 'MaterialIcons-Regular' !default;
 
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
-  @if $mdi-version == 'v47' {
-    src: url('#{$mdi-font-path-with-version}.woff2') format('woff2');
+
+  @if $mdi-version == $mdi-latest-version {
+    @if $mdi-font-path-with-version == 1 {
+      src: url('#{$mdi-font-path}/#{$mdi-dir}/#{$mdi-version}/#{$mdi-font-filename}.woff2')
+        format('woff2');
+    } @else {
+      src: url('#{$mdi-font-path}/#{$mdi-font-filename}.woff2') format('woff2');
+    }
   } @else {
-    src: local('Material Icons'), local('MaterialIcons-Regular'),
-      url('#{$mdi-font-path-with-version}.woff2') format('woff2'),
-      url('#{$mdi-font-path-with-version}.woff') format('woff'),
-      url('#{$mdi-font-path-with-version}.ttf') format('truetype');
+    @if $mdi-font-path-with-version == 1 {
+      src: local('Material Icons'), local('MaterialIcons-Regular'),
+        url('#{$mdi-font-path}/#{$mdi-dir}/#{$mdi-version}/#{$mdi-font-filename}.woff2')
+          format('woff2'),
+        url('#{$mdi-font-path}/#{$mdi-dir}/#{$mdi-version}/#{$mdi-font-filename}.woff')
+          format('woff'),
+        url('#{$mdi-font-path}/#{$mdi-dir}/#{$mdi-version}/#{$mdi-font-filename}.ttf')
+          format('truetype');
+    } @else {
+      // Default
+      src: local('Material Icons'), local('MaterialIcons-Regular'),
+        url('#{$mdi-font-path}/#{$mdi-font-filename}.woff2') format('woff2'),
+        url('#{$mdi-font-path}/#{$mdi-font-filename}.woff') format('woff'),
+        url('#{$mdi-font-path}/#{$mdi-font-filename}.ttf') format('truetype');
+    }
   }
 
   font-display: swap; // [Intervention] Slow network is detected. See https://www.chromestatus.com/feature/5636954674692096 for more details.

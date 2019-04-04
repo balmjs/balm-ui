@@ -22,7 +22,7 @@ module.exports = {
   resolve: {
     extensions: ['.wasm', '.mjs', '.js', '.json', '.vue'],
     alias: {
-      '@': path.resolve(__dirname, '..', 'src', 'scripts')
+      '@': path.resolve(__dirname, '../src/scripts')
     }
   },
   plugins: [new VueLoaderPlugin()]

@@ -1,5 +1,22 @@
 # BalmUI ChangeLog
 
+## 1.1.2 (2019.04.04)
+
+### Features
+
+- update mdi: `v3` -> `v41`
+
+### Bug Fixes
+
+- `<ui-snackbar>`: init bugfix
+- `$toast`: update `timeoutMs` default value to `4000`
+
+### BREAKING CHANGES
+
+- `<ui-textfield>` & `$toast`: rename props `labelText` to `message`
+
+---
+
 ## 1.1.1 (2019.03.27)
 
 ### Bug Fixes

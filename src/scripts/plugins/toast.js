@@ -12,7 +12,7 @@ const template = `<ui-snackbar
   :open="open"
   :class="['mdc-toast', options.className]"
   :timeoutMs="options.timeoutMs"
-  :labelText="options.message"
+  :message="options.message"
   @closed="handleClosed">
 </ui-snackbar>`;
 

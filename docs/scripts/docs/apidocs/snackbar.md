@@ -1,5 +1,5 @@
 ```html
-<ui-snackbar><!-- the label text --></ui-snackbar>
+<ui-snackbar><!-- the message text --></ui-snackbar>
 ```
 
 #### Props
@@ -8,17 +8,17 @@
 | ------------------ | -------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | `open` (`v-model`) | boolean        | `false`    | Mandatory.                                                                                                                                    |
 | `timeoutMs`        | number, string | `5000`     | Optional. The automatic dismiss timeout in milliseconds. Value must be between `4000` and `10000` or an error will be thrown.                 |
-| `labelText`        | string         | `''`       | Mandatory. Message text.                                                                                                                      |
+| `message`          | string         | `''`       | Mandatory. Message text.                                                                                                                      |
 | `actionButtonText` | string         | `null`     | Optional. The action button/icon elements, if present.                                                                                        |
 | `actionType`       | string         | `'button'` | Optional. Set action button or icon.                                                                                                          |
-| `stacked`          | boolean        | `false`    | Optional. Positions the action button/icon below the label instead of alongside it.                                                           |
+| `stacked`          | boolean        | `false`    | Optional. Positions the action button/icon below the message instead of alongside it.                                                         |
 | `leading`          | boolean        | `false`    | Optional. Positions the snackbar on the leading edge of the screen (left in LTR, right in RTL) instead of centered. (tablet and desktop only) |
 
 #### Slots
 
-| Name      | Slots | Description                                             |
-| --------- | ----- | ------------------------------------------------------- |
-| `default` |       | The default slot holds the label text for the snackbar. |
+| Name      | Slots | Description                                               |
+| --------- | ----- | --------------------------------------------------------- |
+| `default` |       | The default slot holds the message text for the snackbar. |
 
 #### Events
 

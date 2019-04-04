@@ -4,15 +4,15 @@ import getType from '../utils/typeof';
 
 const DEFAULT_OPTIONS = {
   className: '',
-  timeoutMs: 5000,
-  labelText: ''
+  timeoutMs: 4000,
+  message: ''
 };
 
 const template = `<ui-snackbar
   :open="open"
   :class="['mdc-toast', options.className]"
   :timeoutMs="options.timeoutMs"
-  :labelText="options.labelText"
+  :labelText="options.message"
   @closed="handleClosed">
 </ui-snackbar>`;
 
@@ -33,7 +33,7 @@ const BalmUI_ToastPlugin = {
           },
           created() {
             if (getType(customOptions) === 'string') {
-              this.options.labelText = `${customOptions}`; // To string
+              this.options.message = `${customOptions}`; // To string
             } else if (getType(customOptions) === 'object') {
               this.options = Object.assign({}, this.options, customOptions);
             }

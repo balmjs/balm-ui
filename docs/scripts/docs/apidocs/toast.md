@@ -11,5 +11,5 @@ $toast(options);
 | Option      | Type   | Default | Description                                           |
 | ----------- | ------ | ------- | ----------------------------------------------------- |
 | `className` | string | `''`    | The custom class name for the toast.                  |
-| `timeoutMs` | number | `5000`  | The amount of time in milliseconds to show the toast. |
-| `labelText` | string | `''`    | The text message to display.                          |
+| `timeoutMs` | number | `4000`  | The amount of time in milliseconds to show the toast. |
+| `message`   | string | `''`    | The text message to display.                          |

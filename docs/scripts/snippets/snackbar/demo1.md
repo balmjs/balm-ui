@@ -2,7 +2,7 @@
 <ui-snackbar
   v-model="open"
   :timeoutMs="timeout"
-  :labelText="message"
+  :message="message"
   :actionButtonText="actionText"
   :actionType="actionType ? 'icon' : 'button'"
 ></ui-snackbar>

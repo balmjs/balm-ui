@@ -4,7 +4,7 @@
     <div class="mdc-snackbar__surface">
       <!-- Text label -->
       <div class="mdc-snackbar__label" role="status" aria-live="polite">
-        <slot>{{ labelText }}</slot>
+        <slot>{{ message }}</slot>
       </div>
       <!-- Action (optional) -->
       <div v-if="hasAction" class="mdc-snackbar__actions">
@@ -50,7 +50,7 @@ export default {
       type: [Number, String],
       default: 5000
     },
-    labelText: {
+    message: {
       type: String,
       default: ''
     },
@@ -98,18 +98,9 @@ export default {
       }
     },
     timeoutMs(val) {
-      if (
-        val >= UI_SNACKBAR.timeoutMs.MIN &&
-        val <= UI_SNACKBAR.timeoutMs.MAX
-      ) {
-        this.$snackbar.timeoutMs = +val;
-      } else {
-        console.warn(
-          'The timeoutMs of the snackbar must be between `4000` and `10000`'
-        );
-      }
+      this.setTimeoutMs(+val);
     },
-    labelText(val) {
+    message(val) {
       this.$snackbar.labelText = val;
     }
     // TODO: `actionButtonText` in `mdc@0.43.0` has bug
@@ -117,10 +108,31 @@ export default {
   mounted() {
     this.$snackbar = new MDCSnackbar(this.$el);
 
+    if (this.timeoutMs !== 5e3) {
+      this.setTimeoutMs(+this.timeoutMs);
+    }
+    if (this.message) {
+      this.$snackbar.labelText = this.message;
+    }
+
     this.$snackbar.listen('MDCSnackbar:closed', () => {
       this.$emit(UI_SNACKBAR.EVENT.CHANGE, false);
       this.$emit(UI_SNACKBAR.EVENT.CLOSED);
     });
+  },
+  methods: {
+    setTimeoutMs(val) {
+      if (
+        val >= UI_SNACKBAR.timeoutMs.MIN &&
+        val <= UI_SNACKBAR.timeoutMs.MAX
+      ) {
+        this.$snackbar.timeoutMs = val;
+      } else {
+        console.warn(
+          'The timeoutMs of the snackbar must be between `4000` and `10000`'
+        );
+      }
+    }
   }
 };
 </script>

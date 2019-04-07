@@ -72,9 +72,9 @@ describe('Utilities', () => {
     expect(isObject(undefined)).toBe(false);
   });
 
-  // it('`isSymbol`', () => {
-  //   let s = new Symbol();
+  it('`isSymbol`', () => {
+    let s = Symbol();
 
-  //   expect(isSymbol(s)).toBe(true);
-  // });
+    expect(isSymbol(s)).toBe(true);
+  });
 });

@@ -43,11 +43,14 @@ describe('Utilities: types', () => {
   });
 
   it('`isFunction`', () => {
-    function warnUser() {
-      console.log('This is my warning message');
+    function sum(a, b) {
+      return a + b;
     }
+    let GeneratorFunction = Object.getPrototypeOf(function*() {}).constructor;
+    let g = new GeneratorFunction('a', 'yield a * 2');
 
-    expect(isFunction(warnUser)).toBe(true);
+    expect(isFunction(sum)).toBe(true);
+    expect(isFunction(g)).toBe(true);
   });
 
   it('`isUndefined`', () => {

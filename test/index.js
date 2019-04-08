@@ -8,3 +8,4 @@ importAll(require.context('./utils/', true, /\.spec\.js$/));
 
 // Standalone
 // require('./components/textfield.spec');
+// require('./utils/helpers.spec');

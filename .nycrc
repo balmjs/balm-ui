@@ -3,7 +3,8 @@
     "@babel/register"
   ],
   "include": [
-    "src/scripts/**"
+    "src/scripts/**",
+    "!src/scripts/utils/ie.js"
   ],
   "reporter": [
     "lcov",

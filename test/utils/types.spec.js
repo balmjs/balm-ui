@@ -10,7 +10,7 @@ import {
   isFunction
 } from '@/utils/types';
 
-describe('Utilities', () => {
+describe('Utilities: types', () => {
   it('`isBoolean`', () => {
     let isDone = false;
 

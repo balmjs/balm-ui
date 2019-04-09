@@ -144,7 +144,7 @@ We officially support the last two versions of every major browser. Specifically
 - **Edge** on Windows
 - **IE** 11 on Windows
 
-## Thank you
+## Special Thanks to
 
 - [BalmJS](https://balmjs.com/)
 - [Vue.js](https://vuejs.org/)
@@ -152,5 +152,5 @@ We officially support the last two versions of every major browser. Specifically
 
 [balm-ui-image]: https://badge.fury.io/js/balm-ui.svg
 [balm-ui-url]: https://www.npmjs.com/package/balm-ui
-[mdc-web-image]: https://img.shields.io/badge/mdc--web-1.1.0-blue.svg
+[mdc-web-image]: https://img.shields.io/badge/mdc--web-1.1.1-blue.svg
 [mdc-web-url]: https://www.npmjs.com/package/material-components-web

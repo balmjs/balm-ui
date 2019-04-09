@@ -5,8 +5,8 @@ const DMC_SOURCE = {
   icon: './src/material-design-icons/v41'
 };
 const DEV_SOURCE = {
-  mdc: './src/material-components-web',
-  font: './src/fonts'
+  mdc: './src/material-components-web'
+  // mdi: './src/material-design-icons/v3'
 };
 const DMC_COMPONENTS = [
   'animation',

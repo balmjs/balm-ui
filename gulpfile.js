@@ -17,10 +17,7 @@ balm.go(mix => {
   } else {
     if (env.updateMDC) {
       // clear
-      mix.remove([
-        `${constants.DEV_SOURCE.mdc}/*`,
-        `${constants.DEV_SOURCE.font}/*`
-      ]);
+      mix.remove([`${constants.DEV_SOURCE.mdc}/*`]);
 
       // update css reset for docs
       mix.copy(constants.CSS_RESET, './docs/styles/global', {
@@ -42,11 +39,11 @@ balm.go(mix => {
         mix.remove(`${constants.DEV_SOURCE.mdc}/${item}/node_modules`);
       });
 
-      // get Material Icons
-      mix.copy(
-        `${constants.DMC_SOURCE.icon}/*.{css,eot,ttf,woff,woff2}`,
-        constants.DEV_SOURCE.font
-      );
+      // Get Material Icons (Deprecated)
+      // mix.copy(
+      //   `${constants.DMC_SOURCE.icon}/*.{css,eot,ttf,woff,woff2}`,
+      //   constants.DEV_SOURCE.mdi
+      // );
     } else {
       if (balm.config.isProd) {
         // clear individual

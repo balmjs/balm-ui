@@ -1,7 +1,7 @@
-import UiTabs from '@/components/tabs/tabs.vue';
-import UiTabBar from '@/components/tabs/tab-bar.vue';
-import UiTabScroller from '@/components/tabs/tab-scroller.vue';
-import UiTab from '@/components/tabs/tab.vue';
+import UiTabs from '@/components/tabs/tabs';
+import UiTabBar from '@/components/tabs/tab-bar';
+import UiTabScroller from '@/components/tabs/tab-scroller';
+import UiTab from '@/components/tabs/tab';
 
 const items = [
   {
@@ -19,9 +19,8 @@ const items = [
 ];
 
 describe('<ui-tabs>', () => {
-
   it('renders default tabs', () => {
-    const wrapper = shallowMount(UiTabs, {
+    const wrapper = mount(UiTabs, {
       stubs: {
         'ui-tab-bar': UiTabBar,
         'ui-tab-scroller': UiTabScroller,
@@ -41,7 +40,7 @@ describe('<ui-tabs>', () => {
   });
 
   it('renders icon tabs', () => {
-    const wrapper = shallowMount(UiTabs, {
+    const wrapper = mount(UiTabs, {
       stubs: {
         'ui-tab-bar': UiTabBar,
         'ui-tab-scroller': UiTabScroller,
@@ -62,7 +61,7 @@ describe('<ui-tabs>', () => {
   });
 
   it('renders text label and icon tabs', () => {
-    const wrapper = shallowMount(UiTabs, {
+    const wrapper = mount(UiTabs, {
       stubs: {
         'ui-tab-bar': UiTabBar,
         'ui-tab-scroller': UiTabScroller,

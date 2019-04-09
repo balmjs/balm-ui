@@ -1,7 +1,6 @@
-import UiButton from '@/components/button/button.vue';
+import UiButton from '@/components/button/button';
 
 describe('<ui-button>', () => {
-
   it('renders default button', () => {
     const wrapper = shallowMount(UiButton);
 
@@ -45,7 +44,7 @@ describe('<ui-button>', () => {
   it('renders button with slot-scope', () => {
     const wrapper = shallowMount(UiButton, {
       scopedSlots: {
-        default: '<i slot-scope="{iconClass}">{{ iconClass }}</i>'
+        before: '<i slot-scope="{ iconClass }">{{ iconClass }}</i>'
       }
     });
 
@@ -77,5 +76,4 @@ describe('<ui-button>', () => {
 
     expect(wrapper.is('button')).toBe(true);
   });
-
 });

@@ -1,19 +1,27 @@
-import UiList from '@/components/list/list.vue';
-import UiItem from '@/components/list/item.vue';
+import UiList from '@/components/list/list';
+import UiItem from '@/components/list/item';
 
 describe('<ui-list>', () => {
-
   it('renders default list', () => {
-    const itemWrapper = shallowMount(UiItem, {
-      slots: {
-        default: 'Single-line item'
-      }
-    });
-    const item = itemWrapper.html();
+    let items = [];
+    let key = 0;
+    while (key < 3) {
+      const itemWrapper = shallowMount(UiItem, {
+        attrs: {
+          key
+        },
+        slots: {
+          default: 'Single-line item'
+        }
+      });
+      items.push(itemWrapper.html());
+
+      key++;
+    }
 
     const wrapper = shallowMount(UiList, {
       slots: {
-        default: [item, item, item]
+        default: items
       }
     });
 

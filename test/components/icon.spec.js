@@ -1,7 +1,6 @@
-import UiIcon from '@/components/common/icon.vue';
+import UiIcon from '@/components/common/icon';
 
 describe('<ui-icon>', () => {
-
   it('renders default icon', () => {
     const icon = 'face';
     const wrapper = shallowMount(UiIcon, {
@@ -51,5 +50,4 @@ describe('<ui-icon>', () => {
     expect(wrapper.classes()).toContain('md-light');
     expect(spy.calledOnce).toBe(true);
   });
-
 });

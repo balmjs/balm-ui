@@ -1,7 +1,6 @@
-import UiIconButton from '@/components/button/icon-button.vue';
+import UiIconButton from '@/components/button/icon-button';
 
 describe('<ui-icon-button>', () => {
-
   it('renders default icon button', () => {
     const wrapper = shallowMount(UiIconButton);
 
@@ -37,5 +36,4 @@ describe('<ui-icon-button>', () => {
     wrapper.trigger('click');
     expect(wrapper.vm.$iconButton.on).toBe(false);
   });
-
 });

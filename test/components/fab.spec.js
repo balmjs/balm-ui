@@ -1,7 +1,6 @@
-import UiFab from '@/components/button/fab.vue';
+import UiFab from '@/components/button/fab';
 
 describe('<ui-fab>', () => {
-
   it('renders default fab', () => {
     const wrapper = shallowMount(UiFab);
 
@@ -63,5 +62,4 @@ describe('<ui-fab>', () => {
 
     expect(wrapper.is('button')).toBe(true);
   });
-
 });

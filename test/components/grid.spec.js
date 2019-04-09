@@ -1,11 +1,10 @@
-import UiGrid from '@/components/grid/grid.vue';
-import UiGridInner from '@/components/grid/grid-inner.vue';
-import UiGridCell from '@/components/grid/grid-cell.vue';
+import UiGrid from '@/components/grid/grid';
+import UiGridInner from '@/components/grid/grid-inner';
+import UiGridCell from '@/components/grid/grid-cell';
 
 describe('<ui-grid>', () => {
-
   it('renders default grid', () => {
-    const wrapper = shallowMount(UiGrid, {
+    const wrapper = mount(UiGrid, {
       stubs: {
         'ui-grid-inner': UiGridInner
       }
@@ -19,7 +18,7 @@ describe('<ui-grid>', () => {
   });
 
   it('renders the grid with fixed column width', () => {
-    const wrapper = shallowMount(UiGrid, {
+    const wrapper = mount(UiGrid, {
       stubs: {
         'ui-grid-inner': UiGridInner
       },
@@ -36,7 +35,7 @@ describe('<ui-grid>', () => {
   });
 
   it('renders the right alignment of the whole grid', () => {
-    const wrapper = shallowMount(UiGrid, {
+    const wrapper = mount(UiGrid, {
       stubs: {
         'ui-grid-inner': UiGridInner
       },
@@ -54,7 +53,6 @@ describe('<ui-grid>', () => {
 });
 
 describe('<ui-grid-cell>', () => {
-
   it('renders 3 grid cell', () => {
     const cellWrapper = shallowMount(UiGridCell, {
       propsData: {
@@ -68,7 +66,7 @@ describe('<ui-grid-cell>', () => {
     });
     const cell = cellWrapper.html();
 
-    const wrapper = shallowMount(UiGrid, {
+    const wrapper = mount(UiGrid, {
       stubs: {
         'ui-grid-inner': UiGridInner
       },

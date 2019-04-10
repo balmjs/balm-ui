@@ -25,10 +25,10 @@ const MATERIAL_COMPONENTS = [
     name: 'Layouts',
     children: [
       {
-        icon: 'card',
-        name: 'Layout grid',
-        description: 'Grid and gutter support',
-        url: 'grid'
+        icon: 'side_navigation',
+        name: 'Drawer',
+        description: 'Navigation drawer',
+        url: 'drawer'
       },
       {
         icon: 'toolbar',
@@ -43,10 +43,10 @@ const MATERIAL_COMPONENTS = [
         url: 'top-app-bar'
       },
       {
-        icon: 'side_navigation',
-        name: 'Drawer',
-        description: 'Navigation drawer',
-        url: 'drawer'
+        icon: 'responsive_layout',
+        name: 'Layout grid',
+        description: 'Grid and gutter support',
+        url: 'grid'
       },
       {
         icon: 'tabs',

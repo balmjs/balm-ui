@@ -32,5 +32,5 @@ $mdc-top-app-bar-dense-section-horizontal-padding: 4px;
 $mdc-top-app-bar-dense-title-left-padding: 12px;
 
 /* Dense & Prominent styles */
-$mdc-top-app-bar-prominent-dense-title-bottom-padding: 9px;
+$mdc-top-app-bar-dense-prominent-title-bottom-padding: 9px;
 ```

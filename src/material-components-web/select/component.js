@@ -22,18 +22,18 @@
  */
 import * as tslib_1 from "tslib";
 import { MDCComponent } from '../base/component';
-import { MDCFloatingLabel } from '../floating-label/index';
-import { MDCLineRipple } from '../line-ripple/index';
+import { MDCFloatingLabel } from '../floating-label/component';
+import { MDCLineRipple } from '../line-ripple/component';
 import * as menuSurfaceConstants from '../menu-surface/constants';
+import { MDCMenu } from '../menu/component';
 import * as menuConstants from '../menu/constants';
-import { MDCMenu } from '../menu/index';
-import { MDCNotchedOutline } from '../notched-outline/index';
-import { MDCRipple, MDCRippleFoundation } from '../ripple/index';
+import { MDCNotchedOutline } from '../notched-outline/component';
+import { MDCRipple } from '../ripple/component';
+import { MDCRippleFoundation } from '../ripple/foundation';
 import { cssClasses, strings } from './constants';
 import { MDCSelectFoundation } from './foundation';
-import { MDCSelectHelperText } from './helper-text/index';
-import { MDCSelectIcon } from './icon/index';
-var POINTER_EVENTS = ['mousedown', 'touchstart'];
+import { MDCSelectHelperText } from './helper-text/component';
+import { MDCSelectIcon } from './icon/component';
 var VALIDATION_ATTR_WHITELIST = ['required', 'aria-required'];
 var MDCSelect = /** @class */ (function (_super) {
     tslib_1.__extends(MDCSelect, _super);
@@ -107,11 +107,13 @@ var MDCSelect = /** @class */ (function (_super) {
         this.handleKeydown_ = function (evt) { return _this.foundation_.handleKeydown(evt); };
         this.handleMenuSelected_ = function (evtData) { return _this.selectedIndex = evtData.detail.index; };
         this.handleMenuOpened_ = function () {
-            // Menu should open to the last selected element.
-            if (_this.selectedIndex >= 0) {
-                var selectedItemEl = _this.menu_.items[_this.selectedIndex];
-                selectedItemEl.focus();
+            if (_this.menu_.items.length === 0) {
+                return;
             }
+            // Menu should open to the last selected element, should open to first menu item otherwise.
+            var focusItemIndex = _this.selectedIndex >= 0 ? _this.selectedIndex : 0;
+            var focusItemEl = _this.menu_.items[focusItemIndex];
+            focusItemEl.focus();
         };
         this.handleMenuClosed_ = function () {
             // isMenuOpen_ is used to track the state of the menu opening or closing since the menu.open function
@@ -126,9 +128,7 @@ var MDCSelect = /** @class */ (function (_super) {
         this.targetElement_.addEventListener('change', this.handleChange_);
         this.targetElement_.addEventListener('focus', this.handleFocus_);
         this.targetElement_.addEventListener('blur', this.handleBlur_);
-        POINTER_EVENTS.forEach(function (evtType) {
-            _this.targetElement_.addEventListener(evtType, _this.handleClick_);
-        });
+        this.targetElement_.addEventListener('click', this.handleClick_);
         if (this.menuElement_) {
             this.selectedText_.addEventListener('keydown', this.handleKeydown_);
             this.menu_.listen(menuSurfaceConstants.strings.CLOSED_EVENT, this.handleMenuClosed_);
@@ -154,14 +154,11 @@ var MDCSelect = /** @class */ (function (_super) {
         }
     };
     MDCSelect.prototype.destroy = function () {
-        var _this = this;
         this.targetElement_.removeEventListener('change', this.handleChange_);
         this.targetElement_.removeEventListener('focus', this.handleFocus_);
         this.targetElement_.removeEventListener('blur', this.handleBlur_);
         this.targetElement_.removeEventListener('keydown', this.handleKeydown_);
-        POINTER_EVENTS.forEach(function (evtType) {
-            _this.targetElement_.removeEventListener(evtType, _this.handleClick_);
-        });
+        this.targetElement_.removeEventListener('click', this.handleClick_);
         if (this.menu_) {
             this.menu_.unlisten(menuSurfaceConstants.strings.CLOSED_EVENT, this.handleMenuClosed_);
             this.menu_.unlisten(menuSurfaceConstants.strings.OPENED_EVENT, this.handleMenuOpened_);

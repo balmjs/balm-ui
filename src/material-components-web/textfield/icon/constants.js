@@ -24,5 +24,8 @@ var strings = {
     ICON_EVENT: 'MDCTextField:icon',
     ICON_ROLE: 'button',
 };
-export { strings };
+var cssClasses = {
+    ROOT: 'mdc-text-field__icon',
+};
+export { strings, cssClasses };
 //# sourceMappingURL=constants.js.map

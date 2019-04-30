@@ -21,7 +21,9 @@ function detectEdgePseudoVarBug(windowObj) {
     // See: https://bugzilla.mozilla.org/show_bug.cgi?id=548397
     var computedStyle = windowObj.getComputedStyle(node);
     var hasPseudoVarBug = computedStyle !== null && computedStyle.borderTopStyle === 'solid';
-    node.remove();
+    if (node.parentNode) {
+        node.parentNode.removeChild(node);
+    }
     return hasPseudoVarBug;
 }
 export function supportsCssVariables(windowObj, forceRefresh) {

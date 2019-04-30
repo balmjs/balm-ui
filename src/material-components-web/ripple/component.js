@@ -22,7 +22,7 @@
  */
 import * as tslib_1 from "tslib";
 import { MDCComponent } from '../base/component';
-import { ponyfill } from '../dom/index';
+import { matches } from '../dom/ponyfill';
 import { MDCRippleFoundation } from './foundation';
 import * as util from './util';
 var MDCRipple = /** @class */ (function (_super) {
@@ -55,7 +55,7 @@ var MDCRipple = /** @class */ (function (_super) {
             },
             deregisterResizeHandler: function (handler) { return window.removeEventListener('resize', handler); },
             getWindowPageOffset: function () { return ({ x: window.pageXOffset, y: window.pageYOffset }); },
-            isSurfaceActive: function () { return ponyfill.matches(instance.root_, ':active'); },
+            isSurfaceActive: function () { return matches(instance.root_, ':active'); },
             isSurfaceDisabled: function () { return Boolean(instance.disabled); },
             isUnbounded: function () { return Boolean(instance.unbounded); },
             registerDocumentInteractionHandler: function (evtType, handler) {

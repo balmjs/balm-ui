@@ -24,12 +24,13 @@ import * as tslib_1 from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { MDCListFoundation } from '../list/foundation';
 import { MDCMenuSurfaceFoundation } from '../menu-surface/foundation';
-import { cssClasses, strings } from './constants';
+import { cssClasses, DefaultFocusState, numbers, strings } from './constants';
 var MDCMenuFoundation = /** @class */ (function (_super) {
     tslib_1.__extends(MDCMenuFoundation, _super);
     function MDCMenuFoundation(adapter) {
         var _this = _super.call(this, tslib_1.__assign({}, MDCMenuFoundation.defaultAdapter, adapter)) || this;
         _this.closeAnimationEndTimerId_ = 0;
+        _this.defaultFocusState_ = DefaultFocusState.LIST_ROOT;
         return _this;
     }
     Object.defineProperty(MDCMenuFoundation, "cssClasses", {
@@ -42,6 +43,13 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
     Object.defineProperty(MDCMenuFoundation, "strings", {
         get: function () {
             return strings;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCMenuFoundation, "numbers", {
+        get: function () {
+            return numbers;
         },
         enumerable: true,
         configurable: true
@@ -63,6 +71,9 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
                 getParentElement: function () { return null; },
                 getSelectedElementIndex: function () { return -1; },
                 notifySelected: function () { return undefined; },
+                getMenuItemCount: function () { return 0; },
+                focusItemAtIndex: function () { return undefined; },
+                focusListRoot: function () { return undefined; },
             };
             // tslint:enable:object-literal-sort-keys
         },
@@ -97,6 +108,30 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
                 _this.handleSelectionGroup_(selectionGroup, index);
             }
         }, MDCMenuSurfaceFoundation.numbers.TRANSITION_CLOSE_DURATION);
+    };
+    MDCMenuFoundation.prototype.handleMenuSurfaceOpened = function () {
+        switch (this.defaultFocusState_) {
+            case DefaultFocusState.FIRST_ITEM:
+                this.adapter_.focusItemAtIndex(0);
+                break;
+            case DefaultFocusState.LAST_ITEM:
+                this.adapter_.focusItemAtIndex(this.adapter_.getMenuItemCount() - 1);
+                break;
+            case DefaultFocusState.NONE:
+                // Do nothing.
+                break;
+            default:
+                this.adapter_.focusListRoot();
+                break;
+        }
+    };
+    /**
+     * Sets default focus state where the menu should focus every time when menu
+     * is opened. Focuses the list root (`DefaultFocusState.LIST_ROOT`) element by
+     * default.
+     */
+    MDCMenuFoundation.prototype.setDefaultFocusState = function (focusState) {
+        this.defaultFocusState_ = focusState;
     };
     /**
      * Handles toggling the selected classes in a selection group when a selection is made.

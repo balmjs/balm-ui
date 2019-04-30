@@ -23,6 +23,7 @@
 var cssClasses = {
     LIST_ITEM_ACTIVATED_CLASS: 'mdc-list-item--activated',
     LIST_ITEM_CLASS: 'mdc-list-item',
+    LIST_ITEM_DISABLED_CLASS: 'mdc-list-item--disabled',
     LIST_ITEM_SELECTED_CLASS: 'mdc-list-item--selected',
     ROOT: 'mdc-list',
 };
@@ -39,7 +40,6 @@ var strings = {
     CHECKBOX_RADIO_SELECTOR: 'input[type="checkbox"]:not(:disabled), input[type="radio"]:not(:disabled)',
     CHECKBOX_SELECTOR: 'input[type="checkbox"]:not(:disabled)',
     CHILD_ELEMENTS_TO_TOGGLE_TABINDEX: "\n    ." + cssClasses.LIST_ITEM_CLASS + " button:not(:disabled),\n    ." + cssClasses.LIST_ITEM_CLASS + " a\n  ",
-    ENABLED_ITEMS_SELECTOR: '.mdc-list-item:not(.mdc-list-item--disabled)',
     FOCUSABLE_CHILD_ELEMENTS: "\n    ." + cssClasses.LIST_ITEM_CLASS + " button:not(:disabled),\n    ." + cssClasses.LIST_ITEM_CLASS + " a,\n    ." + cssClasses.LIST_ITEM_CLASS + " input[type=\"radio\"]:not(:disabled),\n    ." + cssClasses.LIST_ITEM_CLASS + " input[type=\"checkbox\"]:not(:disabled)\n  ",
     RADIO_SELECTOR: 'input[type="radio"]:not(:disabled)',
 };

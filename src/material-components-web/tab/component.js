@@ -22,8 +22,9 @@
  */
 import * as tslib_1 from "tslib";
 import { MDCComponent } from '../base/component';
-import { MDCRipple, MDCRippleFoundation } from '../ripple/index';
-import { MDCTabIndicator } from '../tab-indicator/index';
+import { MDCRipple } from '../ripple/component';
+import { MDCRippleFoundation } from '../ripple/foundation';
+import { MDCTabIndicator } from '../tab-indicator/component';
 import { MDCTabFoundation } from './foundation';
 var MDCTab = /** @class */ (function (_super) {
     tslib_1.__extends(MDCTab, _super);

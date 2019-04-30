@@ -22,7 +22,7 @@
  */
 import * as tslib_1 from "tslib";
 import { MDCComponent } from '../base/component';
-import { ponyfill } from '../dom/index';
+import { matches } from '../dom/ponyfill';
 import { MDCTabScrollerFoundation } from './foundation';
 import * as util from './util';
 var MDCTabScroller = /** @class */ (function (_super) {
@@ -63,7 +63,7 @@ var MDCTabScroller = /** @class */ (function (_super) {
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
-            eventTargetMatchesSelector: function (evtTarget, selector) { return ponyfill.matches(evtTarget, selector); },
+            eventTargetMatchesSelector: function (evtTarget, selector) { return matches(evtTarget, selector); },
             addClass: function (className) { return _this.root_.classList.add(className); },
             removeClass: function (className) { return _this.root_.classList.remove(className); },
             addScrollAreaClass: function (className) { return _this.area_.classList.add(className); },

@@ -22,7 +22,7 @@
  */
 import * as tslib_1 from "tslib";
 import { MDCComponent } from '../base/component';
-import { ponyfill } from '../dom/index';
+import { closest } from '../dom/ponyfill';
 import { strings } from './constants';
 import { MDCSnackbarFoundation } from './foundation';
 import * as util from './util';
@@ -151,10 +151,10 @@ var MDCSnackbar = /** @class */ (function (_super) {
         this.surfaceEl_.removeEventListener('click', handler);
     };
     MDCSnackbar.prototype.isActionButton_ = function (target) {
-        return Boolean(ponyfill.closest(target, ACTION_SELECTOR));
+        return Boolean(closest(target, ACTION_SELECTOR));
     };
     MDCSnackbar.prototype.isActionIcon_ = function (target) {
-        return Boolean(ponyfill.closest(target, DISMISS_SELECTOR));
+        return Boolean(closest(target, DISMISS_SELECTOR));
     };
     return MDCSnackbar;
 }(MDCComponent));

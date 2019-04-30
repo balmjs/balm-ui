@@ -22,7 +22,7 @@
  */
 import * as tslib_1 from "tslib";
 import { MDCComponent } from '../base/component';
-import { ponyfill } from '../dom/index';
+import { closest, matches } from '../dom/ponyfill';
 import { cssClasses, strings } from './constants';
 import { MDCListFoundation } from './foundation';
 var MDCList = /** @class */ (function (_super) {
@@ -39,7 +39,7 @@ var MDCList = /** @class */ (function (_super) {
     });
     Object.defineProperty(MDCList.prototype, "listElements", {
         get: function () {
-            return [].slice.call(this.root_.querySelectorAll(strings.ENABLED_ITEMS_SELECTOR));
+            return [].slice.call(this.root_.querySelectorAll("." + cssClasses.LIST_ITEM_CLASS));
         },
         enumerable: true,
         configurable: true
@@ -162,6 +162,7 @@ var MDCList = /** @class */ (function (_super) {
             isFocusInsideList: function () {
                 return _this.root_.contains(document.activeElement);
             },
+            isRootFocused: function () { return document.activeElement === _this.root_; },
             notifyAction: function (index) {
                 _this.emit(strings.ACTION_EVENT, { index: index }, /** shouldBubble */ true);
             },
@@ -199,9 +200,9 @@ var MDCList = /** @class */ (function (_super) {
      */
     MDCList.prototype.getListItemIndex_ = function (evt) {
         var eventTarget = evt.target;
-        var nearestParent = ponyfill.closest(eventTarget, "." + cssClasses.LIST_ITEM_CLASS + ", ." + cssClasses.ROOT);
+        var nearestParent = closest(eventTarget, "." + cssClasses.LIST_ITEM_CLASS + ", ." + cssClasses.ROOT);
         // Get the index of the element if it is a list item.
-        if (nearestParent && ponyfill.matches(nearestParent, "." + cssClasses.LIST_ITEM_CLASS)) {
+        if (nearestParent && matches(nearestParent, "." + cssClasses.LIST_ITEM_CLASS)) {
             return this.listElements.indexOf(nearestParent);
         }
         return -1;
@@ -227,9 +228,7 @@ var MDCList = /** @class */ (function (_super) {
     MDCList.prototype.handleKeydownEvent_ = function (evt) {
         var index = this.getListItemIndex_(evt);
         var target = evt.target;
-        if (index >= 0) {
-            this.foundation_.handleKeydown(evt, target.classList.contains(cssClasses.LIST_ITEM_CLASS), index);
-        }
+        this.foundation_.handleKeydown(evt, target.classList.contains(cssClasses.LIST_ITEM_CLASS), index);
     };
     /**
      * Used to figure out which element was clicked before sending the event to the foundation.
@@ -238,7 +237,7 @@ var MDCList = /** @class */ (function (_super) {
         var index = this.getListItemIndex_(evt);
         var target = evt.target;
         // Toggle the checkbox only if it's not the target of the event, or the checkbox will have 2 change events.
-        var toggleCheckbox = !ponyfill.matches(target, strings.CHECKBOX_RADIO_SELECTOR);
+        var toggleCheckbox = !matches(target, strings.CHECKBOX_RADIO_SELECTOR);
         this.foundation_.handleClick(index, toggleCheckbox);
     };
     return MDCList;

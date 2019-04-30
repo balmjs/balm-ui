@@ -22,8 +22,9 @@
  */
 import * as tslib_1 from "tslib";
 import { MDCComponent } from '../base/component';
-import { ponyfill } from '../dom/index';
-import { MDCRipple, MDCRippleFoundation } from '../ripple/index';
+import { matches } from '../dom/ponyfill';
+import { MDCRipple } from '../ripple/component';
+import { MDCRippleFoundation } from '../ripple/foundation';
 import { MDCSwitchFoundation } from './foundation';
 var MDCSwitch = /** @class */ (function (_super) {
     tslib_1.__extends(MDCSwitch, _super);
@@ -103,7 +104,7 @@ var MDCSwitch = /** @class */ (function (_super) {
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         var adapter = tslib_1.__assign({}, MDCRipple.createAdapter(this), { addClass: function (className) { return rippleSurface.classList.add(className); }, computeBoundingRect: function () { return rippleSurface.getBoundingClientRect(); }, deregisterInteractionHandler: function (evtType, handler) {
                 _this.nativeControl_.removeEventListener(evtType, handler);
-            }, isSurfaceActive: function () { return ponyfill.matches(_this.nativeControl_, ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (evtType, handler) {
+            }, isSurfaceActive: function () { return matches(_this.nativeControl_, ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (evtType, handler) {
                 _this.nativeControl_.addEventListener(evtType, handler);
             }, removeClass: function (className) { return rippleSurface.classList.remove(className); }, updateCssVariable: function (varName, value) {
                 rippleSurface.style.setProperty(varName, value);

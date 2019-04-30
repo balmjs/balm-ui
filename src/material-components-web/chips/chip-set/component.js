@@ -22,7 +22,8 @@
  */
 import * as tslib_1 from "tslib";
 import { MDCComponent } from '../../base/component';
-import { MDCChip, MDCChipFoundation } from '../chip/index';
+import { MDCChip } from '../chip/component';
+import { MDCChipFoundation } from '../chip/foundation';
 import { MDCChipSetFoundation } from './foundation';
 var _a = MDCChipFoundation.strings, INTERACTION_EVENT = _a.INTERACTION_EVENT, SELECTION_EVENT = _a.SELECTION_EVENT, REMOVAL_EVENT = _a.REMOVAL_EVENT;
 var CHIP_SELECTOR = MDCChipSetFoundation.strings.CHIP_SELECTOR;

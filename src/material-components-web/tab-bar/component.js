@@ -22,8 +22,9 @@
  */
 import * as tslib_1 from "tslib";
 import { MDCComponent } from '../base/component';
-import { MDCTabScroller } from '../tab-scroller/index';
-import { MDCTab, MDCTabFoundation } from '../tab/index';
+import { MDCTabScroller } from '../tab-scroller/component';
+import { MDCTab } from '../tab/component';
+import { MDCTabFoundation } from '../tab/foundation';
 import { MDCTabBarFoundation } from './foundation';
 var strings = MDCTabBarFoundation.strings;
 var tabIdCounter = 0;

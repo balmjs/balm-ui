@@ -22,7 +22,7 @@
  */
 import * as tslib_1 from "tslib";
 import { MDCFoundation } from '../../base/foundation';
-import { strings } from './constants';
+import { cssClasses, strings } from './constants';
 var INTERACTION_EVENTS = ['click', 'keydown'];
 var MDCTextFieldIconFoundation = /** @class */ (function (_super) {
     tslib_1.__extends(MDCTextFieldIconFoundation, _super);
@@ -35,6 +35,13 @@ var MDCTextFieldIconFoundation = /** @class */ (function (_super) {
     Object.defineProperty(MDCTextFieldIconFoundation, "strings", {
         get: function () {
             return strings;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTextFieldIconFoundation, "cssClasses", {
+        get: function () {
+            return cssClasses;
         },
         enumerable: true,
         configurable: true

@@ -22,9 +22,10 @@
  */
 import * as tslib_1 from "tslib";
 import { MDCComponent } from '../base/component';
-import { MDCList, MDCListFoundation } from '../list/index';
+import { MDCList } from '../list/component';
+import { MDCListFoundation } from '../list/foundation';
+import { MDCMenuSurface } from '../menu-surface/component';
 import { MDCMenuSurfaceFoundation } from '../menu-surface/foundation';
-import { MDCMenuSurface } from '../menu-surface/index';
 import { cssClasses, strings } from './constants';
 import { MDCMenuFoundation } from './foundation';
 var MDCMenu = /** @class */ (function (_super) {
@@ -54,8 +55,8 @@ var MDCMenu = /** @class */ (function (_super) {
         }
         this.handleKeydown_ = function (evt) { return _this.foundation_.handleKeydown(evt); };
         this.handleItemAction_ = function (evt) { return _this.foundation_.handleItemAction(_this.items[evt.detail.index]); };
-        this.afterOpenedCallback_ = function () { return _this.handleAfterOpened_(); };
-        this.menuSurface_.listen(MDCMenuSurfaceFoundation.strings.OPENED_EVENT, this.afterOpenedCallback_);
+        this.handleMenuSurfaceOpened_ = function () { return _this.foundation_.handleMenuSurfaceOpened(); };
+        this.menuSurface_.listen(MDCMenuSurfaceFoundation.strings.OPENED_EVENT, this.handleMenuSurfaceOpened_);
         this.listen('keydown', this.handleKeydown_);
         this.listen(MDCListFoundation.strings.ACTION_EVENT, this.handleItemAction_);
     };
@@ -64,7 +65,7 @@ var MDCMenu = /** @class */ (function (_super) {
             this.list_.destroy();
         }
         this.menuSurface_.destroy();
-        this.menuSurface_.unlisten(MDCMenuSurfaceFoundation.strings.OPENED_EVENT, this.afterOpenedCallback_);
+        this.menuSurface_.unlisten(MDCMenuSurfaceFoundation.strings.OPENED_EVENT, this.handleMenuSurfaceOpened_);
         this.unlisten('keydown', this.handleKeydown_);
         this.unlisten(MDCListFoundation.strings.ACTION_EVENT, this.handleItemAction_);
         _super.prototype.destroy.call(this);
@@ -110,6 +111,15 @@ var MDCMenu = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
+    /**
+     * Sets default focus state where the menu should focus every time when menu
+     * is opened. Focuses the list root (`DefaultFocusState.LIST_ROOT`) element by
+     * default.
+     * @param focusState Default focus state.
+     */
+    MDCMenu.prototype.setDefaultFocusState = function (focusState) {
+        this.foundation_.setDefaultFocusState(focusState);
+    };
     /**
      * @param corner Default anchor corner alignment of top-left menu corner.
      */
@@ -183,15 +193,12 @@ var MDCMenu = /** @class */ (function (_super) {
                 index: evtData.index,
                 item: _this.items[evtData.index],
             }); },
+            getMenuItemCount: function () { return _this.items.length; },
+            focusItemAtIndex: function (index) { return _this.items[index].focus(); },
+            focusListRoot: function () { return _this.root_.querySelector(strings.LIST_SELECTOR).focus(); },
         };
         // tslint:enable:object-literal-sort-keys
         return new MDCMenuFoundation(adapter);
-    };
-    MDCMenu.prototype.handleAfterOpened_ = function () {
-        var list = this.items;
-        if (list.length > 0) {
-            list[0].focus();
-        }
     };
     return MDCMenu;
 }(MDCComponent));

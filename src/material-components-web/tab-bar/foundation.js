@@ -99,8 +99,12 @@ var MDCTabBarFoundation = /** @class */ (function (_super) {
         if (!this.indexIsInRange_(index) || index === previousActiveIndex) {
             return;
         }
-        this.adapter_.deactivateTabAtIndex(previousActiveIndex);
-        this.adapter_.activateTabAtIndex(index, this.adapter_.getTabIndicatorClientRectAtIndex(previousActiveIndex));
+        var previousClientRect;
+        if (previousActiveIndex !== -1) {
+            this.adapter_.deactivateTabAtIndex(previousActiveIndex);
+            previousClientRect = this.adapter_.getTabIndicatorClientRectAtIndex(previousActiveIndex);
+        }
+        this.adapter_.activateTabAtIndex(index, previousClientRect);
         this.scrollIntoView(index);
         this.adapter_.notifyTabActivated(index);
     };

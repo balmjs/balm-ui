@@ -31,5 +31,15 @@ var strings = {
     LIST_SELECTOR: '.mdc-list',
     SELECTED_EVENT: 'MDCMenu:selected',
 };
-export { cssClasses, strings };
+var numbers = {
+    FOCUS_ROOT_INDEX: -1,
+};
+var DefaultFocusState;
+(function (DefaultFocusState) {
+    DefaultFocusState[DefaultFocusState["NONE"] = 0] = "NONE";
+    DefaultFocusState[DefaultFocusState["LIST_ROOT"] = 1] = "LIST_ROOT";
+    DefaultFocusState[DefaultFocusState["FIRST_ITEM"] = 2] = "FIRST_ITEM";
+    DefaultFocusState[DefaultFocusState["LAST_ITEM"] = 3] = "LAST_ITEM";
+})(DefaultFocusState || (DefaultFocusState = {}));
+export { cssClasses, strings, numbers, DefaultFocusState };
 //# sourceMappingURL=constants.js.map

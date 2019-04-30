@@ -23,16 +23,18 @@
 import * as tslib_1 from "tslib";
 import { MDCComponent } from '../base/component';
 import * as ponyfill from '../dom/ponyfill';
-import { MDCFloatingLabel } from '../floating-label/index';
-import { MDCLineRipple } from '../line-ripple/index';
-import { MDCNotchedOutline } from '../notched-outline/index';
+import { MDCFloatingLabel } from '../floating-label/component';
+import { MDCLineRipple } from '../line-ripple/component';
+import { MDCNotchedOutline } from '../notched-outline/component';
 import { MDCRipple } from '../ripple/component';
 import { MDCRippleFoundation } from '../ripple/foundation';
-import { MDCTextFieldCharacterCounter, MDCTextFieldCharacterCounterFoundation, } from './character-counter/index';
+import { MDCTextFieldCharacterCounter, } from './character-counter/component';
+import { MDCTextFieldCharacterCounterFoundation } from './character-counter/foundation';
 import { cssClasses, strings } from './constants';
 import { MDCTextFieldFoundation } from './foundation';
-import { MDCTextFieldHelperText, MDCTextFieldHelperTextFoundation, } from './helper-text/index';
-import { MDCTextFieldIcon } from './icon/index';
+import { MDCTextFieldHelperText, } from './helper-text/component';
+import { MDCTextFieldHelperTextFoundation } from './helper-text/foundation';
+import { MDCTextFieldIcon } from './icon/component';
 var MDCTextField = /** @class */ (function (_super) {
     tslib_1.__extends(MDCTextField, _super);
     function MDCTextField() {

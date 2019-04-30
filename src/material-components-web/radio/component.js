@@ -22,7 +22,8 @@
  */
 import * as tslib_1 from "tslib";
 import { MDCComponent } from '../base/component';
-import { MDCRipple, MDCRippleFoundation } from '../ripple/index';
+import { MDCRipple } from '../ripple/component';
+import { MDCRippleFoundation } from '../ripple/foundation';
 import { MDCRadioFoundation } from './foundation';
 var MDCRadio = /** @class */ (function (_super) {
     tslib_1.__extends(MDCRadio, _super);

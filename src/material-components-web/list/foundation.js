@@ -75,6 +75,7 @@ var MDCListFoundation = /** @class */ (function (_super) {
                 hasRadioAtIndex: function () { return false; },
                 isCheckboxCheckedAtIndex: function () { return false; },
                 isFocusInsideList: function () { return false; },
+                isRootFocused: function () { return false; },
                 notifyAction: function () { return undefined; },
                 removeClassForElementIndex: function () { return undefined; },
                 setAttributeForElementIndex: function () { return undefined; },
@@ -167,17 +168,27 @@ var MDCListFoundation = /** @class */ (function (_super) {
      * Key handler for the list.
      */
     MDCListFoundation.prototype.handleKeydown = function (evt, isRootListItem, listItemIndex) {
-        var arrowLeft = evt.key === 'ArrowLeft' || evt.keyCode === 37;
-        var arrowUp = evt.key === 'ArrowUp' || evt.keyCode === 38;
-        var arrowRight = evt.key === 'ArrowRight' || evt.keyCode === 39;
-        var arrowDown = evt.key === 'ArrowDown' || evt.keyCode === 40;
+        var isArrowLeft = evt.key === 'ArrowLeft' || evt.keyCode === 37;
+        var isArrowUp = evt.key === 'ArrowUp' || evt.keyCode === 38;
+        var isArrowRight = evt.key === 'ArrowRight' || evt.keyCode === 39;
+        var isArrowDown = evt.key === 'ArrowDown' || evt.keyCode === 40;
         var isHome = evt.key === 'Home' || evt.keyCode === 36;
         var isEnd = evt.key === 'End' || evt.keyCode === 35;
         var isEnter = evt.key === 'Enter' || evt.keyCode === 13;
         var isSpace = evt.key === 'Space' || evt.keyCode === 32;
+        if (this.adapter_.isRootFocused()) {
+            if (isArrowUp || isEnd) {
+                evt.preventDefault();
+                this.focusLastElement();
+            }
+            else if (isArrowDown || isHome) {
+                evt.preventDefault();
+                this.focusFirstElement();
+            }
+            return;
+        }
         var currentIndex = this.adapter_.getFocusedElementIndex();
-        var nextIndex = numbers.UNSET_INDEX;
-        if (currentIndex === numbers.UNSET_INDEX) {
+        if (currentIndex === -1) {
             currentIndex = listItemIndex;
             if (currentIndex < 0) {
                 // If this event doesn't have a mdc-list-item ancestor from the
@@ -185,11 +196,12 @@ var MDCListFoundation = /** @class */ (function (_super) {
                 return;
             }
         }
-        if ((this.isVertical_ && arrowDown) || (!this.isVertical_ && arrowRight)) {
+        var nextIndex;
+        if ((this.isVertical_ && isArrowDown) || (!this.isVertical_ && isArrowRight)) {
             this.preventDefaultEvent_(evt);
             nextIndex = this.focusNextElement(currentIndex);
         }
-        else if ((this.isVertical_ && arrowUp) || (!this.isVertical_ && arrowLeft)) {
+        else if ((this.isVertical_ && isArrowUp) || (!this.isVertical_ && isArrowLeft)) {
             this.preventDefaultEvent_(evt);
             nextIndex = this.focusPrevElement(currentIndex);
         }
@@ -216,7 +228,7 @@ var MDCListFoundation = /** @class */ (function (_super) {
             }
         }
         this.focusedItemIndex_ = currentIndex;
-        if (nextIndex >= 0) {
+        if (nextIndex !== undefined) {
             this.setTabindexAtIndex_(nextIndex);
             this.focusedItemIndex_ = nextIndex;
         }

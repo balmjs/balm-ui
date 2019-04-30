@@ -8,6 +8,11 @@
 
     <!-- <ui-toc-affix></ui-toc-affix> -->
     <div :class="$tt('body2')">
+      <h4 :class="$tt('headline4')">0. Important - Deprecation Notice</h4>
+      <p>
+        The existing &lt;ui-grid-list&gt; component and styles will be removed in a future release. Some of its functionality will be available in the <router-link :to="{name: 'data.image-list'}">&lt;ui-image-list&gt;</router-link> package instead.
+      </p>
+
       <h4 :class="$tt('headline4')">1. Example</h4>
       <section class="example examples">
         <h2>Grid List (Default): empty grid</h2>

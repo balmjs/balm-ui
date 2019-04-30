@@ -1,5 +1,15 @@
 # BalmUI ChangeLog
 
+## 2.0.0 (2019.04.30)
+
+### Features
+
+- update `balm@1.3.2`
+- update `mdc@2.0.0`
+- update new test for browser & node
+
+---
+
 ## 1.1.4 (2019.04.09)
 
 ### Features

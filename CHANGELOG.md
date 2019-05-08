@@ -3,6 +3,7 @@
 ## 2.1.0 (2019.05.08)
 
 - update [`mdc@2.1.0`](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#210-2019-05-06)
+- update css reset
 
 ---
 

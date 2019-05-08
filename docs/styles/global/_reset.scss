@@ -1,4 +1,5 @@
-@import './normalize';
+// @import './normalize'; // OLD
+@import './sanitize'; // NEW
 
 a {
   text-decoration: none;

@@ -1,4 +1,7 @@
-const CSS_RESET = './node_modules/normalize.css/normalize.css';
+const CSS_RESET = {
+  normalize: './node_modules/@csstools/normalize.css/normalize.css',
+  sanitize: './node_modules/sanitize.css/sanitize.css'
+};
 const DMC_SOURCE = {
   mdc: './node_modules/material-components-web',
   material: './node_modules/@material',

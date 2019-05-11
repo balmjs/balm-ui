@@ -1,5 +1,11 @@
 # BalmUI ChangeLog
 
+## 2.1.1 (2019.05.11)
+
+- update [`mdc@2.1.1`](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#211-2019-05-10)
+
+---
+
 ## 2.1.0 (2019.05.08)
 
 - update [`mdc@2.1.0`](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#210-2019-05-06)

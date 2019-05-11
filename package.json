@@ -1,6 +1,6 @@
 {
   "name": "balm-ui",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Next Generation Material UI for Vue.js",
   "homepage": "https://material.balmjs.com",
   "author": {
@@ -78,11 +78,11 @@
     "karma-spec-reporter": "^0.0.32",
     "karma-webpack": "^3.0.5",
     "markdown-loader": "^5.0.0",
-    "material-components-web": "^2.1.0",
+    "material-components-web": "^2.1.1",
     "material-design-icons": "^3.0.1",
     "mocha": "^6.1.4",
     "mocha-webpack": "^2.0.0-beta.0",
-    "nyc": "^14.1.0",
+    "nyc": "^14.1.1",
     "prettier": "^1.17.0",
     "prismjs": "^1.16.0",
     "sanitize.css": "^8.0.0",

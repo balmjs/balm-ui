@@ -1,5 +1,15 @@
 # BalmUI ChangeLog
 
+## 2.2.0 (2019.05.15)
+
+### Features
+
+- update `balm@1.4.1`
+- update [`mdc@2.2.0`](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#220-2019-05-13)
+- building PWA for BalmUI site
+
+---
+
 ## 2.1.1 (2019.05.11)
 
 - update [`mdc@2.1.1`](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#211-2019-05-10)

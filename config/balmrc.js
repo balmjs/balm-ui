@@ -69,5 +69,9 @@ module.exports = {
     publicUrl: env.buildDocs ? '//material.balmjs.com/' : ''
   },
   cache: env.buildDocs,
+  pwa: {
+    enabled: env.useDocs,
+    mode: 'injectManifest'
+  },
   useDefault: env.useDefault
 };

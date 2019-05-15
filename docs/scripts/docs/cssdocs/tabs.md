@@ -13,4 +13,6 @@ $mdc-tab-icon-color-default: rgba(
   mdc-theme-prop-value(on-surface),
   $mdc-tab-icon-opacity
 );
+$mdc-tab-text-label-color-active: primary;
+$mdc-tab-icon-color-active: primary;
 ```

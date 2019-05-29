@@ -21,6 +21,7 @@
  * THE SOFTWARE.
  */
 var cssClasses = {
+    ACTIVATED: 'mdc-select--activated',
     DISABLED: 'mdc-select--disabled',
     FOCUSED: 'mdc-select--focused',
     INVALID: 'mdc-select--invalid',

@@ -22,4 +22,5 @@
  */
 export * from './component';
 export * from './foundation';
+export { strings as iconStrings } from './constants';
 //# sourceMappingURL=index.js.map

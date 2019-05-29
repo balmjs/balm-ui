@@ -131,6 +131,12 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         var openNotch = this.getValue().length > 0;
         this.notchOutline(openNotch);
     };
+    MDCSelectFoundation.prototype.handleMenuOpened = function () {
+        this.adapter_.addClass(cssClasses.ACTIVATED);
+    };
+    MDCSelectFoundation.prototype.handleMenuClosed = function () {
+        this.adapter_.removeClass(cssClasses.ACTIVATED);
+    };
     /**
      * Handles value changes, via change event or programmatic updates.
      */

@@ -22,4 +22,5 @@
  */
 export * from './component';
 export * from './foundation';
+export { cssClasses as characterCountCssClasses, strings as characterCountStrings } from './constants';
 //# sourceMappingURL=index.js.map

@@ -21,6 +21,7 @@
  * THE SOFTWARE.
  */
 export * from './component';
+export * from './constants';
 export * from './foundation';
 export * from './fixed/foundation';
 export * from './short/foundation';

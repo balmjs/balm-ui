@@ -22,4 +22,5 @@
  */
 export * from './component';
 export * from './foundation';
+export { cssClasses as chipCssClasses, strings as chipStrings } from './constants';
 //# sourceMappingURL=index.js.map

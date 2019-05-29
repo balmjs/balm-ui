@@ -107,6 +107,7 @@ var MDCSelect = /** @class */ (function (_super) {
         this.handleKeydown_ = function (evt) { return _this.foundation_.handleKeydown(evt); };
         this.handleMenuSelected_ = function (evtData) { return _this.selectedIndex = evtData.detail.index; };
         this.handleMenuOpened_ = function () {
+            _this.foundation_.handleMenuOpened();
             if (_this.menu_.items.length === 0) {
                 return;
             }
@@ -116,6 +117,7 @@ var MDCSelect = /** @class */ (function (_super) {
             focusItemEl.focus();
         };
         this.handleMenuClosed_ = function () {
+            _this.foundation_.handleMenuClosed();
             // isMenuOpen_ is used to track the state of the menu opening or closing since the menu.open function
             // will return false if the menu is still closing and this method listens to the closed event which
             // occurs after the menu is already closed.

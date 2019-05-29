@@ -22,5 +22,6 @@
  */
 export { Corner } from '../menu-surface/constants'; // for backward compatibility
 export * from './component';
+export * from './constants';
 export * from './foundation';
 //# sourceMappingURL=index.js.map

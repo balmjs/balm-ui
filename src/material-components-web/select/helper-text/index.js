@@ -22,4 +22,5 @@
  */
 export * from './component';
 export * from './foundation';
+export { cssClasses as helperTextCssClasses, strings as helperTextStrings } from './constants';
 //# sourceMappingURL=index.js.map

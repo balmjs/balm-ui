@@ -1,5 +1,14 @@
 # BalmUI ChangeLog
 
+## 2.3.0 (2019.05.29)
+
+### Features
+
+- update `balm@1.4.2`
+- update `mdc@2.3.0`
+
+---
+
 ## 2.2.0 (2019.05.15)
 
 ### Features

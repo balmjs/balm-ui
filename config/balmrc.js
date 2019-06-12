@@ -10,8 +10,7 @@ module.exports = {
     source: env.useDocs ? 'docs' : 'src'
   },
   styles: {
-    ext: 'scss',
-    autoprefixer: ['> 0.5%', 'last 2 versions', 'Firefox ESR', 'not dead']
+    ext: 'scss'
   },
   scripts: {
     entry: env.useDocs

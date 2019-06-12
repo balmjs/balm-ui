@@ -46,7 +46,7 @@ $mdc-text-field-secondary-text: rgba(mdc-theme-prop-value(on-surface), 0.6);
 
 $mdc-text-field-outlined-idle-border: rgba(
   mdc-theme-prop-value(on-surface),
-  0.24
+  0.38
 );
 $mdc-text-field-outlined-disabled-border: rgba(
   mdc-theme-prop-value(on-surface),

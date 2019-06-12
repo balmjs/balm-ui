@@ -10,4 +10,4 @@ let testRoutes = [
   }
 ];
 
-export default (isDev ? testRoutes : []);
+export default isDev ? testRoutes : [];

@@ -25,7 +25,6 @@ $mdc-select-fill-color: mix(
   4%
 );
 
-$mdc-select-outlined-idle-border: rgba(mdc-theme-prop-value(on-surface), 0.24);
 $mdc-select-dropdown-opacity: 0.54;
 
 /* Disabled Styles */
@@ -39,12 +38,14 @@ $mdc-select-disabled-fill-color: mix(
 );
 $mdc-select-disabled-dropdown-opacity: 0.37;
 
+$mdc-select-outlined-idle-border: rgba(mdc-theme-prop-value(on-surface), 0.38);
+$mdc-select-outlined-hover-border: rgba(mdc-theme-prop-value(on-surface), 0.87);
+
 /* should be .06 after mdc-select opacity is applied */
 $mdc-select-outlined-disabled-border: rgba(
   mdc-theme-prop-value(on-surface),
   0.16
 );
-$mdc-select-outlined-hover-border: rgba(mdc-theme-prop-value(on-surface), 0.87);
 
 $mdc-select-label-position-y: 70%;
 $mdc-select-outline-label-offset: 16px;

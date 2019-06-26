@@ -50,7 +50,6 @@ const DMC_COMPONENTS = [
   'tab-scroller', // New in mdc@0.38.0
   'textfield',
   'theme',
-  'toolbar',
   'top-app-bar', // New in mdc@0.32.0
   'typography'
 ];

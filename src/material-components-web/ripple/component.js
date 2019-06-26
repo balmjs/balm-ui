@@ -22,6 +22,7 @@
  */
 import * as tslib_1 from "tslib";
 import { MDCComponent } from '../base/component';
+import { applyPassive } from '../dom/events';
 import { matches } from '../dom/ponyfill';
 import { MDCRippleFoundation } from './foundation';
 import * as util from './util';
@@ -48,10 +49,10 @@ var MDCRipple = /** @class */ (function (_super) {
             computeBoundingRect: function () { return instance.root_.getBoundingClientRect(); },
             containsEventTarget: function (target) { return instance.root_.contains(target); },
             deregisterDocumentInteractionHandler: function (evtType, handler) {
-                return document.documentElement.removeEventListener(evtType, handler, util.applyPassive());
+                return document.documentElement.removeEventListener(evtType, handler, applyPassive());
             },
             deregisterInteractionHandler: function (evtType, handler) {
-                return instance.root_.removeEventListener(evtType, handler, util.applyPassive());
+                return instance.root_.removeEventListener(evtType, handler, applyPassive());
             },
             deregisterResizeHandler: function (handler) { return window.removeEventListener('resize', handler); },
             getWindowPageOffset: function () { return ({ x: window.pageXOffset, y: window.pageYOffset }); },
@@ -59,10 +60,10 @@ var MDCRipple = /** @class */ (function (_super) {
             isSurfaceDisabled: function () { return Boolean(instance.disabled); },
             isUnbounded: function () { return Boolean(instance.unbounded); },
             registerDocumentInteractionHandler: function (evtType, handler) {
-                return document.documentElement.addEventListener(evtType, handler, util.applyPassive());
+                return document.documentElement.addEventListener(evtType, handler, applyPassive());
             },
             registerInteractionHandler: function (evtType, handler) {
-                return instance.root_.addEventListener(evtType, handler, util.applyPassive());
+                return instance.root_.addEventListener(evtType, handler, applyPassive());
             },
             registerResizeHandler: function (handler) { return window.addEventListener('resize', handler); },
             removeClass: function (className) { return instance.root_.classList.remove(className); },

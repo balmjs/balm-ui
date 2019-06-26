@@ -50,16 +50,41 @@ var MDCTopAppBar = /** @class */ (function (_super) {
         });
         this.scrollTarget_ = window;
     };
+    MDCTopAppBar.prototype.initialSyncWithDOM = function () {
+        this.handleNavigationClick_ = this.foundation_.handleNavigationClick.bind(this.foundation_);
+        this.handleWindowResize_ = this.foundation_.handleWindowResize.bind(this.foundation_);
+        this.handleTargetScroll_ = this.foundation_.handleTargetScroll.bind(this.foundation_);
+        this.scrollTarget_.addEventListener('scroll', this.handleTargetScroll_);
+        if (this.navIcon_) {
+            this.navIcon_.addEventListener('click', this.handleNavigationClick_);
+        }
+        var isFixed = this.root_.classList.contains(cssClasses.FIXED_CLASS);
+        var isShort = this.root_.classList.contains(cssClasses.SHORT_CLASS);
+        if (!isShort && !isFixed) {
+            window.addEventListener('resize', this.handleWindowResize_);
+        }
+    };
     MDCTopAppBar.prototype.destroy = function () {
         this.iconRipples_.forEach(function (iconRipple) { return iconRipple.destroy(); });
+        this.scrollTarget_.removeEventListener('scroll', this.handleTargetScroll_);
+        if (this.navIcon_) {
+            this.navIcon_.removeEventListener('click', this.handleNavigationClick_);
+        }
+        var isFixed = this.root_.classList.contains(cssClasses.FIXED_CLASS);
+        var isShort = this.root_.classList.contains(cssClasses.SHORT_CLASS);
+        if (!isShort && !isFixed) {
+            window.removeEventListener('resize', this.handleWindowResize_);
+        }
         _super.prototype.destroy.call(this);
     };
     MDCTopAppBar.prototype.setScrollTarget = function (target) {
         // Remove scroll handler from the previous scroll target
-        this.foundation_.destroyScrollHandler();
+        this.scrollTarget_.removeEventListener('scroll', this.handleTargetScroll_);
         this.scrollTarget_ = target;
         // Initialize scroll handler on the new scroll target
-        this.foundation_.initScrollHandler();
+        this.handleTargetScroll_ =
+            this.foundation_.handleTargetScroll.bind(this.foundation_);
+        this.scrollTarget_.addEventListener('scroll', this.handleTargetScroll_);
     };
     MDCTopAppBar.prototype.getDefaultFoundation = function () {
         var _this = this;
@@ -72,21 +97,7 @@ var MDCTopAppBar = /** @class */ (function (_super) {
             removeClass: function (className) { return _this.root_.classList.remove(className); },
             setStyle: function (property, value) { return _this.root_.style.setProperty(property, value); },
             getTopAppBarHeight: function () { return _this.root_.clientHeight; },
-            registerNavigationIconInteractionHandler: function (evtType, handler) {
-                if (_this.navIcon_) {
-                    _this.navIcon_.addEventListener(evtType, handler);
-                }
-            },
-            deregisterNavigationIconInteractionHandler: function (evtType, handler) {
-                if (_this.navIcon_) {
-                    _this.navIcon_.removeEventListener(evtType, handler);
-                }
-            },
             notifyNavigationIconClicked: function () { return _this.emit(strings.NAVIGATION_EVENT, {}); },
-            registerScrollHandler: function (handler) { return _this.scrollTarget_.addEventListener('scroll', handler); },
-            deregisterScrollHandler: function (handler) { return _this.scrollTarget_.removeEventListener('scroll', handler); },
-            registerResizeHandler: function (handler) { return window.addEventListener('resize', handler); },
-            deregisterResizeHandler: function (handler) { return window.removeEventListener('resize', handler); },
             getViewportScrollY: function () {
                 var win = _this.scrollTarget_;
                 var el = _this.scrollTarget_;

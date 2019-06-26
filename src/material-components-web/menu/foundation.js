@@ -22,7 +22,6 @@
  */
 import * as tslib_1 from "tslib";
 import { MDCFoundation } from '../base/foundation';
-import { MDCListFoundation } from '../list/foundation';
 import { MDCMenuSurfaceFoundation } from '../menu-surface/foundation';
 import { cssClasses, DefaultFocusState, numbers, strings } from './constants';
 var MDCMenuFoundation = /** @class */ (function (_super) {
@@ -68,12 +67,12 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
                 elementContainsClass: function () { return false; },
                 closeSurface: function () { return undefined; },
                 getElementIndex: function () { return -1; },
-                getParentElement: function () { return null; },
-                getSelectedElementIndex: function () { return -1; },
                 notifySelected: function () { return undefined; },
                 getMenuItemCount: function () { return 0; },
                 focusItemAtIndex: function () { return undefined; },
                 focusListRoot: function () { return undefined; },
+                getSelectedSiblingOfItemAtIndex: function () { return -1; },
+                isSelectableItemAtIndex: function () { return false; },
             };
             // tslint:enable:object-literal-sort-keys
         },
@@ -90,7 +89,7 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
         var key = evt.key, keyCode = evt.keyCode;
         var isTab = key === 'Tab' || keyCode === 9;
         if (isTab) {
-            this.adapter_.closeSurface();
+            this.adapter_.closeSurface(/** skipRestoreFocus */ true);
         }
     };
     MDCMenuFoundation.prototype.handleItemAction = function (listItem) {
@@ -103,9 +102,8 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
         this.adapter_.closeSurface();
         // Wait for the menu to close before adding/removing classes that affect styles.
         this.closeAnimationEndTimerId_ = setTimeout(function () {
-            var selectionGroup = _this.getSelectionGroup_(listItem);
-            if (selectionGroup) {
-                _this.handleSelectionGroup_(selectionGroup, index);
+            if (_this.adapter_.isSelectableItemAtIndex(index)) {
+                _this.setSelectedIndex(index);
             }
         }, MDCMenuSurfaceFoundation.numbers.TRANSITION_CLOSE_DURATION);
     };
@@ -134,38 +132,27 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
         this.defaultFocusState_ = focusState;
     };
     /**
-     * Handles toggling the selected classes in a selection group when a selection is made.
+     * Selects the list item at `index` within the menu.
+     * @param index Index of list item within the menu.
      */
-    MDCMenuFoundation.prototype.handleSelectionGroup_ = function (selectionGroup, index) {
-        // De-select the previous selection in this group.
-        var selectedIndex = this.adapter_.getSelectedElementIndex(selectionGroup);
-        if (selectedIndex >= 0) {
-            this.adapter_.removeAttributeFromElementAtIndex(selectedIndex, strings.ARIA_SELECTED_ATTR);
-            this.adapter_.removeClassFromElementAtIndex(selectedIndex, cssClasses.MENU_SELECTED_LIST_ITEM);
+    MDCMenuFoundation.prototype.setSelectedIndex = function (index) {
+        this.validatedIndex_(index);
+        if (!this.adapter_.isSelectableItemAtIndex(index)) {
+            throw new Error('MDCMenuFoundation: No selection group at specified index.');
         }
-        // Select the new list item in this group.
+        var prevSelectedIndex = this.adapter_.getSelectedSiblingOfItemAtIndex(index);
+        if (prevSelectedIndex >= 0) {
+            this.adapter_.removeAttributeFromElementAtIndex(prevSelectedIndex, strings.ARIA_CHECKED_ATTR);
+            this.adapter_.removeClassFromElementAtIndex(prevSelectedIndex, cssClasses.MENU_SELECTED_LIST_ITEM);
+        }
         this.adapter_.addClassToElementAtIndex(index, cssClasses.MENU_SELECTED_LIST_ITEM);
-        this.adapter_.addAttributeToElementAtIndex(index, strings.ARIA_SELECTED_ATTR, 'true');
+        this.adapter_.addAttributeToElementAtIndex(index, strings.ARIA_CHECKED_ATTR, 'true');
     };
-    /**
-     * Returns the parent selection group of an element if one exists.
-     */
-    MDCMenuFoundation.prototype.getSelectionGroup_ = function (listItem) {
-        var parent = this.adapter_.getParentElement(listItem);
-        if (!parent) {
-            return null;
-        }
-        var isGroup = this.adapter_.elementContainsClass(parent, cssClasses.MENU_SELECTION_GROUP);
-        // Iterate through ancestors until we find the group or get to the list.
-        while (!isGroup && parent && !this.adapter_.elementContainsClass(parent, MDCListFoundation.cssClasses.ROOT)) {
-            parent = this.adapter_.getParentElement(parent);
-            isGroup = parent ? this.adapter_.elementContainsClass(parent, cssClasses.MENU_SELECTION_GROUP) : false;
-        }
-        if (isGroup) {
-            return parent;
-        }
-        else {
-            return null;
+    MDCMenuFoundation.prototype.validatedIndex_ = function (index) {
+        var menuSize = this.adapter_.getMenuItemCount();
+        var isIndexInRange = index >= 0 && index < menuSize;
+        if (!isIndexInRange) {
+            throw new Error('MDCMenuFoundation: No list item at specified index.');
         }
     };
     return MDCMenuFoundation;

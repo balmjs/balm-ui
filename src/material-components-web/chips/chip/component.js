@@ -156,6 +156,7 @@ var MDCChip = /** @class */ (function (_super) {
                     _this.leadingIcon_.classList.remove(className);
                 }
             },
+            setAttr: function (attr, value) { return _this.root_.setAttribute(attr, value); },
             setStyleProperty: function (propertyName, value) { return _this.root_.style.setProperty(propertyName, value); },
         };
         return new MDCChipFoundation(adapter);

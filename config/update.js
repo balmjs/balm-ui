@@ -36,7 +36,6 @@ const level1 = [
   'tab-scroller',
   'textfield',
   'theme',
-  'toolbar',
   'top-app-bar',
   'typography'
 ];

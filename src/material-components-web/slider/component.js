@@ -22,6 +22,7 @@
  */
 import * as tslib_1 from "tslib";
 import { MDCComponent } from '../base/component';
+import { applyPassive } from '../dom/events';
 import { strings } from './constants';
 import { MDCSliderFoundation } from './foundation';
 var MDCSlider = /** @class */ (function (_super) {
@@ -102,13 +103,13 @@ var MDCSlider = /** @class */ (function (_super) {
             removeAttribute: function (name) { return _this.root_.removeAttribute(name); },
             computeBoundingRect: function () { return _this.root_.getBoundingClientRect(); },
             getTabIndex: function () { return _this.root_.tabIndex; },
-            registerInteractionHandler: function (evtType, handler) { return _this.listen(evtType, handler); },
-            deregisterInteractionHandler: function (evtType, handler) { return _this.unlisten(evtType, handler); },
+            registerInteractionHandler: function (evtType, handler) { return _this.listen(evtType, handler, applyPassive()); },
+            deregisterInteractionHandler: function (evtType, handler) { return _this.unlisten(evtType, handler, applyPassive()); },
             registerThumbContainerInteractionHandler: function (evtType, handler) {
-                _this.thumbContainer_.addEventListener(evtType, handler);
+                _this.thumbContainer_.addEventListener(evtType, handler, applyPassive());
             },
             deregisterThumbContainerInteractionHandler: function (evtType, handler) {
-                _this.thumbContainer_.removeEventListener(evtType, handler);
+                _this.thumbContainer_.removeEventListener(evtType, handler, applyPassive());
             },
             registerBodyInteractionHandler: function (evtType, handler) { return document.body.addEventListener(evtType, handler); },
             deregisterBodyInteractionHandler: function (evtType, handler) { return document.body.removeEventListener(evtType, handler); },

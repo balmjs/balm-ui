@@ -72,6 +72,7 @@ var MDCChipFoundation = /** @class */ (function (_super) {
                 notifyTrailingIconInteraction: function () { return undefined; },
                 removeClass: function () { return undefined; },
                 removeClassFromLeadingIcon: function () { return undefined; },
+                setAttr: function () { return undefined; },
                 setStyleProperty: function () { return undefined; },
             };
         },
@@ -84,9 +85,11 @@ var MDCChipFoundation = /** @class */ (function (_super) {
     MDCChipFoundation.prototype.setSelected = function (selected) {
         if (selected) {
             this.adapter_.addClass(cssClasses.SELECTED);
+            this.adapter_.setAttr(strings.ARIA_CHECKED, 'true');
         }
         else {
             this.adapter_.removeClass(cssClasses.SELECTED);
+            this.adapter_.setAttr(strings.ARIA_CHECKED, 'false');
         }
         this.adapter_.notifySelection(selected);
     };

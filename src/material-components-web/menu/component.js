@@ -22,6 +22,7 @@
  */
 import * as tslib_1 from "tslib";
 import { MDCComponent } from '../base/component';
+import { closest } from '../dom/ponyfill';
 import { MDCList } from '../list/component';
 import { MDCListFoundation } from '../list/foundation';
 import { MDCMenuSurface } from '../menu-surface/component';
@@ -72,10 +73,15 @@ var MDCMenu = /** @class */ (function (_super) {
     };
     Object.defineProperty(MDCMenu.prototype, "open", {
         get: function () {
-            return this.menuSurface_.open;
+            return this.menuSurface_.isOpen();
         },
         set: function (value) {
-            this.menuSurface_.open = value;
+            if (value) {
+                this.menuSurface_.open();
+            }
+            else {
+                this.menuSurface_.close();
+            }
         },
         enumerable: true,
         configurable: true
@@ -130,6 +136,13 @@ var MDCMenu = /** @class */ (function (_super) {
         this.menuSurface_.setAnchorMargin(margin);
     };
     /**
+     * Sets the list item as the selected row at the specified index.
+     * @param index Index of list item within menu.
+     */
+    MDCMenu.prototype.setSelectedIndex = function (index) {
+        this.foundation_.setSelectedIndex(index);
+    };
+    /**
      * @return The item within the menu at the index specified.
      */
     MDCMenu.prototype.getOptionByIndex = function (index) {
@@ -182,13 +195,8 @@ var MDCMenu = /** @class */ (function (_super) {
                 list[index].removeAttribute(attr);
             },
             elementContainsClass: function (element, className) { return element.classList.contains(className); },
-            closeSurface: function () { return _this.open = false; },
+            closeSurface: function (skipRestoreFocus) { return _this.menuSurface_.close(skipRestoreFocus); },
             getElementIndex: function (element) { return _this.items.indexOf(element); },
-            getParentElement: function (element) { return element.parentElement; },
-            getSelectedElementIndex: function (selectionGroup) {
-                var selectedListItem = selectionGroup.querySelector("." + cssClasses.MENU_SELECTED_LIST_ITEM);
-                return selectedListItem ? _this.items.indexOf(selectedListItem) : -1;
-            },
             notifySelected: function (evtData) { return _this.emit(strings.SELECTED_EVENT, {
                 index: evtData.index,
                 item: _this.items[evtData.index],
@@ -196,6 +204,12 @@ var MDCMenu = /** @class */ (function (_super) {
             getMenuItemCount: function () { return _this.items.length; },
             focusItemAtIndex: function (index) { return _this.items[index].focus(); },
             focusListRoot: function () { return _this.root_.querySelector(strings.LIST_SELECTOR).focus(); },
+            isSelectableItemAtIndex: function (index) { return !!closest(_this.items[index], "." + cssClasses.MENU_SELECTION_GROUP); },
+            getSelectedSiblingOfItemAtIndex: function (index) {
+                var selectionGroupEl = closest(_this.items[index], "." + cssClasses.MENU_SELECTION_GROUP);
+                var selectedItemEl = selectionGroupEl.querySelector("." + cssClasses.MENU_SELECTED_LIST_ITEM);
+                return selectedItemEl ? _this.items.indexOf(selectedItemEl) : -1;
+            },
         };
         // tslint:enable:object-literal-sort-keys
         return new MDCMenuFoundation(adapter);

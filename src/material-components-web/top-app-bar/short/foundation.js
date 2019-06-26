@@ -40,24 +40,22 @@ var MDCShortTopAppBarFoundation = /** @class */ (function (_super) {
         configurable: true
     });
     MDCShortTopAppBarFoundation.prototype.init = function () {
-        var _this = this;
         _super.prototype.init.call(this);
         if (this.adapter_.getTotalActionItems() > 0) {
             this.adapter_.addClass(cssClasses.SHORT_HAS_ACTION_ITEM_CLASS);
         }
-        if (!this.adapter_.hasClass(cssClasses.SHORT_COLLAPSED_CLASS)) {
-            this.scrollHandler_ = function () { return _this.shortAppBarScrollHandler_(); };
-            this.adapter_.registerScrollHandler(this.scrollHandler_);
-            this.shortAppBarScrollHandler_();
-        }
-    };
-    MDCShortTopAppBarFoundation.prototype.destroy = function () {
-        _super.prototype.destroy.call(this);
+        // this is intended as the short variant must calculate if the
+        // page starts off from the top of the page.
+        this.handleTargetScroll();
     };
     /**
      * Scroll handler for applying/removing the collapsed modifier class on the short top app bar.
+     * @override
      */
-    MDCShortTopAppBarFoundation.prototype.shortAppBarScrollHandler_ = function () {
+    MDCShortTopAppBarFoundation.prototype.handleTargetScroll = function () {
+        if (this.adapter_.hasClass(cssClasses.SHORT_COLLAPSED_CLASS)) {
+            return;
+        }
         var currentScroll = this.adapter_.getViewportScrollY();
         if (currentScroll <= 0) {
             if (this.isCollapsed_) {

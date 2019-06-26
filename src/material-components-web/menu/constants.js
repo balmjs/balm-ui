@@ -26,7 +26,7 @@ var cssClasses = {
     ROOT: 'mdc-menu',
 };
 var strings = {
-    ARIA_SELECTED_ATTR: 'aria-selected',
+    ARIA_CHECKED_ATTR: 'aria-checked',
     CHECKBOX_SELECTOR: 'input[type="checkbox"]',
     LIST_SELECTOR: '.mdc-list',
     SELECTED_EVENT: 'MDCMenu:selected',

@@ -22,6 +22,7 @@
  */
 import * as tslib_1 from "tslib";
 import { MDCComponent } from '../base/component';
+import { applyPassive } from '../dom/events';
 import { matches } from '../dom/ponyfill';
 import { MDCTabScrollerFoundation } from './foundation';
 import * as util from './util';
@@ -41,20 +42,20 @@ var MDCTabScroller = /** @class */ (function (_super) {
         var _this = this;
         this.handleInteraction_ = function () { return _this.foundation_.handleInteraction(); };
         this.handleTransitionEnd_ = function (evt) { return _this.foundation_.handleTransitionEnd(evt); };
-        this.area_.addEventListener('wheel', this.handleInteraction_);
-        this.area_.addEventListener('touchstart', this.handleInteraction_);
-        this.area_.addEventListener('pointerdown', this.handleInteraction_);
-        this.area_.addEventListener('mousedown', this.handleInteraction_);
-        this.area_.addEventListener('keydown', this.handleInteraction_);
+        this.area_.addEventListener('wheel', this.handleInteraction_, applyPassive());
+        this.area_.addEventListener('touchstart', this.handleInteraction_, applyPassive());
+        this.area_.addEventListener('pointerdown', this.handleInteraction_, applyPassive());
+        this.area_.addEventListener('mousedown', this.handleInteraction_, applyPassive());
+        this.area_.addEventListener('keydown', this.handleInteraction_, applyPassive());
         this.content_.addEventListener('transitionend', this.handleTransitionEnd_);
     };
     MDCTabScroller.prototype.destroy = function () {
         _super.prototype.destroy.call(this);
-        this.area_.removeEventListener('wheel', this.handleInteraction_);
-        this.area_.removeEventListener('touchstart', this.handleInteraction_);
-        this.area_.removeEventListener('pointerdown', this.handleInteraction_);
-        this.area_.removeEventListener('mousedown', this.handleInteraction_);
-        this.area_.removeEventListener('keydown', this.handleInteraction_);
+        this.area_.removeEventListener('wheel', this.handleInteraction_, applyPassive());
+        this.area_.removeEventListener('touchstart', this.handleInteraction_, applyPassive());
+        this.area_.removeEventListener('pointerdown', this.handleInteraction_, applyPassive());
+        this.area_.removeEventListener('mousedown', this.handleInteraction_, applyPassive());
+        this.area_.removeEventListener('keydown', this.handleInteraction_, applyPassive());
         this.content_.removeEventListener('transitionend', this.handleTransitionEnd_);
     };
     MDCTabScroller.prototype.getDefaultFoundation = function () {

@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+import * as events from './events';
 import * as ponyfill from './ponyfill';
-export { ponyfill };
+export { events, ponyfill };
 //# sourceMappingURL=index.js.map

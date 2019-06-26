@@ -25,20 +25,19 @@ import { cssClasses } from '../constants';
 import { MDCTopAppBarFoundation } from '../standard/foundation';
 var MDCFixedTopAppBarFoundation = /** @class */ (function (_super) {
     tslib_1.__extends(MDCFixedTopAppBarFoundation, _super);
-    /* istanbul ignore next: optional argument is not a branch statement */
-    function MDCFixedTopAppBarFoundation(adapter) {
-        var _this = _super.call(this, adapter) || this;
+    function MDCFixedTopAppBarFoundation() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
         /**
          * State variable for the previous scroll iteration top app bar state
          */
         _this.wasScrolled_ = false;
-        _this.scrollHandler_ = function () { return _this.fixedScrollHandler_(); };
         return _this;
     }
     /**
      * Scroll handler for applying/removing the modifier class on the fixed top app bar.
+     * @override
      */
-    MDCFixedTopAppBarFoundation.prototype.fixedScrollHandler_ = function () {
+    MDCFixedTopAppBarFoundation.prototype.handleTargetScroll = function () {
         var currentScroll = this.adapter_.getViewportScrollY();
         if (currentScroll <= 0) {
             if (this.wasScrolled_) {

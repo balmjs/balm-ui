@@ -30,7 +30,6 @@ const components = [
   'switch.js',
   'tabs.js',
   'textfield.js',
-  'toolbar.js',
   'top-app-bar.js',
   // Plus
   'dropdown.js',

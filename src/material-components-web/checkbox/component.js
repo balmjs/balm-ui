@@ -23,6 +23,7 @@
 import * as tslib_1 from "tslib";
 import { getCorrectEventName } from '../animation/util';
 import { MDCComponent } from '../base/component';
+import { applyPassive } from '../dom/events';
 import { matches } from '../dom/ponyfill';
 import { MDCRipple } from '../ripple/component';
 import { MDCRippleFoundation } from '../ripple/foundation';
@@ -122,7 +123,7 @@ var MDCCheckbox = /** @class */ (function (_super) {
         var _this = this;
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-        var adapter = tslib_1.__assign({}, MDCRipple.createAdapter(this), { deregisterInteractionHandler: function (evtType, handler) { return _this.nativeControl_.removeEventListener(evtType, handler); }, isSurfaceActive: function () { return matches(_this.nativeControl_, ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (evtType, handler) { return _this.nativeControl_.addEventListener(evtType, handler); } });
+        var adapter = tslib_1.__assign({}, MDCRipple.createAdapter(this), { deregisterInteractionHandler: function (evtType, handler) { return _this.nativeControl_.removeEventListener(evtType, handler, applyPassive()); }, isSurfaceActive: function () { return matches(_this.nativeControl_, ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (evtType, handler) { return _this.nativeControl_.addEventListener(evtType, handler, applyPassive()); } });
         return new MDCRipple(this.root_, new MDCRippleFoundation(adapter));
     };
     MDCCheckbox.prototype.installPropertyChangeHooks_ = function () {

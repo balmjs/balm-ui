@@ -22,6 +22,7 @@
  */
 import * as tslib_1 from "tslib";
 import { MDCComponent } from '../base/component';
+import { applyPassive } from '../dom/events';
 import * as ponyfill from '../dom/ponyfill';
 import { MDCFloatingLabel } from '../floating-label/component';
 import { MDCLineRipple } from '../line-ripple/component';
@@ -373,8 +374,12 @@ var MDCTextField = /** @class */ (function (_super) {
         return {
             getNativeInput: function () { return _this.input_; },
             isFocused: function () { return document.activeElement === _this.input_; },
-            registerInputInteractionHandler: function (evtType, handler) { return _this.input_.addEventListener(evtType, handler); },
-            deregisterInputInteractionHandler: function (evtType, handler) { return _this.input_.removeEventListener(evtType, handler); },
+            registerInputInteractionHandler: function (evtType, handler) {
+                return _this.input_.addEventListener(evtType, handler, applyPassive());
+            },
+            deregisterInputInteractionHandler: function (evtType, handler) {
+                return _this.input_.removeEventListener(evtType, handler, applyPassive());
+            },
         };
         // tslint:enable:object-literal-sort-keys
     };
@@ -436,7 +441,9 @@ var MDCTextField = /** @class */ (function (_super) {
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
-        var adapter = tslib_1.__assign({}, MDCRipple.createAdapter(this), { isSurfaceActive: function () { return ponyfill.matches(_this.input_, ':active'); }, registerInteractionHandler: function (evtType, handler) { return _this.input_.addEventListener(evtType, handler); }, deregisterInteractionHandler: function (evtType, handler) { return _this.input_.removeEventListener(evtType, handler); } });
+        var adapter = tslib_1.__assign({}, MDCRipple.createAdapter(this), { isSurfaceActive: function () { return ponyfill.matches(_this.input_, ':active'); }, registerInteractionHandler: function (evtType, handler) { return _this.input_.addEventListener(evtType, handler, applyPassive()); }, deregisterInteractionHandler: function (evtType, handler) {
+                return _this.input_.removeEventListener(evtType, handler, applyPassive());
+            } });
         // tslint:enable:object-literal-sort-keys
         return rippleFactory(this.root_, new MDCRippleFoundation(adapter));
     };

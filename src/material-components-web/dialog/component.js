@@ -72,7 +72,7 @@ var MDCDialog = /** @class */ (function (_super) {
     MDCDialog.attachTo = function (root) {
         return new MDCDialog(root);
     };
-    MDCDialog.prototype.initialize = function (focusTrapFactory, initialFocusEl) {
+    MDCDialog.prototype.initialize = function (focusTrapFactory) {
         var e_1, _a;
         var container = this.root_.querySelector(strings.CONTAINER_SELECTOR);
         if (!container) {
@@ -81,9 +81,8 @@ var MDCDialog = /** @class */ (function (_super) {
         this.container_ = container;
         this.content_ = this.root_.querySelector(strings.CONTENT_SELECTOR);
         this.buttons_ = [].slice.call(this.root_.querySelectorAll(strings.BUTTON_SELECTOR));
-        this.defaultButton_ = this.root_.querySelector(strings.DEFAULT_BUTTON_SELECTOR);
+        this.defaultButton_ = this.root_.querySelector("[" + strings.BUTTON_DEFAULT_ATTRIBUTE + "]");
         this.focusTrapFactory_ = focusTrapFactory;
-        this.initialFocusEl_ = initialFocusEl;
         this.buttonRipples_ = [];
         try {
             for (var _b = tslib_1.__values(this.buttons_), _c = _b.next(); !_c.done; _c = _b.next()) {
@@ -101,8 +100,9 @@ var MDCDialog = /** @class */ (function (_super) {
     };
     MDCDialog.prototype.initialSyncWithDOM = function () {
         var _this = this;
-        this.focusTrap_ = util.createFocusTrapInstance(this.container_, this.focusTrapFactory_, this.initialFocusEl_);
-        this.handleInteraction_ = this.foundation_.handleInteraction.bind(this.foundation_);
+        this.focusTrap_ = util.createFocusTrapInstance(this.container_, this.focusTrapFactory_, this.getInitialFocusEl_() || undefined);
+        this.handleClick_ = this.foundation_.handleClick.bind(this.foundation_);
+        this.handleKeydown_ = this.foundation_.handleKeydown.bind(this.foundation_);
         this.handleDocumentKeydown_ = this.foundation_.handleDocumentKeydown.bind(this.foundation_);
         this.handleLayout_ = this.layout.bind(this);
         var LAYOUT_EVENTS = ['resize', 'orientationchange'];
@@ -114,14 +114,14 @@ var MDCDialog = /** @class */ (function (_super) {
             LAYOUT_EVENTS.forEach(function (evtType) { return window.removeEventListener(evtType, _this.handleLayout_); });
             document.removeEventListener('keydown', _this.handleDocumentKeydown_);
         };
-        this.listen('click', this.handleInteraction_);
-        this.listen('keydown', this.handleInteraction_);
+        this.listen('click', this.handleClick_);
+        this.listen('keydown', this.handleKeydown_);
         this.listen(strings.OPENING_EVENT, this.handleOpening_);
         this.listen(strings.CLOSING_EVENT, this.handleClosing_);
     };
     MDCDialog.prototype.destroy = function () {
-        this.unlisten('click', this.handleInteraction_);
-        this.unlisten('keydown', this.handleInteraction_);
+        this.unlisten('click', this.handleClick_);
+        this.unlisten('keydown', this.handleKeydown_);
         this.unlisten(strings.OPENING_EVENT, this.handleOpening_);
         this.unlisten(strings.CLOSING_EVENT, this.handleClosing_);
         this.handleClosing_();
@@ -155,6 +155,7 @@ var MDCDialog = /** @class */ (function (_super) {
                 var element = closest(evt.target, "[" + strings.ACTION_ATTRIBUTE + "]");
                 return element && element.getAttribute(strings.ACTION_ATTRIBUTE);
             },
+            getInitialFocusEl: function () { return _this.getInitialFocusEl_(); },
             hasClass: function (className) { return _this.root_.classList.contains(className); },
             isContentScrollable: function () { return util.isScrollable(_this.content_); },
             notifyClosed: function (action) { return _this.emit(strings.CLOSED_EVENT, action ? { action: action } : {}); },
@@ -173,6 +174,9 @@ var MDCDialog = /** @class */ (function (_super) {
             trapFocus: function () { return _this.focusTrap_.activate(); },
         };
         return new MDCDialogFoundation(adapter);
+    };
+    MDCDialog.prototype.getInitialFocusEl_ = function () {
+        return document.querySelector("[" + strings.INITIAL_FOCUS_ATTRIBUTE + "]");
     };
     return MDCDialog;
 }(MDCComponent));

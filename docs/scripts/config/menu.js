@@ -32,11 +32,6 @@ const MATERIAL_COMPONENTS = [
       },
       {
         icon: 'toolbar',
-        name: 'Toolbar',
-        description: 'Header and footers'
-      },
-      {
-        icon: 'toolbar',
         name: 'Top App Bar',
         description:
           'Container for application title, navigation icon, and action items',

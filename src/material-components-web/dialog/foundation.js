@@ -67,6 +67,7 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
                 clickDefaultButton: function () { return undefined; },
                 eventTargetMatches: function () { return false; },
                 getActionFromEvent: function () { return ''; },
+                getInitialFocusEl: function () { return null; },
                 hasClass: function () { return false; },
                 isContentScrollable: function () { return false; },
                 notifyClosed: function () { return undefined; },
@@ -113,7 +114,7 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
             _this.layout();
             _this.animationTimer_ = setTimeout(function () {
                 _this.handleAnimationTimerEnd_();
-                _this.adapter_.trapFocus();
+                _this.adapter_.trapFocus(_this.adapter_.getInitialFocusEl());
                 _this.adapter_.notifyOpened();
             }, numbers.DIALOG_ANIMATION_OPEN_TIME_MS);
         });
@@ -170,26 +171,38 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
             _this.layoutFrame_ = 0;
         });
     };
-    MDCDialogFoundation.prototype.handleInteraction = function (evt) {
-        var isClick = evt.type === 'click';
-        var isEnter = evt.key === 'Enter' || evt.keyCode === 13;
-        var isSpace = evt.key === 'Space' || evt.keyCode === 32;
+    /** Handles click on the dialog root element. */
+    MDCDialogFoundation.prototype.handleClick = function (evt) {
         var isScrim = this.adapter_.eventTargetMatches(evt.target, strings.SCRIM_SELECTOR);
-        var isDefault = !this.adapter_.eventTargetMatches(evt.target, strings.SUPPRESS_DEFAULT_PRESS_SELECTOR);
-        // Check for scrim click first since it doesn't require querying ancestors
-        if (isClick && isScrim && this.scrimClickAction_ !== '') {
+        // Check for scrim click first since it doesn't require querying ancestors.
+        if (isScrim && this.scrimClickAction_ !== '') {
             this.close(this.scrimClickAction_);
         }
-        else if (isClick || isSpace || isEnter) {
+        else {
             var action = this.adapter_.getActionFromEvent(evt);
             if (action) {
                 this.close(action);
             }
-            else if (isEnter && isDefault) {
-                this.adapter_.clickDefaultButton();
-            }
         }
     };
+    /** Handles keydown on the dialog root element. */
+    MDCDialogFoundation.prototype.handleKeydown = function (evt) {
+        var isEnter = evt.key === 'Enter' || evt.keyCode === 13;
+        if (!isEnter) {
+            return;
+        }
+        var action = this.adapter_.getActionFromEvent(evt);
+        if (action) {
+            // Action button callback is handled in `handleClick`,
+            // since space/enter keydowns on buttons trigger click events.
+            return;
+        }
+        var isDefault = !this.adapter_.eventTargetMatches(evt.target, strings.SUPPRESS_DEFAULT_PRESS_SELECTOR);
+        if (isEnter && isDefault) {
+            this.adapter_.clickDefaultButton();
+        }
+    };
+    /** Handles keydown on the document. */
     MDCDialogFoundation.prototype.handleDocumentKeydown = function (evt) {
         var isEscape = evt.key === 'Escape' || evt.keyCode === 27;
         if (isEscape && this.escapeKeyAction_ !== '') {

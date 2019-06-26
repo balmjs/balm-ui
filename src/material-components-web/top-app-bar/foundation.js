@@ -27,9 +27,7 @@ var MDCTopAppBarBaseFoundation = /** @class */ (function (_super) {
     tslib_1.__extends(MDCTopAppBarBaseFoundation, _super);
     /* istanbul ignore next: optional argument is not a branch statement */
     function MDCTopAppBarBaseFoundation(adapter) {
-        var _this = _super.call(this, tslib_1.__assign({}, MDCTopAppBarBaseFoundation.defaultAdapter, adapter)) || this;
-        _this.navClickHandler_ = function () { return _this.adapter_.notifyNavigationIconClicked(); };
-        return _this;
+        return _super.call(this, tslib_1.__assign({}, MDCTopAppBarBaseFoundation.defaultAdapter, adapter)) || this;
     }
     Object.defineProperty(MDCTopAppBarBaseFoundation, "strings", {
         get: function () {
@@ -64,13 +62,7 @@ var MDCTopAppBarBaseFoundation = /** @class */ (function (_super) {
                 hasClass: function () { return false; },
                 setStyle: function () { return undefined; },
                 getTopAppBarHeight: function () { return 0; },
-                registerNavigationIconInteractionHandler: function () { return undefined; },
-                deregisterNavigationIconInteractionHandler: function () { return undefined; },
                 notifyNavigationIconClicked: function () { return undefined; },
-                registerScrollHandler: function () { return undefined; },
-                deregisterScrollHandler: function () { return undefined; },
-                registerResizeHandler: function () { return undefined; },
-                deregisterResizeHandler: function () { return undefined; },
                 getViewportScrollY: function () { return 0; },
                 getTotalActionItems: function () { return 0; },
             };
@@ -79,35 +71,12 @@ var MDCTopAppBarBaseFoundation = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
-    MDCTopAppBarBaseFoundation.prototype.init = function () {
-        this.initScrollHandler();
-        this.initResizeHandler_();
-        this.adapter_.registerNavigationIconInteractionHandler('click', this.navClickHandler_);
-    };
-    MDCTopAppBarBaseFoundation.prototype.destroy = function () {
-        this.destroyScrollHandler();
-        this.destroyResizeHandler_();
-        this.adapter_.deregisterNavigationIconInteractionHandler('click', this.navClickHandler_);
-    };
-    MDCTopAppBarBaseFoundation.prototype.initScrollHandler = function () {
-        if (this.scrollHandler_) {
-            this.adapter_.registerScrollHandler(this.scrollHandler_);
-        }
-    };
-    MDCTopAppBarBaseFoundation.prototype.destroyScrollHandler = function () {
-        if (this.scrollHandler_) {
-            this.adapter_.deregisterScrollHandler(this.scrollHandler_);
-        }
-    };
-    MDCTopAppBarBaseFoundation.prototype.initResizeHandler_ = function () {
-        if (this.resizeHandler_) {
-            this.adapter_.registerResizeHandler(this.resizeHandler_);
-        }
-    };
-    MDCTopAppBarBaseFoundation.prototype.destroyResizeHandler_ = function () {
-        if (this.resizeHandler_) {
-            this.adapter_.deregisterResizeHandler(this.resizeHandler_);
-        }
+    /** Other variants of TopAppBar foundation overrides this method */
+    MDCTopAppBarBaseFoundation.prototype.handleTargetScroll = function () { }; // tslint:disable-line:no-empty
+    /** Other variants of TopAppBar foundation overrides this method */
+    MDCTopAppBarBaseFoundation.prototype.handleWindowResize = function () { }; // tslint:disable-line:no-empty
+    MDCTopAppBarBaseFoundation.prototype.handleNavigationClick = function () {
+        this.adapter_.notifyNavigationIconClicked();
     };
     return MDCTopAppBarBaseFoundation;
 }(MDCFoundation));

@@ -3,11 +3,6 @@
  * detect CSS custom variable support.
  */
 var supportsCssVariables_;
-/**
- * Stores result from applyPassive to avoid redundant processing to detect
- * passive event listener support.
- */
-var supportsPassive_;
 function detectEdgePseudoVarBug(windowObj) {
     // Detect versions of Edge with buggy var() support
     // See: https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/11495448/
@@ -52,29 +47,6 @@ export function supportsCssVariables(windowObj, forceRefresh) {
         supportsCssVariables_ = supportsCssVars;
     }
     return supportsCssVars;
-}
-/**
- * Determine whether the current browser supports passive event listeners, and
- * if so, use them.
- */
-export function applyPassive(globalObj, forceRefresh) {
-    if (globalObj === void 0) { globalObj = window; }
-    if (forceRefresh === void 0) { forceRefresh = false; }
-    if (supportsPassive_ === undefined || forceRefresh) {
-        var isSupported_1 = false;
-        try {
-            globalObj.document.addEventListener('test', function () { return undefined; }, {
-                get passive() {
-                    isSupported_1 = true;
-                    return isSupported_1;
-                },
-            });
-        }
-        catch (e) {
-        } // tslint:disable-line:no-empty cannot throw error due to tests. tslint also disables console.log.
-        supportsPassive_ = isSupported_1;
-    }
-    return supportsPassive_ ? { passive: true } : false;
 }
 export function getNormalizedEventCoords(evt, pageOffset, clientRect) {
     if (!evt) {

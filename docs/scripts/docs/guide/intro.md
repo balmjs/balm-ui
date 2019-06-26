@@ -10,7 +10,7 @@ Following the [Material Design](https://material.io/components/) UI components f
 
 - Layouts
   - Layout Grid
-  - Toolbar (💀)
+  - <del>Toolbar</del> (💀)
   - Top App Bar (migrate from Toolbar)
   - Drawer
   - Tabs

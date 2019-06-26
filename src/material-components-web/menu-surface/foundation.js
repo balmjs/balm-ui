@@ -80,8 +80,6 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
                 hasAnchor: function () { return false; },
                 isElementInContainer: function () { return false; },
                 isFocused: function () { return false; },
-                isFirstElementFocused: function () { return false; },
-                isLastElementFocused: function () { return false; },
                 isRtl: function () { return false; },
                 getInnerDimensions: function () { return ({ height: 0, width: 0 }); },
                 getAnchorDimensions: function () { return null; },
@@ -93,8 +91,6 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
                 setTransformOrigin: function () { return undefined; },
                 saveFocus: function () { return undefined; },
                 restoreFocus: function () { return undefined; },
-                focusFirstElement: function () { return undefined; },
-                focusLastElement: function () { return undefined; },
                 notifyClose: function () { return undefined; },
                 notifyOpen: function () { return undefined; },
             };
@@ -181,8 +177,9 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
     /**
      * Closes the menu surface.
      */
-    MDCMenuSurfaceFoundation.prototype.close = function () {
+    MDCMenuSurfaceFoundation.prototype.close = function (skipRestoreFocus) {
         var _this = this;
+        if (skipRestoreFocus === void 0) { skipRestoreFocus = false; }
         if (!this.isQuickOpen_) {
             this.adapter_.addClass(MDCMenuSurfaceFoundation.cssClasses.ANIMATING_CLOSED);
         }
@@ -200,7 +197,9 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
             }
         });
         this.isOpen_ = false;
-        this.maybeRestoreFocus_();
+        if (!skipRestoreFocus) {
+            this.maybeRestoreFocus_();
+        }
     };
     /** Handle clicks and close if not within menu-surface element. */
     MDCMenuSurfaceFoundation.prototype.handleBodyClick = function (evt) {
@@ -212,21 +211,10 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
     };
     /** Handle keys that close the surface. */
     MDCMenuSurfaceFoundation.prototype.handleKeydown = function (evt) {
-        var keyCode = evt.keyCode, key = evt.key, shiftKey = evt.shiftKey;
+        var keyCode = evt.keyCode, key = evt.key;
         var isEscape = key === 'Escape' || keyCode === 27;
-        var isTab = key === 'Tab' || keyCode === 9;
         if (isEscape) {
             this.close();
-        }
-        else if (isTab) {
-            if (this.adapter_.isLastElementFocused() && !shiftKey) {
-                this.adapter_.focusFirstElement();
-                evt.preventDefault();
-            }
-            else if (this.adapter_.isFirstElementFocused() && shiftKey) {
-                this.adapter_.focusLastElement();
-                evt.preventDefault();
-            }
         }
     };
     MDCMenuSurfaceFoundation.prototype.autoPosition_ = function () {

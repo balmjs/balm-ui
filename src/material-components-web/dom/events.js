@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2017 Google Inc.
+ * Copyright 2019 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,26 +20,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-export var cssClasses = {
-    FIXED: 'mdc-toolbar--fixed',
-    FIXED_AT_LAST_ROW: 'mdc-toolbar--fixed-at-last-row',
-    FIXED_LASTROW: 'mdc-toolbar--fixed-lastrow-only',
-    FLEXIBLE_DEFAULT_BEHAVIOR: 'mdc-toolbar--flexible-default-behavior',
-    FLEXIBLE_MAX: 'mdc-toolbar--flexible-space-maximized',
-    FLEXIBLE_MIN: 'mdc-toolbar--flexible-space-minimized',
-    TOOLBAR_ROW_FLEXIBLE: 'mdc-toolbar--flexible',
-};
-export var strings = {
-    CHANGE_EVENT: 'MDCToolbar:change',
-    FIRST_ROW_SELECTOR: '.mdc-toolbar__row:first-child',
-    ICON_SELECTOR: '.mdc-toolbar__icon',
-    TITLE_SELECTOR: '.mdc-toolbar__title',
-};
-export var numbers = {
-    MAX_TITLE_SIZE: 2.125,
-    MIN_TITLE_SIZE: 1.25,
-    TOOLBAR_MOBILE_BREAKPOINT: 600,
-    TOOLBAR_ROW_HEIGHT: 64,
-    TOOLBAR_ROW_MOBILE_HEIGHT: 56,
-};
-//# sourceMappingURL=constants.js.map
+/**
+ * Stores result from applyPassive to avoid redundant processing to detect
+ * passive event listener support.
+ */
+var supportsPassive_;
+/**
+ * Determine whether the current browser supports passive event listeners, and
+ * if so, use them.
+ */
+export function applyPassive(globalObj, forceRefresh) {
+    if (globalObj === void 0) { globalObj = window; }
+    if (forceRefresh === void 0) { forceRefresh = false; }
+    if (supportsPassive_ === undefined || forceRefresh) {
+        var isSupported_1 = false;
+        try {
+            globalObj.document.addEventListener('test', function () { return undefined; }, {
+                get passive() {
+                    isSupported_1 = true;
+                    return isSupported_1;
+                },
+            });
+        }
+        catch (e) {
+        } // tslint:disable-line:no-empty cannot throw error due to tests. tslint also disables console.log.
+        supportsPassive_ = isSupported_1;
+    }
+    return supportsPassive_ ? { passive: true } : false;
+}
+//# sourceMappingURL=events.js.map

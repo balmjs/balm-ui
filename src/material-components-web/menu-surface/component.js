@@ -54,24 +54,16 @@ var MDCMenuSurface = /** @class */ (function (_super) {
         this.unlisten(strings.CLOSED_EVENT, this.deregisterBodyClickListener_);
         _super.prototype.destroy.call(this);
     };
-    Object.defineProperty(MDCMenuSurface.prototype, "open", {
-        get: function () {
-            return this.foundation_.isOpen();
-        },
-        set: function (value) {
-            if (value) {
-                var focusableElements = this.root_.querySelectorAll(strings.FOCUSABLE_ELEMENTS);
-                this.firstFocusableElement_ = focusableElements[0];
-                this.lastFocusableElement_ = focusableElements[focusableElements.length - 1];
-                this.foundation_.open();
-            }
-            else {
-                this.foundation_.close();
-            }
-        },
-        enumerable: true,
-        configurable: true
-    });
+    MDCMenuSurface.prototype.isOpen = function () {
+        return this.foundation_.isOpen();
+    };
+    MDCMenuSurface.prototype.open = function () {
+        this.foundation_.open();
+    };
+    MDCMenuSurface.prototype.close = function (skipRestoreFocus) {
+        if (skipRestoreFocus === void 0) { skipRestoreFocus = false; }
+        this.foundation_.close(skipRestoreFocus);
+    };
     Object.defineProperty(MDCMenuSurface.prototype, "quickOpen", {
         set: function (quickOpen) {
             this.foundation_.setQuickOpen(quickOpen);
@@ -147,18 +139,6 @@ var MDCMenuSurface = /** @class */ (function (_super) {
                         _this.previousFocus_.focus();
                     }
                 }
-            },
-            isFirstElementFocused: function () {
-                return _this.firstFocusableElement_ ? _this.firstFocusableElement_ === document.activeElement : false;
-            },
-            isLastElementFocused: function () {
-                return _this.lastFocusableElement_ ? _this.lastFocusableElement_ === document.activeElement : false;
-            },
-            focusFirstElement: function () {
-                return _this.firstFocusableElement_ && _this.firstFocusableElement_.focus && _this.firstFocusableElement_.focus();
-            },
-            focusLastElement: function () {
-                return _this.lastFocusableElement_ && _this.lastFocusableElement_.focus && _this.lastFocusableElement_.focus();
             },
             getInnerDimensions: function () {
                 return { width: _this.root_.offsetWidth, height: _this.root_.offsetHeight };

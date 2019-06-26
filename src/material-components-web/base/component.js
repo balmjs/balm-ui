@@ -70,11 +70,11 @@ var MDCComponent = /** @class */ (function () {
         // attached. An example of this might be deregistering a resize event from the window object.
         this.foundation_.destroy();
     };
-    MDCComponent.prototype.listen = function (evtType, handler) {
-        this.root_.addEventListener(evtType, handler);
+    MDCComponent.prototype.listen = function (evtType, handler, options) {
+        this.root_.addEventListener(evtType, handler, options);
     };
-    MDCComponent.prototype.unlisten = function (evtType, handler) {
-        this.root_.removeEventListener(evtType, handler);
+    MDCComponent.prototype.unlisten = function (evtType, handler, options) {
+        this.root_.removeEventListener(evtType, handler, options);
     };
     /**
      * Fires a cross-browser-compatible custom event from the component root of the given type, with the given data.

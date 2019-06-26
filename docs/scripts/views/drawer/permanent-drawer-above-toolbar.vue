@@ -11,7 +11,7 @@
     <main class="demo-main">
       <ui-top-app-bar contentSelector=".demo-content" class="demo-top-app-bar" v-shadow="4">
         <template #nav-icon>
-          <ui-toolbar-anchor type="menu" @click.native="() => { $router.back(); }">&#xE5C4;</ui-toolbar-anchor>
+          <ui-icon @click="$router.back()">arrow_back</ui-icon>
         </template>Permanent Drawer Above Toolbar
       </ui-top-app-bar>
 

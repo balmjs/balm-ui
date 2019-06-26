@@ -1,4 +1,4 @@
-import './my-sw';
+// import './my-sw';
 import { isIE, killIE } from '@/kill-ie';
 import '@/polyfills';
 import Vue from 'vue';

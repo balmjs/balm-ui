@@ -1,8 +1,7 @@
 ```html
 <ui-top-app-bar contentSelector=".demo-main">
-  <template slot="nav-icon">
-    <ui-toolbar-anchor type="menu"
-      @click.native="() => { $router.back(); }">&#xE5C4;</ui-toolbar-anchor>
+  <template #nav-icon>
+    <ui-icon @click="$router.back()">arrow_back</ui-icon>
   </template>
   Permanent Drawer Below Toolbar
 </ui-top-app-bar>
@@ -16,14 +15,22 @@
     <ui-drawer-content>
       <ui-list-nav>
         <template v-for="(item, index) in menu">
-          <ui-list-divider v-if="item === '-'" :key="`divider-${index}`"></ui-list-divider>
+          <ui-list-divider
+            v-if="item === '-'"
+            :key="`divider-${index}`"
+          ></ui-list-divider>
           <template v-else>
-            <ui-list-group-subheader v-if="item.subheader" :key="`subheader-${index}`">
+            <ui-list-group-subheader
+              v-if="item.subheader"
+              :key="`subheader-${index}`"
+            >
               {{ item.subheader }}
             </ui-list-group-subheader>
-            <ui-item-a v-for="(subItem, subIndex) in item.items"
+            <ui-item-a
+              v-for="(subItem, subIndex) in item.items"
               :key="`item-${index}-${subIndex}`"
-              :firstIcon="subItem.icon">
+              :firstIcon="subItem.icon"
+            >
               {{ subItem.name }}
             </ui-item-a>
           </template>

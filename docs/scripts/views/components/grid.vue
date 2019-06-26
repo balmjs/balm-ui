@@ -3,11 +3,7 @@
     <ui-top-app-bar fixed contentSelector=".demo-content">
       <template #nav-icon>
         <span class="catalog-back">
-          <ui-toolbar-anchor
-            type="menu"
-            href="javascript:void(0)"
-            @click.native="() => { $router.back(); }"
-          >&#xE5C4;</ui-toolbar-anchor>
+          <ui-icon @click="$router.back()">arrow_back</ui-icon>
         </span>
       </template>
       <span class="['catalog-title', $themeColor('on-primary')]">Layout Grid</span>
@@ -33,7 +29,8 @@
           <h2 class="demo-grid-legend">1.1 Layout grid (in fluid container)</h2>
           <ui-grid>
             <ui-grid-cell>
-              <div class="demo-controls">Desktop Margin:
+              <div class="demo-controls">
+                Desktop Margin:
                 <ui-select
                   :options="gutterOptions"
                   :model="desktop.margin"
@@ -49,7 +46,8 @@
               </div>
             </ui-grid-cell>
             <ui-grid-cell>
-              <div class="demo-controls">Tablet Margin:
+              <div class="demo-controls">
+                Tablet Margin:
                 <ui-select
                   :options="gutterOptions"
                   :model="tablet.margin"
@@ -65,7 +63,8 @@
               </div>
             </ui-grid-cell>
             <ui-grid-cell>
-              <div class="demo-controls">Phone Margin:
+              <div class="demo-controls">
+                Phone Margin:
                 <ui-select
                   :options="gutterOptions"
                   :model="phone.margin"
@@ -166,7 +165,8 @@
           <template v-if="isWideScreen">
             <ui-grid>
               <ui-grid-cell>
-                <div class="demo-controls">Desktop Column Width:
+                <div class="demo-controls">
+                  Desktop Column Width:
                   <ui-select
                     :options="widthOptions"
                     :model="desktop.width"
@@ -175,7 +175,8 @@
                 </div>
               </ui-grid-cell>
               <ui-grid-cell>
-                <div class="demo-controls">Tablet Column Width:
+                <div class="demo-controls">
+                  Tablet Column Width:
                   <ui-select
                     :options="widthOptions"
                     :model="tablet.width"
@@ -184,7 +185,8 @@
                 </div>
               </ui-grid-cell>
               <ui-grid-cell>
-                <div class="demo-controls">Phone Column Width:
+                <div class="demo-controls">
+                  Phone Column Width:
                   <ui-select
                     :options="widthOptions"
                     :model="phone.width"

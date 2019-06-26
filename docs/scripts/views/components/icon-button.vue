@@ -87,8 +87,8 @@
                     <i :class="[offClass, icon2.off]"></i>
                   </template>
                 </ui-icon-button>
-                <p>Result: {{ value2 }}</p>
               </div>
+              <p>Result: {{ value2 }}</p>
             </div>
 
             <div class="toggle-example">

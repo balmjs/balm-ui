@@ -4,7 +4,8 @@
   $demo-section-margin: 48px;
   $demo-color-custom: $material-color-red-500;
   $demo-color-low-luminance: $material-color-brown-900;
-  $demo-color-high-luminance: $material-color-amber-50; //
+  $demo-color-high-luminance: $material-color-amber-50;
+  //
   // Global styles
   //
   figure {
@@ -13,40 +14,42 @@
   }
   .hero button {
     margin: 24px;
-  } //
+  }
+  //
   // Toolbar
   //
-  .demo-toolbar-progress-row {
-    min-height: auto;
-    overflow: hidden;
-    position: absolute;
-    bottom: 0;
-  }
-  .demo-toolbar-progress-bar {
-    transform: translateY(100%);
-    transition: mdc-animation-exit-temporary(transform, 150ms);
-    @include mdc-linear-progress-bar-color($demo-toolbar-progress-bar-color);
-    @include mdc-linear-progress-buffer-color(
-      $demo-toolbar-progress-buffer-color
-    );
-  }
-  .demo-toolbar-progress-bar--active {
-    transform: none;
-    transition: mdc-animation-enter(transform, 200ms);
-  }
-  .demo-anchor-with-toolbar-offset {
-    $margin: $demo-section-margin / 2;
-    display: block;
-    position: relative;
-    top: -($mdc-toolbar-row-height + $margin);
-    @media (max-width: $mdc-toolbar-mobile-landscape-width-breakpoint) and (orientation: landscape) {
-      top: -($mdc-toolbar-mobile-landscape-row-height + $margin);
-    }
-    @media (max-width: $mdc-toolbar-mobile-breakpoint) {
-      top: -($mdc-toolbar-mobile-row-height + $margin);
-    }
-    visibility: hidden;
-  } //
+  // .demo-toolbar-progress-row {
+  //   min-height: auto;
+  //   overflow: hidden;
+  //   position: absolute;
+  //   bottom: 0;
+  // }
+  // .demo-toolbar-progress-bar {
+  //   transform: translateY(100%);
+  //   transition: mdc-animation-exit-temporary(transform, 150ms);
+  //   @include mdc-linear-progress-bar-color($demo-toolbar-progress-bar-color);
+  //   @include mdc-linear-progress-buffer-color(
+  //     $demo-toolbar-progress-buffer-color
+  //   );
+  // }
+  // .demo-toolbar-progress-bar--active {
+  //   transform: none;
+  //   transition: mdc-animation-enter(transform, 200ms);
+  // }
+  // .demo-anchor-with-toolbar-offset {
+  //   $margin: $demo-section-margin / 2;
+  //   display: block;
+  //   position: relative;
+  //   top: -($mdc-toolbar-row-height + $margin);
+  //   @media (max-width: $mdc-toolbar-mobile-landscape-width-breakpoint) and (orientation: landscape) {
+  //     top: -($mdc-toolbar-mobile-landscape-row-height + $margin);
+  //   }
+  //   @media (max-width: $mdc-toolbar-mobile-breakpoint) {
+  //     top: -($mdc-toolbar-mobile-row-height + $margin);
+  //   }
+  //   visibility: hidden;
+  // }
+  //
   // Page content
   //
   .demo-main {
@@ -82,7 +85,8 @@
     .demo-component-section__heading--focus-within & {
       opacity: 1;
     }
-  } //
+  }
+  //
   // CSS class demo
   //
   .demo-theme-color-section + .demo-theme-color-section {
@@ -141,7 +145,8 @@
   }
   .demo-theme-text-style {
     padding: 0 16px;
-  } //
+  }
+  //
   // Button demo
   //
   .demo-fieldset--button + .demo-fieldset--button {
@@ -150,7 +155,8 @@
   .demo-button__code {
     font-size: smaller;
     text-transform: none;
-  } //
+  }
+  //
   // Card demo
   //
   .demo-card-wrapper {
@@ -163,7 +169,8 @@
   }
   .demo-card__media--16-9 {
     background-image: url('../images/16-9.jpg');
-  } //
+  }
+  //
   // Checkbox demo
   //
   .demo-checkbox-row {
@@ -177,21 +184,24 @@
   }
   .demo-checkbox-wrapper + .demo-checkbox-toggle-button {
     margin-left: 20px;
-  } //
+  }
+  //
   // Dialog demo
   //
   .demo-dialog {
     position: relative;
     justify-content: flex-start;
     z-index: auto;
-  } //
+  }
+  //
   // Drawer demo
   //
   .demo-drawer-toggle {
     @include mdc-states(on-primary);
     vertical-align: middle;
     cursor: pointer;
-  } //
+  }
+  //
   // Floating Action Button (FAB) demo
   //
   .demo-fab-row {
@@ -209,7 +219,8 @@
   }
   .demo-fab-tile__snippet {
     height: 2em;
-  } //
+  }
+  //
   // Icon Toggle demo
   //
   .mdc-icon-button {
@@ -227,7 +238,8 @@
     padding: 20px;
     border-radius: 5px;
     text-align: center;
-  } //
+  }
+  //
   // Linear Progress demo
   //
   .demo-linear-progress-row {
@@ -235,7 +247,8 @@
   }
   .demo-linear-progress-row + .demo-linear-progress-row {
     margin-top: 64px;
-  } //
+  }
+  //
   // Radio Button demo
   //
   .demo-radio-group {
@@ -244,13 +257,15 @@
   }
   .demo-radio-form-field {
     margin-right: 8px;
-  } //
+  }
+  //
   // Switch demo
   //
   .demo-switch-wrapper {
     display: inline-block;
     margin: 16px 16px 0 0;
-  } //
+  }
+  //
   // Tab Bar demo
   //
   .demo-figure--tab-bar + .demo-figure--tab-bar {
@@ -258,7 +273,8 @@
   }
   .demo-tab-bar {
     margin: 0;
-  } //
+  }
+  //
   // Text Field demo
   //
   .demo-text-field-wrapper {
@@ -267,7 +283,8 @@
   }
   .demo-text-field {
     margin-top: 0 !important;
-  } //
+  }
+  //
   // Toolbar and menu
   //
   .demo-theme-menu__list-item--selected {
@@ -275,7 +292,8 @@
   }
   .demo-theme-list {
     @include mdc-theme-prop(color, text-primary-on-light);
-  } //
+  }
+  //
   // Radios
   //
   .demo-theme-color-radio {

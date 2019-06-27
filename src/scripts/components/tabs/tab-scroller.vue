@@ -2,7 +2,9 @@
   <div :class="className">
     <div class="mdc-tab-scroller__scroll-area">
       <div class="mdc-tab-scroller__scroll-content">
-        <slot><!-- Tab components --></slot>
+        <slot>
+          <!-- Tab components -->
+        </slot>
       </div>
     </div>
   </div>
@@ -38,9 +40,9 @@ export default {
   },
   watch: {
     scrollX(val) {
-      // console.log('watch', val);
       let newScrollValue = +val;
       this.$tabScroller.scrollTo(newScrollValue);
+
       this.scrollValue = newScrollValue;
     }
   },
@@ -59,14 +61,14 @@ export default {
   methods: {
     increment(scrollX = 0) {
       let offsetScrollX = +scrollX;
-      // console.log('increment', offsetScrollX);
       this.$tabScroller.incrementScroll(offsetScrollX);
-      // TODO: sync scrollX
-      this.$nextTick(() => {
-        this.scrollValue = this.$tabScroller.getScrollPosition();
-        // console.log(this.scrollValue);
-        this.$emit(UI_TABS.EVENT.CHANGE, this.scrollValue);
-      });
+
+      this.scrollValue += offsetScrollX;
+      if (this.scrollValue < 0) {
+        this.scrollValue = 0;
+      }
+
+      this.$emit(UI_TABS.EVENT.CHANGE, this.scrollValue);
     }
   }
 };

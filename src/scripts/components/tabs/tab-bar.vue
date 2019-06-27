@@ -2,7 +2,9 @@
   <!-- Container -->
   <div class="mdc-tab-bar" role="tablist">
     <ui-tab-scroller :align="align">
-      <slot><!-- Tab components --></slot>
+      <slot>
+        <!-- Tab components -->
+      </slot>
     </ui-tab-scroller>
   </div>
 </template>
@@ -39,11 +41,7 @@ export default {
       let activeTabIndex =
         this.active > -1 && this.active < tabList.length ? this.active : 0;
 
-      // this.$tabBar.activateTab(activeTabIndex); // TODO: mdc's bug?
-      if (this.$tabBar.tabList_.length) {
-        let $tab = this.$tabBar.tabList_[activeTabIndex];
-        $tab.activate($tab.computeIndicatorClientRect());
-      }
+      this.$tabBar.activateTab(activeTabIndex);
     }
   }
 };

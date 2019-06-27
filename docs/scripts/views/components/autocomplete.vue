@@ -29,7 +29,7 @@
         <ui-autocomplete
           v-model="keywords2"
           :source="source2"
-          placeholder="Type 'a' and 'b'"
+          placeholder="Type 'a', then 'b'"
           delay="500"
           remote
           autofocus

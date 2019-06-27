@@ -1,6 +1,10 @@
 // @import './normalize'; // OLD
 @import './sanitize'; // NEW
 
+html {
+  word-break: initial; // NOTE: bugfix for `sanitize.css`
+}
+
 a {
   text-decoration: none;
 }

@@ -2,11 +2,12 @@
 <ui-autocomplete
   v-model="keywords"
   :source="source"
-  placeholder="Type 'a' and 'b'"
+  placeholder="Type 'a', then 'b'"
   delay="500"
   remote
   autoFocus
-  @search="onSearch">
+  @search="onSearch"
+></ui-autocomplete>
 ```
 
 ```js

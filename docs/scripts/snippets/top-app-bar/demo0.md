@@ -21,6 +21,7 @@ import UiTopAppBar from 'balm-ui/components/top-app-bar';
 // (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
 import 'balm-ui/components/core.css';
 import 'balm-ui/components/top-app-bar.css';
+import 'balm-ui/components/icon-button.css';
 
 // Optional. Overwrite `<ui-top-app-bar>` props.
 Vue.use(UiTopAppBar, {

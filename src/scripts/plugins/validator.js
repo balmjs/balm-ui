@@ -34,8 +34,8 @@ const BalmUI_ValidatorPlugin = {
       let validationFields = Object.keys(validations);
 
       if (customFieldset.length) {
-        validationFields = validationFields.filter(
-          field => customFieldset.includes(field)
+        validationFields = validationFields.filter(field =>
+          customFieldset.includes(field)
         );
       }
 

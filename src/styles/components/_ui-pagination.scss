@@ -26,6 +26,13 @@ $mdc-pagination-active-border-color: $mdc-pagination-color !default;
   justify-content: center;
   .mdc-pagination__record {
     flex: 1;
+    .mdc-select,
+    select {
+      height: auto;
+    }
+    select {
+      padding: 0 16px;
+    }
   }
   .mdc-pagination__paging {
     a,

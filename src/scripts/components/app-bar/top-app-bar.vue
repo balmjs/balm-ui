@@ -4,13 +4,13 @@
     <div class="mdc-top-app-bar__row">
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
         <!-- Navigation icon (optional) / Close button (instead of a navigation icon) -->
-        <a
-          :class="[UI_TOP_APP_BAR.SLOT_CLASS.icon, 'mdc-top-app-bar__navigation-icon']"
+        <button
+          :class="[UI_TOP_APP_BAR.SLOT_CLASS.icon, 'mdc-top-app-bar__navigation-icon', 'mdc-icon-button']"
           :id="navIcon === UI_TOP_APP_BAR.EVENT.CLOSE ? null : navId"
           @click="handleClick"
         >
           <slot name="nav-icon">{{ navIcon }}</slot>
-        </a>
+        </button>
         <!-- Title (optional) / Contextual title -->
         <span class="mdc-top-app-bar__title">
           <slot>{{ title }}</slot>
@@ -48,7 +48,7 @@ const UI_TOP_APP_BAR = {
   },
   SLOT_CLASS: {
     icon: UI_GLOBAL.mdi,
-    item: 'mdc-top-app-bar__action-item'
+    item: 'mdc-top-app-bar__action-item mdc-icon-button'
   }
 };
 

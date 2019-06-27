@@ -103,7 +103,6 @@ export default {
     message(val) {
       this.$snackbar.labelText = val;
     }
-    // TODO: `actionButtonText` in `mdc@0.43.0` has bug
   },
   mounted() {
     this.$snackbar = new MDCSnackbar(this.$el);

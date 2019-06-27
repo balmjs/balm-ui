@@ -10,6 +10,10 @@
 }
 
 .demo--drawer {
+  .mdc-top-app-bar__navigation-icon {
+    cursor: pointer;
+  }
+
   .demo-main {
     position: relative;
     flex: auto;

@@ -158,7 +158,7 @@
         ></ui-select>
 
         <ui-select defaultLabel="City" :options="cities" v-model="formData.city"></ui-select>
-        Province: {{ formData.province }} - City: {{ formData.city }}
+        <p>Province: {{ formData.province }} - City: {{ formData.city }}</p>
       </section>
       <ui-accordion>
         <ui-markdown :code="code[6]"></ui-markdown>

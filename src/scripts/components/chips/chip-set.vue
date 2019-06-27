@@ -102,7 +102,7 @@ export default {
       });
     },
     onChange() {
-      // TODO: `this.$nextTick` has bug since mdc@0.44.0
+      // NOTE: `this.$nextTick` has bug since mdc@0.44.0
       setTimeout(() => {
         if (this.choice) {
           let selectedIndex = this.$chipSet.chips.findIndex(

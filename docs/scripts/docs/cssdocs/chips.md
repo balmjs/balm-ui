@@ -6,7 +6,6 @@ $mdc-chip-fill-color-default: mix(
 );
 $mdc-chip-ink-color-default: rgba(mdc-theme-prop-value(on-surface), 0.87);
 $mdc-chip-horizontal-padding: 12px;
-$mdc-chip-vertical-padding: 7px;
 $mdc-chip-height-default: 32px;
 
 $mdc-chip-icon-color: mdc-theme-prop-value(on-surface);
@@ -23,13 +22,9 @@ $mdc-chip-checkmark-animation-duration: 150ms;
 $mdc-chip-width-animation-duration: 150ms;
 $mdc-chip-opacity-animation-duration: 75ms;
 
-$mdc-chip-leading-icon-margin-top: -4px;
 $mdc-chip-leading-icon-margin-right: 4px;
-$mdc-chip-leading-icon-margin-bottom: -4px;
 $mdc-chip-leading-icon-margin-left: -4px;
 
-$mdc-chip-trailing-icon-margin-top: 0;
 $mdc-chip-trailing-icon-margin-right: -4px;
-$mdc-chip-trailing-icon-margin-bottom: 0;
 $mdc-chip-trailing-icon-margin-left: 4px;
 ```

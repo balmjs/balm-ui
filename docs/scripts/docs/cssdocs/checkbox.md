@@ -6,7 +6,6 @@ $mdc-checkbox-baseline-theme-color: secondary;
 
 $mdc-checkbox-touch-area: 40px;
 $mdc-checkbox-size: 18px;
-$mdc-checkbox-ui-pct: percentage($mdc-checkbox-size / $mdc-checkbox-touch-area);
 $mdc-checkbox-mark-stroke-size: 2/15 * $mdc-checkbox-size;
 $mdc-checkbox-border-width: 2px;
 $mdc-checkbox-transition-duration: 90ms;

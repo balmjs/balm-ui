@@ -5,9 +5,6 @@ $mdc-top-app-bar-title-left-padding: 20px;
 $mdc-top-app-bar-section-vertical-padding: 8px;
 $mdc-top-app-bar-section-horizontal-padding: 12px;
 
-$mdc-top-app-bar-icon-padding: 12px;
-$mdc-top-app-bar-icon-size: 24px;
-
 $mdc-top-app-bar-mobile-breakpoint: 599px;
 
 /* Default mobile styles */

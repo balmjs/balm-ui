@@ -65,7 +65,8 @@ module.exports = {
     includes: ['CNAME', 'material-icons.zip']
   },
   assets: {
-    publicUrl: env.buildDocs ? '//material.balmjs.com/' : ''
+    publicUrl: env.buildDocs ? '//material.balmjs.com/' : '',
+    excludes: ['dist/img/icons/icon-*.png']
   },
   cache: env.buildDocs,
   pwa: {

@@ -2,7 +2,20 @@
   "name": "balm-ui",
   "version": "3.0.0",
   "description": "Next Generation Material UI for Vue.js",
+  "keywords": [
+    "balm",
+    "material",
+    "design",
+    "vue",
+    "vue-component",
+    "component",
+    "components",
+    "ui",
+    "framework",
+    "frontend"
+  ],
   "homepage": "https://material.balmjs.com",
+  "license": "MIT",
   "author": {
     "name": "Elf-mousE",
     "email": "ifmouz@gmail.com",
@@ -30,7 +43,6 @@
     "type": "git",
     "url": "git+https://github.com/balmjs/ui-vue.git"
   },
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/balmjs/ui-vue/issues"
   },
@@ -95,7 +107,7 @@
     "webpack-node-externals": "^1.7.2"
   },
   "peerDependencies": {
-    "vue": ">=2.5.0"
+    "vue": ">=2.1.0"
   },
   "private": true
 }

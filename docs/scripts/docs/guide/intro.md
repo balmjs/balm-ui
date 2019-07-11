@@ -71,7 +71,7 @@ Following the [Material Design](https://material.io/components/) UI components f
 
 ### Contributing
 
-We'd love for you to contribute and make BalmUI even better than it is today! Please make sure to read the [Contributing Guide](https://github.com/balmjs/ui-vue/blob/master/CONTRIBUTING.md) before making a pull request. You can submit any ideas as [pull requests](https://github.com/balmjs/ui-vue/pulls) or as [GitHub issues](https://github.com/balmjs/ui-vue/issues).
+We'd love for you to contribute and make BalmUI even better than it is today! Please make sure to read the [Contributing Guide](https://github.com/balmjs/balm-ui/blob/master/CONTRIBUTING.md) before making a pull request. You can submit any ideas as [pull requests](https://github.com/balmjs/balm-ui/pulls) or as [GitHub issues](https://github.com/balmjs/balm-ui/issues).
 
 ### Browser support
 

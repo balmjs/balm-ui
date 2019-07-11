@@ -8,7 +8,7 @@
       <ui-top-app-bar class="balmui-head" fixed contentSelector=".balmui-body" navId="balmui-menu">
         <router-link to="/" :class="['catalog-title', $themeColor('on-primary')]">BalmUI</router-link>
         <template #toolbar="{ itemClass }">
-          <a :class="itemClass" href="https://github.com/balmjs/ui-vue">
+          <a :class="itemClass" href="https://github.com/balmjs/balm-ui">
             <svg-github></svg-github>
           </a>
         </template>

@@ -316,4 +316,4 @@ Coming Up
 - New plugins
 - New helpers
 
-## Deprecated [0.1.x](https://github.com/balmjs/ui-vue-lite/blob/0.1.x/CHANGELOG.md)
+## Deprecated [0.1.x](https://github.com/balmjs/balm-ui-lite/blob/0.1.x/CHANGELOG.md)

@@ -1,5 +1,14 @@
 # BalmUI ChangeLog
 
+## 3.0.1 (2019.07.11)
+
+### Features
+
+- update `balm@1.6.0`
+- update `balm-ui-lite@1.6.0`
+
+---
+
 ## 3.0.0 (2019.06.27)
 
 ### Features
@@ -18,8 +27,8 @@
 
 ---
 
-## [2.x](https://github.com/balmjs/ui-vue/blob/master/CHANGELOG-2.x.md)
+## [2.x](https://github.com/balmjs/balm-ui/blob/master/CHANGELOG-2.x.md)
 
-## [1.x](https://github.com/balmjs/ui-vue/blob/master/CHANGELOG-1.x.md)
+## [1.x](https://github.com/balmjs/balm-ui/blob/master/CHANGELOG-1.x.md)
 
-## [0.x](https://github.com/balmjs/ui-vue/blob/master/CHANGELOG-0.x.md)
+## [0.x](https://github.com/balmjs/balm-ui/blob/master/CHANGELOG-0.x.md)

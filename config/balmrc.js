@@ -61,7 +61,7 @@ module.exports = {
       : [path.resolve(__dirname, '../src/material-components-web')]
   },
   extras: {
-    excludes: ['index.js'],
+    excludes: ['index.js', 'rev-manifest.json'],
     includes: ['CNAME', 'material-icons.zip']
   },
   assets: {

@@ -109,7 +109,13 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'chips',
         name: 'Chips',
-        description: 'Chips for actions, selection, and input '
+        description: 'Chips for actions, selection, and input'
+      },
+      {
+        icon: 'component',
+        name: 'Data Table',
+        description: 'Data tables display sets of data',
+        url: 'table'
       },
       {
         icon: 'component',

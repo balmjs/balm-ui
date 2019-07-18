@@ -4,7 +4,7 @@ const ImageList = () => import('@/views/components/image-list');
 const Card = () => import('@/views/components/card');
 const Chips = () => import('@/views/components/chips');
 const LinearProgress = () => import('@/views/components/linear-progress');
-// const Table = () => import('@/views/table');
+const Table = () => import('@/views/components/table');
 const Pagination = () => import('@/views/components/pagination');
 const TextDivider = () => import('@/views/components/text-divider');
 
@@ -38,6 +38,11 @@ export default [
     path: 'linear-progress',
     name: 'data.linear-progress',
     component: LinearProgress
+  },
+  {
+    path: 'table',
+    name: 'data.table',
+    component: Table
   },
   {
     path: 'pagination',

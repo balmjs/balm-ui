@@ -8,6 +8,7 @@ const level1 = [
   'card',
   'checkbox',
   'chips',
+  'data-table',
   'dialog',
   'drawer',
   'elevation',

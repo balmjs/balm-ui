@@ -1,16 +1,26 @@
-[{
-  "id": 1,
-  "name": "Acrylic",
-  "quantity": 25,
-  "price": 2.9
-}, {
-  "id": 2,
-  "name": "Plywood",
-  "quantity": 50,
-  "price": 1.25
-}, {
-  "id": 3,
-  "name": "Laminate",
-  "quantity": 10,
-  "price": 2.35
-}]
+[
+  {
+    "id": 1,
+    "dessert": "Frozen yogurt",
+    "calories": 159,
+    "fat": 6,
+    "carbs": 24,
+    "protein": 4
+  },
+  {
+    "id": 2,
+    "dessert": "Ice cream sandwich",
+    "calories": 237,
+    "fat": 9,
+    "carbs": 37,
+    "protein": 4.3
+  },
+  {
+    "id": 3,
+    "dessert": "Eclair",
+    "calories": 262,
+    "fat": 16,
+    "carbs": 24,
+    "protein": 6
+  }
+]

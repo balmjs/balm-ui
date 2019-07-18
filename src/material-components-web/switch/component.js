@@ -45,11 +45,11 @@ var MDCSwitch = /** @class */ (function (_super) {
     MDCSwitch.prototype.initialSyncWithDOM = function () {
         var _this = this;
         this.changeHandler_ = function () {
+            var _a;
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
             }
-            var _a;
             return (_a = _this.foundation_).handleChange.apply(_a, tslib_1.__spread(args));
         };
         this.nativeControl_.addEventListener('change', this.changeHandler_);

@@ -18,6 +18,7 @@ const DMC_COMPONENTS = [
   'card',
   'checkbox',
   'chips', // New in mdc@0.30.0
+  'data-table', // New in mdc@3.1.0
   'dialog',
   'dom', // New in mdc@0.40.0
   'drawer',

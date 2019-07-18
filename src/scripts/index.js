@@ -58,6 +58,7 @@ import UiChipThumbnail from './components/chips/chip-thumbnail';
 import UiChipRemoveIcon from './components/chips/chip-remove-icon';
 import UiChipCheckmark from './components/chips/chip-checkmark';
 import UiLinearProgress from './components/progress/linear-progress';
+import UiDataTable from './components/data/table';
 // Inputs and Controls
 import UiFormField from './components/input-controls/form-field';
 import UiTextfield from './components/input-controls/textfield';
@@ -151,6 +152,7 @@ const components = {
   UiChipRemoveIcon,
   UiChipCheckmark,
   UiLinearProgress,
+  UiDataTable,
   // Inputs and Controls
   UiFormField,
   UiTextfield,

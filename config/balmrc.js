@@ -70,7 +70,7 @@ module.exports = {
   },
   cache: env.buildDocs,
   pwa: {
-    enabled: env.useDocs,
+    enabled: env.buildDocs,
     mode: 'injectManifest'
   },
   useDefault: env.useDefault

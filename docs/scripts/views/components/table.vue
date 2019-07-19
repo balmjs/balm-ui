@@ -18,7 +18,10 @@ export default {
     return {
       data: [],
       thead: [
-        'ID',
+        {
+          value: 'ID',
+          checkbox: true
+        },
         'Dessert',
         'Calories',
         'Fat',

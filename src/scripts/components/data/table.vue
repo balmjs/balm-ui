@@ -18,14 +18,14 @@
             <th
               v-if="theadCell[T_CELL.RAW]"
               :key="`thead-cell-${theadCellIndex}`"
-              class="mdc-data-table__header-cell"
+              :class="headerCellClassName(theadCell)"
               v-html="theadCell[T_CELL.VALUE]"
             ></th>
             <!-- Text -->
             <th
               v-else
               :key="`thead-cell-${theadCellIndex}`"
-              class="mdc-data-table__header-cell"
+              :class="headerCellClassName(theadCell)"
             >{{ theadCell[T_CELL.VALUE] }}</th>
           </template>
         </tr>
@@ -43,14 +43,14 @@
               <td
                 v-if="tbodyCell[T_CELL.RAW]"
                 :key="`tbody-cell-${tbodyCellIndex}`"
-                :class="cellClassName('mdc-data-table__cell', tbodyCell)"
+                :class="cellClassName(tbodyCell)"
                 v-html="tbodyCell[T_CELL.VALUE]"
               ></td>
               <!-- Text -->
               <td
                 v-else
                 :key="`tbody-cell-${tbodyCellIndex}`"
-                :class="cellClassName('mdc-data-table__cell', tbodyCell)"
+                :class="cellClassName(tbodyCell)"
               >{{ tbodyCell[T_CELL.VALUE] }}</td>
             </template>
           </tr>
@@ -85,10 +85,15 @@ const UI_TABLE = {
     FIELD: 'field',
     VALUE: 'value',
     NUMBER: 'numeric',
+    CHECKBOX: 'checkbox',
     RAW: 'raw',
     SLOT: 'slot'
   },
-  EVENT: {}
+  EVENT: {
+    CHANGED: 'changed',
+    SELECTED_All: 'selectedAll',
+    UNSELECTED_All: 'unselectedAll'
+  }
 };
 
 export default {
@@ -96,6 +101,12 @@ export default {
   props: {
     // States
     data: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
+    checkedList: {
       type: Array,
       default() {
         return [];
@@ -168,18 +179,35 @@ export default {
   },
   mounted() {
     this.$table = new MDCDataTable(this.$el);
+
+    this.$table.listen(`MDCDataTable:${UI_TABLE.EVENT.CHANGED}`, () => {
+      // this.$emit(UI_TABLE.EVENT.CHANGED, this.$table.checkedList);
+    });
+
+    this.$table.listen(`MDCDataTable:${UI_TABLE.EVENT.SELECTED_All}`, () => {
+      // this.$emit(UI_TABLE.EVENT.SELECTED_All, this.$table.checkedList);
+    });
+
+    this.$table.listen(`MDCDataTable:${UI_TABLE.EVENT.UNSELECTED_All}`, () => {
+      // this.$emit(UI_TABLE.EVENT.UNSELECTED_All, this.$table.checkedList);
+    });
   },
   methods: {
     hasMultipleRows(data) {
       return this.data && isArray(this.data[0]);
     },
-    cellClassName(defaultClassName, data) {
-      return [
-        defaultClassName,
-        {
-          'mdc-data-table__cell--numeric': data[this.T_CELL.NUMBER]
-        }
-      ];
+    headerCellClassName(data) {
+      return {
+        'mdc-data-table__header-cell': true,
+        'mdc-data-table__header-cell--checkbox': data[this.T_CELL.CHECKBOX]
+      };
+    },
+    cellClassName(data) {
+      return {
+        'mdc-data-table__cell': true,
+        'mdc-data-table__cell--numeric': data[this.T_CELL.NUMBER],
+        'mdc-data-table__cell--checkbox': data[this.T_CELL.CHECKBOX]
+      };
     },
     getCell(data) {
       let cell = {};
@@ -207,6 +235,13 @@ export default {
           let field = isObject(dataFields[index])
             ? dataFields[index][this.T_CELL.FIELD]
             : dataFields[index];
+
+          // Set checkbox
+          if (index === 0) {
+            cell[this.T_CELL.CHECKBOX] = this.theadData[0][0][
+              this.T_CELL.CHECKBOX
+            ]; // Two-dimensional array
+          }
 
           // Set value
           if (key === field) {

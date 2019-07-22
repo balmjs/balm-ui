@@ -1,35 +1,31 @@
 <template>
-  <ui-form-field :block="block" :alignEnd="alignEnd">
-    <slot name="before"></slot>
-    <div ref="checkbox" :class="className">
-      <input :id="id"
-        v-model="checkedValue"
-        type="checkbox"
-        class="mdc-checkbox__native-control"
-        :name="name"
-        :value="value"
-        :disabled="disabled"
-        v-bind="attrs"
-        @change="handleChange">
-      <div class="mdc-checkbox__background">
-        <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-          <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-        </svg>
-        <div class="mdc-checkbox__mixedmark"></div>
-      </div>
+  <div :class="className">
+    <input
+      :id="id"
+      v-model="checkedValue"
+      type="checkbox"
+      class="mdc-checkbox__native-control"
+      :name="name"
+      :value="value"
+      :disabled="disabled"
+      v-bind="attrs"
+      @change="handleChange"
+    />
+    <div class="mdc-checkbox__background">
+      <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+        <path
+          class="mdc-checkbox__checkmark-path"
+          fill="none"
+          d="M1.73,12.91 8.1,19.28 22.79,4.59"
+        />
+      </svg>
+      <div class="mdc-checkbox__mixedmark"></div>
     </div>
-    <label v-if="!noLabel" :for="id">
-      <slot>{{ label }}</slot>
-    </label>
-    <slot name="after"></slot>
-  </ui-form-field>
+  </div>
 </template>
 
 <script>
-import { MDCFormField } from '../../../material-components-web/form-field';
 import { MDCCheckbox } from '../../../material-components-web/checkbox';
-import UiFormField from './form-field';
-import formFieldMixin from '../../mixins/form-field';
 import elementMixin from '../../mixins/element';
 import getType from '../../utils/typeof';
 
@@ -42,10 +38,7 @@ const UI_CHECKBOX = {
 
 export default {
   name: 'ui-checkbox',
-  components: {
-    UiFormField
-  },
-  mixins: [formFieldMixin, elementMixin],
+  mixins: [elementMixin],
   model: {
     prop: 'model',
     event: UI_CHECKBOX.EVENT.CHANGE
@@ -70,12 +63,6 @@ export default {
     value: [String, Number],
     // UI attributes
     cssOnly: {
-      type: Boolean,
-      default: false
-    },
-    label: String,
-    // For `<ui-item>`
-    noLabel: {
       type: Boolean,
       default: false
     }
@@ -105,13 +92,14 @@ export default {
   },
   mounted() {
     if (!this.cssOnly) {
-      this.$checkbox = new MDCCheckbox(this.$refs.checkbox);
+      this.$checkbox = new MDCCheckbox(this.$el);
       this.$checkbox.indeterminate = this.indeterminate;
 
-      if (!this.noLabel) {
-        const formField = new MDCFormField(this.$el);
-        formField.input = this.$checkbox;
-      }
+      this.$nextTick(() => {
+        if (this.$parent.$formField) {
+          this.$parent.$formField.input = this.$checkbox;
+        }
+      });
     }
   },
   methods: {

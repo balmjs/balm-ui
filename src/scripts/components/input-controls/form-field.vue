@@ -1,23 +1,43 @@
 <template>
   <div :class="className">
-    <slot><!-- Form item: input + label --></slot>
+    <slot>
+      <!-- Form item: checkbox or radio + label -->
+    </slot>
   </div>
 </template>
 
 <script>
-import formFieldMixin from '../../mixins/form-field';
+import { MDCFormField } from '../../../material-components-web/form-field';
 
 export default {
   name: 'ui-form-field',
-  mixins: [formFieldMixin],
+  props: {
+    // UI attributes
+    alignEnd: {
+      type: Boolean,
+      default: false
+    },
+    block: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data() {
+    return {
+      $formField: null
+    };
+  },
   computed: {
     className() {
       return {
-        'mdc-form-field': !this.noWrap,
-        'mdc-form-field--block': this.block,
-        'mdc-form-field--align-end': this.alignEnd
+        'mdc-form-field': true,
+        'mdc-form-field--align-end': this.alignEnd,
+        'mdc-form-field--block': this.block
       };
     }
+  },
+  mounted() {
+    this.$formField = new MDCFormField(this.$el);
   }
 };
 </script>

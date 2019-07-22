@@ -1,7 +1,10 @@
 <template>
   <div :class="[$tt('body1'), 'demo--checkbox']">
     <section class="hero component">
-      <ui-checkbox cssOnly id="hero-checkbox-label">Checkbox</ui-checkbox>
+      <ui-form-field>
+        <ui-checkbox cssOnly id="hero-checkbox-label"></ui-checkbox>
+        <label for="hero-checkbox-label">Checkbox</label>
+      </ui-form-field>
     </section>
 
     <ui-toc-affix></ui-toc-affix>
@@ -21,16 +24,20 @@
         <ui-checkbox-demo></ui-checkbox-demo>
       </section>
 
-      <hr>
+      <hr />
 
       <section class="example">
         <p>Single checkbox, boolean value:</p>
         <!-- v-model -->
-        <ui-checkbox id="checkbox" v-model="checked">{{checked}}</ui-checkbox>
+        <ui-form-field>
+          <ui-checkbox id="checkbox" v-model="checked"></ui-checkbox>
+          <label for="checkbox">{{checked}}</label>
+        </ui-form-field>
         <!-- model -->
-        <!-- <ui-checkbox id="checkbox" :model="checked" @change="$balmUI.onChange('checked', $event)">
-          {{checked}}
-        </ui-checkbox>-->
+        <!-- <ui-form-field>
+          <ui-checkbox id="checkbox" :model="checked" @change="$balmUI.onChange('checked', $event)"></ui-checkbox>
+          <label for="checkbox">{{checked}}</label>
+        </ui-form-field>-->
         <ui-accordion>
           <ui-markdown :code="code[1]"></ui-markdown>
         </ui-accordion>
@@ -39,13 +46,46 @@
       <section class="example">
         <p>Multiple checkboxes, bound to the same Array: {{checkedNames}}</p>
         <!-- v-model -->
-        <ui-checkbox id="jack" value="Jack" v-model="checkedNames">Jack</ui-checkbox>
-        <ui-checkbox id="john" value="John" v-model="checkedNames">John</ui-checkbox>
-        <ui-checkbox id="mike" value="Mike" v-model="checkedNames">Mike</ui-checkbox>
+        <ui-form-field>
+          <ui-checkbox id="jack" value="Jack" v-model="checkedNames"></ui-checkbox>
+          <label for="jack">Jack</label>
+        </ui-form-field>
+        <ui-form-field>
+          <ui-checkbox id="john" value="John" v-model="checkedNames"></ui-checkbox>
+          <label for="john">John</label>
+        </ui-form-field>
+        <ui-form-field>
+          <ui-checkbox id="mike" value="Mike" v-model="checkedNames"></ui-checkbox>
+          <label for="mike">Mike</label>
+        </ui-form-field>
         <!-- model -->
-        <!-- <ui-checkbox id="jack" value="Jack" :model="checkedNames" @change="$balmUI.onChange('checkedNames', $event)">Jack</ui-checkbox>
-        <ui-checkbox id="john" value="John" :model="checkedNames" @change="$balmUI.onChange('checkedNames', $event)">John</ui-checkbox>
-        <ui-checkbox id="mike" value="Mike" :model="checkedNames" @change="$balmUI.onChange('checkedNames', $event)">Mike</ui-checkbox>-->
+        <!-- <ui-form-field>
+          <ui-checkbox
+            id="jack"
+            value="Jack"
+            :model="checkedNames"
+            @change="$balmUI.onChange('checkedNames', $event)"
+          ></ui-checkbox>
+          <label for="jack">Jack</label>
+        </ui-form-field>
+        <ui-form-field>
+          <ui-checkbox
+            id="john"
+            value="John"
+            :model="checkedNames"
+            @change="$balmUI.onChange('checkedNames', $event)"
+          ></ui-checkbox>
+          <label for="john">John</label>
+        </ui-form-field>
+        <ui-form-field>
+          <ui-checkbox
+            id="mike"
+            value="Mike"
+            :model="checkedNames"
+            @change="$balmUI.onChange('checkedNames', $event)"
+          ></ui-checkbox>
+          <label for="mike">Mike</label>
+        </ui-form-field>-->
         <ui-accordion>
           <ui-markdown :code="code[2]"></ui-markdown>
         </ui-accordion>

@@ -1,33 +1,25 @@
 <template>
-  <ui-form-field :block="block" :alignEnd="alignEnd">
-    <slot name="before"></slot>
-    <div ref="radio" :class="className">
-      <input :id="id"
-        v-model="checkedValue"
-        type="radio"
-        class="mdc-radio__native-control"
-        :name="name"
-        :value="value"
-        :disabled="disabled"
-        v-bind="attrs"
-        @change="handleChange">
-      <div class="mdc-radio__background">
-        <div class="mdc-radio__outer-circle"></div>
-        <div class="mdc-radio__inner-circle"></div>
-      </div>
+  <div :class="className">
+    <input
+      :id="id"
+      v-model="checkedValue"
+      type="radio"
+      class="mdc-radio__native-control"
+      :name="name"
+      :value="value"
+      :disabled="disabled"
+      v-bind="attrs"
+      @change="handleChange"
+    />
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
     </div>
-    <label v-if="!noLabel" :for="id">
-      <slot>{{ label }}</slot>
-    </label>
-    <slot name="after"></slot>
-  </ui-form-field>
+  </div>
 </template>
 
 <script>
-import { MDCFormField } from '../../../material-components-web/form-field';
 import { MDCRadio } from '../../../material-components-web/radio';
-import UiFormField from './form-field';
-import formFieldMixin from '../../mixins/form-field';
 import elementMixin from '../../mixins/element';
 
 // Define constants
@@ -39,10 +31,7 @@ const UI_RADIO = {
 
 export default {
   name: 'ui-radio',
-  components: {
-    UiFormField
-  },
-  mixins: [formFieldMixin, elementMixin],
+  mixins: [elementMixin],
   model: {
     prop: 'model',
     event: UI_RADIO.EVENT.CHANGE
@@ -60,12 +49,6 @@ export default {
     value: [String, Number],
     // UI attributes
     cssOnly: {
-      type: Boolean,
-      default: false
-    },
-    label: String,
-    // For `<ui-item>`
-    noLabel: {
       type: Boolean,
       default: false
     }
@@ -91,13 +74,14 @@ export default {
   },
   mounted() {
     if (!this.cssOnly) {
-      this.$radio = new MDCRadio(this.$refs.radio);
+      this.$radio = new MDCRadio(this.$el);
       this.$radio.checked = this.checkedValue == this.value;
 
-      if (!this.noLabel) {
-        const formField = new MDCFormField(this.$el);
-        formField.input = this.$radio;
-      }
+      this.$nextTick(() => {
+        if (this.$parent.$formField) {
+          this.$parent.$formField.input = this.$radio;
+        }
+      });
     }
   },
   methods: {

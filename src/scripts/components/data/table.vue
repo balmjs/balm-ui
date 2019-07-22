@@ -1,6 +1,7 @@
 <template>
   <!-- Container -->
   <div :class="className">
+    <!-- TODO: header - conditions -->
     <table class="mdc-data-table__table">
       <!-- TODO: <caption></caption>
       <colgroup>
@@ -26,7 +27,14 @@
               v-else
               :key="`thead-cell-${theadCellIndex}`"
               :class="headerCellClassName(theadCell)"
-            >{{ theadCell[T_CELL.VALUE] }}</th>
+            >
+              <ui-checkbox
+                v-if="theadCell[T_CELL.CHECKBOX]"
+                :class="'mdc-checkbox--selected mdc-data-table__header-row-checkbox'"
+                cssOnly
+              ></ui-checkbox>
+              <template v-else>{{ theadCell[T_CELL.VALUE] }}</template>
+            </th>
           </template>
         </tr>
       </thead>
@@ -47,11 +55,21 @@
                 v-html="tbodyCell[T_CELL.VALUE]"
               ></td>
               <!-- Text -->
-              <td
-                v-else
-                :key="`tbody-cell-${tbodyCellIndex}`"
-                :class="cellClassName(tbodyCell)"
-              >{{ tbodyCell[T_CELL.VALUE] }}</td>
+              <td v-else :key="`tbody-cell-${tbodyCellIndex}`" :class="cellClassName(tbodyCell)">
+                <ui-checkbox
+                  v-if="tbodyCell[T_CELL.CHECKBOX]"
+                  :class="'mdc-data-table__row-checkbox'"
+                  cssOnly
+                ></ui-checkbox>
+                <template v-else>
+                  <slot
+                    v-if="tbodyCell[T_CELL.SLOT]"
+                    :name="tbodyCell[T_CELL.SLOT]"
+                    :data="getRowData(tbodyRow)"
+                  ></slot>
+                  <template v-else>{{ tbodyCell[T_CELL.VALUE] }}</template>
+                </template>
+              </td>
             </template>
           </tr>
         </template>
@@ -66,12 +84,13 @@
         <!-- TODO: tfoot data -->
       </tfoot>
     </table>
-    <!-- TODO: Pagination -->
+    <!-- TODO: footer - Pagination -->
   </div>
 </template>
 
 <script>
 import { MDCDataTable } from '../../../material-components-web/data-table';
+import UiCheckbox from '../input-controls/checkbox';
 import { isString, isObject, isArray } from '../../utils/types';
 
 // Define constants
@@ -98,6 +117,9 @@ const UI_TABLE = {
 
 export default {
   name: 'ui-table',
+  components: {
+    UiCheckbox
+  },
   props: {
     // States
     data: {
@@ -139,6 +161,14 @@ export default {
     noData: {
       type: String,
       default: 'No Data'
+    },
+    sortingTool: {
+      type: Boolean,
+      default: false
+    },
+    rowCheckbox: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -173,9 +203,17 @@ export default {
     }
   },
   created() {
+    this.dataColumns = this.tbody.length;
+
     if (this.columns) {
-      this.dataColumns = this.columns;
+      this.dataColumns = this.columns; // Manual set columns
     }
+
+    if (this.rowCheckbox) {
+      this.dataColumns += 1;
+    }
+
+    console.log('created - dataColumns: ', this.dataColumns);
   },
   mounted() {
     this.$table = new MDCDataTable(this.$el);
@@ -229,6 +267,14 @@ export default {
     getData(currentData, dataFields) {
       let data = [];
 
+      // Set checkbox
+      if (this.rowCheckbox) {
+        let cell = {
+          checkbox: true
+        };
+        data.push(cell);
+      }
+
       if (isObject(currentData)) {
         Object.keys(currentData).forEach((key, index) => {
           let cell = {};
@@ -236,15 +282,9 @@ export default {
             ? dataFields[index][this.T_CELL.FIELD]
             : dataFields[index];
 
-          // Set checkbox
-          if (index === 0) {
-            cell[this.T_CELL.CHECKBOX] = this.theadData[0][0][
-              this.T_CELL.CHECKBOX
-            ]; // Two-dimensional array
-          }
-
           // Set value
           if (key === field) {
+            cell[this.T_CELL.FIELD] = key;
             cell[this.T_CELL.VALUE] = currentData[field];
           }
 
@@ -281,25 +321,53 @@ export default {
             let theadRow = this.thead.map(theadCell => this.getCell(theadCell));
             result.push(theadRow);
           }
+
+          if (this.rowCheckbox) {
+            let cell = {
+              checkbox: true,
+              rowspan: result.length
+            };
+            result[0].unshift(cell);
+          }
+
+          // console.log('thead', result);
           break;
         case UI_TABLE.ELEMENT.TFOOT:
           let tfootRow = this.tfoot.map(tfootCell => this.getCell(tfootCell));
           result.push(tfootRow);
+
+          if (this.rowCheckbox) {
+            result[0].unshift({});
+          }
           break;
         default:
           this.currentData.forEach(tbodyData => {
-            console.log(Object.assign({}, tbodyData));
+            // console.log(Object.assign({}, tbodyData));
             let tbodyRow = this.getData(
               Object.assign({}, tbodyData),
               this.tbody
             );
-            console.log(tbodyRow);
+
+            // console.log(tbodyRow);
             result.push(tbodyRow);
+
+            // console.log('tbody', result);
           });
           break;
       }
 
       return result;
+    },
+    getRowData(tbodyRow) {
+      let data = {};
+
+      tbodyRow.forEach(cell => {
+        if (!cell.checkbox) {
+          data[cell[this.T_CELL.FIELD]] = cell[this.T_CELL.VALUE];
+        }
+      });
+
+      return data;
     }
   }
 };

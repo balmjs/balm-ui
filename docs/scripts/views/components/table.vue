@@ -2,7 +2,9 @@
   <div :class="[$tt('body1'), 'demo--table']">
     <section class="hero component">表格</section>
 
-    <ui-table :data="data" :thead="thead" :tbody="tbody"></ui-table>
+    <ui-table rowCheckbox :data="data" :thead="thead" :tbody="tbody">
+      <template #id="{ data }">{{ data.id }}</template>
+    </ui-table>
   </div>
 </template>
 
@@ -18,21 +20,20 @@ export default {
     return {
       data: [],
       thead: [
-        {
-          value: 'ID',
-          checkbox: true
-        },
+        'ID',
         'Dessert',
         'Calories',
         'Fat',
         {
-          value: 'Carbs (g)',
-          slot: 'test'
+          value: 'Carbs (g)'
         },
         'Protein (g)'
       ],
       tbody: [
-        'id',
+        {
+          field: 'id',
+          slot: 'id'
+        },
         'dessert',
         {
           field: 'calories',

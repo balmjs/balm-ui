@@ -26,8 +26,14 @@
       <section class="example">
         <h2>Disabled</h2>
         <div>
-          <ui-radio id="ex4a-radio1" name="ex4a" value="0" v-model="hero" disabled>Disabled Radio 1</ui-radio>
-          <ui-radio id="ex4a-radio2" name="ex4a" value="1" v-model="hero" disabled>Disabled Radio 2</ui-radio>
+          <ui-form-field>
+            <ui-radio id="ex4a-radio1" name="ex4a" value="0" v-model="hero" disabled></ui-radio>
+            <label for="ex4a-radio1">Disabled Radio 1</label>
+          </ui-form-field>
+          <ui-form-field>
+            <ui-radio id="ex4a-radio2" name="ex4a" value="1" v-model="hero" disabled></ui-radio>
+            <label for="ex4a-radio2">Disabled Radio 2</label>
+          </ui-form-field>
         </div>
       </section>
 

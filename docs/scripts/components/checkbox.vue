@@ -1,56 +1,57 @@
 <template>
   <div>
     <div>
-      <ui-checkbox
-        :id="`${idPrefix}-checkbox`"
-        :cssOnly="cssOnly"
-        :alignEnd="alignEnd">
-        Default checkbox
-      </ui-checkbox>
+      <ui-form-field :alignEnd="alignEnd">
+        <ui-checkbox :id="`${idPrefix}-checkbox`" :cssOnly="cssOnly"></ui-checkbox>
+        <label :for="`${idPrefix}-checkbox`">Default checkbox</label>
+      </ui-form-field>
       <div class="demo-toggle-group">
         <ui-button outlined @click="$balmUI.onChange('alignEnd', !alignEnd)">
-          Toggle <code>--align-end</code>
+          Toggle
+          <code>--align-end</code>
         </ui-button>
       </div>
     </div>
     <div>
-      <ui-checkbox
-        :id="`${idPrefix}-checkbox-disabled`"
-        :cssOnly="cssOnly"
-        :disabled="disabled">
-        Disabled checkbox
-      </ui-checkbox>
+      <ui-form-field>
+        <ui-checkbox :id="`${idPrefix}-checkbox-disabled`" :cssOnly="cssOnly" :disabled="disabled"></ui-checkbox>
+        <label :for="`${idPrefix}-checkbox-disabled`">Disabled checkbox</label>
+      </ui-form-field>
       <div class="demo-toggle-group">
         <ui-button outlined @click="$balmUI.onChange('disabled', !disabled)">
-          Toggle <code>disabled</code>
+          Toggle
+          <code>disabled</code>
         </ui-button>
       </div>
     </div>
     <div v-if="!cssOnly">
-      <ui-checkbox
-        :id="`${idPrefix}-checkbox-indeterminate`"
-        :cssOnly="cssOnly"
-        :indeterminate="indeterminate">
-        Indeterminate checkbox
-      </ui-checkbox>
+      <ui-form-field>
+        <ui-checkbox
+          :id="`${idPrefix}-checkbox-indeterminate`"
+          :cssOnly="cssOnly"
+          :indeterminate="indeterminate"
+        ></ui-checkbox>
+        <label :for="`${idPrefix}-checkbox-indeterminate`">Indeterminate checkbox</label>
+      </ui-form-field>
       <div class="demo-toggle-group">
         <ui-button outlined @click="$balmUI.onChange('indeterminate', !indeterminate)">
-          Toggle <code>indeterminate</code>
+          Toggle
+          <code>indeterminate</code>
         </ui-button>
       </div>
     </div>
-    <ui-checkbox block
-      class="demo-checkbox--custom-all"
-      :id="`${idPrefix}-checkbox-custom-all`"
-      :cssOnly="cssOnly">
-      Custom colored checkbox (stroke, fill, ripple, and focus)
-    </ui-checkbox>
-    <ui-checkbox block
-      class="demo-checkbox--custom-stroke-and-fill"
-      :id="`${idPrefix}-checkbox-custom-stroke-and-fill`"
-      :cssOnly="cssOnly">
-      Custom colored checkbox (stroke and fill only)
-    </ui-checkbox>
+    <ui-form-field class="demo-checkbox--custom-all" block>
+      <ui-checkbox block :id="`${idPrefix}-checkbox-custom-all`" :cssOnly="cssOnly"></ui-checkbox>
+      <label
+        :for="`${idPrefix}-checkbox-custom-all`"
+      >Custom colored checkbox (stroke, fill, ripple, and focus)</label>
+    </ui-form-field>
+    <ui-form-field class="demo-checkbox--custom-stroke-and-fill" block>
+      <ui-checkbox block :id="`${idPrefix}-checkbox-custom-stroke-and-fill`" :cssOnly="cssOnly"></ui-checkbox>
+      <label
+        :for="`${idPrefix}-checkbox-custom-stroke-and-fill`"
+      >Custom colored checkbox (stroke and fill only)</label>
+    </ui-form-field>
   </div>
 </template>
 

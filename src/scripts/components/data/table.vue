@@ -109,9 +109,7 @@ const UI_TABLE = {
     SLOT: 'slot'
   },
   EVENT: {
-    CHANGED: 'changed',
-    SELECTED_All: 'selectedAll',
-    UNSELECTED_All: 'unselectedAll'
+    SELECTED: 'selected'
   }
 };
 
@@ -119,6 +117,10 @@ export default {
   name: 'ui-table',
   components: {
     UiCheckbox
+  },
+  model: {
+    prop: 'selectedRows',
+    event: UI_TABLE.EVENT.SELECTED
   },
   props: {
     // States
@@ -128,11 +130,15 @@ export default {
         return [];
       }
     },
-    checkedList: {
+    selectedRows: {
       type: Array,
       default() {
         return [];
       }
+    },
+    selectedRowId: {
+      type: [Boolean, String],
+      default: false
     },
     // UI attributes
     columns: Number,
@@ -200,6 +206,10 @@ export default {
     data(val) {
       console.log('watch');
       this.currentData = val;
+
+      this.$nextTick(() => {
+        this.$table.layout();
+      });
     }
   },
   created() {
@@ -218,16 +228,36 @@ export default {
   mounted() {
     this.$table = new MDCDataTable(this.$el);
 
-    this.$table.listen(`MDCDataTable:${UI_TABLE.EVENT.CHANGED}`, () => {
-      // this.$emit(UI_TABLE.EVENT.CHANGED, this.$table.checkedList);
+    this.$table.listen('MDCDataTable:rowSelectionChanged', ({ detail }) => {
+      let currentSelectedRows = this.selectedRows;
+
+      console.log('before', currentSelectedRows);
+
+      // TODO: row data
+      if (detail.selected) {
+        currentSelectedRows = currentSelectedRows.push(detail.rowIndex);
+      } else {
+        let elementIndex = currentSelectedRows.indexOf(detail.rowIndex);
+        if (currentSelectedRows.indexOf(detail.rowIndex) !== -1) {
+          currentSelectedRows.splice(elementIndex, 1);
+        }
+      }
+
+      console.log('after', currentSelectedRows);
+
+      this.$emit(UI_TABLE.EVENT.SELECTED, currentSelectedRows);
     });
 
-    this.$table.listen(`MDCDataTable:${UI_TABLE.EVENT.SELECTED_All}`, () => {
-      // this.$emit(UI_TABLE.EVENT.SELECTED_All, this.$table.checkedList);
+    this.$table.listen('MDCDataTable:selectedAll', () => {
+      let selectedRows = this.currentData.map((row, index) => {
+        return this.selectedRowId ? row[this.selectedRowId] : index;
+      });
+
+      this.$emit(UI_TABLE.EVENT.SELECTED, selectedRows);
     });
 
-    this.$table.listen(`MDCDataTable:${UI_TABLE.EVENT.UNSELECTED_All}`, () => {
-      // this.$emit(UI_TABLE.EVENT.UNSELECTED_All, this.$table.checkedList);
+    this.$table.listen('MDCDataTable:unselectedAll', () => {
+      this.$emit(UI_TABLE.EVENT.SELECTED, []);
     });
   },
   methods: {

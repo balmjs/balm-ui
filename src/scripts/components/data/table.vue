@@ -71,7 +71,13 @@
         </tr>
       </tbody>
       <tfoot v-if="tfootData.length">
-        <!-- TODO: tfoot data -->
+        <tr class="mdc-data-table__footer-row">
+          <td
+            v-for="(tfootCell, tfootCellIndex) in tfootData"
+            :key="tfootCellIndex"
+            :class="headerCellClassName(tfootCell)"
+          >{{ tfootCell[T_CELL.VALUE]}}</td>
+        </tr>
       </tfoot>
     </table>
     <!-- TODO: footer - Pagination -->
@@ -101,7 +107,8 @@ const UI_TABLE = {
     ALIGN: 'align',
     FUNCTION: 'fn',
     SLOT: 'slot',
-    ACTIONS: 'actions'
+    ACTIONS: 'actions',
+    FUNCTION_NAME: 'fnName' // For AGG
   },
   EVENT: {
     SELECTED: 'selected'
@@ -110,6 +117,13 @@ const UI_TABLE = {
     LEFT: 'mdc-data-table__cell--left',
     CENTER: 'mdc-data-table__cell--center',
     RIGHT: 'mdc-data-table__cell--right'
+  },
+  AGG: {
+    COUNT: 'count',
+    SUM: 'sum',
+    AVG: 'avg',
+    MAX: 'max',
+    MIN: 'min'
   }
 };
 
@@ -135,10 +149,6 @@ export default {
       default() {
         return [];
       }
-    },
-    selectedRowId: {
-      type: [Boolean, String],
-      default: false
     },
     // UI attributes
     columns: Number,
@@ -168,12 +178,12 @@ export default {
       type: String,
       default: 'No Data'
     },
-    sortingTool: {
+    rowCheckbox: {
       type: Boolean,
       default: false
     },
-    rowCheckbox: {
-      type: Boolean,
+    selectedRowId: {
+      type: [Boolean, String],
       default: false
     }
   },
@@ -327,7 +337,15 @@ export default {
 
       return className;
     },
-    getCell(data) {
+    footerCellClassName(data) {
+      let className = ['mdc-data-table__footer-cell'];
+
+      className = this.setTextAlignClassName(className, data);
+      className = this.setCustomClassName(className, data);
+
+      return className;
+    },
+    getTheadCell(data) {
       let cell = {};
 
       if (isString(data) || isObject(data)) {
@@ -339,7 +357,67 @@ export default {
           });
         }
       } else {
-        console.warn(`Invalid thead/tfoot cell data: ${data}`);
+        console.warn(`Invalid thead cell data: ${data}`);
+      }
+
+      return cell;
+    },
+    getTfootCell(data) {
+      let cell = {};
+
+      if (isObject(data)) {
+        let field = data[this.T_CELL.FIELD] || false;
+
+        if (field) {
+          let columnData = this.currentData.map(item => item[field]);
+
+          let result = 0;
+          switch (data[this.T_CELL.FUNCTION_NAME]) {
+            case UI_TABLE.AGG.COUNT:
+              result = columnData.length;
+              break;
+            case UI_TABLE.AGG.SUM:
+              columnData.forEach(value => {
+                if (value) {
+                  result += value;
+                }
+              });
+              break;
+            case UI_TABLE.AGG.AVG:
+              columnData.forEach(value => {
+                if (value) {
+                  result += value;
+                }
+              });
+              result /= columnData.length;
+              break;
+            case UI_TABLE.AGG.MAX:
+              columnData.forEach(value => {
+                if (value && value > result) {
+                  result = value;
+                }
+              });
+              break;
+            case UI_TABLE.AGG.MIN:
+              columnData.forEach(value => {
+                if (value && value < result) {
+                  result = value;
+                }
+              });
+              break;
+            default:
+              result = '';
+          }
+
+          let fn = data[this.T_CELL.FUNCTION];
+          cell[this.T_CELL.VALUE] = fn
+            ? fn(result)
+            : Math.round(result * 100) / 100;
+        }
+
+        Object.keys(data).forEach(key => {
+          cell[key] = data[key];
+        });
       }
 
       return cell;
@@ -418,12 +496,14 @@ export default {
           if (this.hasMultipleRows(this.thead)) {
             this.thead.forEach(currentTheadRow => {
               let theadRow = currentTheadRow.map(theadCell =>
-                this.getCell(theadCell)
+                this.getTheadCell(theadCell)
               );
               result.push(theadRow);
             });
           } else {
-            let theadRow = this.thead.map(theadCell => this.getCell(theadCell));
+            let theadRow = this.thead.map(theadCell =>
+              this.getTheadCell(theadCell)
+            );
             result.push(theadRow);
           }
 
@@ -436,12 +516,16 @@ export default {
           }
           break;
         case UI_TABLE.ELEMENT.TFOOT:
-          let tfootRow = this.tfoot.map(tfootCell => this.getCell(tfootCell));
-          result.push(tfootRow);
+          result = this.tfoot.map(tfootCell => this.getTfootCell(tfootCell));
 
           if (this.rowCheckbox) {
-            result[0].unshift({});
+            result.unshift({});
           }
+
+          if (this.withActions) {
+            result.push({});
+          }
+          console.log(result);
           break;
         default:
           this.currentData.forEach(tbodyData => {

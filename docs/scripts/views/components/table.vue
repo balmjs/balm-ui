@@ -1,7 +1,7 @@
 <template>
   <div :class="[$tt('body1'), 'demo--table']">
     <section class="hero component">
-      <ui-table rowCheckbox :data="heroData" :thead="thead" :tbody="tbody"></ui-table>
+      <!-- <ui-table rowCheckbox :data="heroData" :thead="thead" :tbody="tbody"></ui-table> -->
     </section>
 
     <!-- <ui-table :data="data" :thead="thead" :tbody="tbody"></ui-table> -->
@@ -11,6 +11,7 @@
       :data="data"
       :thead="thead"
       :tbody="tbody"
+      :tfoot="tfoot"
       v-model="selectedRows"
       selectedRowId="id"
     >
@@ -46,7 +47,8 @@ export default {
         // ],
         'ID',
         {
-          value: 'Dessert (100g serving)'
+          value: 'Dessert (100g serving)',
+          class: 'gg'
         },
         'Calories',
         'Fat (g)',
@@ -77,6 +79,31 @@ export default {
         },
         {
           slot: 'actions'
+        }
+      ],
+      tfoot: [
+        {
+          field: 'id',
+          fnName: 'count'
+        },
+        null,
+        {
+          field: 'calories',
+          fnName: 'sum',
+          align: 'right',
+          class: 'test'
+        },
+        {
+          field: 'fat',
+          fnName: 'avg'
+        },
+        {
+          field: 'carbs',
+          fnName: 'max'
+        },
+        {
+          field: 'protein',
+          fnName: 'min'
         }
       ],
       selectedRows: [2, 3]

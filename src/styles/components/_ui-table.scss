@@ -13,3 +13,12 @@
 .mdc-data-table__cell--right {
   text-align: right;
 }
+
+.mdc-data-table__footer-row {
+  @extend .mdc-data-table__row;
+}
+
+.mdc-data-table__footer-cell {
+  font-weight: bold;
+  @extend .mdc-data-table__cell;
+}

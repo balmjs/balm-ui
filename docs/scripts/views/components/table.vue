@@ -1,9 +1,22 @@
 <template>
   <div :class="[$tt('body1'), 'demo--table']">
-    <section class="hero component">表格</section>
+    <section class="hero component">
+      <ui-table rowCheckbox :data="heroData" :thead="thead" :tbody="tbody"></ui-table>
+    </section>
 
-    <ui-table rowCheckbox :data="data" :thead="thead" :tbody="tbody">
-      <template #id="{ data }">{{ data.id }}</template>
+    <!-- <ui-table :data="data" :thead="thead" :tbody="tbody"></ui-table> -->
+
+    <ui-table
+      rowCheckbox
+      :data="data"
+      :thead="thead"
+      :tbody="tbody"
+      v-model="selectedRows"
+      selectedRowId="id"
+    >
+      <template #actions="{ data }">
+        <ui-button @click="show(data)">View</ui-button>
+      </template>
     </ui-table>
   </div>
 </template>
@@ -18,36 +31,66 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      heroData: [],
       data: [],
       thead: [
+        // [
+        //   {
+        //     value: 'Type1',
+        //     colspan: 2
+        //   },
+        //   {
+        //     value: 'Type2',
+        //     colspan: 3
+        //   }
+        // ],
         'ID',
-        'Dessert',
-        'Calories',
-        'Fat',
         {
-          value: 'Carbs (g)'
+          value: 'Dessert (100g serving)'
         },
-        'Protein (g)'
+        'Calories',
+        'Fat (g)',
+        'Carbs (g)',
+        'Protein (g)',
+        'Actions'
       ],
       tbody: [
-        {
-          field: 'id',
-          slot: 'id'
-        },
+        'id',
         'dessert',
         {
           field: 'calories',
-          numeric: true
+          numeric: true,
+          class: 'test'
         },
-        'fat',
+        {
+          field: 'fat',
+          fn: data => {
+            return data.fat.toFixed(1);
+          }
+        },
         'carbs',
-        'protein'
-      ]
+        {
+          field: 'protein',
+          class: data => {
+            return data.protein > 5 ? 'red' : 'green';
+          }
+        },
+        {
+          slot: 'actions'
+        }
+      ],
+      selectedRows: [2, 3]
     };
   },
   async created() {
     let { data } = await this.$http.get('/data/table.json');
     this.data = data;
+    this.heroData = data.slice(0, 3);
+  },
+  methods: {
+    show(data) {
+      console.log(data);
+    }
   }
 };
 </script>

@@ -7,7 +7,7 @@
       <colgroup>
         <col />
       </colgroup>-->
-      <!-- Column header / Sorting tool -->
+      <!-- Column header / TODO: Sorting tool -->
       <thead v-if="theadData.length">
         <tr
           v-for="(theadRow, theadRowIndex) in theadData"
@@ -15,18 +15,11 @@
           class="mdc-data-table__header-row"
         >
           <template v-for="(theadCell, theadCellIndex) in theadRow">
-            <!-- Raw HTML -->
             <th
-              v-if="theadCell[T_CELL.RAW]"
               :key="`thead-cell-${theadCellIndex}`"
               :class="headerCellClassName(theadCell)"
-              v-html="theadCell[T_CELL.VALUE]"
-            ></th>
-            <!-- Text -->
-            <th
-              v-else
-              :key="`thead-cell-${theadCellIndex}`"
-              :class="headerCellClassName(theadCell)"
+              :colspan="theadCell[T_CELL.COLSPAN] || null"
+              :rowspan="theadCell[T_CELL.ROWSPAN] || null"
             >
               <ui-checkbox
                 v-if="theadCell[T_CELL.CHECKBOX]"
@@ -47,20 +40,17 @@
             class="mdc-data-table__row"
           >
             <template v-for="(tbodyCell, tbodyCellIndex) in tbodyRow">
-              <!-- Raw HTML -->
-              <td
-                v-if="tbodyCell[T_CELL.RAW]"
-                :key="`tbody-cell-${tbodyCellIndex}`"
-                :class="cellClassName(tbodyCell)"
-                v-html="tbodyCell[T_CELL.VALUE]"
-              ></td>
-              <!-- Text -->
-              <td v-else :key="`tbody-cell-${tbodyCellIndex}`" :class="cellClassName(tbodyCell)">
+              <td :key="`tbody-cell-${tbodyCellIndex}`" :class="cellClassName(tbodyCell)">
                 <ui-checkbox
                   v-if="tbodyCell[T_CELL.CHECKBOX]"
                   :class="'mdc-data-table__row-checkbox'"
                   cssOnly
                 ></ui-checkbox>
+                <slot
+                  v-else-if="tbodyCell[T_CELL.ACTIONS]"
+                  :name="T_CELL.ACTIONS"
+                  :data="getRowData(tbodyRow)"
+                ></slot>
                 <template v-else>
                   <slot
                     v-if="tbodyCell[T_CELL.SLOT]"
@@ -91,7 +81,7 @@
 <script>
 import { MDCDataTable } from '../../../material-components-web/data-table';
 import UiCheckbox from '../input-controls/checkbox';
-import { isString, isObject, isArray } from '../../utils/types';
+import { isString, isObject, isArray, isFunction } from '../../utils/types';
 
 // Define constants
 const UI_TABLE = {
@@ -105,11 +95,21 @@ const UI_TABLE = {
     VALUE: 'value',
     NUMBER: 'numeric',
     CHECKBOX: 'checkbox',
-    RAW: 'raw',
-    SLOT: 'slot'
+    COLSPAN: 'colspan',
+    ROWSPAN: 'rowspan',
+    CLASS: 'class',
+    ALIGN: 'align',
+    FUNCTION: 'fn',
+    SLOT: 'slot',
+    ACTIONS: 'actions'
   },
   EVENT: {
     SELECTED: 'selected'
+  },
+  CLASSNAME: {
+    LEFT: 'mdc-data-table__cell--left',
+    CENTER: 'mdc-data-table__cell--center',
+    RIGHT: 'mdc-data-table__cell--right'
   }
 };
 
@@ -200,15 +200,21 @@ export default {
     },
     tfootData() {
       return this.getCellData(UI_TABLE.ELEMENT.TFOOT);
+    },
+    withActions() {
+      let lastCell = this.tbody.length ? this.tbody[this.tbody.length - 1] : {};
+      return lastCell[this.T_CELL.SLOT] === this.T_CELL.ACTIONS;
     }
   },
   watch: {
     data(val) {
-      console.log('watch');
       this.currentData = val;
 
       this.$nextTick(() => {
         this.$table.layout();
+        if (this.selectedRows.length) {
+          this.$table.setSelectedRowIds(this.selectedRows);
+        }
       });
     }
   },
@@ -223,29 +229,34 @@ export default {
       this.dataColumns += 1;
     }
 
-    console.log('created - dataColumns: ', this.dataColumns);
+    if (this.withActions) {
+      this.dataColumns += 1;
+    }
   },
   mounted() {
     this.$table = new MDCDataTable(this.$el);
 
     this.$table.listen('MDCDataTable:rowSelectionChanged', ({ detail }) => {
-      let currentSelectedRows = this.selectedRows;
+      let selectedRows = [];
 
-      console.log('before', currentSelectedRows);
+      this.currentData.forEach((row, index) => {
+        let selectedRowId = this.selectedRowId
+          ? row[this.selectedRowId]
+          : index;
 
-      // TODO: row data
-      if (detail.selected) {
-        currentSelectedRows = currentSelectedRows.push(detail.rowIndex);
-      } else {
-        let elementIndex = currentSelectedRows.indexOf(detail.rowIndex);
-        if (currentSelectedRows.indexOf(detail.rowIndex) !== -1) {
-          currentSelectedRows.splice(elementIndex, 1);
+        // For old selectedRows
+        if (this.selectedRows.includes(selectedRowId)) {
+          let selected = !(index === detail.rowIndex && !detail.selected);
+          selected && selectedRows.push(selectedRowId);
         }
-      }
 
-      console.log('after', currentSelectedRows);
+        // For new selectedRow
+        if (index === detail.rowIndex && detail.selected) {
+          selectedRows.push(selectedRowId);
+        }
+      });
 
-      this.$emit(UI_TABLE.EVENT.SELECTED, currentSelectedRows);
+      this.$emit(UI_TABLE.EVENT.SELECTED, selectedRows);
     });
 
     this.$table.listen('MDCDataTable:selectedAll', () => {
@@ -262,20 +273,59 @@ export default {
   },
   methods: {
     hasMultipleRows(data) {
-      return this.data && isArray(this.data[0]);
+      return data && isArray(data[0]);
+    },
+    setTextAlignClassName(className, data) {
+      if (data[this.T_CELL.ALIGN]) {
+        switch (data[this.T_CELL.ALIGN].toLowerCase()) {
+          case 'left':
+            className.push(UI_TABLE.CLASSNAME.LEFT);
+            break;
+          case 'center':
+            className.push(UI_TABLE.CLASSNAME.CENTER);
+            break;
+          case 'right':
+            className.push(UI_TABLE.CLASSNAME.RIGHT);
+            break;
+          default:
+        }
+      }
+
+      return className;
+    },
+    setCustomClassName(className, data) {
+      if (data[this.T_CELL.CLASS]) {
+        className.push(data[this.T_CELL.CLASS]);
+      }
+
+      return className;
     },
     headerCellClassName(data) {
-      return {
-        'mdc-data-table__header-cell': true,
-        'mdc-data-table__header-cell--checkbox': data[this.T_CELL.CHECKBOX]
-      };
+      let className = [
+        {
+          'mdc-data-table__header-cell': true,
+          'mdc-data-table__header-cell--checkbox': data[this.T_CELL.CHECKBOX]
+        }
+      ];
+
+      className = this.setTextAlignClassName(className, data);
+      className = this.setCustomClassName(className, data);
+
+      return className;
     },
     cellClassName(data) {
-      return {
-        'mdc-data-table__cell': true,
-        'mdc-data-table__cell--numeric': data[this.T_CELL.NUMBER],
-        'mdc-data-table__cell--checkbox': data[this.T_CELL.CHECKBOX]
-      };
+      let className = [
+        {
+          'mdc-data-table__cell': true,
+          'mdc-data-table__cell--numeric': data[this.T_CELL.NUMBER],
+          'mdc-data-table__cell--checkbox': data[this.T_CELL.CHECKBOX]
+        }
+      ];
+
+      className = this.setTextAlignClassName(className, data);
+      className = this.setCustomClassName(className, data);
+
+      return className;
     },
     getCell(data) {
       let cell = {};
@@ -299,14 +349,15 @@ export default {
 
       // Set checkbox
       if (this.rowCheckbox) {
-        let cell = {
-          checkbox: true
-        };
+        let cell = {};
+        cell[this.T_CELL.CHECKBOX] = true;
         data.push(cell);
       }
 
       if (isObject(currentData)) {
-        Object.keys(currentData).forEach((key, index) => {
+        let rowData = Object.assign({}, currentData);
+
+        Object.keys(rowData).forEach((key, index) => {
           let cell = {};
           let field = isObject(dataFields[index])
             ? dataFields[index][this.T_CELL.FIELD]
@@ -314,15 +365,32 @@ export default {
 
           // Set value
           if (key === field) {
+            let customFn = dataFields[index][this.T_CELL.FUNCTION];
+
             cell[this.T_CELL.FIELD] = key;
-            cell[this.T_CELL.VALUE] = currentData[field];
+            cell[this.T_CELL.VALUE] = isFunction(customFn)
+              ? customFn(rowData)
+              : rowData[field];
           }
 
           // Set others
           if (isObject(dataFields[index])) {
             Object.keys(dataFields[index]).forEach(key => {
               if (key !== this.T_CELL.FIELD) {
-                cell[key] = dataFields[index][key];
+                let value = dataFields[index][key];
+                switch (key) {
+                  case this.T_CELL.CLASS:
+                    if (isString(value)) {
+                      cell[key] = value;
+                    } else if (isFunction(value)) {
+                      cell[key] = value(rowData);
+                    }
+                    break;
+                  case this.T_CELL.FUNCTION:
+                    break;
+                  default:
+                    cell[key] = value;
+                }
               }
             });
           }
@@ -331,6 +399,13 @@ export default {
         });
       } else {
         console.warn(`Invalid tbody cell data: ${currentData}`);
+      }
+
+      // Set actions
+      if (this.withActions) {
+        let cell = {};
+        cell[this.T_CELL.ACTIONS] = true;
+        data.push(cell);
       }
 
       return data;
@@ -359,8 +434,6 @@ export default {
             };
             result[0].unshift(cell);
           }
-
-          // console.log('thead', result);
           break;
         case UI_TABLE.ELEMENT.TFOOT:
           let tfootRow = this.tfoot.map(tfootCell => this.getCell(tfootCell));
@@ -372,18 +445,13 @@ export default {
           break;
         default:
           this.currentData.forEach(tbodyData => {
-            // console.log(Object.assign({}, tbodyData));
             let tbodyRow = this.getData(
               Object.assign({}, tbodyData),
               this.tbody
             );
 
-            // console.log(tbodyRow);
             result.push(tbodyRow);
-
-            // console.log('tbody', result);
           });
-          break;
       }
 
       return result;
@@ -392,7 +460,7 @@ export default {
       let data = {};
 
       tbodyRow.forEach(cell => {
-        if (!cell.checkbox) {
+        if (!(cell[this.T_CELL.CHECKBOX] || cell[this.T_CELL.ACTIONS])) {
           data[cell[this.T_CELL.FIELD]] = cell[this.T_CELL.VALUE];
         }
       });

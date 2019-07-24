@@ -106,7 +106,7 @@ export default {
           fnName: 'min'
         }
       ],
-      selectedRows: [2, 3]
+      selectedRows: [1, 2, 4]
     };
   },
   async created() {

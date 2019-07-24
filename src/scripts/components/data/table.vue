@@ -223,7 +223,18 @@ export default {
       this.$nextTick(() => {
         this.$table.layout();
         if (this.selectedRows.length) {
-          this.$table.setSelectedRowIds(this.selectedRows);
+          this.selectedRows.forEach(selectedRow => {
+            let rowIndex = this.selectedRowId
+              ? this.currentData.findIndex(
+                  tbodyData => tbodyData[this.selectedRowId] === selectedRow
+                )
+              : selectedRow;
+
+            this.$table.foundation_.adapter_.setRowCheckboxCheckedAtIndex(
+              rowIndex,
+              true
+            );
+          });
         }
       });
     }
@@ -249,9 +260,9 @@ export default {
     this.$table.listen('MDCDataTable:rowSelectionChanged', ({ detail }) => {
       let selectedRows = [];
 
-      this.currentData.forEach((row, index) => {
+      this.currentData.forEach((tbodyData, index) => {
         let selectedRowId = this.selectedRowId
-          ? row[this.selectedRowId]
+          ? tbodyData[this.selectedRowId]
           : index;
 
         // For old selectedRows
@@ -270,8 +281,8 @@ export default {
     });
 
     this.$table.listen('MDCDataTable:selectedAll', () => {
-      let selectedRows = this.currentData.map((row, index) => {
-        return this.selectedRowId ? row[this.selectedRowId] : index;
+      let selectedRows = this.currentData.map((tbodyData, index) => {
+        return this.selectedRowId ? tbodyData[this.selectedRowId] : index;
       });
 
       this.$emit(UI_TABLE.EVENT.SELECTED, selectedRows);
@@ -369,7 +380,7 @@ export default {
         let field = data[this.T_CELL.FIELD] || false;
 
         if (field) {
-          let columnData = this.currentData.map(item => item[field]);
+          let columnData = this.currentData.map(tbodyData => tbodyData[field]);
 
           let result = 0;
           switch (data[this.T_CELL.FUNCTION_NAME]) {
@@ -525,7 +536,6 @@ export default {
           if (this.withActions) {
             result.push({});
           }
-          console.log(result);
           break;
         default:
           this.currentData.forEach(tbodyData => {

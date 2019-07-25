@@ -28,6 +28,7 @@ const components = [
   'slider.js',
   'snackbar.js',
   'switch.js',
+  'table.js',
   'tabs.js',
   'textfield.js',
   'top-app-bar.js',

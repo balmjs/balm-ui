@@ -3,10 +3,10 @@
   <div :class="className">
     <!-- TODO: header - conditions -->
     <table class="mdc-data-table__table">
-      <!-- TODO: <caption></caption>
-      <colgroup>
-        <col />
-      </colgroup>-->
+      <caption v-if="caption">{{ caption }}</caption>
+      <colgroup v-if="colgroup">
+        <col v-for="(colValue, colKey) in dataColumns" :key="colKey" :class="`col-${colValue}`" />
+      </colgroup>
       <!-- Column header / TODO: Sorting tool -->
       <thead v-if="theadData.length">
         <tr
@@ -76,7 +76,14 @@
             v-for="(tfootCell, tfootCellIndex) in tfootData"
             :key="tfootCellIndex"
             :class="headerCellClassName(tfootCell)"
-          >{{ tfootCell[T_CELL.VALUE]}}</td>
+          >
+            <slot
+              v-if="tfootCell[T_CELL.SLOT]"
+              :name="tfootCell[T_CELL.SLOT]"
+              :data="tfootCell[T_CELL.VALUE]"
+            ></slot>
+            <template v-else>{{ tfootCell[T_CELL.VALUE] }}</template>
+          </td>
         </tr>
       </tfoot>
     </table>
@@ -151,7 +158,11 @@ export default {
       }
     },
     // UI attributes
-    columns: Number,
+    caption: String,
+    colgroup: {
+      type: Boolean,
+      default: false
+    },
     thead: {
       type: Array,
       default() {
@@ -174,6 +185,7 @@ export default {
       type: Boolean,
       default: false
     },
+    columns: Number,
     noData: {
       type: String,
       default: 'No Data'
@@ -527,15 +539,18 @@ export default {
           }
           break;
         case UI_TABLE.ELEMENT.TFOOT:
-          result = this.tfoot.map(tfootCell => this.getTfootCell(tfootCell));
+          if (this.tfoot.length) {
+            result = this.tfoot.map(tfootCell => this.getTfootCell(tfootCell));
 
-          if (this.rowCheckbox) {
-            result.unshift({});
-          }
+            if (this.rowCheckbox) {
+              result.unshift({});
+            }
 
-          if (this.withActions) {
-            result.push({});
+            if (this.withActions) {
+              result.push({});
+            }
           }
+          console.log('tfoot', result);
           break;
         default:
           this.currentData.forEach(tbodyData => {

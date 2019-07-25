@@ -1,6 +1,12 @@
 ```html
-<ui-radio name="sex" value="M" :model="gender" @change="onChange">Male</ui-radio>
-<ui-radio name="sex" value="F" :model="gender" @change="onChange">Female</ui-radio>
+<ui-form-field>
+  <ui-radio id="male" name="sex" value="M" v-model="gender"></ui-radio>
+  <label for="male">Male</label>
+</ui-form-field>
+<ui-form-field>
+  <ui-radio id="female" name="sex" value="F" v-model="gender"></ui-radio>
+  <label for="female">Female</label>
+</ui-form-field>
 ```
 
 ```js
@@ -9,11 +15,6 @@ export default {
     return {
       gender: ''
     };
-  },
-  methods: {
-    onChange(val) {
-      this.gender = val;
-    }
   }
 };
 ```

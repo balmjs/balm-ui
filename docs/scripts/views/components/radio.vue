@@ -37,6 +37,21 @@
         </div>
       </section>
 
+      <section class="example">
+        <ui-form-field>
+          <ui-radio id="male" name="sex" value="M" v-model="gender"></ui-radio>
+          <label for="male">Male</label>
+        </ui-form-field>
+        <ui-form-field>
+          <ui-radio id="female" name="sex" value="F" v-model="gender"></ui-radio>
+          <label for="female">Female</label>
+        </ui-form-field>
+        <p>Gender: {{ gender }}</p>
+        <ui-accordion>
+          <ui-markdown :code="code[1]"></ui-markdown>
+        </ui-accordion>
+      </section>
+
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="radio"></ui-apidocs>
 
@@ -60,7 +75,8 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      hero: 1
+      hero: 1,
+      gender: ''
     };
   },
   created() {

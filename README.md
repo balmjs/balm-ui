@@ -87,6 +87,7 @@ Enjoy 👻
   - Image List (migrate from Grid List)
   - Card
   - Chips
+  - Table (new in `3.1.0`)
   - Pagination (:bulb:)
   - Text Divider (:bulb:)
 - Linear Progress
@@ -152,5 +153,5 @@ We officially support the last two versions of every major browser. Specifically
 
 [balm-ui-image]: https://badge.fury.io/js/balm-ui.svg
 [balm-ui-url]: https://www.npmjs.com/package/balm-ui
-[mdc-web-image]: https://img.shields.io/badge/mdc--web-3.0.0-blue.svg
+[mdc-web-image]: https://img.shields.io/badge/mdc--web-3.1.0-blue.svg
 [mdc-web-url]: https://www.npmjs.com/package/material-components-web

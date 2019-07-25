@@ -26,6 +26,7 @@ Following the [Material Design](https://material.io/components/) UI components f
   - Image List (migrate from Grid List)
   - Card
   - Chips
+  - Table (new in `3.1.0`)
   - Pagination (💡)
   - Text Divider (💡)
 - Linear Progress

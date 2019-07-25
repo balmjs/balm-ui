@@ -1,7 +1,8 @@
 ```html
-<ui-checkbox id="checkbox" v-model="checked">
-  {{checked}}
-</ui-checkbox>
+<ui-form-field>
+  <ui-checkbox id="checkbox" v-model="checked"></ui-checkbox>
+  <label for="checkbox">{{checked}}</label>
+</ui-form-field>
 ```
 
 ```js

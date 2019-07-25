@@ -1,5 +1,18 @@
 # BalmUI ChangeLog
 
+## 3.1.0 (2019.07.25)
+
+### Features
+
+- Added `<ui-table>` component
+- update [`mdc@3.1.0`](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#310-2019-07-22)
+
+### Chores
+
+- optimize `<ui-checkbox>` and `<ui-radio>`
+
+---
+
 ## 3.0.1 (2019.07.11)
 
 ### Features

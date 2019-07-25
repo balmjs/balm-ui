@@ -4,25 +4,51 @@
       <ui-table rowCheckbox :data="heroData" :thead="thead1" :tbody="tbody1"></ui-table>
     </section>
 
-    <ui-table :data="heroData" :thead="thead1" :tbody="tbody1"></ui-table>
+    <ui-toc-affix></ui-toc-affix>
 
-    <p>Selected row ids: {{ selectedRows }}</p>
-    <ui-table
-      fullwidth
-      rowCheckbox
-      :data="data"
-      :thead="thead2"
-      :tbody="tbody2"
-      :tfoot="tfoot"
-      v-model="selectedRows"
-      selectedRowId="id"
-    >
-      <template #actions="{ data }">
-        <ui-icon @click="show(data)">description</ui-icon>
-        <ui-icon @click="show(data)">edit</ui-icon>
-        <ui-icon @click="show(data)">delete</ui-icon>
-      </template>
-    </ui-table>
+    <div :class="$tt('body2')">
+      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
+      <ui-markdown :text="code[0]"></ui-markdown>
+
+      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
+      <section class="example">
+        <h6 :class="$tt('headline6')">1.1 Default Usage</h6>
+        <ui-table :data="heroData" :thead="thead1" :tbody="tbody1"></ui-table>
+      </section>
+      <ui-accordion>
+        <ui-markdown :code="code[1]"></ui-markdown>
+      </ui-accordion>
+
+      <section class="example">
+        <h6 :class="$tt('headline6')">1.2 Advanced Usage</h6>
+        <p>Selected row ids: {{ selectedRows }}</p>
+        <ui-table
+          fullwidth
+          rowCheckbox
+          :data="data"
+          :thead="thead2"
+          :tbody="tbody2"
+          :tfoot="tfoot"
+          v-model="selectedRows"
+          selectedRowId="id"
+        >
+          <template #actions="{ data }">
+            <ui-icon @click="show(data)">description</ui-icon>
+            <ui-icon @click="show(data)">edit</ui-icon>
+            <ui-icon @click="show(data)">delete</ui-icon>
+          </template>
+        </ui-table>
+      </section>
+      <ui-accordion>
+        <ui-markdown :code="code[2]"></ui-markdown>
+      </ui-accordion>
+
+      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
+      <ui-apidocs name="table"></ui-apidocs>
+
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <ui-cssdocs name="table"></ui-cssdocs>
+    </div>
   </div>
 </template>
 
@@ -40,10 +66,7 @@ export default {
       data: [],
       thead1: [
         'ID',
-        {
-          value: 'Dessert (100g serving)',
-          class: 'gg'
-        },
+        'Dessert (100g serving)',
         'Calories',
         'Fat (g)',
         'Carbs (g)',
@@ -136,6 +159,8 @@ export default {
     };
   },
   async created() {
+    this.showCode('table', 2);
+
     let { data } = await this.$http.get('/data/table.json');
     this.data = data;
     this.heroData = data.slice(0, 3);

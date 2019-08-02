@@ -21,7 +21,7 @@
 
       <section class="example">
         <h6 :class="$tt('headline6')">1.2 Advanced Usage</h6>
-        <p>Selected row ids: {{ selectedRows }}</p>
+        <p>Selected rows: {{ selectedRows }} ( Selected key: {{ selectedKey }})</p>
         <ui-table
           fullwidth
           rowCheckbox
@@ -30,7 +30,7 @@
           :tbody="tbody2"
           :tfoot="tfoot"
           v-model="selectedRows"
-          selectedRowId="id"
+          :selectedKey="selectedKey"
         >
           <template #actions="{ data }">
             <ui-icon @click="show(data)">description</ui-icon>
@@ -155,7 +155,8 @@ export default {
           fnName: 'min'
         }
       ],
-      selectedRows: [1, 2, 4]
+      selectedRows: [1, 2, 4],
+      selectedKey: 'id'
     };
   },
   async created() {

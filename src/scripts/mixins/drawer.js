@@ -41,8 +41,10 @@ export default {
     if (this.$el.classList.contains('mdc-drawer--modal')) {
       this.$nextTick(() => {
         if (this.$el.querySelector('.mdc-list')) {
-          this.$drawer.list_.foundation_.useActivatedClass_ = true; // NOTE: from mdc@0.43.0
-          this.$drawer.list_.selectedIndex = 0;
+          // NOTE: temporary solution
+          this.$drawer.list.listElements[0].classList.add(
+            'mdc-list-item--activated'
+          );
         } else {
           console.warn(
             '`<ui-list>` or `<ui-list-nav>` is required in the drawer'

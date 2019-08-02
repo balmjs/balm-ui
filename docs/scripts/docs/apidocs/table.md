@@ -4,20 +4,21 @@
 
 #### Props
 
-| Name            | Type            | Default     | Description                                                 |
-| --------------- | --------------- | ----------- | ----------------------------------------------------------- |
-| `data`          | array           | `[]`        | Data source.                                                |
-| `caption`       | string          | `null`      | Specifies the caption (or title) of a table.                |
-| `colgroup`      | boolean         | `false`     | Defines a group of columns within a table.                  |
-| `thead`         | array           | `[]`        | Table header renderer.                                      |
-| `tbody`         | array           | `[]`        | Table content renderer.                                     |
-| `tfoot`         | array           | `[]`        | Table footer renderer.                                      |
-| `fullwidth`     | boolean         | `false`     | Styles the table as a full width table.                     |
-| `columns`       | number          | `null`      | Set table columns by manual.                                |
-| `noData`        | string          | `'No Data'` | Show text when data source is empty.                        |
-| `rowCheckbox`   | boolean         | `false`     | Data table with row selection.                              |
-| `selectedRows`  | array           | `[]`        | Selected row indexes/ids. (Required: `rowCheckbox: true`)   |
-| `selectedRowId` | boolean, string | `false`     | `selectedRows` use custom key field, default use row index. |
+| Name           | Type            | Default     | Description                                                      |
+| -------------- | --------------- | ----------- | ---------------------------------------------------------------- |
+| `data`         | array           | `[]`        | Data source.                                                     |
+| `caption`      | string          | `null`      | Specifies the caption (or title) of a table.                     |
+| `colgroup`     | boolean         | `false`     | Defines a group of columns within a table.                       |
+| `thead`        | array           | `[]`        | Table header renderer.                                           |
+| `tbody`        | array           | `[]`        | Table content renderer.                                          |
+| `tfoot`        | array           | `[]`        | Table footer renderer.                                           |
+| `fullwidth`    | boolean         | `false`     | Styles the table as a full width table.                          |
+| `columns`      | number          | `null`      | Set table columns by manual.                                     |
+| `noData`       | string          | `'No Data'` | Show text when data source is empty.                             |
+| `rowCheckbox`  | boolean         | `false`     | Data table with row selection.                                   |
+| `selectedRows` | array           | `[]`        | Selected row indexes/ids. (Required: `rowCheckbox: true`)        |
+| `selectedKey`  | boolean, string | `false`     | `selectedRows` use custom key field, default use row index.      |
+| `rowIdPrefix`  | string          | `''`        | The prefix of `data-row-id` attribute value on row element `tr`. |
 
 #### Slots
 

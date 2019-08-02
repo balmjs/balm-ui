@@ -23,7 +23,7 @@
             >
               <ui-checkbox
                 v-if="theadCell[T_CELL.CHECKBOX]"
-                :class="'mdc-checkbox--selected mdc-data-table__header-row-checkbox'"
+                class="mdc-data-table__header-row-checkbox"
                 cssOnly
               ></ui-checkbox>
               <template v-else>{{ theadCell[T_CELL.VALUE] }}</template>
@@ -37,13 +37,15 @@
           <tr
             v-for="(tbodyRow, tbodyRowIndex) in tbodyData"
             :key="`tbody-row-${tbodyRowIndex}`"
-            class="mdc-data-table__row"
+            :class="['mdc-data-table__row', {'mdc-data-table__row--selected': tbodyRow[0][T_CELL.SELECTED]}]"
+            :data-row-id="tbodyRow[0][T_CELL.ROW_ID] || null"
+            :aria-selected="tbodyRow[0][T_CELL.SELECTED] || null"
           >
             <template v-for="(tbodyCell, tbodyCellIndex) in tbodyRow">
               <td :key="`tbody-cell-${tbodyCellIndex}`" :class="cellClassName(tbodyCell)">
                 <ui-checkbox
                   v-if="tbodyCell[T_CELL.CHECKBOX]"
-                  :class="'mdc-data-table__row-checkbox'"
+                  class="mdc-data-table__row-checkbox"
                   cssOnly
                 ></ui-checkbox>
                 <slot
@@ -107,7 +109,9 @@ const UI_TABLE = {
     FIELD: 'field',
     VALUE: 'value',
     NUMBER: 'numeric',
+    ROW_ID: 'rowId',
     CHECKBOX: 'checkbox',
+    SELECTED: 'selected',
     COLSPAN: 'colspan',
     ROWSPAN: 'rowspan',
     CLASS: 'class',
@@ -194,9 +198,13 @@ export default {
       type: Boolean,
       default: false
     },
-    selectedRowId: {
+    selectedKey: {
       type: [Boolean, String],
       default: false
+    },
+    rowIdPrefix: {
+      type: String,
+      default: ''
     }
   },
   data() {
@@ -234,19 +242,17 @@ export default {
 
       this.$nextTick(() => {
         this.$table.layout();
+
         if (this.selectedRows.length) {
-          this.selectedRows.forEach(selectedRow => {
-            let rowIndex = this.selectedRowId
+          let rowIds = this.selectedRows.map(selectedRow => {
+            let rowIndex = this.selectedKey
               ? this.currentData.findIndex(
-                  tbodyData => tbodyData[this.selectedRowId] === selectedRow
+                  tbodyData => tbodyData[this.selectedKey] === selectedRow
                 )
               : selectedRow;
-
-            this.$table.foundation_.adapter_.setRowCheckboxCheckedAtIndex(
-              rowIndex,
-              true
-            );
+            return `${this.rowIdPrefix}${rowIndex}`;
           });
+          this.$table.setSelectedRowIds(rowIds);
         }
       });
     }
@@ -273,8 +279,8 @@ export default {
       let selectedRows = [];
 
       this.currentData.forEach((tbodyData, index) => {
-        let selectedRowId = this.selectedRowId
-          ? tbodyData[this.selectedRowId]
+        let selectedRowId = this.selectedKey
+          ? tbodyData[this.selectedKey]
           : index;
 
         // For old selectedRows
@@ -294,7 +300,7 @@ export default {
 
     this.$table.listen('MDCDataTable:selectedAll', () => {
       let selectedRows = this.currentData.map((tbodyData, index) => {
-        return this.selectedRowId ? tbodyData[this.selectedRowId] : index;
+        return this.selectedKey ? tbodyData[this.selectedKey] : index;
       });
 
       this.$emit(UI_TABLE.EVENT.SELECTED, selectedRows);
@@ -445,13 +451,21 @@ export default {
 
       return cell;
     },
-    getData(currentData, dataFields) {
+    getData(currentData, rowIndex, dataFields) {
       let data = [];
 
       // Set checkbox
       if (this.rowCheckbox) {
         let cell = {};
+        let selectedRowId = this.selectedKey
+          ? currentData[this.selectedKey]
+          : rowIndex;
+        let selected = this.selectedRows.includes(selectedRowId);
+
+        cell[this.T_CELL.ROW_ID] = `${this.rowIdPrefix}${rowIndex}`;
         cell[this.T_CELL.CHECKBOX] = true;
+        cell[this.T_CELL.SELECTED] = selected;
+
         data.push(cell);
       }
 
@@ -550,12 +564,12 @@ export default {
               result.push({});
             }
           }
-          console.log('tfoot', result);
           break;
         default:
-          this.currentData.forEach(tbodyData => {
+          this.currentData.forEach((tbodyData, tbodyDataIndex) => {
             let tbodyRow = this.getData(
               Object.assign({}, tbodyData),
+              tbodyDataIndex,
               this.tbody
             );
 

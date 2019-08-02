@@ -1,5 +1,26 @@
 # BalmUI ChangeLog
 
+## 3.1.1 (2019.08.02)
+
+### Features
+
+- update docs
+- `<ui-table>`: add new prop `rowIdPrefix`
+
+### Chores
+
+- `<ui-table>`
+  - update css
+  - update selected rows init
+- `<ui-modal-drawer>`
+  - update temporary solution for `focus-trap` bug
+
+### BREAKING CHANGES
+
+- `<ui-table>`: `selectedRowId` prop deprecated, rename to `selectedKey`
+
+---
+
 ## 3.1.0 (2019.07.25)
 
 ### Features

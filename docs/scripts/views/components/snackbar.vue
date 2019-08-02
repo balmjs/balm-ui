@@ -15,14 +15,17 @@
         <div>
           <label>Timeout: {{ timeout / 1000 }}second</label>
           <ui-slider id="timeout" min="4000" max="10000" step="1000" v-model="timeout"></ui-slider>
-          <br>
+          <br />
           <ui-textfield id="message" v-model="message">Message Text</ui-textfield>
-          <br>
+          <br />
           <ui-textfield id="action" v-model="actionText">Action Text</ui-textfield>
-          <br>
-          <ui-checkbox id="action-type" v-model="actionType">Action Icon Button</ui-checkbox>
-          <br>
-          <br>
+          <br />
+          <ui-form-field>
+            <ui-checkbox id="action-type" v-model="actionType"></ui-checkbox>
+            <label for="action-type">Action Icon Button</label>
+          </ui-form-field>
+          <br />
+          <br />
 
           <ui-button raised @click="$balmUI.onOpen('open')">Show</ui-button>
 

@@ -100,27 +100,30 @@
         <div class="demo-param-field-group">
           <label class="demo-param-field">
             <span class="demo-param-input-label">Min:</span>
-            <input name="min" type="number" min="-100" max="100" v-model="min">
+            <input name="min" type="number" min="-100" max="100" v-model="min" />
           </label>
           <label class="demo-param-field">
             <span class="demo-param-input-label">Max:</span>
-            <input name="max" type="number" min="-100" max="100" v-model="max">
+            <input name="max" type="number" min="-100" max="100" v-model="max" />
           </label>
           <label class="demo-param-field">
             <span class="demo-param-input-label">Step:</span>
-            <input name="step" type="number" min="0" max="100" v-model="step">
+            <input name="step" type="number" min="0" max="100" v-model="step" />
           </label>
         </div>
         <div class="demo-param-field-group">
-          <div>
-            <ui-checkbox v-model="controls.disabled">Disabled</ui-checkbox>
-          </div>
-          <div>
-            <ui-checkbox v-model="controls.customColor">Use Custom BG Color</ui-checkbox>
-          </div>
-          <div>
-            <ui-checkbox v-model="controls.rtl">RTL</ui-checkbox>
-          </div>
+          <ui-form-field block>
+            <ui-checkbox id="slider-disabled" v-model="controls.disabled"></ui-checkbox>
+            <label for="slider-disabled">Disabled</label>
+          </ui-form-field>
+          <ui-form-field block>
+            <ui-checkbox id="slider-custom-bg" v-model="controls.customColor"></ui-checkbox>
+            <label for="slider-custom-bg">Use Custom BG Color</label>
+          </ui-form-field>
+          <ui-form-field block>
+            <ui-checkbox id="slider-rtl" v-model="controls.rtl"></ui-checkbox>
+            <label for="slider-rtl">RTL</label>
+          </ui-form-field>
         </div>
       </section>
 

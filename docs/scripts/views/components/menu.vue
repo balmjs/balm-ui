@@ -28,79 +28,101 @@
       <div class="demo-content">
         <div class="demo-controls-container" dir="ltr">
           <div class="demo-controls">
-            <div class="left-column-controls">Button Position:
-              <div>
+            <div class="left-column-controls">
+              Button Position:
+              <ui-form-field block>
                 <ui-radio
+                  id="position-top-left"
                   name="position"
                   value="top left"
                   v-model="controls.buttonPosition"
-                >Top left</ui-radio>
-              </div>
-              <div>
+                ></ui-radio>
+                <label for="position-top-left">Top left</label>
+              </ui-form-field>
+              <ui-form-field block>
                 <ui-radio
+                  id="position-top-right"
                   name="position"
                   value="top right"
                   v-model="controls.buttonPosition"
-                >Top right</ui-radio>
-              </div>
-              <div>
+                ></ui-radio>
+                <label for="position-top-right">Top right</label>
+              </ui-form-field>
+              <ui-form-field block>
                 <ui-radio
+                  id="position-middle-left"
                   name="position"
                   value="middle left"
                   v-model="controls.buttonPosition"
-                >Middle left</ui-radio>
-              </div>
-              <div>
+                ></ui-radio>
+                <label for="position-middle-left">Middle left</label>
+              </ui-form-field>
+              <ui-form-field block>
                 <ui-radio
+                  id="position-middle-right"
                   name="position"
                   value="middle right"
                   v-model="controls.buttonPosition"
-                >Middle right</ui-radio>
-              </div>
-              <div>
+                ></ui-radio>
+                <label for="position-middle-right">Middle right</label>
+              </ui-form-field>
+              <ui-form-field block>
                 <ui-radio
+                  id="position-bottom-left"
                   name="position"
                   value="bottom left"
                   v-model="controls.buttonPosition"
-                >Bottom left</ui-radio>
-              </div>
-              <div>
+                ></ui-radio>
+                <label for="position-bottom-left">Bottom left</label>
+              </ui-form-field>
+              <ui-form-field block>
                 <ui-radio
+                  id="position-bottom-right"
                   name="position"
                   value="bottom right"
                   v-model="controls.buttonPosition"
-                >Bottom right</ui-radio>
-              </div>
+                ></ui-radio>
+                <label for="position-bottom-right">Bottom right</label>
+              </ui-form-field>
             </div>
-            <div class="right-column-controls">Default Menu Position:
-              <div>
+            <div class="right-column-controls">
+              Default Menu Position:
+              <ui-form-field block>
                 <ui-radio
+                  id="menu-position-top-start"
                   name="menu-position"
                   value="top start"
                   v-model="controls.menuPosition"
-                >Top start</ui-radio>
-              </div>
-              <div>
+                ></ui-radio>
+                <label for="menu-position-top-start">Top start</label>
+              </ui-form-field>
+              <ui-form-field block>
                 <ui-radio
+                  id="menu-position-top-end"
                   name="menu-position"
                   value="top end"
                   v-model="controls.menuPosition"
-                >Top end</ui-radio>
-              </div>
-              <div>
+                ></ui-radio>
+                <label for="menu-position-top-end">Top end</label>
+              </ui-form-field>
+              <ui-form-field block>
                 <ui-radio
+                  id="menu-position-bottom-start"
                   name="menu-position"
                   value="bottom start"
                   v-model="controls.menuPosition"
-                >Bottom start</ui-radio>
-              </div>
-              <div>
+                ></ui-radio>
+                <label for="menu-position-bottom-start">Bottom start</label>
+              </ui-form-field>
+              <ui-form-field block>
                 <ui-radio
+                  id="menu-position-bottom-end"
                   name="menu-position"
                   value="bottom end"
                   v-model="controls.menuPosition"
-                >Bottom end</ui-radio>
-              </div>
+                ></ui-radio>
+                <label for="menu-position-bottom-end">Bottom end</label>
+              </ui-form-field>
             </div>
             <p>
               Anchor Margins:
@@ -111,22 +133,23 @@
                 <ui-textfield id="right-margin" v-model="controls.anchorMargin.right">R:</ui-textfield>
               </span>
             </p>
-            <div>
-              <ui-checkbox id="is-rtl" v-model="controls.rtl">RTL</ui-checkbox>
-            </div>
-            <div>
-              <ui-checkbox id="animation" v-model="controls.disableAnimation">Disable Open Animation</ui-checkbox>
-            </div>
-            <div>
-              <ui-checkbox
-                id="fixed-position"
-                v-model="controls.fixedPosition"
-              >Fixed Position Menu Surface</ui-checkbox>
-            </div>
-            <!-- <div>
-              <ui-checkbox id="right-click" v-model="controls.rightClick">Enable Right-Click Menu Surface</ui-checkbox>
-            </div>-->
-            <hr>
+            <ui-form-field block>
+              <ui-checkbox id="is-rtl" v-model="controls.rtl"></ui-checkbox>
+              <label for="is-rtl">RTL</label>
+            </ui-form-field>
+            <ui-form-field block>
+              <ui-checkbox id="animation" v-model="controls.disableAnimation"></ui-checkbox>
+              <label for="animation">Disable Open Animation</label>
+            </ui-form-field>
+            <ui-form-field block>
+              <ui-checkbox id="fixed-position" v-model="controls.fixedPosition"></ui-checkbox>
+              <label for="fixed-position">Fixed Position Menu Surface</label>
+            </ui-form-field>
+            <!-- <ui-form-field block>
+              <ui-checkbox id="right-click" v-model="controls.rightClick"></ui-checkbox>
+              <label for="right-click">Enable Right-Click Menu Surface</label>
+            </ui-form-field>-->
+            <hr />
             <div>
               <span>
                 Last Selected item:
@@ -245,11 +268,7 @@ export default {
         .join('_');
     },
     anchorMargin() {
-      return `${this.controls.anchorMargin.top} ${
-        this.controls.anchorMargin.right
-      } ${this.controls.anchorMargin.bottom} ${
-        this.controls.anchorMargin.left
-      }`;
+      return `${this.controls.anchorMargin.top} ${this.controls.anchorMargin.right} ${this.controls.anchorMargin.bottom} ${this.controls.anchorMargin.left}`;
     }
   },
   methods: {

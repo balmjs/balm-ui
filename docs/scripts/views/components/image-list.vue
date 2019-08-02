@@ -14,7 +14,10 @@
 
       <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
       <section :class="['example', {'rounded-corners': radius}]">
-        <ui-checkbox id="toggle-radius" v-model="radius">Toggle Rounded Corners</ui-checkbox>
+        <ui-form-field>
+          <ui-checkbox id="toggle-radius" v-model="radius"></ui-checkbox>
+          <label for="toggle-radius">Toggle Rounded Corners</label>
+        </ui-form-field>
 
         <h5 :class="$tt('headline5')">1.1 Standard Image List</h5>
         <ui-image-list-controls v-model="controls1"></ui-image-list-controls>

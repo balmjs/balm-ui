@@ -13,7 +13,10 @@
 
       <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
       <section class="demo-wrapper">
-        <ui-checkbox id="toggle-disabled" v-model="disabled">Disabled buttons (excluding links)</ui-checkbox>
+        <ui-form-field>
+          <ui-checkbox id="toggle-disabled" v-model="disabled"></ui-checkbox>
+          <label for="toggle-disabled">Disabled buttons (excluding links)</label>
+        </ui-form-field>
 
         <h4 :class="$tt('headline4')">1.1 Ripple Enabled</h4>
         <ui-button-demo :disabled="disabled" :code="demoCode"></ui-button-demo>

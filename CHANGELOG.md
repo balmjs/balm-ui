@@ -4,6 +4,7 @@
 
 ### Features
 
+- update `balm@1.7.0`
 - update docs
 - `<ui-table>`: add new prop `rowIdPrefix`
 

@@ -7,7 +7,7 @@
   :tbody="tbody"
   :tfoot="tfoot"
   v-model="selectedRows"
-  selectedRowId="id"
+  selectedKey="id"
 >
   <template #actions="{ data }">
     <ui-icon @click="show(data)">description</ui-icon>

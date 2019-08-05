@@ -30,8 +30,8 @@ module.exports = {
           'balm-ui-plus': './src/scripts/plus.js',
           'balm-ui-migrate': './src/scripts/migrate.js'
         },
-    library: 'BalmUI',
-    libraryTarget: 'umd',
+    library: env.useDocs ? '' : 'BalmUI',
+    libraryTarget: env.useDocs ? 'var' : 'umd',
     loaders: [
       {
         test: /\.vue$/,

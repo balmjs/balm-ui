@@ -96,7 +96,7 @@
 <script>
 import { MDCDataTable } from '../../../material-components-web/data-table';
 import UiCheckbox from '../input-controls/checkbox';
-import { isString, isObject, isArray, isFunction } from '../../utils/types';
+import getType from '../../utils/typeof';
 
 // Define constants
 const UI_TABLE = {
@@ -311,8 +311,17 @@ export default {
     });
   },
   methods: {
+    isString(any) {
+      return getType(any) === 'string';
+    },
+    isObject(any) {
+      return getType(any) === 'object';
+    },
+    isFunction(any) {
+      return getType(any) === 'function';
+    },
     hasMultipleRows(data) {
-      return data && isArray(data[0]);
+      return data && getType(data[0]) === 'array';
     },
     setTextAlignClassName(className, data) {
       if (data[this.T_CELL.ALIGN]) {
@@ -377,8 +386,8 @@ export default {
     getTheadCell(data) {
       let cell = {};
 
-      if (isString(data) || isObject(data)) {
-        if (isString(data)) {
+      if (this.isString(data) || this.isObject(data)) {
+        if (this.isString(data)) {
           cell[this.T_CELL.VALUE] = data;
         } else {
           Object.keys(data).forEach(key => {
@@ -394,7 +403,7 @@ export default {
     getTfootCell(data) {
       let cell = {};
 
-      if (isObject(data)) {
+      if (this.isObject(data)) {
         let field = data[this.T_CELL.FIELD] || false;
 
         if (field) {
@@ -469,12 +478,12 @@ export default {
         data.push(cell);
       }
 
-      if (isObject(currentData)) {
+      if (this.isObject(currentData)) {
         let rowData = Object.assign({}, currentData);
 
         Object.keys(rowData).forEach((key, index) => {
           let cell = {};
-          let field = isObject(dataFields[index])
+          let field = this.isObject(dataFields[index])
             ? dataFields[index][this.T_CELL.FIELD]
             : dataFields[index];
 
@@ -483,21 +492,21 @@ export default {
             let customFn = dataFields[index][this.T_CELL.FUNCTION];
 
             cell[this.T_CELL.FIELD] = key;
-            cell[this.T_CELL.VALUE] = isFunction(customFn)
+            cell[this.T_CELL.VALUE] = this.isFunction(customFn)
               ? customFn(rowData)
               : rowData[field];
           }
 
           // Set others
-          if (isObject(dataFields[index])) {
+          if (this.isObject(dataFields[index])) {
             Object.keys(dataFields[index]).forEach(key => {
               if (key !== this.T_CELL.FIELD) {
                 let value = dataFields[index][key];
                 switch (key) {
                   case this.T_CELL.CLASS:
-                    if (isString(value)) {
+                    if (this.isString(value)) {
                       cell[key] = value;
-                    } else if (isFunction(value)) {
+                    } else if (this.isFunction(value)) {
                       cell[key] = value(rowData);
                     }
                     break;

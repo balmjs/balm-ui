@@ -10,11 +10,20 @@
 <body>
   <div id="app">
     <p>{{ message }}</p>
-    <ui-button icon="face" @click.native="onChange('message', 'Hello World')">Button</ui-button>
+    <ui-button @click="$balmUI.onChange('message', 'Hello World')">Button</ui-button>
   </div>
-  <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
-  <script src="/components/core.js"></script>
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
   <script src="/components/button.js"></script>
+  <script src="/plugins/event.js"></script>
+  <script>
+  // BalmUI_button.default.install(Vue, {
+  //   UiButton: {
+  //     raised: {
+  //       default: true
+  //     }
+  //   }
+  // });
+  </script>
   <script>
     var app = new Vue({
       el: '#app',

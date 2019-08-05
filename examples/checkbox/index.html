@@ -10,12 +10,13 @@
 </head>
 <body>
   <div id="app">
-    <ui-checkbox id="native-js-checkbox">
-      This is my checkbox
-    </ui-checkbox>
+    <ui-form-field>
+      <ui-checkbox id="native-js-checkbox"></ui-checkbox>
+      <label for="native-js-checkbox">This is my checkbox</label>
+    </ui-form-fiel>
   </div>
-  <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
-  <script src="/components/core.js"></script>
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+  <script src="/components/form-field.js"></script>
   <script src="/components/checkbox.js"></script>
   <script>
     var app = new Vue({

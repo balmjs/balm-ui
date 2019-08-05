@@ -10,20 +10,23 @@
 </head>
 <body>
   <div id="app">
-    <ui-radio id="ex1-radio1" name="ex1"
-      value="a" :model="value1"
-      @change="onChange('value1', $event)">
-      Radio 1
-    </ui-radio>
-    <ui-radio id="ex1-radio2" name="ex1"
-      value="b" :model="value1"
-      @change="onChange('value1', $event)">
-      Radio 2
-    </ui-radio>
+    <ui-form-field>
+      <ui-radio id="ex1-radio1" name="ex1"
+        value="a" :model="value1"
+        @change="$balmUI.onChange('value1', $event)"></ui-radio>
+      <label for="ex1-radio1">Radio 1</label>
+    </ui-form-field>
+    <ui-form-field>
+      <ui-radio id="ex1-radio2" name="ex1"
+        value="b" :model="value1"
+        @change="$balmUI.onChange('value1', $event)"></ui-radio>
+      <label for="ex1-radio2">Radio 2</label>
+    </ui-form-field>
   </div>
-  <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
-  <script src="/components/core.js"></script>
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+  <script src="/components/form-field.js"></script>
   <script src="/components/radio.js"></script>
+  <script src="/plugins/event.js"></script>
   <script>
     var app = new Vue({
       el: '#app',

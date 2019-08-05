@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <link rel="stylesheet" href="/components/core.css">
+  <link rel="stylesheet" href="/components/form-field.css">
+  <link rel="stylesheet" href="/components/textfield.css">
+</head>
+<body>
+  <div id="app">
+    <fieldset>
+  <legend>Form Area</legend>
+  <p class="form-item">
+    <ui-textfield id="mobile"
+      v-model="formData.mobile"
+      helptextId="mobile-helper-text">Mobile</ui-textfield>
+    <ui-textfield-helptext id="mobile-helper-text" :visible="errorMsg.mobile">
+      {{ errorMsg.mobile }}
+    </ui-textfield-helptext>
+  </p>
+  <p class="form-item">
+    <ui-textfield type="password"
+      id="password"
+      v-model="formData.password"
+      helptextId="password-helper-text">Password</ui-textfield>
+    <ui-textfield-helptext id="password-helper-text" :visible="errorMsg.password">
+      {{ errorMsg.password }}
+    </ui-textfield-helptext>
+  </p>
+  <p class="form-item">
+    <ui-textfield type="password"
+      id="repassword"
+      v-model="formData.repassword"
+      helptextId="repassword-helper-text">Repeat Password</ui-textfield>
+    <ui-textfield-helptext id="repassword-helper-text" :visible="errorMsg.repassword">
+      {{ errorMsg.repassword }}
+    </ui-textfield-helptext>
+  </p>
+  <p class="form-actions">
+    <ui-button raised @click="submit">Submit</ui-button>
+  </p>
+</fieldset>
+  </div>
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+  <script src="/components/textfield.js"></script>
+  <script src="/plugins/validator.js"></script>
+  <script src="/utils/types.js"></script>
+  <script src="./validator-rules.js"></script>
+  <script>BalmUI_validator.default.install(Vue, validatorRules);</script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      validations: {
+        mobile: {
+          label: 'Mobile',
+          validator: 'required, mobile'
+        },
+        password: {
+          label: 'Password',
+          validator: 'required, password, minRule, maxRule',
+          minRule: {
+            validate(value) {
+              return value.trim().length >= 6;
+            },
+            message: '%s minLength >= 6'
+          },
+          maxRule: {
+            validate(value) {
+              return value.trim().length <= 8;
+            },
+            message: '%s maxLength <= 8'
+          }
+        },
+        repassword: {
+          label: 'Repeat Password',
+          validator: 'required, password, repasswordRule',
+          repasswordRule: {
+            validate(value, data) {
+              return value === data.password;
+            },
+            message: 'repassword !== password'
+          }
+        }
+      },
+      data: {
+        formData: {
+          mobile: '',
+          password: '',
+          repassword: ''
+        },
+        errorMsg: {}
+      },
+      methods: {
+        submit() {
+          var result = this.$validate(this.formData);
+          var { isValid, errorMsg } = result;
+          this.errorMsg = errorMsg;
+
+          console.log(result);
+
+          if (isValid) {
+            console.log('gg');
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>

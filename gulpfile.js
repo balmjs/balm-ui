@@ -66,10 +66,21 @@ balm.go(mix => {
           'utils'
         ];
         individualBuild.forEach(buildName => {
-          let buildFiles = individual[buildName].map(item => {
-            return `${individual.input[buildName]}/${item}`;
+          // let buildFiles = individual[buildName].map(item => {
+          //   return `${individual.input[buildName]}/${item}`;
+          // });
+          // mix.js(buildFiles, individual.output[buildName]);
+          individual[buildName].forEach(async item => {
+            await mix.js(
+              [`${individual.input[buildName]}/${item}`],
+              individual.output[buildName],
+              {
+                output: {
+                  library: 'BalmUI_' + item.split('.')[0]
+                }
+              }
+            );
           });
-          mix.js(buildFiles, individual.output[buildName]);
         });
 
         mix.copy(['./dist/css/*.css', './dist/js/*.js'], './dist');

@@ -5,18 +5,28 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title></title>
   <link rel="stylesheet" href="/components/core.css">
-  <link rel="stylesheet" href="/components/fab.css">
+  <link rel="stylesheet" href="/components/icon-button.css">
   <link rel="stylesheet" href="/components/icon.css">
 </head>
 <body>
   <div id="app">
-    <ui-fab icon="favorite_border"></ui-fab>
+    <ui-icon-button v-model="value" :toggle="icon"></ui-icon-button>
+    <p>{{ value }}</p>
   </div>
   <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
-  <script src="/components/fab.js"></script>
+  <script src="/components/icon-button.js"></script>
   <script>
     var app = new Vue({
-      el: '#app'
+      el: '#app',
+      data() {
+        return {
+          value: false,
+          icon: {
+            on: 'favorite',
+            off: 'favorite_border'
+          }
+        }
+      }
     })
   </script>
 </body>

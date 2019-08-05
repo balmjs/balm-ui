@@ -1,5 +1,19 @@
 # BalmUI ChangeLog
 
+## 3.1.2 (2019.08.05)
+
+### Features
+
+- update docs: `<ui-drawer>`, `<ui-checkbox>`, `<ui-radio>`
+- update examples
+- rebuild all for UMD mode
+
+### Chores
+
+- `<ui-table>`: optimize code
+
+---
+
 ## 3.1.1 (2019.08.02)
 
 ### Features

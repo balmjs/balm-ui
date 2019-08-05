@@ -11,8 +11,8 @@
 </head>
 <body>
   <div id="app">
-    <ui-menu-anchor :position="position">
-      <ui-button raised @click.native="openMenu">Reveal Menu</ui-button>
+    <ui-menu-anchor>
+      <ui-button raised @click="openMenu">Reveal Menu</ui-button>
 
       <ui-menu :open="open" :dark="dark"
         @selected="onSelected"
@@ -25,8 +25,7 @@
       </ui-menu>
     </ui-menu-anchor>
   </div>
-  <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
-  <script src="/components/core.js"></script>
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
   <script src="/components/button.js"></script>
   <script src="/components/menu.js"></script>
   <script>
@@ -37,7 +36,6 @@
           open: false,
           menu: ['Back', 'Forward', 'Reload'],
           selected: {},
-          position: 1,
           dark: false
         }
       },
@@ -48,6 +46,7 @@
         onSelected(data) {
           console.log('onSelected', data);
           this.selected = data;
+          this.open = false;
         },
         onCancel() {
           console.log('onCancel');

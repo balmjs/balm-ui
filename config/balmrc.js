@@ -15,14 +15,8 @@ module.exports = {
   scripts: {
     entry: env.useDocs
       ? {
-          mylib: [
-            'vue',
-            'vue-router',
-            'vue-meta',
-            'axios',
-            'prismjs',
-            'clipboard'
-          ],
+          mylib: ['node_modules'],
+          myui: ['src', 'balm-ui-lite'],
           app: './docs/scripts/main.js'
         }
       : {

@@ -35,7 +35,7 @@
     "mdc": "gulp --mdc",
     "dev": "gulp",
     "prod": "cross-env NODE_ENV=production gulp -p",
-    "docs": "gulp -p --docs",
+    "docs": "cross-env NODE_ENV=production gulp -p --docs",
     "test:node": "cross-env NODE_ENV=test nyc mocha-webpack --webpack-config config/webpack.mocha.js --require test/setup.js --include test/index.js",
     "test:browser": "cross-env NODE_ENV=test karma start --single-run"
   },

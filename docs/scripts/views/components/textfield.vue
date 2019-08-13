@@ -130,7 +130,8 @@
             :attrs="{
               minlength: controls.min ? 8 : 0
             }"
-          >Your name
+          >
+            Your name
             <template #after>
               <ui-textfield-icon :unclickable="controls.unclickable">delete</ui-textfield-icon>
             </template>
@@ -176,7 +177,8 @@
             :attrs="{
               minlength: controls.min ? 8 : 0
             }"
-          >Your other name
+          >
+            Your other name
             <template #after="{ customIconClass }">
               <span :class="customIconClass">
                 <i class="fa fa-close fa-lg"></i>
@@ -276,7 +278,7 @@
 
 <script>
 import snippets from '@/mixins/snippets';
-import UiTextfieldControls from '../../components/textfield-controls';
+import UiTextfieldControls from '@/components/textfield-controls';
 
 export default {
   metaInfo: {

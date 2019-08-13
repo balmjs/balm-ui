@@ -1,5 +1,5 @@
-import en from '../lang/en.json';
-import cn from '../lang/cn.json';
+import en from '@/lang/en.json';
+import cn from '@/lang/cn.json';
 
 // for link
 const lang = {
@@ -13,7 +13,4 @@ const locales = {
   cn
 };
 
-export {
-  lang,
-  locales
-};
+export { lang, locales };

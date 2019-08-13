@@ -36,7 +36,7 @@
 
 <script>
 import snippets from '@/mixins/snippets';
-import UiButtonDemo from '../../components/button';
+import UiButtonDemo from '@/components/button';
 
 export default {
   metaInfo: {

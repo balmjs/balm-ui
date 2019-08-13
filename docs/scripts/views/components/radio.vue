@@ -63,7 +63,7 @@
 
 <script>
 import snippets from '@/mixins/snippets';
-import UiRadioDemo from '../../components/radio';
+import UiRadioDemo from '@/components/radio';
 
 export default {
   metaInfo: {

@@ -102,7 +102,7 @@
 
 <script>
 import snippets from '@/mixins/snippets';
-import UiCheckboxDemo from '../../components/checkbox';
+import UiCheckboxDemo from '@/components/checkbox';
 
 export default {
   metaInfo: {

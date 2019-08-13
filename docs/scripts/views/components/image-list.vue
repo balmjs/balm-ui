@@ -72,7 +72,7 @@
 
 <script>
 import snippets from '@/mixins/snippets';
-import UiImageListControls from '../../components/image-list-controls';
+import UiImageListControls from '@/components/image-list-controls';
 
 export default {
   metaInfo: {

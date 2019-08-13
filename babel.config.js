@@ -3,7 +3,9 @@ module.exports = {
     [
       '@babel/preset-env',
       {
-        modules: false
+        modules: false,
+        useBuiltIns: 'entry',
+        corejs: 3
       }
     ]
   ],
@@ -30,7 +32,12 @@ module.exports = {
     ],
     '@babel/plugin-proposal-json-strings',
     // Runtime
-    '@babel/plugin-transform-runtime'
+    [
+      '@babel/plugin-transform-runtime',
+      {
+        corejs: 3
+      }
+    ]
   ],
   env: {
     test: {

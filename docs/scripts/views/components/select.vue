@@ -175,7 +175,7 @@
 
 <script>
 import snippets from '@/mixins/snippets';
-import UiSelectControls from '../../components/select-controls';
+import UiSelectControls from '@/components/select-controls';
 import {
   PROVINCES as provinces,
   CITIES,

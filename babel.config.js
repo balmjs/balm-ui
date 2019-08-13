@@ -41,6 +41,7 @@ module.exports = function(api) {
     ],
     env: {
       test: {
+        presets: ['@babel/preset-env'],
         plugins: ['istanbul']
       }
     }

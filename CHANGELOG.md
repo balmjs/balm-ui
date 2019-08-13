@@ -1,5 +1,13 @@
 # BalmUI ChangeLog
 
+## 3.1.3 (2019.08.13)
+
+### Features
+
+- rebuild all by `core-js@3`
+
+---
+
 ## 3.1.2 (2019.08.05)
 
 ### Features

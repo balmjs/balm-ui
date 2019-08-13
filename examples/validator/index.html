@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BalmUI - validator example</title>
   <link rel="stylesheet" href="/components/core.css">
   <link rel="stylesheet" href="/components/form-field.css">
   <link rel="stylesheet" href="/components/textfield.css">
@@ -15,7 +16,7 @@
   <p class="form-item">
     <ui-textfield id="mobile"
       v-model="formData.mobile"
-      helptextId="mobile-helper-text">Mobile</ui-textfield>
+      helptext-id="mobile-helper-text">Mobile</ui-textfield>
     <ui-textfield-helptext id="mobile-helper-text" :visible="errorMsg.mobile">
       {{ errorMsg.mobile }}
     </ui-textfield-helptext>
@@ -24,7 +25,7 @@
     <ui-textfield type="password"
       id="password"
       v-model="formData.password"
-      helptextId="password-helper-text">Password</ui-textfield>
+      helptext-id="password-helper-text">Password</ui-textfield>
     <ui-textfield-helptext id="password-helper-text" :visible="errorMsg.password">
       {{ errorMsg.password }}
     </ui-textfield-helptext>
@@ -33,7 +34,7 @@
     <ui-textfield type="password"
       id="repassword"
       v-model="formData.repassword"
-      helptextId="repassword-helper-text">Repeat Password</ui-textfield>
+      helptext-id="repassword-helper-text">Repeat Password</ui-textfield>
     <ui-textfield-helptext id="repassword-helper-text" :visible="errorMsg.repassword">
       {{ errorMsg.repassword }}
     </ui-textfield-helptext>

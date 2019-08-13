@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BalmUI - drawer example</title>
   <link rel="stylesheet" href="/components/core.css">
   <link rel="stylesheet" href="/components/top-app-bar.css">
   <link rel="stylesheet" href="/components/drawer.css">
@@ -25,11 +25,11 @@
 </head>
 <body>
   <div id="app">
-    <ui-top-app-bar fixed contentSelector=".demo-main" navId="demo-menu">
+    <ui-top-app-bar fixed content-selector=".demo-main" nav-id="demo-menu">
       Temporary Drawer
     </ui-top-app-bar>
 
-    <ui-modal-drawer menuSelector="#demo-menu">
+    <ui-modal-drawer menu-selector="#demo-menu">
       <ui-drawer-header>
         <ui-drawer-title>{{ title }}</ui-drawer-title>
         <ui-drawer-subtitle>{{ subtitle }}</ui-drawer-subtitle>
@@ -37,7 +37,7 @@
       <ui-drawer-content>
         <ui-list-nav>
           <ui-item-a
-            firstIcon="arrow_back"
+            first-icon="arrow_back"
             @click.native="() => { $router.back(); }">
             Back
           </ui-item-a>
@@ -50,7 +50,7 @@
               </ui-list-group-subheader>
               <ui-item-a v-for="(subItem, subIndex) in item.items"
                 :key="`item-${index}-${subIndex}`"
-                :firstIcon="subItem.icon">
+                :first-icon="subItem.icon">
                 {{ subItem.name }}
               </ui-item-a>
             </template>

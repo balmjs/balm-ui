@@ -1,6 +1,5 @@
-import './my-sw';
-import { isIE, killIE } from '@/kill-ie';
 import '@/polyfills';
+import { isIE, killIE } from '@/kill-ie';
 import Vue from 'vue';
 // import VueI18n from 'vue-i18n';
 import $http from '@/plugins/$http';
@@ -25,6 +24,7 @@ import prismjs from 'prismjs';
 // ready translated locales
 // import { locales } from '@/config/lang';
 import { isProd } from '@/config';
+import './my-sw';
 
 if (isIE) {
   killIE();

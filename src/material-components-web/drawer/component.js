@@ -29,6 +29,10 @@ import { MDCDismissibleDrawerFoundation } from './dismissible/foundation';
 import { MDCModalDrawerFoundation } from './modal/foundation';
 import * as util from './util';
 var cssClasses = MDCDismissibleDrawerFoundation.cssClasses, strings = MDCDismissibleDrawerFoundation.strings;
+/**
+ * @events `MDCDrawer:closed {}` Emits when the navigation drawer has closed.
+ * @events `MDCDrawer:opened {}` Emits when the navigation drawer has opened.
+ */
 var MDCDrawer = /** @class */ (function (_super) {
     tslib_1.__extends(MDCDrawer, _super);
     function MDCDrawer() {
@@ -39,7 +43,8 @@ var MDCDrawer = /** @class */ (function (_super) {
     };
     Object.defineProperty(MDCDrawer.prototype, "open", {
         /**
-         * Returns true if drawer is in the open position.
+         * @return boolean Proxies to the foundation's `open`/`close` methods.
+         * Also returns true if drawer is in the open position.
          */
         get: function () {
             return this.foundation_.isOpen();

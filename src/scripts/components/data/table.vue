@@ -352,7 +352,8 @@ export default {
       let className = [
         {
           'mdc-data-table__header-cell': true,
-          'mdc-data-table__header-cell--checkbox': data[this.T_CELL.CHECKBOX]
+          'mdc-data-table__header-cell--checkbox': data[this.T_CELL.CHECKBOX],
+          'mdc-data-table__header-cell--numeric': data[this.T_CELL.NUMBER]
         }
       ];
 

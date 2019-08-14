@@ -1,5 +1,13 @@
 # BalmUI ChangeLog
 
+## 3.1.4 (2019.08.14)
+
+### Features
+
+- update [`mdc@3.1.1`](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#311-2019-08-14)
+
+---
+
 ## 3.1.3 (2019.08.13)
 
 ### Features

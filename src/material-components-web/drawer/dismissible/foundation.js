@@ -74,6 +74,9 @@ var MDCDismissibleDrawerFoundation = /** @class */ (function (_super) {
             clearTimeout(this.animationTimer_);
         }
     };
+    /**
+     * Opens the drawer from the closed state.
+     */
     MDCDismissibleDrawerFoundation.prototype.open = function () {
         var _this = this;
         if (this.isOpen() || this.isOpening() || this.isClosing()) {
@@ -87,6 +90,9 @@ var MDCDismissibleDrawerFoundation = /** @class */ (function (_super) {
         });
         this.adapter_.saveFocus();
     };
+    /**
+     * Closes the drawer from the open state.
+     */
     MDCDismissibleDrawerFoundation.prototype.close = function () {
         if (!this.isOpen() || this.isOpening() || this.isClosing()) {
             return;
@@ -94,18 +100,21 @@ var MDCDismissibleDrawerFoundation = /** @class */ (function (_super) {
         this.adapter_.addClass(cssClasses.CLOSING);
     };
     /**
+     * Returns true if the drawer is in the open position.
      * @return true if drawer is in open state.
      */
     MDCDismissibleDrawerFoundation.prototype.isOpen = function () {
         return this.adapter_.hasClass(cssClasses.OPEN);
     };
     /**
+     * Returns true if the drawer is animating open.
      * @return true if drawer is animating open.
      */
     MDCDismissibleDrawerFoundation.prototype.isOpening = function () {
         return this.adapter_.hasClass(cssClasses.OPENING) || this.adapter_.hasClass(cssClasses.ANIMATE);
     };
     /**
+     * Returns true if the drawer is animating closed.
      * @return true if drawer is animating closed.
      */
     MDCDismissibleDrawerFoundation.prototype.isClosing = function () {
@@ -122,7 +131,7 @@ var MDCDismissibleDrawerFoundation = /** @class */ (function (_super) {
         }
     };
     /**
-     * Handles a transition end event on the root element.
+     * Handles the `transitionend` event when the drawer finishes opening/closing.
      */
     MDCDismissibleDrawerFoundation.prototype.handleTransitionEnd = function (evt) {
         var OPENING = cssClasses.OPENING, CLOSING = cssClasses.CLOSING, OPEN = cssClasses.OPEN, ANIMATE = cssClasses.ANIMATE, ROOT = cssClasses.ROOT;

@@ -3,7 +3,7 @@ importScripts('workbox-sw.js');
 // Configure Cache Names
 workbox.core.setCacheNameDetails({
   prefix: 'balm-ui',
-  suffix: 'v201908132226', // NOTE: need update with every release
+  suffix: 'v201908141019', // NOTE: need update with every release
   precache: 'app-cache',
   runtime: 'app-runtime'
 });

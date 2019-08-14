@@ -55,9 +55,6 @@ var MDCDataTableFoundation = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
-    MDCDataTableFoundation.prototype.init = function () {
-        this.layout();
-    };
     /**
      * Re-initializes header row checkbox and row checkboxes when selectable rows are added or removed from table.
      * Use this if registering checkbox is synchronous.
@@ -161,16 +158,16 @@ var MDCDataTableFoundation = /** @class */ (function (_super) {
      */
     MDCDataTableFoundation.prototype.setHeaderRowCheckboxState_ = function () {
         if (this.adapter_.getSelectedRowCount() === this.adapter_.getRowCount()) {
-            this.adapter_.setHeaderRowCheckboxIndeterminate(false);
             this.adapter_.setHeaderRowCheckboxChecked(true);
+            this.adapter_.setHeaderRowCheckboxIndeterminate(false);
         }
         else if (this.adapter_.getSelectedRowCount() === 0) {
             this.adapter_.setHeaderRowCheckboxIndeterminate(false);
             this.adapter_.setHeaderRowCheckboxChecked(false);
         }
         else {
-            this.adapter_.setHeaderRowCheckboxChecked(false);
             this.adapter_.setHeaderRowCheckboxIndeterminate(true);
+            this.adapter_.setHeaderRowCheckboxChecked(false);
         }
     };
     /**

@@ -1,5 +1,13 @@
 # BalmUI ChangeLog
 
+## 3.1.5 (2019.08.22)
+
+### Features
+
+- update Material Icons `v48`
+
+---
+
 ## 3.1.4 (2019.08.14)
 
 ### Features

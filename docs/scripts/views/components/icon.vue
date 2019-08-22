@@ -124,7 +124,7 @@ import snippets from '@/mixins/snippets';
 import { MDI_VERSION } from '@/config';
 
 let UNDEFINED_ICONS = [];
-if (MDI_VERSION < 47) {
+if (MDI_VERSION <= 48) {
   UNDEFINED_ICONS = UNDEFINED_ICONS.concat([
     'battery_20',
     'battery_30',
@@ -156,7 +156,7 @@ if (MDI_VERSION < 47) {
   ]);
 }
 
-if (MDI_VERSION < 41) {
+if (MDI_VERSION <= 38) {
   UNDEFINED_ICONS = UNDEFINED_ICONS.concat([
     'all_inbox',
     'arrow_right_alt',

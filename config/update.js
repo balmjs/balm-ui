@@ -1,6 +1,9 @@
 const { src, dest, task, series } = require('gulp');
 const $replace = require('gulp-replace');
+const https = require('https');
+const fs = require('fs');
 
+// Update Material Components Web for BalmUI
 const mdcDir = './src/material-components-web/';
 const level0 = ['material-components-web.scss'];
 const level1 = [
@@ -92,3 +95,55 @@ level2.forEach(function(file) {
 });
 
 task('update:mdc', series(updateMDCTasks));
+
+// Get Material Icons
+const materialicons = ['Y.eot', 'c.woff2', 'a.woff', 'Z.ttf'];
+
+function updateMDITask(cb) {
+  https
+    .get('https://fonts.googleapis.com/icon?family=Material+Icons', res => {
+      if (res.statusCode === 200) {
+        let data = '';
+
+        res.on('data', chunk => {
+          data += chunk;
+        });
+
+        res.on('end', () => {
+          const result = data.match(/materialicons\/v(\d+)\//);
+          const version = result[1];
+
+          console.log(`Material Icons latest version: ${version}`);
+
+          materialicons.forEach(font => {
+            const suffix = font.split('.')[1];
+            const filename = `MaterialIcons-Regular.${suffix}`;
+            const file = fs.createWriteStream(
+              `./src/material-design-icons/latest/${filename}`
+            );
+
+            const request = https.get(
+              `https://fonts.gstatic.com/s/materialicons/v${version}/flUhRq6tzZclQEJ-Vdg-IuiaDsN${font}`,
+              response => {
+                response.pipe(file);
+              }
+            );
+            request.on('close', () => {
+              console.log(`${filename} downloaded`);
+            });
+            request.on('error', e => {
+              console.error(e);
+            });
+          });
+        });
+      } else {
+        console.warn('F**k G-F-W');
+      }
+    })
+    .on('error', e => {
+      console.error(e);
+    });
+  cb();
+}
+
+task('update:mdi', updateMDITask);

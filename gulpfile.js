@@ -9,6 +9,9 @@ balm.config = balmConfig;
 if (env.updateMDC) {
   balm.afterTask = 'update:mdc';
 }
+if (env.updateMDI) {
+  balm.afterTask = 'update:mdi';
+}
 
 balm.go(mix => {
   if (env.buildDocs) {
@@ -21,10 +24,10 @@ balm.go(mix => {
     ]);
   } else {
     if (env.updateMDC) {
-      // clear
+      // Clear
       mix.remove([`${constants.DEV_SOURCE.mdc}/*`]);
 
-      // update css reset for docs
+      // Update css reset for docs
       mix.copy(constants.CSS_RESET.normalize, './docs/styles/global', {
         prefix: '_',
         extname: '.scss'
@@ -34,7 +37,7 @@ balm.go(mix => {
         extname: '.scss'
       });
 
-      // get Material
+      // Get Material Components Web
       mix.copy(
         `${constants.DMC_SOURCE.mdc}/material-components-web.scss`,
         constants.DEV_SOURCE.mdc
@@ -50,12 +53,12 @@ balm.go(mix => {
 
       // Get Material Icons (Deprecated)
       // mix.copy(
-      //   `${constants.DMC_SOURCE.icon}/*.{css,eot,ttf,woff,woff2}`,
+      //   `${constants.DMC_SOURCE.icon}/*.{css,eot,woff2,woff,ttf}`,
       //   constants.DEV_SOURCE.mdi
       // );
     } else {
       if (balm.config.isProd) {
-        // clear individual
+        // Clear individual
         mix.remove([
           individual.output.components,
           individual.output.plugins,
@@ -63,7 +66,7 @@ balm.go(mix => {
           individual.output.utils
         ]);
 
-        // build individual
+        // Build individual
         const individualBuild = [
           'components',
           'plugins',
@@ -94,10 +97,7 @@ balm.go(mix => {
         mix.copy('./dist/css/directives/*', './directives');
         mix.remove(['./dist/css', './dist/js']);
 
-        mix.copy(
-          './src/material-design-icons/v41/*.{ttf,woff,woff2}',
-          './fonts'
-        );
+        mix.copy('./src/material-design-icons/latest/*', './fonts');
       }
     }
   }

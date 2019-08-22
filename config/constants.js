@@ -2,15 +2,17 @@ const CSS_RESET = {
   normalize: './node_modules/@csstools/normalize.css/normalize.css',
   sanitize: './node_modules/sanitize.css/sanitize.css'
 };
+
 const DMC_SOURCE = {
   mdc: './node_modules/material-components-web',
   material: './node_modules/@material',
-  icon: './src/material-design-icons/v41'
+  icon: './node_modules/material-design-icons/iconfont'
 };
 const DEV_SOURCE = {
-  mdc: './src/material-components-web'
-  // mdi: './src/material-design-icons/v3'
+  mdc: './src/material-components-web',
+  mdi: './src/material-design-icons/v3'
 };
+
 const DMC_COMPONENTS = [
   'animation',
   'base',

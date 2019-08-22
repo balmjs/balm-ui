@@ -1,7 +1,7 @@
-$mdi-latest-version: 'v47'; // 2019.04.04 updated
+$mdi-latest-version: 'v48'; // 2019.08.22 updated
 $mdi-dir: 'materialicons';
 
-$mdi-version: 'v41' !default;
+$mdi-version: 'v48' !default;
 $mdi-font-path: '../fonts' !default;
 $mdi-font-path-with-version: 0 !default; // `../fonts` or `../fonts/materialicons/v41`
 $mdi-font-filename: 'MaterialIcons-Regular' !default;
@@ -20,6 +20,7 @@ $mdi-font-filename: 'MaterialIcons-Regular' !default;
     }
   } @else {
     @if $mdi-font-path-with-version == 1 {
+      src: url('#{$mdi-font-path}/#{$mdi-dir}/#{$mdi-version}/#{$mdi-font-filename}.eot');
       src: local('Material Icons'), local('MaterialIcons-Regular'),
         url('#{$mdi-font-path}/#{$mdi-dir}/#{$mdi-version}/#{$mdi-font-filename}.woff2')
           format('woff2'),
@@ -29,6 +30,7 @@ $mdi-font-filename: 'MaterialIcons-Regular' !default;
           format('truetype');
     } @else {
       // Default
+      src: url('#{$mdi-font-path}/#{$mdi-font-filename}.eot');
       src: local('Material Icons'), local('MaterialIcons-Regular'),
         url('#{$mdi-font-path}/#{$mdi-font-filename}.woff2') format('woff2'),
         url('#{$mdi-font-path}/#{$mdi-font-filename}.woff') format('woff'),
@@ -54,15 +56,12 @@ $mdi-font-filename: 'MaterialIcons-Regular' !default;
 
   /* Support for all WebKit browsers. */
   -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
 
-  @if $mdi-version == 'latest' {
-    -webkit-font-feature-settings: 'liga';
-  } @else {
-    /* Support for Safari and Chrome. */
-    text-rendering: optimizeLegibility;
-    /* Support for Firefox. */
-    -moz-osx-font-smoothing: grayscale;
-    /* Support for IE. */
-    font-feature-settings: 'liga';
-  }
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
 }

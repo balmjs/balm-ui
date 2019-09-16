@@ -292,6 +292,23 @@ var MDCListFoundation = /** @class */ (function (_super) {
         return lastIndex;
     };
     /**
+     * @param itemIndex Index of the list item
+     * @param isEnabled Sets the list item to enabled or disabled.
+     */
+    MDCListFoundation.prototype.setEnabled = function (itemIndex, isEnabled) {
+        if (!this.isIndexValid_(itemIndex)) {
+            return;
+        }
+        if (isEnabled) {
+            this.adapter_.removeClassForElementIndex(itemIndex, cssClasses.LIST_ITEM_DISABLED_CLASS);
+            this.adapter_.setAttributeForElementIndex(itemIndex, strings.ARIA_DISABLED, 'false');
+        }
+        else {
+            this.adapter_.addClassForElementIndex(itemIndex, cssClasses.LIST_ITEM_DISABLED_CLASS);
+            this.adapter_.setAttributeForElementIndex(itemIndex, strings.ARIA_DISABLED, 'true');
+        }
+    };
+    /**
      * Ensures that preventDefault is only called if the containing element doesn't
      * consume the event, and it will cause an unintended scroll.
      */

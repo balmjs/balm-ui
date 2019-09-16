@@ -22,6 +22,7 @@
  */
 import * as tslib_1 from "tslib";
 import { MDCFoundation } from '../base/foundation';
+import { cssClasses as listCssClasses } from '../list/constants';
 import { MDCMenuSurfaceFoundation } from '../menu-surface/foundation';
 import { cssClasses, DefaultFocusState, numbers, strings } from './constants';
 var MDCMenuFoundation = /** @class */ (function (_super) {
@@ -102,8 +103,10 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
         this.adapter_.closeSurface();
         // Wait for the menu to close before adding/removing classes that affect styles.
         this.closeAnimationEndTimerId_ = setTimeout(function () {
-            if (_this.adapter_.isSelectableItemAtIndex(index)) {
-                _this.setSelectedIndex(index);
+            // Recompute the index in case the menu contents have changed.
+            var recomputedIndex = _this.adapter_.getElementIndex(listItem);
+            if (_this.adapter_.isSelectableItemAtIndex(recomputedIndex)) {
+                _this.setSelectedIndex(recomputedIndex);
             }
         }, MDCMenuSurfaceFoundation.numbers.TRANSITION_CLOSE_DURATION);
     };
@@ -147,6 +150,22 @@ var MDCMenuFoundation = /** @class */ (function (_super) {
         }
         this.adapter_.addClassToElementAtIndex(index, cssClasses.MENU_SELECTED_LIST_ITEM);
         this.adapter_.addAttributeToElementAtIndex(index, strings.ARIA_CHECKED_ATTR, 'true');
+    };
+    /**
+     * Sets the enabled state to isEnabled for the menu item at the given index.
+     * @param index Index of the menu item
+     * @param isEnabled The desired enabled state of the menu item.
+     */
+    MDCMenuFoundation.prototype.setEnabled = function (index, isEnabled) {
+        this.validatedIndex_(index);
+        if (isEnabled) {
+            this.adapter_.removeClassFromElementAtIndex(index, listCssClasses.LIST_ITEM_DISABLED_CLASS);
+            this.adapter_.addAttributeToElementAtIndex(index, strings.ARIA_DISABLED_ATTR, 'false');
+        }
+        else {
+            this.adapter_.addClassToElementAtIndex(index, listCssClasses.LIST_ITEM_DISABLED_CLASS);
+            this.adapter_.addAttributeToElementAtIndex(index, strings.ARIA_DISABLED_ATTR, 'true');
+        }
     };
     MDCMenuFoundation.prototype.validatedIndex_ = function (index) {
         var menuSize = this.adapter_.getMenuItemCount();

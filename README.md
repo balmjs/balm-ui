@@ -153,7 +153,7 @@ We officially support the last two versions of every major browser. Specifically
 
 [balm-ui-image]: https://badge.fury.io/js/balm-ui.svg
 [balm-ui-url]: https://www.npmjs.com/package/balm-ui
-[mdc-web-image]: https://img.shields.io/badge/mdc--web-3.1.1-blue.svg
+[mdc-web-image]: https://img.shields.io/badge/mdc--web-3.2.0-blue.svg
 [mdc-web-url]: https://www.npmjs.com/package/material-components-web
 [fossa-image]: https://app.fossa.io/api/projects/git%2Bgithub.com%2Fbalmjs%2Fbalm-ui.svg?type=shield
 [fossa-url]: https://app.fossa.io/projects/git%2Bgithub.com%2Fbalmjs%2Fbalm-ui?ref=badge_shield

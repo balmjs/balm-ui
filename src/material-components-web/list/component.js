@@ -126,6 +126,14 @@ var MDCList = /** @class */ (function (_super) {
             this.selectedIndex = this.listElements.indexOf(radioSelectedListItem);
         }
     };
+    /**
+     * Updates the list item at itemIndex to the desired isEnabled state.
+     * @param itemIndex Index of the list item
+     * @param isEnabled Sets the list item to enabled or disabled.
+     */
+    MDCList.prototype.setEnabled = function (itemIndex, isEnabled) {
+        this.foundation_.setEnabled(itemIndex, isEnabled);
+    };
     MDCList.prototype.getDefaultFoundation = function () {
         var _this = this;
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.

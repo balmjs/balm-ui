@@ -143,6 +143,14 @@ var MDCMenu = /** @class */ (function (_super) {
         this.foundation_.setSelectedIndex(index);
     };
     /**
+     * Sets the enabled state to isEnabled for the menu item at the given index.
+     * @param index Index of the menu item
+     * @param isEnabled The desired enabled state of the menu item.
+     */
+    MDCMenu.prototype.setEnabled = function (index, isEnabled) {
+        this.foundation_.setEnabled(index, isEnabled);
+    };
+    /**
      * @return The item within the menu at the index specified.
      */
     MDCMenu.prototype.getOptionByIndex = function (index) {

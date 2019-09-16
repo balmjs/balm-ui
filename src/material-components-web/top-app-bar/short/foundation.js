@@ -29,6 +29,7 @@ var MDCShortTopAppBarFoundation = /** @class */ (function (_super) {
     function MDCShortTopAppBarFoundation(adapter) {
         var _this = _super.call(this, adapter) || this;
         _this.isCollapsed_ = false;
+        _this.isAlwaysCollapsed_ = false;
         return _this;
     }
     Object.defineProperty(MDCShortTopAppBarFoundation.prototype, "isCollapsed", {
@@ -44,31 +45,57 @@ var MDCShortTopAppBarFoundation = /** @class */ (function (_super) {
         if (this.adapter_.getTotalActionItems() > 0) {
             this.adapter_.addClass(cssClasses.SHORT_HAS_ACTION_ITEM_CLASS);
         }
-        // this is intended as the short variant must calculate if the
-        // page starts off from the top of the page.
-        this.handleTargetScroll();
+        // If initialized with SHORT_COLLAPSED_CLASS, the bar should always be collapsed
+        this.setAlwaysCollapsed(this.adapter_.hasClass(cssClasses.SHORT_COLLAPSED_CLASS));
+    };
+    /**
+     * Set if the short top app bar should always be collapsed.
+     *
+     * @param value When `true`, bar will always be collapsed. When `false`, bar may collapse or expand based on scroll.
+     */
+    MDCShortTopAppBarFoundation.prototype.setAlwaysCollapsed = function (value) {
+        this.isAlwaysCollapsed_ = !!value;
+        if (this.isAlwaysCollapsed_) {
+            this.collapse_();
+        }
+        else {
+            // let maybeCollapseBar_ determine if the bar should be collapsed
+            this.maybeCollapseBar_();
+        }
+    };
+    MDCShortTopAppBarFoundation.prototype.getAlwaysCollapsed = function () {
+        return this.isAlwaysCollapsed_;
     };
     /**
      * Scroll handler for applying/removing the collapsed modifier class on the short top app bar.
      * @override
      */
     MDCShortTopAppBarFoundation.prototype.handleTargetScroll = function () {
-        if (this.adapter_.hasClass(cssClasses.SHORT_COLLAPSED_CLASS)) {
+        this.maybeCollapseBar_();
+    };
+    MDCShortTopAppBarFoundation.prototype.maybeCollapseBar_ = function () {
+        if (this.isAlwaysCollapsed_) {
             return;
         }
         var currentScroll = this.adapter_.getViewportScrollY();
         if (currentScroll <= 0) {
             if (this.isCollapsed_) {
-                this.adapter_.removeClass(cssClasses.SHORT_COLLAPSED_CLASS);
-                this.isCollapsed_ = false;
+                this.uncollapse_();
             }
         }
         else {
             if (!this.isCollapsed_) {
-                this.adapter_.addClass(cssClasses.SHORT_COLLAPSED_CLASS);
-                this.isCollapsed_ = true;
+                this.collapse_();
             }
         }
+    };
+    MDCShortTopAppBarFoundation.prototype.uncollapse_ = function () {
+        this.adapter_.removeClass(cssClasses.SHORT_COLLAPSED_CLASS);
+        this.isCollapsed_ = false;
+    };
+    MDCShortTopAppBarFoundation.prototype.collapse_ = function () {
+        this.adapter_.addClass(cssClasses.SHORT_COLLAPSED_CLASS);
+        this.isCollapsed_ = true;
     };
     return MDCShortTopAppBarFoundation;
 }(MDCTopAppBarBaseFoundation));

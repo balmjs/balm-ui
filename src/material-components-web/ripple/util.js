@@ -9,7 +9,9 @@ function detectEdgePseudoVarBug(windowObj) {
     var document = windowObj.document;
     var node = document.createElement('div');
     node.className = 'mdc-ripple-surface--test-edge-var-bug';
-    document.body.appendChild(node);
+    // Append to head instead of body because this script might be invoked in the
+    // head, in which case the body doesn't exist yet. The probe works either way.
+    document.head.appendChild(node);
     // The bug exists if ::before style ends up propagating to the parent element.
     // Additionally, getComputedStyle returns null in iframes with display: "none" in Firefox,
     // but Firefox is known to support CSS custom properties correctly.

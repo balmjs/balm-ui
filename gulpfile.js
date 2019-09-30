@@ -47,8 +47,10 @@ balm.go(mix => {
           `${constants.DMC_SOURCE.material}/${item}/**/{*.scss,*.js}`,
           `${constants.DEV_SOURCE.mdc}/${item}`
         );
-        mix.remove(`${constants.DEV_SOURCE.mdc}/${item}/dist`);
-        mix.remove(`${constants.DEV_SOURCE.mdc}/${item}/node_modules`);
+        mix.remove([
+          `${constants.DEV_SOURCE.mdc}/${item}/dist`,
+          `${constants.DEV_SOURCE.mdc}/${item}/node_modules`
+        ]);
       });
 
       // Get Material Icons (Deprecated)

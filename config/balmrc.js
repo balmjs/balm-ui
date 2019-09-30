@@ -3,14 +3,11 @@ const env = require('./env');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
-  server: {
-    open: false
-  },
   roots: {
     source: env.useDocs ? 'docs' : 'src'
   },
   styles: {
-    ext: 'scss'
+    extname: 'scss'
   },
   scripts: {
     entry: env.useDocs
@@ -36,23 +33,23 @@ module.exports = {
         loader: 'html-loader!markdown-loader'
       }
     ],
-    plugins: [new VueLoaderPlugin()],
+    includeJsResource: env.useDocs
+      ? [
+          path.resolve(__dirname, '../src/material-components-web'),
+          path.resolve(__dirname, '../src/scripts')
+        ]
+      : [path.resolve(__dirname, '../src/material-components-web')],
     alias: {
       vue$: 'vue/dist/vue.esm.js',
       '@': path.resolve(__dirname, '../docs/scripts')
     },
+    plugins: [new VueLoaderPlugin()],
     eslint: true,
     options: {
       compress: {
         drop_console: false
       }
-    },
-    include: env.useDocs
-      ? [
-          path.resolve(__dirname, '../src/material-components-web'),
-          path.resolve(__dirname, '../src/scripts')
-        ]
-      : [path.resolve(__dirname, '../src/material-components-web')]
+    }
   },
   extras: {
     excludes: ['index.js', 'service-worker.js'],
@@ -60,12 +57,12 @@ module.exports = {
   },
   assets: {
     publicUrl: env.buildDocs ? '//material.balmjs.com/' : '',
+    cache: env.buildDocs,
     excludes: ['dist/img/icons/icon-*.png']
   },
-  cache: env.buildDocs,
   pwa: {
     enabled: env.buildDocs,
     mode: 'injectManifest'
   },
-  useDefault: env.useDefault
+  useDefaults: env.useDefault
 };

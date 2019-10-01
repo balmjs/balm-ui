@@ -59,7 +59,7 @@ balm.go(mix => {
       //   constants.DEV_SOURCE.mdi
       // );
     } else {
-      if (balm.config.isProd) {
+      if (mix.env.isProd) {
         // Clear individual
         mix.remove([
           individual.output.components,

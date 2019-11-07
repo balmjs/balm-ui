@@ -41,6 +41,7 @@ const level1 = [
   'textfield',
   'theme',
   'top-app-bar',
+  'touch-target',
   'typography'
 ];
 const level2 = [

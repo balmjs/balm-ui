@@ -1,12 +1,19 @@
 <template>
   <div :class="[$tt('body1'), 'demo--select']">
     <section class="hero component">
-      <ui-select id="my-select" v-model="selected" :options="options1">Pick a Food Group</ui-select>
+      <ui-select
+        native
+        id="my-select"
+        v-model="selected"
+        :options="options"
+        @change="onChange"
+        @selected="onSelected"
+      >Pick a fruit</ui-select>
     </section>
 
     <ui-toc-affix></ui-toc-affix>
 
-    <div :class="$tt('body2')">
+    <!-- <div :class="$tt('body2')">
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
@@ -169,7 +176,7 @@
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
       <ui-cssdocs name="select"></ui-cssdocs>
-    </div>
+    </div>-->
   </div>
 </template>
 
@@ -181,6 +188,21 @@ import {
   CITIES,
   OPTIONS as options1
 } from '../../../data/select';
+
+const options = [
+  {
+    label: 'Apple',
+    value: 11
+  },
+  {
+    label: 'Orange',
+    value: 22
+  },
+  {
+    label: 'Banana',
+    value: 33
+  }
+];
 
 const options2 = [
   {
@@ -240,7 +262,7 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      selected: 'grains',
+      selected: '',
       selected1: {
         value: '',
         index: 0
@@ -251,6 +273,7 @@ export default {
       },
       selected3: 'fruit-roll-ups',
       selected4: 'steak',
+      options,
       options1,
       options2,
       options3,
@@ -268,10 +291,16 @@ export default {
     };
   },
   methods: {
-    onSelected(result, key) {
-      this[`selected${key}`].value = result.value;
-      this[`selected${key}`].index = result.index;
+    onChange(o) {
+      console.log('onChange', o);
     },
+    onSelected(o) {
+      console.log('onSelected', o);
+    },
+    // onSelected(result, key) {
+    //   this[`selected${key}`].value = result.value;
+    //   this[`selected${key}`].index = result.index;
+    // },
     onChangeProvince(value) {
       this.formData.provinces = value;
 
@@ -282,6 +311,11 @@ export default {
   },
   created() {
     this.showCode('select', 6);
+  },
+  mounted() {
+    // setTimeout(() => {
+    //   this.selected = 2;
+    // }, 3000);
   }
 };
 </script>

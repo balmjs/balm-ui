@@ -1,71 +1,82 @@
 <template>
   <div :class="className">
-    <slot name="before"></slot>
-
-    <select v-model="selectedValue"
-      class="mdc-select__native-control"
-      :disabled="disabled"
-      v-bind="attrs"
-      @change="handleChange">
-      <!-- Default option -->
-      <option v-if="defaultLabel" :value="defaultValue" selected>
-        {{ defaultLabel }}
-      </option>
-      <template v-if="group">
-        <template v-for="(option, optionIndex) in options">
-          <!-- A group of options -->
-          <optgroup v-if="option[groupLabel] && option[groupItems] && option[groupItems].length"
-            :key="optionIndex"
-            :label="option[groupLabel]">
-            <option v-for="(item, itemIndex) in option[groupItems]"
-              :key="itemIndex"
-              :value="item[optionValue]">{{ item[optionLabel] }}</option>
-          </optgroup>
-          <!-- An option -->
-          <option v-if="option[optionLabel] && option[optionValue]"
-            :key="optionIndex"
-            :value="option[optionValue]">{{ option[optionLabel] }}</option>
+    <!-- Native Select -->
+    <template v-if="native">
+      <select
+        v-model="selectedValue"
+        class="mdc-select__native-control"
+        :disabled="disabled"
+        v-bind="attrs"
+        @change="nativeHandleChange"
+      >
+        <!-- Default option -->
+        <option v-if="defaultLabel" :value="defaultValue" selected>{{ defaultLabel }}</option>
+        <template v-if="group">
+          <template v-for="(option, optionIndex) in options">
+            <!-- A group of options -->
+            <optgroup
+              v-if="option[groupLabel] && option[groupItems] && option[groupItems].length"
+              :key="optionIndex"
+              :label="option[groupLabel]"
+            >
+              <option
+                v-for="(item, itemIndex) in option[groupItems]"
+                :key="itemIndex"
+                :value="item[optionValue]"
+              >{{ item[optionLabel] }}</option>
+            </optgroup>
+            <!-- An option -->
+            <option
+              v-if="option[optionLabel] && option[optionValue]"
+              :key="optionIndex"
+              :value="option[optionValue]"
+            >{{ option[optionLabel] }}</option>
+          </template>
         </template>
-      </template>
-      <template v-else>
-        <option v-for="(option, index) in options"
-          :key="index"
-          :value="option[optionValue]"
-          :disabled="option.disabled || false">{{ option[optionLabel] }}</option>
-      </template>
-    </select>
-    <ui-floating-label v-if="!outlined && !defaultLabel"
-      :for="id"
-      :floatAbove="!!`${selectedValue}`">
-      <slot>{{ label }}</slot>
-    </ui-floating-label>
-
-    <slot name="after"></slot>
-
-    <template v-if="!cssOnly">
-      <div v-if="outlined" class="mdc-notched-outline">
-        <div class="mdc-notched-outline__leading"></div>
-        <div class="mdc-notched-outline__notch">
-          <ui-floating-label v-if="!defaultLabel"
-            :for="id"
-            :floatAbove="!!`${selectedValue}`">
-            <slot>{{ label }}</slot>
-          </ui-floating-label>
-        </div>
-        <div class="mdc-notched-outline__trailing"></div>
+        <template v-else>
+          <option
+            v-for="(option, index) in options"
+            :key="index"
+            :value="option[optionValue]"
+            :disabled="option.disabled || false"
+          >{{ option[optionLabel] }}</option>
+        </template>
+      </select>
+    </template>
+    <!-- Enhanced Select -->
+    <template v-else>
+      <div class="mdc-select__anchor">
+        <i class="mdc-select__dropdown-icon"></i>
+        <div class="mdc-select__selected-text"></div>
+        <span v-if="!noLabel" class="mdc-floating-label">
+          <slot>{{ label }}</slot>
+        </span>
+        <div class="mdc-line-ripple"></div>
       </div>
-      <div v-else class="mdc-line-ripple"></div>
+
+      <div class="mdc-select__menu mdc-menu mdc-menu-surface">
+        <ul class="mdc-list">
+          <li
+            v-if="defaultLabel"
+            :class="['mdc-list-item', {'mdc-list-item--selected': defaultValue === selectedValue}]"
+            :data-value="defaultLabel"
+            aria-selected="true"
+          >{{ defaultLabel }}</li>
+          <li
+            v-for="(option, index) in options"
+            :key="index"
+            :class="['mdc-list-item', {'mdc-list-item--selected': option[optionValue] === selectedValue}]"
+            :data-value="option[optionLabel]"
+          >{{ option[optionLabel] }}</li>
+        </ul>
+      </div>
     </template>
   </div>
 </template>
 
 <script>
 import { MDCSelect } from '../../../material-components-web/select';
-import UiFloatingLabel from './floating-label';
-import selectMixin from '../../mixins/select';
 import elementMixin from '../../mixins/element';
-import floatingLabelMixin from '../../mixins/floating-label';
-import getType from '../../utils/typeof';
 
 // Define constants
 const UI_SELECT = {
@@ -77,24 +88,51 @@ const UI_SELECT = {
 
 export default {
   name: 'ui-select',
-  components: {
-    UiFloatingLabel
+  mixins: [elementMixin],
+  model: {
+    prop: 'model',
+    event: UI_SELECT.EVENT.CHANGE
   },
-  mixins: [selectMixin, elementMixin, floatingLabelMixin],
   props: {
+    // Type
+    native: {
+      type: Boolean,
+      default: false
+    },
+    // States
+    model: [String, Number],
+    options: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
+    optionLabel: {
+      type: String,
+      default: 'label'
+    },
+    optionValue: {
+      type: String,
+      default: 'value'
+    },
+    defaultLabel: String,
+    defaultValue: {
+      type: [String, Number],
+      default: ''
+    },
     // Element attributes
     id: String,
+    disabled: {
+      type: Boolean,
+      default: false
+    },
     // UI attributes
-    cssOnly: {
-      type: Boolean,
-      default: false
-    },
     label: String,
-    box: {
+    outlined: {
       type: Boolean,
       default: false
     },
-    outlined: {
+    noLabel: {
       type: Boolean,
       default: false
     },
@@ -113,36 +151,77 @@ export default {
   },
   data() {
     return {
-      $select: null
+      $select: null,
+      selectedValue: this.model
     };
   },
   computed: {
     className() {
       return {
         'mdc-select': true,
-        'mdc-select--box': this.box,
+        'mdc-select--native': this.native,
         'mdc-select--outlined': this.outlined,
-        'mdc-select--disabled': this.disabled
+        'mdc-select--required': this.required,
+        'mdc-select--disabled': this.disabled,
+        'mdc-select--no-label': this.noLabel
       };
     }
   },
   watch: {
-    selectedIndex(val) {
-      if (this.$select) {
-        this.$select.selectedIndex = val;
-        this.$emit(UI_SELECT.EVENT.CHANGE, this.$select.value);
+    model(val) {
+      if (this.native) {
+        this.selectedValue = val;
+
+        const selectedIndex = this.options.findIndex(
+          option => option[this.optionValue] === val
+        );
+        const index = this.defaultLabel ? selectedIndex + 1 : selectedIndex;
+        const selected = this.getSelected(index);
+
+        this.$emit(UI_SELECT.EVENT.SELECTED, {
+          index,
+          value: selected[this.optionValue],
+          label: selected[this.optionLabel]
+        });
       }
     }
   },
   mounted() {
-    const select = this.$el;
+    if (!this.native) {
+      this.$select = new MDCSelect(this.$el);
+      this.$select.listen(
+        `MDCSelect:${UI_SELECT.EVENT.CHANGE}`,
+        ({ detail }) => {
+          // console.log(
+          //   `Selected option at index ${detail.index} with value "${detail.value}"`
+          // );
 
-    if (!this.cssOnly) {
-      this.$select = new MDCSelect(select);
+          const selected = this.getSelected(detail.index);
+
+          this.$emit(UI_SELECT.EVENT.CHANGE, selected.value);
+          this.$emit(UI_SELECT.EVENT.SELECTED, selected);
+        }
+      );
     }
   },
   methods: {
-    handleChange() {
+    getSelected(index) {
+      let selected = this.options[index];
+      if (this.defaultLabel) {
+        let defaultOption = {};
+        defaultOption[this.optionValue] = this.defaultValue;
+        defaultOption[this.optionLabel] = this.defaultLabel;
+
+        selected = index === 0 ? defaultOption : this.options[index - 1];
+      }
+
+      return {
+        index,
+        value: selected[this.optionValue],
+        label: selected[this.optionLabel]
+      };
+    },
+    nativeHandleChange() {
       this.$emit(UI_SELECT.EVENT.CHANGE, this.selectedValue);
     }
   }

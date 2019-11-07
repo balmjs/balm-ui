@@ -20,9 +20,9 @@
 // THE SOFTWARE.
 //
 
-@import "@material/base/mixins";
-@import "@material/feature-targeting/functions";
-@import "@material/feature-targeting/mixins";
+@import "../base/mixins";
+@import "../feature-targeting/functions";
+@import "../feature-targeting/mixins";
 @import "./variables";
 
 /// Styles applied to the component's touch target wrapper element.

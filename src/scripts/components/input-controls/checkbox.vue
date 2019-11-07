@@ -21,6 +21,7 @@
       </svg>
       <div class="mdc-checkbox__mixedmark"></div>
     </div>
+    <div class="mdc-checkbox__ripple"></div>
   </div>
 </template>
 

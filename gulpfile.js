@@ -29,16 +29,12 @@ balm.go(mix => {
 
       // Update css reset for docs
       mix.copy(constants.CSS_RESET.normalize, './docs/styles/global', {
-        copyOptions: {
-          prefix: '_',
-          extname: '.scss'
-        }
+        prefix: '_',
+        extname: '.scss'
       });
       mix.copy(constants.CSS_RESET.sanitize, './docs/styles/global', {
-        copyOptions: {
-          prefix: '_',
-          extname: '.scss'
-        }
+        prefix: '_',
+        extname: '.scss'
       });
 
       // Get Material Components Web

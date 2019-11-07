@@ -25,7 +25,7 @@ import { MDCComponent } from '../../base/component';
 import { MDCChip } from '../chip/component';
 import { MDCChipFoundation } from '../chip/foundation';
 import { MDCChipSetFoundation } from './foundation';
-var _a = MDCChipFoundation.strings, INTERACTION_EVENT = _a.INTERACTION_EVENT, SELECTION_EVENT = _a.SELECTION_EVENT, REMOVAL_EVENT = _a.REMOVAL_EVENT;
+var _a = MDCChipFoundation.strings, INTERACTION_EVENT = _a.INTERACTION_EVENT, SELECTION_EVENT = _a.SELECTION_EVENT, REMOVAL_EVENT = _a.REMOVAL_EVENT, NAVIGATION_EVENT = _a.NAVIGATION_EVENT;
 var CHIP_SELECTOR = MDCChipSetFoundation.strings.CHIP_SELECTOR;
 var idCounter = 0;
 var MDCChipSet = /** @class */ (function (_super) {
@@ -69,11 +69,15 @@ var MDCChipSet = /** @class */ (function (_super) {
             }
         });
         this.handleChipInteraction_ = function (evt) { return _this.foundation_.handleChipInteraction(evt.detail.chipId); };
-        this.handleChipSelection_ = function (evt) { return _this.foundation_.handleChipSelection(evt.detail.chipId, evt.detail.selected); };
+        this.handleChipSelection_ = function (evt) {
+            _this.foundation_.handleChipSelection(evt.detail.chipId, evt.detail.selected, evt.detail.shouldIgnore);
+        };
         this.handleChipRemoval_ = function (evt) { return _this.foundation_.handleChipRemoval(evt.detail.chipId); };
+        this.handleChipNavigation_ = function (evt) { return _this.foundation_.handleChipNavigation(evt.detail.chipId, evt.detail.key, evt.detail.source); };
         this.listen(INTERACTION_EVENT, this.handleChipInteraction_);
         this.listen(SELECTION_EVENT, this.handleChipSelection_);
         this.listen(REMOVAL_EVENT, this.handleChipRemoval_);
+        this.listen(NAVIGATION_EVENT, this.handleChipNavigation_);
     };
     MDCChipSet.prototype.destroy = function () {
         this.chips_.forEach(function (chip) {
@@ -82,6 +86,7 @@ var MDCChipSet = /** @class */ (function (_super) {
         this.unlisten(INTERACTION_EVENT, this.handleChipInteraction_);
         this.unlisten(SELECTION_EVENT, this.handleChipSelection_);
         this.unlisten(REMOVAL_EVENT, this.handleChipRemoval_);
+        this.unlisten(NAVIGATION_EVENT, this.handleChipNavigation_);
         _super.prototype.destroy.call(this);
     };
     /**
@@ -96,18 +101,31 @@ var MDCChipSet = /** @class */ (function (_super) {
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         var adapter = {
+            focusChipPrimaryActionAtIndex: function (index) {
+                _this.chips_[index].focusPrimaryAction();
+            },
+            focusChipTrailingActionAtIndex: function (index) {
+                _this.chips_[index].focusTrailingAction();
+            },
+            getChipListCount: function () { return _this.chips_.length; },
+            getIndexOfChipById: function (chipId) {
+                return _this.findChipIndex_(chipId);
+            },
             hasClass: function (className) { return _this.root_.classList.contains(className); },
-            removeChip: function (chipId) {
-                var index = _this.findChipIndex_(chipId);
-                if (index >= 0) {
+            isRTL: function () { return window.getComputedStyle(_this.root_).getPropertyValue('direction') === 'rtl'; },
+            removeChipAtIndex: function (index) {
+                if (index >= 0 && index < _this.chips_.length) {
                     _this.chips_[index].destroy();
+                    _this.chips_[index].remove();
                     _this.chips_.splice(index, 1);
                 }
             },
-            setSelected: function (chipId, selected) {
-                var index = _this.findChipIndex_(chipId);
-                if (index >= 0) {
-                    _this.chips_[index].selected = selected;
+            removeFocusFromChipAtIndex: function (index) {
+                _this.chips_[index].removeFocus();
+            },
+            selectChipAtIndex: function (index, selected, shouldNotifyClients) {
+                if (index >= 0 && index < _this.chips_.length) {
+                    _this.chips_[index].setSelectedFromChipSet(selected, shouldNotifyClients);
                 }
             },
         };

@@ -87,6 +87,8 @@ var MDCChip = /** @class */ (function (_super) {
         this.leadingIcon_ = this.root_.querySelector(strings.LEADING_ICON_SELECTOR);
         this.trailingIcon_ = this.root_.querySelector(strings.TRAILING_ICON_SELECTOR);
         this.checkmark_ = this.root_.querySelector(strings.CHECKMARK_SELECTOR);
+        this.primaryAction_ = this.root_.querySelector(strings.PRIMARY_ACTION_SELECTOR);
+        this.trailingAction_ = this.root_.querySelector(strings.TRAILING_ACTION_SELECTOR);
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         var rippleAdapter = tslib_1.__assign({}, MDCRipple.createAdapter(this), { computeBoundingRect: function () { return _this.foundation_.getDimensions(); } });
@@ -99,10 +101,12 @@ var MDCChip = /** @class */ (function (_super) {
         this.handleTrailingIconInteraction_ = function (evt) {
             return _this.foundation_.handleTrailingIconInteraction(evt);
         };
+        this.handleKeydown_ = function (evt) { return _this.foundation_.handleKeydown(evt); };
         INTERACTION_EVENTS.forEach(function (evtType) {
             _this.listen(evtType, _this.handleInteraction_);
         });
         this.listen('transitionend', this.handleTransitionEnd_);
+        this.listen('keydown', this.handleKeydown_);
         if (this.trailingIcon_) {
             INTERACTION_EVENTS.forEach(function (evtType) {
                 _this.trailingIcon_.addEventListener(evtType, _this.handleTrailingIconInteraction_);
@@ -116,6 +120,7 @@ var MDCChip = /** @class */ (function (_super) {
             _this.unlisten(evtType, _this.handleInteraction_);
         });
         this.unlisten('transitionend', this.handleTransitionEnd_);
+        this.unlisten('keydown', this.handleKeydown_);
         if (this.trailingIcon_) {
             INTERACTION_EVENTS.forEach(function (evtType) {
                 _this.trailingIcon_.removeEventListener(evtType, _this.handleTrailingIconInteraction_);
@@ -141,14 +146,29 @@ var MDCChip = /** @class */ (function (_super) {
                 }
             },
             eventTargetHasClass: function (target, className) { return target ? target.classList.contains(className) : false; },
+            focusPrimaryAction: function () {
+                if (_this.primaryAction_) {
+                    _this.primaryAction_.focus();
+                }
+            },
+            focusTrailingAction: function () {
+                if (_this.trailingAction_) {
+                    _this.trailingAction_.focus();
+                }
+            },
             getCheckmarkBoundingClientRect: function () { return _this.checkmark_ ? _this.checkmark_.getBoundingClientRect() : null; },
             getComputedStyleValue: function (propertyName) { return window.getComputedStyle(_this.root_).getPropertyValue(propertyName); },
             getRootBoundingClientRect: function () { return _this.root_.getBoundingClientRect(); },
             hasClass: function (className) { return _this.root_.classList.contains(className); },
             hasLeadingIcon: function () { return !!_this.leadingIcon_; },
+            hasTrailingAction: function () { return !!_this.trailingAction_; },
+            isRTL: function () { return window.getComputedStyle(_this.root_).getPropertyValue('direction') === 'rtl'; },
             notifyInteraction: function () { return _this.emit(strings.INTERACTION_EVENT, { chipId: _this.id }, true /* shouldBubble */); },
-            notifyRemoval: function () { return _this.emit(strings.REMOVAL_EVENT, { chipId: _this.id, root: _this.root_ }, true /* shouldBubble */); },
-            notifySelection: function (selected) { return _this.emit(strings.SELECTION_EVENT, { chipId: _this.id, selected: selected }, true /* shouldBubble */); },
+            notifyNavigation: function (key, source) { return _this.emit(strings.NAVIGATION_EVENT, { chipId: _this.id, key: key, source: source }, true /* shouldBubble */); },
+            notifyRemoval: function () {
+                _this.emit(strings.REMOVAL_EVENT, { chipId: _this.id, root: _this.root_ }, true /* shouldBubble */);
+            },
+            notifySelection: function (selected, shouldIgnore) { return _this.emit(strings.SELECTION_EVENT, { chipId: _this.id, selected: selected, shouldIgnore: shouldIgnore }, true /* shouldBubble */); },
             notifyTrailingIconInteraction: function () { return _this.emit(strings.TRAILING_ICON_INTERACTION_EVENT, { chipId: _this.id }, true /* shouldBubble */); },
             removeClass: function (className) { return _this.root_.classList.remove(className); },
             removeClassFromLeadingIcon: function (className) {
@@ -156,10 +176,37 @@ var MDCChip = /** @class */ (function (_super) {
                     _this.leadingIcon_.classList.remove(className);
                 }
             },
-            setAttr: function (attr, value) { return _this.root_.setAttribute(attr, value); },
+            setPrimaryActionAttr: function (attr, value) {
+                if (_this.primaryAction_) {
+                    _this.primaryAction_.setAttribute(attr, value);
+                }
+            },
             setStyleProperty: function (propertyName, value) { return _this.root_.style.setProperty(propertyName, value); },
+            setTrailingActionAttr: function (attr, value) {
+                if (_this.trailingAction_) {
+                    _this.trailingAction_.setAttribute(attr, value);
+                }
+            },
         };
         return new MDCChipFoundation(adapter);
+    };
+    MDCChip.prototype.setSelectedFromChipSet = function (selected, shouldNotifyClients) {
+        this.foundation_.setSelectedFromChipSet(selected, shouldNotifyClients);
+    };
+    MDCChip.prototype.focusPrimaryAction = function () {
+        this.foundation_.focusPrimaryAction();
+    };
+    MDCChip.prototype.focusTrailingAction = function () {
+        this.foundation_.focusTrailingAction();
+    };
+    MDCChip.prototype.removeFocus = function () {
+        this.foundation_.removeFocus();
+    };
+    MDCChip.prototype.remove = function () {
+        var parent = this.root_.parentNode;
+        if (parent !== null) {
+            parent.removeChild(this.root_);
+        }
     };
     return MDCChip;
 }(MDCComponent));

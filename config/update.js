@@ -73,7 +73,7 @@ level0.forEach(function(file) {
 });
 
 level1.forEach(function(file) {
-  let name = `update:mdc:${index}`;
+  const name = `update:mdc:${index}`;
   task(name, () => {
     return src(mdcDir + file + '/*')
       .pipe($replace('@material/', '../'))
@@ -84,7 +84,7 @@ level1.forEach(function(file) {
 });
 
 level2.forEach(function(file) {
-  let name = `update:mdc:${index}`;
+  const name = `update:mdc:${index}`;
   task(name, () => {
     return src(mdcDir + file + '/*')
       .pipe($replace('@material/', '../../'))

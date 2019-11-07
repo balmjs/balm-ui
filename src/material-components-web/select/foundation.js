@@ -22,6 +22,7 @@
  */
 import * as tslib_1 from "tslib";
 import { MDCFoundation } from '../base/foundation';
+import { Corner } from '../menu-surface/constants';
 import { cssClasses, numbers, strings } from './constants';
 var MDCSelectFoundation = /** @class */ (function (_super) {
     tslib_1.__extends(MDCSelectFoundation, _super);
@@ -33,8 +34,17 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
     function MDCSelectFoundation(adapter, foundationMap) {
         if (foundationMap === void 0) { foundationMap = {}; }
         var _this = _super.call(this, tslib_1.__assign({}, MDCSelectFoundation.defaultAdapter, adapter)) || this;
+        // Index of the currently selected menu item.
+        _this.selectedIndex_ = numbers.UNSET_INDEX;
+        // Disabled state
+        _this.disabled_ = false;
+        // isMenuOpen_ is used to track the state of the menu by listening to the MDCMenuSurface:closed event
+        // For reference, menu.open will return false if the menu is still closing, but isMenuOpen_ returns false only after
+        // the menu has closed
+        _this.isMenuOpen_ = false;
         _this.leadingIcon_ = foundationMap.leadingIcon;
         _this.helperText_ = foundationMap.helperText;
+        _this.menuItemValues_ = _this.adapter_.getMenuItemValues();
         return _this;
     }
     Object.defineProperty(MDCSelectFoundation, "cssClasses", {
@@ -70,54 +80,100 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
                 hasClass: function () { return false; },
                 activateBottomLine: function () { return undefined; },
                 deactivateBottomLine: function () { return undefined; },
-                setValue: function () { return undefined; },
-                getValue: function () { return ''; },
+                getSelectedMenuItem: function () { return null; },
+                hasLabel: function () { return false; },
                 floatLabel: function () { return undefined; },
                 getLabelWidth: function () { return 0; },
                 hasOutline: function () { return false; },
                 notchOutline: function () { return undefined; },
                 closeOutline: function () { return undefined; },
-                openMenu: function () { return undefined; },
-                closeMenu: function () { return undefined; },
-                isMenuOpen: function () { return false; },
-                setSelectedIndex: function () { return undefined; },
-                setDisabled: function () { return undefined; },
                 setRippleCenter: function () { return undefined; },
                 notifyChange: function () { return undefined; },
-                checkValidity: function () { return false; },
-                setValid: function () { return undefined; },
+                setSelectedText: function () { return undefined; },
+                isSelectedTextFocused: function () { return false; },
+                getSelectedTextAttr: function () { return ''; },
+                setSelectedTextAttr: function () { return undefined; },
+                openMenu: function () { return undefined; },
+                closeMenu: function () { return undefined; },
+                getAnchorElement: function () { return null; },
+                setMenuAnchorElement: function () { return undefined; },
+                setMenuAnchorCorner: function () { return undefined; },
+                setMenuWrapFocus: function () { return undefined; },
+                setAttributeAtIndex: function () { return undefined; },
+                removeAttributeAtIndex: function () { return undefined; },
+                focusMenuItemAtIndex: function () { return undefined; },
+                getMenuItemCount: function () { return 0; },
+                getMenuItemValues: function () { return []; },
+                getMenuItemTextAtIndex: function () { return ''; },
+                getMenuItemAttr: function () { return ''; },
+                addClassAtIndex: function () { return undefined; },
+                removeClassAtIndex: function () { return undefined; },
             };
             // tslint:enable:object-literal-sort-keys
         },
         enumerable: true,
         configurable: true
     });
-    MDCSelectFoundation.prototype.setSelectedIndex = function (index) {
-        this.adapter_.setSelectedIndex(index);
-        this.adapter_.closeMenu();
-        var didChange = true;
-        this.handleChange(didChange);
+    /** Returns the index of the currently selected menu item, or -1 if none. */
+    MDCSelectFoundation.prototype.getSelectedIndex = function () {
+        return this.selectedIndex_;
+    };
+    MDCSelectFoundation.prototype.setSelectedIndex = function (index, closeMenu) {
+        if (closeMenu === void 0) { closeMenu = false; }
+        if (index >= this.adapter_.getMenuItemCount()) {
+            return;
+        }
+        var previouslySelectedIndex = this.selectedIndex_;
+        this.selectedIndex_ = index;
+        if (this.selectedIndex_ === numbers.UNSET_INDEX) {
+            this.adapter_.setSelectedText('');
+        }
+        else {
+            this.adapter_.setSelectedText(this.adapter_.getMenuItemTextAtIndex(this.selectedIndex_).trim());
+        }
+        if (previouslySelectedIndex !== numbers.UNSET_INDEX) {
+            this.adapter_.removeClassAtIndex(previouslySelectedIndex, cssClasses.SELECTED_ITEM_CLASS);
+            this.adapter_.removeAttributeAtIndex(previouslySelectedIndex, strings.ARIA_SELECTED_ATTR);
+        }
+        if (this.selectedIndex_ !== numbers.UNSET_INDEX) {
+            this.adapter_.addClassAtIndex(this.selectedIndex_, cssClasses.SELECTED_ITEM_CLASS);
+            this.adapter_.setAttributeAtIndex(this.selectedIndex_, strings.ARIA_SELECTED_ATTR, 'true');
+        }
+        this.layout();
+        if (closeMenu) {
+            this.adapter_.closeMenu();
+        }
+        this.handleChange();
     };
     MDCSelectFoundation.prototype.setValue = function (value) {
-        this.adapter_.setValue(value);
-        var didChange = true;
-        this.handleChange(didChange);
+        var index = this.menuItemValues_.indexOf(value);
+        this.setSelectedIndex(index);
+        this.handleChange();
     };
     MDCSelectFoundation.prototype.getValue = function () {
-        return this.adapter_.getValue();
+        var listItem = this.adapter_.getSelectedMenuItem();
+        if (listItem) {
+            return this.adapter_.getMenuItemAttr(listItem, strings.VALUE_ATTR) || '';
+        }
+        return '';
+    };
+    MDCSelectFoundation.prototype.getDisabled = function () {
+        return this.disabled_;
     };
     MDCSelectFoundation.prototype.setDisabled = function (isDisabled) {
-        if (isDisabled) {
+        this.disabled_ = isDisabled;
+        if (this.disabled_) {
             this.adapter_.addClass(cssClasses.DISABLED);
+            this.adapter_.closeMenu();
         }
         else {
             this.adapter_.removeClass(cssClasses.DISABLED);
         }
-        this.adapter_.setDisabled(isDisabled);
-        this.adapter_.closeMenu();
         if (this.leadingIcon_) {
-            this.leadingIcon_.setDisabled(isDisabled);
+            this.leadingIcon_.setDisabled(this.disabled_);
         }
+        this.adapter_.setSelectedTextAttr('tabindex', this.disabled_ ? '-1' : '0');
+        this.adapter_.setSelectedTextAttr('aria-disabled', this.disabled_.toString());
     };
     /**
      * @param content Sets the content of the helper text.
@@ -128,44 +184,55 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         }
     };
     MDCSelectFoundation.prototype.layout = function () {
-        var openNotch = this.getValue().length > 0;
-        this.notchOutline(openNotch);
+        if (this.adapter_.hasLabel()) {
+            var openNotch = this.getValue().length > 0;
+            this.notchOutline(openNotch);
+        }
     };
     MDCSelectFoundation.prototype.handleMenuOpened = function () {
+        if (this.adapter_.getMenuItemValues().length === 0) {
+            return;
+        }
         this.adapter_.addClass(cssClasses.ACTIVATED);
+        // Menu should open to the last selected element, should open to first menu item otherwise.
+        var focusItemIndex = this.selectedIndex_ >= 0 ? this.selectedIndex_ : 0;
+        this.adapter_.focusMenuItemAtIndex(focusItemIndex);
     };
     MDCSelectFoundation.prototype.handleMenuClosed = function () {
         this.adapter_.removeClass(cssClasses.ACTIVATED);
+        this.isMenuOpen_ = false;
+        this.adapter_.setSelectedTextAttr('aria-expanded', 'false');
+        // Unfocus the select if menu is closed without a selection
+        if (!this.adapter_.isSelectedTextFocused()) {
+            this.blur_();
+        }
     };
     /**
      * Handles value changes, via change event or programmatic updates.
      */
-    MDCSelectFoundation.prototype.handleChange = function (didChange) {
-        if (didChange === void 0) { didChange = true; }
-        var value = this.getValue();
-        var optionHasValue = value.length > 0;
+    MDCSelectFoundation.prototype.handleChange = function () {
+        this.updateLabel_();
+        this.adapter_.notifyChange(this.getValue());
         var isRequired = this.adapter_.hasClass(cssClasses.REQUIRED);
-        this.notchOutline(optionHasValue);
-        if (!this.adapter_.hasClass(cssClasses.FOCUSED)) {
-            this.adapter_.floatLabel(optionHasValue);
-        }
-        if (didChange) {
-            this.adapter_.notifyChange(value);
-            if (isRequired) {
-                this.setValid(this.isValid());
-                if (this.helperText_) {
-                    this.helperText_.setValidity(this.isValid());
-                }
+        if (isRequired) {
+            this.setValid(this.isValid());
+            if (this.helperText_) {
+                this.helperText_.setValidity(this.isValid());
             }
         }
+    };
+    MDCSelectFoundation.prototype.handleMenuItemAction = function (index) {
+        this.setSelectedIndex(index, /** closeMenu */ true);
     };
     /**
      * Handles focus events from select element.
      */
     MDCSelectFoundation.prototype.handleFocus = function () {
         this.adapter_.addClass(cssClasses.FOCUSED);
-        this.adapter_.floatLabel(true);
-        this.notchOutline(true);
+        if (this.adapter_.hasLabel()) {
+            this.adapter_.floatLabel(true);
+            this.notchOutline(true);
+        }
         this.adapter_.activateBottomLine();
         if (this.helperText_) {
             this.helperText_.showToScreenReader();
@@ -175,29 +242,22 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
      * Handles blur events from select element.
      */
     MDCSelectFoundation.prototype.handleBlur = function () {
-        if (this.adapter_.isMenuOpen()) {
+        if (this.isMenuOpen_) {
             return;
         }
-        this.adapter_.removeClass(cssClasses.FOCUSED);
-        this.handleChange(false);
-        this.adapter_.deactivateBottomLine();
-        var isRequired = this.adapter_.hasClass(cssClasses.REQUIRED);
-        if (isRequired) {
-            this.setValid(this.isValid());
-            if (this.helperText_) {
-                this.helperText_.setValidity(this.isValid());
-            }
-        }
+        this.blur_();
     };
     MDCSelectFoundation.prototype.handleClick = function (normalizedX) {
-        if (this.adapter_.isMenuOpen()) {
+        if (this.isMenuOpen_) {
             return;
         }
         this.adapter_.setRippleCenter(normalizedX);
         this.adapter_.openMenu();
+        this.isMenuOpen_ = true;
+        this.adapter_.setSelectedTextAttr('aria-expanded', 'true');
     };
     MDCSelectFoundation.prototype.handleKeydown = function (event) {
-        if (this.adapter_.isMenuOpen()) {
+        if (this.isMenuOpen_) {
             return;
         }
         var isEnter = event.key === 'Enter' || event.keyCode === 13;
@@ -206,6 +266,8 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         var arrowDown = event.key === 'ArrowDown' || event.keyCode === 40;
         if (this.adapter_.hasClass(cssClasses.FOCUSED) && (isEnter || isSpace || arrowUp || arrowDown)) {
             this.adapter_.openMenu();
+            this.isMenuOpen_ = true;
+            this.adapter_.setSelectedTextAttr('aria-expanded', 'true');
             event.preventDefault();
         }
     };
@@ -243,10 +305,76 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         }
     };
     MDCSelectFoundation.prototype.setValid = function (isValid) {
-        this.adapter_.setValid(isValid);
+        this.adapter_.setSelectedTextAttr('aria-invalid', (!isValid).toString());
+        if (isValid) {
+            this.adapter_.removeClass(cssClasses.INVALID);
+        }
+        else {
+            this.adapter_.addClass(cssClasses.INVALID);
+        }
     };
     MDCSelectFoundation.prototype.isValid = function () {
-        return this.adapter_.checkValidity();
+        if (this.adapter_.hasClass(cssClasses.REQUIRED) && !this.adapter_.hasClass(cssClasses.DISABLED)) {
+            // See notes for required attribute under https://www.w3.org/TR/html52/sec-forms.html#the-select-element
+            // TL;DR: Invalid if no index is selected, or if the first index is selected and has an empty value.
+            return this.selectedIndex_ !== numbers.UNSET_INDEX &&
+                (this.selectedIndex_ !== 0 || Boolean(this.getValue()));
+        }
+        return true;
+    };
+    MDCSelectFoundation.prototype.setRequired = function (isRequired) {
+        if (isRequired) {
+            this.adapter_.addClass(cssClasses.REQUIRED);
+        }
+        else {
+            this.adapter_.removeClass(cssClasses.REQUIRED);
+        }
+        this.adapter_.setSelectedTextAttr('aria-required', isRequired.toString());
+    };
+    MDCSelectFoundation.prototype.getRequired = function () {
+        return this.adapter_.getSelectedTextAttr('aria-required') === 'true';
+    };
+    MDCSelectFoundation.prototype.init = function () {
+        var anchorEl = this.adapter_.getAnchorElement();
+        if (anchorEl) {
+            this.adapter_.setMenuAnchorElement(anchorEl);
+            this.adapter_.setMenuAnchorCorner(Corner.BOTTOM_START);
+        }
+        this.adapter_.setMenuWrapFocus(false);
+        var value = this.getValue();
+        if (value) {
+            this.setValue(value);
+        }
+        // Initially sync floating label
+        this.updateLabel_();
+    };
+    /**
+     * Notches the outline and floats the label when appropriate.
+     */
+    MDCSelectFoundation.prototype.updateLabel_ = function () {
+        var value = this.getValue();
+        var optionHasValue = value.length > 0;
+        if (this.adapter_.hasLabel()) {
+            this.notchOutline(optionHasValue);
+            if (!this.adapter_.hasClass(cssClasses.FOCUSED)) {
+                this.adapter_.floatLabel(optionHasValue);
+            }
+        }
+    };
+    /**
+     * Unfocuses the select component.
+     */
+    MDCSelectFoundation.prototype.blur_ = function () {
+        this.adapter_.removeClass(cssClasses.FOCUSED);
+        this.updateLabel_();
+        this.adapter_.deactivateBottomLine();
+        var isRequired = this.adapter_.hasClass(cssClasses.REQUIRED);
+        if (isRequired) {
+            this.setValid(this.isValid());
+            if (this.helperText_) {
+                this.helperText_.setValidity(this.isValid());
+            }
+        }
     };
     return MDCSelectFoundation;
 }(MDCFoundation));

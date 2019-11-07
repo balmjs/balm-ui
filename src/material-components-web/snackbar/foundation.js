@@ -95,11 +95,14 @@ var MDCSnackbarFoundation = /** @class */ (function (_super) {
         this.runNextAnimationFrame_(function () {
             _this.adapter_.addClass(OPEN);
             _this.animationTimer_ = setTimeout(function () {
+                var timeoutMs = _this.getTimeoutMs();
                 _this.handleAnimationTimerEnd_();
                 _this.adapter_.notifyOpened();
-                _this.autoDismissTimer_ = setTimeout(function () {
-                    _this.close(REASON_DISMISS);
-                }, _this.getTimeoutMs());
+                if (timeoutMs !== numbers.INDETERMINATE) {
+                    _this.autoDismissTimer_ = setTimeout(function () {
+                        _this.close(REASON_DISMISS);
+                    }, timeoutMs);
+                }
             }, numbers.SNACKBAR_ANIMATION_OPEN_TIME_MS);
         });
     };
@@ -139,11 +142,12 @@ var MDCSnackbarFoundation = /** @class */ (function (_super) {
         // Use shorter variable names to make the code more readable
         var minValue = numbers.MIN_AUTO_DISMISS_TIMEOUT_MS;
         var maxValue = numbers.MAX_AUTO_DISMISS_TIMEOUT_MS;
-        if (timeoutMs <= maxValue && timeoutMs >= minValue) {
+        var indeterminateValue = numbers.INDETERMINATE;
+        if (timeoutMs === numbers.INDETERMINATE || (timeoutMs <= maxValue && timeoutMs >= minValue)) {
             this.autoDismissTimeoutMs_ = timeoutMs;
         }
         else {
-            throw new Error("timeoutMs must be an integer in the range " + minValue + "\u2013" + maxValue + ", but got '" + timeoutMs + "'");
+            throw new Error("\n        timeoutMs must be an integer in the range " + minValue + "\u2013" + maxValue + "\n        (or " + indeterminateValue + " to disable), but got '" + timeoutMs + "'");
         }
     };
     MDCSnackbarFoundation.prototype.getCloseOnEscape = function () {

@@ -76,6 +76,7 @@ var MDCListFoundation = /** @class */ (function (_super) {
                 isCheckboxCheckedAtIndex: function () { return false; },
                 isFocusInsideList: function () { return false; },
                 isRootFocused: function () { return false; },
+                listItemAtIndexHasClass: function () { return false; },
                 notifyAction: function () { return undefined; },
                 removeClassForElementIndex: function () { return undefined; },
                 setAttributeForElementIndex: function () { return undefined; },
@@ -429,8 +430,15 @@ var MDCListFoundation = /** @class */ (function (_super) {
         var listSize = this.adapter_.getListItemCount();
         return index >= 0 && index < listSize;
     };
+    /**
+     * Sets selected index on user action, toggles checkbox / radio based on toggleCheckbox value.
+     * User interaction should not toggle list item(s) when disabled.
+     */
     MDCListFoundation.prototype.setSelectedIndexOnAction_ = function (index, toggleCheckbox) {
         if (toggleCheckbox === void 0) { toggleCheckbox = true; }
+        if (this.adapter_.listItemAtIndexHasClass(index, cssClasses.LIST_ITEM_DISABLED_CLASS)) {
+            return;
+        }
         if (this.isCheckboxList_) {
             this.toggleCheckboxAtIndex_(index, toggleCheckbox);
         }

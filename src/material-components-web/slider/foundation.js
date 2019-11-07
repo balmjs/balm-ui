@@ -115,9 +115,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
                 setThumbContainerStyleProperty: function () { return undefined; },
                 setTrackStyleProperty: function () { return undefined; },
                 setMarkerValue: function () { return undefined; },
-                appendTrackMarkers: function () { return undefined; },
-                removeTrackMarkers: function () { return undefined; },
-                setLastTrackMarkersStyleProperty: function () { return undefined; },
+                setTrackMarkers: function () { return undefined; },
                 isRTL: function () { return false; },
             };
             // tslint:enable:object-literal-sort-keys
@@ -156,23 +154,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
     };
     MDCSliderFoundation.prototype.setupTrackMarker = function () {
         if (this.isDiscrete_ && this.hasTrackMarker_ && this.getStep() !== 0) {
-            var min = this.getMin();
-            var max = this.getMax();
-            var step = this.getStep();
-            var numMarkers = (max - min) / step;
-            // In case distance between max & min is indivisible to step,
-            // we place the secondary to last marker proportionally at where thumb
-            // could reach and place the last marker at max value
-            var indivisible = Math.ceil(numMarkers) !== numMarkers;
-            if (indivisible) {
-                numMarkers = Math.ceil(numMarkers);
-            }
-            this.adapter_.removeTrackMarkers();
-            this.adapter_.appendTrackMarkers(numMarkers);
-            if (indivisible) {
-                var lastStepRatio = (max - numMarkers * step) / step + 1;
-                this.adapter_.setLastTrackMarkersStyleProperty('flex-grow', String(lastStepRatio));
-            }
+            this.adapter_.setTrackMarkers(this.getStep(), this.getMax(), this.getMin());
         }
     };
     MDCSliderFoundation.prototype.layout = function () {

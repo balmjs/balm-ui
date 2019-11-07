@@ -34,7 +34,6 @@ import { cssClasses, strings } from './constants';
 import { MDCSelectFoundation } from './foundation';
 import { MDCSelectHelperText } from './helper-text/component';
 import { MDCSelectIcon } from './icon/component';
-var VALIDATION_ATTR_WHITELIST = ['required', 'aria-required'];
 var MDCSelect = /** @class */ (function (_super) {
     tslib_1.__extends(MDCSelect, _super);
     function MDCSelect() {
@@ -50,24 +49,19 @@ var MDCSelect = /** @class */ (function (_super) {
         if (menuFactory === void 0) { menuFactory = function (el) { return new MDCMenu(el); }; }
         if (iconFactory === void 0) { iconFactory = function (el) { return new MDCSelectIcon(el); }; }
         if (helperTextFactory === void 0) { helperTextFactory = function (el) { return new MDCSelectHelperText(el); }; }
-        this.isMenuOpen_ = false;
-        this.nativeControl_ = this.root_.querySelector(strings.NATIVE_CONTROL_SELECTOR);
+        this.selectAnchor_ = this.root_.querySelector(strings.SELECT_ANCHOR_SELECTOR);
         this.selectedText_ = this.root_.querySelector(strings.SELECTED_TEXT_SELECTOR);
-        var targetElement = this.nativeControl_ || this.selectedText_;
-        if (!targetElement) {
-            throw new Error('MDCSelect: Missing required element: Exactly one of the following selectors must be present: ' +
-                ("'" + strings.NATIVE_CONTROL_SELECTOR + "' or '" + strings.SELECTED_TEXT_SELECTOR + "'"));
+        if (!this.selectedText_) {
+            throw new Error('MDCSelect: Missing required element: The following selector must be present: ' +
+                ("'" + strings.SELECTED_TEXT_SELECTOR + "'"));
         }
-        this.targetElement_ = targetElement;
-        if (this.targetElement_.hasAttribute(strings.ARIA_CONTROLS)) {
-            var helperTextElement = document.getElementById(this.targetElement_.getAttribute(strings.ARIA_CONTROLS));
+        if (this.selectedText_.hasAttribute(strings.ARIA_CONTROLS)) {
+            var helperTextElement = document.getElementById(this.selectedText_.getAttribute(strings.ARIA_CONTROLS));
             if (helperTextElement) {
                 this.helperText_ = helperTextFactory(helperTextElement);
             }
         }
-        if (this.selectedText_) {
-            this.enhancedSelectSetup_(menuFactory);
-        }
+        this.menuSetup_(menuFactory);
         var labelElement = this.root_.querySelector(strings.LABEL_SELECTOR);
         this.label_ = labelElement ? labelFactory(labelElement) : null;
         var lineRippleElement = this.root_.querySelector(strings.LINE_RIPPLE_SELECTOR);
@@ -76,18 +70,11 @@ var MDCSelect = /** @class */ (function (_super) {
         this.outline_ = outlineElement ? outlineFactory(outlineElement) : null;
         var leadingIcon = this.root_.querySelector(strings.LEADING_ICON_SELECTOR);
         if (leadingIcon) {
-            this.root_.classList.add(cssClasses.WITH_LEADING_ICON);
             this.leadingIcon_ = iconFactory(leadingIcon);
-            if (this.menuElement_) {
-                this.menuElement_.classList.add(cssClasses.WITH_LEADING_ICON);
-            }
         }
         if (!this.root_.classList.contains(cssClasses.OUTLINED)) {
-            this.ripple = this.createRipple_();
+            this.ripple_ = this.createRipple_();
         }
-        // The required state needs to be sync'd before the mutation observer is added.
-        this.initialSyncRequiredState_();
-        this.addMutationObserverForRequired_();
     };
     /**
      * Initializes the select's event listeners and internal state based
@@ -95,80 +82,40 @@ var MDCSelect = /** @class */ (function (_super) {
      */
     MDCSelect.prototype.initialSyncWithDOM = function () {
         var _this = this;
-        this.handleChange_ = function () { return _this.foundation_.handleChange(/* didChange */ true); };
+        this.handleChange_ = function () { return _this.foundation_.handleChange(); };
         this.handleFocus_ = function () { return _this.foundation_.handleFocus(); };
         this.handleBlur_ = function () { return _this.foundation_.handleBlur(); };
         this.handleClick_ = function (evt) {
-            if (_this.selectedText_) {
-                _this.selectedText_.focus();
-            }
+            _this.selectedText_.focus();
             _this.foundation_.handleClick(_this.getNormalizedXCoordinate_(evt));
         };
         this.handleKeydown_ = function (evt) { return _this.foundation_.handleKeydown(evt); };
-        this.handleMenuSelected_ = function (evtData) { return _this.selectedIndex = evtData.detail.index; };
-        this.handleMenuOpened_ = function () {
-            _this.foundation_.handleMenuOpened();
-            if (_this.menu_.items.length === 0) {
-                return;
-            }
-            // Menu should open to the last selected element, should open to first menu item otherwise.
-            var focusItemIndex = _this.selectedIndex >= 0 ? _this.selectedIndex : 0;
-            var focusItemEl = _this.menu_.items[focusItemIndex];
-            focusItemEl.focus();
-        };
-        this.handleMenuClosed_ = function () {
-            _this.foundation_.handleMenuClosed();
-            // isMenuOpen_ is used to track the state of the menu opening or closing since the menu.open function
-            // will return false if the menu is still closing and this method listens to the closed event which
-            // occurs after the menu is already closed.
-            _this.isMenuOpen_ = false;
-            _this.selectedText_.removeAttribute('aria-expanded');
-            if (document.activeElement !== _this.selectedText_) {
-                _this.foundation_.handleBlur();
-            }
-        };
-        this.targetElement_.addEventListener('change', this.handleChange_);
-        this.targetElement_.addEventListener('focus', this.handleFocus_);
-        this.targetElement_.addEventListener('blur', this.handleBlur_);
-        this.targetElement_.addEventListener('click', this.handleClick_);
-        if (this.menuElement_) {
-            this.selectedText_.addEventListener('keydown', this.handleKeydown_);
-            this.menu_.listen(menuSurfaceConstants.strings.CLOSED_EVENT, this.handleMenuClosed_);
-            this.menu_.listen(menuSurfaceConstants.strings.OPENED_EVENT, this.handleMenuOpened_);
-            this.menu_.listen(menuConstants.strings.SELECTED_EVENT, this.handleMenuSelected_);
-            if (this.hiddenInput_ && this.hiddenInput_.value) {
-                // If the hidden input already has a value, use it to restore the select's value.
-                // This can happen e.g. if the user goes back or (in some browsers) refreshes the page.
-                var enhancedAdapterMethods = this.getEnhancedSelectAdapterMethods_();
-                enhancedAdapterMethods.setValue(this.hiddenInput_.value);
-            }
-            else if (this.menuElement_.querySelector(strings.SELECTED_ITEM_SELECTOR)) {
-                // If an element is selected, the select should set the initial selected text.
-                var enhancedAdapterMethods = this.getEnhancedSelectAdapterMethods_();
-                enhancedAdapterMethods.setValue(enhancedAdapterMethods.getValue());
-            }
-        }
-        // Initially sync floating label
-        this.foundation_.handleChange(/* didChange */ false);
-        if (this.root_.classList.contains(cssClasses.DISABLED)
-            || (this.nativeControl_ && this.nativeControl_.disabled)) {
-            this.disabled = true;
-        }
+        this.handleMenuItemAction_ = function (evt) { return _this.foundation_.handleMenuItemAction(evt.detail.index); };
+        this.handleMenuOpened_ = function () { return _this.foundation_.handleMenuOpened(); };
+        this.handleMenuClosed_ = function () { return _this.foundation_.handleMenuClosed(); };
+        this.selectedText_.addEventListener('focus', this.handleFocus_);
+        this.selectedText_.addEventListener('blur', this.handleBlur_);
+        this.selectedText_.addEventListener('click', this.handleClick_);
+        this.selectedText_.addEventListener('keydown', this.handleKeydown_);
+        this.menu_.listen(menuSurfaceConstants.strings.CLOSED_EVENT, this.handleMenuClosed_);
+        this.menu_.listen(menuSurfaceConstants.strings.OPENED_EVENT, this.handleMenuOpened_);
+        this.menu_.listen(menuConstants.strings.SELECTED_EVENT, this.handleMenuItemAction_);
+        this.foundation_.init();
+        // Sets disabled state in foundation
+        this.disabled = this.root_.classList.contains(cssClasses.DISABLED);
     };
     MDCSelect.prototype.destroy = function () {
-        this.targetElement_.removeEventListener('change', this.handleChange_);
-        this.targetElement_.removeEventListener('focus', this.handleFocus_);
-        this.targetElement_.removeEventListener('blur', this.handleBlur_);
-        this.targetElement_.removeEventListener('keydown', this.handleKeydown_);
-        this.targetElement_.removeEventListener('click', this.handleClick_);
-        if (this.menu_) {
-            this.menu_.unlisten(menuSurfaceConstants.strings.CLOSED_EVENT, this.handleMenuClosed_);
-            this.menu_.unlisten(menuSurfaceConstants.strings.OPENED_EVENT, this.handleMenuOpened_);
-            this.menu_.unlisten(menuConstants.strings.SELECTED_EVENT, this.handleMenuSelected_);
-            this.menu_.destroy();
-        }
-        if (this.ripple) {
-            this.ripple.destroy();
+        this.selectedText_.removeEventListener('change', this.handleChange_);
+        this.selectedText_.removeEventListener('focus', this.handleFocus_);
+        this.selectedText_.removeEventListener('blur', this.handleBlur_);
+        this.selectedText_.removeEventListener('keydown', this.handleKeydown_);
+        this.selectedText_.removeEventListener('click', this.handleClick_);
+        this.menu_.unlisten(menuSurfaceConstants.strings.CLOSED_EVENT, this.handleMenuClosed_);
+        this.menu_.unlisten(menuSurfaceConstants.strings.OPENED_EVENT, this.handleMenuOpened_);
+        this.menu_.unlisten(menuConstants.strings.SELECTED_EVENT, this.handleMenuItemAction_);
+        this.menu_.destroy();
+        if (this.ripple_) {
+            this.ripple_.destroy();
         }
         if (this.outline_) {
             this.outline_.destroy();
@@ -178,9 +125,6 @@ var MDCSelect = /** @class */ (function (_super) {
         }
         if (this.helperText_) {
             this.helperText_.destroy();
-        }
-        if (this.validationObserver_) {
-            this.validationObserver_.disconnect();
         }
         _super.prototype.destroy.call(this);
     };
@@ -196,26 +140,17 @@ var MDCSelect = /** @class */ (function (_super) {
     });
     Object.defineProperty(MDCSelect.prototype, "selectedIndex", {
         get: function () {
-            var selectedIndex = -1;
-            if (this.menuElement_ && this.menu_) {
-                var selectedEl = this.menuElement_.querySelector(strings.SELECTED_ITEM_SELECTOR);
-                selectedIndex = this.menu_.items.indexOf(selectedEl);
-            }
-            else if (this.nativeControl_) {
-                selectedIndex = this.nativeControl_.selectedIndex;
-            }
-            return selectedIndex;
+            return this.foundation_.getSelectedIndex();
         },
         set: function (selectedIndex) {
-            this.foundation_.setSelectedIndex(selectedIndex);
+            this.foundation_.setSelectedIndex(selectedIndex, /** closeMenu */ true);
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(MDCSelect.prototype, "disabled", {
         get: function () {
-            return this.root_.classList.contains(cssClasses.DISABLED) ||
-                (this.nativeControl_ ? this.nativeControl_.disabled : false);
+            return this.foundation_.getDisabled();
         },
         set: function (disabled) {
             this.foundation_.setDisabled(disabled);
@@ -271,28 +206,13 @@ var MDCSelect = /** @class */ (function (_super) {
          * Returns whether the select is required.
          */
         get: function () {
-            if (this.nativeControl_) {
-                return this.nativeControl_.required;
-            }
-            else {
-                return this.selectedText_.getAttribute('aria-required') === 'true';
-            }
+            return this.foundation_.getRequired();
         },
         /**
          * Sets the control to the required state.
          */
         set: function (isRequired) {
-            if (this.nativeControl_) {
-                this.nativeControl_.required = isRequired;
-            }
-            else {
-                if (isRequired) {
-                    this.selectedText_.setAttribute('aria-required', isRequired.toString());
-                }
-                else {
-                    this.selectedText_.removeAttribute('aria-required');
-                }
-            }
+            this.foundation_.setRequired(isRequired);
         },
         enumerable: true,
         configurable: true
@@ -306,117 +226,53 @@ var MDCSelect = /** @class */ (function (_super) {
     MDCSelect.prototype.getDefaultFoundation = function () {
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-        var adapter = tslib_1.__assign({}, (this.nativeControl_ ? this.getNativeSelectAdapterMethods_() : this.getEnhancedSelectAdapterMethods_()), this.getCommonAdapterMethods_(), this.getOutlineAdapterMethods_(), this.getLabelAdapterMethods_());
+        var adapter = tslib_1.__assign({}, this.getSelectAdapterMethods_(), this.getCommonAdapterMethods_(), this.getOutlineAdapterMethods_(), this.getLabelAdapterMethods_());
         return new MDCSelectFoundation(adapter, this.getFoundationMap_());
     };
     /**
-     * Handles setup for the enhanced menu.
+     * Handles setup for the menu.
      */
-    MDCSelect.prototype.enhancedSelectSetup_ = function (menuFactory) {
-        var isDisabled = this.root_.classList.contains(cssClasses.DISABLED);
-        this.selectedText_.setAttribute('tabindex', isDisabled ? '-1' : '0');
-        this.hiddenInput_ = this.root_.querySelector(strings.HIDDEN_INPUT_SELECTOR);
+    MDCSelect.prototype.menuSetup_ = function (menuFactory) {
         this.menuElement_ = this.root_.querySelector(strings.MENU_SELECTOR);
         this.menu_ = menuFactory(this.menuElement_);
-        this.menu_.hoistMenuToBody();
-        this.menu_.setAnchorElement(this.root_);
-        this.menu_.setAnchorCorner(menuSurfaceConstants.Corner.BOTTOM_START);
-        this.menu_.wrapFocus = false;
     };
     MDCSelect.prototype.createRipple_ = function () {
         var _this = this;
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
-        var adapter = tslib_1.__assign({}, MDCRipple.createAdapter(this), { registerInteractionHandler: function (evtType, handler) { return _this.targetElement_.addEventListener(evtType, handler); }, deregisterInteractionHandler: function (evtType, handler) { return _this.targetElement_.removeEventListener(evtType, handler); } });
+        var adapter = tslib_1.__assign({}, MDCRipple.createAdapter({ root_: this.selectAnchor_ }), { registerInteractionHandler: function (evtType, handler) { return _this.selectedText_.addEventListener(evtType, handler); }, deregisterInteractionHandler: function (evtType, handler) { return _this.selectedText_.removeEventListener(evtType, handler); } });
         // tslint:enable:object-literal-sort-keys
-        return new MDCRipple(this.root_, new MDCRippleFoundation(adapter));
+        return new MDCRipple(this.selectAnchor_, new MDCRippleFoundation(adapter));
     };
-    MDCSelect.prototype.getNativeSelectAdapterMethods_ = function () {
+    MDCSelect.prototype.getSelectAdapterMethods_ = function () {
         var _this = this;
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         return {
-            getValue: function () { return _this.nativeControl_.value; },
-            setValue: function (value) {
-                _this.nativeControl_.value = value;
+            getSelectedMenuItem: function () { return _this.menuElement_.querySelector(strings.SELECTED_ITEM_SELECTOR); },
+            getMenuItemAttr: function (menuItem, attr) { return menuItem.getAttribute(attr); },
+            setSelectedText: function (text) { return _this.selectedText_.textContent = text; },
+            isSelectedTextFocused: function () { return document.activeElement === _this.selectedText_; },
+            getSelectedTextAttr: function (attr) { return _this.selectedText_.getAttribute(attr); },
+            setSelectedTextAttr: function (attr, value) { return _this.selectedText_.setAttribute(attr, value); },
+            openMenu: function () { return _this.menu_.open = true; },
+            closeMenu: function () { return _this.menu_.open = false; },
+            getAnchorElement: function () { return _this.root_.querySelector(strings.SELECT_ANCHOR_SELECTOR); },
+            setMenuAnchorElement: function (anchorEl) { return _this.menu_.setAnchorElement(anchorEl); },
+            setMenuAnchorCorner: function (anchorCorner) { return _this.menu_.setAnchorCorner(anchorCorner); },
+            setMenuWrapFocus: function (wrapFocus) { return _this.menu_.wrapFocus = wrapFocus; },
+            setAttributeAtIndex: function (index, attributeName, attributeValue) {
+                return _this.menu_.items[index].setAttribute(attributeName, attributeValue);
             },
-            openMenu: function () { return undefined; },
-            closeMenu: function () { return undefined; },
-            isMenuOpen: function () { return false; },
-            setSelectedIndex: function (index) {
-                _this.nativeControl_.selectedIndex = index;
+            removeAttributeAtIndex: function (index, attributeName) {
+                return _this.menu_.items[index].removeAttribute(attributeName);
             },
-            setDisabled: function (isDisabled) {
-                _this.nativeControl_.disabled = isDisabled;
-            },
-            setValid: function (isValid) {
-                if (isValid) {
-                    _this.root_.classList.remove(cssClasses.INVALID);
-                }
-                else {
-                    _this.root_.classList.add(cssClasses.INVALID);
-                }
-            },
-            checkValidity: function () { return _this.nativeControl_.checkValidity(); },
-        };
-        // tslint:enable:object-literal-sort-keys
-    };
-    MDCSelect.prototype.getEnhancedSelectAdapterMethods_ = function () {
-        var _this = this;
-        // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
-        return {
-            getValue: function () {
-                var listItem = _this.menuElement_.querySelector(strings.SELECTED_ITEM_SELECTOR);
-                if (listItem && listItem.hasAttribute(strings.ENHANCED_VALUE_ATTR)) {
-                    return listItem.getAttribute(strings.ENHANCED_VALUE_ATTR) || '';
-                }
-                return '';
-            },
-            setValue: function (value) {
-                var element = _this.menuElement_.querySelector("[" + strings.ENHANCED_VALUE_ATTR + "=\"" + value + "\"]");
-                _this.setEnhancedSelectedIndex_(element ? _this.menu_.items.indexOf(element) : -1);
-            },
-            openMenu: function () {
-                if (_this.menu_ && !_this.menu_.open) {
-                    _this.menu_.open = true;
-                    _this.isMenuOpen_ = true;
-                    _this.selectedText_.setAttribute('aria-expanded', 'true');
-                }
-            },
-            closeMenu: function () {
-                if (_this.menu_ && _this.menu_.open) {
-                    _this.menu_.open = false;
-                }
-            },
-            isMenuOpen: function () { return Boolean(_this.menu_) && _this.isMenuOpen_; },
-            setSelectedIndex: function (index) { return _this.setEnhancedSelectedIndex_(index); },
-            setDisabled: function (isDisabled) {
-                _this.selectedText_.setAttribute('tabindex', isDisabled ? '-1' : '0');
-                _this.selectedText_.setAttribute('aria-disabled', isDisabled.toString());
-                if (_this.hiddenInput_) {
-                    _this.hiddenInput_.disabled = isDisabled;
-                }
-            },
-            checkValidity: function () {
-                var classList = _this.root_.classList;
-                if (classList.contains(cssClasses.REQUIRED) && !classList.contains(cssClasses.DISABLED)) {
-                    // See notes for required attribute under https://www.w3.org/TR/html52/sec-forms.html#the-select-element
-                    // TL;DR: Invalid if no index is selected, or if the first index is selected and has an empty value.
-                    return _this.selectedIndex !== -1 && (_this.selectedIndex !== 0 || Boolean(_this.value));
-                }
-                else {
-                    return true;
-                }
-            },
-            setValid: function (isValid) {
-                _this.selectedText_.setAttribute('aria-invalid', (!isValid).toString());
-                if (isValid) {
-                    _this.root_.classList.remove(cssClasses.INVALID);
-                }
-                else {
-                    _this.root_.classList.add(cssClasses.INVALID);
-                }
-            },
+            focusMenuItemAtIndex: function (index) { return _this.menu_.items[index].focus(); },
+            getMenuItemCount: function () { return _this.menu_.items.length; },
+            getMenuItemValues: function () { return _this.menu_.items.map(function (el) { return el.getAttribute(strings.VALUE_ATTR) || ''; }); },
+            getMenuItemTextAtIndex: function (index) { return _this.menu_.items[index].textContent; },
+            addClassAtIndex: function (index, className) { return _this.menu_.items[index].classList.add(className); },
+            removeClassAtIndex: function (index, className) { return _this.menu_.items[index].classList.remove(className); },
         };
         // tslint:enable:object-literal-sort-keys
     };
@@ -449,10 +305,13 @@ var MDCSelect = /** @class */ (function (_super) {
     };
     MDCSelect.prototype.getLabelAdapterMethods_ = function () {
         var _this = this;
+        // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         return {
+            hasLabel: function () { return !!_this.label_; },
             floatLabel: function (shouldFloat) { return _this.label_ && _this.label_.float(shouldFloat); },
             getLabelWidth: function () { return _this.label_ ? _this.label_.getWidth() : 0; },
         };
+        // tslint:enable:object-literal-sort-keys
     };
     /**
      * Calculates where the line ripple should start based on the x coordinate within the component.
@@ -473,74 +332,6 @@ var MDCSelect = /** @class */ (function (_super) {
             helperText: this.helperText_ ? this.helperText_.foundation : undefined,
             leadingIcon: this.leadingIcon_ ? this.leadingIcon_.foundation : undefined,
         };
-    };
-    MDCSelect.prototype.setEnhancedSelectedIndex_ = function (index) {
-        var selectedItem = this.menu_.items[index];
-        this.selectedText_.textContent = selectedItem ? selectedItem.textContent.trim() : '';
-        var previouslySelected = this.menuElement_.querySelector(strings.SELECTED_ITEM_SELECTOR);
-        if (previouslySelected) {
-            previouslySelected.classList.remove(cssClasses.SELECTED_ITEM_CLASS);
-            previouslySelected.removeAttribute(strings.ARIA_SELECTED_ATTR);
-        }
-        if (selectedItem) {
-            selectedItem.classList.add(cssClasses.SELECTED_ITEM_CLASS);
-            selectedItem.setAttribute(strings.ARIA_SELECTED_ATTR, 'true');
-        }
-        // Synchronize hidden input's value with data-value attribute of selected item.
-        // This code path is also followed when setting value directly, so this covers all cases.
-        if (this.hiddenInput_) {
-            this.hiddenInput_.value = selectedItem ? selectedItem.getAttribute(strings.ENHANCED_VALUE_ATTR) || '' : '';
-        }
-        this.layout();
-    };
-    MDCSelect.prototype.initialSyncRequiredState_ = function () {
-        var isRequired = this.targetElement_.required
-            || this.targetElement_.getAttribute('aria-required') === 'true'
-            || this.root_.classList.contains(cssClasses.REQUIRED);
-        if (isRequired) {
-            if (this.nativeControl_) {
-                this.nativeControl_.required = true;
-            }
-            else {
-                this.selectedText_.setAttribute('aria-required', 'true');
-            }
-            this.root_.classList.add(cssClasses.REQUIRED);
-        }
-    };
-    MDCSelect.prototype.addMutationObserverForRequired_ = function () {
-        var _this = this;
-        var observerHandler = function (attributesList) {
-            attributesList.some(function (attributeName) {
-                if (VALIDATION_ATTR_WHITELIST.indexOf(attributeName) === -1) {
-                    return false;
-                }
-                if (_this.selectedText_) {
-                    if (_this.selectedText_.getAttribute('aria-required') === 'true') {
-                        _this.root_.classList.add(cssClasses.REQUIRED);
-                    }
-                    else {
-                        _this.root_.classList.remove(cssClasses.REQUIRED);
-                    }
-                }
-                else {
-                    if (_this.nativeControl_.required) {
-                        _this.root_.classList.add(cssClasses.REQUIRED);
-                    }
-                    else {
-                        _this.root_.classList.remove(cssClasses.REQUIRED);
-                    }
-                }
-                return true;
-            });
-        };
-        var getAttributesList = function (mutationsList) {
-            return mutationsList
-                .map(function (mutation) { return mutation.attributeName; })
-                .filter(function (attributeName) { return attributeName; });
-        };
-        var observer = new MutationObserver(function (mutationsList) { return observerHandler(getAttributesList(mutationsList)); });
-        observer.observe(this.targetElement_, { attributes: true });
-        this.validationObserver_ = observer;
     };
     return MDCSelect;
 }(MDCComponent));

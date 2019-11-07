@@ -81,14 +81,14 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
     });
     Object.defineProperty(MDCTextFieldFoundation.prototype, "shouldFloat", {
         get: function () {
-            return this.shouldAlwaysFloat_ || this.isFocused_ || Boolean(this.getValue()) || this.isBadInput_();
+            return this.shouldAlwaysFloat_ || this.isFocused_ || !!this.getValue() || this.isBadInput_();
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(MDCTextFieldFoundation.prototype, "shouldShake", {
         get: function () {
-            return !this.isFocused_ && !this.isValid() && Boolean(this.getValue());
+            return !this.isFocused_ && !this.isValid() && !!this.getValue();
         },
         enumerable: true,
         configurable: true
@@ -299,7 +299,7 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
     MDCTextFieldFoundation.prototype.setValid = function (isValid) {
         this.isValid_ = isValid;
         this.styleValidity_(isValid);
-        var shouldShake = !isValid && !this.isFocused_;
+        var shouldShake = !isValid && !this.isFocused_ && !!this.getValue();
         if (this.adapter_.hasLabel()) {
             this.adapter_.shakeLabel(shouldShake);
         }

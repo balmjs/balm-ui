@@ -122,24 +122,17 @@ var MDCSlider = /** @class */ (function (_super) {
             },
             setTrackStyleProperty: function (propertyName, value) { return _this.track_.style.setProperty(propertyName, value); },
             setMarkerValue: function (value) { return _this.pinValueMarker_.innerText = value.toLocaleString(); },
-            appendTrackMarkers: function (numMarkers) {
-                var frag = document.createDocumentFragment();
-                for (var i = 0; i < numMarkers; i++) {
-                    var marker = document.createElement('div');
-                    marker.classList.add('mdc-slider__track-marker');
-                    frag.appendChild(marker);
-                }
-                _this.trackMarkerContainer_.appendChild(frag);
-            },
-            removeTrackMarkers: function () {
-                while (_this.trackMarkerContainer_.firstChild) {
-                    _this.trackMarkerContainer_.removeChild(_this.trackMarkerContainer_.firstChild);
-                }
-            },
-            setLastTrackMarkersStyleProperty: function (propertyName, value) {
-                // We remove and append new nodes, thus, the last track marker must be dynamically found.
-                var lastTrackMarker = _this.root_.querySelector(strings.LAST_TRACK_MARKER_SELECTOR);
-                lastTrackMarker.style.setProperty(propertyName, value);
+            setTrackMarkers: function (step, max, min) {
+                var stepStr = step.toLocaleString();
+                var maxStr = max.toLocaleString();
+                var minStr = min.toLocaleString();
+                // keep calculation in css for better rounding/subpixel behavior
+                var markerAmount = "((" + maxStr + " - " + minStr + ") / " + stepStr + ")";
+                var markerWidth = "2px";
+                var markerBkgdImage = "linear-gradient(to right, currentColor " + markerWidth + ", transparent 0)";
+                var markerBkgdLayout = "0 center / calc((100% - " + markerWidth + ") / " + markerAmount + ") 100% repeat-x";
+                var markerBkgdShorthand = markerBkgdImage + " " + markerBkgdLayout;
+                _this.trackMarkerContainer_.style.setProperty('background', markerBkgdShorthand);
             },
             isRTL: function () { return getComputedStyle(_this.root_).direction === 'rtl'; },
         };

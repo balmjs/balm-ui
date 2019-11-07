@@ -171,6 +171,7 @@ var MDCList = /** @class */ (function (_super) {
                 return _this.root_.contains(document.activeElement);
             },
             isRootFocused: function () { return document.activeElement === _this.root_; },
+            listItemAtIndexHasClass: function (index, className) { return _this.listElements[index].classList.contains(className); },
             notifyAction: function (index) {
                 _this.emit(strings.ACTION_EVENT, { index: index }, /** shouldBubble */ true);
             },

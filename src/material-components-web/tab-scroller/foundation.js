@@ -117,7 +117,7 @@ var MDCTabScrollerFoundation = /** @class */ (function (_super) {
         this.adapter_.removeClass(MDCTabScrollerFoundation.cssClasses.ANIMATING);
     };
     /**
-     * Increment the scroll value by the scrollXIncrement
+     * Increment the scroll value by the scrollXIncrement using animation.
      * @param scrollXIncrement The value by which to increment the scroll position
      */
     MDCTabScrollerFoundation.prototype.incrementScroll = function (scrollXIncrement) {
@@ -125,10 +125,23 @@ var MDCTabScrollerFoundation = /** @class */ (function (_super) {
         if (scrollXIncrement === 0) {
             return;
         }
-        if (this.isRTL_()) {
-            return this.incrementScrollRTL_(scrollXIncrement);
+        this.animate_(this.getIncrementScrollOperation_(scrollXIncrement));
+    };
+    /**
+     * Increment the scroll value by the scrollXIncrement without animation.
+     * @param scrollXIncrement The value by which to increment the scroll position
+     */
+    MDCTabScrollerFoundation.prototype.incrementScrollImmediate = function (scrollXIncrement) {
+        // Early exit for non-operational increment values
+        if (scrollXIncrement === 0) {
+            return;
         }
-        this.incrementScroll_(scrollXIncrement);
+        var operation = this.getIncrementScrollOperation_(scrollXIncrement);
+        if (operation.scrollDelta === 0) {
+            return;
+        }
+        this.stopScrollAnimation_();
+        this.adapter_.setScrollAreaScrollLeft(operation.finalScrollPosition);
     };
     /**
      * Scrolls to the given scrollX value
@@ -213,26 +226,22 @@ var MDCTabScrollerFoundation = /** @class */ (function (_super) {
         this.animate_(animation);
     };
     /**
-     * Internal increment scroll method
-     * @param scrollX The new scroll position increment
+     * Internal method to compute the increment scroll operation values.
+     * @param scrollX The desired scroll position increment
+     * @return MDCTabScrollerAnimation with the sanitized values for performing the scroll operation.
      */
-    MDCTabScrollerFoundation.prototype.incrementScroll_ = function (scrollX) {
+    MDCTabScrollerFoundation.prototype.getIncrementScrollOperation_ = function (scrollX) {
+        if (this.isRTL_()) {
+            return this.getRTLScroller().incrementScrollRTL(scrollX);
+        }
         var currentScrollX = this.getScrollPosition();
         var targetScrollX = scrollX + currentScrollX;
         var safeScrollX = this.clampScrollValue_(targetScrollX);
         var scrollDelta = safeScrollX - currentScrollX;
-        this.animate_({
+        return {
             finalScrollPosition: safeScrollX,
             scrollDelta: scrollDelta,
-        });
-    };
-    /**
-     * Internal increment scroll RTL method
-     * @param scrollX The new scroll position RTL increment
-     */
-    MDCTabScrollerFoundation.prototype.incrementScrollRTL_ = function (scrollX) {
-        var animation = this.getRTLScroller().incrementScrollRTL(scrollX);
-        this.animate_(animation);
+        };
     };
     /**
      * Animates the tab scrolling

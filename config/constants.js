@@ -21,6 +21,7 @@ const DMC_COMPONENTS = [
   'checkbox',
   'chips', // New in mdc@0.30.0
   'data-table', // New in mdc@3.1.0
+  'density', // New in mdc@4.0.0
   'dialog',
   'dom', // New in mdc@0.40.0
   'drawer',
@@ -54,6 +55,7 @@ const DMC_COMPONENTS = [
   'textfield',
   'theme',
   'top-app-bar', // New in mdc@0.32.0
+  'touch-target', // New in mdc@4.0.0
   'typography'
 ];
 

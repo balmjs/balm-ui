@@ -21,7 +21,6 @@
  * THE SOFTWARE.
  */
 import * as util from './util';
-export { Corner, CornerBit } from './constants';
 export { util };
 export * from './component';
 export * from './constants';

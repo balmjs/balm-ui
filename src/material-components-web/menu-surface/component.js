@@ -71,14 +71,6 @@ var MDCMenuSurface = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
-    /**
-     * Removes the menu-surface from it's current location and appends it to the
-     * body to overcome any overflow:hidden issues.
-     */
-    MDCMenuSurface.prototype.hoistMenuToBody = function () {
-        document.body.appendChild(this.root_);
-        this.setIsHoisted(true);
-    };
     /** Sets the foundation to use page offsets for an positioning when the menu is hoisted to the body. */
     MDCMenuSurface.prototype.setIsHoisted = function (isHoisted) {
         this.foundation_.setIsHoisted(isHoisted);

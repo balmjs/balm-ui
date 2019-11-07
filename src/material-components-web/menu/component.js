@@ -165,9 +165,6 @@ var MDCMenu = /** @class */ (function (_super) {
     MDCMenu.prototype.setFixedPosition = function (isFixed) {
         this.menuSurface_.setFixedPosition(isFixed);
     };
-    MDCMenu.prototype.hoistMenuToBody = function () {
-        this.menuSurface_.hoistMenuToBody();
-    };
     MDCMenu.prototype.setIsHoisted = function (isHoisted) {
         this.menuSurface_.setIsHoisted(isHoisted);
     };

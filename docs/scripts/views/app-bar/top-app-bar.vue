@@ -1,21 +1,14 @@
 <template>
-  <div class="demo--top-app-bar" :dir="controls.rtl ? 'rtl' : null">
+  <div class="demo--top-app-bar">
     <ui-top-app-bar
       contentSelector="#content-main"
       navId="demo-menu"
-      :dense="controls.dense"
-      :fixed="controls.fixed"
-      :prominent="controls.prominent"
-      :short="controls.short"
-      :alwaysClosed="controls.alwaysCollapsed"
+      :variant="selected"
+      :title="title"
     >
-      Hello BalmUI
       <template #toolbar="{ iconClass, itemClass }">
-        <a
-          v-if="!controls.short && !controls.noAction"
-          :class="[iconClass, itemClass]"
-        >file_download</a>
-        <ui-menu-anchor v-if="controls.short">
+        <a v-if="!isShort" :class="[iconClass, itemClass]">file_download</a>
+        <ui-menu-anchor v-if="isShort">
           <a :class="[iconClass, itemClass]" @click="$balmUI.onOpen('showMoreActions')">more_vert</a>
           <ui-menu
             v-model="showMoreActions"
@@ -58,11 +51,15 @@
           <ui-markdown :text="code[0]"></ui-markdown>
 
           <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
+          <div class="demo-controls">
+            <ui-select :options="options" v-model="selected">Variant</ui-select>
+            <ui-textfield v-model="title">Title</ui-textfield>
+          </div>
           <p
             v-for="i in 12"
             :key="i"
             class="demo-paragraph"
-          >Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.</p>
+          >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
           <ui-accordion>
             <ui-markdown :text="code[1]"></ui-markdown>
           </ui-accordion>
@@ -76,7 +73,7 @@
       </div>
     </main>
 
-    <div
+    <!-- <div
       :class="['demo-controls-container', {'show': showControls}]"
       dir="ltr"
       v-shadow.transition="showControls ? 4 : [4, 12]"
@@ -130,13 +127,44 @@
         </div>
       </template>
       <ui-icon v-else title="Show Controls" @click="$balmUI.onShow('showControls')">add</ui-icon>
-    </div>
+    </div>-->
   </div>
 </template>
 
 <script>
 import snippets from '@/mixins/snippets';
 import DrawerMixin from '@/mixins/drawer';
+
+const options = [
+  {
+    label: 'Standard',
+    value: 0
+  },
+  {
+    label: 'Fixed',
+    value: 1
+  },
+  {
+    label: 'Dense',
+    value: 2
+  },
+  {
+    label: 'Prominent',
+    value: 3
+  },
+  {
+    label: 'Prominent and Dense',
+    value: 4
+  },
+  {
+    label: 'Short',
+    value: 5
+  },
+  {
+    label: 'Short, Always Collapsed',
+    value: 6
+  }
+];
 
 export default {
   metaInfo: {
@@ -145,19 +173,18 @@ export default {
   mixins: [snippets, DrawerMixin],
   data() {
     return {
+      options,
+      selected: 0,
+      title: 'Hello BalmUI',
       open: false,
-      controls: {
-        rtl: false,
-        noAction: false,
-        dense: false,
-        fixed: false,
-        prominent: false,
-        short: false,
-        alwaysCollapsed: false
-      },
       showControls: false,
       showMoreActions: false
     };
+  },
+  computed: {
+    isShort() {
+      return this.selected === 5;
+    }
   },
   created() {
     this.showCode('top-app-bar');

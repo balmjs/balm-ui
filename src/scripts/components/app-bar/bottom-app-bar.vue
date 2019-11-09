@@ -16,7 +16,7 @@
 </template>
 
 <script>
-// TODO
+// TODO: Planned
 export default {
   name: 'ui-bottom-app-bar'
 };

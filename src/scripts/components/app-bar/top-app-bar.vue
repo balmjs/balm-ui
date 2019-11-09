@@ -6,10 +6,10 @@
         <!-- Navigation icon (optional) / Close button (instead of a navigation icon) -->
         <button
           :class="[UI_TOP_APP_BAR.SLOT_CLASS.icon, 'mdc-top-app-bar__navigation-icon', 'mdc-icon-button']"
-          :id="navIcon === UI_TOP_APP_BAR.EVENT.CLOSE ? null : navId"
+          :id="navIcon === UI_TOP_APP_BAR.TYPES[1] ? null : navId"
           @click="handleClick"
         >
-          <slot name="nav-icon">{{ navIcon }}</slot>
+          <slot name="nav-icon">{{ navIcon || defaultNavIcon }}</slot>
         </button>
         <!-- Title (optional) / Contextual title -->
         <span class="mdc-top-app-bar__title">
@@ -18,7 +18,7 @@
       </section>
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
         <!-- Action items (optional) / Contextual actions -->
-        <!-- Overflow menu (optional, or "short" mode only) -->
+        <!-- Overflow menu (optional) -->
         <slot
           name="toolbar"
           :iconClass="UI_TOP_APP_BAR.SLOT_CLASS.icon"
@@ -35,8 +35,18 @@ import UI_GLOBAL from '../../config/constants';
 
 // Define constants
 const UI_TOP_APP_BAR = {
-  ADJUST: {
-    DEFAULT: 'mdc-top-app-bar--fixed-adjust',
+  TYPES: ['menu', 'close'], // NOTE: Type - 0: Regular, 1: Contextual action bar
+  VARIANTS: {
+    standard: 0,
+    fixed: 1,
+    dense: 2,
+    prominent: 3,
+    prominentDense: 4,
+    short: 5,
+    shortCollapsed: 6
+  },
+  FIXED_ADJUST: {
+    STANDARD: 'mdc-top-app-bar--fixed-adjust',
     PROMINENT: 'mdc-top-app-bar--prominent-fixed-adjust',
     DENSE: 'mdc-top-app-bar--dense-fixed-adjust',
     DENSE_PROMINENT: 'mdc-top-app-bar--dense-prominent-fixed-adjust',
@@ -55,45 +65,39 @@ const UI_TOP_APP_BAR = {
 export default {
   name: 'ui-top-app-bar',
   props: {
-    // UI attributes
     contentSelector: {
       type: String,
       required: true
     },
-    navId: String,
-    navIcon: {
-      type: String,
-      default: 'menu'
+    // UI attributes
+    type: {
+      type: [String, Number],
+      default: 0
+    },
+    variant: {
+      type: [String, Number],
+      default: 0
     },
     title: {
       type: String,
       default: ''
     },
-    fixed: {
-      type: Boolean,
-      default: false
-    },
-    prominent: {
-      type: Boolean,
-      default: false
-    },
-    dense: {
-      type: Boolean,
-      default: false
-    },
-    short: {
-      type: Boolean,
-      default: false
-    },
-    alwaysClosed: {
-      type: Boolean,
-      default: false
+    navId: String,
+    navIcon: {
+      type: String,
+      default: 'menu'
     }
   },
   data() {
     return {
       UI_TOP_APP_BAR,
       $topAppBar: null,
+      fixed: false,
+      dense: false,
+      prominent: false,
+      prominentDense: false,
+      short: false,
+      shortCollapsed: false,
       contentElement: null
     };
   },
@@ -102,92 +106,123 @@ export default {
       return {
         'mdc-top-app-bar': true,
         'mdc-top-app-bar--fixed': this.fixed,
-        'mdc-top-app-bar--prominent': this.prominent,
         'mdc-top-app-bar--dense': this.dense,
+        'mdc-top-app-bar--prominent': this.prominent,
         'mdc-top-app-bar--short': this.short,
-        'mdc-top-app-bar--short-collapsed': this.alwaysClosed
+        'mdc-top-app-bar--short-collapsed': this.shortCollapsed
       };
+    },
+    defaultNavIcon() {
+      let type = +this.type;
+
+      return type >= 0 && type <= UI_TOP_APP_BAR.TYPES.length - 1
+        ? UI_TOP_APP_BAR.TYPES[type]
+        : UI_TOP_APP_BAR.TYPES[0];
     }
   },
   watch: {
-    fixed() {
-      this.reset();
-    },
-    prominent(val) {
-      this.reset();
-      this.contentElement.classList.toggle(UI_TOP_APP_BAR.ADJUST.PROMINENT);
-      this.updateDenseProminentFixedAdjust();
-    },
-    dense(val) {
-      this.reset();
-      this.contentElement.classList.toggle(UI_TOP_APP_BAR.ADJUST.DENSE);
-      this.updateDenseProminentFixedAdjust();
-    },
-    short(val) {
-      this.reset();
-      this.contentElement.classList.toggle(UI_TOP_APP_BAR.ADJUST.SHORT);
-    },
-    alwaysClosed() {
-      this.reset();
+    variant(val) {
+      this.init(val);
     }
   },
   mounted() {
-    this.init();
+    this.init(this.variant);
   },
   methods: {
-    init() {
-      this.$nextTick(() => {
-        this.createFixedAdjustElement();
-        this.$topAppBar = new MDCTopAppBar(this.$el);
-      });
-    },
-    reset() {
-      this.$topAppBar.destroy();
-      this.init();
-    },
-    createFixedAdjustElement() {
+    createFixedAdjustElement(variant) {
       if (this.contentSelector) {
         this.contentElement = document.querySelector(this.contentSelector);
 
-        if (
-          !this.contentElement.classList.contains(UI_TOP_APP_BAR.ADJUST.DEFAULT)
-        ) {
-          this.contentElement.classList.add(UI_TOP_APP_BAR.ADJUST.DEFAULT);
-        }
+        this.contentElement.classList.remove(
+          ...Object.values(UI_TOP_APP_BAR.FIXED_ADJUST)
+        );
 
-        if (this.short) {
-          this.contentElement.classList.add(UI_TOP_APP_BAR.ADJUST.SHORT);
-        } else {
-          if (this.prominent) {
-            this.contentElement.classList.add(UI_TOP_APP_BAR.ADJUST.PROMINENT);
-          }
-
-          if (this.dense) {
-            this.contentElement.classList.add(UI_TOP_APP_BAR.ADJUST.DENSE);
-          }
-
-          if (this.dense && this.prominent) {
+        switch (variant) {
+          case 2:
+          case 'dense':
             this.contentElement.classList.add(
-              UI_TOP_APP_BAR.ADJUST.DENSE_PROMINENT
+              UI_TOP_APP_BAR.FIXED_ADJUST.DENSE
             );
-          }
+            break;
+          case 3:
+          case 'prominent':
+            this.contentElement.classList.add(
+              UI_TOP_APP_BAR.FIXED_ADJUST.PROMINENT
+            );
+            break;
+          case 4:
+          case 'prominentDense':
+            this.contentElement.classList.add(
+              UI_TOP_APP_BAR.FIXED_ADJUST.DENSE_PROMINENT
+            );
+            break;
+          case 5:
+          case 'short':
+          case 6:
+          case 'shortCollapsed':
+            this.contentElement.classList.add(
+              UI_TOP_APP_BAR.FIXED_ADJUST.SHORT
+            );
+            break;
+          default:
+            this.contentElement.classList.add(
+              UI_TOP_APP_BAR.FIXED_ADJUST.STANDARD
+            );
         }
+      } else {
+        console.warn('`contentSelector` is required');
       }
     },
-    updateDenseProminentFixedAdjust() {
-      if (this.dense && this.prominent) {
-        this.contentElement.classList.add(
-          UI_TOP_APP_BAR.ADJUST.DENSE_PROMINENT
-        );
-      } else {
-        this.contentElement.classList.remove(
-          UI_TOP_APP_BAR.ADJUST.DENSE_PROMINENT
-        );
+    init(variant) {
+      if (this.$topAppBar) {
+        this.$topAppBar.destroy();
+
+        this.fixed = false;
+        this.dense = false;
+        this.prominent = false;
+        this.prominentDense = false;
+        this.short = false;
+        this.shortCollapsed = false;
       }
+
+      switch (variant) {
+        case 1:
+        case 'fixed':
+          this.fixed = true;
+          break;
+        case 2:
+        case 'dense':
+          this.dense = true;
+          break;
+        case 3:
+        case 'prominent':
+          this.prominent = true;
+          break;
+        case 4:
+        case 'prominentDense':
+          this.prominentDense = true;
+          break;
+        case 5:
+        case 'short':
+          this.short = true;
+          break;
+        case 6:
+        case 'shortCollapsed':
+          this.short = true;
+          this.shortCollapsed = true;
+          break;
+        default:
+        // Standard
+      }
+
+      this.$nextTick(() => {
+        this.createFixedAdjustElement(variant);
+        this.$topAppBar = new MDCTopAppBar(this.$el);
+      });
     },
     handleClick() {
       this.$emit(
-        this.navIcon === UI_TOP_APP_BAR.EVENT.CLOSE
+        this.navIcon === UI_TOP_APP_BAR.TYPES[1]
           ? UI_TOP_APP_BAR.EVENT.CLOSE
           : UI_TOP_APP_BAR.EVENT.NAV
       );

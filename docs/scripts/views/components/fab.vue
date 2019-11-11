@@ -1,32 +1,56 @@
 <template>
   <div :class="[$tt('body1'), 'demo--fab']">
-    <section class="hero component">
-      <ui-fab icon="favorite_border"></ui-fab>
-    </section>
+    <header class="hero component">
+      <div class="hero-demo">
+        <ui-fab :variant="variant" :mini="!!mini">
+          <!--  :icon="variant && leadingIcon ? 'add' : ''" -->
+          <template v-if="variant && leadingIcon" #before="{ iconClass }">
+            <ui-icon :class="iconClass">add</ui-icon>
+          </template>
+          <template v-if="variant">
+            <span>Button</span>
+          </template>
+          <ui-icon v-else>add</ui-icon>
+        </ui-fab>
+      </div>
+      <div class="hero-options">
+        <ui-select class="hero-option" :options="options" v-model="variant">Variant</ui-select>
+        <ui-form-field v-if="variant" class="hero-option">
+          <ui-checkbox id="leading-icon" :value="1" v-model="leadingIcon"></ui-checkbox>
+          <label for="leading-icon">Leading icon</label>
+        </ui-form-field>
+        <div v-else class="hero-option">
+          <ui-form-field>
+            <ui-radio id="default" name="mini" :value="0" v-model="mini"></ui-radio>
+            <label for="default">Default</label>
+          </ui-form-field>
+          <ui-form-field>
+            <ui-radio id="mini" name="mini" :value="1" v-model="mini"></ui-radio>
+            <label for="mini">Mini</label>
+          </ui-form-field>
+        </div>
+      </div>
+    </header>
 
     <ui-toc-affix></ui-toc-affix>
 
     <div :class="$tt('body2')">
-      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
+      <h3 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h3>
       <ui-markdown :text="code[0]"></ui-markdown>
 
       <ui-fab class="demo-fixed-fab" icon="mode_edit"></ui-fab>
 
-      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
+      <h3 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Demos</h3>
       <section>
-        <legend :class="$tt('headline6')">1.1 FABs with Ripple</legend>
+        <h4 :class="$tt('headline6')">1.1 Regular FAB</h4>
         <div class="demo-fabs">
           <figure>
             <ui-fab icon="favorite_border"></ui-fab>
-            <figcaption>
-              <div>Themed FAB</div>
-            </figcaption>
+            <figcaption>Standard</figcaption>
           </figure>
           <figure>
             <ui-fab icon="favorite_border" mini></ui-fab>
-            <figcaption>
-              <div>Mini FAB</div>
-            </figcaption>
+            <figcaption>Mini</figcaption>
           </figure>
           <figure>
             <ui-fab>
@@ -35,7 +59,7 @@
               </template>
             </ui-fab>
             <figcaption>
-              <div>SVG FAB</div>
+              <div>SVG</div>
             </figcaption>
           </figure>
           <figure>
@@ -45,19 +69,7 @@
               </template>
             </ui-fab>
             <figcaption>
-              <div>SVG Mini FAB</div>
-            </figcaption>
-          </figure>
-          <figure>
-            <ui-fab class="lightGreen800Fab" icon="favorite_border"></ui-fab>
-            <figcaption>
-              <div>Customized Accessible FAB</div>
-            </figcaption>
-          </figure>
-          <figure>
-            <ui-fab class="lightGreen800Fab" icon="favorite_border" mini></ui-fab>
-            <figcaption>
-              <div>Customized Accessible Mini FAB</div>
+              <div>SVG Mini</div>
             </figcaption>
           </figure>
         </div>
@@ -67,55 +79,29 @@
       </section>
 
       <section>
-        <legend :class="$tt('headline6')">Extended FAB</legend>
+        <h4 :class="$tt('headline6')">1.2 Extended FAB</h4>
         <div class="demo-fabs">
-          <figure class="demo-figure-fab-extended">
-            <ui-fab extended class="demo-fab-extended-fluid">
+          <figure>
+            <ui-fab extended>
               <template #before="{ iconClass }">
                 <ui-icon :class="iconClass">add</ui-icon>
-              </template>Create
+              </template>
+              <span>Create</span>
             </ui-fab>
-            <figcaption>
-              <div>Auto width extended FAB (Responsive)</div>
-            </figcaption>
+            <figcaption>Extended (with icon)</figcaption>
           </figure>
-        </div>
-        <div class="demo-fabs">
-          <figure class="demo-figure-fab-extended">
-            <ui-fab extended class="demo-fab-extended-fluid">Create
+          <figure>
+            <ui-fab extended>
+              <span>Create</span>
               <template #after="{ iconClass }">
                 <ui-icon :class="iconClass">add</ui-icon>
               </template>
             </ui-fab>
-            <figcaption>
-              <div>Auto width extended FAB (Text label followed by Icon)</div>
-            </figcaption>
-          </figure>
-        </div>
-        <div class="demo-fabs">
-          <figure class="demo-figure-fab-extended">
-            <ui-fab extended class="demo-fab-extended-without-icon">Create</ui-fab>
-            <figcaption>
-              <div>Extended FAB (without Icon)</div>
-            </figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section>
-        <legend :class="$tt('headline6')">1.2 CSS Only FABs</legend>
-        <div class="demo-fabs">
-          <figure>
-            <ui-fab cssOnly icon="favorite_border"></ui-fab>
+            <figcaption>Extended (followed by icon)</figcaption>
           </figure>
           <figure>
-            <ui-fab cssOnly icon="favorite_border" mini></ui-fab>
-          </figure>
-          <figure>
-            <ui-fab cssOnly class="lightGreen800Fab" icon="favorite_border"></ui-fab>
-          </figure>
-          <figure>
-            <ui-fab cssOnly class="lightGreen800Fab" icon="favorite_border" mini></ui-fab>
+            <ui-fab extended>Create</ui-fab>
+            <figcaption>Extended (without icon)</figcaption>
           </figure>
         </div>
         <ui-accordion>
@@ -124,7 +110,7 @@
       </section>
 
       <section>
-        <legend :class="$tt('headline6')">1.3 Example of Enter and Exit Motions</legend>
+        <h4 :class="$tt('headline6')">1.3 Example of Enter and Exit Motions</h4>
         <div class="fab-motion-container">
           <div class="fab-motion-container__view">
             <p>View one (with FAB)</p>
@@ -135,12 +121,11 @@
           >
             <p>View two (without FAB)</p>
             <p>
-              <button
-                type="button"
+              <ui-button
                 id="enter-exit-back"
                 :disabled="!exited"
                 @click="$balmUI.onHide('exited')"
-              >Go back</button>
+              >Go back</ui-button>
             </p>
           </div>
           <ui-fab
@@ -158,7 +143,7 @@
 
       <section>
         <fieldset>
-          <legend :class="$tt('headline6')">1.4 Custom FABs (Font awesome)</legend>
+          <h4 :class="$tt('headline6')">1.4 Custom FABs (Font awesome)</h4>
           <ui-fab>
             <i class="fa fa-flag fa-lg"></i>
           </ui-fab>
@@ -177,10 +162,10 @@
         </ui-accordion>
       </section>
 
-      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
+      <h3 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h3>
       <ui-apidocs name="fab"></ui-apidocs>
 
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <h3 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h3>
       <ui-cssdocs name="fab"></ui-cssdocs>
     </div>
   </div>
@@ -189,6 +174,17 @@
 <script>
 import snippets from '@/mixins/snippets';
 
+const options = [
+  {
+    label: 'Regular',
+    value: 0
+  },
+  {
+    label: 'Extended',
+    value: 1
+  }
+];
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Fab'
@@ -196,6 +192,10 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      options,
+      variant: 0,
+      mini: 0,
+      leadingIcon: false,
       exited: false
     };
   },

@@ -26,10 +26,10 @@
         </div>
 
         <h4 :class="$tt('headline6')">1.1 Default</h4>
-        <ui-button-demo :disabled="controls.disabled" :code="demoCode[1]"></ui-button-demo>
+        <ui-button-demo :disabled="controls.disabled" :code="demoCode"></ui-button-demo>
 
         <h4 :class="$tt('headline6')">1.2 CSS Only</h4>
-        <ui-button-demo cssOnly :disabled="controls.disabled" :code="demoCode[2]"></ui-button-demo>
+        <ui-button-demo cssOnly :disabled="controls.disabled" :code="demoCode"></ui-button-demo>
       </section>
 
       <h3 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h3>

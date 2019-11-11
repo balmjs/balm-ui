@@ -1,9 +1,10 @@
 import rippleMixin from './ripple';
+import materialIconMixin from './material-icon';
 import cardButtonMixin from './card-button';
 import UI_BUTTON from '../components/button/constants';
 
 export default {
-  mixins: [rippleMixin, cardButtonMixin],
+  mixins: [rippleMixin, materialIconMixin, cardButtonMixin],
   props: {
     // UI variants
     variant: {
@@ -23,10 +24,6 @@ export default {
       default: false
     },
     // UI attributes
-    icon: {
-      type: String,
-      default: ''
-    },
     cssOnly: {
       type: Boolean,
       default: false
@@ -34,25 +31,31 @@ export default {
   },
   data() {
     return {
-      isOutlined: this.outlined,
-      isRaised: this.raised,
-      isUnelevated: this.unelevated
+      isOutlined: false,
+      isRaised: false,
+      isUnelevated: false
     };
   },
   computed: {
+    outlinedButton() {
+      return this.outlined || this.isOutlined;
+    },
+    raisedButton() {
+      return this.raised || this.isRaised;
+    },
+    unelevatedButton() {
+      return this.unelevated || this.isUnelevated;
+    },
     className() {
       return {
         // Text button
         'mdc-button': true,
         // Outlined button
-        'mdc-button--outlined': this.isOutlined || this.outlined,
+        'mdc-button--outlined': this.outlinedButton,
         // Contained button
-        'mdc-button--raised': this.isRaised || this.raised,
-        'mdc-button--unelevated': this.isUnelevated || this.unelevated
+        'mdc-button--raised': this.raisedButton,
+        'mdc-button--unelevated': this.unelevatedButton
       };
-    },
-    materialIcon() {
-      return this.icon || false;
     }
   },
   watch: {

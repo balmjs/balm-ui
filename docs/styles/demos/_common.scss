@@ -38,10 +38,8 @@ $hero-background-color: #f7f7f7;
     justify-content: center;
   }
   .hero-option {
-    margin: 0 32px 10px;
-    &:last-child {
-      margin-bottom: 0;
-    }
+    margin: 0 32px;
+    line-height: 56px;
   }
 }
 

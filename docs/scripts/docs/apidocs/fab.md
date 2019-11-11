@@ -1,17 +1,19 @@
 ```html
-<ui-fab><!-- Icon --></ui-fab>
-<ui-fab extended><!-- Text label --></ui-fab>
+<ui-fab><!-- Icon --></ui-fab> <ui-fab extended><!-- Text label --></ui-fab>
 ```
 
 #### Props
 
-| Name       | Type    | Default | Description                                                                                      |
-| ---------- | ------- | ------- | ------------------------------------------------------------------------------------------------ |
-| `icon`     | string  | `''`    | Mandatory, for the icon element. See [Material Icons](/#/icons) usage.                           |
-| `mini`     | boolean | `false` | Optional, modifies the FAB to a smaller size                                                     |
-| `extended` | boolean | `false` | Optional, modifies the FAB to wider size which includes a text label.                            |
-| `exited`   | boolean | `false` | Optional, animates the FAB out of view. When this class is removed, the FAB will return to view. |
-| `cssOnly`  | boolean | `false` | Ripple effect is disabled.                                                                       |
+| Name       | Type           | Default | Description                                                                                      |
+| ---------- | -------------- | ------- | ------------------------------------------------------------------------------------------------ |
+| `variant`  | string, number | `0`     | Mandatory. FAB variants.                                                                         |
+| `extended` | boolean        | `false` | Optional. modifies the FAB to wider size which includes a text label.                            |
+| `icon`     | string         | `''`    | Optional. for the icon element. See [Material Icons](/#/icons) usage.                            |
+| `mini`     | boolean        | `false` | Optional. modifies the FAB to a smaller size.                                                    |
+| `exited`   | boolean        | `false` | Optional. animates the FAB out of view. When this class is removed, the FAB will return to view. |
+| `cssOnly`  | boolean        | `false` | Optional. for the element which hides the ripple.                                                |
+
+> Variants: `0: 'regular'`, `1: 'extended'`
 
 #### Slots
 
@@ -21,7 +23,7 @@
 | `before`  | `{ iconClass }` | The label slot holds the label text of the extended FAB.              |
 | `after`   | `{ iconClass }` | The label slot holds the label text of the extended FAB.              |
 
-> NOTE: the default slot has not `slot-scope` in the extended FAB.
+> NOTE: the default slot of the extended FAB has not `slot-scope`.
 
 ```html
 <ui-fab>

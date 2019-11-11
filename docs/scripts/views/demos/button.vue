@@ -17,7 +17,7 @@
         <ui-a :cssOnly="cssOnly">Link</ui-a>
       </div>
       <ui-accordion>
-        <ui-markdown :code="code"></ui-markdown>
+        <ui-markdown :code="cssOnly ? code[2] : code[1]"></ui-markdown>
       </ui-accordion>
     </fieldset>
   </div>

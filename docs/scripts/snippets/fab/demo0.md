@@ -21,7 +21,7 @@ import UiFab from 'balm-ui/components/fab';
 // (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
 import 'balm-ui/components/core.css';
 import 'balm-ui/components/fab.css';
-import 'balm-ui/components/icon.css'; // We recommend you load Material Icons.
+import 'balm-ui/components/icon.css'; // We recommend using Material Icons
 
 // Optional. Overwrite `<ui-fab>` props.
 Vue.use(UiFab, {

@@ -3,15 +3,28 @@
   <div class="fab-motion-container__view">
     <p>View one (with FAB)</p>
   </div>
-  <div class="fab-motion-container__view" :class="{'fab-motion-container__view--exited': !exited}">
+  <div
+    class="fab-motion-container__view"
+    :class="{'fab-motion-container__view--exited': !exited}"
+  >
     <p>View two (without FAB)</p>
-    <p><button type="button" id="enter-exit-back"
-      :disabled="!exited"
-      @click="$balmUI.onHide('exited')">Go back</button></p>
+    <p>
+      <ui-button
+        id="enter-exit-back"
+        :disabled="!exited"
+        @click="$balmUI.onHide('exited')"
+        >Go back</ui-button
+      >
+    </p>
   </div>
-  <ui-fab id="enter-exit-add" class="demo-absolute-fab" icon="add"
+  <ui-fab
+    id="enter-exit-add"
+    class="demo-absolute-fab"
+    icon="add"
     :exited="exited"
-    @click="$balmUI.onShow('exited')">add</ui-fab>
+    @click="$balmUI.onShow('exited')"
+    >add</ui-fab
+  >
 </div>
 ```
 

@@ -1,10 +1,17 @@
 // Define button constants
 export default {
-  EVENT: {
-    CLICK: 'click'
+  // TYPES: ['text', 'outlined', 'contained', 'toggle'],
+  VARIANTS: {
+    text: 0,
+    outlined: 1,
+    raised: 2,
+    unelevated: 3
   },
-  SLOT_CLASS: {
+  cssClasses: {
     icon: 'mdc-button__icon',
     label: 'mdc-button__label'
+  },
+  EVENT: {
+    CLICK: 'click'
   }
 };

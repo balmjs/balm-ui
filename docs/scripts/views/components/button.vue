@@ -1,34 +1,41 @@
 <template>
   <div :class="[$tt('body1'), 'demo--button']">
-    <section class="hero component">
-      <ui-button :disabled="disabled">Flat</ui-button>
-      <ui-button raised :disabled="disabled">Raised</ui-button>
-    </section>
+    <header class="hero component">
+      <div class="hero-demo">
+        <ui-button :variant="variant">{{ text }}</ui-button>
+      </div>
+      <div class="hero-options">
+        <ui-select class="hero-option" :options="options" v-model="variant">Variant</ui-select>
+        <ui-textfield class="hero-option" v-model="text">Button Text</ui-textfield>
+      </div>
+    </header>
 
     <ui-toc-affix></ui-toc-affix>
 
     <div :class="$tt('body2')">
-      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
+      <h3 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h3>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
+      <h3 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Demos</h3>
       <section class="demo-wrapper">
-        <ui-form-field>
-          <ui-checkbox id="toggle-disabled" v-model="disabled"></ui-checkbox>
-          <label for="toggle-disabled">Disabled buttons (excluding links)</label>
-        </ui-form-field>
+        <div class="demo-controls">
+          <ui-form-field>
+            <ui-checkbox id="toggle-disabled" v-model="controls.disabled"></ui-checkbox>
+            <label for="toggle-disabled">Disabled buttons (excluding links)</label>
+          </ui-form-field>
+        </div>
 
-        <h4 :class="$tt('headline4')">1.1 Ripple Enabled</h4>
-        <ui-button-demo :disabled="disabled" :code="demoCode"></ui-button-demo>
+        <h4 :class="$tt('headline6')">1.1 Default</h4>
+        <ui-button-demo :disabled="controls.disabled" :code="demoCode[1]"></ui-button-demo>
 
-        <h4 :class="$tt('headline4')">1.2 CSS Only</h4>
-        <ui-button-demo cssOnly :disabled="disabled"></ui-button-demo>
+        <h4 :class="$tt('headline6')">1.2 CSS Only</h4>
+        <ui-button-demo cssOnly :disabled="controls.disabled" :code="demoCode[2]"></ui-button-demo>
       </section>
 
-      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
+      <h3 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h3>
       <ui-apidocs name="button"></ui-apidocs>
 
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <h3 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h3>
       <ui-cssdocs name="button"></ui-cssdocs>
     </div>
   </div>
@@ -36,7 +43,26 @@
 
 <script>
 import snippets from '@/mixins/snippets';
-import UiButtonDemo from '@/components/button';
+import UiButtonDemo from '@/views/demos/button';
+
+const options = [
+  {
+    label: 'Text',
+    value: 0
+  },
+  {
+    label: 'Outlined',
+    value: 1
+  },
+  {
+    label: 'Raised',
+    value: 2
+  },
+  {
+    label: 'Unelevated',
+    value: 3
+  }
+];
 
 export default {
   metaInfo: {
@@ -48,7 +74,12 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      disabled: false
+      options,
+      variant: 0,
+      text: 'Button',
+      controls: {
+        disabled: false
+      }
     };
   },
   computed: {
@@ -57,7 +88,7 @@ export default {
     }
   },
   created() {
-    this.showCode('button', 6);
+    this.showCode('button', 2);
   }
 };
 </script>

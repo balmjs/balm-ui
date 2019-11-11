@@ -20,15 +20,29 @@ fieldset {
 }
 
 // Use full-opacity equivalent of rgba(0, 0, 0, .05) and expose for demos to reference
-$hero-background-color: #f2f2f2;
+$hero-background-color: #f7f7f7;
 .hero {
   display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
+  flex-flow: column nowrap;
   justify-content: center;
+  align-items: center;
   height: 360px;
   min-height: 360px;
   background-color: $hero-background-color;
+  .hero-demo {
+    margin-bottom: 20px;
+  }
+  .hero-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .hero-option {
+    margin: 0 32px 10px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }
 
 // Default padding on all examples.

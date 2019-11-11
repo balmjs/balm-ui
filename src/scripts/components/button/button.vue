@@ -3,19 +3,19 @@
   <button type="button" :class="[className, actionClassName]" @click="handleClick">
     <div class="mdc-button__ripple"></div>
     <!-- Icon (optional) -->
-    <slot name="before" :iconClass="UI_BUTTON.SLOT_CLASS.icon">
+    <slot name="before" :iconClass="UI_BUTTON.cssClasses.icon">
       <i
         v-if="materialIcon"
-        :class="[UI_GLOBAL.mdi, UI_BUTTON.SLOT_CLASS.icon]"
+        :class="[UI_GLOBAL.mdi, UI_BUTTON.cssClasses.icon]"
         aria-hidden="true"
       >{{ materialIcon }}</i>
     </slot>
     <!-- Text label -->
-    <span :class="UI_BUTTON.SLOT_CLASS.label">
+    <span :class="UI_BUTTON.cssClasses.label">
       <slot></slot>
     </span>
     <!-- Icon (optional) -->
-    <slot name="after" :iconClass="UI_BUTTON.SLOT_CLASS.icon"></slot>
+    <slot name="after" :iconClass="UI_BUTTON.cssClasses.icon"></slot>
   </button>
 </template>
 

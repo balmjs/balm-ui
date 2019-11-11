@@ -1,16 +1,18 @@
 ```html
-<ui-button raised>Baseline</ui-button>
-<ui-button raised dense>Dense</ui-button>
-<ui-button raised class="secondary-filled-button">Secondary</ui-button>
-<ui-button raised icon="favorite">Icon</ui-button>
-<ui-button raised>
-  <template slot="before" slot-scope="{ iconClass }">
+<ui-button cssOnly>Text</ui-button>
+<ui-button cssOnly outlined>Outlined</ui-button>
+<ui-button cssOnly raised>Raised</ui-button>
+
+<ui-button cssOnly icon="favorite">Icon</ui-button>
+<ui-button cssOnly>
+  Trailing Icon
+  <template slot="after" slot-scope="{ iconClass }">
     <!-- Custom SVG -->
-    <svg-logo :class="iconCLass"></svg-logo>
+    <svg-logo :class="iconClass"></svg-logo>
   </template>
-  SVG Icon
 </ui-button>
-<ui-a raised>Link</ui-a>
+
+<ui-a>Link</ui-a>
 ```
 
 ```css

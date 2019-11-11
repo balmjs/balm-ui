@@ -1,6 +1,5 @@
 // Define button constants
 export default {
-  // TYPES: ['text', 'outlined', 'contained', 'toggle'],
   VARIANTS: {
     text: 0,
     outlined: 1,

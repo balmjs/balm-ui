@@ -14,6 +14,7 @@ export default {
       type: Boolean,
       default: false
     },
+    // UI attributes
     icon: String,
     toggle: {
       type: Object,
@@ -28,13 +29,13 @@ export default {
     };
   },
   computed: {
-    isToggleButton() {
+    toggleButton() {
       return this.toggle.on && this.toggle.off;
     },
     className() {
       return {
         'mdc-icon-button': true,
-        'material-icons': !this.isToggleButton && this.icon
+        'material-icons': this.icon && !this.toggleButton
       };
     }
   },
@@ -54,6 +55,7 @@ export default {
       }
     );
 
+    // Init
     this.$iconButton.on = this.model;
   }
 };

@@ -9,13 +9,13 @@
     <ui-toc-affix></ui-toc-affix>
 
     <div :class="$tt('body2')">
-      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
+      <h3 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h3>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
+      <h3 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Demos</h3>
       <section class="example">
         <div>
-          <h5 :class="$tt('headline5')">1.1 Buttons</h5>
+          <h4 :class="$tt('headline5')">1.1 Buttons</h4>
           <div class="toggle-examples-container">
             <div class="toggle-example">
               <h6 :class="$tt('headline6')">Material Icons</h6>
@@ -64,7 +64,7 @@
       <section class="example">
         <div>
           <div>
-            <h5 :class="$tt('headline5')">1.2 Button Toggles</h5>
+            <h4 :class="$tt('headline5')">1.2 Button Toggles</h4>
           </div>
           <div class="toggle-examples-container">
             <div class="toggle-example">
@@ -103,10 +103,10 @@
                       viewBox="0 0 24 24"
                       :class="onClass"
                     >
-                      <path d="M0 0h24v24H0z" fill="none"></path>
+                      <path d="M0 0h24v24H0z" fill="none" />
                       <path
-                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"
-                      ></path>
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h3V7h2v4h3v2z"
+                      />
                     </svg>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -115,10 +115,10 @@
                       viewBox="0 0 24 24"
                       :class="offClass"
                     >
-                      <path d="M0 0h24v24H0z" fill="none"></path>
+                      <path d="M0 0h24v24H0z" fill="none" />
                       <path
-                        d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
-                      ></path>
+                        d="M13 7h-2v4H7v2h3v4h2v-4h3v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
+                      />
                     </svg>
                   </template>
                 </ui-icon-button>
@@ -130,8 +130,8 @@
               <div class="demo-wrapper">
                 <ui-icon-button>
                   <template #default="{ onClass, offClass }">
-                    <img :src="imageOn" :class="onClass">
-                    <img :src="imageOff" :class="offClass">
+                    <img :src="imageOn" :class="onClass" />
+                    <img :src="imageOff" :class="offClass" />
                   </template>
                 </ui-icon-button>
               </div>
@@ -177,10 +177,10 @@
         </div>
       </section>
 
-      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
+      <h3 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h3>
       <ui-apidocs name="icon-button"></ui-apidocs>
 
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <h3 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h3>
       <ui-cssdocs name="icon-button"></ui-cssdocs>
     </div>
   </div>

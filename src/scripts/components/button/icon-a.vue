@@ -2,20 +2,15 @@
   <!-- Container -->
   <a :class="[className, actionClassName]" :href="url">
     <!-- Icon -->
-    <template v-if="isToggleButton">
-      <i :class="[UI_GLOBAL.mdi, UI_ICON_BUTTON.SLOT_CLASS.off]">
-        {{ toggle.off }}
-      </i>
-      <i :class="[UI_GLOBAL.mdi, UI_ICON_BUTTON.SLOT_CLASS.on]">
-        {{ toggle.on }}
-      </i>
+    <template v-if="toggleButton">
+      <i :class="[UI_GLOBAL.mdi, UI_ICON_BUTTON.SLOT_CLASS.off]">{{ toggle.off }}</i>
+      <i :class="[UI_GLOBAL.mdi, UI_ICON_BUTTON.SLOT_CLASS.on]">{{ toggle.on }}</i>
     </template>
     <template v-else>
       <slot
         :onClass="UI_ICON_BUTTON.SLOT_CLASS.on"
-        :offClass="UI_ICON_BUTTON.SLOT_CLASS.off">
-        {{ icon }}
-      </slot>
+        :offClass="UI_ICON_BUTTON.SLOT_CLASS.off"
+      >{{ icon }}</slot>
     </template>
   </a>
 </template>

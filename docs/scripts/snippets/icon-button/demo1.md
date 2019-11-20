@@ -10,15 +10,16 @@
 </ui-icon-button>
 
 <!-- Disabled Buttons -->
-<ui-icon-button disabled
-  icon="airplanemode_active"></ui-icon-button>
+<ui-icon-button disabled icon="airplanemode_active"></ui-icon-button>
 <ui-icon-button disabled>
   <svg-logo></svg-logo>
 </ui-icon-button>
 
 <!-- Larger Buttons -->
-<ui-icon-button class="demo-icon-button-large"
-  icon="airplanemode_active"></ui-icon-button>
+<ui-icon-button
+  class="demo-icon-button-large"
+  icon="airplanemode_active"
+></ui-icon-button>
 <ui-icon-button class="demo-icon-button-large">
   <svg-logo></svg-logo>
 </ui-icon-button>

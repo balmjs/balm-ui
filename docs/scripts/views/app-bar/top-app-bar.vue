@@ -50,7 +50,7 @@
           <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
           <ui-markdown :text="code[0]"></ui-markdown>
 
-          <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
+          <h4 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h4>
           <div class="demo-controls">
             <ui-select :options="options" v-model="selected">Variant</ui-select>
             <ui-textfield v-model="title">Title</ui-textfield>
@@ -72,62 +72,6 @@
         </div>
       </div>
     </main>
-
-    <!-- <div
-      :class="['demo-controls-container', {'show': showControls}]"
-      dir="ltr"
-      v-shadow.transition="showControls ? 4 : [4, 12]"
-    >
-      <template v-if="showControls">
-        <h3 :class="$tt('headline6')">
-          <span>Demo Controls</span>
-          <ui-icon @click="$balmUI.onHide('showControls')" title="Hide Controls">close</ui-icon>
-        </h3>
-        <div class="demo-row">
-          <div class="demo-col">
-            <span :class="[$tt('subtitle1'), 'demo-options-heading']">Common Options</span>
-            <div>
-              <ui-checkbox id="rtl-checkbox" v-model="controls.rtl">RTL</ui-checkbox>
-            </div>
-            <div>
-              <ui-checkbox id="no-action-item-checkbox" v-model="controls.noAction">No Action Item</ui-checkbox>
-            </div>
-          </div>
-          <div class="demo-col">
-            <span :class="[$tt('subtitle1'), 'demo-options-heading']">Top App Bar Specific Options</span>
-            <div>
-              <ui-checkbox id="dense-checkbox" v-model="controls.dense">Dense</ui-checkbox>
-            </div>
-            <div>
-              <ui-checkbox id="fixed-checkbox" v-model="controls.fixed">Fixed</ui-checkbox>
-            </div>
-            <div>
-              <ui-checkbox id="prominent-checkbox" v-model="controls.prominent">Prominent</ui-checkbox>
-            </div>
-          </div>
-          <div class="demo-col">
-            <span
-              :class="[$tt('subtitle1'), 'demo-options-heading']"
-            >Short Top App Bar Specific Options</span>
-            <div>
-              <ui-checkbox
-                id="short-checkbox"
-                v-model="controls.short"
-                :disabled="controls.dense || controls.fixed || controls.prominent"
-              >Short</ui-checkbox>
-            </div>
-            <div>
-              <ui-checkbox
-                id="always-collapsed-checkbox"
-                v-model="controls.alwaysCollapsed"
-                :disabled="!controls.short"
-              >Always Collapsed (Short Only)</ui-checkbox>
-            </div>
-          </div>
-        </div>
-      </template>
-      <ui-icon v-else title="Show Controls" @click="$balmUI.onShow('showControls')">add</ui-icon>
-    </div>-->
   </div>
 </template>
 

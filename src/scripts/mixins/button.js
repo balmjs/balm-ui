@@ -1,16 +1,13 @@
-import rippleMixin from './ripple';
+import variantMixin from './variant';
 import materialIconMixin from './material-icon';
+import rippleMixin from './ripple';
 import cardButtonMixin from './card-button';
 import UI_BUTTON from '../components/button/constants';
 
 export default {
-  mixins: [rippleMixin, materialIconMixin, cardButtonMixin],
+  mixins: [variantMixin, materialIconMixin, rippleMixin, cardButtonMixin],
   props: {
     // UI variants
-    variant: {
-      type: [String, Number],
-      default: 0
-    },
     outlined: {
       type: Boolean,
       default: false
@@ -29,68 +26,40 @@ export default {
       default: false
     }
   },
-  data() {
-    return {
-      isOutlined: false,
-      isRaised: false,
-      isUnelevated: false
-    };
-  },
   computed: {
-    outlinedButton() {
-      return this.outlined || this.isOutlined;
+    isOutlined() {
+      return this.isVariant(UI_BUTTON.VARIANTS, 'outlined');
     },
-    raisedButton() {
-      return this.raised || this.isRaised;
+    isRaised() {
+      return this.isVariant(UI_BUTTON.VARIANTS, 'raised');
     },
-    unelevatedButton() {
-      return this.unelevated || this.isUnelevated;
+    isUnelevated() {
+      return this.isVariant(UI_BUTTON.VARIANTS, 'unelevated');
     },
     className() {
       return {
         // Text button
         'mdc-button': true,
         // Outlined button
-        'mdc-button--outlined': this.outlinedButton,
+        'mdc-button--outlined': this.isOutlined,
         // Contained button
-        'mdc-button--raised': this.raisedButton,
-        'mdc-button--unelevated': this.unelevatedButton
+        'mdc-button--raised': this.isRaised,
+        'mdc-button--unelevated': this.isUnelevated
       };
     }
   },
   watch: {
-    variant(val) {
-      this.init(val);
+    variant() {
+      this.init();
     }
   },
   mounted() {
-    if (!this.cssOnly) {
-      this.initRipple(this.$el);
-    }
-
-    this.init(this.variant);
+    this.init();
   },
   methods: {
-    init(variant) {
-      this.isOutlined = false;
-      this.isRaised = false;
-      this.isUnelevated = false;
-
-      switch (variant) {
-        case UI_BUTTON.VARIANTS.outlined:
-        case 'outlined':
-          this.isOutlined = true;
-          break;
-        case UI_BUTTON.VARIANTS.raised:
-        case 'raised':
-          this.isRaised = true;
-          break;
-        case UI_BUTTON.VARIANTS.unelevated:
-        case 'unelevated':
-          this.isUnelevated = true;
-          break;
-        default:
-        // Text
+    init() {
+      if (!this.cssOnly) {
+        this.initRipple(this.$el);
       }
     }
   }

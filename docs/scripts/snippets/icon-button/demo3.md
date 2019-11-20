@@ -9,16 +9,14 @@
 
 <div id="dark-on-bg" class="demo-color-combo">
   <div :class="$themeColor('primary')">
-    <ui-icon-button :toggle="icon1">
-    </ui-icon-button>
+    <ui-icon-button :toggle="icon1"> </ui-icon-button>
   </div>
   <div>Dark icon on background</div>
 </div>
 
 <div id="custom-color-combo" class="demo-color-combo">
   <div>
-    <ui-icon-button :toggle="icon1">
-    </ui-icon-button>
+    <ui-icon-button :toggle="icon1"> </ui-icon-button>
   </div>
   <div>Custom color</div>
 </div>

@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import variantMixin from '../../mixins/variant';
 import { MDCTopAppBar } from '../../../material-components-web/top-app-bar';
 import UI_GLOBAL from '../../config/constants';
 
@@ -64,20 +65,42 @@ const UI_TOP_APP_BAR = {
 
 export default {
   name: 'ui-top-app-bar',
+  mixins: [variantMixin],
   props: {
     contentSelector: {
       type: String,
       required: true
     },
-    // UI attributes
     type: {
       type: [String, Number],
       default: 0
     },
-    variant: {
-      type: [String, Number],
-      default: 0
+    // UI variants
+    fixed: {
+      type: Boolean,
+      default: false
     },
+    dense: {
+      type: Boolean,
+      default: false
+    },
+    prominent: {
+      type: Boolean,
+      default: false
+    },
+    prominentDense: {
+      type: Boolean,
+      default: false
+    },
+    short: {
+      type: Boolean,
+      default: false
+    },
+    shortCollapsed: {
+      type: Boolean,
+      default: false
+    },
+    // UI attributes
     title: {
       type: String,
       default: ''
@@ -92,24 +115,39 @@ export default {
     return {
       UI_TOP_APP_BAR,
       $topAppBar: null,
-      fixed: false,
-      dense: false,
-      prominent: false,
-      prominentDense: false,
-      short: false,
-      shortCollapsed: false,
       contentElement: null
     };
   },
   computed: {
+    isFixed() {
+      return this.isVariant(UI_TOP_APP_BAR.VARIANTS, 'fixed');
+    },
+    isDense() {
+      return this.isVariant(UI_TOP_APP_BAR.VARIANTS, 'dense');
+    },
+    isProminent() {
+      return this.isVariant(UI_TOP_APP_BAR.VARIANTS, 'prominent');
+    },
+    isProminentDense() {
+      return (
+        (this.dense && this.prominent) ||
+        this.isVariant(UI_TOP_APP_BAR.VARIANTS, 'prominentDense')
+      );
+    },
+    isShort() {
+      return this.isVariant(UI_TOP_APP_BAR.VARIANTS, 'short');
+    },
+    isShortCollapsed() {
+      return this.isVariant(UI_TOP_APP_BAR.VARIANTS, 'shortCollapsed');
+    },
     className() {
       return {
         'mdc-top-app-bar': true,
-        'mdc-top-app-bar--fixed': this.fixed,
-        'mdc-top-app-bar--dense': this.dense,
-        'mdc-top-app-bar--prominent': this.prominent,
-        'mdc-top-app-bar--short': this.short,
-        'mdc-top-app-bar--short-collapsed': this.shortCollapsed
+        'mdc-top-app-bar--fixed': this.isFixed,
+        'mdc-top-app-bar--dense': this.isDense || this.isProminentDense,
+        'mdc-top-app-bar--prominent': this.isProminent || this.isProminentDense,
+        'mdc-top-app-bar--short': this.isShort || this.isShortCollapsed,
+        'mdc-top-app-bar--short-collapsed': this.isShortCollapsed
       };
     },
     defaultNavIcon() {
@@ -121,15 +159,15 @@ export default {
     }
   },
   watch: {
-    variant(val) {
-      this.init(val);
+    variant() {
+      this.init();
     }
   },
   mounted() {
-    this.init(this.variant);
+    this.init();
   },
   methods: {
-    createFixedAdjustElement(variant) {
+    createFixedAdjustElement() {
       if (this.contentSelector) {
         this.contentElement = document.querySelector(this.contentSelector);
 
@@ -137,86 +175,34 @@ export default {
           ...Object.values(UI_TOP_APP_BAR.FIXED_ADJUST)
         );
 
-        switch (variant) {
-          case 2:
-          case 'dense':
-            this.contentElement.classList.add(
-              UI_TOP_APP_BAR.FIXED_ADJUST.DENSE
-            );
-            break;
-          case 3:
-          case 'prominent':
-            this.contentElement.classList.add(
-              UI_TOP_APP_BAR.FIXED_ADJUST.PROMINENT
-            );
-            break;
-          case 4:
-          case 'prominentDense':
-            this.contentElement.classList.add(
-              UI_TOP_APP_BAR.FIXED_ADJUST.DENSE_PROMINENT
-            );
-            break;
-          case 5:
-          case 'short':
-          case 6:
-          case 'shortCollapsed':
-            this.contentElement.classList.add(
-              UI_TOP_APP_BAR.FIXED_ADJUST.SHORT
-            );
-            break;
-          default:
-            this.contentElement.classList.add(
-              UI_TOP_APP_BAR.FIXED_ADJUST.STANDARD
-            );
+        if (this.isDense) {
+          this.contentElement.classList.add(UI_TOP_APP_BAR.FIXED_ADJUST.DENSE);
+        } else if (this.isProminent) {
+          this.contentElement.classList.add(
+            UI_TOP_APP_BAR.FIXED_ADJUST.PROMINENT
+          );
+        } else if (this.isProminentDense) {
+          this.contentElement.classList.add(
+            UI_TOP_APP_BAR.FIXED_ADJUST.DENSE_PROMINENT
+          );
+        } else if (this.isShort || this.isShortCollapsed) {
+          this.contentElement.classList.add(UI_TOP_APP_BAR.FIXED_ADJUST.SHORT);
+        } else {
+          this.contentElement.classList.add(
+            UI_TOP_APP_BAR.FIXED_ADJUST.STANDARD
+          );
         }
       } else {
         console.warn('`contentSelector` is required');
       }
     },
-    init(variant) {
+    init() {
       if (this.$topAppBar) {
         this.$topAppBar.destroy();
-
-        this.fixed = false;
-        this.dense = false;
-        this.prominent = false;
-        this.prominentDense = false;
-        this.short = false;
-        this.shortCollapsed = false;
-      }
-
-      switch (variant) {
-        case 1:
-        case 'fixed':
-          this.fixed = true;
-          break;
-        case 2:
-        case 'dense':
-          this.dense = true;
-          break;
-        case 3:
-        case 'prominent':
-          this.prominent = true;
-          break;
-        case 4:
-        case 'prominentDense':
-          this.prominentDense = true;
-          break;
-        case 5:
-        case 'short':
-          this.short = true;
-          break;
-        case 6:
-        case 'shortCollapsed':
-          this.short = true;
-          this.shortCollapsed = true;
-          break;
-        default:
-        // Standard
       }
 
       this.$nextTick(() => {
-        this.createFixedAdjustElement(variant);
+        this.createFixedAdjustElement();
         this.$topAppBar = new MDCTopAppBar(this.$el);
       });
     },

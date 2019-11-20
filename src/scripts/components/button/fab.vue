@@ -2,7 +2,7 @@
   <!-- Container -->
   <button type="button" :class="className" @click="handleClick">
     <div class="mdc-fab__ripple"></div>
-    <template v-if="extendedFAB">
+    <template v-if="isExtended">
       <!-- Icon (optional) -->
       <i v-if="materialIcon" :class="[UI_GLOBAL.mdi, UI_FAB.cssClasses.icon]">{{ materialIcon }}</i>
       <template v-else>
@@ -26,8 +26,9 @@
 </template>
 
 <script>
-import rippleMixin from '../../mixins/ripple';
+import variantMixin from '../../mixins/variant';
 import materialIconMixin from '../../mixins/material-icon';
+import rippleMixin from '../../mixins/ripple';
 import UI_GLOBAL from '../../config/constants';
 
 // Define constants
@@ -46,13 +47,9 @@ const UI_FAB = {
 
 export default {
   name: 'ui-fab',
-  mixins: [rippleMixin, materialIconMixin],
+  mixins: [variantMixin, materialIconMixin, rippleMixin],
   props: {
     // UI variants
-    variant: {
-      type: [String, Number],
-      default: 0
-    },
     extended: {
       type: Boolean,
       default: false
@@ -74,39 +71,35 @@ export default {
   data() {
     return {
       UI_GLOBAL,
-      UI_FAB,
-      isExtended: false
+      UI_FAB
     };
   },
   computed: {
-    extendedFAB() {
-      return this.extended || this.isExtended;
+    isExtended() {
+      return this.isVariant(UI_FAB.VARIANTS, 'extended');
     },
     className() {
       return {
         'mdc-fab': true,
-        'mdc-fab--extended': this.extendedFAB,
+        'mdc-fab--extended': this.isExtended,
         'mdc-fab--mini': this.mini,
         'mdc-fab--exited': this.exited
       };
     }
   },
   watch: {
-    variant(val) {
-      this.init(val);
+    variant() {
+      this.init();
     }
   },
   mounted() {
-    if (!this.cssOnly) {
-      this.initRipple(this.$el);
-    }
-
-    this.init(this.variant);
+    this.init();
   },
   methods: {
-    init(variant) {
-      this.isExtended =
-        variant === UI_FAB.VARIANTS.extended || variant === 'extended';
+    init() {
+      if (!this.cssOnly) {
+        this.initRipple(this.$el);
+      }
     },
     handleClick(event) {
       this.$emit(UI_FAB.EVENT.CLICK, event);

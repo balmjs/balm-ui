@@ -13,7 +13,7 @@
 | `exited`   | boolean        | `false` | Optional. animates the FAB out of view. When this class is removed, the FAB will return to view. |
 | `cssOnly`  | boolean        | `false` | Optional. for the element which hides the ripple.                                                |
 
-> Variants: `0: 'regular'`, `1: 'extended'`
+- **Variants:** `0: 'regular'`, `1: 'extended'`
 
 #### Slots
 

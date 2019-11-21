@@ -4,18 +4,22 @@
 
 #### Props
 
-| Name              | Type    | Default    | Description                                                                                                 |
-| ----------------- | ------- | ---------- | ----------------------------------------------------------------------------------------------------------- |
-| `contentSelector` | string  | (required) | Selector used to style the content below the top app bar, to prevent the top app bar from covering it.      |
-| `navId`           | string  | `null`     | Control the navigation drawer is opened or closed. (See the `menuSelector` prop of the [drawer](/#/drawer)) |
-| `navIcon`         | string  | `'menu'`   | A navigation icon.                                                                                          |
-| `title`           | string  | `''`       | Application title.                                                                                          |
-| `actionItems`     | array   | `[]`       | Action items which are placed on the side opposite the navigation icon.                                     |
-| `fixed`           | boolean | `false`    | Fixed top app bars stay at the top of the page and elevate above the content when scrolled.                 |
-| `prominent`       | boolean | `false`    | The prominent top app bar is taller.                                                                        |
-| `dense`           | boolean | `false`    | The dense top app bar is shorter.                                                                           |
-| `short`           | boolean | `false`    | Short top app bars are top app bars that can collapse to the navigation icon side when scrolled.            |
-| `alwaysClosed`    | boolean | `false`    | Short top app bars can be configured to always appear collapsed.                                            |
+| Name              | Type           | Default    | Description                                                                                                             |
+| ----------------- | -------------- | ---------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `contentSelector` | string         | (required) | Selector used to style the content below the top app bar, to prevent the top app bar from covering it.                  |
+| `type`            | number         | `0`        | Mandatory. Top app bar types.                                                                                           |
+| `variant`         | string, number | `0`        | Mandatory. Top app bar variants.                                                                                        |
+| `fixed`           | boolean        | `false`    | Fixed top app bars stay at the top of the page and elevate above the content when scrolled.                             |
+| `dense`           | boolean        | `false`    | The dense top app bar is shorter.                                                                                       |
+| `prominent`       | boolean        | `false`    | The prominent top app bar is taller.                                                                                    |
+| `prominentDense`  | boolean        | `false`    | The prominent top app bar with dense.                                                                                   |
+| `short`           | boolean        | `false`    | Short top app bars are top app bars that can collapse to the navigation icon side when scrolled.                        |
+| `shortCollapsed`  | boolean        | `false`    | Short top app bars can be configured to always appear collapsed.                                                        |
+| `title`           | string         | `''`       | Application title.                                                                                                      |
+| `navId`           | string         | `null`     | Control the navigation drawer is opened or closed. (Please refer to the `menuSelector` prop of the [drawer](/#/drawer)) |
+
+- **Types:** `0`: Regular, `1`: Contextual action bar
+- **Variants:** `0: 'standard'`, `1: 'fixed'`, `2: 'dense'`, `3: 'prominent'`, `4: 'prominentDense'`, `5: 'short'`, `6: 'shortCollapsed'`
 
 > Short top app bars should be used with no more than 1 action item.
 
@@ -36,10 +40,10 @@
 
 #### Events
 
-| Name    | Type         | Description                                                                       |
-| ------- | ------------ | --------------------------------------------------------------------------------- |
-| `nav`   | `function()` | Emits when the navigation icon is clicked.                                        |
-| `close` | `function()` | Emits when the navigation icon is clicked. Applicable only for `navIcon='close'`. |
+| Name    | Type         | Description                                                                           |
+| ------- | ------------ | ------------------------------------------------------------------------------------- |
+| `nav`   | `function()` | Emits when the navigation icon is clicked.                                            |
+| `close` | `function()` | Emits when the navigation icon is clicked. Applicable only for Contextual action bar. |
 
 > NOTE: If you are not using `navId` of the top app bar and `menuSelector` of the drawer, you should listen for the top app bar using `@nav` and update the `v-model` prop of the drawer.
 

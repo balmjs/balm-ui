@@ -1,5 +1,6 @@
 ```html
 <ui-icon-button></ui-icon-button>
+
 <ui-icon-a></ui-icon-a>
 ```
 
@@ -9,7 +10,7 @@
 | ------------------- | ------- | ------- | ------------------------------------------------------------------------- |
 | `model` (`v-model`) | boolean | `false` | Sets the toggle state.                                                    |
 | `icon`              | string  | `null`  | A material icon of the icon button. See [Material Icons](/#/icons) list.  |
-| `toggle`            | object  | `null`  | Two icons of the icon button toggle. (Format: `{on, off}`)                |
+| `toggle`            | object  | `{}`    | Two icons of the icon button toggle. (Format: `{on, off}`)                |
 | `url`               | string  | `null`  | The _href_ attribute of the `<a>`. Applicable only for the `<ui-icon-a>`. |
 
 > Configuring the icon button toggle states by `toggle.on` and `toggle.off` props.
@@ -40,5 +41,8 @@
 <ui-icon-button v-model="value"></ui-icon-button>
 
 // Manual
-<ui-icon-button :model="value" @change="$balmUI.onChange('value', $event)"></ui-icon-button>
+<ui-icon-button
+  :model="value"
+  @change="$balmUI.onChange('value', $event)"
+></ui-icon-button>
 ```

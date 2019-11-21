@@ -6,10 +6,10 @@
         <!-- Navigation icon (optional) / Close button (instead of a navigation icon) -->
         <button
           :class="[UI_TOP_APP_BAR.SLOT_CLASS.icon, 'mdc-top-app-bar__navigation-icon', 'mdc-icon-button']"
-          :id="navIcon === UI_TOP_APP_BAR.TYPES[1] ? null : navId"
+          :id="defaultNavIcon === UI_TOP_APP_BAR.TYPES[1] ? null : navId"
           @click="handleClick"
         >
-          <slot name="nav-icon">{{ navIcon || defaultNavIcon }}</slot>
+          <slot name="nav-icon">{{ defaultNavIcon }}</slot>
         </button>
         <!-- Title (optional) / Contextual title -->
         <span class="mdc-top-app-bar__title">
@@ -72,7 +72,7 @@ export default {
       required: true
     },
     type: {
-      type: [String, Number],
+      type: Number,
       default: 0
     },
     // UI variants
@@ -105,11 +105,7 @@ export default {
       type: String,
       default: ''
     },
-    navId: String,
-    navIcon: {
-      type: String,
-      default: 'menu'
-    }
+    navId: String
   },
   data() {
     return {
@@ -151,7 +147,7 @@ export default {
       };
     },
     defaultNavIcon() {
-      let type = +this.type;
+      const type = this.type;
 
       return type >= 0 && type <= UI_TOP_APP_BAR.TYPES.length - 1
         ? UI_TOP_APP_BAR.TYPES[type]
@@ -208,7 +204,7 @@ export default {
     },
     handleClick() {
       this.$emit(
-        this.navIcon === UI_TOP_APP_BAR.TYPES[1]
+        UI_TOP_APP_BAR.TYPES[this.type] === 'close'
           ? UI_TOP_APP_BAR.EVENT.CLOSE
           : UI_TOP_APP_BAR.EVENT.NAV
       );

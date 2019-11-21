@@ -5,7 +5,7 @@
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
         <!-- Navigation icon (optional) / Close button (instead of a navigation icon) -->
         <button
-          :class="[UI_TOP_APP_BAR.SLOT_CLASS.icon, 'mdc-top-app-bar__navigation-icon', 'mdc-icon-button']"
+          :class="[UI_TOP_APP_BAR.cssClasses.icon, 'mdc-top-app-bar__navigation-icon', 'mdc-icon-button']"
           :id="defaultNavIcon === UI_TOP_APP_BAR.TYPES[1] ? null : navId"
           @click="handleClick"
         >
@@ -19,11 +19,7 @@
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
         <!-- Action items (optional) / Contextual actions -->
         <!-- Overflow menu (optional) -->
-        <slot
-          name="toolbar"
-          :iconClass="UI_TOP_APP_BAR.SLOT_CLASS.icon"
-          :itemClass="UI_TOP_APP_BAR.SLOT_CLASS.item"
-        ></slot>
+        <slot name="toolbar" :itemClass="UI_TOP_APP_BAR.cssClasses.item"></slot>
       </section>
     </div>
   </header>
@@ -57,9 +53,8 @@ const UI_TOP_APP_BAR = {
     NAV: 'nav',
     CLOSE: 'close'
   },
-  SLOT_CLASS: {
-    icon: UI_GLOBAL.mdi,
-    item: 'mdc-top-app-bar__action-item mdc-icon-button'
+  cssClasses: {
+    item: 'mdc-top-app-bar__action-item'
   }
 };
 

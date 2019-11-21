@@ -1,6 +1,6 @@
 <template>
   <!-- Container -->
-  <button type="button" :class="[className, actionClassName]">
+  <button type="button" :class="[className, actionClassName]" @click="handleClick">
     <!-- Icon -->
     <template v-if="toggleButton">
       <i :class="[UI_GLOBAL.mdi, UI_ICON_BUTTON.cssClasses.off]">{{ toggle.off }}</i>
@@ -28,6 +28,11 @@ export default {
       UI_GLOBAL,
       UI_ICON_BUTTON
     };
+  },
+  methods: {
+    handleClick(event) {
+      this.$emit(UI_ICON_BUTTON.EVENT.CLICK, event);
+    }
   }
 };
 </script>

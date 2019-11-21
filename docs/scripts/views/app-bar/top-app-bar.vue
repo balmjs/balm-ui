@@ -6,10 +6,14 @@
       :variant="selected"
       :title="title"
     >
-      <template #toolbar="{ iconClass, itemClass }">
-        <a v-if="!isShort" :class="[iconClass, itemClass]">file_download</a>
+      <template #toolbar="{ itemClass }">
+        <ui-icon-a v-if="!isShort" :class="itemClass" icon="file_download"></ui-icon-a>
         <ui-menu-anchor v-if="isShort">
-          <a :class="[iconClass, itemClass]" @click="$balmUI.onOpen('showMoreActions')">more_vert</a>
+          <ui-icon-button
+            :class="itemClass"
+            icon="more_vert"
+            @click="$balmUI.onOpen('showMoreActions')"
+          ></ui-icon-button>
           <ui-menu
             v-model="showMoreActions"
             :items="[
@@ -24,7 +28,7 @@
       </template>
     </ui-top-app-bar>
 
-    <ui-modal-drawer v-model="open" menuSelector="#demo-menu">
+    <ui-modal-drawer v-model="openDrawer" menuSelector="#demo-menu">
       <ui-drawer-header :innerClass="[$themeColor('on-primary'), $themeColor('primary-bg')]">
         <ui-drawer-title>Header here</ui-drawer-title>
       </ui-drawer-header>
@@ -120,14 +124,13 @@ export default {
       options,
       selected: 0,
       title: 'Hello BalmUI',
-      open: false,
-      showControls: false,
+      openDrawer: false,
       showMoreActions: false
     };
   },
   computed: {
     isShort() {
-      return this.selected === 5;
+      return this.selected === 5 || this.selected === 6;
     }
   },
   created() {

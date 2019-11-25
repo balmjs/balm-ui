@@ -54,6 +54,7 @@ const UI_TOP_APP_BAR = {
     CLOSE: 'close'
   },
   cssClasses: {
+    icon: UI_GLOBAL.mdi,
     item: 'mdc-top-app-bar__action-item'
   }
 };

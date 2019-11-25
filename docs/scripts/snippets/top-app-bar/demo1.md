@@ -1,59 +1,67 @@
 ```html
-<div class="demo--top-app-bar" :dir="controls.rtl ? 'rtl' : null">
+<div class="demo--top-app-bar">
   <ui-top-app-bar
     contentSelector="#content-main"
     navId="demo-menu"
-    :dense="controls.dense"
-    :fixed="controls.fixed"
-    :prominent="controls.prominent"
-    :short="controls.short"
-    :alwaysClosed="controls.alwaysCollapsed">
-    San Francisco, CA
-    <template slot="toolbar" slot-scope="{ iconClass, itemClass }">
-      <a v-if="!controls.short && !controls.noAction" :class="[iconClass, itemClass]">file_download</a>
-      <ui-menu-anchor v-if="controls.short">
-        <a :class="[iconClass, itemClass]" @click="$balmUI.onOpen('showMoreActions')">more_vert</a>
-        <ui-menu v-model="showMoreActions"
+    :variant="selected"
+    :title="title"
+  >
+    <template #toolbar="{ itemClass }">
+      <ui-icon-a
+        v-if="!isShort"
+        :class="itemClass"
+        icon="file_download"
+      ></ui-icon-a>
+      <ui-menu-anchor v-if="isShort">
+        <ui-icon-button
+          :class="itemClass"
+          icon="more_vert"
+          @click="$balmUI.onOpen('showMoreActions')"
+        ></ui-icon-button>
+        <ui-menu
+          v-model="showMoreActions"
           :items="[
-            'Back',
-            'Forward',
-            'Reload',
-            '-',
-            'Settings'
-          ]">
-        </ui-menu>
+              'Back',
+              'Forward',
+              'Reload',
+              '-',
+              'Settings'
+            ]"
+        ></ui-menu>
       </ui-menu-anchor>
     </template>
   </ui-top-app-bar>
 
-  <ui-temporary-drawer menuSelector="#demo-menu">
-    <ui-drawer-header :innerClass="[$themeColor('on-primary'), $themeColor('primary-bg')]">
-      Header here
+  <ui-modal-drawer v-model="openDrawer" menuSelector="#demo-menu">
+    <ui-drawer-header
+      :innerClass="[$themeColor('on-primary'), $themeColor('primary-bg')]"
+    >
+      <ui-drawer-title>Header here</ui-drawer-title>
     </ui-drawer-header>
     <ui-drawer-content>
-      <ui-list-group>
-        <ui-list-nav>
-          <ui-item-a @click.native="() => { $router.back(); }" firstIcon="arrow_back">
-            Back
-          </ui-item-a>
-          <ui-item-a v-for="(item, index) in menu1" :key="index" :firstIcon="item.icon">
-            {{ item.name }}
-          </ui-item-a>
-        </ui-list-nav>
+      <ui-list-nav>
+        <ui-item-a
+          @click.native="() => { $router.back(); }"
+          firstIcon="arrow_back"
+          >Back</ui-item-a
+        >
         <ui-list-divider></ui-list-divider>
-        <ui-list-nav>
-          <ui-item-a v-for="(item, index) in menu2" :key="index" :firstIcon="item.icon">
-            {{ item.name }}
-          </ui-item-a>
-        </ui-list-nav>
-      </ui-list-group>
+      </ui-list-nav>
     </ui-drawer-content>
-  </ui-temporary-drawer>
+  </ui-modal-drawer>
+
+  <ui-drawer-scrim></ui-drawer-scrim>
 
   <main class="demo-main">
     <div id="content-main">
       <p v-for="i in 12" :key="i" class="demo-paragraph">
-        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
       </p>
     </div>
   </main>
@@ -64,15 +72,8 @@
 export default {
   data() {
     return {
-      controls: {
-        rtl: false,
-        noAction: false,
-        dense: false,
-        fixed: false,
-        prominent: false,
-        short: false,
-        alwaysCollapsed: false
-      },
+      title: 'Hello BalmUI',
+      openDrawer: false,
       showMoreActions: false
     };
   }

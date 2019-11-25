@@ -5,7 +5,7 @@
     </template>
     <template v-else>
       <!-- header -->
-      <ui-top-app-bar class="balmui-head" fixed contentSelector=".balmui-body" navId="balmui-menu">
+      <ui-top-app-bar class="balmui-head" contentSelector=".balmui-body" navId="balmui-menu" fixed>
         <router-link to="/" :class="['catalog-title', $themeColor('on-primary')]">BalmUI</router-link>
         <template #toolbar="{ itemClass }">
           <a :class="itemClass" href="https://github.com/balmjs/balm-ui">
@@ -32,7 +32,7 @@
                     @click.native="handleMenu"
                   >
                     <span v-if="item.icon" class="demo-catalog-list-icon">
-                      <img :src="require(`../../../images/icon/${item.icon}`)" :alt="item.name">
+                      <img :src="require(`../../../images/icon/${item.icon}`)" :alt="item.name" />
                     </span>
                     {{ item.name }}
                   </router-link>

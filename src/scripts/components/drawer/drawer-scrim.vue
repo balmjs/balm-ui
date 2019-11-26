@@ -1,5 +1,5 @@
 <template>
-  <!-- Modal variant only -->
+  <!-- Scrim (modal and bottom only) -->
   <div class="mdc-drawer-scrim"></div>
 </template>
 

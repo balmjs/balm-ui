@@ -17,8 +17,8 @@
         </span>
       </section>
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-        <!-- Action items (optional) / Contextual actions -->
-        <!-- Overflow menu (optional) -->
+        <!-- Regular: Action items (optional) & Overflow menu (optional) -->
+        <!-- Contextual action bar: Contextual actions & Overflow menu (optional) -->
         <slot name="toolbar" :itemClass="UI_TOP_APP_BAR.cssClasses.item"></slot>
       </section>
     </div>
@@ -30,7 +30,7 @@ import variantMixin from '../../mixins/variant';
 import { MDCTopAppBar } from '../../../material-components-web/top-app-bar';
 import UI_GLOBAL from '../../config/constants';
 
-// Define constants
+// Define top app bar constants
 const UI_TOP_APP_BAR = {
   TYPES: ['menu', 'close'], // NOTE: Type - 0: Regular, 1: Contextual action bar
   VARIANTS: {

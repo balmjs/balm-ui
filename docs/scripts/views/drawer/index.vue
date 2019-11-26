@@ -10,27 +10,31 @@
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h4>
       <ui-list nonInteractive>
         <ui-item>
           1.1
-          <router-link
-            :to="{name: 'layouts.permanent-drawer-above-toolbar'}"
-          >Permanent Drawer Above Toolbar</router-link>
+          <router-link :to="{ name: 'layouts.permanent-drawer-above-toolbar' }"
+            >Permanent Drawer Above Toolbar</router-link
+          >
         </ui-item>
         <ui-item>
           1.2
-          <router-link
-            :to="{name: 'layouts.permanent-drawer-below-toolbar'}"
-          >Permanent Drawer Below Toolbar</router-link>
+          <router-link :to="{ name: 'layouts.permanent-drawer-below-toolbar' }"
+            >Permanent Drawer Below Toolbar</router-link
+          >
         </ui-item>
         <ui-item>
           1.3
-          <router-link :to="{name: 'layouts.dismissible-drawer'}">Dismissible Drawer</router-link>
+          <router-link :to="{ name: 'layouts.dismissible-drawer' }"
+            >Dismissible Drawer</router-link
+          >
         </ui-item>
         <ui-item>
           1.4
-          <router-link :to="{name: 'layouts.modal-drawer'}">Modal Drawer</router-link>
+          <router-link :to="{ name: 'layouts.modal-drawer' }"
+            >Modal Drawer</router-link
+          >
         </ui-item>
       </ui-list>
 
@@ -39,7 +43,9 @@
       <ui-apidocs name="drawer-header"></ui-apidocs>
       <ui-apidocs name="drawer-content"></ui-apidocs>
 
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
+        3. Sass Variables
+      </h4>
       <ui-cssdocs name="drawer"></ui-cssdocs>
     </div>
   </div>

@@ -1,4 +1,5 @@
 <template>
+  <!-- Header (optional) -->
   <header class="mdc-drawer__header">
     <slot></slot>
   </header>

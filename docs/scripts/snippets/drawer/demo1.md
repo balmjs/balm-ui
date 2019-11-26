@@ -1,5 +1,5 @@
 ```html
-<ui-permanent-drawer>
+<ui-drawer>
   <ui-drawer-header>
     <ui-drawer-title>{{ title }}</ui-drawer-title>
     <ui-drawer-subtitle>{{ subtitle }}</ui-drawer-subtitle>
@@ -29,7 +29,7 @@
       </template>
     </ui-list-nav>
   </ui-drawer-content>
-</ui-permanent-drawer>
+</ui-drawer>
 
 <main class="demo-main">
   <ui-top-app-bar

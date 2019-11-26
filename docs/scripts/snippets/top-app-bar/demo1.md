@@ -32,7 +32,7 @@
     </template>
   </ui-top-app-bar>
 
-  <ui-modal-drawer v-model="openDrawer" menuSelector="#demo-menu">
+  <ui-drawer variant="modal" v-model="openDrawer" menuSelector="#demo-menu">
     <ui-drawer-header
       :innerClass="[$themeColor('on-primary'), $themeColor('primary-bg')]"
     >
@@ -48,7 +48,7 @@
         <ui-list-divider></ui-list-divider>
       </ui-list-nav>
     </ui-drawer-content>
-  </ui-modal-drawer>
+  </ui-drawer>
 
   <ui-drawer-scrim></ui-drawer-scrim>
 

@@ -1,15 +1,24 @@
 <template>
   <div class="demo--drawer demo--dismissible-drawer">
-    <ui-dismissible-drawer menuSelector="#demo-menu">
+    <ui-drawer variant="dismissible" menuSelector="#demo-menu">
       <ui-drawer-header>
         <ui-drawer-title>{{ title }}</ui-drawer-title>
         <ui-drawer-subtitle>{{ subtitle }}</ui-drawer-subtitle>
       </ui-drawer-header>
-      <ui-drawer-common-conntent>
-        <ui-item-a firstIcon="arrow_back" @click.native="() => { $router.back(); }">Back</ui-item-a>
+      <ui-drawer-common-content>
+        <ui-item-a
+          activated
+          firstIcon="arrow_back"
+          @click.native="
+            () => {
+              $router.back();
+            }
+          "
+          >Back</ui-item-a
+        >
         <ui-list-divider></ui-list-divider>
-      </ui-drawer-common-conntent>
-    </ui-dismissible-drawer>
+      </ui-drawer-common-content>
+    </ui-drawer>
 
     <ui-drawer-app-content class="demo-main">
       <ui-top-app-bar
@@ -17,7 +26,8 @@
         navId="demo-menu"
         class="demo-top-app-bar"
         v-shadow="4"
-      >Dismissible Drawer</ui-top-app-bar>
+        >Dismissible Drawer</ui-top-app-bar
+      >
 
       <div :class="[$tt('body1'), 'demo-content']">
         <div :class="$tt('body2')">
@@ -33,7 +43,7 @@
 </template>
 
 <script>
-import UiDrawerCommonConntent from './drawer-common-conntent';
+import UiDrawerCommonContent from './drawer-common-content';
 import DrawerMixin from '@/mixins/drawer';
 import snippets from '@/mixins/snippets';
 
@@ -42,7 +52,7 @@ export default {
     titleTemplate: '%s - Dismissible Drawer'
   },
   components: {
-    UiDrawerCommonConntent
+    UiDrawerCommonContent
   },
   mixins: [DrawerMixin, snippets],
   created() {

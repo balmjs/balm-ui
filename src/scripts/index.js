@@ -4,9 +4,7 @@ import multiConfigure from './config/multi-configure';
  * Components
  */
 // Layouts
-import UiPermanentDrawer from './components/drawer/permanent';
-import UiDismissibleDrawer from './components/drawer/dismissible';
-import UiModalDrawer from './components/drawer/modal';
+import UiDrawer from './components/drawer/drawer';
 import UiDrawerHeader from './components/drawer/drawer-header';
 import UiDrawerTitle from './components/drawer/drawer-title';
 import UiDrawerSubtitle from './components/drawer/drawer-subtitle';
@@ -98,9 +96,7 @@ const version = require('../../package.json').version;
 
 const components = {
   // Layouts
-  UiPermanentDrawer,
-  UiDismissibleDrawer,
-  UiModalDrawer,
+  UiDrawer,
   UiDrawerHeader,
   UiDrawerTitle,
   UiDrawerSubtitle,

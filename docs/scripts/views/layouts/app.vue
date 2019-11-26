@@ -5,8 +5,17 @@
     </template>
     <template v-else>
       <!-- header -->
-      <ui-top-app-bar class="balmui-head" contentSelector=".balmui-body" navId="balmui-menu" fixed>
-        <router-link to="/" :class="['catalog-title', $themeColor('on-primary')]">BalmUI</router-link>
+      <ui-top-app-bar
+        class="balmui-head"
+        contentSelector=".balmui-body"
+        navId="balmui-menu"
+        fixed
+      >
+        <router-link
+          to="/"
+          :class="['catalog-title', $themeColor('on-primary')]"
+          >BalmUI</router-link
+        >
         <template #toolbar="{ itemClass }">
           <a :class="itemClass" href="https://github.com/balmjs/balm-ui">
             <svg-github></svg-github>
@@ -15,7 +24,12 @@
       </ui-top-app-bar>
       <!-- content -->
       <div class="balmui-body">
-        <ui-dismissible-drawer v-model="open" class="balmui-menu" menuSelector="#balmui-menu">
+        <ui-drawer
+          class="balmui-menu"
+          v-model="open"
+          variant="dismissible"
+          menuSelector="#balmui-menu"
+        >
           <ui-drawer-content>
             <ui-list-nav ref="mainmenu" class="catalog-list">
               <template #default="{ itemClass, activeClass }">
@@ -23,30 +37,42 @@
                   <router-link
                     v-if="item.icon || item.isSubmenu"
                     :key="`item${index}`"
-                    :class="[itemClass, {
-                      'submenu': item.isSubmenu,
-                      'no-icon': !item.icon
-                    }, $textColor('primary', 'light')]"
+                    :class="[
+                      itemClass,
+                      {
+                        submenu: item.isSubmenu,
+                        'no-icon': !item.icon
+                      },
+                      $textColor('primary', 'light')
+                    ]"
                     :to="item.url"
                     :active-class="activeClass"
                     @click.native="handleMenu"
                   >
                     <span v-if="item.icon" class="demo-catalog-list-icon">
-                      <img :src="require(`../../../images/icon/${item.icon}`)" :alt="item.name" />
+                      <img
+                        :src="require(`../../../images/icon/${item.icon}`)"
+                        :alt="item.name"
+                      />
                     </span>
                     {{ item.name }}
                   </router-link>
-                  <ui-list-divider v-else-if="item === '-'" :key="`divider${index}`"></ui-list-divider>
+                  <ui-list-divider
+                    v-else-if="item === '-'"
+                    :key="`divider${index}`"
+                  ></ui-list-divider>
                   <h3
                     v-else
                     :key="`head${index}`"
                     :class="$textColor('primary', 'light')"
-                  >{{ item.name }}</h3>
+                  >
+                    {{ item.name }}
+                  </h3>
                 </template>
               </template>
             </ui-list-nav>
           </ui-drawer-content>
-        </ui-dismissible-drawer>
+        </ui-drawer>
         <main ref="body" class="balmui-content" v-anchor.offset="60">
           <transition name="loading">
             <div v-if="loading" class="loading-container">

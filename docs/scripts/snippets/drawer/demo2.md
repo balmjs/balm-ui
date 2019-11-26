@@ -7,7 +7,7 @@
 </ui-top-app-bar>
 
 <main class="demo-main">
-  <ui-permanent-drawer>
+  <ui-drawer>
     <ui-drawer-header>
       <ui-drawer-title>{{ title }}</ui-drawer-title>
       <ui-drawer-subtitle>{{ subtitle }}</ui-drawer-subtitle>
@@ -37,7 +37,7 @@
         </template>
       </ui-list-nav>
     </ui-drawer-content>
-  </ui-permanent-drawer>
+  </ui-drawer>
 
   <div :class="[$tt('body1'), 'demo-content']">
     <div :class="$tt('body2')">

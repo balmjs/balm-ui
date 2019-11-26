@@ -5,7 +5,7 @@ import Vue from 'vue';
 import BalmUI from 'balm-ui';
 
 Vue.use(BalmUI, {
-  // Optional. Overwrite `<ui-list>` and `<ui-list-nav>` props.
+  // Optional. Overwrite `<ui-list>` props.
   UiList: {
     // some props
   }
@@ -24,7 +24,7 @@ import 'balm-ui/components/list.css';
 import 'balm-ui/components/icon.css'; // Optional.
 
 Vue.use(UiListComponents, {
-  // Optional. Overwrite `<ui-list>` and `<ui-list-nav>` props.
+  // Optional. Overwrite `<ui-list>` props.
   UiList: {
     // some props
   }

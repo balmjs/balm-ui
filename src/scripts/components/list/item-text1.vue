@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ui-item-text'
+  name: 'ui-item-text1'
 };
 </script>

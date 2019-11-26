@@ -39,14 +39,14 @@
       <ui-drawer-title>Header here</ui-drawer-title>
     </ui-drawer-header>
     <ui-drawer-content>
-      <ui-list-nav>
+      <ui-list>
         <ui-item-a
           @click.native="() => { $router.back(); }"
           firstIcon="arrow_back"
           >Back</ui-item-a
         >
         <ui-list-divider></ui-list-divider>
-      </ui-list-nav>
+      </ui-list>
     </ui-drawer-content>
   </ui-drawer>
 

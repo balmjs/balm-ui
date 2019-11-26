@@ -9,7 +9,7 @@
     <ui-drawer-subtitle>{{ subtitle }}</ui-drawer-subtitle>
   </ui-drawer-header>
   <ui-drawer-content>
-    <ui-list-nav>
+    <ui-list>
       <ui-item-a
         activated
         firstIcon="arrow_back"
@@ -39,7 +39,7 @@
           </ui-item-a>
         </template>
       </template>
-    </ui-list-nav>
+    </ui-list>
   </ui-drawer-content>
 </ui-drawer>
 

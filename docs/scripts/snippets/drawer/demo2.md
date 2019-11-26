@@ -13,7 +13,7 @@
       <ui-drawer-subtitle>{{ subtitle }}</ui-drawer-subtitle>
     </ui-drawer-header>
     <ui-drawer-content>
-      <ui-list-nav>
+      <ui-list>
         <template v-for="(item, index) in menu">
           <ui-list-divider
             v-if="item === '-'"
@@ -35,7 +35,7 @@
             </ui-item-a>
           </template>
         </template>
-      </ui-list-nav>
+      </ui-list>
     </ui-drawer-content>
   </ui-drawer>
 

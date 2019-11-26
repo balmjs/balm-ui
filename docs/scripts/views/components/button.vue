@@ -5,8 +5,15 @@
         <ui-button :variant="variant">{{ text }}</ui-button>
       </div>
       <div class="hero-options">
-        <ui-select class="hero-option" :options="options" v-model="variant">Variant</ui-select>
-        <ui-textfield class="hero-option" v-model="text">Button Text</ui-textfield>
+        <ui-select
+          class="hero-option"
+          :options="ButtonVariantOptions"
+          v-model="variant"
+          >Variant</ui-select
+        >
+        <ui-textfield class="hero-option" v-model="text"
+          >Button Text</ui-textfield
+        >
       </div>
     </header>
 
@@ -20,22 +27,36 @@
       <section class="demo-wrapper">
         <div class="demo-controls">
           <ui-form-field>
-            <ui-checkbox id="toggle-disabled" v-model="controls.disabled"></ui-checkbox>
-            <label for="toggle-disabled">Disabled buttons (excluding links)</label>
+            <ui-checkbox
+              id="toggle-disabled"
+              v-model="controls.disabled"
+            ></ui-checkbox>
+            <label for="toggle-disabled"
+              >Disabled buttons (excluding links)</label
+            >
           </ui-form-field>
         </div>
 
         <h4 :class="$tt('headline6')">1.1 Default</h4>
-        <ui-button-demo :disabled="controls.disabled" :code="demoCode"></ui-button-demo>
+        <ui-button-demo
+          :disabled="controls.disabled"
+          :code="demoCode"
+        ></ui-button-demo>
 
         <h4 :class="$tt('headline6')">1.2 CSS Only</h4>
-        <ui-button-demo cssOnly :disabled="controls.disabled" :code="demoCode"></ui-button-demo>
+        <ui-button-demo
+          cssOnly
+          :disabled="controls.disabled"
+          :code="demoCode"
+        ></ui-button-demo>
       </section>
 
       <h3 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h3>
       <ui-apidocs name="button"></ui-apidocs>
 
-      <h3 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h3>
+      <h3 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
+        3. Sass Variables
+      </h3>
       <ui-cssdocs name="button"></ui-cssdocs>
     </div>
   </div>
@@ -45,7 +66,7 @@
 import snippets from '@/mixins/snippets';
 import UiButtonDemo from '@/views/demos/button';
 
-const options = [
+const ButtonVariantOptions = [
   {
     label: 'Text',
     value: 0
@@ -74,7 +95,7 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      options,
+      ButtonVariantOptions,
       variant: 0,
       text: 'Button',
       controls: {

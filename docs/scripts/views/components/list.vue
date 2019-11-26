@@ -1,20 +1,41 @@
 <template>
   <div :class="[$tt('body1'), 'demo--list']">
     <section class="hero component">
-      <ui-list type="2" avatar ripple singleSelection class="demo-list demo-list--with-avatars">
-        <ui-item
-          v-for="(item, index) in folders"
-          :key="index"
-          v-ripple
-          :firstIcon="item.first"
-          :lastIcon="item.last"
-          :selected="item.selected"
-          :activated="item.activated"
+      <div class="hero-demo">
+        <ui-list :type="type" :avatar="beforeText === 2">
+          <ui-item v-for="i in 3" :key="i" v-ripple>
+            <ui-item-first-content v-if="beforeText">
+              <ui-icon v-if="beforeText === 1">favorite</ui-icon>
+              <svg-avatar v-if="beforeText === 2"></svg-avatar>
+            </ui-item-first-content>
+            <ui-item-text-content v-if="type === 2">
+              <ui-item-text1>Two-line item</ui-item-text1>
+              <ui-item-text2>Secondary text</ui-item-text2>
+            </ui-item-text-content>
+            <ui-item-text-content v-else>Single-line item</ui-item-text-content>
+            <ui-item-last-content v-if="afterText">
+              <ui-icon-button
+                v-if="afterText === 1"
+                icon="more_vert"
+              ></ui-icon-button>
+              <span v-if="afterText === 2">Meta</span>
+            </ui-item-last-content>
+          </ui-item>
+        </ui-list>
+      </div>
+      <div class="hero-options">
+        <ui-select class="hero-option" :options="ListTypeOptions" v-model="type"
+          >Type</ui-select
         >
-          <ui-item-text>{{ item.text }}</ui-item-text>
-          <ui-item-subtext>{{ item.subtext }}</ui-item-subtext>
-        </ui-item>
-      </ui-list>
+        <div class="hero-option hero-options">
+          <ui-select :options="BeforeListTextOptions" v-model="beforeText"
+            >Before list text</ui-select
+          >
+          <ui-select :options="AfterListTextOptions" v-model="afterText"
+            >After list text</ui-select
+          >
+        </div>
+      </div>
     </section>
 
     <ui-toc-affix></ui-toc-affix>
@@ -23,497 +44,9 @@
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h4>
       <div id="demo-wrapper">
-        <section>
-          <h2>1.1 Custom Colors</h2>
-          <section>
-            <h3>Example - Two-Line Lists, Avatars, Metadata, Inset Dividers</h3>
-            <ui-list-group class="demo-list-group--custom">
-              <ui-list-group-subheader>Folders</ui-list-group-subheader>
-              <ui-list
-                type="2"
-                avatar
-                class="demo-list demo-list--with-avatars demo-list--custom demo-list--icon-placeholders"
-              >
-                <ui-item
-                  v-for="(item, index) in folders"
-                  :key="index"
-                  :firstIcon="item.first"
-                  :lastIcon="item.last"
-                >
-                  <ui-item-text>{{ item.text }}</ui-item-text>
-                  <ui-item-subtext>{{ item.subtext }}</ui-item-subtext>
-                </ui-item>
-              </ui-list>
-
-              <ui-list-divider inset></ui-list-divider>
-
-              <ui-list-group-subheader>Files</ui-list-group-subheader>
-              <ui-list
-                type="2"
-                avatar
-                class="demo-list demo-list--with-avatars demo-list--custom demo-list--icon-placeholders"
-              >
-                <ui-item
-                  v-for="(item, index) in files"
-                  :key="index"
-                  :firstIcon="item.first"
-                  :lastIcon="item.last"
-                >
-                  <ui-item-text>{{ item.text }}</ui-item-text>
-                  <ui-item-subtext>{{ item.subtext }}</ui-item-subtext>
-                </ui-item>
-              </ui-list>
-            </ui-list-group>
-          </section>
-          <ui-accordion>
-            <ui-markdown :code="code[1]"></ui-markdown>
-          </ui-accordion>
-        </section>
-
-        <section>
-          <h2>1.2 Single-Line List</h2>
-          <section>
-            <h3>Text only, non-interactive (no states)</h3>
-            <ui-list nonInteractive class="demo-list">
-              <ui-item v-for="i in 3" :key="i">Single-line item</ui-item>
-            </ui-list>
-          </section>
-
-          <section>
-            <h3>Text only (dense)</h3>
-            <ui-list dense class="demo-list">
-              <ui-item v-for="i in 3" :key="i">Single-line item</ui-item>
-            </ui-list>
-          </section>
-
-          <ui-accordion>
-            <ui-markdown :code="code[2]"></ui-markdown>
-          </ui-accordion>
-
-          <section>
-            <h3>Graphic</h3>
-            <aside>
-              <p>
-                <em>Note: The grey background is styled using demo placeholder styles</em>
-              </p>
-            </aside>
-            <ui-list class="demo-list demo-list--icon-placeholders">
-              <ui-item v-for="i in 3" :key="i" firstPlaceholder>Single-line item</ui-item>
-            </ui-list>
-          </section>
-
-          <section>
-            <h3>Graphic (dense)</h3>
-            <ui-list dense class="demo-list demo-list--icon-placeholders">
-              <ui-item v-for="i in 3" :key="i" firstPlaceholder>Single-line item</ui-item>
-            </ui-list>
-          </section>
-
-          <section>
-            <h3>Graphic Example - Icon with Text</h3>
-            <ui-list class="demo-list">
-              <ui-item
-                v-for="(item, index) in items"
-                :key="index"
-                :firstIcon="item.icon"
-              >{{ item.text }}</ui-item>
-            </ui-list>
-          </section>
-
-          <ui-accordion>
-            <ui-markdown :code="code[3]"></ui-markdown>
-          </ui-accordion>
-
-          <section>
-            <h3>Leading Checkbox {{ checkedValues }}</h3>
-            <ui-list avatar class="demo-list demo-list">
-              <ui-item v-for="(item, index) in items" :key="index" firstPlaceholder v-ripple>
-                <template #before>
-                  <ui-checkbox v-model="checkedValues" :value="index"></ui-checkbox>
-                </template>
-                <label :for="`leading-${index}`">{{ item.text }}</label>
-              </ui-item>
-            </ui-list>
-          </section>
-
-          <section>
-            <h3>Leading Radio Buttons ({{ checkedValue }})</h3>
-            <ui-list avatar class="demo-list demo-list">
-              <ui-item v-for="(item, index) in items" :key="index" firstPlaceholder v-ripple>
-                <template #before>
-                  <ui-radio name="leading-radios" v-model="checkedValue" :value="index"></ui-radio>
-                </template>
-                <label :for="`leading-${index}`">{{ item.text }}</label>
-              </ui-item>
-            </ui-list>
-          </section>
-
-          <ui-accordion>
-            <ui-markdown :code="code[13]"></ui-markdown>
-          </ui-accordion>
-
-          <section>
-            <h3>Avatar List</h3>
-            <ui-list avatar class="demo-list demo-list--with-avatars demo-list--icon-placeholders">
-              <ui-item v-for="i in 3" :key="i" firstPlaceholder>Single-line item</ui-item>
-            </ui-list>
-          </section>
-
-          <section>
-            <h3>Avatar List (dense)</h3>
-            <ui-list
-              avatar
-              dense
-              class="demo-list demo-list--with-avatars demo-list--icon-placeholders"
-            >
-              <ui-item v-for="i in 3" :key="i" firstPlaceholder>Single-line item</ui-item>
-            </ui-list>
-          </section>
-
-          <section>
-            <h3>Example - Avatar with Text</h3>
-            <ui-list avatar dense class="demo-list demo-list--with-avatars">
-              <ui-item
-                v-for="(item, index) in items"
-                :key="index"
-                :firstImage="item.avatar"
-              >{{ item.name }}</ui-item>
-            </ui-list>
-          </section>
-
-          <ui-accordion>
-            <ui-markdown :code="code[4]"></ui-markdown>
-          </ui-accordion>
-
-          <section>
-            <h3>Metadata</h3>
-            <ui-list class="demo-list">
-              <ui-item v-for="i in 3" :key="i" :lastText="`$${i}0.00`">Single-line item</ui-item>
-            </ui-list>
-          </section>
-
-          <section>
-            <h3>Metadata (Dense)</h3>
-            <ui-list dense class="demo-list">
-              <ui-item v-for="i in 3" :key="i" :lastText="`$${i}0.00`">Single-line item</ui-item>
-            </ui-list>
-          </section>
-
-          <section>
-            <h3>Trailing Checkbox</h3>
-            <ui-list avatar class="demo-list demo-list">
-              <ui-item v-for="(item, index) in items" :key="index" lastPlaceholder v-ripple>
-                <label :for="`trailing-${index}`">{{ item.text }}</label>
-                <template #after>
-                  <ui-checkbox :id="`trailing-${index}`"></ui-checkbox>
-                </template>
-              </ui-item>
-            </ui-list>
-          </section>
-
-          <section>
-            <h3>Avatar + Metadata</h3>
-            <ui-list avatar class="demo-list demo-list--with-avatars demo-list--icon-placeholders">
-              <ui-item
-                v-for="i in 3"
-                :key="i"
-                firstPlaceholder
-                :lastText="`$${i}0.00`"
-              >Single-line item</ui-item>
-            </ui-list>
-          </section>
-
-          <section>
-            <h3>Avatar + Metadata (Dense)</h3>
-            <ui-list
-              dense
-              avatar
-              class="demo-list demo-list--with-avatars demo-list--icon-placeholders"
-            >
-              <ui-item
-                v-for="i in 3"
-                :key="i"
-                firstPlaceholder
-                :lastText="`$${i}0.00`"
-              >Single-line item</ui-item>
-            </ui-list>
-          </section>
-
-          <ui-accordion>
-            <ui-markdown :code="code[5]"></ui-markdown>
-          </ui-accordion>
-
-          <section>
-            <h3>Example - Avatar with Text and Icon</h3>
-            <ui-list
-              avatar
-              class="demo-list demo-list--with-avatars demo-list--avatar-and-meta-icon"
-            >
-              <ui-item
-                v-for="(item, index) in items"
-                :key="index"
-                :firstImage="item.avatar"
-                :lastIcon="item.favorite ? 'favorite' : 'favorite_border'"
-              >{{ item.name }}</ui-item>
-            </ui-list>
-          </section>
-
-          <ui-accordion>
-            <ui-markdown :code="code[6]"></ui-markdown>
-          </ui-accordion>
-        </section>
-
-        <section>
-          <h2>1.3 Two-Line List</h2>
-          <section>
-            <h3>Text-Only</h3>
-            <ui-list type="2" class="demo-list">
-              <ui-item v-for="i in 3" :key="i">
-                <ui-item-text>Two-line item</ui-item-text>
-                <ui-item-subtext>Secondary text</ui-item-subtext>
-              </ui-item>
-            </ui-list>
-          </section>
-
-          <section>
-            <h3>Text-Only (Dense)</h3>
-            <ui-list type="2" dense class="demo-list">
-              <ui-item v-for="i in 3" :key="i">
-                <ui-item-text>Two-line item</ui-item-text>
-                <ui-item-subtext>Secondary text</ui-item-subtext>
-              </ui-item>
-            </ui-list>
-          </section>
-
-          <section>
-            <h3>Graphic</h3>
-            <ui-list type="2" class="demo-list demo-list--icon-placeholders">
-              <ui-item v-for="i in 3" :key="i" firstPlaceholder>
-                <ui-item-text>Two-line item</ui-item-text>
-                <ui-item-subtext>Secondary text</ui-item-subtext>
-              </ui-item>
-            </ui-list>
-          </section>
-
-          <ui-accordion>
-            <ui-markdown :code="code[7]"></ui-markdown>
-          </ui-accordion>
-
-          <section>
-            <h3>Graphic (Dense)</h3>
-            <ui-list type="2" dense class="demo-list demo-list--icon-placeholders">
-              <ui-item v-for="i in 3" :key="i" firstPlaceholder>
-                <ui-item-text>Two-line item</ui-item-text>
-                <ui-item-subtext>Secondary text</ui-item-subtext>
-              </ui-item>
-            </ui-list>
-          </section>
-
-          <section>
-            <h3>Avatar List</h3>
-            <ui-list
-              type="2"
-              avatar
-              class="demo-list demo-list--with-avatars demo-list--icon-placeholders"
-            >
-              <ui-item v-for="i in 3" :key="i" firstPlaceholder>
-                <ui-item-text>Two-line item</ui-item-text>
-                <ui-item-subtext>Secondary text</ui-item-subtext>
-              </ui-item>
-            </ui-list>
-          </section>
-
-          <section>
-            <h3>Avatar List (dense)</h3>
-            <ui-list
-              type="2"
-              dense
-              avatar
-              class="demo-list demo-list--with-avatars demo-list--icon-placeholders"
-            >
-              <ui-item v-for="i in 3" :key="i" firstPlaceholder>
-                <ui-item-text>Two-line item</ui-item-text>
-                <ui-item-subtext>Secondary text</ui-item-subtext>
-              </ui-item>
-            </ui-list>
-          </section>
-
-          <section>
-            <h3>Metadata</h3>
-            <ui-list type="2" class="demo-list">
-              <ui-item v-for="i in 3" :key="i" :lastText="`$${i}0.00`">
-                <ui-item-text>Two-line item</ui-item-text>
-                <ui-item-subtext>Secondary text</ui-item-subtext>
-              </ui-item>
-            </ui-list>
-          </section>
-
-          <ui-accordion>
-            <ui-markdown :code="code[8]"></ui-markdown>
-          </ui-accordion>
-
-          <section>
-            <h3>Metadata (Dense)</h3>
-            <ui-list type="2" dense class="demo-list">
-              <ui-item v-for="i in 3" :key="i" :lastText="`$${i}0.00`">
-                <ui-item-text>Two-line item</ui-item-text>
-                <ui-item-subtext>Secondary text</ui-item-subtext>
-              </ui-item>
-            </ui-list>
-          </section>
-
-          <section>
-            <h3>Example - Two-line Avatar + Text + Icon</h3>
-            <ui-list
-              type="2"
-              avatar
-              class="demo-list demo-list--with-avatars demo-list--icon-placeholders"
-            >
-              <ui-item
-                v-for="(item, index) in folders"
-                :key="index"
-                :firstIcon="item.first"
-                :lastIcon="item.last"
-              >
-                <ui-item-text>{{ item.text }}</ui-item-text>
-                <ui-item-subtext>{{ item.subtext }}</ui-item-subtext>
-              </ui-item>
-            </ui-list>
-          </section>
-
-          <ui-accordion>
-            <ui-markdown :code="code[9]"></ui-markdown>
-          </ui-accordion>
-
-          <section>
-            <h3>Lists w/ Ellipsis</h3>
-            <ui-list
-              type="2"
-              avatar
-              class="demo-list demo-list--with-avatars demo-list--icon-placeholders"
-            >
-              <ui-item
-                v-for="(item, index) in folders"
-                :key="index"
-                :firstIcon="item.first"
-                :lastIcon="item.last"
-              >
-                <ui-item-text>{{ item.title }}</ui-item-text>
-                <ui-item-subtext>{{ item.description }}</ui-item-subtext>
-              </ui-item>
-            </ui-list>
-          </section>
-        </section>
-
-        <section>
-          <h2>1.4 List Dividers</h2>
-          <section>
-            <h3>Full-Width Dividers</h3>
-            <ui-list class="demo-list">
-              <ui-item v-for="i in 3" :key="i">Single-line item - section 1</ui-item>
-              <ui-item-divider></ui-item-divider>
-              <ui-item v-for="i in 2" :key="i + 3">Single-line item - section 2</ui-item>
-            </ui-list>
-          </section>
-
-          <section>
-            <h3>Inset Dividers</h3>
-            <ui-list
-              avatar
-              class="demo-list demo-list--with-avatars demo-list demo-list--icon-placeholders"
-            >
-              <ui-item v-for="i in 3" :key="i" firstPlaceholder>Single-line item - section 1</ui-item>
-              <ui-item-divider inset></ui-item-divider>
-              <ui-item v-for="i in 2" :key="i + 3" firstPlaceholder>Single-line item - section 2</ui-item>
-            </ui-list>
-          </section>
-          <ui-accordion>
-            <ui-markdown :code="code[10]"></ui-markdown>
-          </ui-accordion>
-        </section>
-
-        <section>
-          <h2>1.5 List Groups</h2>
-          <section>
-            <h3>Basic Usage</h3>
-            <ui-list-group>
-              <ui-list-group-subheader>List 1</ui-list-group-subheader>
-              <ui-list class="demo-list">
-                <ui-item v-for="i in 3" :key="i">Single-line item</ui-item>
-              </ui-list>
-              <ui-list-divider></ui-list-divider>
-              <ui-list-group-subheader>List 2</ui-list-group-subheader>
-              <ui-list class="demo-list">
-                <ui-item v-for="i in 3" :key="i">Single-line item</ui-item>
-              </ui-list>
-            </ui-list-group>
-          </section>
-
-          <ui-accordion>
-            <ui-markdown :code="code[11]"></ui-markdown>
-          </ui-accordion>
-
-          <section>
-            <h3>Example - Two-Line Lists, Avatars, Metadata, Inset Dividers</h3>
-            <ui-list-group>
-              <ui-list-group-subheader>Folders</ui-list-group-subheader>
-              <ui-list
-                type="2"
-                avatar
-                class="demo-list demo-list--with-avatars demo-list--icon-placeholders"
-              >
-                <ui-item
-                  v-for="(item, index) in folders"
-                  :key="index"
-                  :firstIcon="item.first"
-                  :lastIcon="item.last"
-                >
-                  <ui-item-text>{{ item.text }}</ui-item-text>
-                  <ui-item-subtext>{{ item.subtext }}</ui-item-subtext>
-                </ui-item>
-              </ui-list>
-
-              <ui-list-divider inset></ui-list-divider>
-
-              <ui-list-group-subheader>Files</ui-list-group-subheader>
-              <ui-list
-                type="2"
-                avatar
-                class="demo-list demo-list--with-avatars demo-list--icon-placeholders"
-              >
-                <ui-item
-                  v-for="(item, index) in files"
-                  :key="index"
-                  :firstIcon="item.first"
-                  :lastIcon="item.last"
-                >
-                  <ui-item-text>{{ item.text }}</ui-item-text>
-                  <ui-item-subtext>{{ item.subtext }}</ui-item-subtext>
-                </ui-item>
-              </ui-list>
-            </ui-list-group>
-          </section>
-        </section>
-
-        <section>
-          <h2>1.6 Interactive Lists (with ink ripple)</h2>
-          <section>
-            <h3>Example - Interactive List</h3>
-            <ui-list-nav class="demo-list">
-              <ui-item-a
-                v-for="(item, index) in items"
-                :key="index"
-                v-ripple
-                :firstIcon="item.icon"
-              >{{ item.text }}</ui-item-a>
-            </ui-list-nav>
-          </section>
-          <ui-accordion>
-            <ui-markdown :code="code[12]"></ui-markdown>
-          </ui-accordion>
-        </section>
+        // TODO
       </div>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
@@ -522,7 +55,9 @@
       <ui-apidocs name="list-divider"></ui-apidocs>
       <ui-apidocs name="list-group"></ui-apidocs>
 
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
+        3. Sass Variables
+      </h4>
       <ui-cssdocs name="list"></ui-cssdocs>
     </div>
   </div>
@@ -530,14 +65,65 @@
 
 <script>
 import snippets from '@/mixins/snippets';
+import SvgAvatar from '@/components/avatar';
+
+const ListTypeOptions = [
+  {
+    label: 'Single-line list',
+    value: 1
+  },
+  {
+    label: 'Two-line list',
+    value: 2
+  }
+];
+
+const BeforeListTextOptions = [
+  {
+    label: 'None',
+    value: 0
+  },
+  {
+    label: 'Icon',
+    value: 1
+  },
+  {
+    label: 'Avatar',
+    value: 2
+  }
+];
+
+const AfterListTextOptions = [
+  {
+    label: 'None',
+    value: 0
+  },
+  {
+    label: 'Icon',
+    value: 1
+  },
+  {
+    label: 'Text',
+    value: 2
+  }
+];
 
 export default {
   metaInfo: {
     titleTemplate: '%s - List'
   },
+  components: {
+    SvgAvatar
+  },
   mixins: [snippets],
   data() {
     return {
+      ListTypeOptions,
+      BeforeListTextOptions,
+      AfterListTextOptions,
+      type: 1,
+      beforeText: 0,
+      afterText: 0,
       selectedIndex: 0,
       checkedValues: [],
       checkedValue: -1,

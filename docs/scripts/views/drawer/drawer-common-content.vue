@@ -1,6 +1,6 @@
 <template>
   <ui-drawer-content>
-    <ui-list-nav>
+    <ui-list>
       <slot></slot>
       <template v-for="(item, index) in menu">
         <ui-list-divider
@@ -23,7 +23,7 @@
           </ui-item-a>
         </template>
       </template>
-    </ui-list-nav>
+    </ui-list>
   </ui-drawer-content>
 </template>
 

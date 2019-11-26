@@ -31,8 +31,8 @@
           menuSelector="#balmui-menu"
         >
           <ui-drawer-content>
-            <ui-list-nav ref="mainmenu" class="catalog-list">
-              <template #default="{ itemClass, activeClass }">
+            <ui-list ref="mainmenu" class="catalog-list">
+              <template #default="{ itemClass, activatedClass }">
                 <template v-for="(item, index) in menu">
                   <router-link
                     v-if="item.icon || item.isSubmenu"
@@ -46,7 +46,7 @@
                       $textColor('primary', 'light')
                     ]"
                     :to="item.url"
-                    :active-class="activeClass"
+                    :active-class="activatedClass"
                     @click.native="handleMenu"
                   >
                     <span v-if="item.icon" class="demo-catalog-list-icon">
@@ -70,7 +70,7 @@
                   </h3>
                 </template>
               </template>
-            </ui-list-nav>
+            </ui-list>
           </ui-drawer-content>
         </ui-drawer>
         <main ref="body" class="balmui-content" v-anchor.offset="60">

@@ -14,18 +14,37 @@
         </ui-fab>
       </div>
       <div class="hero-options">
-        <ui-select class="hero-option" :options="options" v-model="variant">Variant</ui-select>
+        <ui-select
+          class="hero-option"
+          :options="FabVariantOptions"
+          v-model="variant"
+          >Variant</ui-select
+        >
         <ui-form-field v-if="variant" class="hero-option">
-          <ui-checkbox id="leading-icon" :value="1" v-model="leadingIcon"></ui-checkbox>
+          <ui-checkbox
+            id="leading-icon"
+            :value="1"
+            v-model="leadingIcon"
+          ></ui-checkbox>
           <label for="leading-icon">Leading icon</label>
         </ui-form-field>
         <div v-else class="hero-option">
           <ui-form-field>
-            <ui-radio id="default" name="mini" :value="0" v-model="mini"></ui-radio>
+            <ui-radio
+              id="default"
+              name="mini"
+              :value="0"
+              v-model="mini"
+            ></ui-radio>
             <label for="default">Default</label>
           </ui-form-field>
           <ui-form-field>
-            <ui-radio id="mini" name="mini" :value="1" v-model="mini"></ui-radio>
+            <ui-radio
+              id="mini"
+              name="mini"
+              :value="1"
+              v-model="mini"
+            ></ui-radio>
             <label for="mini">Mini</label>
           </ui-form-field>
         </div>
@@ -117,7 +136,7 @@
           </div>
           <div
             class="fab-motion-container__view"
-            :class="{'fab-motion-container__view--exited': !exited}"
+            :class="{ 'fab-motion-container__view--exited': !exited }"
           >
             <p>View two (without FAB)</p>
             <p>
@@ -125,7 +144,8 @@
                 id="enter-exit-back"
                 :disabled="!exited"
                 @click="$balmUI.onHide('exited')"
-              >Go back</ui-button>
+                >Go back</ui-button
+              >
             </p>
           </div>
           <ui-fab
@@ -134,7 +154,8 @@
             icon="add"
             :exited="exited"
             @click="$balmUI.onShow('exited')"
-          >add</ui-fab>
+            >add</ui-fab
+          >
         </div>
         <ui-accordion>
           <ui-markdown :code="code[3]"></ui-markdown>
@@ -165,7 +186,9 @@
       <h3 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h3>
       <ui-apidocs name="fab"></ui-apidocs>
 
-      <h3 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h3>
+      <h3 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
+        3. Sass Variables
+      </h3>
       <ui-cssdocs name="fab"></ui-cssdocs>
     </div>
   </div>
@@ -174,7 +197,7 @@
 <script>
 import snippets from '@/mixins/snippets';
 
-const options = [
+const FabVariantOptions = [
   {
     label: 'Regular',
     value: 0
@@ -192,7 +215,7 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      options,
+      FabVariantOptions,
       variant: 0,
       mini: 0,
       leadingIcon: false,

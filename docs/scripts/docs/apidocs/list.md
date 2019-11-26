@@ -1,6 +1,5 @@
 ```html
 <ui-list><!-- the item components --></ui-list>
-<ui-list-nav><!-- the item components --></ui-list-nav>
 ```
 
 #### Props
@@ -15,17 +14,17 @@
 
 #### Slots
 
-| Name      | Slots                                       | Description                                                      |
-| --------- | ------------------------------------------- | ---------------------------------------------------------------- |
-| `default` | `{ itemClass, selectedClass, activeClass }` | The default slot holds the item components and can contain HTML. |
+| Name      | Slots                                          | Description                                                      |
+| --------- | ---------------------------------------------- | ---------------------------------------------------------------- |
+| `default` | `{ itemClass, selectedClass, activatedClass }` | The default slot holds the item components and can contain HTML. |
 
 ```html
-<template #default="{ itemClass, selectedClass, activeClass }">
-  <ui-item :class="itemClass">Item</ui-item>
+<template #default="{ itemClass, selectedClass, activatedClass }">
+  <a :class="itemClass">Item</a>
 
-  <div :class="selectedClass"></div>
+  <a :class="selectedClass"></a>
 
-  <a :class="activeClass"></a>
+  <a :class="activatedClass"></a>
 </template>
 ```
 

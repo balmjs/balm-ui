@@ -13,28 +13,38 @@
       <h4 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h4>
       <ui-list nonInteractive>
         <ui-item>
-          1.1
-          <router-link :to="{ name: 'layouts.permanent-drawer-above-toolbar' }"
-            >Permanent Drawer Above Toolbar</router-link
-          >
+          <ui-item-text-content>
+            <span>1.1</span>
+            <router-link
+              :to="{ name: 'layouts.permanent-drawer-above-toolbar' }"
+              >Permanent Drawer Above Toolbar</router-link
+            >
+          </ui-item-text-content>
         </ui-item>
         <ui-item>
-          1.2
-          <router-link :to="{ name: 'layouts.permanent-drawer-below-toolbar' }"
-            >Permanent Drawer Below Toolbar</router-link
-          >
+          <ui-item-text-content>
+            <span>1.2</span>
+            <router-link
+              :to="{ name: 'layouts.permanent-drawer-below-toolbar' }"
+              >Permanent Drawer Below Toolbar</router-link
+            >
+          </ui-item-text-content>
         </ui-item>
         <ui-item>
-          1.3
-          <router-link :to="{ name: 'layouts.dismissible-drawer' }"
-            >Dismissible Drawer</router-link
-          >
+          <ui-item-text-content>
+            <span>1.3</span>
+            <router-link :to="{ name: 'layouts.dismissible-drawer' }"
+              >Dismissible Drawer</router-link
+            >
+          </ui-item-text-content>
         </ui-item>
         <ui-item>
-          1.4
-          <router-link :to="{ name: 'layouts.modal-drawer' }"
-            >Modal Drawer</router-link
-          >
+          <ui-item-text-content>
+            <span>1.4</span>
+            <router-link :to="{ name: 'layouts.modal-drawer' }"
+              >Modal Drawer</router-link
+            >
+          </ui-item-text-content>
         </ui-item>
       </ui-list>
 

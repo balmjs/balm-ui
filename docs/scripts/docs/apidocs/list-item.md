@@ -5,17 +5,10 @@
 
 #### Props
 
-| Name               | Type    | Default | Description                                           |
-| ------------------ | ------- | ------- | ----------------------------------------------------- |
-| `selected`         | boolean | `false` | Optional, styles the row in an selected state.        |
-| `activated`        | boolean | `false` | Optional, styles the row in an activated state.       |
-| `firstPlaceholder` | boolean | `false` | Optional, a placeholder of the first tile in the row. |
-| `firstIcon`        | string  | `null`  | Optional, an icon of the first tile in the row.       |
-| `firstImage`       | string  | `null`  | Optional, an image of the first tile in the row.      |
-| `lastPlaceholder`  | boolean | `false` | Optional, a placeholder of the last tile in the row.  |
-| `lastText`         | string  | `''`    | Optional, a small text of the last tile in the row.   |
-| `lastIcon`         | string  | `null`  | Optional, an icon of the last tile in the row.        |
-| `lastImage`        | string  | `null`  | Optional, an image of the last tile in the row.       |
+| Name        | Type    | Default | Description                                     |
+| ----------- | ------- | ------- | ----------------------------------------------- |
+| `selected`  | boolean | `false` | Optional, styles the row in an selected state.  |
+| `activated` | boolean | `false` | Optional, styles the row in an activated state. |
 
 #### Slots
 
@@ -25,22 +18,36 @@
 
 **Item child components:**
 
-- `<ui-item-text>`
-- `<ui-item-subtext>`
+- `<ui-item-text-content>`
+  - `<ui-item-text1>`
+  - `<ui-item-text2>`
+- `<ui-item-first-content>`
+- `<ui-item-last-content>`
 
 ```html
 <!-- Default List -->
 <ui-list>
   <ui-item>
-    <ui-item-text><!-- Primary text --></ui-item-text>
+    <ui-item-text-content><!-- Primary text --></ui-item-text-content>
   </ui-item>
 </ui-list>
 
 <!-- Two-Line List -->
 <ui-list type="2">
   <ui-item>
-    <ui-item-text><!-- Primary text --></ui-item-text>
-    <ui-item-subtext><!-- Secondary text --></ui-item-subtext>
+    <ui-item-text-content>
+      <ui-item-text><!-- Primary text --></ui-item-text>
+      <ui-item-subtext><!-- Secondary text --></ui-item-subtext>
+    </ui-item-text-content>
+  </ui-item>
+</ui-list>
+
+<!-- Rich List -->
+<ui-list>
+  <ui-item>
+    <ui-item-first-content :icon="materialIcons"></ui-item-first-content>
+    <ui-item-text-content><!-- Primary text --></ui-item-text-content>
+    <ui-item-last-content><!-- Meta --></ui-item-last-content>
   </ui-item>
 </ui-list>
 ```

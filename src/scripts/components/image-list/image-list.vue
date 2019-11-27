@@ -1,4 +1,5 @@
 <template>
+  <!-- Image container -->
   <ul :class="className">
     <slot></slot>
   </ul>

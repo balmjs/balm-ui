@@ -1,6 +1,6 @@
 import cardButtonMixin from './card-button';
 import { MDCIconButtonToggle } from '../../material-components-web/icon-button';
-import UI_ICON_BUTTON from '../components/button/icon-constants';
+import UI_ICON_BUTTON from '../components/button/toggle-constants';
 
 export default {
   mixins: [cardButtonMixin],

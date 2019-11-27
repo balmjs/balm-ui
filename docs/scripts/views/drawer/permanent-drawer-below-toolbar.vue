@@ -7,7 +7,7 @@
     </ui-top-app-bar>
 
     <main class="demo-main">
-      <ui-drawer variant="permanent">
+      <ui-drawer type="permanent">
         <ui-drawer-header>
           <ui-drawer-title>{{ title }}</ui-drawer-title>
           <ui-drawer-subtitle>{{ subtitle }}</ui-drawer-subtitle>

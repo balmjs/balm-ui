@@ -1,6 +1,6 @@
 <template>
   <div class="demo--drawer demo--dismissible-drawer">
-    <ui-drawer variant="dismissible" menuSelector="#demo-menu">
+    <ui-drawer type="dismissible" menuSelector="#demo-menu">
       <ui-drawer-header>
         <ui-drawer-title>{{ title }}</ui-drawer-title>
         <ui-drawer-subtitle>{{ subtitle }}</ui-drawer-subtitle>
@@ -8,14 +8,15 @@
       <ui-drawer-common-content>
         <ui-item-a
           activated
-          firstIcon="arrow_back"
           @click.native="
             () => {
               $router.back();
             }
           "
-          >Back</ui-item-a
         >
+          <ui-item-first-content icon="arrow_back"></ui-item-first-content>
+          <ui-item-text-content>Back</ui-item-text-content>
+        </ui-item-a>
         <ui-list-divider></ui-list-divider>
       </ui-drawer-common-content>
     </ui-drawer>

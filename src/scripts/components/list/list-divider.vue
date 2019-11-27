@@ -1,12 +1,12 @@
 <template>
-  <hr :class="className">
+  <hr :class="className" />
 </template>
 
 <script>
-import dividerMixin from '../../mixins/divider';
+import listDividerMixin from '../../mixins/list-divider';
 
 export default {
   name: 'ui-list-divider',
-  mixins: [dividerMixin]
+  mixins: [listDividerMixin]
 };
 </script>

@@ -2,25 +2,22 @@
   <div :class="[$tt('body1'), 'demo--fab']">
     <header class="hero component">
       <div class="hero-demo">
-        <ui-fab :variant="variant" :mini="!!mini">
-          <!--  :icon="variant && leadingIcon ? 'add' : ''" -->
-          <template v-if="variant && leadingIcon" #before="{ iconClass }">
+        <ui-fab :type="type" :mini="!!mini">
+          <!--  :icon="type && leadingIcon ? 'add' : ''" -->
+          <template v-if="type && leadingIcon" #before="{ iconClass }">
             <ui-icon :class="iconClass">add</ui-icon>
           </template>
-          <template v-if="variant">
+          <template v-if="type">
             <span>Button</span>
           </template>
           <ui-icon v-else>add</ui-icon>
         </ui-fab>
       </div>
       <div class="hero-options">
-        <ui-select
-          class="hero-option"
-          :options="FabVariantOptions"
-          v-model="variant"
-          >Variant</ui-select
+        <ui-select class="hero-option" :options="FabTypeOptions" v-model="type"
+          >Type</ui-select
         >
-        <ui-form-field v-if="variant" class="hero-option">
+        <ui-form-field v-if="type" class="hero-option">
           <ui-checkbox
             id="leading-icon"
             :value="1"
@@ -197,7 +194,7 @@
 <script>
 import snippets from '@/mixins/snippets';
 
-const FabVariantOptions = [
+const FabTypeOptions = [
   {
     label: 'Regular',
     value: 0
@@ -215,8 +212,8 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      FabVariantOptions,
-      variant: 0,
+      FabTypeOptions,
+      type: 0,
       mini: 0,
       leadingIcon: false,
       exited: false

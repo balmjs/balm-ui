@@ -6,13 +6,13 @@
 </template>
 
 <script>
-import variantMixin from '../../mixins/variant';
+import typeMixin from '../../mixins/type';
 import { MDCDrawer } from '../../../material-components-web/drawer';
 import UI_DRAWER from './constants';
 
 export default {
   name: 'ui-drawer',
-  mixins: [variantMixin],
+  mixins: [typeMixin],
   model: {
     prop: 'open',
     event: UI_DRAWER.EVENT.NAV
@@ -32,10 +32,10 @@ export default {
   },
   computed: {
     isDismissible() {
-      return this.isVariant(UI_DRAWER.VARIANTS, 'dismissible');
+      return this.checkType(UI_DRAWER.TYPES, 'dismissible');
     },
     isModal() {
-      return this.isVariant(UI_DRAWER.VARIANTS, 'modal');
+      return this.checkType(UI_DRAWER.TYPES, 'modal');
     },
     className() {
       return {

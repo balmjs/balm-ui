@@ -1,11 +1,11 @@
-import variantMixin from './variant';
+import typeMixin from './type';
 import materialIconMixin from './material-icon';
 import rippleMixin from './ripple';
 import cardButtonMixin from './card-button';
 import UI_BUTTON from '../components/button/constants';
 
 export default {
-  mixins: [variantMixin, materialIconMixin, rippleMixin, cardButtonMixin],
+  mixins: [typeMixin, materialIconMixin, rippleMixin, cardButtonMixin],
   props: {
     // UI variants
     outlined: {
@@ -28,13 +28,13 @@ export default {
   },
   computed: {
     isOutlined() {
-      return this.isVariant(UI_BUTTON.VARIANTS, 'outlined');
+      return this.checkType(UI_BUTTON.TYPES, 'outlined');
     },
     isRaised() {
-      return this.isVariant(UI_BUTTON.VARIANTS, 'raised');
+      return this.checkType(UI_BUTTON.TYPES, 'raised');
     },
     isUnelevated() {
-      return this.isVariant(UI_BUTTON.VARIANTS, 'unelevated');
+      return this.checkType(UI_BUTTON.TYPES, 'unelevated');
     },
     className() {
       return {
@@ -49,7 +49,7 @@ export default {
     }
   },
   watch: {
-    variant() {
+    type() {
       this.init();
     }
   },

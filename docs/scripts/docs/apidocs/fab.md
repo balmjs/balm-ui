@@ -6,14 +6,14 @@
 
 | Name       | Type           | Default | Description                                                                                      |
 | ---------- | -------------- | ------- | ------------------------------------------------------------------------------------------------ |
-| `variant`  | string, number | `0`     | Mandatory. FAB variants.                                                                         |
+| `type`     | string, number | `0`     | Mandatory. FAB types.                                                                            |
 | `extended` | boolean        | `false` | Optional. modifies the FAB to wider size which includes a text label.                            |
 | `icon`     | string         | `''`    | Optional. for the icon element. See [Material Icons](/#/icons) usage.                            |
 | `mini`     | boolean        | `false` | Optional. modifies the FAB to a smaller size.                                                    |
 | `exited`   | boolean        | `false` | Optional. animates the FAB out of view. When this class is removed, the FAB will return to view. |
 | `cssOnly`  | boolean        | `false` | Optional. for the element which hides the ripple.                                                |
 
-- **Variants:** `0: 'regular'`, `1: 'extended'`
+- **Types:** `0: 'regular'`, `1: 'extended'`
 
 #### Slots
 

@@ -2,14 +2,14 @@
   <div :class="[$tt('body1'), 'demo--button']">
     <header class="hero component">
       <div class="hero-demo">
-        <ui-button :variant="variant">{{ text }}</ui-button>
+        <ui-button :type="type">{{ text }}</ui-button>
       </div>
       <div class="hero-options">
         <ui-select
           class="hero-option"
-          :options="ButtonVariantOptions"
-          v-model="variant"
-          >Variant</ui-select
+          :options="ButtonTypeOptions"
+          v-model="type"
+          >Type</ui-select
         >
         <ui-textfield class="hero-option" v-model="text"
           >Button Text</ui-textfield
@@ -66,7 +66,7 @@
 import snippets from '@/mixins/snippets';
 import UiButtonDemo from '@/views/demos/button';
 
-const ButtonVariantOptions = [
+const ButtonTypeOptions = [
   {
     label: 'Text',
     value: 0
@@ -95,8 +95,8 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      ButtonVariantOptions,
-      variant: 0,
+      ButtonTypeOptions,
+      type: 0,
       text: 'Button',
       controls: {
         disabled: false

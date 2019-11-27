@@ -25,10 +25,10 @@
       <!-- content -->
       <div class="balmui-body">
         <ui-drawer
+          type="dismissible"
           class="balmui-menu"
-          v-model="open"
-          variant="dismissible"
           menuSelector="#balmui-menu"
+          v-model="open"
         >
           <ui-drawer-content>
             <ui-list ref="mainmenu" class="catalog-list">

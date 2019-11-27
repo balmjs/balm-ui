@@ -4,7 +4,9 @@
     <div class="mdc-fab__ripple"></div>
     <template v-if="isExtended">
       <!-- Icon (optional) -->
-      <i v-if="materialIcon" :class="[UI_GLOBAL.mdi, UI_FAB.cssClasses.icon]">{{ materialIcon }}</i>
+      <i v-if="materialIcon" :class="[UI_GLOBAL.mdi, UI_FAB.cssClasses.icon]">{{
+        materialIcon
+      }}</i>
       <template v-else>
         <slot name="before" :iconClass="UI_FAB.cssClasses.icon"></slot>
       </template>
@@ -17,7 +19,9 @@
     </template>
     <template v-else>
       <!-- Icon -->
-      <i v-if="materialIcon" :class="[UI_GLOBAL.mdi, UI_FAB.cssClasses.icon]">{{ materialIcon }}</i>
+      <i v-if="materialIcon" :class="[UI_GLOBAL.mdi, UI_FAB.cssClasses.icon]">{{
+        materialIcon
+      }}</i>
       <template v-else>
         <slot :iconClass="UI_FAB.cssClasses.icon"></slot>
       </template>
@@ -26,14 +30,14 @@
 </template>
 
 <script>
-import variantMixin from '../../mixins/variant';
+import typeMixin from '../../mixins/type';
 import materialIconMixin from '../../mixins/material-icon';
 import rippleMixin from '../../mixins/ripple';
 import UI_GLOBAL from '../../config/constants';
 
 // Define constants
 const UI_FAB = {
-  VARIANTS: {
+  TYPES: {
     regular: 0,
     extended: 1
   },
@@ -47,7 +51,7 @@ const UI_FAB = {
 
 export default {
   name: 'ui-fab',
-  mixins: [variantMixin, materialIconMixin, rippleMixin],
+  mixins: [typeMixin, materialIconMixin, rippleMixin],
   props: {
     // UI variants
     extended: {
@@ -76,7 +80,7 @@ export default {
   },
   computed: {
     isExtended() {
-      return this.isVariant(UI_FAB.VARIANTS, 'extended');
+      return this.checkType(UI_FAB.TYPES, 'extended');
     },
     className() {
       return {
@@ -88,7 +92,7 @@ export default {
     }
   },
   watch: {
-    variant() {
+    type() {
       this.init();
     }
   },

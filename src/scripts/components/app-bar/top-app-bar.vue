@@ -2,11 +2,17 @@
   <!-- Container -->
   <header :class="className">
     <div class="mdc-top-app-bar__row">
-      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+      <section
+        class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start"
+      >
         <!-- Navigation icon (optional) / Close button (instead of a navigation icon) -->
         <button
-          :class="[UI_TOP_APP_BAR.cssClasses.icon, 'mdc-top-app-bar__navigation-icon', 'mdc-icon-button']"
-          :id="defaultNavIcon === UI_TOP_APP_BAR.TYPES[1] ? null : navId"
+          :class="[
+            UI_TOP_APP_BAR.cssClasses.icon,
+            'mdc-top-app-bar__navigation-icon',
+            'mdc-icon-button'
+          ]"
+          :id="defaultNavIcon === UI_TOP_APP_BAR.EVENT.CLOSE ? null : navId"
           @click="handleClick"
         >
           <slot name="nav-icon">{{ defaultNavIcon }}</slot>
@@ -16,7 +22,10 @@
           <slot>{{ title }}</slot>
         </span>
       </section>
-      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+      <section
+        class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end"
+        role="toolbar"
+      >
         <!-- Regular: Action items (optional) & Overflow menu (optional) -->
         <!-- Contextual action bar: Contextual actions & Overflow menu (optional) -->
         <slot name="toolbar" :itemClass="UI_TOP_APP_BAR.cssClasses.item"></slot>
@@ -26,14 +35,14 @@
 </template>
 
 <script>
-import variantMixin from '../../mixins/variant';
+import typeMixin from '../../mixins/type';
 import { MDCTopAppBar } from '../../../material-components-web/top-app-bar';
 import UI_GLOBAL from '../../config/constants';
 
 // Define top app bar constants
 const UI_TOP_APP_BAR = {
-  TYPES: ['menu', 'close'], // NOTE: Type - 0: Regular, 1: Contextual action bar
-  VARIANTS: {
+  TYPES: {
+    nonRegular: -1, // Contextual action bar
     standard: 0,
     fixed: 1,
     dense: 2,
@@ -61,15 +70,11 @@ const UI_TOP_APP_BAR = {
 
 export default {
   name: 'ui-top-app-bar',
-  mixins: [variantMixin],
+  mixins: [typeMixin],
   props: {
     contentSelector: {
       type: String,
       required: true
-    },
-    type: {
-      type: Number,
-      default: 0
     },
     // UI variants
     fixed: {
@@ -101,7 +106,11 @@ export default {
       type: String,
       default: ''
     },
-    navId: String
+    navId: String,
+    navIcon: {
+      type: String,
+      default: 'menu'
+    }
   },
   data() {
     return {
@@ -111,26 +120,29 @@ export default {
     };
   },
   computed: {
+    isNonRegular() {
+      return this.checkType(UI_TOP_APP_BAR.TYPES, 'nonRegular');
+    },
     isFixed() {
-      return this.isVariant(UI_TOP_APP_BAR.VARIANTS, 'fixed');
+      return this.checkType(UI_TOP_APP_BAR.TYPES, 'fixed');
     },
     isDense() {
-      return this.isVariant(UI_TOP_APP_BAR.VARIANTS, 'dense');
+      return this.checkType(UI_TOP_APP_BAR.TYPES, 'dense');
     },
     isProminent() {
-      return this.isVariant(UI_TOP_APP_BAR.VARIANTS, 'prominent');
+      return this.checkType(UI_TOP_APP_BAR.TYPES, 'prominent');
     },
     isProminentDense() {
       return (
         (this.dense && this.prominent) ||
-        this.isVariant(UI_TOP_APP_BAR.VARIANTS, 'prominentDense')
+        this.checkType(UI_TOP_APP_BAR.TYPES, 'prominentDense')
       );
     },
     isShort() {
-      return this.isVariant(UI_TOP_APP_BAR.VARIANTS, 'short');
+      return this.checkType(UI_TOP_APP_BAR.TYPES, 'short');
     },
     isShortCollapsed() {
-      return this.isVariant(UI_TOP_APP_BAR.VARIANTS, 'shortCollapsed');
+      return this.checkType(UI_TOP_APP_BAR.TYPES, 'shortCollapsed');
     },
     className() {
       return {
@@ -143,15 +155,11 @@ export default {
       };
     },
     defaultNavIcon() {
-      const type = this.type;
-
-      return type >= 0 && type <= UI_TOP_APP_BAR.TYPES.length - 1
-        ? UI_TOP_APP_BAR.TYPES[type]
-        : UI_TOP_APP_BAR.TYPES[0];
+      return this.isNonRegular ? UI_TOP_APP_BAR.EVENT.CLOSE : this.navIcon;
     }
   },
   watch: {
-    variant() {
+    type() {
       this.init();
     }
   },
@@ -200,7 +208,7 @@ export default {
     },
     handleClick() {
       this.$emit(
-        UI_TOP_APP_BAR.TYPES[this.type] === 'close'
+        this.isNonRegular
           ? UI_TOP_APP_BAR.EVENT.CLOSE
           : UI_TOP_APP_BAR.EVENT.NAV
       );

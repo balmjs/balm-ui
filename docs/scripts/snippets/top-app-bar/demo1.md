@@ -3,7 +3,7 @@
   <ui-top-app-bar
     contentSelector="#content-main"
     navId="demo-menu"
-    :variant="selected"
+    :type="selected"
     :title="title"
   >
     <template #toolbar="{ itemClass }">
@@ -32,7 +32,7 @@
     </template>
   </ui-top-app-bar>
 
-  <ui-drawer variant="modal" v-model="openDrawer" menuSelector="#demo-menu">
+  <ui-drawer type="modal" v-model="openDrawer" menuSelector="#demo-menu">
     <ui-drawer-header
       :innerClass="[$themeColor('on-primary'), $themeColor('primary-bg')]"
     >
@@ -40,11 +40,10 @@
     </ui-drawer-header>
     <ui-drawer-content>
       <ui-list>
-        <ui-item-a
-          @click.native="() => { $router.back(); }"
-          firstIcon="arrow_back"
-          >Back</ui-item-a
-        >
+        <ui-item-a activated @click.native="() => { $router.back(); }">
+          <ui-item-first-content icon="arrow_back"></ui-item-first-content>
+          <ui-item-text-content>Back</ui-item-text-content>
+        </ui-item-a>
         <ui-list-divider></ui-list-divider>
       </ui-list>
     </ui-drawer-content>

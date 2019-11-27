@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import itemMixin from '../../mixins/item';
+import listItemMixin from '../../mixins/list-item';
 import anchorMixin from '../../mixins/anchor';
 
 export default {
   name: 'ui-item-a',
-  mixins: [itemMixin, anchorMixin]
+  mixins: [listItemMixin, anchorMixin]
 };
 </script>

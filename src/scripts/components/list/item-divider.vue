@@ -3,10 +3,10 @@
 </template>
 
 <script>
-import dividerMixin from '../../mixins/divider';
+import listDividerMixin from '../../mixins/list-divider';
 
 export default {
   name: 'ui-item-divider',
-  mixins: [dividerMixin]
+  mixins: [listDividerMixin]
 };
 </script>

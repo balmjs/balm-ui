@@ -1,6 +1,6 @@
 <template>
   <div class="demo--drawer demo--permanent-drawer-above-toolbar">
-    <ui-drawer variant="permanent">
+    <ui-drawer type="permanent">
       <ui-drawer-header>
         <ui-drawer-title>{{ title }}</ui-drawer-title>
         <ui-drawer-subtitle>{{ subtitle }}</ui-drawer-subtitle>

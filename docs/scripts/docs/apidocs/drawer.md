@@ -2,19 +2,19 @@
 <ui-drawer><!-- the drawer child components --></ui-drawer>
 ```
 
-> NOTE: `<ui-drawer>` (`variant="permanent"`) has not props and events.
+> NOTE: `<ui-drawer>` (`type="permanent"`) has not props and events.
 >
-> NOTE: `<ui-drawer variant="modal">` must be including a `<ui-list>`.
+> NOTE: `<ui-drawer type="modal">` must be including a `<ui-list>`.
 
 #### Props
 
 | Name               | Type           | Default | Description                        |
 | ------------------ | -------------- | ------- | ---------------------------------- |
-| `variant`          | string, number | `0`     | Mandatory. Button variants.        |
+| `type`             | string, number | `0`     | Mandatory. Button types.           |
 | `menuSelector`     | string         | `null`  | The external menu button selector. |
 | `open` (`v-model`) | boolean        | `false` | The drawer toggle state.           |
 
-- **Variants:** `0: 'permanent'`, `1: 'dismissible'`, `2: 'modal'`
+- **Types:** `0: 'permanent'`, `1: 'dismissible'`, `2: 'modal'`
 
 #### Slots
 
@@ -37,11 +37,11 @@
 
 ```html
 // Automatic
-<ui-drawer variant="modal" v-model="open"></ui-drawer>
+<ui-drawer type="modal" v-model="open"></ui-drawer>
 
 // Manual
 <ui-drawer
-  variant="modal"
+  type="modal"
   :open="open"
   @nav="$balmUI.onChange('open', $event)"
 ></ui-drawer>

@@ -3,7 +3,7 @@
     <ui-top-app-bar
       contentSelector="#content-main"
       navId="demo-menu"
-      :variant="selected"
+      :type="selected"
       :title="title"
     >
       <template #toolbar="{ itemClass }">
@@ -26,7 +26,7 @@
       </template>
     </ui-top-app-bar>
 
-    <ui-drawer variant="modal" v-model="openDrawer" menuSelector="#demo-menu">
+    <ui-drawer type="modal" v-model="openDrawer" menuSelector="#demo-menu">
       <ui-drawer-header
         :innerClass="[$themeColor('on-primary'), $themeColor('primary-bg')]"
       >
@@ -35,14 +35,16 @@
       <ui-drawer-content>
         <ui-list>
           <ui-item-a
+            activated
             @click.native="
               () => {
                 $router.back();
               }
             "
-            firstIcon="arrow_back"
-            >Back</ui-item-a
           >
+            <ui-item-first-content icon="arrow_back"></ui-item-first-content>
+            <ui-item-text-content>Back</ui-item-text-content>
+          </ui-item-a>
           <ui-list-divider></ui-list-divider>
         </ui-list>
       </ui-drawer-content>
@@ -64,7 +66,7 @@
 
           <h4 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h4>
           <div class="demo-controls">
-            <ui-select :options="options" v-model="selected">Variant</ui-select>
+            <ui-select :options="options" v-model="selected">Type</ui-select>
             <ui-textfield v-model="title">Title</ui-textfield>
           </div>
           <p v-for="i in 12" :key="i" class="demo-paragraph">

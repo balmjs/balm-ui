@@ -5,10 +5,10 @@
 </template>
 
 <script>
-import itemMixin from '../../mixins/item';
+import listItemMixin from '../../mixins/list-item';
 
 export default {
   name: 'ui-item',
-  mixins: [itemMixin]
+  mixins: [listItemMixin]
 };
 </script>

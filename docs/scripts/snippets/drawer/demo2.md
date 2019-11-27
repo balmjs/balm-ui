@@ -29,9 +29,11 @@
             <ui-item-a
               v-for="(subItem, subIndex) in item.items"
               :key="`item-${index}-${subIndex}`"
-              :firstIcon="subItem.icon"
             >
-              {{ subItem.name }}
+              <ui-item-first-content
+                :icon="subItem.icon"
+              ></ui-item-first-content>
+              <ui-item-text-content>{{ subItem.name }}</ui-item-text-content>
             </ui-item-a>
           </template>
         </template>

@@ -13,16 +13,16 @@
 import UiGridInner from './grid-inner';
 import getType from '../../utils/typeof';
 
-// Define constants
+// Define grid cell constants
 const UI_GRID_CELL = {
-  CLASSNAME: 'mdc-layout-grid__cell',
+  cssClasses: 'mdc-layout-grid__cell',
   TYPE: {
-    COLSPAN: 'span', // [1, 12]
+    COLUMNS: 'span', // [1, 12]
     ORDER: 'order', // [1, 12]
     ALIGN: 'align'
   },
   TYPE_OF_DEVICE: ['desktop', 'tablet', 'phone'],
-  ALIGN_POSITION: ['top', 'middle', 'bottom']
+  POSITION: ['top', 'middle', 'bottom']
 };
 
 export default {
@@ -37,27 +37,24 @@ export default {
       default: false
     },
     // UI attributes
-    colspan: [Number, String, Object], // default: 4
+    columns: [Number, String, Object], // default: 4
     order: [Number, String],
     align: String
   },
   computed: {
     className() {
-      let result = [UI_GRID_CELL.CLASSNAME];
+      let result = [UI_GRID_CELL.cssClasses];
 
-      // Optional, specifies the number of columns the cell spans
       // mdc-layout-grid__cell--span-<NUMBER_OF_COLUMNS>
-      // Optional, specifies the number of columns the cell spans on a type of device (desktop, tablet, phone)
       // mdc-layout-grid__cell--span-<NUMBER_OF_COLUMNS>-<TYPE_OF_DEVICE>
-      if (this.colspan) {
+      if (this.columns) {
         result = this.handleCell(
-          UI_GRID_CELL.TYPE.COLSPAN,
+          UI_GRID_CELL.TYPE.COLUMNS,
           result,
-          this.colspan
+          this.columns
         );
       }
 
-      // Optional, specifies the order of the cell
       // mdc-layout-grid__cell--order-<INDEX>
       if (this.order) {
         let orderIndex = +this.order;
@@ -68,11 +65,10 @@ export default {
         }
       }
 
-      // Optional, specifies the alignment of cell
       // mdc-layout-grid__cell--align-<POSITION>
       if (this.align) {
         let alignPosition = this.align.toLowerCase();
-        if (UI_GRID_CELL.ALIGN_POSITION.includes(alignPosition)) {
+        if (UI_GRID_CELL.POSITION.includes(alignPosition)) {
           result = this.handleCell(
             UI_GRID_CELL.TYPE.ALIGN,
             result,
@@ -90,14 +86,14 @@ export default {
         for (let key in data) {
           let value = data[key];
           if (UI_GRID_CELL.TYPE_OF_DEVICE.includes(key)) {
-            result.push(`${UI_GRID_CELL.CLASSNAME}--${type}-${value}-${key}`);
+            result.push(`${UI_GRID_CELL.cssClasses}--${type}-${value}-${key}`);
           } else if (key === 'default') {
-            result.push(`${UI_GRID_CELL.CLASSNAME}--${type}-${value}`);
+            result.push(`${UI_GRID_CELL.cssClasses}--${type}-${value}`);
           }
         }
       } else {
         let value = data;
-        result.push(`${UI_GRID_CELL.CLASSNAME}--${type}-${value}`);
+        result.push(`${UI_GRID_CELL.cssClasses}--${type}-${value}`);
       }
 
       return result;

@@ -1,8 +1,8 @@
 ```html
 <ui-grid class="demo-grid max-width">
-  <ui-grid-cell class="demo-cell" colspan="4"></ui-grid-cell>
-  <ui-grid-cell class="demo-cell" colspan="4"></ui-grid-cell>
-  <ui-grid-cell class="demo-cell" colspan="4"></ui-grid-cell>
+  <ui-grid-cell class="demo-cell" columns="4"></ui-grid-cell>
+  <ui-grid-cell class="demo-cell" columns="4"></ui-grid-cell>
+  <ui-grid-cell class="demo-cell" columns="4"></ui-grid-cell>
 </ui-grid>
 ```
 

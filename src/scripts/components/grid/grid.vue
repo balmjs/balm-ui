@@ -9,7 +9,7 @@
 <script>
 import UiGridInner from './grid-inner';
 
-// Define constants
+// Define grid constants
 const UI_GRID = {
   POSITIONS: ['left', 'right']
 };
@@ -34,12 +34,10 @@ export default {
     className() {
       let result = ['mdc-layout-grid'];
 
-      // Optional, specifies the grid should have fixed column width
       if (this.fixedColumnWidth) {
         result.push('mdc-layout-grid--fixed-column-width');
       }
 
-      // Optional, specifies the alignment of the whole grid
       // mdc-layout-grid--align-<GRID_POSITION>
       if (this.position) {
         let gridPosition = this.position;

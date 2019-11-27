@@ -14,7 +14,7 @@
       <div class="example">
         <h6 :class="$tt('headline6')">1.1 onChange</h6>
         <ui-grid>
-          <ui-grid-cell colspan="6">
+          <ui-grid-cell columns="6">
             <label>Vue methods</label>
 
             <p>
@@ -27,12 +27,18 @@
               <ui-markdown :code="code[1]"></ui-markdown>
             </ui-accordion>
           </ui-grid-cell>
-          <ui-grid-cell colspan="6">
+          <ui-grid-cell columns="6">
             <label>$balmUI</label>
 
             <p>
-              <ui-button raised @click="$balmUI.onChange('message2', 'Hello BalmUI')">Show message</ui-button>
-              <ui-button outlined @click="$balmUI.onChange('message2', '')">Clear</ui-button>
+              <ui-button
+                raised
+                @click="$balmUI.onChange('message2', 'Hello BalmUI')"
+                >Show message</ui-button
+              >
+              <ui-button outlined @click="$balmUI.onChange('message2', '')"
+                >Clear</ui-button
+              >
             </p>
             <p>{{ message2 }}</p>
 
@@ -46,7 +52,7 @@
       <div class="example">
         <h6 :class="$tt('headline6')">1.2 onShow/onHide</h6>
         <ui-grid>
-          <ui-grid-cell colspan="6">
+          <ui-grid-cell columns="6">
             <label>Vue methods</label>
 
             <p>
@@ -63,11 +69,13 @@
               <ui-markdown :text="code[3]"></ui-markdown>
             </ui-accordion>
           </ui-grid-cell>
-          <ui-grid-cell colspan="6">
+          <ui-grid-cell columns="6">
             <label>$balmUI</label>
 
             <p>
-              <ui-button raised @click="$balmUI.onShow('open2')">Open dialog</ui-button>
+              <ui-button raised @click="$balmUI.onShow('open2')"
+                >Open dialog</ui-button
+              >
             </p>
             <ui-dialog v-model="open2">
               <ui-dialog-content>
@@ -75,7 +83,9 @@
                 <p>Close dialog: `$balmUI.onHide('open')`</p>
               </ui-dialog-content>
               <ui-dialog-actions>
-                <ui-button @click="$balmUI.onHide('open2')">Close dialog</ui-button>
+                <ui-button @click="$balmUI.onHide('open2')"
+                  >Close dialog</ui-button
+                >
               </ui-dialog-actions>
             </ui-dialog>
 

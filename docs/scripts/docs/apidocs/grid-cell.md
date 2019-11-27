@@ -2,12 +2,15 @@
 <ui-grid-cell><!-- the grid cell content --></ui-grid-cell>
 ```
 
-| Name      | Type                   | Default | Description                                                                  |
-| --------- | ---------------------- | ------- | ---------------------------------------------------------------------------- |
-| `nested`  | boolean                | `false` | The nested layout grid.                                                      |
-| `colspan` | number, string, object | `4`     | Optional, specifies the number of columns the cell spans. (Range: `[1, 12]`) |
-| `order`   | number, string         | `null`  | Optional, specifies the order of the cell. (Range: `[1, 12]`)                |
-| `align`   | string                 | `null`  | Optional, specifies the alignment of cell.                                   |
+| Name      | Type                   | Default | Description                                               |
+| --------- | ---------------------- | ------- | --------------------------------------------------------- |
+| `nested`  | boolean                | `false` | The nested layout grid.                                   |
+| `columns` | number, string, object | `4`     | Optional, specifies the number of columns the cell spans. |
+| `order`   | number, string         | `null`  | Optional, specifies the order of the cell.                |
+| `align`   | string                 | `null`  | Optional, specifies the alignment of cell.                |
+
+- The `columns` and `order` range are between 1 and 12
+- The `align` position: `'top'`, `'middle'`, `'bottom'`
 
 #### Slots
 

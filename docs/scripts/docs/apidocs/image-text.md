@@ -1,5 +1,5 @@
 ```html
-<ui-image-supporting><!-- Text labels --></ui-image-supporting>
+<ui-image-text><!-- Text labels --></ui-image-text>
 ```
 
 #### Slots

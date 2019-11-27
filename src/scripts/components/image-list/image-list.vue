@@ -1,30 +1,37 @@
 <template>
-  <!-- Image container -->
   <ul :class="className">
     <slot></slot>
   </ul>
 </template>
 
 <script>
+import typeMixin from '../../mixins/type';
+import UI_IMAGE_LIST from './constants';
+
 export default {
   name: 'ui-image-list',
+  mixins: [typeMixin],
   props: {
-    // UI attributes
+    // UI variants
     masonry: {
       type: Boolean,
       default: false
     },
-    withTextProtection: {
+    // UI attributes
+    textProtection: {
       type: Boolean,
       default: false
     }
   },
   computed: {
+    isMasonry() {
+      return this.checkType(UI_IMAGE_LIST.TYPES, 'masonry');
+    },
     className() {
       return {
         'mdc-image-list': true,
-        'mdc-image-list--masonry': this.masonry,
-        'mdc-image-list--with-text-protection': this.withTextProtection
+        'mdc-image-list--masonry': this.isMasonry,
+        'mdc-image-list--with-text-protection': this.textProtection
       };
     }
   }

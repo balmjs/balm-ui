@@ -1,10 +1,16 @@
 ```html
-<ui-image-list
-  masonry
-  :withTextProtection="labelsType === 2">
-  <ui-image-item v-for="(item, index) in list" :key="index"
-    :src="require(`../../../images/photos/${item}.jpg`)">
-    <ui-image-supporting v-if="labelsType">Text label</ui-image-supporting>
+<ui-image-list type="masonry" :textProtection="labelsType === 2">
+  <ui-image-item
+    v-for="(item, index) in list"
+    :key="index"
+    :image="require(`../../../images/photos/${item}.jpg`).default"
+  >
+    <ui-image-text v-if="labelsType">
+      Text label
+      <template #action>
+        <ui-icon-button icon="favorite_border"></ui-icon-button>
+      </template>
+    </ui-image-text>
   </ui-image-item>
 </ui-image-list>
 ```

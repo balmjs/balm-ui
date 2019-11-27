@@ -12,6 +12,6 @@
 
 <script>
 export default {
-  name: 'ui-image-supporting'
+  name: 'ui-image-text'
 };
 </script>

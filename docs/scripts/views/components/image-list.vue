@@ -9,49 +9,59 @@
     <ui-toc-affix></ui-toc-affix>
 
     <div :class="$tt('body2')">
-      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
+      <h3 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h3>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
-      <section :class="['example', {'rounded-corners': radius}]">
+      <h3 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h3>
+      <section :class="['example', { 'rounded-corners': radius }]">
         <ui-form-field>
           <ui-checkbox id="toggle-radius" v-model="radius"></ui-checkbox>
           <label for="toggle-radius">Toggle Rounded Corners</label>
         </ui-form-field>
 
-        <h5 :class="$tt('headline5')">1.1 Standard Image List</h5>
+        <h4 :class="$tt('headline6')">1.1 Standard Image List</h4>
         <ui-image-list-controls v-model="controls1"></ui-image-list-controls>
         <ui-image-list
           id="standard-image-list"
           class="standard-image-list"
-          :withTextProtection="controls1.labelsType === 2"
+          :textProtection="controls1.labelsType === 2"
         >
           <ui-image-item
             v-for="i in 15"
             :key="i"
-            :src="require(`../../../images/photos/3x2/${i}.jpg`)"
+            :bgImage="require(`@/assets/photos/3x2/${i}.jpg`).default"
           >
-            <ui-image-supporting v-if="controls1.labelsType">Text label</ui-image-supporting>
+            <ui-image-text v-if="controls1.labelsType"
+              >Text label</ui-image-text
+            >
           </ui-image-item>
         </ui-image-list>
         <ui-accordion>
           <ui-markdown :code="code[1]"></ui-markdown>
         </ui-accordion>
 
-        <h5 :class="$tt('headline5')">1.2 Masonry Image List</h5>
-        <ui-image-list-controls idPrefix="masonry" v-model="controls2"></ui-image-list-controls>
+        <h4 :class="$tt('headline6')">1.2 Masonry Image List</h4>
+        <ui-image-list-controls
+          idPrefix="masonry"
+          v-model="controls2"
+        ></ui-image-list-controls>
         <ui-image-list
+          type="masonry"
           id="masonry-image-list"
           class="masonry-image-list"
-          masonry
-          :withTextProtection="controls2.labelsType === 2"
+          :textProtection="controls2.labelsType === 2"
         >
           <ui-image-item
             v-for="(item, index) in list"
             :key="index"
-            :src="require(`../../../images/photos/${item}.jpg`)"
+            :image="require(`@/assets/photos/${item}.jpg`).default"
           >
-            <ui-image-supporting v-if="controls2.labelsType">Text label</ui-image-supporting>
+            <ui-image-text v-if="controls2.labelsType">
+              Text label
+              <template #action>
+                <ui-icon-button icon="favorite_border"></ui-icon-button>
+              </template>
+            </ui-image-text>
           </ui-image-item>
         </ui-image-list>
         <ui-accordion>
@@ -59,12 +69,14 @@
         </ui-accordion>
       </section>
 
-      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
+      <h3 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h3>
       <ui-apidocs name="image-list"></ui-apidocs>
       <ui-apidocs name="image-item"></ui-apidocs>
-      <ui-apidocs name="image-supporting"></ui-apidocs>
+      <ui-apidocs name="image-text"></ui-apidocs>
 
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <h3 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
+        3. Sass Variables
+      </h3>
       <ui-cssdocs name="image-list"></ui-cssdocs>
     </div>
   </div>

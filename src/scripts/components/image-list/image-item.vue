@@ -2,37 +2,39 @@
   <!-- Image list item -->
   <li class="mdc-image-list__item">
     <!-- Image container -->
-    <template v-if="$parent.masonry">
-      <div v-if="block" :class="UI_IMAGE_LIST.CLASSNAME.IMAGE" :style="style"></div>
-      <img v-else :class="UI_IMAGE_LIST.CLASSNAME.IMAGE" :src="src" :alt="alt">
+    <template v-if="$parent.isMasonry">
+      <slot name="image" :imageClass="UI_IMAGE_LIST.cssClasses.image">
+        <div
+          v-if="bgImage"
+          :class="UI_IMAGE_LIST.cssClasses.image"
+          :style="style"
+        ></div>
+        <img v-else :class="UI_IMAGE_LIST.cssClasses.image" :src="image" />
+      </slot>
     </template>
     <div v-else class="mdc-image-list__image-aspect-container">
-      <div v-if="block" :class="UI_IMAGE_LIST.CLASSNAME.IMAGE" :style="style"></div>
-      <img v-else :class="UI_IMAGE_LIST.CLASSNAME.IMAGE" :src="src" :alt="alt">
+      <slot name="image" :imageClass="UI_IMAGE_LIST.cssClasses.image">
+        <div
+          v-if="bgImage"
+          :class="UI_IMAGE_LIST.cssClasses.image"
+          :style="style"
+        ></div>
+        <img v-else :class="UI_IMAGE_LIST.cssClasses.image" :src="image" />
+      </slot>
     </div>
-    <!-- Supporting content (optional) -->
     <slot></slot>
   </li>
 </template>
 
 <script>
-// Define constants
-const UI_IMAGE_LIST = {
-  CLASSNAME: {
-    IMAGE: 'mdc-image-list__image'
-  }
-};
+import UI_IMAGE_LIST from './constants';
 
 export default {
   name: 'ui-image-item',
   props: {
     // UI attributes
-    src: String,
-    alt: String,
-    block: {
-      type: Boolean,
-      default: false
-    }
+    image: String,
+    bgImage: String
   },
   data() {
     return {
@@ -41,11 +43,16 @@ export default {
   },
   computed: {
     style() {
-      return this.src
-        ? {
-            'background-image': `url(${this.src})`
-          }
-        : false;
+      return {
+        'background-image': `url(${this.bgImage})`
+      };
+    }
+  },
+  created() {
+    if (this.$parent.isMasonry && this.bgImage) {
+      console.warn(
+        'The `bgImage` prop is not compatible with the masonry image list, you need to set the `image` prop'
+      );
     }
   }
 };

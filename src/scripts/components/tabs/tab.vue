@@ -75,10 +75,14 @@ export default {
   },
   computed: {
     className() {
+      const isActive =
+        this.$el && this.$el.classList.contains(UI_TAB.cssClasses.active);
+
       return {
         'mdc-tab': true,
         'mdc-tab--stacked': this.isStacked,
-        'mdc-tab--min-width': this.minWidth
+        'mdc-tab--min-width': this.minWidth,
+        'mdc-tab--active': isActive
       };
     }
   }

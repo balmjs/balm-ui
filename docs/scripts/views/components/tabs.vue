@@ -4,12 +4,14 @@
       <div class="hero-demo">
         <ui-tabs
           v-show="type === 0"
+          v-model="active1"
           :type="tabType"
           :items="ShortTabItems"
           :stacked="iconType === 2"
         ></ui-tabs>
         <ui-tabs
           v-show="type === 1"
+          v-model="active2"
           class="long"
           :type="tabType"
           :items="LongTabItems"
@@ -169,6 +171,8 @@ export default {
       type: 0,
       textLabel: true,
       iconType: 0,
+      active1: 0,
+      active2: 0,
       active: 0,
       tabs: [
         {

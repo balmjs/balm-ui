@@ -21,6 +21,7 @@ const UI_TAB = {
     textWithIcon: 2
   },
   cssClasses: {
+    active: 'mdc-tab--active',
     icon: 'mdc-tab__icon'
   }
 };

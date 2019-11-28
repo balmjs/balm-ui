@@ -1,26 +1,19 @@
 <template>
   <!-- Container -->
   <div class="mdc-tab-bar" role="tablist">
-    <ui-tab-scroller :align="align">
-      <slot>
-        <!-- Tab components -->
-      </slot>
-    </ui-tab-scroller>
+    <slot>
+      <!-- Tab components -->
+    </slot>
   </div>
 </template>
 
 <script>
+import tabBarMixin from '../../mixins/tab-bar';
 import { MDCTabBar } from '../../../material-components-web/tab-bar';
-import UiTabScroller from './tab-scroller';
-import tabsMixin from '../../mixins/tabs';
-import tabScrollerMixin from '../../mixins/tab-scroller';
 
 export default {
   name: 'ui-tab-bar',
-  components: {
-    UiTabScroller
-  },
-  mixins: [tabsMixin, tabScrollerMixin],
+  mixins: [tabBarMixin],
   data() {
     return {
       $tabBar: null
@@ -29,11 +22,11 @@ export default {
   mounted() {
     this.$tabBar = new MDCTabBar(this.$el);
 
-    this.initActivateTab();
-
-    this.$tabBar.listen('MDCTabBar:activated', ({ detail: tab }) => {
-      this.handleChange(tab.index);
+    this.$tabBar.listen('MDCTabBar:activated', ({ detail }) => {
+      this.handleChange(detail.index);
     });
+
+    this.initActivateTab();
   },
   methods: {
     initActivateTab() {

@@ -1,17 +1,10 @@
-// Define constants
-const UI_TAB_LABEL = {
-  TEXT: 'text', // text
-  ICON: 'icon', // icon-only
-  TEXT_WITH_ICON: 'both' // text with icon
-};
+import typeMixin from './type';
+import { UI_TAB } from '../components/tabs/constants';
 
 export default {
+  mixins: [typeMixin],
   props: {
     // UI attributes
-    type: {
-      type: String,
-      default: UI_TAB_LABEL.TEXT
-    },
     stacked: {
       type: Boolean,
       default: false
@@ -26,11 +19,23 @@ export default {
     }
   },
   computed: {
-    iconOnly() {
-      return this.type === UI_TAB_LABEL.ICON;
+    isTextWithIcon() {
+      return this.checkType(UI_TAB.TYPES, 'textWithIcon');
     },
-    textWithIcon() {
-      return this.type === UI_TAB_LABEL.TEXT_WITH_ICON;
+    isIconOnly() {
+      return this.checkType(UI_TAB.TYPES, 'iconOnly');
+    },
+    isStacked() {
+      return this.stacked;
+    },
+    isMinWidth() {
+      return this.minWidth;
+    },
+    withIndicator() {
+      return this.contentIndicator;
     }
+  },
+  created() {
+    console.log(this.type, this.isTextWithIcon, this.isIconOnly);
   }
 };

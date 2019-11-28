@@ -1,10 +1,40 @@
 <template>
   <div :class="[$tt('body1'), 'demo--tabs']">
-    <section class="hero component">
-      <div class="demo">
-        <ui-tabs type="both" v-model="active" :items="tabs" stacked></ui-tabs>
+    <header class="hero component">
+      <div class="hero-demo">
+        <ui-tabs
+          v-show="type === 0"
+          :type="tabType"
+          :items="ShortTabItems"
+          :stacked="iconType === 2"
+        ></ui-tabs>
+        <ui-tabs
+          v-show="type === 1"
+          class="long"
+          :type="tabType"
+          :items="LongTabItems"
+          :stacked="iconType === 2"
+        ></ui-tabs>
       </div>
-    </section>
+      <div class="hero-options">
+        <ui-select class="hero-option" :options="TabsTypeOptions" v-model="type"
+          >Type</ui-select
+        >
+        <div class="hero-option hero-options">
+          <ui-form-field>
+            <ui-checkbox
+              id="options"
+              v-model="textLabel"
+              :disabled="!iconType"
+            ></ui-checkbox>
+            <label for="options">Text label</label>
+          </ui-form-field>
+          <ui-select :options="IconsTypeOptions" v-model="iconType"
+            >Icons</ui-select
+          >
+        </div>
+      </div>
+    </header>
 
     <ui-toc-affix></ui-toc-affix>
 
@@ -12,11 +42,15 @@
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
-      <ui-tab-demo :tabs="tabs" :code="demoCode"></ui-tab-demo>
-      <ui-tab-bar-demo :tabs="tabs" :isLargeScreen="isLargeScreen" :code="demoCode"></ui-tab-bar-demo>
+      <h4 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h4>
+      <!-- <ui-tab-demo :tabs="tabs" :code="demoCode"></ui-tab-demo>
+      <ui-tab-bar-demo
+        :tabs="tabs"
+        :isLargeScreen="isLargeScreen"
+        :code="demoCode"
+      ></ui-tab-bar-demo>
       <ui-tab-scroller-demo :code="demoCode"></ui-tab-scroller-demo>
-      <ui-tab-panel-demo :code="demoCode"></ui-tab-panel-demo>
+      <ui-tab-panel-demo :code="demoCode"></ui-tab-panel-demo> -->
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="tab"></ui-apidocs>
@@ -25,7 +59,9 @@
       <ui-apidocs name="tab-scroller"></ui-apidocs>
       <ui-apidocs name="tab-panel"></ui-apidocs>
 
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
+        3. Sass Variables
+      </h4>
       <ui-cssdocs name="tabs"></ui-cssdocs>
     </div>
   </div>
@@ -40,6 +76,79 @@ import UiTabPanelDemo from './tab-panel';
 
 const largeScreenSize = 1024;
 
+const TabsTypeOptions = [
+  {
+    label: 'Fixed',
+    value: 0
+  },
+  {
+    label: 'Scrollable',
+    value: 1
+  }
+];
+
+const IconsTypeOptions = [
+  {
+    label: 'None',
+    value: 0
+  },
+  {
+    label: 'Leading icon',
+    value: 1
+  },
+  {
+    label: 'Top icon',
+    value: 2
+  }
+];
+
+const ShortTabItems = [
+  {
+    text: 'Tab one',
+    icon: 'watch_later'
+  },
+  {
+    text: 'Tab two',
+    icon: 'near_me'
+  },
+  {
+    text: 'Tab three',
+    icon: 'favorite'
+  }
+];
+
+const LongTabItems = [
+  ...ShortTabItems,
+  {
+    text: 'Tab four',
+    icon: 'free_breakfast'
+  },
+  {
+    text: 'Tab five',
+    icon: 'lightbulb'
+  },
+  {
+    text: 'Tab six',
+    icon: 'place'
+  },
+  {
+    text: 'Tab seven',
+    icon: 'mail'
+  },
+  {
+    text: 'Tab eight',
+    icon: 'add_circle'
+  },
+  {
+    text: 'Tab nine',
+    icon: 'star'
+  },
+  {
+    text: 'Tab ten',
+    icon: 'person'
+  }
+];
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Tabs'
@@ -53,6 +162,13 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      TabsTypeOptions,
+      IconsTypeOptions,
+      ShortTabItems,
+      LongTabItems,
+      type: 0,
+      textLabel: true,
+      iconType: 0,
       active: 0,
       tabs: [
         {
@@ -75,6 +191,15 @@ export default {
     };
   },
   computed: {
+    tabType() {
+      let type = 0;
+
+      if (this.iconType) {
+        type = this.textLabel ? 2 : 1;
+      }
+
+      return type;
+    },
     demoCode() {
       return this.code;
     }

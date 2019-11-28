@@ -11,19 +11,16 @@
 </template>
 
 <script>
-import { MDCTabScroller } from '../../../material-components-web/tab-scroller';
 import tabScrollerMixin from '../../mixins/tab-scroller';
-import UI_TABS from './constants';
-
-// Define constants
-const TAB_ALIGNMENT = ['start', 'center', 'end'];
+import { MDCTabScroller } from '../../../material-components-web/tab-scroller';
+import { UI_TAB_SCROLLER } from './constants';
 
 export default {
   name: 'ui-tab-scroller',
   mixins: [tabScrollerMixin],
   model: {
     prop: 'scrollX',
-    event: UI_TABS.EVENT.CHANGE
+    event: UI_TAB_SCROLLER.EVENT.CHANGE
   },
   props: {
     // States
@@ -49,9 +46,11 @@ export default {
   computed: {
     className() {
       let result = ['mdc-tab-scroller'];
-      if (TAB_ALIGNMENT.includes(this.align)) {
+
+      if (UI_TAB_SCROLLER.ALIGN.includes(this.align)) {
         result.push(`mdc-tab-scroller--align-${this.align}`);
       }
+
       return result.join(' ');
     }
   },
@@ -68,7 +67,7 @@ export default {
         this.scrollValue = 0;
       }
 
-      this.$emit(UI_TABS.EVENT.CHANGE, this.scrollValue);
+      this.$emit(UI_TAB_SCROLLER.EVENT.CHANGE, this.scrollValue);
     }
   }
 };

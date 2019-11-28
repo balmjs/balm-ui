@@ -1,9 +1,9 @@
-import UI_TABS from '../components/tabs/constants';
+import { UI_TAB_BAR } from '../components/tabs/constants';
 
 export default {
   model: {
     prop: 'active',
-    event: UI_TABS.EVENT.CHANGE
+    event: UI_TAB_BAR.EVENT.CHANGE
   },
   props: {
     // States
@@ -14,7 +14,7 @@ export default {
   },
   methods: {
     handleChange(activeTabIndex) {
-      this.$emit(UI_TABS.EVENT.CHANGE, activeTabIndex);
+      this.$emit(UI_TAB_BAR.EVENT.CHANGE, activeTabIndex);
     }
   }
 };

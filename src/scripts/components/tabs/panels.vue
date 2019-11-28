@@ -5,7 +5,7 @@
 </template>
 
 <script>
-// Define constants
+// Define tab panels constants
 const CLASSNAME_ACTIVE = 'active';
 
 export default {

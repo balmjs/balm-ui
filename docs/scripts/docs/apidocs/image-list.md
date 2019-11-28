@@ -10,7 +10,7 @@
 | `masonry`        | boolean        | `false` | Optional. Indicates that this Image List should use the Masonry variant.                                                                               |
 | `textProtection` | boolean        | `false` | Optional. Indicates that supporting content should be positioned in a scrim overlaying each image (instead of positioned separately under each image). |
 
-- **Types:** `0: 'standard'`, `3: 'masonry'`
+- **Types:** `0: 'standard'`, `1: 'masonry'`
 
 #### Slots
 

@@ -1,6 +1,5 @@
 ```html
 <ui-item><!-- the item child components --></ui-item>
-<ui-item-a><!-- the item child components --></ui-item-a>
 ```
 
 #### Props

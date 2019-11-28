@@ -6,9 +6,9 @@
         <ui-drawer-subtitle>{{ subtitle }}</ui-drawer-subtitle>
       </ui-drawer-header>
       <ui-drawer-common-content>
-        <ui-item-a
+        <ui-item
           activated
-          @click.native="
+          @click="
             () => {
               $router.back();
             }
@@ -16,7 +16,7 @@
         >
           <ui-item-first-content icon="arrow_back"></ui-item-first-content>
           <ui-item-text-content>Back</ui-item-text-content>
-        </ui-item-a>
+        </ui-item>
         <ui-list-divider></ui-list-divider>
       </ui-drawer-common-content>
     </ui-drawer>

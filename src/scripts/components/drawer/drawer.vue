@@ -79,12 +79,12 @@ export default {
       if (this.$drawer.list) {
         if (this.$drawer.list.selectedIndex === -1) {
           console.warn(
-            'The first `<ui-item>` or `<ui-item-a>` needs to apply activated state in the drawer'
+            'The first `<ui-item>` needs to apply activated state in the drawer'
           );
         }
       } else {
         console.warn(
-          '`<ui-list>` or `<ui-list-nav>` is required for `<ui-drawer-content>` in the drawer'
+          '`<ui-list>` is required for `<ui-drawer-content>` in the drawer'
         );
       }
     }

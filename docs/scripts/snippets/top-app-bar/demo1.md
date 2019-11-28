@@ -40,10 +40,10 @@
     </ui-drawer-header>
     <ui-drawer-content>
       <ui-list>
-        <ui-item-a activated @click.native="() => { $router.back(); }">
+        <ui-item activated @click.native="() => { $router.back(); }">
           <ui-item-first-content icon="arrow_back"></ui-item-first-content>
           <ui-item-text-content>Back</ui-item-text-content>
-        </ui-item-a>
+        </ui-item>
         <ui-list-divider></ui-list-divider>
       </ui-list>
     </ui-drawer-content>

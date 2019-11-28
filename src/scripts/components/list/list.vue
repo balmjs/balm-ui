@@ -67,22 +67,14 @@ export default {
     this.$nextTick(() => {
       this.$list = new MDCList(this.$el);
 
+      this.$list.listen(`MDCList:${UI_LIST.EVENT.CHANGE}`, ({ detail }) => {
+        this.$emit(UI_LIST.EVENT.CHANGE, detail.index);
+      });
+
       if (this.singleSelection) {
         this.$list.singleSelection = true;
       }
-
-      const selectedIndex = this.$list.selectedIndex;
-      if (selectedIndex !== this.selectedIndex) {
-        this.$emit(UI_LIST.EVENT.CHANGE, selectedIndex);
-      }
     });
-  },
-  methods: {
-    onChange() {
-      this.$nextTick(() => {
-        this.$emit(UI_LIST.EVENT.CHANGE, this.$list.selectedIndex);
-      });
-    }
   }
 };
 </script>

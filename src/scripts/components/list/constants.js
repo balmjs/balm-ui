@@ -3,7 +3,6 @@ export default {
   TYPES: {
     singleLine: 1,
     twoLine: 2
-    // threeLine: 3 // TODO: Planned
   },
   cssClasses: {
     item: 'mdc-list-item',
@@ -11,6 +10,7 @@ export default {
     activated: 'mdc-list-item--activated'
   },
   EVENT: {
-    CHANGE: 'change'
+    CHANGE: 'action',
+    CLICK: 'click'
   }
 };

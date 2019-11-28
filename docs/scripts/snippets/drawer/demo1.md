@@ -18,13 +18,13 @@
           >
             {{ item.subheader }}
           </ui-list-group-subheader>
-          <ui-item-a
+          <ui-item
             v-for="(subItem, subIndex) in item.items"
             :key="`item-${index}-${subIndex}`"
           >
             <ui-item-first-content :icon="subItem.icon"></ui-item-first-content>
             <ui-item-text-content>{{ subItem.name }}</ui-item-text-content>
-          </ui-item-a>
+          </ui-item>
         </template>
       </template>
     </ui-list>

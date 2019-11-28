@@ -1,12 +1,12 @@
 ```html
 <ui-list class="demo-list">
-  <ui-item-a
+  <ui-item
     v-for="(item, index) in items"
     :key="index"
     v-ripple
     :firstIcon="item.icon"
   >
     {{ item.text }}
-  </ui-item-a>
+  </ui-item>
 </ui-list>
 ```

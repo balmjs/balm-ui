@@ -34,8 +34,5 @@ export default {
     withIndicator() {
       return this.contentIndicator;
     }
-  },
-  created() {
-    console.log(this.type, this.isTextWithIcon, this.isIconOnly);
   }
 };

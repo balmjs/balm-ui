@@ -50,3 +50,9 @@
   </ui-item>
 </ui-list>
 ```
+
+#### Events
+
+| Name    | Type                      | Description                          |
+| ------- | ------------------------- | ------------------------------------ |
+| `click` | `function(event: object)` | Emits when the list item is clicked. |

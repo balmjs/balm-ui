@@ -29,3 +29,9 @@
 ```
 
 > Optional, styles the row in a selected or activated state.
+
+#### Events
+
+| Name     | Type                      | Description                                                             |
+| -------- | ------------------------- | ----------------------------------------------------------------------- |
+| `action` | `function(index: number)` | Indicates that a list item with the specified index has been activated. |

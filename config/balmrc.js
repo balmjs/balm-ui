@@ -33,6 +33,9 @@ module.exports = {
         loader: 'html-loader!markdown-loader'
       }
     ],
+    urlLoaderOptions: {
+      esModule: false
+    },
     includeJsResource: env.useDocs
       ? [
           path.resolve(__dirname, '../src/material-components-web'),

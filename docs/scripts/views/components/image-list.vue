@@ -29,7 +29,7 @@
           <ui-image-item
             v-for="i in 15"
             :key="i"
-            :bgImage="require(`@/assets/photos/3x2/${i}.jpg`).default"
+            :bgImage="require(`@/assets/photos/3x2/${i}.jpg`)"
           >
             <ui-image-text v-if="controls1.labelsType"
               >Text label</ui-image-text
@@ -54,7 +54,7 @@
           <ui-image-item
             v-for="(item, index) in list"
             :key="index"
-            :image="require(`@/assets/photos/${item}.jpg`).default"
+            :image="require(`@/assets/photos/${item}.jpg`)"
           >
             <ui-image-text v-if="controls2.labelsType">
               Text label

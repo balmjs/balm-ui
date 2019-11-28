@@ -10,7 +10,7 @@ export default {
     activated: 'mdc-list-item--activated'
   },
   EVENT: {
-    CHANGE: 'action',
+    ACTION: 'action',
     CLICK: 'click'
   }
 };

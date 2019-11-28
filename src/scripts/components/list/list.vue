@@ -16,7 +16,7 @@ export default {
   name: 'ui-list',
   model: {
     prop: 'selectedIndex',
-    event: UI_LIST.EVENT.CHANGE
+    event: UI_LIST.EVENT.ACTION
   },
   props: {
     type: {
@@ -67,8 +67,9 @@ export default {
     this.$nextTick(() => {
       this.$list = new MDCList(this.$el);
 
-      this.$list.listen(`MDCList:${UI_LIST.EVENT.CHANGE}`, ({ detail }) => {
-        this.$emit(UI_LIST.EVENT.CHANGE, detail.index);
+      // TODO: has bug? Execute twice in <ui-dismissible-drawer> and <ui-modal-drawer>
+      this.$list.listen(`MDCList:${UI_LIST.EVENT.ACTION}`, ({ detail }) => {
+        this.$emit(UI_LIST.EVENT.ACTION, detail.index);
       });
 
       if (this.singleSelection) {

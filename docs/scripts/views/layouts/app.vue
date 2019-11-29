@@ -28,14 +28,15 @@
           type="dismissible"
           class="balmui-menu"
           menuSelector="#balmui-menu"
-          v-model="open"
+          v-model="openDrawer"
         >
           <ui-drawer-content>
-            <ui-list ref="mainmenu" class="catalog-list">
+            <ui-nav ref="mainmenu" class="catalog-list">
               <template #default="{ itemClass, activatedClass }">
                 <template v-for="(item, index) in menu">
                   <router-link
                     v-if="item.icon || item.isSubmenu"
+                    v-ripple
                     :key="`item${index}`"
                     :class="[
                       itemClass,
@@ -70,7 +71,7 @@
                   </h3>
                 </template>
               </template>
-            </ui-list>
+            </ui-nav>
           </ui-drawer-content>
         </ui-drawer>
         <main ref="body" class="balmui-content" v-anchor.offset="60">
@@ -102,7 +103,7 @@ export default {
     return {
       lang,
       menu,
-      open: false,
+      openDrawer: false,
       loading: false
     };
   },
@@ -129,10 +130,10 @@ export default {
     });
   },
   mounted() {
-    this.open = window.innerWidth >= 1024;
+    this.openDrawer = window.innerWidth >= 1024;
 
     window.addEventListener('balmResize', () => {
-      this.open = window.innerWidth >= 1024;
+      this.openDrawer = window.innerWidth >= 1024;
     });
   },
   methods: {
@@ -144,7 +145,7 @@ export default {
     // },
     handleMenu() {
       if (window.innerWidth < 1024) {
-        this.open = false;
+        this.openDrawer = false;
       }
     }
   }

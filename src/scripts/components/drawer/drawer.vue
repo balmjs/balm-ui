@@ -76,15 +76,9 @@ export default {
         this.$drawer.open = this.open;
       }
 
-      if (this.$drawer.list) {
-        if (this.$drawer.list.selectedIndex === -1) {
-          console.warn(
-            'The first `<ui-item>` needs to apply activated state in the drawer'
-          );
-        }
-      } else {
+      if (!this.$drawer.list) {
         console.warn(
-          '`<ui-list>` is required for `<ui-drawer-content>` in the drawer'
+          '`<ui-list>` or `<ui-nav>` is required for `<ui-drawer-content>` in the drawer'
         );
       }
     }

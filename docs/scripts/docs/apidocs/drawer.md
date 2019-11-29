@@ -2,9 +2,10 @@
 <ui-drawer><!-- the drawer child components --></ui-drawer>
 ```
 
-> NOTE: `<ui-drawer>` (`type="permanent"`) has not props and events.
->
-> NOTE: `<ui-drawer type="modal">` must be including a `<ui-list>`.
+**NOTE:**
+
+- `<ui-drawer>` (`type="permanent"`) has not props and events.
+- `<ui-drawer type="dismissible">` and `<ui-drawer type="modal">` must be including a `<ui-list>` or `<ui-nav>`. And the first `<ui-item>` or `<ui-a>` needs to apply activated state in the drawer.
 
 #### Props
 

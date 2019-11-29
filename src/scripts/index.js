@@ -31,6 +31,7 @@ import UiIcon from './components/common/icon';
 // Data View
 import UiListGroup from './components/list/list-group';
 import UiListGroupSubheader from './components/list/list-group-subheader';
+import UiNav from './components/list/nav';
 import UiList from './components/list/list';
 import UiItem from './components/list/item';
 import UiItemTextContent from './components/list/item-text-content';
@@ -124,6 +125,7 @@ const components = {
   // Data View
   UiListGroup,
   UiListGroupSubheader,
+  UiNav,
   UiList,
   UiItem,
   UiItemTextContent,

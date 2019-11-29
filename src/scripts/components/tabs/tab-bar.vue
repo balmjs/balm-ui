@@ -2,7 +2,7 @@
   <!-- Container -->
   <div class="mdc-tab-bar" role="tablist">
     <slot>
-      <!-- Tab components -->
+      <!-- Tab Scroller and Tab components -->
     </slot>
   </div>
 </template>

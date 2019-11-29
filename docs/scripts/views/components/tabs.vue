@@ -55,10 +55,11 @@
       <ui-tab-panel-demo :code="demoCode"></ui-tab-panel-demo> -->
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="tab"></ui-apidocs>
+      <ui-apidocs name="tabs"></ui-apidocs>
       <ui-apidocs name="tab-bar"></ui-apidocs>
-      <ui-apidocs name="tab-indicator"></ui-apidocs>
       <ui-apidocs name="tab-scroller"></ui-apidocs>
+      <ui-apidocs name="tab"></ui-apidocs>
+      <ui-apidocs name="tab-indicator"></ui-apidocs>
       <ui-apidocs name="tab-panel"></ui-apidocs>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">

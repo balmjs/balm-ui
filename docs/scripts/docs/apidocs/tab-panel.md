@@ -18,11 +18,11 @@
 | `default` |       | The default slot holds the panel components and can contain HTML. |
 
 ```html
-<ui-tab-bar v-model="active">
+<ui-tabs v-model="active">
   <ui-tab>Tab One</ui-tab>
   <ui-tab>Tab Two</ui-tab>
   <ui-tab>Tab Three</ui-tab>
-</ui-tab-bar>
+</ui-tabs>
 
 <ui-panels v-model="active">
   <ui-panel>Panel One</ui-panel>

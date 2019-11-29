@@ -1,23 +1,20 @@
 ```html
-<ui-tab-bar><!-- the tab components --></ui-tab-bar>
+<ui-tab-bar><!-- the tab scroller and tab components --></ui-tab-bar>
 ```
 
-#### `<ui-tab-bar>` & `<ui-tabs>` Props
+#### `<ui-tab-bar>` & `<ui-tabs>` common Props
 
-| Name                 | Type   | Default | Description                                 |
-| -------------------- | ------ | ------- | ------------------------------------------- |
-| `active` (`v-model`) | number | `0`     | Mandatory.                                  |
-| `align`              | string | `null`  | Tab alignment. `['start', 'center', 'end']` |
+| Name                 | Type   | Default | Description |
+| -------------------- | ------ | ------- | ----------- |
+| `active` (`v-model`) | number | `0`     | Mandatory.  |
 
 #### `<ui-tab-bar>` Slots
 
-| Name      | Slots | Description                                                     |
-| --------- | ----- | --------------------------------------------------------------- |
-| `default` |       | The default slot holds the tab components and can contain HTML. |
+| Name      | Slots | Description                                                                      |
+| --------- | ----- | -------------------------------------------------------------------------------- |
+| `default` |       | The default slot holds the tab scroller and tab components and can contain HTML. |
 
-> `<ui-tabs>` has not slot.
-
-#### `<ui-tab-bar>` & `<ui-tabs>` Events
+#### `<ui-tab-bar>` & `<ui-tabs>` common Events
 
 | Name     | Type                      | Description                    |
 | -------- | ------------------------- | ------------------------------ |
@@ -31,42 +28,12 @@
 <ui-tabs v-model="active"></ui-tabs>
 
 // Manual
-<ui-tab-bar :active="active" @change="$balmUI.onChange('active', $event)"></ui-tab-bar>
-<ui-tabs :active="active" @change="$balmUI.onChange('active', $event)"></ui-tabs>
-```
-
----
-
-```html
-<ui-tabs></ui-tabs>
-```
-
-#### Props
-
-| Name    | Type   | Default             | Description               |
-| ------- | ------ | ------------------- | ------------------------- |
-| `items` | array  | `[]`                | Mandatory. Tab items.     |
-| `keys`  | object | `{text, icon, url}` | A tab item object's keys. |
-
-- Default keys of a tab item object:
-
-```js
-{
-  text: 'text', // label text
-  icon: 'icon', // label icon
-}
-```
-
-> `<ui-tabs>` is shorthand for `<ui-tab-bar>` and `<ui-tab>`.
-
-```html
-<!-- full syntax -->
-<ui-tab-bar v-model="active">
-  <ui-tab v-for="(tab, index) in tabs" :key="index" :icon="tab.icon">
-    {{ tab.text }}
-  </ui-tab>
-</ui-tab-bar>
-
-<!-- shorthand -->
-<ui-tabs v-model="active" :items="tabs"></ui-tabs>
+<ui-tab-bar
+  :active="active"
+  @change="$balmUI.onChange('active', $event)"
+></ui-tab-bar>
+<ui-tabs
+  :active="active"
+  @change="$balmUI.onChange('active', $event)"
+></ui-tabs>
 ```

@@ -2,21 +2,23 @@
 <ui-tab><!-- The tab text label --></ui-tab>
 ```
 
-#### `<ui-tab>` & `<ui-tabs>` Props
+#### `<ui-tab>` & `<ui-tabs>` common Props
 
-| Name               | Type    | Default  | Description                                                                                                      |
-| ------------------ | ------- | -------- | ---------------------------------------------------------------------------------------------------------------- |
-| `type`             | string  | `'text'` | Mandatory. The permutation of tab labels.                                                                        |
-| `stacked`          | boolean | `false`  | Optional. Indicates that the tab icon and label should flow vertically instead of horizontally.                  |
-| `minWidth`         | boolean | `false`  | Optional. Indicates that the tab should shrink in size to be as narrow as possible without causing text to wrap. |
-| `contentIndicator` | boolean | `false`  | Optional. Text label width-matching indicator.                                                                   |
-| `text`             | string  | `null`   | Tab text.                                                                                                        |
-| `icon`             | string  | `null`   | Tab icon.                                                                                                        |
+| Name               | Type           | Default | Description                                                                                                      |
+| ------------------ | -------------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
+| `type`             | string, number | 0       | Mandatory. The permutation of tab labels.                                                                        |
+| `stacked`          | boolean        | `false` | Optional. Indicates that the tab icon and label should flow vertically instead of horizontally.                  |
+| `minWidth`         | boolean        | `false` | Optional. Indicates that the tab should shrink in size to be as narrow as possible without causing text to wrap. |
+| `contentIndicator` | boolean        | `false` | Optional. Text label width-matching indicator.                                                                   |
 
-- type
-  - `'text'`: text only
-  - `'icon'`: icon only
-  - `'both'`: text with icon
+- **Types:** `0: 'text'`, `1: 'iconOnly'`, `2: 'textWithIcon'`
+
+#### `<ui-tab>` Props
+
+| Name   | Type   | Default | Description                                    |
+| ------ | ------ | ------- | ---------------------------------------------- |
+| `text` | string | `null`  | Tab text.                                      |
+| `icon` | string | `null`  | Tab icon. See [Material Icons](/#/icons) list. |
 
 #### Slots
 
@@ -27,7 +29,9 @@
 | `indicator` |                 | The indicator slot holds the tab indicator component.       |
 
 ```html
-<template #icon="{ iconClass }">
-  <ui-icon :class="iconClass">ICON</ui-icon>
-</template>
+<ui-tab>
+  <template #icon="{ iconClass }">
+    <ui-icon :class="iconClass">ICON</ui-icon>
+  </template>
+</ui-tab>
 ```

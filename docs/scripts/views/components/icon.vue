@@ -1,17 +1,34 @@
 <template>
   <div :class="[$tt('body1'), 'demo--icon']">
-    <section class="hero component">
-      <ui-icon>add</ui-icon>
-      <ui-icon>description</ui-icon>
-      <ui-icon>edit</ui-icon>
-      <ui-icon>delete</ui-icon>
-    </section>
+    <header class="hero component">
+      <div class="hero-demo">
+        <ui-icon :type="type">add</ui-icon>
+        <ui-icon :type="type">description</ui-icon>
+        <ui-icon :type="type">edit</ui-icon>
+        <ui-icon :type="type">delete</ui-icon>
+      </div>
+      <div class="hero-options">
+        <ui-select class="hero-option" :options="IconTypeOptions" v-model="type"
+          >Icon themes</ui-select
+        >
+      </div>
+    </header>
+
+    <ui-toc-affix></ui-toc-affix>
+    <!-- <ui-tab-bar class="category-affix">
+      <ui-tab
+        v-for="(category, index) in categories"
+        v-anchor:href="`#${category.name}`"
+        :key="category.name"
+        >{{ category.name }}</ui-tab
+      >
+    </ui-tab-bar> -->
 
     <div :class="$tt('body2')">
-      <h4 :class="$tt('headline4')">0. Usage</h4>
+      <h3 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h3>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 :class="$tt('headline4')">1. Example</h4>
+      <h3 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h3>
       <section class="sizing-example">
         <h6 :class="$tt('headline6')">1.1 Sizing</h6>
         <div class="icons-preview-code">
@@ -57,10 +74,12 @@
         <ui-markdown :text="code[2]"></ui-markdown>
       </ui-accordion>
 
-      <h4 :class="$tt('headline4')">2. APIs</h4>
+      <h3 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h3>
       <ui-apidocs name="icon"></ui-apidocs>
 
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <h3 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
+        3. Sass Variables
+      </h3>
       <ui-cssdocs name="icon"></ui-cssdocs>
 
       <h4 :class="$tt('headline4')">4. Icon List</h4>
@@ -86,34 +105,35 @@
         </ui-textfield-helptext>
       </div>
 
-      <ui-list nonInteractive>
+      <ui-list-group>
         <template v-for="(category, index) in categories">
-          <ui-item :key="`item${index}`">
-            <h2>{{ category.name }}</h2>
-            <template v-if="Object.keys(currentIcons).length">
-              <ui-grid-list>
-                <ui-grid-tile
-                  v-for="(icon, i) in currentIcons[category.name]"
-                  :key="i"
-                  noImage
-                  class="btn-clipboard"
-                  :data-clipboard-text="icon.id"
-                >
-                  <template #icon>
-                    <ui-icon size="48">{{ icon.id }}</ui-icon>
-                  </template>
-                  <!-- <div v-if="icon.isNew" class="new-badge">New</div> -->
-                  <ui-grid-tile-title :title="icon.name">{{ icon.name }}</ui-grid-tile-title>
-                </ui-grid-tile>
-              </ui-grid-list>
-            </template>
-            <template v-else>
-              <p>No Icons</p>
-            </template>
-          </ui-item>
-          <ui-item-divider :key="`divider${index}`" v-if="index < category.count - 1"></ui-item-divider>
+          <ui-list-group-subheader
+            v-anchor:id="category.name"
+            :class="$tt('headline6')"
+            >{{ category.name }}</ui-list-group-subheader
+          >
+          <ui-image-list v-if="Object.keys(currentIcons).length">
+            <ui-image-item
+              v-for="(icon, i) in currentIcons[category.name]"
+              :key="i"
+              :title="icon.name"
+              class="btn-clipboard"
+              :data-clipboard-text="icon.id"
+            >
+              <template #image>
+                <ui-icon :type="type" size="48">{{ icon.id }}</ui-icon>
+                <div v-if="icon.isNew" class="new-badge">New</div>
+              </template>
+              <ui-image-text>{{ icon.name }}</ui-image-text>
+            </ui-image-item>
+          </ui-image-list>
+          <p v-else>No Icons</p>
+          <ui-list-divider
+            :key="`divider${index}`"
+            v-if="index < category.count - 1"
+          ></ui-list-divider>
         </template>
-      </ui-list>
+      </ui-list-group>
     </div>
   </div>
 </template>
@@ -221,6 +241,29 @@ if (MDI_VERSION <= 38) {
   ]);
 }
 
+const IconTypeOptions = [
+  {
+    label: 'Filled',
+    value: 0
+  },
+  {
+    label: 'Outlined',
+    value: 1
+  },
+  {
+    label: 'Round',
+    value: 2
+  },
+  {
+    label: 'Two-Tone',
+    value: 3
+  },
+  {
+    label: 'Sharp',
+    value: 4
+  }
+];
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Icons'
@@ -228,6 +271,8 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      IconTypeOptions,
+      type: 0,
       number: 0,
       categories: [],
       icons: {},

@@ -27,7 +27,7 @@ import UiA from './components/button/a';
 import UiFab from './components/button/fab';
 import UiIconButton from './components/button/icon-button';
 import UiIconA from './components/button/icon-a';
-import UiIcon from './components/common/icon';
+import UiIcon from './components/icon/icon';
 // Data View
 import UiListGroup from './components/list/list-group';
 import UiListGroupSubheader from './components/list/list-group-subheader';

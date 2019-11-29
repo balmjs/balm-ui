@@ -98,7 +98,30 @@ level2.forEach(function(file) {
 task('update:mdc', series(updateMDCTasks));
 
 // Get Material Icons
-const materialicons = ['Y.eot', 'c.woff2', 'a.woff', 'Z.ttf'];
+const MDI_baseUrl = 'https://fonts.gstatic.com/s/materialicons';
+const MDI_regularStyle = 'filled';
+const MaterialIconsFonts = [
+  {
+    style: MDI_regularStyle,
+    url: '/v48/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2'
+  },
+  {
+    style: 'outlined',
+    url: 'outlined/v14/gok-H7zzDkdnRel8-DQ6KAXJ69wP1tGnf4ZGhUcel5euIg.woff2'
+  },
+  {
+    style: 'round',
+    url: 'round/v14/LDItaoyNOAY6Uewc665JcIzCKsKc_M9flwmPq_HTTw.woff2'
+  },
+  {
+    style: 'two-tone',
+    url: 'twotone/v13/hESh6WRmNCxEqUmNyh3JDeGxjVVyMg4tHGctNCu0NjbrHg.woff2'
+  },
+  {
+    style: 'sharp',
+    url: 'sharp/v15/oPWQ_lt5nv4pWNJpghLP75WiFR4kLh3kvmvRImcycg.woff2'
+  }
+];
 
 function updateMDITask(cb) {
   https
@@ -116,15 +139,17 @@ function updateMDITask(cb) {
 
           console.log(`Material Icons latest version: ${version}`);
 
-          materialicons.forEach(font => {
-            const suffix = font.split('.')[1];
-            const filename = `MaterialIcons-Regular.${suffix}`;
+          MaterialIconsFonts.forEach(iconFont => {
+            const suffix = iconFont.url.split('.')[1];
+            const filename =
+              iconFont.style === MDI_regularStyle
+                ? `material-icons.${suffix}`
+                : `material-icons-${iconFont.style}.${suffix}`;
             const file = fs.createWriteStream(
-              `./src/material-design-icons/latest/${filename}`
+              `./src/material-icons/${filename}`
             );
-
             const request = https.get(
-              `https://fonts.gstatic.com/s/materialicons/v${version}/flUhRq6tzZclQEJ-Vdg-IuiaDsN${font}`,
+              `${MDI_baseUrl}${iconFont.url}`,
               response => {
                 response.pipe(file);
               }

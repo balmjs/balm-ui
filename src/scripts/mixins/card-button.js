@@ -1,11 +1,4 @@
-// Define card constants
-const UI_CARD = {
-  cssClasses: {
-    ACTION: 'mdc-card__actions',
-    BUTTON: 'mdc-card__action-buttons',
-    ICON: 'mdc-card__action-icons'
-  }
-};
+import UI_CARD from '../components/card/constants';
 
 export default {
   data() {
@@ -28,9 +21,9 @@ export default {
       const parentEl = this.$parent.$el;
 
       this.actionButton =
-        parentEl.classList.contains(UI_CARD.cssClasses.BUTTON) ||
-        parentEl.classList.contains(UI_CARD.cssClasses.ACTION);
-      this.actionIcon = parentEl.classList.contains(UI_CARD.cssClasses.ICON);
+        parentEl.classList.contains(UI_CARD.cssClasses.button) ||
+        parentEl.classList.contains(UI_CARD.cssClasses.action);
+      this.actionIcon = parentEl.classList.contains(UI_CARD.cssClasses.icon);
     });
   }
 };

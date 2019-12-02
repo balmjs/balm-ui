@@ -1,6 +1,6 @@
 <template>
   <!-- Image list item -->
-  <li class="mdc-image-list__item">
+  <li class="mdc-image-list__item" @click="handleClick">
     <!-- Image container -->
     <template v-if="$parent.isMasonry">
       <slot name="image" :imageClass="UI_IMAGE_LIST.cssClasses.image">
@@ -53,6 +53,11 @@ export default {
       console.warn(
         'The `bgImage` prop is not compatible with the masonry image list, you need to set the `image` prop'
       );
+    }
+  },
+  methods: {
+    handleClick(event) {
+      this.$emit(UI_IMAGE_LIST.EVENT.CLICK, event);
     }
   }
 };

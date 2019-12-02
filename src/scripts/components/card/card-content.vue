@@ -1,14 +1,18 @@
 <template>
-  <a class="mdc-card__primary-action" :href="url">
+  <div class="mdc-card__primary-action" @click="handleClick">
     <slot></slot>
-  </a>
+  </div>
 </template>
 
 <script>
-import anchorMixin from '../../mixins/anchor';
+import UI_CARD from './constants';
 
 export default {
   name: 'ui-card-content',
-  mixins: [anchorMixin]
+  methods: {
+    handleClick(event) {
+      this.$emit(UI_CARD.EVENT.CLICK, event);
+    }
+  }
 };
 </script>

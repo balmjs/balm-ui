@@ -3,28 +3,30 @@
     <header class="hero component">
       <div class="hero-demo">
         <ui-card :outlined="cardType === 1" class="demo-card">
-          <ui-card-media
-            v-if="cardOptions.media"
-            rectangle
-            :style="`background:url('${cardMedia}')`"
-          ></ui-card-media>
-          <div class="mdc-card-wrapper__text-section">
-            <div :class="$tt('headline6')">
-              Card title
+          <ui-card-content v-ripple>
+            <ui-card-media
+              v-if="cardOptions.media"
+              rectangle
+              :style="`background:url('${cardMedia}')`"
+            ></ui-card-media>
+            <div class="mdc-card-wrapper__text-section">
+              <div :class="$tt('headline6')">
+                Card title
+              </div>
+              <div :class="[$tt('subtitle2'), $textColor('secondary')]">
+                Secondary text
+              </div>
             </div>
-            <div :class="[$tt('subtitle2'), $textColor('secondary')]">
-              Secondary text
+            <div
+              v-if="cardOptions.supportingText"
+              class="mdc-card-wrapper__text-section"
+            >
+              <div :class="[$tt('subtitle2'), $textColor('secondary')]">
+                Greyhound divisively hello coldly wonderfully marginally far
+                upon excluding.
+              </div>
             </div>
-          </div>
-          <div
-            v-if="cardOptions.supportingText"
-            class="mdc-card-wrapper__text-section"
-          >
-            <div :class="[$tt('subtitle2'), $textColor('secondary')]">
-              Greyhound divisively hello coldly wonderfully marginally far upon
-              excluding.
-            </div>
-          </div>
+          </ui-card-content>
           <ui-card-actions v-if="cardOptions.buttons">
             <ui-button>Action1</ui-button>
             <ui-button>Action2</ui-button>

@@ -7,11 +7,11 @@
       :title="title"
     >
       <template #toolbar="{ itemClass }">
-        <ui-icon-a
-          v-if="!isShort"
-          :class="itemClass"
-          icon="file_download"
-        ></ui-icon-a>
+        <template v-if="!isShort">
+          <ui-icon-a :class="itemClass" icon="file_download"></ui-icon-a>
+          <ui-icon-a :class="itemClass" icon="print"></ui-icon-a>
+          <ui-icon-a :class="itemClass" icon="bookmark"></ui-icon-a>
+        </template>
         <ui-menu-anchor v-if="isShort">
           <ui-icon-button
             :class="itemClass"

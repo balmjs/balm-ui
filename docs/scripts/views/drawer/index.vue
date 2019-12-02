@@ -1,8 +1,31 @@
 <template>
   <div :class="[$tt('body1'), 'demo--drawer']">
-    <section class="hero component">
-      <h2 :class="$tt('headline4')">Drawer</h2>
-    </section>
+    <header class="hero component">
+      <div class="hero-demo">
+        <ui-drawer>
+          <ui-drawer-header>
+            <ui-drawer-title>Title</ui-drawer-title>
+            <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>
+          </ui-drawer-header>
+          <ui-drawer-content>
+            <ui-list>
+              <template #default="{ activatedClass }">
+                <ui-item
+                  v-for="(item, index) in menu"
+                  :key="index"
+                  :activated="index === 0"
+                >
+                  <ui-item-first-content
+                    :icon="item.icon"
+                  ></ui-item-first-content>
+                  <ui-item-text-content>{{ item.name }}</ui-item-text-content>
+                </ui-item>
+              </template>
+            </ui-list>
+          </ui-drawer-content>
+        </ui-drawer>
+      </div>
+    </header>
 
     <ui-toc-affix></ui-toc-affix>
 
@@ -62,13 +85,36 @@
 </template>
 
 <script>
+import DrawerMixin from '@/mixins/drawer';
 import snippets from '@/mixins/snippets';
 
 export default {
   metaInfo: {
     titleTemplate: '%s - Drawer'
   },
-  mixins: [snippets],
+  mixins: [DrawerMixin, snippets],
+  data() {
+    return {
+      menu: [
+        {
+          icon: 'inbox',
+          name: 'Inbox'
+        },
+        {
+          icon: 'star',
+          name: 'Star'
+        },
+        {
+          icon: 'send',
+          name: 'Sent Mail'
+        },
+        {
+          icon: 'drafts',
+          name: 'Drafts'
+        }
+      ]
+    };
+  },
   created() {
     this.showCode('drawer');
   }

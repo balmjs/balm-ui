@@ -1,13 +1,14 @@
 <template>
   <!-- Container -->
-  <a :class="[className, actionClassName]" :href="url">
+  <a :class="[className, cardActionClassName]" :href="url">
     <!-- Icon (optional) -->
     <slot name="before" :iconClass="UI_BUTTON.cssClasses.icon">
       <i
         v-if="materialIcon"
         :class="[UI_GLOBAL.mdi, UI_BUTTON.cssClasses.icon]"
         aria-hidden="true"
-      >{{ materialIcon }}</i>
+        >{{ materialIcon }}</i
+      >
     </slot>
     <!-- Text label -->
     <span class="mdc-button__label">

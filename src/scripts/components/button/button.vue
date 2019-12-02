@@ -1,6 +1,10 @@
 <template>
   <!-- Container -->
-  <button type="button" :class="[className, actionClassName]" @click="handleClick">
+  <button
+    type="button"
+    :class="[className, cardActionClassName]"
+    @click="handleClick"
+  >
     <div class="mdc-button__ripple"></div>
     <!-- Icon (optional) -->
     <slot name="before" :iconClass="UI_BUTTON.cssClasses.icon">
@@ -8,7 +12,8 @@
         v-if="materialIcon"
         :class="[UI_GLOBAL.mdi, UI_BUTTON.cssClasses.icon]"
         aria-hidden="true"
-      >{{ materialIcon }}</i>
+        >{{ materialIcon }}</i
+      >
     </slot>
     <!-- Text label -->
     <span :class="UI_BUTTON.cssClasses.label">

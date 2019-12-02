@@ -2,7 +2,7 @@
   <!-- Container -->
   <button
     type="button"
-    :class="[className, actionClassName]"
+    :class="[className, cardActionClassName]"
     @click="handleClick"
   >
     <!-- Icon -->

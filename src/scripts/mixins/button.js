@@ -1,11 +1,11 @@
 import typeMixin from './type';
 import materialIconMixin from './material-icon';
 import rippleMixin from './ripple';
-import cardButtonMixin from './card-button';
+import cardActionMixin from './card-action';
 import UI_BUTTON from '../components/button/constants';
 
 export default {
-  mixins: [typeMixin, materialIconMixin, rippleMixin, cardButtonMixin],
+  mixins: [typeMixin, materialIconMixin, rippleMixin, cardActionMixin],
   props: {
     // UI variants
     outlined: {

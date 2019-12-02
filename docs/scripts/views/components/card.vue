@@ -9,23 +9,20 @@
               rectangle
               :style="`background:url('${cardMedia}')`"
             ></ui-card-media>
-            <div class="mdc-card-wrapper__text-section">
+            <ui-card-text>
               <div :class="$tt('headline6')">
                 Card title
               </div>
               <div :class="[$tt('subtitle2'), $textColor('secondary')]">
                 Secondary text
               </div>
-            </div>
-            <div
-              v-if="cardOptions.supportingText"
-              class="mdc-card-wrapper__text-section"
-            >
+            </ui-card-text>
+            <ui-card-text v-if="cardOptions.supportingText">
               <div :class="[$tt('subtitle2'), $textColor('secondary')]">
                 Greyhound divisively hello coldly wonderfully marginally far
                 upon excluding.
               </div>
-            </div>
+            </ui-card-text>
           </ui-card-content>
           <ui-card-actions v-if="cardOptions.buttons">
             <ui-button>Action1</ui-button>
@@ -75,7 +72,7 @@
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h4>
       <section class="demo-card-collection">
         <ui-card outlined class="demo-card">
           <div :class="[$tt('subtitle2'), 'demo-card-article-group-heading']">

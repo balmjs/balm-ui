@@ -1,0 +1,17 @@
+$mdc-card-text-wrapper-padding: 16px !default;
+
+.mdc-card__text {
+  padding-left: $mdc-card-text-wrapper-padding;
+  padding-right: $mdc-card-text-wrapper-padding;
+  &:first-child,
+  & + & {
+    padding-top: $mdc-card-text-wrapper-padding;
+  }
+  &:last-child {
+    padding-bottom: $mdc-card-text-wrapper-padding;
+  }
+}
+
+.mdc-card__media + .mdc-card__text {
+  padding-top: $mdc-card-text-wrapper-padding;
+}

@@ -1,6 +1,6 @@
 <template>
   <!-- Container -->
-  <a :class="[className, actionClassName]" :href="url">
+  <a :class="[className, cardActionClassName]" :href="url">
     <!-- Icon -->
     <template v-if="toggleButton">
       <i :class="[UI_GLOBAL.mdi, UI_ICON_BUTTON.cssClasses.off]">{{

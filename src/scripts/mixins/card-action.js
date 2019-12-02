@@ -3,16 +3,16 @@ import UI_CARD from '../components/card/constants';
 export default {
   data() {
     return {
-      actionButton: false,
-      actionIcon: false
+      cardButton: false,
+      cardIcon: false
     };
   },
   computed: {
-    actionClassName() {
+    cardActionClassName() {
       return {
-        'mdc-card__action': this.actionButton || this.actionIcon,
-        'mdc-card__action--button': this.actionButton,
-        'mdc-card__action--icon': this.actionIcon
+        'mdc-card__action': this.cardButton || this.cardIcon,
+        'mdc-card__action--button': this.cardButton,
+        'mdc-card__action--icon': this.cardIcon
       };
     }
   },
@@ -20,10 +20,10 @@ export default {
     this.$parent.$nextTick(() => {
       const parentEl = this.$parent.$el;
 
-      this.actionButton =
+      this.cardButton =
         parentEl.classList.contains(UI_CARD.cssClasses.button) ||
         parentEl.classList.contains(UI_CARD.cssClasses.action);
-      this.actionIcon = parentEl.classList.contains(UI_CARD.cssClasses.icon);
+      this.cardIcon = parentEl.classList.contains(UI_CARD.cssClasses.icon);
     });
   }
 };

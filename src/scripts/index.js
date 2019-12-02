@@ -48,6 +48,7 @@ import UiCard from './components/card/card';
 import UiCardContent from './components/card/card-content';
 import UiCardMedia from './components/card/card-media';
 import UiCardMediaContent from './components/card/card-media-content';
+import UiCardText from './components/card/card-text';
 import UiCardActions from './components/card/card-actions';
 import UiCardButtons from './components/card/card-buttons';
 import UiCardIcons from './components/card/card-icons';
@@ -142,6 +143,7 @@ const components = {
   UiCardContent,
   UiCardMedia,
   UiCardMediaContent,
+  UiCardText,
   UiCardActions,
   UiCardButtons,
   UiCardIcons,

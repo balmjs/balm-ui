@@ -1,5 +1,5 @@
 // Define card constants
-const UI_CARD = {
+export default {
   cssClasses: {
     action: 'mdc-card__actions',
     button: 'mdc-card__action-buttons',

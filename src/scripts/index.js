@@ -52,12 +52,8 @@ import UiCardText from './components/card/card-text';
 import UiCardActions from './components/card/card-actions';
 import UiCardButtons from './components/card/card-buttons';
 import UiCardIcons from './components/card/card-icons';
-import UiChipSet from './components/chips/chip-set';
+import UiChips from './components/chips/chips';
 import UiChip from './components/chips/chip';
-import UiChipText from './components/chips/chip-text';
-import UiChipThumbnail from './components/chips/chip-thumbnail';
-import UiChipRemoveIcon from './components/chips/chip-remove-icon';
-import UiChipCheckmark from './components/chips/chip-checkmark';
 import UiLinearProgress from './components/progress/linear-progress';
 import UiDataTable from './components/data/table';
 // Inputs and Controls
@@ -147,12 +143,8 @@ const components = {
   UiCardActions,
   UiCardButtons,
   UiCardIcons,
-  UiChipSet,
+  UiChips,
   UiChip,
-  UiChipText,
-  UiChipThumbnail,
-  UiChipRemoveIcon,
-  UiChipCheckmark,
   UiLinearProgress,
   UiDataTable,
   // Inputs and Controls

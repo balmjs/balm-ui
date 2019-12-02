@@ -1,6 +1,6 @@
-// Define constants
+// Define card constants
 const UI_CARD = {
-  CLASSNAME: {
+  cssClasses: {
     ACTION: 'mdc-card__actions',
     BUTTON: 'mdc-card__action-buttons',
     ICON: 'mdc-card__action-icons'
@@ -25,12 +25,12 @@ export default {
   },
   created() {
     this.$parent.$nextTick(() => {
+      const parentEl = this.$parent.$el;
+
       this.actionButton =
-        this.$parent.$el.classList.contains(UI_CARD.CLASSNAME.BUTTON) ||
-        this.$parent.$el.classList.contains(UI_CARD.CLASSNAME.ACTION);
-      this.actionIcon = this.$parent.$el.classList.contains(
-        UI_CARD.CLASSNAME.ICON
-      );
+        parentEl.classList.contains(UI_CARD.cssClasses.BUTTON) ||
+        parentEl.classList.contains(UI_CARD.cssClasses.ACTION);
+      this.actionIcon = parentEl.classList.contains(UI_CARD.cssClasses.ICON);
     });
   }
 };

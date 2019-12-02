@@ -4,6 +4,24 @@
     padding: 24px;
   }
 
+  .mdc-card-wrapper__text-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .mdc-card-wrapper__text-section:first-child,
+  .mdc-card__media + .mdc-card-wrapper__text-section {
+    padding-top: 16px;
+  }
+
+  .mdc-card-wrapper__text-section:last-child {
+    padding-bottom: 16px;
+  }
+
+  .mdc-card-wrapper__text-section + .mdc-card-wrapper__text-section {
+    padding-top: 18px;
+  }
+
   .demo-card-collection {
     display: flex;
     flex-wrap: wrap;

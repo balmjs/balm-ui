@@ -151,8 +151,7 @@
             icon="add"
             :exited="exited"
             @click="$balmUI.onShow('exited')"
-            >add</ui-fab
-          >
+          ></ui-fab>
         </div>
         <ui-accordion>
           <ui-markdown :code="code[3]"></ui-markdown>

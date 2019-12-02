@@ -4,12 +4,13 @@
     <div class="mdc-fab__ripple"></div>
     <template v-if="isExtended">
       <!-- Icon (optional) -->
-      <i v-if="materialIcon" :class="[UI_GLOBAL.mdi, UI_FAB.cssClasses.icon]">{{
-        materialIcon
-      }}</i>
-      <template v-else>
-        <slot name="before" :iconClass="UI_FAB.cssClasses.icon"></slot>
-      </template>
+      <slot name="before" :iconClass="UI_FAB.cssClasses.icon">
+        <i
+          v-if="materialIcon"
+          :class="[UI_GLOBAL.mdi, UI_FAB.cssClasses.icon]"
+          >{{ materialIcon }}</i
+        >
+      </slot>
       <!-- Text label -->
       <span class="mdc-fab__label">
         <slot></slot>
@@ -19,12 +20,13 @@
     </template>
     <template v-else>
       <!-- Icon -->
-      <i v-if="materialIcon" :class="[UI_GLOBAL.mdi, UI_FAB.cssClasses.icon]">{{
-        materialIcon
-      }}</i>
-      <template v-else>
-        <slot :iconClass="UI_FAB.cssClasses.icon"></slot>
-      </template>
+      <slot :iconClass="UI_FAB.cssClasses.icon">
+        <i
+          v-if="materialIcon"
+          :class="[UI_GLOBAL.mdi, UI_FAB.cssClasses.icon]"
+          >{{ materialIcon }}</i
+        >
+      </slot>
     </template>
   </button>
 </template>

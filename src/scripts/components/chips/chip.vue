@@ -74,19 +74,20 @@ export default {
       chipSet && chipSet.addChip(this.$el);
 
       // init
+      const selectedValue = parent.selectedValue;
       if (parent.filterChips) {
         chipSet.chips.forEach((chip, index) => {
-          if (!chip.selected && parent.selectedValue.includes(index)) {
+          if (!chip.selected && selectedValue.includes(index)) {
             chip.selected = true;
             chipSet.selectedChipIds.push(chip.id);
           }
         });
       } else if (
         parent.choiceChips &&
-        parent.selectedValue > -1 &&
-        chipSet.chips[parent.selectedValue]
+        selectedValue > -1 &&
+        chipSet.chips[selectedValue]
       ) {
-        chipSet.chips[parent.selectedValue].selected = true;
+        chipSet.chips[selectedValue].selected = true;
       }
     });
   },

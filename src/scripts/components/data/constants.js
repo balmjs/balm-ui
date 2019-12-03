@@ -1,16 +1,12 @@
 // Define data table constants
 export default {
-  ELEMENT: {
-    THEAD: 'thead',
-    TBODY: 'tbody',
-    TFOOT: 'tfoot'
-  },
   CELL: {
     FIELD: 'field',
     VALUE: 'value',
     NUMBER: 'numeric',
     ROW_ID: 'rowId',
     CHECKBOX: 'checkbox',
+    SORTING: 'sort',
     SELECTED: 'selected',
     COLSPAN: 'colspan',
     ROWSPAN: 'rowspan',
@@ -25,9 +21,15 @@ export default {
     SELECTED: 'selected'
   },
   cssClasses: {
+    asc: 'mdc-data-table__header-cell--asc',
+    desc: 'mdc-data-table__header-cell--desc',
     left: 'mdc-data-table__cell--left',
     center: 'mdc-data-table__cell--center',
     right: 'mdc-data-table__cell--right'
+  },
+  SORTING: {
+    ASC: 'asc',
+    DESC: 'desc'
   },
   AGG: {
     COUNT: 'count',

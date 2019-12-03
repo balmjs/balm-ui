@@ -19,6 +19,18 @@
   text-align: right;
 }
 
+.mdc-data-table__header-cell--asc,
+.mdc-data-table__header-cell--desc {
+  & > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  i {
+    cursor: pointer;
+  }
+}
+
 .mdc-data-table__footer-row {
   @extend .mdc-data-table__row;
 }

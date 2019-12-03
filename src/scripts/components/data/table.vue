@@ -33,9 +33,24 @@
               <ui-checkbox
                 v-if="theadCell[T_CELL.CHECKBOX]"
                 class="mdc-data-table__header-row-checkbox"
-                cssOnly
               ></ui-checkbox>
-              <template v-else>{{ theadCell[T_CELL.VALUE] }}</template>
+              <template v-else>
+                <div>
+                  <i
+                    v-if="theadCell.sort === UI_TABLE.SORTING.ASC"
+                    :class="UI_GLOBAL.mdi"
+                    @click="handleSort(theadCell)"
+                    >arrow_upward</i
+                  >
+                  <i
+                    v-if="theadCell.sort === UI_TABLE.SORTING.DESC"
+                    :class="UI_GLOBAL.mdi"
+                    @click="handleSort(theadCell)"
+                    >arrow_downward</i
+                  >
+                  <span>{{ theadCell[T_CELL.VALUE] }}</span>
+                </div>
+              </template>
             </th>
           </template>
         </tr>
@@ -61,7 +76,8 @@
                 <ui-checkbox
                   v-if="tbodyCell[T_CELL.CHECKBOX]"
                   class="mdc-data-table__row-checkbox"
-                  cssOnly
+                  :value="getRowCheckboxValue(tbodyRow, tbodyRowIndex)"
+                  v-model="selectedRows"
                 ></ui-checkbox>
                 <slot
                   v-else-if="tbodyCell[T_CELL.ACTIONS]"
@@ -118,6 +134,7 @@ import tableMixin from '../../mixins/table';
 import theadMixin from '../../mixins/thead';
 import tbodyMixin from '../../mixins/tbody';
 import tfootMixin from '../../mixins/tfoot';
+import UI_GLOBAL from '../../config/constants';
 import UI_TABLE from './constants';
 
 export default {
@@ -192,6 +209,8 @@ export default {
   },
   data() {
     return {
+      UI_GLOBAL,
+      UI_TABLE,
       T_CELL: UI_TABLE.CELL,
       $table: null,
       dataColumns: 1,

@@ -1,7 +1,12 @@
 <template>
   <div :class="[$tt('body1'), 'demo--table']">
     <section class="hero component">
-      <ui-table rowCheckbox :data="heroData" :thead="thead1" :tbody="tbody1"></ui-table>
+      <ui-table
+        rowCheckbox
+        :data="heroData"
+        :thead="thead1"
+        :tbody="tbody1"
+      ></ui-table>
     </section>
 
     <ui-toc-affix></ui-toc-affix>
@@ -10,7 +15,7 @@
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h4>
       <section class="example">
         <h6 :class="$tt('headline6')">1.1 Default Usage</h6>
         <ui-table :data="heroData" :thead="thead1" :tbody="tbody1"></ui-table>
@@ -21,7 +26,9 @@
 
       <section class="example">
         <h6 :class="$tt('headline6')">1.2 Advanced Usage</h6>
-        <p>Selected rows: {{ selectedRows }} ( Selected key: {{ selectedKey }})</p>
+        <p>
+          Selected rows: {{ selectedRows }} ( Selected key: {{ selectedKey }})
+        </p>
         <ui-table
           fullwidth
           rowCheckbox
@@ -46,7 +53,9 @@
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="table"></ui-apidocs>
 
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
+        3. Sass Variables
+      </h4>
       <ui-cssdocs name="table"></ui-cssdocs>
     </div>
   </div>
@@ -77,7 +86,9 @@ export default {
         [
           {
             value: 'ID',
-            rowspan: 2
+            rowspan: 2,
+            sort: 'asc',
+            by: 'id'
           },
           {
             value: 'Type1',

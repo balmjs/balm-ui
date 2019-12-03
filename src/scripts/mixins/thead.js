@@ -41,7 +41,11 @@ export default {
         {
           'mdc-data-table__header-cell': true,
           'mdc-data-table__header-cell--checkbox': data[this.T_CELL.CHECKBOX],
-          'mdc-data-table__header-cell--numeric': data[this.T_CELL.NUMBER]
+          'mdc-data-table__header-cell--numeric': data[this.T_CELL.NUMBER],
+          'mdc-data-table__header-cell--asc':
+            data.sort === UI_TABLE.SORTING.ASC,
+          'mdc-data-table__header-cell--desc':
+            data.sort === UI_TABLE.SORTING.DESC
         }
       ];
 
@@ -66,6 +70,28 @@ export default {
       }
 
       return cell;
+    },
+    handleSort(data) {
+      if (data[this.T_CELL.SORTING]) {
+        let sortBy = data.by;
+        let currentSort;
+        // TODO: 多个表格共用数据bug
+        if (data[this.T_CELL.SORTING] === UI_TABLE.SORTING.ASC) {
+          currentSort = UI_TABLE.SORTING.DESC;
+          this.currentData.sort((a, b) => {
+            return b[sortBy] - a[sortBy];
+          });
+        } else if (data[this.T_CELL.SORTING] === UI_TABLE.SORTING.DESC) {
+          currentSort = UI_TABLE.SORTING.ASC;
+          this.currentData.sort((a, b) => {
+            return a[sortBy] - b[sortBy];
+          });
+        }
+
+        data[this.T_CELL.SORTING] = currentSort;
+      }
+
+      this.$emit(UI_TABLE.EVENT.SELECTED, []);
     }
   }
 };

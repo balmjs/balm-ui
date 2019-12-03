@@ -5,16 +5,20 @@
     </div>
 
     <div class="mdc-pagination__paging">
-      <a :class="['mdc-pagination__previous', {'disabled': currentPage === 1}]"
-        @click="currentPage === 1 ? noop : handleClick(currentPage - 1)">
+      <a
+        :class="['mdc-pagination__previous', { disabled: currentPage === 1 }]"
+        @click="currentPage === 1 ? null : handleClick(currentPage - 1)"
+      >
         <i v-if="materialIcon" :class="UI_GLOBAL.mdi">{{ currentPrev }}</i>
         <span v-else>{{ currentPrev }}</span>
       </a>
       <template v-for="(page, index) in pageCount" v-if="!mini && isShow(page)">
-        <a v-if="showPage(page)"
+        <a
+          v-if="showPage(page)"
           :key="index"
-          :class="{active: page === currentPage}"
-          @click="handleClick(page)">
+          :class="{ active: page === currentPage }"
+          @click="handleClick(page)"
+        >
           <span>{{ page }}</span>
         </a>
         <span v-else :key="index" class="ellipsis">...</span>
@@ -22,24 +26,35 @@
       <template v-if="mini && !showRecord">
         <slot :pageCount="pageCount"></slot>
       </template>
-      <a :class="['mdc-pagination__next', {'disabled': currentPage === pageCount}]"
-        @click="currentPage === pageCount ? noop : handleClick(currentPage + 1)">
+      <a
+        :class="[
+          'mdc-pagination__next',
+          { disabled: currentPage === pageCount }
+        ]"
+        @click="currentPage === pageCount ? null : handleClick(currentPage + 1)"
+      >
         <i v-if="materialIcon" :class="UI_GLOBAL.mdi">{{ currentNext }}</i>
         <span v-else>{{ currentNext }}</span>
       </a>
 
       <div v-if="!mini && showJumper" class="mdc-pagination__jumper">
         <span>{{ jumperBefore }}</span>
-        <input type="number"
+        <input
+          type="number"
           min="1"
           :max="pageCount"
           v-model="pager"
-          @keydown.prevent.enter="handleClick($event.target.value)">
+          @keydown.prevent.enter="handleClick($event.target.value)"
+        />
         <span>{{ jumperAfter }}</span>
-        <button v-if="jumperButton"
+        <button
+          v-if="jumperButton"
           type="button"
           class="mdc-button"
-          @click="handleClick(pager)">{{ jumperButton }}</button>
+          @click="handleClick(pager)"
+        >
+          {{ jumperButton }}
+        </button>
       </div>
     </div>
   </div>
@@ -55,8 +70,6 @@ const UI_PAGINATION = {
     CHANGE: 'change'
   }
 };
-
-const noop = () => {};
 
 export default {
   name: 'ui-pagination',
@@ -114,7 +127,6 @@ export default {
   data() {
     return {
       UI_GLOBAL,
-      noop,
       currentPage: this.page,
       pager: this.page
     };

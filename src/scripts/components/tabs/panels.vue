@@ -5,8 +5,12 @@
 </template>
 
 <script>
-// Define tab panels constants
-const CLASSNAME_ACTIVE = 'active';
+// Define tab panel constants
+const UI_PANEL = {
+  cssClasses: {
+    active: 'active'
+  }
+};
 
 export default {
   name: 'ui-panels',
@@ -36,11 +40,11 @@ export default {
         panels.forEach((panel, index) => {
           if (
             index === activeIndex &&
-            !panel.classList.contains(CLASSNAME_ACTIVE)
+            !panel.classList.contains(UI_PANEL.cssClasses.active)
           ) {
-            panel.classList.add(CLASSNAME_ACTIVE);
+            panel.classList.add(UI_PANEL.cssClasses.active);
           } else {
-            panel.classList.remove(CLASSNAME_ACTIVE);
+            panel.classList.remove(UI_PANEL.cssClasses.active);
           }
         });
       }

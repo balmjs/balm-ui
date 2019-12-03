@@ -1,22 +1,30 @@
 <template>
   <!-- Container -->
   <div class="mdc-tab-bar" role="tablist">
-    <slot>
-      <!-- Tab Scroller and Tab components -->
-    </slot>
+    <ui-tab-scroller :align="align">
+      <slot>
+        <!-- Tab components -->
+      </slot>
+    </ui-tab-scroller>
   </div>
 </template>
 
 <script>
 import { MDCTabBar } from '../../../material-components-web/tab-bar';
+import UiTabScroller from './tab-scroller';
 import tabBarMixin from '../../mixins/tab-bar';
+import tabScrollerMixin from '../../mixins/tab-scroller';
 
 export default {
   name: 'ui-tab-bar',
-  mixins: [tabBarMixin],
+  components: {
+    UiTabScroller
+  },
+  mixins: [tabBarMixin, tabScrollerMixin],
   data() {
     return {
-      $tabBar: null
+      $tabBar: null,
+      nextTabId: 0 // For async tab
     };
   },
   mounted() {

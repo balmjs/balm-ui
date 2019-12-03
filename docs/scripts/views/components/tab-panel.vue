@@ -2,11 +2,11 @@
   <section class="example">
     <h5 :class="$tt('headline4')">1.4 Tab Panel</h5>
 
-    <ui-tab-bar v-model="active">
+    <ui-tabs v-model="active">
       <ui-tab>Tab One</ui-tab>
       <ui-tab>Tab Two</ui-tab>
       <ui-tab>Tab Three</ui-tab>
-    </ui-tab-bar>
+    </ui-tabs>
 
     <ui-panels v-model="active">
       <ui-panel>Panel One</ui-panel>

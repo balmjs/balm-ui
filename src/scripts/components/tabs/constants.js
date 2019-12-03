@@ -13,6 +13,12 @@ const UI_TAB_SCROLLER = {
   }
 };
 
+// Define tab indicator constants
+const UI_TAB_INDICATOR = {
+  UNDERLINE: 'underline',
+  ICON: 'icon'
+};
+
 // Define tab constants
 const UI_TAB = {
   TYPES: {
@@ -23,7 +29,8 @@ const UI_TAB = {
   cssClasses: {
     active: 'mdc-tab--active',
     icon: 'mdc-tab__icon'
-  }
+  },
+  idPrefix: 'mdc-tab-'
 };
 
-export { UI_TAB_BAR, UI_TAB_SCROLLER, UI_TAB };
+export { UI_TAB_BAR, UI_TAB_SCROLLER, UI_TAB_INDICATOR, UI_TAB };

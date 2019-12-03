@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import { MDCTabScroller } from '../../../material-components-web/tab-scroller';
 import tabScrollerMixin from '../../mixins/tab-scroller';
 import { UI_TAB_SCROLLER } from './constants';
 
@@ -30,13 +31,14 @@ export default {
   },
   data() {
     return {
+      $tabScroller: null,
       scrollValue: this.scrollX
     };
   },
   watch: {
     scrollX(val) {
       let newScrollValue = +val;
-      this.$parent.$tabBar.scrollTo(newScrollValue);
+      this.$tabScroller.scrollTo(newScrollValue);
 
       this.scrollValue = newScrollValue;
     }
@@ -52,10 +54,13 @@ export default {
       return result.join(' ');
     }
   },
+  mounted() {
+    this.$tabScroller = new MDCTabScroller(this.$el);
+  },
   methods: {
     increment(scrollX = 0) {
       let offsetScrollX = +scrollX;
-      this.$parent.$tabBar.incrementScroll(offsetScrollX);
+      this.$tabScroller.incrementScroll(offsetScrollX);
 
       this.scrollValue += offsetScrollX;
       if (this.scrollValue < 0) {

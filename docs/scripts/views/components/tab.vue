@@ -5,14 +5,21 @@
     <h6 :class="$tt('headline6')">Text Label</h6>
     <div class="demo">
       <ui-tab-bar v-model="active">
-        <ui-tab v-for="(tab, index) in tabs" :key="index">{{ tab.text }}</ui-tab>
+        <ui-tab v-for="(tab, index) in tabs" :key="index">{{
+          tab.text
+        }}</ui-tab>
       </ui-tab-bar>
     </div>
 
     <h6 :class="$tt('headline6')">Icon</h6>
     <div class="demo">
       <ui-tab-bar v-model="active">
-        <ui-tab v-for="(tab, index) in tabs" :key="index" type="icon" :icon="tab.icon"></ui-tab>
+        <ui-tab
+          v-for="(tab, index) in tabs"
+          :key="index"
+          type="iconOnly"
+          :icon="tab.icon"
+        ></ui-tab>
       </ui-tab-bar>
     </div>
     <ui-accordion>
@@ -25,9 +32,10 @@
         <ui-tab
           v-for="(tab, index) in tabs"
           :key="index"
-          type="both"
+          type="textWithIcon"
           :icon="tab.icon"
-        >{{ tab.text }}</ui-tab>
+          >{{ tab.text }}</ui-tab
+        >
       </ui-tab-bar>
     </div>
 
@@ -37,10 +45,11 @@
         <ui-tab
           v-for="(tab, index) in tabs"
           :key="index"
-          type="both"
+          type="textWithIcon"
           :icon="tab.icon"
           stacked
-        >{{ tab.text }}</ui-tab>
+          >{{ tab.text }}</ui-tab
+        >
       </ui-tab-bar>
     </div>
     <ui-accordion>
@@ -50,7 +59,9 @@
     <h6 :class="$tt('headline6')">Text Label Width-Matching Indicator</h6>
     <div class="example">
       <ui-tab-bar v-model="active">
-        <ui-tab v-for="(tab, index) in tabs" :key="index" contentIndicator>{{ tab.text }}</ui-tab>
+        <ui-tab v-for="(tab, index) in tabs" :key="index" contentIndicator>{{
+          tab.text
+        }}</ui-tab>
       </ui-tab-bar>
     </div>
 
@@ -76,7 +87,7 @@
           v-for="(tab, index) in tabs"
           :key="index"
           class="demo-tab custom-tab"
-          type="both"
+          type="textWithIcon"
           :icon="tab.icon"
           stacked
           contentIndicator

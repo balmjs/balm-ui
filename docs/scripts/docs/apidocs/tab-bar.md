@@ -1,5 +1,5 @@
 ```html
-<ui-tab-bar><!-- the tab scroller and tab components --></ui-tab-bar>
+<ui-tab-bar><!-- the tab components --></ui-tab-bar>
 ```
 
 #### `<ui-tab-bar>` & `<ui-tabs>` common Props

@@ -52,11 +52,14 @@
     <h6 :class="$tt('headline6')">Customization</h6>
     <div class="demo">
       <ui-tab-bar class="custom-demo-tab-bar" v-model="active">
-        <ui-tab v-for="(tab, index) in tabs" :key="index"
-          type="both"
+        <ui-tab
+          v-for="(tab, index) in tabs"
+          :key="index"
+          type="textWithIcon"
           :icon="tab.icon"
           minWidth
-          contentIndicator>
+          contentIndicator
+        >
           {{ tab.text }}
         </ui-tab>
       </ui-tab-bar>

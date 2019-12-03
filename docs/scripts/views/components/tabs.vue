@@ -2,7 +2,7 @@
   <div :class="[$tt('body1'), 'demo--tabs']">
     <header class="hero component">
       <div class="hero-demo">
-        <ui-tabs
+        <!-- <ui-tabs
           v-show="type === 0"
           v-model="active1"
           :type="tabType"
@@ -16,7 +16,7 @@
           :type="tabType"
           :items="LongTabItems"
           :stacked="iconType === 2"
-        ></ui-tabs>
+        ></ui-tabs> -->
       </div>
       <div class="hero-options">
         <ui-select class="hero-option" :options="TabsTypeOptions" v-model="type"
@@ -45,14 +45,19 @@
       <ui-markdown :text="code[0]"></ui-markdown>
 
       <h4 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h4>
-      <!-- <ui-tab-demo :tabs="tabs" :code="demoCode"></ui-tab-demo>
+      <!-- <ui-tab-bar v-model="active">
+        <ui-tab v-for="(tab, index) in tabs" :key="index">{{
+          tab.text
+        }}</ui-tab>
+      </ui-tab-bar> -->
+      <ui-tab-demo :tabs="tabs" :code="demoCode"></ui-tab-demo>
       <ui-tab-bar-demo
         :tabs="tabs"
         :isLargeScreen="isLargeScreen"
         :code="demoCode"
       ></ui-tab-bar-demo>
       <ui-tab-scroller-demo :code="demoCode"></ui-tab-scroller-demo>
-      <ui-tab-panel-demo :code="demoCode"></ui-tab-panel-demo> -->
+      <ui-tab-panel-demo :code="demoCode"></ui-tab-panel-demo>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="tabs"></ui-apidocs>
@@ -175,23 +180,7 @@ export default {
       active1: 0,
       active2: 0,
       active: 0,
-      tabs: [
-        {
-          text: 'Favorites',
-          icon: 'favorite',
-          indicator: 'crop_square'
-        },
-        {
-          text: 'Recents',
-          icon: 'phone',
-          indicator: 'panorama_fish_eye'
-        },
-        {
-          text: 'Nearby',
-          icon: 'near_me',
-          indicator: 'change_history'
-        }
-      ],
+      tabs: [],
       isLargeScreen: false
     };
   },
@@ -211,6 +200,25 @@ export default {
   },
   created() {
     this.showCode('tabs', 9);
+    setTimeout(() => {
+      this.tabs = [
+        {
+          text: 'Favorites',
+          icon: 'favorite',
+          indicator: 'crop_square'
+        },
+        {
+          text: 'Recents',
+          icon: 'phone',
+          indicator: 'panorama_fish_eye'
+        },
+        {
+          text: 'Nearby',
+          icon: 'near_me',
+          indicator: 'change_history'
+        }
+      ];
+    }, 100);
   },
   mounted() {
     window.addEventListener('balmResize', this.init);

@@ -11,12 +11,7 @@
 
 <script>
 import UI_GLOBAL from '../../config/constants';
-
-// Define constants
-const UI_TAB_INDICATOR = {
-  UNDERLINE: 'underline',
-  ICON: 'icon'
-};
+import { UI_TAB_INDICATOR } from './constants';
 
 export default {
   name: 'ui-tab-indicator',

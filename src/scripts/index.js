@@ -15,10 +15,10 @@ import UiTopAppBar from './components/app-bar/top-app-bar';
 import UiGrid from './components/grid/grid';
 import UiGridCell from './components/grid/grid-cell';
 import UiTabs from './components/tabs/tabs';
-import UiTab from './components/tabs/tab';
 import UiTabBar from './components/tabs/tab-bar';
-import UiTabIndicator from './components/tabs/tab-indicator';
 import UiTabScroller from './components/tabs/tab-scroller';
+import UiTabIndicator from './components/tabs/tab-indicator';
+import UiTab from './components/tabs/tab';
 import UiPanels from './components/tabs/panels';
 import UiPanel from './components/tabs/panel';
 // Buttons
@@ -106,10 +106,10 @@ const components = {
   UiGrid,
   UiGridCell,
   UiTabs,
-  UiTab,
   UiTabBar,
-  UiTabIndicator,
   UiTabScroller,
+  UiTabIndicator,
+  UiTab,
   UiPanels,
   UiPanel,
   // Buttons

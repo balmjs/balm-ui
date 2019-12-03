@@ -14,7 +14,7 @@
 <script>
 import { MDCLinearProgress } from '../../../material-components-web/linear-progress';
 
-// Define constants
+// Define linear progress constants
 const UI_LINEAR_PROGRESS = {
   VALUE: {
     MIN: 0,

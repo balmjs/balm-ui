@@ -10,12 +10,12 @@
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h4>
       <section>
         <h6 :class="$tt('headline6')">Linear Progress Indicators</h6>
         <figure class="linear-progress-demo">
           <ui-linear-progress :progress="progress"></ui-linear-progress>
-          <figcaption>Determinate (Progress: {{progress }})</figcaption>
+          <figcaption>Determinate (Progress: {{ progress }})</figcaption>
         </figure>
 
         <figure class="linear-progress-demo">
@@ -24,7 +24,11 @@
         </figure>
 
         <figure class="linear-progress-demo">
-          <ui-linear-progress progress="0.5" data-buffer="true" buffer="0.75"></ui-linear-progress>
+          <ui-linear-progress
+            progress="0.5"
+            data-buffer="true"
+            buffer="0.75"
+          ></ui-linear-progress>
           <figcaption>Buffer</figcaption>
         </figure>
 
@@ -39,7 +43,12 @@
         </figure>
 
         <figure class="linear-progress-demo">
-          <ui-linear-progress reversed progress="0.5" data-buffer="true" buffer="0.75"></ui-linear-progress>
+          <ui-linear-progress
+            reversed
+            progress="0.5"
+            data-buffer="true"
+            buffer="0.75"
+          ></ui-linear-progress>
           <figcaption>Buffer Reversed</figcaption>
         </figure>
 
@@ -60,7 +69,9 @@
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="linear-progress"></ui-apidocs>
 
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
+        3. Sass Variables
+      </h4>
       <ui-cssdocs name="linear-progress"></ui-cssdocs>
     </div>
   </div>

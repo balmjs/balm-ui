@@ -2,10 +2,16 @@
   <!-- Container -->
   <div :class="className.outer">
     <!-- Leading icon (optional) -->
-    <slot name="before" :customIconClass="UI_TEXTFIELD.SLOT_CLASS.customIcon"></slot>
+    <slot name="before" :iconClass="UI_TEXTFIELD.cssClasses.icon">
+      <i
+        v-if="materialIcon"
+        :class="[UI_GLOBAL.mdi, UI_TEXTFIELD.cssClasses.icon]"
+        >{{ materialIcon }}</i
+      >
+    </slot>
 
     <!-- Textarea -->
-    <template v-if="isMultiLine">
+    <template v-if="isTextarea">
       <div v-if="maxlength" class="mdc-text-field-character-counter"></div>
       <textarea
         :id="id"
@@ -32,7 +38,7 @@
       v-else
       :id="id"
       v-model="inputValue"
-      :type="type"
+      :type="inputType"
       :class="className.input"
       :placeholder="placeholder"
       :pattern="pattern"
@@ -48,10 +54,11 @@
       @keyup="handleKeyup"
       @keyup.enter="handleEnter"
       @blur="handleBlur"
-    >
+    />
+
     <!-- Label text -->
     <ui-floating-label
-      v-if="hasLabel && !(isMultiLine || outlined)"
+      v-if="hasLabel && !(isTextarea || isOutlined)"
       :for="id"
       :floatAbove="!!inputValue"
     >
@@ -59,10 +66,10 @@
     </ui-floating-label>
 
     <!-- Trailing icon (optional) -->
-    <slot name="after" :customIconClass="UI_TEXTFIELD.SLOT_CLASS.customIcon"></slot>
+    <slot name="after" :iconClass="UI_TEXTFIELD.cssClasses.icon"></slot>
 
     <!-- Activation indicator -->
-    <div v-if="isMultiLine || outlined" class="mdc-notched-outline">
+    <div v-if="isTextarea || isOutlined" class="mdc-notched-outline">
       <div class="mdc-notched-outline__leading"></div>
       <div v-if="hasLabel" class="mdc-notched-outline__notch">
         <ui-floating-label :for="id" :floatAbove="!!inputValue">
@@ -84,13 +91,24 @@
 <script>
 import { MDCTextField } from '../../../material-components-web/textfield';
 import UiFloatingLabel from './floating-label';
+import typeMixin from '../../mixins/type';
 import elementMixin from '../../mixins/element';
 import floatingLabelMixin from '../../mixins/floating-label';
+import materialIconMixin from '../../mixins/material-icon';
 import getType from '../../utils/typeof';
+import UI_GLOBAL from '../../config/constants';
 
 // Define constants
 const UI_TEXTFIELD = {
-  // INPUT_TYPES: ['text', 'number', 'password'],
+  TYPES: {
+    filled: 0,
+    outlined: 1
+  },
+  // INPUT_TYPES: {
+  //   singleLine: 0,
+  //   multiLine: 1,
+  //   textarea: 2
+  // },
   EVENT: {
     FOCUS: 'focus',
     KEYDOWN: 'keydown',
@@ -100,8 +118,8 @@ const UI_TEXTFIELD = {
     ENTER: 'enter',
     BLUR: 'blur'
   },
-  SLOT_CLASS: {
-    customIcon: 'mdc-text-field__custom-icon'
+  cssClasses: {
+    icon: 'mdc-text-field__custom-icon'
   }
 };
 
@@ -110,7 +128,7 @@ export default {
   components: {
     UiFloatingLabel
   },
-  mixins: [elementMixin, floatingLabelMixin],
+  mixins: [typeMixin, elementMixin, floatingLabelMixin, materialIconMixin],
   model: {
     prop: 'model',
     event: UI_TEXTFIELD.EVENT.INPUT
@@ -130,7 +148,7 @@ export default {
     },
     maxlength: [Number, String], // Required for counter
     // <input> attributes
-    type: {
+    inputType: {
       type: String,
       default: 'text'
     },
@@ -184,19 +202,26 @@ export default {
   },
   data() {
     return {
+      UI_GLOBAL,
       UI_TEXTFIELD,
       $textfield: null,
       inputValue: this.model
     };
   },
   computed: {
+    isOutlined() {
+      return this.checkType(UI_TEXTFIELD.TYPES, 'outlined');
+    },
+    isTextarea() {
+      return this.inputType === 'textarea';
+    },
     className() {
       return {
         outer: {
           'mdc-text-field': true,
-          'mdc-text-field--outlined': this.outlined,
-          'mdc-text-field--fullwidth': this.fullwidth && !this.outlined,
-          'mdc-text-field--textarea': this.isMultiLine,
+          'mdc-text-field--outlined': this.isOutlined,
+          'mdc-text-field--fullwidth': this.fullwidth && !this.isOutlined,
+          'mdc-text-field--textarea': this.isTextarea,
           'mdc-text-field--disabled': this.disabled,
           'mdc-text-field--dense': this.dense,
           'mdc-text-field--with-leading-icon': this.leadingIcon,
@@ -205,9 +230,6 @@ export default {
         },
         input: 'mdc-text-field__input'
       };
-    },
-    isMultiLine() {
-      return this.type.toLowerCase() === 'textarea';
     },
     hasLabel() {
       return !(this.noLabel || this.placeholder || this.fullwidth);

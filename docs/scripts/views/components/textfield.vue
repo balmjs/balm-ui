@@ -12,25 +12,39 @@
 
       <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
       <section class="example">
-        <h3>1.1 Full Functionality JS Component (Floating Label, Validation)</h3>
-        <section id="demo-text-field-wrapper" :dir="controls.rtl ? 'rtl' : null">
+        <h3>
+          1.1 Full Functionality JS Component (Floating Label, Validation)
+        </h3>
+        <section
+          id="demo-text-field-wrapper"
+          :dir="controls.rtl ? 'rtl' : null"
+        >
           <ui-textfield
             id="full-func-text-field"
             helptextId="my-text-field-helper-text"
-            :class="{'demo-text-field-custom-colors': controls.customColor}"
+            :class="{ 'demo-text-field-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
             :dense="controls.dense"
             :required="controls.required"
-          >Email Address</ui-textfield>
+            >Email Address</ui-textfield
+          >
           <ui-textfield-helptext
             v-if="controls.helperText"
             id="my-text-field-helper-text"
             :visible="controls.isVisible"
             :validMsg="controls.isValidMsg"
-          >Helper Text (possibly validation message)</ui-textfield-helptext>
+            >Helper Text (possibly validation message)</ui-textfield-helptext
+          >
         </section>
         <ui-textfield-controls
-          :options="['disabled', 'rtl', 'dense', 'required', 'customColor', 'helperText']"
+          :options="[
+            'disabled',
+            'rtl',
+            'dense',
+            'required',
+            'customColor',
+            'helperText'
+          ]"
           v-model="controls"
         ></ui-textfield-controls>
         <ui-accordion>
@@ -46,13 +60,12 @@
           pattern=".{8,}"
           id="pw"
           helptextId="pw-validation-msg"
-          :attrs="{autocomplete: 'current-password'}"
-        >Choose password</ui-textfield>
-        <ui-textfield-helptext
-          id="pw-validation-msg"
-          visible
-          validMsg
-        >Must be at least 8 characters long</ui-textfield-helptext>
+          :attrs="{ autocomplete: 'current-password' }"
+          >Choose password</ui-textfield
+        >
+        <ui-textfield-helptext id="pw-validation-msg" visible validMsg
+          >Must be at least 8 characters long</ui-textfield-helptext
+        >
         <ui-accordion>
           <ui-markdown :code="code[2]"></ui-markdown>
         </ui-accordion>
@@ -65,7 +78,7 @@
             id="tf-outlined-input"
             outlined
             helptextId="name-validation-message"
-            :class="{'demo-text-field-custom-colors': controls.customColor}"
+            :class="{ 'demo-text-field-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
             :dense="controls.dense"
             :required="controls.required"
@@ -73,16 +86,27 @@
             :attrs="{
               minlength: controls.min ? 8 : 0
             }"
-          >Your Name</ui-textfield>
+            >Your Name</ui-textfield
+          >
           <ui-textfield-helptext id="name-validation-message" validMsg>
-            {{ controls.min
-            ? 'Must be at least 8 characters'
-            : 'Helper Text (possibly validation message)' }}
+            {{
+              controls.min
+                ? 'Must be at least 8 characters'
+                : 'Helper Text (possibly validation message)'
+            }}
           </ui-textfield-helptext>
         </div>
         <ui-textfield-controls
           idPrefix="outlined"
-          :options="['disabled', 'rtl', 'dense', 'required', 'customColor', 'min', 'max']"
+          :options="[
+            'disabled',
+            'rtl',
+            'dense',
+            'required',
+            'customColor',
+            'min',
+            'max'
+          ]"
           v-model="controls"
         ></ui-textfield-controls>
         <ui-accordion>
@@ -101,7 +125,7 @@
             id="tf-box-leading"
             box
             leadingIcon
-            :class="{'demo-text-field-custom-colors': controls.customColor}"
+            :class="{ 'demo-text-field-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
             :dense="controls.dense"
             :required="controls.required"
@@ -110,8 +134,10 @@
             }"
           >
             <template #before>
-              <ui-textfield-icon :unclickable="controls.unclickable">event</ui-textfield-icon>
-            </template>Your name
+              <ui-textfield-icon :unclickable="controls.unclickable"
+                >event</ui-textfield-icon
+              > </template
+            >Your name
           </ui-textfield>
         </div>
         <div
@@ -123,7 +149,7 @@
             id="tf-box-trailing"
             box
             trailingIcon
-            :class="{'demo-text-field-custom-colors': controls.customColor}"
+            :class="{ 'demo-text-field-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
             :dense="controls.dense"
             :required="controls.required"
@@ -133,7 +159,9 @@
           >
             Your name
             <template #after>
-              <ui-textfield-icon :unclickable="controls.unclickable">delete</ui-textfield-icon>
+              <ui-textfield-icon :unclickable="controls.unclickable"
+                >delete</ui-textfield-icon
+              >
             </template>
           </ui-textfield>
         </div>
@@ -146,7 +174,7 @@
             id="tf-outlined-leading"
             outlined
             leadingIcon
-            :class="{'demo-text-field-custom-colors': controls.customColor}"
+            :class="{ 'demo-text-field-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
             :dense="controls.dense"
             :required="controls.required"
@@ -157,8 +185,8 @@
             <template #before="{ customIconClass }">
               <span :class="customIconClass">
                 <i class="fa fa-smile-o fa-lg"></i>
-              </span>
-            </template>Your other name
+              </span> </template
+            >Your other name
           </ui-textfield>
         </div>
         <div
@@ -170,7 +198,7 @@
             id="tf-outlined-trailing"
             outlined
             trailingIcon
-            :class="{'demo-text-field-custom-colors': controls.customColor}"
+            :class="{ 'demo-text-field-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
             :dense="controls.dense"
             :required="controls.required"
@@ -187,7 +215,15 @@
           </ui-textfield>
         </div>
         <ui-textfield-controls
-          :options="['disabled', 'rtl', 'dense', 'required', 'customColor', 'min', 'unclickable']"
+          :options="[
+            'disabled',
+            'rtl',
+            'dense',
+            'required',
+            'customColor',
+            'min',
+            'unclickable'
+          ]"
           v-model="controls"
         ></ui-textfield-controls>
         <ui-accordion>
@@ -197,7 +233,9 @@
 
       <section class="example">
         <h3>1.5 Preventing FOUC</h3>
-        <ui-textfield id="fouc" v-model="value">Label floating above</ui-textfield>
+        <ui-textfield id="fouc" v-model="value"
+          >Label floating above</ui-textfield
+        >
         <ui-accordion>
           <ui-markdown :code="code[6]"></ui-markdown>
         </ui-accordion>
@@ -205,16 +243,20 @@
 
       <section class="example">
         <h3>1.6 Textarea</h3>
-        <section id="demo-text-field-textarea-wrapper" :dir="controls.rtl ? 'rtl' : null">
+        <section
+          id="demo-text-field-textarea-wrapper"
+          :dir="controls.rtl ? 'rtl' : null"
+        >
           <ui-textfield
             type="textarea"
             id="textarea"
             rows="8"
             cols="40"
-            :class="{'demo-text-field-custom-colors': controls.customColor}"
+            :class="{ 'demo-text-field-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
             :required="controls.required"
-          >Textarea Label</ui-textfield>
+            >Textarea Label</ui-textfield
+          >
         </section>
         <ui-textfield-controls
           :options="['disabled', 'rtl', 'required', 'customColor']"
@@ -233,7 +275,7 @@
             fullwidth
             placeholder="Subject"
             maxlength="40"
-            :class="{'demo-text-field-custom-colors': controls.customColor}"
+            :class="{ 'demo-text-field-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
             :dense="controls.dense"
             :required="controls.required"
@@ -249,11 +291,12 @@
             class="full-width-textarea-example"
             rows="8"
             maxlength="140"
-            :class="{'demo-text-field-custom-colors': controls.customColor}"
+            :class="{ 'demo-text-field-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
             :dense="controls.dense"
             :required="controls.required"
-          >Textarea Label</ui-textfield>
+            >Textarea Label</ui-textfield
+          >
         </div>
         <ui-textfield-controls
           :options="['disabled', 'dense', 'required', 'customColor']"
@@ -270,7 +313,9 @@
       <ui-apidocs name="textfield-icon"></ui-apidocs>
       <ui-apidocs name="textfield-counter"></ui-apidocs>
 
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
+        3. Sass Variables
+      </h4>
       <ui-cssdocs name="textfield"></ui-cssdocs>
     </div>
   </div>

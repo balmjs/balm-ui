@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import typeMixin from '../../mixins/type';
 import { MDCChipSet } from '../../../material-components-web/chips';
+import typeMixin from '../../mixins/type';
 import UI_CHIPS from './constants';
 
 export default {

@@ -35,8 +35,8 @@
 </template>
 
 <script>
-import typeMixin from '../../mixins/type';
 import { MDCTopAppBar } from '../../../material-components-web/top-app-bar';
+import typeMixin from '../../mixins/type';
 import UI_GLOBAL from '../../config/constants';
 
 // Define top app bar constants

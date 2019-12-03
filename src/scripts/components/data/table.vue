@@ -112,12 +112,12 @@
 </template>
 
 <script>
+import { MDCDataTable } from '../../../material-components-web/data-table';
 import UiCheckbox from '../input-controls/checkbox';
 import tableMixin from '../../mixins/table';
 import theadMixin from '../../mixins/thead';
 import tbodyMixin from '../../mixins/tbody';
 import tfootMixin from '../../mixins/tfoot';
-import { MDCDataTable } from '../../../material-components-web/data-table';
 import UI_TABLE from './constants';
 
 export default {

@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import listMixin from '../../mixins/list';
 import { MDCList } from '../../../material-components-web/list';
+import listMixin from '../../mixins/list';
 import UI_LIST from './constants';
 
 export default {

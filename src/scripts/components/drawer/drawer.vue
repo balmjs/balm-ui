@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import typeMixin from '../../mixins/type';
 import { MDCDrawer } from '../../../material-components-web/drawer';
+import typeMixin from '../../mixins/type';
 import UI_DRAWER from './constants';
 
 export default {

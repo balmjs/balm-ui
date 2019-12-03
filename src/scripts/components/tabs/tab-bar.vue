@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import tabBarMixin from '../../mixins/tab-bar';
 import { MDCTabBar } from '../../../material-components-web/tab-bar';
+import tabBarMixin from '../../mixins/tab-bar';
 
 export default {
   name: 'ui-tab-bar',

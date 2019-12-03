@@ -1,5 +1,5 @@
-import cardActionMixin from './card-action';
 import { MDCIconButtonToggle } from '../../material-components-web/icon-button';
+import cardActionMixin from './card-action';
 import UI_ICON_BUTTON from '../components/button/toggle-constants';
 
 export default {

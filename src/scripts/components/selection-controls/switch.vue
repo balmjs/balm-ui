@@ -3,7 +3,8 @@
     <div class="mdc-switch__track"></div>
     <div class="mdc-switch__thumb-underlay">
       <div class="mdc-switch__thumb">
-        <input :id="id"
+        <input
+          :id="id"
           v-model="toggleValue"
           type="checkbox"
           class="mdc-switch__native-control"
@@ -13,7 +14,8 @@
           :false-value="falseValue"
           :disabled="disabled"
           v-bind="attrs"
-          @change="handleChange">
+          @change="handleChange"
+        />
       </div>
     </div>
   </div>
@@ -56,7 +58,6 @@ export default {
       default: false
     },
     // Element attributes
-    id: String,
     name: String
   },
   data() {

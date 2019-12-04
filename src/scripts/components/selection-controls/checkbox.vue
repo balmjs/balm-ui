@@ -59,7 +59,6 @@ export default {
       default: false
     },
     // Element attributes
-    id: String,
     name: String,
     value: [String, Number],
     // UI attributes

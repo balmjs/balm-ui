@@ -1,10 +1,10 @@
 <template>
   <div :class="className">
     <input
+      :id="id"
       v-model="checkedValue"
       class="mdc-radio__native-control"
       type="radio"
-      :id="id"
       :name="name"
       :value="value"
       :disabled="disabled"
@@ -45,7 +45,6 @@ export default {
       default: false
     },
     // Element attributes
-    id: String,
     name: String,
     value: [String, Number],
     // UI attributes

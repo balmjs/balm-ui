@@ -2,24 +2,114 @@
   <div :class="[$tt('body1'), 'demo--textfield']">
     <header class="hero component">
       <div class="hero-demo">
-        <ui-textfield v-if="type === 0" id="my-text-field">Label</ui-textfield>
-        <ui-textfield v-if="type === 1" id="my-text-field-outlined" outlined
-          >Label</ui-textfield
-        >
+        <div>
+          <template v-if="textfieldType === 0">
+            <ui-textfield
+              id="my-text-field"
+              v-model="value1"
+              maxlength="20"
+              :icon="textfieldOption.includes(2) ? 'favorite' : ''"
+              :trailingIcon="textfieldOption.includes(3)"
+              helperTextId="my-text-field-helper"
+              :required="assistiveTextOption === 2"
+              :pattern="assistiveTextOption === 2 ? '[a-z]{256,}' : null"
+              >Label
+              <template v-if="textfieldOption.includes(3)" #after>
+                <ui-textfield-icon>visibility</ui-textfield-icon>
+              </template>
+            </ui-textfield>
+            <ui-textfield-helper
+              id="my-text-field-helper"
+              :counter="textfieldOption.includes(1)"
+              :visible="assistiveTextOption > 0"
+              :validMsg="assistiveTextOption === 2"
+              >{{ assistiveTextOption === 1 ? 'Helper message' : ''
+              }}{{
+                assistiveTextOption === 2 ? 'Error message' : ''
+              }}</ui-textfield-helper
+            >
+          </template>
+        </div>
+        <div>
+          <template v-if="textfieldType === 1">
+            <ui-textfield
+              outlined
+              id="my-text-field-outlined"
+              v-model="value2"
+              maxlength="20"
+              :icon="textfieldOption.includes(2) ? 'favorite' : ''"
+              :trailingIcon="textfieldOption.includes(3)"
+              helperTextId="my-text-field-outlined-helper"
+              :required="assistiveTextOption === 2"
+              :pattern="assistiveTextOption === 2 ? '[a-z]{256,}' : null"
+              >Label
+              <template v-if="textfieldOption.includes(3)" #after>
+                <ui-textfield-icon>visibility</ui-textfield-icon>
+              </template>
+            </ui-textfield>
+            <ui-textfield-helper
+              id="my-text-field-outlined-helper"
+              :counter="textfieldOption.includes(1)"
+              :visible="assistiveTextOption > 0"
+              :validMsg="assistiveTextOption === 2"
+              >{{ assistiveTextOption === 1 ? 'Helper message' : ''
+              }}{{
+                assistiveTextOption === 2 ? 'Error message' : ''
+              }}</ui-textfield-helper
+            >
+          </template>
+        </div>
       </div>
       <div class="hero-options">
         <ui-select
           class="hero-option"
-          :options="TextfieldTypeOptions"
-          v-model="type"
+          :options="TextfieldTypes"
+          v-model="textfieldType"
           >Type</ui-select
         >
+        <div class="hero-option hero-options">
+          <div class="hero-option">
+            <div>Options</div>
+            <ui-form-field
+              v-for="option in TextfieldOptions"
+              :key="option.value"
+              block
+            >
+              <ui-checkbox
+                :id="`textfieldOption${option.value}`"
+                v-model="textfieldOption"
+                :value="option.value"
+              ></ui-checkbox>
+              <label :for="`textfieldOption${option.value}`">{{
+                option.label
+              }}</label>
+            </ui-form-field>
+          </div>
+          <div class="hero-option">
+            <div>Assistive text</div>
+            <ui-form-field
+              v-for="option in AssistiveTextOptions"
+              :key="option.value"
+              block
+            >
+              <ui-radio
+                :id="`textfieldOption${option.value}`"
+                v-model="assistiveTextOption"
+                name="assistiveText"
+                :value="option.value"
+              ></ui-radio>
+              <label :for="`textfieldOption${option.value}`">{{
+                option.label
+              }}</label>
+            </ui-form-field>
+          </div>
+        </div>
       </div>
     </header>
 
     <ui-toc-affix></ui-toc-affix>
 
-    <div :class="$tt('body2')">
+    <!-- <div :class="$tt('body2')">
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
@@ -330,7 +420,7 @@
         3. Sass Variables
       </h4>
       <ui-cssdocs name="textfield"></ui-cssdocs>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -338,7 +428,7 @@
 import snippets from '@/mixins/snippets';
 import UiTextfieldControls from '@/components/textfield-controls';
 
-const TextfieldTypeOptions = [
+const TextfieldTypes = [
   {
     label: 'Filled',
     value: 0
@@ -346,6 +436,36 @@ const TextfieldTypeOptions = [
   {
     label: 'Outlined',
     value: 1
+  }
+];
+
+const TextfieldOptions = [
+  {
+    label: 'Character counter',
+    value: 1
+  },
+  {
+    label: 'Leading icon',
+    value: 2
+  },
+  {
+    label: 'Trailing icon',
+    value: 3
+  }
+];
+
+const AssistiveTextOptions = [
+  {
+    label: 'None',
+    value: 0
+  },
+  {
+    label: 'Helper text',
+    value: 1
+  },
+  {
+    label: 'Error text',
+    value: 2
   }
 ];
 
@@ -359,8 +479,14 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      TextfieldTypeOptions,
-      type: 0,
+      TextfieldTypes,
+      TextfieldOptions,
+      AssistiveTextOptions,
+      textfieldType: 0,
+      textfieldOption: [],
+      assistiveTextOption: 0,
+      value1: '',
+      value2: '',
       controls: {
         disabled: false,
         rtl: false,

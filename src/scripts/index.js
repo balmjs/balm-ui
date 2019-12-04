@@ -36,9 +36,8 @@ import UiMenuitemIcon from './components/menu/menuitem-icon';
 // Data Entry
 import UiFormField from './components/form-controls/form-field';
 import UiTextfield from './components/input-controls/textfield';
-import UiTextfieldHelptext from './components/input-controls/textfield-helptext';
+import UiTextfieldHelper from './components/input-controls/textfield-helper';
 import UiTextfieldIcon from './components/input-controls/textfield-icon';
-import UiTextfieldCounter from './components/input-controls/textfield-counter';
 import UiSelect from './components/selection-controls/select';
 import UiCheckbox from './components/selection-controls/checkbox';
 import UiRadio from './components/selection-controls/radio';
@@ -127,9 +126,8 @@ const components = {
   // Data Entry
   UiFormField,
   UiTextfield,
-  UiTextfieldHelptext,
+  UiTextfieldHelper,
   UiTextfieldIcon,
-  UiTextfieldCounter,
   UiSelect,
   UiCheckbox,
   UiRadio,

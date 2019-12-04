@@ -3,6 +3,7 @@
     <!-- Native Select -->
     <template v-if="native">
       <select
+        :id="id"
         v-model="selectedValue"
         class="mdc-select__native-control"
         :disabled="disabled"
@@ -10,12 +11,18 @@
         @change="nativeHandleChange"
       >
         <!-- Default option -->
-        <option v-if="defaultLabel" :value="defaultValue" selected>{{ defaultLabel }}</option>
+        <option v-if="defaultLabel" :value="defaultValue" selected>{{
+          defaultLabel
+        }}</option>
         <template v-if="group">
           <template v-for="(option, optionIndex) in options">
             <!-- A group of options -->
             <optgroup
-              v-if="option[groupLabel] && option[groupItems] && option[groupItems].length"
+              v-if="
+                option[groupLabel] &&
+                  option[groupItems] &&
+                  option[groupItems].length
+              "
               :key="optionIndex"
               :label="option[groupLabel]"
             >
@@ -23,14 +30,16 @@
                 v-for="(item, itemIndex) in option[groupItems]"
                 :key="itemIndex"
                 :value="item[optionValue]"
-              >{{ item[optionLabel] }}</option>
+                >{{ item[optionLabel] }}</option
+              >
             </optgroup>
             <!-- An option -->
             <option
               v-if="option[optionLabel] && option[optionValue]"
               :key="optionIndex"
               :value="option[optionValue]"
-            >{{ option[optionLabel] }}</option>
+              >{{ option[optionLabel] }}</option
+            >
           </template>
         </template>
         <template v-else>
@@ -39,7 +48,8 @@
             :key="index"
             :value="option[optionValue]"
             :disabled="option.disabled || false"
-          >{{ option[optionLabel] }}</option>
+            >{{ option[optionLabel] }}</option
+          >
         </template>
       </select>
     </template>
@@ -58,16 +68,28 @@
         <ul class="mdc-list">
           <li
             v-if="defaultLabel"
-            :class="['mdc-list-item', {'mdc-list-item--selected': defaultValue === selectedValue}]"
+            :class="[
+              'mdc-list-item',
+              { 'mdc-list-item--selected': defaultValue === selectedValue }
+            ]"
             :data-value="defaultLabel"
             aria-selected="true"
-          >{{ defaultLabel }}</li>
+          >
+            {{ defaultLabel }}
+          </li>
           <li
             v-for="(option, index) in options"
             :key="index"
-            :class="['mdc-list-item', {'mdc-list-item--selected': option[optionValue] === selectedValue}]"
+            :class="[
+              'mdc-list-item',
+              {
+                'mdc-list-item--selected': option[optionValue] === selectedValue
+              }
+            ]"
             :data-value="option[optionLabel]"
-          >{{ option[optionLabel] }}</li>
+          >
+            {{ option[optionLabel] }}
+          </li>
         </ul>
       </div>
     </template>
@@ -121,7 +143,6 @@ export default {
       default: ''
     },
     // Element attributes
-    id: String,
     disabled: {
       type: Boolean,
       default: false

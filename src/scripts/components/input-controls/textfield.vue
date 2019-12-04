@@ -23,8 +23,8 @@
         :disabled="disabled"
         :required="required"
         :maxlength="maxlength"
-        :aria-controls="helptextId"
-        :aria-describedby="helptextId"
+        :aria-controls="helperTextId"
+        :aria-describedby="helperTextId"
         v-bind="attrs"
         @focus="handleFocus"
         @keydown="handleKeydown"
@@ -45,8 +45,8 @@
       :disabled="disabled"
       :required="required"
       :maxlength="maxlength"
-      :aria-controls="helptextId"
-      :aria-describedby="helptextId"
+      :aria-controls="helperTextId"
+      :aria-describedby="helperTextId"
       v-bind="attrs"
       @focus="handleFocus"
       @keydown="handleKeydown"
@@ -57,11 +57,7 @@
     />
 
     <!-- Label text -->
-    <ui-floating-label
-      v-if="!noLabel && !(isOutlined || isTextarea)"
-      :for="id"
-      :floatAbove="!!inputValue"
-    >
+    <ui-floating-label v-if="hasLabel && !(isOutlined || isTextarea)" :for="id">
       <slot>{{ label }}</slot>
     </ui-floating-label>
 
@@ -71,8 +67,8 @@
     <!-- Activation indicator -->
     <div v-if="isOutlined || isTextarea" class="mdc-notched-outline">
       <div class="mdc-notched-outline__leading"></div>
-      <div v-if="!noLabel" class="mdc-notched-outline__notch">
-        <ui-floating-label :for="id" :floatAbove="!!inputValue">
+      <div v-if="hasLabel" class="mdc-notched-outline__notch">
+        <ui-floating-label :for="id">
           <slot>{{ label }}</slot>
         </ui-floating-label>
       </div>
@@ -93,24 +89,18 @@ import { MDCTextField } from '../../../material-components-web/textfield';
 import UiFloatingLabel from '../form-controls/floating-label';
 import typeMixin from '../../mixins/type';
 import elementMixin from '../../mixins/element';
-import floatingLabelMixin from '../../mixins/floating-label';
 import materialIconMixin from '../../mixins/material-icon';
 import getType from '../../utils/typeof';
 import UI_GLOBAL from '../../config/constants';
 
-// Define constants
+// Define textfield constants
 const UI_TEXTFIELD = {
   TYPES: {
     filled: 0,
     outlined: 1
   },
-  // INPUT_TYPES: {
-  //   singleLine: 0,
-  //   multiLine: 1,
-  //   textarea: 2
-  // },
   cssClasses: {
-    icon: 'mdc-text-field__custom-icon'
+    icon: 'mdc-text-field__icon'
   },
   EVENT: {
     FOCUS: 'focus',
@@ -128,31 +118,39 @@ export default {
   components: {
     UiFloatingLabel
   },
-  mixins: [typeMixin, elementMixin, floatingLabelMixin, materialIconMixin],
+  mixins: [typeMixin, elementMixin, materialIconMixin],
   model: {
     prop: 'model',
     event: UI_TEXTFIELD.EVENT.INPUT
   },
   props: {
+    // UI variants
+    outlined: {
+      type: Boolean,
+      default: false
+    },
     // States
     model: {
       type: [String, Number],
       default: ''
     },
     // Element attributes
-    id: String,
     placeholder: String,
-    required: {
-      type: Boolean,
-      default: false
-    },
-    maxlength: [Number, String], // Required for counter
     // <input> attributes
     inputType: {
       type: String,
       default: 'text'
     },
+    required: {
+      type: Boolean,
+      default: false
+    },
     pattern: String,
+    minlength: [Number, String],
+    maxlength: [Number, String], // Required for counter
+    min: [Number, String],
+    max: [Number, String],
+    step: [Number, String],
     // <textarea> attributes
     rows: {
       type: [Number, String],
@@ -164,7 +162,7 @@ export default {
     },
     // UI attributes
     label: String,
-    outlined: {
+    noLabel: {
       type: Boolean,
       default: false
     },
@@ -189,7 +187,7 @@ export default {
       default: false
     },
     // For helper text
-    helptextId: String,
+    helperTextId: String,
     // For plus
     expand: {
       type: Boolean,
@@ -200,7 +198,7 @@ export default {
     return {
       UI_GLOBAL,
       UI_TEXTFIELD,
-      $textfield: null,
+      $textField: null,
       inputValue: this.model
     };
   },
@@ -211,8 +209,12 @@ export default {
     isTextarea() {
       return this.inputType === 'textarea';
     },
-    noLabel() {
-      return this.placeholder || this.fullwidth;
+    hasLabel() {
+      return (
+        !this.noLabel ||
+        (this.placeholder && !this.floatAbove) ||
+        this.fullwidth
+      );
     },
     className() {
       return {
@@ -223,7 +225,8 @@ export default {
           'mdc-text-field--textarea': this.isTextarea,
           'mdc-text-field--disabled': this.disabled,
           'mdc-text-field--dense': this.dense,
-          'mdc-text-field--with-leading-icon': this.leadingIcon,
+          'mdc-text-field--with-leading-icon':
+            this.leadingIcon || this.materialIcon,
           'mdc-text-field--with-trailing-icon': this.trailingIcon,
           'mdc-text-field--no-label': this.noLabel
         },
@@ -237,9 +240,22 @@ export default {
     }
   },
   mounted() {
-    this.$textfield = new MDCTextField(this.$el);
+    this.init();
   },
   methods: {
+    init() {
+      const withCounter = this.$el.nextElementSibling.querySelector(
+        '.mdc-text-field-character-counter'
+      );
+
+      if (withCounter && !this.maxlength) {
+        console.warn(
+          'The `maxlength` attribute is required in the `<ui-textfield>` with character counter'
+        );
+      }
+
+      this.$textField = new MDCTextField(this.$el);
+    },
     handleFocus(event) {
       this.$emit(UI_TEXTFIELD.EVENT.FOCUS, event);
     },

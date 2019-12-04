@@ -1,8 +1,10 @@
 <template>
-  <i :class="[UI_GLOBAL.mdi, 'mdc-text-field__icon']"
+  <i
+    :class="[UI_GLOBAL.mdi, 'mdc-text-field__icon']"
     :tabindex="unclickable ? null : 0"
     :role="unclickable ? null : 'button'"
-    @click="unclickable ? null : handleClick">
+    @click="unclickable ? null : handleClick"
+  >
     <slot><!-- Material icon --></slot>
   </i>
 </template>
@@ -10,7 +12,7 @@
 <script>
 import UI_GLOBAL from '../../config/constants';
 
-// Define constants
+// Define textfield icon constants
 const UI_TEXTFIELD_ICON = {
   EVENT: {
     CLICK: 'click'

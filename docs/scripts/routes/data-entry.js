@@ -1,63 +1,57 @@
 const Textfield = () => import('@/views/components/textfield');
+const Select = () => import('@/views/components/select');
 const Checkbox = () => import('@/views/components/checkbox');
 const Radio = () => import('@/views/components/radio');
-const Select = () => import('@/views/components/select');
 const Switch = () => import('@/views/components/switch');
 const Slider = () => import('@/views/components/slider');
 const File = () => import('@/views/components/file');
-const Dropdown = () => import('@/views/components/dropdown');
 const Autocomplete = () => import('@/views/components/autocomplete');
 const Validator = () => import('@/views/plugins/validator');
 
 export default [
   {
     path: 'textfield',
-    name: 'form.textfield',
+    name: 'data-entry.textfield',
     component: Textfield
   },
   {
+    path: 'select',
+    name: 'data-entry.select',
+    component: Select
+  },
+  {
     path: 'checkbox',
-    name: 'form.checkbox',
+    name: 'data-entry.checkbox',
     component: Checkbox
   },
   {
     path: 'radio',
-    name: 'form.radio',
+    name: 'data-entry.radio',
     component: Radio
   },
   {
-    path: 'select',
-    name: 'form.select',
-    component: Select
-  },
-  {
     path: 'switch',
-    name: 'form.switch',
+    name: 'data-entry.switch',
     component: Switch
   },
   {
     path: 'slider',
-    name: 'form.slider',
+    name: 'data-entry.slider',
     component: Slider
   },
   {
     path: 'file',
-    name: 'form.file',
+    name: 'data-entry.file',
     component: File
   },
   {
-    path: 'dropdown',
-    name: 'form.dropdown',
-    component: Dropdown
-  },
-  {
     path: 'autocomplete',
-    name: 'form.autocomplete',
+    name: 'data-entry.autocomplete',
     component: Autocomplete
   },
   {
     path: 'validator',
-    name: 'form.validator',
+    name: 'data-entry.validator',
     component: Validator
   }
 ];

@@ -5,17 +5,17 @@ const IconButton = () => import('@/views/components/icon-button');
 export default [
   {
     path: 'button',
-    name: 'buttons.button',
+    name: 'general.button',
     component: Button
   },
   {
     path: 'fab',
-    name: 'buttons.fab',
+    name: 'general.fab',
     component: Fab
   },
   {
     path: 'icon-button',
-    name: 'buttons.icon-button',
+    name: 'general.icon-button',
     component: IconButton
   }
 ];

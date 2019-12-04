@@ -1,8 +1,21 @@
 <template>
   <div :class="[$tt('body1'), 'demo--textfield']">
-    <section class="hero component">
-      <ui-textfield id="my-text-field">Text Field</ui-textfield>
-    </section>
+    <header class="hero component">
+      <div class="hero-demo">
+        <ui-textfield v-if="type === 0" id="my-text-field">Label</ui-textfield>
+        <ui-textfield v-if="type === 1" id="my-text-field-outlined" outlined
+          >Label</ui-textfield
+        >
+      </div>
+      <div class="hero-options">
+        <ui-select
+          class="hero-option"
+          :options="TextfieldTypeOptions"
+          v-model="type"
+          >Type</ui-select
+        >
+      </div>
+    </header>
 
     <ui-toc-affix></ui-toc-affix>
 
@@ -10,7 +23,7 @@
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h4>
       <section class="example">
         <h3>
           1.1 Full Functionality JS Component (Floating Label, Validation)
@@ -325,6 +338,17 @@
 import snippets from '@/mixins/snippets';
 import UiTextfieldControls from '@/components/textfield-controls';
 
+const TextfieldTypeOptions = [
+  {
+    label: 'Filled',
+    value: 0
+  },
+  {
+    label: 'Outlined',
+    value: 1
+  }
+];
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Textfield'
@@ -335,6 +359,8 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      TextfieldTypeOptions,
+      type: 0,
       controls: {
         disabled: false,
         rtl: false,

@@ -22,37 +22,7 @@ const MATERIAL_COMPONENTS = [
   },
   '-',
   {
-    name: 'Layouts',
-    children: [
-      {
-        icon: 'side_navigation',
-        name: 'Drawer',
-        description: 'Navigation drawer',
-        url: 'drawer'
-      },
-      {
-        icon: 'toolbar',
-        name: 'Top App Bar',
-        description:
-          'Container for application title, navigation icon, and action items',
-        url: 'top-app-bar'
-      },
-      {
-        icon: 'responsive_layout',
-        name: 'Layout grid',
-        description: 'Grid and gutter support',
-        url: 'grid'
-      },
-      {
-        icon: 'tabs',
-        name: 'Tabs',
-        description: 'Tabs with support for icon and text labels'
-      }
-    ]
-  },
-  '-',
-  {
-    name: 'Buttons',
+    name: 'General',
     children: [
       {
         icon: 'button',
@@ -81,13 +51,112 @@ const MATERIAL_COMPONENTS = [
   },
   '-',
   {
-    name: 'Data View',
-    url: 'data',
+    name: 'Layout',
+    children: [
+      {
+        icon: 'toolbar',
+        name: 'Top App Bar',
+        description:
+          'Container for application title, navigation icon, and action items',
+        url: 'top-app-bar'
+      },
+      {
+        icon: 'responsive_layout',
+        name: 'Layout grid',
+        description: 'Grid and gutter support',
+        url: 'grid'
+      },
+      {
+        icon: 'tabs',
+        name: 'Tabs',
+        description: 'Tabs with support for icon and text labels'
+      }
+    ]
+  },
+  '-',
+  {
+    name: 'Navigation',
+    children: [
+      {
+        icon: 'side_navigation',
+        name: 'Drawer',
+        description: 'Navigation drawer',
+        url: 'drawer'
+      },
+      {
+        icon: 'menu',
+        name: 'Menu',
+        description: 'Pop over menus'
+      }
+    ]
+  },
+  '-',
+  {
+    name: 'Data Entry',
+    url: 'data-entry',
+    children: [
+      {
+        icon: 'text_field',
+        name: 'Text Field',
+        description: 'Single and multiline text fields',
+        url: 'textfield'
+      },
+      {
+        icon: 'menu',
+        name: 'Select',
+        description: 'Popover selection menus'
+      },
+      {
+        icon: 'selection_control',
+        name: 'Checkbox',
+        description: 'Multi-selection controls'
+      },
+      {
+        icon: 'radio_button',
+        name: 'Radio', // Radio buttons
+        description: 'Single selection controls'
+      },
+      {
+        icon: 'switch',
+        name: 'Switch',
+        description: 'On off switches'
+      },
+      {
+        icon: 'slider',
+        name: 'Slider',
+        description: 'Range controls'
+      },
+      {
+        icon: 'component',
+        name: 'File',
+        description: 'File upload'
+      },
+      {
+        icon: 'text_field',
+        name: 'Autocomplete',
+        description: 'Autocomplete'
+      },
+      {
+        icon: 'component',
+        name: 'Validator',
+        description: 'Validator'
+      }
+    ]
+  },
+  '-',
+  {
+    name: 'Data Display',
+    url: 'data-display',
     children: [
       {
         icon: 'list',
         name: 'List',
         description: 'Item layouts in lists'
+      },
+      {
+        icon: 'component',
+        name: 'Divider',
+        description: 'Divider'
       },
       {
         icon: 'card',
@@ -121,82 +190,12 @@ const MATERIAL_COMPONENTS = [
         icon: 'component',
         name: 'Pagination',
         description: 'Pagination'
-      },
-      {
-        icon: 'progress',
-        name: 'Linear Progress',
-        description: 'Fills from 0% to 100%, represented by bars',
-        url: 'linear-progress'
-      },
-      {
-        icon: 'component',
-        name: 'Text Divider',
-        description: 'Text Divider',
-        url: 'text-divider'
       }
     ]
   },
   '-',
   {
-    name: 'Inputs and Controls',
-    url: 'form',
-    children: [
-      {
-        icon: 'text_field',
-        name: 'Text Field',
-        description: 'Single and multiline text fields',
-        url: 'textfield'
-      },
-      {
-        icon: 'selection_control',
-        name: 'Checkbox',
-        description: 'Multi-selection controls'
-      },
-      {
-        icon: 'radio_button',
-        name: 'Radio', // Radio buttons
-        description: 'Single selection controls'
-      },
-      {
-        icon: 'menu',
-        name: 'Select',
-        description: 'Popover selection menus'
-      },
-      {
-        icon: 'switch',
-        name: 'Switch',
-        description: 'On off switches'
-      },
-      {
-        icon: 'slider',
-        name: 'Slider',
-        description: 'Range controls'
-      },
-      {
-        icon: 'component',
-        name: 'File',
-        description: 'File upload'
-      },
-      {
-        icon: 'menu',
-        name: 'Dropdown',
-        description: 'Dropdown'
-      },
-      {
-        icon: 'text_field',
-        name: 'Autocomplete',
-        description: 'Autocomplete'
-      },
-      {
-        icon: 'component',
-        name: 'Validator',
-        description: 'Validator'
-      }
-    ]
-  },
-  '-',
-  {
-    name: 'Modal',
+    name: 'Feedback',
     children: [
       {
         icon: 'dialog',
@@ -222,14 +221,14 @@ const MATERIAL_COMPONENTS = [
         icon: 'toast',
         name: 'Toast',
         description: 'Toast'
+      },
+      {
+        icon: 'progress',
+        name: 'Linear Progress',
+        description: 'Fills from 0% to 100%, represented by bars',
+        url: 'linear-progress'
       }
     ]
-  },
-  '-',
-  {
-    icon: 'menu',
-    name: 'Menu',
-    description: 'Pop over menus'
   },
   '-',
   {

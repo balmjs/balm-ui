@@ -39,7 +39,7 @@
           <ui-item-text-content>
             <span>1.1</span>
             <router-link
-              :to="{ name: 'layouts.permanent-drawer-above-toolbar' }"
+              :to="{ name: 'navigation.permanent-drawer-above-toolbar' }"
               >Permanent Drawer Above Toolbar</router-link
             >
           </ui-item-text-content>
@@ -48,7 +48,7 @@
           <ui-item-text-content>
             <span>1.2</span>
             <router-link
-              :to="{ name: 'layouts.permanent-drawer-below-toolbar' }"
+              :to="{ name: 'navigation.permanent-drawer-below-toolbar' }"
               >Permanent Drawer Below Toolbar</router-link
             >
           </ui-item-text-content>
@@ -56,7 +56,7 @@
         <ui-item>
           <ui-item-text-content>
             <span>1.3</span>
-            <router-link :to="{ name: 'layouts.dismissible-drawer' }"
+            <router-link :to="{ name: 'navigation.dismissible-drawer' }"
               >Dismissible Drawer</router-link
             >
           </ui-item-text-content>
@@ -64,7 +64,7 @@
         <ui-item>
           <ui-item-text-content>
             <span>1.4</span>
-            <router-link :to="{ name: 'layouts.modal-drawer' }"
+            <router-link :to="{ name: 'navigation.modal-drawer' }"
               >Modal Drawer</router-link
             >
           </ui-item-text-content>

@@ -5,13 +5,13 @@ import VueMeta from 'vue-meta';
 import BlankLayout from '@/views/layouts/blank';
 // Routes
 import guideRoutes from './guide';
-import layoutsRoutes from './layouts';
-import buttonsRoutes from './buttons';
+import generalRoutes from './general';
 const Icon = () => import('@/views/components/icon');
-import dataRoutes from './data-view';
-import formRoutes from './inputs-and-controls';
-import modalRoutes from './modal';
-const Menu = () => import('@/views/components/menu');
+import layoutRoutes from './layout';
+import navigationRoutes from './navigation';
+import DataEntryRoutes from './data-entry';
+import dataDisplayRoutes from './data-display';
+import feedbackRoutes from './feedback';
 import miscRoutes from './misc';
 const Utils = () => import('@/views/utils');
 // Pages
@@ -36,18 +36,11 @@ const baseRoutes = [
     children: guideRoutes
   },
   {
-    path: '/layouts',
-    name: 'layouts',
-    redirect: '/layouts/grid',
+    path: '/general',
+    name: 'general',
+    redirect: '/general/button',
     component: BlankLayout,
-    children: layoutsRoutes
-  },
-  {
-    path: '/buttons',
-    name: 'buttons',
-    redirect: '/buttons/button',
-    component: BlankLayout,
-    children: buttonsRoutes
+    children: generalRoutes
   },
   {
     path: '/icons',
@@ -55,30 +48,39 @@ const baseRoutes = [
     component: Icon
   },
   {
-    path: '/data',
-    name: 'data',
-    redirect: '/data/list',
+    path: '/layout',
+    name: 'layout',
+    redirect: '/layout/grid',
     component: BlankLayout,
-    children: dataRoutes
+    children: layoutRoutes
   },
   {
-    path: '/form',
-    name: 'form',
-    redirect: '/form/textfield',
+    path: '/navigation',
+    name: 'navigation',
+    redirect: '/navigation/drawer',
     component: BlankLayout,
-    children: formRoutes
+    children: navigationRoutes
   },
   {
-    path: '/modal',
-    name: 'modal',
-    redirect: '/modal/dialog',
+    path: '/data-entry',
+    name: 'data-entry',
+    redirect: '/data-entry/textfield',
     component: BlankLayout,
-    children: modalRoutes
+    children: DataEntryRoutes
   },
   {
-    path: '/menu',
-    name: 'menu',
-    component: Menu
+    path: '/data-display',
+    name: 'data-display',
+    redirect: '/data-display/list',
+    component: BlankLayout,
+    children: dataDisplayRoutes
+  },
+  {
+    path: '/feedback',
+    name: 'feedback',
+    redirect: '/feedback/dialog',
+    component: BlankLayout,
+    children: feedbackRoutes
   },
   {
     path: '/misc',

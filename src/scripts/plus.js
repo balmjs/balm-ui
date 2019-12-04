@@ -3,8 +3,8 @@ import multiConfigure from './config/multi-configure';
 /**
  * Components
  */
-import UiAutocomplete from './components/input-controls/autocomplete';
 import UiFile from './components/input-controls/file';
+import UiAutocomplete from './components/input-controls/autocomplete';
 import UiPagination from './components/data-table/pagination';
 import UiTextDivider from './components/divider/text-divider';
 /**
@@ -28,8 +28,8 @@ import detectIE from './utils/ie';
 const version = require('../../package.json').version;
 
 const components = {
-  UiAutocomplete,
   UiFile,
+  UiAutocomplete,
   UiPagination,
   UiTextDivider
 };

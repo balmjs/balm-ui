@@ -1,57 +1,51 @@
 const List = () => import('@/views/components/list');
+const Divider = () => import('@/views/components/divider');
 const GridList = () => import('@/views/components/grid-list');
 const ImageList = () => import('@/views/components/image-list');
 const Card = () => import('@/views/components/card');
 const Chips = () => import('@/views/components/chips');
-const LinearProgress = () => import('@/views/components/linear-progress');
 const Table = () => import('@/views/components/table');
 const Pagination = () => import('@/views/components/pagination');
-const TextDivider = () => import('@/views/components/text-divider');
 
 export default [
   {
     path: 'list',
-    name: 'data.list',
+    name: 'data-display.list',
     component: List
   },
   {
+    path: 'divider',
+    name: 'data-display.divider',
+    component: Divider
+  },
+  {
     path: 'grid-list',
-    name: 'data.grid-list',
+    name: 'data-display.grid-list',
     component: GridList
   },
   {
     path: 'image-list',
-    name: 'data.image-list',
+    name: 'data-display.image-list',
     component: ImageList
   },
   {
     path: 'card',
-    name: 'data.card',
+    name: 'data-display.card',
     component: Card
   },
   {
     path: 'chips',
-    name: 'data.chips',
+    name: 'data-display.chips',
     component: Chips
   },
   {
-    path: 'linear-progress',
-    name: 'data.linear-progress',
-    component: LinearProgress
-  },
-  {
     path: 'table',
-    name: 'data.table',
+    name: 'data-display.table',
     component: Table
   },
   {
     path: 'pagination',
-    name: 'data.pagination',
+    name: 'data-display.pagination',
     component: Pagination
-  },
-  {
-    path: 'text-divider',
-    name: 'data.text-divider',
-    component: TextDivider
   }
 ];

@@ -3,31 +3,37 @@ const Alert = () => import('@/views/plugins/alert');
 const Confirm = () => import('@/views/plugins/confirm');
 const Snackbar = () => import('@/views/components/snackbar');
 const Toast = () => import('@/views/plugins/toast');
+const LinearProgress = () => import('@/views/components/linear-progress');
 
 export default [
   {
     path: 'dialog',
-    name: 'modal.dialog',
+    name: 'feedback.dialog',
     component: Dialog
   },
   {
     path: 'alert',
-    name: 'modal.alert',
+    name: 'feedback.alert',
     component: Alert
   },
   {
     path: 'confirm',
-    name: 'modal.confirm',
+    name: 'feedback.confirm',
     component: Confirm
   },
   {
     path: 'snackbar',
-    name: 'modal.snackbar',
+    name: 'feedback.snackbar',
     component: Snackbar
   },
   {
     path: 'toast',
-    name: 'modal.toast',
+    name: 'feedback.toast',
     component: Toast
+  },
+  {
+    path: 'linear-progress',
+    name: 'feedback.linear-progress',
+    component: LinearProgress
   }
 ];

@@ -1,8 +1,8 @@
 import autoInstall from '../config/auto-install';
-import UiDialog from '../components/dialog/dialog';
-import UiDialogTitle from '../components/dialog/dialog-title';
-import UiDialogContent from '../components/dialog/dialog-content';
-import UiDialogActions from '../components/dialog/dialog-actions';
+import UiDialog from '../components/modal/dialog';
+import UiDialogTitle from '../components/modal/dialog-title';
+import UiDialogContent from '../components/modal/dialog-content';
+import UiDialogActions from '../components/modal/dialog-actions';
 import getType from '../utils/typeof';
 
 const DEFAULT_OPTIONS = {

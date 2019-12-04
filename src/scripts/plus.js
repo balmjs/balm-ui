@@ -4,8 +4,8 @@ import multiConfigure from './config/multi-configure';
  * Components
  */
 import UiAutocomplete from './components/input-controls/autocomplete';
-import UiPagination from './components/data/pagination';
 import UiFile from './components/input-controls/file';
+import UiPagination from './components/data-table/pagination';
 import UiTextDivider from './components/divider/text-divider';
 /**
  * Plugins
@@ -29,8 +29,8 @@ const version = require('../../package.json').version;
 
 const components = {
   UiAutocomplete,
-  UiPagination,
   UiFile,
+  UiPagination,
   UiTextDivider
 };
 

@@ -7,8 +7,8 @@ import UiItemText from './list/item-text';
 import UiItemSubtext from './list/item-subtext';
 import UiListNav from './list/list-nav';
 import UiItemA from './list/item-a';
-import UiListDivider from './list/list-divider';
-import UiItemDivider from './list/item-divider';
+import UiListDivider from './divider/list-divider';
+import UiItemDivider from './divider/item-divider';
 
 export default multiBootstrap({
   UiListGroup,

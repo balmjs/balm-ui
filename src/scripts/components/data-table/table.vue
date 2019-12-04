@@ -129,7 +129,7 @@
 
 <script>
 import { MDCDataTable } from '../../../material-components-web/data-table';
-import UiCheckbox from '../input-controls/checkbox';
+import UiCheckbox from '../selection-controls/checkbox';
 import tableMixin from '../../mixins/table';
 import theadMixin from '../../mixins/thead';
 import tbodyMixin from '../../mixins/tbody';

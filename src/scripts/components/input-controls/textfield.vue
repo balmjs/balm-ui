@@ -58,7 +58,7 @@
 
     <!-- Label text -->
     <ui-floating-label
-      v-if="hasLabel && !(isTextarea || isOutlined)"
+      v-if="!noLabel && !(isOutlined || isTextarea)"
       :for="id"
       :floatAbove="!!inputValue"
     >
@@ -69,9 +69,9 @@
     <slot name="after" :iconClass="UI_TEXTFIELD.cssClasses.icon"></slot>
 
     <!-- Activation indicator -->
-    <div v-if="isTextarea || isOutlined" class="mdc-notched-outline">
+    <div v-if="isOutlined || isTextarea" class="mdc-notched-outline">
       <div class="mdc-notched-outline__leading"></div>
-      <div v-if="hasLabel" class="mdc-notched-outline__notch">
+      <div v-if="!noLabel" class="mdc-notched-outline__notch">
         <ui-floating-label :for="id" :floatAbove="!!inputValue">
           <slot>{{ label }}</slot>
         </ui-floating-label>
@@ -90,7 +90,7 @@
 
 <script>
 import { MDCTextField } from '../../../material-components-web/textfield';
-import UiFloatingLabel from './floating-label';
+import UiFloatingLabel from '../form-controls/floating-label';
 import typeMixin from '../../mixins/type';
 import elementMixin from '../../mixins/element';
 import floatingLabelMixin from '../../mixins/floating-label';
@@ -188,10 +188,6 @@ export default {
       type: Boolean,
       default: false
     },
-    noLabel: {
-      type: Boolean,
-      default: false
-    },
     // For helper text
     helptextId: String,
     // For plus
@@ -215,6 +211,9 @@ export default {
     isTextarea() {
       return this.inputType === 'textarea';
     },
+    noLabel() {
+      return this.placeholder || this.fullwidth;
+    },
     className() {
       return {
         outer: {
@@ -230,9 +229,6 @@ export default {
         },
         input: 'mdc-text-field__input'
       };
-    },
-    hasLabel() {
-      return !(this.noLabel || this.placeholder || this.fullwidth);
     }
   },
   watch: {

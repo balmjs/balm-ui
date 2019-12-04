@@ -8,7 +8,9 @@
       </div>
       <!-- Action (optional) -->
       <div v-if="hasAction" class="mdc-snackbar__actions">
-        <button type="button" :class="buttonClassName">{{ actionButtonText || 'close' }}</button>
+        <button type="button" :class="buttonClassName">
+          {{ actionButtonText || 'close' }}
+        </button>
       </div>
     </div>
   </div>
@@ -20,10 +22,6 @@ import UI_GLOBAL from '../../config/constants';
 
 // Define constants
 const UI_SNACKBAR = {
-  EVENT: {
-    CHANGE: 'change',
-    CLOSED: 'closed'
-  },
   ACTION_TYPE: {
     BUTTON: 'button',
     ICON: 'icon'
@@ -31,6 +29,10 @@ const UI_SNACKBAR = {
   timeoutMs: {
     MIN: 4000,
     MAX: 10000
+  },
+  EVENT: {
+    CHANGE: 'change',
+    CLOSED: 'closed'
   }
 };
 

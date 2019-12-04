@@ -51,6 +51,10 @@ const UI_TOP_APP_BAR = {
     short: 5,
     shortCollapsed: 6
   },
+  cssClasses: {
+    icon: UI_GLOBAL.mdi,
+    item: 'mdc-top-app-bar__action-item'
+  },
   FIXED_ADJUST: {
     STANDARD: 'mdc-top-app-bar--fixed-adjust',
     PROMINENT: 'mdc-top-app-bar--prominent-fixed-adjust',
@@ -61,10 +65,6 @@ const UI_TOP_APP_BAR = {
   EVENT: {
     NAV: 'nav',
     CLOSE: 'close'
-  },
-  cssClasses: {
-    icon: UI_GLOBAL.mdi,
-    item: 'mdc-top-app-bar__action-item'
   }
 };
 

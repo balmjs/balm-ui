@@ -109,6 +109,9 @@ const UI_TEXTFIELD = {
   //   multiLine: 1,
   //   textarea: 2
   // },
+  cssClasses: {
+    icon: 'mdc-text-field__custom-icon'
+  },
   EVENT: {
     FOCUS: 'focus',
     KEYDOWN: 'keydown',
@@ -117,9 +120,6 @@ const UI_TEXTFIELD = {
     CHANGE: 'change',
     ENTER: 'enter',
     BLUR: 'blur'
-  },
-  cssClasses: {
-    icon: 'mdc-text-field__custom-icon'
   }
 };
 

@@ -43,11 +43,11 @@ const UI_FAB = {
     regular: 0,
     extended: 1
   },
-  EVENT: {
-    CLICK: 'click'
-  },
   cssClasses: {
     icon: 'mdc-fab__icon'
+  },
+  EVENT: {
+    CLICK: 'click'
   }
 };
 

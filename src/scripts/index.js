@@ -38,6 +38,7 @@ import UiFormField from './components/form-controls/form-field';
 import UiTextfield from './components/input-controls/textfield';
 import UiTextfieldHelper from './components/input-controls/textfield-helper';
 import UiTextfieldIcon from './components/input-controls/textfield-icon';
+import UiTextfieldCounter from './components/input-controls/textfield-counter';
 import UiSelect from './components/selection-controls/select';
 import UiCheckbox from './components/selection-controls/checkbox';
 import UiRadio from './components/selection-controls/radio';
@@ -128,6 +129,7 @@ const components = {
   UiTextfield,
   UiTextfieldHelper,
   UiTextfieldIcon,
+  UiTextfieldCounter,
   UiSelect,
   UiCheckbox,
   UiRadio,

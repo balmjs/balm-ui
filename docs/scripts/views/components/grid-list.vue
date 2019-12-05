@@ -1,10 +1,10 @@
 <template>
   <div :class="[$tt('body1'), 'demo--grid-list']">
-    <section class="hero component">
+    <header class="hero component">
       <ui-grid-list>
         <ui-grid-tile v-for="i in 12" :key="i" imageOnly></ui-grid-tile>
       </ui-grid-list>
-    </section>
+    </header>
 
     <!-- <ui-toc-affix></ui-toc-affix> -->
     <div :class="$tt('body2')">

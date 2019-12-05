@@ -20,7 +20,7 @@
             v-html="item[UI_AUTOCOMPLETE.ITEM.LABEL]"
             :key="index"
             :data-index="index"
-            :class="{'selected': index === currentSuggestion.index}"
+            :class="{ selected: index === currentSuggestion.index }"
             @click="handleSelected(item)"
           ></li>
         </ul>
@@ -112,7 +112,7 @@ export default {
       UI_AUTOCOMPLETE,
       $autocomplete: null,
       $callback: null,
-      isExpand: false,
+      isExposed: false,
       inputValue: this.model,
       currentSource: [], // source data
       currentSuggestion: {
@@ -139,7 +139,7 @@ export default {
     className() {
       return {
         'mdc-autocomplete': true,
-        'mdc-autocomplete--expand': this.isExpand
+        'mdc-autocomplete--exposed': this.isExposed
       };
     }
   },
@@ -215,14 +215,14 @@ export default {
         keywords.length >= this.minlength &&
         this.currentSuggestion.data.length
       ) {
-        this.isExpand = true;
+        this.isExposed = true;
         this.$nextTick(() => {
           this.initClientHeight();
         });
       }
     },
     hide() {
-      this.isExpand = false;
+      this.isExposed = false;
       this.currentSuggestion.index = -1;
       this.clearSelected();
     },
@@ -363,7 +363,7 @@ export default {
             }
           }
 
-          if (e !== event && this.isExpand && !inTextfield) {
+          if (e !== event && this.isExposed && !inTextfield) {
             document.removeEventListener(GLOBAL_EVENT.CLICK, this.$callback);
             this.hide();
           }

@@ -11,8 +11,8 @@ export default {
       default: false
     },
     validMsg: {
-      type: Boolean,
-      default: false
+      type: String,
+      default: ''
     }
   }
 };

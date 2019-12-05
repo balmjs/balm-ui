@@ -3,7 +3,7 @@
     <ui-top-app-bar
       contentSelector="#content-main"
       navId="demo-menu"
-      :type="selected"
+      :type="typeOption"
       :title="title"
     >
       <template #toolbar="{ itemClass }">
@@ -47,9 +47,9 @@
 
     <main class="demo-main">
       <div :class="$tt('body1')" id="content-main">
-        <section class="hero component">
+        <header class="hero component">
           <h2 :class="$tt('headline4')">Top App Bar</h2>
-        </section>
+        </header>
 
         <ui-toc-affix></ui-toc-affix>
 
@@ -59,7 +59,9 @@
 
           <h4 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h4>
           <div class="demo-controls">
-            <ui-select :options="options" v-model="selected">Type</ui-select>
+            <ui-select :options="TypeOptions" v-model="typeOption"
+              >Type</ui-select
+            >
             <ui-textfield v-model="title">Title</ui-textfield>
           </div>
           <p v-for="i in 12" :key="i" class="demo-paragraph">
@@ -92,7 +94,7 @@
 import snippets from '@/mixins/snippets';
 import DrawerMixin from '@/mixins/drawer';
 
-const options = [
+const TypeOptions = [
   {
     label: 'Standard',
     value: 0
@@ -130,8 +132,8 @@ export default {
   mixins: [snippets, DrawerMixin],
   data() {
     return {
-      options,
-      selected: 0,
+      TypeOptions,
+      typeOption: 0,
       title: 'Hello BalmUI',
       openDrawer: false,
       showMoreActions: false
@@ -139,7 +141,7 @@ export default {
   },
   computed: {
     isShort() {
-      return this.selected === 5 || this.selected === 6;
+      return this.typeOption === 5 || this.typeOption === 6;
     }
   },
   created() {

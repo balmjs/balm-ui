@@ -12,7 +12,7 @@
     </ui-top-app-bar>
 
     <div :class="[$tt('body1'), 'demo-content']">
-      <section class="hero component">
+      <header class="hero component">
         <ui-grid class="demo-grid">
           <ui-grid-cell class="demo-cell"></ui-grid-cell>
           <ui-grid-cell class="demo-cell" columns="4"></ui-grid-cell>
@@ -21,7 +21,7 @@
             :columns="{ default: 4 }"
           ></ui-grid-cell>
         </ui-grid>
-      </section>
+      </header>
 
       <ui-toc-affix></ui-toc-affix>
 

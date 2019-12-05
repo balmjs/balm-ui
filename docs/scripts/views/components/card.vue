@@ -2,7 +2,7 @@
   <div :class="[$tt('body1'), 'demo--card']">
     <header class="hero component">
       <div class="hero-demo">
-        <ui-card :outlined="cardType === 1" class="demo-card">
+        <ui-card :outlined="typeOption === 1" class="demo-card">
           <ui-card-content v-ripple>
             <ui-card-media
               v-if="cardOptions.media"
@@ -33,8 +33,8 @@
       <div class="hero-options">
         <ui-select
           class="hero-option"
-          :options="CardTypeOptions"
-          v-model="cardType"
+          :options="TypeOptions"
+          v-model="typeOption"
           >Type</ui-select
         >
         <div class="hero-option hero-options">
@@ -189,7 +189,7 @@
 import snippets from '@/mixins/snippets';
 import cardMedia from '@/assets/card-media.svg';
 
-const CardTypeOptions = [
+const TypeOptions = [
   {
     label: 'Elevated',
     value: 0
@@ -208,8 +208,8 @@ export default {
   data() {
     return {
       cardMedia,
-      CardTypeOptions,
-      cardType: 0,
+      TypeOptions,
+      typeOption: 0,
       cardOptions: {
         media: false,
         supportingText: false,

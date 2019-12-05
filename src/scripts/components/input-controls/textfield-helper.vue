@@ -4,7 +4,9 @@
     <ui-textfield-helper-text :id="id" :visible="visible" :validMsg="validMsg">
       <slot></slot>
     </ui-textfield-helper-text>
-    <ui-textfield-counter v-show="counter"></ui-textfield-counter>
+    <slot name="counter">
+      <ui-textfield-counter v-if="counter"></ui-textfield-counter>
+    </slot>
   </div>
 </template>
 

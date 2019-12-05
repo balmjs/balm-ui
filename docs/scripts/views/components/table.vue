@@ -1,13 +1,13 @@
 <template>
   <div :class="[$tt('body1'), 'demo--table']">
-    <section class="hero component">
+    <header class="hero component">
       <ui-table
         rowCheckbox
         :data="heroData"
         :thead="thead1"
         :tbody="tbody1"
       ></ui-table>
-    </section>
+    </header>
 
     <ui-toc-affix></ui-toc-affix>
 

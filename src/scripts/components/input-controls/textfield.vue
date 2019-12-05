@@ -76,8 +76,8 @@
     </div>
     <div v-else class="mdc-line-ripple"></div>
 
-    <div v-if="expand" class="mdc-textfield__expand">
-      <slot name="expand">
+    <div v-if="extended" class="mdc-text-field__extended">
+      <slot name="extended">
         <!-- For autocomplete -->
       </slot>
     </div>
@@ -189,7 +189,7 @@ export default {
     // For helper text
     helperTextId: String,
     // For plus
-    expand: {
+    extended: {
       type: Boolean,
       default: false
     }
@@ -244,14 +244,17 @@ export default {
   },
   methods: {
     init() {
-      const withCounter = this.$el.nextElementSibling.querySelector(
-        '.mdc-text-field-character-counter'
-      );
-
-      if (withCounter && !this.maxlength) {
-        console.warn(
-          'The `maxlength` attribute is required in the `<ui-textfield>` with character counter'
+      if (this.$el.nextElementSibling) {
+        const characterCounter = this.$el.nextElementSibling.querySelector(
+          '.mdc-text-field-character-counter'
         );
+
+        if (characterCounter && !this.maxlength) {
+          characterCounter.parentNode.removeChild(characterCounter);
+          console.warn(
+            'The `maxlength` prop is required in the `<ui-textfield>` with character counter.'
+          );
+        }
       }
 
       this.$textField = new MDCTextField(this.$el);

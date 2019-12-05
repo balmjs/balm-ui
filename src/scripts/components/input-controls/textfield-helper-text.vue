@@ -1,7 +1,7 @@
 <template>
   <!-- Helper text (optional) -->
   <div :id="id" :class="className" aria-hidden="true">
-    <slot></slot>
+    <slot>{{ validMsg }}</slot>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
     className() {
       return {
         'mdc-text-field-helper-text': true,
-        'mdc-text-field-helper-text--persistent': this.visible,
+        'mdc-text-field-helper-text--persistent': this.validMsg || this.visible,
         'mdc-text-field-helper-text--validation-msg': this.validMsg
       };
     }

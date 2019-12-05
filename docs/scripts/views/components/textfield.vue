@@ -3,84 +3,92 @@
     <header class="hero component">
       <div class="hero-demo">
         <div>
-          <template v-if="textfieldType === 0">
+          <template v-if="typeOption === 0">
             <ui-textfield
               id="my-text-field"
               v-model="value1"
               maxlength="20"
-              :icon="textfieldOption.includes(2) ? 'favorite' : ''"
-              :trailingIcon="textfieldOption.includes(3)"
+              :icon="iconOption.includes(2) ? 'favorite' : ''"
+              :trailingIcon="iconOption.includes(3)"
               helperTextId="my-text-field-helper"
               :required="assistiveTextOption === 2"
               :pattern="assistiveTextOption === 2 ? '[a-z]{256,}' : null"
               >Label
-              <template v-if="textfieldOption.includes(3)" #after>
+              <template v-if="iconOption.includes(3)" #after>
                 <ui-textfield-icon>visibility</ui-textfield-icon>
               </template>
             </ui-textfield>
             <ui-textfield-helper
               id="my-text-field-helper"
-              :counter="textfieldOption.includes(1)"
-              :visible="assistiveTextOption > 0"
-              :validMsg="assistiveTextOption === 2"
-              >{{ assistiveTextOption === 1 ? 'Helper message' : ''
-              }}{{
-                assistiveTextOption === 2 ? 'Error message' : ''
-              }}</ui-textfield-helper
+              :visible="assistiveTextOption === 1"
+              :validMsg="assistiveTextOption === 2 ? 'Error message' : ''"
             >
+              <template v-if="assistiveTextOption === 1" #default
+                >Helper message</template
+              >
+              <template #counter>
+                <ui-textfield-counter
+                  v-show="iconOption.includes(1)"
+                ></ui-textfield-counter>
+              </template>
+            </ui-textfield-helper>
           </template>
         </div>
         <div>
-          <template v-if="textfieldType === 1">
+          <template v-if="typeOption === 1">
             <ui-textfield
               outlined
               id="my-text-field-outlined"
               v-model="value2"
               maxlength="20"
-              :icon="textfieldOption.includes(2) ? 'favorite' : ''"
-              :trailingIcon="textfieldOption.includes(3)"
+              :icon="iconOption.includes(2) ? 'favorite' : ''"
+              :trailingIcon="iconOption.includes(3)"
               helperTextId="my-text-field-outlined-helper"
               :required="assistiveTextOption === 2"
               :pattern="assistiveTextOption === 2 ? '[a-z]{256,}' : null"
               >Label
-              <template v-if="textfieldOption.includes(3)" #after>
+              <template v-if="iconOption.includes(3)" #after>
                 <ui-textfield-icon>visibility</ui-textfield-icon>
               </template>
             </ui-textfield>
             <ui-textfield-helper
               id="my-text-field-outlined-helper"
-              :counter="textfieldOption.includes(1)"
-              :visible="assistiveTextOption > 0"
-              :validMsg="assistiveTextOption === 2"
-              >{{ assistiveTextOption === 1 ? 'Helper message' : ''
-              }}{{
-                assistiveTextOption === 2 ? 'Error message' : ''
-              }}</ui-textfield-helper
+              :visible="assistiveTextOption === 1"
+              :validMsg="assistiveTextOption === 2 ? 'Error message' : ''"
             >
+              <template v-if="assistiveTextOption === 1" #default
+                >Helper message</template
+              >
+              <template #counter>
+                <ui-textfield-counter
+                  v-show="iconOption.includes(1)"
+                ></ui-textfield-counter>
+              </template>
+            </ui-textfield-helper>
           </template>
         </div>
       </div>
       <div class="hero-options">
         <ui-select
           class="hero-option"
-          :options="TextfieldTypes"
-          v-model="textfieldType"
+          :options="TypeOptions"
+          v-model="typeOption"
           >Type</ui-select
         >
         <div class="hero-option hero-options">
           <div class="hero-option">
             <div>Options</div>
             <ui-form-field
-              v-for="option in TextfieldOptions"
+              v-for="option in IconOptions"
               :key="option.value"
               block
             >
               <ui-checkbox
-                :id="`textfieldOption${option.value}`"
-                v-model="textfieldOption"
+                :id="`iconOption${option.value}`"
+                v-model="iconOption"
                 :value="option.value"
               ></ui-checkbox>
-              <label :for="`textfieldOption${option.value}`">{{
+              <label :for="`iconOption${option.value}`">{{
                 option.label
               }}</label>
             </ui-form-field>
@@ -93,12 +101,12 @@
               block
             >
               <ui-radio
-                :id="`textfieldOption${option.value}`"
+                :id="`iconOption${option.value}`"
                 v-model="assistiveTextOption"
                 name="assistiveText"
                 :value="option.value"
               ></ui-radio>
-              <label :for="`textfieldOption${option.value}`">{{
+              <label :for="`iconOption${option.value}`">{{
                 option.label
               }}</label>
             </ui-form-field>
@@ -428,7 +436,7 @@
 import snippets from '@/mixins/snippets';
 import UiTextfieldControls from '@/components/textfield-controls';
 
-const TextfieldTypes = [
+const TypeOptions = [
   {
     label: 'Filled',
     value: 0
@@ -439,7 +447,7 @@ const TextfieldTypes = [
   }
 ];
 
-const TextfieldOptions = [
+const IconOptions = [
   {
     label: 'Character counter',
     value: 1
@@ -479,11 +487,11 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      TextfieldTypes,
-      TextfieldOptions,
+      TypeOptions,
+      IconOptions,
       AssistiveTextOptions,
-      textfieldType: 0,
-      textfieldOption: [],
+      typeOption: 0,
+      iconOption: [],
       assistiveTextOption: 0,
       value1: '',
       value2: '',

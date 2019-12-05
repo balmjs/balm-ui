@@ -1,14 +1,14 @@
 <template>
   <div :class="[$tt('body1'), 'demo--list']">
-    <section class="hero component">
+    <header class="hero component">
       <div class="hero-demo">
-        <ui-list :type="type" :avatar="beforeText === 2">
+        <ui-list :type="typeOption" :avatar="beforeText === 2">
           <ui-item v-for="i in 3" :key="i" v-ripple>
             <ui-item-first-content v-if="beforeText">
               <ui-icon v-if="beforeText === 1">favorite</ui-icon>
               <svg-avatar v-if="beforeText === 2"></svg-avatar>
             </ui-item-first-content>
-            <ui-item-text-content v-if="type === 2">
+            <ui-item-text-content v-if="typeOption === 2">
               <ui-item-text1>Two-line item</ui-item-text1>
               <ui-item-text2>Secondary text</ui-item-text2>
             </ui-item-text-content>
@@ -24,19 +24,22 @@
         </ui-list>
       </div>
       <div class="hero-options">
-        <ui-select class="hero-option" :options="ListTypeOptions" v-model="type"
+        <ui-select
+          class="hero-option"
+          :options="TypeOptions"
+          v-model="typeOption"
           >Type</ui-select
         >
         <div class="hero-option hero-options">
-          <ui-select :options="BeforeListTextOptions" v-model="beforeText"
+          <ui-select :options="BeforeTextOptions" v-model="beforeText"
             >Before list text</ui-select
           >
-          <ui-select :options="AfterListTextOptions" v-model="afterText"
+          <ui-select :options="AfterTextOptions" v-model="afterText"
             >After list text</ui-select
           >
         </div>
       </div>
-    </section>
+    </header>
 
     <ui-toc-affix></ui-toc-affix>
 
@@ -67,7 +70,7 @@
 import snippets from '@/mixins/snippets';
 import SvgAvatar from '@/components/avatar';
 
-const ListTypeOptions = [
+const TypeOptions = [
   {
     label: 'Single-line list',
     value: 1
@@ -78,7 +81,7 @@ const ListTypeOptions = [
   }
 ];
 
-const BeforeListTextOptions = [
+const BeforeTextOptions = [
   {
     label: 'None',
     value: 0
@@ -93,7 +96,7 @@ const BeforeListTextOptions = [
   }
 ];
 
-const AfterListTextOptions = [
+const AfterTextOptions = [
   {
     label: 'None',
     value: 0
@@ -118,10 +121,10 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      ListTypeOptions,
-      BeforeListTextOptions,
-      AfterListTextOptions,
-      type: 1,
+      TypeOptions,
+      BeforeTextOptions,
+      AfterTextOptions,
+      typeOption: 1,
       beforeText: 0,
       afterText: 0,
       selectedIndex: 0,

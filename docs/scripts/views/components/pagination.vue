@@ -1,8 +1,8 @@
 <template>
   <div :class="[$tt('body1'), 'demo--pagination']">
-    <section class="hero component">
+    <header class="hero component">
       <ui-pagination v-model="page" :recordCount="recordCount"></ui-pagination>
-    </section>
+    </header>
 
     <ui-toc-affix></ui-toc-affix>
 
@@ -13,7 +13,12 @@
       <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
       <section class="example">
         <h6 :class="$tt('headline6')">1.1 Default Usage</h6>
-        <ui-pagination v-model="page1" :pageSize="pageSize" :recordCount="recordCount" showJumper></ui-pagination>
+        <ui-pagination
+          v-model="page1"
+          :pageSize="pageSize"
+          :recordCount="recordCount"
+          showJumper
+        ></ui-pagination>
       </section>
       <ui-accordion>
         <ui-markdown :code="code[1]"></ui-markdown>
@@ -33,7 +38,10 @@
         >
           <template #default="{ pageCount }">
             Showing {{ recordCount }} records,
-            <ui-select v-model="pageSize" :options="pageSizeOptions"></ui-select>
+            <ui-select
+              v-model="pageSize"
+              :options="pageSizeOptions"
+            ></ui-select>
             records / page, {{ pageCount }} total pages
           </template>
         </ui-pagination>
@@ -62,7 +70,9 @@
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="pagination"></ui-apidocs>
 
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
+        3. Sass Variables
+      </h4>
       <ui-cssdocs name="pagination"></ui-cssdocs>
     </div>
   </div>

@@ -2,24 +2,27 @@
   <div :class="[$tt('body1'), 'demo--tabs']">
     <header class="hero component">
       <div class="hero-demo">
-        <!-- <ui-tabs
-          v-show="type === 0"
+        <ui-tabs
+          v-show="typeOption === 0"
           v-model="active1"
           :type="tabType"
           :items="ShortTabItems"
-          :stacked="iconType === 2"
+          :stacked="iconOption === 2"
         ></ui-tabs>
         <ui-tabs
-          v-show="type === 1"
+          v-show="typeOption === 1"
           v-model="active2"
           class="long"
           :type="tabType"
           :items="LongTabItems"
-          :stacked="iconType === 2"
-        ></ui-tabs> -->
+          :stacked="iconOption === 2"
+        ></ui-tabs>
       </div>
       <div class="hero-options">
-        <ui-select class="hero-option" :options="TabsTypeOptions" v-model="type"
+        <ui-select
+          class="hero-option"
+          :options="TypeOptions"
+          v-model="typeOption"
           >Type</ui-select
         >
         <div class="hero-option hero-options">
@@ -27,11 +30,11 @@
             <ui-checkbox
               id="options"
               v-model="textLabel"
-              :disabled="!iconType"
+              :disabled="!iconOption"
             ></ui-checkbox>
             <label for="options">Text label</label>
           </ui-form-field>
-          <ui-select :options="IconsTypeOptions" v-model="iconType"
+          <ui-select :options="IconOptions" v-model="iconOption"
             >Icons</ui-select
           >
         </div>
@@ -84,7 +87,7 @@ import UiTabPanelDemo from './tab-panel';
 
 const largeScreenSize = 1024;
 
-const TabsTypeOptions = [
+const TypeOptions = [
   {
     label: 'Fixed',
     value: 0
@@ -95,7 +98,7 @@ const TabsTypeOptions = [
   }
 ];
 
-const IconsTypeOptions = [
+const IconOptions = [
   {
     label: 'None',
     value: 0
@@ -170,13 +173,13 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      TabsTypeOptions,
-      IconsTypeOptions,
+      TypeOptions,
+      IconOptions,
       ShortTabItems,
       LongTabItems,
-      type: 0,
+      typeOption: 0,
       textLabel: true,
-      iconType: 0,
+      iconOption: 0,
       active1: 0,
       active2: 0,
       active: 0,
@@ -188,7 +191,7 @@ export default {
     tabType() {
       let type = 0;
 
-      if (this.iconType) {
+      if (this.iconOption) {
         type = this.textLabel ? 2 : 1;
       }
 

@@ -1,8 +1,8 @@
 <template>
   <div :class="[$tt('body1'), 'demo--linear-progress']">
-    <section class="hero component">
+    <header class="hero component">
       <ui-linear-progress indeterminate></ui-linear-progress>
-    </section>
+    </header>
 
     <ui-toc-affix></ui-toc-affix>
 

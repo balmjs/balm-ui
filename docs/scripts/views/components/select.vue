@@ -8,7 +8,8 @@
         :options="options"
         @change="onChange"
         @selected="onSelected"
-      >Pick a fruit</ui-select>
+        >Pick a fruit</ui-select
+      >
     </section>
 
     <ui-toc-affix></ui-toc-affix>

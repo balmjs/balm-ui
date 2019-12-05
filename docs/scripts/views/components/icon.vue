@@ -2,13 +2,16 @@
   <div :class="[$tt('body1'), 'demo--icon']">
     <header class="hero component">
       <div class="hero-demo">
-        <ui-icon :type="type">add</ui-icon>
-        <ui-icon :type="type">description</ui-icon>
-        <ui-icon :type="type">edit</ui-icon>
-        <ui-icon :type="type">delete</ui-icon>
+        <ui-icon :type="typeOption">add</ui-icon>
+        <ui-icon :type="typeOption">description</ui-icon>
+        <ui-icon :type="typeOption">edit</ui-icon>
+        <ui-icon :type="typeOption">delete</ui-icon>
       </div>
       <div class="hero-options">
-        <ui-select class="hero-option" :options="IconTypeOptions" v-model="type"
+        <ui-select
+          class="hero-option"
+          :options="TypeOptions"
+          v-model="typeOption"
           >Icon themes</ui-select
         >
       </div>
@@ -99,10 +102,10 @@
             <ui-textfield-icon>search</ui-textfield-icon>
           </template>
         </ui-textfield>
-        <ui-textfield-helptext id="my-icons" class="search-helper" visible>
+        <ui-textfield-helper id="my-icons" class="search-helper" visible>
           TIPS: Click an icon to copy icon name, then you can use `
           <b>&lt;ui-icon&gt;${icon_name}&lt;/ui-icon&gt;</b>`.
-        </ui-textfield-helptext>
+        </ui-textfield-helper>
       </div>
 
       <ui-list-group>
@@ -241,7 +244,7 @@ if (MDI_VERSION <= 38) {
   ]);
 }
 
-const IconTypeOptions = [
+const TypeOptions = [
   {
     label: 'Filled',
     value: 0
@@ -271,8 +274,8 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      IconTypeOptions,
-      type: 0,
+      TypeOptions,
+      typeOption: 0,
       number: 0,
       categories: [],
       icons: {},

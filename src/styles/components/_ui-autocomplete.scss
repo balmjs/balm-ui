@@ -10,7 +10,7 @@ $mdc-autocomplete-item-selected-bgcolor: rgba(
 ) !default;
 
 .mdc-autocomplete {
-  .mdc-textfield__expand {
+  .mdc-text-field__extended {
     position: absolute;
     z-index: 999;
     top: 56px;
@@ -20,9 +20,9 @@ $mdc-autocomplete-item-selected-bgcolor: rgba(
 
     width: 100%;
   }
-  &.mdc-autocomplete--expand {
+  &.mdc-autocomplete--exposed {
     z-index: 1;
-    .mdc-textfield__expand {
+    .mdc-text-field__extended {
       display: block;
     }
   }

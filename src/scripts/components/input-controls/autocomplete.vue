@@ -112,7 +112,7 @@ export default {
       UI_AUTOCOMPLETE,
       $autocomplete: null,
       $callback: null,
-      isExposed: false,
+      isExpanded: false,
       inputValue: this.model,
       currentSource: [], // source data
       currentSuggestion: {
@@ -139,7 +139,7 @@ export default {
     className() {
       return {
         'mdc-autocomplete': true,
-        'mdc-autocomplete--exposed': this.isExposed
+        'mdc-autocomplete--expanded': this.isExpanded
       };
     }
   },
@@ -215,14 +215,14 @@ export default {
         keywords.length >= this.minlength &&
         this.currentSuggestion.data.length
       ) {
-        this.isExposed = true;
+        this.isExpanded = true;
         this.$nextTick(() => {
           this.initClientHeight();
         });
       }
     },
     hide() {
-      this.isExposed = false;
+      this.isExpanded = false;
       this.currentSuggestion.index = -1;
       this.clearSelected();
     },
@@ -363,7 +363,7 @@ export default {
             }
           }
 
-          if (e !== event && this.isExposed && !inTextfield) {
+          if (e !== event && this.isExpanded && !inTextfield) {
             document.removeEventListener(GLOBAL_EVENT.CLICK, this.$callback);
             this.hide();
           }

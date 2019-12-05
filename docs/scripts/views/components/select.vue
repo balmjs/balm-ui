@@ -2,7 +2,6 @@
   <div :class="[$tt('body1'), 'demo--select']">
     <section class="hero component">
       <ui-select
-        native
         id="my-select"
         v-model="selected"
         :options="options"

@@ -57,7 +57,12 @@
     />
 
     <!-- Label text -->
-    <ui-floating-label v-if="hasLabel && !(isOutlined || isTextarea)" :for="id">
+    <ui-floating-label
+      v-if="hasLabel && !(isOutlined || isTextarea)"
+      :for="id"
+      :floatAbove="floatAbove"
+      :shake="shake"
+    >
       <slot>{{ label }}</slot>
     </ui-floating-label>
 
@@ -68,7 +73,7 @@
     <div v-if="isOutlined || isTextarea" class="mdc-notched-outline">
       <div class="mdc-notched-outline__leading"></div>
       <div v-if="hasLabel" class="mdc-notched-outline__notch">
-        <ui-floating-label :for="id">
+        <ui-floating-label :for="id" :floatAbove="floatAbove" :shake="shake">
           <slot>{{ label }}</slot>
         </ui-floating-label>
       </div>
@@ -90,6 +95,7 @@ import UiFloatingLabel from '../form-controls/floating-label';
 import typeMixin from '../../mixins/type';
 import elementMixin from '../../mixins/element';
 import materialIconMixin from '../../mixins/material-icon';
+import floatingLabelMixin from '../../mixins/floating-label';
 import getType from '../../utils/typeof';
 import UI_GLOBAL from '../../config/constants';
 
@@ -118,7 +124,7 @@ export default {
   components: {
     UiFloatingLabel
   },
-  mixins: [typeMixin, elementMixin, materialIconMixin],
+  mixins: [typeMixin, elementMixin, materialIconMixin, floatingLabelMixin],
   model: {
     prop: 'model',
     event: UI_TEXTFIELD.EVENT.INPUT

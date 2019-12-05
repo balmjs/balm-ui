@@ -58,9 +58,13 @@
       <div class="mdc-select__anchor">
         <i class="mdc-select__dropdown-icon"></i>
         <div class="mdc-select__selected-text"></div>
-        <span v-if="!noLabel" class="mdc-floating-label">
+        <ui-floating-label
+          v-if="!noLabel"
+          :floatAbove="floatAbove"
+          :shake="shake"
+        >
           <slot>{{ label }}</slot>
-        </span>
+        </ui-floating-label>
         <div class="mdc-line-ripple"></div>
       </div>
 
@@ -98,9 +102,11 @@
 
 <script>
 import { MDCSelect } from '../../../material-components-web/select';
+import UiFloatingLabel from '../form-controls/floating-label';
 import elementMixin from '../../mixins/element';
+import floatingLabelMixin from '../../mixins/floating-label';
 
-// Define constants
+// Define select constants
 const UI_SELECT = {
   EVENT: {
     CHANGE: 'change',
@@ -110,7 +116,10 @@ const UI_SELECT = {
 
 export default {
   name: 'ui-select',
-  mixins: [elementMixin],
+  components: {
+    UiFloatingLabel
+  },
+  mixins: [elementMixin, floatingLabelMixin],
   model: {
     prop: 'model',
     event: UI_SELECT.EVENT.CHANGE

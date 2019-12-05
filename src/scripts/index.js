@@ -33,6 +33,7 @@ import UiMenuAnchor from './components/menu/menu-anchor';
 import UiMenu from './components/menu/menu';
 import UiMenuitem from './components/menu/menuitem';
 import UiMenuitemIcon from './components/menu/menuitem-icon';
+import UiMenuitemText from './components/menu/menuitem-text';
 // Data Entry
 import UiFormField from './components/form-controls/form-field';
 import UiTextfield from './components/input-controls/textfield';
@@ -124,6 +125,7 @@ const components = {
   UiMenu,
   UiMenuitem,
   UiMenuitemIcon,
+  UiMenuitemText,
   // Data Entry
   UiFormField,
   UiTextfield,

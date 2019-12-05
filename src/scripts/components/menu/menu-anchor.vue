@@ -5,8 +5,8 @@
 </template>
 
 <script>
-// Define constants
-const BUTTON_POSITIONS = [
+// Define anchors and positioning constants
+const ANCHOR_POSITIONS = [
   'top left',
   'top right',
   'middle left',
@@ -22,17 +22,17 @@ export default {
     position: String,
     middleValue: {
       type: String,
-      default: '35%'
+      default: '45%'
     }
   },
   computed: {
     positionStyle() {
       let result = '';
-      let buttonPosition = this.position;
+      let anchorPosition = this.position;
 
-      if (buttonPosition) {
-        if (BUTTON_POSITIONS.includes(buttonPosition)) {
-          let positions = buttonPosition.split(' ');
+      if (anchorPosition) {
+        if (ANCHOR_POSITIONS.includes(anchorPosition)) {
+          let positions = anchorPosition.split(' ');
 
           if (positions[0] === 'middle') {
             result = `top:${this.middleValue};${positions[1]}:0`;
@@ -40,7 +40,7 @@ export default {
             result = positions.map(position => `${position}:0`).join(';');
           }
         } else {
-          console.warn('Invalid button position');
+          console.warn('Invalid anchor position');
         }
       }
 

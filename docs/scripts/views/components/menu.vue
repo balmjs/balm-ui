@@ -1,6 +1,6 @@
 <template>
   <div :class="[$tt('body1'), 'demo--menu']">
-    <section class="hero component">
+    <header class="hero component">
       <ui-menu
         cssOnly
         :items="[
@@ -12,7 +12,7 @@
           'Settings'
         ]"
       ></ui-menu>
-    </section>
+    </header>
 
     <ui-toc-affix></ui-toc-affix>
 
@@ -20,7 +20,7 @@
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h4>
       <ui-accordion>
         <ui-markdown :code="code[1]"></ui-markdown>
       </ui-accordion>
@@ -127,10 +127,26 @@
             <p>
               Anchor Margins:
               <span class="margin-inputs">
-                <ui-textfield id="top-margin" v-model="controls.anchorMargin.top">T:</ui-textfield>
-                <ui-textfield id="bottom-margin" v-model="controls.anchorMargin.bottom">B:</ui-textfield>
-                <ui-textfield id="left-margin" v-model="controls.anchorMargin.left">L:</ui-textfield>
-                <ui-textfield id="right-margin" v-model="controls.anchorMargin.right">R:</ui-textfield>
+                <ui-textfield
+                  id="top-margin"
+                  v-model="controls.anchorMargin.top"
+                  >T:</ui-textfield
+                >
+                <ui-textfield
+                  id="bottom-margin"
+                  v-model="controls.anchorMargin.bottom"
+                  >B:</ui-textfield
+                >
+                <ui-textfield
+                  id="left-margin"
+                  v-model="controls.anchorMargin.left"
+                  >L:</ui-textfield
+                >
+                <ui-textfield
+                  id="right-margin"
+                  v-model="controls.anchorMargin.right"
+                  >R:</ui-textfield
+                >
               </span>
             </p>
             <ui-form-field block>
@@ -138,11 +154,17 @@
               <label for="is-rtl">RTL</label>
             </ui-form-field>
             <ui-form-field block>
-              <ui-checkbox id="animation" v-model="controls.disableAnimation"></ui-checkbox>
+              <ui-checkbox
+                id="animation"
+                v-model="controls.disableAnimation"
+              ></ui-checkbox>
               <label for="animation">Disable Open Animation</label>
             </ui-form-field>
             <ui-form-field block>
-              <ui-checkbox id="fixed-position" v-model="controls.fixedPosition"></ui-checkbox>
+              <ui-checkbox
+                id="fixed-position"
+                v-model="controls.fixedPosition"
+              ></ui-checkbox>
               <label for="fixed-position">Fixed Position Menu Surface</label>
             </ui-form-field>
             <!-- <ui-form-field block>
@@ -155,9 +177,9 @@
                 Last Selected item:
                 <em id="last-selected">
                   {{
-                  selectedValue
-                  ? `"${selectedValue.label}" at index ${selectedValue.index}`
-                  : '&lt;none selected&gt;'
+                    selectedValue
+                      ? `"${selectedValue.label}" at index ${selectedValue.index}`
+                      : '&lt;none selected&gt;'
                   }}
                 </em>
               </span>
@@ -189,29 +211,39 @@
                 <ui-menuitem>
                   <ui-menuitem-icon>
                     <svg-selected></svg-selected>
-                  </ui-menuitem-icon>Single
+                  </ui-menuitem-icon>
+                  <ui-menuitem-text>Single</ui-menuitem-text>
                 </ui-menuitem>
                 <ui-menuitem disabled>
                   <ui-menuitem-icon>
                     <svg-selected></svg-selected>
-                  </ui-menuitem-icon>1.15
+                  </ui-menuitem-icon>
+                  <ui-menuitem-text>1.15</ui-menuitem-text>
                 </ui-menuitem>
                 <ui-menuitem>
                   <ui-menuitem-icon>
                     <svg-selected></svg-selected>
-                  </ui-menuitem-icon>Double
+                  </ui-menuitem-icon>
+                  <ui-menuitem-text>Double</ui-menuitem-text>
                 </ui-menuitem>
                 <ui-menuitem selected>
                   <ui-menuitem-icon>
                     <svg-selected></svg-selected>
-                  </ui-menuitem-icon>Custom: 1.2
+                  </ui-menuitem-icon>
+                  <ui-menuitem-text>Custom: 1.2</ui-menuitem-text>
                 </ui-menuitem>
               </ui-menuitem>
               <ui-item-divider></ui-item-divider>
-              <ui-menuitem>Add space before paragraph</ui-menuitem>
-              <ui-menuitem>Add space after paragraph</ui-menuitem>
+              <ui-menuitem>
+                <ui-menuitem-text>Add space before paragraph</ui-menuitem-text>
+              </ui-menuitem>
+              <ui-menuitem>
+                <ui-menuitem-text>Add space after paragraph</ui-menuitem-text>
+              </ui-menuitem>
               <ui-item-divider></ui-item-divider>
-              <ui-menuitem>Custom spacing...</ui-menuitem>
+              <ui-menuitem>
+                <ui-menuitem-text>Custom spacing...</ui-menuitem-text>
+              </ui-menuitem>
             </ui-menu>
           </ui-menu-anchor>
         </div>
@@ -222,7 +254,9 @@
       <ui-apidocs name="menuitem"></ui-apidocs>
       <ui-apidocs name="menu-anchor"></ui-apidocs>
 
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
+        3. Sass Variables
+      </h4>
       <ui-cssdocs name="menu"></ui-cssdocs>
     </div>
   </div>

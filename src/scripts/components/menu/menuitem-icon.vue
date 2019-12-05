@@ -1,5 +1,5 @@
 <template>
-  <span class="mdc-menu__selection-group-icon">
+  <span class="mdc-list-item__graphic mdc-menu__selection-group-icon">
     <slot></slot>
   </span>
 </template>

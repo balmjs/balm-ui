@@ -1,38 +1,51 @@
 <template>
-  <div :class="className" tabindex="-1">
-    <ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
+  <!-- Container -->
+  <div :class="className">
+    <ul
+      class="mdc-list"
+      role="menu"
+      aria-hidden="true"
+      aria-orientation="vertical"
+      tabindex="-1"
+    >
       <slot>
         <template v-for="(item, index) in currentItems">
           <template v-if="getType(item) === 'array'">
-            <ui-menuitem group :key="`group${index}`">
+            <ui-menuitem nested :key="`group${index}`">
               <template v-for="(subItem, subIndex) in item">
-                <ui-item-divider
+                <li
                   v-if="subItem === UI_MENU.DIVIDER"
                   :key="`subdivider${subIndex}`"
-                >
-                </ui-item-divider>
+                  class="mdc-list-divider"
+                  role="separator"
+                ></li>
                 <ui-menuitem
                   v-else
                   :key="`subitem${subIndex}`"
                   :item="getType(subItem) === 'object' ? subItem : {}"
                 >
-                  {{ getType(subItem) === 'string' ? subItem : '' }}
+                  <ui-menuitem-text v-if="getType(subItem) === 'string'">{{
+                    subItem
+                  }}</ui-menuitem-text>
                 </ui-menuitem>
               </template>
             </ui-menuitem>
           </template>
           <template v-else>
-            <ui-item-divider
+            <li
               v-if="item === UI_MENU.DIVIDER"
               :key="`divider${index}`"
-            >
-            </ui-item-divider>
+              class="mdc-list-divider"
+              role="separator"
+            ></li>
             <ui-menuitem
               v-else
               :key="`item${index}`"
               :item="getType(item) === 'object' ? item : {}"
             >
-              {{ getType(item) === 'string' ? item : '' }}
+              <ui-menuitem-text v-if="getType(item) === 'string'">{{
+                item
+              }}</ui-menuitem-text>
             </ui-menuitem>
           </template>
         </template>
@@ -44,11 +57,11 @@
 <script>
 import { MDCMenu } from '../../../material-components-web/menu';
 import { Corner } from '../../../material-components-web/menu-surface/constants';
-import UiMenuItem from './menuitem';
-import UiItemDivider from '../divider/item-divider';
+import UiMenuitem from './menuitem';
+import UiMenuitemText from './menuitem-text';
 import getType from '../../utils/typeof';
 
-// Define constants
+// Define menu constants
 const UI_MENU = {
   DIVIDER: '-',
   MENU_POSITIONS: [
@@ -72,8 +85,8 @@ const UI_MENU = {
 export default {
   name: 'ui-menu',
   components: {
-    UiMenuItem,
-    UiItemDivider
+    UiMenuitem,
+    UiMenuitemText
   },
   model: {
     prop: 'open',
@@ -155,7 +168,7 @@ export default {
       this.$el.addEventListener(
         `MDCMenu:${UI_MENU.EVENT.SELECTED}`,
         ({ detail }) => {
-          let item = detail.item;
+          const item = detail.item;
           this.$emit(UI_MENU.EVENT.SELECTED, {
             item, // HTMLElement
             index: detail.index, // number

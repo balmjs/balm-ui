@@ -68,10 +68,6 @@ export default {
     exited: {
       type: Boolean,
       default: false
-    },
-    cssOnly: {
-      type: Boolean,
-      default: false
     }
   },
   data() {
@@ -103,9 +99,7 @@ export default {
   },
   methods: {
     init() {
-      if (!this.cssOnly) {
-        this.initRipple(this.$el);
-      }
+      this.initRipple(this.$el);
     },
     handleClick(event) {
       this.$emit(UI_FAB.EVENT.CLICK, event);

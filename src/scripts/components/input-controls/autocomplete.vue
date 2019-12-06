@@ -6,7 +6,6 @@
     :class="className"
     :placeholder="placeholder"
     :disabled="disabled"
-    :cssOnly="cssOnly"
     @focus="handleFocus"
     @keydown="handleKeydown"
     @input="handleInput"
@@ -86,10 +85,6 @@ export default {
       default: false
     },
     // UI attributes
-    cssOnly: {
-      type: Boolean,
-      default: false
-    },
     autofocus: {
       type: Boolean,
       default: false

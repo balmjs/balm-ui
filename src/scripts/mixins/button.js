@@ -19,11 +19,6 @@ export default {
     unelevated: {
       type: Boolean,
       default: false
-    },
-    // UI attributes
-    cssOnly: {
-      type: Boolean,
-      default: false
     }
   },
   computed: {
@@ -63,9 +58,7 @@ export default {
   },
   methods: {
     init() {
-      if (!this.cssOnly) {
-        this.initRipple(this.$el);
-      }
+      this.initRipple(this.$el);
     }
   }
 };

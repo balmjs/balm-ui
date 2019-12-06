@@ -49,12 +49,7 @@ export default {
     },
     // Element attributes
     name: String,
-    value: [String, Number],
-    // UI attributes
-    cssOnly: {
-      type: Boolean,
-      default: false
-    }
+    value: [String, Number]
   },
   data() {
     return {
@@ -81,16 +76,14 @@ export default {
     }
   },
   mounted() {
-    if (!this.cssOnly) {
-      this.$radio = new MDCRadio(this.$el);
-      this.$radio.checked = this.checkedValue == this.value;
+    this.$radio = new MDCRadio(this.$el);
+    this.$radio.checked = this.checkedValue == this.value;
 
-      this.$nextTick(() => {
-        if (this.$parent.$formField) {
-          this.$parent.$formField.input = this.$radio;
-        }
-      });
-    }
+    this.$nextTick(() => {
+      if (this.$parent.$formField) {
+        this.$parent.$formField.input = this.$radio;
+      }
+    });
   },
   methods: {
     handleChange() {

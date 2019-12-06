@@ -63,12 +63,7 @@ export default {
     },
     // Element attributes
     name: String,
-    value: [String, Number],
-    // UI attributes
-    cssOnly: {
-      type: Boolean,
-      default: false
-    }
+    value: [String, Number]
   },
   data() {
     return {
@@ -99,16 +94,14 @@ export default {
     }
   },
   mounted() {
-    if (!this.cssOnly) {
-      this.$checkbox = new MDCCheckbox(this.$el);
-      this.$checkbox.indeterminate = this.indeterminate;
+    this.$checkbox = new MDCCheckbox(this.$el);
+    this.$checkbox.indeterminate = this.indeterminate;
 
-      this.$nextTick(() => {
-        if (this.$parent.$formField) {
-          this.$parent.$formField.input = this.$checkbox;
-        }
-      });
-    }
+    this.$nextTick(() => {
+      if (this.$parent.$formField) {
+        this.$parent.$formField.input = this.$checkbox;
+      }
+    });
   },
   methods: {
     handleChange(event) {

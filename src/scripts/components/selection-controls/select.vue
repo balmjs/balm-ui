@@ -1,63 +1,23 @@
 <template>
+  <!-- Enhanced Select -->
   <div :class="className">
-    <!-- Native Select -->
-    <template v-if="native">
-      <select
-        :id="id"
-        v-model="selectedValue"
-        class="mdc-select__native-control"
-        :disabled="disabled"
-        v-bind="attrs"
-        @change="nativeHandleChange"
-      >
-        <!-- Default option -->
-        <option v-if="defaultLabel" :value="defaultValue" selected>{{
-          defaultLabel
-        }}</option>
-        <template v-if="group">
-          <template v-for="(option, optionIndex) in options">
-            <!-- A group of options -->
-            <optgroup
-              v-if="
-                option[groupLabel] &&
-                  option[groupItems] &&
-                  option[groupItems].length
-              "
-              :key="optionIndex"
-              :label="option[groupLabel]"
-            >
-              <option
-                v-for="(item, itemIndex) in option[groupItems]"
-                :key="itemIndex"
-                :value="item[optionValue]"
-                >{{ item[optionLabel] }}</option
-              >
-            </optgroup>
-            <!-- An option -->
-            <option
-              v-if="option[optionLabel] && option[optionValue]"
-              :key="optionIndex"
-              :value="option[optionValue]"
-              >{{ option[optionLabel] }}</option
-            >
-          </template>
-        </template>
-        <template v-else>
-          <option
-            v-for="(option, index) in options"
-            :key="index"
-            :value="option[optionValue]"
-            :disabled="option.disabled || false"
-            >{{ option[optionLabel] }}</option
+    <div class="mdc-select__anchor">
+      <i class="mdc-select__dropdown-icon"></i>
+      <div class="mdc-select__selected-text"></div>
+      <div v-if="outlined" class="mdc-notched-outline">
+        <div class="mdc-notched-outline__leading"></div>
+        <div class="mdc-notched-outline__notch">
+          <ui-floating-label
+            v-if="!noLabel"
+            :floatAbove="floatAbove"
+            :shake="shake"
           >
-        </template>
-      </select>
-    </template>
-    <!-- Enhanced Select -->
-    <template v-else>
-      <div class="mdc-select__anchor">
-        <i class="mdc-select__dropdown-icon"></i>
-        <div class="mdc-select__selected-text"></div>
+            <slot>{{ label }}</slot>
+          </ui-floating-label>
+        </div>
+        <div class="mdc-notched-outline__trailing"></div>
+      </div>
+      <template v-else>
         <ui-floating-label
           v-if="!noLabel"
           :floatAbove="floatAbove"
@@ -66,37 +26,37 @@
           <slot>{{ label }}</slot>
         </ui-floating-label>
         <div class="mdc-line-ripple"></div>
-      </div>
+      </template>
+    </div>
 
-      <div class="mdc-select__menu mdc-menu mdc-menu-surface">
-        <ul class="mdc-list">
-          <li
-            v-if="defaultLabel"
-            :class="[
-              'mdc-list-item',
-              { 'mdc-list-item--selected': defaultValue === selectedValue }
-            ]"
-            :data-value="defaultLabel"
-            aria-selected="true"
-          >
-            {{ defaultLabel }}
-          </li>
-          <li
-            v-for="(option, index) in options"
-            :key="index"
-            :class="[
-              'mdc-list-item',
-              {
-                'mdc-list-item--selected': option[optionValue] === selectedValue
-              }
-            ]"
-            :data-value="option[optionLabel]"
-          >
-            {{ option[optionLabel] }}
-          </li>
-        </ul>
-      </div>
-    </template>
+    <div class="mdc-select__menu mdc-menu mdc-menu-surface">
+      <ul class="mdc-list">
+        <li
+          v-if="defaultLabel"
+          :class="[
+            'mdc-list-item',
+            { 'mdc-list-item--selected': defaultValue === selectedValue }
+          ]"
+          :data-value="defaultLabel"
+          aria-selected="true"
+        >
+          {{ defaultLabel }}
+        </li>
+        <li
+          v-for="(option, index) in options"
+          :key="index"
+          :class="[
+            'mdc-list-item',
+            {
+              'mdc-list-item--selected': option[optionValue] === selectedValue
+            }
+          ]"
+          :data-value="option[optionLabel]"
+        >
+          {{ option[optionLabel] }}
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -125,11 +85,6 @@ export default {
     event: UI_SELECT.EVENT.CHANGE
   },
   props: {
-    // Type
-    native: {
-      type: Boolean,
-      default: false
-    },
     // States
     model: [String, Number],
     options: {
@@ -165,18 +120,6 @@ export default {
     noLabel: {
       type: Boolean,
       default: false
-    },
-    group: {
-      type: Boolean,
-      default: false
-    },
-    groupLabel: {
-      type: String,
-      default: 'label'
-    },
-    groupItems: {
-      type: String,
-      default: 'items'
     }
   },
   data() {
@@ -189,7 +132,6 @@ export default {
     className() {
       return {
         'mdc-select': true,
-        'mdc-select--native': this.native,
         'mdc-select--outlined': this.outlined,
         'mdc-select--required': this.required,
         'mdc-select--disabled': this.disabled,
@@ -197,42 +139,14 @@ export default {
       };
     }
   },
-  watch: {
-    model(val) {
-      if (this.native) {
-        this.selectedValue = val;
-
-        const selectedIndex = this.options.findIndex(
-          option => option[this.optionValue] === val
-        );
-        const index = this.defaultLabel ? selectedIndex + 1 : selectedIndex;
-        const selected = this.getSelected(index);
-
-        this.$emit(UI_SELECT.EVENT.SELECTED, {
-          index,
-          value: selected[this.optionValue],
-          label: selected[this.optionLabel]
-        });
-      }
-    }
-  },
   mounted() {
-    if (!this.native) {
-      this.$select = new MDCSelect(this.$el);
-      this.$select.listen(
-        `MDCSelect:${UI_SELECT.EVENT.CHANGE}`,
-        ({ detail }) => {
-          // console.log(
-          //   `Selected option at index ${detail.index} with value "${detail.value}"`
-          // );
+    this.$select = new MDCSelect(this.$el);
+    this.$select.listen(`MDCSelect:${UI_SELECT.EVENT.CHANGE}`, ({ detail }) => {
+      const selected = this.getSelected(detail.index);
 
-          const selected = this.getSelected(detail.index);
-
-          this.$emit(UI_SELECT.EVENT.CHANGE, selected.value);
-          this.$emit(UI_SELECT.EVENT.SELECTED, selected);
-        }
-      );
-    }
+      this.$emit(UI_SELECT.EVENT.CHANGE, selected.value);
+      this.$emit(UI_SELECT.EVENT.SELECTED, selected);
+    });
   },
   methods: {
     getSelected(index) {
@@ -250,9 +164,6 @@ export default {
         value: selected[this.optionValue],
         label: selected[this.optionLabel]
       };
-    },
-    nativeHandleChange() {
-      this.$emit(UI_SELECT.EVENT.CHANGE, this.selectedValue);
     }
   }
 };

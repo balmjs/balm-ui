@@ -13,11 +13,11 @@
 
     <ui-toc-affix></ui-toc-affix>
 
-    <!-- <div :class="$tt('body2')">
+    <div :class="$tt('body2')">
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h4>
       <section class="example">
         <h6 :class="$tt('headline6')">1.1 Fully-Featured JS Component</h6>
         <section id="demo-wrapper" :dir="controls.rtl ? 'rtl' : null">
@@ -26,16 +26,19 @@
             v-model="selected1.value"
             :selectedIndex="selected1.index"
             :options="options1"
-            :class="{'demo-select-custom-colors': controls.customColor}"
+            :class="{ 'demo-select-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
             @selected="onSelected($event, 1)"
-          >Food Group</ui-select>
+            >Food Group</ui-select
+          >
         </section>
         <p>
           Currently selected:
-          <span
-            id="currently-selected"
-          >{{ selected1.value ? `${selected1.value} at index ${selected1.index}` : '(none)' }}</span>
+          <span id="currently-selected">{{
+            selected1.value
+              ? `${selected1.value} at index ${selected1.index}`
+              : '(none)'
+          }}</span>
         </p>
         <ui-select-controls v-model="controls"></ui-select-controls>
         <div class="button-container">
@@ -43,14 +46,16 @@
             raised
             id="set-selected-index-zero-button"
             @click="$balmUI.onChange('selected1.index', 0)"
-          >Set Selected Index (0)</ui-button>
+            >Set Selected Index (0)</ui-button
+          >
         </div>
         <div class="button-container">
           <ui-button
             raised
             id="set-value-meat-button"
             @click="$balmUI.onChange('selected1.value', 'meat')"
-          >Set Value to Meat</ui-button>
+            >Set Value to Meat</ui-button
+          >
         </div>
       </section>
       <ui-accordion>
@@ -66,31 +71,39 @@
             v-model="selected2.value"
             :selectedIndex="selected2.index"
             :options="options2"
-            :class="{'demo-select-custom-colors': controls.customColor}"
+            :class="{ 'demo-select-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
             @selected="onSelected($event, 2)"
-          >Food Group</ui-select>
+            >Food Group</ui-select
+          >
         </section>
         <p>
           Currently selected:
-          <span
-            id="box-currently-selected"
-          >{{ selected2.value ? `${selected2.value} at index ${selected2.index}` : '(none)' }}</span>
+          <span id="box-currently-selected">{{
+            selected2.value
+              ? `${selected2.value} at index ${selected2.index}`
+              : '(none)'
+          }}</span>
         </p>
-        <ui-select-controls idPrefix="box" v-model="controls"></ui-select-controls>
+        <ui-select-controls
+          idPrefix="box"
+          v-model="controls"
+        ></ui-select-controls>
         <div class="button-container">
           <ui-button
             raised
             id="box-set-selected-index-zero-button"
             @click="$balmUI.onChange('selected2.index', 0)"
-          >Set Selected Index (0)</ui-button>
+            >Set Selected Index (0)</ui-button
+          >
         </div>
         <div class="button-container">
           <ui-button
             raised
             id="box-set-value-fruit-roll-up-button"
             @click="$balmUI.onChange('selected2.value', 'fruit-roll-ups')"
-          >Set Value to Fruit Roll Ups</ui-button>
+            >Set Value to Fruit Roll Ups</ui-button
+          >
         </div>
       </section>
       <ui-accordion>
@@ -106,31 +119,39 @@
             v-model="selected1.value"
             :selectedIndex="selected1.index"
             :options="options1"
-            :class="{'demo-select-custom-colors': controls.customColor}"
+            :class="{ 'demo-select-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
             @selected="onSelected($event, 1)"
-          >Food Group</ui-select>
+            >Food Group</ui-select
+          >
         </section>
         <p>
           Currently selected:
-          <span
-            id="currently-selected-outline"
-          >{{ selected1.value ? `${selected1.value} at index ${selected1.index}` : '(none)' }}</span>
+          <span id="currently-selected-outline">{{
+            selected1.value
+              ? `${selected1.value} at index ${selected1.index}`
+              : '(none)'
+          }}</span>
         </p>
-        <ui-select-controls idPrefix="outline" v-model="controls"></ui-select-controls>
+        <ui-select-controls
+          idPrefix="outline"
+          v-model="controls"
+        ></ui-select-controls>
         <div class="button-container">
           <ui-button
             raised
             id="set-selected-index-zero-button-outline"
             @click="$balmUI.onChange('selected1.index', 0)"
-          >Set Selected Index (0)</ui-button>
+            >Set Selected Index (0)</ui-button
+          >
         </div>
         <div class="button-container">
           <ui-button
             raised
             id="set-value-meat-button-outline"
             @click="$balmUI.onChange('selected1.value', 'meat')"
-          >Set Value to Meat</ui-button>
+            >Set Value to Meat</ui-button
+          >
         </div>
       </section>
       <ui-accordion>
@@ -140,20 +161,31 @@
       <section class="example">
         <h6 :class="$tt('headline6')">1.4 Pre-selected option via HTML</h6>
         <section>
-          <ui-select id="select-preselected" v-model="selected3" :options="options2">Food Group</ui-select>
+          <ui-select
+            id="select-preselected"
+            v-model="selected3"
+            :options="options2"
+            >Food Group</ui-select
+          >
         </section>
       </section>
       <ui-accordion>
         <ui-markdown :code="code[4]"></ui-markdown>
       </ui-accordion>
 
-      <section class="example">
+      <!-- <section class="example">
         <h6 :class="$tt('headline6')">1.5 MDC Select with optgroups</h6>
-        <ui-select id="select-optgroups" group v-model="selected4" :options="options3">Food Group</ui-select>
+        <ui-select
+          id="select-optgroups"
+          group
+          v-model="selected4"
+          :options="options3"
+          >Food Group</ui-select
+        >
       </section>
       <ui-accordion>
         <ui-markdown :code="code[5]"></ui-markdown>
-      </ui-accordion>
+      </ui-accordion> -->
 
       <section class="example">
         <h6 :class="$tt('headline6')">1.6 Custom Select</h6>
@@ -164,7 +196,11 @@
           @change="onChangeProvince($event)"
         ></ui-select>
 
-        <ui-select defaultLabel="City" :options="cities" v-model="formData.city"></ui-select>
+        <ui-select
+          defaultLabel="City"
+          :options="cities"
+          v-model="formData.city"
+        ></ui-select>
         <p>Province: {{ formData.province }} - City: {{ formData.city }}</p>
       </section>
       <ui-accordion>
@@ -174,9 +210,11 @@
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="select"></ui-apidocs>
 
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
+        3. Sass Variables
+      </h4>
       <ui-cssdocs name="select"></ui-cssdocs>
-    </div>-->
+    </div>
   </div>
 </template>
 

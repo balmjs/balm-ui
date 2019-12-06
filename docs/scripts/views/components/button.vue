@@ -37,17 +37,9 @@
           </ui-form-field>
         </div>
 
-        <h4 :class="$tt('headline6')">1.1 Default</h4>
         <ui-button-demo
           :disabled="controls.disabled"
-          :code="demoCode"
-        ></ui-button-demo>
-
-        <h4 :class="$tt('headline6')">1.2 CSS Only</h4>
-        <ui-button-demo
-          cssOnly
-          :disabled="controls.disabled"
-          :code="demoCode"
+          :code="code[1]"
         ></ui-button-demo>
       </section>
 
@@ -102,11 +94,6 @@ export default {
         disabled: false
       }
     };
-  },
-  computed: {
-    demoCode() {
-      return this.code;
-    }
   },
   created() {
     this.showCode('button', 2);

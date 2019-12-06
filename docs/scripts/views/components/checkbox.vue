@@ -2,7 +2,7 @@
   <div :class="[$tt('body1'), 'demo--checkbox']">
     <section class="hero component">
       <ui-form-field>
-        <ui-checkbox v-touch cssOnly id="hero-checkbox-label"></ui-checkbox>
+        <ui-checkbox v-touch id="hero-checkbox-label"></ui-checkbox>
         <label for="hero-checkbox-label">Checkbox</label>
       </ui-form-field>
     </section>
@@ -15,12 +15,6 @@
 
       <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
       <section class="example">
-        <h2>CSS Only</h2>
-        <ui-checkbox-demo cssOnly></ui-checkbox-demo>
-      </section>
-
-      <section class="example">
-        <h2>With JavaScript</h2>
         <ui-checkbox-demo></ui-checkbox-demo>
       </section>
 

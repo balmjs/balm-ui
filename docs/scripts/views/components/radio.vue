@@ -1,8 +1,8 @@
 <template>
   <div :class="[$tt('body1'), 'demo--radio']">
     <section class="hero component">
-      <ui-radio v-touch cssOnly name="hero" value="0" v-model="hero"></ui-radio>
-      <ui-radio v-touch cssOnly name="hero" value="1" v-model="hero"></ui-radio>
+      <ui-radio v-touch name="hero" value="0" v-model="hero"></ui-radio>
+      <ui-radio v-touch name="hero" value="1" v-model="hero"></ui-radio>
       {{ hero }}
     </section>
 
@@ -20,7 +20,7 @@
 
       <section class="example">
         <h2>CSS Only</h2>
-        <ui-radio-demo cssOnly></ui-radio-demo>
+        <ui-radio-demo></ui-radio-demo>
       </section>
 
       <section class="example">

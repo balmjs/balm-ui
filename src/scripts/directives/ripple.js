@@ -26,9 +26,11 @@ const updateRipple = (method, el, { value }) => {
 };
 
 const initRipple = (el, { arg, modifiers }) => {
-  const ripple = new MDCRipple(el);
-  if (modifiers.unbounded) {
-    ripple.unbounded = true;
+  if (arg !== 'cssOnly') {
+    const ripple = new MDCRipple(el);
+    if (modifiers.unbounded) {
+      ripple.unbounded = true;
+    }
   }
 };
 

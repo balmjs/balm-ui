@@ -2,8 +2,8 @@
   <div>
     <div>
       <ui-form-field :alignEnd="alignEnd">
-        <ui-checkbox :id="`${idPrefix}-checkbox`" :cssOnly="cssOnly"></ui-checkbox>
-        <label :for="`${idPrefix}-checkbox`">Default checkbox</label>
+        <ui-checkbox :id="`basic-checkbox`"></ui-checkbox>
+        <label :for="`basic-checkbox`">Default checkbox</label>
       </ui-form-field>
       <div class="demo-toggle-group">
         <ui-button outlined @click="$balmUI.onChange('alignEnd', !alignEnd)">
@@ -14,8 +14,11 @@
     </div>
     <div>
       <ui-form-field>
-        <ui-checkbox :id="`${idPrefix}-checkbox-disabled`" :cssOnly="cssOnly" :disabled="disabled"></ui-checkbox>
-        <label :for="`${idPrefix}-checkbox-disabled`">Disabled checkbox</label>
+        <ui-checkbox
+          :id="`basic-checkbox-disabled`"
+          :disabled="disabled"
+        ></ui-checkbox>
+        <label :for="`basic-checkbox-disabled`">Disabled checkbox</label>
       </ui-form-field>
       <div class="demo-toggle-group">
         <ui-button outlined @click="$balmUI.onChange('disabled', !disabled)">
@@ -24,33 +27,38 @@
         </ui-button>
       </div>
     </div>
-    <div v-if="!cssOnly">
-      <ui-form-field>
-        <ui-checkbox
-          :id="`${idPrefix}-checkbox-indeterminate`"
-          :cssOnly="cssOnly"
-          :indeterminate="indeterminate"
-        ></ui-checkbox>
-        <label :for="`${idPrefix}-checkbox-indeterminate`">Indeterminate checkbox</label>
-      </ui-form-field>
-      <div class="demo-toggle-group">
-        <ui-button outlined @click="$balmUI.onChange('indeterminate', !indeterminate)">
-          Toggle
-          <code>indeterminate</code>
-        </ui-button>
-      </div>
+    <ui-form-field>
+      <ui-checkbox
+        :id="`basic-checkbox-indeterminate`"
+        :indeterminate="indeterminate"
+      ></ui-checkbox>
+      <label :for="`basic-checkbox-indeterminate`"
+        >Indeterminate checkbox</label
+      >
+    </ui-form-field>
+    <div class="demo-toggle-group">
+      <ui-button
+        outlined
+        @click="$balmUI.onChange('indeterminate', !indeterminate)"
+      >
+        Toggle
+        <code>indeterminate</code>
+      </ui-button>
     </div>
     <ui-form-field class="demo-checkbox--custom-all" block>
-      <ui-checkbox block :id="`${idPrefix}-checkbox-custom-all`" :cssOnly="cssOnly"></ui-checkbox>
-      <label
-        :for="`${idPrefix}-checkbox-custom-all`"
-      >Custom colored checkbox (stroke, fill, ripple, and focus)</label>
+      <ui-checkbox block :id="`basic-checkbox-custom-all`"></ui-checkbox>
+      <label :for="`basic-checkbox-custom-all`"
+        >Custom colored checkbox (stroke, fill, ripple, and focus)</label
+      >
     </ui-form-field>
     <ui-form-field class="demo-checkbox--custom-stroke-and-fill" block>
-      <ui-checkbox block :id="`${idPrefix}-checkbox-custom-stroke-and-fill`" :cssOnly="cssOnly"></ui-checkbox>
-      <label
-        :for="`${idPrefix}-checkbox-custom-stroke-and-fill`"
-      >Custom colored checkbox (stroke and fill only)</label>
+      <ui-checkbox
+        block
+        :id="`basic-checkbox-custom-stroke-and-fill`"
+      ></ui-checkbox>
+      <label :for="`basic-checkbox-custom-stroke-and-fill`"
+        >Custom colored checkbox (stroke and fill only)</label
+      >
     </ui-form-field>
   </div>
 </template>
@@ -58,10 +66,6 @@
 <script>
 export default {
   props: {
-    cssOnly: {
-      type: Boolean,
-      default: false
-    },
     code: Array
   },
   data() {
@@ -70,14 +74,6 @@ export default {
       indeterminate: true,
       disabled: true
     };
-  },
-  computed: {
-    categoryNumber() {
-      return this.cssOnly ? 2 : 1;
-    },
-    idPrefix() {
-      return this.cssOnly ? 'basic' : 'native-js';
-    }
   }
 };
 </script>

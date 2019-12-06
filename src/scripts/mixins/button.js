@@ -37,6 +37,9 @@ export default {
       return this.checkType(UI_BUTTON.TYPES, 'unelevated');
     },
     className() {
+      const isTouch =
+        this.$el && this.$el.classList.contains(UI_BUTTON.cssClasses.touch);
+
       return {
         // Text button
         'mdc-button': true,
@@ -44,7 +47,9 @@ export default {
         'mdc-button--outlined': this.isOutlined,
         // Contained button
         'mdc-button--raised': this.isRaised,
-        'mdc-button--unelevated': this.isUnelevated
+        'mdc-button--unelevated': this.isUnelevated,
+        // Touch Target
+        'mdc-button--touch': isTouch
       };
     }
   },

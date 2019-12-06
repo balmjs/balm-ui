@@ -23,8 +23,11 @@
 import { MDCRadio } from '../../../material-components-web/radio';
 import elementMixin from '../../mixins/element';
 
-// Define constants
+// Define radio constants
 const UI_RADIO = {
+  cssClasses: {
+    touch: 'mdc-radio--touch'
+  },
   EVENT: {
     CHANGE: 'change'
   }
@@ -61,9 +64,14 @@ export default {
   },
   computed: {
     className() {
+      const isTouch =
+        this.$el && this.$el.classList.contains(UI_RADIO.cssClasses.touch);
+
       return {
         'mdc-radio': true,
-        'mdc-radio--disabled': this.disabled
+        'mdc-radio--disabled': this.disabled,
+        // Touch Target
+        'mdc-radio--touch': isTouch
       };
     }
   },

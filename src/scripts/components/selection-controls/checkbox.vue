@@ -30,8 +30,11 @@ import { MDCCheckbox } from '../../../material-components-web/checkbox';
 import elementMixin from '../../mixins/element';
 import getType from '../../utils/typeof';
 
-// Define constants
+// Define checkbox constants
 const UI_CHECKBOX = {
+  cssClasses: {
+    touch: 'mdc-checkbox--touch'
+  },
   EVENT: {
     CHANGE: 'change'
   }
@@ -75,9 +78,14 @@ export default {
   },
   computed: {
     className() {
+      const isTouch =
+        this.$el && this.$el.classList.contains(UI_CHECKBOX.cssClasses.touch);
+
       return {
         'mdc-checkbox': true,
-        'mdc-checkbox--disabled': this.disabled
+        'mdc-checkbox--disabled': this.disabled,
+        // Touch Target
+        'mdc-checkbox--touch': isTouch
       };
     }
   },

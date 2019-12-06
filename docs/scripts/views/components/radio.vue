@@ -1,8 +1,8 @@
 <template>
   <div :class="[$tt('body1'), 'demo--radio']">
     <section class="hero component">
-      <ui-radio cssOnly name="hero" value="0" v-model="hero"></ui-radio>
-      <ui-radio cssOnly name="hero" value="1" v-model="hero"></ui-radio>
+      <ui-radio v-touch cssOnly name="hero" value="0" v-model="hero"></ui-radio>
+      <ui-radio v-touch cssOnly name="hero" value="1" v-model="hero"></ui-radio>
       {{ hero }}
     </section>
 
@@ -27,11 +27,23 @@
         <h2>Disabled</h2>
         <div>
           <ui-form-field>
-            <ui-radio id="ex4a-radio1" name="ex4a" value="0" v-model="hero" disabled></ui-radio>
+            <ui-radio
+              id="ex4a-radio1"
+              name="ex4a"
+              value="0"
+              v-model="hero"
+              disabled
+            ></ui-radio>
             <label for="ex4a-radio1">Disabled Radio 1</label>
           </ui-form-field>
           <ui-form-field>
-            <ui-radio id="ex4a-radio2" name="ex4a" value="1" v-model="hero" disabled></ui-radio>
+            <ui-radio
+              id="ex4a-radio2"
+              name="ex4a"
+              value="1"
+              v-model="hero"
+              disabled
+            ></ui-radio>
             <label for="ex4a-radio2">Disabled Radio 2</label>
           </ui-form-field>
         </div>
@@ -43,7 +55,12 @@
           <label for="male">Male</label>
         </ui-form-field>
         <ui-form-field>
-          <ui-radio id="female" name="sex" value="F" v-model="gender"></ui-radio>
+          <ui-radio
+            id="female"
+            name="sex"
+            value="F"
+            v-model="gender"
+          ></ui-radio>
           <label for="female">Female</label>
         </ui-form-field>
         <p>Gender: {{ gender }}</p>
@@ -55,7 +72,9 @@
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="radio"></ui-apidocs>
 
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
+        3. Sass Variables
+      </h4>
       <ui-cssdocs name="radio"></ui-cssdocs>
     </div>
   </div>

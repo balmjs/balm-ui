@@ -25,7 +25,7 @@
 import { MDCSwitch } from '../../../material-components-web/switch';
 import elementMixin from '../../mixins/element';
 
-// Define constants
+// Define switch constants
 const UI_SWITCH = {
   EVENT: {
     CHANGE: 'change'

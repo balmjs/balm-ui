@@ -1,10 +1,15 @@
 <template>
   <div :class="[$tt('body1'), 'demo--slider']">
-    <section class="hero component">
+    <header class="hero component">
       <div id="hero-slider-wrapper">
-        <ui-slider id="hero-slider" max="50" v-model="value" label="Select Value"></ui-slider>
+        <ui-slider
+          id="hero-slider"
+          max="50"
+          v-model="value"
+          label="Select Value"
+        ></ui-slider>
       </div>
-    </section>
+    </header>
 
     <ui-toc-affix></ui-toc-affix>
 
@@ -17,7 +22,10 @@
         <h2>Continuous Slider</h2>
         <div class="slider-example">
           <div
-            :class="['example-slider-wrapper', {'custom-bg': controls.customColor}]"
+            :class="[
+              'example-slider-wrapper',
+              { 'custom-bg': controls.customColor }
+            ]"
             :dir="controls.rtl ? 'rtl' : null"
           >
             <ui-slider
@@ -37,7 +45,10 @@
         <h2>Discrete Slider</h2>
         <div class="slider-example">
           <div
-            :class="['example-slider-wrapper', {'custom-bg': controls.customColor}]"
+            :class="[
+              'example-slider-wrapper',
+              { 'custom-bg': controls.customColor }
+            ]"
             :dir="controls.rtl ? 'rtl' : null"
           >
             <ui-slider
@@ -57,7 +68,10 @@
         <h2>Discrete Slider with Tick Marks</h2>
         <div class="slider-example">
           <div
-            :class="['example-slider-wrapper', {'custom-bg': controls.customColor}]"
+            :class="[
+              'example-slider-wrapper',
+              { 'custom-bg': controls.customColor }
+            ]"
             :dir="controls.rtl ? 'rtl' : null"
           >
             <ui-slider
@@ -78,7 +92,10 @@
         <h2>Custom Colored Discrete Slider with Tick Marks</h2>
         <div class="slider-example">
           <div
-            :class="['example-slider-wrapper', {'custom-bg': controls.customColor}]"
+            :class="[
+              'example-slider-wrapper',
+              { 'custom-bg': controls.customColor }
+            ]"
             :dir="controls.rtl ? 'rtl' : null"
           >
             <ui-slider
@@ -100,11 +117,23 @@
         <div class="demo-param-field-group">
           <label class="demo-param-field">
             <span class="demo-param-input-label">Min:</span>
-            <input name="min" type="number" min="-100" max="100" v-model="min" />
+            <input
+              name="min"
+              type="number"
+              min="-100"
+              max="100"
+              v-model="min"
+            />
           </label>
           <label class="demo-param-field">
             <span class="demo-param-input-label">Max:</span>
-            <input name="max" type="number" min="-100" max="100" v-model="max" />
+            <input
+              name="max"
+              type="number"
+              min="-100"
+              max="100"
+              v-model="max"
+            />
           </label>
           <label class="demo-param-field">
             <span class="demo-param-input-label">Step:</span>
@@ -113,11 +142,17 @@
         </div>
         <div class="demo-param-field-group">
           <ui-form-field block>
-            <ui-checkbox id="slider-disabled" v-model="controls.disabled"></ui-checkbox>
+            <ui-checkbox
+              id="slider-disabled"
+              v-model="controls.disabled"
+            ></ui-checkbox>
             <label for="slider-disabled">Disabled</label>
           </ui-form-field>
           <ui-form-field block>
-            <ui-checkbox id="slider-custom-bg" v-model="controls.customColor"></ui-checkbox>
+            <ui-checkbox
+              id="slider-custom-bg"
+              v-model="controls.customColor"
+            ></ui-checkbox>
             <label for="slider-custom-bg">Use Custom BG Color</label>
           </ui-form-field>
           <ui-form-field block>
@@ -130,7 +165,9 @@
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="slider"></ui-apidocs>
 
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
+        3. Sass Variables
+      </h4>
       <ui-cssdocs name="slider"></ui-cssdocs>
     </div>
   </div>

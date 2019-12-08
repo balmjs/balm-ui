@@ -1,11 +1,11 @@
 <template>
   <div :class="[$tt('body1'), 'demo--checkbox']">
-    <section class="hero component">
+    <header class="hero component">
       <ui-form-field>
-        <ui-checkbox v-touch id="hero-checkbox-label"></ui-checkbox>
-        <label for="hero-checkbox-label">Checkbox</label>
+        <ui-checkbox v-touch id="hero-checkbox"></ui-checkbox>
+        <label for="hero-checkbox">Checkbox</label>
       </ui-form-field>
-    </section>
+    </header>
 
     <ui-toc-affix></ui-toc-affix>
 
@@ -13,7 +13,7 @@
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h4>
       <section class="example">
         <ui-checkbox-demo></ui-checkbox-demo>
       </section>

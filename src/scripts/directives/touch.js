@@ -33,7 +33,6 @@ const UI_TOUCH_TARGET = {
 };
 
 const checkComponent = el => {
-  console.log(el.tagName);
   let result = false;
 
   const components = Object.keys(UI_TOUCH_TARGET.components);

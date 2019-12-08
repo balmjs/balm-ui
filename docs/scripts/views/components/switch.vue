@@ -1,9 +1,11 @@
 <template>
   <div :class="[$tt('body1'), 'demo--switch']">
-    <section class="hero component">
-      <ui-switch id="my-switch" v-model="toggle"></ui-switch>
-      <label for="my-switch">{{ toggle }}</label>
-    </section>
+    <header class="hero component">
+      <ui-form-field>
+        <ui-switch id="hero-switch" v-model="toggle"></ui-switch>
+        <label for="hero-switch">{{ toggle }}</label>
+      </ui-form-field>
+    </header>
 
     <ui-toc-affix></ui-toc-affix>
 
@@ -11,11 +13,16 @@
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h4>
       <section class="example">
         <h2>1.1 Enabled</h2>
         <div class="demo-switch-wrapper">
-          <ui-switch id="basic-switch" :trueValue="1" :falseValue="0" v-model="toggle1"></ui-switch>
+          <ui-switch
+            id="basic-switch"
+            :trueValue="1"
+            :falseValue="0"
+            v-model="toggle1"
+          ></ui-switch>
           <label for="basic-switch">{{ toggle1 }}</label>
         </div>
         <div class="demo-switch-wrapper">
@@ -44,7 +51,9 @@
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="switch"></ui-apidocs>
 
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
+        3. Sass Variables
+      </h4>
       <ui-cssdocs name="switch"></ui-cssdocs>
     </div>
   </div>

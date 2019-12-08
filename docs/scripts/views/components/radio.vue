@@ -1,10 +1,12 @@
 <template>
   <div :class="[$tt('body1'), 'demo--radio']">
-    <section class="hero component">
-      <ui-radio v-touch name="hero" value="0" v-model="hero"></ui-radio>
-      <ui-radio v-touch name="hero" value="1" v-model="hero"></ui-radio>
-      {{ hero }}
-    </section>
+    <header class="hero component">
+      <ui-form-field>
+        <ui-radio v-touch name="hero" value="0" v-model="hero"></ui-radio>
+        <ui-radio v-touch name="hero" value="1" v-model="hero"></ui-radio>
+        {{ hero }}
+      </ui-form-field>
+    </header>
 
     <ui-toc-affix></ui-toc-affix>
 
@@ -12,14 +14,8 @@
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h4>
       <section class="example">
-        <h2>With JavaScript</h2>
-        <ui-radio-demo></ui-radio-demo>
-      </section>
-
-      <section class="example">
-        <h2>CSS Only</h2>
         <ui-radio-demo></ui-radio-demo>
       </section>
 

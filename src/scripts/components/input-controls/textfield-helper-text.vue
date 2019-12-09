@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import textfieldHelperTextMixin from '../../mixins/textfield-helper-text';
+import helperTextMixin from '../../mixins/helper-text';
 
 export default {
   name: 'ui-textfield-helper-text',
-  mixins: [textfieldHelperTextMixin],
+  mixins: [helperTextMixin],
   computed: {
     className() {
       return {

@@ -5,16 +5,14 @@
     :role="unclickable ? null : 'button'"
     @click="unclickable ? null : handleClick"
   >
-    <slot>
-      <!-- Material Icons -->
-    </slot>
+    <slot><!-- Material Icons --></slot>
   </i>
 </template>
 
 <script>
 import UI_GLOBAL from '../../config/constants';
 
-// Define constants
+// Define select icon constants
 const UI_SELECT_ICON = {
   EVENT: {
     CLICK: 'click'

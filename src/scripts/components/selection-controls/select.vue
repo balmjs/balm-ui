@@ -2,8 +2,13 @@
   <!-- Enhanced Select -->
   <div :class="className">
     <div class="mdc-select__anchor">
+      <slot name="icon"></slot>
       <i class="mdc-select__dropdown-icon"></i>
-      <div class="mdc-select__selected-text"></div>
+      <div
+        class="mdc-select__selected-text"
+        :aria-controls="helperTextId"
+        :aria-describedby="helperTextId"
+      ></div>
       <div v-if="outlined" class="mdc-notched-outline">
         <div class="mdc-notched-outline__leading"></div>
         <div class="mdc-notched-outline__notch">
@@ -120,7 +125,13 @@ export default {
     noLabel: {
       type: Boolean,
       default: false
-    }
+    },
+    leadingIcon: {
+      type: Boolean,
+      default: false
+    },
+    // For helper text
+    helperTextId: String
   },
   data() {
     return {
@@ -135,7 +146,8 @@ export default {
         'mdc-select--outlined': this.outlined,
         'mdc-select--required': this.required,
         'mdc-select--disabled': this.disabled,
-        'mdc-select--no-label': this.noLabel
+        'mdc-select--no-label': this.noLabel,
+        'mdc-select--with-leading-icon': this.leadingIcon
       };
     }
   },

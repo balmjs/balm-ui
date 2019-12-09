@@ -1,14 +1,45 @@
 <template>
   <div :class="[$tt('body1'), 'demo--select']">
     <section class="hero component">
-      <ui-select
-        id="my-select"
-        v-model="selected"
-        :options="options"
-        @change="onChange"
-        @selected="onSelected"
-        >Pick a fruit</ui-select
-      >
+      <div class="hero-demo">
+        <ui-select
+          id="my-select"
+          v-model="selected"
+          :options="options"
+          :leadingIcon="selectOption.includes(1)"
+          helperTextId="my-helper-text"
+          @change="onChange"
+          @selected="onSelected"
+        >
+          <template v-if="selectOption.includes(1)" #icon>
+            <ui-select-icon>face</ui-select-icon>
+          </template>
+          Pick a fruit
+        </ui-select>
+        <ui-select-helper
+          id="my-helper-text"
+          :visible="selectOption.includes(2)"
+          >Helper text</ui-select-helper
+        >
+      </div>
+      <div class="hero-options">
+        <ui-form-field>
+          <ui-checkbox
+            id="with-leading-icon"
+            v-model="selectOption"
+            :value="1"
+          ></ui-checkbox>
+          <label for="with-leading-icon">Leading Icon</label>
+        </ui-form-field>
+        <ui-form-field>
+          <ui-checkbox
+            id="with-helper-text"
+            v-model="selectOption"
+            :value="2"
+          ></ui-checkbox>
+          <label for="with-helper-text">Helper Text</label>
+        </ui-form-field>
+      </div>
     </section>
 
     <ui-toc-affix></ui-toc-affix>
@@ -227,6 +258,17 @@ import {
   OPTIONS as options1
 } from '../../../data/select';
 
+const SelectOptions = [
+  {
+    label: 'Leading icon',
+    value: 1
+  },
+  {
+    label: 'Helper text',
+    value: 2
+  }
+];
+
 const options = [
   {
     label: 'Apple',
@@ -300,6 +342,8 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      SelectOptions,
+      selectOption: [],
       selected: '',
       selected1: {
         value: '',

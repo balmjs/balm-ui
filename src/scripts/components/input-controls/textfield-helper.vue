@@ -13,7 +13,7 @@
 <script>
 import UiTextfieldHelperText from './textfield-helper-text';
 import UiTextfieldCounter from './textfield-counter';
-import textfieldHelperTextMixin from '../../mixins/textfield-helper-text';
+import helperTextMixin from '../../mixins/helper-text';
 
 export default {
   name: 'ui-textfield-helper',
@@ -21,7 +21,7 @@ export default {
     UiTextfieldHelperText,
     UiTextfieldCounter
   },
-  mixins: [textfieldHelperTextMixin],
+  mixins: [helperTextMixin],
   props: {
     counter: {
       type: Boolean,

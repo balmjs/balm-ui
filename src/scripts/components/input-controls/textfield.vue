@@ -81,8 +81,8 @@
     </div>
     <div v-else class="mdc-line-ripple"></div>
 
-    <div v-if="extended" class="mdc-text-field__extended">
-      <slot name="extended">
+    <div v-if="plus" class="mdc-text-field__plus">
+      <slot name="plus">
         <!-- For autocomplete -->
       </slot>
     </div>
@@ -92,6 +92,7 @@
 <script>
 import { MDCTextField } from '../../../material-components-web/textfield';
 import UiFloatingLabel from '../form-controls/floating-label';
+import textfieldMixin from '../../mixins/textfield';
 import typeMixin from '../../mixins/type';
 import elementMixin from '../../mixins/element';
 import materialIconMixin from '../../mixins/material-icon';
@@ -124,7 +125,13 @@ export default {
   components: {
     UiFloatingLabel
   },
-  mixins: [typeMixin, elementMixin, materialIconMixin, floatingLabelMixin],
+  mixins: [
+    textfieldMixin,
+    typeMixin,
+    elementMixin,
+    materialIconMixin,
+    floatingLabelMixin
+  ],
   model: {
     prop: 'model',
     event: UI_TEXTFIELD.EVENT.INPUT
@@ -140,8 +147,6 @@ export default {
       type: [String, Number],
       default: ''
     },
-    // Element attributes
-    placeholder: String,
     // <input> attributes
     inputType: {
       type: String,
@@ -167,19 +172,6 @@ export default {
       default: 20
     },
     // UI attributes
-    label: String,
-    noLabel: {
-      type: Boolean,
-      default: false
-    },
-    fullwidth: {
-      type: Boolean,
-      default: false
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
     dense: {
       type: Boolean,
       default: false
@@ -195,7 +187,7 @@ export default {
     // For helper text
     helperTextId: String,
     // For plus
-    extended: {
+    plus: {
       type: Boolean,
       default: false
     }

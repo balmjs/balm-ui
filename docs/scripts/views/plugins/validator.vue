@@ -10,49 +10,46 @@
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h4>
       <fieldset>
         <legend>Form Area</legend>
         <p class="form-item">
           <ui-textfield
             id="mobile"
             v-model="formData.mobile"
-            helptextId="mobile-helper-text"
+            helperTextId="mobile-helper-text"
             >Mobile</ui-textfield
           >
           <ui-textfield-helper
             id="mobile-helper-text"
-            :visible="errorMsg.mobile"
-            >{{ errorMsg.mobile }}</ui-textfield-helper
-          >
+            :validMsg="errorMsg.mobile"
+          ></ui-textfield-helper>
         </p>
         <p class="form-item">
           <ui-textfield
             inputType="password"
             id="password"
             v-model="formData.password"
-            helptextId="password-helper-text"
+            helperTextId="password-helper-text"
             >Password</ui-textfield
           >
           <ui-textfield-helper
             id="password-helper-text"
-            :visible="errorMsg.password"
-            >{{ errorMsg.password }}</ui-textfield-helper
-          >
+            :validMsg="errorMsg.password"
+          ></ui-textfield-helper>
         </p>
         <p class="form-item">
           <ui-textfield
             inputType="password"
             id="repassword"
             v-model="formData.repassword"
-            helptextId="repassword-helper-text"
+            helperTextId="repassword-helper-text"
             >Repeat Password</ui-textfield
           >
           <ui-textfield-helper
             id="repassword-helper-text"
-            :visible="errorMsg.repassword"
-            >{{ errorMsg.repassword }}</ui-textfield-helper
-          >
+            :validMsg="errorMsg.repassword"
+          ></ui-textfield-helper>
         </p>
         <p class="form-actions">
           <ui-button raised @click="submit">Submit</ui-button>

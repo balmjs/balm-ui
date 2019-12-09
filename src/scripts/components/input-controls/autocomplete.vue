@@ -1,25 +1,32 @@
 <template>
   <ui-textfield
-    expand
     outlined
+    plus
     v-model="inputValue"
     :class="className"
     :placeholder="placeholder"
+    :label="label"
+    :noLabel="noLabel"
+    :fullwidth="fullwidth"
     :disabled="disabled"
     @focus="handleFocus"
     @keydown="handleKeydown"
     @input="handleInput"
     @blur="handleBlur"
   >
-    <template slot="expand">
-      <div ref="autocomplete" class="ui-autocomplete__list">
-        <ul>
+    <slot></slot>
+    <template slot="plus">
+      <div ref="autocomplete" class="mdc-autocomplete__list">
+        <ul class="mdc-list">
           <li
             v-for="(item, index) in currentSuggestion.data"
             v-html="item[UI_AUTOCOMPLETE.ITEM.LABEL]"
             :key="index"
             :data-index="index"
-            :class="{ selected: index === currentSuggestion.index }"
+            :class="[
+              'mdc-list-item',
+              { selected: index === currentSuggestion.index }
+            ]"
             @click="handleSelected(item)"
           ></li>
         </ul>
@@ -30,6 +37,7 @@
 
 <script>
 import UiTextfield from './textfield';
+import textfieldMixin from '../../mixins/textfield';
 import getType from '../../utils/typeof';
 
 // Define constants
@@ -64,6 +72,7 @@ export default {
   components: {
     UiTextfield
   },
+  mixins: [textfieldMixin],
   model: {
     prop: 'model',
     event: UI_AUTOCOMPLETE.EVENT.INPUT
@@ -77,12 +86,6 @@ export default {
     source: {
       type: Array, // Two supported formats: ['Choice1', 'Choice2'] or [{label: 'Choice1', value: 'value1'}, ...]
       required: true
-    },
-    // Element attributes
-    placeholder: String,
-    disabled: {
-      type: Boolean,
-      default: false
     },
     // UI attributes
     autofocus: {

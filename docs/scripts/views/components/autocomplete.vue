@@ -2,9 +2,10 @@
   <div :class="[$tt('body1'), 'demo--autocomplete']">
     <section class="hero component">
       <ui-autocomplete
+        noLabel
+        placeholder="Input 'balm'"
         v-model="keywords"
         :source="source"
-        placeholder="Input 'balm'"
         @selected="onSelected"
       ></ui-autocomplete>
     </section>
@@ -15,10 +16,15 @@
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h4>
       <div class="example">
         <h6 :class="$tt('headline6')">1.1 Static data</h6>
-        <ui-autocomplete v-model="keywords1" :source="source1" placeholder="Try to type"></ui-autocomplete>
+        <ui-autocomplete
+          noLabel
+          v-model="keywords1"
+          :source="source1"
+          placeholder="Try to type"
+        ></ui-autocomplete>
       </div>
       <ui-accordion>
         <ui-markdown :code="code[1]"></ui-markdown>
@@ -27,6 +33,7 @@
       <div class="example">
         <h6 :class="$tt('headline6')">1.2 Dynamic data</h6>
         <ui-autocomplete
+          noLabel
           v-model="keywords2"
           :source="source2"
           placeholder="Type 'a', then 'b'"
@@ -43,7 +50,9 @@
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="autocomplete"></ui-apidocs>
 
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
+        3. Sass Variables
+      </h4>
       <ui-cssdocs name="autocomplete"></ui-cssdocs>
     </div>
   </div>

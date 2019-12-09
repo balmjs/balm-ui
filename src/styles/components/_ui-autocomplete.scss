@@ -10,7 +10,7 @@ $mdc-autocomplete-item-selected-bgcolor: rgba(
 ) !default;
 
 .mdc-autocomplete {
-  .mdc-text-field__extended {
+  .mdc-text-field__plus {
     position: absolute;
     z-index: 999;
     top: 56px;
@@ -22,14 +22,14 @@ $mdc-autocomplete-item-selected-bgcolor: rgba(
   }
   &.mdc-autocomplete--expanded {
     z-index: 1;
-    .mdc-text-field__extended {
+    .mdc-text-field__plus {
       display: block;
     }
   }
 }
 
-.ui-autocomplete__list ul,
-.ui-autocomplete__list li {
+.mdc-autocomplete__list ul,
+.mdc-autocomplete__list li {
   margin: 0;
   padding: 0;
 
@@ -38,7 +38,7 @@ $mdc-autocomplete-item-selected-bgcolor: rgba(
   border: 0;
 }
 
-.ui-autocomplete__list {
+.mdc-autocomplete__list {
   position: relative;
 
   overflow-x: hidden;

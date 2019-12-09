@@ -90,7 +90,7 @@
         <ui-textfield
           box
           leadingIcon
-          type="search"
+          inputType="search"
           id="search"
           placeholder="Icon name keywords"
           helptextId="my-icons"
@@ -124,7 +124,7 @@
               :data-clipboard-text="icon.id"
             >
               <template #image>
-                <ui-icon :type="type" size="48">{{ icon.id }}</ui-icon>
+                <ui-icon :type="typeOption" size="48">{{ icon.id }}</ui-icon>
                 <div v-if="icon.isNew" class="new-badge">New</div>
               </template>
               <ui-image-text>{{ icon.name }}</ui-image-text>

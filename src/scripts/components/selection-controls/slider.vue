@@ -1,5 +1,7 @@
 <template>
-  <div :class="className"
+  <!-- <input type="range"> -->
+  <div
+    :class="className"
     tabindex="0"
     role="slider"
     :aria-valuenow="+currentValue"
@@ -7,15 +9,23 @@
     :aria-valuemax="+max"
     :data-step="+step"
     :aria-label="label || null"
-    :aria-disabled="disabled">
+    :aria-disabled="disabled"
+  >
+    <!-- Track -->
     <div class="mdc-slider__track-container">
       <div class="mdc-slider__track"></div>
-      <div v-if="displayMarkers" class="mdc-slider__track-marker-container"></div>
+      <!-- Tick mark (optional) -->
+      <div
+        v-if="displayMarker"
+        class="mdc-slider__track-marker-container"
+      ></div>
     </div>
     <div class="mdc-slider__thumb-container">
-      <div v-if="discrete || displayMarkers" class="mdc-slider__pin">
+      <!-- Value label (optional) -->
+      <div v-if="isDiscrete" class="mdc-slider__pin">
         <span class="mdc-slider__pin-value-marker"></span>
       </div>
+      <!-- Thumb -->
       <svg class="mdc-slider__thumb" width="21" height="21">
         <circle cx="10.5" cy="10.5" r="7.875"></circle>
       </svg>
@@ -26,9 +36,14 @@
 
 <script>
 import { MDCSlider } from '../../../material-components-web/slider';
+import typeMixin from '../../mixins/type';
 
-// Define constants
+// Define slider constants
 const UI_SLIDER = {
+  TYPES: {
+    continuous: 0,
+    discrete: 1
+  },
   EVENT: {
     INPUT: 'input',
     CHANGE: 'change'
@@ -37,11 +52,21 @@ const UI_SLIDER = {
 
 export default {
   name: 'ui-slider',
+  mixins: [typeMixin],
   model: {
     prop: 'model',
     event: UI_SLIDER.EVENT.INPUT
   },
   props: {
+    // UI variants
+    discrete: {
+      type: Boolean,
+      default: false
+    },
+    displayMarker: {
+      type: Boolean,
+      default: false
+    },
     // States
     model: [Number, String],
     min: {
@@ -56,17 +81,9 @@ export default {
       type: [Number, String],
       default: 1
     },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
     // UI attributes
     label: String,
-    discrete: {
-      type: Boolean,
-      default: false
-    },
-    displayMarkers: {
+    disabled: {
       type: Boolean,
       default: false
     }
@@ -78,11 +95,14 @@ export default {
     };
   },
   computed: {
+    isDiscrete() {
+      return this.checkType(UI_SLIDER.TYPES, 'discrete') || this.displayMarker;
+    },
     className() {
       return {
         'mdc-slider': true,
-        'mdc-slider--discrete': this.discrete || this.displayMarkers,
-        'mdc-slider--display-markers': this.displayMarkers
+        'mdc-slider--discrete': this.isDiscrete,
+        'mdc-slider--display-markers': this.displayMarker
       };
     }
   },
@@ -114,6 +134,12 @@ export default {
     this.$slider.listen(`MDCSlider:${UI_SLIDER.EVENT.CHANGE}`, () => {
       this.$emit(UI_SLIDER.EVENT.CHANGE, this.$slider.value);
     });
+  },
+  methods: {
+    recompute() {
+      // Preventing FOUC
+      this.$slider.layout();
+    }
   }
 };
 </script>

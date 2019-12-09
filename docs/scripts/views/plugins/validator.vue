@@ -14,35 +14,45 @@
       <fieldset>
         <legend>Form Area</legend>
         <p class="form-item">
-          <ui-textfield id="mobile" v-model="formData.mobile" helptextId="mobile-helper-text">Mobile</ui-textfield>
-          <ui-textfield-helptext
+          <ui-textfield
+            id="mobile"
+            v-model="formData.mobile"
+            helptextId="mobile-helper-text"
+            >Mobile</ui-textfield
+          >
+          <ui-textfield-helper
             id="mobile-helper-text"
             :visible="errorMsg.mobile"
-          >{{ errorMsg.mobile }}</ui-textfield-helptext>
+            >{{ errorMsg.mobile }}</ui-textfield-helper
+          >
         </p>
         <p class="form-item">
           <ui-textfield
-            type="password"
+            inputType="password"
             id="password"
             v-model="formData.password"
             helptextId="password-helper-text"
-          >Password</ui-textfield>
-          <ui-textfield-helptext
+            >Password</ui-textfield
+          >
+          <ui-textfield-helper
             id="password-helper-text"
             :visible="errorMsg.password"
-          >{{ errorMsg.password }}</ui-textfield-helptext>
+            >{{ errorMsg.password }}</ui-textfield-helper
+          >
         </p>
         <p class="form-item">
           <ui-textfield
-            type="password"
+            inputType="password"
             id="repassword"
             v-model="formData.repassword"
             helptextId="repassword-helper-text"
-          >Repeat Password</ui-textfield>
-          <ui-textfield-helptext
+            >Repeat Password</ui-textfield
+          >
+          <ui-textfield-helper
             id="repassword-helper-text"
             :visible="errorMsg.repassword"
-          >{{ errorMsg.repassword }}</ui-textfield-helptext>
+            >{{ errorMsg.repassword }}</ui-textfield-helper
+          >
         </p>
         <p class="form-actions">
           <ui-button raised @click="submit">Submit</ui-button>

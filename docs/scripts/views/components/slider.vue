@@ -1,14 +1,18 @@
 <template>
   <div :class="[$tt('body1'), 'demo--slider']">
     <header class="hero component">
-      <div id="hero-slider-wrapper">
+      <ui-form-field id="hero-slider-wrapper" block>
+        <ui-icon>volume_mute</ui-icon>
         <ui-slider
+          ref="slider"
           id="hero-slider"
-          max="50"
+          max="100"
           v-model="value"
-          label="Select Value"
+          label="Select Volume"
         ></ui-slider>
-      </div>
+        <ui-icon>volume_up</ui-icon>
+      </ui-form-field>
+      <div>{{ value }}</div>
     </header>
 
     <ui-toc-affix></ui-toc-affix>
@@ -17,7 +21,7 @@
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h4>
       <section id="slider-example" class="example">
         <h2>Continuous Slider</h2>
         <div class="slider-example">
@@ -26,7 +30,6 @@
               'example-slider-wrapper',
               { 'custom-bg': controls.customColor }
             ]"
-            :dir="controls.rtl ? 'rtl' : null"
           >
             <ui-slider
               id="continuous-mdc-slider"
@@ -49,11 +52,10 @@
               'example-slider-wrapper',
               { 'custom-bg': controls.customColor }
             ]"
-            :dir="controls.rtl ? 'rtl' : null"
           >
             <ui-slider
               id="discrete-mdc-slider"
-              discrete
+              type="discrete"
               :min="min"
               :max="max"
               :step="step"
@@ -72,12 +74,11 @@
               'example-slider-wrapper',
               { 'custom-bg': controls.customColor }
             ]"
-            :dir="controls.rtl ? 'rtl' : null"
           >
             <ui-slider
               id="discrete-mdc-slider-w-marker"
-              discrete
-              displayMarkers
+              type="discrete"
+              displayMarker
               :min="min"
               :max="max"
               :step="step"
@@ -96,12 +97,11 @@
               'example-slider-wrapper',
               { 'custom-bg': controls.customColor }
             ]"
-            :dir="controls.rtl ? 'rtl' : null"
           >
             <ui-slider
               id="custom-discrete-mdc-slider-w-marker"
-              discrete
-              displayMarkers
+              type="discrete"
+              displayMarker
               class="demo-slider--custom"
               :min="min"
               :max="max"
@@ -155,10 +155,6 @@
             ></ui-checkbox>
             <label for="slider-custom-bg">Use Custom BG Color</label>
           </ui-form-field>
-          <ui-form-field block>
-            <ui-checkbox id="slider-rtl" v-model="controls.rtl"></ui-checkbox>
-            <label for="slider-rtl">RTL</label>
-          </ui-form-field>
         </div>
       </section>
 
@@ -183,7 +179,7 @@ export default {
   mixins: [snippets],
   data() {
     return {
-      value: 20,
+      value: 50,
       value1: 20,
       value2: 20,
       value3: 20,
@@ -193,13 +189,17 @@ export default {
       step: 1,
       controls: {
         disabled: false,
-        customColor: false,
-        rtl: false
+        customColor: false
       }
     };
   },
   created() {
     this.showCode('slider');
+  },
+  mounted() {
+    setTimeout(() => {
+      this.$refs.slider.recompute();
+    }, 300);
   },
   methods: {
     onInput(value) {

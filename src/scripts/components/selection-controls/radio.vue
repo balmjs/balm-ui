@@ -43,13 +43,13 @@ export default {
   props: {
     // States
     model: [String, Number],
+    // Element attributes
+    name: String,
+    value: [String, Number],
     disabled: {
       type: Boolean,
       default: false
-    },
-    // Element attributes
-    name: String,
-    value: [String, Number]
+    }
   },
   data() {
     return {

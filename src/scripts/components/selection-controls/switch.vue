@@ -53,12 +53,12 @@ export default {
       type: [Boolean, Number, String],
       default: false
     },
+    // Element attributes
+    name: String,
     disabled: {
       type: Boolean,
       default: false
-    },
-    // Element attributes
-    name: String
+    }
   },
   data() {
     return {

@@ -10,7 +10,7 @@
       <h3 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h3>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h3 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demos</h3>
+      <h3 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demo</h3>
       <section class="example">
         <div>
           <h4 :class="$tt('headline5')">1.1 Buttons</h4>
@@ -41,19 +41,6 @@
                   disabled
                 ></ui-icon-button>
                 <ui-icon-button disabled>
-                  <svg-logo></svg-logo>
-                </ui-icon-button>
-              </div>
-            </div>
-
-            <div class="toggle-example">
-              <h6 :class="$tt('headline6')">Larger Buttons</h6>
-              <div class="demo-wrapper">
-                <ui-icon-button
-                  class="demo-icon-button-large"
-                  icon="airplanemode_active"
-                ></ui-icon-button>
-                <ui-icon-button class="demo-icon-button-large">
                   <svg-logo></svg-logo>
                 </ui-icon-button>
               </div>
@@ -152,38 +139,6 @@
           <ui-accordion>
             <ui-markdown :code="code[2]"></ui-markdown>
           </ui-accordion>
-
-          <div class="custom-toggle-example">
-            <h6 :class="$tt('headline6')">Additional Color Combinations</h6>
-            <div id="demo-color-combos">
-              <div id="light-on-bg" class="demo-color-combo">
-                <div>
-                  <ui-icon-button
-                    :class="$themeColor('on-primary')"
-                    :toggle="icon1"
-                  ></ui-icon-button>
-                </div>
-                <div :class="$themeColor('on-primary')">
-                  Light icon on background
-                </div>
-              </div>
-              <div id="dark-on-bg" class="demo-color-combo">
-                <div :class="$themeColor('primary')">
-                  <ui-icon-button :toggle="icon1"></ui-icon-button>
-                </div>
-                <div>Dark icon on background</div>
-              </div>
-              <div id="custom-color-combo" class="demo-color-combo">
-                <div>
-                  <ui-icon-button :toggle="icon1"></ui-icon-button>
-                </div>
-                <div>Custom color</div>
-              </div>
-            </div>
-          </div>
-          <ui-accordion>
-            <ui-markdown :code="code[3]"></ui-markdown>
-          </ui-accordion>
         </div>
       </section>
 
@@ -225,7 +180,7 @@ export default {
     };
   },
   created() {
-    this.showCode('icon-button', 3);
+    this.showCode('icon-button', 2);
   }
 };
 </script>

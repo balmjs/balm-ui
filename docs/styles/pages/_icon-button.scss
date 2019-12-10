@@ -1,5 +1,4 @@
 .demo--icon-button {
-
   // .demo-wrapper {
   //   margin-left: 1rem;
   // }
@@ -44,9 +43,9 @@
   #light-on-bg .mdc-icon-button {
     @include mdc-icon-button-ink-color(white);
     @include mdc-states-base-color(white);
-    @include mdc-states-hover-opacity(.1);
-    @include mdc-states-focus-opacity(.3);
-    @include mdc-states-press-opacity(.4);
+    @include mdc-states-hover-opacity(0.1);
+    @include mdc-states-focus-opacity(0.3);
+    @include mdc-states-press-opacity(0.4);
   }
 
   #dark-on-bg {
@@ -61,13 +60,9 @@
   #custom-color-combo .mdc-icon-button {
     @include mdc-icon-button-ink-color(#de442c);
     @include mdc-states-base-color(#de442c);
-    @include mdc-states-hover-opacity(.09);
-    @include mdc-states-focus-opacity(.26);
-    @include mdc-states-press-opacity(.35);
-  }
-
-  .demo-icon-button-large {
-    @include mdc-icon-button-size(36px);
+    @include mdc-states-hover-opacity(0.09);
+    @include mdc-states-focus-opacity(0.26);
+    @include mdc-states-press-opacity(0.35);
   }
 }
 
@@ -96,7 +91,6 @@
   }
 
   @media (max-width: $mdc-top-app-bar-mobile-breakpoint) {
-
     .toggle-examples-container,
     #demo-color-combos {
       flex-direction: column;

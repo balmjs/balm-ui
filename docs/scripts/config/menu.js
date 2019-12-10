@@ -160,12 +160,6 @@ const MATERIAL_COMPONENTS = [
       },
       {
         icon: 'card',
-        name: 'Grid list',
-        description: '2D grid layouts',
-        url: 'grid-list'
-      },
-      {
-        icon: 'card',
         name: 'Image list',
         description: 'Displays a collection of images in a repeated pattern',
         url: 'image-list'

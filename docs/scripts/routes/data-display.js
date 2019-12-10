@@ -1,6 +1,5 @@
 const List = () => import('@/views/components/list');
 const Divider = () => import('@/views/components/divider');
-const GridList = () => import('@/views/components/grid-list');
 const ImageList = () => import('@/views/components/image-list');
 const Card = () => import('@/views/components/card');
 const Chips = () => import('@/views/components/chips');
@@ -17,11 +16,6 @@ export default [
     path: 'divider',
     name: 'data-display.divider',
     component: Divider
-  },
-  {
-    path: 'grid-list',
-    name: 'data-display.grid-list',
-    component: GridList
   },
   {
     path: 'image-list',

@@ -37,10 +37,30 @@
           </ui-form-field>
         </div>
 
-        <ui-button-demo
-          :disabled="controls.disabled"
-          :code="code[1]"
-        ></ui-button-demo>
+        <fieldset>
+          <div>
+            <ui-button :disabled="controls.disabled">Text</ui-button>
+            <ui-button outlined :disabled="controls.disabled"
+              >Outlined</ui-button
+            >
+            <ui-button raised :disabled="controls.disabled">Raised</ui-button>
+
+            <ui-button icon="favorite" :disabled="controls.disabled"
+              >Icon</ui-button
+            >
+            <ui-button :disabled="controls.disabled">
+              Trailing Icon
+              <template #after="{ iconClass }">
+                <svg-logo :class="iconClass"></svg-logo>
+              </template>
+            </ui-button>
+
+            <ui-a>Link</ui-a>
+          </div>
+          <ui-accordion>
+            <ui-markdown :code="code[1]"></ui-markdown>
+          </ui-accordion>
+        </fieldset>
       </section>
 
       <h3 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h3>
@@ -56,7 +76,6 @@
 
 <script>
 import snippets from '@/mixins/snippets';
-import UiButtonDemo from '@/views/demos/button';
 
 const TypeOptions = [
   {
@@ -80,9 +99,6 @@ const TypeOptions = [
 export default {
   metaInfo: {
     titleTemplate: '%s - Button'
-  },
-  components: {
-    UiButtonDemo
   },
   mixins: [snippets],
   data() {

@@ -23,7 +23,7 @@
       <h3 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h3>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h3 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Demos</h3>
+      <h3 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demo</h3>
       <section class="demo-wrapper">
         <div class="demo-controls">
           <ui-form-field>

@@ -48,7 +48,7 @@
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Example</h4>
       <section class="example">
         <h6 :class="$tt('headline6')">1.1 Fully-Featured JS Component</h6>
         <section id="demo-wrapper" :dir="controls.rtl ? 'rtl' : null">

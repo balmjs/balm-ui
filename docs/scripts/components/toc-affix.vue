@@ -2,7 +2,7 @@
   <div class="toc-affix" v-shadow.transition="[2, 8]">
     <ui-tabs>
       <ui-tab v-anchor:href="'#ui-usage'" class="v-anchor">Usage</ui-tab>
-      <ui-tab v-anchor:href="'#ui-demos'" class="v-anchor">Demos</ui-tab>
+      <ui-tab v-anchor:href="'#ui-demo'" class="v-anchor">Demo</ui-tab>
       <ui-tab
         v-for="(item, index) in items"
         :key="index"

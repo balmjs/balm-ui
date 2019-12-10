@@ -21,7 +21,7 @@
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Example</h4>
       <section id="slider-example" class="example">
         <h2>Continuous Slider</h2>
         <div class="slider-example">

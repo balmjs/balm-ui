@@ -12,7 +12,7 @@
       <h3 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h3>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h3 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h3>
+      <h3 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Example</h3>
       <section :class="['example', { 'rounded-corners': radius }]">
         <ui-form-field>
           <ui-checkbox id="toggle-radius" v-model="radius"></ui-checkbox>

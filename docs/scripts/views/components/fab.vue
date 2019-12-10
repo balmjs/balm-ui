@@ -59,7 +59,7 @@
 
       <ui-fab class="demo-fixed-fab" icon="mode_edit"></ui-fab>
 
-      <h3 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Demos</h3>
+      <h3 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demos</h3>
       <section>
         <h4 :class="$tt('headline6')">1.1 Regular FAB</h4>
         <div class="demo-fabs">

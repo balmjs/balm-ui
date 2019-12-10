@@ -67,7 +67,7 @@
 <script>
 import UI_GLOBAL from '../../config/constants';
 
-// Define constants
+// Define pagination constants
 const UI_PAGINATION = {
   POSITIONS: ['left', 'right'],
   EVENT: {

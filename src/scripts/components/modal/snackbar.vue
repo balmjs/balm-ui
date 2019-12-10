@@ -20,7 +20,7 @@
 import { MDCSnackbar } from '../../../material-components-web/snackbar';
 import UI_GLOBAL from '../../config/constants';
 
-// Define constants
+// Define snackbar constants
 const UI_SNACKBAR = {
   ACTION_TYPE: {
     BUTTON: 'button',

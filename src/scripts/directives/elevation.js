@@ -1,7 +1,7 @@
 import autoInit from './register';
 import getType from '../utils/typeof';
 
-// Define constants
+// Define elevation constants
 const ELEVATION = {
   Z_SPACE: {
     MIN: 0,

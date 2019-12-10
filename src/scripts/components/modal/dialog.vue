@@ -8,7 +8,11 @@
     </div>
     <!-- Scrim -->
     <template v-if="!noBackdrop">
-      <div v-if="maskClosable" class="mdc-dialog__scrim" @click="handleClose"></div>
+      <div
+        v-if="maskClosable"
+        class="mdc-dialog__scrim"
+        @click="handleClose"
+      ></div>
       <div v-else class="mdc-dialog__scrim" @click.stop></div>
     </template>
   </div>
@@ -17,7 +21,7 @@
 <script>
 import { MDCDialog } from '../../../material-components-web/dialog';
 
-// Define constants
+// Define dialog constants
 const UI_DIALOG = {
   BODY_CLASS: 'mdc-dialog__content',
   EVENT: {

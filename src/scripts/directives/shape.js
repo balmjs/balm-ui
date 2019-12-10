@@ -1,7 +1,7 @@
 // Deprecated in 0.8.0
 import autoInit from './register';
 
-// Define constants
+// Define shape constants
 const SHAPE = {
   OUTTER: 'mdc-shape-container',
   INNER: {
@@ -75,24 +75,16 @@ const updateShape = (method, el, { value, modifiers }) => {
   // });
 
   if (topLeft) {
-    cornerOutput += `<div class="${SHAPE.INNER.BASE} ${
-      SHAPE.INNER.TOP_LEFT
-    }"></div>`;
+    cornerOutput += `<div class="${SHAPE.INNER.BASE} ${SHAPE.INNER.TOP_LEFT}"></div>`;
   }
   if (topRight) {
-    cornerOutput += `<div class="${SHAPE.INNER.BASE} ${
-      SHAPE.INNER.TOP_RIGHT
-    }"></div>`;
+    cornerOutput += `<div class="${SHAPE.INNER.BASE} ${SHAPE.INNER.TOP_RIGHT}"></div>`;
   }
   if (bottomRight) {
-    cornerOutput += `<div class="${SHAPE.INNER.BASE} ${
-      SHAPE.INNER.BOTTOM_RIGHT
-    }"></div>`;
+    cornerOutput += `<div class="${SHAPE.INNER.BASE} ${SHAPE.INNER.BOTTOM_RIGHT}"></div>`;
   }
   if (bottomLeft) {
-    cornerOutput += `<div class="${SHAPE.INNER.BASE} ${
-      SHAPE.INNER.BOTTOM_LEFT
-    }"></div>`;
+    cornerOutput += `<div class="${SHAPE.INNER.BASE} ${SHAPE.INNER.BOTTOM_LEFT}"></div>`;
   }
 
   el.classList[method](SHAPE.OUTTER);

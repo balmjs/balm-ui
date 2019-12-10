@@ -1,7 +1,7 @@
 import autoInstall from '../config/auto-install';
 import getType from '../utils/typeof';
 
-// Define constants
+// Define typography constants
 const T_BASE = 'mdc-typography';
 const T_DEFAULT_STYLES = [
   'headline1',

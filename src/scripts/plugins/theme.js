@@ -1,6 +1,6 @@
 import autoInstall from '../config/auto-install';
 
-// Define constants
+// Define theme constants
 const THEME_STYLES = [
   'primary',
   'secondary',

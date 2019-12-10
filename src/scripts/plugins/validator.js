@@ -10,7 +10,7 @@ const defaultRules = {
   }
 };
 
-// Define constants
+// Define validator constants
 const FIELD_LABEL = 'label';
 const FIELD_VALIDATOR = 'validator';
 const LABEL_PLACEHOLDER = '%s';
@@ -47,9 +47,9 @@ const BalmUI_ValidatorPlugin = {
         let fieldName = validationFields[i]; // 字段名
         let fieldOption = validations[fieldName]; // 对应验证配置
         let fieldLabel = fieldOption[FIELD_LABEL] || ''; // 字段别名
-        let fieldRules = fieldOption[FIELD_VALIDATOR].split(',').map(
-          validator => validator.trim()
-        ); // 当前字段需要的所有验证方法
+        let fieldRules = fieldOption[FIELD_VALIDATOR].split(
+          ','
+        ).map(validator => validator.trim()); // 当前字段需要的所有验证方法
         let isAllValidOfField = true; // 当前字段通过全部验证规则
 
         for (let j = 0, rulesCount = fieldRules.length; j < rulesCount; j++) {

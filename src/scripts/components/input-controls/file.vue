@@ -19,7 +19,7 @@
 <script>
 import UI_GLOBAL from '../../config/constants';
 
-// Define constants
+// Define file constants
 const UI_FILE = {
   EVENT: {
     CHANGE: 'change'

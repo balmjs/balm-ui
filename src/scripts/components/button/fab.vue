@@ -37,7 +37,7 @@ import materialIconMixin from '../../mixins/material-icon';
 import rippleMixin from '../../mixins/ripple';
 import UI_GLOBAL from '../../config/constants';
 
-// Define constants
+// Define fab constants
 const UI_FAB = {
   TYPES: {
     regular: 0,

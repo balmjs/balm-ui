@@ -9,7 +9,7 @@
 <script>
 import getType from '../../utils/typeof';
 
-// Define constants
+// Define text divider constants
 const UI_TEXT_DIVIDER = {
   TYPES: ['horizontal', 'vertical'],
   VERTICAL: ['vertical', '|', 1]

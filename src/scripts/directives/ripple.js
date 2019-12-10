@@ -1,7 +1,7 @@
 import autoInit from './register';
 import { MDCRipple } from '../../material-components-web/ripple';
 
-// Define constants
+// Define ripple constants
 const RIPPLE_COLOR = {
   BASE: 'mdc-ripple-surface',
   PRIMARY: 'mdc-ripple-surface--primary',

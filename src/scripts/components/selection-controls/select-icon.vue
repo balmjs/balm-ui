@@ -12,6 +12,13 @@
 <script>
 import UI_GLOBAL from '../../config/constants';
 
+// Define select icon constants
+const UI_SELECT_ICON = {
+  EVENT: {
+    CLICK: 'click'
+  }
+};
+
 export default {
   name: 'ui-select-icon',
   props: {
@@ -27,7 +34,7 @@ export default {
   },
   methods: {
     handleClick(event) {
-      this.$emit(UI_GLOBAL.EVENT.CLICK, event);
+      this.$emit(UI_SELECT_ICON.EVENT.CLICK, event);
     }
   }
 };

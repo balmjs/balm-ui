@@ -48,7 +48,6 @@
 import UiTextfield from './textfield';
 import textfieldMixin from '../../mixins/textfield';
 import getType from '../../utils/typeof';
-import UI_GLOBAL from '../../config/constants';
 import { UI_TEXTFIELD_ICON } from './constants';
 
 // Define autocomplete constants
@@ -61,7 +60,10 @@ const UI_AUTOCOMPLETE = {
   EVENT: {
     INPUT: 'input',
     SEARCH: 'search',
-    SELECTED: 'selected'
+    SELECTED: 'selected',
+    CLICK: 'click',
+    MOUSEMOVE: 'mousemove',
+    MOUSELEAVE: 'mouseleave'
   },
   escapeRegex: new RegExp('<[^>]+>', 'g')
 };
@@ -165,11 +167,11 @@ export default {
   mounted() {
     this.$autocomplete = this.$refs.autocomplete;
     this.$autocomplete.addEventListener(
-      UI_GLOBAL.EVENT.MOUSEMOVE,
+      UI_AUTOCOMPLETE.EVENT.MOUSEMOVE,
       this.handleMousemove
     );
     this.$autocomplete.addEventListener(
-      UI_GLOBAL.EVENT.MOUSELEAVE,
+      UI_AUTOCOMPLETE.EVENT.MOUSELEAVE,
       this.handleMouseleave
     );
 
@@ -177,14 +179,14 @@ export default {
   },
   beforeDestroy() {
     if (this.$callback) {
-      document.removeEventListener(UI_GLOBAL.EVENT.CLICK, this.$callback);
+      document.removeEventListener(UI_AUTOCOMPLETE.EVENT.CLICK, this.$callback);
     }
     this.$autocomplete.removeEventListener(
-      UI_GLOBAL.EVENT.MOUSEMOVE,
+      UI_AUTOCOMPLETE.EVENT.MOUSEMOVE,
       this.handleMousemove
     );
     this.$autocomplete.removeEventListener(
-      UI_GLOBAL.EVENT.MOUSELEAVE,
+      UI_AUTOCOMPLETE.EVENT.MOUSELEAVE,
       this.handleMouseleave
     );
   },
@@ -372,12 +374,15 @@ export default {
           }
 
           if (e !== event && this.isExpanded && !inTextfield) {
-            document.removeEventListener(UI_GLOBAL.EVENT.CLICK, this.$callback);
+            document.removeEventListener(
+              UI_AUTOCOMPLETE.EVENT.CLICK,
+              this.$callback
+            );
             this.hide();
           }
         };
       }
-      document.addEventListener(UI_GLOBAL.EVENT.CLICK, this.$callback);
+      document.addEventListener(UI_AUTOCOMPLETE.EVENT.CLICK, this.$callback);
     },
     handleMousemove(event) {
       let el = event.target;

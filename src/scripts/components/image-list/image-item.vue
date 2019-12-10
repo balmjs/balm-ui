@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import UI_GLOBAL from '../../config/constants';
 import UI_IMAGE_LIST from './constants';
 
 export default {
@@ -58,7 +57,7 @@ export default {
   },
   methods: {
     handleClick(event) {
-      this.$emit(UI_GLOBAL.EVENT.CLICK, event);
+      this.$emit(UI_IMAGE_LIST.EVENT.CLICK, event);
     }
   }
 };

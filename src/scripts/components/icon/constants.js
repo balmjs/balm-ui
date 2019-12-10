@@ -7,5 +7,8 @@ export default {
     twoTone: 3,
     sharp: 4
   },
-  DEFAULT_SIZE: 24
+  DEFAULT_SIZE: 24,
+  EVENT: {
+    CLICK: 'click'
+  }
 };

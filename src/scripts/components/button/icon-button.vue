@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     handleClick(event) {
-      this.$emit(UI_GLOBAL.EVENT.CLICK, event);
+      this.$emit(UI_ICON_BUTTON.EVENT.CLICK, event);
     }
   }
 };

@@ -45,6 +45,9 @@ const UI_FAB = {
   },
   cssClasses: {
     icon: 'mdc-fab__icon'
+  },
+  EVENT: {
+    CLICK: 'click'
   }
 };
 
@@ -99,7 +102,7 @@ export default {
       this.initRipple(this.$el);
     },
     handleClick(event) {
-      this.$emit(UI_GLOBAL.EVENT.CLICK, event);
+      this.$emit(UI_FAB.EVENT.CLICK, event);
     }
   }
 };

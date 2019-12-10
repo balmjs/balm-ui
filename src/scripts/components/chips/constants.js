@@ -11,6 +11,7 @@ export default {
     removeIcon: 'mdc-chip__icon mdc-chip__icon--trailing'
   },
   EVENT: {
+    CLICK: 'click',
     CHANGE: 'change',
     REMOVE: 'remove'
   }

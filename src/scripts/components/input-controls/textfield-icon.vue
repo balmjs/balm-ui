@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     handleClick(event) {
-      this.$emit(UI_GLOBAL.EVENT.CLICK, event);
+      this.$emit(UI_TEXTFIELD_ICON.EVENT.CLICK, event);
     }
   }
 };

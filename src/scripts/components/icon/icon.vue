@@ -6,7 +6,6 @@
 
 <script>
 import typeMixin from '../../mixins/type';
-import UI_GLOBAL from '../../config/constants';
 import UI_ICON from './constants';
 
 export default {
@@ -85,7 +84,7 @@ export default {
   },
   methods: {
     handleClick(event) {
-      this.$emit(UI_GLOBAL.EVENT.CLICK, event);
+      this.$emit(UI_ICON.EVENT.CLICK, event);
     }
   }
 };

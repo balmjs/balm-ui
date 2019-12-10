@@ -7,7 +7,7 @@
       <slot name="before" :iconClass="UI_FAB.cssClasses.icon">
         <i
           v-if="materialIcon"
-          :class="[UI_GLOBAL.mdi, UI_FAB.cssClasses.icon]"
+          :class="[UI_GLOBAL.cssClasses.icon, UI_FAB.cssClasses.icon]"
           >{{ materialIcon }}</i
         >
       </slot>
@@ -23,7 +23,7 @@
       <slot :iconClass="UI_FAB.cssClasses.icon">
         <i
           v-if="materialIcon"
-          :class="[UI_GLOBAL.mdi, UI_FAB.cssClasses.icon]"
+          :class="[UI_GLOBAL.cssClasses.icon, UI_FAB.cssClasses.icon]"
           >{{ materialIcon }}</i
         >
       </slot>
@@ -45,9 +45,6 @@ const UI_FAB = {
   },
   cssClasses: {
     icon: 'mdc-fab__icon'
-  },
-  EVENT: {
-    CLICK: 'click'
   }
 };
 
@@ -102,7 +99,7 @@ export default {
       this.initRipple(this.$el);
     },
     handleClick(event) {
-      this.$emit(UI_FAB.EVENT.CLICK, event);
+      this.$emit(UI_GLOBAL.EVENT.CLICK, event);
     }
   }
 };

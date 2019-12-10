@@ -6,10 +6,10 @@
       :accept="accept"
       :multiple="multiple"
       @change="handleChange($event)"
-    >
+    />
     <slot>
       <button :class="className.button">
-        <i :class="[UI_GLOBAL.mdi, className.icon]">file_upload</i>
+        <i :class="[UI_GLOBAL.cssClasses.icon, className.icon]">file_upload</i>
         <span :class="className.label">{{ text }}</span>
       </button>
     </slot>

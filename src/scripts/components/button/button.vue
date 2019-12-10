@@ -10,7 +10,7 @@
     <slot name="before" :iconClass="UI_BUTTON.cssClasses.icon">
       <i
         v-if="materialIcon"
-        :class="[UI_GLOBAL.mdi, UI_BUTTON.cssClasses.icon]"
+        :class="[UI_GLOBAL.cssClasses.icon, UI_BUTTON.cssClasses.icon]"
         aria-hidden="true"
         >{{ materialIcon }}</i
       >
@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     handleClick(event) {
-      this.$emit(UI_BUTTON.EVENT.CLICK, event);
+      this.$emit(UI_GLOBAL.EVENT.CLICK, event);
     }
   }
 };

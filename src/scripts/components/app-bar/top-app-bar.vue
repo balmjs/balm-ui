@@ -8,7 +8,7 @@
         <!-- Navigation icon (optional) / Close button (instead of a navigation icon) -->
         <button
           :class="[
-            UI_TOP_APP_BAR.cssClasses.icon,
+            UI_GLOBAL.cssClasses.icon,
             'mdc-top-app-bar__navigation-icon',
             'mdc-icon-button'
           ]"
@@ -52,7 +52,6 @@ const UI_TOP_APP_BAR = {
     shortCollapsed: 6
   },
   cssClasses: {
-    icon: UI_GLOBAL.mdi,
     item: 'mdc-top-app-bar__action-item'
   },
   FIXED_ADJUST: {
@@ -114,6 +113,7 @@ export default {
   },
   data() {
     return {
+      UI_GLOBAL,
       UI_TOP_APP_BAR,
       $topAppBar: null,
       contentElement: null

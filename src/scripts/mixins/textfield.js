@@ -15,6 +15,10 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    leadingIcon: {
+      type: Boolean,
+      default: false
     }
   }
 };

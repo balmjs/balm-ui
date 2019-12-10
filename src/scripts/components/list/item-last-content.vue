@@ -2,9 +2,12 @@
   <!-- Metadata / List control -->
   <span class="mdc-list-item__meta">
     <slot>
-      <i v-if="materialIcon" :class="UI_GLOBAL.mdi" aria-hidden="true">{{
-        materialIcon
-      }}</i>
+      <i
+        v-if="materialIcon"
+        :class="UI_GLOBAL.cssClasses.icon"
+        aria-hidden="true"
+        >{{ materialIcon }}</i
+      >
     </slot>
   </span>
 </template>

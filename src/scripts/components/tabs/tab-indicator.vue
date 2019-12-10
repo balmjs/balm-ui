@@ -45,7 +45,7 @@ export default {
         `mdc-tab-indicator__content--${this.type}`
       ];
       if (this.type === UI_TAB_INDICATOR.ICON) {
-        result.push(UI_GLOBAL.mdi);
+        result.push(UI_GLOBAL.cssClasses.icon);
       }
       return result.join(' ');
     }

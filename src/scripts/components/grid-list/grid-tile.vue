@@ -2,12 +2,21 @@
   <li class="mdc-grid-tile">
     <div v-if="!noImage" class="mdc-grid-tile__primary">
       <slot name="image" :imageClass="UI_GRID_LIST.SLOT_CLASS.image">
-        <img v-if="src" :class="[UI_GRID_LIST.SLOT_CLASS.image, imageClass]" :src="src" :alt="alt">
+        <img
+          v-if="src"
+          :class="[UI_GRID_LIST.SLOT_CLASS.image, imageClass]"
+          :src="src"
+          :alt="alt"
+        />
         <div v-else :class="[UI_GRID_LIST.SLOT_CLASS.image, imageClass]"></div>
       </slot>
     </div>
     <span v-if="!imageOnly" class="mdc-grid-tile__secondary">
-      <i v-if="icon" :class="[UI_GLOBAL.mdi, UI_GRID_LIST.SLOT_CLASS.icon]">{{ icon }}</i>
+      <i
+        v-if="icon"
+        :class="[UI_GLOBAL.cssClasses.icon, UI_GRID_LIST.SLOT_CLASS.icon]"
+        >{{ icon }}</i
+      >
       <template v-else>
         <slot name="icon" :iconClass="UI_GRID_LIST.SLOT_CLASS.icon"></slot>
       </template>

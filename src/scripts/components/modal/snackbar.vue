@@ -89,7 +89,7 @@ export default {
     },
     buttonClassName() {
       return this.actionType === UI_SNACKBAR.ACTION_TYPE.ICON
-        ? [UI_GLOBAL.mdi, 'mdc-icon-button mdc-snackbar__dismiss']
+        ? [UI_GLOBAL.cssClasses.icon, 'mdc-icon-button mdc-snackbar__dismiss']
         : 'mdc-button mdc-snackbar__action';
     }
   },

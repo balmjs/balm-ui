@@ -3,9 +3,9 @@ import autoInit from './register';
 // Define
 const DEFAULT_BODY = document.documentElement || document.body;
 let ANCHOR = {
-  CLASSNAME: {
-    OUTER: 'v-anchor--html',
-    INNER: 'v-anchor'
+  cssClasses: {
+    outer: 'v-anchor--html',
+    inner: 'v-anchor'
   },
   body: DEFAULT_BODY,
   offset: 0,
@@ -36,14 +36,14 @@ const updateAnchor = (method, el, { value, arg, modifiers }) => {
   }
 
   if (modifiers.html) {
-    el.classList[method](ANCHOR.CLASSNAME.OUTER);
+    el.classList[method](ANCHOR.cssClasses.outer);
   }
 };
 
 const initAnchor = (el, { value, rawName, modifiers }) => {
   if (
-    rawName === ANCHOR.CLASSNAME.INNER ||
-    rawName === `${ANCHOR.CLASSNAME.INNER}.offset`
+    rawName === ANCHOR.cssClasses.inner ||
+    rawName === `${ANCHOR.cssClasses.inner}.offset`
   ) {
     ANCHOR.body = el;
     if (modifiers.offset) {
@@ -54,7 +54,7 @@ const initAnchor = (el, { value, rawName, modifiers }) => {
 
 const bindAnchor = method => {
   let anchorElementList = document.querySelectorAll(
-    `.${ANCHOR.CLASSNAME.OUTER} .${ANCHOR.CLASSNAME.INNER}`
+    `.${ANCHOR.cssClasses.outer} .${ANCHOR.cssClasses.inner}`
   );
   if (anchorElementList.length) {
     anchorElementList.forEach(anchorEl => {

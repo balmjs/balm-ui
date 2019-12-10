@@ -9,12 +9,21 @@
     :noLabel="noLabel"
     :fullwidth="fullwidth"
     :disabled="disabled"
+    :leadingIcon="leadingIcon"
+    :icon="icon"
     @focus="handleFocus"
     @keydown="handleKeydown"
     @input="handleInput"
     @blur="handleBlur"
   >
-    <slot></slot>
+    <!-- Leading icon (optional) -->
+    <slot name="icon" :iconClass="UI_TEXTFIELD_ICON.cssClasses.icon"></slot>
+
+    <!-- Label text -->
+    <template slot="default">
+      <slot></slot>
+    </template>
+
     <template slot="plus">
       <div ref="autocomplete" class="mdc-autocomplete__list">
         <ul class="mdc-list">
@@ -39,8 +48,10 @@
 import UiTextfield from './textfield';
 import textfieldMixin from '../../mixins/textfield';
 import getType from '../../utils/typeof';
+import UI_GLOBAL from '../../config/constants';
+import { UI_TEXTFIELD_ICON } from './constants';
 
-// Define constants
+// Define autocomplete constants
 const UI_AUTOCOMPLETE = {
   ITEM: {
     LABEL: 'label',
@@ -59,12 +70,6 @@ const KEYCODE = {
   UP: 38,
   DOWN: 40,
   ENTER: 13
-};
-
-const GLOBAL_EVENT = {
-  CLICK: 'click',
-  MOUSEMOVE: 'mousemove',
-  MOUSELEAVE: 'mouseleave'
 };
 
 export default {
@@ -103,11 +108,16 @@ export default {
     remote: {
       type: Boolean,
       default: false
+    },
+    icon: {
+      type: String,
+      default: ''
     }
   },
   data() {
     return {
       UI_AUTOCOMPLETE,
+      UI_TEXTFIELD_ICON,
       $autocomplete: null,
       $callback: null,
       isExpanded: false,
@@ -155,11 +165,11 @@ export default {
   mounted() {
     this.$autocomplete = this.$refs.autocomplete;
     this.$autocomplete.addEventListener(
-      GLOBAL_EVENT.MOUSEMOVE,
+      UI_GLOBAL.EVENT.MOUSEMOVE,
       this.handleMousemove
     );
     this.$autocomplete.addEventListener(
-      GLOBAL_EVENT.MOUSELEAVE,
+      UI_GLOBAL.EVENT.MOUSELEAVE,
       this.handleMouseleave
     );
 
@@ -167,14 +177,14 @@ export default {
   },
   beforeDestroy() {
     if (this.$callback) {
-      document.removeEventListener(GLOBAL_EVENT.CLICK, this.$callback);
+      document.removeEventListener(UI_GLOBAL.EVENT.CLICK, this.$callback);
     }
     this.$autocomplete.removeEventListener(
-      GLOBAL_EVENT.MOUSEMOVE,
+      UI_GLOBAL.EVENT.MOUSEMOVE,
       this.handleMousemove
     );
     this.$autocomplete.removeEventListener(
-      GLOBAL_EVENT.MOUSELEAVE,
+      UI_GLOBAL.EVENT.MOUSELEAVE,
       this.handleMouseleave
     );
   },
@@ -362,12 +372,12 @@ export default {
           }
 
           if (e !== event && this.isExpanded && !inTextfield) {
-            document.removeEventListener(GLOBAL_EVENT.CLICK, this.$callback);
+            document.removeEventListener(UI_GLOBAL.EVENT.CLICK, this.$callback);
             this.hide();
           }
         };
       }
-      document.addEventListener(GLOBAL_EVENT.CLICK, this.$callback);
+      document.addEventListener(UI_GLOBAL.EVENT.CLICK, this.$callback);
     },
     handleMousemove(event) {
       let el = event.target;

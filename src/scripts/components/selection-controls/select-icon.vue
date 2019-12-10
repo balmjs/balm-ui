@@ -1,6 +1,6 @@
 <template>
   <i
-    :class="[UI_GLOBAL.mdi, 'mdc-select__icon']"
+    :class="[UI_GLOBAL.cssClasses.icon, 'mdc-select__icon']"
     :tabindex="unclickable ? null : 0"
     :role="unclickable ? null : 'button'"
     @click="unclickable ? null : handleClick"
@@ -11,13 +11,6 @@
 
 <script>
 import UI_GLOBAL from '../../config/constants';
-
-// Define select icon constants
-const UI_SELECT_ICON = {
-  EVENT: {
-    CLICK: 'click'
-  }
-};
 
 export default {
   name: 'ui-select-icon',
@@ -34,7 +27,7 @@ export default {
   },
   methods: {
     handleClick(event) {
-      this.$emit(UI_SELECT_ICON.EVENT.CLICK, event);
+      this.$emit(UI_GLOBAL.EVENT.CLICK, event);
     }
   }
 };

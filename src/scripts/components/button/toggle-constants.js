@@ -5,7 +5,6 @@ export default {
     on: 'mdc-icon-button__icon mdc-icon-button__icon--on'
   },
   EVENT: {
-    CLICK: 'click',
     CHANGE: 'change'
   }
 };

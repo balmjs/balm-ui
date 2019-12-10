@@ -5,13 +5,13 @@
 </template>
 
 <script>
-import UI_CARD from './constants';
+import UI_GLOBAL from '../../config/constants';
 
 export default {
   name: 'ui-card-content',
   methods: {
     handleClick(event) {
-      this.$emit(UI_CARD.EVENT.CLICK, event);
+      this.$emit(UI_GLOBAL.EVENT.CLICK, event);
     }
   }
 };

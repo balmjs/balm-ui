@@ -12,7 +12,6 @@ export default {
   },
   EVENT: {
     CHANGE: 'change',
-    CLICK: 'click',
     REMOVE: 'remove'
   }
 };

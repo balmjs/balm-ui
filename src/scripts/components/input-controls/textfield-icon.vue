@@ -1,6 +1,6 @@
 <template>
   <i
-    :class="[UI_GLOBAL.mdi, 'mdc-text-field__icon']"
+    :class="[UI_GLOBAL.cssClasses.icon, UI_TEXTFIELD_ICON.cssClasses.icon]"
     :tabindex="unclickable ? null : 0"
     :role="unclickable ? null : 'button'"
     @click="unclickable ? null : handleClick"
@@ -11,13 +11,7 @@
 
 <script>
 import UI_GLOBAL from '../../config/constants';
-
-// Define textfield icon constants
-const UI_TEXTFIELD_ICON = {
-  EVENT: {
-    CLICK: 'click'
-  }
-};
+import { UI_TEXTFIELD_ICON } from './constants';
 
 export default {
   name: 'ui-textfield-icon',
@@ -29,12 +23,13 @@ export default {
   },
   data() {
     return {
-      UI_GLOBAL
+      UI_GLOBAL,
+      UI_TEXTFIELD_ICON
     };
   },
   methods: {
     handleClick(event) {
-      this.$emit(UI_TEXTFIELD_ICON.EVENT.CLICK, event);
+      this.$emit(UI_GLOBAL.EVENT.CLICK, event);
     }
   }
 };

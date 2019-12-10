@@ -12,7 +12,9 @@
       <!-- Leading icon / Text / Command -->
       <slot>
         <ui-menuitem-icon v-if="item.icon">
-          <i :class="UI_GLOBAL.mdi" aria-hidden="true">{{ item.icon }}</i>
+          <i :class="UI_GLOBAL.cssClasses.icon" aria-hidden="true">{{
+            item.icon
+          }}</i>
         </ui-menuitem-icon>
         <ui-menuitem-text v-if="item.text">{{ item.text }}</ui-menuitem-text>
       </slot>

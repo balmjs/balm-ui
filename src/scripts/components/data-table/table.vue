@@ -38,13 +38,13 @@
                 <div>
                   <i
                     v-if="theadCell.sort === UI_TABLE.SORTING.ASC"
-                    :class="UI_GLOBAL.mdi"
+                    :class="UI_GLOBAL.cssClasses.icon"
                     @click="handleSort(theadCell)"
                     >arrow_upward</i
                   >
                   <i
                     v-if="theadCell.sort === UI_TABLE.SORTING.DESC"
-                    :class="UI_GLOBAL.mdi"
+                    :class="UI_GLOBAL.cssClasses.icon"
                     @click="handleSort(theadCell)"
                     >arrow_downward</i
                   >

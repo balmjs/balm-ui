@@ -2,10 +2,10 @@
   <!-- Container -->
   <div :class="className.outer">
     <!-- Leading icon (optional) -->
-    <slot name="before" :iconClass="UI_TEXTFIELD.cssClasses.icon">
+    <slot name="before" :iconClass="UI_TEXTFIELD_ICON.cssClasses.icon">
       <i
         v-if="materialIcon"
-        :class="[UI_GLOBAL.mdi, UI_TEXTFIELD.cssClasses.icon]"
+        :class="[UI_GLOBAL.cssClasses.icon, UI_TEXTFIELD_ICON.cssClasses.icon]"
         >{{ materialIcon }}</i
       >
     </slot>
@@ -58,7 +58,7 @@
 
     <!-- Label text -->
     <ui-floating-label
-      v-if="hasLabel && !(isOutlined || isTextarea)"
+      v-if="!this.noLabel && !(isOutlined || isTextarea)"
       :for="id"
       :floatAbove="floatAbove"
       :shake="shake"
@@ -67,12 +67,12 @@
     </ui-floating-label>
 
     <!-- Trailing icon (optional) -->
-    <slot name="after" :iconClass="UI_TEXTFIELD.cssClasses.icon"></slot>
+    <slot name="after" :iconClass="UI_TEXTFIELD_ICON.cssClasses.icon"></slot>
 
     <!-- Activation indicator -->
     <div v-if="isOutlined || isTextarea" class="mdc-notched-outline">
       <div class="mdc-notched-outline__leading"></div>
-      <div v-if="hasLabel" class="mdc-notched-outline__notch">
+      <div v-if="!this.noLabel" class="mdc-notched-outline__notch">
         <ui-floating-label :for="id" :floatAbove="floatAbove" :shake="shake">
           <slot>{{ label }}</slot>
         </ui-floating-label>
@@ -99,15 +99,13 @@ import floatingLabelMixin from '../../mixins/floating-label';
 import materialIconMixin from '../../mixins/material-icon';
 import getType from '../../utils/typeof';
 import UI_GLOBAL from '../../config/constants';
+import { UI_TEXTFIELD_ICON } from './constants';
 
 // Define textfield constants
 const UI_TEXTFIELD = {
   TYPES: {
     filled: 0,
     outlined: 1
-  },
-  cssClasses: {
-    icon: 'mdc-text-field__icon'
   },
   EVENT: {
     FOCUS: 'focus',
@@ -176,10 +174,6 @@ export default {
       type: Boolean,
       default: false
     },
-    leadingIcon: {
-      type: Boolean,
-      default: false
-    },
     trailingIcon: {
       type: Boolean,
       default: false
@@ -196,6 +190,7 @@ export default {
     return {
       UI_GLOBAL,
       UI_TEXTFIELD,
+      UI_TEXTFIELD_ICON,
       $textField: null,
       inputValue: this.model
     };
@@ -206,13 +201,6 @@ export default {
     },
     isTextarea() {
       return this.inputType === 'textarea';
-    },
-    hasLabel() {
-      return (
-        !this.noLabel ||
-        (this.placeholder && !this.floatAbove) ||
-        this.fullwidth
-      );
     },
     className() {
       return {

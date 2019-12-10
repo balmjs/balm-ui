@@ -5,7 +5,7 @@
     <slot name="before" :iconClass="UI_BUTTON.cssClasses.icon">
       <i
         v-if="materialIcon"
-        :class="[UI_GLOBAL.mdi, UI_BUTTON.cssClasses.icon]"
+        :class="[UI_GLOBAL.cssClasses.icon, UI_BUTTON.cssClasses.icon]"
         aria-hidden="true"
         >{{ materialIcon }}</i
       >

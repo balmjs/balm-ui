@@ -1,4 +1,11 @@
 // Define global constants
 export default {
-  mdi: 'material-icons'
+  cssClasses: {
+    icon: 'material-icons'
+  },
+  EVENT: {
+    CLICK: 'click',
+    MOUSEMOVE: 'mousemove',
+    MOUSELEAVE: 'mouseleave'
+  }
 };

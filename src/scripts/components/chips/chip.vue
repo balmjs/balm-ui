@@ -24,7 +24,7 @@
     <slot name="after" :iconClass="UI_CHIPS.cssClasses.removeIcon">
       <i
         v-if="$parent.inputChips || removable"
-        :class="[UI_GLOBAL.mdi, UI_CHIPS.cssClasses.removeIcon]"
+        :class="[UI_GLOBAL.cssClasses.icon, UI_CHIPS.cssClasses.removeIcon]"
         tabindex="-1"
         role="button"
         @click="handleRemove"
@@ -61,7 +61,7 @@ export default {
   computed: {
     thumbnailClassName() {
       return [
-        UI_GLOBAL.mdi,
+        UI_GLOBAL.cssClasses.icon,
         UI_CHIPS.cssClasses.icon,
         { 'mdc-chip__icon--leading-hidden': this.hidden }
       ];
@@ -93,7 +93,7 @@ export default {
   },
   methods: {
     handleClick(event) {
-      this.$emit(UI_CHIPS.EVENT.CLICK, event);
+      this.$emit(UI_GLOBAL.EVENT.CLICK, event);
     },
     handleRemove(event) {
       this.$emit(UI_CHIPS.EVENT.REMOVE, event);

@@ -10,8 +10,5 @@ export default {
     icon: 'mdc-button__icon',
     label: 'mdc-button__label',
     touch: 'mdc-button--touch'
-  },
-  EVENT: {
-    CLICK: 'click'
   }
 };

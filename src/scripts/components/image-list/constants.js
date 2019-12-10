@@ -6,8 +6,5 @@ export default {
   },
   cssClasses: {
     image: 'mdc-image-list__image'
-  },
-  EVENT: {
-    CLICK: 'click'
   }
 };

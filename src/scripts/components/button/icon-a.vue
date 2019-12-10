@@ -3,10 +3,10 @@
   <a :class="[className, cardActionClassName]" :href="url">
     <!-- Icon -->
     <template v-if="toggleButton">
-      <i :class="[UI_GLOBAL.mdi, UI_ICON_BUTTON.cssClasses.off]">{{
+      <i :class="[UI_GLOBAL.cssClasses.icon, UI_ICON_BUTTON.cssClasses.off]">{{
         toggle.off
       }}</i>
-      <i :class="[UI_GLOBAL.mdi, UI_ICON_BUTTON.cssClasses.on]">{{
+      <i :class="[UI_GLOBAL.cssClasses.icon, UI_ICON_BUTTON.cssClasses.on]">{{
         toggle.on
       }}</i>
     </template>

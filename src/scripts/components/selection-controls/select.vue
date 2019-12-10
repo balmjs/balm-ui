@@ -5,7 +5,7 @@
       <slot name="icon">
         <i
           v-if="materialIcon"
-          :class="[UI_GLOBAL.mdi, UI_SELECT.cssClasses.icon]"
+          :class="[UI_GLOBAL.cssClasses.icon, UI_SELECT.cssClasses.icon]"
           >{{ materialIcon }}</i
         >
       </slot>

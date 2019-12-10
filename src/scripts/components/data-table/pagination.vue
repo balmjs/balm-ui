@@ -9,7 +9,9 @@
         :class="['mdc-pagination__previous', { disabled: currentPage === 1 }]"
         @click="currentPage === 1 ? null : handleClick(currentPage - 1)"
       >
-        <i v-if="materialIcon" :class="UI_GLOBAL.mdi">{{ currentPrev }}</i>
+        <i v-if="materialIcon" :class="UI_GLOBAL.cssClasses.icon">{{
+          currentPrev
+        }}</i>
         <span v-else>{{ currentPrev }}</span>
       </a>
       <template v-for="(page, index) in pageCount" v-if="!mini && isShow(page)">
@@ -33,7 +35,9 @@
         ]"
         @click="currentPage === pageCount ? null : handleClick(currentPage + 1)"
       >
-        <i v-if="materialIcon" :class="UI_GLOBAL.mdi">{{ currentNext }}</i>
+        <i v-if="materialIcon" :class="UI_GLOBAL.cssClasses.icon">{{
+          currentNext
+        }}</i>
         <span v-else>{{ currentNext }}</span>
       </a>
 

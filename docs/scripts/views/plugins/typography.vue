@@ -10,7 +10,7 @@
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demo</h4>
 
       <h6 :class="$tt('headline6')">Styles</h6>
       <section class="demo-typography--section">

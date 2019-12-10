@@ -16,7 +16,7 @@
       <h4 :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 :class="$tt('headline4')">1. Example</h4>
+      <h4 :class="$tt('headline4')">1. Demo</h4>
       <div>// TODO</div>
       <!-- <ui-accordion>
         <ui-markdown :code="code[1]"></ui-markdown>

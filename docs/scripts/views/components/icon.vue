@@ -31,7 +31,7 @@
       <h3 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h3>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h3 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Example</h3>
+      <h3 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demo</h3>
       <section class="sizing-example">
         <h6 :class="$tt('headline6')">1.1 Sizing</h6>
         <div class="icons-preview-code">

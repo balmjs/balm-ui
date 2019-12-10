@@ -13,7 +13,7 @@
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demo</h4>
       <section class="example">
         <h2>1.1 Enabled</h2>
         <div class="demo-switch-wrapper">

@@ -1,6 +1,10 @@
 .demo--top-app-bar {
   width: 100%;
 
+  .toc-affix {
+    position: static;
+  }
+
   .demo-paragraph {
     margin: 0;
     padding: 20px 28px;

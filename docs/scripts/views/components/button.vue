@@ -112,7 +112,7 @@ export default {
     };
   },
   created() {
-    this.showCode('button', 1);
+    this.showCode('button');
   }
 };
 </script>

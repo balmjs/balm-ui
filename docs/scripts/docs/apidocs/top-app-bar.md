@@ -16,6 +16,7 @@
 | `shortCollapsed`  | boolean | `false`    | Short top app bars can be configured to always appear collapsed.                                                        |
 | `title`           | string  | `''`       | Application title.                                                                                                      |
 | `navId`           | string  | `null`     | Control the navigation drawer is opened or closed. (Please refer to the `menuSelector` prop of the [drawer](/#/drawer)) |
+| `navIcon`         | string  | `'menu'`   | A navigation icon.                                                                                                      |
 
 - **Types:** `0: 'standard'`, `1: 'fixed'`, `2: 'dense'`, `3: 'prominent'`, `4: 'prominentDense'`, `5: 'short'`, `6: 'shortCollapsed'`, `-1: 'nonRegular'`
 
@@ -47,9 +48,9 @@
 ```html
 // Automatic
 <ui-top-app-bar navId="demo-menu"></ui-top-app-bar>
-<ui-temporary-drawer menuSelector="#demo-menu"></ui-temporary-drawer>
+<ui-drawer type="modal" menuSelector="#demo-menu"></ui-drawer>
 
 // Manual
 <ui-top-app-bar @nav="$balmUI.onShow('open')"></ui-top-app-bar>
-<ui-temporary-drawer v-model="open"></ui-temporary-drawer>
+<ui-drawer type="modal" v-model="open"></ui-drawer>
 ```

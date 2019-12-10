@@ -193,9 +193,8 @@
               raised
               class="demo-button demo-button--normal"
               @click="$balmUI.onOpen('open')"
+              >Show Menu</ui-button
             >
-              <span>Show Menu</span>
-            </ui-button>
 
             <ui-menu
               id="demo-menu"

@@ -2,41 +2,44 @@
 <ui-menu-anchor>
   <ui-button raised @click="$balmUI.onOpen('open')">Show Menu</ui-button>
 
-  <ui-menu
-    v-model="open"
-    @selected="onSelected"
-    @cancel="onCancel">
+  <ui-menu v-model="open" @selected="onSelected" @cancel="onCancel">
     <ui-menuitem nested>
       <ui-menuitem>
         <ui-menuitem-icon>
           <svg-selected></svg-selected>
         </ui-menuitem-icon>
-        Single
+        <ui-menuitem-text>Single</ui-menuitem-text>
       </ui-menuitem>
       <ui-menuitem disabled>
         <ui-menuitem-icon>
           <svg-selected></svg-selected>
         </ui-menuitem-icon>
-        1.15
+        <ui-menuitem-text>1.15</ui-menuitem-text>
       </ui-menuitem>
       <ui-menuitem>
         <ui-menuitem-icon>
           <svg-selected></svg-selected>
         </ui-menuitem-icon>
-        Double
+        <ui-menuitem-text>Double</ui-menuitem-text>
       </ui-menuitem>
       <ui-menuitem selected>
         <ui-menuitem-icon>
           <svg-selected></svg-selected>
         </ui-menuitem-icon>
-        Custom: 1.2
+        <ui-menuitem-text>Custom: 1.2</ui-menuitem-text>
       </ui-menuitem>
     </ui-menuitem>
     <ui-item-divider></ui-item-divider>
-    <ui-menuitem>Add space before paragraph</ui-menuitem>
-    <ui-menuitem>Add space after paragraph</ui-menuitem>
+    <ui-menuitem>
+      <ui-menuitem-text>Add space before paragraph</ui-menuitem-text>
+    </ui-menuitem>
+    <ui-menuitem>
+      <ui-menuitem-text>Add space after paragraph</ui-menuitem-text>
+    </ui-menuitem>
     <ui-item-divider></ui-item-divider>
-    <ui-menuitem>Custom spacing...</ui-menuitem>
+    <ui-menuitem>
+      <ui-menuitem-text>Custom spacing...</ui-menuitem-text>
+    </ui-menuitem>
   </ui-menu>
 </ui-menu-anchor>
 ```

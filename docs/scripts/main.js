@@ -20,6 +20,9 @@ import UiTocAffix from '@/components/toc-affix';
 import validatorRules from '@/config/validator-rules';
 // syntax highlighting
 import prismjs from 'prismjs';
+import 'prismjs/plugins/toolbar/prism-toolbar';
+import 'prismjs/plugins/highlight-keywords/prism-highlight-keywords';
+import 'prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard';
 // ready translated locales
 // import { locales } from '@/config/lang';
 import { isProd } from '@/config';

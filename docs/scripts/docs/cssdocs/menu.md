@@ -1,4 +1,9 @@
 ```css
+$mdc-menu-ink-color: rgba(
+  mdc-theme-prop-value(on-surface),
+  mdc-theme-text-emphasis(high)
+);
+
 $mdc-menu-width-base: 56px;
 $mdc-menu-min-width: 2 * $mdc-menu-width-base;
 

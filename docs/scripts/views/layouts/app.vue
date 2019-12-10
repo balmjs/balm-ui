@@ -124,7 +124,9 @@ export default {
       this.loading = false;
       this.$nextTick(() => {
         if (this.$refs.body) {
-          this.$refs.body.scrollTop = 0;
+          setTimeout(() => {
+            this.$refs.body.scrollTop = 0;
+          }, 1);
         }
       });
     });

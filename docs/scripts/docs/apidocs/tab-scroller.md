@@ -1,5 +1,5 @@
 ```html
-<ui-tab-bar-scroller><!-- the tab components --></ui-tab-bar-scroller>
+<ui-tab-scroller><!-- the tab components --></ui-tab-scroller>
 ```
 
 #### Props

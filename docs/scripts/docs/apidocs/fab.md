@@ -1,5 +1,7 @@
 ```html
-<ui-fab><!-- Icon --></ui-fab> <ui-fab extended><!-- Text label --></ui-fab>
+<ui-fab><!-- Icon --></ui-fab>
+
+<ui-fab extended><!-- Text label --></ui-fab>
 ```
 
 #### Props
@@ -11,7 +13,6 @@
 | `icon`     | string         | `''`    | Optional. for the icon element. See [Material Icons](/#/icons) usage.                            |
 | `mini`     | boolean        | `false` | Optional. modifies the FAB to a smaller size.                                                    |
 | `exited`   | boolean        | `false` | Optional. animates the FAB out of view. When this class is removed, the FAB will return to view. |
-| `cssOnly`  | boolean        | `false` | Optional. for the element which hides the ripple.                                                |
 
 - **Types:** `0: 'regular'`, `1: 'extended'`
 

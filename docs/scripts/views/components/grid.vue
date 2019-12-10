@@ -1,6 +1,6 @@
 <template>
   <div class="demo--grid">
-    <ui-top-app-bar fixed contentSelector=".demo-content">
+    <ui-top-app-bar contentSelector=".demo-content">
       <template #nav-icon>
         <span class="catalog-back">
           <ui-icon @click="$router.back()">arrow_back</ui-icon>
@@ -29,7 +29,7 @@
         <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
         <ui-markdown :text="code[0]"></ui-markdown>
 
-        <h4 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Example</h4>
+        <h4 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demo</h4>
         <section class="examples">
           <h2 class="demo-grid-legend">1.1 Layout grid (in fluid container)</h2>
           <ui-grid>

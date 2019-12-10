@@ -13,7 +13,6 @@
 | `raised`     | boolean        | `false` | Optional. Styles a contained button that is elevated above the surface.           |
 | `unelevated` | boolean        | `false` | Optional. Styles a contained button that is flush with the surface.               |
 | `icon`       | string         | `''`    | Optional. Indicates an icon element. See [Material Icons](/#/icons) list.         |
-| `cssOnly`    | boolean        | `false` | Optional. Indicates the element which hides the ripple styling.                   |
 | `disabled`   | boolean        | `false` | To disable a button, add the `disabled` attribute directly to the `<button>`.     |
 | `url`        | string         | `null`  | Applicable only for the `<ui-a>`, add the `href` attribute directly to the `<a>`. |
 
@@ -28,7 +27,7 @@
 | `after`   | `{ iconClass }` | Custom trailing icon                                                 |
 
 ```html
-<template #before="{ iconClass }">
+<template #after="{ iconClass }">
   <ui-icon :class="iconClass">ICON</ui-icon>
 </template>
 ```

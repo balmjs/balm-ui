@@ -1,8 +1,8 @@
 <template>
   <div :class="[$tt('body1'), 'demo--snackbar']">
-    <section class="hero component">
+    <header class="hero component">
       <ui-snackbar class="mdc-snackbar--open">Message sent</ui-snackbar>
-    </section>
+    </header>
 
     <ui-toc-affix></ui-toc-affix>
 
@@ -10,15 +10,25 @@
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h4>
       <section class="example">
         <div>
           <label>Timeout: {{ timeout / 1000 }}second</label>
-          <ui-slider id="timeout" min="4000" max="10000" step="1000" v-model="timeout"></ui-slider>
+          <ui-slider
+            id="timeout"
+            min="4000"
+            max="10000"
+            step="1000"
+            v-model="timeout"
+          ></ui-slider>
           <br />
-          <ui-textfield id="message" v-model="message">Message Text</ui-textfield>
+          <ui-textfield id="message" v-model="message"
+            >Message Text</ui-textfield
+          >
           <br />
-          <ui-textfield id="action" v-model="actionText">Action Text</ui-textfield>
+          <ui-textfield id="action" v-model="actionText"
+            >Action Text</ui-textfield
+          >
           <br />
           <ui-form-field>
             <ui-checkbox id="action-type" v-model="actionType"></ui-checkbox>
@@ -34,8 +44,9 @@
             :timeoutMs="timeout"
             :message="message"
             :actionButtonText="actionText"
-            :actionType="actionType ? 'icon' : 'button'"
-          ></ui-snackbar>
+            :actionType="actionType ? 1 : 0"
+          >
+          </ui-snackbar>
         </div>
       </section>
       <ui-accordion>
@@ -45,7 +56,9 @@
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="snackbar"></ui-apidocs>
 
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
+        3. Sass Variables
+      </h4>
       <ui-cssdocs name="snackbar"></ui-cssdocs>
     </div>
   </div>

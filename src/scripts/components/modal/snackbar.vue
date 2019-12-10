@@ -8,8 +8,8 @@
       </div>
       <!-- Action (optional) -->
       <div v-if="hasAction" class="mdc-snackbar__actions">
-        <button type="button" :class="buttonClassName">
-          {{ actionButtonText || 'close' }}
+        <button type="button" :class="actionButtonClassName">
+          <slot name="action">{{ canDismiss ? 'X' : actionButtonText }}</slot>
         </button>
       </div>
     </div>
@@ -18,17 +18,17 @@
 
 <script>
 import { MDCSnackbar } from '../../../material-components-web/snackbar';
-import UI_GLOBAL from '../../config/constants';
 
 // Define snackbar constants
 const UI_SNACKBAR = {
   ACTION_TYPE: {
-    BUTTON: 'button',
-    ICON: 'icon'
+    ACTION_BUTTON: 0,
+    DISMISS_ICON: 1
   },
   timeoutMs: {
     MIN: 4000,
-    MAX: 10000
+    MAX: 10000,
+    DEFAULTS: 5000
   },
   EVENT: {
     CHANGE: 'change',
@@ -43,6 +43,10 @@ export default {
     event: UI_SNACKBAR.EVENT.CHANGE
   },
   props: {
+    actionType: {
+      type: Number,
+      default: UI_SNACKBAR.ACTION_TYPE.ACTION_BUTTON
+    },
     // States
     open: {
       type: Boolean,
@@ -50,7 +54,7 @@ export default {
     },
     timeoutMs: {
       type: [Number, String],
-      default: 5000
+      default: UI_SNACKBAR.timeoutMs.DEFAULTS
     },
     message: {
       type: String,
@@ -58,10 +62,6 @@ export default {
     },
     actionButtonText: String,
     // UI attributes
-    actionType: {
-      type: String,
-      default: UI_SNACKBAR.ACTION_TYPE.BUTTON
-    },
     stacked: {
       type: Boolean,
       default: false
@@ -84,13 +84,16 @@ export default {
         'mdc-snackbar--leading': this.leading // tablet and desktop only
       };
     },
-    hasAction() {
-      return !!this.actionButtonText;
+    canDismiss() {
+      return this.actionType === UI_SNACKBAR.ACTION_TYPE.DISMISS_ICON;
     },
-    buttonClassName() {
-      return this.actionType === UI_SNACKBAR.ACTION_TYPE.ICON
-        ? [UI_GLOBAL.cssClasses.icon, 'mdc-icon-button mdc-snackbar__dismiss']
+    actionButtonClassName() {
+      return this.canDismiss
+        ? 'mdc-icon-button mdc-snackbar__dismiss'
         : 'mdc-button mdc-snackbar__action';
+    },
+    hasAction() {
+      return this.actionButtonText || this.canDismiss;
     }
   },
   watch: {
@@ -109,7 +112,7 @@ export default {
   mounted() {
     this.$snackbar = new MDCSnackbar(this.$el);
 
-    if (this.timeoutMs !== 5e3) {
+    if (this.timeoutMs !== UI_SNACKBAR.timeoutMs.DEFAULTS) {
       this.setTimeoutMs(+this.timeoutMs);
     }
     if (this.message) {

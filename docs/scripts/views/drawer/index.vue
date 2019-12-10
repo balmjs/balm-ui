@@ -33,7 +33,7 @@
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demo</h4>
       <ui-list nonInteractive>
         <ui-item>
           <ui-item-text-content>
@@ -75,6 +75,8 @@
       <ui-apidocs name="drawer"></ui-apidocs>
       <ui-apidocs name="drawer-header"></ui-apidocs>
       <ui-apidocs name="drawer-content"></ui-apidocs>
+      <ui-apidocs name="drawer-backdrop"></ui-apidocs>
+      <ui-apidocs name="drawer-app-content"></ui-apidocs>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables

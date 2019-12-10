@@ -1,6 +1,6 @@
 ```html
 <ui-top-app-bar contentSelector=".demo-main" navId="demo-menu" fixed>
-  Temporary Drawer
+  Modal Drawer
 </ui-top-app-bar>
 
 <ui-drawer type="modal" menuSelector="#demo-menu">
@@ -40,11 +40,11 @@
   </ui-drawer-content>
 </ui-drawer>
 
-<ui-drawer-scrim></ui-drawer-scrim>
+<ui-drawer-backdrop></ui-drawer-backdrop>
 
 <main :class="[$tt('body1'), 'demo-main']">
   <div :class="$tt('body2')">
-    <h1 :class="$tt('headline4')">Temporary Drawer</h1>
+    <h1 :class="$tt('headline4')">Modal Drawer</h1>
     <p>Click the menu icon above to open.</p>
   </div>
 </main>

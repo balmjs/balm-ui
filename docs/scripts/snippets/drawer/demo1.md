@@ -38,8 +38,9 @@
     v-shadow="4"
   >
     <template #nav-icon>
-      <ui-icon @click="$router.back()">arrow_back</ui-icon> </template
-    >Permanent Drawer Above Toolbar
+      <ui-icon @click="$router.back()">arrow_back</ui-icon>
+    </template>
+    Permanent Drawer Above Toolbar
   </ui-top-app-bar>
 
   <div :class="[$tt('body1'), 'demo-content']">

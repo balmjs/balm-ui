@@ -43,12 +43,12 @@
     class="demo-top-app-bar"
     v-shadow="4"
   >
-    Persistent Drawer
+    Dismissible Drawer
   </ui-top-app-bar>
 
   <div :class="[$tt('body1'), 'demo-content']">
     <div :class="$tt('body2')">
-      <h1 :class="$tt('headline4')">Persistent Drawer</h1>
+      <h1 :class="$tt('headline4')">Dismissible Drawer</h1>
       <p>Click the menu icon above to open and close the drawer.</p>
     </div>
   </div>

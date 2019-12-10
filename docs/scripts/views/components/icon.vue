@@ -88,7 +88,6 @@
       <h4 :class="$tt('headline4')">4. Icon List</h4>
       <div class="search-area" v-shadow="1">
         <ui-textfield
-          box
           leadingIcon
           inputType="search"
           id="search"

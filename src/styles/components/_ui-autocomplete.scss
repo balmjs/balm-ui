@@ -28,8 +28,8 @@ $mdc-autocomplete-item-selected-bgcolor: rgba(
   }
 }
 
-.mdc-autocomplete__list ul,
-.mdc-autocomplete__list li {
+.mdc-autocomplete__list .mdc-list,
+.mdc-autocomplete__list .mdc-list-item {
   margin: 0;
   padding: 0;
 
@@ -52,7 +52,7 @@ $mdc-autocomplete-item-selected-bgcolor: rgba(
   border-style: solid;
   border-color: $mdc-autocomplete-outlined-idle-border;
   background-color: white;
-  li {
+  .mdc-list-item {
     line-height: 30px;
 
     height: 30px;

@@ -5,7 +5,7 @@ import UiDrawerContent from './drawer/drawer-content';
 import UiDrawerTitle from './drawer/drawer-title';
 import UiDrawerSubtitle from './drawer/drawer-subtitle';
 import UiDrawerAppContent from './drawer/drawer-app-content';
-import UiDrawerScrim from './drawer/drawer-scrim';
+import UiDrawerBackdrop from './drawer/drawer-backdrop';
 
 export default multiBootstrap({
   UiDrawer,
@@ -14,5 +14,5 @@ export default multiBootstrap({
   UiDrawerTitle,
   UiDrawerSubtitle,
   UiDrawerAppContent,
-  UiDrawerScrim
+  UiDrawerBackdrop
 });

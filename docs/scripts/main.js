@@ -7,7 +7,6 @@ import $http from '@/plugins/$http';
 // import $store from '@/plugins/$store';
 import BalmUI from '../../src/scripts/index'; // 'balm-ui'
 import BalmUIPlus from '../../src/scripts/plus'; // 'balm-ui-plus'
-import BalmUIMigrate from '../../src/scripts/migrate'; // 'balm-ui-migrate'
 import UiSpinner from 'balm-ui-lite/components/spinner';
 import router from '@/routes';
 import App from '@/views/layouts/app';
@@ -38,7 +37,6 @@ if (isIE) {
   Vue.use(BalmUIPlus, {
     validator: validatorRules
   });
-  Vue.use(BalmUIMigrate);
 
   Vue.component(UiSpinner.name, UiSpinner);
   Vue.component(UiMarkdown.name, UiMarkdown);

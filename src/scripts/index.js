@@ -28,7 +28,7 @@ import UiDrawerTitle from './components/drawer/drawer-title';
 import UiDrawerSubtitle from './components/drawer/drawer-subtitle';
 import UiDrawerContent from './components/drawer/drawer-content';
 import UiDrawerAppContent from './components/drawer/drawer-app-content';
-import UiDrawerScrim from './components/drawer/drawer-scrim';
+import UiDrawerBackdrop from './components/drawer/drawer-backdrop';
 import UiMenuAnchor from './components/menu/menu-anchor';
 import UiMenu from './components/menu/menu';
 import UiMenuitem from './components/menu/menuitem';
@@ -92,8 +92,8 @@ import theme from './plugins/theme';
  * Directives
  */
 import vRipple from './directives/ripple';
-import VShadow from './directives/elevation';
-import VTouch from './directives/touch';
+import vShadow from './directives/elevation';
+import vTouch from './directives/touch';
 
 const version = require('../../package.json').version;
 
@@ -123,7 +123,7 @@ const components = {
   UiDrawerSubtitle,
   UiDrawerContent,
   UiDrawerAppContent,
-  UiDrawerScrim,
+  UiDrawerBackdrop,
   UiMenuAnchor,
   UiMenu,
   UiMenuitem,
@@ -187,8 +187,8 @@ const plugins = {
 
 const directives = {
   vRipple,
-  VShadow,
-  VTouch
+  vShadow,
+  vTouch
 };
 
 const BalmUI = {

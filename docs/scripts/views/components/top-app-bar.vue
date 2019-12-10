@@ -43,7 +43,7 @@
       </ui-drawer-content>
     </ui-drawer>
 
-    <ui-drawer-scrim></ui-drawer-scrim>
+    <ui-drawer-backdrop></ui-drawer-backdrop>
 
     <main class="demo-main">
       <div :class="$tt('body1')" id="content-main">

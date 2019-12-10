@@ -5,6 +5,6 @@
 
 <script>
 export default {
-  name: 'ui-drawer-scrim'
+  name: 'ui-drawer-backdrop'
 };
 </script>

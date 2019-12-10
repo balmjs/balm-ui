@@ -1,4 +1,10 @@
-import bootstrap from '../config/bootstrap';
-import UiSelect from './input-controls/select';
+import multiBootstrap from '../config/multi-bootstrap';
+import UiSelect from './selection-controls/select';
+import UiSelectHelper from './selection-controls/select-helper';
+import UiSelectIcon from './selection-controls/textfield-icon';
 
-export default bootstrap(UiSelect);
+export default multiBootstrap({
+  UiSelect,
+  UiSelectHelper,
+  UiSelectIcon
+});

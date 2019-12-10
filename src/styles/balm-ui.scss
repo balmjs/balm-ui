@@ -1,17 +1,16 @@
 /// Basic Styles
 @import './global/vendor';
 /// Components Custom Styles
-@import './components/ui-form-field';
-@import './components/ui-icon';
-@import './components/ui-tabs';
-@import './components/ui-textfield';
 @import './components/ui-autocomplete';
-@import './components/ui-pagination';
-@import './components/ui-file';
-@import './components/ui-text-divider';
-@import './components/ui-icon-button';
-@import './components/ui-table';
 @import './components/ui-card';
+@import './components/ui-file';
+@import './components/ui-form-field';
+@import './components/ui-icon-button';
+@import './components/ui-icon';
+@import './components/ui-pagination';
+@import './components/ui-table';
+@import './components/ui-tabs';
+@import './components/ui-text-divider';
 /// Plugins Custom Styles
 @import './plugins/ui-alert';
 @import './plugins/ui-confirm';

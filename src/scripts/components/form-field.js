@@ -1,4 +1,4 @@
 import bootstrap from '../config/bootstrap';
-import UiFormField from './input-controls/form-field';
+import UiFormField from './form-controls/form-field';
 
 export default bootstrap(UiFormField);

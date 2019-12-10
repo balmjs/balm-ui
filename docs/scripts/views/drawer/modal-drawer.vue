@@ -18,7 +18,7 @@
       </ui-drawer-common-content>
     </ui-drawer>
 
-    <ui-drawer-scrim></ui-drawer-scrim>
+    <ui-drawer-backdrop></ui-drawer-backdrop>
 
     <main :class="[$tt('body1'), 'demo-main']">
       <div :class="$tt('body2')">

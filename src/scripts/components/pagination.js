@@ -1,4 +1,4 @@
 import bootstrap from '../config/bootstrap';
-import UiPagination from './data/pagination';
+import UiPagination from './data-table/pagination';
 
 export default bootstrap(UiPagination);

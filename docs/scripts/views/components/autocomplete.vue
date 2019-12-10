@@ -8,6 +8,9 @@
         :source="source"
         @selected="onSelected"
       ></ui-autocomplete>
+      <p v-if="website">
+        <a :href="website">{{ website }}</a>
+      </p>
     </section>
 
     <ui-toc-affix></ui-toc-affix>
@@ -64,19 +67,28 @@ import snippets from '@/mixins/snippets';
 const source = [
   {
     label: 'BalmJS',
-    value: 1
+    value: 1,
+    url: 'https://balmjs.com/'
   },
   {
     label: 'BalmCLI',
-    value: 0
+    value: 0,
+    url: 'https://github.com/balmjs/balm-cli'
   },
   {
     label: 'BalmUI Lite',
-    value: 2
+    value: 2,
+    url: 'https://mdl.balmjs.com/'
   },
   {
     label: 'BalmUI',
-    value: 4
+    value: 3,
+    url: 'https://material.balmjs.com/'
+  },
+  {
+    label: 'BalmScroll',
+    value: 4,
+    url: 'https://iscroll.balmjs.com/'
   }
 ];
 
@@ -113,6 +125,7 @@ export default {
   data() {
     return {
       keywords: '',
+      website: '',
       source,
       keywords1: '',
       source1,
@@ -134,6 +147,7 @@ export default {
     },
     onSelected(item) {
       console.log(item);
+      this.website = item.url || '';
     }
   },
   created() {

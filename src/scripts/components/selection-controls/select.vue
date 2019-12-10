@@ -2,7 +2,13 @@
   <!-- Enhanced Select -->
   <div :class="className">
     <div class="mdc-select__anchor">
-      <slot name="icon"></slot>
+      <slot name="icon">
+        <i
+          v-if="materialIcon"
+          :class="[UI_GLOBAL.mdi, UI_SELECT.cssClasses.icon]"
+          >{{ materialIcon }}</i
+        >
+      </slot>
       <i class="mdc-select__dropdown-icon"></i>
       <div
         class="mdc-select__selected-text"
@@ -68,11 +74,15 @@
 <script>
 import { MDCSelect } from '../../../material-components-web/select';
 import UiFloatingLabel from '../form-controls/floating-label';
-import elementMixin from '../../mixins/element';
 import floatingLabelMixin from '../../mixins/floating-label';
+import materialIconMixin from '../../mixins/material-icon';
+import UI_GLOBAL from '../../config/constants';
 
 // Define select constants
 const UI_SELECT = {
+  cssClasses: {
+    icon: 'mdc-select__icon'
+  },
   EVENT: {
     CHANGE: 'change',
     SELECTED: 'selected'
@@ -84,7 +94,7 @@ export default {
   components: {
     UiFloatingLabel
   },
-  mixins: [elementMixin, floatingLabelMixin],
+  mixins: [floatingLabelMixin, materialIconMixin],
   model: {
     prop: 'model',
     event: UI_SELECT.EVENT.CHANGE
@@ -135,6 +145,8 @@ export default {
   },
   data() {
     return {
+      UI_GLOBAL,
+      UI_SELECT,
       $select: null,
       selectedValue: this.model
     };
@@ -147,7 +159,7 @@ export default {
         'mdc-select--required': this.required,
         'mdc-select--disabled': this.disabled,
         'mdc-select--no-label': this.noLabel,
-        'mdc-select--with-leading-icon': this.leadingIcon
+        'mdc-select--with-leading-icon': this.leadingIcon || this.materialIcon
       };
     }
   },

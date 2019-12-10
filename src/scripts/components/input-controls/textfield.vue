@@ -95,8 +95,8 @@ import UiFloatingLabel from '../form-controls/floating-label';
 import textfieldMixin from '../../mixins/textfield';
 import typeMixin from '../../mixins/type';
 import elementMixin from '../../mixins/element';
-import materialIconMixin from '../../mixins/material-icon';
 import floatingLabelMixin from '../../mixins/floating-label';
+import materialIconMixin from '../../mixins/material-icon';
 import getType from '../../utils/typeof';
 import UI_GLOBAL from '../../config/constants';
 
@@ -129,8 +129,8 @@ export default {
     textfieldMixin,
     typeMixin,
     elementMixin,
-    materialIconMixin,
-    floatingLabelMixin
+    floatingLabelMixin,
+    materialIconMixin
   ],
   model: {
     prop: 'model',

@@ -26,10 +26,11 @@ $hero-background-color: #f7f7f7;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  height: 360px;
   min-height: 360px;
+  padding: 40px 0;
   background-color: $hero-background-color;
   .hero-demo {
+    display: flex;
     margin-bottom: 20px;
   }
   .hero-options {

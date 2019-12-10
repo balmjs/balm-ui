@@ -1,25 +1,32 @@
 <template>
   <!-- Buttons -->
   <footer class="mdc-dialog__actions">
-    <slot :buttonClass="UI_DIALOG.SLOT_CLASS.button">
-      <button type="button"
-        :class="`mdc-button ${UI_DIALOG.SLOT_CLASS.button}`"
-        @click="$parent.handleCancel">
-        {{ cancelText }}
+    <slot :buttonClass="UI_DIALOG_ACTION.cssClasses.button">
+      <button
+        type="button"
+        :class="['mdc-button', UI_DIALOG_ACTION.cssClasses.button]"
+        data-mdc-dialog-action="close"
+        @click="$parent.handleCancel"
+      >
+        <span class="mdc-button__label">{{ cancelText }}</span>
       </button>
-      <button type="button"
-        :class="`mdc-button ${UI_DIALOG.SLOT_CLASS.button}`"
-        @click="$parent.handleAccept">
-        {{ acceptText }}
+      <button
+        type="button"
+        :class="['mdc-button', UI_DIALOG_ACTION.cssClasses.button]"
+        data-mdc-dialog-action="accept"
+        data-mdc-dialog-button-default
+        @click="$parent.handleAccept"
+      >
+        <span class="mdc-button__label">{{ acceptText }}</span>
       </button>
     </slot>
   </footer>
 </template>
 
 <script>
-// Define constants
-const UI_DIALOG = {
-  SLOT_CLASS: {
+// Define dialog action constants
+const UI_DIALOG_ACTION = {
+  cssClasses: {
     button: 'mdc-dialog__button'
   }
 };
@@ -30,7 +37,7 @@ export default {
     // UI attributes
     acceptText: {
       type: String,
-      default: 'Accept'
+      default: 'OK'
     },
     cancelText: {
       type: String,
@@ -39,7 +46,7 @@ export default {
   },
   data() {
     return {
-      UI_DIALOG
+      UI_DIALOG_ACTION
     };
   }
 };

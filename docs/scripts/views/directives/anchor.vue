@@ -10,7 +10,7 @@
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h4>
       <section class="anchor-example">
         <h6 :class="$tt('headline6')">1.1 Default Usage</h6>
         <ui-button raised v-anchor:href="'#target1'">Anchor 1</ui-button>
@@ -26,8 +26,12 @@
 
       <section class="anchor-example" v-anchor.html>
         <h6 :class="$tt('headline6')">1.2 HTML Usage (e.g. markdown)</h6>
-        <a href="javascript:void(0)" class="v-anchor" data-href="#target3">Anchor 3</a>
-        <a href="javascript:void(0)" class="v-anchor" data-href="#target4">Anchor 4</a>
+        <a href="javascript:void(0)" class="v-anchor" data-href="#target3"
+          >Anchor 3</a
+        >
+        <a href="javascript:void(0)" class="v-anchor" data-href="#target4"
+          >Anchor 4</a
+        >
         <ui-accordion>
           <ui-markdown :code="code[2]"></ui-markdown>
         </ui-accordion>

@@ -24,12 +24,12 @@ const template = `<ui-dialog
     <button type="button"
       class="mdc-button mdc-confirm-primary-button"
       @click="handleConfirm(true)">
-      {{ options.acceptText }}
+      <span class="mdc-button__label">{{ options.acceptText }}</span>
     </button>
     <button type="button"
       class="mdc-button mdc-confirm-secondary-button"
       @click="handleConfirm(false)">
-      {{ options.cancelText }}
+      <span class="mdc-button__label">{{ options.cancelText }}</span>
     </button>
   </ui-dialog-actions>
 </ui-dialog>`;

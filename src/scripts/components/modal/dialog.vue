@@ -1,8 +1,13 @@
 <template>
-  <div :class="className" role="alertdialog">
+  <div :class="className">
     <!-- Container -->
     <div class="mdc-dialog__container">
-      <div ref="dialog" class="mdc-dialog__surface">
+      <div
+        ref="dialog"
+        class="mdc-dialog__surface"
+        role="alertdialog"
+        aria-modal="true"
+      >
         <slot></slot>
       </div>
     </div>
@@ -23,7 +28,9 @@ import { MDCDialog } from '../../../material-components-web/dialog';
 
 // Define dialog constants
 const UI_DIALOG = {
-  BODY_CLASS: 'mdc-dialog__content',
+  cssClasses: {
+    content: 'mdc-dialog__content'
+  },
   EVENT: {
     CHANGE: 'change',
     CLOSE: 'close',
@@ -104,7 +111,7 @@ export default {
     this.$nextTick(() => {
       if (this.resetScroll) {
         this.$dialogBody = this.$refs.dialog.querySelector(
-          `.${UI_DIALOG.BODY_CLASS}`
+          `.${UI_DIALOG.cssClasses.content}`
         );
       }
 

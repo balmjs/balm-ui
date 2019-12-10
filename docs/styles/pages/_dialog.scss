@@ -5,7 +5,7 @@
     box-sizing: border-box;
   }
 
-  .demo-content>button {
+  .demo-content > button {
     margin-bottom: 6px;
   }
 
@@ -13,9 +13,8 @@
     padding: 24px;
   }
 
-  .catalog-dialog-demo {
+  .hero-dialog {
     position: relative;
-    width: 320px;
     z-index: auto;
   }
 
@@ -24,4 +23,8 @@
     align-items: center;
     justify-content: center;
   }
+}
+
+.demo-confirmation-dialog .mdc-dialog__surface {
+  max-height: 268px;
 }

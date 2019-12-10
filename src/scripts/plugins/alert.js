@@ -23,7 +23,7 @@ const template = `<ui-dialog
     <button type="button"
       class="mdc-button mdc-alert-button"
       @click="handleClick">
-      {{ options.buttonText }}
+      <span class="mdc-button__label">{{ options.buttonText }}</span>
     </button>
   </ui-dialog-actions>
 </ui-dialog>`;

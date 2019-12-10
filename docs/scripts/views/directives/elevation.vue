@@ -1,16 +1,18 @@
 <template>
   <div :class="[$tt('body1'), 'demo--elevation']">
-    <section class="hero directive">
-      <figure class="demo-surface" v-shadow="0">
-        <figcaption>FLAT 0dp</figcaption>
-      </figure>
-      <figure class="demo-surface" v-shadow="8">
-        <figcaption>RAISED 8dp</figcaption>
-      </figure>
-      <figure :class="['demo-surface', 'demo-elevation--custom-color']">
-        <figcaption>CUSTOM 16dp</figcaption>
-      </figure>
-    </section>
+    <header class="hero directive">
+      <div class="hero-demo">
+        <figure class="demo-surface" v-shadow="0">
+          <figcaption>FLAT 0dp</figcaption>
+        </figure>
+        <figure class="demo-surface" v-shadow="8">
+          <figcaption>RAISED 8dp</figcaption>
+        </figure>
+        <figure :class="['demo-surface', 'demo-elevation--custom-color']">
+          <figcaption>CUSTOM 16dp</figcaption>
+        </figure>
+      </div>
+    </header>
 
     <ui-toc-affix></ui-toc-affix>
 
@@ -18,7 +20,7 @@
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h4 v-anchor:id="'ui-example'" :class="$tt('headline4')">1. Example</h4>
+      <h4 v-anchor:id="'ui-demos'" :class="$tt('headline4')">1. Example</h4>
       <section class="demo-surfaces">
         <figure class="demo-surface" v-shadow="0">
           <figcaption>
@@ -28,8 +30,8 @@
         </figure>
         <figure v-for="i in 24" :key="i" class="demo-surface" v-shadow="i">
           <figcaption>
-            {{ i }}dp (
-            <code>mdc-elevation--z{{ i }}</code>)
+            {{ i }}dp ( <code>mdc-elevation--z{{ i }}</code
+            >)
           </figcaption>
         </figure>
       </section>
@@ -49,7 +51,9 @@
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="elevation" type="directive"></ui-apidocs>
 
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">3. Sass Variables</h4>
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
+        3. Sass Variables
+      </h4>
       <ui-cssdocs name="elevation"></ui-cssdocs>
     </div>
   </div>

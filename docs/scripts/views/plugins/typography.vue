@@ -1,8 +1,8 @@
 <template>
   <div :class="[$tt('body1'), 'demo--typography']">
-    <section class="hero plugin">
+    <header class="hero plugin">
       <h1 :class="$tt('headline1')">Tt</h1>
-    </section>
+    </header>
 
     <ui-toc-affix></ui-toc-affix>
 

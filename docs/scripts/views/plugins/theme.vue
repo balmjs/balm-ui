@@ -1,11 +1,15 @@
 <template>
   <div :class="[$tt('body1'), 'demo--theme']">
-    <section class="hero plugin">
-      <ui-button raised :class="[$themeColor('primary-bg')]">Primary</ui-button>
-      <ui-button raised :class="[$themeColor('secondary-bg')]"
-        >Secondary</ui-button
-      >
-    </section>
+    <header class="hero plugin">
+      <div class="hero-demo">
+        <ui-button raised :class="[$themeColor('primary-bg')]"
+          >Primary</ui-button
+        >
+        <ui-button raised :class="[$themeColor('secondary-bg')]"
+          >Secondary</ui-button
+        >
+      </div>
+    </header>
 
     <ui-toc-affix></ui-toc-affix>
 

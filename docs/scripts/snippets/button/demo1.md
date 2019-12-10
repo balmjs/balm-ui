@@ -6,7 +6,7 @@
 <ui-button icon="favorite">Icon</ui-button>
 <ui-button>
   Trailing Icon
-  <template slot="after" slot-scope="{ iconClass }">
+  <template #after="{ iconClass }">
     <!-- Custom SVG -->
     <svg-logo :class="iconClass"></svg-logo>
   </template>

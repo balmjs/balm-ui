@@ -1,8 +1,8 @@
 <template>
   <div :class="[$tt('body1'), 'demo--ripple']">
-    <section class="hero directive">
+    <header class="hero directive">
       <div v-ripple></div>
-    </section>
+    </header>
 
     <ui-toc-affix withoutCss></ui-toc-affix>
 
@@ -112,10 +112,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.hero > div {
-  width: 100%;
-  height: 100%;
-}
-</style>

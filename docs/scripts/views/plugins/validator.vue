@@ -1,8 +1,8 @@
 <template>
   <div :class="[$tt('body1'), 'demo--validator']">
-    <section class="hero plugin">
+    <header class="hero plugin">
       <h2 :class="$tt('headline4')">$validate</h2>
-    </section>
+    </header>
 
     <ui-toc-affix withoutCss></ui-toc-affix>
 

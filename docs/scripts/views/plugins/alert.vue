@@ -1,8 +1,8 @@
 <template>
   <div :class="[$tt('body1'), 'demo--alert']">
-    <section class="hero plugin">
+    <header class="hero plugin">
       <h2 :class="$tt('headline4')">$alert</h2>
-    </section>
+    </header>
 
     <ui-toc-affix withoutCss></ui-toc-affix>
 

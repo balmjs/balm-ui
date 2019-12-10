@@ -1,13 +1,16 @@
 <template>
   <div :class="[$tt('body1'), 'demo--shape']">
-    <section class="hero directive">
+    <header class="hero directive">
       <div class="four-corner-container" v-shape>
         <ui-button unelevated>Filled Button</ui-button>
       </div>
-      <div class="four-corner-container four-corner-container--outlined" v-shape>
+      <div
+        class="four-corner-container four-corner-container--outlined"
+        v-shape
+      >
         <ui-button outlined>Outlined Button</ui-button>
       </div>
-    </section>
+    </header>
 
     <div :class="$tt('body2')">
       <h4 :class="$tt('headline4')">0. Usage</h4>

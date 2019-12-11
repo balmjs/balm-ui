@@ -1,5 +1,8 @@
 ```html
-<ui-switch></ui-switch>
+<ui-form-field>
+  <ui-switch></ui-switch>
+  <label>Switch</label>
+</ui-form-field>
 ```
 
 #### Props
@@ -9,9 +12,9 @@
 | `model` (`v-model`) | boolean, number, string | `false` | Mandatory.                                                                    |
 | `trueValue`         | boolean, number, string | `true`  |                                                                               |
 | `falseValue`        | boolean, number, string | `false` |                                                                               |
-| `disabled`          | boolean                 | `false` | Styles the switch as a disabled switch.                                       |
 | `id`                | string                  | `null`  | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`. |
 | `name`              | string                  | `null`  | The _name_ attribute of the `<input>`.                                        |
+| `disabled`          | boolean                 | `false` | Styles the switch as a disabled switch.                                       |
 | `attrs`             | object                  | `null`  | Other attributes for `<input>`.                                               |
 
 #### Events
@@ -27,5 +30,8 @@
 <ui-switch v-model="value"></ui-switch>
 
 // Manual
-<ui-switch :model="value" @change="$balmUI.onChange('value', $event)"></ui-switch>
+<ui-switch
+  :model="value"
+  @change="$balmUI.onChange('value', $event)"
+></ui-switch>
 ```

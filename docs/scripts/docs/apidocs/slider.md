@@ -2,24 +2,23 @@
 <ui-slider></ui-slider>
 ```
 
+### `<ui-slider>` Types
+
+- `0`: `'continuous'`
+- `1`: `'discrete'`
+
 #### Props
 
 | Name                | Type           | Default | Description                                                  |
 | ------------------- | -------------- | ------- | ------------------------------------------------------------ |
+| `type`              | string, number | `0`     | Mandatory. Slider types.                                     |
+| `discrete`          | boolean        | `false` | Styles the slider as a discrete slider.                      |
+| `displayMarker`     | boolean        | `false` | Discrete sliders support display markers on their tracks.    |
 | `model` (`v-model`) | number, string | `null`  | The current value of the slider.                             |
 | `min`               | number, string | `0`     | The minimum value a slider can have.                         |
 | `max`               | number, string | `100`   | The maximum value a slider can have.                         |
 | `step`              | number, string | `1`     | Specifies the increments at which a slider value can be set. |
 | `disabled`          | boolean        | `false` | Whether or not the slider is disabled.                       |
-| `label`             | string         | `null`  |                                                              |
-| `discrete`          | boolean        | `false` | Styles the slider as a discrete slider.                      |
-| `displayMarkers`    | boolean        | `false` | Discrete sliders support display markers on their tracks.    |
-
-#### Slots
-
-| Name      | Slots | Description                                      |
-| --------- | ----- | ------------------------------------------------ |
-| `default` |       | The default slot holds the label for the slider. |
 
 #### Events
 
@@ -35,5 +34,8 @@
 <ui-slider v-model="value"></ui-slider>
 
 // Manual
-<ui-slider :model="value" @input="$balmUI.onChange('value', $event)"></ui-slider>
+<ui-slider
+  :model="value"
+  @input="$balmUI.onChange('value', $event)"
+></ui-slider>
 ```

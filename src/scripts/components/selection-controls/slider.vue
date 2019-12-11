@@ -8,7 +8,6 @@
     :aria-valuemin="+min"
     :aria-valuemax="+max"
     :data-step="+step"
-    :aria-label="label || null"
     :aria-disabled="disabled"
   >
     <!-- Track -->
@@ -82,7 +81,6 @@ export default {
       default: 1
     },
     // UI attributes
-    label: String,
     disabled: {
       type: Boolean,
       default: false

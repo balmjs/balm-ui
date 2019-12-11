@@ -15,6 +15,17 @@ $mdc-checkbox-focus-indicator-opacity: map-get(
   focus
 );
 
+$mdc-checkbox-minimum-size: 28px;
+$mdc-checkbox-maximum-size: $mdc-checkbox-ripple-size;
+$mdc-checkbox-density-scale: $mdc-density-default-scale;
+$mdc-checkbox-density-config: (
+  size: (
+    minimum: $mdc-checkbox-minimum-size,
+    default: $mdc-checkbox-ripple-size,
+    maximum: $mdc-checkbox-maximum-size
+  )
+);
+
 /* Manual calculation done on SVG */
 $mdc-checkbox-mark-path-length_: 29.7833385;
 $mdc-checkbox-indeterminate-checked-easing-function_: cubic-bezier(

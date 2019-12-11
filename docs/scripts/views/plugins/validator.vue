@@ -22,7 +22,7 @@
           >
           <ui-textfield-helper
             id="mobile-helper-text"
-            :validMsg="errorMsg.mobile"
+            :validMsg="validMsg.mobile"
           ></ui-textfield-helper>
         </p>
         <p class="form-item">
@@ -35,7 +35,7 @@
           >
           <ui-textfield-helper
             id="password-helper-text"
-            :validMsg="errorMsg.password"
+            :validMsg="validMsg.password"
           ></ui-textfield-helper>
         </p>
         <p class="form-item">
@@ -48,7 +48,7 @@
           >
           <ui-textfield-helper
             id="repassword-helper-text"
-            :validMsg="errorMsg.repassword"
+            :validMsg="validMsg.repassword"
           ></ui-textfield-helper>
         </p>
         <p class="form-actions">
@@ -112,7 +112,7 @@ export default {
         password: '',
         repassword: ''
       },
-      errorMsg: {}
+      validMsg: {}
     };
   },
   created() {
@@ -121,12 +121,12 @@ export default {
   methods: {
     submit() {
       let result = this.$validate(this.formData);
-      let { isValid, errorMsg } = result;
-      this.errorMsg = errorMsg;
+      let { valid, validMsg } = result;
+      this.validMsg = validMsg;
 
       console.log(result);
 
-      if (isValid) {
+      if (valid) {
         console.log('gg');
         this.$toast('gg');
       }

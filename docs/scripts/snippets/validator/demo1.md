@@ -2,30 +2,42 @@
 <fieldset>
   <legend>Form Area</legend>
   <p class="form-item">
-    <ui-textfield id="mobile"
+    <ui-textfield
+      id="mobile"
       v-model="formData.mobile"
-      helptextId="mobile-helper-text">Mobile</ui-textfield>
-    <ui-textfield-helptext id="mobile-helper-text" :visible="errorMsg.mobile">
-      {{ errorMsg.mobile }}
-    </ui-textfield-helptext>
+      helperTextId="mobile-helper-text"
+      >Mobile</ui-textfield
+    >
+    <ui-textfield-helptext
+      id="mobile-helper-text"
+      :validMsg="validMsg.mobile"
+    ></ui-textfield-helptext>
   </p>
   <p class="form-item">
-    <ui-textfield type="password"
+    <ui-textfield
+      type="password"
       id="password"
       v-model="formData.password"
-      helptextId="password-helper-text">Password</ui-textfield>
-    <ui-textfield-helptext id="password-helper-text" :visible="errorMsg.password">
-      {{ errorMsg.password }}
-    </ui-textfield-helptext>
+      helperTextId="password-helper-text"
+      >Password</ui-textfield
+    >
+    <ui-textfield-helptext
+      id="password-helper-text"
+      :validMsg="validMsg.password"
+    ></ui-textfield-helptext>
   </p>
   <p class="form-item">
-    <ui-textfield type="password"
+    <ui-textfield
+      type="password"
       id="repassword"
       v-model="formData.repassword"
-      helptextId="repassword-helper-text">Repeat Password</ui-textfield>
-    <ui-textfield-helptext id="repassword-helper-text" :visible="errorMsg.repassword">
-      {{ errorMsg.repassword }}
-    </ui-textfield-helptext>
+      helperTextId="repassword-helper-text"
+      >Repeat Password</ui-textfield
+    >
+    <ui-textfield-helptext
+      id="repassword-helper-text"
+      :validMsg="validMsg.repassword"
+    ></ui-textfield-helptext>
   </p>
   <p class="form-actions">
     <ui-button raised @click="submit">Submit</ui-button>
@@ -74,14 +86,14 @@ export default {
         password: '',
         repassword: ''
       },
-      errorMsg: {}
+      validMsg: {}
     };
   },
   methods: {
     submit() {
       let result = this.$validate(this.formData);
-      let { isValid, errorMsg } = result;
-      this.errorMsg = errorMsg;
+      let { isValid, validMsg } = result;
+      this.validMsg = validMsg;
 
       console.log(result);
 

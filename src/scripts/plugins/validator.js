@@ -21,12 +21,12 @@ const BalmUI_ValidatorPlugin = {
 
     const $validate = function(formData = {}, customFieldset = []) {
       let result = {
-        isValid: true, // 是否验证通过
-        valid: [], // 有效字段
-        invalid: [], // 无效字段
+        valid: true, // 是否验证通过
+        validFields: [], // 有效字段
+        invalidFields: [], // 无效字段
         messages: [], // 所有无效字段的提示语
         message: '', // 第一个无效字段的提示语
-        errorMsg: {}
+        validMsg: {}
       };
 
       // 获取待验证字段
@@ -91,23 +91,23 @@ const BalmUI_ValidatorPlugin = {
         }
 
         if (isAllValidOfField) {
-          result.valid.push(fieldName);
+          result.validFields.push(fieldName);
         } else {
-          result.invalid.push(fieldName);
+          result.invalidFields.push(fieldName);
         }
       }
 
       if (result.messages.length) {
-        result.isValid = false;
+        result.valid = false;
         result.message = result.messages[0];
 
-        result.invalid.forEach((field, index) => {
-          result.errorMsg[field] = result.messages[index];
+        result.invalidFields.forEach((field, index) => {
+          result.validMsg[field] = result.messages[index];
         });
       }
 
-      result.valid.forEach(field => {
-        result.errorMsg[field] = '';
+      result.validFields.forEach(field => {
+        result.validMsg[field] = '';
       });
 
       return result;

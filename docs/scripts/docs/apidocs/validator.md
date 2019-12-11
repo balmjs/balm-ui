@@ -47,7 +47,7 @@ export default {
       formData: {
         fieldName: ''
       },
-      errorMsg: {
+      validMsg: {
         fieldName: ''
       }
     };
@@ -55,25 +55,25 @@ export default {
   methods: {
     submit() {
       let {
-        isValid,
         valid,
-        invalid,
+        validFields,
+        invalidFields,
         messages,
         message,
-        errorMsg
+        validMsg
       } = this.$validate(this.formData);
 
-      this.errorMsg = errorMsg;
+      this.validMsg = validMsg;
     }
   }
 };
 ```
 
-| Result     | Type    | Description                                            |
-| ---------- | ------- | ------------------------------------------------------ |
-| `isValid`  | boolean | The validator result.                                  |
-| `valid`    | array   | Valid fields.                                          |
-| `invalid`  | array   | Invalid fields.                                        |
-| `messages` | array   | The messages of all invalid fields.                    |
-| `message`  | string  | The message of the first invalid field.                |
-| `errorMsg` | object  | The messages as an object. (Same format as `formData`) |
+| Result          | Type    | Description                                            |
+| --------------- | ------- | ------------------------------------------------------ |
+| `valid`         | boolean | The validator result.                                  |
+| `validFields`   | array   | Valid fields.                                          |
+| `invalidFields` | array   | Invalid fields.                                        |
+| `messages`      | array   | The messages of all invalid fields.                    |
+| `message`       | string  | The message of the first invalid field.                |
+| `validMsg`      | object  | The messages as an object. (Same format as `formData`) |

@@ -1,7 +1,7 @@
 <template>
   <div :class="[$tt('body1'), 'demo--icon']">
     <header class="hero component">
-      <div class="hero-demo">
+      <div class="hero-demos">
         <ui-icon :type="typeOption">add</ui-icon>
         <ui-icon :type="typeOption">description</ui-icon>
         <ui-icon :type="typeOption">edit</ui-icon>

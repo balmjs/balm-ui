@@ -1,7 +1,7 @@
 <template>
   <div :class="[$tt('body1'), 'demo--elevation']">
     <header class="hero directive">
-      <div class="hero-demo">
+      <div class="hero-demos">
         <figure class="demo-surface" v-shadow="0">
           <figcaption>FLAT 0dp</figcaption>
         </figure>

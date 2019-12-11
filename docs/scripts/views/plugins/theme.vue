@@ -1,7 +1,7 @@
 <template>
   <div :class="[$tt('body1'), 'demo--theme']">
     <header class="hero plugin">
-      <div class="hero-demo">
+      <div class="hero-demos">
         <ui-button raised :class="[$themeColor('primary-bg')]"
           >Primary</ui-button
         >

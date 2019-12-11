@@ -29,10 +29,11 @@ $hero-background-color: #f7f7f7;
   min-height: 360px;
   padding: 40px 0;
   background-color: $hero-background-color;
-  .hero-demo {
-    display: flex;
+  .hero-demo,
+  .hero-demos {
     margin-bottom: 20px;
   }
+  .hero-demos,
   .hero-options {
     display: flex;
     flex-wrap: wrap;

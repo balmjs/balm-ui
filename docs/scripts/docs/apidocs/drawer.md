@@ -2,6 +2,12 @@
 <ui-drawer><!-- the drawer child components --></ui-drawer>
 ```
 
+### `<ui-drawer>` Types
+
+- `0`: `'permanent'`
+- `1`: `'dismissible'`
+- `2`: `'modal'`
+
 **NOTE:**
 
 - `<ui-drawer>` (`type="permanent"`) has not props and events.
@@ -14,8 +20,6 @@
 | `type`             | string, number | `0`     | Mandatory. Button types.           |
 | `menuSelector`     | string         | `null`  | The external menu button selector. |
 | `open` (`v-model`) | boolean        | `false` | The drawer toggle state.           |
-
-- **Types:** `0: 'permanent'`, `1: 'dismissible'`, `2: 'modal'`
 
 #### Slots
 

@@ -2,6 +2,17 @@
 <ui-top-app-bar><!-- the application title --></ui-top-app-bar>
 ```
 
+### `<ui-top-app-bar>` Types
+
+- `0`: `'standard'`
+- `1`: `'fixed'`
+- `2`: `'dense'`
+- `3`: `'prominent'`
+- `4`: `'prominentDense'`
+- `5`: `'short'`
+- `6`: `'shortCollapsed'`
+- `-1`: `'nonRegular'`
+
 #### Props
 
 | Name              | Type    | Default    | Description                                                                                                             |
@@ -17,8 +28,6 @@
 | `title`           | string  | `''`       | Application title.                                                                                                      |
 | `navId`           | string  | `null`     | Control the navigation drawer is opened or closed. (Please refer to the `menuSelector` prop of the [drawer](/#/drawer)) |
 | `navIcon`         | string  | `'menu'`   | A navigation icon.                                                                                                      |
-
-- **Types:** `0: 'standard'`, `1: 'fixed'`, `2: 'dense'`, `3: 'prominent'`, `4: 'prominentDense'`, `5: 'short'`, `6: 'shortCollapsed'`, `-1: 'nonRegular'`
 
 > Short top app bars should be used with no more than 1 action item.
 

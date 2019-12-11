@@ -4,6 +4,13 @@
 <ui-a><!-- the anchor text label --></ui-a>
 ```
 
+### `<ui-button>` Types
+
+- `0`: `'text'`
+- `1`: `'outlined'`
+- `2`: `'raised'`
+- `3`: `'unelevated'`
+
 #### Props
 
 | Name         | Type           | Default | Description                                                                       |
@@ -15,8 +22,6 @@
 | `icon`       | string         | `''`    | Optional. Indicates an icon element. See [Material Icons](/#/icons) list.         |
 | `disabled`   | boolean        | `false` | To disable a button, add the `disabled` attribute directly to the `<button>`.     |
 | `url`        | string         | `null`  | Applicable only for the `<ui-a>`, add the `href` attribute directly to the `<a>`. |
-
-- **Types:** `0: 'text'`, `1: 'outlined'`, `2: 'raised'`, `3: 'unelevated'`
 
 #### Slots
 

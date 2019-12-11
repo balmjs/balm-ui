@@ -4,6 +4,11 @@
 <ui-fab extended><!-- Text label --></ui-fab>
 ```
 
+### `<ui-fab>` Types
+
+- `0`: `'regular'`
+- `1`: `'extended'`
+
 #### Props
 
 | Name       | Type           | Default | Description                                                                                      |
@@ -13,8 +18,6 @@
 | `icon`     | string         | `''`    | Optional. for the icon element. See [Material Icons](/#/icons) usage.                            |
 | `mini`     | boolean        | `false` | Optional. modifies the FAB to a smaller size.                                                    |
 | `exited`   | boolean        | `false` | Optional. animates the FAB out of view. When this class is removed, the FAB will return to view. |
-
-- **Types:** `0: 'regular'`, `1: 'extended'`
 
 #### Slots
 

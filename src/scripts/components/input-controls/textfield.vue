@@ -60,8 +60,6 @@
     <ui-floating-label
       v-if="!this.noLabel && !(isOutlined || isTextarea)"
       :for="id"
-      :floatAbove="floatAbove"
-      :shake="shake"
     >
       <slot>{{ label }}</slot>
     </ui-floating-label>
@@ -73,7 +71,7 @@
     <div v-if="isOutlined || isTextarea" class="mdc-notched-outline">
       <div class="mdc-notched-outline__leading"></div>
       <div v-if="!this.noLabel" class="mdc-notched-outline__notch">
-        <ui-floating-label :for="id" :floatAbove="floatAbove" :shake="shake">
+        <ui-floating-label :for="id">
           <slot>{{ label }}</slot>
         </ui-floating-label>
       </div>
@@ -95,9 +93,7 @@ import UiFloatingLabel from '../form-controls/floating-label';
 import textfieldMixin from '../../mixins/textfield';
 import typeMixin from '../../mixins/type';
 import elementMixin from '../../mixins/element';
-import floatingLabelMixin from '../../mixins/floating-label';
 import materialIconMixin from '../../mixins/material-icon';
-import getType from '../../utils/typeof';
 import UI_GLOBAL from '../../config/constants';
 import { UI_TEXTFIELD_ICON } from './constants';
 
@@ -123,13 +119,7 @@ export default {
   components: {
     UiFloatingLabel
   },
-  mixins: [
-    textfieldMixin,
-    typeMixin,
-    elementMixin,
-    floatingLabelMixin,
-    materialIconMixin
-  ],
+  mixins: [textfieldMixin, typeMixin, elementMixin, materialIconMixin],
   model: {
     prop: 'model',
     event: UI_TEXTFIELD.EVENT.INPUT
@@ -145,11 +135,30 @@ export default {
       type: [String, Number],
       default: ''
     },
+    // UI attributes
+    dense: {
+      type: Boolean,
+      default: false
+    },
+    trailingIcon: {
+      type: Boolean,
+      default: false
+    },
     // <input> attributes
     inputType: {
       type: String,
       default: 'text'
     },
+    // <textarea> attributes
+    rows: {
+      type: [Number, String],
+      default: 1
+    },
+    cols: {
+      type: [Number, String],
+      default: 20
+    },
+    // For native
     required: {
       type: Boolean,
       default: false
@@ -160,24 +169,6 @@ export default {
     min: [Number, String],
     max: [Number, String],
     step: [Number, String],
-    // <textarea> attributes
-    rows: {
-      type: [Number, String],
-      default: 1
-    },
-    cols: {
-      type: [Number, String],
-      default: 20
-    },
-    // UI attributes
-    dense: {
-      type: Boolean,
-      default: false
-    },
-    trailingIcon: {
-      type: Boolean,
-      default: false
-    },
     // For helper text
     helperTextId: String,
     // For plus

@@ -67,14 +67,32 @@ $mdc-textarea-disabled-border-color: rgba(
    will make text unreadable */
 $mdc-textarea-disabled-background: rgba(249, 249, 249, 1);
 
+$mdc-text-field-outlined-stroke-width: 2px;
 $mdc-text-field-height: 56px;
-$mdc-text-field-label-position-y: 50%;
+$mdc-text-field-minimum-height: 40px;
+$mdc-text-field-maximum-height: $mdc-text-field-height;
+$mdc-text-field-density-scale: $mdc-density-default-scale;
+$mdc-text-field-density-config: (
+  height: (
+    default: $mdc-text-field-height,
+    maximum: $mdc-text-field-maximum-height,
+    minimum: $mdc-text-field-minimum-height
+  )
+);
+$mdc-text-field-label-position-y: $mdc-floating-label-position-y;
 $mdc-text-field-label-offset: 16px;
 $mdc-text-field-dense-label-position-y: 70%;
 $mdc-text-field-dense-label-scale: 0.8;
-$mdc-text-field-outlined-label-position-y: 130%;
+$mdc-text-field-outlined-label-position-y: mdc-text-field-get-outlined-label-position-y(
+  $mdc-text-field-height
+);
 $mdc-text-field-outlined-dense-label-position-y: 120%;
 $mdc-text-field-outlined-with-leading-icon-label-position-x: 0;
 $mdc-text-field-outlined-dense-with-leading-icon-label-position-x: 21px;
 $mdc-text-field-textarea-label-position-y: 130%;
+$mdc-text-field-helper-line-padding: 16px;
+$mdc-text-field-input-padding: 16px;
+$mdc-text-field-input-padding-top: 20px;
+$mdc-text-field-input-padding-bottom: 6px;
+$mdc-text-field-input-border-bottom: 1px;
 ```

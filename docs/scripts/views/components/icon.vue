@@ -92,7 +92,7 @@
           inputType="search"
           id="search"
           placeholder="Icon name keywords"
-          helptextId="my-icons"
+          helperTextId="my-icons"
           fullwidth
           :model="keywords"
           @input="onInput"

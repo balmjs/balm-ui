@@ -1,23 +1,11 @@
 <template>
-  <label :class="className">
+  <label class="mdc-floating-label">
     <slot></slot>
   </label>
 </template>
 
 <script>
-import floatingLabelMixin from '../../mixins/floating-label';
-
 export default {
-  name: 'ui-floating-label',
-  mixins: [floatingLabelMixin],
-  computed: {
-    className() {
-      return {
-        'mdc-floating-label': true,
-        'mdc-floating-label--float-above': this.floatAbove,
-        'mdc-floating-label--shake': this.shake
-      };
-    }
-  }
+  name: 'ui-floating-label'
 };
 </script>

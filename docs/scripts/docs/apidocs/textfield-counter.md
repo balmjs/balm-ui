@@ -1,14 +1,10 @@
 ```html
-<!-- Single line textfield -->
-<div>
-  <ui-textfield maxlength="40"></ui-textfield>
-  <ui-textfield-counter></ui-textfield-counter>
-</div>
+<!-- Single line text field -->
+<ui-textfield maxlength="40"></ui-textfield>
+<ui-textfield-helper counter></ui-textfield-helper>
 
-<!-- Multi-line text field -->
-<div>
-  <ui-textfield type="textarea" maxlength="140"></ui-textfield>
-</div>
+<!-- Textarea -->
+<ui-textfield inputType="textarea" maxlength="140"></ui-textfield>
 ```
 
 > `maxlength` is required.

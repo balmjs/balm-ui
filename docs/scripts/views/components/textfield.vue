@@ -117,7 +117,7 @@
 
     <ui-toc-affix></ui-toc-affix>
 
-    <!-- <div :class="$tt('body2')">
+    <div :class="$tt('body2')">
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
@@ -132,19 +132,19 @@
         >
           <ui-textfield
             id="full-func-text-field"
-            helptextId="my-text-field-helper-text"
+            helperTextId="my-text-field-helper-text"
             :class="{ 'demo-text-field-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
             :dense="controls.dense"
             :required="controls.required"
             >Email Address</ui-textfield
           >
-          <ui-textfield-helptext
+          <ui-textfield-helper
             v-if="controls.helperText"
             id="my-text-field-helper-text"
             :visible="controls.isVisible"
-            :validMsg="controls.isValidMsg"
-            >Helper Text (possibly validation message)</ui-textfield-helptext
+            :validMsg="controls.hasValidMsg"
+            >Helper Text (possibly validation message)</ui-textfield-helper
           >
         </section>
         <ui-textfield-controls
@@ -166,16 +166,16 @@
       <section class="example">
         <h3>1.2 Password field with validation</h3>
         <ui-textfield
-          type="password"
+          inputType="password"
           required
           pattern=".{8,}"
           id="pw"
-          helptextId="pw-validation-msg"
+          helperTextId="pw-validation-msg"
           :attrs="{ autocomplete: 'current-password' }"
           >Choose password</ui-textfield
         >
-        <ui-textfield-helptext id="pw-validation-msg" visible validMsg
-          >Must be at least 8 characters long</ui-textfield-helptext
+        <ui-textfield-helper id="pw-validation-msg" visible validMsg
+          >Must be at least 8 characters long</ui-textfield-helper
         >
         <ui-accordion>
           <ui-markdown :code="code[2]"></ui-markdown>
@@ -188,7 +188,7 @@
           <ui-textfield
             id="tf-outlined-input"
             outlined
-            helptextId="name-validation-message"
+            helperTextId="name-validation-message"
             :class="{ 'demo-text-field-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
             :dense="controls.dense"
@@ -199,13 +199,13 @@
             }"
             >Your Name</ui-textfield
           >
-          <ui-textfield-helptext id="name-validation-message" validMsg>
+          <ui-textfield-helper id="name-validation-message" validMsg>
             {{
               controls.min
                 ? 'Must be at least 8 characters'
                 : 'Helper Text (possibly validation message)'
             }}
-          </ui-textfield-helptext>
+          </ui-textfield-helper>
         </div>
         <ui-textfield-controls
           idPrefix="outlined"
@@ -234,7 +234,6 @@
         >
           <ui-textfield
             id="tf-box-leading"
-            box
             leadingIcon
             :class="{ 'demo-text-field-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
@@ -258,7 +257,6 @@
         >
           <ui-textfield
             id="tf-box-trailing"
-            box
             trailingIcon
             :class="{ 'demo-text-field-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
@@ -293,9 +291,9 @@
               minlength: controls.min ? 8 : 0
             }"
           >
-            <template #before="{ customIconClass }">
-              <span :class="customIconClass">
-                <i class="fa fa-smile-o fa-lg"></i>
+            <template #before="{ iconClass }">
+              <span :class="iconClass">
+                <i class="fa fa-smile-o"></i>
               </span> </template
             >Your other name
           </ui-textfield>
@@ -318,9 +316,9 @@
             }"
           >
             Your other name
-            <template #after="{ customIconClass }">
-              <span :class="customIconClass">
-                <i class="fa fa-close fa-lg"></i>
+            <template #after="{ iconClass }">
+              <span :class="iconClass">
+                <i class="fa fa-close"></i>
               </span>
             </template>
           </ui-textfield>
@@ -359,7 +357,7 @@
           :dir="controls.rtl ? 'rtl' : null"
         >
           <ui-textfield
-            type="textarea"
+            inputType="textarea"
             id="textarea"
             rows="8"
             cols="40"
@@ -394,10 +392,11 @@
           <ui-textfield-counter></ui-textfield-counter>
 
           <ui-textfield
-            type="textarea"
+            inputType="textarea"
             v-model="content"
             id="full-width-textarea"
             fullwidth
+            noLabel
             placeholder="Content"
             class="full-width-textarea-example"
             rows="8"
@@ -406,8 +405,7 @@
             :disabled="controls.disabled"
             :dense="controls.dense"
             :required="controls.required"
-            >Textarea Label</ui-textfield
-          >
+          ></ui-textfield>
         </div>
         <ui-textfield-controls
           :options="['disabled', 'dense', 'required', 'customColor']"
@@ -420,7 +418,7 @@
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="textfield"></ui-apidocs>
-      <ui-apidocs name="textfield-helptext"></ui-apidocs>
+      <ui-apidocs name="textfield-helper"></ui-apidocs>
       <ui-apidocs name="textfield-icon"></ui-apidocs>
       <ui-apidocs name="textfield-counter"></ui-apidocs>
 
@@ -428,7 +426,7 @@
         3. Sass Variables
       </h4>
       <ui-cssdocs name="textfield"></ui-cssdocs>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -503,7 +501,7 @@ export default {
         customColor: false,
         helperText: false,
         isVisible: false,
-        isValidMsg: false,
+        hasValidMsg: false,
         min: false,
         max: false,
         unclickable: false

@@ -7,8 +7,6 @@
 </template>
 
 <script>
-import getType from '../../utils/typeof';
-
 // Define text divider constants
 const UI_TEXT_DIVIDER = {
   TYPES: ['horizontal', 'vertical'],

@@ -18,22 +18,14 @@
       <div v-if="outlined" class="mdc-notched-outline">
         <div class="mdc-notched-outline__leading"></div>
         <div class="mdc-notched-outline__notch">
-          <ui-floating-label
-            v-if="!noLabel"
-            :floatAbove="floatAbove"
-            :shake="shake"
-          >
+          <ui-floating-label v-if="!noLabel">
             <slot>{{ label }}</slot>
           </ui-floating-label>
         </div>
         <div class="mdc-notched-outline__trailing"></div>
       </div>
       <template v-else>
-        <ui-floating-label
-          v-if="!noLabel"
-          :floatAbove="floatAbove"
-          :shake="shake"
-        >
+        <ui-floating-label v-if="!noLabel">
           <slot>{{ label }}</slot>
         </ui-floating-label>
         <div class="mdc-line-ripple"></div>
@@ -74,7 +66,6 @@
 <script>
 import { MDCSelect } from '../../../material-components-web/select';
 import UiFloatingLabel from '../form-controls/floating-label';
-import floatingLabelMixin from '../../mixins/floating-label';
 import materialIconMixin from '../../mixins/material-icon';
 import UI_GLOBAL from '../../config/constants';
 
@@ -94,7 +85,7 @@ export default {
   components: {
     UiFloatingLabel
   },
-  mixins: [floatingLabelMixin, materialIconMixin],
+  mixins: [materialIconMixin],
   model: {
     prop: 'model',
     event: UI_SELECT.EVENT.CHANGE

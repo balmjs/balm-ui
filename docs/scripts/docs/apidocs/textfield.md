@@ -2,37 +2,51 @@
 <ui-textfield><!-- the label text --></ui-textfield>
 ```
 
+### `<ui-textfield>` Types
+
+- `0`: `'filled'`
+- `1`: `'outlined'`
+
 #### Props
 
-| Name                | Type            | Default  | Description                                                                                                     |
-| ------------------- | --------------- | -------- | --------------------------------------------------------------------------------------------------------------- |
-| `model` (`v-model`) | string, number  | `''`     | Mandatory.                                                                                                      |
-| `id`                | string          | `null`   | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`.                                   |
-| `placeholder`       | string          | `null`   | The _placeholder_ attribute of the `<input>`.                                                                   |
-| `required`          | boolean         | `false`  | The _required_ attribute of the `<input>`.                                                                      |
-| `maxlength`         | number, string  | `null`   | The _maxlength_ attribute of the `<input>` and `<textarea>`. (Required for character counter)                   |
-| `type`              | string          | `'text'` | Text field supported types: `text`, number, `password` and `textarea`.                                          |
-| `pattern`           | string          | `null`   | The _pattern_ attribute of the `<input>`.                                                                       |
-| `rows`              | number, string  | `1`      | The _rows_ attribute of the `<textarea>`.                                                                       |
-| `cols`              | number, string  | `20`     | The _cols_ attribute of the `<textarea>`.                                                                       |
-| `label`             | string          | `null`   | A text caption or description for the text field, which use the input's `placeholder` attribute instead.        |
-| `outlined`          | boolean         | `false`  | Styles the text field as an outlined text field.                                                                |
-| `fullwidth`         | boolean         | `false`  | Styles the text field as a full width text field.                                                               |
-| `disabled`          | boolean         | `false`  | Styles the text field as a disabled text field.                                                                 |
-| `dense`             | boolean         | `false`  | Styles the text field as a dense text field.                                                                    |
-| `leadingIcon`       | boolean, string | `false`  | Styles the text field as a text field with a leading icon. Applicable only for the box or outlined text field.  |
-| `trailingIcon`      | boolean, string | `false`  | Styles the text field as a text field with a trailing icon. Applicable only for the box or outlined text field. |
-| `noLabel`           | boolean         | `false`  | Styles the text field that has no label.                                                                        |
-| `helptextId`        | string          | `null`   | The _id_ attribute of the `<ui-textfield-helptext>`.                                                            |
-| `attrs`             | object          | `null`   | Other attributes for `<input>` or `<textarea>`.                                                                 |
+| Name                | Type            | Default  | Description                                                                                                                        |
+| ------------------- | --------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `type`              | string, number  | `0`      | Mandatory. Text field types.                                                                                                       |
+| `outlined`          | boolean         | `false`  | Styles the text field as an outlined text field. (Equivalent to `type=1`)                                                          |
+| `model` (`v-model`) | string, number  | `''`     | Mandatory.                                                                                                                         |
+| `id`                | string          | `null`   | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`.                                                      |
+| `label`             | string          | `null`   | A text caption or description for the text field, which use the input's `placeholder` attribute instead.                           |
+| `noLabel`           | boolean         | `false`  | Styles the text field that has no label.                                                                                           |
+| `placeholder`       | string          | `null`   | The _placeholder_ attribute of the `<input>`.                                                                                      |
+| `fullwidth`         | boolean         | `false`  | Styles the text field as a full width text field.                                                                                  |
+| `disabled`          | boolean         | `false`  | Styles the text field as a disabled text field.                                                                                    |
+| `icon`              | string          | `''`     | Optional. Indicates an icon element with a leading icon. See [Material Icons](/#/icons) list. (No need to configure `leadingIcon`) |
+| `leadingIcon`       | boolean, string | `false`  | Styles the text field as a text field with a leading icon. (Use with `before` slot)                                                |
+| `trailingIcon`      | boolean, string | `false`  | Styles the text field as a text field with a trailing icon. (Use with `after` slot)                                                |
+| `dense`             | boolean         | `false`  | Styles the text field as a dense text field.                                                                                       |
+| `inputType`         | string          | `'text'` | Native `<input>` types: `text`, `number`, `password`, etc.                                                                         |
+| `rows`              | number, string  | `1`      | The _rows_ attribute of the `<textarea>`.                                                                                          |
+| `cols`              | number, string  | `20`     | The _cols_ attribute of the `<textarea>`.                                                                                          |
+| `helperTextId`      | string          | `null`   | Required for the _id_ attribute of the `<ui-textfield-helper>`.                                                                    |
+| `attrs`             | object          | `null`   | Other attributes for `<input>` or `<textarea>`.                                                                                    |
+
+In addition to the above, the following properties proxy to the input element's properties of the same name:
+
+- `required`
+- `pattern`
+- `minLength`
+- `maxLength`: Required for character counter - `<ui-textfield-helper counter>`
+- `min`
+- `max`
+- `step`
 
 #### Slots
 
-| Name      | Slots                 | Description                                          |
-| --------- | --------------------- | ---------------------------------------------------- |
-| `default` |                       | The default slot holds the label for the text field. |
-| `before`  | `{ customIconClass }` | The before slot holds a custom leading icon.         |
-| `after`   | `{ customIconClass }` | The before slot holds a custom trailing icon.        |
+| Name      | Slots           | Description                                          |
+| --------- | --------------- | ---------------------------------------------------- |
+| `default` |                 | The default slot holds the label for the text field. |
+| `before`  | `{ iconClass }` | The before slot holds a custom leading icon.         |
+| `after`   | `{ iconClass }` | The before slot holds a custom trailing icon.        |
 
 #### Events
 

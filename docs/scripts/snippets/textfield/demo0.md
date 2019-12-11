@@ -8,14 +8,6 @@ Vue.use(BalmUI, {
   // Optional. Overwrite `<ui-textfield>` props.
   UiTextfield: {
     // some props
-  },
-  // Optional. Overwrite `<ui-textfield-helptext>` props.
-  UiTextfieldHelptext: {
-    // some props
-  },
-  // Optional. Overwrite `<ui-textfield-icon>` props.
-  UiTextfieldIcon: {
-    // some props
   }
 });
 ```
@@ -34,14 +26,6 @@ import 'balm-ui/components/icon.css'; // Optional
 Vue.use(UiTextfieldComponents, {
   // Optional. Overwrite `<ui-textfield>` props.
   UiTextfield: {
-    // some props
-  },
-  // Optional. Overwrite `<ui-textfield-helptext>` props.
-  UiTextfieldHelptext: {
-    // some props
-  },
-  // Optional. Overwrite `<ui-textfield-icon>` props.
-  UiTextfieldIcon: {
     // some props
   }
 });

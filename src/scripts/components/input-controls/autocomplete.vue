@@ -3,6 +3,7 @@
     outlined
     plus
     v-model="inputValue"
+    :id="id"
     :class="className"
     :placeholder="placeholder"
     :label="label"
@@ -95,6 +96,7 @@ export default {
       required: true
     },
     // UI attributes
+    id: String,
     autofocus: {
       type: Boolean,
       default: false

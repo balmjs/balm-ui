@@ -2,43 +2,75 @@
   <div :class="[$tt('body1'), 'demo--select']">
     <section class="hero component">
       <div class="hero-demo">
-        <ui-select
-          id="my-select"
-          v-model="selected"
-          :options="options"
-          :leadingIcon="selectOption.includes(1)"
-          helperTextId="my-helper-text"
-          @change="onChange"
-          @selected="onSelected"
-        >
-          <template v-if="selectOption.includes(1)" #icon>
-            <ui-select-icon>face</ui-select-icon>
+        <div>
+          <template v-if="typeOption === 0">
+            <ui-select
+              id="my-select"
+              v-model="selected"
+              :options="options"
+              :leadingIcon="selectOption.includes(1)"
+              helperTextId="my-helper-text"
+            >
+              <template v-if="selectOption.includes(1)" #icon>
+                <ui-select-icon>face</ui-select-icon>
+              </template>
+              Pick a fruit
+            </ui-select>
+            <ui-select-helper
+              id="my-helper-text"
+              :visible="selectOption.includes(2)"
+              >Helper text</ui-select-helper
+            >
           </template>
-          Pick a fruit
-        </ui-select>
-        <ui-select-helper
-          id="my-helper-text"
-          :visible="selectOption.includes(2)"
-          >Helper text</ui-select-helper
-        >
+        </div>
+        <div>
+          <template v-if="typeOption === 1">
+            <ui-select
+              outlined
+              id="my-select"
+              v-model="selected"
+              :options="options"
+              :leadingIcon="selectOption.includes(1)"
+              helperTextId="my-helper-text"
+            >
+              <template v-if="selectOption.includes(1)" #icon>
+                <ui-select-icon>face</ui-select-icon>
+              </template>
+              Pick a fruit
+            </ui-select>
+            <ui-select-helper
+              id="my-helper-text"
+              :visible="selectOption.includes(2)"
+              >Helper text</ui-select-helper
+            >
+          </template>
+        </div>
       </div>
       <div class="hero-options">
-        <ui-form-field>
-          <ui-checkbox
-            id="with-leading-icon"
-            v-model="selectOption"
-            :value="1"
-          ></ui-checkbox>
-          <label for="with-leading-icon">Leading Icon</label>
-        </ui-form-field>
-        <ui-form-field>
-          <ui-checkbox
-            id="with-helper-text"
-            v-model="selectOption"
-            :value="2"
-          ></ui-checkbox>
-          <label for="with-helper-text">Helper Text</label>
-        </ui-form-field>
+        <ui-select
+          class="hero-option"
+          :options="TypeOptions"
+          v-model="typeOption"
+          >Type</ui-select
+        >
+        <div class="hero-option">
+          <ui-form-field>
+            <ui-checkbox
+              id="with-leading-icon"
+              v-model="selectOption"
+              :value="1"
+            ></ui-checkbox>
+            <label for="with-leading-icon">Leading Icon</label>
+          </ui-form-field>
+          <ui-form-field>
+            <ui-checkbox
+              id="with-helper-text"
+              v-model="selectOption"
+              :value="2"
+            ></ui-checkbox>
+            <label for="with-helper-text">Helper Text</label>
+          </ui-form-field>
+        </div>
       </div>
     </section>
 
@@ -240,6 +272,8 @@
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="select"></ui-apidocs>
+      <ui-apidocs name="select-helper"></ui-apidocs>
+      <ui-apidocs name="select-icon"></ui-apidocs>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
@@ -257,6 +291,17 @@ import {
   CITIES,
   OPTIONS as options1
 } from '../../../data/select';
+
+const TypeOptions = [
+  {
+    label: 'Filled',
+    value: 0
+  },
+  {
+    label: 'Outlined',
+    value: 1
+  }
+];
 
 const SelectOptions = [
   {
@@ -342,16 +387,18 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      TypeOptions,
       SelectOptions,
+      typeOption: 0,
       selectOption: [],
       selected: '',
       selected1: {
         value: '',
-        index: 0
+        index: -1
       },
       selected2: {
         value: '',
-        index: 0
+        index: -1
       },
       selected3: 'fruit-roll-ups',
       selected4: 'steak',
@@ -373,16 +420,10 @@ export default {
     };
   },
   methods: {
-    onChange(o) {
-      console.log('onChange', o);
+    onSelected(result, key) {
+      this[`selected${key}`].value = result.value;
+      this[`selected${key}`].index = result.index;
     },
-    onSelected(o) {
-      console.log('onSelected', o);
-    },
-    // onSelected(result, key) {
-    //   this[`selected${key}`].value = result.value;
-    //   this[`selected${key}`].index = result.index;
-    // },
     onChangeProvince(value) {
       this.formData.provinces = value;
 

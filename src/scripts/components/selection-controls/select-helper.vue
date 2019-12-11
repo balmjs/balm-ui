@@ -1,16 +1,22 @@
 <template>
   <!-- Helper text (optional) -->
   <p :id="id" :class="className" aria-hidden="true">
-    <slot></slot>
+    <slot>{{ getType(validMsg) === 'string' ? validMsg : '' }}</slot>
   </p>
 </template>
 
 <script>
 import helperTextMixin from '../../mixins/helper-text';
+import getType from '../../utils/typeof';
 
 export default {
   name: 'ui-select-helper',
   mixins: [helperTextMixin],
+  data() {
+    return {
+      getType
+    };
+  },
   computed: {
     className() {
       return {

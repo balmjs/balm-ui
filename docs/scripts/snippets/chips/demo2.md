@@ -1,11 +1,9 @@
 ```html
-<ui-chip-set choice v-model="selectedIndex">
-  <ui-chip v-for="(item, index) in choiceList"
-    :key="index"
-    class="demo-chip">
+<ui-chips type="choice" v-model="selectedIndex">
+  <ui-chip v-for="(item, index) in choiceList" :key="index" class="demo-chip">
     <ui-chip-text>{{ item }}</ui-chip-text>
   </ui-chip>
-</ui-chip-set>
+</ui-chips>
 ```
 
 ```js

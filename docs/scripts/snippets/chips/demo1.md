@@ -1,20 +1,20 @@
 ```html
-<input id="input-chip-set-input" v-model="name" placeholder="Chip text">
-<ui-button dense id="input-chip-set-button"
-  @click="addOne">
+<input id="input-chip-set-input" v-model="name" placeholder="Chip text" />
+<ui-button dense id="input-chip-set-button" @click="addOne">
   Add Input Chip
 </ui-button>
-<ui-button dense id="input-chip-set-delete-button"
-  @click="removeLastOne">
+<ui-button dense id="input-chip-set-delete-button" @click="removeLastOne">
   Delete Last Chip
 </ui-button>
-<ui-chip-set input id="input-chip-set" :items="list">
+<ui-chips type="input" id="input-chip-set" :items="list">
   <ui-chip v-for="item in list" :key="item.id" class="demo-chip">
     <ui-chip-leading-icon>face</ui-chip-leading-icon>
     <ui-chip-text>{{ item.name }}</ui-chip-text>
-    <ui-chip-trailing-icon @click="removeOneById(item.id)"></ui-chip-trailing-icon>
+    <ui-chip-trailing-icon
+      @click="removeOneById(item.id)"
+    ></ui-chip-trailing-icon>
   </ui-chip>
-</ui-chip-set>
+</ui-chips>
 ```
 
 ```js

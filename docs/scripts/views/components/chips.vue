@@ -127,12 +127,8 @@
       </section>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="chip-set"></ui-apidocs>
+      <ui-apidocs name="chips"></ui-apidocs>
       <ui-apidocs name="chip"></ui-apidocs>
-      <ui-apidocs name="chip-text"></ui-apidocs>
-      <ui-apidocs name="chip-thumbnail"></ui-apidocs>
-      <ui-apidocs name="chip-remove-icon"></ui-apidocs>
-      <ui-apidocs name="chip-checkmark"></ui-apidocs>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables

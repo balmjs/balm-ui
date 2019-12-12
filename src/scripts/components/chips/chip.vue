@@ -67,30 +67,6 @@ export default {
       ];
     }
   },
-  mounted() {
-    const parent = this.$parent;
-    parent.$nextTick(() => {
-      const chipSet = parent.$chipSet;
-      chipSet && chipSet.addChip(this.$el);
-
-      // init
-      const selectedValue = parent.selectedValue;
-      if (parent.filterChips) {
-        chipSet.chips.forEach((chip, index) => {
-          if (!chip.selected && selectedValue.includes(index)) {
-            chip.selected = true;
-            chipSet.selectedChipIds.push(chip.id);
-          }
-        });
-      } else if (
-        parent.choiceChips &&
-        selectedValue > -1 &&
-        chipSet.chips[selectedValue]
-      ) {
-        chipSet.chips[selectedValue].selected = true;
-      }
-    });
-  },
   methods: {
     handleClick(event) {
       this.$emit(UI_CHIPS.EVENT.CLICK, event);

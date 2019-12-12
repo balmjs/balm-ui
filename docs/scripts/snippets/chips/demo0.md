@@ -5,8 +5,8 @@ import Vue from 'vue';
 import BalmUI from 'balm-ui';
 
 Vue.use(BalmUI, {
-  // Optional. Overwrite `<ui-chip-set>` props.
-  UiChipSet: {
+  // Optional. Overwrite `<ui-chips>` props.
+  UiChips: {
     // some props
   }
 });
@@ -24,8 +24,8 @@ import 'balm-ui/components/chips.css';
 import 'balm-ui/components/icon.css'; // Optional.
 
 Vue.use(UiChipsComponents, {
-  // Optional. Overwrite `<ui-chip-set>` props.
-  UiChipSet: {
+  // Optional. Overwrite `<ui-chips>` props.
+  UiChips: {
     // some props
   }
 });

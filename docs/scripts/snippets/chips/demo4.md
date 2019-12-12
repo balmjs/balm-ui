@@ -1,12 +1,10 @@
 ```html
-<ui-chip-set>
-  <ui-chip v-for="(item, index) in actionList"
-    :key="index"
-    class="demo-chip">
+<ui-chips>
+  <ui-chip v-for="(item, index) in actionList" :key="index" class="demo-chip">
     <ui-chip-leading-icon>{{ item.icon }}</ui-chip-leading-icon>
     <ui-chip-text>{{ item.name }}</ui-chip-text>
   </ui-chip>
-</ui-chip-set>
+</ui-chips>
 ```
 
 ```js

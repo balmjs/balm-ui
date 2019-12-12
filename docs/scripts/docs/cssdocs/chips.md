@@ -8,6 +8,17 @@ $mdc-chip-ink-color-default: rgba(mdc-theme-prop-value(on-surface), 0.87);
 $mdc-chip-horizontal-padding: 12px;
 $mdc-chip-height-default: 32px;
 
+$mdc-chip-minimum-height: 24px;
+$mdc-chip-maximum-height: $mdc-chip-height;
+$mdc-chip-density-scale: $mdc-density-default-scale;
+$mdc-chip-density-config: (
+  height: (
+    default: $mdc-chip-height,
+    maximum: $mdc-chip-maximum-height,
+    minimum: $mdc-chip-minimum-height
+  )
+);
+
 $mdc-chip-icon-color: mdc-theme-prop-value(on-surface);
 $mdc-chip-icon-opacity: 0.54;
 $mdc-chip-trailing-icon-hover-opacity: 0.62;
@@ -27,4 +38,9 @@ $mdc-chip-leading-icon-margin-left: -4px;
 
 $mdc-chip-trailing-icon-margin-right: -4px;
 $mdc-chip-trailing-icon-margin-left: 4px;
+
+$mdc-chip-exit-transition: opacity 75ms
+    $mdc-animation-standard-curve-timing-function, width 150ms
+    $mdc-animation-deceleration-curve-timing-function, padding 100ms linear, margin
+    100ms linear;
 ```

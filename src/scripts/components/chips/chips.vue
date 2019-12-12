@@ -69,30 +69,56 @@ export default {
     }
   },
   mounted() {
-    this.$chipSet = new MDCChipSet(this.$el);
-
-    const adapter = this.$chipSet.foundation_.adapter_;
-
-    this.$chipSet.listen('MDCChip:selection', ({ detail }) => {
-      if (this.choiceChips) {
-        const selectedIndex = detail.selected
-          ? adapter.getIndexOfChipById(detail.chipId)
-          : -1;
-
-        this.$emit(UI_CHIPS.EVENT.CHANGE, selectedIndex);
-      } else if (this.filterChips) {
-        let selectedIndexes = [];
-        this.$chipSet.chips.forEach((chip, index) => {
-          if (chip.selected) {
-            selectedIndexes.push(index);
-          }
-        });
-
-        this.$emit(UI_CHIPS.EVENT.CHANGE, selectedIndexes);
-      }
-    });
+    this.init();
+  },
+  updated() {
+    if (!this.$chipSet) {
+      this.init();
+    }
   },
   methods: {
+    init() {
+      this.$chipSet = new MDCChipSet(this.$el);
+
+      const chips = this.$chipSet.chips;
+      if (chips.length) {
+        if (this.filterChips) {
+          chips.forEach((chip, index) => {
+            if (!chip.selected && this.selectedValue.includes(index)) {
+              chip.selected = true;
+            }
+          });
+        } else if (
+          this.choiceChips &&
+          this.selectedValue > -1 &&
+          chips[this.selectedValue]
+        ) {
+          chips[this.selectedValue].selected = true;
+        }
+
+        const adapter = this.$chipSet.foundation_.adapter_;
+        this.$chipSet.listen('MDCChip:selection', ({ detail }) => {
+          if (this.choiceChips) {
+            const selectedIndex = detail.selected
+              ? adapter.getIndexOfChipById(detail.chipId)
+              : -1;
+
+            this.$emit(UI_CHIPS.EVENT.CHANGE, selectedIndex);
+          } else if (this.filterChips) {
+            let selectedIndexes = [];
+            chips.forEach((chip, index) => {
+              if (chip.selected) {
+                selectedIndexes.push(index);
+              }
+            });
+
+            this.$emit(UI_CHIPS.EVENT.CHANGE, selectedIndexes);
+          }
+        });
+      } else {
+        this.$chipSet = null;
+      }
+    },
     addChip(length) {
       this.$nextTick(() => {
         let newChipIndex = length - 1;

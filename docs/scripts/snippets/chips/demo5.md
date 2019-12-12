@@ -1,18 +1,22 @@
 ```html
-<ui-chip-set>
-  <ui-chip v-for="(item, index) in actionList"
+<ui-chips>
+  <ui-chip
+    v-for="(item, index) in actionList"
     :key="index"
-    class="demo-chip custom-chip-primary">
+    class="demo-chip custom-chip-primary"
+  >
     <ui-chip-text>{{ item.name }}</ui-chip-text>
   </ui-chip>
-</ui-chip-set>
-<ui-chip-set>
-  <ui-chip v-for="(item, index) in actionList"
+</ui-chips>
+<ui-chips>
+  <ui-chip
+    v-for="(item, index) in actionList"
     :key="index"
-    class="demo-chip custom-chip-secondary">
+    class="demo-chip custom-chip-secondary"
+  >
     <ui-chip-text>{{ item.name }}</ui-chip-text>
   </ui-chip>
-</ui-chip-set>
+</ui-chips>
 ```
 
 ```js

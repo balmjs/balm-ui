@@ -1,6 +1,8 @@
 <template>
   <li :class="className" @click="handleClick">
-    <slot></slot>
+    <slot name="before" :iconClass="UI_LIST.cssClasses.firstTile"></slot>
+    <slot><!-- text content --></slot>
+    <slot name="after" :iconClass="UI_LIST.cssClasses.lastTile"></slot>
   </li>
 </template>
 
@@ -20,6 +22,11 @@ export default {
       default: false
     }
   },
+  data() {
+    return {
+      UI_LIST
+    };
+  },
   computed: {
     className() {
       let result = [UI_LIST.cssClasses.item];
@@ -31,6 +38,11 @@ export default {
       }
 
       return result;
+    }
+  },
+  mounted() {
+    if (!this.$parent.nonInteractive) {
+      // this.$parent.initRipple(this.$el);
     }
   },
   methods: {

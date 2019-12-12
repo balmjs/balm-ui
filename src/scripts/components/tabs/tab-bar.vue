@@ -28,21 +28,30 @@ export default {
     };
   },
   mounted() {
-    this.$tabBar = new MDCTabBar(this.$el);
-
-    this.$tabBar.listen('MDCTabBar:activated', ({ detail }) => {
-      this.handleChange(detail.index);
-    });
-
-    this.initActivateTab();
+    this.init();
+  },
+  updated() {
+    if (!this.$tabBar) {
+      this.init();
+    }
   },
   methods: {
-    initActivateTab() {
-      let tabList = this.$tabBar.tabList_;
-      let activeTabIndex =
-        this.active > -1 && this.active < tabList.length ? this.active : 0;
+    init() {
+      this.$tabBar = new MDCTabBar(this.$el);
 
-      this.$tabBar.activateTab(activeTabIndex);
+      const tabList = this.$tabBar.tabList_;
+
+      if (tabList.length) {
+        const activeTabIndex =
+          this.active > -1 && this.active < tabList.length ? this.active : 0;
+        this.$tabBar.activateTab(activeTabIndex);
+
+        this.$tabBar.listen('MDCTabBar:activated', ({ detail }) => {
+          this.handleChange(detail.index);
+        });
+      } else {
+        this.$tabBar = null;
+      }
     }
   }
 };

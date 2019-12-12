@@ -51,7 +51,6 @@
 </template>
 
 <script>
-import { MDCTab } from '../../../material-components-web/tab';
 import UiTabIndicator from './tab-indicator';
 import tabMixin from '../../mixins/tab';
 import materialIconMixin from '../../mixins/material-icon';
@@ -86,43 +85,6 @@ export default {
         'mdc-tab--min-width': this.minWidth,
         'mdc-tab--active': isActive
       };
-    }
-  },
-  mounted() {
-    this.$tab = new MDCTab(this.$el);
-
-    this.addTab(); // For async tab
-  },
-  methods: {
-    addTab() {
-      const parent = this.$parent.$parent;
-
-      if (parent.$el.classList.contains('mdc-tab-bar')) {
-        parent.$nextTick(() => {
-          if (
-            parent.$tabBar.tabList_.length !==
-            parent.$el.querySelectorAll('.mdc-tab').length
-          ) {
-            if (!parent.nextTabId) {
-              const currentTabList = document.querySelectorAll('.mdc-tab');
-              const currentLastTab = currentTabList[currentTabList.length - 1];
-              parent.nextTabId = +currentLastTab.id.replace(
-                UI_TAB.idPrefix,
-                ''
-              );
-            }
-
-            const id = `${UI_TAB.idPrefix}${++parent.nextTabId}`;
-            this.$tab.id = id;
-            this.$el.id = id;
-
-            parent.$tabBar.tabList_.push(this.$tab);
-            parent.initActivateTab();
-          }
-        });
-      } else {
-        console.warn('Invalid `<ui-tabs>` or `<ui-tab-bar>`.');
-      }
     }
   }
 };

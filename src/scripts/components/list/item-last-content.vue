@@ -1,27 +1,18 @@
 <template>
   <!-- Metadata / List control -->
-  <span class="mdc-list-item__meta">
-    <slot>
-      <i
-        v-if="materialIcon"
-        :class="UI_GLOBAL.cssClasses.icon"
-        aria-hidden="true"
-        >{{ materialIcon }}</i
-      >
-    </slot>
+  <span :class="UI_LIST.cssClasses.lastTile">
+    <slot><!-- Typically small text, icon or image --></slot>
   </span>
 </template>
 
 <script>
-import materialIconMixin from '../../mixins/material-icon';
-import UI_GLOBAL from '../../config/constants';
+import UI_LIST from './constants';
 
 export default {
   name: 'ui-item-last-content',
-  mixins: [materialIconMixin],
   data() {
     return {
-      UI_GLOBAL
+      UI_LIST
     };
   }
 };

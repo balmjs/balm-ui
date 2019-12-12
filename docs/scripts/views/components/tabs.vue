@@ -203,6 +203,7 @@ export default {
   },
   created() {
     this.showCode('tabs', 9);
+
     setTimeout(() => {
       this.tabs = [
         {

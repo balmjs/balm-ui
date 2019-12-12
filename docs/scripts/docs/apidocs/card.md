@@ -17,4 +17,9 @@
 **Card child components:**
 
 - `<ui-card-content>`
+  - `<ui-card-media>`
+    - `<ui-card-media-content>`
+  - `<ui-card-text>`
 - `<ui-card-actions>`
+  - `<ui-card-buttons>`
+  - `<ui-card-icons>`

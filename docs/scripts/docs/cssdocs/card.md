@@ -1,4 +1,8 @@
 ```css
+$mdc-card-action-icon-color: rgba(
+  mdc-theme-prop-value(on-surface),
+  mdc-theme-text-emphasis(medium)
+);
 $mdc-card-outline-color: mix(
   mdc-theme-prop-value(on-surface),
   mdc-theme-prop-value(surface),

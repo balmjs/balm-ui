@@ -155,8 +155,9 @@ const MATERIAL_COMPONENTS = [
       },
       {
         icon: 'component',
-        name: 'Divider',
-        description: 'Divider'
+        name: 'Text Divider',
+        description: 'Divider',
+        url: 'divider'
       },
       {
         icon: 'card',

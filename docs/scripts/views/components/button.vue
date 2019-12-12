@@ -103,9 +103,11 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      // hero
       TypeOptions,
       typeOption: 0,
       text: 'Button',
+      // demo
       controls: {
         disabled: false
       }

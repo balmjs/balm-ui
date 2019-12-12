@@ -11,9 +11,11 @@
 
 #### Slots
 
-| Name      | Slots | Description                                                            |
-| --------- | ----- | ---------------------------------------------------------------------- |
-| `default` |       | The default slot holds the item child components and can contain HTML. |
+| Name      | Slots           | Description                                                                                                |
+| --------- | --------------- | ---------------------------------------------------------------------------------------------------------- |
+| `default` |                 | The default slot holds the item child components and can contain HTML.                                     |
+| `before`  | `{ iconClass }` | Custom `<ui-item-first-content>`. Optional, the first tile in the row. Typically an icon or image.         |
+| `after`   | `{ iconClass }` | Custom `<ui-item-last-content>`. Optional, the last tile in the row. Typically small text, icon. or image. |
 
 **Item child components:**
 
@@ -32,11 +34,11 @@
 </ui-list>
 
 <!-- Two-Line List -->
-<ui-list type="2">
+<ui-list :type="2">
   <ui-item>
     <ui-item-text-content>
-      <ui-item-text><!-- Primary text --></ui-item-text>
-      <ui-item-subtext><!-- Secondary text --></ui-item-subtext>
+      <ui-item-text1><!-- Primary text --></ui-item-text1>
+      <ui-item-text2><!-- Secondary text --></ui-item-text2>
     </ui-item-text-content>
   </ui-item>
 </ui-list>
@@ -44,9 +46,9 @@
 <!-- Rich List -->
 <ui-list>
   <ui-item>
-    <ui-item-first-content :icon="materialIcons"></ui-item-first-content>
+    <ui-item-first-content><!-- Icon --></ui-item-first-content>
     <ui-item-text-content><!-- Primary text --></ui-item-text-content>
-    <ui-item-last-content><!-- Meta --></ui-item-last-content>
+    <ui-item-last-content><!-- Meta info --></ui-item-last-content>
   </ui-item>
 </ui-list>
 ```

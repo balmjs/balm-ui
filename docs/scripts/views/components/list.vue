@@ -57,7 +57,7 @@
         </ui-list>
 
         <h4 :class="$tt('headline6')">1.2 Two-Line</h4>
-        <ui-list type="2">
+        <ui-list :type="2">
           <ui-item v-for="i in items" :key="i">
             <ui-item-text-content>
               <ui-item-text1>Line item</ui-item-text1>
@@ -101,7 +101,7 @@
         <h4 :class="$tt('headline6')">
           1.6 Two-Line with Leading and Trailing Icon and Divider
         </h4>
-        <ui-list type="2" avatar>
+        <ui-list :type="2" avatar>
           <template v-for="(item, index) in items3">
             <ui-item-divider v-if="item === '-'" :key="index"></ui-item-divider>
             <ui-item v-else :key="index">
@@ -160,7 +160,6 @@
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="list"></ui-apidocs>
       <ui-apidocs name="list-item"></ui-apidocs>
-      <ui-apidocs name="list-divider"></ui-apidocs>
       <ui-apidocs name="list-group"></ui-apidocs>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">

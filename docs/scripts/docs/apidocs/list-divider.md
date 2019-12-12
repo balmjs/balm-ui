@@ -1,9 +1,10 @@
 ```html
 <ui-list-divider></ui-list-divider>
+
 <ui-item-divider></ui-item-divider>
 ```
 
-#### Props
+#### Common Props
 
 | Name     | Type    | Default | Description                                                                                            |
 | -------- | ------- | ------- | ------------------------------------------------------------------------------------------------------ |

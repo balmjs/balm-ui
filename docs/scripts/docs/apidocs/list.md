@@ -1,23 +1,30 @@
 ```html
 <ui-list><!-- <ui-item> --></ui-list>
+
 <ui-nav><!-- <ui-a> or <router-link> --></ui-nav>
 ```
 
-#### Props
+### Common Types
 
-| Name              | Type           | Default | Description                                                                                                                                  |
-| ----------------- | -------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`            | number, string | `1`     | List types. {1: 'Single-line list', 2: 'Two-line list'}                                                                                      |
-| `nonInteractive`  | boolean'       | `false` | Optional, disables interactivity affordances.                                                                                                |
-| `dense`           | boolean'       | `false` | Optional, styles the density of the list, making it appear more compact.                                                                     |
-| `avatar`          | boolean'       | `false` | Optional, configures the leading tiles of each row to display images instead of icons. This will make the graphics of the list items larger. |
-| `singleSelection` | boolean'       | `false` | Applicable only for the `<ui-list>`. The list can handle selecting/deselecting list elements based on click or keyboard action.              |
+- `1`: `'singleLine'`
+- `2`: `'twoLine'`
 
-#### Slots
+#### Common Props
 
-| Name      | Slots                                          | Description                                                                                          |
-| --------- | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `default` | `{ itemClass, selectedClass, activatedClass }` | Applicable only for the `<ui-nav>`. The default slot holds the item components and can contain HTML. |
+| Name                        | Type           | Default | Description                                                                                                                                  |
+| --------------------------- | -------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`                      | string, number | `0`     | Mandatory. List types.                                                                                                                       |
+| `singleSelection`           | boolean'       | `false` | The list can handle selecting/deselecting list elements based on click or keyboard action.                                                   |
+| `selectedIndex` (`v-model`) | `Number`       | `-1`    | The index of the selected list item. Applicable only for the single selection list.                                                          |
+| `nonInteractive`            | boolean'       | `false` | Optional, disables interactivity affordances.                                                                                                |
+| `dense`                     | boolean'       | `false` | Optional, styles the density of the list, making it appear more compact.                                                                     |
+| `avatar`                    | boolean'       | `false` | Optional, configures the leading tiles of each row to display images instead of icons. This will make the graphics of the list items larger. |
+
+#### `<ui-nav>` Slots
+
+| Name      | Slots                                          | Description                                                      |
+| --------- | ---------------------------------------------- | ---------------------------------------------------------------- |
+| `default` | `{ itemClass, selectedClass, activatedClass }` | The default slot holds the item components and can contain HTML. |
 
 ```html
 <ui-nav>
@@ -30,7 +37,7 @@
 
 > Optional, styles the row in a selected or activated state.
 
-#### Events
+#### Common Events
 
 | Name     | Type                      | Description                                                             |
 | -------- | ------------------------- | ----------------------------------------------------------------------- |

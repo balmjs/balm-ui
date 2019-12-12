@@ -4,7 +4,7 @@
       <ui-text-divider>With Text</ui-text-divider>
     </section>
 
-    <ui-toc-affix withoutCss></ui-toc-affix>
+    <ui-toc-affix></ui-toc-affix>
 
     <div :class="$tt('body2')">
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
@@ -32,7 +32,13 @@
       </ui-accordion>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="divider"></ui-apidocs>
+      <ui-apidocs name="list-divider"></ui-apidocs>
+      <ui-apidocs name="text-divider"></ui-apidocs>
+
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
+        3. Sass Variables
+      </h4>
+      <ui-cssdocs name="divider"></ui-cssdocs>
     </div>
   </div>
 </template>

@@ -36,7 +36,6 @@
                 <template v-for="(item, index) in menu">
                   <router-link
                     v-if="item.icon || item.isSubmenu"
-                    v-ripple
                     :key="`item${index}`"
                     :class="[
                       itemClass,

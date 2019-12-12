@@ -1,25 +1,39 @@
 <template>
   <div :class="className">
-    <span v-if="!noText">
-      <slot></slot>
-    </span>
+    <template v-if="isVertical">
+      <slot name="left"></slot>
+      <span v-if="!noText" class="mdc-text-divider__text">
+        <span>
+          <slot></slot>
+        </span>
+      </span>
+      <slot name="right"></slot>
+    </template>
+    <template v-else>
+      <span v-if="!noText" class="mdc-text-divider__text">
+        <span>
+          <slot></slot>
+        </span>
+      </span>
+    </template>
   </div>
 </template>
 
 <script>
+import typeMixin from '../../mixins/type';
+
 // Define text divider constants
 const UI_TEXT_DIVIDER = {
-  TYPES: ['horizontal', 'vertical'],
-  VERTICAL: ['vertical', '|', 1]
+  TYPES: {
+    horizontal: 0,
+    vertical: 1
+  }
 };
 
 export default {
   name: 'ui-text-divider',
+  mixins: [typeMixin],
   props: {
-    type: {
-      type: [String, Number],
-      default: UI_TEXT_DIVIDER.TYPES[0]
-    },
     noText: {
       type: Boolean,
       default: false
@@ -27,7 +41,9 @@ export default {
   },
   computed: {
     isVertical() {
-      return UI_TEXT_DIVIDER.VERTICAL.includes(this.type);
+      return (
+        this.checkType(UI_TEXT_DIVIDER.TYPES, 'vertical') || this.type === '|'
+      );
     },
     className() {
       return {

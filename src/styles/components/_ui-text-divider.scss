@@ -1,5 +1,17 @@
+$text-divider-size: 1px !default;
+$text-divider-horizontal-text-padding: 0.5em 1em !default;
+$text-divider-vertical-text-padding: 1em 0.5em !default;
+
 .mdc-text-divider {
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.mdc-text-divider__text {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   &::before,
   &::after {
@@ -16,36 +28,41 @@
 }
 
 .mdc-text-divider--horizontal {
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
+  display: flex;
 
-  &::before,
-  &::after {
-    height: 1px;
-    width: 50%;
-    border-bottom: 1px solid currentColor;
-  }
+  .mdc-text-divider__text {
+    width: 100%;
 
-  span {
-    padding: 0.5em 1em;
+    &::before,
+    &::after {
+      width: 50%;
+      height: $text-divider-size;
+      background-color: currentColor;
+    }
+
+    & > span {
+      padding: $text-divider-horizontal-text-padding;
+    }
   }
 }
 
 .mdc-text-divider--vertical {
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  width: 2em;
+  display: inline-flex;
+  height: 100%;
 
-  &::before,
-  &::after {
-    height: 50%;
-    width: 1px;
-    border-left: 1px solid currentColor;
-  }
+  .mdc-text-divider__text {
+    height: 100%;
+    flex-direction: column;
 
-  span {
-    padding: 0.5em;
+    &::before,
+    &::after {
+      width: $text-divider-size;
+      height: 50%;
+      background-color: currentColor;
+    }
+
+    & > span {
+      padding: $text-divider-vertical-text-padding;
+    }
   }
 }

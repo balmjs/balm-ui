@@ -4,7 +4,7 @@
 <ui-nav><!-- <ui-a> or <router-link> --></ui-nav>
 ```
 
-### Common Types
+### <ui-list> Types
 
 - `1`: `'singleLine'`
 - `2`: `'twoLine'`

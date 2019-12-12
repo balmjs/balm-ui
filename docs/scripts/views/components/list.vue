@@ -160,6 +160,7 @@
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="list"></ui-apidocs>
       <ui-apidocs name="list-item"></ui-apidocs>
+      <ui-apidocs name="list-divider"></ui-apidocs>
       <ui-apidocs name="list-group"></ui-apidocs>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">

@@ -48,8 +48,6 @@ import UiRadio from './components/selection-controls/radio';
 import UiSwitch from './components/selection-controls/switch';
 import UiSlider from './components/selection-controls/slider';
 // Data Display
-import UiListGroup from './components/list/list-group';
-import UiListGroupSubheader from './components/list/list-group-subheader';
 import UiNav from './components/list/nav';
 import UiList from './components/list/list';
 import UiItem from './components/list/item';
@@ -58,8 +56,10 @@ import UiItemText1 from './components/list/item-text1';
 import UiItemText2 from './components/list/item-text2';
 import UiItemFirstContent from './components/list/item-first-content';
 import UiItemLastContent from './components/list/item-last-content';
-import UiListDivider from './components/divider/list-divider';
-import UiItemDivider from './components/divider/item-divider';
+import UiItemDivider from './components/list/item-divider';
+import UiListDivider from './components/list/list-divider';
+import UiListGroup from './components/list/list-group';
+import UiListGroupSubheader from './components/list/list-group-subheader';
 import UiImageList from './components/image-list/image-list';
 import UiImageItem from './components/image-list/image-item';
 import UiImageText from './components/image-list/image-text';
@@ -143,8 +143,6 @@ const components = {
   UiSwitch,
   UiSlider,
   // Data Display
-  UiListGroup,
-  UiListGroupSubheader,
   UiNav,
   UiList,
   UiItem,
@@ -153,8 +151,10 @@ const components = {
   UiItemText2,
   UiItemFirstContent,
   UiItemLastContent,
-  UiListDivider,
   UiItemDivider,
+  UiListDivider,
+  UiListGroup,
+  UiListGroupSubheader,
   UiImageList,
   UiImageItem,
   UiImageText,

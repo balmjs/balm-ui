@@ -1,7 +1,7 @@
 <template>
   <!-- Container -->
   <div :class="className">
-    <!-- TODO: header - conditions -->
+    <!-- Table header - conditions -->
     <slot name="conditions"></slot>
     <table class="mdc-data-table__table">
       <caption v-if="caption">
@@ -16,7 +16,7 @@
           :class="`col-${colValue}`"
         />
       </colgroup>
-      <!-- Column header / TODO: Sorting tool -->
+      <!-- Column header / Sorting tool -->
       <thead v-if="theadData.length">
         <tr
           v-for="(theadRow, theadRowIndex) in theadData"
@@ -32,7 +32,7 @@
             >
               <ui-checkbox
                 v-if="theadCell[T_CELL.CHECKBOX]"
-                class="mdc-data-table__header-row-checkbox"
+                :class="'mdc-data-table__header-row-checkbox'"
               ></ui-checkbox>
               <template v-else>
                 <div>
@@ -75,9 +75,7 @@
               >
                 <ui-checkbox
                   v-if="tbodyCell[T_CELL.CHECKBOX]"
-                  class="mdc-data-table__row-checkbox"
-                  :value="getRowCheckboxValue(tbodyRow, tbodyRowIndex)"
-                  v-model="selectedRows"
+                  :class="'mdc-data-table__row-checkbox'"
                 ></ui-checkbox>
                 <slot
                   v-else-if="tbodyCell[T_CELL.ACTIONS]"
@@ -122,7 +120,7 @@
         </tr>
       </tfoot>
     </table>
-    <!-- TODO: footer - Pagination -->
+    <!-- Table footer - Pagination -->
     <slot name="pagination"></slot>
   </div>
 </template>
@@ -271,19 +269,21 @@ export default {
     this.$table.listen('MDCDataTable:rowSelectionChanged', ({ detail }) => {
       let selectedRows = [];
 
-      this.currentData.forEach((tbodyData, index) => {
+      this.currentData.forEach((tbodyData, tbodyDataIndex) => {
         let selectedRowId = this.selectedKey
           ? tbodyData[this.selectedKey]
-          : index;
+          : tbodyDataIndex;
 
         // For old selectedRows
         if (this.selectedRows.includes(selectedRowId)) {
-          let selected = !(index === detail.rowIndex && !detail.selected);
+          let selected = !(
+            tbodyDataIndex === detail.rowIndex && !detail.selected
+          );
           selected && selectedRows.push(selectedRowId);
         }
 
         // For new selectedRow
-        if (index === detail.rowIndex && detail.selected) {
+        if (tbodyDataIndex === detail.rowIndex && detail.selected) {
           selectedRows.push(selectedRowId);
         }
       });
@@ -292,8 +292,8 @@ export default {
     });
 
     this.$table.listen('MDCDataTable:selectedAll', () => {
-      let selectedRows = this.currentData.map((tbodyData, index) => {
-        return this.selectedKey ? tbodyData[this.selectedKey] : index;
+      let selectedRows = this.currentData.map((tbodyData, tbodyDataIndex) => {
+        return this.selectedKey ? tbodyData[this.selectedKey] : tbodyDataIndex;
       });
 
       this.$emit(UI_TABLE.EVENT.SELECTED, selectedRows);

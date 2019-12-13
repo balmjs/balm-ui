@@ -122,11 +122,6 @@ export default {
       });
 
       return data;
-    },
-    getRowCheckboxValue(tbodyRow, tbodyRowIndex) {
-      return this.selectedKey
-        ? this.getRowData(tbodyRow)[this.selectedKey]
-        : tbodyRowIndex;
     }
   }
 };

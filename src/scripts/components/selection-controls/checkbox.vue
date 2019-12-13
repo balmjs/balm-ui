@@ -107,7 +107,7 @@ export default {
     handleChange(event) {
       let result =
         getType(this.checkedValue) === 'array'
-          ? Object.assign([], this.checkedValue)
+          ? [...this.checkedValue]
           : this.checkedValue;
 
       this.$emit(UI_CHECKBOX.EVENT.CHANGE, result);

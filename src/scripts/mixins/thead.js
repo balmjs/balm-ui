@@ -72,6 +72,8 @@ export default {
       return cell;
     },
     handleSort(data) {
+      let newSelectedRows = [];
+
       if (data[this.T_CELL.SORTING]) {
         let sortBy = data.by;
         let currentSort;
@@ -87,11 +89,24 @@ export default {
             return a[sortBy] - b[sortBy];
           });
         }
-
         data[this.T_CELL.SORTING] = currentSort;
+
+        let oldSelectedIndex = 0;
+        let tableRowCount = this.currentData.length;
+        if (this.selectedKey) {
+          newSelectedRows = [...this.selectedRows];
+        } else {
+          for (let index = tableRowCount - 1; index >= 0; index--) {
+            if (this.selectedRows.includes(oldSelectedIndex)) {
+              newSelectedRows.push(index);
+            }
+            oldSelectedIndex++;
+          }
+          newSelectedRows.sort();
+        }
       }
 
-      this.$emit(UI_TABLE.EVENT.SELECTED, []);
+      this.$emit(UI_TABLE.EVENT.SELECTED, newSelectedRows);
     }
   }
 };

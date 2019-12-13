@@ -225,7 +225,7 @@ export default {
   },
   methods: {
     init(options = this.options) {
-      let currentOptions = Object.assign([], options);
+      let currentOptions = [...options];
       // Set default option
       if (this.defaultLabel) {
         let defaultOption = {};

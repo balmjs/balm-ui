@@ -36,19 +36,43 @@
               ></ui-checkbox>
               <template v-else>
                 <div>
-                  <i
-                    v-if="theadCell.sort === UI_TABLE.SORTING.ASC"
-                    :class="UI_GLOBAL.cssClasses.icon"
-                    @click="handleSort(theadCell)"
-                    >arrow_upward</i
-                  >
-                  <i
-                    v-if="theadCell.sort === UI_TABLE.SORTING.DESC"
-                    :class="UI_GLOBAL.cssClasses.icon"
-                    @click="handleSort(theadCell)"
-                    >arrow_downward</i
-                  >
+                  <template v-if="!sortIconAlignEnd">
+                    <span
+                      v-if="theadCell.sort === UI_TABLE.SORTING.ASC"
+                      @click="handleSort(theadCell)"
+                    >
+                      <slot name="before-asc">
+                        <i :class="UI_GLOBAL.cssClasses.icon">arrow_upward</i>
+                      </slot>
+                    </span>
+                    <span
+                      v-if="theadCell.sort === UI_TABLE.SORTING.DESC"
+                      @click="handleSort(theadCell)"
+                    >
+                      <slot name="before-desc">
+                        <i :class="UI_GLOBAL.cssClasses.icon">arrow_downward</i>
+                      </slot>
+                    </span>
+                  </template>
                   <span>{{ theadCell[T_CELL.VALUE] }}</span>
+                  <template v-if="sortIconAlignEnd">
+                    <span
+                      v-if="theadCell.sort === UI_TABLE.SORTING.ASC"
+                      @click="handleSort(theadCell)"
+                    >
+                      <slot name="after-asc">
+                        <i :class="UI_GLOBAL.cssClasses.icon">arrow_upward</i>
+                      </slot>
+                    </span>
+                    <span
+                      v-if="theadCell.sort === UI_TABLE.SORTING.DESC"
+                      @click="handleSort(theadCell)"
+                    >
+                      <slot name="after-desc">
+                        <i :class="UI_GLOBAL.cssClasses.icon">arrow_downward</i>
+                      </slot>
+                    </span>
+                  </template>
                 </div>
               </template>
             </th>
@@ -79,7 +103,7 @@
                 ></ui-checkbox>
                 <slot
                   v-else-if="tbodyCell[T_CELL.ACTIONS]"
-                  :name="T_CELL.ACTIONS"
+                  :name="tbodyCell[T_CELL.ACTIONS]"
                   :data="getRowData(tbodyRow)"
                 ></slot>
                 <template v-else>
@@ -203,6 +227,10 @@ export default {
     rowIdPrefix: {
       type: String,
       default: ''
+    },
+    sortIconAlignEnd: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -224,7 +252,7 @@ export default {
     },
     withActions() {
       let lastCell = this.tbody.length ? this.tbody[this.tbody.length - 1] : {};
-      return lastCell[this.T_CELL.SLOT] === this.T_CELL.ACTIONS;
+      return lastCell[this.T_CELL.SLOT];
     }
   },
   watch: {

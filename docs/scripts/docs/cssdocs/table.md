@@ -26,8 +26,14 @@ $mdc-data-table-shape-radius: medium;
 $mdc-data-table-stroke-size: 1px;
 $mdc-data-table-stroke-color: rgba(mdc-theme-prop-value(on-surface), 0.12);
 
-$mdc-data-table-row-height: 52px;
-$mdc-data-table-header-row-height: $mdc-data-table-row-height + 4px;
+$mdc-data-table-cell-height: 52px;
+$mdc-data-table-header-cell-height: mdc-data-table-get-header-cell-height(
+  $mdc-data-table-cell-height
+);
 $mdc-data-table-cell-leading-padding: 16px;
 $mdc-data-table-cell-trailing-padding: 16px;
+
+$mdc-data-table-minimum-cell-height: 36px;
+$mdc-data-table-maximum-cell-height: $mdc-data-table-cell-height;
+$mdc-data-table-default-density-scale: $mdc-density-default-scale;
 ```

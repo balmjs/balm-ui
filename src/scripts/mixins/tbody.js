@@ -106,7 +106,7 @@ export default {
       // Set actions
       if (this.withActions) {
         let cell = {};
-        cell[this.T_CELL.ACTIONS] = true;
+        cell[this.T_CELL.ACTIONS] = this.withActions;
         data.push(cell);
       }
 

@@ -8,20 +8,24 @@ export default {
     right: 'mdc-data-table__cell--right'
   },
   CELL: {
-    FIELD: 'field',
-    VALUE: 'value',
-    NUMBER: 'numeric',
     ROW_ID: 'rowId',
     CHECKBOX: 'checkbox',
-    SORTING: 'sort',
     SELECTED: 'selected',
-    COLSPAN: 'colspan',
-    ROWSPAN: 'rowspan',
-    CLASS: 'class',
+    ACTIONS: 'actions',
+    // common config
+    VALUE: 'value',
+    NUMBER: 'numeric',
     ALIGN: 'align',
+    CLASS: 'class',
+    // thead config
+    SORTING: 'sort',
+    ROWSPAN: 'rowspan',
+    COLSPAN: 'colspan',
+    // tbody & tfoot config
+    FIELD: 'field',
     FUNCTION: 'fn',
     SLOT: 'slot',
-    ACTIONS: 'actions',
+    // tfoot config
     FUNCTION_NAME: 'fnName' // For AGG
   },
   SORTING: {

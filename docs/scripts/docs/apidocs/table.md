@@ -21,7 +21,7 @@
 | `rowIdPrefix`      | string          | `''`        | The prefix of `data-row-id` attribute value on row element `tr`. |
 | `sortIconAlignEnd` | boolean         | `false`     | The sort icon will be positioned after the label.                |
 
-- `thead` & `tbody` & `tfoot` common format
+- `thead` & `tbody` & `tfoot` items common format
 
   ```js
   {
@@ -34,7 +34,7 @@
 
 - `thead` format
 
-  - default (`string[]`)
+  - default items (`string[]`)
 
     ```js
     [
@@ -47,7 +47,7 @@
     ];
     ```
 
-  - custom (`object[]` or `object[][]`)
+  - custom items (`object[]` or `object[][]`)
 
     ```js
     {
@@ -94,13 +94,13 @@
 
 - `tbody` format
 
-  - default (`string[]`)
+  - default fields (`string[]`)
 
     ```js
     ['id', 'dessert', 'calories', 'fat', 'carbs', 'protein'];
     ```
 
-  - custom (`object[]`)
+  - custom fields (`object[]`)
 
     ```js
     {
@@ -148,7 +148,7 @@
     </ui-table>
     ```
 
-- `tfoot` format (`object[]`)
+- `tfoot` items format (`object[]`)
 
   ```js
   {

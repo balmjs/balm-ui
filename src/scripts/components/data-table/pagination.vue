@@ -10,9 +10,9 @@
         @click="currentPage === 1 ? null : handleClick(currentPage - 1)"
       >
         <i v-if="materialIcon" :class="UI_GLOBAL.cssClasses.icon">{{
-          currentPrev
+          currentPrevIcon
         }}</i>
-        <span v-else>{{ currentPrev }}</span>
+        <span v-else>{{ currentPrevIcon }}</span>
       </a>
       <template v-for="(page, index) in pageCount" v-if="!mini && isShow(page)">
         <a
@@ -36,9 +36,9 @@
         @click="currentPage === pageCount ? null : handleClick(currentPage + 1)"
       >
         <i v-if="materialIcon" :class="UI_GLOBAL.cssClasses.icon">{{
-          currentNext
+          currentNextIcon
         }}</i>
-        <span v-else>{{ currentNext }}</span>
+        <span v-else>{{ currentNextIcon }}</span>
       </a>
 
       <div v-if="!mini && showJumper" class="mdc-pagination__jumper">
@@ -52,12 +52,12 @@
         />
         <span>{{ jumperAfter }}</span>
         <button
-          v-if="jumperButton"
+          v-if="jumperButtonText"
           type="button"
           class="mdc-button"
           @click="handleClick(pager)"
         >
-          {{ jumperButton }}
+          {{ jumperButtonText }}
         </button>
       </div>
     </div>
@@ -100,8 +100,8 @@ export default {
       type: Number,
       default: 3
     },
-    prev: String,
-    next: String,
+    prevIcon: String,
+    nextIcon: String,
     showJumper: {
       type: Boolean,
       default: false
@@ -114,7 +114,7 @@ export default {
       type: String,
       default: ''
     },
-    jumperButton: {
+    jumperButtonText: {
       type: String,
       default: ''
     },
@@ -155,13 +155,13 @@ export default {
       return Math.ceil(this.recordCount / this.pageSize);
     },
     materialIcon() {
-      return !(this.prev && this.next);
+      return !(this.prevIcon && this.nextIcon);
     },
-    currentPrev() {
-      return this.prev || 'keyboard_arrow_left';
+    currentPrevIcon() {
+      return this.prevIcon || 'keyboard_arrow_left';
     },
-    currentNext() {
-      return this.next || 'keyboard_arrow_right';
+    currentNextIcon() {
+      return this.nextIcon || 'keyboard_arrow_right';
     }
   },
   watch: {

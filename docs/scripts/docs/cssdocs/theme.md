@@ -20,4 +20,11 @@ $mdc-theme-on-surface: if(
   #000,
   #fff
 );
+
+$mdc-theme-error: #b00020;
+$mdc-theme-on-error: if(
+  mdc-theme-contrast-tone($mdc-theme-error) == 'dark',
+  #000,
+  #fff
+);
 ```

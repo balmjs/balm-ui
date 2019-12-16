@@ -11,7 +11,4 @@ $mdc-elevation-property: box-shadow;
 
 /* The default duration value for elevation transitions. */
 $mdc-elevation-transition-duration: 280ms;
-
-/* The default easing value for elevation transitions. */
-$mdc-elevation-transition-timing-function: $mdc-animation-standard-curve-timing-function;
 ```

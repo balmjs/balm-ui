@@ -14,7 +14,7 @@
           :class="`col-${colValue}`"
         />
       </colgroup>
-      <!-- Column header / Sorting tool -->
+      <!-- Column header -->
       <thead v-if="theadData.length">
         <tr
           v-for="(theadRow, theadRowIndex) in theadData"
@@ -28,12 +28,14 @@
               :colspan="theadCell[T_CELL.COLSPAN] || null"
               :rowspan="theadCell[T_CELL.ROWSPAN] || null"
             >
+              <!-- Column header row checkbox -->
               <ui-checkbox
                 v-if="theadCell[T_CELL.CHECKBOX]"
                 :class="'mdc-data-table__header-row-checkbox'"
               ></ui-checkbox>
               <template v-else>
                 <div>
+                  <!-- Sort button -->
                   <template v-if="!sortIconAlignEnd">
                     <span
                       v-if="theadCell.sort === UI_TABLE.SORTING.ASC"
@@ -52,7 +54,9 @@
                       </slot>
                     </span>
                   </template>
+                  <!-- Column header names -->
                   <span>{{ theadCell[T_CELL.VALUE] }}</span>
+                  <!-- Sort button -->
                   <template v-if="sortIconAlignEnd">
                     <span
                       v-if="theadCell.sort === UI_TABLE.SORTING.ASC"
@@ -77,7 +81,7 @@
           </template>
         </tr>
       </thead>
-      <!-- Table content -->
+      <!-- Rows -->
       <tbody class="mdc-data-table__content">
         <template v-if="tbodyData.length">
           <tr
@@ -95,15 +99,18 @@
                 :key="`tbody-cell-${tbodyCellIndex}`"
                 :class="cellClassName(tbodyCell)"
               >
+                <!-- Row checkboxes -->
                 <ui-checkbox
                   v-if="tbodyCell[T_CELL.CHECKBOX]"
                   :class="'mdc-data-table__row-checkbox'"
                 ></ui-checkbox>
+                <!-- Actions -->
                 <slot
                   v-else-if="tbodyCell[T_CELL.ACTIONS]"
                   :name="tbodyCell[T_CELL.ACTIONS]"
                   :data="getRowData(tbodyRow)"
                 ></slot>
+                <!-- Data -->
                 <template v-else>
                   <slot
                     v-if="tbodyCell[T_CELL.SLOT]"
@@ -125,6 +132,7 @@
           </td>
         </tr>
       </tbody>
+      <!-- Footers -->
       <tfoot v-if="tfootData.length">
         <tr class="mdc-data-table__footer-row">
           <td

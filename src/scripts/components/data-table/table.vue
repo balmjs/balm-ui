@@ -1,8 +1,6 @@
 <template>
   <!-- Container -->
   <div :class="className">
-    <!-- Table header - conditions -->
-    <slot name="conditions"></slot>
     <table class="mdc-data-table__table">
       <caption v-if="caption">
         {{
@@ -144,8 +142,6 @@
         </tr>
       </tfoot>
     </table>
-    <!-- Table footer - Pagination -->
-    <slot name="pagination"></slot>
   </div>
 </template>
 

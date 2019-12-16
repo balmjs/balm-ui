@@ -8,47 +8,45 @@ Following the [Material Design](https://material.io/components/) UI components f
 
 #### 1. Components
 
-- Layouts
-  - Layout Grid
-  - <del>Toolbar</del> (💀)
-  - Top App Bar (migrate from Toolbar)
-  - Drawer
-  - Tabs
-- Buttons
+- General
   - Button
   - Floating Action
-  - <del>Icon Toggle</del> (💀)
-  - Icon Button (migrate from Icon Toggle)
-- Icon
+  - Icon Button
+  - Icon
+- Layout
+  - Top App Bar
+  - Layout Grid
+  - Tabs
+- Navigation
+  - Drawer
+  - Menu
+- Data Entry
+  - Text Field
+  - Select
+  - Checkbox
+  - Radio
+  - Switch
+  - Slider
+  - File (💡)
+  - Autocomplete (💡)
 - Data View
   - List
-  - Grid List (💀)
+  - <del>Grid List</del> (💀)
   - Image List (migrate from Grid List)
   - Card
   - Chips
-  - Table (new in `3.1.0`)
+  - Data Table
   - Pagination (💡)
   - Text Divider (💡)
-- Linear Progress
-- Inputs and Controls
-  - Text Field
-  - Checkbox
-  - Radio
-  - Select
-  - Switch
-  - Slider
-  - Dropdown (💡)
-  - Autocomplete (💡)
-  - File (💡)
-- Modal
+- Feedback
   - Dialog
   - Snackbar
-- Menu
+  - Linear Progress
 
 #### 2. Plugins
 
 - Event
-- Grid (TODO)
+- Grid
 - Typography
 - Theme
 - Validator (💡)

@@ -1,7 +1,7 @@
 <template>
   <div :class="[$tt('body1'), 'demo--pagination']">
     <header class="hero component">
-      <ui-pagination v-model="page" :recordCount="recordCount"></ui-pagination>
+      <ui-pagination v-model="page" :total="total"></ui-pagination>
     </header>
 
     <ui-toc-affix></ui-toc-affix>
@@ -15,9 +15,12 @@
         <h6 :class="$tt('headline6')">1.1 Default Usage</h6>
         <ui-pagination
           v-model="page1"
-          :pageSize="pageSize"
-          :recordCount="recordCount"
+          :pageSize="pageSize1"
+          :total="total1"
           showJumper
+          jumperBeforeText="Goto"
+          jumperAfterText="page"
+          jumperButtonText="Go"
         ></ui-pagination>
       </section>
       <ui-accordion>
@@ -28,21 +31,26 @@
         <h6 :class="$tt('headline6')">1.2 Custom Record</h6>
         <ui-pagination
           v-model="page2"
-          :pageSize="pageSize"
-          :recordCount="recordCount"
-          showRecord
-          showJumper
-          jumperBefore="Goto"
-          jumperAfter="page"
-          jumperButton="Go"
+          :pageSize="pageSize2"
+          :total="total2"
+          position="right"
         >
-          <template #default="{ pageCount }">
-            Showing {{ recordCount }} records,
-            <ui-select
-              v-model="pageSize"
-              :options="pageSizeOptions"
-            ></ui-select>
-            records / page, {{ pageCount }} total pages
+          <template
+            #before="{ recordClass, pageCount, currentMinRow, currentMaxRow }"
+          >
+            <ui-form-field :class="recordClass">
+              <label for="per-page-rows">Rows per page:</label>
+              <ui-select
+                outlined
+                noLabel
+                id="per-page-rows"
+                v-model="pageSize2"
+                :options="pageSizeOptions"
+              ></ui-select>
+              <span>
+                {{ currentMinRow }}-{{ currentMaxRow }} of {{ total2 }}
+              </span>
+            </ui-form-field>
           </template>
         </ui-pagination>
       </section>
@@ -55,8 +63,7 @@
         <ui-pagination
           mini
           v-model="page3"
-          :pageSize="pageSize"
-          :recordCount="recordCount"
+          :total="total"
           prev="Prev"
           next="Next"
         >
@@ -88,28 +95,33 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      // hero
       page: 1,
+      total: 100,
+      // demo
       page1: 1,
+      pageSize1: 5,
+      total1: 100,
       page2: 1,
+      pageSize2: 10,
+      total2: 500,
       page3: 1,
-      pageSize: 5,
-      recordCount: 100,
       pageSizeOptions: [
-        {
-          label: 5,
-          value: 5
-        },
         {
           label: 10,
           value: 10
         },
         {
-          label: 15,
-          value: 15
-        },
-        {
           label: 20,
           value: 20
+        },
+        {
+          label: 30,
+          value: 30
+        },
+        {
+          label: 40,
+          value: 40
         }
       ]
     };

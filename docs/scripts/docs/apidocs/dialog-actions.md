@@ -6,7 +6,7 @@
 
 | Name         | Type   | Default    | Description             |
 | ------------ | ------ | ---------- | ----------------------- |
-| `acceptText` | string | `'Accept'` | The accept button text. |
+| `acceptText` | string | `'OK'`     | The accept button text. |
 | `cancelText` | string | `'Cancel'` | The cancel button text. |
 
 #### Slots

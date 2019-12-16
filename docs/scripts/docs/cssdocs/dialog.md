@@ -13,6 +13,7 @@ $mdc-dialog-min-width: 280px;
 $mdc-dialog-max-width: 560px;
 $mdc-dialog-margin: 16px;
 $mdc-dialog-title-bottom-padding: 9px;
+$mdc-dialog-actions-padding: 8px;
 
 $mdc-dialog-z-index: 7;
 ```

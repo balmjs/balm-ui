@@ -144,9 +144,9 @@
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="dialog"></ui-apidocs>
-      <ui-apidocs name="dialog-header"></ui-apidocs>
-      <ui-apidocs name="dialog-body"></ui-apidocs>
-      <ui-apidocs name="dialog-footer"></ui-apidocs>
+      <ui-apidocs name="dialog-title"></ui-apidocs>
+      <ui-apidocs name="dialog-content"></ui-apidocs>
+      <ui-apidocs name="dialog-actions"></ui-apidocs>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables

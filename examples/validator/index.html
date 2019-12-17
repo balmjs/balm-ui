@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="/components/core.css">
   <link rel="stylesheet" href="/components/form-field.css">
   <link rel="stylesheet" href="/components/textfield.css">
+  <link rel="stylesheet" href="/components/button.css">
 </head>
 <body>
   <div id="app">
@@ -16,28 +17,22 @@
   <p class="form-item">
     <ui-textfield id="mobile"
       v-model="formData.mobile"
-      helptext-id="mobile-helper-text">Mobile</ui-textfield>
-    <ui-textfield-helptext id="mobile-helper-text" :visible="errorMsg.mobile">
-      {{ errorMsg.mobile }}
-    </ui-textfield-helptext>
+      helper-text-id="mobile-helper-text">Mobile</ui-textfield>
+    <ui-textfield-helper id="mobile-helper-text" :valid-msg="validMsg.mobile"></ui-textfield-helper>
   </p>
   <p class="form-item">
     <ui-textfield type="password"
       id="password"
       v-model="formData.password"
-      helptext-id="password-helper-text">Password</ui-textfield>
-    <ui-textfield-helptext id="password-helper-text" :visible="errorMsg.password">
-      {{ errorMsg.password }}
-    </ui-textfield-helptext>
+      helper-text-id="password-helper-text">Password</ui-textfield>
+    <ui-textfield-helper id="password-helper-text" :valid-msg="validMsg.password"></ui-textfield-helper>
   </p>
   <p class="form-item">
     <ui-textfield type="password"
       id="repassword"
       v-model="formData.repassword"
-      helptext-id="repassword-helper-text">Repeat Password</ui-textfield>
-    <ui-textfield-helptext id="repassword-helper-text" :visible="errorMsg.repassword">
-      {{ errorMsg.repassword }}
-    </ui-textfield-helptext>
+      helper-text-id="repassword-helper-text">Repeat Password</ui-textfield>
+    <ui-textfield-helper id="repassword-helper-text" :valid-msg="validMsg.repassword"></ui-textfield-helper>
   </p>
   <p class="form-actions">
     <ui-button raised @click="submit">Submit</ui-button>
@@ -46,6 +41,7 @@
   </div>
   <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
   <script src="/components/textfield.js"></script>
+  <script src="/components/button.js"></script>
   <script src="/plugins/validator.js"></script>
   <script src="/utils/types.js"></script>
   <script src="./validator-rules.js"></script>
@@ -91,17 +87,17 @@
           password: '',
           repassword: ''
         },
-        errorMsg: {}
+        validMsg: {}
       },
       methods: {
         submit() {
           var result = this.$validate(this.formData);
-          var { isValid, errorMsg } = result;
-          this.errorMsg = errorMsg;
+          var { valid, validMsg } = result;
+          this.validMsg = validMsg;
 
           console.log(result);
 
-          if (isValid) {
+          if (valid) {
             console.log('gg');
           }
         }

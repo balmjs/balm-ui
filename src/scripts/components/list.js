@@ -5,10 +5,10 @@ import UiItem from './list/item';
 import UiItemTextContent from './list/item-text-content';
 import UiItemText1 from './list/item-text1';
 import UiItemText2 from './list/item-text2';
-import UiItemFirstContent from './divider/item-first-content';
-import UiItemLastContent from './divider/item-last-content';
-import UiItemDivider from './divider/item-divider';
-import UiListDivider from './divider/list-divider';
+import UiItemFirstContent from './list/item-first-content';
+import UiItemLastContent from './list/item-last-content';
+import UiItemDivider from './list/item-divider';
+import UiListDivider from './list/list-divider';
 import UiListGroup from './list/list-group';
 import UiListGroupSubheader from './list/list-group-subheader';
 

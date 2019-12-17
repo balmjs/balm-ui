@@ -1,6 +1,6 @@
 import autoInit from './register';
 
-// Define touch constants
+// Define touch target constants
 const UI_TOUCH_TARGET = {
   components: {
     button: 'mdc-button',

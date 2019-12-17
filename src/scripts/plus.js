@@ -7,6 +7,7 @@ import UiFile from './components/input-controls/file';
 import UiAutocomplete from './components/input-controls/autocomplete';
 import UiPagination from './components/data-table/pagination';
 import UiTextDivider from './components/divider/text-divider';
+import UiSkeleton from './components/others/skeleton';
 /**
  * Plugins
  */
@@ -31,7 +32,8 @@ const components = {
   UiFile,
   UiAutocomplete,
   UiPagination,
-  UiTextDivider
+  UiTextDivider,
+  UiSkeleton
 };
 
 const plugins = {

@@ -74,6 +74,7 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      // demo
       open: false,
       timeout: 5000,
       message: 'Hello Snackbar',

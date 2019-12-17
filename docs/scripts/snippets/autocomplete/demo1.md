@@ -1,8 +1,10 @@
 ```html
 <ui-autocomplete
+  noLabel
   v-model="keywords"
   :source="source"
-  placeholder="Try to type">
+  placeholder="Try to type"
+>
 </ui-autocomplete>
 ```
 

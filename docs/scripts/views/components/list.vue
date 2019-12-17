@@ -55,6 +55,9 @@
             <ui-item-text-content>Line item</ui-item-text-content>
           </ui-item>
         </ui-list>
+        <ui-accordion>
+          <ui-markdown :code="code[1]"></ui-markdown>
+        </ui-accordion>
 
         <h4 :class="$tt('headline6')">1.2 Two-Line</h4>
         <ui-list :type="2">
@@ -65,6 +68,9 @@
             </ui-item-text-content>
           </ui-item>
         </ui-list>
+        <ui-accordion>
+          <ui-markdown :code="code[2]"></ui-markdown>
+        </ui-accordion>
 
         <h4 :class="$tt('headline6')">1.3 Leading Icon</h4>
         <ui-list>
@@ -75,6 +81,9 @@
             <ui-item-text-content>{{ item.text }}</ui-item-text-content>
           </ui-item>
         </ui-list>
+        <ui-accordion>
+          <ui-markdown :code="code[3]"></ui-markdown>
+        </ui-accordion>
 
         <h4 :class="$tt('headline6')">
           1.4 List with activated item (Selected Index: {{ selectedIndex }})
@@ -87,6 +96,9 @@
             <ui-item-text-content>{{ item.text }}</ui-item-text-content>
           </ui-item>
         </ui-list>
+        <ui-accordion>
+          <ui-markdown :code="code[4]"></ui-markdown>
+        </ui-accordion>
 
         <h4 :class="$tt('headline6')">1.5 Trailing Icon</h4>
         <ui-list>
@@ -97,6 +109,9 @@
             </ui-item-last-content>
           </ui-item>
         </ui-list>
+        <ui-accordion>
+          <ui-markdown :code="code[5]"></ui-markdown>
+        </ui-accordion>
 
         <h4 :class="$tt('headline6')">
           1.6 Two-Line with Leading and Trailing Icon and Divider
@@ -118,6 +133,9 @@
             </ui-item>
           </template>
         </ui-list>
+        <ui-accordion>
+          <ui-markdown :code="code[6]"></ui-markdown>
+        </ui-accordion>
 
         <h4 :class="$tt('headline6')">
           1.7 List with Trailing Checkbox (Checked values: {{ checkedValues }})
@@ -136,6 +154,9 @@
             </ui-item>
           </template>
         </ui-list>
+        <ui-accordion>
+          <ui-markdown :code="code[7]"></ui-markdown>
+        </ui-accordion>
 
         <h4 :class="$tt('headline6')">
           1.8 List with Trailing Radio Buttons (Checked value:
@@ -152,9 +173,9 @@
             </ui-item>
           </template>
         </ui-list>
-        <!-- <ui-accordion>
-          <ui-markdown :code="code[1]"></ui-markdown>
-        </ui-accordion> -->
+        <ui-accordion>
+          <ui-markdown :code="code[8]"></ui-markdown>
+        </ui-accordion>
       </div>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
@@ -226,14 +247,14 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      // hero
       TypeOptions,
       BeforeTextOptions,
       AfterTextOptions,
-      // Hero
       typeOption: 1,
       beforeText: 0,
       afterText: 0,
-      // Demo
+      // demo
       selectedIndex: 0,
       checkedValues: [],
       checkedValue: 'dog',
@@ -244,7 +265,7 @@ export default {
     };
   },
   created() {
-    this.showCode('list', 13);
+    this.showCode('list', 8);
 
     setTimeout(() => {
       this.selectedIndex = 1;

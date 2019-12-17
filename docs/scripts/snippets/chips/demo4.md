@@ -1,8 +1,7 @@
 ```html
 <ui-chips>
-  <ui-chip v-for="(item, index) in actionList" :key="index" class="demo-chip">
-    <ui-chip-leading-icon>{{ item.icon }}</ui-chip-leading-icon>
-    <ui-chip-text>{{ item.name }}</ui-chip-text>
+  <ui-chip v-for="(item, index) in actionList" :key="index" :icon="item.icon">
+    {{ item.name }}
   </ui-chip>
 </ui-chips>
 ```

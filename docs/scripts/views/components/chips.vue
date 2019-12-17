@@ -103,29 +103,6 @@
         </ui-accordion>
       </section>
 
-      <section class="example">
-        <h2>1.5 Custom theme</h2>
-        <ui-chips>
-          <ui-chip
-            v-for="(item, index) in actionList"
-            :key="index"
-            class="demo-chip custom-chip-primary"
-            >{{ item.name }}</ui-chip
-          >
-        </ui-chips>
-        <ui-chips>
-          <ui-chip
-            v-for="(item, index) in actionList"
-            :key="index"
-            class="demo-chip custom-chip-secondary"
-            >{{ item.name }}</ui-chip
-          >
-        </ui-chips>
-        <ui-accordion>
-          <ui-markdown :code="code[5]"></ui-markdown>
-        </ui-accordion>
-      </section>
-
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="chips"></ui-apidocs>
       <ui-apidocs name="chip"></ui-apidocs>
@@ -148,6 +125,7 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      // demo
       lastId: 2,
       name: '',
       list: [],
@@ -178,7 +156,7 @@ export default {
     };
   },
   created() {
-    this.showCode('chips', 5);
+    this.showCode('chips', 4);
   },
   mounted() {
     setTimeout(() => {

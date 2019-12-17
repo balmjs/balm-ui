@@ -80,10 +80,10 @@
 
 <script>
 import snippets from '@/mixins/snippets';
-import UiTabDemo from './tab';
-import UiTabBarDemo from './tab-bar';
-import UiTabScrollerDemo from './tab-scroller';
-import UiTabPanelDemo from './tab-panel';
+import UiTabDemo from '@/demos/tabs/tab';
+import UiTabBarDemo from '@/demos/tabs/tab-bar';
+import UiTabScrollerDemo from '@/demos/tabs/tab-scroller';
+import UiTabPanelDemo from '@/demos/tabs/tab-panel';
 
 const largeScreenSize = 1024;
 
@@ -173,6 +173,7 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      // hero
       TypeOptions,
       IconOptions,
       ShortTabItems,
@@ -182,6 +183,7 @@ export default {
       iconOption: 0,
       active1: 0,
       active2: 0,
+      // demo
       active: 0,
       tabs: [],
       isLargeScreen: false

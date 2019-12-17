@@ -1,21 +1,23 @@
 ```html
-<section>
-  <h3>Text-Only</h3>
-  <ui-list type="2" class="demo-list">
-    <ui-item v-for="i in 3" :key="i">
-      <ui-item-text>Two-line item</ui-item-text>
-      <ui-item-subtext>Secondary text</ui-item-subtext>
+<ui-list>
+  <template v-for="(item, index) in items">
+    <ui-item-divider v-if="item === '-'" :key="index"></ui-item-divider>
+    <ui-item v-else :key="index">
+      <ui-item-text-content>{{ item.text }}</ui-item-text-content>
+      <ui-item-last-content>
+        <ui-checkbox v-model="checkedValues" :value="item.value"></ui-checkbox>
+      </ui-item-last-content>
     </ui-item>
-  </ui-list>
-</section>
+  </template>
+</ui-list>
+```
 
-<section>
-  <h3>Graphic</h3>
-  <ui-list type="2" class="demo-list demo-list--icon-placeholders">
-    <ui-item v-for="i in 3" :key="i" firstPlaceholder>
-      <ui-item-text>Two-line item</ui-item-text>
-      <ui-item-subtext>Secondary text</ui-item-subtext>
-    </ui-item>
-  </ui-list>
-</section>
+```js
+export default {
+  data() {
+    return {
+      checkedValues: []
+    };
+  }
+};
 ```

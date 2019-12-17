@@ -1,8 +1,8 @@
 <template>
   <div :class="[$tt('body1'), 'demo--file']">
-    <section class="hero component">
+    <header class="hero component">
       <ui-file></ui-file>
-    </section>
+    </header>
 
     <ui-toc-affix withoutCss></ui-toc-affix>
 
@@ -97,6 +97,7 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      // demo
       files1: [],
       files2: [],
       files3: [],

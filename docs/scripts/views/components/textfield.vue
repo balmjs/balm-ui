@@ -194,9 +194,7 @@
             :dense="controls.dense"
             :required="controls.required"
             :maxlength="controls.max ? 10 : null"
-            :attrs="{
-              minlength: controls.min ? 8 : 0
-            }"
+            :minlength="controls.min ? 8 : 0"
             >Your Name</ui-textfield
           >
           <ui-textfield-helper id="name-validation-message" validMsg>
@@ -239,15 +237,14 @@
             :disabled="controls.disabled"
             :dense="controls.dense"
             :required="controls.required"
-            :attrs="{
-              minlength: controls.min ? 8 : 0
-            }"
+            :minlength="controls.min ? 8 : 0"
           >
             <template #before>
               <ui-textfield-icon :unclickable="controls.unclickable"
                 >event</ui-textfield-icon
-              > </template
-            >Your name
+              >
+            </template>
+            Your name
           </ui-textfield>
         </div>
         <div
@@ -262,9 +259,7 @@
             :disabled="controls.disabled"
             :dense="controls.dense"
             :required="controls.required"
-            :attrs="{
-              minlength: controls.min ? 8 : 0
-            }"
+            :minlength="controls.min ? 8 : 0"
           >
             Your name
             <template #after>
@@ -287,15 +282,14 @@
             :disabled="controls.disabled"
             :dense="controls.dense"
             :required="controls.required"
-            :attrs="{
-              minlength: controls.min ? 8 : 0
-            }"
+            :minlength="controls.min ? 8 : 0"
           >
             <template #before="{ iconClass }">
               <span :class="iconClass">
                 <i class="fa fa-smile-o"></i>
-              </span> </template
-            >Your other name
+              </span>
+            </template>
+            Your other name
           </ui-textfield>
         </div>
         <div
@@ -311,9 +305,7 @@
             :disabled="controls.disabled"
             :dense="controls.dense"
             :required="controls.required"
-            :attrs="{
-              minlength: controls.min ? 8 : 0
-            }"
+            :minlength="controls.min ? 8 : 0"
           >
             Your other name
             <template #after="{ iconClass }">
@@ -336,7 +328,7 @@
           v-model="controls"
         ></ui-textfield-controls>
         <ui-accordion>
-          <ui-markdown :code="code[5]"></ui-markdown>
+          <ui-markdown :code="code[4]"></ui-markdown>
         </ui-accordion>
       </section>
 
@@ -346,7 +338,7 @@
           >Label floating above</ui-textfield
         >
         <ui-accordion>
-          <ui-markdown :code="code[6]"></ui-markdown>
+          <ui-markdown :code="code[5]"></ui-markdown>
         </ui-accordion>
       </section>
 
@@ -372,7 +364,7 @@
           v-model="controls"
         ></ui-textfield-controls>
         <ui-accordion>
-          <ui-markdown :code="code[7]"></ui-markdown>
+          <ui-markdown :code="code[6]"></ui-markdown>
         </ui-accordion>
       </section>
 
@@ -412,7 +404,7 @@
           v-model="controls"
         ></ui-textfield-controls>
         <ui-accordion>
-          <ui-markdown :code="code[8]"></ui-markdown>
+          <ui-markdown :code="code[7]"></ui-markdown>
         </ui-accordion>
       </section>
 
@@ -485,6 +477,7 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      // hero
       TypeOptions,
       IconOptions,
       AssistiveTextOptions,
@@ -493,6 +486,7 @@ export default {
       assistiveTextOption: 0,
       value1: '',
       value2: '',
+      // demo
       controls: {
         disabled: false,
         rtl: false,
@@ -534,7 +528,7 @@ export default {
   //   }
   // },
   created() {
-    this.showCode('textfield', 8);
+    this.showCode('textfield', 7);
   }
 };
 </script>

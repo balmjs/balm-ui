@@ -1,18 +1,32 @@
 ```html
-<input id="input-chip-set-input" v-model="name" placeholder="Chip text" />
-<ui-button dense id="input-chip-set-button" @click="addOne">
+<ui-textfield
+  outlined
+  v-model="name"
+  class="demo-tf-add-space"
+  id="input-chip-set-input"
+  placeholder="Chip text"
+></ui-textfield>
+<br />
+<ui-button raised dense id="input-chip-set-button" @click="addOne">
   Add Input Chip
 </ui-button>
-<ui-button dense id="input-chip-set-delete-button" @click="removeLastOne">
+<ui-button
+  outlined
+  dense
+  id="input-chip-set-delete-button"
+  @click="removeLastOne"
+>
   Delete Last Chip
 </ui-button>
-<ui-chips type="input" id="input-chip-set" :items="list">
-  <ui-chip v-for="item in list" :key="item.id" class="demo-chip">
-    <ui-chip-leading-icon>face</ui-chip-leading-icon>
-    <ui-chip-text>{{ item.name }}</ui-chip-text>
-    <ui-chip-trailing-icon
-      @click="removeOneById(item.id)"
-    ></ui-chip-trailing-icon>
+
+<ui-chips type="input" id="input-chip-set" :options="list">
+  <ui-chip
+    v-for="item in list"
+    :key="item.id"
+    icon="face"
+    @remove="removeOneById(item.id)"
+  >
+    {{ item.name }}
   </ui-chip>
 </ui-chips>
 ```

@@ -71,7 +71,9 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      // hero
       heroData: [],
+      // demo
       data: [],
       thead1: [
         'ID',
@@ -121,8 +123,7 @@ export default {
         'dessert',
         {
           field: 'calories',
-          numeric: true,
-          class: 'test'
+          numeric: true
         },
         {
           field: 'fat',

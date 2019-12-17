@@ -48,7 +48,7 @@
     <main class="demo-main">
       <div :class="$tt('body1')" id="content-main">
         <header class="hero component">
-          <h2 :class="$tt('headline4')">Top App Bar</h2>
+          <h3 :class="$tt('headline3')">Top App Bar</h3>
         </header>
 
         <ui-toc-affix></ui-toc-affix>
@@ -132,6 +132,7 @@ export default {
   mixins: [snippets, DrawerMixin],
   data() {
     return {
+      // hero
       TypeOptions,
       typeOption: 0,
       title: 'Hello BalmUI',

@@ -1,5 +1,6 @@
 ```html
 <ui-autocomplete
+  noLabel
   v-model="keywords"
   :source="source"
   placeholder="Type 'a', then 'b'"

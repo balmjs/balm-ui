@@ -22,6 +22,7 @@
         :cols="cols"
         :disabled="disabled"
         :required="required"
+        :minlength="minlength"
         :maxlength="maxlength"
         :aria-controls="helperTextId"
         :aria-describedby="helperTextId"
@@ -44,7 +45,11 @@
       :pattern="pattern"
       :disabled="disabled"
       :required="required"
+      :minlength="minlength"
       :maxlength="maxlength"
+      :min="min"
+      :max="max"
+      :step="step"
       :aria-controls="helperTextId"
       :aria-describedby="helperTextId"
       v-bind="attrs"
@@ -158,14 +163,15 @@ export default {
       type: [Number, String],
       default: 20
     },
-    // For native
+    // For native common
     required: {
       type: Boolean,
       default: false
     },
-    pattern: String,
     minlength: [Number, String],
     maxlength: [Number, String], // Required for counter
+    // For native <input>
+    pattern: String,
     min: [Number, String],
     max: [Number, String],
     step: [Number, String],

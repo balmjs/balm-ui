@@ -207,6 +207,7 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      // hero
       cardMedia,
       TypeOptions,
       typeOption: 0,
@@ -215,6 +216,7 @@ export default {
         supportingText: false,
         buttons: false
       },
+      // demo
       list: [
         {
           title: 'Copper on the rise',

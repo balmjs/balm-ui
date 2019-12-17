@@ -20,10 +20,10 @@
     <ui-toc-affix></ui-toc-affix>
 
     <div :class="$tt('body2')">
-      <h3 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h3>
+      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h3 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demo</h3>
+      <h4 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demo</h4>
       <section class="demo-wrapper">
         <div class="demo-controls">
           <ui-form-field>
@@ -63,12 +63,12 @@
         </fieldset>
       </section>
 
-      <h3 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h3>
+      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="button"></ui-apidocs>
 
-      <h3 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
-      </h3>
+      </h4>
       <ui-cssdocs name="button"></ui-cssdocs>
     </div>
   </div>

@@ -1,19 +1,19 @@
 ```html
 <fieldset>
   <legend>Form Area</legend>
-  <p class="form-item">
+  <ui-form-field block class="form-item">
     <ui-textfield
       id="mobile"
       v-model="formData.mobile"
       helperTextId="mobile-helper-text"
       >Mobile</ui-textfield
     >
-    <ui-textfield-helptext
+    <ui-textfield-helper
       id="mobile-helper-text"
       :validMsg="validMsg.mobile"
-    ></ui-textfield-helptext>
-  </p>
-  <p class="form-item">
+    ></ui-textfield-helper>
+  </ui-form-field>
+  <ui-form-field block class="form-item">
     <ui-textfield
       type="password"
       id="password"
@@ -21,12 +21,12 @@
       helperTextId="password-helper-text"
       >Password</ui-textfield
     >
-    <ui-textfield-helptext
+    <ui-textfield-helper
       id="password-helper-text"
       :validMsg="validMsg.password"
-    ></ui-textfield-helptext>
-  </p>
-  <p class="form-item">
+    ></ui-textfield-helper>
+  </ui-form-field>
+  <ui-form-field block class="form-item">
     <ui-textfield
       type="password"
       id="repassword"
@@ -34,14 +34,14 @@
       helperTextId="repassword-helper-text"
       >Repeat Password</ui-textfield
     >
-    <ui-textfield-helptext
+    <ui-textfield-helper
       id="repassword-helper-text"
       :validMsg="validMsg.repassword"
-    ></ui-textfield-helptext>
-  </p>
-  <p class="form-actions">
+    ></ui-textfield-helper>
+  </ui-form-field>
+  <div class="form-item form-actions">
     <ui-button raised @click="submit">Submit</ui-button>
-  </p>
+  </div>
 </fieldset>
 ```
 

@@ -78,7 +78,7 @@
 
 <script>
 import snippets from '@/mixins/snippets';
-import UiRadioDemo from '@/components/radio';
+import UiRadioDemo from '@/demos/radio';
 
 export default {
   metaInfo: {
@@ -90,7 +90,9 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      // hero
       hero: 1,
+      // demo
       gender: ''
     };
   },

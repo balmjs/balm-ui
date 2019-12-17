@@ -238,7 +238,7 @@ module.exports = {
       'balm-ui': 'balm-ui/src/scripts',
       'balm-ui-plus': 'balm-ui/src/scripts/plus.js'
     },
-    include: [
+    includeJsResource: [
       // The script in this folder needs to compile ES6+
       path.resolve('./node_modules/balm-ui/src/scripts')
     ]
@@ -259,8 +259,8 @@ Edit `/path/to/my-project/gulpfile.js`
 ...
 
 balm.go(mix => {
-  if (balm.config.isProd) {
-    ...
+  if (mix.env.isProd) {
+    // ...
   } else {
     // Use BalmJS `copy` api
     mix.copy('node_modules/balm-ui/fonts/*', 'app/fonts');

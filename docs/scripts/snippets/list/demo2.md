@@ -1,19 +1,10 @@
 ```html
-<section>
-  <h3>Text only, non-interactive (no states)</h3>
-  <ui-list nonInteractive class="demo-list">
-    <ui-item v-for="i in 3" :key="i">
-      Single-line item
-    </ui-item>
-  </ui-list>
-</section>
-
-<section>
-  <h3>Text only (dense)</h3>
-  <ui-list dense class="demo-list">
-    <ui-item v-for="i in 3" :key="i">
-      Single-line item
-    </ui-item>
-  </ui-list>
-</section>
+<ui-list :type="2">
+  <ui-item v-for="i in 3" :key="i">
+    <ui-item-text-content>
+      <ui-item-text1>Line item</ui-item-text1>
+      <ui-item-text2>Secondary text</ui-item-text2>
+    </ui-item-text-content>
+  </ui-item>
+</ui-list>
 ```

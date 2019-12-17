@@ -1,27 +1,7 @@
 ```html
-<ui-list-group class="demo-list-group--custom">
-  <ui-list-group-subheader>Folders</ui-list-group-subheader>
-  <ui-list type="2" avatar class="demo-list demo-list--with-avatars demo-list--custom demo-list--icon-placeholders">
-    <ui-item v-for="(item, index) in folders"
-      :key="index"
-      :firstIcon="item.first"
-      :lastIcon="item.last">
-      <ui-item-text>{{ item.text }}</ui-item-text>
-      <ui-item-subtext>{{ item.subtext }}</ui-item-subtext>
-    </ui-item>
-  </ui-list>
-
-  <ui-list-divider inset></ui-list-divider>
-
-  <ui-list-group-subheader>Files</ui-list-group-subheader>
-  <ui-list type="2" avatar class="demo-list demo-list--with-avatars demo-list--custom demo-list--icon-placeholders">
-    <ui-item v-for="(item, index) in files"
-      :key="index"
-      :firstIcon="item.first"
-      :lastIcon="item.last">
-      <ui-item-text>{{ item.text }}</ui-item-text>
-      <ui-item-subtext>{{ item.subtext }}</ui-item-subtext>
-    </ui-item>
-  </ui-list>
-</ui-list-group>
+<ui-list>
+  <ui-item v-for="i in 3" :key="i">
+    <ui-item-text-content>Line item</ui-item-text-content>
+  </ui-item>
+</ui-list>
 ```

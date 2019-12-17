@@ -179,7 +179,9 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      // hero
       value: 50,
+      // demo
       value1: 20,
       value2: 20,
       value3: 20,

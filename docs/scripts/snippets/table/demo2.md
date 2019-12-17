@@ -26,7 +26,9 @@ export default {
         [
           {
             value: 'ID',
-            rowspan: 2
+            rowspan: 2,
+            sort: 'asc',
+            by: 'id'
           },
           {
             value: 'Type1',

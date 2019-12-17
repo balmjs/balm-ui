@@ -1,19 +1,20 @@
 <template>
   <div :class="[$tt('body1'), 'demo--icon-button']">
     <header class="hero component">
-      <ui-icon-button :toggle="icon1"></ui-icon-button>
+      <ui-icon-button :toggle="icon"></ui-icon-button>
     </header>
 
     <ui-toc-affix></ui-toc-affix>
 
     <div :class="$tt('body2')">
-      <h3 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h3>
+      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
-      <h3 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demo</h3>
+      <h4 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demo</h4>
       <section class="example">
         <div>
-          <h4 :class="$tt('headline5')">1.1 Buttons</h4>
+          <h5 :class="$tt('headline5')">1.1 Buttons</h5>
+
           <div class="toggle-examples-container">
             <div class="toggle-example">
               <h6 :class="$tt('headline6')">Material Icons</h6>
@@ -54,17 +55,13 @@
 
       <section class="example">
         <div>
-          <div>
-            <h4 :class="$tt('headline5')">1.2 Button Toggles</h4>
-          </div>
+          <h5 :class="$tt('headline5')">1.2 Button Toggles</h5>
+
           <div class="toggle-examples-container">
             <div class="toggle-example">
               <h6 :class="$tt('headline6')">Using Material Icons</h6>
               <div class="demo-wrapper">
-                <ui-icon-button
-                  v-model="value1"
-                  :toggle="icon1"
-                ></ui-icon-button>
+                <ui-icon-button v-model="value1"></ui-icon-button>
               </div>
               <p>
                 Favorited?
@@ -136,18 +133,18 @@
               </div>
             </div>
           </div>
-          <ui-accordion>
-            <ui-markdown :code="code[2]"></ui-markdown>
-          </ui-accordion>
         </div>
+        <ui-accordion>
+          <ui-markdown :code="code[2]"></ui-markdown>
+        </ui-accordion>
       </section>
 
-      <h3 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h3>
+      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="icon-button"></ui-apidocs>
 
-      <h3 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
-      </h3>
+      </h4>
       <ui-cssdocs name="icon-button"></ui-cssdocs>
     </div>
   </div>
@@ -165,6 +162,12 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      // hero
+      icon: {
+        on: 'favorite',
+        off: 'favorite_border'
+      },
+      // demo
       value1: false,
       icon1: {
         on: 'favorite',

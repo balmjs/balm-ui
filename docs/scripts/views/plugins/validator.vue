@@ -13,7 +13,7 @@
       <h4 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demo</h4>
       <fieldset>
         <legend>Form Area</legend>
-        <p class="form-item">
+        <ui-form-field block class="form-item">
           <ui-textfield
             id="mobile"
             v-model="formData.mobile"
@@ -24,8 +24,8 @@
             id="mobile-helper-text"
             :validMsg="validMsg.mobile"
           ></ui-textfield-helper>
-        </p>
-        <p class="form-item">
+        </ui-form-field>
+        <ui-form-field block class="form-item">
           <ui-textfield
             inputType="password"
             id="password"
@@ -37,8 +37,8 @@
             id="password-helper-text"
             :validMsg="validMsg.password"
           ></ui-textfield-helper>
-        </p>
-        <p class="form-item">
+        </ui-form-field>
+        <ui-form-field block class="form-item">
           <ui-textfield
             inputType="password"
             id="repassword"
@@ -50,10 +50,10 @@
             id="repassword-helper-text"
             :validMsg="validMsg.repassword"
           ></ui-textfield-helper>
-        </p>
-        <p class="form-actions">
+        </ui-form-field>
+        <div class="form-item form-actions">
           <ui-button raised @click="submit">Submit</ui-button>
-        </p>
+        </div>
       </fieldset>
       <ui-accordion>
         <ui-markdown :code="code[1]"></ui-markdown>

@@ -1,7 +1,11 @@
 ```html
 <ui-chips type="choice" v-model="selectedIndex">
-  <ui-chip v-for="(item, index) in choiceList" :key="index" class="demo-chip">
-    <ui-chip-text>{{ item }}</ui-chip-text>
+  <ui-chip
+    v-if="choiceList.length"
+    v-for="(item, index) in choiceList"
+    :key="index"
+  >
+    {{ item }}
   </ui-chip>
 </ui-chips>
 ```

@@ -126,55 +126,7 @@
       </ui-accordion>
 
       <section class="example">
-        <h6 :class="$tt('headline6')">1.2 Select box</h6>
-        <section id="box-demo-wrapper" :dir="controls.rtl ? 'rtl' : null">
-          <ui-select
-            id="select-box"
-            box
-            v-model="selected2.value"
-            :selectedIndex="selected2.index"
-            :options="options2"
-            :class="{ 'demo-select-custom-colors': controls.customColor }"
-            :disabled="controls.disabled"
-            @selected="onSelected($event, 2)"
-            >Food Group</ui-select
-          >
-        </section>
-        <p>
-          Currently selected:
-          <span id="box-currently-selected">{{
-            selected2.value
-              ? `${selected2.value} at index ${selected2.index}`
-              : '(none)'
-          }}</span>
-        </p>
-        <ui-select-controls
-          idPrefix="box"
-          v-model="controls"
-        ></ui-select-controls>
-        <div class="button-container">
-          <ui-button
-            raised
-            id="box-set-selected-index-zero-button"
-            @click="$balmUI.onChange('selected2.index', 0)"
-            >Set Selected Index (0)</ui-button
-          >
-        </div>
-        <div class="button-container">
-          <ui-button
-            raised
-            id="box-set-value-fruit-roll-up-button"
-            @click="$balmUI.onChange('selected2.value', 'fruit-roll-ups')"
-            >Set Value to Fruit Roll Ups</ui-button
-          >
-        </div>
-      </section>
-      <ui-accordion>
-        <ui-markdown :code="code[2]"></ui-markdown>
-      </ui-accordion>
-
-      <section class="example">
-        <h6 :class="$tt('headline6')">1.3 Outlined Select</h6>
+        <h6 :class="$tt('headline6')">1.2 Outlined Select</h6>
         <section :dir="controls.rtl ? 'rtl' : null">
           <ui-select
             id="outlined-select"
@@ -222,7 +174,7 @@
       </ui-accordion>
 
       <section class="example">
-        <h6 :class="$tt('headline6')">1.4 Pre-selected option via HTML</h6>
+        <h6 :class="$tt('headline6')">1.3 Pre-selected option via HTML</h6>
         <section>
           <ui-select
             id="select-preselected"
@@ -236,22 +188,8 @@
         <ui-markdown :code="code[4]"></ui-markdown>
       </ui-accordion>
 
-      <!-- <section class="example">
-        <h6 :class="$tt('headline6')">1.5 MDC Select with optgroups</h6>
-        <ui-select
-          id="select-optgroups"
-          group
-          v-model="selected4"
-          :options="options3"
-          >Food Group</ui-select
-        >
-      </section>
-      <ui-accordion>
-        <ui-markdown :code="code[5]"></ui-markdown>
-      </ui-accordion> -->
-
       <section class="example">
-        <h6 :class="$tt('headline6')">1.6 Custom Select</h6>
+        <h6 :class="$tt('headline6')">1.4 Custom Select</h6>
         <ui-select
           defaultLabel="Province"
           :options="provinces"
@@ -387,11 +325,13 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      // hero
       TypeOptions,
       SelectOptions,
       typeOption: 0,
       selectOption: [],
       selected: '',
+      // demo
       selected1: {
         value: '',
         index: -1
@@ -433,7 +373,7 @@ export default {
     }
   },
   created() {
-    this.showCode('select', 6);
+    this.showCode('select', 4);
   },
   mounted() {
     // setTimeout(() => {

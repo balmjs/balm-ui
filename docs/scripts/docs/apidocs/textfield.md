@@ -34,8 +34,8 @@ In addition to the above, the following properties proxy to the input element's 
 
 - `required`
 - `pattern`
-- `minLength`
-- `maxLength`: Required for character counter - `<ui-textfield-helper counter>`
+- `minlength`
+- `maxlength`: Required for character counter - `<ui-textfield-helper counter>`
 - `min`
 - `max`
 - `step`

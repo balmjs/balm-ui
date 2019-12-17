@@ -1,20 +1,26 @@
 ```html
 <ui-card outlined class="demo-card">
-  <div :class="[$tt('subtitle2'), 'demo-card-article-group-heading']">Headlines</div>
-  <hr class="mdc-list-divider">
+  <div :class="[$tt('subtitle2'), 'demo-card-article-group-heading']">
+    Headlines
+  </div>
+  <ui-list-divider></ui-list-divider>
 
-  <template v-for="item in list">
-    <a class="demo-card-article" v-ripple>
-      <h2 :class="[$tt('headline5'), 'demo-card-article__title']">{{ item.title }}</h2>
+  <template v-for="(item, index) in list">
+    <a :key="`item${index}`" class="demo-card-article" v-ripple>
+      <h2 :class="[$tt('headline5'), 'demo-card-article__title']">
+        {{ item.title }}
+      </h2>
       <p class="demo-card-article__snippet">{{ item.content }}</p>
     </a>
-    <hr class="mdc-list-divider">
+    <ui-list-divider :key="`divider${index}`"></ui-list-divider>
   </template>
 
   <ui-card-actions fullBleed>
-    <ui-a actionButton class="demo-card-action">
+    <ui-a class="demo-card-action">
       All Business Headlines
-      <ui-icon>arrow_forward</ui-icon>
+      <template #after>
+        <ui-icon>arrow_forward</ui-icon>
+      </template>
     </ui-a>
   </ui-card-actions>
 </ui-card>

@@ -12,17 +12,26 @@ You need to set up your development environment before you can do anything.
 
 Install [Node.js® and npm](https://nodejs.org/en/download/) if they are not already on your machine.
 
-> **Verify that you are running at least Node.js version 8.x or greater and npm version 5.x or greater** by running `node -v` and `npm -v` in a terminal/console window. Older versions produce errors, but newer versions are fine.
+> **Verify that you are running at least Node.js version 10.13.x or greater and npm version 5.2.x or greater** by running `node -v` and `npm -v` in a terminal/console window. Older versions produce errors, but newer versions are fine.
 
-[BalmJS](https://balmjs.com/) using gulp for the build process, so we need to install gulp globally.
+🔔 BalmJS workflow using [gulp](https://balmjs.com/) for the build process, so you need install `gulp-cli` globally.
 
 ```sh
+yarn global add gulp-cli
+# OR
 npm install -g gulp-cli
+
+# Verify
+$ gulp -v
+# Output:
+# CLI version: 2.2.0
 ```
 
 Then install the [Balm CLI](https://github.com/balmjs/balm-cli) globally.
 
 ```sh
+yarn global add balm-cli
+# OR
 npm install -g balm-cli
 ```
 
@@ -47,9 +56,9 @@ cd my-project
 2.1 Install dependencies
 
 ```sh
-npm install
-# OR
 yarn
+# OR
+npm install
 ```
 
 Installs the necessary npm packages, This can take some time.
@@ -59,9 +68,9 @@ Installs the necessary npm packages, This can take some time.
 2.2 Install **BalmUI**
 
 ```sh
-npm i --save balm-ui
-# OR
 yarn add balm-ui
+# OR
+npm install --save balm-ui
 ```
 
 ### 3. Config

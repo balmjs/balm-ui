@@ -2,9 +2,12 @@
 <ui-pagination
   v-model="page"
   :pageSize="pageSize"
-  :recordCount="recordCount"
-  showJumper>
-</ui-pagination>
+  :total="total"
+  showJumper
+  jumperBeforeText="Goto"
+  jumperAfterText="page"
+  jumperButtonText="Go"
+></ui-pagination>
 ```
 
 ```js
@@ -13,8 +16,8 @@ export default {
     return {
       page: 1,
       pageSize: 5,
-      recordCount: 100
-    }
+      total: 100
+    };
   }
 };
 ```

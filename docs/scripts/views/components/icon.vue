@@ -17,7 +17,9 @@
       </div>
     </header>
 
-    <ui-toc-affix></ui-toc-affix>
+    <ui-toc-affix>
+      <ui-tab v-anchor:href="'#ui-icons'" class="v-anchor">Icons</ui-tab>
+    </ui-toc-affix>
     <!-- <ui-tab-bar class="category-affix">
       <ui-tab
         v-for="(category, index) in categories"
@@ -85,7 +87,7 @@
       </h3>
       <ui-cssdocs name="icon"></ui-cssdocs>
 
-      <h4 :class="$tt('headline4')">4. Icon List</h4>
+      <h4 v-anchor:id="'ui-icons'" :class="$tt('headline4')">4. Icons List</h4>
       <div class="search-area" v-shadow="1">
         <ui-textfield
           leadingIcon
@@ -273,9 +275,10 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      // hero
       TypeOptions,
       typeOption: 0,
-      number: 0,
+      // icons
       categories: [],
       icons: {},
       currentIcons: {},

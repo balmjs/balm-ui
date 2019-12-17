@@ -1,15 +1,15 @@
 ```html
-<ui-textfield type="password"
+<ui-textfield
+  type="password"
   id="pw"
   required
   pattern=".{8,}"
   helptextId="pw-validation-msg"
-  :attrs="{autocomplete: 'current-password'}">
+  :attrs="{autocomplete: 'current-password'}"
+>
   Choose password
 </ui-textfield>
-<ui-textfield-helptext id="pw-validation-msg"
-  visible
-  validMsg>
+<ui-textfield-helper id="pw-validation-msg" visible validMsg>
   Must be at least 8 characters long
-</ui-textfield-helptext>
+</ui-textfield-helper>
 ```

@@ -192,12 +192,14 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      // hero
       TypeOptions,
       ButtonOptions,
       typeOption: 0,
       hasTitle: true,
       buttonOption: 0,
       heroSelectedIndex: -1,
+      // demo
       open: false,
       open2: false,
       list: [

@@ -1,20 +1,24 @@
 ```html
 <section :dir="controls.rtl ? 'rtl' : null">
-  <ui-textfield id="full-func-text-field"
+  <ui-textfield
+    id="full-func-text-field"
     v-model="value"
     :disabled="controls.disabled"
     :dense="controls.dense"
     :required="controls.required"
     :class="{'demo-text-field-custom-colors': controls.customColor}"
-    helptextId="my-text-field-helper-text">
+    helptextId="my-text-field-helper-text"
+  >
     Email Address
   </ui-textfield>
-  <ui-textfield-helptext v-if="controls.helperText"
+  <ui-textfield-helper
+    v-if="controls.helperText"
     id="my-text-field-helper-text"
     :visible="controls.isVisible"
-    :validMsg="controls.isValidMsg">
+    :validMsg="controls.isValidMsg"
+  >
     Helper Text (possibly validation message)
-  </ui-textfield-helptext>
+  </ui-textfield-helper>
 </section>
 ```
 

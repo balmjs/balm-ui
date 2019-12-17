@@ -14,6 +14,7 @@
       <ui-tab v-if="!withoutCss" v-anchor:href="'#ui-sass'" class="v-anchor"
         >Sass</ui-tab
       >
+      <slot></slot>
     </ui-tabs>
   </div>
 </template>

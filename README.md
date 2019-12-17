@@ -4,9 +4,9 @@
 
 ## What is BalmUI?
 
-Following the [Material Design](https://material.io/components/) UI components for the web specification, we developed a BalmUI library antd that contains a set of high quality components and demos for building rich, interactive user interfaces.
+Following the [Material Design](https://material.io/components/) UI components for the web specification, we developed the BalmUI library that contains a set of high quality components and demos for building rich, interactive user interfaces.
 
-## [Demos & Documentation](https://material.balmjs.com/)(updated with every release)
+## [Documentation & Demos](https://material.balmjs.com/)
 
 ## Quick Start
 
@@ -18,9 +18,9 @@ Following the [Material Design](https://material.io/components/) UI components f
 ### 1. Install
 
 ```sh
-npm install --save balm-ui
-// OR
 yarn add balm-ui
+// OR
+npm install --save balm-ui
 ```
 
 ### 2. Config
@@ -69,47 +69,46 @@ Enjoy 👻
 
 ### Components
 
-- Layouts
-  - Layout Grid
-  - <del>Toolbar</del> (:skull:)
-  - Top App Bar (migrate from Toolbar)
-  - Drawer
-  - Tabs
-- Buttons
+- General
   - Button
-  - Floating Action
-  - <del>Icon Toggle</del> (:skull:)
-  - Icon Button (migrate from Icon Toggle)
-- Icon
+  - Floating Action Button
+  - Icon Button
+  - Icon (Material icons)
+- Layout
+  - Top App Bar
+  - Layout Grid
+  - Tabs
+- Navigation
+  - Drawer
+  - Menu
+- Data Entry
+  - Text Field
+  - Select
+  - Checkbox
+  - Radio
+  - Switch
+  - Slider
+  - File (:bulb:)
+  - Autocomplete (:bulb:)
 - Data View
   - List
-  - Grid List (:skull:)
+  - <del>Grid List</del> (:skull:)
   - Image List (migrate from Grid List)
   - Card
   - Chips
-  - Table (new in `3.1.0`)
+  - Data Table
   - Pagination (:bulb:)
   - Text Divider (:bulb:)
-- Linear Progress
-- Inputs and Controls
-  - Text Field
-  - Checkbox
-  - Radio
-  - Select
-  - Switch
-  - Slider
-  - Dropdown (:bulb:)
-  - Autocomplete (:bulb:)
-  - File (:bulb:)
-- Modal
+- Feedback
   - Dialog
   - Snackbar
-- Menu
+  - Linear Progress
+  - Skeleton (:bulb:)
 
 ### Plugins
 
-- Event
-- Grid (TODO)
+- Event (:bulb:)
+- Grid
 - Typography
 - Theme
 - Validator (:bulb:)
@@ -123,7 +122,7 @@ Enjoy 👻
 - Elevation
 - Anchor (:bulb:)
 
-### Utilities
+### Utilities (:bulb:)
 
 - Type Detections
 - Helper Functions
@@ -153,7 +152,7 @@ We officially support the last two versions of every major browser. Specifically
 
 [balm-ui-image]: https://badge.fury.io/js/balm-ui.svg
 [balm-ui-url]: https://www.npmjs.com/package/balm-ui
-[mdc-web-image]: https://img.shields.io/badge/mdc--web-3.2.0-blue.svg
+[mdc-web-image]: https://img.shields.io/badge/mdc--web-4.0.0-blue.svg
 [mdc-web-url]: https://www.npmjs.com/package/material-components-web
 [fossa-image]: https://app.fossa.io/api/projects/git%2Bgithub.com%2Fbalmjs%2Fbalm-ui.svg?type=shield
 [fossa-url]: https://app.fossa.io/projects/git%2Bgithub.com%2Fbalmjs%2Fbalm-ui?ref=badge_shield

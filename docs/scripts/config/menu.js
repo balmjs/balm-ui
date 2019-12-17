@@ -222,6 +222,12 @@ const MATERIAL_COMPONENTS = [
         name: 'Linear Progress',
         description: 'Fills from 0% to 100%, represented by bars',
         url: 'linear-progress'
+      },
+      {
+        icon: 'component',
+        name: 'Skeleton',
+        description:
+          "Provide a placeholder while you wait for content to load, or to visualise content that doesn't exist yet."
       }
     ]
   },

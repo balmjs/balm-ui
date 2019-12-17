@@ -4,7 +4,7 @@
   :timeoutMs="timeout"
   :message="message"
   :actionButtonText="actionText"
-  :actionType="actionType ? 'icon' : 'button'"
+  :actionType="actionType ? 1 : 0"
 ></ui-snackbar>
 ```
 

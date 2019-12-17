@@ -3,7 +3,7 @@
   <ui-image-item
     v-for="(item, index) in list"
     :key="index"
-    :image="require(`../../../images/photos/${item}.jpg`).default"
+    :image="require(`@/assets/photos/${item}.jpg`)"
   >
     <ui-image-text v-if="labelsType">
       Text label

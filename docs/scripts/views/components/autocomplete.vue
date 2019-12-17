@@ -124,9 +124,11 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      // hero
       keywords: '',
       website: '',
       source,
+      // demo
       keywords1: '',
       source1,
       url: `${this.$domain}/data/autocomplete.json`,

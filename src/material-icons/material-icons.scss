@@ -22,7 +22,7 @@ $mdi-font-path-with-version: 0 !default; // `../fonts` or `../fonts/materialicon
       src: url('#{$mdi-font-path}/#{$className}.woff2') format('woff2');
     }
 
-    // font-display: swap; // [Intervention] Slow network is detected. See https://www.chromestatus.com/feature/5636954674692096 for more details.
+    font-display: swap; // [Intervention] Slow network is detected. See https://www.chromestatus.com/feature/5636954674692096 for more details.
   }
 
   .#{$className} {

@@ -96,6 +96,7 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      // demo
       radius: false,
       controls1: {
         labelsType: 1

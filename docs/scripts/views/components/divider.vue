@@ -79,6 +79,7 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      // hero
       TypeOptions,
       typeOption: 0
     };

@@ -3,7 +3,7 @@
     <header class="hero component">
       <div class="hero-demo">
         <ui-fab :type="typeOption" :mini="!!mini">
-          <!--  :icon="type && leadingIcon ? 'add' : ''" -->
+          <!-- :icon="type && leadingIcon ? 'add' : ''" -->
           <template v-if="typeOption && leadingIcon" #before="{ iconClass }">
             <ui-icon :class="iconClass">add</ui-icon>
           </template>
@@ -54,14 +54,14 @@
     <ui-toc-affix></ui-toc-affix>
 
     <div :class="$tt('body2')">
-      <h3 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h3>
+      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="code[0]"></ui-markdown>
 
       <ui-fab class="demo-fixed-fab" icon="mode_edit"></ui-fab>
 
-      <h3 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demo</h3>
+      <h4 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demo</h4>
       <section>
-        <h4 :class="$tt('headline6')">1.1 Regular FAB</h4>
+        <h6 :class="$tt('headline6')">1.1 Regular FAB</h6>
         <div class="demo-fabs">
           <figure>
             <ui-fab icon="favorite_border"></ui-fab>
@@ -98,7 +98,7 @@
       </section>
 
       <section>
-        <h4 :class="$tt('headline6')">1.2 Extended FAB</h4>
+        <h6 :class="$tt('headline6')">1.2 Extended FAB</h6>
         <div class="demo-fabs">
           <figure>
             <ui-fab extended>
@@ -129,7 +129,7 @@
       </section>
 
       <section>
-        <h4 :class="$tt('headline6')">1.3 Example of Enter and Exit Motions</h4>
+        <h6 :class="$tt('headline6')">1.3 Example of Enter and Exit Motions</h6>
         <div class="fab-motion-container">
           <div class="fab-motion-container__view">
             <p>View one (with FAB)</p>
@@ -163,7 +163,9 @@
 
       <section>
         <fieldset>
-          <h4 :class="$tt('headline6')">1.4 Custom FABs (Font awesome)</h4>
+          <h6 :class="$tt('headline6')">
+            1.4 Custom FABs (Using font awesome)
+          </h6>
           <ui-fab>
             <i class="fa fa-flag fa-lg"></i>
           </ui-fab>
@@ -182,12 +184,12 @@
         </ui-accordion>
       </section>
 
-      <h3 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h3>
+      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
       <ui-apidocs name="fab"></ui-apidocs>
 
-      <h3 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
+      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
-      </h3>
+      </h4>
       <ui-cssdocs name="fab"></ui-cssdocs>
     </div>
   </div>
@@ -214,10 +216,12 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      // hero
       TypeOptions,
       typeOption: 0,
       mini: 0,
       leadingIcon: false,
+      // demo
       exited: false
     };
   },

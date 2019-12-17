@@ -1,23 +1,23 @@
 ```html
-<section>
-  <h3>Avatar List</h3>
-  <ui-list type="2" avatar class="demo-list demo-list--with-avatars demo-list--icon-placeholders">
-    <ui-item v-for="i in 3" :key="i" firstPlaceholder>
-      <ui-item-text>Two-line item</ui-item-text>
-      <ui-item-subtext>Secondary text</ui-item-subtext>
+<ui-list>
+  <template v-for="(item, index) in items3">
+    <ui-item-divider v-if="item === '-'" :key="index"></ui-item-divider>
+    <ui-item v-else :key="index">
+      <ui-item-text-content>{{ item.text }}</ui-item-text-content>
+      <ui-item-last-content>
+        <ui-radio v-model="checkedValue" :value="item.value"></ui-radio>
+      </ui-item-last-content>
     </ui-item>
-  </ui-list>
-</section>
+  </template>
+</ui-list>
+```
 
-<section>
-  <h3>Metadata</h3>
-  <ui-list type="2" class="demo-list">
-    <ui-item v-for="i in 3"
-      :key="i"
-      :lastText="`$${i}0.00`">
-      <ui-item-text>Two-line item</ui-item-text>
-      <ui-item-subtext>Secondary text</ui-item-subtext>
-    </ui-item>
-  </ui-list>
-</section>
+```js
+export default {
+  data() {
+    return {
+      checkedValue: 'dog'
+    };
+  }
+};
 ```

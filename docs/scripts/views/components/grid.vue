@@ -309,6 +309,7 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      // demo
       gutterOptions,
       widthOptions,
       desktop: {

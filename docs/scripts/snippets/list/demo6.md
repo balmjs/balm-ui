@@ -1,13 +1,19 @@
 ```html
-<section>
-  <h3>Example - Avatar with Text and Icon</h3>
-  <ui-list avatar class="demo-list demo-list--with-avatars demo-list--avatar-and-meta-icon">
-    <ui-item v-for="(item, index) in items"
-      :key="index"
-      :firstImage="item.avatar"
-      :lastIcon="item.favorite ? 'favorite' : 'favorite_border'">
-      {{ item.name }}
+<ui-list :type="2" avatar>
+  <template v-for="(item, index) in items">
+    <ui-item-divider v-if="item === '-'" :key="index"></ui-item-divider>
+    <ui-item v-else :key="index">
+      <template #before="{ iconClass }">
+        <ui-icon :class="iconClass">folder</ui-icon>
+      </template>
+      <ui-item-text-content>
+        <ui-item-text1>{{ item.text }}</ui-item-text1>
+        <ui-item-text2>{{ item.subtext }}</ui-item-text2>
+      </ui-item-text-content>
+      <ui-item-last-content>
+        <ui-icon>info</ui-icon>
+      </ui-item-last-content>
     </ui-item>
-  </ui-list>
-</section>
+  </template>
+</ui-list>
 ```

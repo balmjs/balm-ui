@@ -1,10 +1,5 @@
 ```html
-<ui-pagination mini
-  v-model="page"
-  :pageSize="pageSize"
-  :recordCount="recordCount"
-  prev="Prev"
-  next="Next">
+<ui-pagination mini v-model="page" :total="total" prev="Prev" next="Next">
   <span>Page {{ page }}</span>
 </ui-pagination>
 ```
@@ -14,9 +9,8 @@ export default {
   data() {
     return {
       page: 1,
-      pageSize: 5,
-      recordCount: 100
-    }
+      total: 100
+    };
   }
 };
 ```

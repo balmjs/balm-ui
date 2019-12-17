@@ -84,7 +84,6 @@ project
 │ ├── scripts        // BalmUI core scripts (DEV)
 │ │ ├── ...
 │ │ ├── index.js     // MDC UI entry.
-│ │ ├── migrate.js   // Deprecated MDC UI entry.
 │ │ └── plus.js      // Custom feature UI entry.
 │ └── styles         // BalmUI core styles (DEV)
 │   ├── ...

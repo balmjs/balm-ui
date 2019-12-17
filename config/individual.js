@@ -16,7 +16,6 @@ const components = [
   'drawer.js',
   'fab.js',
   'form-field.js',
-  'grid-list.js',
   'grid.js',
   'icon-button.js',
   'image-list.js',
@@ -33,28 +32,27 @@ const components = [
   'textfield.js',
   'top-app-bar.js',
   // Plus
-  'dropdown.js',
   'autocomplete.js',
-  'pagination.js',
-  'file.js'
+  'divider.js',
+  'file.js',
+  'pagination.js'
 ];
 const plugins = [
-  // MDC plugins
   'event.js',
-  'grid.js',
+  // MDC plugins
   'theme.js',
   'typography.js',
   // Plus
-  'validator.js',
   'alert.js',
   'confirm.js',
-  'toast.js'
+  'toast.js',
+  'validator.js'
 ];
 const directives = [
   // MDC directives
-  'ripple.js',
   'elevation.js',
-  // 'shape.js', // Deprecated in 0.8.0
+  'ripple.js',
+  'touch.js',
   // Plus
   'anchor.js'
 ];

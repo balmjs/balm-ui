@@ -8,6 +8,7 @@
 - update `balm@2.x`
 - update [`mdc@4.0.0`](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#400-2019-11-02)
 - update docs
+- update material icons
 
 ### BREAKING CHANGES
 

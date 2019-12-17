@@ -1,116 +1,66 @@
 # BalmUI ChangeLog
 
-## 3.2.0 (2019.09.16)
+## 4.0.0 (2019.12.17)
 
 ### Features
 
-- update `balm@1.9.0`
-- update [`mdc@3.2.0`](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#320-2019-09-12)
-
----
-
-## 3.1.5 (2019.08.22)
-
-### Features
-
-- update Material Icons `v48`
-
----
-
-## 3.1.4 (2019.08.14)
-
-### Features
-
-- update [`mdc@3.1.1`](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#311-2019-08-14)
-
----
-
-## 3.1.3 (2019.08.13)
-
-### Features
-
-- rebuild all by `core-js@3`
-
----
-
-## 3.1.2 (2019.08.05)
-
-### Features
-
-- update docs: `<ui-drawer>`, `<ui-checkbox>`, `<ui-radio>`
-- update examples
-- rebuild all for UMD mode
-
-### Chores
-
-- `<ui-table>`: optimize code
-
----
-
-## 3.1.1 (2019.08.02)
-
-### Features
-
-- update `balm@1.7.0`
+- code refactoring
+- update `balm@2.x`
+- update [`mdc@4.0.0`](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#400-2019-11-02)
 - update docs
-- `<ui-table>`: add new prop `rowIdPrefix`
-
-### Chores
-
-- `<ui-table>`
-  - update css
-  - update selected rows init
-- `<ui-modal-drawer>`
-  - update temporary solution for `focus-trap` bug
 
 ### BREAKING CHANGES
 
-- `<ui-table>`: `selectedRowId` prop deprecated, rename to `selectedKey`
+- `<ui-drawer>`
+
+OLD
+
+```html
+<ui-permanent-drawer><!-- the drawer child components --></ui-permanent-drawer>
+<ui-dismissible-drawer>
+  <!-- the drawer child components -->
+</ui-dismissible-drawer>
+<ui-modal-drawer><!-- the drawer child components --></ui-modal-drawer>
+```
+
+NEW
+
+```html
+<ui-drawer><!-- the drawer child components --></ui-drawer>
+<ui-drawer type="dismissible"><!-- the drawer child components --></ui-drawer>
+<ui-drawer type="modal"><!-- the drawer child components --></ui-drawer>
+```
+
+- `$validate` result
+
+  - <del>`isValid`</del> -> `valid`
+  - <del>`valid`</del> -> `validFields`
+  - <del>`invalid`</del> -> `invalidFields`
+  - <del>`errorMsg`</del> -> `validMsg`
+
+- <del>`<ui-list-nav>`</del> -> `<ui-nav>`
+- <del>`<ui-item-a>`
+
+- `<ui-item>` child components
+
+  - <del>`<ui-item-text>`</del>
+  - <del>`<ui-item-subtext>`</del>
+  - `<ui-item-text-content>`
+    - `<ui-item-text1>`
+    - `<ui-item-text2>`
+  - `<ui-item-first-content>`
+  - `<ui-item-last-content>`
+
+- `<ui-image-supporting>` -> `<ui-image-text>`
+
+- Use `<ui-chips>` instead of the old `<ui-chip-set>` all components.
 
 ---
 
-## 3.1.0 (2019.07.25)
+## [3.x](https://github.com/balmjs/balm-ui/blob/3.x/CHANGELOG.md)
 
-### Features
+## [2.x](https://github.com/balmjs/balm-ui/blob/2.x/CHANGELOG.md)
 
-- Added `<ui-table>` component
-- update [`mdc@3.1.0`](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#310-2019-07-22)
+## [1.x](https://github.com/balmjs/balm-ui/blob/1.x/CHANGELOG.md)
 
-### Chores
-
-- optimize `<ui-checkbox>` and `<ui-radio>`
-
----
-
-## 3.0.1 (2019.07.11)
-
-### Features
-
-- update `balm@1.6.0`
-- update `balm-ui-lite@1.6.0`
-
----
-
-## 3.0.0 (2019.06.27)
-
-### Features
-
-- update [`mdc@3.0.0`](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#300-2019-06-25)
-- `<ui-tab-scroller>`: new component
-
-### Chores
-
-- `<ui-icon-button>`: update css
-- `<ui-pagination>`: update css
-
-### BREAKING CHANGES
-
-- `<ui-toolbar>`: deprecated
-
----
-
-## [2.x](https://github.com/balmjs/balm-ui/blob/master/CHANGELOG-2.x.md)
-
-## [1.x](https://github.com/balmjs/balm-ui/blob/master/CHANGELOG-1.x.md)
-
-## [0.x](https://github.com/balmjs/balm-ui/blob/master/CHANGELOG-0.x.md)
+## [0.x](https://github.com/balmjs/balm-ui/blob/0.14.x/CHANGELOG.md)

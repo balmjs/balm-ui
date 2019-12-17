@@ -25,6 +25,13 @@
   - An array of strings: `[ 'Choice1', 'Choice2' ]`
   - An array of objects with `label` and `value` properties: `[ { label: 'Choice1', value: 'value1' }, ... ]`
 
+#### Slots
+
+| Name      | Slots       | Description                                            |
+| --------- | ----------- | ------------------------------------------------------ |
+| `default` |             | The default slot holds the label for the autocomplete. |
+| `icon`    | `iconClass` | The icon slot holds a custom leading icon.             |
+
 #### Events
 
 | Name       | Type                              | Description                                                                                  |

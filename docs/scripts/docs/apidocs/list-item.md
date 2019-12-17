@@ -11,11 +11,11 @@
 
 #### Slots
 
-| Name      | Slots           | Description                                                                                                |
-| --------- | --------------- | ---------------------------------------------------------------------------------------------------------- |
-| `default` |                 | The default slot holds the item child components and can contain HTML.                                     |
-| `before`  | `{ iconClass }` | Custom `<ui-item-first-content>`. Optional, the first tile in the row. Typically an icon or image.         |
-| `after`   | `{ iconClass }` | Custom `<ui-item-last-content>`. Optional, the last tile in the row. Typically small text, icon. or image. |
+| Name      | Slots       | Description                                                                                                |
+| --------- | ----------- | ---------------------------------------------------------------------------------------------------------- |
+| `default` |             | The default slot holds the item child components and can contain HTML.                                     |
+| `before`  | `iconClass` | Custom `<ui-item-first-content>`. Optional, the first tile in the row. Typically an icon or image.         |
+| `after`   | `iconClass` | Custom `<ui-item-last-content>`. Optional, the last tile in the row. Typically small text, icon. or image. |
 
 **Item child components:**
 

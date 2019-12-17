@@ -11,7 +11,9 @@
   <ui-drawer-content>
     <ui-list>
       <ui-item activated @click="$router.back()">
-        <ui-item-first-content icon="arrow_back"></ui-item-first-content>
+        <ui-item-first-content>
+          <ui-icon>arrow_back</ui-icon>
+        </ui-item-first-content>
         <ui-item-text-content>Back</ui-item-text-content>
       </ui-item>
       <ui-list-divider></ui-list-divider>
@@ -31,7 +33,9 @@
             v-for="(subItem, subIndex) in item.items"
             :key="`item-${index}-${subIndex}`"
           >
-            <ui-item-first-content :icon="subItem.icon"></ui-item-first-content>
+            <ui-item-first-content>
+              <ui-icon>{{ subItem.icon }}</ui-icon>
+            </ui-item-first-content>
             <ui-item-text-content>{{ subItem.name }}</ui-item-text-content>
           </ui-item>
         </template>

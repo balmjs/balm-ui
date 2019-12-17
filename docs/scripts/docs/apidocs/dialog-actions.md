@@ -11,9 +11,9 @@
 
 #### Slots
 
-| Name      | Slots             | Description                                                     |
-| --------- | ----------------- | --------------------------------------------------------------- |
-| `default` | `{ buttonClass }` | The default slot holds the dialog actions and can contain HTML. |
+| Name      | Slots         | Description                                                     |
+| --------- | ------------- | --------------------------------------------------------------- |
+| `default` | `buttonClass` | The default slot holds the dialog actions and can contain HTML. |
 
 ```html
 <template #default="{ buttonClass }">

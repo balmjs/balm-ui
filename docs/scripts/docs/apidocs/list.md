@@ -24,7 +24,7 @@
 
 | Name      | Slots                                          | Description                                                      |
 | --------- | ---------------------------------------------- | ---------------------------------------------------------------- |
-| `default` | `{ itemClass, selectedClass, activatedClass }` | The default slot holds the item components and can contain HTML. |
+| `default` | `itemClass`, `selectedClass`, `activatedClass` | The default slot holds the item components and can contain HTML. |
 
 ```html
 <ui-nav>

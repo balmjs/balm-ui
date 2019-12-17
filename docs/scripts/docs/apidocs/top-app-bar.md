@@ -33,11 +33,11 @@
 
 #### Slots
 
-| Name       | Slots           | Description                                                        |
-| ---------- | --------------- | ------------------------------------------------------------------ |
-| `default`  |                 | The default slot holds the application title and can contain HTML. |
-| `nav-icon` |                 | The nav-icon slot holds the navigation icon and can contain HTML.  |
-| `toolbar`  | `{ itemClass }` | The toolbar slot holds the action items and can contain HTML.      |
+| Name       | Slots       | Description                                                        |
+| ---------- | ----------- | ------------------------------------------------------------------ |
+| `default`  |             | The default slot holds the application title and can contain HTML. |
+| `nav-icon` |             | The nav-icon slot holds the navigation icon and can contain HTML.  |
+| `toolbar`  | `itemClass` | The toolbar slot holds the action items and can contain HTML.      |
 
 ```html
 <template #toolbar="{ itemClass }">

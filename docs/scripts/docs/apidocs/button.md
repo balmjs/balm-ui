@@ -25,11 +25,11 @@
 
 #### Slots
 
-| Name      | Slots           | Description                                                          |
-| --------- | --------------- | -------------------------------------------------------------------- |
-| `default` |                 | The default slot holds the button or link text and can contain HTML. |
-| `before`  | `{ iconClass }` | Custom leading icon                                                  |
-| `after`   | `{ iconClass }` | Custom trailing icon                                                 |
+| Name      | Slots       | Description                                                          |
+| --------- | ----------- | -------------------------------------------------------------------- |
+| `default` |             | The default slot holds the button or link text and can contain HTML. |
+| `before`  | `iconClass` | Custom leading icon                                                  |
+| `after`   | `iconClass` | Custom trailing icon                                                 |
 
 ```html
 <template #after="{ iconClass }">

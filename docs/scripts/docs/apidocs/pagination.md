@@ -21,13 +21,13 @@
 
 #### Slots
 
-| Name            | Slots                                                      | Description                                  |
-| --------------- | ---------------------------------------------------------- | -------------------------------------------- |
-| `prev`          |                                                            | The custom previous button.                  |
-| `next`          |                                                            | The custom next button.                      |
-| `before`        | `{ recordClass, pageCount, currentMinRow, currentMaxRow }` | The custom record info and can contain HTML. |
-| `before-jumper` | `{ recordClass, pageCount, currentMinRow, currentMaxRow }` | The custom before jumper area content.       |
-| `after-jumper`  | `{ recordClass, pageCount, currentMinRow, currentMaxRow }` | The custom after jumper area content.        |
+| Name            | Slots                                                        | Description                                  |
+| --------------- | ------------------------------------------------------------ | -------------------------------------------- |
+| `prev`          |                                                              | The custom previous button.                  |
+| `next`          |                                                              | The custom next button.                      |
+| `before`        | `recordClass`, `pageCount`, `currentMinRow`, `currentMaxRow` | The custom record info and can contain HTML. |
+| `before-jumper` | `recordClass`, `pageCount`, `currentMinRow`, `currentMaxRow` | The custom before jumper area content.       |
+| `after-jumper`  | `recordClass`, `pageCount`, `currentMinRow`, `currentMaxRow` | The custom after jumper area content.        |
 
 - `pageCount`: Total number of rows.
 - `currentMinRow` & `currentMaxRow`: The range currently in view.

@@ -22,11 +22,11 @@
 
 #### Slots
 
-| Name        | Slots           | Description                                                 |
-| ----------- | --------------- | ----------------------------------------------------------- |
-| `default`   |                 | The default slot holds the tab labels and can contain HTML. |
-| `icon`      | `{ iconClass }` | The icon slot holds the custom icon and can contain HTML.   |
-| `indicator` |                 | The indicator slot holds the tab indicator component.       |
+| Name        | Slots       | Description                                                 |
+| ----------- | ----------- | ----------------------------------------------------------- |
+| `default`   |             | The default slot holds the tab labels and can contain HTML. |
+| `icon`      | `iconClass` | The icon slot holds the custom icon and can contain HTML.   |
+| `indicator` |             | The indicator slot holds the tab indicator component.       |
 
 ```html
 <ui-tab>

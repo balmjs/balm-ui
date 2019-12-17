@@ -38,10 +38,22 @@ $hero-background-color: #f7f7f7;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
   }
   .hero-option {
     margin: 0 32px;
-    line-height: 56px;
+  }
+}
+
+@media (max-width: $mdc-top-app-bar-mobile-breakpoint) {
+  .hero {
+    .hero-options {
+      flex-direction: column;
+    }
+    .hero-option {
+      align-items: flex-start;
+      margin: 0 32px;
+    }
   }
 }
 

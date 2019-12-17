@@ -12,8 +12,8 @@
 
 #### Slots
 
-| Name      | Slots           | Description                                       |
-| --------- | --------------- | ------------------------------------------------- |
-| `default` |                 | The default slot holds the chip child components. |
-| `before`  | `{ iconClass }` | Custom leading icon in the chip.                  |
-| `after`   | `{ iconClass }` | Custom trailing icon in the input chips.          |
+| Name      | Slots       | Description                                       |
+| --------- | ----------- | ------------------------------------------------- |
+| `default` |             | The default slot holds the chip child components. |
+| `before`  | `iconClass` | Custom leading icon in the chip.                  |
+| `after`   | `iconClass` | Custom trailing icon in the input chips.          |

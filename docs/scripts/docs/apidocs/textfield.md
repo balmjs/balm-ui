@@ -42,11 +42,11 @@ In addition to the above, the following properties proxy to the input element's 
 
 #### Slots
 
-| Name      | Slots           | Description                                          |
-| --------- | --------------- | ---------------------------------------------------- |
-| `default` |                 | The default slot holds the label for the text field. |
-| `before`  | `{ iconClass }` | The before slot holds a custom leading icon.         |
-| `after`   | `{ iconClass }` | The before slot holds a custom trailing icon.        |
+| Name      | Slots       | Description                                          |
+| --------- | ----------- | ---------------------------------------------------- |
+| `default` |             | The default slot holds the label for the text field. |
+| `before`  | `iconClass` | The before slot holds a custom leading icon.         |
+| `after`   | `iconClass` | The before slot holds a custom trailing icon.        |
 
 #### Events
 

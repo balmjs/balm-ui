@@ -17,9 +17,9 @@
 
 #### Slots
 
-| Name      | Slots                   | Description                                                                  |
-| --------- | ----------------------- | ---------------------------------------------------------------------------- |
-| `default` | `{ onClass, offClass }` | The default slot holds the toggle or link custom icons and can contain HTML. |
+| Name      | Slots                 | Description                                                                  |
+| --------- | --------------------- | ---------------------------------------------------------------------------- |
+| `default` | `onClass`, `offClass` | The default slot holds the toggle or link custom icons and can contain HTML. |
 
 ```html
 <template #default="{ onClass, offClass }">

@@ -15,9 +15,9 @@
                   :key="index"
                   :activated="index === 0"
                 >
-                  <ui-item-first-content
-                    :icon="item.icon"
-                  ></ui-item-first-content>
+                  <ui-item-first-content>
+                    <ui-icon>{{ item.icon }}</ui-icon>
+                  </ui-item-first-content>
                   <ui-item-text-content>{{ item.name }}</ui-item-text-content>
                 </ui-item>
               </template>

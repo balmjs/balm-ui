@@ -5,7 +5,8 @@ export default {
         name: '',
         count: 0
       },
-      code: []
+      code: [],
+      docs: {}
     };
   },
   methods: {
@@ -31,6 +32,36 @@ export default {
         console.warn(
           'The snippet name is required. You can run `showCode(snippetName, snippetCount)` for it.'
         );
+      }
+    },
+    showDocs(name, css = false) {
+      if (css) {
+        this.docs.css = require(`@/docs/cssdocs/${name}.md`);
+      } else {
+        this.docs[name] = require(`@/docs/apidocs/${name}.md`);
+      }
+    },
+    initDocs(
+      name,
+      options = {
+        code: 1,
+        apis: [],
+        css: false
+      }
+    ) {
+      this.showCode(name, options.code);
+
+      const apis = options.apis;
+      let componentName = '';
+      for (let i = 0, len = apis.length; i < len; i++) {
+        if (i === 0) {
+          componentName = apis[i];
+        }
+        this.showDocs(apis[i]);
+      }
+
+      if (options.css && componentName) {
+        this.showDocs(name, componentName);
       }
     }
   }

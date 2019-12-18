@@ -13,10 +13,11 @@ import App from '@/views/layouts/app';
 import UiMarkdown from '@/components/markdown';
 import UiApidocs from '@/components/apidocs';
 import UiCssdocs from '@/components/cssdocs';
-import SvgLogo from '@/components/logo';
 import UiAccordion from '@/components/accordion';
+import UiSnippet from '@/components/snippet';
 import UiFooterNav from '@/components/footer-nav';
 import UiTocAffix from '@/components/toc-affix';
+import SvgLogo from '@/components/logo';
 import validatorRules from '@/config/validator-rules';
 // syntax highlighting
 import prismjs from 'prismjs';
@@ -45,10 +46,11 @@ if (isIE) {
   Vue.component(UiMarkdown.name, UiMarkdown);
   Vue.component(UiApidocs.name, UiApidocs);
   Vue.component(UiCssdocs.name, UiCssdocs);
-  Vue.component(SvgLogo.name, SvgLogo);
   Vue.component(UiAccordion.name, UiAccordion);
+  Vue.component(UiSnippet.name, UiSnippet);
   Vue.component(UiFooterNav.name, UiFooterNav);
   Vue.component(UiTocAffix.name, UiTocAffix);
+  Vue.component(SvgLogo.name, SvgLogo);
 
   Vue.prototype.$prism = prismjs;
   Vue.prototype.$docs = {

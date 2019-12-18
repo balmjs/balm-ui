@@ -57,19 +57,19 @@
 
             <ui-a>Link</ui-a>
           </div>
-          <ui-accordion>
-            <ui-markdown :code="code[1]"></ui-markdown>
-          </ui-accordion>
+          <ui-snippet :code="code[1]"></ui-snippet>
         </fieldset>
       </section>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="button"></ui-apidocs>
+      <!-- <ui-apidocs :data="docs.button"></ui-apidocs> -->
+      <ui-markdown :text="docs.button"></ui-markdown>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h4>
-      <ui-cssdocs name="button"></ui-cssdocs>
+      <!-- <ui-cssdocs :data="docs.css"></ui-cssdocs> -->
+      <ui-markdown :text="docs.css"></ui-markdown>
     </div>
   </div>
 </template>
@@ -114,7 +114,11 @@ export default {
     };
   },
   created() {
-    this.showCode('button');
+    this.initDocs('button', {
+      code: 1,
+      apis: ['button'],
+      css: true
+    });
   }
 };
 </script>

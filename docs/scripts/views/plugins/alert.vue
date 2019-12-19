@@ -1,7 +1,7 @@
 <template>
   <div :class="[$tt('body1'), 'demo--alert']">
     <header class="hero plugin">
-      <h2 :class="$tt('headline4')">$alert</h2>
+      <h3 :class="$tt('headline3')">$alert</h3>
     </header>
 
     <ui-toc-affix withoutCss></ui-toc-affix>

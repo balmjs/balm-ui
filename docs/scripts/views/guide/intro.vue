@@ -2,7 +2,9 @@
   <div :class="[$tt('body1'), 'demo--intro']">
     <div :class="[$tt('body2'), 'pure-docs']">
       <ui-markdown :text="docs"></ui-markdown>
-      <ui-footer-nav :next="{name: 'Getting Started', url: 'guide.quickstart'}"></ui-footer-nav>
+      <ui-footer-nav
+        :next="{ name: 'Getting Started', url: 'guide.quickstart' }"
+      ></ui-footer-nav>
     </div>
   </div>
 </template>

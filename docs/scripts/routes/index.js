@@ -6,17 +6,17 @@ import BlankLayout from '@/views/layouts/blank';
 // Routes
 import guideRoutes from './guide';
 import generalRoutes from './general';
-const Icon = () => import('@/views/components/icon');
 import layoutRoutes from './layout';
 import navigationRoutes from './navigation';
 import DataEntryRoutes from './data-entry';
 import dataDisplayRoutes from './data-display';
 import feedbackRoutes from './feedback';
 import miscRoutes from './misc';
-const Utils = () => import('@/views/utils');
 // Pages
 import Home from '@/views/home';
-import NotFound from '@/views/not-found';
+const Icon = () => import('@/views/components/icon');
+const Utils = () => import('@/views/utils');
+const NotFound = () => import('@/views/not-found');
 import testRoutes from './test';
 
 Vue.use(VueRouter);

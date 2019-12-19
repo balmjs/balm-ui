@@ -9,7 +9,7 @@
           </ui-drawer-header>
           <ui-drawer-content>
             <ui-list>
-              <template #default="{ activatedClass }">
+              <template>
                 <ui-item
                   v-for="(item, index) in menu"
                   :key="index"

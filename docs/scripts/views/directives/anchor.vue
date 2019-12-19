@@ -1,7 +1,7 @@
 <template>
   <div :class="[$tt('body1'), 'demo--anchor']">
     <header class="hero directive">
-      <h2 :class="$tt('headline4')">Anchor</h2>
+      <h3 :class="$tt('headline3')">Anchor</h3>
     </header>
 
     <ui-toc-affix withoutCss></ui-toc-affix>

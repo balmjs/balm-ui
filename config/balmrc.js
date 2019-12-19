@@ -13,7 +13,7 @@ module.exports = {
     entry: env.useDocs
       ? {
           mylib: ['node_modules'],
-          myui: ['src', 'balm-ui-lite'],
+          myui: ['src'],
           app: './docs/scripts/main.js'
         }
       : {
@@ -66,5 +66,8 @@ module.exports = {
     enabled: env.buildDocs,
     mode: 'injectManifest'
   },
-  useDefaults: env.useDefault
+  useDefaults: env.useDefault,
+  logs: {
+    level: 2
+  }
 };

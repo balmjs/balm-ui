@@ -1,8 +1,6 @@
 module.exports = function(api) {
-  let envOptions = api.env('production')
-    ? { modules: false, useBuiltIns: 'usage', corejs: 3 }
-    : { modules: false };
-  let runtimeOptions = api.env('production') ? { corejs: 3 } : {};
+  let envOptions = api.env('production') ? {} : { modules: false };
+  let runtimeOptions = api.env('production') ? {} : {};
 
   return {
     presets: [['@babel/preset-env', envOptions]],

@@ -49,13 +49,11 @@
                     :active-class="activatedClass"
                     @click.native="handleMenu"
                   >
-                    <span v-if="item.icon" class="demo-catalog-list-icon">
-                      <img
-                        :src="require(`../../../images/icon/${item.icon}`)"
-                        :alt="item.name"
-                      />
-                    </span>
-                    {{ item.name }}
+                    <i
+                      v-if="item.icon"
+                      :class="['catalog-list-icon', `icon-${item.icon}`]"
+                    ></i>
+                    <span>{{ item.name }}</span>
                   </router-link>
                   <ui-list-divider
                     v-else-if="item === '-'"

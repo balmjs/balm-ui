@@ -280,29 +280,29 @@ const MATERIAL_COMPONENTS = [
   }
 ];
 
-const getComponentIcon = component => {
-  let icon = '';
-  if (component.icon) {
-    switch (component.icon) {
-      case 'icons':
-        icon = 'icons_light.svg';
-        break;
-      case 'progress':
-        icon = 'ic_progress_activity.svg';
-        break;
-      case 'slider':
-        icon = 'slider.svg';
-        break;
-      case 'chips':
-        icon = `ic_${component.icon}_24dp.svg`;
-        break;
-      default:
-        icon = `ic_${component.icon}_24px.svg`;
-        break;
-    }
-  }
-  return icon;
-};
+// const getComponentIcon = component => {
+//   let icon = '';
+//   if (component.icon) {
+//     switch (component.icon) {
+//       case 'icons':
+//         icon = 'icons_light.svg';
+//         break;
+//       case 'progress':
+//         icon = 'ic_progress_activity.svg';
+//         break;
+//       case 'slider':
+//         icon = 'slider.svg';
+//         break;
+//       case 'chips':
+//         icon = `ic_${component.icon}_24dp.svg`;
+//         break;
+//       default:
+//         icon = `ic_${component.icon}_24px.svg`;
+//         break;
+//     }
+//   }
+//   return icon;
+// };
 
 let menu = [];
 for (let component of MATERIAL_COMPONENTS) {
@@ -312,7 +312,7 @@ for (let component of MATERIAL_COMPONENTS) {
     let baseUrl = '/' + (component.url || component.name.toLowerCase());
 
     menu.push({
-      icon: getComponentIcon(component),
+      icon: component.icon,
       name: component.name,
       description: component.description || false,
       url: component.icon ? baseUrl : false
@@ -323,7 +323,7 @@ for (let component of MATERIAL_COMPONENTS) {
         let url =
           baseUrl + '/' + (subComponent.url || subComponent.name.toLowerCase());
         menu.push({
-          icon: getComponentIcon(subComponent),
+          icon: subComponent.icon,
           name: subComponent.name,
           description: subComponent.description || false,
           url,

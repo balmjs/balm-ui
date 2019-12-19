@@ -11,8 +11,6 @@ import UiSpinner from 'balm-ui-lite/components/spinner';
 import router from '@/routes';
 import App from '@/views/layouts/app';
 import UiMarkdown from '@/components/markdown';
-import UiApidocs from '@/components/apidocs';
-import UiCssdocs from '@/components/cssdocs';
 import UiAccordion from '@/components/accordion';
 import UiSnippet from '@/components/snippet';
 import UiFooterNav from '@/components/footer-nav';
@@ -44,8 +42,6 @@ if (isIE) {
 
   Vue.component(UiSpinner.name, UiSpinner);
   Vue.component(UiMarkdown.name, UiMarkdown);
-  Vue.component(UiApidocs.name, UiApidocs);
-  Vue.component(UiCssdocs.name, UiCssdocs);
   Vue.component(UiAccordion.name, UiAccordion);
   Vue.component(UiSnippet.name, UiSnippet);
   Vue.component(UiFooterNav.name, UiFooterNav);

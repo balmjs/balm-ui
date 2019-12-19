@@ -50,10 +50,18 @@ a {
   color: $material-color-grey-900;
 }
 
-.demo-catalog-list-icon {
+.catalog-list-icon {
   width: 24px;
   height: 24px;
   margin: 0 24px 0 12px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+
+  @each $key, $value in $nav-icons {
+    &.icon-#{$key} {
+      background-image: url('../images/icon/#{$value}');
+    }
+  }
 }
 
 .hero {

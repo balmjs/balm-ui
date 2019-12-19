@@ -17,8 +17,12 @@
           >BalmUI</router-link
         >
         <template #toolbar="{ itemClass }">
-          <a :class="itemClass" href="https://github.com/balmjs/balm-ui">
+          <a
+            :class="[itemClass, 'github']"
+            href="https://github.com/balmjs/balm-ui"
+          >
             <svg-github></svg-github>
+            <span>GitHub</span>
           </a>
         </template>
       </ui-top-app-bar>

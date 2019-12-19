@@ -15,6 +15,12 @@ a {
   height: 100vh;
 }
 
+.balmui-head {
+  .github > span {
+    display: none;
+  }
+}
+
 .balmui-body {
   display: flex;
   height: 100%;

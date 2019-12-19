@@ -61,7 +61,10 @@
             <div class="toggle-example">
               <h6 :class="$tt('headline6')">Using Material Icons</h6>
               <div class="demo-wrapper">
-                <ui-icon-button v-model="value1"></ui-icon-button>
+                <ui-icon-button
+                  :toggle="icon"
+                  v-model="value1"
+                ></ui-icon-button>
               </div>
               <p>
                 Favorited?

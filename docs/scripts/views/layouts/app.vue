@@ -88,8 +88,8 @@
 
 <script>
 import SvgGithub from '@/components/github';
-import { lang } from '@/config/lang';
 import menu from '@/config/menu';
+// import { lang } from '@/config/lang';
 
 export default {
   metaInfo: {
@@ -100,7 +100,6 @@ export default {
   },
   data() {
     return {
-      lang,
       menu,
       openDrawer: false,
       loading: false

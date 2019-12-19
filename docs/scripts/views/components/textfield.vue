@@ -152,9 +152,7 @@
           ]"
           v-model="controls"
         ></ui-textfield-controls>
-        <ui-accordion>
-          <ui-markdown :code="code[1]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[1]"></ui-snippet>
       </section>
 
       <section class="example">
@@ -171,9 +169,7 @@
         <ui-textfield-helper id="pw-validation-msg" visible validMsg
           >Must be at least 8 characters long</ui-textfield-helper
         >
-        <ui-accordion>
-          <ui-markdown :code="code[2]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[2]"></ui-snippet>
       </section>
 
       <section class="example">
@@ -212,9 +208,7 @@
           ]"
           v-model="controls"
         ></ui-textfield-controls>
-        <ui-accordion>
-          <ui-markdown :code="code[3]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[3]"></ui-snippet>
       </section>
 
       <section class="example" id="demo-tf-icon-container">
@@ -321,9 +315,7 @@
           ]"
           v-model="controls"
         ></ui-textfield-controls>
-        <ui-accordion>
-          <ui-markdown :code="code[4]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[4]"></ui-snippet>
       </section>
 
       <section class="example">
@@ -331,9 +323,7 @@
         <ui-textfield id="fouc" v-model="value"
           >Label floating above</ui-textfield
         >
-        <ui-accordion>
-          <ui-markdown :code="code[5]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[5]"></ui-snippet>
       </section>
 
       <section class="example">
@@ -357,9 +347,7 @@
           :options="['disabled', 'rtl', 'required', 'customColor']"
           v-model="controls"
         ></ui-textfield-controls>
-        <ui-accordion>
-          <ui-markdown :code="code[6]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[6]"></ui-snippet>
       </section>
 
       <section class="example">
@@ -397,21 +385,19 @@
           :options="['disabled', 'dense', 'required', 'customColor']"
           v-model="controls"
         ></ui-textfield-controls>
-        <ui-accordion>
-          <ui-markdown :code="code[7]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[7]"></ui-snippet>
       </section>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="textfield"></ui-apidocs>
-      <ui-apidocs name="textfield-helper"></ui-apidocs>
-      <ui-apidocs name="textfield-icon"></ui-apidocs>
-      <ui-apidocs name="textfield-counter"></ui-apidocs>
+      <ui-markdown :text="docs.textfield"></ui-markdown>
+      <ui-markdown :text="docs['textfield-helper']"></ui-markdown>
+      <ui-markdown :text="docs['textfield-icon']"></ui-markdown>
+      <ui-markdown :text="docs['textfield-counter']"></ui-markdown>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h4>
-      <ui-cssdocs name="textfield"></ui-cssdocs>
+      <ui-markdown :text="docs.css"></ui-markdown>
     </div>
   </div>
 </template>
@@ -500,6 +486,18 @@ export default {
       content: ''
     };
   },
+  created() {
+    this.initDocs('textfield', {
+      code: 7,
+      apis: [
+        'textfield',
+        'textfield-helper',
+        'textfield-icon',
+        'textfield-counter'
+      ],
+      css: true
+    });
+  }
   // methods: {
   //   onFocus(event) {
   //     console.log('onFocus', event);
@@ -521,9 +519,6 @@ export default {
   //   onEnter(value) {
   //     console.log('onEnter', value);
   //   }
-  // },
-  created() {
-    this.showCode('textfield', 7);
-  }
+  // }
 };
 </script>

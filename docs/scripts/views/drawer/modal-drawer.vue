@@ -26,9 +26,7 @@
       <div :class="$tt('body2')">
         <h1 :class="$tt('headline4')">Modal Drawer</h1>
         <p>Click the menu icon above to open.</p>
-        <ui-accordion>
-          <ui-markdown :code="code[4]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[4]"></ui-snippet>
       </div>
     </main>
   </div>

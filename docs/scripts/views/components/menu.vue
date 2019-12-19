@@ -21,9 +21,7 @@
       <ui-markdown :text="code[0]"></ui-markdown>
 
       <h4 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demo</h4>
-      <ui-accordion>
-        <ui-markdown :code="code[1]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[1]"></ui-snippet>
 
       <div class="demo-content">
         <div class="demo-controls-container" dir="ltr">
@@ -249,14 +247,14 @@
       </div>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="menu"></ui-apidocs>
-      <ui-apidocs name="menuitem"></ui-apidocs>
-      <ui-apidocs name="menu-anchor"></ui-apidocs>
+      <ui-markdown :text="docs.menu"></ui-markdown>
+      <ui-markdown :text="docs.menuitem"></ui-markdown>
+      <ui-markdown :text="docs['menu-anchor']"></ui-markdown>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h4>
-      <ui-cssdocs name="menu"></ui-cssdocs>
+      <ui-markdown :text="docs.css"></ui-markdown>
     </div>
   </div>
 </template>
@@ -304,6 +302,13 @@ export default {
       return `${this.controls.anchorMargin.top} ${this.controls.anchorMargin.right} ${this.controls.anchorMargin.bottom} ${this.controls.anchorMargin.left}`;
     }
   },
+  created() {
+    this.initDocs('menu', {
+      code: 1,
+      apis: ['menu', 'menuitem', 'menu-anchor'],
+      css: true
+    });
+  },
   methods: {
     onSelected(data) {
       console.log('onSelected', data);
@@ -312,9 +317,6 @@ export default {
     onClosed() {
       console.log('onClosed');
     }
-  },
-  created() {
-    this.showCode('menu');
   }
 };
 </script>

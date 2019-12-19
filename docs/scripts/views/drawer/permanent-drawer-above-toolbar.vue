@@ -24,9 +24,7 @@
         <div :class="$tt('body2')">
           <h1 :class="$tt('headline4')">Permanent Drawer</h1>
           <p>It sits to the left of this content.</p>
-          <ui-accordion>
-            <ui-markdown :code="code[1]"></ui-markdown>
-          </ui-accordion>
+          <ui-snippet :code="code[1]"></ui-snippet>
         </div>
       </div>
     </main>

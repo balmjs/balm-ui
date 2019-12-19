@@ -72,16 +72,16 @@
       </ui-list>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="drawer"></ui-apidocs>
-      <ui-apidocs name="drawer-header"></ui-apidocs>
-      <ui-apidocs name="drawer-content"></ui-apidocs>
-      <ui-apidocs name="drawer-backdrop"></ui-apidocs>
-      <ui-apidocs name="drawer-app-content"></ui-apidocs>
+      <ui-markdown :text="docs.drawer"></ui-markdown>
+      <ui-markdown :text="docs['drawer-header']"></ui-markdown>
+      <ui-markdown :text="docs['drawer-content']"></ui-markdown>
+      <ui-markdown :text="docs['drawer-backdrop']"></ui-markdown>
+      <ui-markdown :text="docs['drawer-app-content']"></ui-markdown>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h4>
-      <ui-cssdocs name="drawer"></ui-cssdocs>
+      <ui-markdown :text="docs.css"></ui-markdown>
     </div>
   </div>
 </template>
@@ -118,7 +118,17 @@ export default {
     };
   },
   created() {
-    this.showCode('drawer');
+    this.initDocs('drawer', {
+      code: 4,
+      apis: [
+        'drawer',
+        'drawer-header',
+        'drawer-content',
+        'drawer-backdrop',
+        'drawer-app-content'
+      ],
+      css: true
+    });
   }
 };
 </script>

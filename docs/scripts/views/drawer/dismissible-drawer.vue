@@ -29,9 +29,7 @@
         <div :class="$tt('body2')">
           <h1 :class="$tt('headline4')">Dismissible Drawer</h1>
           <p>Click the menu icon above to open and close the drawer.</p>
-          <ui-accordion>
-            <ui-markdown :code="code[3]"></ui-markdown>
-          </ui-accordion>
+          <ui-snippet :code="code[3]"></ui-snippet>
         </div>
       </div>
     </ui-drawer-app-content>

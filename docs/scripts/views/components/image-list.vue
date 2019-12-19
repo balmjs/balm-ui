@@ -84,7 +84,9 @@
 
 <script>
 import snippets from '@/mixins/snippets';
-import UiImageListControls from '@/components/image-list-controls';
+
+const UiImageListControls = () =>
+  import('@/demos/image-list/image-list-controls');
 
 export default {
   metaInfo: {

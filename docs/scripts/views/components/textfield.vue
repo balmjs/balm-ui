@@ -418,7 +418,8 @@
 
 <script>
 import snippets from '@/mixins/snippets';
-import UiTextfieldControls from '@/components/textfield-controls';
+const UiTextfieldControls = () =>
+  import('@/demos/textfield/textfield-controls');
 
 const TypeOptions = [
   {

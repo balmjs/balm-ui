@@ -223,12 +223,13 @@
 
 <script>
 import snippets from '@/mixins/snippets';
-import UiSelectControls from '@/components/select-controls';
 import {
   PROVINCES as provinces,
   CITIES,
   OPTIONS as options1
 } from '../../../data/select';
+
+const UiSelectControls = () => import('@/demos/select/select-controls');
 
 const TypeOptions = [
   {

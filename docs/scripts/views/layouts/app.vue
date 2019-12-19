@@ -87,7 +87,7 @@
 </template>
 
 <script>
-import SvgGithub from '@/components/github';
+import SvgGithub from '@/components/svg-github';
 import menu from '@/config/menu';
 // import { lang } from '@/config/lang';
 

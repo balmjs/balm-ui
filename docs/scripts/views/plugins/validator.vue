@@ -55,12 +55,10 @@
           <ui-button raised @click="submit">Submit</ui-button>
         </div>
       </fieldset>
-      <ui-accordion>
-        <ui-markdown :code="code[1]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[1]"></ui-snippet>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="validator" type="plugin"></ui-apidocs>
+      <ui-markdown :text="docs.validator"></ui-markdown>
     </div>
   </div>
 </template>
@@ -116,7 +114,10 @@ export default {
     };
   },
   created() {
-    this.showCode('validator');
+    this.initDocs('validator', {
+      code: 1,
+      apis: ['validator']
+    });
   },
   methods: {
     submit() {

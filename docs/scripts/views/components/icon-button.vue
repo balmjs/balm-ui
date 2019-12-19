@@ -48,9 +48,7 @@
             </div>
           </div>
         </div>
-        <ui-accordion>
-          <ui-markdown :code="code[1]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[1]"></ui-snippet>
       </section>
 
       <section class="example">
@@ -137,18 +135,16 @@
             </div>
           </div>
         </div>
-        <ui-accordion>
-          <ui-markdown :code="code[2]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[2]"></ui-snippet>
       </section>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="icon-button"></ui-apidocs>
+      <ui-markdown :text="docs['icon-button']"></ui-markdown>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h4>
-      <ui-cssdocs name="icon-button"></ui-cssdocs>
+      <ui-markdown :text="docs.css"></ui-markdown>
     </div>
   </div>
 </template>
@@ -186,7 +182,11 @@ export default {
     };
   },
   created() {
-    this.showCode('icon-button', 2);
+    this.initDocs('icon-button', {
+      code: 2,
+      apis: ['icon-button'],
+      css: true
+    });
   }
 };
 </script>

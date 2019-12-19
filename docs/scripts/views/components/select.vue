@@ -121,9 +121,7 @@
           >
         </div>
       </section>
-      <ui-accordion>
-        <ui-markdown :code="code[1]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[1]"></ui-snippet>
 
       <section class="example">
         <h6 :class="$tt('headline6')">1.2 Outlined Select</h6>
@@ -169,9 +167,7 @@
           >
         </div>
       </section>
-      <ui-accordion>
-        <ui-markdown :code="code[3]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[2]"></ui-snippet>
 
       <section class="example">
         <h6 :class="$tt('headline6')">1.3 Pre-selected option via HTML</h6>
@@ -184,9 +180,7 @@
           >
         </section>
       </section>
-      <ui-accordion>
-        <ui-markdown :code="code[4]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[3]"></ui-snippet>
 
       <section class="example">
         <h6 :class="$tt('headline6')">1.4 Custom Select</h6>
@@ -204,19 +198,17 @@
         ></ui-select>
         <p>Province: {{ formData.province }} - City: {{ formData.city }}</p>
       </section>
-      <ui-accordion>
-        <ui-markdown :code="code[6]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[4]"></ui-snippet>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="select"></ui-apidocs>
-      <ui-apidocs name="select-helper"></ui-apidocs>
-      <ui-apidocs name="select-icon"></ui-apidocs>
+      <ui-markdown :text="docs.select"></ui-markdown>
+      <ui-markdown :text="docs['select-helper']"></ui-markdown>
+      <ui-markdown :text="docs['select-icon']"></ui-markdown>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h4>
-      <ui-cssdocs name="select"></ui-cssdocs>
+      <ui-markdown :text="docs.css"></ui-markdown>
     </div>
   </div>
 </template>
@@ -360,6 +352,18 @@ export default {
       cities: []
     };
   },
+  created() {
+    this.initDocs('select', {
+      code: 4,
+      apis: ['select', 'select-helper', 'select-icon'],
+      css: true
+    });
+  },
+  mounted() {
+    // setTimeout(() => {
+    //   this.selected = 2;
+    // }, 3000);
+  },
   methods: {
     onSelected(result, key) {
       this[`selected${key}`].value = result.value;
@@ -372,14 +376,6 @@ export default {
       this.cities = key > -1 ? CITIES[key] : [];
       this.formData.city = this.cities.length ? this.cities[0].value : '';
     }
-  },
-  created() {
-    this.showCode('select', 4);
-  },
-  mounted() {
-    // setTimeout(() => {
-    //   this.selected = 2;
-    // }, 3000);
   }
 };
 </script>

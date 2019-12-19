@@ -29,9 +29,7 @@
           placeholder="Try to type"
         ></ui-autocomplete>
       </div>
-      <ui-accordion>
-        <ui-markdown :code="code[1]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[1]"></ui-snippet>
 
       <div class="example">
         <h6 :class="$tt('headline6')">1.2 Dynamic data</h6>
@@ -46,17 +44,15 @@
           @search="onSearch"
         ></ui-autocomplete>
       </div>
-      <ui-accordion>
-        <ui-markdown :code="code[2]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[2]"></ui-snippet>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="autocomplete"></ui-apidocs>
+      <ui-markdown :text="docs.autocomplete"></ui-markdown>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h4>
-      <ui-cssdocs name="autocomplete"></ui-cssdocs>
+      <ui-markdown :text="docs.css"></ui-markdown>
     </div>
   </div>
 </template>
@@ -136,6 +132,13 @@ export default {
       source2: []
     };
   },
+  created() {
+    this.initDocs('autocomplete', {
+      code: 2,
+      apis: ['autocomplete'],
+      css: true
+    });
+  },
   methods: {
     async onSearch(keywords) {
       let response = await this.$http.get(this.url, {
@@ -151,9 +154,6 @@ export default {
       console.log(item);
       this.website = item.url || '';
     }
-  },
-  created() {
-    this.showCode('autocomplete', 2);
   }
 };
 </script>

@@ -36,9 +36,7 @@
           <label for="basic-switch-custom">{{ toggle2 }} (custom color)</label>
         </div>
       </section>
-      <ui-accordion>
-        <ui-markdown :code="code[1]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[1]"></ui-snippet>
 
       <section class="example">
         <h2>1.2 Disabled</h2>
@@ -49,12 +47,12 @@
       </section>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="switch"></ui-apidocs>
+      <ui-markdown :text="docs.switch"></ui-markdown>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h4>
-      <ui-cssdocs name="switch"></ui-cssdocs>
+      <ui-markdown :text="docs.css"></ui-markdown>
     </div>
   </div>
 </template>
@@ -75,7 +73,11 @@ export default {
     };
   },
   created() {
-    this.showCode('switch');
+    this.initDocs('switch', {
+      code: 1,
+      apis: ['switch'],
+      css: true
+    });
   }
 };
 </script>

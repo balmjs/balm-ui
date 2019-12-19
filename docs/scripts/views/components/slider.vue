@@ -159,12 +159,12 @@
       </section>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="slider"></ui-apidocs>
+      <ui-markdown :text="docs.slider"></ui-markdown>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h4>
-      <ui-cssdocs name="slider"></ui-cssdocs>
+      <ui-markdown :text="docs.css"></ui-markdown>
     </div>
   </div>
 </template>
@@ -196,7 +196,10 @@ export default {
     };
   },
   created() {
-    this.showCode('slider');
+    this.initDocs('slider', {
+      apis: ['slider'],
+      css: true
+    });
   },
   mounted() {
     setTimeout(() => {

@@ -60,18 +60,16 @@
           <label for="female">Female</label>
         </ui-form-field>
         <p>Gender: {{ gender }}</p>
-        <ui-accordion>
-          <ui-markdown :code="code[1]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[1]"></ui-snippet>
       </section>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="radio"></ui-apidocs>
+      <ui-markdown :text="docs.radio"></ui-markdown>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h4>
-      <ui-cssdocs name="radio"></ui-cssdocs>
+      <ui-markdown :text="docs.css"></ui-markdown>
     </div>
   </div>
 </template>
@@ -97,7 +95,11 @@ export default {
     };
   },
   created() {
-    this.showCode('radio');
+    this.initDocs('radio', {
+      code: 1,
+      apis: ['radio'],
+      css: true
+    });
   }
 };
 </script>

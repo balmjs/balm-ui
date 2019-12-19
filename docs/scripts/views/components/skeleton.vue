@@ -15,17 +15,13 @@
         <h6 :class="$tt('headline6')">1.1 Basic</h6>
         <ui-skeleton></ui-skeleton>
       </div>
-      <ui-accordion>
-        <ui-markdown :code="code[1]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[1]"></ui-snippet>
 
       <div class="demo-wrapper">
         <h6 :class="$tt('headline6')">1.2 Complex combination</h6>
         <ui-skeleton avatar :paragraph="{ rows: 4 }"></ui-skeleton>
       </div>
-      <ui-accordion>
-        <ui-markdown :code="code[2]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[2]"></ui-snippet>
 
       <div class="demo-wrapper">
         <h6 :class="$tt('headline6')">
@@ -44,17 +40,15 @@
           </ui-list>
         </ui-skeleton>
       </div>
-      <ui-accordion>
-        <ui-markdown :code="code[3]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[3]"></ui-snippet>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="skeleton"></ui-apidocs>
+      <ui-markdown :text="docs.skeleton"></ui-markdown>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h4>
-      <ui-cssdocs name="skeleton"></ui-cssdocs>
+      <ui-markdown :text="docs.css"></ui-markdown>
     </div>
   </div>
 </template>
@@ -73,7 +67,11 @@ export default {
     };
   },
   created() {
-    this.showCode('skeleton', 3);
+    this.initDocs('skeleton', {
+      code: 3,
+      apis: ['skeleton'],
+      css: true
+    });
   }
 };
 </script>

@@ -135,9 +135,7 @@
                 </div>
               </fieldset>
             </div>
-            <ui-accordion>
-              <ui-markdown :code="code[1]"></ui-markdown>
-            </ui-accordion>
+            <ui-snippet :code="code[1]"></ui-snippet>
           </div>
 
           <div class="demo-theme-color-section">
@@ -179,9 +177,7 @@
                 </div>
               </fieldset>
             </div>
-            <ui-accordion>
-              <ui-markdown :code="code[2]"></ui-markdown>
-            </ui-accordion>
+            <ui-snippet :code="code[2]"></ui-snippet>
 
             <div class="demo-theme-color-section__row">
               <fieldset class="demo-fieldset--color">
@@ -239,9 +235,7 @@
                 </div>
               </fieldset>
             </div>
-            <ui-accordion>
-              <ui-markdown :code="code[3]"></ui-markdown>
-            </ui-accordion>
+            <ui-snippet :code="code[3]"></ui-snippet>
 
             <div class="demo-theme-color-section__row">
               <fieldset class="demo-fieldset--color">
@@ -342,20 +336,18 @@
                 </div>
               </fieldset>
             </div>
-            <ui-accordion>
-              <ui-markdown :code="code[4]"></ui-markdown>
-            </ui-accordion>
+            <ui-snippet :code="code[4]"></ui-snippet>
           </div>
         </section>
       </div>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="theme" type="plugin"></ui-apidocs>
+      <ui-markdown :text="docs.theme"></ui-markdown>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h4>
-      <ui-cssdocs name="theme"></ui-cssdocs>
+      <ui-markdown :text="docs.css"></ui-markdown>
 
       <div :class="['demo--theme-sass', $themeColor('background')]">
         $mdc-theme-background: white; (bgColor)
@@ -421,7 +413,11 @@ export default {
     };
   },
   created() {
-    this.showCode('theme', 4);
+    this.initDocs('theme', {
+      code: 4,
+      apis: ['theme'],
+      css: true
+    });
   },
   beforeDestroy() {
     this.reset();

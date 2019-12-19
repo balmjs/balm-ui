@@ -36,9 +36,7 @@
             >
           </ui-image-item>
         </ui-image-list>
-        <ui-accordion>
-          <ui-markdown :code="code[1]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[1]"></ui-snippet>
 
         <h4 :class="$tt('headline6')">1.2 Masonry Image List</h4>
         <ui-image-list-controls
@@ -64,20 +62,18 @@
             </ui-image-text>
           </ui-image-item>
         </ui-image-list>
-        <ui-accordion>
-          <ui-markdown :code="code[2]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[2]"></ui-snippet>
       </section>
 
       <h3 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h3>
-      <ui-apidocs name="image-list"></ui-apidocs>
-      <ui-apidocs name="image-item"></ui-apidocs>
-      <ui-apidocs name="image-text"></ui-apidocs>
+      <ui-markdown :text="docs['image-list']"></ui-markdown>
+      <ui-markdown :text="docs['image-item']"></ui-markdown>
+      <ui-markdown :text="docs['image-text']"></ui-markdown>
 
       <h3 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h3>
-      <ui-cssdocs name="image-list"></ui-cssdocs>
+      <ui-markdown :text="docs.css"></ui-markdown>
     </div>
   </div>
 </template>
@@ -126,7 +122,11 @@ export default {
     };
   },
   created() {
-    this.showCode('image-list', 2);
+    this.initDocs('image-list', {
+      code: 2,
+      apis: ['image-list', 'image-item', 'image-text'],
+      css: true
+    });
   }
 };
 </script>

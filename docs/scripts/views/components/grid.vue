@@ -94,9 +94,7 @@
             <ui-grid-cell class="demo-cell">4</ui-grid-cell>
             <ui-grid-cell class="demo-cell">4</ui-grid-cell>
           </ui-grid>
-          <ui-accordion>
-            <ui-markdown :code="code[1]"></ui-markdown>
-          </ui-accordion>
+          <ui-snippet :code="code[1]"></ui-snippet>
 
           <div class="demo-grid-legend">Grid of 1 column wide items</div>
           <ui-grid class="demo-grid">
@@ -104,9 +102,7 @@
               >1</ui-grid-cell
             >
           </ui-grid>
-          <ui-accordion>
-            <ui-markdown :code="code[2]"></ui-markdown>
-          </ui-accordion>
+          <ui-snippet :code="code[2]"></ui-snippet>
 
           <div class="demo-grid-legend">Grid of differently sized items</div>
           <ui-grid class="demo-grid">
@@ -114,9 +110,7 @@
             <ui-grid-cell class="demo-cell" columns="4">4</ui-grid-cell>
             <ui-grid-cell class="demo-cell" columns="2">2</ui-grid-cell>
           </ui-grid>
-          <ui-accordion>
-            <ui-markdown :code="code[3]"></ui-markdown>
-          </ui-accordion>
+          <ui-snippet :code="code[3]"></ui-snippet>
 
           <div class="demo-grid-legend">
             Grid of items with tweaks at different screen sizes
@@ -132,9 +126,7 @@
               >2 (4 phone)</ui-grid-cell
             >
           </ui-grid>
-          <ui-accordion>
-            <ui-markdown :code="code[4]"></ui-markdown>
-          </ui-accordion>
+          <ui-snippet :code="code[4]"></ui-snippet>
 
           <div class="demo-grid-legend">
             Grid nested within parent grid cell
@@ -155,9 +147,7 @@
             <ui-grid-cell class="demo-cell" columns="4">4</ui-grid-cell>
             <ui-grid-cell class="demo-cell" columns="4">4</ui-grid-cell>
           </ui-grid>
-          <ui-accordion>
-            <ui-markdown :code="code[5]"></ui-markdown>
-          </ui-accordion>
+          <ui-snippet :code="code[5]"></ui-snippet>
 
           <h3 class="demo-grid-legend">Grid with max width</h3>
           <div class="demo-grid-legend">
@@ -168,9 +158,7 @@
             <ui-grid-cell class="demo-cell" columns="4"></ui-grid-cell>
             <ui-grid-cell class="demo-cell" columns="4"></ui-grid-cell>
           </ui-grid>
-          <ui-accordion>
-            <ui-markdown :code="code[6]"></ui-markdown>
-          </ui-accordion>
+          <ui-snippet :code="code[6]"></ui-snippet>
 
           <div class="demo-grid-legend">
             Grid with max width (1280px) and left alignment
@@ -180,9 +168,7 @@
             <ui-grid-cell class="demo-cell" columns="4"></ui-grid-cell>
             <ui-grid-cell class="demo-cell" columns="4"></ui-grid-cell>
           </ui-grid>
-          <ui-accordion>
-            <ui-markdown :code="code[7]"></ui-markdown>
-          </ui-accordion>
+          <ui-snippet :code="code[7]"></ui-snippet>
 
           <h2 class="demo-grid-legend">
             1.2 Fixed column width layout grid (Widescreen Only)
@@ -229,9 +215,7 @@
               <ui-grid-cell class="demo-cell" columns="1"></ui-grid-cell>
               <ui-grid-cell class="demo-cell" columns="1"></ui-grid-cell>
             </ui-grid>
-            <ui-accordion>
-              <ui-markdown :code="code[8]"></ui-markdown>
-            </ui-accordion>
+            <ui-snippet :code="code[8]"></ui-snippet>
 
             <div class="demo-grid-legend">
               Fixed column width layout grid and right alignment
@@ -241,9 +225,7 @@
               <ui-grid-cell class="demo-cell" columns="1"></ui-grid-cell>
               <ui-grid-cell class="demo-cell" columns="1"></ui-grid-cell>
             </ui-grid>
-            <ui-accordion>
-              <ui-markdown :code="code[9]"></ui-markdown>
-            </ui-accordion>
+            <ui-snippet :code="code[9]"></ui-snippet>
           </template>
           <template v-else>
             <p>Your browser is not widescreen(Screen Size >= 1440px).</p>
@@ -255,14 +237,14 @@
         </section>
 
         <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-        <ui-apidocs name="grid"></ui-apidocs>
-        <ui-apidocs name="grid-cell"></ui-apidocs>
-        <ui-apidocs name="grid-custom" type="plugin"></ui-apidocs>
+        <ui-markdown :text="docs.grid"></ui-markdown>
+        <ui-markdown :text="docs['grid-cell']"></ui-markdown>
+        <ui-markdown :text="docs['grid-custom']"></ui-markdown>
 
         <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
           3. Sass Variables
         </h4>
-        <ui-cssdocs name="grid"></ui-cssdocs>
+        <ui-markdown :text="docs.css"></ui-markdown>
       </div>
     </div>
   </div>
@@ -331,10 +313,13 @@ export default {
     };
   },
   created() {
-    this.showCode('grid', 9);
+    this.initDocs('grid', {
+      code: 9,
+      apis: ['grid', 'grid-cell', 'grid-custom'],
+      css: true
+    });
   },
   mounted() {
-    // this.showCode('grid');
     window.addEventListener('balmResize', this.initRuler);
     this.initRuler();
   },

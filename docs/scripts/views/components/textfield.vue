@@ -23,9 +23,9 @@
               :visible="assistiveTextOption === 1"
               :validMsg="assistiveTextOption === 2 ? 'Error message' : ''"
             >
-              <template v-if="assistiveTextOption === 1" #default
-                >Helper message</template
-              >
+              <template v-if="assistiveTextOption === 1" #default>
+                Helper message
+              </template>
               <template #counter>
                 <ui-textfield-counter
                   v-show="iconOption.includes(1)"
@@ -56,9 +56,9 @@
               :visible="assistiveTextOption === 1"
               :validMsg="assistiveTextOption === 2 ? 'Error message' : ''"
             >
-              <template v-if="assistiveTextOption === 1" #default
-                >Helper message</template
-              >
+              <template v-if="assistiveTextOption === 1" #default>
+                Helper message
+              </template>
               <template #counter>
                 <ui-textfield-counter
                   v-show="iconOption.includes(1)"

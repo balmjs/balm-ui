@@ -46,9 +46,7 @@
           </div>
         </div>
       </section>
-      <ui-accordion>
-        <ui-markdown :text="code[1]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[1]"></ui-snippet>
 
       <section class="coloring-example">
         <h6 :class="$tt('headline6')">1.2 Coloring</h6>
@@ -75,17 +73,15 @@
           </div>
         </div>
       </section>
-      <ui-accordion>
-        <ui-markdown :text="code[2]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[2]"></ui-snippet>
 
       <h3 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h3>
-      <ui-apidocs name="icon"></ui-apidocs>
+      <ui-markdown :text="docs.icon"></ui-markdown>
 
       <h3 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h3>
-      <ui-cssdocs name="icon"></ui-cssdocs>
+      <ui-markdown :text="docs.css"></ui-markdown>
 
       <h4 v-anchor:id="'ui-icons'" :class="$tt('headline4')">4. Icons List</h4>
       <div class="search-area" v-shadow="1">
@@ -286,7 +282,11 @@ export default {
     };
   },
   async created() {
-    this.showCode('icon', 2);
+    this.initDocs('icon', {
+      code: 2,
+      apis: ['icon'],
+      css: true
+    });
 
     let response = await this.$http.get(`${this.$domain}/data/icons.json`);
     let { categories } = response.data;

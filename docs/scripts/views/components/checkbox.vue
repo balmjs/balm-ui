@@ -32,9 +32,7 @@
           <ui-checkbox id="checkbox" :model="checked" @change="$balmUI.onChange('checked', $event)"></ui-checkbox>
           <label for="checkbox">{{checked}}</label>
         </ui-form-field>-->
-        <ui-accordion>
-          <ui-markdown :code="code[1]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[1]"></ui-snippet>
       </section>
 
       <section class="example">
@@ -92,25 +90,23 @@
           ></ui-checkbox>
           <label for="mike">Mike</label>
         </ui-form-field>-->
-        <ui-accordion>
-          <ui-markdown :code="code[2]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[2]"></ui-snippet>
       </section>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="checkbox"></ui-apidocs>
+      <ui-markdown :text="docs.checkbox"></ui-markdown>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h4>
-      <ui-cssdocs name="checkbox"></ui-cssdocs>
+      <ui-markdown :text="docs.css"></ui-markdown>
     </div>
   </div>
 </template>
 
 <script>
-import snippets from '@/mixins/snippets';
 import UiCheckboxDemo from '@/demos/checkbox';
+import snippets from '@/mixins/snippets';
 
 export default {
   metaInfo: {
@@ -122,12 +118,17 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      // demo
       checked: false,
       checkedNames: []
     };
   },
   created() {
-    this.showCode('checkbox', 2);
+    this.initDocs('checkbox', {
+      code: 2,
+      apis: ['checkbox'],
+      css: true
+    });
   }
 };
 </script>

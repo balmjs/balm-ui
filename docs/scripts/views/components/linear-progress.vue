@@ -61,18 +61,16 @@
           ></ui-linear-progress>
           <figcaption>Custom Colors with Buffer</figcaption>
         </figure>
-        <ui-accordion>
-          <ui-markdown :text="code[1]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[1]"></ui-snippet>
       </section>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="linear-progress"></ui-apidocs>
+      <ui-markdown :text="docs['linear-progress']"></ui-markdown>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h4>
-      <ui-cssdocs name="linear-progress"></ui-cssdocs>
+      <ui-markdown :text="docs.css"></ui-markdown>
     </div>
   </div>
 </template>
@@ -92,7 +90,12 @@ export default {
     };
   },
   created() {
-    this.showCode('linear-progress');
+    this.initDocs('linear-progress', {
+      code: 1,
+      apis: ['linear-progress'],
+      css: true
+    });
+
     this.setProgress();
   },
   methods: {

@@ -44,7 +44,7 @@ export default {
     initDocs(
       name,
       options = {
-        code: 1,
+        code: 0,
         apis: [],
         css: false
       }

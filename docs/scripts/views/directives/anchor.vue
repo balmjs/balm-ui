@@ -15,9 +15,7 @@
         <h6 :class="$tt('headline6')">1.1 Default Usage</h6>
         <ui-button raised v-anchor:href="'#target1'">Anchor 1</ui-button>
         <ui-button outlined v-anchor:href="'#target2'">Anchor 2</ui-button>
-        <ui-accordion>
-          <ui-markdown :code="code[1]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[1]"></ui-snippet>
         <div class="anchor-example-inner">
           <div v-anchor:id="'target1'">Target 1</div>
           <div v-anchor:id="'target2'">Target 2</div>
@@ -32,9 +30,7 @@
         <a href="javascript:void(0)" class="v-anchor" data-href="#target4"
           >Anchor 4</a
         >
-        <ui-accordion>
-          <ui-markdown :code="code[2]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[2]"></ui-snippet>
         <div class="anchor-example-inner">
           <div id="target3">Target 3</div>
           <div id="target4">Target 4</div>
@@ -42,7 +38,7 @@
       </section>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="anchor" type="directive"></ui-apidocs>
+      <ui-markdown :text="docs.anchor"></ui-markdown>
     </div>
   </div>
 </template>
@@ -56,7 +52,10 @@ export default {
   },
   mixins: [snippets],
   created() {
-    this.showCode('anchor', 2);
+    this.initDocs('anchor', {
+      code: 2,
+      apis: ['anchor']
+    });
   }
 };
 </script>

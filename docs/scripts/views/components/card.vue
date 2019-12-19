@@ -100,9 +100,7 @@
           </ui-card-actions>
         </ui-card>
       </section>
-      <ui-accordion>
-        <ui-markdown :text="code[1]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[1]"></ui-snippet>
 
       <section class="demo-card-collection">
         <ui-card class="demo-card demo-card--photo">
@@ -126,9 +124,7 @@
           </ui-card-actions>
         </ui-card>
       </section>
-      <ui-accordion>
-        <ui-markdown :text="code[2]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[2]"></ui-snippet>
 
       <section class="demo-card-collection">
         <ui-card class="demo-card demo-card--music">
@@ -164,23 +160,21 @@
           </ui-card-actions>
         </ui-card>
       </section>
-      <ui-accordion>
-        <ui-markdown :text="code[3]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[3]"></ui-snippet>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="card"></ui-apidocs>
-      <ui-apidocs name="card-content"></ui-apidocs>
-      <ui-apidocs name="card-media"></ui-apidocs>
-      <ui-apidocs name="card-media-content"></ui-apidocs>
-      <ui-apidocs name="card-actions"></ui-apidocs>
-      <ui-apidocs name="card-buttons"></ui-apidocs>
-      <ui-apidocs name="card-icons"></ui-apidocs>
+      <ui-markdown :text="docs.card"></ui-markdown>
+      <ui-markdown :text="docs['card-content']"></ui-markdown>
+      <ui-markdown :text="docs['card-media']"></ui-markdown>
+      <ui-markdown :text="docs['card-media-content']"></ui-markdown>
+      <ui-markdown :text="docs['card-actions']"></ui-markdown>
+      <ui-markdown :text="docs['card-buttons']"></ui-markdown>
+      <ui-markdown :text="docs['card-icons']"></ui-markdown>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h4>
-      <ui-cssdocs name="card"></ui-cssdocs>
+      <ui-markdown :text="docs.css"></ui-markdown>
     </div>
   </div>
 </template>
@@ -245,7 +239,19 @@ export default {
     };
   },
   created() {
-    this.showCode('card', 3);
+    this.initDocs('card', {
+      code: 3,
+      apis: [
+        'card',
+        'card-content',
+        'card-media',
+        'card-media-content',
+        'card-actions',
+        'card-buttons',
+        'card-icons'
+      ],
+      css: true
+    });
   }
 };
 </script>

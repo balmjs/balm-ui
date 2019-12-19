@@ -63,27 +63,27 @@
       <ui-tab-panel-demo :code="demoCode"></ui-tab-panel-demo>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="tabs"></ui-apidocs>
-      <ui-apidocs name="tab-bar"></ui-apidocs>
-      <ui-apidocs name="tab-scroller"></ui-apidocs>
-      <ui-apidocs name="tab"></ui-apidocs>
-      <ui-apidocs name="tab-indicator"></ui-apidocs>
-      <ui-apidocs name="tab-panel"></ui-apidocs>
+      <ui-markdown :text="docs.tabs"></ui-markdown>
+      <ui-markdown :text="docs['tab-bar']"></ui-markdown>
+      <ui-markdown :text="docs['tab-scroller']"></ui-markdown>
+      <ui-markdown :text="docs.tab"></ui-markdown>
+      <ui-markdown :text="docs['tab-indicator']"></ui-markdown>
+      <ui-markdown :text="docs['tab-panel']"></ui-markdown>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h4>
-      <ui-cssdocs name="tabs"></ui-cssdocs>
+      <ui-markdown :text="docs.css"></ui-markdown>
     </div>
   </div>
 </template>
 
 <script>
-import snippets from '@/mixins/snippets';
 import UiTabDemo from '@/demos/tabs/tab';
 import UiTabBarDemo from '@/demos/tabs/tab-bar';
 import UiTabScrollerDemo from '@/demos/tabs/tab-scroller';
 import UiTabPanelDemo from '@/demos/tabs/tab-panel';
+import snippets from '@/mixins/snippets';
 
 const largeScreenSize = 1024;
 
@@ -204,7 +204,18 @@ export default {
     }
   },
   created() {
-    this.showCode('tabs', 9);
+    this.initDocs('tabs', {
+      code: 9,
+      apis: [
+        'tabs',
+        'tab-bar',
+        'tab-scroller',
+        'tab',
+        'tab-indicator',
+        'tab-panel'
+      ],
+      css: true
+    });
 
     setTimeout(() => {
       this.tabs = [

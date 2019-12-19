@@ -9,9 +9,7 @@
         </ui-tab>
       </ui-tab-bar>
     </div>
-    <ui-accordion>
-      <ui-markdown :text="code[5]"></ui-markdown>
-    </ui-accordion>
+    <ui-snippet :code="code[5]"></ui-snippet>
 
     <template v-if="isLargeScreen">
       <h6 :class="$tt('headline6')">Start Alignment</h6>
@@ -40,9 +38,7 @@
           </ui-tab>
         </ui-tab-bar>
       </div>
-      <ui-accordion>
-        <ui-markdown :text="code[6]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[6]"></ui-snippet>
     </template>
     <template v-else>
       <h6 :class="$tt('headline6')">Alignment Demos</h6>
@@ -64,9 +60,7 @@
         </ui-tab>
       </ui-tab-bar>
     </div>
-    <ui-accordion>
-      <ui-markdown :text="code[7]"></ui-markdown>
-    </ui-accordion>
+    <ui-snippet :code="code[7]"></ui-snippet>
   </section>
 </template>
 

@@ -14,12 +14,10 @@
       <div class="example">
         <ui-button raised @click="$alert('Hello BalmJS')">Show Alert</ui-button>
       </div>
-      <ui-accordion>
-        <ui-markdown :code="code[1]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[1]"></ui-snippet>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="alert" type="plugin"></ui-apidocs>
+      <ui-markdown :text="docs.alert"></ui-markdown>
     </div>
   </div>
 </template>
@@ -33,7 +31,10 @@ export default {
   },
   mixins: [snippets],
   created() {
-    this.showCode('alert');
+    this.initDocs('alert', {
+      code: 1,
+      apis: ['alert']
+    });
   }
 };
 </script>

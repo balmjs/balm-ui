@@ -92,9 +92,7 @@
             </figcaption>
           </figure>
         </div>
-        <ui-accordion>
-          <ui-markdown :code="code[1]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[1]"></ui-snippet>
       </section>
 
       <section>
@@ -123,9 +121,7 @@
             <figcaption>Extended (without icon)</figcaption>
           </figure>
         </div>
-        <ui-accordion>
-          <ui-markdown :code="code[2]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[2]"></ui-snippet>
       </section>
 
       <section>
@@ -156,9 +152,7 @@
             @click="$balmUI.onShow('exited')"
           ></ui-fab>
         </div>
-        <ui-accordion>
-          <ui-markdown :code="code[3]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[3]"></ui-snippet>
       </section>
 
       <section>
@@ -179,18 +173,16 @@
             <i class="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
           </ui-fab>
         </fieldset>
-        <ui-accordion>
-          <ui-markdown :code="code[4]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[4]"></ui-snippet>
       </section>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="fab"></ui-apidocs>
+      <ui-markdown :text="docs.fab"></ui-markdown>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h4>
-      <ui-cssdocs name="fab"></ui-cssdocs>
+      <ui-markdown :text="docs.css"></ui-markdown>
     </div>
   </div>
 </template>
@@ -226,7 +218,11 @@ export default {
     };
   },
   created() {
-    this.showCode('fab', 4);
+    this.initDocs('fab', {
+      code: 4,
+      apis: ['fab'],
+      css: true
+    });
   }
 };
 </script>

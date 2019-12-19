@@ -13,9 +13,7 @@
       <ui-panel>Panel Two</ui-panel>
       <ui-panel>Panel Three</ui-panel>
     </ui-panels>
-    <ui-accordion>
-      <ui-markdown :text="code[9]"></ui-markdown>
-    </ui-accordion>
+    <ui-snippet :code="code[9]"></ui-snippet>
   </section>
 </template>
 

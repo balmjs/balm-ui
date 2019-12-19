@@ -19,9 +19,7 @@
         ></ui-file>
         <p>Files: {{ files1 }}</p>
       </div>
-      <ui-accordion>
-        <ui-markdown :code="code[1]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[1]"></ui-snippet>
 
       <div class="example">
         <h6 :class="$tt('headline6')">1.2 Multiple + Preview</h6>
@@ -40,9 +38,7 @@
           </li>
         </transition-group>
       </div>
-      <ui-accordion>
-        <ui-markdown :code="code[2]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[2]"></ui-snippet>
 
       <div class="example">
         <h6 :class="$tt('headline6')">1.3 Classics Upload</h6>
@@ -69,20 +65,17 @@
             </div>
           </li>
         </transition-group>
-        <p>
-          <ui-button raised @click="uploadAllFiles">
-            <template #before="{ iconClass }">
-              <ui-icon :class="iconClass">file_upload</ui-icon> </template
-            >Upload All
-          </ui-button>
-        </p>
+        <ui-button raised @click="uploadAllFiles">
+          <template #before="{ iconClass }">
+            <ui-icon :class="iconClass">file_upload</ui-icon>
+          </template>
+          Upload All
+        </ui-button>
       </div>
-      <ui-accordion>
-        <ui-markdown :code="code[3]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[3]"></ui-snippet>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="file"></ui-apidocs>
+      <ui-markdown :text="docs.file"></ui-markdown>
     </div>
   </div>
 </template>
@@ -106,7 +99,10 @@ export default {
     };
   },
   created() {
-    this.showCode('file', 3);
+    this.initDocs('file', {
+      code: 3,
+      apis: ['file']
+    });
   },
   methods: {
     setBg({ previewSrc }) {

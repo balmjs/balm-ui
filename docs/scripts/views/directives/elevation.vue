@@ -35,26 +35,22 @@
           </figcaption>
         </figure>
       </section>
-      <ui-accordion>
-        <ui-markdown :code="code[1]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[1]"></ui-snippet>
 
       <section>
         <div id="hover-el" v-shadow.transition="[2, 8]">
           <p>Hover over or tap me for a transition</p>
         </div>
       </section>
-      <ui-accordion>
-        <ui-markdown :code="code[2]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[2]"></ui-snippet>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="elevation" type="directive"></ui-apidocs>
+      <ui-markdown :text="docs.elevation"></ui-markdown>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h4>
-      <ui-cssdocs name="elevation"></ui-cssdocs>
+      <ui-markdown :text="docs.css"></ui-markdown>
     </div>
   </div>
 </template>
@@ -68,7 +64,11 @@ export default {
   },
   mixins: [snippets],
   created() {
-    this.showCode('elevation', 2);
+    this.initDocs('elevation', {
+      code: 2,
+      apis: ['elevation'],
+      css: true
+    });
   }
 };
 </script>

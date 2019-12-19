@@ -62,13 +62,11 @@
       </section>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <!-- <ui-apidocs :data="docs.button"></ui-apidocs> -->
       <ui-markdown :text="docs.button"></ui-markdown>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h4>
-      <!-- <ui-cssdocs :data="docs.css"></ui-cssdocs> -->
       <ui-markdown :text="docs.css"></ui-markdown>
     </div>
   </div>

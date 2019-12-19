@@ -49,17 +49,15 @@
           </ui-snackbar>
         </div>
       </section>
-      <ui-accordion>
-        <ui-markdown :code="code[1]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[1]"></ui-snippet>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="snackbar"></ui-apidocs>
+      <ui-markdown :text="docs.snackbar"></ui-markdown>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h4>
-      <ui-cssdocs name="snackbar"></ui-cssdocs>
+      <ui-markdown :text="docs.css"></ui-markdown>
     </div>
   </div>
 </template>
@@ -82,13 +80,17 @@ export default {
       actionType: false
     };
   },
+  created() {
+    this.initDocs('snackbar', {
+      code: 1,
+      apis: ['snackbar'],
+      css: true
+    });
+  },
   methods: {
     actionHandler() {
       console.log('gg');
     }
-  },
-  created() {
-    this.showCode('snackbar');
   }
 };
 </script>

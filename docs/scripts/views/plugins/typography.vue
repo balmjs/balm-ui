@@ -53,9 +53,7 @@
           <span :class="$tt('overline')">Overline text</span>
         </div>
       </section>
-      <ui-accordion>
-        <ui-markdown :code="code[1]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[1]"></ui-snippet>
 
       <h6 :class="[$tt('headline6'), 'demo-typography--heading-baseline']">
         Baseline
@@ -77,12 +75,12 @@
       </section>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="typography" type="plugin"></ui-apidocs>
+      <ui-markdown :text="docs.typography"></ui-markdown>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h4>
-      <ui-cssdocs name="typography"></ui-cssdocs>
+      <ui-markdown :text="docs.css"></ui-markdown>
     </div>
   </div>
 </template>
@@ -96,7 +94,11 @@ export default {
   },
   mixins: [snippets],
   created() {
-    this.showCode('typography');
+    this.initDocs('typography', {
+      code: 1,
+      apis: ['typography'],
+      css: true
+    });
   }
 };
 </script>

@@ -23,9 +23,7 @@
           jumperButtonText="Go"
         ></ui-pagination>
       </section>
-      <ui-accordion>
-        <ui-markdown :code="code[1]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[1]"></ui-snippet>
 
       <section class="example">
         <h6 :class="$tt('headline6')">1.2 Custom Record</h6>
@@ -54,9 +52,7 @@
           </template>
         </ui-pagination>
       </section>
-      <ui-accordion>
-        <ui-markdown :code="code[2]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[2]"></ui-snippet>
 
       <section class="example">
         <h6 :class="$tt('headline6')">1.3 Mini Mode</h6>
@@ -70,17 +66,15 @@
           <span>Page {{ page3 }}</span>
         </ui-pagination>
       </section>
-      <ui-accordion>
-        <ui-markdown :code="code[3]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[3]"></ui-snippet>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="pagination"></ui-apidocs>
+      <ui-markdown :text="docs.pagination"></ui-markdown>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h4>
-      <ui-cssdocs name="pagination"></ui-cssdocs>
+      <ui-markdown :text="docs.css"></ui-markdown>
     </div>
   </div>
 </template>
@@ -127,7 +121,11 @@ export default {
     };
   },
   created() {
-    this.showCode('pagination', 3);
+    this.initDocs('pagination', {
+      code: 3,
+      apis: ['pagination'],
+      css: true
+    });
   }
 };
 </script>

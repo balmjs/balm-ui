@@ -105,18 +105,14 @@
         <ui-button raised @click="$balmUI.onOpen('open')"
           >Show Dialog</ui-button
         >
-        <ui-accordion>
-          <ui-markdown :code="code[1]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[1]"></ui-snippet>
       </section>
 
       <section class="example">
         <ui-button raised @click="$balmUI.onShow('open2')"
           >Show Scrolling Dialog</ui-button
         >
-        <ui-accordion>
-          <ui-markdown :code="code[2]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[2]"></ui-snippet>
       </section>
 
       <ui-dialog v-model="open" @confirm="onConfirm">
@@ -143,15 +139,15 @@
       </ui-dialog>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="dialog"></ui-apidocs>
-      <ui-apidocs name="dialog-title"></ui-apidocs>
-      <ui-apidocs name="dialog-content"></ui-apidocs>
-      <ui-apidocs name="dialog-actions"></ui-apidocs>
+      <ui-markdown :text="docs.dialog"></ui-markdown>
+      <ui-markdown :text="docs['dialog-title']"></ui-markdown>
+      <ui-markdown :text="docs['dialog-content']"></ui-markdown>
+      <ui-markdown :text="docs['dialog-actions']"></ui-markdown>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h4>
-      <ui-cssdocs name="dialog"></ui-cssdocs>
+      <ui-markdown :text="docs.css"></ui-markdown>
     </div>
   </div>
 </template>
@@ -217,6 +213,13 @@ export default {
       ]
     };
   },
+  created() {
+    this.initDocs('dialog', {
+      code: 2,
+      apis: ['dialog', 'dialog-title', 'dialog-content', 'dialog-actions'],
+      css: true
+    });
+  },
   methods: {
     onConfirm(result) {
       if (result) {
@@ -225,9 +228,6 @@ export default {
         console.log('cancel');
       }
     }
-  },
-  created() {
-    this.showCode('dialog', 2);
   }
 };
 </script>

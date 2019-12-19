@@ -20,9 +20,7 @@
         <h6 :class="$tt('headline6')">1.1 Default Usage</h6>
         <ui-table :data="heroData" :thead="thead1" :tbody="tbody1"></ui-table>
       </section>
-      <ui-accordion>
-        <ui-markdown :code="code[1]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[1]"></ui-snippet>
 
       <section class="example">
         <h6 :class="$tt('headline6')">1.2 Advanced Usage</h6>
@@ -46,17 +44,15 @@
           </template>
         </ui-table>
       </section>
-      <ui-accordion>
-        <ui-markdown :code="code[2]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[2]"></ui-snippet>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="table"></ui-apidocs>
+      <ui-markdown :text="docs.table"></ui-markdown>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h4>
-      <ui-cssdocs name="table"></ui-cssdocs>
+      <ui-markdown :text="docs.css"></ui-markdown>
     </div>
   </div>
 </template>
@@ -172,7 +168,11 @@ export default {
     };
   },
   async created() {
-    this.showCode('table', 2);
+    this.initDocs('table', {
+      code: 2,
+      apis: ['table'],
+      css: true
+    });
 
     let { data } = await this.$http.get('/data/table.json');
     this.data = data;

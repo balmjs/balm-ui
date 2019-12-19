@@ -44,9 +44,7 @@
             >{{ item.name }}</ui-chip
           >
         </ui-chips>
-        <ui-accordion>
-          <ui-markdown :code="code[1]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[1]"></ui-snippet>
       </section>
 
       <section class="example">
@@ -59,9 +57,7 @@
             >{{ item }}</ui-chip
           >
         </ui-chips>
-        <ui-accordion>
-          <ui-markdown :code="code[2]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[2]"></ui-snippet>
       </section>
 
       <section class="example">
@@ -83,9 +79,7 @@
             >{{ item }}</ui-chip
           >
         </ui-chips>
-        <ui-accordion>
-          <ui-markdown :code="code[3]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[3]"></ui-snippet>
       </section>
 
       <section class="example">
@@ -98,19 +92,17 @@
             >{{ item.name }}</ui-chip
           >
         </ui-chips>
-        <ui-accordion>
-          <ui-markdown :code="code[4]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[4]"></ui-snippet>
       </section>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="chips"></ui-apidocs>
-      <ui-apidocs name="chip"></ui-apidocs>
+      <ui-markdown :text="docs.chips"></ui-markdown>
+      <ui-markdown :text="docs.chip"></ui-markdown>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h4>
-      <ui-cssdocs name="chips"></ui-cssdocs>
+      <ui-markdown :text="docs.css"></ui-markdown>
     </div>
   </div>
 </template>
@@ -156,7 +148,11 @@ export default {
     };
   },
   created() {
-    this.showCode('chips', 4);
+    this.initDocs('chips', {
+      code: 4,
+      apis: ['chips', 'chip'],
+      css: true
+    });
   },
   mounted() {
     setTimeout(() => {

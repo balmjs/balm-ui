@@ -262,7 +262,7 @@
 </template>
 
 <script>
-import SvgSelected from '@/components/selected';
+import SvgSelected from '@/components/svg-selected';
 import snippets from '@/mixins/snippets';
 
 export default {

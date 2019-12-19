@@ -17,7 +17,7 @@ import UiAccordion from '@/components/accordion';
 import UiSnippet from '@/components/snippet';
 import UiFooterNav from '@/components/footer-nav';
 import UiTocAffix from '@/components/toc-affix';
-import SvgLogo from '@/components/logo';
+import SvgLogo from '@/components/svg-logo';
 import validatorRules from '@/config/validator-rules';
 // syntax highlighting
 import prismjs from 'prismjs';

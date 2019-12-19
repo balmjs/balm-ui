@@ -25,9 +25,7 @@
           </div>
         </div>
       </section>
-      <ui-accordion>
-        <ui-markdown :code="code[1]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[1]"></ui-snippet>
 
       <section class="example">
         <div>
@@ -49,9 +47,7 @@
           >
         </div>
       </section>
-      <ui-accordion>
-        <ui-markdown :code="code[2]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[2]"></ui-snippet>
 
       <section class="example">
         <div>
@@ -89,12 +85,10 @@
           </div>
         </div>
       </section>
-      <ui-accordion>
-        <ui-markdown :code="code[3]"></ui-markdown>
-      </ui-accordion>
+      <ui-snippet :code="code[3]"></ui-snippet>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="ripple" type="directive"></ui-apidocs>
+      <ui-markdown :text="docs.ripple"></ui-markdown>
     </div>
   </div>
 </template>
@@ -108,7 +102,10 @@ export default {
   },
   mixins: [snippets],
   created() {
-    this.showCode('ripple', 3);
+    this.initDocs('ripple', {
+      code: 3,
+      apis: ['ripple']
+    });
   }
 };
 </script>

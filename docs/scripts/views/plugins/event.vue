@@ -23,9 +23,7 @@
             </p>
             <p>{{ message1 }}</p>
 
-            <ui-accordion>
-              <ui-markdown :code="code[1]"></ui-markdown>
-            </ui-accordion>
+            <ui-snippet :code="code[1]"></ui-snippet>
           </ui-grid-cell>
           <ui-grid-cell columns="6">
             <label>$balmUI</label>
@@ -42,9 +40,7 @@
             </p>
             <p>{{ message2 }}</p>
 
-            <ui-accordion>
-              <ui-markdown :code="code[2]"></ui-markdown>
-            </ui-accordion>
+            <ui-snippet :code="code[2]"></ui-snippet>
           </ui-grid-cell>
         </ui-grid>
       </div>
@@ -65,9 +61,7 @@
               </ui-dialog-actions>
             </ui-dialog>
 
-            <ui-accordion>
-              <ui-markdown :text="code[3]"></ui-markdown>
-            </ui-accordion>
+            <ui-snippet :code="code[3]"></ui-snippet>
           </ui-grid-cell>
           <ui-grid-cell columns="6">
             <label>$balmUI</label>
@@ -89,15 +83,13 @@
               </ui-dialog-actions>
             </ui-dialog>
 
-            <ui-accordion>
-              <ui-markdown :text="code[4]"></ui-markdown>
-            </ui-accordion>
+            <ui-snippet :code="code[4]"></ui-snippet>
           </ui-grid-cell>
         </ui-grid>
       </div>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="event" type="plugin"></ui-apidocs>
+      <ui-markdown :text="docs.event"></ui-markdown>
     </div>
   </div>
 </template>
@@ -119,7 +111,10 @@ export default {
     };
   },
   created() {
-    this.showCode('event', 4);
+    this.initDocs('event', {
+      code: 4,
+      apis: ['event']
+    });
   },
   methods: {
     showMessage() {

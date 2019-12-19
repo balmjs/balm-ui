@@ -55,9 +55,7 @@
             <ui-item-text-content>Line item</ui-item-text-content>
           </ui-item>
         </ui-list>
-        <ui-accordion>
-          <ui-markdown :code="code[1]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[1]"></ui-snippet>
 
         <h4 :class="$tt('headline6')">1.2 Two-Line</h4>
         <ui-list :type="2">
@@ -68,9 +66,7 @@
             </ui-item-text-content>
           </ui-item>
         </ui-list>
-        <ui-accordion>
-          <ui-markdown :code="code[2]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[2]"></ui-snippet>
 
         <h4 :class="$tt('headline6')">1.3 Leading Icon</h4>
         <ui-list>
@@ -81,9 +77,7 @@
             <ui-item-text-content>{{ item.text }}</ui-item-text-content>
           </ui-item>
         </ui-list>
-        <ui-accordion>
-          <ui-markdown :code="code[3]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[3]"></ui-snippet>
 
         <h4 :class="$tt('headline6')">
           1.4 List with activated item (Selected Index: {{ selectedIndex }})
@@ -96,9 +90,7 @@
             <ui-item-text-content>{{ item.text }}</ui-item-text-content>
           </ui-item>
         </ui-list>
-        <ui-accordion>
-          <ui-markdown :code="code[4]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[4]"></ui-snippet>
 
         <h4 :class="$tt('headline6')">1.5 Trailing Icon</h4>
         <ui-list>
@@ -109,9 +101,7 @@
             </ui-item-last-content>
           </ui-item>
         </ui-list>
-        <ui-accordion>
-          <ui-markdown :code="code[5]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[5]"></ui-snippet>
 
         <h4 :class="$tt('headline6')">
           1.6 Two-Line with Leading and Trailing Icon and Divider
@@ -133,9 +123,7 @@
             </ui-item>
           </template>
         </ui-list>
-        <ui-accordion>
-          <ui-markdown :code="code[6]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[6]"></ui-snippet>
 
         <h4 :class="$tt('headline6')">
           1.7 List with Trailing Checkbox (Checked values: {{ checkedValues }})
@@ -154,9 +142,7 @@
             </ui-item>
           </template>
         </ui-list>
-        <ui-accordion>
-          <ui-markdown :code="code[7]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[7]"></ui-snippet>
 
         <h4 :class="$tt('headline6')">
           1.8 List with Trailing Radio Buttons (Checked value:
@@ -173,28 +159,26 @@
             </ui-item>
           </template>
         </ui-list>
-        <ui-accordion>
-          <ui-markdown :code="code[8]"></ui-markdown>
-        </ui-accordion>
+        <ui-snippet :code="code[8]"></ui-snippet>
       </div>
 
       <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-apidocs name="list"></ui-apidocs>
-      <ui-apidocs name="list-item"></ui-apidocs>
-      <ui-apidocs name="list-divider"></ui-apidocs>
-      <ui-apidocs name="list-group"></ui-apidocs>
+      <ui-markdown :text="docs.list"></ui-markdown>
+      <ui-markdown :text="docs['list-item']"></ui-markdown>
+      <ui-markdown :text="docs['list-divider']"></ui-markdown>
+      <ui-markdown :text="docs['list-group']"></ui-markdown>
 
       <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
         3. Sass Variables
       </h4>
-      <ui-cssdocs name="list"></ui-cssdocs>
+      <ui-markdown :text="docs.css"></ui-markdown>
     </div>
   </div>
 </template>
 
 <script>
+import SvgAvatar from '@/components/svg-avatar';
 import snippets from '@/mixins/snippets';
-import SvgAvatar from '@/components/avatar';
 
 const TypeOptions = [
   {
@@ -265,7 +249,11 @@ export default {
     };
   },
   created() {
-    this.showCode('list', 8);
+    this.initDocs('list', {
+      code: 8,
+      apis: ['list', 'list-item', 'list-divider', 'list-group'],
+      css: true
+    });
 
     setTimeout(() => {
       this.selectedIndex = 1;

@@ -43,9 +43,7 @@
         </button>
       </div>
     </div>
-    <ui-accordion>
-      <ui-markdown :text="code[8]"></ui-markdown>
-    </ui-accordion>
+    <ui-snippet :code="code[8]"></ui-snippet>
   </section>
 </template>
 

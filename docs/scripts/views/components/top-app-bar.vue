@@ -75,17 +75,15 @@
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
             culpa qui officia deserunt mollit anim id est laborum.
           </p>
-          <ui-accordion>
-            <ui-markdown :text="code[1]"></ui-markdown>
-          </ui-accordion>
+          <ui-snippet :code="code[1]"></ui-snippet>
 
           <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-          <ui-apidocs name="top-app-bar"></ui-apidocs>
+          <ui-markdown :text="docs['top-app-bar']"></ui-markdown>
 
           <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
             3. Sass Variables
           </h4>
-          <ui-cssdocs name="top-app-bar"></ui-cssdocs>
+          <ui-markdown :text="docs.css"></ui-markdown>
         </div>
       </div>
     </main>
@@ -148,7 +146,11 @@ export default {
     }
   },
   created() {
-    this.showCode('top-app-bar');
+    this.initDocs('top-app-bar', {
+      code: 1,
+      apis: ['top-app-bar'],
+      css: true
+    });
   }
 };
 </script>

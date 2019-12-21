@@ -1,5 +1,16 @@
 # BalmUI ChangeLog
 
+## 4.0.1 (2019.12.21)
+
+### Chores
+
+- Utils
+  - update `detectIE()`
+
+### Features
+
+- rebuild all components
+
 ## 4.0.0 (2019.12.17)
 
 ### Features

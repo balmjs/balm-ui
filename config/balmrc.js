@@ -36,8 +36,11 @@ module.exports = {
       esModule: false
     },
     includeJsResource: env.useDocs
-      ? ['src/material-components-web', 'src/scripts']
-      : ['src/material-components-web'],
+      ? [
+          path.resolve(__dirname, '../src/material-components-web'),
+          path.resolve(__dirname, '../src/scripts')
+        ]
+      : [path.resolve(__dirname, '../src/material-components-web')],
     alias: {
       vue$: 'vue/dist/vue.esm.js',
       '@': path.resolve(__dirname, '../docs/scripts')

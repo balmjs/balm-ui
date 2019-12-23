@@ -17,9 +17,11 @@ $mdi-font-path-with-version: 0 !default; // `../fonts` or `../fonts/materialicon
 
     @if $mdi-font-path-with-version == 1 {
       src: url('#{$mdi-font-path}/#{$mdi-dir}/#{$className}.woff2')
-        format('woff2');
+          format('woff2'),
+        url('#{$mdi-font-path}/#{$mdi-dir}/#{$className}.woff') format('woff');
     } @else {
-      src: url('#{$mdi-font-path}/#{$className}.woff2') format('woff2');
+      src: url('#{$mdi-font-path}/#{$className}.woff2') format('woff2'),
+        url('#{$mdi-font-path}/#{$className}.woff') format('woff');
     }
 
     font-display: swap; // [Intervention] Slow network is detected. See https://www.chromestatus.com/feature/5636954674692096 for more details.

@@ -1,5 +1,11 @@
 # BalmUI ChangeLog
 
+## 4.0.2 (2019.12.23)
+
+### Features
+
+- restore `.woff` font for IE11
+
 ## 4.0.1 (2019.12.21)
 
 ### Chores

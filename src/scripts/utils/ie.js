@@ -3,7 +3,7 @@
  * returns version of IE or false, if browser is not Internet Explorer
  */
 const detectIE = () => {
-  let ua = window.navigator.userAgent;
+  const ua = window.navigator.userAgent;
 
   // Test values; Uncomment to check result …
 
@@ -20,26 +20,26 @@ const detectIE = () => {
   // ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586';
 
   // NOTE: 2014
-  // let msie = ua.indexOf('MSIE ');
+  // const msie = ua.indexOf('MSIE ');
   // if (msie > 0) {
   //   // IE 10 or older => return version number
   //   return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
   // }
 
-  // let trident = ua.indexOf('Trident/');
+  // const trident = ua.indexOf('Trident/');
   // if (trident > 0) {
   //   // IE 11 => return version number
-  //   let rv = ua.indexOf('rv:');
+  //   const rv = ua.indexOf('rv:');
   //   return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
   // }
 
   // NOTE: 2019
-  var ie = /\b(MSIE |Trident.*?rv:)(\d+)/.exec(ua);
+  const ie = /\b(MSIE |Trident.*?rv:)(\d+)/.exec(ua);
   if (ie) {
     return parseInt(ie[2], 10);
   }
 
-  let edge = ua.indexOf('Edge/');
+  const edge = ua.indexOf('Edge/');
   if (edge > 0) {
     // Edge (IE 12+) => return version number
     return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);

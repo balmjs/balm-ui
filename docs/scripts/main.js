@@ -1,4 +1,4 @@
-import '@/polyfills';
+import '@/polyfill';
 import { isIE, killIE } from '@/kill-ie';
 import Vue from 'vue';
 // import VueI18n from 'vue-i18n';

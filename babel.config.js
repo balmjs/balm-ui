@@ -12,10 +12,7 @@ module.exports = function(api) {
 
   return {
     presets: [['@babel/preset-env', envOptions]],
-    plugins: [
-      // Runtime
-      ['@babel/plugin-transform-runtime', runtimeOptions]
-    ],
+    plugins: [['@babel/plugin-transform-runtime', runtimeOptions]],
     env: {
       test: {
         presets: ['@babel/preset-env'],

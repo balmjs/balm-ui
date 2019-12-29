@@ -12,8 +12,13 @@ module.exports = {
   scripts: {
     entry: env.useDocs
       ? {
-          mylib: ['node_modules'],
-          myui: ['src'],
+          mylib: [
+            'deepmerge',
+            'focus-trap',
+            'prismjs',
+            'src/material-components-web'
+          ],
+          myui: ['vue', 'vue-router', 'balm-ui-lite', 'src/scripts'],
           app: './docs/scripts/main.js'
         }
       : {

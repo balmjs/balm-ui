@@ -2,7 +2,7 @@ import { detectIE } from '../../src/scripts/plus'; // Default Usage
 
 const IE = detectIE();
 
-const isIE = IE && IE < 11; // Browser support IE 11+
+const isIE = IE && IE < 11; // Browser support IE11
 
 const killIE = () => {
   let body = document.getElementsByTagName('body')[0];

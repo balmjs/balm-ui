@@ -14,7 +14,7 @@ workbox.precaching.precacheAndRoute([]);
 workbox.routing.registerRoute(
   /\.(?:png|gif|jpg|jpeg|webp|svg)$/,
   new workbox.strategies.CacheFirst({
-    cacheName: 'images',
+    cacheName: 'balm-ui-images',
     plugins: [
       new workbox.expiration.Plugin({
         maxEntries: 60,
@@ -28,7 +28,7 @@ workbox.routing.registerRoute(
 workbox.routing.registerRoute(
   /\.(?:js|css)$/,
   new workbox.strategies.StaleWhileRevalidate({
-    cacheName: 'static-resources'
+    cacheName: 'balm-ui-static-resources'
   })
 );
 

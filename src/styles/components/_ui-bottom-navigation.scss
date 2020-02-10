@@ -1,0 +1,62 @@
+@import '../../material-components-web/theme/mixins';
+@import '../../material-components-web/elevation/mixins';
+
+$mdc-bottom-navigation-destinations: 33, 25, 20;
+$mdc-bottom-navigation-height: 48px !default;
+$mdc-bottom-navigation-stacked-height: 72px !default;
+$mdc-bottom-navigation-color: $mdc-theme-primary !default;
+$mdc-bottom-navigation-fill-color: white !default;
+$mdc-bottom-navigation-active-fill-color: rgba(
+  $mdc-bottom-navigation-color,
+  0.7
+) !default;
+
+.mdc-bottom-navigation--fixed-adjust,
+.mdc-bottom-navigation--stacked-fixed-adjust {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: $mdc-bottom-navigation-height;
+  left: 0;
+  overflow-x: hidden;
+}
+
+.mdc-bottom-navigation--stacked-fixed-adjust {
+  bottom: $mdc-bottom-navigation-stacked-height;
+}
+
+.ui-bottom-navigation {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 4;
+  height: $mdc-bottom-navigation-height;
+  background-color: $mdc-bottom-navigation-fill-color;
+  @include mdc-elevation(4);
+
+  &.ui-bottom-navigation--stacked {
+    height: $mdc-bottom-navigation-stacked-height;
+  }
+
+  .mdc-tab__content,
+  .mdc-tab__text-label {
+    color: $mdc-bottom-navigation-color;
+  }
+
+  .mdc-tab--active {
+    color: $mdc-bottom-navigation-active-fill-color;
+  }
+
+  .mdc-tab-scroller__scroll-content {
+    width: 100%;
+  }
+}
+
+@each $width in $mdc-bottom-navigation-destinations {
+  .ui-bottom-navigation--dest-#{$width} {
+    .mdc-tab {
+      width: percentage($width/100);
+    }
+  }
+}

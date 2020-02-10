@@ -1,94 +1,84 @@
 <template>
   <div :class="[$tt('body1'), 'demo--test']">
-    <ui-chip>Chip</ui-chip>
-    <hr />
-    <ui-button primary effect raised @click.native="showDialog('show')"
-      >有色遮罩无动画对话框</ui-button
-    >
-    <ui-button primary effect raised @click.native="showDialog('showConfirm')"
-      >confirm对话框</ui-button
-    >
-    <ui-button primary effect raised @click.native="showDialog('showAlert')"
-      >alert对话框</ui-button
-    >
-    <div class="dialog-group">
-      <ui-dialog :show="show" @on-close="closeDialog('show')">
-        <h4>我是有色遮罩的对话框</h4>
-        <br />：使用@on-close事件来关闭对话框
-      </ui-dialog>
-      <ui-confirm
-        :show="showConfirm"
-        @on-close="closeDialog('showConfirm')"
-        @on-cancel="onCancel"
-        @on-confirm="onConfirm"
+    <!-- <ui-banner
+      >Banners are interruptive, but their level of interruption should match
+      the information they contain and the context in which they appear.
+      <template #action>
+        <ui-button>OK</ui-button>
+        <ui-button>Cancel</ui-button>
+      </template>
+    </ui-banner> -->
+    <div class="main-content">
+      <ui-chip>Chip</ui-chip>
+      <hr />
+      <ui-button primary effect raised @click="showDialog('show')"
+        >有色遮罩无动画对话框</ui-button
       >
-        <h4>这是一个ui-confirm组件</h4>
-        <br />：confirm无法使用[slot="title"]和[slot="actions"]，只能使用title,
-        cancel-text或confirm-text来改变标题文字和按钮文字;
-        <br />：confirm的遮罩点击时无法关闭对话框；
-        <br />：confirm打开时存在预设动画
-      </ui-confirm>
-      <ui-alert
-        :show="showAlert"
-        @on-click="closeDialog('showAlert', clickButton)"
-        @on-close="closeDialog('showAlert')"
+      <ui-button primary effect raised @click="showDialog('showConfirm')"
+        >confirm对话框</ui-button
       >
-        <h4>这是一个ui-alert组件</h4>
-        <br />：alert无法使用[slot="title"]和[slot="actions"]，只能使用title,
-        cancel-text或confirm-text来改变标题文字和按钮文字;
-        <br />：alert打开时存在预设动画 <br />:
-        alert功能区只有一个按钮，但是标题栏存在关闭按钮 <br />:
-        与ui-confirm组件相比, alert只有@on-click（对应功能区唯一按钮）,
-        @on-close事件（对应标题栏关闭按钮），没有@on-cancel事件
-      </ui-alert>
+      <ui-button primary effect raised @click="showDialog('showAlert')"
+        >alert对话框</ui-button
+      >
+      <div class="dialog-group">
+        <ui-dialog :show="show" @on-close="closeDialog('show')">
+          <h4>我是有色遮罩的对话框</h4>
+          <br />：使用@on-close事件来关闭对话框
+        </ui-dialog>
+      </div>
+      <hr />
+      <ui-button @click="showSnackbar">show snackbar</ui-button>
+      <ui-snackbar
+        message="hello snackbar"
+        :active="active"
+        @done="resetSnackbar"
+      ></ui-snackbar>
+      <hr />
+      <ui-checkbox value="A" :model="formData.options" @change="onOptionsChange"
+        >Option A</ui-checkbox
+      >
+      <ui-checkbox value="B" :model="formData.options" @change="onOptionsChange"
+        >Option B</ui-checkbox
+      >
+      <ui-checkbox value="C" :model="formData.options" @change="onOptionsChange"
+        >Option C</ui-checkbox
+      >
+      <br />
+      <ui-radio value="F" :model="formData.gender" @change="onGenderChange"
+        >Female</ui-radio
+      >
+      <ui-radio value="M" :model="formData.gender" @change="onGenderChange"
+        >Male</ui-radio
+      >
+      <br />
+      <ui-radio value="Y" :model="formData.answer" @change="onAnswerChange"
+        >Yes</ui-radio
+      >
+      <ui-radio value="N" :model="formData.answer" @change="onAnswerChange"
+        >No</ui-radio
+      >
+      <br />
+      <ui-switch :model="formData.open" @change="onSwitchChange"
+        >On/Off</ui-switch
+      >
+      <hr />
+      <ui-button effect @click="submit">Submit</ui-button>
+      <p v-for="i in 100" :key="i">{{ i }}</p>
     </div>
-    <hr />
-    <ui-button @click.native="showSnackbar">show snackbar</ui-button>
-    <ui-snackbar
-      message="hello snackbar"
-      :active="active"
-      @done="resetSnackbar"
-    ></ui-snackbar>
-    <hr />
-    <ui-checkbox value="A" :model="formData.options" @change="onOptionsChange"
-      >Option A</ui-checkbox
-    >
-    <ui-checkbox value="B" :model="formData.options" @change="onOptionsChange"
-      >Option B</ui-checkbox
-    >
-    <ui-checkbox value="C" :model="formData.options" @change="onOptionsChange"
-      >Option C</ui-checkbox
-    >
-    <br />
-    <ui-radio value="F" :model="formData.gender" @change="onGenderChange"
-      >Female</ui-radio
-    >
-    <ui-radio value="M" :model="formData.gender" @change="onGenderChange"
-      >Male</ui-radio
-    >
-    <br />
-    <ui-radio value="Y" :model="formData.answer" @change="onAnswerChange"
-      >Yes</ui-radio
-    >
-    <ui-radio value="N" :model="formData.answer" @change="onAnswerChange"
-      >No</ui-radio
-    >
-    <br />
-    <ui-icon-toggle value="X" :model="formData.icons" @change="onIconsChange"
-      >X</ui-icon-toggle
-    >
-    <ui-icon-toggle value="Y" :model="formData.icons" @change="onIconsChange"
-      >Y</ui-icon-toggle
-    >
-    <ui-icon-toggle value="Z" :model="formData.icons" @change="onIconsChange"
-      >Z</ui-icon-toggle
-    >
-    <br />
-    <ui-switch :model="formData.open" @change="onSwitchChange"
-      >On/Off</ui-switch
-    >
-    <hr />
-    <ui-button effect @click.native="submit">Submit</ui-button>
+    <ui-bottom-navigation stacked contentSelector=".main-content">
+      <ui-tab-bar v-model="tabActive">
+        <ui-tab
+          v-for="(tab, index) in tabs"
+          :key="index"
+          :type="2"
+          :icon="tab.icon"
+          stacked
+        >
+          {{ tab.text }}
+        </ui-tab>
+        <template slot="indicator"></template>
+      </ui-tab-bar>
+    </ui-bottom-navigation>
   </div>
 </template>
 
@@ -109,7 +99,40 @@ export default {
       },
       show: false,
       showConfirm: false,
-      showAlert: false
+      showAlert: false,
+      tabActive: 0,
+      tabs: [
+        {
+          text: 'Favorites',
+          icon: 'favorite',
+          indicator: 'crop_square'
+        },
+        {
+          text: 'Recents',
+          icon: 'phone',
+          indicator: 'panorama_fish_eye'
+        },
+        {
+          text: 'Nearby',
+          icon: 'near_me',
+          indicator: 'change_history'
+        },
+        {
+          text: 'Favorites',
+          icon: 'favorite',
+          indicator: 'crop_square'
+        },
+        {
+          text: 'Recents',
+          icon: 'phone',
+          indicator: 'panorama_fish_eye'
+        },
+        {
+          text: 'Nearby',
+          icon: 'near_me',
+          indicator: 'change_history'
+        }
+      ]
     };
   },
   methods: {

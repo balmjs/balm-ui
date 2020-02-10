@@ -21,6 +21,7 @@ import UiTabIndicator from './components/tabs/tab-indicator';
 import UiTab from './components/tabs/tab';
 import UiPanels from './components/tabs/panels';
 import UiPanel from './components/tabs/panel';
+import UiBottomNavigation from './components/app-bar/bottom-navigation'; // Experimental
 // Navigation
 import UiDrawer from './components/drawer/drawer';
 import UiDrawerHeader from './components/drawer/drawer-header';
@@ -79,6 +80,7 @@ import UiDialog from './components/modal/dialog';
 import UiDialogTitle from './components/modal/dialog-title';
 import UiDialogContent from './components/modal/dialog-content';
 import UiDialogActions from './components/modal/dialog-actions';
+import UiBanner from './components/modal/banner'; // Experimental
 import UiSnackbar from './components/modal/snackbar';
 import UiLinearProgress from './components/progress/linear-progress';
 /**
@@ -116,6 +118,7 @@ const components = {
   UiTab,
   UiPanels,
   UiPanel,
+  UiBottomNavigation,
   // Navigation
   UiDrawer,
   UiDrawerHeader,
@@ -174,6 +177,7 @@ const components = {
   UiDialogTitle,
   UiDialogContent,
   UiDialogActions,
+  UiBanner,
   UiSnackbar,
   UiLinearProgress
 };

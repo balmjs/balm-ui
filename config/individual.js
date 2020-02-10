@@ -52,7 +52,7 @@ const directives = [
   // MDC directives
   'elevation.js',
   'ripple.js',
-  'touch.js',
+  'a11y.js',
   // Plus
   'anchor.js'
 ];

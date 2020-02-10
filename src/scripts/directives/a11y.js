@@ -1,7 +1,7 @@
 import autoInit from './register';
 
-// Define touch target constants
-const UI_TOUCH_TARGET = {
+// Define accessibility constants
+const UI_ACCESSIBILITY = {
   components: {
     button: 'mdc-button',
     chip: 'mdc-chip',
@@ -35,10 +35,10 @@ const UI_TOUCH_TARGET = {
 const checkComponent = el => {
   let result = false;
 
-  const components = Object.keys(UI_TOUCH_TARGET.components);
+  const components = Object.keys(UI_ACCESSIBILITY.components);
   for (let i = 0, len = components.length; i < len; i++) {
     const key = components[i];
-    const value = UI_TOUCH_TARGET.components[key];
+    const value = UI_ACCESSIBILITY.components[key];
     if (el.classList.contains(value)) {
       result = key;
       break;
@@ -48,33 +48,33 @@ const checkComponent = el => {
   return result;
 };
 
-const initTouch = el => {
+const initAccessibility = el => {
   let componentKey = checkComponent(el);
 
   if (componentKey) {
     const wrapperEl = document.createElement('div');
-    wrapperEl.className = UI_TOUCH_TARGET.cssClasses.wrapper;
+    wrapperEl.className = UI_ACCESSIBILITY.cssClasses.wrapper;
 
-    if (UI_TOUCH_TARGET.cssClasses[componentKey].inner) {
+    if (UI_ACCESSIBILITY.cssClasses[componentKey].inner) {
       const innerEl = document.createElement('div');
-      innerEl.className = UI_TOUCH_TARGET.cssClasses[componentKey].inner;
+      innerEl.className = UI_ACCESSIBILITY.cssClasses[componentKey].inner;
       el.appendChild(innerEl);
     }
 
-    el.classList.add(UI_TOUCH_TARGET.cssClasses[componentKey].outer);
+    el.classList.add(UI_ACCESSIBILITY.cssClasses[componentKey].outer);
     el.parentNode.insertBefore(wrapperEl, el);
     el.parentNode.removeChild(el);
     wrapperEl.appendChild(el);
   }
 };
 
-const BalmUI_TouchDirective = {
-  name: 'touch',
+const BalmUI_AccessibilityDirective = {
+  name: 'a11y',
   inserted(el) {
-    initTouch(el);
+    initAccessibility(el);
   }
 };
 
-autoInit(BalmUI_TouchDirective.name, BalmUI_TouchDirective);
+autoInit(BalmUI_AccessibilityDirective.name, BalmUI_AccessibilityDirective);
 
-export default BalmUI_TouchDirective;
+export default BalmUI_AccessibilityDirective;

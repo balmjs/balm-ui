@@ -93,7 +93,7 @@ import theme from './plugins/theme';
  */
 import vRipple from './directives/ripple';
 import vShadow from './directives/elevation';
-import vTouch from './directives/touch';
+import vAccessibility from './directives/a11y';
 
 const version = require('../../package.json').version;
 
@@ -188,7 +188,7 @@ const plugins = {
 const directives = {
   vRipple,
   vShadow,
-  vTouch
+  vAccessibility
 };
 
 const BalmUI = {

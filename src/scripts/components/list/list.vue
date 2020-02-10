@@ -1,5 +1,5 @@
 <template>
-  <ul :class="className">
+  <ul :class="className" :role="singleSelection ? 'listbox' : 'list'">
     <slot>
       <!-- <ui-item> -->
     </slot>

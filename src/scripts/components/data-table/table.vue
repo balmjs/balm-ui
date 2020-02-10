@@ -1,7 +1,7 @@
 <template>
   <!-- Container -->
   <div :class="className">
-    <table class="mdc-data-table__table">
+    <table class="mdc-data-table__table" :aria-label="caption">
       <caption v-if="caption">
         {{
           caption

@@ -1,5 +1,11 @@
 <template>
-  <div role="progressbar" :class="className">
+  <div
+    role="progressbar"
+    :class="className"
+    aria-valuemin="0"
+    aria-valuemax="1"
+    :aria-valuenow="progress"
+  >
     <div class="mdc-linear-progress__buffering-dots"></div>
     <div class="mdc-linear-progress__buffer"></div>
     <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">

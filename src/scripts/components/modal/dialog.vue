@@ -99,7 +99,7 @@ export default {
         this.$dialog.open();
       } else {
         this.$dialog.close();
-        if (this.$dialogBody) {
+        if (this.resetScroll) {
           this.$dialogBody.scrollTop = 0;
         }
       }
@@ -109,11 +109,17 @@ export default {
     this.$dialog = new MDCDialog(this.$el);
 
     this.$nextTick(() => {
-      if (this.resetScroll) {
-        this.$dialogBody = this.$refs.dialog.querySelector(
-          `.${UI_DIALOG.cssClasses.content}`
-        );
-      }
+      this.$dialogBody = this.$refs.dialog.querySelector(
+        `.${UI_DIALOG.cssClasses.content}`
+      );
+
+      // Accessibility: Using `aria-hidden` as a fallback for `aria-modal`
+      this.$dialog.listen('MDCDialog:opened', () => {
+        this.$dialogBody.setAttribute('aria-hidden', 'true');
+      });
+      this.$dialog.listen('MDCDialog:closing', () => {
+        this.$dialogBody.removeAttribute('aria-hidden');
+      });
 
       if (!this.$el.querySelector('.mdc-button')) {
         console.warn('`<ui-button>` is required in the dialog');

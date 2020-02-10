@@ -12,11 +12,13 @@
       <i class="mdc-select__dropdown-icon"></i>
       <div
         class="mdc-select__selected-text"
+        role="button"
+        aria-haspopup="listbox"
+        :aria-labelledby="label"
         :aria-required="required"
         :aria-disabled="disabled"
         :aria-controls="helperTextId"
         :aria-describedby="helperTextId"
-        role="button"
       >
         {{ selectedIndex === -1 ? '' : currentOption[optionLabel] }}
       </div>
@@ -63,6 +65,7 @@
           ]"
           :data-value="option[optionValue]"
           :aria-selected="option[optionValue] === selectedValue"
+          :aria-disabled="option.disabled"
           role="option"
         >
           {{ option[optionLabel] }}

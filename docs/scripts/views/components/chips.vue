@@ -2,9 +2,9 @@
   <div :class="[$tt('body1'), 'demo--chips']">
     <header class="hero component">
       <ui-chips>
-        <ui-chip v-touch>Chip One</ui-chip>
-        <ui-chip v-touch>Chip Two</ui-chip>
-        <ui-chip v-touch>Chip Three</ui-chip>
+        <ui-chip v-a11y>Chip One</ui-chip>
+        <ui-chip v-a11y>Chip Two</ui-chip>
+        <ui-chip v-a11y>Chip Three</ui-chip>
       </ui-chips>
     </header>
 

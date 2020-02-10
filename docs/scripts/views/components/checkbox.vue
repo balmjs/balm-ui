@@ -2,7 +2,7 @@
   <div :class="[$tt('body1'), 'demo--checkbox']">
     <header class="hero component">
       <ui-form-field>
-        <ui-checkbox v-touch id="hero-checkbox"></ui-checkbox>
+        <ui-checkbox v-a11y id="hero-checkbox"></ui-checkbox>
         <label for="hero-checkbox">Checkbox</label>
       </ui-form-field>
     </header>

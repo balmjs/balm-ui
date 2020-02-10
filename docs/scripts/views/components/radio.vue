@@ -2,8 +2,8 @@
   <div :class="[$tt('body1'), 'demo--radio']">
     <header class="hero component">
       <ui-form-field>
-        <ui-radio v-touch name="hero" value="0" v-model="hero"></ui-radio>
-        <ui-radio v-touch name="hero" value="1" v-model="hero"></ui-radio>
+        <ui-radio v-a11y name="hero" value="0" v-model="hero"></ui-radio>
+        <ui-radio v-a11y name="hero" value="1" v-model="hero"></ui-radio>
         {{ hero }}
       </ui-form-field>
     </header>

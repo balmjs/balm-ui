@@ -2,7 +2,7 @@
   <div :class="[$tt('body1'), 'demo--button']">
     <header class="hero component">
       <div class="hero-demo">
-        <ui-button :type="typeOption" v-touch>{{ text }}</ui-button>
+        <ui-button :type="typeOption" v-a11y>{{ text }}</ui-button>
       </div>
       <div class="hero-options">
         <ui-select

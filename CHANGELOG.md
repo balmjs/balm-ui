@@ -1,5 +1,11 @@
 # BalmUI ChangeLog
 
+## 4.0.3 (2020.02.10)
+
+### Features
+
+- update components for accessibility
+
 ## 4.0.2 (2019.12.23)
 
 ### Features

@@ -23,7 +23,8 @@ module.exports = {
         }
       : {
           'balm-ui': './src/scripts/index.js',
-          'balm-ui-plus': './src/scripts/plus.js'
+          'balm-ui-plus': './src/scripts/plus.js',
+          'balm-ui-next': './src/scripts/next.js'
         },
     library: env.useDocs ? '' : 'BalmUI',
     libraryTarget: env.useDocs ? 'var' : 'umd',

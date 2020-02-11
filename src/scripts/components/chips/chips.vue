@@ -22,6 +22,11 @@ export default {
       type: [Number, Array],
       default: -1
     },
+    // UI variants
+    type: {
+      type: [String, Number],
+      default: 0
+    },
     // UI attributes
     options: {
       type: Array,

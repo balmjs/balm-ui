@@ -104,14 +104,14 @@
           }}</span>
         </p>
         <ui-select-controls v-model="controls"></ui-select-controls>
-        <div class="button-container">
+        <!-- <div class="button-container">
           <ui-button
             raised
             id="set-selected-index-zero-button"
             @click="$balmUI.onChange('selected1.index', 0)"
             >Set Selected Index (0)</ui-button
           >
-        </div>
+        </div> -->
         <div class="button-container">
           <ui-button
             raised
@@ -150,14 +150,14 @@
           idPrefix="outline"
           v-model="controls"
         ></ui-select-controls>
-        <div class="button-container">
+        <!-- <div class="button-container">
           <ui-button
             raised
             id="set-selected-index-zero-button-outline"
             @click="$balmUI.onChange('selected1.index', 0)"
             >Set Selected Index (0)</ui-button
           >
-        </div>
+        </div> -->
         <div class="button-container">
           <ui-button
             raised

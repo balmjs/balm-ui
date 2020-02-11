@@ -56,6 +56,10 @@ export default {
   mixins: [typeMixin, materialIconMixin, rippleMixin],
   props: {
     // UI variants
+    type: {
+      type: [String, Number],
+      default: 0
+    },
     extended: {
       type: Boolean,
       default: false

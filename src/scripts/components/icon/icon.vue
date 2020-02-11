@@ -13,6 +13,10 @@ export default {
   mixins: [typeMixin],
   props: {
     // UI styles
+    type: {
+      type: [String, Number],
+      default: 0
+    },
     outlined: {
       type: Boolean,
       default: false

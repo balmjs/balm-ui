@@ -58,6 +58,10 @@ export default {
   },
   props: {
     // UI variants
+    type: {
+      type: [String, Number],
+      default: 0
+    },
     discrete: {
       type: Boolean,
       default: false

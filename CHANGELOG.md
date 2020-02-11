@@ -1,5 +1,21 @@
 # BalmUI ChangeLog
 
+## 4.1.0 (2020.02.11)
+
+### Bug Fixes
+
+- `<ui-select>`: change event bugfix
+- all components with `type` prop: `type` prop rewriting bugfix
+
+### Features
+
+- `<ui-select>`: partial refactoring
+- new components for next: `<ui-banner>`, `<ui-bottom-navigation>`
+
+### BREAKING CHANGES
+
+- `<ui-select>`: remove `selectedIndex` prop
+
 ## 4.0.3 (2020.02.10)
 
 ### Features

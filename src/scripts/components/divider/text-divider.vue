@@ -34,6 +34,11 @@ export default {
   name: 'ui-text-divider',
   mixins: [typeMixin],
   props: {
+    // UI variants
+    type: {
+      type: [String, Number],
+      default: 0
+    },
     noText: {
       type: Boolean,
       default: false

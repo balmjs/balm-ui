@@ -8,6 +8,10 @@ export default {
   mixins: [typeMixin, materialIconMixin, rippleMixin, cardActionMixin],
   props: {
     // UI variants
+    type: {
+      type: [String, Number],
+      default: 0
+    },
     outlined: {
       type: Boolean,
       default: false

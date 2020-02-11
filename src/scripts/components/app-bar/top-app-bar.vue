@@ -76,6 +76,10 @@ export default {
       required: true
     },
     // UI variants
+    type: {
+      type: [String, Number],
+      default: 0
+    },
     fixed: {
       type: Boolean,
       default: false

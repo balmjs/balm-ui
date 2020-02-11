@@ -23,6 +23,11 @@ export default {
     open: {
       type: Boolean,
       default: false
+    },
+    // UI variants
+    type: {
+      type: [String, Number],
+      default: 0
     }
   },
   data() {

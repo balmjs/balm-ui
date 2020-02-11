@@ -13,6 +13,10 @@ export default {
   mixins: [typeMixin],
   props: {
     // UI variants
+    type: {
+      type: [String, Number],
+      default: 0
+    },
     masonry: {
       type: Boolean,
       default: false

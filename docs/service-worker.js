@@ -3,12 +3,12 @@ importScripts('workbox-sw.js');
 // Configure Cache Names
 workbox.core.setCacheNameDetails({
   prefix: 'balm-ui',
-  suffix: 'v20191229', // NOTE: need update with every release
+  suffix: 'v20200212-1', // NOTE: need update with every release
   precache: 'app-cache',
   runtime: 'app-runtime'
 });
 
-workbox.precaching.precacheAndRoute([]);
+workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
 
 // Caching Images
 workbox.routing.registerRoute(
@@ -16,7 +16,7 @@ workbox.routing.registerRoute(
   new workbox.strategies.CacheFirst({
     cacheName: 'balm-ui-images',
     plugins: [
-      new workbox.expiration.Plugin({
+      new workbox.expiration.ExpirationPlugin({
         maxEntries: 60,
         maxAgeSeconds: 30 * 24 * 60 * 60 // 30 Days
       })

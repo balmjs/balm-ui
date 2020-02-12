@@ -26,6 +26,7 @@ import 'prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard';
 // ready translated locales
 // import { locales } from '@/config/lang';
 import { isProd } from '@/config';
+import { flatpickrLang } from '@/config/lang';
 import './my-sw';
 
 if (isIE) {
@@ -90,6 +91,7 @@ if (isIE) {
   //   locale: 'en', // set locale
   //   messages: locales // set locale messages
   // });
+  Vue.prototype.flatpickrLang = flatpickrLang;
 
   new Vue({
     el: '#app',

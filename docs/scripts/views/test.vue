@@ -76,7 +76,7 @@
         >
           {{ tab.text }}
         </ui-tab>
-        <template slot="indicator"></template>
+        <template #indicator></template>
       </ui-tab-bar>
     </ui-bottom-navigation>
   </div>

@@ -90,6 +90,7 @@ Enjoy 👻
   - Slider
   - File (:bulb:)
   - Autocomplete (:bulb:)
+  - Datepicker (:bulb:)
 - Data View
   - List
   - <del>Grid List</del> (:skull:)
@@ -120,6 +121,7 @@ Enjoy 👻
 
 - Ripple
 - Elevation
+- A11y
 - Anchor (:bulb:)
 
 ### Utilities (:bulb:)

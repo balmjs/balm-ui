@@ -1,24 +1,21 @@
 ```html
-<ui-datepicker :config="config"
-  :model="date"
+<ui-datepicker
+  noLabel
   placeholder="Select Date Range.."
-  @change="onChange('date', $event)"></ui-datepicker>
+  :config="config"
+  v-model="date"
+></ui-datepicker>
 ```
 
 ```js
 export default {
   data() {
     return {
-      date: '',
       config: {
         mode: 'range'
-      }
+      },
+      date: ['2017-11-10', '2017-11-20']
     };
-  },
-  methods: {
-    onChange(field, value) {
-      this[field] = value;
-    }
   }
 };
 ```

@@ -1,13 +1,16 @@
 ```html
 <ui-tab-bar class="custom-demo" v-model="active">
-  <ui-tab v-for="(tab, index) in tabs" :key="index"
+  <ui-tab
+    v-for="(tab, index) in tabs"
+    :key="index"
     class="demo-tab custom-tab"
     type="both"
     :icon="tab.icon"
     stacked
-    contentIndicator>
+    contentIndicator
+  >
     {{ tab.text }}
-    <template slot="indicator">
+    <template #indicator>
       <ui-tab-indicator class="custom-tab-indicator"></ui-tab-indicator>
     </template>
   </ui-tab>

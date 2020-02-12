@@ -1,19 +1,23 @@
-```js
-// gulpfile.js
-
-balm.config = {
-  ...
-  scripts: {
-    ...
-    alias: {
-      flatpickrCss: 'flatpickr/dist/flatpickr.min.css'
-    },
-  ...
-};
+```html
+<ui-datepicker
+  noLabel
+  placeholder="Select Date.."
+  toggle
+  clear
+  :config="config"
+  v-model="date"
+></ui-datepicker>
 ```
 
 ```js
-// /path/to/your_entry.js
-...
-import 'flatpickrCss';
+export default {
+  data() {
+    return {
+      config: {
+        defaultDate: 'today'
+      },
+      date: ''
+    };
+  }
+};
 ```

@@ -13,7 +13,7 @@
   <ui-tab-bar v-model="active">
     <ui-tab v-for="(tab, index) in tabs" :key="index">
       {{ tab.text }}
-      <template slot="indicator">
+      <template #indicator>
         <ui-tab-indicator type="icon">{{ tab.indicator }}</ui-tab-indicator>
       </template>
     </ui-tab>

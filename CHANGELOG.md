@@ -1,5 +1,11 @@
 # BalmUI ChangeLog
 
+## 4.2.0 (2020.02.12)
+
+### Features
+
+- new component for plus: `<ui-datepicker>`
+
 ## 4.1.0 (2020.02.11)
 
 ### Bug Fixes

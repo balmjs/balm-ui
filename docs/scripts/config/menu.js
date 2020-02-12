@@ -138,6 +138,11 @@ const MATERIAL_COMPONENTS = [
       },
       {
         icon: 'component',
+        name: 'Datepicker',
+        description: 'Datepicker'
+      },
+      {
+        icon: 'component',
         name: 'Validator',
         description: 'Validator'
       }

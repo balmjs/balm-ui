@@ -31,6 +31,8 @@
         @keydown="handleKeydown"
         @input="handleInput"
         @keyup="handleKeyup"
+        @change="handleChange"
+        @keyup.enter="handleEnter"
         @blur="handleBlur"
       ></textarea>
     </template>
@@ -57,8 +59,10 @@
       @keydown="handleKeydown"
       @input="handleInput"
       @keyup="handleKeyup"
+      @change="handleChange"
       @keyup.enter="handleEnter"
       @blur="handleBlur"
+      data-input
     />
 
     <!-- Label text -->
@@ -141,7 +145,7 @@ export default {
     },
     // States
     model: {
-      type: [String, Number],
+      type: [String, Number, Array], // NOTE: Array for `<ui-datepicker>`
       default: ''
     },
     // UI attributes
@@ -257,6 +261,9 @@ export default {
     },
     handleKeyup(event) {
       this.$emit(UI_TEXTFIELD.EVENT.KEYUP, event);
+    },
+    handleChange(event) {
+      this.$emit(UI_TEXTFIELD.EVENT.CHANGE, event);
     },
     handleEnter(event) {
       this.$emit(UI_TEXTFIELD.EVENT.ENTER, event.target.value);

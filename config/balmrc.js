@@ -49,6 +49,7 @@ module.exports = {
       : [path.resolve(__dirname, '../src/material-components-web')],
     alias: {
       vue$: 'vue/dist/vue.esm.js',
+      flatpickrLangZh: 'flatpickr/dist/l10n/zh.js',
       '@': path.resolve(__dirname, '../docs/scripts')
     },
     plugins: [new VueLoaderPlugin()],

@@ -20,8 +20,8 @@
 | `placeholder`       | string          | `null`   | The _placeholder_ attribute of the `<input>`.                                                                                      |
 | `fullwidth`         | boolean         | `false`  | Styles the text field as a full width text field.                                                                                  |
 | `disabled`          | boolean         | `false`  | Styles the text field as a disabled text field.                                                                                    |
-| `icon`              | string          | `''`     | Optional. Indicates an icon element with a leading icon. See [Material Icons](/#/icons) list. (No need to configure `leadingIcon`) |
 | `leadingIcon`       | boolean, string | `false`  | Styles the text field as a text field with a leading icon. (Use with `before` slot)                                                |
+| `icon`              | string          | `''`     | Optional. Indicates an icon element with a leading icon. See [Material Icons](/#/icons) list. (No need to configure `leadingIcon`) |
 | `trailingIcon`      | boolean, string | `false`  | Styles the text field as a text field with a trailing icon. (Use with `after` slot)                                                |
 | `dense`             | boolean         | `false`  | Styles the text field as a dense text field.                                                                                       |
 | `inputType`         | string          | `'text'` | Native `<input>` types: `text`, `number`, `password`, etc.                                                                         |

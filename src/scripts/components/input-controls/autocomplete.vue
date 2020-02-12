@@ -1,10 +1,10 @@
 <template>
   <ui-textfield
+    :id="id"
+    v-model="inputValue"
+    :class="className"
     outlined
     plus
-    v-model="inputValue"
-    :id="id"
-    :class="className"
     :placeholder="placeholder"
     :label="label"
     :noLabel="noLabel"

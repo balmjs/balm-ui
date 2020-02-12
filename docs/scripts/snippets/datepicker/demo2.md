@@ -1,10 +1,18 @@
 ```html
-<ui-datepicker :config="config"
-  :model="date"
-  placeholder="Select Date.."
+<ui-datepicker
+  noLabel
+  placeholder="Select Datetime.."
   toggle
-  @change="onChange('date', $event)">
-  <i slot="toggle" class="fa fa-calendar"></i>
+  clear
+  :config="config"
+  v-model="date"
+>
+  <template #toggle>
+    <i class="fa fa-calendar"></i>
+  </template>
+  <template #clear>
+    <i class="fa fa-close"></i>
+  </template>
 </ui-datepicker>
 ```
 
@@ -12,16 +20,12 @@
 export default {
   data() {
     return {
-      date: '',
       config: {
-        defaultDate: 'today'
-      }
+        enableTime: true,
+        dateFormat: 'Y-m-d H:i'
+      },
+      date: ''
     };
-  },
-  methods: {
-    onChange(field, value) {
-      this[field] = value;
-    }
   }
 };
 ```

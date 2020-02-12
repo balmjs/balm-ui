@@ -4,7 +4,7 @@
 
 <!-- Using Font Awesome -->
 <ui-icon-button v-model="value2">
-  <template slot-scope="{ onClass, offClass }">
+  <template #default="{ onClass, offClass }">
     <i :class="[onClass, icon2.on]"></i>
     <i :class="[offClass, icon2.off]"></i>
   </template>
@@ -12,7 +12,7 @@
 
 <!-- Using SVG Icons -->
 <ui-icon-button>
-  <template slot-scope="{ onClass, offClass }">
+  <template #default="{ onClass, offClass }">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -40,14 +40,14 @@
 
 <!-- Using Image Icons -->
 <ui-icon-button>
-  <template slot-scope="{ onClass, offClass }">
+  <template #default="{ onClass, offClass }">
     <img src="/path/to/image1.png" :class="onClass" />
     <img src="/path/to/image2.png" :class="offClass" />
   </template>
 </ui-icon-button>
 
 <!-- Disabled Icons -->
-<ui-icon-button :toggle="icon1" disabled> </ui-icon-button>
+<ui-icon-button :toggle="icon1" disabled></ui-icon-button>
 ```
 
 ```js

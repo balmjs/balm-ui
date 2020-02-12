@@ -35,7 +35,8 @@ const components = [
   'autocomplete.js',
   'divider.js',
   'file.js',
-  'pagination.js'
+  'pagination.js',
+  'datepicker.js'
 ];
 const plugins = [
   'event.js',

@@ -6,6 +6,8 @@ const Switch = () => import('@/views/components/switch');
 const Slider = () => import('@/views/components/slider');
 const File = () => import('@/views/components/file');
 const Autocomplete = () => import('@/views/components/autocomplete');
+const Datepicker = () => import('@/views/components/datepicker');
+const Rangepicker = () => import('@/views/components/rangepicker');
 const Validator = () => import('@/views/plugins/validator');
 
 export default [
@@ -48,6 +50,16 @@ export default [
     path: 'autocomplete',
     name: 'data-entry.autocomplete',
     component: Autocomplete
+  },
+  {
+    path: 'datepicker',
+    name: 'data-entry.datepicker',
+    component: Datepicker
+  },
+  {
+    path: 'rangepicker',
+    name: 'data-entry.rangepicker',
+    component: Rangepicker
   },
   {
     path: 'validator',

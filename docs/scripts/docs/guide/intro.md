@@ -29,6 +29,7 @@ Following the [Material Design](https://material.io/components/) UI components f
   - Slider
   - File (💡)
   - Autocomplete (💡)
+  - Datepicker (💡)
 - Data View
   - List
   - <del>Grid List</del> (💀)
@@ -59,6 +60,7 @@ Following the [Material Design](https://material.io/components/) UI components f
 
 - Ripple
 - Elevation
+- A11y
 - Anchor (💡)
 
 #### 4. Utilities (💡)

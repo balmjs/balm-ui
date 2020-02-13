@@ -1,0 +1,12 @@
+$rangepicker-separator-padding: 10px !default;
+
+.mdc-rangepicker {
+  display: inline-flex;
+}
+
+.mdc-rangepicker__separator {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: $rangepicker-separator-padding;
+}

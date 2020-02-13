@@ -143,6 +143,11 @@ const MATERIAL_COMPONENTS = [
       },
       {
         icon: 'component',
+        name: 'Rangepicker',
+        description: 'Rangepicker'
+      },
+      {
+        icon: 'component',
         name: 'Validator',
         description: 'Validator'
       }

@@ -62,7 +62,6 @@
       @change="handleChange"
       @keyup.enter="handleEnter"
       @blur="handleBlur"
-      data-input
     />
 
     <!-- Label text -->

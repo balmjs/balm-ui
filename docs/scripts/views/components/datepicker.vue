@@ -1,7 +1,11 @@
 <template>
   <div :class="[$tt('body1'), 'demo--datepicker']">
     <header class="hero component">
-      <ui-datepicker noLabel placeholder="Select Date.."></ui-datepicker>
+      <ui-datepicker
+        noLabel
+        placeholder="Select Date.."
+        v-model="date"
+      ></ui-datepicker>
     </header>
 
     <ui-toc-affix withoutCss></ui-toc-affix>
@@ -87,6 +91,8 @@ export default {
   mixins: [snippets],
   data() {
     return {
+      // hero
+      date: '',
       // demo
       config1: {
         defaultDate: 'today'

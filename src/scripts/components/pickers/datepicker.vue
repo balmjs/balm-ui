@@ -1,6 +1,7 @@
 <template>
   <ui-textfield
     ref="input"
+    :id="id"
     v-model="inputValue"
     class="mdc-datepicker"
     outlined
@@ -133,6 +134,9 @@ export default {
     }
   },
   mounted() {
+    const inputEl = this.$refs.input.$el.querySelector('input');
+    inputEl.dataset.input = '';
+
     if (!this.flatpickr) {
       let config = Object.assign({}, this.config);
       // default config for ui
@@ -140,7 +144,7 @@ export default {
       config.clickOpens = !config.allowInput; // NOTE: fix flatpickr bug
       // custom event
       config.onClose = () => {
-        this.$refs.input.$el.querySelector('input').blur();
+        inputEl.blur();
       };
       // set default value
       switch (this.mode) {

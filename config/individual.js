@@ -37,6 +37,7 @@ const components = [
   'file.js',
   'pagination.js',
   'datepicker.js',
+  'rangepicker.js',
   // Next
   'bottom-navigation.js',
   'banner.js'

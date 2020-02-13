@@ -9,6 +9,7 @@ import UiPagination from './components/data-tables/pagination';
 import UiTextDivider from './components/dividers/text-divider';
 import UiSkeleton from './components/others/skeleton';
 import UiDatepicker from './components/pickers/datepicker';
+import UiRangepicker from './components/pickers/rangepicker';
 /**
  * Plugins
  */
@@ -35,7 +36,8 @@ const components = {
   UiPagination,
   UiTextDivider,
   UiSkeleton,
-  UiDatepicker
+  UiDatepicker,
+  UiRangepicker
 };
 
 const plugins = {

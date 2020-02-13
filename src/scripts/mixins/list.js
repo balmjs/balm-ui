@@ -1,7 +1,7 @@
 import { MDCList } from '../../material-components-web/list';
 import typeMixin from './type';
 import rippleMixin from './ripple';
-import UI_LIST from '../components/list/constants';
+import UI_LIST from '../components/lists/constants';
 
 export default {
   mixins: [typeMixin, rippleMixin],

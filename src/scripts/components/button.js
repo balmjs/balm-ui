@@ -1,6 +1,6 @@
 import multiBootstrap from '../config/multi-bootstrap';
-import UiButton from './button/button';
-import UiA from './button/a';
+import UiButton from './buttons/button';
+import UiA from './buttons/a';
 
 export default multiBootstrap({
   UiButton,

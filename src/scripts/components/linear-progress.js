@@ -1,4 +1,4 @@
 import bootstrap from '../config/bootstrap';
-import UiLinearProgress from './progress/linear-progress';
+import UiLinearProgress from './progress-indicators/linear-progress';
 
 export default bootstrap(UiLinearProgress);

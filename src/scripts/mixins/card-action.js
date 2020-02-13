@@ -1,4 +1,4 @@
-import UI_CARD from '../components/card/constants';
+import UI_CARD from '../components/cards/constants';
 
 export default {
   data() {

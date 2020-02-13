@@ -1,4 +1,4 @@
-import UI_TABLE from '../components/data-table/constants';
+import UI_TABLE from '../components/data-tables/constants';
 
 export default {
   data() {

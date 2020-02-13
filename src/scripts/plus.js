@@ -5,10 +5,10 @@ import multiConfigure from './config/multi-configure';
  */
 import UiFile from './components/input-controls/file';
 import UiAutocomplete from './components/input-controls/autocomplete';
-import UiPagination from './components/data-table/pagination';
-import UiTextDivider from './components/divider/text-divider';
+import UiPagination from './components/data-tables/pagination';
+import UiTextDivider from './components/dividers/text-divider';
 import UiSkeleton from './components/others/skeleton';
-import UiDatepicker from './components/picker/datepicker';
+import UiDatepicker from './components/pickers/datepicker';
 /**
  * Plugins
  */

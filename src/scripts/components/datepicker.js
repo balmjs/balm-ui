@@ -1,4 +1,4 @@
 import bootstrap from '../config/bootstrap';
-import UiDatepicker from './picker/datepicker';
+import UiDatepicker from './pickers/datepicker';
 
 export default bootstrap(UiDatepicker);

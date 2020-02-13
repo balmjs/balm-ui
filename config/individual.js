@@ -36,7 +36,10 @@ const components = [
   'divider.js',
   'file.js',
   'pagination.js',
-  'datepicker.js'
+  'datepicker.js',
+  // Next
+  'bottom-navigation.js',
+  'banner.js'
 ];
 const plugins = [
   'event.js',

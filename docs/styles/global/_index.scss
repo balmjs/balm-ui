@@ -1,6 +1,6 @@
-@import './reset';
-@import '../../../src/styles/color'; // just for demos
-@import './var';
-@import './vendor';
-@import './mixins';
-@import './base';
+@forward './reset';
+@forward '../../../src/styles/color'; // just for demos
+@forward './var';
+@forward './vendor';
+@forward './mixins';
+@forward './base';

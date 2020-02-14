@@ -1,31 +1,34 @@
+@use '../../../src/material-components-web/button/mixins' as button-mixins;
+@use '../../../src/material-components-web/ripple/mixins' as ripple-mixins;
+
 .mdc-button.secondary-text-button {
-  @include mdc-button-ink-color($mdc-theme-secondary);
-  @include mdc-states(secondary);
+  @include button-mixins.ink-color($mdc-theme-secondary);
+  @include ripple-mixins.states(secondary);
 }
 
 .mdc-button.secondary-filled-button {
-  @include mdc-button-filled-accessible($mdc-theme-secondary);
+  @include button-mixins.filled-accessible($mdc-theme-secondary);
 }
 
 .mdc-button.secondary-outlined-button {
-  @include mdc-button-ink-color($mdc-theme-secondary);
-  @include mdc-button-outline-color($mdc-theme-secondary);
+  @include button-mixins.ink-color($mdc-theme-secondary);
+  @include button-mixins.outline-color($mdc-theme-secondary);
 }
 
 .mdc-button.big-round-corner-button {
-  @include mdc-button-shape-radius(8px);
+  @include button-mixins.shape-radius(8px);
 }
 
 .mdc-button.thick-outline-button {
-  @include mdc-button-outline-width(4px);
+  @include button-mixins.outline-width(4px);
 }
 
 .demo-ink-color {
-  @include mdc-button-icon-color(white);
-  @include mdc-button-ink-color(orange);
-  @include mdc-states(orange);
+  @include button-mixins.icon-color(white);
+  @include button-mixins.ink-color(orange);
+  @include ripple-mixins.states(orange);
 }
 
 .demo-icon-color {
-  @include mdc-button-icon-color(orange);
+  @include button-mixins.icon-color(orange);
 }

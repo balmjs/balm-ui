@@ -1,5 +1,6 @@
-@import '../../material-components-web/theme/mixins';
-@import '../../material-components-web/elevation/mixins';
+@use '../../material-components-web/theme/variables' as theme-variables;
+@use '../../material-components-web/theme/mixins' as theme-mixins;
+@use '../../material-components-web/elevation/mixins' as elevation-mixins;
 
 $mdc-bottom-navigation-destinations: 33, 25, 20;
 $mdc-bottom-navigation-height: 48px !default;
@@ -33,7 +34,7 @@ $mdc-bottom-navigation-active-fill-color: rgba(
   z-index: 4;
   height: $mdc-bottom-navigation-height;
   background-color: $mdc-bottom-navigation-fill-color;
-  @include mdc-elevation(4);
+  @include elevation-mixins.elevation(4);
 
   &.ui-bottom-navigation--stacked {
     height: $mdc-bottom-navigation-stacked-height;

@@ -1,4 +1,4 @@
-@import '../global/function';
+@use '../global/function' as global-function;
 
 $mdc-skeleton-avatar: (
   base: 36px,
@@ -7,7 +7,10 @@ $mdc-skeleton-avatar: (
 ) !default;
 
 $mdc-skeleton-color: #f2f2f2 !default;
-$mdc-skeleton-to-color: shade($mdc-skeleton-color, 10%) !default;
+$mdc-skeleton-to-color: global-function.shade(
+  $mdc-skeleton-color,
+  10%
+) !default;
 
 @keyframes mdc-skeleton-loading {
   0% {

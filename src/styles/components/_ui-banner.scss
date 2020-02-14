@@ -1,4 +1,4 @@
-@import '../../material-components-web/elevation/mixins';
+@use '../../material-components-web/elevation/mixins' as elevation-mixins;
 
 $mdc-banner-height: 64px !default;
 $mdc-banner-message-padding: 20px 16px 0 !default;
@@ -14,7 +14,7 @@ $mdc-banner-mobile-breakpoint: 599px !default;
   z-index: 4;
   min-height: $mdc-banner-height;
   background: white;
-  @include mdc-elevation(4);
+  @include elevation-mixins.elevation(4);
 }
 
 .mdc-banner__surface {
@@ -35,6 +35,6 @@ $mdc-banner-mobile-breakpoint: 599px !default;
 
 @media (max-width: $mdc-banner-mobile-breakpoint) {
   .mdc-banner {
-    @include mdc-elevation(1);
+    @include elevation-mixins.elevation(1);
   }
 }

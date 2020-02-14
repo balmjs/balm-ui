@@ -1,5 +1,5 @@
-@import '../../material-components-web/theme/mixins';
-@import '../../material-components-web/shape/mixins';
+@use '../../material-components-web/theme/mixins' as theme-mixins;
+@use '../../material-components-web/shape/mixins' as shape-mixins;
 
 /// Global
 $mdc-pagination-height: 32px;
@@ -7,12 +7,9 @@ $mdc-pagination-color: $mdc-theme-primary !default;
 $mdc-pagination-corner-radius: 4px !default;
 /// Default
 $mdc-pagination-fill-color: white !default;
-$mdc-pagination-text-color: rgba(
-  mdc-theme-prop-value(on-surface),
-  0.87
-) !default;
+$mdc-pagination-text-color: rgba(theme-mixins.prop(on-surface), 0.87) !default;
 $mdc-pagination-border-color: rgba(
-  mdc-theme-prop-value(on-surface),
+  theme-mixins.prop(on-surface),
   0.38
 ) !default;
 /// Hover
@@ -101,7 +98,7 @@ $mdc-pagination-active-border-color: $mdc-pagination-color !default;
 .mdc-pagination__page-item {
   cursor: pointer;
   transition: all 0.3s;
-  @include mdc-shape-radius($mdc-pagination-corner-radius);
+  @include shape-mixins.radius($mdc-pagination-corner-radius);
 
   &:hover {
     border-color: $mdc-pagination-hover-border-color;

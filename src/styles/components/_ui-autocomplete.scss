@@ -1,11 +1,12 @@
-@import '../../material-components-web/theme/mixins';
+@use '../../material-components-web/theme/variables' as theme-variables;
+@use '../../material-components-web/theme/mixins' as theme-mixins;
 
 $mdc-autocomplete-outlined-idle-border: rgba(
-  mdc-theme-prop-value(on-surface),
+  theme-mixins.prop(theme-variables.prop-value(on-surface)),
   0.24
 ) !default;
 $mdc-autocomplete-item-selected-bgcolor: rgba(
-  mdc-theme-prop-value(primary),
+  theme-mixins.prop(theme-variables.prop-value(primary)),
   0.54
 ) !default;
 

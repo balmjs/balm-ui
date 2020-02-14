@@ -1,10 +1,11 @@
-@import '../../material-components-web/feature-targeting/functions';
-@import '../../material-components-web/button/mixins';
+@use '../../material-components-web/feature-targeting/functions' as feature-targeting-functions;
+@use '../../material-components-web/button/mixins' as button-mixins;
+@use '../../material-components-web/ripple/mixins' as ripple-mixins;
 
 $mdc-alert-width: 480px !default;
 
 .mdc-alert {
-  $query: mdc-feature-all(); // New in mdc@0.44.0
+  $query: feature-targeting-functions.all(); // New in mdc@0.44.0
 
   .mdc-dialog__surface {
     width: $mdc-alert-width;
@@ -13,10 +14,10 @@ $mdc-alert-width: 480px !default;
   .mdc-dialog__actions {
     justify-content: center;
     .mdc-button {
-      @include mdc-button--filled_($query);
-      @include mdc-button-container-fill-color(primary, $query);
-      @include mdc-button-ink-color(on-primary, $query);
-      @include mdc-states(on-primary, false, $query);
+      @include button-mixins.filled_($query);
+      @include button-mixins.container-fill-color(primary, $query);
+      @include button-mixins.ink-color(on-primary, $query);
+      @include ripple-mixins.states(on-primary, false, $query);
     }
   }
   @media (max-width: 640px) {

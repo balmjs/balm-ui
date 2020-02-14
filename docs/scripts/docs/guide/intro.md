@@ -30,6 +30,7 @@ Following the [Material Design](https://material.io/components/) UI components f
   - File (💡)
   - Autocomplete (💡)
   - Datepicker (💡)
+  - Rangepicker (💡)
 - Data View
   - List
   - <del>Grid List</del> (💀)

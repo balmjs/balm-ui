@@ -91,6 +91,7 @@ Enjoy 👻
   - File (:bulb:)
   - Autocomplete (:bulb:)
   - Datepicker (:bulb:)
+  - Rangepicker (:bulb:)
 - Data View
   - List
   - <del>Grid List</del> (:skull:)

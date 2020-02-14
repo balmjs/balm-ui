@@ -1,6 +1,6 @@
-$text-divider-size: 1px !default;
-$text-divider-horizontal-text-padding: 0.5em 1em !default;
-$text-divider-vertical-text-padding: 1em 0.5em !default;
+$mdc-text-divider-size: 1px !default;
+$mdc-text-divider-horizontal-text-padding: 0.5em 1em !default;
+$mdc-text-divider-vertical-text-padding: 1em 0.5em !default;
 
 .mdc-text-divider {
   justify-content: space-around;
@@ -36,12 +36,12 @@ $text-divider-vertical-text-padding: 1em 0.5em !default;
     &::before,
     &::after {
       width: 50%;
-      height: $text-divider-size;
+      height: $mdc-text-divider-size;
       background-color: currentColor;
     }
 
     & > span {
-      padding: $text-divider-horizontal-text-padding;
+      padding: $mdc-text-divider-horizontal-text-padding;
     }
   }
 }
@@ -56,13 +56,13 @@ $text-divider-vertical-text-padding: 1em 0.5em !default;
 
     &::before,
     &::after {
-      width: $text-divider-size;
+      width: $mdc-text-divider-size;
       height: 50%;
       background-color: currentColor;
     }
 
     & > span {
-      padding: $text-divider-vertical-text-padding;
+      padding: $mdc-text-divider-vertical-text-padding;
     }
   }
 }

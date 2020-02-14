@@ -1,5 +1,16 @@
 # BalmUI ChangeLog
 
+## 4.3.1
+
+### Chores
+
+`<ui-rangepicker>`: mobile support
+update css docs: `<ui-rangepicker>`, `<ui-text-divider>`
+
+### Bug Fixes
+
+`<ui-rangepicker>`: fix the first input autofocus bug
+
 ## 4.3.0 (2020.02.14)
 
 ### Chores

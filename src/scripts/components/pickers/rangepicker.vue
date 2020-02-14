@@ -110,13 +110,13 @@ export default {
 
     if (!this.flatpickr) {
       let config = Object.assign({}, this.config, {
+        disableMobile: true, // Mobile Support
         plugins: [
           new rangePlugin({
             input: endInputEl
           })
         ]
       });
-
       // custom event
       config.onChange = (selectedDates, dateStr, instance) => {
         this.updateInputs(selectedDates);
@@ -167,7 +167,8 @@ export default {
     updateInitialValue(instance = this.flatpickr) {
       instance.setDate([this.startInputValue, this.endInputValue], true); // Redrawing
 
-      this.$refs.startInput.$el.classList.remove('mdc-text-field--focused'); // NOTE: fix focus bug
+      // TODO: temporary solution - fix focus bug
+      this.$refs.startInput.$textField.foundation_.inputBlurHandler_();
     }
   }
 };

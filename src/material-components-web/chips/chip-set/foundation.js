@@ -51,6 +51,7 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
     Object.defineProperty(MDCChipSetFoundation, "defaultAdapter", {
         get: function () {
             return {
+                announceMessage: function () { return undefined; },
                 focusChipPrimaryActionAtIndex: function () { return undefined; },
                 focusChipTrailingActionAtIndex: function () { return undefined; },
                 getChipListCount: function () { return -1; },
@@ -81,7 +82,8 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
     /**
      * Handles a chip interaction event
      */
-    MDCChipSetFoundation.prototype.handleChipInteraction = function (chipId) {
+    MDCChipSetFoundation.prototype.handleChipInteraction = function (_a) {
+        var chipId = _a.chipId;
         var index = this.adapter_.getIndexOfChipById(chipId);
         this.removeFocusFromChipsExcept_(index);
         if (this.adapter_.hasClass(cssClasses.CHOICE) || this.adapter_.hasClass(cssClasses.FILTER)) {
@@ -91,7 +93,8 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
     /**
      * Handles a chip selection event, used to handle discrepancy when selection state is set directly on the Chip.
      */
-    MDCChipSetFoundation.prototype.handleChipSelection = function (chipId, selected, shouldIgnore) {
+    MDCChipSetFoundation.prototype.handleChipSelection = function (_a) {
+        var chipId = _a.chipId, selected = _a.selected, shouldIgnore = _a.shouldIgnore;
         // Early exit if we should ignore the event
         if (shouldIgnore) {
             return;
@@ -107,7 +110,11 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
     /**
      * Handles the event when a chip is removed.
      */
-    MDCChipSetFoundation.prototype.handleChipRemoval = function (chipId) {
+    MDCChipSetFoundation.prototype.handleChipRemoval = function (_a) {
+        var chipId = _a.chipId, removedAnnouncement = _a.removedAnnouncement;
+        if (removedAnnouncement) {
+            this.adapter_.announceMessage(removedAnnouncement);
+        }
         var index = this.adapter_.getIndexOfChipById(chipId);
         this.deselectAndNotifyClients_(chipId);
         this.adapter_.removeChipAtIndex(index);
@@ -120,7 +127,8 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
     /**
      * Handles a chip navigation event.
      */
-    MDCChipSetFoundation.prototype.handleChipNavigation = function (chipId, key, source) {
+    MDCChipSetFoundation.prototype.handleChipNavigation = function (_a) {
+        var chipId = _a.chipId, key = _a.key, source = _a.source;
         var maxIndex = this.adapter_.getChipListCount() - 1;
         var index = this.adapter_.getIndexOfChipById(chipId);
         // Early exit if the index is out of range or the key is unusable

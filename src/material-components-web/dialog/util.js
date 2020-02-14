@@ -20,14 +20,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { default as createFocusTrap } from 'focus-trap';
 export function createFocusTrapInstance(surfaceEl, focusTrapFactory, initialFocusEl) {
-    if (focusTrapFactory === void 0) { focusTrapFactory = createFocusTrap; }
-    return focusTrapFactory(surfaceEl, {
-        clickOutsideDeactivates: true,
-        escapeDeactivates: false,
-        initialFocus: initialFocusEl,
-    });
+    return focusTrapFactory(surfaceEl, { initialFocusEl: initialFocusEl });
 }
 export function isScrollable(el) {
     return el ? el.scrollHeight > el.offsetHeight : false;

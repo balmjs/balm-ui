@@ -1,0 +1,12 @@
+@forward "../base/mixins" as mdc-base-*;
+@forward "../feature-targeting/variables" as mdc-feature-*;
+@forward "../feature-targeting/mixins" as mdc-feature-*;
+@forward "../theme/constants" as mdc-theme-*;
+@forward "../theme/variables" as mdc-theme-*;
+@forward "../animation/variables" as mdc-animation-*;
+@forward "../theme/mixins" as mdc-theme-*;
+@forward "mixins" as mdc-line-ripple-*;
+@forward "../feature-targeting/functions" as mdc-feature-*;
+@forward "../theme/functions" as mdc-theme-*;
+@forward "functions" as mdc-line-ripple-*;
+@forward "mdc-line-ripple";

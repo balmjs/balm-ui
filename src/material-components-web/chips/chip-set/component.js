@@ -22,6 +22,7 @@
  */
 import * as tslib_1 from "tslib";
 import { MDCComponent } from '../../base/component';
+import { announce } from '../../dom/announce';
 import { MDCChip } from '../chip/component';
 import { MDCChipFoundation } from '../chip/foundation';
 import { MDCChipSetFoundation } from './foundation';
@@ -68,12 +69,18 @@ var MDCChipSet = /** @class */ (function (_super) {
                 _this.foundation_.select(chip.id);
             }
         });
-        this.handleChipInteraction_ = function (evt) { return _this.foundation_.handleChipInteraction(evt.detail.chipId); };
-        this.handleChipSelection_ = function (evt) {
-            _this.foundation_.handleChipSelection(evt.detail.chipId, evt.detail.selected, evt.detail.shouldIgnore);
+        this.handleChipInteraction_ = function (evt) {
+            return _this.foundation_.handleChipInteraction(evt.detail);
         };
-        this.handleChipRemoval_ = function (evt) { return _this.foundation_.handleChipRemoval(evt.detail.chipId); };
-        this.handleChipNavigation_ = function (evt) { return _this.foundation_.handleChipNavigation(evt.detail.chipId, evt.detail.key, evt.detail.source); };
+        this.handleChipSelection_ = function (evt) {
+            return _this.foundation_.handleChipSelection(evt.detail);
+        };
+        this.handleChipRemoval_ = function (evt) {
+            return _this.foundation_.handleChipRemoval(evt.detail);
+        };
+        this.handleChipNavigation_ = function (evt) {
+            return _this.foundation_.handleChipNavigation(evt.detail);
+        };
         this.listen(INTERACTION_EVENT, this.handleChipInteraction_);
         this.listen(SELECTION_EVENT, this.handleChipSelection_);
         this.listen(REMOVAL_EVENT, this.handleChipRemoval_);
@@ -101,6 +108,9 @@ var MDCChipSet = /** @class */ (function (_super) {
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         var adapter = {
+            announceMessage: function (message) {
+                announce(message);
+            },
             focusChipPrimaryActionAtIndex: function (index) {
                 _this.chips_[index].focusPrimaryAction();
             },
@@ -112,7 +122,10 @@ var MDCChipSet = /** @class */ (function (_super) {
                 return _this.findChipIndex_(chipId);
             },
             hasClass: function (className) { return _this.root_.classList.contains(className); },
-            isRTL: function () { return window.getComputedStyle(_this.root_).getPropertyValue('direction') === 'rtl'; },
+            isRTL: function () {
+                return window.getComputedStyle(_this.root_).getPropertyValue('direction') ===
+                    'rtl';
+            },
             removeChipAtIndex: function (index) {
                 if (index >= 0 && index < _this.chips_.length) {
                     _this.chips_[index].destroy();

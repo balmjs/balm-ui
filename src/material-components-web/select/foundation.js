@@ -230,8 +230,8 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
     MDCSelectFoundation.prototype.handleFocus = function () {
         this.adapter_.addClass(cssClasses.FOCUSED);
         if (this.adapter_.hasLabel()) {
-            this.adapter_.floatLabel(true);
             this.notchOutline(true);
+            this.adapter_.floatLabel(true);
         }
         this.adapter_.activateBottomLine();
         if (this.helperText_) {

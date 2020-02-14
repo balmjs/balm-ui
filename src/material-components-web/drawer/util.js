@@ -20,14 +20,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { default as createFocusTrap } from 'focus-trap';
 export function createFocusTrapInstance(surfaceEl, focusTrapFactory) {
-    if (focusTrapFactory === void 0) { focusTrapFactory = createFocusTrap; }
     return focusTrapFactory(surfaceEl, {
-        clickOutsideDeactivates: true,
-        escapeDeactivates: false,
-        initialFocus: undefined,
-        returnFocusOnDeactivate: false,
+        // Component handles focusing on active nav item.
+        skipInitialFocus: true,
     });
 }
 //# sourceMappingURL=util.js.map

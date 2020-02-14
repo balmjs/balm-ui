@@ -7,7 +7,8 @@ module.exports = {
     source: env.useDocs ? 'docs' : 'src'
   },
   styles: {
-    extname: 'scss'
+    extname: 'scss',
+    dartSass: true
   },
   scripts: {
     entry: env.useDocs

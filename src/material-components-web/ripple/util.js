@@ -3,26 +3,6 @@
  * detect CSS custom variable support.
  */
 var supportsCssVariables_;
-function detectEdgePseudoVarBug(windowObj) {
-    // Detect versions of Edge with buggy var() support
-    // See: https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/11495448/
-    var document = windowObj.document;
-    var node = document.createElement('div');
-    node.className = 'mdc-ripple-surface--test-edge-var-bug';
-    // Append to head instead of body because this script might be invoked in the
-    // head, in which case the body doesn't exist yet. The probe works either way.
-    document.head.appendChild(node);
-    // The bug exists if ::before style ends up propagating to the parent element.
-    // Additionally, getComputedStyle returns null in iframes with display: "none" in Firefox,
-    // but Firefox is known to support CSS custom properties correctly.
-    // See: https://bugzilla.mozilla.org/show_bug.cgi?id=548397
-    var computedStyle = windowObj.getComputedStyle(node);
-    var hasPseudoVarBug = computedStyle !== null && computedStyle.borderTopStyle === 'solid';
-    if (node.parentNode) {
-        node.parentNode.removeChild(node);
-    }
-    return hasPseudoVarBug;
-}
 export function supportsCssVariables(windowObj, forceRefresh) {
     if (forceRefresh === void 0) { forceRefresh = false; }
     var CSS = windowObj.CSS;
@@ -39,12 +19,8 @@ export function supportsCssVariables(windowObj, forceRefresh) {
     // See: README section on Safari
     var weAreFeatureDetectingSafari10plus = (CSS.supports('(--css-vars: yes)') &&
         CSS.supports('color', '#00000000'));
-    if (explicitlySupportsCssVars || weAreFeatureDetectingSafari10plus) {
-        supportsCssVars = !detectEdgePseudoVarBug(windowObj);
-    }
-    else {
-        supportsCssVars = false;
-    }
+    supportsCssVars =
+        explicitlySupportsCssVars || weAreFeatureDetectingSafari10plus;
     if (!forceRefresh) {
         supportsCssVariables_ = supportsCssVars;
     }

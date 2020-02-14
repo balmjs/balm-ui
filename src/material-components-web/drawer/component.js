@@ -22,9 +22,9 @@
  */
 import * as tslib_1 from "tslib";
 import { MDCComponent } from '../base/component';
+import { FocusTrap } from '../dom/focus-trap';
 import { MDCList } from '../list/component';
 import { MDCListFoundation } from '../list/foundation';
-import { default as createFocusTrap } from 'focus-trap';
 import { MDCDismissibleDrawerFoundation } from './dismissible/foundation';
 import { MDCModalDrawerFoundation } from './modal/foundation';
 import * as util from './util';
@@ -71,7 +71,7 @@ var MDCDrawer = /** @class */ (function (_super) {
         configurable: true
     });
     MDCDrawer.prototype.initialize = function (focusTrapFactory, listFactory) {
-        if (focusTrapFactory === void 0) { focusTrapFactory = createFocusTrap; }
+        if (focusTrapFactory === void 0) { focusTrapFactory = function (el) { return new FocusTrap(el); }; }
         if (listFactory === void 0) { listFactory = function (el) { return new MDCList(el); }; }
         var listEl = this.root_.querySelector("." + MDCListFoundation.cssClasses.ROOT);
         if (listEl) {
@@ -133,8 +133,8 @@ var MDCDrawer = /** @class */ (function (_super) {
             },
             notifyClose: function () { return _this.emit(strings.CLOSE_EVENT, {}, true /* shouldBubble */); },
             notifyOpen: function () { return _this.emit(strings.OPEN_EVENT, {}, true /* shouldBubble */); },
-            trapFocus: function () { return _this.focusTrap_.activate(); },
-            releaseFocus: function () { return _this.focusTrap_.deactivate(); },
+            trapFocus: function () { return _this.focusTrap_.trapFocus(); },
+            releaseFocus: function () { return _this.focusTrap_.releaseFocus(); },
         };
         // tslint:enable:object-literal-sort-keys
         var DISMISSIBLE = cssClasses.DISMISSIBLE, MODAL = cssClasses.MODAL;

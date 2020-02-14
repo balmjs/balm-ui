@@ -51,7 +51,9 @@ var MDCLinearProgressFoundation = /** @class */ (function (_super) {
                 getBuffer: function () { return null; },
                 getPrimaryBar: function () { return null; },
                 hasClass: function () { return false; },
+                removeAttribute: function () { return undefined; },
                 removeClass: function () { return undefined; },
+                setAttribute: function () { return undefined; },
                 setStyle: function () { return undefined; },
             };
         },
@@ -68,6 +70,7 @@ var MDCLinearProgressFoundation = /** @class */ (function (_super) {
         this.isDeterminate_ = isDeterminate;
         if (this.isDeterminate_) {
             this.adapter_.removeClass(cssClasses.INDETERMINATE_CLASS);
+            this.adapter_.setAttribute(strings.ARIA_VALUENOW, this.progress_.toString());
             this.setScale_(this.adapter_.getPrimaryBar(), this.progress_);
             this.setScale_(this.adapter_.getBuffer(), this.buffer_);
         }
@@ -83,6 +86,7 @@ var MDCLinearProgressFoundation = /** @class */ (function (_super) {
                 this.adapter_.addClass(cssClasses.REVERSED_CLASS);
             }
             this.adapter_.addClass(cssClasses.INDETERMINATE_CLASS);
+            this.adapter_.removeAttribute(strings.ARIA_VALUENOW);
             this.setScale_(this.adapter_.getPrimaryBar(), 1);
             this.setScale_(this.adapter_.getBuffer(), 1);
         }
@@ -91,6 +95,7 @@ var MDCLinearProgressFoundation = /** @class */ (function (_super) {
         this.progress_ = value;
         if (this.isDeterminate_) {
             this.setScale_(this.adapter_.getPrimaryBar(), value);
+            this.adapter_.setAttribute(strings.ARIA_VALUENOW, value.toString());
         }
     };
     MDCLinearProgressFoundation.prototype.setBuffer = function (value) {

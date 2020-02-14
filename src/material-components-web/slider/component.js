@@ -85,15 +85,18 @@ var MDCSlider = /** @class */ (function (_super) {
     });
     MDCSlider.prototype.initialize = function () {
         this.thumbContainer_ = this.root_.querySelector(strings.THUMB_CONTAINER_SELECTOR);
-        this.track_ = this.root_.querySelector(strings.TRACK_SELECTOR);
+        this.track_ =
+            this.root_.querySelector(strings.TRACK_SELECTOR);
         this.pinValueMarker_ = this.root_.querySelector(strings.PIN_VALUE_MARKER_SELECTOR);
         this.trackMarkerContainer_ = this.root_.querySelector(strings.TRACK_MARKER_CONTAINER_SELECTOR);
     };
     MDCSlider.prototype.getDefaultFoundation = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
-        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-        // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take
+        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
+        // methods, we need a separate, strongly typed adapter variable.
+        // tslint:disable:object-literal-sort-keys Methods should be in the same
+        // order as the adapter interface.
         var adapter = {
             hasClass: function (className) { return _this.root_.classList.contains(className); },
             addClass: function (className) { return _this.root_.classList.add(className); },
@@ -103,25 +106,40 @@ var MDCSlider = /** @class */ (function (_super) {
             removeAttribute: function (name) { return _this.root_.removeAttribute(name); },
             computeBoundingRect: function () { return _this.root_.getBoundingClientRect(); },
             getTabIndex: function () { return _this.root_.tabIndex; },
-            registerInteractionHandler: function (evtType, handler) { return _this.listen(evtType, handler, applyPassive()); },
-            deregisterInteractionHandler: function (evtType, handler) { return _this.unlisten(evtType, handler, applyPassive()); },
+            registerInteractionHandler: function (evtType, handler) {
+                return _this.listen(evtType, handler, applyPassive());
+            },
+            deregisterInteractionHandler: function (evtType, handler) {
+                return _this.unlisten(evtType, handler, applyPassive());
+            },
             registerThumbContainerInteractionHandler: function (evtType, handler) {
                 _this.thumbContainer_.addEventListener(evtType, handler, applyPassive());
             },
             deregisterThumbContainerInteractionHandler: function (evtType, handler) {
                 _this.thumbContainer_.removeEventListener(evtType, handler, applyPassive());
             },
-            registerBodyInteractionHandler: function (evtType, handler) { return document.body.addEventListener(evtType, handler); },
-            deregisterBodyInteractionHandler: function (evtType, handler) { return document.body.removeEventListener(evtType, handler); },
-            registerResizeHandler: function (handler) { return window.addEventListener('resize', handler); },
-            deregisterResizeHandler: function (handler) { return window.removeEventListener('resize', handler); },
+            registerBodyInteractionHandler: function (evtType, handler) {
+                return document.body.addEventListener(evtType, handler);
+            },
+            deregisterBodyInteractionHandler: function (evtType, handler) {
+                return document.body.removeEventListener(evtType, handler);
+            },
+            registerResizeHandler: function (handler) {
+                return window.addEventListener('resize', handler);
+            },
+            deregisterResizeHandler: function (handler) {
+                return window.removeEventListener('resize', handler);
+            },
             notifyInput: function () { return _this.emit(strings.INPUT_EVENT, _this); },
             notifyChange: function () { return _this.emit(strings.CHANGE_EVENT, _this); },
             setThumbContainerStyleProperty: function (propertyName, value) {
                 _this.thumbContainer_.style.setProperty(propertyName, value);
             },
-            setTrackStyleProperty: function (propertyName, value) { return _this.track_.style.setProperty(propertyName, value); },
-            setMarkerValue: function (value) { return _this.pinValueMarker_.innerText = value.toLocaleString(); },
+            setTrackStyleProperty: function (propertyName, value) {
+                return _this.track_.style.setProperty(propertyName, value);
+            },
+            setMarkerValue: function (value) { return _this.pinValueMarker_.innerText =
+                value.toLocaleString(); },
             setTrackMarkers: function (step, max, min) {
                 var stepStr = step.toLocaleString();
                 var maxStr = max.toLocaleString();
@@ -155,8 +173,9 @@ var MDCSlider = /** @class */ (function (_super) {
         }
         this.step = this.parseFloat_(this.root_.getAttribute(strings.STEP_DATA_ATTR), this.step);
         this.value = origValueNow;
-        this.disabled = (this.root_.hasAttribute(strings.ARIA_DISABLED) &&
-            this.root_.getAttribute(strings.ARIA_DISABLED) !== 'false');
+        this.disabled =
+            (this.root_.hasAttribute(strings.ARIA_DISABLED) &&
+                this.root_.getAttribute(strings.ARIA_DISABLED) !== 'false');
         this.foundation_.setupTrackMarker();
     };
     MDCSlider.prototype.layout = function () {

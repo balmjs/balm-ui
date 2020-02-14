@@ -75,7 +75,13 @@ var MDCLinearProgress = /** @class */ (function (_super) {
             getBuffer: function () { return _this.root_.querySelector(MDCLinearProgressFoundation.strings.BUFFER_SELECTOR); },
             getPrimaryBar: function () { return _this.root_.querySelector(MDCLinearProgressFoundation.strings.PRIMARY_BAR_SELECTOR); },
             hasClass: function (className) { return _this.root_.classList.contains(className); },
+            removeAttribute: function (attributeName) {
+                _this.root_.removeAttribute(attributeName);
+            },
             removeClass: function (className) { return _this.root_.classList.remove(className); },
+            setAttribute: function (attributeName, value) {
+                _this.root_.setAttribute(attributeName, value);
+            },
             setStyle: function (el, styleProperty, value) { return el.style.setProperty(styleProperty, value); },
         };
         return new MDCLinearProgressFoundation(adapter);

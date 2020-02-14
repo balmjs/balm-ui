@@ -67,6 +67,7 @@ var MDCSwitch = /** @class */ (function (_super) {
             removeClass: function (className) { return _this.root_.classList.remove(className); },
             setNativeControlChecked: function (checked) { return _this.nativeControl_.checked = checked; },
             setNativeControlDisabled: function (disabled) { return _this.nativeControl_.disabled = disabled; },
+            setNativeControlAttr: function (attr, value) { return _this.nativeControl_.setAttribute(attr, value); },
         };
         return new MDCSwitchFoundation(adapter);
     };
@@ -107,7 +108,9 @@ var MDCSwitch = /** @class */ (function (_super) {
                 _this.nativeControl_.removeEventListener(evtType, handler, applyPassive());
             }, isSurfaceActive: function () { return matches(_this.nativeControl_, ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (evtType, handler) {
                 _this.nativeControl_.addEventListener(evtType, handler, applyPassive());
-            }, removeClass: function (className) { return rippleSurface.classList.remove(className); }, updateCssVariable: function (varName, value) {
+            }, removeClass: function (className) {
+                rippleSurface.classList.remove(className);
+            }, updateCssVariable: function (varName, value) {
                 rippleSurface.style.setProperty(varName, value);
             } });
         return new MDCRipple(this.root_, new MDCRippleFoundation(adapter));

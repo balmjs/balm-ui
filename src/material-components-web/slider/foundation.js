@@ -46,8 +46,8 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
     function MDCSliderFoundation(adapter) {
         var _this = _super.call(this, tslib_1.__assign({}, MDCSliderFoundation.defaultAdapter, adapter)) || this;
         /**
-         * We set this to NaN since we want it to be a number, but we can't use '0' or '-1'
-         * because those could be valid tabindices set by the client code.
+         * We set this to NaN since we want it to be a number, but we can't use '0' or
+         * '-1' because those could be valid tabindices set by the client code.
          */
         _this.savedTabIndex_ = NaN;
         _this.active_ = false;
@@ -61,8 +61,11 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         _this.value_ = 0;
         _this.disabled_ = false;
         _this.preventFocusState_ = false;
-        _this.thumbContainerPointerHandler_ = function () { return _this.handlingThumbTargetEvt_ = true; };
-        _this.interactionStartHandler_ = function (evt) { return _this.handleDown_(evt); };
+        _this.thumbContainerPointerHandler_ = function () { return _this.handlingThumbTargetEvt_ =
+            true; };
+        _this.interactionStartHandler_ = function (evt) {
+            return _this.handleDown_(evt);
+        };
         _this.keydownHandler_ = function (evt) { return _this.handleKeydown_(evt); };
         _this.focusHandler_ = function () { return _this.handleFocus_(); };
         _this.blurHandler_ = function () { return _this.handleBlur_(); };
@@ -92,7 +95,8 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
     });
     Object.defineProperty(MDCSliderFoundation, "defaultAdapter", {
         get: function () {
-            // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
+            // tslint:disable:object-literal-sort-keys Methods should be in the same
+            // order as the adapter interface.
             return {
                 hasClass: function () { return false; },
                 addClass: function () { return undefined; },
@@ -100,7 +104,9 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
                 getAttribute: function () { return null; },
                 setAttribute: function () { return undefined; },
                 removeAttribute: function () { return undefined; },
-                computeBoundingRect: function () { return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 }); },
+                computeBoundingRect: function () {
+                    return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 });
+                },
                 getTabIndex: function () { return 0; },
                 registerInteractionHandler: function () { return undefined; },
                 deregisterInteractionHandler: function () { return undefined; },
@@ -239,16 +245,19 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
             _this.handleMove_(moveEvent);
         };
         var moveEventType = MOVE_EVENT_MAP[downEvent.type];
-        // Note: upHandler is [de]registered on ALL potential pointer-related release event types, since some browsers
-        // do not always fire these consistently in pairs.
-        // (See https://github.com/material-components/material-components-web/issues/1192)
+        // Note: upHandler is [de]registered on ALL potential pointer-related
+        // release event types, since some browsers do not always fire these
+        // consistently in pairs. (See
+        // https://github.com/material-components/material-components-web/issues/1192)
         var upHandler = function () {
             _this.handleUp_();
             _this.adapter_.deregisterBodyInteractionHandler(moveEventType, moveHandler);
             UP_EVENTS.forEach(function (evtName) { return _this.adapter_.deregisterBodyInteractionHandler(evtName, upHandler); });
         };
         this.adapter_.registerBodyInteractionHandler(moveEventType, moveHandler);
-        UP_EVENTS.forEach(function (evtName) { return _this.adapter_.registerBodyInteractionHandler(evtName, upHandler); });
+        UP_EVENTS.forEach(function (evtName) {
+            return _this.adapter_.registerBodyInteractionHandler(evtName, upHandler);
+        });
         this.setValueFromEvt_(downEvent);
     };
     /**
@@ -266,28 +275,29 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         this.adapter_.notifyChange();
     };
     /**
-     * Returns the pageX of the event
+     * Returns the clientX of the event
      */
-    MDCSliderFoundation.prototype.getPageX_ = function (evt) {
-        if (evt.targetTouches && evt.targetTouches.length > 0) {
-            return evt.targetTouches[0].pageX;
+    MDCSliderFoundation.prototype.getClientX_ = function (evt) {
+        if (evt.targetTouches &&
+            evt.targetTouches.length > 0) {
+            return evt.targetTouches[0].clientX;
         }
-        return evt.pageX;
+        return evt.clientX;
     };
     /**
      * Sets the slider value from an event
      */
     MDCSliderFoundation.prototype.setValueFromEvt_ = function (evt) {
-        var pageX = this.getPageX_(evt);
-        var value = this.computeValueFromPageX_(pageX);
+        var clientX = this.getClientX_(evt);
+        var value = this.computeValueFromClientX_(clientX);
         this.setValue_(value, true);
     };
     /**
-     * Computes the new value from the pageX position
+     * Computes the new value from the clientX position
      */
-    MDCSliderFoundation.prototype.computeValueFromPageX_ = function (pageX) {
+    MDCSliderFoundation.prototype.computeValueFromClientX_ = function (clientX) {
         var _a = this, max = _a.max_, min = _a.min_;
-        var xPos = pageX - this.rect_.left;
+        var xPos = clientX - this.rect_.left;
         var pctComplete = xPos / this.rect_.width;
         if (this.adapter_.isRTL()) {
             pctComplete = 1 - pctComplete;
@@ -305,7 +315,8 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         if (isNaN(value)) {
             return;
         }
-        // Prevent page from scrolling due to key presses that would normally scroll the page
+        // Prevent page from scrolling due to key presses that would normally scroll
+        // the page
         evt.preventDefault();
         this.adapter_.addClass(cssClasses.FOCUS);
         this.setValue_(value, true);
@@ -347,7 +358,8 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
     MDCSliderFoundation.prototype.getValueForKeyId_ = function (keyId) {
         var _a = this, max = _a.max_, min = _a.min_, step = _a.step_;
         var delta = step || (max - min) / 100;
-        var valueNeedsToBeFlipped = this.adapter_.isRTL() && (keyId === KEY_IDS.ARROW_LEFT || keyId === KEY_IDS.ARROW_RIGHT);
+        var valueNeedsToBeFlipped = this.adapter_.isRTL() &&
+            (keyId === KEY_IDS.ARROW_LEFT || keyId === KEY_IDS.ARROW_RIGHT);
         if (valueNeedsToBeFlipped) {
             delta = -delta;
         }
@@ -399,6 +411,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         else if (value > max) {
             value = max;
         }
+        value = value || 0; // coerce -0 to 0
         this.value_ = value;
         this.adapter_.setAttribute(strings.ARIA_VALUENOW, String(this.value_));
         this.updateUIForCurrentValue_();
@@ -470,6 +483,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
     return MDCSliderFoundation;
 }(MDCFoundation));
 export { MDCSliderFoundation };
-// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+// tslint:disable-next-line:no-default-export Needed for backward compatibility
+// with MDC Web v0.44.0 and earlier.
 export default MDCSliderFoundation;
 //# sourceMappingURL=foundation.js.map

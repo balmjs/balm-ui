@@ -7,13 +7,14 @@
 | Name                | Type                  | Default | Description                                                                                                                        |
 | ------------------- | --------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | `model` (`v-model`) | string, number, array | `''`    | Mandatory.                                                                                                                         |
+| `outlined`          | boolean               | `false` | Styles the datepicker as an outlined text field.                                                                                   |
 | `id`                | string                | `null`  | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`.                                                      |
-| `label`             | string                | `null`  | A text caption or description for the autocomplete, which use the input's `placeholder` attribute instead.                         |
-| `noLabel`           | boolean               | `false` | Styles the autocomplete that has no label.                                                                                         |
+| `label`             | string                | `null`  | A text caption or description for the datepicker, which use the input's `placeholder` attribute instead.                           |
+| `noLabel`           | boolean               | `false` | Styles the datepicker that has no label.                                                                                           |
 | `placeholder`       | string                | `null`  | The _placeholder_ attribute of the `<input>`.                                                                                      |
-| `fullwidth`         | boolean               | `false` | Styles the autocomplete as a full width autocomplete.                                                                              |
-| `disabled`          | boolean               | `false` | Styles the autocomplete as a disabled autocomplete.                                                                                |
-| `leadingIcon`       | boolean, string       | `false` | Styles the autocomplete as a autocomplete with a leading icon. (Use with `before` slot)                                            |
+| `fullwidth`         | boolean               | `false` | Styles the datepicker as a full width text field.                                                                                  |
+| `disabled`          | boolean               | `false` | Styles the datepicker as a disabled text field.                                                                                    |
+| `leadingIcon`       | boolean, string       | `false` | Styles the datepicker as a text field with a leading icon. (Use with `before` slot)                                                |
 | `icon`              | string                | `''`    | Optional. Indicates an icon element with a leading icon. See [Material Icons](/#/icons) list. (No need to configure `leadingIcon`) |
 | `config`            | object                | `{}`    | See [Flatpickr configuration](https://flatpickr.js.org/options/).                                                                  |
 | `toggle`            | boolean               | `false` | Show calendar icon button.                                                                                                         |
@@ -41,8 +42,8 @@
 // Manual
 <ui-datepicker
   :model="value"
-  @input="$balmUI.onChange('value', $event)"
-></ui-autocomplete>
+  @change="$balmUI.onChange('value', $event)"
+></ui-datepicker>
 ```
 
 #### ⚠️ Notice

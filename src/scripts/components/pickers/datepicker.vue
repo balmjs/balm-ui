@@ -4,7 +4,7 @@
     :id="id"
     v-model="inputValue"
     class="mdc-datepicker"
-    outlined
+    :outlined="outlined"
     :placeholder="placeholder"
     :label="label"
     :noLabel="noLabel"

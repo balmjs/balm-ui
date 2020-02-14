@@ -1,6 +1,16 @@
 # BalmUI ChangeLog
 
-## 4.3.0
+## 4.3.0 (2020.02.14)
+
+### Chores
+
+`<ui-autocomplete>`: fix css bug for filled textfield
+
+### Features
+
+- new component for plus: `<ui-rangepicker>`
+- `<ui-autocomplete>`, `<ui-datepicker>`: add `outlined` prop
+- update docs: `<ui-autocomplete>`, `<ui-datepicker>`, `<ui-rangepicker>`
 
 ## 4.2.0 (2020.02.12)
 

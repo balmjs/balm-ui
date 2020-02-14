@@ -4,7 +4,7 @@
       ref="startInput"
       v-model="startInputValue"
       class="mdc-rangepicker__start"
-      outlined
+      :outlined="outlined"
       :placeholder="startPlaceholder"
       :label="startLabel"
       :noLabel="noLabel"
@@ -18,7 +18,7 @@
       ref="endInput"
       v-model="endInputValue"
       class="mdc-rangepicker__end"
-      outlined
+      :outlined="outlined"
       :placeholder="endPlaceholder"
       :label="endLabel"
       :noLabel="noLabel"
@@ -32,7 +32,6 @@
 import flatpickr from 'flatpickr';
 import rangePlugin from 'flatpickr/dist/plugins/rangePlugin';
 import UiTextfield from '../input-controls/textfield';
-import textfieldMixin from '../../mixins/textfield';
 import getType from '../../utils/typeof';
 
 // Define rangepicker constants
@@ -47,7 +46,6 @@ export default {
   components: {
     UiTextfield
   },
-  mixins: [textfieldMixin],
   model: {
     prop: 'model',
     event: UI_RANGEPICKER.EVENT.CHANGE
@@ -61,6 +59,10 @@ export default {
       }
     },
     // UI common attributes
+    outlined: {
+      type: Boolean,
+      default: false
+    },
     noLabel: {
       type: Boolean,
       default: false

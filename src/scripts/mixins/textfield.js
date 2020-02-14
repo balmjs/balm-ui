@@ -3,6 +3,10 @@ export default {
     // Element attributes
     placeholder: String,
     // UI attributes
+    outlined: {
+      type: Boolean,
+      default: false
+    },
     label: String,
     noLabel: {
       type: Boolean,

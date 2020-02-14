@@ -3,8 +3,7 @@
     :id="id"
     v-model="inputValue"
     :class="className"
-    outlined
-    plus
+    :outlined="outlined"
     :placeholder="placeholder"
     :label="label"
     :noLabel="noLabel"
@@ -12,6 +11,7 @@
     :disabled="disabled"
     :leadingIcon="leadingIcon"
     :icon="icon"
+    plus
     @focus="handleFocus"
     @keydown="handleKeydown"
     @input="handleInput"

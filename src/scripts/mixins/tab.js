@@ -5,6 +5,10 @@ export default {
   mixins: [typeMixin],
   props: {
     // UI attributes
+    type: {
+      type: [String, Number],
+      default: 0
+    },
     stacked: {
       type: Boolean,
       default: false

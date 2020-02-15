@@ -4,11 +4,12 @@ import { UI_TAB } from '../components/tabs/constants';
 export default {
   mixins: [typeMixin],
   props: {
-    // UI attributes
+    // UI variants
     type: {
       type: [String, Number],
       default: 0
     },
+    // UI attributes
     stacked: {
       type: Boolean,
       default: false

@@ -6,8 +6,8 @@ const UI_ACCESSIBILITY = {
     button: 'mdc-button',
     chip: 'mdc-chip',
     checkbox: 'mdc-checkbox',
-    radio: 'mdc-radio'
-    // miniFab: 'mdc-fab--mini' // TODO
+    radio: 'mdc-radio',
+    miniFab: 'mdc-fab--mini'
   },
   cssClasses: {
     wrapper: 'mdc-touch-target-wrapper',
@@ -24,11 +24,11 @@ const UI_ACCESSIBILITY = {
     },
     radio: {
       outer: 'mdc-radio--touch'
+    },
+    miniFab: {
+      outer: 'mdc-fab--touch',
+      inner: 'mdc-fab__touch'
     }
-    // miniFab: {
-    //   outer: 'mdc-fab--touch',
-    //   inner: 'mdc-fab__touch'
-    // }
   }
 };
 

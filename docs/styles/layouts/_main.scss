@@ -1,3 +1,5 @@
+@use '../global/index' as global;
+
 /// Ensure layout covers the entire screen.
 html {
   &.balmui--no-layout {
@@ -8,7 +10,7 @@ html {
 }
 
 a {
-  color: $mdc-theme-primary;
+  color: global.$primary;
 }
 
 .balmui-container {
@@ -53,7 +55,7 @@ a {
 }
 
 .demo-catalog-list a {
-  color: $material-color-grey-900;
+  color: global.$grey-900;
 }
 
 .catalog-list-icon {
@@ -63,7 +65,7 @@ a {
   background-repeat: no-repeat;
   background-size: 100%;
 
-  @each $key, $value in $nav-icons {
+  @each $key, $value in global.$nav-icons {
     &.icon-#{$key} {
       background-image: url('../images/icon/#{$value}');
     }

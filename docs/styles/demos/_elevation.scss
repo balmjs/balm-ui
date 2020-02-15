@@ -1,3 +1,5 @@
+@use '../../../src/material-components-web/elevation/mixins' as elevation-mixins;
+
 .demo-elevation--custom-color {
-  @include mdc-elevation(16, secondary, $opacity-boost: .1);
+  @include elevation-mixins.elevation(16, secondary, $opacity-boost: 0.1);
 }

@@ -10,8 +10,6 @@
 @use 'components/toc-affix';
 // demos
 @use 'demos/common';
-@use 'demos/button';
-@use 'demos/tabs';
 @use 'demos/textfield';
 @use 'demos/checkbox';
 @use 'demos/radio';
@@ -20,30 +18,30 @@
 @use 'demos/slider';
 @use 'demos/elevation';
 @use 'demos/linear-progress';
-@use 'demos/typography';
-// pages
+@use 'demos/typography' as demos-typography;
+// // pages
 @use 'pages/home';
-@use 'pages/button';
+@use 'pages/button' as pages-button;
 @use 'pages/card';
-@use 'pages/checkbox';
+@use 'pages/checkbox' as pages-checkbox;
 @use 'pages/dialog';
 @use 'pages/drawer';
-@use 'pages/elevation';
+@use 'pages/elevation' as pages-elevation;
 @use 'pages/fab';
 @use 'pages/icon-button';
 @use 'pages/grid';
-@use 'pages/linear-progress';
+@use 'pages/linear-progress' as pages-linear-progress;
 @use 'pages/list';
-@use 'pages/radio';
-@use 'pages/select';
+@use 'pages/radio' as pages-radio;
+@use 'pages/select' as pages-select;
 @use 'pages/menu';
-@use 'pages/slider';
+@use 'pages/slider' as pages-slider;
 @use 'pages/snackbar';
-@use 'pages/switch';
+@use 'pages/switch' as pages-switch;
 @use 'pages/tabs';
-@use 'pages/textfield';
+@use 'pages/textfield' as pages-textfield;
 @use 'pages/theme';
-@use 'pages/typography';
+@use 'pages/typography' as pages-typography;
 @use 'pages/icon';
 @use 'pages/chips';
 @use 'pages/top-app-bar';

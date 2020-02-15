@@ -1,10 +1,16 @@
+@use '../../../src/material-components-web/elevation/mixins' as elevation-mixins;
+@use '../../../src/material-components-web/ripple/mixins' as ripple-mixins;
+@use '../../../src/material-components-web/theme/mixins' as theme-mixins;
+@use '../global/index' as global;
+
+$demo-toolbar-progress-bar-color: secondary !default;
+$demo-toolbar-progress-buffer-color: primary !default;
+$demo-section-margin: 48px;
+$demo-color-custom: global.$red-500;
+$demo-color-low-luminance: global.$brown-900;
+$demo-color-high-luminance: global.$amber-50;
+
 .demo--theme {
-  $demo-toolbar-progress-bar-color: secondary !default;
-  $demo-toolbar-progress-buffer-color: primary !default;
-  $demo-section-margin: 48px;
-  $demo-color-custom: $material-color-red-500;
-  $demo-color-low-luminance: $material-color-brown-900;
-  $demo-color-high-luminance: $material-color-amber-50;
   //
   // Global styles
   //
@@ -70,7 +76,7 @@
     right: -16px;
     bottom: -16px;
     z-index: -1;
-    background: $material-color-yellow-700;
+    background: global.$yellow-700;
     opacity: 0;
     transition: opacity 1s;
   }
@@ -108,7 +114,7 @@
     margin-right: 16px;
   }
   .demo-theme-color-swatch {
-    @include mdc-elevation(1);
+    @include elevation-mixins.elevation(1);
     display: inline-block;
     box-sizing: border-box;
     width: 150px;
@@ -197,7 +203,7 @@
   // Drawer demo
   //
   .demo-drawer-toggle {
-    @include mdc-states(on-primary);
+    @include ripple-mixins.states(on-primary);
     vertical-align: middle;
     cursor: pointer;
   }
@@ -288,17 +294,17 @@
   // Toolbar and menu
   //
   .demo-theme-menu__list-item--selected {
-    background-color: $material-color-grey-400;
+    background-color: global.$grey-400;
   }
   .demo-theme-list {
-    @include mdc-theme-prop(color, text-primary-on-light);
+    @include theme-mixins.prop(color, text-primary-on-light);
   }
   //
   // Radios
   //
   .demo-theme-color-radio {
     display: block;
-    border: 1px solid $material-color-grey-500;
+    border: 1px solid global.$grey-500;
     border-radius: 50%;
   }
   .demo-theme-color-radio__inner {
@@ -307,16 +313,16 @@
     border-radius: 50%;
   }
   [data-theme='baseline'] .demo-theme-color-radio__inner {
-    border-color: $material-color-deep-purple-a700 $material-color-teal-a400
-      $material-color-teal-a400 $material-color-deep-purple-a700;
+    border-color: global.$deep-purple-a700 global.$teal-a400 global.$teal-a400
+      global.$deep-purple-a700;
   }
   [data-theme='black'] .demo-theme-color-radio__inner {
-    border-color: $material-color-grey-900 $material-color-light-green-a700
-      $material-color-light-green-a700 $material-color-grey-900;
+    border-color: global.$grey-900 global.$light-green-a700
+      global.$light-green-a700 global.$grey-900;
   }
   [data-theme='dark'] .demo-theme-color-radio__inner {
-    border-color: $material-color-amber-300 $material-color-pink-400
-      $material-color-pink-400 $material-color-amber-300;
+    border-color: global.$amber-300 global.$pink-400 global.$pink-400
+      global.$amber-300;
   }
   [data-theme='shrine'] .demo-theme-color-radio__inner {
     border-color: #442b2d #fcb8ab #fcb8ab #442b2d;

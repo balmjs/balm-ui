@@ -1,23 +1,25 @@
+@use '../../../src/material-components-web/select/mixins' as select-mixins;
+
 // stylelint-disable selector-class-pattern
 .demo-select-custom-colors {
-  @include mdc-select-ink-color(blue);
-  @include mdc-select-label-color(rgba(blue, .6));
-  @include mdc-select-bottom-line-color(rgba(blue, .5));
+  @include select-mixins.ink-color(blue);
+  @include select-mixins.label-color(rgba(blue, 0.6));
+  @include select-mixins.bottom-line-color(rgba(blue, 0.5));
   // Focused colors
-  @include mdc-select-focused-bottom-line-color(green);
-  @include mdc-select-focused-label-color(green);
+  @include select-mixins.focused-bottom-line-color(green);
+  @include select-mixins.focused-label-color(green);
   // Hover colors
-  @include mdc-select-hover-bottom-line-color(rgba(blue, .87));
+  @include select-mixins.hover-bottom-line-color(rgba(blue, 0.87));
 }
 
 .demo-select-custom-colors.mdc-select--box {
-  @include mdc-select-container-fill-color(rgba(blue, .1));
+  @include select-mixins.container-fill-color(rgba(blue, 0.1));
 }
 
 .demo-select-custom-colors.mdc-select--outlined {
-  @include mdc-select-outline-color(rgba(blue, .6));
-  @include mdc-select-hover-outline-color(rgba(blue, .87));
-  @include mdc-select-focused-outline-color(green);
+  @include select-mixins.outline-color(rgba(blue, 0.6));
+  @include select-mixins.hover-outline-color(rgba(blue, 0.87));
+  @include select-mixins.focused-outline-color(green);
 }
 
 .button-container {

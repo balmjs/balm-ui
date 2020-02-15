@@ -1,9 +1,18 @@
+// Color palette
+@forward '../../../src/styles/color';
+
 // Icon font
-$mdi-font-path: '../fonts';
-$mdi-font-path-with-version: 0;
+@use '../../../src/material-icons/material-icons.scss' with (
+  $mdi-font-path: '../fonts'
+);
 // Base style
-$mdc-theme-primary: #6200ee; // baseline purple, 500 tone
-$mdc-theme-secondary: #018786; // baseline teal, 600 tone
+@use '../../../src/material-components-web/theme/variables' as theme-variables with (
+  $primary: #6200ee, // baseline purple, 500 tone
+  $secondary: #018786, // baseline teal, 600 tone
+);
+
+$primary: theme-variables.$primary;
+$secondary: theme-variables.$secondary;
 
 $nav-icons: (
   component: 'ic_component_24px.svg',

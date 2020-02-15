@@ -1,3 +1,5 @@
+@use '../../../src/material-components-web/top-app-bar/variables' as top-app-bar-variables;
+
 .demo--top-app-bar {
   width: 100%;
 
@@ -10,7 +12,7 @@
     padding: 20px 28px;
   }
 
-  @media (max-width: $mdc-top-app-bar-mobile-breakpoint) {
+  @media (max-width: top-app-bar-variables.$mobile-breakpoint) {
     .demo-paragraph {
       padding: 16px;
     }

@@ -1,3 +1,8 @@
+@use '../../../src/material-components-web/top-app-bar/variables' as top-app-bar-variables;
+
+// Use full-opacity equivalent of rgba(0, 0, 0, .05) and expose for demos to reference
+$hero-background-color: #f7f7f7;
+
 // Used by ready.js to test whether the CSS has finished loading.
 .demo-ready-detect {
   position: relative;
@@ -19,8 +24,6 @@ fieldset {
   text-decoration: none;
 }
 
-// Use full-opacity equivalent of rgba(0, 0, 0, .05) and expose for demos to reference
-$hero-background-color: #f7f7f7;
 .hero {
   display: flex;
   flex-flow: column nowrap;
@@ -45,7 +48,7 @@ $hero-background-color: #f7f7f7;
   }
 }
 
-@media (max-width: $mdc-top-app-bar-mobile-breakpoint) {
+@media (max-width: top-app-bar-variables.$mobile-breakpoint) {
   .hero {
     .hero-options {
       flex-direction: column;

@@ -5,7 +5,7 @@
 $mdc-confirm-width: 480px !default;
 
 .mdc-confirm {
-  $query: mdc-feature-all(); // New in mdc@0.44.0
+  $query: feature-targeting-functions.all(); // New in mdc@0.44.0
 
   .mdc-dialog__surface {
     width: $mdc-confirm-width;

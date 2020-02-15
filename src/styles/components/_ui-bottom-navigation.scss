@@ -5,7 +5,7 @@
 $mdc-bottom-navigation-destinations: 33, 25, 20;
 $mdc-bottom-navigation-height: 48px !default;
 $mdc-bottom-navigation-stacked-height: 72px !default;
-$mdc-bottom-navigation-color: $mdc-theme-primary !default;
+$mdc-bottom-navigation-color: theme-variables.$primary !default;
 $mdc-bottom-navigation-fill-color: white !default;
 $mdc-bottom-navigation-active-fill-color: rgba(
   $mdc-bottom-navigation-color,

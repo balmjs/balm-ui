@@ -1,3 +1,6 @@
+@use '../../../src/material-components-web/top-app-bar/variables' as top-app-bar-variables;
+@use '../global/index' as global;
+
 .demo--icon {
   .icons-preview-code {
     display: flex;
@@ -17,7 +20,7 @@
     padding: 20px;
     font-size: 14px;
     b {
-      color: $mdc-theme-primary;
+      color: global.$primary;
     }
   }
   .material-icons {
@@ -53,7 +56,7 @@
   }
   .mdc-image-list__supporting {
     font-size: 12px;
-    @include ellipsis(100px);
+    @include global.ellipsis(100px);
   }
   .new-badge {
     font-size: 10px;
@@ -66,7 +69,7 @@
     border-radius: 2px;
     background: #fe6363;
   }
-  @media (max-width: $mdc-top-app-bar-mobile-breakpoint) {
+  @media (max-width: top-app-bar-variables.$mobile-breakpoint) {
     .coloring-example {
       .icons-preview-code {
         flex-wrap: wrap;

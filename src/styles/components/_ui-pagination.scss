@@ -1,15 +1,18 @@
-@use '../../material-components-web/theme/mixins' as theme-mixins;
+@use '../../material-components-web/theme/variables' as theme-variables;
 @use '../../material-components-web/shape/mixins' as shape-mixins;
 
 /// Global
 $mdc-pagination-height: 32px;
-$mdc-pagination-color: $mdc-theme-primary !default;
+$mdc-pagination-color: theme-variables.$primary !default;
 $mdc-pagination-corner-radius: 4px !default;
 /// Default
 $mdc-pagination-fill-color: white !default;
-$mdc-pagination-text-color: rgba(theme-mixins.prop(on-surface), 0.87) !default;
+$mdc-pagination-text-color: rgba(
+  theme-variables.prop-value(on-surface),
+  0.87
+) !default;
 $mdc-pagination-border-color: rgba(
-  theme-mixins.prop(on-surface),
+  theme-variables.prop-value(on-surface),
   0.38
 ) !default;
 /// Hover

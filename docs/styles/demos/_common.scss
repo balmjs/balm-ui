@@ -1,4 +1,4 @@
-@use '../../../src/material-components-web/top-app-bar/variables' as top-app-bar-variables;
+@use '../global/index' as global;
 
 // Use full-opacity equivalent of rgba(0, 0, 0, .05) and expose for demos to reference
 $hero-background-color: #f7f7f7;
@@ -48,7 +48,7 @@ fieldset {
   }
 }
 
-@media (max-width: top-app-bar-variables.$mobile-breakpoint) {
+@media (max-width: global.$mobile-breakpoint) {
   .hero {
     .hero-options {
       flex-direction: column;

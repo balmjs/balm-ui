@@ -1,4 +1,4 @@
-@use '../../../src/material-components-web/top-app-bar/variables' as top-app-bar-variables;
+@use '../global/index' as global;
 
 .demo--ripple {
   .hero {
@@ -101,7 +101,7 @@
     }
   }
 
-  @media (max-width: top-app-bar-variables.$mobile-breakpoint) {
+  @media (max-width: global.$mobile-breakpoint) {
     .demo-surface {
       margin: 0 auto;
     }

@@ -1,4 +1,3 @@
-@use '../../../src/material-components-web/top-app-bar/variables' as top-app-bar-variables;
 @use '../global/index' as global;
 
 .demo--icon {
@@ -69,7 +68,7 @@
     border-radius: 2px;
     background: #fe6363;
   }
-  @media (max-width: top-app-bar-variables.$mobile-breakpoint) {
+  @media (max-width: global.$mobile-breakpoint) {
     .coloring-example {
       .icons-preview-code {
         flex-wrap: wrap;

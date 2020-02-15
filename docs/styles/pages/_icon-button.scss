@@ -1,6 +1,6 @@
 @use '../../../src/material-components-web/icon-button/mixins' as icon-button-mixins;
 @use '../../../src/material-components-web/ripple/mixins' as ripple-mixins;
-@use '../../../src/material-components-web/top-app-bar/variables' as top-app-bar-variables;
+@use '../global/index' as global;
 
 .demo--icon-button {
   // .demo-wrapper {
@@ -94,7 +94,7 @@
     margin: 0 8px 8px 0;
   }
 
-  @media (max-width: top-app-bar-variables.$mobile-breakpoint) {
+  @media (max-width: global.$mobile-breakpoint) {
     .toggle-examples-container,
     #demo-color-combos {
       flex-direction: column;

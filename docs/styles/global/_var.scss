@@ -10,9 +10,11 @@
   $primary: #6200ee, // baseline purple, 500 tone
   $secondary: #018786, // baseline teal, 600 tone
 );
+@use '../../../src/material-components-web/top-app-bar/variables' as top-app-bar-variables;
 
 $primary: theme-variables.$primary;
 $secondary: theme-variables.$secondary;
+$mobile-breakpoint: top-app-bar-variables.$mobile-breakpoint;
 
 $nav-icons: (
   component: 'ic_component_24px.svg',

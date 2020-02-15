@@ -1,5 +1,11 @@
 # BalmUI ChangeLog
 
+## 4.3.2 (2020.02.15)
+
+### Bug Fixes
+
+`<ui-tabs>` & `<ui-tab>`: fix the missing `type` prop bug
+
 ## 4.3.1
 
 ### Chores

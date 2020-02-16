@@ -79,7 +79,7 @@ export default {
       return {
         'mdc-checkbox': true,
         'mdc-checkbox--disabled': this.disabled,
-        // Touch Target
+        // Accessibility
         'mdc-checkbox--touch': isTouch
       };
     }

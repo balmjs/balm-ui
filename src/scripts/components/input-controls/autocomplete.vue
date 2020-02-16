@@ -18,7 +18,7 @@
     @blur="handleBlur"
   >
     <!-- Leading icon (optional) -->
-    <slot name="icon" :iconClass="UI_TEXTFIELD_ICON.cssClasses.icon"></slot>
+    <slot name="icon"></slot>
 
     <!-- Label text -->
     <template slot="default">

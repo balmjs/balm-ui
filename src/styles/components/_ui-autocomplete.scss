@@ -10,13 +10,15 @@ $mdc-autocomplete-item-selected-bgcolor: rgba(
 ) !default;
 
 .mdc-autocomplete {
-  &::before,
-  &::after {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 4px 4px 0 0;
+  .mdc-text-field__ripple {
+    &::before,
+    &::after {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 4px 4px 0 0;
+    }
   }
 
   .mdc-text-field__plus {

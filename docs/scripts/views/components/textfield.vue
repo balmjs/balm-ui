@@ -499,6 +499,11 @@ export default {
       ],
       css: true
     });
+  },
+  mounted() {
+    // setTimeout(() => {
+    //   this.value1 = 'Hello BalmJS';
+    // }, 300);
   }
   // methods: {
   //   onFocus(event) {

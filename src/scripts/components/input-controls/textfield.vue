@@ -86,7 +86,11 @@
     ></slot>
 
     <!-- Label text -->
-    <ui-floating-label v-if="!this.noLabel && hasRipple" :for="id">
+    <ui-floating-label
+      v-if="hasLabel && hasRipple"
+      :for="id"
+      :isFloatAbove="isFloatAbove"
+    >
       <slot>{{ label }}</slot>
     </ui-floating-label>
 
@@ -94,8 +98,8 @@
     <div v-if="hasRipple" class="mdc-line-ripple"></div>
     <div v-else class="mdc-notched-outline">
       <div class="mdc-notched-outline__leading"></div>
-      <div v-if="!this.noLabel" class="mdc-notched-outline__notch">
-        <ui-floating-label :for="id">
+      <div v-if="hasLabel" class="mdc-notched-outline__notch">
+        <ui-floating-label :for="id" :isFloatAbove="isFloatAbove">
           <slot>{{ label }}</slot>
         </ui-floating-label>
       </div>
@@ -216,6 +220,9 @@ export default {
     hasRipple() {
       return !(this.isOutlined || this.isTextarea);
     },
+    hasLabel() {
+      return !(this.noLabel || this.fullwidth);
+    },
     hasLeadingIcon() {
       return this.materialIcon || this.leadingIcon || this.$slots.before;
     },
@@ -237,6 +244,10 @@ export default {
         },
         input: 'mdc-text-field__input'
       };
+    },
+    // TODO: Temporary solution: manual control
+    isFloatAbove() {
+      return !!this.inputValue;
     }
   },
   watch: {

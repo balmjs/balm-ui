@@ -157,6 +157,10 @@ export default {
       type: [String, Number],
       default: 0
     },
+    outlined: {
+      type: Boolean,
+      default: false
+    },
     // States
     model: {
       type: [String, Number, Array], // NOTE: Array for `<ui-datepicker>`

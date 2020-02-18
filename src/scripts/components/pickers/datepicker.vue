@@ -90,6 +90,10 @@ export default {
       default: ''
     },
     // UI attributes
+    outlined: {
+      type: Boolean,
+      default: false
+    },
     id: String,
     icon: {
       type: String,

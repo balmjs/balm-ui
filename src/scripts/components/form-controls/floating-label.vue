@@ -2,7 +2,7 @@
   <label
     :class="[
       'mdc-floating-label',
-      { 'mdc-floating-label--float-above': isFloatAbove }
+      { 'mdc-floating-label--float-above': shouldFloat }
     ]"
   >
     <slot></slot>
@@ -13,7 +13,7 @@
 export default {
   name: 'ui-floating-label',
   props: {
-    isFloatAbove: {
+    shouldFloat: {
       type: Boolean,
       default: false
     }

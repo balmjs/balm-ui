@@ -89,7 +89,7 @@
     <ui-floating-label
       v-if="hasLabel && hasRipple"
       :for="id"
-      :isFloatAbove="isFloatAbove"
+      :shouldFloat="shouldFloat"
     >
       <slot>{{ label }}</slot>
     </ui-floating-label>
@@ -99,7 +99,7 @@
     <div v-else class="mdc-notched-outline">
       <div class="mdc-notched-outline__leading"></div>
       <div v-if="hasLabel" class="mdc-notched-outline__notch">
-        <ui-floating-label :for="id" :isFloatAbove="isFloatAbove">
+        <ui-floating-label :for="id" :shouldFloat="shouldFloat">
           <slot>{{ label }}</slot>
         </ui-floating-label>
       </div>
@@ -246,7 +246,7 @@ export default {
       };
     },
     // TODO: Temporary solution: manual control
-    isFloatAbove() {
+    shouldFloat() {
       return !!this.inputValue;
     }
   },

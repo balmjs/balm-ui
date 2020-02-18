@@ -96,6 +96,10 @@ export default {
       required: true
     },
     // UI attributes
+    outlined: {
+      type: Boolean,
+      default: false
+    },
     id: String,
     autofocus: {
       type: Boolean,

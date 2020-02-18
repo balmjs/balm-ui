@@ -17,7 +17,7 @@
           class="mdc-checkbox__checkmark-path"
           fill="none"
           d="M1.73,12.91 8.1,19.28 22.79,4.59"
-        />
+        ></path>
       </svg>
       <div class="mdc-checkbox__mixedmark"></div>
     </div>
@@ -89,8 +89,7 @@ export default {
       this.checkedValue = val;
     },
     indeterminate(val) {
-      this.$checkbox.indeterminate =
-        val === this.$checkbox.indeterminate ? !val : val;
+      this.$checkbox.indeterminate = val;
     }
   },
   mounted() {

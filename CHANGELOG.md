@@ -1,27 +1,34 @@
 # BalmUI ChangeLog
 
+## 4.3.3 (2020.02.18)
+
+### Bug Fixes
+
+- fix overwrite components props bug
+- `<ui-textfield>`, `<ui-autocomplete>`, `<ui-datepicker>`: fix the missing `outlined` prop bug
+
 ## 4.3.2 (2020.02.15)
 
 ### Bug Fixes
 
-`<ui-tabs>` & `<ui-tab>`: fix the missing `type` prop bug
+- `<ui-tabs>` & `<ui-tab>`: fix the missing `type` prop bug
 
 ## 4.3.1
 
 ### Chores
 
-`<ui-rangepicker>`: mobile support
-update css docs: `<ui-rangepicker>`, `<ui-text-divider>`
+- `<ui-rangepicker>`: mobile support
+- update css docs: `<ui-rangepicker>`, `<ui-text-divider>`
 
 ### Bug Fixes
 
-`<ui-rangepicker>`: fix the first input autofocus bug
+- `<ui-rangepicker>`: fix the first input autofocus bug
 
 ## 4.3.0 (2020.02.14)
 
 ### Chores
 
-`<ui-autocomplete>`: fix css bug for filled textfield
+- `<ui-autocomplete>`: fix css bug for filled textfield
 
 ### Features
 

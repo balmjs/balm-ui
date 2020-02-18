@@ -17,7 +17,10 @@ const setPropsInMixins = ({ componentMixins, propName, props }) => {
   if (componentMixins.length) {
     let i = componentMixins.length;
     while (i--) {
-      if (componentMixins[i].props[propName] !== undefined) {
+      if (
+        componentMixins[i].props &&
+        componentMixins[i].props[propName] !== undefined
+      ) {
         setPropsDefaultValue({
           componentProps: componentMixins[i].props,
           propName,

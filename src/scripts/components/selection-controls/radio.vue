@@ -65,7 +65,7 @@ export default {
       return {
         'mdc-radio': true,
         'mdc-radio--disabled': this.disabled,
-        // Touch Target
+        // Accessibility
         'mdc-radio--touch': isTouch
       };
     }

@@ -10,7 +10,7 @@
         <ui-drawer-subtitle>{{ subtitle }}</ui-drawer-subtitle>
       </ui-drawer-header>
       <ui-drawer-common-content>
-        <ui-item activated @click="$router.back()">
+        <ui-item @click="$router.back()">
           <ui-item-first-content>
             <ui-icon>arrow_back</ui-icon>
           </ui-item-first-content>

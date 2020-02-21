@@ -19,6 +19,10 @@ export default {
     leadingIcon: {
       type: Boolean,
       default: false
+    },
+    trailingIcon: {
+      type: Boolean,
+      default: false
     }
   }
 };

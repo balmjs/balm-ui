@@ -65,10 +65,7 @@
     />
 
     <!-- Label text -->
-    <ui-floating-label
-      v-if="!this.noLabel && !(isOutlined || isTextarea)"
-      :for="id"
-    >
+    <ui-floating-label v-if="!this.noLabel && hasRipple" :for="id">
       <slot>{{ label }}</slot>
     </ui-floating-label>
 
@@ -76,7 +73,8 @@
     <slot name="after" :iconClass="UI_TEXTFIELD_ICON.cssClasses.icon"></slot>
 
     <!-- Activation indicator -->
-    <div v-if="isOutlined || isTextarea" class="mdc-notched-outline">
+    <div v-if="hasRipple" class="mdc-line-ripple"></div>
+    <div v-else class="mdc-notched-outline">
       <div class="mdc-notched-outline__leading"></div>
       <div v-if="!this.noLabel" class="mdc-notched-outline__notch">
         <ui-floating-label :for="id">
@@ -85,7 +83,6 @@
       </div>
       <div class="mdc-notched-outline__trailing"></div>
     </div>
-    <div v-else class="mdc-line-ripple"></div>
 
     <div v-if="plus" class="mdc-text-field__plus">
       <slot name="plus">
@@ -152,10 +149,6 @@ export default {
       type: Boolean,
       default: false
     },
-    trailingIcon: {
-      type: Boolean,
-      default: false
-    },
     // <input> attributes
     inputType: {
       type: String,
@@ -206,6 +199,15 @@ export default {
     isTextarea() {
       return this.inputType === 'textarea';
     },
+    hasRipple() {
+      return !(this.isOutlined || this.isTextarea);
+    },
+    hasLeadingIcon() {
+      return this.materialIcon || this.leadingIcon || this.$slots.before;
+    },
+    hasTrailingIcon() {
+      return this.trailingIcon || this.$slots.after;
+    },
     className() {
       return {
         outer: {
@@ -215,9 +217,8 @@ export default {
           'mdc-text-field--textarea': this.isTextarea,
           'mdc-text-field--disabled': this.disabled,
           'mdc-text-field--dense': this.dense,
-          'mdc-text-field--with-leading-icon':
-            this.leadingIcon || this.materialIcon,
-          'mdc-text-field--with-trailing-icon': this.trailingIcon,
+          'mdc-text-field--with-leading-icon': this.hasLeadingIcon,
+          'mdc-text-field--with-trailing-icon': this.hasTrailingIcon,
           'mdc-text-field--no-label': this.noLabel
         },
         input: 'mdc-text-field__input'

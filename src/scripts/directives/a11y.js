@@ -62,8 +62,10 @@ const initAccessibility = el => {
     }
 
     el.classList.add(UI_ACCESSIBILITY.cssClasses[componentKey].outer);
-    el.parentNode.insertBefore(wrapperEl, el);
-    el.parentNode.removeChild(el);
+    if (el.parentNode) {
+      el.parentNode.insertBefore(wrapperEl, el);
+      el.parentNode.removeChild(el);
+    }
     wrapperEl.appendChild(el);
   }
 };

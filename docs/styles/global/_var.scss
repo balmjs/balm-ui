@@ -3,7 +3,7 @@
 
 // Icon font
 @use '../../../src/material-icons/material-icons.scss' with (
-  $mdi-font-path: '../fonts'
+  $font-path: '../fonts'
 );
 // Base style
 @use '@material/theme/variables' as theme-variables with (

@@ -1,27 +1,26 @@
-$mdi-dir: 'materialicons';
-$mdi-font-styles: (
+$subdir: 'materialicons';
+$font-styles: (
   ('material-icons', 'Material Icons'),
   ('material-icons-outlined', 'Material Icons Outlined'),
   ('material-icons-round', 'Material Icons Round'),
   ('material-icons-two-tone', 'Material Icons Two Tone'),
   ('material-icons-sharp', 'Material Icons Sharp')
 );
-$mdi-font-path: '../fonts' !default;
-$mdi-font-path-with-version: 0 !default; // `../fonts` or `../fonts/materialicons`
+$font-path: '../fonts' !default;
+$font-path-with-subdir: 0 !default; // `../fonts` or `../fonts/materialicons`
 
-@each $className, $fontFamily in $mdi-font-styles {
+@each $className, $fontFamily in $font-styles {
   @font-face {
     font-family: $fontFamily;
     font-style: normal;
     font-weight: 400;
 
-    @if $mdi-font-path-with-version == 1 {
-      src: url('#{$mdi-font-path}/#{$mdi-dir}/#{$className}.woff2')
-          format('woff2'),
-        url('#{$mdi-font-path}/#{$mdi-dir}/#{$className}.woff') format('woff');
+    @if $font-path-with-subdir == 1 {
+      src: url('#{$font-path}/#{$subdir}/#{$className}.woff2') format('woff2'),
+        url('#{$font-path}/#{$subdir}/#{$className}.woff') format('woff');
     } @else {
-      src: url('#{$mdi-font-path}/#{$className}.woff2') format('woff2'),
-        url('#{$mdi-font-path}/#{$className}.woff') format('woff');
+      src: url('#{$font-path}/#{$className}.woff2') format('woff2'),
+        url('#{$font-path}/#{$className}.woff') format('woff');
     }
 
     font-display: swap; // [Intervention] Slow network is detected. See https://www.chromestatus.com/feature/5636954674692096 for more details.

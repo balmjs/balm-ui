@@ -1,15 +1,16 @@
 ```css
-$mdc-menu-ink-color: rgba(
-  mdc-theme-prop-value(on-surface),
-  mdc-theme-text-emphasis(high)
+@use '@material/menu/variables' with (
+  $ink-color: rgba(variables.prop-value(on-surface), variables.text-emphasis(high)),
+
+  $width-base: 56px,
+  $min-width: 2 * $width-base
 );
 
-$mdc-menu-width-base: 56px;
-$mdc-menu-min-width: 2 * $mdc-menu-width-base;
-
-$mdc-menu-surface-fade-in-duration: 0.03s;
-$mdc-menu-surface-fade-out-duration: 0.075s;
-$mdc-menu-surface-scale-duration: 0.12s;
-$mdc-menu-surface-min-distance-from-edge: 32px;
-$mdc-menu-surface-z-index: 8; /* One above <ui-dialog> */
+@use '@material/menu-surface/variables' with (
+  $fade-in-duration: .03s,
+  $fade-out-duration: .075s,
+  $scale-duration: .12s,
+  $min-distance-from-edge: 32px,
+  $z-index: 8
+);
 ```

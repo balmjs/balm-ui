@@ -1,15 +1,17 @@
 ```css
-$mdc-icon-button-icon-size: 24px;
+@use '@material/icon-button/variables' with (
+  $icon-size: 24px,
 
-$mdc-icon-button-size: 48px;
-$mdc-icon-button-minimum-height: 28px;
-$mdc-icon-button-maximum-height: $mdc-icon-button-size;
-$mdc-icon-button-density-scale: $mdc-density-default-scale;
-$mdc-icon-button-density-config: (
-  size: (
-    default: $mdc-icon-button-size,
-    maximum: $mdc-icon-button-maximum-height,
-    minimum: $mdc-icon-button-minimum-height
+  $size: 48px,
+  $minimum-height: 28px,
+  $maximum-height: $size,
+  $density-scale: variables.$default-scale,
+  $density-config: (
+    size: (
+      default: $size,
+      maximum: $maximum-height,
+      minimum: $minimum-height,
+    ),
   )
 );
 ```

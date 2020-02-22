@@ -2,27 +2,27 @@
 @use '@material/shape/mixins' as shape-mixins;
 
 /// Global
-$mdc-pagination-height: 32px;
-$mdc-pagination-color: theme-variables.$primary !default;
-$mdc-pagination-corner-radius: 4px !default;
+$pagination-height: 32px;
+$pagination-color: theme-variables.$primary !default;
+$pagination-corner-radius: 4px !default;
 /// Default
-$mdc-pagination-fill-color: white !default;
-$mdc-pagination-text-color: rgba(
+$pagination-fill-color: white !default;
+$pagination-text-color: rgba(
   theme-variables.prop-value(on-surface),
   0.87
 ) !default;
-$mdc-pagination-border-color: rgba(
+$pagination-border-color: rgba(
   theme-variables.prop-value(on-surface),
   0.38
 ) !default;
 /// Hover
-$mdc-pagination-hover-fill-color: $mdc-pagination-fill-color !default;
-$mdc-pagination-hover-text-color: $mdc-pagination-color !default;
-$mdc-pagination-hover-border-color: $mdc-pagination-color !default;
+$pagination-hover-fill-color: $pagination-fill-color !default;
+$pagination-hover-text-color: $pagination-color !default;
+$pagination-hover-border-color: $pagination-color !default;
 /// Activated
-$mdc-pagination-active-fill-color: rgba($mdc-pagination-color, 0.7) !default;
-$mdc-pagination-active-text-color: $mdc-pagination-fill-color !default;
-$mdc-pagination-active-border-color: $mdc-pagination-color !default;
+$pagination-active-fill-color: rgba($pagination-color, 0.7) !default;
+$pagination-active-text-color: $pagination-fill-color !default;
+$pagination-active-border-color: $pagination-color !default;
 
 .mdc-pagination {
   display: flex;
@@ -68,16 +68,16 @@ $mdc-pagination-active-border-color: $mdc-pagination-color !default;
 .mdc-pagination__page-item-ellipsis {
   display: inline-block;
   min-width: 32px;
-  height: $mdc-pagination-height;
+  height: $pagination-height;
   line-height: 30px;
   margin-right: 8px;
   text-align: center;
   vertical-align: middle;
   outline: none;
   user-select: none;
-  border: 1px solid $mdc-pagination-border-color;
-  background-color: $mdc-pagination-fill-color;
-  color: $mdc-pagination-text-color;
+  border: 1px solid $pagination-border-color;
+  background-color: $pagination-fill-color;
+  color: $pagination-text-color;
 }
 
 .mdc-pagination__previous,
@@ -92,7 +92,7 @@ $mdc-pagination-active-border-color: $mdc-pagination-color !default;
     line-height: inherit;
     font-size: inherit;
     outline: none;
-    color: $mdc-pagination-text-color;
+    color: $pagination-text-color;
   }
 }
 
@@ -101,32 +101,32 @@ $mdc-pagination-active-border-color: $mdc-pagination-color !default;
 .mdc-pagination__page-item {
   cursor: pointer;
   transition: all 0.3s;
-  @include shape-mixins.radius($mdc-pagination-corner-radius);
+  @include shape-mixins.radius($pagination-corner-radius);
 
   &:hover {
-    border-color: $mdc-pagination-hover-border-color;
-    background-color: $mdc-pagination-hover-fill-color;
-    color: $mdc-pagination-hover-text-color;
+    border-color: $pagination-hover-border-color;
+    background-color: $pagination-hover-fill-color;
+    color: $pagination-hover-text-color;
     a {
-      color: $mdc-pagination-hover-text-color;
+      color: $pagination-hover-text-color;
     }
   }
 }
 
 .mdc-pagination__page-item--active {
-  border-color: $mdc-pagination-active-border-color;
-  background-color: $mdc-pagination-active-fill-color;
+  border-color: $pagination-active-border-color;
+  background-color: $pagination-active-fill-color;
   cursor: default;
 
   a {
-    color: $mdc-pagination-active-text-color;
+    color: $pagination-active-text-color;
   }
 
   &:hover {
-    border-color: $mdc-pagination-active-border-color;
-    background-color: $mdc-pagination-active-fill-color;
+    border-color: $pagination-active-border-color;
+    background-color: $pagination-active-fill-color;
     a {
-      color: $mdc-pagination-active-text-color;
+      color: $pagination-active-text-color;
     }
   }
 }
@@ -134,8 +134,8 @@ $mdc-pagination-active-border-color: $mdc-pagination-color !default;
 .mdc-pagination__page-item--disabled {
   cursor: not-allowed;
   &:hover {
-    border: 1px solid $mdc-pagination-border-color;
-    color: $mdc-pagination-text-color;
+    border: 1px solid $pagination-border-color;
+    color: $pagination-text-color;
   }
 }
 
@@ -149,11 +149,11 @@ $mdc-pagination-active-border-color: $mdc-pagination-color !default;
     transition: all 0.3s;
     text-indent: 3px;
 
-    color: $mdc-pagination-text-color;
+    color: $pagination-text-color;
     border: 1px solid #d9d9d9;
     &:hover,
     &:focus {
-      border-color: $mdc-pagination-hover-border-color;
+      border-color: $pagination-hover-border-color;
     }
     &:focus {
       outline: 0;
@@ -167,11 +167,11 @@ $mdc-pagination-active-border-color: $mdc-pagination-color !default;
     height: 24px;
     padding: 0;
 
-    color: $mdc-pagination-text-color;
+    color: $pagination-text-color;
     border: 1px solid #d9d9d9;
     &:hover {
-      color: $mdc-pagination-hover-text-color;
-      border-color: $mdc-pagination-hover-border-color;
+      color: $pagination-hover-text-color;
+      border-color: $pagination-hover-border-color;
       background: none;
     }
   }
@@ -184,7 +184,7 @@ $mdc-pagination-active-border-color: $mdc-pagination-color !default;
   }
   .mdc-select__anchor,
   .mdc-select__selected-text {
-    height: $mdc-pagination-height;
+    height: $pagination-height;
   }
   .mdc-select__dropdown-icon {
     width: 18px;

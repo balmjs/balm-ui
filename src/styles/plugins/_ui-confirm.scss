@@ -2,14 +2,14 @@
 @use '@material/button/mixins' as button-mixins;
 @use '@material/ripple/mixins' as ripple-mixins;
 
-$mdc-confirm-width: 480px !default;
+$confirm-width: 480px !default;
 
 .mdc-confirm {
   $query: feature-targeting-functions.all(); // New in mdc@0.44.0
 
   .mdc-dialog__surface {
-    width: $mdc-confirm-width;
-    min-width: $mdc-confirm-width;
+    width: $confirm-width;
+    min-width: $confirm-width;
   }
   .mdc-dialog__actions {
     justify-content: center;
@@ -31,7 +31,7 @@ $mdc-confirm-width: 480px !default;
   @media (max-width: 640px) {
     .mdc-dialog__surface {
       width: calc(100% - 30px);
-      min-width: $mdc-confirm-width / 2;
+      min-width: $confirm-width / 2;
     }
   }
 }

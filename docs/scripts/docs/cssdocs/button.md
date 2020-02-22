@@ -1,21 +1,25 @@
 ```css
-$mdc-button-height: 36px;
-$mdc-button-horizontal-padding: 8px;
-$mdc-button-contained-horizontal-padding: 16px;
+@use '@material/button/variables' with (
+  $height: 36px,
+  $horizontal-padding: 8px,
+  $contained-horizontal-padding: 16px,
 
-$mdc-button-minimum-height: 24px;
-$mdc-button-maximum-height: $mdc-button-height;
-$mdc-button-density-scale: $mdc-density-default-scale;
-$mdc-button-density-config: (
-  height: (
-    default: $mdc-button-height,
-    maximum: $mdc-button-maximum-height,
-    minimum: $mdc-button-minimum-height
-  )
+  $minimum-height: 24px,
+  $maximum-height: $height,
+  $density-scale: density-variables.$default-scale,
+  $density-config: (
+    height: (
+      default: $height,
+      maximum: $maximum-height,
+      minimum: $minimum-height
+    )
+  ),
+
+  $outlined-border-width: 1px,
+  $outline-color: rgba(theme-variables.prop-value(on-surface), 0.12),
+  $shape-radius: small,
+
+  $disabled-container-color: rgba(theme-variables.prop-value(on-surface), 0.12),
+  $disabled-ink-color: rgba(theme-variables.prop-value(on-surface), 0.38)
 );
-
-$mdc-button-outlined-border-width: 1px;
-$mdc-button-shape-radius: small;
-
-$mdc-button-disabled-ink-color: rgba(mdc-theme-prop-value(on-surface), 0.37);
 ```

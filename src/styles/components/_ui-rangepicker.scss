@@ -1,6 +1,6 @@
-$mdc-rangepicker-separator-padding: 10px !default;
+$rangepicker-separator-padding: 10px !default;
 
-$mdc-rangepicker-mobile-breakpoint: 599px !default;
+$rangepicker-mobile-breakpoint: 599px !default;
 
 .mdc-rangepicker {
   display: inline-flex;
@@ -10,10 +10,10 @@ $mdc-rangepicker-mobile-breakpoint: 599px !default;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  padding: $mdc-rangepicker-separator-padding;
+  padding: $rangepicker-separator-padding;
 }
 
-@media (max-width: $mdc-rangepicker-mobile-breakpoint) {
+@media (max-width: $rangepicker-mobile-breakpoint) {
   .mdc-rangepicker {
     flex-direction: column;
   }

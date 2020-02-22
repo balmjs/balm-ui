@@ -1,5 +1,5 @@
-@use '../../../src/material-components-web/menu/mixins' as menu-mixins;
-@use '../../../src/material-components-web/image-list/mixins' as image-list-mixins;
+@use '@material/menu/mixins' as menu-mixins;
+@use '@material/image-list/mixins' as image-list-mixins;
 
 .demo--menu {
   .hero .mdc-menu-surface {

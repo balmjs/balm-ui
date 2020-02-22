@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { MDCTabBar } from '../../../material-components-web/tab-bar';
+import { MDCTabBar } from '@material/tab-bar';
 import UiTabScroller from './tab-scroller';
 import tabBarMixin from '../../mixins/tab-bar';
 import tabScrollerMixin from '../../mixins/tab-scroller';

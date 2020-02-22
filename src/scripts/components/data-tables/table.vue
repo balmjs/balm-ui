@@ -154,7 +154,7 @@
 </template>
 
 <script>
-import { MDCDataTable } from '../../../material-components-web/data-table';
+import { MDCDataTable } from '@material/data-table';
 import UiCheckbox from '../selection-controls/checkbox';
 import tableMixin from '../../mixins/table';
 import theadMixin from '../../mixins/thead';

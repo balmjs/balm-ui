@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { MDCRadio } from '../../../material-components-web/radio';
+import { MDCRadio } from '@material/radio';
 import elementMixin from '../../mixins/element';
 
 // Define radio constants

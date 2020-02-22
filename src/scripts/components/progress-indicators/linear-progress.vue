@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { MDCLinearProgress } from '../../../material-components-web/linear-progress';
+import { MDCLinearProgress } from '@material/linear-progress';
 
 // Define linear progress constants
 const UI_LINEAR_PROGRESS = {

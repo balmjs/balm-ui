@@ -1,16 +1,16 @@
 // Color palette
-@forward '../../../src/styles/color';
+@forward '@material/theme/color-palette';
 
 // Icon font
 @use '../../../src/material-icons/material-icons.scss' with (
   $mdi-font-path: '../fonts'
 );
 // Base style
-@use '../../../src/material-components-web/theme/variables' as theme-variables with (
+@use '@material/theme/variables' as theme-variables with (
   $primary: #6200ee, // baseline purple, 500 tone
   $secondary: #018786, // baseline teal, 600 tone
 );
-@use '../../../src/material-components-web/top-app-bar/variables' as top-app-bar-variables;
+@use '@material/top-app-bar/variables' as top-app-bar-variables;
 
 $primary: theme-variables.$primary;
 $secondary: theme-variables.$secondary;

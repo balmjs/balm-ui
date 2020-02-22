@@ -1,4 +1,4 @@
-import { MDCRipple } from '../../material-components-web/ripple';
+import { MDCRipple } from '@material/ripple';
 
 export default {
   methods: {

@@ -1,4 +1,4 @@
-import { MDCList } from '../../material-components-web/list';
+import { MDCList } from '@material/list';
 import typeMixin from './type';
 import rippleMixin from './ripple';
 import UI_LIST from '../components/lists/constants';

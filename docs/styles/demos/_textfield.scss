@@ -1,6 +1,6 @@
-@use '../../../src/material-components-web/textfield/mixins' as textfield-mixins;
-@use '../../../src/material-components-web/textfield/icon/mixins' as textfield-icon-mixins;
-@use '../../../src/material-components-web/textfield/helper-text/mixins' as textfield-helper-text-mixins;
+@use '@material/textfield/mixins' as textfield-mixins;
+@use '@material/textfield/icon/mixins' as textfield-icon-mixins;
+@use '@material/textfield/helper-text/mixins' as textfield-helper-text-mixins;
 
 // stylelint-disable selector-class-pattern
 .demo-text-field-custom-colors:not(.mdc-text-field--invalid) {

@@ -55,8 +55,8 @@
 </template>
 
 <script>
-import { MDCMenu } from '../../../material-components-web/menu';
-import { Corner } from '../../../material-components-web/menu-surface/constants';
+import { MDCMenu } from '@material/menu';
+import { Corner } from '@material/menu-surface/constants';
 import UiMenuitem from './menuitem';
 import UiMenuitemText from './menuitem-text';
 import getType from '../../utils/typeof';

@@ -1,5 +1,5 @@
-@use '../../../src/material-components-web/icon-button/mixins' as icon-button-mixins;
-@use '../../../src/material-components-web/ripple/mixins' as ripple-mixins;
+@use '@material/icon-button/mixins' as icon-button-mixins;
+@use '@material/ripple/mixins' as ripple-mixins;
 @use '../global/index' as global;
 
 .demo--icon-button {

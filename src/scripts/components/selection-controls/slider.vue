@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { MDCSlider } from '../../../material-components-web/slider';
+import { MDCSlider } from '@material/slider';
 import typeMixin from '../../mixins/type';
 
 // Define slider constants

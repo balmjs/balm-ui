@@ -1,5 +1,5 @@
-@use '../../material-components-web/theme/variables' as theme-variables;
-@use '../../material-components-web/shape/mixins' as shape-mixins;
+@use '@material/theme/variables' as theme-variables;
+@use '@material/shape/mixins' as shape-mixins;
 
 /// Global
 $mdc-pagination-height: 32px;

@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { MDCTopAppBar } from '../../../material-components-web/top-app-bar';
+import { MDCTopAppBar } from '@material/top-app-bar';
 import typeMixin from '../../mixins/type';
 import UI_GLOBAL from '../../config/constants';
 

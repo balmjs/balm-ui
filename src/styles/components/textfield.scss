@@ -1,4 +1,2 @@
-@use '../../material-components-web/textfield/mdc-text-field';
-@use './floating-label';
-@use './line-ripple';
-@use './notched-outline';
+// NOTE: without form-item
+@use '@material/textfield/mdc-text-field';

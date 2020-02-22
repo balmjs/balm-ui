@@ -1,6 +1,6 @@
-@use '../../material-components-web/feature-targeting/functions' as feature-targeting-functions;
-@use '../../material-components-web/button/mixins' as button-mixins;
-@use '../../material-components-web/ripple/mixins' as ripple-mixins;
+@use '@material/feature-targeting/functions' as feature-targeting-functions;
+@use '@material/button/mixins' as button-mixins;
+@use '@material/ripple/mixins' as ripple-mixins;
 
 $mdc-confirm-width: 480px !default;
 

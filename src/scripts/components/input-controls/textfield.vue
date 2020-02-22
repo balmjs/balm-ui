@@ -95,16 +95,12 @@
     </ui-floating-label>
 
     <!-- Activation indicator -->
-    <div v-if="hasRipple" class="mdc-line-ripple"></div>
-    <div v-else class="mdc-notched-outline">
-      <div class="mdc-notched-outline__leading"></div>
-      <div v-if="hasLabel" class="mdc-notched-outline__notch">
-        <ui-floating-label :for="id" :shouldFloat="shouldFloat">
-          <slot>{{ label }}</slot>
-        </ui-floating-label>
-      </div>
-      <div class="mdc-notched-outline__trailing"></div>
-    </div>
+    <span v-if="hasRipple" class="mdc-line-ripple"></span>
+    <ui-notched-outline v-else :hasLabel="hasLabel">
+      <ui-floating-label :for="id" :shouldFloat="shouldFloat">
+        <slot>{{ label }}</slot>
+      </ui-floating-label>
+    </ui-notched-outline>
 
     <div v-if="plus" class="mdc-text-field__plus">
       <slot name="plus">
@@ -115,8 +111,9 @@
 </template>
 
 <script>
-import { MDCTextField } from '../../../material-components-web/textfield';
+import { MDCTextField } from '@material/textfield';
 import UiFloatingLabel from '../form-controls/floating-label';
+import UiNotchedOutline from '../form-controls/notched-outline';
 import textfieldMixin from '../../mixins/textfield';
 import typeMixin from '../../mixins/type';
 import elementMixin from '../../mixins/element';
@@ -144,7 +141,8 @@ const UI_TEXTFIELD = {
 export default {
   name: 'ui-textfield',
   components: {
-    UiFloatingLabel
+    UiFloatingLabel,
+    UiNotchedOutline
   },
   mixins: [textfieldMixin, typeMixin, elementMixin, materialIconMixin],
   model: {

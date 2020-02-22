@@ -23,20 +23,16 @@
       >
         {{ currentSelectedLabel }}
       </div>
-      <div v-if="isOutlined" class="mdc-notched-outline">
-        <div class="mdc-notched-outline__leading"></div>
-        <div class="mdc-notched-outline__notch">
-          <ui-floating-label v-if="!noLabel" :shouldFloat="shouldFloat">
-            <slot>{{ label }}</slot>
-          </ui-floating-label>
-        </div>
-        <div class="mdc-notched-outline__trailing"></div>
-      </div>
+      <ui-notched-outline v-if="isOutlined" :hasLabel="!noLabel">
+        <ui-floating-label :shouldFloat="shouldFloat">
+          <slot>{{ label }}</slot>
+        </ui-floating-label>
+      </ui-notched-outline>
       <template v-else>
         <ui-floating-label v-if="!noLabel" :shouldFloat="shouldFloat">
           <slot>{{ label }}</slot>
         </ui-floating-label>
-        <div class="mdc-line-ripple"></div>
+        <span class="mdc-line-ripple"></span>
       </template>
     </div>
 
@@ -66,8 +62,9 @@
 </template>
 
 <script>
-import { MDCSelect } from '../../../material-components-web/select';
+import { MDCSelect } from '@material/select';
 import UiFloatingLabel from '../form-controls/floating-label';
+import UiNotchedOutline from '../form-controls/notched-outline';
 import typeMixin from '../../mixins/type';
 import materialIconMixin from '../../mixins/material-icon';
 import UI_GLOBAL from '../../config/constants';
@@ -92,7 +89,8 @@ const UI_SELECT = {
 export default {
   name: 'ui-select',
   components: {
-    UiFloatingLabel
+    UiFloatingLabel,
+    UiNotchedOutline
   },
   mixins: [typeMixin, materialIconMixin],
   model: {

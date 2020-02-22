@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { MDCTabScroller } from '../../../material-components-web/tab-scroller';
+import { MDCTabScroller } from '@material/tab-scroller';
 import tabScrollerMixin from '../../mixins/tab-scroller';
 import { UI_TAB_SCROLLER } from './constants';
 

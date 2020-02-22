@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { MDCSnackbar } from '../../../material-components-web/snackbar';
+import { MDCSnackbar } from '@material/snackbar';
 
 // Define snackbar constants
 const UI_SNACKBAR = {

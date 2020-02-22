@@ -1,4 +1,4 @@
-@use '../../../src/material-components-web/elevation/mixins' as elevation-mixins;
+@use '@material/elevation/mixins' as elevation-mixins;
 
 .demo-elevation--custom-color {
   @include elevation-mixins.elevation(16, secondary, $opacity-boost: 0.1);

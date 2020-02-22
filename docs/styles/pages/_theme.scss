@@ -1,6 +1,6 @@
-@use '../../../src/material-components-web/elevation/mixins' as elevation-mixins;
-@use '../../../src/material-components-web/ripple/mixins' as ripple-mixins;
-@use '../../../src/material-components-web/theme/mixins' as theme-mixins;
+@use '@material/elevation/mixins' as elevation-mixins;
+@use '@material/ripple/mixins' as ripple-mixins;
+@use '@material/theme/mixins' as theme-mixins;
 @use '../global/index' as global;
 
 $demo-toolbar-progress-bar-color: secondary !default;

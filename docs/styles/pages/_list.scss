@@ -1,5 +1,5 @@
-@use '../../../src/material-components-web/list/mixins' as list-mixins;
-@use '../../../src/material-components-web/elevation/mixins' as elevation-mixins;
+@use '@material/list/mixins' as list-mixins;
+@use '@material/elevation/mixins' as elevation-mixins;
 @use '../global/index' as global;
 
 .demo--list {

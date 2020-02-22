@@ -1,7 +1,7 @@
-@use '../../../src/material-components-web/tab/mixins' as tab-mixins;
-@use '../../../src/material-components-web/tab-indicator/mixins' as tab-indicator-mixins;
-@use '../../../src/material-components-web/ripple/mixins' as ripple-mixins;
-@use '../../../src/material-components-web/typography/mixins' as typography-mixins;
+@use '@material/tab/mixins' as tab-mixins;
+@use '@material/tab-indicator/mixins' as tab-indicator-mixins;
+@use '@material/ripple/mixins' as ripple-mixins;
+@use '@material/typography/mixins' as typography-mixins;
 @use '../global/index' as global;
 
 .demo--tabs {

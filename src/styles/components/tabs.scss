@@ -1,5 +1,5 @@
-@import '../../material-components-web/tab/mdc-tab';
-@import '../../material-components-web/tab-bar/mdc-tab-bar';
-@import '../../material-components-web/tab-indicator/mdc-tab-indicator';
-@import '../../material-components-web/tab-scroller/mdc-tab-scroller';
-@import './ui-tabs';
+@use '@material/tab/mdc-tab';
+@use '@material/tab-bar/mdc-tab-bar';
+@use '@material/tab-indicator/mdc-tab-indicator';
+@use '@material/tab-scroller/mdc-tab-scroller';
+@use './ui-tabs';

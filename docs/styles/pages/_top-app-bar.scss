@@ -1,3 +1,5 @@
+@use '../global/index' as global;
+
 .demo--top-app-bar {
   width: 100%;
 
@@ -10,7 +12,7 @@
     padding: 20px 28px;
   }
 
-  @media (max-width: $mdc-top-app-bar-mobile-breakpoint) {
+  @media (max-width: global.$mobile-breakpoint) {
     .demo-paragraph {
       padding: 16px;
     }

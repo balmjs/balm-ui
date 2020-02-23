@@ -52,6 +52,7 @@ var MDCSwitchFoundation = /** @class */ (function (_super) {
                 removeClass: function () { return undefined; },
                 setNativeControlChecked: function () { return undefined; },
                 setNativeControlDisabled: function () { return undefined; },
+                setNativeControlAttr: function () { return undefined; },
             };
         },
         enumerable: true,
@@ -60,6 +61,7 @@ var MDCSwitchFoundation = /** @class */ (function (_super) {
     /** Sets the checked state of the switch. */
     MDCSwitchFoundation.prototype.setChecked = function (checked) {
         this.adapter_.setNativeControlChecked(checked);
+        this.updateAriaChecked_(checked);
         this.updateCheckedStyling_(checked);
     };
     /** Sets the disabled state of the switch. */
@@ -75,6 +77,7 @@ var MDCSwitchFoundation = /** @class */ (function (_super) {
     /** Handles the change event for the switch native control. */
     MDCSwitchFoundation.prototype.handleChange = function (evt) {
         var nativeControl = evt.target;
+        this.updateAriaChecked_(nativeControl.checked);
         this.updateCheckedStyling_(nativeControl.checked);
     };
     /** Updates the styling of the switch based on its checked state. */
@@ -85,6 +88,9 @@ var MDCSwitchFoundation = /** @class */ (function (_super) {
         else {
             this.adapter_.removeClass(cssClasses.CHECKED);
         }
+    };
+    MDCSwitchFoundation.prototype.updateAriaChecked_ = function (checked) {
+        this.adapter_.setNativeControlAttr(strings.ARIA_CHECKED_ATTR, "" + !!checked);
     };
     return MDCSwitchFoundation;
 }(MDCFoundation));

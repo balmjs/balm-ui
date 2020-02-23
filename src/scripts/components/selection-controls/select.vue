@@ -23,20 +23,16 @@
       >
         {{ currentSelectedLabel }}
       </div>
-      <div v-if="isOutlined" class="mdc-notched-outline">
-        <div class="mdc-notched-outline__leading"></div>
-        <div class="mdc-notched-outline__notch">
-          <ui-floating-label v-if="!noLabel" :isFloatAbove="isFloatAbove">
-            <slot>{{ label }}</slot>
-          </ui-floating-label>
-        </div>
-        <div class="mdc-notched-outline__trailing"></div>
-      </div>
-      <template v-else>
-        <ui-floating-label v-if="!noLabel" :isFloatAbove="isFloatAbove">
+      <ui-notched-outline v-if="isOutlined" :hasLabel="!noLabel">
+        <ui-floating-label :shouldFloat="shouldFloat">
           <slot>{{ label }}</slot>
         </ui-floating-label>
-        <div class="mdc-line-ripple"></div>
+      </ui-notched-outline>
+      <template v-else>
+        <ui-floating-label v-if="!noLabel" :shouldFloat="shouldFloat">
+          <slot>{{ label }}</slot>
+        </ui-floating-label>
+        <span class="mdc-line-ripple"></span>
       </template>
     </div>
 
@@ -68,6 +64,7 @@
 <script>
 import { MDCSelect } from '../../../material-components-web/select';
 import UiFloatingLabel from '../form-controls/floating-label';
+import UiNotchedOutline from '../form-controls/notched-outline';
 import typeMixin from '../../mixins/type';
 import materialIconMixin from '../../mixins/material-icon';
 import UI_GLOBAL from '../../config/constants';
@@ -92,7 +89,8 @@ const UI_SELECT = {
 export default {
   name: 'ui-select',
   components: {
-    UiFloatingLabel
+    UiFloatingLabel,
+    UiNotchedOutline
   },
   mixins: [typeMixin, materialIconMixin],
   model: {
@@ -167,6 +165,9 @@ export default {
     isOutlined() {
       return this.checkType(UI_SELECT.TYPES, 'outlined');
     },
+    hasLeadingIcon() {
+      return this.materialIcon || this.leadingIcon || this.$slots.icon;
+    },
     className() {
       return {
         'mdc-select': true,
@@ -174,7 +175,7 @@ export default {
         'mdc-select--required': this.required,
         'mdc-select--disabled': this.disabled,
         'mdc-select--no-label': this.noLabel,
-        'mdc-select--with-leading-icon': this.leadingIcon || this.materialIcon
+        'mdc-select--with-leading-icon': this.hasLeadingIcon
       };
     },
     currentSelectedLabel() {
@@ -191,7 +192,7 @@ export default {
       return selectedLabel;
     },
     // TODO: Temporary solution: manual control
-    isFloatAbove() {
+    shouldFloat() {
       return !!this.currentOption[this.optionLabel];
     }
   },

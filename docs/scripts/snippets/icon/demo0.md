@@ -5,7 +5,7 @@ import Vue from 'vue';
 import BalmUI from 'balm-ui';
 
 Vue.use(BalmUI, {
-  // Optional. Overwrite `<ui-icon>` props.
+  // Optional. Overwrite `<ui-icon>` props with default value.
   UiIcon: {
     // some props
   }
@@ -14,15 +14,18 @@ Vue.use(BalmUI, {
 
 Standalone Usage
 
+```html
+<!-- build:css css/vendors.css -->
+<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/icon.css" />
+<!-- endbuild -->
+```
+
 ```js
 import Vue from 'vue';
 import UiIcon from 'balm-ui/components/icon';
 
-// (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
-import 'balm-ui/components/core.css';
-import 'balm-ui/components/icon.css';
-
-// Optional. Overwrite `<ui-icon>` props.
+// Optional. Overwrite `<ui-icon>` props with default value.
 Vue.use(UiIcon, {
   // some props
 });

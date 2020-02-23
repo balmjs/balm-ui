@@ -12,7 +12,7 @@ Following the [Material Design](https://material.io/components/) UI components f
 
 ### 0. Requirement
 
-- [BalmJS](https://balmjs.com/)(Recommended) or other toolchains
+- [BalmJS](https://balmjs.com/)@2.8.0+(Recommended) or other toolchains
 - [Vue.js](https://vuejs.org/)@2.1.0+
 
 ### 1. Install
@@ -25,20 +25,20 @@ npm install --save balm-ui
 
 ### 2. Config
 
-Edit `my-project/app/styles/global/_vendor.scss`
-
-```css
-/* Add BalmUI styles */
-@import 'node_modules/balm-ui/src/styles/balm-ui.scss';
-```
-
 Download [Material Design Icons](https://material.balmjs.com/material-icons.zip) and extract to `/path/to/my-project/app/fonts`.
 
 ### 3. Usage
 
-Edit `my-project/app/scripts/main.js`
-
 #### 3.1 Default Usage
+
+Edit `my-project/app/styles/global/_vendor.scss`
+
+```scss
+/* Add BalmUI styles */
+@use 'balm-ui/src/styles/balm-ui.scss';
+```
+
+Edit `my-project/app/scripts/main.js`
 
 ```js
 import Vue from 'vue';
@@ -51,14 +51,21 @@ Vue.use(BalmUIPlus); // Optional
 
 #### 3.2 Standalone Usage
 
+Edit `my-project/app/index.html`
+
+```html
+<!-- build:css css/vendors.css -->
+<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/button.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/icon.css" />
+<!-- endbuild -->
+```
+
+Edit `my-project/app/scripts/main.js`
+
 ```js
 import Vue from 'vue';
 import UiButtonComponents from 'balm-ui/components/button';
-
-// (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
-import 'balm-ui/components/core.css';
-import 'balm-ui/components/button.css';
-import 'balm-ui/components/icon.css'; // Optional.
 
 Vue.use(UiButtonComponents);
 ```
@@ -155,7 +162,7 @@ We officially support the last two versions of every major browser. Specifically
 
 [balm-ui-image]: https://badge.fury.io/js/balm-ui.svg
 [balm-ui-url]: https://www.npmjs.com/package/balm-ui
-[mdc-web-image]: https://img.shields.io/badge/mdc--web-4.0.0-blue.svg
+[mdc-web-image]: https://img.shields.io/badge/mdc--web-5.0.0-blue.svg
 [mdc-web-url]: https://www.npmjs.com/package/material-components-web
 [fossa-image]: https://app.fossa.io/api/projects/git%2Bgithub.com%2Fbalmjs%2Fbalm-ui.svg?type=shield
 [fossa-url]: https://app.fossa.io/projects/git%2Bgithub.com%2Fbalmjs%2Fbalm-ui?ref=badge_shield

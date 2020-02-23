@@ -7,7 +7,10 @@ const ELEVATION = {
     MIN: 0,
     MAX: 24
   },
-  TRANSITION: 'mdc-elevation-transition'
+  cssClasses: {
+    transition: 'mdc-elevation-transition',
+    overlay: 'mdc-elevation-overlay'
+  }
 };
 
 const getElevation = value => {
@@ -33,7 +36,7 @@ const updateElevation = (method, el, { value, modifiers }) => {
       let hoverClass = getElevation(value[1]);
 
       classes.push(defaultClass);
-      classes.push(ELEVATION.TRANSITION);
+      classes.push(ELEVATION.cssClasses.transition);
 
       el[`${method}EventListener`]('mouseenter', () => {
         el.classList.add(hoverClass);
@@ -49,6 +52,12 @@ const updateElevation = (method, el, { value, modifiers }) => {
   }
 
   el.classList[method](...classes);
+
+  if (modifiers.overlay) {
+    const overlayEl = document.createElement('div');
+    overlayEl.className = ELEVATION.cssClasses.overlay;
+    el.insertBefore(overlayEl, el.firstChild);
+  }
 };
 
 const BalmUI_ElevationDirective = {

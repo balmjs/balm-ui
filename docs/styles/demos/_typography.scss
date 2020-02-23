@@ -1,4 +1,7 @@
-$ruler-color: #FD2549;
+@use '@material/typography/mixins' as typography-mixins;
+@use '@material/theme/mixins' as theme-mixins;
+
+$ruler-color: #fd2549;
 
 .demo-typography--section-baseline {
   position: relative;
@@ -9,19 +12,19 @@ $ruler-color: #FD2549;
 }
 
 .demo-typography__title {
-  @include mdc-typography-baseline-top(34px);
-  @include mdc-typography-baseline-bottom(22px);
+  @include typography-mixins.baseline-top(34px);
+  @include typography-mixins.baseline-bottom(22px);
 }
 
 .demo-typography__subtitle {
-  @include mdc-typography-baseline-top(22px);
-  @include mdc-typography-baseline-bottom(28px);
-  @include mdc-theme-prop(color, text-secondary-on-background);
+  @include typography-mixins.baseline-top(22px);
+  @include typography-mixins.baseline-bottom(28px);
+  @include theme-mixins.prop(color, text-secondary-on-background);
 }
 
 .demo-typography__body {
-  @include mdc-typography-baseline-top(28px);
-  @include mdc-theme-prop(color, text-secondary-on-background);
+  @include typography-mixins.baseline-top(28px);
+  @include theme-mixins.prop(color, text-secondary-on-background);
 }
 
 .demo-typography-line-1,

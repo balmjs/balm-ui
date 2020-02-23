@@ -14,15 +14,17 @@ Vue.use(BalmUIPlus, {
 
 Standalone Usage
 
+```html
+<!-- build:css css/vendors.css -->
+<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/dialog.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/plugins/alert.css" />
+<!-- endbuild -->
+```
+
 ```js
 import Vue from 'vue';
 import alert from 'balm-ui/plugins/alert';
-
-// (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
-import 'balm-ui/components/core.css';
-import 'balm-ui/components/button.css';
-import 'balm-ui/components/dialog.css';
-import 'balm-ui/plugins/alert.css';
 
 // Optional. Overwrite `$alert` options.
 Vue.use(alert, {

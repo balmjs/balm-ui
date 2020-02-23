@@ -1,3 +1,5 @@
+@use '../global/index' as global;
+
 .demo--ripple {
   .hero {
     padding: 0;
@@ -99,7 +101,7 @@
     }
   }
 
-  @media (max-width: $mdc-top-app-bar-mobile-breakpoint) {
+  @media (max-width: global.$mobile-breakpoint) {
     .demo-surface {
       margin: 0 auto;
     }

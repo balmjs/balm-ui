@@ -1,0 +1,10 @@
+@use '../../global/function' as global-function;
+
+$avatar: (
+  base: 36px,
+  large: 40px,
+  small: 24px
+) !default;
+
+$color: #f2f2f2 !default;
+$to-color: global-function.shade($color, 10%) !default;

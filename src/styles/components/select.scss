@@ -1,4 +1,2 @@
-@import '../../material-components-web/select/mdc-select';
-@import './floating-label';
-@import './line-ripple';
-@import './notched-outline';
+// NOTE: without list & menu & form-item
+@use '@material/select/mdc-select';

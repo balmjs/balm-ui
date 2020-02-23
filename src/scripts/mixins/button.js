@@ -47,7 +47,7 @@ export default {
         // Contained button
         'mdc-button--raised': this.isRaised,
         'mdc-button--unelevated': this.isUnelevated,
-        // Touch Target
+        // Accessibility
         'mdc-button--touch': isTouch
       };
     }

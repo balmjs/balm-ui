@@ -5,7 +5,7 @@ import Vue from 'vue';
 import BalmUI from 'balm-ui';
 
 Vue.use(BalmUI, {
-  // Optional. Overwrite `<ui-switch>` props.
+  // Optional. Overwrite `<ui-switch>` props with default value.
   UiSwitch: {
     // some props
   }
@@ -14,15 +14,18 @@ Vue.use(BalmUI, {
 
 Standalone Usage
 
+```html
+<!-- build:css css/vendors.css -->
+<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/switch.css" />
+<!-- endbuild -->
+```
+
 ```js
 import Vue from 'vue';
 import UiSwitch from 'balm-ui/components/switch';
 
-// (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
-import 'balm-ui/components/core.css';
-import 'balm-ui/components/switch.css';
-
-// Optional. Overwrite `<ui-switch>` props.
+// Optional. Overwrite `<ui-switch>` props with default value.
 Vue.use(UiSwitch, {
   // some props
 });

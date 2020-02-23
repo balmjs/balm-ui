@@ -1,11 +1,22 @@
 <template>
   <!-- Container -->
   <div :class="className.outer">
+    <div v-if="hasRipple" class="mdc-text-field__ripple"></div>
+
     <!-- Leading icon (optional) -->
-    <slot name="before" :iconClass="UI_TEXTFIELD_ICON.cssClasses.icon">
+    <slot
+      name="before"
+      :iconClass="
+        `${UI_TEXTFIELD_ICON.cssClasses.icon} ${UI_TEXTFIELD_ICON.cssClasses.leadingIcon}`
+      "
+    >
       <i
         v-if="materialIcon"
-        :class="[UI_GLOBAL.cssClasses.icon, UI_TEXTFIELD_ICON.cssClasses.icon]"
+        :class="[
+          UI_GLOBAL.cssClasses.icon,
+          UI_TEXTFIELD_ICON.cssClasses.icon,
+          UI_TEXTFIELD_ICON.cssClasses.leadingIcon
+        ]"
         >{{ materialIcon }}</i
       >
     </slot>
@@ -24,6 +35,7 @@
         :required="required"
         :minlength="minlength"
         :maxlength="maxlength"
+        :aria-labelledby="id"
         :aria-controls="helperTextId"
         :aria-describedby="helperTextId"
         v-bind="attrs"
@@ -52,6 +64,7 @@
       :min="min"
       :max="max"
       :step="step"
+      :aria-labelledby="id"
       :aria-controls="helperTextId"
       :aria-describedby="helperTextId"
       v-bind="attrs"
@@ -64,28 +77,30 @@
       @blur="handleBlur"
     />
 
+    <!-- Trailing icon (optional) -->
+    <slot
+      name="after"
+      :iconClass="
+        `${UI_TEXTFIELD_ICON.cssClasses.icon} ${UI_TEXTFIELD_ICON.cssClasses.trailingIcon}`
+      "
+    ></slot>
+
     <!-- Label text -->
     <ui-floating-label
-      v-if="!this.noLabel && !(isOutlined || isTextarea)"
+      v-if="hasLabel && hasRipple"
       :for="id"
+      :shouldFloat="shouldFloat"
     >
       <slot>{{ label }}</slot>
     </ui-floating-label>
 
-    <!-- Trailing icon (optional) -->
-    <slot name="after" :iconClass="UI_TEXTFIELD_ICON.cssClasses.icon"></slot>
-
     <!-- Activation indicator -->
-    <div v-if="isOutlined || isTextarea" class="mdc-notched-outline">
-      <div class="mdc-notched-outline__leading"></div>
-      <div v-if="!this.noLabel" class="mdc-notched-outline__notch">
-        <ui-floating-label :for="id">
-          <slot>{{ label }}</slot>
-        </ui-floating-label>
-      </div>
-      <div class="mdc-notched-outline__trailing"></div>
-    </div>
-    <div v-else class="mdc-line-ripple"></div>
+    <span v-if="hasRipple" class="mdc-line-ripple"></span>
+    <ui-notched-outline v-else :hasLabel="hasLabel">
+      <ui-floating-label :for="id" :shouldFloat="shouldFloat">
+        <slot>{{ label }}</slot>
+      </ui-floating-label>
+    </ui-notched-outline>
 
     <div v-if="plus" class="mdc-text-field__plus">
       <slot name="plus">
@@ -98,6 +113,7 @@
 <script>
 import { MDCTextField } from '../../../material-components-web/textfield';
 import UiFloatingLabel from '../form-controls/floating-label';
+import UiNotchedOutline from '../form-controls/notched-outline';
 import textfieldMixin from '../../mixins/textfield';
 import typeMixin from '../../mixins/type';
 import elementMixin from '../../mixins/element';
@@ -125,7 +141,8 @@ const UI_TEXTFIELD = {
 export default {
   name: 'ui-textfield',
   components: {
-    UiFloatingLabel
+    UiFloatingLabel,
+    UiNotchedOutline
   },
   mixins: [textfieldMixin, typeMixin, elementMixin, materialIconMixin],
   model: {
@@ -149,10 +166,6 @@ export default {
     },
     // UI attributes
     dense: {
-      type: Boolean,
-      default: false
-    },
-    trailingIcon: {
       type: Boolean,
       default: false
     },
@@ -206,6 +219,18 @@ export default {
     isTextarea() {
       return this.inputType === 'textarea';
     },
+    hasRipple() {
+      return !(this.isOutlined || this.isTextarea);
+    },
+    hasLabel() {
+      return !(this.noLabel || this.fullwidth);
+    },
+    hasLeadingIcon() {
+      return this.materialIcon || this.leadingIcon || this.$slots.before;
+    },
+    hasTrailingIcon() {
+      return this.trailingIcon || this.$slots.after;
+    },
     className() {
       return {
         outer: {
@@ -215,13 +240,16 @@ export default {
           'mdc-text-field--textarea': this.isTextarea,
           'mdc-text-field--disabled': this.disabled,
           'mdc-text-field--dense': this.dense,
-          'mdc-text-field--with-leading-icon':
-            this.leadingIcon || this.materialIcon,
-          'mdc-text-field--with-trailing-icon': this.trailingIcon,
+          'mdc-text-field--with-leading-icon': this.hasLeadingIcon,
+          'mdc-text-field--with-trailing-icon': this.hasTrailingIcon,
           'mdc-text-field--no-label': this.noLabel
         },
         input: 'mdc-text-field__input'
       };
+    },
+    // TODO: Temporary solution: manual control
+    shouldFloat() {
+      return !!this.inputValue;
     }
   },
   watch: {

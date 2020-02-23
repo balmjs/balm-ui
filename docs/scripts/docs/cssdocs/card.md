@@ -1,12 +1,11 @@
 ```css
-$mdc-card-action-icon-color: rgba(
-  mdc-theme-prop-value(on-surface),
-  mdc-theme-text-emphasis(medium)
+@use '@material/card/variables' with (
+  $action-icon-color: rgba(variables.prop-value(on-surface), variables.text-emphasis(medium)),
+  $outline-color: color.mix(variables.prop-value(on-surface), variables.prop-value(surface), 12%),
+  $outline-width: 1px
 );
-$mdc-card-outline-color: mix(
-  mdc-theme-prop-value(on-surface),
-  mdc-theme-prop-value(surface),
-  12%
+
+@use 'balm-ui/src/styles/components/card/variables' with (
+  $text-wrapper-padding: 16px
 );
-$mdc-card-outline-width: 1px;
 ```

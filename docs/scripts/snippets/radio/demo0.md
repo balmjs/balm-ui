@@ -5,7 +5,7 @@ import Vue from 'vue';
 import BalmUI from 'balm-ui';
 
 Vue.use(BalmUI, {
-  // Optional. Overwrite `<ui-radio>` props.
+  // Optional. Overwrite `<ui-radio>` props with default value.
   UiRadio: {
     // some props
   }
@@ -14,18 +14,21 @@ Vue.use(BalmUI, {
 
 Standalone Usage
 
+```html
+<!-- build:css css/vendors.css -->
+<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/form-field.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/radio.css" />
+<!-- endbuild -->
+```
+
 ```js
 import Vue from 'vue';
 import UiFormField from 'balm-ui/components/form-field';
 import UiRadio from 'balm-ui/components/radio';
 
-// (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
-import 'balm-ui/components/core.css';
-import 'balm-ui/components/form-field.css';
-import 'balm-ui/components/radio.css';
-
 Vue.use(UiFormField);
-// Optional. Overwrite `<ui-radio>` props.
+// Optional. Overwrite `<ui-radio>` props with default value.
 Vue.use(UiRadio, {
   // some props
 });

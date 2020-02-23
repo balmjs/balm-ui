@@ -32,10 +32,10 @@
 }
 
 .mdc-data-table__footer-row {
-  @extend .mdc-data-table__row;
+  @extend .mdc-data-table__row !optional;
 }
 
 .mdc-data-table__footer-cell {
   font-weight: bold;
-  @extend .mdc-data-table__cell;
+  @extend .mdc-data-table__cell !optional;
 }

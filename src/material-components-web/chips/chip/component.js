@@ -145,7 +145,9 @@ var MDCChip = /** @class */ (function (_super) {
                     _this.leadingIcon_.classList.add(className);
                 }
             },
-            eventTargetHasClass: function (target, className) { return target ? target.classList.contains(className) : false; },
+            eventTargetHasClass: function (target, className) {
+                return target ? target.classList.contains(className) : false;
+            },
             focusPrimaryAction: function () {
                 if (_this.primaryAction_) {
                     _this.primaryAction_.focus();
@@ -156,20 +158,34 @@ var MDCChip = /** @class */ (function (_super) {
                     _this.trailingAction_.focus();
                 }
             },
-            getCheckmarkBoundingClientRect: function () { return _this.checkmark_ ? _this.checkmark_.getBoundingClientRect() : null; },
-            getComputedStyleValue: function (propertyName) { return window.getComputedStyle(_this.root_).getPropertyValue(propertyName); },
+            getAttribute: function (attr) { return _this.root_.getAttribute(attr); },
+            getCheckmarkBoundingClientRect: function () {
+                return _this.checkmark_ ? _this.checkmark_.getBoundingClientRect() : null;
+            },
+            getComputedStyleValue: function (propertyName) {
+                return window.getComputedStyle(_this.root_).getPropertyValue(propertyName);
+            },
             getRootBoundingClientRect: function () { return _this.root_.getBoundingClientRect(); },
             hasClass: function (className) { return _this.root_.classList.contains(className); },
             hasLeadingIcon: function () { return !!_this.leadingIcon_; },
             hasTrailingAction: function () { return !!_this.trailingAction_; },
-            isRTL: function () { return window.getComputedStyle(_this.root_).getPropertyValue('direction') === 'rtl'; },
-            notifyInteraction: function () { return _this.emit(strings.INTERACTION_EVENT, { chipId: _this.id }, true /* shouldBubble */); },
-            notifyNavigation: function (key, source) { return _this.emit(strings.NAVIGATION_EVENT, { chipId: _this.id, key: key, source: source }, true /* shouldBubble */); },
-            notifyRemoval: function () {
-                _this.emit(strings.REMOVAL_EVENT, { chipId: _this.id, root: _this.root_ }, true /* shouldBubble */);
+            isRTL: function () {
+                return window.getComputedStyle(_this.root_).getPropertyValue('direction') ===
+                    'rtl';
             },
-            notifySelection: function (selected, shouldIgnore) { return _this.emit(strings.SELECTION_EVENT, { chipId: _this.id, selected: selected, shouldIgnore: shouldIgnore }, true /* shouldBubble */); },
-            notifyTrailingIconInteraction: function () { return _this.emit(strings.TRAILING_ICON_INTERACTION_EVENT, { chipId: _this.id }, true /* shouldBubble */); },
+            notifyInteraction: function () { return _this.emit(strings.INTERACTION_EVENT, { chipId: _this.id }, true /* shouldBubble */); },
+            notifyNavigation: function (key, source) {
+                return _this.emit(strings.NAVIGATION_EVENT, { chipId: _this.id, key: key, source: source }, true /* shouldBubble */);
+            },
+            notifyRemoval: function (removedAnnouncement) {
+                _this.emit(strings.REMOVAL_EVENT, { chipId: _this.id, removedAnnouncement: removedAnnouncement }, true /* shouldBubble */);
+            },
+            notifySelection: function (selected, shouldIgnore) {
+                return _this.emit(strings.SELECTION_EVENT, { chipId: _this.id, selected: selected, shouldIgnore: shouldIgnore }, true /* shouldBubble */);
+            },
+            notifyTrailingIconInteraction: function () {
+                return _this.emit(strings.TRAILING_ICON_INTERACTION_EVENT, { chipId: _this.id }, true /* shouldBubble */);
+            },
             removeClass: function (className) { return _this.root_.classList.remove(className); },
             removeClassFromLeadingIcon: function (className) {
                 if (_this.leadingIcon_) {
@@ -181,7 +197,9 @@ var MDCChip = /** @class */ (function (_super) {
                     _this.primaryAction_.setAttribute(attr, value);
                 }
             },
-            setStyleProperty: function (propertyName, value) { return _this.root_.style.setProperty(propertyName, value); },
+            setStyleProperty: function (propertyName, value) {
+                return _this.root_.style.setProperty(propertyName, value);
+            },
             setTrailingActionAttr: function (attr, value) {
                 if (_this.trailingAction_) {
                     _this.trailingAction_.setAttribute(attr, value);

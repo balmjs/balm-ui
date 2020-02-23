@@ -5,7 +5,7 @@ import Vue from 'vue';
 import BalmUI from 'balm-ui';
 
 Vue.use(BalmUI, {
-  // Optional. Overwrite `<ui-table>` props.
+  // Optional. Overwrite `<ui-table>` props with default value.
   UiTable: {
     // some props
   }
@@ -14,18 +14,21 @@ Vue.use(BalmUI, {
 
 Standalone Usage
 
+```html
+<!-- build:css css/vendors.css -->
+<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/table.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/checkbox.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/icon.css" />
+<!-- endbuild -->
+```
+
 ```js
 import Vue from 'vue';
 import UiTableComponent from 'balm-ui/components/table';
 
-// (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
-import 'balm-ui/components/core.css';
-import 'balm-ui/components/table.css';
-import 'balm-ui/components/checkbox.css'; // Optional.
-import 'balm-ui/components/icon.css'; // Optional.
-
 Vue.use(UiTableComponent, {
-  // Optional. Overwrite `<ui-table>` props.
+  // Optional. Overwrite `<ui-table>` props with default value.
   UiTable: {
     // some props
   }

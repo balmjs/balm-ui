@@ -1,0 +1,10 @@
+@use '@material/theme/variables' as theme-variables;
+
+$outlined-idle-border: rgba(
+  theme-variables.prop-value(on-surface),
+  0.38
+) !default;
+$item-selected-bgcolor: rgba(
+  theme-variables.prop-value(primary),
+  0.54
+) !default;

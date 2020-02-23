@@ -22,6 +22,7 @@
  */
 import * as tslib_1 from "tslib";
 import { MDCComponent } from '../base/component';
+import { estimateScrollWidth } from '../dom/ponyfill';
 import { MDCFloatingLabelFoundation } from './foundation';
 var MDCFloatingLabel = /** @class */ (function (_super) {
     tslib_1.__extends(MDCFloatingLabel, _super);
@@ -56,9 +57,13 @@ var MDCFloatingLabel = /** @class */ (function (_super) {
         var adapter = {
             addClass: function (className) { return _this.root_.classList.add(className); },
             removeClass: function (className) { return _this.root_.classList.remove(className); },
-            getWidth: function () { return _this.root_.scrollWidth; },
-            registerInteractionHandler: function (evtType, handler) { return _this.listen(evtType, handler); },
-            deregisterInteractionHandler: function (evtType, handler) { return _this.unlisten(evtType, handler); },
+            getWidth: function () { return estimateScrollWidth(_this.root_); },
+            registerInteractionHandler: function (evtType, handler) {
+                return _this.listen(evtType, handler);
+            },
+            deregisterInteractionHandler: function (evtType, handler) {
+                return _this.unlisten(evtType, handler);
+            },
         };
         // tslint:enable:object-literal-sort-keys
         return new MDCFloatingLabelFoundation(adapter);

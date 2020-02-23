@@ -22,6 +22,7 @@
  */
 import * as tslib_1 from "tslib";
 import { MDCComponent } from '../base/component';
+import { FocusTrap } from '../dom/focus-trap';
 import { closest, matches } from '../dom/ponyfill';
 import { MDCRipple } from '../ripple/component';
 import { MDCDialogFoundation } from './foundation';
@@ -74,6 +75,7 @@ var MDCDialog = /** @class */ (function (_super) {
     };
     MDCDialog.prototype.initialize = function (focusTrapFactory) {
         var e_1, _a;
+        if (focusTrapFactory === void 0) { focusTrapFactory = function (el, focusOptions) { return new FocusTrap(el, focusOptions); }; }
         var container = this.root_.querySelector(strings.CONTAINER_SELECTOR);
         if (!container) {
             throw new Error("Dialog component requires a " + strings.CONTAINER_SELECTOR + " container element");
@@ -162,7 +164,7 @@ var MDCDialog = /** @class */ (function (_super) {
             notifyClosing: function (action) { return _this.emit(strings.CLOSING_EVENT, action ? { action: action } : {}); },
             notifyOpened: function () { return _this.emit(strings.OPENED_EVENT, {}); },
             notifyOpening: function () { return _this.emit(strings.OPENING_EVENT, {}); },
-            releaseFocus: function () { return _this.focusTrap_.deactivate(); },
+            releaseFocus: function () { return _this.focusTrap_.releaseFocus(); },
             removeBodyClass: function (className) { return document.body.classList.remove(className); },
             removeClass: function (className) { return _this.root_.classList.remove(className); },
             reverseButtons: function () {
@@ -171,7 +173,7 @@ var MDCDialog = /** @class */ (function (_super) {
                     button.parentElement.appendChild(button);
                 });
             },
-            trapFocus: function () { return _this.focusTrap_.activate(); },
+            trapFocus: function () { return _this.focusTrap_.trapFocus(); },
         };
         return new MDCDialogFoundation(adapter);
     };

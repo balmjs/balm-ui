@@ -1,3 +1,7 @@
+@use '@material/list/mixins' as list-mixins;
+@use '@material/elevation/mixins' as elevation-mixins;
+@use '../global/index' as global;
+
 .demo--list {
   .mdc-list,
   .mdc-list-group {
@@ -6,25 +10,25 @@
 
   .demo-list--icon-placeholders,
   .demo-list--with-avatars {
-    @include mdc-list-item-graphic-ink-color(white);
-    @include mdc-list-item-graphic-fill-color(text-icon-on-background);
+    @include list-mixins.item-graphic-ink-color(white);
+    @include list-mixins.item-graphic-fill-color(text-icon-on-background);
   }
 
   .demo-list--avatar-and-meta-icon {
-    @include mdc-list-item-meta-ink-color($material-color-pink-a200);
+    @include list-mixins.item-meta-ink-color(global.$pink-a200);
   }
 
   .demo-list-group--custom,
   .demo-list--custom {
-    @include mdc-list-divider-color($material-color-pink-50);
+    @include list-mixins.divider-color(global.$pink-50);
   }
 
   .demo-list--custom {
-    @include mdc-list-item-primary-text-ink-color($material-color-blue-600);
-    @include mdc-list-item-secondary-text-ink-color($material-color-purple-600);
-    @include mdc-list-item-graphic-fill-color($material-color-pink-400);
-    @include mdc-list-item-graphic-ink-color($material-color-pink-50);
-    @include mdc-list-item-meta-ink-color($material-color-orange-500);
+    @include list-mixins.item-primary-text-ink-color(global.$blue-600);
+    @include list-mixins.item-secondary-text-ink-color(global.$purple-600);
+    @include list-mixins.item-graphic-fill-color(global.$pink-400);
+    @include list-mixins.item-graphic-ink-color(global.$pink-50);
+    @include list-mixins.item-meta-ink-color(global.$orange-500);
   }
 
   .preamble {
@@ -59,7 +63,7 @@
   }
 
   .hero-demo .mdc-list {
-    @include mdc-elevation(4);
+    @include elevation-mixins.elevation(4);
     min-width: 320px;
     background-color: white;
   }

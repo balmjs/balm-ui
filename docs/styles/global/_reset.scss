@@ -1,5 +1,5 @@
-// @import './normalize'; // OLD
-@import './sanitize'; // NEW
+// @use './normalize'; // OLD
+@use './sanitize'; // NEW
 
 html {
   word-break: initial; // NOTE: bugfix for `sanitize.css`

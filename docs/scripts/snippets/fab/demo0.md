@@ -5,7 +5,7 @@ import Vue from 'vue';
 import BalmUI from 'balm-ui';
 
 Vue.use(BalmUI, {
-  // Optional. Overwrite `<ui-fab>` props.
+  // Optional. Overwrite `<ui-fab>` props with default value.
   UiFab: {
     // some props
   }
@@ -14,16 +14,19 @@ Vue.use(BalmUI, {
 
 Standalone Usage
 
+```html
+<!-- build:css css/vendors.css -->
+<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/fab.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/icon.css" />
+<!-- endbuild -->
+```
+
 ```js
 import Vue from 'vue';
 import UiFab from 'balm-ui/components/fab';
 
-// (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
-import 'balm-ui/components/core.css';
-import 'balm-ui/components/fab.css';
-import 'balm-ui/components/icon.css'; // We recommend using Material Icons
-
-// Optional. Overwrite `<ui-fab>` props.
+// Optional. Overwrite `<ui-fab>` props with default value.
 Vue.use(UiFab, {
   // some props
 });

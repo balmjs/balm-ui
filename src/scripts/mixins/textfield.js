@@ -16,7 +16,12 @@ export default {
       type: Boolean,
       default: false
     },
+    // For custom icon
     leadingIcon: {
+      type: Boolean,
+      default: false
+    },
+    trailingIcon: {
       type: Boolean,
       default: false
     }

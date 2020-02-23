@@ -1,3 +1,9 @@
+@use '@material/tab/mixins' as tab-mixins;
+@use '@material/tab-indicator/mixins' as tab-indicator-mixins;
+@use '@material/ripple/mixins' as ripple-mixins;
+@use '@material/typography/mixins' as typography-mixins;
+@use '../global/index' as global;
+
 .demo--tabs {
   .hero-demo .mdc-tab-bar.long {
     width: 450px;
@@ -10,19 +16,19 @@
     flex: 0 1 auto;
   }
   .custom-tab {
-    @include mdc-tab-text-label-color($material-color-blue-300);
-    @include mdc-tab-icon-color($material-color-orange-300);
+    @include tab-mixins.text-label-color(global.$blue-300);
+    @include tab-mixins.icon-color(global.$orange-300);
     .custom-tab-indicator {
-      @include mdc-tab-indicator-underline-color($material-color-pink-a700);
-      @include mdc-tab-indicator-underline-height(5px);
-      @include mdc-tab-indicator-underline-top-corner-radius(5px);
+      @include tab-indicator-mixins.underline-color(global.$pink-a700);
+      @include tab-indicator-mixins.underline-height(5px);
+      @include tab-indicator-mixins.underline-top-corner-radius(5px);
     }
     .mdc-tab__ripple {
-      @include mdc-states($material-color-pink-100);
+      @include ripple-mixins.states(global.$pink-100);
     }
     &.mdc-tab--active {
-      @include mdc-tab-text-label-color($material-color-blue-900);
-      @include mdc-tab-icon-color($material-color-orange-900);
+      @include tab-mixins.text-label-color(global.$blue-900);
+      @include tab-mixins.icon-color(global.$orange-900);
     }
   }
   /* tab bar */
@@ -32,27 +38,27 @@
   }
   .custom-demo-tab-bar {
     .mdc-tab {
-      @include mdc-typography(subtitle1);
-      @include mdc-tab-fixed-width(120px);
-      @include mdc-tab-text-label-color($material-color-blue-600);
-      @include mdc-tab-icon-color($material-color-blue-600);
+      @include typography-mixins.typography(subtitle1);
+      @include tab-mixins.fixed-width(120px);
+      @include tab-mixins.text-label-color(global.$blue-600);
+      @include tab-mixins.icon-color(global.$blue-600);
     }
     .mdc-tab__ripple {
-      @include mdc-states($material-color-yellow-700);
+      @include ripple-mixins.states(global.$yellow-700);
     }
     .mdc-tab--active {
-      @include mdc-tab-text-label-color($material-color-blue-900);
-      @include mdc-tab-icon-color($material-color-blue-900);
+      @include tab-mixins.text-label-color(global.$blue-900);
+      @include tab-mixins.icon-color(global.$blue-900);
     }
     .mdc-tab-indicator {
-      @include mdc-tab-indicator-underline-height(5px);
-      @include mdc-tab-indicator-underline-color($material-color-yellow-700);
+      @include tab-indicator-mixins.underline-height(5px);
+      @include tab-indicator-mixins.underline-color(global.$yellow-700);
     }
   }
   /* tab scroller */
   .demo-scroller {
     width: 360px;
-    outline: 1px solid $material-color-grey-400;
+    outline: 1px solid global.$grey-400;
   }
   .demo-cube {
     width: 43px;

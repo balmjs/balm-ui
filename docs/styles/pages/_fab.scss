@@ -1,3 +1,6 @@
+@use '@material/fab/mixins' as fab-mixins;
+@use '../global/index' as global;
+
 .demo--fab {
   .demo-fabs {
     display: flex;
@@ -11,7 +14,7 @@
     padding-bottom: 24px;
   }
 
-  figcaption>div {
+  figcaption > div {
     margin: 8px;
   }
 
@@ -31,7 +34,7 @@
     position: fixed;
   }
 
-  @media(min-width: 1024px) {
+  @media (min-width: 1024px) {
     .demo-fixed-fab {
       bottom: 1.5rem;
       right: 1.5rem;
@@ -52,23 +55,23 @@
     background-color: #fff;
     box-sizing: border-box;
     position: absolute;
-    transition: transform 375ms cubic-bezier(0.0, 0.0, 0.2, 1);
+    transition: transform 375ms cubic-bezier(0, 0, 0.2, 1);
     height: 100%;
     width: 100%;
     will-change: transform;
   }
 
   .fab-motion-container__view--exited {
-    transition-timing-function: cubic-bezier(.4, 0, 1, 1);
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
     transform: translateY(100%);
   }
 
   .mdc-fab.lightGreen800Fab {
-    @include mdc-fab-accessible($material-color-light-green-800);
+    @include fab-mixins.accessible(global.$light-green-800);
   }
 
   .demo-fab-icon-size {
-    @include mdc-fab-icon-size(36px);
+    @include fab-mixins.icon-size(36px);
   }
 
   .demo-figure-fab-extended {
@@ -85,7 +88,7 @@
     }
 
     .demo-fab-extended-fluid {
-      @include mdc-fab-extended-fluid;
+      @include fab-mixins.extended-fluid;
       margin: 16px 0;
     }
   }

@@ -14,15 +14,17 @@ Vue.use(BalmUIPlus, {
 
 Standalone Usage
 
+```html
+<!-- build:css css/vendors.css -->
+<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/dialog.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/plugins/confirm.css" />
+<!-- endbuild -->
+```
+
 ```js
 import Vue from 'vue';
 import confirm from 'balm-ui/plugins/confirm';
-
-// (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
-import 'balm-ui/components/core.css';
-import 'balm-ui/components/button.css';
-import 'balm-ui/components/dialog.css';
-import 'balm-ui/plugins/confirm.css';
 
 // Optional. Overwrite `$confirm` options.
 Vue.use(confirm, {

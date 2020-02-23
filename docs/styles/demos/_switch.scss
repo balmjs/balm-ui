@@ -1,11 +1,14 @@
+@use '@material/switch/mixins' as switch-mixins;
+@use '../global/index' as global;
+
 .demo-switch-wrapper {
   display: inline-block;
   margin-right: 16px;
 }
 
 .demo-switch--custom .mdc-switch {
-  $color: $material-color-red-500;
-  @include mdc-switch-toggled-on-color($color);
+  $color: global.$red-500;
+  @include switch-mixins.toggled-on-color($color);
 }
 
 .rtl-toggle {

@@ -44,7 +44,8 @@ const UI_FAB = {
     extended: 1
   },
   cssClasses: {
-    icon: 'mdc-fab__icon'
+    icon: 'mdc-fab__icon',
+    touch: 'mdc-fab--touch'
   },
   EVENT: {
     CLICK: 'click'
@@ -85,11 +86,16 @@ export default {
       return this.checkType(UI_FAB.TYPES, 'extended');
     },
     className() {
+      const isTouch =
+        this.$el && this.$el.classList.contains(UI_FAB.cssClasses.touch);
+
       return {
         'mdc-fab': true,
         'mdc-fab--extended': this.isExtended,
         'mdc-fab--mini': this.mini,
-        'mdc-fab--exited': this.exited
+        'mdc-fab--exited': this.exited,
+        // Accessibility
+        'mdc-fab--touch': isTouch
       };
     }
   },

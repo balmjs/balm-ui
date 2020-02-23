@@ -1,6 +1,6 @@
 <template>
   <i
-    :class="[UI_GLOBAL.cssClasses.icon, UI_TEXTFIELD_ICON.cssClasses.icon]"
+    :class="className"
     :tabindex="unclickable ? null : 0"
     :role="unclickable ? null : 'button'"
     @click="unclickable ? null : handleClick"
@@ -16,16 +16,30 @@ import { UI_TEXTFIELD_ICON } from './constants';
 export default {
   name: 'ui-textfield-icon',
   props: {
+    trailing: {
+      type: Boolean,
+      default: false
+    },
     unclickable: {
       type: Boolean,
       default: false
     }
   },
-  data() {
-    return {
-      UI_GLOBAL,
-      UI_TEXTFIELD_ICON
-    };
+  computed: {
+    className() {
+      let result = [
+        UI_GLOBAL.cssClasses.icon,
+        UI_TEXTFIELD_ICON.cssClasses.icon
+      ];
+
+      if (this.trailing) {
+        result.push(UI_TEXTFIELD_ICON.cssClasses.trailingIcon);
+      } else {
+        result.push(UI_TEXTFIELD_ICON.cssClasses.leadingIcon);
+      }
+
+      return result;
+    }
   },
   methods: {
     handleClick(event) {

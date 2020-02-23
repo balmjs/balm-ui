@@ -40,6 +40,7 @@ const DMC_COMPONENTS = [
   'menu',
   'menu-surface', // New in mdc@0.39.0
   'notched-outline',
+  'progress-indicator', // New in mdc@5.0.0
   'radio',
   'ripple',
   'rtl',

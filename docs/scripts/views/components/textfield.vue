@@ -8,14 +8,17 @@
               id="my-text-field"
               v-model="value1"
               maxlength="20"
-              :icon="iconOption.includes(2) ? 'favorite' : ''"
-              :trailingIcon="iconOption.includes(3)"
               helperTextId="my-text-field-helper"
+              :leadingIcon="iconOption.includes(2)"
+              :trailingIcon="iconOption.includes(3)"
               :required="assistiveTextOption === 2"
               :pattern="assistiveTextOption === 2 ? '[a-z]{256,}' : null"
               >Label
+              <template v-if="iconOption.includes(2)" #before>
+                <ui-textfield-icon>favorite</ui-textfield-icon>
+              </template>
               <template v-if="iconOption.includes(3)" #after>
-                <ui-textfield-icon>visibility</ui-textfield-icon>
+                <ui-textfield-icon trailing>visibility</ui-textfield-icon>
               </template>
             </ui-textfield>
             <ui-textfield-helper
@@ -41,14 +44,15 @@
               id="my-text-field-outlined"
               v-model="value2"
               maxlength="20"
-              :icon="iconOption.includes(2) ? 'favorite' : ''"
-              :trailingIcon="iconOption.includes(3)"
               helperTextId="my-text-field-outlined-helper"
               :required="assistiveTextOption === 2"
               :pattern="assistiveTextOption === 2 ? '[a-z]{256,}' : null"
               >Label
+              <template v-if="iconOption.includes(2)" #before>
+                <ui-textfield-icon>favorite</ui-textfield-icon>
+              </template>
               <template v-if="iconOption.includes(3)" #after>
-                <ui-textfield-icon>visibility</ui-textfield-icon>
+                <ui-textfield-icon trailing>visibility</ui-textfield-icon>
               </template>
             </ui-textfield>
             <ui-textfield-helper
@@ -220,7 +224,6 @@
         >
           <ui-textfield
             id="tf-box-leading"
-            leadingIcon
             :class="{ 'demo-text-field-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
             :dense="controls.dense"
@@ -242,7 +245,6 @@
         >
           <ui-textfield
             id="tf-box-trailing"
-            trailingIcon
             :class="{ 'demo-text-field-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
             :dense="controls.dense"
@@ -251,7 +253,7 @@
           >
             Your name
             <template #after>
-              <ui-textfield-icon :unclickable="controls.unclickable"
+              <ui-textfield-icon trailing :unclickable="controls.unclickable"
                 >delete</ui-textfield-icon
               >
             </template>
@@ -497,6 +499,11 @@ export default {
       ],
       css: true
     });
+  },
+  mounted() {
+    // setTimeout(() => {
+    //   this.value1 = 'Hello BalmJS';
+    // }, 300);
   }
   // methods: {
   //   onFocus(event) {

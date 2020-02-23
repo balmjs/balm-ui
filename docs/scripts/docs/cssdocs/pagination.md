@@ -1,17 +1,18 @@
 ```css
-/* Global */
-$mdc-pagination-color: $mdc-theme-primary;
-$mdc-pagination-corner-radius: 4px;
-/* Default */
-$mdc-pagination-fill-color: white;
-$mdc-pagination-text-color: rgba(mdc-theme-prop-value(on-surface), 0.87);
-$mdc-pagination-border-color: rgba(mdc-theme-prop-value(on-surface), 0.38);
-/* Hover */
-$mdc-pagination-hover-fill-color: $mdc-pagination-fill-color;
-$mdc-pagination-hover-text-color: $mdc-pagination-color;
-$mdc-pagination-hover-border-color: $mdc-pagination-color;
-/* Activated */
-$mdc-pagination-active-fill-color: rgba($mdc-pagination-color, 0.7);
-$mdc-pagination-active-text-color: $mdc-pagination-fill-color;
-$mdc-pagination-active-border-color: $mdc-pagination-color;
+@use 'balm-ui/src/styles/components/pagination/variables' with (
+  $color: theme-variables.$primary,
+  $corner-radius: 4px,
+
+  $fill-color: white,
+  $text-color: rgba(theme-variables.prop-value(on-surface), 0.87),
+  $border-color: rgba(theme-variables.prop-value(on-surface), 0.38),
+
+  $hover-fill-color: $fill-color,
+  $hover-text-color: $color,
+  $hover-border-color: $color,
+
+  $active-fill-color: rgba($color, 0.7),
+  $active-text-color: $fill-color,
+  $active-border-color: $color
+);
 ```

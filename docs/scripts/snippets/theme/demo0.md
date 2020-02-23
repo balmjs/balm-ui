@@ -9,14 +9,22 @@ Vue.use(BalmUI);
 
 Standalone Usage
 
+- Included `theme.css`
+  ```html
+  <!-- build:css css/vendors.css -->
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+  <!-- endbuild -->
+  ```
+- OR
+  ```html
+  <!-- build:css css/vendors.css -->
+  <link rel="stylesheet" href="/node_modules/balm-ui/plugins/theme.css" />
+  <!-- endbuild -->
+  ```
+
 ```js
 import Vue from 'vue';
 import theme from 'balm-ui/plugins/theme';
-
-// (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
-import 'balm-ui/components/core.css'; // (Include 'plugins/theme.css')
-// OR
-import 'balm-ui/plugins/theme.css';
 
 Vue.use(theme);
 ```

@@ -5,7 +5,7 @@ import Vue from 'vue';
 import BalmUIPlus from 'balm-ui/dist/balm-ui-plus';
 
 Vue.use(BalmUIPlus, {
-  // Optional. Overwrite `<ui-autocomplete>` props.
+  // Optional. Overwrite `<ui-autocomplete>` props with default value.
   UiAutocomplete: {
     // some props
   }
@@ -14,16 +14,19 @@ Vue.use(BalmUIPlus, {
 
 Standalone Usage
 
+```html
+<!-- build:css css/vendors.css -->
+<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/textfield.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/autocomplete.css" />
+<!-- endbuild -->
+```
+
 ```js
 import Vue from 'vue';
 import UiAutocomplete from 'balm-ui/components/autocomplete';
 
-// (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
-import 'balm-ui/components/core.css';
-import 'balm-ui/components/textfield.css';
-import 'balm-ui/components/autocomplete.css';
-
-// Optional. Overwrite `<ui-autocomplete>` props.
+// Optional. Overwrite `<ui-autocomplete>` props with default value.
 Vue.use(UiAutocomplete, {
   // some props
 });

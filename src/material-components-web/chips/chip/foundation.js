@@ -35,9 +35,7 @@ var MDCChipFoundation = /** @class */ (function (_super) {
     tslib_1.__extends(MDCChipFoundation, _super);
     function MDCChipFoundation(adapter) {
         var _this = _super.call(this, tslib_1.__assign({}, MDCChipFoundation.defaultAdapter, adapter)) || this;
-        /**
-         * Whether a trailing icon click should immediately trigger exit/removal of the chip.
-         */
+        /** Whether a trailing icon click should immediately trigger exit/removal of the chip. */
         _this.shouldRemoveOnTrailingIconClick_ = true;
         return _this;
     }
@@ -63,6 +61,7 @@ var MDCChipFoundation = /** @class */ (function (_super) {
                 eventTargetHasClass: function () { return false; },
                 focusPrimaryAction: function () { return undefined; },
                 focusTrailingAction: function () { return undefined; },
+                getAttribute: function () { return null; },
                 getCheckmarkBoundingClientRect: function () { return emptyClientRect; },
                 getComputedStyleValue: function () { return ''; },
                 getRootBoundingClientRect: function () { return emptyClientRect; },
@@ -173,7 +172,8 @@ var MDCChipFoundation = /** @class */ (function (_super) {
         }
         if (shouldHandle && widthIsAnimating) {
             this.removeFocus_();
-            this.adapter_.notifyRemoval();
+            var removedAnnouncement = this.adapter_.getAttribute(strings.REMOVED_ANNOUNCEMENT_ATTRIBUTE);
+            this.adapter_.notifyRemoval(removedAnnouncement);
         }
         // Handle a transition end event on the leading icon or checkmark, since the transition end event bubbles.
         if (!opacityIsAnimating) {
@@ -279,6 +279,9 @@ var MDCChipFoundation = /** @class */ (function (_super) {
     };
     MDCChipFoundation.prototype.removeChip_ = function (evt) {
         evt.stopPropagation();
+        // Prevent default behavior for backspace on Firefox which causes a page
+        // navigation.
+        evt.preventDefault();
         if (this.shouldRemoveOnTrailingIconClick_) {
             this.beginExit();
         }

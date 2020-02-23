@@ -1,9 +1,20 @@
+// Color palette
+@forward '@material/theme/color-palette';
+
 // Icon font
-$mdi-font-path: '../fonts';
-$mdi-font-path-with-version: 0;
+@use '../../../src/styles/components/icon/variables' with (
+  $font-path: '../fonts'
+);
 // Base style
-$mdc-theme-primary: #6200ee; // baseline purple, 500 tone
-$mdc-theme-secondary: #018786; // baseline teal, 600 tone
+@use '@material/theme/variables' as theme-variables with (
+  $primary: #6200ee, // baseline purple, 500 tone
+  $secondary: #018786, // baseline teal, 600 tone
+);
+@use '@material/top-app-bar/variables' as top-app-bar-variables;
+
+$primary: theme-variables.$primary;
+$secondary: theme-variables.$secondary;
+$mobile-breakpoint: top-app-bar-variables.$mobile-breakpoint;
 
 $nav-icons: (
   component: 'ic_component_24px.svg',

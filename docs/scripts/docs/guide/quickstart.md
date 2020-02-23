@@ -4,7 +4,7 @@ Good tools make application development quicker and easier to maintain than if y
 
 The [Balm CLI](https://github.com/balmjs/balm-cli) is a command line interface tool that scaffolds out a [BalmJS](https://balmjs.com/) project.
 
-> [BalmJS](https://balmjs.com/)(Recommended) or other toolchains 🚀
+> [BalmJS](https://balmjs.com/)@2.8.0+(Recommended) or other toolchains 🚀
 
 ### 0. Set up the Development Environment
 
@@ -75,16 +75,24 @@ npm install --save balm-ui
 
 ### 3. Config
 
-3.1 CSS (Edit `my-project/app/styles/global/_vendor.scss`)
+Download [Material Design Icons](https://material.balmjs.com/material-icons.zip) and extract to `/path/to/my-project/app/fonts`.
+
+> More BalmUI usages and font without downloading, see [Advanced Usage](https://material.balmjs.com/#/guide/advanced).
+
+### 4. Usage
+
+#### 4.1 Default Usage
+
+Edit `my-project/app/styles/global/_vendor.scss`
 
 ```css
 /* Add BalmUI styles */
-@import 'node_modules/balm-ui/src/styles/balm-ui.scss';
+@use 'balm-ui/src/styles/balm-ui.scss';
 ```
 
 > Recommend to use Sass in `/path/to/your-project/styles/_vendor.scss`, and you can use more advanced style usage of the BalmUI.
 
-3.2 JS (Edit `my-project/app/scripts/main.js`)
+Edit `my-project/app/scripts/main.js`
 
 ```js
 import Vue from 'vue';
@@ -103,13 +111,28 @@ new Vue({
 });
 ```
 
-3.3 Font
+#### 4.2 Standalone Usage
 
-Download [Material Design Icons](https://material.balmjs.com/material-icons.zip) and extract to `/path/to/my-project/app/fonts`.
+Edit `my-project/app/index.html`
 
-> More BalmUI usages and font without downloading, see [Advanced Usage](https://material.balmjs.com/#/guide/advanced).
+```html
+<!-- build:css css/vendors.css -->
+<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/button.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/icon.css" />
+<!-- endbuild -->
+```
 
-### 4. Development and testing
+Edit `my-project/app/scripts/main.js`
+
+```js
+import Vue from 'vue';
+import UiButtonComponents from 'balm-ui/components/button';
+
+Vue.use(UiButtonComponents);
+```
+
+### 5. Development and testing
 
 ```sh
 npm run dev

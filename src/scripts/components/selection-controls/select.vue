@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import { MDCSelect } from '@material/select';
+import { MDCSelect } from '../../../material-components-web/select';
 import UiFloatingLabel from '../form-controls/floating-label';
 import UiNotchedOutline from '../form-controls/notched-outline';
 import typeMixin from '../../mixins/type';

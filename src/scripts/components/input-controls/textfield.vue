@@ -111,7 +111,7 @@
 </template>
 
 <script>
-import { MDCTextField } from '@material/textfield';
+import { MDCTextField } from '../../../material-components-web/textfield';
 import UiFloatingLabel from '../form-controls/floating-label';
 import UiNotchedOutline from '../form-controls/notched-outline';
 import textfieldMixin from '../../mixins/textfield';

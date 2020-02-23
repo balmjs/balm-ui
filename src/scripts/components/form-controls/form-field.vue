@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { MDCFormField } from '@material/form-field';
+import { MDCFormField } from '../../../material-components-web/form-field';
 
 export default {
   name: 'ui-form-field',

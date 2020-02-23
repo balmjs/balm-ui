@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { MDCDrawer } from '@material/drawer';
+import { MDCDrawer } from '../../../material-components-web/drawer';
 import typeMixin from '../../mixins/type';
 import UI_DRAWER from './constants';
 

@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { MDCDialog } from '@material/dialog';
+import { MDCDialog } from '../../../material-components-web/dialog';
 
 // Define dialog constants
 const UI_DIALOG = {

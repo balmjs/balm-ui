@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { MDCSwitch } from '@material/switch';
+import { MDCSwitch } from '../../../material-components-web/switch';
 import elementMixin from '../../mixins/element';
 
 // Define switch constants

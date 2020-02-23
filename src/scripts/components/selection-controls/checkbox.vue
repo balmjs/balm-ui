@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { MDCCheckbox } from '@material/checkbox';
+import { MDCCheckbox } from '../../../material-components-web/checkbox';
 import elementMixin from '../../mixins/element';
 import getType from '../../utils/typeof';
 

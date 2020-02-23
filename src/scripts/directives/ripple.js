@@ -1,5 +1,5 @@
 import autoInit from './register';
-import { MDCRipple } from '@material/ripple';
+import { MDCRipple } from '../../material-components-web/ripple';
 
 // Define ripple constants
 const RIPPLE_COLOR = {

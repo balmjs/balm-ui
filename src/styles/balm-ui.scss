@@ -1,23 +1,23 @@
 /// Basic Styles
 @use './global/vendor';
 /// Components Custom Styles
-@use './components/ui-autocomplete';
-@use './components/ui-card';
+@use './components/autocomplete/ui-autocomplete';
+@use './components/card/ui-card';
 @use './components/ui-file';
 @use './components/ui-form-field';
 @use './components/ui-icon-button';
-@use './components/ui-icon';
-@use './components/ui-pagination';
-@use './components/ui-skeleton';
+@use './components/icon/ui-icon';
+@use './components/pagination/ui-pagination';
+@use './components/skeleton/ui-skeleton';
 @use './components/ui-table';
 @use './components/ui-tabs';
-@use './components/ui-text-divider';
+@use './components/text-divider/ui-text-divider';
 @use './components/ui-datepicker';
-@use './components/ui-rangepicker';
-@use './components/ui-banner';
-@use './components/ui-bottom-navigation';
+@use './components/rangepicker/ui-rangepicker';
+@use './components/banner/ui-banner';
+@use './components/bottom-navigation/ui-bottom-navigation';
 /// Plugins Custom Styles
-@use './plugins/ui-alert';
-@use './plugins/ui-confirm';
+@use './plugins/alert/ui-alert';
+@use './plugins/confirm/ui-confirm';
 /// Directives Custom Styles
 @use './directives/ui-ripple';

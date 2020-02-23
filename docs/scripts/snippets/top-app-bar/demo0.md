@@ -5,7 +5,7 @@ import Vue from 'vue';
 import BalmUI from 'balm-ui';
 
 Vue.use(BalmUI, {
-  // Optional. Overwrite `<ui-top-app-bar>` props.
+  // Optional. Overwrite `<ui-top-app-bar>` props with default value.
   UiTopAppBar: {
     // some props
   }
@@ -14,16 +14,19 @@ Vue.use(BalmUI, {
 
 Standalone Usage
 
+```html
+<!-- build:css css/vendors.css -->
+<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/top-app-bar.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/icon-button.css" />
+<!-- endbuild -->
+```
+
 ```js
 import Vue from 'vue';
 import UiTopAppBar from 'balm-ui/components/top-app-bar';
 
-// (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
-import 'balm-ui/components/core.css';
-import 'balm-ui/components/top-app-bar.css';
-import 'balm-ui/components/icon-button.css';
-
-// Optional. Overwrite `<ui-top-app-bar>` props.
+// Optional. Overwrite `<ui-top-app-bar>` props with default value.
 Vue.use(UiTopAppBar, {
   // some props
 });

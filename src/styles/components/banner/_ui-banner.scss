@@ -1,10 +1,5 @@
 @use '@material/elevation/mixins' as elevation-mixins;
-
-$banner-height: 64px !default;
-$banner-message-padding: 20px 16px 0 !default;
-$banner-actions-padding: 8px 16px !default;
-
-$banner-mobile-breakpoint: 599px !default;
+@use './variables' as ui-banner-variables;
 
 .mdc-banner {
   position: fixed;
@@ -12,17 +7,17 @@ $banner-mobile-breakpoint: 599px !default;
   right: 0;
   left: 0;
   z-index: 4;
-  min-height: $banner-height;
+  min-height: ui-banner-variables.$height;
   background: white;
   @include elevation-mixins.elevation(4);
 }
 
 .mdc-banner__surface {
-  padding: $banner-message-padding;
+  padding: ui-banner-variables.$message-padding;
 }
 
 .mdc-banner__actions {
-  padding: $banner-actions-padding;
+  padding: ui-banner-variables.$actions-padding;
   text-align: right;
 
   .mdc-button {
@@ -33,7 +28,7 @@ $banner-mobile-breakpoint: 599px !default;
   }
 }
 
-@media (max-width: $banner-mobile-breakpoint) {
+@media (max-width: ui-banner-variables.$mobile-breakpoint) {
   .mdc-banner {
     @include elevation-mixins.elevation(1);
   }

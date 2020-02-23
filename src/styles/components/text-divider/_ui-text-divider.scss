@@ -1,6 +1,4 @@
-$text-divider-size: 1px !default;
-$text-divider-horizontal-text-padding: 0.5em 1em !default;
-$text-divider-vertical-text-padding: 1em 0.5em !default;
+@use './variables' as text-divider-variables;
 
 .mdc-text-divider {
   justify-content: space-around;
@@ -36,12 +34,12 @@ $text-divider-vertical-text-padding: 1em 0.5em !default;
     &::before,
     &::after {
       width: 50%;
-      height: $text-divider-size;
+      height: text-divider-variables.$size;
       background-color: currentColor;
     }
 
     & > span {
-      padding: $text-divider-horizontal-text-padding;
+      padding: text-divider-variables.$horizontal-text-padding;
     }
   }
 }
@@ -56,13 +54,13 @@ $text-divider-vertical-text-padding: 1em 0.5em !default;
 
     &::before,
     &::after {
-      width: $text-divider-size;
+      width: text-divider-variables.$size;
       height: 50%;
       background-color: currentColor;
     }
 
     & > span {
-      padding: $text-divider-vertical-text-padding;
+      padding: text-divider-variables.$vertical-text-padding;
     }
   }
 }

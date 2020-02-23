@@ -1,13 +1,4 @@
-@use '@material/theme/variables' as theme-variables;
-
-$autocomplete-outlined-idle-border: rgba(
-  theme-variables.prop-value(on-surface),
-  0.38
-) !default;
-$autocomplete-item-selected-bgcolor: rgba(
-  theme-variables.prop-value(primary),
-  0.54
-) !default;
+@use './variables' as ui-autocomplete-variables;
 
 .mdc-autocomplete {
   .mdc-text-field__ripple {
@@ -63,7 +54,7 @@ $autocomplete-item-selected-bgcolor: rgba(
 
   border-width: 0 1px 1px;
   border-style: solid;
-  border-color: $autocomplete-outlined-idle-border;
+  border-color: ui-autocomplete-variables.$outlined-idle-border;
   background-color: white;
   .mdc-list-item {
     line-height: 30px;
@@ -75,7 +66,7 @@ $autocomplete-item-selected-bgcolor: rgba(
     }
     &.selected {
       color: white;
-      background-color: $autocomplete-item-selected-bgcolor;
+      background-color: ui-autocomplete-variables.$item-selected-bgcolor;
     }
   }
 }

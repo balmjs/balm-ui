@@ -5,7 +5,7 @@ import Vue from 'vue';
 import BalmUI from 'balm-ui';
 
 Vue.use(BalmUI, {
-  // Optional. Overwrite `<ui-grid>` props.
+  // Optional. Overwrite `<ui-grid>` props with default value.
   UiGrid: {
     // some props
   }
@@ -14,16 +14,19 @@ Vue.use(BalmUI, {
 
 Standalone Usage
 
+```html
+<!-- build:css css/vendors.css -->
+<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/grid.css" />
+<!-- endbuild -->
+```
+
 ```js
 import Vue from 'vue';
 import UiGridComponents from 'balm-ui/components/grid';
 
-// (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
-import 'balm-ui/components/core.css';
-import 'balm-ui/components/grid.css';
-
 Vue.use(UiGridComponents, {
-  // Optional. Overwrite `<ui-grid>` props.
+  // Optional. Overwrite `<ui-grid>` props with default value.
   UiGrid: {
     // some props
   }

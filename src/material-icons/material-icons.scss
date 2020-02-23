@@ -1,4 +1,5 @@
-$subdir: 'materialicons';
+@use '../styles/components/icon/variables' as ui-icon-variables;
+
 $font-styles: (
   ('material-icons', 'Material Icons'),
   ('material-icons-outlined', 'Material Icons Outlined'),
@@ -6,8 +7,6 @@ $font-styles: (
   ('material-icons-two-tone', 'Material Icons Two Tone'),
   ('material-icons-sharp', 'Material Icons Sharp')
 );
-$font-path: '../fonts' !default;
-$font-path-with-subdir: 0 !default; // `../fonts` or `../fonts/materialicons`
 
 @each $className, $fontFamily in $font-styles {
   @font-face {
@@ -15,12 +14,15 @@ $font-path-with-subdir: 0 !default; // `../fonts` or `../fonts/materialicons`
     font-style: normal;
     font-weight: 400;
 
-    @if $font-path-with-subdir == 1 {
-      src: url('#{$font-path}/#{$subdir}/#{$className}.woff2') format('woff2'),
-        url('#{$font-path}/#{$subdir}/#{$className}.woff') format('woff');
+    @if ui-icon-variables.$with-subdir == 1 {
+      src: url('#{ui-icon-variables.$font-path}/#{ui-icon-variables.$subdir}/#{$className}.woff2')
+          format('woff2'),
+        url('#{ui-icon-variables.$font-path}/#{ui-icon-variables.$subdir}/#{$className}.woff')
+          format('woff');
     } @else {
-      src: url('#{$font-path}/#{$className}.woff2') format('woff2'),
-        url('#{$font-path}/#{$className}.woff') format('woff');
+      src: url('#{ui-icon-variables.$font-path}/#{$className}.woff2')
+          format('woff2'),
+        url('#{ui-icon-variables.$font-path}/#{$className}.woff') format('woff');
     }
 
     font-display: swap; // [Intervention] Slow network is detected. See https://www.chromestatus.com/feature/5636954674692096 for more details.

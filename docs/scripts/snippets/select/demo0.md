@@ -5,7 +5,7 @@ import Vue from 'vue';
 import BalmUI from 'balm-ui';
 
 Vue.use(BalmUI, {
-  // Optional. Overwrite `<ui-select>` props.
+  // Optional. Overwrite `<ui-select>` props with default value.
   UiSelect: {
     // some props
   }
@@ -14,18 +14,22 @@ Vue.use(BalmUI, {
 
 Standalone Usage
 
+```html
+<!-- build:css css/vendors.css -->
+<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/list.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/menu.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/form-item.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/select.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/icon.css" />
+<!-- endbuild -->
+```
+
 ```js
 import Vue from 'vue';
 import UiSelect from 'balm-ui/components/select';
 
-// (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
-import 'balm-ui/components/core.css';
-import 'balm-ui/components/list.css';
-import 'balm-ui/components/menu.css';
-import 'balm-ui/components/select.css';
-import 'balm-ui/components/form-item.css';
-
-// Optional. Overwrite `<ui-select>` props.
+// Optional. Overwrite `<ui-select>` props with default value.
 Vue.use(UiSelect, {
   // some props
 });

@@ -1,28 +1,5 @@
-@use '@material/theme/variables' as theme-variables;
 @use '@material/shape/mixins' as shape-mixins;
-
-/// Global
-$pagination-height: 32px;
-$pagination-color: theme-variables.$primary !default;
-$pagination-corner-radius: 4px !default;
-/// Default
-$pagination-fill-color: white !default;
-$pagination-text-color: rgba(
-  theme-variables.prop-value(on-surface),
-  0.87
-) !default;
-$pagination-border-color: rgba(
-  theme-variables.prop-value(on-surface),
-  0.38
-) !default;
-/// Hover
-$pagination-hover-fill-color: $pagination-fill-color !default;
-$pagination-hover-text-color: $pagination-color !default;
-$pagination-hover-border-color: $pagination-color !default;
-/// Activated
-$pagination-active-fill-color: rgba($pagination-color, 0.7) !default;
-$pagination-active-text-color: $pagination-fill-color !default;
-$pagination-active-border-color: $pagination-color !default;
+@use './variables' as ui-pagination-variables;
 
 .mdc-pagination {
   display: flex;
@@ -68,16 +45,16 @@ $pagination-active-border-color: $pagination-color !default;
 .mdc-pagination__page-item-ellipsis {
   display: inline-block;
   min-width: 32px;
-  height: $pagination-height;
+  height: ui-pagination-variables.$height;
   line-height: 30px;
   margin-right: 8px;
   text-align: center;
   vertical-align: middle;
   outline: none;
   user-select: none;
-  border: 1px solid $pagination-border-color;
-  background-color: $pagination-fill-color;
-  color: $pagination-text-color;
+  border: 1px solid ui-pagination-variables.$border-color;
+  background-color: ui-pagination-variables.$fill-color;
+  color: ui-pagination-variables.$text-color;
 }
 
 .mdc-pagination__previous,
@@ -92,7 +69,7 @@ $pagination-active-border-color: $pagination-color !default;
     line-height: inherit;
     font-size: inherit;
     outline: none;
-    color: $pagination-text-color;
+    color: ui-pagination-variables.$text-color;
   }
 }
 
@@ -101,32 +78,32 @@ $pagination-active-border-color: $pagination-color !default;
 .mdc-pagination__page-item {
   cursor: pointer;
   transition: all 0.3s;
-  @include shape-mixins.radius($pagination-corner-radius);
+  @include shape-mixins.radius(ui-pagination-variables.$corner-radius);
 
   &:hover {
-    border-color: $pagination-hover-border-color;
-    background-color: $pagination-hover-fill-color;
-    color: $pagination-hover-text-color;
+    border-color: ui-pagination-variables.$hover-border-color;
+    background-color: ui-pagination-variables.$hover-fill-color;
+    color: ui-pagination-variables.$hover-text-color;
     a {
-      color: $pagination-hover-text-color;
+      color: ui-pagination-variables.$hover-text-color;
     }
   }
 }
 
 .mdc-pagination__page-item--active {
-  border-color: $pagination-active-border-color;
-  background-color: $pagination-active-fill-color;
+  border-color: ui-pagination-variables.$active-border-color;
+  background-color: ui-pagination-variables.$active-fill-color;
   cursor: default;
 
   a {
-    color: $pagination-active-text-color;
+    color: ui-pagination-variables.$active-text-color;
   }
 
   &:hover {
-    border-color: $pagination-active-border-color;
-    background-color: $pagination-active-fill-color;
+    border-color: ui-pagination-variables.$active-border-color;
+    background-color: ui-pagination-variables.$active-fill-color;
     a {
-      color: $pagination-active-text-color;
+      color: ui-pagination-variables.$active-text-color;
     }
   }
 }
@@ -134,8 +111,8 @@ $pagination-active-border-color: $pagination-color !default;
 .mdc-pagination__page-item--disabled {
   cursor: not-allowed;
   &:hover {
-    border: 1px solid $pagination-border-color;
-    color: $pagination-text-color;
+    border: 1px solid ui-pagination-variables.$border-color;
+    color: ui-pagination-variables.$text-color;
   }
 }
 
@@ -149,11 +126,11 @@ $pagination-active-border-color: $pagination-color !default;
     transition: all 0.3s;
     text-indent: 3px;
 
-    color: $pagination-text-color;
+    color: ui-pagination-variables.$text-color;
     border: 1px solid #d9d9d9;
     &:hover,
     &:focus {
-      border-color: $pagination-hover-border-color;
+      border-color: ui-pagination-variables.$hover-border-color;
     }
     &:focus {
       outline: 0;
@@ -167,11 +144,11 @@ $pagination-active-border-color: $pagination-color !default;
     height: 24px;
     padding: 0;
 
-    color: $pagination-text-color;
+    color: ui-pagination-variables.$text-color;
     border: 1px solid #d9d9d9;
     &:hover {
-      color: $pagination-hover-text-color;
-      border-color: $pagination-hover-border-color;
+      color: ui-pagination-variables.$hover-text-color;
+      border-color: ui-pagination-variables.$hover-border-color;
       background: none;
     }
   }
@@ -184,7 +161,7 @@ $pagination-active-border-color: $pagination-color !default;
   }
   .mdc-select__anchor,
   .mdc-select__selected-text {
-    height: $pagination-height;
+    height: ui-pagination-variables.$height;
   }
   .mdc-select__dropdown-icon {
     width: 18px;

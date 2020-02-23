@@ -79,7 +79,7 @@ npm install --save balm-ui
 
 ```css
 /* Add BalmUI styles */
-@import 'node_modules/balm-ui/src/styles/balm-ui.scss';
+@use 'balm-ui/src/styles/balm-ui.scss';
 ```
 
 > Recommend to use Sass in `/path/to/your-project/styles/_vendor.scss`, and you can use more advanced style usage of the BalmUI.

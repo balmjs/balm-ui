@@ -9,4 +9,8 @@ $mdc-card-outline-color: mix(
   12%
 );
 $mdc-card-outline-width: 1px;
+
+@use 'balm-ui/src/styles/components/card/variables' with (
+  $text-wrapper-padding: 16px
+);
 ```

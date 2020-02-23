@@ -5,11 +5,11 @@ import Vue from 'vue';
 import BalmUI from 'balm-ui';
 
 Vue.use(BalmUI, {
-  // Optional. Overwrite `<ui-image-list>` props.
+  // Optional. Overwrite `<ui-image-list>` props with default value.
   UiImageList: {
     // some props
   },
-  // Optional. Overwrite `<ui-image-item>` props.
+  // Optional. Overwrite `<ui-image-item>` props with default value.
   UiImageItem: {
     // some props
   }
@@ -18,20 +18,23 @@ Vue.use(BalmUI, {
 
 Standalone Usage
 
+```html
+<!-- build:css css/vendors.css -->
+<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/image-list.css" />
+<!-- endbuild -->
+```
+
 ```js
 import Vue from 'vue';
 import UiImageListComponents from 'balm-ui/components/image-list';
 
-// (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
-import 'balm-ui/components/core.css';
-import 'balm-ui/components/image-list.css';
-
 Vue.use(UiImageListComponents, {
-  // Optional. Overwrite `<ui-image-list>` props.
+  // Optional. Overwrite `<ui-image-list>` props with default value.
   UiImageList: {
     // some props
   },
-  // Optional. Overwrite `<ui-image-item>` props.
+  // Optional. Overwrite `<ui-image-item>` props with default value.
   UiImageItem: {
     // some props
   }

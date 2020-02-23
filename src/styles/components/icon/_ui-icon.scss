@@ -1,8 +1,4 @@
-$icon-sizes: 18 24 36 48 !default;
-$icon-color-dark: rgba(0, 0, 0, 0.54) !default;
-$icon-color-dark-inactive: rgba(0, 0, 0, 0.26) !default;
-$icon-color-light: rgba(255, 255, 255, 1) !default;
-$icon-color-light-inactive: rgba(255, 255, 255, 0.3) !default;
+@use './variables' as ui-icon-variables;
 
 .material-icons,
 .material-icons-outlined,
@@ -10,7 +6,7 @@ $icon-color-light-inactive: rgba(255, 255, 255, 0.3) !default;
 .material-icons-two-tone,
 .material-icons-sharp {
   /* Rules for sizing the icon. */
-  @each $size in $icon-sizes {
+  @each $size in ui-icon-variables.$sizes {
     &.md-#{$size} {
       font-size: #{$size}px;
 
@@ -20,16 +16,16 @@ $icon-color-light-inactive: rgba(255, 255, 255, 0.3) !default;
   }
   /* Rules for using icons as black on a light background. */
   &.md-dark {
-    color: $icon-color-dark;
+    color: ui-icon-variables.$dark;
     &.md-inactive {
-      color: $icon-color-dark-inactive;
+      color: ui-icon-variables.$dark-inactive;
     }
   }
   /* Rules for using icons as white on a dark background. */
   &.md-light {
-    color: $icon-color-light;
+    color: ui-icon-variables.$light;
     &.md-inactive {
-      color: $icon-color-light-inactive;
+      color: ui-icon-variables.$light-inactive;
     }
   }
 }

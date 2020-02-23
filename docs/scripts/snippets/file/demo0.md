@@ -5,7 +5,7 @@ import Vue from 'vue';
 import BalmUIPlus from 'balm-ui/dist/balm-ui-plus';
 
 Vue.use(BalmUIPlus, {
-  // Optional. Overwrite `<ui-file>` props.
+  // Optional. Overwrite `<ui-file>` props with default value.
   UiFile: {
     // some props
   }
@@ -14,16 +14,19 @@ Vue.use(BalmUIPlus, {
 
 Standalone Usage
 
+```html
+<!-- build:css css/vendors.css -->
+<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/button.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/file.css" />
+<!-- endbuild -->
+```
+
 ```js
 import Vue from 'vue';
 import UiFile from 'balm-ui/components/file';
 
-// (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
-import 'balm-ui/components/core.css';
-import 'balm-ui/components/button.css';
-import 'balm-ui/components/file.css';
-
-// Optional. Overwrite `<ui-file>` props.
+// Optional. Overwrite `<ui-file>` props with default value.
 Vue.use(UiFile, {
   // some props
 });

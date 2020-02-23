@@ -5,7 +5,7 @@ import Vue from 'vue';
 import BalmUI from 'balm-ui';
 
 Vue.use(BalmUI, {
-  // Optional. Overwrite `<ui-slider>` props.
+  // Optional. Overwrite `<ui-slider>` props with default value.
   UiSlider: {
     // some props
   }
@@ -14,15 +14,18 @@ Vue.use(BalmUI, {
 
 Standalone Usage
 
+```html
+<!-- build:css css/vendors.css -->
+<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/slider.css" />
+<!-- endbuild -->
+```
+
 ```js
 import Vue from 'vue';
 import UiSlider from 'balm-ui/components/slider';
 
-// (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
-import 'balm-ui/components/core.css';
-import 'balm-ui/components/slider.css';
-
-// Optional. Overwrite `<ui-slider>` props.
+// Optional. Overwrite `<ui-slider>` props with default value.
 Vue.use(UiSlider, {
   // some props
 });

@@ -23,7 +23,7 @@ Edit `/path/to/my-project/app/styles/global/_vendor.scss` (manage sass entry fil
 
 ```css
 /* Add BalmUI styles */
-@import 'node_modules/balm-ui/src/styles/balm-ui.scss';
+@use 'balm-ui/src/styles/balm-ui.scss';
 ```
 
 Then, you can overwrite or redefine UI styles by editing `/path/to/my-project/app/styles/global/_var.scss`. (See components APIs)

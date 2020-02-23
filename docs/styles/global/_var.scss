@@ -2,7 +2,7 @@
 @forward '@material/theme/color-palette';
 
 // Icon font
-@use '../../../src/material-icons/material-icons.scss' with (
+@use '../../../src/styles/components/icon/variables' with (
   $font-path: '../fonts'
 );
 // Base style

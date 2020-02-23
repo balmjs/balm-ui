@@ -5,7 +5,7 @@ import Vue from 'vue';
 import BalmUI from 'balm-ui';
 
 Vue.use(BalmUI, {
-  // Optional. Overwrite `<ui-textfield>` props.
+  // Optional. Overwrite `<ui-textfield>` props with default value.
   UiTextfield: {
     // some props
   }
@@ -14,18 +14,21 @@ Vue.use(BalmUI, {
 
 Standalone Usage
 
+```html
+<!-- build:css css/vendors.css -->
+<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/form-item.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/textfield.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/icon.css" />
+<!-- endbuild -->
+```
+
 ```js
 import Vue from 'vue';
 import UiTextfieldComponents from 'balm-ui/components/textfield';
 
-// (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
-import 'balm-ui/components/core.css';
-import 'balm-ui/components/textfield.css';
-import 'balm-ui/components/form-item.css';
-import 'balm-ui/components/icon.css'; // Optional
-
 Vue.use(UiTextfieldComponents, {
-  // Optional. Overwrite `<ui-textfield>` props.
+  // Optional. Overwrite `<ui-textfield>` props with default value.
   UiTextfield: {
     // some props
   }

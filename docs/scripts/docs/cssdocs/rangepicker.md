@@ -1,5 +1,7 @@
 ```css
-$mdc-rangepicker-separator-padding: 10px;
+@use 'balm-ui/src/styles/components/rangepicker/variables' with (
+  $separator-padding: 10px,
 
-$mdc-rangepicker-mobile-breakpoint: 599px;
+  $mobile-breakpoint: 599px
+);
 ```

@@ -1,0 +1,10 @@
+$subdir: 'materialicons';
+
+$font-path: '../fonts' !default;
+$with-subdir: 0 !default; // `../fonts` or `../fonts/materialicons`
+
+$sizes: 18 24 36 48 !default;
+$dark: rgba(0, 0, 0, 0.54) !default;
+$dark-inactive: rgba(0, 0, 0, 0.26) !default;
+$light: rgba(255, 255, 255, 1) !default;
+$light-inactive: rgba(255, 255, 255, 0.3) !default;

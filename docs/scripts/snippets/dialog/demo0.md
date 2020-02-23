@@ -5,11 +5,11 @@ import Vue from 'vue';
 import BalmUI from 'balm-ui';
 
 Vue.use(BalmUI, {
-  // Optional. Overwrite `<ui-dialog>` props.
+  // Optional. Overwrite `<ui-dialog>` props with default value.
   UiDialog: {
     // some props
   },
-  // Optional. Overwrite `<ui-dialog-actions>` props.
+  // Optional. Overwrite `<ui-dialog-actions>` props with default value.
   UiDialogActions: {
     // some props
   }
@@ -18,20 +18,23 @@ Vue.use(BalmUI, {
 
 Standalone Usage
 
+```html
+<!-- build:css css/vendors.css -->
+<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/dialog.css" />
+<!-- endbuild -->
+```
+
 ```js
 import Vue from 'vue';
 import UiDialogComponents from 'balm-ui/components/dialog';
 
-// (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
-import 'balm-ui/components/core.css';
-import 'balm-ui/components/dialog.css';
-
 Vue.use(UiDialogComponents, {
-  // Optional. Overwrite `<ui-dialog>` props.
+  // Optional. Overwrite `<ui-dialog>` props with default value.
   UiDialog: {
     // some props
   },
-  // Optional. Overwrite `<ui-dialog-actions>` props.
+  // Optional. Overwrite `<ui-dialog-actions>` props with default value.
   UiDialogActions: {
     // some props
   }

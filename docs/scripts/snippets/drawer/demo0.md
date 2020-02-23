@@ -9,17 +9,17 @@ Vue.use(BalmUI);
 
 Standalone Usage
 
+```html
+<!-- build:css css/vendors.css -->
+<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/drawer.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/list.css" />
+<!-- endbuild -->
+```
+
 ```js
 import Vue from 'vue';
-import UiTopAppBar from 'balm-ui/components/top-app-bar';
 import UiDrawerComponents from 'balm-ui/components/drawer';
 
-// (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
-import 'balm-ui/components/core.css';
-import 'balm-ui/components/top-app-bar.css';
-import 'balm-ui/components/drawer.css';
-import 'balm-ui/components/list.css';
-
-Vue.use(UiTopAppBar);
 Vue.use(UiDrawerComponents);
 ```

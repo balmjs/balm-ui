@@ -1,0 +1,104 @@
+//
+// Copyright 2017 Google Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+//
+
+@use "sass:color";
+@use "../density/variables" as density-variables;
+@use "../floating-label/variables" as floating-label-variables;
+@use "../notched-outline/variables" as notched-outline-variables;
+@use "../theme/variables" as theme-variables;
+
+///
+/// Returns outlined text field floating label position for given height.
+///
+/// @todo Instead of adjusting `$positionY` with label box height that might change based on floating label font size
+///     wrap label in a child element to apply `transitionY(-50%)` to automatically offset based on box height.
+///
+@function get-outlined-label-position-y($text-field-height) {
+  @return $text-field-height / 2 + notched-outline-variables.$label-box-height / 2;
+}
+
+$error: error !default;
+$fullwidth-bottom-line-color: rgba(theme-variables.prop-value(on-surface), .12) !default;
+$disabled-border: rgba(theme-variables.prop-value(on-surface), .06) !default;
+$disabled-icon: rgba(theme-variables.prop-value(on-surface), .3) !default;
+$bottom-line-hover: rgba(theme-variables.prop-value(on-surface), .87) !default;
+$bottom-line-idle: rgba(theme-variables.prop-value(on-surface), .42) !default;
+$label: rgba(theme-variables.prop-value(on-surface), .6) !default;
+
+$ink-color: rgba(theme-variables.prop-value(on-surface), .87) !default;
+$helper-text-color: rgba(theme-variables.prop-value(on-surface), .6) !default;
+$icon-color: rgba(theme-variables.prop-value(on-surface), .54) !default;
+$focused-label-color: rgba(theme-variables.prop-value(primary), .87) !default;
+$placeholder-ink-color: rgba(theme-variables.prop-value(on-surface), .54) !default;
+
+$disabled-label-color: rgba(theme-variables.prop-value(on-surface), .38) !default;
+$disabled-ink-color: rgba(theme-variables.prop-value(on-surface), .38) !default;
+$disabled-placeholder-ink-color: rgba(theme-variables.prop-value(on-surface), .38) !default;
+$disabled-helper-text-color: rgba(theme-variables.prop-value(on-surface), .38) !default;
+
+$background: color.mix(theme-variables.prop-value(on-surface), theme-variables.prop-value(surface), 4%) !default;
+$disabled-background: color.mix(theme-variables.prop-value(on-surface), theme-variables.prop-value(surface), 2%) !default;
+$secondary-text: rgba(theme-variables.prop-value(on-surface), .6) !default;
+
+$outlined-idle-border: rgba(theme-variables.prop-value(on-surface), .38) !default;
+$outlined-disabled-border: rgba(theme-variables.prop-value(on-surface), .06) !default;
+$outlined-hover-border: rgba(theme-variables.prop-value(on-surface), .87) !default;
+
+$textarea-border: rgba(theme-variables.prop-value(on-surface), .73) !default;
+$textarea-background: rgba(theme-variables.prop-value(surface), 1) !default;
+$textarea-disabled-border-color: rgba(theme-variables.prop-value(on-surface), .26) !default;
+// cannot be transparent because multiline textarea input
+// will make text unreadable
+$textarea-disabled-background: rgba(249, 249, 249, 1) !default;
+
+$ripple-target: '.mdc-text-field__ripple';
+$outlined-stroke-width: 2px !default;
+$height: 56px !default;
+$minimum-height: 40px !default;
+$minimum-height-for-filled-label: 52px !default;
+$maximum-height: $height !default;
+$density-scale: density-variables.$default-scale !default;
+$density-config: (
+  height: (
+    default: $height,
+    maximum: $maximum-height,
+    minimum: $minimum-height,
+  ),
+) !default;
+$label-position-y: floating-label-variables.$position-y !default;
+$label-offset: 16px !default;
+$dense-label-position-y: 70% !default;
+$dense-label-scale: .8 !default;
+$outlined-label-position-y:
+    get-outlined-label-position-y($height) !default;
+$outlined-dense-label-position-y: 120% !default;
+$outlined-with-leading-icon-label-position-x: 0 !default;
+$outlined-dense-with-leading-icon-label-position-x: 21px !default;
+$textarea-label-position-y: 130% !default;
+$helper-line-padding: 16px !default;
+$input-padding: 16px !default;
+$input-padding-top: 20px !default;
+$input-padding-bottom: 6px !default;
+$outlined-input-padding-top: 12px !default;
+$outlined-input-padding-bottom: 14px !default;
+$input-border-bottom: 1px !default;
+// Note that the scale factor is an eyeballed approximation of what's shown in the mocks.

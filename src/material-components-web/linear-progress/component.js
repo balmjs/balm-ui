@@ -1,0 +1,92 @@
+/**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+import * as tslib_1 from "tslib";
+import { MDCComponent } from '../base/component';
+import { MDCLinearProgressFoundation } from './foundation';
+var MDCLinearProgress = /** @class */ (function (_super) {
+    tslib_1.__extends(MDCLinearProgress, _super);
+    function MDCLinearProgress() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MDCLinearProgress.attachTo = function (root) {
+        return new MDCLinearProgress(root);
+    };
+    Object.defineProperty(MDCLinearProgress.prototype, "determinate", {
+        set: function (value) {
+            this.foundation_.setDeterminate(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCLinearProgress.prototype, "progress", {
+        set: function (value) {
+            this.foundation_.setProgress(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCLinearProgress.prototype, "buffer", {
+        set: function (value) {
+            this.foundation_.setBuffer(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCLinearProgress.prototype, "reverse", {
+        set: function (value) {
+            this.foundation_.setReverse(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCLinearProgress.prototype.open = function () {
+        this.foundation_.open();
+    };
+    MDCLinearProgress.prototype.close = function () {
+        this.foundation_.close();
+    };
+    MDCLinearProgress.prototype.getDefaultFoundation = function () {
+        var _this = this;
+        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
+        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        var adapter = {
+            addClass: function (className) { return _this.root_.classList.add(className); },
+            forceLayout: function () { return _this.root_.offsetWidth; },
+            getBuffer: function () { return _this.root_.querySelector(MDCLinearProgressFoundation.strings.BUFFER_SELECTOR); },
+            getPrimaryBar: function () { return _this.root_.querySelector(MDCLinearProgressFoundation.strings.PRIMARY_BAR_SELECTOR); },
+            hasClass: function (className) { return _this.root_.classList.contains(className); },
+            removeAttribute: function (attributeName) {
+                _this.root_.removeAttribute(attributeName);
+            },
+            removeClass: function (className) { return _this.root_.classList.remove(className); },
+            setAttribute: function (attributeName, value) {
+                _this.root_.setAttribute(attributeName, value);
+            },
+            setStyle: function (el, styleProperty, value) { return el.style.setProperty(styleProperty, value); },
+        };
+        return new MDCLinearProgressFoundation(adapter);
+    };
+    return MDCLinearProgress;
+}(MDCComponent));
+export { MDCLinearProgress };
+//# sourceMappingURL=component.js.map

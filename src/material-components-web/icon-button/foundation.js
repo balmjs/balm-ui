@@ -1,0 +1,83 @@
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+import * as tslib_1 from "tslib";
+import { MDCFoundation } from '../base/foundation';
+import { cssClasses, strings } from './constants';
+var MDCIconButtonToggleFoundation = /** @class */ (function (_super) {
+    tslib_1.__extends(MDCIconButtonToggleFoundation, _super);
+    function MDCIconButtonToggleFoundation(adapter) {
+        return _super.call(this, tslib_1.__assign({}, MDCIconButtonToggleFoundation.defaultAdapter, adapter)) || this;
+    }
+    Object.defineProperty(MDCIconButtonToggleFoundation, "cssClasses", {
+        get: function () {
+            return cssClasses;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCIconButtonToggleFoundation, "strings", {
+        get: function () {
+            return strings;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCIconButtonToggleFoundation, "defaultAdapter", {
+        get: function () {
+            return {
+                addClass: function () { return undefined; },
+                hasClass: function () { return false; },
+                notifyChange: function () { return undefined; },
+                removeClass: function () { return undefined; },
+                setAttr: function () { return undefined; },
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MDCIconButtonToggleFoundation.prototype.init = function () {
+        this.adapter_.setAttr(strings.ARIA_PRESSED, "" + this.isOn());
+    };
+    MDCIconButtonToggleFoundation.prototype.handleClick = function () {
+        this.toggle();
+        this.adapter_.notifyChange({ isOn: this.isOn() });
+    };
+    MDCIconButtonToggleFoundation.prototype.isOn = function () {
+        return this.adapter_.hasClass(cssClasses.ICON_BUTTON_ON);
+    };
+    MDCIconButtonToggleFoundation.prototype.toggle = function (isOn) {
+        if (isOn === void 0) { isOn = !this.isOn(); }
+        if (isOn) {
+            this.adapter_.addClass(cssClasses.ICON_BUTTON_ON);
+        }
+        else {
+            this.adapter_.removeClass(cssClasses.ICON_BUTTON_ON);
+        }
+        this.adapter_.setAttr(strings.ARIA_PRESSED, "" + isOn);
+    };
+    return MDCIconButtonToggleFoundation;
+}(MDCFoundation));
+export { MDCIconButtonToggleFoundation };
+// tslint:disable-next-line:no-default-export Needed for backward compatibility with MDC Web v0.44.0 and earlier.
+export default MDCIconButtonToggleFoundation;
+//# sourceMappingURL=foundation.js.map

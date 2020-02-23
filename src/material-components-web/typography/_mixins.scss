@@ -1,0 +1,119 @@
+//
+// Copyright 2017 Google Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+//
+
+@use "sass:list";
+@use "sass:map";
+@use "../feature-targeting/functions";
+@use "../feature-targeting/mixins";
+@use "./variables";
+
+@mixin core-styles($query: functions.all()) {
+  .mdc-typography {
+    @include base($query: $query);
+  }
+
+  @each $style in map.keys(variables.$styles) {
+    .mdc-typography--#{$style} {
+      @include typography($style, $query: $query);
+    }
+  }
+}
+
+@mixin base($query: functions.all()) {
+  $feat-typography: functions.create-target($query, typography);
+
+  @include mixins.targets($feat-typography) {
+    @each $key, $value in variables.$base {
+      #{$key}: $value;
+    }
+  }
+}
+
+@mixin typography($style, $query: functions.all(), $exclude-props: ()) {
+  $feat-typography: functions.create-target($query, typography);
+  $style-props: map.get(variables.$styles, $style);
+
+  @if not map.has-key(variables.$styles, $style) {
+    @error "Invalid style specified! #{$style} doesn't exist. Choose one of #{map.keys(variables.$styles)}";
+  }
+
+  @include mixins.targets($feat-typography) {
+    @each $key, $value in $style-props {
+      @if list.index($exclude-props, $key) == null {
+        #{$key}: $value;
+      }
+    }
+  }
+}
+
+// Element must be `display: block` or `display: inline-block` for this to work.
+@mixin overflow-ellipsis($query: functions.all()) {
+  $feat-structure: functions.create-target($query, structure);
+
+  @include mixins.targets($feat-structure) {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+@mixin baseline-top($distance, $query: functions.all()) {
+  $feat-structure: functions.create-target($query, structure);
+
+  @include mixins.targets($feat-structure) {
+    display: block;
+    margin-top: 0;
+    /* @alternate */
+    line-height: normal;
+  }
+
+  &::before {
+    @include mixins.targets($feat-structure) {
+      @include baseline-strut_($distance);
+
+      vertical-align: 0;
+    }
+  }
+}
+
+@mixin baseline-bottom($distance, $query: functions.all()) {
+  $feat-structure: functions.create-target($query, structure);
+
+  @include mixins.targets($feat-structure) {
+    margin-bottom: -1 * $distance;
+  }
+
+  &::after {
+    @include mixins.targets($feat-structure) {
+      @include baseline-strut_($distance);
+
+      vertical-align: -1 * $distance;
+    }
+  }
+}
+
+@mixin baseline-strut_($distance) {
+  display: inline-block;
+  width: 0;
+  height: $distance;
+  content: "";
+}

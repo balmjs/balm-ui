@@ -53,7 +53,7 @@ balm.go(mix => {
         );
         mix.remove([
           `${constants.DEV_SOURCE.mdc}/${item}/dist`,
-          `${constants.DEV_SOURCE.mdc}/${item}/node_modules`
+          `${constants.DEV_SOURCE.mdc}/${item}/test`
         ]);
       });
 

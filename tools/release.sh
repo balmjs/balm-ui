@@ -1,2 +1,2 @@
 npm run prod
-npm publish --tag next
+npm publish

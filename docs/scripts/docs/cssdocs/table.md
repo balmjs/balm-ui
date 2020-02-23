@@ -1,39 +1,30 @@
 ```css
-$mdc-data-table-fill-color: surface;
-$mdc-data-table-header-row-fill-color: inherit;
-$mdc-data-table-row-fill-color: inherit;
-$mdc-data-table-selected-row-fill-color: rgba(
-  mdc-theme-prop-value(primary),
-  0.04
+@use '@material/data-table/variables' with (
+  $fill-color: surface,
+  $header-row-fill-color: inherit,
+  $row-fill-color: inherit,
+  $selected-row-fill-color: rgba(theme-variables.prop-value(primary), .04),
+
+  $checked-icon-color: primary,
+  $divider-color: rgba(theme-variables.prop-value(on-surface), .12),
+  $divider-size: 1px,
+  $row-hover-fill-color: rgba(theme-variables.prop-value(on-surface), .04),
+  $checkbox-touch-dimension: 48px,
+
+  $header-row-text-color: rgba(theme-variables.prop-value(on-surface), .87),
+  $row-text-color: rgba(theme-variables.prop-value(on-surface), .87),
+
+  $shape-radius: medium,
+  $stroke-size: 1px,
+  $stroke-color: rgba(theme-variables.prop-value(on-surface), .12),
+
+  $cell-height: 52px,
+  $header-cell-height: get-header-cell-height($cell-height),
+  $cell-leading-padding: 16px,
+  $cell-trailing-padding: 16px,
+
+  $minimum-cell-height: 36px,
+  $maximum-cell-height: $cell-height,
+  $default-density-scale: density-variables.$default-scale
 );
-
-$mdc-data-table-checked-icon-color: primary;
-$mdc-data-table-divider-color: rgba(mdc-theme-prop-value(on-surface), 0.12);
-$mdc-data-table-divider-size: 1px;
-$mdc-data-table-row-hover-fill-color: rgba(
-  mdc-theme-prop-value(on-surface),
-  0.04
-);
-$mdc-data-table-checkbox-touch-dimension: 48px;
-
-$mdc-data-table-header-row-text-color: rgba(
-  mdc-theme-prop-value(on-surface),
-  0.87
-);
-$mdc-data-table-row-text-color: rgba(mdc-theme-prop-value(on-surface), 0.87);
-
-$mdc-data-table-shape-radius: medium;
-$mdc-data-table-stroke-size: 1px;
-$mdc-data-table-stroke-color: rgba(mdc-theme-prop-value(on-surface), 0.12);
-
-$mdc-data-table-cell-height: 52px;
-$mdc-data-table-header-cell-height: mdc-data-table-get-header-cell-height(
-  $mdc-data-table-cell-height
-);
-$mdc-data-table-cell-leading-padding: 16px;
-$mdc-data-table-cell-trailing-padding: 16px;
-
-$mdc-data-table-minimum-cell-height: 36px;
-$mdc-data-table-maximum-cell-height: $mdc-data-table-cell-height;
-$mdc-data-table-default-density-scale: $mdc-density-default-scale;
 ```

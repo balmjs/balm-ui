@@ -1,19 +1,21 @@
 ```css
-$mdc-dialog-scrim-color: on-surface;
-$mdc-dialog-title-ink-color: on-surface;
-$mdc-dialog-content-ink-color: on-surface;
-$mdc-dialog-scroll-divider-color: on-surface;
+@use '@material/dialog/variables' with (
+  $scrim-color: on-surface,
+  $title-ink-color: on-surface,
+  $content-ink-color: on-surface,
+  $scroll-divider-color: on-surface,
 
-$mdc-dialog-scrim-opacity: 0.32;
-$mdc-dialog-title-ink-opacity: 0.87;
-$mdc-dialog-content-ink-opacity: 0.6;
-$mdc-dialog-scroll-divider-opacity: 0.12;
+  $scrim-opacity: .32,
+  $title-ink-opacity: .87,
+  $content-ink-opacity: .6,
+  $scroll-divider-opacity: .12,
 
-$mdc-dialog-min-width: 280px;
-$mdc-dialog-max-width: 560px;
-$mdc-dialog-margin: 16px;
-$mdc-dialog-title-bottom-padding: 9px;
-$mdc-dialog-actions-padding: 8px;
+  $min-width: 280px,
+  $max-width: 560px,
+  $margin: 16px,
+  $title-bottom-padding: 9px,
+  $actions-padding: 8px,
 
-$mdc-dialog-z-index: 7;
+  $z-index: 7
+);
 ```

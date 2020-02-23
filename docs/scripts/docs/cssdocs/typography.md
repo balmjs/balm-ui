@@ -1,3 +1,5 @@
 ```css
-$mdc-typography-font-family: Roboto, sans-serif;
+@use '@material/typography/variables' with (
+  $font-family: string.unquote("Roboto, sans-serif")
+);
 ```

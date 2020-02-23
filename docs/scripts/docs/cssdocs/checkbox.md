@@ -1,37 +1,30 @@
 ```css
-$mdc-checkbox-mark-color: mdc-theme-prop-value(on-primary);
-$mdc-checkbox-border-color: rgba(mdc-theme-prop-value(on-surface), 0.54);
-$mdc-checkbox-disabled-color: rgba(mdc-theme-prop-value(on-surface), 0.26);
-$mdc-checkbox-baseline-theme-color: secondary;
+@use '@material/checkbox/variables' with (
+  $mark-color: theme-variables.prop-value(on-primary),
+  $border-color: rgba(theme-variables.prop-value(on-surface), .54),
+  $disabled-color: rgba(theme-variables.prop-value(on-surface), .38),
+  $baseline-theme-color: secondary,
 
-$mdc-checkbox-touch-area: 40px;
-$mdc-checkbox-size: 18px;
-$mdc-checkbox-mark-stroke-size: 2/15 * $mdc-checkbox-size;
-$mdc-checkbox-border-width: 2px;
-$mdc-checkbox-transition-duration: 90ms;
-$mdc-checkbox-item-spacing: 4px;
-$mdc-checkbox-focus-indicator-opacity: map-get(
-  $mdc-ripple-dark-ink-opacities,
-  focus
-);
+  $ripple-size: 40px,
+  $icon-size: 18px,
+  $mark-stroke-size: 2 / 15 * $icon-size,
+  $border-width: 2px,
+  $transition-duration: 90ms,
+  $item-spacing: 4px,
+  $focus-indicator-opacity: map.get(ripple-variables.$dark-ink-opacities, focus),
 
-$mdc-checkbox-minimum-size: 28px;
-$mdc-checkbox-maximum-size: $mdc-checkbox-ripple-size;
-$mdc-checkbox-density-scale: $mdc-density-default-scale;
-$mdc-checkbox-density-config: (
-  size: (
-    minimum: $mdc-checkbox-minimum-size,
-    default: $mdc-checkbox-ripple-size,
-    maximum: $mdc-checkbox-maximum-size
-  )
-);
+  $minimum-size: 28px,
+  $maximum-size: $ripple-size,
+  $density-scale: density-variables.$default-scale,
+  $density-config: (
+    size: (
+      minimum: $minimum-size,
+      default: $ripple-size,
+      maximum: $maximum-size,
+    ),
+  ),
 
-/* Manual calculation done on SVG */
-$mdc-checkbox-mark-path-length_: 29.7833385;
-$mdc-checkbox-indeterminate-checked-easing-function_: cubic-bezier(
-  0.14,
-  0,
-  0,
-  1
+  $mark-path-length_: 29.7833385,
+  $indeterminate-checked-easing-function_: cubic-bezier(.14, 0, 0, 1)
 );
 ```

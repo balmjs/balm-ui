@@ -1,14 +1,18 @@
 ```css
-$mdc-elevation-baseline-color: black;
-$mdc-elevation-umbra-opacity: 0.2;
-$mdc-elevation-penumbra-opacity: 0.14;
-$mdc-elevation-ambient-opacity: 0.12;
+@use '@material/elevation/variables' with (
+  $baseline-color: black,
+  $umbra-opacity: .2,
+  $penumbra-opacity: .14,
+  $ambient-opacity: .12,
 
-/* The css property used for elevation. In most cases this should not be changed. It is exposed
-   as a variable for abstraction / easy use when needing to reference the property directly, for
-   example in a `will-change` rule. */
-$mdc-elevation-property: box-shadow;
+  $property: box-shadow,
 
-/* The default duration value for elevation transitions. */
-$mdc-elevation-transition-duration: 280ms;
+  $overlay-color: #fff;
+
+  $overlay-property: opacity,
+
+  $transition-duration: 280ms,
+
+  $transition-timing-function: variables.$standard-curve-timing-function
+);
 ```

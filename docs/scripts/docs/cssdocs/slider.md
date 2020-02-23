@@ -1,3 +1,5 @@
 ```css
-$mdc-slider-baseline-rail-opacity: 0.26;
+@use '@material/slider/variables' with (
+  $baseline-rail-opacity: .26
+);
 ```

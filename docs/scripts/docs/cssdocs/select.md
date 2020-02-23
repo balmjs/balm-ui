@@ -1,60 +1,40 @@
 ```css
-$mdc-select-arrow-padding: 52px;
-$mdc-select-label-padding: 16px;
-$mdc-select-height: 56px;
-$mdc-select-icon-padding: 48px;
+@use '@material/select/variables' with (
+  $arrow-padding: 52px,
+  $label-padding: 16px,
+  $height: 56px,
+  $icon-padding: 48px,
 
-$mdc-select-ink-color: rgba(mdc-theme-prop-value(on-surface), 0.87);
-$mdc-select-dropdown-color: mdc-theme-prop-value(on-surface);
-$mdc-select-icon-color: rgba(mdc-theme-prop-value(on-surface), 0.54);
-$mdc-select-label-color: rgba(mdc-theme-prop-value(on-surface), 0.6);
-$mdc-select-focused-label-color: rgba(mdc-theme-prop-value(primary), 0.87);
-$mdc-select-bottom-line-idle-color: rgba(
-  mdc-theme-prop-value(on-surface),
-  0.42
+  $ink-color: rgba(variables.prop-value(on-surface), .87),
+  $dropdown-color: variables.prop-value(on-surface),
+  $icon-color: rgba(variables.prop-value(on-surface), .54),
+  $label-color: rgba(variables.prop-value(on-surface), .6),
+  $focused-label-color: rgba(variables.prop-value(primary), .87),
+  $bottom-line-idle-color: rgba(variables.prop-value(on-surface), .42),
+  $bottom-line-hover-color: rgba(variables.prop-value(on-surface), .87),
+  $helper-text-color: rgba(variables.prop-value(on-surface), .6),
+
+  $fill-color: color.mix(variables.prop-value(on-surface), variables.prop-value(surface), 4%),
+
+  $dropdown-opacity: .54,
+
+  $disabled-label-color: rgba(variables.prop-value(on-surface), .38),
+  $disabled-icon-color: rgba(variables.prop-value(on-surface), .38),
+  $disabled-ink-color: rgba(variables.prop-value(on-surface), .38),
+  $disabled-fill-color: color.mix(variables.prop-value(on-surface), variables.prop-value(surface), 2%),
+  $disabled-dropdown-opacity: .38,
+
+  $outlined-idle-border: rgba(variables.prop-value(on-surface), .38),
+  $outlined-hover-border: rgba(variables.prop-value(on-surface), .87),
+
+  $outlined-disabled-border: rgba(variables.prop-value(on-surface), .16),
+
+  $label-position-y: 70%,
+  $outline-label-offset: 16px,
+  $outlined-label-position-y: 130%,
+  $outlined-dense-label-position-y: 110%,
+  $outlined-with-leading-icon-label-position-x: 32px,
+
+  $dropdown-transition-duration: 150ms
 );
-$mdc-select-bottom-line-hover-color: rgba(
-  mdc-theme-prop-value(on-surface),
-  0.87
-);
-$mdc-select-helper-text-color: rgba(mdc-theme-prop-value(on-surface), 0.6);
-
-$mdc-select-fill-color: mix(
-  mdc-theme-prop-value(on-surface),
-  mdc-theme-prop-value(surface),
-  4%
-);
-
-$mdc-select-dropdown-opacity: 0.54;
-
-/* Disabled Styles */
-$mdc-select-disabled-label-color: rgba(mdc-theme-prop-value(on-surface), 0.37);
-$mdc-select-disabled-icon-color: rgba(mdc-theme-prop-value(on-surface), 0.37);
-$mdc-select-disabled-ink-color: rgba(mdc-theme-prop-value(on-surface), 0.37);
-$mdc-select-disabled-fill-color: mix(
-  mdc-theme-prop-value(on-surface),
-  mdc-theme-prop-value(surface),
-  2%
-);
-$mdc-select-disabled-dropdown-opacity: 0.37;
-
-$mdc-select-outlined-idle-border: rgba(mdc-theme-prop-value(on-surface), 0.38);
-$mdc-select-outlined-hover-border: rgba(mdc-theme-prop-value(on-surface), 0.87);
-
-/* should be .06 after mdc-select opacity is applied */
-$mdc-select-outlined-disabled-border: rgba(
-  mdc-theme-prop-value(on-surface),
-  0.16
-);
-
-$mdc-select-label-position-y: 70%;
-$mdc-select-outline-label-offset: 16px;
-$mdc-select-outlined-label-position-y: 130%;
-$mdc-select-outlined-dense-label-position-y: 110%;
-$mdc-select-outlined-with-leading-icon-label-position-x: 32px;
-
-$mdc-select-dropdown-transition-duration: 150ms;
-
-/* Error colors */
-$mdc-select-error-color: error;
 ```

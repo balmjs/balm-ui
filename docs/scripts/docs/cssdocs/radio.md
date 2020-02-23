@@ -1,20 +1,22 @@
 ```css
-$mdc-radio-ripple-size: 40px;
-$mdc-radio-icon-size: 20px;
-$mdc-radio-transition-duration: 120ms;
-$mdc-radio-ripple-opacity: 0.14;
-$mdc-radio-baseline-theme-color: secondary;
-$mdc-radio-unchecked-color: rgba(mdc-theme-prop-value(on-surface), 0.54);
-$mdc-radio-disabled-circle-color: rgba(mdc-theme-prop-value(on-surface), 0.26);
+@use '@material/radio/variables' with (
+  $ripple-size: 40px,
+  $icon-size: 20px,
+  $transition-duration: 120ms,
+  $ripple-opacity: .14,
+  $baseline-theme-color: secondary,
+  $unchecked-color: rgba(theme-variables.prop-value(on-surface), .54),
+  $disabled-circle-color: rgba(theme-variables.prop-value(on-surface), .38),
 
-$mdc-radio-minimum-size: 28px;
-$mdc-radio-maximum-size: $mdc-radio-ripple-size;
-$mdc-radio-density-scale: $mdc-density-default-scale;
-$mdc-radio-density-config: (
-  size: (
-    minimum: $mdc-radio-minimum-size,
-    default: $mdc-radio-ripple-size,
-    maximum: $mdc-radio-maximum-size
+  $minimum-size: 28px,
+  $maximum-size: $ripple-size,
+  $density-scale: density-variables.$default-scale,
+  $density-config: (
+    size: (
+      minimum: $minimum-size,
+      default: $ripple-size,
+      maximum: $maximum-size,
+    ),
   )
 );
 ```

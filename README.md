@@ -12,7 +12,7 @@ Following the [Material Design](https://material.io/components/) UI components f
 
 ### 0. Requirement
 
-- [BalmJS](https://balmjs.com/)(Recommended) or other toolchains
+- [BalmJS](https://balmjs.com/)@2.8.0+(Recommended) or other toolchains
 - [Vue.js](https://vuejs.org/)@2.1.0+
 
 ### 1. Install
@@ -25,20 +25,20 @@ npm install --save balm-ui
 
 ### 2. Config
 
-Edit `my-project/app/styles/global/_vendor.scss`
-
-```css
-/* Add BalmUI styles */
-@import 'node_modules/balm-ui/src/styles/balm-ui.scss';
-```
-
 Download [Material Design Icons](https://material.balmjs.com/material-icons.zip) and extract to `/path/to/my-project/app/fonts`.
 
 ### 3. Usage
 
-Edit `my-project/app/scripts/main.js`
-
 #### 3.1 Default Usage
+
+Edit `my-project/app/styles/global/_vendor.scss`
+
+```scss
+/* Add BalmUI styles */
+@use 'balm-ui/src/styles/balm-ui.scss';
+```
+
+Edit `my-project/app/scripts/main.js`
 
 ```js
 import Vue from 'vue';
@@ -51,14 +51,21 @@ Vue.use(BalmUIPlus); // Optional
 
 #### 3.2 Standalone Usage
 
+Edit `my-project/app/index.html`
+
+```html
+<!-- build:css css/vendors.css -->
+<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/button.css" />
+<link rel="stylesheet" href="/node_modules/balm-ui/components/icon.css" />
+<!-- endbuild -->
+```
+
+Edit `my-project/app/scripts/main.js`
+
 ```js
 import Vue from 'vue';
 import UiButtonComponents from 'balm-ui/components/button';
-
-// (Recommended) Splitting CSS out from the main application, see BalmUI advanced usage.
-import 'balm-ui/components/core.css';
-import 'balm-ui/components/button.css';
-import 'balm-ui/components/icon.css'; // Optional.
 
 Vue.use(UiButtonComponents);
 ```

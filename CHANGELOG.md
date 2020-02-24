@@ -1,5 +1,11 @@
 # BalmUI ChangeLog
 
+## 4.3.4 (2020.02.24)
+
+### Bug Fixes
+
+- `<ui-textfield>`: fix floating label bug
+
 ## 4.3.3 (2020.02.18)
 
 ### Bug Fixes

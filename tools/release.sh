@@ -1,2 +1,2 @@
 npm run prod
-npm publish
+npm publish --tag 4.x

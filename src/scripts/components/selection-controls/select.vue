@@ -26,14 +26,14 @@
       <div v-if="isOutlined" class="mdc-notched-outline">
         <div class="mdc-notched-outline__leading"></div>
         <div class="mdc-notched-outline__notch">
-          <ui-floating-label v-if="!noLabel" :isFloatAbove="isFloatAbove">
+          <ui-floating-label v-if="!noLabel" :shouldFloat="shouldFloat">
             <slot>{{ label }}</slot>
           </ui-floating-label>
         </div>
         <div class="mdc-notched-outline__trailing"></div>
       </div>
       <template v-else>
-        <ui-floating-label v-if="!noLabel" :isFloatAbove="isFloatAbove">
+        <ui-floating-label v-if="!noLabel" :shouldFloat="shouldFloat">
           <slot>{{ label }}</slot>
         </ui-floating-label>
         <div class="mdc-line-ripple"></div>
@@ -191,7 +191,7 @@ export default {
       return selectedLabel;
     },
     // TODO: Temporary solution: manual control
-    isFloatAbove() {
+    shouldFloat() {
       return !!this.currentOption[this.optionLabel];
     }
   },

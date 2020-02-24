@@ -498,6 +498,11 @@ export default {
       css: true
     });
   }
+  // mounted() {
+  //   setTimeout(() => {
+  //     this.value = 'Pre-filled value';
+  //   }, 1e3);
+  // }
   // methods: {
   //   onFocus(event) {
   //     console.log('onFocus', event);

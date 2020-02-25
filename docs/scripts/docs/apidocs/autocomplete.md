@@ -21,6 +21,7 @@
 | `disabled`          | boolean         | `false`    | Styles the autocomplete as a disabled text field.                                                                                                                                                                                       |
 | `leadingIcon`       | boolean, string | `false`    | Styles the autocomplete as a text field with a leading icon. (Use with `before` slot)                                                                                                                                                   |
 | `icon`              | string          | `''`       | Optional. Indicates an icon element with a leading icon. See [Material Icons](/#/icons) list. (No need to configure `leadingIcon`)                                                                                                      |
+| `trailingIcon`      | boolean, string | `false`    | Styles the autocomplete as a text field with a trailing icon. (Use with `after` slot)                                                                                                                                                   |
 
 - **`source`** prop. There are two supported formats:
   - An array of strings: `[ 'Choice1', 'Choice2' ]`
@@ -31,7 +32,8 @@
 | Name      | Slots       | Description                                            |
 | --------- | ----------- | ------------------------------------------------------ |
 | `default` |             | The default slot holds the label for the autocomplete. |
-| `icon`    | `iconClass` | The icon slot holds a custom leading icon.             |
+| `before`  | `iconClass` | The before slot holds a custom leading icon.           |
+| `after`   | `iconClass` | The before slot holds a custom trailing icon.          |
 
 #### Events
 

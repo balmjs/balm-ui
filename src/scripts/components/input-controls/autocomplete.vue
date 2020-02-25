@@ -11,6 +11,7 @@
     :disabled="disabled"
     :leadingIcon="leadingIcon"
     :icon="icon"
+    :trailingIcon="trailingIcon"
     plus
     @focus="handleFocus"
     @keydown="handleKeydown"
@@ -18,14 +19,21 @@
     @blur="handleBlur"
   >
     <!-- Leading icon (optional) -->
-    <slot name="icon"></slot>
+    <template #before="{ iconClass }">
+      <slot name="before" :iconClass="iconClass"></slot>
+    </template>
 
     <!-- Label text -->
-    <template slot="default">
+    <template #default>
       <slot></slot>
     </template>
 
-    <template slot="plus">
+    <!-- Trailing icon (optional) -->
+    <template #after="{ iconClass }">
+      <slot name="after" :iconClass="iconClass"></slot>
+    </template>
+
+    <template #plus>
       <div ref="autocomplete" class="mdc-autocomplete__list">
         <ul class="mdc-list">
           <li

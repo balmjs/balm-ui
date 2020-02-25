@@ -12,15 +12,29 @@
     :disabled="disabled"
     :leadingIcon="leadingIcon"
     :icon="icon"
-    :trailingIcon="toggle || allowInput || clear"
+    :trailingIcon="trailingIcon || toggle || allowInput || clear"
     :attrs="{ readonly: true }"
     @change="handleChange"
   >
-    <template slot="after">
-      <span class="mdc-text-field__icon">
+    <!-- Leading icon (optional) -->
+    <template #before="{ iconClass }">
+      <slot name="before" :iconClass="iconClass"></slot>
+    </template>
+
+    <!-- Label text -->
+    <template #default>
+      <slot></slot>
+    </template>
+
+    <!-- Trailing icon (optional) -->
+    <template #after="{ iconClass }">
+      <template v-if="trailingIcon">
+        <slot name="after" :iconClass="iconClass"></slot>
+      </template>
+      <span v-else :class="[iconClass, 'mdc-datepicker__icon']">
         <span
           v-if="toggle || allowInput"
-          class="mdc-datepicker__icon mdc-datepicker__toggle"
+          class="mdc-datepicker__toggle"
           title="toggle"
           data-toggle
         >
@@ -36,7 +50,7 @@
         </span>
         <span
           v-if="clear"
-          class="mdc-datepicker__icon mdc-datepicker__clear"
+          class="mdc-datepicker__clear"
           title="clear"
           data-clear
         >

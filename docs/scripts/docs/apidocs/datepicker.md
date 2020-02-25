@@ -16,16 +16,20 @@
 | `disabled`          | boolean               | `false` | Styles the datepicker as a disabled text field.                                                                                    |
 | `leadingIcon`       | boolean, string       | `false` | Styles the datepicker as a text field with a leading icon. (Use with `before` slot)                                                |
 | `icon`              | string                | `''`    | Optional. Indicates an icon element with a leading icon. See [Material Icons](/#/icons) list. (No need to configure `leadingIcon`) |
+| `trailingIcon`      | boolean, string       | `false` | Styles the datepicker as a text field with a trailing icon. (Use with `after` slot)                                                |
 | `config`            | object                | `{}`    | See [Flatpickr configuration](https://flatpickr.js.org/options/).                                                                  |
 | `toggle`            | boolean               | `false` | Show calendar icon button.                                                                                                         |
 | `clear`             | boolean               | `false` | Show clear icon button.                                                                                                            |
 
 #### Slots
 
-| Name     | Slots | Description                    |
-| -------- | ----- | ------------------------------ |
-| `toggle` |       | The custom toggle icon button. |
-| `clear`  |       | The custom clear icon button.  |
+| Name      | Slots       | Description                                                                |
+| --------- | ----------- | -------------------------------------------------------------------------- |
+| `default` |             | The default slot holds the label for the datepicker.                       |
+| `before`  | `iconClass` | The before slot holds a custom leading icon.                               |
+| `after`   | `iconClass` | The before slot holds a custom trailing icon. (When `trailingIcon = true`) |
+| `toggle`  |             | The custom toggle icon button. (When `trailingIcon = false`)               |
+| `clear`   |             | The custom clear icon button. (When `trailingIcon = false`)                |
 
 #### Events
 

@@ -33,6 +33,7 @@ Vue.use(UiRangepicker, {
 - SASS
   ```css
   @use 'balm-ui/components/core.scss';
+  @use 'balm-ui/components/form-field/form-item.scss';
   @use 'balm-ui/components/textfield/textfield.scss';
   @use 'balm-ui/components/datepicker/datepicker.scss';
   @use 'balm-ui/components/rangepicker/rangepicker.scss';
@@ -42,6 +43,7 @@ Vue.use(UiRangepicker, {
   ```html
   <!-- build:css css/vendors.css -->
   <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/form-field/form-item.css" />
   <link rel="stylesheet" href="/node_modules/balm-ui/components/textfield/textfield.css" />
   <link rel="stylesheet" href="/node_modules/balm-ui/components/datepicker/datepicker.css" />
   <link rel="stylesheet" href="/node_modules/balm-ui/components/rangepicker/rangepicker.css" />

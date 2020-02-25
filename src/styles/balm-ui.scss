@@ -1,5 +1,5 @@
 /// Material Icons (order !important)
-@use './material-icons';
+@use 'balm-ui/components/icon/ui-icon';
 
 /// Material Components for the web (@material)
 @use 'node_modules/material-components-web/material-components-web.scss';
@@ -10,7 +10,6 @@
 @use 'balm-ui/components/file/ui-file';
 @use 'balm-ui/components/form-field/ui-form-field';
 @use 'balm-ui/components/icon-button/ui-icon-button';
-@use 'balm-ui/components/icon/ui-icon';
 @use 'balm-ui/components/pagination/ui-pagination';
 @use 'balm-ui/components/skeleton/ui-skeleton';
 @use 'balm-ui/components/table/ui-table';

@@ -25,7 +25,19 @@ npm install --save balm-ui
 
 ### 2. Config
 
-Download [Material Design Icons](https://material.balmjs.com/material-icons.zip) and extract to `/path/to/my-project/app/fonts`.
+- `balm.config` [setup](https://balmjs.com/docs/v2/config/styles.html#styles-dartsass) for Dart Sass
+
+```js
+balm.config = {
+  styles: {
+    extname: 'scss',
+    dartSass: true
+  }
+  // Other Options...
+};
+```
+
+- Download [Material Design Icons](https://material.balmjs.com/material-icons.zip) and extract to `/path/to/my-project/app/fonts`.
 
 ### 3. Usage
 

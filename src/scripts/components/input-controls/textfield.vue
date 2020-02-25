@@ -96,7 +96,7 @@
 
     <!-- Activation indicator -->
     <span v-if="hasRipple" class="mdc-line-ripple"></span>
-    <ui-notched-outline v-else :hasLabel="hasLabel">
+    <ui-notched-outline v-else :hasLabel="hasLabel" :isNotched="shouldFloat">
       <ui-floating-label :for="id" :shouldFloat="shouldFloat">
         <slot>{{ label }}</slot>
       </ui-floating-label>

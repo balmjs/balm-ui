@@ -23,7 +23,11 @@
       >
         {{ currentSelectedLabel }}
       </div>
-      <ui-notched-outline v-if="isOutlined" :hasLabel="!noLabel">
+      <ui-notched-outline
+        v-if="isOutlined"
+        :hasLabel="!noLabel"
+        :isNotched="shouldFloat"
+      >
         <ui-floating-label :shouldFloat="shouldFloat">
           <slot>{{ label }}</slot>
         </ui-floating-label>

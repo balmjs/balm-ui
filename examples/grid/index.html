@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BalmUI - grid example</title>
   <link rel="stylesheet" href="/components/core.css">
-  <link rel="stylesheet" href="/components/grid.css">
+  <link rel="stylesheet" href="/components/grid/grid.css">
   <style>
   .demo-grid {
     margin-bottom: 32px;
@@ -33,8 +33,8 @@
       <ui-grid-cell class="demo-cell" :col="{default:2, phone:4}">2 (4 phone)</ui-grid-cell>
     </ui-grid>
   </div>
-  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
-  <script src="/components/grid.js"></script>
+  <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+  <script src="/components/grid/index.js"></script>
   <script>
     var app = new Vue({
       el: '#app'

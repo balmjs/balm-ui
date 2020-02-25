@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BalmUI - textfield example</title>
   <link rel="stylesheet" href="/components/core.css">
-  <link rel="stylesheet" href="/components/form-field.css">
-  <link rel="stylesheet" href="/components/textfield.css">
+  <link rel="stylesheet" href="/components/form-field/form-item.css">
+  <link rel="stylesheet" href="/components/textfield/textfield.css">
 </head>
 <body>
   <div id="app">
@@ -20,8 +20,8 @@
       autocomplete="current-password">Choose password</ui-textfield>
     <ui-textfield-helptext id="pw-validation-msg" show msg="Must be at least 8 characters long"></ui-textfield-helptext>
   </div>
-  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
-  <script src="/components/textfield.js"></script>
+  <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+  <script src="/components/textfield/index.js"></script>
   <script>
     var app = new Vue({
       el: '#app'

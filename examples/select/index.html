@@ -6,9 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BalmUI - select example</title>
   <link rel="stylesheet" href="/components/core.css">
-  <link rel="stylesheet" href="/components/select.css">
-  <link rel="stylesheet" href="/components/menu.css">
-  <link rel="stylesheet" href="/components/list.css">
+  <link rel="stylesheet" href="/components/form-field/form-item.css">
+  <link rel="stylesheet" href="/components/select/select.css">
+  <link rel="stylesheet" href="/components/menu/menu.css">
+  <link rel="stylesheet" href="/components/list/list.css">
 </head>
 <body>
   <div id="app">
@@ -19,9 +20,9 @@
       <span id="currently-selected">{{ selected.value || '(none)'}}</span>
     </p>
   </div>
-  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
-  <script src="/components/select.js"></script>
-  <script src="/plugins/event.js"></script>
+  <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+  <script src="/components/select/index.js"></script>
+  <script src="/plugins/event/index.js"></script>
   <script>
     var app = new Vue({
       el: '#app',

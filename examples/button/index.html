@@ -6,16 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BalmUI - button example</title>
   <link rel="stylesheet" href="/components/core.css">
-  <link rel="stylesheet" href="/components/button.css">
+  <link rel="stylesheet" href="/components/button/button.css">
 </head>
 <body>
   <div id="app">
     <p>{{ message }}</p>
     <ui-button @click="$balmUI.onChange('message', 'Hello World')">Button</ui-button>
   </div>
-  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
-  <script src="/components/button.js"></script>
-  <script src="/plugins/event.js"></script>
+  <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+  <script src="/components/button/index.js"></script>
+  <script src="/plugins/event/index.js"></script>
   <script>
   // BalmUI_button.default.install(Vue, {
   //   UiButton: {

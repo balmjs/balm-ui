@@ -6,16 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BalmUI - icon button example</title>
   <link rel="stylesheet" href="/components/core.css">
-  <link rel="stylesheet" href="/components/icon-button.css">
-  <link rel="stylesheet" href="/components/icon.css">
+  <link rel="stylesheet" href="/components/icon-button/icon-button.css">
+  <link rel="stylesheet" href="/components/icon/icon.css">
 </head>
 <body>
   <div id="app">
     <ui-icon-button v-model="value" :toggle="icon"></ui-icon-button>
     <p>{{ value }}</p>
   </div>
-  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
-  <script src="/components/icon-button.js"></script>
+  <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+  <script src="/components/icon-button/index.js"></script>
   <script>
     var app = new Vue({
       el: '#app',

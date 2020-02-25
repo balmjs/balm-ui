@@ -6,9 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BalmUI - drawer example</title>
   <link rel="stylesheet" href="/components/core.css">
-  <link rel="stylesheet" href="/components/top-app-bar.css">
-  <link rel="stylesheet" href="/components/drawer.css">
-  <link rel="stylesheet" href="/components/list.css">
+  <link rel="stylesheet" href="/components/top-app-bar/top-app-bar.css">
+  <link rel="stylesheet" href="/components/drawer/drawer.css">
+  <link rel="stylesheet" href="/components/list/list.css">
+  <link rel="stylesheet" href="/components/icon/icon.css">
   <style>
   body {
     margin: 0;
@@ -36,7 +37,7 @@
       </ui-drawer-header>
       <ui-drawer-content>
         <ui-list>
-          <ui-item activated @click="history.back()">
+          <ui-item @click="history.back()">
             <ui-item-text-content>Back</ui-item-text-content>
           </ui-item>
           <ui-list-divider></ui-list-divider>
@@ -65,11 +66,11 @@
       </div>
     </main>
   </div>
-  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
-  <script src="/components/top-app-bar.js"></script>
-  <script src="/components/drawer.js"></script>
-  <script src="/components/list.js"></script>
-  <script src="/plugins/typography.js"></script>
+  <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+  <script src="/components/top-app-bar/index.js"></script>
+  <script src="/components/drawer/index.js"></script>
+  <script src="/components/list/index.js"></script>
+  <script src="/plugins/typography/index.js"></script>
   <script>
     // TODO: uninit
     var app = new Vue({

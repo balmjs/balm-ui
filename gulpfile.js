@@ -119,6 +119,12 @@ balm.go(mix => {
           ['./src/material-icons/*', '!./src/material-icons/*.scss'],
           './fonts'
         );
+
+        // For example
+        mix.copy(
+          ['./src/material-icons/*', '!./src/material-icons/*.scss'],
+          './components/font'
+        );
       }
     }
   }

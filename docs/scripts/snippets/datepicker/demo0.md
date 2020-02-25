@@ -20,15 +20,6 @@ Vue.use(BalmUIPlus, {
 
 Standalone Usage
 
-```html
-<!-- build:css css/vendors.css -->
-<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
-<link rel="stylesheet" href="/node_modules/balm-ui/components/textfield.css" />
-<link rel="stylesheet" href="/node_modules/balm-ui/components/datepicker.css" />
-<link rel="stylesheet" href="/node_modules/flatpickr/dist/flatpickr.min.css" />
-<!-- endbuild -->
-```
-
 ```js
 import Vue from 'vue';
 import UiDatepicker from 'balm-ui/components/datepicker';
@@ -38,3 +29,20 @@ Vue.use(UiDatepicker, {
   // some props
 });
 ```
+
+- SASS
+  ```css
+  @use 'balm-ui/components/core.scss';
+  @use 'balm-ui/components/textfield/textfield.scss';
+  @use 'balm-ui/components/datepicker/datepicker.scss';
+  @use 'flatpickr/dist/flatpickr.min.css';
+  ```
+- CSS
+  ```html
+  <!-- build:css css/vendors.css -->
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/textfield/textfield.css" />
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/datepicker/datepicker.css" />
+  <link rel="stylesheet" href="/node_modules/flatpickr/dist/flatpickr.min.css" />
+  <!-- endbuild -->
+  ```

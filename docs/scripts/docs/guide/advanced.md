@@ -23,7 +23,7 @@ Edit `/path/to/my-project/app/styles/global/_vendor.scss` (manage sass entry fil
 
 ```css
 /* Add BalmUI styles */
-@use 'balm-ui/src/styles/balm-ui.scss';
+@use 'balm-ui/dist/balm-ui.scss';
 ```
 
 Then, you can overwrite or redefine UI styles by editing `/path/to/my-project/app/styles/global/_var.scss`. (See components APIs)
@@ -95,9 +95,11 @@ import Vue from 'vue';
 import App from './views/layouts/app';
 import BalmUI from 'balm-ui'; // Mandatory
 import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // Optional
+import BalmUINext from 'balm-ui/dist/balm-ui-next'; // Experimental
 
 Vue.use(BalmUI); // Mandatory
 Vue.use(BalmUIPlus); // Optional
+Vue.use(BalmUINext); // Experimental
 
 new Vue({
   el: '#app',
@@ -129,6 +131,7 @@ Edit `/path/to/my-project/app/index.html`
     <!-- build:js js/vendors.js -->
     <script src="/node_modules/balm-ui/dist/balm-ui.js"></script>
     <script src="/node_modules/balm-ui/dist/balm-ui-plus.js"></script>
+    <script src="/node_modules/balm-ui/dist/balm-ui-next.js"></script>
     <!-- endbuild -->
     <script>
       var app = new Vue({
@@ -162,9 +165,9 @@ import $alert from 'balm-ui/plugins/alert';
 
 // Import BalmUI styles (Not recommend usage, and see "Import in Browser" for recommended usage)
 import 'balm-ui/components/core.css';
-import 'balm-ui/components/button.css';
-import 'balm-ui/components/dialog.css';
-import 'balm-ui/plugins/alert.css';
+import 'balm-ui/components/button/button.css';
+import 'balm-ui/components/dialog/dialog.css';
+import 'balm-ui/plugins/alert/alert.css';
 
 // Install components or plugins
 Vue.use(UiButton);
@@ -191,9 +194,9 @@ Edit `/path/to/my-project/app/index.html`
     ...
     <!-- build:css css/vendors.css -->
     <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
-    <link rel="stylesheet" href="/node_modules/balm-ui/components/button.css" />
-    <link rel="stylesheet" href="/node_modules/balm-ui/components/dialog.css" />
-    <link rel="stylesheet" href="/node_modules/balm-ui/plugins/alert.css" />
+    <link rel="stylesheet" href="/node_modules/balm-ui/components/button/button.css" />
+    <link rel="stylesheet" href="/node_modules/balm-ui/components/dialog/dialog.css" />
+    <link rel="stylesheet" href="/node_modules/balm-ui/plugins/alert/alert.css" />
     <!-- endbuild -->
   </head>
   <body>
@@ -202,8 +205,8 @@ Edit `/path/to/my-project/app/index.html`
     </div>
     <script src="https://unpkg.com/vue"></script>
     <!-- build:js js/vendors.js -->
-    <script src="/node_modules/balm-ui/components/button.js"></script>
-    <script src="/node_modules/balm-ui/plugins/alert.js"></script>
+    <script src="/node_modules/balm-ui/components/button/button.js"></script>
+    <script src="/node_modules/balm-ui/plugins/alert/alert.js"></script>
     <!-- endbuild -->
     <script>
       var app = new Vue({

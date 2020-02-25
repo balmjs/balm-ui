@@ -14,13 +14,6 @@ Vue.use(BalmUIPlus, {
 
 Standalone Usage
 
-```html
-<!-- build:css css/vendors.css -->
-<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
-<link rel="stylesheet" href="/node_modules/balm-ui/components/snackbar.css" />
-<!-- endbuild -->
-```
-
 ```js
 import Vue from 'vue';
 import toast from 'balm-ui/plugins/toast';
@@ -30,3 +23,16 @@ Vue.use(toast, {
   // some options
 });
 ```
+
+- SASS
+  ```css
+  @use 'balm-ui/components/core.scss';
+  @use 'balm-ui/components/snackbar/snackbar.scss';
+  ```
+- CSS
+  ```html
+  <!-- build:css css/vendors.css -->
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/snackbar/snackbar.css" />
+  <!-- endbuild -->
+  ```

@@ -22,13 +22,6 @@ Vue.use(BalmUI, {
 
 Standalone Usage
 
-```html
-<!-- build:css css/vendors.css -->
-<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
-<link rel="stylesheet" href="/node_modules/balm-ui/components/card.css" />
-<!-- endbuild -->
-```
-
 ```js
 import Vue from 'vue';
 import UiCardComponents from 'balm-ui/components/card';
@@ -48,3 +41,16 @@ Vue.use(UiCardComponents, {
   }
 });
 ```
+
+- SASS
+  ```css
+  @use 'balm-ui/components/core.scss';
+  @use 'balm-ui/components/card/card.scss';
+  ```
+- CSS
+  ```html
+  <!-- build:css css/vendors.css -->
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/card/card.css" />
+  <!-- endbuild -->
+  ```

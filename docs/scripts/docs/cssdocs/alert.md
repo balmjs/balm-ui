@@ -1,5 +1,5 @@
 ```css
-@use 'balm-ui/src/styles/plugins/alert/variables' with (
+@use 'balm-ui/plugins/alert/variables' with (
   $width: 480px
 );
 ```

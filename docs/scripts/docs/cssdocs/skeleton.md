@@ -1,5 +1,5 @@
 ```css
-@use 'balm-ui/src/styles/components/skeleton/variables' with (
+@use 'balm-ui/components/skeleton/variables' with (
   $avatar: (
     base: 36px,
     large: 40px,

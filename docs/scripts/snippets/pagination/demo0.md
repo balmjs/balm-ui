@@ -14,13 +14,6 @@ Vue.use(BalmUIPlus, {
 
 Standalone Usage
 
-```html
-<!-- build:css css/vendors.css -->
-<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
-<link rel="stylesheet" href="/node_modules/balm-ui/components/pagination.css" />
-<!-- endbuild -->
-```
-
 ```js
 import Vue from 'vue';
 import UiPagination from 'balm-ui/components/pagination';
@@ -30,3 +23,16 @@ Vue.use(UiPagination, {
   // some props
 });
 ```
+
+- SASS
+  ```css
+  @use 'balm-ui/components/core.scss';
+  @use 'balm-ui/components/pagination/pagination.scss';
+  ```
+- CSS
+  ```html
+  <!-- build:css css/vendors.css -->
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/pagination/pagination.css" />
+  <!-- endbuild -->
+  ```

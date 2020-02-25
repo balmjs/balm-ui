@@ -87,7 +87,7 @@ Edit `my-project/app/styles/global/_vendor.scss`
 
 ```css
 /* Add BalmUI styles */
-@use 'balm-ui/src/styles/balm-ui.scss';
+@use 'balm-ui/dist/balm-ui.scss';
 ```
 
 > Recommend to use Sass in `/path/to/your-project/styles/_vendor.scss`, and you can use more advanced style usage of the BalmUI.
@@ -99,10 +99,12 @@ import Vue from 'vue';
 import App from './views/layouts/app';
 import BalmUI from 'balm-ui'; // Mandatory
 import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // Optional
+import BalmUINext from 'balm-ui/dist/balm-ui-next'; // Experimental
 
 Vue.config.productionTip = false;
 Vue.use(BalmUI); // Mandatory
 Vue.use(BalmUIPlus); // Optional
+Vue.use(BalmUINext); // Experimental
 
 new Vue({
   el: '#app',
@@ -113,14 +115,12 @@ new Vue({
 
 #### Standalone Usage
 
-Edit `my-project/app/index.html`
+Edit `my-project/app/styles/global/_vendor.scss`
 
-```html
-<!-- build:css css/vendors.css -->
-<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
-<link rel="stylesheet" href="/node_modules/balm-ui/components/button.css" />
-<link rel="stylesheet" href="/node_modules/balm-ui/components/icon.css" />
-<!-- endbuild -->
+```css
+@use 'balm-ui/components/core.scss';
+@use 'balm-ui/components/button/button.scss';
+@use 'balm-ui/components/icon/icon.scss';
 ```
 
 Edit `my-project/app/scripts/main.js`

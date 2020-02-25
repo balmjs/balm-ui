@@ -14,14 +14,6 @@ Vue.use(BalmUI, {
 
 Standalone Usage
 
-```html
-<!-- build:css css/vendors.css -->
-<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
-<link rel="stylesheet" href="/node_modules/balm-ui/components/tabs.css" />
-<link rel="stylesheet" href="/node_modules/balm-ui/components/icon.css" />
-<!-- endbuild -->
-```
-
 ```js
 import Vue from 'vue';
 import UiTabsComponents from 'balm-ui/components/tabs';
@@ -33,3 +25,18 @@ Vue.use(UiTabsComponents, {
   }
 });
 ```
+
+- SASS
+  ```css
+  @use 'balm-ui/components/core.scss';
+  @use 'balm-ui/components/tabs/tabs.scss';
+  @use 'balm-ui/components/icon/icon.scss';
+  ```
+- CSS
+  ```html
+  <!-- build:css css/vendors.css -->
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/tabs/tabs.css" />
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/icon/icon.css" />
+  <!-- endbuild -->
+  ```

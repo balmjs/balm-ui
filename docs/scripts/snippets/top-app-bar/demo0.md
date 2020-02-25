@@ -14,14 +14,6 @@ Vue.use(BalmUI, {
 
 Standalone Usage
 
-```html
-<!-- build:css css/vendors.css -->
-<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
-<link rel="stylesheet" href="/node_modules/balm-ui/components/top-app-bar.css" />
-<link rel="stylesheet" href="/node_modules/balm-ui/components/icon-button.css" />
-<!-- endbuild -->
-```
-
 ```js
 import Vue from 'vue';
 import UiTopAppBar from 'balm-ui/components/top-app-bar';
@@ -31,3 +23,18 @@ Vue.use(UiTopAppBar, {
   // some props
 });
 ```
+
+- SASS
+  ```css
+  @use 'balm-ui/components/core.scss';
+  @use 'balm-ui/components/top-app-bar/top-app-bar.scss';
+  @use 'balm-ui/components/icon-button/icon-button.scss';
+  ```
+- CSS
+  ```html
+  <!-- build:css css/vendors.css -->
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/top-app-bar/top-app-bar.css" />
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/icon-button/icon-button.css" />
+  <!-- endbuild -->
+  ```

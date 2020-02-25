@@ -1,5 +1,5 @@
 ```css
-@use 'balm-ui/src/styles/components/pagination/variables' with (
+@use 'balm-ui/components/pagination/variables' with (
   $color: theme-variables.$primary,
   $corner-radius: 4px,
 

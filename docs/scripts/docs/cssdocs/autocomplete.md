@@ -1,5 +1,5 @@
 ```css
-@use 'balm-ui/src/styles/components/autocomplete/variables' with (
+@use 'balm-ui/components/autocomplete/variables' with (
   $outlined-idle-border: rgba(
     theme-variables.prop-value(on-surface),
     0.38

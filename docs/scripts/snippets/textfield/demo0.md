@@ -14,15 +14,6 @@ Vue.use(BalmUI, {
 
 Standalone Usage
 
-```html
-<!-- build:css css/vendors.css -->
-<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
-<link rel="stylesheet" href="/node_modules/balm-ui/components/form-item.css" />
-<link rel="stylesheet" href="/node_modules/balm-ui/components/textfield.css" />
-<link rel="stylesheet" href="/node_modules/balm-ui/components/icon.css" />
-<!-- endbuild -->
-```
-
 ```js
 import Vue from 'vue';
 import UiTextfieldComponents from 'balm-ui/components/textfield';
@@ -34,3 +25,20 @@ Vue.use(UiTextfieldComponents, {
   }
 });
 ```
+
+- SASS
+  ```css
+  @use 'balm-ui/components/core.scss';
+  @use 'balm-ui/components/form-field/form-item.scss';
+  @use 'balm-ui/components/textfield/textfield.scss';
+  @use 'balm-ui/components/icon/icon.scss';
+  ```
+- CSS
+  ```html
+  <!-- build:css css/vendors.css -->
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/form-field/form-item.css" />
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/textfield/textfield.css" />
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/icon/icon.css" />
+  <!-- endbuild -->
+  ```

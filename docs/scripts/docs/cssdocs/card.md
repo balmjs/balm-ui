@@ -5,7 +5,7 @@
   $outline-width: 1px
 );
 
-@use 'balm-ui/src/styles/components/card/variables' with (
+@use 'balm-ui/components/card/variables' with (
   $text-wrapper-padding: 16px
 );
 ```

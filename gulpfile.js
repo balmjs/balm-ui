@@ -83,12 +83,15 @@ balm.go(mix => {
         const uiOutput = `${individual.output.dist}/css/balm-ui`;
         individualBuild.forEach(buildName => {
           individual[buildName].forEach(item => {
-            let jsTarget =
+            let jsInput = buildName === 'utils' ? [`${individual.input[buildName]}/${item}.js`]:{
+              index: `${individual.input[buildName]}/${item}.js`
+            };
+            let jsOutput =
               buildName === 'utils'
                 ? `${uiOutput}/${buildName}`
                 : `${uiOutput}/${buildName}/${item}`;
 
-            mix.js([`${individual.input[buildName]}/${item}.js`], jsTarget, {
+            mix.js(jsInput, jsOutput, {
               output: {
                 library: 'BalmUI_' + item
               }

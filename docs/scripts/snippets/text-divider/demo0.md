@@ -9,16 +9,22 @@ Vue.use(BalmUIPlus);
 
 Standalone Usage
 
-```html
-<!-- build:css css/vendors.css -->
-<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
-<link rel="stylesheet" href="/node_modules/balm-ui/components/divider.css" />
-<!-- endbuild -->
-```
-
 ```js
 import Vue from 'vue';
-import UiDividerComponents from 'balm-ui/components/divider';
+import UiTextDivider from 'balm-ui/components/text-divider';
 
-Vue.use(UiDividerComponents);
+Vue.use(UiTextDivider);
 ```
+
+- SASS
+  ```css
+  @use 'balm-ui/components/core.scss';
+  @use 'balm-ui/components/text-divider/text-divider.scss';
+  ```
+- CSS
+  ```html
+  <!-- build:css css/vendors.css -->
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/text-divider/text-divider.css" />
+  <!-- endbuild -->
+  ```

@@ -35,7 +35,7 @@ Edit `my-project/app/styles/global/_vendor.scss`
 
 ```scss
 /* Add BalmUI styles */
-@use 'balm-ui/src/styles/balm-ui.scss';
+@use 'balm-ui/dist/balm-ui.scss';
 ```
 
 Edit `my-project/app/scripts/main.js`
@@ -44,21 +44,21 @@ Edit `my-project/app/scripts/main.js`
 import Vue from 'vue';
 import BalmUI from 'balm-ui'; // Mandatory
 import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // Optional
+import BalmUINext from 'balm-ui/dist/balm-ui-next'; // Experimental
 
 Vue.use(BalmUI); // Mandatory
 Vue.use(BalmUIPlus); // Optional
+Vue.use(BalmUINext); // Experimental
 ```
 
 #### Standalone Usage
 
-Edit `my-project/app/index.html`
+Edit `my-project/app/styles/global/_vendor.scss`
 
-```html
-<!-- build:css css/vendors.css -->
-<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
-<link rel="stylesheet" href="/node_modules/balm-ui/components/button.css" />
-<link rel="stylesheet" href="/node_modules/balm-ui/components/icon.css" />
-<!-- endbuild -->
+```scss
+@use 'balm-ui/components/core.scss';
+@use 'balm-ui/components/button/button.scss';
+@use 'balm-ui/components/icon/icon.scss';
 ```
 
 Edit `my-project/app/scripts/main.js`
@@ -101,7 +101,6 @@ Enjoy 👻
   - Rangepicker (:bulb:)
 - Data View
   - List
-  - <del>Grid List</del> (:skull:)
   - Image List (migrate from Grid List)
   - Card
   - Chips
@@ -138,7 +137,7 @@ Enjoy 👻
 - Helper Functions
 - IE Detection
 
-> :bulb:: Plus UI, :skull:: Deprecated
+> :bulb:: Plus UI
 
 ## Contributing
 

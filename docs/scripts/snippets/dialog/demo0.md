@@ -18,13 +18,6 @@ Vue.use(BalmUI, {
 
 Standalone Usage
 
-```html
-<!-- build:css css/vendors.css -->
-<link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
-<link rel="stylesheet" href="/node_modules/balm-ui/components/dialog.css" />
-<!-- endbuild -->
-```
-
 ```js
 import Vue from 'vue';
 import UiDialogComponents from 'balm-ui/components/dialog';
@@ -40,3 +33,16 @@ Vue.use(UiDialogComponents, {
   }
 });
 ```
+
+- SASS
+  ```css
+  @use 'balm-ui/components/core.scss';
+  @use 'balm-ui/components/dialog/dialog.scss';
+  ```
+- CSS
+  ```html
+  <!-- build:css css/vendors.css -->
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/dialog/dialog.css" />
+  <!-- endbuild -->
+  ```

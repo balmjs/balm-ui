@@ -117,8 +117,13 @@ export default {
       this.$dialog.listen('MDCDialog:opened', () => {
         this.$dialogBody.setAttribute('aria-hidden', 'true');
       });
-      this.$dialog.listen('MDCDialog:closing', () => {
+      this.$dialog.listen('MDCDialog:closing', ({ detail }) => {
         this.$dialogBody.removeAttribute('aria-hidden');
+
+        // NOTE: fix for the Escape key
+        if (detail.action === 'close') {
+          this.handleClose();
+        }
       });
 
       if (!this.$el.querySelector('.mdc-button')) {

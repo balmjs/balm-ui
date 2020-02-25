@@ -2423,10 +2423,10 @@ balm-ui-lite@^1.8.0:
     deepmerge "^4.2.2"
     flatpickr "^4.6.3"
 
-balm@^2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/balm/-/balm-2.7.0.tgz#b8b1ec395d2d952d79f4bf7987e1d96fcd50517c"
-  integrity sha512-hDvAvla8Z5aaElGWJE3AeB6/WVOwxqB5PUOPnRqk8DSY4nxwd7cvMdikRPRWyCAGHs5IRiXD9T3/+eA3wuqXLA==
+balm@^2.8.0:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/balm/-/balm-2.8.0.tgz#63b2c5e6ff670fa052e2900cbec1812777e49bf8"
+  integrity sha512-b2622cOTbmiSmMVU+gyrHDAJh6V08aVGzZaUpXo4mvOmjJZXi3qhvVpqDd13uGZ96j5wsrmNBXBRzX4BxuN03Q==
   dependencies:
     "@babel/core" "^7.8.4"
     "@babel/plugin-transform-runtime" "^7.8.3"

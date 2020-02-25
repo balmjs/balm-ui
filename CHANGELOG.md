@@ -1,5 +1,12 @@
 # BalmUI ChangeLog
 
+## 4.3.5 (2020.02.25)
+
+### Bug Fixes
+
+- `<ui-textfield>`, `<ui-select>`: bugfix for the notched outline
+- `<ui-dialog>`: bugfix for the Escape key
+
 ## 4.3.4 (2020.02.24)
 
 ### Bug Fixes

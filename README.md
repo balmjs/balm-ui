@@ -29,7 +29,7 @@ Download [Material Design Icons](https://material.balmjs.com/material-icons.zip)
 
 ### 3. Usage
 
-#### 3.1 Default Usage
+#### Default Usage
 
 Edit `my-project/app/styles/global/_vendor.scss`
 
@@ -49,7 +49,7 @@ Vue.use(BalmUI); // Mandatory
 Vue.use(BalmUIPlus); // Optional
 ```
 
-#### 3.2 Standalone Usage
+#### Standalone Usage
 
 Edit `my-project/app/index.html`
 

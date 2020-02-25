@@ -1,0 +1,7 @@
+.mdc-icon-button {
+  // NOTE: bugfix for `sanitize.css`
+  img,
+  svg {
+    vertical-align: initial;
+  }
+}

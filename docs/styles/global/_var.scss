@@ -2,7 +2,7 @@
 @forward '@material/theme/color-palette';
 
 // Icon font
-@use '../../../src/styles/components/icon/variables' with (
+@use '../../../src/styles/balm-ui/components/icon/variables' with (
   $font-path: '../fonts'
 );
 // Base style

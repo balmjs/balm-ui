@@ -2,68 +2,70 @@ const input = {
   components: './src/scripts/components',
   plugins: './src/scripts/plugins',
   directives: './src/scripts/directives',
-  utils: './src/scripts/utils'
+  utils: './src/scripts/utils',
+  sass: './src/styles'
 };
 
 const components = [
-  'icon.js',
+  'icon',
   // MDC components
-  'button.js',
-  'card.js',
-  'checkbox.js',
-  'chips.js',
-  'dialog.js',
-  'drawer.js',
-  'fab.js',
-  'form-field.js',
-  'grid.js',
-  'icon-button.js',
-  'image-list.js',
-  'linear-progress.js',
-  'list.js',
-  'menu.js',
-  'radio.js',
-  'select.js',
-  'slider.js',
-  'snackbar.js',
-  'switch.js',
-  'table.js',
-  'tabs.js',
-  'textfield.js',
-  'top-app-bar.js',
+  'button',
+  'card',
+  'checkbox',
+  'chips',
+  'dialog',
+  'drawer',
+  'fab',
+  'form-field',
+  'grid',
+  'icon-button',
+  'image-list',
+  'linear-progress',
+  'list',
+  'menu',
+  'radio',
+  'select',
+  'slider',
+  'snackbar',
+  'switch',
+  'table',
+  'tabs',
+  'textfield',
+  'top-app-bar',
   // Plus
-  'autocomplete.js',
-  'divider.js',
-  'file.js',
-  'pagination.js',
-  'datepicker.js',
-  'rangepicker.js',
+  'autocomplete',
+  'text-divider',
+  'file',
+  'pagination',
+  'datepicker',
+  'rangepicker',
   // Next
-  'bottom-navigation.js',
-  'banner.js'
+  'bottom-navigation',
+  'banner'
 ];
 const plugins = [
-  'event.js',
+  'event',
   // MDC plugins
-  'theme.js',
-  'typography.js',
+  'theme',
+  'typography',
   // Plus
-  'alert.js',
-  'confirm.js',
-  'toast.js',
-  'validator.js'
+  'alert',
+  'confirm',
+  'toast',
+  'validator'
 ];
 const directives = [
   // MDC directives
-  'elevation.js',
-  'ripple.js',
-  'a11y.js',
+  'elevation',
+  'ripple',
+  'a11y',
   // Plus
-  'anchor.js'
+  'anchor'
 ];
-const utils = ['ie.js', 'types.js', 'helpers.js'];
+const utils = ['ie', 'types', 'helpers'];
 
 const output = {
+  dist: './dist',
   components: './components',
   plugins: './plugins',
   directives: './directives',

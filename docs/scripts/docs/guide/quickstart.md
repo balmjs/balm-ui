@@ -81,7 +81,7 @@ Download [Material Design Icons](https://material.balmjs.com/material-icons.zip)
 
 ### 4. Usage
 
-#### 4.1 Default Usage
+#### Default Usage
 
 Edit `my-project/app/styles/global/_vendor.scss`
 
@@ -111,7 +111,7 @@ new Vue({
 });
 ```
 
-#### 4.2 Standalone Usage
+#### Standalone Usage
 
 Edit `my-project/app/index.html`
 

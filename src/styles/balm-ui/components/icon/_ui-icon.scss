@@ -1,0 +1,31 @@
+@use './variables' as ui-icon-variables;
+
+.material-icons,
+.material-icons-outlined,
+.material-icons-round,
+.material-icons-two-tone,
+.material-icons-sharp {
+  /* Rules for sizing the icon. */
+  @each $size in ui-icon-variables.$sizes {
+    &.md-#{$size} {
+      font-size: #{$size}px;
+
+      width: #{$size}px;
+      height: #{$size}px;
+    }
+  }
+  /* Rules for using icons as black on a light background. */
+  &.md-dark {
+    color: ui-icon-variables.$dark;
+    &.md-inactive {
+      color: ui-icon-variables.$dark-inactive;
+    }
+  }
+  /* Rules for using icons as white on a dark background. */
+  &.md-light {
+    color: ui-icon-variables.$light;
+    &.md-inactive {
+      color: ui-icon-variables.$light-inactive;
+    }
+  }
+}

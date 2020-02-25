@@ -1,3 +1,4 @@
+const fs = require('fs');
 const balm = require('balm');
 const balmConfig = require('./config/balmrc');
 const env = require('./config/env');
@@ -79,31 +80,42 @@ balm.go(mix => {
           'directives',
           'utils'
         ];
+        const uiOutput = `${individual.output.dist}/css/balm-ui`;
         individualBuild.forEach(buildName => {
-          // let buildFiles = individual[buildName].map(item => {
-          //   return `${individual.input[buildName]}/${item}`;
-          // });
-          // mix.js(buildFiles, individual.output[buildName]);
-          individual[buildName].forEach(async item => {
-            await mix.js(
-              [`${individual.input[buildName]}/${item}`],
-              individual.output[buildName],
-              {
-                output: {
-                  library: 'BalmUI_' + item.split('.')[0]
-                }
+          individual[buildName].forEach(item => {
+            let jsTarget =
+              buildName === 'utils'
+                ? `${uiOutput}/${buildName}`
+                : `${uiOutput}/${buildName}/${item}`;
+
+            mix.js([`${individual.input[buildName]}/${item}.js`], jsTarget, {
+              output: {
+                library: 'BalmUI_' + item
               }
-            );
+            });
+
+            let sassFolder = `${individual.input.sass}/balm-ui/${buildName}`;
+            if (fs.existsSync(sassFolder)) {
+              mix.copy(`${sassFolder}/**/*`, `${uiOutput}/${buildName}`);
+            }
           });
         });
 
+        individualBuild.forEach(buildName => {
+          mix.copy(`${uiOutput}/${buildName}/**/*`, buildName);
+        });
+
         mix.copy(['./dist/css/*.css', './dist/js/*.js'], './dist');
-        mix.copy('./dist/css/components/*', './components');
-        mix.copy('./dist/css/plugins/*', './plugins');
-        mix.copy('./dist/css/directives/*', './directives');
         mix.remove(['./dist/css', './dist/js']);
 
-        mix.copy('./src/material-design-icons/latest/*', './fonts');
+        // For sass entry
+        mix.copy(`${individual.input.sass}/*.scss`, './dist');
+
+        // For fonts
+        mix.copy(
+          ['./src/material-icons/*', '!./src/material-icons/*.scss'],
+          './fonts'
+        );
       }
     }
   }

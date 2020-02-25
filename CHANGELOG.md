@@ -1,6 +1,6 @@
 # BalmUI ChangeLog
 
-## v5.0.1 / 2020-02-25
+## v5.0.4 / 2020-02-25
 
 ### Bug Fixes
 

@@ -1,5 +1,12 @@
 # BalmUI ChangeLog
 
+## v5.1.0 / 2020-02-26
+
+### Features
+
+- update [`mdc@5.1.0`](https://github.com/material-components/material-components-web/releases/tag/v5.1.0)
+- update docs
+
 ## v5.0.4 / 2020-02-25
 
 ### Bug Fixes

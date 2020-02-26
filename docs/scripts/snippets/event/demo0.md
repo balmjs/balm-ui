@@ -1,4 +1,4 @@
-Default Usage
+### Default Usage
 
 ```js
 import Vue from 'vue';
@@ -7,7 +7,7 @@ import BalmUI from 'balm-ui';
 Vue.use(BalmUI);
 ```
 
-Standalone Usage
+### Standalone Usage
 
 ```js
 import Vue from 'vue';

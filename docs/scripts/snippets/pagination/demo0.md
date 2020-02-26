@@ -1,5 +1,3 @@
-Default Usage
-
 ```js
 import Vue from 'vue';
 import BalmUIPlus from 'balm-ui/dist/balm-ui-plus';
@@ -12,17 +10,7 @@ Vue.use(BalmUIPlus, {
 });
 ```
 
-Standalone Usage
-
-```js
-import Vue from 'vue';
-import UiPagination from 'balm-ui/components/pagination';
-
-// Optional. Overwrite `<ui-pagination>` props with default value.
-Vue.use(UiPagination, {
-  // some props
-});
-```
+### Standalone Usage
 
 - SASS
   ```css
@@ -36,3 +24,13 @@ Vue.use(UiPagination, {
   <link rel="stylesheet" href="/node_modules/balm-ui/components/pagination/pagination.css" />
   <!-- endbuild -->
   ```
+
+```js
+import Vue from 'vue';
+import UiPagination from 'balm-ui/components/pagination';
+
+// Optional. Overwrite `<ui-pagination>` props with default value.
+Vue.use(UiPagination, {
+  // some props
+});
+```

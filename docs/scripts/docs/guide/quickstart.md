@@ -75,7 +75,7 @@ npm install --save balm-ui
 
 ### 3. Config
 
-- `balm.config` [setup](https://balmjs.com/docs/v2/config/styles.html#styles-dartsass) for Dart Sass
+- **`balm.config`** [**setup**](https://balmjs.com/docs/v2/config/styles.html#styles-dartsass) for Dart Sass
 
 Edit `my-project/config/balmrc.js`
 
@@ -83,7 +83,7 @@ Edit `my-project/config/balmrc.js`
 module.exports = {
   styles: {
     extname: 'scss',
-    dartSass: true
+    dartSass: true // !important
   }
   // Other Options...
 };
@@ -134,7 +134,8 @@ Edit `my-project/app/styles/global/_vendor.scss`
 ```css
 @use 'balm-ui/components/core.scss';
 @use 'balm-ui/components/button/button.scss';
-@use 'balm-ui/components/icon/icon.scss';
+@use 'balm-ui/components/dialog/dialog.scss';
+@use 'balm-ui/plugins/alert/alert.scss';
 ```
 
 Edit `my-project/app/scripts/main.js`

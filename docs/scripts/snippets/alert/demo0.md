@@ -1,5 +1,3 @@
-Default Usage
-
 ```js
 import Vue from 'vue';
 import BalmUIPlus from 'balm-ui/dist/balm-ui-plus';
@@ -12,17 +10,7 @@ Vue.use(BalmUIPlus, {
 });
 ```
 
-Standalone Usage
-
-```js
-import Vue from 'vue';
-import alert from 'balm-ui/plugins/alert';
-
-// Optional. Overwrite `$alert` options.
-Vue.use(alert, {
-  // some options
-});
-```
+### Standalone Usage
 
 - SASS
   ```css
@@ -38,3 +26,13 @@ Vue.use(alert, {
   <link rel="stylesheet" href="/node_modules/balm-ui/plugins/alert/alert.css" />
   <!-- endbuild -->
   ```
+
+```js
+import Vue from 'vue';
+import alert from 'balm-ui/plugins/alert';
+
+// Optional. Overwrite `$alert` options.
+Vue.use(alert, {
+  // some options
+});
+```

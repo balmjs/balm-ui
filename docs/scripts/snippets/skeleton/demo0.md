@@ -1,5 +1,3 @@
-Default Usage
-
 ```js
 import Vue from 'vue';
 import BalmUIPlus from 'balm-ui/dist/balm-ui-plus';
@@ -12,17 +10,7 @@ Vue.use(BalmUIPlus, {
 });
 ```
 
-Standalone Usage
-
-```js
-import Vue from 'vue';
-import UiSkeleton from 'balm-ui/components/skeleton';
-
-// Optional. Overwrite `<ui-skeleton>` props with default value.
-Vue.use(UiSkeleton, {
-  // some props
-});
-```
+### Standalone Usage
 
 - SASS
   ```css
@@ -36,3 +24,13 @@ Vue.use(UiSkeleton, {
   <link rel="stylesheet" href="/node_modules/balm-ui/components/skeleton/skeleton.css" />
   <!-- endbuild -->
   ```
+
+```js
+import Vue from 'vue';
+import UiSkeleton from 'balm-ui/components/skeleton';
+
+// Optional. Overwrite `<ui-skeleton>` props with default value.
+Vue.use(UiSkeleton, {
+  // some props
+});
+```

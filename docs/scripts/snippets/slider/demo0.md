@@ -1,5 +1,3 @@
-Default Usage
-
 ```js
 import Vue from 'vue';
 import BalmUI from 'balm-ui';
@@ -12,17 +10,7 @@ Vue.use(BalmUI, {
 });
 ```
 
-Standalone Usage
-
-```js
-import Vue from 'vue';
-import UiSlider from 'balm-ui/components/slider';
-
-// Optional. Overwrite `<ui-slider>` props with default value.
-Vue.use(UiSlider, {
-  // some props
-});
-```
+### Standalone Usage
 
 - SASS
   ```css
@@ -36,3 +24,13 @@ Vue.use(UiSlider, {
   <link rel="stylesheet" href="/node_modules/balm-ui/components/slider/slider.css" />
   <!-- endbuild -->
   ```
+
+```js
+import Vue from 'vue';
+import UiSlider from 'balm-ui/components/slider';
+
+// Optional. Overwrite `<ui-slider>` props with default value.
+Vue.use(UiSlider, {
+  // some props
+});
+```

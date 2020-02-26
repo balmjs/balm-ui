@@ -1,5 +1,3 @@
-Default Usage
-
 ```js
 import Vue from 'vue';
 import BalmUI from 'balm-ui';
@@ -12,17 +10,7 @@ Vue.use(BalmUI, {
 });
 ```
 
-Standalone Usage
-
-```js
-import Vue from 'vue';
-import UiTopAppBar from 'balm-ui/components/top-app-bar';
-
-// Optional. Overwrite `<ui-top-app-bar>` props with default value.
-Vue.use(UiTopAppBar, {
-  // some props
-});
-```
+### Standalone Usage
 
 - SASS
   ```css
@@ -38,3 +26,13 @@ Vue.use(UiTopAppBar, {
   <link rel="stylesheet" href="/node_modules/balm-ui/components/icon-button/icon-button.css" />
   <!-- endbuild -->
   ```
+
+```js
+import Vue from 'vue';
+import UiTopAppBar from 'balm-ui/components/top-app-bar';
+
+// Optional. Overwrite `<ui-top-app-bar>` props with default value.
+Vue.use(UiTopAppBar, {
+  // some props
+});
+```

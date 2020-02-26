@@ -1,5 +1,3 @@
-Default Usage
-
 ```js
 import Vue from 'vue';
 import BalmUI from 'balm-ui';
@@ -7,14 +5,7 @@ import BalmUI from 'balm-ui';
 Vue.use(BalmUI);
 ```
 
-Standalone Usage
-
-```js
-import Vue from 'vue';
-import ripple from 'balm-ui/directives/ripple';
-
-Vue.directive(ripple.name, ripple);
-```
+### Standalone Usage
 
 - SASS
   ```css
@@ -36,3 +27,10 @@ Vue.directive(ripple.name, ripple);
   <link rel="stylesheet" href="/node_modules/balm-ui/directives/ripple/ripple.css" />
   <!-- endbuild -->
   ```
+
+```js
+import Vue from 'vue';
+import ripple from 'balm-ui/directives/ripple';
+
+Vue.directive(ripple.name, ripple);
+```

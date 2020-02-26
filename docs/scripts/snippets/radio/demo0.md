@@ -1,5 +1,3 @@
-Default Usage
-
 ```js
 import Vue from 'vue';
 import BalmUI from 'balm-ui';
@@ -12,19 +10,7 @@ Vue.use(BalmUI, {
 });
 ```
 
-Standalone Usage
-
-```js
-import Vue from 'vue';
-import UiFormField from 'balm-ui/components/form-field';
-import UiRadio from 'balm-ui/components/radio';
-
-Vue.use(UiFormField);
-// Optional. Overwrite `<ui-radio>` props with default value.
-Vue.use(UiRadio, {
-  // some props
-});
-```
+### Standalone Usage
 
 - SASS
   ```css
@@ -40,3 +26,15 @@ Vue.use(UiRadio, {
   <link rel="stylesheet" href="/node_modules/balm-ui/components/radio/radio.css" />
   <!-- endbuild -->
   ```
+
+```js
+import Vue from 'vue';
+import UiFormField from 'balm-ui/components/form-field';
+import UiRadio from 'balm-ui/components/radio';
+
+Vue.use(UiFormField);
+// Optional. Overwrite `<ui-radio>` props with default value.
+Vue.use(UiRadio, {
+  // some props
+});
+```

@@ -31,6 +31,7 @@
 
     <div :class="$tt('body2')">
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
+      <ui-markdown text="common"></ui-markdown>
       <ui-markdown :text="code[0]"></ui-markdown>
 
       <h4 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demo</h4>

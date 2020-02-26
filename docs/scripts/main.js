@@ -16,6 +16,7 @@ import UiAccordion from '@/components/accordion';
 import UiSnippet from '@/components/snippet';
 import UiFooterNav from '@/components/footer-nav';
 import UiTocAffix from '@/components/toc-affix';
+// import UiPageStructure from '@/components/page-structure'; // TODO: 待优化
 import SvgLogo from '@/components/svg-logo';
 import validatorRules from '@/config/validator-rules';
 // syntax highlighting
@@ -49,6 +50,7 @@ if (isIE) {
   Vue.component(UiSnippet.name, UiSnippet);
   Vue.component(UiFooterNav.name, UiFooterNav);
   Vue.component(UiTocAffix.name, UiTocAffix);
+  // Vue.component(UiPageStructure.name, UiPageStructure); // TODO: 待优化
   Vue.component(SvgLogo.name, SvgLogo);
 
   Vue.prototype.$prism = prismjs;

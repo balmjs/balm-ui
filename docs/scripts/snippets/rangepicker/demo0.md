@@ -1,10 +1,16 @@
-Default Usage
+### Default Usage
 
-```html
-<!-- build:css css/plugins.css -->
-<link rel="stylesheet" href="/node_modules/flatpickr/dist/flatpickr.min.css" />
-<!-- endbuild -->
-```
+- SASS
+  ```css
+  @use 'balm-ui/dist/balm-ui.scss';
+  ```
+- CSS
+  ```html
+  <!-- build:css css/vendors.css -->
+  <link rel="stylesheet" href="/node_modules/balm-ui/dist/balm-ui.css" />
+  <link rel="stylesheet" href="/node_modules/flatpickr/dist/flatpickr.min.css" />
+  <!-- endbuild -->
+  ```
 
 ```js
 import Vue from 'vue';
@@ -18,17 +24,7 @@ Vue.use(BalmUIPlus, {
 });
 ```
 
-Standalone Usage
-
-```js
-import Vue from 'vue';
-import UiRangepicker from 'balm-ui/components/rangepicker';
-
-// Optional. Overwrite `<ui-rangepicker>` props with default value.
-Vue.use(UiRangepicker, {
-  // some props
-});
-```
+### Standalone Usage
 
 - SASS
   ```css
@@ -50,3 +46,13 @@ Vue.use(UiRangepicker, {
   <link rel="stylesheet" href="/node_modules/flatpickr/dist/flatpickr.min.css" />
   <!-- endbuild -->
   ```
+
+```js
+import Vue from 'vue';
+import UiRangepicker from 'balm-ui/components/rangepicker';
+
+// Optional. Overwrite `<ui-rangepicker>` props with default value.
+Vue.use(UiRangepicker, {
+  // some props
+});
+```

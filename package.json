@@ -1,6 +1,6 @@
 {
   "name": "balm-ui",
-  "version": "5.0.4",
+  "version": "5.1.0",
   "description": "Next Generation Material UI for Vue.js",
   "keywords": [
     "balm",
@@ -51,7 +51,7 @@
   "dependencies": {
     "deepmerge": "^4.2.2",
     "flatpickr": "^4.6.3",
-    "material-components-web": "^5.0.0"
+    "material-components-web": "^5.1.0"
   },
   "devDependencies": {
     "@babel/register": "^7.8.3",
@@ -59,7 +59,7 @@
     "@csstools/normalize.css": "^10.1.0",
     "@vue/test-utils": "^1.0.0-beta.31",
     "axios": "^0.19.2",
-    "babel-eslint": "^10.0.3",
+    "babel-eslint": "^10.1.0",
     "babel-plugin-istanbul": "^6.0.0",
     "balm": "^2.8.0",
     "balm-ui-lite": "^1.8.0",
@@ -86,7 +86,7 @@
     "karma-webpack": "^4.0.2",
     "markdown-loader": "^5.1.0",
     "material-design-icons": "^3.0.1",
-    "mocha": "^7.0.1",
+    "mocha": "^7.1.0",
     "mocha-webpack": "^2.0.0-beta.0",
     "nyc": "^15.0.0",
     "prettier": "^1.19.1",
@@ -94,10 +94,10 @@
     "sanitize.css": "^11.0.0",
     "sinon": "^9.0.0",
     "vue": "^2.6.11",
-    "vue-i18n": "^8.15.3",
+    "vue-i18n": "^8.15.4",
     "vue-loader": "^15.8.3",
     "vue-meta": "^2.3.2",
-    "vue-router": "^3.1.5",
+    "vue-router": "^3.1.6",
     "vue-template-compiler": "^2.6.11",
     "webpack-node-externals": "^1.7.2"
   },

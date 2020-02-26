@@ -1,5 +1,5 @@
 <template>
-  <div :class="className" v-html="html"></div>
+  <div :class="className" v-html="commonHtml || html"></div>
 </template>
 
 <script>
@@ -17,6 +17,9 @@ export default {
   computed: {
     className() {
       return this.code ? 'snippet-code' : 'markdown-body';
+    },
+    commonHtml() {
+      return this.text === 'common' ? require('@/snippets/styles.md') : false;
     }
   },
   mounted() {

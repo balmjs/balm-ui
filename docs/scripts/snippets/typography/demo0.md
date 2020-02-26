@@ -1,5 +1,3 @@
-Default Usage
-
 ```js
 import Vue from 'vue';
 import BalmUI from 'balm-ui';
@@ -10,15 +8,7 @@ Vue.use(BalmUI, {
 });
 ```
 
-Standalone Usage
-
-```js
-import Vue from 'vue';
-import typography from 'balm-ui/plugins/typography';
-
-// Optional. Overwrite the param of `$tt()`.
-Vue.use(typography, ['custom-module-1', 'custom-module-2']);
-```
+### Standalone Usage
 
 - SASS
   ```css
@@ -42,3 +32,11 @@ Vue.use(typography, ['custom-module-1', 'custom-module-2']);
   <link rel="stylesheet" href="/path/to/custom-typography.css" />
   <!-- endbuild -->
   ```
+
+```js
+import Vue from 'vue';
+import typography from 'balm-ui/plugins/typography';
+
+// Optional. Overwrite the param of `$tt()`.
+Vue.use(typography, ['custom-module-1', 'custom-module-2']);
+```

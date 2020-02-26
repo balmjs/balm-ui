@@ -1,4 +1,4 @@
-Default Usage
+### Default Usage
 
 ```js
 import Vue from 'vue';
@@ -11,7 +11,7 @@ Vue.use(BalmUIPlus, {
 });
 ```
 
-Standalone Usage
+### Standalone Usage
 
 ```js
 import Vue from 'vue';
@@ -27,7 +27,7 @@ Custom global validator rules
 ```js
 import { types } from 'balm-ui/dist/balm-ui-plus'; // Default Usage
 // OR
-// import types from 'balm-ui/utils/types'; // Standalone Usage
+// import types from 'balm-ui/utils/types'; // ### Standalone Usage
 
 export default {
   required: {

@@ -1,5 +1,3 @@
-Default Usage
-
 ```js
 import Vue from 'vue';
 import BalmUI from 'balm-ui';
@@ -12,19 +10,7 @@ Vue.use(BalmUI, {
 });
 ```
 
-Standalone Usage
-
-```js
-import Vue from 'vue';
-import UiFormField from 'balm-ui/components/form-field';
-import UiCheckbox from 'balm-ui/components/checkbox';
-
-Vue.use(UiFormField);
-// Optional. Overwrite `<ui-checkbox>` props with default value.
-Vue.use(UiCheckbox, {
-  // some props
-});
-```
+### Standalone Usage
 
 - SASS
   ```css
@@ -40,3 +26,15 @@ Vue.use(UiCheckbox, {
   <link rel="stylesheet" href="/node_modules/balm-ui/components/checkbox/checkbox.css" />
   <!-- endbuild -->
   ```
+
+```js
+import Vue from 'vue';
+import UiFormField from 'balm-ui/components/form-field';
+import UiCheckbox from 'balm-ui/components/checkbox';
+
+Vue.use(UiFormField);
+// Optional. Overwrite `<ui-checkbox>` props with default value.
+Vue.use(UiCheckbox, {
+  // some props
+});
+```

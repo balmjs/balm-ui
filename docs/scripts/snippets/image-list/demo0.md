@@ -1,5 +1,3 @@
-Default Usage
-
 ```js
 import Vue from 'vue';
 import BalmUI from 'balm-ui';
@@ -16,7 +14,20 @@ Vue.use(BalmUI, {
 });
 ```
 
-Standalone Usage
+### Standalone Usage
+
+- SASS
+  ```css
+  @use 'balm-ui/components/core.scss';
+  @use 'balm-ui/components/image-list/image-list.scss';
+  ```
+- CSS
+  ```html
+  <!-- build:css css/vendors.css -->
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+  <link rel="stylesheet" href="/node_modules/balm-ui/components/image-list/image-list.css" />
+  <!-- endbuild -->
+  ```
 
 ```js
 import Vue from 'vue';
@@ -33,16 +44,3 @@ Vue.use(UiImageListComponents, {
   }
 });
 ```
-
-- SASS
-  ```css
-  @use 'balm-ui/components/core.scss';
-  @use 'balm-ui/components/image-list/image-list.scss';
-  ```
-- CSS
-  ```html
-  <!-- build:css css/vendors.css -->
-  <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
-  <link rel="stylesheet" href="/node_modules/balm-ui/components/image-list/image-list.css" />
-  <!-- endbuild -->
-  ```

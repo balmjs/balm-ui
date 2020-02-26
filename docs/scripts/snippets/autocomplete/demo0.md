@@ -1,5 +1,3 @@
-Default Usage
-
 ```js
 import Vue from 'vue';
 import BalmUIPlus from 'balm-ui/dist/balm-ui-plus';
@@ -12,17 +10,7 @@ Vue.use(BalmUIPlus, {
 });
 ```
 
-Standalone Usage
-
-```js
-import Vue from 'vue';
-import UiAutocomplete from 'balm-ui/components/autocomplete';
-
-// Optional. Overwrite `<ui-autocomplete>` props with default value.
-Vue.use(UiAutocomplete, {
-  // some props
-});
-```
+### Standalone Usage
 
 - SASS
   ```css
@@ -40,3 +28,13 @@ Vue.use(UiAutocomplete, {
   <link rel="stylesheet" href="/node_modules/balm-ui/components/autocomplete/autocomplete.css" />
   <!-- endbuild -->
   ```
+
+```js
+import Vue from 'vue';
+import UiAutocomplete from 'balm-ui/components/autocomplete';
+
+// Optional. Overwrite `<ui-autocomplete>` props with default value.
+Vue.use(UiAutocomplete, {
+  // some props
+});
+```

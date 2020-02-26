@@ -1,5 +1,3 @@
-Default Usage
-
 ```js
 import Vue from 'vue';
 import BalmUI from 'balm-ui';
@@ -12,17 +10,7 @@ Vue.use(BalmUI, {
 });
 ```
 
-Standalone Usage
-
-```js
-import Vue from 'vue';
-import UiIcon from 'balm-ui/components/icon';
-
-// Optional. Overwrite `<ui-icon>` props with default value.
-Vue.use(UiIcon, {
-  // some props
-});
-```
+### Standalone Usage
 
 - SASS
   ```css
@@ -36,3 +24,13 @@ Vue.use(UiIcon, {
   <link rel="stylesheet" href="/node_modules/balm-ui/components/icon/icon.css" />
   <!-- endbuild -->
   ```
+
+```js
+import Vue from 'vue';
+import UiIcon from 'balm-ui/components/icon';
+
+// Optional. Overwrite `<ui-icon>` props with default value.
+Vue.use(UiIcon, {
+  // some props
+});
+```

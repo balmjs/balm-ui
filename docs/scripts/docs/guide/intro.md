@@ -33,8 +33,7 @@ Following the [Material Design](https://material.io/components/) UI components f
   - Rangepicker (💡)
 - Data View
   - List
-  - <del>Grid List</del> (💀)
-  - Image List (migrate from Grid List)
+  - Image List
   - Card
   - Chips
   - Data Table
@@ -70,7 +69,7 @@ Following the [Material Design](https://material.io/components/) UI components f
 - Helper Functions
 - IE Detection
 
-> 💡: Extra, 💀: Deprecated
+> 💡: Extra
 
 ### Contributing
 

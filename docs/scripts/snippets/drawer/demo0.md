@@ -1,5 +1,3 @@
-Default Usage
-
 ```js
 import Vue from 'vue';
 import BalmUI from 'balm-ui';
@@ -7,14 +5,7 @@ import BalmUI from 'balm-ui';
 Vue.use(BalmUI);
 ```
 
-Standalone Usage
-
-```js
-import Vue from 'vue';
-import UiDrawerComponents from 'balm-ui/components/drawer';
-
-Vue.use(UiDrawerComponents);
-```
+### Standalone Usage
 
 - SASS
   ```css
@@ -30,3 +21,10 @@ Vue.use(UiDrawerComponents);
   <link rel="stylesheet" href="/node_modules/balm-ui/components/list/list.css" />
   <!-- endbuild -->
   ```
+
+```js
+import Vue from 'vue';
+import UiDrawerComponents from 'balm-ui/components/drawer';
+
+Vue.use(UiDrawerComponents);
+```

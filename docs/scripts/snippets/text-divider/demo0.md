@@ -1,5 +1,3 @@
-Default Usage
-
 ```js
 import Vue from 'vue';
 import BalmUIPlus from 'balm-ui/dist/balm-ui-plus';
@@ -7,14 +5,7 @@ import BalmUIPlus from 'balm-ui/dist/balm-ui-plus';
 Vue.use(BalmUIPlus);
 ```
 
-Standalone Usage
-
-```js
-import Vue from 'vue';
-import UiTextDivider from 'balm-ui/components/text-divider';
-
-Vue.use(UiTextDivider);
-```
+### Standalone Usage
 
 - SASS
   ```css
@@ -28,3 +19,10 @@ Vue.use(UiTextDivider);
   <link rel="stylesheet" href="/node_modules/balm-ui/components/text-divider/text-divider.css" />
   <!-- endbuild -->
   ```
+
+```js
+import Vue from 'vue';
+import UiTextDivider from 'balm-ui/components/text-divider';
+
+Vue.use(UiTextDivider);
+```

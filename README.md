@@ -31,7 +31,7 @@ npm install --save balm-ui
 balm.config = {
   styles: {
     extname: 'scss',
-    dartSass: true
+    dartSass: true // !important
   }
   // Other Options...
 };
@@ -113,7 +113,7 @@ Enjoy 👻
   - Rangepicker (:bulb:)
 - Data View
   - List
-  - Image List (migrate from Grid List)
+  - Image List
   - Card
   - Chips
   - Data Table

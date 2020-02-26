@@ -1,5 +1,3 @@
-Default Usage
-
 ```js
 import Vue from 'vue';
 import BalmUI from 'balm-ui';
@@ -12,19 +10,7 @@ Vue.use(BalmUI, {
 });
 ```
 
-Standalone Usage
-
-```js
-import Vue from 'vue';
-import UiGridComponents from 'balm-ui/components/grid';
-
-Vue.use(UiGridComponents, {
-  // Optional. Overwrite `<ui-grid>` props with default value.
-  UiGrid: {
-    // some props
-  }
-});
-```
+### Standalone Usage
 
 - SASS
   ```css
@@ -38,3 +24,15 @@ Vue.use(UiGridComponents, {
   <link rel="stylesheet" href="/node_modules/balm-ui/components/grid/grid.css" />
   <!-- endbuild -->
   ```
+
+```js
+import Vue from 'vue';
+import UiGridComponents from 'balm-ui/components/grid';
+
+Vue.use(UiGridComponents, {
+  // Optional. Overwrite `<ui-grid>` props with default value.
+  UiGrid: {
+    // some props
+  }
+});
+```

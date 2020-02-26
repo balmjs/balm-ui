@@ -1,5 +1,3 @@
-Default Usage
-
 ```js
 import Vue from 'vue';
 import BalmUI from 'balm-ui';
@@ -12,19 +10,7 @@ Vue.use(BalmUI, {
 });
 ```
 
-Standalone Usage
-
-```js
-import Vue from 'vue';
-import UiMenuComponents from 'balm-ui/components/menu';
-
-Vue.use(UiMenuComponents, {
-  // Optional. Overwrite `<ui-menu>` props with default value.
-  UiMenu: {
-    // some props
-  }
-});
-```
+### Standalone Usage
 
 - SASS
   ```css
@@ -40,3 +26,15 @@ Vue.use(UiMenuComponents, {
   <link rel="stylesheet" href="/node_modules/balm-ui/components/menu/menu.css" />
   <!-- endbuild -->
   ```
+
+```js
+import Vue from 'vue';
+import UiMenuComponents from 'balm-ui/components/menu';
+
+Vue.use(UiMenuComponents, {
+  // Optional. Overwrite `<ui-menu>` props with default value.
+  UiMenu: {
+    // some props
+  }
+});
+```

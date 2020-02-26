@@ -1,5 +1,3 @@
-Default Usage
-
 ```js
 import Vue from 'vue';
 import BalmUI from 'balm-ui';
@@ -12,17 +10,7 @@ Vue.use(BalmUI, {
 });
 ```
 
-Standalone Usage
-
-```js
-import Vue from 'vue';
-import UiLinearProgress from 'balm-ui/components/linear-progress';
-
-// Optional. Overwrite `<ui-linear-progress>` props with default value.
-Vue.use(UiLinearProgress, {
-  // some props
-});
-```
+### Standalone Usage
 
 - SASS
   ```css
@@ -36,3 +24,13 @@ Vue.use(UiLinearProgress, {
   <link rel="stylesheet" href="/node_modules/balm-ui/components/linear-progress/linear-progress.css" />
   <!-- endbuild -->
   ```
+
+```js
+import Vue from 'vue';
+import UiLinearProgress from 'balm-ui/components/linear-progress';
+
+// Optional. Overwrite `<ui-linear-progress>` props with default value.
+Vue.use(UiLinearProgress, {
+  // some props
+});
+```

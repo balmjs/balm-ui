@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello BalmUI</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/balm-ui@5.1.1/dist/balm-ui.css"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <ui-button @click="$alert(message)" icon="add">SayHi</ui-button>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/balm-ui"></script>
+    <script src="https://unpkg.com/balm-ui@5.1.1/dist/balm-ui-plus.js"></script>
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          message: 'Hello BalmUI'
+        }
+      });
+    </script>
+  </body>
+</html>

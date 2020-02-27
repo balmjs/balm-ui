@@ -7,7 +7,7 @@
 ```js
 import { detectIE } from 'balm-ui/dist/balm-ui-plus'; // Default Usage
 // OR
-// import detectIE from 'balm-ui/utils/ie'; // Standalone Usage
+// import detectIE from 'balm-ui/utils/ie'; // Individual Usage
 
 const IE = detectIE();
 

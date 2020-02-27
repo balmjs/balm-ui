@@ -13,7 +13,7 @@
       <ui-panel>Panel Two</ui-panel>
       <ui-panel>Panel Three</ui-panel>
     </ui-panels>
-    <ui-snippet :code="code[9]"></ui-snippet>
+    <ui-snippet :code="$store.demos[9]"></ui-snippet>
   </section>
 </template>
 

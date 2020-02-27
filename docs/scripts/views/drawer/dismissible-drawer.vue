@@ -29,7 +29,7 @@
         <div :class="$tt('body2')">
           <h1 :class="$tt('headline4')">Dismissible Drawer</h1>
           <p>Click the menu icon above to open and close the drawer.</p>
-          <ui-snippet :code="code[3]"></ui-snippet>
+          <ui-snippet :code="$store.demos[3]"></ui-snippet>
         </div>
       </div>
     </ui-drawer-app-content>
@@ -39,7 +39,6 @@
 <script>
 import UiDrawerCommonContent from './drawer-common-content';
 import DrawerMixin from '@/mixins/drawer';
-import snippets from '@/mixins/snippets';
 
 export default {
   metaInfo: {
@@ -48,9 +47,11 @@ export default {
   components: {
     UiDrawerCommonContent
   },
-  mixins: [DrawerMixin, snippets],
+  mixins: [DrawerMixin],
   created() {
-    this.showCode('drawer', 4);
+    this.$store.initDocs('drawer', {
+      demoCount: 4
+    });
   }
 };
 </script>

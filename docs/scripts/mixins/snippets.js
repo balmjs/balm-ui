@@ -17,7 +17,7 @@ export default {
       };
 
       if (this.demo.name) {
-        for (let i = 0; i <= this.demo.count; i++) {
+        for (let i = 1; i <= this.demo.count; i++) {
           // NOTE: Critical dependency: the request of a dependency is an expression
           // 1. 完全使用变量 require(variable)
           // let code = require(`@/snippets/${this.demo.name}/demo${i}.md`);
@@ -34,12 +34,8 @@ export default {
         );
       }
     },
-    showDocs(name, css = false) {
-      if (css) {
-        this.docs.css = require(`@/docs/cssdocs/${name}.md`);
-      } else {
-        this.docs[name] = require(`@/docs/apidocs/${name}.md`);
-      }
+    showDocs(name, componentName) {
+      this.docs[componentName] = require(`@/docs/${name}/${componentName}.md`);
     },
     initDocs(
       name,
@@ -49,19 +45,22 @@ export default {
         css: false
       }
     ) {
-      this.showCode(name, options.code);
+      this.showDocs(name, 'intro');
 
-      const apis = options.apis;
-      let componentName = '';
-      for (let i = 0, len = apis.length; i < len; i++) {
-        if (i === 0) {
-          componentName = apis[i];
+      if (name !== 'utils') {
+        this.showDocs(name, 'usage');
+
+        this.showCode(name, options.code);
+
+        const apis = options.apis;
+        for (let i = 0, len = apis.length; i < len; i++) {
+          let componentName = apis[i];
+          this.showDocs(name, componentName);
         }
-        this.showDocs(apis[i]);
-      }
 
-      if (options.css && componentName) {
-        this.showDocs(name, componentName);
+        if (options.css) {
+          this.showDocs(name, 'css');
+        }
       }
     }
   }

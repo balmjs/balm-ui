@@ -1,6 +1,10 @@
 <template>
-  <div :class="[$tt('body1'), 'demo--list']">
-    <header class="hero component">
+  <ui-page-structure
+    name="list"
+    demoCount="8"
+    :apis="['list', 'list-item', 'list-divider', 'list-group']"
+  >
+    <template #hero>
       <div class="hero-demo">
         <ui-list :type="typeOption" :avatar="beforeText === 2">
           <ui-item v-for="i in 3" :key="i">
@@ -39,147 +43,127 @@
           >
         </div>
       </div>
-    </header>
+    </template>
 
-    <ui-toc-affix></ui-toc-affix>
+    <!-- Content -->
+    <div id="demo-wrapper">
+      <h4 :class="$tt('headline6')">1.1 Single-Line</h4>
+      <ui-list>
+        <ui-item v-for="i in items" :key="i">
+          <ui-item-text-content>Line item</ui-item-text-content>
+        </ui-item>
+      </ui-list>
+      <ui-snippet :code="$store.demos[1]"></ui-snippet>
 
-    <div :class="$tt('body2')">
-      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
-      <ui-markdown text="common"></ui-markdown>
-      <ui-markdown :text="code[0]"></ui-markdown>
+      <h4 :class="$tt('headline6')">1.2 Two-Line</h4>
+      <ui-list :type="2">
+        <ui-item v-for="i in items" :key="i">
+          <ui-item-text-content>
+            <ui-item-text1>Line item</ui-item-text1>
+            <ui-item-text2>Secondary text</ui-item-text2>
+          </ui-item-text-content>
+        </ui-item>
+      </ui-list>
+      <ui-snippet :code="$store.demos[2]"></ui-snippet>
 
-      <h4 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demo</h4>
-      <div id="demo-wrapper">
-        <h4 :class="$tt('headline6')">1.1 Single-Line</h4>
-        <ui-list>
-          <ui-item v-for="i in items" :key="i">
-            <ui-item-text-content>Line item</ui-item-text-content>
-          </ui-item>
-        </ui-list>
-        <ui-snippet :code="code[1]"></ui-snippet>
+      <h4 :class="$tt('headline6')">1.3 Leading Icon</h4>
+      <ui-list>
+        <ui-item v-for="(item, index) in items1" :key="index">
+          <ui-item-first-content>
+            <ui-icon>{{ item.icon }}</ui-icon>
+          </ui-item-first-content>
+          <ui-item-text-content>{{ item.text }}</ui-item-text-content>
+        </ui-item>
+      </ui-list>
+      <ui-snippet :code="$store.demos[3]"></ui-snippet>
 
-        <h4 :class="$tt('headline6')">1.2 Two-Line</h4>
-        <ui-list :type="2">
-          <ui-item v-for="i in items" :key="i">
+      <h4 :class="$tt('headline6')">
+        1.4 List with activated item (Selected Index: {{ selectedIndex }})
+      </h4>
+      <ui-list singleSelection v-model="selectedIndex">
+        <ui-item v-for="(item, index) in items2" :key="index">
+          <ui-item-first-content>
+            <ui-icon>{{ item.icon }}</ui-icon>
+          </ui-item-first-content>
+          <ui-item-text-content>{{ item.text }}</ui-item-text-content>
+        </ui-item>
+      </ui-list>
+      <ui-snippet :code="$store.demos[4]"></ui-snippet>
+
+      <h4 :class="$tt('headline6')">1.5 Trailing Icon</h4>
+      <ui-list>
+        <ui-item v-for="i in items" :key="i">
+          <ui-item-text-content>Line item</ui-item-text-content>
+          <ui-item-last-content>
+            <ui-icon>info</ui-icon>
+          </ui-item-last-content>
+        </ui-item>
+      </ui-list>
+      <ui-snippet :code="$store.demos[5]"></ui-snippet>
+
+      <h4 :class="$tt('headline6')">
+        1.6 Two-Line with Leading and Trailing Icon and Divider
+      </h4>
+      <ui-list :type="2" avatar>
+        <template v-for="(item, index) in items3">
+          <ui-item-divider v-if="item === '-'" :key="index"></ui-item-divider>
+          <ui-item v-else :key="index">
+            <template #before="{ iconClass }">
+              <ui-icon :class="iconClass">folder</ui-icon>
+            </template>
             <ui-item-text-content>
-              <ui-item-text1>Line item</ui-item-text1>
-              <ui-item-text2>Secondary text</ui-item-text2>
+              <ui-item-text1>{{ item.text }}</ui-item-text1>
+              <ui-item-text2>{{ item.subtext }}</ui-item-text2>
             </ui-item-text-content>
-          </ui-item>
-        </ui-list>
-        <ui-snippet :code="code[2]"></ui-snippet>
-
-        <h4 :class="$tt('headline6')">1.3 Leading Icon</h4>
-        <ui-list>
-          <ui-item v-for="(item, index) in items1" :key="index">
-            <ui-item-first-content>
-              <ui-icon>{{ item.icon }}</ui-icon>
-            </ui-item-first-content>
-            <ui-item-text-content>{{ item.text }}</ui-item-text-content>
-          </ui-item>
-        </ui-list>
-        <ui-snippet :code="code[3]"></ui-snippet>
-
-        <h4 :class="$tt('headline6')">
-          1.4 List with activated item (Selected Index: {{ selectedIndex }})
-        </h4>
-        <ui-list singleSelection v-model="selectedIndex">
-          <ui-item v-for="(item, index) in items2" :key="index">
-            <ui-item-first-content>
-              <ui-icon>{{ item.icon }}</ui-icon>
-            </ui-item-first-content>
-            <ui-item-text-content>{{ item.text }}</ui-item-text-content>
-          </ui-item>
-        </ui-list>
-        <ui-snippet :code="code[4]"></ui-snippet>
-
-        <h4 :class="$tt('headline6')">1.5 Trailing Icon</h4>
-        <ui-list>
-          <ui-item v-for="i in items" :key="i">
-            <ui-item-text-content>Line item</ui-item-text-content>
             <ui-item-last-content>
               <ui-icon>info</ui-icon>
             </ui-item-last-content>
           </ui-item>
-        </ui-list>
-        <ui-snippet :code="code[5]"></ui-snippet>
+        </template>
+      </ui-list>
+      <ui-snippet :code="$store.demos[6]"></ui-snippet>
 
-        <h4 :class="$tt('headline6')">
-          1.6 Two-Line with Leading and Trailing Icon and Divider
-        </h4>
-        <ui-list :type="2" avatar>
-          <template v-for="(item, index) in items3">
-            <ui-item-divider v-if="item === '-'" :key="index"></ui-item-divider>
-            <ui-item v-else :key="index">
-              <template #before="{ iconClass }">
-                <ui-icon :class="iconClass">folder</ui-icon>
-              </template>
-              <ui-item-text-content>
-                <ui-item-text1>{{ item.text }}</ui-item-text1>
-                <ui-item-text2>{{ item.subtext }}</ui-item-text2>
-              </ui-item-text-content>
-              <ui-item-last-content>
-                <ui-icon>info</ui-icon>
-              </ui-item-last-content>
-            </ui-item>
-          </template>
-        </ui-list>
-        <ui-snippet :code="code[6]"></ui-snippet>
-
-        <h4 :class="$tt('headline6')">
-          1.7 List with Trailing Checkbox (Checked values: {{ checkedValues }})
-        </h4>
-        <ui-list>
-          <template v-for="(item, index) in items3">
-            <ui-item-divider v-if="item === '-'" :key="index"></ui-item-divider>
-            <ui-item v-else :key="index">
-              <ui-item-text-content>{{ item.text }}</ui-item-text-content>
-              <ui-item-last-content>
-                <ui-checkbox
-                  v-model="checkedValues"
-                  :value="item.value"
-                ></ui-checkbox>
-              </ui-item-last-content>
-            </ui-item>
-          </template>
-        </ui-list>
-        <ui-snippet :code="code[7]"></ui-snippet>
-
-        <h4 :class="$tt('headline6')">
-          1.8 List with Trailing Radio Buttons (Checked value:
-          {{ checkedValue }})
-        </h4>
-        <ui-list>
-          <template v-for="(item, index) in items3">
-            <ui-item-divider v-if="item === '-'" :key="index"></ui-item-divider>
-            <ui-item v-else :key="index">
-              <ui-item-text-content>{{ item.text }}</ui-item-text-content>
-              <ui-item-last-content>
-                <ui-radio v-model="checkedValue" :value="item.value"></ui-radio>
-              </ui-item-last-content>
-            </ui-item>
-          </template>
-        </ui-list>
-        <ui-snippet :code="code[8]"></ui-snippet>
-      </div>
-
-      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-markdown :text="docs.list"></ui-markdown>
-      <ui-markdown :text="docs['list-item']"></ui-markdown>
-      <ui-markdown :text="docs['list-divider']"></ui-markdown>
-      <ui-markdown :text="docs['list-group']"></ui-markdown>
-
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
-        3. Sass Variables
+      <h4 :class="$tt('headline6')">
+        1.7 List with Trailing Checkbox (Checked values: {{ checkedValues }})
       </h4>
-      <ui-markdown :text="docs.css"></ui-markdown>
+      <ui-list>
+        <template v-for="(item, index) in items3">
+          <ui-item-divider v-if="item === '-'" :key="index"></ui-item-divider>
+          <ui-item v-else :key="index">
+            <ui-item-text-content>{{ item.text }}</ui-item-text-content>
+            <ui-item-last-content>
+              <ui-checkbox
+                v-model="checkedValues"
+                :value="item.value"
+              ></ui-checkbox>
+            </ui-item-last-content>
+          </ui-item>
+        </template>
+      </ui-list>
+      <ui-snippet :code="$store.demos[7]"></ui-snippet>
+
+      <h4 :class="$tt('headline6')">
+        1.8 List with Trailing Radio Buttons (Checked value:
+        {{ checkedValue }})
+      </h4>
+      <ui-list>
+        <template v-for="(item, index) in items3">
+          <ui-item-divider v-if="item === '-'" :key="index"></ui-item-divider>
+          <ui-item v-else :key="index">
+            <ui-item-text-content>{{ item.text }}</ui-item-text-content>
+            <ui-item-last-content>
+              <ui-radio v-model="checkedValue" :value="item.value"></ui-radio>
+            </ui-item-last-content>
+          </ui-item>
+        </template>
+      </ui-list>
+      <ui-snippet :code="$store.demos[8]"></ui-snippet>
     </div>
-  </div>
+  </ui-page-structure>
 </template>
 
 <script>
 import SvgAvatar from '@/components/svg-avatar';
-import snippets from '@/mixins/snippets';
 
 const TypeOptions = [
   {
@@ -229,7 +213,6 @@ export default {
   components: {
     SvgAvatar
   },
-  mixins: [snippets],
   data() {
     return {
       // hero
@@ -250,12 +233,6 @@ export default {
     };
   },
   created() {
-    this.initDocs('list', {
-      code: 8,
-      apis: ['list', 'list-item', 'list-divider', 'list-group'],
-      css: true
-    });
-
     setTimeout(() => {
       this.selectedIndex = 1;
       this.items = [1, 2, 3];

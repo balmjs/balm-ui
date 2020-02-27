@@ -1,6 +1,6 @@
 <template>
-  <div :class="[$tt('body1'), 'demo--fab']">
-    <header class="hero component">
+  <ui-page-structure name="fab" demoCount="4">
+    <template #hero>
       <div class="hero-demo">
         <ui-fab :type="typeOption" :mini="!!mini">
           <!-- :icon="type && leadingIcon ? 'add' : ''" -->
@@ -49,148 +49,130 @@
           </ui-form-field>
         </div>
       </div>
-    </header>
+    </template>
 
-    <ui-toc-affix></ui-toc-affix>
+    <!-- Content -->
+    <ui-fab class="demo-fixed-fab" icon="mode_edit"></ui-fab>
 
-    <div :class="$tt('body2')">
-      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
-      <ui-markdown text="common"></ui-markdown>
-      <ui-markdown :text="code[0]"></ui-markdown>
+    <section>
+      <h6 :class="$tt('headline6')">1.1 Regular FAB</h6>
+      <div class="demo-fabs">
+        <figure>
+          <ui-fab icon="favorite_border"></ui-fab>
+          <figcaption>Standard</figcaption>
+        </figure>
+        <figure>
+          <ui-fab icon="favorite_border" mini></ui-fab>
+          <figcaption>Mini</figcaption>
+        </figure>
+        <figure>
+          <ui-fab>
+            <template #default="{ iconClass }">
+              <svg-logo :class="iconClass"></svg-logo>
+            </template>
+          </ui-fab>
+          <figcaption>
+            <div>SVG</div>
+          </figcaption>
+        </figure>
+        <figure>
+          <ui-fab mini>
+            <template #default="{ iconClass }">
+              <svg-logo :class="iconClass"></svg-logo>
+            </template>
+          </ui-fab>
+          <figcaption>
+            <div>SVG Mini</div>
+          </figcaption>
+        </figure>
+      </div>
+      <ui-snippet :code="$store.demos[1]"></ui-snippet>
+    </section>
 
-      <ui-fab class="demo-fixed-fab" icon="mode_edit"></ui-fab>
+    <section>
+      <h6 :class="$tt('headline6')">1.2 Extended FAB</h6>
+      <div class="demo-fabs">
+        <figure>
+          <ui-fab extended>
+            <template #before="{ iconClass }">
+              <ui-icon :class="iconClass">add</ui-icon>
+            </template>
+            <span>Create</span>
+          </ui-fab>
+          <figcaption>Extended (with icon)</figcaption>
+        </figure>
+        <figure>
+          <ui-fab extended>
+            <span>Create</span>
+            <template #after="{ iconClass }">
+              <ui-icon :class="iconClass">add</ui-icon>
+            </template>
+          </ui-fab>
+          <figcaption>Extended (followed by icon)</figcaption>
+        </figure>
+        <figure>
+          <ui-fab extended>Create</ui-fab>
+          <figcaption>Extended (without icon)</figcaption>
+        </figure>
+      </div>
+      <ui-snippet :code="$store.demos[2]"></ui-snippet>
+    </section>
 
-      <h4 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demo</h4>
-      <section>
-        <h6 :class="$tt('headline6')">1.1 Regular FAB</h6>
-        <div class="demo-fabs">
-          <figure>
-            <ui-fab icon="favorite_border"></ui-fab>
-            <figcaption>Standard</figcaption>
-          </figure>
-          <figure>
-            <ui-fab icon="favorite_border" mini></ui-fab>
-            <figcaption>Mini</figcaption>
-          </figure>
-          <figure>
-            <ui-fab>
-              <template #default="{ iconClass }">
-                <svg-logo :class="iconClass"></svg-logo>
-              </template>
-            </ui-fab>
-            <figcaption>
-              <div>SVG</div>
-            </figcaption>
-          </figure>
-          <figure>
-            <ui-fab mini>
-              <template #default="{ iconClass }">
-                <svg-logo :class="iconClass"></svg-logo>
-              </template>
-            </ui-fab>
-            <figcaption>
-              <div>SVG Mini</div>
-            </figcaption>
-          </figure>
+    <section>
+      <h6 :class="$tt('headline6')">1.3 Example of Enter and Exit Motions</h6>
+      <div class="fab-motion-container">
+        <div class="fab-motion-container__view">
+          <p>View one (with FAB)</p>
         </div>
-        <ui-snippet :code="code[1]"></ui-snippet>
-      </section>
-
-      <section>
-        <h6 :class="$tt('headline6')">1.2 Extended FAB</h6>
-        <div class="demo-fabs">
-          <figure>
-            <ui-fab extended>
-              <template #before="{ iconClass }">
-                <ui-icon :class="iconClass">add</ui-icon>
-              </template>
-              <span>Create</span>
-            </ui-fab>
-            <figcaption>Extended (with icon)</figcaption>
-          </figure>
-          <figure>
-            <ui-fab extended>
-              <span>Create</span>
-              <template #after="{ iconClass }">
-                <ui-icon :class="iconClass">add</ui-icon>
-              </template>
-            </ui-fab>
-            <figcaption>Extended (followed by icon)</figcaption>
-          </figure>
-          <figure>
-            <ui-fab extended>Create</ui-fab>
-            <figcaption>Extended (without icon)</figcaption>
-          </figure>
+        <div
+          class="fab-motion-container__view"
+          :class="{ 'fab-motion-container__view--exited': !exited }"
+        >
+          <p>View two (without FAB)</p>
+          <p>
+            <ui-button
+              id="enter-exit-back"
+              :disabled="!exited"
+              @click="$balmUI.onHide('exited')"
+              >Go back</ui-button
+            >
+          </p>
         </div>
-        <ui-snippet :code="code[2]"></ui-snippet>
-      </section>
+        <ui-fab
+          id="enter-exit-add"
+          class="demo-absolute-fab"
+          icon="add"
+          :exited="exited"
+          @click="$balmUI.onShow('exited')"
+        ></ui-fab>
+      </div>
+      <ui-snippet :code="$store.demos[3]"></ui-snippet>
+    </section>
 
-      <section>
-        <h6 :class="$tt('headline6')">1.3 Example of Enter and Exit Motions</h6>
-        <div class="fab-motion-container">
-          <div class="fab-motion-container__view">
-            <p>View one (with FAB)</p>
-          </div>
-          <div
-            class="fab-motion-container__view"
-            :class="{ 'fab-motion-container__view--exited': !exited }"
-          >
-            <p>View two (without FAB)</p>
-            <p>
-              <ui-button
-                id="enter-exit-back"
-                :disabled="!exited"
-                @click="$balmUI.onHide('exited')"
-                >Go back</ui-button
-              >
-            </p>
-          </div>
-          <ui-fab
-            id="enter-exit-add"
-            class="demo-absolute-fab"
-            icon="add"
-            :exited="exited"
-            @click="$balmUI.onShow('exited')"
-          ></ui-fab>
-        </div>
-        <ui-snippet :code="code[3]"></ui-snippet>
-      </section>
-
-      <section>
-        <fieldset>
-          <h6 :class="$tt('headline6')">
-            1.4 Custom FABs (Using font awesome)
-          </h6>
-          <ui-fab>
-            <i class="fa fa-flag fa-lg"></i>
-          </ui-fab>
-          <ui-fab>
-            <i class="fa fa-smile-o fa-lg"></i>
-          </ui-fab>
-          <ui-fab>
-            <i class="fa fa-camera-retro fa-lg"></i>
-          </ui-fab>
-          <ui-fab>
-            <i class="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
-          </ui-fab>
-        </fieldset>
-        <ui-snippet :code="code[4]"></ui-snippet>
-      </section>
-
-      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-markdown :text="docs.fab"></ui-markdown>
-
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
-        3. Sass Variables
-      </h4>
-      <ui-markdown :text="docs.css"></ui-markdown>
-    </div>
-  </div>
+    <section>
+      <fieldset>
+        <h6 :class="$tt('headline6')">
+          1.4 Custom FABs (Using font awesome)
+        </h6>
+        <ui-fab>
+          <i class="fa fa-flag fa-lg"></i>
+        </ui-fab>
+        <ui-fab>
+          <i class="fa fa-smile-o fa-lg"></i>
+        </ui-fab>
+        <ui-fab>
+          <i class="fa fa-camera-retro fa-lg"></i>
+        </ui-fab>
+        <ui-fab>
+          <i class="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
+        </ui-fab>
+      </fieldset>
+      <ui-snippet :code="$store.demos[4]"></ui-snippet>
+    </section>
+  </ui-page-structure>
 </template>
 
 <script>
-import snippets from '@/mixins/snippets';
-
 const TypeOptions = [
   {
     label: 'Regular',
@@ -206,7 +188,6 @@ export default {
   metaInfo: {
     titleTemplate: '%s - Fab'
   },
-  mixins: [snippets],
   data() {
     return {
       // hero
@@ -217,13 +198,6 @@ export default {
       // demo
       exited: false
     };
-  },
-  created() {
-    this.initDocs('fab', {
-      code: 4,
-      apis: ['fab'],
-      css: true
-    });
   }
 };
 </script>

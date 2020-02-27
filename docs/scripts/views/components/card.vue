@@ -1,6 +1,18 @@
 <template>
-  <div :class="[$tt('body1'), 'demo--card']">
-    <header class="hero component">
+  <ui-page-structure
+    name="card"
+    demoCount="3"
+    :apis="[
+      'card',
+      'card-content',
+      'card-media',
+      'card-media-content',
+      'card-actions',
+      'card-buttons',
+      'card-icons'
+    ]"
+  >
+    <template #hero>
       <div class="hero-demo">
         <ui-card :outlined="typeOption === 1" class="demo-card">
           <ui-card-content v-ripple>
@@ -64,124 +76,99 @@
           </ui-form-field>
         </div>
       </div>
-    </header>
+    </template>
 
-    <ui-toc-affix></ui-toc-affix>
+    <!-- Content -->
+    <section class="demo-card-collection">
+      <ui-card outlined class="demo-card">
+        <div :class="[$tt('subtitle2'), 'demo-card-article-group-heading']">
+          Headlines
+        </div>
+        <ui-list-divider></ui-list-divider>
 
-    <div :class="$tt('body2')">
-      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
-      <ui-markdown text="common"></ui-markdown>
-      <ui-markdown :text="code[0]"></ui-markdown>
+        <template v-for="(item, index) in list">
+          <a :key="`item${index}`" class="demo-card-article" v-ripple>
+            <h2 :class="[$tt('headline5'), 'demo-card-article__title']">
+              {{ item.title }}
+            </h2>
+            <p class="demo-card-article__snippet">{{ item.content }}</p>
+          </a>
+          <ui-list-divider :key="`divider${index}`"></ui-list-divider>
+        </template>
 
-      <h4 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demo</h4>
-      <section class="demo-card-collection">
-        <ui-card outlined class="demo-card">
-          <div :class="[$tt('subtitle2'), 'demo-card-article-group-heading']">
-            Headlines
-          </div>
-          <ui-list-divider></ui-list-divider>
+        <ui-card-actions fullBleed>
+          <ui-a class="demo-card-action">
+            All Business Headlines
+            <template #after>
+              <ui-icon>arrow_forward</ui-icon>
+            </template>
+          </ui-a>
+        </ui-card-actions>
+      </ui-card>
+    </section>
+    <ui-snippet :code="$store.demos[1]"></ui-snippet>
 
-          <template v-for="(item, index) in list">
-            <a :key="`item${index}`" class="demo-card-article" v-ripple>
-              <h2 :class="[$tt('headline5'), 'demo-card-article__title']">
-                {{ item.title }}
-              </h2>
-              <p class="demo-card-article__snippet">{{ item.content }}</p>
-            </a>
-            <ui-list-divider :key="`divider${index}`"></ui-list-divider>
-          </template>
-
-          <ui-card-actions fullBleed>
-            <ui-a class="demo-card-action">
-              All Business Headlines
-              <template #after>
-                <ui-icon>arrow_forward</ui-icon>
-              </template>
-            </ui-a>
-          </ui-card-actions>
-        </ui-card>
-      </section>
-      <ui-snippet :code="code[1]"></ui-snippet>
-
-      <section class="demo-card-collection">
-        <ui-card class="demo-card demo-card--photo">
-          <ui-card-content class="demo-card__primary-action" v-ripple>
-            <ui-card-media square class="demo-card__media">
-              <ui-card-media-content
-                class="demo-card__media-content--with-title"
-              >
-                <div :class="[$tt('subtitle2'), 'demo-card__media-title']">
-                  Vacation Photos
-                </div>
-              </ui-card-media-content>
-            </ui-card-media>
-          </ui-card-content>
-          <ui-card-actions>
-            <ui-card-icons>
-              <ui-icon-button :toggle="icon1"></ui-icon-button>
-              <ui-icon-button :toggle="icon2"></ui-icon-button>
-              <ui-icon-button icon="share"></ui-icon-button>
-            </ui-card-icons>
-          </ui-card-actions>
-        </ui-card>
-      </section>
-      <ui-snippet :code="code[2]"></ui-snippet>
-
-      <section class="demo-card-collection">
-        <ui-card class="demo-card demo-card--music">
-          <ui-card-content class="demo-card__primary-action" v-ripple>
-            <div class="demo-card__music-row">
-              <ui-card-media
-                square
-                class="demo-card__media demo-card__media--music"
-              ></ui-card-media>
-              <div class="demo-card__music-info">
-                <div :class="[$tt('headline5'), 'demo-card__music-title']">
-                  Rozes
-                </div>
-                <div class="demo-card__music-artist">Under the Grave</div>
-                <div class="demo-card__music-year">(2016)</div>
+    <section class="demo-card-collection">
+      <ui-card class="demo-card demo-card--photo">
+        <ui-card-content class="demo-card__primary-action" v-ripple>
+          <ui-card-media square class="demo-card__media">
+            <ui-card-media-content class="demo-card__media-content--with-title">
+              <div :class="[$tt('subtitle2'), 'demo-card__media-title']">
+                Vacation Photos
               </div>
+            </ui-card-media-content>
+          </ui-card-media>
+        </ui-card-content>
+        <ui-card-actions>
+          <ui-card-icons>
+            <ui-icon-button :toggle="icon1"></ui-icon-button>
+            <ui-icon-button :toggle="icon2"></ui-icon-button>
+            <ui-icon-button icon="share"></ui-icon-button>
+          </ui-card-icons>
+        </ui-card-actions>
+      </ui-card>
+    </section>
+    <ui-snippet :code="$store.demos[2]"></ui-snippet>
+
+    <section class="demo-card-collection">
+      <ui-card class="demo-card demo-card--music">
+        <ui-card-content class="demo-card__primary-action" v-ripple>
+          <div class="demo-card__music-row">
+            <ui-card-media
+              square
+              class="demo-card__media demo-card__media--music"
+            ></ui-card-media>
+            <div class="demo-card__music-info">
+              <div :class="[$tt('headline5'), 'demo-card__music-title']">
+                Rozes
+              </div>
+              <div class="demo-card__music-artist">Under the Grave</div>
+              <div class="demo-card__music-year">(2016)</div>
             </div>
-          </ui-card-content>
-          <ui-list-divider></ui-list-divider>
-          <ui-card-actions>
-            <ui-card-buttons class="demo-card__action-buttons--text-only"
-              >Rate this album</ui-card-buttons
+          </div>
+        </ui-card-content>
+        <ui-list-divider></ui-list-divider>
+        <ui-card-actions>
+          <ui-card-buttons class="demo-card__action-buttons--text-only"
+            >Rate this album</ui-card-buttons
+          >
+          <ui-card-icons>
+            <ui-icon
+              v-for="i in 5"
+              :key="i"
+              class="demo-card__action-icon--star"
+              :title="`${i} star${i > 1 ? 's' : ''}`"
+              >star_border</ui-icon
             >
-            <ui-card-icons>
-              <ui-icon
-                v-for="i in 5"
-                :key="i"
-                class="demo-card__action-icon--star"
-                :title="`${i} star${i > 1 ? 's' : ''}`"
-                >star_border</ui-icon
-              >
-            </ui-card-icons>
-          </ui-card-actions>
-        </ui-card>
-      </section>
-      <ui-snippet :code="code[3]"></ui-snippet>
-
-      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-markdown :text="docs.card"></ui-markdown>
-      <ui-markdown :text="docs['card-content']"></ui-markdown>
-      <ui-markdown :text="docs['card-media']"></ui-markdown>
-      <ui-markdown :text="docs['card-media-content']"></ui-markdown>
-      <ui-markdown :text="docs['card-actions']"></ui-markdown>
-      <ui-markdown :text="docs['card-buttons']"></ui-markdown>
-      <ui-markdown :text="docs['card-icons']"></ui-markdown>
-
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
-        3. Sass Variables
-      </h4>
-      <ui-markdown :text="docs.css"></ui-markdown>
-    </div>
-  </div>
+          </ui-card-icons>
+        </ui-card-actions>
+      </ui-card>
+    </section>
+    <ui-snippet :code="$store.demos[3]"></ui-snippet>
+  </ui-page-structure>
 </template>
 
 <script>
-import snippets from '@/mixins/snippets';
 import cardMedia from '@/assets/card-media.svg';
 
 const TypeOptions = [
@@ -199,7 +186,6 @@ export default {
   metaInfo: {
     titleTemplate: '%s - Card'
   },
-  mixins: [snippets],
   data() {
     return {
       // hero
@@ -238,21 +224,6 @@ export default {
         off: 'bookmark_border'
       }
     };
-  },
-  created() {
-    this.initDocs('card', {
-      code: 3,
-      apis: [
-        'card',
-        'card-content',
-        'card-media',
-        'card-media-content',
-        'card-actions',
-        'card-buttons',
-        'card-icons'
-      ],
-      css: true
-    });
   }
 };
 </script>

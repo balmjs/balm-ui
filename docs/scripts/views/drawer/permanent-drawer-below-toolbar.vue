@@ -20,7 +20,7 @@
         <div :class="$tt('body2')">
           <h1 :class="$tt('headline4')">Permanent Drawer</h1>
           <p>It sits to the left of this content.</p>
-          <ui-snippet :code="code[2]"></ui-snippet>
+          <ui-snippet :code="$store.demos[2]"></ui-snippet>
         </div>
       </div>
     </main>
@@ -30,7 +30,6 @@
 <script>
 import UiDrawerCommonContent from './drawer-common-content';
 import DrawerMixin from '@/mixins/drawer';
-import snippets from '@/mixins/snippets';
 
 export default {
   metaInfo: {
@@ -39,9 +38,11 @@ export default {
   components: {
     UiDrawerCommonContent
   },
-  mixins: [DrawerMixin, snippets],
+  mixins: [DrawerMixin],
   created() {
-    this.showCode('drawer', 4);
+    this.$store.initDocs('drawer', {
+      demoCount: 4
+    });
   }
 };
 </script>

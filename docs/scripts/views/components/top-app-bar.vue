@@ -48,51 +48,34 @@
     <ui-drawer-backdrop></ui-drawer-backdrop>
 
     <main class="demo-main">
-      <div :class="$tt('body1')" id="content-main">
-        <header class="hero component">
+      <ui-page-structure id="content-main" name="top-app-bar" demoCount="1">
+        <template #hero>
           <h3 :class="$tt('headline3')">Top App Bar</h3>
-        </header>
+        </template>
 
-        <ui-toc-affix></ui-toc-affix>
-
-        <div :class="$tt('body2')">
-          <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
-          <ui-markdown text="common"></ui-markdown>
-          <ui-markdown :text="code[0]"></ui-markdown>
-
-          <h4 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demo</h4>
-          <div class="demo-controls">
-            <ui-select :options="TypeOptions" v-model="typeOption"
-              >Type</ui-select
-            >
-            <ui-textfield v-model="title">Title</ui-textfield>
-          </div>
-          <p v-for="i in 12" :key="i" class="demo-paragraph">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <ui-snippet :code="code[1]"></ui-snippet>
-
-          <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-          <ui-markdown :text="docs['top-app-bar']"></ui-markdown>
-
-          <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
-            3. Sass Variables
-          </h4>
-          <ui-markdown :text="docs.css"></ui-markdown>
+        <!-- Content -->
+        <div class="demo-controls">
+          <ui-select :options="TypeOptions" v-model="typeOption"
+            >Type</ui-select
+          >
+          <ui-textfield v-model="title">Title</ui-textfield>
         </div>
-      </div>
+        <p v-for="i in 12" :key="i" class="demo-paragraph">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <ui-snippet :code="$store.demos[1]"></ui-snippet>
+      </ui-page-structure>
     </main>
   </div>
 </template>
 
 <script>
-import snippets from '@/mixins/snippets';
 import DrawerMixin from '@/mixins/drawer';
 
 const TypeOptions = [
@@ -130,7 +113,7 @@ export default {
   metaInfo: {
     titleTemplate: '%s - Top App Bar'
   },
-  mixins: [snippets, DrawerMixin],
+  mixins: [DrawerMixin],
   data() {
     return {
       // hero
@@ -145,13 +128,6 @@ export default {
     isShort() {
       return this.typeOption === 5 || this.typeOption === 6;
     }
-  },
-  created() {
-    this.initDocs('top-app-bar', {
-      code: 1,
-      apis: ['top-app-bar'],
-      css: true
-    });
   }
 };
 </script>

@@ -26,7 +26,7 @@
       <div :class="$tt('body2')">
         <h1 :class="$tt('headline4')">Modal Drawer</h1>
         <p>Click the menu icon above to open.</p>
-        <ui-snippet :code="code[4]"></ui-snippet>
+        <ui-snippet :code="$store.demos[4]"></ui-snippet>
       </div>
     </main>
   </div>
@@ -35,7 +35,6 @@
 <script>
 import UiDrawerCommonContent from './drawer-common-content';
 import DrawerMixin from '@/mixins/drawer';
-import snippets from '@/mixins/snippets';
 
 export default {
   metaInfo: {
@@ -44,9 +43,11 @@ export default {
   components: {
     UiDrawerCommonContent
   },
-  mixins: [DrawerMixin, snippets],
+  mixins: [DrawerMixin],
   created() {
-    this.showCode('drawer', 4);
+    this.$store.initDocs('drawer', {
+      demoCount: 4
+    });
   }
 };
 </script>

@@ -43,7 +43,7 @@
         </button>
       </div>
     </div>
-    <ui-snippet :code="code[8]"></ui-snippet>
+    <ui-snippet :code="$store.demos[8]"></ui-snippet>
   </section>
 </template>
 

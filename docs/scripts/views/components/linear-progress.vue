@@ -1,102 +1,77 @@
 <template>
-  <div :class="[$tt('body1'), 'demo--linear-progress']">
-    <header class="hero component">
+  <ui-page-structure name="linear-progress" demoCount="1">
+    <template #hero>
       <ui-linear-progress indeterminate></ui-linear-progress>
-    </header>
+    </template>
 
-    <ui-toc-affix></ui-toc-affix>
+    <!-- Content -->
+    <section>
+      <h6 :class="$tt('headline6')">Linear Progress Indicators</h6>
+      <figure class="linear-progress-demo">
+        <ui-linear-progress :progress="progress"></ui-linear-progress>
+        <figcaption>Determinate (Progress: {{ progress }})</figcaption>
+      </figure>
 
-    <div :class="$tt('body2')">
-      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
-      <ui-markdown text="common"></ui-markdown>
-      <ui-markdown :text="code[0]"></ui-markdown>
+      <figure class="linear-progress-demo">
+        <ui-linear-progress indeterminate></ui-linear-progress>
+        <figcaption>Indeterminate</figcaption>
+      </figure>
 
-      <h4 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demo</h4>
-      <section>
-        <h6 :class="$tt('headline6')">Linear Progress Indicators</h6>
-        <figure class="linear-progress-demo">
-          <ui-linear-progress :progress="progress"></ui-linear-progress>
-          <figcaption>Determinate (Progress: {{ progress }})</figcaption>
-        </figure>
+      <figure class="linear-progress-demo">
+        <ui-linear-progress
+          progress="0.5"
+          data-buffer="true"
+          buffer="0.75"
+        ></ui-linear-progress>
+        <figcaption>Buffer</figcaption>
+      </figure>
 
-        <figure class="linear-progress-demo">
-          <ui-linear-progress indeterminate></ui-linear-progress>
-          <figcaption>Indeterminate</figcaption>
-        </figure>
+      <figure class="linear-progress-demo">
+        <ui-linear-progress reversed progress="0.5"></ui-linear-progress>
+        <figcaption>Reversed</figcaption>
+      </figure>
 
-        <figure class="linear-progress-demo">
-          <ui-linear-progress
-            progress="0.5"
-            data-buffer="true"
-            buffer="0.75"
-          ></ui-linear-progress>
-          <figcaption>Buffer</figcaption>
-        </figure>
+      <figure class="linear-progress-demo">
+        <ui-linear-progress indeterminate reversed></ui-linear-progress>
+        <figcaption>Indeterminate Reversed</figcaption>
+      </figure>
 
-        <figure class="linear-progress-demo">
-          <ui-linear-progress reversed progress="0.5"></ui-linear-progress>
-          <figcaption>Reversed</figcaption>
-        </figure>
+      <figure class="linear-progress-demo">
+        <ui-linear-progress
+          reversed
+          progress="0.5"
+          data-buffer="true"
+          buffer="0.75"
+        ></ui-linear-progress>
+        <figcaption>Buffer Reversed</figcaption>
+      </figure>
 
-        <figure class="linear-progress-demo">
-          <ui-linear-progress indeterminate reversed></ui-linear-progress>
-          <figcaption>Indeterminate Reversed</figcaption>
-        </figure>
-
-        <figure class="linear-progress-demo">
-          <ui-linear-progress
-            reversed
-            progress="0.5"
-            data-buffer="true"
-            buffer="0.75"
-          ></ui-linear-progress>
-          <figcaption>Buffer Reversed</figcaption>
-        </figure>
-
-        <figure class="linear-progress-demo">
-          <ui-linear-progress
-            class="demo-linear-progress--custom"
-            progress="0.5"
-            data-buffer="true"
-            buffer="0.75"
-          ></ui-linear-progress>
-          <figcaption>Custom Colors with Buffer</figcaption>
-        </figure>
-        <ui-snippet :code="code[1]"></ui-snippet>
-      </section>
-
-      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-markdown :text="docs['linear-progress']"></ui-markdown>
-
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
-        3. Sass Variables
-      </h4>
-      <ui-markdown :text="docs.css"></ui-markdown>
-    </div>
-  </div>
+      <figure class="linear-progress-demo">
+        <ui-linear-progress
+          class="demo-linear-progress--custom"
+          progress="0.5"
+          data-buffer="true"
+          buffer="0.75"
+        ></ui-linear-progress>
+        <figcaption>Custom Colors with Buffer</figcaption>
+      </figure>
+      <ui-snippet :code="$store.demos[1]"></ui-snippet>
+    </section>
+  </ui-page-structure>
 </template>
 
 <script>
-import snippets from '@/mixins/snippets';
-
 export default {
   metaInfo: {
     titleTemplate: '%s - Linear Progress'
   },
-  mixins: [snippets],
   data() {
     return {
       progress: 0,
       timer: null
     };
   },
-  created() {
-    this.initDocs('linear-progress', {
-      code: 1,
-      apis: ['linear-progress'],
-      css: true
-    });
-
+  mounted() {
     this.setProgress();
   },
   methods: {

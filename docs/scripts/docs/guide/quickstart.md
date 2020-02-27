@@ -126,7 +126,7 @@ new Vue({
 });
 ```
 
-#### Standalone Usage
+#### Individual Usage
 
 Edit `my-project/app/styles/global/_vendor.scss`
 

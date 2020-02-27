@@ -3,8 +3,8 @@ import { isIE, killIE } from '@/kill-ie';
 import Vue from 'vue';
 // import VueI18n from 'vue-i18n';
 import $http from '@/plugins/$http';
-// import $bus from '@/plugins/$bus';
-// import $store from '@/plugins/$store';
+import $bus from '@/plugins/$bus';
+import $store from '@/plugins/$store';
 import BalmUI from '../../src/scripts/index'; // 'balm-ui'
 import BalmUIPlus from '../../src/scripts/plus'; // 'balm-ui-plus'
 import BalmUINext from '../../src/scripts/next'; // 'balm-ui-next'
@@ -16,7 +16,7 @@ import UiAccordion from '@/components/accordion';
 import UiSnippet from '@/components/snippet';
 import UiFooterNav from '@/components/footer-nav';
 import UiTocAffix from '@/components/toc-affix';
-// import UiPageStructure from '@/components/page-structure'; // TODO: 待优化
+import UiPageStructure from '@/components/page-structure';
 import SvgLogo from '@/components/svg-logo';
 import validatorRules from '@/config/validator-rules';
 // syntax highlighting
@@ -36,8 +36,8 @@ if (isIE) {
   Vue.config.productionTip = false;
   // Vue.use(VueI18n);
   Vue.use($http);
-  // Vue.use($bus);
-  // Vue.use($store);
+  Vue.use($bus);
+  Vue.use($store);
   Vue.use(BalmUI);
   Vue.use(BalmUIPlus, {
     validator: validatorRules
@@ -50,7 +50,7 @@ if (isIE) {
   Vue.component(UiSnippet.name, UiSnippet);
   Vue.component(UiFooterNav.name, UiFooterNav);
   Vue.component(UiTocAffix.name, UiTocAffix);
-  // Vue.component(UiPageStructure.name, UiPageStructure); // TODO: 待优化
+  Vue.component(UiPageStructure.name, UiPageStructure);
   Vue.component(SvgLogo.name, SvgLogo);
 
   Vue.prototype.$prism = prismjs;

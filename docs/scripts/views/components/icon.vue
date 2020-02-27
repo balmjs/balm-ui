@@ -1,6 +1,6 @@
 <template>
-  <div :class="[$tt('body1'), 'demo--icon']">
-    <header class="hero component">
+  <ui-page-structure name="icon" demoCount="2">
+    <template #hero>
       <div class="hero-demos">
         <ui-icon :type="typeOption">add</ui-icon>
         <ui-icon :type="typeOption">description</ui-icon>
@@ -15,11 +15,9 @@
           >Icon themes</ui-select
         >
       </div>
-    </header>
+    </template>
 
-    <ui-toc-affix>
-      <ui-tab v-anchor:href="'#ui-icons'" class="v-anchor">Icons</ui-tab>
-    </ui-toc-affix>
+    <!-- Content -->
     <!-- <ui-tab-bar class="category-affix">
       <ui-tab
         v-for="(category, index) in categories"
@@ -29,62 +27,48 @@
       >
     </ui-tab-bar> -->
 
-    <div :class="$tt('body2')">
-      <h3 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h3>
-      <ui-markdown text="common"></ui-markdown>
-      <ui-markdown :text="code[0]"></ui-markdown>
-
-      <h3 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demo</h3>
-      <section class="sizing-example">
-        <h6 :class="$tt('headline6')">1.1 Sizing</h6>
-        <div class="icons-preview-code">
-          <div v-for="i in [18, 24, 36, 48]" :key="i" class="icons-preview">
-            <ui-icon :size="i">face</ui-icon>
-            <div class="icon-caption">
-              {{ i }}px
-              {{ i === 24 ? '(default)' : '' }}
-            </div>
+    <section class="sizing-example">
+      <h6 :class="$tt('headline6')">1.1 Sizing</h6>
+      <div class="icons-preview-code">
+        <div v-for="i in [18, 24, 36, 48]" :key="i" class="icons-preview">
+          <ui-icon :size="i">face</ui-icon>
+          <div class="icon-caption">
+            {{ i }}px
+            {{ i === 24 ? '(default)' : '' }}
           </div>
         </div>
-      </section>
-      <ui-snippet :code="code[1]"></ui-snippet>
+      </div>
+    </section>
+    <ui-snippet :code="$store.demos[1]"></ui-snippet>
 
-      <section class="coloring-example">
-        <h6 :class="$tt('headline6')">1.2 Coloring</h6>
-        <div class="icons-preview-code">
-          <div class="icons-preview">
-            <ui-icon dark>face</ui-icon>
-            <div class="icon-caption">Normal</div>
-          </div>
-          <div class="icons-preview">
-            <ui-icon dark inactive>face</ui-icon>
-            <div class="icon-caption">Disabled</div>
-          </div>
-          <div class="icons-preview icons-dark-bg">
-            <ui-icon light>face</ui-icon>
-            <div class="icon-caption">Normal</div>
-          </div>
-          <div class="icons-preview icons-dark-bg">
-            <ui-icon light inactive>face</ui-icon>
-            <div class="icon-caption">Disabled</div>
-          </div>
-          <div class="icons-preview">
-            <ui-icon class="orange600">face</ui-icon>
-            <div class="icon-caption">orange600</div>
-          </div>
+    <section class="coloring-example">
+      <h6 :class="$tt('headline6')">1.2 Coloring</h6>
+      <div class="icons-preview-code">
+        <div class="icons-preview">
+          <ui-icon dark>face</ui-icon>
+          <div class="icon-caption">Normal</div>
         </div>
-      </section>
-      <ui-snippet :code="code[2]"></ui-snippet>
+        <div class="icons-preview">
+          <ui-icon dark inactive>face</ui-icon>
+          <div class="icon-caption">Disabled</div>
+        </div>
+        <div class="icons-preview icons-dark-bg">
+          <ui-icon light>face</ui-icon>
+          <div class="icon-caption">Normal</div>
+        </div>
+        <div class="icons-preview icons-dark-bg">
+          <ui-icon light inactive>face</ui-icon>
+          <div class="icon-caption">Disabled</div>
+        </div>
+        <div class="icons-preview">
+          <ui-icon class="orange600">face</ui-icon>
+          <div class="icon-caption">orange600</div>
+        </div>
+      </div>
+    </section>
+    <ui-snippet :code="$store.demos[2]"></ui-snippet>
 
-      <h3 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h3>
-      <ui-markdown :text="docs.icon"></ui-markdown>
-
-      <h3 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
-        3. Sass Variables
-      </h3>
-      <ui-markdown :text="docs.css"></ui-markdown>
-
-      <h4 v-anchor:id="'ui-icons'" :class="$tt('headline4')">4. Icons List</h4>
+    <template #after>
       <div class="search-area" v-shadow="1">
         <ui-textfield
           leadingIcon
@@ -135,13 +119,12 @@
           ></ui-list-divider>
         </template>
       </ui-list-group>
-    </div>
-  </div>
+    </template>
+  </ui-page-structure>
 </template>
 
 <script>
 import Clipboard from 'clipboard';
-import snippets from '@/mixins/snippets';
 import { MDI_VERSION } from '@/config';
 
 let UNDEFINED_ICONS = [];
@@ -269,7 +252,6 @@ export default {
   metaInfo: {
     titleTemplate: '%s - Icons'
   },
-  mixins: [snippets],
   data() {
     return {
       // hero
@@ -283,12 +265,6 @@ export default {
     };
   },
   async created() {
-    this.initDocs('icon', {
-      code: 2,
-      apis: ['icon'],
-      css: true
-    });
-
     let response = await this.$http.get(`${this.$domain}/data/icons.json`);
     let { categories } = response.data;
 

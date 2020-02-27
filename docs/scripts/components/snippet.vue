@@ -1,6 +1,6 @@
 <template>
   <ui-accordion>
-    <ui-markdown :code="code"></ui-markdown>
+    <ui-markdown code :text="code"></ui-markdown>
   </ui-accordion>
 </template>
 

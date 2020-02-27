@@ -1,71 +1,52 @@
 <template>
-  <div :class="[$tt('body1'), 'demo--table']">
-    <header class="hero component">
+  <ui-page-structure name="table" demoCount="2">
+    <template #hero>
       <ui-table
         rowCheckbox
         :data="heroData"
         :thead="thead1"
         :tbody="tbody1"
       ></ui-table>
-    </header>
+    </template>
 
-    <ui-toc-affix></ui-toc-affix>
+    <!-- Content -->
+    <section class="example">
+      <h6 :class="$tt('headline6')">1.1 Default Usage</h6>
+      <ui-table :data="heroData" :thead="thead1" :tbody="tbody1"></ui-table>
+    </section>
+    <ui-snippet :code="$store.demos[1]"></ui-snippet>
 
-    <div :class="$tt('body2')">
-      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
-      <ui-markdown text="common"></ui-markdown>
-      <ui-markdown :text="code[0]"></ui-markdown>
-
-      <h4 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demo</h4>
-      <section class="example">
-        <h6 :class="$tt('headline6')">1.1 Default Usage</h6>
-        <ui-table :data="heroData" :thead="thead1" :tbody="tbody1"></ui-table>
-      </section>
-      <ui-snippet :code="code[1]"></ui-snippet>
-
-      <section class="example">
-        <h6 :class="$tt('headline6')">1.2 Advanced Usage</h6>
-        <p>
-          Selected rows: {{ selectedRows }} ( Selected key: {{ selectedKey }})
-        </p>
-        <ui-table
-          fullwidth
-          rowCheckbox
-          :data="data"
-          :thead="thead2"
-          :tbody="tbody2"
-          :tfoot="tfoot"
-          v-model="selectedRows"
-          :selectedKey="selectedKey"
-        >
-          <template #actions="{ data }">
-            <ui-icon @click="show(data)">description</ui-icon>
-            <ui-icon @click="show(data)">edit</ui-icon>
-            <ui-icon @click="show(data)">delete</ui-icon>
-          </template>
-        </ui-table>
-      </section>
-      <ui-snippet :code="code[2]"></ui-snippet>
-
-      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-markdown :text="docs.table"></ui-markdown>
-
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
-        3. Sass Variables
-      </h4>
-      <ui-markdown :text="docs.css"></ui-markdown>
-    </div>
-  </div>
+    <section class="example">
+      <h6 :class="$tt('headline6')">1.2 Advanced Usage</h6>
+      <p>
+        Selected rows: {{ selectedRows }} ( Selected key: {{ selectedKey }})
+      </p>
+      <ui-table
+        fullwidth
+        rowCheckbox
+        :data="data"
+        :thead="thead2"
+        :tbody="tbody2"
+        :tfoot="tfoot"
+        v-model="selectedRows"
+        :selectedKey="selectedKey"
+      >
+        <template #actions="{ data }">
+          <ui-icon @click="show(data)">description</ui-icon>
+          <ui-icon @click="show(data)">edit</ui-icon>
+          <ui-icon @click="show(data)">delete</ui-icon>
+        </template>
+      </ui-table>
+    </section>
+    <ui-snippet :code="$store.demos[2]"></ui-snippet>
+  </ui-page-structure>
 </template>
 
 <script>
-import snippets from '@/mixins/snippets';
-
 export default {
   metaInfo: {
     titleTemplate: '%s - Table'
   },
-  mixins: [snippets],
   data() {
     return {
       // hero
@@ -169,12 +150,6 @@ export default {
     };
   },
   async created() {
-    this.initDocs('table', {
-      code: 2,
-      apis: ['table'],
-      css: true
-    });
-
     let { data } = await this.$http.get('/data/table.json');
     this.data = data;
     this.heroData = data.slice(0, 3);

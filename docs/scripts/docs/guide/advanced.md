@@ -9,7 +9,7 @@
     - <a href="javascript:void(0)" class="v-anchor" data-href="#use-css">Use CSS</a>
 2.  Modular JS
     - <a href="javascript:void(0)" class="v-anchor" data-href="#default-usage">Default Usage</a>
-    - <a href="javascript:void(0)" class="v-anchor" data-href="#standalone-usage">Standalone Usage</a>
+    - <a href="javascript:void(0)" class="v-anchor" data-href="#Individual-usage">Individual Usage</a>
     - <a href="javascript:void(0)" class="v-anchor" data-href="#source-code-usage">Source Code Usage</a>
 3.  <a href="javascript:void(0)" class="v-anchor" data-href="#mdi">Get Material Design Icons without downloading</a>
 
@@ -139,9 +139,9 @@ Edit `/path/to/my-project/app/index.html`
 </html>
 ```
 
-<div id="standalone-usage"></div>
+<div id="Individual-usage"></div>
 
-### 2.2 Standalone Usage
+### 2.2 Individual Usage
 
 > Recommended to use for **mobile**, because the building volume is relatively small.
 
@@ -188,9 +188,18 @@ new Vue({
   <head>
     <!-- build:css css/vendors.css -->
     <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
-    <link rel="stylesheet" href="/node_modules/balm-ui/components/button/button.css" />
-    <link rel="stylesheet" href="/node_modules/balm-ui/components/dialog/dialog.css" />
-    <link rel="stylesheet" href="/node_modules/balm-ui/plugins/alert/alert.css" />
+    <link
+      rel="stylesheet"
+      href="/node_modules/balm-ui/components/button/button.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/node_modules/balm-ui/components/dialog/dialog.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/node_modules/balm-ui/plugins/alert/alert.css"
+    />
     <!-- endbuild -->
   </head>
   ```
@@ -207,9 +216,18 @@ Edit `/path/to/my-project/app/index.html`
     ...
     <!-- build:css css/vendors.css -->
     <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
-    <link rel="stylesheet" href="/node_modules/balm-ui/components/button/button.css" />
-    <link rel="stylesheet" href="/node_modules/balm-ui/components/dialog/dialog.css" />
-    <link rel="stylesheet" href="/node_modules/balm-ui/plugins/alert/alert.css" />
+    <link
+      rel="stylesheet"
+      href="/node_modules/balm-ui/components/button/button.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/node_modules/balm-ui/components/dialog/dialog.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/node_modules/balm-ui/plugins/alert/alert.css"
+    />
     <!-- endbuild -->
   </head>
   <body>

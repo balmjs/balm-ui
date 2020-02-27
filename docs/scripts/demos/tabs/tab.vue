@@ -22,7 +22,7 @@
         ></ui-tab>
       </ui-tab-bar>
     </div>
-    <ui-snippet :code="code[1]"></ui-snippet>
+    <ui-snippet :code="$store.demos[1]"></ui-snippet>
 
     <h6 :class="$tt('headline6')">Text Label and Icon</h6>
     <div class="demo">
@@ -50,7 +50,7 @@
         >
       </ui-tab-bar>
     </div>
-    <ui-snippet :code="code[2]"></ui-snippet>
+    <ui-snippet :code="$store.demos[2]"></ui-snippet>
 
     <h6 :class="$tt('headline6')">Text Label Width-Matching Indicator</h6>
     <div class="example">
@@ -72,7 +72,7 @@
         </ui-tab>
       </ui-tab-bar>
     </div>
-    <ui-snippet :code="code[3]"></ui-snippet>
+    <ui-snippet :code="$store.demos[3]"></ui-snippet>
 
     <h6 :class="$tt('headline6')">Customization</h6>
     <div class="example">
@@ -93,7 +93,7 @@
         </ui-tab>
       </ui-tab-bar>
     </div>
-    <ui-snippet :code="code[4]"></ui-snippet>
+    <ui-snippet :code="$store.demos[4]"></ui-snippet>
   </section>
 </template>
 

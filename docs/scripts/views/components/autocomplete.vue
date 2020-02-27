@@ -1,6 +1,6 @@
 <template>
-  <div :class="[$tt('body1'), 'demo--autocomplete']">
-    <section class="hero component">
+  <ui-page-structure name="autocomplete" demoCount="2">
+    <template #hero>
       <ui-autocomplete
         noLabel
         placeholder="Input 'balm'"
@@ -11,56 +11,38 @@
       <p v-if="website">
         <a :href="website">{{ website }}</a>
       </p>
-    </section>
+    </template>
 
-    <ui-toc-affix></ui-toc-affix>
-
-    <div :class="$tt('body2')">
-      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
-      <ui-markdown text="common"></ui-markdown>
-      <ui-markdown :text="code[0]"></ui-markdown>
-
-      <h4 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demo</h4>
-      <div class="example">
-        <h6 :class="$tt('headline6')">1.1 Static data</h6>
-        <ui-autocomplete
-          noLabel
-          v-model="keywords1"
-          :source="source1"
-          placeholder="Try to type"
-        ></ui-autocomplete>
-      </div>
-      <ui-snippet :code="code[1]"></ui-snippet>
-
-      <div class="example">
-        <h6 :class="$tt('headline6')">1.2 Dynamic data</h6>
-        <ui-autocomplete
-          noLabel
-          v-model="keywords2"
-          :source="source2"
-          placeholder="Type 'a', then 'b'"
-          delay="500"
-          remote
-          autofocus
-          @search="onSearch"
-        ></ui-autocomplete>
-      </div>
-      <ui-snippet :code="code[2]"></ui-snippet>
-
-      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-markdown :text="docs.autocomplete"></ui-markdown>
-
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
-        3. Sass Variables
-      </h4>
-      <ui-markdown :text="docs.css"></ui-markdown>
+    <!-- Content -->
+    <div class="example">
+      <h6 :class="$tt('headline6')">1.1 Static data</h6>
+      <ui-autocomplete
+        noLabel
+        v-model="keywords1"
+        :source="source1"
+        placeholder="Try to type"
+      ></ui-autocomplete>
     </div>
-  </div>
+    <ui-snippet :code="$store.demos[1]"></ui-snippet>
+
+    <div class="example">
+      <h6 :class="$tt('headline6')">1.2 Dynamic data</h6>
+      <ui-autocomplete
+        noLabel
+        v-model="keywords2"
+        :source="source2"
+        placeholder="Type 'a', then 'b'"
+        delay="500"
+        remote
+        autofocus
+        @search="onSearch"
+      ></ui-autocomplete>
+    </div>
+    <ui-snippet :code="$store.demos[2]"></ui-snippet>
+  </ui-page-structure>
 </template>
 
 <script>
-import snippets from '@/mixins/snippets';
-
 const source = [
   {
     label: 'BalmJS',
@@ -118,7 +100,6 @@ export default {
   metaInfo: {
     titleTemplate: '%s - Autocomplete'
   },
-  mixins: [snippets],
   data() {
     return {
       // hero
@@ -132,13 +113,6 @@ export default {
       keywords2: '',
       source2: []
     };
-  },
-  created() {
-    this.initDocs('autocomplete', {
-      code: 2,
-      apis: ['autocomplete'],
-      css: true
-    });
   },
   methods: {
     async onSearch(keywords) {

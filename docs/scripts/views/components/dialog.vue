@@ -1,6 +1,10 @@
 <template>
-  <div :class="[$tt('body1'), 'demo--dialog']">
-    <header class="hero component">
+  <ui-page-structure
+    name="dialog"
+    demoCount="2"
+    :apis="['dialog', 'dialog-title', 'dialog-content', 'dialog-actions']"
+  >
+    <template #hero>
       <div class="hero-demo">
         <ui-dialog
           v-if="typeOption === 0"
@@ -92,70 +96,47 @@
           </template>
         </div>
       </div>
-    </header>
+    </template>
 
-    <ui-toc-affix></ui-toc-affix>
+    <!-- Content -->
+    <section class="example">
+      <ui-button raised @click="$balmUI.onOpen('open')">Show Dialog</ui-button>
+      <ui-snippet :code="$store.demos[1]"></ui-snippet>
+    </section>
 
-    <div :class="$tt('body2')">
-      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
-      <ui-markdown text="common"></ui-markdown>
-      <ui-markdown :text="code[0]"></ui-markdown>
+    <section class="example">
+      <ui-button raised @click="$balmUI.onShow('open2')"
+        >Show Scrolling Dialog</ui-button
+      >
+      <ui-snippet :code="$store.demos[2]"></ui-snippet>
+    </section>
 
-      <h4 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demo</h4>
-      <section class="example">
-        <ui-button raised @click="$balmUI.onOpen('open')"
-          >Show Dialog</ui-button
-        >
-        <ui-snippet :code="code[1]"></ui-snippet>
-      </section>
+    <ui-dialog v-model="open" @confirm="onConfirm">
+      <ui-dialog-title>Use Google's location service?</ui-dialog-title>
+      <ui-dialog-content>
+        <p>
+          Let Google help apps determine location. This means sending anonymous
+          location data to Google, even when no apps are running.
+        </p>
+      </ui-dialog-content>
+      <ui-dialog-actions></ui-dialog-actions>
+    </ui-dialog>
 
-      <section class="example">
-        <ui-button raised @click="$balmUI.onShow('open2')"
-          >Show Scrolling Dialog</ui-button
-        >
-        <ui-snippet :code="code[2]"></ui-snippet>
-      </section>
-
-      <ui-dialog v-model="open" @confirm="onConfirm">
-        <ui-dialog-title>Use Google's location service?</ui-dialog-title>
-        <ui-dialog-content>
-          <p>
-            Let Google help apps determine location. This means sending
-            anonymous location data to Google, even when no apps are running.
-          </p>
-        </ui-dialog-content>
-        <ui-dialog-actions></ui-dialog-actions>
-      </ui-dialog>
-
-      <ui-dialog scrollable v-model="open2" @confirm="onConfirm">
-        <ui-dialog-title>Choose a Ringtone</ui-dialog-title>
-        <ui-dialog-content>
-          <ui-list>
-            <ui-item v-for="(item, index) in list" :key="index">{{
-              item
-            }}</ui-item>
-          </ui-list>
-        </ui-dialog-content>
-        <ui-dialog-actions></ui-dialog-actions>
-      </ui-dialog>
-
-      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-markdown :text="docs.dialog"></ui-markdown>
-      <ui-markdown :text="docs['dialog-title']"></ui-markdown>
-      <ui-markdown :text="docs['dialog-content']"></ui-markdown>
-      <ui-markdown :text="docs['dialog-actions']"></ui-markdown>
-
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
-        3. Sass Variables
-      </h4>
-      <ui-markdown :text="docs.css"></ui-markdown>
-    </div>
-  </div>
+    <ui-dialog scrollable v-model="open2" @confirm="onConfirm">
+      <ui-dialog-title>Choose a Ringtone</ui-dialog-title>
+      <ui-dialog-content>
+        <ui-list>
+          <ui-item v-for="(item, index) in list" :key="index">{{
+            item
+          }}</ui-item>
+        </ui-list>
+      </ui-dialog-content>
+      <ui-dialog-actions></ui-dialog-actions>
+    </ui-dialog>
+  </ui-page-structure>
 </template>
 
 <script>
-import snippets from '@/mixins/snippets';
-
 const TypeOptions = [
   {
     label: 'Alert',
@@ -186,7 +167,6 @@ export default {
   metaInfo: {
     titleTemplate: '%s - Dialog'
   },
-  mixins: [snippets],
   data() {
     return {
       // hero
@@ -213,13 +193,6 @@ export default {
         'Schwifty'
       ]
     };
-  },
-  created() {
-    this.initDocs('dialog', {
-      code: 2,
-      apis: ['dialog', 'dialog-title', 'dialog-content', 'dialog-actions'],
-      css: true
-    });
   },
   methods: {
     onConfirm(result) {

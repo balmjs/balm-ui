@@ -1,6 +1,17 @@
 <template>
-  <div :class="[$tt('body1'), 'demo--tabs']">
-    <header class="hero component">
+  <ui-page-structure
+    name="tabs"
+    demoCount="9"
+    :apis="[
+      'tabs',
+      'tab-bar',
+      'tab-scroller',
+      'tab',
+      'tab-indicator',
+      'tab-panel'
+    ]"
+  >
+    <template #hero>
       <div class="hero-demo">
         <ui-tabs
           v-show="typeOption === 0"
@@ -39,44 +50,23 @@
           >
         </div>
       </div>
-    </header>
+    </template>
 
-    <ui-toc-affix></ui-toc-affix>
-
-    <div :class="$tt('body2')">
-      <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
-      <ui-markdown text="common"></ui-markdown>
-      <ui-markdown :text="code[0]"></ui-markdown>
-
-      <h4 v-anchor:id="'ui-demo'" :class="$tt('headline4')">1. Demo</h4>
-      <!-- <ui-tab-bar v-model="active">
+    <!-- Content -->
+    <!-- <ui-tab-bar v-model="active">
         <ui-tab v-for="(tab, index) in tabs" :key="index">{{
           tab.text
         }}</ui-tab>
       </ui-tab-bar> -->
-      <ui-tab-demo :tabs="tabs" :code="demoCode"></ui-tab-demo>
-      <ui-tab-bar-demo
-        :tabs="tabs"
-        :isLargeScreen="isLargeScreen"
-        :code="demoCode"
-      ></ui-tab-bar-demo>
-      <ui-tab-scroller-demo :code="demoCode"></ui-tab-scroller-demo>
-      <ui-tab-panel-demo :code="demoCode"></ui-tab-panel-demo>
-
-      <h4 v-anchor:id="'ui-apis'" :class="$tt('headline4')">2. APIs</h4>
-      <ui-markdown :text="docs.tabs"></ui-markdown>
-      <ui-markdown :text="docs['tab-bar']"></ui-markdown>
-      <ui-markdown :text="docs['tab-scroller']"></ui-markdown>
-      <ui-markdown :text="docs.tab"></ui-markdown>
-      <ui-markdown :text="docs['tab-indicator']"></ui-markdown>
-      <ui-markdown :text="docs['tab-panel']"></ui-markdown>
-
-      <h4 v-anchor:id="'ui-sass'" :class="$tt('headline4')">
-        3. Sass Variables
-      </h4>
-      <ui-markdown :text="docs.css"></ui-markdown>
-    </div>
-  </div>
+    <ui-tab-demo :tabs="tabs" :code="demoCode"></ui-tab-demo>
+    <ui-tab-bar-demo
+      :tabs="tabs"
+      :isLargeScreen="isLargeScreen"
+      :code="demoCode"
+    ></ui-tab-bar-demo>
+    <ui-tab-scroller-demo :code="demoCode"></ui-tab-scroller-demo>
+    <ui-tab-panel-demo :code="demoCode"></ui-tab-panel-demo>
+  </ui-page-structure>
 </template>
 
 <script>
@@ -84,7 +74,6 @@ import UiTabDemo from '@/demos/tabs/tab';
 import UiTabBarDemo from '@/demos/tabs/tab-bar';
 import UiTabScrollerDemo from '@/demos/tabs/tab-scroller';
 import UiTabPanelDemo from '@/demos/tabs/tab-panel';
-import snippets from '@/mixins/snippets';
 
 const largeScreenSize = 1024;
 
@@ -171,7 +160,6 @@ export default {
     UiTabScrollerDemo,
     UiTabPanelDemo
   },
-  mixins: [snippets],
   data() {
     return {
       // hero
@@ -201,23 +189,10 @@ export default {
       return type;
     },
     demoCode() {
-      return this.code;
+      return this.$store.demos;
     }
   },
   created() {
-    this.initDocs('tabs', {
-      code: 9,
-      apis: [
-        'tabs',
-        'tab-bar',
-        'tab-scroller',
-        'tab',
-        'tab-indicator',
-        'tab-panel'
-      ],
-      css: true
-    });
-
     setTimeout(() => {
       this.tabs = [
         {

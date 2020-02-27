@@ -36,7 +36,8 @@ export default {
       }
     },
     showDocs(name, key, isAPI = false) {
-      let docs = require(`@/docs/${name}/${key}.md`);
+      let filename = `${name}/${key}`;
+      let docs = require(`@/docs/${filename}.md`);
       if (isAPI) {
         this.docs.apis.push(docs);
       } else {

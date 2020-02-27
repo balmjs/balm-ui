@@ -1,5 +1,6 @@
 <template>
-  <div :class="className" v-html="html"></div>
+  <div v-if="html" :class="className" v-html="html"></div>
+  <ui-skeleton v-else active></ui-skeleton>
 </template>
 
 <script>

@@ -79,9 +79,6 @@ export default {
       apis: this.apis,
       css: !this.withoutCss
     });
-  },
-  beforeDestroy() {
-    this.$store.clearDocs();
   }
 };
 </script>

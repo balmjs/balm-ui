@@ -2,7 +2,7 @@
   width: 100%;
 
   .demo-grid {
-    background-color: #DDDDDD;
+    background-color: #dddddd;
     margin-bottom: 32px;
   }
 
@@ -31,7 +31,7 @@
     position: relative;
   }
 
-  .demo-child-cell>span {
+  .demo-child-cell > span {
     position: absolute;
     bottom: 8px;
     right: 8px;
@@ -48,6 +48,7 @@
 
   .demo-ruler {
     position: fixed;
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -92,7 +93,7 @@
 }
 
 .demo--grid {
-  .demo-parent-cell .mdc-layout-grid__inner>span {
+  .demo-parent-cell .mdc-layout-grid__inner > span {
     position: absolute;
     top: 8px;
     left: 8px;

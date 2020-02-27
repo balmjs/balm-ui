@@ -51,6 +51,16 @@ export default {
         css: false
       }
     ) {
+      // reset
+      this.docs = {
+        intro: '',
+        usage: '',
+        demos: [],
+        apis: [],
+        css: ''
+      };
+
+      // init
       this.showDocs(name, 'intro');
 
       if (name !== 'utils') {
@@ -71,15 +81,6 @@ export default {
           this.showDocs(name, 'css');
         }
       }
-    },
-    clearDocs() {
-      this.docs = {
-        intro: '',
-        usage: '',
-        demos: [],
-        apis: [],
-        css: ''
-      };
     }
   }
 };

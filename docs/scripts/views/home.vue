@@ -5,7 +5,7 @@
     </section>
     <div :class="[$tt('body2'), 'pure-docs']">
       <p :class="$tt('headline6')">
-        Build beautiful, usable products using BalmUI for Vue.js
+        Build beautiful, usable products with BalmUI for Vue.js
       </p>
       <ui-button raised @click="$router.push({ name: 'guide.intro' })"
         >Get started</ui-button

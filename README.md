@@ -25,7 +25,7 @@ npm install --save balm-ui
 
 ### 2. Config
 
-- `balm.config` [setup](https://balmjs.com/docs/v2/config/styles.html#styles-dartsass) for Dart Sass
+- **`balm.config`** [**setup**](https://balmjs.com/docs/v2/config/styles.html#styles-dartsass) for Dart Sass
 
 ```js
 balm.config = {

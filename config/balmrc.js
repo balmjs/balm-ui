@@ -6,6 +6,11 @@ module.exports = {
   roots: {
     source: env.useDocs ? 'docs' : 'src'
   },
+  paths: {
+    target: {
+      font: env.useDocs ? 'font' : 'fonts'
+    }
+  },
   styles: {
     extname: 'scss',
     dartSass: true

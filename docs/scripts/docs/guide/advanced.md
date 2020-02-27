@@ -22,7 +22,6 @@
 Edit `/path/to/my-project/app/styles/global/_vendor.scss` (manage sass entry files of the vendors)
 
 ```css
-/* Add BalmUI styles */
 @use 'balm-ui/dist/balm-ui.scss';
 ```
 
@@ -37,10 +36,6 @@ Then, you can overwrite or redefine UI styles by editing `/path/to/my-project/ap
     <meta charset="utf-8" />
     ...
     <link rel="stylesheet" href="%PUBLIC_URL%/styles/main.css" />
-    <!-- build:css css/plugins.css -->
-    <link rel="stylesheet" href="/node_modules/path/to/some-plugin.css" />
-    ...
-    <!-- endbuild -->
   </head>
   <body>
     ...
@@ -48,8 +43,8 @@ Then, you can overwrite or redefine UI styles by editing `/path/to/my-project/ap
 </html>
 ```
 
+- `css/vendors.css`: The file path after building all third-party style files.
 - `main.css`: The css entry file of the project.
-- `css/plugins.css`: The file path after building all third-party style files.
 
 > If the third-party provides sass file, recommended to manage in `/path/to/my-project/app/styles/global/_vendor.scss`
 
@@ -66,7 +61,6 @@ Then, you can overwrite or redefine UI styles by editing `/path/to/my-project/ap
     <!-- build:css css/vendors.css -->
     <link rel="stylesheet" href="/node_modules/balm-ui/dist/balm-ui.css" />
     <link rel="stylesheet" href="/node_modules/path/to/some-plugin.css" />
-    ...
     <!-- endbuild -->
     <link rel="stylesheet" href="%PUBLIC_URL%/styles/main.css" />
   </head>
@@ -127,8 +121,8 @@ Edit `/path/to/my-project/app/index.html`
       <ui-button @click="$alert(message)">SayHi</ui-button>
     </div>
 
-    <script src="https://unpkg.com/vue"></script>
     <!-- build:js js/vendors.js -->
+    <script src="/node_modules/vue/dist/vue.js"></script>
     <script src="/node_modules/balm-ui/dist/balm-ui.js"></script>
     <script src="/node_modules/balm-ui/dist/balm-ui-plus.js"></script>
     <script src="/node_modules/balm-ui/dist/balm-ui-next.js"></script>
@@ -163,7 +157,7 @@ import App from './views/layouts/app';
 import UiButton from 'balm-ui/components/button';
 import $alert from 'balm-ui/plugins/alert';
 
-// Import BalmUI styles (Not recommend usage, and see "Import in Browser" for recommended usage)
+// Import BalmUI styles (Not recommend usage, and see below "SASS/CSS management" for recommended usage)
 import 'balm-ui/components/core.css';
 import 'balm-ui/components/button/button.css';
 import 'balm-ui/components/dialog/dialog.css';
@@ -181,6 +175,25 @@ new Vue({
 ```
 
 > With regard to _CSSinJS_, styles can be extracted through BalmJS configuration, but the idea of BalmJS is more recommended to separate and manage styles and scripts to achieve more flexible module configuration and management.
+
+- SASS management
+  ```css
+  @use 'balm-ui/components/core.scss';
+  @use 'balm-ui/components/button/button.scss';
+  @use 'balm-ui/components/dialog/dialog.scss';
+  @use 'balm-ui/plugins/alert/alert.scss';
+  ```
+- CSS management
+  ```html
+  <head>
+    <!-- build:css css/vendors.css -->
+    <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
+    <link rel="stylesheet" href="/node_modules/balm-ui/components/button/button.css" />
+    <link rel="stylesheet" href="/node_modules/balm-ui/components/dialog/dialog.css" />
+    <link rel="stylesheet" href="/node_modules/balm-ui/plugins/alert/alert.css" />
+    <!-- endbuild -->
+  </head>
+  ```
 
 **2.2.2 Import in Browser**
 
@@ -203,8 +216,9 @@ Edit `/path/to/my-project/app/index.html`
     <div id="app">
       <ui-button @click="$alert(message)">SayHi</ui-button>
     </div>
-    <script src="https://unpkg.com/vue"></script>
+
     <!-- build:js js/vendors.js -->
+    <script src="/node_modules/vue/dist/vue.js"></script>
     <script src="/node_modules/balm-ui/components/button/button.js"></script>
     <script src="/node_modules/balm-ui/plugins/alert/alert.js"></script>
     <!-- endbuild -->

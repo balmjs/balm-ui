@@ -1,5 +1,15 @@
 # BalmUI ChangeLog
 
+## v5.2.0 / 2020-02-27
+
+### Bug Fixes
+
+- rebuild styles for `fonts` bug
+
+### Features
+
+- docs refactoring
+
 ## v5.1.0 / 2020-02-26
 
 ### Features
@@ -23,11 +33,12 @@
 
 ### BREAKING CHANGES
 
-- update `@use` usage for sass code in __BalmUI__
+- update `@use` usage for sass code in **BalmUI**
 
-__OLD__
+**OLD**
 
 - SASS (Default Usage)
+
   ```scss
   @use 'balm-ui/src/styles/components/autocomplete/variables' with (
     // Overwrite
@@ -35,18 +46,26 @@ __OLD__
 
   @use 'balm-ui/src/styles/balm-ui.scss';
   ```
+
 - CSS (Standalone Usage)
   ```html
   <!-- build:css css/vendors.css -->
   <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
-  <link rel="stylesheet" href="/node_modules/balm-ui/components/textfield.css" />
-  <link rel="stylesheet" href="/node_modules/balm-ui/components/autocomplete.css" />
+  <link
+    rel="stylesheet"
+    href="/node_modules/balm-ui/components/textfield.css"
+  />
+  <link
+    rel="stylesheet"
+    href="/node_modules/balm-ui/components/autocomplete.css"
+  />
   <!-- endbuild -->
   ```
 
-__NEW__
+**NEW**
 
 - SASS (Standalone Usage)
+
   ```scss
   @use 'balm-ui/components/autocomplete/variables' with (
     // Overwrite
@@ -57,12 +76,19 @@ __NEW__
   @use 'balm-ui/components/textfield/textfield.scss';
   @use 'balm-ui/components/autocomplete/autocomplete.scss';
   ```
+
 - CSS (Standalone Usage)
   ```html
   <!-- build:css css/vendors.css -->
   <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
-  <link rel="stylesheet" href="/node_modules/balm-ui/components/textfield/textfield.css" />
-  <link rel="stylesheet" href="/node_modules/balm-ui/components/autocomplete/autocomplete.css" />
+  <link
+    rel="stylesheet"
+    href="/node_modules/balm-ui/components/textfield/textfield.css"
+  />
+  <link
+    rel="stylesheet"
+    href="/node_modules/balm-ui/components/autocomplete/autocomplete.css"
+  />
   <!-- endbuild -->
   ```
 

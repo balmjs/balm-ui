@@ -25,11 +25,18 @@
 <script>
 import getType from '../../utils/typeof';
 
+// Define skeleton constants
+const UI_SKELETON = {
+  EVENT: {
+    CHANGE: 'change'
+  }
+};
+
 export default {
   name: 'ui-skeleton',
   model: {
     prop: 'loading',
-    event: 'change'
+    event: UI_SKELETON.EVENT.CHANGE
   },
   props: {
     // States

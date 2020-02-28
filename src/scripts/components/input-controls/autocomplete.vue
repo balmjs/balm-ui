@@ -169,7 +169,7 @@ export default {
   },
   watch: {
     model(val) {
-      if (val !== this.inputValue) {
+      if (this.inputValue !== val) {
         this.inputValue = `${val}`;
       }
     },

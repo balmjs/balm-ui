@@ -9,6 +9,9 @@
 const UI_PANEL = {
   cssClasses: {
     active: 'active'
+  },
+  EVENT: {
+    CHANGE: 'change'
   }
 };
 
@@ -16,7 +19,7 @@ export default {
   name: 'ui-panels',
   model: {
     prop: 'active',
-    event: 'change'
+    event: UI_PANEL.EVENT.CHANGE
   },
   props: {
     // States

@@ -84,9 +84,10 @@ export default {
           this.$list.selectedIndex = this.selectedIndex;
         }
 
-        // TODO: has bug? Execute twice in <ui-dismissible-drawer> and <ui-modal-drawer>
         this.$list.listen(`MDCList:${UI_LIST.EVENT.ACTION}`, ({ detail }) => {
-          this.$emit(UI_LIST.EVENT.ACTION, detail.index);
+          if (this.$list.selectedIndex !== detail.index) {
+            this.$emit(UI_LIST.EVENT.ACTION, detail.index);
+          }
         });
       } else {
         this.$list = null;

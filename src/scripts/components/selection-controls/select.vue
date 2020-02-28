@@ -83,7 +83,6 @@ const UI_SELECT = {
     icon: 'mdc-select__icon'
   },
   EVENT: {
-    UPDATE_MODEL: 'update-value',
     CHANGE: 'change',
     SELECTED: 'selected'
   },
@@ -99,7 +98,7 @@ export default {
   mixins: [typeMixin, materialIconMixin],
   model: {
     prop: 'model',
-    event: UI_SELECT.EVENT.UPDATE_MODEL
+    event: UI_SELECT.EVENT.CHANGE
   },
   props: {
     // UI variants
@@ -208,13 +207,6 @@ export default {
       this.currentSelectedIndex = this.defaultLabel ? index + 1 : index;
 
       this.$select.selectedIndex = this.currentSelectedIndex;
-
-      this.$emit(UI_SELECT.EVENT.CHANGE, this.currentSelectedValue);
-      this.$emit(UI_SELECT.EVENT.SELECTED, {
-        index: this.currentSelectedIndex,
-        value: this.currentOption[this.optionValue],
-        label: this.currentOption[this.optionLabel]
-      });
     },
     options(val) {
       this.init(val);
@@ -230,7 +222,9 @@ export default {
           : this.currentOptions.length
       ) {
         const selected = this.getSelected(detail.index);
-        this.$emit(UI_SELECT.EVENT.UPDATE_MODEL, selected.value);
+
+        this.$emit(UI_SELECT.EVENT.CHANGE, selected.value);
+        this.$emit(UI_SELECT.EVENT.SELECTED, selected);
       }
     });
 

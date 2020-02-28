@@ -1,5 +1,15 @@
 # BalmUI ChangeLog
 
+## v5.2.1 / 2020-02-28
+
+### Bug Fixes
+
+- `<ui-select>`: fix manual `@change` event bug
+
+### Chores
+
+- `<ui-list>`: optimize `@action` event
+
 ## v5.2.0 / 2020-02-27
 
 ### Bug Fixes

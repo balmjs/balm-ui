@@ -17,11 +17,11 @@ export default {
       default: false
     },
     // For custom icon
-    leadingIcon: {
+    withLeadingIcon: {
       type: Boolean,
       default: false
     },
-    trailingIcon: {
+    withTrailingIcon: {
       type: Boolean,
       default: false
     }

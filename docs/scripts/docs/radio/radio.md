@@ -24,10 +24,14 @@
 
 > NOTE: If you are not using `v-model`, you should listen for the radio using `@change` and update the `model` prop.
 
-```html
-// Automatic
-<ui-radio v-model="value"></ui-radio>
-
-// Manual
-<ui-radio :model="value" @change="$balmUI.onChange('value', $event)"></ui-radio>
-```
+- Automatic
+  ```html
+  <ui-radio v-model="value"></ui-radio>
+  ```
+- Manual
+  ```html
+  <ui-radio
+    :model="value"
+    @change="$balmUI.onChange('value', $event)"
+  ></ui-radio>
+  ```

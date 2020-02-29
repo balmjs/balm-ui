@@ -3,8 +3,11 @@
     <template #hero>
       <div class="hero-demo">
         <ui-fab :type="typeOption" :mini="!!mini">
-          <!-- :icon="type && leadingIcon ? 'add' : ''" -->
-          <template v-if="typeOption && leadingIcon" #before="{ iconClass }">
+          <!-- :icon="type && withLeadingIcon ? 'add' : ''" -->
+          <template
+            v-if="typeOption && withLeadingIcon"
+            #before="{ iconClass }"
+          >
             <ui-icon :class="iconClass">add</ui-icon>
           </template>
           <template v-if="typeOption">
@@ -24,7 +27,7 @@
           <ui-checkbox
             id="leading-icon"
             :value="1"
-            v-model="leadingIcon"
+            v-model="withLeadingIcon"
           ></ui-checkbox>
           <label for="leading-icon">Leading icon</label>
         </ui-form-field>
@@ -194,7 +197,7 @@ export default {
       TypeOptions,
       typeOption: 0,
       mini: 0,
-      leadingIcon: false,
+      withLeadingIcon: false,
       // demo
       exited: false
     };

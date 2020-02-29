@@ -18,8 +18,8 @@
               v-model="value1"
               maxlength="20"
               helperTextId="my-text-field-helper"
-              :leadingIcon="iconOption.includes(2)"
-              :trailingIcon="iconOption.includes(3)"
+              :withLeadingIcon="iconOption.includes(2)"
+              :withTrailingIcon="iconOption.includes(3)"
               :required="assistiveTextOption === 2"
               :pattern="assistiveTextOption === 2 ? '[a-z]{256,}' : null"
               >Label
@@ -267,7 +267,7 @@
         <ui-textfield
           id="tf-outlined-leading"
           outlined
-          leadingIcon
+          withLeadingIcon
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
           :dense="controls.dense"
@@ -290,7 +290,7 @@
         <ui-textfield
           id="tf-outlined-trailing"
           outlined
-          trailingIcon
+          withTrailingIcon
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
           :dense="controls.dense"

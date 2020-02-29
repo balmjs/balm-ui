@@ -9,9 +9,9 @@
     :noLabel="noLabel"
     :fullwidth="fullwidth"
     :disabled="disabled"
-    :leadingIcon="leadingIcon"
+    :withLeadingIcon="withLeadingIcon"
     :icon="icon"
-    :trailingIcon="trailingIcon"
+    :withTrailingIcon="withTrailingIcon"
     plus
     @focus="handleFocus"
     @keydown="handleKeydown"
@@ -413,7 +413,10 @@ export default {
       }
     },
     handleMouseleave() {
-      this.currentSelectedItem.classList.remove(UI_AUTOCOMPLETE.ITEM.SELECTED);
+      this.currentSelectedItem &&
+        this.currentSelectedItem.classList.remove(
+          UI_AUTOCOMPLETE.ITEM.SELECTED
+        );
     },
     handleSelected(selectedItem) {
       this.hide();

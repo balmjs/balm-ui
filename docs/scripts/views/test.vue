@@ -1,84 +1,91 @@
 <template>
   <div :class="[$tt('body1'), 'demo--test']">
-    <!-- <ui-banner
-      >Banners are interruptive, but their level of interruption should match
-      the information they contain and the context in which they appear.
-      <template #action>
-        <ui-button>OK</ui-button>
-        <ui-button>Cancel</ui-button>
-      </template>
-    </ui-banner> -->
-    <div class="main-content">
-      <ui-chip>Chip</ui-chip>
-      <hr />
-      <ui-button primary effect raised @click="showDialog('show')"
-        >有色遮罩无动画对话框</ui-button
-      >
-      <ui-button primary effect raised @click="showDialog('showConfirm')"
-        >confirm对话框</ui-button
-      >
-      <ui-button primary effect raised @click="showDialog('showAlert')"
-        >alert对话框</ui-button
-      >
-      <div class="dialog-group">
-        <ui-dialog :show="show" @on-close="closeDialog('show')">
-          <h4>我是有色遮罩的对话框</h4>
-          <br />：使用@on-close事件来关闭对话框
-        </ui-dialog>
-      </div>
-      <hr />
-      <ui-button @click="showSnackbar">show snackbar</ui-button>
-      <ui-snackbar
-        message="hello snackbar"
-        :active="active"
-        @done="resetSnackbar"
-      ></ui-snackbar>
-      <hr />
-      <ui-checkbox value="A" :model="formData.options" @change="onOptionsChange"
-        >Option A</ui-checkbox
-      >
-      <ui-checkbox value="B" :model="formData.options" @change="onOptionsChange"
-        >Option B</ui-checkbox
-      >
-      <ui-checkbox value="C" :model="formData.options" @change="onOptionsChange"
-        >Option C</ui-checkbox
-      >
+    <p>Value: {{ typeof value }} {{ value }}</p>
+    <div :class="$tt('body2')">
+      <!-- Test: input -->
+
+      <!-- <input type="text" v-model="value" />
       <br />
-      <ui-radio value="F" :model="formData.gender" @change="onGenderChange"
-        >Female</ui-radio
-      >
-      <ui-radio value="M" :model="formData.gender" @change="onGenderChange"
-        >Male</ui-radio
-      >
+      <ui-textfield v-model="value">
+        Textfield
+      </ui-textfield>
       <br />
-      <ui-radio value="Y" :model="formData.answer" @change="onAnswerChange"
-        >Yes</ui-radio
-      >
-      <ui-radio value="N" :model="formData.answer" @change="onAnswerChange"
-        >No</ui-radio
-      >
+      <ui-textfield :model="value" @input="$balmUI.onChange('value', $event)">
+        Textfield
+      </ui-textfield>
+      <hr /> -->
+
+      <!-- Test: checkbox -->
+
+      <!-- <input type="checkbox" v-model="value" />
       <br />
-      <ui-switch :model="formData.open" @change="onSwitchChange"
-        >On/Off</ui-switch
-      >
-      <hr />
-      <ui-button effect @click="submit">Submit</ui-button>
-      <p v-for="i in 100" :key="i">{{ i }}</p>
+      <ui-checkbox v-model="value"></ui-checkbox>
+      <br />
+      <ui-checkbox
+        :model="value"
+        @change="$balmUI.onChange('value', $event)"
+      ></ui-checkbox>
+      <hr /> -->
+
+      <!-- <input type="checkbox" v-model="value2" value="a" />
+      <input type="checkbox" v-model="value2" value="b" />
+      <br />
+      <ui-checkbox v-model="value2" value="a"></ui-checkbox>
+      <ui-checkbox v-model="value2" value="b"></ui-checkbox>
+      <br />
+      <ui-checkbox
+        :model="value2"
+        value="a"
+        @change="$balmUI.onChange('value2', $event)"
+      ></ui-checkbox>
+      <ui-checkbox
+        :model="value2"
+        value="b"
+        @change="$balmUI.onChange('value2', $event)"
+      ></ui-checkbox>
+      <hr /> -->
+
+      <!-- Test: radio -->
+
+      <!-- <input type="radio" value="a" v-model="value" />
+      <input type="radio" value="b" v-model="value" />
+      <br />
+      <ui-radio value="a" v-model="value"></ui-radio>
+      <ui-radio value="b" v-model="value"></ui-radio>
+      <br />
+      <ui-radio
+        value="a"
+        :model="value"
+        @change="$balmUI.onChange('value', $event)"
+      ></ui-radio>
+      <ui-radio
+        value="b"
+        :model="value"
+        @change="$balmUI.onChange('value', $event)"
+      ></ui-radio>
+      <hr /> -->
+
+      <!-- Test: select -->
+      <!-- <select v-model="value">
+        <option value="">Please select one</option>
+        <option value="a">A</option>
+        <option value="b">B</option>
+      </select>
+      <br />
+      <ui-select
+        defaultLabel="Please select one"
+        :options="options"
+        v-model="value"
+      ></ui-select>
+      <br />
+      <ui-select
+        defaultLabel="Please select one"
+        :options="options"
+        :model="value"
+        @change="$balmUI.onChange('value', $event)"
+      ></ui-select>
+      <hr /> -->
     </div>
-    <ui-bottom-navigation stacked contentSelector=".main-content">
-      <ui-tab-bar v-model="tabActive">
-        <ui-tab
-          v-for="(tab, index) in tabs"
-          :key="index"
-          :type="2"
-          :icon="tab.icon"
-          stacked
-        >
-          {{ tab.text }}
-        </ui-tab>
-        <template #indicator></template>
-      </ui-tab-bar>
-    </ui-bottom-navigation>
   </div>
 </template>
 
@@ -86,97 +93,26 @@
 export default {
   data() {
     return {
-      active: false,
-      formData: {
-        options: [],
-        gender: '',
-        answer: '',
-        icons: [],
-        open: '',
-        text1: 'Hello',
-        text2: 'World',
-        text3: 'Content'
-      },
-      show: false,
-      showConfirm: false,
-      showAlert: false,
-      tabActive: 0,
-      tabs: [
+      source: ['a', 'ab', 'abc', 'abcd'],
+      value: '',
+      value2: [],
+      options: [
         {
-          text: 'Favorites',
-          icon: 'favorite',
-          indicator: 'crop_square'
+          label: 'A',
+          value: 'a'
         },
         {
-          text: 'Recents',
-          icon: 'phone',
-          indicator: 'panorama_fish_eye'
-        },
-        {
-          text: 'Nearby',
-          icon: 'near_me',
-          indicator: 'change_history'
-        },
-        {
-          text: 'Favorites',
-          icon: 'favorite',
-          indicator: 'crop_square'
-        },
-        {
-          text: 'Recents',
-          icon: 'phone',
-          indicator: 'panorama_fish_eye'
-        },
-        {
-          text: 'Nearby',
-          icon: 'near_me',
-          indicator: 'change_history'
+          label: 'B',
+          value: 'b'
         }
       ]
     };
   },
-  methods: {
-    showDialog(name) {
-      this[name] = true;
-    },
-    closeDialog(name, fn) {
-      this[name] = false;
-      typeof fn === 'function' && fn();
-    },
-    clickButton() {
-      console.log('Hello, 你点击了按钮！');
-    },
-    onCancel() {
-      console.log('你点击了取消按钮！');
-    },
-    onConfirm() {
-      console.log('你点击了确定按钮！');
-    },
-    showSnackbar() {
-      this.active = true;
-    },
-    resetSnackbar() {
-      this.active = false;
-    },
-    onOptionsChange(val) {
-      this.formData.options = val;
-    },
-    onGenderChange(val) {
-      this.formData.gender = val;
-    },
-    onAnswerChange(val) {
-      this.formData.answer = val;
-    },
-    onIconsChange(val) {
-      this.formData.icons = val;
-    },
-    onSwitchChange(val) {
-      this.formData.open = val;
-    },
-    submit() {
-      console.info('submit');
-      console.log(this.formData);
-    }
+  mounted() {
+    setTimeout(() => {
+      this.value = 'a';
+      // this.value2 = ['b'];
+    }, 1e3);
   }
 };
 </script>

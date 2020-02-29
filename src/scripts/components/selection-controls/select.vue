@@ -222,9 +222,11 @@ export default {
           : this.currentOptions.length
       ) {
         const selected = this.getSelected(detail.index);
-
-        this.$emit(UI_SELECT.EVENT.CHANGE, selected.value);
-        this.$emit(UI_SELECT.EVENT.SELECTED, selected);
+        // NOTE: fix twice event trigger
+        if (this.currentSelectedValue !== selected.value) {
+          this.$emit(UI_SELECT.EVENT.CHANGE, selected.value);
+          this.$emit(UI_SELECT.EVENT.SELECTED, selected);
+        }
       }
     });
 

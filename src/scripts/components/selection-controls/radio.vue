@@ -77,7 +77,6 @@ export default {
   },
   mounted() {
     this.$radio = new MDCRadio(this.$el);
-    this.$radio.checked = this.checkedValue == this.value;
 
     this.$nextTick(() => {
       if (this.$parent.$formField) {

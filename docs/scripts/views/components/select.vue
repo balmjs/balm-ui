@@ -12,7 +12,7 @@
               id="my-select"
               v-model="selected"
               :options="options"
-              :leadingIcon="selectOption.includes(1)"
+              :withLeadingIcon="selectOption.includes(1)"
               helperTextId="my-helper-text"
             >
               <template v-if="selectOption.includes(1)" #icon>
@@ -34,7 +34,7 @@
               id="my-select"
               v-model="selected"
               :options="options"
-              :leadingIcon="selectOption.includes(1)"
+              :withLeadingIcon="selectOption.includes(1)"
               helperTextId="my-helper-text"
             >
               <template v-if="selectOption.includes(1)" #icon>

@@ -85,6 +85,7 @@ export default {
         }
 
         this.$list.listen(`MDCList:${UI_LIST.EVENT.ACTION}`, ({ detail }) => {
+          // NOTE: fix multiple event trigger
           if (this.$list.selectedIndex !== detail.index) {
             this.$emit(UI_LIST.EVENT.ACTION, detail.index);
           }

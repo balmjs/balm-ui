@@ -19,9 +19,9 @@
 | `placeholder`       | string          | `null`     | The _placeholder_ attribute of the `<input>`.                                                                                                                                                                                           |
 | `fullwidth`         | boolean         | `false`    | Styles the autocomplete as a full width text field.                                                                                                                                                                                     |
 | `disabled`          | boolean         | `false`    | Styles the autocomplete as a disabled text field.                                                                                                                                                                                       |
-| `leadingIcon`       | boolean, string | `false`    | Styles the autocomplete as a text field with a leading icon. (Use with `before` slot)                                                                                                                                                   |
-| `icon`              | string          | `''`       | Optional. Indicates an icon element with a leading icon. See [Material Icons](/#/icons) list. (No need to configure `leadingIcon`)                                                                                                      |
-| `trailingIcon`      | boolean, string | `false`    | Styles the autocomplete as a text field with a trailing icon. (Use with `after` slot)                                                                                                                                                   |
+| `withLeadingIcon`   | boolean, string | `false`    | Styles the autocomplete as a text field with a leading icon. (Use with `before` slot)                                                                                                                                                   |
+| `icon`              | string          | `''`       | Optional. Indicates an icon element with a leading icon. See [Material Icons](/#/icons) list. (No need to configure `withLeadingIcon`)                                                                                                  |
+| `withTrailingIcon`  | boolean, string | `false`    | Styles the autocomplete as a text field with a trailing icon. (Use with `after` slot)                                                                                                                                                   |
 
 - **`source`** prop. There are two supported formats:
   - An array of strings: `[ 'Choice1', 'Choice2' ]`
@@ -54,13 +54,14 @@
 
 > NOTE: If you are not using `v-model`, you should listen for the autocomplete using `@input` and update the `model` prop.
 
-```html
-// Automatic
-<ui-autocomplete v-model="value"></ui-autocomplete>
-
-// Manual
-<ui-autocomplete
-  :model="value"
-  @input="$balmUI.onChange('value', $event)"
-></ui-autocomplete>
-```
+- Automatic
+  ```html
+  <ui-autocomplete v-model="value"></ui-autocomplete>
+  ```
+- Manual
+  ```html
+  <ui-autocomplete
+    :model="value"
+    @input="$balmUI.onChange('value', $event)"
+  ></ui-autocomplete>
+  ```

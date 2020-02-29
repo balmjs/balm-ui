@@ -25,13 +25,14 @@
 
 > NOTE: If you are not using `v-model`, you should listen for the checkbox using `@change` and update the `model` prop.
 
-```html
-// Automatic
-<ui-checkbox v-model="value"></ui-checkbox>
-
-// Manual
-<ui-checkbox
-  :model="value"
-  @change="$balmUI.onChange('value', $event)"
-></ui-checkbox>
-```
+- Automatic
+  ```html
+  <ui-checkbox v-model="value"></ui-checkbox>
+  ```
+- Manual
+  ```html
+  <ui-checkbox
+    :model="value"
+    @change="$balmUI.onChange('value', $event)"
+  ></ui-checkbox>
+  ```

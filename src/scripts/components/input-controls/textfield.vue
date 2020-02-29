@@ -226,10 +226,10 @@ export default {
       return !(this.noLabel || this.fullwidth);
     },
     hasLeadingIcon() {
-      return this.materialIcon || this.leadingIcon || this.$slots.before;
+      return this.materialIcon || this.withLeadingIcon || this.$slots.before;
     },
     hasTrailingIcon() {
-      return this.trailingIcon || this.$slots.after;
+      return this.withTrailingIcon || this.$slots.after;
     },
     className() {
       return {

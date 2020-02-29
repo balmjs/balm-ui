@@ -10,9 +10,9 @@
     :noLabel="noLabel"
     :fullwidth="fullwidth"
     :disabled="disabled"
-    :leadingIcon="leadingIcon"
+    :withLeadingIcon="withLeadingIcon"
     :icon="icon"
-    :trailingIcon="trailingIcon || toggle || allowInput || clear"
+    :withTrailingIcon="withTrailingIcon || toggle || allowInput || clear"
     :attrs="{ readonly: true }"
     @change="handleChange"
   >
@@ -28,7 +28,7 @@
 
     <!-- Trailing icon (optional) -->
     <template #after="{ iconClass }">
-      <template v-if="trailingIcon">
+      <template v-if="withTrailingIcon">
         <slot name="after" :iconClass="iconClass"></slot>
       </template>
       <span v-else :class="[iconClass, 'mdc-datepicker__icon']">

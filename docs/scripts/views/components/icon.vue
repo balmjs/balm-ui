@@ -71,7 +71,7 @@
     <template #after>
       <div class="search-area" v-shadow="1">
         <ui-textfield
-          leadingIcon
+          withLeadingIcon
           inputType="search"
           id="search"
           placeholder="Icon name keywords"

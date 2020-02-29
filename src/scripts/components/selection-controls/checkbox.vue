@@ -50,7 +50,7 @@ export default {
   props: {
     // States
     model: {
-      type: [Boolean, Array],
+      type: null, // NOTE: [Boolean, Array] only
       default: false
     },
     indeterminate: {
@@ -68,7 +68,7 @@ export default {
   data() {
     return {
       $checkbox: null,
-      checkedValue: this.model
+      checkedValue: this._setCheckedValue(this.model)
     };
   },
   computed: {
@@ -86,7 +86,7 @@ export default {
   },
   watch: {
     model(val) {
-      this.checkedValue = val;
+      this.checkedValue = this._setCheckedValue(val);
     },
     indeterminate(val) {
       this.$checkbox.indeterminate = val;
@@ -103,13 +103,11 @@ export default {
     });
   },
   methods: {
-    handleChange(event) {
-      let result =
-        getType(this.checkedValue) === 'array'
-          ? [...this.checkedValue]
-          : this.checkedValue;
-
-      this.$emit(UI_CHECKBOX.EVENT.CHANGE, result);
+    _setCheckedValue(value) {
+      return getType(value) === 'array' ? [...value] : !!value;
+    },
+    handleChange() {
+      this.$emit(UI_CHECKBOX.EVENT.CHANGE, this.checkedValue);
     }
   }
 };

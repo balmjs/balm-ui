@@ -129,6 +129,7 @@ export default {
   mounted() {
     this.$slider = new MDCSlider(this.$el);
 
+    // TODO: multiple event trigger
     this.$slider.listen(`MDCSlider:${UI_SLIDER.EVENT.INPUT}`, () => {
       this.$emit(UI_SLIDER.EVENT.INPUT, this.$slider.value);
     });

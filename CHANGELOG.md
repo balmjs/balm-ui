@@ -1,5 +1,22 @@
 # BalmUI ChangeLog
 
+## v5.3.0 / 2020-02-29
+
+### Features
+
+- partial refactoring: `<ui-checkbox>`, `<ui-switch>`
+
+### Bug Fixes
+
+- `<ui-select>`: fix twice event trigger
+- `<ui-tabs>`: fix dynamic state bug
+
+### BREAKING CHANGES
+
+- `<ui-textfield>`: rename props name: <del>`leadingIcon`</del> -> `withLeadingIcon`, <del>`trailingIcon`</del> -> `withTrailingIcon`
+- `<ui-select>`: rename props name: <del>`leadingIcon`</del> -> `withLeadingIcon`
+- `<ui-slider>`: remove `@input` event
+
 ## v5.2.1 / 2020-02-28
 
 ### Bug Fixes

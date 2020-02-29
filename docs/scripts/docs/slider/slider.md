@@ -29,13 +29,14 @@
 
 > NOTE: If you are not using `v-model`, you should listen for the slider using `@input` and update the `model` prop.
 
-```html
-// Automatic
-<ui-slider v-model="value"></ui-slider>
-
-// Manual
-<ui-slider
-  :model="value"
-  @input="$balmUI.onChange('value', $event)"
-></ui-slider>
-```
+- Automatic
+  ```html
+  <ui-slider v-model="value"></ui-slider>
+  ```
+- Manual
+  ```html
+  <ui-slider
+    :model="value"
+    @input="$balmUI.onChange('value', $event)"
+  ></ui-slider>
+  ```

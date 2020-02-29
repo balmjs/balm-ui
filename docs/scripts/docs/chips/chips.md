@@ -31,13 +31,14 @@
 
 > NOTE: If you are not using `v-model`, you should listen for the chips using `@change` and update the `model` prop.
 
-```html
-// Automatic
-<ui-chips v-model="selected"></ui-chips>
-
-// Manual
-<ui-chips
-  :model="selected"
-  @change="$balmUI.onChange('selected', $event)"
-></ui-chips>
-```
+- Automatic
+  ```html
+  <ui-chips v-model="selected"></ui-chips>
+  ```
+- Manual
+  ```html
+  <ui-chips
+    :model="selected"
+    @change="$balmUI.onChange('selected', $event)"
+  ></ui-chips>
+  ```

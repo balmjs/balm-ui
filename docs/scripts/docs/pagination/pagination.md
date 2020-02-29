@@ -57,13 +57,14 @@
 
 > NOTE: If you are not using `v-model`, you should listen for the select using `@change` and update the `page` prop.
 
-```html
-// Automatic
-<ui-pagination v-model="page"></ui-pagination>
-
-// Manual
-<ui-pagination
-  :page="page"
-  @change="$balmUI.onChange('page', $event)"
-></ui-pagination>
-```
+- Automatic
+  ```html
+  <ui-pagination v-model="page"></ui-pagination>
+  ```
+- Manual
+  ```html
+  <ui-pagination
+    :page="page"
+    @change="$balmUI.onChange('page', $event)"
+  ></ui-pagination>
+  ```

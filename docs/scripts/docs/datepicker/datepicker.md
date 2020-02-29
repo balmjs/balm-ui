@@ -39,13 +39,14 @@
 
 > NOTE: If you are not using `v-model`, you should listen for the datepicker using `@change` and update the `model` prop.
 
-```html
-// Automatic
-<ui-datepicker v-model="value"></ui-datepicker>
-
-// Manual
-<ui-datepicker
-  :model="value"
-  @change="$balmUI.onChange('value', $event)"
-></ui-datepicker>
-```
+- Automatic
+  ```html
+  <ui-datepicker v-model="value"></ui-datepicker>
+  ```
+- Manual
+  ```html
+  <ui-datepicker
+    :model="value"
+    @change="$balmUI.onChange('value', $event)"
+  ></ui-datepicker>
+  ```

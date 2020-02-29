@@ -61,13 +61,14 @@ In addition to the above, the following properties proxy to the input element's 
 
 > NOTE: If you are not using `v-model`, you should listen for the text field using `@input` and update the `model` prop.
 
-```html
-// Automatic
-<ui-textfield v-model="value"></ui-textfield>
-
-// Manual
-<ui-textfield
-  :model="value"
-  @input="$balmUI.onChange('value', $event)"
-></ui-textfield>
-```
+- Automatic
+  ```html
+  <ui-textfield v-model="value"></ui-textfield>
+  ```
+- Manual
+  ```html
+  <ui-textfield
+    :model="value"
+    @input="$balmUI.onChange('value', $event)"
+  ></ui-textfield>
+  ```

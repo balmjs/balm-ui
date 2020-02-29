@@ -32,13 +32,14 @@
 
 > NOTE: If you are not using `v-model`, you should listen for the rangepicker using `@change` and update the `model` prop.
 
-```html
-// Automatic
-<ui-rangepicker v-model="value"></ui-rangepicker>
-
-// Manual
-<ui-rangepicker
-  :model="value"
-  @change="$balmUI.onChange('value', $event)"
-></ui-rangepicker>
-```
+- Automatic
+  ```html
+  <ui-rangepicker v-model="value"></ui-rangepicker>
+  ```
+- Manual
+  ```html
+  <ui-rangepicker
+    :model="value"
+    @change="$balmUI.onChange('value', $event)"
+  ></ui-rangepicker>
+  ```

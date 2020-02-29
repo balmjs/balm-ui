@@ -30,13 +30,14 @@
 
 > NOTE: If you are not using `v-model`, you should listen for the snackbar using `@change` and update the `open` prop.
 
-```html
-// Automatic
-<ui-snackbar v-model="open"></ui-snackbar>
-
-// Manual
-<ui-snackbar
-  :open="open"
-  @change="$balmUI.onChange('open', $event)"
-></ui-snackbar>
-```
+- Automatic
+  ```html
+  <ui-snackbar v-model="open"></ui-snackbar>
+  ```
+- Manual
+  ```html
+  <ui-snackbar
+    :open="open"
+    @change="$balmUI.onChange('open', $event)"
+  ></ui-snackbar>
+  ```

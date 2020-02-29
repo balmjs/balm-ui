@@ -25,13 +25,14 @@
 
 > NOTE: If you are not using `v-model`, you should listen for the switch using `@change` and update the `model` prop.
 
-```html
-// Automatic
-<ui-switch v-model="value"></ui-switch>
-
-// Manual
-<ui-switch
-  :model="value"
-  @change="$balmUI.onChange('value', $event)"
-></ui-switch>
-```
+- Automatic
+  ```html
+  <ui-switch v-model="value"></ui-switch>
+  ```
+- Manual
+  ```html
+  <ui-switch
+    :model="value"
+    @change="$balmUI.onChange('value', $event)"
+  ></ui-switch>
+  ```

@@ -43,10 +43,11 @@
 
 > NOTE: If you are not using `v-model`, you should listen for the menu using `@change` and update the `open` prop.
 
-```html
-// Automatic
-<ui-menu v-model="open"></ui-menu>
-
-// Manual
-<ui-menu :open="open" @change="$balmUI.onChange('open', $event)"></ui-menu>
-```
+- Automatic
+  ```html
+  <ui-menu v-model="open"></ui-menu>
+  ```
+- Manual
+  ```html
+  <ui-menu :open="open" @change="$balmUI.onChange('open', $event)"></ui-menu>
+  ```

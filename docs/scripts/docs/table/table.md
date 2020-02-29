@@ -204,14 +204,15 @@
 
 > NOTE: If you are not using `v-model`, you should listen for the select using `@selected` and update the `selectedRows` prop.
 
-```html
-// Automatic
-<ui-table rowCheckbox v-model="selectedRows"></ui-table>
-
-// Manual
-<ui-table
-  rowCheckbox
-  :selectedRows="selectedRows"
-  @selected="$balmUI.onChange('selectedRows', $event)"
-></ui-table>
-```
+- Automatic
+  ```html
+  <ui-table rowCheckbox v-model="selectedRows"></ui-table>
+  ```
+- Manual
+  ```html
+  <ui-table
+    rowCheckbox
+    :selectedRows="selectedRows"
+    @selected="$balmUI.onChange('selectedRows', $event)"
+  ></ui-table>
+  ```

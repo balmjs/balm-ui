@@ -37,13 +37,14 @@
 
 > NOTE: If you are not using `v-model`, you should listen for the icon button using `@change` and update the `model` prop.
 
-```html
-// Automatic
-<ui-icon-button v-model="value"></ui-icon-button>
-
-// Manual
-<ui-icon-button
-  :model="value"
-  @change="$balmUI.onChange('value', $event)"
-></ui-icon-button>
-```
+- Automatic
+  ```html
+  <ui-icon-button v-model="value"></ui-icon-button>
+  ```
+- Manual
+  ```html
+  <ui-icon-button
+    :model="value"
+    @change="$balmUI.onChange('value', $event)"
+  ></ui-icon-button>
+  ```

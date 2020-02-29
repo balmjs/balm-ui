@@ -40,10 +40,14 @@
 
 > NOTE: If you are not using `v-model`, you should listen for the dialog using `@change` and update the `open` prop.
 
-```html
-// Automatic
-<ui-dialog v-model="open"></ui-dialog>
-
-// Manual
-<ui-dialog :open="open" @change="$balmUI.onChange('open', $event)"></ui-dialog>
-```
+- Automatic
+  ```html
+  <ui-dialog v-model="open"></ui-dialog>
+  ```
+- Manual
+  ```html
+  <ui-dialog
+    :open="open"
+    @change="$balmUI.onChange('open', $event)"
+  ></ui-dialog>
+  ```

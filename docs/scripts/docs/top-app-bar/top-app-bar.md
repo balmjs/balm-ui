@@ -54,12 +54,13 @@
 
 > NOTE: If you are not using `navId` of the top app bar and `menuSelector` of the drawer, you should listen for the top app bar using `@nav` and update the `v-model` prop of the drawer.
 
-```html
-// Automatic
-<ui-top-app-bar navId="demo-menu"></ui-top-app-bar>
-<ui-drawer type="modal" menuSelector="#demo-menu"></ui-drawer>
-
-// Manual
-<ui-top-app-bar @nav="$balmUI.onShow('open')"></ui-top-app-bar>
-<ui-drawer type="modal" v-model="open"></ui-drawer>
-```
+- Automatic
+  ```html
+  <ui-top-app-bar navId="demo-menu"></ui-top-app-bar>
+  <ui-drawer type="modal" menuSelector="#demo-menu"></ui-drawer>
+  ```
+- Manual
+  ```html
+  <ui-top-app-bar @nav="$balmUI.onShow('open')"></ui-top-app-bar>
+  <ui-drawer type="modal" v-model="open"></ui-drawer>
+  ```

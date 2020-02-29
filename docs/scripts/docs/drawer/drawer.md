@@ -40,14 +40,15 @@
 
 > NOTE: If you are not using `v-model`, you should listen for the drawer using `@nav` and update the `open` prop.
 
-```html
-// Automatic
-<ui-drawer type="modal" v-model="open"></ui-drawer>
-
-// Manual
-<ui-drawer
-  type="modal"
-  :open="open"
-  @nav="$balmUI.onChange('open', $event)"
-></ui-drawer>
-```
+- Automatic
+  ```html
+  <ui-drawer type="modal" v-model="open"></ui-drawer>
+  ```
+- Manual
+  ```html
+  <ui-drawer
+    type="modal"
+    :open="open"
+    @nav="$balmUI.onChange('open', $event)"
+  ></ui-drawer>
+  ```

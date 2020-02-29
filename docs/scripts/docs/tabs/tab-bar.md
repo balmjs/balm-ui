@@ -22,18 +22,19 @@
 
 > NOTE: If you are not using `v-model`, you should listen for the tabs using `@change` and update the `active` prop.
 
-```html
-// Automatic
-<ui-tab-bar v-model="active"></ui-tab-bar>
-<ui-tabs v-model="active"></ui-tabs>
-
-// Manual
-<ui-tab-bar
-  :active="active"
-  @change="$balmUI.onChange('active', $event)"
-></ui-tab-bar>
-<ui-tabs
-  :active="active"
-  @change="$balmUI.onChange('active', $event)"
-></ui-tabs>
-```
+- Automatic
+  ```html
+  <ui-tab-bar v-model="active"></ui-tab-bar>
+  <ui-tabs v-model="active"></ui-tabs>
+  ```
+- Manual
+  ```html
+  <ui-tab-bar
+    :active="active"
+    @change="$balmUI.onChange('active', $event)"
+  ></ui-tab-bar>
+  <ui-tabs
+    :active="active"
+    @change="$balmUI.onChange('active', $event)"
+  ></ui-tabs>
+  ```

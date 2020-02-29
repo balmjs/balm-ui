@@ -477,7 +477,7 @@ export default {
   mounted() {
     // setTimeout(() => {
     //   this.value1 = 'Hello BalmJS';
-    // }, 300);
+    // }, 1e3);
   }
   // methods: {
   //   onFocus(event) {

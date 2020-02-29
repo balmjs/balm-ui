@@ -339,8 +339,8 @@ export default {
   },
   mounted() {
     // setTimeout(() => {
-    //   this.selected = 2;
-    // }, 3000);
+    //   this.selected = 11;
+    // }, 1e3);
   },
   methods: {
     onSelected(result, key) {

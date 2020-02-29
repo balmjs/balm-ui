@@ -24,10 +24,9 @@
 
 | Name     | Type                              | Description                                                       |
 | -------- | --------------------------------- | ----------------------------------------------------------------- |
-| `input`  | `function(model: number\|string)` | Emits when a user is dragging the slider or changing the value.   |
 | `change` | `function(value: number\|string)` | Emits when a user stops dragging the slider or changes the value. |
 
-> NOTE: If you are not using `v-model`, you should listen for the slider using `@input` and update the `model` prop.
+> NOTE: If you are not using `v-model`, you should listen for the slider using `@change` and update the `model` prop.
 
 - Automatic
   ```html
@@ -37,6 +36,6 @@
   ```html
   <ui-slider
     :model="value"
-    @input="$balmUI.onChange('value', $event)"
+    @change="$balmUI.onChange('value', $event)"
   ></ui-slider>
   ```

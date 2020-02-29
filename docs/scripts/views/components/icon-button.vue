@@ -1,7 +1,7 @@
 <template>
   <ui-page-structure name="icon-button" demoCount="2">
     <template #hero>
-      <ui-icon-button :toggle="icon"></ui-icon-button>
+      <ui-icon-button :toggle="icon" v-model="value"></ui-icon-button>
     </template>
 
     <!-- Content -->
@@ -142,6 +142,7 @@ export default {
   data() {
     return {
       // hero
+      value: false,
       icon: {
         on: 'favorite',
         off: 'favorite_border'
@@ -160,6 +161,11 @@ export default {
       imageOn,
       imageOff
     };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.value = true;
+    }, 1e3);
   }
 };
 </script>

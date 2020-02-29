@@ -44,7 +44,7 @@ const UI_SLIDER = {
     discrete: 1
   },
   EVENT: {
-    INPUT: 'input',
+    // INPUT: 'input',
     CHANGE: 'change'
   }
 };
@@ -54,7 +54,7 @@ export default {
   mixins: [typeMixin],
   model: {
     prop: 'model',
-    event: UI_SLIDER.EVENT.INPUT
+    event: UI_SLIDER.EVENT.CHANGE
   },
   props: {
     // UI variants
@@ -129,13 +129,11 @@ export default {
   mounted() {
     this.$slider = new MDCSlider(this.$el);
 
-    // TODO: multiple event trigger
-    this.$slider.listen(`MDCSlider:${UI_SLIDER.EVENT.INPUT}`, () => {
-      this.$emit(UI_SLIDER.EVENT.INPUT, this.$slider.value);
-    });
-
     this.$slider.listen(`MDCSlider:${UI_SLIDER.EVENT.CHANGE}`, () => {
-      this.$emit(UI_SLIDER.EVENT.CHANGE, this.$slider.value);
+      // NOTE: fix twice event trigger
+      if (this.currentValue !== this.$slider.value) {
+        this.$emit(UI_SLIDER.EVENT.CHANGE, this.$slider.value);
+      }
     });
   },
   methods: {

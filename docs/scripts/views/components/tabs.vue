@@ -52,12 +52,12 @@
       </div>
     </template>
 
-    <!-- Content -->
+    <!-- Test -->
     <!-- <ui-tab-bar v-model="active">
-        <ui-tab v-for="(tab, index) in tabs" :key="index">{{
-          tab.text
-        }}</ui-tab>
-      </ui-tab-bar> -->
+      <ui-tab v-for="(tab, index) in tabs" :key="index">{{ tab.text }}</ui-tab>
+    </ui-tab-bar> -->
+
+    <!-- Content -->
     <ui-tab-demo :tabs="tabs" :code="demoCode"></ui-tab-demo>
     <ui-tab-bar-demo
       :tabs="tabs"
@@ -192,7 +192,7 @@ export default {
       return this.$store.demos;
     }
   },
-  created() {
+  mounted() {
     setTimeout(() => {
       this.tabs = [
         {
@@ -211,9 +211,10 @@ export default {
           indicator: 'change_history'
         }
       ];
-    }, 100);
-  },
-  mounted() {
+
+      // this.active = 1;
+    }, 1e3);
+
     window.addEventListener('balmResize', this.init);
     this.init();
   },

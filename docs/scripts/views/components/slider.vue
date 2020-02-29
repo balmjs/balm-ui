@@ -32,7 +32,6 @@
             :step="step"
             v-model="value1"
             :disabled="controls.disabled"
-            @input="onInput"
             @change="onChange"
           ></ui-slider>
         </div>
@@ -150,7 +149,7 @@ export default {
   data() {
     return {
       // hero
-      value: 50,
+      value: 0,
       // demo
       value1: 20,
       value2: 20,
@@ -167,13 +166,14 @@ export default {
   },
   mounted() {
     setTimeout(() => {
+      this.value = 50;
+    }, 1e3);
+
+    setTimeout(() => {
       this.$refs.slider.recompute();
     }, 300);
   },
   methods: {
-    onInput(value) {
-      console.log('onInput', value);
-    },
     onChange(value) {
       console.log('onChange', value);
     }

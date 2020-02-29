@@ -67,10 +67,15 @@ export default {
   data() {
     return {
       // hero
-      hero: 1,
+      hero: 0,
       // demo
       gender: ''
     };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.hero = 1;
+    }, 1e3);
   }
 };
 </script>

@@ -9,7 +9,7 @@ export default {
     // States
     active: {
       type: Number,
-      default: 0
+      default: -1
     }
   },
   methods: {

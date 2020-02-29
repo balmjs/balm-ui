@@ -1,10 +1,11 @@
 <template>
   <div class="demo--top-app-bar">
+    <!-- navId="demo-menu" -->
     <ui-top-app-bar
       contentSelector="#content-main"
-      navId="demo-menu"
       :type="typeOption"
       :title="title"
+      @nav="$balmUI.onShow('openDrawer')"
     >
       <template #toolbar="{ itemClass }">
         <template v-if="!isShort">
@@ -26,7 +27,8 @@
       </template>
     </ui-top-app-bar>
 
-    <ui-drawer type="modal" v-model="openDrawer" menuSelector="#demo-menu">
+    <!-- menuSelector="#demo-menu" -->
+    <ui-drawer type="modal" v-model="openDrawer">
       <ui-drawer-header
         :innerClass="[$themeColor('on-primary'), $themeColor('primary-bg')]"
       >
@@ -129,5 +131,10 @@ export default {
       return this.typeOption === 5 || this.typeOption === 6;
     }
   }
+  // mounted() {
+  //   setTimeout(() => {
+  //     this.openDrawer = true;
+  //   }, 1e3);
+  // }
 };
 </script>

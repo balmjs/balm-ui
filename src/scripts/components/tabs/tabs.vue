@@ -1,5 +1,5 @@
 <template>
-  <ui-tab-bar :active="active" :align="align" @change="handleChange">
+  <ui-tab-bar ref="tabs" :active="active" :align="align" @change="handleChange">
     <slot>
       <ui-tab
         v-for="(tabItem, tabIndex) in items"
@@ -37,6 +37,11 @@ export default {
       default() {
         return [];
       }
+    }
+  },
+  watch: {
+    active(val) {
+      this.$refs.tabs._activateTab(val);
     }
   }
 };

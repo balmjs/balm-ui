@@ -26,9 +26,9 @@ export default {
     };
   },
   mounted() {
-    // setTimeout(() => {
-    //   this.date = ['2020-02-12', '2020-03-24'];
-    // }, 3000);
+    setTimeout(() => {
+      this.date = ['2020-02-12', '2020-03-24'];
+    }, 1e3);
   }
 };
 </script>

@@ -53,11 +53,11 @@ export default {
       toggle1: 0,
       toggle2: 'on'
     };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.toggle = true;
+    }, 1e3);
   }
-  // mounted() {
-  //   setTimeout(() => {
-  //     this.toggle = true;
-  //   }, 1e3);
-  // }
 };
 </script>

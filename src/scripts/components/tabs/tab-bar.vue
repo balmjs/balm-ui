@@ -24,7 +24,7 @@ export default {
   data() {
     return {
       $tabBar: null,
-      nextTabId: 0 // For async tab
+      tabList: []
     };
   },
   mounted() {
@@ -36,15 +36,19 @@ export default {
     }
   },
   methods: {
+    _activateTab(active = this.active) {
+      if (this.$tabBar) {
+        const activeTabIndex =
+          active > -1 && active < this.tabList.length ? active : 0;
+        this.$tabBar.activateTab(activeTabIndex);
+      }
+    },
     init() {
       this.$tabBar = new MDCTabBar(this.$el);
 
-      const tabList = this.$tabBar.tabList_;
-
-      if (tabList.length) {
-        const activeTabIndex =
-          this.active > -1 && this.active < tabList.length ? this.active : 0;
-        this.$tabBar.activateTab(activeTabIndex);
+      this.tabList = this.$tabBar.tabList_;
+      if (this.tabList.length) {
+        this._activateTab();
 
         this.$tabBar.listen('MDCTabBar:activated', ({ detail }) => {
           this.handleChange(detail.index);

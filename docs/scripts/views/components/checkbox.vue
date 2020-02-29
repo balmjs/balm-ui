@@ -2,7 +2,7 @@
   <ui-page-structure name="checkbox" demoCount="2">
     <template #hero>
       <ui-form-field>
-        <ui-checkbox v-a11y id="hero-checkbox"></ui-checkbox>
+        <ui-checkbox v-a11y id="hero-checkbox" v-model="hero"></ui-checkbox>
         <label for="hero-checkbox">Checkbox</label>
       </ui-form-field>
     </template>
@@ -101,10 +101,17 @@ export default {
   },
   data() {
     return {
+      // hero
+      hero: false,
       // demo
       checked: false,
       checkedNames: []
     };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.hero = true;
+    }, 1e3);
   }
 };
 </script>

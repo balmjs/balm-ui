@@ -100,6 +100,16 @@ export default {
       },
       date4: ['2017-11-10', '2017-11-20']
     };
+  },
+  mounted() {
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDay();
+
+    setTimeout(() => {
+      this.date = `${year}-${month}-${day}`;
+    }, 1e3);
   }
 };
 </script>

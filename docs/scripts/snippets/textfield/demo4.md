@@ -1,24 +1,25 @@
 ```html
-<ui-textfield withLeadingIcon>
+<ui-textfield>
   Your name
   <template #before>
     <ui-textfield-icon>event</ui-textfield-icon>
   </template>
 </ui-textfield>
-<ui-textfield withTrailingIcon>
+<ui-textfield>
   Your name
   <template #after>
     <ui-textfield-icon>delete</ui-textfield-icon>
   </template>
 </ui-textfield>
 
+<!-- Custom leading/trailing icon -->
 <ui-textfield outlined withLeadingIcon>
+  Your other name
   <template #before="{ iconClass }">
     <span :class="iconClass">
       <i class="fa fa-smile-o fa-lg"></i>
     </span>
   </template>
-  Your other name
 </ui-textfield>
 <ui-textfield outlined withTrailingIcon>
   Your other name

@@ -4,9 +4,10 @@
 
 #### Props
 
-| Name          | Type    | Default | Description                 |
-| ------------- | ------- | ------- | --------------------------- |
-| `unclickable` | boolean | `false` | Display un-clickable icons. |
+| Name          | Type    | Default | Description                |
+| ------------- | ------- | ------- | -------------------------- |
+| `trailing`    | boolean | `false` | Display trailing icon.     |
+| `unclickable` | boolean | `false` | Display un-clickable icon. |
 
 #### Slots
 

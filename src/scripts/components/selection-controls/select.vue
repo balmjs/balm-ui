@@ -146,7 +146,7 @@ export default {
       type: Boolean,
       default: false
     },
-    leadingIcon: {
+    withLeadingIcon: {
       type: Boolean,
       default: false
     },
@@ -169,7 +169,7 @@ export default {
       return this.checkType(UI_SELECT.TYPES, 'outlined');
     },
     hasLeadingIcon() {
-      return this.materialIcon || this.leadingIcon || this.$slots.icon;
+      return this.materialIcon || this.withLeadingIcon || this.$slots.icon;
     },
     className() {
       return {

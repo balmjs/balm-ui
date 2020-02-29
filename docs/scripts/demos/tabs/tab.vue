@@ -100,17 +100,28 @@
 <script>
 export default {
   props: {
-    tabs: {
-      type: Array,
-      default() {
-        return [];
-      }
-    },
     code: Array
   },
   data() {
     return {
-      active: 0
+      active: 0,
+      tabs: [
+        {
+          text: 'Favorites',
+          icon: 'favorite',
+          indicator: 'crop_square'
+        },
+        {
+          text: 'Recents',
+          icon: 'phone',
+          indicator: 'panorama_fish_eye'
+        },
+        {
+          text: 'Nearby',
+          icon: 'near_me',
+          indicator: 'change_history'
+        }
+      ]
     };
   }
 };

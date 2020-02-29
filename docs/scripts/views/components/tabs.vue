@@ -58,11 +58,10 @@
     </ui-tab-bar> -->
 
     <!-- Content -->
-    <ui-tab-demo :tabs="tabs" :code="demoCode"></ui-tab-demo>
+    <ui-tab-demo :code="demoCode"></ui-tab-demo>
     <ui-tab-bar-demo
-      :tabs="tabs"
-      :isLargeScreen="isLargeScreen"
       :code="demoCode"
+      :isLargeScreen="isLargeScreen"
     ></ui-tab-bar-demo>
     <ui-tab-scroller-demo :code="demoCode"></ui-tab-scroller-demo>
     <ui-tab-panel-demo :code="demoCode"></ui-tab-panel-demo>
@@ -174,7 +173,6 @@ export default {
       active2: 0,
       // demo
       active: 0,
-      tabs: [],
       isLargeScreen: false
     };
   },
@@ -194,24 +192,6 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      this.tabs = [
-        {
-          text: 'Favorites',
-          icon: 'favorite',
-          indicator: 'crop_square'
-        },
-        {
-          text: 'Recents',
-          icon: 'phone',
-          indicator: 'panorama_fish_eye'
-        },
-        {
-          text: 'Nearby',
-          icon: 'near_me',
-          indicator: 'change_history'
-        }
-      ];
-
       // this.active = 1;
     }, 1e3);
 

@@ -54,5 +54,10 @@ export default {
       toggle2: 'on'
     };
   }
+  // mounted() {
+  //   setTimeout(() => {
+  //     this.toggle = true;
+  //   }, 1e3);
+  // }
 };
 </script>

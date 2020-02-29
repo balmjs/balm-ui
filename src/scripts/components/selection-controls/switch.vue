@@ -42,7 +42,7 @@ export default {
   props: {
     // States
     model: {
-      type: [Boolean, Number, String],
+      type: null, // NOTE: Boolean only
       default: false
     },
     trueValue: {
@@ -62,24 +62,29 @@ export default {
   },
   data() {
     return {
-      toggleValue: this.model
+      $switch: null,
+      toggleValue: !!this.model
     };
   },
   computed: {
+    checked() {
+      return this.toggleValue;
+    },
     className() {
       return {
         'mdc-switch': true,
-        'mdc-switch--disabled': this.disabled
+        'mdc-switch--disabled': this.disabled,
+        'mdc-switch--checked': this.checked
       };
     }
   },
   watch: {
     model(val) {
-      this.toggleValue = val;
+      this.toggleValue = !!val;
     }
   },
   mounted() {
-    new MDCSwitch(this.$el);
+    this.$switch = new MDCSwitch(this.$el);
   },
   methods: {
     handleChange() {

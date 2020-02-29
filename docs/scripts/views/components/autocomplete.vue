@@ -114,6 +114,11 @@ export default {
       source2: []
     };
   },
+  // mounted() {
+  //   setTimeout(() => {
+  //     this.keywords = 'b';
+  //   }, 1e3);
+  // },
   methods: {
     async onSearch(keywords) {
       let response = await this.$http.get(this.url, {

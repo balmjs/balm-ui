@@ -7,10 +7,15 @@
     <ui-toc-affix v-if="name === 'icon'">
       <ui-tab v-anchor:href="'#ui-icons'" class="v-anchor">Icons</ui-tab>
     </ui-toc-affix>
+    <ui-toc-affix v-else-if="name === 'theme'">
+      <ui-tab v-anchor:href="'#ui-colors'" class="v-anchor">Colors</ui-tab>
+    </ui-toc-affix>
     <ui-toc-affix v-else :withoutCss="withoutCss"></ui-toc-affix>
 
     <div :class="$tt('body2')">
       <!-- <ui-markdown :text="$store.docs.intro"></ui-markdown> -->
+
+      <slot name="before"></slot>
 
       <h4 v-anchor:id="'ui-usage'" :class="$tt('headline4')">0. Usage</h4>
       <ui-markdown :text="$store.docs.usage"></ui-markdown>
@@ -40,6 +45,13 @@
         :class="$tt('headline4')"
       >
         4. Icons List
+      </h4>
+      <h4
+        v-if="name === 'theme'"
+        v-anchor:id="'ui-colors'"
+        :class="$tt('headline4')"
+      >
+        4. Colors List
       </h4>
       <slot name="after"></slot>
     </div>

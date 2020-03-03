@@ -7,7 +7,7 @@ const MATERIAL_COMPONENTS = [
         url: 'intro'
       },
       {
-        name: 'Getting Started',
+        name: 'Get Started',
         url: 'quickstart'
       },
       {
@@ -19,6 +19,69 @@ const MATERIAL_COMPONENTS = [
         url: 'kill-ie'
       }
     ]
+  },
+  '-',
+  {
+    name: 'Layout',
+    children: [
+      {
+        icon: 'toolbar',
+        name: 'Top App Bar',
+        description:
+          'Container for application title, navigation icon, and action items',
+        url: 'top-app-bar'
+      },
+      {
+        icon: 'responsive_layout',
+        name: 'Layout grid',
+        description: 'Grid and gutter support',
+        url: 'grid'
+      }
+    ]
+  },
+  '-',
+  {
+    name: 'Navigation',
+    children: [
+      {
+        icon: 'side_navigation',
+        name: 'Drawer',
+        description: 'Navigation drawer',
+        url: 'drawer'
+      },
+      {
+        icon: 'component',
+        name: 'Bottom Navigation',
+        description: 'Bottom Navigation',
+        url: 'bottom-navigation'
+      },
+      {
+        icon: 'tabs',
+        name: 'Tabs',
+        description: 'Tabs with support for icon and text labels'
+      },
+      {
+        icon: 'menu',
+        name: 'Menu',
+        description: 'Pop over menus'
+      }
+    ]
+  },
+  '-',
+  {
+    icon: 'theme',
+    name: 'Theme',
+    description: 'Using primary and accent colors'
+  },
+  {
+    icon: 'typography',
+    name: 'Typography',
+    description: 'Type hierarchy'
+  },
+  {
+    icon: 'icons',
+    name: 'Icons',
+    description: 'Material Icons'
   },
   '-',
   {
@@ -40,53 +103,6 @@ const MATERIAL_COMPONENTS = [
         name: 'Icon button',
         description: 'Icon buttons and toggles',
         url: 'icon-button'
-      }
-    ]
-  },
-  '-',
-  {
-    icon: 'icons',
-    name: 'Icons',
-    description: 'Material Icons'
-  },
-  '-',
-  {
-    name: 'Layout',
-    children: [
-      {
-        icon: 'toolbar',
-        name: 'Top App Bar',
-        description:
-          'Container for application title, navigation icon, and action items',
-        url: 'top-app-bar'
-      },
-      {
-        icon: 'responsive_layout',
-        name: 'Layout grid',
-        description: 'Grid and gutter support',
-        url: 'grid'
-      },
-      {
-        icon: 'tabs',
-        name: 'Tabs',
-        description: 'Tabs with support for icon and text labels'
-      }
-    ]
-  },
-  '-',
-  {
-    name: 'Navigation',
-    children: [
-      {
-        icon: 'side_navigation',
-        name: 'Drawer',
-        description: 'Navigation drawer',
-        url: 'drawer'
-      },
-      {
-        icon: 'menu',
-        name: 'Menu',
-        description: 'Pop over menus'
       }
     ]
   },
@@ -249,16 +265,6 @@ const MATERIAL_COMPONENTS = [
         icon: 'component',
         name: 'Event',
         description: 'Global event handler'
-      },
-      {
-        icon: 'typography',
-        name: 'Typography',
-        description: 'Type hierarchy'
-      },
-      {
-        icon: 'theme',
-        name: 'Theme',
-        description: 'Using primary and accent colors'
       },
       {
         icon: 'ripple',

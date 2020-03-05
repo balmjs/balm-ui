@@ -51,7 +51,7 @@
         v-anchor:id="'ui-colors'"
         :class="$tt('headline4')"
       >
-        4. Colors List
+        4. Color Palette
       </h4>
       <slot name="after"></slot>
     </div>

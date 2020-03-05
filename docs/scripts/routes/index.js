@@ -8,13 +8,13 @@ import guideRoutes from './guide';
 import generalRoutes from './general';
 import layoutRoutes from './layout';
 import navigationRoutes from './navigation';
-import DataEntryRoutes from './data-entry';
+import themeRoutes from './theme';
+import dataInputRoutes from './data-input';
 import dataDisplayRoutes from './data-display';
 import feedbackRoutes from './feedback';
 import miscRoutes from './misc';
 // Pages
 import Home from '@/views/home';
-const Icon = () => import('@/views/components/icon');
 const Utils = () => import('@/views/utils');
 const NotFound = () => import('@/views/not-found');
 import testRoutes from './test';
@@ -43,11 +43,6 @@ const baseRoutes = [
     children: generalRoutes
   },
   {
-    path: '/icons',
-    name: 'icons',
-    component: Icon
-  },
-  {
     path: '/layout',
     name: 'layout',
     redirect: '/layout/grid',
@@ -62,11 +57,18 @@ const baseRoutes = [
     children: navigationRoutes
   },
   {
-    path: '/data-entry',
-    name: 'data-entry',
-    redirect: '/data-entry/textfield',
+    path: '/theme',
+    name: 'theme',
+    redirect: '/theme/color',
     component: BlankLayout,
-    children: DataEntryRoutes
+    children: themeRoutes
+  },
+  {
+    path: '/data-input',
+    name: 'data-input',
+    redirect: '/data-input/textfield',
+    component: BlankLayout,
+    children: dataInputRoutes
   },
   {
     path: '/data-display',

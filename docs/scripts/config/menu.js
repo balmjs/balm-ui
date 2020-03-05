@@ -22,6 +22,29 @@ const MATERIAL_COMPONENTS = [
   },
   '-',
   {
+    name: 'General',
+    children: [
+      {
+        icon: 'button',
+        name: 'Button',
+        description: 'Raised and flat buttons'
+      },
+      {
+        icon: 'button',
+        name: 'Floating action', // Floating action button
+        description: 'The primary action in an application',
+        url: 'fab'
+      },
+      {
+        icon: 'component',
+        name: 'Icon button',
+        description: 'Icon buttons and toggles',
+        url: 'icon-button'
+      }
+    ]
+  },
+  '-',
+  {
     name: 'Layout',
     children: [
       {
@@ -69,47 +92,34 @@ const MATERIAL_COMPONENTS = [
   },
   '-',
   {
-    icon: 'theme',
     name: 'Theme',
-    description: 'Using primary and accent colors'
-  },
-  {
-    icon: 'typography',
-    name: 'Typography',
-    description: 'Type hierarchy'
-  },
-  {
-    icon: 'icons',
-    name: 'Icons',
-    description: 'Material Icons'
-  },
-  '-',
-  {
-    name: 'General',
     children: [
       {
-        icon: 'button',
-        name: 'Button',
-        description: 'Raised and flat buttons'
+        icon: 'theme',
+        name: 'Color',
+        description: 'Using primary and accent colors'
       },
       {
-        icon: 'button',
-        name: 'Floating action', // Floating action button
-        description: 'The primary action in an application',
-        url: 'fab'
+        icon: 'typography',
+        name: 'Typography',
+        description: 'Type hierarchy'
+      },
+      {
+        icon: 'icons',
+        name: 'Icons',
+        description: 'Material Icons'
       },
       {
         icon: 'component',
-        name: 'Icon button',
-        description: 'Icon buttons and toggles',
-        url: 'icon-button'
+        name: 'Shape',
+        description: 'Shape'
       }
     ]
   },
   '-',
   {
-    name: 'Data Entry',
-    url: 'data-entry',
+    name: 'Data Input',
+    url: 'data-input',
     children: [
       {
         icon: 'text_field',
@@ -337,7 +347,12 @@ for (let component of MATERIAL_COMPONENTS) {
     if (component.children) {
       for (let subComponent of component.children) {
         let url =
-          baseUrl + '/' + (subComponent.url || subComponent.name.toLowerCase());
+          subComponent.name === 'Icons'
+            ? '/' + (subComponent.url || subComponent.name.toLowerCase())
+            : baseUrl +
+              '/' +
+              (subComponent.url || subComponent.name.toLowerCase());
+
         menu.push({
           icon: subComponent.icon,
           name: subComponent.name,

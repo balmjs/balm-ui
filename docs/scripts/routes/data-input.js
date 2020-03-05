@@ -14,62 +14,62 @@ const Validator = () => import('@/views/plugins/validator');
 export default [
   {
     path: 'textfield',
-    name: 'data-entry.textfield',
+    name: 'data-input.textfield',
     component: Textfield
   },
   {
     path: 'select',
-    name: 'data-entry.select',
+    name: 'data-input.select',
     component: Select
   },
   {
     path: 'checkbox',
-    name: 'data-entry.checkbox',
+    name: 'data-input.checkbox',
     component: Checkbox
   },
   {
     path: 'radio',
-    name: 'data-entry.radio',
+    name: 'data-input.radio',
     component: Radio
   },
   {
     path: 'chips',
-    name: 'data-entry.chips',
+    name: 'data-input.chips',
     component: Chips
   },
   {
     path: 'switch',
-    name: 'data-entry.switch',
+    name: 'data-input.switch',
     component: Switch
   },
   {
     path: 'slider',
-    name: 'data-entry.slider',
+    name: 'data-input.slider',
     component: Slider
   },
   {
     path: 'file',
-    name: 'data-entry.file',
+    name: 'data-input.file',
     component: File
   },
   {
     path: 'autocomplete',
-    name: 'data-entry.autocomplete',
+    name: 'data-input.autocomplete',
     component: Autocomplete
   },
   {
     path: 'datepicker',
-    name: 'data-entry.datepicker',
+    name: 'data-input.datepicker',
     component: Datepicker
   },
   {
     path: 'rangepicker',
-    name: 'data-entry.rangepicker',
+    name: 'data-input.rangepicker',
     component: Rangepicker
   },
   {
     path: 'validator',
-    name: 'data-entry.validator',
+    name: 'data-input.validator',
     component: Validator
   }
 ];

@@ -1,6 +1,5 @@
 const TopAppBar = () => import('@/views/components/top-app-bar');
 const Grid = () => import('@/views/components/grid');
-const Tabs = () => import('@/views/components/tabs');
 
 export default [
   {
@@ -14,10 +13,5 @@ export default [
     name: 'layouts.grid',
     component: Grid,
     meta: { noLayout: true }
-  },
-  {
-    path: 'tabs',
-    name: 'layouts.tabs',
-    component: Tabs
   }
 ];

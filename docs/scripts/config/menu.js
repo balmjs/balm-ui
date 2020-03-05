@@ -133,6 +133,11 @@ const MATERIAL_COMPONENTS = [
         description: 'Single selection controls'
       },
       {
+        icon: 'chips',
+        name: 'Chips',
+        description: 'Chips for actions, selection, and input'
+      },
+      {
         icon: 'switch',
         name: 'Switch',
         description: 'On off switches'
@@ -195,11 +200,6 @@ const MATERIAL_COMPONENTS = [
         icon: 'card',
         name: 'Card',
         description: 'Various card layout styles'
-      },
-      {
-        icon: 'chips',
-        name: 'Chips',
-        description: 'Chips for actions, selection, and input'
       },
       {
         icon: 'component',

@@ -2,6 +2,7 @@ const Textfield = () => import('@/views/components/textfield');
 const Select = () => import('@/views/components/select');
 const Checkbox = () => import('@/views/components/checkbox');
 const Radio = () => import('@/views/components/radio');
+const Chips = () => import('@/views/components/chips');
 const Switch = () => import('@/views/components/switch');
 const Slider = () => import('@/views/components/slider');
 const File = () => import('@/views/components/file');
@@ -30,6 +31,11 @@ export default [
     path: 'radio',
     name: 'data-entry.radio',
     component: Radio
+  },
+  {
+    path: 'chips',
+    name: 'data-entry.chips',
+    component: Chips
   },
   {
     path: 'switch',

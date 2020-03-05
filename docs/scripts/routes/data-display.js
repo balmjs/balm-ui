@@ -2,7 +2,6 @@ const List = () => import('@/views/components/list');
 const TextDivider = () => import('@/views/components/text-divider');
 const ImageList = () => import('@/views/components/image-list');
 const Card = () => import('@/views/components/card');
-const Chips = () => import('@/views/components/chips');
 const Table = () => import('@/views/components/table');
 const Pagination = () => import('@/views/components/pagination');
 
@@ -26,11 +25,6 @@ export default [
     path: 'card',
     name: 'data-display.card',
     component: Card
-  },
-  {
-    path: 'chips',
-    name: 'data-display.chips',
-    component: Chips
   },
   {
     path: 'table',

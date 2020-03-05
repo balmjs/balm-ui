@@ -2,8 +2,9 @@
 <div v-shape></div>
 ```
 
-- `v-shape`
 - `v-shape="corner"`
+- `v-shape.small="corner"`
+- `v-shape.large="corner"`
 
 | Value  | Type   | Default | Description                                                  |
 | ------ | ------ | ------- | ------------------------------------------------------------ |
@@ -13,8 +14,7 @@
 
 ```html
 <!-- The syntax of the first corner allows one to four values -->
-<!-- Corner is set for all 4 sides -->
-<div v-shape></div>
+<!-- Radius is set for all 4 sides -->
 <div v-shape="'1'"></div>
 
 <!-- top-left | bottom-right -->

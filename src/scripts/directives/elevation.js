@@ -2,7 +2,7 @@ import autoInit from './register';
 import getType from '../utils/typeof';
 
 // Define elevation constants
-const ELEVATION = {
+const UI_ELEVATION = {
   Z_SPACE: {
     MIN: 0,
     MAX: 24
@@ -16,7 +16,7 @@ const ELEVATION = {
 const getElevation = value => {
   let result = '';
 
-  if (value >= ELEVATION.Z_SPACE.MIN && value <= ELEVATION.Z_SPACE.MAX) {
+  if (value >= UI_ELEVATION.Z_SPACE.MIN && value <= UI_ELEVATION.Z_SPACE.MAX) {
     result = `mdc-elevation--z${value}`;
   } else {
     console.warn(
@@ -36,7 +36,7 @@ const updateElevation = (method, el, { value, modifiers }) => {
       let hoverClass = getElevation(value[1]);
 
       classes.push(defaultClass);
-      classes.push(ELEVATION.cssClasses.transition);
+      classes.push(UI_ELEVATION.cssClasses.transition);
 
       el[`${method}EventListener`]('mouseenter', () => {
         el.classList.add(hoverClass);
@@ -55,7 +55,7 @@ const updateElevation = (method, el, { value, modifiers }) => {
 
   if (modifiers.overlay) {
     const overlayEl = document.createElement('div');
-    overlayEl.className = ELEVATION.cssClasses.overlay;
+    overlayEl.className = UI_ELEVATION.cssClasses.overlay;
     el.insertBefore(overlayEl, el.firstChild);
   }
 };

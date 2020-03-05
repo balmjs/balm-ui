@@ -60,6 +60,7 @@ const directives = [
   'ripple',
   'a11y',
   // Plus
+  'shape',
   'anchor'
 ];
 const utils = ['ie', 'types', 'helpers'];

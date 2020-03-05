@@ -2,23 +2,25 @@ import autoInit from './register';
 import { MDCRipple } from '../../material-components-web/ripple';
 
 // Define ripple constants
-const RIPPLE_COLOR = {
-  BASE: 'mdc-ripple-surface',
-  PRIMARY: 'mdc-ripple-surface--primary',
-  SECONDARY: 'mdc-ripple-surface--accent'
+const UI_RIPPLE = {
+  color: {
+    base: 'mdc-ripple-surface',
+    primary: 'mdc-ripple-surface--primary',
+    secondary: 'mdc-ripple-surface--accent'
+  }
 };
 
 const updateRipple = (method, el, { value }) => {
-  let classes = [RIPPLE_COLOR.BASE];
+  let classes = [UI_RIPPLE.color.base];
 
   switch (value) {
     case 1:
     case 'primary':
-      classes.push(RIPPLE_COLOR.PRIMARY);
+      classes.push(UI_RIPPLE.color.primary);
       break;
     case 2:
     case 'secondary':
-      classes.push(RIPPLE_COLOR.SECONDARY);
+      classes.push(UI_RIPPLE.color.secondary);
       break;
   }
 

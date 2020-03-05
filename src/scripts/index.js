@@ -92,6 +92,7 @@ import theme from './plugins/theme';
  * Directives
  */
 import vRipple from './directives/ripple';
+import vShape from './directives/shape';
 import vShadow from './directives/elevation';
 import vAccessibility from './directives/a11y';
 
@@ -187,6 +188,7 @@ const plugins = {
 
 const directives = {
   vRipple,
+  vShape,
   vShadow,
   vAccessibility
 };

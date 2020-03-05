@@ -1,8 +1,8 @@
 import autoInit from './register';
 
-// Define
+// Define anchor constants
 const DEFAULT_BODY = document.documentElement || document.body;
-let ANCHOR = {
+let UI_ANCHOR = {
   cssClasses: {
     outer: 'v-anchor--html',
     inner: 'v-anchor'
@@ -13,9 +13,9 @@ let ANCHOR = {
 };
 
 const goAnchor = selector => {
-  let anchor = document.querySelector(selector);
-  if (anchor) {
-    ANCHOR.body.scrollTop = anchor.offsetTop - ANCHOR.offset;
+  let anchorEl = document.querySelector(selector);
+  if (anchorEl) {
+    UI_ANCHOR.body.scrollTop = anchorEl.offsetTop - UI_ANCHOR.offset;
   } else {
     console.warn(`Invalid anchor: ${selector}`);
   }
@@ -36,25 +36,25 @@ const updateAnchor = (method, el, { value, arg, modifiers }) => {
   }
 
   if (modifiers.html) {
-    el.classList[method](ANCHOR.cssClasses.outer);
+    el.classList[method](UI_ANCHOR.cssClasses.outer);
   }
 };
 
 const initAnchor = (el, { value, rawName, modifiers }) => {
   if (
-    rawName === ANCHOR.cssClasses.inner ||
-    rawName === `${ANCHOR.cssClasses.inner}.offset`
+    rawName === UI_ANCHOR.cssClasses.inner ||
+    rawName === `${UI_ANCHOR.cssClasses.inner}.offset`
   ) {
-    ANCHOR.body = el;
+    UI_ANCHOR.body = el;
     if (modifiers.offset) {
-      ANCHOR.offset = value;
+      UI_ANCHOR.offset = value;
     }
   }
 };
 
 const bindAnchor = method => {
   let anchorElementList = document.querySelectorAll(
-    `.${ANCHOR.cssClasses.outer} .${ANCHOR.cssClasses.inner}`
+    `.${UI_ANCHOR.cssClasses.outer} .${UI_ANCHOR.cssClasses.inner}`
   );
   if (anchorElementList.length) {
     anchorElementList.forEach(anchorEl => {
@@ -77,8 +77,8 @@ const BalmUI_AnchorDirective = {
     }
   },
   unbind(el, binding) {
-    if (el === ANCHOR.body) {
-      ANCHOR.body = DEFAULT_BODY;
+    if (el === UI_ANCHOR.body) {
+      UI_ANCHOR.body = DEFAULT_BODY;
     }
 
     updateAnchor('remove', el, binding);

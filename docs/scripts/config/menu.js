@@ -105,14 +105,14 @@ const MATERIAL_COMPONENTS = [
         description: 'Type hierarchy'
       },
       {
-        icon: 'icons',
-        name: 'Icons',
-        description: 'Material Icons'
-      },
-      {
         icon: 'component',
         name: 'Shape',
         description: 'Shape'
+      },
+      {
+        icon: 'icons',
+        name: 'Icons',
+        description: 'Material Icons'
       }
     ]
   },

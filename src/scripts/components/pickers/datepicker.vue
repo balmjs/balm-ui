@@ -127,7 +127,8 @@ export default {
     clear: {
       type: Boolean,
       default: false
-    }
+    },
+    locale: null
   },
   data() {
     return {
@@ -157,14 +158,18 @@ export default {
 
     if (!this.flatpickr) {
       let config = Object.assign({}, this.config);
-      // default config for ui
+      // Default config for ui
       config.wrap = true; // For toggle & clear icons, mobile support
       config.clickOpens = !config.allowInput; // NOTE: fix flatpickr bug
-      // custom event
+      // Localization
+      if (this.locale) {
+        config.locale = this.locale;
+      }
+      // Custom event
       config.onClose = () => {
         inputEl.blur();
       };
-      // set default value
+      // Set default value
       switch (this.mode) {
         case UI_DATEPICKER.MODE.MULTIPLE:
           config.defaultDate = this.inputValue;
@@ -183,7 +188,7 @@ export default {
           };
           break;
       }
-      // init
+      // Init
       this.flatpickr = flatpickr(this.$el, config);
     }
   },

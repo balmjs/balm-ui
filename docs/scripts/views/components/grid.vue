@@ -1,10 +1,12 @@
 <template>
-  <div class="demo--grid">
+  <div class="demo--grid-container">
     <ui-top-app-bar contentSelector=".demo-content">
-      <template #nav-icon>
-        <span class="catalog-back">
-          <ui-icon @click="$router.back()">arrow_back</ui-icon>
-        </span>
+      <template #nav-icon="{ navIconClass }">
+        <ui-icon-button
+          icon="arrow_back"
+          :class="navIconClass"
+          @click="$router.back()"
+        ></ui-icon-button>
       </template>
       <span class="['catalog-title', $themeColor('on-primary')]"
         >Layout Grid</span

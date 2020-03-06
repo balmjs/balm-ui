@@ -4,6 +4,10 @@
     <div :class="$tt('body2')">
       <!-- Test: input -->
 
+      <ui-textfield outlined v-model="value">
+        Textfield HElloj worlds
+      </ui-textfield>
+
       <!-- <input type="text" v-model="value" />
       <br />
       <ui-textfield v-model="value">

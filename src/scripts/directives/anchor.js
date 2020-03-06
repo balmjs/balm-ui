@@ -12,9 +12,12 @@ let UI_ANCHOR = {
   isMounted: false
 };
 
+// TODO: It has bug in <ui-bottom-navigation>
+
 const goAnchor = selector => {
   let anchorEl = document.querySelector(selector);
   if (anchorEl) {
+    // console.log(UI_ANCHOR.body);
     UI_ANCHOR.body.scrollTop = anchorEl.offsetTop - UI_ANCHOR.offset;
   } else {
     console.warn(`Invalid anchor: ${selector}`);

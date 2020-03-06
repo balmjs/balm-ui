@@ -249,6 +249,10 @@ export default {
     },
     // TODO: Temporary solution: manual control
     shouldFloat() {
+      if (!this.inputValue && this.$textField) {
+        this.$textField.foundation_.adapter_.closeOutline();
+      }
+
       return !!this.inputValue;
     }
   },

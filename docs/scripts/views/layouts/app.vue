@@ -58,6 +58,8 @@
                       :class="['catalog-list-icon', `icon-${item.icon}`]"
                     ></i>
                     <span>{{ item.name }}</span>
+                    <i v-if="item.plus" class="plus"></i>
+                    <i v-if="item.next" class="next"></i>
                   </router-link>
                   <ui-list-divider
                     v-else-if="item === '-'"

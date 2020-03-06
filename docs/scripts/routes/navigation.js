@@ -5,6 +5,7 @@ const PermanentDrawerBelowToolbar = () =>
   import('@/views/drawer/permanent-drawer-below-toolbar');
 const DismissibleDrawer = () => import('@/views/drawer/dismissible-drawer');
 const ModalDrawer = () => import('@/views/drawer/modal-drawer');
+const BottomNavigation = () => import('@/views/components/bottom-navigation');
 const Tabs = () => import('@/views/components/tabs');
 const Menu = () => import('@/views/components/menu');
 
@@ -36,6 +37,12 @@ export default [
     path: 'modal-drawer',
     name: 'navigation.modal-drawer',
     component: ModalDrawer,
+    meta: { noLayout: true }
+  },
+  {
+    path: 'bottom-navigation',
+    name: 'navigation.bottom-navigation',
+    component: BottomNavigation,
     meta: { noLayout: true }
   },
   {

@@ -76,7 +76,8 @@ const MATERIAL_COMPONENTS = [
         icon: 'component',
         name: 'Bottom Navigation',
         description: 'Bottom Navigation',
-        url: 'bottom-navigation'
+        url: 'bottom-navigation',
+        next: true
       },
       {
         icon: 'tabs',
@@ -160,27 +161,32 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'component',
         name: 'File',
-        description: 'File upload'
+        description: 'File upload',
+        plus: true
       },
       {
         icon: 'text_field',
         name: 'Autocomplete',
-        description: 'Autocomplete'
+        description: 'Autocomplete',
+        plus: true
       },
       {
         icon: 'component',
         name: 'Datepicker',
-        description: 'Datepicker'
+        description: 'Datepicker',
+        plus: true
       },
       {
         icon: 'component',
         name: 'Rangepicker',
-        description: 'Rangepicker'
+        description: 'Rangepicker',
+        plus: true
       },
       {
         icon: 'component',
         name: 'Validator',
-        description: 'Validator'
+        description: 'Validator',
+        plus: true
       }
     ]
   },
@@ -220,7 +226,8 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'component',
         name: 'Pagination',
-        description: 'Pagination'
+        description: 'Pagination',
+        plus: true
       }
     ]
   },
@@ -236,12 +243,14 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'dialog',
         name: 'Alert',
-        description: 'Alert'
+        description: 'Alert',
+        plus: true
       },
       {
         icon: 'dialog',
         name: 'Confirm',
-        description: 'Confirm'
+        description: 'Confirm',
+        plus: true
       },
       {
         icon: 'toast',
@@ -251,7 +260,8 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'toast',
         name: 'Toast',
-        description: 'Toast'
+        description: 'Toast',
+        plus: true
       },
       {
         icon: 'progress',
@@ -263,7 +273,8 @@ const MATERIAL_COMPONENTS = [
         icon: 'component',
         name: 'Skeleton',
         description:
-          "Provide a placeholder while you wait for content to load, or to visualise content that doesn't exist yet."
+          "Provide a placeholder while you wait for content to load, or to visualise content that doesn't exist yet.",
+        plus: true
       }
     ]
   },
@@ -294,7 +305,8 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'component',
         name: 'Anchor',
-        description: 'Anchor'
+        description: 'Anchor',
+        plus: true
       }
     ]
   },
@@ -302,7 +314,8 @@ const MATERIAL_COMPONENTS = [
   {
     icon: 'component',
     name: 'Utils',
-    description: 'Utils'
+    description: 'Utils',
+    plus: true
   }
 ];
 
@@ -341,7 +354,8 @@ for (let component of MATERIAL_COMPONENTS) {
       icon: component.icon,
       name: component.name,
       description: component.description || false,
-      url: component.icon ? baseUrl : false
+      url: component.icon ? baseUrl : false,
+      plus: component.plus || false
     });
 
     if (component.children) {
@@ -358,7 +372,9 @@ for (let component of MATERIAL_COMPONENTS) {
           name: subComponent.name,
           description: subComponent.description || false,
           url,
-          isSubmenu: true
+          isSubmenu: true,
+          plus: component.plus || false,
+          next: component.next || false
         });
       }
     }

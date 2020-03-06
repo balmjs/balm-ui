@@ -6,17 +6,24 @@
         class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start"
       >
         <!-- Navigation icon (optional) / Close button (instead of a navigation icon) -->
-        <button
-          :class="[
-            UI_GLOBAL.cssClasses.icon,
-            'mdc-top-app-bar__navigation-icon',
-            'mdc-icon-button'
-          ]"
-          :id="defaultNavIcon === UI_TOP_APP_BAR.EVENT.CLOSE ? null : navId"
-          @click="handleClick"
-        >
-          <slot name="nav-icon">{{ defaultNavIcon }}</slot>
-        </button>
+        <span class="mdc-top-app-bar__brand">
+          <slot
+            name="nav-icon"
+            :navIconClass="UI_TOP_APP_BAR.cssClasses.navIcon"
+          >
+            <button
+              v-if="defaultNavIcon"
+              :id="navId"
+              :class="[
+                UI_GLOBAL.cssClasses.icon,
+                UI_TOP_APP_BAR.cssClasses.navIcon,
+                'mdc-icon-button'
+              ]"
+            >
+              {{ defaultNavIcon }}
+            </button>
+          </slot>
+        </span>
         <!-- Title (optional) / Contextual title -->
         <span class="mdc-top-app-bar__title">
           <slot>{{ title }}</slot>
@@ -28,7 +35,10 @@
       >
         <!-- Regular: Action items (optional) & Overflow menu (optional) -->
         <!-- Contextual action bar: Contextual actions & Overflow menu (optional) -->
-        <slot name="toolbar" :itemClass="UI_TOP_APP_BAR.cssClasses.item"></slot>
+        <slot
+          name="toolbar"
+          :toolbarItemClass="UI_TOP_APP_BAR.cssClasses.actionItem"
+        ></slot>
       </section>
     </div>
   </header>
@@ -52,7 +62,8 @@ const UI_TOP_APP_BAR = {
     shortCollapsed: 6
   },
   cssClasses: {
-    item: 'mdc-top-app-bar__action-item'
+    navIcon: 'mdc-top-app-bar__navigation-icon',
+    actionItem: 'mdc-top-app-bar__action-item'
   },
   FIXED_ADJUST: {
     STANDARD: 'mdc-top-app-bar--fixed-adjust',
@@ -109,11 +120,11 @@ export default {
       type: String,
       default: ''
     },
-    navId: String,
     navIcon: {
-      type: String,
+      type: [String, Boolean],
       default: 'menu'
-    }
+    },
+    navId: String
   },
   data() {
     return {
@@ -208,14 +219,18 @@ export default {
       this.$nextTick(() => {
         this.createFixedAdjustElement();
         this.$topAppBar = new MDCTopAppBar(this.$el);
+
+        this.$topAppBar.listen(
+          `MDCTopAppBar:${UI_TOP_APP_BAR.EVENT.NAV}`,
+          () => {
+            this.$emit(
+              this.isNonRegular
+                ? UI_TOP_APP_BAR.EVENT.CLOSE
+                : UI_TOP_APP_BAR.EVENT.NAV
+            );
+          }
+        );
       });
-    },
-    handleClick() {
-      this.$emit(
-        this.isNonRegular
-          ? UI_TOP_APP_BAR.EVENT.CLOSE
-          : UI_TOP_APP_BAR.EVENT.NAV
-      );
     }
   }
 };

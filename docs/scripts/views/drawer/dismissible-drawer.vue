@@ -19,7 +19,6 @@
     <ui-drawer-app-content class="demo-main">
       <ui-top-app-bar
         contentSelector=".demo-content"
-        navId="demo-menu"
         class="demo-top-app-bar"
         v-shadow="4"
         >Dismissible Drawer</ui-top-app-bar

@@ -15,11 +15,11 @@
 
 #### Props
 
-| Name               | Type           | Default | Description                        |
-| ------------------ | -------------- | ------- | ---------------------------------- |
-| `type`             | string, number | `0`     | Mandatory. Button types.           |
-| `menuSelector`     | string         | `null`  | The external menu button selector. |
-| `open` (`v-model`) | boolean        | `false` | The drawer toggle state.           |
+| Name               | Type           | Default | Description                                                                                                       |
+| ------------------ | -------------- | ------- | ----------------------------------------------------------------------------------------------------------------- |
+| `type`             | string, number | `0`     | Mandatory. Button types.                                                                                          |
+| `navId`            | string         | `null`  | The external menu button selector. (Please refer to the `navId` prop of the [top app bar](/#/layout/top-app-bar)) |
+| `open` (`v-model`) | boolean        | `false` | The drawer toggle state.                                                                                          |
 
 #### Slots
 

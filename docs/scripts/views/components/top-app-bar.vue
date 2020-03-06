@@ -7,27 +7,34 @@
       :title="title"
       @nav="$balmUI.onShow('openDrawer')"
     >
-      <template #toolbar="{ itemClass }">
-        <template v-if="!isShort">
-          <ui-icon-a :class="itemClass" icon="file_download"></ui-icon-a>
-          <ui-icon-a :class="itemClass" icon="print"></ui-icon-a>
-          <ui-icon-a :class="itemClass" icon="bookmark"></ui-icon-a>
+      <template #toolbar="{ toolbarItemClass }">
+        <template v-if="isShort">
+          <ui-menu-anchor>
+            <ui-icon-button
+              :class="toolbarItemClass"
+              icon="more_vert"
+              @click="$balmUI.onOpen('showMoreActions')"
+            ></ui-icon-button>
+            <ui-menu
+              v-model="showMoreActions"
+              :items="['Back', 'Forward', 'Reload', '-', 'Settings']"
+            ></ui-menu>
+          </ui-menu-anchor>
         </template>
-        <ui-menu-anchor v-if="isShort">
-          <ui-icon-button
-            :class="itemClass"
-            icon="more_vert"
-            @click="$balmUI.onOpen('showMoreActions')"
-          ></ui-icon-button>
-          <ui-menu
-            v-model="showMoreActions"
-            :items="['Back', 'Forward', 'Reload', '-', 'Settings']"
-          ></ui-menu>
-        </ui-menu-anchor>
+        <template v-else>
+          <ui-icon-a :class="toolbarItemClass" icon="file_download"></ui-icon-a>
+          <ui-icon-a :class="toolbarItemClass" icon="print"></ui-icon-a>
+          <ui-icon-a :class="toolbarItemClass" icon="bookmark"></ui-icon-a>
+          <!-- <ui-list :class="toolbarItemClass">
+            <ui-item>Menu item 1</ui-item>
+            <ui-item>Menu item 2</ui-item>
+            <ui-item>Menu item 3</ui-item>
+          </ui-list> -->
+        </template>
       </template>
     </ui-top-app-bar>
 
-    <!-- menuSelector="#demo-menu" -->
+    <!-- navId="demo-menu" -->
     <ui-drawer type="modal" v-model="openDrawer">
       <ui-drawer-header
         :innerClass="[$themeColor('on-primary'), $themeColor('primary-bg')]"

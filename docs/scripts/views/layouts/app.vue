@@ -31,7 +31,7 @@
         <ui-drawer
           type="dismissible"
           class="balmui-menu"
-          menuSelector="#balmui-menu"
+          navId="balmui-menu"
           v-model="openDrawer"
         >
           <ui-drawer-content>

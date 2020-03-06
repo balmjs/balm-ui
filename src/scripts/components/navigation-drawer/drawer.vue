@@ -18,7 +18,7 @@ export default {
     event: UI_DRAWER.EVENT.NAV
   },
   props: {
-    menuSelector: String,
+    navId: String,
     // States
     open: {
       type: Boolean,
@@ -71,12 +71,10 @@ export default {
   },
   methods: {
     init() {
-      if (document.querySelector(this.menuSelector)) {
-        document
-          .querySelector(this.menuSelector)
-          .addEventListener('click', () => {
-            this.$drawer.open = !this.$drawer.open;
-          });
+      if (document.getElementById(this.navId)) {
+        document.getElementById(this.navId).addEventListener('click', () => {
+          this.$drawer.open = !this.$drawer.open;
+        });
 
         this.$drawer.open = this.open;
       }

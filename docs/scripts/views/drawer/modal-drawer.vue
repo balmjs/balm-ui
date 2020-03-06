@@ -4,7 +4,7 @@
       >Modal Drawer</ui-top-app-bar
     >
 
-    <ui-drawer type="modal" v-model="open" menuSelector="#demo-menu">
+    <ui-drawer type="modal" v-model="open" navId="demo-menu">
       <ui-drawer-header>
         <ui-drawer-title>{{ title }}</ui-drawer-title>
         <ui-drawer-subtitle>{{ subtitle }}</ui-drawer-subtitle>

@@ -357,18 +357,56 @@
     </div> -->
 
     <template #after>
-      // TODO
+      <ui-grid class="color-palette">
+        <ui-grid-cell
+          v-for="(color, colorIndex) in COLOR.colors"
+          :key="colorIndex"
+        >
+          <h4>{{ color }}</h4>
+          <ui-list>
+            <template v-for="(shade, shadeIndex) in COLOR.shades">
+              <ui-item
+                v-if="hasColor(color, shade)"
+                :key="shadeIndex"
+                :class="[getColorName(color, shade), 'btn-copy']"
+                :data-clipboard-text="getColorValue(color, shadeIndex)"
+                :data-name="getColorName(color, shade)"
+              >
+                <span class="shade">${{ getColorName(color, shade) }}</span>
+                <span class="hex">{{ getColorValue(color, shadeIndex) }}</span>
+              </ui-item>
+            </template>
+          </ui-list>
+        </ui-grid-cell>
+        <!-- <ui-grid-cell>
+          <h4>Black &amp; White</h4>
+          <ui-list>
+            <ui-item :style="{ 'background-color': '#000' }">
+              <span class="shade">Black</span>
+              <span class="hex">#000</span>
+            </ui-item>
+            <ui-item :style="{ 'background-color': '#fff' }">
+              <span class="shade">White</span>
+              <span class="hex">#fff</span>
+            </ui-item>
+          </ui-list>
+        </ui-grid-cell> -->
+      </ui-grid>
     </template>
   </ui-page-structure>
 </template>
 
 <script>
+import Clipboard from 'clipboard';
+import COLOR from '@/config/color';
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Theme'
   },
   data() {
     return {
+      COLOR,
       open: false,
       selectedTheme: 'baseline',
       colorItems: [
@@ -390,6 +428,18 @@ export default {
         }
       ]
     };
+  },
+  mounted() {
+    let clipboard = new Clipboard('.btn-copy');
+
+    clipboard.on('success', e => {
+      let color = e.trigger.dataset.name;
+      if (color) {
+        this.$toast(`$${color} copied: ${e.text}`);
+
+        e.clearSelection();
+      }
+    });
   },
   beforeDestroy() {
     this.reset();
@@ -462,6 +512,32 @@ export default {
 
       this.selectedTheme = themeValue;
       this.$refs.colorButton.$el.dataset.theme = themeValue;
+    },
+    getColorName(color, shade) {
+      let colorName = color
+        .toLowerCase()
+        .split(' ')
+        .join('-');
+      return `${colorName}-${shade}`;
+    },
+    hasColor(color, shade) {
+      let colorName = color
+        .toLowerCase()
+        .split(' ')
+        .join('-');
+
+      return !(
+        ['brown', 'grey', 'blue-grey'].includes(colorName) &&
+        ['a100', 'a200', 'a400', 'a700'].includes(shade)
+      );
+    },
+    getColorValue(color, shadeIndex) {
+      let names = color.split(' ');
+      let key = names[0].toLowerCase();
+      if (names[1]) {
+        key += names[1];
+      }
+      return COLOR.hex[key][shadeIndex];
     }
   }
 };

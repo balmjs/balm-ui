@@ -72,13 +72,13 @@ const MATERIAL_COMPONENTS = [
         description: 'Navigation drawer',
         url: 'drawer'
       },
-      {
-        icon: 'component',
-        name: 'Bottom Navigation',
-        description: 'Bottom Navigation',
-        url: 'bottom-navigation',
-        next: true
-      },
+      // {
+      //   icon: 'component',
+      //   name: 'Bottom Navigation',
+      //   description: 'Bottom Navigation',
+      //   url: 'bottom-navigation',
+      //   next: true
+      // },
       {
         icon: 'tabs',
         name: 'Tabs',

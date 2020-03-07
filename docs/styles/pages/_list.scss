@@ -1,6 +1,6 @@
 @use '@material/list/mixins' as list-mixins;
 @use '@material/elevation/mixins' as elevation-mixins;
-@use '../global/index' as global;
+@use '../global/color' as color;
 
 .demo--list {
   .mdc-list,
@@ -15,20 +15,20 @@
   }
 
   .demo-list--avatar-and-meta-icon {
-    @include list-mixins.item-meta-ink-color(global.$pink-a200);
+    @include list-mixins.item-meta-ink-color(color.$pink-a200);
   }
 
   .demo-list-group--custom,
   .demo-list--custom {
-    @include list-mixins.divider-color(global.$pink-50);
+    @include list-mixins.divider-color(color.$pink-50);
   }
 
   .demo-list--custom {
-    @include list-mixins.item-primary-text-ink-color(global.$blue-600);
-    @include list-mixins.item-secondary-text-ink-color(global.$purple-600);
-    @include list-mixins.item-graphic-fill-color(global.$pink-400);
-    @include list-mixins.item-graphic-ink-color(global.$pink-50);
-    @include list-mixins.item-meta-ink-color(global.$orange-500);
+    @include list-mixins.item-primary-text-ink-color(color.$blue-600);
+    @include list-mixins.item-secondary-text-ink-color(color.$purple-600);
+    @include list-mixins.item-graphic-fill-color(color.$pink-400);
+    @include list-mixins.item-graphic-ink-color(color.$pink-50);
+    @include list-mixins.item-meta-ink-color(color.$orange-500);
   }
 
   .preamble {

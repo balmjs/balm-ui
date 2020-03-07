@@ -1,5 +1,5 @@
 @use '@material/fab/mixins' as fab-mixins;
-@use '../global/index' as global;
+@use '../global/color' as color;
 
 .demo--fab {
   .demo-fabs {
@@ -67,7 +67,7 @@
   }
 
   .mdc-fab.lightGreen800Fab {
-    @include fab-mixins.accessible(global.$light-green-800);
+    @include fab-mixins.accessible(color.$light-green-800);
   }
 
   .demo-fab-icon-size {

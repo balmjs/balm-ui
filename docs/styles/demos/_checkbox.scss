@@ -1,10 +1,10 @@
 @use '@material/checkbox/mixins' as checkbox-mixins;
 @use '@material/ripple/mixins' as ripple-mixins;
-@use '../global/index' as global;
+@use '../global/color' as color;
 
 // TODO: $marked-fill-color has some bug?
 .demo-checkbox--custom-all .mdc-checkbox {
-  $color: global.$red-500;
+  $color: color.$red-500;
   @include checkbox-mixins.focus-indicator-color($color);
   @include ripple-mixins.states($color);
   @include checkbox-mixins.container-colors(
@@ -16,7 +16,7 @@
 
 .demo-checkbox--custom-stroke-and-fill .mdc-checkbox {
   @include checkbox-mixins.container-colors(
-    $unmarked-stroke-color: global.$blue-500,
-    $marked-fill-color: global.$purple-500
+    $unmarked-stroke-color: color.$blue-500,
+    $marked-fill-color: color.$purple-500
   );
 }

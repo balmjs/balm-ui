@@ -1,14 +1,14 @@
 @use '@material/elevation/mixins' as elevation-mixins;
 @use '@material/ripple/mixins' as ripple-mixins;
 @use '@material/theme/mixins' as theme-mixins;
-@use '../global/index' as global;
+@use '../global/color' as color;
 
 $demo-toolbar-progress-bar-color: secondary !default;
 $demo-toolbar-progress-buffer-color: primary !default;
 $demo-section-margin: 48px;
-$demo-color-custom: global.$red-500;
-$demo-color-low-luminance: global.$brown-900;
-$demo-color-high-luminance: global.$amber-50;
+$demo-color-custom: color.$red-500;
+$demo-color-low-luminance: color.$brown-900;
+$demo-color-high-luminance: color.$amber-50;
 
 .demo--theme {
   //
@@ -76,7 +76,7 @@ $demo-color-high-luminance: global.$amber-50;
     right: -16px;
     bottom: -16px;
     z-index: -1;
-    background: global.$yellow-700;
+    background: color.$yellow-700;
     opacity: 0;
     transition: opacity 1s;
   }
@@ -294,7 +294,7 @@ $demo-color-high-luminance: global.$amber-50;
   // Toolbar and menu
   //
   .demo-theme-menu__list-item--selected {
-    background-color: global.$grey-400;
+    background-color: color.$grey-400;
   }
   .demo-theme-list {
     @include theme-mixins.prop(color, text-primary-on-light);
@@ -304,7 +304,7 @@ $demo-color-high-luminance: global.$amber-50;
   //
   .demo-theme-color-radio {
     display: block;
-    border: 1px solid global.$grey-500;
+    border: 1px solid color.$grey-500;
     border-radius: 50%;
   }
   .demo-theme-color-radio__inner {
@@ -313,16 +313,16 @@ $demo-color-high-luminance: global.$amber-50;
     border-radius: 50%;
   }
   [data-theme='baseline'] .demo-theme-color-radio__inner {
-    border-color: global.$deep-purple-a700 global.$teal-a400 global.$teal-a400
-      global.$deep-purple-a700;
+    border-color: color.$deep-purple-a700 color.$teal-a400 color.$teal-a400
+      color.$deep-purple-a700;
   }
   [data-theme='black'] .demo-theme-color-radio__inner {
-    border-color: global.$grey-900 global.$light-green-a700
-      global.$light-green-a700 global.$grey-900;
+    border-color: color.$grey-900 color.$light-green-a700
+      color.$light-green-a700 color.$grey-900;
   }
   [data-theme='dark'] .demo-theme-color-radio__inner {
-    border-color: global.$amber-300 global.$pink-400 global.$pink-400
-      global.$amber-300;
+    border-color: color.$amber-300 color.$pink-400 color.$pink-400
+      color.$amber-300;
   }
   [data-theme='shrine'] .demo-theme-color-radio__inner {
     border-color: #442b2d #fcb8ab #fcb8ab #442b2d;

@@ -93,16 +93,20 @@
       <ui-list-group>
         <template v-for="(category, index) in categories">
           <ui-list-group-subheader
+            :key="`subheader${index}`"
             v-anchor:id="category.name"
             :class="$tt('headline6')"
             >{{ category.name }}</ui-list-group-subheader
           >
-          <ui-image-list v-if="Object.keys(currentIcons).length">
+          <ui-image-list
+            v-if="Object.keys(currentIcons).length"
+            :key="`list${index}`"
+          >
             <ui-image-item
               v-for="(icon, i) in currentIcons[category.name]"
               :key="i"
               :title="icon.name"
-              class="btn-clipboard"
+              class="btn-copy"
               :data-clipboard-text="icon.id"
             >
               <template #image>
@@ -112,7 +116,7 @@
               <ui-image-text>{{ icon.name }}</ui-image-text>
             </ui-image-item>
           </ui-image-list>
-          <p v-else>No Icons</p>
+          <p v-else :key="`p${index}`">No Icons</p>
           <ui-list-divider
             :key="`divider${index}`"
             v-if="index < category.count - 1"
@@ -290,7 +294,7 @@ export default {
     this.currentIcons = Object.assign({}, this.icons);
   },
   mounted() {
-    let clipboard = new Clipboard('.btn-clipboard');
+    let clipboard = new Clipboard('.btn-copy');
 
     clipboard.on('success', e => {
       this.$toast(`'${e.text}' copied!`);

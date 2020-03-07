@@ -1,4 +1,5 @@
 @use '../global/index' as global;
+@use '../global/color' as color;
 
 /// Ensure layout covers the entire screen.
 html {
@@ -55,7 +56,7 @@ a {
 }
 
 .demo-catalog-list a {
-  color: global.$grey-900;
+  color: color.$grey-900;
 }
 
 .catalog-list-icon {

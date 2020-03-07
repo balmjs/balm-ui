@@ -1,6 +1,3 @@
-// Color palette
-@forward '@material/theme/color-palette';
-
 // Icon font
 @use '../../../src/styles/balm-ui/components/icon/variables' with (
   $font-path: '../fonts'

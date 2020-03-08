@@ -16,7 +16,6 @@
 | `model` (`v-model`) | string, number | `''`     | Mandatory.                                                                                               |
 | `id`                | string         | `null`   | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`.                            |
 | `label`             | string         | `null`   | A text caption or description for the text field, which use the input's `placeholder` attribute instead. |
-| `noLabel`           | boolean        | `false`  | Styles the text field that has no label.                                                                 |
 | `placeholder`       | string         | `null`   | The _placeholder_ attribute of the `<input>`.                                                            |
 | `fullwidth`         | boolean        | `false`  | Styles the text field as a full width text field.                                                        |
 | `disabled`          | boolean        | `false`  | Styles the text field as a disabled text field.                                                          |

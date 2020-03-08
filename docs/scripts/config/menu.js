@@ -373,8 +373,8 @@ for (let component of MATERIAL_COMPONENTS) {
           description: subComponent.description || false,
           url,
           isSubmenu: true,
-          plus: component.plus || false,
-          next: component.next || false
+          plus: subComponent.plus || false,
+          next: subComponent.next || false
         });
       }
     }

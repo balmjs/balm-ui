@@ -53,6 +53,38 @@ a {
   .no-icon {
     padding-left: 28px;
   }
+
+  .plus,
+  .next {
+    position: relative;
+    width: 32px;
+    height: 22px;
+    margin-left: 5px;
+    border: 1px solid;
+    border-radius: 4px;
+    font-size: 12px;
+    color: white;
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      margin-left: -11px;
+    }
+  }
+
+  .plus {
+    background-color: #e65100;
+    &::before {
+      content: 'plus';
+    }
+  }
+
+  .next {
+    background-color: #1e88e5;
+    &::before {
+      content: 'next';
+    }
+  }
 }
 
 .demo-catalog-list a {

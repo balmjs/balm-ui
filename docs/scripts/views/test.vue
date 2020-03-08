@@ -1,12 +1,11 @@
 <template>
   <div :class="[$tt('body1'), 'demo--test']">
-    <p>Value: {{ typeof value }} {{ value }}</p>
+    <p>Value1: {{ typeof value }} {{ value }}</p>
+    <p>Value2: {{ typeof value }} {{ value2 }}</p>
+    <hr />
+
     <div :class="$tt('body2')">
       <!-- Test: input -->
-
-      <ui-textfield outlined v-model="value">
-        Textfield HElloj worlds
-      </ui-textfield>
 
       <!-- <input type="text" v-model="value" />
       <br />
@@ -98,8 +97,8 @@ export default {
   data() {
     return {
       source: ['a', 'ab', 'abc', 'abcd'],
-      value: '',
-      value2: [],
+      value: 'a',
+      value2: 'a',
       options: [
         {
           label: 'A',
@@ -114,8 +113,18 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      this.value = 'a';
-      // this.value2 = ['b'];
+      // this.options = [
+      //   {
+      //     label: 'A',
+      //     value: 'a'
+      //   },
+      //   {
+      //     label: 'B',
+      //     value: 'b'
+      //   }
+      // ];
+      // this.value = 'b';
+      // this.value2 = 'b';
     }, 1e3);
   }
 };

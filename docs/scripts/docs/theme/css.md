@@ -14,3 +14,8 @@
   $on-error: if(functions.contrast-tone($error) == "dark", #000, #fff)
 );
 ```
+
+```css
+/* Color Palette: /path/to/styles/global/_color.scss */
+@forward '@material/theme/color-palette';
+```

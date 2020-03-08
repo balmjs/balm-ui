@@ -1,0 +1,7 @@
+@use 'flatpickr/dist/flatpickr.min.css';
+@use '@material/elevation/mixins' as elevation-mixins;
+
+// For datepicker & rangepicker
+.flatpickr-calendar.open {
+  @include elevation-mixins.elevation(24);
+}

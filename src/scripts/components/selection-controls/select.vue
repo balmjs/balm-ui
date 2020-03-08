@@ -11,7 +11,6 @@
       </slot>
       <i class="mdc-select__dropdown-icon"></i>
       <div
-        ref="text"
         class="mdc-select__selected-text"
         role="button"
         aria-haspopup="listbox"
@@ -20,20 +19,14 @@
         :aria-disabled="disabled"
         :aria-controls="helperTextId"
         :aria-describedby="helperTextId"
-      >
-        {{ currentSelectedLabel }}
-      </div>
-      <ui-notched-outline
-        v-if="isOutlined"
-        :hasLabel="!noLabel"
-        :isNotched="shouldFloat"
-      >
-        <ui-floating-label :shouldFloat="shouldFloat">
+      ></div>
+      <ui-notched-outline v-if="isOutlined" :hasLabel="!noLabel">
+        <ui-floating-label>
           <slot>{{ label }}</slot>
         </ui-floating-label>
       </ui-notched-outline>
       <template v-else>
-        <ui-floating-label v-if="!noLabel" :shouldFloat="shouldFloat">
+        <ui-floating-label v-if="!noLabel">
           <slot>{{ label }}</slot>
         </ui-floating-label>
         <span class="mdc-line-ripple"></span>
@@ -58,7 +51,9 @@
           :aria-disabled="option.disabled"
           role="option"
         >
-          {{ option[optionLabel] }}
+          <span v-if="option[optionLabel]" class="mdc-list-item__text">{{
+            option[optionLabel]
+          }}</span>
         </li>
       </ul>
     </div>
@@ -159,7 +154,6 @@ export default {
       UI_SELECT,
       $select: null,
       currentOptions: [],
-      currentOption: {},
       currentSelectedValue: this.model,
       currentSelectedIndex: UI_SELECT.DEFAULT_SELECTED_INDEX
     };
@@ -180,33 +174,13 @@ export default {
         'mdc-select--no-label': this.noLabel,
         'mdc-select--with-leading-icon': this.hasLeadingIcon
       };
-    },
-    currentSelectedLabel() {
-      let selectedLabel =
-        this.currentSelectedIndex === UI_SELECT.DEFAULT_SELECTED_INDEX
-          ? ''
-          : this.currentOption[this.optionLabel];
-
-      // TODO: Temporary solution: manual control
-      if (this.$refs.text) {
-        this.$refs.text.textContent = selectedLabel;
-      }
-
-      return selectedLabel;
-    },
-    // TODO: Temporary solution: manual control
-    shouldFloat() {
-      return !!this.currentOption[this.optionLabel];
     }
   },
   watch: {
     model(val) {
       this.currentSelectedValue = val;
 
-      const index = this.setCurrentOption(this.options);
-      this.currentSelectedIndex = this.defaultLabel ? index + 1 : index;
-
-      this.$select.selectedIndex = this.currentSelectedIndex;
+      this.setCurrentOption();
     },
     options(val) {
       this.init(val);
@@ -217,9 +191,10 @@ export default {
 
     this.$select.listen(`MDCSelect:${UI_SELECT.EVENT.CHANGE}`, ({ detail }) => {
       if (
-        this.defaultLabel
+        detail.index > UI_SELECT.DEFAULT_SELECTED_INDEX &&
+        (this.defaultLabel
           ? this.currentOptions.length > 1
-          : this.currentOptions.length
+          : this.currentOptions.length)
       ) {
         const selected = this.getSelected(detail.index);
         // NOTE: fix twice event trigger
@@ -245,26 +220,27 @@ export default {
       this.currentOptions = currentOptions;
 
       // Set current option
-      const index = this.setCurrentOption();
-      this.currentSelectedIndex = index;
+      this.$nextTick(() => {
+        this.setCurrentOption();
+      });
     },
-    setCurrentOption(currentOptions = this.currentOptions) {
+    setCurrentOption() {
       let index = UI_SELECT.DEFAULT_SELECTED_INDEX;
 
-      this.currentOption = {};
-      this.currentOption[this.optionLabel] = this.defaultLabel;
-      this.currentOption[this.optionValue] = this.defaultValue;
-
-      for (let i = 0, len = currentOptions.length; i < len; i++) {
-        let currentOption = currentOptions[i];
+      for (let i = 0, len = this.currentOptions.length; i < len; i++) {
+        let currentOption = this.currentOptions[i];
         if (currentOption[this.optionValue] == this.currentSelectedValue) {
           index = i;
-          this.currentOption = currentOption;
           break;
         }
       }
 
-      return index;
+      // Set selected index
+      this.currentSelectedIndex = this.defaultLabel ? index + 1 : index;
+
+      if (this.currentSelectedIndex > UI_SELECT.DEFAULT_SELECTED_INDEX) {
+        this.$select.selectedIndex = this.currentSelectedIndex;
+      }
     },
     getSelected(index) {
       let selected = this.options[index];

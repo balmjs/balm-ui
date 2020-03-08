@@ -86,18 +86,14 @@
     ></slot>
 
     <!-- Label text -->
-    <ui-floating-label
-      v-if="hasLabel && hasRipple"
-      :for="id"
-      :shouldFloat="shouldFloat"
-    >
+    <ui-floating-label v-if="hasLabel && hasRipple" :for="id">
       <slot>{{ label }}</slot>
     </ui-floating-label>
 
     <!-- Activation indicator -->
     <span v-if="hasRipple" class="mdc-line-ripple"></span>
-    <ui-notched-outline v-else :hasLabel="hasLabel" :isNotched="shouldFloat">
-      <ui-floating-label :for="id" :shouldFloat="shouldFloat">
+    <ui-notched-outline v-else :hasLabel="hasLabel">
+      <ui-floating-label :for="id">
         <slot>{{ label }}</slot>
       </ui-floating-label>
     </ui-notched-outline>
@@ -231,6 +227,9 @@ export default {
     hasTrailingIcon() {
       return this.withTrailingIcon || this.$slots.after;
     },
+    noLabel() {
+      return !!this.placeholder;
+    },
     className() {
       return {
         outer: {
@@ -246,19 +245,16 @@ export default {
         },
         input: 'mdc-text-field__input'
       };
-    },
-    // TODO: Temporary solution: manual control
-    shouldFloat() {
-      if (!this.inputValue && this.$textField) {
-        this.$textField.foundation_.adapter_.closeOutline();
-      }
-
-      return !!this.inputValue;
     }
   },
   watch: {
-    model(val) {
+    model(val, oldVal) {
       this.inputValue = val;
+
+      // NOTE: fix dynamic assignment bug
+      if (!oldVal && val) {
+        this.$textField.value = val;
+      }
     }
   },
   mounted() {

@@ -4,10 +4,6 @@ export default {
     placeholder: String,
     // UI attributes
     label: String,
-    noLabel: {
-      type: Boolean,
-      default: false
-    },
     fullwidth: {
       type: Boolean,
       default: false

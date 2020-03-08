@@ -59,8 +59,8 @@ const directives = [
   'elevation',
   'ripple',
   'a11y',
-  // Plus
   'shape',
+  // Plus
   'anchor'
 ];
 const utils = ['ie', 'types', 'helpers'];

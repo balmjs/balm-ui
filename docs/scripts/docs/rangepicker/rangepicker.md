@@ -9,7 +9,6 @@
 | `model` (`v-model`) | string, number, array | `''`    | Mandatory.                                                                                                      |
 | `outlined`          | boolean               | `false` | Styles the rangepicker as an outlined text field.                                                               |
 | `disabled`          | boolean               | `false` | Styles the rangepicker as a disabled text field.                                                                |
-| `noLabel`           | boolean               | `false` | Styles the rangepicker that has no label.                                                                       |
 | `startId`           | string                | `null`  | The _id_ attribute of the start `<input>` and the _for_ attribute of the `<label>`.                             |
 | `startLabel`        | string                | `null`  | A text caption or description for the rangepicker, which use the start input's `placeholder` attribute instead. |
 | `startPlaceholder`  | string                | `null`  | The _placeholder_ attribute of the start `<input>`.                                                             |

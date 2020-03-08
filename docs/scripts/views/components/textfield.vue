@@ -372,7 +372,6 @@
           v-model="content"
           id="full-width-textarea"
           fullwidth
-          noLabel
           placeholder="Content"
           class="full-width-textarea-example"
           rows="8"

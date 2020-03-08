@@ -10,7 +10,6 @@
 | `outlined`          | boolean               | `false` | Styles the datepicker as an outlined text field.                                                                                       |
 | `id`                | string                | `null`  | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`.                                                          |
 | `label`             | string                | `null`  | A text caption or description for the datepicker, which use the input's `placeholder` attribute instead.                               |
-| `noLabel`           | boolean               | `false` | Styles the datepicker that has no label.                                                                                               |
 | `placeholder`       | string                | `null`  | The _placeholder_ attribute of the `<input>`.                                                                                          |
 | `fullwidth`         | boolean               | `false` | Styles the datepicker as a full width text field.                                                                                      |
 | `disabled`          | boolean               | `false` | Styles the datepicker as a disabled text field.                                                                                        |
@@ -20,6 +19,27 @@
 | `config`            | object                | `{}`    | See [Flatpickr configuration](https://flatpickr.js.org/options/).                                                                      |
 | `toggle`            | boolean               | `false` | Show calendar icon button.                                                                                                             |
 | `clear`             | boolean               | `false` | Show clear icon button.                                                                                                                |
+| `locale`            | object                | `null`  | [Localization](https://flatpickr.js.org/localization/).                                                                                |
+
+- For localization
+
+```html
+<ui-datepicker :config="config"></ui-datepicker>
+```
+
+```js
+import lang from 'flatpickr/dist/l10n/zh.js';
+
+export default {
+  data() {
+    return {
+      config: {
+        locale: lang.zh
+      }
+    };
+  }
+};
+```
 
 #### Slots
 

@@ -12,14 +12,15 @@ Following the [Material Design](https://material.io/components/) UI components f
   - Button
   - Floating Action Button
   - Icon Button
-  - Icon (Material icons)
 - Layout
   - Top App Bar
   - Layout Grid
-  - Tabs
 - Navigation
   - Drawer
+  - Tabs
   - Menu
+- Theme
+  - Icon (Material icons)
 - Data Entry
   - Text Field
   - Select
@@ -61,6 +62,7 @@ Following the [Material Design](https://material.io/components/) UI components f
 - Ripple
 - Elevation
 - A11y
+- Shape
 - Anchor (💡)
 
 #### 4. Utilities (💡)

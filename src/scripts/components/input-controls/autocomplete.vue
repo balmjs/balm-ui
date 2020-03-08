@@ -6,7 +6,6 @@
     :outlined="outlined"
     :placeholder="placeholder"
     :label="label"
-    :noLabel="noLabel"
     :fullwidth="fullwidth"
     :disabled="disabled"
     :withLeadingIcon="withLeadingIcon"

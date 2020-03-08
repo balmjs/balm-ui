@@ -92,14 +92,15 @@ Enjoy 👻
   - Button
   - Floating Action Button
   - Icon Button
-  - Icon (Material icons)
 - Layout
   - Top App Bar
   - Layout Grid
-  - Tabs
 - Navigation
   - Drawer
+  - Tabs
   - Menu
+- Theme
+  - Icon (Material icons)
 - Data Entry
   - Text Field
   - Select
@@ -141,6 +142,7 @@ Enjoy 👻
 - Ripple
 - Elevation
 - A11y
+- Shape
 - Anchor (:bulb:)
 
 ### Utilities (:bulb:)

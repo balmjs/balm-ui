@@ -1,6 +1,5 @@
 ```html
 <ui-datepicker
-  noLabel
   placeholder="Select Date.."
   toggle
   clear

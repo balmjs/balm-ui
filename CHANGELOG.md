@@ -1,15 +1,37 @@
 # BalmUI ChangeLog
 
-## v5.3.0 / 2020-02-29
+## v5.4.0 / 2020-03-08
+
+### Bug Fixes
+
+- `<ui-textfield>`, `<ui-select>`: fix floating label bug in outlined type
 
 ### Features
 
-- partial refactoring: `<ui-checkbox>`, `<ui-switch>`
+- docs refactoring: add **theme** navigation (include _color_, _typography_, _shape_, _icons_)
+- new docs: `color`, `shape`
+- `<ui-top-app-bar>`: update `navIcon` prop type: <del>`String`</del> -> `[String, Boolean]`, if set `false`, nav icon will be hidden.
+
+### Chores
+
+- `<ui-datepicker>`, `<ui-rangepicker>`: update `scss` usage
+- `<ui-datepicker>`: add `locale` prop
+
+### BREAKING CHANGES
+
+- `<ui-drawer>`: rename props name: <del>`menuSelector`</del> -> `navId`
+- `<ui-textfield>`, `<ui-autocomplete>`, `<ui-datepicker>`, `<ui-rangepicker>`: remove `noLabel` event
+
+## v5.3.0 / 2020-02-29
 
 ### Bug Fixes
 
 - `<ui-select>`: fix twice event trigger
 - `<ui-tabs>`: fix dynamic state bug
+
+### Features
+
+- partial refactoring: `<ui-checkbox>`, `<ui-switch>`
 
 ### BREAKING CHANGES
 

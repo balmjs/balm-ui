@@ -2,7 +2,6 @@
   <ui-page-structure name="autocomplete" demoCount="2">
     <template #hero>
       <ui-autocomplete
-        noLabel
         placeholder="Input 'balm'"
         v-model="keywords"
         :source="source"
@@ -17,7 +16,6 @@
     <div class="example">
       <h6 :class="$tt('headline6')">1.1 Static data</h6>
       <ui-autocomplete
-        noLabel
         v-model="keywords1"
         :source="source1"
         placeholder="Try to type"
@@ -28,7 +26,6 @@
     <div class="example">
       <h6 :class="$tt('headline6')">1.2 Dynamic data</h6>
       <ui-autocomplete
-        noLabel
         v-model="keywords2"
         :source="source2"
         placeholder="Type 'a', then 'b'"

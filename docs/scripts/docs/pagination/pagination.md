@@ -38,7 +38,6 @@
     <label>Rows per page:</label>
     <ui-select
       outlined
-      noLabel
       v-model="pageSize"
       :options="pageSizeOptions"
     ></ui-select>

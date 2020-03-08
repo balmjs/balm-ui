@@ -1,18 +1,13 @@
 <template>
   <ui-page-structure name="datepicker" demoCount="4" withoutCss>
     <template #hero>
-      <ui-datepicker
-        noLabel
-        placeholder="Select Date.."
-        v-model="date"
-      ></ui-datepicker>
+      <ui-datepicker placeholder="Select Date.." v-model="date"></ui-datepicker>
     </template>
 
     <!-- Content -->
     <div class="example">
       <h6 :class="$tt('headline6')">1.1 Basic + default icon</h6>
       <ui-datepicker
-        noLabel
         placeholder="Select Date.."
         toggle
         clear
@@ -25,7 +20,6 @@
     <div class="example">
       <h6 :class="$tt('headline6')">2. DateTime + custom icon</h6>
       <ui-datepicker
-        noLabel
         placeholder="Select Datetime.."
         toggle
         clear
@@ -45,7 +39,6 @@
     <div class="example">
       <h6 :class="$tt('headline6')">3. Selecting multiple dates</h6>
       <ui-datepicker
-        noLabel
         placeholder="Select Multi Date.."
         :config="config3"
         v-model="date3"
@@ -61,7 +54,6 @@
         >)
       </h6>
       <ui-datepicker
-        noLabel
         placeholder="Select Date Range.."
         :config="config4"
         v-model="date4"
@@ -72,6 +64,8 @@
 </template>
 
 <script>
+// import lang from 'flatpickr/dist/l10n/zh.js';
+
 export default {
   metaInfo: {
     titleTemplate: '%s - <ui-datepicker>'
@@ -105,7 +99,7 @@ export default {
     let date = new Date();
     let year = date.getFullYear();
     let month = date.getMonth() + 1;
-    let day = date.getDay();
+    let day = date.getDate();
 
     setTimeout(() => {
       this.date = `${year}-${month}-${day}`;

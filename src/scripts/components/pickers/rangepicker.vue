@@ -7,7 +7,6 @@
       :outlined="outlined"
       :placeholder="startPlaceholder"
       :label="startLabel"
-      :noLabel="noLabel"
       :disabled="disabled"
       :attrs="{ readonly: true }"
     ></ui-textfield>
@@ -21,7 +20,6 @@
       :outlined="outlined"
       :placeholder="endPlaceholder"
       :label="endLabel"
-      :noLabel="noLabel"
       :disabled="disabled"
       :attrs="{ readonly: true }"
     ></ui-textfield>
@@ -60,10 +58,6 @@ export default {
     },
     // UI common attributes
     outlined: {
-      type: Boolean,
-      default: false
-    },
-    noLabel: {
       type: Boolean,
       default: false
     },

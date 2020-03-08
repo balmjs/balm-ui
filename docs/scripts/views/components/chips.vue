@@ -13,7 +13,6 @@
       <h2>1.1 Input Chips</h2>
       <ui-textfield
         outlined
-        noLabel
         v-model="name"
         class="demo-tf-add-space"
         id="input-chip-set-input"

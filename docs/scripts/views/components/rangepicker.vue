@@ -2,7 +2,6 @@
   <ui-page-structure name="rangepicker">
     <template #hero>
       <ui-rangepicker
-        noLabel
         startPlaceholder="Start Date"
         endPlaceholder="End Date"
         v-model="date"

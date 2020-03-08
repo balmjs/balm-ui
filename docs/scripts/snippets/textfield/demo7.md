@@ -8,7 +8,6 @@
     inputType="textarea"
     v-model="content"
     fullwidth
-    noLabel
     placeholder="Content"
     maxlength="140"
     rows="8"

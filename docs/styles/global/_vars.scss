@@ -1,12 +1,4 @@
-// Icon font
-@use '../../../src/styles/balm-ui/components/icon/variables' with (
-  $font-path: '../fonts'
-);
-// Base style
-@use '@material/theme/variables' as theme-variables with (
-  $primary: #6200ee, // baseline purple, 500 tone
-  $secondary: #018786, // baseline teal, 600 tone
-);
+@use '@material/theme/variables' as theme-variables;
 @use '@material/top-app-bar/variables' as top-app-bar-variables;
 
 $primary: theme-variables.$primary;

@@ -368,7 +368,11 @@
               <ui-item
                 v-if="hasColor(color, shade)"
                 :key="shadeIndex"
-                :class="[getColorName(color, shade), 'btn-copy']"
+                :class="[
+                  getColorName(color, shade),
+                  getColorTone(color, shadeIndex),
+                  'btn-copy'
+                ]"
                 :data-clipboard-text="getColorValue(color, shadeIndex)"
                 :data-name="getColorName(color, shade)"
               >
@@ -378,19 +382,29 @@
             </template>
           </ui-list>
         </ui-grid-cell>
-        <!-- <ui-grid-cell>
+        <ui-grid-cell>
           <h4>Black &amp; White</h4>
           <ui-list>
-            <ui-item :style="{ 'background-color': '#000' }">
+            <ui-item
+              :class="[$textColor('primary', 'dark'), 'btn-copy']"
+              :style="{ 'background-color': '#000' }"
+              data-clipboard-text="#000000"
+              data-name="Black"
+            >
               <span class="shade">Black</span>
-              <span class="hex">#000</span>
+              <span class="hex">#000000</span>
             </ui-item>
-            <ui-item :style="{ 'background-color': '#fff' }">
+            <ui-item
+              :class="[$textColor('primary', 'light'), 'btn-copy']"
+              :style="{ 'background-color': '#fff' }"
+              data-clipboard-text="#ffffff"
+              data-name="White"
+            >
               <span class="shade">White</span>
-              <span class="hex">#fff</span>
+              <span class="hex">#ffffff</span>
             </ui-item>
           </ui-list>
-        </ui-grid-cell> -->
+        </ui-grid-cell>
       </ui-grid>
     </template>
   </ui-page-structure>
@@ -435,7 +449,10 @@ export default {
     clipboard.on('success', e => {
       let color = e.trigger.dataset.name;
       if (color) {
-        this.$toast(`$${color} copied: ${e.text}`);
+        let colorName = ['Black', 'White'].includes(color)
+          ? color
+          : `$${color}`;
+        this.$toast(`${colorName} copied: ${e.text}`);
 
         e.clearSelection();
       }
@@ -537,7 +554,18 @@ export default {
       if (names[1]) {
         key += names[1];
       }
-      return COLOR.hex[key][shadeIndex];
+      return COLOR.hex[key].value[shadeIndex];
+    },
+    getColorTone(color, shadeIndex) {
+      let names = color.split(' ');
+      let key = names[0].toLowerCase();
+      if (names[1]) {
+        key += names[1];
+      }
+      return this.$textColor(
+        'primary',
+        COLOR.hex[key].tone[shadeIndex] ? 'light' : 'dark'
+      );
     }
   }
 };

@@ -1,6 +1,6 @@
 <template>
   <div class="demo--drawer demo--dismissible-drawer">
-    <ui-drawer type="dismissible" menuSelector="#demo-menu">
+    <ui-drawer type="dismissible" navId="demo-menu">
       <ui-drawer-header>
         <ui-drawer-title>{{ title }}</ui-drawer-title>
         <ui-drawer-subtitle>{{ subtitle }}</ui-drawer-subtitle>
@@ -19,6 +19,7 @@
     <ui-drawer-app-content class="demo-main">
       <ui-top-app-bar
         contentSelector=".demo-content"
+        navId="demo-menu"
         class="demo-top-app-bar"
         v-shadow="4"
         >Dismissible Drawer</ui-top-app-bar

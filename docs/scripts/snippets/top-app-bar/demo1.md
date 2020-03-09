@@ -2,31 +2,18 @@
 <div class="demo--top-app-bar">
   <ui-top-app-bar
     contentSelector="#content-main"
-    navId="demo-menu"
     :type="type"
     :title="title"
+    @nav="$balmUI.onShow('openDrawer')"
   >
-    <template #toolbar="{ itemClass }">
-      <template v-if="!isShort">
-        <ui-icon-a :class="itemClass" icon="file_download"></ui-icon-a>
-        <ui-icon-a :class="itemClass" icon="print"></ui-icon-a>
-        <ui-icon-a :class="itemClass" icon="bookmark"></ui-icon-a>
-      </template>
-      <ui-menu-anchor v-if="isShort">
-        <ui-icon-button
-          :class="itemClass"
-          icon="more_vert"
-          @click="$balmUI.onOpen('showMoreActions')"
-        ></ui-icon-button>
-        <ui-menu
-          v-model="showMoreActions"
-          :items="['Back', 'Forward', 'Reload', '-', 'Settings']"
-        ></ui-menu>
-      </ui-menu-anchor>
+    <template #toolbar="{ toolbarItemClass }">
+      <ui-icon-a :class="toolbarItemClass" icon="file_download"></ui-icon-a>
+      <ui-icon-a :class="toolbarItemClass" icon="print"></ui-icon-a>
+      <ui-icon-a :class="toolbarItemClass" icon="bookmark"></ui-icon-a>
     </template>
   </ui-top-app-bar>
 
-  <ui-drawer type="modal" v-model="openDrawer" menuSelector="#demo-menu">
+  <ui-drawer type="modal" v-model="openDrawer">
     <ui-drawer-header
       :innerClass="[$themeColor('on-primary'), $themeColor('primary-bg')]"
     >
@@ -47,13 +34,11 @@
 
   <ui-drawer-backdrop></ui-drawer-backdrop>
 
-  <main class="demo-main">
-    <div id="content-main">
-      <p v-for="i in 12" :key="i" class="demo-paragraph">
-        Content
-      </p>
-    </div>
-  </main>
+  <div id="content-main">
+    <p v-for="i in 36" :key="i">
+      Content
+    </p>
+  </div>
 </div>
 ```
 
@@ -63,8 +48,7 @@ export default {
     return {
       type: 0,
       title: 'Hello BalmUI',
-      openDrawer: false,
-      showMoreActions: false
+      openDrawer: false
     };
   }
 };

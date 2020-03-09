@@ -40,8 +40,8 @@
 | `toolbar`  | `toolbarItemClass` | The toolbar slot holds the action items and can contain HTML.      |
 
 ```html
-<template #toolbar="{ itemClass }">
-  <ui-icon-button :class="itemClass" icon="ICON"></ui-icon-button>
+<template #toolbar="{ toolbarItemClass }">
+  <ui-icon-button :class="toolbarItemClass" icon="ICON"></ui-icon-button>
 </template>
 ```
 

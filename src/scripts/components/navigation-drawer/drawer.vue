@@ -36,6 +36,9 @@ export default {
     };
   },
   computed: {
+    isPermanent() {
+      return this.checkType(UI_DRAWER.TYPES, 'permanent');
+    },
     isDismissible() {
       return this.checkType(UI_DRAWER.TYPES, 'dismissible');
     },
@@ -67,6 +70,8 @@ export default {
       this.$drawer.listen(`MDCDrawer:${UI_DRAWER.EVENT.CLOSED}`, () => {
         this.$emit(UI_DRAWER.EVENT.NAV, false);
       });
+    } else {
+      this.$el.parentNode.classList.add('mdc-drawer--permanent');
     }
   },
   methods: {

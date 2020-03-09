@@ -26,6 +26,15 @@ fieldset {
   min-height: 360px;
   padding: 40px 0;
   background-color: $hero-background-color;
+
+  .mdc-drawer--permanent {
+    display: inherit;
+    height: inherit;
+    .mdc-drawer__title {
+      text-align: left;
+    }
+  }
+
   .hero-demo,
   .hero-demos {
     margin-bottom: 20px;

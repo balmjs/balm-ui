@@ -14,8 +14,12 @@
         class="demo-top-app-bar"
         v-shadow="4"
       >
-        <template #nav-icon>
-          <ui-icon @click="$router.back()">arrow_back</ui-icon>
+        <template #nav-icon="{ navIconClass }">
+          <ui-icon-button
+            :class="navIconClass"
+            icon="arrow_back"
+            @click="$router.back()"
+          ></ui-icon-button>
         </template>
         Permanent Drawer Above Toolbar
       </ui-top-app-bar>

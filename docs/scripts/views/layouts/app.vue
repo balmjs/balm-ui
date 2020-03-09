@@ -16,9 +16,9 @@
           :class="['catalog-title', $themeColor('on-primary')]"
           >BalmUI</router-link
         >
-        <template #toolbar="{ itemClass }">
+        <template #toolbar="{ toolbarItemClass }">
           <a
-            :class="[itemClass, 'github']"
+            :class="[toolbarItemClass, 'github']"
             href="https://github.com/balmjs/balm-ui"
           >
             <svg-github></svg-github>

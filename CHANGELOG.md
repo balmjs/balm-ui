@@ -1,5 +1,11 @@
 # BalmUI ChangeLog
 
+## v5.4.1 / 2020-03-09
+
+### Chores
+
+`<ui-drawer>`: optimize permanent drawer
+
 ## v5.4.0 / 2020-03-08
 
 ### Bug Fixes

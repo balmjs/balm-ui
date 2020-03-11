@@ -13,6 +13,7 @@ $confirm(options);
 | `className`  | string   | `''`       | The custom class name for the confirm dialog.         |
 | `title`      | string   | `''`       | The title of the confirm dialog.                      |
 | `message`    | string   | `''`       | The content to be displayed in the confirm dialog.    |
+| `raw`        | boolean  | `false`    | Rendered plain HTML.                                  |
 | `acceptText` | string   | `'OK'`     | Accept button content.                                |
 | `cancelText` | string   | `'Cancel'` | Cancel button content.                                |
 | `callback`   | function | `false`    | Handle some event when the confirm button is clicked. |

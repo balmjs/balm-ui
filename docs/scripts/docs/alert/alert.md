@@ -13,6 +13,7 @@ $alert(options);
 | `className`  | string   | `''`    | The custom class name for the alert dialog.         |
 | `title`      | string   | `''`    | The title of the alert dialog.                      |
 | `message`    | string   | `''`    | The content to be displayed in the alert dialog.    |
+| `raw`        | boolean  | `false` | Rendered plain HTML.                                |
 | `buttonText` | string   | `'OK'`  | Alert button content.                               |
 | `callback`   | function | `false` | Handle some event when the alert button is clicked. |
 

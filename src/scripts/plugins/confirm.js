@@ -9,6 +9,7 @@ const DEFAULT_OPTIONS = {
   className: '',
   title: '',
   message: '',
+  raw: false,
   acceptText: 'OK',
   cancelText: 'Cancel',
   callback: false
@@ -19,7 +20,8 @@ const template = `<ui-dialog
   :class="['mdc-confirm', options.className]"
   @close="handleClose">
   <ui-dialog-title v-if="options.title">{{ options.title }}</ui-dialog-title>
-  <ui-dialog-content>{{ options.message }}</ui-dialog-content>
+  <ui-dialog-content v-if="options.raw" v-html="options.message"></ui-dialog-content>
+  <ui-dialog-content v-else>{{ options.message }}</ui-dialog-content>
   <ui-dialog-actions>
     <button type="button"
       class="mdc-button mdc-confirm-primary-button"

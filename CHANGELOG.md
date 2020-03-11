@@ -1,5 +1,23 @@
 # BalmUI ChangeLog
 
+## v5.5.0 / 2020-03-12
+
+> WeChat MiniProgram Partially Supported
+
+### Features
+
+- `$alert`, `$confirm`: add `raw` option
+- `<ui-drawer-backdrop>`: add `@click` event
+
+### Chores
+
+- `$balmUI`: update events for miniprogram
+- `<ui-drawer>`: update for miniprogram
+
+### BREAKING CHANGES
+
+- `<ui-a>`, `<ui-icon-a>`: remove <del>`url`</del> prop
+
 ## v5.4.1 / 2020-03-09
 
 ### Chores
@@ -26,7 +44,7 @@
 ### BREAKING CHANGES
 
 - `<ui-drawer>`: rename props name: <del>`menuSelector`</del> -> `navId`
-- `<ui-textfield>`, `<ui-autocomplete>`, `<ui-datepicker>`, `<ui-rangepicker>`: remove `noLabel` event
+- `<ui-textfield>`, `<ui-autocomplete>`, `<ui-datepicker>`, `<ui-rangepicker>`: remove <del>`noLabel`</del> event
 
 ## v5.3.0 / 2020-02-29
 
@@ -43,7 +61,7 @@
 
 - `<ui-textfield>`: rename props name: <del>`leadingIcon`</del> -> `withLeadingIcon`, <del>`trailingIcon`</del> -> `withTrailingIcon`
 - `<ui-select>`: rename props name: <del>`leadingIcon`</del> -> `withLeadingIcon`
-- `<ui-slider>`: remove `@input` event
+- `<ui-slider>`: remove <del>`@input`</del> event
 
 ## v5.2.1 / 2020-02-28
 

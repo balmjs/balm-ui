@@ -19,24 +19,24 @@ const callback = fn => {
   return result;
 };
 
-function handleCustomEvent(properties, value, data = null) {
+const handleAssign = (properties, value, data = null) => {
   let key = properties.shift();
-  let currentValue = data ? data[key] : this[key];
+  let currentData = data ? data[key] : this[key];
 
   if (properties.length) {
-    handleCustomEvent.call(this, properties, value, currentValue);
+    handleAssign.call(this, properties, value, currentData);
   } else {
     data[key] = value;
   }
-}
+};
 
-function handleEvent(_property, value) {
+const handleEvent = (_property, value) => {
   if (getType(new Function()) === 'function') {
-    new Function('value', `this.${_property} = value;`).call(this, value);
+    new Function(`this.${_property} = ${value};`).call(this);
   } else {
-    handleCustomEvent.call(this, _property.split('.'), value);
+    handleAssign.call(this, _property.split('.'), value);
   }
-}
+};
 
 const EventMethods = {
   onChange(_property, value, fn = noop) {

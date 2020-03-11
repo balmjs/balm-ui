@@ -8,11 +8,12 @@
 <script>
 import { MDCDrawer } from '../../../material-components-web/drawer';
 import typeMixin from '../../mixins/type';
+import mpDrawerMixin from '../../miniprogram/drawer';
 import UI_DRAWER from './constants';
 
 export default {
   name: 'ui-drawer',
-  mixins: [typeMixin],
+  mixins: [typeMixin, mpDrawerMixin],
   model: {
     prop: 'open',
     event: UI_DRAWER.EVENT.NAV
@@ -56,6 +57,8 @@ export default {
   watch: {
     open(val) {
       this.$drawer.open = val;
+
+      this.mpHandler(val);
     }
   },
   mounted() {

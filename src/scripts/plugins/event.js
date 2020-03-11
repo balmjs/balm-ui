@@ -26,7 +26,11 @@ function handleAssign(properties, value, data = null) {
   if (properties.length) {
     handleAssign.call(this, properties, value, currentData);
   } else {
-    data[key] = value;
+    if (data) {
+      data[key] = value;
+    } else {
+      this[key] = value;
+    }
   }
 }
 

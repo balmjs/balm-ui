@@ -1,6 +1,6 @@
 <template>
   <!-- Container -->
-  <a :class="[className, cardActionClassName]" :href="url">
+  <a :class="[className, cardActionClassName]">
     <!-- Icon (optional) -->
     <slot name="before" :iconClass="UI_BUTTON.cssClasses.icon">
       <i
@@ -21,13 +21,12 @@
 
 <script>
 import buttonMixin from '../../mixins/button';
-import anchorMixin from '../../mixins/anchor';
 import UI_GLOBAL from '../../config/constants';
 import UI_BUTTON from './constants';
 
 export default {
   name: 'ui-a',
-  mixins: [buttonMixin, anchorMixin],
+  mixins: [buttonMixin],
   data() {
     return {
       UI_GLOBAL,

@@ -1,6 +1,6 @@
 <template>
   <!-- Container -->
-  <a :class="[className, cardActionClassName]" :href="url">
+  <a :class="[className, cardActionClassName]">
     <!-- Icon -->
     <template v-if="toggleButton">
       <i :class="[UI_GLOBAL.cssClasses.icon, UI_ICON_BUTTON.cssClasses.off]">{{
@@ -22,13 +22,12 @@
 
 <script>
 import iconButtonMixin from '../../mixins/icon-button';
-import anchorMixin from '../../mixins/anchor';
 import UI_GLOBAL from '../../config/constants';
 import UI_ICON_BUTTON from './toggle-constants';
 
 export default {
   name: 'ui-icon-a',
-  mixins: [iconButtonMixin, anchorMixin],
+  mixins: [iconButtonMixin],
   data() {
     return {
       UI_GLOBAL,

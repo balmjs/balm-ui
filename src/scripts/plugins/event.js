@@ -4,9 +4,9 @@ import '../polyfills/resize';
 
 // Define constants
 const DEFAULT_NAMESPACE = 'balmUI';
-
 const noop = () => {};
-const callback = fn => {
+
+function callback(fn) {
   let result;
   let type = getType(fn);
 
@@ -17,9 +17,9 @@ const callback = fn => {
   }
 
   return result;
-};
+}
 
-const handleAssign = (properties, value, data = null) => {
+function handleAssign(properties, value, data = null) {
   let key = properties.shift();
   let currentData = data ? data[key] : this[key];
 
@@ -28,15 +28,15 @@ const handleAssign = (properties, value, data = null) => {
   } else {
     data[key] = value;
   }
-};
+}
 
-const handleEvent = (_property, value) => {
+function handleEvent(_property, value) {
   if (getType(new Function()) === 'function') {
     new Function(`this.${_property} = ${value};`).call(this);
   } else {
     handleAssign.call(this, _property.split('.'), value);
   }
-};
+}
 
 const EventMethods = {
   onChange(_property, value, fn = noop) {

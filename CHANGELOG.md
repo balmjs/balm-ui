@@ -1,5 +1,11 @@
 # BalmUI ChangeLog
 
+## v5.5.1 / 2020-03-16
+
+### Bug Fixes
+
+- `<ui-dialog>`: conditional rendering bugfix
+
 ## v5.5.0 / 2020-03-12
 
 > WeChat MiniProgram Partially Supported

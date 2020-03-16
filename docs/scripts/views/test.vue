@@ -4,6 +4,12 @@
     <p>Value2: {{ typeof value }} {{ value2 }}</p>
     <hr />
 
+    <subtest v-if="open" @close="$balmUI.onHide('open')"></subtest>
+    <div v-else>
+      <ui-button @click="$balmUI.onShow('open')">Parent Test</ui-button>
+      <div v-for="i in 100" :key="i">{{ i }}</div>
+    </div>
+
     <div :class="$tt('body2')">
       <!-- Test: input -->
 
@@ -93,9 +99,15 @@
 </template>
 
 <script>
+import Subtest from './subtest';
+
 export default {
+  components: {
+    Subtest
+  },
   data() {
     return {
+      open: false,
       source: ['a', 'ab', 'abc', 'abcd'],
       value: 'a',
       value2: 'a',

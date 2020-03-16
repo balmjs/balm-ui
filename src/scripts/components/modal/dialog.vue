@@ -25,6 +25,7 @@
 
 <script>
 import { MDCDialog } from '../../../material-components-web/dialog';
+import { cssClasses } from '../../../material-components-web/dialog/constants';
 
 // Define dialog constants
 const UI_DIALOG = {
@@ -130,6 +131,10 @@ export default {
         console.warn('`<ui-button>` is required in the dialog');
       }
     });
+  },
+  beforeDestroy() {
+    // NOTE: conditional rendering bugfix
+    document.querySelector('body').classList.remove(cssClasses.SCROLL_LOCK);
   },
   methods: {
     handleClose() {

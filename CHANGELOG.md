@@ -1,5 +1,16 @@
 # BalmUI ChangeLog
 
+## v5.6.0 / 2020-03-17
+
+### Features
+
+- `<ui-item>`: add `disabled` prop
+
+### BREAKING CHANGES
+
+- `<ui-item>`: remove `activated` prop
+- `<ui-nav>`: remove `selectedClass` slot prop for the default slot
+
 ## v5.5.1 / 2020-03-16
 
 ### Bug Fixes

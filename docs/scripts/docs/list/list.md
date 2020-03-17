@@ -14,11 +14,11 @@
 | Name                        | Type           | Default | Description                                                                                                                                  |
 | --------------------------- | -------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | `type`                      | string, number | `0`     | Mandatory. List types.                                                                                                                       |
-| `singleSelection`           | boolean'       | `false` | The list can handle selecting/deselecting list elements based on click or keyboard action.                                                   |
+| `singleSelection`           | boolean        | `false` | The list can handle selecting/deselecting list elements based on click or keyboard action.                                                   |
 | `selectedIndex` (`v-model`) | `Number`       | `-1`    | The index of the selected list item. Applicable only for the single selection list.                                                          |
-| `nonInteractive`            | boolean'       | `false` | Optional, disables interactivity affordances.                                                                                                |
-| `dense`                     | boolean'       | `false` | Optional, styles the density of the list, making it appear more compact.                                                                     |
-| `avatar`                    | boolean'       | `false` | Optional, configures the leading tiles of each row to display images instead of icons. This will make the graphics of the list items larger. |
+| `nonInteractive`            | boolean        | `false` | Optional, disables interactivity affordances.                                                                                                |
+| `dense`                     | boolean        | `false` | Optional, styles the density of the list, making it appear more compact.                                                                     |
+| `avatar`                    | boolean        | `false` | Optional, configures the leading tiles of each row to display images instead of icons. This will make the graphics of the list items larger. |
 
 #### `<ui-nav>` Slots
 

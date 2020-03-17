@@ -17,7 +17,7 @@ export default {
       type: Boolean,
       default: false
     },
-    activated: {
+    disabled: {
       type: Boolean,
       default: false
     }
@@ -29,15 +29,11 @@ export default {
   },
   computed: {
     className() {
-      let result = [UI_LIST.cssClasses.item];
-
-      if (this.selected) {
-        result.push(UI_LIST.cssClasses.selected);
-      } else if (this.activated) {
-        result.push(UI_LIST.cssClasses.activated);
-      }
-
-      return result;
+      return {
+        'mdc-list-item': true,
+        'mdc-list-item--selected': this.selected,
+        'mdc-list-item--disabled': this.disabled
+      };
     }
   },
   mounted() {

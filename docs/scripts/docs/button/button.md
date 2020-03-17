@@ -24,7 +24,7 @@
 
 #### Slots
 
-| Name      | Slots       | Description                                                          |
+| Name      | Props       | Description                                                          |
 | --------- | ----------- | -------------------------------------------------------------------- |
 | `default` |             | The default slot holds the button or link text and can contain HTML. |
 | `before`  | `iconClass` | Custom leading icon                                                  |

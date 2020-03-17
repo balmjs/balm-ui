@@ -4,7 +4,7 @@
 
 #### Slots
 
-| Name      | Slots | Description                                                         |
+| Name      | Props | Description                                                         |
 | --------- | ----- | ------------------------------------------------------------------- |
 | `default` |       | Text labels display one line of text related to an image list item. |
 | `action`  |       | Optional. Actionable iconography can represent related actions.     |

@@ -12,7 +12,7 @@
 
 #### Slots
 
-| Name      | Slots       | Description                                       |
+| Name      | Props       | Description                                       |
 | --------- | ----------- | ------------------------------------------------- |
 | `default` |             | The default slot holds the chip child components. |
 | `before`  | `iconClass` | Custom leading icon in the chip.                  |

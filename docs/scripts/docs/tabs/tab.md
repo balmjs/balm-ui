@@ -22,7 +22,7 @@
 
 #### Slots
 
-| Name        | Slots       | Description                                                 |
+| Name        | Props       | Description                                                 |
 | ----------- | ----------- | ----------------------------------------------------------- |
 | `default`   |             | The default slot holds the tab labels and can contain HTML. |
 | `icon`      | `iconClass` | The icon slot holds the custom icon and can contain HTML.   |

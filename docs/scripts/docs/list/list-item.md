@@ -11,7 +11,7 @@
 
 #### Slots
 
-| Name      | Slots       | Description                                                                                                |
+| Name      | Props       | Description                                                                                                |
 | --------- | ----------- | ---------------------------------------------------------------------------------------------------------- |
 | `default` |             | The default slot holds the item child components and can contain HTML.                                     |
 | `before`  | `iconClass` | Custom `<ui-item-first-content>`. Optional, the first tile in the row. Typically an icon or image.         |

@@ -33,7 +33,7 @@
 
 #### Slots
 
-| Name       | Slots              | Description                                                        |
+| Name       | Props              | Description                                                        |
 | ---------- | ------------------ | ------------------------------------------------------------------ |
 | `default`  |                    | The default slot holds the application title and can contain HTML. |
 | `nav-icon` | `navIconClass`     | The nav-icon slot holds the navigation icon and can contain HTML.  |

@@ -6,7 +6,7 @@
 
 #### Slots
 
-| Name      | Slots | Description                                                   |
+| Name      | Props | Description                                                   |
 | --------- | ----- | ------------------------------------------------------------- |
 | `default` |       | The default slot holds the card content and can contain HTML. |
 

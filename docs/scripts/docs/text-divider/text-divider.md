@@ -16,7 +16,7 @@
 
 #### Slots
 
-| Name      | Slots | Description                                                   |
+| Name      | Props | Description                                                   |
 | --------- | ----- | ------------------------------------------------------------- |
 | `default` |       | The default slot holds the divider text and can contain HTML. |
 | `left`    |       | Applicable only for the vertical text divider.                |

@@ -21,7 +21,7 @@
 
 #### Slots
 
-| Name            | Slots                                                        | Description                                  |
+| Name            | Props                                                        | Description                                  |
 | --------------- | ------------------------------------------------------------ | -------------------------------------------- |
 | `prev`          |                                                              | The custom previous button.                  |
 | `next`          |                                                              | The custom next button.                      |

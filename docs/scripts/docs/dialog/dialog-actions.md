@@ -11,7 +11,7 @@
 
 #### Slots
 
-| Name      | Slots         | Description                                                     |
+| Name      | Props         | Description                                                     |
 | --------- | ------------- | --------------------------------------------------------------- |
 | `default` | `buttonClass` | The default slot holds the dialog actions and can contain HTML. |
 

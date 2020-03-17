@@ -188,7 +188,7 @@
 
 #### Slots
 
-| Name            | Slots | Description                       |
+| Name            | Props | Description                       |
 | --------------- | ----- | --------------------------------- |
 | `(custom-name)` |       | Custom slot for cell              |
 | `before-asc`    |       | Custom asc icon before the label  |

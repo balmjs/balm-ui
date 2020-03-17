@@ -10,7 +10,7 @@
 
 #### Slots
 
-| Name      | Slots | Description                                                                                       |
+| Name      | Props | Description                                                                                       |
 | --------- | ----- | ------------------------------------------------------------------------------------------------- |
 | `default` |       | The default slot holds the select icon and can contain HTML. See [Material Icons](/#/icons) list. |
 

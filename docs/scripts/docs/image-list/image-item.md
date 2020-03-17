@@ -11,7 +11,7 @@
 
 #### Slots
 
-| Name      | Slots | Description                                                                                                                 |
+| Name      | Props | Description                                                                                                                 |
 | --------- | ----- | --------------------------------------------------------------------------------------------------------------------------- |
 | `default` |       | Optional. Indicates the area within each item containing the supporting text label, if the Image List contains text labels. |
 | `image`   |       | Optional. The image container displays an image list item’s image or illustration.                                          |

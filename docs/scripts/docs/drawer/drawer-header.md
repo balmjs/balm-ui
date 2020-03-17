@@ -4,7 +4,7 @@
 
 #### Slots
 
-| Name      | Slots | Description                                                                     |
+| Name      | Props | Description                                                                     |
 | --------- | ----- | ------------------------------------------------------------------------------- |
 | `default` |       | The default slot holds the drawer header child components and can contain HTML. |
 

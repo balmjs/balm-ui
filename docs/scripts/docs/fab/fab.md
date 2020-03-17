@@ -21,7 +21,7 @@
 
 #### Slots
 
-| Name      | Slots       | Description                                                           |
+| Name      | Props       | Description                                                           |
 | --------- | ----------- | --------------------------------------------------------------------- |
 | `default` | `iconClass` | The default slot holds the floating action button icon or text label. |
 | `before`  | `iconClass` | The label slot holds the label text of the extended FAB.              |

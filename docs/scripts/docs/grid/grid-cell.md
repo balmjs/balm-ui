@@ -14,7 +14,7 @@
 
 #### Slots
 
-| Name      | Slots | Description                                                        |
+| Name      | Props | Description                                                        |
 | --------- | ----- | ------------------------------------------------------------------ |
 | `default` |       | The default slot holds the grid cell content and can contain HTML. |
 

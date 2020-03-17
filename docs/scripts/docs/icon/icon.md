@@ -22,7 +22,7 @@
 
 #### Slots
 
-| Name      | Slots | Description                                                                |
+| Name      | Props | Description                                                                |
 | --------- | ----- | -------------------------------------------------------------------------- |
 | `default` |       | The default slot holds the material design icon name and can contain HTML. |
 

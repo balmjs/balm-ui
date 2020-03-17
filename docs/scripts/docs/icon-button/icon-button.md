@@ -16,7 +16,7 @@
 
 #### Slots
 
-| Name      | Slots                 | Description                                                                  |
+| Name      | Props                 | Description                                                                  |
 | --------- | --------------------- | ---------------------------------------------------------------------------- |
 | `default` | `onClass`, `offClass` | The default slot holds the toggle or link custom icons and can contain HTML. |
 

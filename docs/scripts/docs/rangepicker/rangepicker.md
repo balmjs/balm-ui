@@ -19,7 +19,7 @@
 
 #### Slots
 
-| Name        | Slots | Description           |
+| Name        | Props | Description           |
 | ----------- | ----- | --------------------- |
 | `separator` |       | The custom separator. |
 

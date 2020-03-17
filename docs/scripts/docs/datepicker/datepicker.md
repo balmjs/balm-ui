@@ -43,7 +43,7 @@ export default {
 
 #### Slots
 
-| Name      | Slots       | Description                                                                    |
+| Name      | Props       | Description                                                                    |
 | --------- | ----------- | ------------------------------------------------------------------------------ |
 | `default` |             | The default slot holds the label for the datepicker.                           |
 | `before`  | `iconClass` | The before slot holds a custom leading icon.                                   |

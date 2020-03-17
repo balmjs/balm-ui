@@ -12,7 +12,7 @@
 
 #### Slots
 
-| Name      | Slots | Description                                                |
+| Name      | Props | Description                                                |
 | --------- | ----- | ---------------------------------------------------------- |
 | `default` |       | The default slot holds the card actions parent components. |
 

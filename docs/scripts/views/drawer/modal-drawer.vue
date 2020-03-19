@@ -24,7 +24,7 @@
 
     <main :class="[$tt('body1'), 'demo-main']">
       <div :class="$tt('body2')">
-        <h1 :class="$tt('headline4')">Modal Drawer</h1>
+        <h3 :class="$tt('headline3')">Modal Drawer</h3>
         <p>Click the menu icon above to open.</p>
         <ui-snippet :code="$store.demos[4]"></ui-snippet>
       </div>

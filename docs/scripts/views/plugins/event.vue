@@ -1,7 +1,7 @@
 <template>
   <ui-page-structure type="plugin" name="event" demoCount="4" withoutCss>
     <template #hero>
-      <h3 :class="$tt('headline3')">$balmUI</h3>
+      <h1 :class="$tt('headline1')">$balmUI</h1>
     </template>
 
     <!-- Content -->

@@ -1,7 +1,7 @@
 <template>
   <ui-page-structure type="plugin" name="alert" demoCount="1">
     <template #hero>
-      <h3 :class="$tt('headline3')">$alert</h3>
+      <h1 :class="$tt('headline1')">$alert</h1>
     </template>
 
     <!-- Content -->

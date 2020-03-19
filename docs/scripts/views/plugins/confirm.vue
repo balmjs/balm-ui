@@ -1,7 +1,7 @@
 <template>
   <ui-page-structure type="plugin" name="confirm" demoCount="1">
     <template #hero>
-      <h3 :class="$tt('headline3')">$confirm</h3>
+      <h1 :class="$tt('headline1')">$confirm</h1>
     </template>
 
     <!-- Content -->

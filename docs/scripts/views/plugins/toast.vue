@@ -1,7 +1,7 @@
 <template>
   <ui-page-structure type="plugin" name="toast" demoCount="1" withoutCss>
     <template #hero>
-      <h3 :class="$tt('headline3')">$toast</h3>
+      <h1 :class="$tt('headline1')">$toast</h1>
     </template>
 
     <!-- Content -->

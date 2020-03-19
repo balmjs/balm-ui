@@ -27,7 +27,7 @@
 
       <div :class="[$tt('body1'), 'demo-content']">
         <div :class="$tt('body2')">
-          <h1 :class="$tt('headline4')">Dismissible Drawer</h1>
+          <h3 :class="$tt('headline3')">Dismissible Drawer</h3>
           <p>Click the menu icon above to open and close the drawer.</p>
           <ui-snippet :code="$store.demos[3]"></ui-snippet>
         </div>

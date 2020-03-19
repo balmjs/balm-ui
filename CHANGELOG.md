@@ -1,5 +1,12 @@
 # BalmUI ChangeLog
 
+## v5.6.1 / 2020-03-19
+
+### Chores
+
+- clean code
+- update docs
+
 ## v5.6.0 / 2020-03-17
 
 ### Features

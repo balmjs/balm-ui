@@ -1,7 +1,7 @@
 <template>
   <ui-page-structure type="directive" name="shape">
     <template #hero>
-      <h3 :class="$tt('headline3')">Shape</h3>
+      <h1 :class="$tt('headline1')">Shape</h1>
     </template>
 
     <!-- Content -->

@@ -1,7 +1,7 @@
 <template>
   <ui-page-structure name="skeleton" demoCount="3">
     <template #hero>
-      <h3 :class="$tt('headline3')">Skeleton</h3>
+      <h1 :class="$tt('headline1')">Skeleton</h1>
     </template>
 
     <!-- Content -->

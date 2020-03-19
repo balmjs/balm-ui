@@ -59,7 +59,7 @@
     <main class="demo-main">
       <ui-page-structure id="content-main" name="top-app-bar" demoCount="1">
         <template #hero>
-          <h3 :class="$tt('headline3')">Top App Bar</h3>
+          <h1 :class="$tt('headline1')">Top App Bar</h1>
         </template>
 
         <!-- Content -->

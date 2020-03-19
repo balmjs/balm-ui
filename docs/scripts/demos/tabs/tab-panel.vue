@@ -1,6 +1,6 @@
 <template>
   <section class="example">
-    <h5 :class="$tt('headline4')">1.4 Tab Panel</h5>
+    <h6 :class="$tt('headline6')">1.4 Tab Panel</h6>
 
     <ui-tabs v-model="active">
       <ui-tab>Tab One</ui-tab>

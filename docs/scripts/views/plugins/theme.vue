@@ -51,12 +51,12 @@
         </ui-menu>
       </ui-menu-anchor>
 
-      <h2 :class="$tt('headline4')">Baseline Colors</h2>
+      <h5 :class="$tt('headline5')">Baseline Colors</h5>
 
       <section class="demo-component-section">
-        <h3 :class="[$tt('headline5'), 'demo-component-section__heading']">
+        <h6 :class="[$tt('headline6'), 'demo-component-section__heading']">
           CSS Classes
-        </h3>
+        </h6>
 
         <div class="demo-theme-color-section">
           <div class="demo-theme-color-section__row">
@@ -362,7 +362,7 @@
           v-for="(color, colorIndex) in COLOR.colors"
           :key="colorIndex"
         >
-          <h4>{{ color }}</h4>
+          <h6 :class="$tt('headline6')">{{ color }}</h6>
           <ui-list>
             <template v-for="(shade, shadeIndex) in COLOR.shades">
               <ui-item
@@ -383,7 +383,7 @@
           </ui-list>
         </ui-grid-cell>
         <ui-grid-cell>
-          <h4>Black &amp; White</h4>
+          <h6 :class="$tt('headline6')">Black &amp; White</h6>
           <ui-list>
             <ui-item
               :class="[$textColor('primary', 'dark'), 'btn-copy']"

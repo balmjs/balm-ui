@@ -1,6 +1,6 @@
 <template>
   <section class="example">
-    <h5 :class="$tt('headline4')">1.2 Tab Bar</h5>
+    <h6 :class="$tt('headline6')">1.2 Tab Bar</h6>
 
     <div class="demo">
       <ui-tab-bar class="hero-demo-tab-bar" v-model="active">
@@ -12,7 +12,7 @@
     <ui-snippet :code="$store.demos[5]"></ui-snippet>
 
     <template v-if="isLargeScreen">
-      <h6 :class="$tt('headline6')">Start Alignment</h6>
+      <h6 :class="$tt('subtitle1')">Start Alignment</h6>
       <div class="demo">
         <ui-tab-bar v-model="active" align="start">
           <ui-tab v-for="(tab, index) in tabs" :key="index" minWidth>
@@ -21,7 +21,7 @@
         </ui-tab-bar>
       </div>
 
-      <h6 :class="$tt('headline6')">Center Alignment</h6>
+      <h6 :class="$tt('subtitle1')">Center Alignment</h6>
       <div class="demo">
         <ui-tab-bar v-model="active" align="center">
           <ui-tab v-for="(tab, index) in tabs" :key="index" minWidth>
@@ -30,7 +30,7 @@
         </ui-tab-bar>
       </div>
 
-      <h6 :class="$tt('headline6')">End Alignment</h6>
+      <h6 :class="$tt('subtitle1')">End Alignment</h6>
       <div class="demo">
         <ui-tab-bar v-model="active" align="end">
           <ui-tab v-for="(tab, index) in tabs" :key="index" minWidth>
@@ -41,11 +41,11 @@
       <ui-snippet :code="$store.demos[6]"></ui-snippet>
     </template>
     <template v-else>
-      <h6 :class="$tt('headline6')">Alignment Demos</h6>
+      <h6 :class="$tt('subtitle1')">Alignment Demos</h6>
       <p>Your browser is not largescreen(Screen Size >= 1024px).</p>
     </template>
 
-    <h6 :class="$tt('headline6')">Customization</h6>
+    <h6 :class="$tt('subtitle1')">Customization</h6>
     <div class="demo">
       <ui-tab-bar class="custom-demo-tab-bar" v-model="active">
         <ui-tab

@@ -124,9 +124,9 @@
 
     <!-- Content -->
     <section class="example">
-      <h3>
+      <h6 :class="$tt('headline6')">
         1.1 Full Functionality JS Component (Floating Label, Validation)
-      </h3>
+      </h6>
       <section id="demo-text-field-wrapper" :dir="controls.rtl ? 'rtl' : null">
         <ui-textfield
           id="full-func-text-field"
@@ -160,7 +160,7 @@
     </section>
 
     <section class="example">
-      <h3>1.2 Password field with validation</h3>
+      <h6 :class="$tt('headline6')">1.2 Password field with validation</h6>
       <ui-textfield
         inputType="password"
         required
@@ -177,7 +177,7 @@
     </section>
 
     <section class="example">
-      <h3>1.3 Outlined Text Field</h3>
+      <h6 :class="$tt('headline6')">1.3 Outlined Text Field</h6>
       <div id="demo-tf-outlined-wrapper" :dir="controls.rtl ? 'rtl' : null">
         <ui-textfield
           id="tf-outlined-input"
@@ -216,7 +216,7 @@
     </section>
 
     <section class="example" id="demo-tf-icon-container">
-      <h3>1.4 Text Field - Leading/Trailing icons</h3>
+      <h6 :class="$tt('headline6')">1.4 Text Field - Leading/Trailing icons</h6>
       <div
         class="demo-tf-add-space"
         id="demo-tf-box-leading-wrapper"
@@ -321,7 +321,7 @@
     </section>
 
     <section class="example">
-      <h3>1.5 Preventing FOUC</h3>
+      <h6 :class="$tt('headline6')">1.5 Preventing FOUC</h6>
       <ui-textfield id="fouc" v-model="value"
         >Label floating above</ui-textfield
       >
@@ -329,7 +329,7 @@
     </section>
 
     <section class="example">
-      <h3>1.6 Textarea</h3>
+      <h6 :class="$tt('headline6')">1.6 Textarea</h6>
       <section
         id="demo-text-field-textarea-wrapper"
         :dir="controls.rtl ? 'rtl' : null"
@@ -353,7 +353,9 @@
     </section>
 
     <section class="example">
-      <h3>1.7 Full-Width Text Field and Textarea with counter</h3>
+      <h6 :class="$tt('headline6')">
+        1.7 Full-Width Text Field and Textarea with counter
+      </h6>
       <div id="demo-fullwidth-wrapper">
         <ui-textfield
           v-model="title"

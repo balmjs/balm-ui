@@ -19,15 +19,15 @@
 
       <slot name="before"></slot>
 
-      <h2 v-anchor:id="'ui-usage'" :class="$tt('headline2')">0. Usage</h2>
+      <h2 v-anchor:id="'ui-usage'" :class="$tt('headline5')">0. Usage</h2>
       <ui-markdown :text="$store.docs.usage"></ui-markdown>
 
-      <h2 v-anchor:id="'ui-demo'" :class="$tt('headline2')">1. Demo</h2>
+      <h2 v-anchor:id="'ui-demo'" :class="$tt('headline5')">1. Demo</h2>
       <slot>
         <p>Coming Up...</p>
       </slot>
 
-      <h2 v-anchor:id="'ui-apis'" :class="$tt('headline2')">2. APIs</h2>
+      <h2 v-anchor:id="'ui-apis'" :class="$tt('headline5')">2. APIs</h2>
       <ui-markdown
         v-for="(apidocs, index) in $store.docs.apis"
         :key="index"
@@ -35,7 +35,7 @@
       ></ui-markdown>
 
       <template v-if="!withoutCss">
-        <h2 v-anchor:id="'ui-sass'" :class="$tt('headline2')">
+        <h2 v-anchor:id="'ui-sass'" :class="$tt('headline5')">
           3. Sass Variables
         </h2>
         <ui-markdown :text="$store.docs.css"></ui-markdown>
@@ -44,14 +44,14 @@
       <h2
         v-if="name === 'icon'"
         v-anchor:id="'ui-icons'"
-        :class="$tt('headline2')"
+        :class="$tt('headline5')"
       >
         4. Icons List
       </h2>
       <h2
         v-if="name === 'theme'"
         v-anchor:id="'ui-colors'"
-        :class="$tt('headline2')"
+        :class="$tt('headline5')"
       >
         4. Color Palette
       </h2>

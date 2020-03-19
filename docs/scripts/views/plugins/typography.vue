@@ -49,9 +49,9 @@
     </section>
     <ui-snippet :code="$store.demos[1]"></ui-snippet>
 
-    <h4 :class="[$tt('headline4'), 'demo-typography--heading-baseline']">
+    <h5 :class="[$tt('headline5'), 'demo-typography--heading-baseline']">
       Baseline
-    </h4>
+    </h5>
     <section class="demo-typography--section-baseline">
       <h2 :class="['demo-typography__title', $tt('headline6')]">
         Our Changing Planet

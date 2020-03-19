@@ -1,8 +1,8 @@
 <template>
   <section class="example">
-    <h5 :class="$tt('headline4')">1.1 Tabs</h5>
+    <h6 :class="$tt('headline6')">1.1 Tabs</h6>
 
-    <h6 :class="$tt('headline6')">Text Label</h6>
+    <h6 :class="$tt('subtitle1')">Text Label</h6>
     <div class="demo">
       <ui-tab-bar v-model="active">
         <ui-tab v-for="(tab, index) in tabs" :key="index">{{
@@ -11,7 +11,7 @@
       </ui-tab-bar>
     </div>
 
-    <h6 :class="$tt('headline6')">Icon</h6>
+    <h6 :class="$tt('subtitle1')">Icon</h6>
     <div class="demo">
       <ui-tab-bar v-model="active">
         <ui-tab
@@ -24,7 +24,7 @@
     </div>
     <ui-snippet :code="$store.demos[1]"></ui-snippet>
 
-    <h6 :class="$tt('headline6')">Text Label and Icon</h6>
+    <h6 :class="$tt('subtitle1')">Text Label and Icon</h6>
     <div class="demo">
       <ui-tab-bar type="both" v-model="active">
         <ui-tab
@@ -37,7 +37,7 @@
       </ui-tab-bar>
     </div>
 
-    <h6 :class="$tt('headline6')">Stacked Text Label and Icon</h6>
+    <h6 :class="$tt('subtitle1')">Stacked Text Label and Icon</h6>
     <div class="demo">
       <ui-tab-bar type="both" v-model="active">
         <ui-tab
@@ -52,7 +52,7 @@
     </div>
     <ui-snippet :code="$store.demos[2]"></ui-snippet>
 
-    <h6 :class="$tt('headline6')">Text Label Width-Matching Indicator</h6>
+    <h6 :class="$tt('subtitle1')">Text Label Width-Matching Indicator</h6>
     <div class="example">
       <ui-tab-bar v-model="active">
         <ui-tab v-for="(tab, index) in tabs" :key="index" contentIndicator>{{
@@ -61,7 +61,7 @@
       </ui-tab-bar>
     </div>
 
-    <h6 :class="$tt('headline6')">Text Label with Icon Indicator</h6>
+    <h6 :class="$tt('subtitle1')">Text Label with Icon Indicator</h6>
     <div class="example">
       <ui-tab-bar v-model="active">
         <ui-tab v-for="(tab, index) in tabs" :key="index">
@@ -74,7 +74,7 @@
     </div>
     <ui-snippet :code="$store.demos[3]"></ui-snippet>
 
-    <h6 :class="$tt('headline6')">Customization</h6>
+    <h6 :class="$tt('subtitle1')">Customization</h6>
     <div class="example">
       <ui-tab-bar class="custom-demo" v-model="active">
         <ui-tab

@@ -17,7 +17,7 @@
 
     <!-- Content -->
     <section id="slider-example" class="example">
-      <h2>Continuous Slider</h2>
+      <h6 :class="$tt('headline6')">Continuous Slider</h6>
       <div class="slider-example">
         <div
           :class="[
@@ -38,7 +38,7 @@
         <p>Value: {{ value1 }}</p>
       </div>
 
-      <h2>Discrete Slider</h2>
+      <h6 :class="$tt('headline6')">Discrete Slider</h6>
       <div class="slider-example">
         <div
           :class="[
@@ -60,7 +60,7 @@
         <p>Value: {{ value2 }}</p>
       </div>
 
-      <h2>Discrete Slider with Tick Marks</h2>
+      <h6 :class="$tt('headline6')">Discrete Slider with Tick Marks</h6>
       <div class="slider-example">
         <div
           :class="[
@@ -83,7 +83,9 @@
         <p>Value: {{ value3 }}</p>
       </div>
 
-      <h2>Custom Colored Discrete Slider with Tick Marks</h2>
+      <h6 :class="$tt('headline6')">
+        Custom Colored Discrete Slider with Tick Marks
+      </h6>
       <div class="slider-example">
         <div
           :class="[

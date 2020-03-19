@@ -9,7 +9,7 @@
 
     <!-- Content -->
     <section class="example">
-      <h2>1.1 Enabled</h2>
+      <h6 :class="$tt('headline6')">1.1 Enabled</h6>
       <div class="demo-switch-wrapper">
         <ui-switch
           id="basic-switch"
@@ -33,7 +33,7 @@
     <ui-snippet :code="$store.demos[1]"></ui-snippet>
 
     <section class="example">
-      <h2>1.2 Disabled</h2>
+      <h6 :class="$tt('headline6')">1.2 Disabled</h6>
       <div class="demo-switch-wrapper">
         <ui-switch id="basic-switch--disabled" disabled></ui-switch>
         <label for="basic-switch--disabled">off/on</label>

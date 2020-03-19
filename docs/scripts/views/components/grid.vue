@@ -32,7 +32,7 @@
 
       <!-- Content -->
       <section class="examples">
-        <h2 class="demo-grid-legend">1.1 Layout grid (in fluid container)</h2>
+        <h6>1.1 Layout grid (in fluid container)</h6>
         <ui-grid>
           <ui-grid-cell>
             <div class="demo-controls">
@@ -150,7 +150,7 @@
         </ui-grid>
         <ui-snippet :code="$store.demos[5]"></ui-snippet>
 
-        <h3 class="demo-grid-legend">Grid with max width</h3>
+        <h6>Grid with max width</h6>
         <div class="demo-grid-legend">
           Grid with max width (1280px) and center alignment by default
         </div>
@@ -171,9 +171,7 @@
         </ui-grid>
         <ui-snippet :code="$store.demos[7]"></ui-snippet>
 
-        <h2 class="demo-grid-legend">
-          1.2 Fixed column width layout grid (Widescreen Only)
-        </h2>
+        <h6>1.2 Fixed column width layout grid (Widescreen Only)</h6>
         <template v-if="isWideScreen">
           <ui-grid>
             <ui-grid-cell>

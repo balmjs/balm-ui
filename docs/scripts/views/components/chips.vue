@@ -10,7 +10,7 @@
 
     <!-- Content -->
     <section class="example">
-      <h2>1.1 Input Chips</h2>
+      <h6 :class="$tt('headline6')">1.1 Input Chips</h6>
       <ui-textfield
         outlined
         v-model="name"
@@ -42,28 +42,31 @@
     </section>
 
     <section class="example">
-      <h2>1.2 Choice Chips (selectedIndex: {{ selectedIndex }})</h2>
-      <ui-chips type="choice" v-model="selectedIndex">
-        <ui-chip
-          v-if="choiceList.length"
-          v-for="(item, index) in choiceList"
-          :key="index"
-          >{{ item }}</ui-chip
-        >
+      <h6 :class="$tt('headline6')">
+        1.2 Choice Chips (selectedIndex: {{ selectedIndex }})
+      </h6>
+      <ui-chips v-if="choiceList.length" type="choice" v-model="selectedIndex">
+        <ui-chip v-for="(item, index) in choiceList" :key="index">{{
+          item
+        }}</ui-chip>
       </ui-chips>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
 
     <section class="example">
-      <h2>1.3 Filter Chips</h2>
-      <h4>No leading icon (selectedIndexes: {{ selectedValue }})</h4>
+      <h6 :class="$tt('headline6')">1.3 Filter Chips</h6>
+      <h6 :class="$tt('subtitle1')">
+        No leading icon (selectedIndexes: {{ selectedValue }})
+      </h6>
       <ui-chips type="filter" v-model="selectedValue">
         <ui-chip v-for="(item, index) in filterList" :key="index">{{
           item
         }}</ui-chip>
       </ui-chips>
 
-      <h4>With leading icon (selectedIndexes: {{ selectedValue2 }})</h4>
+      <h6 :class="$tt('subtitle1')">
+        With leading icon (selectedIndexes: {{ selectedValue2 }})
+      </h6>
       <ui-chips type="filter" v-model="selectedValue2">
         <ui-chip
           v-for="(item, index) in filterList2"
@@ -77,7 +80,7 @@
     </section>
 
     <section class="example">
-      <h2>1.4 Action Chips</h2>
+      <h6 :class="$tt('headline6')">1.4 Action Chips</h6>
       <ui-chips>
         <ui-chip
           v-for="(item, index) in actionList"

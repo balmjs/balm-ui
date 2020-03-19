@@ -11,13 +11,11 @@
         navId="balmui-menu"
         fixed
       >
-        <h1>
-          <router-link
-            to="/"
-            :class="['catalog-title', $themeColor('on-primary')]"
-            >BalmUI</router-link
-          >
-        </h1>
+        <router-link
+          to="/"
+          :class="['catalog-title', $themeColor('on-primary')]"
+          >BalmUI</router-link
+        >
         <template #toolbar="{ toolbarItemClass }">
           <a
             :class="[toolbarItemClass, 'github']"

@@ -14,7 +14,7 @@
     </section>
 
     <section class="example">
-      <h2>Disabled</h2>
+      <h6 :class="$tt('headline6')">Disabled</h6>
       <div>
         <ui-form-field>
           <ui-radio

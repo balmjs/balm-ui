@@ -4,36 +4,5 @@
   $secondary: #018786, // baseline teal, 600 tone
 );
 
-@use '@material/typography/variables' as typography-variables with (
-  $styles-headline1: (
-    font-size: 32px,
-    line-height: 32px,
-    font-weight: 600
-  ),
-  $styles-headline2: (
-    font-size: 24px,
-    line-height: 24px,
-    font-weight: 600
-  ),
-  $styles-headline3: (
-    font-size: 20px,
-    line-height: 20px,
-    font-weight: 600
-  ),
-  $styles-headline4: (
-    font-size: 16px,
-    line-height: 16px,
-    font-weight: 600
-  ),
-  $styles-headline5: (
-    font-size: 14px,
-    line-height: 14px
-  ),
-  $styles-headline6: (
-    font-size: 12px,
-    line-height: 12px
-  )
-);
-
 @use '../../../src/styles/balm-ui.scss';
 @use 'font-awesome/scss/font-awesome.scss';

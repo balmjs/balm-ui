@@ -1,6 +1,6 @@
 <template>
   <section class="example">
-    <h5 :class="$tt('headline4')">1.3 Tab Scroller</h5>
+    <h6 :class="$tt('headline6')">1.3 Tab Scroller</h6>
 
     <div class="demo">
       <ui-tab-scroller

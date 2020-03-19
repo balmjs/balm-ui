@@ -7,13 +7,13 @@
     <!-- Content -->
     <section class="example">
       <div>
-        <h2>Bounded</h2>
+        <h6 :class="$tt('headline6')">Bounded</h6>
         <div class="demo-surface" v-ripple v-shadow="2">
           Interact with me!
         </div>
       </div>
       <div>
-        <h2>Bounded - CSS Only</h2>
+        <h6 :class="$tt('headline6')">Bounded - CSS Only</h6>
         <div class="demo-surface" v-ripple:cssOnly v-shadow="2">
           Interact with me!
         </div>
@@ -23,7 +23,7 @@
 
     <section class="example">
       <div>
-        <h2>Unbounded</h2>
+        <h6 :class="$tt('headline6')">Unbounded</h6>
         <ui-icon
           class="demo-surface"
           data-mdc-ripple-is-unbounded
@@ -32,7 +32,7 @@
         >
       </div>
       <div>
-        <h2>Unbounded - CSS Only</h2>
+        <h6 :class="$tt('headline6')">Unbounded - CSS Only</h6>
         <ui-icon
           class="demo-surface"
           data-mdc-ripple-is-unbounded
@@ -45,7 +45,7 @@
 
     <section class="example">
       <div>
-        <h2>Theme Styles</h2>
+        <h6 :class="$tt('headline6')">Theme Styles</h6>
         <div
           :class="['demo-surface', $themeColor('primary')]"
           v-ripple="1"
@@ -62,7 +62,7 @@
         </div>
       </div>
       <div>
-        <h2>Theme Styles - CSS Only</h2>
+        <h6 :class="$tt('headline6')">Theme Styles - CSS Only</h6>
         <div
           :class="['demo-surface', $themeColor('primary')]"
           v-ripple:cssOnly="1"

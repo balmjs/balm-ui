@@ -26,7 +26,7 @@
 
       <div :class="[$tt('body1'), 'demo-content']">
         <div :class="$tt('body2')">
-          <h3 :class="$tt('headline3')">Permanent Drawer</h3>
+          <h6>Permanent Drawer</h6>
           <p>It sits to the left of this content.</p>
           <ui-snippet :code="$store.demos[1]"></ui-snippet>
         </div>

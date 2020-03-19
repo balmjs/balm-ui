@@ -131,6 +131,10 @@ $shades-plus: (
 }
 
 .color-palette {
+  .mdc-typography--headline6 {
+    margin: 0;
+  }
+
   .mdc-list-item {
     display: flex;
     justify-content: space-between;

@@ -1,12 +1,12 @@
-## Introduction
+# Introduction
 
-### What is BalmUI?
+## What is BalmUI?
 
 Following the [Material Design](https://material.io/components/) UI components for the web specification, we developed the BalmUI library that contains a set of high quality components and demos for building rich, interactive user interfaces.
 
-### Reusability & Composition
+## Reusability & Composition
 
-#### 1. Components
+### 1. Components
 
 - General
   - Button
@@ -46,7 +46,7 @@ Following the [Material Design](https://material.io/components/) UI components f
   - Linear Progress
   - Skeleton (💡)
 
-#### 2. Plugins
+### 2. Plugins
 
 - Event (💡)
 - Grid
@@ -57,7 +57,7 @@ Following the [Material Design](https://material.io/components/) UI components f
 - Confirm (💡)
 - Toast (💡)
 
-#### 3. Directives
+### 3. Directives
 
 - Ripple
 - Elevation
@@ -65,7 +65,7 @@ Following the [Material Design](https://material.io/components/) UI components f
 - Shape
 - Anchor (💡)
 
-#### 4. Utilities (💡)
+### 4. Utilities (💡)
 
 - Type Detections
 - Helper Functions
@@ -73,11 +73,11 @@ Following the [Material Design](https://material.io/components/) UI components f
 
 > 💡: Extra
 
-### Contributing
+## Contributing
 
 We'd love for you to contribute and make BalmUI even better than it is today! Please make sure to read the [Contributing Guide](https://github.com/balmjs/balm-ui/blob/master/CONTRIBUTING.md) before making a pull request. You can submit any ideas as [pull requests](https://github.com/balmjs/balm-ui/pulls) or as [GitHub issues](https://github.com/balmjs/balm-ui/issues).
 
-### Browser support
+## Browser support
 
 We officially support the last two versions of every major browser. Specifically, we test on the following browsers:
 
@@ -87,7 +87,7 @@ We officially support the last two versions of every major browser. Specifically
 - **Edge** on Windows
 - **IE** 11 on Windows
 
-### Thank you
+## Thank you
 
 - [BalmJS](https://balmjs.com/)
 - [Vue.js](https://vuejs.org/)

@@ -1,9 +1,18 @@
+@use 'sass:map';
 @use '@material/theme/variables' as theme-variables;
+@use '@material/typography/variables' as typography-variables;
 @use '@material/top-app-bar/variables' as top-app-bar-variables;
 
 $primary: theme-variables.$primary;
 $secondary: theme-variables.$secondary;
 $mobile-breakpoint: top-app-bar-variables.$mobile-breakpoint;
+
+$font-size-h1: map.get(typography-variables.$styles-headline1, font-size);
+$font-size-h2: map.get(typography-variables.$styles-headline2, font-size);
+$font-size-h3: map.get(typography-variables.$styles-headline3, font-size);
+$font-size-h4: map.get(typography-variables.$styles-headline4, font-size);
+$font-size-h5: map.get(typography-variables.$styles-headline5, font-size);
+$font-size-h6: map.get(typography-variables.$styles-headline6, font-size);
 
 $nav-icons: (
   component: 'ic_component_24px.svg',

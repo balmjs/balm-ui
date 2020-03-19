@@ -27,6 +27,11 @@ fieldset {
   padding: 40px 0;
   background-color: $hero-background-color;
 
+  & > h1 {
+    font-size: 3.14rem;
+    font-weight: 300;
+  }
+
   .mdc-drawer--permanent {
     display: inherit;
     height: inherit;

@@ -1,6 +1,6 @@
-## Utilities
+# Utilities
 
-### 1. Types
+## 1. Types
 
 Default Usage
 
@@ -32,7 +32,7 @@ types.isFunction(value);
 
 > `getType` returns a string, others return a boolean.
 
-### 2. Helpers
+## 2. Helpers
 
 Default Usage
 
@@ -66,7 +66,7 @@ helpers.isDeepEqual(obj1, obj2);
   - `[]`
   - an empty `map` or `set`
 
-### 3. IE
+## 3. IE
 
 Default Usage
 

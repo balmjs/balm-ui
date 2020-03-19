@@ -24,6 +24,12 @@ a {
   }
 }
 
+.mdc-top-app-bar__title {
+  h1 {
+    margin: 0;
+  }
+}
+
 .balmui-body {
   display: flex;
   height: 100%;
@@ -47,6 +53,7 @@ a {
 
 .catalog-list {
   h3 {
+    font-size: 18px;
     padding: 0 12px;
   }
 
@@ -148,6 +155,10 @@ a {
       background-color: #00bfa5;
     }
   }
+}
+
+.ui-intro {
+  padding: 40px 0;
 }
 
 .markdown-body table td:nth-child(2) {

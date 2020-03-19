@@ -1,4 +1,4 @@
-## Quick Start
+# Quick Start
 
 Good tools make application development quicker and easier to maintain than if you did everything by hand.
 
@@ -6,7 +6,7 @@ The [Balm CLI](https://github.com/balmjs/balm-cli) is a command line interface t
 
 > [BalmJS](https://balmjs.com/)@2.8.0+(Recommended) or other toolchains 🚀
 
-### 0. Set up the Development Environment
+## 0. Set up the Development Environment
 
 You need to set up your development environment before you can do anything.
 
@@ -35,7 +35,7 @@ yarn global add balm-cli
 npm install -g balm-cli
 ```
 
-### 1. Create a new project
+## 1. Create a new project
 
 Open a terminal window.
 
@@ -45,7 +45,7 @@ Generate a new project and default app by running the following command:
 balm init vue my-project
 ```
 
-### 2. Install
+## 2. Install
 
 Go to the project directory.
 
@@ -73,7 +73,7 @@ yarn add balm-ui
 npm install --save balm-ui
 ```
 
-### 3. Config
+## 3. Config
 
 - **`balm.config`** [**setup**](https://balmjs.com/docs/v2/config/styles.html#styles-dartsass) for Dart Sass
 
@@ -93,9 +93,9 @@ module.exports = {
 
 > More BalmUI usages and font without downloading, see [Advanced Usage](https://material.balmjs.com/#/guide/advanced).
 
-### 4. Usage
+## 4. Usage
 
-#### Default Usage
+### Default Usage
 
 Edit `my-project/app/styles/global/_vendor.scss`
 
@@ -126,7 +126,7 @@ new Vue({
 });
 ```
 
-#### Individual Usage
+### Individual Usage
 
 Edit `my-project/app/styles/global/_vendor.scss`
 
@@ -146,7 +146,7 @@ import UiButtonComponents from 'balm-ui/components/button';
 Vue.use(UiButtonComponents);
 ```
 
-### 5. Development and testing
+## 5. Development and testing
 
 ```sh
 npm run dev
@@ -164,7 +164,7 @@ Edit a vue component: `my-project/app/scripts/views/components/hello.vue`
 </template>
 ```
 
-### 5. Bundling and deployment
+## 6. Bundling and deployment
 
 ```sh
 npm run prod

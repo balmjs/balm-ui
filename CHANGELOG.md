@@ -19,8 +19,6 @@
 
 ## v5.5.0 / 2020-03-12
 
-> WeChat MiniProgram Partially Supported
-
 ### Features
 
 - `$alert`, `$confirm`: add `raw` option
@@ -28,8 +26,7 @@
 
 ### Chores
 
-- `$balmUI`: update events for miniprogram
-- `<ui-drawer>`: update for miniprogram
+- `$balmUI`: optimize events
 
 ### BREAKING CHANGES
 

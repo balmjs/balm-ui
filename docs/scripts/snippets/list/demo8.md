@@ -5,7 +5,11 @@
     <ui-item v-else :key="index">
       <ui-item-text-content>{{ item.text }}</ui-item-text-content>
       <ui-item-last-content>
-        <ui-radio v-model="checkedValue" :value="item.value"></ui-radio>
+        <ui-radio
+          v-model="checkedValue"
+          :value="item.value"
+          @click.native.stop
+        ></ui-radio>
       </ui-item-last-content>
     </ui-item>
   </template>

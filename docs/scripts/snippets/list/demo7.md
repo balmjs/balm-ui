@@ -5,7 +5,11 @@
     <ui-item v-else :key="index">
       <ui-item-text-content>{{ item.text }}</ui-item-text-content>
       <ui-item-last-content>
-        <ui-checkbox v-model="checkedValues" :value="item.value"></ui-checkbox>
+        <ui-checkbox
+          v-model="checkedValues"
+          :value="item.value"
+          @click.native.stop
+        ></ui-checkbox>
       </ui-item-last-content>
     </ui-item>
   </template>

@@ -10,11 +10,25 @@ export default {
     tbodyData() {
       let result = [];
 
-      this.data.forEach((tbodyData, tbodyDataIndex) => {
+      const dataFields = this.tbody;
+      const tableFields = dataFields.map(fieldItem => {
+        return this.isObject(fieldItem)
+          ? fieldItem[this.T_CELL.FIELD]
+          : fieldItem;
+      });
+      const tableData = this.data.map(dataItem => {
+        let item = {};
+        tableFields.forEach(field => {
+          item[field] = dataItem[field];
+        });
+        return item;
+      });
+
+      tableData.forEach((tbodyData, tbodyDataIndex) => {
         let tbodyRow = this.getData(
           Object.assign({}, tbodyData),
           tbodyDataIndex,
-          this.tbody
+          dataFields
         );
 
         result.push(tbodyRow);

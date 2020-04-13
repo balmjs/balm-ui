@@ -299,24 +299,26 @@ export default {
     this.$table = new MDCDataTable(this.$el);
 
     this.$table.listen('MDCDataTable:rowSelectionChanged', ({ detail }) => {
-      let selectedRows = [];
+      let selectedRows = this.selectedRows; // NOTE: cache selected rows for pagination
 
       this.currentData.forEach((tbodyData, tbodyDataIndex) => {
         let selectedRowId = this.selectedKey
           ? tbodyData[this.selectedKey]
           : tbodyDataIndex;
 
-        // For old selectedRows
-        if (this.selectedRows.includes(selectedRowId)) {
-          let selected = !(
-            tbodyDataIndex === detail.rowIndex && !detail.selected
-          );
-          selected && selectedRows.push(selectedRowId);
-        }
-
-        // For new selectedRow
-        if (tbodyDataIndex === detail.rowIndex && detail.selected) {
-          selectedRows.push(selectedRowId);
+        if (tbodyDataIndex === detail.rowIndex) {
+          // checked
+          if (detail.selected) {
+            selectedRows.push(selectedRowId);
+          } else {
+            // unchecked
+            selectedRows.splice(
+              selectedRows.findIndex(
+                selectedKey => selectedKey === selectedRowId
+              ),
+              1
+            );
+          }
         }
       });
 
@@ -324,15 +326,38 @@ export default {
     });
 
     this.$table.listen('MDCDataTable:selectedAll', () => {
-      let selectedRows = this.currentData.map((tbodyData, tbodyDataIndex) => {
-        return this.selectedKey ? tbodyData[this.selectedKey] : tbodyDataIndex;
-      });
+      let oldSelectedRows = this.selectedRows; // NOTE: cache selected rows for pagination
+
+      let newSelectedRows = this.currentData.map(
+        (tbodyData, tbodyDataIndex) => {
+          return this.selectedKey
+            ? tbodyData[this.selectedKey]
+            : tbodyDataIndex;
+        }
+      );
+
+      let selectedRows = [...new Set(oldSelectedRows.concat(newSelectedRows))]; // merge + unique
 
       this.$emit(UI_TABLE.EVENT.SELECTED, selectedRows);
     });
 
     this.$table.listen('MDCDataTable:unselectedAll', () => {
-      this.$emit(UI_TABLE.EVENT.SELECTED, []);
+      let oldSelectedRows = this.selectedRows; // NOTE: cache selected rows for pagination
+
+      let newSelectedRows = this.currentData.map(
+        (tbodyData, tbodyDataIndex) => {
+          return this.selectedKey
+            ? tbodyData[this.selectedKey]
+            : tbodyDataIndex;
+        }
+      );
+
+      // Difference set
+      let a = new Set(oldSelectedRows);
+      let b = new Set(newSelectedRows);
+      let selectedRows = Array.from(new Set([...a].filter(x => !b.has(x))));
+
+      this.$emit(UI_TABLE.EVENT.SELECTED, selectedRows);
     });
   }
 };

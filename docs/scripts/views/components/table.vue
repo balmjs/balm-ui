@@ -37,6 +37,14 @@
           <ui-icon @click="show(data)">delete</ui-icon>
         </template>
       </ui-table>
+
+      <!-- <br /><br />
+      <ui-pagination
+        v-model="page"
+        :pageSize="8"
+        :total="12"
+        @change="onPage"
+      ></ui-pagination> -->
     </section>
     <ui-snippet :code="$store.demos[2]"></ui-snippet>
   </ui-page-structure>
@@ -146,7 +154,8 @@ export default {
         }
       ],
       selectedRows: [1, 2, 4],
-      selectedKey: 'id'
+      selectedKey: 'id',
+      page: 1
     };
   },
   async created() {
@@ -157,6 +166,11 @@ export default {
   methods: {
     show(data) {
       console.log(data);
+    },
+    async onPage(page) {
+      let url = `/data/table${page === 2 ? page : ''}.json`;
+      let { data } = await this.$http.get(url);
+      this.data = data;
     }
   }
 };

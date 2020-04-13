@@ -1,5 +1,15 @@
 # BalmUI ChangeLog
 
+## v5.6.2 / 2020-04-13
+
+### Bug Fixes
+
+- `<ui-table>`: fix the empty display of the fields
+
+### Chores
+
+- `<ui-table>`: update selected rows for the pagination
+
 ## v5.6.1 / 2020-03-19
 
 ### Chores

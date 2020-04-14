@@ -113,14 +113,14 @@ export default {
         },
         {
           field: 'fat',
-          fn: data => {
+          fn: (data) => {
             return data.fat.toFixed(1);
           }
         },
         'carbs',
         {
           field: 'protein',
-          class: data => {
+          class: (data) => {
             return data.protein > 5 ? 'red' : 'green';
           }
         },

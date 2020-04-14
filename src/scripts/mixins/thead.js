@@ -11,14 +11,14 @@ export default {
       let result = [];
 
       if (this.hasMultipleRows(this.thead)) {
-        this.thead.forEach(currentTheadRow => {
-          let theadRow = currentTheadRow.map(theadCell =>
+        this.thead.forEach((currentTheadRow) => {
+          let theadRow = currentTheadRow.map((theadCell) =>
             this.getTheadCell(theadCell)
           );
           result.push(theadRow);
         });
       } else {
-        let theadRow = this.thead.map(theadCell =>
+        let theadRow = this.thead.map((theadCell) =>
           this.getTheadCell(theadCell)
         );
         result.push(theadRow);
@@ -61,7 +61,7 @@ export default {
         if (this.isString(data)) {
           cell[this.T_CELL.VALUE] = data;
         } else {
-          Object.keys(data).forEach(key => {
+          Object.keys(data).forEach((key) => {
             cell[key] = data[key];
           });
         }

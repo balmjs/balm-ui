@@ -104,18 +104,12 @@
                   v-if="tbodyCell[T_CELL.CHECKBOX]"
                   :class="'mdc-data-table__row-checkbox'"
                 ></ui-checkbox>
-                <!-- Actions -->
-                <slot
-                  v-else-if="tbodyCell[T_CELL.ACTIONS]"
-                  :name="tbodyCell[T_CELL.ACTIONS]"
-                  :data="getRowData(tbodyRow)"
-                ></slot>
-                <!-- Data -->
+                <!-- Data / Actions -->
                 <template v-else>
                   <slot
                     v-if="tbodyCell[T_CELL.SLOT]"
                     :name="tbodyCell[T_CELL.SLOT]"
-                    :data="getRowData(tbodyRow)"
+                    :data="currentData[tbodyRowIndex]"
                   ></slot>
                   <template v-else>{{ tbodyCell[T_CELL.VALUE] }}</template>
                 </template>
@@ -267,10 +261,10 @@ export default {
         this.$table.layout();
 
         if (this.selectedRows.length) {
-          let rowIds = this.selectedRows.map(selectedRow => {
+          let rowIds = this.selectedRows.map((selectedRow) => {
             let rowIndex = this.selectedKey
               ? this.currentData.findIndex(
-                  tbodyData => tbodyData[this.selectedKey] === selectedRow
+                  (tbodyData) => tbodyData[this.selectedKey] === selectedRow
                 )
               : selectedRow;
             return `${this.rowIdPrefix}${rowIndex}`;
@@ -314,7 +308,7 @@ export default {
             // unchecked
             selectedRows.splice(
               selectedRows.findIndex(
-                selectedKey => selectedKey === selectedRowId
+                (selectedKey) => selectedKey === selectedRowId
               ),
               1
             );
@@ -355,7 +349,7 @@ export default {
       // Difference set
       let a = new Set(oldSelectedRows);
       let b = new Set(newSelectedRows);
-      let selectedRows = Array.from(new Set([...a].filter(x => !b.has(x))));
+      let selectedRows = Array.from(new Set([...a].filter((x) => !b.has(x))));
 
       this.$emit(UI_TABLE.EVENT.SELECTED, selectedRows);
     });

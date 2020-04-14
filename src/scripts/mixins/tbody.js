@@ -11,14 +11,14 @@ export default {
       let result = [];
 
       const dataFields = this.tbody;
-      const tableFields = dataFields.map(fieldItem => {
+      const tableFields = dataFields.map((fieldItem) => {
         return this.isObject(fieldItem)
           ? fieldItem[this.T_CELL.FIELD]
           : fieldItem;
       });
-      const tableData = this.data.map(dataItem => {
+      const tableData = this.data.map((dataItem) => {
         let item = {};
-        tableFields.forEach(field => {
+        tableFields.forEach((field) => {
           item[field] = dataItem[field];
         });
         return item;
@@ -91,7 +91,7 @@ export default {
 
           // Set others
           if (this.isObject(dataFields[index])) {
-            Object.keys(dataFields[index]).forEach(key => {
+            Object.keys(dataFields[index]).forEach((key) => {
               if (key !== this.T_CELL.FIELD) {
                 let value = dataFields[index][key];
                 switch (key) {
@@ -123,17 +123,6 @@ export default {
         cell[this.T_CELL.ACTIONS] = this.withActions;
         data.push(cell);
       }
-
-      return data;
-    },
-    getRowData(tbodyRow) {
-      let data = {};
-
-      tbodyRow.forEach(cell => {
-        if (!(cell[this.T_CELL.CHECKBOX] || cell[this.T_CELL.ACTIONS])) {
-          data[cell[this.T_CELL.FIELD]] = cell[this.T_CELL.VALUE];
-        }
-      });
 
       return data;
     }

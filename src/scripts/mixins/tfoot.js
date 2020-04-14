@@ -11,7 +11,7 @@ export default {
       let result = [];
 
       if (this.tfoot.length) {
-        result = this.tfoot.map(tfootCell => this.getTfootCell(tfootCell));
+        result = this.tfoot.map((tfootCell) => this.getTfootCell(tfootCell));
 
         if (this.rowCheckbox) {
           result.unshift({});
@@ -41,7 +41,7 @@ export default {
         let field = data[this.T_CELL.FIELD] || false;
 
         if (field) {
-          let columnData = this.data.map(tbodyData => tbodyData[field]);
+          let columnData = this.data.map((tbodyData) => tbodyData[field]);
 
           let result = 0;
           switch (data[this.T_CELL.FUNCTION_NAME]) {
@@ -49,14 +49,14 @@ export default {
               result = columnData.length;
               break;
             case UI_TABLE.AGG.SUM:
-              columnData.forEach(value => {
+              columnData.forEach((value) => {
                 if (value) {
                   result += value;
                 }
               });
               break;
             case UI_TABLE.AGG.AVG:
-              columnData.forEach(value => {
+              columnData.forEach((value) => {
                 if (value) {
                   result += value;
                 }
@@ -64,14 +64,14 @@ export default {
               result /= columnData.length;
               break;
             case UI_TABLE.AGG.MAX:
-              columnData.forEach(value => {
+              columnData.forEach((value) => {
                 if (value && value > result) {
                   result = value;
                 }
               });
               break;
             case UI_TABLE.AGG.MIN:
-              columnData.forEach(value => {
+              columnData.forEach((value) => {
                 if (value && value < result) {
                   result = value;
                 }
@@ -87,7 +87,7 @@ export default {
             : Math.round(result * 100) / 100;
         }
 
-        Object.keys(data).forEach(key => {
+        Object.keys(data).forEach((key) => {
           cell[key] = data[key];
         });
       }

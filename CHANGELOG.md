@@ -1,5 +1,15 @@
 # BalmUI ChangeLog
 
+## v5.6.3 / 2020-04-14
+
+### Bug Fixes
+
+- `<ui-table>`: fix slot row data bug
+
+### Chores
+
+- `<ui-table>`: update actions slot
+
 ## v5.6.2 / 2020-04-13
 
 ### Bug Fixes

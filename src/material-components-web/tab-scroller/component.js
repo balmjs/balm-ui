@@ -20,14 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { applyPassive } from '../dom/events';
 import { matches } from '../dom/ponyfill';
 import { MDCTabScrollerFoundation } from './foundation';
 import * as util from './util';
 var MDCTabScroller = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCTabScroller, _super);
+    __extends(MDCTabScroller, _super);
     function MDCTabScroller() {
         return _super !== null && _super.apply(this, arguments) || this;
     }

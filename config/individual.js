@@ -13,6 +13,7 @@ const components = [
   'card',
   'checkbox',
   'chips',
+  'circular-progress',
   'dialog',
   'drawer',
   'fab',

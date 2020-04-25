@@ -20,13 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses, strings } from './constants';
 var MDCFormFieldFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCFormFieldFoundation, _super);
+    __extends(MDCFormFieldFoundation, _super);
     function MDCFormFieldFoundation(adapter) {
-        var _this = _super.call(this, tslib_1.__assign({}, MDCFormFieldFoundation.defaultAdapter, adapter)) || this;
+        var _this = _super.call(this, __assign(__assign({}, MDCFormFieldFoundation.defaultAdapter), adapter)) || this;
         _this.clickHandler_ = function () { return _this.handleClick_(); };
         return _this;
     }

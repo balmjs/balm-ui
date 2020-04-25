@@ -20,13 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { cssClasses, strings } from './constants';
 import { MDCMenuSurfaceFoundation } from './foundation';
 import * as util from './util';
 var MDCMenuSurface = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCMenuSurface, _super);
+    __extends(MDCMenuSurface, _super);
     function MDCMenuSurface() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
@@ -42,7 +42,9 @@ var MDCMenuSurface = /** @class */ (function (_super) {
         }
         this.handleKeydown_ = function (evt) { return _this.foundation_.handleKeydown(evt); };
         this.handleBodyClick_ = function (evt) { return _this.foundation_.handleBodyClick(evt); };
-        this.registerBodyClickListener_ = function () { return document.body.addEventListener('click', _this.handleBodyClick_); };
+        // capture so that no race between handleBodyClick and quickOpen when
+        // menusurface opened on button click which registers this listener
+        this.registerBodyClickListener_ = function () { return document.body.addEventListener('click', _this.handleBodyClick_, { capture: true }); };
         this.deregisterBodyClickListener_ = function () { return document.body.removeEventListener('click', _this.handleBodyClick_); };
         this.listen('keydown', this.handleKeydown_);
         this.listen(strings.OPENED_EVENT, this.registerBodyClickListener_);

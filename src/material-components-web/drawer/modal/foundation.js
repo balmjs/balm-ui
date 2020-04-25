@@ -20,11 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __extends } from "tslib";
 import { MDCDismissibleDrawerFoundation } from '../dismissible/foundation';
 /* istanbul ignore next: subclass is not a branch statement */
 var MDCModalDrawerFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCModalDrawerFoundation, _super);
+    __extends(MDCModalDrawerFoundation, _super);
     function MDCModalDrawerFoundation() {
         return _super !== null && _super.apply(this, arguments) || this;
     }

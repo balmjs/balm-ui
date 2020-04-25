@@ -20,14 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../../base/foundation';
 import { strings } from './constants';
 var INTERACTION_EVENTS = ['click', 'keydown'];
 var MDCSelectIconFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCSelectIconFoundation, _super);
+    __extends(MDCSelectIconFoundation, _super);
     function MDCSelectIconFoundation(adapter) {
-        var _this = _super.call(this, tslib_1.__assign({}, MDCSelectIconFoundation.defaultAdapter, adapter)) || this;
+        var _this = _super.call(this, __assign(__assign({}, MDCSelectIconFoundation.defaultAdapter), adapter)) || this;
         _this.savedTabIndex_ = null;
         _this.interactionHandler_ = function (evt) { return _this.handleInteraction(evt); };
         return _this;

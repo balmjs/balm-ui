@@ -20,12 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __extends } from "tslib";
 import { numbers } from '../constants';
 import { MDCTopAppBarBaseFoundation } from '../foundation';
 var INITIAL_VALUE = 0;
 var MDCTopAppBarFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCTopAppBarFoundation, _super);
+    __extends(MDCTopAppBarFoundation, _super);
     /* istanbul ignore next: optional argument is not a branch statement */
     function MDCTopAppBarFoundation(adapter) {
         var _this = _super.call(this, adapter) || this;

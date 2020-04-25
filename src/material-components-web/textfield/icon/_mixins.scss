@@ -21,16 +21,24 @@
 //
 
 @use "../../rtl/mixins" as rtl-mixins;
-@use "../../theme/variables";
 @use "../../theme/mixins" as theme-mixins;
 @use "../../feature-targeting/functions" as feature-targeting-functions;
 @use "../../feature-targeting/mixins" as feature-targeting-mixins;
+@use "./variables";
 
 // Public mixins
 
 @mixin icon-core-styles($query: feature-targeting-functions.all()) {
   .mdc-text-field__icon {
     @include icon_($query: $query);
+  }
+
+  .mdc-text-field__icon--leading {
+    @include leading-icon_($query: $query);
+  }
+
+  .mdc-text-field__icon--trailing {
+    @include trailing-icon_($query: $query);
   }
 }
 
@@ -65,42 +73,27 @@
   }
 }
 
+/// Sets the size of the leading and trailing icons.
+///
+/// @param {Number} $size - the size of the icon in px
+@mixin size($size, $query: feature-targeting-functions.all()) {
+  $feat-structure: feature-targeting-functions.create-target($query, structure);
+
+  @include feature-targeting-mixins.targets($feat-structure) {
+    .mdc-text-field__icon {
+      font-size: $size;
+    }
+  }
+}
+
 // Private mixins
-
-@mixin leading-icon-horizontal-position_($position, $query: feature-targeting-functions.all()) {
-  $feat-structure: feature-targeting-functions.create-target($query, structure);
-
-  .mdc-text-field__icon--leading {
-    @include feature-targeting-mixins.targets($feat-structure) {
-      @include rtl-mixins.reflexive-position(left, $position);
-    }
-  }
-}
-
-@mixin trailing-icon-horizontal-position_($position, $query: feature-targeting-functions.all()) {
-  $feat-structure: feature-targeting-functions.create-target($query, structure);
-
-  .mdc-text-field__icon--trailing {
-    @include feature-targeting-mixins.targets($feat-structure) {
-      @include rtl-mixins.reflexive-position(right, $position);
-    }
-  }
-}
-
-@mixin icon-horizontal-position-two-icons_(
-  $position-left, $position-right, $query: feature-targeting-functions.all()) {
-  @include leading-icon-horizontal-position_($position-left, $query);
-  @include trailing-icon-horizontal-position_($position-right, $query);
-}
 
 @mixin icon_($query: feature-targeting-functions.all()) {
   $feat-structure: feature-targeting-functions.create-target($query, structure);
   $feat-color: feature-targeting-functions.create-target($query, color);
 
   @include feature-targeting-mixins.targets($feat-structure) {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    align-self: center;
     cursor: pointer;
   }
 
@@ -110,6 +103,22 @@
       cursor: default;
       pointer-events: none;
     }
+  }
+}
+
+@mixin leading-icon_($query: feature-targeting-functions.all()) {
+  $feat-structure: feature-targeting-functions.create-target($query, structure);
+
+  @include feature-targeting-mixins.targets($feat-structure) {
+    @include rtl-mixins.reflexive-property(margin, variables.$leading-icon-padding-left, variables.$leading-icon-padding-right);
+  }
+}
+
+@mixin trailing-icon_($query: feature-targeting-functions.all()) {
+  $feat-structure: feature-targeting-functions.create-target($query, structure);
+
+  @include feature-targeting-mixins.targets($feat-structure) {
+    @include rtl-mixins.reflexive-property(margin, variables.$trailing-icon-padding-left, variables.$trailing-icon-padding-right);
   }
 }
 

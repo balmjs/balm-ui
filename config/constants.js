@@ -20,6 +20,7 @@ const DMC_COMPONENTS = [
   'card',
   'checkbox',
   'chips', // New in mdc@0.30.0
+  'circular-progress', // New in mdc@6.0.0
   'data-table', // New in mdc@3.1.0
   'density', // New in mdc@4.0.0
   'dialog',
@@ -30,7 +31,6 @@ const DMC_COMPONENTS = [
   'feature-targeting', // New in mdc@0.44.0
   'floating-label',
   'form-field',
-  'grid-list',
   'icon-button', // New in mdc@0.36.0
   'image-list', // New in mdc@0.33.0
   'layout-grid',

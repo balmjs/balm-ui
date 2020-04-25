@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { numbers, strings } from './constants';
 var ACCEPTABLE_KEYS = new Set();
@@ -40,9 +40,9 @@ KEYCODE_MAP.set(numbers.HOME_KEYCODE, strings.HOME_KEY);
 KEYCODE_MAP.set(numbers.ENTER_KEYCODE, strings.ENTER_KEY);
 KEYCODE_MAP.set(numbers.SPACE_KEYCODE, strings.SPACE_KEY);
 var MDCTabBarFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCTabBarFoundation, _super);
+    __extends(MDCTabBarFoundation, _super);
     function MDCTabBarFoundation(adapter) {
-        var _this = _super.call(this, tslib_1.__assign({}, MDCTabBarFoundation.defaultAdapter, adapter)) || this;
+        var _this = _super.call(this, __assign(__assign({}, MDCTabBarFoundation.defaultAdapter), adapter)) || this;
         _this.useAutomaticActivation_ = false;
         return _this;
     }

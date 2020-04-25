@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __extends, __values } from "tslib";
 import { MDCComponent } from '../base/component';
 import { FocusTrap } from '../dom/focus-trap';
 import { closest, matches } from '../dom/ponyfill';
@@ -29,7 +29,7 @@ import { MDCDialogFoundation } from './foundation';
 import * as util from './util';
 var strings = MDCDialogFoundation.strings;
 var MDCDialog = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCDialog, _super);
+    __extends(MDCDialog, _super);
     function MDCDialog() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
@@ -87,7 +87,7 @@ var MDCDialog = /** @class */ (function (_super) {
         this.focusTrapFactory_ = focusTrapFactory;
         this.buttonRipples_ = [];
         try {
-            for (var _b = tslib_1.__values(this.buttons_), _c = _b.next(); !_c.done; _c = _b.next()) {
+            for (var _b = __values(this.buttons_), _c = _b.next(); !_c.done; _c = _b.next()) {
                 var buttonEl = _c.value;
                 this.buttonRipples_.push(new MDCRipple(buttonEl));
             }

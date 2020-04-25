@@ -45,6 +45,11 @@ export var strings = {
     ENTER_KEY: 'Enter',
     ENTRY_ANIMATION_NAME: 'mdc-chip-entry',
     HOME_KEY: 'Home',
+    IE_ARROW_DOWN_KEY: 'Down',
+    IE_ARROW_LEFT_KEY: 'Left',
+    IE_ARROW_RIGHT_KEY: 'Right',
+    IE_ARROW_UP_KEY: 'Up',
+    IE_DELETE_KEY: 'Del',
     INTERACTION_EVENT: 'MDCChip:interaction',
     LEADING_ICON_SELECTOR: '.mdc-chip__icon--leading',
     NAVIGATION_EVENT: 'MDCChip:navigation',
@@ -65,6 +70,7 @@ export var cssClasses = {
     HIDDEN_LEADING_ICON: 'mdc-chip__icon--leading-hidden',
     LEADING_ICON: 'mdc-chip__icon--leading',
     PRIMARY_ACTION: 'mdc-chip__primary-action',
+    PRIMARY_ACTION_FOCUSED: 'mdc-chip--primary-action-focused',
     SELECTED: 'mdc-chip--selected',
     TEXT: 'mdc-chip__text',
     TRAILING_ACTION: 'mdc-chip__trailing-action',
@@ -78,10 +84,16 @@ navigationKeys.add(strings.ARROW_DOWN_KEY);
 navigationKeys.add(strings.ARROW_UP_KEY);
 navigationKeys.add(strings.END_KEY);
 navigationKeys.add(strings.HOME_KEY);
+navigationKeys.add(strings.IE_ARROW_LEFT_KEY);
+navigationKeys.add(strings.IE_ARROW_RIGHT_KEY);
+navigationKeys.add(strings.IE_ARROW_DOWN_KEY);
+navigationKeys.add(strings.IE_ARROW_UP_KEY);
 export var jumpChipKeys = new Set();
 // IE11 has no support for new Set with iterable so we need to initialize this by hand
 jumpChipKeys.add(strings.ARROW_UP_KEY);
 jumpChipKeys.add(strings.ARROW_DOWN_KEY);
 jumpChipKeys.add(strings.HOME_KEY);
 jumpChipKeys.add(strings.END_KEY);
+jumpChipKeys.add(strings.IE_ARROW_UP_KEY);
+jumpChipKeys.add(strings.IE_ARROW_DOWN_KEY);
 //# sourceMappingURL=constants.js.map

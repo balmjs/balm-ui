@@ -20,14 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../../base/foundation';
 import { Direction, EventSource, jumpChipKeys, navigationKeys, strings as chipStrings } from '../chip/constants';
 import { cssClasses, strings } from './constants';
 var MDCChipSetFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCChipSetFoundation, _super);
+    __extends(MDCChipSetFoundation, _super);
     function MDCChipSetFoundation(adapter) {
-        var _this = _super.call(this, tslib_1.__assign({}, MDCChipSetFoundation.defaultAdapter, adapter)) || this;
+        var _this = _super.call(this, __assign(__assign({}, MDCChipSetFoundation.defaultAdapter), adapter)) || this;
         /**
          * The ids of the selected chips in the set. Only used for choice chip set or filter chip set.
          */
@@ -136,9 +136,13 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
             return;
         }
         var isRTL = this.adapter_.isRTL();
-        var shouldIncrement = key === chipStrings.ARROW_RIGHT_KEY && !isRTL
-            || key === chipStrings.ARROW_LEFT_KEY && isRTL
-            || key === chipStrings.ARROW_DOWN_KEY;
+        var isLeftKey = key === chipStrings.ARROW_LEFT_KEY ||
+            key === chipStrings.IE_ARROW_LEFT_KEY;
+        var isRightKey = key === chipStrings.ARROW_RIGHT_KEY ||
+            key === chipStrings.IE_ARROW_RIGHT_KEY;
+        var isDownKey = key === chipStrings.ARROW_DOWN_KEY ||
+            key === chipStrings.IE_ARROW_DOWN_KEY;
+        var shouldIncrement = !isRTL && isRightKey || isRTL && isLeftKey || isDownKey;
         var isHome = key === chipStrings.HOME_KEY;
         var isEnd = key === chipStrings.END_KEY;
         if (shouldIncrement) {
@@ -178,7 +182,11 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
     };
     MDCChipSetFoundation.prototype.getDirection_ = function (key) {
         var isRTL = this.adapter_.isRTL();
-        if (key === chipStrings.ARROW_LEFT_KEY && !isRTL || key === chipStrings.ARROW_RIGHT_KEY && isRTL) {
+        var isLeftKey = key === chipStrings.ARROW_LEFT_KEY ||
+            key === chipStrings.IE_ARROW_LEFT_KEY;
+        var isRightKey = key === chipStrings.ARROW_RIGHT_KEY ||
+            key === chipStrings.IE_ARROW_RIGHT_KEY;
+        if (!isRTL && isLeftKey || isRTL && isRightKey) {
             return Direction.LEFT;
         }
         return Direction.RIGHT;

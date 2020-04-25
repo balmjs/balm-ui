@@ -20,12 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { Corner } from '../menu-surface/constants';
 import { cssClasses, numbers, strings } from './constants';
 var MDCSelectFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCSelectFoundation, _super);
+    __extends(MDCSelectFoundation, _super);
     /* istanbul ignore next: optional argument is not a branch statement */
     /**
      * @param adapter
@@ -33,18 +33,20 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
      */
     function MDCSelectFoundation(adapter, foundationMap) {
         if (foundationMap === void 0) { foundationMap = {}; }
-        var _this = _super.call(this, tslib_1.__assign({}, MDCSelectFoundation.defaultAdapter, adapter)) || this;
+        var _this = _super.call(this, __assign(__assign({}, MDCSelectFoundation.defaultAdapter), adapter)) || this;
         // Index of the currently selected menu item.
-        _this.selectedIndex_ = numbers.UNSET_INDEX;
+        _this.selectedIndex = numbers.UNSET_INDEX;
         // Disabled state
-        _this.disabled_ = false;
-        // isMenuOpen_ is used to track the state of the menu by listening to the MDCMenuSurface:closed event
-        // For reference, menu.open will return false if the menu is still closing, but isMenuOpen_ returns false only after
-        // the menu has closed
-        _this.isMenuOpen_ = false;
-        _this.leadingIcon_ = foundationMap.leadingIcon;
-        _this.helperText_ = foundationMap.helperText;
-        _this.menuItemValues_ = _this.adapter_.getMenuItemValues();
+        _this.disabled = false;
+        // isMenuOpen is used to track the state of the menu by listening to the
+        // MDCMenuSurface:closed event For reference, menu.open will return false if
+        // the menu is still closing, but isMenuOpen returns false only after the menu
+        // has closed
+        _this.isMenuOpen = false;
+        _this.leadingIcon = foundationMap.leadingIcon;
+        _this.helperText = foundationMap.helperText;
+        _this.menuItemValues = _this.adapter_.getMenuItemValues();
+        _this.setDisabled(_this.adapter_.hasClass(cssClasses.DISABLED));
         return _this;
     }
     Object.defineProperty(MDCSelectFoundation, "cssClasses", {
@@ -90,9 +92,9 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
                 setRippleCenter: function () { return undefined; },
                 notifyChange: function () { return undefined; },
                 setSelectedText: function () { return undefined; },
-                isSelectedTextFocused: function () { return false; },
-                getSelectedTextAttr: function () { return ''; },
-                setSelectedTextAttr: function () { return undefined; },
+                isSelectAnchorFocused: function () { return false; },
+                getSelectAnchorAttr: function () { return ''; },
+                setSelectAnchorAttr: function () { return undefined; },
                 openMenu: function () { return undefined; },
                 closeMenu: function () { return undefined; },
                 getAnchorElement: function () { return null; },
@@ -116,28 +118,28 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
     });
     /** Returns the index of the currently selected menu item, or -1 if none. */
     MDCSelectFoundation.prototype.getSelectedIndex = function () {
-        return this.selectedIndex_;
+        return this.selectedIndex;
     };
     MDCSelectFoundation.prototype.setSelectedIndex = function (index, closeMenu) {
         if (closeMenu === void 0) { closeMenu = false; }
         if (index >= this.adapter_.getMenuItemCount()) {
             return;
         }
-        var previouslySelectedIndex = this.selectedIndex_;
-        this.selectedIndex_ = index;
-        if (this.selectedIndex_ === numbers.UNSET_INDEX) {
+        var previouslySelectedIndex = this.selectedIndex;
+        this.selectedIndex = index;
+        if (this.selectedIndex === numbers.UNSET_INDEX) {
             this.adapter_.setSelectedText('');
         }
         else {
-            this.adapter_.setSelectedText(this.adapter_.getMenuItemTextAtIndex(this.selectedIndex_).trim());
+            this.adapter_.setSelectedText(this.adapter_.getMenuItemTextAtIndex(this.selectedIndex).trim());
         }
         if (previouslySelectedIndex !== numbers.UNSET_INDEX) {
             this.adapter_.removeClassAtIndex(previouslySelectedIndex, cssClasses.SELECTED_ITEM_CLASS);
             this.adapter_.removeAttributeAtIndex(previouslySelectedIndex, strings.ARIA_SELECTED_ATTR);
         }
-        if (this.selectedIndex_ !== numbers.UNSET_INDEX) {
-            this.adapter_.addClassAtIndex(this.selectedIndex_, cssClasses.SELECTED_ITEM_CLASS);
-            this.adapter_.setAttributeAtIndex(this.selectedIndex_, strings.ARIA_SELECTED_ATTR, 'true');
+        if (this.selectedIndex !== numbers.UNSET_INDEX) {
+            this.adapter_.addClassAtIndex(this.selectedIndex, cssClasses.SELECTED_ITEM_CLASS);
+            this.adapter_.setAttributeAtIndex(this.selectedIndex, strings.ARIA_SELECTED_ATTR, 'true');
         }
         this.layout();
         if (closeMenu) {
@@ -146,9 +148,8 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         this.handleChange();
     };
     MDCSelectFoundation.prototype.setValue = function (value) {
-        var index = this.menuItemValues_.indexOf(value);
+        var index = this.menuItemValues.indexOf(value);
         this.setSelectedIndex(index);
-        this.handleChange();
     };
     MDCSelectFoundation.prototype.getValue = function () {
         var listItem = this.adapter_.getSelectedMenuItem();
@@ -158,29 +159,29 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         return '';
     };
     MDCSelectFoundation.prototype.getDisabled = function () {
-        return this.disabled_;
+        return this.disabled;
     };
     MDCSelectFoundation.prototype.setDisabled = function (isDisabled) {
-        this.disabled_ = isDisabled;
-        if (this.disabled_) {
+        this.disabled = isDisabled;
+        if (this.disabled) {
             this.adapter_.addClass(cssClasses.DISABLED);
             this.adapter_.closeMenu();
         }
         else {
             this.adapter_.removeClass(cssClasses.DISABLED);
         }
-        if (this.leadingIcon_) {
-            this.leadingIcon_.setDisabled(this.disabled_);
+        if (this.leadingIcon) {
+            this.leadingIcon.setDisabled(this.disabled);
         }
-        this.adapter_.setSelectedTextAttr('tabindex', this.disabled_ ? '-1' : '0');
-        this.adapter_.setSelectedTextAttr('aria-disabled', this.disabled_.toString());
+        this.adapter_.setSelectAnchorAttr('tabindex', this.disabled ? '-1' : '0');
+        this.adapter_.setSelectAnchorAttr('aria-disabled', this.disabled.toString());
     };
     /**
      * @param content Sets the content of the helper text.
      */
     MDCSelectFoundation.prototype.setHelperTextContent = function (content) {
-        if (this.helperText_) {
-            this.helperText_.setContent(content);
+        if (this.helperText) {
+            this.helperText.setContent(content);
         }
     };
     MDCSelectFoundation.prototype.layout = function () {
@@ -195,29 +196,29 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         }
         this.adapter_.addClass(cssClasses.ACTIVATED);
         // Menu should open to the last selected element, should open to first menu item otherwise.
-        var focusItemIndex = this.selectedIndex_ >= 0 ? this.selectedIndex_ : 0;
+        var focusItemIndex = this.selectedIndex >= 0 ? this.selectedIndex : 0;
         this.adapter_.focusMenuItemAtIndex(focusItemIndex);
     };
     MDCSelectFoundation.prototype.handleMenuClosed = function () {
         this.adapter_.removeClass(cssClasses.ACTIVATED);
-        this.isMenuOpen_ = false;
-        this.adapter_.setSelectedTextAttr('aria-expanded', 'false');
+        this.isMenuOpen = false;
+        this.adapter_.setSelectAnchorAttr('aria-expanded', 'false');
         // Unfocus the select if menu is closed without a selection
-        if (!this.adapter_.isSelectedTextFocused()) {
-            this.blur_();
+        if (!this.adapter_.isSelectAnchorFocused()) {
+            this.blur();
         }
     };
     /**
      * Handles value changes, via change event or programmatic updates.
      */
     MDCSelectFoundation.prototype.handleChange = function () {
-        this.updateLabel_();
+        this.updateLabel();
         this.adapter_.notifyChange(this.getValue());
         var isRequired = this.adapter_.hasClass(cssClasses.REQUIRED);
         if (isRequired) {
             this.setValid(this.isValid());
-            if (this.helperText_) {
-                this.helperText_.setValidity(this.isValid());
+            if (this.helperText) {
+                this.helperText.setValidity(this.isValid());
             }
         }
     };
@@ -234,30 +235,30 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
             this.adapter_.floatLabel(true);
         }
         this.adapter_.activateBottomLine();
-        if (this.helperText_) {
-            this.helperText_.showToScreenReader();
+        if (this.helperText) {
+            this.helperText.showToScreenReader();
         }
     };
     /**
      * Handles blur events from select element.
      */
     MDCSelectFoundation.prototype.handleBlur = function () {
-        if (this.isMenuOpen_) {
+        if (this.isMenuOpen) {
             return;
         }
-        this.blur_();
+        this.blur();
     };
     MDCSelectFoundation.prototype.handleClick = function (normalizedX) {
-        if (this.isMenuOpen_) {
+        if (this.isMenuOpen) {
             return;
         }
         this.adapter_.setRippleCenter(normalizedX);
         this.adapter_.openMenu();
-        this.isMenuOpen_ = true;
-        this.adapter_.setSelectedTextAttr('aria-expanded', 'true');
+        this.isMenuOpen = true;
+        this.adapter_.setSelectAnchorAttr('aria-expanded', 'true');
     };
     MDCSelectFoundation.prototype.handleKeydown = function (event) {
-        if (this.isMenuOpen_) {
+        if (this.isMenuOpen) {
             return;
         }
         var isEnter = event.key === 'Enter' || event.keyCode === 13;
@@ -266,8 +267,8 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         var arrowDown = event.key === 'ArrowDown' || event.keyCode === 40;
         if (this.adapter_.hasClass(cssClasses.FOCUSED) && (isEnter || isSpace || arrowUp || arrowDown)) {
             this.adapter_.openMenu();
-            this.isMenuOpen_ = true;
-            this.adapter_.setSelectedTextAttr('aria-expanded', 'true');
+            this.isMenuOpen = true;
+            this.adapter_.setSelectAnchorAttr('aria-expanded', 'true');
             event.preventDefault();
         }
     };
@@ -292,20 +293,20 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
      * Sets the aria label of the leading icon.
      */
     MDCSelectFoundation.prototype.setLeadingIconAriaLabel = function (label) {
-        if (this.leadingIcon_) {
-            this.leadingIcon_.setAriaLabel(label);
+        if (this.leadingIcon) {
+            this.leadingIcon.setAriaLabel(label);
         }
     };
     /**
      * Sets the text content of the leading icon.
      */
     MDCSelectFoundation.prototype.setLeadingIconContent = function (content) {
-        if (this.leadingIcon_) {
-            this.leadingIcon_.setContent(content);
+        if (this.leadingIcon) {
+            this.leadingIcon.setContent(content);
         }
     };
     MDCSelectFoundation.prototype.setValid = function (isValid) {
-        this.adapter_.setSelectedTextAttr('aria-invalid', (!isValid).toString());
+        this.adapter_.setSelectAnchorAttr('aria-invalid', (!isValid).toString());
         if (isValid) {
             this.adapter_.removeClass(cssClasses.INVALID);
         }
@@ -317,8 +318,8 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         if (this.adapter_.hasClass(cssClasses.REQUIRED) && !this.adapter_.hasClass(cssClasses.DISABLED)) {
             // See notes for required attribute under https://www.w3.org/TR/html52/sec-forms.html#the-select-element
             // TL;DR: Invalid if no index is selected, or if the first index is selected and has an empty value.
-            return this.selectedIndex_ !== numbers.UNSET_INDEX &&
-                (this.selectedIndex_ !== 0 || Boolean(this.getValue()));
+            return this.selectedIndex !== numbers.UNSET_INDEX &&
+                (this.selectedIndex !== 0 || Boolean(this.getValue()));
         }
         return true;
     };
@@ -329,10 +330,10 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         else {
             this.adapter_.removeClass(cssClasses.REQUIRED);
         }
-        this.adapter_.setSelectedTextAttr('aria-required', isRequired.toString());
+        this.adapter_.setSelectAnchorAttr('aria-required', isRequired.toString());
     };
     MDCSelectFoundation.prototype.getRequired = function () {
-        return this.adapter_.getSelectedTextAttr('aria-required') === 'true';
+        return this.adapter_.getSelectAnchorAttr('aria-required') === 'true';
     };
     MDCSelectFoundation.prototype.init = function () {
         var anchorEl = this.adapter_.getAnchorElement();
@@ -346,12 +347,12 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
             this.setValue(value);
         }
         // Initially sync floating label
-        this.updateLabel_();
+        this.updateLabel();
     };
     /**
      * Notches the outline and floats the label when appropriate.
      */
-    MDCSelectFoundation.prototype.updateLabel_ = function () {
+    MDCSelectFoundation.prototype.updateLabel = function () {
         var value = this.getValue();
         var optionHasValue = value.length > 0;
         if (this.adapter_.hasLabel()) {
@@ -364,15 +365,15 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
     /**
      * Unfocuses the select component.
      */
-    MDCSelectFoundation.prototype.blur_ = function () {
+    MDCSelectFoundation.prototype.blur = function () {
         this.adapter_.removeClass(cssClasses.FOCUSED);
-        this.updateLabel_();
+        this.updateLabel();
         this.adapter_.deactivateBottomLine();
         var isRequired = this.adapter_.hasClass(cssClasses.REQUIRED);
         if (isRequired) {
             this.setValid(this.isValid());
-            if (this.helperText_) {
-                this.helperText_.setValidity(this.isValid());
+            if (this.helperText) {
+                this.helperText.setValidity(this.isValid());
             }
         }
     };

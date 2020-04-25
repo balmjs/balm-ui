@@ -20,13 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses, numbers, strings } from './constants';
 var MDCDialogFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCDialogFoundation, _super);
+    __extends(MDCDialogFoundation, _super);
     function MDCDialogFoundation(adapter) {
-        var _this = _super.call(this, tslib_1.__assign({}, MDCDialogFoundation.defaultAdapter, adapter)) || this;
+        var _this = _super.call(this, __assign(__assign({}, MDCDialogFoundation.defaultAdapter), adapter)) || this;
         _this.isOpen_ = false;
         _this.animationFrame_ = 0;
         _this.animationTimer_ = 0;

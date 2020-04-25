@@ -20,13 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses, numbers, strings } from './constants';
 var MDCCheckboxFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCCheckboxFoundation, _super);
+    __extends(MDCCheckboxFoundation, _super);
     function MDCCheckboxFoundation(adapter) {
-        var _this = _super.call(this, tslib_1.__assign({}, MDCCheckboxFoundation.defaultAdapter, adapter)) || this;
+        var _this = _super.call(this, __assign(__assign({}, MDCCheckboxFoundation.defaultAdapter), adapter)) || this;
         _this.currentCheckState_ = strings.TRANSITION_STATE_INIT;
         _this.currentAnimationClass_ = '';
         _this.animEndLatchTimer_ = 0;

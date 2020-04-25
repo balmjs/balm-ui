@@ -25,6 +25,7 @@
 @use "../feature-targeting/functions" as feature-targeting-functions;
 @use "../feature-targeting/mixins" as feature-targeting-mixins;
 @use "../ripple/mixins" as ripple-mixins;
+@use "../rtl/mixins" as rtl;
 @use "../theme/mixins" as theme-mixins;
 @use "./variables";
 
@@ -152,6 +153,23 @@
 @mixin ink-color($color, $query: feature-targeting-functions.all()) {
   @include ink-color_($color, $query: $query);
   @include ripple-mixins.states($color, $query: $query);
+}
+
+
+///
+/// Flips icon only in RTL context.
+///
+@mixin flip-icon-in-rtl($query: feature-targeting-functions.all()) {
+  $feat-structure: feature-targeting-functions.create-target($query, structure);
+
+  .mdc-button__icon {
+    @include rtl.rtl {
+      @include feature-targeting-mixins.targets($feat-structure) {
+        /* @noflip */
+        transform: rotate(180deg);
+      }
+    }
+  }
 }
 
 ///

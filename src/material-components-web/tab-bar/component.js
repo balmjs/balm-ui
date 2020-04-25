@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { MDCTabScroller } from '../tab-scroller/component';
 import { MDCTab } from '../tab/component';
@@ -29,7 +29,7 @@ import { MDCTabBarFoundation } from './foundation';
 var strings = MDCTabBarFoundation.strings;
 var tabIdCounter = 0;
 var MDCTabBar = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCTabBar, _super);
+    __extends(MDCTabBar, _super);
     function MDCTabBar() {
         return _super !== null && _super.apply(this, arguments) || this;
     }

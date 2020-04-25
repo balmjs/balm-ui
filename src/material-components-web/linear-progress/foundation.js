@@ -20,14 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { getCorrectPropertyName } from '../animation/util';
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses, strings } from './constants';
 var MDCLinearProgressFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCLinearProgressFoundation, _super);
+    __extends(MDCLinearProgressFoundation, _super);
     function MDCLinearProgressFoundation(adapter) {
-        return _super.call(this, tslib_1.__assign({}, MDCLinearProgressFoundation.defaultAdapter, adapter)) || this;
+        return _super.call(this, __assign(__assign({}, MDCLinearProgressFoundation.defaultAdapter), adapter)) || this;
     }
     Object.defineProperty(MDCLinearProgressFoundation, "cssClasses", {
         get: function () {
@@ -48,13 +48,12 @@ var MDCLinearProgressFoundation = /** @class */ (function (_super) {
             return {
                 addClass: function () { return undefined; },
                 forceLayout: function () { return undefined; },
-                getBuffer: function () { return null; },
-                getPrimaryBar: function () { return null; },
+                setBufferBarStyle: function () { return null; },
+                setPrimaryBarStyle: function () { return null; },
                 hasClass: function () { return false; },
                 removeAttribute: function () { return undefined; },
                 removeClass: function () { return undefined; },
                 setAttribute: function () { return undefined; },
-                setStyle: function () { return undefined; },
             };
         },
         enumerable: true,
@@ -71,37 +70,42 @@ var MDCLinearProgressFoundation = /** @class */ (function (_super) {
         if (this.isDeterminate_) {
             this.adapter_.removeClass(cssClasses.INDETERMINATE_CLASS);
             this.adapter_.setAttribute(strings.ARIA_VALUENOW, this.progress_.toString());
-            this.setScale_(this.adapter_.getPrimaryBar(), this.progress_);
-            this.setScale_(this.adapter_.getBuffer(), this.buffer_);
+            this.setPrimaryBarProgress_(this.progress_);
+            this.setBufferBarProgress_(this.buffer_);
+            return;
         }
-        else {
-            if (this.isReversed_) {
-                // Adding/removing REVERSED_CLASS starts a translate animation, while
-                // adding INDETERMINATE_CLASS starts a scale animation. Here, we reset
-                // the translate animation in order to keep it in sync with the new
-                // scale animation that will start from adding INDETERMINATE_CLASS
-                // below.
-                this.adapter_.removeClass(cssClasses.REVERSED_CLASS);
-                this.adapter_.forceLayout();
-                this.adapter_.addClass(cssClasses.REVERSED_CLASS);
-            }
-            this.adapter_.addClass(cssClasses.INDETERMINATE_CLASS);
-            this.adapter_.removeAttribute(strings.ARIA_VALUENOW);
-            this.setScale_(this.adapter_.getPrimaryBar(), 1);
-            this.setScale_(this.adapter_.getBuffer(), 1);
+        if (this.isReversed_) {
+            // Adding/removing REVERSED_CLASS starts a translate animation, while
+            // adding INDETERMINATE_CLASS starts a scale animation. Here, we reset
+            // the translate animation in order to keep it in sync with the new
+            // scale animation that will start from adding INDETERMINATE_CLASS
+            // below.
+            this.adapter_.removeClass(cssClasses.REVERSED_CLASS);
+            this.adapter_.forceLayout();
+            this.adapter_.addClass(cssClasses.REVERSED_CLASS);
         }
+        this.adapter_.addClass(cssClasses.INDETERMINATE_CLASS);
+        this.adapter_.removeAttribute(strings.ARIA_VALUENOW);
+        this.setPrimaryBarProgress_(1);
+        this.setBufferBarProgress_(1);
+    };
+    MDCLinearProgressFoundation.prototype.isDeterminate = function () {
+        return this.isDeterminate_;
     };
     MDCLinearProgressFoundation.prototype.setProgress = function (value) {
         this.progress_ = value;
         if (this.isDeterminate_) {
-            this.setScale_(this.adapter_.getPrimaryBar(), value);
+            this.setPrimaryBarProgress_(value);
             this.adapter_.setAttribute(strings.ARIA_VALUENOW, value.toString());
         }
+    };
+    MDCLinearProgressFoundation.prototype.getProgress = function () {
+        return this.progress_;
     };
     MDCLinearProgressFoundation.prototype.setBuffer = function (value) {
         this.buffer_ = value;
         if (this.isDeterminate_) {
-            this.setScale_(this.adapter_.getBuffer(), value);
+            this.setBufferBarProgress_(value);
         }
     };
     MDCLinearProgressFoundation.prototype.setReverse = function (isReversed) {
@@ -118,10 +122,9 @@ var MDCLinearProgressFoundation = /** @class */ (function (_super) {
         }
         if (this.isReversed_) {
             this.adapter_.addClass(cssClasses.REVERSED_CLASS);
+            return;
         }
-        else {
-            this.adapter_.removeClass(cssClasses.REVERSED_CLASS);
-        }
+        this.adapter_.removeClass(cssClasses.REVERSED_CLASS);
     };
     MDCLinearProgressFoundation.prototype.open = function () {
         this.adapter_.removeClass(cssClasses.CLOSED_CLASS);
@@ -129,12 +132,16 @@ var MDCLinearProgressFoundation = /** @class */ (function (_super) {
     MDCLinearProgressFoundation.prototype.close = function () {
         this.adapter_.addClass(cssClasses.CLOSED_CLASS);
     };
-    MDCLinearProgressFoundation.prototype.setScale_ = function (el, scaleValue) {
-        if (!el) {
-            return;
-        }
-        var value = "scaleX(" + scaleValue + ")";
-        this.adapter_.setStyle(el, getCorrectPropertyName(window, 'transform'), value);
+    MDCLinearProgressFoundation.prototype.setPrimaryBarProgress_ = function (progressValue) {
+        var value = "scaleX(" + progressValue + ")";
+        // Accessing `window` without a `typeof` check will throw on Node environments.
+        var transformProp = typeof window !== 'undefined' ?
+            getCorrectPropertyName(window, 'transform') : 'transform';
+        this.adapter_.setPrimaryBarStyle(transformProp, value);
+    };
+    MDCLinearProgressFoundation.prototype.setBufferBarProgress_ = function (progressValue) {
+        var value = progressValue * 100 + "%";
+        this.adapter_.setBufferBarStyle(strings.FLEX_BASIS, value);
     };
     return MDCLinearProgressFoundation;
 }(MDCFoundation));

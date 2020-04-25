@@ -20,13 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses, strings } from './constants';
 var MDCIconButtonToggleFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCIconButtonToggleFoundation, _super);
+    __extends(MDCIconButtonToggleFoundation, _super);
     function MDCIconButtonToggleFoundation(adapter) {
-        return _super.call(this, tslib_1.__assign({}, MDCIconButtonToggleFoundation.defaultAdapter, adapter)) || this;
+        var _this = _super.call(this, __assign(__assign({}, MDCIconButtonToggleFoundation.defaultAdapter), adapter)) || this;
+        /**
+         * Whether the icon button has an aria label that changes depending on
+         * toggled state.
+         */
+        _this.hasToggledAriaLabel = false;
+        return _this;
     }
     Object.defineProperty(MDCIconButtonToggleFoundation, "cssClasses", {
         get: function () {
@@ -49,6 +55,7 @@ var MDCIconButtonToggleFoundation = /** @class */ (function (_super) {
                 hasClass: function () { return false; },
                 notifyChange: function () { return undefined; },
                 removeClass: function () { return undefined; },
+                getAttr: function () { return null; },
                 setAttr: function () { return undefined; },
             };
         },
@@ -56,7 +63,18 @@ var MDCIconButtonToggleFoundation = /** @class */ (function (_super) {
         configurable: true
     });
     MDCIconButtonToggleFoundation.prototype.init = function () {
-        this.adapter_.setAttr(strings.ARIA_PRESSED, "" + this.isOn());
+        var ariaLabelOn = this.adapter_.getAttr(strings.DATA_ARIA_LABEL_ON);
+        var ariaLabelOff = this.adapter_.getAttr(strings.DATA_ARIA_LABEL_OFF);
+        if (ariaLabelOn && ariaLabelOff) {
+            if (this.adapter_.getAttr(strings.ARIA_PRESSED) !== null) {
+                throw new Error('MDCIconButtonToggleFoundation: Button should not set ' +
+                    '`aria-pressed` if it has a toggled aria label.');
+            }
+            this.hasToggledAriaLabel = true;
+        }
+        else {
+            this.adapter_.setAttr(strings.ARIA_PRESSED, String(this.isOn()));
+        }
     };
     MDCIconButtonToggleFoundation.prototype.handleClick = function () {
         this.toggle();
@@ -67,13 +85,23 @@ var MDCIconButtonToggleFoundation = /** @class */ (function (_super) {
     };
     MDCIconButtonToggleFoundation.prototype.toggle = function (isOn) {
         if (isOn === void 0) { isOn = !this.isOn(); }
+        // Toggle UI based on state.
         if (isOn) {
             this.adapter_.addClass(cssClasses.ICON_BUTTON_ON);
         }
         else {
             this.adapter_.removeClass(cssClasses.ICON_BUTTON_ON);
         }
-        this.adapter_.setAttr(strings.ARIA_PRESSED, "" + isOn);
+        // Toggle aria attributes based on state.
+        if (this.hasToggledAriaLabel) {
+            var ariaLabel = isOn ?
+                this.adapter_.getAttr(strings.DATA_ARIA_LABEL_ON) :
+                this.adapter_.getAttr(strings.DATA_ARIA_LABEL_OFF);
+            this.adapter_.setAttr(strings.ARIA_LABEL, ariaLabel || '');
+        }
+        else {
+            this.adapter_.setAttr(strings.ARIA_PRESSED, "" + isOn);
+        }
     };
     return MDCIconButtonToggleFoundation;
 }(MDCFoundation));

@@ -20,14 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses, numbers, strings } from './constants';
 var MDCTopAppBarBaseFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCTopAppBarBaseFoundation, _super);
+    __extends(MDCTopAppBarBaseFoundation, _super);
     /* istanbul ignore next: optional argument is not a branch statement */
     function MDCTopAppBarBaseFoundation(adapter) {
-        return _super.call(this, tslib_1.__assign({}, MDCTopAppBarBaseFoundation.defaultAdapter, adapter)) || this;
+        return _super.call(this, __assign(__assign({}, MDCTopAppBarBaseFoundation.defaultAdapter), adapter)) || this;
     }
     Object.defineProperty(MDCTopAppBarBaseFoundation, "strings", {
         get: function () {

@@ -27,7 +27,8 @@ export var cssClasses = {
 };
 export var strings = {
     ARIA_VALUENOW: 'aria-valuenow',
-    BUFFER_SELECTOR: '.mdc-linear-progress__buffer',
+    BUFFER_BAR_SELECTOR: '.mdc-linear-progress__buffer-bar',
+    FLEX_BASIS: 'flex-basis',
     PRIMARY_BAR_SELECTOR: '.mdc-linear-progress__primary-bar',
 };
 //# sourceMappingURL=constants.js.map

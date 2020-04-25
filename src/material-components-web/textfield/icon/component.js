@@ -20,11 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __extends } from "tslib";
 import { MDCComponent } from '../../base/component';
 import { MDCTextFieldIconFoundation } from './foundation';
 var MDCTextFieldIcon = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCTextFieldIcon, _super);
+    __extends(MDCTextFieldIcon, _super);
     function MDCTextFieldIcon() {
         return _super !== null && _super.apply(this, arguments) || this;
     }

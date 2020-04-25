@@ -20,17 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { getCorrectEventName } from '../animation/util';
 import { MDCComponent } from '../base/component';
 import { applyPassive } from '../dom/events';
 import { matches } from '../dom/ponyfill';
 import { MDCRipple } from '../ripple/component';
 import { MDCRippleFoundation } from '../ripple/foundation';
+import { strings } from './constants';
 import { MDCCheckboxFoundation } from './foundation';
 var CB_PROTO_PROPS = ['checked', 'indeterminate'];
 var MDCCheckbox = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCCheckbox, _super);
+    __extends(MDCCheckbox, _super);
     function MDCCheckbox() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.ripple_ = _this.createRipple_();
@@ -86,6 +87,12 @@ var MDCCheckbox = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
+    MDCCheckbox.prototype.initialize = function () {
+        var DATA_INDETERMINATE_ATTR = strings.DATA_INDETERMINATE_ATTR;
+        this.nativeControl_.indeterminate =
+            this.nativeControl_.getAttribute(DATA_INDETERMINATE_ATTR) === 'true';
+        this.nativeControl_.removeAttribute(DATA_INDETERMINATE_ATTR);
+    };
     MDCCheckbox.prototype.initialSyncWithDOM = function () {
         var _this = this;
         this.handleChange_ = function () { return _this.foundation_.handleChange(); };
@@ -112,10 +119,18 @@ var MDCCheckbox = /** @class */ (function (_super) {
             isAttachedToDOM: function () { return Boolean(_this.root_.parentNode); },
             isChecked: function () { return _this.checked; },
             isIndeterminate: function () { return _this.indeterminate; },
-            removeClass: function (className) { return _this.root_.classList.remove(className); },
-            removeNativeControlAttr: function (attr) { return _this.nativeControl_.removeAttribute(attr); },
-            setNativeControlAttr: function (attr, value) { return _this.nativeControl_.setAttribute(attr, value); },
-            setNativeControlDisabled: function (disabled) { return _this.nativeControl_.disabled = disabled; },
+            removeClass: function (className) {
+                _this.root_.classList.remove(className);
+            },
+            removeNativeControlAttr: function (attr) {
+                _this.nativeControl_.removeAttribute(attr);
+            },
+            setNativeControlAttr: function (attr, value) {
+                _this.nativeControl_.setAttribute(attr, value);
+            },
+            setNativeControlDisabled: function (disabled) {
+                _this.nativeControl_.disabled = disabled;
+            },
         };
         return new MDCCheckboxFoundation(adapter);
     };
@@ -123,7 +138,7 @@ var MDCCheckbox = /** @class */ (function (_super) {
         var _this = this;
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-        var adapter = tslib_1.__assign({}, MDCRipple.createAdapter(this), { deregisterInteractionHandler: function (evtType, handler) { return _this.nativeControl_.removeEventListener(evtType, handler, applyPassive()); }, isSurfaceActive: function () { return matches(_this.nativeControl_, ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (evtType, handler) { return _this.nativeControl_.addEventListener(evtType, handler, applyPassive()); } });
+        var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { deregisterInteractionHandler: function (evtType, handler) { return _this.nativeControl_.removeEventListener(evtType, handler, applyPassive()); }, isSurfaceActive: function () { return matches(_this.nativeControl_, ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (evtType, handler) { return _this.nativeControl_.addEventListener(evtType, handler, applyPassive()); } });
         return new MDCRipple(this.root_, new MDCRippleFoundation(adapter));
     };
     MDCCheckbox.prototype.installPropertyChangeHooks_ = function () {
@@ -164,7 +179,7 @@ var MDCCheckbox = /** @class */ (function (_super) {
     };
     Object.defineProperty(MDCCheckbox.prototype, "nativeControl_", {
         get: function () {
-            var NATIVE_CONTROL_SELECTOR = MDCCheckboxFoundation.strings.NATIVE_CONTROL_SELECTOR;
+            var NATIVE_CONTROL_SELECTOR = strings.NATIVE_CONTROL_SELECTOR;
             var el = this.root_.querySelector(NATIVE_CONTROL_SELECTOR);
             if (!el) {
                 throw new Error("Checkbox component requires a " + NATIVE_CONTROL_SELECTOR + " element");

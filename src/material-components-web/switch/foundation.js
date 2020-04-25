@@ -20,13 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses, strings } from './constants';
 var MDCSwitchFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCSwitchFoundation, _super);
+    __extends(MDCSwitchFoundation, _super);
     function MDCSwitchFoundation(adapter) {
-        return _super.call(this, tslib_1.__assign({}, MDCSwitchFoundation.defaultAdapter, adapter)) || this;
+        return _super.call(this, __assign(__assign({}, MDCSwitchFoundation.defaultAdapter), adapter)) || this;
     }
     Object.defineProperty(MDCSwitchFoundation, "strings", {
         /** The string constants used by the switch. */

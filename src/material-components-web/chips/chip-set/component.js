@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __extends } from "tslib";
 import { MDCComponent } from '../../base/component';
 import { announce } from '../../dom/announce';
 import { MDCChip } from '../chip/component';
@@ -30,7 +30,7 @@ var _a = MDCChipFoundation.strings, INTERACTION_EVENT = _a.INTERACTION_EVENT, SE
 var CHIP_SELECTOR = MDCChipSetFoundation.strings.CHIP_SELECTOR;
 var idCounter = 0;
 var MDCChipSet = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCChipSet, _super);
+    __extends(MDCChipSet, _super);
     function MDCChipSet() {
         return _super !== null && _super.apply(this, arguments) || this;
     }

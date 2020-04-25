@@ -20,11 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { MDCLineRippleFoundation } from './foundation';
 var MDCLineRipple = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCLineRipple, _super);
+    __extends(MDCLineRipple, _super);
     function MDCLineRipple() {
         return _super !== null && _super.apply(this, arguments) || this;
     }

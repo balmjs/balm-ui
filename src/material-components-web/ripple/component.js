@@ -20,14 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { applyPassive } from '../dom/events';
 import { matches } from '../dom/ponyfill';
 import { MDCRippleFoundation } from './foundation';
 import * as util from './util';
 var MDCRipple = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCRipple, _super);
+    __extends(MDCRipple, _super);
     function MDCRipple() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.disabled = false;

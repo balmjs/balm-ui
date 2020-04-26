@@ -108,7 +108,7 @@ export default {
               ? adapter.getIndexOfChipById(detail.chipId)
               : -1;
 
-            this.$emit(UI_CHIPS.EVENT.CHANGE, selectedIndex);
+            selectedIndex > -1 && this.$emit(UI_CHIPS.EVENT.CHANGE, selectedIndex);
           } else if (this.filterChips) {
             let selectedIndexes = [];
             chips.forEach((chip, index) => {

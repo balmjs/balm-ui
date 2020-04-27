@@ -39,7 +39,8 @@ export default {
     return {
       $chipSet: null,
       selectedValue: this.model,
-      chipsCount: this.options.length
+      chipsCount: this.options.length,
+      choiceChipId: null // NOTE: for twice trigger bugfix
     };
   },
   computed: {
@@ -104,11 +105,13 @@ export default {
         const adapter = this.$chipSet.foundation_.adapter_;
         this.$chipSet.listen('MDCChip:selection', ({ detail }) => {
           if (this.choiceChips) {
-            const selectedIndex = detail.selected
-              ? adapter.getIndexOfChipById(detail.chipId)
-              : -1;
+            if (detail.chipId === this.choiceChipId) {
+              const selectedIndex = detail.selected
+                ? adapter.getIndexOfChipById(detail.chipId)
+                : -1;
 
-            selectedIndex > -1 && this.$emit(UI_CHIPS.EVENT.CHANGE, selectedIndex);
+              this.$emit(UI_CHIPS.EVENT.CHANGE, selectedIndex);
+            }
           } else if (this.filterChips) {
             let selectedIndexes = [];
             chips.forEach((chip, index) => {

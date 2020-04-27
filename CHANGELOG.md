@@ -1,5 +1,11 @@
 # BalmUI ChangeLog
 
+## v5.6.4 / 2020-04-27
+
+### Bug Fixes
+
+- `<ui-chips>`: fix the choice chips twice changed bug
+
 ## v5.6.3 / 2020-04-14
 
 ### Bug Fixes

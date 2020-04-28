@@ -121,6 +121,10 @@ export default {
     fixed: {
       type: Boolean,
       default: false
+    },
+    fullwidth: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -137,6 +141,7 @@ export default {
         'mdc-menu': true,
         'mdc-menu-surface': true,
         'mdc-menu-surface--fixed': this.fixed,
+        'mdc-menu-surface--fullwidth': this.fullwidth && !this.fixed,
         'mdc-menu-surface--open': this.cssOnly
       };
     }

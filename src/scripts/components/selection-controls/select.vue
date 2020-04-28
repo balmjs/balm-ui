@@ -1,7 +1,13 @@
 <template>
-  <!-- Enhanced Select -->
   <div :class="className">
-    <div class="mdc-select__anchor">
+    <div
+      class="mdc-select__anchor"
+      role="button"
+      aria-haspopup="listbox"
+      :aria-required="required"
+      :aria-disabled="disabled"
+    >
+      <!-- Leading Icon -->
       <slot name="icon">
         <i
           v-if="materialIcon"
@@ -9,17 +15,10 @@
           >{{ materialIcon }}</i
         >
       </slot>
+      <!-- Enhanced Select -->
+      <span class="mdc-select__ripple"></span>
+      <input type="text" class="mdc-select__selected-text" disabled readonly />
       <i class="mdc-select__dropdown-icon"></i>
-      <div
-        class="mdc-select__selected-text"
-        role="button"
-        aria-haspopup="listbox"
-        :aria-labelledby="label"
-        :aria-required="required"
-        :aria-disabled="disabled"
-        :aria-controls="helperTextId"
-        :aria-describedby="helperTextId"
-      ></div>
       <ui-notched-outline v-if="isOutlined" :hasLabel="!noLabel">
         <ui-floating-label>
           <slot>{{ label }}</slot>
@@ -32,8 +31,14 @@
         <span class="mdc-line-ripple"></span>
       </template>
     </div>
-
-    <div class="mdc-select__menu mdc-menu mdc-menu-surface" role="listbox">
+    <!-- Options -->
+    <div
+      :class="[
+        'mdc-select__menu mdc-menu mdc-menu-surface',
+        { 'mdc-menu-surface--fullwidth': this.fullwidth }
+      ]"
+      role="listbox"
+    >
       <ul class="mdc-list">
         <li
           v-for="(option, index) in currentOptions"
@@ -126,22 +131,25 @@ export default {
       type: [String, Number],
       default: ''
     },
-    // Element attributes
+    // UI attributes
+    label: String,
+    fullwidth: {
+      type: Boolean,
+      default: false
+    },
+    withLeadingIcon: {
+      type: Boolean,
+      default: false
+    },
+    noLabel: {
+      type: Boolean,
+      default: false
+    },
     required: {
       type: Boolean,
       default: false
     },
     disabled: {
-      type: Boolean,
-      default: false
-    },
-    // UI attributes
-    label: String,
-    noLabel: {
-      type: Boolean,
-      default: false
-    },
-    withLeadingIcon: {
       type: Boolean,
       default: false
     },
@@ -169,10 +177,11 @@ export default {
       return {
         'mdc-select': true,
         'mdc-select--outlined': this.isOutlined,
-        'mdc-select--required': this.required,
-        'mdc-select--disabled': this.disabled,
+        'mdc-select--fullwidth': this.fullwidth && !this.isOutlined,
+        'mdc-select--with-leading-icon': this.hasLeadingIcon,
         'mdc-select--no-label': this.noLabel,
-        'mdc-select--with-leading-icon': this.hasLeadingIcon
+        'mdc-select--required': this.required,
+        'mdc-select--disabled': this.disabled
       };
     }
   },

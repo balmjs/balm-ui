@@ -1,6 +1,6 @@
 <template>
-  <div class="mdc-card__primary-action" @click="handleClick">
-    <slot></slot>
+  <div class="mdc-card__primary-action" tabindex="0" @click="handleClick">
+    <slot><!-- content within actionable area --></slot>
   </div>
 </template>
 

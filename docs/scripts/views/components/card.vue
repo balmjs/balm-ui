@@ -3,10 +3,12 @@
     name="card"
     demoCount="3"
     :apis="[
+      'cards',
       'card',
       'card-content',
       'card-media',
       'card-media-content',
+      'card-text',
       'card-actions',
       'card-buttons',
       'card-icons'

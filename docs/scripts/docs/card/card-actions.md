@@ -1,8 +1,6 @@
 ```html
-<ui-card-actions><!-- the card actions parent components --></ui-card-actions>
+<ui-card-actions><!-- card actions area --></ui-card-actions>
 ```
-
-> Row containing action buttons and/or icons.
 
 #### Props
 
@@ -16,7 +14,7 @@
 | --------- | ----- | ---------------------------------------------------------- |
 | `default` |       | The default slot holds the card actions parent components. |
 
-**Card actions parent components:**
+**Child components:**
 
 - `<ui-card-buttons>`
 - `<ui-card-icons>`

@@ -1,5 +1,5 @@
 ```html
-<ui-card><!-- the card child components --></ui-card>
+<ui-card><!-- Card contents --></ui-card>
 ```
 
 #### Props
@@ -14,12 +14,7 @@
 | --------- | ----- | ---------------------------------------------------------------------- |
 | `default` |       | The default slot holds the card child components and can contain HTML. |
 
-**Card child components:**
+**Child components:**
 
 - `<ui-card-content>`
-  - `<ui-card-media>`
-    - `<ui-card-media-content>`
-  - `<ui-card-text>`
 - `<ui-card-actions>`
-  - `<ui-card-buttons>`
-  - `<ui-card-icons>`

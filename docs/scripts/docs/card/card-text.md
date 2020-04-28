@@ -1,9 +1,9 @@
 ```html
-<ui-card-buttons><!-- the button components --></ui-card-buttons>
+<ui-card-text><!-- additional text content --></ui-card-text>
 ```
 
 #### Slots
 
 | Name      | Props | Description                                                        |
 | --------- | ----- | ------------------------------------------------------------------ |
-| `default` |       | The default slot holds the button components and can contain HTML. |
+| `default` |       | The default slot holds the card text content and can contain HTML. |

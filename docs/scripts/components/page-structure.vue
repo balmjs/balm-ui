@@ -31,6 +31,7 @@
       <ui-markdown
         v-for="(apidocs, index) in $store.docs.apis"
         :key="index"
+        :class="`component-docs component--${apis[index]}`"
         :text="apidocs"
       ></ui-markdown>
 

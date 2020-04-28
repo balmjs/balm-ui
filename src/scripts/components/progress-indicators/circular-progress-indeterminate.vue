@@ -8,6 +8,7 @@
         :viewBox="svg.viewBox"
       >
         <circle
+          fill="none"
           :cx="svg.cx"
           :cy="svg.cy"
           :r="svg.r"
@@ -22,6 +23,7 @@
         :viewBox="svg.viewBox"
       >
         <circle
+          fill="none"
           :cx="svg.cx"
           :cy="svg.cy"
           :r="svg.r"
@@ -38,6 +40,7 @@
         :viewBox="svg.viewBox"
       >
         <circle
+          fill="none"
           :cx="svg.cx"
           :cy="svg.cy"
           :r="svg.r"

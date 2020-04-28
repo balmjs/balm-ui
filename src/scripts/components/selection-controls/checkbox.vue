@@ -8,6 +8,7 @@
       :name="name"
       :value="value"
       :disabled="disabled"
+      :data-indeterminate="indeterminate"
       v-bind="attrs"
       @change="handleChange"
     />

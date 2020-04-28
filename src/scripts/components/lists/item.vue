@@ -17,6 +17,10 @@ export default {
       type: Boolean,
       default: false
     },
+    activated: {
+      type: Boolean,
+      default: false
+    },
     disabled: {
       type: Boolean,
       default: false
@@ -32,6 +36,7 @@ export default {
       return {
         'mdc-list-item': true,
         'mdc-list-item--selected': this.selected,
+        'mdc-list-item--activated': this.activated,
         'mdc-list-item--disabled': this.disabled
       };
     }

@@ -22,14 +22,14 @@
 
 #### `<ui-nav>` Slots
 
-| Name      | Slots                         | Description                                                      |
-| --------- | ----------------------------- | ---------------------------------------------------------------- |
-| `default` | `itemClass`, `activatedClass` | The default slot holds the item components and can contain HTML. |
+| Name      | Slots                      | Description                                                      |
+| --------- | -------------------------- | ---------------------------------------------------------------- |
+| `default` | `itemClass`, `activeClass` | The default slot holds the item components and can contain HTML. |
 
 ```html
 <ui-nav>
-  <template #default="{ itemClass, activatedClass }">
-    <a :class="[itemClass, activatedClass]">activated item</a>
+  <template #default="{ itemClass, activeClass }">
+    <a :class="[itemClass, activeClass]">activated item</a>
     <a :class="itemClass">unactivated item</a>
   </template>
 </ui-nav>

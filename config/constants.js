@@ -1,8 +1,3 @@
-const CSS_RESET = {
-  normalize: './node_modules/@csstools/normalize.css/normalize.css',
-  sanitize: './node_modules/sanitize.css/sanitize.css'
-};
-
 const DMC_SOURCE = {
   mdc: './node_modules/material-components-web',
   material: './node_modules/@material',
@@ -61,7 +56,6 @@ const DMC_COMPONENTS = [
 ];
 
 module.exports = {
-  CSS_RESET,
   DMC_SOURCE,
   DEV_SOURCE,
   DMC_COMPONENTS

@@ -14,7 +14,7 @@ if (env.updateMDI) {
   balm.afterTask = 'update:mdi';
 }
 
-balm.go(mix => {
+balm.go((mix) => {
   if (env.buildDocs) {
     mix.copy('./docs/data/*', './dist/data');
     mix.remove([
@@ -28,26 +28,12 @@ balm.go(mix => {
       // Clear
       mix.remove([`${constants.DEV_SOURCE.mdc}/*`]);
 
-      // Update css reset for docs
-      mix.copy(constants.CSS_RESET.normalize, './docs/styles/global', {
-        rename: {
-          prefix: '_',
-          extname: '.scss'
-        }
-      });
-      mix.copy(constants.CSS_RESET.sanitize, './docs/styles/global', {
-        rename: {
-          prefix: '_',
-          extname: '.scss'
-        }
-      });
-
       // Get Material Components Web
       mix.copy(
         `${constants.DMC_SOURCE.mdc}/material-components-web.scss`,
         constants.DEV_SOURCE.mdc
       );
-      constants.DMC_COMPONENTS.forEach(item => {
+      constants.DMC_COMPONENTS.forEach((item) => {
         mix.copy(
           `${constants.DMC_SOURCE.material}/${item}/**/{*.scss,*.js}`,
           `${constants.DEV_SOURCE.mdc}/${item}`
@@ -81,11 +67,14 @@ balm.go(mix => {
           'utils'
         ];
         const uiOutput = `${individual.output.dist}/css/balm-ui`;
-        individualBuild.forEach(buildName => {
-          individual[buildName].forEach(item => {
-            let jsInput = buildName === 'utils' ? [`${individual.input[buildName]}/${item}.js`]:{
-              index: `${individual.input[buildName]}/${item}.js`
-            };
+        individualBuild.forEach((buildName) => {
+          individual[buildName].forEach((item) => {
+            let jsInput =
+              buildName === 'utils'
+                ? [`${individual.input[buildName]}/${item}.js`]
+                : {
+                    index: `${individual.input[buildName]}/${item}.js`
+                  };
             let jsOutput =
               buildName === 'utils'
                 ? `${uiOutput}/${buildName}`
@@ -104,7 +93,7 @@ balm.go(mix => {
           });
         });
 
-        individualBuild.forEach(buildName => {
+        individualBuild.forEach((buildName) => {
           mix.copy(`${uiOutput}/${buildName}/**/*`, buildName);
         });
 

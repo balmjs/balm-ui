@@ -81,6 +81,7 @@ import UiDialogContent from './components/modal/dialog-content';
 import UiDialogActions from './components/modal/dialog-actions';
 import UiSnackbar from './components/modal/snackbar';
 import UiLinearProgress from './components/progress-indicators/linear-progress';
+import UiCircularProgress from './components/progress-indicators/circular-progress';
 /**
  * Plugins
  */
@@ -176,7 +177,8 @@ const components = {
   UiDialogContent,
   UiDialogActions,
   UiSnackbar,
-  UiLinearProgress
+  UiLinearProgress,
+  UiCircularProgress
 };
 
 const plugins = {

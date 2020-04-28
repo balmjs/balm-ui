@@ -1,10 +1,12 @@
 <template>
   <div
-    :class="className"
     role="progressbar"
+    :class="className"
+    :aria-label="label"
     aria-valuemin="0"
     aria-valuemax="1"
   >
+    <!-- Detrerminate -->
     <div class="mdc-circular-progress__determinate-container">
       <svg
         class="mdc-circular-progress__determinate-circle-graphic"
@@ -20,61 +22,28 @@
         />
       </svg>
     </div>
+    <!-- Indeterminate -->
     <div class="mdc-circular-progress__indeterminate-container">
-      <div class="mdc-circular-progress__spinner-layer">
-        <div
-          class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-left"
-        >
-          <svg
-            class="mdc-circular-progress__indeterminate-circle-graphic"
-            :viewBox="svg.viewBox"
-          >
-            <circle
-              :cx="svg.cx"
-              :cy="svg.cy"
-              :r="svg.r"
-              :stroke-dasharray="svg.stroke"
-              :stroke-dashoffset="svg.stroke / 2"
-            />
-          </svg>
-        </div>
-        <div class="mdc-circular-progress__gap-patch">
-          <svg
-            class="mdc-circular-progress__indeterminate-circle-graphic"
-            :viewBox="svg.viewBox"
-          >
-            <circle
-              :cx="svg.cx"
-              :cy="svg.cy"
-              :r="svg.r"
-              :stroke-dasharray="svg.stroke"
-              :stroke-dashoffset="svg.stroke / 2"
-            />
-          </svg>
-        </div>
-        <div
-          class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-right"
-        >
-          <svg
-            class="mdc-circular-progress__indeterminate-circle-graphic"
-            :viewBox="svg.viewBox"
-          >
-            <circle
-              :cx="svg.cx"
-              :cy="svg.cy"
-              :r="svg.r"
-              :stroke-dasharray="svg.stroke"
-              :stroke-dashoffset="svg.stroke / 2"
-            />
-          </svg>
-        </div>
-      </div>
+      <template v-if="fourColored">
+        <ui-circular-progress-indeterminate
+          v-for="i in 4"
+          :key="i"
+          :class="`mdc-circular-progress__color-${i}`"
+          :svg="svg"
+        ></ui-circular-progress-indeterminate>
+      </template>
+      <ui-circular-progress-indeterminate
+        v-else
+        :svg="svg"
+      ></ui-circular-progress-indeterminate>
     </div>
   </div>
 </template>
 
 <script>
 import { MDCCircularProgress } from '../../../material-components-web/circular-progress';
+import UiCircularProgressIndeterminate from './circular-progress-indeterminate';
+import progressMixin from '../../mixins/progress';
 
 // Define circular progress constants
 const UI_CIRCULAR_PROGRESS = {
@@ -105,39 +74,34 @@ const UI_CIRCULAR_PROGRESS = {
 
 export default {
   name: 'ui-circular-progress',
+  components: {
+    UiCircularProgressIndeterminate
+  },
+  mixins: [progressMixin],
   props: {
+    // UI attributes
     size: {
       type: String,
       default: 'large'
+    },
+    fourColored: {
+      type: Boolean,
+      default: false
     }
   },
+  data() {
+    return {
+      $circularProgress: null,
+      currentSize: ''
+    };
+  },
   computed: {
-    currentSize() {
-      let size = '';
-
-      switch (this.size) {
-        case 'M':
-        case 'medium':
-          size = 'medium';
-          break;
-        case 'S':
-        case 'small':
-          size = 'small';
-          break;
-        // case 'L':
-        // case 'large':
-        default:
-          size = 'large';
-      }
-
-      return size;
-    },
     className() {
       return [
         'mdc-circular-progress',
         `mdc-circular-progress--${this.currentSize}`,
         {
-          'mdc-circular-progress--indeterminate': this.indeterminate,
+          'mdc-circular-progress--indeterminate': this.active,
           'mdc-circular-progress--closed': this.closed
         }
       ];
@@ -146,9 +110,27 @@ export default {
       return this.currentSize ? UI_CIRCULAR_PROGRESS.SVG[this.currentSize] : {};
     }
   },
+  created() {
+    switch (this.size) {
+      case 'M':
+      case 'medium':
+        this.currentSize = 'medium';
+        break;
+      case 'S':
+      case 'small':
+        this.currentSize = 'small';
+        break;
+      // case 'L':
+      // case 'large':
+      default:
+        this.currentSize = 'large';
+    }
+  },
   mounted() {
     if (this.currentSize) {
-      new MDCCircularProgress(this.$el);
+      this.$circularProgress = new MDCCircularProgress(this.$el);
+
+      this.setProgress(this.progress);
     } else {
       console.warn('Please choose correct size');
     }

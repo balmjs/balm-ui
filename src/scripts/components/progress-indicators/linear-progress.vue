@@ -2,12 +2,14 @@
   <div
     role="progressbar"
     :class="className"
+    :aria-label="label"
     aria-valuemin="0"
     aria-valuemax="1"
-    :aria-valuenow="progress"
   >
-    <div class="mdc-linear-progress__buffering-dots"></div>
-    <div class="mdc-linear-progress__buffer"></div>
+    <div class="mdc-linear-progress__buffer">
+      <div class="mdc-linear-progress__buffer-bar"></div>
+      <div class="mdc-linear-progress__buffer-dots"></div>
+    </div>
     <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
       <span class="mdc-linear-progress__bar-inner"></span>
     </div>
@@ -19,37 +21,20 @@
 
 <script>
 import { MDCLinearProgress } from '../../../material-components-web/linear-progress';
-
-// Define linear progress constants
-const UI_LINEAR_PROGRESS = {
-  VALUE: {
-    MIN: 0,
-    MAX: 1
-  }
-};
+import progressMixin from '../../mixins/progress';
+import { UI_PROGRESS } from './constants';
 
 export default {
   name: 'ui-linear-progress',
+  mixins: [progressMixin],
   props: {
     // States
-    progress: {
-      type: [Number, String],
-      default: 0
-    },
     buffer: {
       type: [Number, String],
       default: 0
     },
     // UI attributes
-    indeterminate: {
-      type: Boolean,
-      default: false
-    },
     reversed: {
-      type: Boolean,
-      default: false
-    },
-    closed: {
       type: Boolean,
       default: false
     }
@@ -63,16 +48,13 @@ export default {
     className() {
       return {
         'mdc-linear-progress': true,
-        'mdc-linear-progress--indeterminate': this.indeterminate,
+        'mdc-linear-progress--indeterminate': this.active,
         'mdc-linear-progress--reversed': this.reversed,
         'mdc-linear-progress--closed': this.closed
       };
     }
   },
   watch: {
-    progress(val) {
-      this.setProgress(val);
-    },
     buffer(val) {
       this.setBuffer(val);
     }
@@ -86,22 +68,11 @@ export default {
     }
   },
   methods: {
-    setProgress(value) {
-      if (
-        this.$linearProgress &&
-        value >= UI_LINEAR_PROGRESS.VALUE.MIN &&
-        value <= UI_LINEAR_PROGRESS.VALUE.MAX
-      ) {
-        this.$linearProgress.progress = +value;
-      } else {
-        console.warn('Progress value should be between [0, 1]');
-      }
-    },
     setBuffer(value) {
       if (
         this.$linearProgress &&
-        value >= UI_LINEAR_PROGRESS.VALUE.MIN &&
-        value <= UI_LINEAR_PROGRESS.VALUE.MAX
+        value >= UI_PROGRESS.VALUE.MIN &&
+        value <= UI_PROGRESS.VALUE.MAX
       ) {
         this.$linearProgress.buffer = +value;
       } else {

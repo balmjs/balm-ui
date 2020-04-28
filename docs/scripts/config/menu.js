@@ -270,6 +270,12 @@ const MATERIAL_COMPONENTS = [
         url: 'linear-progress'
       },
       {
+        icon: 'progress',
+        name: 'Circular Progress',
+        description: '',
+        url: 'circular-progress'
+      },
+      {
         icon: 'component',
         name: 'Skeleton',
         description:

@@ -1,8 +1,12 @@
-// @use './normalize'; // OLD
-@use './sanitize'; // NEW
+// @use '@csstools/normalize.css/normalize.css'; // OLD
+@use 'sanitize.css/sanitize.css'; // NEW
 
 html {
   word-break: initial; // NOTE: bugfix for `sanitize.css`
+}
+
+svg:not([fill]) {
+  fill: transparent; // NOTE: bugfix for `sanitize.css`
 }
 
 a {

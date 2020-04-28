@@ -1,8 +1,8 @@
 /// Ensure layout covers the entire screen.
-.balmui--navigation-permanent-drawer-above-toolbar,
-.balmui--navigation-permanent-drawer-below-toolbar,
-.balmui--navigation-dismissible-drawer,
-.balmui--navigation-modal-drawer {
+.balmui-navigation_permanent-drawer-above-toolbar,
+.balmui-navigation_permanent-drawer-below-toolbar,
+.balmui-navigation_dismissible-drawer,
+.balmui-navigation_modal-drawer {
   .demo--drawer {
     display: flex;
     height: 100vh;
@@ -35,7 +35,7 @@
   }
 }
 
-.balmui--navigation-permanent-drawer-below-toolbar {
+.balmui-navigation_permanent-drawer-below-toolbar {
   .demo-main {
     display: flex;
   }

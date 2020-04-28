@@ -3,7 +3,7 @@
 
 /// Ensure layout covers the entire screen.
 html {
-  &.balmui--no-layout {
+  &.balmui-no-layout {
     .balmui-container {
       height: auto;
     }

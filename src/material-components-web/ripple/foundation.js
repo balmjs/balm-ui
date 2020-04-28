@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses, numbers, strings } from './constants';
 import { getNormalizedEventCoords } from './util';
@@ -35,9 +35,9 @@ var POINTER_DEACTIVATION_EVENT_TYPES = [
 // simultaneous nested activations
 var activatedTargets = [];
 var MDCRippleFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCRippleFoundation, _super);
+    __extends(MDCRippleFoundation, _super);
     function MDCRippleFoundation(adapter) {
-        var _this = _super.call(this, tslib_1.__assign({}, MDCRippleFoundation.defaultAdapter, adapter)) || this;
+        var _this = _super.call(this, __assign(__assign({}, MDCRippleFoundation.defaultAdapter), adapter)) || this;
         _this.activationAnimationHasEnded_ = false;
         _this.activationTimer_ = 0;
         _this.fgDeactivationRemovalTimer_ = 0;
@@ -400,7 +400,7 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
         if (!activationState.isActivated) {
             return;
         }
-        var state = tslib_1.__assign({}, activationState);
+        var state = __assign({}, activationState);
         if (activationState.isProgrammatic) {
             requestAnimationFrame(function () { return _this.animateDeactivation_(state); });
             this.resetActivationState_();

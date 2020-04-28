@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../../base/foundation';
 import { cssClasses, Direction, EventSource, jumpChipKeys, navigationKeys, strings } from './constants';
 var emptyClientRect = {
@@ -32,9 +32,9 @@ var emptyClientRect = {
     width: 0,
 };
 var MDCChipFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCChipFoundation, _super);
+    __extends(MDCChipFoundation, _super);
     function MDCChipFoundation(adapter) {
-        var _this = _super.call(this, tslib_1.__assign({}, MDCChipFoundation.defaultAdapter, adapter)) || this;
+        var _this = _super.call(this, __assign(__assign({}, MDCChipFoundation.defaultAdapter), adapter)) || this;
         /** Whether a trailing icon click should immediately trigger exit/removal of the chip. */
         _this.shouldRemoveOnTrailingIconClick_ = true;
         return _this;
@@ -190,6 +190,20 @@ var MDCChipFoundation = /** @class */ (function (_super) {
             return this.adapter_.removeClassFromLeadingIcon(cssClasses.HIDDEN_LEADING_ICON);
         }
     };
+    MDCChipFoundation.prototype.handleFocusIn = function (evt) {
+        // Early exit if the event doesn't come from the primary action
+        if (!this.eventFromPrimaryAction_(evt)) {
+            return;
+        }
+        this.adapter_.addClass(cssClasses.PRIMARY_ACTION_FOCUSED);
+    };
+    MDCChipFoundation.prototype.handleFocusOut = function (evt) {
+        // Early exit if the event doesn't come from the primary action
+        if (!this.eventFromPrimaryAction_(evt)) {
+            return;
+        }
+        this.adapter_.removeClass(cssClasses.PRIMARY_ACTION_FOCUSED);
+    };
     /**
      * Handles an interaction event on the trailing icon element. This is used to
      * prevent the ripple from activating on interaction with the trailing icon.
@@ -258,7 +272,9 @@ var MDCChipFoundation = /** @class */ (function (_super) {
     };
     MDCChipFoundation.prototype.getDirection_ = function (key) {
         var isRTL = this.adapter_.isRTL();
-        if (key === strings.ARROW_LEFT_KEY && !isRTL || key === strings.ARROW_RIGHT_KEY && isRTL) {
+        var isLeftKey = key === strings.ARROW_LEFT_KEY || key === strings.IE_ARROW_LEFT_KEY;
+        var isRightKey = key === strings.ARROW_RIGHT_KEY || key === strings.IE_ARROW_RIGHT_KEY;
+        if (!isRTL && isLeftKey || isRTL && isRightKey) {
             return Direction.LEFT;
         }
         return Direction.RIGHT;
@@ -295,7 +311,9 @@ var MDCChipFoundation = /** @class */ (function (_super) {
     };
     MDCChipFoundation.prototype.shouldRemoveChip_ = function (evt) {
         var isDeletable = this.adapter_.hasClass(cssClasses.DELETABLE);
-        return isDeletable && (evt.key === strings.BACKSPACE_KEY || evt.key === strings.DELETE_KEY);
+        return isDeletable &&
+            (evt.key === strings.BACKSPACE_KEY || evt.key === strings.DELETE_KEY ||
+                evt.key === strings.IE_DELETE_KEY);
     };
     MDCChipFoundation.prototype.setSelected_ = function (selected) {
         if (selected) {
@@ -312,6 +330,9 @@ var MDCChipFoundation = /** @class */ (function (_super) {
     };
     MDCChipFoundation.prototype.notifyIgnoredSelection_ = function (selected) {
         this.adapter_.notifySelection(selected, true);
+    };
+    MDCChipFoundation.prototype.eventFromPrimaryAction_ = function (evt) {
+        return this.adapter_.eventTargetHasClass(evt.target, cssClasses.PRIMARY_ACTION);
     };
     return MDCChipFoundation;
 }(MDCFoundation));

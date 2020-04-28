@@ -20,16 +20,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends, __read } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses, strings } from './constants';
 import { MDCTabScrollerRTLDefault } from './rtl-default-scroller';
 import { MDCTabScrollerRTLNegative } from './rtl-negative-scroller';
 import { MDCTabScrollerRTLReverse } from './rtl-reverse-scroller';
 var MDCTabScrollerFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCTabScrollerFoundation, _super);
+    __extends(MDCTabScrollerFoundation, _super);
     function MDCTabScrollerFoundation(adapter) {
-        var _this = _super.call(this, tslib_1.__assign({}, MDCTabScrollerFoundation.defaultAdapter, adapter)) || this;
+        var _this = _super.call(this, __assign(__assign({}, MDCTabScrollerFoundation.defaultAdapter), adapter)) || this;
         /**
          * Controls whether we should handle the transitionend and interaction events during the animation.
          */
@@ -181,7 +181,7 @@ var MDCTabScrollerFoundation = /** @class */ (function (_super) {
         var matrixParams = match[1];
         // tslint:disable-next-line:ban-ts-ignore "Unused vars" should be a linter warning, not a compiler error.
         // @ts-ignore These unused variables should retain their semantic names for clarity.
-        var _a = tslib_1.__read(matrixParams.split(','), 6), a = _a[0], b = _a[1], c = _a[2], d = _a[3], tx = _a[4], ty = _a[5];
+        var _a = __read(matrixParams.split(','), 6), a = _a[0], b = _a[1], c = _a[2], d = _a[3], tx = _a[4], ty = _a[5];
         return parseFloat(tx); // tslint:disable-line:ban
     };
     /**

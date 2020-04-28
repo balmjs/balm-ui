@@ -1,8 +1,6 @@
 ```html
-<ui-card-media-content><!-- the card media content --></ui-card-media-content>
+<ui-card-media-content><!-- rich media content --></ui-card-media-content>
 ```
-
-> An absolutely-positioned box the same size as the media area, for displaying a title or icon on top of the `background-image`.
 
 #### Slots
 

@@ -20,20 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { ALWAYS_FLOAT_TYPES, cssClasses, numbers, strings, VALIDATION_ATTR_WHITELIST } from './constants';
 var POINTERDOWN_EVENTS = ['mousedown', 'touchstart'];
 var INTERACTION_EVENTS = ['click', 'keydown'];
 var MDCTextFieldFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCTextFieldFoundation, _super);
+    __extends(MDCTextFieldFoundation, _super);
     /**
      * @param adapter
      * @param foundationMap Map from subcomponent names to their subfoundations.
      */
     function MDCTextFieldFoundation(adapter, foundationMap) {
         if (foundationMap === void 0) { foundationMap = {}; }
-        var _this = _super.call(this, tslib_1.__assign({}, MDCTextFieldFoundation.defaultAdapter, adapter)) || this;
+        var _this = _super.call(this, __assign(__assign({}, MDCTextFieldFoundation.defaultAdapter), adapter)) || this;
         _this.isFocused_ = false;
         _this.receivedUserInput_ = false;
         _this.isValid_ = true;
@@ -135,6 +135,7 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
         else if (this.adapter_.hasLabel() && this.shouldFloat) {
             this.notchOutline(true);
             this.adapter_.floatLabel(true);
+            this.styleFloating_(true);
         }
         this.adapter_.registerInputInteractionHandler('focus', this.inputFocusHandler_);
         this.adapter_.registerInputInteractionHandler('blur', this.inputBlurHandler_);
@@ -196,9 +197,7 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
             return;
         }
         if (openNotch) {
-            var isDense = this.adapter_.hasClass(cssClasses.DENSE);
-            var labelScale = isDense ? numbers.DENSE_LABEL_SCALE : numbers.LABEL_SCALE;
-            var labelWidth = this.adapter_.getLabelWidth() * labelScale;
+            var labelWidth = this.adapter_.getLabelWidth() * numbers.LABEL_SCALE;
             this.adapter_.notchOutline(labelWidth);
         }
         else {
@@ -215,6 +214,7 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
         if (this.adapter_.hasLabel()) {
             this.notchOutline(this.shouldFloat);
             this.adapter_.floatLabel(this.shouldFloat);
+            this.styleFloating_(this.shouldFloat);
             this.adapter_.shakeLabel(this.shouldShake);
         }
         if (this.helperText_) {
@@ -260,6 +260,7 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
         if (this.adapter_.hasLabel()) {
             this.notchOutline(this.shouldFloat);
             this.adapter_.floatLabel(this.shouldFloat);
+            this.styleFloating_(this.shouldFloat);
             this.adapter_.shakeLabel(this.shouldShake);
         }
         if (!this.shouldFloat) {
@@ -283,6 +284,7 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
         if (this.adapter_.hasLabel()) {
             this.notchOutline(this.shouldFloat);
             this.adapter_.floatLabel(this.shouldFloat);
+            this.styleFloating_(this.shouldFloat);
             this.adapter_.shakeLabel(this.shouldShake);
         }
     };
@@ -431,6 +433,18 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
         }
         if (this.trailingIcon_) {
             this.trailingIcon_.setDisabled(isDisabled);
+        }
+    };
+    /**
+     * Styles the component based on the label floating state.
+     */
+    MDCTextFieldFoundation.prototype.styleFloating_ = function (isFloating) {
+        var LABEL_FLOATING = MDCTextFieldFoundation.cssClasses.LABEL_FLOATING;
+        if (isFloating) {
+            this.adapter_.addClass(LABEL_FLOATING);
+        }
+        else {
+            this.adapter_.removeClass(LABEL_FLOATING);
         }
     };
     /**

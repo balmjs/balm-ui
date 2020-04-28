@@ -1,9 +1,9 @@
 ```css
 @use '@material/checkbox/variables' with (
-  $mark-color: theme-variables.prop-value(on-primary),
+  $baseline-theme-color: secondary,
+  $mark-color: theme-variables.prop-value(on-secondary),
   $border-color: rgba(theme-variables.prop-value(on-surface), .54),
   $disabled-color: rgba(theme-variables.prop-value(on-surface), .38),
-  $baseline-theme-color: secondary,
 
   $ripple-size: 40px,
   $icon-size: 18px,

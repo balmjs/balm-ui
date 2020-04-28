@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { closest } from '../dom/ponyfill';
 import { MDCList } from '../list/component';
@@ -30,7 +30,7 @@ import { MDCMenuSurfaceFoundation } from '../menu-surface/foundation';
 import { cssClasses, strings } from './constants';
 import { MDCMenuFoundation } from './foundation';
 var MDCMenu = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCMenu, _super);
+    __extends(MDCMenu, _super);
     function MDCMenu() {
         return _super !== null && _super.apply(this, arguments) || this;
     }

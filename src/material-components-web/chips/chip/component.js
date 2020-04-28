@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { MDCComponent } from '../../base/component';
 import { MDCRipple } from '../../ripple/component';
 import { MDCRippleFoundation } from '../../ripple/foundation';
@@ -28,7 +28,7 @@ import { strings } from './constants';
 import { MDCChipFoundation } from './foundation';
 var INTERACTION_EVENTS = ['click', 'keydown'];
 var MDCChip = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCChip, _super);
+    __extends(MDCChip, _super);
     function MDCChip() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
@@ -91,7 +91,7 @@ var MDCChip = /** @class */ (function (_super) {
         this.trailingAction_ = this.root_.querySelector(strings.TRAILING_ACTION_SELECTOR);
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-        var rippleAdapter = tslib_1.__assign({}, MDCRipple.createAdapter(this), { computeBoundingRect: function () { return _this.foundation_.getDimensions(); } });
+        var rippleAdapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { computeBoundingRect: function () { return _this.foundation_.getDimensions(); } });
         this.ripple_ = rippleFactory(this.root_, new MDCRippleFoundation(rippleAdapter));
     };
     MDCChip.prototype.initialSyncWithDOM = function () {
@@ -102,11 +102,19 @@ var MDCChip = /** @class */ (function (_super) {
             return _this.foundation_.handleTrailingIconInteraction(evt);
         };
         this.handleKeydown_ = function (evt) { return _this.foundation_.handleKeydown(evt); };
+        this.handleFocusIn_ = function (evt) {
+            _this.foundation_.handleFocusIn(evt);
+        };
+        this.handleFocusOut_ = function (evt) {
+            _this.foundation_.handleFocusOut(evt);
+        };
         INTERACTION_EVENTS.forEach(function (evtType) {
             _this.listen(evtType, _this.handleInteraction_);
         });
         this.listen('transitionend', this.handleTransitionEnd_);
         this.listen('keydown', this.handleKeydown_);
+        this.listen('focusin', this.handleFocusIn_);
+        this.listen('focusout', this.handleFocusOut_);
         if (this.trailingIcon_) {
             INTERACTION_EVENTS.forEach(function (evtType) {
                 _this.trailingIcon_.addEventListener(evtType, _this.handleTrailingIconInteraction_);
@@ -121,6 +129,8 @@ var MDCChip = /** @class */ (function (_super) {
         });
         this.unlisten('transitionend', this.handleTransitionEnd_);
         this.unlisten('keydown', this.handleKeydown_);
+        this.unlisten('focusin', this.handleFocusIn_);
+        this.unlisten('focusout', this.handleFocusOut_);
         if (this.trailingIcon_) {
             INTERACTION_EVENTS.forEach(function (evtType) {
                 _this.trailingIcon_.removeEventListener(evtType, _this.handleTrailingIconInteraction_);

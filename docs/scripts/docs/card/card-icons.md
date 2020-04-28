@@ -1,8 +1,6 @@
 ```html
-<ui-card-icons><!-- the icon components --></ui-card-icons>
+<ui-card-icons><!-- the icon button components --></ui-card-icons>
 ```
-
-> A group of supplemental action icons, displayed on the right side of the card (in LTR), adjacent to `<ui-card-buttons>`.
 
 #### Slots
 

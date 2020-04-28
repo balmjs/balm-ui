@@ -20,13 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses } from './constants';
 var MDCLineRippleFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCLineRippleFoundation, _super);
+    __extends(MDCLineRippleFoundation, _super);
     function MDCLineRippleFoundation(adapter) {
-        var _this = _super.call(this, tslib_1.__assign({}, MDCLineRippleFoundation.defaultAdapter, adapter)) || this;
+        var _this = _super.call(this, __assign(__assign({}, MDCLineRippleFoundation.defaultAdapter), adapter)) || this;
         _this.transitionEndHandler_ = function (evt) { return _this.handleTransitionEnd(evt); };
         return _this;
     }

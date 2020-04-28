@@ -1,7 +1,7 @@
 <template>
   <ui-page-structure name="linear-progress" demoCount="1">
     <template #hero>
-      <ui-linear-progress indeterminate></ui-linear-progress>
+      <ui-linear-progress active></ui-linear-progress>
     </template>
 
     <!-- Content -->
@@ -13,7 +13,7 @@
       </figure>
 
       <figure class="linear-progress-demo">
-        <ui-linear-progress indeterminate></ui-linear-progress>
+        <ui-linear-progress active></ui-linear-progress>
         <figcaption>Indeterminate</figcaption>
       </figure>
 
@@ -32,7 +32,7 @@
       </figure>
 
       <figure class="linear-progress-demo">
-        <ui-linear-progress indeterminate reversed></ui-linear-progress>
+        <ui-linear-progress active reversed></ui-linear-progress>
         <figcaption>Indeterminate Reversed</figcaption>
       </figure>
 

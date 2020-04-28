@@ -20,13 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../../base/foundation';
 import { cssClasses, strings } from '../constants';
 var MDCDismissibleDrawerFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCDismissibleDrawerFoundation, _super);
+    __extends(MDCDismissibleDrawerFoundation, _super);
     function MDCDismissibleDrawerFoundation(adapter) {
-        var _this = _super.call(this, tslib_1.__assign({}, MDCDismissibleDrawerFoundation.defaultAdapter, adapter)) || this;
+        var _this = _super.call(this, __assign(__assign({}, MDCDismissibleDrawerFoundation.defaultAdapter), adapter)) || this;
         _this.animationFrame_ = 0;
         _this.animationTimer_ = 0;
         return _this;

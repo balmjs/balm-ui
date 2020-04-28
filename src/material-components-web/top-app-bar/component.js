@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { MDCRipple } from '../ripple/component';
 import { cssClasses, strings } from './constants';
@@ -28,7 +28,7 @@ import { MDCFixedTopAppBarFoundation } from './fixed/foundation';
 import { MDCShortTopAppBarFoundation } from './short/foundation';
 import { MDCTopAppBarFoundation } from './standard/foundation';
 var MDCTopAppBar = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCTopAppBar, _super);
+    __extends(MDCTopAppBar, _super);
     function MDCTopAppBar() {
         return _super !== null && _super.apply(this, arguments) || this;
     }

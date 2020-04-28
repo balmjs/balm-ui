@@ -5,6 +5,7 @@
 </template>
 
 <script>
+// NOTE: Additional card component
 export default {
   name: 'ui-card-text'
 };

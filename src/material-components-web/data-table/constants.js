@@ -20,28 +20,66 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+/**
+ * CSS class names used in component.
+ */
 export var cssClasses = {
     CELL: 'mdc-data-table__cell',
     CELL_NUMERIC: 'mdc-data-table__cell--numeric',
     CONTENT: 'mdc-data-table__content',
+    HEADER_CELL_SORTED: 'mdc-data-table__header-cell--sorted',
+    HEADER_CELL_SORTED_DESCENDING: 'mdc-data-table__header-cell--sorted-descending',
+    HEADER_CELL_WITH_SORT: 'mdc-data-table__header-cell--with-sort',
     HEADER_ROW: 'mdc-data-table__header-row',
     HEADER_ROW_CHECKBOX: 'mdc-data-table__header-row-checkbox',
+    IN_PROGRESS: 'mdc-data-table--in-progress',
     ROOT: 'mdc-data-table',
     ROW: 'mdc-data-table__row',
     ROW_CHECKBOX: 'mdc-data-table__row-checkbox',
     ROW_SELECTED: 'mdc-data-table__row--selected',
+    SORT_ICON_BUTTON: 'mdc-data-table__sort-icon-button',
 };
+/**
+ * List of data attributes used in component.
+ */
+export var dataAttributes = {
+    ROW_ID: 'data-row-id',
+    COLUMND_ID: 'data-columnd-id',
+};
+/**
+ * Attributes and selectors used in component.
+ */
 export var strings = {
     ARIA_SELECTED: 'aria-selected',
-    DATA_ROW_ID_ATTR: 'data-row-id',
+    ARIA_SORT: 'aria-sort',
+    DATA_ROW_ID_ATTR: dataAttributes.ROW_ID,
     HEADER_ROW_CHECKBOX_SELECTOR: "." + cssClasses.HEADER_ROW_CHECKBOX,
     ROW_CHECKBOX_SELECTOR: "." + cssClasses.ROW_CHECKBOX,
     ROW_SELECTED_SELECTOR: "." + cssClasses.ROW_SELECTED,
     ROW_SELECTOR: "." + cssClasses.ROW,
 };
+/**
+ * Sort values defined by ARIA.
+ * See https://www.w3.org/WAI/PF/aria/states_and_properties#aria-sort
+ */
+export var SortValue;
+(function (SortValue) {
+    // Items are sorted in ascending order by this column.
+    SortValue["ASCENDING"] = "ascending";
+    // Items are sorted in descending order by this column.
+    SortValue["DESCENDING"] = "descending";
+    // There is no defined sort applied to the column.
+    SortValue["NONE"] = "none";
+    // A sort algorithm other than ascending or descending has been applied.
+    SortValue["OTHER"] = "other";
+})(SortValue || (SortValue = {}));
+/**
+ * Event names used in component.
+ */
 export var events = {
     ROW_SELECTION_CHANGED: 'MDCDataTable:rowSelectionChanged',
     SELECTED_ALL: 'MDCDataTable:selectedAll',
     UNSELECTED_ALL: 'MDCDataTable:unselectedAll',
+    SORTED: 'MDCDataTable:sorted',
 };
 //# sourceMappingURL=constants.js.map

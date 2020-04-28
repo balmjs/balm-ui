@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { FocusTrap } from '../dom/focus-trap';
 import { MDCList } from '../list/component';
@@ -34,7 +34,7 @@ var cssClasses = MDCDismissibleDrawerFoundation.cssClasses, strings = MDCDismiss
  * @events `MDCDrawer:opened {}` Emits when the navigation drawer has opened.
  */
 var MDCDrawer = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCDrawer, _super);
+    __extends(MDCDrawer, _super);
     function MDCDrawer() {
         return _super !== null && _super.apply(this, arguments) || this;
     }

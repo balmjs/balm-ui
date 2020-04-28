@@ -20,14 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { MDCCheckbox } from '../checkbox/component';
 import { closest } from '../dom/ponyfill';
 import { cssClasses, events, strings } from './constants';
 import { MDCDataTableFoundation } from './foundation';
 var MDCDataTable = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCDataTable, _super);
+    __extends(MDCDataTable, _super);
     function MDCDataTable() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
@@ -85,17 +85,27 @@ var MDCDataTable = /** @class */ (function (_super) {
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
-            addClassAtRowIndex: function (rowIndex, className) { return _this.getRows()[rowIndex].classList.add(className); },
+            addClassAtRowIndex: function (rowIndex, className) {
+                _this.getRows()[rowIndex].classList.add(className);
+            },
             getRowCount: function () { return _this.getRows().length; },
             getRowElements: function () { return [].slice.call(_this.root_.querySelectorAll(strings.ROW_SELECTOR)); },
-            getRowIdAtIndex: function (rowIndex) { return _this.getRows()[rowIndex].getAttribute(strings.DATA_ROW_ID_ATTR); },
+            getRowIdAtIndex: function (rowIndex) {
+                return _this.getRows()[rowIndex].getAttribute(strings.DATA_ROW_ID_ATTR);
+            },
             getRowIndexByChildElement: function (el) {
                 return _this.getRows().indexOf(closest(el, strings.ROW_SELECTOR));
             },
-            getSelectedRowCount: function () { return _this.root_.querySelectorAll(strings.ROW_SELECTED_SELECTOR).length; },
-            isCheckboxAtRowIndexChecked: function (rowIndex) { return _this.rowCheckboxList_[rowIndex].checked; },
+            getSelectedRowCount: function () {
+                return _this.root_.querySelectorAll(strings.ROW_SELECTED_SELECTOR).length;
+            },
+            isCheckboxAtRowIndexChecked: function (rowIndex) {
+                return _this.rowCheckboxList_[rowIndex].checked;
+            },
             isHeaderRowCheckboxChecked: function () { return _this.headerRowCheckbox_.checked; },
-            isRowsSelectable: function () { return !!_this.root_.querySelector(strings.ROW_CHECKBOX_SELECTOR); },
+            isRowsSelectable: function () {
+                return !!_this.root_.querySelector(strings.ROW_CHECKBOX_SELECTOR);
+            },
             notifyRowSelectionChanged: function (data) {
                 _this.emit(events.ROW_SELECTION_CHANGED, {
                     row: _this.getRowByIndex_(data.rowIndex),
@@ -105,8 +115,12 @@ var MDCDataTable = /** @class */ (function (_super) {
                 }, 
                 /** shouldBubble */ true);
             },
-            notifySelectedAll: function () { return _this.emit(events.SELECTED_ALL, {}, /** shouldBubble */ true); },
-            notifyUnselectedAll: function () { return _this.emit(events.UNSELECTED_ALL, {}, /** shouldBubble */ true); },
+            notifySelectedAll: function () {
+                _this.emit(events.SELECTED_ALL, {}, /** shouldBubble */ true);
+            },
+            notifyUnselectedAll: function () {
+                _this.emit(events.UNSELECTED_ALL, {}, /** shouldBubble */ true);
+            },
             registerHeaderRowCheckbox: function () {
                 if (_this.headerRowCheckbox_) {
                     _this.headerRowCheckbox_.destroy();

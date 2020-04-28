@@ -20,11 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __extends } from "tslib";
 import { MDCTabIndicatorFoundation } from './foundation';
 /* istanbul ignore next: subclass is not a branch statement */
 var MDCSlidingTabIndicatorFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCSlidingTabIndicatorFoundation, _super);
+    __extends(MDCSlidingTabIndicatorFoundation, _super);
     function MDCSlidingTabIndicatorFoundation() {
         return _super !== null && _super.apply(this, arguments) || this;
     }

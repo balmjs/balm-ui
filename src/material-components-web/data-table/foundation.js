@@ -20,35 +20,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __awaiter, __extends, __generator } from "tslib";
 import { MDCFoundation } from '../base/foundation';
-import { cssClasses, strings } from './constants';
+import { cssClasses, SortValue, strings } from './constants';
 var MDCDataTableFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCDataTableFoundation, _super);
+    __extends(MDCDataTableFoundation, _super);
     function MDCDataTableFoundation(adapter) {
-        return _super.call(this, tslib_1.__assign({}, MDCDataTableFoundation.defaultAdapter, adapter)) || this;
+        return _super.call(this, __assign(__assign({}, MDCDataTableFoundation.defaultAdapter), adapter)) || this;
     }
     Object.defineProperty(MDCDataTableFoundation, "defaultAdapter", {
         get: function () {
             return {
+                addClass: function () { return undefined; },
                 addClassAtRowIndex: function () { return undefined; },
+                getAttributeByHeaderCellIndex: function () { return ''; },
+                getHeaderCellCount: function () { return 0; },
+                getHeaderCellElements: function () { return []; },
                 getRowCount: function () { return 0; },
                 getRowElements: function () { return []; },
                 getRowIdAtIndex: function () { return ''; },
                 getRowIndexByChildElement: function () { return 0; },
                 getSelectedRowCount: function () { return 0; },
+                getTableBodyHeight: function () { return ''; },
+                getTableHeaderHeight: function () { return ''; },
                 isCheckboxAtRowIndexChecked: function () { return false; },
                 isHeaderRowCheckboxChecked: function () { return false; },
                 isRowsSelectable: function () { return false; },
                 notifyRowSelectionChanged: function () { return undefined; },
                 notifySelectedAll: function () { return undefined; },
+                notifySortAction: function () { return undefined; },
                 notifyUnselectedAll: function () { return undefined; },
                 registerHeaderRowCheckbox: function () { return undefined; },
                 registerRowCheckboxes: function () { return undefined; },
+                removeClass: function () { return undefined; },
                 removeClassAtRowIndex: function () { return undefined; },
+                removeClassNameByHeaderCellIndex: function () { return undefined; },
                 setAttributeAtRowIndex: function () { return undefined; },
+                setAttributeByHeaderCellIndex: function () { return undefined; },
+                setClassNameByHeaderCellIndex: function () { return undefined; },
                 setHeaderRowCheckboxChecked: function () { return undefined; },
                 setHeaderRowCheckboxIndeterminate: function () { return undefined; },
+                setProgressIndicatorStyles: function () { return undefined; },
                 setRowCheckboxCheckedAtIndex: function () { return undefined; },
             };
         },
@@ -71,8 +83,8 @@ var MDCDataTableFoundation = /** @class */ (function (_super) {
      * Use this if registering checkbox is asynchronous.
      */
     MDCDataTableFoundation.prototype.layoutAsync = function () {
-        return tslib_1.__awaiter(this, void 0, void 0, function () {
-            return tslib_1.__generator(this, function (_a) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         if (!this.adapter_.isRowsSelectable()) return [3 /*break*/, 3];
@@ -96,6 +108,12 @@ var MDCDataTableFoundation = /** @class */ (function (_super) {
         return this.adapter_.getRowElements();
     };
     /**
+     * @return Array of header cell elements.
+     */
+    MDCDataTableFoundation.prototype.getHeaderCells = function () {
+        return this.adapter_.getHeaderCellElements();
+    };
+    /**
      * Sets selected row ids. Overwrites previously selected rows.
      * @param rowIds Array of row ids that needs to be selected.
      */
@@ -110,6 +128,16 @@ var MDCDataTableFoundation = /** @class */ (function (_super) {
             this.selectRowAtIndex_(rowIndex, isSelected);
         }
         this.setHeaderRowCheckboxState_();
+    };
+    /**
+     * @return Returns array of all row ids.
+     */
+    MDCDataTableFoundation.prototype.getRowIds = function () {
+        var rowIds = [];
+        for (var rowIndex = 0; rowIndex < this.adapter_.getRowCount(); rowIndex++) {
+            rowIds.push(this.adapter_.getRowIdAtIndex(rowIndex));
+        }
+        return rowIds;
     };
     /**
      * @return Returns array of selected row ids.
@@ -152,6 +180,67 @@ var MDCDataTableFoundation = /** @class */ (function (_super) {
         this.setHeaderRowCheckboxState_();
         var rowId = this.adapter_.getRowIdAtIndex(rowIndex);
         this.adapter_.notifyRowSelectionChanged({ rowId: rowId, rowIndex: rowIndex, selected: selected });
+    };
+    /**
+     * Handles sort action on sortable header cell.
+     */
+    MDCDataTableFoundation.prototype.handleSortAction = function (eventData) {
+        var columnId = eventData.columnId, columnIndex = eventData.columnIndex, headerCell = eventData.headerCell;
+        // Reset sort attributes / classes on other header cells.
+        for (var index = 0; index < this.adapter_.getHeaderCellCount(); index++) {
+            if (index === columnIndex) {
+                continue;
+            }
+            this.adapter_.removeClassNameByHeaderCellIndex(index, cssClasses.HEADER_CELL_SORTED);
+            this.adapter_.removeClassNameByHeaderCellIndex(index, cssClasses.HEADER_CELL_SORTED_DESCENDING);
+            this.adapter_.setAttributeByHeaderCellIndex(index, strings.ARIA_SORT, SortValue.NONE);
+        }
+        // Set appropriate sort attributes / classes on target header cell.
+        this.adapter_.setClassNameByHeaderCellIndex(columnIndex, cssClasses.HEADER_CELL_SORTED);
+        var currentSortValue = this.adapter_.getAttributeByHeaderCellIndex(columnIndex, strings.ARIA_SORT);
+        var sortValue = SortValue.NONE;
+        // Set to descending if sorted on ascending order.
+        if (currentSortValue === SortValue.ASCENDING) {
+            this.adapter_.setClassNameByHeaderCellIndex(columnIndex, cssClasses.HEADER_CELL_SORTED_DESCENDING);
+            this.adapter_.setAttributeByHeaderCellIndex(columnIndex, strings.ARIA_SORT, SortValue.DESCENDING);
+            sortValue = SortValue.DESCENDING;
+            // Set to ascending if sorted on descending order.
+        }
+        else if (currentSortValue === SortValue.DESCENDING) {
+            this.adapter_.removeClassNameByHeaderCellIndex(columnIndex, cssClasses.HEADER_CELL_SORTED_DESCENDING);
+            this.adapter_.setAttributeByHeaderCellIndex(columnIndex, strings.ARIA_SORT, SortValue.ASCENDING);
+            sortValue = SortValue.ASCENDING;
+        }
+        else {
+            // Set to ascending by default when not sorted.
+            this.adapter_.setAttributeByHeaderCellIndex(columnIndex, strings.ARIA_SORT, SortValue.ASCENDING);
+            sortValue = SortValue.ASCENDING;
+        }
+        this.adapter_.notifySortAction({
+            columnId: columnId,
+            columnIndex: columnIndex,
+            headerCell: headerCell,
+            sortValue: sortValue,
+        });
+    };
+    /**
+     * Shows progress indicator blocking only the table body content when in
+     * loading state.
+     */
+    MDCDataTableFoundation.prototype.showProgress = function () {
+        var height = this.adapter_.getTableBodyHeight();
+        var top = this.adapter_.getTableHeaderHeight();
+        this.adapter_.setProgressIndicatorStyles({
+            height: height,
+            top: top,
+        });
+        this.adapter_.addClass(cssClasses.IN_PROGRESS);
+    };
+    /**
+     * Hides progress indicator when data table is finished loading.
+     */
+    MDCDataTableFoundation.prototype.hideProgress = function () {
+        this.adapter_.removeClass(cssClasses.IN_PROGRESS);
     };
     /**
      * Updates header row checkbox state based on number of rows selected.

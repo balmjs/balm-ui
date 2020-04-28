@@ -4,6 +4,7 @@ const Confirm = () => import('@/views/plugins/confirm');
 const Snackbar = () => import('@/views/components/snackbar');
 const Toast = () => import('@/views/plugins/toast');
 const LinearProgress = () => import('@/views/components/linear-progress');
+const CircularProgress = () => import('@/views/components/circular-progress');
 const Skeleton = () => import('@/views/components/skeleton');
 
 export default [
@@ -36,6 +37,11 @@ export default [
     path: 'linear-progress',
     name: 'feedback.linear-progress',
     component: LinearProgress
+  },
+  {
+    path: 'circular-progress',
+    name: 'feedback.circular-progress',
+    component: CircularProgress
   },
   {
     path: 'skeleton',

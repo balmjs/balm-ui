@@ -3,10 +3,12 @@
     name="card"
     demoCount="3"
     :apis="[
+      'cards',
       'card',
       'card-content',
       'card-media',
       'card-media-content',
+      'card-text',
       'card-actions',
       'card-buttons',
       'card-icons'
@@ -97,12 +99,12 @@
         </template>
 
         <ui-card-actions fullBleed>
-          <ui-a class="demo-card-action">
+          <ui-button class="demo-card-action">
             All Business Headlines
             <template #after>
               <ui-icon>arrow_forward</ui-icon>
             </template>
-          </ui-a>
+          </ui-button>
         </ui-card-actions>
       </ui-card>
     </section>

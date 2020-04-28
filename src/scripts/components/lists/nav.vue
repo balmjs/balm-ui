@@ -2,7 +2,7 @@
   <nav :class="className">
     <slot
       :itemClass="UI_LIST.cssClasses.item"
-      :activatedClass="UI_LIST.cssClasses.activated"
+      :activeClass="UI_LIST.cssClasses.active"
     >
       <!-- <ui-a> -->
     </slot>

@@ -23,6 +23,7 @@
 @use "../elevation/variables" as elevation-variables;
 @use "../feature-targeting/functions" as feature-targeting-functions;
 @use "../feature-targeting/mixins" as feature-targeting-mixins;
+@use "../dom/mixins" as dom-mixins;
 @use "../ripple/mixins" as ripple-mixins;
 @use "../ripple/variables" as variables2;
 @use "../rtl/mixins" as rtl-mixins;
@@ -71,6 +72,10 @@ $ripple-target: ".mdc-fab__ripple";
     .mdc-fab__touch {
       @include touch-target-mixins.touch-target($set-width: true, $query: $query);
     }
+  }
+
+  .mdc-fab::before {
+    @include dom-mixins.transparent-border($query: $query);
   }
 
   .mdc-fab__label {

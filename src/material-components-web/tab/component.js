@@ -20,14 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { MDCRipple } from '../ripple/component';
 import { MDCRippleFoundation } from '../ripple/foundation';
 import { MDCTabIndicator } from '../tab-indicator/component';
 import { MDCTabFoundation } from './foundation';
 var MDCTab = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCTab, _super);
+    __extends(MDCTab, _super);
     function MDCTab() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
@@ -39,7 +39,7 @@ var MDCTab = /** @class */ (function (_super) {
         if (tabIndicatorFactory === void 0) { tabIndicatorFactory = function (el) { return new MDCTabIndicator(el); }; }
         this.id = this.root_.id;
         var rippleSurface = this.root_.querySelector(MDCTabFoundation.strings.RIPPLE_SELECTOR);
-        var rippleAdapter = tslib_1.__assign({}, MDCRipple.createAdapter(this), { addClass: function (className) { return rippleSurface.classList.add(className); }, removeClass: function (className) { return rippleSurface.classList.remove(className); }, updateCssVariable: function (varName, value) { return rippleSurface.style.setProperty(varName, value); } });
+        var rippleAdapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { addClass: function (className) { return rippleSurface.classList.add(className); }, removeClass: function (className) { return rippleSurface.classList.remove(className); }, updateCssVariable: function (varName, value) { return rippleSurface.style.setProperty(varName, value); } });
         var rippleFoundation = new MDCRippleFoundation(rippleAdapter);
         this.ripple_ = rippleFactory(this.root_, rippleFoundation);
         var tabIndicatorElement = this.root_.querySelector(MDCTabFoundation.strings.TAB_INDICATOR_SELECTOR);

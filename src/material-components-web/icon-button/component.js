@@ -20,13 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { MDCRipple } from '../ripple/component';
 import { MDCIconButtonToggleFoundation } from './foundation';
 var strings = MDCIconButtonToggleFoundation.strings;
 var MDCIconButtonToggle = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCIconButtonToggle, _super);
+    __extends(MDCIconButtonToggle, _super);
     function MDCIconButtonToggle() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.ripple_ = _this.createRipple_();
@@ -52,9 +52,14 @@ var MDCIconButtonToggle = /** @class */ (function (_super) {
         var adapter = {
             addClass: function (className) { return _this.root_.classList.add(className); },
             hasClass: function (className) { return _this.root_.classList.contains(className); },
-            notifyChange: function (evtData) { return _this.emit(strings.CHANGE_EVENT, evtData); },
+            notifyChange: function (evtData) {
+                _this.emit(strings.CHANGE_EVENT, evtData);
+            },
             removeClass: function (className) { return _this.root_.classList.remove(className); },
-            setAttr: function (attrName, attrValue) { return _this.root_.setAttribute(attrName, attrValue); },
+            getAttr: function (attrName) { return _this.root_.getAttribute(attrName); },
+            setAttr: function (attrName, attrValue) {
+                return _this.root_.setAttribute(attrName, attrValue);
+            },
         };
         return new MDCIconButtonToggleFoundation(adapter);
     };

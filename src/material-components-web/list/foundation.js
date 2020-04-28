@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses, numbers, strings } from './constants';
 var ELEMENTS_KEY_ALLOWED_IN = ['input', 'button', 'textarea', 'select'];
@@ -28,9 +28,9 @@ function isNumberArray(selectedIndex) {
     return selectedIndex instanceof Array;
 }
 var MDCListFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCListFoundation, _super);
+    __extends(MDCListFoundation, _super);
     function MDCListFoundation(adapter) {
-        var _this = _super.call(this, tslib_1.__assign({}, MDCListFoundation.defaultAdapter, adapter)) || this;
+        var _this = _super.call(this, __assign(__assign({}, MDCListFoundation.defaultAdapter), adapter)) || this;
         _this.wrapFocus_ = false;
         _this.isVertical_ = true;
         _this.isSingleSelectionList_ = false;
@@ -222,6 +222,9 @@ var MDCListFoundation = /** @class */ (function (_super) {
                     return;
                 }
                 this.preventDefaultEvent_(evt);
+                if (this.adapter_.listItemAtIndexHasClass(currentIndex, cssClasses.LIST_ITEM_DISABLED_CLASS)) {
+                    return;
+                }
                 if (this.isSelectableList_()) {
                     this.setSelectedIndexOnAction_(currentIndex);
                 }
@@ -241,12 +244,15 @@ var MDCListFoundation = /** @class */ (function (_super) {
         if (index === numbers.UNSET_INDEX) {
             return;
         }
+        this.setTabindexAtIndex_(index);
+        this.focusedItemIndex_ = index;
+        if (this.adapter_.listItemAtIndexHasClass(index, cssClasses.LIST_ITEM_DISABLED_CLASS)) {
+            return;
+        }
         if (this.isSelectableList_()) {
             this.setSelectedIndexOnAction_(index, toggleCheckbox);
         }
         this.adapter_.notifyAction(index);
-        this.setTabindexAtIndex_(index);
-        this.focusedItemIndex_ = index;
     };
     /**
      * Focuses the next element on the list.
@@ -436,9 +442,6 @@ var MDCListFoundation = /** @class */ (function (_super) {
      */
     MDCListFoundation.prototype.setSelectedIndexOnAction_ = function (index, toggleCheckbox) {
         if (toggleCheckbox === void 0) { toggleCheckbox = true; }
-        if (this.adapter_.listItemAtIndexHasClass(index, cssClasses.LIST_ITEM_DISABLED_CLASS)) {
-            return;
-        }
         if (this.isCheckboxList_) {
             this.toggleCheckboxAtIndex_(index, toggleCheckbox);
         }

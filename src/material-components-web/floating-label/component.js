@@ -20,12 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { estimateScrollWidth } from '../dom/ponyfill';
 import { MDCFloatingLabelFoundation } from './foundation';
 var MDCFloatingLabel = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCFloatingLabel, _super);
+    __extends(MDCFloatingLabel, _super);
     function MDCFloatingLabel() {
         return _super !== null && _super.apply(this, arguments) || this;
     }

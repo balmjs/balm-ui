@@ -20,12 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { getCorrectEventName, getCorrectPropertyName } from '../animation/util';
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses, numbers, strings } from './constants';
-var DOWN_EVENTS = ['mousedown', 'pointerdown', 'touchstart'];
-var UP_EVENTS = ['mouseup', 'pointerup', 'touchend'];
+var hasPointer = !!window.PointerEvent;
+var DOWN_EVENTS = hasPointer ? ['pointerdown'] : ['mousedown', 'touchstart'];
+var UP_EVENTS = hasPointer ? ['pointerup'] : ['mouseup', 'touchend'];
 var MOVE_EVENT_MAP = {
     mousedown: 'mousemove',
     pointerdown: 'pointermove',
@@ -42,9 +43,9 @@ var KEY_IDS = {
     PAGE_UP: 'PageUp',
 };
 var MDCSliderFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCSliderFoundation, _super);
+    __extends(MDCSliderFoundation, _super);
     function MDCSliderFoundation(adapter) {
-        var _this = _super.call(this, tslib_1.__assign({}, MDCSliderFoundation.defaultAdapter, adapter)) || this;
+        var _this = _super.call(this, __assign(__assign({}, MDCSliderFoundation.defaultAdapter), adapter)) || this;
         /**
          * We set this to NaN since we want it to be a number, but we can't use '0' or
          * '-1' because those could be valid tabindices set by the client code.
@@ -437,8 +438,10 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         if (this.adapter_.isRTL()) {
             translatePx = this.rect_.width - translatePx;
         }
-        var transformProp = getCorrectPropertyName(window, 'transform');
-        var transitionendEvtName = getCorrectEventName(window, 'transitionend');
+        // Accessing `window` without a `typeof` check will throw on Node environments.
+        var hasWindow = typeof window !== 'undefined';
+        var transformProp = hasWindow ? getCorrectPropertyName(window, 'transform') : 'transform';
+        var transitionendEvtName = hasWindow ? getCorrectEventName(window, 'transitionend') : 'transitionend';
         if (this.inTransit_) {
             var onTransitionEnd_1 = function () {
                 _this.setInTransit_(false);

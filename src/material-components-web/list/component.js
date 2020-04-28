@@ -20,13 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { closest, matches } from '../dom/ponyfill';
 import { cssClasses, strings } from './constants';
 import { MDCListFoundation } from './foundation';
 var MDCList = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCList, _super);
+    __extends(MDCList, _super);
     function MDCList() {
         return _super !== null && _super.apply(this, arguments) || this;
     }

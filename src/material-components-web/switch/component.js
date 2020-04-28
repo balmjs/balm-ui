@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends, __read, __spread } from "tslib";
 import { MDCComponent } from '../base/component';
 import { applyPassive } from '../dom/events';
 import { matches } from '../dom/ponyfill';
@@ -28,7 +28,7 @@ import { MDCRipple } from '../ripple/component';
 import { MDCRippleFoundation } from '../ripple/foundation';
 import { MDCSwitchFoundation } from './foundation';
 var MDCSwitch = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCSwitch, _super);
+    __extends(MDCSwitch, _super);
     function MDCSwitch() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.ripple_ = _this.createRipple_();
@@ -50,7 +50,7 @@ var MDCSwitch = /** @class */ (function (_super) {
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
             }
-            return (_a = _this.foundation_).handleChange.apply(_a, tslib_1.__spread(args));
+            return (_a = _this.foundation_).handleChange.apply(_a, __spread(args));
         };
         this.nativeControl_.addEventListener('change', this.changeHandler_);
         // Sometimes the checked state of the input element is saved in the history.
@@ -104,7 +104,7 @@ var MDCSwitch = /** @class */ (function (_super) {
         var rippleSurface = this.root_.querySelector(RIPPLE_SURFACE_SELECTOR);
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
-        var adapter = tslib_1.__assign({}, MDCRipple.createAdapter(this), { addClass: function (className) { return rippleSurface.classList.add(className); }, computeBoundingRect: function () { return rippleSurface.getBoundingClientRect(); }, deregisterInteractionHandler: function (evtType, handler) {
+        var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { addClass: function (className) { return rippleSurface.classList.add(className); }, computeBoundingRect: function () { return rippleSurface.getBoundingClientRect(); }, deregisterInteractionHandler: function (evtType, handler) {
                 _this.nativeControl_.removeEventListener(evtType, handler, applyPassive());
             }, isSurfaceActive: function () { return matches(_this.nativeControl_, ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (evtType, handler) {
                 _this.nativeControl_.addEventListener(evtType, handler, applyPassive());

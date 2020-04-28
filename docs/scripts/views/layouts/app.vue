@@ -36,7 +36,7 @@
         >
           <ui-drawer-content>
             <ui-nav ref="mainmenu" class="catalog-list">
-              <template #default="{ itemClass, activatedClass }">
+              <template #default="{ itemClass, activeClass }">
                 <template v-for="(item, index) in menu">
                   <router-link
                     v-if="item.icon || item.isSubmenu"
@@ -50,7 +50,7 @@
                       $textColor('primary', 'light')
                     ]"
                     :to="item.url"
-                    :active-class="activatedClass"
+                    :active-class="activeClass"
                     @click.native="handleMenu"
                   >
                     <i

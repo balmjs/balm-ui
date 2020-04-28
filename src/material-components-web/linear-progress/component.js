@@ -20,11 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { MDCLinearProgressFoundation } from './foundation';
 var MDCLinearProgress = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCLinearProgress, _super);
+    __extends(MDCLinearProgress, _super);
     function MDCLinearProgress() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
@@ -72,17 +72,24 @@ var MDCLinearProgress = /** @class */ (function (_super) {
         var adapter = {
             addClass: function (className) { return _this.root_.classList.add(className); },
             forceLayout: function () { return _this.root_.offsetWidth; },
-            getBuffer: function () { return _this.root_.querySelector(MDCLinearProgressFoundation.strings.BUFFER_SELECTOR); },
-            getPrimaryBar: function () { return _this.root_.querySelector(MDCLinearProgressFoundation.strings.PRIMARY_BAR_SELECTOR); },
+            setBufferBarStyle: function (styleProperty, value) {
+                _this.root_.querySelector(MDCLinearProgressFoundation.strings.BUFFER_BAR_SELECTOR)
+                    .style.setProperty(styleProperty, value);
+            },
+            setPrimaryBarStyle: function (styleProperty, value) {
+                _this.root_.querySelector(MDCLinearProgressFoundation.strings.PRIMARY_BAR_SELECTOR)
+                    .style.setProperty(styleProperty, value);
+            },
             hasClass: function (className) { return _this.root_.classList.contains(className); },
             removeAttribute: function (attributeName) {
                 _this.root_.removeAttribute(attributeName);
             },
-            removeClass: function (className) { return _this.root_.classList.remove(className); },
+            removeClass: function (className) {
+                return _this.root_.classList.remove(className);
+            },
             setAttribute: function (attributeName, value) {
                 _this.root_.setAttribute(attributeName, value);
             },
-            setStyle: function (el, styleProperty, value) { return el.style.setProperty(styleProperty, value); },
         };
         return new MDCLinearProgressFoundation(adapter);
     };

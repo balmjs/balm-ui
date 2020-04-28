@@ -1,0 +1,15 @@
+.mdc-select {
+  display: inline-flex;
+}
+
+.mdc-select--fullwidth {
+  display: flex;
+
+  .mdc-select__anchor {
+    width: 100%;
+  }
+}
+
+.mdc-select__anchor .mdc-select__ripple {
+  overflow: hidden; // bugfix
+}

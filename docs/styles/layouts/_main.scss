@@ -3,7 +3,7 @@
 
 /// Ensure layout covers the entire screen.
 html {
-  &.balmui--no-layout {
+  &.balmui-no-layout {
     .balmui-container {
       height: auto;
     }
@@ -156,7 +156,11 @@ a {
   padding: 40px 0;
 }
 
-.markdown-body table td:nth-child(2) {
+.component-docs {
+  margin-bottom: 80px;
+}
+
+.markdown-body:not(.component--cards) table td:nth-child(2) {
   color: #c41d7f;
   font-size: 13px;
 }

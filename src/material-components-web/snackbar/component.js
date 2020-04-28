@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { closest } from '../dom/ponyfill';
 import { strings } from './constants';
@@ -28,7 +28,7 @@ import { MDCSnackbarFoundation } from './foundation';
 import * as util from './util';
 var SURFACE_SELECTOR = strings.SURFACE_SELECTOR, LABEL_SELECTOR = strings.LABEL_SELECTOR, ACTION_SELECTOR = strings.ACTION_SELECTOR, DISMISS_SELECTOR = strings.DISMISS_SELECTOR, OPENING_EVENT = strings.OPENING_EVENT, OPENED_EVENT = strings.OPENED_EVENT, CLOSING_EVENT = strings.CLOSING_EVENT, CLOSED_EVENT = strings.CLOSED_EVENT;
 var MDCSnackbar = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCSnackbar, _super);
+    __extends(MDCSnackbar, _super);
     function MDCSnackbar() {
         return _super !== null && _super.apply(this, arguments) || this;
     }

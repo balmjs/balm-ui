@@ -20,15 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses, numbers, strings } from './constants';
 var OPENING = cssClasses.OPENING, OPEN = cssClasses.OPEN, CLOSING = cssClasses.CLOSING;
 var REASON_ACTION = strings.REASON_ACTION, REASON_DISMISS = strings.REASON_DISMISS;
 var MDCSnackbarFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCSnackbarFoundation, _super);
+    __extends(MDCSnackbarFoundation, _super);
     function MDCSnackbarFoundation(adapter) {
-        var _this = _super.call(this, tslib_1.__assign({}, MDCSnackbarFoundation.defaultAdapter, adapter)) || this;
+        var _this = _super.call(this, __assign(__assign({}, MDCSnackbarFoundation.defaultAdapter), adapter)) || this;
         _this.isOpen_ = false;
         _this.animationFrame_ = 0;
         _this.animationTimer_ = 0;

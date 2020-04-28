@@ -20,13 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses, numbers, strings } from './constants';
 var MDCNotchedOutlineFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCNotchedOutlineFoundation, _super);
+    __extends(MDCNotchedOutlineFoundation, _super);
     function MDCNotchedOutlineFoundation(adapter) {
-        return _super.call(this, tslib_1.__assign({}, MDCNotchedOutlineFoundation.defaultAdapter, adapter)) || this;
+        return _super.call(this, __assign(__assign({}, MDCNotchedOutlineFoundation.defaultAdapter), adapter)) || this;
     }
     Object.defineProperty(MDCNotchedOutlineFoundation, "strings", {
         get: function () {

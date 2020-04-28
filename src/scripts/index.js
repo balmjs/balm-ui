@@ -5,7 +5,6 @@ import multiConfigure from './config/multi-configure';
  */
 // General
 import UiButton from './components/buttons/button';
-import UiA from './components/buttons/a';
 import UiFab from './components/buttons/fab';
 import UiIconButton from './components/buttons/icon-button';
 import UiIconA from './components/buttons/icon-a';
@@ -81,6 +80,7 @@ import UiDialogContent from './components/modal/dialog-content';
 import UiDialogActions from './components/modal/dialog-actions';
 import UiSnackbar from './components/modal/snackbar';
 import UiLinearProgress from './components/progress-indicators/linear-progress';
+import UiCircularProgress from './components/progress-indicators/circular-progress';
 /**
  * Plugins
  */
@@ -101,7 +101,6 @@ const version = require('../../package.json').version;
 const components = {
   // General
   UiButton,
-  UiA,
   UiFab,
   UiIconButton,
   UiIconA,
@@ -176,7 +175,8 @@ const components = {
   UiDialogContent,
   UiDialogActions,
   UiSnackbar,
-  UiLinearProgress
+  UiLinearProgress,
+  UiCircularProgress
 };
 
 const plugins = {

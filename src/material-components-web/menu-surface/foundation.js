@@ -20,13 +20,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends, __values } from "tslib";
+// Style preference for trailing underscores.
+// tslint:disable:strip-private-property-underscore
+// tslint:disable:strip-private-method-underscore
 import { MDCFoundation } from '../base/foundation';
 import { Corner, CornerBit, cssClasses, numbers, strings } from './constants';
 var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCMenuSurfaceFoundation, _super);
+    __extends(MDCMenuSurfaceFoundation, _super);
     function MDCMenuSurfaceFoundation(adapter) {
-        var _this = _super.call(this, tslib_1.__assign({}, MDCMenuSurfaceFoundation.defaultAdapter, adapter)) || this;
+        var _this = _super.call(this, __assign(__assign({}, MDCMenuSurfaceFoundation.defaultAdapter), adapter)) || this;
         _this.isOpen_ = false;
         _this.isQuickOpen_ = false;
         _this.isHoistedElement_ = false;
@@ -35,6 +38,21 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
         _this.closeAnimationEndTimerId_ = 0;
         _this.animationRequestId_ = 0;
         _this.anchorCorner_ = Corner.TOP_START;
+        /**
+         * Corner of the menu surface to which menu surface is attached to anchor.
+         *
+         *  Anchor corner --->+----------+
+         *                    |  ANCHOR  |
+         *                    +----------+
+         *  Origin corner --->+--------------+
+         *                    |              |
+         *                    |              |
+         *                    | MENU SURFACE |
+         *                    |              |
+         *                    |              |
+         *                    +--------------+
+         */
+        _this.originCorner_ = Corner.TOP_START;
         _this.anchorMargin_ = { top: 0, right: 0, bottom: 0, left: 0 };
         _this.position_ = { x: 0, y: 0 };
         return _this;
@@ -121,6 +139,12 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
         this.anchorCorner_ = corner;
     };
     /**
+     * Flip menu corner horizontally.
+     */
+    MDCMenuSurfaceFoundation.prototype.flipCornerHorizontally = function () {
+        this.originCorner_ = this.originCorner_ ^ CornerBit.RIGHT;
+    };
+    /**
      * @param margin Set of margin values from anchor.
      */
     MDCMenuSurfaceFoundation.prototype.setAnchorMargin = function (margin) {
@@ -153,26 +177,31 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
      */
     MDCMenuSurfaceFoundation.prototype.open = function () {
         var _this = this;
-        this.adapter_.saveFocus();
-        if (!this.isQuickOpen_) {
-            this.adapter_.addClass(MDCMenuSurfaceFoundation.cssClasses.ANIMATING_OPEN);
+        if (this.isOpen_) {
+            return;
         }
-        this.animationRequestId_ = requestAnimationFrame(function () {
-            _this.adapter_.addClass(MDCMenuSurfaceFoundation.cssClasses.OPEN);
-            _this.dimensions_ = _this.adapter_.getInnerDimensions();
-            _this.autoPosition_();
-            if (_this.isQuickOpen_) {
-                _this.adapter_.notifyOpen();
-            }
-            else {
+        this.adapter_.saveFocus();
+        if (this.isQuickOpen_) {
+            this.isOpen_ = true;
+            this.adapter_.addClass(MDCMenuSurfaceFoundation.cssClasses.OPEN);
+            this.dimensions_ = this.adapter_.getInnerDimensions();
+            this.autoPosition_();
+            this.adapter_.notifyOpen();
+        }
+        else {
+            this.adapter_.addClass(MDCMenuSurfaceFoundation.cssClasses.ANIMATING_OPEN);
+            this.animationRequestId_ = requestAnimationFrame(function () {
+                _this.adapter_.addClass(MDCMenuSurfaceFoundation.cssClasses.OPEN);
+                _this.dimensions_ = _this.adapter_.getInnerDimensions();
+                _this.autoPosition_();
                 _this.openAnimationEndTimerId_ = setTimeout(function () {
                     _this.openAnimationEndTimerId_ = 0;
                     _this.adapter_.removeClass(MDCMenuSurfaceFoundation.cssClasses.ANIMATING_OPEN);
                     _this.adapter_.notifyOpen();
                 }, numbers.TRANSITION_OPEN_DURATION);
-            }
-        });
-        this.isOpen_ = true;
+            });
+            this.isOpen_ = true;
+        }
     };
     /**
      * Closes the menu surface.
@@ -180,25 +209,33 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
     MDCMenuSurfaceFoundation.prototype.close = function (skipRestoreFocus) {
         var _this = this;
         if (skipRestoreFocus === void 0) { skipRestoreFocus = false; }
-        if (!this.isQuickOpen_) {
-            this.adapter_.addClass(MDCMenuSurfaceFoundation.cssClasses.ANIMATING_CLOSED);
+        if (!this.isOpen_) {
+            return;
         }
-        requestAnimationFrame(function () {
-            _this.adapter_.removeClass(MDCMenuSurfaceFoundation.cssClasses.OPEN);
-            if (_this.isQuickOpen_) {
-                _this.adapter_.notifyClose();
+        if (this.isQuickOpen_) {
+            this.isOpen_ = false;
+            if (!skipRestoreFocus) {
+                this.maybeRestoreFocus_();
             }
-            else {
+            this.adapter_.removeClass(MDCMenuSurfaceFoundation.cssClasses.OPEN);
+            this.adapter_.removeClass(MDCMenuSurfaceFoundation.cssClasses.IS_OPEN_BELOW);
+            this.adapter_.notifyClose();
+        }
+        else {
+            this.adapter_.addClass(MDCMenuSurfaceFoundation.cssClasses.ANIMATING_CLOSED);
+            requestAnimationFrame(function () {
+                _this.adapter_.removeClass(MDCMenuSurfaceFoundation.cssClasses.OPEN);
+                _this.adapter_.removeClass(MDCMenuSurfaceFoundation.cssClasses.IS_OPEN_BELOW);
                 _this.closeAnimationEndTimerId_ = setTimeout(function () {
                     _this.closeAnimationEndTimerId_ = 0;
                     _this.adapter_.removeClass(MDCMenuSurfaceFoundation.cssClasses.ANIMATING_CLOSED);
                     _this.adapter_.notifyClose();
                 }, numbers.TRANSITION_CLOSE_DURATION);
+            });
+            this.isOpen_ = false;
+            if (!skipRestoreFocus) {
+                this.maybeRestoreFocus_();
             }
-        });
-        this.isOpen_ = false;
-        if (!skipRestoreFocus) {
-            this.maybeRestoreFocus_();
         }
     };
     /** Handle clicks and close if not within menu-surface element. */
@@ -243,6 +280,10 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
         this.adapter_.setTransformOrigin(horizontalAlignment + " " + verticalAlignment);
         this.adapter_.setPosition(position);
         this.adapter_.setMaxHeight(maxMenuSurfaceHeight ? maxMenuSurfaceHeight + 'px' : '');
+        // If it is opened from the top then add is-open-below class
+        if (!this.hasBit_(corner, CornerBit.BOTTOM)) {
+            this.adapter_.addClass(MDCMenuSurfaceFoundation.cssClasses.IS_OPEN_BELOW);
+        }
     };
     /**
      * @return Measurements used to position menu surface popup.
@@ -280,36 +321,74 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
         };
     };
     /**
-     * Computes the corner of the anchor from which to animate and position the menu surface.
+     * Computes the corner of the anchor from which to animate and position the
+     * menu surface.
+     *
+     * Only LEFT or RIGHT bit is used to position the menu surface ignoring RTL
+     * context. E.g., menu surface will be positioned from right side on TOP_END.
      */
     MDCMenuSurfaceFoundation.prototype.getOriginCorner_ = function () {
-        // Defaults: open from the top left.
-        var corner = Corner.TOP_LEFT;
+        var corner = this.originCorner_;
         var _a = this.measurements_, viewportDistance = _a.viewportDistance, anchorSize = _a.anchorSize, surfaceSize = _a.surfaceSize;
-        var isBottomAligned = this.hasBit_(this.anchorCorner_, CornerBit.BOTTOM);
-        var availableTop = isBottomAligned ? viewportDistance.top + anchorSize.height + this.anchorMargin_.bottom
-            : viewportDistance.top + this.anchorMargin_.top;
-        var availableBottom = isBottomAligned ? viewportDistance.bottom - this.anchorMargin_.bottom
-            : viewportDistance.bottom + anchorSize.height - this.anchorMargin_.top;
-        var topOverflow = surfaceSize.height - availableTop;
-        var bottomOverflow = surfaceSize.height - availableBottom;
-        if (bottomOverflow > 0 && topOverflow < bottomOverflow) {
+        var MARGIN_TO_EDGE = MDCMenuSurfaceFoundation.numbers.MARGIN_TO_EDGE;
+        var isAnchoredToBottom = this.hasBit_(this.anchorCorner_, CornerBit.BOTTOM);
+        var availableTop;
+        var availableBottom;
+        if (isAnchoredToBottom) {
+            availableTop = viewportDistance.top - MARGIN_TO_EDGE + anchorSize.height +
+                this.anchorMargin_.bottom;
+            availableBottom =
+                viewportDistance.bottom - MARGIN_TO_EDGE - this.anchorMargin_.bottom;
+        }
+        else {
+            availableTop =
+                viewportDistance.top - MARGIN_TO_EDGE + this.anchorMargin_.top;
+            availableBottom = viewportDistance.bottom - MARGIN_TO_EDGE +
+                anchorSize.height - this.anchorMargin_.top;
+        }
+        var isAvailableBottom = availableBottom - surfaceSize.height > 0;
+        if (!isAvailableBottom && availableTop >= availableBottom) {
+            // Attach bottom side of surface to the anchor.
             corner = this.setBit_(corner, CornerBit.BOTTOM);
         }
         var isRtl = this.adapter_.isRtl();
         var isFlipRtl = this.hasBit_(this.anchorCorner_, CornerBit.FLIP_RTL);
-        var avoidHorizontalOverlap = this.hasBit_(this.anchorCorner_, CornerBit.RIGHT);
-        var isAlignedRight = (avoidHorizontalOverlap && !isRtl) ||
-            (!avoidHorizontalOverlap && isFlipRtl && isRtl);
-        var availableLeft = isAlignedRight ? viewportDistance.left + anchorSize.width + this.anchorMargin_.right :
-            viewportDistance.left + this.anchorMargin_.left;
-        var availableRight = isAlignedRight ? viewportDistance.right - this.anchorMargin_.right :
-            viewportDistance.right + anchorSize.width - this.anchorMargin_.left;
-        var leftOverflow = surfaceSize.width - availableLeft;
-        var rightOverflow = surfaceSize.width - availableRight;
-        if ((leftOverflow < 0 && isAlignedRight && isRtl) ||
-            (avoidHorizontalOverlap && !isAlignedRight && leftOverflow < 0) ||
-            (rightOverflow > 0 && leftOverflow < rightOverflow)) {
+        var hasRightBit = this.hasBit_(this.anchorCorner_, CornerBit.RIGHT);
+        // Whether surface attached to right side of anchor element.
+        var isAnchoredToRight = false;
+        // Anchored to start
+        if (isRtl && isFlipRtl) {
+            isAnchoredToRight = !hasRightBit;
+        }
+        else {
+            // Anchored to right
+            isAnchoredToRight = hasRightBit;
+        }
+        var availableLeft;
+        var availableRight;
+        if (isAnchoredToRight) {
+            availableLeft =
+                viewportDistance.left + anchorSize.width + this.anchorMargin_.right;
+            availableRight = viewportDistance.right - this.anchorMargin_.right;
+        }
+        else {
+            availableLeft = viewportDistance.left + this.anchorMargin_.left;
+            availableRight =
+                viewportDistance.right + anchorSize.width - this.anchorMargin_.left;
+        }
+        var isAvailableLeft = availableLeft - surfaceSize.width > 0;
+        var isAvailableRight = availableRight - surfaceSize.width > 0;
+        var isOriginCornerAlignedToEnd = this.hasBit_(corner, CornerBit.FLIP_RTL) &&
+            this.hasBit_(corner, CornerBit.RIGHT);
+        if (isAvailableRight && isOriginCornerAlignedToEnd && isRtl ||
+            !isAvailableLeft && isOriginCornerAlignedToEnd) {
+            // Attach left side of surface to the anchor.
+            corner = this.unsetBit_(corner, CornerBit.RIGHT);
+        }
+        else if (isAvailableLeft && isAnchoredToRight && isRtl ||
+            (isAvailableLeft && !isAnchoredToRight && hasRightBit) ||
+            (!isAvailableRight && availableLeft >= availableRight)) {
+            // Attach right side of surface to the anchor.
             corner = this.setBit_(corner, CornerBit.RIGHT);
         }
         return corner;
@@ -384,7 +463,7 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
         var _b = this.measurements_, windowScroll = _b.windowScroll, viewportDistance = _b.viewportDistance;
         var props = Object.keys(position);
         try {
-            for (var props_1 = tslib_1.__values(props), props_1_1 = props_1.next(); !props_1_1.done; props_1_1 = props_1.next()) {
+            for (var props_1 = __values(props), props_1_1 = props_1.next(); !props_1_1.done; props_1_1 = props_1.next()) {
                 var prop = props_1_1.value;
                 var value = position[prop] || 0;
                 // Hoisted surfaces need to have the anchor elements location on the page added to the
@@ -433,6 +512,9 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
     };
     MDCMenuSurfaceFoundation.prototype.setBit_ = function (corner, bit) {
         return corner | bit; // tslint:disable-line:no-bitwise
+    };
+    MDCMenuSurfaceFoundation.prototype.unsetBit_ = function (corner, bit) {
+        return corner ^ bit;
     };
     /**
      * isFinite that doesn't force conversion to number type.

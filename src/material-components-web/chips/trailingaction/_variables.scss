@@ -1,5 +1,5 @@
 //
-// Copyright 2018 Google Inc.
+// Copyright 2020 Google Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +20,9 @@
 // THE SOFTWARE.
 //
 
-@keyframes mdc-select-float-native-control {
-  0% {
-    transform: translateY(8px);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
+$size: 18px !default;
+$margin-right: -4px !default;
+$margin-left: 4px !default;
+$touch-target-width: 26px !default;
+$color: on-surface !default;
+$ripple-color: on-surface !default;

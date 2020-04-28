@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { applyPassive } from '../dom/events';
 import * as ponyfill from '../dom/ponyfill';
@@ -37,7 +37,7 @@ import { MDCTextFieldHelperText, } from './helper-text/component';
 import { MDCTextFieldHelperTextFoundation } from './helper-text/foundation';
 import { MDCTextFieldIcon } from './icon/component';
 var MDCTextField = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCTextField, _super);
+    __extends(MDCTextField, _super);
     function MDCTextField() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
@@ -79,6 +79,9 @@ var MDCTextField = /** @class */ (function (_super) {
         // Trailing icon
         var trailingIconEl = this.root_.querySelector(strings.TRAILING_ICON_SELECTOR);
         this.trailingIcon_ = trailingIconEl ? iconFactory(trailingIconEl) : null;
+        // Prefix and Suffix
+        this.prefix_ = this.root_.querySelector(strings.PREFIX_SELECTOR);
+        this.suffix_ = this.root_.querySelector(strings.SUFFIX_SELECTOR);
         this.ripple = this.createRipple_(rippleFactory);
     };
     MDCTextField.prototype.destroy = function () {
@@ -312,6 +315,42 @@ var MDCTextField = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(MDCTextField.prototype, "prefixText", {
+        /**
+         * Gets the text content of the prefix, or null if it does not exist.
+         */
+        get: function () {
+            return this.prefix_ ? this.prefix_.textContent : null;
+        },
+        /**
+         * Sets the text content of the prefix, if it exists.
+         */
+        set: function (prefixText) {
+            if (this.prefix_) {
+                this.prefix_.textContent = prefixText;
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCTextField.prototype, "suffixText", {
+        /**
+         * Gets the text content of the suffix, or null if it does not exist.
+         */
+        get: function () {
+            return this.suffix_ ? this.suffix_.textContent : null;
+        },
+        /**
+         * Sets the text content of the suffix, if it exists.
+         */
+        set: function (suffixText) {
+            if (this.suffix_) {
+                this.suffix_.textContent = suffixText;
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * Focuses the input element.
      */
@@ -329,7 +368,7 @@ var MDCTextField = /** @class */ (function (_super) {
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
-        var adapter = tslib_1.__assign({}, this.getRootAdapterMethods_(), this.getInputAdapterMethods_(), this.getLabelAdapterMethods_(), this.getLineRippleAdapterMethods_(), this.getOutlineAdapterMethods_());
+        var adapter = __assign(__assign(__assign(__assign(__assign({}, this.getRootAdapterMethods_()), this.getInputAdapterMethods_()), this.getLabelAdapterMethods_()), this.getLineRippleAdapterMethods_()), this.getOutlineAdapterMethods_());
         // tslint:enable:object-literal-sort-keys
         return new MDCTextFieldFoundation(adapter, this.getFoundationMap_());
     };
@@ -430,7 +469,7 @@ var MDCTextField = /** @class */ (function (_super) {
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
-        var adapter = tslib_1.__assign({}, MDCRipple.createAdapter(this), { isSurfaceActive: function () { return ponyfill.matches(_this.input_, ':active'); }, registerInteractionHandler: function (evtType, handler) { return _this.input_.addEventListener(evtType, handler, applyPassive()); }, deregisterInteractionHandler: function (evtType, handler) {
+        var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { isSurfaceActive: function () { return ponyfill.matches(_this.input_, ':active'); }, registerInteractionHandler: function (evtType, handler) { return _this.input_.addEventListener(evtType, handler, applyPassive()); }, deregisterInteractionHandler: function (evtType, handler) {
                 return _this.input_.removeEventListener(evtType, handler, applyPassive());
             } });
         // tslint:enable:object-literal-sort-keys

@@ -20,15 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses as listCssClasses } from '../list/constants';
 import { MDCMenuSurfaceFoundation } from '../menu-surface/foundation';
 import { cssClasses, DefaultFocusState, numbers, strings } from './constants';
 var MDCMenuFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCMenuFoundation, _super);
+    __extends(MDCMenuFoundation, _super);
     function MDCMenuFoundation(adapter) {
-        var _this = _super.call(this, tslib_1.__assign({}, MDCMenuFoundation.defaultAdapter, adapter)) || this;
+        var _this = _super.call(this, __assign(__assign({}, MDCMenuFoundation.defaultAdapter), adapter)) || this;
         _this.closeAnimationEndTimerId_ = 0;
         _this.defaultFocusState_ = DefaultFocusState.LIST_ROOT;
         return _this;

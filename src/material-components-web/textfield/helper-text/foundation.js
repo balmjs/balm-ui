@@ -20,13 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as tslib_1 from "tslib";
+import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../../base/foundation';
 import { cssClasses, strings } from './constants';
 var MDCTextFieldHelperTextFoundation = /** @class */ (function (_super) {
-    tslib_1.__extends(MDCTextFieldHelperTextFoundation, _super);
+    __extends(MDCTextFieldHelperTextFoundation, _super);
     function MDCTextFieldHelperTextFoundation(adapter) {
-        return _super.call(this, tslib_1.__assign({}, MDCTextFieldHelperTextFoundation.defaultAdapter, adapter)) || this;
+        return _super.call(this, __assign(__assign({}, MDCTextFieldHelperTextFoundation.defaultAdapter), adapter)) || this;
     }
     Object.defineProperty(MDCTextFieldHelperTextFoundation, "cssClasses", {
         get: function () {

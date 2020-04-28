@@ -6,7 +6,7 @@ export default {
   },
   cssClasses: {
     item: 'mdc-list-item',
-    activated: 'mdc-list-item--activated',
+    active: 'mdc-list-item--activated',
     firstTile: 'mdc-list-item__graphic',
     lastTile: 'mdc-list-item__meta'
   },

@@ -1,5 +1,5 @@
-// @use './normalize'; // OLD
-@use './sanitize'; // NEW
+// @use '@csstools/normalize.css/normalize.css'; // OLD
+@use 'sanitize.css/sanitize.css'; // NEW
 
 html {
   word-break: initial; // NOTE: bugfix for `sanitize.css`

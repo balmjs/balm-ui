@@ -6,9 +6,7 @@
     <!-- Leading icon (optional) -->
     <slot
       name="before"
-      :iconClass="
-        `${UI_TEXTFIELD_ICON.cssClasses.icon} ${UI_TEXTFIELD_ICON.cssClasses.leadingIcon}`
-      "
+      :iconClass="`${UI_TEXTFIELD_ICON.cssClasses.icon} ${UI_TEXTFIELD_ICON.cssClasses.leadingIcon}`"
     >
       <i
         v-if="materialIcon"
@@ -49,40 +47,49 @@
       ></textarea>
     </template>
     <!-- Input text -->
-    <input
-      v-else
-      :id="id"
-      v-model="inputValue"
-      :type="inputType"
-      :class="className.input"
-      :placeholder="placeholder"
-      :pattern="pattern"
-      :disabled="disabled"
-      :required="required"
-      :minlength="minlength"
-      :maxlength="maxlength"
-      :min="min"
-      :max="max"
-      :step="step"
-      :aria-labelledby="id"
-      :aria-controls="helperTextId"
-      :aria-describedby="helperTextId"
-      v-bind="attrs"
-      @focus="handleFocus"
-      @keydown="handleKeydown"
-      @input="handleInput"
-      @keyup="handleKeyup"
-      @change="handleChange"
-      @keyup.enter="handleEnter"
-      @blur="handleBlur"
-    />
+    <template v-else>
+      <span
+        v-if="prefixText"
+        class="mdc-text-field__affix mdc-text-field__affix--prefix"
+        >{{ prefixText }}</span
+      >
+      <input
+        :id="id"
+        v-model="inputValue"
+        :type="inputType"
+        :class="className.input"
+        :placeholder="placeholder"
+        :pattern="pattern"
+        :disabled="disabled"
+        :required="required"
+        :minlength="minlength"
+        :maxlength="maxlength"
+        :min="min"
+        :max="max"
+        :step="step"
+        :aria-labelledby="id"
+        :aria-controls="helperTextId"
+        :aria-describedby="helperTextId"
+        v-bind="attrs"
+        @focus="handleFocus"
+        @keydown="handleKeydown"
+        @input="handleInput"
+        @keyup="handleKeyup"
+        @change="handleChange"
+        @keyup.enter="handleEnter"
+        @blur="handleBlur"
+      />
+      <span
+        v-if="suffixText"
+        class="mdc-text-field__affix mdc-text-field__affix--suffix"
+        >{{ suffixText }}</span
+      >
+    </template>
 
     <!-- Trailing icon (optional) -->
     <slot
       name="after"
-      :iconClass="
-        `${UI_TEXTFIELD_ICON.cssClasses.icon} ${UI_TEXTFIELD_ICON.cssClasses.trailingIcon}`
-      "
+      :iconClass="`${UI_TEXTFIELD_ICON.cssClasses.icon} ${UI_TEXTFIELD_ICON.cssClasses.trailingIcon}`"
     ></slot>
 
     <!-- Label text -->
@@ -160,16 +167,13 @@ export default {
       type: [String, Number, Array], // NOTE: Array for `<ui-datepicker>`
       default: ''
     },
-    // UI attributes
-    dense: {
-      type: Boolean,
-      default: false
-    },
     // <input> attributes
     inputType: {
       type: String,
       default: 'text'
     },
+    prefixText: String,
+    suffixText: String,
     // <textarea> attributes
     rows: {
       type: [Number, String],
@@ -191,6 +195,11 @@ export default {
     min: [Number, String],
     max: [Number, String],
     step: [Number, String],
+    // Others
+    fouc: {
+      type: Boolean,
+      default: false
+    },
     // For helper text
     helperTextId: String,
     // For plus
@@ -234,14 +243,15 @@ export default {
       return {
         outer: {
           'mdc-text-field': true,
+          'mdc-text-field--filled': !this.isOutlined,
           'mdc-text-field--outlined': this.isOutlined,
           'mdc-text-field--fullwidth': this.fullwidth && !this.isOutlined,
           'mdc-text-field--textarea': this.isTextarea,
+          'mdc-text-field--no-label': this.noLabel,
           'mdc-text-field--disabled': this.disabled,
-          'mdc-text-field--dense': this.dense,
           'mdc-text-field--with-leading-icon': this.hasLeadingIcon,
           'mdc-text-field--with-trailing-icon': this.hasTrailingIcon,
-          'mdc-text-field--no-label': this.noLabel
+          'mdc-text-field--label-floating': this.fouc
         },
         input: 'mdc-text-field__input'
       };

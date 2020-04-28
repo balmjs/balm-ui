@@ -54,6 +54,8 @@
               v-model="value2"
               maxlength="20"
               helperTextId="my-text-field-outlined-helper"
+              :withLeadingIcon="iconOption.includes(2)"
+              :withTrailingIcon="iconOption.includes(3)"
               :required="assistiveTextOption === 2"
               :pattern="assistiveTextOption === 2 ? '[a-z]{256,}' : null"
               >Label

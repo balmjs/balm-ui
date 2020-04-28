@@ -46,8 +46,6 @@
               <svg-logo :class="iconClass"></svg-logo>
             </template>
           </ui-button>
-
-          <ui-a>Link</ui-a>
         </div>
         <ui-snippet :code="$store.demos[1]"></ui-snippet>
       </fieldset>

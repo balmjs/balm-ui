@@ -5,7 +5,6 @@ import multiConfigure from './config/multi-configure';
  */
 // General
 import UiButton from './components/buttons/button';
-import UiA from './components/buttons/a';
 import UiFab from './components/buttons/fab';
 import UiIconButton from './components/buttons/icon-button';
 import UiIconA from './components/buttons/icon-a';
@@ -102,7 +101,6 @@ const version = require('../../package.json').version;
 const components = {
   // General
   UiButton,
-  UiA,
   UiFab,
   UiIconButton,
   UiIconA,

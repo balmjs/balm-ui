@@ -1,7 +1,5 @@
 ```html
 <ui-button><!-- the button text label --></ui-button>
-
-<ui-a><!-- the anchor text label --></ui-a>
 ```
 
 ### `<ui-button>` Types

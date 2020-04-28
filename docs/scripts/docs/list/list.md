@@ -1,7 +1,7 @@
 ```html
 <ui-list><!-- <ui-item> --></ui-list>
 
-<ui-nav><!-- <ui-a> or <router-link> --></ui-nav>
+<ui-nav><!-- <router-link> --></ui-nav>
 ```
 
 ### <ui-list> Types

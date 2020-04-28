@@ -5,7 +5,7 @@
     </section>
     <div :class="$tt('body2')">
       <p>
-        <ui-a href="/" v-ripple>Back</ui-a>
+        <ui-button @click="$router.replace({ name: 'home' })">Back</ui-button>
       </p>
     </div>
   </div>

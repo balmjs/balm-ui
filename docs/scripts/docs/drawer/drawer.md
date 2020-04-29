@@ -27,7 +27,7 @@
 | --------- | ----- | --------------------------------------------------- |
 | `default` |       | The default slot holds the drawer child components. |
 
-**Drawer child components:**
+**Child components:**
 
 - `<ui-drawer-header>`
 - `<ui-drawer-content>`

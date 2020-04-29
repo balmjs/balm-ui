@@ -8,7 +8,7 @@
 | --------- | ----- | ------------------------------------------------------------------------------- |
 | `default` |       | The default slot holds the drawer header child components and can contain HTML. |
 
-**Drawer header child components:**
+**Child components:**
 
 - `<ui-drawer-title>`
 - `<ui-drawer-subtitle>`

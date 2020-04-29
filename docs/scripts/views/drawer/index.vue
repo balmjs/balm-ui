@@ -3,6 +3,7 @@
     name="drawer"
     demoCount="4"
     :apis="[
+      'drawers',
       'drawer',
       'drawer-header',
       'drawer-content',

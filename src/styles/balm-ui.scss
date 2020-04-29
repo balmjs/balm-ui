@@ -5,6 +5,7 @@
 @use 'node_modules/material-components-web/material-components-web.scss';
 
 /// Components Custom Styles
+@use 'balm-ui/components/drawer/ui-drawer';
 @use 'balm-ui/components/top-app-bar/ui-top-app-bar';
 @use 'balm-ui/components/autocomplete/ui-autocomplete';
 @use 'balm-ui/components/card/ui-card';

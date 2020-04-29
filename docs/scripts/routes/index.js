@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueMeta from 'vue-meta';
+import bus from '@/store/bus';
 // Layout
 import BlankLayout from '@/views/layouts/blank';
 // Routes
@@ -106,6 +107,11 @@ const router = new VueRouter({
   routes
 });
 
+router.beforeEach((to, from, next) => {
+  bus.$emit('on-loading');
+  next();
+});
+
 const CLASS_NAMESPACE = 'balmui';
 router.afterEach((to, from) => {
   let pageClassList = document.querySelector('html').classList;
@@ -131,6 +137,8 @@ router.afterEach((to, from) => {
     let toName = to.name.replace('.', '_');
     pageClassList.add(`${CLASS_NAMESPACE}-${toName}`);
   }
+
+  bus.$emit('off-loading');
 });
 
 export default router;

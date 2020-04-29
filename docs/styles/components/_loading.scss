@@ -1,13 +1,12 @@
 .loading-container {
   display: flex;
   justify-content: center;
-  padding-top: 200px;
-  .mdl-spinner {
-    width: 88px;
-    height: 88px;
-  }
-  .mdl-spinner__circle {
-    border-width: 5px;
+  align-items: center;
+  height: 50%;
+
+  .my-loading {
+    width: 64px;
+    height: 64px;
   }
 }
 

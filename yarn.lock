@@ -2576,14 +2576,6 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
 
-balm-ui-lite@^1.8.1:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/balm-ui-lite/-/balm-ui-lite-1.8.1.tgz#d58077d24bdc4f0e092b1efc36492cb725640bcb"
-  integrity sha512-cAE+Wl/ntNDOmQtn4+cd0gSCYTyd1jn/wqN/cVmXTSEIZ/bNzwTnYREAjPYHZyDXgXvcTWhcbGKMeaXt9RTjhA==
-  dependencies:
-    deepmerge "^4.2.2"
-    flatpickr "^4.6.3"
-
 balm@^2.12.1:
   version "2.12.1"
   resolved "https://registry.yarnpkg.com/balm/-/balm-2.12.1.tgz#19f94697132d9309d58328e08aa037cb022f863a"

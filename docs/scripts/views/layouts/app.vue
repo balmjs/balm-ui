@@ -79,8 +79,12 @@
         </ui-drawer>
         <main ref="body" class="balmui-content" v-anchor.offset="60">
           <transition name="loading">
-            <div v-if="loading" class="loading-container">
-              <ui-spinner active></ui-spinner>
+            <div v-if="pageLoading" class="loading-container">
+              <ui-circular-progress
+                class="my-loading"
+                active
+                fourColored
+              ></ui-circular-progress>
             </div>
             <router-view v-else></router-view>
           </transition>
@@ -106,7 +110,7 @@ export default {
     return {
       menu,
       openDrawer: false,
-      loading: false
+      pageLoading: false
     };
   },
   computed: {
@@ -117,13 +121,12 @@ export default {
     }
   },
   created() {
-    this.$router.beforeEach((to, from, next) => {
-      this.loading = true;
-      next();
+    this.$bus.$on('on-loading', () => {
+      this.pageLoading = true;
     });
 
-    this.$router.afterEach((to, from) => {
-      this.loading = false;
+    this.$bus.$on('off-loading', () => {
+      this.pageLoading = false;
       this.$nextTick(() => {
         if (this.$refs.body) {
           setTimeout(() => {

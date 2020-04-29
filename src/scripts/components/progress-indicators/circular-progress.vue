@@ -6,7 +6,7 @@
     aria-valuemin="0"
     aria-valuemax="1"
   >
-    <!-- Detrerminate -->
+    <!-- Determinate -->
     <div class="mdc-circular-progress__determinate-container">
       <svg
         class="mdc-circular-progress__determinate-circle-graphic"

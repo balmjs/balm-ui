@@ -8,7 +8,7 @@ export default {
       default: false
     },
     progress: {
-      type: [Number, String],
+      type: Number,
       default: 0
     },
     // UI attributes
@@ -32,7 +32,7 @@ export default {
         value >= UI_PROGRESS.VALUE.MIN &&
         value <= UI_PROGRESS.VALUE.MAX
       ) {
-        $currentProgress.progress = +value;
+        $currentProgress.progress = value;
       } else {
         console.warn('Progress value should be between [0, 1]');
       }

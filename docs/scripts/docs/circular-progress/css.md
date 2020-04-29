@@ -1,3 +1,5 @@
 ```css
-$fourColors: $blue $red $yellow $green; /* You can customize the four colors */
+@use 'balm-ui/components/circular-progress/variables' with (
+  $fourColors: $blue $red $yellow $green
+);
 ```

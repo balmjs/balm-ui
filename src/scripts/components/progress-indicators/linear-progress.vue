@@ -5,6 +5,7 @@
     :aria-label="label"
     aria-valuemin="0"
     aria-valuemax="1"
+    :data-buffer="!!buffer"
   >
     <div class="mdc-linear-progress__buffer">
       <div class="mdc-linear-progress__buffer-bar"></div>
@@ -30,7 +31,7 @@ export default {
   props: {
     // States
     buffer: {
-      type: [Number, String],
+      type: Number,
       default: 0
     },
     // UI attributes
@@ -74,7 +75,7 @@ export default {
         value >= UI_PROGRESS.VALUE.MIN &&
         value <= UI_PROGRESS.VALUE.MAX
       ) {
-        this.$linearProgress.buffer = +value;
+        this.$linearProgress.buffer = value;
       } else {
         console.warn('Buffer value should be between [0, 1]');
       }

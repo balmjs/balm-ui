@@ -4,7 +4,6 @@
   $header-row-fill-color: inherit,
   $row-fill-color: inherit,
   $selected-row-fill-color: rgba(theme-variables.prop-value(primary), .04),
-
   $checked-icon-color: primary,
   $divider-color: rgba(theme-variables.prop-value(on-surface), .12),
   $divider-size: 1px,

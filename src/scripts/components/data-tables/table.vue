@@ -149,6 +149,7 @@
 
 <script>
 import { MDCDataTable } from '../../../material-components-web/data-table';
+import { events } from '../../../material-components-web/data-table/constants';
 import UiCheckbox from '../selection-controls/checkbox';
 import tableMixin from '../../mixins/table';
 import theadMixin from '../../mixins/thead';
@@ -292,7 +293,7 @@ export default {
   mounted() {
     this.$table = new MDCDataTable(this.$el);
 
-    this.$table.listen('MDCDataTable:rowSelectionChanged', ({ detail }) => {
+    this.$table.listen(events.ROW_SELECTION_CHANGED, ({ detail }) => {
       let selectedRows = this.selectedRows; // NOTE: cache selected rows for pagination
 
       this.currentData.forEach((tbodyData, tbodyDataIndex) => {
@@ -319,7 +320,7 @@ export default {
       this.$emit(UI_TABLE.EVENT.SELECTED, selectedRows);
     });
 
-    this.$table.listen('MDCDataTable:selectedAll', () => {
+    this.$table.listen(events.SELECTED_ALL, () => {
       let oldSelectedRows = this.selectedRows; // NOTE: cache selected rows for pagination
 
       let newSelectedRows = this.currentData.map(
@@ -335,7 +336,7 @@ export default {
       this.$emit(UI_TABLE.EVENT.SELECTED, selectedRows);
     });
 
-    this.$table.listen('MDCDataTable:unselectedAll', () => {
+    this.$table.listen(events.UNSELECTED_ALL, () => {
       let oldSelectedRows = this.selectedRows; // NOTE: cache selected rows for pagination
 
       let newSelectedRows = this.currentData.map(

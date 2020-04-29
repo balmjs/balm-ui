@@ -1,6 +1,6 @@
 <template>
   <!-- Container -->
-  <div class="mdc-chip" @click="handleClick">
+  <div class="mdc-chip" role="row" @click="handleClick">
     <div class="mdc-chip__ripple"></div>
     <!-- Thumbnail (optional) -->
     <slot name="before" :iconClass="UI_CHIPS.cssClasses.icon">
@@ -17,19 +17,24 @@
       </svg>
     </span>
     <!-- Text -->
-    <div class="mdc-chip__text">
-      <slot></slot>
-    </div>
+    <span role="gridcell">
+      <span :role="role" class="mdc-chip__primary-action">
+        <span class="mdc-chip__text">
+          <slot></slot>
+        </span>
+      </span>
+    </span>
     <!-- Remove icon [optional] -->
     <slot name="after" :iconClass="UI_CHIPS.cssClasses.removeIcon">
-      <i
-        v-if="$parent.inputChips || removable"
-        :class="[UI_GLOBAL.cssClasses.icon, UI_CHIPS.cssClasses.removeIcon]"
-        tabindex="-1"
-        role="button"
-        @click="handleRemove"
-        >cancel</i
-      >
+      <span v-if="$parent.inputChips || removable" role="gridcell">
+        <i
+          :class="[UI_GLOBAL.cssClasses.icon, UI_CHIPS.cssClasses.removeIcon]"
+          tabindex="-1"
+          role="button"
+          @click="handleRemove"
+          >cancel</i
+        >
+      </span>
     </slot>
   </div>
 </template>
@@ -65,6 +70,19 @@ export default {
         UI_CHIPS.cssClasses.icon,
         { 'mdc-chip__icon--leading-hidden': this.hidden }
       ];
+    },
+    role() {
+      let name = null;
+
+      if (this.$parent.choiceChips) {
+        name = 'radio';
+      } else if (this.$parent.filterChips) {
+        name = 'checkbox';
+      } else {
+        name = 'button';
+      }
+
+      return name;
     }
   },
   methods: {

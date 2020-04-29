@@ -1,5 +1,8 @@
 ```html
-<ui-chips><!-- the chip components --></ui-chips>
+<ui-chips>
+  <ui-chip></ui-chip>
+  <!-- more chip -->
+</ui-chips>
 ```
 
 ### `<ui-chips>` Types
@@ -22,6 +25,10 @@
 | Name      | Props | Description                                                      |
 | --------- | ----- | ---------------------------------------------------------------- |
 | `default` |       | The default slot holds the chip components and can contain HTML. |
+
+**Child components:**
+
+- `<ui-chip>`
 
 #### Events
 

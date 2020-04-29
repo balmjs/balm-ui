@@ -22,7 +22,7 @@
 | --------- | ----- | --------------------------------------------------- |
 | `default` |       | The default slot holds the dialog child components. |
 
-**Dialog child components:**
+**Child components:**
 
 - `<ui-dialog-title>`
 - `<ui-dialog-content>`

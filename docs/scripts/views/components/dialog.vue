@@ -2,7 +2,13 @@
   <ui-page-structure
     name="dialog"
     demoCount="2"
-    :apis="['dialog', 'dialog-title', 'dialog-content', 'dialog-actions']"
+    :apis="[
+      'dialogs',
+      'dialog',
+      'dialog-title',
+      'dialog-content',
+      'dialog-actions'
+    ]"
   >
     <template #hero>
       <div class="hero-demo">

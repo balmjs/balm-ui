@@ -7,12 +7,8 @@
     <ui-card-text></ui-card-text>
   </ui-card-content>
   <ui-card-actions>
-    <ui-card-buttons>
-      <!-- <ui-button> -->
-    </ui-card-buttons>
-    <ui-card-icons>
-      <!-- <ui-icon-button> -->
-    </ui-card-icons>
+    <ui-card-buttons></ui-card-buttons>
+    <ui-card-icons></ui-card-icons>
   </ui-card-actions>
 </ui-card>
 ```

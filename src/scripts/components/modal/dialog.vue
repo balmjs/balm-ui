@@ -82,7 +82,7 @@ export default {
   data() {
     return {
       $dialog: null,
-      $dialogBody: null
+      dialogBody: null
     };
   },
   computed: {
@@ -101,7 +101,7 @@ export default {
       } else {
         this.$dialog.close();
         if (this.resetScroll) {
-          this.$dialogBody.scrollTop = 0;
+          this.dialogBody.scrollTop = 0;
         }
       }
     }
@@ -110,16 +110,16 @@ export default {
     this.$dialog = new MDCDialog(this.$el);
 
     this.$nextTick(() => {
-      this.$dialogBody = this.$refs.dialog.querySelector(
+      this.dialogBody = this.$refs.dialog.querySelector(
         `.${UI_DIALOG.cssClasses.content}`
       );
 
       // Accessibility: Using `aria-hidden` as a fallback for `aria-modal`
       this.$dialog.listen('MDCDialog:opened', () => {
-        this.$dialogBody.setAttribute('aria-hidden', 'true');
+        this.dialogBody.setAttribute('aria-hidden', 'true');
       });
       this.$dialog.listen('MDCDialog:closing', ({ detail }) => {
-        this.$dialogBody.removeAttribute('aria-hidden');
+        this.dialogBody.removeAttribute('aria-hidden');
 
         // NOTE: fix for the Escape key
         if (detail.action === 'close') {

@@ -1,5 +1,5 @@
 <template>
-  <li :class="className" @click="handleClick">
+  <li :class="className" :role="role" @click="handleClick">
     <slot name="before" :iconClass="UI_LIST.cssClasses.firstTile"></slot>
     <slot><!-- text content --></slot>
     <slot name="after" :iconClass="UI_LIST.cssClasses.lastTile"></slot>
@@ -39,11 +39,25 @@ export default {
         'mdc-list-item--activated': this.activated,
         'mdc-list-item--disabled': this.disabled
       };
-    }
-  },
-  mounted() {
-    if (!this.$parent.nonInteractive) {
-      // this.$parent.initRipple(this.$el);
+    },
+    role() {
+      let name = null;
+
+      if (this.$parent) {
+        switch (this.$parent.role) {
+          case 'listbox':
+            name = 'option';
+            break;
+          case 'radiogroup':
+            name = 'radio';
+            break;
+          case 'group':
+            name = 'checkbox';
+            break;
+        }
+      }
+
+      return name;
     }
   },
   methods: {

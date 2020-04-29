@@ -160,7 +160,7 @@ a {
   margin-bottom: 80px;
 }
 
-.markdown-body:not(.component--cards, .component--dialogs)
+.markdown-body:not(.component--cards, .component--dialogs, .component--lists)
   table
   td:nth-child(2) {
   color: #c41d7f;

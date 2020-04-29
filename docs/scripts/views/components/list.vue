@@ -2,7 +2,7 @@
   <ui-page-structure
     name="list"
     demoCount="8"
-    :apis="['list', 'list-item', 'list-divider', 'list-group']"
+    :apis="['lists', 'list', 'list-item', 'list-divider', 'list-group']"
   >
     <template #hero>
       <div class="hero-demo">
@@ -126,7 +126,7 @@
       <h4 :class="$tt('headline6')">
         1.7 List with Trailing Checkbox (Checked values: {{ checkedValues }})
       </h4>
-      <ui-list>
+      <ui-list role="group">
         <template v-for="(item, index) in items3">
           <ui-item-divider v-if="item === '-'" :key="index"></ui-item-divider>
           <ui-item v-else :key="index">
@@ -147,7 +147,7 @@
         1.8 List with Trailing Radio Buttons (Checked value:
         {{ checkedValue }})
       </h4>
-      <ui-list>
+      <ui-list role="radiogroup">
         <template v-for="(item, index) in items3">
           <ui-item-divider v-if="item === '-'" :key="index"></ui-item-divider>
           <ui-item v-else :key="index">

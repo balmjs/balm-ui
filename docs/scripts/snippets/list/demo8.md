@@ -1,5 +1,5 @@
 ```html
-<ui-list>
+<ui-list role="radiogroup">
   <template v-for="(item, index) in items3">
     <ui-item-divider v-if="item === '-'" :key="index"></ui-item-divider>
     <ui-item v-else :key="index">

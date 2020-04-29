@@ -1,5 +1,5 @@
 ```html
-<ui-list>
+<ui-list role="group">
   <template v-for="(item, index) in items">
     <ui-item-divider v-if="item === '-'" :key="index"></ui-item-divider>
     <ui-item v-else :key="index">

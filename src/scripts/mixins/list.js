@@ -10,6 +10,11 @@ export default {
     event: UI_LIST.EVENT.ACTION
   },
   props: {
+    // UI variants
+    type: {
+      type: [String, Number],
+      default: 1
+    },
     singleSelection: {
       type: Boolean,
       default: false
@@ -36,7 +41,8 @@ export default {
   data() {
     return {
       UI_LIST,
-      $list: null
+      $list: null,
+      role: null
     };
   },
   computed: {
@@ -61,40 +67,45 @@ export default {
     }
   },
   mounted() {
-    this.init();
+    this.$list = new MDCList(this.$el);
+
+    this.$list.listen(`MDCList:${UI_LIST.EVENT.ACTION}`, ({ detail }) => {
+      this.$emit(UI_LIST.EVENT.ACTION, detail.index);
+    });
+
+    if (this.singleSelection && this.selectedIndex > -1) {
+      this.$list.singleSelection = true;
+      this.$list.selectedIndex = this.selectedIndex;
+    }
+
+    // Making lists accessible
+    this.role =
+      this.$el.getAttribute('role') ||
+      (this.singleSelection ? 'listbox' : 'list');
+
+    // For `<ui-drawer type="modal">` focus management
+    this.fix4Drawer();
   },
   updated() {
-    if (!this.$list) {
-      this.init();
+    if (this.$list) {
+      if (this.singleSelection && this.selectedIndex > -1) {
+        this.$list.selectedIndex = this.selectedIndex;
+      }
+
+      if (!this.nonInteractive) {
+        this.$list.listElements.forEach((listItemEl) => {
+          this.initRipple(listItemEl);
+
+          let itemRole = listItemEl.getAttribute('role');
+          if (itemRole === 'checkbox' || itemRole === 'radio') {
+            this.$list.layout();
+          }
+        });
+      }
     }
   },
   methods: {
-    init() {
-      this.$list = new MDCList(this.$el);
-
-      const listElements = this.$list.listElements;
-
-      if (listElements.length) {
-        if (!this.nonInteractive) {
-          listElements.map(listItemEl => this.initRipple(listItemEl));
-        }
-
-        if (this.singleSelection) {
-          this.$list.singleSelection = true;
-          this.$list.selectedIndex = this.selectedIndex;
-        }
-
-        this.$list.listen(`MDCList:${UI_LIST.EVENT.ACTION}`, ({ detail }) => {
-          // NOTE: fix multiple event trigger
-          if (this.$list.selectedIndex !== detail.index) {
-            this.$emit(UI_LIST.EVENT.ACTION, detail.index);
-          }
-        });
-      } else {
-        this.$list = null;
-      }
-
-      // For `<ui-drawer type="modal">` focus management
+    fix4Drawer() {
       if (
         this.$parent.$el &&
         this.$parent.$el.classList.contains('mdc-drawer__content') &&

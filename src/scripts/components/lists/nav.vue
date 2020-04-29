@@ -3,9 +3,7 @@
     <slot
       :itemClass="UI_LIST.cssClasses.item"
       :activeClass="UI_LIST.cssClasses.active"
-    >
-      <!-- <ui-a> -->
-    </slot>
+    ></slot>
   </nav>
 </template>
 

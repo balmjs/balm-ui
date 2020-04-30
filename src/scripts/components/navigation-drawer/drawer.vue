@@ -49,7 +49,8 @@ export default {
       return {
         'mdc-drawer': true,
         'mdc-drawer--dismissible': this.isDismissible,
-        'mdc-drawer--modal': this.isModal
+        'mdc-drawer--modal': this.isModal,
+        'mdc-drawer--open': this.open
       };
     }
   },
@@ -75,19 +76,29 @@ export default {
     }
   },
   methods: {
+    checkNav() {
+      let result = true;
+
+      if (!(this.$drawer.list && this.$drawer.list.listElements.length)) {
+        result = false;
+        console.warn(
+          '`<ui-nav>` or `<ui-list>` is required for `<ui-drawer-content>` in the drawer'
+        );
+      }
+
+      return result;
+    },
     init() {
       if (document.getElementById(this.navId)) {
+        this.checkNav();
+
         document.getElementById(this.navId).addEventListener('click', () => {
-          this.$drawer.open = !this.$drawer.open;
+          if (this.checkNav()) {
+            this.$drawer.open = !this.$drawer.open;
+          }
         });
 
         this.$drawer.open = this.open;
-      }
-
-      if (!this.$drawer.list) {
-        console.warn(
-          '`<ui-list>` or `<ui-nav>` is required for `<ui-drawer-content>` in the drawer'
-        );
       }
     }
   }

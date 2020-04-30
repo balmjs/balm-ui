@@ -1,12 +1,13 @@
 // @use '@csstools/normalize.css/normalize.css'; // OLD
 @use 'sanitize.css/sanitize.css'; // NEW
 
+html,
+body {
+  height: 100%;
+}
+
 html {
   word-break: initial; // NOTE: bugfix for `sanitize.css`
-
-  &.balmui-no-layout {
-    overflow: auto;
-  }
 }
 
 a {

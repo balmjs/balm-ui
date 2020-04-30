@@ -109,7 +109,6 @@ export default {
       if (
         this.$parent.$el &&
         this.$parent.$el.classList.contains('mdc-drawer__content') &&
-        this.$slots.default &&
         this.$list.listElements.length
       ) {
         // Solution - https://github.com/material-components/material-components-web/issues/5615

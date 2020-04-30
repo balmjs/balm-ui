@@ -6,25 +6,47 @@ a {
 }
 
 .balmui-container {
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
 .balmui-head {
-  z-index: 7; // NOTE: only apply this style if below top app bar
-
   .github > span {
     display: none;
   }
 }
 
+.balmui-body {
+  display: flex;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+
+.balmui-drawer-container {
+  min-width: 280px;
+
+  &.balmui-menu--mobile {
+    min-width: auto;
+    .balmui-menu {
+      z-index: 6;
+    }
+  }
+}
+
 .balmui-menu {
-  position: static;
+  position: fixed;
+  z-index: 3;
+  width: 280px;
+
+  .mdc-drawer__header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  }
 }
 
 .balmui-content {
-  position: relative;
-  flex: 1;
-  overflow: auto;
+  display: block;
+  width: 100%;
 }
 
 .catalog-list {
@@ -155,5 +177,11 @@ a {
   a.active {
     font-weight: bolder;
     color: white;
+  }
+}
+
+@media screen and (min-width: 1341px) {
+  #balmui-menu {
+    display: none;
   }
 }

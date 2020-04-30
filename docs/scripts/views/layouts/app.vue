@@ -46,8 +46,8 @@
             class="balmui-menu"
           >
             <ui-drawer-header>
-              <ui-drawer-title>BalmUI</ui-drawer-title>
-              <ui-drawer-subtitle>
+              <ui-drawer-title>
+                BalmUI
                 <a
                   href="https://github.com/balmjs/balm-ui"
                   target="_blank"
@@ -58,7 +58,7 @@
                     alt="BalmUI"
                   />
                 </a>
-              </ui-drawer-subtitle>
+              </ui-drawer-title>
             </ui-drawer-header>
             <ui-drawer-content>
               <ui-nav ref="mainmenu" class="catalog-list">
@@ -105,6 +105,7 @@
           </ui-drawer>
           <ui-drawer-backdrop
             v-show="drawerType === 'modal'"
+            @click="$balmUI.onHide('openDrawer')"
           ></ui-drawer-backdrop>
         </div>
         <!-- App content -->

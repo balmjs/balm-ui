@@ -1,38 +1,5 @@
-### Drawer Below Top App Bar
-
 ```html
-<!-- App bar -->
-<ui-top-app-bar
-  contentSelector=".body-container"
-  navId="menu-button"
-></ui-top-app-bar>
-<!-- Content -->
-<div class="body-container">
-  <!-- Drawer -->
-  <ui-drawer type="dismissible" navId="menu-button">
-    <ui-drawer-header>
-      <ui-drawer-title>Title</ui-drawer-title>
-      <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>
-    </ui-drawer-header>
-    <ui-drawer-content>
-      <ui-nav #default="{ itemClass, activeClass }">
-        <a :class="[itemClass, activeClass]">Active link</a>
-        <a :class="itemClass">Unactive link</a>
-      </ui-nav>
-    </ui-drawer-content>
-  </ui-drawer>
-  <!-- App content -->
-  <ui-drawer-app-content class="content-container"
-    >Main Content</ui-drawer-app-content
-  >
-</div>
-```
-
-### Full Height Drawer
-
-```html
-<!-- Drawer -->
-<ui-drawer type="modal" navId="menu-button">
+<ui-drawer>
   <ui-drawer-header>
     <ui-drawer-title>Title</ui-drawer-title>
     <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>
@@ -44,17 +11,6 @@
     </ui-nav>
   </ui-drawer-content>
 </ui-drawer>
-<ui-drawer-backdrop></ui-drawer-backdrop>
-<!-- Content -->
-<div class="body-container">
-  <!-- App bar -->
-  <ui-top-app-bar
-    contentSelector=".content-container"
-    navId="menu-button"
-  ></ui-top-app-bar>
-  <!-- App content -->
-  <div class="content-container">Main Content</div>
-</div>
 ```
 
 | Component                 | Description                                                                                                        |

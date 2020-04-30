@@ -11,11 +11,7 @@
     <!-- Content -->
     <div class="demo-content">
       <!-- App bar -->
-      <ui-top-app-bar
-        contentSelector=".demo-app-content"
-        class="demo-app-bar"
-        v-shadow="4"
-      >
+      <ui-top-app-bar contentSelector=".demo-app-content" class="demo-app-bar">
         <template #nav-icon="{ navIconClass }">
           <ui-icon-button
             :class="navIconClass"
@@ -49,7 +45,7 @@ export default {
   mixins: [DrawerMixin],
   created() {
     this.$store.initDocs('drawer', {
-      demoCount: 4
+      demoCount: 5
     });
   }
 };

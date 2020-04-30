@@ -43,3 +43,9 @@
     width: 100%;
   }
 }
+
+.demo--dismissible-drawer-below-top-app-bar {
+  .demo-app-bar {
+    z-index: 7;
+  }
+}

@@ -30,7 +30,7 @@
       <div :class="[$tt('body1'), 'demo-app-content']">
         <h6>Modal Drawer</h6>
         <p>Click the menu icon above to open.</p>
-        <ui-snippet :code="$store.demos[4]"></ui-snippet>
+        <ui-snippet :code="$store.demos[5]"></ui-snippet>
       </div>
     </div>
   </div>
@@ -50,7 +50,7 @@ export default {
   mixins: [DrawerMixin],
   created() {
     this.$store.initDocs('drawer', {
-      demoCount: 4
+      demoCount: 5
     });
   }
 };

@@ -24,8 +24,7 @@
       <ui-top-app-bar
         contentSelector=".demo-app-content"
         navId="demo-menu"
-        class="demo-top-app-bar"
-        v-shadow="4"
+        class="demo-app-bar"
         >Dismissible Drawer Full Height Drawer</ui-top-app-bar
       >
       <!-- App content -->
@@ -52,7 +51,7 @@ export default {
   mixins: [DrawerMixin],
   created() {
     this.$store.initDocs('drawer', {
-      demoCount: 4
+      demoCount: 5
     });
   }
 };

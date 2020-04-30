@@ -45,7 +45,7 @@ export default {
   mixins: [DrawerMixin],
   created() {
     this.$store.initDocs('drawer', {
-      demoCount: 4
+      demoCount: 5
     });
   }
 };

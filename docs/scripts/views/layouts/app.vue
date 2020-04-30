@@ -36,7 +36,7 @@
           :class="[
             'balmui-drawer-container',
             {
-              'balmui-menu--mobile': !this.isWideScreen
+              'balmui-drawer--mobile': !this.isWideScreen
             }
           ]"
         >

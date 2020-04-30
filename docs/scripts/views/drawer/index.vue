@@ -1,7 +1,7 @@
 <template>
   <ui-page-structure
     name="drawer"
-    demoCount="4"
+    demoCount="5"
     :apis="[
       'drawers',
       'drawer',

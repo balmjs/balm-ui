@@ -56,7 +56,9 @@ export default {
   },
   watch: {
     open(val) {
-      this.$drawer.open = val;
+      if (this.$drawer) {
+        this.$drawer.open = val;
+      }
     }
   },
   mounted() {
@@ -65,14 +67,14 @@ export default {
     if (this.isDismissible || this.isModal) {
       this.$drawer = new MDCDrawer(this.$el);
 
-      this.init();
-
       this.$drawer.listen(`MDCDrawer:${UI_DRAWER.EVENT.OPENED}`, () => {
         this.$emit(UI_DRAWER.EVENT.NAV, true);
       });
       this.$drawer.listen(`MDCDrawer:${UI_DRAWER.EVENT.CLOSED}`, () => {
         this.$emit(UI_DRAWER.EVENT.NAV, false);
       });
+
+      this.init();
     }
   },
   methods: {

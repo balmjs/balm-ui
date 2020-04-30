@@ -21,6 +21,8 @@
           <a
             :class="[toolbarItemClass, 'github']"
             href="https://github.com/balmjs/balm-ui"
+            target="_blank"
+            rel="noopener"
           >
             <svg-github></svg-github>
             <span>GitHub</span>
@@ -45,6 +47,18 @@
           >
             <ui-drawer-header>
               <ui-drawer-title>BalmUI</ui-drawer-title>
+              <ui-drawer-subtitle>
+                <a
+                  href="https://github.com/balmjs/balm-ui"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <img
+                    src="https://badge.fury.io/js/balm-ui.svg"
+                    alt="BalmUI"
+                  />
+                </a>
+              </ui-drawer-subtitle>
             </ui-drawer-header>
             <ui-drawer-content>
               <ui-nav ref="mainmenu" class="catalog-list">

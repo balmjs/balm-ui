@@ -94,7 +94,7 @@
           ></ui-drawer-backdrop>
         </div>
         <!-- App content -->
-        <div ref="appContent" class="balmui-content" v-anchor.offset="60">
+        <div ref="appContent" class="balmui-content">
           <transition name="loading">
             <div v-if="pageLoading" class="loading-container">
               <ui-circular-progress
@@ -128,7 +128,7 @@ export default {
   data() {
     return {
       menu,
-      bodyEl: document.querySelector('html'),
+      bodyEl: document.documentElement || document.body,
       isWideScreen: true,
       drawerType: 'permanent',
       openDrawer: false,

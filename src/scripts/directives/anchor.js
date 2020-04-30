@@ -8,16 +8,15 @@ let UI_ANCHOR = {
     inner: 'v-anchor'
   },
   body: DEFAULT_BODY,
-  offset: 0,
-  isMounted: false
+  offset: DEFAULT_BODY.dataset.vanchorOffset || 0 // Global offset
 };
 
 // TODO: It has bug in <ui-bottom-navigation>
 
-const goAnchor = selector => {
+const goAnchor = (selector) => {
   let anchorEl = document.querySelector(selector);
   if (anchorEl) {
-    // console.log(UI_ANCHOR.body);
+    // console.log(UI_ANCHOR.body, UI_ANCHOR.offset);
     UI_ANCHOR.body.scrollTop = anchorEl.offsetTop - UI_ANCHOR.offset;
   } else {
     console.warn(`Invalid anchor: ${selector}`);
@@ -38,29 +37,31 @@ const updateAnchor = (method, el, { value, arg, modifiers }) => {
     default:
   }
 
-  if (modifiers.html) {
+  if (modifiers.md) {
     el.classList[method](UI_ANCHOR.cssClasses.outer);
   }
 };
 
 const initAnchor = (el, { value, rawName, modifiers }) => {
-  if (
-    rawName === UI_ANCHOR.cssClasses.inner ||
-    rawName === `${UI_ANCHOR.cssClasses.inner}.offset`
-  ) {
-    UI_ANCHOR.body = el;
+  if (rawName === UI_ANCHOR.cssClasses.inner || rawName.includes('.')) {
+    // Custom container
+    if (modifiers.body) {
+      UI_ANCHOR.body = el;
+    }
+
+    // Custom offset
     if (modifiers.offset) {
       UI_ANCHOR.offset = value;
     }
   }
 };
 
-const bindAnchor = method => {
+const bindAnchor = (method) => {
   let anchorElementList = document.querySelectorAll(
     `.${UI_ANCHOR.cssClasses.outer} .${UI_ANCHOR.cssClasses.inner}`
   );
   if (anchorElementList.length) {
-    anchorElementList.forEach(anchorEl => {
+    anchorElementList.forEach((anchorEl) => {
       anchorEl[`${method}EventListener`]('click', () => {
         goAnchor(anchorEl.dataset.href);
       });
@@ -75,7 +76,7 @@ const BalmUI_AnchorDirective = {
   },
   inserted(el, binding) {
     initAnchor(el, binding);
-    if (binding.modifiers.html) {
+    if (binding.modifiers.md) {
       bindAnchor('add');
     }
   },
@@ -85,7 +86,7 @@ const BalmUI_AnchorDirective = {
     }
 
     updateAnchor('remove', el, binding);
-    if (binding.modifiers.html) {
+    if (binding.modifiers.md) {
       bindAnchor('remove');
     }
   }

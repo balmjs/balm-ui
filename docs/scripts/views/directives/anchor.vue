@@ -16,7 +16,7 @@
       </div>
     </section>
 
-    <section class="anchor-example" v-anchor.html>
+    <section class="anchor-example" v-anchor.md>
       <h6 :class="$tt('headline6')">1.2 HTML Usage (e.g. markdown)</h6>
       <a href="javascript:void(0)" class="v-anchor" data-href="#target3"
         >Anchor 3</a

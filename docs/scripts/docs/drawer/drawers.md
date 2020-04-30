@@ -1,24 +1,60 @@
-```html
-<!-- Dismissible Drawer -->
-<ui-drawer type="dismissible">
-  <ui-drawer-header>
-    <ui-drawer-title></ui-drawer-title>
-    <ui-drawer-subtitle></ui-drawer-subtitle>
-  </ui-drawer-header>
-  <ui-drawer-content></ui-drawer-content>
-</ui-drawer>
-<ui-drawer-app-content></ui-drawer-app-content>
+### Drawer Below Top App Bar
 
-<!-- Modal Drawer -->
-<ui-drawer type="modal">
+```html
+<!-- App bar -->
+<ui-top-app-bar
+  contentSelector=".body-container"
+  navId="menu-button"
+></ui-top-app-bar>
+<!-- Content -->
+<div class="body-container">
+  <!-- Drawer -->
+  <ui-drawer type="dismissible" navId="menu-button">
+    <ui-drawer-header>
+      <ui-drawer-title>Title</ui-drawer-title>
+      <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>
+    </ui-drawer-header>
+    <ui-drawer-content>
+      <ui-nav #default="{ itemClass, activeClass }">
+        <a :class="[itemClass, activeClass]">Active link</a>
+        <a :class="itemClass">Unactive link</a>
+      </ui-nav>
+    </ui-drawer-content>
+  </ui-drawer>
+  <!-- App content -->
+  <ui-drawer-app-content class="content-container"
+    >Main Content</ui-drawer-app-content
+  >
+</div>
+```
+
+### Full Height Drawer
+
+```html
+<!-- Drawer -->
+<ui-drawer type="modal" navId="menu-button">
   <ui-drawer-header>
-    <ui-drawer-title></ui-drawer-title>
-    <ui-drawer-subtitle></ui-drawer-subtitle>
+    <ui-drawer-title>Title</ui-drawer-title>
+    <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>
   </ui-drawer-header>
-  <ui-drawer-content></ui-drawer-content>
+  <ui-drawer-content>
+    <ui-nav #default="{ itemClass, activeClass }">
+      <a :class="[itemClass, activeClass]">Active link</a>
+      <a :class="itemClass">Unactive link</a>
+    </ui-nav>
+  </ui-drawer-content>
 </ui-drawer>
-<ui-drawer-scrim></ui-drawer-scrim>
-<div>Main Content</div>
+<ui-drawer-backdrop></ui-drawer-backdrop>
+<!-- Content -->
+<div class="body-container">
+  <!-- App bar -->
+  <ui-top-app-bar
+    contentSelector=".content-container"
+    navId="menu-button"
+  ></ui-top-app-bar>
+  <!-- App content -->
+  <div class="content-container">Main Content</div>
+</div>
 ```
 
 | Component                 | Description                                                                                                        |
@@ -29,4 +65,4 @@
 | `<ui-drawer-title>`       | Title text element of the drawer.                                                                                  |
 | `<ui-drawer-subtitle>`    | Subtitle text element of the drawer.                                                                               |
 | `<ui-drawer-app-content>` | Mandatory for `<ui-drawer type="dismissible">` only. Sibling element that is resized when the drawer opens/closes. |
-| `<ui-drawer-scrim>`       | Mandatory for `<ui-drawer type="modal">` only. Used for the overlay on the app content.                            |
+| `<ui-drawer-backdrop>`    | Mandatory for `<ui-drawer type="modal">` only. Used for the overlay on the app content.                            |

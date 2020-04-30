@@ -4,17 +4,20 @@
 
 #### 1. Set Container
 
-- `v-anchor`
-- `v-anchor.offset="offsetValue"`
+- `v-anchor.body`: custom html contianer (Default contianer is `<html>`)
+- `v-anchor.md`: for markdown
+- `v-anchor.offset="offsetValue"`: set offset for scrollTop (Use `data-vAnchor-offset` in `<html>` & `<body>` element)
 
-> **offsetValue** is a number.
+> **offsetValue** is a number
 
 ```html
-<body class="container" v-anchor>
+<html data-vAnchor-offset="64">
   <!-- Anchors & Targets -->
-</body>
+</html>
+
 <!-- OR -->
-<div class="container" v-anchor>
+
+<div class="container" v-anchor.offset="64">
   <!-- Anchors & Targets -->
 </div>
 ```

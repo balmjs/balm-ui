@@ -43,7 +43,7 @@
 - `id` or unique `class` attribute
 
 ```html
-<div v-anchor.html>
+<div v-anchor.md>
   <div class="v-anchor" data-href="#target1">Anchor 1</div>
   <div class="v-anchor" data-href="#target2">Anchor 2</div>
 

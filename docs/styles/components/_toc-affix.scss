@@ -1,7 +1,7 @@
 .toc-affix {
   position: sticky;
-  top: 0;
-  z-index: 1;
+  top: 64px;
+  z-index: 4;
   background: white;
   .mdc-list {
     display: flex;

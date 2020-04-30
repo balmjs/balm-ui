@@ -1,6 +1,6 @@
 <template>
   <div class="demo--grid-container">
-    <ui-top-app-bar contentSelector=".demo-content">
+    <ui-top-app-bar contentSelector=".demo-content" fixed>
       <template #nav-icon="{ navIconClass }">
         <ui-icon-button
           icon="arrow_back"

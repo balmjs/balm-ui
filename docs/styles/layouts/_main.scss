@@ -1,55 +1,27 @@
 @use '../global/index' as global;
 @use '../global/color' as color;
 
-/// Ensure layout covers the entire screen.
-html {
-  &.balmui-no-layout {
-    .balmui-container {
-      height: auto;
-    }
-  }
-}
-
 a {
   color: global.$primary;
 }
 
-.balmui-container {
-  height: 100vh;
-}
-
 .balmui-head {
+  z-index: 7; // NOTE: only apply this style if below top app bar
+
   .github > span {
     display: none;
   }
 }
 
-.balmui-body {
-  display: flex;
+.balmui-content {
+  overflow: auto;
+  width: 100%;
   height: 100%;
 }
 
-.balmui-menu {
-  position: static;
-  z-index: 0;
-}
-
-.balmui-menu .mdc-drawer__content,
-.balmui-content {
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-.balmui-content {
-  position: relative;
-  flex: 1;
-}
-
 .catalog-list {
-  h3 {
+  .mdc-list-group__subheader {
     font-size: 18px;
-    margin: 0;
-    padding: 0 12px;
   }
 
   .no-icon {

@@ -1,8 +1,8 @@
 export default {
   data() {
     return {
-      title: 'Mail',
-      subtitle: 'ui@balmjs.com',
+      title: 'Title',
+      subtitle: 'Subtitle',
       open: false
     };
   },

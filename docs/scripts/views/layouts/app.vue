@@ -4,7 +4,7 @@
       <router-view></router-view>
     </template>
     <template v-else>
-      <!-- header -->
+      <!-- App bar -->
       <ui-top-app-bar
         class="balmui-head"
         contentSelector=".balmui-body"
@@ -26,8 +26,9 @@
           </a>
         </template>
       </ui-top-app-bar>
-      <!-- content -->
-      <div class="balmui-body">
+      <!-- Content -->
+      <main class="balmui-body">
+        <!-- Drawer -->
         <ui-drawer
           type="dismissible"
           class="balmui-menu"
@@ -65,19 +66,24 @@
                     v-else-if="item === '-'"
                     :key="`divider${index}`"
                   ></ui-list-divider>
-                  <h3
+                  <ui-list-group-subheader
                     v-else
                     :key="`head${index}`"
                     :class="$textColor('primary', 'light')"
                   >
                     {{ item.name }}
-                  </h3>
+                  </ui-list-group-subheader>
                 </template>
               </template>
             </ui-nav>
           </ui-drawer-content>
         </ui-drawer>
-        <main ref="body" class="balmui-content" v-anchor.offset="60">
+        <!-- App content -->
+        <ui-drawer-app-content
+          ref="appContent"
+          class="balmui-content"
+          v-anchor.offset="60"
+        >
           <transition name="loading">
             <div v-if="pageLoading" class="loading-container">
               <ui-circular-progress
@@ -88,8 +94,8 @@
             </div>
             <router-view v-else></router-view>
           </transition>
-        </main>
-      </div>
+        </ui-drawer-app-content>
+      </main>
     </template>
   </div>
 </template>
@@ -127,10 +133,11 @@ export default {
 
     this.$bus.$on('off-loading', () => {
       this.pageLoading = false;
+
       this.$nextTick(() => {
-        if (this.$refs.body) {
+        if (this.$refs.appContent) {
           setTimeout(() => {
-            this.$refs.body.scrollTop = 0;
+            this.$refs.appContent.$el.scrollTop = 0;
           }, 1);
         }
       });

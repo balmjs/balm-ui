@@ -1,5 +1,6 @@
 <template>
-  <div class="demo--drawer demo--permanent-drawer-above-toolbar">
+  <div class="demo-container demo--drawer demo--permanent-drawer-above-toolbar">
+    <!-- Drawer -->
     <ui-drawer type="permanent">
       <ui-drawer-header>
         <ui-drawer-title>{{ title }}</ui-drawer-title>
@@ -7,11 +8,12 @@
       </ui-drawer-header>
       <ui-drawer-common-content></ui-drawer-common-content>
     </ui-drawer>
-
-    <main class="demo-main">
+    <!-- Content -->
+    <main class="demo-content">
+      <!-- App bar -->
       <ui-top-app-bar
-        contentSelector=".demo-content"
-        class="demo-top-app-bar"
+        contentSelector=".demo-app-content"
+        class="demo-app-bar"
         v-shadow="4"
       >
         <template #nav-icon="{ navIconClass }">
@@ -23,13 +25,11 @@
         </template>
         Permanent Drawer Above Toolbar
       </ui-top-app-bar>
-
-      <div :class="[$tt('body1'), 'demo-content']">
-        <div :class="$tt('body2')">
-          <h6>Permanent Drawer</h6>
-          <p>It sits to the left of this content.</p>
-          <ui-snippet :code="$store.demos[1]"></ui-snippet>
-        </div>
+      <!-- App content -->
+      <div :class="[$tt('body1'), 'demo-app-content']">
+        <h6>Permanent Drawer</h6>
+        <p>It sits to the left of this content.</p>
+        <ui-snippet :code="$store.demos[1]"></ui-snippet>
       </div>
     </main>
   </div>

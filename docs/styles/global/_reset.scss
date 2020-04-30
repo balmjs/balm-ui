@@ -2,7 +2,12 @@
 @use 'sanitize.css/sanitize.css'; // NEW
 
 html {
+  overflow: hidden;
   word-break: initial; // NOTE: bugfix for `sanitize.css`
+
+  &.balmui-no-layout {
+    overflow: auto;
+  }
 }
 
 a {

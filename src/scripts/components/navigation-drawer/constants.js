@@ -1,5 +1,6 @@
 // Define drawer constants
 export default {
+  ROOT_CLASSNAME: 'mdc-drawer-root',
   TYPES: {
     permanent: 0,
     dismissible: 1,

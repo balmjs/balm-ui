@@ -1,5 +1,8 @@
 <template>
-  <div class="demo--drawer demo--dismissible-drawer">
+  <div
+    class="demo-container demo--drawer demo--dismissible-drawer-full-height-drawer"
+  >
+    <!-- Drawer -->
     <ui-drawer type="dismissible" navId="demo-menu">
       <ui-drawer-header>
         <ui-drawer-title>{{ title }}</ui-drawer-title>
@@ -15,22 +18,21 @@
         <ui-list-divider></ui-list-divider>
       </ui-drawer-common-content>
     </ui-drawer>
-
-    <ui-drawer-app-content class="demo-main">
+    <!-- Content -->
+    <ui-drawer-app-content class="demo-content">
+      <!-- App bar -->
       <ui-top-app-bar
-        contentSelector=".demo-content"
+        contentSelector=".demo-app-content"
         navId="demo-menu"
         class="demo-top-app-bar"
         v-shadow="4"
-        >Dismissible Drawer</ui-top-app-bar
+        >Dismissible Drawer Full Height Drawer</ui-top-app-bar
       >
-
-      <div :class="[$tt('body1'), 'demo-content']">
-        <div :class="$tt('body2')">
-          <h6>Dismissible Drawer</h6>
-          <p>Click the menu icon above to open and close the drawer.</p>
-          <ui-snippet :code="$store.demos[3]"></ui-snippet>
-        </div>
+      <!-- App content -->
+      <div :class="[$tt('body1'), 'demo-app-content']">
+        <h6>Dismissible Drawer</h6>
+        <p>Click the menu icon above to open and close the drawer.</p>
+        <ui-snippet :code="$store.demos[3]"></ui-snippet>
       </div>
     </ui-drawer-app-content>
   </div>

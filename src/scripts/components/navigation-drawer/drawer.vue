@@ -59,6 +59,8 @@ export default {
     }
   },
   mounted() {
+    this.$el.parentNode.classList.add(UI_DRAWER.ROOT_CLASSNAME);
+
     if (this.isDismissible || this.isModal) {
       this.$drawer = new MDCDrawer(this.$el);
 
@@ -70,8 +72,6 @@ export default {
       this.$drawer.listen(`MDCDrawer:${UI_DRAWER.EVENT.CLOSED}`, () => {
         this.$emit(UI_DRAWER.EVENT.NAV, false);
       });
-    } else {
-      this.$el.parentNode.classList.add('mdc-drawer--permanent');
     }
   },
   methods: {

@@ -3,7 +3,10 @@ const PermanentDrawerAboveToolbar = () =>
   import('@/views/drawer/permanent-drawer-above-toolbar');
 const PermanentDrawerBelowToolbar = () =>
   import('@/views/drawer/permanent-drawer-below-toolbar');
-const DismissibleDrawer = () => import('@/views/drawer/dismissible-drawer');
+const DismissibleDrawerFullHeightDrawer = () =>
+  import('@/views/drawer/dismissible-drawer-full-height-drawer');
+const DismissibleDrawerBelowTopAppBar = () =>
+  import('@/views/drawer/dismissible-drawer-below-top-app-bar');
 const ModalDrawer = () => import('@/views/drawer/modal-drawer');
 const BottomNavigation = () => import('@/views/components/bottom-navigation');
 const Tabs = () => import('@/views/components/tabs');
@@ -28,9 +31,15 @@ export default [
     meta: { noLayout: true }
   },
   {
-    path: 'dismissible-drawer',
-    name: 'navigation.dismissible-drawer',
-    component: DismissibleDrawer,
+    path: 'dismissible-drawer-full-height-drawer',
+    name: 'navigation.dismissible-drawer-full-height-drawer',
+    component: DismissibleDrawerFullHeightDrawer,
+    meta: { noLayout: true }
+  },
+  {
+    path: 'dismissible-drawer-below-top-app-bar',
+    name: 'navigation.dismissible-drawer-below-top-app-bar',
+    component: DismissibleDrawerBelowTopAppBar,
     meta: { noLayout: true }
   },
   {

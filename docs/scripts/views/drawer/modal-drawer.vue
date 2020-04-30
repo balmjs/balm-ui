@@ -1,9 +1,6 @@
 <template>
-  <div class="demo--drawer demo--modal-drawer">
-    <ui-top-app-bar fixed contentSelector=".demo-main" navId="demo-menu"
-      >Modal Drawer</ui-top-app-bar
-    >
-
+  <div class="demo-container demo--drawer demo--modal-drawer">
+    <!-- Drawer -->
     <ui-drawer type="modal" v-model="open" navId="demo-menu">
       <ui-drawer-header>
         <ui-drawer-title>{{ title }}</ui-drawer-title>
@@ -19,11 +16,18 @@
         <ui-list-divider></ui-list-divider>
       </ui-drawer-common-content>
     </ui-drawer>
-
     <ui-drawer-backdrop></ui-drawer-backdrop>
-
-    <main :class="[$tt('body1'), 'demo-main']">
-      <div :class="$tt('body2')">
+    <!-- Content -->
+    <main class="demo-content">
+      <!-- App bar -->
+      <ui-top-app-bar
+        fixed
+        contentSelector=".demo-app-content"
+        navId="demo-menu"
+        >Modal Drawer</ui-top-app-bar
+      >
+      <!-- App content -->
+      <div :class="[$tt('body1'), 'demo-app-content']">
         <h6>Modal Drawer</h6>
         <p>Click the menu icon above to open.</p>
         <ui-snippet :code="$store.demos[4]"></ui-snippet>

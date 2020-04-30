@@ -1,42 +1,39 @@
-/// Ensure layout covers the entire screen.
-.balmui-navigation_permanent-drawer-above-toolbar,
-.balmui-navigation_permanent-drawer-below-toolbar,
-.balmui-navigation_dismissible-drawer,
-.balmui-navigation_modal-drawer {
-  .demo--drawer {
-    display: flex;
-    height: 100vh;
+.demo--drawer {
+  .hero-demo.mdc-drawer-root {
+    height: auto;
   }
 }
 
 .demo--drawer {
-  .mdc-top-app-bar__navigation-icon {
-    cursor: pointer;
-  }
-
-  .demo-main {
-    position: relative;
-    flex: auto;
-    overflow: auto;
-    background: #fff;
-  }
-
-  .demo-top-app-bar {
-    position: absolute;
-  }
-
-  .demo-content {
-    padding-left: 16px;
-    padding-right: 16px;
+  .demo-app-content {
     overflow: auto;
     height: 100%;
-    width: 100%;
-    box-sizing: border-box;
+    padding-left: 18px;
+    padding-right: 18px;
   }
 }
 
-.balmui-navigation_permanent-drawer-below-toolbar {
-  .demo-main {
-    display: flex;
+.demo--permanent-drawer-above-toolbar {
+  .demo-content {
+    position: relative;
+  }
+
+  .demo-app-bar {
+    position: absolute;
+  }
+}
+
+.demo--permanent-drawer-above-toolbar,
+.demo--dismissible-drawer-full-height-drawer,
+.demo--modal-drawer {
+  .demo-content {
+    width: 100%;
+  }
+}
+
+.demo--permanent-drawer-below-toolbar,
+.demo--dismissible-drawer-below-top-app-bar {
+  .demo-app-content {
+    width: 100%;
   }
 }

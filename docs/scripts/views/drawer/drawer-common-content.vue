@@ -1,6 +1,6 @@
 <template>
   <ui-drawer-content>
-    <ui-list>
+    <ui-nav #default="{ itemClass, activeClass }">
       <slot></slot>
       <template v-for="(item, index) in menu">
         <ui-list-divider
@@ -14,18 +14,19 @@
           >
             {{ item.subheader }}
           </ui-list-group-subheader>
-          <ui-item
+          <a
             v-for="(subItem, subIndex) in item.items"
             :key="`item-${index}-${subIndex}`"
+            :class="itemClass"
           >
             <ui-item-first-content>
               <ui-icon>{{ subItem.icon }}</ui-icon>
             </ui-item-first-content>
             <ui-item-text-content>{{ subItem.name }}</ui-item-text-content>
-          </ui-item>
+          </a>
         </template>
       </template>
-    </ui-list>
+    </ui-nav>
   </ui-drawer-content>
 </template>
 

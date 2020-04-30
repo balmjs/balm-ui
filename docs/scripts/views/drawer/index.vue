@@ -61,14 +61,24 @@
       <ui-item>
         <ui-item-text-content>
           <span>1.3</span>
-          <router-link :to="{ name: 'navigation.dismissible-drawer' }"
-            >Dismissible Drawer</router-link
+          <router-link
+            :to="{ name: 'navigation.dismissible-drawer-full-height-drawer' }"
+            >Dismissible Drawer Full Height Drawer</router-link
           >
         </ui-item-text-content>
       </ui-item>
       <ui-item>
         <ui-item-text-content>
           <span>1.4</span>
+          <router-link
+            :to="{ name: 'navigation.dismissible-drawer-below-top-app-bar' }"
+            >Dismissible Drawer Below Top App Bar</router-link
+          >
+        </ui-item-text-content>
+      </ui-item>
+      <ui-item>
+        <ui-item-text-content>
+          <span>1.5</span>
           <router-link :to="{ name: 'navigation.modal-drawer' }"
             >Modal Drawer</router-link
           >

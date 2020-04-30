@@ -27,7 +27,7 @@
         </template>
       </ui-top-app-bar>
       <!-- Content -->
-      <main class="balmui-body">
+      <div class="balmui-body">
         <!-- Drawer -->
         <ui-drawer
           type="dismissible"
@@ -79,11 +79,7 @@
           </ui-drawer-content>
         </ui-drawer>
         <!-- App content -->
-        <ui-drawer-app-content
-          ref="appContent"
-          class="balmui-content"
-          v-anchor.offset="60"
-        >
+        <div ref="appContent" class="balmui-content" v-anchor.offset="60">
           <transition name="loading">
             <div v-if="pageLoading" class="loading-container">
               <ui-circular-progress
@@ -94,8 +90,8 @@
             </div>
             <router-view v-else></router-view>
           </transition>
-        </ui-drawer-app-content>
-      </main>
+        </div>
+      </div>
     </template>
   </div>
 </template>
@@ -137,7 +133,7 @@ export default {
       this.$nextTick(() => {
         if (this.$refs.appContent) {
           setTimeout(() => {
-            this.$refs.appContent.$el.scrollTop = 0;
+            this.$refs.appContent.scrollTop = 0;
           }, 1);
         }
       });

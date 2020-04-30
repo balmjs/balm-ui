@@ -1,6 +1,12 @@
 .demo--drawer {
-  .hero-demo.mdc-drawer-root {
-    height: auto;
+  .hero-demo {
+    &.mdc-drawer-root {
+      height: auto;
+    }
+
+    h3 {
+      text-align: left;
+    }
   }
 }
 

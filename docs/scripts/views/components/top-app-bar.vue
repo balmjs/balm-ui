@@ -56,7 +56,7 @@
 
     <ui-drawer-backdrop></ui-drawer-backdrop>
 
-    <main class="demo-main">
+    <div class="demo-main">
       <ui-page-structure id="content-main" name="top-app-bar" demoCount="1">
         <template #hero>
           <h1 :class="$tt('headline1')">Top App Bar</h1>
@@ -80,7 +80,7 @@
         </p>
         <ui-snippet :code="$store.demos[1]"></ui-snippet>
       </ui-page-structure>
-    </main>
+    </div>
   </div>
 </template>
 

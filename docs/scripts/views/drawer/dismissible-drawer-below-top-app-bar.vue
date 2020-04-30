@@ -11,7 +11,7 @@
       >Dismissible Drawer Below Top App Bar</ui-top-app-bar
     >
     <!-- Content -->
-    <main class="demo-content">
+    <div class="demo-content">
       <!-- Drawer -->
       <ui-drawer type="dismissible" navId="demo-menu">
         <ui-drawer-header>
@@ -34,7 +34,7 @@
         <p>Click the menu icon above to open and close the drawer.</p>
         <ui-snippet :code="$store.demos[3]"></ui-snippet>
       </ui-drawer-app-content>
-    </main>
+    </div>
   </div>
 </template>
 

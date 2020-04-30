@@ -12,7 +12,7 @@
       Permanent Drawer Below Toolbar
     </ui-top-app-bar>
     <!-- Content -->
-    <main class="demo-content">
+    <div class="demo-content">
       <!-- Drawer -->
       <ui-drawer type="permanent">
         <ui-drawer-header>
@@ -27,7 +27,7 @@
         <p>It sits to the left of this content.</p>
         <ui-snippet :code="$store.demos[2]"></ui-snippet>
       </div>
-    </main>
+    </div>
   </div>
 </template>
 

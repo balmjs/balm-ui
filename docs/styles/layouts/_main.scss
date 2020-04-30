@@ -5,6 +5,10 @@ a {
   color: global.$primary;
 }
 
+.balmui-container {
+  height: 100vh;
+}
+
 .balmui-head {
   z-index: 7; // NOTE: only apply this style if below top app bar
 
@@ -13,10 +17,14 @@ a {
   }
 }
 
+.balmui-menu {
+  position: static;
+}
+
 .balmui-content {
+  position: relative;
+  flex: 1;
   overflow: auto;
-  width: 100%;
-  height: 100%;
 }
 
 .catalog-list {

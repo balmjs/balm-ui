@@ -18,7 +18,7 @@
     </ui-drawer>
     <ui-drawer-backdrop></ui-drawer-backdrop>
     <!-- Content -->
-    <main class="demo-content">
+    <div class="demo-content">
       <!-- App bar -->
       <ui-top-app-bar
         fixed
@@ -32,7 +32,7 @@
         <p>Click the menu icon above to open.</p>
         <ui-snippet :code="$store.demos[4]"></ui-snippet>
       </div>
-    </main>
+    </div>
   </div>
 </template>
 

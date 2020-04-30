@@ -9,7 +9,7 @@
       <ui-drawer-common-content></ui-drawer-common-content>
     </ui-drawer>
     <!-- Content -->
-    <main class="demo-content">
+    <div class="demo-content">
       <!-- App bar -->
       <ui-top-app-bar
         contentSelector=".demo-app-content"
@@ -31,7 +31,7 @@
         <p>It sits to the left of this content.</p>
         <ui-snippet :code="$store.demos[1]"></ui-snippet>
       </div>
-    </main>
+    </div>
   </div>
 </template>
 

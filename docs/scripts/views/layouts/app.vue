@@ -61,7 +61,7 @@
               </ui-drawer-title>
             </ui-drawer-header>
             <ui-drawer-content>
-              <ui-nav ref="mainmenu" class="catalog-list">
+              <ui-nav class="catalog-list">
                 <template #default="{ itemClass, activeClass }">
                   <template v-for="(item, index) in menu">
                     <router-link
@@ -109,7 +109,7 @@
           ></ui-drawer-backdrop>
         </div>
         <!-- App content -->
-        <div ref="appContent" class="balmui-content">
+        <div class="balmui-content">
           <transition name="loading">
             <div v-if="pageLoading" class="loading-container">
               <ui-circular-progress
@@ -128,10 +128,9 @@
 
 <script>
 import SvgGithub from '@/components/svg-github';
+import { $MIN_WIDTH } from '@/config';
 import menu from '@/config/menu';
 // import { lang } from '@/config/lang';
-
-const MIN_WIDTH = 1341;
 
 export default {
   metaInfo: {
@@ -179,7 +178,7 @@ export default {
   },
   methods: {
     getDrawerType() {
-      this.isWideScreen = window.innerWidth >= MIN_WIDTH;
+      this.isWideScreen = window.innerWidth >= $MIN_WIDTH;
       return this.isWideScreen ? 'permanent' : 'modal';
     },
     // isActiveLang(lang) {
@@ -190,7 +189,7 @@ export default {
     // },
     handleMenu() {
       this.openDrawer = false;
-      if (window.innerWidth < MIN_WIDTH) {
+      if (window.innerWidth < $MIN_WIDTH) {
         this.isWideScreen = false;
       }
     }

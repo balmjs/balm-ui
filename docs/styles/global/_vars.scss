@@ -3,6 +3,7 @@
 @use '@material/typography/variables' as typography-variables;
 @use '@material/top-app-bar/variables' as top-app-bar-variables;
 
+$MIN_WIDTH: 1240 + 1;
 $primary: theme-variables.$primary;
 $secondary: theme-variables.$secondary;
 $mobile-breakpoint: top-app-bar-variables.$mobile-breakpoint;

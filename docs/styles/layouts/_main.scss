@@ -93,10 +93,6 @@ a {
   }
 }
 
-.demo-catalog-list a {
-  color: color.$grey-900;
-}
-
 .catalog-list-icon {
   width: 24px;
   height: 24px;
@@ -111,78 +107,7 @@ a {
   }
 }
 
-.hero {
-  position: relative;
-
-  &::before,
-  &::after {
-    position: absolute;
-    padding: 4px;
-    color: white;
-  }
-
-  &::before {
-    top: 0;
-    left: 0;
-  }
-
-  &::after {
-    right: 0;
-    bottom: 0;
-  }
-
-  &.component {
-    &::before,
-    &::after {
-      content: 'component';
-      background-color: #2979ff;
-    }
-  }
-
-  &.plugin {
-    &::before,
-    &::after {
-      content: 'plugin';
-      background-color: #ff1744;
-    }
-  }
-
-  &.directive {
-    &::before,
-    &::after {
-      content: 'directive';
-      background-color: #00bfa5;
-    }
-  }
-}
-
-.ui-intro {
-  padding: 40px 0;
-}
-
-.component-docs {
-  margin-bottom: 80px;
-}
-
-.markdown-body:not(.component--cards, .component--dialogs, .component--lists, .component--drawers)
-  table
-  td:nth-child(2) {
-  color: #c41d7f;
-  font-size: 13px;
-}
-
-/// lang
-.supported-lang {
-  margin: 0;
-  cursor: pointer;
-
-  a.active {
-    font-weight: bolder;
-    color: white;
-  }
-}
-
-@media screen and (min-width: 1341px) {
+@media screen and (min-width: #{global.$MIN_WIDTH}px) {
   #balmui-menu {
     display: none;
   }

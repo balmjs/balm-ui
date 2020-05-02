@@ -1,3 +1,5 @@
+@use '../global/index' as global;
+
 .hero {
   position: relative;
 
@@ -52,11 +54,25 @@
   margin-bottom: 80px;
 }
 
-.markdown-body:not(.component--cards, .component--dialogs, .component--lists, .component--drawers)
-  table
-  td:nth-child(2) {
-  color: #c41d7f;
-  font-size: 13px;
+.markdown-body {
+  table td {
+    &:nth-child(1) {
+      white-space: nowrap;
+      font-weight: bold;
+    }
+
+    &:nth-child(2) {
+      color: #c41d7f;
+      font-size: 13px;
+    }
+  }
+}
+
+@each $componentName in global.$docs-components {
+  .component--#{$componentName} table td:nth-child(2) {
+    color: inherit;
+    font-size: inherit;
+  }
 }
 
 /// lang

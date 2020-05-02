@@ -2,7 +2,7 @@
   <ui-page-structure
     name="image-list"
     demoCount="2"
-    :apis="['image-list', 'image-item', 'image-text']"
+    :apis="['image-lists', 'image-list', 'image-item', 'image-text']"
   >
     <template #hero>
       <ui-image-list class="hero-image-list">

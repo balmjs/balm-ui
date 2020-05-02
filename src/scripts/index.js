@@ -7,7 +7,6 @@ import multiConfigure from './config/multi-configure';
 import UiButton from './components/buttons/button';
 import UiFab from './components/buttons/fab';
 import UiIconButton from './components/buttons/icon-button';
-import UiIconA from './components/buttons/icon-a';
 import UiIcon from './components/icon/icon';
 // Layouts
 import UiTopAppBar from './components/app-bars/top-app-bar';
@@ -103,7 +102,6 @@ const components = {
   UiButton,
   UiFab,
   UiIconButton,
-  UiIconA,
   UiIcon,
   // Layouts
   UiTopAppBar,

@@ -22,9 +22,18 @@
           </ui-menu-anchor>
         </template>
         <template v-else>
-          <ui-icon-a :class="toolbarItemClass" icon="file_download"></ui-icon-a>
-          <ui-icon-a :class="toolbarItemClass" icon="print"></ui-icon-a>
-          <ui-icon-a :class="toolbarItemClass" icon="bookmark"></ui-icon-a>
+          <ui-icon-button
+            :class="toolbarItemClass"
+            icon="file_download"
+          ></ui-icon-button>
+          <ui-icon-button
+            :class="toolbarItemClass"
+            icon="print"
+          ></ui-icon-button>
+          <ui-icon-button
+            :class="toolbarItemClass"
+            icon="bookmark"
+          ></ui-icon-button>
           <!-- <ui-list :class="toolbarItemClass">
             <ui-item>Menu item 1</ui-item>
             <ui-item>Menu item 2</ui-item>

@@ -2,7 +2,6 @@
 <!-- Material Icons -->
 <ui-icon-button icon="favorite"></ui-icon-button>
 <ui-icon-button icon="airplanemode_active"></ui-icon-button>
-<ui-icon-a icon="directions_transit"></ui-icon-a>
 
 <!-- SVG Icon -->
 <ui-icon-button>

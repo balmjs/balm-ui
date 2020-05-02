@@ -9,7 +9,7 @@ import Vue from 'vue';
 import BalmUI from 'balm-ui';
 
 Vue.use(BalmUI, {
-  // Optional. Overwrite `<ui-icon-button>` and `<ui-icon-a>` props with default value.
+  // Optional. Overwrite `<ui-icon-button>` props with default value.
   UiIconButton: {
     // some props
   }
@@ -26,12 +26,10 @@ Vue.use(BalmUI, {
 
 ```js
 import Vue from 'vue';
-import UiIconButtonComponents from 'balm-ui/components/icon-button';
+import UiIconButton from 'balm-ui/components/icon-button';
 
-Vue.use(UiIconButtonComponents, {
-  // Optional. Overwrite `<ui-icon-button>` and `<ui-icon-a>` props with default value.
-  UiIconButton: {
-    // some props
-  }
+// Optional. Overwrite `<ui-icon-button>` props with default value.
+Vue.use(UiIconButton, {
+  // some props
 });
 ```

@@ -1,7 +1,5 @@
 ```html
 <ui-icon-button></ui-icon-button>
-
-<ui-icon-a></ui-icon-a>
 ```
 
 #### Props

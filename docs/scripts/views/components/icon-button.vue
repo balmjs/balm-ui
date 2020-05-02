@@ -1,17 +1,19 @@
 <template>
   <ui-page-structure name="icon-button" demoCount="2">
     <template #hero>
-      <ui-icon-button :toggle="icon" v-model="value"></ui-icon-button>
+      <div class="hero-demo">
+        <ui-icon-button :toggle="icon" v-model="value"></ui-icon-button>
+      </div>
     </template>
 
     <!-- Content -->
     <section class="example">
       <div>
-        <h5 :class="$tt('headline5')">1.1 Buttons</h5>
+        <h6 :class="$tt('headline6')">1.1 Buttons</h6>
 
         <div class="toggle-examples-container">
           <div class="toggle-example">
-            <h6 :class="$tt('headline6')">Material Icons</h6>
+            <div>Material Icons</div>
             <div class="demo-wrapper">
               <ui-icon-button icon="favorite"></ui-icon-button>
               <ui-icon-button icon="airplanemode_active"></ui-icon-button>
@@ -19,7 +21,7 @@
           </div>
 
           <div class="toggle-example">
-            <h6 :class="$tt('headline6')">SVG Icon</h6>
+            <div>SVG Icon</div>
             <div class="demo-wrapper">
               <ui-icon-button>
                 <svg-logo></svg-logo>
@@ -28,7 +30,7 @@
           </div>
 
           <div class="toggle-example">
-            <h6 :class="$tt('headline6')">Disabled Buttons</h6>
+            <div>Disabled Buttons</div>
             <div class="demo-wrapper">
               <ui-icon-button
                 icon="airplanemode_active"
@@ -46,11 +48,11 @@
 
     <section class="example">
       <div>
-        <h5 :class="$tt('headline5')">1.2 Button Toggles</h5>
+        <h6 :class="$tt('headline6')">1.2 Button Toggles</h6>
 
         <div class="toggle-examples-container">
           <div class="toggle-example">
-            <h6 :class="$tt('headline6')">Using Material Icons</h6>
+            <div>Using Material Icons</div>
             <div class="demo-wrapper">
               <ui-icon-button :toggle="icon" v-model="value1"></ui-icon-button>
             </div>
@@ -61,7 +63,7 @@
           </div>
 
           <div class="toggle-example">
-            <h6 :class="$tt('headline6')">Using Font Awesome</h6>
+            <div>Using Font Awesome</div>
             <div class="demo-wrapper">
               <ui-icon-button v-model="value2">
                 <template #default="{ onClass, offClass }">
@@ -74,7 +76,7 @@
           </div>
 
           <div class="toggle-example">
-            <h6 :class="$tt('headline6')">Using SVG Icons</h6>
+            <div>Using SVG Icons</div>
             <div class="demo-wrapper">
               <ui-icon-button>
                 <template #default="{ onClass, offClass }">
@@ -106,7 +108,7 @@
           </div>
 
           <div class="toggle-example">
-            <h6 :class="$tt('headline6')">Using Image Icons</h6>
+            <div>Using Image Icons</div>
             <div class="demo-wrapper">
               <ui-icon-button>
                 <template #default="{ onClass, offClass }">
@@ -118,7 +120,7 @@
           </div>
 
           <div class="toggle-example">
-            <h6 :class="$tt('headline6')">Disabled Icons</h6>
+            <div>Disabled Icons</div>
             <div class="demo-wrapper">
               <ui-icon-button :toggle="icon1" disabled></ui-icon-button>
             </div>

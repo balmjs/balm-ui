@@ -10,6 +10,8 @@ $mobile-breakpoint: top-app-bar-variables.$mobile-breakpoint;
 $row-height: top-app-bar-variables.$row-height;
 $mobile-row-height: top-app-bar-variables.$mobile-row-height;
 
+$nav-width: 280px;
+
 $font-size-h1: map.get(
   map.get(typography-variables.$styles, headline1),
   font-size

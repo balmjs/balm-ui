@@ -24,7 +24,7 @@ a {
 }
 
 .balmui-drawer-container {
-  min-width: 280px;
+  min-width: global.$nav-width;
 
   &.balmui-drawer--mobile {
     min-width: auto;
@@ -37,7 +37,7 @@ a {
 .balmui-menu {
   position: fixed;
   z-index: 3;
-  width: 280px;
+  width: global.$nav-width;
 
   .mdc-drawer__header {
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
@@ -106,6 +106,10 @@ a {
 }
 
 @media screen and (min-width: #{global.$MIN_WIDTH}px) {
+  .balmui-content {
+    width: calc(100% - #{global.$nav-width});
+  }
+
   #balmui-menu {
     display: none;
   }

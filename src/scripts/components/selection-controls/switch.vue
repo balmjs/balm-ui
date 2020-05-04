@@ -2,21 +2,20 @@
   <div :class="className">
     <div class="mdc-switch__track"></div>
     <div class="mdc-switch__thumb-underlay">
-      <div class="mdc-switch__thumb">
-        <input
-          :id="id"
-          v-model="toggleValue"
-          type="checkbox"
-          class="mdc-switch__native-control"
-          role="switch"
-          :name="name"
-          :true-value="trueValue"
-          :false-value="falseValue"
-          :disabled="disabled"
-          v-bind="attrs"
-          @change="handleChange"
-        />
-      </div>
+      <div class="mdc-switch__thumb"></div>
+      <input
+        :id="id"
+        v-model="toggleValue"
+        type="checkbox"
+        class="mdc-switch__native-control"
+        role="switch"
+        :name="name"
+        :true-value="trueValue"
+        :false-value="falseValue"
+        :disabled="disabled"
+        v-bind="attrs"
+        @change="handleChange"
+      />
     </div>
   </div>
 </template>

@@ -21,11 +21,11 @@
   $thumb-active-margin:
     $track-width - $thumb-diameter + $thumb-offset * 2,
 
-  $toggled-off-thumb-color: theme-variables.prop-value(surface),
-  $toggled-off-track-color: theme-variables.prop-value(on-surface),
+  $toggled-off-thumb-color: surface,
+  $toggled-off-track-color: on-surface,
   $toggled-off-ripple-color: #9e9e9e,
-  $disabled-thumb-color: theme-variables.prop-value(surface),
-  $disabled-track-color: theme-variables.prop-value(on-surface),
+  $disabled-thumb-color: surface,
+  $disabled-track-color: on-surface,
 
   $baseline-theme-color: secondary
 );

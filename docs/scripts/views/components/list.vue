@@ -2,7 +2,7 @@
   <ui-page-structure
     name="list"
     demoCount="8"
-    :apis="['lists', 'list', 'list-item', 'list-divider', 'list-group']"
+    :apis="['ui-list', 'list', 'list-item', 'list-divider', 'list-group']"
   >
     <template #hero>
       <div class="hero-demo">

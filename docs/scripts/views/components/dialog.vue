@@ -3,7 +3,7 @@
     name="dialog"
     demoCount="2"
     :apis="[
-      'dialogs',
+      'ui-dialog',
       'dialog',
       'dialog-title',
       'dialog-content',

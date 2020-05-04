@@ -2,7 +2,7 @@
   <ui-page-structure
     name="menu"
     demoCount="2"
-    :apis="['menus', 'menu', 'menuitem', 'menu-anchor']"
+    :apis="['ui-menu', 'menu', 'menuitem', 'menu-anchor']"
   >
     <template #hero>
       <ui-menu

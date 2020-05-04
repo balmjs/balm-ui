@@ -31,11 +31,10 @@ export default {
   },
   mixins: [tabBarMixin, tabScrollerMixin, tabMixin],
   props: {
-    // Data: { text: string, icon: string }
     items: {
       type: Array,
       default() {
-        return [];
+        return []; // Data: { text: string, icon: string }
       }
     }
   },

@@ -3,7 +3,7 @@
     name="card"
     demoCount="3"
     :apis="[
-      'cards',
+      'ui-card',
       'card',
       'card-content',
       'card-media',

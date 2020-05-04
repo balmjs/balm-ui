@@ -3,6 +3,7 @@
     name="tabs"
     demoCount="9"
     :apis="[
+      'ui-tabs',
       'tabs',
       'tab-bar',
       'tab-scroller',

@@ -1,5 +1,4 @@
 const List = () => import('@/views/components/list');
-const TextDivider = () => import('@/views/components/text-divider');
 const ImageList = () => import('@/views/components/image-list');
 const Card = () => import('@/views/components/card');
 const Table = () => import('@/views/components/table');
@@ -10,11 +9,6 @@ export default [
     path: 'list',
     name: 'data-display.list',
     component: List
-  },
-  {
-    path: 'divider',
-    name: 'data-display.text-divider',
-    component: TextDivider
   },
   {
     path: 'image-list',

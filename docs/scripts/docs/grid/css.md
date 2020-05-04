@@ -2,7 +2,7 @@
 @use '@material/layout-grid/variables' with (
   $breakpoints: (
     desktop: 840px,
-    tablet: 480px,
+    tablet: 600px,
     phone: 0px
   ),
 

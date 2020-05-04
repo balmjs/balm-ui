@@ -9,37 +9,15 @@
 
   .demo-content {
     position: relative;
-    top: 64px;
-  }
-
-  .demo-controls-container {
-    width: 100%;
-    height: calc(100vh - 80px);
+    border: 1px solid;
   }
 
   .demo-controls {
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
+    padding: 40px 20px;
   }
 
   .mdc-menu-surface--anchor {
     position: absolute;
-    margin: 16px;
-  }
-
-  .demo-controls-container {
-    width: 100%;
-    height: calc(100vh - 80px);
-  }
-
-  .mdc-menu-surface--anchor {
-    position: absolute;
-    margin: 16px;
-  }
-
-  .margin-inputs input {
-    width: 3em;
   }
 
   .left-column-controls {
@@ -51,6 +29,10 @@
     display: inline-block;
     margin-left: 2em;
     vertical-align: top;
+  }
+
+  .margin-controls input {
+    width: 3em;
   }
 
   .demo-button__normal-text,

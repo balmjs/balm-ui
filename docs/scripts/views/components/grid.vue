@@ -39,14 +39,14 @@
               Desktop Margin:
               <ui-select
                 :options="gutterOptions"
-                :model="desktop.margin"
+                v-model="desktop.margin"
                 @change="$setGrid('margin', 'desktop', $event)"
               ></ui-select>
 
               <br />Desktop Gutter:
               <ui-select
                 :options="gutterOptions"
-                :model="desktop.gutter"
+                v-model="desktop.gutter"
                 @change="$setGrid('gutter', 'desktop', $event)"
               ></ui-select>
             </div>
@@ -56,14 +56,14 @@
               Tablet Margin:
               <ui-select
                 :options="gutterOptions"
-                :model="tablet.margin"
+                v-model="tablet.margin"
                 @change="$setGrid('margin', 'tablet', $event)"
               ></ui-select>
 
               <br />Tablet Gutter:
               <ui-select
                 :options="gutterOptions"
-                :model="tablet.gutter"
+                v-model="tablet.gutter"
                 @change="$setGrid('gutter', 'tablet', $event)"
               ></ui-select>
             </div>
@@ -73,14 +73,14 @@
               Phone Margin:
               <ui-select
                 :options="gutterOptions"
-                :model="phone.margin"
+                v-model="phone.margin"
                 @change="$setGrid('margin', 'phone', $event)"
               ></ui-select>
 
               <br />Phone Gutter:
               <ui-select
                 :options="gutterOptions"
-                :model="phone.gutter"
+                v-model="phone.gutter"
                 @change="$setGrid('gutter', 'phone', $event)"
               ></ui-select>
             </div>
@@ -179,7 +179,7 @@
                 Desktop Column Width:
                 <ui-select
                   :options="widthOptions"
-                  :model="desktop.width"
+                  v-model="desktop.width"
                   @change="$setGrid('column-width', 'desktop', $event)"
                 ></ui-select>
               </div>
@@ -189,7 +189,7 @@
                 Tablet Column Width:
                 <ui-select
                   :options="widthOptions"
-                  :model="tablet.width"
+                  v-model="tablet.width"
                   @change="$setGrid('column-width', 'tablet', $event)"
                 ></ui-select>
               </div>
@@ -199,7 +199,7 @@
                 Phone Column Width:
                 <ui-select
                   :options="widthOptions"
-                  :model="phone.width"
+                  v-model="phone.width"
                   @change="$setGrid('column-width', 'phone', $event)"
                 ></ui-select>
               </div>

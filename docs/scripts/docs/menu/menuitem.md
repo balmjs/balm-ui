@@ -28,25 +28,7 @@
 | --------- | ----- | --------------------------------------------------------------------------------------- |
 | `default` |       | The default slot holds the menu item icon component or label text and can contain HTML. |
 
-**Menu item child components:**
+**Child components:**
 
 - `<ui-menuitem-text>`
 - `<ui-menuitem-icon>`
-
-```html
-<!-- Usage 1 -->
-<ui-menuitem>
-  <ui-menuitem-text>Label</ui-menuitem-text>
-</ui-menuitem>
-
-<!-- Usage 2 -->
-<ui-menuitem nested>
-  <ui-menuitem>
-    <ui-menuitem-icon>Icon1</ui-menuitem-icon>
-    <ui-menuitem-text>Label1</ui-menuitem-text>
-  </ui-menuitem>
-  <ui-menuitem>
-    <ui-menuitem-text>Labe2</ui-menuitem-text>
-  </ui-menuitem>
-</ui-menuitem>
-```

@@ -1,6 +1,8 @@
+@use '../global/index' as global;
+
 .toc-affix {
   position: sticky;
-  top: 64px;
+  top: global.$row-height;
   z-index: 4;
   background: white;
   .mdc-list {
@@ -8,5 +10,11 @@
   }
   .mdc-list-item {
     cursor: pointer;
+  }
+}
+
+@media (max-width: global.$mobile-breakpoint) {
+  .toc-affix {
+    top: global.$mobile-row-height;
   }
 }

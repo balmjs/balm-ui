@@ -201,12 +201,6 @@ const MATERIAL_COMPONENTS = [
         description: 'Item layouts in lists'
       },
       {
-        icon: 'component',
-        name: 'Text Divider',
-        description: 'Divider',
-        url: 'divider'
-      },
-      {
         icon: 'card',
         name: 'Image list',
         description: 'Displays a collection of images in a repeated pattern',
@@ -308,6 +302,12 @@ const MATERIAL_COMPONENTS = [
       //   name: 'Shape',
       //   description: 'Mixins for angled corners on unelevated components'
       // },
+      {
+        icon: 'component',
+        name: 'Text Divider',
+        description: 'Divider',
+        url: 'divider'
+      },
       {
         icon: 'component',
         name: 'Anchor',

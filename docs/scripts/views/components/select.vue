@@ -102,19 +102,8 @@
         }}</span>
       </p>
       <ui-select-controls v-model="controls"></ui-select-controls>
-      <!-- <div class="button-container">
-          <ui-button
-            raised
-            id="set-selected-index-zero-button"
-            @click="$balmUI.onChange('selected1.index', 0)"
-            >Set Selected Index (0)</ui-button
-          >
-        </div> -->
       <div class="button-container">
-        <ui-button
-          raised
-          id="set-value-meat-button"
-          @click="$balmUI.onChange('selected1.value', 'meat')"
+        <ui-button raised id="set-value-meat-button" @click="onClick"
           >Set Value to Meat</ui-button
         >
       </div>
@@ -148,22 +137,6 @@
         idPrefix="outline"
         v-model="controls"
       ></ui-select-controls>
-      <!-- <div class="button-container">
-          <ui-button
-            raised
-            id="set-selected-index-zero-button-outline"
-            @click="$balmUI.onChange('selected1.index', 0)"
-            >Set Selected Index (0)</ui-button
-          >
-        </div> -->
-      <div class="button-container">
-        <ui-button
-          raised
-          id="set-value-meat-button-outline"
-          @click="$balmUI.onChange('selected1.value', 'meat')"
-          >Set Value to Meat</ui-button
-        >
-      </div>
     </section>
     <ui-snippet :code="$store.demos[2]"></ui-snippet>
 
@@ -201,11 +174,7 @@
 </template>
 
 <script>
-import {
-  PROVINCES as provinces,
-  CITIES,
-  OPTIONS as options1
-} from '../../../data/select';
+import { PROVINCES, CITIES, OPTIONS } from '../../../data/select';
 
 const UiSelectControls = () => import('@/demos/select/select-controls');
 
@@ -321,7 +290,7 @@ export default {
       selected3: 'fruit-roll-ups',
       selected4: 'steak',
       options,
-      options1,
+      options1: [],
       options2,
       options3,
       controls: {
@@ -333,25 +302,31 @@ export default {
         province: '',
         city: ''
       },
-      provinces,
+      provinces: [],
       cities: []
     };
   },
   mounted() {
-    // setTimeout(() => {
-    //   this.selected = 11;
-    // }, 1e3);
+    setTimeout(() => {
+      this.options1 = OPTIONS;
+      this.provinces = PROVINCES;
+    }, 1e3);
   },
   methods: {
     onSelected(result, key) {
       this[`selected${key}`].value = result.value;
       this[`selected${key}`].index = result.index;
     },
+    onClick() {
+      this.$balmUI.onChange('selected1.value', 'meat');
+      this.$balmUI.onChange('selected1.index', 4);
+    },
     onChangeProvince(value) {
-      this.formData.provinces = value;
+      this.formData.province = value;
 
       let key = value || -1;
       this.cities = key > -1 ? CITIES[key] : [];
+
       this.formData.city = this.cities.length ? this.cities[0].value : '';
     }
   }

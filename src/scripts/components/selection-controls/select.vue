@@ -40,26 +40,28 @@
       role="listbox"
     >
       <ul class="mdc-list">
-        <li
-          v-for="(option, index) in currentOptions"
-          :key="index"
-          :class="[
-            'mdc-list-item',
-            {
-              'mdc-list-item--selected':
-                option[optionValue] === currentSelectedValue,
-              'mdc-list-item--disabled': option.disabled
-            }
-          ]"
-          :data-value="option[optionValue]"
-          :aria-selected="option[optionValue] === currentSelectedValue"
-          :aria-disabled="option.disabled"
-          role="option"
-        >
-          <span v-if="option[optionLabel]" class="mdc-list-item__text">{{
-            option[optionLabel]
-          }}</span>
-        </li>
+        <template v-if="currentOptions.length">
+          <li
+            v-for="(option, index) in currentOptions"
+            :key="index"
+            :class="[
+              'mdc-list-item',
+              {
+                'mdc-list-item--selected':
+                  option[optionValue] === currentSelectedValue,
+                'mdc-list-item--disabled': option.disabled
+              }
+            ]"
+            :data-value="option[optionValue]"
+            :aria-selected="option[optionValue] === currentSelectedValue"
+            :aria-disabled="option.disabled"
+            role="option"
+          >
+            <span v-if="option[optionLabel]" class="mdc-list-item__text">{{
+              option[optionLabel]
+            }}</span>
+          </li>
+        </template>
       </ul>
     </div>
   </div>
@@ -199,19 +201,21 @@ export default {
     this.$select = new MDCSelect(this.$el);
 
     this.$select.listen(`MDCSelect:${UI_SELECT.EVENT.CHANGE}`, ({ detail }) => {
-      if (
-        detail.index > UI_SELECT.DEFAULT_SELECTED_INDEX &&
-        (this.defaultLabel
+      // NOTE: for dynamic options
+      this.$nextTick(() => {
+        let hasOptions = this.defaultLabel
           ? this.currentOptions.length > 1
-          : this.currentOptions.length)
-      ) {
-        const selected = this.getSelected(detail.index);
-        // NOTE: fix twice event trigger
-        if (this.currentSelectedValue !== selected.value) {
-          this.$emit(UI_SELECT.EVENT.CHANGE, selected.value);
-          this.$emit(UI_SELECT.EVENT.SELECTED, selected);
+          : this.currentOptions.length;
+
+        if (hasOptions) {
+          const selected = this.getSelected(detail.index);
+          // NOTE: for twice trigger bugfix
+          if (this.currentSelectedValue !== selected.value) {
+            this.$emit(UI_SELECT.EVENT.CHANGE, selected.value);
+            this.$emit(UI_SELECT.EVENT.SELECTED, selected);
+          }
         }
-      }
+      });
     });
 
     this.init();
@@ -234,7 +238,7 @@ export default {
       });
     },
     setCurrentOption() {
-      let index = UI_SELECT.DEFAULT_SELECTED_INDEX;
+      let index = UI_SELECT.DEFAULT_SELECTED_INDEX + 1;
 
       for (let i = 0, len = this.currentOptions.length; i < len; i++) {
         let currentOption = this.currentOptions[i];
@@ -245,7 +249,7 @@ export default {
       }
 
       // Set selected index
-      this.currentSelectedIndex = this.defaultLabel ? index + 1 : index;
+      this.currentSelectedIndex = index;
 
       if (this.currentSelectedIndex > UI_SELECT.DEFAULT_SELECTED_INDEX) {
         this.$select.selectedIndex = this.currentSelectedIndex;

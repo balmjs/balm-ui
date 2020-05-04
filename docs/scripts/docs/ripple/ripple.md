@@ -1,5 +1,5 @@
 ```html
-<a v-ripple></a>
+<div v-ripple></div>
 ```
 
 #### Default ripple

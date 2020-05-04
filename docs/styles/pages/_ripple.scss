@@ -40,73 +40,25 @@
     appearance: none;
   }
 
-  body {
-    font-family: sans-serif;
+  .example {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
   }
 
-  #unsupported-msg {
-    padding: 1rem;
-    border: 1px solid red;
-    color: red;
-    border-radius: 4px;
-    display: none;
-    position: absolute;
-    z-index: 10;
+  .mdc-typography--headline6 {
+    margin: 10px 0;
   }
 
-  .unsupported #unsupported-msg {
-    display: block;
-  }
-
-  .unsupported main {
-    opacity: 0.2;
-    pointer-events: none;
-    user-select: none;
-    -webkit-user-select: none;
-  }
-
-  @media (max-width: 565px) {
+  @media (max-width: global.$mobile-breakpoint) {
     .example {
       flex-direction: column;
       width: 100%;
     }
-  }
 
-  .example {
-    margin: 24px;
-    padding: 24px;
-    align-items: center;
-    display: flex;
-    margin-left: 10px;
-  }
-
-  .example > div {
-    margin: 48px 0;
-    width: 400px;
-  }
-
-  .example h2 {
-    margin-bottom: 0.8em;
-  }
-}
-
-.demo--ripple {
-  .example {
-    flex-wrap: wrap;
-    justify-content: center;
-
-    & > div {
-      margin: 0;
-    }
-  }
-
-  @media (max-width: global.$mobile-breakpoint) {
     .demo-surface {
       margin: 0 auto;
-    }
-
-    .example > div {
-      width: 100%;
     }
   }
 }

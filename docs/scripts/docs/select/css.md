@@ -3,7 +3,13 @@
   $arrow-padding: 52px,
   $label-padding: 16px,
   $height: 56px,
-  $icon-padding: 48px,
+  $minimum-height-for-filled-label: 52px,
+  $filled-baseline-top: 40px,
+  $selected-text-height: 28px,
+  $anchor-padding-left: 16px,
+  $anchor-padding-left-with-leading-icon: 0,
+  $anchor-padding-right: 0,
+  $outlined-stroke-width: 2px,
 
   $ink-color: rgba(variables.prop-value(on-surface), .87),
   $dropdown-color: variables.prop-value(on-surface),
@@ -29,10 +35,9 @@
 
   $outlined-disabled-border: rgba(variables.prop-value(on-surface), .16),
 
-  $label-position-y: 70%,
+  $label-position-y: 106%,
   $outline-label-offset: 16px,
-  $outlined-label-position-y: 130%,
-  $outlined-dense-label-position-y: 110%,
+  $outlined-label-position-y: get-outlined-label-position-y($height),
   $outlined-with-leading-icon-label-position-x: 32px,
 
   $dropdown-transition-duration: 150ms

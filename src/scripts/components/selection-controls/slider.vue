@@ -130,7 +130,7 @@ export default {
     this.$slider = new MDCSlider(this.$el);
 
     this.$slider.listen(`MDCSlider:${UI_SLIDER.EVENT.CHANGE}`, () => {
-      // NOTE: fix twice event trigger
+      // NOTE: for twice trigger bugfix
       if (this.currentValue !== this.$slider.value) {
         this.$emit(UI_SLIDER.EVENT.CHANGE, this.$slider.value);
       }

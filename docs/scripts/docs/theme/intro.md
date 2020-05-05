@@ -1,1 +1,1 @@
-# BalmUI theme color
+# Theme color

@@ -10,7 +10,7 @@ import BalmUI from 'balm-ui';
 
 Vue.use(BalmUI, {
   // Optional. Overwrite the param of `$tt()`.
-  typography: ['custom-module-1', 'custom-module-2']
+  typography: ['custom-module-classname-1', 'custom-module-classname-2']
 });
 ```
 
@@ -29,5 +29,5 @@ import Vue from 'vue';
 import typography from 'balm-ui/plugins/typography';
 
 // Optional. Overwrite the param of `$tt()`.
-Vue.use(typography, ['custom-module-1', 'custom-module-2']);
+Vue.use(typography, ['custom-module-classname-1', 'custom-module-classname-2']);
 ```

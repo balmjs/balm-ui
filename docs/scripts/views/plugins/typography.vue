@@ -1,11 +1,16 @@
 <template>
-  <ui-page-structure type="plugin" name="typography" demoCount="1">
+  <ui-page-structure
+    type="plugin"
+    name="typography"
+    demoCount="1"
+    :apis="['typography']"
+  >
     <template #hero>
       <h1 :class="$tt('headline1')">Tt</h1>
     </template>
 
     <!-- Content -->
-    <h4 :class="$tt('headline4')">Styles</h4>
+    <h6 :class="$tt('headline6')">Styles</h6>
     <section class="demo-typography--section">
       <div class="demo-typography--headline">
         <h1 :class="$tt('headline1')">Headline 1</h1>
@@ -49,7 +54,7 @@
     </section>
     <ui-snippet :code="$store.demos[1]"></ui-snippet>
 
-    <h5 :class="[$tt('headline5'), 'demo-typography--heading-baseline']">
+    <!-- <h5 :class="[$tt('headline5'), 'demo-typography--heading-baseline']">
       Baseline
     </h5>
     <section class="demo-typography--section-baseline">
@@ -66,7 +71,7 @@
       <div class="demo-typography-line-1">+34px</div>
       <div class="demo-typography-line-2">+22px</div>
       <div class="demo-typography-line-3">+28px</div>
-    </section>
+    </section> -->
   </ui-page-structure>
 </template>
 

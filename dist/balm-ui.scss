@@ -5,6 +5,7 @@
 @use 'node_modules/material-components-web/material-components-web.scss';
 
 /// Components Custom Styles
+@use 'balm-ui/components/drawer/ui-drawer';
 @use 'balm-ui/components/top-app-bar/ui-top-app-bar';
 @use 'balm-ui/components/autocomplete/ui-autocomplete';
 @use 'balm-ui/components/card/ui-card';
@@ -21,6 +22,9 @@
 @use 'balm-ui/components/rangepicker/ui-rangepicker';
 @use 'balm-ui/components/banner/ui-banner';
 @use 'balm-ui/components/bottom-navigation/ui-bottom-navigation';
+@use 'balm-ui/components/circular-progress/ui-circular-progress';
+@use 'balm-ui/components/menu/ui-menu';
+@use 'balm-ui/components/select/ui-select';
 
 /// Plugins Custom Styles
 @use 'balm-ui/plugins/alert/ui-alert';

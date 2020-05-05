@@ -10,7 +10,7 @@
       >Dismissible Drawer Below Top App Bar</ui-top-app-bar
     >
     <!-- Drawer -->
-    <ui-drawer type="dismissible" navId="demo-menu">
+    <ui-drawer type="dismissible" viewportHeight navId="demo-menu">
       <ui-drawer-header></ui-drawer-header>
       <ui-drawer-common-content>
         <ui-item @click="$router.back()">

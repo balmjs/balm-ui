@@ -14,7 +14,7 @@
     <!-- Content -->
     <div class="demo-content">
       <!-- Drawer -->
-      <ui-drawer type="permanent">
+      <ui-drawer type="permanent" viewportHeight>
         <ui-drawer-header>
           <ui-drawer-title>{{ title }}</ui-drawer-title>
           <ui-drawer-subtitle>{{ subtitle }}</ui-drawer-subtitle>

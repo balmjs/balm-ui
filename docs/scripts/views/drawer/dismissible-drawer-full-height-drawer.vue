@@ -3,7 +3,7 @@
     class="demo-container demo--drawer demo--dismissible-drawer-full-height-drawer"
   >
     <!-- Drawer -->
-    <ui-drawer type="dismissible" navId="demo-menu">
+    <ui-drawer type="dismissible" viewportHeight navId="demo-menu">
       <ui-drawer-header>
         <ui-drawer-title>{{ title }}</ui-drawer-title>
         <ui-drawer-subtitle>{{ subtitle }}</ui-drawer-subtitle>

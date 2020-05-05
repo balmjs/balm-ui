@@ -20,6 +20,7 @@
 | `type`             | string, number | `0`     | Mandatory. Button types.                                                                                          |
 | `navId`            | string         | `null`  | The external menu button selector. (Please refer to the `navId` prop of the [top app bar](/#/layout/top-app-bar)) |
 | `open` (`v-model`) | boolean        | `false` | The drawer toggle state.                                                                                          |
+| `viewportHeight`   | boolean        | `false` | Viewport full height(`100vh`) .                                                                                   |
 
 #### Slots
 

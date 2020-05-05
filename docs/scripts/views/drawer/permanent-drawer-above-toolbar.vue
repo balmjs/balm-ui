@@ -1,7 +1,7 @@
 <template>
   <div class="demo-container demo--drawer demo--permanent-drawer-above-toolbar">
     <!-- Drawer -->
-    <ui-drawer type="permanent">
+    <ui-drawer type="permanent" viewportHeight>
       <ui-drawer-header>
         <ui-drawer-title>{{ title }}</ui-drawer-title>
         <ui-drawer-subtitle>{{ subtitle }}</ui-drawer-subtitle>

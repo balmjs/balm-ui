@@ -2,6 +2,7 @@
 @use '@material/ripple/mixins' as ripple-mixins;
 @use '@material/theme/mixins' as theme-mixins;
 @use '../global/color' as color;
+@use '../global/index' as global;
 
 $demo-toolbar-progress-bar-color: secondary !default;
 $demo-toolbar-progress-buffer-color: primary !default;
@@ -59,8 +60,10 @@ $demo-color-high-luminance: color.$amber-50;
   // Page content
   //
   .demo-main {
-    padding: 24px;
+    display: flex;
+    flex-wrap: wrap;
   }
+
   .demo-component-section {
     position: relative;
   }
@@ -353,5 +356,52 @@ $demo-color-high-luminance: color.$amber-50;
       padding: 10px;
       border: 1px solid;
     }
+  }
+}
+
+.component-section {
+  width: 90%;
+  margin: 10px 5% 20px;
+
+  .component-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .mdc-top-app-bar,
+    .mdc-drawer {
+      position: static;
+      top: auto !important;
+      z-index: 0;
+      display: block;
+    }
+
+    .mdc-drawer {
+      border-width: 1px;
+      border-style: solid;
+    }
+  }
+
+  .textfield-component-wrapper,
+  .select-component-wrapper,
+  .list-component {
+    display: block;
+
+    .mdc-form-field {
+      margin-bottom: 16px;
+    }
+
+    .mdc-list {
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      background: #fff;
+    }
+  }
+}
+
+@media screen and (min-width: #{global.$MIN_WIDTH}px) {
+  .component-section {
+    width: 40%;
+    margin: 10px 5% 20px;
   }
 }

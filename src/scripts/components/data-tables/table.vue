@@ -261,17 +261,7 @@ export default {
       this.$nextTick(() => {
         this.$table.layout();
 
-        if (this.selectedRows.length) {
-          let rowIds = this.selectedRows.map((selectedRow) => {
-            let rowIndex = this.selectedKey
-              ? this.currentData.findIndex(
-                  (tbodyData) => tbodyData[this.selectedKey] === selectedRow
-                )
-              : selectedRow;
-            return `${this.rowIdPrefix}${rowIndex}`;
-          });
-          this.$table.setSelectedRowIds(rowIds);
-        }
+        this.initSelectedRows();
       });
     }
   },
@@ -354,6 +344,28 @@ export default {
 
       this.$emit(UI_TABLE.EVENT.SELECTED, selectedRows);
     });
+
+    this.initSelectedRows();
+  },
+  methods: {
+    initSelectedRows() {
+      if (this.selectedRows.length) {
+        let rowIds = this.selectedRows
+          .map((selectedRow) => {
+            let rowIndex = this.selectedKey
+              ? this.currentData.findIndex(
+                  (tbodyData) => tbodyData[this.selectedKey] === selectedRow
+                )
+              : selectedRow;
+            return `${this.rowIdPrefix}${rowIndex}`;
+          })
+          .filter((row) => row > -1);
+
+        if (rowIds.length) {
+          this.$table.setSelectedRowIds(rowIds);
+        }
+      }
+    }
   }
 };
 </script>

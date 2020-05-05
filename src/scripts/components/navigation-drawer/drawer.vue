@@ -28,6 +28,11 @@ export default {
     type: {
       type: [String, Number],
       default: 0
+    },
+    // UI attributes
+    viewportHeight: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -62,7 +67,9 @@ export default {
     }
   },
   mounted() {
-    this.$el.parentNode.classList.add(UI_DRAWER.ROOT_CLASSNAME);
+    if (this.viewportHeight) {
+      this.$el.parentNode.classList.add(UI_DRAWER.ROOT_CLASSNAME);
+    }
 
     if (this.isDismissible || this.isModal) {
       this.$drawer = new MDCDrawer(this.$el);

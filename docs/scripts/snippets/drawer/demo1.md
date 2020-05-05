@@ -1,6 +1,6 @@
 ```html
 <!-- Drawer -->
-<ui-drawer>
+<ui-drawer viewportHeight>
   <ui-drawer-header>
     <ui-drawer-title>Title</ui-drawer-title>
     <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>

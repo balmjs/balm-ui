@@ -1,8 +1,9 @@
 ### 2.1 Theme color (`mdc-theme--<THEME_STYLE>`)
 
 ```js
-$themeColor(style);
-$setTheme(style, value);
+$themeColor(style); // Output: classname
+
+$setTheme(style, value); // Manual custom theme for global
 ```
 
 | Param   | Type   | Default | Description        |
@@ -25,8 +26,9 @@ $setTheme(style, value);
 ### 2.2 Text color (`mdc-theme--text-<TEXT_STYLE>-on-<THEME_TONE>`)
 
 ```js
-$textColor(style, tone);
-$setTextTheme(style, tone, value);
+$textColor(style, tone); // Output: classname
+
+$setTextTheme(style, tone, value); // Manual custom theme for global
 ```
 
 | Param   | Type   | Default        | Description       |
@@ -48,5 +50,3 @@ $setTextTheme(style, tone, value);
 - `background`
 - `light`
 - `dark`
-
-> You can overwrite theme by `$setTheme` and `$setTextTheme` methods.

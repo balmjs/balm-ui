@@ -1,9 +1,12 @@
+.balmui-navigation_permanent-drawer-above-toolbar,
+.balmui-navigation_dismissible-drawer-full-height-drawer {
+  .balmui-container {
+    overflow: hidden;
+  }
+}
+
 .demo--drawer {
   .hero-demo {
-    &.mdc-drawer-root {
-      height: auto;
-    }
-
     h3 {
       text-align: left;
     }

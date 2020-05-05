@@ -11,9 +11,9 @@
           v-model="typeOption"
           >Type</ui-select
         >
-        <ui-textfield class="hero-option" v-model="text"
-          >Button Text</ui-textfield
-        >
+        <ui-textfield class="hero-option" v-model="text">
+          Button Text
+        </ui-textfield>
       </div>
     </template>
 

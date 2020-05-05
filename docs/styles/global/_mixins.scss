@@ -1,8 +1,55 @@
-@mixin ellipsis($width: 100%) {
-  display: inline-block;
+/// Truncates text and adds an ellipsis to represent overflow.
+///
+/// @argument {number} $width [100%]
+///   The `max-width` for the string to respect before being truncated.
+///
+/// @argument {string} $display [inline-block]
+///   Sets the display-value of the element.
+///
+/// @example scss
+///   .element {
+///     @include ellipsis;
+///   }
+///
+///   // CSS Output
+///   .element {
+///     display: inline-block;
+///     max-width: 100%;
+///     overflow: hidden;
+///     text-overflow: ellipsis;
+///     white-space: nowrap;
+///     word-wrap: normal;
+///   }
+
+@mixin ellipsis($width: 100%, $display: inline-block) {
+  display: $display;
   max-width: $width;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   word-wrap: normal;
+}
+
+/// Outputs the `overflow-wrap` property and its legacy name `word-wrap` to
+/// support browsers that do not yet use `overflow-wrap`.
+///
+/// @argument {string} $wrap [break-word]
+///   Accepted CSS values are `normal`, `break-word`, `inherit`, `initial`,
+///   or `unset`.
+///
+/// @example scss
+///   .wrapper {
+///     @include overflow-wrap;
+///   }
+///
+///   // CSS Output
+///   .wrapper {
+///     word-wrap: break-word;
+///     overflow-wrap: break-word;
+///   }
+
+@mixin overflow-wrap($wrap: break-word) {
+  word-wrap: $wrap;
+  // stylelint-disable-next-line order/properties-alphabetical-order
+  overflow-wrap: $wrap;
 }

@@ -76,7 +76,7 @@
     content: '';
   }
   p {
-    display: inline-block;
+    display: block; // inline-block
     padding: 14px 0;
   }
 }

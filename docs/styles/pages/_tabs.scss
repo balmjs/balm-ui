@@ -3,6 +3,7 @@
 @use '@material/ripple/mixins' as ripple-mixins;
 @use '@material/typography/mixins' as typography-mixins;
 @use '../global/color' as color;
+@use '../global/index' as global;
 
 .demo--tabs {
   .hero-demo .mdc-tab-bar.long {
@@ -79,5 +80,11 @@
   }
   .demo-controller-row {
     padding: 5px 0;
+  }
+
+  @media (max-width: global.$mobile-breakpoint) {
+    .hero-demo .mdc-tab-bar {
+      max-width: 320px;
+    }
   }
 }

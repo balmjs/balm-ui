@@ -1,3 +1,5 @@
+@use '../global/index' as global;
+
 .demo--typography {
   .demo-typography--section {
     margin: 24px;
@@ -7,6 +9,10 @@
     & > div {
       margin-bottom: 20px;
     }
+  }
+
+  .demo-typography--headline > * {
+    @include global.ellipsis(100%, block);
   }
 
   .demo-typography--heading-baseline {

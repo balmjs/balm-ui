@@ -46,19 +46,8 @@
             class="balmui-menu"
           >
             <ui-drawer-header>
-              <ui-drawer-title>
-                BalmUI
-                <a
-                  href="https://github.com/balmjs/balm-ui"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <img
-                    src="https://badge.fury.io/js/balm-ui.svg"
-                    alt="BalmUI"
-                  />
-                </a>
-              </ui-drawer-title>
+              <ui-drawer-title>BalmUI</ui-drawer-title>
+              <ui-drawer-subtitle>v6.0.0</ui-drawer-subtitle>
             </ui-drawer-header>
             <ui-drawer-content>
               <ui-nav class="catalog-list">

@@ -37,7 +37,7 @@ const updateAnchor = (method, el, { value, arg, modifiers }) => {
     default:
   }
 
-  if (modifiers.md) {
+  if (modifiers.html) {
     el.classList[method](UI_ANCHOR.cssClasses.outer);
   }
 };
@@ -45,7 +45,7 @@ const updateAnchor = (method, el, { value, arg, modifiers }) => {
 const initAnchor = (el, { value, rawName, modifiers }) => {
   if (rawName === UI_ANCHOR.cssClasses.inner || rawName.includes('.')) {
     // Custom container
-    if (modifiers.body) {
+    if (modifiers.bodyElement) {
       UI_ANCHOR.body = el;
     }
 
@@ -76,7 +76,7 @@ const BalmUI_AnchorDirective = {
   },
   inserted(el, binding) {
     initAnchor(el, binding);
-    if (binding.modifiers.md) {
+    if (binding.modifiers.html) {
       bindAnchor('add');
     }
   },
@@ -86,7 +86,7 @@ const BalmUI_AnchorDirective = {
     }
 
     updateAnchor('remove', el, binding);
-    if (binding.modifiers.md) {
+    if (binding.modifiers.html) {
       bindAnchor('remove');
     }
   }

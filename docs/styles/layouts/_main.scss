@@ -20,6 +20,7 @@ a {
 .balmui-body {
   display: flex;
   justify-content: flex-start;
+  flex: 1;
   max-width: 100%;
 }
 
@@ -45,6 +46,7 @@ a {
 }
 
 .balmui-content {
+  position: relative;
   display: block;
   width: 100%;
 }

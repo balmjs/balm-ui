@@ -44,6 +44,7 @@ Following the [Material Design](https://material.io/components/) UI components f
   - Dialog
   - Snackbar
   - Linear Progress
+  - Circular Progress
   - Skeleton (💡)
 
 ### 2. Plugins

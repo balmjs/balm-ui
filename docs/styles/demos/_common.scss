@@ -62,12 +62,17 @@ fieldset {
 
 @media (max-width: global.$mobile-breakpoint) {
   .hero {
-    .hero-options {
-      flex-direction: column;
-    }
     .hero-option {
       align-items: flex-start;
       margin: 0 32px;
+    }
+
+    .hero-options {
+      flex-direction: column;
+
+      .hero-option {
+        margin-bottom: 10px;
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
 ```html
-<div class="container" v-anchor.md>
+<div class="container" v-anchor.html>
   <a class="v-anchor" data-href="#target3">Anchor 3</a>
   <a class="v-anchor" data-href="#target4">Anchor 4</a>
 

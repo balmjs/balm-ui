@@ -5,7 +5,7 @@
     </template>
 
     <!-- Content -->
-    <section class="anchor-example">
+    <section class="anchor-example" v-anchor.offset="128">
       <h6 :class="$tt('headline6')">1.1 Default Usage</h6>
       <ui-button raised v-anchor:href="'#target1'">Anchor 1</ui-button>
       <ui-button outlined v-anchor:href="'#target2'">Anchor 2</ui-button>
@@ -16,7 +16,7 @@
       </div>
     </section>
 
-    <section class="anchor-example" v-anchor.md>
+    <section class="anchor-example" v-anchor.html.offset="128">
       <h6 :class="$tt('headline6')">1.2 HTML Usage (e.g. markdown)</h6>
       <a href="javascript:void(0)" class="v-anchor" data-href="#target3"
         >Anchor 3</a

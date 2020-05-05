@@ -4,8 +4,8 @@
 
 #### 1. Set Container
 
-- `v-anchor.body`: custom html contianer (Default contianer is `<html>`)
-- `v-anchor.md`: for markdown
+- `v-anchor.bodyElement`: custom html contianer (Default contianer is `<html>`)
+- `v-anchor.html`: for html (e.g. markdown)
 - `v-anchor.offset="offsetValue"`: set offset for scrollTop (Use `data-vAnchor-offset` in `<html>` & `<body>` element)
 
 > **offsetValue** is a number
@@ -43,7 +43,7 @@
 - `id` or unique `class` attribute
 
 ```html
-<div v-anchor.md>
+<div v-anchor.html>
   <div class="v-anchor" data-href="#target1">Anchor 1</div>
   <div class="v-anchor" data-href="#target2">Anchor 2</div>
 

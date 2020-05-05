@@ -84,6 +84,9 @@
         class="mdc-text-field__affix mdc-text-field__affix--suffix"
         >{{ suffixText }}</span
       >
+
+      <!-- Character counter (optional) -->
+      <ui-textfield-counter v-if="withCounter"></ui-textfield-counter>
     </template>
 
     <!-- Trailing icon (optional) -->
@@ -105,6 +108,7 @@
       </ui-floating-label>
     </ui-notched-outline>
 
+    <!-- Custom area (optional) -->
     <div v-if="plus" class="mdc-text-field__plus">
       <slot name="plus">
         <!-- For autocomplete -->
@@ -117,6 +121,7 @@
 import { MDCTextField } from '../../../material-components-web/textfield';
 import UiFloatingLabel from '../form-controls/floating-label';
 import UiNotchedOutline from '../form-controls/notched-outline';
+import UiTextfieldCounter from './textfield-counter';
 import textfieldMixin from '../../mixins/textfield';
 import typeMixin from '../../mixins/type';
 import elementMixin from '../../mixins/element';
@@ -145,7 +150,8 @@ export default {
   name: 'ui-textfield',
   components: {
     UiFloatingLabel,
-    UiNotchedOutline
+    UiNotchedOutline,
+    UiTextfieldCounter
   },
   mixins: [textfieldMixin, typeMixin, elementMixin, materialIconMixin],
   model: {
@@ -195,11 +201,6 @@ export default {
     min: [Number, String],
     max: [Number, String],
     step: [Number, String],
-    // Others
-    fouc: {
-      type: Boolean,
-      default: false
-    },
     // For helper text
     helperTextId: String,
     // For plus
@@ -247,11 +248,12 @@ export default {
           'mdc-text-field--outlined': this.isOutlined,
           'mdc-text-field--fullwidth': this.fullwidth && !this.isOutlined,
           'mdc-text-field--textarea': this.isTextarea,
-          'mdc-text-field--no-label': this.noLabel,
           'mdc-text-field--disabled': this.disabled,
           'mdc-text-field--with-leading-icon': this.hasLeadingIcon,
           'mdc-text-field--with-trailing-icon': this.hasTrailingIcon,
-          'mdc-text-field--label-floating': this.fouc
+          'mdc-text-field--no-label': this.noLabel,
+          'mdc-text-field--end-aligned': this.endAligned,
+          'mdc-text-field--with-internal-counter': this.withCounter
         },
         input: 'mdc-text-field__input'
       };

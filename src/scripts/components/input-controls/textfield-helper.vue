@@ -1,31 +1,44 @@
 <template>
   <!-- Assistive area (optional) -->
   <div class="mdc-text-field-helper-line">
-    <ui-textfield-helper-text :id="id" :visible="visible" :validMsg="validMsg">
-      <slot></slot>
-    </ui-textfield-helper-text>
-    <slot name="counter">
-      <ui-textfield-counter v-if="counter"></ui-textfield-counter>
-    </slot>
+    <!-- Helper text (optional) -->
+    <div :id="id" :class="className" aria-hidden="true">
+      <slot>{{ getType(validMsg) === 'string' ? validMsg : '' }}</slot>
+    </div>
+    <!-- Character counter (optional) -->
+    <ui-textfield-counter v-if="withCounter"></ui-textfield-counter>
   </div>
 </template>
 
 <script>
-import UiTextfieldHelperText from './textfield-helper-text';
 import UiTextfieldCounter from './textfield-counter';
 import helperTextMixin from '../../mixins/helper-text';
+import getType from '../../utils/typeof';
 
 export default {
   name: 'ui-textfield-helper',
   components: {
-    UiTextfieldHelperText,
     UiTextfieldCounter
   },
   mixins: [helperTextMixin],
   props: {
-    counter: {
+    withCounter: {
       type: Boolean,
       default: false
+    }
+  },
+  data() {
+    return {
+      getType
+    };
+  },
+  computed: {
+    className() {
+      return {
+        'mdc-text-field-helper-text': true,
+        'mdc-text-field-helper-text--persistent': this.validMsg || this.visible,
+        'mdc-text-field-helper-text--validation-msg': this.validMsg
+      };
     }
   }
 };

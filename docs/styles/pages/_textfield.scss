@@ -7,6 +7,15 @@
     min-width: 240px;
   }
 
+  .hero-demo {
+    .mdc-text-field-character-counter {
+      display: none;
+    }
+    .show-counter .mdc-text-field-character-counter {
+      display: block;
+    }
+  }
+
   .demo-note {
     padding: 20px;
     margin: 20px 0;

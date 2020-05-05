@@ -1,3 +1,5 @@
+- `<ui-textfield>`
+
 ```css
 @use '@material/textfield/variables' with (
   $fullwidth-bottom-line-color: rgba(theme-variables.prop-value(on-surface), .12),
@@ -12,11 +14,13 @@
   $icon-color: rgba(theme-variables.prop-value(on-surface), .54),
   $focused-label-color: rgba(theme-variables.prop-value(primary), .87),
   $placeholder-ink-color: rgba(theme-variables.prop-value(on-surface), .54),
+  $affix-color: rgba(theme-variables.prop-value(on-surface), .6),
 
   $disabled-label-color: rgba(theme-variables.prop-value(on-surface), .38),
   $disabled-ink-color: rgba(theme-variables.prop-value(on-surface), .38),
   $disabled-placeholder-ink-color: rgba(theme-variables.prop-value(on-surface), .38),
   $disabled-helper-text-color: rgba(theme-variables.prop-value(on-surface), .38),
+  $disabled-affix-color: rgba(theme-variables.prop-value(on-surface), .38),
 
   $background: color.mix(theme-variables.prop-value(on-surface), theme-variables.prop-value(surface), 4%),
   $disabled-background: color.mix(theme-variables.prop-value(on-surface), theme-variables.prop-value(surface), 2%),
@@ -36,6 +40,7 @@
   $minimum-height: 40px,
   $minimum-height-for-filled-label: 52px,
   $maximum-height: $height,
+  $padding-horizontal: 16px,
   $density-scale: density-variables.$default-scale,
   $density-config: (
     height: (
@@ -46,20 +51,32 @@
   ),
   $label-position-y: floating-label-variables.$position-y,
   $label-offset: 16px,
-  $dense-label-position-y: 70%,
-  $dense-label-scale: .8,
-  $outlined-label-position-y:
-      get-outlined-label-position-y($height),
-  $outlined-dense-label-position-y: 120%,
-  $outlined-with-leading-icon-label-position-x: 0,
-  $outlined-dense-with-leading-icon-label-position-x: 21px,
+  $outlined-label-position-y: get-outlined-label-position-y($height),
+  $outlined-with-leading-icon-label-position-x: 32px,
   $textarea-label-position-y: 130%,
   $helper-line-padding: 16px,
-  $input-padding: 16px,
-  $input-padding-top: 20px,
-  $input-padding-bottom: 6px,
-  $outlined-input-padding-top: 12px,
-  $outlined-input-padding-bottom: 14px,
-  $input-border-bottom: 1px
+  $filled-baseline-top: 40px,
+  $input-height: 28px,
+  $textarea-input-margin-top: 8px,
+  $textarea-input-handle-margin: 1px,
+  $textarea-input-padding-bottom: 16px,
+
+  $prefix-padding: 2px,
+  $prefix-end-aligned-padding: 12px,
+  $suffix-padding: 12px,
+  $suffix-end-aligned-padding: 2px
+);
+```
+
+- `<ui-textfield-icon>`
+
+```css
+@use '@material/textfield/icon/variables' with (
+  $icon-size: 24px,
+  $dense-icon-size: 20px,
+  $leading-icon-padding-left: 16px,
+  $leading-icon-padding-right: 8px,
+  $trailing-icon-padding-left: 12px,
+  $trailing-icon-padding-right: 12px
 );
 ```

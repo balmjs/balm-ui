@@ -4,11 +4,26 @@
 
 #### Props
 
-| Name       | Type            | Default    | Description                                        |
-| ---------- | --------------- | ---------- | -------------------------------------------------- |
-| `id`       | string          | (required) | Mandatory.                                         |
-| `visible`  | boolean         | `false`    | Makes the helper text permanently visible.         |
-| `validMsg` | boolean, string | `false`    | Indicates the helper text is a validation message. |
+| Name          | Type            | Default    | Description                                        |
+| ------------- | --------------- | ---------- | -------------------------------------------------- |
+| `id`          | string          | (required) | Mandatory.                                         |
+| `visible`     | boolean         | `false`    | Makes the helper text permanently visible.         |
+| `validMsg`    | boolean, string | `false`    | Indicates the helper text is a validation message. |
+| `withCounter` | boolean         | `false`    | Show character counter.                            |
+
+> `maxlength` is required for `withCounter`.
+
+```html
+<!-- Single line text field -->
+<ui-textfield maxlength="40"></ui-textfield>
+<ui-textfield-helper withCounter></ui-textfield-helper>
+
+<!-- Single line text field with an internal character counter -->
+<ui-textfield maxlength="40" withCounter></ui-textfield>
+
+<!-- Textarea -->
+<ui-textfield inputType="textarea" maxlength="140"></ui-textfield>
+```
 
 #### Slots
 

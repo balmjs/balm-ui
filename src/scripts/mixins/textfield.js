@@ -12,6 +12,14 @@ export default {
       type: Boolean,
       default: false
     },
+    endAligned: {
+      type: Boolean,
+      default: false
+    },
+    withCounter: {
+      type: Boolean,
+      default: false
+    },
     // For custom icon
     withLeadingIcon: {
       type: Boolean,

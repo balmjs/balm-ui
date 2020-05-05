@@ -2,12 +2,7 @@
   <ui-page-structure
     name="textfield"
     demoCount="7"
-    :apis="[
-      'textfield',
-      'textfield-helper',
-      'textfield-icon',
-      'textfield-counter'
-    ]"
+    :apis="['ui-textfield', 'textfield', 'textfield-icon', 'textfield-helper']"
   >
     <template #hero>
       <div class="hero-demo">
@@ -32,16 +27,13 @@
             </ui-textfield>
             <ui-textfield-helper
               id="my-text-field-helper"
+              :class="{ 'show-counter': iconOption.includes(1) }"
               :visible="assistiveTextOption === 1"
               :validMsg="assistiveTextOption === 2 ? 'Error message' : ''"
+              withCounter
             >
               <template v-if="assistiveTextOption === 1" #default>
                 Helper message
-              </template>
-              <template #counter>
-                <ui-textfield-counter
-                  v-show="iconOption.includes(1)"
-                ></ui-textfield-counter>
               </template>
             </ui-textfield-helper>
           </template>
@@ -68,16 +60,13 @@
             </ui-textfield>
             <ui-textfield-helper
               id="my-text-field-outlined-helper"
+              :class="{ 'show-counter': iconOption.includes(1) }"
               :visible="assistiveTextOption === 1"
               :validMsg="assistiveTextOption === 2 ? 'Error message' : ''"
+              withCounter
             >
               <template v-if="assistiveTextOption === 1" #default>
                 Helper message
-              </template>
-              <template #counter>
-                <ui-textfield-counter
-                  v-show="iconOption.includes(1)"
-                ></ui-textfield-counter>
               </template>
             </ui-textfield-helper>
           </template>
@@ -364,12 +353,12 @@
           fullwidth
           placeholder="Subject"
           maxlength="40"
+          withCounter
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
           :dense="controls.dense"
           :required="controls.required"
         ></ui-textfield>
-        <ui-textfield-counter></ui-textfield-counter>
 
         <ui-textfield
           inputType="textarea"

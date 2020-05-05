@@ -37,7 +37,6 @@ import UiFormField from './components/form-controls/form-field';
 import UiTextfield from './components/input-controls/textfield';
 import UiTextfieldHelper from './components/input-controls/textfield-helper';
 import UiTextfieldIcon from './components/input-controls/textfield-icon';
-import UiTextfieldCounter from './components/input-controls/textfield-counter';
 import UiSelect from './components/selection-controls/select';
 import UiSelectHelper from './components/selection-controls/select-helper';
 import UiSelectIcon from './components/selection-controls/select-icon';
@@ -132,7 +131,6 @@ const components = {
   UiTextfield,
   UiTextfieldHelper,
   UiTextfieldIcon,
-  UiTextfieldCounter,
   UiSelect,
   UiSelectHelper,
   UiSelectIcon,

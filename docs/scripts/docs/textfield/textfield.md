@@ -19,11 +19,14 @@
 | `placeholder`       | string         | `null`   | The _placeholder_ attribute of the `<input>`.                                                            |
 | `fullwidth`         | boolean        | `false`  | Styles the text field as a full width text field.                                                        |
 | `disabled`          | boolean        | `false`  | Styles the text field as a disabled text field.                                                          |
+| `endAligned`        | boolean        | `false`  | Styles the text field with an end-aligned input.                                                         |
+| `withCounter`       | boolean        | `false`  | Styles the text area as a text area with an internal character counter.                                  |
 | `withLeadingIcon`   | boolean        | `false`  | Styles the text field as a text field with a leading icon.                                               |
 | `icon`              | string         | `''`     | Optional. Indicates an icon element with a leading icon. See [Material Icons](/#/icons) list.            |
 | `withTrailingIcon`  | boolean        | `false`  | Styles the text field as a text field with a trailing icon.                                              |
-| `dense`             | boolean        | `false`  | Styles the text field as a dense text field.                                                             |
 | `inputType`         | string         | `'text'` | Native `<input>` types: `text`, `number`, `password`, etc.                                               |
+| `prefixText`        | string         | `null`   | Sets the text content of the prefix.                                                                     |
+| `suffixText`        | string         | `null`   | sets the text content of the suffix.                                                                     |
 | `rows`              | number, string | `1`      | The _rows_ attribute of the `<textarea>`.                                                                |
 | `cols`              | number, string | `20`     | The _cols_ attribute of the `<textarea>`.                                                                |
 | `helperTextId`      | string         | `null`   | Required for the _id_ attribute of the `<ui-textfield-helper>`.                                          |
@@ -36,7 +39,7 @@ In addition to the above, the following properties proxy to the input element's 
 - `required`
 - `pattern`
 - `minlength`
-- `maxlength`: Required for character counter - `<ui-textfield-helper counter>`
+- `maxlength`: Required for character counter
 - `min`
 - `max`
 - `step`

@@ -1,8 +1,13 @@
 ```html
 <div>
-  <ui-textfield v-model="title" fullwidth placeholder="Subject" maxlength="40">
+  <ui-textfield
+    v-model="title"
+    fullwidth
+    placeholder="Subject"
+    maxlength="40"
+    withCounter
+  >
   </ui-textfield>
-  <ui-textfield-counter></ui-textfield-counter>
 
   <ui-textfield
     inputType="textarea"

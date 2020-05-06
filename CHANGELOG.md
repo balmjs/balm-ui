@@ -1,5 +1,11 @@
 # BalmUI ChangeLog
 
+## v5.6.5 / 2020-05-06
+
+### Bug Fixes
+
+- `$balmUI.onChange`: some bugfix
+
 ## v5.6.4 / 2020-04-27
 
 ### Bug Fixes

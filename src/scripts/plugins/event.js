@@ -36,7 +36,7 @@ function handleAssign(properties, value, data = null) {
 
 function handleEvent(_property, value) {
   if (getType(new Function()) === 'function') {
-    new Function(`this.${_property} = ${value};`).call(this);
+    new Function('value', `this.${_property} = value;`).call(this, value);
   } else {
     handleAssign.call(this, _property.split('.'), value);
   }
@@ -72,7 +72,7 @@ const BalmUI_EventPlugin = {
         get() {
           let balmUI = {};
 
-          Object.keys(EventMethods).forEach(key => {
+          Object.keys(EventMethods).forEach((key) => {
             balmUI[key] = EventMethods[key].bind(this);
           });
 

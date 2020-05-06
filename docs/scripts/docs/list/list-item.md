@@ -4,10 +4,11 @@
 
 #### Props
 
-| Name       | Type    | Default | Description                                     |
-| ---------- | ------- | ------- | ----------------------------------------------- |
-| `selected` | boolean | `false` | Optional, styles the row in an selected state.  |
-| `disabled` | boolean | `false` | Optional, styles the row in the disabled state. |
+| Name        | Type    | Default | Description                                      |
+| ----------- | ------- | ------- | ------------------------------------------------ |
+| `selected`  | boolean | `false` | Optional, styles the row in an selected state.   |
+| `activated` | boolean | `false` | Optional, styles the row in the activated state. |
+| `disabled`  | boolean | `false` | Optional, styles the row in the disabled state.  |
 
 #### Slots
 

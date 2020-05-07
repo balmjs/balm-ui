@@ -151,10 +151,9 @@ export default {
     });
 
     this.$bus.$on('off-loading', () => {
-      this.pageLoading = false;
-
       setTimeout(() => {
         this.bodyEl.scrollTop = 0;
+        this.pageLoading = false;
       }, 1);
     });
   },
@@ -177,6 +176,8 @@ export default {
     //   this.$i18n.locale = lang;
     // },
     handleMenu() {
+      this.$emit('on-loading');
+
       this.openDrawer = false;
       if (window.innerWidth < $MIN_WIDTH) {
         this.isWideScreen = false;

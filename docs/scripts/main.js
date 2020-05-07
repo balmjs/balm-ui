@@ -5,11 +5,12 @@ import Vue from 'vue';
 import $http from '@/plugins/$http';
 import $bus from '@/plugins/$bus';
 import $store from '@/plugins/$store';
+import router from '@/routes';
+import App from '@/views/layouts/app';
 import BalmUI from '../../src/scripts/index'; // 'balm-ui'
 import BalmUIPlus from '../../src/scripts/plus'; // 'balm-ui-plus'
 import BalmUINext from '../../src/scripts/next'; // 'balm-ui-next'
-import router from '@/routes';
-import App from '@/views/layouts/app';
+import validatorRules from '@/config/validator-rules';
 import UiMarkdown from '@/components/markdown';
 import UiAccordion from '@/components/accordion';
 import UiSnippet from '@/components/snippet';
@@ -17,7 +18,6 @@ import UiFooterNav from '@/components/footer-nav';
 import UiTocAffix from '@/components/toc-affix';
 import UiPageStructure from '@/components/page-structure';
 import SvgLogo from '@/components/svg-logo';
-import validatorRules from '@/config/validator-rules';
 // syntax highlighting
 import prismjs from 'prismjs';
 import 'prismjs/plugins/toolbar/prism-toolbar';

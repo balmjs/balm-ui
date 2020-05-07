@@ -73,7 +73,7 @@ export default {
 
         if (options.apis) {
           const apidocs = options.apis.length ? options.apis : [name];
-          apidocs.forEach(apidoc => {
+          apidocs.forEach((apidoc) => {
             this.showDocs(name, apidoc, true);
           });
         }

@@ -37,7 +37,7 @@ export default {
           if (positions[0] === 'middle') {
             result = `top:${this.middleValue};${positions[1]}:0`;
           } else {
-            result = positions.map(position => `${position}:0`).join(';');
+            result = positions.map((position) => `${position}:0`).join(';');
           }
         } else {
           console.warn('Invalid anchor position');

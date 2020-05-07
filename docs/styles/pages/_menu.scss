@@ -2,6 +2,10 @@
 @use '@material/image-list/mixins' as image-list-mixins;
 
 .demo--menu {
+  > .mdc-typography--body2 {
+    overflow-x: hidden;
+  }
+
   .hero .mdc-menu-surface {
     position: static; // Required for proper IE11 alignment.
     z-index: 1;

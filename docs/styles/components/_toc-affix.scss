@@ -2,7 +2,7 @@
 
 .toc-affix {
   position: sticky;
-  top: global.$row-height;
+  top: global.$topAppBar-row-height;
   z-index: 4;
   background: white;
   .mdc-list {

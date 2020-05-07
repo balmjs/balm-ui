@@ -7,7 +7,7 @@
   }
   .search-area {
     position: sticky;
-    top: 49px;
+    top: global.$topAppBar-row-height + global.$tab-height;
     z-index: 1;
     background-color: white;
     margin: 0;
@@ -16,7 +16,7 @@
     text-indent: 60px;
   }
   .search-helper {
-    padding: 20px;
+    padding: 10px 16px;
     font-size: 14px;
     b {
       color: global.$primary;
@@ -68,7 +68,12 @@
     border-radius: 2px;
     background: #fe6363;
   }
+
   @media (max-width: global.$mobile-breakpoint) {
+    .search-area {
+      top: global.$mobile-row-height + global.$tab-height;
+    }
+
     .coloring-example {
       .icons-preview-code {
         flex-wrap: wrap;
@@ -76,6 +81,7 @@
         justify-content: center;
       }
     }
+
     .mdc-image-list__item {
       width: 88px;
       height: 88px;

@@ -92,12 +92,12 @@ export default {
   methods: {
     submit() {
       let result = this.$validate(this.formData);
-      let { isValid, validMsg } = result;
+      let { valid, validMsg } = result;
       this.validMsg = validMsg;
 
       console.log(result);
 
-      if (isValid) {
+      if (valid) {
         console.log('gg');
       }
     }

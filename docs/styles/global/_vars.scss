@@ -2,13 +2,15 @@
 @use '@material/theme/variables' as theme-variables;
 @use '@material/typography/variables' as typography-variables;
 @use '@material/top-app-bar/variables' as top-app-bar-variables;
+@use '@material/tab/variables' as tab-variables;
 
 $MIN_WIDTH: 1240 + 1;
 $primary: theme-variables.$primary;
 $secondary: theme-variables.$secondary;
 $mobile-breakpoint: top-app-bar-variables.$mobile-breakpoint;
-$row-height: top-app-bar-variables.$row-height;
+$topAppBar-row-height: top-app-bar-variables.$row-height;
 $mobile-row-height: top-app-bar-variables.$mobile-row-height;
+$tab-height: tab-variables.$height;
 
 $nav-width: 280px;
 

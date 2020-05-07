@@ -1,11 +1,9 @@
 .demo--button {
-  fieldset {
-    padding: 24px;
-    padding-top: 0;
-    padding-bottom: 16px;
-  }
+  .example {
+    padding: 24px 0;
 
-  fieldset .mdc-button {
-    margin: 16px;
+    .mdc-button {
+      margin: 0 16px 16px 0;
+    }
   }
 }

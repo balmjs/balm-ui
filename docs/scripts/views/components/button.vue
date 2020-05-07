@@ -31,24 +31,22 @@
         </ui-form-field>
       </div>
 
-      <fieldset>
-        <div>
-          <ui-button :disabled="controls.disabled">Text</ui-button>
-          <ui-button outlined :disabled="controls.disabled">Outlined</ui-button>
-          <ui-button raised :disabled="controls.disabled">Raised</ui-button>
+      <div class="example">
+        <ui-button :disabled="controls.disabled">Text</ui-button>
+        <ui-button outlined :disabled="controls.disabled">Outlined</ui-button>
+        <ui-button raised :disabled="controls.disabled">Raised</ui-button>
 
-          <ui-button icon="favorite" :disabled="controls.disabled"
-            >Icon</ui-button
-          >
-          <ui-button :disabled="controls.disabled">
-            Trailing Icon
-            <template #after="{ iconClass }">
-              <svg-logo :class="iconClass"></svg-logo>
-            </template>
-          </ui-button>
-        </div>
-        <ui-snippet :code="$store.demos[1]"></ui-snippet>
-      </fieldset>
+        <ui-button icon="favorite" :disabled="controls.disabled"
+          >Icon</ui-button
+        >
+        <ui-button :disabled="controls.disabled">
+          Trailing Icon
+          <template #after="{ iconClass }">
+            <svg-logo :class="iconClass"></svg-logo>
+          </template>
+        </ui-button>
+      </div>
+      <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
   </ui-page-structure>
 </template>

@@ -44,18 +44,22 @@
         <ui-item-text-content>
           <span>1.1</span>
           <router-link
+            v-if="isDesktop"
             :to="{ name: 'navigation.permanent-drawer-above-toolbar' }"
             >Permanent Drawer Above Toolbar</router-link
           >
+          <span v-else>(Desktop only) Permanent Drawer Above Toolbar</span>
         </ui-item-text-content>
       </ui-item>
       <ui-item>
         <ui-item-text-content>
           <span>1.2</span>
           <router-link
+            v-if="isDesktop"
             :to="{ name: 'navigation.permanent-drawer-below-toolbar' }"
             >Permanent Drawer Below Toolbar</router-link
           >
+          <span v-else>(Desktop only) Permanent Drawer Below Toolbar</span>
         </ui-item-text-content>
       </ui-item>
       <ui-item>
@@ -115,7 +119,8 @@ export default {
           icon: 'drafts',
           name: 'Drafts'
         }
-      ]
+      ],
+      isDesktop: window.innerWidth >= 840
     };
   }
 };

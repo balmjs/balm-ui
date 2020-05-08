@@ -1,11 +1,11 @@
 import multiBootstrap from '../config/multi-bootstrap';
-import UiDrawer from './navigation-drawer/drawer';
-import UiDrawerHeader from './navigation-drawer/drawer-header';
-import UiDrawerContent from './navigation-drawer/drawer-content';
-import UiDrawerTitle from './navigation-drawer/drawer-title';
-import UiDrawerSubtitle from './navigation-drawer/drawer-subtitle';
-import UiDrawerAppContent from './navigation-drawer/drawer-app-content';
-import UiDrawerBackdrop from './navigation-drawer/drawer-backdrop';
+import UiDrawer from './navigation/drawer';
+import UiDrawerHeader from './navigation/drawer-header';
+import UiDrawerContent from './navigation/drawer-content';
+import UiDrawerTitle from './navigation/drawer-title';
+import UiDrawerSubtitle from './navigation/drawer-subtitle';
+import UiDrawerAppContent from './navigation/drawer-app-content';
+import UiDrawerBackdrop from './navigation/drawer-backdrop';
 
 export default multiBootstrap({
   UiDrawer,

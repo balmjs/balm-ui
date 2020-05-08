@@ -15,18 +15,12 @@ const ICONS = {
 };
 
 export default {
-  data() {
-    return {
-      iconType: '',
-      iconOutlined: false
-    };
-  },
   computed: {
     iconClassName() {
       let result = false;
 
-      if (TYPES.includes(this.iconType)) {
-        switch (this.iconType) {
+      if (TYPES.includes(this.icon)) {
+        switch (this.icon) {
           case 'success':
             result = 'md-success-icon';
             break;
@@ -50,15 +44,15 @@ export default {
 
       return result;
     },
-    icon() {
+    materialIcon() {
       let result = false;
 
-      if (TYPES.includes(this.iconType)) {
+      if (TYPES.includes(this.icon)) {
         const iconStyle = this.iconOutlined ? 'outlined' : 'defaults';
 
-        result = ['info', 'warn', 'warning'].includes(this.iconType)
+        result = ['info', 'warn', 'warning'].includes(this.icon)
           ? ICONS[iconStyle].info
-          : ICONS[iconStyle][this.iconType];
+          : ICONS[iconStyle][this.icon];
       }
 
       return result;

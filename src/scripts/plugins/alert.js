@@ -24,7 +24,7 @@ const template = `<ui-dialog
   <ui-dialog-title v-if="options.title">{{ options.title }}</ui-dialog-title>
   <ui-dialog-content v-if="options.raw" v-html="options.message"></ui-dialog-content>
   <ui-dialog-content v-else>
-    <i v-if="icon" :class="['material-icons mdc-alert-dialog__icon', iconClassName]">{{ icon }}</i>
+    <i v-if="materialIcon" :class="['material-icons mdc-alert-dialog__icon', iconClassName]">{{ materialIcon }}</i>
     <span class="mdc-alert-dialog__message">{{ options.message }}</span>
   </ui-dialog-content>
   <ui-dialog-actions>
@@ -53,7 +53,9 @@ const BalmUI_AlertPlugin = {
           mixins: [iconTypeMixins],
           data: {
             open: false,
-            options
+            options,
+            icon: '',
+            iconOutlined: false
           },
           created() {
             if (getType(customOptions) === 'string') {
@@ -63,7 +65,7 @@ const BalmUI_AlertPlugin = {
             }
 
             if (this.options.icon) {
-              this.iconType = this.options.icon;
+              this.icon = this.options.icon;
               this.iconOutlined = this.options.iconOutlined;
             }
 

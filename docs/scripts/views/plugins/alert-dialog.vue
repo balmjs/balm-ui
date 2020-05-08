@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure type="plugin" name="alert" demoCount="2">
+  <ui-page-structure type="plugin" name="alert-dialog" demoCount="2">
     <template #hero>
       <h1 :class="$tt('headline1')">$alert</h1>
     </template>

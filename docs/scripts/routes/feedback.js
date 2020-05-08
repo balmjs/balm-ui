@@ -1,6 +1,7 @@
+const Alert = () => import('@/views/components/alert');
 const Dialog = () => import('@/views/components/dialog');
-const Alert = () => import('@/views/plugins/alert');
-const Confirm = () => import('@/views/plugins/confirm');
+const AlertDialog = () => import('@/views/plugins/alert-dialog');
+const ConfirmDialog = () => import('@/views/plugins/confirm-dialog');
 const Snackbar = () => import('@/views/components/snackbar');
 const Toast = () => import('@/views/plugins/toast');
 const LinearProgress = () => import('@/views/components/linear-progress');
@@ -9,19 +10,24 @@ const Skeleton = () => import('@/views/components/skeleton');
 
 export default [
   {
-    path: 'dialog',
-    name: 'feedback.dialog',
-    component: Dialog
-  },
-  {
     path: 'alert',
     name: 'feedback.alert',
     component: Alert
   },
   {
-    path: 'confirm',
-    name: 'feedback.confirm',
-    component: Confirm
+    path: 'dialog',
+    name: 'feedback.dialog',
+    component: Dialog
+  },
+  {
+    path: 'alert-dialog',
+    name: 'feedback.alert-dialog',
+    component: AlertDialog
+  },
+  {
+    path: 'confirm-dialog',
+    name: 'feedback.confirm-dialog',
+    component: ConfirmDialog
   },
   {
     path: 'snackbar',

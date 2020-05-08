@@ -230,20 +230,28 @@ const MATERIAL_COMPONENTS = [
     name: 'Feedback',
     children: [
       {
-        icon: 'dialog',
-        name: 'Dialog',
-        description: 'Secondary text'
-      },
-      {
-        icon: 'dialog',
+        icon: 'component',
         name: 'Alert',
         description: 'Alert',
         plus: true
       },
       {
         icon: 'dialog',
-        name: 'Confirm',
-        description: 'Confirm',
+        name: 'Dialog',
+        description: 'Secondary text'
+      },
+      {
+        icon: 'dialog',
+        name: 'Alert Dialog',
+        description: 'window.alert',
+        url: 'alert-dialog',
+        plus: true
+      },
+      {
+        icon: 'dialog',
+        name: 'Confirm Dialog',
+        description: 'window.confirm',
+        url: 'confirm-dialog',
         plus: true
       },
       {

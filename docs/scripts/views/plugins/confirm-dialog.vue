@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure type="plugin" name="confirm" demoCount="2">
+  <ui-page-structure type="plugin" name="confirm-dialog" demoCount="2">
     <template #hero>
       <h1 :class="$tt('headline1')">$confirm</h1>
     </template>

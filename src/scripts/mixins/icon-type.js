@@ -16,30 +16,39 @@ const ICONS = {
 
 export default {
   computed: {
-    iconClassName() {
+    iconType() {
       let result = false;
 
       if (TYPES.includes(this.icon)) {
         switch (this.icon) {
           case 'success':
-            result = 'md-success-icon';
+            result = 'success';
             break;
           case 'info':
           case 'help':
-            result = 'md-info-icon';
+            result = 'info';
             break;
           case 'warn':
           case 'warning':
-            result = 'md-warning-icon';
+            result = 'warning';
             break;
           case 'error':
-            result = 'md-error-icon';
+            result = 'error';
             break;
         }
       }
 
-      if (this.iconOutlined) {
-        result += '--outlined';
+      return result;
+    },
+    iconClassName() {
+      let result = false;
+
+      if (this.iconType) {
+        result = `md-${this.iconType}-icon`;
+
+        if (this.iconOutlined) {
+          result += '--outlined';
+        }
       }
 
       return result;

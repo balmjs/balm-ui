@@ -10,6 +10,7 @@ import UiTextDivider from './components/dividers/text-divider';
 import UiSkeleton from './components/others/skeleton';
 import UiDatepicker from './components/pickers/datepicker';
 import UiRangepicker from './components/pickers/rangepicker';
+import UiAlert from './components/others/alert';
 /**
  * Plugins
  */
@@ -37,7 +38,8 @@ const components = {
   UiTextDivider,
   UiSkeleton,
   UiDatepicker,
-  UiRangepicker
+  UiRangepicker,
+  UiAlert
 };
 
 const plugins = {

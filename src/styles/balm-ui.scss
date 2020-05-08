@@ -25,9 +25,10 @@
 @use 'balm-ui/components/circular-progress/ui-circular-progress';
 @use 'balm-ui/components/menu/ui-menu';
 @use 'balm-ui/components/select/ui-select';
+@use 'balm-ui/components/alert/ui-alert' as alert-component;
 
 /// Plugins Custom Styles
-@use 'balm-ui/plugins/alert/ui-alert';
+@use 'balm-ui/plugins/alert/ui-alert' as alert-plugin;
 @use 'balm-ui/plugins/confirm/ui-confirm';
 
 /// Directives Custom Styles

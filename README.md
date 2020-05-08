@@ -121,6 +121,7 @@ Enjoy 👻
   - Pagination (:bulb:)
   - Text Divider (:bulb:)
 - Feedback
+  - Alert (:bulb:)
   - Dialog
   - Snackbar
   - Linear Progress
@@ -134,8 +135,8 @@ Enjoy 👻
 - Typography
 - Theme
 - Validator (:bulb:)
-- Alert (:bulb:)
-- Confirm (:bulb:)
+- Alert Dialog (:bulb:)
+- Confirm Dialog (:bulb:)
 - Toast (:bulb:)
 
 ### Directives

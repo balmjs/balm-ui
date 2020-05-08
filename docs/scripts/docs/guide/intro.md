@@ -41,6 +41,7 @@ Following the [Material Design](https://material.io/components/) UI components f
   - Pagination (💡)
   - Text Divider (💡)
 - Feedback
+  - Alert (💡)
   - Dialog
   - Snackbar
   - Linear Progress
@@ -54,8 +55,8 @@ Following the [Material Design](https://material.io/components/) UI components f
 - Typography
 - Theme
 - Validator (💡)
-- Alert (💡)
-- Confirm (💡)
+- Alert Dialog (💡)
+- Confirm Dialog (💡)
 - Toast (💡)
 
 ### 3. Directives

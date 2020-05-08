@@ -1,6 +1,6 @@
 # BalmUI ChangeLog
 
-## v6.2.0 / 2020-05-08
+## v6.2.1 / 2020-05-08
 
 ### Features
 

@@ -40,6 +40,7 @@ const components = [
   'pagination',
   'datepicker',
   'rangepicker',
+  'alert',
   // Next
   'bottom-navigation',
   'banner'

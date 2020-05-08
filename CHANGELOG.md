@@ -1,5 +1,12 @@
 # BalmUI ChangeLog
 
+## v6.1.0 / 2020-05-08
+
+### Features
+
+- `<ui-icon>`: add new sass variables
+- `$alert`, `$confirm`: add option `icon`, `iconOutlined`, update css
+
 ## v6.0.0 / 2020-05-05
 
 ### Bug Fixes

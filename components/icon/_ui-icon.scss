@@ -29,3 +29,15 @@
     }
   }
 }
+
+@each $key, $value in ui-icon-variables.$types {
+  .md-#{$key}-icon,
+  .md-#{$key}-icon--outlined {
+    color: $value;
+    border-radius: 50%;
+  }
+}
+
+.md-error-icon {
+  transform: rotate(45deg);
+}

@@ -8,15 +8,17 @@ $confirm(options);
 
 #### Options
 
-| Option       | Type     | Default    | Description                                           |
-| ------------ | -------- | ---------- | ----------------------------------------------------- |
-| `className`  | string   | `''`       | The custom class name for the confirm dialog.         |
-| `title`      | string   | `''`       | The title of the confirm dialog.                      |
-| `message`    | string   | `''`       | The content to be displayed in the confirm dialog.    |
-| `raw`        | boolean  | `false`    | Rendered plain HTML.                                  |
-| `acceptText` | string   | `'OK'`     | Accept button content.                                |
-| `cancelText` | string   | `'Cancel'` | Cancel button content.                                |
-| `callback`   | function | `false`    | Handle some event when the confirm button is clicked. |
+| Option         | Type     | Default    | Description                                                  |
+| -------------- | -------- | ---------- | ------------------------------------------------------------ |
+| `className`    | string   | `''`       | The custom class name for the confirm dialog.                |
+| `title`        | string   | `''`       | The title of the confirm dialog.                             |
+| `icon`         | string   | `''`       | Icon type. `['success', 'info', 'warning', 'error', 'help']` |
+| `iconOutlined` | boolean  | `false`    | Show outlined icon.                                          |
+| `message`      | string   | `''`       | The content to be displayed in the confirm dialog.           |
+| `raw`          | boolean  | `false`    | Rendered plain HTML.                                         |
+| `acceptText`   | string   | `'OK'`     | Accept button content.                                       |
+| `cancelText`   | string   | `'Cancel'` | Cancel button content.                                       |
+| `callback`     | function | `false`    | Handle some event when the confirm button is clicked.        |
 
 #### Events
 
@@ -30,7 +32,7 @@ $confirm({
 });
 
 // Usage 2 (Recommended)
-$confirm(message).then(result => {
+$confirm(message).then((result) => {
   // ...
 });
 ```

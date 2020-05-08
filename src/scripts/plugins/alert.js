@@ -3,11 +3,14 @@ import UiDialog from '../components/modal/dialog';
 import UiDialogTitle from '../components/modal/dialog-title';
 import UiDialogContent from '../components/modal/dialog-content';
 import UiDialogActions from '../components/modal/dialog-actions';
+import iconTypeMixins from '../mixins/icon-type';
 import getType from '../utils/typeof';
 
 const DEFAULT_OPTIONS = {
   className: '',
   title: '',
+  icon: '', // success, info, warning, error, help
+  iconOutlined: false,
   message: '',
   raw: false,
   buttonText: 'OK',
@@ -16,14 +19,17 @@ const DEFAULT_OPTIONS = {
 
 const template = `<ui-dialog
   :open="open"
-  :class="['mdc-alert', options.className]"
+  :class="['mdc-alert-dialog', options.className]"
   @close="handleClose">
   <ui-dialog-title v-if="options.title">{{ options.title }}</ui-dialog-title>
   <ui-dialog-content v-if="options.raw" v-html="options.message"></ui-dialog-content>
-  <ui-dialog-content v-else>{{ options.message }}</ui-dialog-content>
+  <ui-dialog-content v-else>
+    <i v-if="icon" :class="['material-icons mdc-alert-dialog__icon', iconClassName]">{{ icon }}</i>
+    <span class="mdc-alert-dialog__message">{{ options.message }}</span>
+  </ui-dialog-content>
   <ui-dialog-actions>
     <button type="button"
-      class="mdc-button mdc-alert-button"
+      class="mdc-button mdc-button--raised mdc-alert-dialog__button"
       @click="handleClick">
       <span class="mdc-button__label">{{ options.buttonText }}</span>
     </button>
@@ -35,7 +41,7 @@ const BalmUI_AlertPlugin = {
     let options = Object.assign({}, DEFAULT_OPTIONS, configs);
 
     const $alert = (customOptions = {}) => {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         let vm = new Vue({
           el: document.createElement('div'),
           components: {
@@ -44,6 +50,7 @@ const BalmUI_AlertPlugin = {
             UiDialogContent,
             UiDialogActions
           },
+          mixins: [iconTypeMixins],
           data: {
             open: false,
             options
@@ -53,6 +60,11 @@ const BalmUI_AlertPlugin = {
               this.options.message = `${customOptions}`; // To string
             } else if (getType(customOptions) === 'object') {
               this.options = Object.assign({}, this.options, customOptions);
+            }
+
+            if (this.options.icon) {
+              this.iconType = this.options.icon;
+              this.iconOutlined = this.options.iconOutlined;
             }
 
             this.$nextTick(() => {

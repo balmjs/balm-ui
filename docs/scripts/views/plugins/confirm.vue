@@ -1,14 +1,19 @@
 <template>
-  <ui-page-structure type="plugin" name="confirm" demoCount="1">
+  <ui-page-structure type="plugin" name="confirm" demoCount="2">
     <template #hero>
       <h1 :class="$tt('headline1')">$confirm</h1>
     </template>
 
     <!-- Content -->
     <div class="example">
-      <ui-button raised @click="show">Show Confrim</ui-button>
+      <ui-button raised @click="show">Show confrim</ui-button>
     </div>
     <ui-snippet :code="$store.demos[1]"></ui-snippet>
+
+    <div class="example">
+      <ui-button raised @click="showConfrim">Show confrim with icon</ui-button>
+    </div>
+    <ui-snippet :code="$store.demos[2]"></ui-snippet>
   </ui-page-structure>
 </template>
 
@@ -23,7 +28,19 @@ export default {
         message: 'Do you like BalmJS?',
         acceptText: 'Cool',
         cancelText: 'Good'
-      }).then(result => {
+      }).then((result) => {
+        if (result) {
+          this.$alert('Thanks :)');
+        }
+      });
+    },
+    showConfrim() {
+      this.$confirm({
+        message: 'Do you like BalmJS?',
+        icon: 'help',
+        acceptText: 'Cool',
+        cancelText: 'Good'
+      }).then((result) => {
         if (result) {
           this.$alert('Thanks :)');
         }

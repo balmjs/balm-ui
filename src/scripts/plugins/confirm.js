@@ -3,11 +3,14 @@ import UiDialog from '../components/modal/dialog';
 import UiDialogTitle from '../components/modal/dialog-title';
 import UiDialogContent from '../components/modal/dialog-content';
 import UiDialogActions from '../components/modal/dialog-actions';
+import iconTypeMixins from '../mixins/icon-type';
 import getType from '../utils/typeof';
 
 const DEFAULT_OPTIONS = {
   className: '',
   title: '',
+  icon: '', // success, info, warning, error, help
+  iconOutlined: false,
   message: '',
   raw: false,
   acceptText: 'OK',
@@ -17,19 +20,21 @@ const DEFAULT_OPTIONS = {
 
 const template = `<ui-dialog
   :open="open"
-  :class="['mdc-confirm', options.className]"
+  :class="['mdc-confirm-dialog', options.className]"
   @close="handleClose">
   <ui-dialog-title v-if="options.title">{{ options.title }}</ui-dialog-title>
   <ui-dialog-content v-if="options.raw" v-html="options.message"></ui-dialog-content>
-  <ui-dialog-content v-else>{{ options.message }}</ui-dialog-content>
+  <ui-dialog-content v-else>
+    <i v-if="icon" :class="['material-icons mdc-confirm-dialog__icon', iconClassName]">{{ icon }}</i>
+    <span class="mdc-confirm-dialog__message">{{ options.message }}</span></ui-dialog-content>
   <ui-dialog-actions>
     <button type="button"
-      class="mdc-button mdc-confirm-primary-button"
+      class="mdc-button mdc-button--raised mdc-confirm-dialog__primary-button"
       @click="handleConfirm(true)">
       <span class="mdc-button__label">{{ options.acceptText }}</span>
     </button>
     <button type="button"
-      class="mdc-button mdc-confirm-secondary-button"
+      class="mdc-button mdc-button--outlined mdc-confirm-dialog__secondary-button"
       @click="handleConfirm(false)">
       <span class="mdc-button__label">{{ options.cancelText }}</span>
     </button>
@@ -41,7 +46,7 @@ const BalmUI_ConfirmPlugin = {
     let options = Object.assign({}, DEFAULT_OPTIONS, configs);
 
     const $confirm = (customOptions = {}) => {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         let vm = new Vue({
           el: document.createElement('div'),
           components: {
@@ -50,6 +55,7 @@ const BalmUI_ConfirmPlugin = {
             UiDialogContent,
             UiDialogActions
           },
+          mixins: [iconTypeMixins],
           data: {
             open: false,
             options
@@ -59,6 +65,11 @@ const BalmUI_ConfirmPlugin = {
               this.options.message = `${customOptions}`; // To string
             } else if (getType(customOptions) === 'object') {
               this.options = Object.assign({}, this.options, customOptions);
+            }
+
+            if (this.options.icon) {
+              this.iconType = this.options.icon;
+              this.iconOutlined = this.options.iconOutlined;
             }
 
             this.$nextTick(() => {

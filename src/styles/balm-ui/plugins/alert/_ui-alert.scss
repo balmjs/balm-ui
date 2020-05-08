@@ -1,28 +1,19 @@
-@use '@material/feature-targeting/functions' as feature-targeting-functions;
-@use '@material/button/mixins' as button-mixins;
-@use '@material/ripple/mixins' as ripple-mixins;
 @use './variables' as alert-variables;
 
-.mdc-alert {
-  $query: feature-targeting-functions.all(); // New in mdc@0.44.0
-
+.mdc-alert-dialog {
   .mdc-dialog__surface {
     width: alert-variables.$width;
-    min-width: alert-variables.$width;
   }
+
+  .mdc-dialog__content {
+    display: flex;
+  }
+
+  .mdc-alert-dialog__icon {
+    margin-right: 8px;
+  }
+
   .mdc-dialog__actions {
     justify-content: center;
-    .mdc-button {
-      @include button-mixins.filled_($query);
-      @include button-mixins.container-fill-color(primary, $query);
-      @include button-mixins.ink-color(on-primary, $query);
-      @include ripple-mixins.states(on-primary, false, $query);
-    }
-  }
-  @media (max-width: 640px) {
-    .mdc-dialog__surface {
-      width: calc(100% - 30px);
-      min-width: alert-variables.$width / 2;
-    }
   }
 }

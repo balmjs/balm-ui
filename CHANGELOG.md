@@ -1,5 +1,11 @@
 # BalmUI ChangeLog
 
+## v6.2.0 / 2020-05-08
+
+### Features
+
+- new component: `<ui-alert>`
+
 ## v6.1.0 / 2020-05-08
 
 ### Features

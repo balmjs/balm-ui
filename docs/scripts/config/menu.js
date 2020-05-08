@@ -222,6 +222,12 @@ const MATERIAL_COMPONENTS = [
         name: 'Pagination',
         description: 'Pagination',
         plus: true
+      },
+      {
+        icon: 'component',
+        name: 'Collapse',
+        description: 'Collapse',
+        plus: true
       }
     ]
   },

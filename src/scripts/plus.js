@@ -11,6 +11,7 @@ import UiSkeleton from './components/others/skeleton';
 import UiDatepicker from './components/pickers/datepicker';
 import UiRangepicker from './components/pickers/rangepicker';
 import UiAlert from './components/others/alert';
+import UiCollapse from './components/others/collapse';
 /**
  * Plugins
  */
@@ -39,7 +40,8 @@ const components = {
   UiSkeleton,
   UiDatepicker,
   UiRangepicker,
-  UiAlert
+  UiAlert,
+  UiCollapse
 };
 
 const plugins = {

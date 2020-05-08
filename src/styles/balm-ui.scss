@@ -26,6 +26,7 @@
 @use 'balm-ui/components/menu/ui-menu';
 @use 'balm-ui/components/select/ui-select';
 @use 'balm-ui/components/alert/ui-alert' as alert-component;
+@use 'balm-ui/components/collapse/ui-collapse';
 
 /// Plugins Custom Styles
 @use 'balm-ui/plugins/alert/ui-alert' as alert-plugin;

@@ -104,13 +104,12 @@
         </div>
         <!-- App content -->
         <div class="balmui-content">
-          <div v-if="pageLoading" class="page-loading-container">
-            <ui-circular-progress
-              class="page-circular-loading"
-              active
-              fourColored
-            ></ui-circular-progress>
-          </div>
+          <ui-circular-progress
+            v-if="pageLoading"
+            class="page-circular-loading"
+            active
+            fourColored
+          ></ui-circular-progress>
           <transition name="loading">
             <router-view v-if="pageLoading"></router-view>
             <router-view v-else></router-view>

@@ -1,16 +1,18 @@
-.top-linear-loading {
+.top-linear-loading,
+.page-circular-loading {
   position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
   z-index: 5;
 }
 
-.page-loading-container {
-  position: fixed;
+.top-linear-loading {
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+.page-circular-loading {
   top: 80px;
   right: 16px;
-  z-index: 5;
 }
 
 .loading-enter-active,

@@ -1,21 +1,29 @@
 <template>
-  <div
-    :class="['mdc-collapse', { 'mdc-collapse--expanded': isExpanded }]"
-    :aria-expanded="isExpanded"
-  >
+  <div :class="className" :aria-expanded="isExpanded">
     <div class="mdc-collapse__header" @click="handleToggle">
-      <i v-if="withIcon" class="material-icons mdc-collapse__icon">{{
-        isExpanded ? 'expand_more' : 'chevron_right'
-      }}</i>
-      <template v-else>
-        <template v-if="isExpanded">
-          <slot name="expand-more-icon"></slot>
-        </template>
-        <template v-else>
-          <slot name="expand-less-icon"></slot>
-        </template>
+      <template v-if="isExpanded">
+        <slot name="expand-more-icon" :iconClass="UI_COLLAPSE.cssClasses.icon">
+          <i
+            v-if="withIcon"
+            :class="[UI_GLOBAL.cssClasses.icon, UI_COLLAPSE.cssClasses.icon]"
+            aria-hidden="true"
+            >expand_more</i
+          >
+        </slot>
       </template>
-      <slot name="toggle"></slot>
+      <template v-else>
+        <slot name="expand-less-icon" :iconClass="UI_COLLAPSE.cssClasses.icon">
+          <i
+            v-if="withIcon"
+            :class="[UI_GLOBAL.cssClasses.icon, UI_COLLAPSE.cssClasses.icon]"
+            aria-hidden="true"
+            >chevron_right</i
+          >
+        </slot>
+      </template>
+      <div class="mdc-collapse__title">
+        <slot name="toggle"></slot>
+      </div>
     </div>
     <div v-show="isExpanded" class="mdc-collapse__content">
       <slot></slot>
@@ -24,10 +32,15 @@
 </template>
 
 <script>
+import UI_GLOBAL from '../../config/constants';
+
 // Define collapse constants
 const UI_COLLAPSE = {
   EVENT: {
     CHANGE: 'change'
+  },
+  cssClasses: {
+    icon: 'mdc-collapse__icon'
   }
 };
 
@@ -51,8 +64,19 @@ export default {
   },
   data() {
     return {
+      UI_GLOBAL,
+      UI_COLLAPSE,
       isExpanded: this.expanded
     };
+  },
+  computed: {
+    className() {
+      return {
+        'mdc-collapse': true,
+        'mdc-collapse--expanded': this.isExpanded,
+        'mdc-collapse--with-icon': this.withIcon
+      };
+    }
   },
   watch: {
     expanded(val) {

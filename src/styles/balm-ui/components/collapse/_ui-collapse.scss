@@ -6,8 +6,13 @@
 .mdc-collapse__header {
   display: flex;
   align-items: center;
+  margin-bottom: 8px;
 }
 
-.mdc-collapse__content {
-  padding: 16px;
+.mdc-collapse__icon {
+  margin-right: 8px;
+}
+
+.mdc-collapse__title {
+  flex-grow: 1;
 }

@@ -12,7 +12,6 @@ import BalmUIPlus from '../../src/scripts/plus'; // 'balm-ui-plus'
 import BalmUINext from '../../src/scripts/next'; // 'balm-ui-next'
 import validatorRules from '@/config/validator-rules';
 import UiMarkdown from '@/components/markdown';
-import UiAccordion from '@/components/accordion';
 import UiSnippet from '@/components/snippet';
 import UiFooterNav from '@/components/footer-nav';
 import UiTocAffix from '@/components/toc-affix';
@@ -44,7 +43,6 @@ if (isIE) {
   Vue.use(BalmUINext);
 
   Vue.component(UiMarkdown.name, UiMarkdown);
-  Vue.component(UiAccordion.name, UiAccordion);
   Vue.component(UiSnippet.name, UiSnippet);
   Vue.component(UiFooterNav.name, UiFooterNav);
   Vue.component(UiTocAffix.name, UiTocAffix);

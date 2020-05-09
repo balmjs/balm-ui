@@ -1,5 +1,10 @@
 <template>
   <div class="balmui-container">
+    <ui-linear-progress
+      v-if="pageLoading"
+      class="top-linear-loading"
+      :progress="loadingProgress"
+    ></ui-linear-progress>
     <template v-if="noLayout">
       <router-view></router-view>
     </template>
@@ -47,7 +52,7 @@
           >
             <ui-drawer-header>
               <ui-drawer-title>BalmUI</ui-drawer-title>
-              <ui-drawer-subtitle>v6.0.0</ui-drawer-subtitle>
+              <ui-drawer-subtitle>v{{ VERSION }}</ui-drawer-subtitle>
             </ui-drawer-header>
             <ui-drawer-content>
               <ui-nav class="catalog-list">
@@ -100,9 +105,9 @@
         <!-- App content -->
         <div class="balmui-content">
           <transition name="loading">
-            <div v-if="pageLoading" class="loading-container">
+            <div v-if="pageLoading" class="page-loading-container">
               <ui-circular-progress
-                class="my-loading"
+                class="page-circular-loading"
                 active
                 fourColored
               ></ui-circular-progress>
@@ -117,7 +122,7 @@
 
 <script>
 import SvgGithub from '@/components/svg-github';
-import { $MIN_WIDTH } from '@/config';
+import { VERSION, $MIN_WIDTH } from '@/config';
 import menu from '@/config/menu';
 // import { lang } from '@/config/lang';
 
@@ -130,12 +135,15 @@ export default {
   },
   data() {
     return {
+      VERSION,
       menu,
       bodyEl: document.documentElement || document.body,
       isWideScreen: true,
       drawerType: 'permanent',
       openDrawer: false,
-      pageLoading: false
+      pageLoading: false,
+      loadingProgress: 0,
+      loadingTimer: null
     };
   },
   computed: {
@@ -147,14 +155,20 @@ export default {
   },
   created() {
     this.$bus.$on('on-loading', () => {
+      this.bodyEl.scrollTop = 0;
+
       this.pageLoading = true;
+      this.loadingTimer = setInterval(this.loading, 20);
     });
 
     this.$bus.$on('off-loading', () => {
       setTimeout(() => {
-        this.bodyEl.scrollTop = 0;
+        this.loadingProgress = 1;
+
         this.pageLoading = false;
-      }, 1);
+        clearInterval(this.loadingTimer);
+        this.loadingProgress = 0;
+      }, 100);
     });
   },
   mounted() {
@@ -181,6 +195,14 @@ export default {
       this.openDrawer = false;
       if (window.innerWidth < $MIN_WIDTH) {
         this.isWideScreen = false;
+      }
+    },
+    loading() {
+      if (this.loadingProgress === 0.8) {
+        clearInterval(this.loadingTimer);
+      } else {
+        this.loadingProgress += 0.2;
+        this.loadingProgress = +this.loadingProgress.toFixed(2);
       }
     }
   }

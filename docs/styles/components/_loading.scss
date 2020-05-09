@@ -1,10 +1,18 @@
-.loading-container {
+.top-linear-loading {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 5;
+}
+
+.page-loading-container {
   position: absolute;
   top: 50%;
   left: 50%;
   margin: -32px 0 0 -32px;
 
-  .my-loading {
+  .page-circular-loading {
     width: 64px;
     height: 64px;
   }

@@ -7,7 +7,7 @@
         }}</ui-alert>
       </div>
       <div class="hero-options">
-        <div class="hero-option">
+        <div class="hero-option hero-options">
           <ui-select :options="IconTypeOptions" v-model="icon"
             >Icon Type</ui-select
           >

@@ -30,7 +30,7 @@ a {
   &.balmui-drawer--mobile {
     min-width: auto;
     .balmui-menu {
-      z-index: 6;
+      z-index: 9; // NOTE: > snackbar
     }
   }
 }

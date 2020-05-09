@@ -26,6 +26,7 @@ Following the [Material Design](https://material.io/components/) UI components f
   - Select
   - Checkbox
   - Radio
+  - Chips
   - Switch
   - Slider
   - File (💡)
@@ -36,10 +37,9 @@ Following the [Material Design](https://material.io/components/) UI components f
   - List
   - Image List
   - Card
-  - Chips
   - Data Table
   - Pagination (💡)
-  - Text Divider (💡)
+  - Collapse (💡)
 - Feedback
   - Alert (💡)
   - Dialog
@@ -47,6 +47,8 @@ Following the [Material Design](https://material.io/components/) UI components f
   - Linear Progress
   - Circular Progress
   - Skeleton (💡)
+- Others
+  - Text Divider (💡)
 
 ### 2. Plugins
 

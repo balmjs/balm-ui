@@ -106,6 +106,7 @@ Enjoy 👻
   - Select
   - Checkbox
   - Radio
+  - Chips
   - Switch
   - Slider
   - File (:bulb:)
@@ -116,10 +117,9 @@ Enjoy 👻
   - List
   - Image List
   - Card
-  - Chips
   - Data Table
   - Pagination (:bulb:)
-  - Text Divider (:bulb:)
+  - Collapse (:bulb:)
 - Feedback
   - Alert (:bulb:)
   - Dialog
@@ -127,6 +127,8 @@ Enjoy 👻
   - Linear Progress
   - Circular Progress
   - Skeleton (:bulb:)
+- Others
+  - Text Divider (:bulb:)
 
 ### Plugins
 

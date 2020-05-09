@@ -1,5 +1,11 @@
 # BalmUI ChangeLog
 
+## v6.3.0 / 2020-05-09
+
+### Features
+
+- new component: `<ui-collapse>`
+
 ## v6.2.1 / 2020-05-08
 
 ### Features

@@ -41,6 +41,7 @@ const components = [
   'datepicker',
   'rangepicker',
   'alert',
+  'collapse',
   // Next
   'bottom-navigation',
   'banner'

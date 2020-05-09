@@ -137,7 +137,6 @@ export default {
     return {
       VERSION,
       menu,
-      bodyEl: document.documentElement || document.body,
       isWideScreen: true,
       drawerType: 'permanent',
       openDrawer: false,
@@ -155,7 +154,7 @@ export default {
   },
   created() {
     this.$bus.$on('on-loading', () => {
-      this.bodyEl.scrollTop = 0;
+      this.$store.resetScroll();
 
       this.pageLoading = true;
       this.loadingTimer = setInterval(this.loading, 20);

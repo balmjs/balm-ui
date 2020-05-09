@@ -192,12 +192,11 @@ export default {
     }
   },
   mounted() {
-    setTimeout(() => {
-      // this.active = 1;
-    }, 1e3);
-
     window.addEventListener('balmResize', this.init);
     this.init();
+
+    // FIXME: 神奇bug临时解决方案
+    setTimeout(this.$store.resetScroll, 1);
   },
   methods: {
     init() {

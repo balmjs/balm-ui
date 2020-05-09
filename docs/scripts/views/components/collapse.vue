@@ -13,7 +13,7 @@
     </template>
 
     <!-- Content -->
-    <div class="example">
+    <section class="example">
       <h6 :class="$tt('headline6')">1.1 Simple</h6>
       <ui-collapse>
         <template #toggle>
@@ -22,9 +22,9 @@
         <p>Show Content</p>
       </ui-collapse>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
-    </div>
+    </section>
 
-    <div class="example">
+    <section class="example">
       <h6 :class="$tt('headline6')">1.2 Accordion</h6>
       <ui-nav>
         <template #default="{ itemClass }">
@@ -37,9 +37,9 @@
         </template>
       </ui-nav>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
-    </div>
+    </section>
 
-    <div class="example">
+    <section class="example">
       <h6 :class="$tt('headline6')">1.3 Custom Icon</h6>
       <ui-nav>
         <template #default="{ itemClass }">
@@ -58,7 +58,7 @@
         </template>
       </ui-nav>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
-    </div>
+    </section>
   </ui-page-structure>
 </template>
 

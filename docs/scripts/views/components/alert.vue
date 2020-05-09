@@ -26,12 +26,12 @@
     </template>
 
     <!-- Content -->
-    <div class="example">
+    <section class="example">
       <ui-alert icon="success">Success Message</ui-alert>
       <ui-alert icon="info">Info Message</ui-alert>
       <ui-alert icon="warning" closable>Warning Message</ui-alert>
       <ui-alert icon="error">Error Message</ui-alert>
-    </div>
+    </section>
     <ui-snippet :code="$store.demos[1]"></ui-snippet>
   </ui-page-structure>
 </template>

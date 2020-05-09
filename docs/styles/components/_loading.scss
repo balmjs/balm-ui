@@ -7,15 +7,10 @@
 }
 
 .page-loading-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: -32px 0 0 -32px;
-
-  .page-circular-loading {
-    width: 64px;
-    height: 64px;
-  }
+  position: fixed;
+  top: 80px;
+  right: 16px;
+  z-index: 5;
 }
 
 .loading-enter-active,

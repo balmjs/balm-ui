@@ -104,14 +104,15 @@
         </div>
         <!-- App content -->
         <div class="balmui-content">
+          <div v-if="pageLoading" class="page-loading-container">
+            <ui-circular-progress
+              class="page-circular-loading"
+              active
+              fourColored
+            ></ui-circular-progress>
+          </div>
           <transition name="loading">
-            <div v-if="pageLoading" class="page-loading-container">
-              <ui-circular-progress
-                class="page-circular-loading"
-                active
-                fourColored
-              ></ui-circular-progress>
-            </div>
+            <router-view v-if="pageLoading"></router-view>
             <router-view v-else></router-view>
           </transition>
         </div>
@@ -154,13 +155,13 @@ export default {
   },
   created() {
     this.$bus.$on('on-loading', () => {
-      this.$store.resetScroll();
-
       this.pageLoading = true;
       this.loadingTimer = setInterval(this.loading, 20);
     });
 
     this.$bus.$on('off-loading', () => {
+      this.$store.resetScroll();
+
       setTimeout(() => {
         this.loadingProgress = 1;
 

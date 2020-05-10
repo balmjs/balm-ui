@@ -88,74 +88,66 @@ Enjoy 👻
 
 ### Components
 
-- General
-  - Button
-  - Floating Action Button
-  - Icon Button
-- Layout
-  - Top App Bar
-  - Layout Grid
-- Navigation
-  - Drawer
-  - Tabs
-  - Menu
-- Theme
-  - Icon (Material icons)
-- Data Entry
-  - Text Field
-  - Select
-  - Checkbox
-  - Radio
-  - Chips
-  - Switch
-  - Slider
-  - File (:bulb:)
-  - Autocomplete (:bulb:)
-  - Datepicker (:bulb:)
-  - Rangepicker (:bulb:)
-- Data View
-  - List
-  - Image List
-  - Card
-  - Data Table
-  - Pagination (:bulb:)
-  - Collapse (:bulb:)
-- Feedback
-  - Alert (:bulb:)
-  - Dialog
-  - Snackbar
-  - Linear Progress
-  - Circular Progress
-  - Skeleton (:bulb:)
-- Others
-  - Text Divider (:bulb:)
+- Alert (:bulb:)
+- Autocomplete (:bulb:)
+- Button
+- Card
+- Checkbox
+- Chips
+- Circular Progress
+- Collapse (:bulb:)
+- Data Table
+- Datepicker (:bulb:)
+- Dialog
+- Drawer
+- Floating Action Button
+- File (:bulb:)
+- Icon (Material icons)
+- Icon Button
+- Image List
+- Layout Grid
+- Linear Progress
+- List
+- Menu
+- Pagination (:bulb:)
+- Radio
+- Rangepicker (:bulb:)
+- Select
+- Skeleton (:bulb:)
+- Slider
+- Snackbar
+- Switch
+- Tabs
+- Text Divider (:bulb:)
+- Text Field
+- Top App Bar
 
 ### Plugins
 
-- Event (:bulb:)
-- Grid
-- Typography
-- Theme
-- Validator (:bulb:)
 - Alert Dialog (:bulb:)
 - Confirm Dialog (:bulb:)
+- Event (:bulb:)
+- Grid
+- Theme
 - Toast (:bulb:)
+- Typography
+- Validator (:bulb:)
 
 ### Directives
 
-- Ripple
-- Elevation
 - A11y
-- Shape
 - Anchor (:bulb:)
+- Elevation
+- Ripple
+- Shape
 
 ### Utilities (:bulb:)
 
-- Type Detections
 - Helper Functions
 - IE Detection
+- Type Detections
 
-> :bulb:: Plus UI
+> :bulb:: Extra Idea for UI
 
 ## Contributing
 

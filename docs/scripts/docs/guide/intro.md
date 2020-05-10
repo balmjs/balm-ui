@@ -8,74 +8,66 @@ Following the [Material Design](https://material.io/components/) UI components f
 
 ### 1. Components
 
-- General
-  - Button
-  - Floating Action Button
-  - Icon Button
-- Layout
-  - Top App Bar
-  - Layout Grid
-- Navigation
-  - Drawer
-  - Tabs
-  - Menu
-- Theme
-  - Icon (Material icons)
-- Data Entry
-  - Text Field
-  - Select
-  - Checkbox
-  - Radio
-  - Chips
-  - Switch
-  - Slider
-  - File (💡)
-  - Autocomplete (💡)
-  - Datepicker (💡)
-  - Rangepicker (💡)
-- Data View
-  - List
-  - Image List
-  - Card
-  - Data Table
-  - Pagination (💡)
-  - Collapse (💡)
-- Feedback
-  - Alert (💡)
-  - Dialog
-  - Snackbar
-  - Linear Progress
-  - Circular Progress
-  - Skeleton (💡)
-- Others
-  - Text Divider (💡)
+- Alert (💡)
+- Autocomplete (💡)
+- Button
+- Card
+- Checkbox
+- Chips
+- Circular Progress
+- Collapse (💡)
+- Data Table
+- Datepicker (💡)
+- Dialog
+- Drawer
+- Floating Action Button
+- File (💡)
+- Icon (Material icons)
+- Icon Button
+- Image List
+- Layout Grid
+- Linear Progress
+- List
+- Menu
+- Pagination (💡)
+- Radio
+- Rangepicker (💡)
+- Select
+- Skeleton (💡)
+- Slider
+- Snackbar
+- Switch
+- Tabs
+- Text Divider (💡)
+- Text Field
+- Top App Bar
 
 ### 2. Plugins
 
-- Event (💡)
-- Grid
-- Typography
-- Theme
-- Validator (💡)
 - Alert Dialog (💡)
 - Confirm Dialog (💡)
+- Event (💡)
+- Grid
+- Theme
 - Toast (💡)
+- Typography
+- Validator (💡)
 
 ### 3. Directives
 
-- Ripple
-- Elevation
 - A11y
-- Shape
 - Anchor (💡)
+- Elevation
+- Ripple
+- Shape
 
 ### 4. Utilities (💡)
 
-- Type Detections
 - Helper Functions
 - IE Detection
+- Type Detections
 
-> 💡: Extra
+> 💡: Extra Idea for UI
 
 ## Contributing
 

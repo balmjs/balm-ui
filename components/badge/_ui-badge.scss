@@ -1,0 +1,45 @@
+@use '../icon/variables' as ui-icon-variables;
+@use './variables' as badge-variables;
+
+.mdc-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.mdc-badge__sup {
+  overflow: hidden;
+  height: 20px;
+  line-height: 20px;
+  padding: 0 6px;
+  border-radius: badge-variables.$border-radius;
+  white-space: nowrap;
+  font-size: 12px;
+  background-color: badge-variables.$background-color;
+  color: badge-variables.$color;
+
+  &.mdc-badge__sup--dot {
+    height: auto;
+    line-height: normal;
+    padding: badge-variables.$dot-radius * 2;
+    border-radius: 50%;
+  }
+
+  @each $key, $value in ui-icon-variables.$types {
+    &.mdc-badge__sup--#{$key} {
+      background-color: $value;
+      color: badge-variables.$color;
+    }
+  }
+
+  &.mdc-badge__sup--hide {
+    display: none;
+  }
+}
+
+.mdc-badge--overlap .mdc-badge__sup {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+}

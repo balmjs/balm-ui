@@ -52,7 +52,11 @@
           >
             <ui-drawer-header>
               <ui-drawer-title>BalmUI</ui-drawer-title>
-              <ui-drawer-subtitle>v{{ VERSION }}</ui-drawer-subtitle>
+              <ui-drawer-subtitle>
+                <i class="balmui-version"
+                  >v<span class="version">{{ VERSION }}</span></i
+                >
+              </ui-drawer-subtitle>
             </ui-drawer-header>
             <ui-drawer-content>
               <ui-nav class="catalog-list">
@@ -91,6 +95,11 @@
                       :class="$textColor('primary', 'light')"
                     >
                       {{ item.name }}
+                      <i
+                        v-if="isWideScreen && item.name === 'Guide'"
+                        :class="['balmui-version', $tt('subtitle2')]"
+                        >v<span class="version">{{ VERSION }}</span></i
+                      >
                     </ui-list-group-subheader>
                   </template>
                 </template>

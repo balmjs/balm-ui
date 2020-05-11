@@ -13,3 +13,12 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'home',
+  metaInfo: {
+    titleTemplate: '%s - Home'
+  }
+};
+</script>

@@ -27,7 +27,7 @@
 
 .mdc-collapse--with-icon {
   .mdc-collapse__content {
-    padding-left: ui-collapse-variables.$content-padding-left +
+    padding-left: ui-collapse-variables.$icon-width +
       ui-collapse-variables.$icon-margin-right;
   }
 }

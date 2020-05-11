@@ -2,7 +2,7 @@
 
 ## v6.3.2 / 2020-05-11
 
-### BREAKING CHANGES
+### Chores
 
 - `<ui-collapse>`: rename sass variable <del>`$content-padding-left`</del> to `$icon-width`
 

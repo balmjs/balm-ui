@@ -138,6 +138,7 @@ Enjoy 👻
 
 - A11y
 - Anchor (:bulb:)
+- Badge (:bulb:)
 - Elevation
 - Ripple
 - Shape

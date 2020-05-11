@@ -58,6 +58,7 @@ Following the [Material Design](https://material.io/components/) UI components f
 
 - A11y
 - Anchor (💡)
+- Badge (💡)
 - Elevation
 - Ripple
 - Shape

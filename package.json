@@ -38,7 +38,7 @@
     "dev": "gulp",
     "prod": "cross-env NODE_ENV=production gulp -p",
     "docs": "cross-env NODE_ENV=production gulp -p --docs",
-    "test:node": "cross-env NODE_ENV=test nyc mocha-webpack --webpack-config config/webpack.mocha.js --require test/setup.js --include test/index.js",
+    "test:node": "cross-env NODE_ENV=test nyc mochapack --webpack-config config/webpack.mocha.js --require test/setup.js --include test/index.js",
     "test:browser": "cross-env NODE_ENV=test karma start --single-run"
   },
   "repository": {
@@ -86,7 +86,7 @@
     "markdown-loader": "^5.1.0",
     "material-design-icons": "^3.0.1",
     "mocha": "^7.1.2",
-    "mocha-webpack": "^2.0.0-beta.0",
+    "mochapack": "^2.0.0",
     "nyc": "^15.0.1",
     "prettier": "^2.0.5",
     "prismjs": "^1.20.0",

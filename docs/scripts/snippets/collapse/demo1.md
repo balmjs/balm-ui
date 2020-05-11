@@ -3,6 +3,6 @@
   <template #toggle>
     <ui-button>Button</ui-button>
   </template>
-  <p>Show Content</p>
+  Show Content
 </ui-collapse>
 ```

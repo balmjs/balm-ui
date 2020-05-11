@@ -1,5 +1,15 @@
 # BalmUI ChangeLog
 
+## v6.3.1 / 2020-05-11
+
+### Features
+
+- `<ui-collapse>`: add prop `ripple`, add sass variables, update demos
+
+### Chores
+
+- `v-ripple`: optimize ripple value
+
 ## v6.3.0 / 2020-05-09
 
 ### Features

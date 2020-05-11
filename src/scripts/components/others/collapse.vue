@@ -1,6 +1,6 @@
 <template>
   <div :class="className" :aria-expanded="isExpanded">
-    <div class="mdc-collapse__header" @click="handleToggle">
+    <div v-ripple="ripple" class="mdc-collapse__header" @click="handleToggle">
       <template v-if="isExpanded">
         <slot name="expand-more-icon" :iconClass="UI_COLLAPSE.cssClasses.icon">
           <i
@@ -59,6 +59,10 @@ export default {
     // UI attributes
     withIcon: {
       type: Boolean,
+      default: false
+    },
+    ripple: {
+      type: [Boolean, Number],
       default: false
     }
   },

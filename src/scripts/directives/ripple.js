@@ -11,24 +11,26 @@ const UI_RIPPLE = {
 };
 
 const updateRipple = (method, el, { value }) => {
-  let classes = [UI_RIPPLE.color.base];
+  if (value !== false) {
+    let classes = [UI_RIPPLE.color.base];
 
-  switch (value) {
-    case 1:
-    case 'primary':
-      classes.push(UI_RIPPLE.color.primary);
-      break;
-    case 2:
-    case 'secondary':
-      classes.push(UI_RIPPLE.color.secondary);
-      break;
+    switch (value) {
+      case 1:
+      case 'primary':
+        classes.push(UI_RIPPLE.color.primary);
+        break;
+      case 2:
+      case 'secondary':
+        classes.push(UI_RIPPLE.color.secondary);
+        break;
+    }
+
+    el.classList[method](...classes);
   }
-
-  el.classList[method](...classes);
 };
 
-const initRipple = (el, { arg, modifiers }) => {
-  if (arg !== 'cssOnly') {
+const initRipple = (el, { value, arg, modifiers }) => {
+  if (!(value === false || arg === 'cssOnly')) {
     const ripple = new MDCRipple(el);
     if (modifiers.unbounded) {
       ripple.unbounded = true;

@@ -4,10 +4,16 @@
 
 #### Props
 
-| Name       | Type    | Default | Description             |
-| ---------- | ------- | ------- | ----------------------- |
-| `expanded` | boolean | `false` | Default expanded state. |
-| `withIcon` | boolean | `false` | Enabled default icons.  |
+| Name       | Type            | Default | Description             |
+| ---------- | --------------- | ------- | ----------------------- |
+| `expanded` | boolean         | `false` | Default expanded state. |
+| `withIcon` | boolean         | `false` | Enabled default icons.  |
+| `ripple`   | boolean, number | `false` | Sets the ripple color.  |
+
+- `ripple` value:
+  - `true`: default color
+  - `1`: primary color
+  - `2`: secondary color
 
 #### Slots
 

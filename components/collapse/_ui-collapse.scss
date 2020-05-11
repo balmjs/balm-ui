@@ -1,13 +1,33 @@
+@use './variables' as ui-collapse-variables;
+
 .mdc-collapse {
   display: flex;
   flex-direction: column;
+  margin-bottom: ui-collapse-variables.$collapse-margin-bottom;
 }
 
 .mdc-collapse__header {
   display: flex;
   align-items: center;
+  margin-bottom: ui-collapse-variables.$header-margin-bottom;
+}
+
+.mdc-collapse__icon {
+  margin-right: ui-collapse-variables.$icon-margin-right;
+}
+
+.mdc-collapse__title {
+  flex-grow: 1;
+  padding: ui-collapse-variables.$title-padding;
 }
 
 .mdc-collapse__content {
-  padding: 16px;
+  padding: ui-collapse-variables.$content-padding;
+}
+
+.mdc-collapse--with-icon {
+  .mdc-collapse__content {
+    padding-left: ui-collapse-variables.$content-padding-left +
+      ui-collapse-variables.$icon-margin-right;
+  }
 }

@@ -4,8 +4,10 @@
 
 ### Features
 
-- new component: `<ui-badge>`
+- new component: `<ui-badge>`, `<ui-skeleton>`
 - `<ui-grid>`: update docs for the plugin usage
+
+> rebuild: `<ui-badge>`, `<ui-skeleton>`
 
 ### BREAKING CHANGES
 

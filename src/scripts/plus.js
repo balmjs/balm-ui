@@ -35,23 +35,23 @@ import detectIE from './utils/ie';
 const version = require('../../package.json').version;
 
 const components = {
-  UiFile,
-  UiAutocomplete,
-  UiPagination,
-  UiTextDivider,
-  UiSkeleton,
-  UiDatepicker,
-  UiRangepicker,
   UiAlert,
+  UiAutocomplete,
+  UiBadge,
   UiCollapse,
-  UiBadge
+  UiDatepicker,
+  UiFile,
+  UiPagination,
+  UiRangepicker,
+  UiSkeleton,
+  UiTextDivider
 };
 
 const plugins = {
-  validator,
   alert,
   confirm,
-  toast
+  toast,
+  validator
 };
 
 const directives = {

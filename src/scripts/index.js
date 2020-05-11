@@ -7,18 +7,10 @@ import multiConfigure from './config/multi-configure';
 import UiButton from './components/buttons/button';
 import UiFab from './components/buttons/fab';
 import UiIconButton from './components/buttons/icon-button';
-import UiIcon from './components/icon/icon';
 // Layouts
 import UiTopAppBar from './components/app-bars/top-app-bar';
 import UiGrid from './components/layout-grid/grid';
 import UiGridCell from './components/layout-grid/grid-cell';
-import UiTabs from './components/tabs/tabs';
-import UiTabBar from './components/tabs/tab-bar';
-import UiTabScroller from './components/tabs/tab-scroller';
-import UiTabIndicator from './components/tabs/tab-indicator';
-import UiTab from './components/tabs/tab';
-import UiPanels from './components/tabs/panels';
-import UiPanel from './components/tabs/panel';
 // Navigation
 import UiDrawer from './components/navigation/drawer';
 import UiDrawerHeader from './components/navigation/drawer-header';
@@ -27,11 +19,20 @@ import UiDrawerSubtitle from './components/navigation/drawer-subtitle';
 import UiDrawerContent from './components/navigation/drawer-content';
 import UiDrawerAppContent from './components/navigation/drawer-app-content';
 import UiDrawerBackdrop from './components/navigation/drawer-backdrop';
+import UiTabs from './components/tabs/tabs';
+import UiTabBar from './components/tabs/tab-bar';
+import UiTabScroller from './components/tabs/tab-scroller';
+import UiTabIndicator from './components/tabs/tab-indicator';
+import UiTab from './components/tabs/tab';
+import UiPanels from './components/tabs/panels';
+import UiPanel from './components/tabs/panel';
 import UiMenuAnchor from './components/menus/menu-anchor';
 import UiMenu from './components/menus/menu';
 import UiMenuitem from './components/menus/menuitem';
 import UiMenuitemIcon from './components/menus/menuitem-icon';
 import UiMenuitemText from './components/menus/menuitem-text';
+// Theme
+import UiIcon from './components/icon/icon';
 // Data Entry
 import UiFormField from './components/form-controls/form-field';
 import UiTextfield from './components/input-controls/textfield';
@@ -42,6 +43,8 @@ import UiSelectHelper from './components/selection-controls/select-helper';
 import UiSelectIcon from './components/selection-controls/select-icon';
 import UiCheckbox from './components/selection-controls/checkbox';
 import UiRadio from './components/selection-controls/radio';
+import UiChips from './components/chips/chips';
+import UiChip from './components/chips/chip';
 import UiSwitch from './components/selection-controls/switch';
 import UiSlider from './components/selection-controls/slider';
 // Data Display
@@ -68,8 +71,6 @@ import UiCardText from './components/cards/card-text';
 import UiCardActions from './components/cards/card-actions';
 import UiCardButtons from './components/cards/card-buttons';
 import UiCardIcons from './components/cards/card-icons';
-import UiChips from './components/chips/chips';
-import UiChip from './components/chips/chip';
 import UiDataTable from './components/data-tables/table';
 // Feedback
 import UiDialog from './components/modal/dialog';
@@ -97,23 +98,24 @@ import vAccessibility from './directives/a11y';
 const version = require('../../package.json').version;
 
 const components = {
-  // General
   UiButton,
-  UiFab,
-  UiIconButton,
-  UiIcon,
-  // Layouts
-  UiTopAppBar,
-  UiGrid,
-  UiGridCell,
-  UiTabs,
-  UiTabBar,
-  UiTabScroller,
-  UiTabIndicator,
-  UiTab,
-  UiPanels,
-  UiPanel,
-  // Navigation
+  UiCard,
+  UiCardActions,
+  UiCardButtons,
+  UiCardContent,
+  UiCardMedia,
+  UiCardMediaContent,
+  UiCardText,
+  UiCardIcons,
+  UiCheckbox,
+  UiChip,
+  UiChips,
+  UiCircularProgress,
+  UiDataTable,
+  UiDialog,
+  UiDialogActions,
+  UiDialogContent,
+  UiDialogTitle,
   UiDrawer,
   UiDrawerHeader,
   UiDrawerTitle,
@@ -121,26 +123,15 @@ const components = {
   UiDrawerContent,
   UiDrawerAppContent,
   UiDrawerBackdrop,
-  UiMenuAnchor,
-  UiMenu,
-  UiMenuitem,
-  UiMenuitemIcon,
-  UiMenuitemText,
-  // Data Entry
+  UiFab,
   UiFormField,
-  UiTextfield,
-  UiTextfieldHelper,
-  UiTextfieldIcon,
-  UiSelect,
-  UiSelectHelper,
-  UiSelectIcon,
-  UiCheckbox,
-  UiRadio,
-  UiSwitch,
-  UiSlider,
-  // Data Display
-  UiNav,
-  UiList,
+  UiGrid,
+  UiGridCell,
+  UiIcon,
+  UiIconButton,
+  UiImageItem,
+  UiImageList,
+  UiImageText,
   UiItem,
   UiItemTextContent,
   UiItemText1,
@@ -148,31 +139,35 @@ const components = {
   UiItemFirstContent,
   UiItemLastContent,
   UiItemDivider,
+  UiLinearProgress,
+  UiList,
   UiListDivider,
   UiListGroup,
   UiListGroupSubheader,
-  UiImageList,
-  UiImageItem,
-  UiImageText,
-  UiCard,
-  UiCardContent,
-  UiCardMedia,
-  UiCardMediaContent,
-  UiCardText,
-  UiCardActions,
-  UiCardButtons,
-  UiCardIcons,
-  UiChips,
-  UiChip,
-  UiDataTable,
-  // Feedback
-  UiDialog,
-  UiDialogTitle,
-  UiDialogContent,
-  UiDialogActions,
+  UiMenuAnchor,
+  UiMenu,
+  UiMenuitem,
+  UiMenuitemIcon,
+  UiMenuitemText,
+  UiNav,
+  UiPanels,
+  UiPanel,
+  UiRadio,
+  UiSelect,
+  UiSelectHelper,
+  UiSelectIcon,
+  UiSlider,
   UiSnackbar,
-  UiLinearProgress,
-  UiCircularProgress
+  UiSwitch,
+  UiTabs,
+  UiTabBar,
+  UiTabScroller,
+  UiTabIndicator,
+  UiTab,
+  UiTextfield,
+  UiTextfieldHelper,
+  UiTextfieldIcon,
+  UiTopAppBar
 };
 
 const plugins = {
@@ -183,10 +178,10 @@ const plugins = {
 };
 
 const directives = {
+  vAccessibility,
   vRipple,
-  vShape,
   vShadow,
-  vAccessibility
+  vShape
 };
 
 const BalmUI = {

@@ -10,6 +10,7 @@ Following the [Material Design](https://material.io/components/) UI components f
 
 - Alert (💡)
 - Autocomplete (💡)
+- Badge (💡)
 - Button
 - Card
 - Checkbox

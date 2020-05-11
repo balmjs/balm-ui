@@ -90,6 +90,7 @@ Enjoy 👻
 
 - Alert (:bulb:)
 - Autocomplete (:bulb:)
+- Badge (:bulb:)
 - Button
 - Card
 - Checkbox

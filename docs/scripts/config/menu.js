@@ -228,6 +228,12 @@ const MATERIAL_COMPONENTS = [
         name: 'Collapse',
         description: 'Collapse',
         plus: true
+      },
+      {
+        icon: 'component',
+        name: 'Badge',
+        description: 'Badge',
+        plus: true
       }
     ]
   },

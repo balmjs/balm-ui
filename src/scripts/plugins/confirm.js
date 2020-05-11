@@ -3,14 +3,14 @@ import UiDialog from '../components/modal/dialog';
 import UiDialogTitle from '../components/modal/dialog-title';
 import UiDialogContent from '../components/modal/dialog-content';
 import UiDialogActions from '../components/modal/dialog-actions';
-import iconTypeMixins from '../mixins/icon-type';
+import stateTypeMixins from '../mixins/state-type';
 import getType from '../utils/typeof';
 
 const DEFAULT_OPTIONS = {
   className: '',
   title: '',
-  icon: '', // success, info, warning, error, help
-  iconOutlined: false,
+  state: '', // success, info, warning, error, help
+  stateOutlined: false,
   message: '',
   raw: false,
   acceptText: 'OK',
@@ -25,7 +25,7 @@ const template = `<ui-dialog
   <ui-dialog-title v-if="options.title">{{ options.title }}</ui-dialog-title>
   <ui-dialog-content v-if="options.raw" v-html="options.message"></ui-dialog-content>
   <ui-dialog-content v-else>
-    <i v-if="materialIcon" :class="['material-icons mdc-confirm-dialog__icon', iconClassName]">{{ materialIcon }}</i>
+    <i v-if="materialIcon" :class="['material-icons mdc-confirm-dialog__icon', stateClassName]">{{ materialIcon }}</i>
     <span class="mdc-confirm-dialog__message">{{ options.message }}</span></ui-dialog-content>
   <ui-dialog-actions>
     <button type="button"
@@ -55,12 +55,12 @@ const BalmUI_ConfirmPlugin = {
             UiDialogContent,
             UiDialogActions
           },
-          mixins: [iconTypeMixins],
+          mixins: [stateTypeMixins],
           data: {
             open: false,
             options,
-            icon: '',
-            iconOutlined: false
+            state: '',
+            stateOutlined: false
           },
           created() {
             if (getType(customOptions) === 'string') {
@@ -69,9 +69,9 @@ const BalmUI_ConfirmPlugin = {
               this.options = Object.assign({}, this.options, customOptions);
             }
 
-            if (this.options.icon) {
-              this.icon = this.options.icon;
-              this.iconOutlined = this.options.iconOutlined;
+            if (this.options.state) {
+              this.state = this.options.state;
+              this.stateOutlined = this.options.stateOutlined;
             }
 
             this.$nextTick(() => {

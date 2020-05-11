@@ -8,7 +8,7 @@ export default {
     showConfrim() {
       this.$confirm({
         message: 'Do you like BalmJS?',
-        icon: 'help',
+        state: 'help',
         acceptText: 'Cool',
         cancelText: 'Good'
       }).then((result) => {

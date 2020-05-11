@@ -8,8 +8,8 @@ export default {
     showAlert() {
       this.$alert({
         message: 'Hello BalmJS',
-        icon: 'success',
-        iconOutlined: true
+        state: 'success',
+        stateOutlined: true
       });
     }
   }

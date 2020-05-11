@@ -1,0 +1,15 @@
+.demo--badge {
+  .example {
+    margin-bottom: 20px;
+  }
+
+  .badge-example {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-around;
+
+    .mdc-badge {
+      margin-bottom: 10px;
+    }
+  }
+}

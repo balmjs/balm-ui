@@ -1,5 +1,5 @@
-const TYPES = ['success', 'info', 'warn', 'warning', 'error', 'help'];
-const ICONS = {
+const STATE_TYPES = ['success', 'info', 'warn', 'warning', 'error', 'help'];
+const STATE_ICONS = {
   defaults: {
     success: 'check_circle',
     info: 'error',
@@ -16,11 +16,11 @@ const ICONS = {
 
 export default {
   computed: {
-    iconType() {
+    stateType() {
       let result = false;
 
-      if (TYPES.includes(this.icon)) {
-        switch (this.icon) {
+      if (STATE_TYPES.includes(this.state)) {
+        switch (this.state) {
           case 'success':
             result = 'success';
             break;
@@ -40,13 +40,13 @@ export default {
 
       return result;
     },
-    iconClassName() {
+    stateClassName() {
       let result = false;
 
-      if (this.iconType) {
-        result = `md-${this.iconType}-icon`;
+      if (this.stateType) {
+        result = `md-${this.stateType}-icon`;
 
-        if (this.iconOutlined) {
+        if (this.stateOutlined) {
           result += '--outlined';
         }
       }
@@ -56,12 +56,12 @@ export default {
     materialIcon() {
       let result = false;
 
-      if (TYPES.includes(this.icon)) {
-        const iconStyle = this.iconOutlined ? 'outlined' : 'defaults';
+      if (STATE_TYPES.includes(this.state)) {
+        const stateStyle = this.stateOutlined ? 'outlined' : 'defaults';
 
-        result = ['info', 'warn', 'warning'].includes(this.icon)
-          ? ICONS[iconStyle].info
-          : ICONS[iconStyle][this.icon];
+        result = ['info', 'warn', 'warning'].includes(this.state)
+          ? STATE_ICONS[stateStyle].info
+          : STATE_ICONS[stateStyle][this.state];
       }
 
       return result;

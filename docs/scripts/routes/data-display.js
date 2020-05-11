@@ -4,6 +4,7 @@ const Card = () => import('@/views/components/card');
 const Table = () => import('@/views/components/table');
 const Pagination = () => import('@/views/components/pagination');
 const Collapse = () => import('@/views/components/collapse');
+const Badge = () => import('@/views/components/badge');
 
 export default [
   {
@@ -35,5 +36,10 @@ export default [
     path: 'collapse',
     name: 'data-display.collapse',
     component: Collapse
+  },
+  {
+    path: 'badge',
+    name: 'data-display.badge',
+    component: Badge
   }
 ];

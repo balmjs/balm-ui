@@ -12,6 +12,7 @@ import UiDatepicker from './components/pickers/datepicker';
 import UiRangepicker from './components/pickers/rangepicker';
 import UiAlert from './components/others/alert';
 import UiCollapse from './components/others/collapse';
+import UiBadge from './components/others/badge';
 /**
  * Plugins
  */
@@ -23,6 +24,7 @@ import toast from './plugins/toast';
  * Directives
  */
 import vAnchor from './directives/anchor';
+import vBadge from './directives/badge';
 /**
  * Utilities
  */
@@ -41,7 +43,8 @@ const components = {
   UiDatepicker,
   UiRangepicker,
   UiAlert,
-  UiCollapse
+  UiCollapse,
+  UiBadge
 };
 
 const plugins = {
@@ -52,7 +55,8 @@ const plugins = {
 };
 
 const directives = {
-  vAnchor
+  vAnchor,
+  vBadge
 };
 
 const BalmUIPlus = {

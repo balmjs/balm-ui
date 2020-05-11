@@ -3,7 +3,7 @@
     v-if="!destroyed"
     :class="[
       'mdc-alert',
-      `mdc-alert--${iconType}`,
+      `mdc-alert--${stateType}`,
       {
         'mdc-alert--closed': closed
       }
@@ -12,7 +12,7 @@
     <slot name="icon">
       <i
         v-if="materialIcon"
-        :class="['material-icons mdc-alert__icon', iconClassName]"
+        :class="['material-icons mdc-alert__icon', stateClassName]"
         >{{ materialIcon }}</i
       >
     </slot>
@@ -29,17 +29,18 @@
 </template>
 
 <script>
-import iconTypeMixins from '../../mixins/icon-type';
+import stateTypeMixins from '../../mixins/state-type';
 
 export default {
   name: 'ui-alert',
-  mixins: [iconTypeMixins],
+  mixins: [stateTypeMixins],
   props: {
-    icon: {
+    // UI attributes
+    state: {
       type: String,
       default: '' // success, info, warning, error, help
     },
-    iconOutlined: {
+    stateOutlined: {
       type: Boolean,
       default: false
     },

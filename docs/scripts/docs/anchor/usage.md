@@ -11,7 +11,7 @@ Vue.use(BalmUIPlus);
 
 ```js
 import Vue from 'vue';
-import anchor from 'balm-ui/directives/anchor';
+import vAnchor from 'balm-ui/directives/anchor';
 
-Vue.directive(anchor.name, anchor);
+Vue.directive(vAnchor.name, vAnchor);
 ```

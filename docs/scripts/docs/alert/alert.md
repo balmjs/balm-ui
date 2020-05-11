@@ -4,11 +4,11 @@
 
 #### Props
 
-| Name           | Type    | Default | Description                                                  |
-| -------------- | ------- | ------- | ------------------------------------------------------------ |
-| `icon`         | string  | `''`    | Icon type. `['success', 'info', 'warning', 'error', 'help']` |
-| `iconOutlined` | boolean | `false` | Show outlined icon.                                          |
-| `closable`     | boolean | `false` | Whether alert can be closed.                                 |
+| Name            | Type    | Default | Description                                                   |
+| --------------- | ------- | ------- | ------------------------------------------------------------- |
+| `state`         | string  | `''`    | State type. `['success', 'info', 'warning', 'error', 'help']` |
+| `stateOutlined` | boolean | `false` | Show outlined state.                                          |
+| `closable`      | boolean | `false` | Whether alert can be closed.                                  |
 
 #### Slots
 

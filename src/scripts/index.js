@@ -84,8 +84,8 @@ import UiCircularProgress from './components/progress-indicators/circular-progre
  */
 import event from './plugins/event';
 import grid from './plugins/grid';
-import typography from './plugins/typography';
 import theme from './plugins/theme';
+import typography from './plugins/typography';
 /**
  * Directives
  */
@@ -178,8 +178,8 @@ const components = {
 const plugins = {
   event,
   grid,
-  typography,
-  theme
+  theme,
+  typography
 };
 
 const directives = {

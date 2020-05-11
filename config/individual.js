@@ -49,6 +49,7 @@ const components = [
 const plugins = [
   'event',
   // MDC plugins
+  'grid',
   'theme',
   'typography',
   // Plus
@@ -64,7 +65,8 @@ const directives = [
   'a11y',
   'shape',
   // Plus
-  'anchor'
+  'anchor',
+  'badge'
 ];
 const utils = ['ie', 'types', 'helpers'];
 

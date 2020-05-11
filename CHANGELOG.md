@@ -1,5 +1,17 @@
 # BalmUI ChangeLog
 
+## v6.4.0 / 2020-05-11
+
+### Features
+
+- new component: `<ui-badge>`
+- `<ui-grid>`: update docs for the plugin usage
+
+### BREAKING CHANGES
+
+- `$alert`, `$confirm`: rename option <del>`icon`</del> to `state`, <del>`iconOutlined`</del> to `stateOutlined`
+- `<ui-alert>`: rename prop <del>`icon`</del> to `state`, <del>`iconOutlined`</del> to `stateOutlined`
+
 ## v6.3.2 / 2020-05-11
 
 ### Chores

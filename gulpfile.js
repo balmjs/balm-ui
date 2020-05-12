@@ -104,16 +104,10 @@ balm.go((mix) => {
         mix.copy(`${individual.input.sass}/*.scss`, './dist');
 
         // For fonts
-        mix.copy(
-          ['./src/material-icons/*', '!./src/material-icons/*.scss'],
-          './fonts'
-        );
+        mix.copy('./src/material-icons/*', './fonts'); // NOTE: manual zip fonts & rename to `material-icons.zip`
 
         // For example
-        mix.copy(
-          ['./src/material-icons/*', '!./src/material-icons/*.scss'],
-          './components/font'
-        );
+        mix.copy('./src/material-icons/*', './components/font');
       }
     }
   }

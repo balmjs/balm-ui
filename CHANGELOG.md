@@ -1,5 +1,11 @@
 # BalmUI ChangeLog
 
+## v6.5.0 / 2020-05-12
+
+### Features
+
+- update material icons to latest
+
 ## v6.4.1 / 2020-05-12
 
 ### Features

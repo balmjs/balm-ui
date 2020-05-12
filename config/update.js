@@ -1,7 +1,15 @@
+const fs = require('fs');
+const https = require('https');
 const { src, dest, task, series } = require('gulp');
 const $replace = require('gulp-replace');
-const https = require('https');
-const fs = require('fs');
+
+const LATEST_VERSIONS = {
+  filled: 50,
+  outlined: 18,
+  round: 18,
+  twoTone: 17,
+  sharp: 19
+};
 
 // Update Material Components Web for BalmUI
 const mdcDir = './src/material-components-web/';
@@ -62,7 +70,7 @@ const level2 = [
 let index = 0;
 let updateMDCTasks = [];
 
-level0.forEach(function(file) {
+level0.forEach((file) => {
   let name = `update:mdc:${index}`;
   task(name, () => {
     return src(mdcDir + file)
@@ -73,7 +81,7 @@ level0.forEach(function(file) {
   index++;
 });
 
-level1.forEach(function(file) {
+level1.forEach((file) => {
   const name = `update:mdc:${index}`;
   task(name, () => {
     return src(mdcDir + file + '/*')
@@ -84,7 +92,7 @@ level1.forEach(function(file) {
   index++;
 });
 
-level2.forEach(function(file) {
+level2.forEach((file) => {
   const name = `update:mdc:${index}`;
   task(name, () => {
     return src(mdcDir + file + '/*')
@@ -103,33 +111,33 @@ const MDI_regularStyle = 'filled';
 const MaterialIconsFonts = [
   {
     style: MDI_regularStyle,
-    url: '/v48/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2'
+    url: `/v${LATEST_VERSIONS.filled}/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2`
   },
   {
     style: 'outlined',
-    url: 'outlined/v14/gok-H7zzDkdnRel8-DQ6KAXJ69wP1tGnf4ZGhUcel5euIg.woff2'
+    url: `outlined/v${LATEST_VERSIONS.outlined}/gok-H7zzDkdnRel8-DQ6KAXJ69wP1tGnf4ZGhUcel5euIg.woff2`
   },
   {
     style: 'round',
-    url: 'round/v14/LDItaoyNOAY6Uewc665JcIzCKsKc_M9flwmPq_HTTw.woff2'
+    url: `round/v${LATEST_VERSIONS.round}/LDItaoyNOAY6Uewc665JcIzCKsKc_M9flwmPq_HTTw.woff2`
   },
   {
     style: 'two-tone',
-    url: 'twotone/v13/hESh6WRmNCxEqUmNyh3JDeGxjVVyMg4tHGctNCu0NjbrHg.woff2'
+    url: `twotone/v${LATEST_VERSIONS.twoTone}/hESh6WRmNCxEqUmNyh3JDeGxjVVyMg4tHGctNCu0NjbrHg.woff2`
   },
   {
     style: 'sharp',
-    url: 'sharp/v15/oPWQ_lt5nv4pWNJpghLP75WiFR4kLh3kvmvRImcycg.woff2'
+    url: `sharp/v${LATEST_VERSIONS.sharp}/oPWQ_lt5nv4pWNJpghLP75WiFR4kLh3kvmvRImcycg.woff2`
   }
 ];
 
 function updateMDITask(cb) {
   https
-    .get('https://fonts.googleapis.com/icon?family=Material+Icons', res => {
+    .get('https://fonts.googleapis.com/icon?family=Material+Icons', (res) => {
       if (res.statusCode === 200) {
         let data = '';
 
-        res.on('data', chunk => {
+        res.on('data', (chunk) => {
           data += chunk;
         });
 
@@ -139,7 +147,7 @@ function updateMDITask(cb) {
 
           console.log(`Material Icons latest version: ${version}`);
 
-          MaterialIconsFonts.forEach(iconFont => {
+          MaterialIconsFonts.forEach((iconFont) => {
             const suffix = iconFont.url.split('.')[1];
             const filename =
               iconFont.style === MDI_regularStyle
@@ -150,14 +158,14 @@ function updateMDITask(cb) {
             );
             const request = https.get(
               `${MDI_baseUrl}${iconFont.url}`,
-              response => {
+              (response) => {
                 response.pipe(file);
               }
             );
             request.on('close', () => {
               console.log(`${filename} downloaded`);
             });
-            request.on('error', e => {
+            request.on('error', (e) => {
               console.error(e);
             });
           });
@@ -166,7 +174,7 @@ function updateMDITask(cb) {
         console.warn('F**k G-F-W');
       }
     })
-    .on('error', e => {
+    .on('error', (e) => {
       console.error(e);
     });
   cb();

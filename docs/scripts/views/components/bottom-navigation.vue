@@ -13,18 +13,14 @@
       >
     </ui-top-app-bar>
 
-    <ui-page-structure
-      class="demo-content"
-      name="bottom-navigation"
-      demoCount="1"
-    >
+    <ui-page class="demo-content" name="bottom-navigation" demoCount="1">
       <template #hero>
         <h3 :class="$tt('headline3')">Bottom Navigation</h3>
       </template>
 
       <!-- Content -->
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
-    </ui-page-structure>
+    </ui-page>
 
     <ui-bottom-navigation contentSelector=".demo--bottom-navigation-container">
       <ui-tabs :items="items" v-model="active" @change="onChange"></ui-tabs>

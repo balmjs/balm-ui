@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure
+  <ui-page
     name="textfield"
     demoCount="7"
     :apis="['ui-textfield', 'textfield', 'textfield-icon', 'textfield-helper']"
@@ -387,7 +387,7 @@
       ></ui-textfield-controls>
       <ui-snippet :code="$store.demos[7]"></ui-snippet>
     </section>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>

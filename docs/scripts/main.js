@@ -11,11 +11,11 @@ import BalmUI from '../../src/scripts/index'; // 'balm-ui'
 import BalmUIPlus from '../../src/scripts/plus'; // 'balm-ui-plus'
 import BalmUINext from '../../src/scripts/next'; // 'balm-ui-next'
 import validatorRules from '@/config/validator-rules';
+import UiPage from '@/components/page';
 import UiMarkdown from '@/components/markdown';
 import UiSnippet from '@/components/snippet';
 import UiFooterNav from '@/components/footer-nav';
 import UiTocAffix from '@/components/toc-affix';
-import UiPageStructure from '@/components/page-structure';
 import SvgLogo from '@/components/svg-logo';
 // syntax highlighting
 import prismjs from 'prismjs';
@@ -42,11 +42,11 @@ if (isIE) {
   });
   Vue.use(BalmUINext);
 
+  Vue.component(UiPage.name, UiPage);
   Vue.component(UiMarkdown.name, UiMarkdown);
   Vue.component(UiSnippet.name, UiSnippet);
   Vue.component(UiFooterNav.name, UiFooterNav);
   Vue.component(UiTocAffix.name, UiTocAffix);
-  Vue.component(UiPageStructure.name, UiPageStructure);
   Vue.component(SvgLogo.name, SvgLogo);
 
   Vue.prototype.$prism = prismjs;

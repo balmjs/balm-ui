@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure
+  <ui-page
     name="image-list"
     demoCount="2"
     :apis="['ui-image-list', 'image-list', 'image-item', 'image-text']"
@@ -60,7 +60,7 @@
       </ui-image-list>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>

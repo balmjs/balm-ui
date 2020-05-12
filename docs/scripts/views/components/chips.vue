@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure name="chips" demoCount="4" :apis="['chips', 'chip']">
+  <ui-page name="chips" demoCount="4" :apis="['chips', 'chip']">
     <template #hero>
       <ui-chips>
         <ui-chip v-a11y>Chip One</ui-chip>
@@ -91,7 +91,7 @@
       </ui-chips>
       <ui-snippet :code="$store.demos[4]"></ui-snippet>
     </section>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>
@@ -170,7 +170,7 @@ export default {
       this.list.pop();
     },
     removeOneById(id) {
-      let index = this.list.findIndex(item => item.id === id);
+      let index = this.list.findIndex((item) => item.id === id);
       this.list.splice(index, 1);
     },
     // Demo2

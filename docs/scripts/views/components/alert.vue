@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure name="alert" demoCount="1" withoutCss>
+  <ui-page name="alert" demoCount="1" withoutCss>
     <template #hero>
       <div class="hero-demo">
         <ui-alert :state="state" :stateOutlined="stateOutlined">{{
@@ -33,7 +33,7 @@
       <ui-alert state="error">Error Message</ui-alert>
     </section>
     <ui-snippet :code="$store.demos[1]"></ui-snippet>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>

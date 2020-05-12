@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure type="directive" name="anchor" demoCount="2" withoutCss>
+  <ui-page type="directive" name="anchor" demoCount="2" withoutCss>
     <template #hero>
       <h1 :class="$tt('headline1')">Anchor</h1>
     </template>
@@ -30,7 +30,7 @@
         <div id="target4">Target 4</div>
       </div>
     </section>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure name="icon-button" demoCount="2">
+  <ui-page name="icon-button" demoCount="2">
     <template #hero>
       <div class="hero-demo">
         <ui-icon-button :toggle="icon" v-model="value"></ui-icon-button>
@@ -129,7 +129,7 @@
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>

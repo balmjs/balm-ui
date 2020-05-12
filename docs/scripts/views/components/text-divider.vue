@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure name="text-divider" demoCount="2">
+  <ui-page name="text-divider" demoCount="2">
     <template #hero>
       <div class="hero-demo">
         <ui-text-divider :type="typeOption">
@@ -36,7 +36,7 @@
       </ui-text-divider>
     </section>
     <ui-snippet :code="$store.demos[2]"></ui-snippet>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>

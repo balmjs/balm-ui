@@ -13,7 +13,7 @@
       >
     </ui-top-app-bar>
 
-    <ui-page-structure
+    <ui-page
       class="demo-content"
       name="grid"
       demoCount="9"
@@ -234,7 +234,7 @@
           <div id="current" ref="ruler"></div>
         </div>
       </section>
-    </ui-page-structure>
+    </ui-page>
   </div>
 </template>
 

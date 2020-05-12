@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure name="file" demoCount="3" withoutCss>
+  <ui-page name="file" demoCount="3" withoutCss>
     <template #hero>
       <ui-file></ui-file>
     </template>
@@ -67,7 +67,7 @@
       </ui-button>
     </div>
     <ui-snippet :code="$store.demos[3]"></ui-snippet>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>
@@ -93,7 +93,7 @@ export default {
       if (files.length > this.limit - this.files3.length) {
         this.$toast(`Image Limit: ${this.limit}`);
       } else {
-        files.forEach(file => {
+        files.forEach((file) => {
           file.uploaded = false;
           this.files3.push(file);
         });
@@ -112,7 +112,7 @@ export default {
     },
     uploadAllFiles() {
       if (this.files3.length) {
-        this.files3.forEach(file => {
+        this.files3.forEach((file) => {
           this.upload(file);
         });
       } else {

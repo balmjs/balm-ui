@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure name="radio" demoCount="1">
+  <ui-page name="radio" demoCount="1">
     <template #hero>
       <ui-form-field>
         <ui-radio v-a11y name="hero" value="0" v-model="hero"></ui-radio>
@@ -51,7 +51,7 @@
       <p>Gender: {{ gender }}</p>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>

@@ -66,7 +66,7 @@
 
 <script>
 export default {
-  name: 'ui-page-structure',
+  name: 'ui-page',
   props: {
     type: {
       type: String,

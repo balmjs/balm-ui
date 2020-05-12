@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure name="snackbar" demoCount="1">
+  <ui-page name="snackbar" demoCount="1">
     <template #hero>
       <ui-snackbar class="mdc-snackbar--open">Message sent</ui-snackbar>
     </template>
@@ -42,7 +42,7 @@
       </div>
     </section>
     <ui-snippet :code="$store.demos[1]"></ui-snippet>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>

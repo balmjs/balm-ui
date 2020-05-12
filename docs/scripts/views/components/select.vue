@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure
+  <ui-page
     name="select"
     demoCount="4"
     :apis="['select', 'select-helper', 'select-icon']"
@@ -170,7 +170,7 @@
       <p>Province: {{ formData.province }} - City: {{ formData.city }}</p>
     </section>
     <ui-snippet :code="$store.demos[4]"></ui-snippet>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>

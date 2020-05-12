@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure type="plugin" name="event" demoCount="4" withoutCss>
+  <ui-page type="plugin" name="event" demoCount="4" withoutCss>
     <template #hero>
       <h1 :class="$tt('headline1')">$balmUI</h1>
     </template>
@@ -81,7 +81,7 @@
         </ui-grid-cell>
       </ui-grid>
     </div>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>

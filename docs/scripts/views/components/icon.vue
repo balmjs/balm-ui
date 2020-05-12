@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure name="icon" demoCount="2">
+  <ui-page name="icon" demoCount="2">
     <template #hero>
       <div class="hero-demos">
         <ui-icon :type="typeOption">add</ui-icon>
@@ -124,7 +124,7 @@
         </template>
       </ui-list-group>
     </template>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>
@@ -272,9 +272,9 @@ export default {
     let response = await this.$http.get(`${this.$domain}/data/icons.json`);
     let { categories } = response.data;
 
-    categories.map(category => {
+    categories.map((category) => {
       let icons = category.icons.filter(
-        icon => !UNDEFINED_ICONS.includes(icon.id)
+        (icon) => !UNDEFINED_ICONS.includes(icon.id)
       );
 
       this.categories.push({
@@ -283,7 +283,7 @@ export default {
       });
       this.$set(this.icons, category.name, []);
 
-      icons.forEach(icon => {
+      icons.forEach((icon) => {
         this.icons[category.name].push({
           id: icon.id,
           name: icon.id
@@ -296,7 +296,7 @@ export default {
   mounted() {
     let clipboard = new Clipboard('.btn-copy');
 
-    clipboard.on('success', e => {
+    clipboard.on('success', (e) => {
       this.$toast(`'${e.text}' copied!`);
 
       e.clearSelection();
@@ -307,7 +307,7 @@ export default {
       if (this.keywords) {
         for (let categoryName in this.icons) {
           this.currentIcons[categoryName] = this.icons[categoryName].filter(
-            icon => {
+            (icon) => {
               return icon.name.indexOf(this.keywords) > -1;
             }
           );

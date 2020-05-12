@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure name="checkbox" demoCount="2">
+  <ui-page name="checkbox" demoCount="2">
     <template #hero>
       <ui-form-field>
         <ui-checkbox v-a11y id="hero-checkbox" v-model="hero"></ui-checkbox>
@@ -86,7 +86,7 @@
         </ui-form-field>-->
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure name="badge" :apis="['badge', 'v-badge']" demoCount="2">
+  <ui-page name="badge" :apis="['badge', 'v-badge']" demoCount="2">
     <template #hero>
       <ui-icon v-badge.overlap="mail">mail</ui-icon>
     </template>
@@ -45,7 +45,7 @@
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>

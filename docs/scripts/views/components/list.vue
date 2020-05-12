@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure
+  <ui-page
     name="list"
     demoCount="8"
     :apis="['ui-list', 'list', 'list-item', 'list-divider', 'list-group']"
@@ -164,7 +164,7 @@
       </ui-list>
       <ui-snippet :code="$store.demos[8]"></ui-snippet>
     </div>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>

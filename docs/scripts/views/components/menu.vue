@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure
+  <ui-page
     name="menu"
     demoCount="2"
     :apis="['ui-menu', 'menu', 'menuitem', 'menu-anchor']"
@@ -254,7 +254,7 @@
       </div>
     </div>
     <ui-snippet :code="$store.demos[2]"></ui-snippet>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>

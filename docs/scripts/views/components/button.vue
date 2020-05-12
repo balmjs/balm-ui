@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure name="button" demoCount="1">
+  <ui-page name="button" demoCount="1">
     <template #hero>
       <div class="hero-demo">
         <ui-button :type="typeOption" v-a11y>{{ text }}</ui-button>
@@ -48,7 +48,7 @@
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>

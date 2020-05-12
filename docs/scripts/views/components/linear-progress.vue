@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure name="linear-progress" demoCount="1">
+  <ui-page name="linear-progress" demoCount="1">
     <template #hero>
       <ui-linear-progress active></ui-linear-progress>
     </template>
@@ -51,7 +51,7 @@
       </figure>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>

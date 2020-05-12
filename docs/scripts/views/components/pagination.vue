@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure name="pagination" demoCount="3">
+  <ui-page name="pagination" demoCount="3">
     <template #hero>
       <ui-pagination v-model="page" :total="total"></ui-pagination>
     </template>
@@ -61,7 +61,7 @@
       </ui-pagination>
     </section>
     <ui-snippet :code="$store.demos[3]"></ui-snippet>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>

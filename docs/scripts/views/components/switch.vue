@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure name="switch" demoCount="1">
+  <ui-page name="switch" demoCount="1">
     <template #hero>
       <ui-form-field>
         <ui-switch id="hero-switch" v-model="toggle"></ui-switch>
@@ -39,7 +39,7 @@
         <label for="basic-switch--disabled">off/on</label>
       </div>
     </section>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>

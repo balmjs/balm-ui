@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure name="slider" demoCount="1">
+  <ui-page name="slider" demoCount="1">
     <template #hero>
       <ui-form-field id="hero-slider-wrapper" block>
         <ui-icon>volume_mute</ui-icon>
@@ -140,7 +140,7 @@
         </ui-form-field>
       </div>
     </section>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>

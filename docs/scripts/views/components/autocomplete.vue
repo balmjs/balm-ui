@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure name="autocomplete" demoCount="2">
+  <ui-page name="autocomplete" demoCount="2">
     <template #hero>
       <ui-autocomplete
         placeholder="Input 'balm'"
@@ -36,7 +36,7 @@
       ></ui-autocomplete>
     </div>
     <ui-snippet :code="$store.demos[2]"></ui-snippet>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>

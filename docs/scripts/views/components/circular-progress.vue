@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure name="circular-progress" demoCount="2">
+  <ui-page name="circular-progress" demoCount="2">
     <template #hero>
       <ui-circular-progress active fourColored></ui-circular-progress>
     </template>
@@ -23,7 +23,7 @@
       </figure>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>

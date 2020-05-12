@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure type="plugin" name="validator" demoCount="1" withoutCss>
+  <ui-page type="plugin" name="validator" demoCount="1" withoutCss>
     <template #hero>
       <h1 :class="$tt('headline1')">$validate</h1>
     </template>
@@ -50,7 +50,7 @@
       </div>
     </fieldset>
     <ui-snippet :code="$store.demos[1]"></ui-snippet>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure type="plugin" name="theme" demoCount="4">
+  <ui-page type="plugin" name="theme" demoCount="4">
     <template #hero>
       <div class="hero-demos">
         <ui-button raised :class="[$themeColor('primary-bg')]"
@@ -140,7 +140,7 @@
         </ui-grid-cell>
       </ui-grid>
     </template>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>

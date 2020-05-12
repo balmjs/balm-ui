@@ -1,5 +1,5 @@
 <template>
-  <ui-page-structure name="table" demoCount="2">
+  <ui-page name="table" demoCount="2">
     <template #hero>
       <ui-table
         rowCheckbox
@@ -47,7 +47,7 @@
       ></ui-pagination> -->
     </section>
     <ui-snippet :code="$store.demos[2]"></ui-snippet>
-  </ui-page-structure>
+  </ui-page>
 </template>
 
 <script>

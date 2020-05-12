@@ -18,8 +18,25 @@ module.exports = {
   scripts: {
     entry: env.useDocs
       ? {
-          mylib: ['deepmerge', 'prismjs', 'src/material-components-web'],
-          myui: ['vue', 'vue-router', 'balm-ui-lite', 'src/scripts'],
+          hello: [
+            'axios',
+            'clipboard',
+            'deepmerge',
+            'flatpickr',
+            'prismjs',
+            'vue',
+            'vue-i18n',
+            'vue-meta',
+            'vue-router'
+          ],
+          balm: ['src/material-components-web'],
+          ui: [
+            '@babel/runtime-corejs3',
+            '@material',
+            'core-js',
+            'core-js-pure',
+            'src/scripts'
+          ],
           app: './docs/scripts/main.js'
         }
       : {

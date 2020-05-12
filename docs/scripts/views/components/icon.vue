@@ -27,46 +27,50 @@
       >
     </ui-tab-bar> -->
 
-    <section class="sizing-example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 Sizing</h6>
-      <div class="icons-preview-code">
-        <div v-for="i in [18, 24, 36, 48]" :key="i" class="icons-preview">
-          <ui-icon :size="i">face</ui-icon>
-          <div class="icon-caption">
-            {{ i }}px
-            {{ i === 24 ? '(default)' : '' }}
+      <div class="demo sizing-example">
+        <div class="icons-preview-code">
+          <div v-for="i in [18, 24, 36, 48]" :key="i" class="icons-preview">
+            <ui-icon :size="i">face</ui-icon>
+            <div class="icon-caption">
+              {{ i }}px
+              {{ i === 24 ? '(default)' : '' }}
+            </div>
           </div>
         </div>
       </div>
+      <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
-    <ui-snippet :code="$store.demos[1]"></ui-snippet>
 
-    <section class="coloring-example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Coloring</h6>
-      <div class="icons-preview-code">
-        <div class="icons-preview">
-          <ui-icon dark>face</ui-icon>
-          <div class="icon-caption">Normal</div>
-        </div>
-        <div class="icons-preview">
-          <ui-icon dark inactive>face</ui-icon>
-          <div class="icon-caption">Disabled</div>
-        </div>
-        <div class="icons-preview icons-dark-bg">
-          <ui-icon light>face</ui-icon>
-          <div class="icon-caption">Normal</div>
-        </div>
-        <div class="icons-preview icons-dark-bg">
-          <ui-icon light inactive>face</ui-icon>
-          <div class="icon-caption">Disabled</div>
-        </div>
-        <div class="icons-preview">
-          <ui-icon class="orange600">face</ui-icon>
-          <div class="icon-caption">orange600</div>
+      <div class="demo coloring-example">
+        <div class="icons-preview-code">
+          <div class="icons-preview">
+            <ui-icon dark>face</ui-icon>
+            <div class="icon-caption">Normal</div>
+          </div>
+          <div class="icons-preview">
+            <ui-icon dark inactive>face</ui-icon>
+            <div class="icon-caption">Disabled</div>
+          </div>
+          <div class="icons-preview icons-dark-bg">
+            <ui-icon light>face</ui-icon>
+            <div class="icon-caption">Normal</div>
+          </div>
+          <div class="icons-preview icons-dark-bg">
+            <ui-icon light inactive>face</ui-icon>
+            <div class="icon-caption">Disabled</div>
+          </div>
+          <div class="icons-preview">
+            <ui-icon class="orange600">face</ui-icon>
+            <div class="icon-caption">orange600</div>
+          </div>
         </div>
       </div>
+      <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
-    <ui-snippet :code="$store.demos[2]"></ui-snippet>
 
     <template #after>
       <div class="search-area" v-shadow="1">

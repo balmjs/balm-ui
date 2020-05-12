@@ -1,6 +1,6 @@
 @use '@material/image-list/mixins' as image-list-mixins;
 
-.demo--image-list {
+.page--image-list {
   .mdc-image-list.hero-image-list {
     @include image-list-mixins.standard-columns(5);
     width: 300px;

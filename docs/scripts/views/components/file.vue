@@ -5,68 +5,74 @@
     </template>
 
     <!-- Content -->
-    <div class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 Default Usage</h6>
-      <ui-file
-        accept="image/*"
-        @change="$balmUI.onChange('files1', $event)"
-      ></ui-file>
-      <p>Files: {{ files1 }}</p>
-    </div>
-    <ui-snippet :code="$store.demos[1]"></ui-snippet>
+      <div class="demo">
+        <ui-file
+          accept="image/*"
+          @change="$balmUI.onChange('files1', $event)"
+        ></ui-file>
+        <p>Files: {{ files1 }}</p>
+      </div>
+      <ui-snippet :code="$store.demos[1]"></ui-snippet>
+    </section>
 
-    <div class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Multiple + Preview</h6>
-      <ui-file
-        accept="image/*"
-        multiple
-        preview
-        @change="$balmUI.onChange('files2', $event)"
-      ></ui-file>
-      <transition-group class="preview-list" name="list" tag="ul">
-        <li class="item" v-for="(file, index) in files2" :key="file.uuid">
-          <div class="inner">
-            <span class="preview" :style="setBg(file)"></span>
-            <span class="name">{{ file.name }}</span>
-          </div>
-        </li>
-      </transition-group>
-    </div>
-    <ui-snippet :code="$store.demos[2]"></ui-snippet>
+      <div class="demo">
+        <ui-file
+          accept="image/*"
+          multiple
+          preview
+          @change="$balmUI.onChange('files2', $event)"
+        ></ui-file>
+        <transition-group class="preview-list" name="list" tag="ul">
+          <li class="item" v-for="file in files2" :key="file.uuid">
+            <div class="inner">
+              <span class="preview" :style="setBg(file)"></span>
+              <span class="name">{{ file.name }}</span>
+            </div>
+          </li>
+        </transition-group>
+      </div>
+      <ui-snippet :code="$store.demos[2]"></ui-snippet>
+    </section>
 
-    <div class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.3 Classics Upload</h6>
-      <transition-group class="preview-list" name="list" tag="ul">
-        <li v-for="(file, index) in files3" :key="file.uuid" class="item">
-          <div class="inner">
-            <span class="preview" :style="setBg(file)"></span>
-            <span class="actions">
-              <ui-fab
-                v-if="!file.uploaded"
-                icon="file_upload"
-                mini
-                @click="upload(file)"
-              ></ui-fab>
-              <ui-fab icon="delete" mini @click="remove(index)"></ui-fab>
-            </span>
-          </div>
-        </li>
-        <li v-if="files3.length < limit" key="add" class="item add-btn">
-          <div class="inner">
-            <ui-file accept="image/*" multiple preview @change="onChange">
-              <ui-icon class="add-icon">add</ui-icon>
-            </ui-file>
-          </div>
-        </li>
-      </transition-group>
-      <ui-button raised @click="uploadAllFiles">
-        <template #before="{ iconClass }">
-          <ui-icon :class="iconClass">file_upload</ui-icon>
-        </template>
-        Upload All
-      </ui-button>
-    </div>
-    <ui-snippet :code="$store.demos[3]"></ui-snippet>
+      <div class="demo">
+        <transition-group class="preview-list" name="list" tag="ul">
+          <li v-for="(file, index) in files3" :key="file.uuid" class="item">
+            <div class="inner">
+              <span class="preview" :style="setBg(file)"></span>
+              <span class="actions">
+                <ui-fab
+                  v-if="!file.uploaded"
+                  icon="file_upload"
+                  mini
+                  @click="upload(file)"
+                ></ui-fab>
+                <ui-fab icon="delete" mini @click="remove(index)"></ui-fab>
+              </span>
+            </div>
+          </li>
+          <li v-if="files3.length < limit" key="add" class="item add-btn">
+            <div class="inner">
+              <ui-file accept="image/*" multiple preview @change="onChange">
+                <ui-icon class="add-icon">add</ui-icon>
+              </ui-file>
+            </div>
+          </li>
+        </transition-group>
+        <ui-button raised @click="uploadAllFiles">
+          <template #before="{ iconClass }">
+            <ui-icon :class="iconClass">file_upload</ui-icon>
+          </template>
+          Upload All
+        </ui-button>
+      </div>
+      <ui-snippet :code="$store.demos[3]"></ui-snippet>
+    </section>
   </ui-page>
 </template>
 

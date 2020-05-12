@@ -105,15 +105,21 @@
     </template>
 
     <!-- Content -->
-    <section class="example">
-      <ui-button raised @click="$balmUI.onOpen('open')">Show Dialog</ui-button>
+    <section class="demo-wrapper">
+      <div class="demo">
+        <ui-button raised @click="$balmUI.onOpen('open')"
+          >Show Dialog</ui-button
+        >
+      </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
 
-    <section class="example">
-      <ui-button raised @click="$balmUI.onShow('open2')"
-        >Show Scrolling Dialog</ui-button
-      >
+    <section class="demo-wrapper">
+      <div class="demo">
+        <ui-button raised @click="$balmUI.onShow('open2')"
+          >Show Scrolling Dialog</ui-button
+        >
+      </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
 

@@ -1,27 +1,7 @@
-.demo--dialog {
-  .demo-body {
-    padding: 24px;
-    margin: 0;
-    box-sizing: border-box;
-  }
-
-  .demo-content > button {
-    margin-bottom: 6px;
-  }
-
-  section.demo-content {
-    padding: 24px;
-  }
-
+.page--dialog {
   .hero-dialog {
     position: relative;
     z-index: auto;
-  }
-
-  .dialog-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 }
 

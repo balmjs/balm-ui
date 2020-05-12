@@ -57,9 +57,9 @@
     <!-- Content -->
     <ui-fab class="demo-fixed-fab" icon="mode_edit"></ui-fab>
 
-    <section>
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 Regular FAB</h6>
-      <div class="demo-fabs">
+      <div class="demo">
         <figure>
           <ui-fab icon="favorite_border"></ui-fab>
           <figcaption>Standard</figcaption>
@@ -92,9 +92,9 @@
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
 
-    <section>
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Extended FAB</h6>
-      <div class="demo-fabs">
+      <div class="demo">
         <figure>
           <ui-fab extended>
             <template #before="{ iconClass }">
@@ -121,7 +121,7 @@
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
 
-    <section>
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.3 Example of Enter and Exit Motions</h6>
       <div class="fab-motion-container">
         <div class="fab-motion-container__view">
@@ -152,11 +152,11 @@
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>
 
-    <section>
-      <fieldset>
-        <h6 :class="$tt('headline6')">
-          1.4 Custom FABs (Using font awesome)
-        </h6>
+    <section class="demo-wrapper">
+      <h6 :class="$tt('headline6')">
+        1.4 Custom FABs (Using font awesome)
+      </h6>
+      <div class="demo">
         <ui-fab>
           <i class="fa fa-flag fa-lg"></i>
         </ui-fab>
@@ -169,7 +169,7 @@
         <ui-fab>
           <i class="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
         </ui-fab>
-      </fieldset>
+      </div>
       <ui-snippet :code="$store.demos[4]"></ui-snippet>
     </section>
   </ui-page>

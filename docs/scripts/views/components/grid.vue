@@ -31,8 +31,8 @@
       </template>
 
       <!-- Content -->
-      <section class="examples">
-        <h6>1.1 Layout grid (in fluid container)</h6>
+      <section class="demo-wrapper">
+        <h6 :class="$tt('headline6')">1.1 Layout grid (in fluid container)</h6>
         <ui-grid>
           <ui-grid-cell>
             <div class="demo-controls">
@@ -170,8 +170,12 @@
           <ui-grid-cell class="demo-cell" columns="4"></ui-grid-cell>
         </ui-grid>
         <ui-snippet :code="$store.demos[7]"></ui-snippet>
+      </section>
 
-        <h6>1.2 Fixed column width layout grid (Widescreen Only)</h6>
+      <section class="demo-wrapper">
+        <h6 :class="$tt('headline6')">
+          1.2 Fixed column width layout grid (Widescreen Only)
+        </h6>
         <template v-if="isWideScreen">
           <ui-grid>
             <ui-grid-cell>
@@ -230,9 +234,9 @@
           <p>Your browser is not widescreen(Screen Size >= 1440px).</p>
         </template>
 
-        <div class="demo-ruler">
+        <footer class="demo-ruler">
           <div id="current" ref="ruler"></div>
-        </div>
+        </footer>
       </section>
     </ui-page>
   </div>

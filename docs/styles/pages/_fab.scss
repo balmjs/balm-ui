@@ -1,17 +1,9 @@
-@use '@material/fab/mixins' as fab-mixins;
 @use '../global/color' as color;
 
-.demo--fab {
-  .demo-fabs {
+.page--fab {
+  .demo {
     display: flex;
     flex-wrap: wrap;
-  }
-
-  legend {
-    display: block;
-    padding: 16px;
-    padding-top: 64px;
-    padding-bottom: 24px;
   }
 
   figcaption > div {
@@ -63,32 +55,5 @@
   .fab-motion-container__view--exited {
     transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
     transform: translateY(100%);
-  }
-
-  .mdc-fab.lightGreen800Fab {
-    @include fab-mixins.accessible(color.$light-green-800);
-  }
-
-  .demo-fab-icon-size {
-    @include fab-mixins.icon-size(36px);
-  }
-
-  .demo-figure-fab-extended {
-    width: 100%;
-    padding: 0;
-    margin: 1em 40px;
-    box-sizing: border-box;
-  }
-
-  @media (max-width: 700px) {
-    .demo-figure-fab-extended {
-      padding: 0 16px;
-      margin: 0;
-    }
-
-    .demo-fab-extended-fluid {
-      @include fab-mixins.extended-fluid;
-      margin: 16px 0;
-    }
   }
 }

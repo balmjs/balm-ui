@@ -11,54 +11,66 @@
     </template>
 
     <!-- Content -->
-    <section :class="['example', { 'rounded-corners': radius }]">
-      <ui-form-field>
-        <ui-checkbox id="toggle-radius" v-model="radius"></ui-checkbox>
-        <label for="toggle-radius">Toggle Rounded Corners</label>
-      </ui-form-field>
+    <section :class="{ 'rounded-corners': radius }">
+      <div class="demo-controls">
+        <ui-form-field>
+          <ui-checkbox id="toggle-radius" v-model="radius"></ui-checkbox>
+          <label for="toggle-radius">Toggle Rounded Corners</label>
+        </ui-form-field>
+      </div>
 
-      <h4 :class="$tt('headline6')">1.1 Standard Image List</h4>
-      <ui-image-list-controls v-model="controls1"></ui-image-list-controls>
-      <ui-image-list
-        id="standard-image-list"
-        class="standard-image-list"
-        :textProtection="controls1.labelsType === 2"
-      >
-        <ui-image-item
-          v-for="i in 15"
-          :key="i"
-          :bgImage="require(`@/assets/photos/3x2/${i}.jpg`)"
-        >
-          <ui-image-text v-if="controls1.labelsType">Text label</ui-image-text>
-        </ui-image-item>
-      </ui-image-list>
-      <ui-snippet :code="$store.demos[1]"></ui-snippet>
+      <section class="demo-wrapper">
+        <h6 :class="$tt('headline6')">1.1 Standard Image List</h6>
+        <ui-image-list-controls v-model="controls1"></ui-image-list-controls>
+        <div class="demo">
+          <ui-image-list
+            id="standard-image-list"
+            class="standard-image-list"
+            :textProtection="controls1.labelsType === 2"
+          >
+            <ui-image-item
+              v-for="i in 15"
+              :key="i"
+              :bgImage="require(`@/assets/photos/3x2/${i}.jpg`)"
+            >
+              <ui-image-text v-if="controls1.labelsType"
+                >Text label</ui-image-text
+              >
+            </ui-image-item>
+          </ui-image-list>
+        </div>
+        <ui-snippet :code="$store.demos[1]"></ui-snippet>
+      </section>
 
-      <h4 :class="$tt('headline6')">1.2 Masonry Image List</h4>
-      <ui-image-list-controls
-        idPrefix="masonry"
-        v-model="controls2"
-      ></ui-image-list-controls>
-      <ui-image-list
-        type="masonry"
-        id="masonry-image-list"
-        class="masonry-image-list"
-        :textProtection="controls2.labelsType === 2"
-      >
-        <ui-image-item
-          v-for="(item, index) in list"
-          :key="index"
-          :image="require(`@/assets/photos/${item}.jpg`)"
-        >
-          <ui-image-text v-if="controls2.labelsType">
-            Text label
-            <template #action>
-              <ui-icon-button icon="favorite_border"></ui-icon-button>
-            </template>
-          </ui-image-text>
-        </ui-image-item>
-      </ui-image-list>
-      <ui-snippet :code="$store.demos[2]"></ui-snippet>
+      <section class="demo-wrapper">
+        <h6 :class="$tt('headline6')">1.2 Masonry Image List</h6>
+        <ui-image-list-controls
+          idPrefix="masonry"
+          v-model="controls2"
+        ></ui-image-list-controls>
+        <div class="demo">
+          <ui-image-list
+            type="masonry"
+            id="masonry-image-list"
+            class="masonry-image-list"
+            :textProtection="controls2.labelsType === 2"
+          >
+            <ui-image-item
+              v-for="(item, index) in list"
+              :key="index"
+              :image="require(`@/assets/photos/${item}.jpg`)"
+            >
+              <ui-image-text v-if="controls2.labelsType">
+                Text label
+                <template #action>
+                  <ui-icon-button icon="favorite_border"></ui-icon-button>
+                </template>
+              </ui-image-text>
+            </ui-image-item>
+          </ui-image-list>
+        </div>
+        <ui-snippet :code="$store.demos[2]"></ui-snippet>
+      </section>
     </section>
   </ui-page>
 </template>

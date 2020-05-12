@@ -9,6 +9,7 @@
 .mdc-collapse__header {
   display: flex;
   align-items: center;
+  align-self: flex-start;
   margin-bottom: ui-collapse-variables.$header-margin-bottom;
 }
 
@@ -17,7 +18,6 @@
 }
 
 .mdc-collapse__title {
-  flex-grow: 1;
   padding: ui-collapse-variables.$title-padding;
 }
 
@@ -26,6 +26,10 @@
 }
 
 .mdc-collapse--with-icon {
+  .mdc-collapse__header {
+    align-self: auto;
+  }
+
   .mdc-collapse__content {
     padding-left: ui-collapse-variables.$icon-width +
       ui-collapse-variables.$icon-margin-right;

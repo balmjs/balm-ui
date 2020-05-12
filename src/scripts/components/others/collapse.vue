@@ -90,6 +90,8 @@ export default {
   methods: {
     handleToggle() {
       this.isExpanded = !this.isExpanded;
+
+      this.$emit(UI_COLLAPSE.EVENT.CHANGE, this.isExpanded);
     }
   }
 };

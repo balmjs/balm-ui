@@ -26,13 +26,15 @@
     </template>
 
     <!-- Content -->
-    <section class="example">
-      <ui-alert state="success">Success Message</ui-alert>
-      <ui-alert state="info">Info Message</ui-alert>
-      <ui-alert state="warning" closable>Warning Message</ui-alert>
-      <ui-alert state="error">Error Message</ui-alert>
+    <section class="demo-wrapper">
+      <div class="demo">
+        <ui-alert state="success">Success Message</ui-alert>
+        <ui-alert state="info">Info Message</ui-alert>
+        <ui-alert state="warning" closable>Warning Message</ui-alert>
+        <ui-alert state="error">Error Message</ui-alert>
+      </div>
+      <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
-    <ui-snippet :code="$store.demos[1]"></ui-snippet>
   </ui-page>
 </template>
 
@@ -66,6 +68,7 @@ export default {
   },
   data() {
     return {
+      // hero
       StateTypeOptions,
       state: 'success',
       stateOutlined: false,

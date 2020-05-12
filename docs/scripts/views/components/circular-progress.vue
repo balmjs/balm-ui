@@ -5,22 +5,22 @@
     </template>
 
     <!-- Content -->
-    <section class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 Indeterminate</h6>
-      <figure>
+      <div class="demo">
         <ui-circular-progress active></ui-circular-progress>
-      </figure>
+      </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
 
-    <section class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Determinate</h6>
-      <figure>
+      <div class="demo">
         <ui-circular-progress :progress="progress">{{
           progress
         }}</ui-circular-progress>
-        <figcaption>Progress: {{ progress }}</figcaption>
-      </figure>
+        <p>Progress: {{ progress }}</p>
+      </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
   </ui-page>

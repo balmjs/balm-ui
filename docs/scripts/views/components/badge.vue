@@ -4,8 +4,8 @@
       <ui-icon v-badge.overlap="mail">mail</ui-icon>
     </template>
 
-    <section class="example">
-      <div class="badge-example">
+    <section class="demo-wrapper">
+      <div class="demo">
         <ui-badge overlap dot>
           <ui-icon>mail</ui-icon>
         </ui-badge>
@@ -21,8 +21,8 @@
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
 
-    <section class="example">
-      <div class="badge-example">
+    <section class="demo-wrapper">
+      <div class="demo">
         <ui-badge state="success">
           Text1231231
           <template #badge>new</template>

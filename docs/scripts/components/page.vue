@@ -1,5 +1,5 @@
 <template>
-  <div :class="[$tt('body1'), `demo--${name}`]">
+  <div :class="[$tt('body1'), `page--${name}`]">
     <header :class="['hero', type]">
       <slot name="hero"></slot>
     </header>

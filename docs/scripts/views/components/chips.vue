@@ -9,86 +9,94 @@
     </template>
 
     <!-- Content -->
-    <section class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 Input Chips</h6>
-      <ui-textfield
-        outlined
-        v-model="name"
-        class="demo-tf-add-space"
-        id="input-chip-set-input"
-        placeholder="Chip text"
-      ></ui-textfield>
-      <br />
-      <ui-button raised dense id="input-chip-set-button" @click="addOne"
-        >Add Input Chip</ui-button
-      >
-      <ui-button
-        outlined
-        dense
-        id="input-chip-set-delete-button"
-        @click="removeLastOne"
-        >Delete Last Chip</ui-button
-      >
-      <ui-chips type="input" id="input-chip-set" :options="list">
-        <ui-chip
-          v-for="item in list"
-          :key="item.id"
-          icon="face"
-          @remove="removeOneById(item.id)"
-          >{{ item.name }}</ui-chip
+      <div class="demo">
+        <ui-textfield
+          outlined
+          v-model="name"
+          class="demo-tf-add-space"
+          id="input-chip-set-input"
+          placeholder="Chip text"
+        ></ui-textfield>
+        <br />
+        <ui-button raised dense id="input-chip-set-button" @click="addOne"
+          >Add Input Chip</ui-button
         >
-      </ui-chips>
+        <ui-button
+          outlined
+          dense
+          id="input-chip-set-delete-button"
+          @click="removeLastOne"
+          >Delete Last Chip</ui-button
+        >
+        <ui-chips type="input" id="input-chip-set" :options="list">
+          <ui-chip
+            v-for="item in list"
+            :key="item.id"
+            icon="face"
+            @remove="removeOneById(item.id)"
+            >{{ item.name }}</ui-chip
+          >
+        </ui-chips>
+      </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
 
-    <section class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">
         1.2 Choice Chips (selectedIndex: {{ selectedIndex }})
       </h6>
-      <ui-chips v-if="choiceList.length" type="choice" v-model="selectedIndex">
-        <ui-chip v-for="(item, index) in choiceList" :key="index">{{
-          item
-        }}</ui-chip>
-      </ui-chips>
+      <div class="demo">
+        <ui-chips
+          v-if="choiceList.length"
+          type="choice"
+          v-model="selectedIndex"
+        >
+          <ui-chip v-for="(item, index) in choiceList" :key="index">{{
+            item
+          }}</ui-chip>
+        </ui-chips>
+      </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
 
-    <section class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.3 Filter Chips</h6>
-      <h6 :class="$tt('subtitle1')">
-        No leading icon (selectedIndexes: {{ selectedValue }})
-      </h6>
-      <ui-chips type="filter" v-model="selectedValue">
-        <ui-chip v-for="(item, index) in filterList" :key="index">{{
-          item
-        }}</ui-chip>
-      </ui-chips>
+      <div class="demo">
+        <p>No leading icon (selectedIndexes: {{ selectedValue }})</p>
+        <ui-chips type="filter" v-model="selectedValue">
+          <ui-chip v-for="(item, index) in filterList" :key="index">{{
+            item
+          }}</ui-chip>
+        </ui-chips>
 
-      <h6 :class="$tt('subtitle1')">
-        With leading icon (selectedIndexes: {{ selectedValue2 }})
-      </h6>
-      <ui-chips type="filter" v-model="selectedValue2">
-        <ui-chip
-          v-for="(item, index) in filterList2"
-          :key="index"
-          icon="face"
-          :hidden="selectedValue2.includes(index)"
-          >{{ item }}</ui-chip
-        >
-      </ui-chips>
+        <p>With leading icon (selectedIndexes: {{ selectedValue2 }})</p>
+        <ui-chips type="filter" v-model="selectedValue2">
+          <ui-chip
+            v-for="(item, index) in filterList2"
+            :key="index"
+            icon="face"
+            :hidden="selectedValue2.includes(index)"
+            >{{ item }}</ui-chip
+          >
+        </ui-chips>
+      </div>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>
 
-    <section class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.4 Action Chips</h6>
-      <ui-chips>
-        <ui-chip
-          v-for="(item, index) in actionList"
-          :key="index"
-          :icon="item.icon"
-          >{{ item.name }}</ui-chip
-        >
-      </ui-chips>
+      <div class="demo">
+        <ui-chips>
+          <ui-chip
+            v-for="(item, index) in actionList"
+            :key="index"
+            :icon="item.icon"
+            >{{ item.name }}</ui-chip
+          >
+        </ui-chips>
+      </div>
       <ui-snippet :code="$store.demos[4]"></ui-snippet>
     </section>
   </ui-page>

@@ -81,92 +81,100 @@
     </template>
 
     <!-- Content -->
-    <section class="demo-card-collection">
-      <ui-card outlined class="demo-card">
-        <div :class="[$tt('subtitle2'), 'demo-card-article-group-heading']">
-          Headlines
-        </div>
-        <ui-list-divider></ui-list-divider>
-
-        <template v-for="(item, index) in list">
-          <a :key="`item${index}`" class="demo-card-article" v-ripple>
-            <h2 :class="[$tt('headline5'), 'demo-card-article__title']">
-              {{ item.title }}
-            </h2>
-            <p class="demo-card-article__snippet">{{ item.content }}</p>
-          </a>
-          <ui-list-divider :key="`divider${index}`"></ui-list-divider>
-        </template>
-
-        <ui-card-actions fullBleed>
-          <ui-button class="demo-card-action">
-            All Business Headlines
-            <template #after>
-              <ui-icon>arrow_forward</ui-icon>
-            </template>
-          </ui-button>
-        </ui-card-actions>
-      </ui-card>
-    </section>
-    <ui-snippet :code="$store.demos[1]"></ui-snippet>
-
-    <section class="demo-card-collection">
-      <ui-card class="demo-card demo-card--photo">
-        <ui-card-content class="demo-card__primary-action" v-ripple>
-          <ui-card-media square class="demo-card__media">
-            <ui-card-media-content class="demo-card__media-content--with-title">
-              <div :class="[$tt('subtitle2'), 'demo-card__media-title']">
-                Vacation Photos
-              </div>
-            </ui-card-media-content>
-          </ui-card-media>
-        </ui-card-content>
-        <ui-card-actions>
-          <ui-card-icons>
-            <ui-icon-button :toggle="icon1"></ui-icon-button>
-            <ui-icon-button :toggle="icon2"></ui-icon-button>
-            <ui-icon-button icon="share"></ui-icon-button>
-          </ui-card-icons>
-        </ui-card-actions>
-      </ui-card>
-    </section>
-    <ui-snippet :code="$store.demos[2]"></ui-snippet>
-
-    <section class="demo-card-collection">
-      <ui-card class="demo-card demo-card--music">
-        <ui-card-content class="demo-card__primary-action" v-ripple>
-          <div class="demo-card__music-row">
-            <ui-card-media
-              square
-              class="demo-card__media demo-card__media--music"
-            ></ui-card-media>
-            <div class="demo-card__music-info">
-              <div :class="[$tt('headline5'), 'demo-card__music-title']">
-                Rozes
-              </div>
-              <div class="demo-card__music-artist">Under the Grave</div>
-              <div class="demo-card__music-year">(2016)</div>
-            </div>
+    <section class="demo-wrapper">
+      <div class="demo">
+        <ui-card outlined class="demo-card">
+          <div :class="[$tt('subtitle2'), 'demo-card-article-group-heading']">
+            Headlines
           </div>
-        </ui-card-content>
-        <ui-list-divider></ui-list-divider>
-        <ui-card-actions>
-          <ui-card-buttons class="demo-card__action-buttons--text-only"
-            >Rate this album</ui-card-buttons
-          >
-          <ui-card-icons>
-            <ui-icon
-              v-for="i in 5"
-              :key="i"
-              class="demo-card__action-icon--star"
-              :title="`${i} star${i > 1 ? 's' : ''}`"
-              >star_border</ui-icon
-            >
-          </ui-card-icons>
-        </ui-card-actions>
-      </ui-card>
+          <ui-list-divider></ui-list-divider>
+
+          <template v-for="(item, index) in list">
+            <a :key="`item${index}`" class="demo-card-article" v-ripple>
+              <h2 :class="[$tt('headline5'), 'demo-card-article__title']">
+                {{ item.title }}
+              </h2>
+              <p class="demo-card-article__snippet">{{ item.content }}</p>
+            </a>
+            <ui-list-divider :key="`divider${index}`"></ui-list-divider>
+          </template>
+
+          <ui-card-actions fullBleed>
+            <ui-button class="demo-card-action">
+              All Business Headlines
+              <template #after>
+                <ui-icon>arrow_forward</ui-icon>
+              </template>
+            </ui-button>
+          </ui-card-actions>
+        </ui-card>
+      </div>
+      <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
-    <ui-snippet :code="$store.demos[3]"></ui-snippet>
+
+    <section class="demo-wrapper">
+      <div class="demo">
+        <ui-card class="demo-card demo-card--photo">
+          <ui-card-content class="demo-card__primary-action" v-ripple>
+            <ui-card-media square class="demo-card__media">
+              <ui-card-media-content
+                class="demo-card__media-content--with-title"
+              >
+                <div :class="[$tt('subtitle2'), 'demo-card__media-title']">
+                  Vacation Photos
+                </div>
+              </ui-card-media-content>
+            </ui-card-media>
+          </ui-card-content>
+          <ui-card-actions>
+            <ui-card-icons>
+              <ui-icon-button :toggle="icon1"></ui-icon-button>
+              <ui-icon-button :toggle="icon2"></ui-icon-button>
+              <ui-icon-button icon="share"></ui-icon-button>
+            </ui-card-icons>
+          </ui-card-actions>
+        </ui-card>
+      </div>
+      <ui-snippet :code="$store.demos[2]"></ui-snippet>
+    </section>
+
+    <section class="demo-wrapper">
+      <div class="demo">
+        <ui-card class="demo-card demo-card--music">
+          <ui-card-content class="demo-card__primary-action" v-ripple>
+            <div class="demo-card__music-row">
+              <ui-card-media
+                square
+                class="demo-card__media demo-card__media--music"
+              ></ui-card-media>
+              <div class="demo-card__music-info">
+                <div :class="[$tt('headline5'), 'demo-card__music-title']">
+                  Rozes
+                </div>
+                <div class="demo-card__music-artist">Under the Grave</div>
+                <div class="demo-card__music-year">(2016)</div>
+              </div>
+            </div>
+          </ui-card-content>
+          <ui-list-divider></ui-list-divider>
+          <ui-card-actions>
+            <ui-card-buttons class="demo-card__action-buttons--text-only"
+              >Rate this album</ui-card-buttons
+            >
+            <ui-card-icons>
+              <ui-icon
+                v-for="i in 5"
+                :key="i"
+                class="demo-card__action-icon--star"
+                :title="`${i} star${i > 1 ? 's' : ''}`"
+                >star_border</ui-icon
+              >
+            </ui-card-icons>
+          </ui-card-actions>
+        </ui-card>
+      </div>
+      <ui-snippet :code="$store.demos[3]"></ui-snippet>
+    </section>
   </ui-page>
 </template>
 

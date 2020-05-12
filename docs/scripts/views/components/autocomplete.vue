@@ -13,29 +13,33 @@
     </template>
 
     <!-- Content -->
-    <div class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 Static data</h6>
-      <ui-autocomplete
-        v-model="keywords1"
-        :source="source1"
-        placeholder="Try to type"
-      ></ui-autocomplete>
-    </div>
-    <ui-snippet :code="$store.demos[1]"></ui-snippet>
+      <div class="demo">
+        <ui-autocomplete
+          v-model="keywords1"
+          :source="source1"
+          placeholder="Try to type"
+        ></ui-autocomplete>
+      </div>
+      <ui-snippet :code="$store.demos[1]"></ui-snippet>
+    </section>
 
-    <div class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Dynamic data</h6>
-      <ui-autocomplete
-        v-model="keywords2"
-        :source="source2"
-        placeholder="Type 'a', then 'b'"
-        delay="500"
-        remote
-        autofocus
-        @search="onSearch"
-      ></ui-autocomplete>
-    </div>
-    <ui-snippet :code="$store.demos[2]"></ui-snippet>
+      <div class="demo">
+        <ui-autocomplete
+          v-model="keywords2"
+          :source="source2"
+          placeholder="Type 'a', then 'b'"
+          delay="500"
+          remote
+          autofocus
+          @search="onSearch"
+        ></ui-autocomplete>
+      </div>
+      <ui-snippet :code="$store.demos[2]"></ui-snippet>
+    </section>
   </ui-page>
 </template>
 

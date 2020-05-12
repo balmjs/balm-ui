@@ -60,6 +60,10 @@ fieldset {
   }
 }
 
+.demo-wrapper {
+  margin-bottom: 32px;
+}
+
 @media (max-width: global.$mobile-breakpoint) {
   .hero {
     .hero-option {

@@ -31,7 +31,7 @@
         </ui-form-field>
       </div>
 
-      <div class="example">
+      <div class="demo">
         <ui-button :disabled="controls.disabled">Text</ui-button>
         <ui-button outlined :disabled="controls.disabled">Outlined</ui-button>
         <ui-button raised :disabled="controls.disabled">Raised</ui-button>

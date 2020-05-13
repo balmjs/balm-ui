@@ -1,5 +1,28 @@
 # BalmUI ChangeLog
 
+## v6.6.0 / 2020-05-13
+
+### Bug Fixes
+
+- `<ui-collapse>`: bugfix for handleToggle event
+- `<ui-table>`: bugfix for bodyData with actions
+- `<ui-pagination>`: fix css for inner `<ui-select>`
+
+### Features
+
+- `<ui-menu>`: add `distance` prop
+- `<ui-menu-anchor>`: add `absolute` prop
+
+### Chores
+
+- `<ui-collapse>`: update css
+- `v-anchor`: optimize global offset
+
+### BREAKING CHANGES
+
+- `<ui-menu>`: deprecate `margin` prop. Replaced it with `distance` prop
+- `<ui-menu-anchor>`: deprecate `middleValue` prop
+
 ## v6.5.0 / 2020-05-12
 
 ### Features

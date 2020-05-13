@@ -1,5 +1,8 @@
 <template>
-  <div :class="[$tt('body1'), `page--${name}`]" v-anchor="name !== 'anchor'">
+  <div
+    :class="[$tt('body1'), `page--${name}`]"
+    v-anchor.offset="name === 'anchor' ? false : 128"
+  >
     <header :class="['hero', type]">
       <slot name="hero"></slot>
     </header>

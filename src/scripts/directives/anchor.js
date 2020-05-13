@@ -53,7 +53,6 @@ const initAnchor = (el, { value, rawName, modifiers }) => {
     UI_ANCHOR.offset = modifiers.offset
       ? value
       : DEFAULT_BODY.dataset.vanchorOffset || 0;
-    console.log('offset', UI_ANCHOR.offset);
   }
 };
 

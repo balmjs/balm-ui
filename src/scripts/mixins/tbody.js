@@ -117,13 +117,6 @@ export default {
         console.warn(`Invalid tbody cell data: ${currentData}`);
       }
 
-      // Set actions
-      if (this.withActions) {
-        let cell = {};
-        cell[this.T_CELL.ACTIONS] = this.withActions;
-        data.push(cell);
-      }
-
       return data;
     }
   }

@@ -1,34 +1,60 @@
 <template>
-  <ui-grid class="demo">
-    <ui-grid-cell class="yellow" columns="3" align="top">
-      <div v-for="i in 1" :key="i">item {{ i }}</div>
-    </ui-grid-cell>
-    <ui-grid-cell class="yellow" columns="3" align="middle">
-      <div v-for="i in 2" :key="i">item {{ i }}</div>
-    </ui-grid-cell>
-    <ui-grid-cell class="yellow" columns="3" align="bottom">
-      <div v-for="i in 3" :key="i">item {{ i }}</div>
-    </ui-grid-cell>
-    <ui-grid-cell class="yellow" columns="3">
-      <div v-for="i in 4" :key="i">item {{ i }}</div>
-    </ui-grid-cell>
-  </ui-grid>
+  <div class="page--test">
+    <ui-form-field block>
+      <ui-textfield v-model="value">Label</ui-textfield>
+    </ui-form-field>
+    <br />
+    <ui-form-field block>
+      <ui-select v-model="selected" :options="options" defaultLabel="Select"
+        >Label</ui-select
+      >
+    </ui-form-field>
+    result: {{ selected.length }}
+  </div>
 </template>
 
 <script>
-export default {};
+const options = [
+  {
+    label: 'Bread, Cereal, Rice, and Pasta',
+    value: 'grains'
+  },
+  {
+    label: 'Vegetables',
+    value: 'vegetables',
+    disabled: true
+  },
+  {
+    label: 'Fruit',
+    value: 'fruit'
+  },
+  {
+    label: 'Milk, Yogurt, and Cheese',
+    value: 'dairy'
+  },
+  {
+    label: 'Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts',
+    value: 'meat'
+  },
+  {
+    label: 'Fats, Oils, and Sweets',
+    value: 'fats'
+  }
+];
+
+export default {
+  data() {
+    return {
+      value: 'hello',
+      options,
+      selected: ''
+    };
+  }
+};
 </script>
 
 <style>
-.yellow {
-  background: yellow;
-}
-
-.demo {
-  border: 1px solid;
-}
-
-.demo .mdc-layout-grid__inner {
-  background: cyan;
+.page--test {
+  padding: 40px 20px;
 }
 </style>

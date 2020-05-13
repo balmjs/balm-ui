@@ -1,5 +1,11 @@
 # BalmUI ChangeLog
 
+## v6.6.1 / 2020-05-13
+
+### Bug Fixes
+
+- `<ui-select>`: fix floating label bug when the value is empty
+
 ## v6.6.0 / 2020-05-13
 
 ### Bug Fixes

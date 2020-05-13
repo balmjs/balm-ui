@@ -227,7 +227,7 @@ export default {
       if (this.defaultLabel) {
         let defaultOption = {};
         defaultOption[this.optionLabel] = this.defaultLabel;
-        defaultOption[this.optionValue] = this.defaultValue;
+        defaultOption[this.optionValue] = this.defaultValue || ' '; // NOTE: fix floating label bug when the value is empty
         currentOptions.unshift(defaultOption);
       }
       this.currentOptions = currentOptions;
@@ -259,7 +259,8 @@ export default {
       let selected = this.options[index];
       if (this.defaultLabel) {
         let defaultOption = {};
-        defaultOption[this.optionValue] = this.defaultValue;
+        defaultOption[this.optionValue] =
+          this.defaultValue === ' ' ? '' : this.defaultValue; // NOTE: fix floating label bug when the value is empty
         defaultOption[this.optionLabel] = this.defaultLabel;
 
         selected = index === 0 ? defaultOption : this.options[index - 1];

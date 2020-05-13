@@ -1,5 +1,5 @@
 <template>
-  <div class="mdc-menu-surface--anchor" :style="positionStyle">
+  <div :class="className" :style="positionStyle">
     <slot></slot>
   </div>
 </template>
@@ -20,12 +20,18 @@ export default {
   props: {
     // UI attributes
     position: String,
-    middleValue: {
-      type: String,
-      default: '45%'
+    absolute: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
+    className() {
+      return {
+        'mdc-menu-surface--anchor': true,
+        'mdc-menu-surface--absolute': this.absolute
+      };
+    },
     positionStyle() {
       let result = '';
       let anchorPosition = this.position;
@@ -35,7 +41,7 @@ export default {
           let positions = anchorPosition.split(' ');
 
           if (positions[0] === 'middle') {
-            result = `top:${this.middleValue};${positions[1]}:0`;
+            result = `top:50%;${positions[1]}:0;transform:translateY(-50%);`;
           } else {
             result = positions.map((position) => `${position}:0`).join(';');
           }

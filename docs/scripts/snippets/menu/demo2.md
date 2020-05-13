@@ -1,6 +1,6 @@
 ```html
 <div class="demo-content">
-  <ui-menu-anchor>
+  <ui-menu-anchor absolute>
     <ui-button raised @click="$balmUI.onOpen('open')">Show Menu</ui-button>
 
     <ui-menu v-model="open" @selected="onSelected" @cancel="onCancel">

@@ -109,20 +109,20 @@ export default {
       default: false
     },
     // UI attributes
-    cssOnly: {
-      type: Boolean,
-      default: false
-    },
     position: {
       type: String,
       default: 'TOP_LEFT'
     },
-    margin: String,
+    distance: Object,
     fixed: {
       type: Boolean,
       default: false
     },
     fullwidth: {
+      type: Boolean,
+      default: false
+    },
+    cssOnly: {
       type: Boolean,
       default: false
     }
@@ -161,7 +161,7 @@ export default {
     position(val) {
       this.setAnchorCorner(val);
     },
-    margin(val) {
+    distance(val) {
       this.setAnchorMargin(val);
     }
   },
@@ -221,14 +221,9 @@ export default {
         }
       }
     },
-    setAnchorMargin(anchorMargin = this.margin) {
-      if (this.hasAnchor() && anchorMargin) {
-        let margin = {};
-        let anchorMargins = anchorMargin.split(' ');
-        ['top', 'right', 'bottom', 'left'].forEach((value, index) => {
-          margin[value] = anchorMargins[index] ? +anchorMargins[index] : 0;
-        });
-        this.$menu.setAnchorMargin(margin);
+    setAnchorMargin(distance = this.distance) {
+      if (this.hasAnchor() && distance) {
+        this.$menu.setAnchorMargin(distance);
       }
     }
   }

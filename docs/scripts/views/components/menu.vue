@@ -22,18 +22,20 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 Simple</h6>
       <div class="demo-content">
-        <ui-button @click="$balmUI.onOpen('open1')">Open Menu</ui-button>
-        <ui-menu
-          v-model="open1"
-          :items="[
-            'Back',
-            'Forward',
-            'Reload',
-            '-',
-            'Help &amp; Feedback',
-            'Settings'
-          ]"
-        ></ui-menu>
+        <ui-menu-anchor>
+          <ui-button @click="$balmUI.onOpen('open1')">Open Menu</ui-button>
+          <ui-menu
+            v-model="open1"
+            :items="[
+              'Back',
+              'Forward',
+              'Reload',
+              '-',
+              'Help &amp; Feedback',
+              'Settings'
+            ]"
+          ></ui-menu>
+        </ui-menu-anchor>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
@@ -100,7 +102,7 @@
             </ui-form-field>
           </div>
           <div class="right-column-controls">
-            Default Menu Position:
+            Menu Anchor Corner:
             <ui-form-field block>
               <ui-radio
                 id="menu-position-top-start"
@@ -138,51 +140,41 @@
               <label for="menu-position-bottom-end">Bottom end</label>
             </ui-form-field>
           </div>
-          <div class="margin-controls">
-            Anchor Margins:
+          <div class="distance-controls">
+            Menu Distance:
             <ui-form-field block>
-              <ui-textfield id="top-margin" v-model="controls.anchorMargin.top"
-                >Top:</ui-textfield
+              <ui-textfield v-model="controls.distance.top">Top:</ui-textfield>
+              <ui-textfield v-model="controls.distance.right"
+                >Right:</ui-textfield
               >
-              <ui-textfield
-                id="bottom-margin"
-                v-model="controls.anchorMargin.bottom"
+              <ui-textfield v-model="controls.distance.bottom"
                 >Bottom:</ui-textfield
               >
-              <ui-textfield
-                id="left-margin"
-                v-model="controls.anchorMargin.left"
-                >Lelf:</ui-textfield
-              >
-              <ui-textfield
-                id="right-margin"
-                v-model="controls.anchorMargin.right"
-                >Right:</ui-textfield
+              <ui-textfield v-model="controls.distance.left"
+                >Left:</ui-textfield
               >
             </ui-form-field>
           </div>
-          <ui-form-field block>
-            <ui-checkbox id="is-rtl" v-model="controls.rtl"></ui-checkbox>
-            <label for="is-rtl">RTL</label>
-          </ui-form-field>
-          <ui-form-field block>
-            <ui-checkbox
-              id="animation"
-              v-model="controls.disableAnimation"
-            ></ui-checkbox>
-            <label for="animation">Disable Open Animation</label>
-          </ui-form-field>
-          <ui-form-field block>
-            <ui-checkbox
-              id="fixed-position"
-              v-model="controls.fixedPosition"
-            ></ui-checkbox>
-            <label for="fixed-position">Fixed Position Menu Surface</label>
-          </ui-form-field>
-          <!-- <ui-form-field block>
-              <ui-checkbox id="right-click" v-model="controls.rightClick"></ui-checkbox>
-              <label for="right-click">Enable Right-Click Menu Surface</label>
-            </ui-form-field>-->
+          <div class="other-controls">
+            <ui-form-field block>
+              <ui-checkbox v-model="controls.rtl"></ui-checkbox>
+              <label for="is-rtl">RTL</label>
+            </ui-form-field>
+            <ui-form-field block>
+              <ui-checkbox
+                id="animation"
+                v-model="controls.disableAnimation"
+              ></ui-checkbox>
+              <label for="animation">Disable Open Animation</label>
+            </ui-form-field>
+            <ui-form-field block>
+              <ui-checkbox
+                id="fixed-position"
+                v-model="controls.fixedPosition"
+              ></ui-checkbox>
+              <label for="fixed-position">Fixed Position Menu Surface</label>
+            </ui-form-field>
+          </div>
           <hr />
           <div>
             <span>
@@ -199,7 +191,7 @@
         </div>
 
         <div class="demo" :dir="controls.rtl ? 'rtl' : null">
-          <ui-menu-anchor :position="controls.buttonPosition">
+          <ui-menu-anchor absolute :position="controls.buttonPosition">
             <ui-button
               raised
               class="demo-button demo-button--normal"
@@ -211,7 +203,8 @@
               id="demo-menu"
               v-model="open2"
               :position="menuPosition"
-              :margin="anchorMargin"
+              :distance="controls.distance"
+              :point="controls.point"
               :quickOpen="controls.disableAnimation"
               :fixed="controls.fixedPosition"
               @selected="onSelected"
@@ -281,7 +274,7 @@ export default {
       controls: {
         buttonPosition: 'top left',
         menuPosition: 'top start',
-        anchorMargin: {
+        distance: {
           top: 0,
           bottom: 0,
           left: 0,
@@ -289,17 +282,13 @@ export default {
         },
         rtl: false,
         disableAnimation: false,
-        fixedPosition: false,
-        rightClick: false
+        fixedPosition: false
       }
     };
   },
   computed: {
     menuPosition() {
       return this.controls.menuPosition.toUpperCase().split(' ').join('_');
-    },
-    anchorMargin() {
-      return `${this.controls.anchorMargin.top} ${this.controls.anchorMargin.right} ${this.controls.anchorMargin.bottom} ${this.controls.anchorMargin.left}`;
     }
   },
   methods: {

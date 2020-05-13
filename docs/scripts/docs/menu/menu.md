@@ -9,11 +9,11 @@
 | `open` (`v-model`) | boolean | `false`      | Mandatory.                                                                                                        |
 | `items`            | array   | `[]`         | Menu items.                                                                                                       |
 | `quickOpen`        | boolean | `false`      | Turn off menu open animations.                                                                                    |
-| `cssOnly`          | boolean | `false`      | Show static menu.                                                                                                 |
 | `position`         | string  | `'TOP_LEFT'` | Menu position to the menu button.                                                                                 |
-| `margin`           | string  | `null`       | Anchor margin. Value: `top(px) right(px) bottom(px) left(px)`.                                                    |
+| `distance`         | object  | `null`       | Anchor margin. Value format: `{ top, right, bottom, left }`.                                                      |
 | `fixed`            | boolean | `false`      | Used to indicate that the menu is using fixed positioning.                                                        |
 | `fullwidth`        | boolean | `false`      | Sets the menu surface's width to match that of its parent anchor. Do not use with `fixed` or if hoisting to body. |
+| `cssOnly`          | boolean | `false`      | Show static menu.                                                                                                 |
 
 - Anchor corners: `TOP_LEFT`, `TOP_RIGHT`, `BOTTOM_LEFT`, `BOTTOM_RIGHT`, `TOP_START`, `TOP_END`, `BOTTOM_START`, `BOTTOM_END`.
 

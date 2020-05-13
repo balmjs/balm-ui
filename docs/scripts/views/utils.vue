@@ -1,5 +1,5 @@
 <template>
-  <div :class="[$tt('body1'), 'demo--utils']">
+  <div :class="[$tt('body1'), 'page--utils']">
     <div :class="[$tt('body2'), 'pure-docs']">
       <ui-markdown :text="docs"></ui-markdown>
     </div>

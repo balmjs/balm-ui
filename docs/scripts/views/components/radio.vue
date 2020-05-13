@@ -9,13 +9,13 @@
     </template>
 
     <!-- Content -->
-    <section class="example">
+    <section class="demo-wrapper">
       <ui-radio-demo></ui-radio-demo>
     </section>
 
-    <section class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">Disabled</h6>
-      <div>
+      <div class="demo">
         <ui-form-field>
           <ui-radio
             id="ex4a-radio1"
@@ -39,16 +39,23 @@
       </div>
     </section>
 
-    <section class="example">
-      <ui-form-field>
-        <ui-radio id="male" name="sex" value="M" v-model="gender"></ui-radio>
-        <label for="male">Male</label>
-      </ui-form-field>
-      <ui-form-field>
-        <ui-radio id="female" name="sex" value="F" v-model="gender"></ui-radio>
-        <label for="female">Female</label>
-      </ui-form-field>
-      <p>Gender: {{ gender }}</p>
+    <section class="demo-wrapper">
+      <div class="demo">
+        <ui-form-field>
+          <ui-radio id="male" name="sex" value="M" v-model="gender"></ui-radio>
+          <label for="male">Male</label>
+        </ui-form-field>
+        <ui-form-field>
+          <ui-radio
+            id="female"
+            name="sex"
+            value="F"
+            v-model="gender"
+          ></ui-radio>
+          <label for="female">Female</label>
+        </ui-form-field>
+        <p>Gender: {{ gender }}</p>
+      </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
   </ui-page>

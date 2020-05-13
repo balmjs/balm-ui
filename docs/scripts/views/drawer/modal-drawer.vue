@@ -1,5 +1,5 @@
 <template>
-  <div class="demo-container demo--drawer demo--modal-drawer">
+  <div class="demo-container page--drawer page--modal-drawer">
     <!-- Drawer -->
     <ui-drawer type="modal" v-model="open" navId="demo-menu">
       <ui-drawer-header>

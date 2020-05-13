@@ -1,5 +1,5 @@
 <template>
-  <div :class="[$tt('body1'), `page--${name}`]">
+  <div :class="[$tt('body1'), `page--${name}`]" v-anchor="name !== 'anchor'">
     <header :class="['hero', type]">
       <slot name="hero"></slot>
     </header>

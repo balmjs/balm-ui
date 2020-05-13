@@ -1,6 +1,6 @@
 @use '../global/index' as global;
 
-.demo--top-app-bar {
+.page--top-app-bar {
   width: 100%;
 
   .toc-affix {
@@ -23,11 +23,4 @@
     margin: 0;
     box-sizing: border-box;
   }
-
-  // .demo-main {
-  //   padding-left: 16px;
-  //   padding-right: 16px;
-  //   padding-bottom: 16px;
-  //   overflow: auto;
-  // }
 }

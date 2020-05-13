@@ -1,5 +1,5 @@
 <template>
-  <div class="demo--top-app-bar">
+  <div class="page--top-app-bar">
     <!-- navId="demo-menu" -->
     <ui-top-app-bar
       contentSelector="#content-main"
@@ -72,22 +72,24 @@
         </template>
 
         <!-- Content -->
-        <div class="demo-controls">
-          <ui-select :options="TypeOptions" v-model="typeOption"
-            >Type</ui-select
-          >
-          <ui-textfield v-model="title">Title</ui-textfield>
-        </div>
-        <p v-for="i in 12" :key="i" class="demo-paragraph">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-        <ui-snippet :code="$store.demos[1]"></ui-snippet>
+        <section class="demo-wrapper">
+          <div class="demo-controls">
+            <ui-select :options="TypeOptions" v-model="typeOption"
+              >Type</ui-select
+            >
+            <ui-textfield v-model="title">Title</ui-textfield>
+          </div>
+          <p v-for="i in 12" :key="i" class="demo-paragraph">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <ui-snippet :code="$store.demos[1]"></ui-snippet>
+        </section>
       </ui-page>
     </div>
   </div>

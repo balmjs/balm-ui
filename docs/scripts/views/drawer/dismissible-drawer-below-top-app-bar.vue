@@ -1,6 +1,6 @@
 <template>
   <div
-    class="demo-container demo--drawer demo--dismissible-drawer-below-top-app-bar"
+    class="demo-container page--drawer page--dismissible-drawer-below-top-app-bar"
   >
     <!-- App bar -->
     <ui-top-app-bar

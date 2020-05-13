@@ -1,5 +1,5 @@
 <template>
-  <section class="example">
+  <section class="demo-wrapper">
     <h6 :class="$tt('headline6')">1.3 Tab Scroller</h6>
 
     <div class="demo">

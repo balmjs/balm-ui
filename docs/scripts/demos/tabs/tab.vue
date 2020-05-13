@@ -1,5 +1,5 @@
 <template>
-  <section class="example">
+  <section class="demo-wrapper">
     <h6 :class="$tt('headline6')">1.1 Tabs</h6>
 
     <h6 :class="$tt('subtitle1')">Text Label</h6>

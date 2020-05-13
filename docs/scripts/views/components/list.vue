@@ -46,8 +46,8 @@
     </template>
 
     <!-- Content -->
-    <div id="demo-wrapper">
-      <h4 :class="$tt('headline6')">1.1 Single-Line</h4>
+    <section class="demo-wrapper">
+      <h6 :class="$tt('headline6')">1.1 Single-Line</h6>
       <ui-list>
         <ui-item v-for="i in items" :key="i">
           <ui-item-text-content>Line item</ui-item-text-content>
@@ -55,7 +55,7 @@
       </ui-list>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
 
-      <h4 :class="$tt('headline6')">1.2 Two-Line</h4>
+      <h6 :class="$tt('headline6')">1.2 Two-Line</h6>
       <ui-list :type="2">
         <ui-item v-for="i in items" :key="i">
           <ui-item-text-content>
@@ -66,7 +66,7 @@
       </ui-list>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
 
-      <h4 :class="$tt('headline6')">1.3 Leading Icon</h4>
+      <h6 :class="$tt('headline6')">1.3 Leading Icon</h6>
       <ui-list>
         <ui-item v-for="(item, index) in items1" :key="index">
           <ui-item-first-content>
@@ -77,9 +77,9 @@
       </ui-list>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
 
-      <h4 :class="$tt('headline6')">
+      <h6 :class="$tt('headline6')">
         1.4 List with activated item (Selected Index: {{ selectedIndex }})
-      </h4>
+      </h6>
       <ui-list singleSelection v-model="selectedIndex">
         <ui-item v-for="(item, index) in items2" :key="index">
           <ui-item-first-content>
@@ -90,7 +90,7 @@
       </ui-list>
       <ui-snippet :code="$store.demos[4]"></ui-snippet>
 
-      <h4 :class="$tt('headline6')">1.5 Trailing Icon</h4>
+      <h6 :class="$tt('headline6')">1.5 Trailing Icon</h6>
       <ui-list>
         <ui-item v-for="i in items" :key="i">
           <ui-item-text-content>Line item</ui-item-text-content>
@@ -101,9 +101,9 @@
       </ui-list>
       <ui-snippet :code="$store.demos[5]"></ui-snippet>
 
-      <h4 :class="$tt('headline6')">
+      <h6 :class="$tt('headline6')">
         1.6 Two-Line with Leading and Trailing Icon and Divider
-      </h4>
+      </h6>
       <ui-list :type="2" avatar>
         <template v-for="(item, index) in items3">
           <ui-item-divider v-if="item === '-'" :key="index"></ui-item-divider>
@@ -123,9 +123,9 @@
       </ui-list>
       <ui-snippet :code="$store.demos[6]"></ui-snippet>
 
-      <h4 :class="$tt('headline6')">
+      <h6 :class="$tt('headline6')">
         1.7 List with Trailing Checkbox (Checked values: {{ checkedValues }})
-      </h4>
+      </h6>
       <ui-list role="group">
         <template v-for="(item, index) in items3">
           <ui-item-divider v-if="item === '-'" :key="index"></ui-item-divider>
@@ -143,10 +143,10 @@
       </ui-list>
       <ui-snippet :code="$store.demos[7]"></ui-snippet>
 
-      <h4 :class="$tt('headline6')">
+      <h6 :class="$tt('headline6')">
         1.8 List with Trailing Radio Buttons (Checked value:
         {{ checkedValue }})
-      </h4>
+      </h6>
       <ui-list role="radiogroup">
         <template v-for="(item, index) in items3">
           <ui-item-divider v-if="item === '-'" :key="index"></ui-item-divider>
@@ -163,7 +163,7 @@
         </template>
       </ui-list>
       <ui-snippet :code="$store.demos[8]"></ui-snippet>
-    </div>
+    </section>
   </ui-page>
 </template>
 

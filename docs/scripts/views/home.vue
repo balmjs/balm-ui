@@ -1,5 +1,5 @@
 <template>
-  <div :class="[$tt('body1'), 'demo--home']">
+  <div :class="[$tt('body1'), 'page--home']">
     <section class="hero" v-ripple.unbounded>
       <h1 :class="$tt('headline1')">BalmUI</h1>
     </section>

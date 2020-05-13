@@ -5,62 +5,69 @@
     </template>
 
     <!-- Content -->
-    <section class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 Default Usage</h6>
-      <ui-pagination
-        v-model="page1"
-        :pageSize="pageSize1"
-        :total="total1"
-        showJumper
-        jumperBeforeText="Goto"
-        jumperAfterText="page"
-        jumperButtonText="Go"
-      ></ui-pagination>
+      <div class="demo">
+        <ui-pagination
+          v-model="page1"
+          :pageSize="pageSize1"
+          :total="total1"
+          showJumper
+          jumperBeforeText="Goto"
+          jumperAfterText="page"
+          jumperButtonText="Go"
+        ></ui-pagination>
+      </div>
+      <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
-    <ui-snippet :code="$store.demos[1]"></ui-snippet>
 
-    <section class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Custom Record</h6>
-      <ui-pagination
-        v-model="page2"
-        :pageSize="pageSize2"
-        :total="total2"
-        position="right"
-      >
-        <template
-          #before="{ recordClass, pageCount, currentMinRow, currentMaxRow }"
+      <div class="demo">
+        <ui-pagination
+          v-model="page2"
+          :pageSize="pageSize2"
+          :total="total2"
+          position="right"
         >
-          <ui-form-field :class="recordClass">
-            <label for="per-page-rows">Rows per page:</label>
-            <ui-select
-              outlined
-              noLabel
-              id="per-page-rows"
-              v-model="pageSize2"
-              :options="pageSizeOptions"
-            ></ui-select>
-            <span>
-              {{ currentMinRow }}-{{ currentMaxRow }} of {{ total2 }}
-            </span>
-          </ui-form-field>
-        </template>
-      </ui-pagination>
+          <template
+            #before="{ recordClass, pageCount, currentMinRow, currentMaxRow }"
+          >
+            <ui-form-field :class="recordClass">
+              <label for="per-page-rows">Rows per page:</label>
+              <ui-select
+                outlined
+                noLabel
+                fullwidth
+                id="per-page-rows"
+                v-model="pageSize2"
+                :options="pageSizeOptions"
+              ></ui-select>
+              <span>
+                {{ currentMinRow }}-{{ currentMaxRow }} of {{ total2 }}
+              </span>
+            </ui-form-field>
+          </template>
+        </ui-pagination>
+      </div>
+      <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
-    <ui-snippet :code="$store.demos[2]"></ui-snippet>
 
-    <section class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.3 Mini Mode</h6>
-      <ui-pagination
-        mini
-        v-model="page3"
-        :total="total"
-        prev="Prev"
-        next="Next"
-      >
-        <span>Page {{ page3 }}</span>
-      </ui-pagination>
+      <div class="demo">
+        <ui-pagination
+          mini
+          v-model="page3"
+          :total="total"
+          prev="Prev"
+          next="Next"
+        >
+          <span>Page {{ page3 }}</span>
+        </ui-pagination>
+      </div>
+      <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>
-    <ui-snippet :code="$store.demos[3]"></ui-snippet>
   </ui-page>
 </template>
 

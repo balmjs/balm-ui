@@ -79,97 +79,103 @@
     </template>
 
     <!-- Content -->
-    <section class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 Fully-Featured JS Component</h6>
-      <section id="demo-wrapper" :dir="controls.rtl ? 'rtl' : null">
-        <ui-select
-          id="full-func-js-select"
-          v-model="selected1.value"
-          :selectedIndex="selected1.index"
-          :options="options1"
-          :class="{ 'demo-select-custom-colors': controls.customColor }"
-          :disabled="controls.disabled"
-          @selected="onSelected($event, 1)"
-          >Food Group</ui-select
-        >
-      </section>
-      <p>
-        Currently selected:
-        <span id="currently-selected">{{
-          selected1.value
-            ? `${selected1.value} at index ${selected1.index}`
-            : '(none)'
-        }}</span>
-      </p>
-      <ui-select-controls v-model="controls"></ui-select-controls>
-      <div class="button-container">
-        <ui-button raised id="set-value-meat-button" @click="onClick"
-          >Set Value to Meat</ui-button
-        >
+      <div class="demo">
+        <div class="example" :dir="controls.rtl ? 'rtl' : null">
+          <ui-select
+            id="full-func-js-select"
+            v-model="selected1.value"
+            :selectedIndex="selected1.index"
+            :options="options1"
+            :class="{ 'demo-select-custom-colors': controls.customColor }"
+            :disabled="controls.disabled"
+            @selected="onSelected($event, 1)"
+            >Food Group</ui-select
+          >
+        </div>
+        <p>
+          Currently selected:
+          <span id="currently-selected">{{
+            selected1.value
+              ? `${selected1.value} at index ${selected1.index}`
+              : '(none)'
+          }}</span>
+        </p>
+        <ui-select-controls v-model="controls"></ui-select-controls>
+        <div class="button-container">
+          <ui-button raised id="set-value-meat-button" @click="onClick"
+            >Set Value to Meat</ui-button
+          >
+        </div>
       </div>
+      <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
-    <ui-snippet :code="$store.demos[1]"></ui-snippet>
 
-    <section class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Outlined Select</h6>
-      <section :dir="controls.rtl ? 'rtl' : null">
-        <ui-select
-          id="outlined-select"
-          outlined
-          v-model="selected1.value"
-          :selectedIndex="selected1.index"
-          :options="options1"
-          :class="{ 'demo-select-custom-colors': controls.customColor }"
-          :disabled="controls.disabled"
-          @selected="onSelected($event, 1)"
-          >Food Group</ui-select
-        >
-      </section>
-      <p>
-        Currently selected:
-        <span id="currently-selected-outline">{{
-          selected1.value
-            ? `${selected1.value} at index ${selected1.index}`
-            : '(none)'
-        }}</span>
-      </p>
-      <ui-select-controls
-        idPrefix="outline"
-        v-model="controls"
-      ></ui-select-controls>
+      <div class="demo">
+        <div class="example" :dir="controls.rtl ? 'rtl' : null">
+          <ui-select
+            id="outlined-select"
+            outlined
+            v-model="selected1.value"
+            :selectedIndex="selected1.index"
+            :options="options1"
+            :class="{ 'demo-select-custom-colors': controls.customColor }"
+            :disabled="controls.disabled"
+            @selected="onSelected($event, 1)"
+            >Food Group</ui-select
+          >
+        </div>
+        <p>
+          Currently selected:
+          <span id="currently-selected-outline">{{
+            selected1.value
+              ? `${selected1.value} at index ${selected1.index}`
+              : '(none)'
+          }}</span>
+        </p>
+        <ui-select-controls
+          idPrefix="outline"
+          v-model="controls"
+        ></ui-select-controls>
+      </div>
+      <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
-    <ui-snippet :code="$store.demos[2]"></ui-snippet>
 
-    <section class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.3 Pre-selected option via HTML</h6>
-      <section>
+      <div class="demo">
         <ui-select
           id="select-preselected"
           v-model="selected3"
           :options="options2"
           >Food Group</ui-select
         >
-      </section>
+      </div>
+      <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>
-    <ui-snippet :code="$store.demos[3]"></ui-snippet>
 
-    <section class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.4 Custom Select</h6>
-      <ui-select
-        defaultLabel="Province"
-        :options="provinces"
-        v-model="formData.province"
-        @change="onChangeProvince($event)"
-      ></ui-select>
+      <div class="demo">
+        <ui-select
+          defaultLabel="Province"
+          :options="provinces"
+          v-model="formData.province"
+          @change="onChangeProvince($event)"
+        ></ui-select>
 
-      <ui-select
-        defaultLabel="City"
-        :options="cities"
-        v-model="formData.city"
-      ></ui-select>
-      <p>Province: {{ formData.province }} - City: {{ formData.city }}</p>
+        <ui-select
+          defaultLabel="City"
+          :options="cities"
+          v-model="formData.city"
+        ></ui-select>
+        <p>Province: {{ formData.province }} - City: {{ formData.city }}</p>
+      </div>
+      <ui-snippet :code="$store.demos[4]"></ui-snippet>
     </section>
-    <ui-snippet :code="$store.demos[4]"></ui-snippet>
   </ui-page>
 </template>
 

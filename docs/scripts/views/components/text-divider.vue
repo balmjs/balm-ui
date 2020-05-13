@@ -17,25 +17,29 @@
     </template>
 
     <!-- Content -->
-    <section class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 Default Usage</h6>
-      <ui-text-divider>Text</ui-text-divider>
+      <div class="demo">
+        <ui-text-divider>Text</ui-text-divider>
+      </div>
+      <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
-    <ui-snippet :code="$store.demos[1]"></ui-snippet>
 
-    <section class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Vertical Divider</h6>
-      <ui-text-divider type="|" class="vertical-divider-demo">
-        <template #left>
-          <div class="block red"></div>
-        </template>
-        or
-        <template #right>
-          <div class="block blue"></div>
-        </template>
-      </ui-text-divider>
+      <div class="demo">
+        <ui-text-divider type="|" class="vertical-divider-demo">
+          <template #left>
+            <div class="block red"></div>
+          </template>
+          or
+          <template #right>
+            <div class="block blue"></div>
+          </template>
+        </ui-text-divider>
+      </div>
+      <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
-    <ui-snippet :code="$store.demos[2]"></ui-snippet>
   </ui-page>
 </template>
 

@@ -1,5 +1,4 @@
-.demo--snackbar {
-
+.page--snackbar {
   /* initialize it off screen. */
   .loading .example .mdc-snackbar {
     transform: translateY(200%);
@@ -13,14 +12,5 @@
 
   .hero .mdc-snackbar--active {
     transform: none;
-  }
-
-  .field {
-    padding-top: 8px;
-    padding-bottom: 8px;
-  }
-
-  .demo-activate-button {
-    margin-top: 14px;
   }
 }

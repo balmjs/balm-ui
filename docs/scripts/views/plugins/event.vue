@@ -5,7 +5,7 @@
     </template>
 
     <!-- Content -->
-    <div class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 onChange</h6>
       <ui-grid>
         <ui-grid-cell columns="6">
@@ -37,9 +37,9 @@
           <ui-snippet :code="$store.demos[2]"></ui-snippet>
         </ui-grid-cell>
       </ui-grid>
-    </div>
+    </section>
 
-    <div class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 onShow/onHide</h6>
       <ui-grid>
         <ui-grid-cell columns="6">
@@ -80,7 +80,7 @@
           <ui-snippet :code="$store.demos[4]"></ui-snippet>
         </ui-grid-cell>
       </ui-grid>
-    </div>
+    </section>
   </ui-page>
 </template>
 

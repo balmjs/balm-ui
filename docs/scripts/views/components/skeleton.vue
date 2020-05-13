@@ -5,36 +5,45 @@
     </template>
 
     <!-- Content -->
-    <div class="demo-wrapper">
-      <h6 :class="$tt('headline6')">1.1 Basic</h6>
-      <ui-skeleton></ui-skeleton>
-    </div>
-    <ui-snippet :code="$store.demos[1]"></ui-snippet>
+    <section class="demo-wrapper">
+      <div class="demo">
+        <h6 :class="$tt('headline6')">1.1 Basic</h6>
+        <ui-skeleton></ui-skeleton>
+      </div>
+      <ui-snippet :code="$store.demos[1]"></ui-snippet>
+    </section>
 
-    <div class="demo-wrapper">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Complex combination</h6>
-      <ui-skeleton avatar :paragraph="{ rows: 4 }"></ui-skeleton>
-    </div>
-    <ui-snippet :code="$store.demos[2]"></ui-snippet>
+      <div class="demo">
+        <ui-skeleton avatar :paragraph="{ rows: 4 }"></ui-skeleton>
+      </div>
+      <ui-snippet :code="$store.demos[2]"></ui-snippet>
+    </section>
 
-    <div class="demo-wrapper">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">
         1.3 Active animation (Loading: {{ loading }})
       </h6>
-      <p>
-        <ui-switch v-model="loading"></ui-switch>
+      <p class="demo-controls">
+        <ui-form-field>
+          <ui-switch id="demo-loading" v-model="loading"></ui-switch>
+          <label for="demo-loading">Loading</label>
+        </ui-form-field>
       </p>
-      <ui-skeleton
-        v-model="loading"
-        active
-        :avatar="{ size: 'large', shape: 'square' }"
-      >
-        <ui-list>
-          <ui-item v-for="i in 3" :key="i">Hello BalmJS {{ i }}</ui-item>
-        </ui-list>
-      </ui-skeleton>
-    </div>
-    <ui-snippet :code="$store.demos[3]"></ui-snippet>
+      <div class="demo">
+        <ui-skeleton
+          v-model="loading"
+          active
+          :avatar="{ size: 'large', shape: 'square' }"
+        >
+          <ui-list>
+            <ui-item v-for="i in 3" :key="i">Hello BalmJS {{ i }}</ui-item>
+          </ui-list>
+        </ui-skeleton>
+      </div>
+      <ui-snippet :code="$store.demos[3]"></ui-snippet>
+    </section>
   </ui-page>
 </template>
 

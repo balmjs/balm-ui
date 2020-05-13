@@ -1,5 +1,5 @@
 <template>
-  <div class="demo--bottom-navigation-container">
+  <div class="page--bottom-navigation-container">
     <ui-top-app-bar contentSelector=".demo-content">
       <template #nav-icon="{ navIconClass }">
         <ui-icon-button
@@ -22,7 +22,7 @@
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </ui-page>
 
-    <ui-bottom-navigation contentSelector=".demo--bottom-navigation-container">
+    <ui-bottom-navigation contentSelector=".page--bottom-navigation-container">
       <ui-tabs :items="items" v-model="active" @change="onChange"></ui-tabs>
     </ui-bottom-navigation>
   </div>

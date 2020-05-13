@@ -1,5 +1,5 @@
 <template>
-  <div :class="[$tt('body1'), 'demo--test']">
+  <div :class="[$tt('body1'), 'page--test']">
     <p>Value1: {{ typeof value }} {{ value }}</p>
     <p>Value2: {{ typeof value }} {{ value2 }}</p>
     <hr />

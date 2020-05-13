@@ -1,5 +1,5 @@
 <template>
-  <section class="example">
+  <section class="demo-wrapper">
     <h6 :class="$tt('headline6')">1.4 Tab Panel</h6>
 
     <ui-tabs v-model="active">

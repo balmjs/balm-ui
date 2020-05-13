@@ -10,43 +10,47 @@
     </template>
 
     <!-- Content -->
-    <section class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 Default Usage</h6>
-      <ui-table :data="heroData" :thead="thead1" :tbody="tbody1"></ui-table>
+      <div class="demo">
+        <ui-table :data="heroData" :thead="thead1" :tbody="tbody1"></ui-table>
+      </div>
+      <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
-    <ui-snippet :code="$store.demos[1]"></ui-snippet>
 
-    <section class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Advanced Usage</h6>
       <p>
         Selected rows: {{ selectedRows }} ( Selected key: {{ selectedKey }})
       </p>
-      <ui-table
-        fullwidth
-        rowCheckbox
-        :data="data"
-        :thead="thead2"
-        :tbody="tbody2"
-        :tfoot="tfoot"
-        v-model="selectedRows"
-        :selectedKey="selectedKey"
-      >
-        <template #actions="{ data }">
-          <ui-icon @click="show(data)">description</ui-icon>
-          <ui-icon @click="show(data)">edit</ui-icon>
-          <ui-icon @click="show(data)">delete</ui-icon>
-        </template>
-      </ui-table>
+      <div class="demo">
+        <ui-table
+          fullwidth
+          rowCheckbox
+          :data="data"
+          :thead="thead2"
+          :tbody="tbody2"
+          :tfoot="tfoot"
+          v-model="selectedRows"
+          :selectedKey="selectedKey"
+        >
+          <template #actions="{ data }">
+            <ui-icon @click="show(data)">description</ui-icon>
+            <ui-icon @click="show(data)">edit</ui-icon>
+            <ui-icon @click="show(data)">delete</ui-icon>
+          </template>
+        </ui-table>
 
-      <!-- <br /><br />
+        <!-- <br /><br />
       <ui-pagination
         v-model="page"
         :pageSize="8"
         :total="12"
         @change="onPage"
       ></ui-pagination> -->
+      </div>
+      <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
-    <ui-snippet :code="$store.demos[2]"></ui-snippet>
   </ui-page>
 </template>
 

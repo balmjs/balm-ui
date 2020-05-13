@@ -1,8 +1,4 @@
-.demo--textfield {
-  input[type='checkbox']:disabled + label {
-    opacity: 0.4;
-  }
-
+.page--textfield {
   .hero .mdc-text-field {
     min-width: 240px;
   }
@@ -16,10 +12,8 @@
     }
   }
 
-  .demo-note {
-    padding: 20px;
-    margin: 20px 0;
-    background-color: #f2f2f2;
+  .demo-with-icon {
+    margin-bottom: 16px;
   }
 
   .full-width-textarea-example {

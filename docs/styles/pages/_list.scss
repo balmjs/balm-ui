@@ -2,7 +2,7 @@
 @use '@material/elevation/mixins' as elevation-mixins;
 @use '../global/color' as color;
 
-.demo--list {
+.page--list {
   .mdc-list,
   .mdc-list-group {
     max-width: 600px;
@@ -37,27 +37,21 @@
     margin-left: 72px;
   }
 
-  // #demo-wrapper {
-  //   margin: 24px;
-  // }
-  // #demo-wrapper section {
-  //   padding: 24px;
-  // }
-  #demo-wrapper .mdc-list,
-  #demo-wrapper .mdc-list-group {
+  .demo-wrapper .mdc-list,
+  .demo-wrapper .mdc-list-group {
     border: 1px solid rgba(0, 0, 0, 0.1);
   }
 
-  #demo-wrapper .mdc-list-group .mdc-list {
+  .demo-wrapper .mdc-list-group .mdc-list {
     border: none;
   }
 
-  #demo-wrapper h2 {
+  .demo-wrapper h2 {
     margin-bottom: 0.8em;
     margin-left: 24px;
   }
 
-  #demo-wrapper h3 {
+  .demo-wrapper h3 {
     margin-bottom: 0.8em;
   }
 

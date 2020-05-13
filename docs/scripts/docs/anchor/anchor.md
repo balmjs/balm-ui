@@ -6,12 +6,12 @@
 
 - `v-anchor.bodyElement`: custom html contianer (Default contianer is `<html>`)
 - `v-anchor.html`: for html (e.g. markdown)
-- `v-anchor.offset="offsetValue"`: set offset for scrollTop (Use `data-vAnchor-offset` in `<html>` & `<body>` element)
+- `v-anchor.offset="offsetValue"`: set offset for scrollTop (Use `data-vanchor-offset` in `<html>` & `<body>` element)
 
 > **offsetValue** is a number
 
 ```html
-<html data-vAnchor-offset="64">
+<html data-vanchor-offset="64">
   <!-- Anchors & Targets -->
 </html>
 

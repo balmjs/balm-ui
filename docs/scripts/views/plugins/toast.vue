@@ -5,10 +5,12 @@
     </template>
 
     <!-- Content -->
-    <div class="example">
-      <ui-button raised @click="$toast('gg')">Show Toast</ui-button>
-    </div>
-    <ui-snippet :code="$store.demos[1]"></ui-snippet>
+    <section class="demo-wrapper">
+      <div class="demo">
+        <ui-button raised @click="$toast('gg')">Show Toast</ui-button>
+      </div>
+      <ui-snippet :code="$store.demos[1]"></ui-snippet>
+    </section>
   </ui-page>
 </template>
 

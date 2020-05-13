@@ -120,11 +120,11 @@
     </template>
 
     <!-- Content -->
-    <section class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">
         1.1 Full Functionality JS Component (Floating Label, Validation)
       </h6>
-      <section id="demo-text-field-wrapper" :dir="controls.rtl ? 'rtl' : null">
+      <div class="demo" :dir="controls.rtl ? 'rtl' : null">
         <ui-textfield
           id="full-func-text-field"
           helperTextId="my-text-field-helper-text"
@@ -141,7 +141,7 @@
           :validMsg="controls.hasValidMsg"
           >Helper Text (possibly validation message)</ui-textfield-helper
         >
-      </section>
+      </div>
       <ui-textfield-controls
         :options="[
           'disabled',
@@ -156,26 +156,28 @@
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
 
-    <section class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Password field with validation</h6>
-      <ui-textfield
-        inputType="password"
-        required
-        pattern=".{8,}"
-        id="pw"
-        helperTextId="pw-validation-msg"
-        :attrs="{ autocomplete: 'current-password' }"
-        >Choose password</ui-textfield
-      >
-      <ui-textfield-helper id="pw-validation-msg" visible validMsg
-        >Must be at least 8 characters long</ui-textfield-helper
-      >
+      <div class="demo">
+        <ui-textfield
+          inputType="password"
+          required
+          pattern=".{8,}"
+          id="pw"
+          helperTextId="pw-validation-msg"
+          :attrs="{ autocomplete: 'current-password' }"
+          >Choose password</ui-textfield
+        >
+        <ui-textfield-helper id="pw-validation-msg" visible validMsg
+          >Must be at least 8 characters long</ui-textfield-helper
+        >
+      </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
 
-    <section class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.3 Outlined Text Field</h6>
-      <div id="demo-tf-outlined-wrapper" :dir="controls.rtl ? 'rtl' : null">
+      <div class="demo" :dir="controls.rtl ? 'rtl' : null">
         <ui-textfield
           id="tf-outlined-input"
           outlined
@@ -212,10 +214,10 @@
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>
 
-    <section class="example" id="demo-tf-icon-container">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.4 Text Field - Leading/Trailing icons</h6>
       <div
-        class="demo-tf-add-space"
+        class="demo demo-with-icon"
         id="demo-tf-box-leading-wrapper"
         :dir="controls.rtl ? 'rtl' : null"
       >
@@ -236,7 +238,7 @@
         </ui-textfield>
       </div>
       <div
-        class="demo-tf-add-space"
+        class="demo demo-with-icon"
         id="demo-tf-box-trailing-wrapper"
         :dir="controls.rtl ? 'rtl' : null"
       >
@@ -257,7 +259,7 @@
         </ui-textfield>
       </div>
       <div
-        class="demo-tf-add-space"
+        class="demo demo-with-icon"
         id="demo-tf-outlined-leading-wrapper"
         :dir="controls.rtl ? 'rtl' : null"
       >
@@ -280,7 +282,7 @@
         </ui-textfield>
       </div>
       <div
-        class="demo-tf-add-space"
+        class="demo demo-with-icon"
         id="demo-tf-outlined-trailing-wrapper"
         :dir="controls.rtl ? 'rtl' : null"
       >
@@ -317,20 +319,19 @@
       <ui-snippet :code="$store.demos[4]"></ui-snippet>
     </section>
 
-    <section class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.5 Preventing FOUC</h6>
-      <ui-textfield id="fouc" v-model="value"
-        >Label floating above</ui-textfield
-      >
+      <div class="demo">
+        <ui-textfield id="fouc" v-model="value"
+          >Label floating above</ui-textfield
+        >
+      </div>
       <ui-snippet :code="$store.demos[5]"></ui-snippet>
     </section>
 
-    <section class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.6 Textarea</h6>
-      <section
-        id="demo-text-field-textarea-wrapper"
-        :dir="controls.rtl ? 'rtl' : null"
-      >
+      <div class="demo" :dir="controls.rtl ? 'rtl' : null">
         <ui-textfield
           inputType="textarea"
           id="textarea"
@@ -341,7 +342,7 @@
           :required="controls.required"
           >Textarea Label</ui-textfield
         >
-      </section>
+      </div>
       <ui-textfield-controls
         :options="['disabled', 'rtl', 'required', 'customColor']"
         v-model="controls"
@@ -349,11 +350,11 @@
       <ui-snippet :code="$store.demos[6]"></ui-snippet>
     </section>
 
-    <section class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">
         1.7 Full-Width Text Field and Textarea with counter
       </h6>
-      <div id="demo-fullwidth-wrapper">
+      <div class="demo">
         <ui-textfield
           v-model="title"
           fullwidth

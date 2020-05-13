@@ -11,10 +11,12 @@
     </template>
 
     <!-- Content -->
-    <section class="example">
-      <ui-rangepicker v-model="date">
-        <template #separator>-</template>
-      </ui-rangepicker>
+    <section class="demo-wrapper">
+      <div class="demo">
+        <ui-rangepicker v-model="date">
+          <template #separator>-</template>
+        </ui-rangepicker>
+      </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
   </ui-page>

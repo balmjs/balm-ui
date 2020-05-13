@@ -5,15 +5,21 @@
     </template>
 
     <!-- Content -->
-    <div class="example">
-      <ui-button raised @click="show">Show confrim</ui-button>
-    </div>
-    <ui-snippet :code="$store.demos[1]"></ui-snippet>
+    <section class="demo-wrapper">
+      <div class="demo">
+        <ui-button raised @click="show">Show confrim</ui-button>
+      </div>
+      <ui-snippet :code="$store.demos[1]"></ui-snippet>
+    </section>
 
-    <div class="example">
-      <ui-button raised @click="showConfrim">Show confrim with icon</ui-button>
-    </div>
-    <ui-snippet :code="$store.demos[2]"></ui-snippet>
+    <section class="demo-wrapper">
+      <div class="demo">
+        <ui-button raised @click="showConfrim"
+          >Show confrim with icon</ui-button
+        >
+      </div>
+      <ui-snippet :code="$store.demos[2]"></ui-snippet>
+    </section>
   </ui-page>
 </template>
 

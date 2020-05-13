@@ -5,15 +5,19 @@
     </template>
 
     <!-- Content -->
-    <div class="example">
-      <ui-button raised @click="$alert('Hello BalmJS')">Show alert</ui-button>
-    </div>
-    <ui-snippet :code="$store.demos[1]"></ui-snippet>
+    <section class="demo-wrapper">
+      <div class="demo">
+        <ui-button raised @click="$alert('Hello BalmJS')">Show alert</ui-button>
+      </div>
+      <ui-snippet :code="$store.demos[1]"></ui-snippet>
+    </section>
 
-    <div class="example">
-      <ui-button raised @click="showAlert">Show alert with icon</ui-button>
-    </div>
-    <ui-snippet :code="$store.demos[2]"></ui-snippet>
+    <section class="demo-wrapper">
+      <div class="demo">
+        <ui-button raised @click="showAlert">Show alert with icon</ui-button>
+      </div>
+      <ui-snippet :code="$store.demos[2]"></ui-snippet>
+    </section>
   </ui-page>
 </template>
 

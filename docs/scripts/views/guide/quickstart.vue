@@ -1,5 +1,5 @@
 <template>
-  <div :class="[$tt('body1'), 'demo--quickstart']">
+  <div :class="[$tt('body1'), 'page--quickstart']">
     <div :class="[$tt('body2'), 'pure-docs']">
       <ui-markdown :text="docs"></ui-markdown>
       <ui-footer-nav

@@ -5,15 +5,13 @@
   }
 }
 
-.demo--drawer {
+.page--drawer {
   .hero-demo {
     h3 {
       text-align: left;
     }
   }
-}
 
-.demo--drawer {
   .demo-app-content {
     overflow: auto;
     height: 100%;
@@ -22,7 +20,7 @@
   }
 }
 
-.demo--permanent-drawer-above-toolbar {
+.page--permanent-drawer-above-toolbar {
   .demo-content {
     position: relative;
   }
@@ -32,22 +30,22 @@
   }
 }
 
-.demo--permanent-drawer-above-toolbar,
-.demo--dismissible-drawer-full-height-drawer,
-.demo--modal-drawer {
+.page--permanent-drawer-above-toolbar,
+.page--dismissible-drawer-full-height-drawer,
+.page--modal-drawer {
   .demo-content {
     width: 100%;
   }
 }
 
-.demo--permanent-drawer-below-toolbar,
-.demo--dismissible-drawer-below-top-app-bar {
+.page--permanent-drawer-below-toolbar,
+.page--dismissible-drawer-below-top-app-bar {
   .demo-app-content {
     width: 100%;
   }
 }
 
-.demo--dismissible-drawer-below-top-app-bar {
+.page--dismissible-drawer-below-top-app-bar {
   .demo-app-bar {
     z-index: 7;
   }

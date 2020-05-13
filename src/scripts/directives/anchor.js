@@ -8,7 +8,7 @@ let UI_ANCHOR = {
     inner: 'v-anchor'
   },
   body: DEFAULT_BODY,
-  offset: DEFAULT_BODY.dataset.vanchorOffset || 0 // Global offset
+  offset: 0 // Global offset
 };
 
 // TODO: It has bug in <ui-bottom-navigation>
@@ -50,9 +50,10 @@ const initAnchor = (el, { value, rawName, modifiers }) => {
     }
 
     // Custom offset
-    if (modifiers.offset) {
-      UI_ANCHOR.offset = value;
-    }
+    UI_ANCHOR.offset = modifiers.offset
+      ? value
+      : DEFAULT_BODY.dataset.vanchorOffset || 0;
+    console.log('offset', UI_ANCHOR.offset);
   }
 };
 

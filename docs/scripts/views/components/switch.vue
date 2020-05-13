@@ -8,35 +8,39 @@
     </template>
 
     <!-- Content -->
-    <section class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 Enabled</h6>
-      <div class="demo-switch-wrapper">
-        <ui-switch
-          id="basic-switch"
-          :trueValue="1"
-          :falseValue="0"
-          v-model="toggle1"
-        ></ui-switch>
-        <label for="basic-switch">{{ toggle1 }}</label>
+      <div class="demo">
+        <ui-form-field>
+          <ui-switch
+            id="basic-switch"
+            :trueValue="1"
+            :falseValue="0"
+            v-model="toggle1"
+          ></ui-switch>
+          <label for="basic-switch">{{ toggle1 }}</label>
+        </ui-form-field>
+        <ui-form-field>
+          <ui-switch
+            id="basic-switch-custom"
+            class="demo-switch--custom"
+            trueValue="on"
+            falseValue="off"
+            v-model="toggle2"
+          ></ui-switch>
+          <label for="basic-switch-custom">{{ toggle2 }} (custom color)</label>
+        </ui-form-field>
       </div>
-      <div class="demo-switch-wrapper">
-        <ui-switch
-          id="basic-switch-custom"
-          class="demo-switch--custom"
-          trueValue="on"
-          falseValue="off"
-          v-model="toggle2"
-        ></ui-switch>
-        <label for="basic-switch-custom">{{ toggle2 }} (custom color)</label>
-      </div>
+      <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
-    <ui-snippet :code="$store.demos[1]"></ui-snippet>
 
-    <section class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Disabled</h6>
-      <div class="demo-switch-wrapper">
-        <ui-switch id="basic-switch--disabled" disabled></ui-switch>
-        <label for="basic-switch--disabled">off/on</label>
+      <div class="demo">
+        <ui-form-field>
+          <ui-switch id="basic-switch--disabled" disabled></ui-switch>
+          <label for="basic-switch--disabled">off/on</label>
+        </ui-form-field>
       </div>
     </section>
   </ui-page>

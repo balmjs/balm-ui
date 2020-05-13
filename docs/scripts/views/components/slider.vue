@@ -16,9 +16,9 @@
     </template>
 
     <!-- Content -->
-    <section id="slider-example" class="example">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">Continuous Slider</h6>
-      <div class="slider-example">
+      <div class="demo">
         <div
           :class="[
             'example-slider-wrapper',
@@ -37,9 +37,11 @@
         </div>
         <p>Value: {{ value1 }}</p>
       </div>
+    </section>
 
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">Discrete Slider</h6>
-      <div class="slider-example">
+      <div class="demo">
         <div
           :class="[
             'example-slider-wrapper',
@@ -59,9 +61,11 @@
         </div>
         <p>Value: {{ value2 }}</p>
       </div>
+    </section>
 
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">Discrete Slider with Tick Marks</h6>
-      <div class="slider-example">
+      <div class="demo">
         <div
           :class="[
             'example-slider-wrapper',
@@ -82,11 +86,13 @@
         </div>
         <p>Value: {{ value3 }}</p>
       </div>
+    </section>
 
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">
         Custom Colored Discrete Slider with Tick Marks
       </h6>
-      <div class="slider-example">
+      <div class="demo">
         <div
           :class="[
             'example-slider-wrapper',
@@ -108,7 +114,9 @@
         </div>
         <p>Value: {{ value4 }}</p>
       </div>
+    </section>
 
+    <div class="demo-controls">
       <div class="demo-param-field-group">
         <label class="demo-param-field">
           <span class="demo-param-input-label">Min:</span>
@@ -139,7 +147,7 @@
           <label for="slider-custom-bg">Use Custom BG Color</label>
         </ui-form-field>
       </div>
-    </section>
+    </div>
   </ui-page>
 </template>
 

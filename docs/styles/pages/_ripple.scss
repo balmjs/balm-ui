@@ -1,6 +1,6 @@
 @use '../global/index' as global;
 
-.demo--ripple {
+.page--ripple {
   .hero {
     padding: 0;
     display: block;
@@ -40,7 +40,7 @@
     appearance: none;
   }
 
-  .example {
+  .demo {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -52,7 +52,7 @@
   }
 
   @media (max-width: global.$mobile-breakpoint) {
-    .example {
+    .demo {
       flex-direction: column;
       width: 100%;
     }

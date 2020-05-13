@@ -15,6 +15,7 @@
 
 ### Chores
 
+- clean code for docs
 - `<ui-collapse>`: update css
 - `v-anchor`: optimize global offset
 

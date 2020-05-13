@@ -1,14 +1,14 @@
 <template>
   <div :class="[$tt('body1'), 'page--test']">
-    <p>Value1: {{ typeof value }} {{ value }}</p>
+    <!-- <p>Value1: {{ typeof value }} {{ value }}</p>
     <p>Value2: {{ typeof value }} {{ value2 }}</p>
-    <hr />
+    <hr /> -->
 
-    <subtest v-if="open" @close="$balmUI.onHide('open')"></subtest>
+    <!-- <subtest v-if="open" @close="$balmUI.onHide('open')"></subtest>
     <div v-else>
       <ui-button @click="$balmUI.onShow('open')">Parent Test</ui-button>
       <div v-for="i in 100" :key="i">{{ i }}</div>
-    </div>
+    </div> -->
 
     <div :class="$tt('body2')">
       <!-- Test: input -->
@@ -99,11 +99,11 @@
 </template>
 
 <script>
-import Subtest from './subtest';
+// import Subtest from './subtest';
 
 export default {
   components: {
-    Subtest
+    // Subtest
   },
   data() {
     return {
@@ -141,3 +141,5 @@ export default {
   }
 };
 </script>
+
+<style></style>

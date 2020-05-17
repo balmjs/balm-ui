@@ -107,7 +107,7 @@ balm.go((mix) => {
         mix.copy('./src/material-icons/*', './fonts'); // NOTE: manual zip fonts & rename to `material-icons.zip`
 
         // For example
-        mix.copy('./src/material-icons/*', './components/font');
+        mix.copy('./src/material-icons/*', './components/fonts');
       }
     }
   }

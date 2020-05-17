@@ -6,20 +6,67 @@
     <title>Hello BalmUI</title>
     <link
       rel="stylesheet"
-      href="https://unpkg.com/balm-ui@5.2.0/dist/balm-ui.css"
+      href="https://cdn.jsdelivr.net/npm/balm-ui/dist/balm-ui.css"
     />
+    <style>
+      body {
+        margin: 0;
+      }
+
+      .container {
+        height: 100vh;
+      }
+    </style>
   </head>
   <body>
-    <div id="app">
-      <ui-button @click="$alert(message)" icon="add">SayHi</ui-button>
+    <div id="app" class="container">
+      <ui-drawer viewport-height>
+        <ui-drawer-header>
+          <ui-drawer-title>BalmUI examples</ui-drawer-title>
+        </ui-drawer-header>
+        <ui-drawer-content>
+          <ui-nav>
+            <template #default="{ itemClass }">
+              <a
+                v-for="(item, index) in menu"
+                :key="index"
+                :class="itemClass"
+                :href="item"
+                >{{ item }}</a
+              >
+            </template>
+          </ui-nav>
+        </ui-drawer-content>
+      </ui-drawer>
+      <div>
+        <ui-button @click="$alert(message)" icon="add">SayHi</ui-button>
+      </div>
     </div>
-    <script src="https://unpkg.com/vue"></script>
-    <script src="https://unpkg.com/balm-ui"></script>
-    <script src="https://unpkg.com/balm-ui@5.2.0/dist/balm-ui-plus.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/balm-ui"></script>
+    <script src="https://cdn.jsdelivr.net/npm/balm-ui/dist/balm-ui-plus.js"></script>
     <script>
       var app = new Vue({
         el: '#app',
         data: {
+          menu: [
+            'button',
+            'card',
+            'checkbox',
+            'dialog',
+            'drawer',
+            'fab',
+            'grid',
+            'icon-button',
+            'menu',
+            'radio',
+            'select',
+            'snackbar',
+            'tabs',
+            'textfield',
+            'utils',
+            'validator'
+          ],
           message: 'Hello BalmUI'
         }
       });

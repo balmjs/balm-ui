@@ -1,5 +1,16 @@
 # BalmUI ChangeLog
 
+## v6.6.2 / 2020-05-17
+
+### Bug Fixes
+
+- fix individual components fonts for CDN css
+
+### Chores
+
+- `<ui-grid>`: optimize grid inner css
+- update examples
+
 ## v6.6.1 / 2020-05-13
 
 ### Bug Fixes

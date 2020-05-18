@@ -1,7 +1,9 @@
 .balmui-navigation_permanent-drawer-above-toolbar,
+.balmui-navigation_permanent-drawer-below-toolbar,
 .balmui-navigation_dismissible-drawer-full-height-drawer {
   .balmui-container {
-    overflow: hidden;
+    display: block;
+    min-height: auto;
   }
 }
 
@@ -31,8 +33,7 @@
 }
 
 .page--permanent-drawer-above-toolbar,
-.page--dismissible-drawer-full-height-drawer,
-.page--modal-drawer {
+.page--dismissible-drawer-full-height-drawer {
   .demo-content {
     width: 100%;
   }

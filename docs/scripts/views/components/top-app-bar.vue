@@ -51,15 +51,17 @@
         <ui-drawer-title>Header here</ui-drawer-title>
       </ui-drawer-header>
       <ui-drawer-content>
-        <ui-list>
-          <ui-item activated @click="$router.back()">
-            <ui-item-first-content>
-              <ui-icon>arrow_back</ui-icon>
-            </ui-item-first-content>
-            <ui-item-text-content>Back</ui-item-text-content>
-          </ui-item>
-          <ui-item-divider></ui-item-divider>
-        </ui-list>
+        <ui-nav>
+          <template #default="{ itemClass, activeClass }">
+            <a :class="[itemClass, activeClass]" @click="$router.back()">
+              <ui-item-first-content>
+                <ui-icon>arrow_back</ui-icon>
+              </ui-item-first-content>
+              <ui-item-text-content>Back</ui-item-text-content>
+            </a>
+            <ui-list-divider></ui-list-divider>
+          </template>
+        </ui-nav>
       </ui-drawer-content>
     </ui-drawer>
 
@@ -96,8 +98,6 @@
 </template>
 
 <script>
-import DrawerMixin from '@/mixins/drawer';
-
 const TypeOptions = [
   {
     label: 'Standard',
@@ -133,7 +133,6 @@ export default {
   metaInfo: {
     titleTemplate: '%s - Top App Bar'
   },
-  mixins: [DrawerMixin],
   data() {
     return {
       // hero

@@ -68,7 +68,7 @@ export default {
   },
   mounted() {
     if (this.viewportHeight) {
-      this.$el.parentNode.classList.add(UI_DRAWER.ROOT_CLASSNAME);
+      this.$el.parentNode.classList.add(UI_DRAWER.cssClasses.root);
     }
 
     if (this.isDismissible || this.isModal) {

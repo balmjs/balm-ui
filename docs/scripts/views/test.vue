@@ -1,60 +1,46 @@
 <template>
-  <div class="page--test">
-    <ui-form-field block>
-      <ui-textfield v-model="value">Label</ui-textfield>
-    </ui-form-field>
-    <br />
-    <ui-form-field block>
-      <ui-select v-model="selected" :options="options" defaultLabel="Select"
-        >Label</ui-select
+  <div class="demo-container">
+    <!-- Drawer -->
+    <ui-drawer type="modal" navId="demo-menu">
+      <ui-drawer-header>
+        <ui-drawer-title>Title</ui-drawer-title>
+        <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>
+      </ui-drawer-header>
+      <ui-drawer-content>
+        <ui-nav>
+          <template #default="{ itemClass, activeClass }">
+            <a :class="[itemClass, activeClass]">Item {{ 0 }}</a>
+            <a v-for="i in 12" :key="i" :class="itemClass">Item {{ i }}</a>
+          </template>
+        </ui-nav>
+      </ui-drawer-content>
+    </ui-drawer>
+    <ui-drawer-backdrop></ui-drawer-backdrop>
+    <!-- Content -->
+    <div class="demo-content">
+      <!-- App bar -->
+      <ui-top-app-bar
+        fixed
+        class="demo-app-bar"
+        contentSelector=".demo-app-content"
+        navId="demo-menu"
       >
-    </ui-form-field>
-    result: {{ selected.length }}
+        Title
+      </ui-top-app-bar>
+      <!-- App content -->
+      <div class="demo-app-content">
+        <p v-for="i in 24" :key="i">Main Content {{ i }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-const options = [
-  {
-    label: 'Bread, Cereal, Rice, and Pasta',
-    value: 'grains'
-  },
-  {
-    label: 'Vegetables',
-    value: 'vegetables',
-    disabled: true
-  },
-  {
-    label: 'Fruit',
-    value: 'fruit'
-  },
-  {
-    label: 'Milk, Yogurt, and Cheese',
-    value: 'dairy'
-  },
-  {
-    label: 'Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts',
-    value: 'meat'
-  },
-  {
-    label: 'Fats, Oils, and Sweets',
-    value: 'fats'
-  }
-];
-
 export default {
   data() {
-    return {
-      value: 'hello',
-      options,
-      selected: ''
-    };
+    return {};
   }
 };
 </script>
 
-<style>
-.page--test {
-  padding: 40px 20px;
-}
-</style>
+<style></style>

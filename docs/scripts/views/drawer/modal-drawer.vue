@@ -3,18 +3,23 @@
     <!-- Drawer -->
     <ui-drawer type="modal" v-model="open" navId="demo-menu">
       <ui-drawer-header>
-        <ui-drawer-title>{{ title }}</ui-drawer-title>
-        <ui-drawer-subtitle>{{ subtitle }}</ui-drawer-subtitle>
+        <ui-drawer-title>Title</ui-drawer-title>
+        <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>
       </ui-drawer-header>
-      <ui-drawer-common-content>
-        <ui-item @click="$router.back()">
-          <ui-item-first-content>
-            <ui-icon>arrow_back</ui-icon>
-          </ui-item-first-content>
-          <ui-item-text-content>Back</ui-item-text-content>
-        </ui-item>
-        <ui-list-divider></ui-list-divider>
-      </ui-drawer-common-content>
+      <ui-drawer-content>
+        <ui-nav>
+          <template #default="{ itemClass, activeClass }">
+            <a :class="[itemClass, activeClass]" @click="$router.back()">
+              <ui-item-first-content>
+                <ui-icon>arrow_back</ui-icon>
+              </ui-item-first-content>
+              <ui-item-text-content>Back</ui-item-text-content>
+            </a>
+            <ui-list-divider></ui-list-divider>
+            <a v-for="i in 12" :key="i" :class="itemClass">Item {{ i }}</a>
+          </template>
+        </ui-nav>
+      </ui-drawer-content>
     </ui-drawer>
     <ui-drawer-backdrop></ui-drawer-backdrop>
     <!-- Content -->
@@ -37,21 +42,31 @@
 </template>
 
 <script>
-import UiDrawerCommonContent from './drawer-common-content';
-import DrawerMixin from '@/mixins/drawer';
-
 export default {
   metaInfo: {
     titleTemplate: '%s - Modal Drawer'
   },
-  components: {
-    UiDrawerCommonContent
+  data() {
+    return {
+      open: false
+    };
   },
-  mixins: [DrawerMixin],
   created() {
     this.$store.initDocs('drawer', {
       demoCount: 5
     });
+  },
+  methods: {
+    openMenu() {
+      this.open = true;
+    },
+    onOpen(val) {
+      console.log('open', val);
+    },
+    onClose(val) {
+      this.open = false;
+      console.log('close', val);
+    }
   }
 };
 </script>

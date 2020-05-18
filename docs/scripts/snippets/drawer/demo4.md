@@ -1,23 +1,45 @@
 ```html
-<!-- App bar -->
-<ui-top-app-bar
-  contentSelector=".demo-content"
-  navId="demo-menu"
-  class="demo-app-bar"
->
-  Title
-</ui-top-app-bar>
-<!-- Drawer -->
-<ui-drawer type="dismissible" viewportHeight navId="demo-menu">
-  <ui-drawer-header>
-    <ui-drawer-title>Title</ui-drawer-title>
-    <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>
-  </ui-drawer-header>
-  <ui-drawer-content>Nav Content</ui-drawer-content>
-</ui-drawer>
-<!-- Content -->
-<ui-drawer-app-content class="demo-content">
-  <!-- App content -->
-  <div>Main Content</div>
-</ui-drawer-app-content>
+<div class="demo-container">
+  <!-- App bar -->
+  <ui-top-app-bar
+    class="demo-app-bar"
+    contentSelector=".demo-app-content"
+    navId="demo-menu"
+  >
+    Title
+  </ui-top-app-bar>
+  <!-- Drawer -->
+  <ui-drawer type="dismissible" viewportHeight navId="demo-menu">
+    <ui-drawer-header>
+      <ui-drawer-title>Title</ui-drawer-title>
+      <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>
+    </ui-drawer-header>
+    <ui-drawer-content>
+      <ui-nav>
+        <template #default="{ itemClass, activeClass }">
+          <a :class="[itemClass, activeClass]">Item {{ 0 }}</a>
+          <a v-for="i in 12" :key="i" :class="itemClass">Item {{ i }}</a>
+        </template>
+      </ui-nav>
+    </ui-drawer-content>
+  </ui-drawer>
+  <!-- Content -->
+  <ui-drawer-app-content class="demo-app-content">
+    <!-- App content -->
+    <p v-for="i in 24" :key="i">Main Content {{ i }}</p>
+  </ui-drawer-app-content>
+</div>
+```
+
+```css
+/* Only apply this style if below top app bar */
+.demo-app-bar {
+  z-index: 7;
+}
+
+.demo-app-content {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
 ```

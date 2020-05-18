@@ -93,13 +93,10 @@
 </template>
 
 <script>
-import DrawerMixin from '@/mixins/drawer';
-
 export default {
   metaInfo: {
     titleTemplate: '%s - Drawer'
   },
-  mixins: [DrawerMixin],
   data() {
     return {
       menu: [

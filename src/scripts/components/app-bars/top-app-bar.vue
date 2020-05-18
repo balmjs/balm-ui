@@ -49,6 +49,8 @@ import { MDCTopAppBar } from '../../../material-components-web/top-app-bar';
 import typeMixin from '../../mixins/type';
 import UI_GLOBAL from '../../config/constants';
 
+const newDiv = document.createElement('div');
+
 // Define top app bar constants
 const UI_TOP_APP_BAR = {
   TYPES: {
@@ -130,8 +132,7 @@ export default {
     return {
       UI_GLOBAL,
       UI_TOP_APP_BAR,
-      $topAppBar: null,
-      contentElement: null
+      $topAppBar: null
     };
   },
   computed: {
@@ -182,30 +183,49 @@ export default {
     this.init();
   },
   methods: {
+    getFixedAdjustElement(contentEl) {
+      let el = newDiv;
+
+      const firstElInContent = contentEl.children[0];
+      if (firstElInContent.classList.contains('mdc-drawer')) {
+        el = contentEl;
+      } else {
+        let existingFixedAdjust =
+          firstElInContent &&
+          /^mdc-top-app-bar--([a-z]+-)*fixed-adjust$/.test(
+            firstElInContent.className
+          );
+
+        if (existingFixedAdjust) {
+          el = firstElInContent;
+        } else {
+          contentEl.insertBefore(newDiv, contentEl.firstChild);
+        }
+      }
+
+      return el;
+    },
     createFixedAdjustElement() {
       if (this.contentSelector) {
-        this.contentElement = document.querySelector(this.contentSelector);
+        const contentEl = document.querySelector(this.contentSelector);
+        const fixedAdjustEl = this.getFixedAdjustElement(contentEl);
 
-        this.contentElement.classList.remove(
+        fixedAdjustEl.classList.remove(
           ...Object.values(UI_TOP_APP_BAR.FIXED_ADJUST)
         );
 
         if (this.isDense) {
-          this.contentElement.classList.add(UI_TOP_APP_BAR.FIXED_ADJUST.DENSE);
+          fixedAdjustEl.classList.add(UI_TOP_APP_BAR.FIXED_ADJUST.DENSE);
         } else if (this.isProminent) {
-          this.contentElement.classList.add(
-            UI_TOP_APP_BAR.FIXED_ADJUST.PROMINENT
-          );
+          fixedAdjustEl.classList.add(UI_TOP_APP_BAR.FIXED_ADJUST.PROMINENT);
         } else if (this.isProminentDense) {
-          this.contentElement.classList.add(
+          fixedAdjustEl.classList.add(
             UI_TOP_APP_BAR.FIXED_ADJUST.DENSE_PROMINENT
           );
         } else if (this.isShort || this.isShortCollapsed) {
-          this.contentElement.classList.add(UI_TOP_APP_BAR.FIXED_ADJUST.SHORT);
+          fixedAdjustEl.classList.add(UI_TOP_APP_BAR.FIXED_ADJUST.SHORT);
         } else {
-          this.contentElement.classList.add(
-            UI_TOP_APP_BAR.FIXED_ADJUST.STANDARD
-          );
+          fixedAdjustEl.classList.add(UI_TOP_APP_BAR.FIXED_ADJUST.STANDARD);
         }
       } else {
         console.warn('`contentSelector` is required');

@@ -16,10 +16,17 @@
       <!-- Drawer -->
       <ui-drawer type="permanent" viewportHeight>
         <ui-drawer-header>
-          <ui-drawer-title>{{ title }}</ui-drawer-title>
-          <ui-drawer-subtitle>{{ subtitle }}</ui-drawer-subtitle>
+          <ui-drawer-title>Title</ui-drawer-title>
+          <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>
         </ui-drawer-header>
-        <ui-drawer-common-content></ui-drawer-common-content>
+        <ui-drawer-content>
+          <ui-nav>
+            <template #default="{ itemClass, activeClass }">
+              <a :class="[itemClass, activeClass]">Item {{ 0 }}</a>
+              <a v-for="i in 12" :key="i" :class="itemClass">Item {{ i }}</a>
+            </template>
+          </ui-nav>
+        </ui-drawer-content>
       </ui-drawer>
       <!-- App content -->
       <div :class="[$tt('body1'), 'demo-app-content']">
@@ -32,17 +39,10 @@
 </template>
 
 <script>
-import UiDrawerCommonContent from './drawer-common-content';
-import DrawerMixin from '@/mixins/drawer';
-
 export default {
   metaInfo: {
     titleTemplate: '%s - Permanent Drawer Below Toolbar'
   },
-  components: {
-    UiDrawerCommonContent
-  },
-  mixins: [DrawerMixin],
   created() {
     this.$store.initDocs('drawer', {
       demoCount: 5

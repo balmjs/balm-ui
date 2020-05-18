@@ -1,5 +1,11 @@
 # BalmUI ChangeLog
 
+## v6.6.4 / 2020-05-19
+
+### Bug Fixes
+
+- `<ui-top-app-bar>`: getFixedAdjustElement bugfix
+
 ## v6.6.3 / 2020-05-18
 
 ### Chores

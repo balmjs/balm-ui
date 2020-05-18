@@ -1,5 +1,12 @@
 # BalmUI ChangeLog
 
+## v6.6.3 / 2020-05-18
+
+### Chores
+
+- `<ui-top-app-bar>`: optimize fixed adjust element for `<ui-drawer>` layout
+- `<ui-drawer>`: update demos
+
 ## v6.6.2 / 2020-05-17
 
 ### Bug Fixes

@@ -54,7 +54,7 @@
               <ui-drawer-title>BalmUI</ui-drawer-title>
               <ui-drawer-subtitle>
                 <i class="balmui-version"
-                  >v<span class="version">{{ VERSION }}</span></i
+                  >v<span class="version">{{ version }}</span></i
                 >
               </ui-drawer-subtitle>
             </ui-drawer-header>
@@ -103,7 +103,7 @@
                       <i
                         v-if="isWideScreen && item.name === 'Guide'"
                         :class="['balmui-version', $tt('subtitle2')]"
-                        >v<span class="version">{{ VERSION }}</span></i
+                        >v<span class="version">{{ version }}</span></i
                       >
                     </ui-list-group-subheader>
                   </template>
@@ -149,7 +149,7 @@ export default {
   },
   data() {
     return {
-      VERSION,
+      version: VERSION.split('-')[0],
       menu,
       bodyEl: document.documentElement || document.body,
       isWideScreen: true,

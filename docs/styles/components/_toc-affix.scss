@@ -3,6 +3,8 @@
 .toc-affix {
   position: sticky;
   top: global.$topAppBar-row-height;
+  right: 0;
+  left: 0;
   z-index: 4;
   background: white;
   .mdc-list {
@@ -10,6 +12,12 @@
   }
   .mdc-list-item {
     cursor: pointer;
+  }
+
+  &.toc-affix--bottom {
+    position: fixed;
+    top: auto;
+    bottom: 0;
   }
 }
 

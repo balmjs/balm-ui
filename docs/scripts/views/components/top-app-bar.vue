@@ -68,7 +68,7 @@
     <ui-drawer-backdrop></ui-drawer-backdrop>
 
     <div class="demo-main">
-      <ui-page id="content-main" name="top-app-bar" demoCount="1">
+      <ui-page id="content-main" name="top-app-bar" demoCount="1" bottomAffix>
         <template #hero>
           <h1 :class="$tt('headline1')">Top App Bar</h1>
         </template>

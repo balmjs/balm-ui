@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[$tt('body1'), `page--${name}`]"
-    v-anchor.offset="name === 'anchor' ? false : 128"
+    v-anchor.offset="bottomAffix ? 64 : 128"
   >
     <header :class="['hero', type]">
       <slot name="hero"></slot>
@@ -13,7 +13,11 @@
     <ui-toc-affix v-else-if="name === 'theme'">
       <ui-tab v-anchor:href="'#ui-colors'" class="v-anchor">Colors</ui-tab>
     </ui-toc-affix>
-    <ui-toc-affix v-else :withoutCss="withoutCss"></ui-toc-affix>
+    <ui-toc-affix
+      v-else
+      :class="{ 'toc-affix--bottom': bottomAffix }"
+      :withoutCss="withoutCss"
+    ></ui-toc-affix>
 
     <div :class="$tt('body2')">
       <div class="ui-intro">
@@ -90,6 +94,10 @@ export default {
       }
     },
     withoutCss: {
+      type: Boolean,
+      default: false
+    },
+    bottomAffix: {
       type: Boolean,
       default: false
     }

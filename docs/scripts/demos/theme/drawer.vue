@@ -20,6 +20,7 @@
                 ]"
                 :key="index"
                 :class="index === 0 ? [itemClass, activeClass] : itemClass"
+                v-ripple
               >
                 <ui-item-first-content>
                   <ui-icon>{{ item }}</ui-icon>

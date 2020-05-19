@@ -1,6 +1,6 @@
 ```html
 <ui-card class="demo-card demo-card--music">
-  <ui-card-content class="demo-card__primary-action" v-ripple>
+  <ui-card-content class="demo-card__primary-action">
     <div class="demo-card__music-row">
       <ui-card-media
         square

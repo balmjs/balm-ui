@@ -11,7 +11,7 @@
 <body>
   <div id="app">
     <p>{{ message }}</p>
-    <ui-button @click="$balmUI.onChange('message', 'Hello World')">Button</ui-button>
+    <ui-button @click="$balmUI.onChange('message', 'Hello BalmUI')">Button</ui-button>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script src="/components/button/index.js"></script>
@@ -29,7 +29,7 @@
     var app = new Vue({
       el: '#app',
       data: {
-        message: 'Hello Vue!'
+        message: 'Hello World'
       }
     })
   </script>

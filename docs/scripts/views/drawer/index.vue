@@ -19,20 +19,21 @@
             <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>
           </ui-drawer-header>
           <ui-drawer-content>
-            <ui-list>
-              <template>
-                <ui-item
+            <ui-nav>
+              <template #default="{ itemClass, activeClass }">
+                <a
                   v-for="(item, index) in menu"
                   :key="index"
-                  :activated="index === 0"
+                  :class="index === 0 ? [itemClass, activeClass] : itemClass"
+                  v-ripple
                 >
                   <ui-item-first-content>
                     <ui-icon>{{ item.icon }}</ui-icon>
                   </ui-item-first-content>
                   <ui-item-text-content>{{ item.name }}</ui-item-text-content>
-                </ui-item>
+                </a>
               </template>
-            </ui-list>
+            </ui-nav>
           </ui-drawer-content>
         </ui-drawer>
       </div>

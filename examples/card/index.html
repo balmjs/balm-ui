@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="/components/core.css">
   <link rel="stylesheet" href="/components/card/card.css">
   <link rel="stylesheet" href="/components/button/button.css">
+  <link rel="stylesheet" href="/components/icon/icon.css">
+  <link rel="stylesheet" href="/components/icon-button/icon-button.css">
   <style>
   .demo-card {
     max-width: 21.875rem;
@@ -30,14 +32,20 @@
         </p>
       </ui-card-content>
       <ui-card-actions>
-        <ui-button compact>Action 1</ui-button>
-        <ui-button compact>Action 2</ui-button>
+        <ui-card-buttons>
+          <ui-button>Action 1</ui-button>
+          <ui-button>Action 2</ui-button>
+        </ui-card-buttons>
+        <ui-card-icons>
+          <ui-icon-button icon="share"></ui-icon-button>
+        </ui-card-icons>
       </ui-card-actions>
     </ui-card>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script src="/components/card/index.js"></script>
   <script src="/components/button/index.js"></script>
+  <script src="/components/icon-button/index.js"></script>
   <script>
     var app = new Vue({
       el: '#app'

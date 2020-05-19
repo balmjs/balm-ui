@@ -25,6 +25,7 @@
 <script>
 import UiMenuitemIcon from './menuitem-icon';
 import UiMenuitemText from './menuitem-text';
+import rippleMixin from '../../mixins/ripple';
 import UI_GLOBAL from '../../config/constants';
 
 export default {
@@ -33,6 +34,7 @@ export default {
     UiMenuitemIcon,
     UiMenuitemText
   },
+  mixins: [rippleMixin],
   props: {
     // Layout
     nested: {
@@ -60,6 +62,11 @@ export default {
     return {
       UI_GLOBAL
     };
+  },
+  mounted() {
+    if (!this.nested) {
+      this.initRipple(this.$el);
+    }
   },
   methods: {
     getClass(item) {

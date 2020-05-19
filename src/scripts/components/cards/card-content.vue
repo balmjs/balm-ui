@@ -5,10 +5,15 @@
 </template>
 
 <script>
+import rippleMixin from '../../mixins/ripple';
 import UI_CARD from './constants';
 
 export default {
   name: 'ui-card-content',
+  mixins: [rippleMixin],
+  mounted() {
+    this.initRipple(this.$el);
+  },
   methods: {
     handleClick(event) {
       this.$emit(UI_CARD.EVENT.CLICK, event);

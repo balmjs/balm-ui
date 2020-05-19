@@ -1,7 +1,7 @@
 <template>
   <section class="component-section">
     <h6 :class="$tt('headline6')">Textfield</h6>
-    <div class="component-wrapper textfield-component-wrapper">
+    <div class="component-wrapper textfield-component">
       <ui-form-field>
         <ui-textfield v-model="value" helperTextId="textfield-component-1">
           Label

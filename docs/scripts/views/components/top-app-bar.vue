@@ -53,7 +53,11 @@
       <ui-drawer-content>
         <ui-nav>
           <template #default="{ itemClass, activeClass }">
-            <a :class="[itemClass, activeClass]" @click="$router.back()">
+            <a
+              v-ripple
+              :class="[itemClass, activeClass]"
+              @click="$router.back()"
+            >
               <ui-item-first-content>
                 <ui-icon>arrow_back</ui-icon>
               </ui-item-first-content>

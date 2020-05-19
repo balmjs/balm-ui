@@ -17,11 +17,11 @@
     <template #hero>
       <div class="hero-demo">
         <ui-card :outlined="typeOption === 1" class="demo-card">
-          <ui-card-content v-ripple>
+          <ui-card-content>
             <ui-card-media
               v-if="cardOptions.media"
               rectangle
-              :style="`background:url('${cardMedia}')`"
+              :style="`background-image:url('${cardMedia}')`"
             ></ui-card-media>
             <ui-card-text>
               <div :class="$tt('headline6')">
@@ -115,7 +115,7 @@
     <section class="demo-wrapper">
       <div class="demo">
         <ui-card class="demo-card demo-card--photo">
-          <ui-card-content class="demo-card__primary-action" v-ripple>
+          <ui-card-content class="demo-card__primary-action">
             <ui-card-media square class="demo-card__media">
               <ui-card-media-content
                 class="demo-card__media-content--with-title"
@@ -141,7 +141,7 @@
     <section class="demo-wrapper">
       <div class="demo">
         <ui-card class="demo-card demo-card--music">
-          <ui-card-content class="demo-card__primary-action" v-ripple>
+          <ui-card-content class="demo-card__primary-action">
             <div class="demo-card__music-row">
               <ui-card-media
                 square

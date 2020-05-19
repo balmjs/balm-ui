@@ -15,8 +15,8 @@ if (isProd && 'serviceWorker' in navigator) {
           });
         }
       })
-      .catch((registrationError) => {
-        console.log('SW registration failed: ', registrationError);
+      .catch((error) => {
+        console.log('Registration failed: ', error);
       });
   });
 }

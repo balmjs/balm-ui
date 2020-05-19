@@ -1,4 +1,4 @@
-export const VERSION = '6.6.4';
+export const VERSION = '6.6.5';
 
 export const isDev = process.env.NODE_ENV === 'development';
 export const isProd = process.env.NODE_ENV === 'production';

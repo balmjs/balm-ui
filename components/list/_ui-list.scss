@@ -1,0 +1,10 @@
+@use '@material/theme/variables' as theme-variables;
+
+// bugfix for `<ui-list>` in `<ui-drawer>`
+.mdc-drawer .mdc-list-item--activated {
+  color: var(--mdc-theme-primary, theme-variables.prop-value(primary));
+
+  .mdc-list-item__graphic {
+    color: var(--mdc-theme-primary, theme-variables.prop-value(primary));
+  }
+}

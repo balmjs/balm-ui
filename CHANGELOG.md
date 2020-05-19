@@ -1,5 +1,17 @@
 # BalmUI ChangeLog
 
+## v6.6.5 / 2020-05-19
+
+### Features
+
+- `<ui-card-content>`, `<ui-menu>`: update ripple effect
+- docs: fix affix css, update theme color demos
+
+### Chores
+
+- `<ui-nav>`: optimize active class for custom theme
+- `<ui-menu>`: update css for custom ripple
+
 ## v6.6.4 / 2020-05-19
 
 ### Bug Fixes

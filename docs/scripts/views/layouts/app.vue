@@ -151,6 +151,7 @@ export default {
     return {
       VERSION,
       menu,
+      bodyEl: document.documentElement || document.body,
       isWideScreen: true,
       drawerType: 'permanent',
       openDrawer: false,
@@ -173,7 +174,9 @@ export default {
     });
 
     this.$bus.$on('off-loading', () => {
-      this.$store.resetScroll();
+      this.$nextTick(() => {
+        this.bodyEl.scrollTop = 0;
+      });
 
       setTimeout(() => {
         this.loadingProgress = 1;

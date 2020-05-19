@@ -1,7 +1,6 @@
 export default {
   data() {
     return {
-      bodyEl: document.documentElement || document.body,
       docs: {
         intro: '',
         usage: '',
@@ -17,9 +16,6 @@ export default {
     }
   },
   methods: {
-    resetScroll() {
-      this.bodyEl.scrollTop = 0;
-    },
     showSnippet(name, count) {
       if (name) {
         this.docs.demos = [''];

@@ -17,16 +17,14 @@ module.exports = {
   plugins: ['vue', 'prettier'],
   // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
   // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
-  extends: ['plugin:vue/essential', 'plugin:prettier/recommended'],
+  extends: [
+    'eslint:recommended',
+    'plugin:vue/essential',
+    'plugin:prettier/recommended'
+  ],
   // add your custom rules here
   rules: {
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'prettier/prettier': [
-      'error',
-      {
-        singleQuote: true
-      }
-    ]
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
   }
 };

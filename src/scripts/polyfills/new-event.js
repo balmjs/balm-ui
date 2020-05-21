@@ -1,15 +1,16 @@
-import './CustomEvent';
+import './custom-event';
 
-(function() {
-  const throttle = function(type, name, obj) {
+(function () {
+  const throttle = function (type, name, obj) {
     obj = obj || window;
     let running = false;
-    const func = function() {
+
+    const func = function () {
       if (running) {
         return;
       }
       running = true;
-      requestAnimationFrame(function() {
+      requestAnimationFrame(function () {
         obj.dispatchEvent(new CustomEvent(name));
         running = false;
       });
@@ -17,6 +18,7 @@ import './CustomEvent';
     obj.addEventListener(type, func);
   };
 
-  /* init - you can init any event */
+  // You can init any event
   throttle('resize', 'balmResize');
+  throttle('scroll', 'balmScroll');
 })();

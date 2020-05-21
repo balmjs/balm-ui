@@ -302,8 +302,11 @@ export default {
     };
   },
   mounted() {
-    window.addEventListener('balmResize', this.initRuler);
     this.initRuler();
+    window.addEventListener('balmResize', this.initRuler);
+  },
+  beforeDestroy() {
+    window.removeEventListener('balmResize', this.initRuler);
   },
   methods: {
     initRuler() {

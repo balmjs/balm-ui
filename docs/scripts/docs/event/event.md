@@ -17,9 +17,21 @@ $balmUI.onClose(property, fn); / $balmUI.onHide(property, fn); // update propert
 #### Optimized Custom Event
 
 - `balmResize` (better than `resize`)
+- `balmScroll` (better than `scroll`)
 
 ```js
-window.addEventListener('balmResize', () => {
-  // ...
-});
+export default {
+  mounted() {
+    this.init();
+    window.addEventListener('balmResize', this.init);
+  },
+  beforeDestroy() {
+    window.removeEventListener('balmResize', this.init);
+  },
+  methods: {
+    init() {
+      // ...
+    }
+  }
+};
 ```

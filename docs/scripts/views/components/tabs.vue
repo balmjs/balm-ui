@@ -192,8 +192,11 @@ export default {
     }
   },
   mounted() {
-    window.addEventListener('balmResize', this.init);
     this.init();
+    window.addEventListener('balmResize', this.init);
+  },
+  beforeDestroy() {
+    window.removeEventListener('balmResize', this.init);
   },
   methods: {
     init() {

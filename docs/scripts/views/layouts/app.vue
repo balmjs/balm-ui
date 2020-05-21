@@ -188,16 +188,19 @@ export default {
     });
   },
   mounted() {
-    this.drawerType = this.getDrawerType();
-
-    window.addEventListener('balmResize', () => {
-      this.drawerType = this.getDrawerType();
-    });
+    this.init();
+    window.addEventListener('balmResize', this.init);
+  },
+  beforeDestroy() {
+    window.removeEventListener('balmResize', this.init);
   },
   methods: {
     getDrawerType() {
       this.isWideScreen = window.innerWidth >= $MIN_WIDTH;
       return this.isWideScreen ? 'permanent' : 'modal';
+    },
+    init() {
+      this.drawerType = this.getDrawerType();
     },
     // isActiveLang(lang) {
     //   return lang === this.$i18n.locale;

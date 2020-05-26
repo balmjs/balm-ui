@@ -28,10 +28,8 @@
             href="https://github.com/balmjs/balm-ui"
             target="_blank"
             rel="noopener"
+            ><svg-github></svg-github><span>GitHub</span></a
           >
-            <svg-github></svg-github>
-            <span>GitHub</span>
-          </a>
         </template>
       </ui-top-app-bar>
       <!-- Content -->

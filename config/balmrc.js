@@ -1,6 +1,7 @@
 const path = require('path');
 const env = require('./env');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const { version } = require('../package.json');
 
 module.exports = {
   roots: {
@@ -95,7 +96,8 @@ module.exports = {
   },
   pwa: {
     enabled: env.buildDocs,
-    mode: 'injectManifest'
+    mode: 'injectManifest',
+    version: `v${version.replace(/\./g, '')}`
   },
   useDefaults: env.useDefault,
   logs: {

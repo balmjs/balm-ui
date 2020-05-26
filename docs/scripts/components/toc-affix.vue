@@ -1,6 +1,6 @@
 <template>
   <div class="toc-affix" v-shadow.transition="[2, 8]">
-    <ui-tabs v-model="active">
+    <ui-tabs v-model="active" @change="onChange">
       <ui-tab v-anchor:href="'#ui-usage'" class="v-anchor">Usage</ui-tab>
       <ui-tab v-anchor:href="'#ui-demo'" class="v-anchor">Demo</ui-tab>
       <ui-tab
@@ -37,12 +37,12 @@ export default {
   data() {
     return {
       active: 0,
-      offset: 128
+      offset: 128,
+      lastScrollTop: 0
     };
   },
   // mounted() {
-  //   let lastScrollTop =
-  //     document.documentElement.scrollTop || document.body.scrollTop;
+  //   this.lastScrollTop = this.getScrollTop();
 
   //   this.$nextTick(() => {
   //     const anchorElements = ['usage', 'demo', 'apis', 'sass'].map((key) => {
@@ -50,41 +50,46 @@ export default {
   //       return el ? this.getElementTop(el) : 0;
   //     });
   //     const anchorElementsCount = anchorElements.filter((x) => x).length;
+  //     const viewportHeight = document.body.clientHeight;
 
-  //     this.offset = document.body.clientHeight / anchorElementsCount;
-  //     if (this.offset < 128) {
-  //       this.offset = 128;
-  //     }
+  //     // this.offset = document.body.clientHeight / anchorElementsCount;
+  //     // if (this.offset < 128) {
+  //     //   this.offset = 128;
+  //     // }
 
-  //     console.log(anchorElements);
+  //     // console.log(anchorElements);
 
   //     window.addEventListener('balmScroll', () => {
-  //       const scrollTop =
-  //         document.documentElement.scrollTop || document.body.scrollTop;
+  //       const curScrollTop = this.getScrollTop();
 
-  //       if (scrollTop > lastScrollTop) {
+  //       if (curScrollTop > this.lastScrollTop) {
   //         // down ↓
   //         for (let i = 0; i < anchorElementsCount; i++) {
-  //           if (scrollTop + this.offset < anchorElements[i]) {
+  //           console.log('down', curScrollTop, anchorElements[i]);
+  //           if (curScrollTop + this.offset <= anchorElements[i]) {
   //             break;
   //           }
   //           this.active = i;
   //         }
-  //       } else if (scrollTop < lastScrollTop) {
+  //       } else if (curScrollTop < this.lastScrollTop) {
   //         // up ↑
   //         for (let i = anchorElementsCount - 1; i >= 0; i--) {
-  //           if (scrollTop + this.offset > anchorElements[i]) {
+  //           console.log('up', curScrollTop, anchorElements[i] + viewportHeight);
+  //           if (curScrollTop >= anchorElements[i] + viewportHeight) {
   //             break;
   //           }
   //           this.active = i;
   //         }
   //       }
 
-  //       lastScrollTop = scrollTop;
+  //       this.lastScrollTop = curScrollTop;
   //     });
   //   });
   // },
   methods: {
+    getScrollTop() {
+      return document.documentElement.scrollTop || document.body.scrollTop;
+    },
     getElementTop(element) {
       let actualTop = element.offsetTop;
       let current = element.offsetParent;
@@ -95,6 +100,9 @@ export default {
       }
 
       return actualTop;
+    },
+    onChange() {
+      this.lastScrollTop = this.getScrollTop();
     }
   }
 };

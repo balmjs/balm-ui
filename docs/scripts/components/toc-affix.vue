@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import { $MIN_WIDTH } from '@/config';
+
 export default {
   name: 'ui-toc-affix',
   props: {
@@ -37,55 +39,77 @@ export default {
   data() {
     return {
       active: 0,
-      offset: 128,
       lastScrollTop: 0
     };
   },
-  // mounted() {
-  //   this.lastScrollTop = this.getScrollTop();
+  computed: {
+    offset() {
+      return window.innerWidth >= $MIN_WIDTH ? 128 : 104;
+    }
+  },
+  mounted() {
+    this.lastScrollTop = this.getScrollTop();
 
-  //   this.$nextTick(() => {
-  //     const anchorElements = ['usage', 'demo', 'apis', 'sass'].map((key) => {
-  //       const el = document.getElementById(`ui-${key}`);
-  //       return el ? this.getElementTop(el) : 0;
-  //     });
-  //     const anchorElementsCount = anchorElements.filter((x) => x).length;
-  //     const viewportHeight = document.body.clientHeight;
+    this.$nextTick(() => {
+      const anchorElements = ['usage', 'demo', 'apis', 'sass'].map((key) => {
+        const el = document.getElementById(`ui-${key}`);
+        return el ? this.getElementTop(el) - this.offset : 0;
+      });
+      const anchorElementsCount = anchorElements.filter((x) => x).length;
+      const halfViewportHeight = document.body.clientHeight * 0.5;
 
-  //     // this.offset = document.body.clientHeight / anchorElementsCount;
-  //     // if (this.offset < 128) {
-  //     //   this.offset = 128;
-  //     // }
+      window.addEventListener('balmScroll', () => {
+        const curScrollTop = this.getScrollTop();
+        const curScrollTopWithOffset = curScrollTop + halfViewportHeight;
 
-  //     // console.log(anchorElements);
+        if (curScrollTop > this.lastScrollTop) {
+          // down ↓
+          for (let i = this.active + 1; i < anchorElementsCount; i++) {
+            // console.log(
+            //   'down',
+            //   i,
+            //   curScrollTopWithOffset,
+            //   anchorElements[i],
+            //   curScrollTopWithOffset >= anchorElements[i]
+            // );
 
-  //     window.addEventListener('balmScroll', () => {
-  //       const curScrollTop = this.getScrollTop();
+            if (curScrollTopWithOffset >= anchorElements[i]) {
+              if (this.active !== i) {
+                // console.log('gg');
+                this.active = i;
+              }
+            } else {
+              // console.log('skip');
+              break;
+            }
+          }
+        } else if (curScrollTop < this.lastScrollTop) {
+          // up ↑
+          for (let i = this.active; i; i--) {
+            // console.log(
+            //   'up',
+            //   i,
+            //   curScrollTopWithOffset,
+            //   anchorElements[i],
+            //   curScrollTopWithOffset <= anchorElements[i]
+            // );
 
-  //       if (curScrollTop > this.lastScrollTop) {
-  //         // down ↓
-  //         for (let i = 0; i < anchorElementsCount; i++) {
-  //           console.log('down', curScrollTop, anchorElements[i]);
-  //           if (curScrollTop + this.offset <= anchorElements[i]) {
-  //             break;
-  //           }
-  //           this.active = i;
-  //         }
-  //       } else if (curScrollTop < this.lastScrollTop) {
-  //         // up ↑
-  //         for (let i = anchorElementsCount - 1; i >= 0; i--) {
-  //           console.log('up', curScrollTop, anchorElements[i] + viewportHeight);
-  //           if (curScrollTop >= anchorElements[i] + viewportHeight) {
-  //             break;
-  //           }
-  //           this.active = i;
-  //         }
-  //       }
+            if (curScrollTopWithOffset <= anchorElements[i]) {
+              if (this.active) {
+                // console.log('gg');
+                this.active -= 1;
+              }
+            } else {
+              // console.log('skip');
+              break;
+            }
+          }
+        }
 
-  //       this.lastScrollTop = curScrollTop;
-  //     });
-  //   });
-  // },
+        this.lastScrollTop = curScrollTop;
+      });
+    });
+  },
   methods: {
     getScrollTop() {
       return document.documentElement.scrollTop || document.body.scrollTop;

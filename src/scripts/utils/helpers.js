@@ -1,9 +1,10 @@
+import merge from 'deepmerge';
 import getType from './typeof';
 
 // Reference http://php.net/manual/en/function.empty.php
 const EMPTY_VALUES = [undefined, null, false, 0, '', '0'];
 
-const isEmpty = value => {
+const isEmpty = (value) => {
   let result = false;
 
   let type = getType(value);
@@ -60,15 +61,16 @@ const isDeepEqual = (obj1, obj2, testPrototypes = false) => {
   return (
     obj1Props.length === obj2Props.length &&
     prototypesAreEqual &&
-    obj1Props.every(prop => isDeepEqual(obj1[prop], obj2[prop]))
+    obj1Props.every((prop) => isDeepEqual(obj1[prop], obj2[prop]))
   );
 };
 
 const helpers = {
+  merge,
   isEmpty,
   jsonEqual,
   isDeepEqual
 };
 
 export default helpers;
-export { isEmpty, jsonEqual, isDeepEqual };
+export { merge, isEmpty, jsonEqual, isDeepEqual };

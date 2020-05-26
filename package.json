@@ -51,7 +51,8 @@
   "dependencies": {
     "deepmerge": "^4.2.2",
     "flatpickr": "^4.6.3",
-    "material-components-web": "^6.0.0"
+    "material-components-web": "^6.0.0",
+    "quill": "^1.3.7"
   },
   "devDependencies": {
     "@babel/register": "^7.9.0",

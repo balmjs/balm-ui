@@ -1,4 +1,4 @@
-module.exports = function(api) {
+module.exports = function (api) {
   let envOptions = api.env('production')
     ? {
         modules: false,

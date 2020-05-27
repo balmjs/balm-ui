@@ -13,6 +13,7 @@ import UiRangepicker from './components/pickers/rangepicker';
 import UiAlert from './components/others/alert';
 import UiCollapse from './components/others/collapse';
 import UiBadge from './components/others/badge';
+import UiEditor from './components/input-controls/editor';
 /**
  * Plugins
  */
@@ -40,6 +41,7 @@ const components = {
   UiBadge,
   UiCollapse,
   UiDatepicker,
+  UiEditor,
   UiFile,
   UiPagination,
   UiRangepicker,

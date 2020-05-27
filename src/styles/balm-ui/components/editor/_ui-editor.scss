@@ -1,2 +1,7 @@
-// Core build with no theme, formatting, non-essential modules
-@use 'quill/dist/quill.core.css';
+.mdc-editor-container {
+  position: relative;
+}
+
+.ql-bubble .ql-editor {
+  border: 1px solid #ccc;
+}

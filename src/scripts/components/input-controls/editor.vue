@@ -1,11 +1,6 @@
 <template>
-  <div class="mdc-editor">
-    <div class="mdc-editor__toolbar">
-      <template #toolbar></template>
-    </div>
-    <div class="mdc-editor__content">
-      <slot></slot>
-    </div>
+  <div class="mdc-editor-container">
+    <div ref="editor" class="mdc-editor"></div>
   </div>
 </template>
 
@@ -16,7 +11,24 @@ import Quill from 'quill';
 const UI_EDITOR = {
   EVENT: {
     CHANGE: 'change'
-  }
+  },
+  BLANK: '<p><br></p>',
+  toolbarOptions: [
+    [{ font: [] }, { size: ['small', false, 'large', 'huge'] }],
+    ['bold', 'italic', 'underline', 'strike'],
+    [{ color: [] }, { background: [] }],
+    [{ script: 'sub' }, { script: 'super' }],
+    [{ header: 1 }, { header: 2 }, 'blockquote', 'code-block'],
+    [
+      { list: 'ordered' },
+      { list: 'bullet' },
+      { indent: '-1' },
+      { indent: '+1' }
+    ],
+    [{ direction: 'rtl' }, { align: [] }],
+    ['link', 'image', 'video'], // NOTE: 'formula' - requires `KaTex`
+    ['clean']
+  ]
 };
 
 export default {
@@ -35,25 +47,84 @@ export default {
       default() {
         return {};
       }
-    }
+    },
+    toolbar: {
+      type: [Array, String],
+      default() {
+        return [];
+      }
+    },
+    placeholder: String,
+    theme: String
   },
   data() {
     return {
-      $editor: null
+      $editor: null,
+      htmlContent: ''
     };
   },
-  mounted() {
-    const editorConfig = Object.assign({}, this.options);
-
-    this.$editor = new Quill('.mdc-editor', editorConfig);
-
-    this.$editor.on('text-change', (delta, oldDelta, source) => {
-      if (source == 'api') {
-        console.log('An API call triggered this change.');
-      } else if (source == 'user') {
-        console.log('A user action triggered this change.');
+  watch: {
+    content(val) {
+      if (val) {
+        if (this.htmlContent !== val) {
+          this.$editor.pasteHTML(val);
+          this.$editor.blur();
+        }
+      } else {
+        this.setHTML('');
       }
+    }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.$editor = new Quill(this.$refs.editor, this.getOptions());
+
+      if (this.content) {
+        this.setHTML(this.content);
+      }
+
+      this.$editor.on('text-change', (delta, oldDelta, source) => {
+        let html = this.getHTML();
+        if (html === UI_EDITOR.BLANK) {
+          html = '';
+        }
+
+        this.htmlContent = html;
+        this.$emit(UI_EDITOR.EVENT.CHANGE, html);
+      });
     });
+  },
+  beforeDestroy() {
+    this.$editor = null;
+  },
+  methods: {
+    getOptions() {
+      const defaultOptions = {
+        modules: {},
+        placeholder: this.placeholder,
+        theme: this.theme
+      };
+      let options = Object.assign(defaultOptions, this.options);
+
+      if (this.toolbar === 'full') {
+        options.modules.toolbar = UI_EDITOR.toolbarOptions;
+      }
+
+      return options;
+    },
+    getHTML() {
+      return this.$editor.root.innerHTML;
+    },
+    setHTML(html) {
+      this.$editor.root.innerHTML = html;
+    },
+    paste(html) {
+      const selection = this.$editor.getSelection();
+      this.$editor.clipboard.dangerouslyPasteHTML(
+        selection ? selection.index : 0,
+        html
+      );
+    }
   }
 };
 </script>

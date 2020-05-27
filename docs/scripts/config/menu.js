@@ -183,6 +183,12 @@ const MATERIAL_COMPONENTS = [
         plus: true
       },
       {
+        icon: 'text_field',
+        name: 'Editor',
+        description: 'a modern WYSIWYG editor',
+        plus: true
+      },
+      {
         icon: 'component',
         name: 'Validator',
         description: 'Validator',

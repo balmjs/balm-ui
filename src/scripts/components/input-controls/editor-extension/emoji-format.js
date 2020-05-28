@@ -1,26 +1,14 @@
 import Quill from 'quill';
 import getType from '../../../utils/typeof';
+import Emotion from './emotion';
 
 const Embed = Quill.import('blots/embed');
-
-const emojiMap = {
-  '100': {
-    name: 'good',
-    code: ':good:',
-    title: '好'
-  },
-  gg: {
-    name: 'bad',
-    code: ':bad:',
-    title: '孬'
-  }
-}; // TODO
+const content = Emotion.getEmotion('emoji');
+const emojiMap = {};
 
 class EmojiBlot extends Embed {
   static create(value) {
-    let node = super.create();
-
-    console.log(value);
+    const node = super.create();
 
     if (getType(value) === 'object') {
       EmojiBlot.buildIcon(value, node);
@@ -35,12 +23,11 @@ class EmojiBlot extends Embed {
     return node;
   }
 
-  static buildIcon({ name, title }, node) {
-    console.log(node);
-    let emojiEl = document.createElement('span');
+  static buildIcon({ name }, node) {
+    const emojiEl = document.createElement('span');
     emojiEl.classList.add(`${this.className}-${name}`);
 
-    node.setAttribute('title', title);
+    node.setAttribute('title', name);
     node.setAttribute('data-name', name);
     node.appendChild(emojiEl);
   }

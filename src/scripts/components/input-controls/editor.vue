@@ -6,7 +6,8 @@
 </template>
 
 <script>
-import Quill from './extension';
+import Editor from './editor-extension';
+import getType from '../../utils/typeof';
 
 // Define editor constants
 const UI_EDITOR = {
@@ -39,6 +40,7 @@ export default {
     event: UI_EDITOR.EVENT.CHANGE
   },
   props: {
+    // States
     content: {
       type: String,
       default: ''
@@ -49,15 +51,30 @@ export default {
         return {};
       }
     },
+    // UI attributes
     toolbar: [Array, String],
     placeholder: String,
-    theme: String
+    theme: String,
+    // TODO: extension
+    uploadImageUrl: String,
+    emotions: {
+      type: Array,
+      default() {
+        return []; // format: [{ type, title, content: { name, code } }]
+      }
+    },
+    extensions: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
+    extensionHandlers: Object
   },
   data() {
     return {
       $editor: null,
-      htmlContent: '',
-      $toolbar: null
+      htmlContent: ''
     };
   },
   watch: {
@@ -74,8 +91,11 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.$editor = new Quill(this.$refs.editor, this.getOptions());
-      this.$toolbar = this.$editor.getModule('toolbar');
+      this.$editor = Editor.create(this.$refs.editor, {
+        options: this.getOptions(),
+        emotions: this.emotions,
+        extensions: this.extensions
+      });
 
       if (this.content) {
         this.setHTML(this.content);
@@ -91,13 +111,16 @@ export default {
         this.$emit(UI_EDITOR.EVENT.CHANGE, html);
       });
 
-      this.$toolbar.addHandler('emoji', (result) => {
-        console.log(result);
-      });
+      if (getType(this.extensionHandlers) === 'object') {
+        const toolbar = this.$editor.getModule('toolbar');
+        Object.keys(this.extensionHandlers).forEach((customEvent) =>
+          toolbar.addHandler(customEvent, this.extensionHandlers[customEvent])
+        );
+      }
     });
   },
   beforeDestroy() {
-    this.$editor = null;
+    Editor.destroy();
   },
   methods: {
     getOptions() {
@@ -110,6 +133,9 @@ export default {
 
       options.modules.toolbar =
         this.toolbar === 'full' ? UI_EDITOR.toolbarOptions : this.toolbar;
+
+      // Custom extensions
+      options.modules['emoji-toolbar'] = true;
 
       return options;
     },

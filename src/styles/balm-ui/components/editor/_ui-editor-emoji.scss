@@ -1,0 +1,53 @@
+#ql-emoji-palette {
+  position: absolute;
+  z-index: 4;
+  max-width: 240px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+
+  ul {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .active {
+    border-bottom: 3px solid #2ab27b;
+  }
+}
+
+.ql-emoji-palette__tab {
+  padding: 4px 4px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  background-color: #f7f7f7;
+}
+
+.ql-emoji-palette__panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-height: 220px;
+  overflow-y: scroll;
+  padding: 2px;
+  background-color: #fff;
+}
+
+#ql-emoji-close-area {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ql-emoji-wrapper {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+
+  i {
+    font-style: normal;
+  }
+}

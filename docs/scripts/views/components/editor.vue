@@ -7,13 +7,18 @@
     <!-- Content -->
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 Snow</h6>
-      <ui-editor v-model="content1" :toolbar="toolbar" theme="snow"></ui-editor>
+      <ui-editor
+        v-model="content1"
+        :toolbar="toolbar"
+        :emotions="emotions"
+        theme="snow"
+      ></ui-editor>
       <pre v-html="content1"></pre>
     </section>
 
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Bubble</h6>
-      <ui-editor v-model="content2" theme="bubble"></ui-editor>
+      <!-- <ui-editor v-model="content2" theme="bubble"></ui-editor> -->
       <pre v-html="content2"></pre>
     </section>
   </ui-page>
@@ -28,7 +33,43 @@ export default {
     return {
       content1: '',
       content2: '',
-      toolbar: ['bold', 'emoji']
+      toolbar: ['bold', 'emoji'],
+      emotions: [
+        {
+          type: 'image',
+          title: '默认',
+          content: [
+            {
+              name: 'oo',
+              alt: '[坏笑]',
+              src:
+                'http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/50/pcmoren_huaixiao_org.png'
+            },
+            {
+              name: 'xx',
+              alt: '[舔屏]',
+              src:
+                'http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/40/pcmoren_tian_org.png'
+            }
+          ]
+        },
+        {
+          type: 'emoji',
+          title: 'emoji',
+          content: [
+            {
+              name: 'smile',
+              code: ':smile:',
+              value: '😀'
+            },
+            {
+              name: 'cry',
+              code: ':cry:',
+              value: '😆'
+            }
+          ]
+        }
+      ]
     };
   },
   mounted() {

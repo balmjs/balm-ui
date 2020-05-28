@@ -1,44 +1,40 @@
 import Quill from 'quill';
 import getType from '../../../utils/typeof';
-import Emotion from './emotion';
 
 const Embed = Quill.import('blots/embed');
-const content = Emotion.getEmotion('emoji');
-const emojiMap = {};
 
 class EmojiBlot extends Embed {
-  static create(value) {
+  static create(emojiItem) {
     const node = super.create();
 
-    if (getType(value) === 'object') {
-      EmojiBlot.buildIcon(value, node);
-    } else if (getType(value) === 'string') {
-      const valueObj = emojiMap[value];
-
-      if (valueObj) {
-        EmojiBlot.buildIcon(valueObj, node);
-      }
+    if (getType(emojiItem) === 'object') {
+      EmojiBlot.buildHtml(emojiItem, node);
+    } else {
+      console.warn('Invalid emoji');
     }
 
     return node;
   }
 
-  static buildIcon({ name }, node) {
-    const emojiEl = document.createElement('span');
-    emojiEl.classList.add(`${this.className}-${name}`);
+  static buildHtml(emojiItem, node) {
+    node.classList.add(`ql-${emojiItem.type}-${emojiItem.name}`);
 
-    node.setAttribute('title', name);
-    node.setAttribute('data-name', name);
-    node.appendChild(emojiEl);
-  }
-
-  static value(node) {
-    return node.dataset.name;
+    let emojiEl;
+    if (emojiItem.type === 'emoji') {
+      node.innerHTML = emojiItem.value;
+    } else {
+      emojiEl = document.createElement('img');
+      emojiEl.src = emojiItem.src;
+      if (emojiItem.alt) {
+        emojiEl.setAttribute('alt', emojiItem.alt);
+      }
+      node.appendChild(emojiEl);
+    }
   }
 }
 
 EmojiBlot.blotName = 'emoji';
 EmojiBlot.className = 'ql-emoji';
-EmojiBlot.tagName = 'i';
+EmojiBlot.tagName = 'span';
 
 export default EmojiBlot;

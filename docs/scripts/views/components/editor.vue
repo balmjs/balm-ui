@@ -41,13 +41,13 @@ export default {
           content: [
             {
               name: 'oo',
-              alt: '[坏笑]',
+              alt: '坏笑',
               src:
                 'http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/50/pcmoren_huaixiao_org.png'
             },
             {
               name: 'xx',
-              alt: '[舔屏]',
+              alt: '舔屏',
               src:
                 'http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/40/pcmoren_tian_org.png'
             }
@@ -59,12 +59,10 @@ export default {
           content: [
             {
               name: 'smile',
-              code: ':smile:',
               value: '😀'
             },
             {
               name: 'cry',
-              code: ':cry:',
               value: '😆'
             }
           ]
@@ -74,7 +72,7 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      this.content1 = '<p>Hello BalmUI</p>';
+      this.content1 = '<p>Hello [oo] BalmUI :smile: !</p>';
       this.content2 = '<p>Hello BalmJS</p>';
     }, 1e3);
   }

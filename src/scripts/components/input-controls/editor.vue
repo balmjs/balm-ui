@@ -108,6 +108,7 @@ export default {
         }
 
         this.htmlContent = html;
+        console.log('html', html);
         this.$emit(UI_EDITOR.EVENT.CHANGE, html);
       });
 

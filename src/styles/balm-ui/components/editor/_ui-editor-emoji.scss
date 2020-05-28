@@ -1,3 +1,5 @@
+@use '@material/theme/variables' as theme-variables;
+
 #ql-emoji-palette {
   position: absolute;
   z-index: 4;
@@ -10,22 +12,31 @@
     margin: 0px;
     padding: 0px;
   }
-
-  .active {
-    border-bottom: 3px solid #2ab27b;
-  }
 }
 
-.ql-emoji-palette__tab {
+.ql-emoji-tabs {
   padding: 4px 4px 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   background-color: #f7f7f7;
 }
 
-.ql-emoji-palette__panel {
+.ql-emoji-tab-bar {
+  display: flex;
+  overflow-x: auto;
+}
+
+.ql-emoji-tab {
+  list-style: none;
+  padding: 0 8px;
+
+  &.ql-emoji-tab--active {
+    border-bottom: 2px solid theme-variables.$primary;
+  }
+}
+
+.ql-emoji-panel {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   max-height: 220px;
   overflow-y: scroll;
   padding: 2px;
@@ -40,14 +51,15 @@
   height: 100%;
 }
 
-.ql-emoji-wrapper {
+.ql-emoji {
   display: inline-flex;
-  justify-content: center;
   align-items: center;
   width: 24px;
   height: 24px;
+  font-size: 20px;
 
   i {
     font-style: normal;
+    font-size: 20px;
   }
 }

@@ -7,11 +7,12 @@ const EMOJI_TOOLBAR = {
   id: 'ql-emoji-palette',
   closeId: 'ql-emoji-close-area',
   cssClasses: {
-    tabBar: 'ql-emoji-palette__tab',
+    tabs: 'ql-emoji-tabs',
+    tabBar: 'ql-emoji-tab-bar',
     tab: 'ql-emoji-tab',
     tabActive: 'ql-emoji-tab--active',
-    panel: 'ql-emoji-palette__panel',
-    emojiWrapper: 'ql-emoji-wrapper'
+    panel: 'ql-emoji-panel',
+    emoji: 'ql-emoji'
   }
 };
 
@@ -24,13 +25,6 @@ class EmojiToolbarModule extends Module {
     if (typeof this.toolbar !== 'undefined') {
       this.toolbar.addHandler('emoji', this.checkPalatteExist);
     }
-
-    // const emojiButtons = document.getElementsByClassName('ql-emoji');
-    // if (emojiButtons) {
-    //   [].slice.call(emojiButtons).forEach((emojiButton) => {
-    //     emojiButton.innerHTML = options.buttonIcon;
-    //   });
-    // }
   }
 
   checkPalatteExist() {
@@ -41,10 +35,14 @@ class EmojiToolbarModule extends Module {
     quill.on('text-change', function (delta, oldDelta, source) {
       if (source === 'user') {
         closeEmojiPalette();
-        quill.getSelection();
+        updateRange(quill);
       }
     });
   }
+}
+
+function updateRange(quill) {
+  return quill.getSelection();
 }
 
 function closeEmojiPalette() {
@@ -78,7 +76,7 @@ function onBlurHanlder() {
 
 function showEmojiPalatte(quill) {
   const emojiPaletteEl = document.createElement('div');
-  const range = quill.getSelection();
+  const range = updateRange(quill);
   const atSignBounds = quill.getBounds(range.index);
 
   quill.container.appendChild(emojiPaletteEl);
@@ -93,7 +91,7 @@ function showEmojiPalatte(quill) {
 
   // add tab container
   const tabsEl = document.createElement('div');
-  tabsEl.className = EMOJI_TOOLBAR.cssClasses.tabBar;
+  tabsEl.className = EMOJI_TOOLBAR.cssClasses.tabs;
   emojiPaletteEl.appendChild(tabsEl);
   // add panel container
   const panelEl = document.createElement('div');
@@ -101,13 +99,14 @@ function showEmojiPalatte(quill) {
   emojiPaletteEl.appendChild(panelEl);
   // update emoji type
   const tabs = Emotion.getTypes();
-  addTabs(tabs, tabsEl, panelEl);
+  addTabs(quill, tabs, tabsEl, panelEl);
   // update emoji content
-  updatePanel(tabs[0] && tabs[0].type, panelEl);
+  updatePanel(quill, tabs[0] && tabs[0].type, panelEl);
 }
 
-function addTabs(tabs, tabsEl, panelEl) {
+function addTabs(quill, tabs, tabsEl, panelEl) {
   const tabBarEl = document.createElement('ul');
+  tabBarEl.className = EMOJI_TOOLBAR.cssClasses.tabBar;
   tabsEl.appendChild(tabBarEl);
 
   tabs.forEach((tab, index) => {
@@ -133,20 +132,20 @@ function addTabs(tabs, tabsEl, panelEl) {
         }
 
         currentTabEl.classList.toggle(EMOJI_TOOLBAR.cssClasses.tabActive);
-        updatePanel(currentTabEl.dataset.type, panelEl);
+        updatePanel(quill, currentTabEl.dataset.type, panelEl);
       }
     });
   });
 }
 
-function updatePanel(type, panelEl) {
+function updatePanel(quill, type, panelEl) {
   if (type) {
     panelEl.innerHTML = '';
     let content = Emotion.getEmotion(type);
 
     content.contentList.forEach((item) => {
       const spanEl = document.createElement('span');
-      spanEl.className = EMOJI_TOOLBAR.cssClasses.emojiWrapper;
+      spanEl.className = EMOJI_TOOLBAR.cssClasses.emoji;
 
       let emojiEl;
       if (type === 'emoji') {
@@ -156,15 +155,32 @@ function updatePanel(type, panelEl) {
       } else {
         emojiEl = document.createElement('img');
         emojiEl.src = item.src;
-        emojiEl.setAttribute('alt', item.alt);
+        emojiEl.setAttribute('title', item.code || `[${item.name}]`);
+        if (item.alt) {
+          emojiEl.setAttribute('alt', item.alt);
+        }
       }
 
       spanEl.appendChild(emojiEl);
       panelEl.appendChild(spanEl);
+
+      const result = Object.assign({ type }, item);
+      handleChooseEmoji(quill, emojiEl, result);
     });
   } else {
     panelEl.innerHTML = 'emotions prop is required';
   }
+}
+
+function handleChooseEmoji(quill, emojiEl, result) {
+  quill.focus();
+  const range = updateRange(quill);
+
+  emojiEl.addEventListener('click', (e) => {
+    quill.insertEmbed(range.index, 'emoji', result, Quill.sources.USER);
+    setTimeout(() => quill.setSelection(range.index + 1), 0);
+    closeEmojiPalette();
+  });
 }
 
 export default EmojiToolbarModule;

@@ -7,12 +7,14 @@
     <!-- Content -->
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 Snow</h6>
-      <ui-editor v-model="content1" theme="snow"></ui-editor>
+      <ui-editor v-model="content1" :toolbar="toolbar" theme="snow"></ui-editor>
+      <pre v-html="content1"></pre>
     </section>
 
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Bubble</h6>
       <ui-editor v-model="content2" theme="bubble"></ui-editor>
+      <pre v-html="content2"></pre>
     </section>
   </ui-page>
 </template>
@@ -25,7 +27,8 @@ export default {
   data() {
     return {
       content1: '',
-      content2: ''
+      content2: '',
+      toolbar: ['bold', 'emoji']
     };
   },
   mounted() {

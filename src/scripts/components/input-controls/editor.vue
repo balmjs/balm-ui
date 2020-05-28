@@ -1,11 +1,12 @@
 <template>
   <div class="mdc-editor-container">
+    <slot name="toolbar"></slot>
     <div ref="editor" class="mdc-editor"></div>
   </div>
 </template>
 
 <script>
-import Quill from 'quill';
+import Quill from './extension';
 
 // Define editor constants
 const UI_EDITOR = {
@@ -48,19 +49,15 @@ export default {
         return {};
       }
     },
-    toolbar: {
-      type: [Array, String],
-      default() {
-        return [];
-      }
-    },
+    toolbar: [Array, String],
     placeholder: String,
     theme: String
   },
   data() {
     return {
       $editor: null,
-      htmlContent: ''
+      htmlContent: '',
+      $toolbar: null
     };
   },
   watch: {
@@ -78,6 +75,7 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.$editor = new Quill(this.$refs.editor, this.getOptions());
+      this.$toolbar = this.$editor.getModule('toolbar');
 
       if (this.content) {
         this.setHTML(this.content);
@@ -91,6 +89,10 @@ export default {
 
         this.htmlContent = html;
         this.$emit(UI_EDITOR.EVENT.CHANGE, html);
+      });
+
+      this.$toolbar.addHandler('emoji', (result) => {
+        console.log(result);
       });
     });
   },
@@ -106,9 +108,8 @@ export default {
       };
       let options = Object.assign(defaultOptions, this.options);
 
-      if (this.toolbar === 'full') {
-        options.modules.toolbar = UI_EDITOR.toolbarOptions;
-      }
+      options.modules.toolbar =
+        this.toolbar === 'full' ? UI_EDITOR.toolbarOptions : this.toolbar;
 
       return options;
     },

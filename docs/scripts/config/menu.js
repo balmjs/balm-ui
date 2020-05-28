@@ -129,6 +129,18 @@ const MATERIAL_COMPONENTS = [
         url: 'textfield'
       },
       {
+        icon: 'text_field',
+        name: 'Autocomplete',
+        description: 'Autocomplete',
+        plus: true
+      },
+      {
+        icon: 'text_field',
+        name: 'Editor',
+        description: 'a modern WYSIWYG editor',
+        plus: true
+      },
+      {
         icon: 'menu',
         name: 'Select',
         description: 'Popover selection menus'
@@ -149,25 +161,9 @@ const MATERIAL_COMPONENTS = [
         description: 'Chips for actions, selection, and input'
       },
       {
-        icon: 'switch',
-        name: 'Switch',
-        description: 'On off switches'
-      },
-      {
-        icon: 'slider',
-        name: 'Slider',
-        description: 'Range controls'
-      },
-      {
         icon: 'component',
         name: 'File',
         description: 'File upload',
-        plus: true
-      },
-      {
-        icon: 'text_field',
-        name: 'Autocomplete',
-        description: 'Autocomplete',
         plus: true
       },
       {
@@ -183,10 +179,14 @@ const MATERIAL_COMPONENTS = [
         plus: true
       },
       {
-        icon: 'text_field',
-        name: 'Editor',
-        description: 'a modern WYSIWYG editor',
-        plus: true
+        icon: 'switch',
+        name: 'Switch',
+        description: 'On off switches'
+      },
+      {
+        icon: 'slider',
+        name: 'Slider',
+        description: 'Range controls'
       },
       {
         icon: 'component',

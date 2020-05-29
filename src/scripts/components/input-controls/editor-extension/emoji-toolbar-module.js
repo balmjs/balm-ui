@@ -1,5 +1,6 @@
 import Quill from 'quill';
 import Emotion from './emotion';
+import { getCode } from './emoji-utils';
 
 const Module = Quill.import('core/module');
 
@@ -151,11 +152,11 @@ function updatePanel(quill, type, panelEl) {
       if (type === 'emoji') {
         emojiEl = document.createElement('i');
         emojiEl.innerHTML = item.value;
-        emojiEl.setAttribute('title', item.code || `:${item.name}:`);
+        emojiEl.setAttribute('title', getCode(type, item));
       } else {
         emojiEl = document.createElement('img');
         emojiEl.src = item.src;
-        emojiEl.setAttribute('title', item.code || `[${item.name}]`);
+        emojiEl.setAttribute('title', getCode(type, item));
         if (item.alt) {
           emojiEl.setAttribute('alt', item.alt);
         }

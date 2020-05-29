@@ -1,4 +1,5 @@
 import Quill from 'quill';
+import Emotion from './emotion';
 import getType from '../../../utils/typeof';
 
 const Embed = Quill.import('blots/embed');
@@ -9,6 +10,8 @@ class EmojiBlot extends Embed {
 
     if (getType(emojiItem) === 'object') {
       EmojiBlot.buildHtml(emojiItem, node);
+    } else if (getType(emojiItem) === 'string') {
+      // TODO: const emojiMap = Emotion.getEmotions();
     } else {
       console.warn('Invalid emoji');
     }

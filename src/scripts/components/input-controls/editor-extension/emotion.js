@@ -1,4 +1,12 @@
-import { isValidEmoji, getCode } from './emoji-utils';
+import {
+  emojiClassName,
+  isValidEmoji,
+  getCode,
+  createEmoji
+} from './emoji-utils';
+
+const emojiRegExp = /(:\w+:)|(\[\w+\])/g;
+const parser = new DOMParser();
 
 let emojiTypes = [];
 let emojiData = {};
@@ -58,6 +66,38 @@ class Emotion {
     emojiTypes = [];
     emojiData = {};
     emojiMap = {};
+  }
+
+  static encode(html) {
+    let content = '';
+    let documentEl = parser.parseFromString(html, 'text/html');
+
+    documentEl.querySelectorAll(`.${emojiClassName}`).forEach((el) => {
+      const emojiKeys = el.classList[1].split('-');
+      const type = emojiKeys[1];
+      const name = emojiKeys[2];
+      const code = getCode({ type, name });
+      // TODO
+      let div = document.createElement('div');
+      el.parentNode.replaceChild(div, el);
+    });
+    console.log('xxxx:', documentEl.querySelector('body'));
+
+    return content;
+  }
+
+  static decode(content) {
+    let html = content;
+
+    let result = content.match(emojiRegExp);
+    if (result) {
+      result.forEach((code) => {
+        const emojiEl = createEmoji(emojiMap[code]);
+        html = html.replace(code, emojiEl.outerHTML);
+      });
+    }
+
+    return html;
   }
 }
 

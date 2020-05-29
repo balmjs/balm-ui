@@ -8,6 +8,7 @@
 <script>
 import Editor from './editor-extension';
 import getType from '../../utils/typeof';
+import Emotion from './editor-extension/emotion';
 
 // Define editor constants
 const UI_EDITOR = {
@@ -81,7 +82,10 @@ export default {
     content(val) {
       if (val) {
         if (this.htmlContent !== val) {
-          this.$editor.pasteHTML(val);
+          let html = Emotion.decode(val);
+          console.log('watch decode html', html);
+          // this.$editor.pasteHTML(html);
+          this.setHTML(html);
           this.$editor.blur();
         }
       } else {
@@ -98,7 +102,9 @@ export default {
       });
 
       if (this.content) {
-        this.setHTML(this.content);
+        let html = Emotion.decode(this.content);
+        console.log('init decode html', html);
+        this.setHTML(html);
       }
 
       this.$editor.on('text-change', (delta, oldDelta, source) => {
@@ -109,7 +115,9 @@ export default {
 
         this.htmlContent = html;
         console.log('html', html);
-        this.$emit(UI_EDITOR.EVENT.CHANGE, html);
+        let content = Emotion.encode(html);
+        console.log('encode html', html);
+        this.$emit(UI_EDITOR.EVENT.CHANGE, content);
       });
 
       if (getType(this.extensionHandlers) === 'object') {
@@ -145,13 +153,6 @@ export default {
     },
     setHTML(html) {
       this.$editor.root.innerHTML = html;
-    },
-    paste(html) {
-      const selection = this.$editor.getSelection();
-      this.$editor.clipboard.dangerouslyPasteHTML(
-        selection ? selection.index : 0,
-        html
-      );
     }
   }
 };

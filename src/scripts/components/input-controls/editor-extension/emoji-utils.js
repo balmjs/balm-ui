@@ -5,10 +5,7 @@ export function isValidEmoji(type, emoji) {
 }
 
 export function getCode(emoji) {
-  return (
-    emoji.code ||
-    (emoji.type === 'emoji' ? `:${emoji.name}:` : `[${emoji.name}]`)
-  );
+  return emoji.type === 'emoji' ? `:${emoji.name}:` : `[${emoji.name}]`;
 }
 
 export function createEmoji(emoji, node = null) {
@@ -26,7 +23,14 @@ export function createEmoji(emoji, node = null) {
   if (node) {
     node.classList.add(`ql-${emoji.type}-${emoji.name}`);
     node.appendChild(emojiEl);
-  }
+  } else {
+    const emojiWrapperEl = document.createElement('span');
+    emojiWrapperEl.classList.add(
+      emojiClassName,
+      `ql-${emoji.type}-${emoji.name}`
+    );
+    emojiWrapperEl.appendChild(emojiEl);
 
-  return emojiEl;
+    return emojiWrapperEl;
+  }
 }

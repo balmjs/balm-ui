@@ -1,6 +1,6 @@
 import Quill from 'quill';
 import Emotion from './emotion';
-import { emojiClassName, getCode, createEmoji } from './emoji-utils';
+import { getCode, createEmoji } from './emoji-utils';
 
 const Module = Quill.import('core/module');
 
@@ -147,11 +147,7 @@ function updatePanel(quill, type, panelEl) {
       const emojiEl = createEmoji(emoji);
       emojiEl.setAttribute('title', getCode(emoji));
 
-      const emojiWrapperEl = document.createElement('span');
-      emojiWrapperEl.className = emojiClassName;
-      emojiWrapperEl.appendChild(emojiEl);
-
-      panelEl.appendChild(emojiWrapperEl);
+      panelEl.appendChild(emojiEl);
 
       handleChooseEmoji(quill, emojiEl, emoji);
     });

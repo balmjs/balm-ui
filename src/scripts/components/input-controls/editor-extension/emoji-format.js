@@ -1,43 +1,29 @@
 import Quill from 'quill';
 import Emotion from './emotion';
 import getType from '../../../utils/typeof';
+import { emojiClassName, createEmoji } from './emoji-utils';
 
 const Embed = Quill.import('blots/embed');
 
 class EmojiBlot extends Embed {
-  static create(emojiItem) {
+  static create(value) {
     const node = super.create();
 
-    if (getType(emojiItem) === 'object') {
-      EmojiBlot.buildHtml(emojiItem, node);
-    } else if (getType(emojiItem) === 'string') {
-      // TODO: const emojiMap = Emotion.getEmotions();
+    if (getType(value) === 'object') {
+      createEmoji(value, node);
+    } else if (getType(value) === 'string') {
+      const emojiMap = Emotion.getEmotions();
+      createEmoji(emojiMap[value], node);
     } else {
       console.warn('Invalid emoji');
     }
 
     return node;
   }
-
-  static buildHtml(emojiItem, node) {
-    node.classList.add(`ql-${emojiItem.type}-${emojiItem.name}`);
-
-    let emojiEl;
-    if (emojiItem.type === 'emoji') {
-      node.innerHTML = emojiItem.value;
-    } else {
-      emojiEl = document.createElement('img');
-      emojiEl.src = emojiItem.src;
-      if (emojiItem.alt) {
-        emojiEl.setAttribute('alt', emojiItem.alt);
-      }
-      node.appendChild(emojiEl);
-    }
-  }
 }
 
 EmojiBlot.blotName = 'emoji';
-EmojiBlot.className = 'ql-emoji';
+EmojiBlot.className = emojiClassName;
 EmojiBlot.tagName = 'span';
 
 export default EmojiBlot;

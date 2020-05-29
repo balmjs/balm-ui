@@ -1,6 +1,6 @@
 import Quill from 'quill';
 import Emotion from './emotion';
-import { getCode } from './emoji-utils';
+import { emojiClassName, getCode, createEmoji } from './emoji-utils';
 
 const Module = Quill.import('core/module');
 
@@ -12,8 +12,7 @@ const EMOJI_TOOLBAR = {
     tabBar: 'ql-emoji-tab-bar',
     tab: 'ql-emoji-tab',
     tabActive: 'ql-emoji-tab--active',
-    panel: 'ql-emoji-panel',
-    emoji: 'ql-emoji'
+    panel: 'ql-emoji-panel'
   }
 };
 
@@ -142,31 +141,19 @@ function addTabs(quill, tabs, tabsEl, panelEl) {
 function updatePanel(quill, type, panelEl) {
   if (type) {
     panelEl.innerHTML = '';
-    let content = Emotion.getEmotion(type);
+    let emojiList = Emotion.getEmotion(type);
 
-    content.contentList.forEach((item) => {
-      const spanEl = document.createElement('span');
-      spanEl.className = EMOJI_TOOLBAR.cssClasses.emoji;
+    emojiList.forEach((emoji) => {
+      const emojiEl = createEmoji(emoji);
+      emojiEl.setAttribute('title', getCode(emoji));
 
-      let emojiEl;
-      if (type === 'emoji') {
-        emojiEl = document.createElement('i');
-        emojiEl.innerHTML = item.value;
-        emojiEl.setAttribute('title', getCode(type, item));
-      } else {
-        emojiEl = document.createElement('img');
-        emojiEl.src = item.src;
-        emojiEl.setAttribute('title', getCode(type, item));
-        if (item.alt) {
-          emojiEl.setAttribute('alt', item.alt);
-        }
-      }
+      const emojiWrapperEl = document.createElement('span');
+      emojiWrapperEl.className = emojiClassName;
+      emojiWrapperEl.appendChild(emojiEl);
 
-      spanEl.appendChild(emojiEl);
-      panelEl.appendChild(spanEl);
+      panelEl.appendChild(emojiWrapperEl);
 
-      const result = Object.assign({ type }, item);
-      handleChooseEmoji(quill, emojiEl, result);
+      handleChooseEmoji(quill, emojiEl, emoji);
     });
   } else {
     panelEl.innerHTML = 'emotions prop is required';

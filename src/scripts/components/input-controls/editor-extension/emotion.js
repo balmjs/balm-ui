@@ -1,4 +1,4 @@
-import { getCode, getEmoji } from './emoji-utils';
+import { isValidEmoji, getCode } from './emoji-utils';
 
 let emojiTypes = [];
 let emojiData = {};
@@ -14,28 +14,19 @@ class Emotion {
         name: emotion.title
       });
 
-      if (
-        emotion.content.every(
-          (item) => item.name && getEmoji(emotion.type, item)
-        )
-      ) {
-        let contentList = [];
-        let contentMap = {};
+      if (emotion.content.every((item) => isValidEmoji(emotion.type, item))) {
+        let emojiList = [];
 
         [].slice.call(emotion.content).forEach((item) => {
-          const code = getCode(emotion.type, item);
-          const emoji = getEmoji(emotion.type, item);
+          const emoji = Object.assign({ type: emotion.type }, item);
+          const code = getCode(emoji);
 
-          contentList.push(item);
-          contentMap[code] = emoji;
+          emojiList.push(emoji);
 
           emojiMap[code] = emoji;
         });
 
-        emojiData[emotion.type] = {
-          contentList,
-          contentMap
-        };
+        emojiData[emotion.type] = emojiList;
       } else {
         console.warn('Invalid emotions format');
         // reset

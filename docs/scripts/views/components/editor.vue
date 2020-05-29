@@ -18,7 +18,12 @@
 
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Bubble</h6>
-      <!-- <ui-editor v-model="content2" theme="bubble"></ui-editor> -->
+      <!-- <ui-editor
+        v-model="content2"
+        :toolbar="toolbar"
+        :emotions="emotions"
+        theme="bubble"
+      ></ui-editor> -->
       <pre v-html="content2"></pre>
     </section>
   </ui-page>

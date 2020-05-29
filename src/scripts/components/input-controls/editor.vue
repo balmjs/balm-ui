@@ -136,7 +136,7 @@ export default {
         this.toolbar === 'full' ? UI_EDITOR.toolbarOptions : this.toolbar;
 
       // Custom extensions
-      options.modules['emoji-toolbar'] = true;
+      options.modules.emoji = true;
 
       return options;
     },

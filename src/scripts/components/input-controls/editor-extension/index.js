@@ -1,6 +1,6 @@
 import Quill from 'quill';
 import EmojiFormat from './emoji-format';
-import EmojiToolbarModule from './emoji-toolbar-module';
+import EmojiModule from './emoji-module';
 import Emotion from './emotion';
 
 function create(container, { options, emotions, extensions }) {
@@ -9,7 +9,7 @@ function create(container, { options, emotions, extensions }) {
   Quill.register(
     {
       'formats/emoji': EmojiFormat,
-      'modules/emoji-toolbar': EmojiToolbarModule
+      'modules/emoji': EmojiModule
     },
     true
   );

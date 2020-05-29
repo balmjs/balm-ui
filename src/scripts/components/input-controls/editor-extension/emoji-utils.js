@@ -34,3 +34,16 @@ export function createEmoji(emoji, node = null) {
     return emojiWrapperEl;
   }
 }
+
+export function replaceElementToString(el, str) {
+  if (el.outerHTML) {
+    el.outerHTML = str;
+  } else {
+    let tmpEl = document.createElement('div');
+    tmpEl.innerText = str;
+
+    let parentEl = el.parentNode;
+    parentEl.replaceChild(tmpEl, el);
+    parentEl.innerHTML = parentEl.innerHTML.replace(`<div>${str}</div>`, str);
+  }
+}

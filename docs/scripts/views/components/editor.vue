@@ -8,11 +8,13 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 Snow</h6>
       <ui-editor
+        ref="editor"
         v-model="content1"
         :toolbar="toolbar"
         :emotions="emotions"
         theme="snow"
       ></ui-editor>
+      <ui-button @click="onSubmit">Submit</ui-button>
       <pre v-html="content1"></pre>
     </section>
 
@@ -38,7 +40,7 @@ export default {
     return {
       content1: '',
       content2: '',
-      toolbar: ['bold', 'emoji'],
+      toolbar: ['bold', 'image', 'emoji'],
       emotions: [
         {
           type: 'image',
@@ -77,9 +79,17 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      this.content1 = '<p>Hello [oo] BalmUI :smile: !</p>';
+      this.content1 = this.$refs.editor.decodeEmoji(
+        '<p>Hello [oo] </p><p>BalmUI :smile: !</p>'
+      );
       this.content2 = '<p>Hello BalmJS</p>';
     }, 1e3);
+  },
+  methods: {
+    onSubmit() {
+      let content = this.$refs.editor.encodeEmoji(this.content1);
+      console.log('submit', content);
+    }
   }
 };
 </script>

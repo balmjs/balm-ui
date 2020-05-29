@@ -1,6 +1,6 @@
 import Quill from 'quill';
 import Emotion from './emotion';
-import { getCode, createEmoji } from './emoji-utils';
+import { emojiClassName, getCode, createEmoji } from './emoji-utils';
 
 const Module = Quill.import('core/module');
 
@@ -25,6 +25,11 @@ class EmojiToolbarModule extends Module {
     if (typeof this.toolbar !== 'undefined') {
       this.toolbar.addHandler('emoji', this.checkPalatteExist);
     }
+
+    const emojiButton = this.toolbar.container.querySelector(
+      `.${emojiClassName}`
+    );
+    emojiButton.innerHTML = '<i>😀</i>';
   }
 
   checkPalatteExist() {

@@ -57,11 +57,11 @@ export default {
     placeholder: String,
     theme: String,
     // TODO: extension
-    uploadImageUrl: String,
+    imageHandler: Object,
     emotions: {
       type: Array,
       default() {
-        return []; // format: [{ type, title, content: { name, code } }]
+        return []; // format: [{ type, title, content: { name, value, src } }]
       }
     },
     extensions: {
@@ -82,10 +82,8 @@ export default {
     content(val) {
       if (val) {
         if (this.htmlContent !== val) {
-          let html = Emotion.decode(val);
-          console.log('watch decode html', html);
           // this.$editor.pasteHTML(html);
-          this.setHTML(html);
+          this.setHTML(val);
           this.$editor.blur();
         }
       } else {
@@ -102,9 +100,7 @@ export default {
       });
 
       if (this.content) {
-        let html = Emotion.decode(this.content);
-        console.log('init decode html', html);
-        this.setHTML(html);
+        this.setHTML(this.content);
       }
 
       this.$editor.on('text-change', (delta, oldDelta, source) => {
@@ -114,16 +110,15 @@ export default {
         }
 
         this.htmlContent = html;
-        console.log('html', html);
-        let content = Emotion.encode(html);
-        console.log('encode html', html);
-        this.$emit(UI_EDITOR.EVENT.CHANGE, content);
+        this.$emit(UI_EDITOR.EVENT.CHANGE, html);
       });
 
       if (getType(this.extensionHandlers) === 'object') {
         const toolbar = this.$editor.getModule('toolbar');
-        Object.keys(this.extensionHandlers).forEach((customEvent) =>
-          toolbar.addHandler(customEvent, this.extensionHandlers[customEvent])
+        Object.keys(this.extensionHandlers).forEach(
+          (customEvent) =>
+            this.extensionHandlers[customEvent] &&
+            toolbar.addHandler(customEvent, this.extensionHandlers[customEvent])
         );
       }
     });
@@ -153,6 +148,12 @@ export default {
     },
     setHTML(html) {
       this.$editor.root.innerHTML = html;
+    },
+    encodeEmoji(html) {
+      return Emotion.encode(html); // output: content
+    },
+    decodeEmoji(content) {
+      return Emotion.decode(content); // output: html
     }
   }
 };

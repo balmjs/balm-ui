@@ -30,6 +30,10 @@
 @use 'balm-ui/components/badge/ui-badge';
 @use 'balm-ui/components/grid/ui-grid';
 @use 'balm-ui/components/list/ui-list';
+@use 'balm-ui/components/editor/theme/snow.scss';
+@use 'balm-ui/components/editor/theme/bubble.scss';
+@use 'balm-ui/components/editor/ui-editor';
+@use 'balm-ui/components/editor/ui-editor-emoji';
 
 /// Plugins Custom Styles
 @use 'balm-ui/plugins/alert/ui-alert' as alert-plugin;

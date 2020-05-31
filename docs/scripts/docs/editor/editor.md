@@ -13,7 +13,7 @@
 | `theme`                 | string        | `'snow'` | Name of theme to use. (`'bubble'` or `'snow'`)                        |
 | `customImageHandler`    | boolean       | `false`  | Enable custom image handler.                                          |
 | `toolbarCustomHandlers` | object        | `null`   | Custom Handlers.                                                      |
-| `emotions`              | array         | `[]`     | The emoticon extension.                                               |
+| `emotions`              | array         | `[]`     | The emoticon extension. Supports `emoji` and `image`.                 |
 | `extension`             | object        | `null`   | Custom extension.                                                     |
 
 - **`toolbarCustomHandlers`**

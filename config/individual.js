@@ -39,6 +39,7 @@ const components = [
   'badge',
   'collapse',
   'datepicker',
+  'editor',
   'file',
   'pagination',
   'rangepicker',

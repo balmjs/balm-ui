@@ -2,6 +2,11 @@
   position: relative;
 }
 
+.ql-tooltip,
+.ql-bubble {
+  z-index: 3;
+}
+
 .ql-bubble .ql-editor {
   border: 1px solid #ccc;
 }

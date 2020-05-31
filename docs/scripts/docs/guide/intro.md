@@ -21,6 +21,7 @@ Following the [Material Design](https://material.io/components/) UI components f
 - Datepicker (💡)
 - Dialog
 - Drawer
+- Editor (WYSIWYG) (💡)
 - Floating Action Button
 - File (💡)
 - Icon (Material icons)

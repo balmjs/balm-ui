@@ -1,5 +1,5 @@
 <template>
-  <div :class="className.outer" @click="handleClick">
+  <div :class="className.outer" @click="click">
     <input
       v-show="false"
       type="file"
@@ -39,7 +39,7 @@ const UI_FILE = {
 
     return result;
   },
-  createFileObject: file => {
+  createFileObject: (file) => {
     return {
       uuid: UI_FILE.uuid(),
       lastModified: file.lastModified,
@@ -49,14 +49,14 @@ const UI_FILE = {
       sourceFile: file
     };
   },
-  getPreviewSrc: fileObj => {
-    return new Promise(function(resolve, reject) {
+  getPreviewSrc: (fileObj) => {
+    return new Promise(function (resolve, reject) {
       if (fileObj.type.startsWith('image/')) {
         if (window.URL) {
           resolve(window.URL.createObjectURL(fileObj.sourceFile));
         } else if (window.FileReader) {
           let reader = new FileReader();
-          reader.onload = function() {
+          reader.onload = function () {
             resolve(this.result);
           };
           reader.readAsDataURL(fileObj.sourceFile);
@@ -118,7 +118,7 @@ export default {
     }
   },
   methods: {
-    handleClick() {
+    click() {
       let input = this.$el.querySelector('input');
       input && input.click();
     },
@@ -127,7 +127,7 @@ export default {
 
       if (files.length) {
         let result = await Promise.all(
-          files.map(async file => {
+          files.map(async (file) => {
             let fileObj = UI_FILE.createFileObject(file);
             this.preview && (await this.handlePreview(fileObj));
             return Promise.resolve(fileObj);
@@ -135,7 +135,7 @@ export default {
         );
 
         this.$emit(UI_FILE.EVENT.CHANGE, result);
-        // event.target.value = '';
+        event.target.value = '';
       }
     },
     async handlePreview(fileObj) {

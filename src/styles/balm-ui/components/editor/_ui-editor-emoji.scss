@@ -41,6 +41,15 @@
   overflow-y: scroll;
   padding: 2px;
   background-color: #fff;
+
+  .ql-emoji {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 24px;
+    height: 24px;
+  }
 }
 
 #ql-emoji-close-area {
@@ -52,11 +61,11 @@
 }
 
 .ql-emoji {
-  display: inline-flex;
-  align-items: center;
-  width: 24px;
-  height: 24px;
-  font-size: 20px;
+  i,
+  img {
+    width: 20px;
+    height: 20px;
+  }
 
   i {
     font-style: normal;

@@ -2,10 +2,18 @@
   <div class="mdc-editor-container">
     <slot name="toolbar"></slot>
     <div ref="editor" class="mdc-editor"></div>
+    <input
+      v-if="customImageHandler"
+      ref="file"
+      type="file"
+      @change="onFileChange"
+      hidden
+    />
   </div>
 </template>
 
 <script>
+import Quill from 'quill';
 import Editor from './editor-extension';
 import getType from '../../utils/typeof';
 import Emotion from './editor-extension/emotion';
@@ -13,7 +21,8 @@ import Emotion from './editor-extension/emotion';
 // Define editor constants
 const UI_EDITOR = {
   EVENT: {
-    CHANGE: 'change'
+    TEXT_CHANGE: 'change',
+    FILE_CHANGE: 'file-change'
   },
   BLANK: '<p><br></p>',
   toolbarOptions: [
@@ -38,7 +47,7 @@ export default {
   name: 'ui-editor',
   model: {
     prop: 'content',
-    event: UI_EDITOR.EVENT.CHANGE
+    event: UI_EDITOR.EVENT.TEXT_CHANGE
   },
   props: {
     // States
@@ -55,22 +64,22 @@ export default {
     // UI attributes
     toolbar: [Array, String],
     placeholder: String,
-    theme: String,
-    // TODO: extension
-    imageHandler: Object,
+    theme: {
+      type: String,
+      default: 'snow'
+    },
+    customImageHandler: {
+      type: Boolean,
+      default: false
+    },
+    toolbarCustomHandlers: Object,
     emotions: {
       type: Array,
       default() {
         return []; // format: [{ type, title, content: { name, value, src } }]
       }
     },
-    extensions: {
-      type: Array,
-      default() {
-        return [];
-      }
-    },
-    extensionHandlers: Object
+    extension: Object
   },
   data() {
     return {
@@ -82,7 +91,6 @@ export default {
     content(val) {
       if (val) {
         if (this.htmlContent !== val) {
-          // this.$editor.pasteHTML(html);
           this.setHTML(val);
           this.$editor.blur();
         }
@@ -96,7 +104,7 @@ export default {
       this.$editor = Editor.create(this.$refs.editor, {
         options: this.getOptions(),
         emotions: this.emotions,
-        extensions: this.extensions
+        extension: this.extension
       });
 
       if (this.content) {
@@ -110,17 +118,8 @@ export default {
         }
 
         this.htmlContent = html;
-        this.$emit(UI_EDITOR.EVENT.CHANGE, html);
+        this.$emit(UI_EDITOR.EVENT.TEXT_CHANGE, html);
       });
-
-      if (getType(this.extensionHandlers) === 'object') {
-        const toolbar = this.$editor.getModule('toolbar');
-        Object.keys(this.extensionHandlers).forEach(
-          (customEvent) =>
-            this.extensionHandlers[customEvent] &&
-            toolbar.addHandler(customEvent, this.extensionHandlers[customEvent])
-        );
-      }
     });
   },
   beforeDestroy() {
@@ -138,8 +137,38 @@ export default {
       options.modules.toolbar =
         this.toolbar === 'full' ? UI_EDITOR.toolbarOptions : this.toolbar;
 
-      // Custom extensions
-      options.modules.emoji = true;
+      if (
+        this.customImageHandler ||
+        getType(this.toolbarCustomHandlers) === 'object'
+      ) {
+        let customHandlers = this.customImageHandler
+          ? {
+              image: () => {
+                this.$refs.file.click();
+              }
+            }
+          : {};
+
+        Object.keys(this.toolbarCustomHandlers).forEach((customFormat) => {
+          customHandlers[customFormat] = (value) => {
+            if (value) {
+              this.toolbarCustomHandlers[customFormat](
+                this.$editor,
+                (result) => {
+                  Editor.insert(customFormat, result);
+                }
+              );
+            } else {
+              this.$editor.format(customFormat, false);
+            }
+          };
+        });
+
+        options.modules.toolbar = {
+          container: options.modules.toolbar,
+          handlers: customHandlers
+        };
+      }
 
       return options;
     },
@@ -154,6 +183,15 @@ export default {
     },
     decodeEmoji(content) {
       return Emotion.decode(content); // output: html
+    },
+    onFileChange(event) {
+      const file = event.target.files[0];
+      const insert = (url) => {
+        Editor.insert('image', url);
+      };
+
+      this.$emit(UI_EDITOR.EVENT.FILE_CHANGE, file, insert);
+      event.target.value = '';
     }
   }
 };

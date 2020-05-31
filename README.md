@@ -101,6 +101,7 @@ Enjoy 👻
 - Datepicker (:bulb:)
 - Dialog
 - Drawer
+- Editor (WYSIWYG) (:bulb:)
 - Floating Action Button
 - File (:bulb:)
 - Icon (Material icons)

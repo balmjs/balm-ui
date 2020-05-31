@@ -1,5 +1,16 @@
 # BalmUI ChangeLog
 
+## v6.7.0 / 2020-05-31
+
+### Features
+
+- new component: `<ui-editor>`
+- utils: add `merge` function for deep merge
+
+### Chores
+
+- `<ui-file>`: optimize `change` file event
+
 ## v6.6.5 / 2020-05-19
 
 ### Features

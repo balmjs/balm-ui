@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="editor" demoCount="2" withoutCss>
+  <ui-page name="editor" demoCount="3" withoutCss>
     <template #hero>
       <h1 :class="$tt('headline1')">WYSIWYG</h1>
     </template>
@@ -7,28 +7,44 @@
     <!-- Content -->
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 Snow (Default)</h6>
-      <ui-editor
-        ref="editor"
-        v-model="content1"
-        :toolbarCustomHandlers="toolbarCustomHandlers"
-      >
-      </ui-editor>
+      <ui-editor v-model="content1"></ui-editor>
+      <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
 
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Bubble</h6>
+      <ui-editor v-model="content2" theme="bubble"></ui-editor>
+      <ui-snippet :code="$store.demos[2]"></ui-snippet>
+    </section>
+
+    <section class="demo-wrapper">
+      <h6 :class="$tt('headline6')">1.3 Custom Toolbar</h6>
       <ui-editor
-        v-model="content2"
+        ref="editor"
+        v-model="decodeContent"
+        placeholder="Compose an epic..."
         :toolbar="toolbar"
+        :toolbarCustomHandlers="toolbarCustomHandlers"
         :emotions="emotions"
-        theme="bubble"
+        :extension="extension"
+        customImageHandler
+        @file-change="onFileChange"
       ></ui-editor>
+      <p>
+        <ui-button outlined @click="onEncodeContent"
+          >Show Encode Content</ui-button
+        >
+      </p>
+      <div>{{ encodeContent }}</div>
+      <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>
   </ui-page>
 </template>
 
 <script>
-// import HrFormat from '@/extensions/hr-format';
+import EmojiHuaixiao from '@/assets/emoji/pcmoren_huaixiao.png';
+import EmojiTian from '@/assets/emoji/pcmoren_tian.png';
+import HrFormat from '@/extensions/hr-format';
 
 export default {
   metaInfo: {
@@ -38,47 +54,52 @@ export default {
     return {
       content1: '',
       content2: '',
-      // toolbar: ['bold', 'image', 'emoji', 'undo', 'redo'],
+      encodeContent: '',
+      decodeContent: '',
+      toolbar: [
+        [{ font: [] }, { size: ['small', false, 'large', 'huge'] }],
+        ['bold', 'italic', 'underline', 'strike'],
+        [{ color: [] }, { background: [] }],
+        [{ script: 'sub' }, { script: 'super' }],
+        [{ header: 1 }, { header: 2 }, 'blockquote', 'code-block'],
+        [
+          { list: 'ordered' },
+          { list: 'bullet' },
+          { indent: '-1' },
+          { indent: '+1' }
+        ],
+        [{ direction: 'rtl' }, { align: [] }],
+        ['emoji', 'link', 'image', 'video'],
+        ['clean'],
+        ['undo', 'redo'],
+        ['hr']
+      ],
       toolbarCustomHandlers: {
         undo: (quill) => {
           quill.history.undo();
         },
         redo: (quill) => {
           quill.history.redo();
+        },
+        hr: (quill, insert) => {
+          insert();
         }
-        // hr: (quill) => {
-        //   var range = quill.getSelection();
-        //   if (range) {
-        //     // insert the <hr> where the cursor is
-        //     quill.insertEmbed(range.index, 'hr', 'null');
-        //   }
-        // }
       },
-      // extension: {
-      //   'formats/hr': HrFormat
-      // },
       emotions: [
         {
           type: 'image',
-          title: '默认',
+          title: 'Default',
           content: [
             {
               name: 'oo',
               alt: '坏笑',
-              src:
-                'http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/50/pcmoren_huaixiao_org.png'
-            },
-            {
-              name: 'xx',
-              alt: '舔屏',
-              src:
-                'http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/40/pcmoren_tian_org.png'
+              src: EmojiHuaixiao
             }
           ]
         },
         {
           type: 'emoji',
-          title: 'emoji',
+          title: 'Emoji',
           content: [
             {
               name: 'smile',
@@ -89,24 +110,41 @@ export default {
               value: '😆'
             }
           ]
+        },
+        {
+          type: 'image',
+          title: 'Custom',
+          content: [
+            {
+              name: 'xx',
+              alt: '舔屏',
+              src: EmojiTian
+            }
+          ]
         }
-      ]
+      ],
+      extension: {
+        'formats/hr': HrFormat
+      }
     };
   },
   mounted() {
     setTimeout(() => {
-      this.content1 = this.$refs.editor.decodeEmoji('<p>Hello BalmUI</p>');
+      this.content1 = '<p>Hello BalmUI</p>';
       this.content2 = '<p>Hello BalmJS</p>';
+      this.decodeContent = this.$refs.editor.decodeEmoji(
+        '<p>Hello BalmUI [oo] and BalmJS :smile: !</p>'
+      );
     }, 1e3);
   },
   methods: {
-    onSubmit() {
-      let content = this.$refs.editor.encodeEmoji(this.content1);
-      console.log('submit', content);
+    async onFileChange(file, insert) {
+      console.log('upload file', file);
+      // custom file upload action...
+      insert(file.name);
     },
-    onFileChange(file, insert) {
-      console.log('file', file);
-      console.log('insert', insert);
+    onEncodeContent() {
+      this.encodeContent = this.$refs.editor.encodeEmoji(this.decodeContent);
     }
   }
 };

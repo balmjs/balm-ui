@@ -19,7 +19,7 @@ class Emotion {
 
       emojiTypes.push({
         type: emotion.type,
-        name: emotion.title
+        title: emotion.title
       });
 
       if (emotion.content.every((item) => isValidEmoji(emotion.type, item))) {
@@ -34,7 +34,7 @@ class Emotion {
           emojiMap[code] = emoji;
         });
 
-        emojiData[emotion.type] = emojiList;
+        emojiData[emotion.title] = emojiList;
       } else {
         console.warn('Invalid emotions format');
         // reset
@@ -54,8 +54,8 @@ class Emotion {
     return emojiTypes;
   }
 
-  static getEmotion(type) {
-    return emojiData[type];
+  static getEmotion(title) {
+    return emojiData[title];
   }
 
   static getEmotions() {

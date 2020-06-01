@@ -39,14 +39,10 @@ function destroy() {
   Emotion.clear();
 }
 
-function insert(customFormat, result) {
+function insert(customFormat, value) {
   const range = quill.getSelection();
   if (range) {
-    if (customFormat === 'image' || customFormat === 'video') {
-      quill.insertEmbed(range.index, customFormat, result, Quill.sources.USER);
-    } else {
-      quill.insertText(range.index, result, Quill.sources.USER);
-    }
+    quill.insertEmbed(range.index, customFormat, value, Quill.sources.USER);
   }
 }
 

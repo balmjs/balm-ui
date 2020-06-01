@@ -22,7 +22,7 @@
 {
   toolbar: ['customButton'],
   toolbarCustomHandlers: {
-    customButton: (quill, callback) => {};
+    customButton: (quill, insert) => {}; // Insert content into the editor by `insert(value) => {}`
   }
 }
 ```
@@ -33,19 +33,13 @@
 [
   {
     type: 'image',
-    title: 'default',
+    title: 'Default',
     content: [
       {
         name: 'oo',
         alt: '坏笑',
         src:
           'https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/50/pcmoren_huaixiao_org.png'
-      },
-      {
-        name: 'xx',
-        alt: '舔屏',
-        src:
-          'https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/40/pcmoren_tian_org.png'
       }
     ]
   },
@@ -62,9 +56,30 @@
         value: '😆'
       }
     ]
+  },
+  {
+    type: 'image',
+    title: 'Custom',
+    content: [
+      {
+        name: 'xx',
+        alt: '舔屏',
+        src:
+          'https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/40/pcmoren_tian_org.png'
+      }
+    ]
   }
 ];
 ```
+
+- **Encode & Decode Emoji**
+
+```html
+<ui-editor ref="editor" v-model="content"></ui-editor>
+```
+
+- `this.$refs.editor.decodeEmoji(content): html`: get back-end data → set front-end view
+- `this.$refs.editor.encodeEmoji(html): content`: submit front-end data → save back-end data
 
 #### Slots
 

@@ -1,6 +1,9 @@
 import Quill from 'quill';
 
-var Embed = Quill.import('blots/embed');
+const Embed = Quill.import('blots/embed');
+
+const icons = Quill.import('ui/icons');
+icons.hr = '---';
 
 class Hr extends Embed {
   static create(value) {

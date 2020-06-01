@@ -1,33 +1,40 @@
 @use '@material/theme/variables' as theme-variables;
 
 #ql-emoji-palette {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   z-index: 4;
-  max-width: 240px;
+  width: 280px;
+  height: 220px;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 3px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
-
-  ul {
-    margin: 0px;
-    padding: 0px;
-  }
-}
-
-.ql-emoji-tabs {
-  padding: 4px 4px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-  background-color: #f7f7f7;
+  background-color: #fff;
 }
 
 .ql-emoji-tab-bar {
+  width: 100%;
+  overflow-y: hidden;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.ql-emoji-tab-scroller {
   display: flex;
   overflow-x: auto;
+}
+
+.ql-emoji-tab-content {
+  display: flex;
+  margin: 0;
+  padding: 4px 4px 0;
 }
 
 .ql-emoji-tab {
   list-style: none;
   padding: 0 8px;
+  text-transform: uppercase;
 
   &.ql-emoji-tab--active {
     border-bottom: 2px solid theme-variables.$primary;
@@ -37,9 +44,10 @@
 .ql-emoji-panel {
   display: flex;
   flex-wrap: wrap;
-  max-height: 220px;
+  flex: 1;
+  align-content: flex-start;
   overflow-y: scroll;
-  padding: 2px;
+  padding: 8px;
   background-color: #fff;
 
   .ql-emoji {
@@ -69,6 +77,6 @@
 
   i {
     font-style: normal;
-    font-size: 20px;
+    font-size: 18px;
   }
 }

@@ -11,8 +11,9 @@ const EMOJI_TOOLBAR = {
   id: 'ql-emoji-palette',
   closeId: 'ql-emoji-close-area',
   cssClasses: {
-    tabs: 'ql-emoji-tabs',
     tabBar: 'ql-emoji-tab-bar',
+    tabScroller: 'ql-emoji-tab-scroller',
+    tabContent: 'ql-emoji-tab-content',
     tab: 'ql-emoji-tab',
     tabActive: 'ql-emoji-tab--active',
     panel: 'ql-emoji-panel'
@@ -93,24 +94,27 @@ function showEmojiPalatte(quill) {
   }
 
   // add tab container
-  const tabsEl = document.createElement('div');
-  tabsEl.className = EMOJI_TOOLBAR.cssClasses.tabs;
-  emojiPaletteEl.appendChild(tabsEl);
+  const tabBarEl = document.createElement('div');
+  tabBarEl.className = EMOJI_TOOLBAR.cssClasses.tabBar;
+  emojiPaletteEl.appendChild(tabBarEl);
+  const tabScrollerEl = document.createElement('div');
+  tabScrollerEl.className = EMOJI_TOOLBAR.cssClasses.tabScroller;
+  tabBarEl.appendChild(tabScrollerEl);
   // add panel container
   const panelEl = document.createElement('div');
   panelEl.className = EMOJI_TOOLBAR.cssClasses.panel;
   emojiPaletteEl.appendChild(panelEl);
   // update emoji type
   const tabs = Emotion.getTypes();
-  addTabs(quill, tabs, tabsEl, panelEl);
+  addTabs(quill, tabs, tabScrollerEl, panelEl);
   // update emoji content
-  updatePanel(quill, tabs[0] && tabs[0].type, panelEl);
+  updatePanel(quill, tabs[0] && tabs[0].title, panelEl);
 }
 
-function addTabs(quill, tabs, tabsEl, panelEl) {
-  const tabBarEl = document.createElement('ul');
-  tabBarEl.className = EMOJI_TOOLBAR.cssClasses.tabBar;
-  tabsEl.appendChild(tabBarEl);
+function addTabs(quill, tabs, tabScrollerEl, panelEl) {
+  const tabContentEl = document.createElement('ul');
+  tabContentEl.className = EMOJI_TOOLBAR.cssClasses.tabContent;
+  tabScrollerEl.appendChild(tabContentEl);
 
   tabs.forEach((tab, index) => {
     let tabEl = document.createElement('li');
@@ -118,9 +122,9 @@ function addTabs(quill, tabs, tabsEl, panelEl) {
     if (index === 0) {
       tabEl.classList.add(EMOJI_TOOLBAR.cssClasses.tabActive);
     }
-    tabEl.innerHTML = tab.name;
-    tabEl.dataset.type = tab.type;
-    tabBarEl.appendChild(tabEl);
+    tabEl.innerHTML = tab.title;
+    tabEl.dataset.title = tab.title;
+    tabContentEl.appendChild(tabEl);
 
     tabEl.addEventListener('click', (e) => {
       let currentTabEl = e.target;
@@ -135,16 +139,16 @@ function addTabs(quill, tabs, tabsEl, panelEl) {
         }
 
         currentTabEl.classList.toggle(EMOJI_TOOLBAR.cssClasses.tabActive);
-        updatePanel(quill, currentTabEl.dataset.type, panelEl);
+        updatePanel(quill, currentTabEl.dataset.title, panelEl);
       }
     });
   });
 }
 
-function updatePanel(quill, type, panelEl) {
-  if (type) {
+function updatePanel(quill, title, panelEl) {
+  if (title) {
     panelEl.innerHTML = '';
-    let emojiList = Emotion.getEmotion(type);
+    let emojiList = Emotion.getEmotion(title);
 
     emojiList.forEach((emoji) => {
       const emojiEl = createEmoji(emoji);

@@ -1,5 +1,13 @@
 # BalmUI ChangeLog
 
+## v6.7.1 / 2020-06-01
+
+### Features
+
+- `<ui-editor>`
+  - update css and optimize `insert` function
+  - update docs and demos
+
 ## v6.7.0 / 2020-05-31
 
 ### Features

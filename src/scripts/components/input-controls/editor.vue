@@ -150,14 +150,13 @@ export default {
           : {};
 
         Object.keys(this.toolbarCustomHandlers).forEach((customFormat) => {
-          customHandlers[customFormat] = (value) => {
-            if (value) {
-              this.toolbarCustomHandlers[customFormat](
-                this.$editor,
-                (result) => {
-                  Editor.insert(customFormat, result);
-                }
-              );
+          customHandlers[customFormat] = (formatValue) => {
+            if (formatValue) {
+              const insert = (value = 'null') => {
+                Editor.insert(customFormat, value);
+              };
+
+              this.toolbarCustomHandlers[customFormat](this.$editor, insert);
             } else {
               this.$editor.format(customFormat, false);
             }

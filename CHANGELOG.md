@@ -1,5 +1,22 @@
 # BalmUI ChangeLog
 
+## v6.8.0 / 2020-06-08
+
+### Bug Fixes
+
+- `<ui-table>`: fix colgroup and custom field slot bug
+
+### Features
+
+- `<ui-rangepicker>`: add prop `labels`, `placeholders`, update css
+
+### BREAKING CHANGES
+
+- `<ui-rangepicker>`
+  - remove prop <del>`startId`</del> and <del>`endId`</del>
+  - remove prop <del>`startLabel`</del> and <del>`endLabel`</del>, use `labels` instead
+  - remove prop <del>`startPlaceholder`</del> and <del>`endPlaceholder`</del>, use `placeholders` instead
+
 ## v6.7.1 / 2020-06-01
 
 ### Features

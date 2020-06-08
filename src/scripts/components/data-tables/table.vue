@@ -248,10 +248,6 @@ export default {
         'mdc-data-table': true,
         'mdc-data-table--fullwidth': this.fullwidth
       };
-    },
-    withActions() {
-      let lastCell = this.tbody.length ? this.tbody[this.tbody.length - 1] : {};
-      return lastCell[this.T_CELL.SLOT];
     }
   },
   watch: {
@@ -273,10 +269,6 @@ export default {
     }
 
     if (this.rowCheckbox) {
-      this.dataColumns += 1;
-    }
-
-    if (this.withActions) {
       this.dataColumns += 1;
     }
   },

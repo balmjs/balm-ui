@@ -34,6 +34,9 @@
           v-model="selectedRows"
           :selectedKey="selectedKey"
         >
+          <template #dessert="{ data }">
+            <div class="dessert">{{ data.dessert }}</div>
+          </template>
           <template #actions="{ data }">
             <ui-icon @click="show(data)">description</ui-icon>
             <ui-icon @click="show(data)">edit</ui-icon>
@@ -110,7 +113,9 @@ export default {
       ],
       tbody2: [
         'id',
-        'dessert',
+        {
+          slot: 'dessert'
+        },
         {
           field: 'calories',
           numeric: true

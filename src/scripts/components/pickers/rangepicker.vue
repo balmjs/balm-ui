@@ -66,12 +66,18 @@ export default {
       default: false
     },
     // UI attributes
-    startId: String,
-    startLabel: String,
-    startPlaceholder: String,
-    endId: String,
-    endPlaceholder: String,
-    endLabel: String,
+    labels: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
+    placeholders: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
     // For flatpickr
     config: {
       type: Object,
@@ -96,6 +102,20 @@ export default {
         this.updateInputs(val);
         this.updateInitialValue();
       }
+    }
+  },
+  computed: {
+    startLabel() {
+      return this.labels[0] || '';
+    },
+    endLabel() {
+      return this.labels[1] || '';
+    },
+    startPlaceholder() {
+      return this.placeholders[0] || '';
+    },
+    endPlaceholder() {
+      return this.placeholders[1] || '';
     }
   },
   mounted() {
@@ -140,7 +160,7 @@ export default {
   methods: {
     updateInputs(dates) {
       if (dates.length === 2) {
-        const selectedDates = dates.map(value =>
+        const selectedDates = dates.map((value) =>
           value
             ? flatpickr.formatDate(
                 new Date(value),

@@ -17,7 +17,8 @@ export default {
           result.unshift({});
         }
 
-        if (this.withActions) {
+        let restColumns = this.dataColumns - result.length;
+        while (restColumns--) {
           result.push({});
         }
       }

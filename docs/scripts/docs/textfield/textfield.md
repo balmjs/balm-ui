@@ -9,28 +9,28 @@
 
 #### Props
 
-| Name                | Type           | Default  | Description                                                                                              |
-| ------------------- | -------------- | -------- | -------------------------------------------------------------------------------------------------------- |
-| `type`              | string, number | `0`      | Mandatory. Text field types.                                                                             |
-| `outlined`          | boolean        | `false`  | Styles the text field as an outlined text field. (Equivalent to `type=1`)                                |
-| `model` (`v-model`) | string, number | `''`     | Mandatory.                                                                                               |
-| `id`                | string         | `null`   | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`.                            |
-| `label`             | string         | `null`   | A text caption or description for the text field, which use the input's `placeholder` attribute instead. |
-| `placeholder`       | string         | `null`   | The _placeholder_ attribute of the `<input>`.                                                            |
-| `fullwidth`         | boolean        | `false`  | Styles the text field as a full width text field.                                                        |
-| `disabled`          | boolean        | `false`  | Styles the text field as a disabled text field.                                                          |
-| `endAligned`        | boolean        | `false`  | Styles the text field with an end-aligned input.                                                         |
-| `withCounter`       | boolean        | `false`  | Styles the text area as a text area with an internal character counter.                                  |
-| `withLeadingIcon`   | boolean        | `false`  | Styles the text field as a text field with a leading icon.                                               |
-| `icon`              | string         | `''`     | Optional. Indicates an icon element with a leading icon. See [Material Icons](/#/icons) list.            |
-| `withTrailingIcon`  | boolean        | `false`  | Styles the text field as a text field with a trailing icon.                                              |
-| `inputType`         | string         | `'text'` | Native `<input>` types: `text`, `number`, `password`, etc.                                               |
-| `prefixText`        | string         | `null`   | Sets the text content of the prefix.                                                                     |
-| `suffixText`        | string         | `null`   | sets the text content of the suffix.                                                                     |
-| `rows`              | number, string | `1`      | The _rows_ attribute of the `<textarea>`.                                                                |
-| `cols`              | number, string | `20`     | The _cols_ attribute of the `<textarea>`.                                                                |
-| `helperTextId`      | string         | `null`   | Required for the _id_ attribute of the `<ui-textfield-helper>`.                                          |
-| `attrs`             | object         | `null`   | Other attributes for `<input>` or `<textarea>`.                                                          |
+| Name                | Type           | Default  | Description                                                                                                   |
+| ------------------- | -------------- | -------- | ------------------------------------------------------------------------------------------------------------- |
+| `type`              | string, number | `0`      | Mandatory. Text field types.                                                                                  |
+| `outlined`          | boolean        | `false`  | Styles the text field as an outlined text field. (Equivalent to `type=1`) (`label` or `placeholder` required) |
+| `model` (`v-model`) | string, number | `''`     | Mandatory.                                                                                                    |
+| `id`                | string         | `null`   | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`.                                 |
+| `label`             | string         | `null`   | A text caption or description for the text field, which use the input's `placeholder` attribute instead.      |
+| `placeholder`       | string         | `null`   | The _placeholder_ attribute of the `<input>`.                                                                 |
+| `fullwidth`         | boolean        | `false`  | Styles the text field as a full width text field.                                                             |
+| `disabled`          | boolean        | `false`  | Styles the text field as a disabled text field.                                                               |
+| `endAligned`        | boolean        | `false`  | Styles the text field with an end-aligned input.                                                              |
+| `withCounter`       | boolean        | `false`  | Styles the text area as a text area with an internal character counter.                                       |
+| `withLeadingIcon`   | boolean        | `false`  | Styles the text field as a text field with a leading icon.                                                    |
+| `icon`              | string         | `''`     | Optional. Indicates an icon element with a leading icon. See [Material Icons](/#/icons) list.                 |
+| `withTrailingIcon`  | boolean        | `false`  | Styles the text field as a text field with a trailing icon.                                                   |
+| `inputType`         | string         | `'text'` | Native `<input>` types: `text`, `number`, `password`, etc.                                                    |
+| `prefixText`        | string         | `null`   | Sets the text content of the prefix.                                                                          |
+| `suffixText`        | string         | `null`   | sets the text content of the suffix.                                                                          |
+| `rows`              | number, string | `1`      | The _rows_ attribute of the `<textarea>`.                                                                     |
+| `cols`              | number, string | `20`     | The _cols_ attribute of the `<textarea>`.                                                                     |
+| `helperTextId`      | string         | `null`   | Required for the _id_ attribute of the `<ui-textfield-helper>`.                                               |
+| `attrs`             | object         | `null`   | Other attributes for `<input>` or `<textarea>`.                                                               |
 
 > NOTE: `withLeadingIcon` and `withTrailingIcon` are only used for (**non `<ui-textfield-icon>`**) custom leading/trailing icons, and generally do not need to be configured.
 

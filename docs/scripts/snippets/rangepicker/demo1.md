@@ -1,5 +1,5 @@
 ```html
-<ui-rangepicker v-model="date">
+<ui-rangepicker v-model="date" outlined :labels="['Start Date', 'End Date']">
   <template #separator>-</template>
 </ui-rangepicker>
 ```

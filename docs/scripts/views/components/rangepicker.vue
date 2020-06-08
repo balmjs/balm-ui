@@ -1,11 +1,7 @@
 <template>
   <ui-page name="rangepicker" demoCount="1">
     <template #hero>
-      <ui-rangepicker
-        startPlaceholder="Start Date"
-        endPlaceholder="End Date"
-        v-model="date"
-      >
+      <ui-rangepicker v-model="date" :placeholders="['Start Date', 'End Date']">
         <template #separator>to</template>
       </ui-rangepicker>
     </template>
@@ -13,7 +9,11 @@
     <!-- Content -->
     <section class="demo-wrapper">
       <div class="demo">
-        <ui-rangepicker v-model="date">
+        <ui-rangepicker
+          v-model="date"
+          outlined
+          :labels="['Start Date', 'End Date']"
+        >
           <template #separator>-</template>
         </ui-rangepicker>
       </div>

@@ -9,6 +9,9 @@
   v-model="selectedRows"
   selectedKey="id"
 >
+  <template #dessert="{ data }">
+    <div class="dessert">{{ data.dessert }}</div>
+  </template>
   <template #actions="{ data }">
     <ui-icon @click="show(data)">description</ui-icon>
     <ui-icon @click="show(data)">edit</ui-icon>
@@ -58,7 +61,9 @@ export default {
       ],
       tbody: [
         'id',
-        'dessert',
+        {
+          slot: 'dessert'
+        },
         {
           field: 'calories',
           numeric: true,

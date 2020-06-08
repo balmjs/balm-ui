@@ -13,7 +13,7 @@ export default {
       const dataFields = this.tbody;
       const tableFields = dataFields.map((fieldItem) => {
         return this.isObject(fieldItem)
-          ? fieldItem[this.T_CELL.FIELD]
+          ? fieldItem[this.T_CELL.FIELD] || fieldItem[this.T_CELL.SLOT]
           : fieldItem;
       });
       const tableData = this.data.map((dataItem) => {

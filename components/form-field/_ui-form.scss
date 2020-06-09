@@ -1,0 +1,30 @@
+@use './variables' as form-variables;
+
+.mdc-form {
+  margin: form-variables.$form-margin;
+  padding: form-variables.$form-padding;
+  border: form-variables.$form-border;
+
+  .mdc-form-field {
+    display: flex;
+    margin-bottom: form-variables.$form-item-margin-bottom;
+
+    & > label {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  &.mdc-form--vertical {
+    .mdc-form-field {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
+  &.mdc-form--label-end-aligned {
+    .mdc-form-field > label {
+      text-align: right; // NOTE: custom width required
+    }
+  }
+}

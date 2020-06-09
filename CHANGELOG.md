@@ -1,5 +1,13 @@
 # BalmUI ChangeLog
 
+## v6.9.0 / 2020-06-09
+
+### Features
+
+- new component: `<ui-form>`
+- update docs: `<ui-form>`, `<ui-form-field>` for layout
+- `<ui-select>`: add slot `dropdown-icon`
+
 ## v6.8.0 / 2020-06-08
 
 ### Bug Fixes

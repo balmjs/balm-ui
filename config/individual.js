@@ -16,6 +16,7 @@ const components = [
   'dialog',
   'drawer',
   'fab',
+  'form', // Custom
   'form-field',
   'grid',
   'icon',

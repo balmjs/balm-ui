@@ -1,38 +1,38 @@
 <template>
-  <div>
-    <ui-form-field v-if="options.includes('disabled')" block>
+  <ui-form>
+    <ui-form-field v-if="options.includes('disabled')">
       <ui-checkbox
         :id="`${idPrefix}-disable`"
         v-model="value.disabled"
       ></ui-checkbox>
       <label :for="`${idPrefix}-disable`">Disabled</label>
     </ui-form-field>
-    <ui-form-field v-if="options.includes('rtl')" block>
+    <ui-form-field v-if="options.includes('rtl')">
       <ui-checkbox :id="`${idPrefix}-rtl`" v-model="value.rtl"></ui-checkbox>
       <label :for="`${idPrefix}-rtl`">RTL</label>
     </ui-form-field>
-    <ui-form-field v-if="options.includes('dense')" block>
+    <ui-form-field v-if="options.includes('dense')">
       <ui-checkbox
         :id="`${idPrefix}-dense`"
         v-model="value.dense"
       ></ui-checkbox>
       <label :for="`${idPrefix}-dense`">Dense</label>
     </ui-form-field>
-    <ui-form-field v-if="options.includes('required')" block>
+    <ui-form-field v-if="options.includes('required')">
       <ui-checkbox
         :id="`${idPrefix}-required`"
         v-model="value.required"
       ></ui-checkbox>
       <label :for="`${idPrefix}-required`">Required</label>
     </ui-form-field>
-    <ui-form-field v-if="options.includes('customColor')" block>
+    <ui-form-field v-if="options.includes('customColor')">
       <ui-checkbox
         :id="`${idPrefix}-alternate-colors`"
         v-model="value.customColor"
       ></ui-checkbox>
       <label :for="`${idPrefix}-alternate-colors`">Alternate Colors</label>
     </ui-form-field>
-    <ui-form-field v-if="options.includes('unclickable')" block>
+    <ui-form-field v-if="options.includes('unclickable')">
       <ui-checkbox
         :id="`${idPrefix}-unclickable-leading-trailing`"
         v-model="value.unclickable"
@@ -41,7 +41,7 @@
         >Unclickable icons</label
       >
     </ui-form-field>
-    <ui-form-field v-if="options.includes('min')" block>
+    <ui-form-field v-if="options.includes('min')">
       <ui-checkbox
         :id="`${idPrefix}-outlined-minlength`"
         v-model="value.min"
@@ -50,7 +50,7 @@
         >Must be at least 8 characters</label
       >
     </ui-form-field>
-    <ui-form-field v-if="options.includes('max')" block>
+    <ui-form-field v-if="options.includes('max')">
       <ui-checkbox
         :id="`${idPrefix}-outlined-maxlength`"
         v-model="value.max"
@@ -60,14 +60,14 @@
       >
     </ui-form-field>
     <template v-if="options.includes('helperText')">
-      <ui-form-field block>
+      <ui-form-field>
         <ui-checkbox
           :id="`${idPrefix}-use-helper-text`"
           v-model="value.helperText"
         ></ui-checkbox>
         <label :for="`${idPrefix}-use-helper-text`">Use Helper Text</label>
       </ui-form-field>
-      <ui-form-field block>
+      <ui-form-field>
         <ui-checkbox
           :id="`${idPrefix}-persistent-helper-text`"
           v-model="value.isVisible"
@@ -77,7 +77,7 @@
           >Make helper text persistent</label
         >
       </ui-form-field>
-      <ui-form-field block>
+      <ui-form-field>
         <ui-checkbox
           :id="`${idPrefix}-helper-text-as-validation`"
           v-model="value.hasValidMsg"
@@ -88,21 +88,21 @@
         >
       </ui-form-field>
     </template>
-  </div>
+  </ui-form>
 </template>
 
 <script>
-const OPTION_TYPES = [
-  'disabled',
-  'rtl',
-  'dense',
-  'required',
-  'customColor',
-  'helperText',
-  'min',
-  'max',
-  'unclickable'
-];
+// const OPTION_TYPES = [
+//   'disabled',
+//   'rtl',
+//   'dense',
+//   'required',
+//   'customColor',
+//   'helperText',
+//   'min',
+//   'max',
+//   'unclickable'
+// ];
 
 export default {
   model: {

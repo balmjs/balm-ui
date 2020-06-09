@@ -18,7 +18,9 @@
       <!-- Enhanced Select -->
       <span class="mdc-select__ripple"></span>
       <input type="text" class="mdc-select__selected-text" disabled readonly />
-      <i class="mdc-select__dropdown-icon"></i>
+      <slot name="dropdown-icon" :iconClass="UI_SELECT.cssClasses.dropdownIcon">
+        <i :class="UI_SELECT.cssClasses.dropdownIcon"></i>
+      </slot>
       <ui-notched-outline v-if="isOutlined" :hasLabel="!noLabel">
         <ui-floating-label>
           <slot>{{ label }}</slot>
@@ -82,7 +84,8 @@ const UI_SELECT = {
     outlined: 1
   },
   cssClasses: {
-    icon: 'mdc-select__icon'
+    icon: 'mdc-select__icon',
+    dropdownIcon: 'mdc-select__dropdown-icon'
   },
   EVENT: {
     CHANGE: 'change',

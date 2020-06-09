@@ -6,9 +6,9 @@
 
     <!-- Content -->
     <section class="demo-wrapper">
-      <div class="demo-controls">
+      <ui-form class="demo-controls">
         <label>Timeout: {{ timeout / 1000 }}second</label>
-        <ui-form-field block>
+        <ui-form-field>
           <ui-slider
             id="timeout"
             min="4000"
@@ -17,21 +17,21 @@
             v-model="timeout"
           ></ui-slider>
         </ui-form-field>
-        <ui-form-field block>
+        <ui-form-field>
           <ui-textfield id="message" v-model="message"
             >Message Text</ui-textfield
           >
         </ui-form-field>
-        <ui-form-field block>
+        <ui-form-field>
           <ui-textfield id="action" v-model="actionText"
             >Action Text</ui-textfield
           >
         </ui-form-field>
-        <ui-form-field block>
+        <ui-form-field>
           <ui-checkbox id="action-type" v-model="actionType"></ui-checkbox>
           <label for="action-type">Action Icon Button</label>
         </ui-form-field>
-      </div>
+      </ui-form>
       <div class="demo">
         <ui-button raised @click="$balmUI.onOpen('open')">Show</ui-button>
 

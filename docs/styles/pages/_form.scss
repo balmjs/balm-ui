@@ -1,0 +1,32 @@
+$label-width: 60px;
+
+.page--form {
+  .mdc-form {
+    padding: 10px;
+    border: 1px solid;
+  }
+
+  .form-item {
+    margin-bottom: 16px;
+  }
+
+  .mdc-form--horizontal {
+    .form-item > label {
+      width: $label-width;
+    }
+
+    .form-action {
+      padding-left: $label-width;
+
+      .mdc-button {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .mdc-form--vertical {
+    .mdc-button {
+      margin-bottom: 10px;
+    }
+  }
+}

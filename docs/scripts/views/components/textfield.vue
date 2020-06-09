@@ -80,13 +80,9 @@
           >Type</ui-select
         >
         <div class="hero-option hero-options">
-          <div class="hero-option">
+          <ui-form class="hero-option">
             <div>Options</div>
-            <ui-form-field
-              v-for="option in IconOptions"
-              :key="option.value"
-              block
-            >
+            <ui-form-field v-for="option in IconOptions" :key="option.value">
               <ui-checkbox
                 :id="`iconOption${option.value}`"
                 v-model="iconOption"
@@ -96,13 +92,12 @@
                 option.label
               }}</label>
             </ui-form-field>
-          </div>
-          <div class="hero-option">
+          </ui-form>
+          <ui-form class="hero-option">
             <div>Assistive text</div>
             <ui-form-field
               v-for="option in AssistiveTextOptions"
               :key="option.value"
-              block
             >
               <ui-radio
                 :id="`textOption${option.value}`"
@@ -114,7 +109,7 @@
                 option.label
               }}</label>
             </ui-form-field>
-          </div>
+          </ui-form>
         </div>
       </div>
     </template>

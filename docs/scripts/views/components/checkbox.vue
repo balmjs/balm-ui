@@ -52,7 +52,7 @@
       </div>
       <div class="demo">
         <ui-form-field class="demo-checkbox--custom-all">
-          <ui-checkbox block :id="`basic-checkbox-custom-all`"></ui-checkbox>
+          <ui-checkbox :id="`basic-checkbox-custom-all`"></ui-checkbox>
           <label :for="`basic-checkbox-custom-all`"
             >Custom colored checkbox (stroke, fill, ripple, and focus)</label
           >
@@ -61,7 +61,6 @@
       <div class="demo">
         <ui-form-field class="demo-checkbox--custom-stroke-and-fill">
           <ui-checkbox
-            block
             :id="`basic-checkbox-custom-stroke-and-fill`"
           ></ui-checkbox>
           <label :for="`basic-checkbox-custom-stroke-and-fill`"

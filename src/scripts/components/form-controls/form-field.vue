@@ -13,11 +13,15 @@ export default {
   name: 'ui-form-field',
   props: {
     // UI attributes
+    nowrap: {
+      type: Boolean,
+      default: false
+    },
     alignEnd: {
       type: Boolean,
       default: false
     },
-    block: {
+    spaceBetween: {
       type: Boolean,
       default: false
     }
@@ -31,8 +35,9 @@ export default {
     className() {
       return {
         'mdc-form-field': true,
+        'mdc-form-field--nowrap': this.nowrap,
         'mdc-form-field--align-end': this.alignEnd,
-        'mdc-form-field--block': this.block
+        'mdc-form-field--space-between': this.spaceBetween
       };
     }
   },

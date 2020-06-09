@@ -1,35 +1,19 @@
 <template>
-  <div>
-    <ui-top-app-bar
-      fixed
-      :navIcon="false"
-      contentSelector="#below-nav"
-      :class="$themeColor('secondary-bg')"
-    >
-      test
-      <template v-slot:toolbar>
-        <ui-button>Logout</ui-button>
-      </template>
-    </ui-top-app-bar>
-
-    <div id="below-nav">
-      <ui-drawer viewportHeight>
-        <ui-drawer-header>
-          <ui-drawer-title>Title</ui-drawer-title>
-          <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>
-        </ui-drawer-header>
-        <ui-drawer-content>
-          <ui-nav #default="{ itemClass, activeClass }">
-            <a :class="[itemClass, activeClass]">Active link</a>
-            <a :class="itemClass">Unactive link</a>
-          </ui-nav>
-        </ui-drawer-content>
-      </ui-drawer>
-      <div>
-        main content
-      </div>
-    </div>
-  </div>
+  <ui-form>
+    <legend>Form</legend>
+    <ui-form-field>
+      <label>Input:</label>
+      <ui-textfield endAligned class="form-item"></ui-textfield>
+    </ui-form-field>
+    <ui-form-field>
+      <label>Textarea:</label>
+      <ui-textfield class="form-item" inputType="textarea"></ui-textfield>
+    </ui-form-field>
+    <ui-form-field>
+      <label>Select:</label>
+      <ui-select class="form-item"></ui-select>
+    </ui-form-field>
+  </ui-form>
 </template>
 
 <script>

@@ -59,6 +59,11 @@ const MATERIAL_COMPONENTS = [
         name: 'Layout grid',
         description: 'Grid and gutter support',
         url: 'grid'
+      },
+      {
+        icon: 'component',
+        name: 'Form',
+        description: 'Form + Form Field'
       }
     ]
   },

@@ -5,9 +5,9 @@
     </template>
 
     <!-- Content -->
-    <fieldset>
+    <ui-form>
       <legend>Form Area</legend>
-      <ui-form-field block class="form-item">
+      <ui-form-field class="form-item">
         <ui-textfield
           id="mobile"
           v-model="formData.mobile"
@@ -19,7 +19,7 @@
           :validMsg="validMsg.mobile"
         ></ui-textfield-helper>
       </ui-form-field>
-      <ui-form-field block class="form-item">
+      <ui-form-field class="form-item">
         <ui-textfield
           inputType="password"
           id="password"
@@ -32,7 +32,7 @@
           :validMsg="validMsg.password"
         ></ui-textfield-helper>
       </ui-form-field>
-      <ui-form-field block class="form-item">
+      <ui-form-field class="form-item">
         <ui-textfield
           inputType="password"
           id="repassword"
@@ -45,10 +45,10 @@
           :validMsg="validMsg.repassword"
         ></ui-textfield-helper>
       </ui-form-field>
-      <div class="form-item form-actions">
+      <ui-form-field class="form-item form-actions">
         <ui-button raised @click="submit">Submit</ui-button>
-      </div>
-    </fieldset>
+      </ui-form-field>
+    </ui-form>
     <ui-snippet :code="$store.demos[1]"></ui-snippet>
   </ui-page>
 </template>

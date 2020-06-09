@@ -43,10 +43,10 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Advanced</h6>
       <div class="demo-content">
-        <div class="demo-controls" dir="ltr">
+        <ui-form class="demo-controls" dir="ltr">
           <div class="left-column-controls">
             Button Position:
-            <ui-form-field block>
+            <ui-form-field>
               <ui-radio
                 id="position-top-left"
                 name="position"
@@ -55,7 +55,7 @@
               ></ui-radio>
               <label for="position-top-left">Top left</label>
             </ui-form-field>
-            <ui-form-field block>
+            <ui-form-field>
               <ui-radio
                 id="position-top-right"
                 name="position"
@@ -64,7 +64,7 @@
               ></ui-radio>
               <label for="position-top-right">Top right</label>
             </ui-form-field>
-            <ui-form-field block>
+            <ui-form-field>
               <ui-radio
                 id="position-middle-left"
                 name="position"
@@ -73,7 +73,7 @@
               ></ui-radio>
               <label for="position-middle-left">Middle left</label>
             </ui-form-field>
-            <ui-form-field block>
+            <ui-form-field>
               <ui-radio
                 id="position-middle-right"
                 name="position"
@@ -82,7 +82,7 @@
               ></ui-radio>
               <label for="position-middle-right">Middle right</label>
             </ui-form-field>
-            <ui-form-field block>
+            <ui-form-field>
               <ui-radio
                 id="position-bottom-left"
                 name="position"
@@ -91,7 +91,7 @@
               ></ui-radio>
               <label for="position-bottom-left">Bottom left</label>
             </ui-form-field>
-            <ui-form-field block>
+            <ui-form-field>
               <ui-radio
                 id="position-bottom-right"
                 name="position"
@@ -103,7 +103,7 @@
           </div>
           <div class="right-column-controls">
             Menu Anchor Corner:
-            <ui-form-field block>
+            <ui-form-field>
               <ui-radio
                 id="menu-position-top-start"
                 name="menu-position"
@@ -112,7 +112,7 @@
               ></ui-radio>
               <label for="menu-position-top-start">Top start</label>
             </ui-form-field>
-            <ui-form-field block>
+            <ui-form-field>
               <ui-radio
                 id="menu-position-top-end"
                 name="menu-position"
@@ -121,7 +121,7 @@
               ></ui-radio>
               <label for="menu-position-top-end">Top end</label>
             </ui-form-field>
-            <ui-form-field block>
+            <ui-form-field>
               <ui-radio
                 id="menu-position-bottom-start"
                 name="menu-position"
@@ -130,7 +130,7 @@
               ></ui-radio>
               <label for="menu-position-bottom-start">Bottom start</label>
             </ui-form-field>
-            <ui-form-field block>
+            <ui-form-field>
               <ui-radio
                 id="menu-position-bottom-end"
                 name="menu-position"
@@ -142,7 +142,7 @@
           </div>
           <div class="distance-controls">
             Menu Distance:
-            <ui-form-field block>
+            <ui-form-field>
               <ui-textfield v-model="controls.distance.top">Top:</ui-textfield>
               <ui-textfield v-model="controls.distance.right"
                 >Right:</ui-textfield
@@ -156,18 +156,18 @@
             </ui-form-field>
           </div>
           <div class="other-controls">
-            <ui-form-field block>
+            <ui-form-field>
               <ui-checkbox v-model="controls.rtl"></ui-checkbox>
               <label for="is-rtl">RTL</label>
             </ui-form-field>
-            <ui-form-field block>
+            <ui-form-field>
               <ui-checkbox
                 id="animation"
                 v-model="controls.disableAnimation"
               ></ui-checkbox>
               <label for="animation">Disable Open Animation</label>
             </ui-form-field>
-            <ui-form-field block>
+            <ui-form-field>
               <ui-checkbox
                 id="fixed-position"
                 v-model="controls.fixedPosition"
@@ -188,7 +188,7 @@
               </em>
             </span>
           </div>
-        </div>
+        </ui-form>
 
         <div class="demo" :dir="controls.rtl ? 'rtl' : null">
           <ui-menu-anchor absolute :position="controls.buttonPosition">

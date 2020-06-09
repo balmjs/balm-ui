@@ -34,6 +34,7 @@ import UiMenuitemText from './components/menus/menuitem-text';
 // Theme
 import UiIcon from './components/icon/icon';
 // Data Entry
+import UiForm from './components/form-controls/form';
 import UiFormField from './components/form-controls/form-field';
 import UiTextfield from './components/input-controls/textfield';
 import UiTextfieldHelper from './components/input-controls/textfield-helper';
@@ -124,6 +125,7 @@ const components = {
   UiDrawerAppContent,
   UiDrawerBackdrop,
   UiFab,
+  UiForm,
   UiFormField,
   UiGrid,
   UiGridCell,

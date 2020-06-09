@@ -53,8 +53,8 @@
         >
           <ui-dialog-title>Dialog header</ui-dialog-title>
           <ui-dialog-content>
-            <div>
-              <ui-form-field v-for="i in 4" :key="i" block>
+            <ui-form>
+              <ui-form-field v-for="i in 4" :key="i">
                 <ui-radio
                   name="hero-radio"
                   :id="`hero-radio${i}`"
@@ -62,7 +62,7 @@
                 ></ui-radio>
                 <label :for="`hero-radio${i}`">Item {{ i }}</label>
               </ui-form-field>
-            </div>
+            </ui-form>
           </ui-dialog-content>
           <ui-dialog-actions>
             <ui-button>Action1</ui-button>

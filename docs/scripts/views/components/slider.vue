@@ -1,18 +1,20 @@
 <template>
   <ui-page name="slider" demoCount="1">
     <template #hero>
-      <ui-form-field id="hero-slider-wrapper" block>
-        <ui-icon>volume_mute</ui-icon>
-        <ui-slider
-          ref="slider"
-          id="hero-slider"
-          max="100"
-          v-model="value"
-          label="Select Volume"
-        ></ui-slider>
-        <ui-icon>volume_up</ui-icon>
-      </ui-form-field>
-      <div>{{ value }}</div>
+      <ui-form>
+        <ui-form-field id="hero-slider-wrapper">
+          <ui-icon>volume_mute</ui-icon>
+          <ui-slider
+            ref="slider"
+            id="hero-slider"
+            max="100"
+            v-model="value"
+            label="Select Volume"
+          ></ui-slider>
+          <ui-icon>volume_up</ui-icon>
+        </ui-form-field>
+      </ui-form>
+      <div>Volume: {{ value }}%</div>
     </template>
 
     <!-- Content -->
@@ -116,7 +118,7 @@
       </div>
     </section>
 
-    <div class="demo-controls">
+    <ui-form class="demo-controls">
       <div class="demo-param-field-group">
         <label class="demo-param-field">
           <span class="demo-param-input-label">Min:</span>
@@ -132,14 +134,14 @@
         </label>
       </div>
       <div class="demo-param-field-group">
-        <ui-form-field block>
+        <ui-form-field>
           <ui-checkbox
             id="slider-disabled"
             v-model="controls.disabled"
           ></ui-checkbox>
           <label for="slider-disabled">Disabled</label>
         </ui-form-field>
-        <ui-form-field block>
+        <ui-form-field>
           <ui-checkbox
             id="slider-custom-bg"
             v-model="controls.customColor"
@@ -147,7 +149,7 @@
           <label for="slider-custom-bg">Use Custom BG Color</label>
         </ui-form-field>
       </div>
-    </div>
+    </ui-form>
   </ui-page>
 </template>
 

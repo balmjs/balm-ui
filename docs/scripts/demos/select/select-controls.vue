@@ -1,24 +1,24 @@
 <template>
-  <div>
-    <ui-form-field block>
+  <ui-form>
+    <ui-form-field>
       <ui-checkbox :id="`${idPrefix}-rtl`" v-model="controls.rtl"></ui-checkbox>
       <label :for="`${idPrefix}-rtl`">RTL</label>
     </ui-form-field>
-    <ui-form-field block>
+    <ui-form-field>
       <ui-checkbox
         :id="`${idPrefix}-alternate-colors`"
         v-model="controls.customColor"
       ></ui-checkbox>
       <label :for="`${idPrefix}-alternate-colors`">Alternate Colors</label>
     </ui-form-field>
-    <ui-form-field block>
+    <ui-form-field>
       <ui-checkbox
         :id="`${idPrefix}-disabled`"
         v-model="controls.disabled"
       ></ui-checkbox>
       <label :for="`${idPrefix}-disabled`">Disabled</label>
     </ui-form-field>
-  </div>
+  </ui-form>
 </template>
 
 <script>

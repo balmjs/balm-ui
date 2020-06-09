@@ -1,5 +1,6 @@
 const TopAppBar = () => import('@/views/components/top-app-bar');
 const Grid = () => import('@/views/components/grid');
+const Form = () => import('@/views/components/form');
 
 export default [
   {
@@ -13,5 +14,10 @@ export default [
     name: 'layouts.grid',
     component: Grid,
     meta: { noLayout: true }
+  },
+  {
+    path: 'form',
+    name: 'layouts.form',
+    component: Form
   }
 ];

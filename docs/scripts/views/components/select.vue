@@ -18,6 +18,9 @@
               <template v-if="selectOption.includes(1)" #icon>
                 <ui-select-icon>face</ui-select-icon>
               </template>
+              <template #dropdown-icon="{ iconClass }">
+                <ui-icon :class="iconClass">keyboard_arrow_down</ui-icon>
+              </template>
               Pick a fruit
             </ui-select>
             <ui-select-helper

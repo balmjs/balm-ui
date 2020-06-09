@@ -32,9 +32,10 @@
 
 #### Slots
 
-| Name      | Props | Description                                      |
-| --------- | ----- | ------------------------------------------------ |
-| `default` |       | The default slot holds the label for the select. |
+| Name            | Props       | Description                                      |
+| --------------- | ----------- | ------------------------------------------------ |
+| `default`       |             | The default slot holds the label for the select. |
+| `dropdown-icon` | `iconClass` | Custom dropdown icon. (New in `6.9.0`)           |
 
 #### Events
 

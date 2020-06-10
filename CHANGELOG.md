@@ -1,5 +1,19 @@
 # BalmUI ChangeLog
 
+## v6.10.0 / 2020-06-10
+
+### Features
+
+- `<ui-form>`
+  - add prop `labelTopAligned`
+  - add sass variable `$form-item-label-width`
+  - add slot prop `actionClass`
+  - update docs
+
+### BREAKING CHANGES
+
+- `<ui-form>`: rename prop <del>`labelEndAligned`</del> to `labelRightAligned`
+
 ## v6.9.0 / 2020-06-09
 
 ### Features

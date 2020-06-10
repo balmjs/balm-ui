@@ -75,33 +75,6 @@
       <table-demo></table-demo>
     </div>
 
-    <!-- <div :class="['demo--theme-sass', $themeColor('background')]">
-      $mdc-theme-background: white; (bgColor)
-      <div :class="['demo--theme-sass-inner', $themeColor('surface')]">
-        $mdc-theme-surface: white; (bgColor) <br />$mdc-theme-on-surface: black;
-        (color)
-        <div :class="['demo--theme-sass-content', $themeColor('on-surface')]">
-          <span :class="[$themeColor('primary')]"
-            >$mdc-theme-primary (color)</span
-          >
-          <span :class="[$themeColor('secondary')]"
-            >$mdc-theme-secondary (color)</span
-          >
-          <span :class="[$themeColor('primary-bg'), $themeColor('on-primary')]"
-            >$mdc-theme-on-primary (color)</span
-          >
-          <span
-            :class="[
-              $themeColor('secondary-bg'),
-              ,
-              $themeColor('on-secondary')
-            ]"
-            >$mdc-theme-on-secondary (color)</span
-          >
-        </div>
-      </div>
-    </div> -->
-
     <template #after>
       <ui-grid class="color-palette">
         <ui-grid-cell

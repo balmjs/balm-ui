@@ -14,17 +14,33 @@
       padding: 0;
     }
   }
+}
 
-  &.mdc-form--vertical {
+.mdc-form--vertical {
+  .mdc-form-field {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.mdc-form--horizontal {
+  .mdc-form-field > label {
+    width: form-variables.$form-item-label-width;
+  }
+
+  &.mdc-form--label-top-aligned {
     .mdc-form-field {
-      flex-direction: column;
-      align-items: stretch;
+      align-items: flex-start;
     }
   }
 
-  &.mdc-form--label-end-aligned {
+  &.mdc-form--label-right-aligned {
     .mdc-form-field > label {
-      text-align: right; // NOTE: custom width required
+      text-align: right;
     }
+  }
+
+  .mdc-form-action {
+    padding-left: form-variables.$form-item-label-width;
   }
 }

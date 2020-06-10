@@ -4,6 +4,13 @@
   $secondary: #018786, // baseline teal, 600 tone
 );
 
+@use '../../../src/styles/balm-ui/components/form-field/variables' as form-variables with (
+  $form-padding: 10px,
+  $form-border: 1px solid,
+  $form-item-margin-bottom: 16px,
+  $form-item-label-width: 60px
+);
+
 @use '../../../src/styles/balm-ui.scss';
 @use 'font-awesome/scss/font-awesome.scss';
 @use 'prismjs/themes/prism-okaidia.css';

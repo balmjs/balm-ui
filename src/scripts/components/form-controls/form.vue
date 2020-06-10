@@ -1,6 +1,6 @@
 <template>
   <fieldset :class="className">
-    <slot></slot>
+    <slot :actionClass="UI_FORM.cssClasses.action"></slot>
   </fieldset>
 </template>
 
@@ -12,6 +12,9 @@ const UI_FORM = {
   TYPES: {
     horizontal: 0,
     vertical: 1
+  },
+  cssClasses: {
+    action: 'mdc-form-action'
   }
 };
 
@@ -25,10 +28,19 @@ export default {
       default: 0
     },
     // UI attributes
-    labelEndAligned: {
+    labelTopAligned: {
+      type: Boolean,
+      default: false
+    },
+    labelRightAligned: {
       type: Boolean,
       default: false
     }
+  },
+  data() {
+    return {
+      UI_FORM
+    };
   },
   computed: {
     isVertical() {
@@ -39,7 +51,8 @@ export default {
         'mdc-form': true,
         'mdc-form--horizontal': !this.isVertical,
         'mdc-form--vertical': this.isVertical,
-        'mdc-form--label-end-aligned': this.labelEndAligned
+        'mdc-form--label-top-aligned': this.labelTopAligned,
+        'mdc-form--label-right-aligned': this.labelRightAligned
       };
     }
   }

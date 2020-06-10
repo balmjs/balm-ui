@@ -2,7 +2,6 @@
 @use '@material/ripple/mixins' as ripple-mixins;
 @use '../global/color' as color;
 
-// TODO: $marked-fill-color has some bug?
 .demo-checkbox--custom-all .mdc-checkbox {
   $color: color.$red-500;
   @include checkbox-mixins.focus-indicator-color($color);

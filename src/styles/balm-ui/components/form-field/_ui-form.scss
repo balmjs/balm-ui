@@ -26,6 +26,7 @@
 .mdc-form--horizontal {
   .mdc-form-field > label {
     width: form-variables.$form-item-label-width;
+    white-space: nowrap;
   }
 
   &.mdc-form--label-top-aligned {

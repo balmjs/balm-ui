@@ -12,6 +12,9 @@
     & > label {
       margin: 0;
       padding: 0;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
   }
 }
@@ -25,7 +28,8 @@
 
 .mdc-form--horizontal {
   .mdc-form-field > label {
-    width: form-variables.$form-item-label-width;
+    flex: 0 0 form-variables.$form-item-label-width;
+    margin-right: form-variables.$form-item-label-margin-right;
   }
 
   &.mdc-form--label-top-aligned {
@@ -41,6 +45,7 @@
   }
 
   .mdc-form-action {
-    padding-left: form-variables.$form-item-label-width;
+    padding-left: form-variables.$form-item-label-width +
+      form-variables.$form-item-label-margin-right;
   }
 }

@@ -1,5 +1,11 @@
 # BalmUI ChangeLog
 
+## v6.10.1 / 2020-06-10
+
+### Chores
+
+- `<ui-form>`: update css and sass variable
+
 ## v6.10.0 / 2020-06-10
 
 ### Features

@@ -10,7 +10,7 @@
       <!-- awesome form item 2 -->
     </ui-form-field>
     <ui-form-field :class="actionClass">
-      <ui-button raised></ui-button>
+      <ui-button></ui-button>
     </ui-form-field>
   </template>
 </ui-form>

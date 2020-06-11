@@ -28,6 +28,10 @@ export default {
       default: 0
     },
     // UI attributes
+    nowrap: {
+      type: Boolean,
+      default: false
+    },
     labelTopAligned: {
       type: Boolean,
       default: false
@@ -51,6 +55,7 @@ export default {
         'mdc-form': true,
         'mdc-form--horizontal': !this.isVertical,
         'mdc-form--vertical': this.isVertical,
+        'mdc-form--nowrap': this.nowrap,
         'mdc-form--label-top-aligned': this.labelTopAligned,
         'mdc-form--label-right-aligned': this.labelRightAligned
       };

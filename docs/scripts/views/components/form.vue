@@ -7,7 +7,7 @@
     <!-- Content -->
     <section class="demo-wrapper">
       <div class="demo">
-        <ui-form>
+        <ui-form nowrap>
           <template #default="{ actionClass }">
             <legend>Horizontal Form</legend>
             <ui-form-field>

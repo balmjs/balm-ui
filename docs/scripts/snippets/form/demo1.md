@@ -1,5 +1,5 @@
 ```html
-<ui-form>
+<ui-form nowrap>
   <template #default="{ actionClass }">
     <legend>Horizontal Form</legend>
     <ui-form-field>

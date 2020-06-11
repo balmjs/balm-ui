@@ -12,17 +12,15 @@
     & > label {
       margin: 0;
       padding: 0;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
     }
   }
 }
 
-.mdc-form--vertical {
-  .mdc-form-field {
-    flex-direction: column;
-    align-items: stretch;
+.mdc-form--nowrap {
+  .mdc-form-field > label {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 }
 
@@ -47,5 +45,23 @@
   .mdc-form-action {
     padding-left: form-variables.$form-item-label-width +
       form-variables.$form-item-label-margin-right;
+  }
+
+  .mdc-checkbox,
+  .mdc-radio {
+    & + label {
+      flex-basis: auto;
+    }
+  }
+}
+
+.mdc-form--vertical {
+  .mdc-form-field {
+    flex-direction: column;
+    align-items: stretch;
+
+    & > label {
+      margin-bottom: form-variables.$form-item-label-margin-bottom;
+    }
   }
 }

@@ -1,10 +1,25 @@
 # BalmUI ChangeLog
 
+## v6.10.2 / 2020-06-11
+
+### Chores
+
+- update docs: `<ui-form>` bugfix
+
+### Features
+
+- `<ui-form>`
+  - update css
+  - add prop `nowrap`
+  - add sass variable `$form-item-label-margin-bottom`
+
 ## v6.10.1 / 2020-06-10
 
 ### Chores
 
-- `<ui-form>`: update css and sass variable
+- `<ui-form>`
+  - update css
+  - add sass variable `$form-item-label-margin-right`
 
 ## v6.10.0 / 2020-06-10
 

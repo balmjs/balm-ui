@@ -21,7 +21,6 @@ web_modules/
 
 # Build build output
 .tmp/
-dist/
 /assets/
 
 # MacOS generated files

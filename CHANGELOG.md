@@ -1,5 +1,18 @@
 # BalmUI ChangeLog
 
+## v6.11.0 / 2020-06-12
+
+> Lint vue code for source and docs
+
+### Features
+
+- update docs
+- `<ui-file>`: optimize file object: rename <del>`file.uuid`</del> to `file.tmpId`
+
+### BREAKING CHANGES
+
+- `<ui-datepicker>`: the <del>`locale`</del> prop is deprecated, please use `config.locale`
+
 ## v6.10.2 / 2020-06-11
 
 ### Chores

@@ -148,12 +148,12 @@ export default {
     }
   },
   created() {
-    this.$bus.$on('on-loading', () => {
+    this.$bus.$on('page-load', () => {
       this.pageLoading = true;
       this.loadingTimer = setInterval(this.loading, 20);
     });
 
-    this.$bus.$on('off-loading', () => {
+    this.$bus.$on('page-ready', () => {
       this.$nextTick(() => {
         this.bodyEl.scrollTop = 0;
       });
@@ -189,7 +189,7 @@ export default {
     //   this.$i18n.locale = lang;
     // },
     handleMenu() {
-      this.$emit('on-loading');
+      this.$emit('page-load');
 
       this.openDrawer = false;
       if (window.innerWidth < $MIN_WIDTH) {

@@ -108,7 +108,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  bus.$emit('on-loading');
+  bus.$emit('page-load');
   next();
 });
 
@@ -138,7 +138,7 @@ router.afterEach((to, from) => {
     pageClassList.add(`${CLASS_NAMESPACE}-${toName}`);
   }
 
-  bus.$emit('off-loading');
+  bus.$emit('page-ready');
 });
 
 export default router;

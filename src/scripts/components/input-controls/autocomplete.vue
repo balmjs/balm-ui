@@ -39,10 +39,7 @@
             v-for="(item, index) in currentSuggestion.data"
             :key="index"
             :data-index="index"
-            :class="[
-              'mdc-list-item',
-              { selected: index === currentSuggestion.index }
-            ]"
+            :class="getItemClassName(index)"
             @click="handleSelected(item)"
             v-html="item[UI_AUTOCOMPLETE.ITEM.LABEL]"
           ></li>
@@ -443,6 +440,12 @@ export default {
       if (selectedItem) {
         selectedItem.classList.remove(UI_AUTOCOMPLETE.ITEM.SELECTED);
       }
+    },
+    getItemClassName(index) {
+      return [
+        'mdc-list-item',
+        { selected: index === this.currentSuggestion.index }
+      ];
     }
   }
 };

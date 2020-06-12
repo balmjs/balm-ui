@@ -4,10 +4,7 @@
     <div class="component-wrapper">
       <ui-card>
         <ui-card-content>
-          <ui-card-media
-            rectangle
-            :style="`background-image:url('${cardMedia}')`"
-          ></ui-card-media>
+          <ui-card-media rectangle :style="`background-image:url('${cardMedia}')`"></ui-card-media>
           <ui-card-text>
             <div :class="$tt('overline')">OVERLINE</div>
             <div :class="$tt('headline6')">Headline 6</div>

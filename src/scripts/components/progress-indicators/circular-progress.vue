@@ -8,10 +8,7 @@
   >
     <!-- Determinate -->
     <div class="mdc-circular-progress__determinate-container">
-      <svg
-        class="mdc-circular-progress__determinate-circle-graphic"
-        :viewBox="svg.viewBox"
-      >
+      <svg class="mdc-circular-progress__determinate-circle-graphic" :viewBox="svg.viewBox">
         <circle
           class="mdc-circular-progress__determinate-circle"
           fill="none"
@@ -33,10 +30,7 @@
           :svg="svg"
         ></ui-circular-progress-indeterminate>
       </template>
-      <ui-circular-progress-indeterminate
-        v-else
-        :svg="svg"
-      ></ui-circular-progress-indeterminate>
+      <ui-circular-progress-indeterminate v-else :svg="svg"></ui-circular-progress-indeterminate>
     </div>
   </div>
 </template>
@@ -74,7 +68,7 @@ const UI_CIRCULAR_PROGRESS = {
 };
 
 export default {
-  name: 'ui-circular-progress',
+  name: 'UiCircularProgress',
   components: {
     UiCircularProgressIndeterminate
   },

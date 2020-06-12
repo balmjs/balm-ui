@@ -1,5 +1,5 @@
 <template>
-  <div class="toc-affix" v-shadow.transition="[2, 8]">
+  <div v-shadow.transition="[2, 8]" class="toc-affix">
     <ui-tabs v-model="active" @change="onChange">
       <ui-tab v-anchor:href="'#ui-usage'" class="v-anchor">Usage</ui-tab>
       <ui-tab v-anchor:href="'#ui-demo'" class="v-anchor">Demo</ui-tab>
@@ -8,12 +8,9 @@
         :key="index"
         v-anchor:href="item.id"
         class="v-anchor"
-        >{{ item.name }}</ui-tab
-      >
+      >{{ item.name }}</ui-tab>
       <ui-tab v-anchor:href="'#ui-apis'" class="v-anchor">APIs</ui-tab>
-      <ui-tab v-if="!withoutCss" v-anchor:href="'#ui-sass'" class="v-anchor"
-        >Sass</ui-tab
-      >
+      <ui-tab v-if="!withoutCss" v-anchor:href="'#ui-sass'" class="v-anchor">Sass</ui-tab>
       <slot></slot>
     </ui-tabs>
   </div>
@@ -23,7 +20,7 @@
 import { $MIN_WIDTH } from '@/config';
 
 export default {
-  name: 'ui-toc-affix',
+  name: 'UiTocAffix',
   props: {
     items: {
       type: Object,

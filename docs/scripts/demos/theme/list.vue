@@ -2,7 +2,7 @@
   <section class="component-section">
     <h6 :class="$tt('headline6')">List</h6>
     <div class="component-wrapper list-component">
-      <ui-list :type="2" avatar singleSelection v-model="value">
+      <ui-list v-model="value" :type="2" avatar single-selection>
         <template v-for="i in 3">
           <ui-item :key="`item${i}`">
             <ui-item-first-content>

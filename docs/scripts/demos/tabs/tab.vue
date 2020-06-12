@@ -5,49 +5,35 @@
     <h6 :class="$tt('subtitle1')">Text Label</h6>
     <div class="demo">
       <ui-tab-bar v-model="active">
-        <ui-tab v-for="(tab, index) in tabs" :key="index">{{
-          tab.text
-        }}</ui-tab>
+        <ui-tab v-for="(tab, index) in tabs" :key="index">{{ tab.text }}</ui-tab>
       </ui-tab-bar>
     </div>
 
     <h6 :class="$tt('subtitle1')">Icon</h6>
     <div class="demo">
       <ui-tab-bar v-model="active">
-        <ui-tab
-          v-for="(tab, index) in tabs"
-          :key="index"
-          type="iconOnly"
-          :icon="tab.icon"
-        ></ui-tab>
+        <template v-for="(tab, index) in tabs">
+          <ui-tab :key="index" type="iconOnly" :icon="tab.icon"></ui-tab>
+        </template>
       </ui-tab-bar>
     </div>
     <ui-snippet :code="$store.demos[1]"></ui-snippet>
 
     <h6 :class="$tt('subtitle1')">Text Label and Icon</h6>
     <div class="demo">
-      <ui-tab-bar type="both" v-model="active">
-        <ui-tab
-          v-for="(tab, index) in tabs"
-          :key="index"
-          type="textWithIcon"
-          :icon="tab.icon"
-          >{{ tab.text }}</ui-tab
-        >
+      <ui-tab-bar v-model="active" type="both">
+        <template v-for="(tab, index) in tabs">
+          <ui-tab :key="index" type="textWithIcon" :icon="tab.icon">{{ tab.text }}</ui-tab>
+        </template>
       </ui-tab-bar>
     </div>
 
     <h6 :class="$tt('subtitle1')">Stacked Text Label and Icon</h6>
     <div class="demo">
-      <ui-tab-bar type="both" v-model="active">
-        <ui-tab
-          v-for="(tab, index) in tabs"
-          :key="index"
-          type="textWithIcon"
-          :icon="tab.icon"
-          stacked
-          >{{ tab.text }}</ui-tab
-        >
+      <ui-tab-bar v-model="active" type="both">
+        <template v-for="(tab, index) in tabs">
+          <ui-tab :key="index" type="textWithIcon" :icon="tab.icon" stacked>{{ tab.text }}</ui-tab>
+        </template>
       </ui-tab-bar>
     </div>
     <ui-snippet :code="$store.demos[2]"></ui-snippet>
@@ -55,9 +41,7 @@
     <h6 :class="$tt('subtitle1')">Text Label Width-Matching Indicator</h6>
     <div class="example">
       <ui-tab-bar v-model="active">
-        <ui-tab v-for="(tab, index) in tabs" :key="index" contentIndicator>{{
-          tab.text
-        }}</ui-tab>
+        <ui-tab v-for="(tab, index) in tabs" :key="index" content-indicator>{{ tab.text }}</ui-tab>
       </ui-tab-bar>
     </div>
 
@@ -76,7 +60,7 @@
 
     <h6 :class="$tt('subtitle1')">Customization</h6>
     <div class="example">
-      <ui-tab-bar class="custom-demo" v-model="active">
+      <ui-tab-bar v-model="active" class="custom-demo">
         <ui-tab
           v-for="(tab, index) in tabs"
           :key="index"
@@ -84,7 +68,7 @@
           type="textWithIcon"
           :icon="tab.icon"
           stacked
-          contentIndicator
+          content-indicator
         >
           {{ tab.text }}
           <template #indicator>
@@ -100,7 +84,12 @@
 <script>
 export default {
   props: {
-    code: Array
+    code: {
+      type: Array,
+      default() {
+        return [];
+      }
+    }
   },
   data() {
     return {

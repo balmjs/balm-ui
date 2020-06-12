@@ -1,16 +1,13 @@
 <template>
-  <div
-    class="demo-container page--drawer page--dismissible-drawer-below-top-app-bar"
-  >
+  <div class="demo-container page--drawer page--dismissible-drawer-below-top-app-bar">
     <!-- App bar -->
     <ui-top-app-bar
       class="demo-app-bar"
-      contentSelector=".demo-app-content"
-      navId="demo-menu"
-      >Dismissible Drawer Below Top App Bar</ui-top-app-bar
-    >
+      content-selector=".demo-app-content"
+      nav-id="demo-menu"
+    >Dismissible Drawer Below Top App Bar</ui-top-app-bar>
     <!-- Drawer -->
-    <ui-drawer type="dismissible" viewportHeight navId="demo-menu">
+    <ui-drawer type="dismissible" viewport-height nav-id="demo-menu">
       <ui-drawer-header>
         <ui-drawer-header>
           <ui-drawer-title>Title</ui-drawer-title>

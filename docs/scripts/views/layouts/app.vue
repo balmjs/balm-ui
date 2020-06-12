@@ -1,10 +1,6 @@
 <template>
   <div class="balmui-container">
-    <ui-linear-progress
-      v-if="pageLoading"
-      class="top-linear-loading"
-      :progress="loadingProgress"
-    ></ui-linear-progress>
+    <ui-linear-progress v-if="pageLoading" class="top-linear-loading" :progress="loadingProgress"></ui-linear-progress>
     <template v-if="noLayout">
       <router-view></router-view>
     </template>
@@ -12,24 +8,22 @@
       <!-- App bar -->
       <ui-top-app-bar
         class="balmui-head"
-        contentSelector=".balmui-content"
-        navId="balmui-menu"
+        content-selector=".balmui-content"
+        nav-id="balmui-menu"
         fixed
         @nav="$balmUI.onChange('openDrawer', !openDrawer)"
       >
-        <router-link
-          to="/"
-          :class="['catalog-title', $themeColor('on-primary')]"
-          >BalmUI</router-link
-        >
+        <router-link to="/" :class="['catalog-title', $themeColor('on-primary')]">BalmUI</router-link>
         <template #toolbar="{ toolbarItemClass }">
           <a
             :class="[toolbarItemClass, 'github']"
             href="https://github.com/balmjs/balm-ui"
             target="_blank"
             rel="noopener"
-            ><svg-github></svg-github><span>GitHub</span></a
           >
+            <svg-github></svg-github>
+            <span>GitHub</span>
+          </a>
         </template>
       </ui-top-app-bar>
       <!-- Content -->
@@ -38,22 +32,17 @@
         <div
           :class="[
             'balmui-drawer-container',
-            {
-              'balmui-drawer--mobile': !this.isWideScreen
-            }
+            { 'balmui-drawer--mobile': !isWideScreen }
           ]"
         >
-          <ui-drawer
-            v-model="openDrawer"
-            :type="drawerType"
-            class="balmui-menu"
-          >
+          <ui-drawer v-model="openDrawer" :type="drawerType" class="balmui-menu">
             <ui-drawer-header>
               <ui-drawer-title>BalmUI</ui-drawer-title>
               <ui-drawer-subtitle>
-                <i class="balmui-version"
-                  >v<span class="version">{{ version }}</span></i
-                >
+                <i class="balmui-version">
+                  v
+                  <span class="version">{{ version }}</span>
+                </i>
               </ui-drawer-subtitle>
             </ui-drawer-header>
             <ui-drawer-content>
@@ -62,8 +51,8 @@
                   <template v-for="(item, index) in menu">
                     <router-link
                       v-if="item.icon || item.isSubmenu"
-                      v-ripple
                       :key="`item${index}`"
+                      v-ripple
                       :class="[
                         itemClass,
                         {
@@ -76,10 +65,7 @@
                       :active-class="activeClass"
                       @click.native="handleMenu"
                     >
-                      <i
-                        v-if="item.icon"
-                        :class="['catalog-list-icon', `icon-${item.icon}`]"
-                      ></i>
+                      <i v-if="item.icon" :class="['catalog-list-icon', `icon-${item.icon}`]"></i>
                       <span>{{ item.name }}</span>
                       <ui-badge v-if="item.plus" class="plus" state="info">
                         <template #badge>plus</template>
@@ -88,10 +74,7 @@
                         <template #badge>next</template>
                       </ui-badge>
                     </router-link>
-                    <ui-list-divider
-                      v-else-if="item === '-'"
-                      :key="`divider${index}`"
-                    ></ui-list-divider>
+                    <ui-list-divider v-else-if="item === '-'" :key="`divider${index}`"></ui-list-divider>
                     <ui-list-group-subheader
                       v-else
                       :key="`head${index}`"
@@ -101,18 +84,17 @@
                       <i
                         v-if="isWideScreen && item.name === 'Guide'"
                         :class="['balmui-version', $tt('subtitle2')]"
-                        >v<span class="version">{{ version }}</span></i
                       >
+                        v
+                        <span class="version">{{ version }}</span>
+                      </i>
                     </ui-list-group-subheader>
                   </template>
                 </template>
               </ui-nav>
             </ui-drawer-content>
           </ui-drawer>
-          <ui-drawer-backdrop
-            v-show="drawerType === 'modal'"
-            @click="$balmUI.onHide('openDrawer')"
-          ></ui-drawer-backdrop>
+          <ui-drawer-backdrop v-show="drawerType === 'modal'" @click="$balmUI.onHide('openDrawer')"></ui-drawer-backdrop>
         </div>
         <!-- App content -->
         <div class="balmui-content">
@@ -120,7 +102,7 @@
             v-if="pageLoading"
             class="page-circular-loading"
             active
-            fourColored
+            four-colored
           ></ui-circular-progress>
           <transition name="loading">
             <router-view v-if="pageLoading"></router-view>

@@ -1,17 +1,11 @@
 <template>
   <!-- Container -->
   <div :class="className">
-    <ul
-      class="mdc-list"
-      role="menu"
-      aria-hidden="true"
-      aria-orientation="vertical"
-      tabindex="-1"
-    >
+    <ul class="mdc-list" tabindex="-1" role="menu" aria-hidden="true" aria-orientation="vertical">
       <slot>
         <template v-for="(item, index) in currentItems">
           <template v-if="getType(item) === 'array'">
-            <ui-menuitem nested :key="`group${index}`">
+            <ui-menuitem :key="`group${index}`" nested>
               <template v-for="(subItem, subIndex) in item">
                 <li
                   v-if="subItem === UI_MENU.DIVIDER"
@@ -24,9 +18,9 @@
                   :key="`subitem${subIndex}`"
                   :item="getType(subItem) === 'object' ? subItem : {}"
                 >
-                  <ui-menuitem-text v-if="getType(subItem) === 'string'">{{
-                    subItem
-                  }}</ui-menuitem-text>
+                  <template v-if="getType(subItem) === 'string'">
+                    <ui-menuitem-text v-text="subItem"></ui-menuitem-text>
+                  </template>
                 </ui-menuitem>
               </template>
             </ui-menuitem>
@@ -43,9 +37,9 @@
               :key="`item${index}`"
               :item="getType(item) === 'object' ? item : {}"
             >
-              <ui-menuitem-text v-if="getType(item) === 'string'">{{
-                item
-              }}</ui-menuitem-text>
+              <template v-if="getType(item) === 'string'">
+                <ui-menuitem-text v-text="item"></ui-menuitem-text>
+              </template>
             </ui-menuitem>
           </template>
         </template>
@@ -83,7 +77,7 @@ const UI_MENU = {
 };
 
 export default {
-  name: 'ui-menu',
+  name: 'UiMenu',
   components: {
     UiMenuitem,
     UiMenuitemText
@@ -113,7 +107,10 @@ export default {
       type: String,
       default: 'TOP_LEFT'
     },
-    distance: Object,
+    distance: {
+      type: [Boolean, Object],
+      default: false
+    },
     fixed: {
       type: Boolean,
       default: false

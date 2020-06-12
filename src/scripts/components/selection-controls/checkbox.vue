@@ -18,7 +18,7 @@
           class="mdc-checkbox__checkmark-path"
           fill="none"
           d="M1.73,12.91 8.1,19.28 22.79,4.59"
-        ></path>
+        />
       </svg>
       <div class="mdc-checkbox__mixedmark"></div>
     </div>
@@ -42,7 +42,7 @@ const UI_CHECKBOX = {
 };
 
 export default {
-  name: 'ui-checkbox',
+  name: 'UiCheckbox',
   mixins: [elementMixin],
   model: {
     prop: 'model',
@@ -59,8 +59,14 @@ export default {
       default: false
     },
     // Element attributes
-    name: String,
-    value: [String, Number],
+    name: {
+      type: String,
+      default: ''
+    },
+    value: {
+      type: [String, Number],
+      default: ''
+    },
     disabled: {
       type: Boolean,
       default: false

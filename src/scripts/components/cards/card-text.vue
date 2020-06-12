@@ -7,6 +7,6 @@
 <script>
 // NOTE: Additional card component
 export default {
-  name: 'ui-card-text'
+  name: 'UiCardText'
 };
 </script>

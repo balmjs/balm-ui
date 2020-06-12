@@ -19,7 +19,7 @@ const BalmUI_ValidatorPlugin = {
   install(Vue, customRules = {}) {
     let globalValidationRules = Object.assign({}, defaultRules, customRules);
 
-    const $validate = function(formData = {}, customFieldset = []) {
+    const $validate = function (formData = {}, customFieldset = []) {
       let result = {
         valid: true, // 是否验证通过
         validFields: [], // 有效字段
@@ -34,7 +34,7 @@ const BalmUI_ValidatorPlugin = {
       let validationFields = Object.keys(validations);
 
       if (customFieldset.length) {
-        validationFields = validationFields.filter(field =>
+        validationFields = validationFields.filter((field) =>
           customFieldset.includes(field)
         );
       }
@@ -49,7 +49,7 @@ const BalmUI_ValidatorPlugin = {
         let fieldLabel = fieldOption[FIELD_LABEL] || ''; // 字段别名
         let fieldRules = fieldOption[FIELD_VALIDATOR].split(
           ','
-        ).map(validator => validator.trim()); // 当前字段需要的所有验证方法
+        ).map((validator) => validator.trim()); // 当前字段需要的所有验证方法
         let isAllValidOfField = true; // 当前字段通过全部验证规则
 
         for (let j = 0, rulesCount = fieldRules.length; j < rulesCount; j++) {
@@ -106,7 +106,7 @@ const BalmUI_ValidatorPlugin = {
         });
       }
 
-      result.validFields.forEach(field => {
+      result.validFields.forEach((field) => {
         result.validMsg[field] = '';
       });
 

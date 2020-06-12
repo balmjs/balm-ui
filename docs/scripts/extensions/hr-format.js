@@ -17,7 +17,7 @@ class Hr extends Embed {
   }
 }
 
-Hr.blotName = 'hr'; //now you can use .ql-hr classname in your toolbar
+Hr.blotName = 'hr'; //now you can use .ql-hr class name in your toolbar
 Hr.className = 'my-hr';
 Hr.tagName = 'hr';
 

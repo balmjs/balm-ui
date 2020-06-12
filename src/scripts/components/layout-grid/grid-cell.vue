@@ -26,7 +26,7 @@ const UI_GRID_CELL = {
 };
 
 export default {
-  name: 'ui-grid-cell',
+  name: 'UiGridCell',
   components: {
     UiGridInner
   },
@@ -37,9 +37,18 @@ export default {
       default: false
     },
     // UI attributes
-    columns: [Number, String, Object], // default: 4
-    order: [Number, String],
-    align: String
+    columns: {
+      type: [Number, String, Object],
+      default: 4
+    },
+    order: {
+      type: [Number, String],
+      default: 0
+    },
+    align: {
+      type: String,
+      default: ''
+    }
   },
   computed: {
     className() {

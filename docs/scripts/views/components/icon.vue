@@ -8,12 +8,7 @@
         <ui-icon :type="typeOption">delete</ui-icon>
       </div>
       <div class="hero-options">
-        <ui-select
-          class="hero-option"
-          :options="TypeOptions"
-          v-model="typeOption"
-          >Icon themes</ui-select
-        >
+        <ui-select class="hero-option" :options="TypeOptions" v-model="typeOption">Icon themes</ui-select>
       </div>
     </template>
 
@@ -25,7 +20,7 @@
         :key="category.name"
         >{{ category.name }}</ui-tab
       >
-    </ui-tab-bar> -->
+    </ui-tab-bar>-->
 
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 Sizing</h6>
@@ -100,12 +95,8 @@
             :key="`subheader${index}`"
             v-anchor:id="category.name"
             :class="$tt('headline6')"
-            >{{ category.name }}</ui-list-group-subheader
-          >
-          <ui-image-list
-            v-if="Object.keys(currentIcons).length"
-            :key="`list${index}`"
-          >
+          >{{ category.name }}</ui-list-group-subheader>
+          <ui-image-list v-if="Object.keys(currentIcons).length" :key="`list${index}`">
             <ui-image-item
               v-for="(icon, i) in currentIcons[category.name]"
               :key="i"
@@ -121,10 +112,7 @@
             </ui-image-item>
           </ui-image-list>
           <p v-else :key="`p${index}`">No Icons</p>
-          <ui-list-divider
-            :key="`divider${index}`"
-            v-if="index < category.count - 1"
-          ></ui-list-divider>
+          <ui-list-divider :key="`divider${index}`" v-if="index < category.count - 1"></ui-list-divider>
         </template>
       </ui-list-group>
     </template>
@@ -273,8 +261,7 @@ export default {
     };
   },
   async created() {
-    let response = await this.$http.get(`${this.$domain}/data/icons.json`);
-    let { categories } = response.data;
+    let { categories } = await this.$http.get(`${this.$domain}/data/icons.json`);
 
     categories.map((category) => {
       let icons = category.icons.filter(

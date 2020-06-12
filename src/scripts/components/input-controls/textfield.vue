@@ -15,8 +15,8 @@
           UI_TEXTFIELD_ICON.cssClasses.icon,
           UI_TEXTFIELD_ICON.cssClasses.leadingIcon
         ]"
-        >{{ materialIcon }}</i
-      >
+        v-text="materialIcon"
+      ></i>
     </slot>
 
     <!-- Textarea -->
@@ -51,8 +51,8 @@
       <span
         v-if="prefixText"
         class="mdc-text-field__affix mdc-text-field__affix--prefix"
-        >{{ prefixText }}</span
-      >
+        v-text="prefixText"
+      ></span>
       <input
         :id="id"
         v-model="inputValue"
@@ -82,8 +82,8 @@
       <span
         v-if="suffixText"
         class="mdc-text-field__affix mdc-text-field__affix--suffix"
-        >{{ suffixText }}</span
-      >
+        v-text="suffixText"
+      ></span>
 
       <!-- Character counter (optional) -->
       <ui-textfield-counter v-if="withCounter"></ui-textfield-counter>
@@ -102,7 +102,7 @@
 
     <!-- Activation indicator -->
     <span v-if="hasRipple" class="mdc-line-ripple"></span>
-    <ui-notched-outline v-else :hasLabel="hasLabel">
+    <ui-notched-outline v-else :has-label="hasLabel">
       <ui-floating-label :for="id">
         <slot>{{ label }}</slot>
       </ui-floating-label>
@@ -147,7 +147,7 @@ const UI_TEXTFIELD = {
 };
 
 export default {
-  name: 'ui-textfield',
+  name: 'UiTextfield',
   components: {
     UiFloatingLabel,
     UiNotchedOutline,
@@ -178,8 +178,14 @@ export default {
       type: String,
       default: 'text'
     },
-    prefixText: String,
-    suffixText: String,
+    prefixText: {
+      type: String,
+      default: ''
+    },
+    suffixText: {
+      type: String,
+      default: ''
+    },
     // <textarea> attributes
     rows: {
       type: [Number, String],
@@ -194,15 +200,36 @@ export default {
       type: Boolean,
       default: false
     },
-    minlength: [Number, String],
-    maxlength: [Number, String], // Required for counter
+    minlength: {
+      type: [Number, String],
+      default: ''
+    },
+    maxlength: {
+      type: [Number, String],
+      default: ''
+    },
     // For native <input>
-    pattern: String,
-    min: [Number, String],
-    max: [Number, String],
-    step: [Number, String],
+    pattern: {
+      type: String,
+      default: ''
+    },
+    min: {
+      type: [Number, String],
+      default: ''
+    },
+    max: {
+      type: [Number, String],
+      default: ''
+    },
+    step: {
+      type: [Number, String],
+      default: ''
+    },
     // For helper text
-    helperTextId: String,
+    helperTextId: {
+      type: String,
+      default: ''
+    },
     // For plus
     plus: {
       type: Boolean,

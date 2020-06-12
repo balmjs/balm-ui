@@ -1,10 +1,6 @@
 <template>
   <!-- Container -->
-  <button
-    type="button"
-    :class="[className, cardActionClassName]"
-    @click="handleClick"
-  >
+  <button type="button" :class="[className, cardActionClassName]" @click="handleClick">
     <div class="mdc-button__ripple"></div>
     <!-- Icon (optional) -->
     <slot name="before" :iconClass="UI_BUTTON.cssClasses.icon">
@@ -12,8 +8,8 @@
         v-if="materialIcon"
         :class="[UI_GLOBAL.cssClasses.icon, UI_BUTTON.cssClasses.icon]"
         aria-hidden="true"
-        >{{ materialIcon }}</i
-      >
+        v-text="materialIcon"
+      ></i>
     </slot>
     <!-- Text label -->
     <span :class="UI_BUTTON.cssClasses.label">
@@ -30,7 +26,7 @@ import UI_GLOBAL from '../../config/constants';
 import UI_BUTTON from './constants';
 
 export default {
-  name: 'ui-button',
+  name: 'UiButton',
   mixins: [buttonMixin],
   data() {
     return {

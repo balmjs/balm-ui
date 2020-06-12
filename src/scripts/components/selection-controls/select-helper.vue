@@ -10,7 +10,7 @@ import helperTextMixin from '../../mixins/helper-text';
 import getType from '../../utils/typeof';
 
 export default {
-  name: 'ui-select-helper',
+  name: 'UiSelectHelper',
   mixins: [helperTextMixin],
   data() {
     return {

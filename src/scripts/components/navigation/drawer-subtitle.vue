@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ui-drawer-subtitle'
+  name: 'UiDrawerSubtitle'
 };
 </script>

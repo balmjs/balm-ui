@@ -4,10 +4,7 @@
       <div class="hero-demo">
         <ui-fab :type="typeOption" :mini="!!mini">
           <!-- :icon="type && withLeadingIcon ? 'add' : ''" -->
-          <template
-            v-if="typeOption && withLeadingIcon"
-            #before="{ iconClass }"
-          >
+          <template v-if="typeOption && withLeadingIcon" #before="{ iconClass }">
             <ui-icon :class="iconClass">add</ui-icon>
           </template>
           <template v-if="typeOption">
@@ -17,37 +14,18 @@
         </ui-fab>
       </div>
       <div class="hero-options">
-        <ui-select
-          class="hero-option"
-          :options="TypeOptions"
-          v-model="typeOption"
-          >Type</ui-select
-        >
+        <ui-select class="hero-option" :options="TypeOptions" v-model="typeOption">Type</ui-select>
         <ui-form-field v-if="typeOption" class="hero-option">
-          <ui-checkbox
-            id="leading-icon"
-            :value="1"
-            v-model="withLeadingIcon"
-          ></ui-checkbox>
+          <ui-checkbox id="leading-icon" :value="1" v-model="withLeadingIcon"></ui-checkbox>
           <label for="leading-icon">Leading icon</label>
         </ui-form-field>
         <div v-else class="hero-option">
           <ui-form-field>
-            <ui-radio
-              id="default"
-              name="mini"
-              :value="0"
-              v-model="mini"
-            ></ui-radio>
+            <ui-radio id="default" name="mini" :value="0" v-model="mini"></ui-radio>
             <label for="default">Default</label>
           </ui-form-field>
           <ui-form-field>
-            <ui-radio
-              id="mini"
-              name="mini"
-              :value="1"
-              v-model="mini"
-            ></ui-radio>
+            <ui-radio id="mini" name="mini" :value="1" v-model="mini"></ui-radio>
             <label for="mini">Mini</label>
           </ui-form-field>
         </div>
@@ -137,8 +115,7 @@
               id="enter-exit-back"
               :disabled="!exited"
               @click="$balmUI.onHide('exited')"
-              >Go back</ui-button
-            >
+            >Go back</ui-button>
           </p>
         </div>
         <ui-fab
@@ -153,9 +130,7 @@
     </section>
 
     <section class="demo-wrapper">
-      <h6 :class="$tt('headline6')">
-        1.4 Custom FABs (Using font awesome)
-      </h6>
+      <h6 :class="$tt('headline6')">1.4 Custom FABs (Using font awesome)</h6>
       <div class="demo">
         <ui-fab>
           <i class="fa fa-flag fa-lg"></i>

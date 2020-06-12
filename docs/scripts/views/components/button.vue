@@ -5,15 +5,8 @@
         <ui-button :type="typeOption" v-a11y>{{ text }}</ui-button>
       </div>
       <div class="hero-options">
-        <ui-select
-          class="hero-option"
-          :options="TypeOptions"
-          v-model="typeOption"
-          >Type</ui-select
-        >
-        <ui-textfield class="hero-option" v-model="text">
-          Button Text
-        </ui-textfield>
+        <ui-select class="hero-option" :options="TypeOptions" v-model="typeOption">Type</ui-select>
+        <ui-textfield class="hero-option" v-model="text">Button Text</ui-textfield>
       </div>
     </template>
 
@@ -21,13 +14,8 @@
     <section class="demo-wrapper">
       <div class="demo-controls">
         <ui-form-field>
-          <ui-checkbox
-            id="toggle-disabled"
-            v-model="controls.disabled"
-          ></ui-checkbox>
-          <label for="toggle-disabled"
-            >Disabled buttons (excluding links)</label
-          >
+          <ui-checkbox id="toggle-disabled" v-model="controls.disabled"></ui-checkbox>
+          <label for="toggle-disabled">Disabled buttons (excluding links)</label>
         </ui-form-field>
       </div>
 
@@ -36,9 +24,7 @@
         <ui-button outlined :disabled="controls.disabled">Outlined</ui-button>
         <ui-button raised :disabled="controls.disabled">Raised</ui-button>
 
-        <ui-button icon="favorite" :disabled="controls.disabled"
-          >Icon</ui-button
-        >
+        <ui-button icon="favorite" :disabled="controls.disabled">Icon</ui-button>
         <ui-button :disabled="controls.disabled">
           Trailing Icon
           <template #after="{ iconClass }">

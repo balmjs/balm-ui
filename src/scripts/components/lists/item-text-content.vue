@@ -7,6 +7,6 @@
 
 <script>
 export default {
-  name: 'ui-item-text-content'
+  name: 'UiItemTextContent'
 };
 </script>

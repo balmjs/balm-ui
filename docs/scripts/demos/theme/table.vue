@@ -3,12 +3,12 @@
     <h6 :class="$tt('headline6')">Data Table</h6>
     <div class="component-wrapper">
       <ui-table
+        v-model="selectedRows"
         :data="data"
         :thead="thead"
         :tbody="tbody"
-        rowCheckbox
-        selectedKey="id"
-        v-model="selectedRows"
+        row-checkbox
+        selected-key="id"
       ></ui-table>
     </div>
   </section>

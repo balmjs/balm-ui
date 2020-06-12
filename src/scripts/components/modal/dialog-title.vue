@@ -7,6 +7,6 @@
 
 <script>
 export default {
-  name: 'ui-dialog-title'
+  name: 'UiDialogTitle'
 };
 </script>

@@ -28,7 +28,7 @@ const BalmUI_TypographyPlugin = {
         ? T_DEFAULT_STYLES.concat(customStyles)
         : T_DEFAULT_STYLES;
 
-    const $tt = style => {
+    const $tt = (style) => {
       let className = '';
 
       if (T_STYLES.includes(style)) {

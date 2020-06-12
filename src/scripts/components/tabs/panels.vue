@@ -16,7 +16,7 @@ const UI_PANEL = {
 };
 
 export default {
-  name: 'ui-panels',
+  name: 'UiPanels',
   model: {
     prop: 'active',
     event: UI_PANEL.EVENT.CHANGE

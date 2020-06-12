@@ -9,7 +9,7 @@ import typeMixin from '../../mixins/type';
 import UI_IMAGE_LIST from './constants';
 
 export default {
-  name: 'ui-image-list',
+  name: 'UiImageList',
   mixins: [typeMixin],
   props: {
     // UI variants

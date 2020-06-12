@@ -17,34 +17,20 @@
         @click="currentPage === 1 ? null : handleClick(currentPage - 1)"
       >
         <slot name="prev">
-          <i v-if="materialIcon" :class="UI_GLOBAL.cssClasses.icon">{{
-            currentPrev
-          }}</i>
+          <i v-if="materialIcon" :class="UI_GLOBAL.cssClasses.icon" v-text="currentPrev"></i>
           <span v-else>{{ currentPrev }}</span>
         </slot>
       </li>
       <template v-if="mini">
-        <slot
-          :pageCount="pageCount"
-          :currentMinRow="currentMinRow"
-          :currentMaxRow="currentMaxRow"
-        ></slot>
+        <slot :pageCount="pageCount" :currentMinRow="currentMinRow" :currentMaxRow="currentMaxRow"></slot>
       </template>
       <template v-else>
-        <li
-          v-for="(page, index) in pageCount"
-          v-if="isShow(page)"
-          :key="index"
-          :class="[
-            showPage(page)
-              ? 'mdc-pagination__page-item'
-              : 'mdc-pagination__page-item-ellipsis',
-            { 'mdc-pagination__page-item--active': page === currentPage }
-          ]"
-        >
-          <a v-if="showPage(page)" @click="handleClick(page)">{{ page }}</a>
-          <span v-else class="ellipsis">...</span>
-        </li>
+        <template v-for="(pageNumber, index) in pageCount">
+          <li v-if="isShow(pageNumber)" :key="index" :class="getPageClassName(pageNumber)">
+            <a v-if="showPage(page)" @click="handleClick(page)">{{ page }}</a>
+            <span v-else class="ellipsis">...</span>
+          </li>
+        </template>
       </template>
       <li
         :class="[
@@ -55,9 +41,7 @@
         @click="currentPage === pageCount ? null : handleClick(currentPage + 1)"
       >
         <slot name="next">
-          <i v-if="materialIcon" :class="UI_GLOBAL.cssClasses.icon">{{
-            currentNext
-          }}</i>
+          <i v-if="materialIcon" :class="UI_GLOBAL.cssClasses.icon" v-text="currentNext"></i>
           <span v-else>{{ currentNext }}</span>
         </slot>
       </li>
@@ -73,10 +57,10 @@
     <div v-if="!mini && showJumper" class="mdc-pagination__jumper">
       <span>{{ jumperBeforeText }}</span>
       <input
+        v-model="pager"
         type="number"
         min="1"
         :max="pageCount"
-        v-model="pager"
         @keydown.prevent.enter="handleClick($event.target.value)"
       />
       <span>{{ jumperAfterText }}</span>
@@ -85,9 +69,8 @@
         type="button"
         class="mdc-button"
         @click="handleClick(pager)"
-      >
-        {{ jumperButtonText }}
-      </button>
+        v-text="jumperButtonText"
+      ></button>
     </div>
     <slot
       name="after-jumper"
@@ -114,7 +97,7 @@ const UI_PAGINATION = {
 };
 
 export default {
-  name: 'ui-pagination',
+  name: 'UiPagination',
   model: {
     prop: 'page',
     event: UI_PAGINATION.EVENT.CHANGE
@@ -138,8 +121,14 @@ export default {
       type: Number,
       default: 3
     },
-    prev: String,
-    next: String,
+    prev: {
+      type: String,
+      default: ''
+    },
+    next: {
+      type: String,
+      default: ''
+    },
     showJumper: {
       type: Boolean,
       default: false
@@ -156,7 +145,10 @@ export default {
       type: String,
       default: ''
     },
-    position: String,
+    position: {
+      type: String,
+      default: ''
+    },
     mini: {
       type: Boolean,
       default: false
@@ -228,6 +220,14 @@ export default {
         this.currentPage === page + this.pageSpan;
       let nonFirstOrLast = page !== 1 && page !== this.pageCount;
       return !(isExisted && nonFirstOrLast);
+    },
+    getPageClassName(page) {
+      return [
+        this.showPage(pageNumber)
+          ? 'mdc-pagination__page-item'
+          : 'mdc-pagination__page-item-ellipsis',
+        { 'mdc-pagination__page-item--active': pageNumber === currentPage }
+      ];
     },
     handleClick(page) {
       if (this.currentPage !== page) {

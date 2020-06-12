@@ -1,20 +1,16 @@
 <template>
   <div class="demo-container page--drawer page--permanent-drawer-below-toolbar">
     <!-- App bar -->
-    <ui-top-app-bar contentSelector=".demo-content">
+    <ui-top-app-bar content-selector=".demo-content">
       <template #nav-icon="{ navIconClass }">
-        <ui-icon-button
-          :class="navIconClass"
-          icon="arrow_back"
-          @click="$router.back()"
-        ></ui-icon-button>
+        <ui-icon-button :class="navIconClass" icon="arrow_back" @click="$router.back()"></ui-icon-button>
       </template>
       Permanent Drawer Below Toolbar
     </ui-top-app-bar>
     <!-- Content -->
     <div class="demo-content">
       <!-- Drawer -->
-      <ui-drawer type="permanent" viewportHeight>
+      <ui-drawer type="permanent" viewport-height>
         <ui-drawer-header>
           <ui-drawer-title>Title</ui-drawer-title>
           <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>

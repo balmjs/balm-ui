@@ -31,24 +31,13 @@
         ></ui-tabs>
       </div>
       <div class="hero-options">
-        <ui-select
-          class="hero-option"
-          :options="TypeOptions"
-          v-model="typeOption"
-          >Type</ui-select
-        >
+        <ui-select class="hero-option" :options="TypeOptions" v-model="typeOption">Type</ui-select>
         <div class="hero-option hero-options">
           <ui-form-field>
-            <ui-checkbox
-              id="options"
-              v-model="textLabel"
-              :disabled="!iconOption"
-            ></ui-checkbox>
+            <ui-checkbox id="options" v-model="textLabel" :disabled="!iconOption"></ui-checkbox>
             <label for="options">Text label</label>
           </ui-form-field>
-          <ui-select :options="IconOptions" v-model="iconOption"
-            >Icons</ui-select
-          >
+          <ui-select :options="IconOptions" v-model="iconOption">Icons</ui-select>
         </div>
       </div>
     </template>
@@ -56,14 +45,11 @@
     <!-- Test -->
     <!-- <ui-tab-bar v-model="active">
       <ui-tab v-for="(tab, index) in tabs" :key="index">{{ tab.text }}</ui-tab>
-    </ui-tab-bar> -->
+    </ui-tab-bar>-->
 
     <!-- Content -->
     <ui-tab-demo :code="demoCode"></ui-tab-demo>
-    <ui-tab-bar-demo
-      :code="demoCode"
-      :isLargeScreen="isLargeScreen"
-    ></ui-tab-bar-demo>
+    <ui-tab-bar-demo :code="demoCode" :isLargeScreen="isLargeScreen"></ui-tab-bar-demo>
     <ui-tab-scroller-demo :code="demoCode"></ui-tab-scroller-demo>
     <ui-tab-panel-demo :code="demoCode"></ui-tab-panel-demo>
   </ui-page>

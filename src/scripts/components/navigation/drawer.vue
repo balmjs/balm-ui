@@ -11,14 +11,17 @@ import typeMixin from '../../mixins/type';
 import UI_DRAWER from './constants';
 
 export default {
-  name: 'ui-drawer',
+  name: 'UiDrawer',
   mixins: [typeMixin],
   model: {
     prop: 'open',
     event: UI_DRAWER.EVENT.NAV
   },
   props: {
-    navId: String,
+    navId: {
+      type: String,
+      default: ''
+    },
     // States
     open: {
       type: Boolean,

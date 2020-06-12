@@ -12,8 +12,8 @@
         <i
           v-if="materialIcon"
           :class="[UI_GLOBAL.cssClasses.icon, UI_SELECT.cssClasses.icon]"
-          >{{ materialIcon }}</i
-        >
+          v-text="materialIcon"
+        ></i>
       </slot>
       <!-- Enhanced Select -->
       <span class="mdc-select__ripple"></span>
@@ -21,7 +21,7 @@
       <slot name="dropdown-icon" :iconClass="UI_SELECT.cssClasses.dropdownIcon">
         <i :class="UI_SELECT.cssClasses.dropdownIcon"></i>
       </slot>
-      <ui-notched-outline v-if="isOutlined" :hasLabel="!noLabel">
+      <ui-notched-outline v-if="isOutlined" :has-label="!noLabel">
         <ui-floating-label>
           <slot>{{ label }}</slot>
         </ui-floating-label>
@@ -37,7 +37,7 @@
     <div
       :class="[
         'mdc-select__menu mdc-menu mdc-menu-surface',
-        { 'mdc-menu-surface--fullwidth': this.fullwidth }
+        { 'mdc-menu-surface--fullwidth': fullwidth }
       ]"
       role="listbox"
     >
@@ -59,9 +59,11 @@
             :aria-disabled="option.disabled"
             role="option"
           >
-            <span v-if="option[optionLabel]" class="mdc-list-item__text">{{
-              option[optionLabel]
-            }}</span>
+            <span
+              v-if="option[optionLabel]"
+              class="mdc-list-item__text"
+              v-text="option[optionLabel]"
+            ></span>
           </li>
         </template>
       </ul>
@@ -95,7 +97,7 @@ const UI_SELECT = {
 };
 
 export default {
-  name: 'ui-select',
+  name: 'UiSelect',
   components: {
     UiFloatingLabel,
     UiNotchedOutline
@@ -116,7 +118,10 @@ export default {
       default: false
     },
     // States
-    model: [String, Number],
+    model: {
+      type: [String, Number],
+      default: ''
+    },
     options: {
       type: Array,
       default() {
@@ -131,13 +136,19 @@ export default {
       type: String,
       default: 'value'
     },
-    defaultLabel: String,
+    defaultLabel: {
+      type: String,
+      default: ''
+    },
     defaultValue: {
       type: [String, Number],
       default: ''
     },
     // UI attributes
-    label: String,
+    label: {
+      type: String,
+      default: ''
+    },
     fullwidth: {
       type: Boolean,
       default: false
@@ -159,7 +170,10 @@ export default {
       default: false
     },
     // For helper text
-    helperTextId: String
+    helperTextId: {
+      type: String,
+      default: ''
+    }
   },
   data() {
     return {

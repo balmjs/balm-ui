@@ -14,7 +14,7 @@ import UI_GLOBAL from '../../config/constants';
 import { UI_TAB_INDICATOR } from './constants';
 
 export default {
-  name: 'ui-tab-indicator',
+  name: 'UiTabIndicator',
   props: {
     // UI attributes
     type: {

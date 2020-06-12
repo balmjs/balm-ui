@@ -1,12 +1,7 @@
 <template>
   <ui-page name="table" demoCount="2">
     <template #hero>
-      <ui-table
-        rowCheckbox
-        :data="heroData"
-        :thead="thead1"
-        :tbody="tbody1"
-      ></ui-table>
+      <ui-table rowCheckbox :data="heroData" :thead="thead1" :tbody="tbody1"></ui-table>
     </template>
 
     <!-- Content -->
@@ -20,9 +15,7 @@
 
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Advanced Usage</h6>
-      <p>
-        Selected rows: {{ selectedRows }} ( Selected key: {{ selectedKey }})
-      </p>
+      <p>Selected rows: {{ selectedRows }} ( Selected key: {{ selectedKey }})</p>
       <div class="demo">
         <ui-table
           fullwidth
@@ -50,7 +43,7 @@
         :pageSize="8"
         :total="12"
         @change="onPage"
-      ></ui-pagination> -->
+        ></ui-pagination>-->
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
@@ -168,8 +161,7 @@ export default {
     };
   },
   async created() {
-    let { data } = await this.$http.get('/data/table.json');
-    this.data = data;
+    this.data = await this.$http.get('/data/table.json');
     this.heroData = data.slice(0, 3);
   },
   methods: {
@@ -178,8 +170,7 @@ export default {
     },
     async onPage(page) {
       let url = `/data/table${page === 2 ? page : ''}.json`;
-      let { data } = await this.$http.get(url);
-      this.data = data;
+      this.data = await this.$http.get(url);
     }
   }
 };

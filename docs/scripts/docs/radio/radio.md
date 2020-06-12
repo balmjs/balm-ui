@@ -9,12 +9,12 @@
 
 | Name                | Type           | Default | Description                                                                   |
 | ------------------- | -------------- | ------- | ----------------------------------------------------------------------------- |
-| `model` (`v-model`) | string, number | `null`  | Mandatory.                                                                    |
-| `id`                | string         | `null`  | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`. |
-| `name`              | string         | `null`  | The _name_ attribute of the `<input>`.                                        |
-| `value`             | string, number | `null`  | The _value_ attribute of the `<input>`.                                       |
+| `model` (`v-model`) | string, number | `''`    | Mandatory.                                                                    |
+| `id`                | string         | `''`    | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`. |
+| `name`              | string         | `''`    | The _name_ attribute of the `<input>`.                                        |
+| `value`             | string, number | `''`    | The _value_ attribute of the `<input>`.                                       |
 | `disabled`          | boolean        | `false` | Styles the radio button as a disabled radio button.                           |
-| `attrs`             | object         | `null`  | Other attributes for `<input>`.                                               |
+| `attrs`             | object         | `{}`    | Other attributes for `<input>`.                                               |
 
 #### Events
 

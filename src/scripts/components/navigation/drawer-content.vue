@@ -11,6 +11,6 @@
 
 <script>
 export default {
-  name: 'ui-drawer-content'
+  name: 'UiDrawerContent'
 };
 </script>

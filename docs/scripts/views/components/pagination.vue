@@ -24,15 +24,8 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Custom Record</h6>
       <div class="demo">
-        <ui-pagination
-          v-model="page2"
-          :pageSize="pageSize2"
-          :total="total2"
-          position="right"
-        >
-          <template
-            #before="{ recordClass, pageCount, currentMinRow, currentMaxRow }"
-          >
+        <ui-pagination v-model="page2" :pageSize="pageSize2" :total="total2" position="right">
+          <template #before="{ recordClass, pageCount, currentMinRow, currentMaxRow }">
             <ui-form-field :class="recordClass">
               <label for="per-page-rows">Rows per page:</label>
               <ui-select
@@ -43,9 +36,7 @@
                 v-model="pageSize2"
                 :options="pageSizeOptions"
               ></ui-select>
-              <span>
-                {{ currentMinRow }}-{{ currentMaxRow }} of {{ total2 }}
-              </span>
+              <span>{{ currentMinRow }}-{{ currentMaxRow }} of {{ total2 }}</span>
             </ui-form-field>
           </template>
         </ui-pagination>
@@ -56,13 +47,7 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.3 Mini Mode</h6>
       <div class="demo">
-        <ui-pagination
-          mini
-          v-model="page3"
-          :total="total"
-          prev="Prev"
-          next="Next"
-        >
+        <ui-pagination mini v-model="page3" :total="total" prev="Prev" next="Next">
           <span>Page {{ page3 }}</span>
         </ui-pagination>
       </div>

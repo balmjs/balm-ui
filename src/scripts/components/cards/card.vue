@@ -1,12 +1,14 @@
 <template>
   <div :class="className">
-    <slot><!-- Card contents --></slot>
+    <slot>
+      <!-- Card contents -->
+    </slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ui-card',
+  name: 'UiCard',
   props: {
     outlined: {
       type: Boolean,

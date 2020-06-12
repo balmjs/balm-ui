@@ -14,10 +14,7 @@
     <div class="mdc-slider__track-container">
       <div class="mdc-slider__track"></div>
       <!-- Tick mark (optional) -->
-      <div
-        v-if="displayMarker"
-        class="mdc-slider__track-marker-container"
-      ></div>
+      <div v-if="displayMarker" class="mdc-slider__track-marker-container"></div>
     </div>
     <div class="mdc-slider__thumb-container">
       <!-- Value label (optional) -->
@@ -26,7 +23,7 @@
       </div>
       <!-- Thumb -->
       <svg class="mdc-slider__thumb" width="21" height="21">
-        <circle cx="10.5" cy="10.5" r="7.875"></circle>
+        <circle cx="10.5" cy="10.5" r="7.875" />
       </svg>
       <div class="mdc-slider__focus-ring"></div>
     </div>
@@ -50,7 +47,7 @@ const UI_SLIDER = {
 };
 
 export default {
-  name: 'ui-slider',
+  name: 'UiSlider',
   mixins: [typeMixin],
   model: {
     prop: 'model',
@@ -71,7 +68,10 @@ export default {
       default: false
     },
     // States
-    model: [Number, String],
+    model: {
+      type: [Number, String],
+      default: 0
+    },
     min: {
       type: [Number, String],
       default: 0

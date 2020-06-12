@@ -1,12 +1,7 @@
 <template>
   <div class="mdc-circular-progress__spinner-layer">
-    <div
-      class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-left"
-    >
-      <svg
-        class="mdc-circular-progress__indeterminate-circle-graphic"
-        :viewBox="svg.viewBox"
-      >
+    <div class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-left">
+      <svg :class="UI_CIRCULAR_PROGRESS_INDETERMINATE.cssClasses.circle" :viewBox="svg.viewBox">
         <circle
           fill="none"
           :cx="svg.cx"
@@ -18,10 +13,7 @@
       </svg>
     </div>
     <div class="mdc-circular-progress__gap-patch">
-      <svg
-        class="mdc-circular-progress__indeterminate-circle-graphic"
-        :viewBox="svg.viewBox"
-      >
+      <svg :class="UI_CIRCULAR_PROGRESS_INDETERMINATE.cssClasses.circle" :viewBox="svg.viewBox">
         <circle
           fill="none"
           :cx="svg.cx"
@@ -32,13 +24,8 @@
         />
       </svg>
     </div>
-    <div
-      class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-right"
-    >
-      <svg
-        class="mdc-circular-progress__indeterminate-circle-graphic"
-        :viewBox="svg.viewBox"
-      >
+    <div class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-right">
+      <svg :class="UI_CIRCULAR_PROGRESS_INDETERMINATE.cssClasses.circle" :viewBox="svg.viewBox">
         <circle
           fill="none"
           :cx="svg.cx"
@@ -53,13 +40,25 @@
 </template>
 
 <script>
+// Define circular progress indeterminate constants
+const UI_CIRCULAR_PROGRESS_INDETERMINATE = {
+  cssClasses: {
+    circle: 'mdc-circular-progress__indeterminate-circle-graphic'
+  }
+};
+
 export default {
-  name: 'ui-circular-progress-indeterminate',
+  name: 'UiCircularProgressIndeterminate',
   props: {
     svg: {
       type: Object,
       required: true
     }
+  },
+  data() {
+    return {
+      UI_CIRCULAR_PROGRESS_INDETERMINATE
+    };
   },
   computed: {
     dashoffset() {

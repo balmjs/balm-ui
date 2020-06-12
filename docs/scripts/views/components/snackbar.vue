@@ -9,23 +9,13 @@
       <ui-form class="demo-controls">
         <label>Timeout: {{ timeout / 1000 }}second</label>
         <ui-form-field>
-          <ui-slider
-            id="timeout"
-            min="4000"
-            max="10000"
-            step="1000"
-            v-model="timeout"
-          ></ui-slider>
+          <ui-slider id="timeout" min="4000" max="10000" step="1000" v-model="timeout"></ui-slider>
         </ui-form-field>
         <ui-form-field>
-          <ui-textfield id="message" v-model="message"
-            >Message Text</ui-textfield
-          >
+          <ui-textfield id="message" v-model="message">Message Text</ui-textfield>
         </ui-form-field>
         <ui-form-field>
-          <ui-textfield id="action" v-model="actionText"
-            >Action Text</ui-textfield
-          >
+          <ui-textfield id="action" v-model="actionText">Action Text</ui-textfield>
         </ui-form-field>
         <ui-form-field>
           <ui-checkbox id="action-type" v-model="actionType"></ui-checkbox>
@@ -41,8 +31,7 @@
           :message="message"
           :actionButtonText="actionText"
           :actionType="actionType ? 1 : 0"
-        >
-        </ui-snackbar>
+        ></ui-snackbar>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>

@@ -7,6 +7,6 @@
 
 <script>
 export default {
-  name: 'ui-drawer-app-content'
+  name: 'UiDrawerAppContent'
 };
 </script>

@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'ui-card-media',
+  name: 'UiCardMedia',
   props: {
     square: {
       type: Boolean,

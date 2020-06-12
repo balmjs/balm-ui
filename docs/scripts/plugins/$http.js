@@ -1,24 +1,28 @@
 import axios from 'axios';
+import bus from '@/store/bus';
 
 export default {
   install(Vue) {
     Vue.prototype.$http = axios;
 
     axios.interceptors.request.use(
-      config => {
+      (config) => {
         return config;
       },
-      error => {
+      (error) => {
         return Promise.reject(error);
       }
     );
 
     axios.interceptors.response.use(
-      response => {
-        return response;
+      (response) => {
+        bus.$emit('off-loading');
+
+        return response.data;
       },
-      error => {
-        // TODO: error handler
+      (error) => {
+        bus.$emit('off-loading');
+
         return Promise.reject(error);
       }
     );

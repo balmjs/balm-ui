@@ -21,10 +21,7 @@
       </div>
       <div class="demo">
         <ui-form-field>
-          <ui-checkbox
-            :id="`basic-checkbox-disabled`"
-            :disabled="disabled"
-          ></ui-checkbox>
+          <ui-checkbox :id="`basic-checkbox-disabled`" :disabled="disabled"></ui-checkbox>
           <label :for="`basic-checkbox-disabled`">Disabled checkbox</label>
         </ui-form-field>
         <ui-button outlined @click="$balmUI.onChange('disabled', !disabled)">
@@ -34,18 +31,10 @@
       </div>
       <div class="demo">
         <ui-form-field>
-          <ui-checkbox
-            :id="`basic-checkbox-indeterminate`"
-            :indeterminate="indeterminate"
-          ></ui-checkbox>
-          <label :for="`basic-checkbox-indeterminate`"
-            >Indeterminate checkbox</label
-          >
+          <ui-checkbox :id="`basic-checkbox-indeterminate`" :indeterminate="indeterminate"></ui-checkbox>
+          <label :for="`basic-checkbox-indeterminate`">Indeterminate checkbox</label>
         </ui-form-field>
-        <ui-button
-          outlined
-          @click="$balmUI.onChange('indeterminate', !indeterminate)"
-        >
+        <ui-button outlined @click="$balmUI.onChange('indeterminate', !indeterminate)">
           Toggle
           <code>indeterminate</code>
         </ui-button>
@@ -53,19 +42,17 @@
       <div class="demo">
         <ui-form-field class="demo-checkbox--custom-all">
           <ui-checkbox :id="`basic-checkbox-custom-all`"></ui-checkbox>
-          <label :for="`basic-checkbox-custom-all`"
-            >Custom colored checkbox (stroke, fill, ripple, and focus)</label
-          >
+          <label
+            :for="`basic-checkbox-custom-all`"
+          >Custom colored checkbox (stroke, fill, ripple, and focus)</label>
         </ui-form-field>
       </div>
       <div class="demo">
         <ui-form-field class="demo-checkbox--custom-stroke-and-fill">
-          <ui-checkbox
-            :id="`basic-checkbox-custom-stroke-and-fill`"
-          ></ui-checkbox>
-          <label :for="`basic-checkbox-custom-stroke-and-fill`"
-            >Custom colored checkbox (stroke and fill only)</label
-          >
+          <ui-checkbox :id="`basic-checkbox-custom-stroke-and-fill`"></ui-checkbox>
+          <label
+            :for="`basic-checkbox-custom-stroke-and-fill`"
+          >Custom colored checkbox (stroke and fill only)</label>
         </ui-form-field>
       </div>
     </section>
@@ -85,27 +72,15 @@
       <p>Multiple checkboxes, bound to the same Array: {{ checkedNames }}</p>
       <div class="demo">
         <ui-form-field>
-          <ui-checkbox
-            id="jack"
-            value="Jack"
-            v-model="checkedNames"
-          ></ui-checkbox>
+          <ui-checkbox id="jack" value="Jack" v-model="checkedNames"></ui-checkbox>
           <label for="jack">Jack</label>
         </ui-form-field>
         <ui-form-field>
-          <ui-checkbox
-            id="john"
-            value="John"
-            v-model="checkedNames"
-          ></ui-checkbox>
+          <ui-checkbox id="john" value="John" v-model="checkedNames"></ui-checkbox>
           <label for="john">John</label>
         </ui-form-field>
         <ui-form-field>
-          <ui-checkbox
-            id="mike"
-            value="Mike"
-            v-model="checkedNames"
-          ></ui-checkbox>
+          <ui-checkbox id="mike" value="Mike" v-model="checkedNames"></ui-checkbox>
           <label for="mike">Mike</label>
         </ui-form-field>
       </div>

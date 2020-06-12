@@ -1,6 +1,6 @@
 import en from '@/lang/en.json';
 import cn from '@/lang/cn.json';
-import flatpickrLangZh from 'flatpickrLangZh';
+import pickerLangZh from 'pickerLangZh';
 
 // for link
 const lang = {
@@ -14,9 +14,9 @@ const locales = {
   cn
 };
 
-// for flatpickr
-const flatpickrLang = {
-  cn: flatpickrLangZh.zh
+// for picker
+const pickerLang = {
+  cn: pickerLangZh.zh
 };
 
-export { lang, locales, flatpickrLang };
+export { lang, locales, pickerLang };

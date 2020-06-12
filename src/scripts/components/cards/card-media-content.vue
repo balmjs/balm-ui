@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ui-card-media-content'
+  name: 'UiCardMediaContent'
 };
 </script>

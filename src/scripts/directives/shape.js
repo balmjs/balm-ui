@@ -22,7 +22,7 @@ const updateShape = (method, el, { value, modifiers }) => {
   let bottomLeft = false;
 
   if (value) {
-    let values = value.split(' ').map(currentValue => +currentValue);
+    let values = value.split(' ').map((currentValue) => +currentValue);
 
     switch (values.length) {
       case 4:

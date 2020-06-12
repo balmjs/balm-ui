@@ -17,8 +17,8 @@
 
 | Name   | Type   | Default | Description                                    |
 | ------ | ------ | ------- | ---------------------------------------------- |
-| `text` | string | `null`  | Tab text.                                      |
-| `icon` | string | `null`  | Tab icon. See [Material Icons](/#/icons) list. |
+| `text` | string | `''`    | Tab text.                                      |
+| `icon` | string | `''`    | Tab icon. See [Material Icons](/#/icons) list. |
 
 #### Slots
 

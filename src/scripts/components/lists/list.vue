@@ -8,7 +8,7 @@
 import listMixin from '../../mixins/list';
 
 export default {
-  name: 'ui-list',
+  name: 'UiList',
   mixins: [listMixin]
 };
 </script>

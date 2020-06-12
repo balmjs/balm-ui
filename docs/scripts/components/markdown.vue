@@ -5,10 +5,13 @@
 
 <script>
 export default {
-  name: 'ui-markdown',
+  name: 'UiMarkdown',
   props: {
     // 文档内容
-    text: String,
+    text: {
+      type: String,
+      default: ''
+    },
     // 代码片段
     code: {
       type: Boolean,

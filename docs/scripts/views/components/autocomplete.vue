@@ -16,11 +16,7 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 Static data</h6>
       <div class="demo">
-        <ui-autocomplete
-          v-model="keywords1"
-          :source="source1"
-          placeholder="Try to type"
-        ></ui-autocomplete>
+        <ui-autocomplete v-model="keywords1" :source="source1" placeholder="Try to type"></ui-autocomplete>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
@@ -122,12 +118,11 @@ export default {
   // },
   methods: {
     async onSearch(keywords) {
-      let response = await this.$http.get(this.url, {
+      let data = await this.$http.get(this.url, {
         params: {
           text: keywords
         }
       });
-      let { data } = response;
       // mock data
       this.source2 = data[keywords] ? data[keywords] : [];
     },

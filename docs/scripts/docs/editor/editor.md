@@ -4,17 +4,17 @@
 
 #### Props
 
-| Name                    | Type          | Default  | Description                                                           |
-| ----------------------- | ------------- | -------- | --------------------------------------------------------------------- |
-| `content` (`v-model`)   | string        | `''`     | Mandatory.                                                            |
-| `options`               | object        | `{}`     | See [Quill options](https://quilljs.com/docs/configuration/#options). |
-| `toolbar`               | array, string | null     | Custom or `'full'` editor toolbar .                                   |
-| `placeholder`           | string        | `''`     | Placeholder text to show when editor is empty.                        |
-| `theme`                 | string        | `'snow'` | Name of theme to use. (`'bubble'` or `'snow'`)                        |
-| `customImageHandler`    | boolean       | `false`  | Enable custom image handler.                                          |
-| `toolbarCustomHandlers` | object        | `null`   | Custom Handlers.                                                      |
-| `emotions`              | array         | `[]`     | The emoticon extension. Supports `emoji` and `image`.                 |
-| `extension`             | object        | `null`   | Custom extension.                                                     |
+| Name                    | Type            | Default  | Description                                                           |
+| ----------------------- | --------------- | -------- | --------------------------------------------------------------------- |
+| `content` (`v-model`)   | string          | `''`     | Mandatory.                                                            |
+| `options`               | object          | `{}`     | See [Quill options](https://quilljs.com/docs/configuration/#options). |
+| `toolbar`               | array, string   | null     | Custom or `'full'` editor toolbar .                                   |
+| `placeholder`           | string          | `''`     | Placeholder text to show when editor is empty.                        |
+| `theme`                 | string          | `'snow'` | Name of theme to use. (`'bubble'` or `'snow'`)                        |
+| `customImageHandler`    | boolean         | `false`  | Enable custom image handler.                                          |
+| `toolbarCustomHandlers` | object          | `{}`     | Custom Handlers.                                                      |
+| `emotions`              | array           | `[]`     | The emoticon extension. Supports `emoji` and `image`.                 |
+| `extension`             | boolean, object | `false`  | Custom extension.                                                     |
 
 - **`toolbarCustomHandlers`**
 

@@ -22,9 +22,7 @@
     </section>
 
     <section class="demo-wrapper">
-      <h6 :class="$tt('headline6')">
-        1.3 Active animation (Loading: {{ loading }})
-      </h6>
+      <h6 :class="$tt('headline6')">1.3 Active animation (Loading: {{ loading }})</h6>
       <p class="demo-controls">
         <ui-form-field>
           <ui-switch id="demo-loading" v-model="loading"></ui-switch>
@@ -32,11 +30,7 @@
         </ui-form-field>
       </p>
       <div class="demo">
-        <ui-skeleton
-          v-model="loading"
-          active
-          :avatar="{ size: 'large', shape: 'square' }"
-        >
+        <ui-skeleton v-model="loading" active :avatar="{ size: 'large', shape: 'square' }">
           <ui-list>
             <ui-item v-for="i in 3" :key="i">Hello BalmJS {{ i }}</ui-item>
           </ui-list>

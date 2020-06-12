@@ -67,7 +67,7 @@ const UI_FILE = {
 };
 
 export default {
-  name: 'ui-file',
+  name: 'UiFile',
   props: {
     accept: {
       type: String,

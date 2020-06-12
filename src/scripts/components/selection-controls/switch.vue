@@ -32,7 +32,7 @@ const UI_SWITCH = {
 };
 
 export default {
-  name: 'ui-switch',
+  name: 'UiSwitch',
   mixins: [elementMixin],
   model: {
     prop: 'model',
@@ -53,7 +53,10 @@ export default {
       default: false
     },
     // Element attributes
-    name: String,
+    name: {
+      type: String,
+      default: ''
+    },
     disabled: {
       type: Boolean,
       default: false

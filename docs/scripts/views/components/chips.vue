@@ -20,42 +20,30 @@
           placeholder="Chip text"
         ></ui-textfield>
         <br />
-        <ui-button raised dense id="input-chip-set-button" @click="addOne"
-          >Add Input Chip</ui-button
-        >
+        <ui-button raised dense id="input-chip-set-button" @click="addOne">Add Input Chip</ui-button>
         <ui-button
           outlined
           dense
           id="input-chip-set-delete-button"
           @click="removeLastOne"
-          >Delete Last Chip</ui-button
-        >
+        >Delete Last Chip</ui-button>
         <ui-chips type="input" id="input-chip-set" :options="list">
           <ui-chip
             v-for="item in list"
             :key="item.id"
             icon="face"
             @remove="removeOneById(item.id)"
-            >{{ item.name }}</ui-chip
-          >
+          >{{ item.name }}</ui-chip>
         </ui-chips>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
 
     <section class="demo-wrapper">
-      <h6 :class="$tt('headline6')">
-        1.2 Choice Chips (selectedIndex: {{ selectedIndex }})
-      </h6>
+      <h6 :class="$tt('headline6')">1.2 Choice Chips (selectedIndex: {{ selectedIndex }})</h6>
       <div class="demo">
-        <ui-chips
-          v-if="choiceList.length"
-          type="choice"
-          v-model="selectedIndex"
-        >
-          <ui-chip v-for="(item, index) in choiceList" :key="index">{{
-            item
-          }}</ui-chip>
+        <ui-chips v-if="choiceList.length" type="choice" v-model="selectedIndex">
+          <ui-chip v-for="(item, index) in choiceList" :key="index">{{ item }}</ui-chip>
         </ui-chips>
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
@@ -66,9 +54,7 @@
       <div class="demo">
         <p>No leading icon (selectedIndexes: {{ selectedValue }})</p>
         <ui-chips type="filter" v-model="selectedValue">
-          <ui-chip v-for="(item, index) in filterList" :key="index">{{
-            item
-          }}</ui-chip>
+          <ui-chip v-for="(item, index) in filterList" :key="index">{{ item }}</ui-chip>
         </ui-chips>
 
         <p>With leading icon (selectedIndexes: {{ selectedValue2 }})</p>
@@ -78,8 +64,7 @@
             :key="index"
             icon="face"
             :hidden="selectedValue2.includes(index)"
-            >{{ item }}</ui-chip
-          >
+          >{{ item }}</ui-chip>
         </ui-chips>
       </div>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
@@ -93,8 +78,7 @@
             v-for="(item, index) in actionList"
             :key="index"
             :icon="item.icon"
-            >{{ item.name }}</ui-chip
-          >
+          >{{ item.name }}</ui-chip>
         </ui-chips>
       </div>
       <ui-snippet :code="$store.demos[4]"></ui-snippet>

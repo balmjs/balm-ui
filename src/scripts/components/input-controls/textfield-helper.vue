@@ -16,7 +16,7 @@ import helperTextMixin from '../../mixins/helper-text';
 import getType from '../../utils/typeof';
 
 export default {
-  name: 'ui-textfield-helper',
+  name: 'UiTextfieldHelper',
   components: {
     UiTextfieldCounter
   },

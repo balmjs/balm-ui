@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ui-floating-label'
+  name: 'UiFloatingLabel'
 };
 </script>

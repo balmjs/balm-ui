@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ui-menuitem-text'
+  name: 'UiMenuitemText'
 };
 </script>

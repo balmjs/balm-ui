@@ -10,13 +10,13 @@
 | `pageSize`         | number  | `10`     | The number of data items per page.                |
 | `total`            | number  | `0`      | The total number of data items.                   |
 | `pageSpan`         | number  | `3`      | Display the first N pages of the current page.    |
-| `prev`             | string  | `null`   | The previous button text.                         |
-| `next`             | string  | `null`   | The next button text.                             |
+| `prev`             | string  | `''`     | The previous button text.                         |
+| `next`             | string  | `''`     | The next button text.                             |
 | `showJumper`       | boolean | `false`  | Determine whether you can jump to pages directly. |
 | `jumperBeforeText` | string  | `'Goto'` | Add text before jumper.                           |
 | `jumperAfterText`  | string  | `''`     | Add text after jumper.                            |
 | `jumperButtonText` | string  | `''`     | The jumper button text.                           |
-| `position`         | string  | `null`   | The pagination postion. [`left`, `right`]         |
+| `position`         | string  | `''`     | The pagination postion. [`left`, `right`]         |
 | `mini`             | boolean | `false`  | Whether to use simple mode.                       |
 
 #### Slots

@@ -13,7 +13,7 @@ const UI_BOTTOM_NAVIGATION = {
 };
 
 export default {
-  name: 'ui-bottom-navigation',
+  name: 'UiBottomNavigation',
   props: {
     contentSelector: {
       type: String,

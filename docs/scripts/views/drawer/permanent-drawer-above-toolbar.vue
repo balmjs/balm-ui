@@ -1,7 +1,7 @@
 <template>
   <div class="demo-container page--drawer page--permanent-drawer-above-toolbar">
     <!-- Drawer -->
-    <ui-drawer type="permanent" viewportHeight>
+    <ui-drawer type="permanent" viewport-height>
       <ui-drawer-header>
         <ui-drawer-title>Title</ui-drawer-title>
         <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>
@@ -18,13 +18,9 @@
     <!-- Content -->
     <div class="demo-content">
       <!-- App bar -->
-      <ui-top-app-bar contentSelector=".demo-app-content" class="demo-app-bar">
+      <ui-top-app-bar content-selector=".demo-app-content" class="demo-app-bar">
         <template #nav-icon="{ navIconClass }">
-          <ui-icon-button
-            :class="navIconClass"
-            icon="arrow_back"
-            @click="$router.back()"
-          ></ui-icon-button>
+          <ui-icon-button :class="navIconClass" icon="arrow_back" @click="$router.back()"></ui-icon-button>
         </template>
         Permanent Drawer Above Toolbar
       </ui-top-app-bar>

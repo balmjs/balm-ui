@@ -34,7 +34,7 @@ const UI_RADIO = {
 };
 
 export default {
-  name: 'ui-radio',
+  name: 'UiRadio',
   mixins: [elementMixin],
   model: {
     prop: 'model',
@@ -42,10 +42,19 @@ export default {
   },
   props: {
     // States
-    model: [String, Number],
+    model: {
+      type: [String, Number],
+      default: ''
+    },
     // Element attributes
-    name: String,
-    value: [String, Number],
+    name: {
+      type: String,
+      default: ''
+    },
+    value: {
+      type: [String, Number],
+      default: ''
+    },
     disabled: {
       type: Boolean,
       default: false

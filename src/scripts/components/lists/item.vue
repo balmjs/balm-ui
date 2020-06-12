@@ -1,7 +1,9 @@
 <template>
   <li :class="className" :role="role" @click="handleClick">
     <slot name="before" :iconClass="UI_LIST.cssClasses.firstTile"></slot>
-    <slot><!-- text content --></slot>
+    <slot>
+      <!-- text content -->
+    </slot>
     <slot name="after" :iconClass="UI_LIST.cssClasses.lastTile"></slot>
   </li>
 </template>
@@ -10,7 +12,7 @@
 import UI_LIST from './constants';
 
 export default {
-  name: 'ui-item',
+  name: 'UiItem',
   props: {
     // States
     selected: {

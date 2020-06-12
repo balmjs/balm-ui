@@ -32,7 +32,7 @@ const UI_DIALOG_ACTION = {
 };
 
 export default {
-  name: 'ui-dialog-actions',
+  name: 'UiDialogActions',
   props: {
     // UI attributes
     acceptText: {

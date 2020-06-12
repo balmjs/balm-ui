@@ -1,9 +1,5 @@
 <template>
-  <ui-page
-    name="select"
-    demoCount="4"
-    :apis="['select', 'select-helper', 'select-icon']"
-  >
+  <ui-page name="select" demoCount="4" :apis="['select', 'select-helper', 'select-icon']">
     <template #hero>
       <div class="hero-demo">
         <div>
@@ -23,11 +19,7 @@
               </template>
               Pick a fruit
             </ui-select>
-            <ui-select-helper
-              id="my-helper-text"
-              :visible="selectOption.includes(2)"
-              >Helper text</ui-select-helper
-            >
+            <ui-select-helper id="my-helper-text" :visible="selectOption.includes(2)">Helper text</ui-select-helper>
           </template>
         </div>
         <div>
@@ -45,36 +37,19 @@
               </template>
               Pick a fruit
             </ui-select>
-            <ui-select-helper
-              id="my-helper-text"
-              :visible="selectOption.includes(2)"
-              >Helper text</ui-select-helper
-            >
+            <ui-select-helper id="my-helper-text" :visible="selectOption.includes(2)">Helper text</ui-select-helper>
           </template>
         </div>
       </div>
       <div class="hero-options">
-        <ui-select
-          class="hero-option"
-          :options="TypeOptions"
-          v-model="typeOption"
-          >Type</ui-select
-        >
+        <ui-select class="hero-option" :options="TypeOptions" v-model="typeOption">Type</ui-select>
         <div class="hero-option">
           <ui-form-field>
-            <ui-checkbox
-              id="with-leading-icon"
-              v-model="selectOption"
-              :value="1"
-            ></ui-checkbox>
+            <ui-checkbox id="with-leading-icon" v-model="selectOption" :value="1"></ui-checkbox>
             <label for="with-leading-icon">Leading Icon</label>
           </ui-form-field>
           <ui-form-field>
-            <ui-checkbox
-              id="with-helper-text"
-              v-model="selectOption"
-              :value="2"
-            ></ui-checkbox>
+            <ui-checkbox id="with-helper-text" v-model="selectOption" :value="2"></ui-checkbox>
             <label for="with-helper-text">Helper Text</label>
           </ui-form-field>
         </div>
@@ -94,22 +69,21 @@
             :class="{ 'demo-select-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
             @selected="onSelected($event, 1)"
-            >Food Group</ui-select
-          >
+          >Food Group</ui-select>
         </div>
         <p>
           Currently selected:
-          <span id="currently-selected">{{
+          <span id="currently-selected">
+            {{
             selected1.value
-              ? `${selected1.value} at index ${selected1.index}`
-              : '(none)'
-          }}</span>
+            ? `${selected1.value} at index ${selected1.index}`
+            : '(none)'
+            }}
+          </span>
         </p>
         <ui-select-controls v-model="controls"></ui-select-controls>
         <div class="button-container">
-          <ui-button raised id="set-value-meat-button" @click="onClick"
-            >Set Value to Meat</ui-button
-          >
+          <ui-button raised id="set-value-meat-button" @click="onClick">Set Value to Meat</ui-button>
         </div>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
@@ -128,21 +102,19 @@
             :class="{ 'demo-select-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
             @selected="onSelected($event, 1)"
-            >Food Group</ui-select
-          >
+          >Food Group</ui-select>
         </div>
         <p>
           Currently selected:
-          <span id="currently-selected-outline">{{
+          <span id="currently-selected-outline">
+            {{
             selected1.value
-              ? `${selected1.value} at index ${selected1.index}`
-              : '(none)'
-          }}</span>
+            ? `${selected1.value} at index ${selected1.index}`
+            : '(none)'
+            }}
+          </span>
         </p>
-        <ui-select-controls
-          idPrefix="outline"
-          v-model="controls"
-        ></ui-select-controls>
+        <ui-select-controls idPrefix="outline" v-model="controls"></ui-select-controls>
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
@@ -150,12 +122,7 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.3 Pre-selected option via HTML</h6>
       <div class="demo">
-        <ui-select
-          id="select-preselected"
-          v-model="selected3"
-          :options="options2"
-          >Food Group</ui-select
-        >
+        <ui-select id="select-preselected" v-model="selected3" :options="options2">Food Group</ui-select>
       </div>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>
@@ -170,11 +137,7 @@
           @change="onChangeProvince($event)"
         ></ui-select>
 
-        <ui-select
-          defaultLabel="City"
-          :options="cities"
-          v-model="formData.city"
-        ></ui-select>
+        <ui-select defaultLabel="City" :options="cities" v-model="formData.city"></ui-select>
         <p>Province: {{ formData.province }} - City: {{ formData.city }}</p>
       </div>
       <ui-snippet :code="$store.demos[4]"></ui-snippet>

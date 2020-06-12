@@ -1,5 +1,5 @@
 <template>
-  <ui-page type="plugin" name="event" demoCount="4" withoutCss>
+  <ui-page type="plugin" name="event" demo-count="4" without-css>
     <template #hero>
       <h1 :class="$tt('headline1')">$balmUI</h1>
     </template>
@@ -23,14 +23,8 @@
           <label>$balmUI</label>
 
           <p>
-            <ui-button
-              raised
-              @click="$balmUI.onChange('message2', 'Hello BalmUI')"
-              >Show message</ui-button
-            >
-            <ui-button outlined @click="$balmUI.onChange('message2', '')"
-              >Clear</ui-button
-            >
+            <ui-button raised @click="$balmUI.onChange('message2', 'Hello BalmUI')">Show message</ui-button>
+            <ui-button outlined @click="$balmUI.onChange('message2', '')">Clear</ui-button>
           </p>
           <p>{{ message2 }}</p>
 
@@ -61,9 +55,7 @@
           <label>$balmUI</label>
 
           <p>
-            <ui-button raised @click="$balmUI.onShow('open2')"
-              >Open dialog</ui-button
-            >
+            <ui-button raised @click="$balmUI.onShow('open2')">Open dialog</ui-button>
           </p>
           <ui-dialog v-model="open2">
             <ui-dialog-content>
@@ -71,9 +63,7 @@
               <p>Close dialog: `$balmUI.onHide('open')`</p>
             </ui-dialog-content>
             <ui-dialog-actions>
-              <ui-button @click="$balmUI.onHide('open2')"
-                >Close dialog</ui-button
-              >
+              <ui-button @click="$balmUI.onHide('open2')">Close dialog</ui-button>
             </ui-dialog-actions>
           </ui-dialog>
 

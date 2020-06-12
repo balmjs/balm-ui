@@ -16,9 +16,7 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Determinate</h6>
       <div class="demo">
-        <ui-circular-progress :progress="progress">{{
-          progress
-        }}</ui-circular-progress>
+        <ui-circular-progress :progress="progress">{{ progress }}</ui-circular-progress>
         <p>Progress: {{ progress }}</p>
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>

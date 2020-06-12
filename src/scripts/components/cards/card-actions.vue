@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'ui-card-actions',
+  name: 'UiCardActions',
   props: {
     fullBleed: {
       type: Boolean,

@@ -1,7 +1,7 @@
 <template>
   <ui-textfield
-    ref="input"
     :id="id"
+    ref="input"
     v-model="inputValue"
     class="mdc-datepicker"
     :outlined="outlined"
@@ -9,9 +9,9 @@
     :label="label"
     :fullwidth="fullwidth"
     :disabled="disabled"
-    :withLeadingIcon="withLeadingIcon"
+    :with-leading-icon="withLeadingIcon"
     :icon="icon"
-    :withTrailingIcon="withTrailingIcon || toggle || allowInput || clear"
+    :with-trailing-icon="withTrailingIcon || toggle || allowInput || clear"
     :attrs="{ readonly: true }"
     @change="handleChange"
   >
@@ -31,38 +31,30 @@
         <slot name="after" :iconClass="iconClass"></slot>
       </template>
       <span v-else :class="[iconClass, 'mdc-datepicker__icon']">
-        <span
-          v-if="toggle || allowInput"
-          class="mdc-datepicker__toggle"
-          title="toggle"
-          data-toggle
-        >
-          <slot name="toggle">
-            <svg viewBox="0 0 18 18">
-              <g></g>
-              <path
-                d="M14 2v-1h-3v1h-5v-1h-3v1h-3v15h17v-15h-3zM12 2h1v2h-1v-2zM4 2h1v2h-1v-2zM16 16h-15v-8.921h15v8.921zM1 6.079v-3.079h2v2h3v-2h5v2h3v-2h2v3.079h-15z"
-                fill="#000000"
-              ></path>
-            </svg>
-          </slot>
-        </span>
-        <span
-          v-if="clear"
-          class="mdc-datepicker__clear"
-          title="clear"
-          data-clear
-        >
-          <slot name="clear">
-            <svg viewBox="0 0 18 18">
-              <g></g>
-              <path
-                d="M9.207 8.5l6.646 6.646-0.707 0.707-6.646-6.646-6.646 6.646-0.707-0.707 6.646-6.646-6.647-6.646 0.707-0.707 6.647 6.646 6.646-6.646 0.707 0.707-6.646 6.646z"
-                fill="#000000"
-              ></path>
-            </svg>
-          </slot>
-        </span>
+        <template v-if="toggle || allowInput">
+          <span class="mdc-datepicker__toggle" title="toggle" data-toggle>
+            <slot name="toggle">
+              <svg viewBox="0 0 18 18">
+                <path
+                  d="M14 2v-1h-3v1h-5v-1h-3v1h-3v15h17v-15h-3zM12 2h1v2h-1v-2zM4 2h1v2h-1v-2zM16 16h-15v-8.921h15v8.921zM1 6.079v-3.079h2v2h3v-2h5v2h3v-2h2v3.079h-15z"
+                  fill="#000000"
+                />
+              </svg>
+            </slot>
+          </span>
+        </template>
+        <template v-if="clear">
+          <span class="mdc-datepicker__clear" title="clear" data-clear>
+            <slot name="clear">
+              <svg viewBox="0 0 18 18">
+                <path
+                  d="M9.207 8.5l6.646 6.646-0.707 0.707-6.646-6.646-6.646 6.646-0.707-0.707 6.646-6.646-6.647-6.646 0.707-0.707 6.647 6.646 6.646-6.646 0.707 0.707-6.646 6.646z"
+                  fill="#000000"
+                />
+              </svg>
+            </slot>
+          </span>
+        </template>
       </span>
     </template>
   </ui-textfield>
@@ -87,7 +79,7 @@ const UI_DATEPICKER = {
 };
 
 export default {
-  name: 'ui-datepicker',
+  name: 'UiDatepicker',
   components: {
     UiTextfield
   },
@@ -107,7 +99,10 @@ export default {
       type: Boolean,
       default: false
     },
-    id: String,
+    id: {
+      type: String,
+      default: ''
+    },
     icon: {
       type: String,
       default: ''
@@ -126,8 +121,7 @@ export default {
     clear: {
       type: Boolean,
       default: false
-    },
-    locale: null
+    }
   },
   data() {
     return {
@@ -160,10 +154,6 @@ export default {
       // Default config for ui
       config.wrap = true; // For toggle & clear icons, mobile support
       config.clickOpens = !config.allowInput; // NOTE: fix flatpickr bug
-      // Localization
-      if (this.locale) {
-        config.locale = this.locale;
-      }
       // Custom event
       config.onClose = () => {
         inputEl.blur();

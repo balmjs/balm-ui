@@ -9,8 +9,8 @@
             v-if="materialIcon"
             :class="[UI_GLOBAL.cssClasses.icon, UI_TAB.cssClasses.icon]"
             aria-hidden="true"
-            >{{ materialIcon }}</i
-          >
+            v-text="materialIcon"
+          ></i>
         </slot>
         <!-- Text label -->
         <span class="mdc-tab__text-label">
@@ -23,8 +23,8 @@
             v-if="materialIcon"
             :class="[UI_GLOBAL.cssClasses.icon, UI_TAB.cssClasses.icon]"
             aria-hidden="true"
-            >{{ materialIcon }}</i
-          >
+            v-text="materialIcon"
+          ></i>
         </slot>
       </template>
       <span v-else class="mdc-tab__text-label">
@@ -58,14 +58,17 @@ import UI_GLOBAL from '../../config/constants';
 import { UI_TAB } from './constants';
 
 export default {
-  name: 'ui-tab',
+  name: 'UiTab',
   components: {
     UiTabIndicator
   },
   mixins: [tabMixin, materialIconMixin],
   props: {
     // UI attributes
-    text: String
+    text: {
+      type: String,
+      default: ''
+    }
   },
   data() {
     return {

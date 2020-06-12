@@ -26,7 +26,7 @@ import progressMixin from '../../mixins/progress';
 import { UI_PROGRESS } from './constants';
 
 export default {
-  name: 'ui-linear-progress',
+  name: 'UiLinearProgress',
   mixins: [progressMixin],
   props: {
     // States

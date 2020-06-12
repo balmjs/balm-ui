@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'ui-notched-outline',
+  name: 'UiNotchedOutline',
   props: {
     hasLabel: {
       type: Boolean,

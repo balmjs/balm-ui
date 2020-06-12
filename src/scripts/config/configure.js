@@ -33,7 +33,7 @@ const setPropsInMixins = ({ componentMixins, propName, props }) => {
 };
 
 const configure = (Component, props) => {
-  Object.keys(props).forEach(propName => {
+  Object.keys(props).forEach((propName) => {
     if (Component.props) {
       if (Component.props[propName] === undefined) {
         // Overwrite props in mixins

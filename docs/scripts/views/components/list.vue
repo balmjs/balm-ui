@@ -18,29 +18,17 @@
             </ui-item-text-content>
             <ui-item-text-content v-else>Single-line item</ui-item-text-content>
             <ui-item-last-content v-if="afterText">
-              <ui-icon-button
-                v-if="afterText === 1"
-                icon="more_vert"
-              ></ui-icon-button>
+              <ui-icon-button v-if="afterText === 1" icon="more_vert"></ui-icon-button>
               <span v-if="afterText === 2">Meta</span>
             </ui-item-last-content>
           </ui-item>
         </ui-list>
       </div>
       <div class="hero-options">
-        <ui-select
-          class="hero-option"
-          :options="TypeOptions"
-          v-model="typeOption"
-          >Type</ui-select
-        >
+        <ui-select class="hero-option" :options="TypeOptions" v-model="typeOption">Type</ui-select>
         <div class="hero-option hero-options">
-          <ui-select :options="BeforeTextOptions" v-model="beforeText"
-            >Before list text</ui-select
-          >
-          <ui-select :options="AfterTextOptions" v-model="afterText"
-            >After list text</ui-select
-          >
+          <ui-select :options="BeforeTextOptions" v-model="beforeText">Before list text</ui-select>
+          <ui-select :options="AfterTextOptions" v-model="afterText">After list text</ui-select>
         </div>
       </div>
     </template>
@@ -77,9 +65,9 @@
       </ui-list>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
 
-      <h6 :class="$tt('headline6')">
-        1.4 List with activated item (Selected Index: {{ selectedIndex }})
-      </h6>
+      <h6
+        :class="$tt('headline6')"
+      >1.4 List with activated item (Selected Index: {{ selectedIndex }})</h6>
       <ui-list singleSelection v-model="selectedIndex">
         <ui-item v-for="(item, index) in items2" :key="index">
           <ui-item-first-content>
@@ -101,9 +89,7 @@
       </ui-list>
       <ui-snippet :code="$store.demos[5]"></ui-snippet>
 
-      <h6 :class="$tt('headline6')">
-        1.6 Two-Line with Leading and Trailing Icon and Divider
-      </h6>
+      <h6 :class="$tt('headline6')">1.6 Two-Line with Leading and Trailing Icon and Divider</h6>
       <ui-list :type="2" avatar>
         <template v-for="(item, index) in items3">
           <ui-item-divider v-if="item === '-'" :key="index"></ui-item-divider>
@@ -123,20 +109,16 @@
       </ui-list>
       <ui-snippet :code="$store.demos[6]"></ui-snippet>
 
-      <h6 :class="$tt('headline6')">
-        1.7 List with Trailing Checkbox (Checked values: {{ checkedValues }})
-      </h6>
+      <h6
+        :class="$tt('headline6')"
+      >1.7 List with Trailing Checkbox (Checked values: {{ checkedValues }})</h6>
       <ui-list role="group">
         <template v-for="(item, index) in items3">
           <ui-item-divider v-if="item === '-'" :key="index"></ui-item-divider>
           <ui-item v-else :key="index">
             <ui-item-text-content>{{ item.text }}</ui-item-text-content>
             <ui-item-last-content>
-              <ui-checkbox
-                v-model="checkedValues"
-                :value="item.value"
-                @click.native.stop
-              ></ui-checkbox>
+              <ui-checkbox v-model="checkedValues" :value="item.value" @click.native.stop></ui-checkbox>
             </ui-item-last-content>
           </ui-item>
         </template>
@@ -153,11 +135,7 @@
           <ui-item v-else :key="index">
             <ui-item-text-content>{{ item.text }}</ui-item-text-content>
             <ui-item-last-content>
-              <ui-radio
-                v-model="checkedValue"
-                :value="item.value"
-                @click.native.stop
-              ></ui-radio>
+              <ui-radio v-model="checkedValue" :value="item.value" @click.native.stop></ui-radio>
             </ui-item-last-content>
           </ui-item>
         </template>

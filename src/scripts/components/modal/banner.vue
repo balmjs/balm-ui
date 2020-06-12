@@ -8,8 +8,8 @@
           v-if="materialIcon"
           :class="[UI_GLOBAL.cssClasses.icon, 'mdc-banner__icon']"
           aria-hidden="true"
-          >{{ materialIcon }}</i
-        >
+          v-text="materialIcon"
+        ></i>
       </slot>
       <!-- Text -->
       <div class="mdc-banner__text">
@@ -34,7 +34,7 @@ const UI_BANNER = {
 };
 
 export default {
-  name: 'ui-banner',
+  name: 'UiBanner',
   mixins: [materialIconMixin],
   data() {
     return {

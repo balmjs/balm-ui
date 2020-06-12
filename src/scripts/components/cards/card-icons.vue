@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ui-card-icons'
+  name: 'UiCardIcons'
 };
 </script>

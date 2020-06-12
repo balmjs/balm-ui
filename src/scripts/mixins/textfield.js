@@ -1,9 +1,15 @@
 export default {
   props: {
     // Element attributes
-    placeholder: String,
+    placeholder: {
+      type: String,
+      default: ''
+    },
     // UI attributes
-    label: String,
+    label: {
+      type: String,
+      default: ''
+    },
     fullwidth: {
       type: Boolean,
       default: false

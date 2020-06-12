@@ -1,7 +1,7 @@
 <template>
   <div class="demo-container page--drawer page--modal-drawer">
     <!-- Drawer -->
-    <ui-drawer type="modal" v-model="open" navId="demo-menu">
+    <ui-drawer v-model="open" type="modal" nav-id="demo-menu">
       <ui-drawer-header>
         <ui-drawer-title>Title</ui-drawer-title>
         <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>
@@ -25,12 +25,7 @@
     <!-- Content -->
     <div class="demo-content">
       <!-- App bar -->
-      <ui-top-app-bar
-        fixed
-        contentSelector=".demo-app-content"
-        navId="demo-menu"
-        >Modal Drawer</ui-top-app-bar
-      >
+      <ui-top-app-bar fixed content-selector=".demo-app-content" nav-id="demo-menu">Modal Drawer</ui-top-app-bar>
       <!-- App content -->
       <div :class="[$tt('body1'), 'demo-app-content']">
         <h6>Modal Drawer</h6>

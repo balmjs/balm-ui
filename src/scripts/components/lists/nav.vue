@@ -1,9 +1,6 @@
 <template>
   <nav :class="className">
-    <slot
-      :itemClass="UI_LIST.cssClasses.item"
-      :activeClass="UI_LIST.cssClasses.active"
-    ></slot>
+    <slot :itemClass="UI_LIST.cssClasses.item" :activeClass="UI_LIST.cssClasses.active"></slot>
   </nav>
 </template>
 
@@ -12,7 +9,7 @@ import listMixin from '../../mixins/list';
 import UI_LIST from './constants';
 
 export default {
-  name: 'ui-nav',
+  name: 'UiNav',
   mixins: [listMixin],
   data() {
     return {

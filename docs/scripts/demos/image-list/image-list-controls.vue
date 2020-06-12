@@ -3,9 +3,9 @@
     <ui-form-field>
       <ui-radio
         :id="`${idPrefix}-label-below`"
+        v-model="controls.labelsType"
         :name="`${idPrefix}-labels`"
         :value="1"
-        v-model="controls.labelsType"
       ></ui-radio>
       <label :for="`${idPrefix}-label-below`">Labels below images</label>
     </ui-form-field>
@@ -13,21 +13,19 @@
     <ui-form-field>
       <ui-radio
         :id="`${idPrefix}-label-protected`"
+        v-model="controls.labelsType"
         :name="`${idPrefix}-labels`"
         :value="2"
-        v-model="controls.labelsType"
       ></ui-radio>
-      <label :for="`${idPrefix}-label-protected`"
-        >Labels over images with text protection</label
-      >
+      <label :for="`${idPrefix}-label-protected`">Labels over images with text protection</label>
     </ui-form-field>
 
     <ui-form-field>
       <ui-radio
         :id="`${idPrefix}-label-none`"
+        v-model="controls.labelsType"
         :name="`${idPrefix}-labels`"
         :value="0"
-        v-model="controls.labelsType"
       ></ui-radio>
       <label :for="`${idPrefix}-label-none`">No labels</label>
     </ui-form-field>

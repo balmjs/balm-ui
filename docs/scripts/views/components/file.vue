@@ -8,10 +8,7 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 Default Usage</h6>
       <div class="demo">
-        <ui-file
-          accept="image/*"
-          @change="$balmUI.onChange('files1', $event)"
-        ></ui-file>
+        <ui-file accept="image/*" @change="$balmUI.onChange('files1', $event)"></ui-file>
         <p>Files: {{ files1 }}</p>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
@@ -20,12 +17,7 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Multiple + Preview</h6>
       <div class="demo">
-        <ui-file
-          accept="image/*"
-          multiple
-          preview
-          @change="$balmUI.onChange('files2', $event)"
-        ></ui-file>
+        <ui-file accept="image/*" multiple preview @change="$balmUI.onChange('files2', $event)"></ui-file>
         <transition-group class="preview-list" name="list" tag="ul">
           <li class="item" v-for="file in files2" :key="file.tmpId">
             <div class="inner">
@@ -46,12 +38,7 @@
             <div class="inner">
               <span class="preview" :style="setBg(file)"></span>
               <span class="actions">
-                <ui-fab
-                  v-if="!file.uploaded"
-                  icon="file_upload"
-                  mini
-                  @click="upload(file)"
-                ></ui-fab>
+                <ui-fab v-if="!file.uploaded" icon="file_upload" mini @click="upload(file)"></ui-fab>
                 <ui-fab icon="delete" mini @click="remove(index)"></ui-fab>
               </span>
             </div>
@@ -107,7 +94,7 @@ export default {
     },
     async upload(file) {
       try {
-        let response = await this.$http.post(this.postUrl, {
+        let data = await this.$http.post(this.postUrl, {
           file: file.sourceFile
         });
         file.uploaded = true;

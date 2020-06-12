@@ -37,7 +37,7 @@ const UI_SNACKBAR = {
 };
 
 export default {
-  name: 'ui-snackbar',
+  name: 'UiSnackbar',
   model: {
     prop: 'open',
     event: UI_SNACKBAR.EVENT.CHANGE
@@ -60,7 +60,10 @@ export default {
       type: String,
       default: ''
     },
-    actionButtonText: String,
+    actionButtonText: {
+      type: String,
+      default: ''
+    },
     // UI attributes
     stacked: {
       type: Boolean,

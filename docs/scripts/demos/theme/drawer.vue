@@ -19,8 +19,8 @@
                   'drafts'
                 ]"
                 :key="index"
-                :class="index === 0 ? [itemClass, activeClass] : itemClass"
                 v-ripple
+                :class="index === 0 ? [itemClass, activeClass] : itemClass"
               >
                 <ui-item-first-content>
                   <ui-icon>{{ item }}</ui-icon>

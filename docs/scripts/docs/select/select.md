@@ -13,20 +13,20 @@
 | ------------------- | -------------- | --------- | --------------------------------------------------------------------------------------------- |
 | `type`              | string, number | `0`       | Mandatory. Enhanced select types.                                                             |
 | `outlined`          | boolean        | `false`   | Styles the select as an outlined select. (Equivalent to `type=1`)                             |
-| `model` (`v-model`) | string, number | `null`    | The `value` of the currently selected option.                                                 |
+| `model` (`v-model`) | string, number | `''`      | The `value` of the currently selected option.                                                 |
 | `options`           | array          | `[]`      | An array of options to show to the user.                                                      |
 | `optionLabel`       | string         | `'label'` | Option item label's name of the `options`.                                                    |
 | `optionValue`       | string         | `'value'` | Option item value's name of the `options`.                                                    |
-| `defaultLabel`      | string         | `null`    | Placeholder item label.                                                                       |
+| `defaultLabel`      | string         | `''`      | Placeholder item label.                                                                       |
 | `defaultValue`      | string, number | `''`      | Placeholder item value.                                                                       |
 | `required`          | boolean        | `false`   | Styles the select as required.                                                                |
 | `disabled`          | boolean        | `false`   | Styles the select as disabled.                                                                |
-| `label`             | string         | `null`    | A text caption or description for the select.                                                 |
+| `label`             | string         | `''`      | A text caption or description for the select.                                                 |
 | `noLabel`           | boolean        | `false`   | Styles the select as a select without a label.                                                |
 | `icon`              | string         | `''`      | Optional. Indicates an icon element with a leading icon. See [Material Icons](/#/icons) list. |
 | `withLeadingIcon`   | boolean        | `false`   | Styles the select as a select with a leading icon.                                            |
 | `fullwidth`         | boolean        | `false`   | Optional. Styles the select as fullwidth select.                                              |
-| `helperTextId`      | string         | `null`    | Required for the _id_ attribute of the `<ui-select-helper>`.                                  |
+| `helperTextId`      | string         | `''`      | Required for the _id_ attribute of the `<ui-select-helper>`.                                  |
 
 > NOTE: `withLeadingIcon` is only used for (**non `<ui-select-icon>`**) custom leading icon, and generally do not need to be configured.
 

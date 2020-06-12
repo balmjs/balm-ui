@@ -6,8 +6,8 @@
 | --------- | ---------------------- | ------- | --------------------------------------------------------- |
 | `nested`  | boolean                | `false` | The nested layout grid.                                   |
 | `columns` | number, string, object | `4`     | Optional, specifies the number of columns the cell spans. |
-| `order`   | number, string         | `null`  | Optional, specifies the order of the cell.                |
-| `align`   | string                 | `null`  | Optional, specifies the alignment of cell.                |
+| `order`   | number, string         | `0`     | Optional, specifies the order of the cell.                |
+| `align`   | string                 | `''`    | Optional, specifies the alignment of cell.                |
 
 - The `columns` and `order` range are between 1 and 12
 - The `align` position: `'top'`, `'middle'`, `'bottom'`

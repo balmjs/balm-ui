@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ui-grid-inner'
+  name: 'UiGridInner'
 };
 </script>

@@ -13,7 +13,7 @@ const UI_ELEVATION = {
   }
 };
 
-const getElevation = value => {
+const getElevation = (value) => {
   let result = '';
 
   if (value >= UI_ELEVATION.Z_SPACE.MIN && value <= UI_ELEVATION.Z_SPACE.MAX) {

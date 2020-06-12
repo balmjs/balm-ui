@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ui-card-buttons'
+  name: 'UiCardButtons'
 };
 </script>

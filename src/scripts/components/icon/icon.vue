@@ -1,6 +1,8 @@
 <template>
   <i :class="className" aria-hidden="true" @click="handleClick">
-    <slot><!-- The material icon name --></slot>
+    <slot>
+      <!-- The material icon name -->
+    </slot>
   </i>
 </template>
 
@@ -9,7 +11,7 @@ import typeMixin from '../../mixins/type';
 import UI_ICON from './constants';
 
 export default {
-  name: 'ui-icon',
+  name: 'UiIcon',
   mixins: [typeMixin],
   props: {
     // UI styles

@@ -1,5 +1,5 @@
 <template>
-  <ui-page type="plugin" name="toast" demoCount="1" withoutCss>
+  <ui-page type="plugin" name="toast" demo-count="1" without-css>
     <template #hero>
       <h1 :class="$tt('headline1')">$toast</h1>
     </template>

@@ -14,32 +14,14 @@ module.exports = {
     es6: true,
     mocha: true
   },
-  // required to lint *.vue files
   plugins: ['vue', 'prettier'],
-  // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
-  // consider switching to `plugin:vue/essential` or `plugin:vue/recommended` for stricter rules.
   extends: [
-    'eslint:recommended',
-    'plugin:vue/strongly-recommended',
-    'plugin:prettier/recommended'
+    'plugin:vue/recommended',
+    'plugin:prettier/recommended',
+    'prettier/vue'
   ],
-  // add your custom rules here
   rules: {
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'vue/html-self-closing': [
-      'error',
-      {
-        html: {
-          void: 'always',
-          normal: 'never',
-          component: 'never'
-        },
-        svg: 'always',
-        math: 'always'
-      }
-    ],
-    'vue/max-attributes-per-line': 0,
-    'vue/attribute-hyphenation': 0
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
   }
 };

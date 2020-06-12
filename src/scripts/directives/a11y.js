@@ -32,7 +32,7 @@ const UI_ACCESSIBILITY = {
   }
 };
 
-const checkComponent = el => {
+const checkComponent = (el) => {
   let result = false;
 
   const components = Object.keys(UI_ACCESSIBILITY.components);
@@ -48,7 +48,7 @@ const checkComponent = el => {
   return result;
 };
 
-const initAccessibility = el => {
+const initAccessibility = (el) => {
   let componentKey = checkComponent(el);
 
   if (componentKey) {

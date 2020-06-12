@@ -2,7 +2,15 @@
 export default {
   props: {
     // Element attributes
-    id: String,
-    attrs: Object
+    id: {
+      type: String,
+      default: ''
+    },
+    attrs: {
+      type: Object,
+      default() {
+        return {};
+      }
+    }
   }
 };

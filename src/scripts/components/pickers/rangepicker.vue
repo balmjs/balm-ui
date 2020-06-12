@@ -40,7 +40,7 @@ const UI_RANGEPICKER = {
 };
 
 export default {
-  name: 'ui-rangepicker',
+  name: 'UiRangepicker',
   components: {
     UiTextfield
   },
@@ -94,16 +94,6 @@ export default {
       endInputValue: ''
     };
   },
-  watch: {
-    model(val, oldVal) {
-      this.loaded = val[0] && val[1] && !(oldVal[0] || oldVal[1]);
-
-      if (this.loaded) {
-        this.updateInputs(val);
-        this.updateInitialValue();
-      }
-    }
-  },
   computed: {
     startLabel() {
       return this.labels[0] || '';
@@ -116,6 +106,16 @@ export default {
     },
     endPlaceholder() {
       return this.placeholders[1] || '';
+    }
+  },
+  watch: {
+    model(val, oldVal) {
+      this.loaded = val[0] && val[1] && !(oldVal[0] || oldVal[1]);
+
+      if (this.loaded) {
+        this.updateInputs(val);
+        this.updateInitialValue();
+      }
     }
   },
   mounted() {

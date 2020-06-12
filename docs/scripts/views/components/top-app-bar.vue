@@ -2,7 +2,7 @@
   <div class="page--top-app-bar">
     <!-- navId="demo-menu" -->
     <ui-top-app-bar
-      contentSelector="#content-main"
+      content-selector="#content-main"
       :type="typeOption"
       :title="title"
       @nav="$balmUI.onShow('openDrawer')"
@@ -22,42 +22,27 @@
           </ui-menu-anchor>
         </template>
         <template v-else>
-          <ui-icon-button
-            :class="toolbarItemClass"
-            icon="file_download"
-          ></ui-icon-button>
-          <ui-icon-button
-            :class="toolbarItemClass"
-            icon="print"
-          ></ui-icon-button>
-          <ui-icon-button
-            :class="toolbarItemClass"
-            icon="bookmark"
-          ></ui-icon-button>
+          <ui-icon-button :class="toolbarItemClass" icon="file_download"></ui-icon-button>
+          <ui-icon-button :class="toolbarItemClass" icon="print"></ui-icon-button>
+          <ui-icon-button :class="toolbarItemClass" icon="bookmark"></ui-icon-button>
           <!-- <ui-list :class="toolbarItemClass">
             <ui-item>Menu item 1</ui-item>
             <ui-item>Menu item 2</ui-item>
             <ui-item>Menu item 3</ui-item>
-          </ui-list> -->
+          </ui-list>-->
         </template>
       </template>
     </ui-top-app-bar>
 
     <!-- navId="demo-menu" -->
-    <ui-drawer type="modal" v-model="openDrawer">
-      <ui-drawer-header
-        :innerClass="[$themeColor('on-primary'), $themeColor('primary-bg')]"
-      >
+    <ui-drawer v-model="openDrawer" type="modal">
+      <ui-drawer-header :inner-class="[$themeColor('on-primary'), $themeColor('primary-bg')]">
         <ui-drawer-title>Header here</ui-drawer-title>
       </ui-drawer-header>
       <ui-drawer-content>
         <ui-nav>
           <template #default="{ itemClass, activeClass }">
-            <a
-              v-ripple
-              :class="[itemClass, activeClass]"
-              @click="$router.back()"
-            >
+            <a v-ripple :class="[itemClass, activeClass]" @click="$router.back()">
               <ui-item-first-content>
                 <ui-icon>arrow_back</ui-icon>
               </ui-item-first-content>
@@ -72,7 +57,7 @@
     <ui-drawer-backdrop></ui-drawer-backdrop>
 
     <div class="demo-main">
-      <ui-page id="content-main" name="top-app-bar" demoCount="1" bottomAffix>
+      <ui-page id="content-main" name="top-app-bar" demo-count="1" bottom-affix>
         <template #hero>
           <h1 :class="$tt('headline1')">Top App Bar</h1>
         </template>
@@ -80,9 +65,7 @@
         <!-- Content -->
         <section class="demo-wrapper">
           <div class="demo-controls">
-            <ui-select :options="TypeOptions" v-model="typeOption"
-              >Type</ui-select
-            >
+            <ui-select v-model="typeOption" :options="TypeOptions">Type</ui-select>
             <ui-textfield v-model="title">Title</ui-textfield>
           </div>
           <p v-for="i in 12" :key="i" class="demo-paragraph">

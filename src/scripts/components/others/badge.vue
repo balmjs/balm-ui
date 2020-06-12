@@ -6,7 +6,7 @@
       v-else
       :class="[
         'mdc-badge__sup',
-        { 'mdc-badge__sup--dot': this.dot },
+        { 'mdc-badge__sup--dot': dot },
         stateType ? `mdc-badge__sup--${stateType}` : ''
       ]"
     >
@@ -19,7 +19,7 @@
 import stateTypeMixins from '../../mixins/state-type';
 
 export default {
-  name: 'ui-badge',
+  name: 'UiBadge',
   mixins: [stateTypeMixins],
   props: {
     // States

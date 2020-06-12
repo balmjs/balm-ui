@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ui-menuitem-icon'
+  name: 'UiMenuitemIcon'
 };
 </script>

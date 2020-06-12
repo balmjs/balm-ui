@@ -31,7 +31,7 @@ const UI_TEXT_DIVIDER = {
 };
 
 export default {
-  name: 'ui-text-divider',
+  name: 'UiTextDivider',
   mixins: [typeMixin],
   props: {
     // UI variants

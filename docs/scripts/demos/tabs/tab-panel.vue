@@ -19,9 +19,6 @@
 
 <script>
 export default {
-  props: {
-    code: Array
-  },
   data() {
     return {
       active: 0

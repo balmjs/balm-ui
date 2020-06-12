@@ -1,9 +1,9 @@
-config
-src/fonts
 src/material-components-web
+src/material-icons
 .tmp
 dist
-components
-directives
-plugins
-utils
+/config
+/components
+/directives
+/plugins
+/utils

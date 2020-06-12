@@ -1,8 +1,5 @@
 <template>
-  <div
-    :class="[$tt('body1'), `page--${name}`]"
-    v-anchor.offset="bottomAffix ? 64 : 128"
-  >
+  <div v-anchor.offset="bottomAffix ? 64 : 128" :class="[$tt('body1'), `page--${name}`]">
     <header :class="['hero', type]">
       <slot name="hero"></slot>
     </header>
@@ -13,11 +10,7 @@
     <ui-toc-affix v-else-if="name === 'theme'">
       <ui-tab v-anchor:href="'#ui-colors'" class="v-anchor">Colors</ui-tab>
     </ui-toc-affix>
-    <ui-toc-affix
-      v-else
-      :class="{ 'toc-affix--bottom': bottomAffix }"
-      :withoutCss="withoutCss"
-    ></ui-toc-affix>
+    <ui-toc-affix v-else :class="{ 'toc-affix--bottom': bottomAffix }" :without-css="withoutCss"></ui-toc-affix>
 
     <div :class="$tt('body2')">
       <div class="ui-intro">
@@ -46,26 +39,16 @@
       ></ui-markdown>
 
       <template v-if="!withoutCss">
-        <h2 v-anchor:id="'ui-sass'" :class="$tt('headline5')">
-          3. Sass Variables
-        </h2>
+        <h2 v-anchor:id="'ui-sass'" :class="$tt('headline5')">3. Sass Variables</h2>
         <ui-markdown :text="$store.docs.css"></ui-markdown>
       </template>
 
-      <h2
-        v-if="name === 'icon'"
-        v-anchor:id="'ui-icons'"
-        :class="$tt('headline5')"
-      >
-        4. Icons List
-      </h2>
+      <h2 v-if="name === 'icon'" v-anchor:id="'ui-icons'" :class="$tt('headline5')">4. Icons List</h2>
       <h2
         v-if="name === 'theme'"
         v-anchor:id="'ui-colors'"
         :class="$tt('headline5')"
-      >
-        4. Color Palette
-      </h2>
+      >4. Color Palette</h2>
       <slot name="after"></slot>
     </div>
   </div>
@@ -73,7 +56,7 @@
 
 <script>
 export default {
-  name: 'ui-page',
+  name: 'UiPage',
   props: {
     type: {
       type: String,

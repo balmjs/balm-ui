@@ -5,7 +5,9 @@
     :role="unclickable ? null : 'button'"
     @click="unclickable ? null : handleClick"
   >
-    <slot><!-- Material icon --></slot>
+    <slot>
+      <!-- Material icon -->
+    </slot>
   </i>
 </template>
 
@@ -14,7 +16,7 @@ import UI_GLOBAL from '../../config/constants';
 import { UI_TEXTFIELD_ICON } from './constants';
 
 export default {
-  name: 'ui-textfield-icon',
+  name: 'UiTextfieldIcon',
   props: {
     trailing: {
       type: Boolean,

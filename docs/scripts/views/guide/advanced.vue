@@ -1,7 +1,7 @@
 <template>
   <div :class="[$tt('body1'), 'page--advanced']">
     <div :class="[$tt('body2'), 'pure-docs']">
-      <ui-markdown :text="docs" v-anchor.html.offset="64"></ui-markdown>
+      <ui-markdown v-anchor.html.offset="64" :text="docs"></ui-markdown>
       <ui-footer-nav
         :prev="{ name: 'Get Started', url: 'guide.quickstart' }"
         :next="{ name: 'Kill IE', url: 'guide.kill-ie' }"

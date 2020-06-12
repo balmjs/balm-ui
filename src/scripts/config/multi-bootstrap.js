@@ -1,7 +1,7 @@
 import autoInstall from './auto-install';
 import multiConfigure from './multi-configure';
 
-const multiBootstrap = components => {
+const multiBootstrap = (components) => {
   const UiComponents = {
     install(Vue, options = {}) {
       // Configure the components' props

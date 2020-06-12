@@ -16,10 +16,13 @@ const ANCHOR_POSITIONS = [
 ];
 
 export default {
-  name: 'ui-menu-anchor',
+  name: 'UiMenuAnchor',
   props: {
     // UI attributes
-    position: String,
+    position: {
+      type: String,
+      default: ''
+    },
     absolute: {
       type: Boolean,
       default: false

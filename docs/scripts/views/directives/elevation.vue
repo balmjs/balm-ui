@@ -1,11 +1,11 @@
 <template>
-  <ui-page type="directive" name="elevation" demoCount="2">
+  <ui-page type="directive" name="elevation" demo-count="2">
     <template #hero>
       <div class="hero-demos">
-        <figure class="demo-surface" v-shadow="0">
+        <figure v-shadow="0" class="demo-surface">
           <figcaption>FLAT 0dp</figcaption>
         </figure>
-        <figure class="demo-surface" v-shadow="8">
+        <figure v-shadow="8" class="demo-surface">
           <figcaption>RAISED 8dp</figcaption>
         </figure>
         <figure :class="['demo-surface', 'demo-elevation--custom-color']">
@@ -17,9 +17,10 @@
     <!-- Content -->
     <section class="demo-wrapper">
       <div class="demo">
-        <figure v-for="i in 25" :key="i" class="demo-surface" v-shadow="i - 1">
+        <figure v-for="i in 25" :key="i" v-shadow="i - 1" class="demo-surface">
           <figcaption>
-            {{ i - 1 }}dp ( <code>v-shadow="{{ i - 1 }}"</code>)
+            {{ i - 1 }}dp (
+            <code>v-shadow="{{ i - 1 }}"</code>)
           </figcaption>
         </figure>
       </div>

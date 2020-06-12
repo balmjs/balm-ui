@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ui-panel'
+  name: 'UiPanel'
 };
 </script>

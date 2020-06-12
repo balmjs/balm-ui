@@ -1,7 +1,9 @@
 <template>
   <!-- Supporting visuals -->
   <span :class="UI_LIST.cssClasses.firstTile">
-    <slot><!-- Typically an icon or image --></slot>
+    <slot>
+      <!-- Typically an icon or image -->
+    </slot>
   </span>
 </template>
 
@@ -9,7 +11,7 @@
 import UI_LIST from './constants';
 
 export default {
-  name: 'ui-item-first-content',
+  name: 'UiItemFirstContent',
   data() {
     return {
       UI_LIST

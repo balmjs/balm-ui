@@ -1,21 +1,17 @@
 <template>
-  <ui-page type="plugin" name="theme" demoCount="4">
+  <ui-page type="plugin" name="theme" demo-count="4">
     <template #hero>
       <div class="hero-demos">
-        <ui-button raised :class="[$themeColor('primary-bg')]"
-          >Primary</ui-button
-        >
-        <ui-button raised :class="[$themeColor('secondary-bg')]"
-          >Secondary</ui-button
-        >
+        <ui-button raised :class="[$themeColor('primary-bg')]">Primary</ui-button>
+        <ui-button raised :class="[$themeColor('secondary-bg')]">Secondary</ui-button>
       </div>
     </template>
 
     <!-- Content -->
     <ui-menu-anchor class="demo-fixed-theme">
       <ui-button
-        ref="colorButton"
         id="theme-color-action"
+        ref="colorButton"
         title="Change theme colors"
         data-theme="baseline"
         @click="$balmUI.onShow('open')"
@@ -25,12 +21,7 @@
         </i>
       </ui-button>
 
-      <ui-menu
-        id="theme-color-menu"
-        class="demo-theme-menu"
-        v-model="open"
-        @selected="onSelected"
-      >
+      <ui-menu id="theme-color-menu" v-model="open" class="demo-theme-menu" @selected="onSelected">
         <ui-menuitem
           v-for="(item, index) in colorItems"
           :key="index"
@@ -77,30 +68,29 @@
 
     <template #after>
       <ui-grid class="color-palette">
-        <ui-grid-cell
-          v-for="(color, colorIndex) in COLOR.colors"
-          :key="colorIndex"
-        >
-          <h6 :class="$tt('headline6')">{{ color }}</h6>
-          <ui-list>
-            <template v-for="(shade, shadeIndex) in COLOR.shades">
-              <ui-item
-                v-if="hasColor(color, shade)"
-                :key="shadeIndex"
-                :class="[
-                  getColorName(color, shade),
-                  getColorTone(color, shadeIndex),
-                  'btn-copy'
-                ]"
-                :data-clipboard-text="getColorValue(color, shadeIndex)"
-                :data-name="getColorName(color, shade)"
-              >
-                <span class="shade">${{ getColorName(color, shade) }}</span>
-                <span class="hex">{{ getColorValue(color, shadeIndex) }}</span>
-              </ui-item>
-            </template>
-          </ui-list>
-        </ui-grid-cell>
+        <template v-for="(color, colorIndex) in COLOR.colors">
+          <ui-grid-cell :key="colorIndex">
+            <h6 :class="$tt('headline6')">{{ color }}</h6>
+            <ui-list>
+              <template v-for="(shade, shadeIndex) in COLOR.shades">
+                <ui-item
+                  v-if="hasColor(color, shade)"
+                  :key="shadeIndex"
+                  :class="[
+                    getColorName(color, shade),
+                    getColorTone(color, shadeIndex),
+                    'btn-copy'
+                  ]"
+                  :data-clipboard-text="getColorValue(color, shadeIndex)"
+                  :data-name="getColorName(color, shade)"
+                >
+                  <span class="shade">${{ getColorName(color, shade) }}</span>
+                  <span class="hex">{{ getColorValue(color, shadeIndex) }}</span>
+                </ui-item>
+              </template>
+            </ui-list>
+          </ui-grid-cell>
+        </template>
         <ui-grid-cell>
           <h6 :class="$tt('headline6')">Black &amp; White</h6>
           <ui-list>

@@ -10,7 +10,7 @@ import typeMixin from '../../mixins/type';
 import UI_CHIPS from './constants';
 
 export default {
-  name: 'ui-chips',
+  name: 'UiChips',
   mixins: [typeMixin],
   model: {
     prop: 'model',

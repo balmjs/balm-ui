@@ -16,7 +16,7 @@ import tabScrollerMixin from '../../mixins/tab-scroller';
 import { UI_TAB_SCROLLER } from './constants';
 
 export default {
-  name: 'ui-tab-scroller',
+  name: 'UiTabScroller',
   mixins: [tabScrollerMixin],
   model: {
     prop: 'scrollX',
@@ -35,14 +35,6 @@ export default {
       scrollValue: this.scrollX
     };
   },
-  watch: {
-    scrollX(val) {
-      let newScrollValue = +val;
-      this.$tabScroller.scrollTo(newScrollValue);
-
-      this.scrollValue = newScrollValue;
-    }
-  },
   computed: {
     className() {
       let result = ['mdc-tab-scroller'];
@@ -52,6 +44,14 @@ export default {
       }
 
       return result.join(' ');
+    }
+  },
+  watch: {
+    scrollX(val) {
+      let newScrollValue = +val;
+      this.$tabScroller.scrollTo(newScrollValue);
+
+      this.scrollValue = newScrollValue;
     }
   },
   mounted() {

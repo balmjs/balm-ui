@@ -15,7 +15,7 @@ const UI_GRID = {
 };
 
 export default {
-  name: 'ui-grid',
+  name: 'UiGrid',
   components: {
     UiGridInner
   },

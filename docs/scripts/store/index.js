@@ -4,6 +4,6 @@ import dev from './dev';
 import page from './page';
 
 export default new Vue({
-  name: 'store',
+  name: 'Store',
   mixins: [isDev ? dev : {}, page]
 });

@@ -8,13 +8,7 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 Basic + default icon</h6>
       <div class="demo">
-        <ui-datepicker
-          placeholder="Select Date.."
-          toggle
-          clear
-          :config="config1"
-          v-model="date1"
-        ></ui-datepicker>
+        <ui-datepicker placeholder="Select Date.." toggle clear :config="config1" v-model="date1"></ui-datepicker>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
@@ -43,11 +37,7 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">3. Selecting multiple dates</h6>
       <div class="demo">
-        <ui-datepicker
-          placeholder="Select Multi Date.."
-          :config="config3"
-          v-model="date3"
-        ></ui-datepicker>
+        <ui-datepicker placeholder="Select Multi Date.." :config="config3" v-model="date3"></ui-datepicker>
       </div>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>
@@ -55,16 +45,10 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">
         4. Simple range calendar (Customized rangepicker:
-        <router-link :to="{ name: 'data-input.rangepicker' }"
-          >&lt;ui-rangepicker&gt;</router-link
-        >)
+        <router-link :to="{ name: 'data-input.rangepicker' }">&lt;ui-rangepicker&gt;</router-link>)
       </h6>
       <div class="demo">
-        <ui-datepicker
-          placeholder="Select Date Range.."
-          :config="config4"
-          v-model="date4"
-        ></ui-datepicker>
+        <ui-datepicker placeholder="Select Date Range.." :config="config4" v-model="date4"></ui-datepicker>
       </div>
       <ui-snippet :code="$store.demos[4]"></ui-snippet>
     </section>
@@ -85,7 +69,7 @@ export default {
       // demo
       config1: {
         defaultDate: 'today'
-        // locale: this.flatpickrLang.cn
+        // locale: this.pickerLang.cn
       },
       date1: '',
       config2: {

@@ -1,9 +1,7 @@
 <template>
-  <div
-    class="demo-container page--drawer page--dismissible-drawer-full-height-drawer"
-  >
+  <div class="demo-container page--drawer page--dismissible-drawer-full-height-drawer">
     <!-- Drawer -->
-    <ui-drawer type="dismissible" viewportHeight navId="demo-menu">
+    <ui-drawer type="dismissible" viewport-height nav-id="demo-menu">
       <ui-drawer-header>
         <ui-drawer-title>Title</ui-drawer-title>
         <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>
@@ -28,10 +26,9 @@
       <!-- App bar -->
       <ui-top-app-bar
         class="demo-app-bar"
-        contentSelector=".demo-app-content"
-        navId="demo-menu"
-        >Dismissible Drawer Full Height Drawer</ui-top-app-bar
-      >
+        content-selector=".demo-app-content"
+        nav-id="demo-menu"
+      >Dismissible Drawer Full Height Drawer</ui-top-app-bar>
       <!-- App content -->
       <div :class="[$tt('body1'), 'demo-app-content']">
         <h6>Dismissible Drawer</h6>

@@ -13,7 +13,7 @@
           fill="none"
           stroke="black"
           d="M1.73,12.91 8.1,19.28 22.79,4.59"
-        ></path>
+        />
       </svg>
     </span>
     <!-- Text -->
@@ -32,8 +32,7 @@
           tabindex="-1"
           role="button"
           @click="handleRemove"
-          >cancel</i
-        >
+        >cancel</i>
       </span>
     </slot>
   </div>
@@ -45,7 +44,7 @@ import UI_GLOBAL from '../../config/constants';
 import UI_CHIPS from './constants';
 
 export default {
-  name: 'ui-chip',
+  name: 'UiChip',
   mixins: [materialIconMixin],
   props: {
     hidden: {

@@ -2,17 +2,9 @@
   <!-- Container -->
   <div :class="className">
     <table class="mdc-data-table__table" :aria-label="caption">
-      <caption v-if="caption">
-        {{
-          caption
-        }}
-      </caption>
+      <caption v-if="caption">{{caption}}</caption>
       <colgroup v-if="colgroup">
-        <col
-          v-for="(colValue, colKey) in dataColumns"
-          :key="colKey"
-          :class="`col-${colValue}`"
-        />
+        <col v-for="(colValue, colKey) in dataColumns" :key="colKey" :class="`col-${colValue}`" />
       </colgroup>
       <!-- Column header -->
       <thead v-if="theadData.length">
@@ -95,10 +87,7 @@
             :aria-selected="tbodyRow[0][T_CELL.SELECTED] || null"
           >
             <template v-for="(tbodyCell, tbodyCellIndex) in tbodyRow">
-              <td
-                :key="`tbody-cell-${tbodyCellIndex}`"
-                :class="cellClassName(tbodyCell)"
-              >
+              <td :key="`tbody-cell-${tbodyCellIndex}`" :class="cellClassName(tbodyCell)">
                 <!-- Row checkboxes -->
                 <ui-checkbox
                   v-if="tbodyCell[T_CELL.CHECKBOX]"
@@ -121,9 +110,7 @@
           <td
             class="mdc-data-table__cell mdc-data-table__cell--no-data"
             :colspan="dataColumns"
-          >
-            {{ noData }}
-          </td>
+          >{{ noData }}</td>
         </tr>
       </tbody>
       <!-- Footers -->

@@ -8,9 +8,9 @@
     :label="label"
     :fullwidth="fullwidth"
     :disabled="disabled"
-    :withLeadingIcon="withLeadingIcon"
+    :with-leading-icon="withLeadingIcon"
     :icon="icon"
-    :withTrailingIcon="withTrailingIcon"
+    :with-trailing-icon="withTrailingIcon"
     plus
     @focus="handleFocus"
     @keydown="handleKeydown"
@@ -37,7 +37,6 @@
         <ul class="mdc-list">
           <li
             v-for="(item, index) in currentSuggestion.data"
-            v-html="item[UI_AUTOCOMPLETE.ITEM.LABEL]"
             :key="index"
             :data-index="index"
             :class="[
@@ -45,6 +44,7 @@
               { selected: index === currentSuggestion.index }
             ]"
             @click="handleSelected(item)"
+            v-html="item[UI_AUTOCOMPLETE.ITEM.LABEL]"
           ></li>
         </ul>
       </div>
@@ -83,7 +83,7 @@ const KEYCODE = {
 };
 
 export default {
-  name: 'ui-autocomplete',
+  name: 'UiAutocomplete',
   components: {
     UiTextfield
   },
@@ -107,7 +107,10 @@ export default {
       type: Boolean,
       default: false
     },
-    id: String,
+    id: {
+      type: String,
+      default: ''
+    },
     autofocus: {
       type: Boolean,
       default: false

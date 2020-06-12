@@ -8,10 +8,9 @@
         :text="tabItem.text || null"
         :icon="tabItem.icon || null"
         :stacked="stacked"
-        :minWidth="minWidth"
-        :contentIndicator="contentIndicator"
-      >
-      </ui-tab>
+        :min-width="minWidth"
+        :content-indicator="contentIndicator"
+      ></ui-tab>
     </slot>
   </ui-tab-bar>
 </template>
@@ -24,7 +23,7 @@ import tabScrollerMixin from '../../mixins/tab-scroller';
 import tabMixin from '../../mixins/tab';
 
 export default {
-  name: 'ui-tabs',
+  name: 'UiTabs',
   components: {
     UiTabBar,
     UiTab

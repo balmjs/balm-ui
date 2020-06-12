@@ -7,13 +7,12 @@
       </ui-form-field>
       <ui-form-field>
         <ui-select
-          outlined
           v-model="value"
+          outlined
           :options="options"
-          defaultLabel="Select"
-          :defaultValue="0"
-          >Label</ui-select
-        >
+          default-label="Select"
+          :default-value="0"
+        >Label</ui-select>
       </ui-form-field>
     </div>
   </section>

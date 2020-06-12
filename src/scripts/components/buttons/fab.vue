@@ -8,8 +8,8 @@
         <i
           v-if="materialIcon"
           :class="[UI_GLOBAL.cssClasses.icon, UI_FAB.cssClasses.icon]"
-          >{{ materialIcon }}</i
-        >
+          v-text="materialIcon"
+        ></i>
       </slot>
       <!-- Text label -->
       <span class="mdc-fab__label">
@@ -24,8 +24,8 @@
         <i
           v-if="materialIcon"
           :class="[UI_GLOBAL.cssClasses.icon, UI_FAB.cssClasses.icon]"
-          >{{ materialIcon }}</i
-        >
+          v-text="materialIcon"
+        ></i>
       </slot>
     </template>
   </button>
@@ -53,7 +53,7 @@ const UI_FAB = {
 };
 
 export default {
-  name: 'ui-fab',
+  name: 'UiFab',
   mixins: [typeMixin, materialIconMixin, rippleMixin],
   props: {
     // UI variants

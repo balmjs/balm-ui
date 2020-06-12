@@ -6,8 +6,8 @@
 
 | Name      | Type   | Default | Description                                                             |
 | --------- | ------ | ------- | ----------------------------------------------------------------------- |
-| `image`   | string | `null`  | Add the _src_ attribute directly to the `<img>` in the image container. |
-| `bgImage` | string | `null`  | Use a `<div>` instead of `<img>` element.                               |
+| `image`   | string | `''`    | Add the _src_ attribute directly to the `<img>` in the image container. |
+| `bgImage` | string | `''`    | Use a `<div>` instead of `<img>` element.                               |
 
 #### Slots
 

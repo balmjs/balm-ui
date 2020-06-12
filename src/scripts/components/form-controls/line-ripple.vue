@@ -5,6 +5,6 @@
 
 <script>
 export default {
-  name: 'ui-line-ripple'
+  name: 'UiLineRipple'
 };
 </script>

@@ -1,6 +1,6 @@
 const reTypeOf = /(?:^\[object\s(.*?)\]$)/;
 
-const getType = any => {
+const getType = (any) => {
   return Object.prototype.toString
     .call(any)
     .replace(reTypeOf, '$1')

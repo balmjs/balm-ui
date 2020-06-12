@@ -118,7 +118,7 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'component',
         name: 'Shape',
-        description: 'Shape'
+        description: 'Mixins for angled corners on unelevated components'
       }
     ]
   },
@@ -180,7 +180,7 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'component',
         name: 'Rangepicker',
-        description: 'Rangepicker',
+        description: 'Range datepicker',
         plus: true
       },
       {
@@ -328,11 +328,6 @@ const MATERIAL_COMPONENTS = [
         name: 'Elevation',
         description: 'Shadow for different elevations'
       },
-      // {
-      //   icon: 'component',
-      //   name: 'Shape',
-      //   description: 'Mixins for angled corners on unelevated components'
-      // },
       {
         icon: 'component',
         name: 'Text Divider',

@@ -19,7 +19,7 @@ const UI_FORM = {
 };
 
 export default {
-  name: 'ui-form',
+  name: 'UiForm',
   mixins: [typeMixin],
   props: {
     // UI variants

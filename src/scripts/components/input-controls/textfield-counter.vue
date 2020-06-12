@@ -5,6 +5,6 @@
 
 <script>
 export default {
-  name: 'ui-textfield-counter'
+  name: 'UiTextfieldCounter'
 };
 </script>

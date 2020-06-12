@@ -1,8 +1,5 @@
 <template>
-  <li
-    :class="nested ? null : getClass(item)"
-    :role="nested ? null : 'menuitem'"
-  >
+  <li :class="nested ? null : getClass(item)" :role="nested ? null : 'menuitem'">
     <template v-if="nested">
       <ul class="mdc-menu__selection-group">
         <slot></slot>
@@ -12,9 +9,7 @@
       <!-- Leading icon / Text / Command -->
       <slot>
         <ui-menuitem-icon v-if="item.icon">
-          <i :class="UI_GLOBAL.cssClasses.icon" aria-hidden="true">{{
-            item.icon
-          }}</i>
+          <i :class="UI_GLOBAL.cssClasses.icon" aria-hidden="true" v-text="item.icon"></i>
         </ui-menuitem-icon>
         <ui-menuitem-text v-if="item.text">{{ item.text }}</ui-menuitem-text>
       </slot>
@@ -29,7 +24,7 @@ import rippleMixin from '../../mixins/ripple';
 import UI_GLOBAL from '../../config/constants';
 
 export default {
-  name: 'ui-menuitem',
+  name: 'UiMenuitem',
   components: {
     UiMenuitemIcon,
     UiMenuitemText

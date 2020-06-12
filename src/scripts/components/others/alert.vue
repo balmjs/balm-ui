@@ -4,27 +4,20 @@
     :class="[
       'mdc-alert',
       `mdc-alert--${stateType}`,
-      {
-        'mdc-alert--closed': closed
-      }
+      { 'mdc-alert--closed': closed }
     ]"
   >
     <slot name="icon">
       <i
         v-if="materialIcon"
         :class="['material-icons mdc-alert__icon', stateClassName]"
-        >{{ materialIcon }}</i
-      >
+        v-text="materialIcon"
+      ></i>
     </slot>
     <div class="mdc-alert__content">
       <slot></slot>
     </div>
-    <i
-      v-if="closable"
-      class="material-icons mdc-alert__close-button"
-      @click="onClose"
-      >clear</i
-    >
+    <i v-if="closable" class="material-icons mdc-alert__close-button" @click="onClose">clear</i>
   </div>
 </template>
 
@@ -32,7 +25,7 @@
 import stateTypeMixins from '../../mixins/state-type';
 
 export default {
-  name: 'ui-alert',
+  name: 'UiAlert',
   mixins: [stateTypeMixins],
   props: {
     // UI attributes

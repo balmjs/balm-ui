@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'ui-list-group'
+  name: 'UiListGroup'
 };
 </script>

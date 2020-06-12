@@ -16,7 +16,7 @@ import tabBarMixin from '../../mixins/tab-bar';
 import tabScrollerMixin from '../../mixins/tab-scroller';
 
 export default {
-  name: 'ui-tab-bar',
+  name: 'UiTabBar',
   components: {
     UiTabScroller
   },

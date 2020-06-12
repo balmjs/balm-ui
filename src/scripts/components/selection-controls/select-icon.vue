@@ -5,7 +5,9 @@
     :role="unclickable ? null : 'button'"
     @click="unclickable ? null : handleClick"
   >
-    <slot><!-- Material Icons --></slot>
+    <slot>
+      <!-- Material Icons -->
+    </slot>
   </i>
 </template>
 
@@ -20,7 +22,7 @@ const UI_SELECT_ICON = {
 };
 
 export default {
-  name: 'ui-select-icon',
+  name: 'UiSelectIcon',
   props: {
     unclickable: {
       type: Boolean,

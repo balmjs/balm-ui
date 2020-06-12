@@ -1,5 +1,5 @@
 <template>
-  <ui-page type="plugin" name="confirm-dialog" demoCount="2">
+  <ui-page type="plugin" name="confirm-dialog" demo-count="2">
     <template #hero>
       <h1 :class="$tt('headline1')">$confirm</h1>
     </template>
@@ -14,9 +14,7 @@
 
     <section class="demo-wrapper">
       <div class="demo">
-        <ui-button raised @click="showConfrim"
-          >Show confrim with icon</ui-button
-        >
+        <ui-button raised @click="showConfrim">Show confrim with icon</ui-button>
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>

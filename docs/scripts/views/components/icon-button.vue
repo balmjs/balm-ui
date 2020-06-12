@@ -30,10 +30,7 @@
         <div class="toggle-example">
           <div>Disabled Buttons</div>
           <div class="example">
-            <ui-icon-button
-              icon="airplanemode_active"
-              disabled
-            ></ui-icon-button>
+            <ui-icon-button icon="airplanemode_active" disabled></ui-icon-button>
             <ui-icon-button disabled>
               <svg-logo></svg-logo>
             </ui-icon-button>

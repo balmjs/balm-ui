@@ -4,21 +4,13 @@
     <!-- Image container -->
     <template v-if="$parent.isMasonry">
       <slot name="image" :imageClass="UI_IMAGE_LIST.cssClasses.image">
-        <div
-          v-if="bgImage"
-          :class="UI_IMAGE_LIST.cssClasses.image"
-          :style="style"
-        ></div>
+        <div v-if="bgImage" :class="UI_IMAGE_LIST.cssClasses.image" :style="style"></div>
         <img v-else :class="UI_IMAGE_LIST.cssClasses.image" :src="image" />
       </slot>
     </template>
     <div v-else class="mdc-image-list__image-aspect-container">
       <slot name="image" :imageClass="UI_IMAGE_LIST.cssClasses.image">
-        <div
-          v-if="bgImage"
-          :class="UI_IMAGE_LIST.cssClasses.image"
-          :style="style"
-        ></div>
+        <div v-if="bgImage" :class="UI_IMAGE_LIST.cssClasses.image" :style="style"></div>
         <img v-else :class="UI_IMAGE_LIST.cssClasses.image" :src="image" />
       </slot>
     </div>
@@ -30,11 +22,17 @@
 import UI_IMAGE_LIST from './constants';
 
 export default {
-  name: 'ui-image-item',
+  name: 'UiImageItem',
   props: {
     // UI attributes
-    image: String,
-    bgImage: String
+    image: {
+      type: String,
+      default: ''
+    },
+    bgImage: {
+      type: String,
+      default: ''
+    }
   },
   data() {
     return {

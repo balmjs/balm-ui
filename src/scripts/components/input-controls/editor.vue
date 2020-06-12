@@ -2,13 +2,9 @@
   <div class="mdc-editor-container">
     <slot name="toolbar"></slot>
     <div ref="editor" class="mdc-editor"></div>
-    <input
-      v-if="customImageHandler"
-      ref="file"
-      type="file"
-      @change="onFileChange"
-      hidden
-    />
+    <template v-if="customImageHandler">
+      <input ref="file" type="file" hidden @change="onFileChange" />
+    </template>
   </div>
 </template>
 
@@ -44,7 +40,7 @@ const UI_EDITOR = {
 };
 
 export default {
-  name: 'ui-editor',
+  name: 'UiEditor',
   model: {
     prop: 'content',
     event: UI_EDITOR.EVENT.TEXT_CHANGE
@@ -62,8 +58,14 @@ export default {
       }
     },
     // UI attributes
-    toolbar: [Array, String],
-    placeholder: String,
+    toolbar: {
+      type: [Array, String, null],
+      default: null
+    },
+    placeholder: {
+      type: String,
+      default: ''
+    },
     theme: {
       type: String,
       default: 'snow'
@@ -72,14 +74,22 @@ export default {
       type: Boolean,
       default: false
     },
-    toolbarCustomHandlers: Object,
+    toolbarCustomHandlers: {
+      type: Object,
+      default() {
+        return {};
+      }
+    },
     emotions: {
       type: Array,
       default() {
         return []; // format: [{ type, title, content: { name, value, src } }]
       }
     },
-    extension: Object
+    extension: {
+      type: [Boolean, Object],
+      default: false
+    }
   },
   data() {
     return {

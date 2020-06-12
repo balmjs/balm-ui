@@ -4,13 +4,7 @@
       <ui-form>
         <ui-form-field id="hero-slider-wrapper">
           <ui-icon>volume_mute</ui-icon>
-          <ui-slider
-            ref="slider"
-            id="hero-slider"
-            max="100"
-            v-model="value"
-            label="Select Volume"
-          ></ui-slider>
+          <ui-slider ref="slider" id="hero-slider" max="100" v-model="value" label="Select Volume"></ui-slider>
           <ui-icon>volume_up</ui-icon>
         </ui-form-field>
       </ui-form>
@@ -91,9 +85,7 @@
     </section>
 
     <section class="demo-wrapper">
-      <h6 :class="$tt('headline6')">
-        Custom Colored Discrete Slider with Tick Marks
-      </h6>
+      <h6 :class="$tt('headline6')">Custom Colored Discrete Slider with Tick Marks</h6>
       <div class="demo">
         <div
           :class="[
@@ -135,17 +127,11 @@
       </div>
       <div class="demo-param-field-group">
         <ui-form-field>
-          <ui-checkbox
-            id="slider-disabled"
-            v-model="controls.disabled"
-          ></ui-checkbox>
+          <ui-checkbox id="slider-disabled" v-model="controls.disabled"></ui-checkbox>
           <label for="slider-disabled">Disabled</label>
         </ui-form-field>
         <ui-form-field>
-          <ui-checkbox
-            id="slider-custom-bg"
-            v-model="controls.customColor"
-          ></ui-checkbox>
+          <ui-checkbox id="slider-custom-bg" v-model="controls.customColor"></ui-checkbox>
           <label for="slider-custom-bg">Use Custom BG Color</label>
         </ui-form-field>
       </div>

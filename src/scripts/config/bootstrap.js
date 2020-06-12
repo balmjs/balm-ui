@@ -1,7 +1,7 @@
 import autoInstall from './auto-install';
 import configure from './configure';
 
-const bootstrap = Component => {
+const bootstrap = (Component) => {
   const UiComponent = {
     install(Vue, options = {}) {
       // Configure the component's props

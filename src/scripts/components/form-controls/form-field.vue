@@ -10,7 +10,7 @@
 import { MDCFormField } from '../../../material-components-web/form-field';
 
 export default {
-  name: 'ui-form-field',
+  name: 'UiFormField',
   props: {
     // UI attributes
     nowrap: {

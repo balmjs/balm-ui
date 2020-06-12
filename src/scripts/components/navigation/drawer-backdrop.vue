@@ -12,7 +12,7 @@ const UI_DRAWER_BACKDROP = {
 };
 
 export default {
-  name: 'ui-drawer-backdrop',
+  name: 'UiDrawerBackdrop',
   methods: {
     handleClick(event) {
       this.$emit(UI_DRAWER_BACKDROP.EVENT.CLICK, event);

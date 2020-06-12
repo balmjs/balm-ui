@@ -1,5 +1,5 @@
 <template>
-  <ui-page type="plugin" name="typography" demoCount="1" :apis="['typography']">
+  <ui-page type="plugin" name="typography" demo-count="1">
     <template #hero>
       <h1 :class="$tt('headline1')">Tt</h1>
     </template>
@@ -66,7 +66,7 @@
       <div class="demo-typography-line-1">+34px</div>
       <div class="demo-typography-line-2">+22px</div>
       <div class="demo-typography-line-3">+28px</div>
-    </section> -->
+    </section>-->
   </ui-page>
 </template>
 

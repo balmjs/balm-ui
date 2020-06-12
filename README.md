@@ -2,7 +2,7 @@
 
 > Next Generation Material UI for Vue.js
 
-## What is BalmUI?
+## What is BalmUI
 
 Following the [Material Design](https://material.io/components/) UI components for the web specification, we developed the BalmUI library that contains a set of high quality components and demos for building rich, interactive user interfaces.
 

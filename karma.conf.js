@@ -1,6 +1,6 @@
 const webpackConfig = require('./config/webpack.karma');
 
-module.exports = config => {
+module.exports = (config) => {
   config.set({
     frameworks: ['mocha'],
 

@@ -1,10 +1,9 @@
 config
-.tmp
 src/fonts
 src/material-components-web
+.tmp
 dist
 components
 directives
 plugins
 utils
-gulpfile.js

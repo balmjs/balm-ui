@@ -8,9 +8,9 @@
 | ------------------- | --------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | `model` (`v-model`) | string, number, array | `''`    | Mandatory.                                                                                                                             |
 | `outlined`          | boolean               | `false` | Styles the datepicker as an outlined text field. (`label` or `placeholder` required)                                                   |
-| `id`                | string                | `''`    | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`.                                                          |
+| `id`                | string                | `null`  | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`.                                                          |
 | `label`             | string                | `''`    | A text caption or description for the datepicker, which use the input's `placeholder` attribute instead.                               |
-| `placeholder`       | string                | `''`    | The _placeholder_ attribute of the `<input>`.                                                                                          |
+| `placeholder`       | string                | `null`  | The _placeholder_ attribute of the `<input>`.                                                                                          |
 | `fullwidth`         | boolean               | `false` | Styles the datepicker as a full width text field.                                                                                      |
 | `disabled`          | boolean               | `false` | Styles the datepicker as a disabled text field.                                                                                        |
 | `withLeadingIcon`   | boolean, string       | `false` | Styles the datepicker as a text field with a leading icon. (Use with `before` slot)                                                    |

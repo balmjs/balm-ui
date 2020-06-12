@@ -4,11 +4,11 @@
 $setGrid(property, size, value);
 ```
 
-| Param      | Type   | Default | Description                                          |
-| ---------- | ------ | ------- | ---------------------------------------------------- |
-| `property` | string | `null`  | Grid custom property.                                |
-| `size`     | string | `null`  | The target platform: `desktop`, `tablet` or `phone`. |
-| `value`    | string | `null`  | Grid custom value.                                   |
+| Param      | Type   | Default | Description                                                 |
+| ---------- | ------ | ------- | ----------------------------------------------------------- |
+| `property` | string | `''`    | Grid custom property: `margin`, `gutter` or `column-width`. |
+| `size`     | string | `''`    | The target platform: `desktop`, `tablet` or `phone`.        |
+| `value`    | string | `''`    | Grid custom value.                                          |
 
 #### Grid properties
 

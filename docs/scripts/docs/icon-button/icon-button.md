@@ -7,7 +7,7 @@
 | Name                | Type    | Default | Description                                                              |
 | ------------------- | ------- | ------- | ------------------------------------------------------------------------ |
 | `model` (`v-model`) | boolean | `false` | Sets the toggle state.                                                   |
-| `icon`              | string  | `null`  | A material icon of the icon button. See [Material Icons](/#/icons) list. |
+| `icon`              | string  | `''`    | A material icon of the icon button. See [Material Icons](/#/icons) list. |
 | `toggle`            | object  | `{}`    | Two icons of the icon button toggle. (Format: `{on, off}`)               |
 
 > Configuring the icon button toggle states by `toggle.on` and `toggle.off` props.

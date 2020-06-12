@@ -1,8 +1,8 @@
 <template>
-  <ui-page name="menu" demoCount="2" :apis="['ui-menu', 'menu', 'menuitem', 'menu-anchor']">
+  <ui-page name="menu" demo-count="2" :apis="['ui-menu', 'menu', 'menuitem', 'menu-anchor']">
     <template #hero>
       <ui-menu
-        cssOnly
+        css-only
         :items="[
           'Back',
           'Forward',
@@ -45,54 +45,54 @@
             <ui-form-field>
               <ui-radio
                 id="position-top-left"
+                v-model="controls.buttonPosition"
                 name="position"
                 value="top left"
-                v-model="controls.buttonPosition"
               ></ui-radio>
               <label for="position-top-left">Top left</label>
             </ui-form-field>
             <ui-form-field>
               <ui-radio
                 id="position-top-right"
+                v-model="controls.buttonPosition"
                 name="position"
                 value="top right"
-                v-model="controls.buttonPosition"
               ></ui-radio>
               <label for="position-top-right">Top right</label>
             </ui-form-field>
             <ui-form-field>
               <ui-radio
                 id="position-middle-left"
+                v-model="controls.buttonPosition"
                 name="position"
                 value="middle left"
-                v-model="controls.buttonPosition"
               ></ui-radio>
               <label for="position-middle-left">Middle left</label>
             </ui-form-field>
             <ui-form-field>
               <ui-radio
                 id="position-middle-right"
+                v-model="controls.buttonPosition"
                 name="position"
                 value="middle right"
-                v-model="controls.buttonPosition"
               ></ui-radio>
               <label for="position-middle-right">Middle right</label>
             </ui-form-field>
             <ui-form-field>
               <ui-radio
                 id="position-bottom-left"
+                v-model="controls.buttonPosition"
                 name="position"
                 value="bottom left"
-                v-model="controls.buttonPosition"
               ></ui-radio>
               <label for="position-bottom-left">Bottom left</label>
             </ui-form-field>
             <ui-form-field>
               <ui-radio
                 id="position-bottom-right"
+                v-model="controls.buttonPosition"
                 name="position"
                 value="bottom right"
-                v-model="controls.buttonPosition"
               ></ui-radio>
               <label for="position-bottom-right">Bottom right</label>
             </ui-form-field>
@@ -102,36 +102,36 @@
             <ui-form-field>
               <ui-radio
                 id="menu-position-top-start"
+                v-model="controls.menuPosition"
                 name="menu-position"
                 value="top start"
-                v-model="controls.menuPosition"
               ></ui-radio>
               <label for="menu-position-top-start">Top start</label>
             </ui-form-field>
             <ui-form-field>
               <ui-radio
                 id="menu-position-top-end"
+                v-model="controls.menuPosition"
                 name="menu-position"
                 value="top end"
-                v-model="controls.menuPosition"
               ></ui-radio>
               <label for="menu-position-top-end">Top end</label>
             </ui-form-field>
             <ui-form-field>
               <ui-radio
                 id="menu-position-bottom-start"
+                v-model="controls.menuPosition"
                 name="menu-position"
                 value="bottom start"
-                v-model="controls.menuPosition"
               ></ui-radio>
               <label for="menu-position-bottom-start">Bottom start</label>
             </ui-form-field>
             <ui-form-field>
               <ui-radio
                 id="menu-position-bottom-end"
+                v-model="controls.menuPosition"
                 name="menu-position"
                 value="bottom end"
-                v-model="controls.menuPosition"
               ></ui-radio>
               <label for="menu-position-bottom-end">Bottom end</label>
             </ui-form-field>
@@ -163,13 +163,9 @@
           <div>
             <span>
               Last Selected item:
-              <em id="last-selected">
-                {{
-                selectedValue
-                ? `"${selectedValue.label}" at index ${selectedValue.index}`
-                : '&lt;none selected&gt;'
-                }}
-              </em>
+              <em
+                id="last-selected"
+              >{{ selectedValue ? `"${selectedValue.label}" at index ${selectedValue.index}` : '&lt;none selected&gt;' }}</em>
             </span>
           </div>
         </ui-form>
@@ -188,7 +184,7 @@
               :position="menuPosition"
               :distance="controls.distance"
               :point="controls.point"
-              :quickOpen="controls.disableAnimation"
+              :quick-open="controls.disableAnimation"
               :fixed="controls.fixedPosition"
               @selected="onSelected"
               @closed="onClosed"

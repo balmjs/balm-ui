@@ -7,13 +7,13 @@
 | Name               | Type            | Default     | Description                                                      |
 | ------------------ | --------------- | ----------- | ---------------------------------------------------------------- |
 | `data`             | array           | `[]`        | Data source.                                                     |
-| `caption`          | string          | `null`      | Specifies the caption (or title) of a table.                     |
+| `caption`          | string          | `''`        | Specifies the caption (or title) of a table.                     |
 | `colgroup`         | boolean         | `false`     | Defines a group of columns within a table.                       |
 | `thead`            | array           | `[]`        | Table header renderer.                                           |
 | `tbody`            | array           | `[]`        | Table content renderer.                                          |
 | `tfoot`            | array           | `[]`        | Table footer renderer.                                           |
 | `fullwidth`        | boolean         | `false`     | Styles the table as a full width table.                          |
-| `columns`          | number          | `null`      | Set table columns by manual.                                     |
+| `columns`          | number          | `0`         | Set table columns by manual.                                     |
 | `noData`           | string          | `'No Data'` | Show text when data source is empty.                             |
 | `rowCheckbox`      | boolean         | `false`     | Data table with row selection.                                   |
 | `selectedRows`     | array           | `[]`        | Selected row indexes/ids. (Required: `rowCheckbox: true`)        |
@@ -121,14 +121,14 @@
       },
       {
         field: 'fat',
-        fn: data => {
+        fn: (data) => {
           return data.fat.toFixed(1);
         }
       },
       'carbs',
       {
         field: 'protein',
-        class: data => {
+        class: (data) => {
           return data.protein > 5 ? 'red' : 'green';
         }
       },

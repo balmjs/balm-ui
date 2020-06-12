@@ -171,8 +171,8 @@ export default {
     },
     // For helper text
     helperTextId: {
-      type: String,
-      default: ''
+      type: [String, null],
+      default: null
     }
   },
   data() {

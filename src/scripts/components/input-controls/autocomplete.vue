@@ -108,8 +108,8 @@ export default {
       default: false
     },
     id: {
-      type: String,
-      default: ''
+      type: [String, null],
+      default: null
     },
     autofocus: {
       type: Boolean,

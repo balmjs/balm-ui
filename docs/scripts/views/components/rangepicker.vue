@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="rangepicker" demoCount="1">
+  <ui-page name="rangepicker" demo-count="1">
     <template #hero>
       <ui-rangepicker v-model="date" :placeholders="['Start Date', 'End Date']">
         <template #separator>to</template>

@@ -40,10 +40,16 @@ const UI_FILE = {
     return result;
   },
   createFileObject: (file) => {
-    return Object.assign({}, file, {
+    let { lastModified, name, size, type } = file;
+
+    return {
       tmpId: UI_FILE.tmpId(),
+      lastModified,
+      name,
+      size,
+      type,
       sourceFile: file
-    });
+    };
   },
   getPreviewSrc: (fileObj) => {
     return new Promise(function (resolve, reject) {

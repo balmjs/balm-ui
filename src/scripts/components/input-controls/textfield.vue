@@ -201,34 +201,34 @@ export default {
       default: false
     },
     minlength: {
-      type: [Number, String],
-      default: ''
+      type: [String, Number, null],
+      default: null
     },
     maxlength: {
-      type: [Number, String],
-      default: ''
+      type: [String, Number, null],
+      default: null
     },
     // For native <input>
     pattern: {
-      type: String,
-      default: ''
+      type: [String, null],
+      default: null
     },
     min: {
-      type: [Number, String],
-      default: ''
+      type: [String, Number, null],
+      default: null
     },
     max: {
-      type: [Number, String],
-      default: ''
+      type: [String, Number, null],
+      default: null
     },
     step: {
-      type: [Number, String],
-      default: ''
+      type: [String, Number, null],
+      default: null
     },
     // For helper text
     helperTextId: {
-      type: String,
-      default: ''
+      type: [String, null],
+      default: null
     },
     // For plus
     plus: {

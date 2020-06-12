@@ -1,8 +1,8 @@
 <template>
-  <ui-page name="icon-button" demoCount="2">
+  <ui-page name="icon-button" demo-count="2">
     <template #hero>
       <div class="hero-demo">
-        <ui-icon-button :toggle="icon" v-model="value"></ui-icon-button>
+        <ui-icon-button v-model="value" :toggle="icon"></ui-icon-button>
       </div>
     </template>
 
@@ -46,7 +46,7 @@
         <div class="toggle-example">
           <div>Using Material Icons</div>
           <div class="example">
-            <ui-icon-button :toggle="icon" v-model="value1"></ui-icon-button>
+            <ui-icon-button v-model="value1" :toggle="icon"></ui-icon-button>
           </div>
           <p>
             Favorited?
@@ -72,24 +72,12 @@
           <div class="example">
             <ui-icon-button>
               <template #default="{ onClass, offClass }">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  :class="onClass"
-                >
+                <svg width="24" height="24" viewBox="0 0 24 24" :class="onClass">
                   <path
                     d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"
                   />
                 </svg>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  :class="offClass"
-                >
+                <svg width="24" height="24" viewBox="0 0 24 24" :class="offClass">
                   <path
                     d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
                   />

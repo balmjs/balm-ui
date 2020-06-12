@@ -12,7 +12,7 @@
 | `model` (`v-model`) | boolean, number, string | `false` | Mandatory.                                                                    |
 | `trueValue`         | boolean, number, string | `true`  |                                                                               |
 | `falseValue`        | boolean, number, string | `false` |                                                                               |
-| `id`                | string                  | `''`    | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`. |
+| `id`                | string                  | `null`  | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`. |
 | `name`              | string                  | `''`    | The _name_ attribute of the `<input>`.                                        |
 | `disabled`          | boolean                 | `false` | Styles the switch as a disabled switch.                                       |
 | `attrs`             | object                  | `{}`    | Other attributes for `<input>`.                                               |

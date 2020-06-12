@@ -4,7 +4,7 @@ $tt(style);
 
 | Param   | Type   | Default | Description            |
 | ------- | ------ | ------- | ---------------------- |
-| `style` | string | `null`  | Typography style name. |
+| `style` | string | `''`    | Typography style name. |
 
 The typographic styles in this module are derived from thirteen styles:
 

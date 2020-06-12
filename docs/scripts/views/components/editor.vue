@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="editor" demoCount="3" withoutCss>
+  <ui-page name="editor" demo-count="3" without-css>
     <template #hero>
       <h1 :class="$tt('headline1')">WYSIWYG</h1>
     </template>
@@ -24,10 +24,10 @@
         v-model="decodeContent"
         placeholder="Compose an epic..."
         :toolbar="toolbar"
-        :toolbarCustomHandlers="toolbarCustomHandlers"
+        :toolbar-custom-handlers="toolbarCustomHandlers"
         :emotions="emotions"
         :extension="extension"
-        customImageHandler
+        custom-image-handler
         @file-change="onFileChange"
       ></ui-editor>
       <p>

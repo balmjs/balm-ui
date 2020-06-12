@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="select" demoCount="4" :apis="['select', 'select-helper', 'select-icon']">
+  <ui-page name="select" demo-count="4" :apis="['select', 'select-helper', 'select-icon']">
     <template #hero>
       <div class="hero-demo">
         <div>
@@ -8,8 +8,8 @@
               id="my-select"
               v-model="selected"
               :options="options"
-              :withLeadingIcon="selectOption.includes(1)"
-              helperTextId="my-helper-text"
+              :with-leading-icon="selectOption.includes(1)"
+              helper-text-id="my-helper-text"
             >
               <template v-if="selectOption.includes(1)" #icon>
                 <ui-select-icon>face</ui-select-icon>
@@ -25,12 +25,12 @@
         <div>
           <template v-if="typeOption === 1">
             <ui-select
-              outlined
               id="my-select"
               v-model="selected"
+              outlined
               :options="options"
-              :withLeadingIcon="selectOption.includes(1)"
-              helperTextId="my-helper-text"
+              :with-leading-icon="selectOption.includes(1)"
+              helper-text-id="my-helper-text"
             >
               <template v-if="selectOption.includes(1)" #icon>
                 <ui-select-icon>face</ui-select-icon>
@@ -42,7 +42,7 @@
         </div>
       </div>
       <div class="hero-options">
-        <ui-select class="hero-option" :options="TypeOptions" v-model="typeOption">Type</ui-select>
+        <ui-select v-model="typeOption" class="hero-option" :options="TypeOptions">Type</ui-select>
         <div class="hero-option">
           <ui-form-field>
             <ui-checkbox id="with-leading-icon" v-model="selectOption" :value="1"></ui-checkbox>
@@ -64,7 +64,7 @@
           <ui-select
             id="full-func-js-select"
             v-model="selected1.value"
-            :selectedIndex="selected1.index"
+            :selected-index="selected1.index"
             :options="options1"
             :class="{ 'demo-select-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
@@ -73,17 +73,13 @@
         </div>
         <p>
           Currently selected:
-          <span id="currently-selected">
-            {{
-            selected1.value
-            ? `${selected1.value} at index ${selected1.index}`
-            : '(none)'
-            }}
-          </span>
+          <span
+            id="currently-selected"
+          >{{ selected1.value ? `${selected1.value} at index ${selected1.index}` : '(none)' }}</span>
         </p>
         <ui-select-controls v-model="controls"></ui-select-controls>
         <div class="button-container">
-          <ui-button raised id="set-value-meat-button" @click="onClick">Set Value to Meat</ui-button>
+          <ui-button id="set-value-meat-button" raised @click="onClick">Set Value to Meat</ui-button>
         </div>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
@@ -95,9 +91,9 @@
         <div class="example" :dir="controls.rtl ? 'rtl' : null">
           <ui-select
             id="outlined-select"
-            outlined
             v-model="selected1.value"
-            :selectedIndex="selected1.index"
+            outlined
+            :selected-index="selected1.index"
             :options="options1"
             :class="{ 'demo-select-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
@@ -106,15 +102,11 @@
         </div>
         <p>
           Currently selected:
-          <span id="currently-selected-outline">
-            {{
-            selected1.value
-            ? `${selected1.value} at index ${selected1.index}`
-            : '(none)'
-            }}
-          </span>
+          <span
+            id="currently-selected-outline"
+          >{{ selected1.value ? `${selected1.value} at index ${selected1.index}` : '(none)' }}</span>
         </p>
-        <ui-select-controls idPrefix="outline" v-model="controls"></ui-select-controls>
+        <ui-select-controls v-model="controls" id-prefix="outline"></ui-select-controls>
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
@@ -131,13 +123,13 @@
       <h6 :class="$tt('headline6')">1.4 Custom Select</h6>
       <div class="demo">
         <ui-select
-          defaultLabel="Province"
-          :options="provinces"
           v-model="formData.province"
+          :options="provinces"
+          default-label="Province"
           @change="onChangeProvince($event)"
         ></ui-select>
 
-        <ui-select defaultLabel="City" :options="cities" v-model="formData.city"></ui-select>
+        <ui-select v-model="formData.city" :options="cities" default-label="City"></ui-select>
         <p>Province: {{ formData.province }} - City: {{ formData.city }}</p>
       </div>
       <ui-snippet :code="$store.demos[4]"></ui-snippet>

@@ -1,6 +1,6 @@
 <template>
   <div class="page--grid-container">
-    <ui-top-app-bar contentSelector=".demo-content" fixed>
+    <ui-top-app-bar content-selector=".demo-content" fixed>
       <template #nav-icon="{ navIconClass }">
         <ui-icon-button icon="arrow_back" :class="navIconClass" @click="$router.back()"></ui-icon-button>
       </template>
@@ -10,7 +10,7 @@
     <ui-page
       class="demo-content"
       name="grid"
-      demoCount="9"
+      demo-count="9"
       :apis="['grid', 'grid-cell', 'grid-custom']"
     >
       <template #hero>
@@ -29,15 +29,15 @@
             <div class="demo-controls">
               Desktop Margin:
               <ui-select
-                :options="gutterOptions"
                 v-model="desktop.margin"
+                :options="gutterOptions"
                 @change="$setGrid('margin', 'desktop', $event)"
               ></ui-select>
 
               <br />Desktop Gutter:
               <ui-select
-                :options="gutterOptions"
                 v-model="desktop.gutter"
+                :options="gutterOptions"
                 @change="$setGrid('gutter', 'desktop', $event)"
               ></ui-select>
             </div>
@@ -46,15 +46,15 @@
             <div class="demo-controls">
               Tablet Margin:
               <ui-select
-                :options="gutterOptions"
                 v-model="tablet.margin"
+                :options="gutterOptions"
                 @change="$setGrid('margin', 'tablet', $event)"
               ></ui-select>
 
               <br />Tablet Gutter:
               <ui-select
-                :options="gutterOptions"
                 v-model="tablet.gutter"
+                :options="gutterOptions"
                 @change="$setGrid('gutter', 'tablet', $event)"
               ></ui-select>
             </div>
@@ -63,15 +63,15 @@
             <div class="demo-controls">
               Phone Margin:
               <ui-select
-                :options="gutterOptions"
                 v-model="phone.margin"
+                :options="gutterOptions"
                 @change="$setGrid('margin', 'phone', $event)"
               ></ui-select>
 
               <br />Phone Gutter:
               <ui-select
-                :options="gutterOptions"
                 v-model="phone.gutter"
+                :options="gutterOptions"
                 @change="$setGrid('gutter', 'phone', $event)"
               ></ui-select>
             </div>
@@ -153,8 +153,8 @@
               <div class="demo-controls">
                 Desktop Column Width:
                 <ui-select
-                  :options="widthOptions"
                   v-model="desktop.width"
+                  :options="widthOptions"
                   @change="$setGrid('column-width', 'desktop', $event)"
                 ></ui-select>
               </div>
@@ -163,8 +163,8 @@
               <div class="demo-controls">
                 Tablet Column Width:
                 <ui-select
-                  :options="widthOptions"
                   v-model="tablet.width"
+                  :options="widthOptions"
                   @change="$setGrid('column-width', 'tablet', $event)"
                 ></ui-select>
               </div>
@@ -173,8 +173,8 @@
               <div class="demo-controls">
                 Phone Column Width:
                 <ui-select
-                  :options="widthOptions"
                   v-model="phone.width"
+                  :options="widthOptions"
                   @change="$setGrid('column-width', 'phone', $event)"
                 ></ui-select>
               </div>
@@ -184,7 +184,7 @@
           <div
             class="demo-grid-legend"
           >Fixed column width layout grid and center alignment by default</div>
-          <ui-grid class="demo-grid" fixedColumnWidth>
+          <ui-grid class="demo-grid" fixed-column-width>
             <ui-grid-cell class="demo-cell" columns="1"></ui-grid-cell>
             <ui-grid-cell class="demo-cell" columns="1"></ui-grid-cell>
             <ui-grid-cell class="demo-cell" columns="1"></ui-grid-cell>
@@ -192,7 +192,7 @@
           <ui-snippet :code="$store.demos[8]"></ui-snippet>
 
           <div class="demo-grid-legend">Fixed column width layout grid and right alignment</div>
-          <ui-grid class="demo-grid" fixedColumnWidth position="right">
+          <ui-grid class="demo-grid" fixed-column-width position="right">
             <ui-grid-cell class="demo-cell" columns="1"></ui-grid-cell>
             <ui-grid-cell class="demo-cell" columns="1"></ui-grid-cell>
             <ui-grid-cell class="demo-cell" columns="1"></ui-grid-cell>

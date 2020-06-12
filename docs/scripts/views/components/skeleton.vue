@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="skeleton" demoCount="3">
+  <ui-page name="skeleton" demo-count="3">
     <template #hero>
       <h1 :class="$tt('headline1')">Skeleton</h1>
     </template>

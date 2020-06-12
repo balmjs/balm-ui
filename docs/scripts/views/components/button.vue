@@ -1,12 +1,12 @@
 <template>
-  <ui-page name="button" demoCount="1">
+  <ui-page name="button" demo-count="1">
     <template #hero>
       <div class="hero-demo">
-        <ui-button :type="typeOption" v-a11y>{{ text }}</ui-button>
+        <ui-button v-a11y :type="typeOption">{{ text }}</ui-button>
       </div>
       <div class="hero-options">
-        <ui-select class="hero-option" :options="TypeOptions" v-model="typeOption">Type</ui-select>
-        <ui-textfield class="hero-option" v-model="text">Button Text</ui-textfield>
+        <ui-select v-model="typeOption" class="hero-option" :options="TypeOptions">Type</ui-select>
+        <ui-textfield v-model="text" class="hero-option">Button Text</ui-textfield>
       </div>
     </template>
 

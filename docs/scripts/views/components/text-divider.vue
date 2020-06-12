@@ -1,11 +1,11 @@
 <template>
-  <ui-page name="text-divider" demoCount="2">
+  <ui-page name="text-divider" demo-count="2">
     <template #hero>
       <div class="hero-demo">
         <ui-text-divider :type="typeOption">With Text</ui-text-divider>
       </div>
       <div class="hero-options">
-        <ui-select class="hero-option" :options="TypeOptions" v-model="typeOption">Type</ui-select>
+        <ui-select v-model="typeOption" class="hero-option" :options="TypeOptions">Type</ui-select>
       </div>
     </template>
 

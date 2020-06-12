@@ -27,7 +27,7 @@
       <template v-else>
         <template v-for="(pageNumber, index) in pageCount">
           <li v-if="isShow(pageNumber)" :key="index" :class="getPageClassName(pageNumber)">
-            <a v-if="showPage(page)" @click="handleClick(page)">{{ page }}</a>
+            <a v-if="showPage(pageNumber)" @click="handleClick(pageNumber)">{{ pageNumber }}</a>
             <span v-else class="ellipsis">...</span>
           </li>
         </template>
@@ -223,10 +223,10 @@ export default {
     },
     getPageClassName(page) {
       return [
-        this.showPage(pageNumber)
+        this.showPage(page)
           ? 'mdc-pagination__page-item'
           : 'mdc-pagination__page-item-ellipsis',
-        { 'mdc-pagination__page-item--active': pageNumber === currentPage }
+        { 'mdc-pagination__page-item--active': page === this.currentPage }
       ];
     },
     handleClick(page) {

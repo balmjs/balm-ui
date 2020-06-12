@@ -2,8 +2,8 @@ export default {
   props: {
     // Element attributes
     placeholder: {
-      type: String,
-      default: ''
+      type: [String, null],
+      default: null
     },
     // UI attributes
     label: {

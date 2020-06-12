@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="file" demoCount="3" withoutCss>
+  <ui-page name="file" demo-count="3" without-css>
     <template #hero>
       <ui-file></ui-file>
     </template>
@@ -19,7 +19,7 @@
       <div class="demo">
         <ui-file accept="image/*" multiple preview @change="$balmUI.onChange('files2', $event)"></ui-file>
         <transition-group class="preview-list" name="list" tag="ul">
-          <li class="item" v-for="file in files2" :key="file.tmpId">
+          <li v-for="file in files2" :key="file.tmpId" class="item">
             <div class="inner">
               <span class="preview" :style="setBg(file)"></span>
               <span class="name">{{ file.name }}</span>

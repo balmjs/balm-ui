@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="switch" demoCount="1">
+  <ui-page name="switch" demo-count="1">
     <template #hero>
       <ui-form-field>
         <ui-switch id="hero-switch" v-model="toggle"></ui-switch>
@@ -12,16 +12,19 @@
       <h6 :class="$tt('headline6')">1.1 Enabled</h6>
       <div class="demo">
         <ui-form-field>
-          <ui-switch id="basic-switch" :trueValue="1" :falseValue="0" v-model="toggle1"></ui-switch>
+          <ui-switch id="basic-switch" v-model="toggle1" :trueValue="1" :falseValue="0"></ui-switch>
           <label for="basic-switch">{{ toggle1 }}</label>
         </ui-form-field>
+      </div>
+      <br />
+      <div class="demo">
         <ui-form-field>
           <ui-switch
             id="basic-switch-custom"
-            class="demo-switch--custom"
-            trueValue="on"
-            falseValue="off"
             v-model="toggle2"
+            class="demo-switch--custom"
+            true-value="on"
+            false-value="off"
           ></ui-switch>
           <label for="basic-switch-custom">{{ toggle2 }} (custom color)</label>
         </ui-form-field>

@@ -1,13 +1,13 @@
 <template>
   <div class="page--bottom-navigation-container">
-    <ui-top-app-bar contentSelector=".demo-content">
+    <ui-top-app-bar content-selector=".demo-content">
       <template #nav-icon="{ navIconClass }">
         <ui-icon-button icon="arrow_back" :class="navIconClass" @click="$router.back()"></ui-icon-button>
       </template>
       <span class="['catalog-title', $themeColor('on-primary')]">Bottom Navigation</span>
     </ui-top-app-bar>
 
-    <ui-page class="demo-content" name="bottom-navigation" demoCount="1">
+    <ui-page class="demo-content" name="bottom-navigation" demo-count="1">
       <template #hero>
         <h3 :class="$tt('headline3')">Bottom Navigation</h3>
       </template>
@@ -16,8 +16,8 @@
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </ui-page>
 
-    <ui-bottom-navigation contentSelector=".page--bottom-navigation-container">
-      <ui-tabs :items="items" v-model="active" @change="onChange"></ui-tabs>
+    <ui-bottom-navigation content-selector=".page--bottom-navigation-container">
+      <ui-tabs v-model="active" :items="items" @change="onChange"></ui-tabs>
     </ui-bottom-navigation>
   </div>
 </template>

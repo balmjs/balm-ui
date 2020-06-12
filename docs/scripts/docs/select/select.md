@@ -26,7 +26,7 @@
 | `icon`              | string         | `''`      | Optional. Indicates an icon element with a leading icon. See [Material Icons](/#/icons) list. |
 | `withLeadingIcon`   | boolean        | `false`   | Styles the select as a select with a leading icon.                                            |
 | `fullwidth`         | boolean        | `false`   | Optional. Styles the select as fullwidth select.                                              |
-| `helperTextId`      | string         | `''`      | Required for the _id_ attribute of the `<ui-select-helper>`.                                  |
+| `helperTextId`      | string         | `null`    | Required for the _id_ attribute of the `<ui-select-helper>`.                                  |
 
 > NOTE: `withLeadingIcon` is only used for (**non `<ui-select-icon>`**) custom leading icon, and generally do not need to be configured.
 

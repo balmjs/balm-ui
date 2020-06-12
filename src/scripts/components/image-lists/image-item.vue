@@ -26,12 +26,12 @@ export default {
   props: {
     // UI attributes
     image: {
-      type: String,
-      default: ''
+      type: [String, null],
+      default: null
     },
     bgImage: {
-      type: String,
-      default: ''
+      type: [String, null],
+      default: null
     }
   },
   data() {

@@ -1,9 +1,9 @@
 <template>
-  <ui-page name="autocomplete" demoCount="2">
+  <ui-page name="autocomplete" demo-count="2">
     <template #hero>
       <ui-autocomplete
-        placeholder="Input 'balm'"
         v-model="keywords"
+        placeholder="Input 'balm'"
         :source="source"
         @selected="onSelected"
       ></ui-autocomplete>
@@ -123,6 +123,7 @@ export default {
           text: keywords
         }
       });
+      console.log(data);
       // mock data
       this.source2 = data[keywords] ? data[keywords] : [];
     },

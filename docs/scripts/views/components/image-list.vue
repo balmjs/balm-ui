@@ -1,8 +1,8 @@
 <template>
   <ui-page
     name="image-list"
-    demoCount="2"
     :apis="['ui-image-list', 'image-list', 'image-item', 'image-text']"
+    demo-count="2"
   >
     <template #hero>
       <ui-image-list class="hero-image-list">
@@ -26,12 +26,12 @@
           <ui-image-list
             id="standard-image-list"
             class="standard-image-list"
-            :textProtection="controls1.labelsType === 2"
+            :text-protection="controls1.labelsType === 2"
           >
             <ui-image-item
               v-for="i in 15"
               :key="i"
-              :bgImage="require(`@/assets/photos/3x2/${i}.jpg`)"
+              :bg-image="require(`@/assets/photos/3x2/${i}.jpg`)"
             >
               <ui-image-text v-if="controls1.labelsType">Text label</ui-image-text>
             </ui-image-item>
@@ -42,13 +42,13 @@
 
       <section class="demo-wrapper">
         <h6 :class="$tt('headline6')">1.2 Masonry Image List</h6>
-        <ui-image-list-controls idPrefix="masonry" v-model="controls2"></ui-image-list-controls>
+        <ui-image-list-controls v-model="controls2" id-prefix="masonry"></ui-image-list-controls>
         <div class="demo">
           <ui-image-list
-            type="masonry"
             id="masonry-image-list"
+            type="masonry"
             class="masonry-image-list"
-            :textProtection="controls2.labelsType === 2"
+            :text-protection="controls2.labelsType === 2"
           >
             <ui-image-item
               v-for="(item, index) in list"

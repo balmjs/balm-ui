@@ -1,7 +1,6 @@
 <template>
   <ui-page
     name="card"
-    demoCount="3"
     :apis="[
       'ui-card',
       'card',
@@ -13,6 +12,7 @@
       'card-buttons',
       'card-icons'
     ]"
+    demo-count="3"
   >
     <template #hero>
       <div class="hero-demo">
@@ -41,18 +41,18 @@
         </ui-card>
       </div>
       <div class="hero-options">
-        <ui-select class="hero-option" :options="TypeOptions" v-model="typeOption">Type</ui-select>
+        <ui-select v-model="typeOption" class="hero-option" :options="TypeOptions">Type</ui-select>
         <div class="hero-option hero-options">
           <ui-form-field>
-            <ui-checkbox id="card-media" :value="1" v-model="cardOptions.media"></ui-checkbox>
+            <ui-checkbox id="card-media" v-model="cardOptions.media" :value="1"></ui-checkbox>
             <label for="card-media">Media</label>
           </ui-form-field>
           <ui-form-field>
-            <ui-checkbox id="card-supporting-text" :value="1" v-model="cardOptions.supportingText"></ui-checkbox>
+            <ui-checkbox id="card-supporting-text" v-model="cardOptions.supportingText" :value="1"></ui-checkbox>
             <label for="card-supporting-text">Supporting text</label>
           </ui-form-field>
           <ui-form-field>
-            <ui-checkbox id="card-buttons" :value="1" v-model="cardOptions.buttons"></ui-checkbox>
+            <ui-checkbox id="card-buttons" v-model="cardOptions.buttons" :value="1"></ui-checkbox>
             <label for="card-buttons">Buttons</label>
           </ui-form-field>
         </div>
@@ -67,14 +67,14 @@
           <ui-list-divider></ui-list-divider>
 
           <template v-for="(item, index) in list">
-            <a :key="`item${index}`" class="demo-card-article" v-ripple>
+            <a :key="`item${index}`" v-ripple class="demo-card-article">
               <h2 :class="[$tt('headline5'), 'demo-card-article__title']">{{ item.title }}</h2>
               <p class="demo-card-article__snippet">{{ item.content }}</p>
             </a>
             <ui-list-divider :key="`divider${index}`"></ui-list-divider>
           </template>
 
-          <ui-card-actions fullBleed>
+          <ui-card-actions full-bleed>
             <ui-button class="demo-card-action">
               All Business Headlines
               <template #after>

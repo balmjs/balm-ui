@@ -27,7 +27,7 @@
 | `shortCollapsed`  | boolean         | `false`    | Short top app bars can be configured to always appear collapsed.                                                            |
 | `title`           | string          | `''`       | Application title.                                                                                                          |
 | `navIcon`         | string, boolean | `'menu'`   | A navigation icon.                                                                                                          |
-| `navId`           | string          | `''`       | Control the navigation drawer is opened or closed. (Please refer to the `navId` prop of the [drawer](/#/navigation/drawer)) |
+| `navId`           | string          | `null`     | Control the navigation drawer is opened or closed. (Please refer to the `navId` prop of the [drawer](/#/navigation/drawer)) |
 
 > Short top app bars should be used with no more than 1 action item.
 

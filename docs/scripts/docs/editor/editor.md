@@ -9,7 +9,7 @@
 | `content` (`v-model`)   | string          | `''`     | Mandatory.                                                            |
 | `options`               | object          | `{}`     | See [Quill options](https://quilljs.com/docs/configuration/#options). |
 | `toolbar`               | array, string   | null     | Custom or `'full'` editor toolbar .                                   |
-| `placeholder`           | string          | `''`     | Placeholder text to show when editor is empty.                        |
+| `placeholder`           | string          | `null`   | Placeholder text to show when editor is empty.                        |
 | `theme`                 | string          | `'snow'` | Name of theme to use. (`'bubble'` or `'snow'`)                        |
 | `customImageHandler`    | boolean         | `false`  | Enable custom image handler.                                          |
 | `toolbarCustomHandlers` | object          | `{}`     | Custom Handlers.                                                      |

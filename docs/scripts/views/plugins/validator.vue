@@ -33,6 +33,7 @@
         >Repeat Password</ui-textfield>
         <ui-textfield-helper id="repassword-helper-text" :valid-msg="validMsg.repassword"></ui-textfield-helper>
       </ui-form-field>
+      <p>{{ result }}</p>
       <ui-form-field class="form-item form-actions">
         <ui-button raised @click="submit">Submit</ui-button>
       </ui-form-field>
@@ -85,12 +86,14 @@ export default {
         password: '',
         repassword: ''
       },
-      validMsg: {}
+      validMsg: {},
+      result: {}
     };
   },
   methods: {
     submit() {
       let result = this.$validate(this.formData);
+      this.result = result;
       let { valid, validMsg } = result;
       this.validMsg = validMsg;
 

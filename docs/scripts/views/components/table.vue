@@ -1,7 +1,7 @@
 <template>
-  <ui-page name="table" demoCount="2">
+  <ui-page name="table" demo-count="2">
     <template #hero>
-      <ui-table rowCheckbox :data="heroData" :thead="thead1" :tbody="tbody1"></ui-table>
+      <ui-table row-checkbox :data="heroData" :thead="thead1" :tbody="tbody1"></ui-table>
     </template>
 
     <!-- Content -->
@@ -18,14 +18,14 @@
       <p>Selected rows: {{ selectedRows }} ( Selected key: {{ selectedKey }})</p>
       <div class="demo">
         <ui-table
+          v-model="selectedRows"
           fullwidth
-          rowCheckbox
-          :data="data"
+          row-checkbox
+          :data="myData"
           :thead="thead2"
           :tbody="tbody2"
           :tfoot="tfoot"
-          v-model="selectedRows"
-          :selectedKey="selectedKey"
+          :selected-key="selectedKey"
         >
           <template #dessert="{ data }">
             <div class="dessert">{{ data.dessert }}</div>
@@ -60,7 +60,7 @@ export default {
       // hero
       heroData: [],
       // demo
-      data: [],
+      myData: [],
       thead1: [
         'ID',
         'Dessert (100g serving)',
@@ -161,8 +161,9 @@ export default {
     };
   },
   async created() {
-    this.data = await this.$http.get('/data/table.json');
+    let data = await this.$http.get('/data/table.json');
     this.heroData = data.slice(0, 3);
+    this.myData = data;
   },
   methods: {
     show(data) {
@@ -170,7 +171,7 @@ export default {
     },
     async onPage(page) {
       let url = `/data/table${page === 2 ? page : ''}.json`;
-      this.data = await this.$http.get(url);
+      this.myData = await this.$http.get(url);
     }
   }
 };

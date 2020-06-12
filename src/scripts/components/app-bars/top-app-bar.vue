@@ -115,8 +115,8 @@ export default {
       default: 'menu'
     },
     navId: {
-      type: String,
-      default: ''
+      type: [String, null],
+      default: null
     }
   },
   data() {

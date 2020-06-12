@@ -10,7 +10,7 @@
 | `progress`    | number  | `0`       | Sets the progress bar to this value. Value should be between `[0, 1]`.              |
 | `size`        | string  | `'large'` | To set the circular progress size.                                                  |
 | `fourColored` | boolean | `false`   | You may choose to have the indicator in inderminate state animate through 4 colors. |
-| `label`       | string  | `null`    | Label indicating how the progress bar should be announced to the user.              |
+| `label`       | string  | `''`      | Label indicating how the progress bar should be announced to the user.              |
 | `closed`      | boolean | `false`   | Hides the circular progress indicator.                                              |
 
 - **Sizing:** `'large'`(`'L'`), `'medium'`(`'M'`), `'small'`(`'S'`).

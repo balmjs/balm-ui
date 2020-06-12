@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="snackbar" demoCount="1">
+  <ui-page name="snackbar" demo-count="1">
     <template #hero>
       <ui-snackbar class="mdc-snackbar--open">Message sent</ui-snackbar>
     </template>
@@ -9,7 +9,7 @@
       <ui-form class="demo-controls">
         <label>Timeout: {{ timeout / 1000 }}second</label>
         <ui-form-field>
-          <ui-slider id="timeout" min="4000" max="10000" step="1000" v-model="timeout"></ui-slider>
+          <ui-slider id="timeout" v-model="timeout" min="4000" max="10000" step="1000"></ui-slider>
         </ui-form-field>
         <ui-form-field>
           <ui-textfield id="message" v-model="message">Message Text</ui-textfield>
@@ -27,10 +27,10 @@
 
         <ui-snackbar
           v-model="open"
-          :timeoutMs="timeout"
+          :timeout-ms="timeout"
           :message="message"
-          :actionButtonText="actionText"
-          :actionType="actionType ? 1 : 0"
+          :action-button-text="actionText"
+          :action-type="actionType ? 1 : 0"
         ></ui-snackbar>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>

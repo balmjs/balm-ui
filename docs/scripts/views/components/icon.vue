@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="icon" demoCount="2">
+  <ui-page name="icon" demo-count="2">
     <template #hero>
       <div class="hero-demos">
         <ui-icon :type="typeOption">add</ui-icon>
@@ -8,7 +8,7 @@
         <ui-icon :type="typeOption">delete</ui-icon>
       </div>
       <div class="hero-options">
-        <ui-select class="hero-option" :options="TypeOptions" v-model="typeOption">Icon themes</ui-select>
+        <ui-select v-model="typeOption" class="hero-option" :options="TypeOptions">Icon themes</ui-select>
       </div>
     </template>
 
@@ -68,15 +68,15 @@
     </section>
 
     <template #after>
-      <div class="search-area" v-shadow="1">
+      <div v-shadow="1" class="search-area">
         <ui-textfield
-          withLeadingIcon
-          inputType="search"
           id="search"
-          placeholder="Icon name keywords"
-          helperTextId="my-icons"
-          fullwidth
           :model="keywords"
+          with-leading-icon
+          input-type="search"
+          placeholder="Icon name keywords"
+          helper-text-id="my-icons"
+          fullwidth
           @input="onInput"
         >
           <template #before>
@@ -96,23 +96,27 @@
             v-anchor:id="category.name"
             :class="$tt('headline6')"
           >{{ category.name }}</ui-list-group-subheader>
-          <ui-image-list v-if="Object.keys(currentIcons).length" :key="`list${index}`">
-            <ui-image-item
-              v-for="(icon, i) in currentIcons[category.name]"
-              :key="i"
-              :title="icon.name"
-              class="btn-copy"
-              :data-clipboard-text="icon.id"
-            >
-              <template #image>
-                <ui-icon :type="typeOption" size="48">{{ icon.id }}</ui-icon>
-                <div v-if="icon.isNew" class="new-badge">New</div>
-              </template>
-              <ui-image-text>{{ icon.name }}</ui-image-text>
-            </ui-image-item>
-          </ui-image-list>
+          <template v-if="Object.keys(currentIcons).length">
+            <ui-image-list :key="`list${index}`">
+              <ui-image-item
+                v-for="(icon, i) in currentIcons[category.name]"
+                :key="i"
+                :title="icon.name"
+                class="btn-copy"
+                :data-clipboard-text="icon.id"
+              >
+                <template #image>
+                  <ui-icon :type="typeOption" size="48">{{ icon.id }}</ui-icon>
+                  <div v-if="icon.isNew" class="new-badge">New</div>
+                </template>
+                <ui-image-text>{{ icon.name }}</ui-image-text>
+              </ui-image-item>
+            </ui-image-list>
+          </template>
           <p v-else :key="`p${index}`">No Icons</p>
-          <ui-list-divider :key="`divider${index}`" v-if="index < category.count - 1"></ui-list-divider>
+          <template v-if="index < category.count - 1">
+            <ui-list-divider :key="`divider${index}`"></ui-list-divider>
+          </template>
         </template>
       </ui-list-group>
     </template>
@@ -261,7 +265,8 @@ export default {
     };
   },
   async created() {
-    let { categories } = await this.$http.get(`${this.$domain}/data/icons.json`);
+    const url = `${this.$domain}/data/icons.json`;
+    let { categories } = await this.$http.get(url);
 
     categories.map((category) => {
       let icons = category.icons.filter(

@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="chips" demoCount="4" :apis="['chips', 'chip']">
+  <ui-page name="chips" demo-count="4" :apis="['chips', 'chip']">
     <template #hero>
       <ui-chips>
         <ui-chip v-a11y>Chip One</ui-chip>
@@ -13,21 +13,21 @@
       <h6 :class="$tt('headline6')">1.1 Input Chips</h6>
       <div class="demo">
         <ui-textfield
-          outlined
-          v-model="name"
-          class="demo-tf-add-space"
           id="input-chip-set-input"
+          v-model="name"
+          outlined
+          class="demo-tf-add-space"
           placeholder="Chip text"
         ></ui-textfield>
         <br />
-        <ui-button raised dense id="input-chip-set-button" @click="addOne">Add Input Chip</ui-button>
+        <ui-button id="input-chip-set-button" raised dense @click="addOne">Add Input Chip</ui-button>
         <ui-button
+          id="input-chip-set-delete-button"
           outlined
           dense
-          id="input-chip-set-delete-button"
           @click="removeLastOne"
         >Delete Last Chip</ui-button>
-        <ui-chips type="input" id="input-chip-set" :options="list">
+        <ui-chips id="input-chip-set" type="input" :options="list">
           <ui-chip
             v-for="item in list"
             :key="item.id"
@@ -41,8 +41,8 @@
 
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Choice Chips (selectedIndex: {{ selectedIndex }})</h6>
-      <div class="demo">
-        <ui-chips v-if="choiceList.length" type="choice" v-model="selectedIndex">
+      <div v-if="choiceList.length" class="demo">
+        <ui-chips v-model="selectedIndex" type="choice">
           <ui-chip v-for="(item, index) in choiceList" :key="index">{{ item }}</ui-chip>
         </ui-chips>
       </div>
@@ -53,12 +53,12 @@
       <h6 :class="$tt('headline6')">1.3 Filter Chips</h6>
       <div class="demo">
         <p>No leading icon (selectedIndexes: {{ selectedValue }})</p>
-        <ui-chips type="filter" v-model="selectedValue">
+        <ui-chips v-model="selectedValue" type="filter">
           <ui-chip v-for="(item, index) in filterList" :key="index">{{ item }}</ui-chip>
         </ui-chips>
 
         <p>With leading icon (selectedIndexes: {{ selectedValue2 }})</p>
-        <ui-chips type="filter" v-model="selectedValue2">
+        <ui-chips v-model="selectedValue2" type="filter">
           <ui-chip
             v-for="(item, index) in filterList2"
             :key="index"

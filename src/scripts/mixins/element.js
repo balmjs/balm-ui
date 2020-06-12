@@ -3,8 +3,8 @@ export default {
   props: {
     // Element attributes
     id: {
-      type: String,
-      default: ''
+      type: [String, null],
+      default: null
     },
     attrs: {
       type: Object,

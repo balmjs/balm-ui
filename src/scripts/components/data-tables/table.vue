@@ -2,9 +2,11 @@
   <!-- Container -->
   <div :class="className">
     <table class="mdc-data-table__table" :aria-label="caption">
-      <caption v-if="caption">{{caption}}</caption>
+      <caption v-if="caption">{{ caption }}</caption>
       <colgroup v-if="colgroup">
-        <col v-for="(colValue, colKey) in dataColumns" :key="colKey" :class="`col-${colValue}`" />
+        <template v-for="(colValue, colKey) in dataColumns">
+          <col :key="colKey" :class="`col-${colValue}`" />
+        </template>
       </colgroup>
       <!-- Column header -->
       <thead v-if="theadData.length">
@@ -146,7 +148,7 @@ import UI_GLOBAL from '../../config/constants';
 import UI_TABLE from './constants';
 
 export default {
-  name: 'ui-table',
+  name: 'UiTable',
   components: {
     UiCheckbox
   },
@@ -197,7 +199,10 @@ export default {
       type: Boolean,
       default: false
     },
-    columns: Number,
+    columns: {
+      type: Number,
+      default: 0
+    },
     noData: {
       type: String,
       default: 'No Data'

@@ -1,7 +1,7 @@
 <template>
   <ui-page
     name="dialog"
-    demoCount="2"
+    demo-count="2"
     :apis="[
       'ui-dialog',
       'dialog',
@@ -14,7 +14,7 @@
       <div class="hero-demo">
         <ui-dialog
           v-if="typeOption === 0"
-          noBackdrop
+          no-backdrop
           :stacked="!!buttonOption"
           class="hero-dialog mdc-dialog--open"
         >
@@ -27,10 +27,10 @@
             <ui-button>Action2</ui-button>
           </ui-dialog-actions>
         </ui-dialog>
-        <ui-dialog v-if="typeOption === 1" noBackdrop class="hero-dialog mdc-dialog--open">
+        <ui-dialog v-if="typeOption === 1" no-backdrop class="hero-dialog mdc-dialog--open">
           <ui-dialog-title>Dialog header</ui-dialog-title>
           <ui-dialog-content>
-            <ui-list avatar singleSelection v-model="heroSelectedIndex">
+            <ui-list v-model="heroSelectedIndex" avatar single-selection>
               <ui-item v-for="i in 3" :key="i">
                 <ui-item-first-content>
                   <ui-icon size="48">account_circle</ui-icon>
@@ -42,7 +42,7 @@
         </ui-dialog>
         <ui-dialog
           v-if="typeOption === 2"
-          noBackdrop
+          no-backdrop
           scrollable
           :stacked="!!buttonOption"
           class="demo-confirmation-dialog hero-dialog mdc-dialog--open"
@@ -63,10 +63,10 @@
         </ui-dialog>
       </div>
       <div class="hero-options">
-        <ui-select class="hero-option" :options="TypeOptions" v-model="typeOption">Type</ui-select>
+        <ui-select v-model="typeOption" class="hero-option" :options="TypeOptions">Type</ui-select>
         <div class="hero-option">
           <ui-form-field v-if="typeOption === 0">
-            <ui-checkbox id="hero-checkbox-title" value="1" v-model="hasTitle"></ui-checkbox>
+            <ui-checkbox id="hero-checkbox-title" v-model="hasTitle" value="1"></ui-checkbox>
             <label for="hero-checkbox-title">Title</label>
           </ui-form-field>
           <span v-if="typeOption === 1">Selected Index: {{ heroSelectedIndex }}</span>
@@ -74,9 +74,9 @@
             <ui-form-field v-for="item in ButtonOptions" :key="item.value">
               <ui-radio
                 :id="`hero-button${item.value}`"
+                v-model="buttonOption"
                 name="dialog-button"
                 :value="item.value"
-                v-model="buttonOption"
               ></ui-radio>
               <label :for="`hero-button${item.value}`">{{ item.label }}</label>
             </ui-form-field>
@@ -111,7 +111,7 @@
       <ui-dialog-actions></ui-dialog-actions>
     </ui-dialog>
 
-    <ui-dialog scrollable v-model="open2" @confirm="onConfirm">
+    <ui-dialog v-model="open2" scrollable @confirm="onConfirm">
       <ui-dialog-title>Choose a Ringtone</ui-dialog-title>
       <ui-dialog-content>
         <ui-list>

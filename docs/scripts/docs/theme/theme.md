@@ -8,8 +8,8 @@ $setTheme(style, value); // Manual custom theme for global
 
 | Param   | Type   | Default | Description        |
 | ------- | ------ | ------- | ------------------ |
-| `style` | string | `null`  | Theme style name.  |
-| `value` | string | `null`  | Theme color value. |
+| `style` | string | `''`    | Theme style name.  |
+| `value` | string | `''`    | Theme color value. |
 
 #### Theme styles
 
@@ -33,9 +33,9 @@ $setTextTheme(style, tone, value); // Manual custom theme for global
 
 | Param   | Type   | Default        | Description       |
 | ------- | ------ | -------------- | ----------------- |
-| `style` | String | `null`         | Text style name.  |
+| `style` | String | `''`           | Text style name.  |
 | `tone`  | String | `'background'` | Theme tone name.  |
-| `value` | String | `null`         | Text color value. |
+| `value` | String | `''`           | Text color value. |
 
 #### Text styles
 

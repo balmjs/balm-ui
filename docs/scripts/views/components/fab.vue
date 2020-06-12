@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="fab" demoCount="4">
+  <ui-page name="fab" demo-count="4">
     <template #hero>
       <div class="hero-demo">
         <ui-fab :type="typeOption" :mini="!!mini">
@@ -14,18 +14,18 @@
         </ui-fab>
       </div>
       <div class="hero-options">
-        <ui-select class="hero-option" :options="TypeOptions" v-model="typeOption">Type</ui-select>
+        <ui-select v-model="typeOption" class="hero-option" :options="TypeOptions">Type</ui-select>
         <ui-form-field v-if="typeOption" class="hero-option">
-          <ui-checkbox id="leading-icon" :value="1" v-model="withLeadingIcon"></ui-checkbox>
+          <ui-checkbox id="leading-icon" v-model="withLeadingIcon" :value="1"></ui-checkbox>
           <label for="leading-icon">Leading icon</label>
         </ui-form-field>
         <div v-else class="hero-option">
           <ui-form-field>
-            <ui-radio id="default" name="mini" :value="0" v-model="mini"></ui-radio>
+            <ui-radio id="default" v-model="mini" name="mini" :value="0"></ui-radio>
             <label for="default">Default</label>
           </ui-form-field>
           <ui-form-field>
-            <ui-radio id="mini" name="mini" :value="1" v-model="mini"></ui-radio>
+            <ui-radio id="mini" v-model="mini" name="mini" :value="1"></ui-radio>
             <label for="mini">Mini</label>
           </ui-form-field>
         </div>

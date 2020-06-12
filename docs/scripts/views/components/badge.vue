@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="badge" :apis="['badge', 'v-badge']" demoCount="2">
+  <ui-page name="badge" :apis="['badge', 'v-badge']" demo-count="2">
     <template #hero>
       <ui-icon v-badge.overlap="mail">mail</ui-icon>
     </template>

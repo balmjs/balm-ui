@@ -1,7 +1,7 @@
 <template>
   <ui-page
     name="list"
-    demoCount="8"
+    demo-count="8"
     :apis="['ui-list', 'list', 'list-item', 'list-divider', 'list-group']"
   >
     <template #hero>
@@ -25,10 +25,10 @@
         </ui-list>
       </div>
       <div class="hero-options">
-        <ui-select class="hero-option" :options="TypeOptions" v-model="typeOption">Type</ui-select>
+        <ui-select v-model="typeOption" class="hero-option" :options="TypeOptions">Type</ui-select>
         <div class="hero-option hero-options">
-          <ui-select :options="BeforeTextOptions" v-model="beforeText">Before list text</ui-select>
-          <ui-select :options="AfterTextOptions" v-model="afterText">After list text</ui-select>
+          <ui-select v-model="beforeText" :options="BeforeTextOptions">Before list text</ui-select>
+          <ui-select v-model="afterText" :options="AfterTextOptions">After list text</ui-select>
         </div>
       </div>
     </template>
@@ -68,7 +68,7 @@
       <h6
         :class="$tt('headline6')"
       >1.4 List with activated item (Selected Index: {{ selectedIndex }})</h6>
-      <ui-list singleSelection v-model="selectedIndex">
+      <ui-list v-model="selectedIndex" single-selection>
         <ui-item v-for="(item, index) in items2" :key="index">
           <ui-item-first-content>
             <ui-icon>{{ item.icon }}</ui-icon>

@@ -63,8 +63,8 @@ export default {
       default: null
     },
     placeholder: {
-      type: String,
-      default: ''
+      type: [String, null],
+      default: null
     },
     theme: {
       type: String,

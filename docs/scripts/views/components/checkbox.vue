@@ -1,8 +1,8 @@
 <template>
-  <ui-page name="checkbox" demoCount="2">
+  <ui-page name="checkbox" demo-count="2">
     <template #hero>
       <ui-form-field>
-        <ui-checkbox v-a11y id="hero-checkbox" v-model="hero"></ui-checkbox>
+        <ui-checkbox id="hero-checkbox" v-model="hero" v-a11y></ui-checkbox>
         <label for="hero-checkbox">Checkbox</label>
       </ui-form-field>
     </template>
@@ -10,7 +10,7 @@
     <!-- Content -->
     <section class="demo-wrapper">
       <div class="demo">
-        <ui-form-field :alignEnd="alignEnd">
+        <ui-form-field :align-end="alignEnd">
           <ui-checkbox :id="`basic-checkbox`"></ui-checkbox>
           <label :for="`basic-checkbox`">Default checkbox</label>
         </ui-form-field>
@@ -31,8 +31,8 @@
       </div>
       <div class="demo">
         <ui-form-field>
-          <ui-checkbox :id="`basic-checkbox-indeterminate`" :indeterminate="indeterminate"></ui-checkbox>
-          <label :for="`basic-checkbox-indeterminate`">Indeterminate checkbox</label>
+          <ui-checkbox id="basic-checkbox-indeterminate" :indeterminate="indeterminate"></ui-checkbox>
+          <label for="basic-checkbox-indeterminate">Indeterminate checkbox</label>
         </ui-form-field>
         <ui-button outlined @click="$balmUI.onChange('indeterminate', !indeterminate)">
           Toggle
@@ -41,17 +41,17 @@
       </div>
       <div class="demo">
         <ui-form-field class="demo-checkbox--custom-all">
-          <ui-checkbox :id="`basic-checkbox-custom-all`"></ui-checkbox>
+          <ui-checkbox id="basic-checkbox-custom-all"></ui-checkbox>
           <label
-            :for="`basic-checkbox-custom-all`"
+            for="basic-checkbox-custom-all"
           >Custom colored checkbox (stroke, fill, ripple, and focus)</label>
         </ui-form-field>
       </div>
       <div class="demo">
         <ui-form-field class="demo-checkbox--custom-stroke-and-fill">
-          <ui-checkbox :id="`basic-checkbox-custom-stroke-and-fill`"></ui-checkbox>
+          <ui-checkbox id="basic-checkbox-custom-stroke-and-fill"></ui-checkbox>
           <label
-            :for="`basic-checkbox-custom-stroke-and-fill`"
+            for="basic-checkbox-custom-stroke-and-fill"
           >Custom colored checkbox (stroke and fill only)</label>
         </ui-form-field>
       </div>
@@ -72,15 +72,15 @@
       <p>Multiple checkboxes, bound to the same Array: {{ checkedNames }}</p>
       <div class="demo">
         <ui-form-field>
-          <ui-checkbox id="jack" value="Jack" v-model="checkedNames"></ui-checkbox>
+          <ui-checkbox id="jack" v-model="checkedNames" value="Jack"></ui-checkbox>
           <label for="jack">Jack</label>
         </ui-form-field>
         <ui-form-field>
-          <ui-checkbox id="john" value="John" v-model="checkedNames"></ui-checkbox>
+          <ui-checkbox id="john" v-model="checkedNames" value="John"></ui-checkbox>
           <label for="john">John</label>
         </ui-form-field>
         <ui-form-field>
-          <ui-checkbox id="mike" value="Mike" v-model="checkedNames"></ui-checkbox>
+          <ui-checkbox id="mike" v-model="checkedNames" value="Mike"></ui-checkbox>
           <label for="mike">Mike</label>
         </ui-form-field>
       </div>

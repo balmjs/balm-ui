@@ -8,7 +8,7 @@
 
 | Value  | Type   | Default | Description                                                  |
 | ------ | ------ | ------- | ------------------------------------------------------------ |
-| corner | string | `null`  | Element for masking a specific corner; there may be up to 4. |
+| corner | string | `''`    | Element for masking a specific corner; there may be up to 4. |
 
 > Syntax is similar to CSS `border-radius` property.
 

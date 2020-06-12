@@ -1,7 +1,7 @@
 <template>
-  <ui-page name="circular-progress" demoCount="2">
+  <ui-page name="circular-progress" demo-count="2">
     <template #hero>
-      <ui-circular-progress active fourColored></ui-circular-progress>
+      <ui-circular-progress active four-colored></ui-circular-progress>
     </template>
 
     <!-- Content -->

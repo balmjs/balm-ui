@@ -19,8 +19,8 @@ export default {
   },
   props: {
     navId: {
-      type: String,
-      default: ''
+      type: [String, null],
+      default: null
     },
     // States
     open: {
@@ -101,7 +101,7 @@ export default {
       return result;
     },
     init() {
-      if (document.getElementById(this.navId)) {
+      if (this.navId && document.getElementById(this.navId)) {
         this.checkNav();
 
         document.getElementById(this.navId).addEventListener('click', () => {

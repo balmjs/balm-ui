@@ -1,10 +1,10 @@
 <template>
-  <ui-page name="slider" demoCount="1">
+  <ui-page name="slider" demo-count="1">
     <template #hero>
       <ui-form>
         <ui-form-field id="hero-slider-wrapper">
           <ui-icon>volume_mute</ui-icon>
-          <ui-slider ref="slider" id="hero-slider" max="100" v-model="value" label="Select Volume"></ui-slider>
+          <ui-slider id="hero-slider" ref="slider" v-model="value" max="100" label="Select Volume"></ui-slider>
           <ui-icon>volume_up</ui-icon>
         </ui-form-field>
       </ui-form>
@@ -23,10 +23,10 @@
         >
           <ui-slider
             id="continuous-mdc-slider"
+            v-model="value1"
             :min="min"
             :max="max"
             :step="step"
-            v-model="value1"
             :disabled="controls.disabled"
             @change="onChange"
           ></ui-slider>
@@ -46,11 +46,11 @@
         >
           <ui-slider
             id="discrete-mdc-slider"
+            v-model="value2"
             type="discrete"
             :min="min"
             :max="max"
             :step="step"
-            v-model="value2"
             :disabled="controls.disabled"
             label="Select Value"
           ></ui-slider>
@@ -70,12 +70,12 @@
         >
           <ui-slider
             id="discrete-mdc-slider-w-marker"
+            v-model="value3"
             type="discrete"
-            displayMarker
+            display-marker
             :min="min"
             :max="max"
             :step="step"
-            v-model="value3"
             :disabled="controls.disabled"
             label="Select Value"
           ></ui-slider>
@@ -95,13 +95,13 @@
         >
           <ui-slider
             id="custom-discrete-mdc-slider-w-marker"
+            v-model="value4"
             type="discrete"
-            displayMarker
+            display-marker
             class="demo-slider--custom"
             :min="min"
             :max="max"
             :step="step"
-            v-model="value4"
             :disabled="controls.disabled"
             label="Select Value"
           ></ui-slider>
@@ -114,15 +114,15 @@
       <div class="demo-param-field-group">
         <label class="demo-param-field">
           <span class="demo-param-input-label">Min:</span>
-          <input name="min" type="number" min="-100" max="100" v-model="min" />
+          <input v-model="min" name="min" type="number" min="-100" max="100" />
         </label>
         <label class="demo-param-field">
           <span class="demo-param-input-label">Max:</span>
-          <input name="max" type="number" min="-100" max="100" v-model="max" />
+          <input v-model="max" name="max" type="number" min="-100" max="100" />
         </label>
         <label class="demo-param-field">
           <span class="demo-param-input-label">Step:</span>
-          <input name="step" type="number" min="0" max="100" v-model="step" />
+          <input v-model="step" name="step" type="number" min="0" max="100" />
         </label>
       </div>
       <div class="demo-param-field-group">

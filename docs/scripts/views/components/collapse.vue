@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="collapse" demoCount="3">
+  <ui-page name="collapse" demo-count="3">
     <template #hero>
       <ui-collapse v-model="show">
         <template #toggle>
@@ -26,7 +26,7 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Accordion</h6>
       <div class="demo">
-        <ui-collapse v-for="i in 3" :key="i" withIcon ripple>
+        <ui-collapse v-for="i in 3" :key="i" with-icon ripple>
           <template #toggle>
             <div>Heading {{ i }}</div>
           </template>
@@ -39,7 +39,7 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.3 Custom Icon</h6>
       <div class="demo">
-        <ui-collapse v-for="i in 3" :key="i" withIcon :ripple="1">
+        <ui-collapse v-for="i in 3" :key="i" with-icon :ripple="1">
           <template #expand-more-icon>
             <ui-icon>arrow_drop_down</ui-icon>
           </template>

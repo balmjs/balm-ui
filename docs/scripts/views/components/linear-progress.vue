@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="linear-progress" demoCount="1">
+  <ui-page name="linear-progress" demo-count="1">
     <template #hero>
       <ui-linear-progress active></ui-linear-progress>
     </template>

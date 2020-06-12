@@ -1,14 +1,14 @@
 <template>
-  <ui-page name="datepicker" demoCount="4" withoutCss>
+  <ui-page name="datepicker" demo-count="4" withoutCss>
     <template #hero>
-      <ui-datepicker placeholder="Select Date.." v-model="date"></ui-datepicker>
+      <ui-datepicker v-model="date" placeholder="Select Date.."></ui-datepicker>
     </template>
 
     <!-- Content -->
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 Basic + default icon</h6>
       <div class="demo">
-        <ui-datepicker placeholder="Select Date.." toggle clear :config="config1" v-model="date1"></ui-datepicker>
+        <ui-datepicker v-model="date1" :config="config1" placeholder="Select Date.." toggle clear></ui-datepicker>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
@@ -17,11 +17,11 @@
       <h6 :class="$tt('headline6')">2. DateTime + custom icon</h6>
       <div class="demo">
         <ui-datepicker
+          v-model="date2"
+          :config="config2"
           placeholder="Select Datetime.."
           toggle
           clear
-          :config="config2"
-          v-model="date2"
         >
           <template #toggle>
             <i class="fa fa-calendar"></i>
@@ -37,7 +37,7 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">3. Selecting multiple dates</h6>
       <div class="demo">
-        <ui-datepicker placeholder="Select Multi Date.." :config="config3" v-model="date3"></ui-datepicker>
+        <ui-datepicker v-model="date3" :config="config3" placeholder="Select Multi Date.."></ui-datepicker>
       </div>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>
@@ -48,7 +48,7 @@
         <router-link :to="{ name: 'data-input.rangepicker' }">&lt;ui-rangepicker&gt;</router-link>)
       </h6>
       <div class="demo">
-        <ui-datepicker placeholder="Select Date Range.." :config="config4" v-model="date4"></ui-datepicker>
+        <ui-datepicker v-model="date4" :config="config4" placeholder="Select Date Range.."></ui-datepicker>
       </div>
       <ui-snippet :code="$store.demos[4]"></ui-snippet>
     </section>

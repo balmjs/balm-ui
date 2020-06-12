@@ -28,7 +28,7 @@ const UI_FILE = {
     NOT_IMAGE_ERR: 1, // 无法预览非图片类型的文件
     PREVIEW_ERR: 2 // 当前浏览器不支持本地预览
   },
-  uuid() {
+  tmpId() {
     let array = new Uint32Array(8);
     window.crypto.getRandomValues(array);
 
@@ -40,14 +40,10 @@ const UI_FILE = {
     return result;
   },
   createFileObject: (file) => {
-    return {
-      uuid: UI_FILE.uuid(),
-      lastModified: file.lastModified,
-      name: file.name,
-      size: file.size,
-      type: file.type,
+    return Object.assign({}, file, {
+      tmpId: UI_FILE.tmpId(),
       sourceFile: file
-    };
+    });
   },
   getPreviewSrc: (fileObj) => {
     return new Promise(function (resolve, reject) {

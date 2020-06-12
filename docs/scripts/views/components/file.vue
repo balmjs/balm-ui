@@ -27,7 +27,7 @@
           @change="$balmUI.onChange('files2', $event)"
         ></ui-file>
         <transition-group class="preview-list" name="list" tag="ul">
-          <li class="item" v-for="file in files2" :key="file.uuid">
+          <li class="item" v-for="file in files2" :key="file.tmpId">
             <div class="inner">
               <span class="preview" :style="setBg(file)"></span>
               <span class="name">{{ file.name }}</span>
@@ -42,7 +42,7 @@
       <h6 :class="$tt('headline6')">1.3 Classics Upload</h6>
       <div class="demo">
         <transition-group class="preview-list" name="list" tag="ul">
-          <li v-for="(file, index) in files3" :key="file.uuid" class="item">
+          <li v-for="(file, index) in files3" :key="file.tmpId" class="item">
             <div class="inner">
               <span class="preview" :style="setBg(file)"></span>
               <span class="actions">

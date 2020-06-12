@@ -3,9 +3,10 @@
   accept="image/*"
   multiple
   preview
-  @change="$balmUI.onChange('files', $event)"></ui-file>
+  @change="$balmUI.onChange('files', $event)"
+></ui-file>
 <transition-group class="preview-list" name="list" tag="ul">
-  <li class="item" v-for="(file, index) in files" :key="file.uuid">
+  <li class="item" v-for="(file, index) in files" :key="file.tmpId">
     <div class="inner">
       <span class="preview" :style="setBg(file)"></span>
       <span class="name">{{ file.name }}</span>

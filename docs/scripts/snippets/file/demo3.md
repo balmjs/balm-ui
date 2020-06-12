@@ -1,6 +1,6 @@
 ```html
 <transition-group class="preview-list" name="list" tag="ul">
-  <li v-for="(file, index) in files" :key="file.uuid" class="item">
+  <li v-for="(file, index) in files" :key="file.tmpId" class="item">
     <div class="inner">
       <span class="preview" :style="setBg(file)"></span>
       <span class="actions">
@@ -8,21 +8,15 @@
           v-if="!file.uploaded"
           icon="file_upload"
           mini
-          @click="upload(file)"></ui-fab>
-        <ui-fab
-          icon="delete"
-          mini
-          @click="remove(index)"></ui-fab>
+          @click="upload(file)"
+        ></ui-fab>
+        <ui-fab icon="delete" mini @click="remove(index)"></ui-fab>
       </span>
     </div>
   </li>
   <li v-if="files.length < limit" key="add" class="item add-btn">
     <div class="inner">
-      <ui-file
-        accept="image/*"
-        multiple
-        preview
-        @change="onChange">
+      <ui-file accept="image/*" multiple preview @change="onChange">
         <ui-icon class="add-icon">add</ui-icon>
       </ui-file>
     </div>
@@ -53,7 +47,7 @@ export default {
       if (files.length > this.limit - this.files3.length) {
         this.$toast(`Image Limit: ${this.limit}`);
       } else {
-        files.forEach(file => {
+        files.forEach((file) => {
           file.uploaded = false;
           this.files3.push(file);
         });
@@ -72,7 +66,7 @@ export default {
     },
     uploadAllFiles() {
       if (this.files3.length) {
-        this.files3.forEach(file => {
+        this.files3.forEach((file) => {
           this.upload(file);
         });
       } else {

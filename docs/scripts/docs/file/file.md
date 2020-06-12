@@ -28,7 +28,7 @@
 
 | Name           | Type   | Description                                                                                                       |
 | -------------- | ------ | ----------------------------------------------------------------------------------------------------------------- |
-| `uuid`         | string | UUID.                                                                                                             |
+| `tmpId`        | string | Temporary unique ID.                                                                                              |
 | `lastModified` | number | Returns the last modified time of the file, in millisecond since the UNIX epoch (January 1st, 1970 at Midnight).  |
 | `name`         | string | Returns the name of the file referenced by the File object.                                                       |
 | `size`         | number | Returns the size of the file in bytes.                                                                            |

@@ -2,8 +2,8 @@ export default {
   props: {
     // Element attributes
     id: {
-      type: String,
-      required: true
+      type: [String, null],
+      default: null
     },
     // UI attributes
     visible: {

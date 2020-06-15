@@ -1,5 +1,12 @@
 # BalmUI ChangeLog
 
+## v6.11.1 / 2020-06-15
+
+### Chores
+
+- `<ui-nav>`: optimize active item link
+- `<ui-textfield-helper>`, `<ui-select-helper>`: update `id` prop default value `null`, no required
+
 ## v6.11.0 / 2020-06-12
 
 > Lint vue code for source and docs

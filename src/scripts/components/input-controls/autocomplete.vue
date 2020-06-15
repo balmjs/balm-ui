@@ -97,7 +97,9 @@ export default {
     },
     source: {
       type: Array, // Two supported formats: ['Choice1', 'Choice2'] or [{label: 'Choice1', value: 'value1'}, ...]
-      required: true
+      default() {
+        return [];
+      }
     },
     // UI attributes
     outlined: {

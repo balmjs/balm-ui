@@ -52,7 +52,7 @@ export default {
   },
   created() {
     if (!Object.values(UI_TAB_INDICATOR).includes(this.type)) {
-      console.warn('Invalid tab indicator type.');
+      console.warn('Invalid tab indicator type');
     }
   }
 };

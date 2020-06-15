@@ -113,7 +113,20 @@ const BalmUI_ValidatorPlugin = {
       return result;
     };
 
+    const $setValidations = function (fieldName, validation = {}) {
+      if (getType(fieldName) === 'object') {
+        this.$options.validations = Object.assign(
+          {},
+          this.$options.validations,
+          fieldName
+        );
+      } else {
+        this.$options.validations[fieldName] = validation;
+      }
+    };
+
     Vue.prototype.$validate = $validate;
+    Vue.prototype.$setValidations = $setValidations;
   }
 };
 

@@ -111,8 +111,15 @@ export default {
         this.$parent.$el.classList.contains('mdc-drawer__content') &&
         this.$list.listElements.length
       ) {
+        const currentItem =
+          this.$list.listElements.find(
+            (item) =>
+              item.classList.contains(UI_LIST.cssClasses.active) ||
+              item.classList.contains('router-link-active')
+          ) || this.$list.listElements[0];
+
         // Solution - https://github.com/material-components/material-components-web/issues/5615
-        this.$list.listElements[0].setAttribute('tabindex', 0);
+        currentItem.setAttribute('tabindex', 0);
       }
     }
   }

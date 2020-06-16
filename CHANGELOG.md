@@ -1,5 +1,11 @@
 # BalmUI ChangeLog
 
+## v6.12.0 / 2020-06-16
+
+### Features
+
+- add `$setValidations` for dynamic form
+
 ## v6.11.1 / 2020-06-15
 
 ### Chores

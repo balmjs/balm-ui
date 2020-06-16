@@ -7,7 +7,7 @@ $validate(formData, customFieldset);
 | `formData`       | object | `{}`    | Mandatory. A form data object.                |
 | `customFieldset` | array  | `[]`    | Optional. The field names of the validations. |
 
-- BalmUI validator rules format:
+- **BalmUI validator rules** format:
 
 ```js
 {
@@ -77,3 +77,18 @@ export default {
 | `messages`      | array   | The messages of all invalid fields.                    |
 | `message`       | string  | The message of the first invalid field.                |
 | `validMsg`      | object  | The messages as an object. (Same format as `formData`) |
+
+- Set validations for the dynamic form
+
+> New in 6.12.0
+
+```js
+$setValidations(formData, validationRule);
+$setValidations(validationRules);
+```
+
+| Param         | Type   | Default | Description                                               |
+| ------------- | ------ | ------- | --------------------------------------------------------- |
+| `formData`    | string | `''`    | A field name of the formdata. (BalmUI validator rule key) |
+| `validation`  | object | `{}`    | A validation. (BalmUI validator rule value)               |
+| `validations` | object | `{}`    | (See) BalmUI validator rules.                             |

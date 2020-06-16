@@ -113,7 +113,11 @@ const BalmUI_ValidatorPlugin = {
       return result;
     };
 
-    const $setValidations = function (fieldName, validation = {}) {
+    const $setValidations = function (fieldName, validationRule = {}) {
+      if (!this.$options.validations) {
+        this.$options.validations = {};
+      }
+
       if (getType(fieldName) === 'object') {
         this.$options.validations = Object.assign(
           {},
@@ -121,7 +125,7 @@ const BalmUI_ValidatorPlugin = {
           fieldName
         );
       } else {
-        this.$options.validations[fieldName] = validation;
+        this.$options.validations[fieldName] = validationRule;
       }
     };
 

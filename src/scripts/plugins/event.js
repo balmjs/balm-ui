@@ -1,6 +1,6 @@
 import autoInstall from '../config/auto-install';
 import getType from '../utils/typeof';
-import '../polyfills/new-event';
+import '../events';
 
 // Define constants
 const DEFAULT_NAMESPACE = 'balmUI';

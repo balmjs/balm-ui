@@ -4,15 +4,15 @@
     return false;
   }
 
-  function BalmUIEvent(event, params) {
+  function CustomEvent(event, params) {
     params = params || {
       bubbles: false,
       cancelable: false,
-      detail: undefined
+      detail: null
     };
 
-    const evt = document.createEvent('BalmUIEvent');
-    evt.initBalmUIEvent(
+    const evt = document.createEvent('CustomEvent');
+    evt.initCustomEvent(
       event,
       params.bubbles,
       params.cancelable,
@@ -22,7 +22,5 @@
     return evt;
   }
 
-  BalmUIEvent.prototype = window.Event.prototype;
-
-  window.CustomEvent = BalmUIEvent;
+  window.CustomEvent = CustomEvent;
 })();

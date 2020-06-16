@@ -1,5 +1,11 @@
 # BalmUI ChangeLog
 
+## v6.13.0 / 2020-06-17
+
+### Bug Fixes
+
+- Custom event polyfill bugfix
+
 ## v6.12.0 / 2020-06-16
 
 ### Features

@@ -110,9 +110,9 @@ Edit `my-project/app/scripts/main.js`
 ```js
 import Vue from 'vue';
 import App from './views/layouts/app';
-import BalmUI from 'balm-ui'; // Mandatory
-import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // Optional
-import BalmUINext from 'balm-ui/dist/balm-ui-next'; // Experimental
+import BalmUI from 'balm-ui'; // Official Google Material Components
+import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // BalmJS Team Material Components
+import BalmUINext from 'balm-ui/dist/balm-ui-next'; // Experimental Material Components
 
 Vue.config.productionTip = false;
 Vue.use(BalmUI); // Mandatory

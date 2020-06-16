@@ -32,7 +32,7 @@
   <script>
     var app = new Vue({
       el: '#app',
-      data() {
+      data: function() {
         return {
           open: false,
           menu: ['Back', 'Forward', 'Reload'],
@@ -41,15 +41,15 @@
         }
       },
       methods: {
-        openMenu() {
+        openMenu: function() {
           this.open = true;
         },
-        onSelected(data) {
+        onSelected: function(data) {
           console.log('onSelected', data);
           this.selected = data;
           this.open = false;
         },
-        onCancel() {
+        onCancel: function() {
           console.log('onCancel');
           this.open = false;
         }

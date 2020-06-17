@@ -1,7 +1,7 @@
 <template>
   <section class="component-section">
     <h6 :class="$tt('headline6')">Card</h6>
-    <div class="component-wrapper">
+    <div class="component-wrapper no-flex">
       <ui-card>
         <ui-card-content>
           <ui-card-media rectangle :style="`background-image:url('${cardMedia}')`"></ui-card-media>

@@ -359,8 +359,16 @@ $demo-color-high-luminance: color.$amber-50;
   .component-wrapper {
     position: relative;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+
+    &.space-around {
+      justify-content: space-around;
+    }
+
+    &.no-flex {
+      display: block; // Fuck IE
+    }
 
     .mdc-top-app-bar,
     .mdc-drawer {

@@ -45,67 +45,69 @@ export default {
     }
   },
   mounted() {
-    this.lastScrollTop = this.getScrollTop();
+    if (!(window.IE && window.IE < 12)) {
+      this.lastScrollTop = this.getScrollTop();
 
-    this.$nextTick(() => {
-      const anchorElements = ['usage', 'demo', 'apis', 'sass'].map((key) => {
-        const el = document.getElementById(`ui-${key}`);
-        return el ? this.getElementTop(el) - this.offset : 0;
-      });
-      const anchorElementsCount = anchorElements.filter((x) => x).length;
-      const halfViewportHeight = document.body.clientHeight * 0.5;
+      this.$nextTick(() => {
+        const anchorElements = ['usage', 'demo', 'apis', 'sass'].map((key) => {
+          const el = document.getElementById(`ui-${key}`);
+          return el ? this.getElementTop(el) - this.offset : 0;
+        });
+        const anchorElementsCount = anchorElements.filter((x) => x).length;
+        const halfViewportHeight = document.body.clientHeight * 0.5;
 
-      window.addEventListener('balmScroll', () => {
-        const curScrollTop = this.getScrollTop();
-        const curScrollTopWithOffset = curScrollTop + halfViewportHeight;
+        window.addEventListener('balmScroll', () => {
+          const curScrollTop = this.getScrollTop();
+          const curScrollTopWithOffset = curScrollTop + halfViewportHeight;
 
-        if (curScrollTop > this.lastScrollTop) {
-          // down ↓
-          for (let i = this.active + 1; i < anchorElementsCount; i++) {
-            // console.log(
-            //   'down',
-            //   i,
-            //   curScrollTopWithOffset,
-            //   anchorElements[i],
-            //   curScrollTopWithOffset >= anchorElements[i]
-            // );
+          if (curScrollTop > this.lastScrollTop) {
+            // down ↓
+            for (let i = this.active + 1; i < anchorElementsCount; i++) {
+              // console.log(
+              //   'down',
+              //   i,
+              //   curScrollTopWithOffset,
+              //   anchorElements[i],
+              //   curScrollTopWithOffset >= anchorElements[i]
+              // );
 
-            if (curScrollTopWithOffset >= anchorElements[i]) {
-              if (this.active !== i) {
-                // console.log('gg');
-                this.active = i;
+              if (curScrollTopWithOffset >= anchorElements[i]) {
+                if (this.active !== i) {
+                  // console.log('gg');
+                  this.active = i;
+                }
+              } else {
+                // console.log('skip');
+                break;
               }
-            } else {
-              // console.log('skip');
-              break;
+            }
+          } else if (curScrollTop < this.lastScrollTop) {
+            // up ↑
+            for (let i = this.active; i; i--) {
+              // console.log(
+              //   'up',
+              //   i,
+              //   curScrollTopWithOffset,
+              //   anchorElements[i],
+              //   curScrollTopWithOffset <= anchorElements[i]
+              // );
+
+              if (curScrollTopWithOffset <= anchorElements[i]) {
+                if (this.active) {
+                  // console.log('gg');
+                  this.active -= 1;
+                }
+              } else {
+                // console.log('skip');
+                break;
+              }
             }
           }
-        } else if (curScrollTop < this.lastScrollTop) {
-          // up ↑
-          for (let i = this.active; i; i--) {
-            // console.log(
-            //   'up',
-            //   i,
-            //   curScrollTopWithOffset,
-            //   anchorElements[i],
-            //   curScrollTopWithOffset <= anchorElements[i]
-            // );
 
-            if (curScrollTopWithOffset <= anchorElements[i]) {
-              if (this.active) {
-                // console.log('gg');
-                this.active -= 1;
-              }
-            } else {
-              // console.log('skip');
-              break;
-            }
-          }
-        }
-
-        this.lastScrollTop = curScrollTop;
+          this.lastScrollTop = curScrollTop;
+        });
       });
-    });
+    }
   },
   methods: {
     getScrollTop() {

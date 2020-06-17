@@ -2,6 +2,8 @@ import { detectIE } from '../../src/scripts/plus'; // Default Usage
 
 const IE = detectIE();
 
+window.IE = IE; // For disabling UiTocAffix
+
 const isIE = IE && IE < 11; // Browser support IE11
 
 const killIE = () => {

@@ -17,6 +17,7 @@ $hero-background-color: #f7f7f7;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  height: 360px; // Fuck IE
   min-height: 360px;
   padding: 40px 0;
   background-color: $hero-background-color;

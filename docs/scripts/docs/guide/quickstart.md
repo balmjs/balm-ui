@@ -63,7 +63,7 @@ npm install
 
 Installs the necessary npm packages, This can take some time.
 
-> (China Only) 如果“网络”不科学，请走[淘宝源](https://developer.aliyun.com/mirror/NPM)
+> (China Only) 如果“网络”不科学，请设置[淘宝源](https://developer.aliyun.com/mirror/NPM)
 
 2.2 Install **BalmUI**
 
@@ -100,6 +100,7 @@ module.exports = {
 Edit `my-project/app/styles/global/_vendor.scss`
 
 ```css
+/* import BalmUI styles */
 @use 'balm-ui/dist/balm-ui.scss';
 ```
 
@@ -112,12 +113,10 @@ import Vue from 'vue';
 import App from './views/layouts/app';
 import BalmUI from 'balm-ui'; // Official Google Material Components
 import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // BalmJS Team Material Components
-import BalmUINext from 'balm-ui/dist/balm-ui-next'; // Experimental Material Components
 
 Vue.config.productionTip = false;
 Vue.use(BalmUI); // Mandatory
 Vue.use(BalmUIPlus); // Optional
-Vue.use(BalmUINext); // Experimental
 
 new Vue({
   el: '#app',
@@ -141,9 +140,9 @@ Edit `my-project/app/scripts/main.js`
 
 ```js
 import Vue from 'vue';
-import UiButtonComponents from 'balm-ui/components/button';
+import UiButton from 'balm-ui/components/button';
 
-Vue.use(UiButtonComponents);
+Vue.use(UiButton);
 ```
 
 ## 5. Development and testing

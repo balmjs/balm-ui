@@ -4,14 +4,14 @@
 
 ## TOC
 
-1.  Modular CSS
+1. Modular CSS
     - <a href="javascript:void(0)" class="v-anchor" data-href="#use-sass">Use Sass</a>
     - <a href="javascript:void(0)" class="v-anchor" data-href="#use-css">Use CSS</a>
-2.  Modular JS
-    - <a href="javascript:void(0)" class="v-anchor" data-href="#default-usage">Default Usage</a>
-    - <a href="javascript:void(0)" class="v-anchor" data-href="#Individual-usage">Individual Usage</a>
+2. Modular JS
+    - <a href="javascript:void(0)" class="v-anchor" data-href="#default-usage">Default Usage</a> (desktop)
+    - <a href="javascript:void(0)" class="v-anchor" data-href="#Individual-usage">Individual Usage</a> (mobile)
     - <a href="javascript:void(0)" class="v-anchor" data-href="#source-code-usage">Source Code Usage</a>
-3.  <a href="javascript:void(0)" class="v-anchor" data-href="#mdi">Get Material Design Icons without downloading</a>
+3. <a href="javascript:void(0)" class="v-anchor" data-href="#mdi">Get Material Design Icons without downloading</a>
 
 ## 1. Modular CSS
 
@@ -19,13 +19,25 @@
 
 ### 1.1 Use Sass (Recommended)
 
-Edit `/path/to/my-project/app/styles/global/_vendor.scss` (manage sass entry files of the vendors)
+⚠️️ Edit `/path/to/my-project/config/balmrc.js`
+
+```js
+module.exports = {
+  styles: {
+    extname: 'scss',
+    dartSass: true // !important
+  }
+  // Other Options...
+};
+```
+
+Edit `/path/to/my-project/app/styles/global/_vendor.scss` (manage sass/css entry files of the vendors)
 
 ```css
 @use 'balm-ui/dist/balm-ui.scss';
 ```
 
-Then, you can overwrite or redefine UI styles by editing `/path/to/my-project/app/styles/global/_var.scss`. (See components APIs)
+Then, you can overwrite or redefine UI styles by sass variables. (See components __SASS__ docs)
 
 **The template standard format:**
 
@@ -43,10 +55,7 @@ Then, you can overwrite or redefine UI styles by editing `/path/to/my-project/ap
 </html>
 ```
 
-- `css/vendors.css`: The file path after building all third-party style files.
-- `main.css`: The css entry file of the project.
-
-> If the third-party provides sass file, recommended to manage in `/path/to/my-project/app/styles/global/_vendor.scss`
+> If the third-party provides sass/css file, recommended to manage in `/path/to/my-project/app/styles/global/_vendor.scss`
 
 <div id="use-css"></div>
 
@@ -70,7 +79,8 @@ Then, you can overwrite or redefine UI styles by editing `/path/to/my-project/ap
 </html>
 ```
 
-> Note `main.css` position order
+- `css/vendors.css`: The file path after building all third-party style files.
+- `main.css`: The css entry file of the project.
 
 ## 2. Modular JS
 
@@ -177,13 +187,16 @@ new Vue({
 > With regard to _CSSinJS_, styles can be extracted through BalmJS configuration, but the idea of BalmJS is more recommended to separate and manage styles and scripts to achieve more flexible module configuration and management.
 
 - SASS management
+
   ```css
   @use 'balm-ui/components/core.scss';
   @use 'balm-ui/components/button/button.scss';
   @use 'balm-ui/components/dialog/dialog.scss';
   @use 'balm-ui/plugins/alert/alert.scss';
   ```
+
 - CSS management
+
   ```html
   <head>
     <!-- build:css css/vendors.css -->
@@ -274,9 +287,12 @@ module.exports = {
 Edit `/path/to/my-project/gulpfile.js`
 
 ```js
-...
+const balm = require('balm');
+const balmConfig = require('./config/balmrc');
 
-balm.go(mix => {
+balm.config = balmConfig;
+
+balm.go((mix) => {
   if (mix.env.isProd) {
     // ...
   } else {

@@ -194,6 +194,9 @@ export default {
             contentEl.insertBefore(newDiv, contentEl.firstChild);
           }
         }
+      } else {
+        el = newDiv;
+        contentEl.insertBefore(newDiv, contentEl.firstChild);
       }
 
       return el;

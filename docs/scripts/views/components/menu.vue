@@ -30,6 +30,7 @@
               'Help &amp; Feedback',
               'Settings'
             ]"
+            @selected="onSelected1"
           ></ui-menu>
         </ui-menu-anchor>
       </div>
@@ -186,7 +187,7 @@
               :point="controls.point"
               :quick-open="controls.disableAnimation"
               :fixed="controls.fixedPosition"
-              @selected="onSelected"
+              @selected="onSelected2"
               @closed="onClosed"
             >
               <ui-menuitem nested>
@@ -271,7 +272,10 @@ export default {
     }
   },
   methods: {
-    onSelected(data) {
+    onSelected1(data) {
+      console.log('onSelected', data);
+    },
+    onSelected2(data) {
       console.log('onSelected', data);
       this.selectedValue = data;
     },

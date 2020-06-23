@@ -7,7 +7,7 @@
 | Name               | Type            | Default      | Description                                                                                                       |
 | ------------------ | --------------- | ------------ | ----------------------------------------------------------------------------------------------------------------- |
 | `open` (`v-model`) | boolean         | `false`      | Mandatory.                                                                                                        |
-| `items`            | array           | `[]`         | Menu items.                                                                                                       |
+| `items`            | array           | `[]`         | Menu items. (one item format: `{ text: string, icon: string, disabled: boolean, selected: boolean }`)             |
 | `quickOpen`        | boolean         | `false`      | Turn off menu open animations.                                                                                    |
 | `position`         | string          | `'TOP_LEFT'` | Menu position to the menu button.                                                                                 |
 | `distance`         | boolean, object | `false`      | Anchor margin. Value format: `{ top, right, bottom, left }`.                                                      |
@@ -36,7 +36,7 @@
 
 ```js
 {
-  item: object,  // menuitem HTMLElement
+  item: object,  // menuitem object
   index: number, // menuitem index
   label: string // menuitem text
 }

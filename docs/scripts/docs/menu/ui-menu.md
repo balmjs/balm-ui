@@ -1,5 +1,11 @@
 ```html
 <ui-menu-anchor>
+  <ui-menu :items="menuItems"></ui-menu>
+</ui-menu-anchor>
+```
+
+```html
+<ui-menu-anchor>
   <ui-menu>
     <ui-menuitem>
       <ui-menuitem-text>Label</ui-menuitem-text>

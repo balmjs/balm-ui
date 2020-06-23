@@ -1,5 +1,15 @@
 # BalmUI ChangeLog
 
+## v6.14.0 / 2020-06-24
+
+### Bug Fixes
+
+- `<ui-top-app-bar>`: fix `getFixedAdjustElement` bug
+
+### Chores
+
+- `<ui-menu>`: update `@selected`, return item object
+
 ## v6.13.0 / 2020-06-17
 
 ### Bug Fixes

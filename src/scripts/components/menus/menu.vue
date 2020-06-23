@@ -170,11 +170,17 @@ export default {
       this.$el.addEventListener(
         `MDCMenu:${UI_MENU.EVENT.SELECTED}`,
         ({ detail }) => {
-          const item = detail.item;
+          const index = detail.index;
+          const currentItem = this.currentItems[index];
+          const item =
+            getType(currentItem) === 'object'
+              ? Object.assign({}, currentItem)
+              : currentItem;
+
           this.$emit(UI_MENU.EVENT.SELECTED, {
-            item, // HTMLElement
-            index: detail.index, // number
-            label: item.textContent.trim() // string
+            item, // object
+            index, // number
+            label: detail.item.textContent.trim() // string
           });
         }
       );

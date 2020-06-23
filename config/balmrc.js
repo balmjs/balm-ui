@@ -97,7 +97,7 @@ module.exports = {
   pwa: {
     enabled: env.buildDocs,
     mode: 'injectManifest',
-    version: `v${version.replace(/\./g, '')}-2`
+    version: `v${version.replace(/\./g, '')}`
   },
   useDefaults: env.useDefault,
   logs: {

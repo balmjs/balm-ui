@@ -6,6 +6,8 @@
       aria-haspopup="listbox"
       :aria-required="required"
       :aria-disabled="disabled"
+      :aria-controls="helperTextId"
+      :aria-describedby="helperTextId"
     >
       <!-- Leading Icon -->
       <slot name="icon">
@@ -17,10 +19,25 @@
       </slot>
       <!-- Enhanced Select -->
       <span class="mdc-select__ripple"></span>
-      <input type="text" class="mdc-select__selected-text" disabled readonly />
-      <slot name="dropdown-icon" :iconClass="UI_SELECT.cssClasses.dropdownIcon">
-        <i :class="UI_SELECT.cssClasses.dropdownIcon"></i>
-      </slot>
+      <span class="mdc-select__selected-text"></span>
+      <span class="mdc-select__dropdown-icon">
+        <slot name="dropdown-icon">
+          <svg class="mdc-select__dropdown-icon-graphic" viewBox="7 10 10 5">
+            <polygon
+              class="mdc-select__dropdown-icon-inactive"
+              stroke="none"
+              fill-rule="evenodd"
+              points="7 10 12 15 17 10"
+            />
+            <polygon
+              class="mdc-select__dropdown-icon-active"
+              stroke="none"
+              fill-rule="evenodd"
+              points="7 15 12 10 17 15"
+            />
+          </svg>
+        </slot>
+      </span>
       <ui-notched-outline v-if="isOutlined" :has-label="!noLabel">
         <ui-floating-label>
           <slot>{{ label }}</slot>
@@ -86,8 +103,7 @@ const UI_SELECT = {
     outlined: 1
   },
   cssClasses: {
-    icon: 'mdc-select__icon',
-    dropdownIcon: 'mdc-select__dropdown-icon'
+    icon: 'mdc-select__icon'
   },
   EVENT: {
     CHANGE: 'change',
@@ -195,6 +211,7 @@ export default {
     className() {
       return {
         'mdc-select': true,
+        'mdc-select--filled': !this.isOutlined,
         'mdc-select--outlined': this.isOutlined,
         'mdc-select--fullwidth': this.fullwidth && !this.isOutlined,
         'mdc-select--with-leading-icon': this.hasLeadingIcon,

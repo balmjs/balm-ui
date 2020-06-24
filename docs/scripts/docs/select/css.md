@@ -1,3 +1,5 @@
+- `<ui-select>`
+
 ```css
 @use '@material/select/variables' with (
   $arrow-padding: 52px,
@@ -79,6 +81,8 @@
   $error-color: error
 );
 ```
+
+- `<ui-select-icon>`
 
 ```css
 @use '@material/select/icon/variables' with (

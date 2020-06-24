@@ -9,7 +9,7 @@
               v-model="selected"
               :options="options"
               :with-leading-icon="selectOption.includes(1)"
-              helper-text-id="my-helper-text"
+              helper-text-id="my-helper-text1"
             >
               <template v-if="selectOption.includes(1)" #icon>
                 <ui-select-icon>face</ui-select-icon>
@@ -19,7 +19,7 @@
               </template>
               Pick a fruit
             </ui-select>
-            <ui-select-helper id="my-helper-text" :visible="selectOption.includes(2)">Helper text</ui-select-helper>
+            <ui-select-helper id="my-helper-text1" :visible="selectOption.includes(2)">Helper text</ui-select-helper>
           </template>
         </div>
         <div>
@@ -30,14 +30,14 @@
               outlined
               :options="options"
               :with-leading-icon="selectOption.includes(1)"
-              helper-text-id="my-helper-text"
+              helper-text-id="my-helper-text2"
             >
               <template v-if="selectOption.includes(1)" #icon>
                 <ui-select-icon>face</ui-select-icon>
               </template>
               Pick a fruit
             </ui-select>
-            <ui-select-helper id="my-helper-text" :visible="selectOption.includes(2)">Helper text</ui-select-helper>
+            <ui-select-helper id="my-helper-text2" :visible="selectOption.includes(2)">Helper text</ui-select-helper>
           </template>
         </div>
       </div>

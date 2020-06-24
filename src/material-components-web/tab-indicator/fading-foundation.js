@@ -29,10 +29,10 @@ var MDCFadingTabIndicatorFoundation = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     MDCFadingTabIndicatorFoundation.prototype.activate = function () {
-        this.adapter_.addClass(MDCTabIndicatorFoundation.cssClasses.ACTIVE);
+        this.adapter.addClass(MDCTabIndicatorFoundation.cssClasses.ACTIVE);
     };
     MDCFadingTabIndicatorFoundation.prototype.deactivate = function () {
-        this.adapter_.removeClass(MDCTabIndicatorFoundation.cssClasses.ACTIVE);
+        this.adapter.removeClass(MDCTabIndicatorFoundation.cssClasses.ACTIVE);
     };
     return MDCFadingTabIndicatorFoundation;
 }(MDCTabIndicatorFoundation));

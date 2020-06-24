@@ -6,10 +6,16 @@
   $height: 48px,
   $stacked-height: 72px,
   $horizontal-padding: 24px,
-  $text-label-opacity: .6,
-  $icon-opacity: .54,
-  $text-label-color-default: rgba(variables.prop-value(on-surface), $text-label-opacity),
-  $icon-color-default: rgba(variables.prop-value(on-surface), $icon-opacity),
+  $text-label-opacity: 0.6,
+  $icon-opacity: 0.54,
+  $text-label-color-default: rgba(
+    variables.prop-value(on-surface),
+    $text-label-opacity
+  ),
+  $icon-color-default: rgba(
+    variables.prop-value(on-surface),
+    $icon-opacity
+  ),
   $text-label-color-active: primary,
   $icon-color-active: primary
 );

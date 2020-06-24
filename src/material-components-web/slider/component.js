@@ -35,60 +35,60 @@ var MDCSlider = /** @class */ (function (_super) {
     };
     Object.defineProperty(MDCSlider.prototype, "value", {
         get: function () {
-            return this.foundation_.getValue();
+            return this.foundation.getValue();
         },
         set: function (value) {
-            this.foundation_.setValue(value);
+            this.foundation.setValue(value);
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(MDCSlider.prototype, "min", {
         get: function () {
-            return this.foundation_.getMin();
+            return this.foundation.getMin();
         },
         set: function (min) {
-            this.foundation_.setMin(min);
+            this.foundation.setMin(min);
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(MDCSlider.prototype, "max", {
         get: function () {
-            return this.foundation_.getMax();
+            return this.foundation.getMax();
         },
         set: function (max) {
-            this.foundation_.setMax(max);
+            this.foundation.setMax(max);
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(MDCSlider.prototype, "step", {
         get: function () {
-            return this.foundation_.getStep();
+            return this.foundation.getStep();
         },
         set: function (step) {
-            this.foundation_.setStep(step);
+            this.foundation.setStep(step);
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(MDCSlider.prototype, "disabled", {
         get: function () {
-            return this.foundation_.isDisabled();
+            return this.foundation.isDisabled();
         },
         set: function (disabled) {
-            this.foundation_.setDisabled(disabled);
+            this.foundation.setDisabled(disabled);
         },
         enumerable: true,
         configurable: true
     });
     MDCSlider.prototype.initialize = function () {
-        this.thumbContainer_ = this.root_.querySelector(strings.THUMB_CONTAINER_SELECTOR);
-        this.track_ =
-            this.root_.querySelector(strings.TRACK_SELECTOR);
-        this.pinValueMarker_ = this.root_.querySelector(strings.PIN_VALUE_MARKER_SELECTOR);
-        this.trackMarkerContainer_ = this.root_.querySelector(strings.TRACK_MARKER_CONTAINER_SELECTOR);
+        this.thumbContainer_ =
+            this.root.querySelector(strings.THUMB_CONTAINER_SELECTOR);
+        this.track_ = this.root.querySelector(strings.TRACK_SELECTOR);
+        this.pinValueMarker_ = this.root.querySelector(strings.PIN_VALUE_MARKER_SELECTOR);
+        this.trackMarkerContainer_ = this.root.querySelector(strings.TRACK_MARKER_CONTAINER_SELECTOR);
     };
     MDCSlider.prototype.getDefaultFoundation = function () {
         var _this = this;
@@ -98,14 +98,14 @@ var MDCSlider = /** @class */ (function (_super) {
         // tslint:disable:object-literal-sort-keys Methods should be in the same
         // order as the adapter interface.
         var adapter = {
-            hasClass: function (className) { return _this.root_.classList.contains(className); },
-            addClass: function (className) { return _this.root_.classList.add(className); },
-            removeClass: function (className) { return _this.root_.classList.remove(className); },
-            getAttribute: function (name) { return _this.root_.getAttribute(name); },
-            setAttribute: function (name, value) { return _this.root_.setAttribute(name, value); },
-            removeAttribute: function (name) { return _this.root_.removeAttribute(name); },
-            computeBoundingRect: function () { return _this.root_.getBoundingClientRect(); },
-            getTabIndex: function () { return _this.root_.tabIndex; },
+            hasClass: function (className) { return _this.root.classList.contains(className); },
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
+            getAttribute: function (name) { return _this.root.getAttribute(name); },
+            setAttribute: function (name, value) { return _this.root.setAttribute(name, value); },
+            removeAttribute: function (name) { return _this.root.removeAttribute(name); },
+            computeBoundingRect: function () { return _this.root.getBoundingClientRect(); },
+            getTabIndex: function () { return _this.root.tabIndex; },
             registerInteractionHandler: function (evtType, handler) {
                 return _this.listen(evtType, handler, applyPassive());
             },
@@ -152,15 +152,15 @@ var MDCSlider = /** @class */ (function (_super) {
                 var markerBkgdShorthand = markerBkgdImage + " " + markerBkgdLayout;
                 _this.trackMarkerContainer_.style.setProperty('background', markerBkgdShorthand);
             },
-            isRTL: function () { return getComputedStyle(_this.root_).direction === 'rtl'; },
+            isRTL: function () { return getComputedStyle(_this.root).direction === 'rtl'; },
         };
         // tslint:enable:object-literal-sort-keys
         return new MDCSliderFoundation(adapter);
     };
     MDCSlider.prototype.initialSyncWithDOM = function () {
-        var origValueNow = this.parseFloat_(this.root_.getAttribute(strings.ARIA_VALUENOW), this.value);
-        var min = this.parseFloat_(this.root_.getAttribute(strings.ARIA_VALUEMIN), this.min);
-        var max = this.parseFloat_(this.root_.getAttribute(strings.ARIA_VALUEMAX), this.max);
+        var origValueNow = this.parseFloat_(this.root.getAttribute(strings.ARIA_VALUENOW), this.value);
+        var min = this.parseFloat_(this.root.getAttribute(strings.ARIA_VALUEMIN), this.min);
+        var max = this.parseFloat_(this.root.getAttribute(strings.ARIA_VALUEMAX), this.max);
         // min and max need to be set in the right order to avoid throwing an error
         // when the new min is greater than the default max.
         if (min >= this.max) {
@@ -171,15 +171,15 @@ var MDCSlider = /** @class */ (function (_super) {
             this.min = min;
             this.max = max;
         }
-        this.step = this.parseFloat_(this.root_.getAttribute(strings.STEP_DATA_ATTR), this.step);
+        this.step = this.parseFloat_(this.root.getAttribute(strings.STEP_DATA_ATTR), this.step);
         this.value = origValueNow;
         this.disabled =
-            (this.root_.hasAttribute(strings.ARIA_DISABLED) &&
-                this.root_.getAttribute(strings.ARIA_DISABLED) !== 'false');
-        this.foundation_.setupTrackMarker();
+            (this.root.hasAttribute(strings.ARIA_DISABLED) &&
+                this.root.getAttribute(strings.ARIA_DISABLED) !== 'false');
+        this.foundation.setupTrackMarker();
     };
     MDCSlider.prototype.layout = function () {
-        this.foundation_.layout();
+        this.foundation.layout();
     };
     MDCSlider.prototype.stepUp = function (amount) {
         if (amount === void 0) { amount = (this.step || 1); }

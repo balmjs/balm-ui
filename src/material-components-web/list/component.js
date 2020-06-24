@@ -32,38 +32,59 @@ var MDCList = /** @class */ (function (_super) {
     }
     Object.defineProperty(MDCList.prototype, "vertical", {
         set: function (value) {
-            this.foundation_.setVerticalOrientation(value);
+            this.foundation.setVerticalOrientation(value);
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(MDCList.prototype, "listElements", {
         get: function () {
-            return [].slice.call(this.root_.querySelectorAll("." + cssClasses.LIST_ITEM_CLASS));
+            return [].slice.call(this.root.querySelectorAll("." + cssClasses.LIST_ITEM_CLASS));
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(MDCList.prototype, "wrapFocus", {
         set: function (value) {
-            this.foundation_.setWrapFocus(value);
+            this.foundation.setWrapFocus(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCList.prototype, "typeaheadInProgress", {
+        /**
+         * @return Whether typeahead is currently matching a user-specified prefix.
+         */
+        get: function () {
+            return this.foundation.isTypeaheadInProgress();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCList.prototype, "hasTypeahead", {
+        /**
+         * Sets whether typeahead functionality is enabled on the list.
+         * @param hasTypeahead Whether typeahead is enabled.
+         */
+        set: function (hasTypeahead) {
+            this.foundation.setHasTypeahead(hasTypeahead);
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(MDCList.prototype, "singleSelection", {
         set: function (isSingleSelectionList) {
-            this.foundation_.setSingleSelection(isSingleSelectionList);
+            this.foundation.setSingleSelection(isSingleSelectionList);
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(MDCList.prototype, "selectedIndex", {
         get: function () {
-            return this.foundation_.getSelectedIndex();
+            return this.foundation.getSelectedIndex();
         },
         set: function (index) {
-            this.foundation_.setSelectedIndex(index);
+            this.foundation.setSelectedIndex(index);
         },
         enumerable: true,
         configurable: true
@@ -90,34 +111,47 @@ var MDCList = /** @class */ (function (_super) {
         this.unlisten('focusout', this.focusOutEventListener_);
     };
     MDCList.prototype.layout = function () {
-        var direction = this.root_.getAttribute(strings.ARIA_ORIENTATION);
+        var direction = this.root.getAttribute(strings.ARIA_ORIENTATION);
         this.vertical = direction !== strings.ARIA_ORIENTATION_HORIZONTAL;
         // List items need to have at least tabindex=-1 to be focusable.
-        [].slice.call(this.root_.querySelectorAll('.mdc-list-item:not([tabindex])'))
+        [].slice.call(this.root.querySelectorAll('.mdc-list-item:not([tabindex])'))
             .forEach(function (el) {
             el.setAttribute('tabindex', '-1');
         });
         // Child button/a elements are not tabbable until the list item is focused.
-        [].slice.call(this.root_.querySelectorAll(strings.FOCUSABLE_CHILD_ELEMENTS))
+        [].slice.call(this.root.querySelectorAll(strings.FOCUSABLE_CHILD_ELEMENTS))
             .forEach(function (el) { return el.setAttribute('tabindex', '-1'); });
-        this.foundation_.layout();
+        this.foundation.layout();
+    };
+    /**
+     * Extracts the primary text from a list item.
+     * @param item The list item element.
+     * @return The primary text in the element.
+     */
+    MDCList.prototype.getPrimaryText = function (item) {
+        var primaryText = item.querySelector("." + cssClasses.LIST_ITEM_PRIMARY_TEXT_CLASS);
+        if (primaryText) {
+            return primaryText.textContent || '';
+        }
+        var singleLineText = item.querySelector("." + cssClasses.LIST_ITEM_TEXT_CLASS);
+        return (singleLineText && singleLineText.textContent) || '';
     };
     /**
      * Initialize selectedIndex value based on pre-selected checkbox list items, single selection or radio.
      */
     MDCList.prototype.initializeListType = function () {
         var _this = this;
-        var checkboxListItems = this.root_.querySelectorAll(strings.ARIA_ROLE_CHECKBOX_SELECTOR);
-        var singleSelectedListItem = this.root_.querySelector("\n      ." + cssClasses.LIST_ITEM_ACTIVATED_CLASS + ",\n      ." + cssClasses.LIST_ITEM_SELECTED_CLASS + "\n    ");
-        var radioSelectedListItem = this.root_.querySelector(strings.ARIA_CHECKED_RADIO_SELECTOR);
+        var checkboxListItems = this.root.querySelectorAll(strings.ARIA_ROLE_CHECKBOX_SELECTOR);
+        var singleSelectedListItem = this.root.querySelector("\n      ." + cssClasses.LIST_ITEM_ACTIVATED_CLASS + ",\n      ." + cssClasses.LIST_ITEM_SELECTED_CLASS + "\n    ");
+        var radioSelectedListItem = this.root.querySelector(strings.ARIA_CHECKED_RADIO_SELECTOR);
         if (checkboxListItems.length) {
-            var preselectedItems = this.root_.querySelectorAll(strings.ARIA_CHECKED_CHECKBOX_SELECTOR);
+            var preselectedItems = this.root.querySelectorAll(strings.ARIA_CHECKED_CHECKBOX_SELECTOR);
             this.selectedIndex =
                 [].map.call(preselectedItems, function (listItem) { return _this.listElements.indexOf(listItem); });
         }
         else if (singleSelectedListItem) {
             if (singleSelectedListItem.classList.contains(cssClasses.LIST_ITEM_ACTIVATED_CLASS)) {
-                this.foundation_.setUseActivatedClass(true);
+                this.foundation.setUseActivatedClass(true);
             }
             this.singleSelection = true;
             this.selectedIndex = this.listElements.indexOf(singleSelectedListItem);
@@ -132,7 +166,20 @@ var MDCList = /** @class */ (function (_super) {
      * @param isEnabled Sets the list item to enabled or disabled.
      */
     MDCList.prototype.setEnabled = function (itemIndex, isEnabled) {
-        this.foundation_.setEnabled(itemIndex, isEnabled);
+        this.foundation.setEnabled(itemIndex, isEnabled);
+    };
+    /**
+     * Given the next desired character from the user, adds it to the typeahead
+     * buffer. Then, attempts to find the next option matching the buffer. Wraps
+     * around if at the end of options.
+     *
+     * @param nextChar The next character to add to the prefix buffer.
+     * @param startingIndex The index from which to start matching. Defaults to
+     *     the currently focused index.
+     * @return The index of the matched item.
+     */
+    MDCList.prototype.typeaheadMatchItem = function (nextChar, startingIndex) {
+        return this.foundation.typeaheadMatchItem(nextChar, startingIndex, /** skipFocus */ true);
     };
     MDCList.prototype.getDefaultFoundation = function () {
         var _this = this;
@@ -151,9 +198,16 @@ var MDCList = /** @class */ (function (_super) {
                     element.focus();
                 }
             },
-            getAttributeForElementIndex: function (index, attr) { return _this.listElements[index].getAttribute(attr); },
-            getFocusedElementIndex: function () { return _this.listElements.indexOf(document.activeElement); },
+            getAttributeForElementIndex: function (index, attr) {
+                return _this.listElements[index].getAttribute(attr);
+            },
+            getFocusedElementIndex: function () {
+                return _this.listElements.indexOf(document.activeElement);
+            },
             getListItemCount: function () { return _this.listElements.length; },
+            getPrimaryTextAtIndex: function (index) {
+                return _this.getPrimaryText(_this.listElements[index]);
+            },
             hasCheckboxAtIndex: function (index) {
                 var listItem = _this.listElements[index];
                 return !!listItem.querySelector(strings.CHECKBOX_SELECTOR);
@@ -168,10 +222,12 @@ var MDCList = /** @class */ (function (_super) {
                 return toggleEl.checked;
             },
             isFocusInsideList: function () {
-                return _this.root_.contains(document.activeElement);
+                return _this.root.contains(document.activeElement);
             },
-            isRootFocused: function () { return document.activeElement === _this.root_; },
-            listItemAtIndexHasClass: function (index, className) { return _this.listElements[index].classList.contains(className); },
+            isRootFocused: function () { return document.activeElement === _this.root; },
+            listItemAtIndexHasClass: function (index, className) {
+                return _this.listElements[index].classList.contains(className);
+            },
             notifyAction: function (index) {
                 _this.emit(strings.ACTION_EVENT, { index: index }, /** shouldBubble */ true);
             },
@@ -221,14 +277,14 @@ var MDCList = /** @class */ (function (_super) {
      */
     MDCList.prototype.handleFocusInEvent_ = function (evt) {
         var index = this.getListItemIndex_(evt);
-        this.foundation_.handleFocusIn(evt, index);
+        this.foundation.handleFocusIn(evt, index);
     };
     /**
      * Used to figure out which element was clicked before sending the event to the foundation.
      */
     MDCList.prototype.handleFocusOutEvent_ = function (evt) {
         var index = this.getListItemIndex_(evt);
-        this.foundation_.handleFocusOut(evt, index);
+        this.foundation.handleFocusOut(evt, index);
     };
     /**
      * Used to figure out which element was focused when keydown event occurred before sending the event to the
@@ -237,7 +293,7 @@ var MDCList = /** @class */ (function (_super) {
     MDCList.prototype.handleKeydownEvent_ = function (evt) {
         var index = this.getListItemIndex_(evt);
         var target = evt.target;
-        this.foundation_.handleKeydown(evt, target.classList.contains(cssClasses.LIST_ITEM_CLASS), index);
+        this.foundation.handleKeydown(evt, target.classList.contains(cssClasses.LIST_ITEM_CLASS), index);
     };
     /**
      * Used to figure out which element was clicked before sending the event to the foundation.
@@ -247,7 +303,7 @@ var MDCList = /** @class */ (function (_super) {
         var target = evt.target;
         // Toggle the checkbox only if it's not the target of the event, or the checkbox will have 2 change events.
         var toggleCheckbox = !matches(target, strings.CHECKBOX_RADIO_SELECTOR);
-        this.foundation_.handleClick(index, toggleCheckbox);
+        this.foundation.handleClick(index, toggleCheckbox);
     };
     return MDCList;
 }(MDCComponent));

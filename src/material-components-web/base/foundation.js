@@ -23,7 +23,7 @@
 var MDCFoundation = /** @class */ (function () {
     function MDCFoundation(adapter) {
         if (adapter === void 0) { adapter = {}; }
-        this.adapter_ = adapter;
+        this.adapter = adapter;
     }
     Object.defineProperty(MDCFoundation, "cssClasses", {
         get: function () {

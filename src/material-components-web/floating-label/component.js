@@ -37,17 +37,24 @@ var MDCFloatingLabel = /** @class */ (function (_super) {
      * @param shouldShake If true, shakes the label by adding a CSS class; otherwise, stops shaking by removing the class.
      */
     MDCFloatingLabel.prototype.shake = function (shouldShake) {
-        this.foundation_.shake(shouldShake);
+        this.foundation.shake(shouldShake);
     };
     /**
      * Styles the label to float/dock.
      * @param shouldFloat If true, floats the label by adding a CSS class; otherwise, docks it by removing the class.
      */
     MDCFloatingLabel.prototype.float = function (shouldFloat) {
-        this.foundation_.float(shouldFloat);
+        this.foundation.float(shouldFloat);
+    };
+    /**
+     * Styles the label as required.
+     * @param isRequired If true, adds an asterisk to the label, indicating that it is required.
+     */
+    MDCFloatingLabel.prototype.setRequired = function (isRequired) {
+        this.foundation.setRequired(isRequired);
     };
     MDCFloatingLabel.prototype.getWidth = function () {
-        return this.foundation_.getWidth();
+        return this.foundation.getWidth();
     };
     MDCFloatingLabel.prototype.getDefaultFoundation = function () {
         var _this = this;
@@ -55,9 +62,9 @@ var MDCFloatingLabel = /** @class */ (function (_super) {
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
-            addClass: function (className) { return _this.root_.classList.add(className); },
-            removeClass: function (className) { return _this.root_.classList.remove(className); },
-            getWidth: function () { return estimateScrollWidth(_this.root_); },
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
+            getWidth: function () { return estimateScrollWidth(_this.root); },
             registerInteractionHandler: function (evtType, handler) {
                 return _this.listen(evtType, handler);
             },

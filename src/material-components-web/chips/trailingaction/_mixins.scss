@@ -45,6 +45,7 @@ $ripple-target: '.mdc-chip-trailing-action__ripple';
   .mdc-chip-trailing-action {
     @include size(variables.$size, $query);
     @include color(variables.$color, $query);
+    @include touch-target-width(variables.$touch-target-width, $query);
 
     @include feature-mixins.targets($feat-structure) {
       border: none;
@@ -81,8 +82,15 @@ $ripple-target: '.mdc-chip-trailing-action__ripple';
 
   .mdc-chip-trailing-action {
     @include ripple.surface($query: $query, $ripple-target: $ripple-target);
-    @include ripple.radius-unbounded($query: $query, $ripple-target: $ripple-target);
-    @include ripple.states(variables.$ripple-color, $query: $query, $ripple-target: $ripple-target);
+    @include ripple.radius-unbounded(
+      $query: $query,
+      $ripple-target: $ripple-target
+    );
+    @include ripple.states(
+      variables.$ripple-color,
+      $query: $query,
+      $ripple-target: $ripple-target
+    );
 
     #{$ripple-target} {
       @include feature-mixins.targets($feat-structure) {
@@ -152,8 +160,6 @@ $ripple-target: '.mdc-chip-trailing-action__ripple';
 /// Private mixins
 
 @mixin _touch-target-base($query: feature-functions.all()) {
-  @include touch-target-width(variables.$touch-target-width, $query);
-
   .mdc-chip-trailing-action__touch {
     @include touch.touch-target($set-width: true, $query: $query);
   }

@@ -34,17 +34,18 @@ var MDCNotchedOutline = /** @class */ (function (_super) {
         return new MDCNotchedOutline(root);
     };
     MDCNotchedOutline.prototype.initialSyncWithDOM = function () {
-        this.notchElement_ = this.root_.querySelector(strings.NOTCH_ELEMENT_SELECTOR);
-        var label = this.root_.querySelector('.' + MDCFloatingLabelFoundation.cssClasses.ROOT);
+        this.notchElement_ =
+            this.root.querySelector(strings.NOTCH_ELEMENT_SELECTOR);
+        var label = this.root.querySelector('.' + MDCFloatingLabelFoundation.cssClasses.ROOT);
         if (label) {
             label.style.transitionDuration = '0s';
-            this.root_.classList.add(cssClasses.OUTLINE_UPGRADED);
+            this.root.classList.add(cssClasses.OUTLINE_UPGRADED);
             requestAnimationFrame(function () {
                 label.style.transitionDuration = '';
             });
         }
         else {
-            this.root_.classList.add(cssClasses.NO_LABEL);
+            this.root.classList.add(cssClasses.NO_LABEL);
         }
     };
     /**
@@ -52,13 +53,13 @@ var MDCNotchedOutline = /** @class */ (function (_super) {
      * @param notchWidth The notch width in the outline.
      */
     MDCNotchedOutline.prototype.notch = function (notchWidth) {
-        this.foundation_.notch(notchWidth);
+        this.foundation.notch(notchWidth);
     };
     /**
      * Updates classes and styles to close the notch.
      */
     MDCNotchedOutline.prototype.closeNotch = function () {
-        this.foundation_.closeNotch();
+        this.foundation.closeNotch();
     };
     MDCNotchedOutline.prototype.getDefaultFoundation = function () {
         var _this = this;
@@ -66,10 +67,14 @@ var MDCNotchedOutline = /** @class */ (function (_super) {
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
-            addClass: function (className) { return _this.root_.classList.add(className); },
-            removeClass: function (className) { return _this.root_.classList.remove(className); },
-            setNotchWidthProperty: function (width) { return _this.notchElement_.style.setProperty('width', width + 'px'); },
-            removeNotchWidthProperty: function () { return _this.notchElement_.style.removeProperty('width'); },
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
+            setNotchWidthProperty: function (width) {
+                return _this.notchElement_.style.setProperty('width', width + 'px');
+            },
+            removeNotchWidthProperty: function () {
+                return _this.notchElement_.style.removeProperty('width');
+            },
         };
         // tslint:enable:object-literal-sort-keys
         return new MDCNotchedOutlineFoundation(adapter);

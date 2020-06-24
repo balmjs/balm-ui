@@ -2,8 +2,8 @@
 @use '@material/checkbox/variables' with (
   $baseline-theme-color: secondary,
   $mark-color: theme-variables.prop-value(on-secondary),
-  $border-color: rgba(theme-variables.prop-value(on-surface), .54),
-  $disabled-color: rgba(theme-variables.prop-value(on-surface), .38),
+  $border-color: rgba(theme-variables.prop-value(on-surface), 0.54),
+  $disabled-color: rgba(theme-variables.prop-value(on-surface), 0.38),
 
   $ripple-size: 40px,
   $icon-size: 18px,
@@ -11,7 +11,10 @@
   $border-width: 2px,
   $transition-duration: 90ms,
   $item-spacing: 4px,
-  $focus-indicator-opacity: map.get(ripple-variables.$dark-ink-opacities, focus),
+  $focus-indicator-opacity: map.get(
+    ripple-variables.$dark-ink-opacities,
+    focus
+  ),
 
   $minimum-size: 28px,
   $maximum-size: $ripple-size,
@@ -25,6 +28,6 @@
   ),
 
   $mark-path-length_: 29.7833385,
-  $indeterminate-checked-easing-function_: cubic-bezier(.14, 0, 0, 1)
+  $indeterminate-checked-easing-function_: cubic-bezier(0.14, 0, 0, 1)
 );
 ```

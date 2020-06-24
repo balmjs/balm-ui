@@ -37,6 +37,7 @@ export var KEY = {
     ARROW_RIGHT: 'ArrowRight',
     ARROW_DOWN: 'ArrowDown',
     DELETE: 'Delete',
+    ESCAPE: 'Escape',
 };
 var normalizedKeys = new Set();
 // IE11 has no support for new Map with iterable so we need to initialize this
@@ -53,6 +54,7 @@ normalizedKeys.add(KEY.ARROW_UP);
 normalizedKeys.add(KEY.ARROW_RIGHT);
 normalizedKeys.add(KEY.ARROW_DOWN);
 normalizedKeys.add(KEY.DELETE);
+normalizedKeys.add(KEY.ESCAPE);
 var KEY_CODE = {
     BACKSPACE: 8,
     ENTER: 13,
@@ -66,6 +68,7 @@ var KEY_CODE = {
     ARROW_RIGHT: 39,
     ARROW_DOWN: 40,
     DELETE: 46,
+    ESCAPE: 27,
 };
 var mappedKeyCodes = new Map();
 // IE11 has no support for new Map with iterable so we need to initialize this
@@ -82,6 +85,7 @@ mappedKeyCodes.set(KEY_CODE.ARROW_UP, KEY.ARROW_UP);
 mappedKeyCodes.set(KEY_CODE.ARROW_RIGHT, KEY.ARROW_RIGHT);
 mappedKeyCodes.set(KEY_CODE.ARROW_DOWN, KEY.ARROW_DOWN);
 mappedKeyCodes.set(KEY_CODE.DELETE, KEY.DELETE);
+mappedKeyCodes.set(KEY_CODE.ESCAPE, KEY.ESCAPE);
 var navigationKeys = new Set();
 // IE11 has no support for new Set with iterable so we need to initialize this
 // by hand.

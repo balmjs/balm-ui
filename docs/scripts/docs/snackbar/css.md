@@ -1,9 +1,19 @@
 ```css
 @use '@material/snackbar/variables' with (
-  $fill-color: color.mix(variables.prop-value(on-surface), variables.prop-value(surface), 80%),
-  $label-ink-color: rgba(variables.prop-value(surface), variables.text-emphasis(high)),
+  $fill-color: color.mix(
+    variables.prop-value(on-surface),
+    variables.prop-value(surface),
+    80%
+  ),
+  $label-ink-color: rgba(
+    variables.prop-value(surface),
+    variables.text-emphasis(high)
+  ),
   $action-ink-color: #bb86fc,
-  $dismiss-ink-color: rgba(variables.prop-value(surface), variables.text-emphasis(high)),
+  $dismiss-ink-color: rgba(
+    variables.prop-value(surface),
+    variables.text-emphasis(high)
+  ),
 
   $label-type-scale: body2,
   $dismiss-icon-size: 18px,

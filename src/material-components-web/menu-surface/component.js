@@ -35,47 +35,55 @@ var MDCMenuSurface = /** @class */ (function (_super) {
     };
     MDCMenuSurface.prototype.initialSyncWithDOM = function () {
         var _this = this;
-        var parentEl = this.root_.parentElement;
+        var parentEl = this.root.parentElement;
         this.anchorElement = parentEl && parentEl.classList.contains(cssClasses.ANCHOR) ? parentEl : null;
-        if (this.root_.classList.contains(cssClasses.FIXED)) {
+        if (this.root.classList.contains(cssClasses.FIXED)) {
             this.setFixedPosition(true);
         }
-        this.handleKeydown_ = function (evt) { return _this.foundation_.handleKeydown(evt); };
-        this.handleBodyClick_ = function (evt) { return _this.foundation_.handleBodyClick(evt); };
+        this.handleKeydown = function (event) {
+            _this.foundation.handleKeydown(event);
+        };
+        this.handleBodyClick = function (event) {
+            _this.foundation.handleBodyClick(event);
+        };
         // capture so that no race between handleBodyClick and quickOpen when
         // menusurface opened on button click which registers this listener
-        this.registerBodyClickListener_ = function () { return document.body.addEventListener('click', _this.handleBodyClick_, { capture: true }); };
-        this.deregisterBodyClickListener_ = function () { return document.body.removeEventListener('click', _this.handleBodyClick_); };
-        this.listen('keydown', this.handleKeydown_);
-        this.listen(strings.OPENED_EVENT, this.registerBodyClickListener_);
-        this.listen(strings.CLOSED_EVENT, this.deregisterBodyClickListener_);
+        this.registerBodyClickListener = function () {
+            document.body.addEventListener('click', _this.handleBodyClick, { capture: true });
+        };
+        this.deregisterBodyClickListener = function () {
+            document.body.removeEventListener('click', _this.handleBodyClick);
+        };
+        this.listen('keydown', this.handleKeydown);
+        this.listen(strings.OPENED_EVENT, this.registerBodyClickListener);
+        this.listen(strings.CLOSED_EVENT, this.deregisterBodyClickListener);
     };
     MDCMenuSurface.prototype.destroy = function () {
-        this.unlisten('keydown', this.handleKeydown_);
-        this.unlisten(strings.OPENED_EVENT, this.registerBodyClickListener_);
-        this.unlisten(strings.CLOSED_EVENT, this.deregisterBodyClickListener_);
+        this.unlisten('keydown', this.handleKeydown);
+        this.unlisten(strings.OPENED_EVENT, this.registerBodyClickListener);
+        this.unlisten(strings.CLOSED_EVENT, this.deregisterBodyClickListener);
         _super.prototype.destroy.call(this);
     };
     MDCMenuSurface.prototype.isOpen = function () {
-        return this.foundation_.isOpen();
+        return this.foundation.isOpen();
     };
     MDCMenuSurface.prototype.open = function () {
-        this.foundation_.open();
+        this.foundation.open();
     };
     MDCMenuSurface.prototype.close = function (skipRestoreFocus) {
         if (skipRestoreFocus === void 0) { skipRestoreFocus = false; }
-        this.foundation_.close(skipRestoreFocus);
+        this.foundation.close(skipRestoreFocus);
     };
     Object.defineProperty(MDCMenuSurface.prototype, "quickOpen", {
         set: function (quickOpen) {
-            this.foundation_.setQuickOpen(quickOpen);
+            this.foundation.setQuickOpen(quickOpen);
         },
         enumerable: true,
         configurable: true
     });
     /** Sets the foundation to use page offsets for an positioning when the menu is hoisted to the body. */
     MDCMenuSurface.prototype.setIsHoisted = function (isHoisted) {
-        this.foundation_.setIsHoisted(isHoisted);
+        this.foundation.setIsHoisted(isHoisted);
     };
     /** Sets the element that the menu-surface is anchored to. */
     MDCMenuSurface.prototype.setMenuSurfaceAnchorElement = function (element) {
@@ -84,26 +92,26 @@ var MDCMenuSurface = /** @class */ (function (_super) {
     /** Sets the menu-surface to position: fixed. */
     MDCMenuSurface.prototype.setFixedPosition = function (isFixed) {
         if (isFixed) {
-            this.root_.classList.add(cssClasses.FIXED);
+            this.root.classList.add(cssClasses.FIXED);
         }
         else {
-            this.root_.classList.remove(cssClasses.FIXED);
+            this.root.classList.remove(cssClasses.FIXED);
         }
-        this.foundation_.setFixedPosition(isFixed);
+        this.foundation.setFixedPosition(isFixed);
     };
     /** Sets the absolute x/y position to position based on. Requires the menu to be hoisted. */
     MDCMenuSurface.prototype.setAbsolutePosition = function (x, y) {
-        this.foundation_.setAbsolutePosition(x, y);
+        this.foundation.setAbsolutePosition(x, y);
         this.setIsHoisted(true);
     };
     /**
      * @param corner Default anchor corner alignment of top-left surface corner.
      */
     MDCMenuSurface.prototype.setAnchorCorner = function (corner) {
-        this.foundation_.setAnchorCorner(corner);
+        this.foundation.setAnchorCorner(corner);
     };
     MDCMenuSurface.prototype.setAnchorMargin = function (margin) {
-        this.foundation_.setAnchorMargin(margin);
+        this.foundation.setAnchorMargin(margin);
     };
     MDCMenuSurface.prototype.getDefaultFoundation = function () {
         var _this = this;
@@ -111,33 +119,45 @@ var MDCMenuSurface = /** @class */ (function (_super) {
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
-            addClass: function (className) { return _this.root_.classList.add(className); },
-            removeClass: function (className) { return _this.root_.classList.remove(className); },
-            hasClass: function (className) { return _this.root_.classList.contains(className); },
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
+            hasClass: function (className) { return _this.root.classList.contains(className); },
             hasAnchor: function () { return !!_this.anchorElement; },
-            notifyClose: function () { return _this.emit(MDCMenuSurfaceFoundation.strings.CLOSED_EVENT, {}); },
-            notifyOpen: function () { return _this.emit(MDCMenuSurfaceFoundation.strings.OPENED_EVENT, {}); },
-            isElementInContainer: function (el) { return _this.root_.contains(el); },
-            isRtl: function () { return getComputedStyle(_this.root_).getPropertyValue('direction') === 'rtl'; },
+            notifyClose: function () {
+                return _this.emit(MDCMenuSurfaceFoundation.strings.CLOSED_EVENT, {});
+            },
+            notifyOpen: function () {
+                return _this.emit(MDCMenuSurfaceFoundation.strings.OPENED_EVENT, {});
+            },
+            isElementInContainer: function (el) { return _this.root.contains(el); },
+            isRtl: function () {
+                return getComputedStyle(_this.root).getPropertyValue('direction') === 'rtl';
+            },
             setTransformOrigin: function (origin) {
                 var propertyName = util.getTransformPropertyName(window) + "-origin";
-                _this.root_.style.setProperty(propertyName, origin);
+                _this.root.style.setProperty(propertyName, origin);
             },
-            isFocused: function () { return document.activeElement === _this.root_; },
+            isFocused: function () { return document.activeElement === _this.root; },
             saveFocus: function () {
-                _this.previousFocus_ = document.activeElement;
+                _this.previousFocus =
+                    document.activeElement;
             },
             restoreFocus: function () {
-                if (_this.root_.contains(document.activeElement)) {
-                    if (_this.previousFocus_ && _this.previousFocus_.focus) {
-                        _this.previousFocus_.focus();
+                if (_this.root.contains(document.activeElement)) {
+                    if (_this.previousFocus && _this.previousFocus.focus) {
+                        _this.previousFocus.focus();
                     }
                 }
             },
             getInnerDimensions: function () {
-                return { width: _this.root_.offsetWidth, height: _this.root_.offsetHeight };
+                return {
+                    width: _this.root.offsetWidth,
+                    height: _this.root.offsetHeight
+                };
             },
-            getAnchorDimensions: function () { return _this.anchorElement ? _this.anchorElement.getBoundingClientRect() : null; },
+            getAnchorDimensions: function () { return _this.anchorElement ?
+                _this.anchorElement.getBoundingClientRect() :
+                null; },
             getWindowDimensions: function () {
                 return { width: window.innerWidth, height: window.innerHeight };
             },
@@ -148,13 +168,15 @@ var MDCMenuSurface = /** @class */ (function (_super) {
                 return { x: window.pageXOffset, y: window.pageYOffset };
             },
             setPosition: function (position) {
-                _this.root_.style.left = 'left' in position ? position.left + "px" : '';
-                _this.root_.style.right = 'right' in position ? position.right + "px" : '';
-                _this.root_.style.top = 'top' in position ? position.top + "px" : '';
-                _this.root_.style.bottom = 'bottom' in position ? position.bottom + "px" : '';
+                var rootHTML = _this.root;
+                rootHTML.style.left = 'left' in position ? position.left + "px" : '';
+                rootHTML.style.right = 'right' in position ? position.right + "px" : '';
+                rootHTML.style.top = 'top' in position ? position.top + "px" : '';
+                rootHTML.style.bottom =
+                    'bottom' in position ? position.bottom + "px" : '';
             },
             setMaxHeight: function (height) {
-                _this.root_.style.maxHeight = height;
+                _this.root.style.maxHeight = height;
             },
         };
         // tslint:enable:object-literal-sort-keys

@@ -4,6 +4,7 @@
   $extended-label-padding: 20px,
   $height: 56px,
   $mini-height: 40px,
-  $extended-height: 48px
+  $extended-height: 48px,
+  $shape-radius: 50%
 );
 ```

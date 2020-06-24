@@ -35,20 +35,20 @@ var MDCLineRipple = /** @class */ (function (_super) {
      * Activates the line ripple
      */
     MDCLineRipple.prototype.activate = function () {
-        this.foundation_.activate();
+        this.foundation.activate();
     };
     /**
      * Deactivates the line ripple
      */
     MDCLineRipple.prototype.deactivate = function () {
-        this.foundation_.deactivate();
+        this.foundation.deactivate();
     };
     /**
      * Sets the transform origin given a user's click location.
      * The `rippleCenter` is the x-coordinate of the middle of the ripple.
      */
     MDCLineRipple.prototype.setRippleCenter = function (xCoordinate) {
-        this.foundation_.setRippleCenter(xCoordinate);
+        this.foundation.setRippleCenter(xCoordinate);
     };
     MDCLineRipple.prototype.getDefaultFoundation = function () {
         var _this = this;
@@ -56,10 +56,10 @@ var MDCLineRipple = /** @class */ (function (_super) {
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
-            addClass: function (className) { return _this.root_.classList.add(className); },
-            removeClass: function (className) { return _this.root_.classList.remove(className); },
-            hasClass: function (className) { return _this.root_.classList.contains(className); },
-            setStyle: function (propertyName, value) { return _this.root_.style.setProperty(propertyName, value); },
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
+            hasClass: function (className) { return _this.root.classList.contains(className); },
+            setStyle: function (propertyName, value) { return _this.root.style.setProperty(propertyName, value); },
             registerEventHandler: function (evtType, handler) { return _this.listen(evtType, handler); },
             deregisterEventHandler: function (evtType, handler) { return _this.unlisten(evtType, handler); },
         };

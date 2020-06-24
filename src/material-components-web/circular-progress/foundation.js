@@ -58,15 +58,15 @@ var MDCCircularProgressFoundation = /** @class */ (function (_super) {
         configurable: true
     });
     MDCCircularProgressFoundation.prototype.init = function () {
-        this.isClosed_ = this.adapter_.hasClass(cssClasses.CLOSED_CLASS);
+        this.isClosed_ = this.adapter.hasClass(cssClasses.CLOSED_CLASS);
         this.isDeterminate_ =
-            !this.adapter_.hasClass(cssClasses.INDETERMINATE_CLASS);
+            !this.adapter.hasClass(cssClasses.INDETERMINATE_CLASS);
         this.progress_ = 0;
         if (this.isDeterminate_) {
-            this.adapter_.setAttribute(strings.ARIA_VALUENOW, this.progress_.toString());
+            this.adapter.setAttribute(strings.ARIA_VALUENOW, this.progress_.toString());
         }
         this.radius_ =
-            Number(this.adapter_.getDeterminateCircleAttribute(strings.RADIUS));
+            Number(this.adapter.getDeterminateCircleAttribute(strings.RADIUS));
     };
     MDCCircularProgressFoundation.prototype.isDeterminate = function () {
         return this.isDeterminate_;
@@ -87,12 +87,12 @@ var MDCCircularProgressFoundation = /** @class */ (function (_super) {
     MDCCircularProgressFoundation.prototype.setDeterminate = function (isDeterminate) {
         this.isDeterminate_ = isDeterminate;
         if (this.isDeterminate_) {
-            this.adapter_.removeClass(cssClasses.INDETERMINATE_CLASS);
+            this.adapter.removeClass(cssClasses.INDETERMINATE_CLASS);
             this.setProgress(this.progress_);
         }
         else {
-            this.adapter_.addClass(cssClasses.INDETERMINATE_CLASS);
-            this.adapter_.removeAttribute(strings.ARIA_VALUENOW);
+            this.adapter.addClass(cssClasses.INDETERMINATE_CLASS);
+            this.adapter.removeAttribute(strings.ARIA_VALUENOW);
         }
     };
     /**
@@ -105,8 +105,8 @@ var MDCCircularProgressFoundation = /** @class */ (function (_super) {
         this.progress_ = value;
         if (this.isDeterminate_) {
             var unfilledArcLength = (1 - this.progress_) * (2 * Math.PI * this.radius_);
-            this.adapter_.setDeterminateCircleAttribute(strings.STROKE_DASHOFFSET, "" + unfilledArcLength);
-            this.adapter_.setAttribute(strings.ARIA_VALUENOW, this.progress_.toString());
+            this.adapter.setDeterminateCircleAttribute(strings.STROKE_DASHOFFSET, "" + unfilledArcLength);
+            this.adapter.setAttribute(strings.ARIA_VALUENOW, this.progress_.toString());
         }
     };
     /**
@@ -114,14 +114,14 @@ var MDCCircularProgressFoundation = /** @class */ (function (_super) {
      */
     MDCCircularProgressFoundation.prototype.open = function () {
         this.isClosed_ = false;
-        this.adapter_.removeClass(cssClasses.CLOSED_CLASS);
+        this.adapter.removeClass(cssClasses.CLOSED_CLASS);
     };
     /**
      * Hides the progress indicator
      */
     MDCCircularProgressFoundation.prototype.close = function () {
         this.isClosed_ = true;
-        this.adapter_.addClass(cssClasses.CLOSED_CLASS);
+        this.adapter.addClass(cssClasses.CLOSED_CLASS);
     };
     return MDCCircularProgressFoundation;
 }(MDCFoundation));

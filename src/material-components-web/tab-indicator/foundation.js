@@ -57,7 +57,7 @@ var MDCTabIndicatorFoundation = /** @class */ (function (_super) {
         configurable: true
     });
     MDCTabIndicatorFoundation.prototype.computeContentClientRect = function () {
-        return this.adapter_.computeContentClientRect();
+        return this.adapter.computeContentClientRect();
     };
     return MDCTabIndicatorFoundation;
 }(MDCFoundation));

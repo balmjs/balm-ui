@@ -1,8 +1,16 @@
 ```css
 @use '@material/card/variables' with (
-  $action-icon-color: rgba(variables.prop-value(on-surface), variables.text-emphasis(medium)),
-  $outline-color: color.mix(variables.prop-value(on-surface), variables.prop-value(surface), 12%),
-  $outline-width: 1px
+  $action-icon-color: rgba(
+    variables.prop-value(on-surface),
+    variables.text-emphasis(medium)
+  ),
+  $outline-color: color.mix(
+    variables.prop-value(on-surface),
+    variables.prop-value(surface),
+    12%
+  ),
+  $outline-width: 1px,
+  $shape-radius: medium
 );
 
 @use 'balm-ui/components/card/variables' with (

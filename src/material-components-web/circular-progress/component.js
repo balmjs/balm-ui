@@ -29,7 +29,7 @@ var MDCCircularProgress = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     MDCCircularProgress.prototype.initialize = function () {
-        this.determinateCircle_ = this.root_.querySelector(MDCCircularProgressFoundation.strings.DETERMINATE_CIRCLE_SELECTOR);
+        this.determinateCircle_ = this.root.querySelector(MDCCircularProgressFoundation.strings.DETERMINATE_CIRCLE_SELECTOR);
     };
     MDCCircularProgress.attachTo = function (root) {
         return new MDCCircularProgress(root);
@@ -40,7 +40,7 @@ var MDCCircularProgress = /** @class */ (function (_super) {
          * @param isDeterminate Whether the indicator should be determinate.
          */
         set: function (value) {
-            this.foundation_.setDeterminate(value);
+            this.foundation.setDeterminate(value);
         },
         enumerable: true,
         configurable: true
@@ -53,7 +53,7 @@ var MDCCircularProgress = /** @class */ (function (_super) {
          * @param value The current progress value, which must be between 0 and 1.
          */
         set: function (value) {
-            this.foundation_.setProgress(value);
+            this.foundation.setProgress(value);
         },
         enumerable: true,
         configurable: true
@@ -63,7 +63,7 @@ var MDCCircularProgress = /** @class */ (function (_super) {
          * Whether the progress indicator is hidden.
          */
         get: function () {
-            return this.foundation_.isClosed();
+            return this.foundation.isClosed();
         },
         enumerable: true,
         configurable: true
@@ -72,13 +72,13 @@ var MDCCircularProgress = /** @class */ (function (_super) {
      * Shows the progress indicator.
      */
     MDCCircularProgress.prototype.open = function () {
-        this.foundation_.open();
+        this.foundation.open();
     };
     /**
      * Hides the progress indicator.
      */
     MDCCircularProgress.prototype.close = function () {
-        this.foundation_.close();
+        this.foundation.close();
     };
     MDCCircularProgress.prototype.getDefaultFoundation = function () {
         var _this = this;
@@ -86,19 +86,17 @@ var MDCCircularProgress = /** @class */ (function (_super) {
         // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
         // methods, we need a separate, strongly typed adapter variable.
         var adapter = {
-            addClass: function (className) { return _this.root_.classList.add(className); },
+            addClass: function (className) { return _this.root.classList.add(className); },
             getDeterminateCircleAttribute: function (attributeName) {
                 return _this.determinateCircle_.getAttribute(attributeName);
             },
-            hasClass: function (className) { return _this.root_.classList.contains(className); },
-            removeClass: function (className) {
-                return _this.root_.classList.remove(className);
-            },
+            hasClass: function (className) { return _this.root.classList.contains(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
             removeAttribute: function (attributeName) {
-                return _this.root_.removeAttribute(attributeName);
+                return _this.root.removeAttribute(attributeName);
             },
             setAttribute: function (attributeName, value) {
-                return _this.root_.setAttribute(attributeName, value);
+                return _this.root.setAttribute(attributeName, value);
             },
             setDeterminateCircleAttribute: function (attributeName, value) {
                 return _this.determinateCircle_.setAttribute(attributeName, value);

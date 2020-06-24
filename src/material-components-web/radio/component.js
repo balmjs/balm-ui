@@ -51,7 +51,7 @@ var MDCRadio = /** @class */ (function (_super) {
             return this.nativeControl_.disabled;
         },
         set: function (disabled) {
-            this.foundation_.setDisabled(disabled);
+            this.foundation.setDisabled(disabled);
         },
         enumerable: true,
         configurable: true
@@ -82,9 +82,10 @@ var MDCRadio = /** @class */ (function (_super) {
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         var adapter = {
-            addClass: function (className) { return _this.root_.classList.add(className); },
-            removeClass: function (className) { return _this.root_.classList.remove(className); },
-            setNativeControlDisabled: function (disabled) { return _this.nativeControl_.disabled = disabled; },
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
+            setNativeControlDisabled: function (disabled) { return _this.nativeControl_.disabled =
+                disabled; },
         };
         return new MDCRadioFoundation(adapter);
     };
@@ -98,12 +99,12 @@ var MDCRadio = /** @class */ (function (_super) {
             // This is not the UI we desire.
             isSurfaceActive: function () { return false; }, isUnbounded: function () { return true; } });
         // tslint:enable:object-literal-sort-keys
-        return new MDCRipple(this.root_, new MDCRippleFoundation(adapter));
+        return new MDCRipple(this.root, new MDCRippleFoundation(adapter));
     };
     Object.defineProperty(MDCRadio.prototype, "nativeControl_", {
         get: function () {
             var NATIVE_CONTROL_SELECTOR = MDCRadioFoundation.strings.NATIVE_CONTROL_SELECTOR;
-            var el = this.root_.querySelector(NATIVE_CONTROL_SELECTOR);
+            var el = this.root.querySelector(NATIVE_CONTROL_SELECTOR);
             if (!el) {
                 throw new Error("Radio component requires a " + NATIVE_CONTROL_SELECTOR + " element");
             }

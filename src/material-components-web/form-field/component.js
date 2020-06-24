@@ -31,47 +31,35 @@ var MDCFormField = /** @class */ (function (_super) {
     MDCFormField.attachTo = function (root) {
         return new MDCFormField(root);
     };
-    Object.defineProperty(MDCFormField.prototype, "input", {
-        get: function () {
-            return this.input_;
-        },
-        set: function (input) {
-            this.input_ = input;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(MDCFormField.prototype, "label_", {
-        get: function () {
-            var LABEL_SELECTOR = MDCFormFieldFoundation.strings.LABEL_SELECTOR;
-            return this.root_.querySelector(LABEL_SELECTOR);
-        },
-        enumerable: true,
-        configurable: true
-    });
+    MDCFormField.prototype.labelEl = function () {
+        var LABEL_SELECTOR = MDCFormFieldFoundation.strings.LABEL_SELECTOR;
+        return this.root.querySelector(LABEL_SELECTOR);
+    };
     MDCFormField.prototype.getDefaultFoundation = function () {
         var _this = this;
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         var adapter = {
             activateInputRipple: function () {
-                if (_this.input_ && _this.input_.ripple) {
-                    _this.input_.ripple.activate();
+                if (_this.input && _this.input.ripple) {
+                    _this.input.ripple.activate();
                 }
             },
             deactivateInputRipple: function () {
-                if (_this.input_ && _this.input_.ripple) {
-                    _this.input_.ripple.deactivate();
+                if (_this.input && _this.input.ripple) {
+                    _this.input.ripple.deactivate();
                 }
             },
             deregisterInteractionHandler: function (evtType, handler) {
-                if (_this.label_) {
-                    _this.label_.removeEventListener(evtType, handler);
+                var labelEl = _this.labelEl();
+                if (labelEl) {
+                    labelEl.removeEventListener(evtType, handler);
                 }
             },
             registerInteractionHandler: function (evtType, handler) {
-                if (_this.label_) {
-                    _this.label_.addEventListener(evtType, handler);
+                var labelEl = _this.labelEl();
+                if (labelEl) {
+                    labelEl.addEventListener(evtType, handler);
                 }
             },
         };

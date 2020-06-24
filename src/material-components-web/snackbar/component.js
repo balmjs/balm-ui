@@ -41,17 +41,17 @@ var MDCSnackbar = /** @class */ (function (_super) {
     };
     MDCSnackbar.prototype.initialSyncWithDOM = function () {
         var _this = this;
-        this.surfaceEl_ = this.root_.querySelector(SURFACE_SELECTOR);
-        this.labelEl_ = this.root_.querySelector(LABEL_SELECTOR);
-        this.actionEl_ = this.root_.querySelector(ACTION_SELECTOR);
-        this.handleKeyDown_ = function (evt) { return _this.foundation_.handleKeyDown(evt); };
+        this.surfaceEl_ = this.root.querySelector(SURFACE_SELECTOR);
+        this.labelEl_ = this.root.querySelector(LABEL_SELECTOR);
+        this.actionEl_ = this.root.querySelector(ACTION_SELECTOR);
+        this.handleKeyDown_ = function (evt) { return _this.foundation.handleKeyDown(evt); };
         this.handleSurfaceClick_ = function (evt) {
             var target = evt.target;
             if (_this.isActionButton_(target)) {
-                _this.foundation_.handleActionButtonClick(evt);
+                _this.foundation.handleActionButtonClick(evt);
             }
             else if (_this.isActionIcon_(target)) {
-                _this.foundation_.handleActionIconClick(evt);
+                _this.foundation.handleActionIconClick(evt);
             }
         };
         this.registerKeyDownHandler_(this.handleKeyDown_);
@@ -63,7 +63,7 @@ var MDCSnackbar = /** @class */ (function (_super) {
         this.deregisterSurfaceClickHandler_(this.handleSurfaceClick_);
     };
     MDCSnackbar.prototype.open = function () {
-        this.foundation_.open();
+        this.foundation.open();
     };
     /**
      * @param reason Why the snackbar was closed. Value will be passed to CLOSING_EVENT and CLOSED_EVENT via the
@@ -72,46 +72,46 @@ var MDCSnackbar = /** @class */ (function (_super) {
      */
     MDCSnackbar.prototype.close = function (reason) {
         if (reason === void 0) { reason = ''; }
-        this.foundation_.close(reason);
+        this.foundation.close(reason);
     };
     MDCSnackbar.prototype.getDefaultFoundation = function () {
         var _this = this;
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         var adapter = {
-            addClass: function (className) { return _this.root_.classList.add(className); },
+            addClass: function (className) { return _this.root.classList.add(className); },
             announce: function () { return _this.announce_(_this.labelEl_); },
             notifyClosed: function (reason) { return _this.emit(CLOSED_EVENT, reason ? { reason: reason } : {}); },
             notifyClosing: function (reason) { return _this.emit(CLOSING_EVENT, reason ? { reason: reason } : {}); },
             notifyOpened: function () { return _this.emit(OPENED_EVENT, {}); },
             notifyOpening: function () { return _this.emit(OPENING_EVENT, {}); },
-            removeClass: function (className) { return _this.root_.classList.remove(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
         };
         return new MDCSnackbarFoundation(adapter);
     };
     Object.defineProperty(MDCSnackbar.prototype, "timeoutMs", {
         get: function () {
-            return this.foundation_.getTimeoutMs();
+            return this.foundation.getTimeoutMs();
         },
         set: function (timeoutMs) {
-            this.foundation_.setTimeoutMs(timeoutMs);
+            this.foundation.setTimeoutMs(timeoutMs);
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(MDCSnackbar.prototype, "closeOnEscape", {
         get: function () {
-            return this.foundation_.getCloseOnEscape();
+            return this.foundation.getCloseOnEscape();
         },
         set: function (closeOnEscape) {
-            this.foundation_.setCloseOnEscape(closeOnEscape);
+            this.foundation.setCloseOnEscape(closeOnEscape);
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(MDCSnackbar.prototype, "isOpen", {
         get: function () {
-            return this.foundation_.isOpen();
+            return this.foundation.isOpen();
         },
         enumerable: true,
         configurable: true

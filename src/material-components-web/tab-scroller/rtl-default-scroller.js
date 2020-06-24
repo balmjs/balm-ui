@@ -28,14 +28,14 @@ var MDCTabScrollerRTLDefault = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     MDCTabScrollerRTLDefault.prototype.getScrollPositionRTL = function () {
-        var currentScrollLeft = this.adapter_.getScrollAreaScrollLeft();
+        var currentScrollLeft = this.adapter.getScrollAreaScrollLeft();
         var right = this.calculateScrollEdges_().right;
         // Scroll values on most browsers are ints instead of floats so we round
         return Math.round(right - currentScrollLeft);
     };
     MDCTabScrollerRTLDefault.prototype.scrollToRTL = function (scrollX) {
         var edges = this.calculateScrollEdges_();
-        var currentScrollLeft = this.adapter_.getScrollAreaScrollLeft();
+        var currentScrollLeft = this.adapter.getScrollAreaScrollLeft();
         var clampedScrollLeft = this.clampScrollValue_(edges.right - scrollX);
         return {
             finalScrollPosition: clampedScrollLeft,
@@ -43,7 +43,7 @@ var MDCTabScrollerRTLDefault = /** @class */ (function (_super) {
         };
     };
     MDCTabScrollerRTLDefault.prototype.incrementScrollRTL = function (scrollX) {
-        var currentScrollLeft = this.adapter_.getScrollAreaScrollLeft();
+        var currentScrollLeft = this.adapter.getScrollAreaScrollLeft();
         var clampedScrollLeft = this.clampScrollValue_(currentScrollLeft - scrollX);
         return {
             finalScrollPosition: clampedScrollLeft,
@@ -54,8 +54,8 @@ var MDCTabScrollerRTLDefault = /** @class */ (function (_super) {
         return scrollX;
     };
     MDCTabScrollerRTLDefault.prototype.calculateScrollEdges_ = function () {
-        var contentWidth = this.adapter_.getScrollContentOffsetWidth();
-        var rootWidth = this.adapter_.getScrollAreaOffsetWidth();
+        var contentWidth = this.adapter.getScrollContentOffsetWidth();
+        var rootWidth = this.adapter.getScrollAreaOffsetWidth();
         return {
             left: 0,
             right: contentWidth - rootWidth,

@@ -37,18 +37,18 @@ var MDCTab = /** @class */ (function (_super) {
     MDCTab.prototype.initialize = function (rippleFactory, tabIndicatorFactory) {
         if (rippleFactory === void 0) { rippleFactory = function (el, foundation) { return new MDCRipple(el, foundation); }; }
         if (tabIndicatorFactory === void 0) { tabIndicatorFactory = function (el) { return new MDCTabIndicator(el); }; }
-        this.id = this.root_.id;
-        var rippleSurface = this.root_.querySelector(MDCTabFoundation.strings.RIPPLE_SELECTOR);
+        this.id = this.root.id;
+        var rippleSurface = this.root.querySelector(MDCTabFoundation.strings.RIPPLE_SELECTOR);
         var rippleAdapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { addClass: function (className) { return rippleSurface.classList.add(className); }, removeClass: function (className) { return rippleSurface.classList.remove(className); }, updateCssVariable: function (varName, value) { return rippleSurface.style.setProperty(varName, value); } });
         var rippleFoundation = new MDCRippleFoundation(rippleAdapter);
-        this.ripple_ = rippleFactory(this.root_, rippleFoundation);
-        var tabIndicatorElement = this.root_.querySelector(MDCTabFoundation.strings.TAB_INDICATOR_SELECTOR);
+        this.ripple_ = rippleFactory(this.root, rippleFoundation);
+        var tabIndicatorElement = this.root.querySelector(MDCTabFoundation.strings.TAB_INDICATOR_SELECTOR);
         this.tabIndicator_ = tabIndicatorFactory(tabIndicatorElement);
-        this.content_ = this.root_.querySelector(MDCTabFoundation.strings.CONTENT_SELECTOR);
+        this.content_ = this.root.querySelector(MDCTabFoundation.strings.CONTENT_SELECTOR);
     };
     MDCTab.prototype.initialSyncWithDOM = function () {
         var _this = this;
-        this.handleClick_ = function () { return _this.foundation_.handleClick(); };
+        this.handleClick_ = function () { return _this.foundation.handleClick(); };
         this.listen('click', this.handleClick_);
     };
     MDCTab.prototype.destroy = function () {
@@ -62,18 +62,20 @@ var MDCTab = /** @class */ (function (_super) {
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
-            setAttr: function (attr, value) { return _this.root_.setAttribute(attr, value); },
-            addClass: function (className) { return _this.root_.classList.add(className); },
-            removeClass: function (className) { return _this.root_.classList.remove(className); },
-            hasClass: function (className) { return _this.root_.classList.contains(className); },
-            activateIndicator: function (previousIndicatorClientRect) { return _this.tabIndicator_.activate(previousIndicatorClientRect); },
+            setAttr: function (attr, value) { return _this.root.setAttribute(attr, value); },
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
+            hasClass: function (className) { return _this.root.classList.contains(className); },
+            activateIndicator: function (previousIndicatorClientRect) {
+                return _this.tabIndicator_.activate(previousIndicatorClientRect);
+            },
             deactivateIndicator: function () { return _this.tabIndicator_.deactivate(); },
             notifyInteracted: function () { return _this.emit(MDCTabFoundation.strings.INTERACTED_EVENT, { tabId: _this.id }, true /* bubble */); },
-            getOffsetLeft: function () { return _this.root_.offsetLeft; },
-            getOffsetWidth: function () { return _this.root_.offsetWidth; },
+            getOffsetLeft: function () { return _this.root.offsetLeft; },
+            getOffsetWidth: function () { return _this.root.offsetWidth; },
             getContentOffsetLeft: function () { return _this.content_.offsetLeft; },
             getContentOffsetWidth: function () { return _this.content_.offsetWidth; },
-            focus: function () { return _this.root_.focus(); },
+            focus: function () { return _this.root.focus(); },
         };
         // tslint:enable:object-literal-sort-keys
         return new MDCTabFoundation(adapter);
@@ -83,14 +85,14 @@ var MDCTab = /** @class */ (function (_super) {
          * Getter for the active state of the tab
          */
         get: function () {
-            return this.foundation_.isActive();
+            return this.foundation.isActive();
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(MDCTab.prototype, "focusOnActivate", {
         set: function (focusOnActivate) {
-            this.foundation_.setFocusOnActivate(focusOnActivate);
+            this.foundation.setFocusOnActivate(focusOnActivate);
         },
         enumerable: true,
         configurable: true
@@ -99,13 +101,13 @@ var MDCTab = /** @class */ (function (_super) {
      * Activates the tab
      */
     MDCTab.prototype.activate = function (computeIndicatorClientRect) {
-        this.foundation_.activate(computeIndicatorClientRect);
+        this.foundation.activate(computeIndicatorClientRect);
     };
     /**
      * Deactivates the tab
      */
     MDCTab.prototype.deactivate = function () {
-        this.foundation_.deactivate();
+        this.foundation.deactivate();
     };
     /**
      * Returns the indicator's client rect
@@ -114,13 +116,13 @@ var MDCTab = /** @class */ (function (_super) {
         return this.tabIndicator_.computeContentClientRect();
     };
     MDCTab.prototype.computeDimensions = function () {
-        return this.foundation_.computeDimensions();
+        return this.foundation.computeDimensions();
     };
     /**
      * Focuses the tab
      */
     MDCTab.prototype.focus = function () {
-        this.root_.focus();
+        this.root.focus();
     };
     return MDCTab;
 }(MDCComponent));

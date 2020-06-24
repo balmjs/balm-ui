@@ -31,9 +31,10 @@ var MDCSelectIcon = /** @class */ (function (_super) {
     MDCSelectIcon.attachTo = function (root) {
         return new MDCSelectIcon(root);
     };
-    Object.defineProperty(MDCSelectIcon.prototype, "foundation", {
+    Object.defineProperty(MDCSelectIcon.prototype, "foundationForSelect", {
+        // Provided for access by MDCSelect component
         get: function () {
-            return this.foundation_;
+            return this.foundation;
         },
         enumerable: true,
         configurable: true
@@ -44,14 +45,18 @@ var MDCSelectIcon = /** @class */ (function (_super) {
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
-            getAttr: function (attr) { return _this.root_.getAttribute(attr); },
-            setAttr: function (attr, value) { return _this.root_.setAttribute(attr, value); },
-            removeAttr: function (attr) { return _this.root_.removeAttribute(attr); },
+            getAttr: function (attr) { return _this.root.getAttribute(attr); },
+            setAttr: function (attr, value) { return _this.root.setAttribute(attr, value); },
+            removeAttr: function (attr) { return _this.root.removeAttribute(attr); },
             setContent: function (content) {
-                _this.root_.textContent = content;
+                _this.root.textContent = content;
             },
-            registerInteractionHandler: function (evtType, handler) { return _this.listen(evtType, handler); },
-            deregisterInteractionHandler: function (evtType, handler) { return _this.unlisten(evtType, handler); },
+            registerInteractionHandler: function (evtType, handler) {
+                return _this.listen(evtType, handler);
+            },
+            deregisterInteractionHandler: function (evtType, handler) {
+                return _this.unlisten(evtType, handler);
+            },
             notifyIconAction: function () { return _this.emit(MDCSelectIconFoundation.strings.ICON_EVENT, {} /* evtData */, true /* shouldBubble */); },
         };
         // tslint:enable:object-literal-sort-keys

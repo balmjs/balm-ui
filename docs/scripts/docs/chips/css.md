@@ -1,9 +1,14 @@
 ```css
 @use '@material/chips/variables' with (
-  $fill-color-default: color.mix(theme-variables.prop-value(on-surface), theme-variables.prop-value(surface), 12%),
-  $ink-color-default: rgba(theme-variables.prop-value(on-surface), .87),
+  $fill-color-default: color.mix(
+    theme-variables.prop-value(on-surface),
+    theme-variables.prop-value(surface),
+    12%
+  ),
+  $ink-color-default: rgba(theme-variables.prop-value(on-surface), 0.87),
   $horizontal-padding: 12px,
   $height: 32px,
+  $shape-radius: 50%,
 
   $minimum-height: 24px,
   $maximum-height: $height,
@@ -17,9 +22,9 @@
   ),
 
   $icon-color: theme-variables.prop-value(on-surface),
-  $icon-opacity: .54,
-  $trailing-icon-hover-opacity: .62,
-  $trailing-icon-focus-opacity: .87,
+  $icon-opacity: 0.54,
+  $trailing-icon-hover-opacity: 0.62,
+  $trailing-icon-focus-opacity: 0.87,
   $leading-icon-size: 20px,
   $trailing-icon-size: 18px,
   $leading-icon-delay: -50ms,
@@ -36,10 +41,9 @@
   $trailing-icon-margin-right: -4px,
   $trailing-icon-margin-left: 4px,
 
-  $exit-transition:
-    opacity 75ms animation-variables.$standard-curve-timing-function,
+  $exit-transition: opacity 75ms
+      animation-variables.$standard-curve-timing-function,
     width 150ms animation-variables.$deceleration-curve-timing-function,
-    padding 100ms linear,
-    margin 100ms linear
+    padding 100ms linear, margin 100ms linear
 );
 ```

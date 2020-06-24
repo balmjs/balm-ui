@@ -24,10 +24,20 @@
 @use "../theme/functions";
 @use "../theme/variables"; // for mdc-theme-prop-value() function
 
-$fill-color: color.mix(variables.prop-value(on-surface), variables.prop-value(surface), 80%) !default;
-$label-ink-color: rgba(variables.prop-value(surface), variables.text-emphasis(high)) !default;
+$fill-color: color.mix(
+  variables.prop-value(on-surface),
+  variables.prop-value(surface),
+  80%
+) !default;
+$label-ink-color: rgba(
+  variables.prop-value(surface),
+  variables.text-emphasis(high)
+) !default;
 $action-ink-color: #bb86fc !default;
-$dismiss-ink-color: rgba(variables.prop-value(surface), variables.text-emphasis(high)) !default;
+$dismiss-ink-color: rgba(
+  variables.prop-value(surface),
+  variables.text-emphasis(high)
+) !default;
 
 $label-type-scale: body2 !default;
 $dismiss-icon-size: 18px !default;
@@ -39,7 +49,7 @@ $viewport-margin-wide: 24px !default;
 $padding: 8px !default;
 
 $elevation: 6 !default;
-$shape-radius: small !default; // Key from $mdc-shape-category-values or CSS length value (e.g., 4px)
+$shape-radius: small !default; // Key from shape.$category-keywords or CSS length value (e.g., 4px)
 $z-index: 8 !default; // One above mdc-dialog
 
 // These variables need to be kept in sync with the values in constants.js.

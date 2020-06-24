@@ -51,30 +51,30 @@ var MDCChipTrailingActionFoundation = /** @class */ (function (_super) {
     });
     MDCChipTrailingActionFoundation.prototype.handleClick = function (evt) {
         evt.stopPropagation();
-        this.adapter_.notifyInteraction(InteractionTrigger.CLICK);
+        this.adapter.notifyInteraction(InteractionTrigger.CLICK);
     };
     MDCChipTrailingActionFoundation.prototype.handleKeydown = function (evt) {
         evt.stopPropagation();
         var key = normalizeKey(evt);
         if (this.shouldNotifyInteractionFromKey_(key)) {
             var trigger = this.getTriggerFromKey_(key);
-            this.adapter_.notifyInteraction(trigger);
+            this.adapter.notifyInteraction(trigger);
             return;
         }
         if (isNavigationEvent(evt)) {
-            this.adapter_.notifyNavigation(key);
+            this.adapter.notifyNavigation(key);
             return;
         }
     };
     MDCChipTrailingActionFoundation.prototype.removeFocus = function () {
-        this.adapter_.setAttribute(strings.TAB_INDEX, '-1');
+        this.adapter.setAttribute(strings.TAB_INDEX, '-1');
     };
     MDCChipTrailingActionFoundation.prototype.focus = function () {
-        this.adapter_.setAttribute(strings.TAB_INDEX, '0');
-        this.adapter_.focus();
+        this.adapter.setAttribute(strings.TAB_INDEX, '0');
+        this.adapter.focus();
     };
     MDCChipTrailingActionFoundation.prototype.isNavigable = function () {
-        return this.adapter_.getAttribute(strings.ARIA_HIDDEN) !== 'true';
+        return this.adapter.getAttribute(strings.ARIA_HIDDEN) !== 'true';
     };
     MDCChipTrailingActionFoundation.prototype.shouldNotifyInteractionFromKey_ = function (key) {
         var isFromActionKey = key === KEY.ENTER || key === KEY.SPACEBAR;

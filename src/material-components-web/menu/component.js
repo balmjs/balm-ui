@@ -45,8 +45,8 @@ var MDCMenu = /** @class */ (function (_super) {
     };
     MDCMenu.prototype.initialSyncWithDOM = function () {
         var _this = this;
-        this.menuSurface_ = this.menuSurfaceFactory_(this.root_);
-        var list = this.root_.querySelector(strings.LIST_SELECTOR);
+        this.menuSurface_ = this.menuSurfaceFactory_(this.root);
+        var list = this.root.querySelector(strings.LIST_SELECTOR);
         if (list) {
             this.list_ = this.listFactory_(list);
             this.list_.wrapFocus = true;
@@ -54,9 +54,13 @@ var MDCMenu = /** @class */ (function (_super) {
         else {
             this.list_ = null;
         }
-        this.handleKeydown_ = function (evt) { return _this.foundation_.handleKeydown(evt); };
-        this.handleItemAction_ = function (evt) { return _this.foundation_.handleItemAction(_this.items[evt.detail.index]); };
-        this.handleMenuSurfaceOpened_ = function () { return _this.foundation_.handleMenuSurfaceOpened(); };
+        this.handleKeydown_ = function (evt) { return _this.foundation.handleKeydown(evt); };
+        this.handleItemAction_ = function (evt) {
+            return _this.foundation.handleItemAction(_this.items[evt.detail.index]);
+        };
+        this.handleMenuSurfaceOpened_ = function () {
+            return _this.foundation.handleMenuSurfaceOpened();
+        };
         this.menuSurface_.listen(MDCMenuSurfaceFoundation.strings.OPENED_EVENT, this.handleMenuSurfaceOpened_);
         this.listen('keydown', this.handleKeydown_);
         this.listen(MDCListFoundation.strings.ACTION_EVENT, this.handleItemAction_);
@@ -98,6 +102,57 @@ var MDCMenu = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(MDCMenu.prototype, "hasTypeahead", {
+        /**
+         * Sets whether the menu has typeahead functionality.
+         * @param value Whether typeahead is enabled.
+         */
+        set: function (value) {
+            if (this.list_) {
+                this.list_.hasTypeahead = value;
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCMenu.prototype, "typeaheadInProgress", {
+        /**
+         * @return Whether typeahead logic is currently matching some user prefix.
+         */
+        get: function () {
+            return this.list_ ? this.list_.typeaheadInProgress : false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Given the next desired character from the user, adds it to the typeahead
+     * buffer. Then, attempts to find the next option matching the buffer. Wraps
+     * around if at the end of options.
+     *
+     * @param nextChar The next character to add to the prefix buffer.
+     * @param startingIndex The index from which to start matching. Only relevant
+     *     when starting a new match sequence. To start a new match sequence,
+     *     clear the buffer using `clearTypeaheadBuffer`, or wait for the buffer
+     *     to clear after a set interval defined in list foundation. Defaults to
+     *     the currently focused index.
+     * @return The index of the matched item, or -1 if no match.
+     */
+    MDCMenu.prototype.typeaheadMatchItem = function (nextChar, startingIndex) {
+        if (this.list_) {
+            return this.list_.typeaheadMatchItem(nextChar, startingIndex);
+        }
+        return -1;
+    };
+    /**
+     * Layout the underlying list element in the case of any dynamic updates
+     * to its structure.
+     */
+    MDCMenu.prototype.layout = function () {
+        if (this.list_) {
+            this.list_.layout();
+        }
+    };
     Object.defineProperty(MDCMenu.prototype, "items", {
         /**
          * Return the items within the menu. Note that this only contains the set of elements within
@@ -124,7 +179,7 @@ var MDCMenu = /** @class */ (function (_super) {
      * @param focusState Default focus state.
      */
     MDCMenu.prototype.setDefaultFocusState = function (focusState) {
-        this.foundation_.setDefaultFocusState(focusState);
+        this.foundation.setDefaultFocusState(focusState);
     };
     /**
      * @param corner Default anchor corner alignment of top-left menu corner.
@@ -140,7 +195,7 @@ var MDCMenu = /** @class */ (function (_super) {
      * @param index Index of list item within menu.
      */
     MDCMenu.prototype.setSelectedIndex = function (index) {
-        this.foundation_.setSelectedIndex(index);
+        this.foundation.setSelectedIndex(index);
     };
     /**
      * Sets the enabled state to isEnabled for the menu item at the given index.
@@ -148,7 +203,7 @@ var MDCMenu = /** @class */ (function (_super) {
      * @param isEnabled The desired enabled state of the menu item.
      */
     MDCMenu.prototype.setEnabled = function (index, isEnabled) {
-        this.foundation_.setEnabled(index, isEnabled);
+        this.foundation.setEnabled(index, isEnabled);
     };
     /**
      * @return The item within the menu at the index specified.
@@ -161,6 +216,17 @@ var MDCMenu = /** @class */ (function (_super) {
         else {
             return null;
         }
+    };
+    /**
+     * @param index A menu item's index.
+     * @return The primary text within the menu at the index specified.
+     */
+    MDCMenu.prototype.getPrimaryTextAtIndex = function (index) {
+        var item = this.getOptionByIndex(index);
+        if (item && this.list_) {
+            return this.list_.getPrimaryText(item) || '';
+        }
+        return '';
     };
     MDCMenu.prototype.setFixedPosition = function (isFixed) {
         this.menuSurface_.setFixedPosition(isFixed);
@@ -199,17 +265,28 @@ var MDCMenu = /** @class */ (function (_super) {
                 var list = _this.items;
                 list[index].removeAttribute(attr);
             },
-            elementContainsClass: function (element, className) { return element.classList.contains(className); },
-            closeSurface: function (skipRestoreFocus) { return _this.menuSurface_.close(skipRestoreFocus); },
+            elementContainsClass: function (element, className) {
+                return element.classList.contains(className);
+            },
+            closeSurface: function (skipRestoreFocus) {
+                return _this.menuSurface_.close(skipRestoreFocus);
+            },
             getElementIndex: function (element) { return _this.items.indexOf(element); },
-            notifySelected: function (evtData) { return _this.emit(strings.SELECTED_EVENT, {
-                index: evtData.index,
-                item: _this.items[evtData.index],
-            }); },
+            notifySelected: function (evtData) {
+                return _this.emit(strings.SELECTED_EVENT, {
+                    index: evtData.index,
+                    item: _this.items[evtData.index],
+                });
+            },
             getMenuItemCount: function () { return _this.items.length; },
             focusItemAtIndex: function (index) { return _this.items[index].focus(); },
-            focusListRoot: function () { return _this.root_.querySelector(strings.LIST_SELECTOR).focus(); },
-            isSelectableItemAtIndex: function (index) { return !!closest(_this.items[index], "." + cssClasses.MENU_SELECTION_GROUP); },
+            focusListRoot: function () {
+                return _this.root.querySelector(strings.LIST_SELECTOR)
+                    .focus();
+            },
+            isSelectableItemAtIndex: function (index) {
+                return !!closest(_this.items[index], "." + cssClasses.MENU_SELECTION_GROUP);
+            },
             getSelectedSiblingOfItemAtIndex: function (index) {
                 var selectionGroupEl = closest(_this.items[index], "." + cssClasses.MENU_SELECTION_GROUP);
                 var selectedItemEl = selectionGroupEl.querySelector("." + cssClasses.MENU_SELECTED_LIST_ITEM);

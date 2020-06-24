@@ -74,16 +74,16 @@ var MDCNotchedOutlineFoundation = /** @class */ (function (_super) {
         if (notchWidth > 0) {
             notchWidth += numbers.NOTCH_ELEMENT_PADDING; // Add padding from left/right.
         }
-        this.adapter_.setNotchWidthProperty(notchWidth);
-        this.adapter_.addClass(OUTLINE_NOTCHED);
+        this.adapter.setNotchWidthProperty(notchWidth);
+        this.adapter.addClass(OUTLINE_NOTCHED);
     };
     /**
      * Removes notched outline selector to close the notch in the outline.
      */
     MDCNotchedOutlineFoundation.prototype.closeNotch = function () {
         var OUTLINE_NOTCHED = MDCNotchedOutlineFoundation.cssClasses.OUTLINE_NOTCHED;
-        this.adapter_.removeClass(OUTLINE_NOTCHED);
-        this.adapter_.removeNotchWidthProperty();
+        this.adapter.removeClass(OUTLINE_NOTCHED);
+        this.adapter.removeNotchWidthProperty();
     };
     return MDCNotchedOutlineFoundation;
 }(MDCFoundation));

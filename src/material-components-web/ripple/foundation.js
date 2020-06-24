@@ -111,9 +111,9 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
         if (supportsPressRipple) {
             var _a = MDCRippleFoundation.cssClasses, ROOT_1 = _a.ROOT, UNBOUNDED_1 = _a.UNBOUNDED;
             requestAnimationFrame(function () {
-                _this.adapter_.addClass(ROOT_1);
-                if (_this.adapter_.isUnbounded()) {
-                    _this.adapter_.addClass(UNBOUNDED_1);
+                _this.adapter.addClass(ROOT_1);
+                if (_this.adapter.isUnbounded()) {
+                    _this.adapter.addClass(UNBOUNDED_1);
                     // Unbounded ripples need layout logic applied immediately to set coordinates for both shade and ripple
                     _this.layoutInternal_();
                 }
@@ -126,17 +126,17 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
             if (this.activationTimer_) {
                 clearTimeout(this.activationTimer_);
                 this.activationTimer_ = 0;
-                this.adapter_.removeClass(MDCRippleFoundation.cssClasses.FG_ACTIVATION);
+                this.adapter.removeClass(MDCRippleFoundation.cssClasses.FG_ACTIVATION);
             }
             if (this.fgDeactivationRemovalTimer_) {
                 clearTimeout(this.fgDeactivationRemovalTimer_);
                 this.fgDeactivationRemovalTimer_ = 0;
-                this.adapter_.removeClass(MDCRippleFoundation.cssClasses.FG_DEACTIVATION);
+                this.adapter.removeClass(MDCRippleFoundation.cssClasses.FG_DEACTIVATION);
             }
             var _a = MDCRippleFoundation.cssClasses, ROOT_2 = _a.ROOT, UNBOUNDED_2 = _a.UNBOUNDED;
             requestAnimationFrame(function () {
-                _this.adapter_.removeClass(ROOT_2);
-                _this.adapter_.removeClass(UNBOUNDED_2);
+                _this.adapter.removeClass(ROOT_2);
+                _this.adapter.removeClass(UNBOUNDED_2);
                 _this.removeCssVars_();
             });
         }
@@ -165,23 +165,19 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
     MDCRippleFoundation.prototype.setUnbounded = function (unbounded) {
         var UNBOUNDED = MDCRippleFoundation.cssClasses.UNBOUNDED;
         if (unbounded) {
-            this.adapter_.addClass(UNBOUNDED);
+            this.adapter.addClass(UNBOUNDED);
         }
         else {
-            this.adapter_.removeClass(UNBOUNDED);
+            this.adapter.removeClass(UNBOUNDED);
         }
     };
     MDCRippleFoundation.prototype.handleFocus = function () {
         var _this = this;
-        requestAnimationFrame(function () {
-            return _this.adapter_.addClass(MDCRippleFoundation.cssClasses.BG_FOCUSED);
-        });
+        requestAnimationFrame(function () { return _this.adapter.addClass(MDCRippleFoundation.cssClasses.BG_FOCUSED); });
     };
     MDCRippleFoundation.prototype.handleBlur = function () {
         var _this = this;
-        requestAnimationFrame(function () {
-            return _this.adapter_.removeClass(MDCRippleFoundation.cssClasses.BG_FOCUSED);
-        });
+        requestAnimationFrame(function () { return _this.adapter.removeClass(MDCRippleFoundation.cssClasses.BG_FOCUSED); });
     };
     /**
      * We compute this property so that we are not querying information about the client
@@ -190,7 +186,7 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
      * and then initialized at mount time on the client.
      */
     MDCRippleFoundation.prototype.supportsPressRipple_ = function () {
-        return this.adapter_.browserSupportsCssVars();
+        return this.adapter.browserSupportsCssVars();
     };
     MDCRippleFoundation.prototype.defaultActivationState_ = function () {
         return {
@@ -209,42 +205,42 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
         var _this = this;
         if (supportsPressRipple) {
             ACTIVATION_EVENT_TYPES.forEach(function (evtType) {
-                _this.adapter_.registerInteractionHandler(evtType, _this.activateHandler_);
+                _this.adapter.registerInteractionHandler(evtType, _this.activateHandler_);
             });
-            if (this.adapter_.isUnbounded()) {
-                this.adapter_.registerResizeHandler(this.resizeHandler_);
+            if (this.adapter.isUnbounded()) {
+                this.adapter.registerResizeHandler(this.resizeHandler_);
             }
         }
-        this.adapter_.registerInteractionHandler('focus', this.focusHandler_);
-        this.adapter_.registerInteractionHandler('blur', this.blurHandler_);
+        this.adapter.registerInteractionHandler('focus', this.focusHandler_);
+        this.adapter.registerInteractionHandler('blur', this.blurHandler_);
     };
     MDCRippleFoundation.prototype.registerDeactivationHandlers_ = function (evt) {
         var _this = this;
         if (evt.type === 'keydown') {
-            this.adapter_.registerInteractionHandler('keyup', this.deactivateHandler_);
+            this.adapter.registerInteractionHandler('keyup', this.deactivateHandler_);
         }
         else {
             POINTER_DEACTIVATION_EVENT_TYPES.forEach(function (evtType) {
-                _this.adapter_.registerDocumentInteractionHandler(evtType, _this.deactivateHandler_);
+                _this.adapter.registerDocumentInteractionHandler(evtType, _this.deactivateHandler_);
             });
         }
     };
     MDCRippleFoundation.prototype.deregisterRootHandlers_ = function () {
         var _this = this;
         ACTIVATION_EVENT_TYPES.forEach(function (evtType) {
-            _this.adapter_.deregisterInteractionHandler(evtType, _this.activateHandler_);
+            _this.adapter.deregisterInteractionHandler(evtType, _this.activateHandler_);
         });
-        this.adapter_.deregisterInteractionHandler('focus', this.focusHandler_);
-        this.adapter_.deregisterInteractionHandler('blur', this.blurHandler_);
-        if (this.adapter_.isUnbounded()) {
-            this.adapter_.deregisterResizeHandler(this.resizeHandler_);
+        this.adapter.deregisterInteractionHandler('focus', this.focusHandler_);
+        this.adapter.deregisterInteractionHandler('blur', this.blurHandler_);
+        if (this.adapter.isUnbounded()) {
+            this.adapter.deregisterResizeHandler(this.resizeHandler_);
         }
     };
     MDCRippleFoundation.prototype.deregisterDeactivationHandlers_ = function () {
         var _this = this;
-        this.adapter_.deregisterInteractionHandler('keyup', this.deactivateHandler_);
+        this.adapter.deregisterInteractionHandler('keyup', this.deactivateHandler_);
         POINTER_DEACTIVATION_EVENT_TYPES.forEach(function (evtType) {
-            _this.adapter_.deregisterDocumentInteractionHandler(evtType, _this.deactivateHandler_);
+            _this.adapter.deregisterDocumentInteractionHandler(evtType, _this.deactivateHandler_);
         });
     };
     MDCRippleFoundation.prototype.removeCssVars_ = function () {
@@ -253,13 +249,13 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
         var keys = Object.keys(rippleStrings);
         keys.forEach(function (key) {
             if (key.indexOf('VAR_') === 0) {
-                _this.adapter_.updateCssVariable(rippleStrings[key], null);
+                _this.adapter.updateCssVariable(rippleStrings[key], null);
             }
         });
     };
     MDCRippleFoundation.prototype.activate_ = function (evt) {
         var _this = this;
-        if (this.adapter_.isSurfaceDisabled()) {
+        if (this.adapter.isSurfaceDisabled()) {
             return;
         }
         var activationState = this.activationState_;
@@ -276,7 +272,9 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
         activationState.isProgrammatic = evt === undefined;
         activationState.activationEvent = evt;
         activationState.wasActivatedByPointer = activationState.isProgrammatic ? false : evt !== undefined && (evt.type === 'mousedown' || evt.type === 'touchstart' || evt.type === 'pointerdown');
-        var hasActivatedChild = evt !== undefined && activatedTargets.length > 0 && activatedTargets.some(function (target) { return _this.adapter_.containsEventTarget(target); });
+        var hasActivatedChild = evt !== undefined &&
+            activatedTargets.length > 0 &&
+            activatedTargets.some(function (target) { return _this.adapter.containsEventTarget(target); });
         if (hasActivatedChild) {
             // Immediately reset activation state, while preserving logic that prevents touch follow-on events
             this.resetActivationState_();
@@ -314,7 +312,9 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
         });
     };
     MDCRippleFoundation.prototype.checkElementMadeActive_ = function (evt) {
-        return (evt !== undefined && evt.type === 'keydown') ? this.adapter_.isSurfaceActive() : true;
+        return (evt !== undefined && evt.type === 'keydown') ?
+            this.adapter.isSurfaceActive() :
+            true;
     };
     MDCRippleFoundation.prototype.animateActivation_ = function () {
         var _this = this;
@@ -324,28 +324,28 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
         this.layoutInternal_();
         var translateStart = '';
         var translateEnd = '';
-        if (!this.adapter_.isUnbounded()) {
+        if (!this.adapter.isUnbounded()) {
             var _c = this.getFgTranslationCoordinates_(), startPoint = _c.startPoint, endPoint = _c.endPoint;
             translateStart = startPoint.x + "px, " + startPoint.y + "px";
             translateEnd = endPoint.x + "px, " + endPoint.y + "px";
         }
-        this.adapter_.updateCssVariable(VAR_FG_TRANSLATE_START, translateStart);
-        this.adapter_.updateCssVariable(VAR_FG_TRANSLATE_END, translateEnd);
+        this.adapter.updateCssVariable(VAR_FG_TRANSLATE_START, translateStart);
+        this.adapter.updateCssVariable(VAR_FG_TRANSLATE_END, translateEnd);
         // Cancel any ongoing activation/deactivation animations
         clearTimeout(this.activationTimer_);
         clearTimeout(this.fgDeactivationRemovalTimer_);
         this.rmBoundedActivationClasses_();
-        this.adapter_.removeClass(FG_DEACTIVATION);
+        this.adapter.removeClass(FG_DEACTIVATION);
         // Force layout in order to re-trigger the animation.
-        this.adapter_.computeBoundingRect();
-        this.adapter_.addClass(FG_ACTIVATION);
+        this.adapter.computeBoundingRect();
+        this.adapter.addClass(FG_ACTIVATION);
         this.activationTimer_ = setTimeout(function () { return _this.activationTimerCallback_(); }, DEACTIVATION_TIMEOUT_MS);
     };
     MDCRippleFoundation.prototype.getFgTranslationCoordinates_ = function () {
         var _a = this.activationState_, activationEvent = _a.activationEvent, wasActivatedByPointer = _a.wasActivatedByPointer;
         var startPoint;
         if (wasActivatedByPointer) {
-            startPoint = getNormalizedEventCoords(activationEvent, this.adapter_.getWindowPageOffset(), this.adapter_.computeBoundingRect());
+            startPoint = getNormalizedEventCoords(activationEvent, this.adapter.getWindowPageOffset(), this.adapter.computeBoundingRect());
         }
         else {
             startPoint = {
@@ -373,17 +373,17 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
         var activationHasEnded = hasDeactivationUXRun || !isActivated;
         if (activationHasEnded && this.activationAnimationHasEnded_) {
             this.rmBoundedActivationClasses_();
-            this.adapter_.addClass(FG_DEACTIVATION);
+            this.adapter.addClass(FG_DEACTIVATION);
             this.fgDeactivationRemovalTimer_ = setTimeout(function () {
-                _this.adapter_.removeClass(FG_DEACTIVATION);
+                _this.adapter.removeClass(FG_DEACTIVATION);
             }, numbers.FG_DEACTIVATION_MS);
         }
     };
     MDCRippleFoundation.prototype.rmBoundedActivationClasses_ = function () {
         var FG_ACTIVATION = MDCRippleFoundation.cssClasses.FG_ACTIVATION;
-        this.adapter_.removeClass(FG_ACTIVATION);
+        this.adapter.removeClass(FG_ACTIVATION);
         this.activationAnimationHasEnded_ = false;
-        this.adapter_.computeBoundingRect();
+        this.adapter.computeBoundingRect();
     };
     MDCRippleFoundation.prototype.resetActivationState_ = function () {
         var _this = this;
@@ -422,7 +422,7 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
     };
     MDCRippleFoundation.prototype.layoutInternal_ = function () {
         var _this = this;
-        this.frame_ = this.adapter_.computeBoundingRect();
+        this.frame_ = this.adapter.computeBoundingRect();
         var maxDim = Math.max(this.frame_.height, this.frame_.width);
         // Surface diameter is treated differently for unbounded vs. bounded ripples.
         // Unbounded ripple diameter is calculated smaller since the surface is expected to already be padded appropriately
@@ -434,11 +434,11 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
             var hypotenuse = Math.sqrt(Math.pow(_this.frame_.width, 2) + Math.pow(_this.frame_.height, 2));
             return hypotenuse + MDCRippleFoundation.numbers.PADDING;
         };
-        this.maxRadius_ = this.adapter_.isUnbounded() ? maxDim : getBoundedRadius();
+        this.maxRadius_ = this.adapter.isUnbounded() ? maxDim : getBoundedRadius();
         // Ripple is sized as a fraction of the largest dimension of the surface, then scales up using a CSS scale transform
         var initialSize = Math.floor(maxDim * MDCRippleFoundation.numbers.INITIAL_ORIGIN_SCALE);
         // Unbounded ripple size should always be even number to equally center align.
-        if (this.adapter_.isUnbounded() && initialSize % 2 !== 0) {
+        if (this.adapter.isUnbounded() && initialSize % 2 !== 0) {
             this.initialSize_ = initialSize - 1;
         }
         else {
@@ -449,15 +449,15 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
     };
     MDCRippleFoundation.prototype.updateLayoutCssVars_ = function () {
         var _a = MDCRippleFoundation.strings, VAR_FG_SIZE = _a.VAR_FG_SIZE, VAR_LEFT = _a.VAR_LEFT, VAR_TOP = _a.VAR_TOP, VAR_FG_SCALE = _a.VAR_FG_SCALE;
-        this.adapter_.updateCssVariable(VAR_FG_SIZE, this.initialSize_ + "px");
-        this.adapter_.updateCssVariable(VAR_FG_SCALE, this.fgScale_);
-        if (this.adapter_.isUnbounded()) {
+        this.adapter.updateCssVariable(VAR_FG_SIZE, this.initialSize_ + "px");
+        this.adapter.updateCssVariable(VAR_FG_SCALE, this.fgScale_);
+        if (this.adapter.isUnbounded()) {
             this.unboundedCoords_ = {
                 left: Math.round((this.frame_.width / 2) - (this.initialSize_ / 2)),
                 top: Math.round((this.frame_.height / 2) - (this.initialSize_ / 2)),
             };
-            this.adapter_.updateCssVariable(VAR_LEFT, this.unboundedCoords_.left + "px");
-            this.adapter_.updateCssVariable(VAR_TOP, this.unboundedCoords_.top + "px");
+            this.adapter.updateCssVariable(VAR_LEFT, this.unboundedCoords_.left + "px");
+            this.adapter.updateCssVariable(VAR_TOP, this.unboundedCoords_.top + "px");
         }
     };
     return MDCRippleFoundation;

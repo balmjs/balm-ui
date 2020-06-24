@@ -50,15 +50,15 @@ var MDCChipTrailingAction = /** @class */ (function (_super) {
         // methods, we need a separate, strongly typed adapter variable.
         var rippleAdapter = MDCRipple.createAdapter(this);
         this.ripple_ =
-            rippleFactory(this.root_, new MDCRippleFoundation(rippleAdapter));
+            rippleFactory(this.root, new MDCRippleFoundation(rippleAdapter));
     };
     MDCChipTrailingAction.prototype.initialSyncWithDOM = function () {
         var _this = this;
         this.handleClick_ = function (evt) {
-            _this.foundation_.handleClick(evt);
+            _this.foundation.handleClick(evt);
         };
         this.handleKeydown_ = function (evt) {
-            _this.foundation_.handleKeydown(evt);
+            _this.foundation.handleKeydown(evt);
         };
         this.listen('click', this.handleClick_);
         this.listen('keydown', this.handleKeydown_);
@@ -76,9 +76,10 @@ var MDCChipTrailingAction = /** @class */ (function (_super) {
         // methods, we need a separate, strongly typed adapter variable.
         var adapter = {
             focus: function () {
-                _this.root_.focus();
+                // TODO(b/157231863): Migate MDCComponent#root to HTMLElement
+                _this.root.focus();
             },
-            getAttribute: function (attr) { return _this.root_.getAttribute(attr); },
+            getAttribute: function (attr) { return _this.root.getAttribute(attr); },
             notifyInteraction: function (trigger) {
                 return _this.emit(strings.INTERACTION_EVENT, { trigger: trigger }, true /* shouldBubble */);
             },
@@ -86,19 +87,19 @@ var MDCChipTrailingAction = /** @class */ (function (_super) {
                 _this.emit(strings.NAVIGATION_EVENT, { key: key }, true /* shouldBubble */);
             },
             setAttribute: function (attr, value) {
-                _this.root_.setAttribute(attr, value);
+                _this.root.setAttribute(attr, value);
             },
         };
         return new MDCChipTrailingActionFoundation(adapter);
     };
     MDCChipTrailingAction.prototype.isNavigable = function () {
-        return this.foundation_.isNavigable();
+        return this.foundation.isNavigable();
     };
     MDCChipTrailingAction.prototype.focus = function () {
-        this.foundation_.focus();
+        this.foundation.focus();
     };
     MDCChipTrailingAction.prototype.removeFocus = function () {
-        this.foundation_.removeFocus();
+        this.foundation.removeFocus();
     };
     return MDCChipTrailingAction;
 }(MDCComponent));

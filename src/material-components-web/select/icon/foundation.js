@@ -61,15 +61,15 @@ var MDCSelectIconFoundation = /** @class */ (function (_super) {
     });
     MDCSelectIconFoundation.prototype.init = function () {
         var _this = this;
-        this.savedTabIndex_ = this.adapter_.getAttr('tabindex');
+        this.savedTabIndex_ = this.adapter.getAttr('tabindex');
         INTERACTION_EVENTS.forEach(function (evtType) {
-            _this.adapter_.registerInteractionHandler(evtType, _this.interactionHandler_);
+            _this.adapter.registerInteractionHandler(evtType, _this.interactionHandler_);
         });
     };
     MDCSelectIconFoundation.prototype.destroy = function () {
         var _this = this;
         INTERACTION_EVENTS.forEach(function (evtType) {
-            _this.adapter_.deregisterInteractionHandler(evtType, _this.interactionHandler_);
+            _this.adapter.deregisterInteractionHandler(evtType, _this.interactionHandler_);
         });
     };
     MDCSelectIconFoundation.prototype.setDisabled = function (disabled) {
@@ -77,24 +77,24 @@ var MDCSelectIconFoundation = /** @class */ (function (_super) {
             return;
         }
         if (disabled) {
-            this.adapter_.setAttr('tabindex', '-1');
-            this.adapter_.removeAttr('role');
+            this.adapter.setAttr('tabindex', '-1');
+            this.adapter.removeAttr('role');
         }
         else {
-            this.adapter_.setAttr('tabindex', this.savedTabIndex_);
-            this.adapter_.setAttr('role', strings.ICON_ROLE);
+            this.adapter.setAttr('tabindex', this.savedTabIndex_);
+            this.adapter.setAttr('role', strings.ICON_ROLE);
         }
     };
     MDCSelectIconFoundation.prototype.setAriaLabel = function (label) {
-        this.adapter_.setAttr('aria-label', label);
+        this.adapter.setAttr('aria-label', label);
     };
     MDCSelectIconFoundation.prototype.setContent = function (content) {
-        this.adapter_.setContent(content);
+        this.adapter.setContent(content);
     };
     MDCSelectIconFoundation.prototype.handleInteraction = function (evt) {
         var isEnterKey = evt.key === 'Enter' || evt.keyCode === 13;
         if (evt.type === 'click' || isEnterKey) {
-            this.adapter_.notifyIconAction();
+            this.adapter.notifyIconAction();
         }
     };
     return MDCSelectIconFoundation;

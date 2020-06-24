@@ -65,17 +65,17 @@ var MDCTextFieldHelperTextFoundation = /** @class */ (function (_super) {
      * Sets the content of the helper text field.
      */
     MDCTextFieldHelperTextFoundation.prototype.setContent = function (content) {
-        this.adapter_.setContent(content);
+        this.adapter.setContent(content);
     };
     /**
      * @param isPersistent Sets the persistency of the helper text.
      */
     MDCTextFieldHelperTextFoundation.prototype.setPersistent = function (isPersistent) {
         if (isPersistent) {
-            this.adapter_.addClass(cssClasses.HELPER_TEXT_PERSISTENT);
+            this.adapter.addClass(cssClasses.HELPER_TEXT_PERSISTENT);
         }
         else {
-            this.adapter_.removeClass(cssClasses.HELPER_TEXT_PERSISTENT);
+            this.adapter.removeClass(cssClasses.HELPER_TEXT_PERSISTENT);
         }
     };
     /**
@@ -83,30 +83,30 @@ var MDCTextFieldHelperTextFoundation = /** @class */ (function (_super) {
      */
     MDCTextFieldHelperTextFoundation.prototype.setValidation = function (isValidation) {
         if (isValidation) {
-            this.adapter_.addClass(cssClasses.HELPER_TEXT_VALIDATION_MSG);
+            this.adapter.addClass(cssClasses.HELPER_TEXT_VALIDATION_MSG);
         }
         else {
-            this.adapter_.removeClass(cssClasses.HELPER_TEXT_VALIDATION_MSG);
+            this.adapter.removeClass(cssClasses.HELPER_TEXT_VALIDATION_MSG);
         }
     };
     /**
      * Makes the helper text visible to the screen reader.
      */
     MDCTextFieldHelperTextFoundation.prototype.showToScreenReader = function () {
-        this.adapter_.removeAttr(strings.ARIA_HIDDEN);
+        this.adapter.removeAttr(strings.ARIA_HIDDEN);
     };
     /**
      * Sets the validity of the helper text based on the input validity.
      */
     MDCTextFieldHelperTextFoundation.prototype.setValidity = function (inputIsValid) {
-        var helperTextIsPersistent = this.adapter_.hasClass(cssClasses.HELPER_TEXT_PERSISTENT);
-        var helperTextIsValidationMsg = this.adapter_.hasClass(cssClasses.HELPER_TEXT_VALIDATION_MSG);
+        var helperTextIsPersistent = this.adapter.hasClass(cssClasses.HELPER_TEXT_PERSISTENT);
+        var helperTextIsValidationMsg = this.adapter.hasClass(cssClasses.HELPER_TEXT_VALIDATION_MSG);
         var validationMsgNeedsDisplay = helperTextIsValidationMsg && !inputIsValid;
         if (validationMsgNeedsDisplay) {
-            this.adapter_.setAttr(strings.ROLE, 'alert');
+            this.adapter.setAttr(strings.ROLE, 'alert');
         }
         else {
-            this.adapter_.removeAttr(strings.ROLE);
+            this.adapter.removeAttr(strings.ROLE);
         }
         if (!helperTextIsPersistent && !validationMsgNeedsDisplay) {
             this.hide_();
@@ -116,7 +116,7 @@ var MDCTextFieldHelperTextFoundation = /** @class */ (function (_super) {
      * Hides the help text from screen readers.
      */
     MDCTextFieldHelperTextFoundation.prototype.hide_ = function () {
-        this.adapter_.setAttr(strings.ARIA_HIDDEN, 'true');
+        this.adapter.setAttr(strings.ARIA_HIDDEN, 'true');
     };
     return MDCTextFieldHelperTextFoundation;
 }(MDCFoundation));

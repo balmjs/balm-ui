@@ -29,7 +29,7 @@ var MDCIconButtonToggle = /** @class */ (function (_super) {
     __extends(MDCIconButtonToggle, _super);
     function MDCIconButtonToggle() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.ripple_ = _this.createRipple_();
+        _this.rippleComponent = _this.createRipple();
         return _this;
     }
     MDCIconButtonToggle.attachTo = function (root) {
@@ -37,12 +37,14 @@ var MDCIconButtonToggle = /** @class */ (function (_super) {
     };
     MDCIconButtonToggle.prototype.initialSyncWithDOM = function () {
         var _this = this;
-        this.handleClick_ = function () { return _this.foundation_.handleClick(); };
-        this.listen('click', this.handleClick_);
+        this.handleClick = function () {
+            _this.foundation.handleClick();
+        };
+        this.listen('click', this.handleClick);
     };
     MDCIconButtonToggle.prototype.destroy = function () {
-        this.unlisten('click', this.handleClick_);
-        this.ripple_.destroy();
+        this.unlisten('click', this.handleClick);
+        this.ripple.destroy();
         _super.prototype.destroy.call(this);
     };
     MDCIconButtonToggle.prototype.getDefaultFoundation = function () {
@@ -50,38 +52,38 @@ var MDCIconButtonToggle = /** @class */ (function (_super) {
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         var adapter = {
-            addClass: function (className) { return _this.root_.classList.add(className); },
-            hasClass: function (className) { return _this.root_.classList.contains(className); },
+            addClass: function (className) { return _this.root.classList.add(className); },
+            hasClass: function (className) { return _this.root.classList.contains(className); },
             notifyChange: function (evtData) {
                 _this.emit(strings.CHANGE_EVENT, evtData);
             },
-            removeClass: function (className) { return _this.root_.classList.remove(className); },
-            getAttr: function (attrName) { return _this.root_.getAttribute(attrName); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
+            getAttr: function (attrName) { return _this.root.getAttribute(attrName); },
             setAttr: function (attrName, attrValue) {
-                return _this.root_.setAttribute(attrName, attrValue);
+                return _this.root.setAttribute(attrName, attrValue);
             },
         };
         return new MDCIconButtonToggleFoundation(adapter);
     };
     Object.defineProperty(MDCIconButtonToggle.prototype, "ripple", {
         get: function () {
-            return this.ripple_;
+            return this.rippleComponent;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(MDCIconButtonToggle.prototype, "on", {
         get: function () {
-            return this.foundation_.isOn();
+            return this.foundation.isOn();
         },
         set: function (isOn) {
-            this.foundation_.toggle(isOn);
+            this.foundation.toggle(isOn);
         },
         enumerable: true,
         configurable: true
     });
-    MDCIconButtonToggle.prototype.createRipple_ = function () {
-        var ripple = new MDCRipple(this.root_);
+    MDCIconButtonToggle.prototype.createRipple = function () {
+        var ripple = new MDCRipple(this.root);
         ripple.unbounded = true;
         return ripple;
     };

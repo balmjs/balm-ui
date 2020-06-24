@@ -50,7 +50,7 @@ var MDCSwitch = /** @class */ (function (_super) {
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
             }
-            return (_a = _this.foundation_).handleChange.apply(_a, __spread(args));
+            return (_a = _this.foundation).handleChange.apply(_a, __spread(args));
         };
         this.nativeControl_.addEventListener('change', this.changeHandler_);
         // Sometimes the checked state of the input element is saved in the history.
@@ -63,11 +63,15 @@ var MDCSwitch = /** @class */ (function (_super) {
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         var adapter = {
-            addClass: function (className) { return _this.root_.classList.add(className); },
-            removeClass: function (className) { return _this.root_.classList.remove(className); },
-            setNativeControlChecked: function (checked) { return _this.nativeControl_.checked = checked; },
-            setNativeControlDisabled: function (disabled) { return _this.nativeControl_.disabled = disabled; },
-            setNativeControlAttr: function (attr, value) { return _this.nativeControl_.setAttribute(attr, value); },
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
+            setNativeControlChecked: function (checked) { return _this.nativeControl_.checked =
+                checked; },
+            setNativeControlDisabled: function (disabled) { return _this.nativeControl_.disabled =
+                disabled; },
+            setNativeControlAttr: function (attr, value) {
+                return _this.nativeControl_.setAttribute(attr, value);
+            },
         };
         return new MDCSwitchFoundation(adapter);
     };
@@ -83,7 +87,7 @@ var MDCSwitch = /** @class */ (function (_super) {
             return this.nativeControl_.checked;
         },
         set: function (checked) {
-            this.foundation_.setChecked(checked);
+            this.foundation.setChecked(checked);
         },
         enumerable: true,
         configurable: true
@@ -93,7 +97,7 @@ var MDCSwitch = /** @class */ (function (_super) {
             return this.nativeControl_.disabled;
         },
         set: function (disabled) {
-            this.foundation_.setDisabled(disabled);
+            this.foundation.setDisabled(disabled);
         },
         enumerable: true,
         configurable: true
@@ -101,7 +105,7 @@ var MDCSwitch = /** @class */ (function (_super) {
     MDCSwitch.prototype.createRipple_ = function () {
         var _this = this;
         var RIPPLE_SURFACE_SELECTOR = MDCSwitchFoundation.strings.RIPPLE_SURFACE_SELECTOR;
-        var rippleSurface = this.root_.querySelector(RIPPLE_SURFACE_SELECTOR);
+        var rippleSurface = this.root.querySelector(RIPPLE_SURFACE_SELECTOR);
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { addClass: function (className) { return rippleSurface.classList.add(className); }, computeBoundingRect: function () { return rippleSurface.getBoundingClientRect(); }, deregisterInteractionHandler: function (evtType, handler) {
@@ -113,12 +117,12 @@ var MDCSwitch = /** @class */ (function (_super) {
             }, updateCssVariable: function (varName, value) {
                 rippleSurface.style.setProperty(varName, value);
             } });
-        return new MDCRipple(this.root_, new MDCRippleFoundation(adapter));
+        return new MDCRipple(this.root, new MDCRippleFoundation(adapter));
     };
     Object.defineProperty(MDCSwitch.prototype, "nativeControl_", {
         get: function () {
             var NATIVE_CONTROL_SELECTOR = MDCSwitchFoundation.strings.NATIVE_CONTROL_SELECTOR;
-            return this.root_.querySelector(NATIVE_CONTROL_SELECTOR);
+            return this.root.querySelector(NATIVE_CONTROL_SELECTOR);
         },
         enumerable: true,
         configurable: true

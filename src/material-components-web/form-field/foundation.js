@@ -27,7 +27,9 @@ var MDCFormFieldFoundation = /** @class */ (function (_super) {
     __extends(MDCFormFieldFoundation, _super);
     function MDCFormFieldFoundation(adapter) {
         var _this = _super.call(this, __assign(__assign({}, MDCFormFieldFoundation.defaultAdapter), adapter)) || this;
-        _this.clickHandler_ = function () { return _this.handleClick_(); };
+        _this.click = function () {
+            _this.handleClick();
+        };
         return _this;
     }
     Object.defineProperty(MDCFormFieldFoundation, "cssClasses", {
@@ -57,15 +59,17 @@ var MDCFormFieldFoundation = /** @class */ (function (_super) {
         configurable: true
     });
     MDCFormFieldFoundation.prototype.init = function () {
-        this.adapter_.registerInteractionHandler('click', this.clickHandler_);
+        this.adapter.registerInteractionHandler('click', this.click);
     };
     MDCFormFieldFoundation.prototype.destroy = function () {
-        this.adapter_.deregisterInteractionHandler('click', this.clickHandler_);
+        this.adapter.deregisterInteractionHandler('click', this.click);
     };
-    MDCFormFieldFoundation.prototype.handleClick_ = function () {
+    MDCFormFieldFoundation.prototype.handleClick = function () {
         var _this = this;
-        this.adapter_.activateInputRipple();
-        requestAnimationFrame(function () { return _this.adapter_.deactivateInputRipple(); });
+        this.adapter.activateInputRipple();
+        requestAnimationFrame(function () {
+            _this.adapter.deactivateInputRipple();
+        });
     };
     return MDCFormFieldFoundation;
 }(MDCFoundation));

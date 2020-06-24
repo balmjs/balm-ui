@@ -53,20 +53,20 @@ var MDCTopAppBarFoundation = /** @class */ (function (_super) {
          * The timeout that's used to debounce toggling the isCurrentlyBeingResized_ variable after a resize
          */
         _this.resizeDebounceId_ = INITIAL_VALUE;
-        _this.lastScrollPosition_ = _this.adapter_.getViewportScrollY();
-        _this.topAppBarHeight_ = _this.adapter_.getTopAppBarHeight();
+        _this.lastScrollPosition_ = _this.adapter.getViewportScrollY();
+        _this.topAppBarHeight_ = _this.adapter.getTopAppBarHeight();
         return _this;
     }
     MDCTopAppBarFoundation.prototype.destroy = function () {
         _super.prototype.destroy.call(this);
-        this.adapter_.setStyle('top', '');
+        this.adapter.setStyle('top', '');
     };
     /**
      * Scroll handler for the default scroll behavior of the top app bar.
      * @override
      */
     MDCTopAppBarFoundation.prototype.handleTargetScroll = function () {
-        var currentScrollPosition = Math.max(this.adapter_.getViewportScrollY(), 0);
+        var currentScrollPosition = Math.max(this.adapter.getViewportScrollY(), 0);
         var diff = currentScrollPosition - this.lastScrollPosition_;
         this.lastScrollPosition_ = currentScrollPosition;
         // If the window is being resized the lastScrollPosition_ needs to be updated but the
@@ -141,7 +141,7 @@ var MDCTopAppBarFoundation = /** @class */ (function (_super) {
             if (Math.abs(offset) >= this.topAppBarHeight_) {
                 offset = -numbers.MAX_TOP_APP_BAR_HEIGHT;
             }
-            this.adapter_.setStyle('top', offset + 'px');
+            this.adapter.setStyle('top', offset + 'px');
         }
     };
     /**
@@ -149,7 +149,7 @@ var MDCTopAppBarFoundation = /** @class */ (function (_super) {
      * top app bar height changes.
      */
     MDCTopAppBarFoundation.prototype.throttledResizeHandler_ = function () {
-        var currentHeight = this.adapter_.getTopAppBarHeight();
+        var currentHeight = this.adapter.getTopAppBarHeight();
         if (this.topAppBarHeight_ !== currentHeight) {
             this.wasDocked_ = false;
             // Since the top app bar has a different height depending on the screen width, this

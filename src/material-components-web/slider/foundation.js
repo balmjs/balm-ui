@@ -24,9 +24,11 @@ import { __assign, __extends } from "tslib";
 import { getCorrectEventName, getCorrectPropertyName } from '../animation/util';
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses, numbers, strings } from './constants';
-var hasPointer = !!window.PointerEvent;
-var DOWN_EVENTS = hasPointer ? ['pointerdown'] : ['mousedown', 'touchstart'];
-var UP_EVENTS = hasPointer ? ['pointerup'] : ['mouseup', 'touchend'];
+// Accessing `window` without a `typeof` check will throw on Node environments.
+var hasWindow = typeof window !== 'undefined';
+var hasPointerEventSupport = hasWindow && !!window.PointerEvent;
+var DOWN_EVENTS = hasPointerEventSupport ? ['pointerdown'] : ['mousedown', 'touchstart'];
+var UP_EVENTS = hasPointerEventSupport ? ['pointerup'] : ['mouseup', 'touchend'];
 var MOVE_EVENT_MAP = {
     mousedown: 'mousemove',
     pointerdown: 'pointermove',
@@ -132,16 +134,25 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
     });
     MDCSliderFoundation.prototype.init = function () {
         var _this = this;
-        this.isDiscrete_ = this.adapter_.hasClass(cssClasses.IS_DISCRETE);
-        this.hasTrackMarker_ = this.adapter_.hasClass(cssClasses.HAS_TRACK_MARKER);
+        this.isDiscrete_ = this.adapter.hasClass(cssClasses.IS_DISCRETE);
+        this.hasTrackMarker_ = this.adapter.hasClass(cssClasses.HAS_TRACK_MARKER);
         DOWN_EVENTS.forEach(function (evtName) {
-            _this.adapter_.registerInteractionHandler(evtName, _this.interactionStartHandler_);
-            _this.adapter_.registerThumbContainerInteractionHandler(evtName, _this.thumbContainerPointerHandler_);
+            _this.adapter.registerInteractionHandler(evtName, _this.interactionStartHandler_);
+            _this.adapter.registerThumbContainerInteractionHandler(evtName, _this.thumbContainerPointerHandler_);
         });
-        this.adapter_.registerInteractionHandler('keydown', this.keydownHandler_);
-        this.adapter_.registerInteractionHandler('focus', this.focusHandler_);
-        this.adapter_.registerInteractionHandler('blur', this.blurHandler_);
-        this.adapter_.registerResizeHandler(this.resizeHandler_);
+        if (hasPointerEventSupport) {
+            /*
+             * When pointermove happens, if too much sliding happens, the browser
+             * believes you are panning in the x direction and stops firing
+             * pointermove events and supplies its own gestures. (similar to
+             * preventing default on touchmove)
+             */
+            this.adapter.addClass(cssClasses.DISABLE_TOUCH_ACTION);
+        }
+        this.adapter.registerInteractionHandler('keydown', this.keydownHandler_);
+        this.adapter.registerInteractionHandler('focus', this.focusHandler_);
+        this.adapter.registerInteractionHandler('blur', this.blurHandler_);
+        this.adapter.registerResizeHandler(this.resizeHandler_);
         this.layout();
         // At last step, provide a reasonable default value to discrete slider
         if (this.isDiscrete_ && this.getStep() === 0) {
@@ -151,21 +162,21 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
     MDCSliderFoundation.prototype.destroy = function () {
         var _this = this;
         DOWN_EVENTS.forEach(function (evtName) {
-            _this.adapter_.deregisterInteractionHandler(evtName, _this.interactionStartHandler_);
-            _this.adapter_.deregisterThumbContainerInteractionHandler(evtName, _this.thumbContainerPointerHandler_);
+            _this.adapter.deregisterInteractionHandler(evtName, _this.interactionStartHandler_);
+            _this.adapter.deregisterThumbContainerInteractionHandler(evtName, _this.thumbContainerPointerHandler_);
         });
-        this.adapter_.deregisterInteractionHandler('keydown', this.keydownHandler_);
-        this.adapter_.deregisterInteractionHandler('focus', this.focusHandler_);
-        this.adapter_.deregisterInteractionHandler('blur', this.blurHandler_);
-        this.adapter_.deregisterResizeHandler(this.resizeHandler_);
+        this.adapter.deregisterInteractionHandler('keydown', this.keydownHandler_);
+        this.adapter.deregisterInteractionHandler('focus', this.focusHandler_);
+        this.adapter.deregisterInteractionHandler('blur', this.blurHandler_);
+        this.adapter.deregisterResizeHandler(this.resizeHandler_);
     };
     MDCSliderFoundation.prototype.setupTrackMarker = function () {
         if (this.isDiscrete_ && this.hasTrackMarker_ && this.getStep() !== 0) {
-            this.adapter_.setTrackMarkers(this.getStep(), this.getMax(), this.getMin());
+            this.adapter.setTrackMarkers(this.getStep(), this.getMax(), this.getMin());
         }
     };
     MDCSliderFoundation.prototype.layout = function () {
-        this.rect_ = this.adapter_.computeBoundingRect();
+        this.rect_ = this.adapter.computeBoundingRect();
         this.updateUIForCurrentValue_();
     };
     MDCSliderFoundation.prototype.getValue = function () {
@@ -183,7 +194,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         }
         this.max_ = max;
         this.setValue_(this.value_, false, true);
-        this.adapter_.setAttribute(strings.ARIA_VALUEMAX, String(this.max_));
+        this.adapter.setAttribute(strings.ARIA_VALUEMAX, String(this.max_));
         this.setupTrackMarker();
     };
     MDCSliderFoundation.prototype.getMin = function () {
@@ -195,7 +206,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         }
         this.min_ = min;
         this.setValue_(this.value_, false, true);
-        this.adapter_.setAttribute(strings.ARIA_VALUEMIN, String(this.min_));
+        this.adapter.setAttribute(strings.ARIA_VALUEMIN, String(this.min_));
         this.setupTrackMarker();
     };
     MDCSliderFoundation.prototype.getStep = function () {
@@ -219,14 +230,14 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         this.disabled_ = disabled;
         this.toggleClass_(cssClasses.DISABLED, this.disabled_);
         if (this.disabled_) {
-            this.savedTabIndex_ = this.adapter_.getTabIndex();
-            this.adapter_.setAttribute(strings.ARIA_DISABLED, 'true');
-            this.adapter_.removeAttribute('tabindex');
+            this.savedTabIndex_ = this.adapter.getTabIndex();
+            this.adapter.setAttribute(strings.ARIA_DISABLED, 'true');
+            this.adapter.removeAttribute('tabindex');
         }
         else {
-            this.adapter_.removeAttribute(strings.ARIA_DISABLED);
+            this.adapter.removeAttribute(strings.ARIA_DISABLED);
             if (!isNaN(this.savedTabIndex_)) {
-                this.adapter_.setAttribute('tabindex', String(this.savedTabIndex_));
+                this.adapter.setAttribute('tabindex', String(this.savedTabIndex_));
             }
         }
     };
@@ -252,12 +263,12 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         // https://github.com/material-components/material-components-web/issues/1192)
         var upHandler = function () {
             _this.handleUp_();
-            _this.adapter_.deregisterBodyInteractionHandler(moveEventType, moveHandler);
-            UP_EVENTS.forEach(function (evtName) { return _this.adapter_.deregisterBodyInteractionHandler(evtName, upHandler); });
+            _this.adapter.deregisterBodyInteractionHandler(moveEventType, moveHandler);
+            UP_EVENTS.forEach(function (evtName) { return _this.adapter.deregisterBodyInteractionHandler(evtName, upHandler); });
         };
-        this.adapter_.registerBodyInteractionHandler(moveEventType, moveHandler);
+        this.adapter.registerBodyInteractionHandler(moveEventType, moveHandler);
         UP_EVENTS.forEach(function (evtName) {
-            return _this.adapter_.registerBodyInteractionHandler(evtName, upHandler);
+            return _this.adapter.registerBodyInteractionHandler(evtName, upHandler);
         });
         this.setValueFromEvt_(downEvent);
     };
@@ -273,7 +284,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
      */
     MDCSliderFoundation.prototype.handleUp_ = function () {
         this.setActive_(false);
-        this.adapter_.notifyChange();
+        this.adapter.notifyChange();
     };
     /**
      * Returns the clientX of the event
@@ -300,7 +311,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         var _a = this, max = _a.max_, min = _a.min_;
         var xPos = clientX - this.rect_.left;
         var pctComplete = xPos / this.rect_.width;
-        if (this.adapter_.isRTL()) {
+        if (this.adapter.isRTL()) {
             pctComplete = 1 - pctComplete;
         }
         // Fit the percentage complete between the range [min,max]
@@ -319,9 +330,9 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         // Prevent page from scrolling due to key presses that would normally scroll
         // the page
         evt.preventDefault();
-        this.adapter_.addClass(cssClasses.FOCUS);
+        this.adapter.addClass(cssClasses.FOCUS);
         this.setValue_(value, true);
-        this.adapter_.notifyChange();
+        this.adapter.notifyChange();
     };
     /**
      * Returns the computed name of the event
@@ -359,7 +370,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
     MDCSliderFoundation.prototype.getValueForKeyId_ = function (keyId) {
         var _a = this, max = _a.max_, min = _a.min_, step = _a.step_;
         var delta = step || (max - min) / 100;
-        var valueNeedsToBeFlipped = this.adapter_.isRTL() &&
+        var valueNeedsToBeFlipped = this.adapter.isRTL() &&
             (keyId === KEY_IDS.ARROW_LEFT || keyId === KEY_IDS.ARROW_RIGHT);
         if (valueNeedsToBeFlipped) {
             delta = -delta;
@@ -387,11 +398,11 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         if (this.preventFocusState_) {
             return;
         }
-        this.adapter_.addClass(cssClasses.FOCUS);
+        this.adapter.addClass(cssClasses.FOCUS);
     };
     MDCSliderFoundation.prototype.handleBlur_ = function () {
         this.preventFocusState_ = false;
-        this.adapter_.removeClass(cssClasses.FOCUS);
+        this.adapter.removeClass(cssClasses.FOCUS);
     };
     /**
      * Sets the value of the slider
@@ -414,12 +425,12 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         }
         value = value || 0; // coerce -0 to 0
         this.value_ = value;
-        this.adapter_.setAttribute(strings.ARIA_VALUENOW, String(this.value_));
+        this.adapter.setAttribute(strings.ARIA_VALUENOW, String(this.value_));
         this.updateUIForCurrentValue_();
         if (shouldFireInput) {
-            this.adapter_.notifyInput();
+            this.adapter.notifyInput();
             if (this.isDiscrete_) {
-                this.adapter_.setMarkerValue(value);
+                this.adapter.setMarkerValue(value);
             }
         }
     };
@@ -435,27 +446,25 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         var _a = this, max = _a.max_, min = _a.min_, value = _a.value_;
         var pctComplete = (value - min) / (max - min);
         var translatePx = pctComplete * this.rect_.width;
-        if (this.adapter_.isRTL()) {
+        if (this.adapter.isRTL()) {
             translatePx = this.rect_.width - translatePx;
         }
-        // Accessing `window` without a `typeof` check will throw on Node environments.
-        var hasWindow = typeof window !== 'undefined';
         var transformProp = hasWindow ? getCorrectPropertyName(window, 'transform') : 'transform';
         var transitionendEvtName = hasWindow ? getCorrectEventName(window, 'transitionend') : 'transitionend';
         if (this.inTransit_) {
             var onTransitionEnd_1 = function () {
                 _this.setInTransit_(false);
-                _this.adapter_.deregisterThumbContainerInteractionHandler(transitionendEvtName, onTransitionEnd_1);
+                _this.adapter.deregisterThumbContainerInteractionHandler(transitionendEvtName, onTransitionEnd_1);
             };
-            this.adapter_.registerThumbContainerInteractionHandler(transitionendEvtName, onTransitionEnd_1);
+            this.adapter.registerThumbContainerInteractionHandler(transitionendEvtName, onTransitionEnd_1);
         }
         requestAnimationFrame(function () {
             // NOTE(traviskaufman): It would be nice to use calc() here,
             // but IE cannot handle calcs in transforms correctly.
             // See: https://goo.gl/NC2itk
             // Also note that the -50% offset is used to center the slider thumb.
-            _this.adapter_.setThumbContainerStyleProperty(transformProp, "translateX(" + translatePx + "px) translateX(-50%)");
-            _this.adapter_.setTrackStyleProperty(transformProp, "scaleX(" + pctComplete + ")");
+            _this.adapter.setThumbContainerStyleProperty(transformProp, "translateX(" + translatePx + "px) translateX(-50%)");
+            _this.adapter.setTrackStyleProperty(transformProp, "scaleX(" + pctComplete + ")");
         });
     };
     /**
@@ -477,10 +486,10 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
      */
     MDCSliderFoundation.prototype.toggleClass_ = function (className, shouldBePresent) {
         if (shouldBePresent) {
-            this.adapter_.addClass(className);
+            this.adapter.addClass(className);
         }
         else {
-            this.adapter_.removeClass(className);
+            this.adapter.removeClass(className);
         }
     };
     return MDCSliderFoundation;

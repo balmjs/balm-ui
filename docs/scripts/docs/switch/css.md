@@ -18,8 +18,7 @@
 
   $thumb-offset: 4px,
 
-  $thumb-active-margin:
-    $track-width - $thumb-diameter + $thumb-offset * 2,
+  $thumb-active-margin: $track-width - $thumb-diameter + $thumb-offset * 2,
 
   $toggled-off-thumb-color: surface,
   $toggled-off-track-color: on-surface,

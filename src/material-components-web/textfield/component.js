@@ -52,36 +52,36 @@ var MDCTextField = /** @class */ (function (_super) {
         if (iconFactory === void 0) { iconFactory = function (el) { return new MDCTextFieldIcon(el); }; }
         if (labelFactory === void 0) { labelFactory = function (el) { return new MDCFloatingLabel(el); }; }
         if (outlineFactory === void 0) { outlineFactory = function (el) { return new MDCNotchedOutline(el); }; }
-        this.input_ = this.root_.querySelector(strings.INPUT_SELECTOR);
-        var labelElement = this.root_.querySelector(strings.LABEL_SELECTOR);
+        this.input_ = this.root.querySelector(strings.INPUT_SELECTOR);
+        var labelElement = this.root.querySelector(strings.LABEL_SELECTOR);
         this.label_ = labelElement ? labelFactory(labelElement) : null;
-        var lineRippleElement = this.root_.querySelector(strings.LINE_RIPPLE_SELECTOR);
+        var lineRippleElement = this.root.querySelector(strings.LINE_RIPPLE_SELECTOR);
         this.lineRipple_ = lineRippleElement ? lineRippleFactory(lineRippleElement) : null;
-        var outlineElement = this.root_.querySelector(strings.OUTLINE_SELECTOR);
+        var outlineElement = this.root.querySelector(strings.OUTLINE_SELECTOR);
         this.outline_ = outlineElement ? outlineFactory(outlineElement) : null;
         // Helper text
         var helperTextStrings = MDCTextFieldHelperTextFoundation.strings;
-        var nextElementSibling = this.root_.nextElementSibling;
+        var nextElementSibling = this.root.nextElementSibling;
         var hasHelperLine = (nextElementSibling && nextElementSibling.classList.contains(cssClasses.HELPER_LINE));
         var helperTextEl = hasHelperLine && nextElementSibling && nextElementSibling.querySelector(helperTextStrings.ROOT_SELECTOR);
         this.helperText_ = helperTextEl ? helperTextFactory(helperTextEl) : null;
         // Character counter
         var characterCounterStrings = MDCTextFieldCharacterCounterFoundation.strings;
-        var characterCounterEl = this.root_.querySelector(characterCounterStrings.ROOT_SELECTOR);
+        var characterCounterEl = this.root.querySelector(characterCounterStrings.ROOT_SELECTOR);
         // If character counter is not found in root element search in sibling element.
         if (!characterCounterEl && hasHelperLine && nextElementSibling) {
             characterCounterEl = nextElementSibling.querySelector(characterCounterStrings.ROOT_SELECTOR);
         }
         this.characterCounter_ = characterCounterEl ? characterCounterFactory(characterCounterEl) : null;
         // Leading icon
-        var leadingIconEl = this.root_.querySelector(strings.LEADING_ICON_SELECTOR);
+        var leadingIconEl = this.root.querySelector(strings.LEADING_ICON_SELECTOR);
         this.leadingIcon_ = leadingIconEl ? iconFactory(leadingIconEl) : null;
         // Trailing icon
-        var trailingIconEl = this.root_.querySelector(strings.TRAILING_ICON_SELECTOR);
+        var trailingIconEl = this.root.querySelector(strings.TRAILING_ICON_SELECTOR);
         this.trailingIcon_ = trailingIconEl ? iconFactory(trailingIconEl) : null;
         // Prefix and Suffix
-        this.prefix_ = this.root_.querySelector(strings.PREFIX_SELECTOR);
-        this.suffix_ = this.root_.querySelector(strings.SUFFIX_SELECTOR);
+        this.prefix_ = this.root.querySelector(strings.PREFIX_SELECTOR);
+        this.suffix_ = this.root.querySelector(strings.SUFFIX_SELECTOR);
         this.ripple = this.createRipple_(rippleFactory);
     };
     MDCTextField.prototype.destroy = function () {
@@ -120,39 +120,39 @@ var MDCTextField = /** @class */ (function (_super) {
     };
     Object.defineProperty(MDCTextField.prototype, "value", {
         get: function () {
-            return this.foundation_.getValue();
+            return this.foundation.getValue();
         },
         /**
          * @param value The value to set on the input.
          */
         set: function (value) {
-            this.foundation_.setValue(value);
+            this.foundation.setValue(value);
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(MDCTextField.prototype, "disabled", {
         get: function () {
-            return this.foundation_.isDisabled();
+            return this.foundation.isDisabled();
         },
         /**
          * @param disabled Sets the Text Field disabled or enabled.
          */
         set: function (disabled) {
-            this.foundation_.setDisabled(disabled);
+            this.foundation.setDisabled(disabled);
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(MDCTextField.prototype, "valid", {
         get: function () {
-            return this.foundation_.isValid();
+            return this.foundation.isValid();
         },
         /**
          * @param valid Sets the Text Field valid or invalid.
          */
         set: function (valid) {
-            this.foundation_.setValid(valid);
+            this.foundation.setValid(valid);
         },
         enumerable: true,
         configurable: true
@@ -259,7 +259,7 @@ var MDCTextField = /** @class */ (function (_super) {
          * Sets the helper text element content.
          */
         set: function (content) {
-            this.foundation_.setHelperTextContent(content);
+            this.foundation.setHelperTextContent(content);
         },
         enumerable: true,
         configurable: true
@@ -269,7 +269,7 @@ var MDCTextField = /** @class */ (function (_super) {
          * Sets the aria label of the leading icon.
          */
         set: function (label) {
-            this.foundation_.setLeadingIconAriaLabel(label);
+            this.foundation.setLeadingIconAriaLabel(label);
         },
         enumerable: true,
         configurable: true
@@ -279,7 +279,7 @@ var MDCTextField = /** @class */ (function (_super) {
          * Sets the text content of the leading icon.
          */
         set: function (content) {
-            this.foundation_.setLeadingIconContent(content);
+            this.foundation.setLeadingIconContent(content);
         },
         enumerable: true,
         configurable: true
@@ -289,7 +289,7 @@ var MDCTextField = /** @class */ (function (_super) {
          * Sets the aria label of the trailing icon.
          */
         set: function (label) {
-            this.foundation_.setTrailingIconAriaLabel(label);
+            this.foundation.setTrailingIconAriaLabel(label);
         },
         enumerable: true,
         configurable: true
@@ -299,7 +299,7 @@ var MDCTextField = /** @class */ (function (_super) {
          * Sets the text content of the trailing icon.
          */
         set: function (content) {
-            this.foundation_.setTrailingIconContent(content);
+            this.foundation.setTrailingIconContent(content);
         },
         enumerable: true,
         configurable: true
@@ -310,7 +310,7 @@ var MDCTextField = /** @class */ (function (_super) {
          * @param useNativeValidation Set this to false to ignore native input validation.
          */
         set: function (useNativeValidation) {
-            this.foundation_.setUseNativeValidation(useNativeValidation);
+            this.foundation.setUseNativeValidation(useNativeValidation);
         },
         enumerable: true,
         configurable: true
@@ -361,8 +361,8 @@ var MDCTextField = /** @class */ (function (_super) {
      * Recomputes the outline SVG path for the outline element.
      */
     MDCTextField.prototype.layout = function () {
-        var openNotch = this.foundation_.shouldFloat;
-        this.foundation_.notchOutline(openNotch);
+        var openNotch = this.foundation.shouldFloat;
+        this.foundation.notchOutline(openNotch);
     };
     MDCTextField.prototype.getDefaultFoundation = function () {
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
@@ -376,9 +376,9 @@ var MDCTextField = /** @class */ (function (_super) {
         var _this = this;
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         return {
-            addClass: function (className) { return _this.root_.classList.add(className); },
-            removeClass: function (className) { return _this.root_.classList.remove(className); },
-            hasClass: function (className) { return _this.root_.classList.contains(className); },
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
+            hasClass: function (className) { return _this.root.classList.contains(className); },
             registerTextFieldInteractionHandler: function (evtType, handler) { return _this.listen(evtType, handler); },
             deregisterTextFieldInteractionHandler: function (evtType, handler) { return _this.unlisten(evtType, handler); },
             registerValidationAttributeChangeHandler: function (handler) {
@@ -418,6 +418,7 @@ var MDCTextField = /** @class */ (function (_super) {
             getLabelWidth: function () { return _this.label_ ? _this.label_.getWidth() : 0; },
             hasLabel: function () { return Boolean(_this.label_); },
             shakeLabel: function (shouldShake) { return _this.label_ && _this.label_.shake(shouldShake); },
+            setLabelRequired: function (isRequired) { return _this.label_ && _this.label_.setRequired(isRequired); },
         };
     };
     MDCTextField.prototype.getLineRippleAdapterMethods_ = function () {
@@ -453,16 +454,23 @@ var MDCTextField = /** @class */ (function (_super) {
      */
     MDCTextField.prototype.getFoundationMap_ = function () {
         return {
-            characterCounter: this.characterCounter_ ? this.characterCounter_.foundation : undefined,
-            helperText: this.helperText_ ? this.helperText_.foundation : undefined,
-            leadingIcon: this.leadingIcon_ ? this.leadingIcon_.foundation : undefined,
-            trailingIcon: this.trailingIcon_ ? this.trailingIcon_.foundation : undefined,
+            characterCounter: this.characterCounter_ ?
+                this.characterCounter_.foundationForTextField :
+                undefined,
+            helperText: this.helperText_ ? this.helperText_.foundationForTextField :
+                undefined,
+            leadingIcon: this.leadingIcon_ ?
+                this.leadingIcon_.foundationForTextField :
+                undefined,
+            trailingIcon: this.trailingIcon_ ?
+                this.trailingIcon_.foundationForTextField :
+                undefined,
         };
     };
     MDCTextField.prototype.createRipple_ = function (rippleFactory) {
         var _this = this;
-        var isTextArea = this.root_.classList.contains(cssClasses.TEXTAREA);
-        var isOutlined = this.root_.classList.contains(cssClasses.OUTLINED);
+        var isTextArea = this.root.classList.contains(cssClasses.TEXTAREA);
+        var isOutlined = this.root.classList.contains(cssClasses.OUTLINED);
         if (isTextArea || isOutlined) {
             return null;
         }
@@ -473,7 +481,7 @@ var MDCTextField = /** @class */ (function (_super) {
                 return _this.input_.removeEventListener(evtType, handler, applyPassive());
             } });
         // tslint:enable:object-literal-sort-keys
-        return rippleFactory(this.root_, new MDCRippleFoundation(adapter));
+        return rippleFactory(this.root, new MDCRippleFoundation(adapter));
     };
     return MDCTextField;
 }(MDCComponent));

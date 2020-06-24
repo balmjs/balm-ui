@@ -28,6 +28,7 @@ var cssClasses = {
     HAS_TRACK_MARKER: 'mdc-slider--display-markers',
     IN_TRANSIT: 'mdc-slider--in-transit',
     IS_DISCRETE: 'mdc-slider--discrete',
+    DISABLE_TOUCH_ACTION: 'mdc-slider--disable-touch-action',
 };
 var strings = {
     ARIA_DISABLED: 'aria-disabled',

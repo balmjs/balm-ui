@@ -56,16 +56,16 @@ var MDCFloatingLabelFoundation = /** @class */ (function (_super) {
         configurable: true
     });
     MDCFloatingLabelFoundation.prototype.init = function () {
-        this.adapter_.registerInteractionHandler('animationend', this.shakeAnimationEndHandler_);
+        this.adapter.registerInteractionHandler('animationend', this.shakeAnimationEndHandler_);
     };
     MDCFloatingLabelFoundation.prototype.destroy = function () {
-        this.adapter_.deregisterInteractionHandler('animationend', this.shakeAnimationEndHandler_);
+        this.adapter.deregisterInteractionHandler('animationend', this.shakeAnimationEndHandler_);
     };
     /**
      * Returns the width of the label element.
      */
     MDCFloatingLabelFoundation.prototype.getWidth = function () {
-        return this.adapter_.getWidth();
+        return this.adapter.getWidth();
     };
     /**
      * Styles the label to produce a shake animation to indicate an error.
@@ -74,10 +74,10 @@ var MDCFloatingLabelFoundation = /** @class */ (function (_super) {
     MDCFloatingLabelFoundation.prototype.shake = function (shouldShake) {
         var LABEL_SHAKE = MDCFloatingLabelFoundation.cssClasses.LABEL_SHAKE;
         if (shouldShake) {
-            this.adapter_.addClass(LABEL_SHAKE);
+            this.adapter.addClass(LABEL_SHAKE);
         }
         else {
-            this.adapter_.removeClass(LABEL_SHAKE);
+            this.adapter.removeClass(LABEL_SHAKE);
         }
     };
     /**
@@ -87,16 +87,29 @@ var MDCFloatingLabelFoundation = /** @class */ (function (_super) {
     MDCFloatingLabelFoundation.prototype.float = function (shouldFloat) {
         var _a = MDCFloatingLabelFoundation.cssClasses, LABEL_FLOAT_ABOVE = _a.LABEL_FLOAT_ABOVE, LABEL_SHAKE = _a.LABEL_SHAKE;
         if (shouldFloat) {
-            this.adapter_.addClass(LABEL_FLOAT_ABOVE);
+            this.adapter.addClass(LABEL_FLOAT_ABOVE);
         }
         else {
-            this.adapter_.removeClass(LABEL_FLOAT_ABOVE);
-            this.adapter_.removeClass(LABEL_SHAKE);
+            this.adapter.removeClass(LABEL_FLOAT_ABOVE);
+            this.adapter.removeClass(LABEL_SHAKE);
+        }
+    };
+    /**
+     * Styles the label as required.
+     * @param isRequired If true, adds an asterisk to the label, indicating that it is required.
+     */
+    MDCFloatingLabelFoundation.prototype.setRequired = function (isRequired) {
+        var LABEL_REQUIRED = MDCFloatingLabelFoundation.cssClasses.LABEL_REQUIRED;
+        if (isRequired) {
+            this.adapter.addClass(LABEL_REQUIRED);
+        }
+        else {
+            this.adapter.removeClass(LABEL_REQUIRED);
         }
     };
     MDCFloatingLabelFoundation.prototype.handleShakeAnimationEnd_ = function () {
         var LABEL_SHAKE = MDCFloatingLabelFoundation.cssClasses.LABEL_SHAKE;
-        this.adapter_.removeClass(LABEL_SHAKE);
+        this.adapter.removeClass(LABEL_SHAKE);
     };
     return MDCFloatingLabelFoundation;
 }(MDCFoundation));

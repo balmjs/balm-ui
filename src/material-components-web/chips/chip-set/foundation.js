@@ -84,9 +84,10 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
      */
     MDCChipSetFoundation.prototype.handleChipInteraction = function (_a) {
         var chipId = _a.chipId;
-        var index = this.adapter_.getIndexOfChipById(chipId);
+        var index = this.adapter.getIndexOfChipById(chipId);
         this.removeFocusFromChipsExcept_(index);
-        if (this.adapter_.hasClass(cssClasses.CHOICE) || this.adapter_.hasClass(cssClasses.FILTER)) {
+        if (this.adapter.hasClass(cssClasses.CHOICE) ||
+            this.adapter.hasClass(cssClasses.FILTER)) {
             this.toggleSelect_(chipId);
         }
     };
@@ -113,29 +114,29 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
     MDCChipSetFoundation.prototype.handleChipRemoval = function (_a) {
         var chipId = _a.chipId, removedAnnouncement = _a.removedAnnouncement;
         if (removedAnnouncement) {
-            this.adapter_.announceMessage(removedAnnouncement);
+            this.adapter.announceMessage(removedAnnouncement);
         }
-        var index = this.adapter_.getIndexOfChipById(chipId);
+        var index = this.adapter.getIndexOfChipById(chipId);
         this.deselectAndNotifyClients_(chipId);
-        this.adapter_.removeChipAtIndex(index);
-        var maxIndex = this.adapter_.getChipListCount() - 1;
+        this.adapter.removeChipAtIndex(index);
+        var maxIndex = this.adapter.getChipListCount() - 1;
         var nextIndex = Math.min(index, maxIndex);
         this.removeFocusFromChipsExcept_(nextIndex);
         // After removing a chip, we should focus the trailing action for the next chip.
-        this.adapter_.focusChipTrailingActionAtIndex(nextIndex);
+        this.adapter.focusChipTrailingActionAtIndex(nextIndex);
     };
     /**
      * Handles a chip navigation event.
      */
     MDCChipSetFoundation.prototype.handleChipNavigation = function (_a) {
         var chipId = _a.chipId, key = _a.key, source = _a.source;
-        var maxIndex = this.adapter_.getChipListCount() - 1;
-        var index = this.adapter_.getIndexOfChipById(chipId);
+        var maxIndex = this.adapter.getChipListCount() - 1;
+        var index = this.adapter.getIndexOfChipById(chipId);
         // Early exit if the index is out of range or the key is unusable
         if (index === -1 || !navigationKeys.has(key)) {
             return;
         }
-        var isRTL = this.adapter_.isRTL();
+        var isRTL = this.adapter.isRTL();
         var isLeftKey = key === chipStrings.ARROW_LEFT_KEY ||
             key === chipStrings.IE_ARROW_LEFT_KEY;
         var isRightKey = key === chipStrings.ARROW_RIGHT_KEY ||
@@ -167,21 +168,21 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
     MDCChipSetFoundation.prototype.focusChipAction_ = function (index, key, source) {
         var shouldJumpChips = jumpChipKeys.has(key);
         if (shouldJumpChips && source === EventSource.PRIMARY) {
-            return this.adapter_.focusChipPrimaryActionAtIndex(index);
+            return this.adapter.focusChipPrimaryActionAtIndex(index);
         }
         if (shouldJumpChips && source === EventSource.TRAILING) {
-            return this.adapter_.focusChipTrailingActionAtIndex(index);
+            return this.adapter.focusChipTrailingActionAtIndex(index);
         }
         var dir = this.getDirection_(key);
         if (dir === Direction.LEFT) {
-            return this.adapter_.focusChipTrailingActionAtIndex(index);
+            return this.adapter.focusChipTrailingActionAtIndex(index);
         }
         if (dir === Direction.RIGHT) {
-            return this.adapter_.focusChipPrimaryActionAtIndex(index);
+            return this.adapter.focusChipPrimaryActionAtIndex(index);
         }
     };
     MDCChipSetFoundation.prototype.getDirection_ = function (key) {
-        var isRTL = this.adapter_.isRTL();
+        var isRTL = this.adapter.isRTL();
         var isLeftKey = key === chipStrings.ARROW_LEFT_KEY ||
             key === chipStrings.IE_ARROW_LEFT_KEY;
         var isRightKey = key === chipStrings.ARROW_RIGHT_KEY ||
@@ -199,8 +200,8 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
         var index = this.selectedChipIds_.indexOf(chipId);
         if (index >= 0) {
             this.selectedChipIds_.splice(index, 1);
-            var chipIndex = this.adapter_.getIndexOfChipById(chipId);
-            this.adapter_.selectChipAtIndex(chipIndex, /** isSelected */ false, shouldNotifyClients);
+            var chipIndex = this.adapter.getIndexOfChipById(chipId);
+            this.adapter.selectChipAtIndex(chipIndex, /** isSelected */ false, shouldNotifyClients);
         }
     };
     /**
@@ -221,10 +222,10 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
         }
     };
     MDCChipSetFoundation.prototype.removeFocusFromChipsExcept_ = function (index) {
-        var chipCount = this.adapter_.getChipListCount();
+        var chipCount = this.adapter.getChipListCount();
         for (var i = 0; i < chipCount; i++) {
             if (i !== index) {
-                this.adapter_.removeFocusFromChipAtIndex(i);
+                this.adapter.removeFocusFromChipAtIndex(i);
             }
         }
     };
@@ -235,15 +236,16 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
         if (this.selectedChipIds_.indexOf(chipId) >= 0) {
             return;
         }
-        if (this.adapter_.hasClass(cssClasses.CHOICE) && this.selectedChipIds_.length > 0) {
+        if (this.adapter.hasClass(cssClasses.CHOICE) &&
+            this.selectedChipIds_.length > 0) {
             var previouslySelectedChip = this.selectedChipIds_[0];
-            var previouslySelectedIndex = this.adapter_.getIndexOfChipById(previouslySelectedChip);
+            var previouslySelectedIndex = this.adapter.getIndexOfChipById(previouslySelectedChip);
             this.selectedChipIds_ = [];
-            this.adapter_.selectChipAtIndex(previouslySelectedIndex, /** isSelected */ false, shouldNotifyClients);
+            this.adapter.selectChipAtIndex(previouslySelectedIndex, /** isSelected */ false, shouldNotifyClients);
         }
         this.selectedChipIds_.push(chipId);
-        var index = this.adapter_.getIndexOfChipById(chipId);
-        this.adapter_.selectChipAtIndex(index, /** isSelected */ true, shouldNotifyClients);
+        var index = this.adapter.getIndexOfChipById(chipId);
+        this.adapter.selectChipAtIndex(index, /** isSelected */ true, shouldNotifyClients);
     };
     return MDCChipSetFoundation;
 }(MDCFoundation));

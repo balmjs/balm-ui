@@ -16,10 +16,16 @@
   ),
 
   $outlined-border-width: 1px,
-  $outline-color: rgba(theme-variables.prop-value(on-surface), .12),
+  $outline-color: rgba(theme-variables.prop-value(on-surface), 0.12),
   $shape-radius: small,
 
-  $disabled-container-color: rgba(theme-variables.prop-value(on-surface), .12),
-  $disabled-ink-color: rgba(theme-variables.prop-value(on-surface), .38)
+  $disabled-container-color: rgba(
+    theme-variables.prop-value(on-surface),
+    0.12
+  ),
+  $disabled-ink-color: rgba(
+    theme-variables.prop-value(on-surface),
+    0.38
+  )
 );
 ```

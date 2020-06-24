@@ -1,9 +1,9 @@
 ```css
 @use '@material/elevation/variables' with (
   $baseline-color: black,
-  $umbra-opacity: .2,
-  $penumbra-opacity: .14,
-  $ambient-opacity: .12,
+  $umbra-opacity: 0.2,
+  $penumbra-opacity: 0.14,
+  $ambient-opacity: 0.12,
 
   $property: box-shadow,
 

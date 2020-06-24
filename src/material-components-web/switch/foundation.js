@@ -60,18 +60,18 @@ var MDCSwitchFoundation = /** @class */ (function (_super) {
     });
     /** Sets the checked state of the switch. */
     MDCSwitchFoundation.prototype.setChecked = function (checked) {
-        this.adapter_.setNativeControlChecked(checked);
+        this.adapter.setNativeControlChecked(checked);
         this.updateAriaChecked_(checked);
         this.updateCheckedStyling_(checked);
     };
     /** Sets the disabled state of the switch. */
     MDCSwitchFoundation.prototype.setDisabled = function (disabled) {
-        this.adapter_.setNativeControlDisabled(disabled);
+        this.adapter.setNativeControlDisabled(disabled);
         if (disabled) {
-            this.adapter_.addClass(cssClasses.DISABLED);
+            this.adapter.addClass(cssClasses.DISABLED);
         }
         else {
-            this.adapter_.removeClass(cssClasses.DISABLED);
+            this.adapter.removeClass(cssClasses.DISABLED);
         }
     };
     /** Handles the change event for the switch native control. */
@@ -83,14 +83,14 @@ var MDCSwitchFoundation = /** @class */ (function (_super) {
     /** Updates the styling of the switch based on its checked state. */
     MDCSwitchFoundation.prototype.updateCheckedStyling_ = function (checked) {
         if (checked) {
-            this.adapter_.addClass(cssClasses.CHECKED);
+            this.adapter.addClass(cssClasses.CHECKED);
         }
         else {
-            this.adapter_.removeClass(cssClasses.CHECKED);
+            this.adapter.removeClass(cssClasses.CHECKED);
         }
     };
     MDCSwitchFoundation.prototype.updateAriaChecked_ = function (checked) {
-        this.adapter_.setNativeControlAttr(strings.ARIA_CHECKED_ATTR, "" + !!checked);
+        this.adapter.setNativeControlAttr(strings.ARIA_CHECKED_ATTR, "" + !!checked);
     };
     return MDCSwitchFoundation;
 }(MDCFoundation));

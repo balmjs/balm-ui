@@ -35,13 +35,13 @@ var MDCTabScroller = /** @class */ (function (_super) {
         return new MDCTabScroller(root);
     };
     MDCTabScroller.prototype.initialize = function () {
-        this.area_ = this.root_.querySelector(MDCTabScrollerFoundation.strings.AREA_SELECTOR);
-        this.content_ = this.root_.querySelector(MDCTabScrollerFoundation.strings.CONTENT_SELECTOR);
+        this.area_ = this.root.querySelector(MDCTabScrollerFoundation.strings.AREA_SELECTOR);
+        this.content_ = this.root.querySelector(MDCTabScrollerFoundation.strings.CONTENT_SELECTOR);
     };
     MDCTabScroller.prototype.initialSyncWithDOM = function () {
         var _this = this;
-        this.handleInteraction_ = function () { return _this.foundation_.handleInteraction(); };
-        this.handleTransitionEnd_ = function (evt) { return _this.foundation_.handleTransitionEnd(evt); };
+        this.handleInteraction_ = function () { return _this.foundation.handleInteraction(); };
+        this.handleTransitionEnd_ = function (evt) { return _this.foundation.handleTransitionEnd(evt); };
         this.area_.addEventListener('wheel', this.handleInteraction_, applyPassive());
         this.area_.addEventListener('touchstart', this.handleInteraction_, applyPassive());
         this.area_.addEventListener('pointerdown', this.handleInteraction_, applyPassive());
@@ -64,20 +64,32 @@ var MDCTabScroller = /** @class */ (function (_super) {
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
-            eventTargetMatchesSelector: function (evtTarget, selector) { return matches(evtTarget, selector); },
-            addClass: function (className) { return _this.root_.classList.add(className); },
-            removeClass: function (className) { return _this.root_.classList.remove(className); },
+            eventTargetMatchesSelector: function (evtTarget, selector) {
+                return matches(evtTarget, selector);
+            },
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
             addScrollAreaClass: function (className) { return _this.area_.classList.add(className); },
-            setScrollAreaStyleProperty: function (prop, value) { return _this.area_.style.setProperty(prop, value); },
-            setScrollContentStyleProperty: function (prop, value) { return _this.content_.style.setProperty(prop, value); },
-            getScrollContentStyleValue: function (propName) { return window.getComputedStyle(_this.content_).getPropertyValue(propName); },
+            setScrollAreaStyleProperty: function (prop, value) {
+                return _this.area_.style.setProperty(prop, value);
+            },
+            setScrollContentStyleProperty: function (prop, value) {
+                return _this.content_.style.setProperty(prop, value);
+            },
+            getScrollContentStyleValue: function (propName) {
+                return window.getComputedStyle(_this.content_).getPropertyValue(propName);
+            },
             setScrollAreaScrollLeft: function (scrollX) { return _this.area_.scrollLeft = scrollX; },
             getScrollAreaScrollLeft: function () { return _this.area_.scrollLeft; },
             getScrollContentOffsetWidth: function () { return _this.content_.offsetWidth; },
             getScrollAreaOffsetWidth: function () { return _this.area_.offsetWidth; },
             computeScrollAreaClientRect: function () { return _this.area_.getBoundingClientRect(); },
-            computeScrollContentClientRect: function () { return _this.content_.getBoundingClientRect(); },
-            computeHorizontalScrollbarHeight: function () { return util.computeHorizontalScrollbarHeight(document); },
+            computeScrollContentClientRect: function () {
+                return _this.content_.getBoundingClientRect();
+            },
+            computeHorizontalScrollbarHeight: function () {
+                return util.computeHorizontalScrollbarHeight(document);
+            },
         };
         // tslint:enable:object-literal-sort-keys
         return new MDCTabScrollerFoundation(adapter);
@@ -86,7 +98,7 @@ var MDCTabScroller = /** @class */ (function (_super) {
      * Returns the current visual scroll position
      */
     MDCTabScroller.prototype.getScrollPosition = function () {
-        return this.foundation_.getScrollPosition();
+        return this.foundation.getScrollPosition();
     };
     /**
      * Returns the width of the scroll content
@@ -99,14 +111,14 @@ var MDCTabScroller = /** @class */ (function (_super) {
      * @param scrollXIncrement The pixel value by which to increment the scroll value
      */
     MDCTabScroller.prototype.incrementScroll = function (scrollXIncrement) {
-        this.foundation_.incrementScroll(scrollXIncrement);
+        this.foundation.incrementScroll(scrollXIncrement);
     };
     /**
      * Scrolls to the given pixel position
      * @param scrollX The pixel value to scroll to
      */
     MDCTabScroller.prototype.scrollTo = function (scrollX) {
-        this.foundation_.scrollTo(scrollX);
+        this.foundation.scrollTo(scrollX);
     };
     return MDCTabScroller;
 }(MDCComponent));

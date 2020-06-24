@@ -42,10 +42,14 @@
     @include elevation-mixins.elevation($z-value: 8, $query: $query);
     @include fill-color(surface, $query);
     @include ink-color(on-surface, $query);
-    @include shape-radius(medium, false, $query);
+    @include shape-radius(variables.$shape-radius, false, $query);
 
     @include feature-targeting-mixins.targets($feat-structure) {
-      @include rtl-mixins.reflexive-property(transform-origin, top left, top right);
+      @include rtl-mixins.reflexive-property(
+        transform-origin,
+        top left,
+        top right
+      );
     }
   }
 
@@ -59,6 +63,12 @@
   .mdc-menu-surface--fixed {
     @include feature-targeting-mixins.targets($feat-structure) {
       position: fixed;
+    }
+  }
+
+  .mdc-menu-surface--fullwidth {
+    @include feature-targeting-mixins.targets($feat-structure) {
+      width: 100%;
     }
   }
   // postcss-bem-linter: end
@@ -86,10 +96,14 @@
 
 // Used by filled variants of GM components to conditionally flatten the top
 // corners of the menu.
-@mixin flatten-top-when-opened-below {
+@mixin flatten-top-when-opened-below($query: functions.all()) {
   .mdc-menu-surface--is-open-below {
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
+    $feat-structure: functions.create-target($query, structure);
+
+    @include feature-targeting-mixins.targets($feat-structure) {
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+    }
   }
 }
 
@@ -118,9 +132,9 @@
   }
 
   @include feature-targeting-mixins.targets($feat-animation) {
-    transition:
-      opacity variables.$fade-in-duration linear,
-      transform variables.$scale-duration animation-variables.$deceleration-curve-timing-function;
+    transition: opacity variables.$fade-in-duration linear,
+      transform variables.$scale-duration
+        animation-variables.$deceleration-curve-timing-function;
   }
 
   &:focus {
@@ -141,7 +155,7 @@
   &--animating-open {
     @include feature-targeting-mixins.targets($feat-structure) {
       display: inline-block;
-      transform: scale(.8);
+      transform: scale(0.8);
       opacity: 0;
     }
   }

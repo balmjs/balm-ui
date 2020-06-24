@@ -28,12 +28,13 @@ var MDCComponent = /** @class */ (function () {
         for (var _i = 2; _i < arguments.length; _i++) {
             args[_i - 2] = arguments[_i];
         }
-        this.root_ = root;
+        this.root = root;
         this.initialize.apply(this, __spread(args));
         // Note that we initialize foundation here and not within the constructor's default param so that
         // this.root_ is defined and can be used within the foundation class.
-        this.foundation_ = foundation === undefined ? this.getDefaultFoundation() : foundation;
-        this.foundation_.init();
+        this.foundation =
+            foundation === undefined ? this.getDefaultFoundation() : foundation;
+        this.foundation.init();
         this.initialSyncWithDOM();
     }
     MDCComponent.attachTo = function (root) {
@@ -68,13 +69,13 @@ var MDCComponent = /** @class */ (function () {
     MDCComponent.prototype.destroy = function () {
         // Subclasses may implement this method to release any resources / deregister any listeners they have
         // attached. An example of this might be deregistering a resize event from the window object.
-        this.foundation_.destroy();
+        this.foundation.destroy();
     };
     MDCComponent.prototype.listen = function (evtType, handler, options) {
-        this.root_.addEventListener(evtType, handler, options);
+        this.root.addEventListener(evtType, handler, options);
     };
     MDCComponent.prototype.unlisten = function (evtType, handler, options) {
-        this.root_.removeEventListener(evtType, handler, options);
+        this.root.removeEventListener(evtType, handler, options);
     };
     /**
      * Fires a cross-browser-compatible custom event from the component root of the given type, with the given data.
@@ -92,7 +93,7 @@ var MDCComponent = /** @class */ (function () {
             evt = document.createEvent('CustomEvent');
             evt.initCustomEvent(evtType, shouldBubble, false, evtData);
         }
-        this.root_.dispatchEvent(evt);
+        this.root.dispatchEvent(evt);
     };
     return MDCComponent;
 }());

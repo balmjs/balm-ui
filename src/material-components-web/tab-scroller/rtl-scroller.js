@@ -22,7 +22,7 @@
  */
 var MDCTabScrollerRTL = /** @class */ (function () {
     function MDCTabScrollerRTL(adapter) {
-        this.adapter_ = adapter;
+        this.adapter = adapter;
     }
     return MDCTabScrollerRTL;
 }());

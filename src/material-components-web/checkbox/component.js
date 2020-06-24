@@ -72,7 +72,7 @@ var MDCCheckbox = /** @class */ (function (_super) {
             return this.nativeControl_.disabled;
         },
         set: function (disabled) {
-            this.foundation_.setDisabled(disabled);
+            this.foundation.setDisabled(disabled);
         },
         enumerable: true,
         configurable: true
@@ -95,8 +95,8 @@ var MDCCheckbox = /** @class */ (function (_super) {
     };
     MDCCheckbox.prototype.initialSyncWithDOM = function () {
         var _this = this;
-        this.handleChange_ = function () { return _this.foundation_.handleChange(); };
-        this.handleAnimationEnd_ = function () { return _this.foundation_.handleAnimationEnd(); };
+        this.handleChange_ = function () { return _this.foundation.handleChange(); };
+        this.handleAnimationEnd_ = function () { return _this.foundation.handleAnimationEnd(); };
         this.nativeControl_.addEventListener('change', this.handleChange_);
         this.listen(getCorrectEventName(window, 'animationend'), this.handleAnimationEnd_);
         this.installPropertyChangeHooks_();
@@ -113,14 +113,14 @@ var MDCCheckbox = /** @class */ (function (_super) {
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         var adapter = {
-            addClass: function (className) { return _this.root_.classList.add(className); },
-            forceLayout: function () { return _this.root_.offsetWidth; },
+            addClass: function (className) { return _this.root.classList.add(className); },
+            forceLayout: function () { return _this.root.offsetWidth; },
             hasNativeControl: function () { return !!_this.nativeControl_; },
-            isAttachedToDOM: function () { return Boolean(_this.root_.parentNode); },
+            isAttachedToDOM: function () { return Boolean(_this.root.parentNode); },
             isChecked: function () { return _this.checked; },
             isIndeterminate: function () { return _this.indeterminate; },
             removeClass: function (className) {
-                _this.root_.classList.remove(className);
+                _this.root.classList.remove(className);
             },
             removeNativeControlAttr: function (attr) {
                 _this.nativeControl_.removeAttribute(attr);
@@ -139,7 +139,7 @@ var MDCCheckbox = /** @class */ (function (_super) {
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { deregisterInteractionHandler: function (evtType, handler) { return _this.nativeControl_.removeEventListener(evtType, handler, applyPassive()); }, isSurfaceActive: function () { return matches(_this.nativeControl_, ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (evtType, handler) { return _this.nativeControl_.addEventListener(evtType, handler, applyPassive()); } });
-        return new MDCRipple(this.root_, new MDCRippleFoundation(adapter));
+        return new MDCRipple(this.root, new MDCRippleFoundation(adapter));
     };
     MDCCheckbox.prototype.installPropertyChangeHooks_ = function () {
         var _this = this;
@@ -160,7 +160,7 @@ var MDCCheckbox = /** @class */ (function (_super) {
                 get: nativeGetter,
                 set: function (state) {
                     desc.set.call(nativeCb, state);
-                    _this.foundation_.handleChange();
+                    _this.foundation.handleChange();
                 },
             };
             Object.defineProperty(nativeCb, controlState, nativeCbDesc);
@@ -180,7 +180,7 @@ var MDCCheckbox = /** @class */ (function (_super) {
     Object.defineProperty(MDCCheckbox.prototype, "nativeControl_", {
         get: function () {
             var NATIVE_CONTROL_SELECTOR = strings.NATIVE_CONTROL_SELECTOR;
-            var el = this.root_.querySelector(NATIVE_CONTROL_SELECTOR);
+            var el = this.root.querySelector(NATIVE_CONTROL_SELECTOR);
             if (!el) {
                 throw new Error("Checkbox component requires a " + NATIVE_CONTROL_SELECTOR + " element");
             }

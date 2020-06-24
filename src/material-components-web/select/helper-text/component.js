@@ -31,9 +31,10 @@ var MDCSelectHelperText = /** @class */ (function (_super) {
     MDCSelectHelperText.attachTo = function (root) {
         return new MDCSelectHelperText(root);
     };
-    Object.defineProperty(MDCSelectHelperText.prototype, "foundation", {
+    Object.defineProperty(MDCSelectHelperText.prototype, "foundationForSelect", {
+        // Provided for access by MDCSelect component
         get: function () {
-            return this.foundation_;
+            return this.foundation;
         },
         enumerable: true,
         configurable: true
@@ -44,13 +45,13 @@ var MDCSelectHelperText = /** @class */ (function (_super) {
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
-            addClass: function (className) { return _this.root_.classList.add(className); },
-            removeClass: function (className) { return _this.root_.classList.remove(className); },
-            hasClass: function (className) { return _this.root_.classList.contains(className); },
-            setAttr: function (attr, value) { return _this.root_.setAttribute(attr, value); },
-            removeAttr: function (attr) { return _this.root_.removeAttribute(attr); },
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
+            hasClass: function (className) { return _this.root.classList.contains(className); },
+            setAttr: function (attr, value) { return _this.root.setAttribute(attr, value); },
+            removeAttr: function (attr) { return _this.root.removeAttribute(attr); },
             setContent: function (content) {
-                _this.root_.textContent = content;
+                _this.root.textContent = content;
             },
         };
         // tslint:enable:object-literal-sort-keys

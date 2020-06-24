@@ -50,8 +50,9 @@ var MDCSelect = /** @class */ (function (_super) {
         if (iconFactory === void 0) { iconFactory = function (el) { return new MDCSelectIcon(el); }; }
         if (helperTextFactory === void 0) { helperTextFactory = function (el) { return new MDCSelectHelperText(el); }; }
         this.selectAnchor =
-            this.root_.querySelector(strings.SELECT_ANCHOR_SELECTOR);
-        this.selectedText = this.root_.querySelector(strings.SELECTED_TEXT_SELECTOR);
+            this.root.querySelector(strings.SELECT_ANCHOR_SELECTOR);
+        this.selectedText =
+            this.root.querySelector(strings.SELECTED_TEXT_SELECTOR);
         if (!this.selectedText) {
             throw new Error('MDCSelect: Missing required element: The following selector must be present: ' +
                 ("'" + strings.SELECTED_TEXT_SELECTOR + "'"));
@@ -63,18 +64,18 @@ var MDCSelect = /** @class */ (function (_super) {
             }
         }
         this.menuSetup(menuFactory);
-        var labelElement = this.root_.querySelector(strings.LABEL_SELECTOR);
+        var labelElement = this.root.querySelector(strings.LABEL_SELECTOR);
         this.label = labelElement ? labelFactory(labelElement) : null;
-        var lineRippleElement = this.root_.querySelector(strings.LINE_RIPPLE_SELECTOR);
+        var lineRippleElement = this.root.querySelector(strings.LINE_RIPPLE_SELECTOR);
         this.lineRipple =
             lineRippleElement ? lineRippleFactory(lineRippleElement) : null;
-        var outlineElement = this.root_.querySelector(strings.OUTLINE_SELECTOR);
+        var outlineElement = this.root.querySelector(strings.OUTLINE_SELECTOR);
         this.outline = outlineElement ? outlineFactory(outlineElement) : null;
-        var leadingIcon = this.root_.querySelector(strings.LEADING_ICON_SELECTOR);
+        var leadingIcon = this.root.querySelector(strings.LEADING_ICON_SELECTOR);
         if (leadingIcon) {
             this.leadingIcon = iconFactory(leadingIcon);
         }
-        if (!this.root_.classList.contains(cssClasses.OUTLINED)) {
+        if (!this.root.classList.contains(cssClasses.OUTLINED)) {
             this.ripple = this.createRipple();
         }
     };
@@ -85,29 +86,29 @@ var MDCSelect = /** @class */ (function (_super) {
     MDCSelect.prototype.initialSyncWithDOM = function () {
         var _this = this;
         this.handleChange = function () {
-            _this.foundation_.handleChange();
+            _this.foundation.handleChange();
         };
         this.handleFocus = function () {
-            _this.foundation_.handleFocus();
+            _this.foundation.handleFocus();
         };
         this.handleBlur = function () {
-            _this.foundation_.handleBlur();
+            _this.foundation.handleBlur();
         };
         this.handleClick = function (evt) {
             _this.selectAnchor.focus();
-            _this.foundation_.handleClick(_this.getNormalizedXCoordinate(evt));
+            _this.foundation.handleClick(_this.getNormalizedXCoordinate(evt));
         };
         this.handleKeydown = function (evt) {
-            _this.foundation_.handleKeydown(evt);
+            _this.foundation.handleKeydown(evt);
         };
         this.handleMenuItemAction = function (evt) {
-            _this.foundation_.handleMenuItemAction(evt.detail.index);
+            _this.foundation.handleMenuItemAction(evt.detail.index);
         };
         this.handleMenuOpened = function () {
-            _this.foundation_.handleMenuOpened();
+            _this.foundation.handleMenuOpened();
         };
         this.handleMenuClosed = function () {
-            _this.foundation_.handleMenuClosed();
+            _this.foundation.handleMenuClosed();
         };
         this.selectAnchor.addEventListener('focus', this.handleFocus);
         this.selectAnchor.addEventListener('blur', this.handleBlur);
@@ -116,7 +117,6 @@ var MDCSelect = /** @class */ (function (_super) {
         this.menu.listen(menuSurfaceConstants.strings.CLOSED_EVENT, this.handleMenuClosed);
         this.menu.listen(menuSurfaceConstants.strings.OPENED_EVENT, this.handleMenuOpened);
         this.menu.listen(menuConstants.strings.SELECTED_EVENT, this.handleMenuItemAction);
-        this.foundation_.init();
     };
     MDCSelect.prototype.destroy = function () {
         this.selectAnchor.removeEventListener('change', this.handleChange);
@@ -144,37 +144,37 @@ var MDCSelect = /** @class */ (function (_super) {
     };
     Object.defineProperty(MDCSelect.prototype, "value", {
         get: function () {
-            return this.foundation_.getValue();
+            return this.foundation.getValue();
         },
         set: function (value) {
-            this.foundation_.setValue(value);
+            this.foundation.setValue(value);
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(MDCSelect.prototype, "selectedIndex", {
         get: function () {
-            return this.foundation_.getSelectedIndex();
+            return this.foundation.getSelectedIndex();
         },
         set: function (selectedIndex) {
-            this.foundation_.setSelectedIndex(selectedIndex, /** closeMenu */ true);
+            this.foundation.setSelectedIndex(selectedIndex, /** closeMenu */ true);
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(MDCSelect.prototype, "disabled", {
         get: function () {
-            return this.foundation_.getDisabled();
+            return this.foundation.getDisabled();
         },
         set: function (disabled) {
-            this.foundation_.setDisabled(disabled);
+            this.foundation.setDisabled(disabled);
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(MDCSelect.prototype, "leadingIconAriaLabel", {
         set: function (label) {
-            this.foundation_.setLeadingIconAriaLabel(label);
+            this.foundation.setLeadingIconAriaLabel(label);
         },
         enumerable: true,
         configurable: true
@@ -184,7 +184,7 @@ var MDCSelect = /** @class */ (function (_super) {
          * Sets the text content of the leading icon.
          */
         set: function (content) {
-            this.foundation_.setLeadingIconContent(content);
+            this.foundation.setLeadingIconContent(content);
         },
         enumerable: true,
         configurable: true
@@ -194,7 +194,20 @@ var MDCSelect = /** @class */ (function (_super) {
          * Sets the text content of the helper text.
          */
         set: function (content) {
-            this.foundation_.setHelperTextContent(content);
+            this.foundation.setHelperTextContent(content);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCSelect.prototype, "useDefaultValidation", {
+        /**
+         * Enables or disables the default validation scheme where a required select
+         * must be non-empty. Set to false for custom validation.
+         * @param useDefaultValidation Set this to false to ignore default
+         *     validation scheme.
+         */
+        set: function (useDefaultValidation) {
+            this.foundation.setUseDefaultValidation(useDefaultValidation);
         },
         enumerable: true,
         configurable: true
@@ -204,13 +217,13 @@ var MDCSelect = /** @class */ (function (_super) {
          * Checks if the select is in a valid state.
          */
         get: function () {
-            return this.foundation_.isValid();
+            return this.foundation.isValid();
         },
         /**
          * Sets the current invalid state of the select.
          */
         set: function (isValid) {
-            this.foundation_.setValid(isValid);
+            this.foundation.setValid(isValid);
         },
         enumerable: true,
         configurable: true
@@ -220,22 +233,31 @@ var MDCSelect = /** @class */ (function (_super) {
          * Returns whether the select is required.
          */
         get: function () {
-            return this.foundation_.getRequired();
+            return this.foundation.getRequired();
         },
         /**
          * Sets the control to the required state.
          */
         set: function (isRequired) {
-            this.foundation_.setRequired(isRequired);
+            this.foundation.setRequired(isRequired);
         },
         enumerable: true,
         configurable: true
     });
     /**
-     * Recomputes the outline SVG path for the outline element.
+     * Re-calculates if the notched outline should be notched and if the label
+     * should float.
      */
     MDCSelect.prototype.layout = function () {
-        this.foundation_.layout();
+        this.foundation.layout();
+    };
+    /**
+     * Synchronizes the list of options with the state of the foundation. Call
+     * this whenever menu options are dynamically updated.
+     */
+    MDCSelect.prototype.layoutOptions = function () {
+        this.foundation.layoutOptions();
+        this.menu.layout();
     };
     MDCSelect.prototype.getDefaultFoundation = function () {
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
@@ -247,15 +269,16 @@ var MDCSelect = /** @class */ (function (_super) {
      * Handles setup for the menu.
      */
     MDCSelect.prototype.menuSetup = function (menuFactory) {
-        this.menuElement = this.root_.querySelector(strings.MENU_SELECTOR);
+        this.menuElement = this.root.querySelector(strings.MENU_SELECTOR);
         this.menu = menuFactory(this.menuElement);
+        this.menu.hasTypeahead = true;
     };
     MDCSelect.prototype.createRipple = function () {
         var _this = this;
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
-        var adapter = __assign(__assign({}, MDCRipple.createAdapter({ root_: this.selectAnchor })), { registerInteractionHandler: function (evtType, handler) {
+        var adapter = __assign(__assign({}, MDCRipple.createAdapter({ root: this.selectAnchor })), { registerInteractionHandler: function (evtType, handler) {
                 _this.selectAnchor.addEventListener(evtType, handler);
             }, deregisterInteractionHandler: function (evtType, handler) {
                 _this.selectAnchor.removeEventListener(evtType, handler);
@@ -274,7 +297,7 @@ var MDCSelect = /** @class */ (function (_super) {
                 return menuItem.getAttribute(attr);
             },
             setSelectedText: function (text) {
-                _this.selectedText.value = text;
+                _this.selectedText.textContent = text;
             },
             isSelectAnchorFocused: function () { return document.activeElement === _this.selectAnchor; },
             getSelectAnchorAttr: function (attr) {
@@ -283,6 +306,15 @@ var MDCSelect = /** @class */ (function (_super) {
             setSelectAnchorAttr: function (attr, value) {
                 _this.selectAnchor.setAttribute(attr, value);
             },
+            removeSelectAnchorAttr: function (attr) {
+                _this.selectAnchor.removeAttribute(attr);
+            },
+            addMenuClass: function (className) {
+                _this.menuElement.classList.add(className);
+            },
+            removeMenuClass: function (className) {
+                _this.menuElement.classList.remove(className);
+            },
             openMenu: function () {
                 _this.menu.open = true;
             },
@@ -290,7 +322,7 @@ var MDCSelect = /** @class */ (function (_super) {
                 _this.menu.open = false;
             },
             getAnchorElement: function () {
-                return _this.root_.querySelector(strings.SELECT_ANCHOR_SELECTOR);
+                return _this.root.querySelector(strings.SELECT_ANCHOR_SELECTOR);
             },
             setMenuAnchorElement: function (anchorEl) {
                 _this.menu.setAnchorElement(anchorEl);
@@ -313,13 +345,17 @@ var MDCSelect = /** @class */ (function (_super) {
             getMenuItemCount: function () { return _this.menu.items.length; },
             getMenuItemValues: function () { return _this.menu.items.map(function (el) { return el.getAttribute(strings.VALUE_ATTR) || ''; }); },
             getMenuItemTextAtIndex: function (index) {
-                return _this.menu.items[index].textContent;
+                return _this.menu.getPrimaryTextAtIndex(index);
             },
             addClassAtIndex: function (index, className) {
                 _this.menu.items[index].classList.add(className);
             },
             removeClassAtIndex: function (index, className) {
                 _this.menu.items[index].classList.remove(className);
+            },
+            isTypeaheadInProgress: function () { return _this.menu.typeaheadInProgress; },
+            typeaheadMatchItem: function (nextChar, startingIndex) {
+                return _this.menu.typeaheadMatchItem(nextChar, startingIndex);
             },
         };
         // tslint:enable:object-literal-sort-keys
@@ -329,12 +365,12 @@ var MDCSelect = /** @class */ (function (_super) {
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         return {
             addClass: function (className) {
-                _this.root_.classList.add(className);
+                _this.root.classList.add(className);
             },
             removeClass: function (className) {
-                _this.root_.classList.remove(className);
+                _this.root.classList.remove(className);
             },
-            hasClass: function (className) { return _this.root_.classList.contains(className); },
+            hasClass: function (className) { return _this.root.classList.contains(className); },
             setRippleCenter: function (normalizedX) {
                 _this.lineRipple && _this.lineRipple.setRippleCenter(normalizedX);
             },
@@ -374,6 +410,9 @@ var MDCSelect = /** @class */ (function (_super) {
                 _this.label && _this.label.float(shouldFloat);
             },
             getLabelWidth: function () { return _this.label ? _this.label.getWidth() : 0; },
+            setLabelRequired: function (isRequired) {
+                _this.label && _this.label.setRequired(isRequired);
+            },
         };
         // tslint:enable:object-literal-sort-keys
     };
@@ -393,8 +432,10 @@ var MDCSelect = /** @class */ (function (_super) {
      */
     MDCSelect.prototype.getFoundationMap = function () {
         return {
-            helperText: this.helperText ? this.helperText.foundation : undefined,
-            leadingIcon: this.leadingIcon ? this.leadingIcon.foundation : undefined,
+            helperText: this.helperText ? this.helperText.foundationForSelect :
+                undefined,
+            leadingIcon: this.leadingIcon ? this.leadingIcon.foundationForSelect :
+                undefined,
         };
     };
     return MDCSelect;

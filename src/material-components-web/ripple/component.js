@@ -44,30 +44,40 @@ var MDCRipple = /** @class */ (function (_super) {
     };
     MDCRipple.createAdapter = function (instance) {
         return {
-            addClass: function (className) { return instance.root_.classList.add(className); },
+            addClass: function (className) { return instance.root.classList.add(className); },
             browserSupportsCssVars: function () { return util.supportsCssVariables(window); },
-            computeBoundingRect: function () { return instance.root_.getBoundingClientRect(); },
-            containsEventTarget: function (target) { return instance.root_.contains(target); },
+            computeBoundingRect: function () { return instance.root.getBoundingClientRect(); },
+            containsEventTarget: function (target) { return instance.root.contains(target); },
             deregisterDocumentInteractionHandler: function (evtType, handler) {
                 return document.documentElement.removeEventListener(evtType, handler, applyPassive());
             },
             deregisterInteractionHandler: function (evtType, handler) {
-                return instance.root_.removeEventListener(evtType, handler, applyPassive());
+                return instance.root
+                    .removeEventListener(evtType, handler, applyPassive());
             },
-            deregisterResizeHandler: function (handler) { return window.removeEventListener('resize', handler); },
-            getWindowPageOffset: function () { return ({ x: window.pageXOffset, y: window.pageYOffset }); },
-            isSurfaceActive: function () { return matches(instance.root_, ':active'); },
+            deregisterResizeHandler: function (handler) {
+                return window.removeEventListener('resize', handler);
+            },
+            getWindowPageOffset: function () {
+                return ({ x: window.pageXOffset, y: window.pageYOffset });
+            },
+            isSurfaceActive: function () { return matches(instance.root, ':active'); },
             isSurfaceDisabled: function () { return Boolean(instance.disabled); },
             isUnbounded: function () { return Boolean(instance.unbounded); },
             registerDocumentInteractionHandler: function (evtType, handler) {
                 return document.documentElement.addEventListener(evtType, handler, applyPassive());
             },
             registerInteractionHandler: function (evtType, handler) {
-                return instance.root_.addEventListener(evtType, handler, applyPassive());
+                return instance.root
+                    .addEventListener(evtType, handler, applyPassive());
             },
-            registerResizeHandler: function (handler) { return window.addEventListener('resize', handler); },
-            removeClass: function (className) { return instance.root_.classList.remove(className); },
-            updateCssVariable: function (varName, value) { return instance.root_.style.setProperty(varName, value); },
+            registerResizeHandler: function (handler) {
+                return window.addEventListener('resize', handler);
+            },
+            removeClass: function (className) { return instance.root.classList.remove(className); },
+            updateCssVariable: function (varName, value) {
+                return instance.root.style.setProperty(varName, value);
+            },
         };
     };
     Object.defineProperty(MDCRipple.prototype, "unbounded", {
@@ -82,19 +92,19 @@ var MDCRipple = /** @class */ (function (_super) {
         configurable: true
     });
     MDCRipple.prototype.activate = function () {
-        this.foundation_.activate();
+        this.foundation.activate();
     };
     MDCRipple.prototype.deactivate = function () {
-        this.foundation_.deactivate();
+        this.foundation.deactivate();
     };
     MDCRipple.prototype.layout = function () {
-        this.foundation_.layout();
+        this.foundation.layout();
     };
     MDCRipple.prototype.getDefaultFoundation = function () {
         return new MDCRippleFoundation(MDCRipple.createAdapter(this));
     };
     MDCRipple.prototype.initialSyncWithDOM = function () {
-        var root = this.root_;
+        var root = this.root;
         this.unbounded = 'mdcRippleIsUnbounded' in root.dataset;
     };
     /**
@@ -104,7 +114,7 @@ var MDCRipple = /** @class */ (function (_super) {
      * That's why this function exists.
      */
     MDCRipple.prototype.setUnbounded_ = function () {
-        this.foundation_.setUnbounded(Boolean(this.unbounded_));
+        this.foundation.setUnbounded(Boolean(this.unbounded_));
     };
     return MDCRipple;
 }(MDCComponent));

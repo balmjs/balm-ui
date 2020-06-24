@@ -54,7 +54,12 @@ var Announcer = /** @class */ (function () {
         // Timeout is necessary for screen readers like NVDA and VoiceOver.
         setTimeout(function () {
             liveRegion.textContent = message;
+            document.addEventListener('click', clearLiveRegion);
         }, 1);
+        function clearLiveRegion() {
+            liveRegion.textContent = '';
+            document.removeEventListener('click', clearLiveRegion);
+        }
     };
     Announcer.prototype.getLiveRegion = function (priority) {
         var existingLiveRegion = this.liveRegions.get(priority);

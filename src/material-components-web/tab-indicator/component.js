@@ -34,10 +34,10 @@ var MDCTabIndicator = /** @class */ (function (_super) {
         return new MDCTabIndicator(root);
     };
     MDCTabIndicator.prototype.initialize = function () {
-        this.content_ = this.root_.querySelector(MDCTabIndicatorFoundation.strings.CONTENT_SELECTOR);
+        this.content_ = this.root.querySelector(MDCTabIndicatorFoundation.strings.CONTENT_SELECTOR);
     };
     MDCTabIndicator.prototype.computeContentClientRect = function () {
-        return this.foundation_.computeContentClientRect();
+        return this.foundation.computeContentClientRect();
     };
     MDCTabIndicator.prototype.getDefaultFoundation = function () {
         var _this = this;
@@ -45,23 +45,25 @@ var MDCTabIndicator = /** @class */ (function (_super) {
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
-            addClass: function (className) { return _this.root_.classList.add(className); },
-            removeClass: function (className) { return _this.root_.classList.remove(className); },
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
             computeContentClientRect: function () { return _this.content_.getBoundingClientRect(); },
-            setContentStyleProperty: function (prop, value) { return _this.content_.style.setProperty(prop, value); },
+            setContentStyleProperty: function (prop, value) {
+                return _this.content_.style.setProperty(prop, value);
+            },
         };
         // tslint:enable:object-literal-sort-keys
-        if (this.root_.classList.contains(MDCTabIndicatorFoundation.cssClasses.FADE)) {
+        if (this.root.classList.contains(MDCTabIndicatorFoundation.cssClasses.FADE)) {
             return new MDCFadingTabIndicatorFoundation(adapter);
         }
         // Default to the sliding indicator
         return new MDCSlidingTabIndicatorFoundation(adapter);
     };
     MDCTabIndicator.prototype.activate = function (previousIndicatorClientRect) {
-        this.foundation_.activate(previousIndicatorClientRect);
+        this.foundation.activate(previousIndicatorClientRect);
     };
     MDCTabIndicator.prototype.deactivate = function () {
-        this.foundation_.deactivate();
+        this.foundation.deactivate();
     };
     return MDCTabIndicator;
 }(MDCComponent));

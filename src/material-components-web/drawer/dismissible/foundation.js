@@ -82,13 +82,13 @@ var MDCDismissibleDrawerFoundation = /** @class */ (function (_super) {
         if (this.isOpen() || this.isOpening() || this.isClosing()) {
             return;
         }
-        this.adapter_.addClass(cssClasses.OPEN);
-        this.adapter_.addClass(cssClasses.ANIMATE);
+        this.adapter.addClass(cssClasses.OPEN);
+        this.adapter.addClass(cssClasses.ANIMATE);
         // Wait a frame once display is no longer "none", to establish basis for animation
         this.runNextAnimationFrame_(function () {
-            _this.adapter_.addClass(cssClasses.OPENING);
+            _this.adapter.addClass(cssClasses.OPENING);
         });
-        this.adapter_.saveFocus();
+        this.adapter.saveFocus();
     };
     /**
      * Closes the drawer from the open state.
@@ -97,28 +97,29 @@ var MDCDismissibleDrawerFoundation = /** @class */ (function (_super) {
         if (!this.isOpen() || this.isOpening() || this.isClosing()) {
             return;
         }
-        this.adapter_.addClass(cssClasses.CLOSING);
+        this.adapter.addClass(cssClasses.CLOSING);
     };
     /**
      * Returns true if the drawer is in the open position.
      * @return true if drawer is in open state.
      */
     MDCDismissibleDrawerFoundation.prototype.isOpen = function () {
-        return this.adapter_.hasClass(cssClasses.OPEN);
+        return this.adapter.hasClass(cssClasses.OPEN);
     };
     /**
      * Returns true if the drawer is animating open.
      * @return true if drawer is animating open.
      */
     MDCDismissibleDrawerFoundation.prototype.isOpening = function () {
-        return this.adapter_.hasClass(cssClasses.OPENING) || this.adapter_.hasClass(cssClasses.ANIMATE);
+        return this.adapter.hasClass(cssClasses.OPENING) ||
+            this.adapter.hasClass(cssClasses.ANIMATE);
     };
     /**
      * Returns true if the drawer is animating closed.
      * @return true if drawer is animating closed.
      */
     MDCDismissibleDrawerFoundation.prototype.isClosing = function () {
-        return this.adapter_.hasClass(cssClasses.CLOSING);
+        return this.adapter.hasClass(cssClasses.CLOSING);
     };
     /**
      * Keydown handler to close drawer when key is escape.
@@ -136,24 +137,25 @@ var MDCDismissibleDrawerFoundation = /** @class */ (function (_super) {
     MDCDismissibleDrawerFoundation.prototype.handleTransitionEnd = function (evt) {
         var OPENING = cssClasses.OPENING, CLOSING = cssClasses.CLOSING, OPEN = cssClasses.OPEN, ANIMATE = cssClasses.ANIMATE, ROOT = cssClasses.ROOT;
         // In Edge, transitionend on ripple pseudo-elements yields a target without classList, so check for Element first.
-        var isRootElement = this.isElement_(evt.target) && this.adapter_.elementHasClass(evt.target, ROOT);
+        var isRootElement = this.isElement_(evt.target) &&
+            this.adapter.elementHasClass(evt.target, ROOT);
         if (!isRootElement) {
             return;
         }
         if (this.isClosing()) {
-            this.adapter_.removeClass(OPEN);
+            this.adapter.removeClass(OPEN);
             this.closed_();
-            this.adapter_.restoreFocus();
-            this.adapter_.notifyClose();
+            this.adapter.restoreFocus();
+            this.adapter.notifyClose();
         }
         else {
-            this.adapter_.focusActiveNavigationItem();
+            this.adapter.focusActiveNavigationItem();
             this.opened_();
-            this.adapter_.notifyOpen();
+            this.adapter.notifyOpen();
         }
-        this.adapter_.removeClass(ANIMATE);
-        this.adapter_.removeClass(OPENING);
-        this.adapter_.removeClass(CLOSING);
+        this.adapter.removeClass(ANIMATE);
+        this.adapter.removeClass(OPENING);
+        this.adapter.removeClass(CLOSING);
     };
     /**
      * Extension point for when drawer finishes open animation.

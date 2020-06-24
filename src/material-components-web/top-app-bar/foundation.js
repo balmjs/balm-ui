@@ -76,7 +76,7 @@ var MDCTopAppBarBaseFoundation = /** @class */ (function (_super) {
     /** Other variants of TopAppBar foundation overrides this method */
     MDCTopAppBarBaseFoundation.prototype.handleWindowResize = function () { }; // tslint:disable-line:no-empty
     MDCTopAppBarBaseFoundation.prototype.handleNavigationClick = function () {
-        this.adapter_.notifyNavigationIconClicked();
+        this.adapter.notifyNavigationIconClicked();
     };
     return MDCTopAppBarBaseFoundation;
 }(MDCFoundation));

@@ -49,7 +49,7 @@ var MDCChipSet = /** @class */ (function (_super) {
          * @return An array of the IDs of all selected chips.
          */
         get: function () {
-            return this.foundation_.getSelectedChipIds();
+            return this.foundation.getSelectedChipIds();
         },
         enumerable: true,
         configurable: true
@@ -66,20 +66,20 @@ var MDCChipSet = /** @class */ (function (_super) {
         var _this = this;
         this.chips_.forEach(function (chip) {
             if (chip.id && chip.selected) {
-                _this.foundation_.select(chip.id);
+                _this.foundation.select(chip.id);
             }
         });
         this.handleChipInteraction_ = function (evt) {
-            return _this.foundation_.handleChipInteraction(evt.detail);
+            return _this.foundation.handleChipInteraction(evt.detail);
         };
         this.handleChipSelection_ = function (evt) {
-            return _this.foundation_.handleChipSelection(evt.detail);
+            return _this.foundation.handleChipSelection(evt.detail);
         };
         this.handleChipRemoval_ = function (evt) {
-            return _this.foundation_.handleChipRemoval(evt.detail);
+            return _this.foundation.handleChipRemoval(evt.detail);
         };
         this.handleChipNavigation_ = function (evt) {
-            return _this.foundation_.handleChipNavigation(evt.detail);
+            return _this.foundation.handleChipNavigation(evt.detail);
         };
         this.listen(INTERACTION_EVENT, this.handleChipInteraction_);
         this.listen(SELECTION_EVENT, this.handleChipSelection_);
@@ -121,11 +121,8 @@ var MDCChipSet = /** @class */ (function (_super) {
             getIndexOfChipById: function (chipId) {
                 return _this.findChipIndex_(chipId);
             },
-            hasClass: function (className) { return _this.root_.classList.contains(className); },
-            isRTL: function () {
-                return window.getComputedStyle(_this.root_).getPropertyValue('direction') ===
-                    'rtl';
-            },
+            hasClass: function (className) { return _this.root.classList.contains(className); },
+            isRTL: function () { return window.getComputedStyle(_this.root).getPropertyValue('direction') === 'rtl'; },
             removeChipAtIndex: function (index) {
                 if (index >= 0 && index < _this.chips_.length) {
                     _this.chips_[index].destroy();
@@ -148,7 +145,7 @@ var MDCChipSet = /** @class */ (function (_super) {
      * Instantiates chip components on all of the chip set's child chip elements.
      */
     MDCChipSet.prototype.instantiateChips_ = function (chipFactory) {
-        var chipElements = [].slice.call(this.root_.querySelectorAll(CHIP_SELECTOR));
+        var chipElements = [].slice.call(this.root.querySelectorAll(CHIP_SELECTOR));
         return chipElements.map(function (el) {
             el.id = el.id || "mdc-chip-" + ++idCounter;
             return chipFactory(el);

@@ -33,62 +33,70 @@ var MDCLinearProgress = /** @class */ (function (_super) {
     };
     Object.defineProperty(MDCLinearProgress.prototype, "determinate", {
         set: function (value) {
-            this.foundation_.setDeterminate(value);
+            this.foundation.setDeterminate(value);
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(MDCLinearProgress.prototype, "progress", {
         set: function (value) {
-            this.foundation_.setProgress(value);
+            this.foundation.setProgress(value);
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(MDCLinearProgress.prototype, "buffer", {
         set: function (value) {
-            this.foundation_.setBuffer(value);
+            this.foundation.setBuffer(value);
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(MDCLinearProgress.prototype, "reverse", {
         set: function (value) {
-            this.foundation_.setReverse(value);
+            this.foundation.setReverse(value);
         },
         enumerable: true,
         configurable: true
     });
     MDCLinearProgress.prototype.open = function () {
-        this.foundation_.open();
+        this.foundation.open();
     };
     MDCLinearProgress.prototype.close = function () {
-        this.foundation_.close();
+        this.foundation.close();
     };
     MDCLinearProgress.prototype.getDefaultFoundation = function () {
         var _this = this;
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         var adapter = {
-            addClass: function (className) { return _this.root_.classList.add(className); },
-            forceLayout: function () { return _this.root_.offsetWidth; },
+            addClass: function (className) {
+                _this.root.classList.add(className);
+            },
+            forceLayout: function () {
+                _this.root.getBoundingClientRect();
+            },
             setBufferBarStyle: function (styleProperty, value) {
-                _this.root_.querySelector(MDCLinearProgressFoundation.strings.BUFFER_BAR_SELECTOR)
-                    .style.setProperty(styleProperty, value);
+                var bufferBar = _this.root.querySelector(MDCLinearProgressFoundation.strings.BUFFER_BAR_SELECTOR);
+                if (bufferBar) {
+                    bufferBar.style.setProperty(styleProperty, value);
+                }
             },
             setPrimaryBarStyle: function (styleProperty, value) {
-                _this.root_.querySelector(MDCLinearProgressFoundation.strings.PRIMARY_BAR_SELECTOR)
-                    .style.setProperty(styleProperty, value);
+                var primaryBar = _this.root.querySelector(MDCLinearProgressFoundation.strings.PRIMARY_BAR_SELECTOR);
+                if (primaryBar) {
+                    primaryBar.style.setProperty(styleProperty, value);
+                }
             },
-            hasClass: function (className) { return _this.root_.classList.contains(className); },
+            hasClass: function (className) { return _this.root.classList.contains(className); },
             removeAttribute: function (attributeName) {
-                _this.root_.removeAttribute(attributeName);
+                _this.root.removeAttribute(attributeName);
             },
             removeClass: function (className) {
-                return _this.root_.classList.remove(className);
+                _this.root.classList.remove(className);
             },
             setAttribute: function (attributeName, value) {
-                _this.root_.setAttribute(attributeName, value);
+                _this.root.setAttribute(attributeName, value);
             },
         };
         return new MDCLinearProgressFoundation(adapter);

@@ -47,17 +47,17 @@ var MDCDrawer = /** @class */ (function (_super) {
          * Also returns true if drawer is in the open position.
          */
         get: function () {
-            return this.foundation_.isOpen();
+            return this.foundation.isOpen();
         },
         /**
          * Toggles the drawer open and closed.
          */
         set: function (isOpen) {
             if (isOpen) {
-                this.foundation_.open();
+                this.foundation.open();
             }
             else {
-                this.foundation_.close();
+                this.foundation.close();
             }
         },
         enumerable: true,
@@ -73,7 +73,7 @@ var MDCDrawer = /** @class */ (function (_super) {
     MDCDrawer.prototype.initialize = function (focusTrapFactory, listFactory) {
         if (focusTrapFactory === void 0) { focusTrapFactory = function (el) { return new FocusTrap(el); }; }
         if (listFactory === void 0) { listFactory = function (el) { return new MDCList(el); }; }
-        var listEl = this.root_.querySelector("." + MDCListFoundation.cssClasses.ROOT);
+        var listEl = this.root.querySelector("." + MDCListFoundation.cssClasses.ROOT);
         if (listEl) {
             this.list_ = listFactory(listEl);
             this.list_.wrapFocus = true;
@@ -84,14 +84,19 @@ var MDCDrawer = /** @class */ (function (_super) {
         var _this = this;
         var MODAL = cssClasses.MODAL;
         var SCRIM_SELECTOR = strings.SCRIM_SELECTOR;
-        this.scrim_ = this.root_.parentNode.querySelector(SCRIM_SELECTOR);
-        if (this.scrim_ && this.root_.classList.contains(MODAL)) {
-            this.handleScrimClick_ = function () { return _this.foundation_.handleScrimClick(); };
+        this.scrim_ = this.root.parentNode
+            .querySelector(SCRIM_SELECTOR);
+        if (this.scrim_ && this.root.classList.contains(MODAL)) {
+            this.handleScrimClick_ = function () {
+                return _this.foundation.handleScrimClick();
+            };
             this.scrim_.addEventListener('click', this.handleScrimClick_);
-            this.focusTrap_ = util.createFocusTrapInstance(this.root_, this.focusTrapFactory_);
+            this.focusTrap_ = util.createFocusTrapInstance(this.root, this.focusTrapFactory_);
         }
-        this.handleKeydown_ = function (evt) { return _this.foundation_.handleKeydown(evt); };
-        this.handleTransitionEnd_ = function (evt) { return _this.foundation_.handleTransitionEnd(evt); };
+        this.handleKeydown_ = function (evt) { return _this.foundation.handleKeydown(evt); };
+        this.handleTransitionEnd_ = function (evt) {
+            return _this.foundation.handleTransitionEnd(evt);
+        };
         this.listen('keydown', this.handleKeydown_);
         this.listen('transitionend', this.handleTransitionEnd_);
     };
@@ -102,7 +107,8 @@ var MDCDrawer = /** @class */ (function (_super) {
             this.list_.destroy();
         }
         var MODAL = cssClasses.MODAL;
-        if (this.scrim_ && this.handleScrimClick_ && this.root_.classList.contains(MODAL)) {
+        if (this.scrim_ && this.handleScrimClick_ &&
+            this.root.classList.contains(MODAL)) {
             this.scrim_.removeEventListener('click', this.handleScrimClick_);
             // Ensure drawer is closed to hide scrim and release focus
             this.open = false;
@@ -114,34 +120,41 @@ var MDCDrawer = /** @class */ (function (_super) {
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
-            addClass: function (className) { return _this.root_.classList.add(className); },
-            removeClass: function (className) { return _this.root_.classList.remove(className); },
-            hasClass: function (className) { return _this.root_.classList.contains(className); },
-            elementHasClass: function (element, className) { return element.classList.contains(className); },
+            addClass: function (className) { return _this.root.classList.add(className); },
+            removeClass: function (className) { return _this.root.classList.remove(className); },
+            hasClass: function (className) { return _this.root.classList.contains(className); },
+            elementHasClass: function (element, className) {
+                return element.classList.contains(className);
+            },
             saveFocus: function () { return _this.previousFocus_ = document.activeElement; },
             restoreFocus: function () {
                 var previousFocus = _this.previousFocus_;
-                if (previousFocus && previousFocus.focus && _this.root_.contains(document.activeElement)) {
+                if (previousFocus && previousFocus.focus &&
+                    _this.root.contains(document.activeElement)) {
                     previousFocus.focus();
                 }
             },
             focusActiveNavigationItem: function () {
-                var activeNavItemEl = _this.root_.querySelector("." + MDCListFoundation.cssClasses.LIST_ITEM_ACTIVATED_CLASS);
+                var activeNavItemEl = _this.root.querySelector("." + MDCListFoundation.cssClasses.LIST_ITEM_ACTIVATED_CLASS);
                 if (activeNavItemEl) {
                     activeNavItemEl.focus();
                 }
             },
-            notifyClose: function () { return _this.emit(strings.CLOSE_EVENT, {}, true /* shouldBubble */); },
-            notifyOpen: function () { return _this.emit(strings.OPEN_EVENT, {}, true /* shouldBubble */); },
+            notifyClose: function () {
+                return _this.emit(strings.CLOSE_EVENT, {}, true /* shouldBubble */);
+            },
+            notifyOpen: function () {
+                return _this.emit(strings.OPEN_EVENT, {}, true /* shouldBubble */);
+            },
             trapFocus: function () { return _this.focusTrap_.trapFocus(); },
             releaseFocus: function () { return _this.focusTrap_.releaseFocus(); },
         };
         // tslint:enable:object-literal-sort-keys
         var DISMISSIBLE = cssClasses.DISMISSIBLE, MODAL = cssClasses.MODAL;
-        if (this.root_.classList.contains(DISMISSIBLE)) {
+        if (this.root.classList.contains(DISMISSIBLE)) {
             return new MDCDismissibleDrawerFoundation(adapter);
         }
-        else if (this.root_.classList.contains(MODAL)) {
+        else if (this.root.classList.contains(MODAL)) {
             return new MDCModalDrawerFoundation(adapter);
         }
         else {

@@ -28,11 +28,11 @@ var MDCTabScrollerRTLNegative = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     MDCTabScrollerRTLNegative.prototype.getScrollPositionRTL = function (translateX) {
-        var currentScrollLeft = this.adapter_.getScrollAreaScrollLeft();
+        var currentScrollLeft = this.adapter.getScrollAreaScrollLeft();
         return Math.round(translateX - currentScrollLeft);
     };
     MDCTabScrollerRTLNegative.prototype.scrollToRTL = function (scrollX) {
-        var currentScrollLeft = this.adapter_.getScrollAreaScrollLeft();
+        var currentScrollLeft = this.adapter.getScrollAreaScrollLeft();
         var clampedScrollLeft = this.clampScrollValue_(-scrollX);
         return {
             finalScrollPosition: clampedScrollLeft,
@@ -40,7 +40,7 @@ var MDCTabScrollerRTLNegative = /** @class */ (function (_super) {
         };
     };
     MDCTabScrollerRTLNegative.prototype.incrementScrollRTL = function (scrollX) {
-        var currentScrollLeft = this.adapter_.getScrollAreaScrollLeft();
+        var currentScrollLeft = this.adapter.getScrollAreaScrollLeft();
         var clampedScrollLeft = this.clampScrollValue_(currentScrollLeft - scrollX);
         return {
             finalScrollPosition: clampedScrollLeft,
@@ -51,8 +51,8 @@ var MDCTabScrollerRTLNegative = /** @class */ (function (_super) {
         return scrollX - translateX;
     };
     MDCTabScrollerRTLNegative.prototype.calculateScrollEdges_ = function () {
-        var contentWidth = this.adapter_.getScrollContentOffsetWidth();
-        var rootWidth = this.adapter_.getScrollAreaOffsetWidth();
+        var contentWidth = this.adapter.getScrollContentOffsetWidth();
+        var rootWidth = this.adapter.getScrollAreaOffsetWidth();
         return {
             left: rootWidth - contentWidth,
             right: 0,

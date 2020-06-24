@@ -55,12 +55,12 @@ var MDCRadioFoundation = /** @class */ (function (_super) {
     });
     MDCRadioFoundation.prototype.setDisabled = function (disabled) {
         var DISABLED = MDCRadioFoundation.cssClasses.DISABLED;
-        this.adapter_.setNativeControlDisabled(disabled);
+        this.adapter.setNativeControlDisabled(disabled);
         if (disabled) {
-            this.adapter_.addClass(DISABLED);
+            this.adapter.addClass(DISABLED);
         }
         else {
-            this.adapter_.removeClass(DISABLED);
+            this.adapter.removeClass(DISABLED);
         }
     };
     return MDCRadioFoundation;

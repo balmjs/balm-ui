@@ -85,7 +85,7 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
         configurable: true
     });
     MDCDialogFoundation.prototype.init = function () {
-        if (this.adapter_.hasClass(cssClasses.STACKED)) {
+        if (this.adapter.hasClass(cssClasses.STACKED)) {
             this.setAutoStackButtons(false);
         }
     };
@@ -105,17 +105,17 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
     MDCDialogFoundation.prototype.open = function () {
         var _this = this;
         this.isOpen_ = true;
-        this.adapter_.notifyOpening();
-        this.adapter_.addClass(cssClasses.OPENING);
+        this.adapter.notifyOpening();
+        this.adapter.addClass(cssClasses.OPENING);
         // Wait a frame once display is no longer "none", to establish basis for animation
         this.runNextAnimationFrame_(function () {
-            _this.adapter_.addClass(cssClasses.OPEN);
-            _this.adapter_.addBodyClass(cssClasses.SCROLL_LOCK);
+            _this.adapter.addClass(cssClasses.OPEN);
+            _this.adapter.addBodyClass(cssClasses.SCROLL_LOCK);
             _this.layout();
             _this.animationTimer_ = setTimeout(function () {
                 _this.handleAnimationTimerEnd_();
-                _this.adapter_.trapFocus(_this.adapter_.getInitialFocusEl());
-                _this.adapter_.notifyOpened();
+                _this.adapter.trapFocus(_this.adapter.getInitialFocusEl());
+                _this.adapter.notifyOpened();
             }, numbers.DIALOG_ANIMATION_OPEN_TIME_MS);
         });
     };
@@ -127,17 +127,17 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
             return;
         }
         this.isOpen_ = false;
-        this.adapter_.notifyClosing(action);
-        this.adapter_.addClass(cssClasses.CLOSING);
-        this.adapter_.removeClass(cssClasses.OPEN);
-        this.adapter_.removeBodyClass(cssClasses.SCROLL_LOCK);
+        this.adapter.notifyClosing(action);
+        this.adapter.addClass(cssClasses.CLOSING);
+        this.adapter.removeClass(cssClasses.OPEN);
+        this.adapter.removeBodyClass(cssClasses.SCROLL_LOCK);
         cancelAnimationFrame(this.animationFrame_);
         this.animationFrame_ = 0;
         clearTimeout(this.animationTimer_);
         this.animationTimer_ = setTimeout(function () {
-            _this.adapter_.releaseFocus();
+            _this.adapter.releaseFocus();
             _this.handleAnimationTimerEnd_();
-            _this.adapter_.notifyClosed(action);
+            _this.adapter.notifyClosed(action);
         }, numbers.DIALOG_ANIMATION_CLOSE_TIME_MS);
     };
     MDCDialogFoundation.prototype.isOpen = function () {
@@ -173,13 +173,13 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
     };
     /** Handles click on the dialog root element. */
     MDCDialogFoundation.prototype.handleClick = function (evt) {
-        var isScrim = this.adapter_.eventTargetMatches(evt.target, strings.SCRIM_SELECTOR);
+        var isScrim = this.adapter.eventTargetMatches(evt.target, strings.SCRIM_SELECTOR);
         // Check for scrim click first since it doesn't require querying ancestors.
         if (isScrim && this.scrimClickAction_ !== '') {
             this.close(this.scrimClickAction_);
         }
         else {
-            var action = this.adapter_.getActionFromEvent(evt);
+            var action = this.adapter.getActionFromEvent(evt);
             if (action) {
                 this.close(action);
             }
@@ -191,15 +191,15 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
         if (!isEnter) {
             return;
         }
-        var action = this.adapter_.getActionFromEvent(evt);
+        var action = this.adapter.getActionFromEvent(evt);
         if (action) {
             // Action button callback is handled in `handleClick`,
             // since space/enter keydowns on buttons trigger click events.
             return;
         }
-        var isDefault = !this.adapter_.eventTargetMatches(evt.target, strings.SUPPRESS_DEFAULT_PRESS_SELECTOR);
+        var isDefault = !this.adapter.eventTargetMatches(evt.target, strings.SUPPRESS_DEFAULT_PRESS_SELECTOR);
         if (isEnter && isDefault) {
-            this.adapter_.clickDefaultButton();
+            this.adapter.clickDefaultButton();
         }
     };
     /** Handles keydown on the document. */
@@ -217,8 +217,8 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
     };
     MDCDialogFoundation.prototype.handleAnimationTimerEnd_ = function () {
         this.animationTimer_ = 0;
-        this.adapter_.removeClass(cssClasses.OPENING);
-        this.adapter_.removeClass(cssClasses.CLOSING);
+        this.adapter.removeClass(cssClasses.OPENING);
+        this.adapter.removeClass(cssClasses.CLOSING);
     };
     /**
      * Runs the given logic on the next animation frame, using setTimeout to factor in Firefox reflow behavior.
@@ -234,21 +234,21 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
     };
     MDCDialogFoundation.prototype.detectStackedButtons_ = function () {
         // Remove the class first to let us measure the buttons' natural positions.
-        this.adapter_.removeClass(cssClasses.STACKED);
-        var areButtonsStacked = this.adapter_.areButtonsStacked();
+        this.adapter.removeClass(cssClasses.STACKED);
+        var areButtonsStacked = this.adapter.areButtonsStacked();
         if (areButtonsStacked) {
-            this.adapter_.addClass(cssClasses.STACKED);
+            this.adapter.addClass(cssClasses.STACKED);
         }
         if (areButtonsStacked !== this.areButtonsStacked_) {
-            this.adapter_.reverseButtons();
+            this.adapter.reverseButtons();
             this.areButtonsStacked_ = areButtonsStacked;
         }
     };
     MDCDialogFoundation.prototype.detectScrollableContent_ = function () {
         // Remove the class first to let us measure the natural height of the content.
-        this.adapter_.removeClass(cssClasses.SCROLLABLE);
-        if (this.adapter_.isContentScrollable()) {
-            this.adapter_.addClass(cssClasses.SCROLLABLE);
+        this.adapter.removeClass(cssClasses.SCROLLABLE);
+        if (this.adapter.isContentScrollable()) {
+            this.adapter.addClass(cssClasses.SCROLLABLE);
         }
     };
     return MDCDialogFoundation;

@@ -31,9 +31,10 @@ var MDCTextFieldCharacterCounter = /** @class */ (function (_super) {
     MDCTextFieldCharacterCounter.attachTo = function (root) {
         return new MDCTextFieldCharacterCounter(root);
     };
-    Object.defineProperty(MDCTextFieldCharacterCounter.prototype, "foundation", {
+    Object.defineProperty(MDCTextFieldCharacterCounter.prototype, "foundationForTextField", {
+        // Provided for access by MDCTextField component
         get: function () {
-            return this.foundation_;
+            return this.foundation;
         },
         enumerable: true,
         configurable: true
@@ -44,7 +45,7 @@ var MDCTextFieldCharacterCounter = /** @class */ (function (_super) {
         // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
         var adapter = {
             setContent: function (content) {
-                _this.root_.textContent = content;
+                _this.root.textContent = content;
             },
         };
         return new MDCTextFieldCharacterCounterFoundation(adapter);

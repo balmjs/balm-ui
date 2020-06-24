@@ -25,6 +25,7 @@ var cssClasses = {
     DISABLED: 'mdc-select--disabled',
     FOCUSED: 'mdc-select--focused',
     INVALID: 'mdc-select--invalid',
+    MENU_INVALID: 'mdc-select__menu--invalid',
     OUTLINED: 'mdc-select--outlined',
     REQUIRED: 'mdc-select--required',
     ROOT: 'mdc-select',

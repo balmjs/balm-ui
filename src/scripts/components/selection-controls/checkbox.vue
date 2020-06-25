@@ -80,14 +80,14 @@ export default {
   },
   computed: {
     className() {
-      const isTouch =
+      const isAccessible =
         this.$el && this.$el.classList.contains(UI_CHECKBOX.cssClasses.touch);
 
       return {
         'mdc-checkbox': true,
         'mdc-checkbox--disabled': this.disabled,
         // Accessibility
-        'mdc-checkbox--touch': isTouch
+        'mdc-checkbox--touch': isAccessible
       };
     }
   },

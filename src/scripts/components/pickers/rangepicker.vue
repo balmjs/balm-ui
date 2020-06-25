@@ -182,7 +182,7 @@ export default {
       instance.setDate([this.startInputValue, this.endInputValue], true); // Redrawing
 
       // TODO: temporary solution - fix focus bug
-      this.$refs.startInput.$textField.foundation_.inputBlurHandler_();
+      this.$refs.startInput.$textField.foundation.deactivateFocus();
     }
   }
 };

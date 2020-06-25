@@ -42,9 +42,9 @@ export default {
           'mdc-data-table__header-cell': true,
           'mdc-data-table__header-cell--checkbox': data[this.T_CELL.CHECKBOX],
           'mdc-data-table__header-cell--numeric': data[this.T_CELL.NUMBER],
-          'mdc-data-table__header-cell--asc':
-            data.sort === UI_TABLE.SORTING.ASC,
-          'mdc-data-table__header-cell--desc':
+          'mdc-data-table__header-cell--with-sort': data.sort,
+          'mdc-data-table__header-cell--sorted': data.sort,
+          'mdc-data-table__header-cell--sorted-descending':
             data.sort === UI_TABLE.SORTING.DESC
         }
       ];
@@ -71,25 +71,25 @@ export default {
 
       return cell;
     },
-    handleSort(data) {
+    getSort({ sort }) {
+      return sort === UI_TABLE.SORTING.ASC ? 'ascending' : 'descending';
+    },
+    getSortIcon({ sort }) {
+      return sort === UI_TABLE.SORTING.ASC ? 'arrow_upward' : 'arrow_downward';
+    },
+    handleSort({ columnId, sortValue }) {
       let newSelectedRows = [];
 
-      if (data[this.T_CELL.SORTING]) {
-        let sortBy = data.by;
-        let currentSort;
-        // TODO: 多个表格共用数据bug
-        if (data[this.T_CELL.SORTING] === UI_TABLE.SORTING.ASC) {
-          currentSort = UI_TABLE.SORTING.DESC;
+      if (sortValue) {
+        if (sortValue === 'descending') {
           this.currentData.sort((a, b) => {
-            return b[sortBy] - a[sortBy];
+            return b[columnId] - a[columnId];
           });
-        } else if (data[this.T_CELL.SORTING] === UI_TABLE.SORTING.DESC) {
-          currentSort = UI_TABLE.SORTING.ASC;
+        } else if (sortValue === 'ascending') {
           this.currentData.sort((a, b) => {
-            return a[sortBy] - b[sortBy];
+            return a[columnId] - b[columnId];
           });
         }
-        data[this.T_CELL.SORTING] = currentSort;
 
         let oldSelectedIndex = 0;
         let tableRowCount = this.currentData.length;

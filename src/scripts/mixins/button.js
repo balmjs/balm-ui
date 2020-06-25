@@ -36,7 +36,7 @@ export default {
       return this.checkType(UI_BUTTON.TYPES, 'unelevated');
     },
     className() {
-      const isTouch =
+      const isAccessible =
         this.$el && this.$el.classList.contains(UI_BUTTON.cssClasses.touch);
 
       return {
@@ -48,7 +48,7 @@ export default {
         'mdc-button--raised': this.isRaised,
         'mdc-button--unelevated': this.isUnelevated,
         // Accessibility
-        'mdc-button--touch': isTouch
+        'mdc-button--touch': isAccessible
       };
     }
   },

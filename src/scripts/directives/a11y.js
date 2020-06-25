@@ -4,8 +4,8 @@ import autoInit from './register';
 const UI_ACCESSIBILITY = {
   components: {
     button: 'mdc-button',
-    chip: 'mdc-chip',
     checkbox: 'mdc-checkbox',
+    chip: 'mdc-chip',
     radio: 'mdc-radio',
     miniFab: 'mdc-fab--mini'
   },
@@ -15,12 +15,12 @@ const UI_ACCESSIBILITY = {
       outer: 'mdc-button--touch',
       inner: 'mdc-button__touch'
     },
+    checkbox: {
+      outer: 'mdc-checkbox--touch'
+    },
     chip: {
       outer: 'mdc-chip--touch',
       inner: 'mdc-chip__touch'
-    },
-    checkbox: {
-      outer: 'mdc-checkbox--touch'
     },
     radio: {
       outer: 'mdc-radio--touch'

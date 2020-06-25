@@ -102,7 +102,7 @@ export default {
           chips[this.selectedValue].selected = true;
         }
 
-        const adapter = this.$chipSet.foundation_.adapter_;
+        const adapter = this.$chipSet.foundation.adapter;
         this.$chipSet.listen('MDCChip:selection', ({ detail }) => {
           if (this.choiceChips) {
             if (detail.chipId === this.choiceChipId) {

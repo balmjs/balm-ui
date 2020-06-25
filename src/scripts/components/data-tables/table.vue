@@ -1,138 +1,128 @@
 <template>
   <!-- Container -->
   <div :class="className">
-    <table class="mdc-data-table__table" :aria-label="caption">
-      <caption v-if="caption">{{ caption }}</caption>
-      <colgroup v-if="colgroup">
-        <template v-for="(colValue, colKey) in dataColumns">
-          <col :key="colKey" :class="`col-${colValue}`" />
-        </template>
-      </colgroup>
-      <!-- Column header -->
-      <thead v-if="theadData.length">
-        <tr
-          v-for="(theadRow, theadRowIndex) in theadData"
-          :key="`thead-row-${theadRowIndex}`"
-          class="mdc-data-table__header-row"
-        >
-          <template v-for="(theadCell, theadCellIndex) in theadRow">
-            <th
-              :key="`thead-cell-${theadCellIndex}`"
-              :class="theadCellClassName(theadCell)"
-              :colspan="theadCell[T_CELL.COLSPAN] || null"
-              :rowspan="theadCell[T_CELL.ROWSPAN] || null"
-            >
-              <!-- Column header row checkbox -->
-              <ui-checkbox
-                v-if="theadCell[T_CELL.CHECKBOX]"
-                :class="'mdc-data-table__header-row-checkbox'"
-              ></ui-checkbox>
-              <template v-else>
-                <div>
-                  <!-- Sort button -->
-                  <template v-if="!sortIconAlignEnd">
-                    <span
-                      v-if="theadCell.sort === UI_TABLE.SORTING.ASC"
-                      @click="handleSort(theadCell)"
-                    >
-                      <slot name="before-asc">
-                        <i :class="UI_GLOBAL.cssClasses.icon">arrow_upward</i>
-                      </slot>
-                    </span>
-                    <span
-                      v-if="theadCell.sort === UI_TABLE.SORTING.DESC"
-                      @click="handleSort(theadCell)"
-                    >
-                      <slot name="before-desc">
-                        <i :class="UI_GLOBAL.cssClasses.icon">arrow_downward</i>
-                      </slot>
-                    </span>
-                  </template>
-                  <!-- Column header names -->
-                  <span>{{ theadCell[T_CELL.VALUE] }}</span>
-                  <!-- Sort button -->
-                  <template v-if="sortIconAlignEnd">
-                    <span
-                      v-if="theadCell.sort === UI_TABLE.SORTING.ASC"
-                      @click="handleSort(theadCell)"
-                    >
-                      <slot name="after-asc">
-                        <i :class="UI_GLOBAL.cssClasses.icon">arrow_upward</i>
-                      </slot>
-                    </span>
-                    <span
-                      v-if="theadCell.sort === UI_TABLE.SORTING.DESC"
-                      @click="handleSort(theadCell)"
-                    >
-                      <slot name="after-desc">
-                        <i :class="UI_GLOBAL.cssClasses.icon">arrow_downward</i>
-                      </slot>
-                    </span>
-                  </template>
-                </div>
-              </template>
-            </th>
+    <div class="mdc-data-table__table-container">
+      <table class="mdc-data-table__table" :aria-label="caption">
+        <caption v-if="caption">{{ caption }}</caption>
+        <colgroup v-if="colgroup">
+          <template v-for="(colValue, colKey) in dataColumns">
+            <col :key="colKey" :class="`col-${colValue}`" />
           </template>
-        </tr>
-      </thead>
-      <!-- Rows -->
-      <tbody class="mdc-data-table__content">
-        <template v-if="tbodyData.length">
+        </colgroup>
+        <!-- Column header -->
+        <thead v-if="theadData.length">
           <tr
-            v-for="(tbodyRow, tbodyRowIndex) in tbodyData"
-            :key="`tbody-row-${tbodyRowIndex}`"
-            :class="[
+            v-for="(theadRow, theadRowIndex) in theadData"
+            :key="`thead-row-${theadRowIndex}`"
+            class="mdc-data-table__header-row"
+          >
+            <template v-for="(theadCell, theadCellIndex) in theadRow">
+              <th
+                :key="`thead-cell-${theadCellIndex}`"
+                :class="theadCellClassName(theadCell)"
+                :colspan="theadCell[T_CELL.COLSPAN] || null"
+                :rowspan="theadCell[T_CELL.ROWSPAN] || null"
+                role="columnheader"
+                scope="col"
+                :data-column-id="theadCell.columnId"
+                :aria-sort="getSort(theadCell)"
+              >
+                <!-- Column header row checkbox -->
+                <ui-checkbox
+                  v-if="theadCell[T_CELL.CHECKBOX]"
+                  :class="'mdc-data-table__header-row-checkbox'"
+                ></ui-checkbox>
+                <template v-else>
+                  <!-- With sort button -->
+                  <div v-if="theadCell.sort" class="mdc-data-table__header-cell-wrapper">
+                    <template v-if="sortIconAlignEnd">
+                      <div
+                        class="mdc-data-table__header-cell-label"
+                        v-text="theadCell[T_CELL.VALUE]"
+                      ></div>
+                      <button
+                        class="mdc-icon-button material-icons mdc-data-table__sort-icon-button"
+                        v-text="getSortIcon(theadCell)"
+                      ></button>
+                    </template>
+                    <template v-else>
+                      <button
+                        class="mdc-icon-button material-icons mdc-data-table__sort-icon-button"
+                        v-text="getSortIcon(theadCell)"
+                      ></button>
+                      <div
+                        class="mdc-data-table__header-cell-label"
+                        v-text="theadCell[T_CELL.VALUE]"
+                      ></div>
+                    </template>
+                    <div class="mdc-data-table__sort-status-label" aria-hidden="true"></div>
+                  </div>
+                  <!-- Column header name -->
+                  <div v-else>{{ theadCell[T_CELL.VALUE] }}</div>
+                </template>
+              </th>
+            </template>
+          </tr>
+        </thead>
+        <!-- Rows -->
+        <tbody class="mdc-data-table__content">
+          <template v-if="tbodyData.length">
+            <tr
+              v-for="(tbodyRow, tbodyRowIndex) in tbodyData"
+              :key="`tbody-row-${tbodyRowIndex}`"
+              :class="[
               'mdc-data-table__row',
               { 'mdc-data-table__row--selected': tbodyRow[0][T_CELL.SELECTED] }
             ]"
-            :data-row-id="tbodyRow[0][T_CELL.ROW_ID] || null"
-            :aria-selected="tbodyRow[0][T_CELL.SELECTED] || null"
-          >
-            <template v-for="(tbodyCell, tbodyCellIndex) in tbodyRow">
-              <td :key="`tbody-cell-${tbodyCellIndex}`" :class="cellClassName(tbodyCell)">
-                <!-- Row checkboxes -->
-                <ui-checkbox
-                  v-if="tbodyCell[T_CELL.CHECKBOX]"
-                  :class="'mdc-data-table__row-checkbox'"
-                ></ui-checkbox>
-                <!-- Data / Actions -->
-                <template v-else>
-                  <slot
-                    v-if="tbodyCell[T_CELL.SLOT]"
-                    :name="tbodyCell[T_CELL.SLOT]"
-                    :data="currentData[tbodyRowIndex]"
-                  ></slot>
-                  <template v-else>{{ tbodyCell[T_CELL.VALUE] }}</template>
-                </template>
-              </td>
-            </template>
+              :data-row-id="tbodyRow[0][T_CELL.ROW_ID] || null"
+              :aria-selected="tbodyRow[0][T_CELL.SELECTED] || null"
+            >
+              <template v-for="(tbodyCell, tbodyCellIndex) in tbodyRow">
+                <td :key="`tbody-cell-${tbodyCellIndex}`" :class="cellClassName(tbodyCell)">
+                  <!-- Row checkboxes -->
+                  <ui-checkbox
+                    v-if="tbodyCell[T_CELL.CHECKBOX]"
+                    :class="'mdc-data-table__row-checkbox'"
+                  ></ui-checkbox>
+                  <!-- Data / Actions -->
+                  <template v-else>
+                    <slot
+                      v-if="tbodyCell[T_CELL.SLOT]"
+                      :name="tbodyCell[T_CELL.SLOT]"
+                      :data="currentData[tbodyRowIndex]"
+                    ></slot>
+                    <template v-else>{{ tbodyCell[T_CELL.VALUE] }}</template>
+                  </template>
+                </td>
+              </template>
+            </tr>
+          </template>
+          <tr v-else class="mdc-data-table__row">
+            <td
+              class="mdc-data-table__cell mdc-data-table__cell--no-data"
+              :colspan="dataColumns"
+            >{{ noData }}</td>
           </tr>
-        </template>
-        <tr v-else class="mdc-data-table__row">
-          <td
-            class="mdc-data-table__cell mdc-data-table__cell--no-data"
-            :colspan="dataColumns"
-          >{{ noData }}</td>
-        </tr>
-      </tbody>
-      <!-- Footers -->
-      <tfoot v-if="tfootData.length">
-        <tr class="mdc-data-table__footer-row">
-          <td
-            v-for="(tfootCell, tfootCellIndex) in tfootData"
-            :key="tfootCellIndex"
-            :class="tfootCellClassName(tfootCell)"
-          >
-            <slot
-              v-if="tfootCell[T_CELL.SLOT]"
-              :name="tfootCell[T_CELL.SLOT]"
-              :data="tfootCell[T_CELL.VALUE]"
-            ></slot>
-            <template v-else>{{ tfootCell[T_CELL.VALUE] }}</template>
-          </td>
-        </tr>
-      </tfoot>
-    </table>
+        </tbody>
+        <!-- Footers -->
+        <tfoot v-if="tfootData.length">
+          <tr class="mdc-data-table__footer-row">
+            <td
+              v-for="(tfootCell, tfootCellIndex) in tfootData"
+              :key="tfootCellIndex"
+              :class="tfootCellClassName(tfootCell)"
+            >
+              <slot
+                v-if="tfootCell[T_CELL.SLOT]"
+                :name="tfootCell[T_CELL.SLOT]"
+                :data="tfootCell[T_CELL.VALUE]"
+              ></slot>
+              <template v-else>{{ tfootCell[T_CELL.VALUE] }}</template>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -172,7 +162,10 @@ export default {
       }
     },
     // UI attributes
-    caption: String,
+    caption: {
+      type: [String, null],
+      default: null
+    },
     colgroup: {
       type: Boolean,
       default: false
@@ -223,6 +216,10 @@ export default {
       type: Boolean,
       default: false
     }
+    // stickyHeader: {
+    //   type: Boolean,
+    //   default: false
+    // }
   },
   data() {
     return {
@@ -239,6 +236,7 @@ export default {
       return {
         'mdc-data-table': true,
         'mdc-data-table--fullwidth': this.fullwidth
+        // 'mdc-data-table--sticky-header': this.stickyHeader
       };
     }
   },
@@ -327,6 +325,10 @@ export default {
       let selectedRows = Array.from(new Set([...a].filter((x) => !b.has(x))));
 
       this.$emit(UI_TABLE.EVENT.SELECTED, selectedRows);
+    });
+
+    this.$table.listen(events.SORTED, ({ detail }) => {
+      this.handleSort(detail);
     });
 
     this.initSelectedRows();

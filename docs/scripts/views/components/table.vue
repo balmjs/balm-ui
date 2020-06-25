@@ -76,7 +76,7 @@ export default {
             value: 'ID',
             rowspan: 2,
             sort: 'asc',
-            by: 'id'
+            columnId: 'id'
           },
           {
             value: 'Type1',

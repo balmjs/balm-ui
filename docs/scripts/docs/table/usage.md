@@ -22,6 +22,7 @@ Vue.use(BalmUI, {
 @use 'balm-ui/components/core.scss';
 @use 'balm-ui/components/table/table.scss';
 @use 'balm-ui/components/checkbox/checkbox.scss';
+@use 'balm-ui/components/icon-button/icon-button.scss';
 @use 'balm-ui/components/icon/icon.scss';
 ```
 

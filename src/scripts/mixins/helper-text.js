@@ -1,3 +1,5 @@
+import getType from '../utils/typeof';
+
 export default {
   props: {
     // Element attributes
@@ -11,8 +13,28 @@ export default {
       default: false
     },
     validMsg: {
-      type: [Boolean, String],
-      default: false
+      type: [Boolean, null],
+      default: null
+    }
+  },
+  computed: {
+    hasValidMsg() {
+      return getType(this.validMsg) === 'boolean';
+    }
+  },
+  methods: {
+    updatePrevEl(className, val) {
+      const prevEl = this.$el.previousElementSibling;
+
+      if (this.hasValidMsg && prevEl && prevEl.classList.contains(className)) {
+        const prevElClasses = prevEl.classList;
+
+        if (val && !prevElClasses.contains(`${className}--invalid`)) {
+          prevElClasses.add(`${className}--invalid`, 'abc');
+        } else {
+          prevElClasses.remove(`${className}--invalid`);
+        }
+      }
     }
   }
 };

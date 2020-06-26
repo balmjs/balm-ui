@@ -19,7 +19,11 @@
               </template>
               Pick a fruit
             </ui-select>
-            <ui-select-helper id="my-helper-text1" :visible="selectOption.includes(2)">Helper text</ui-select-helper>
+            <ui-select-helper
+              id="my-helper-text1"
+              :visible="selectOption.includes(2)"
+              :valid-msg="selectOption.includes(3)"
+            >Helper text</ui-select-helper>
           </template>
         </div>
         <div>
@@ -37,13 +41,17 @@
               </template>
               Pick a fruit
             </ui-select>
-            <ui-select-helper id="my-helper-text2" :visible="selectOption.includes(2)">Helper text</ui-select-helper>
+            <ui-select-helper
+              id="my-helper-text2"
+              :visible="selectOption.includes(2)"
+              :valid-msg="selectOption.includes(3)"
+            >Helper text</ui-select-helper>
           </template>
         </div>
       </div>
       <div class="hero-options">
         <ui-select v-model="typeOption" class="hero-option" :options="TypeOptions">Type</ui-select>
-        <div class="hero-option">
+        <ui-form class="hero-option">
           <ui-form-field>
             <ui-checkbox id="with-leading-icon" v-model="selectOption" :value="1"></ui-checkbox>
             <label for="with-leading-icon">Leading Icon</label>
@@ -52,7 +60,11 @@
             <ui-checkbox id="with-helper-text" v-model="selectOption" :value="2"></ui-checkbox>
             <label for="with-helper-text">Helper Text</label>
           </ui-form-field>
-        </div>
+          <ui-form-field>
+            <ui-checkbox id="with-error-text" v-model="selectOption" :value="3"></ui-checkbox>
+            <label for="with-error-text">Error Text</label>
+          </ui-form-field>
+        </ui-form>
       </div>
     </template>
 

@@ -23,7 +23,6 @@
                 :colspan="theadCell[T_CELL.COLSPAN] || null"
                 :rowspan="theadCell[T_CELL.ROWSPAN] || null"
                 role="columnheader"
-                scope="col"
                 :data-column-id="theadCell.columnId"
                 :aria-sort="getSort(theadCell)"
               >

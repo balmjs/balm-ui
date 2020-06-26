@@ -16,7 +16,6 @@
               :with-leading-icon="iconOption.includes(2)"
               :with-trailing-icon="iconOption.includes(3)"
               :required="assistiveTextOption === 2"
-              :pattern="assistiveTextOption === 2 ? '[a-z]{256,}' : null"
             >
               Label
               <template v-if="iconOption.includes(2)" #before>
@@ -30,10 +29,13 @@
               id="my-text-field-helper"
               :class="{ 'show-counter': iconOption.includes(1) }"
               :visible="assistiveTextOption === 1"
-              :valid-msg="assistiveTextOption === 2 ? 'Error message' : ''"
+              :valid-msg="assistiveTextOption === 2"
               with-counter
             >
-              <template v-if="assistiveTextOption === 1" #default>Helper message</template>
+              <template #default>
+                <span v-if="assistiveTextOption === 1">Helper message</span>
+                <span v-if="assistiveTextOption === 2">Error message</span>
+              </template>
             </ui-textfield-helper>
           </template>
         </div>
@@ -48,7 +50,6 @@
               :with-leading-icon="iconOption.includes(2)"
               :with-trailing-icon="iconOption.includes(3)"
               :required="assistiveTextOption === 2"
-              :pattern="assistiveTextOption === 2 ? '[a-z]{256,}' : null"
             >
               Label
               <template v-if="iconOption.includes(2)" #before>
@@ -62,10 +63,13 @@
               id="my-text-field-outlined-helper"
               :class="{ 'show-counter': iconOption.includes(1) }"
               :visible="assistiveTextOption === 1"
-              :valid-msg="assistiveTextOption === 2 ? 'Error message' : ''"
+              :valid-msg="assistiveTextOption === 2"
               with-counter
             >
-              <template v-if="assistiveTextOption === 1" #default>Helper message</template>
+              <template #default>
+                <span v-if="assistiveTextOption === 1">Helper message</span>
+                <span v-if="assistiveTextOption === 2">Error message</span>
+              </template>
             </ui-textfield-helper>
           </template>
         </div>

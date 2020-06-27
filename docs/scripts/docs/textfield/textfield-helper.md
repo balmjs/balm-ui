@@ -4,12 +4,12 @@
 
 #### Props
 
-| Name          | Type            | Default | Description                                        |
-| ------------- | --------------- | ------- | -------------------------------------------------- |
-| `id`          | string          | `null`  | Mandatory.                                         |
-| `visible`     | boolean         | `false` | Makes the helper text permanently visible.         |
-| `validMsg`    | boolean, string | `false` | Indicates the helper text is a validation message. |
-| `withCounter` | boolean         | `false` | Show character counter.                            |
+| Name          | Type    | Default | Description                                        |
+| ------------- | ------- | ------- | -------------------------------------------------- |
+| `id`          | string  | `null`  | Mandatory.                                         |
+| `visible`     | boolean | `false` | Makes the helper text permanently visible.         |
+| `validMsg`    | boolean | `null`  | Indicates the helper text is a validation message. |
+| `withCounter` | boolean | `false` | Show character counter.                            |
 
 > `maxlength` is required for `withCounter`.
 

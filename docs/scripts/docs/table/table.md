@@ -52,7 +52,7 @@
     ```js
     {
       sort: string, // Sorting: asc|desc
-      by: string, // sort field, e.g. 'id'
+      columnId: string, // sort field, e.g. 'id' (NOTE: new in `7.0.0`, if `balm-ui < 7.0.0` use `by`)
       rowspan: number,
       colspan: number
     }
@@ -65,7 +65,7 @@
           value: 'ID',
           rowspan: 2,
           sort: 'asc',
-          by: 'id'
+          columnId: 'id'
         },
         {
           value: 'Type1',

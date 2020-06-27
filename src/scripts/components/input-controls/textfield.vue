@@ -21,30 +21,33 @@
 
     <!-- Textarea -->
     <template v-if="isTextarea">
-      <div v-if="maxlength" class="mdc-text-field-character-counter"></div>
-      <textarea
-        :id="id"
-        v-model="inputValue"
-        :class="className.input"
-        :placeholder="placeholder"
-        :rows="rows"
-        :cols="cols"
-        :disabled="disabled"
-        :required="required"
-        :minlength="minlength"
-        :maxlength="maxlength"
-        :aria-labelledby="id"
-        :aria-controls="helperTextId"
-        :aria-describedby="helperTextId"
-        v-bind="attrs"
-        @focus="handleFocus"
-        @keydown="handleKeydown"
-        @input="handleInput"
-        @keyup="handleKeyup"
-        @change="handleChange"
-        @keyup.enter="handleEnter"
-        @blur="handleBlur"
-      ></textarea>
+      <span class="mdc-text-field__resizer">
+        <textarea
+          :id="id"
+          v-model="inputValue"
+          :class="className.input"
+          :placeholder="placeholder"
+          :rows="rows"
+          :cols="cols"
+          :disabled="disabled"
+          :required="required"
+          :minlength="minlength"
+          :maxlength="maxlength"
+          :aria-labelledby="id"
+          :aria-controls="helperTextId"
+          :aria-describedby="helperTextId"
+          v-bind="attrs"
+          @focus="handleFocus"
+          @keydown="handleKeydown"
+          @input="handleInput"
+          @keyup="handleKeyup"
+          @change="handleChange"
+          @keyup.enter="handleEnter"
+          @blur="handleBlur"
+        ></textarea>
+        <!-- Character counter (optional) -->
+        <ui-textfield-counter v-if="withCounter"></ui-textfield-counter>
+      </span>
     </template>
     <!-- Input text -->
     <template v-else>
@@ -84,7 +87,6 @@
         class="mdc-text-field__affix mdc-text-field__affix--suffix"
         v-text="suffixText"
       ></span>
-
       <!-- Character counter (optional) -->
       <ui-textfield-counter v-if="withCounter"></ui-textfield-counter>
     </template>
@@ -96,14 +98,14 @@
     ></slot>
 
     <!-- Label text -->
-    <ui-floating-label v-if="hasLabel && hasRipple" :for="id">
+    <ui-floating-label v-if="!noLabel && hasRipple">
       <slot>{{ label }}</slot>
     </ui-floating-label>
 
     <!-- Activation indicator -->
     <span v-if="hasRipple" class="mdc-line-ripple"></span>
-    <ui-notched-outline v-else :has-label="hasLabel">
-      <ui-floating-label :for="id">
+    <ui-notched-outline v-else :has-label="!noLabel">
+      <ui-floating-label>
         <slot>{{ label }}</slot>
       </ui-floating-label>
     </ui-notched-outline>
@@ -253,10 +255,7 @@ export default {
       return this.inputType === 'textarea';
     },
     hasRipple() {
-      return !(this.isOutlined || this.isTextarea);
-    },
-    hasLabel() {
-      return !(this.noLabel || this.fullwidth);
+      return !this.isOutlined;
     },
     hasLeadingIcon() {
       return this.materialIcon || this.withLeadingIcon || this.$slots.before;
@@ -273,7 +272,7 @@ export default {
           'mdc-text-field': true,
           'mdc-text-field--filled': !this.isOutlined,
           'mdc-text-field--outlined': this.isOutlined,
-          'mdc-text-field--fullwidth': this.fullwidth && !this.isOutlined,
+          'mdc-text-field--fullwidth': this.fullwidth,
           'mdc-text-field--textarea': this.isTextarea,
           'mdc-text-field--disabled': this.disabled,
           'mdc-text-field--with-leading-icon': this.hasLeadingIcon,

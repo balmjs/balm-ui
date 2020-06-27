@@ -20,9 +20,6 @@
 
 <!-- Single line text field with an internal character counter -->
 <ui-textfield maxlength="40" withCounter></ui-textfield>
-
-<!-- Textarea -->
-<ui-textfield inputType="textarea" maxlength="140"></ui-textfield>
 ```
 
 #### Slots

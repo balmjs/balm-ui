@@ -8,10 +8,6 @@
       <ui-checkbox :id="`${idPrefix}-rtl`" v-model="value.rtl"></ui-checkbox>
       <label :for="`${idPrefix}-rtl`">RTL</label>
     </ui-form-field>
-    <ui-form-field v-if="options.includes('dense')">
-      <ui-checkbox :id="`${idPrefix}-dense`" v-model="value.dense"></ui-checkbox>
-      <label :for="`${idPrefix}-dense`">Dense</label>
-    </ui-form-field>
     <ui-form-field v-if="options.includes('required')">
       <ui-checkbox :id="`${idPrefix}-required`" v-model="value.required"></ui-checkbox>
       <label :for="`${idPrefix}-required`">Required</label>

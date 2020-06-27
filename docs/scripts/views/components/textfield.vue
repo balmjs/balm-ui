@@ -113,7 +113,6 @@
           helper-text-id="my-text-field-helper-text"
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
-          :dense="controls.dense"
           :required="controls.required"
         >Email Address</ui-textfield>
         <ui-textfield-helper
@@ -128,7 +127,6 @@
         :options="[
           'disabled',
           'rtl',
-          'dense',
           'required',
           'customColor',
           'helperText'
@@ -166,7 +164,6 @@
           helper-text-id="name-validation-message"
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
-          :dense="controls.dense"
           :required="controls.required"
           :maxlength="controls.max ? 10 : null"
           :minlength="controls.min ? 8 : 0"
@@ -182,7 +179,6 @@
         :options="[
           'disabled',
           'rtl',
-          'dense',
           'required',
           'customColor',
           'min',
@@ -203,7 +199,6 @@
           id="tf-box-leading"
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
-          :dense="controls.dense"
           :required="controls.required"
           :minlength="controls.min ? 8 : 0"
         >
@@ -222,7 +217,6 @@
           id="tf-box-trailing"
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
-          :dense="controls.dense"
           :required="controls.required"
           :minlength="controls.min ? 8 : 0"
         >
@@ -243,7 +237,6 @@
           with-leading-icon
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
-          :dense="controls.dense"
           :required="controls.required"
           :minlength="controls.min ? 8 : 0"
         >
@@ -266,7 +259,6 @@
           with-trailing-icon
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
-          :dense="controls.dense"
           :required="controls.required"
           :minlength="controls.min ? 8 : 0"
         >
@@ -283,7 +275,6 @@
         :options="[
           'disabled',
           'rtl',
-          'dense',
           'required',
           'customColor',
           'min',
@@ -305,7 +296,18 @@
       <h6 :class="$tt('headline6')">1.6 Textarea</h6>
       <div class="demo" :dir="controls.rtl ? 'rtl' : null">
         <ui-textfield
-          id="textarea"
+          input-type="textarea"
+          rows="8"
+          cols="40"
+          :class="{ 'demo-text-field-custom-colors': controls.customColor }"
+          :disabled="controls.disabled"
+          :required="controls.required"
+        >Textarea Label</ui-textfield>
+      </div>
+      <br />
+      <div class="demo" :dir="controls.rtl ? 'rtl' : null">
+        <ui-textfield
+          outlined
           input-type="textarea"
           rows="8"
           cols="40"
@@ -332,7 +334,6 @@
           with-counter
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
-          :dense="controls.dense"
           :required="controls.required"
         ></ui-textfield>
 
@@ -345,16 +346,13 @@
           class="full-width-textarea-example"
           rows="8"
           maxlength="140"
+          with-counter
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
-          :dense="controls.dense"
           :required="controls.required"
         ></ui-textfield>
       </div>
-      <ui-textfield-controls
-        v-model="controls"
-        :options="['disabled', 'dense', 'required', 'customColor']"
-      ></ui-textfield-controls>
+      <ui-textfield-controls v-model="controls" :options="['disabled', 'required', 'customColor']"></ui-textfield-controls>
       <ui-snippet :code="$store.demos[7]"></ui-snippet>
     </section>
   </ui-page>
@@ -427,7 +425,6 @@ export default {
       controls: {
         disabled: false,
         rtl: false,
-        dense: false,
         required: false,
         customColor: false,
         helperText: false,

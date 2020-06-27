@@ -213,7 +213,7 @@ export default {
         'mdc-select': true,
         'mdc-select--filled': !this.isOutlined,
         'mdc-select--outlined': this.isOutlined,
-        'mdc-select--fullwidth': this.fullwidth && !this.isOutlined,
+        'mdc-select--fullwidth': this.fullwidth,
         'mdc-select--with-leading-icon': this.hasLeadingIcon,
         'mdc-select--no-label': this.noLabel,
         'mdc-select--required': this.required,

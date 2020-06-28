@@ -1,5 +1,15 @@
 # BalmUI ChangeLog
 
+## v7.1.0 / 2020-06-28
+
+### Bug Fixes
+
+- `<ui-table>`: fix table container css bug
+
+### Features
+
+- `<ui-table>`: update sort
+
 ## v7.0.0 / 2020-06-27
 
 ### Bug Fixes

@@ -1,4 +1,5 @@
 import UI_TABLE from '../components/data-tables/constants';
+import getType from '../utils/typeof';
 
 export default {
   data() {
@@ -43,7 +44,8 @@ export default {
           'mdc-data-table__header-cell--checkbox': data[this.T_CELL.CHECKBOX],
           'mdc-data-table__header-cell--numeric': data[this.T_CELL.NUMBER],
           'mdc-data-table__header-cell--with-sort': data.sort,
-          'mdc-data-table__header-cell--sorted': data.sort,
+          'mdc-data-table__header-cell--sorted':
+            data.sort === UI_TABLE.SORTING.ASC,
           'mdc-data-table__header-cell--sorted-descending':
             data.sort === UI_TABLE.SORTING.DESC
         }
@@ -72,23 +74,46 @@ export default {
       return cell;
     },
     getSort({ sort }) {
-      return sort === UI_TABLE.SORTING.ASC ? 'ascending' : 'descending';
-    },
-    getSortIcon({ sort }) {
-      return sort === UI_TABLE.SORTING.ASC ? 'arrow_upward' : 'arrow_downward';
+      let result;
+
+      if (sort === UI_TABLE.SORTING.ASC) {
+        result = 'ascending';
+      } else if (sort === UI_TABLE.SORTING.DESC) {
+        result = 'descending';
+      } else {
+        result = 'none';
+      }
+
+      return result;
     },
     handleSort({ columnId, sortValue }) {
       let newSelectedRows = [];
 
       if (sortValue) {
+        const isNumber = this.currentData.every(
+          (data) => getType(data[columnId]) === 'number'
+        );
+
         if (sortValue === 'descending') {
-          this.currentData.sort((a, b) => {
-            return b[columnId] - a[columnId];
-          });
+          if (isNumber) {
+            this.currentData.sort((a, b) => {
+              return b[columnId] - a[columnId];
+            });
+          } else {
+            this.currentData.sort((a, b) => {
+              return b[columnId].localeCompare(a[columnId]);
+            });
+          }
         } else if (sortValue === 'ascending') {
-          this.currentData.sort((a, b) => {
-            return a[columnId] - b[columnId];
-          });
+          if (isNumber) {
+            this.currentData.sort((a, b) => {
+              return a[columnId] - b[columnId];
+            });
+          } else {
+            this.currentData.sort((a, b) => {
+              return a[columnId].localeCompare(b[columnId]);
+            });
+          }
         }
 
         let oldSelectedIndex = 0;

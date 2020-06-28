@@ -1,8 +1,6 @@
 // Define data table constants
 export default {
   cssClasses: {
-    asc: 'mdc-data-table__header-cell--asc',
-    desc: 'mdc-data-table__header-cell--desc',
     left: 'mdc-data-table__cell--left',
     center: 'mdc-data-table__cell--center',
     right: 'mdc-data-table__cell--right'
@@ -29,6 +27,7 @@ export default {
     FUNCTION_NAME: 'fnName' // For AGG
   },
   SORTING: {
+    ICON: 'arrow_upward',
     ASC: 'asc',
     DESC: 'desc'
   },

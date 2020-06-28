@@ -27,7 +27,7 @@
   {
     value: string, // Cell content
     numeric: boolean, // Numeric cell is displayed right (Equivalent to `align: 'right'`)
-    align: string, // Text alignment: left|center|right
+    align: string, // Text alignment: 'left'|'center'|'right'
     class: string // Custom classname
   }
   ```
@@ -51,12 +51,14 @@
 
     ```js
     {
-      sort: string, // Sorting: asc|desc
-      columnId: string, // sort field, e.g. 'id' (NOTE: new in `7.0.0`, if `balm-ui < 7.0.0` use `by`)
+      sort: string, // Sorting: 'none'|'asc'|'desc'
+      columnId: string, // sort field, e.g. 'id'
       rowspan: number,
       colspan: number
     }
     ```
+
+    > `columnId` field: New in `7.0.0`, if `balm-ui < 7.0.0` please use `by` field
 
     ```js
     [

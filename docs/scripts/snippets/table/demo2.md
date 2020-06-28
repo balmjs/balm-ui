@@ -26,38 +26,22 @@ export default {
     return {
       data: [],
       thead: [
-        [
-          {
-            value: 'ID',
-            rowspan: 2,
-            sort: 'asc',
-            by: 'id'
-          },
-          {
-            value: 'Type1',
-            colspan: 2,
-            align: 'center'
-          },
-          {
-            value: 'Type2',
-            colspan: 3,
-            align: 'center'
-          },
-          {
-            value: 'Actions',
-            rowspan: 2
-          }
-        ],
-        [
-          {
-            value: 'Dessert (100g serving)',
-            class: 'gg'
-          },
-          'Calories',
-          'Fat (g)',
-          'Carbs (g)',
-          'Protein (g)'
-        ]
+        {
+          value: 'ID',
+          sort: 'asc',
+          columnId: 'id'
+        },
+        {
+          value: 'Dessert (100g serving)',
+          class: 'gg',
+          sort: 'none',
+          columnId: 'dessert'
+        },
+        'Calories',
+        'Fat (g)',
+        'Carbs (g)',
+        'Protein (g)',
+        'Actions',
       ],
       tbody: [
         'id',

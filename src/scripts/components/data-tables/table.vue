@@ -41,13 +41,13 @@
                       ></div>
                       <button
                         class="mdc-icon-button material-icons mdc-data-table__sort-icon-button"
-                        v-text="getSortIcon(theadCell)"
+                        v-text="UI_TABLE.SORTING.ICON"
                       ></button>
                     </template>
                     <template v-else>
                       <button
                         class="mdc-icon-button material-icons mdc-data-table__sort-icon-button"
-                        v-text="getSortIcon(theadCell)"
+                        v-text="UI_TABLE.SORTING.ICON"
                       ></button>
                       <div
                         class="mdc-data-table__header-cell-label"
@@ -70,9 +70,11 @@
               v-for="(tbodyRow, tbodyRowIndex) in tbodyData"
               :key="`tbody-row-${tbodyRowIndex}`"
               :class="[
-              'mdc-data-table__row',
-              { 'mdc-data-table__row--selected': tbodyRow[0][T_CELL.SELECTED] }
-            ]"
+                'mdc-data-table__row',
+                {
+                  'mdc-data-table__row--selected': tbodyRow[0][T_CELL.SELECTED]
+                }
+              ]"
               :data-row-id="tbodyRow[0][T_CELL.ROW_ID] || null"
               :aria-selected="tbodyRow[0][T_CELL.SELECTED] || null"
             >
@@ -133,7 +135,6 @@ import tableMixin from '../../mixins/table';
 import theadMixin from '../../mixins/thead';
 import tbodyMixin from '../../mixins/tbody';
 import tfootMixin from '../../mixins/tfoot';
-import UI_GLOBAL from '../../config/constants';
 import UI_TABLE from './constants';
 
 export default {
@@ -222,7 +223,6 @@ export default {
   },
   data() {
     return {
-      UI_GLOBAL,
       UI_TABLE,
       T_CELL: UI_TABLE.CELL,
       $table: null,
@@ -327,6 +327,7 @@ export default {
     });
 
     this.$table.listen(events.SORTED, ({ detail }) => {
+      // TODO: multi-row header is unsupported
       this.handleSort(detail);
     });
 

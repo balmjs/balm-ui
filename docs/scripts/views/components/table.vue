@@ -70,39 +70,61 @@ export default {
         'Protein (g)'
       ],
       tbody1: ['id', 'dessert', 'calories', 'fat', 'carbs', 'protein'],
+      // thead2: [
+      //   [
+      //     {
+      //       value: 'ID',
+      //       rowspan: 2,
+      //       sort: 'asc',
+      //       columnId: 'id'
+      //     },
+      //     {
+      //       value: 'Type1',
+      //       colspan: 2,
+      //       align: 'center'
+      //     },
+      //     {
+      //       value: 'Type2',
+      //       colspan: 3,
+      //       align: 'center'
+      //     },
+      //     {
+      //       value: 'Actions',
+      //       rowspan: 2
+      //     }
+      //   ],
+      //   [
+      //     {
+      //       value: 'Dessert (100g serving)',
+      //       class: 'gg'
+      //     },
+      //     {
+      //       value: 'Calories',
+      //       sort: 'desc',
+      //       columnId: 'calories'
+      //     },
+      //     'Fat (g)',
+      //     'Carbs (g)',
+      //     'Protein (g)'
+      //   ]
+      // ],
       thead2: [
-        [
-          {
-            value: 'ID',
-            rowspan: 2,
-            sort: 'asc',
-            columnId: 'id'
-          },
-          {
-            value: 'Type1',
-            colspan: 2,
-            align: 'center'
-          },
-          {
-            value: 'Type2',
-            colspan: 3,
-            align: 'center'
-          },
-          {
-            value: 'Actions',
-            rowspan: 2
-          }
-        ],
-        [
-          {
-            value: 'Dessert (100g serving)',
-            class: 'gg'
-          },
-          'Calories',
-          'Fat (g)',
-          'Carbs (g)',
-          'Protein (g)'
-        ]
+        {
+          value: 'ID',
+          sort: 'asc',
+          columnId: 'id'
+        },
+        {
+          value: 'Dessert (100g serving)',
+          class: 'gg',
+          sort: 'none',
+          columnId: 'dessert'
+        },
+        'Calories',
+        'Fat (g)',
+        'Carbs (g)',
+        'Protein (g)',
+        'Actions'
       ],
       tbody2: [
         'id',

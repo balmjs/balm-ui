@@ -190,13 +190,9 @@
 
 #### Slots
 
-| Name            | Props | Description                       |
-| --------------- | ----- | --------------------------------- |
-| `(custom-name)` |       | Custom slot for cell              |
-| `before-asc`    |       | Custom asc icon before the label  |
-| `before-desc`   |       | Custom desc icon before the label |
-| `after-asc`     |       | Custom asc icon after the label   |
-| `after-desc`    |       | Custom desc icon after the label  |
+| Name            | Props | Description          |
+| --------------- | ----- | -------------------- |
+| `(custom-name)` |       | Custom slot for cell |
 
 #### Events
 

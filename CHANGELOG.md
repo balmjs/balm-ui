@@ -1,5 +1,22 @@
 # BalmUI ChangeLog
 
+## v7.2.0 / 2020-06-29
+
+### Bug Fixes
+
+- `<ui-datepicker>`: bugfix for locale in `range` mode
+- `<ui-rangepicker>`: bugfix fro empty date value (`[]`)
+- `<ui-top-app-bar>`: fix `createFixedAdjustElement` bug
+
+### Features
+
+- `<ui-chips>`: add prop `options`, `optionLabel`, `optionValue` for choice or filter chips
+
+### BREAKING CHANGES
+
+- `<ui-editor>`: rename `content` prop to `model`
+- `<ui-chips>`: rename `options` prop to `chips`
+
 ## v7.1.0 / 2020-06-28
 
 ### Bug Fixes

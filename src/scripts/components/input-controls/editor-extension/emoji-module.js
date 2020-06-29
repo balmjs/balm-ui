@@ -169,7 +169,7 @@ function handleChooseEmoji(quill, emojiEl, result) {
 
   emojiEl.addEventListener('click', (e) => {
     quill.insertEmbed(range.index, 'emoji', result, Quill.sources.USER);
-    setTimeout(() => quill.setSelection(range.index + 1), 0);
+    setTimeout(() => quill.setSelection(range.index + 1), 1);
     closeEmojiPalette();
   });
 }

@@ -185,12 +185,6 @@ export default {
           ? [this.startInputValue, this.endInputValue]
           : [];
       instance.setDate(dateValue, true); // Redrawing
-
-      // NOTE: temporary solution - fix focus bug
-      setTimeout(() => {
-        this.$refs.startInput.$textField.foundation.deactivateFocus();
-        this.$refs.endInput.$textField.foundation.deactivateFocus();
-      }, 1);
     },
     clear() {
       this.startInputValue = '';

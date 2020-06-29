@@ -15,8 +15,8 @@
 | `outlined`          | boolean        | `false`   | Styles the select as an outlined select. (Equivalent to `type=1`)                             |
 | `model` (`v-model`) | string, number | `''`      | The `value` of the currently selected option.                                                 |
 | `options`           | array          | `[]`      | An array of options to show to the user.                                                      |
-| `optionLabel`       | string         | `'label'` | Option item label's name of the `options`.                                                    |
-| `optionValue`       | string         | `'value'` | Option item value's name of the `options`.                                                    |
+| `optionLabel`       | string         | `'label'` | Option item label's key field name of the `options`.                                          |
+| `optionValue`       | string         | `'value'` | Option item value's key field name of the `options`.                                          |
 | `defaultLabel`      | string         | `''`      | Placeholder item label.                                                                       |
 | `defaultValue`      | string, number | `''`      | Placeholder item value.                                                                       |
 | `required`          | boolean        | `false`   | Styles the select as required.                                                                |

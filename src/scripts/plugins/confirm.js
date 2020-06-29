@@ -30,6 +30,7 @@ const template = `<ui-dialog
   <ui-dialog-actions>
     <button type="button"
       class="mdc-button mdc-button--raised mdc-confirm-dialog__primary-button"
+      data-mdc-dialog-button-default
       @click="handleConfirm(true)">
       <span class="mdc-button__label">{{ options.acceptText }}</span>
     </button>

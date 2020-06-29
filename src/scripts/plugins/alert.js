@@ -30,6 +30,7 @@ const template = `<ui-dialog
   <ui-dialog-actions>
     <button type="button"
       class="mdc-button mdc-button--raised mdc-alert-dialog__button"
+      data-mdc-dialog-button-default
       @click="handleClick">
       <span class="mdc-button__label">{{ options.buttonText }}</span>
     </button>

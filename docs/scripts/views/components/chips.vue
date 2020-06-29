@@ -27,7 +27,7 @@
           dense
           @click="removeLastOne"
         >Delete Last Chip</ui-button>
-        <ui-chips id="input-chip-set" type="input" :options="list">
+        <ui-chips id="input-chip-set" type="input" :chips="list">
           <ui-chip
             v-for="item in list"
             :key="item.id"
@@ -42,7 +42,7 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Choice Chips (selectedIndex: {{ selectedIndex }})</h6>
       <div v-if="choiceList.length" class="demo">
-        <ui-chips v-model="selectedIndex" type="choice">
+        <ui-chips v-model="selectedIndex" type="choice" :options="radioOptions">
           <ui-chip v-for="(item, index) in choiceList" :key="index">{{ item }}</ui-chip>
         </ui-chips>
       </div>
@@ -53,7 +53,7 @@
       <h6 :class="$tt('headline6')">1.3 Filter Chips</h6>
       <div class="demo">
         <p>No leading icon (selectedIndexes: {{ selectedValue }})</p>
-        <ui-chips v-model="selectedValue" type="filter">
+        <ui-chips v-model="selectedValue" type="filter" :options="checkboxOptions">
           <ui-chip v-for="(item, index) in filterList" :key="index">{{ item }}</ui-chip>
         </ui-chips>
 
@@ -87,12 +87,56 @@
 </template>
 
 <script>
+const RadioOptions = [
+  {
+    label: 'Extra Small',
+    value: 1
+  },
+  {
+    label: 'Small',
+    value: 2
+  },
+  {
+    label: 'Medium',
+    value: 3
+  },
+  {
+    label: 'Large',
+    value: 4
+  },
+  {
+    label: 'Extra Large',
+    value: 5
+  }
+];
+
+const CheckboxOptions = [
+  {
+    label: 'Tops',
+    value: 'a'
+  },
+  {
+    label: 'Bottoms',
+    value: 'b'
+  },
+  {
+    label: 'Shoes',
+    value: 'c'
+  },
+  {
+    label: 'Accessories',
+    value: 'd'
+  }
+];
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Chips'
   },
   data() {
     return {
+      RadioOptions,
+      CheckboxOptions,
       // demo
       lastId: 2,
       name: '',
@@ -120,7 +164,9 @@ export default {
           icon: 'directions',
           name: 'Get directions'
         }
-      ]
+      ],
+      radioOptions: [],
+      checkboxOptions: []
     };
   },
   mounted() {
@@ -144,7 +190,10 @@ export default {
       ];
       this.filterList = ['Tops', 'Bottoms', 'Shoes', 'Accessories'];
       this.filterList2 = ['Alice', 'Bob', 'Charlie', 'David'];
-    }, 1000);
+
+      // this.radioOptions = RadioOptions;
+      // this.checkboxOptions = CheckboxOptions;
+    }, 1e3);
   },
   methods: {
     // Demo1

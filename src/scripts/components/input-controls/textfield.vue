@@ -1,7 +1,7 @@
 <template>
   <!-- Container -->
   <div :class="className.outer">
-    <div v-if="hasRipple" class="mdc-text-field__ripple"></div>
+    <div v-if="!isOutlined" class="mdc-text-field__ripple"></div>
 
     <!-- Leading icon (optional) -->
     <slot
@@ -98,17 +98,17 @@
     ></slot>
 
     <!-- Label text -->
-    <ui-floating-label v-if="!noLabel && hasRipple">
+    <ui-floating-label v-if="!noLabel && !isOutlined">
       <slot>{{ label }}</slot>
     </ui-floating-label>
 
     <!-- Activation indicator -->
-    <span v-if="hasRipple" class="mdc-line-ripple"></span>
-    <ui-notched-outline v-else :has-label="!noLabel">
+    <ui-notched-outline v-if="isOutlined" :has-label="!noLabel">
       <ui-floating-label>
         <slot>{{ label }}</slot>
       </ui-floating-label>
     </ui-notched-outline>
+    <span v-else class="mdc-line-ripple"></span>
 
     <!-- Custom area (optional) -->
     <div v-if="plus" class="mdc-text-field__plus">
@@ -254,9 +254,6 @@ export default {
     isTextarea() {
       return this.inputType === 'textarea';
     },
-    hasRipple() {
-      return !this.isOutlined;
-    },
     hasLeadingIcon() {
       return this.materialIcon || this.withLeadingIcon || this.$slots.before;
     },
@@ -292,6 +289,13 @@ export default {
       // NOTE: fix dynamic assignment bug
       if (!oldVal && val) {
         this.$textField.value = val;
+      }
+
+      // NOTE: fix focus bug
+      if (oldVal && !val) {
+        setTimeout(() => {
+          this.$textField.foundation.deactivateFocus();
+        }, 1);
       }
     }
   },

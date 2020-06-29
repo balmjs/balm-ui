@@ -37,8 +37,6 @@ import { MDCTopAppBar } from '../../../material-components-web/top-app-bar';
 import typeMixin from '../../mixins/type';
 import UI_GLOBAL from '../../config/constants';
 
-const newDiv = document.createElement('div');
-
 // Define top app bar constants
 const UI_TOP_APP_BAR = {
   TYPES: {
@@ -177,6 +175,7 @@ export default {
     getFixedAdjustElement(contentEl) {
       let el;
 
+      const newDiv = document.createElement('div');
       const firstElInContent = contentEl.children[0];
 
       if (firstElInContent) {

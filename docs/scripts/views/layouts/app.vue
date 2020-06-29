@@ -58,8 +58,7 @@
                         {
                           submenu: item.isSubmenu,
                           'no-icon': !item.icon
-                        },
-                        $textColor('primary', 'light')
+                        }
                       ]"
                       :to="item.url"
                       :active-class="activeClass"

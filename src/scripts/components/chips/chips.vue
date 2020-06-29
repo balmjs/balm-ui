@@ -19,8 +19,22 @@ export default {
   props: {
     // States
     model: {
-      type: [Number, Array],
+      type: [String, Number, Array],
       default: -1
+    },
+    options: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
+    optionLabel: {
+      type: String,
+      default: 'label'
+    },
+    optionValue: {
+      type: String,
+      default: 'value'
     },
     // UI variants
     type: {
@@ -28,7 +42,7 @@ export default {
       default: 0
     },
     // UI attributes
-    options: {
+    chips: {
       type: Array,
       default() {
         return [];
@@ -39,7 +53,8 @@ export default {
     return {
       $chipSet: null,
       selectedValue: this.model,
-      chipsCount: this.options.length,
+      currentOptions: this.options,
+      chipsCount: this.chips.length,
       choiceChipId: null // NOTE: for twice trigger bugfix
     };
   },
@@ -63,7 +78,7 @@ export default {
     }
   },
   watch: {
-    options(val) {
+    chips(val) {
       if (val.length > this.chipsCount) {
         this.addChip(val.length);
       } else if (val.length < this.chipsCount) {
@@ -72,6 +87,9 @@ export default {
     },
     model(val) {
       this.selectedValue = val;
+    },
+    options(val) {
+      this.currentOptions = val;
     }
   },
   mounted() {
@@ -89,17 +107,37 @@ export default {
       const chips = this.$chipSet.chips;
       if (chips.length) {
         if (this.filterChips) {
+          let selectedIndexes = [];
+
+          if (this.currentOptions.length) {
+            this.currentOptions.forEach((option, index) => {
+              if (this.selectedValue.includes(option[this.optionValue])) {
+                selectedIndexes.push(index);
+              }
+            });
+          } else {
+            selectedIndexes = this.selectedValue;
+          }
+
           chips.forEach((chip, index) => {
-            if (!chip.selected && this.selectedValue.includes(index)) {
+            if (!chip.selected && selectedIndexes.includes(index)) {
               chip.selected = true;
             }
           });
-        } else if (
-          this.choiceChips &&
-          this.selectedValue > -1 &&
-          chips[this.selectedValue]
-        ) {
-          chips[this.selectedValue].selected = true;
+        } else if (this.choiceChips) {
+          let selectedIndex = -1;
+
+          if (this.currentOptions.length) {
+            selectedIndex = this.currentOptions.findIndex(
+              (option) => option[this.optionValue] === this.selectedValue
+            );
+          } else {
+            selectedIndex = this.selectedValue;
+          }
+
+          if (selectedIndex > -1 && chips[selectedIndex]) {
+            chips[selectedIndex].selected = true;
+          }
         }
 
         const adapter = this.$chipSet.foundation.adapter;
@@ -110,7 +148,16 @@ export default {
                 ? adapter.getIndexOfChipById(detail.chipId)
                 : -1;
 
-              this.$emit(UI_CHIPS.EVENT.CHANGE, selectedIndex);
+              if (this.currentOptions.length) {
+                let selectedValue =
+                  selectedIndex > -1
+                    ? this.currentOptions[selectedIndex][this.optionValue]
+                    : '';
+
+                this.$emit(UI_CHIPS.EVENT.CHANGE, selectedValue);
+              } else {
+                this.$emit(UI_CHIPS.EVENT.CHANGE, selectedIndex);
+              }
             }
           } else if (this.filterChips) {
             let selectedIndexes = [];
@@ -120,7 +167,15 @@ export default {
               }
             });
 
-            this.$emit(UI_CHIPS.EVENT.CHANGE, selectedIndexes);
+            if (this.currentOptions.length) {
+              let selectedValue = this.currentOptions
+                .filter((option, index) => selectedIndexes.includes(index))
+                .map((option) => option[this.optionValue]);
+
+              this.$emit(UI_CHIPS.EVENT.CHANGE, selectedValue);
+            } else {
+              this.$emit(UI_CHIPS.EVENT.CHANGE, selectedIndexes);
+            }
           }
         });
       } else {

@@ -11,6 +11,24 @@ $demo-color-custom: color.$red-500;
 $demo-color-low-luminance: color.$brown-900;
 $demo-color-high-luminance: color.$amber-50;
 
+.theme-example {
+  display: inline-block;
+  vertical-align: middle;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid;
+  text-indent: 6px;
+
+  &.theme-light {
+    background-color: white;
+  }
+
+  &.theme-dark {
+    background-color: black;
+  }
+}
+
 .page--theme {
   //
   // Global styles

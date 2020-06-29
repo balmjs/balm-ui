@@ -42,12 +42,12 @@ const UI_EDITOR = {
 export default {
   name: 'UiEditor',
   model: {
-    prop: 'content',
+    prop: 'model',
     event: UI_EDITOR.EVENT.TEXT_CHANGE
   },
   props: {
     // States
-    content: {
+    model: {
       type: String,
       default: ''
     },
@@ -98,7 +98,7 @@ export default {
     };
   },
   watch: {
-    content(val) {
+    model(val) {
       if (val) {
         if (this.htmlContent !== val) {
           this.setHTML(val);
@@ -117,8 +117,8 @@ export default {
         extension: this.extension
       });
 
-      if (this.content) {
-        this.setHTML(this.content);
+      if (this.model) {
+        this.setHTML(this.model);
       }
 
       this.$editor.on('text-change', (delta, oldDelta, source) => {

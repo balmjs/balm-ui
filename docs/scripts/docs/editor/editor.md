@@ -6,7 +6,7 @@
 
 | Name                    | Type            | Default  | Description                                                           |
 | ----------------------- | --------------- | -------- | --------------------------------------------------------------------- |
-| `content` (`v-model`)   | string          | `''`     | Mandatory.                                                            |
+| `model` (`v-model`)     | string          | `''`     | Mandatory.                                                            |
 | `options`               | object          | `{}`     | See [Quill options](https://quilljs.com/docs/configuration/#options). |
 | `toolbar`               | array, string   | null     | Custom or `'full'` editor toolbar .                                   |
 | `placeholder`           | string          | `null`   | Placeholder text to show when editor is empty.                        |
@@ -94,7 +94,7 @@
 | `change`      | `function(content: string)` | Emits when the editor text content is changed. |
 | `file-change` | `function(file, insert)`    | `customImageHandler` required.                 |
 
-> NOTE: If you are not using `v-model`, you should listen for the editor using `@change` and update the `content` prop.
+> NOTE: If you are not using `v-model`, you should listen for the editor using `@change` and update the `model` prop.
 
 - Automatic
   ```html
@@ -103,7 +103,7 @@
 - Manual
   ```html
   <ui-editor
-    :content="content"
+    :model="content"
     @change="$balmUI.onChange('content', $event)"
   ></ui-editor>
   ```

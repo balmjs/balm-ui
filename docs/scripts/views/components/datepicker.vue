@@ -69,7 +69,7 @@ export default {
       // demo
       config1: {
         defaultDate: 'today'
-        // locale: this.pickerLang.cn
+        // locale: lang.zh
       },
       date1: '',
       config2: {
@@ -83,6 +83,7 @@ export default {
       date3: ['2017-11-05', '2017-11-15', '2017-11-25'],
       config4: {
         mode: 'range'
+        // locale: this.pickerLang.cn
       },
       date4: ['2017-11-10', '2017-11-20']
     };

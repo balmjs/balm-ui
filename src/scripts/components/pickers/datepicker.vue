@@ -129,7 +129,8 @@ export default {
     return {
       flatpickr: null,
       inputValue: this.model,
-      mode: this.config.mode || UI_DATEPICKER.MODE.SINGLE
+      mode: this.config.mode || UI_DATEPICKER.MODE.SINGLE,
+      rangeSeparator: ''
     };
   },
   computed: {
@@ -166,6 +167,9 @@ export default {
           config.defaultDate = this.inputValue;
           break;
         case UI_DATEPICKER.MODE.RANGE:
+          this.rangeSeparator = config.locale
+            ? config.locale.rangeSeparator
+            : ' to ';
           this.setRangeDate(this.model);
           config.defaultDate = this.inputValue;
           break;
@@ -206,7 +210,7 @@ export default {
               : multipleValue; // array
           break;
         case UI_DATEPICKER.MODE.RANGE:
-          let rangeValue = this.inputValue.split(' to ');
+          let rangeValue = this.inputValue.split(this.rangeSeparator);
           let startDate = rangeValue[0];
           let endDate = rangeValue[1];
           if (startDate && endDate) {
@@ -232,7 +236,9 @@ export default {
         let startDate = selectedDates[0];
         let endDate = selectedDates[1];
         this.inputValue =
-          startDate === endDate ? startDate : `${startDate} to ${endDate}`;
+          startDate === endDate
+            ? startDate
+            : `${startDate}${this.rangeSeparator}${endDate}`;
       }
     }
   }

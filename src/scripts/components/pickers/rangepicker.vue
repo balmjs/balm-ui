@@ -110,11 +110,14 @@ export default {
   },
   watch: {
     model(val, oldVal) {
-      this.loaded = val[0] && val[1] && !(oldVal[0] || oldVal[1]);
+      let hasOneOldValue = oldVal[0] || oldVal[1];
+      let hasTwoNewValue = val[0] && val[1];
 
-      if (this.loaded) {
+      if (!hasOneOldValue && hasTwoNewValue) {
         this.updateInputs(val);
         this.updateInitialValue();
+      } else if (hasOneOldValue && !hasTwoNewValue) {
+        this.clear();
       }
     }
   },
@@ -148,10 +151,8 @@ export default {
         this.updateInputs(this.model);
         this.updateInitialValue(instance);
 
-        this.$emit(UI_RANGEPICKER.EVENT.CHANGE, [
-          this.startInputValue,
-          this.endInputValue
-        ]);
+        const dateValue = [this.startInputValue, this.endInputValue];
+        this.$emit(UI_RANGEPICKER.EVENT.CHANGE, dateValue);
       };
 
       this.flatpickr = flatpickr(startInputEl, config);
@@ -179,10 +180,22 @@ export default {
       }
     },
     updateInitialValue(instance = this.flatpickr) {
-      instance.setDate([this.startInputValue, this.endInputValue], true); // Redrawing
+      const dateValue =
+        this.startInputValue && this.endInputValue
+          ? [this.startInputValue, this.endInputValue]
+          : [];
+      instance.setDate(dateValue, true); // Redrawing
 
-      // TODO: temporary solution - fix focus bug
-      this.$refs.startInput.$textField.foundation.deactivateFocus();
+      // NOTE: temporary solution - fix focus bug
+      setTimeout(() => {
+        this.$refs.startInput.$textField.foundation.deactivateFocus();
+        this.$refs.endInput.$textField.foundation.deactivateFocus();
+      }, 1);
+    },
+    clear() {
+      this.startInputValue = '';
+      this.endInputValue = '';
+      this.updateInitialValue();
     }
   }
 };

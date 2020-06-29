@@ -93,11 +93,11 @@ if (isIE) {
 
   new Vue({
     el: '#app',
-    router,
-    template: '<App/>',
     components: {
       App
-    }
+    },
+    router,
+    template: '<App/>'
     // i18n
   });
 }

@@ -1,5 +1,15 @@
 # BalmUI ChangeLog
 
+## v7.2.1 / 2020-06-30
+
+### Bug Fixes
+
+- `<ui-switch>`: fix trigger bug
+
+### ### Chores
+
+- `<ui-chips>`: optimize `options` and update docs
+
 ## v7.2.0 / 2020-06-29
 
 ### Bug Fixes

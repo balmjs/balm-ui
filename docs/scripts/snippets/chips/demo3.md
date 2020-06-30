@@ -1,7 +1,9 @@
 ```html
-<ui-chips type="filter" v-model="selectedValue">
-  <ui-chip v-for="(item, index) in filterList" :key="index">{{ item }}</ui-chip>
-</ui-chips>
+<ui-chips
+  v-model="selectedValue"
+  type="filter"
+  :options="filterList"
+></ui-chips>
 
 <ui-chips type="filter" v-model="selectedValue2">
   <ui-chip
@@ -19,9 +21,26 @@
 export default {
   data() {
     return {
-      selectedValue: [1, 2],
+      selectedValue: ['a', 'b'],
+      filterList: [
+        {
+          label: 'Tops',
+          value: 'a'
+        },
+        {
+          label: 'Bottoms',
+          value: 'b'
+        },
+        {
+          label: 'Shoes',
+          value: 'c'
+        },
+        {
+          label: 'Accessories',
+          value: 'd'
+        }
+      ],
       selectedValue2: [0],
-      filterList: ['Tops', 'Bottoms', 'Shoes', 'Accessories'],
       filterList2: ['Alice', 'Bob', 'Charlie', 'David']
     };
   }

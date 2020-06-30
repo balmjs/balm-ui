@@ -1,21 +1,34 @@
 ```html
-<ui-chips type="choice" v-model="selectedIndex">
-  <ui-chip
-    v-if="choiceList.length"
-    v-for="(item, index) in choiceList"
-    :key="index"
-  >
-    {{ item }}
-  </ui-chip>
-</ui-chips>
+<ui-chips v-model="selectedValue" type="choice" :options="options"></ui-chips>
 ```
 
 ```js
 export default {
   data() {
     return {
-      selectedIndex: 2,
-      choiceList: ['Extra Small', 'Small', 'Medium', 'Large', 'Extra Large']
+      selectedValue: 3,
+      options: [
+        {
+          label: 'Extra Small',
+          value: 1
+        },
+        {
+          label: 'Small',
+          value: 2
+        },
+        {
+          label: 'Medium',
+          value: 3
+        },
+        {
+          label: 'Large',
+          value: 4
+        },
+        {
+          label: 'Extra Large',
+          value: 5
+        }
+      ]
     };
   }
 };

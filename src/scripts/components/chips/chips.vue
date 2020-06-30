@@ -1,16 +1,24 @@
 <template>
   <div :class="className" role="grid">
-    <slot></slot>
+    <slot>
+      <template v-for="(option, index) in currentOptions">
+        <ui-chip :key="index">{{ option[optionLabel] }}</ui-chip>
+      </template>
+    </slot>
   </div>
 </template>
 
 <script>
 import { MDCChipSet } from '../../../material-components-web/chips';
+import UiChip from './chip';
 import typeMixin from '../../mixins/type';
 import UI_CHIPS from './constants';
 
 export default {
   name: 'UiChips',
+  components: {
+    UiChip
+  },
   mixins: [typeMixin],
   model: {
     prop: 'model',
@@ -78,18 +86,20 @@ export default {
     }
   },
   watch: {
+    model(val) {
+      this.selectedValue = val;
+    },
+    options(val) {
+      if (this.choiceChips || this.filterChips) {
+        this.currentOptions = val;
+      }
+    },
     chips(val) {
       if (val.length > this.chipsCount) {
         this.addChip(val.length);
       } else if (val.length < this.chipsCount) {
         this.chipsCount--;
       }
-    },
-    model(val) {
-      this.selectedValue = val;
-    },
-    options(val) {
-      this.currentOptions = val;
     }
   },
   mounted() {

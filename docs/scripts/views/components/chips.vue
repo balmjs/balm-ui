@@ -40,11 +40,9 @@
     </section>
 
     <section class="demo-wrapper">
-      <h6 :class="$tt('headline6')">1.2 Choice Chips (selectedIndex: {{ selectedIndex }})</h6>
-      <div v-if="choiceList.length" class="demo">
-        <ui-chips v-model="selectedIndex" type="choice" :options="radioOptions">
-          <ui-chip v-for="(item, index) in choiceList" :key="index">{{ item }}</ui-chip>
-        </ui-chips>
+      <h6 :class="$tt('headline6')">1.2 Choice Chips (selectedValue: {{ selectedIndex }})</h6>
+      <div class="demo">
+        <ui-chips v-model="selectedIndex" type="choice" :options="radioOptions"></ui-chips>
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
@@ -52,15 +50,13 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.3 Filter Chips</h6>
       <div class="demo">
-        <p>No leading icon (selectedIndexes: {{ selectedValue }})</p>
-        <ui-chips v-model="selectedValue" type="filter" :options="checkboxOptions">
-          <ui-chip v-for="(item, index) in filterList" :key="index">{{ item }}</ui-chip>
-        </ui-chips>
+        <p>No leading icon (selectedValue: {{ selectedValue }})</p>
+        <ui-chips v-model="selectedValue" type="filter" :options="checkboxOptions"></ui-chips>
 
         <p>With leading icon (selectedIndexes: {{ selectedValue2 }})</p>
         <ui-chips v-model="selectedValue2" type="filter">
           <ui-chip
-            v-for="(item, index) in filterList2"
+            v-for="(item, index) in filterList"
             :key="index"
             icon="face"
             :hidden="selectedValue2.includes(index)"
@@ -135,18 +131,14 @@ export default {
   },
   data() {
     return {
-      RadioOptions,
-      CheckboxOptions,
       // demo
       lastId: 2,
       name: '',
       list: [],
-      selectedIndex: 2,
-      selectedValue: [1, 2],
+      selectedIndex: 3,
+      selectedValue: ['a', 'b'],
       selectedValue2: [0],
-      choiceList: [],
       filterList: [],
-      filterList2: [],
       actionList: [
         {
           icon: 'wb_sunny',
@@ -181,18 +173,10 @@ export default {
           name: 'John Doe'
         }
       ];
-      this.choiceList = [
-        'Extra Small',
-        'Small',
-        'Medium',
-        'Large',
-        'Extra Large'
-      ];
-      this.filterList = ['Tops', 'Bottoms', 'Shoes', 'Accessories'];
-      this.filterList2 = ['Alice', 'Bob', 'Charlie', 'David'];
+      this.filterList = ['Alice', 'Bob', 'Charlie', 'David'];
 
-      // this.radioOptions = RadioOptions;
-      // this.checkboxOptions = CheckboxOptions;
+      this.radioOptions = RadioOptions;
+      this.checkboxOptions = CheckboxOptions;
     }, 1e3);
   },
   methods: {

@@ -65,7 +65,7 @@ export default {
   data() {
     return {
       $switch: null,
-      toggleValue: !!this.model
+      toggleValue: this.model
     };
   },
   computed: {
@@ -82,7 +82,9 @@ export default {
   },
   watch: {
     model(val) {
-      this.toggleValue = !!val;
+      this.toggleValue = val;
+      // NOTE: fix trigger bug
+      this.$switch.checked = this.toggleValue === this.trueValue;
     }
   },
   mounted() {

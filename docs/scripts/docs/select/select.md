@@ -14,7 +14,7 @@
 | `type`              | string, number | `0`       | Mandatory. Enhanced select types.                                                             |
 | `outlined`          | boolean        | `false`   | Styles the select as an outlined select. (Equivalent to `type=1`)                             |
 | `model` (`v-model`) | string, number | `''`      | The `value` of the currently selected option.                                                 |
-| `options`           | array          | `[]`      | An array of options to show to the user.                                                      |
+| `options`           | array          | `[]`      | An array of options to show to the user. (Default option format: `{ label, value }`)          |
 | `optionLabel`       | string         | `'label'` | Option item label's key field name of the `options`.                                          |
 | `optionValue`       | string         | `'value'` | Option item value's key field name of the `options`.                                          |
 | `defaultLabel`      | string         | `''`      | Placeholder item label.                                                                       |

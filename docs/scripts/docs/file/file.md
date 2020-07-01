@@ -11,6 +11,7 @@
 | `preview`  | boolean | `false`    | Optional. Enabled preview file data.                                       |
 | `outlined` | boolean | `false`    | Optional. Styles an outlined upload button that is flush with the surface. |
 | `text`     | string  | `'Upload'` | Text for the default upload button.                                        |
+| `disabled` | boolean | `false`    | To disable a upload button.                                                |
 
 #### Slots
 

@@ -1,14 +1,14 @@
 <template>
-  <div :class="className.outer" @click="click">
+  <div :class="className.outer" @click="handleClick">
     <input
       v-show="false"
       type="file"
       :accept="accept"
       :multiple="multiple"
-      @change="handleChange($event)"
+      @change="disabled ? null : handleChange($event)"
     />
     <slot>
-      <button :class="className.button">
+      <button :class="className.button" :disabled="disabled">
         <i :class="[UI_GLOBAL.cssClasses.icon, className.icon]">file_upload</i>
         <span :class="className.label">{{ text }}</span>
       </button>
@@ -94,6 +94,10 @@ export default {
     text: {
       type: String,
       default: 'Upload'
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -120,9 +124,11 @@ export default {
     }
   },
   methods: {
-    click() {
-      let input = this.$el.querySelector('input');
-      input && input.click();
+    handleClick() {
+      if (!this.disabled) {
+        let input = this.$el.querySelector('input');
+        input && input.click();
+      }
     },
     async handleChange(event) {
       let files = [].slice.call(event.target.files);

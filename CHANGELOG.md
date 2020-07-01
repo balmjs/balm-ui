@@ -1,5 +1,16 @@
 # BalmUI ChangeLog
 
+## v7.2.2 / 2020-07-01
+
+### Bug Fixes
+
+- `<ui-rangepicker>`: init focus bugfix
+
+### Features
+
+- `<ui-file>`: add `disabled` prop
+- `<ui-editor>`: add `readonly` prop
+
 ## v7.2.1 / 2020-06-30
 
 ### Bug Fixes

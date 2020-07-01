@@ -10,6 +10,7 @@
 | `options`               | object          | `{}`     | See [Quill options](https://quilljs.com/docs/configuration/#options). |
 | `toolbar`               | array, string   | null     | Custom or `'full'` editor toolbar .                                   |
 | `placeholder`           | string          | `null`   | Placeholder text to show when editor is empty.                        |
+| `readonly`              | boolean         | `false`  | Whether to instantiate the editor to read-only mode.                  |
 | `theme`                 | string          | `'snow'` | Name of theme to use. (`'bubble'` or `'snow'`)                        |
 | `customImageHandler`    | boolean         | `false`  | Enable custom image handler.                                          |
 | `toolbarCustomHandlers` | object          | `{}`     | Custom Handlers.                                                      |

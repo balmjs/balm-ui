@@ -66,6 +66,10 @@ export default {
       type: [String, null],
       default: null
     },
+    readonly: {
+      type: Boolean,
+      default: false
+    },
     theme: {
       type: String,
       default: 'snow'
@@ -140,6 +144,7 @@ export default {
       const defaultOptions = {
         modules: {},
         placeholder: this.placeholder,
+        readOnly: this.readonly,
         theme: this.theme
       };
       let options = Object.assign(defaultOptions, this.options);

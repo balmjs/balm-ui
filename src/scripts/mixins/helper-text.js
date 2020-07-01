@@ -30,7 +30,7 @@ export default {
         const prevElClasses = prevEl.classList;
 
         if (val && !prevElClasses.contains(`${className}--invalid`)) {
-          prevElClasses.add(`${className}--invalid`, 'abc');
+          prevElClasses.add(`${className}--invalid`);
         } else {
           prevElClasses.remove(`${className}--invalid`);
         }

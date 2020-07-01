@@ -17,7 +17,7 @@
 
 - `<ui-switch>`: fix trigger bug
 
-### ### Chores
+### Chores
 
 - `<ui-chips>`: optimize `options` and update docs
 

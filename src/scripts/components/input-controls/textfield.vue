@@ -27,8 +27,8 @@
           v-model="inputValue"
           :class="className.input"
           :placeholder="placeholder"
-          :required="required"
           :disabled="disabled"
+          :required="required"
           :minlength="minlength"
           :maxlength="maxlength"
           :rows="rows"
@@ -62,11 +62,14 @@
         :type="inputType"
         :class="className.input"
         :placeholder="placeholder"
-        :required="required"
         :disabled="disabled"
+        :required="required"
+        :pattern="pattern"
         :minlength="minlength"
         :maxlength="maxlength"
-        :pattern="pattern"
+        :min="min"
+        :max="max"
+        :step="step"
         :aria-labelledby="id"
         :aria-controls="helperTextId"
         :aria-describedby="helperTextId"
@@ -173,11 +176,11 @@ export default {
       default: ''
     },
     // common attributes
-    maxlength: {
+    minlength: {
       type: [String, Number, null],
       default: null
     },
-    minlength: {
+    maxlength: {
       type: [String, Number, null],
       default: null
     },
@@ -188,6 +191,18 @@ export default {
     },
     pattern: {
       type: [String, null],
+      default: null
+    },
+    min: {
+      type: [String, Number, null],
+      default: null
+    },
+    max: {
+      type: [String, Number, null],
+      default: null
+    },
+    step: {
+      type: [String, Number, null],
       default: null
     },
     // <textarea> attributes
@@ -207,6 +222,10 @@ export default {
     suffixText: {
       type: String,
       default: ''
+    },
+    withCounter: {
+      type: Boolean,
+      default: false
     },
     // For helper text
     helperTextId: {

@@ -8,10 +8,10 @@
 | ---------- | ------- | ---------- | -------------------------------------------------------------------------- |
 | `accept`   | string  | `''`       | File types that can be accepted.                                           |
 | `multiple` | boolean | `false`    | Whether to support selected multiple file.                                 |
-| `preview`  | boolean | `false`    | Optional. Enabled preview file data.                                       |
+| `disabled` | boolean | `false`    | To disable a upload button.                                                |
 | `outlined` | boolean | `false`    | Optional. Styles an outlined upload button that is flush with the surface. |
 | `text`     | string  | `'Upload'` | Text for the default upload button.                                        |
-| `disabled` | boolean | `false`    | To disable a upload button.                                                |
+| `preview`  | boolean | `false`    | Optional. Enabled preview file data.                                       |
 
 #### Slots
 

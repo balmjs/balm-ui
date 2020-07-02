@@ -1,15 +1,19 @@
 export default {
   props: {
+    label: {
+      type: String,
+      default: ''
+    },
     // common attributes
     placeholder: {
       type: [String, null],
       default: null
     },
-    required: {
+    disabled: {
       type: Boolean,
       default: false
     },
-    disabled: {
+    required: {
       type: Boolean,
       default: false
     },
@@ -18,15 +22,7 @@ export default {
       type: Boolean,
       default: false
     },
-    label: {
-      type: String,
-      default: ''
-    },
     endAligned: {
-      type: Boolean,
-      default: false
-    },
-    withCounter: {
       type: Boolean,
       default: false
     },

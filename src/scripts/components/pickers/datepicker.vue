@@ -5,11 +5,12 @@
     v-model="inputValue"
     class="mdc-datepicker"
     :outlined="outlined"
-    :placeholder="placeholder"
-    :required="required"
-    :disabled="disabled"
-    :fullwidth="fullwidth"
     :label="label"
+    :placeholder="placeholder"
+    :disabled="disabled"
+    :required="required"
+    :fullwidth="fullwidth"
+    :end-aligned="endAligned"
     :icon="icon"
     :with-leading-icon="withLeadingIcon"
     :with-trailing-icon="withTrailingIcon || toggle || allowInput || clear"
@@ -91,6 +92,11 @@ export default {
     event: UI_DATEPICKER.EVENT.CHANGE
   },
   props: {
+    // <ui-textfield> variants
+    outlined: {
+      type: Boolean,
+      default: false
+    },
     // States
     model: {
       type: [String, Number, Array],
@@ -100,10 +106,6 @@ export default {
     id: {
       type: [String, null],
       default: null
-    },
-    outlined: {
-      type: Boolean,
-      default: false
     },
     icon: {
       type: String,

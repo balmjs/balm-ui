@@ -19,13 +19,13 @@
 | `optionValue`       | string         | `'value'` | Option item value's key field name of the `options`.                                          |
 | `defaultLabel`      | string         | `''`      | Placeholder item label.                                                                       |
 | `defaultValue`      | string, number | `''`      | Placeholder item value.                                                                       |
-| `required`          | boolean        | `false`   | Styles the select as required.                                                                |
-| `disabled`          | boolean        | `false`   | Styles the select as disabled.                                                                |
 | `label`             | string         | `''`      | A text caption or description for the select.                                                 |
 | `noLabel`           | boolean        | `false`   | Styles the select as a select without a label.                                                |
+| `disabled`          | boolean        | `false`   | Styles the select as disabled.                                                                |
+| `required`          | boolean        | `false`   | Styles the select as required.                                                                |
+| `fullwidth`         | boolean        | `false`   | Optional. Styles the select as fullwidth select.                                              |
 | `icon`              | string         | `''`      | Optional. Indicates an icon element with a leading icon. See [Material Icons](/#/icons) list. |
 | `withLeadingIcon`   | boolean        | `false`   | Styles the select as a select with a leading icon.                                            |
-| `fullwidth`         | boolean        | `false`   | Optional. Styles the select as fullwidth select.                                              |
 | `helperTextId`      | string         | `null`    | Required for the _id_ attribute of the `<ui-select-helper>`.                                  |
 
 > NOTE: `withLeadingIcon` is only used for (**non `<ui-select-icon>`**) custom leading icon, and generally do not need to be configured.

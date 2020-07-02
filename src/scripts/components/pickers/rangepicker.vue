@@ -5,8 +5,8 @@
       v-model="startInputValue"
       class="mdc-rangepicker__start"
       :outlined="outlined"
-      :placeholder="startPlaceholder"
       :label="startLabel"
+      :placeholder="startPlaceholder"
       :disabled="disabled"
       :attrs="{ readonly: true }"
     ></ui-textfield>
@@ -18,8 +18,8 @@
       v-model="endInputValue"
       class="mdc-rangepicker__end"
       :outlined="outlined"
-      :placeholder="endPlaceholder"
       :label="endLabel"
+      :placeholder="endPlaceholder"
       :disabled="disabled"
       :attrs="{ readonly: true }"
     ></ui-textfield>
@@ -49,6 +49,11 @@ export default {
     event: UI_RANGEPICKER.EVENT.CHANGE
   },
   props: {
+    // <ui-textfield> variants
+    outlined: {
+      type: Boolean,
+      default: false
+    },
     // States
     model: {
       type: Array,
@@ -57,10 +62,6 @@ export default {
       }
     },
     // <ui-textfield> attributes
-    outlined: {
-      type: Boolean,
-      default: false
-    },
     disabled: {
       type: Boolean,
       default: false

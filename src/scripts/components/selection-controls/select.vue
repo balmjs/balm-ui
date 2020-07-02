@@ -161,14 +161,6 @@ export default {
       default: ''
     },
     // UI attributes
-    fullwidth: {
-      type: Boolean,
-      default: false
-    },
-    withLeadingIcon: {
-      type: Boolean,
-      default: false
-    },
     label: {
       type: String,
       default: ''
@@ -177,11 +169,19 @@ export default {
       type: Boolean,
       default: false
     },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
     required: {
       type: Boolean,
       default: false
     },
-    disabled: {
+    fullwidth: {
+      type: Boolean,
+      default: false
+    },
+    withLeadingIcon: {
       type: Boolean,
       default: false
     },

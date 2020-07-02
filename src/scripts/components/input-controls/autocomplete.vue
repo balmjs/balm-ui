@@ -4,11 +4,12 @@
     v-model="inputValue"
     :class="className"
     :outlined="outlined"
-    :placeholder="placeholder"
-    :required="required"
-    :disabled="disabled"
-    :fullwidth="fullwidth"
     :label="label"
+    :placeholder="placeholder"
+    :disabled="disabled"
+    :required="required"
+    :fullwidth="fullwidth"
+    :end-aligned="endAligned"
     :icon="icon"
     :with-leading-icon="withLeadingIcon"
     :with-trailing-icon="withTrailingIcon"
@@ -91,6 +92,11 @@ export default {
     event: UI_AUTOCOMPLETE.EVENT.INPUT
   },
   props: {
+    // <ui-textfield> variants
+    outlined: {
+      type: Boolean,
+      default: false
+    },
     // States
     model: {
       type: [String, Number],
@@ -102,15 +108,14 @@ export default {
         return [];
       }
     },
-    // <input type="text"> attributes
+    // <ui-textfield> props
     id: {
       type: [String, null],
       default: null
     },
-    // <ui-textfield> props
-    outlined: {
-      type: Boolean,
-      default: false
+    icon: {
+      type: String,
+      default: ''
     },
     // UI attributes
     autofocus: {
@@ -128,10 +133,6 @@ export default {
     remote: {
       type: Boolean,
       default: false
-    },
-    icon: {
-      type: String,
-      default: ''
     }
   },
   data() {

@@ -6,8 +6,8 @@
 
 | Name                | Type    | Default | Description                                                                                                             |
 | ------------------- | ------- | ------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `model` (`v-model`) | array   | `''`    | Mandatory.                                                                                                              |
 | `outlined`          | boolean | `false` | Styles the rangepicker as an outlined text field. (`labels` or `placeholders` required)                                 |
+| `model` (`v-model`) | array   | `''`    | Mandatory.                                                                                                              |
 | `disabled`          | boolean | `false` | Styles the rangepicker as a disabled text field.                                                                        |
 | `labels`            | array   | `[]`    | A text caption or description for the rangepicker, which use the start and end input's `placeholder` attribute instead. |
 | `placeholders`      | array   | `[]`    | The _placeholder_ attribute of the start and end `<input>`.                                                             |

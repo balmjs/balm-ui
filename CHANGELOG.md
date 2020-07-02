@@ -1,5 +1,20 @@
 # BalmUI ChangeLog
 
+## v7.3.0 / 2020-07-02
+
+### Bug Fixes
+
+- `<ui-textfield-helper>`, `<ui-select-helper>`: some bugfix
+
+### Features
+
+- `<ui-textfield>`, `<ui-select>`: optimize no-label, `noLabel` prop is deprecated
+
+### Chores
+
+- clean code for data display components
+- update data display api docs
+
 ## v7.2.2 / 2020-07-01
 
 ### Bug Fixes

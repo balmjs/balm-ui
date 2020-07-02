@@ -3,7 +3,7 @@
   <div class="mdc-text-field-helper-line">
     <!-- Helper text (optional) -->
     <div :id="id" :class="className" aria-hidden="true">
-      <slot></slot>
+      <slot>{{ validationMsg }}</slot>
     </div>
     <!-- Character counter (optional) -->
     <ui-textfield-counter v-if="withCounter"></ui-textfield-counter>
@@ -31,13 +31,13 @@ export default {
       return {
         'mdc-text-field-helper-text': true,
         'mdc-text-field-helper-text--persistent': this.visible,
-        'mdc-text-field-helper-text--validation-msg': this.validMsg
+        'mdc-text-field-helper-text--validation-msg': this.hasValidMsg
       };
     }
   },
   watch: {
-    validMsg(val) {
-      this.updatePrevEl('mdc-text-field', val);
+    validMsg() {
+      this.updatePrevEl('mdc-text-field');
     }
   }
 };

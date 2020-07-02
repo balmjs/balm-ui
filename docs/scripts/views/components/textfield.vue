@@ -15,7 +15,6 @@
               helper-text-id="my-text-field-helper"
               :with-leading-icon="iconOption.includes(2)"
               :with-trailing-icon="iconOption.includes(3)"
-              :required="assistiveTextOption === 2"
             >
               Label
               <template v-if="iconOption.includes(2)" #before>
@@ -49,7 +48,6 @@
               helper-text-id="my-text-field-outlined-helper"
               :with-leading-icon="iconOption.includes(2)"
               :with-trailing-icon="iconOption.includes(3)"
-              :required="assistiveTextOption === 2"
             >
               Label
               <template v-if="iconOption.includes(2)" #before>

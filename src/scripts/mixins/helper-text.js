@@ -13,23 +13,29 @@ export default {
       default: false
     },
     validMsg: {
-      type: [Boolean, null],
-      default: null
+      type: [String, Boolean],
+      default: false
     }
   },
   computed: {
     hasValidMsg() {
-      return getType(this.validMsg) === 'boolean';
+      return !!this.validMsg;
+    },
+    validationMsg() {
+      return getType(this.validMsg) === 'string' ? this.validMsg : '';
     }
   },
   methods: {
-    updatePrevEl(className, val) {
+    updatePrevEl(className) {
       const prevEl = this.$el.previousElementSibling;
 
-      if (this.hasValidMsg && prevEl && prevEl.classList.contains(className)) {
+      if (prevEl && prevEl.classList.contains(className)) {
         const prevElClasses = prevEl.classList;
 
-        if (val && !prevElClasses.contains(`${className}--invalid`)) {
+        if (
+          this.hasValidMsg &&
+          !prevElClasses.contains(`${className}--invalid`)
+        ) {
           prevElClasses.add(`${className}--invalid`);
         } else {
           prevElClasses.remove(`${className}--invalid`);

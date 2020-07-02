@@ -1,7 +1,7 @@
 <template>
   <!-- Helper text (optional) -->
   <p :id="id" :class="className" aria-hidden="true">
-    <slot></slot>
+    <slot>{{ validationMsg }}</slot>
   </p>
 </template>
 
@@ -15,14 +15,17 @@ export default {
     className() {
       return {
         'mdc-select-helper-text': true,
-        'mdc-select-helper-text--validation-msg-persistent': this.validMsg,
-        'mdc-select-helper-text--validation-msg': !this.visible || this.validMsg
+        'mdc-select-helper-text--validation-msg-persistent': this.hasValidMsg,
+        'mdc-select-helper-text--validation-msg': this.isVisible
       };
+    },
+    isVisible() {
+      return !this.visible || this.hasValidMsg; // For css name bug
     }
   },
   watch: {
-    validMsg(val) {
-      this.updatePrevEl('mdc-select', val);
+    validMsg() {
+      this.updatePrevEl('mdc-select');
     }
   }
 };

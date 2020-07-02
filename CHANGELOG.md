@@ -1,5 +1,11 @@
 # BalmUI ChangeLog
 
+## v7.3.1 / 2020-07-02
+
+### Chores
+
+- `<ui-textfield-helper>`, `<ui-select-helper>`: optimize `validMsg` prop
+
 ## v7.3.0 / 2020-07-02
 
 ### Bug Fixes

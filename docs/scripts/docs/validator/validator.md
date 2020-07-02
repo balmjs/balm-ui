@@ -83,12 +83,12 @@ export default {
 > New in 6.12.0
 
 ```js
-$setValidations(formData, validationRule);
+$setValidations(fieldName, validationRule);
 $setValidations(validationRules);
 ```
 
 | Param         | Type   | Default | Description                                               |
 | ------------- | ------ | ------- | --------------------------------------------------------- |
-| `formData`    | string | `''`    | A field name of the formdata. (BalmUI validator rule key) |
+| `fieldName`   | string | `''`    | A field name of the formdata. (BalmUI validator rule key) |
 | `validation`  | object | `{}`    | A validation. (BalmUI validator rule value)               |
 | `validations` | object | `{}`    | (See) BalmUI validator rules.                             |

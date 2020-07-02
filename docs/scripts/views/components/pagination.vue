@@ -32,7 +32,6 @@
                 id="per-page-rows"
                 v-model="pageSize2"
                 outlined
-                no-label
                 fullwidth
                 :options="pageSizeOptions"
               ></ui-select>

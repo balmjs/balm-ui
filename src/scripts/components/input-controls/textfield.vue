@@ -261,7 +261,8 @@ export default {
       return this.withTrailingIcon || this.$slots.after;
     },
     noLabel() {
-      return !!this.placeholder;
+      const hasLabel = this.label || this.$slots.default;
+      return this.placeholder || !hasLabel;
     },
     className() {
       return {

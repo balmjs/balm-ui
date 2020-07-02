@@ -165,10 +165,6 @@ export default {
       type: String,
       default: ''
     },
-    noLabel: {
-      type: Boolean,
-      default: false
-    },
     disabled: {
       type: Boolean,
       default: false
@@ -207,6 +203,9 @@ export default {
     },
     hasLeadingIcon() {
       return this.materialIcon || this.withLeadingIcon || this.$slots.icon;
+    },
+    noLabel() {
+      return !(this.label || this.$slots.default);
     },
     className() {
       return {

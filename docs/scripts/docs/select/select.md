@@ -20,7 +20,6 @@
 | `defaultLabel`      | string         | `''`      | Placeholder item label.                                                                       |
 | `defaultValue`      | string, number | `''`      | Placeholder item value.                                                                       |
 | `label`             | string         | `''`      | A text caption or description for the select.                                                 |
-| `noLabel`           | boolean        | `false`   | Styles the select as a select without a label.                                                |
 | `disabled`          | boolean        | `false`   | Styles the select as disabled.                                                                |
 | `required`          | boolean        | `false`   | Styles the select as required.                                                                |
 | `fullwidth`         | boolean        | `false`   | Optional. Styles the select as fullwidth select.                                              |

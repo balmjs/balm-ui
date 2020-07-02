@@ -1,22 +1,26 @@
 export default {
   props: {
-    // Element attributes
+    // common attributes
     placeholder: {
       type: [String, null],
       default: null
     },
-    // UI attributes
-    label: {
-      type: String,
-      default: ''
-    },
-    fullwidth: {
+    required: {
       type: Boolean,
       default: false
     },
     disabled: {
       type: Boolean,
       default: false
+    },
+    // UI attributes
+    fullwidth: {
+      type: Boolean,
+      default: false
+    },
+    label: {
+      type: String,
+      default: ''
     },
     endAligned: {
       type: Boolean,

@@ -11,8 +11,8 @@
 <script>
 import Quill from 'quill';
 import Editor from './editor-extension';
-import getType from '../../utils/typeof';
 import Emotion from './editor-extension/emotion';
+import getType from '../../utils/typeof';
 
 // Define editor constants
 const UI_EDITOR = {
@@ -74,6 +74,7 @@ export default {
       type: String,
       default: 'snow'
     },
+    // Extension attributes
     customImageHandler: {
       type: Boolean,
       default: false

@@ -6,11 +6,12 @@
     class="mdc-datepicker"
     :outlined="outlined"
     :placeholder="placeholder"
-    :label="label"
-    :fullwidth="fullwidth"
+    :required="required"
     :disabled="disabled"
-    :with-leading-icon="withLeadingIcon"
+    :fullwidth="fullwidth"
+    :label="label"
     :icon="icon"
+    :with-leading-icon="withLeadingIcon"
     :with-trailing-icon="withTrailingIcon || toggle || allowInput || clear"
     :attrs="{ readonly: true }"
     @change="handleChange"
@@ -95,14 +96,14 @@ export default {
       type: [String, Number, Array],
       default: ''
     },
-    // UI attributes
-    outlined: {
-      type: Boolean,
-      default: false
-    },
+    // <ui-textfield> attributes
     id: {
       type: [String, null],
       default: null
+    },
+    outlined: {
+      type: Boolean,
+      default: false
     },
     icon: {
       type: String,

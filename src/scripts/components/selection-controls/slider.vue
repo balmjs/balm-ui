@@ -72,6 +72,7 @@ export default {
       type: [Number, String],
       default: 0
     },
+    // UI attributes
     min: {
       type: [Number, String],
       default: 0
@@ -84,7 +85,6 @@ export default {
       type: [Number, String],
       default: 1
     },
-    // UI attributes
     disabled: {
       type: Boolean,
       default: false

@@ -27,12 +27,12 @@
           v-model="inputValue"
           :class="className.input"
           :placeholder="placeholder"
-          :rows="rows"
-          :cols="cols"
-          :disabled="disabled"
           :required="required"
+          :disabled="disabled"
           :minlength="minlength"
           :maxlength="maxlength"
+          :rows="rows"
+          :cols="cols"
           :aria-labelledby="id"
           :aria-controls="helperTextId"
           :aria-describedby="helperTextId"
@@ -62,14 +62,11 @@
         :type="inputType"
         :class="className.input"
         :placeholder="placeholder"
-        :pattern="pattern"
-        :disabled="disabled"
         :required="required"
+        :disabled="disabled"
         :minlength="minlength"
         :maxlength="maxlength"
-        :min="min"
-        :max="max"
-        :step="step"
+        :pattern="pattern"
         :aria-labelledby="id"
         :aria-controls="helperTextId"
         :aria-describedby="helperTextId"
@@ -175,18 +172,23 @@ export default {
       type: [String, Number, Array], // NOTE: Array for `<ui-datepicker>`
       default: ''
     },
+    // common attributes
+    maxlength: {
+      type: [String, Number, null],
+      default: null
+    },
+    minlength: {
+      type: [String, Number, null],
+      default: null
+    },
     // <input> attributes
     inputType: {
       type: String,
       default: 'text'
     },
-    prefixText: {
-      type: String,
-      default: ''
-    },
-    suffixText: {
-      type: String,
-      default: ''
+    pattern: {
+      type: [String, null],
+      default: null
     },
     // <textarea> attributes
     rows: {
@@ -197,35 +199,14 @@ export default {
       type: [Number, String],
       default: 20
     },
-    // For native common
-    required: {
-      type: Boolean,
-      default: false
+    // UI attributes
+    prefixText: {
+      type: String,
+      default: ''
     },
-    minlength: {
-      type: [String, Number, null],
-      default: null
-    },
-    maxlength: {
-      type: [String, Number, null],
-      default: null
-    },
-    // For native <input>
-    pattern: {
-      type: [String, null],
-      default: null
-    },
-    min: {
-      type: [String, Number, null],
-      default: null
-    },
-    max: {
-      type: [String, Number, null],
-      default: null
-    },
-    step: {
-      type: [String, Number, null],
-      default: null
+    suffixText: {
+      type: String,
+      default: ''
     },
     // For helper text
     helperTextId: {

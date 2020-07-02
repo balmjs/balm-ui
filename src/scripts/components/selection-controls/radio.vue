@@ -46,7 +46,7 @@ export default {
       type: [String, Number],
       default: ''
     },
-    // Element attributes
+    // <input type="radio"> attributes
     name: {
       type: String,
       default: ''

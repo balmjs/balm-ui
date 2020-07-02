@@ -25,6 +25,11 @@ export default {
     event: UI_CHIPS.EVENT.CHANGE
   },
   props: {
+    // UI variants
+    type: {
+      type: [String, Number],
+      default: 0
+    },
     // States
     model: {
       type: [String, Number, Array],
@@ -43,11 +48,6 @@ export default {
     optionValue: {
       type: String,
       default: 'value'
-    },
-    // UI variants
-    type: {
-      type: [String, Number],
-      default: 0
     },
     // UI attributes
     chips: {

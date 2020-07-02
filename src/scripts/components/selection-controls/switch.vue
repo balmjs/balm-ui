@@ -52,7 +52,7 @@ export default {
       type: [Boolean, Number, String],
       default: false
     },
-    // Element attributes
+    // <input type="checkbox"> attributes
     name: {
       type: String,
       default: ''

@@ -2,10 +2,13 @@
   <div :class="className.outer" @click="handleClick">
     <input
       v-show="false"
+      :id="id"
       type="file"
       :accept="accept"
       :multiple="multiple"
-      @change="disabled ? null : handleChange($event)"
+      :disabled="disabled"
+      v-bind="attrs"
+      @change="handleChange($event)"
     />
     <slot>
       <button :class="className.button" :disabled="disabled">
@@ -17,6 +20,7 @@
 </template>
 
 <script>
+import elementMixin from '../../mixins/element';
 import UI_GLOBAL from '../../config/constants';
 
 // Define file constants
@@ -74,7 +78,9 @@ const UI_FILE = {
 
 export default {
   name: 'UiFile',
+  mixins: [elementMixin],
   props: {
+    // <input type="file"> attributes
     accept: {
       type: String,
       default: ''
@@ -83,10 +89,11 @@ export default {
       type: Boolean,
       default: false
     },
-    preview: {
+    disabled: {
       type: Boolean,
       default: false
     },
+    // <ui-button> props
     outlined: {
       type: Boolean,
       default: false
@@ -95,7 +102,8 @@ export default {
       type: String,
       default: 'Upload'
     },
-    disabled: {
+    // UI attributes
+    preview: {
       type: Boolean,
       default: false
     }

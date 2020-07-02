@@ -56,7 +56,7 @@ export default {
         return [];
       }
     },
-    // UI common attributes
+    // <ui-textfield> attributes
     outlined: {
       type: Boolean,
       default: false
@@ -66,13 +66,13 @@ export default {
       default: false
     },
     // UI attributes
-    labels: {
+    placeholders: {
       type: Array,
       default() {
         return [];
       }
     },
-    placeholders: {
+    labels: {
       type: Array,
       default() {
         return [];

@@ -5,11 +5,12 @@
     :class="className"
     :outlined="outlined"
     :placeholder="placeholder"
-    :label="label"
-    :fullwidth="fullwidth"
+    :required="required"
     :disabled="disabled"
-    :with-leading-icon="withLeadingIcon"
+    :fullwidth="fullwidth"
+    :label="label"
     :icon="icon"
+    :with-leading-icon="withLeadingIcon"
     :with-trailing-icon="withTrailingIcon"
     plus
     @focus="handleFocus"
@@ -101,15 +102,17 @@ export default {
         return [];
       }
     },
-    // UI attributes
-    outlined: {
-      type: Boolean,
-      default: false
-    },
+    // <input type="text"> attributes
     id: {
       type: [String, null],
       default: null
     },
+    // <ui-textfield> props
+    outlined: {
+      type: Boolean,
+      default: false
+    },
+    // UI attributes
     autofocus: {
       type: Boolean,
       default: false

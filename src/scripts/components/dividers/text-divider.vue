@@ -39,6 +39,7 @@ export default {
       type: [String, Number],
       default: 0
     },
+    // UI attributes
     noText: {
       type: Boolean,
       default: false

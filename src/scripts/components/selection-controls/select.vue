@@ -161,10 +161,6 @@ export default {
       default: ''
     },
     // UI attributes
-    label: {
-      type: String,
-      default: ''
-    },
     fullwidth: {
       type: Boolean,
       default: false
@@ -172,6 +168,10 @@ export default {
     withLeadingIcon: {
       type: Boolean,
       default: false
+    },
+    label: {
+      type: String,
+      default: ''
     },
     noLabel: {
       type: Boolean,

@@ -2,7 +2,7 @@
   <div :class="className">
     <input
       :id="id"
-      v-model="checkedValue"
+      v-model="selectedValue"
       class="mdc-radio__native-control"
       type="radio"
       :name="name"
@@ -63,7 +63,7 @@ export default {
   data() {
     return {
       $radio: null,
-      checkedValue: this.model
+      selectedValue: this.model
     };
   },
   computed: {
@@ -81,7 +81,7 @@ export default {
   },
   watch: {
     model(val) {
-      this.checkedValue = val;
+      this.selectedValue = val;
     }
   },
   mounted() {
@@ -95,7 +95,7 @@ export default {
   },
   methods: {
     handleChange() {
-      this.$emit(UI_RADIO.EVENT.CHANGE, this.checkedValue);
+      this.$emit(UI_RADIO.EVENT.CHANGE, this.selectedValue);
     }
   }
 };

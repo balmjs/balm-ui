@@ -66,7 +66,6 @@
 import flatpickr from 'flatpickr';
 import UiTextfield from '../input-controls/textfield';
 import textfieldMixin from '../../mixins/textfield';
-import getType from '../../utils/typeof';
 
 // Define datepicker constants
 const UI_DATEPICKER = {
@@ -232,7 +231,7 @@ export default {
       }
     },
     setRangeDate(selectedDates) {
-      if (getType(selectedDates) === 'array' && selectedDates.length === 2) {
+      if (Array.isArray(selectedDates) && selectedDates.length === 2) {
         let startDate = selectedDates[0];
         let endDate = selectedDates[1];
         this.inputValue =

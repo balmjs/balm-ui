@@ -2,7 +2,7 @@
   <div :class="className">
     <input
       :id="id"
-      v-model="checkedValue"
+      v-model="selectedValue"
       type="checkbox"
       class="mdc-checkbox__native-control"
       :name="name"
@@ -29,7 +29,6 @@
 <script>
 import { MDCCheckbox } from '../../../material-components-web/checkbox';
 import elementMixin from '../../mixins/element';
-import getType from '../../utils/typeof';
 
 // Define checkbox constants
 const UI_CHECKBOX = {
@@ -75,7 +74,7 @@ export default {
   data() {
     return {
       $checkbox: null,
-      checkedValue: this._setCheckedValue(this.model)
+      selectedValue: this._setSelectedValue(this.model)
     };
   },
   computed: {
@@ -93,7 +92,7 @@ export default {
   },
   watch: {
     model(val) {
-      this.checkedValue = this._setCheckedValue(val);
+      this.selectedValue = this._setSelectedValue(val);
     },
     indeterminate(val) {
       this.$checkbox.indeterminate = val;
@@ -110,11 +109,11 @@ export default {
     });
   },
   methods: {
-    _setCheckedValue(value) {
-      return getType(value) === 'array' ? [...value] : !!value;
+    _setSelectedValue(value) {
+      return Array.isArray(value) ? [...value] : !!value;
     },
     handleChange() {
-      this.$emit(UI_CHECKBOX.EVENT.CHANGE, this.checkedValue);
+      this.$emit(UI_CHECKBOX.EVENT.CHANGE, this.selectedValue);
     }
   }
 };

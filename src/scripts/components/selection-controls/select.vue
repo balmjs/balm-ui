@@ -67,12 +67,12 @@
               'mdc-list-item',
               {
                 'mdc-list-item--selected':
-                  option[optionValue] === currentSelectedValue,
+                  option[optionValue] === selectedValue,
                 'mdc-list-item--disabled': option.disabled
               }
             ]"
             :data-value="option[optionValue]"
-            :aria-selected="option[optionValue] === currentSelectedValue"
+            :aria-selected="option[optionValue] === selectedValue"
             :aria-disabled="option.disabled"
             role="option"
           >
@@ -197,8 +197,8 @@ export default {
       UI_SELECT,
       $select: null,
       currentOptions: [],
-      currentSelectedValue: this.model,
-      currentSelectedIndex: UI_SELECT.DEFAULT_SELECTED_INDEX
+      selectedValue: this.model,
+      selectedIndex: UI_SELECT.DEFAULT_SELECTED_INDEX
     };
   },
   computed: {
@@ -223,7 +223,7 @@ export default {
   },
   watch: {
     model(val) {
-      this.currentSelectedValue = val;
+      this.selectedValue = val;
 
       this.setCurrentOption();
     },
@@ -244,7 +244,7 @@ export default {
         if (hasOptions) {
           const selected = this.getSelected(detail.index);
           // NOTE: for twice trigger bugfix
-          if (this.currentSelectedValue !== selected.value) {
+          if (this.selectedValue !== selected.value) {
             this.$emit(UI_SELECT.EVENT.CHANGE, selected.value);
             this.$emit(UI_SELECT.EVENT.SELECTED, selected);
           }
@@ -276,17 +276,17 @@ export default {
 
       for (let i = 0, len = this.currentOptions.length; i < len; i++) {
         let currentOption = this.currentOptions[i];
-        if (currentOption[this.optionValue] == this.currentSelectedValue) {
+        if (currentOption[this.optionValue] == this.selectedValue) {
           index = i;
           break;
         }
       }
 
       // Set selected index
-      this.currentSelectedIndex = index;
+      this.selectedIndex = index;
 
-      if (this.currentSelectedIndex > UI_SELECT.DEFAULT_SELECTED_INDEX) {
-        this.$select.selectedIndex = this.currentSelectedIndex;
+      if (this.selectedIndex > UI_SELECT.DEFAULT_SELECTED_INDEX) {
+        this.$select.selectedIndex = this.selectedIndex;
       }
     },
     getSelected(index) {

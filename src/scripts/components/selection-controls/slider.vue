@@ -4,7 +4,7 @@
     :class="className"
     tabindex="0"
     role="slider"
-    :aria-valuenow="+currentValue"
+    :aria-valuenow="+selectedValue"
     :aria-valuemin="+min"
     :aria-valuemax="+max"
     :data-step="+step"
@@ -93,7 +93,7 @@ export default {
   data() {
     return {
       $slider: null,
-      currentValue: this.model
+      selectedValue: this.model
     };
   },
   computed: {
@@ -110,7 +110,7 @@ export default {
   },
   watch: {
     model(val) {
-      this.currentValue = val;
+      this.selectedValue = val;
       this.$slider.value = val;
     },
     min(val) {
@@ -131,7 +131,7 @@ export default {
 
     this.$slider.listen(`MDCSlider:${UI_SLIDER.EVENT.CHANGE}`, () => {
       // NOTE: for twice trigger bugfix
-      if (this.currentValue !== this.$slider.value) {
+      if (this.selectedValue !== this.$slider.value) {
         this.$emit(UI_SLIDER.EVENT.CHANGE, this.$slider.value);
       }
     });

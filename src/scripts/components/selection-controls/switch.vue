@@ -5,7 +5,7 @@
       <div class="mdc-switch__thumb"></div>
       <input
         :id="id"
-        v-model="toggleValue"
+        v-model="selectedValue"
         type="checkbox"
         class="mdc-switch__native-control"
         role="switch"
@@ -65,12 +65,12 @@ export default {
   data() {
     return {
       $switch: null,
-      toggleValue: this.model
+      selectedValue: this.model
     };
   },
   computed: {
     checked() {
-      return this.toggleValue;
+      return this.selectedValue;
     },
     className() {
       return {
@@ -82,9 +82,9 @@ export default {
   },
   watch: {
     model(val) {
-      this.toggleValue = val;
+      this.selectedValue = val;
       // NOTE: fix trigger bug
-      this.$switch.checked = this.toggleValue === this.trueValue;
+      this.$switch.checked = this.selectedValue === this.trueValue;
     }
   },
   mounted() {
@@ -92,7 +92,7 @@ export default {
   },
   methods: {
     handleChange() {
-      this.$emit(UI_SWITCH.EVENT.CHANGE, this.toggleValue);
+      this.$emit(UI_SWITCH.EVENT.CHANGE, this.selectedValue);
     }
   }
 };

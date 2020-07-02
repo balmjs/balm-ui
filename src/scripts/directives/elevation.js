@@ -1,5 +1,4 @@
 import autoInit from './register';
-import getType from '../utils/typeof';
 
 // Define elevation constants
 const UI_ELEVATION = {
@@ -31,7 +30,7 @@ const updateElevation = (method, el, { value, modifiers }) => {
   let classes = [];
 
   if (modifiers.transition) {
-    if (getType(value) === 'array' && value.length === 2) {
+    if (Array.isArray(value) && value.length === 2) {
       let defaultClass = getElevation(value[0]);
       let hoverClass = getElevation(value[1]);
 

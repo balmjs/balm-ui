@@ -31,10 +31,11 @@ import UiMenu from './components/menus/menu';
 import UiMenuitem from './components/menus/menuitem';
 import UiMenuitemIcon from './components/menus/menuitem-icon';
 import UiMenuitemText from './components/menus/menuitem-text';
+import UiPagination from './components/data-tables/pagination'; // Custom
 // Theme
 import UiIcon from './components/icon/icon';
 // Data Entry
-import UiForm from './components/form-controls/form';
+import UiForm from './components/form-controls/form'; // Custom
 import UiFormField from './components/form-controls/form-field';
 import UiTextfield from './components/input-controls/textfield';
 import UiTextfieldHelper from './components/input-controls/textfield-helper';
@@ -48,6 +49,7 @@ import UiChips from './components/chips/chips';
 import UiChip from './components/chips/chip';
 import UiSwitch from './components/selection-controls/switch';
 import UiSlider from './components/selection-controls/slider';
+import UiFile from './components/input-controls/file'; // Custom
 // Data Display
 import UiNav from './components/lists/nav';
 import UiList from './components/lists/list';
@@ -73,21 +75,23 @@ import UiCardActions from './components/cards/card-actions';
 import UiCardButtons from './components/cards/card-buttons';
 import UiCardIcons from './components/cards/card-icons';
 import UiDataTable from './components/data-tables/table';
+import UiBadge from './components/others/badge'; // Custom
 // Feedback
 import UiDialog from './components/modal/dialog';
 import UiDialogTitle from './components/modal/dialog-title';
 import UiDialogContent from './components/modal/dialog-content';
 import UiDialogActions from './components/modal/dialog-actions';
 import UiSnackbar from './components/modal/snackbar';
-import UiLinearProgress from './components/progress-indicators/linear-progress';
-import UiCircularProgress from './components/progress-indicators/circular-progress';
+import UiProgress from './components/progress-indicators/progress';
+import UiSpinner from './components/progress-indicators/spinner';
 /**
  * Plugins
  */
-import event from './plugins/event';
+import event from './plugins/event'; // Custom
 import grid from './plugins/grid';
 import theme from './plugins/theme';
 import typography from './plugins/typography';
+import validator from './plugins/validator'; // Custom
 /**
  * Directives
  */
@@ -95,10 +99,18 @@ import vRipple from './directives/ripple';
 import vShape from './directives/shape';
 import vShadow from './directives/elevation';
 import vAccessibility from './directives/a11y';
+import vBadge from './directives/badge'; // Custom
+/**
+ * Utilities
+ */
+import types from './utils/types';
+import helpers from './utils/helpers';
+import detectIE from './utils/ie';
 
 const version = require('../../package.json').version;
 
 const components = {
+  UiBadge,
   UiButton,
   UiCard,
   UiCardActions,
@@ -111,7 +123,6 @@ const components = {
   UiCheckbox,
   UiChip,
   UiChips,
-  UiCircularProgress,
   UiDataTable,
   UiDialog,
   UiDialogActions,
@@ -125,6 +136,7 @@ const components = {
   UiDrawerAppContent,
   UiDrawerBackdrop,
   UiFab,
+  UiFile,
   UiForm,
   UiFormField,
   UiGrid,
@@ -141,7 +153,6 @@ const components = {
   UiItemFirstContent,
   UiItemLastContent,
   UiItemDivider,
-  UiLinearProgress,
   UiList,
   UiListDivider,
   UiListGroup,
@@ -152,14 +163,17 @@ const components = {
   UiMenuitemIcon,
   UiMenuitemText,
   UiNav,
+  UiPagination,
   UiPanels,
   UiPanel,
+  UiProgress,
   UiRadio,
   UiSelect,
   UiSelectHelper,
   UiSelectIcon,
   UiSlider,
   UiSnackbar,
+  UiSpinner,
   UiSwitch,
   UiTabs,
   UiTabBar,
@@ -176,11 +190,13 @@ const plugins = {
   event,
   grid,
   theme,
-  typography
+  typography,
+  validator
 };
 
 const directives = {
   vAccessibility,
+  vBadge,
   vRipple,
   vShadow,
   vShape
@@ -219,3 +235,4 @@ const BalmUI = {
 autoInstall(BalmUI);
 
 export default BalmUI;
+export { types, helpers, detectIE };

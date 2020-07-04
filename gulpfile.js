@@ -43,12 +43,6 @@ balm.go((mix) => {
           `${constants.DEV_SOURCE.mdc}/${item}/test`
         ]);
       });
-
-      // Get Material Icons (Deprecated)
-      // mix.copy(
-      //   `${constants.DMC_SOURCE.icon}/*.{css,eot,woff2,woff,ttf}`,
-      //   constants.DEV_SOURCE.mdi
-      // );
     } else {
       if (mix.env.isProd) {
         // Clear individual

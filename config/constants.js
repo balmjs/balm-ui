@@ -1,7 +1,6 @@
 const DMC_SOURCE = {
   mdc: './node_modules/material-components-web',
-  material: './node_modules/@material',
-  icon: './node_modules/material-design-icons/iconfont'
+  material: './node_modules/@material'
 };
 const DEV_SOURCE = {
   mdc: './src/material-components-web',

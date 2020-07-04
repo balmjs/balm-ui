@@ -1,14 +1,14 @@
 <template>
-  <ui-page name="circular-progress" demo-count="2">
+  <ui-page name="spinner" demo-count="2">
     <template #hero>
-      <ui-circular-progress active four-colored></ui-circular-progress>
+      <ui-spinner active four-colored></ui-spinner>
     </template>
 
     <!-- Content -->
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 Indeterminate</h6>
       <div class="demo">
-        <ui-circular-progress active></ui-circular-progress>
+        <ui-spinner active></ui-spinner>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
@@ -16,7 +16,7 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Determinate</h6>
       <div class="demo">
-        <ui-circular-progress :progress="progress">{{ progress }}</ui-circular-progress>
+        <ui-spinner :progress="progress">{{ progress }}</ui-spinner>
         <p>Progress: {{ progress }}</p>
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
@@ -27,7 +27,7 @@
 <script>
 export default {
   metaInfo: {
-    titleTemplate: '%s - Circular Progress'
+    titleTemplate: '%s - Spinner'
   },
   data() {
     return {

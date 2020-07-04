@@ -80,9 +80,8 @@ export default {
 
 - Set validations for the dynamic form
 
-> New in 6.12.0
-
 ```js
+// New in 6.12.0
 $setValidations(fieldName, validationRule);
 $setValidations(validationRules);
 ```
@@ -92,3 +91,8 @@ $setValidations(validationRules);
 | `fieldName`   | string | `''`    | A field name of the formdata. (BalmUI validator rule key) |
 | `validation`  | object | `{}`    | A validation. (BalmUI validator rule value)               |
 | `validations` | object | `{}`    | (See) BalmUI validator rules.                             |
+
+```js
+// New in 7.4.0
+$resetValidations();
+```

@@ -1,5 +1,5 @@
 ```html
-<ui-circular-progress :progress="progress"></ui-circular-progress>
+<ui-spinner :progress="progress"></ui-spinner>
 ```
 
 ```js

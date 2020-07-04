@@ -16,7 +16,7 @@
 @use 'demos/switch';
 @use 'demos/slider';
 @use 'demos/elevation';
-@use 'demos/linear-progress';
+@use 'demos/progress';
 @use 'demos/typography' as demos-typography;
 // // pages
 @use 'pages/home';
@@ -29,7 +29,7 @@
 @use 'pages/fab';
 @use 'pages/icon-button';
 @use 'pages/grid';
-@use 'pages/linear-progress' as pages-linear-progress;
+@use 'pages/progress' as pages-progress;
 @use 'pages/list';
 @use 'pages/menu';
 @use 'pages/slider' as pages-slider;

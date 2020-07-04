@@ -1,5 +1,22 @@
 # BalmUI ChangeLog
 
+## v7.4.0
+
+### Features
+
+- add `$resetValidations`
+
+### BREAKING CHANGES
+
+- `<ui-linear-progress>`: rename to `<ui-progress>`
+- `<ui-circular-progress>`: rename to `<ui-spinner>`
+- ⚠️ migrate from `balm-ui/dist/balm-ui-plus.js` to `balm-ui/dist/balm-ui.js`
+  - `<ui-pagination>`
+  - `<ui-file>`
+  - `$validate`, `$resetValidations`, `$setValidations`
+  - `<ui-badge>`
+  - `types`, `helpers`, `detectIE` utils
+
 ## v7.3.1 / 2020-07-02
 
 ### Chores

@@ -64,6 +64,13 @@ const MATERIAL_COMPONENTS = [
         icon: 'component',
         name: 'Form',
         description: 'Form + Form Field'
+      },
+      {
+        icon: 'component',
+        name: 'Text Divider',
+        description: 'Divider',
+        url: 'text-divider',
+        plus: true
       }
     ]
   },
@@ -93,6 +100,11 @@ const MATERIAL_COMPONENTS = [
         icon: 'menu',
         name: 'Menu',
         description: 'Pop over menus'
+      },
+      {
+        icon: 'component',
+        name: 'Pagination',
+        description: 'Pagination'
       }
     ]
   },
@@ -168,8 +180,7 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'component',
         name: 'File',
-        description: 'File upload',
-        plus: true
+        description: 'File upload'
       },
       {
         icon: 'component',
@@ -196,8 +207,7 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'component',
         name: 'Validator',
-        description: 'Validator',
-        plus: true
+        description: 'Validator'
       }
     ]
   },
@@ -230,12 +240,6 @@ const MATERIAL_COMPONENTS = [
       },
       {
         icon: 'component',
-        name: 'Pagination',
-        description: 'Pagination',
-        plus: true
-      },
-      {
-        icon: 'component',
         name: 'Collapse',
         description: 'Collapse',
         plus: true
@@ -243,8 +247,7 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'component',
         name: 'Badge',
-        description: 'Badge',
-        plus: true
+        description: 'Badge'
       }
     ]
   },
@@ -292,13 +295,13 @@ const MATERIAL_COMPONENTS = [
         icon: 'progress',
         name: 'Linear Progress',
         description: 'Fills from 0% to 100%, represented by bars',
-        url: 'linear-progress'
+        url: 'progress'
       },
       {
         icon: 'progress',
         name: 'Circular Progress',
         description: '',
-        url: 'circular-progress'
+        url: 'spinner'
       },
       {
         icon: 'component',
@@ -330,12 +333,6 @@ const MATERIAL_COMPONENTS = [
       },
       {
         icon: 'component',
-        name: 'Text Divider',
-        description: 'Divider',
-        url: 'divider'
-      },
-      {
-        icon: 'component',
         name: 'Anchor',
         description: 'Anchor',
         plus: true
@@ -346,8 +343,7 @@ const MATERIAL_COMPONENTS = [
   {
     icon: 'component',
     name: 'Utils',
-    description: 'Utils',
-    plus: true
+    description: 'Utils'
   }
 ];
 

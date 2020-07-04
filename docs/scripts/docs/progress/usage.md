@@ -9,8 +9,8 @@ import Vue from 'vue';
 import BalmUI from 'balm-ui';
 
 Vue.use(BalmUI, {
-  // Optional. Overwrite `<ui-pagination>` props with default value.
-  UiPagination: {
+  // Optional. Overwrite `<ui-progress>` props with default value.
+  UiProgress: {
     // some props
   }
 });
@@ -20,15 +20,15 @@ Vue.use(BalmUI, {
 
 ```css
 @use 'balm-ui/components/core.scss';
-@use 'balm-ui/components/pagination/pagination.scss';
+@use 'balm-ui/components/progress/progress.scss';
 ```
 
 ```js
 import Vue from 'vue';
-import UiPagination from 'balm-ui/components/pagination';
+import UiProgress from 'balm-ui/components/progress';
 
-// Optional. Overwrite `<ui-pagination>` props with default value.
-Vue.use(UiPagination, {
+// Optional. Overwrite `<ui-progress>` props with default value.
+Vue.use(UiProgress, {
   // some props
 });
 ```

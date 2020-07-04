@@ -1,5 +1,5 @@
 ```html
-<ui-circular-progress></ui-circular-progress>
+<ui-spinner></ui-spinner>
 ```
 
 #### Props

@@ -1,6 +1,6 @@
 <template>
   <div class="balmui-container">
-    <ui-linear-progress v-if="pageLoading" class="top-linear-loading" :progress="loadingProgress"></ui-linear-progress>
+    <ui-progress v-if="pageLoading" class="top-loading" :progress="loadingProgress"></ui-progress>
     <template v-if="noLayout">
       <router-view></router-view>
     </template>
@@ -97,12 +97,7 @@
         </div>
         <!-- App content -->
         <div class="balmui-content">
-          <ui-circular-progress
-            v-if="pageLoading"
-            class="page-circular-loading"
-            active
-            four-colored
-          ></ui-circular-progress>
+          <ui-spinner v-if="pageLoading" class="page-loading" active four-colored></ui-spinner>
           <transition name="loading">
             <router-view v-if="pageLoading"></router-view>
             <router-view v-else></router-view>

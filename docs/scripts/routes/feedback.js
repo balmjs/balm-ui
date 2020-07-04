@@ -4,8 +4,8 @@ const AlertDialog = () => import('@/views/plugins/alert-dialog');
 const ConfirmDialog = () => import('@/views/plugins/confirm-dialog');
 const Snackbar = () => import('@/views/components/snackbar');
 const Toast = () => import('@/views/plugins/toast');
-const LinearProgress = () => import('@/views/components/linear-progress');
-const CircularProgress = () => import('@/views/components/circular-progress');
+const Progress = () => import('@/views/components/progress');
+const Spinner = () => import('@/views/components/spinner');
 const Skeleton = () => import('@/views/components/skeleton');
 
 export default [
@@ -40,14 +40,14 @@ export default [
     component: Toast
   },
   {
-    path: 'linear-progress',
-    name: 'feedback.linear-progress',
-    component: LinearProgress
+    path: 'progress',
+    name: 'feedback.progress',
+    component: Progress
   },
   {
-    path: 'circular-progress',
-    name: 'feedback.circular-progress',
-    component: CircularProgress
+    path: 'spinner',
+    name: 'feedback.spinner',
+    component: Spinner
   },
   {
     path: 'skeleton',

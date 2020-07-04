@@ -5,7 +5,7 @@
 Default Usage
 
 ```js
-import { types } from 'balm-ui/dist/balm-ui-plus';
+import { types } from 'balm-ui';
 ```
 
 Individual Usage
@@ -37,7 +37,7 @@ types.isFunction(value);
 Default Usage
 
 ```js
-import { helpers } from 'balm-ui/dist/balm-ui-plus';
+import { helpers } from 'balm-ui';
 ```
 
 Individual Usage
@@ -75,7 +75,7 @@ helpers.merge.all(arrayOfObjects);
 Default Usage
 
 ```js
-import { detectIE } from 'balm-ui/dist/balm-ui-plus';
+import { detectIE } from 'balm-ui';
 ```
 
 Individual Usage

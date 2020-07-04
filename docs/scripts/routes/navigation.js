@@ -11,6 +11,7 @@ const ModalDrawer = () => import('@/views/drawer/modal-drawer');
 const BottomNavigation = () => import('@/views/components/bottom-navigation');
 const Tabs = () => import('@/views/components/tabs');
 const Menu = () => import('@/views/components/menu');
+const Pagination = () => import('@/views/components/pagination');
 
 export default [
   {
@@ -63,5 +64,10 @@ export default [
     path: 'menu',
     name: 'navigation.menu',
     component: Menu
+  },
+  {
+    path: 'pagination',
+    name: 'data-display.pagination',
+    component: Pagination
   }
 ];

@@ -5,7 +5,7 @@
 ```
 
 ```css
-@use 'balm-ui/components/circular-progress/variables' with (
+@use 'balm-ui/components/spinner/variables' with (
   $fourColors: $blue $red $yellow $green
 );
 ```

@@ -2,7 +2,6 @@ const List = () => import('@/views/components/list');
 const ImageList = () => import('@/views/components/image-list');
 const Card = () => import('@/views/components/card');
 const Table = () => import('@/views/components/table');
-const Pagination = () => import('@/views/components/pagination');
 const Collapse = () => import('@/views/components/collapse');
 const Badge = () => import('@/views/components/badge');
 
@@ -26,11 +25,6 @@ export default [
     path: 'table',
     name: 'data-display.table',
     component: Table
-  },
-  {
-    path: 'pagination',
-    name: 'data-display.pagination',
-    component: Pagination
   },
   {
     path: 'collapse',

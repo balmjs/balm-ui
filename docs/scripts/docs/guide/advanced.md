@@ -97,7 +97,7 @@ Edit `/path/to/my-project/app/scripts/main.js`
 ```js
 import Vue from 'vue';
 import App from './views/layouts/app';
-import BalmUI from 'balm-ui'; // Official Google Material Components
+import BalmUI from 'balm-ui'; // BalmUI Core & Official Google Material Components
 import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // BalmJS Team Material Components
 import BalmUINext from 'balm-ui/dist/balm-ui-next'; // Experimental Material Components
 

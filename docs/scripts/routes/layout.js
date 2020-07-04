@@ -1,6 +1,7 @@
 const TopAppBar = () => import('@/views/components/top-app-bar');
 const Grid = () => import('@/views/components/grid');
 const Form = () => import('@/views/components/form');
+const TextDivider = () => import('@/views/components/text-divider');
 
 export default [
   {
@@ -19,5 +20,10 @@ export default [
     path: 'form',
     name: 'layouts.form',
     component: Form
+  },
+  {
+    path: 'text-divider',
+    name: 'misc.text-divider',
+    component: TextDivider
   }
 ];

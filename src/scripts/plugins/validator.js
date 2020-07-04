@@ -113,9 +113,13 @@ const BalmUI_ValidatorPlugin = {
       return result;
     };
 
+    const $resetValidations = function () {
+      this.$options.validations = {};
+    };
+
     const $setValidations = function (fieldName, validationRule = {}) {
       if (!this.$options.validations) {
-        this.$options.validations = {};
+        $resetValidations();
       }
 
       if (getType(fieldName) === 'object') {
@@ -130,6 +134,7 @@ const BalmUI_ValidatorPlugin = {
     };
 
     Vue.prototype.$validate = $validate;
+    Vue.prototype.$resetValidations = $resetValidations;
     Vue.prototype.$setValidations = $setValidations;
   }
 };

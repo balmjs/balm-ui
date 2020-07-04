@@ -1,4 +1,4 @@
-import { detectIE } from '../../src/scripts/plus'; // Default Usage
+import { detectIE } from '../../src/scripts'; // Default Usage
 
 const IE = detectIE();
 

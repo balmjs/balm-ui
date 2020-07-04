@@ -1,5 +1,5 @@
 ```html
-<ui-linear-progress></ui-linear-progress>
+<ui-progress></ui-progress>
 ```
 
 #### Props

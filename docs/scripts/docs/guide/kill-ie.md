@@ -5,7 +5,7 @@
 - File: `/path/to/app/scripts/kill-ie.js`
 
 ```js
-import { detectIE } from 'balm-ui/dist/balm-ui-plus'; // Default Usage
+import { detectIE } from 'balm-ui'; // Default Usage
 // OR
 // import detectIE from 'balm-ui/utils/ie'; // Individual Usage
 

@@ -281,10 +281,10 @@ $demo-color-high-luminance: color.$amber-50;
   //
   // Linear Progress demo
   //
-  .demo-linear-progress-row {
+  .demo-progress-row {
     margin: 32px 0;
   }
-  .demo-linear-progress-row + .demo-linear-progress-row {
+  .demo-progress-row + .demo-progress-row {
     margin-top: 64px;
   }
   //

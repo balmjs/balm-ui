@@ -2,10 +2,10 @@
 
 ```js
 import Vue from 'vue';
-import BalmUIPlus from 'balm-ui/dist/balm-ui-plus';
+import BalmUI from 'balm-ui';
 import validatorRules from './config/validator-rules';
 
-Vue.use(BalmUIPlus, {
+Vue.use(BalmUI, {
   // Optional. Set global validator rules.
   validator: validatorRules
 });
@@ -25,7 +25,7 @@ Vue.use(validator, validatorRules);
 Custom global validator rules
 
 ```js
-import { types } from 'balm-ui/dist/balm-ui-plus'; // Default Usage
+import { types } from 'balm-ui'; // Default Usage
 // OR
 // import types from 'balm-ui/utils/types'; // ### Individual Usage
 

@@ -1,7 +1,7 @@
 <template>
-  <ui-page name="linear-progress" demo-count="1">
+  <ui-page name="progress" demo-count="1">
     <template #hero>
-      <ui-linear-progress active></ui-linear-progress>
+      <ui-progress active></ui-progress>
     </template>
 
     <!-- Content -->
@@ -9,37 +9,37 @@
       <h6 :class="$tt('headline6')">Linear Progress Indicators</h6>
       <div class="demo">
         <figure class="example">
-          <ui-linear-progress :progress="progress"></ui-linear-progress>
+          <ui-progress :progress="progress"></ui-progress>
           <figcaption>Determinate (Progress: {{ progress }})</figcaption>
         </figure>
 
         <figure class="example">
-          <ui-linear-progress active></ui-linear-progress>
+          <ui-progress active></ui-progress>
           <figcaption>Indeterminate</figcaption>
         </figure>
 
         <figure class="example">
-          <ui-linear-progress :progress="0.5" :buffer="0.75"></ui-linear-progress>
+          <ui-progress :progress="0.5" :buffer="0.75"></ui-progress>
           <figcaption>Buffer</figcaption>
         </figure>
 
         <figure class="example">
-          <ui-linear-progress reversed :progress="0.5"></ui-linear-progress>
+          <ui-progress reversed :progress="0.5"></ui-progress>
           <figcaption>Reversed</figcaption>
         </figure>
 
         <figure class="example">
-          <ui-linear-progress active reversed></ui-linear-progress>
+          <ui-progress active reversed></ui-progress>
           <figcaption>Indeterminate Reversed</figcaption>
         </figure>
 
         <figure class="example">
-          <ui-linear-progress reversed :progress="0.5" :buffer="0.75"></ui-linear-progress>
+          <ui-progress reversed :progress="0.5" :buffer="0.75"></ui-progress>
           <figcaption>Buffer Reversed</figcaption>
         </figure>
 
         <figure class="example">
-          <ui-linear-progress class="demo-linear-progress--custom" :progress="0.5" :buffer="0.75"></ui-linear-progress>
+          <ui-progress class="demo-progress--custom" :progress="0.5" :buffer="0.75"></ui-progress>
           <figcaption>Custom Colors with Buffer</figcaption>
         </figure>
       </div>
@@ -51,7 +51,7 @@
 <script>
 export default {
   metaInfo: {
-    titleTemplate: '%s - Linear Progress'
+    titleTemplate: '%s - Progress'
   },
   data() {
     return {

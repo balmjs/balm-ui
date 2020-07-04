@@ -25,18 +25,18 @@ const MATERIAL_COMPONENTS = [
     name: 'General',
     children: [
       {
-        icon: 'button',
+        icon: 'add_box',
         name: 'Button',
         description: 'Raised and flat buttons'
       },
       {
-        icon: 'button',
+        icon: 'add_circle_outline',
         name: 'Floating action', // Floating action button
         description: 'The primary action in an application',
         url: 'fab'
       },
       {
-        icon: 'component',
+        icon: 'add',
         name: 'Icon button',
         description: 'Icon buttons and toggles',
         url: 'icon-button'
@@ -48,25 +48,25 @@ const MATERIAL_COMPONENTS = [
     name: 'Layout',
     children: [
       {
-        icon: 'toolbar',
+        icon: 'web',
         name: 'Top App Bar',
         description:
           'Container for application title, navigation icon, and action items',
         url: 'top-app-bar'
       },
       {
-        icon: 'responsive_layout',
+        icon: 'grid_on',
         name: 'Layout grid',
         description: 'Grid and gutter support',
         url: 'grid'
       },
       {
-        icon: 'component',
+        icon: 'format_list_bulleted',
         name: 'Form',
         description: 'Form + Form Field'
       },
       {
-        icon: 'component',
+        icon: 'category',
         name: 'Text Divider',
         description: 'Divider',
         url: 'text-divider',
@@ -79,7 +79,7 @@ const MATERIAL_COMPONENTS = [
     name: 'Navigation',
     children: [
       {
-        icon: 'side_navigation',
+        icon: 'chrome_reader_mode',
         name: 'Drawer',
         description: 'Navigation drawer',
         url: 'drawer'
@@ -92,7 +92,7 @@ const MATERIAL_COMPONENTS = [
       //   next: true
       // },
       {
-        icon: 'tabs',
+        icon: 'tab',
         name: 'Tabs',
         description: 'Tabs with support for icon and text labels'
       },
@@ -102,7 +102,7 @@ const MATERIAL_COMPONENTS = [
         description: 'Pop over menus'
       },
       {
-        icon: 'component',
+        icon: 'pages',
         name: 'Pagination',
         description: 'Pagination'
       }
@@ -113,22 +113,22 @@ const MATERIAL_COMPONENTS = [
     name: 'Theme',
     children: [
       {
-        icon: 'theme',
+        icon: 'palette',
         name: 'Color',
         description: 'Using primary and accent colors'
       },
       {
-        icon: 'typography',
+        icon: 'text_fields',
         name: 'Typography',
         description: 'Type hierarchy'
       },
       {
-        icon: 'icons',
+        icon: 'face',
         name: 'Icons',
         description: 'Material Icons'
       },
       {
-        icon: 'component',
+        icon: 'category',
         name: 'Shape',
         description: 'Mixins for angled corners on unelevated components'
       }
@@ -140,19 +140,19 @@ const MATERIAL_COMPONENTS = [
     url: 'data-input',
     children: [
       {
-        icon: 'text_field',
+        icon: 'text_format',
         name: 'Text Field',
         description: 'Single and multiline text fields',
         url: 'textfield'
       },
       {
-        icon: 'text_field',
+        icon: 'text_format',
         name: 'Autocomplete',
         description: 'Autocomplete',
         plus: true
       },
       {
-        icon: 'text_field',
+        icon: 'text_format',
         name: 'Editor',
         description: 'a modern WYSIWYG editor',
         plus: true
@@ -163,49 +163,49 @@ const MATERIAL_COMPONENTS = [
         description: 'Popover selection menus'
       },
       {
-        icon: 'selection_control',
+        icon: 'check_box',
         name: 'Checkbox',
         description: 'Multi-selection controls'
       },
       {
-        icon: 'radio_button',
+        icon: 'radio_button_checked',
         name: 'Radio', // Radio buttons
         description: 'Single selection controls'
       },
       {
-        icon: 'chips',
+        icon: 'indeterminate_check_box',
         name: 'Chips',
         description: 'Chips for actions, selection, and input'
       },
       {
-        icon: 'component',
+        icon: 'file_upload',
         name: 'File',
         description: 'File upload'
       },
       {
-        icon: 'component',
+        icon: 'date_range',
         name: 'Datepicker',
         description: 'Datepicker',
         plus: true
       },
       {
-        icon: 'component',
+        icon: 'date_range',
         name: 'Rangepicker',
         description: 'Range datepicker',
         plus: true
       },
       {
-        icon: 'switch',
+        icon: 'toggle_off',
         name: 'Switch',
         description: 'On off switches'
       },
       {
-        icon: 'slider',
+        icon: 'category',
         name: 'Slider',
         description: 'Range controls'
       },
       {
-        icon: 'component',
+        icon: 'category',
         name: 'Validator',
         description: 'Validator'
       }
@@ -222,30 +222,30 @@ const MATERIAL_COMPONENTS = [
         description: 'Item layouts in lists'
       },
       {
-        icon: 'card',
+        icon: 'view_comfy',
         name: 'Image list',
         description: 'Displays a collection of images in a repeated pattern',
         url: 'image-list'
       },
       {
-        icon: 'card',
+        icon: 'category',
         name: 'Card',
         description: 'Various card layout styles'
       },
       {
-        icon: 'component',
+        icon: 'table_chart',
         name: 'Data Table',
         description: 'Data tables display sets of data',
         url: 'table'
       },
       {
-        icon: 'component',
+        icon: 'swap_vert',
         name: 'Collapse',
         description: 'Collapse',
         plus: true
       },
       {
-        icon: 'component',
+        icon: 'category',
         name: 'Badge',
         description: 'Badge'
       }
@@ -256,7 +256,7 @@ const MATERIAL_COMPONENTS = [
     name: 'Feedback',
     children: [
       {
-        icon: 'component',
+        icon: 'message',
         name: 'Alert',
         description: 'Alert',
         plus: true
@@ -304,7 +304,7 @@ const MATERIAL_COMPONENTS = [
         url: 'spinner'
       },
       {
-        icon: 'component',
+        icon: 'short_text',
         name: 'Skeleton',
         description:
           "Provide a placeholder while you wait for content to load, or to visualise content that doesn't exist yet.",
@@ -317,12 +317,12 @@ const MATERIAL_COMPONENTS = [
     name: 'Misc',
     children: [
       {
-        icon: 'component',
+        icon: 'event',
         name: 'Event',
         description: 'Global event handler'
       },
       {
-        icon: 'ripple',
+        icon: 'texture',
         name: 'Ripple',
         description: 'Touch ripple'
       },

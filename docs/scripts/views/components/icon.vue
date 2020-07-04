@@ -103,10 +103,10 @@
                 :key="i"
                 :title="icon.name"
                 class="btn-copy"
-                :data-clipboard-text="icon.id"
+                :data-clipboard-text="icon.name"
               >
                 <template #image>
-                  <ui-icon :type="typeOption" size="48">{{ icon.id }}</ui-icon>
+                  <ui-icon :type="typeOption" size="48">{{ icon.name }}</ui-icon>
                   <div v-if="icon.isNew" class="new-badge">New</div>
                 </template>
                 <ui-image-text>{{ icon.name }}</ui-image-text>
@@ -266,26 +266,25 @@ export default {
   },
   async created() {
     const url = `${this.$domain}/data/icons.json`;
-    let { categories } = await this.$http.get(url);
+    const data = await this.$http.get(url);
 
-    categories.map((category) => {
-      let icons = category.icons.filter(
-        (icon) => !UNDEFINED_ICONS.includes(icon.id)
+    Object.keys(data).map((category) => {
+      let icons = data[category].filter(
+        (icon) => !UNDEFINED_ICONS.includes(icon.name)
       );
 
       this.categories.push({
-        name: category.name,
-        count: icons.length
+        name: category,
+        count: data[category].length
       });
-      this.$set(this.icons, category.name, []);
+      this.$set(this.icons, category, []);
 
       icons.forEach((icon) => {
-        this.icons[category.name].push({
-          id: icon.id,
-          name: icon.id
-        });
+        this.icons[category].push(icon);
       });
     });
+
+    console.log(this.icons);
 
     this.currentIcons = Object.assign({}, this.icons);
   },

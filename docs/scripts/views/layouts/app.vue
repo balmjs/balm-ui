@@ -64,7 +64,8 @@
                       :active-class="activeClass"
                       @click.native="handleMenu"
                     >
-                      <i v-if="item.icon" :class="['catalog-list-icon', `icon-${item.icon}`]"></i>
+                      <!-- <i v-if="item.icon" :class="['catalog-list-icon', `icon-${item.icon}`]"></i> -->
+                      <ui-icon v-if="item.icon" class="catalog-list-icon">{{ item.icon }}</ui-icon>
                       <span>{{ item.name }}</span>
                       <ui-badge v-if="item.plus" class="plus" state="info">
                         <template #badge>plus</template>

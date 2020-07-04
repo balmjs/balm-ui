@@ -107,7 +107,6 @@ level2.forEach((file) => {
 task('update:mdc', series(updateMDCTasks));
 
 // Get Material Icons
-// const MDI_JSON = 'https://fonts.google.com/metadata/icons';
 const MDI_baseUrl = 'https://fonts.gstatic.com/s/materialicons';
 const MDI_regularStyle = 'filled';
 const MaterialIconsFonts = [
@@ -183,3 +182,40 @@ function updateMDITask(cb) {
 }
 
 task('update:mdi', updateMDITask);
+
+// Set Material Icons Category
+// const MDI_JSON = 'https://fonts.google.com/metadata/icons';
+const sourceData = './docs/data/txt.json';
+const targetData = './docs/data/icons.json';
+
+function updateMDIJson(cb) {
+  let uiIcons = {};
+
+  fs.readFile(sourceData, (err, data) => {
+    const jsonData = JSON.parse(data);
+    jsonData.icons.forEach((icon) => {
+      item = {
+        name: icon.name,
+        tags: icon.tags
+      };
+      icon.categories.forEach((category) => {
+        if (uiIcons[category]) {
+          uiIcons[category].push(item);
+        } else {
+          uiIcons[category] = [item];
+        }
+      });
+    });
+
+    // console.log(uiIcons);
+
+    fs.writeFile(targetData, JSON.stringify(uiIcons), 'utf8', (err) => {
+      if (err) throw err;
+      console.log('The icons has been saved!');
+    });
+  });
+
+  cb();
+}
+
+task('update:mdi:json', updateMDIJson);

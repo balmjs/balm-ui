@@ -13,6 +13,9 @@ if (env.updateMDC) {
 if (env.updateMDI) {
   balm.afterTask = 'update:mdi';
 }
+if (env.updateMDIJson) {
+  balm.afterTask = 'update:mdi:json';
+}
 
 balm.go((mix) => {
   if (env.buildDocs) {

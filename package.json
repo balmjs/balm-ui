@@ -34,6 +34,7 @@
   "scripts": {
     "update:mdc": "gulp --mdc",
     "update:mdi": "gulp --mdi",
+    "update:mdi:json": "gulp --mdi-json",
     "update": "npm run update:mdc && npm run update:mdi",
     "dev": "gulp",
     "prod": "cross-env NODE_ENV=production gulp -p",

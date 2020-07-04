@@ -3,12 +3,13 @@ const https = require('https');
 const { src, dest, task, series } = require('gulp');
 const $replace = require('gulp-replace');
 
+// updated: 2020.07.04
 const LATEST_VERSIONS = {
-  filled: 50,
-  outlined: 18,
-  round: 18,
-  twoTone: 17,
-  sharp: 19
+  filled: 53,
+  outlined: 22,
+  round: 22,
+  twoTone: 21,
+  sharp: 23
 };
 
 // Update Material Components Web for BalmUI
@@ -106,6 +107,7 @@ level2.forEach((file) => {
 task('update:mdc', series(updateMDCTasks));
 
 // Get Material Icons
+// const MDI_JSON = 'https://fonts.google.com/metadata/icons';
 const MDI_baseUrl = 'https://fonts.gstatic.com/s/materialicons';
 const MDI_regularStyle = 'filled';
 const MaterialIconsFonts = [

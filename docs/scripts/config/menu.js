@@ -79,7 +79,7 @@ const MATERIAL_COMPONENTS = [
     name: 'Navigation',
     children: [
       {
-        icon: 'chrome_reader_mode',
+        icon: 'vertical_split',
         name: 'Drawer',
         description: 'Navigation drawer',
         url: 'drawer'
@@ -200,12 +200,12 @@ const MATERIAL_COMPONENTS = [
         description: 'On off switches'
       },
       {
-        icon: 'category',
+        icon: 'linear_scale',
         name: 'Slider',
         description: 'Range controls'
       },
       {
-        icon: 'category',
+        icon: 'api',
         name: 'Validator',
         description: 'Validator'
       }
@@ -317,7 +317,7 @@ const MATERIAL_COMPONENTS = [
     name: 'Misc',
     children: [
       {
-        icon: 'event',
+        icon: 'api',
         name: 'Event',
         description: 'Global event handler'
       },
@@ -332,7 +332,7 @@ const MATERIAL_COMPONENTS = [
         description: 'Shadow for different elevations'
       },
       {
-        icon: 'component',
+        icon: 'anchor',
         name: 'Anchor',
         description: 'Anchor',
         plus: true
@@ -341,35 +341,11 @@ const MATERIAL_COMPONENTS = [
   },
   '-',
   {
-    icon: 'component',
+    icon: 'widgets',
     name: 'Utils',
     description: 'Utils'
   }
 ];
-
-// const getComponentIcon = component => {
-//   let icon = '';
-//   if (component.icon) {
-//     switch (component.icon) {
-//       case 'icons':
-//         icon = 'icons_light.svg';
-//         break;
-//       case 'progress':
-//         icon = 'ic_progress_activity.svg';
-//         break;
-//       case 'slider':
-//         icon = 'slider.svg';
-//         break;
-//       case 'chips':
-//         icon = `ic_${component.icon}_24dp.svg`;
-//         break;
-//       default:
-//         icon = `ic_${component.icon}_24px.svg`;
-//         break;
-//     }
-//   }
-//   return icon;
-// };
 
 let menu = [];
 for (let component of MATERIAL_COMPONENTS) {

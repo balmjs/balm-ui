@@ -189,27 +189,48 @@ const sourceData = './docs/data/txt.json';
 const targetData = './docs/data/icons.json';
 
 function updateMDIJson(cb) {
-  let uiIcons = {};
+  let uiIconsData = {
+    icons: {},
+    tags: {}
+  };
 
   fs.readFile(sourceData, (err, data) => {
     const jsonData = JSON.parse(data);
-    jsonData.icons.forEach((icon) => {
+    let uiTags = [];
+    jsonData.icons.forEach((icon, index) => {
+      const id = index + 1;
+
       item = {
+        id,
         name: icon.name,
         tags: icon.tags
       };
+
       icon.categories.forEach((category) => {
-        if (uiIcons[category]) {
-          uiIcons[category].push(item);
+        if (uiIconsData.icons[category]) {
+          uiIconsData.icons[category].push(item);
         } else {
-          uiIcons[category] = [item];
+          uiIconsData.icons[category] = [item];
         }
+
+        item.tags.forEach((tag) => {
+          if (uiIconsData.tags[tag]) {
+            if (!uiIconsData.tags[tag].includes(item.id)) {
+              uiIconsData.tags[tag].push(item.id);
+            }
+          } else {
+            uiIconsData.tags[tag] = [item.id];
+          }
+        });
+
+        uiTags.push(...item.tags);
       });
     });
 
-    // console.log(uiIcons);
+    uiIconsData.tags = [...new Set(uiTags)].sort();
+    // console.log(uiIconsData.tags);
 
-    fs.writeFile(targetData, JSON.stringify(uiIcons), 'utf8', (err) => {
+    fs.writeFile(targetData, JSON.stringify(uiIconsData), 'utf8', (err) => {
       if (err) throw err;
       console.log('The icons has been saved!');
     });

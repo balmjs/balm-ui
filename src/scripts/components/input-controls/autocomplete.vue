@@ -266,6 +266,9 @@ export default {
           this.$emit(UI_AUTOCOMPLETE.EVENT.SEARCH, keywords); // AJAX
         }, this.delay);
       } else {
+        if (['*', '+', '?', '[', '\\'].includes(keywords)) {
+          keywords = `\\${keywords}`;
+        }
         // Local datasource
         this.currentSuggestion.data = this.currentSource.filter(word => {
           return RegExp(keywords, 'i').test(word[UI_AUTOCOMPLETE.ITEM.LABEL]);

@@ -1,6 +1,6 @@
 # Kill IE (China Only)
 
-> Please `Copy` + `Paste`
+> Please `Copy` + `Paste` or customize yours, if your need
 
 - File: `/path/to/app/scripts/kill-ie.js`
 

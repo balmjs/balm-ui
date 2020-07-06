@@ -8,5 +8,8 @@
   :not(.mdc-list-item--disabled).mdc-menu-item--selected {
     background-color: variables.$selected-bgcolor;
     color: variables.$selected-color;
+    .mdc-list-item__graphic {
+      color: variables.$selected-color;
+    }
   }
 }

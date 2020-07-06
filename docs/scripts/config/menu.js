@@ -66,7 +66,7 @@ const MATERIAL_COMPONENTS = [
         description: 'Form + Form Field'
       },
       {
-        icon: 'category',
+        icon: 'horizontal_rule',
         name: 'Text Divider',
         description: 'Divider',
         url: 'text-divider',
@@ -123,7 +123,7 @@ const MATERIAL_COMPONENTS = [
         description: 'Type hierarchy'
       },
       {
-        icon: 'face',
+        icon: 'emoji_symbols',
         name: 'Icons',
         description: 'Material Icons'
       },
@@ -152,7 +152,7 @@ const MATERIAL_COMPONENTS = [
         plus: true
       },
       {
-        icon: 'text_format',
+        icon: 'wysiwyg',
         name: 'Editor',
         description: 'a modern WYSIWYG editor',
         plus: true
@@ -183,7 +183,7 @@ const MATERIAL_COMPONENTS = [
         description: 'File upload'
       },
       {
-        icon: 'date_range',
+        icon: 'today',
         name: 'Datepicker',
         description: 'Datepicker',
         plus: true
@@ -256,37 +256,37 @@ const MATERIAL_COMPONENTS = [
     name: 'Feedback',
     children: [
       {
-        icon: 'message',
+        icon: 'feedback',
         name: 'Alert',
         description: 'Alert',
         plus: true
       },
       {
-        icon: 'dialog',
+        icon: 'event_note',
         name: 'Dialog',
         description: 'Secondary text'
       },
       {
-        icon: 'dialog',
+        icon: 'event_note',
         name: 'Alert Dialog',
         description: 'window.alert',
         url: 'alert-dialog',
         plus: true
       },
       {
-        icon: 'dialog',
+        icon: 'event_note',
         name: 'Confirm Dialog',
         description: 'window.confirm',
         url: 'confirm-dialog',
         plus: true
       },
       {
-        icon: 'toast',
+        icon: 'call_to_action',
         name: 'Snackbar',
         description: 'Transient messages'
       },
       {
-        icon: 'toast',
+        icon: 'call_to_action',
         name: 'Toast',
         description: 'Toast',
         plus: true
@@ -298,13 +298,13 @@ const MATERIAL_COMPONENTS = [
         url: 'progress'
       },
       {
-        icon: 'progress',
+        icon: 'trip_origin',
         name: 'Circular Progress',
         description: '',
         url: 'spinner'
       },
       {
-        icon: 'short_text',
+        icon: 'notes',
         name: 'Skeleton',
         description:
           "Provide a placeholder while you wait for content to load, or to visualise content that doesn't exist yet.",
@@ -327,7 +327,7 @@ const MATERIAL_COMPONENTS = [
         description: 'Touch ripple'
       },
       {
-        icon: 'shadow',
+        icon: 'layers',
         name: 'Elevation',
         description: 'Shadow for different elevations'
       },

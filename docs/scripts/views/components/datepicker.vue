@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="datepicker" demo-count="4" withoutCss>
+  <ui-page name="datepicker" demo-count="5" withoutCss>
     <template #hero>
       <ui-datepicker v-model="date" placeholder="Select Date.."></ui-datepicker>
     </template>
@@ -52,6 +52,19 @@
       </div>
       <ui-snippet :code="$store.demos[4]"></ui-snippet>
     </section>
+
+    <section class="demo-wrapper">
+      <h6 :class="$tt('headline6')">5. Month select</h6>
+      <div class="demo">
+        <ui-datepicker
+          v-model="date5"
+          :config="config5"
+          :month-options="monthOptions"
+          placeholder="Select Month.."
+        ></ui-datepicker>
+      </div>
+      <ui-snippet :code="$store.demos[5]"></ui-snippet>
+    </section>
   </ui-page>
 </template>
 
@@ -85,7 +98,16 @@ export default {
         mode: 'range'
         // locale: this.pickerLang.cn
       },
-      date4: ['2017-11-10', '2017-11-20']
+      date4: ['2017-11-10', '2017-11-20'],
+      config5: {
+        mode: 'month'
+      },
+      date5: 'July 2020',
+      monthOptions: {
+        shorthand: true, //defaults to false
+        dateFormat: 'm.y', //defaults to "F Y"
+        altFormat: 'F Y' //defaults to "F Y"
+      }
     };
   },
   mounted() {

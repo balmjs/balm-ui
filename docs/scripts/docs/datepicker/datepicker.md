@@ -21,6 +21,7 @@
 | `config`            | object                | `{}`    | See [Flatpickr configuration](https://flatpickr.js.org/options/).                                                                      |
 | `toggle`            | boolean               | `false` | Show calendar icon button.                                                                                                             |
 | `clear`             | boolean               | `false` | Show clear icon button.                                                                                                                |
+| `monthOptions`      | object                | `{}`    | See [Flatpickr month select options](https://flatpickr.js.org/plugins/#monthselectplugin). (New in `7.4.2`)                            |
 
 - For localization
 

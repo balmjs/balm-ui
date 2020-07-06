@@ -23,7 +23,7 @@
 @use 'balm-ui/components/menu/variables' with (
   $selected-bgcolor: rgba(
     theme-variables.prop-value(primary),
-    0.5
+    0.6
   ),
   $selected-color: theme-variables.prop-value(on-primary)
 );

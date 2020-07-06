@@ -66,6 +66,7 @@
 
 <script>
 import flatpickr from 'flatpickr';
+import monthSelectPlugin from 'flatpickr/dist/plugins/monthSelect';
 import UiTextfield from '../input-controls/textfield';
 import textfieldMixin from '../../mixins/textfield';
 
@@ -74,7 +75,8 @@ const UI_DATEPICKER = {
   MODE: {
     SINGLE: 'single',
     MULTIPLE: 'multiple',
-    RANGE: 'range'
+    RANGE: 'range',
+    MONTH: 'month' // Custom
   },
   EVENT: {
     CHANGE: 'change'
@@ -125,6 +127,12 @@ export default {
     clear: {
       type: Boolean,
       default: false
+    },
+    monthOptions: {
+      type: Object,
+      default() {
+        return {};
+      }
     }
   },
   data() {
@@ -155,8 +163,12 @@ export default {
     inputEl.dataset.input = '';
 
     if (!this.flatpickr) {
-      let config = Object.assign({}, this.config);
+      let config =
+        this.config.mode === UI_DATEPICKER.MODE.MONTH
+          ? { plugins: [new monthSelectPlugin(this.monthOptions)] }
+          : Object.assign({}, this.config);
       // Default config for ui
+      config.disableMobile = true; // required
       config.wrap = true; // For toggle & clear icons, mobile support
       config.clickOpens = !config.allowInput; // NOTE: fix flatpickr bug
       // Custom event

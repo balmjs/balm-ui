@@ -1,5 +1,11 @@
 # [BalmUI](https://material.balmjs.com) ChangeLog
 
+## v7.4.2 / 2020-07-06
+
+### Features
+
+- `<ui-datepicker>`: add `month` select mode, add `monthOptions` prop
+
 ## v7.4.1 / 2020-07-06
 
 ### Bug Fixes

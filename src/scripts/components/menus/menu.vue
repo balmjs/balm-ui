@@ -155,6 +155,7 @@ export default {
     },
     items(val) {
       this.currentItems = val;
+      this.initItems();
     },
     quickOpen(val) {
       this.setQuickOpen(val);
@@ -167,6 +168,8 @@ export default {
     }
   },
   mounted() {
+    this.initItems();
+
     if (!this.cssOnly) {
       this.$menu = new MDCMenu(this.$el);
 
@@ -205,7 +208,6 @@ export default {
         }
       );
 
-      this.initItems();
       this.setQuickOpen();
       this.setAnchorCorner();
       this.setAnchorMargin();
@@ -222,7 +224,10 @@ export default {
     isSelected(item) {
       let selected = false;
 
-      if (getType(item) === 'object') {
+      if (
+        getType(item) === 'object' &&
+        getType(this.currentItem) === 'object'
+      ) {
         selected = item.text === this.currentItem.text;
       } else {
         selected = item === this.currentItem;

@@ -112,6 +112,10 @@ const MDI_regularStyle = 'filled';
 const MaterialIconsFonts = [
   {
     style: MDI_regularStyle,
+    url: `/v${LATEST_VERSIONS.filled}/flUhRq6tzZclQEJ-Vdg-IuiaDsNa.woff`
+  },
+  {
+    style: MDI_regularStyle,
     url: `/v${LATEST_VERSIONS.filled}/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2`
   },
   {

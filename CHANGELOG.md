@@ -1,5 +1,15 @@
 # [BalmUI](https://material.balmjs.com) ChangeLog
 
+## v7.4.1 / 2020-07-06
+
+### Bug Fixes
+
+- `<ui-menu>`: init menu items bugfix
+
+### Chores
+
+- material icons: update fonts for IE11
+
 ## v7.4.0 / 2020-07-06
 
 ### Bug Fixes

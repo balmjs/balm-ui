@@ -88,12 +88,6 @@ a {
   margin: 0 24px 0 12px;
   background-repeat: no-repeat;
   background-size: 100%;
-
-  @each $key, $value in global.$nav-icons {
-    &.icon-#{$key} {
-      background-image: url('../images/icon/#{$value}');
-    }
-  }
 }
 
 @media screen and (min-width: #{global.$MIN_WIDTH}px) {

@@ -130,9 +130,12 @@ export default {
     setTimeout(() => {
       this.content1 = '<p>Hello BalmUI</p>';
       this.content2 = '<p>Hello BalmJS</p>';
-      this.decodeContent = this.$refs.editor.decodeEmoji(
-        '<p>Hello BalmUI [oo] and BalmJS :smile: !</p>'
-      );
+
+      if (this.$refs.editor) {
+        this.decodeContent = this.$refs.editor.decodeEmoji(
+          '<p>Hello BalmUI [oo] and BalmJS :smile: !</p>'
+        );
+      }
     }, 1e3);
   },
   methods: {

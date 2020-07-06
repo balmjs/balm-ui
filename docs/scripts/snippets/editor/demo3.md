@@ -95,9 +95,11 @@ export default {
     };
   },
   mounted() {
-    this.decodeContent = this.$refs.editor.decodeEmoji(
-      '<p>Hello BalmUI [oo] and BalmJS :smile: !</p>'
-    );
+    if (this.$refs.editor) {
+      this.decodeContent = this.$refs.editor.decodeEmoji(
+        '<p>Hello BalmUI [oo] and BalmJS :smile: !</p>'
+      );
+    }
   },
   methods: {
     async onFileChange(file, insert) {

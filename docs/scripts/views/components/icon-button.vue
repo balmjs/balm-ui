@@ -112,8 +112,8 @@
 </template>
 
 <script>
-import imageOn from '../../../images/icon/ic_button_24px.svg';
-import imageOff from '../../../images/icon/ic_card_24px.svg';
+import imageOn from '@/assets/ic_button.svg';
+import imageOff from '@/assets/ic_card.svg';
 
 export default {
   metaInfo: {

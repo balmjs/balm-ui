@@ -163,10 +163,13 @@ export default {
     inputEl.dataset.input = '';
 
     if (!this.flatpickr) {
-      let config =
-        this.config.mode === UI_DATEPICKER.MODE.MONTH
-          ? { plugins: [new monthSelectPlugin(this.monthOptions)] }
-          : Object.assign({}, this.config);
+      let config = Object.assign({}, this.config);
+      if (this.config.mode === UI_DATEPICKER.MODE.MONTH) {
+        config = Object.assign(config, {
+          mode: UI_DATEPICKER.MODE.SINGLE,
+          plugins: [new monthSelectPlugin(this.monthOptions)]
+        });
+      }
       // Default config for ui
       config.disableMobile = true; // required
       config.wrap = true; // For toggle & clear icons, mobile support

@@ -12,7 +12,11 @@
     background-color: white;
     margin: 0;
   }
+  .search-area-inner {
+    display: flex;
+  }
   #search {
+    flex: 1;
     text-indent: 14px;
   }
   .search-helper {
@@ -72,6 +76,10 @@
   @media (max-width: global.$mobile-breakpoint) {
     .search-area {
       top: global.$mobile-row-height + global.$tab-height;
+    }
+
+    #icon-type {
+      min-width: auto;
     }
 
     .coloring-example {

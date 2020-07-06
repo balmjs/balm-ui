@@ -17,6 +17,7 @@
                   v-else
                   :key="`subitem${subIndex}`"
                   :item="getType(subItem) === 'object' ? subItem : {}"
+                  :selected="isSelected(subItem)"
                 >
                   <template v-if="getType(subItem) === 'string'">
                     <ui-menuitem-text v-text="subItem"></ui-menuitem-text>
@@ -36,6 +37,7 @@
               v-else
               :key="`item${index}`"
               :item="getType(item) === 'object' ? item : {}"
+              :selected="isSelected(item)"
             >
               <template v-if="getType(item) === 'string'">
                 <ui-menuitem-text v-text="item"></ui-menuitem-text>
@@ -129,7 +131,9 @@ export default {
       UI_MENU,
       getType,
       $menu: null,
-      currentItems: this.items
+      currentItems: this.items,
+      currentTextItems: [],
+      currentItem: null
     };
   },
   computed: {
@@ -171,12 +175,13 @@ export default {
         `MDCMenu:${UI_MENU.EVENT.SELECTED}`,
         ({ detail }) => {
           const index = detail.index;
-          const currentItem = this.currentItems[index];
+          const currentTextItem = this.currentTextItems[index];
           const item =
-            getType(currentItem) === 'object'
-              ? Object.assign({}, currentItem)
-              : currentItem;
+            getType(currentTextItem) === 'object'
+              ? Object.assign({}, currentTextItem)
+              : currentTextItem;
 
+          this.currentItem = item;
           this.$emit(UI_MENU.EVENT.SELECTED, {
             item, // object
             index, // number
@@ -200,12 +205,31 @@ export default {
         }
       );
 
+      this.initItems();
       this.setQuickOpen();
       this.setAnchorCorner();
       this.setAnchorMargin();
     }
   },
   methods: {
+    initItems() {
+      this.currentTextItems = this.currentItems.filter((item) =>
+        getType(item) === 'object'
+          ? item.text !== UI_MENU.DIVIDER
+          : item !== UI_MENU.DIVIDER
+      );
+    },
+    isSelected(item) {
+      let selected = false;
+
+      if (getType(item) === 'object') {
+        selected = item.text === this.currentItem.text;
+      } else {
+        selected = item === this.currentItem;
+      }
+
+      return selected;
+    },
     setQuickOpen(quickOpen = this.quickOpen) {
       this.$menu.quickOpen = quickOpen;
     },

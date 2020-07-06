@@ -82,6 +82,16 @@
 );
 ```
 
+```css
+@use 'balm-ui/components/select/variables' with (
+  $selected-bgcolor: rgba(
+    theme-variables.prop-value(primary),
+    0.5
+  ),
+  $selected-color: theme-variables.prop-value(on-primary)
+);
+```
+
 - `<ui-select-icon>`
 
 ```css

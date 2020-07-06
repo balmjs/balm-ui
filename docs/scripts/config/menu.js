@@ -61,7 +61,7 @@ const MATERIAL_COMPONENTS = [
         url: 'grid'
       },
       {
-        icon: 'format_list_bulleted',
+        icon: 'view_list',
         name: 'Form',
         description: 'Form + Form Field'
       },
@@ -178,7 +178,7 @@ const MATERIAL_COMPONENTS = [
         description: 'Chips for actions, selection, and input'
       },
       {
-        icon: 'file_upload',
+        icon: 'publish',
         name: 'File',
         description: 'File upload'
       },
@@ -292,7 +292,7 @@ const MATERIAL_COMPONENTS = [
         plus: true
       },
       {
-        icon: 'progress',
+        icon: 'trip_origin',
         name: 'Linear Progress',
         description: 'Fills from 0% to 100%, represented by bars',
         url: 'progress'

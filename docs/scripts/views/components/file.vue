@@ -38,7 +38,7 @@
             <div class="inner">
               <span class="preview" :style="setBg(file)"></span>
               <span class="actions">
-                <ui-fab v-if="!file.uploaded" icon="file_upload" mini @click="upload(file)"></ui-fab>
+                <ui-fab v-if="!file.uploaded" icon="publish" mini @click="upload(file)"></ui-fab>
                 <ui-fab icon="delete" mini @click="remove(index)"></ui-fab>
               </span>
             </div>
@@ -53,7 +53,7 @@
         </transition-group>
         <ui-button raised @click="uploadAllFiles">
           <template #before="{ iconClass }">
-            <ui-icon :class="iconClass">file_upload</ui-icon>
+            <ui-icon :class="iconClass">publish</ui-icon>
           </template>
           Upload All
         </ui-button>

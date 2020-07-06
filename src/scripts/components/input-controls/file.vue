@@ -12,7 +12,7 @@
     />
     <slot>
       <button :class="className.button" :disabled="disabled">
-        <i :class="[UI_GLOBAL.cssClasses.icon, className.icon]">file_upload</i>
+        <i :class="[UI_GLOBAL.cssClasses.icon, className.icon]">publish</i>
         <span :class="className.label">{{ text }}</span>
       </button>
     </slot>

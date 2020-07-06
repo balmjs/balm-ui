@@ -3,7 +3,7 @@ const STATE_ICONS = {
   defaults: {
     success: 'check_circle',
     info: 'error',
-    error: 'add_circle',
+    error: 'cancel',
     help: 'help'
   },
   outlined: {

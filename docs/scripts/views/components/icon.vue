@@ -69,17 +69,20 @@
 
     <template #after>
       <div v-shadow="1" class="search-area">
-        <ui-autocomplete
-          id="search"
-          :model="keywords"
-          input-type="search"
-          icon="search"
-          placeholder="Icon name keywords"
-          fullwidth
-          :source="tags"
-          @input="onSearch"
-          @selected="onSelected"
-        ></ui-autocomplete>
+        <div class="search-area-inner">
+          <ui-autocomplete
+            id="search"
+            :model="keywords"
+            input-type="search"
+            icon="search"
+            placeholder="Icon name keywords"
+            fullwidth
+            :source="tags"
+            @input="onSearch"
+            @selected="onSelected"
+          ></ui-autocomplete>
+          <ui-select id="icon-type" v-model="typeOption" :options="TypeOptions">Theme</ui-select>
+        </div>
         <ui-textfield-helper class="search-helper" visible>
           TIPS: Click an icon to copy icon name, then you can use `
           <b>&lt;ui-icon&gt;${icon_name}&lt;/ui-icon&gt;</b>`.

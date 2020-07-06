@@ -1,7 +1,7 @@
 // Base style
 @use '@material/theme/variables' as theme-variables with (
   $primary: #6200ee, // baseline purple, 500 tone
-  $secondary: #018786, // baseline teal, 600 tone
+  $secondary: #018786 // baseline teal, 600 tone
 );
 
 @use '../../../src/styles/balm-ui.scss';

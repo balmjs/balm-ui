@@ -1,10 +1,18 @@
-# BalmUI ChangeLog
+# [BalmUI](https://material.balmjs.com) ChangeLog
 
-## v7.4.0
+## v7.4.0 / 2020-07-06
+
+### Bug Fixes
+
+- `<ui-autocomplete>`: search static data bugfix
+- `<ui-menu>`: selected item bugfix
 
 ### Features
 
-- add `$resetValidations`
+- material icons: up to date @`v53`
+- validator: add `$resetValidations`
+- `<ui-menu>`, `<ui-select>`, `<ui-autocomplete>`: add new sass variables for selected state
+- update docs
 
 ### BREAKING CHANGES
 

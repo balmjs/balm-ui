@@ -1,24 +1,15 @@
-@use '@material/theme/variables' as theme-variables;
+@use './variables' as variables;
 
 .mdc-menu-surface--absolute {
   position: absolute;
 }
 
-.mdc-menu-surface--fullwidth {
-  width: 100%;
-}
-
 .mdc-menu-surface {
-  :not(.mdc-list--non-interactive)
-    > :not(.mdc-list-item--disabled).mdc-list-item {
-    &.mdc-ripple-surface--primary::before,
-    &.mdc-ripple-surface--primary::after {
-      background-color: theme-variables.prop-value(primary);
-    }
-
-    &.mdc-ripple-surface--accent::before,
-    &.mdc-ripple-surface--accent::after {
-      background-color: theme-variables.prop-value(secondary);
+  :not(.mdc-list-item--disabled).mdc-menu-item--selected {
+    background-color: variables.$selected-bgcolor;
+    color: variables.$selected-color;
+    .mdc-list-item__graphic {
+      color: variables.$selected-color;
     }
   }
 }

@@ -1,0 +1,76 @@
+@use './variables' as divider-variables;
+
+.mdc-divider {
+  justify-content: space-around;
+  align-items: center;
+}
+
+.mdc-divider__text {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &::before,
+  &::after {
+    display: block;
+    content: '';
+  }
+
+  span {
+    display: inline-block;
+    flex-shrink: 0;
+    font-size: inherit;
+    text-transform: uppercase;
+  }
+}
+
+.mdc-divider--horizontal {
+  display: flex;
+  width: 100%;
+
+  &.mdc-divider--no-text {
+    height: divider-variables.$horizontal-height;
+    background-color: divider-variables.$color;
+  }
+
+  .mdc-divider__text {
+    width: 100%;
+
+    &::before,
+    &::after {
+      width: 50%;
+      height: divider-variables.$horizontal-height;
+      background-color: divider-variables.$color;
+    }
+
+    & > span {
+      padding: divider-variables.$horizontal-text-padding;
+    }
+  }
+}
+
+.mdc-divider--vertical {
+  display: inline-flex;
+  height: 100%;
+
+  &.mdc-divider--no-text {
+    width: divider-variables.$vertical-width;
+    background-color: divider-variables.$color;
+  }
+
+  .mdc-divider__text {
+    height: 100%;
+    flex-direction: column;
+
+    &::before,
+    &::after {
+      width: divider-variables.$vertical-width;
+      height: 50%;
+      background-color: divider-variables.$color;
+    }
+
+    & > span {
+      padding: divider-variables.$vertical-text-padding;
+    }
+  }
+}

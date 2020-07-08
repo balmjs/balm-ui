@@ -3,7 +3,7 @@ import multiConfigure from './config/multi-configure';
 /**
  * Components
  */
-import UiBottomNavigation from './components/mobile/bottom-navigation';
+import UiBottomNavigation from './components/navigation/bottom-navigation';
 import UiBanner from './components/modal/banner';
 
 const version = require('../../package.json').version;

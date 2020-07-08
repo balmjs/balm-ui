@@ -13,7 +13,7 @@
       </slot>
       <!-- Text -->
       <div class="mdc-banner__text">
-        <slot></slot>
+        <slot>{{ message }}</slot>
       </div>
     </div>
     <!-- Buttons -->
@@ -36,6 +36,12 @@ const UI_BANNER = {
 export default {
   name: 'UiBanner',
   mixins: [materialIconMixin],
+  props: {
+    message: {
+      type: String,
+      default: ''
+    }
+  },
   data() {
     return {
       UI_GLOBAL

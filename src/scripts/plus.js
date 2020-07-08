@@ -4,7 +4,6 @@ import multiConfigure from './config/multi-configure';
  * Components
  */
 import UiAutocomplete from './components/input-controls/autocomplete';
-import UiTextDivider from './components/dividers/text-divider';
 import UiSkeleton from './components/others/skeleton';
 import UiDatepicker from './components/pickers/datepicker';
 import UiRangepicker from './components/pickers/rangepicker';
@@ -31,8 +30,7 @@ const components = {
   UiDatepicker,
   UiEditor,
   UiRangepicker,
-  UiSkeleton,
-  UiTextDivider
+  UiSkeleton
 };
 
 const plugins = {

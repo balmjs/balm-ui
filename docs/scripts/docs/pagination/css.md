@@ -5,14 +5,14 @@
 
   $fill-color: white,
   $text-color: rgba(theme-variables.prop-value(on-surface), 0.87),
-  $border-color: rgba(theme-variables.prop-value(on-surface), 0.38),
+  $border-color: rgba(theme-variables.prop-value(on-surface), 0.6),
 
   $hover-fill-color: $fill-color,
   $hover-text-color: $color,
   $hover-border-color: $color,
 
-  $active-fill-color: rgba($color, 0.7),
+  $active-fill-color: rgba($color, 0.6),
   $active-text-color: $fill-color,
-  $active-border-color: $color
+  $active-border-color: rgba($color, 0.6)
 );
 ```

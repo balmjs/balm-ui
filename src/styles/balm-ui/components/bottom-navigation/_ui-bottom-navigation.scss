@@ -15,7 +15,7 @@
   bottom: ui-bottom-navigation-variables.$stacked-height;
 }
 
-.ui-bottom-navigation {
+.mdc-bottom-navigation {
   position: fixed;
   right: 0;
   bottom: 0;
@@ -25,7 +25,7 @@
   background-color: ui-bottom-navigation-variables.$fill-color;
   @include elevation-mixins.elevation(4);
 
-  &.ui-bottom-navigation--stacked {
+  &.mdc-bottom-navigation--stacked {
     height: ui-bottom-navigation-variables.$stacked-height;
   }
 
@@ -44,7 +44,7 @@
 }
 
 @each $width in ui-bottom-navigation-variables.$destinations {
-  .ui-bottom-navigation--dest-#{$width} {
+  .mdc-bottom-navigation--dest-#{$width} {
     .mdc-tab {
       width: percentage($width/100);
     }

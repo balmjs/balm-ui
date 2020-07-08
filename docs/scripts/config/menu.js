@@ -67,10 +67,8 @@ const MATERIAL_COMPONENTS = [
       },
       {
         icon: 'horizontal_rule',
-        name: 'Text Divider',
-        description: 'Divider',
-        url: 'text-divider',
-        plus: true
+        name: 'Divider',
+        description: 'Divider'
       }
     ]
   },

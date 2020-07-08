@@ -11,6 +11,7 @@ import UiIconButton from './components/buttons/icon-button';
 import UiTopAppBar from './components/app-bars/top-app-bar';
 import UiGrid from './components/layout-grid/grid';
 import UiGridCell from './components/layout-grid/grid-cell';
+import UiDivider from './components/others/divider'; // Custom
 // Navigation
 import UiDrawer from './components/navigation/drawer';
 import UiDrawerHeader from './components/navigation/drawer-header';
@@ -128,6 +129,7 @@ const components = {
   UiDialogActions,
   UiDialogContent,
   UiDialogTitle,
+  UiDivider,
   UiDrawer,
   UiDrawerHeader,
   UiDrawerTitle,

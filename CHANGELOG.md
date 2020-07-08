@@ -1,5 +1,17 @@
 # [BalmUI](https://material.balmjs.com) ChangeLog
 
+## v7.5.0 / 2020-07-08
+
+### Chores
+
+- `<ui-pagination>`: update sass variables
+
+### BREAKING CHANGES
+
+- `<ui-text-divider>`: rename to `<ui-divider>`
+- ⚠️ migrate from `balm-ui/dist/balm-ui-plus.js` to `balm-ui/dist/balm-ui.js`
+  - `<ui-divider>`
+
 ## v7.4.3 / 2020-07-06
 
 ### Bug Fixes

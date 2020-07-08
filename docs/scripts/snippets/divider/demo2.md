@@ -1,5 +1,5 @@
 ```html
-<ui-text-divider type="|" class="vertical-divider-demo">
+<ui-divider type="|" class="vertical-divider-demo">
   <template #left>
     <div class="block red"></div>
   </template>
@@ -7,7 +7,7 @@
   <template #right>
     <div class="block blue"></div>
   </template>
-</ui-text-divider>
+</ui-divider>
 ```
 
 ```css

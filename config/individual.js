@@ -8,13 +8,16 @@ const input = {
 
 const components = [
   // MDC
+  'badge', // Custom
   'button',
   'card',
   'checkbox',
   'chips',
   'dialog',
+  'divider', // Custom
   'drawer',
   'fab',
+  'file', // Custom
   'form', // Custom
   'form-field',
   'grid',
@@ -23,6 +26,7 @@ const components = [
   'image-list',
   'list',
   'menu',
+  'pagination', // Custom
   'progress',
   'radio',
   'select',
@@ -37,15 +41,11 @@ const components = [
   // Plus
   'alert',
   'autocomplete',
-  'badge',
   'collapse',
   'datepicker',
   'editor',
-  'file',
-  'pagination',
   'rangepicker',
   'skeleton',
-  'text-divider',
   // Next
   'bottom-navigation',
   'banner'

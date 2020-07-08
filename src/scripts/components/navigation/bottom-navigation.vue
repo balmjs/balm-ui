@@ -40,14 +40,14 @@ export default {
   computed: {
     className() {
       let result = [
-        'ui-bottom-navigation',
+        'mdc-bottom-navigation',
         {
-          'ui-bottom-navigation--stacked': this.stacked
+          'mdc-bottom-navigation--stacked': this.stacked
         }
       ];
 
       let width = Math.floor(100 / this.destinations);
-      result.push(`ui-bottom-navigation--dest-${width}`);
+      result.push(`mdc-bottom-navigation--dest-${width}`);
 
       return result;
     }

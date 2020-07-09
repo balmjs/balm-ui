@@ -28,12 +28,10 @@ Vue.use(BalmUI, {
 
 ```js
 import Vue from 'vue';
-import UiTableComponent from 'balm-ui/components/table';
+import UiTable from 'balm-ui/components/table';
 
-Vue.use(UiTableComponent, {
-  // Optional. Overwrite `<ui-table>` props with default value.
-  UiTable: {
-    // some props
-  }
+// Optional. Overwrite `<ui-table>` props with default value.
+Vue.use(UiTable, {
+  // some props
 });
 ```

@@ -1,5 +1,3 @@
-import '@/polyfill';
-import { isIE, killIE } from '@/kill-ie';
 import Vue from 'vue';
 // import VueI18n from 'vue-i18n';
 import $http from '@/plugins/$http';
@@ -28,9 +26,7 @@ import { isProd } from '@/config';
 import { pickerLang } from '@/config/lang';
 import './my-sw';
 
-if (isIE) {
-  killIE();
-} else {
+function createApp() {
   Vue.config.productionTip = false;
   // Vue.use(VueI18n);
   Vue.use($http);
@@ -101,3 +97,5 @@ if (isIE) {
     // i18n
   });
 }
+
+export default createApp;

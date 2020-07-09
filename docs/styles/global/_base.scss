@@ -48,3 +48,39 @@ h6 {
 .language-sh {
   color: #17ff0b !important;
 }
+
+.balmui-placeholder {
+  display: table;
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
+  // *position: relative;
+
+  .container {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    // *position: absolute;
+    // *top: 45%;
+    // *width: 100%;
+  }
+
+  .content {
+    display: inline-block;
+    text-align: center;
+  }
+
+  h1 {
+    width: 100%;
+    font: italic 96px 'Times New Roman', Georgia, Arial, sans-serif;
+    text-align: center;
+  }
+
+  b {
+    color: orange;
+  }
+
+  strong {
+    color: global-vars.$primary;
+  }
+}

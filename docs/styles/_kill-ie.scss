@@ -1,21 +1,19 @@
 .kill-ie {
-  display: table;
-  width: 100%;
-  height: 80%;
+  position: absolute;
+  text-align: center;
+  background-color: #bdbdbd;
+
+  h1 {
+    font-size: 36px;
+  }
+
+  p {
+    font-size: 24px;
+  }
+
   a {
-    text-decoration: none;
+    text-decoration: underline;
     color: red;
-  }
-  b {
-    border-bottom: 1px solid;
-  }
-  .container {
-    display: table-cell;
-    text-align: center;
-    vertical-align: middle;
-  }
-  .content {
-    display: inline-block;
-    text-align: center;
+    font-weight: bold;
   }
 }

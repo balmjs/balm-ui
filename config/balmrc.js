@@ -38,7 +38,7 @@ module.exports = {
             'core-js-pure',
             'src/scripts'
           ],
-          app: './docs/scripts/main.js'
+          app: './docs/scripts/index.js'
         }
       : {
           'balm-ui': './src/scripts/index.js',

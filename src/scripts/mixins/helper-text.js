@@ -1,7 +1,16 @@
 import getType from '../utils/typeof';
 
 export default {
+  model: {
+    prop: 'validMsg',
+    event: 'change' // NOTE: just for `@blur` event of the `<ui-textfield>`
+  },
   props: {
+    // States
+    validMsg: {
+      type: [String, Boolean],
+      default: false
+    },
     // Element attributes
     id: {
       type: [String, null],
@@ -10,10 +19,6 @@ export default {
     // UI attributes
     visible: {
       type: Boolean,
-      default: false
-    },
-    validMsg: {
-      type: [String, Boolean],
       default: false
     }
   },

@@ -7,7 +7,7 @@
     :dense="controls.dense"
     :required="controls.required"
     :class="{'demo-text-field-custom-colors': controls.customColor}"
-    helptextId="my-text-field-helper-text"
+    helperTextId="my-text-field-helper-text"
   >
     Email Address
   </ui-textfield>

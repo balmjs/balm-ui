@@ -1,10 +1,10 @@
 ```html
 <ui-textfield
-  type="password"
   id="pw"
+  inputType="password"
   required
   pattern=".{8,}"
-  helptextId="pw-validation-msg"
+  helperTextId="pw-validation-msg"
   :attrs="{autocomplete: 'current-password'}"
 >
   Choose password

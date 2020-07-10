@@ -10,33 +10,33 @@
     >
     <ui-textfield-helper
       id="mobile-helper-text"
-      :validMsg="validMsg.mobile"
+      v-model="validMsg.mobile"
     ></ui-textfield-helper>
   </ui-form-field>
   <ui-form-field class="form-item">
     <ui-textfield
-      type="password"
       id="password"
       v-model="formData.password"
+      inputType="password"
       helperTextId="password-helper-text"
       >Password</ui-textfield
     >
     <ui-textfield-helper
       id="password-helper-text"
-      :validMsg="validMsg.password"
+      v-model="validMsg.password"
     ></ui-textfield-helper>
   </ui-form-field>
   <ui-form-field class="form-item">
     <ui-textfield
-      type="password"
       id="repassword"
       v-model="formData.repassword"
+      inputType="password"
       helperTextId="repassword-helper-text"
       >Repeat Password</ui-textfield
     >
     <ui-textfield-helper
       id="repassword-helper-text"
-      :validMsg="validMsg.repassword"
+      v-model="validMsg.repassword"
     ></ui-textfield-helper>
   </ui-form-field>
   <ui-form-field class="form-item form-actions">

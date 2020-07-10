@@ -2,6 +2,10 @@
 
 ## v7.5.1 / 2020-07-10
 
+### Bug Fixes
+
+- `<ui-textfield>`, `<ui-textfield-helper>`: show `validMsg` bugfix
+
 ### Chores
 
 - `<ui-divider>`: update sass variables

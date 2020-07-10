@@ -13,7 +13,7 @@
           v-model="formData.mobile"
           helper-text-id="mobile-helper-text"
         >Mobile</ui-textfield>
-        <ui-textfield-helper id="mobile-helper-text" :valid-msg="validMsg.mobile"></ui-textfield-helper>
+        <ui-textfield-helper id="mobile-helper-text" v-model="validMsg.mobile"></ui-textfield-helper>
       </ui-form-field>
       <ui-form-field class="form-item">
         <ui-textfield
@@ -22,7 +22,7 @@
           input-type="password"
           helper-text-id="password-helper-text"
         >Password</ui-textfield>
-        <ui-textfield-helper id="password-helper-text" :valid-msg="validMsg.password"></ui-textfield-helper>
+        <ui-textfield-helper id="password-helper-text" v-model="validMsg.password"></ui-textfield-helper>
       </ui-form-field>
       <ui-form-field class="form-item">
         <ui-textfield
@@ -31,9 +31,8 @@
           input-type="password"
           helper-text-id="repassword-helper-text"
         >Repeat Password</ui-textfield>
-        <ui-textfield-helper id="repassword-helper-text" :valid-msg="validMsg.repassword"></ui-textfield-helper>
+        <ui-textfield-helper id="repassword-helper-text" v-model="validMsg.repassword"></ui-textfield-helper>
       </ui-form-field>
-      <p>{{ result }}</p>
       <ui-form-field class="form-item form-actions">
         <ui-button raised @click="submit">Submit</ui-button>
       </ui-form-field>
@@ -86,18 +85,13 @@ export default {
         password: '',
         repassword: ''
       },
-      validMsg: {},
-      result: {}
+      validMsg: {}
     };
   },
   methods: {
     submit() {
-      let result = this.$validate(this.formData);
-      this.result = result;
-      let { valid, validMsg } = result;
+      let { valid, validMsg } = this.$validate(this.formData);
       this.validMsg = validMsg;
-
-      console.log(result);
 
       if (valid) {
         this.$toast('gg');

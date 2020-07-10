@@ -339,7 +339,14 @@ export default {
       this.$emit(UI_TEXTFIELD.EVENT.ENTER, event.target.value);
     },
     handleBlur(event) {
+      this.clearCustomValidationMsg();
       this.$emit(UI_TEXTFIELD.EVENT.BLUR, event);
+    },
+    clearCustomValidationMsg() {
+      const textfieldHelper = this.$parent.$children.find(
+        (vnode) => vnode.id === this.helperTextId
+      );
+      textfieldHelper && textfieldHelper.$emit('change', '');
     }
   }
 };

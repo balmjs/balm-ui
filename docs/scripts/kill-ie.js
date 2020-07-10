@@ -1,4 +1,4 @@
-import { detectIE } from '../../src/scripts'; // Default Usage
+import { detectIE } from 'balm-ui'; // Default Usage
 
 const IE = detectIE();
 
@@ -14,9 +14,6 @@ const killIE = () => {
       <p>Recommended Choice：<a href="https://www.google.cn/intl/zh-CN/chrome/">Chrome</a></p>
     </div>`;
   // <![endif]-->
-
-  document.getElementsByTagName('html')[0].style.height = '100%';
-  body.style.height = '100%';
 
   body.innerHTML = template;
 };

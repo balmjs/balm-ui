@@ -3,6 +3,8 @@ const env = require('./env');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const { version } = require('../package.json');
 
+const workspace = path.resolve(__dirname, '..');
+
 module.exports = {
   roots: {
     source: env.useDocs ? 'docs' : 'src'
@@ -60,16 +62,12 @@ module.exports = {
     urlLoaderOptions: {
       esModule: false
     },
-    includeJsResource: env.useDocs
-      ? [
-          path.resolve(__dirname, '../src/material-components-web'),
-          path.resolve(__dirname, '../src/scripts')
-        ]
-      : [path.resolve(__dirname, '../src/material-components-web')],
+    includeJsResource: env.useDocs ? [path.join(workspace, 'src/scripts')] : [],
     alias: {
       vue$: 'vue/dist/vue.esm.js',
       pickerLangZh: 'flatpickr/dist/l10n/zh.js',
-      '@': path.resolve(__dirname, '../docs/scripts')
+      '@': path.join(workspace, 'docs/scripts'),
+      'balm-ui': path.join(workspace, 'src/scripts')
     },
     plugins: [new VueLoaderPlugin()],
     eslint: true,
@@ -97,7 +95,7 @@ module.exports = {
   pwa: {
     enabled: env.buildDocs,
     mode: 'injectManifest',
-    version: `v${version.replace(/\./g, '')}-1`
+    version: `v${version.replace(/\./g, '')}`
   },
   useDefaults: env.useDefault,
   logs: {

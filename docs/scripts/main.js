@@ -1,41 +1,63 @@
+import '@/polyfill';
 import Vue from 'vue';
-// import VueI18n from 'vue-i18n';
 import $http from '@/plugins/$http';
 import $bus from '@/plugins/$bus';
 import $store from '@/plugins/$store';
 import router from '@/routes';
 import App from '@/views/layouts/app';
-import BalmUI from '../../src/scripts/index'; // 'balm-ui'
-import BalmUIPlus from '../../src/scripts/plus'; // 'balm-ui-plus'
-import BalmUINext from '../../src/scripts/next'; // 'balm-ui-next'
+import { isProd } from '@/config';
+import { pickerLang } from '@/config/lang';
 import validatorRules from '@/config/validator-rules';
+// BalmUI
+import BalmUI from 'balm-ui';
+// import BalmUIPlus from 'balm-ui/plus';
+import UiAutocomplete from 'balm-ui/components/autocomplete';
+import UiDatepicker from 'balm-ui/components/datepicker';
+import UiRangepicker from 'balm-ui/components/rangepicker';
+import UiCollapse from 'balm-ui/components/collapse';
+import UiAlert from 'balm-ui/components/alert';
+import $alert from 'balm-ui/plugins/alert';
+import $confirm from 'balm-ui/plugins/confirm';
+import $toast from 'balm-ui/plugins/toast';
+import UiSkeleton from 'balm-ui/components/skeleton';
+import vAnchor from 'balm-ui/directives/anchor';
+import BalmUINext from 'balm-ui/next';
+// Custom components
 import UiPage from '@/components/page';
 import UiMarkdown from '@/components/markdown';
 import UiSnippet from '@/components/snippet';
 import UiFooterNav from '@/components/footer-nav';
 import UiTocAffix from '@/components/toc-affix';
 import SvgLogo from '@/components/svg-logo';
-// syntax highlighting
+// Syntax highlighting
 import prismjs from 'prismjs';
 import 'prismjs/plugins/toolbar/prism-toolbar';
 import 'prismjs/plugins/highlight-keywords/prism-highlight-keywords';
 import 'prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard';
-// ready translated locales
+// Ready translated locales
 // import { locales } from '@/config/lang';
-import { isProd } from '@/config';
-import { pickerLang } from '@/config/lang';
+// PWA
 import './my-sw';
 
 function createApp() {
   Vue.config.productionTip = false;
-  // Vue.use(VueI18n);
   Vue.use($http);
   Vue.use($bus);
   Vue.use($store);
-  Vue.use(BalmUI);
-  Vue.use(BalmUIPlus, {
+  Vue.use(BalmUI, {
     validator: validatorRules
   });
+  // Vue.use(BalmUIPlus);
+  Vue.use(UiAutocomplete);
+  Vue.use(UiDatepicker);
+  Vue.use(UiRangepicker);
+  Vue.use(UiCollapse);
+  Vue.use(UiAlert);
+  Vue.use($alert);
+  Vue.use($confirm);
+  Vue.use($toast);
+  Vue.use(UiSkeleton);
+  Vue.directive(vAnchor.name, vAnchor);
   Vue.use(BalmUINext);
 
   Vue.component(UiPage.name, UiPage);
@@ -93,7 +115,7 @@ function createApp() {
       App
     },
     router,
-    template: '<App/>'
+    template: '<app/>'
     // i18n
   });
 }

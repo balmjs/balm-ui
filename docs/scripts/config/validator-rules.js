@@ -1,4 +1,4 @@
-import { types } from '../../../src/scripts'; // 'balm-ui-plus'
+import { types } from 'balm-ui';
 
 export default {
   required: {

@@ -1,3 +1,4 @@
+import { version } from '../../package.json';
 import autoInstall from './config/auto-install';
 import multiConfigure from './config/multi-configure';
 /**
@@ -107,8 +108,6 @@ import vBadge from './directives/badge'; // Custom
 import types from './utils/types';
 import helpers from './utils/helpers';
 import detectIE from './utils/ie';
-
-const version = require('../../package.json').version;
 
 const components = {
   UiBadge,

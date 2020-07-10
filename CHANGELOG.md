@@ -1,5 +1,12 @@
 # [BalmUI](https://material.balmjs.com) ChangeLog
 
+## v7.5.1 / 2020-07-10
+
+### Chores
+
+- `<ui-divider>`: update sass variables
+- update docs for IE
+
 ## v7.5.0 / 2020-07-08
 
 ### Chores

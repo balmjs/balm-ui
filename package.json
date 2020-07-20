@@ -1,6 +1,6 @@
 {
   "name": "balm-ui",
-  "version": "7.5.1",
+  "version": "7.5.2",
   "description": "Next Generation Material UI for Vue.js",
   "keywords": [
     "balm",
@@ -63,7 +63,7 @@
     "axios": "^0.19.2",
     "babel-eslint": "^10.1.0",
     "babel-plugin-istanbul": "^6.0.0",
-    "balm": "^2.21.1",
+    "balm": "^3.0.0-alpha.1",
     "chai": "^4.2.0",
     "clipboard": "^2.0.6",
     "core-js": "^3.6.5",
@@ -100,7 +100,8 @@
     "vue-meta": "^2.4.0",
     "vue-router": "^3.3.4",
     "vue-template-compiler": "^2.6.11",
-    "webpack-node-externals": "^1.7.2"
+    "webpack": "^4.43.0",
+    "webpack-node-externals": "^2.5.0"
   },
   "peerDependencies": {
     "vue": ">=2.1.0"

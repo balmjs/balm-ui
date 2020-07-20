@@ -343,10 +343,12 @@ export default {
       this.$emit(UI_TEXTFIELD.EVENT.BLUR, event);
     },
     clearCustomValidationMsg() {
-      const textfieldHelper = this.$parent.$children.find(
-        (vnode) => vnode.id === this.helperTextId
-      );
-      textfieldHelper && textfieldHelper.$emit('change', '');
+      if (this.helperTextId) {
+        const textfieldHelper = this.$parent.$children.find(
+          (vnode) => vnode.id === this.helperTextId
+        );
+        textfieldHelper && textfieldHelper.$emit('change', '');
+      }
     }
   }
 };

@@ -73,7 +73,7 @@ module.exports = {
     }
   },
   images: {
-    defaultPlugins: {
+    plugins: {
       jpeg: false,
       png: false
     }

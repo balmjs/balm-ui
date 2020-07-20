@@ -1,5 +1,11 @@
 # [BalmUI](https://material.balmjs.com) ChangeLog
 
+## v7.5.2 / 2020-07-20
+
+### Bug Fixes
+
+- `<ui-textfield>`: event `blur` bugfix
+
 ## v7.5.1 / 2020-07-10
 
 ### Bug Fixes

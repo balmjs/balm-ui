@@ -1,3 +1,4 @@
+const fs = require('fs');
 const env = require('./env');
 const constants = require('./constants');
 const individual = require('./individual');

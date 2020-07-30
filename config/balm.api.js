@@ -1,23 +1,8 @@
-const fs = require('fs');
-const balm = require('balm');
-const balmConfig = require('./config/balmrc');
-const env = require('./config/env');
-const constants = require('./config/constants');
-const individual = require('./config/individual');
-require('./config/update');
+const env = require('./env');
+const constants = require('./constants');
+const individual = require('./individual');
 
-balm.config = balmConfig;
-if (env.updateMDC) {
-  balm.afterTask = 'update:mdc';
-}
-if (env.updateMDI) {
-  balm.afterTask = 'update:mdi';
-}
-if (env.updateMDIJson) {
-  balm.afterTask = 'update:mdi:json';
-}
-
-balm.go((mix) => {
+module.exports = (mix) => {
   if (env.buildDocs) {
     mix.copy('./docs/data/*', './dist/data');
     mix.remove([
@@ -108,4 +93,4 @@ balm.go((mix) => {
       }
     }
   }
-});
+};

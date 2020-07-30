@@ -1,99 +1,104 @@
-const path = require('path');
+const pkg = require('../package.json');
 const env = require('./env');
+const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const { version } = require('../package.json');
 
-const workspace = path.resolve(__dirname, '..');
+function getConfig(balm) {
+  const useDocs = !balm.config.env.isProd || env.buildDocs;
+  const workspace = path.resolve(__dirname, '..');
 
-module.exports = {
-  roots: {
-    source: env.useDocs ? 'docs' : 'src'
-  },
-  paths: {
-    target: {
-      font: env.useDocs ? 'font' : 'fonts'
-    }
-  },
-  styles: {
-    extname: 'scss',
-    dartSass: true
-  },
-  scripts: {
-    entry: env.useDocs
-      ? {
-          hello: [
-            '@babel/runtime-corejs3',
-            'axios',
-            'clipboard',
-            'deepmerge',
-            'flatpickr',
-            'prismjs',
-            'vue',
-            'vue-i18n',
-            'vue-meta',
-            'vue-router'
-          ],
-          balm: ['src/material-components-web'],
-          ui: ['@material', 'core-js', 'core-js-pure', 'src/scripts'],
-          app: './docs/scripts/index.js'
-        }
-      : {
-          'balm-ui': './src/scripts/index.js',
-          'balm-ui-plus': './src/scripts/plus.js',
-          'balm-ui-next': './src/scripts/next.js'
+  return {
+    roots: {
+      source: useDocs ? 'docs' : 'src'
+    },
+    paths: {
+      target: {
+        font: useDocs ? 'font' : 'fonts'
+      }
+    },
+    styles: {
+      extname: 'scss',
+      dartSass: true
+    },
+    scripts: {
+      entry: useDocs
+        ? {
+            hello: [
+              '@babel/runtime-corejs3',
+              'axios',
+              'clipboard',
+              'deepmerge',
+              'flatpickr',
+              'prismjs',
+              'vue',
+              'vue-i18n',
+              'vue-meta',
+              'vue-router'
+            ],
+            balm: ['src/material-components-web'],
+            ui: ['@material', 'core-js', 'core-js-pure', 'src/scripts'],
+            app: './docs/scripts/index.js'
+          }
+        : {
+            'balm-ui': './src/scripts/index.js',
+            'balm-ui-plus': './src/scripts/plus.js',
+            'balm-ui-next': './src/scripts/next.js'
+          },
+      library: useDocs ? '' : 'BalmUI',
+      libraryTarget: useDocs ? 'var' : 'umd',
+      loaders: [
+        {
+          test: /\.vue$/,
+          loader: 'vue-loader'
         },
-    library: env.useDocs ? '' : 'BalmUI',
-    libraryTarget: env.useDocs ? 'var' : 'umd',
-    loaders: [
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader'
+        {
+          test: /\.md$/,
+          loader: 'html-loader!markdown-loader'
+        }
+      ],
+      urlLoaderOptions: {
+        esModule: false
       },
-      {
-        test: /\.md$/,
-        loader: 'html-loader!markdown-loader'
+      includeJsResource: useDocs ? [path.join(workspace, 'src/scripts')] : [],
+      alias: {
+        vue$: 'vue/dist/vue.esm.js',
+        pickerLangZh: 'flatpickr/dist/l10n/zh.js',
+        '@': path.join(workspace, 'docs/scripts'),
+        'balm-ui': path.join(workspace, 'src/scripts')
+      },
+      plugins: [new VueLoaderPlugin()],
+      eslint: true,
+      options: {
+        compress: {
+          drop_console: false
+        }
       }
-    ],
-    urlLoaderOptions: {
-      esModule: false
     },
-    includeJsResource: env.useDocs ? [path.join(workspace, 'src/scripts')] : [],
-    alias: {
-      vue$: 'vue/dist/vue.esm.js',
-      pickerLangZh: 'flatpickr/dist/l10n/zh.js',
-      '@': path.join(workspace, 'docs/scripts'),
-      'balm-ui': path.join(workspace, 'src/scripts')
-    },
-    plugins: [new VueLoaderPlugin()],
-    eslint: true,
-    options: {
-      compress: {
-        drop_console: false
+    images: {
+      plugins: {
+        jpeg: false,
+        png: false
       }
+    },
+    extras: {
+      excludes: ['index.js', 'service-worker.js'],
+      includes: ['CNAME', 'material-icons.zip']
+    },
+    assets: {
+      publicUrl: env.buildDocs ? '//material.balmjs.com/' : '',
+      cache: env.buildDocs,
+      excludes: ['dist/img/icons/icon-*.png']
+    },
+    pwa: {
+      enabled: env.buildDocs,
+      mode: 'injectManifest',
+      version: `v${pkg.version.replace(/\./g, '')}`
+    },
+    useDefaults: env.useDefaults,
+    logs: {
+      level: 2
     }
-  },
-  images: {
-    plugins: {
-      jpeg: false,
-      png: false
-    }
-  },
-  extras: {
-    excludes: ['index.js', 'service-worker.js'],
-    includes: ['CNAME', 'material-icons.zip']
-  },
-  assets: {
-    publicUrl: env.buildDocs ? '//material.balmjs.com/' : '',
-    cache: env.buildDocs,
-    excludes: ['dist/img/icons/icon-*.png']
-  },
-  pwa: {
-    enabled: env.buildDocs,
-    mode: 'injectManifest',
-    version: `v${version.replace(/\./g, '')}`
-  },
-  useDefaults: env.useDefault,
-  logs: {
-    level: 2
-  }
-};
+  };
+}
+
+module.exports = getConfig;

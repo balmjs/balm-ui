@@ -27,6 +27,11 @@ export default {
       tabList: []
     };
   },
+  watch: {
+    active(val) {
+      this._activateTab(val);
+    }
+  },
   mounted() {
     this.init();
   },

@@ -1,5 +1,13 @@
 # [BalmUI](https://material.balmjs.com) ChangeLog
 
+## v7.6.0 / 2020-07-30
+
+> build by `balm@next`, `balm@3` is coming up!
+
+### Bug Fixes
+
+- `<ui-tab-bar>`: fix set value bug
+
 ## v7.5.2 / 2020-07-20
 
 ### Bug Fixes

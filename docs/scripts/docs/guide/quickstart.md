@@ -2,9 +2,9 @@
 
 Good tools make application development quicker and easier to maintain than if you did everything by hand.
 
-The [Balm CLI](https://github.com/balmjs/balm-cli) is a command line interface tool that scaffolds out a [BalmJS](https://balmjs.com/) project.
+The [Balm CLI](https://github.com/balmjs/balm-cli) is a command line interface tool that scaffolds out a [BalmJS](https://github.com/balmjs/balm) project.
 
-> [BalmJS](https://balmjs.com/)@2.8.0+(Recommended) or other toolchains 🚀
+> [BalmJS](https://balm.js.org/)@2.8.0+(Recommended) or other toolchains 🚀
 
 ## 0. Set up the Development Environment
 
@@ -12,27 +12,14 @@ You need to set up your development environment before you can do anything.
 
 Install [Node.js® and npm](https://nodejs.org/en/download/) if they are not already on your machine.
 
-> **Verify that you are running at least Node.js version 10.13.x or greater and npm version 5.2.x or greater** by running `node -v` and `npm -v` in a terminal/console window. Older versions produce errors, but newer versions are fine.
+> **Verify that you are running at least Node.js version 12.0.0 or greater and npm version 5.2.0 or greater** by running `node -v` and `npm -v` in a terminal/console window. Older versions produce errors, but newer versions are fine.
 
-🔔 BalmJS workflow using [gulp](https://balmjs.com/) for the build process, so you need install `gulp-cli` globally.
-
-```sh
-yarn global add gulp-cli
-# OR
-npm install -g gulp-cli
-
-# Verify
-$ gulp -v
-# Output:
-# CLI version: 2.2.0
-```
-
-Then install the [Balm CLI](https://github.com/balmjs/balm-cli) globally.
+First install the [Balm Core](https://github.com/balmjs/balm) and [Balm CLI](https://github.com/balmjs/balm-cli) globally.
 
 ```sh
-yarn global add balm-cli
+yarn global add balm-core balm-cli
 # OR
-npm install -g balm-cli
+npm install -g balm-core balm-cli
 ```
 
 ## 1. Create a new project

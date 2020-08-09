@@ -284,20 +284,24 @@ module.exports = {
 
 ## 3. Get [Material Design Icons](https://material.balmjs.com/material-icons.zip) without downloading
 
-Edit `/path/to/my-project/gulpfile.js`
+Edit `/path/to/my-project/balm.config.js`
 
 ```js
-const balm = require('balm');
-const balmConfig = require('./config/balmrc');
+const config = require('./config/balmrc');
 
-balm.config = balmConfig;
-
-balm.go((mix) => {
+const api = (mix) => {
   if (mix.env.isProd) {
     // ...
   } else {
     // Use BalmJS `copy` api
     mix.copy('node_modules/balm-ui/fonts/*', 'app/fonts');
   }
-});
+};
+
+module.exports = (balm) => {
+  return {
+    config,
+    api
+  }
+};
 ```

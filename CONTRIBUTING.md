@@ -39,22 +39,26 @@ Install [Node.js® and npm](https://nodejs.org/en/download/) if they are not alr
 
 > **Verify that you are running at least Node.js version 8.x or greater** and npm version 5.x or greater by running `node -v` and `npm -v` in a terminal/console window. Older versions produce errors, but newer versions are fine.
 
-The BalmUI depends on [BalmJS](https://balmjs.com/), and BalmJS using gulp for the build process, so we need to install gulp globally.
+The BalmUI depends on [BalmJS](https://balm.js.org/), so we need to install the `balm-core` globally.
 
 ```sh
-$ npm install -g gulp-cli
+yarn global add balm-core
+# OR
+npm install -g balm-core
 ```
 
 After cloning the repo, run:
 
 ```sh
-$ npm install
+yarn
+# OR
+npm install
 ```
 
 Checkout your branch, enjoy:
 
 ```sh
-$ npm run dev
+npm run dev
 ```
 
 ## Project Structure

@@ -89,6 +89,6 @@ We officially support the last two versions of every major browser. Specifically
 
 ## Thank you
 
-- [BalmJS](https://balmjs.com/)
+- [BalmJS](https://balm.js.org/)
 - [Vue.js](https://vuejs.org/)
 - [MDC Web](https://material.io/components/)

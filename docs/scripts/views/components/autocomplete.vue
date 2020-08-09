@@ -44,7 +44,7 @@ const source = [
   {
     label: 'BalmJS',
     value: 1,
-    url: 'https://balmjs.com/'
+    url: 'https://balm.js.org/'
   },
   {
     label: 'BalmCLI',

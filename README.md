@@ -12,7 +12,7 @@ Following the [Material Design](https://material.io/components/) UI components f
 
 ### 0. Requirement
 
-- [BalmJS](https://balmjs.com/)@2.8.0+(Recommended) or other toolchains
+- [BalmJS](https://balm.js.org/)@2.8.0+(Recommended) or other toolchains
 - [Vue.js](https://vuejs.org/)@2.1.0+
 
 ### 1. Install
@@ -25,10 +25,10 @@ npm install --save balm-ui
 
 ### 2. Config
 
-- **`balm.config`** [**setup**](https://balmjs.com/docs/v2/config/styles.html#styles-dartsass) for Dart Sass
+- **`balm.config`** [**setup**](https://balm.js.org/docs/config/styles.html#styles-dartsass) for Dart Sass
 
 ```js
-balm.config = {
+module.exports = {
   styles: {
     extname: 'scss',
     dartSass: true // !important
@@ -167,7 +167,7 @@ We officially support the last two versions of every major browser. Specifically
 
 ## Special Thanks to
 
-- [BalmJS](https://balmjs.com/)
+- [BalmJS](https://balm.js.org/)
 - [Vue.js](https://vuejs.org/)
 - [MDC Web](https://material.io/components/)
 

@@ -22,6 +22,12 @@ a {
   }
 }
 
+.global-message-banner {
+  position: fixed;
+  z-index: 3;
+  top: global.$topAppBar-row-height;
+}
+
 .balmui-body {
   display: flex;
   justify-content: flex-start;
@@ -97,5 +103,19 @@ a {
 
   #balmui-menu {
     display: none;
+  }
+}
+
+@media (max-width: global.$mobile-breakpoint) {
+  .global-message-banner {
+    top: global.$topAppBar-mobile-row-height;
+
+    .mdc-banner__content {
+      width: auto;
+    }
+
+    .mdc-banner__text {
+      margin-right: 24px;
+    }
   }
 }

@@ -1,0 +1,15 @@
+.page--banner {
+  .hero-demo {
+    width: 100%;
+  }
+
+  .hero-banner {
+    position: relative;
+    z-index: auto;
+    height: 52px;
+
+    &.mdc-banner--with-image {
+      height: 72px;
+    }
+  }
+}

@@ -18,7 +18,8 @@
 @use 'demos/elevation';
 @use 'demos/progress';
 @use 'demos/typography' as demos-typography;
-// // pages
+// pages
+@use 'pages/not-found';
 @use 'pages/home';
 @use 'pages/button' as pages-button;
 @use 'pages/card';
@@ -50,4 +51,4 @@
 @use 'pages/skeleton';
 @use 'pages/badge';
 @use 'pages/form';
-@use 'pages/not-found';
+@use 'pages/banner';

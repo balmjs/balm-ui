@@ -75,7 +75,7 @@
 
   @media (max-width: global.$mobile-breakpoint) {
     .search-area {
-      top: global.$mobile-row-height + global.$tab-height;
+      top: global.$topAppBar-mobile-row-height + global.$tab-height;
     }
 
     #icon-type {

@@ -26,6 +26,13 @@
           </a>
         </template>
       </ui-top-app-bar>
+      <!-- Global Message -->
+      <ui-banner
+        v-model="showGlobalMessage"
+        class="global-message-banner"
+        primary-button-text="Cool"
+        secondary-button-text="Good"
+      >Do you like BalmUI</ui-banner>
       <!-- Content -->
       <div class="balmui-body">
         <!-- Drawer -->
@@ -131,7 +138,8 @@ export default {
       openDrawer: false,
       pageLoading: false,
       loadingProgress: 0,
-      loadingTimer: null
+      loadingTimer: null,
+      showGlobalMessage: false
     };
   },
   computed: {
@@ -164,6 +172,10 @@ export default {
   mounted() {
     this.init();
     window.addEventListener('balmResize', this.init);
+
+    this.$bus.$on('global-message', (message) => {
+      this.showGlobalMessage = true;
+    });
   },
   beforeDestroy() {
     window.removeEventListener('balmResize', this.init);

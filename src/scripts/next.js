@@ -1,16 +1,15 @@
+import packageJson from '../../package.json';
 import autoInstall from './config/auto-install';
 import multiConfigure from './config/multi-configure';
 /**
  * Components
  */
 import UiBottomNavigation from './components/navigation/bottom-navigation';
-import UiBanner from './components/modal/banner';
 
-const version = require('../../package.json').version;
+const version = packageJson.version;
 
 const components = {
-  UiBottomNavigation,
-  UiBanner
+  UiBottomNavigation
 };
 
 const BalmUINext = {

@@ -1,11 +1,12 @@
-@use '@material/slider/mixins' as slider-mixins;
+// TODO: mdc@8.0 changed
+// @use '@material/slider/mixins' as slider-mixins;
 @use '../global/color' as color;
 
 .demo-slider--custom {
-  @include slider-mixins.highlight-color(color.$red-700);
-  @include slider-mixins.rail-color(color.$yellow-600, 1);
-  @include slider-mixins.rail-tick-mark-color(white);
-  @include slider-mixins.thumb-color(color.$orange-500);
-  @include slider-mixins.focus-halo-color(color.$yellow-900);
-  @include slider-mixins.value-pin-fill-color-accessible(color.$pink-500);
+  // @include slider-mixins.highlight-color(color.$red-700);
+  // @include slider-mixins.rail-color(color.$yellow-600, 1);
+  // @include slider-mixins.rail-tick-mark-color(white);
+  // @include slider-mixins.thumb-color(color.$orange-500);
+  // @include slider-mixins.focus-halo-color(color.$yellow-900);
+  // @include slider-mixins.value-pin-fill-color-accessible(color.$pink-500);
 }

@@ -290,6 +290,11 @@ const MATERIAL_COMPONENTS = [
         plus: true
       },
       {
+        icon: 'notifications',
+        name: 'Banner',
+        description: 'Banner'
+      },
+      {
         icon: 'trip_origin',
         name: 'Linear Progress',
         description: 'Fills from 0% to 100%, represented by bars',

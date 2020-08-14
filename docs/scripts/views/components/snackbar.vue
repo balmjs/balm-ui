@@ -23,7 +23,7 @@
         </ui-form-field>
       </ui-form>
       <div class="demo">
-        <ui-button raised @click="$balmUI.onOpen('open')">Show</ui-button>
+        <ui-button raised @click="$balmUI.onOpen('open')">Show Snackbar</ui-button>
 
         <ui-snackbar
           v-model="open"

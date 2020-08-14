@@ -16,6 +16,7 @@ const LATEST_VERSIONS = {
 const mdcDir = './src/material-components-web/';
 const level0 = ['material-components-web.scss'];
 const level1 = [
+  'banner',
   'button',
   'card',
   'checkbox',
@@ -49,6 +50,7 @@ const level1 = [
   'tab-scroller',
   'textfield',
   'theme',
+  'tooltip',
   'top-app-bar',
   'touch-target',
   'typography'

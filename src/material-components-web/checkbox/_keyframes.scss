@@ -20,9 +20,9 @@
 // THE SOFTWARE.
 //
 
-@use "../animation/variables" as animation-variables;
-@use "../theme/mixins";
-@use "./variables";
+@use '../animation/variables' as animation-variables;
+@use '../theme/theme';
+@use './variables';
 
 @mixin container-keyframes_(
   $from-stroke-color,
@@ -33,26 +33,26 @@
 ) {
   @keyframes mdc-checkbox-fade-in-background-#{$uid} {
     0% {
-      @include mixins.prop(border-color, $from-stroke-color);
-      @include mixins.prop(background-color, $from-fill-color);
+      @include theme.property(border-color, $from-stroke-color);
+      @include theme.property(background-color, $from-fill-color);
     }
 
     50% {
-      @include mixins.prop(border-color, $to-stroke-color);
-      @include mixins.prop(background-color, $to-fill-color);
+      @include theme.property(border-color, $to-stroke-color);
+      @include theme.property(background-color, $to-fill-color);
     }
   }
 
   @keyframes mdc-checkbox-fade-out-background-#{$uid} {
     0%,
     80% {
-      @include mixins.prop(border-color, $to-stroke-color);
-      @include mixins.prop(background-color, $to-fill-color);
+      @include theme.property(border-color, $to-stroke-color);
+      @include theme.property(background-color, $to-fill-color);
     }
 
     100% {
-      @include mixins.prop(border-color, $from-stroke-color);
-      @include mixins.prop(background-color, $from-fill-color);
+      @include theme.property(border-color, $from-stroke-color);
+      @include theme.property(background-color, $from-fill-color);
     }
   }
 }

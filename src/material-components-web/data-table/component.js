@@ -24,6 +24,7 @@ import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { MDCCheckbox } from '../checkbox/component';
 import { closest } from '../dom/ponyfill';
+import { MDCLinearProgress } from '../linear-progress/component';
 import { cssClasses, dataAttributes, events, messages, selectors, SortValue } from './constants';
 import { MDCDataTableFoundation } from './foundation';
 /**
@@ -92,6 +93,20 @@ var MDCDataTable = /** @class */ (function (_super) {
     MDCDataTable.prototype.setSelectedRowIds = function (rowIds) {
         this.foundation.setSelectedRowIds(rowIds);
     };
+    /**
+     * Shows progress indicator when data table is in loading state.
+     */
+    MDCDataTable.prototype.showProgress = function () {
+        this.getLinearProgress().open();
+        this.foundation.showProgress();
+    };
+    /**
+     * Hides progress indicator after data table is finished loading.
+     */
+    MDCDataTable.prototype.hideProgress = function () {
+        this.foundation.hideProgress();
+        this.getLinearProgress().close();
+    };
     MDCDataTable.prototype.destroy = function () {
         this.headerRow.removeEventListener('change', this.handleHeaderRowCheckboxChange);
         this.headerRow.removeEventListener('click', this.headerRowClickListener);
@@ -130,26 +145,27 @@ var MDCDataTable = /** @class */ (function (_super) {
             notifySortAction: function (data) {
                 _this.emit(events.SORTED, data, /** shouldBubble */ true);
             },
-            getTableBodyHeight: function () {
-                var tableBody = _this.root.querySelector(selectors.CONTENT);
-                if (!tableBody) {
-                    throw new Error('MDCDataTable: Table body element not found.');
+            getTableContainerHeight: function () {
+                var tableContainer = _this.root.querySelector("." + cssClasses.TABLE_CONTAINER);
+                if (!tableContainer) {
+                    throw new Error('MDCDataTable: Table container element not found.');
                 }
-                return tableBody.getBoundingClientRect().height + "px";
+                return tableContainer.getBoundingClientRect().height;
             },
             getTableHeaderHeight: function () {
                 var tableHeader = _this.root.querySelector(selectors.HEADER_ROW);
                 if (!tableHeader) {
                     throw new Error('MDCDataTable: Table header element not found.');
                 }
-                return tableHeader.getBoundingClientRect().height + "px";
+                return tableHeader.getBoundingClientRect().height;
             },
             setProgressIndicatorStyles: function (styles) {
                 var progressIndicator = _this.root.querySelector(selectors.PROGRESS_INDICATOR);
                 if (!progressIndicator) {
                     throw new Error('MDCDataTable: Progress indicator element not found.');
                 }
-                Object.assign(progressIndicator.style, styles);
+                progressIndicator.style.setProperty('height', styles.height);
+                progressIndicator.style.setProperty('top', styles.top);
             },
             addClassAtRowIndex: function (rowIndex, className) {
                 _this.getRows()[rowIndex].classList.add(className);
@@ -257,6 +273,20 @@ var MDCDataTable = /** @class */ (function (_super) {
             default:
                 return '';
         }
+    };
+    MDCDataTable.prototype.getLinearProgressElement = function () {
+        var el = this.root.querySelector("." + cssClasses.LINEAR_PROGRESS);
+        if (!el) {
+            throw new Error('MDCDataTable: linear progress element is not found.');
+        }
+        return el;
+    };
+    MDCDataTable.prototype.getLinearProgress = function () {
+        if (!this.linearProgress) {
+            var el = this.getLinearProgressElement();
+            this.linearProgress = new MDCLinearProgress(el);
+        }
+        return this.linearProgress;
     };
     return MDCDataTable;
 }(MDCComponent));

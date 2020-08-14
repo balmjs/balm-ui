@@ -45,8 +45,8 @@ var MDCDataTableFoundation = /** @class */ (function (_super) {
                 getRowIdAtIndex: function () { return ''; },
                 getRowIndexByChildElement: function () { return 0; },
                 getSelectedRowCount: function () { return 0; },
-                getTableBodyHeight: function () { return ''; },
-                getTableHeaderHeight: function () { return ''; },
+                getTableContainerHeight: function () { return 0; },
+                getTableHeaderHeight: function () { return 0; },
                 isCheckboxAtRowIndexChecked: function () { return false; },
                 isHeaderRowCheckboxChecked: function () { return false; },
                 isRowsSelectable: function () { return false; },
@@ -235,11 +235,14 @@ var MDCDataTableFoundation = /** @class */ (function (_super) {
      * loading state.
      */
     MDCDataTableFoundation.prototype.showProgress = function () {
-        var height = this.adapter.getTableBodyHeight();
-        var top = this.adapter.getTableHeaderHeight();
+        var tableHeaderHeight = this.adapter.getTableHeaderHeight();
+        // Calculate the height of table content (Not scroll content) excluding
+        // header row height.
+        var height = this.adapter.getTableContainerHeight() - tableHeaderHeight;
+        var top = tableHeaderHeight;
         this.adapter.setProgressIndicatorStyles({
-            height: height,
-            top: top,
+            height: height + "px",
+            top: top + "px",
         });
         this.adapter.addClass(cssClasses.IN_PROGRESS);
     };

@@ -21,9 +21,12 @@
  * THE SOFTWARE.
  */
 import { __extends } from "tslib";
+// TODO(b/152410470): Remove trailing underscores from private properties
+// tslint:disable:strip-private-property-underscore
 import { MDCComponent } from '../base/component';
 import { closest } from '../dom/ponyfill';
 import { MDCList } from '../list/component';
+import { numbers as listConstants } from '../list/constants';
 import { MDCListFoundation } from '../list/foundation';
 import { MDCMenuSurface } from '../menu-surface/component';
 import { MDCMenuSurfaceFoundation } from '../menu-surface/foundation';
@@ -161,6 +164,43 @@ var MDCMenu = /** @class */ (function (_super) {
          */
         get: function () {
             return this.list_ ? this.list_.listElements : [];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCMenu.prototype, "singleSelection", {
+        /**
+         * Turns on/off the underlying list's single selection mode. Used mainly
+         * by select menu.
+         *
+         * @param singleSelection Whether to enable single selection mode.
+         */
+        set: function (singleSelection) {
+            if (this.list_) {
+                this.list_.singleSelection = singleSelection;
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MDCMenu.prototype, "selectedIndex", {
+        /**
+         * Retrieves the selected index. Only applicable to select menus.
+         * @return The selected index, which is a number for single selection and
+         *     radio lists, and an array of numbers for checkbox lists.
+         */
+        get: function () {
+            return this.list_ ? this.list_.selectedIndex : listConstants.UNSET_INDEX;
+        },
+        /**
+         * Sets the selected index of the list. Only applicable to select menus.
+         * @param index The selected index, which is a number for single selection and
+         *     radio lists, and an array of numbers for checkbox lists.
+         */
+        set: function (index) {
+            if (this.list_) {
+                this.list_.selectedIndex = index;
+            }
         },
         enumerable: true,
         configurable: true

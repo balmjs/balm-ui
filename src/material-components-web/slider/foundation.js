@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2017 Google Inc.
+ * Copyright 2020 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,81 +21,47 @@
  * THE SOFTWARE.
  */
 import { __assign, __extends } from "tslib";
-import { getCorrectEventName, getCorrectPropertyName } from '../animation/util';
+import { getCorrectPropertyName } from '../animation/util';
 import { MDCFoundation } from '../base/foundation';
-import { cssClasses, numbers, strings } from './constants';
+import { KEY, normalizeKey } from '../dom/keyboard';
+import { attributes, cssClasses, numbers } from './constants';
+import { Thumb, TickMark } from './types';
 // Accessing `window` without a `typeof` check will throw on Node environments.
-var hasWindow = typeof window !== 'undefined';
-var hasPointerEventSupport = hasWindow && !!window.PointerEvent;
-var DOWN_EVENTS = hasPointerEventSupport ? ['pointerdown'] : ['mousedown', 'touchstart'];
-var UP_EVENTS = hasPointerEventSupport ? ['pointerup'] : ['mouseup', 'touchend'];
-var MOVE_EVENT_MAP = {
-    mousedown: 'mousemove',
-    pointerdown: 'pointermove',
-    touchstart: 'touchmove',
-};
-var KEY_IDS = {
-    ARROW_DOWN: 'ArrowDown',
-    ARROW_LEFT: 'ArrowLeft',
-    ARROW_RIGHT: 'ArrowRight',
-    ARROW_UP: 'ArrowUp',
-    END: 'End',
-    HOME: 'Home',
-    PAGE_DOWN: 'PageDown',
-    PAGE_UP: 'PageUp',
-};
+var HAS_WINDOW = typeof window !== 'undefined';
+/**
+ * Foundation class for slider. Responsibilities include:
+ * - Updating slider values (internal state and DOM updates) based on client
+ *   'x' position.
+ * - Updating DOM after slider property updates (e.g. min, max).
+ */
 var MDCSliderFoundation = /** @class */ (function (_super) {
     __extends(MDCSliderFoundation, _super);
     function MDCSliderFoundation(adapter) {
         var _this = _super.call(this, __assign(__assign({}, MDCSliderFoundation.defaultAdapter), adapter)) || this;
-        /**
-         * We set this to NaN since we want it to be a number, but we can't use '0' or
-         * '-1' because those could be valid tabindices set by the client code.
-         */
-        _this.savedTabIndex_ = NaN;
-        _this.active_ = false;
-        _this.inTransit_ = false;
-        _this.isDiscrete_ = false;
-        _this.hasTrackMarker_ = false;
-        _this.handlingThumbTargetEvt_ = false;
-        _this.min_ = 0;
-        _this.max_ = 100;
-        _this.step_ = 0;
-        _this.value_ = 0;
-        _this.disabled_ = false;
-        _this.preventFocusState_ = false;
-        _this.thumbContainerPointerHandler_ = function () { return _this.handlingThumbTargetEvt_ =
-            true; };
-        _this.interactionStartHandler_ = function (evt) {
-            return _this.handleDown_(evt);
-        };
-        _this.keydownHandler_ = function (evt) { return _this.handleKeydown_(evt); };
-        _this.focusHandler_ = function () { return _this.handleFocus_(); };
-        _this.blurHandler_ = function () { return _this.handleBlur_(); };
-        _this.resizeHandler_ = function () { return _this.layout(); };
+        // Whether the initial styles (to position the thumb, before component
+        // initialization) have been removed.
+        _this.initialStylesRemoved = false;
+        _this.isDisabled = false;
+        _this.isDiscrete = false;
+        // Step value for discrete sliders.
+        _this.step = 1;
+        _this.bigStep = _this.step * numbers.BIG_STEP_FACTOR;
+        _this.hasTickMarks = false;
+        // The following properties are only set for range sliders.
+        _this.isRange = false;
+        // Tracks the thumb being moved across a slider pointer interaction (down,
+        // move event).
+        _this.thumb = null;
+        // `clientX` from the most recent down event. Used in subsequent move
+        // events to determine which thumb to move (in the case of
+        // overlapping thumbs).
+        _this.downEventClientX = null;
+        // Width of the start thumb knob.
+        _this.startThumbKnobWidth = 0;
+        // Width of the end thumb knob.
+        _this.endThumbKnobWidth = 0;
         return _this;
     }
-    Object.defineProperty(MDCSliderFoundation, "cssClasses", {
-        get: function () {
-            return cssClasses;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(MDCSliderFoundation, "strings", {
-        get: function () {
-            return strings;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(MDCSliderFoundation, "numbers", {
-        get: function () {
-            return numbers;
-        },
-        enumerable: true,
-        configurable: true
-    });
     Object.defineProperty(MDCSliderFoundation, "defaultAdapter", {
         get: function () {
             // tslint:disable:object-literal-sort-keys Methods should be in the same
@@ -104,28 +70,37 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
                 hasClass: function () { return false; },
                 addClass: function () { return undefined; },
                 removeClass: function () { return undefined; },
+                addThumbClass: function () { return undefined; },
+                removeThumbClass: function () { return undefined; },
                 getAttribute: function () { return null; },
-                setAttribute: function () { return undefined; },
-                removeAttribute: function () { return undefined; },
-                computeBoundingRect: function () {
+                getThumbAttribute: function () { return null; },
+                setThumbAttribute: function () { return null; },
+                getThumbKnobWidth: function () { return 0; },
+                isThumbFocused: function () { return false; },
+                focusThumb: function () { return undefined; },
+                getThumbBoundingClientRect: function () {
                     return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 });
                 },
-                getTabIndex: function () { return 0; },
-                registerInteractionHandler: function () { return undefined; },
-                deregisterInteractionHandler: function () { return undefined; },
-                registerThumbContainerInteractionHandler: function () { return undefined; },
-                deregisterThumbContainerInteractionHandler: function () { return undefined; },
-                registerBodyInteractionHandler: function () { return undefined; },
-                deregisterBodyInteractionHandler: function () { return undefined; },
-                registerResizeHandler: function () { return undefined; },
-                deregisterResizeHandler: function () { return undefined; },
-                notifyInput: function () { return undefined; },
-                notifyChange: function () { return undefined; },
-                setThumbContainerStyleProperty: function () { return undefined; },
-                setTrackStyleProperty: function () { return undefined; },
-                setMarkerValue: function () { return undefined; },
-                setTrackMarkers: function () { return undefined; },
+                getBoundingClientRect: function () {
+                    return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 });
+                },
                 isRTL: function () { return false; },
+                setThumbStyleProperty: function () { return undefined; },
+                removeThumbStyleProperty: function () { return undefined; },
+                setTrackActiveStyleProperty: function () { return undefined; },
+                setValueIndicatorText: function () { return undefined; },
+                updateTickMarks: function () { return undefined; },
+                setPointerCapture: function () { return undefined; },
+                emitChangeEvent: function () { return undefined; },
+                emitInputEvent: function () { return undefined; },
+                registerEventHandler: function () { return undefined; },
+                deregisterEventHandler: function () { return undefined; },
+                registerThumbEventHandler: function () { return undefined; },
+                deregisterThumbEventHandler: function () { return undefined; },
+                registerBodyEventHandler: function () { return undefined; },
+                deregisterBodyEventHandler: function () { return undefined; },
+                registerWindowEventHandler: function () { return undefined; },
+                deregisterWindowEventHandler: function () { return undefined; },
             };
             // tslint:enable:object-literal-sort-keys
         },
@@ -134,368 +109,684 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
     });
     MDCSliderFoundation.prototype.init = function () {
         var _this = this;
-        this.isDiscrete_ = this.adapter.hasClass(cssClasses.IS_DISCRETE);
-        this.hasTrackMarker_ = this.adapter.hasClass(cssClasses.HAS_TRACK_MARKER);
-        DOWN_EVENTS.forEach(function (evtName) {
-            _this.adapter.registerInteractionHandler(evtName, _this.interactionStartHandler_);
-            _this.adapter.registerThumbContainerInteractionHandler(evtName, _this.thumbContainerPointerHandler_);
-        });
-        if (hasPointerEventSupport) {
-            /*
-             * When pointermove happens, if too much sliding happens, the browser
-             * believes you are panning in the x direction and stops firing
-             * pointermove events and supplies its own gestures. (similar to
-             * preventing default on touchmove)
-             */
-            this.adapter.addClass(cssClasses.DISABLE_TOUCH_ACTION);
+        this.isDisabled = this.adapter.hasClass(cssClasses.DISABLED);
+        this.isDiscrete = this.adapter.hasClass(cssClasses.DISCRETE);
+        this.hasTickMarks = this.adapter.hasClass(cssClasses.TICK_MARKS);
+        this.isRange = this.adapter.hasClass(cssClasses.RANGE);
+        var min = this.convertAttributeValueToNumber(this.adapter.getThumbAttribute(attributes.ARIA_VALUEMIN, Thumb.END), attributes.ARIA_VALUEMIN);
+        var max = this.convertAttributeValueToNumber(this.adapter.getThumbAttribute(attributes.ARIA_VALUEMAX, Thumb.END), attributes.ARIA_VALUEMAX);
+        var value = this.convertAttributeValueToNumber(this.adapter.getThumbAttribute(attributes.ARIA_VALUENOW, Thumb.END), attributes.ARIA_VALUENOW);
+        var valueStart = this.isRange ?
+            this.convertAttributeValueToNumber(this.adapter.getThumbAttribute(attributes.ARIA_VALUENOW, Thumb.START), attributes.ARIA_VALUENOW) :
+            min;
+        this.validateProperties({ min: min, max: max, value: value, valueStart: valueStart });
+        this.min = min;
+        this.max = max;
+        this.value = value;
+        this.valueStart = valueStart;
+        this.valueBeforeDownEvent = value;
+        this.valueStartBeforeDownEvent = valueStart;
+        if (this.isDiscrete) {
+            var step = this.convertAttributeValueToNumber(this.adapter.getAttribute(attributes.DATA_ATTR_STEP), attributes.DATA_ATTR_STEP);
+            if (step <= 0) {
+                throw new Error("MDCSliderFoundation: step must be a positive number. " +
+                    ("Current step: " + step));
+            }
+            this.step = step;
+            var bigStep = this.adapter.getAttribute(attributes.DATA_ATTR_BIG_STEP);
+            this.bigStep = bigStep !== null ?
+                this.convertAttributeValueToNumber(bigStep, attributes.DATA_ATTR_BIG_STEP) :
+                step * numbers.BIG_STEP_FACTOR;
         }
-        this.adapter.registerInteractionHandler('keydown', this.keydownHandler_);
-        this.adapter.registerInteractionHandler('focus', this.focusHandler_);
-        this.adapter.registerInteractionHandler('blur', this.blurHandler_);
-        this.adapter.registerResizeHandler(this.resizeHandler_);
-        this.layout();
-        // At last step, provide a reasonable default value to discrete slider
-        if (this.isDiscrete_ && this.getStep() === 0) {
-            this.step_ = 1;
-        }
+        this.mousedownOrTouchstartListener =
+            this.handleMousedownOrTouchstart.bind(this);
+        this.moveListener = this.handleMove.bind(this);
+        this.pointerdownListener = this.handlePointerdown.bind(this);
+        this.pointerupListener = this.handlePointerup.bind(this);
+        this.thumbStartKeydownListener = function (event) {
+            _this.handleThumbKeydown(event, Thumb.START);
+        };
+        this.thumbEndKeydownListener = function (event) {
+            _this.handleThumbKeydown(event, Thumb.END);
+        };
+        this.thumbFocusOrMouseenterListener =
+            this.handleThumbFocusOrMouseenter.bind(this);
+        this.thumbBlurOrMouseleaveListener =
+            this.handleThumbBlurOrMouseleave.bind(this);
+        this.resizeListener = this.layout.bind(this);
+        this.registerEventHandlers();
     };
     MDCSliderFoundation.prototype.destroy = function () {
-        var _this = this;
-        DOWN_EVENTS.forEach(function (evtName) {
-            _this.adapter.deregisterInteractionHandler(evtName, _this.interactionStartHandler_);
-            _this.adapter.deregisterThumbContainerInteractionHandler(evtName, _this.thumbContainerPointerHandler_);
-        });
-        this.adapter.deregisterInteractionHandler('keydown', this.keydownHandler_);
-        this.adapter.deregisterInteractionHandler('focus', this.focusHandler_);
-        this.adapter.deregisterInteractionHandler('blur', this.blurHandler_);
-        this.adapter.deregisterResizeHandler(this.resizeHandler_);
-    };
-    MDCSliderFoundation.prototype.setupTrackMarker = function () {
-        if (this.isDiscrete_ && this.hasTrackMarker_ && this.getStep() !== 0) {
-            this.adapter.setTrackMarkers(this.getStep(), this.getMax(), this.getMin());
-        }
-    };
-    MDCSliderFoundation.prototype.layout = function () {
-        this.rect_ = this.adapter.computeBoundingRect();
-        this.updateUIForCurrentValue_();
-    };
-    MDCSliderFoundation.prototype.getValue = function () {
-        return this.value_;
-    };
-    MDCSliderFoundation.prototype.setValue = function (value) {
-        this.setValue_(value, false);
-    };
-    MDCSliderFoundation.prototype.getMax = function () {
-        return this.max_;
-    };
-    MDCSliderFoundation.prototype.setMax = function (max) {
-        if (max < this.min_) {
-            throw new Error('Cannot set max to be less than the slider\'s minimum value');
-        }
-        this.max_ = max;
-        this.setValue_(this.value_, false, true);
-        this.adapter.setAttribute(strings.ARIA_VALUEMAX, String(this.max_));
-        this.setupTrackMarker();
+        this.deregisterEventHandlers();
     };
     MDCSliderFoundation.prototype.getMin = function () {
-        return this.min_;
+        return this.min;
     };
-    MDCSliderFoundation.prototype.setMin = function (min) {
-        if (min > this.max_) {
-            throw new Error('Cannot set min to be greater than the slider\'s maximum value');
+    MDCSliderFoundation.prototype.getMax = function () {
+        return this.max;
+    };
+    /**
+     * - For single point sliders, returns the thumb value.
+     * - For range (two-thumb) sliders, returns the end thumb's value.
+     */
+    MDCSliderFoundation.prototype.getValue = function () {
+        return this.value;
+    };
+    /**
+     * - For single point sliders, sets the thumb value.
+     * - For range (two-thumb) sliders, sets the end thumb's value.
+     */
+    MDCSliderFoundation.prototype.setValue = function (value) {
+        if (this.isRange && value < this.valueStart) {
+            throw new Error("end thumb value (" + value + ") must be >= start thumb " +
+                ("value (" + this.valueStart + ")"));
         }
-        this.min_ = min;
-        this.setValue_(this.value_, false, true);
-        this.adapter.setAttribute(strings.ARIA_VALUEMIN, String(this.min_));
-        this.setupTrackMarker();
+        this.updateValue(value, Thumb.END);
+    };
+    /**
+     * Only applicable for range sliders.
+     * @return The start thumb's value.
+     */
+    MDCSliderFoundation.prototype.getValueStart = function () {
+        if (!this.isRange) {
+            throw new Error('`valueStart` is only applicable for range sliders.');
+        }
+        return this.valueStart;
+    };
+    /**
+     * Only applicable for range sliders. Sets the start thumb's value.
+     */
+    MDCSliderFoundation.prototype.setValueStart = function (valueStart) {
+        if (!this.isRange) {
+            throw new Error('`valueStart` is only applicable for range sliders.');
+        }
+        if (this.isRange && valueStart > this.value) {
+            throw new Error("start thumb value (" + valueStart + ") must be <= end thumb " +
+                ("value (" + this.value + ")"));
+        }
+        this.updateValue(valueStart, Thumb.START);
     };
     MDCSliderFoundation.prototype.getStep = function () {
-        return this.step_;
+        return this.step;
     };
-    MDCSliderFoundation.prototype.setStep = function (step) {
-        if (step < 0) {
-            throw new Error('Step cannot be set to a negative number');
-        }
-        if (this.isDiscrete_ && (typeof (step) !== 'number' || step < 1)) {
-            step = 1;
-        }
-        this.step_ = step;
-        this.setValue_(this.value_, false, true);
-        this.setupTrackMarker();
+    MDCSliderFoundation.prototype.getBigStep = function () {
+        return this.bigStep;
     };
-    MDCSliderFoundation.prototype.isDisabled = function () {
-        return this.disabled_;
+    MDCSliderFoundation.prototype.getDisabled = function () {
+        return this.isDisabled;
     };
+    /**
+     * Sets disabled state, including updating styles and thumb tabindex.
+     */
     MDCSliderFoundation.prototype.setDisabled = function (disabled) {
-        this.disabled_ = disabled;
-        this.toggleClass_(cssClasses.DISABLED, this.disabled_);
-        if (this.disabled_) {
-            this.savedTabIndex_ = this.adapter.getTabIndex();
-            this.adapter.setAttribute(strings.ARIA_DISABLED, 'true');
-            this.adapter.removeAttribute('tabindex');
+        this.isDisabled = disabled;
+        if (disabled) {
+            this.adapter.addClass(cssClasses.DISABLED);
+            if (this.isRange) {
+                this.adapter.setThumbAttribute('tabindex', '-1', Thumb.START);
+                this.adapter.setThumbAttribute('aria-disabled', 'true', Thumb.START);
+            }
+            this.adapter.setThumbAttribute('tabindex', '-1', Thumb.END);
+            this.adapter.setThumbAttribute('aria-disabled', 'true', Thumb.END);
         }
         else {
-            this.adapter.removeAttribute(strings.ARIA_DISABLED);
-            if (!isNaN(this.savedTabIndex_)) {
-                this.adapter.setAttribute('tabindex', String(this.savedTabIndex_));
+            this.adapter.removeClass(cssClasses.DISABLED);
+            if (this.isRange) {
+                this.adapter.setThumbAttribute('tabindex', '0', Thumb.START);
+                this.adapter.setThumbAttribute('aria-disabled', 'false', Thumb.START);
             }
+            this.adapter.setThumbAttribute('tabindex', '0', Thumb.END);
+            this.adapter.setThumbAttribute('aria-disabled', 'false', Thumb.END);
         }
     };
     /**
-     * Called when the user starts interacting with the slider
+     * - Syncs slider boundingClientRect with the current DOM.
+     * - Updates UI based on internal state.
      */
-    MDCSliderFoundation.prototype.handleDown_ = function (downEvent) {
-        var _this = this;
-        if (this.disabled_) {
+    MDCSliderFoundation.prototype.layout = function () {
+        this.rect = this.adapter.getBoundingClientRect();
+        if (this.isRange) {
+            this.startThumbKnobWidth = this.adapter.getThumbKnobWidth(Thumb.START);
+            this.endThumbKnobWidth = this.adapter.getThumbKnobWidth(Thumb.END);
+        }
+        this.updateUI();
+    };
+    /**
+     * Handles pointer down events on the slider root element.
+     */
+    MDCSliderFoundation.prototype.handleDown = function (event) {
+        if (this.isDisabled)
+            return;
+        this.valueStartBeforeDownEvent = this.valueStart;
+        this.valueBeforeDownEvent = this.value;
+        var clientX = event.clientX != null ?
+            event.clientX :
+            event.targetTouches[0].clientX;
+        this.downEventClientX = clientX;
+        var value = this.mapClientXOnSliderScale(clientX);
+        this.thumb = this.getThumbFromDownEvent(clientX, value);
+        if (this.thumb === null)
+            return;
+        // Presses within the range do not invoke slider updates.
+        var newValueInCurrentRange = this.isRange && value >= this.valueStart && value <= this.value;
+        if (newValueInCurrentRange)
+            return;
+        this.updateValue(value, this.thumb, { emitInputEvent: true });
+    };
+    /**
+     * Handles pointer move events on the slider root element.
+     */
+    MDCSliderFoundation.prototype.handleMove = function (event) {
+        if (this.isDisabled)
+            return;
+        // Prevent scrolling.
+        event.preventDefault();
+        var clientX = event.clientX != null ?
+            event.clientX :
+            event.targetTouches[0].clientX;
+        this.thumb = this.getThumbFromMoveEvent(clientX);
+        if (this.thumb === null)
+            return;
+        var value = this.mapClientXOnSliderScale(clientX);
+        this.updateValue(value, this.thumb, { emitInputEvent: true });
+    };
+    /**
+     * Handles pointer up events on the slider root element.
+     */
+    MDCSliderFoundation.prototype.handleUp = function () {
+        if (this.isDisabled || this.thumb === null)
+            return;
+        var oldValue = this.thumb === Thumb.START ?
+            this.valueStartBeforeDownEvent :
+            this.valueBeforeDownEvent;
+        var newValue = this.thumb === Thumb.START ? this.valueStart : this.value;
+        if (oldValue !== newValue) {
+            this.adapter.emitChangeEvent(newValue, this.thumb);
+        }
+        this.thumb = null;
+    };
+    /**
+     * Handles keydown events on the slider thumbs.
+     */
+    MDCSliderFoundation.prototype.handleThumbKeydown = function (event, thumb) {
+        if (this.isDisabled)
+            return;
+        var key = normalizeKey(event);
+        if (key !== KEY.ARROW_LEFT && key !== KEY.ARROW_UP &&
+            key !== KEY.ARROW_RIGHT && key !== KEY.ARROW_DOWN && key !== KEY.HOME &&
+            key !== KEY.END && key !== KEY.PAGE_UP && key !== KEY.PAGE_DOWN) {
             return;
         }
-        this.preventFocusState_ = true;
-        this.setInTransit_(!this.handlingThumbTargetEvt_);
-        this.handlingThumbTargetEvt_ = false;
-        this.setActive_(true);
-        var moveHandler = function (moveEvent) {
-            _this.handleMove_(moveEvent);
-        };
-        var moveEventType = MOVE_EVENT_MAP[downEvent.type];
-        // Note: upHandler is [de]registered on ALL potential pointer-related
-        // release event types, since some browsers do not always fire these
-        // consistently in pairs. (See
-        // https://github.com/material-components/material-components-web/issues/1192)
-        var upHandler = function () {
-            _this.handleUp_();
-            _this.adapter.deregisterBodyInteractionHandler(moveEventType, moveHandler);
-            UP_EVENTS.forEach(function (evtName) { return _this.adapter.deregisterBodyInteractionHandler(evtName, upHandler); });
-        };
-        this.adapter.registerBodyInteractionHandler(moveEventType, moveHandler);
-        UP_EVENTS.forEach(function (evtName) {
-            return _this.adapter.registerBodyInteractionHandler(evtName, upHandler);
-        });
-        this.setValueFromEvt_(downEvent);
+        // Prevent scrolling.
+        event.preventDefault();
+        var value = this.getValueForKey(key, thumb);
+        var currentValue = thumb === Thumb.START ? this.valueStart : this.value;
+        if (value === currentValue)
+            return;
+        this.updateValue(this.getValueForKey(key, thumb), thumb, { emitChangeEvent: true, emitInputEvent: true });
     };
     /**
-     * Called when the user moves the slider
+     * Shows the value indicator, as follows:
+     * - Range slider: Shows value indicator on both thumbs, on either hover or
+     *   focus.
+     * - Single point slider: Shows value indicator on thumb, only on focus.
      */
-    MDCSliderFoundation.prototype.handleMove_ = function (evt) {
-        evt.preventDefault();
-        this.setValueFromEvt_(evt);
-    };
-    /**
-     * Called when the user's interaction with the slider ends
-     */
-    MDCSliderFoundation.prototype.handleUp_ = function () {
-        this.setActive_(false);
-        this.adapter.notifyChange();
-    };
-    /**
-     * Returns the clientX of the event
-     */
-    MDCSliderFoundation.prototype.getClientX_ = function (evt) {
-        if (evt.targetTouches &&
-            evt.targetTouches.length > 0) {
-            return evt.targetTouches[0].clientX;
+    MDCSliderFoundation.prototype.handleThumbFocusOrMouseenter = function (event) {
+        if (!this.isDiscrete)
+            return;
+        if (this.isRange) {
+            this.adapter.addThumbClass(cssClasses.THUMB_WITH_INDICATOR, Thumb.START);
+            this.adapter.addThumbClass(cssClasses.THUMB_WITH_INDICATOR, Thumb.END);
         }
-        return evt.clientX;
+        else if (event.type === 'focus') {
+            // If single point slider, only show value indicator on focus, not hover.
+            this.adapter.addThumbClass(cssClasses.THUMB_WITH_INDICATOR, Thumb.END);
+        }
     };
     /**
-     * Sets the slider value from an event
+     * Hides the value indicator, as follows:
+     * - Range slider: Hides value indicator on both thumbs, on either blur
+     *   or mouseleave, provided there is no thumb already focused.
+     * - Single point slider: Hides value indicator on thumb, on blur.
      */
-    MDCSliderFoundation.prototype.setValueFromEvt_ = function (evt) {
-        var clientX = this.getClientX_(evt);
-        var value = this.computeValueFromClientX_(clientX);
-        this.setValue_(value, true);
+    MDCSliderFoundation.prototype.handleThumbBlurOrMouseleave = function (event) {
+        if (!this.isDiscrete)
+            return;
+        if (this.isRange && !this.adapter.isThumbFocused(Thumb.START) &&
+            !this.adapter.isThumbFocused(Thumb.END)) {
+            this.adapter.removeThumbClass(cssClasses.THUMB_WITH_INDICATOR, Thumb.START);
+            this.adapter.removeThumbClass(cssClasses.THUMB_WITH_INDICATOR, Thumb.END);
+        }
+        else if (!this.isRange && event.type === 'blur') {
+            this.adapter.removeThumbClass(cssClasses.THUMB_WITH_INDICATOR, Thumb.END);
+        }
+    };
+    MDCSliderFoundation.prototype.handleMousedownOrTouchstart = function (event) {
+        var _this = this;
+        var moveEventType = event.type === 'mousedown' ? 'mousemove' : 'touchmove';
+        // After a down event on the slider root, listen for move events on
+        // body (so the slider value is updated for events outside of the
+        // slider root).
+        this.adapter.registerBodyEventHandler(moveEventType, this.moveListener);
+        var upHandler = function () {
+            _this.handleUp();
+            // Once the drag is finished (up event on body), remove the move
+            // handler.
+            _this.adapter.deregisterBodyEventHandler(moveEventType, _this.moveListener);
+            // Also stop listening for subsequent up events.
+            _this.adapter.deregisterEventHandler('mouseup', upHandler);
+            _this.adapter.deregisterEventHandler('touchend', upHandler);
+        };
+        this.adapter.registerBodyEventHandler('mouseup', upHandler);
+        this.adapter.registerBodyEventHandler('touchend', upHandler);
+        this.handleDown(event);
+    };
+    MDCSliderFoundation.prototype.handlePointerdown = function (event) {
+        this.adapter.setPointerCapture(event.pointerId);
+        this.adapter.registerEventHandler('pointermove', this.moveListener);
+        this.handleDown(event);
     };
     /**
-     * Computes the new value from the clientX position
+     * @return Returns new value for the given thumb, based on key pressed.
+     *     E.g. ARROW_DOWN on discrete slider decrements the current thumb
+     *     value by the `step` value.
      */
-    MDCSliderFoundation.prototype.computeValueFromClientX_ = function (clientX) {
-        var _a = this, max = _a.max_, min = _a.min_;
-        var xPos = clientX - this.rect_.left;
-        var pctComplete = xPos / this.rect_.width;
+    MDCSliderFoundation.prototype.getValueForKey = function (key, thumb) {
+        var delta = this.step || (this.max - this.min) / 100;
+        var deltaBigStep = this.bigStep || (this.max - this.min) / 10;
+        var value = thumb === Thumb.START ? this.valueStart : this.value;
+        switch (key) {
+            case KEY.ARROW_LEFT:
+                return this.adapter.isRTL() ? value + delta : value - delta;
+            case KEY.ARROW_DOWN:
+                return value - delta;
+            case KEY.ARROW_RIGHT:
+                return this.adapter.isRTL() ? value - delta : value + delta;
+            case KEY.ARROW_UP:
+                return value + delta;
+            case KEY.HOME:
+                return this.min;
+            case KEY.END:
+                return this.max;
+            case KEY.PAGE_DOWN:
+                return value - deltaBigStep;
+            case KEY.PAGE_UP:
+                return value + deltaBigStep;
+            default:
+                return value;
+        }
+    };
+    /**
+     * @return The thumb to be moved based on initial down event.
+     */
+    MDCSliderFoundation.prototype.getThumbFromDownEvent = function (clientX, value) {
+        // For single point slider, thumb to be moved is always the END (only)
+        // thumb.
+        if (!this.isRange)
+            return Thumb.END;
+        // Check if event press point is in the bounds of any thumb.
+        var thumbStartRect = this.adapter.getThumbBoundingClientRect(Thumb.START);
+        var thumbEndRect = this.adapter.getThumbBoundingClientRect(Thumb.END);
+        var inThumbStartBounds = clientX >= thumbStartRect.left && clientX <= thumbStartRect.right;
+        var inThumbEndBounds = clientX >= thumbEndRect.left && clientX <= thumbEndRect.right;
+        if (inThumbStartBounds && inThumbEndBounds) {
+            // Thumbs overlapping. Thumb to be moved cannot be determined yet.
+            return null;
+        }
+        // If press is in bounds for either thumb on down event, that's the thumb
+        // to be moved.
+        if (inThumbStartBounds) {
+            return Thumb.START;
+        }
+        if (inThumbEndBounds) {
+            return Thumb.END;
+        }
+        // Otherwise, if press occurred outside of the range, return either start
+        // or end thumb based on which the press is closer to.
+        if (value < this.valueStart) {
+            return Thumb.START;
+        }
+        if (value > this.value) {
+            return Thumb.END;
+        }
+        return null;
+    };
+    /**
+     * @return The thumb to be moved based on move event (based on drag
+     *     direction from original down event). Only applicable if thumbs
+     *     were overlapping in the down event.
+     */
+    MDCSliderFoundation.prototype.getThumbFromMoveEvent = function (clientX) {
+        // Thumb has already been chosen.
+        if (this.thumb !== null)
+            return this.thumb;
+        if (this.downEventClientX === null) {
+            throw new Error('`downEventClientX` is null after move event.');
+        }
+        var moveDistanceUnderThreshold = Math.abs(this.downEventClientX - clientX) < numbers.THUMB_UPDATE_MIN_PX;
+        if (moveDistanceUnderThreshold)
+            return this.thumb;
+        var draggedThumbToLeft = clientX < this.downEventClientX;
+        if (draggedThumbToLeft) {
+            return this.adapter.isRTL() ? Thumb.END : Thumb.START;
+        }
+        else {
+            return this.adapter.isRTL() ? Thumb.START : Thumb.END;
+        }
+    };
+    /**
+     * Updates UI based on internal state.
+     * @param thumb Thumb whose value is being updated. If undefined, UI is
+     *     updated for both thumbs based on current internal state.
+     */
+    MDCSliderFoundation.prototype.updateUI = function (thumb) {
+        this.updateThumbAndTrackUI(thumb);
+        this.updateValueIndicatorUI(thumb);
+        this.updateTickMarksUI();
+    };
+    /**
+     * @param thumb Thumb whose value indicator to update.
+     */
+    MDCSliderFoundation.prototype.updateValueIndicatorUI = function (thumb) {
+        if (!this.isDiscrete || !thumb)
+            return;
+        var value = this.isRange && thumb === Thumb.START ? this.valueStart : this.value;
+        this.adapter.setValueIndicatorText(value, thumb === Thumb.START ? Thumb.START : Thumb.END);
+    };
+    /**
+     * Updates tick marks UI within slider, based on current min, max, and step.
+     */
+    MDCSliderFoundation.prototype.updateTickMarksUI = function () {
+        if (!this.isDiscrete || !this.hasTickMarks)
+            return;
+        var numTickMarksInactiveStart = (this.valueStart - this.min) / this.step;
+        var numTickMarksActive = (this.value - this.valueStart) / this.step + 1;
+        var numTickMarksInactiveEnd = (this.max - this.value) / this.step;
+        var tickMarksInactiveStart = Array.from({ length: numTickMarksInactiveStart })
+            .fill(TickMark.INACTIVE);
+        var tickMarksActive = Array.from({ length: numTickMarksActive })
+            .fill(TickMark.ACTIVE);
+        var tickMarksInactiveEnd = Array.from({ length: numTickMarksInactiveEnd })
+            .fill(TickMark.INACTIVE);
+        this.adapter.updateTickMarks(tickMarksInactiveStart.concat(tickMarksActive)
+            .concat(tickMarksInactiveEnd));
+    };
+    /** Maps clientX to a value on the slider scale. */
+    MDCSliderFoundation.prototype.mapClientXOnSliderScale = function (clientX) {
+        var xPos = clientX - this.rect.left;
+        var pctComplete = xPos / this.rect.width;
         if (this.adapter.isRTL()) {
             pctComplete = 1 - pctComplete;
         }
         // Fit the percentage complete between the range [min,max]
         // by remapping from [0, 1] to [min, min+(max-min)].
-        return min + pctComplete * (max - min);
+        var value = this.min + pctComplete * (this.max - this.min);
+        if (this.isDiscrete && value !== this.max && value !== this.min) {
+            return this.quantize(value);
+        }
+        return value;
     };
     /**
-     * Handles keydown events
+     * Updates slider value (internal state and UI) based on the given value.
      */
-    MDCSliderFoundation.prototype.handleKeydown_ = function (evt) {
-        var keyId = this.getKeyId_(evt);
-        var value = this.getValueForKeyId_(keyId);
+    MDCSliderFoundation.prototype.updateValue = function (value, thumb, _a) {
+        var _b = _a === void 0 ? {} : _a, emitInputEvent = _b.emitInputEvent, emitChangeEvent = _b.emitChangeEvent;
+        value = this.clampValue(value, thumb);
+        if (this.isRange && thumb === Thumb.START) {
+            // Exit early if current value is the same as the new value.
+            if (this.valueStart === value)
+                return;
+            this.valueStart = value;
+            this.adapter.setThumbAttribute(attributes.ARIA_VALUENOW, String(this.valueStart), Thumb.START);
+        }
+        else {
+            // Exit early if current value is the same as the new value.
+            if (this.value === value)
+                return;
+            this.value = value;
+            this.adapter.setThumbAttribute(attributes.ARIA_VALUENOW, String(this.value), Thumb.END);
+        }
+        this.updateUI(thumb);
+        if (emitInputEvent) {
+            this.adapter.emitInputEvent(thumb === Thumb.START ? this.valueStart : this.value, thumb);
+        }
+        if (emitChangeEvent) {
+            this.adapter.emitChangeEvent(thumb === Thumb.START ? this.valueStart : this.value, thumb);
+        }
+    };
+    /** Calculates the quantized value based on step value. */
+    MDCSliderFoundation.prototype.quantize = function (value) {
+        var numSteps = Math.round(value / this.step);
+        return numSteps * this.step;
+    };
+    /**
+     * Clamps the given value for the given thumb based on slider properties:
+     * - Restricts value within [min, max].
+     * - If range slider, clamp start value <= end value, and
+     *   end value >= start value.
+     */
+    MDCSliderFoundation.prototype.clampValue = function (value, thumb) {
+        // Clamp value to [min, max] range.
+        value = Math.min(Math.max(value, this.min), this.max);
+        var thumbStartMovedPastThumbEnd = this.isRange && thumb === Thumb.START && value > this.value;
+        if (thumbStartMovedPastThumbEnd) {
+            return this.value;
+        }
+        var thumbEndMovedPastThumbStart = this.isRange && thumb === Thumb.END && value < this.valueStart;
+        if (thumbEndMovedPastThumbStart) {
+            return this.valueStart;
+        }
+        return value;
+    };
+    /**
+     * Updates the active track and thumb style properties to reflect current
+     * value.
+     */
+    MDCSliderFoundation.prototype.updateThumbAndTrackUI = function (thumb) {
+        var _this = this;
+        var _a = this, max = _a.max, min = _a.min;
+        var pctComplete = (this.value - this.valueStart) / (max - min);
+        var rangePx = pctComplete * this.rect.width;
+        var isRtl = this.adapter.isRTL();
+        var transformProp = HAS_WINDOW ? getCorrectPropertyName(window, 'transform') : 'transform';
+        if (this.isRange) {
+            var thumbLeftPos_1 = this.adapter.isRTL() ?
+                (max - this.value) / (max - min) * this.rect.width :
+                (this.valueStart - min) / (max - min) * this.rect.width;
+            var thumbRightPos_1 = thumbLeftPos_1 + rangePx;
+            requestAnimationFrame(function () {
+                // Set active track styles, accounting for animation direction by
+                // setting `transform-origin`.
+                var trackAnimatesFromRight = (!isRtl && thumb === Thumb.START) ||
+                    (isRtl && thumb !== Thumb.START);
+                if (trackAnimatesFromRight) {
+                    _this.adapter.setTrackActiveStyleProperty('transform-origin', 'right');
+                    _this.adapter.setTrackActiveStyleProperty('left', 'unset');
+                    _this.adapter.setTrackActiveStyleProperty('right', _this.rect.width - thumbRightPos_1 + "px");
+                }
+                else {
+                    _this.adapter.setTrackActiveStyleProperty('transform-origin', 'left');
+                    _this.adapter.setTrackActiveStyleProperty('right', 'unset');
+                    _this.adapter.setTrackActiveStyleProperty('left', thumbLeftPos_1 + "px");
+                }
+                _this.adapter.setTrackActiveStyleProperty(transformProp, "scaleX(" + pctComplete + ")");
+                // Set thumb styles.
+                var thumbStartPos = isRtl ? thumbRightPos_1 : thumbLeftPos_1;
+                var thumbEndPos = _this.adapter.isRTL() ? thumbLeftPos_1 : thumbRightPos_1;
+                if (thumb === Thumb.START || !thumb) {
+                    _this.adapter.setThumbStyleProperty(transformProp, "translateX(" + thumbStartPos + "px)", Thumb.START);
+                }
+                if (thumb === Thumb.END || !thumb) {
+                    _this.adapter.setThumbStyleProperty(transformProp, "translateX(" + thumbEndPos + "px)", Thumb.END);
+                }
+                _this.removeInitialStyles(isRtl);
+                _this.updateOverlappingThumbsUI(thumbStartPos, thumbEndPos, thumb);
+                _this.focusThumbIfDragging(thumb);
+            });
+        }
+        else {
+            requestAnimationFrame(function () {
+                var thumbStartPos = isRtl ? _this.rect.width - rangePx : rangePx;
+                _this.adapter.setThumbStyleProperty(transformProp, "translateX(" + thumbStartPos + "px)", Thumb.END);
+                _this.adapter.setTrackActiveStyleProperty(transformProp, "scaleX(" + pctComplete + ")");
+                _this.removeInitialStyles(isRtl);
+                _this.focusThumbIfDragging(thumb);
+            });
+        }
+    };
+    /**
+     * Removes initial inline styles if not already removed. `left:<...>%`
+     * inline styles can be added to position the thumb correctly before JS
+     * initialization. However, they need to be removed before the JS starts
+     * positioning the thumb. This is because the JS uses
+     * `transform:translateX(<...>)px` (for performance reasons) to position
+     * the thumb (which is not possible for initial styles since we need the
+     * bounding rect measurements).
+     */
+    MDCSliderFoundation.prototype.removeInitialStyles = function (isRtl) {
+        if (this.initialStylesRemoved)
+            return;
+        var position = isRtl ? 'right' : 'left';
+        this.adapter.removeThumbStyleProperty(position, Thumb.END);
+        if (this.isRange) {
+            this.adapter.removeThumbStyleProperty(position, Thumb.START);
+        }
+        this.initialStylesRemoved = true;
+    };
+    /**
+     * Adds THUMB_TOP class to active thumb if thumb knobs overlap; otherwise
+     * removes THUMB_TOP class from both thumbs.
+     * @param thumb Thumb that is active (being moved).
+     */
+    MDCSliderFoundation.prototype.updateOverlappingThumbsUI = function (thumbStartPos, thumbEndPos, thumb) {
+        var thumbsOverlap = false;
+        if (this.adapter.isRTL()) {
+            var startThumbLeftEdge = thumbStartPos - this.startThumbKnobWidth / 2;
+            var endThumbRightEdge = thumbEndPos + this.endThumbKnobWidth / 2;
+            thumbsOverlap = endThumbRightEdge >= startThumbLeftEdge;
+        }
+        else {
+            var startThumbRightEdge = thumbStartPos + this.startThumbKnobWidth / 2;
+            var endThumbLeftEdge = thumbEndPos - this.endThumbKnobWidth / 2;
+            thumbsOverlap = startThumbRightEdge >= endThumbLeftEdge;
+        }
+        if (thumbsOverlap) {
+            this.adapter.addThumbClass(cssClasses.THUMB_TOP, 
+            // If no thumb was dragged (in the case of initial layout), end
+            // thumb is on top by default.
+            thumb || Thumb.END);
+            this.adapter.removeThumbClass(cssClasses.THUMB_TOP, thumb === Thumb.START ? Thumb.END : Thumb.START);
+        }
+        else {
+            this.adapter.removeThumbClass(cssClasses.THUMB_TOP, Thumb.START);
+            this.adapter.removeThumbClass(cssClasses.THUMB_TOP, Thumb.END);
+        }
+    };
+    MDCSliderFoundation.prototype.focusThumbIfDragging = function (thumb) {
+        if (!thumb)
+            return;
+        // Not dragging thumb via pointer interaction.
+        if (this.thumb === null)
+            return;
+        if (!this.adapter.isThumbFocused(thumb)) {
+            this.adapter.focusThumb(thumb);
+        }
+    };
+    /**
+     * Converts attribute value to a number, e.g. '100' => 100. Throws errors
+     * for invalid values.
+     * @param attributeValue Attribute value, e.g. 100.
+     * @param attributeName Attribute name, e.g. `aria-valuemax`.
+     */
+    MDCSliderFoundation.prototype.convertAttributeValueToNumber = function (attributeValue, attributeName) {
+        if (attributeValue === null) {
+            throw new Error("MDCSliderFoundation: `" + attributeName + "` must be non-null.");
+        }
+        var value = Number(attributeValue);
         if (isNaN(value)) {
-            return;
+            throw new Error("MDCSliderFoundation: `" + attributeName + "` value is " +
+                ("`" + attributeValue + "`, but must be a number."));
         }
-        // Prevent page from scrolling due to key presses that would normally scroll
-        // the page
-        evt.preventDefault();
-        this.adapter.addClass(cssClasses.FOCUS);
-        this.setValue_(value, true);
-        this.adapter.notifyChange();
+        return value;
     };
-    /**
-     * Returns the computed name of the event
-     */
-    MDCSliderFoundation.prototype.getKeyId_ = function (kbdEvt) {
-        if (kbdEvt.key === KEY_IDS.ARROW_LEFT || kbdEvt.keyCode === 37) {
-            return KEY_IDS.ARROW_LEFT;
+    /** Checks that the given properties are valid slider values. */
+    MDCSliderFoundation.prototype.validateProperties = function (_a) {
+        var min = _a.min, max = _a.max, value = _a.value, valueStart = _a.valueStart;
+        if (min >= max) {
+            throw new Error("MDCSliderFoundation: min must be strictly less than max. " +
+                ("Current: [min: " + min + ", max: " + max + "]"));
         }
-        if (kbdEvt.key === KEY_IDS.ARROW_RIGHT || kbdEvt.keyCode === 39) {
-            return KEY_IDS.ARROW_RIGHT;
+        if (this.isRange) {
+            if (value < min || value > max || valueStart < min || valueStart > max) {
+                throw new Error("MDCSliderFoundation: values must be in [min, max] range. " +
+                    ("Current values: [start value: " + valueStart + ", end value: " + value + "]"));
+            }
+            if (valueStart > value) {
+                throw new Error("MDCSliderFoundation: start value must be <= end value. " +
+                    ("Current values: [start value: " + valueStart + ", end value: " + value + "]"));
+            }
         }
-        if (kbdEvt.key === KEY_IDS.ARROW_UP || kbdEvt.keyCode === 38) {
-            return KEY_IDS.ARROW_UP;
-        }
-        if (kbdEvt.key === KEY_IDS.ARROW_DOWN || kbdEvt.keyCode === 40) {
-            return KEY_IDS.ARROW_DOWN;
-        }
-        if (kbdEvt.key === KEY_IDS.HOME || kbdEvt.keyCode === 36) {
-            return KEY_IDS.HOME;
-        }
-        if (kbdEvt.key === KEY_IDS.END || kbdEvt.keyCode === 35) {
-            return KEY_IDS.END;
-        }
-        if (kbdEvt.key === KEY_IDS.PAGE_UP || kbdEvt.keyCode === 33) {
-            return KEY_IDS.PAGE_UP;
-        }
-        if (kbdEvt.key === KEY_IDS.PAGE_DOWN || kbdEvt.keyCode === 34) {
-            return KEY_IDS.PAGE_DOWN;
-        }
-        return '';
-    };
-    /**
-     * Computes the value given a keyboard key ID
-     */
-    MDCSliderFoundation.prototype.getValueForKeyId_ = function (keyId) {
-        var _a = this, max = _a.max_, min = _a.min_, step = _a.step_;
-        var delta = step || (max - min) / 100;
-        var valueNeedsToBeFlipped = this.adapter.isRTL() &&
-            (keyId === KEY_IDS.ARROW_LEFT || keyId === KEY_IDS.ARROW_RIGHT);
-        if (valueNeedsToBeFlipped) {
-            delta = -delta;
-        }
-        switch (keyId) {
-            case KEY_IDS.ARROW_LEFT:
-            case KEY_IDS.ARROW_DOWN:
-                return this.value_ - delta;
-            case KEY_IDS.ARROW_RIGHT:
-            case KEY_IDS.ARROW_UP:
-                return this.value_ + delta;
-            case KEY_IDS.HOME:
-                return this.min_;
-            case KEY_IDS.END:
-                return this.max_;
-            case KEY_IDS.PAGE_UP:
-                return this.value_ + delta * numbers.PAGE_FACTOR;
-            case KEY_IDS.PAGE_DOWN:
-                return this.value_ - delta * numbers.PAGE_FACTOR;
-            default:
-                return NaN;
-        }
-    };
-    MDCSliderFoundation.prototype.handleFocus_ = function () {
-        if (this.preventFocusState_) {
-            return;
-        }
-        this.adapter.addClass(cssClasses.FOCUS);
-    };
-    MDCSliderFoundation.prototype.handleBlur_ = function () {
-        this.preventFocusState_ = false;
-        this.adapter.removeClass(cssClasses.FOCUS);
-    };
-    /**
-     * Sets the value of the slider
-     */
-    MDCSliderFoundation.prototype.setValue_ = function (value, shouldFireInput, force) {
-        if (force === void 0) { force = false; }
-        if (value === this.value_ && !force) {
-            return;
-        }
-        var _a = this, min = _a.min_, max = _a.max_;
-        var valueSetToBoundary = value === min || value === max;
-        if (this.step_ && !valueSetToBoundary) {
-            value = this.quantize_(value);
-        }
-        if (value < min) {
-            value = min;
-        }
-        else if (value > max) {
-            value = max;
-        }
-        value = value || 0; // coerce -0 to 0
-        this.value_ = value;
-        this.adapter.setAttribute(strings.ARIA_VALUENOW, String(this.value_));
-        this.updateUIForCurrentValue_();
-        if (shouldFireInput) {
-            this.adapter.notifyInput();
-            if (this.isDiscrete_) {
-                this.adapter.setMarkerValue(value);
+        else { // Single point slider.
+            if (value < min || value > max) {
+                throw new Error("MDCSliderFoundation: value must be in [min, max] range. " +
+                    ("Current value: " + value));
             }
         }
     };
-    /**
-     * Calculates the quantized value
-     */
-    MDCSliderFoundation.prototype.quantize_ = function (value) {
-        var numSteps = Math.round(value / this.step_);
-        return numSteps * this.step_;
-    };
-    MDCSliderFoundation.prototype.updateUIForCurrentValue_ = function () {
-        var _this = this;
-        var _a = this, max = _a.max_, min = _a.min_, value = _a.value_;
-        var pctComplete = (value - min) / (max - min);
-        var translatePx = pctComplete * this.rect_.width;
-        if (this.adapter.isRTL()) {
-            translatePx = this.rect_.width - translatePx;
-        }
-        var transformProp = hasWindow ? getCorrectPropertyName(window, 'transform') : 'transform';
-        var transitionendEvtName = hasWindow ? getCorrectEventName(window, 'transitionend') : 'transitionend';
-        if (this.inTransit_) {
-            var onTransitionEnd_1 = function () {
-                _this.setInTransit_(false);
-                _this.adapter.deregisterThumbContainerInteractionHandler(transitionendEvtName, onTransitionEnd_1);
-            };
-            this.adapter.registerThumbContainerInteractionHandler(transitionendEvtName, onTransitionEnd_1);
-        }
-        requestAnimationFrame(function () {
-            // NOTE(traviskaufman): It would be nice to use calc() here,
-            // but IE cannot handle calcs in transforms correctly.
-            // See: https://goo.gl/NC2itk
-            // Also note that the -50% offset is used to center the slider thumb.
-            _this.adapter.setThumbContainerStyleProperty(transformProp, "translateX(" + translatePx + "px) translateX(-50%)");
-            _this.adapter.setTrackStyleProperty(transformProp, "scaleX(" + pctComplete + ")");
-        });
-    };
-    /**
-     * Toggles the active state of the slider
-     */
-    MDCSliderFoundation.prototype.setActive_ = function (active) {
-        this.active_ = active;
-        this.toggleClass_(cssClasses.ACTIVE, this.active_);
-    };
-    /**
-     * Toggles the inTransit state of the slider
-     */
-    MDCSliderFoundation.prototype.setInTransit_ = function (inTransit) {
-        this.inTransit_ = inTransit;
-        this.toggleClass_(cssClasses.IN_TRANSIT, this.inTransit_);
-    };
-    /**
-     * Conditionally adds or removes a class based on shouldBePresent
-     */
-    MDCSliderFoundation.prototype.toggleClass_ = function (className, shouldBePresent) {
-        if (shouldBePresent) {
-            this.adapter.addClass(className);
+    MDCSliderFoundation.prototype.registerEventHandlers = function () {
+        this.adapter.registerWindowEventHandler('resize', this.resizeListener);
+        if (MDCSliderFoundation.SUPPORTS_POINTER_EVENTS) {
+            // If supported, use pointer events API with #setPointerCapture.
+            this.adapter.registerEventHandler('pointerdown', this.pointerdownListener);
+            this.adapter.registerEventHandler('pointerup', this.pointerupListener);
         }
         else {
-            this.adapter.removeClass(className);
+            // Otherwise, fall back to mousedown/touchstart events.
+            this.adapter.registerEventHandler('mousedown', this.mousedownOrTouchstartListener);
+            this.adapter.registerEventHandler('touchstart', this.mousedownOrTouchstartListener);
         }
+        if (this.isRange) {
+            this.adapter.registerThumbEventHandler(Thumb.START, 'keydown', this.thumbStartKeydownListener);
+            this.adapter.registerThumbEventHandler(Thumb.START, 'focus', this.thumbFocusOrMouseenterListener);
+            this.adapter.registerThumbEventHandler(Thumb.START, 'mouseenter', this.thumbFocusOrMouseenterListener);
+            this.adapter.registerThumbEventHandler(Thumb.START, 'blur', this.thumbBlurOrMouseleaveListener);
+            this.adapter.registerThumbEventHandler(Thumb.START, 'mouseleave', this.thumbBlurOrMouseleaveListener);
+        }
+        this.adapter.registerThumbEventHandler(Thumb.END, 'keydown', this.thumbEndKeydownListener);
+        this.adapter.registerThumbEventHandler(Thumb.END, 'focus', this.thumbFocusOrMouseenterListener);
+        this.adapter.registerThumbEventHandler(Thumb.END, 'mouseenter', this.thumbFocusOrMouseenterListener);
+        this.adapter.registerThumbEventHandler(Thumb.END, 'blur', this.thumbBlurOrMouseleaveListener);
+        this.adapter.registerThumbEventHandler(Thumb.END, 'mouseleave', this.thumbBlurOrMouseleaveListener);
     };
+    MDCSliderFoundation.prototype.deregisterEventHandlers = function () {
+        this.adapter.deregisterWindowEventHandler('resize', this.resizeListener);
+        if (MDCSliderFoundation.SUPPORTS_POINTER_EVENTS) {
+            this.adapter.deregisterEventHandler('pointerdown', this.pointerdownListener);
+            this.adapter.deregisterEventHandler('pointerup', this.pointerupListener);
+        }
+        else {
+            this.adapter.deregisterEventHandler('mousedown', this.mousedownOrTouchstartListener);
+            this.adapter.deregisterEventHandler('touchstart', this.mousedownOrTouchstartListener);
+        }
+        if (this.isRange) {
+            this.adapter.deregisterThumbEventHandler(Thumb.START, 'keydown', this.thumbStartKeydownListener);
+            this.adapter.deregisterThumbEventHandler(Thumb.START, 'focus', this.thumbFocusOrMouseenterListener);
+            this.adapter.deregisterThumbEventHandler(Thumb.START, 'mouseenter', this.thumbFocusOrMouseenterListener);
+            this.adapter.deregisterThumbEventHandler(Thumb.START, 'blur', this.thumbBlurOrMouseleaveListener);
+            this.adapter.deregisterThumbEventHandler(Thumb.START, 'mouseleave', this.thumbBlurOrMouseleaveListener);
+        }
+        this.adapter.deregisterThumbEventHandler(Thumb.END, 'keydown', this.thumbEndKeydownListener);
+        this.adapter.deregisterThumbEventHandler(Thumb.END, 'focus', this.thumbFocusOrMouseenterListener);
+        this.adapter.deregisterThumbEventHandler(Thumb.END, 'mouseenter', this.thumbFocusOrMouseenterListener);
+        this.adapter.deregisterThumbEventHandler(Thumb.END, 'blur', this.thumbBlurOrMouseleaveListener);
+        this.adapter.deregisterThumbEventHandler(Thumb.END, 'mouseleave', this.thumbBlurOrMouseleaveListener);
+    };
+    MDCSliderFoundation.prototype.handlePointerup = function () {
+        this.handleUp();
+        this.adapter.deregisterEventHandler('pointermove', this.moveListener);
+    };
+    MDCSliderFoundation.SUPPORTS_POINTER_EVENTS = HAS_WINDOW && Boolean(window.PointerEvent);
     return MDCSliderFoundation;
 }(MDCFoundation));
 export { MDCSliderFoundation };
-// tslint:disable-next-line:no-default-export Needed for backward compatibility
-// with MDC Web v0.44.0 and earlier.
-export default MDCSliderFoundation;
 //# sourceMappingURL=foundation.js.map

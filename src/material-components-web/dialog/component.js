@@ -184,7 +184,7 @@ var MDCDialog = /** @class */ (function (_super) {
         return new MDCDialogFoundation(adapter);
     };
     MDCDialog.prototype.getInitialFocusEl_ = function () {
-        return document.querySelector("[" + strings.INITIAL_FOCUS_ATTRIBUTE + "]");
+        return this.root.querySelector("[" + strings.INITIAL_FOCUS_ATTRIBUTE + "]");
     };
     return MDCDialog;
 }(MDCComponent));

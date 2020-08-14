@@ -48,6 +48,7 @@ var MDCSelectHelperText = /** @class */ (function (_super) {
             addClass: function (className) { return _this.root.classList.add(className); },
             removeClass: function (className) { return _this.root.classList.remove(className); },
             hasClass: function (className) { return _this.root.classList.contains(className); },
+            getAttr: function (attr) { return _this.root.getAttribute(attr); },
             setAttr: function (attr, value) { return _this.root.setAttribute(attr, value); },
             removeAttr: function (attr) { return _this.root.removeAttribute(attr); },
             setContent: function (content) {

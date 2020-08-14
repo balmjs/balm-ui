@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2017 Google Inc.
+ * Copyright 2020 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,11 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { __extends } from "tslib";
+import { __extends, __values } from "tslib";
 import { MDCComponent } from '../base/component';
-import { applyPassive } from '../dom/events';
-import { strings } from './constants';
+import { MDCRipple } from '../ripple/component';
+import { cssClasses, events } from './constants';
 import { MDCSliderFoundation } from './foundation';
+import { Thumb, TickMark } from './types';
+/** Vanilla JS implementation of slider component. */
 var MDCSlider = /** @class */ (function (_super) {
     __extends(MDCSlider, _super);
     function MDCSlider() {
@@ -33,166 +35,196 @@ var MDCSlider = /** @class */ (function (_super) {
     MDCSlider.attachTo = function (root) {
         return new MDCSlider(root);
     };
-    Object.defineProperty(MDCSlider.prototype, "value", {
-        get: function () {
-            return this.foundation.getValue();
-        },
-        set: function (value) {
-            this.foundation.setValue(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(MDCSlider.prototype, "min", {
-        get: function () {
-            return this.foundation.getMin();
-        },
-        set: function (min) {
-            this.foundation.setMin(min);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(MDCSlider.prototype, "max", {
-        get: function () {
-            return this.foundation.getMax();
-        },
-        set: function (max) {
-            this.foundation.setMax(max);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(MDCSlider.prototype, "step", {
-        get: function () {
-            return this.foundation.getStep();
-        },
-        set: function (step) {
-            this.foundation.setStep(step);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(MDCSlider.prototype, "disabled", {
-        get: function () {
-            return this.foundation.isDisabled();
-        },
-        set: function (disabled) {
-            this.foundation.setDisabled(disabled);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    MDCSlider.prototype.initialize = function () {
-        this.thumbContainer_ =
-            this.root.querySelector(strings.THUMB_CONTAINER_SELECTOR);
-        this.track_ = this.root.querySelector(strings.TRACK_SELECTOR);
-        this.pinValueMarker_ = this.root.querySelector(strings.PIN_VALUE_MARKER_SELECTOR);
-        this.trackMarkerContainer_ = this.root.querySelector(strings.TRACK_MARKER_CONTAINER_SELECTOR);
-    };
     MDCSlider.prototype.getDefaultFoundation = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take
-        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
-        // methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same
         // order as the adapter interface.
         var adapter = {
             hasClass: function (className) { return _this.root.classList.contains(className); },
-            addClass: function (className) { return _this.root.classList.add(className); },
-            removeClass: function (className) { return _this.root.classList.remove(className); },
-            getAttribute: function (name) { return _this.root.getAttribute(name); },
-            setAttribute: function (name, value) { return _this.root.setAttribute(name, value); },
-            removeAttribute: function (name) { return _this.root.removeAttribute(name); },
-            computeBoundingRect: function () { return _this.root.getBoundingClientRect(); },
-            getTabIndex: function () { return _this.root.tabIndex; },
-            registerInteractionHandler: function (evtType, handler) {
-                return _this.listen(evtType, handler, applyPassive());
+            addClass: function (className) {
+                _this.root.classList.add(className);
             },
-            deregisterInteractionHandler: function (evtType, handler) {
-                return _this.unlisten(evtType, handler, applyPassive());
+            removeClass: function (className) {
+                _this.root.classList.remove(className);
             },
-            registerThumbContainerInteractionHandler: function (evtType, handler) {
-                _this.thumbContainer_.addEventListener(evtType, handler, applyPassive());
+            addThumbClass: function (className, thumb) {
+                _this.getThumbEl(thumb).classList.add(className);
             },
-            deregisterThumbContainerInteractionHandler: function (evtType, handler) {
-                _this.thumbContainer_.removeEventListener(evtType, handler, applyPassive());
+            removeThumbClass: function (className, thumb) {
+                _this.getThumbEl(thumb).classList.remove(className);
             },
-            registerBodyInteractionHandler: function (evtType, handler) {
-                return document.body.addEventListener(evtType, handler);
+            getAttribute: function (attribute) { return _this.root.getAttribute(attribute); },
+            getThumbAttribute: function (attribute, thumb) {
+                return _this.getThumbEl(thumb).getAttribute(attribute);
             },
-            deregisterBodyInteractionHandler: function (evtType, handler) {
-                return document.body.removeEventListener(evtType, handler);
+            setThumbAttribute: function (attribute, value, thumb) {
+                _this.getThumbEl(thumb).setAttribute(attribute, value);
             },
-            registerResizeHandler: function (handler) {
-                return window.addEventListener('resize', handler);
+            isThumbFocused: function (thumb) {
+                return _this.getThumbEl(thumb) === document.activeElement;
             },
-            deregisterResizeHandler: function (handler) {
-                return window.removeEventListener('resize', handler);
+            focusThumb: function (thumb) {
+                _this.getThumbEl(thumb).focus();
             },
-            notifyInput: function () { return _this.emit(strings.INPUT_EVENT, _this); },
-            notifyChange: function () { return _this.emit(strings.CHANGE_EVENT, _this); },
-            setThumbContainerStyleProperty: function (propertyName, value) {
-                _this.thumbContainer_.style.setProperty(propertyName, value);
+            getThumbKnobWidth: function (thumb) {
+                return _this.getThumbEl(thumb)
+                    .querySelector("." + cssClasses.THUMB_KNOB)
+                    .getBoundingClientRect()
+                    .width;
             },
-            setTrackStyleProperty: function (propertyName, value) {
-                return _this.track_.style.setProperty(propertyName, value);
+            getThumbBoundingClientRect: function (thumb) {
+                return _this.getThumbEl(thumb).getBoundingClientRect();
             },
-            setMarkerValue: function (value) { return _this.pinValueMarker_.innerText =
-                value.toLocaleString(); },
-            setTrackMarkers: function (step, max, min) {
-                var stepStr = step.toLocaleString();
-                var maxStr = max.toLocaleString();
-                var minStr = min.toLocaleString();
-                // keep calculation in css for better rounding/subpixel behavior
-                var markerAmount = "((" + maxStr + " - " + minStr + ") / " + stepStr + ")";
-                var markerWidth = "2px";
-                var markerBkgdImage = "linear-gradient(to right, currentColor " + markerWidth + ", transparent 0)";
-                var markerBkgdLayout = "0 center / calc((100% - " + markerWidth + ") / " + markerAmount + ") 100% repeat-x";
-                var markerBkgdShorthand = markerBkgdImage + " " + markerBkgdLayout;
-                _this.trackMarkerContainer_.style.setProperty('background', markerBkgdShorthand);
-            },
+            getBoundingClientRect: function () { return _this.root.getBoundingClientRect(); },
             isRTL: function () { return getComputedStyle(_this.root).direction === 'rtl'; },
+            setThumbStyleProperty: function (propertyName, value, thumb) {
+                _this.getThumbEl(thumb).style.setProperty(propertyName, value);
+            },
+            removeThumbStyleProperty: function (propertyName, thumb) {
+                _this.getThumbEl(thumb).style.removeProperty(propertyName);
+            },
+            setTrackActiveStyleProperty: function (propertyName, value) {
+                _this.trackActive.style.setProperty(propertyName, value);
+            },
+            setValueIndicatorText: function (value, thumb) {
+                var valueIndicatorEl = _this.getThumbEl(thumb).querySelector("." + cssClasses.VALUE_INDICATOR_TEXT);
+                valueIndicatorEl.textContent = String(value);
+            },
+            updateTickMarks: function (tickMarks) {
+                var tickMarksContainer = _this.root.querySelector("." + cssClasses.TICK_MARKS_CONTAINER);
+                if (!tickMarksContainer) {
+                    tickMarksContainer = document.createElement('div');
+                    tickMarksContainer.classList.add(cssClasses.TICK_MARKS_CONTAINER);
+                    var track = _this.root.querySelector("." + cssClasses.TRACK);
+                    track.appendChild(tickMarksContainer);
+                }
+                if (tickMarks.length !== tickMarksContainer.children.length) {
+                    tickMarksContainer.innerHTML = '';
+                    _this.addTickMarks(tickMarksContainer, tickMarks);
+                }
+                else {
+                    _this.updateTickMarks(tickMarksContainer, tickMarks);
+                }
+            },
+            setPointerCapture: function (pointerId) {
+                _this.root.setPointerCapture(pointerId);
+            },
+            emitChangeEvent: function (value, thumb) {
+                _this.emit(events.CHANGE, { value: value, thumb: thumb });
+            },
+            emitInputEvent: function (value, thumb) {
+                _this.emit(events.INPUT, { value: value, thumb: thumb });
+            },
+            registerEventHandler: function (evtType, handler) {
+                _this.listen(evtType, handler);
+            },
+            deregisterEventHandler: function (evtType, handler) {
+                _this.unlisten(evtType, handler);
+            },
+            registerThumbEventHandler: function (thumb, evtType, handler) {
+                _this.getThumbEl(thumb).addEventListener(evtType, handler);
+            },
+            deregisterThumbEventHandler: function (thumb, evtType, handler) {
+                _this.getThumbEl(thumb).removeEventListener(evtType, handler);
+            },
+            registerBodyEventHandler: function (evtType, handler) {
+                document.body.addEventListener(evtType, handler);
+            },
+            deregisterBodyEventHandler: function (evtType, handler) {
+                document.body.removeEventListener(evtType, handler);
+            },
+            registerWindowEventHandler: function (evtType, handler) {
+                window.addEventListener(evtType, handler);
+            },
+            deregisterWindowEventHandler: function (evtType, handler) {
+                window.removeEventListener(evtType, handler);
+            },
         };
-        // tslint:enable:object-literal-sort-keys
         return new MDCSliderFoundation(adapter);
     };
-    MDCSlider.prototype.initialSyncWithDOM = function () {
-        var origValueNow = this.parseFloat_(this.root.getAttribute(strings.ARIA_VALUENOW), this.value);
-        var min = this.parseFloat_(this.root.getAttribute(strings.ARIA_VALUEMIN), this.min);
-        var max = this.parseFloat_(this.root.getAttribute(strings.ARIA_VALUEMAX), this.max);
-        // min and max need to be set in the right order to avoid throwing an error
-        // when the new min is greater than the default max.
-        if (min >= this.max) {
-            this.max = max;
-            this.min = min;
-        }
-        else {
-            this.min = min;
-            this.max = max;
-        }
-        this.step = this.parseFloat_(this.root.getAttribute(strings.STEP_DATA_ATTR), this.step);
-        this.value = origValueNow;
-        this.disabled =
-            (this.root.hasAttribute(strings.ARIA_DISABLED) &&
-                this.root.getAttribute(strings.ARIA_DISABLED) !== 'false');
-        this.foundation.setupTrackMarker();
+    MDCSlider.prototype.initialize = function () {
+        this.thumbs =
+            [].slice.call(this.root.querySelectorAll("." + cssClasses.THUMB));
+        this.trackActive =
+            this.root.querySelector("." + cssClasses.TRACK_ACTIVE);
     };
+    MDCSlider.prototype.initialSyncWithDOM = function () {
+        this.createRipples();
+        this.foundation.layout();
+    };
+    /** Redraws UI based on DOM (e.g. element dimensions, RTL). */
     MDCSlider.prototype.layout = function () {
         this.foundation.layout();
     };
-    MDCSlider.prototype.stepUp = function (amount) {
-        if (amount === void 0) { amount = (this.step || 1); }
-        this.value += amount;
+    MDCSlider.prototype.getValueStart = function () {
+        return this.foundation.getValueStart();
     };
-    MDCSlider.prototype.stepDown = function (amount) {
-        if (amount === void 0) { amount = (this.step || 1); }
-        this.value -= amount;
+    MDCSlider.prototype.setValueStart = function (valueStart) {
+        this.foundation.setValueStart(valueStart);
     };
-    MDCSlider.prototype.parseFloat_ = function (str, defaultValue) {
-        var num = parseFloat(str); // tslint:disable-line:ban
-        var isNumeric = typeof num === 'number' && isFinite(num);
-        return isNumeric ? num : defaultValue;
+    MDCSlider.prototype.getValue = function () {
+        return this.foundation.getValue();
+    };
+    MDCSlider.prototype.setValue = function (value) {
+        this.foundation.setValue(value);
+    };
+    /** @return Slider disabled state. */
+    MDCSlider.prototype.getDisabled = function () {
+        return this.foundation.getDisabled();
+    };
+    /** Sets slider disabled state. */
+    MDCSlider.prototype.setDisabled = function (disabled) {
+        this.foundation.setDisabled(disabled);
+    };
+    MDCSlider.prototype.getThumbEl = function (thumb) {
+        return thumb === Thumb.END ? this.thumbs[this.thumbs.length - 1] :
+            this.thumbs[0];
+    };
+    /** Adds tick mark elements to the given container. */
+    MDCSlider.prototype.addTickMarks = function (tickMarkContainer, tickMarks) {
+        var fragment = document.createDocumentFragment();
+        for (var i = 0; i < tickMarks.length; i++) {
+            var div = document.createElement('div');
+            var tickMarkClass = tickMarks[i] === TickMark.ACTIVE ?
+                cssClasses.TICK_MARK_ACTIVE :
+                cssClasses.TICK_MARK_INACTIVE;
+            div.classList.add(tickMarkClass);
+            fragment.appendChild(div);
+        }
+        tickMarkContainer.appendChild(fragment);
+    };
+    /** Updates tick mark elements' classes in the given container. */
+    MDCSlider.prototype.updateTickMarks = function (tickMarkContainer, tickMarks) {
+        var tickMarkEls = Array.from(tickMarkContainer.children);
+        for (var i = 0; i < tickMarkEls.length; i++) {
+            if (tickMarks[i] === TickMark.ACTIVE) {
+                tickMarkEls[i].classList.add(cssClasses.TICK_MARK_ACTIVE);
+                tickMarkEls[i].classList.remove(cssClasses.TICK_MARK_INACTIVE);
+            }
+            else {
+                tickMarkEls[i].classList.add(cssClasses.TICK_MARK_INACTIVE);
+                tickMarkEls[i].classList.remove(cssClasses.TICK_MARK_ACTIVE);
+            }
+        }
+    };
+    /** Initializes thumb ripples. */
+    MDCSlider.prototype.createRipples = function () {
+        var e_1, _a;
+        var rippleSurfaces = [].slice.call(this.root.querySelectorAll("." + cssClasses.THUMB));
+        try {
+            for (var rippleSurfaces_1 = __values(rippleSurfaces), rippleSurfaces_1_1 = rippleSurfaces_1.next(); !rippleSurfaces_1_1.done; rippleSurfaces_1_1 = rippleSurfaces_1.next()) {
+                var rippleSurface = rippleSurfaces_1_1.value;
+                var ripple = new MDCRipple(rippleSurface);
+                ripple.unbounded = true;
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (rippleSurfaces_1_1 && !rippleSurfaces_1_1.done && (_a = rippleSurfaces_1.return)) _a.call(rippleSurfaces_1);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
     };
     return MDCSlider;
 }(MDCComponent));

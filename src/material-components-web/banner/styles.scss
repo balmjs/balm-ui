@@ -1,5 +1,5 @@
 //
-// Copyright 2017 Google Inc.
+// Copyright 2020 Google Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,4 +20,6 @@
 // THE SOFTWARE.
 //
 
-$baseline-rail-opacity: 0.26 !default;
+@use './banner';
+
+@include banner.core-styles;

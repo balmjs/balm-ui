@@ -8,6 +8,7 @@ const Banner = () => import('@/views/components/banner');
 const Progress = () => import('@/views/components/progress');
 const Spinner = () => import('@/views/components/spinner');
 const Skeleton = () => import('@/views/components/skeleton');
+const Tooltip = () => import('@/views/directives/tooltip');
 
 export default [
   {
@@ -59,5 +60,10 @@ export default [
     path: 'skeleton',
     name: 'feedback.skeleton',
     component: Skeleton
+  },
+  {
+    path: 'tooltip',
+    name: 'feedback.tooltip',
+    component: Tooltip
   }
 ];

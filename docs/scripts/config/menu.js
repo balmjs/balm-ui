@@ -312,6 +312,11 @@ const MATERIAL_COMPONENTS = [
         description:
           "Provide a placeholder while you wait for content to load, or to visualise content that doesn't exist yet.",
         plus: true
+      },
+      {
+        icon: 'feedback',
+        name: 'Tooltip',
+        description: 'Tooltip'
       }
     ]
   },

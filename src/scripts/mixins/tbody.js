@@ -85,7 +85,7 @@ export default {
 
             cell[this.T_CELL.FIELD] = key;
             cell[this.T_CELL.VALUE] = this.isFunction(customFn)
-              ? customFn(rowData)
+              ? customFn(this.currentData[rowIndex]) // NOTE: use full row data
               : rowData[field];
           }
 
@@ -99,7 +99,7 @@ export default {
                     if (this.isString(value)) {
                       cell[key] = value;
                     } else if (this.isFunction(value)) {
-                      cell[key] = value(rowData);
+                      cell[key] = value(this.currentData[rowIndex]); // NOTE: use full row data
                     }
                     break;
                   case this.T_CELL.FUNCTION:

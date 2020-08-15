@@ -1,8 +1,14 @@
 # [BalmUI](https://material.balmjs.com) ChangeLog
 
+## v7.6.1 / 2020-08-15
+
+### Bug Fixes
+
+- `<ui-table>`: bugfix for tbody fields function
+
 ## v7.6.0 / 2020-07-30
 
-> build by `balm@next`, `balm@3` is coming up!
+> build by `balm@next`, [`balm@3`](https://balm.js.org/) is coming up!
 
 ### Bug Fixes
 

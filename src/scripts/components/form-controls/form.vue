@@ -14,7 +14,7 @@ const UI_FORM = {
     vertical: 1
   },
   cssClasses: {
-    action: 'mdc-form-action'
+    action: 'mdc-form__actions'
   }
 };
 

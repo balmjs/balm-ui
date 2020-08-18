@@ -42,9 +42,16 @@
     }
   }
 
-  .mdc-form-action {
+  .mdc-form__actions {
     padding-left: form-variables.$form-item-label-width +
       form-variables.$form-item-label-margin-right;
+
+    .mdc-button {
+      margin-right: 8px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
   }
 
   .mdc-checkbox,

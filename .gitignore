@@ -22,11 +22,11 @@ web_modules/
 # Build build output
 .tmp/
 dist/
-fonts/
-components/
-plugins/
-directives/
-utils/
+/fonts/
+/components/
+/plugins/
+/directives/
+/utils/
 
 # MacOS generated files
 .DS_Store

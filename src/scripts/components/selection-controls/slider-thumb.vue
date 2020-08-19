@@ -11,7 +11,7 @@
     <!-- Value label (optional) -->
     <div v-if="isDiscrete" class="mdc-slider__value-indicator-container">
       <div class="mdc-slider__value-indicator">
-        <span class="mdc-slider__value-indicator-text"></span>
+        <span class="mdc-slider__value-indicator-text" v-text="valuenow"></span>
       </div>
     </div>
     <div class="mdc-slider__thumb-knob"></div>

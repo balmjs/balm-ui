@@ -9,22 +9,30 @@
       </div>
     </div>
     <!-- Thumb -->
+    <template v-if="isRange">
+      <ui-slider-thumb
+        :is-discrete="isDiscrete"
+        :valuemin="+min"
+        :valuemax="+max"
+        :valuenow="startValue"
+        :disabled="disabled"
+      ></ui-slider-thumb>
+      <ui-slider-thumb
+        :is-discrete="isDiscrete"
+        :valuemin="+min"
+        :valuemax="+max"
+        :valuenow="endValue"
+        :disabled="disabled"
+      ></ui-slider-thumb>
+    </template>
     <ui-slider-thumb
+      v-else
       :is-discrete="isDiscrete"
       :valuemin="+min"
       :valuemax="+max"
-      :valuenow="startValue"
+      :valuenow="selectedValue"
       :disabled="disabled"
     ></ui-slider-thumb>
-    <ui-slider-thumb
-      v-if="isRange"
-      :is-discrete="isDiscrete"
-      :valuemin="+min"
-      :valuemax="+max"
-      :valuenow="endValue"
-      :disabled="disabled"
-    ></ui-slider-thumb>
-    <!-- Tick mark (optional) -->
   </div>
 </template>
 
@@ -164,8 +172,7 @@ export default {
           console.warn('Invalid slider value');
         }
       } else {
-        this.startValue = selectedValue;
-        this.$slider.setValue(this.startValue);
+        this.$slider.setValue(selectedValue);
       }
     },
     recompute() {

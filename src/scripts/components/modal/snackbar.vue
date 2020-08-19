@@ -8,9 +8,15 @@
       </div>
       <!-- Action (optional) -->
       <div v-if="hasAction" class="mdc-snackbar__actions">
-        <button type="button" :class="actionButtonClassName">
-          <slot name="action">{{ canDismiss ? 'X' : actionButtonText }}</slot>
-        </button>
+        <slot name="action" :actionClass="actionButtonClassName">
+          <button
+            type="button"
+            :class="[canDismiss ? 'mdc-icon-button': 'mdc-button', actionButtonClassName]"
+          >
+            <div v-if="!canDismiss" class="mdc-button__ripple"></div>
+            <span class="mdc-button__label">{{ canDismiss ? 'X' : actionButtonText }}</span>
+          </button>
+        </slot>
       </div>
     </div>
   </div>
@@ -91,9 +97,7 @@ export default {
       return this.actionType === UI_SNACKBAR.ACTION_TYPE.DISMISS_ICON;
     },
     actionButtonClassName() {
-      return this.canDismiss
-        ? 'mdc-icon-button mdc-snackbar__dismiss'
-        : 'mdc-button mdc-snackbar__action';
+      return this.canDismiss ? 'mdc-snackbar__dismiss' : 'mdc-snackbar__action';
     },
     hasAction() {
       return this.actionButtonText || this.canDismiss;
@@ -122,7 +126,7 @@ export default {
       this.$snackbar.labelText = this.message;
     }
 
-    this.$snackbar.listen('MDCSnackbar:closed', () => {
+    this.$snackbar.listen(`MDCSnackbar:${UI_SNACKBAR.EVENT.CLOSED}`, () => {
       this.$emit(UI_SNACKBAR.EVENT.CHANGE, false);
       this.$emit(UI_SNACKBAR.EVENT.CLOSED);
     });

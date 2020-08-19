@@ -7,15 +7,15 @@
     <!-- Content -->
     <section class="demo-wrapper">
       <ui-form class="demo-controls">
-        <label>Timeout: {{ timeout / 1000 }}second</label>
+        <label>Timeout: {{ timeout }}second</label>
         <ui-form-field>
-          <ui-slider id="timeout" v-model="timeout" min="4000" max="10000" step="1000"></ui-slider>
+          <ui-slider v-model="timeout" type="discrete" min="4" max="10"></ui-slider>
         </ui-form-field>
         <ui-form-field>
-          <ui-textfield id="message" v-model="message">Message Text</ui-textfield>
+          <ui-textfield v-model="message">Message Text</ui-textfield>
         </ui-form-field>
         <ui-form-field>
-          <ui-textfield id="action" v-model="actionText">Action Text</ui-textfield>
+          <ui-textfield v-model="actionText">Action Text</ui-textfield>
         </ui-form-field>
         <ui-form-field>
           <ui-checkbox id="action-type" v-model="actionType"></ui-checkbox>
@@ -27,7 +27,7 @@
 
         <ui-snackbar
           v-model="open"
-          :timeout-ms="timeout"
+          :timeout-ms="timeout*1e3"
           :message="message"
           :action-button-text="actionText"
           :action-type="actionType ? 1 : 0"
@@ -47,7 +47,7 @@ export default {
     return {
       // demo
       open: false,
-      timeout: 5000,
+      timeout: 5,
       message: 'Hello Snackbar',
       actionText: 'close',
       actionType: false

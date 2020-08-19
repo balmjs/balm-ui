@@ -9,6 +9,18 @@
       :aria-controls="helperTextId"
       :aria-describedby="helperTextId"
     >
+      <!-- Label -->
+      <ui-notched-outline v-if="isOutlined" :has-label="!noLabel">
+        <ui-floating-label>
+          <slot>{{ label }}</slot>
+        </ui-floating-label>
+      </ui-notched-outline>
+      <template v-else>
+        <span class="mdc-select__ripple"></span>
+        <ui-floating-label v-if="!noLabel">
+          <slot>{{ label }}</slot>
+        </ui-floating-label>
+      </template>
       <!-- Leading Icon -->
       <slot name="icon">
         <i
@@ -18,11 +30,10 @@
         ></i>
       </slot>
       <!-- Enhanced Select -->
-      <span class="mdc-select__ripple"></span>
       <span class="mdc-select__selected-text"></span>
       <span class="mdc-select__dropdown-icon">
         <slot name="dropdown-icon">
-          <svg class="mdc-select__dropdown-icon-graphic" viewBox="7 10 10 5">
+          <svg class="mdc-select__dropdown-icon-graphic" viewBox="7 10 10 5" focusable="false">
             <polygon
               class="mdc-select__dropdown-icon-inactive"
               stroke="none"
@@ -38,17 +49,7 @@
           </svg>
         </slot>
       </span>
-      <ui-notched-outline v-if="isOutlined" :has-label="!noLabel">
-        <ui-floating-label>
-          <slot>{{ label }}</slot>
-        </ui-floating-label>
-      </ui-notched-outline>
-      <template v-else>
-        <ui-floating-label v-if="!noLabel">
-          <slot>{{ label }}</slot>
-        </ui-floating-label>
-        <span class="mdc-line-ripple"></span>
-      </template>
+      <span v-if="!isOutlined" class="mdc-line-ripple"></span>
     </div>
     <!-- Options -->
     <div
@@ -56,14 +57,12 @@
         'mdc-select__menu mdc-menu mdc-menu-surface',
         { 'mdc-menu-surface--fullwidth': fullwidth }
       ]"
-      role="listbox"
     >
-      <ul class="mdc-list">
-        <template v-if="currentOptions.length">
-          <li
-            v-for="(option, index) in currentOptions"
-            :key="index"
-            :class="[
+      <ul class="mdc-list" role="listbox">
+        <li
+          v-for="(option, index) in currentOptions"
+          :key="index"
+          :class="[
               'mdc-list-item',
               {
                 'mdc-list-item--selected':
@@ -71,18 +70,14 @@
                 'mdc-list-item--disabled': option.disabled
               }
             ]"
-            :data-value="option[optionValue]"
-            :aria-selected="option[optionValue] === selectedValue"
-            :aria-disabled="option.disabled"
-            role="option"
-          >
-            <span
-              v-if="option[optionLabel]"
-              class="mdc-list-item__text"
-              v-text="option[optionLabel]"
-            ></span>
-          </li>
-        </template>
+          :data-value="option[optionValue]"
+          :aria-selected="option[optionValue] === selectedValue"
+          :aria-disabled="option.disabled"
+          role="option"
+        >
+          <span class="mdc-list-item__ripple"></span>
+          <span v-if="option[optionLabel]" class="mdc-list-item__text" v-text="option[optionLabel]"></span>
+        </li>
       </ul>
     </div>
   </div>
@@ -193,8 +188,7 @@ export default {
       UI_SELECT,
       $select: null,
       currentOptions: [],
-      selectedValue: this.model,
-      selectedIndex: UI_SELECT.DEFAULT_SELECTED_INDEX
+      selectedValue: this.model
     };
   },
   computed: {
@@ -267,25 +261,27 @@ export default {
 
       // Set current option
       this.$nextTick(() => {
+        this.$select.layoutOptions();
         this.setCurrentOption();
       });
     },
     setCurrentOption() {
-      let index = UI_SELECT.DEFAULT_SELECTED_INDEX + 1;
+      let currentIndex = UI_SELECT.DEFAULT_SELECTED_INDEX + 1;
 
-      for (let i = 0, len = this.currentOptions.length; i < len; i++) {
-        let currentOption = this.currentOptions[i];
-        if (currentOption[this.optionValue] == this.selectedValue) {
-          index = i;
+      for (
+        let index = 0, itemCount = this.currentOptions.length;
+        index < itemCount;
+        index++
+      ) {
+        let currentOption = this.currentOptions[index];
+        if (currentOption[this.optionValue] === this.selectedValue) {
+          currentIndex = index;
           break;
         }
       }
 
-      // Set selected index
-      this.selectedIndex = index;
-
-      if (this.selectedIndex > UI_SELECT.DEFAULT_SELECTED_INDEX) {
-        this.$select.selectedIndex = this.selectedIndex;
+      if (currentIndex > UI_SELECT.DEFAULT_SELECTED_INDEX) {
+        this.$select.selectedIndex = currentIndex;
       }
     },
     getSelected(index) {

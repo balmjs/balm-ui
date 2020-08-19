@@ -5,14 +5,14 @@ $height: 32px;
 $color: theme-variables.$primary !default;
 $corner-radius: 4px !default;
 /// Default
-$fill-color: white !default;
+$fill-color: theme-variables.prop-value(on-primary) !default;
 $text-color: rgba(theme-variables.prop-value(on-surface), 0.87) !default;
-$border-color: rgba(theme-variables.prop-value(on-surface), 0.6) !default;
+$border-color: rgba(theme-variables.prop-value(on-surface), 0.87) !default;
 /// Hover
 $hover-fill-color: $fill-color !default;
 $hover-text-color: $color !default;
 $hover-border-color: $color !default;
 /// Activated
-$active-fill-color: rgba($color, 0.6) !default;
+$active-fill-color: rgba($color, 0.87) !default;
 $active-text-color: $fill-color !default;
-$active-border-color: rgba($color, 0.6) !default;
+$active-border-color: $color !default;

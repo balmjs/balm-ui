@@ -55,6 +55,7 @@
   border: 1px solid ui-pagination-variables.$border-color;
   background-color: ui-pagination-variables.$fill-color;
   color: ui-pagination-variables.$text-color;
+  @include shape-mixins.radius(ui-pagination-variables.$corner-radius);
 }
 
 .mdc-pagination__previous,
@@ -73,18 +74,20 @@
   }
 }
 
-.mdc-pagination__previous,
-.mdc-pagination__next,
+.mdc-pagination__previous:not(.mdc-pagination__page-item--disabled),
+.mdc-pagination__next:not(.mdc-pagination__page-item--disabled),
 .mdc-pagination__page-item {
   cursor: pointer;
   transition: all 0.3s;
-  @include shape-mixins.radius(ui-pagination-variables.$corner-radius);
 
   &:hover {
     border-color: ui-pagination-variables.$hover-border-color;
     background-color: ui-pagination-variables.$hover-fill-color;
     color: ui-pagination-variables.$hover-text-color;
-    a {
+
+    & > i,
+    & > span,
+    & > a {
       color: ui-pagination-variables.$hover-text-color;
     }
   }

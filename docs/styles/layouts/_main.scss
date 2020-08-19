@@ -48,7 +48,7 @@ a {
 
 .balmui-menu {
   position: fixed;
-  z-index: 3;
+  z-index: 2; // NOTE: < banner
   width: global.$nav-width;
 
   .mdc-drawer__header {

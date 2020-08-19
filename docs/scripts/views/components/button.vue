@@ -15,7 +15,7 @@
       <div class="demo-controls">
         <ui-form-field>
           <ui-checkbox id="toggle-disabled" v-model="controls.disabled"></ui-checkbox>
-          <label for="toggle-disabled">Disabled buttons (excluding links)</label>
+          <label for="toggle-disabled">Disabled buttons</label>
         </ui-form-field>
       </div>
 

@@ -5,3 +5,9 @@ $yellow: #f4b400;
 $green: #0f9d58;
 
 $fourColors: $blue $red $yellow $green !default;
+
+$sizing: (
+  large: 48px,
+  medium: 36px,
+  small: 24px
+);

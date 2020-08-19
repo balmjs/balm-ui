@@ -17,6 +17,7 @@
           :r="svg.r"
           :stroke-dasharray="svg.stroke"
           :stroke-dashoffset="svg.stroke"
+          :stroke-width="svg.width"
         />
       </svg>
     </div>
@@ -43,26 +44,32 @@ import progressMixin from '../../mixins/progress';
 // Define circular progress constants
 const UI_CIRCULAR_PROGRESS = {
   SVG: {
+    // 48px
     large: {
       viewBox: '0 0 48 48',
-      cx: '24',
-      cy: '24',
-      r: '18',
-      stroke: '113.097'
+      cx: 24,
+      cy: 24,
+      r: 18,
+      stroke: 113.097,
+      width: 4
     },
+    // 36px
     medium: {
       viewBox: '0 0 32 32',
-      cx: '16',
-      cy: '16',
-      r: '12.5',
-      stroke: '78.54'
+      cx: 16,
+      cy: 16,
+      r: 12.5,
+      stroke: 78.54,
+      width: 3
     },
+    // 24px
     small: {
       viewBox: '0 0 24 24',
       cx: '12',
       cy: '12',
       r: '8.75',
-      stroke: '54.978'
+      stroke: '54.978',
+      width: 2.5
     }
   }
 };

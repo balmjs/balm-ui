@@ -1,37 +1,36 @@
 <template>
   <!-- <input type="range"> -->
-  <div
-    :class="className"
-    tabindex="0"
-    role="slider"
-    :aria-valuenow="+selectedValue"
-    :aria-valuemin="+min"
-    :aria-valuemax="+max"
-    :data-step="+step"
-    :aria-disabled="disabled"
-  >
+  <div :class="className" :data-step="+step">
     <!-- Track -->
-    <div class="mdc-slider__track-container">
-      <div class="mdc-slider__track"></div>
-      <!-- Tick mark (optional) -->
-      <div v-if="displayMarker" class="mdc-slider__track-marker-container"></div>
-    </div>
-    <div class="mdc-slider__thumb-container">
-      <!-- Value label (optional) -->
-      <div v-if="isDiscrete" class="mdc-slider__pin">
-        <span class="mdc-slider__pin-value-marker"></span>
+    <div class="mdc-slider__track">
+      <div class="mdc-slider__track--inactive"></div>
+      <div class="mdc-slider__track--active">
+        <div class="mdc-slider__track--active_fill"></div>
       </div>
-      <!-- Thumb -->
-      <svg class="mdc-slider__thumb" width="21" height="21">
-        <circle cx="10.5" cy="10.5" r="7.875" />
-      </svg>
-      <div class="mdc-slider__focus-ring"></div>
     </div>
+    <!-- Thumb -->
+    <ui-slider-thumb
+      :is-discrete="isDiscrete"
+      :valuemin="+min"
+      :valuemax="+max"
+      :valuenow="startValue"
+      :disabled="disabled"
+    ></ui-slider-thumb>
+    <ui-slider-thumb
+      v-if="isRange"
+      :is-discrete="isDiscrete"
+      :valuemin="+min"
+      :valuemax="+max"
+      :valuenow="endValue"
+      :disabled="disabled"
+    ></ui-slider-thumb>
+    <!-- Tick mark (optional) -->
   </div>
 </template>
 
 <script>
 import { MDCSlider } from '../../../material-components-web/slider';
+import UiSliderThumb from './slider-thumb';
 import typeMixin from '../../mixins/type';
 
 // Define slider constants
@@ -48,6 +47,9 @@ const UI_SLIDER = {
 
 export default {
   name: 'UiSlider',
+  components: {
+    UiSliderThumb
+  },
   mixins: [typeMixin],
   model: {
     prop: 'model',
@@ -63,26 +65,26 @@ export default {
       type: Boolean,
       default: false
     },
-    displayMarker: {
+    withTickMarks: {
       type: Boolean,
       default: false
     },
     // States
     model: {
-      type: [Number, String],
+      type: [String, Number, Array],
       default: 0
     },
     // UI attributes
     min: {
-      type: [Number, String],
+      type: [String, Number],
       default: 0
     },
     max: {
-      type: [Number, String],
+      type: [String, Number],
       default: 100
     },
     step: {
-      type: [Number, String],
+      type: [String, Number],
       default: 1
     },
     disabled: {
@@ -93,50 +95,79 @@ export default {
   data() {
     return {
       $slider: null,
-      selectedValue: this.model
+      selectedValue: this.model,
+      startValue: 0,
+      endValue: 0
     };
   },
   computed: {
     isDiscrete() {
-      return this.checkType(UI_SLIDER.TYPES, 'discrete') || this.displayMarker;
+      return this.checkType(UI_SLIDER.TYPES, 'discrete') || this.withTickMarks;
+    },
+    isRange() {
+      return Array.isArray(this.selectedValue);
     },
     className() {
       return {
         'mdc-slider': true,
         'mdc-slider--discrete': this.isDiscrete,
-        'mdc-slider--display-markers': this.displayMarker
+        'mdc-slider--tick-marks': this.withTickMarks,
+        'mdc-slider--range': this.isRange,
+        'mdc-slider--disabled': this.disabled
       };
     }
   },
   watch: {
     model(val) {
       this.selectedValue = val;
-      this.$slider.value = val;
-    },
-    min(val) {
-      this.$slider.min = val;
-    },
-    max(val) {
-      this.$slider.max = val;
-    },
-    step(val) {
-      this.$slider.step = val;
+      this.update(val);
     },
     disabled(val) {
-      this.$slider.disabled = val;
+      this.$slider.setDisabled(val);
     }
   },
   mounted() {
     this.$slider = new MDCSlider(this.$el);
 
-    this.$slider.listen(`MDCSlider:${UI_SLIDER.EVENT.CHANGE}`, () => {
-      // NOTE: for twice trigger bugfix
-      if (this.selectedValue !== this.$slider.value) {
-        this.$emit(UI_SLIDER.EVENT.CHANGE, this.$slider.value);
+    this.$slider.listen(`MDCSlider:${UI_SLIDER.EVENT.CHANGE}`, ({ detail }) => {
+      const valuenow = Math.round(detail.value);
+      if (this.isRange) {
+        if (this.selectedValue[detail.thumb - 1] !== valuenow) {
+          const selectedValue =
+            detail.thumb === 1
+              ? [valuenow, this.selectedValue[1]]
+              : [this.selectedValue[0], valuenow];
+          this.$emit(UI_SLIDER.EVENT.CHANGE, selectedValue);
+        }
+      } else {
+        if (this.selectedValue !== valuenow) {
+          this.$emit(UI_SLIDER.EVENT.CHANGE, valuenow);
+        }
       }
     });
+
+    this.update();
   },
   methods: {
+    update(selectedValue = this.selectedValue) {
+      if (this.isRange) {
+        let validRangeSlider =
+          selectedValue[0] >= this.min &&
+          selectedValue[1] <= this.max &&
+          selectedValue[0] <= selectedValue[1];
+        if (validRangeSlider) {
+          this.startValue = +selectedValue[0];
+          this.endValue = +selectedValue[1];
+          this.$slider.setValue(this.endValue); // set first
+          this.$slider.setValueStart(this.startValue);
+        } else {
+          console.warn('Invalid slider value');
+        }
+      } else {
+        this.startValue = selectedValue;
+        this.$slider.setValue(this.startValue);
+      }
+    },
     recompute() {
       // Preventing FOUC
       this.$slider.layout();

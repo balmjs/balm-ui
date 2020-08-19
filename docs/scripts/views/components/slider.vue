@@ -1,10 +1,10 @@
 <template>
-  <ui-page name="slider" demo-count="1">
+  <ui-page name="slider" demo-count="2">
     <template #hero>
       <ui-form>
         <ui-form-field id="hero-slider-wrapper">
           <ui-icon>volume_mute</ui-icon>
-          <ui-slider id="hero-slider" ref="slider" v-model="value" max="100" label="Select Volume"></ui-slider>
+          <ui-slider ref="slider" v-model="value"></ui-slider>
           <ui-icon>volume_up</ui-icon>
         </ui-form-field>
       </ui-form>
@@ -12,130 +12,61 @@
     </template>
 
     <!-- Content -->
+    <ui-form class="demo-controls">
+      <ui-form-field>
+        <ui-checkbox id="slider-disabled" v-model="disabled"></ui-checkbox>
+        <label for="slider-disabled">Disabled</label>
+      </ui-form-field>
+    </ui-form>
+
     <section class="demo-wrapper">
-      <h6 :class="$tt('headline6')">Continuous Slider</h6>
       <div class="demo">
-        <div
-          :class="[
-            'example-slider-wrapper',
-            { 'custom-bg': controls.customColor }
-          ]"
-        >
-          <ui-slider
-            id="continuous-mdc-slider"
-            v-model="value1"
-            :min="min"
-            :max="max"
-            :step="step"
-            :disabled="controls.disabled"
-            @change="onChange"
-          ></ui-slider>
+        <h6 :class="$tt('headline6')">Continuous slider (Value: {{ value1 }})</h6>
+        <div class="example-slider-wrapper">
+          <ui-slider v-model="value1" :disabled="disabled" @change="onChange"></ui-slider>
         </div>
-        <p>Value: {{ value1 }}</p>
       </div>
+
+      <div class="demo">
+        <h6 :class="$tt('headline6')">Continuous range slider (Value: {{ value2 }})</h6>
+        <div class="example-slider-wrapper">
+          <ui-slider v-model="value2" :disabled="disabled" @change="onChange"></ui-slider>
+        </div>
+      </div>
+
+      <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
 
     <section class="demo-wrapper">
-      <h6 :class="$tt('headline6')">Discrete Slider</h6>
       <div class="demo">
-        <div
-          :class="[
-            'example-slider-wrapper',
-            { 'custom-bg': controls.customColor }
-          ]"
-        >
-          <ui-slider
-            id="discrete-mdc-slider"
-            v-model="value2"
-            type="discrete"
-            :min="min"
-            :max="max"
-            :step="step"
-            :disabled="controls.disabled"
-            label="Select Value"
-          ></ui-slider>
+        <h6 :class="$tt('headline6')">Discrete slider (Value: {{ value3 }})</h6>
+        <div class="example-slider-wrapper">
+          <ui-slider v-model="value3" type="discrete" :step="10" :disabled="disabled"></ui-slider>
         </div>
-        <p>Value: {{ value2 }}</p>
       </div>
-    </section>
 
-    <section class="demo-wrapper">
-      <h6 :class="$tt('headline6')">Discrete Slider with Tick Marks</h6>
       <div class="demo">
-        <div
-          :class="[
-            'example-slider-wrapper',
-            { 'custom-bg': controls.customColor }
-          ]"
-        >
+        <h6 :class="$tt('headline6')">Discrete slider with tick marks (Value: {{ value4 }})</h6>
+        <div class="example-slider-wrapper">
           <ui-slider
-            id="discrete-mdc-slider-w-marker"
-            v-model="value3"
-            type="discrete"
-            display-marker
-            :min="min"
-            :max="max"
-            :step="step"
-            :disabled="controls.disabled"
-            label="Select Value"
-          ></ui-slider>
-        </div>
-        <p>Value: {{ value3 }}</p>
-      </div>
-    </section>
-
-    <section class="demo-wrapper">
-      <h6 :class="$tt('headline6')">Custom Colored Discrete Slider with Tick Marks</h6>
-      <div class="demo">
-        <div
-          :class="[
-            'example-slider-wrapper',
-            { 'custom-bg': controls.customColor }
-          ]"
-        >
-          <ui-slider
-            id="custom-discrete-mdc-slider-w-marker"
             v-model="value4"
             type="discrete"
-            display-marker
-            class="demo-slider--custom"
-            :min="min"
-            :max="max"
-            :step="step"
-            :disabled="controls.disabled"
-            label="Select Value"
+            with-tick-marks
+            :step="10"
+            :disabled="disabled"
           ></ui-slider>
         </div>
-        <p>Value: {{ value4 }}</p>
       </div>
-    </section>
 
-    <ui-form class="demo-controls">
-      <div class="demo-param-field-group">
-        <label class="demo-param-field">
-          <span class="demo-param-input-label">Min:</span>
-          <input v-model="min" name="min" type="number" min="-100" max="100" />
-        </label>
-        <label class="demo-param-field">
-          <span class="demo-param-input-label">Max:</span>
-          <input v-model="max" name="max" type="number" min="-100" max="100" />
-        </label>
-        <label class="demo-param-field">
-          <span class="demo-param-input-label">Step:</span>
-          <input v-model="step" name="step" type="number" min="0" max="100" />
-        </label>
+      <div class="demo">
+        <h6 :class="$tt('headline6')">Discrete range slider (Value: {{ value5 }})</h6>
+        <div class="example-slider-wrapper">
+          <ui-slider v-model="value5" type="discrete" :step="10" :disabled="disabled"></ui-slider>
+        </div>
       </div>
-      <div class="demo-param-field-group">
-        <ui-form-field>
-          <ui-checkbox id="slider-disabled" v-model="controls.disabled"></ui-checkbox>
-          <label for="slider-disabled">Disabled</label>
-        </ui-form-field>
-        <ui-form-field>
-          <ui-checkbox id="slider-custom-bg" v-model="controls.customColor"></ui-checkbox>
-          <label for="slider-custom-bg">Use Custom BG Color</label>
-        </ui-form-field>
-      </div>
-    </ui-form>
+
+      <ui-snippet :code="$store.demos[2]"></ui-snippet>
+    </section>
   </ui-page>
 </template>
 
@@ -149,17 +80,12 @@ export default {
       // hero
       value: 0,
       // demo
-      value1: 20,
-      value2: 20,
-      value3: 20,
-      value4: 20,
-      min: 0,
-      max: 50,
-      step: 1,
-      controls: {
-        disabled: false,
-        customColor: false
-      }
+      value1: 50,
+      value2: [30, 70],
+      value3: 50,
+      value4: 50,
+      value5: [20, 50],
+      disabled: false
     };
   },
   mounted() {

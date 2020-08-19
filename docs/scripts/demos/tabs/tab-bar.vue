@@ -3,7 +3,7 @@
     <h6 :class="$tt('headline6')">1.2 Tab Bar</h6>
 
     <div class="demo">
-      <ui-tab-bar v-model="active" class="hero-demo-tab-bar">
+      <ui-tab-bar class="hero-demo-tab-bar">
         <ui-tab v-for="(item, index) in list" :key="index">{{ item }}</ui-tab>
       </ui-tab-bar>
     </div>
@@ -12,21 +12,21 @@
     <template v-if="isLargeScreen">
       <h6 :class="$tt('subtitle1')">Start Alignment</h6>
       <div class="demo">
-        <ui-tab-bar v-model="active" align="start">
+        <ui-tab-bar align="start">
           <ui-tab v-for="(tab, index) in tabs" :key="index" min-width>{{ tab.text }}</ui-tab>
         </ui-tab-bar>
       </div>
 
       <h6 :class="$tt('subtitle1')">Center Alignment</h6>
       <div class="demo">
-        <ui-tab-bar v-model="active" align="center">
+        <ui-tab-bar align="center">
           <ui-tab v-for="(tab, index) in tabs" :key="index" min-width>{{ tab.text }}</ui-tab>
         </ui-tab-bar>
       </div>
 
       <h6 :class="$tt('subtitle1')">End Alignment</h6>
       <div class="demo">
-        <ui-tab-bar v-model="active" align="end">
+        <ui-tab-bar align="end">
           <ui-tab v-for="(tab, index) in tabs" :key="index" min-width>{{ tab.text }}</ui-tab>
         </ui-tab-bar>
       </div>
@@ -39,7 +39,7 @@
 
     <h6 :class="$tt('subtitle1')">Customization</h6>
     <div class="demo">
-      <ui-tab-bar v-model="active" class="custom-demo-tab-bar">
+      <ui-tab-bar class="custom-demo-tab-bar">
         <template v-for="(tab, index) in tabs">
           <ui-tab
             :key="index"
@@ -65,7 +65,6 @@ export default {
   },
   data() {
     return {
-      active: 0,
       tabs: [
         {
           text: 'Favorites',

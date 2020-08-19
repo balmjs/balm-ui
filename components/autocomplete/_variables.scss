@@ -1,4 +1,0 @@
-@use '@material/theme/variables' as theme-variables;
-
-$selected-bgcolor: rgba(theme-variables.prop-value(primary), 0.6) !default;
-$selected-color: theme-variables.prop-value(on-primary) !default;

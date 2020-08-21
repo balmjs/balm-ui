@@ -72,11 +72,10 @@ var MDCBanner = /** @class */ (function (_super) {
      * @param reason Why the banner was closed. Value will be passed to
      *     events.CLOSING and events.CLOSED via the `event.detail.reason`
      *     property. Standard values are CloseReason.PRIMARY and
-     *     CloseReason.SECONDARY, but custom client-specific values may also be
-     *     used if desired.
+     *     CloseReason.SECONDARY, but CloseReason.UNSPECIFIED is provided for
+     *     custom handling of programmatic closing of the banner.
      */
     MDCBanner.prototype.close = function (reason) {
-        if (reason === void 0) { reason = ''; }
         this.foundation.close(reason);
     };
     MDCBanner.prototype.getDefaultFoundation = function () {
@@ -92,10 +91,10 @@ var MDCBanner = /** @class */ (function (_super) {
                 return _this.contentEl.offsetHeight;
             },
             notifyClosed: function (reason) {
-                _this.emit(events.CLOSED, reason ? { reason: reason } : {});
+                _this.emit(events.CLOSED, { reason: reason });
             },
             notifyClosing: function (reason) {
-                _this.emit(events.CLOSING, reason ? { reason: reason } : {});
+                _this.emit(events.CLOSING, { reason: reason });
             },
             notifyOpened: function () {
                 _this.emit(events.OPENED, {});

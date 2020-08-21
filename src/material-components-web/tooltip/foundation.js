@@ -60,6 +60,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                 getAnchorBoundingRect: function () {
                     return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 });
                 },
+                getAnchorAttribute: function () { return null; },
                 isRTL: function () { return false; },
                 registerDocumentEventHandler: function () { return undefined; },
                 deregisterDocumentEventHandler: function () { return undefined; },
@@ -106,7 +107,10 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             return;
         }
         this.isShown = true;
-        this.adapter.setAttribute('aria-hidden', 'false');
+        var showTooltipOptions = this.parseShowTooltipOptions();
+        if (!showTooltipOptions.hideFromScreenreader) {
+            this.adapter.setAttribute('aria-hidden', 'false');
+        }
         this.adapter.removeClass(HIDE);
         this.adapter.addClass(SHOWING);
         var _a = this.calculateTooltipDistance(), top = _a.top, left = _a.left;
@@ -165,6 +169,10 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         else {
             this.anchorGap = numbers.BOUNDED_ANCHOR_GAP;
         }
+    };
+    MDCTooltipFoundation.prototype.parseShowTooltipOptions = function () {
+        var hideFromScreenreader = Boolean(this.adapter.getAnchorAttribute('data-tooltip-id'));
+        return { hideFromScreenreader: hideFromScreenreader };
     };
     /**
      * Calculates the position of the tooltip. A tooltip will be placed beneath

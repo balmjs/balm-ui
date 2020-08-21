@@ -239,6 +239,10 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
             this.adapter.setThumbAttribute('aria-disabled', 'false', Thumb.END);
         }
     };
+    /** @return Whether the slider is a range slider. */
+    MDCSliderFoundation.prototype.getIsRange = function () {
+        return this.isRange;
+    };
     /**
      * - Syncs slider boundingClientRect with the current DOM.
      * - Updates UI based on internal state.

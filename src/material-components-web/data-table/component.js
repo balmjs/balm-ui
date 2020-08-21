@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { __extends } from "tslib";
+import { __extends, __values } from "tslib";
 import { MDCComponent } from '../base/component';
 import { MDCCheckbox } from '../checkbox/component';
 import { closest } from '../dom/ponyfill';
@@ -47,7 +47,7 @@ var MDCDataTable = /** @class */ (function (_super) {
         this.headerRow =
             this.root.querySelector("." + cssClasses.HEADER_ROW);
         this.handleHeaderRowCheckboxChange = function () {
-            return _this.foundation.handleHeaderRowCheckboxChange();
+            _this.foundation.handleHeaderRowCheckboxChange();
         };
         this.headerRow.addEventListener('change', this.handleHeaderRowCheckboxChange);
         this.headerRowClickListener = function (event) {
@@ -57,7 +57,7 @@ var MDCDataTable = /** @class */ (function (_super) {
         this.content =
             this.root.querySelector("." + cssClasses.CONTENT);
         this.handleRowCheckboxChange = function (event) {
-            return _this.foundation.handleRowCheckboxChange(event);
+            _this.foundation.handleRowCheckboxChange(event);
         };
         this.content.addEventListener('change', this.handleRowCheckboxChange);
         this.layout();
@@ -108,13 +108,34 @@ var MDCDataTable = /** @class */ (function (_super) {
         this.getLinearProgress().close();
     };
     MDCDataTable.prototype.destroy = function () {
-        this.headerRow.removeEventListener('change', this.handleHeaderRowCheckboxChange);
-        this.headerRow.removeEventListener('click', this.headerRowClickListener);
-        this.content.removeEventListener('change', this.handleRowCheckboxChange);
-        this.headerRowCheckbox.destroy();
-        this.rowCheckboxList.forEach(function (checkbox) {
-            checkbox.destroy();
-        });
+        var e_1, _a;
+        if (this.handleHeaderRowCheckboxChange) {
+            this.headerRow.removeEventListener('change', this.handleHeaderRowCheckboxChange);
+        }
+        if (this.headerRowClickListener) {
+            this.headerRow.removeEventListener('click', this.headerRowClickListener);
+        }
+        if (this.handleRowCheckboxChange) {
+            this.content.removeEventListener('change', this.handleRowCheckboxChange);
+        }
+        if (this.headerRowCheckbox) {
+            this.headerRowCheckbox.destroy();
+        }
+        if (this.rowCheckboxList) {
+            try {
+                for (var _b = __values(this.rowCheckboxList), _c = _b.next(); !_c.done; _c = _b.next()) {
+                    var checkbox = _c.value;
+                    checkbox.destroy();
+                }
+            }
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
+            finally {
+                try {
+                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                }
+                finally { if (e_1) throw e_1.error; }
+            }
+        }
     };
     MDCDataTable.prototype.getDefaultFoundation = function () {
         var _this = this;

@@ -49,8 +49,11 @@ export var selectors = {
 export var CloseReason;
 (function (CloseReason) {
     // Indicates the banner was closed via primary action button.
-    CloseReason["PRIMARY"] = "primary";
+    CloseReason[CloseReason["PRIMARY"] = 0] = "PRIMARY";
     // Indicates the banner was closed via secondary action button.
-    CloseReason["SECONDARY"] = "secondary";
+    CloseReason[CloseReason["SECONDARY"] = 1] = "SECONDARY";
+    // Will never be used by the component. Provided for custom handling of
+    // programmatic closing of the banner.
+    CloseReason[CloseReason["UNSPECIFIED"] = 2] = "UNSPECIFIED";
 })(CloseReason || (CloseReason = {}));
 //# sourceMappingURL=constants.js.map

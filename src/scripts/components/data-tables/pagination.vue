@@ -1,85 +1,89 @@
 <template>
-  <nav :class="className">
-    <slot
-      name="before"
-      :recordClass="UI_PAGINATION.cssClasses.record"
-      :pageCount="pageCount"
-      :currentMinRow="currentMinRow"
-      :currentMaxRow="currentMaxRow"
-    ></slot>
-    <ul v-if="total" class="mdc-pagination__pages">
-      <li
-        :class="[
-          'mdc-pagination__previous',
-          { 'mdc-pagination__page-item--disabled': currentPage === 1 }
-        ]"
-        :aria-disabled="currentPage === 1"
-        @click="currentPage === 1 ? null : handleClick(currentPage - 1)"
-      >
-        <slot name="prev">
-          <i v-if="materialIcon" :class="UI_GLOBAL.cssClasses.icon" v-text="currentPrev"></i>
-          <span v-else>{{ currentPrev }}</span>
-        </slot>
-      </li>
-      <template v-if="mini">
-        <slot :pageCount="pageCount" :currentMinRow="currentMinRow" :currentMaxRow="currentMaxRow"></slot>
-      </template>
-      <template v-else>
-        <template v-for="(pageNumber, index) in pageCount">
-          <li v-if="isShow(pageNumber)" :key="index" :class="getPageClassName(pageNumber)">
-            <a v-if="showPage(pageNumber)" @click="handleClick(pageNumber)">{{ pageNumber }}</a>
-            <span v-else class="ellipsis">...</span>
-          </li>
-        </template>
-      </template>
-      <li
-        :class="[
-          'mdc-pagination__next',
-          { 'mdc-pagination__page-item--disabled': currentPage === pageCount }
-        ]"
-        :aria-disabled="currentPage === pageCount"
-        @click="currentPage === pageCount ? null : handleClick(currentPage + 1)"
-      >
-        <slot name="next">
-          <i v-if="materialIcon" :class="UI_GLOBAL.cssClasses.icon" v-text="currentNext"></i>
-          <span v-else>{{ currentNext }}</span>
-        </slot>
-      </li>
-    </ul>
-    <slot
-      name="before-jumper"
-      :recordClass="UI_PAGINATION.cssClasses.record"
-      :pageCount="pageCount"
-      :currentMinRow="currentMinRow"
-      :currentMaxRow="currentMaxRow"
-    ></slot>
-    <!-- Jumper -->
-    <div v-if="!mini && showJumper" class="mdc-pagination__jumper">
-      <span>{{ jumperBeforeText }}</span>
-      <input
-        v-model="pager"
-        type="number"
-        min="1"
-        :max="pageCount"
-        @keydown.prevent.enter="handleClick($event.target.value)"
-      />
-      <span>{{ jumperAfterText }}</span>
-      <button
-        v-if="jumperButtonText"
-        type="button"
-        class="mdc-button"
-        @click="handleClick(pager)"
-        v-text="jumperButtonText"
-      ></button>
+  <div class="mdc-data-table__pagination">
+    <div class="mdc-data-table__pagination-trailing">
+      <!-- Page size -->
+      <div v-if="!mini && showPageSize" class="mdc-data-table__pagination-rows-per-page">
+        <div class="mdc-data-table__pagination-rows-per-page-label">Rows per page</div>
+        <div class="mdc-data-table__pagination-rows-per-page-select">
+          <slot name="page-size"></slot>
+        </div>
+      </div>
+      <div class="mdc-data-table__pagination-navigation">
+        <!-- Total -->
+        <div v-if="!mini && showTotal" class="mdc-data-table__pagination-total">
+          <slot
+            name="total"
+            :minRow="currentMinRow"
+            :maxRow="currentMaxRow"
+          >{{ currentMinRow }}‑{{ currentMaxRow }} of {{ total }}</slot>
+        </div>
+        <!-- Navigation buttons -->
+        <button
+          class="mdc-icon-button material-icons mdc-data-table__pagination-button"
+          data-first-page="true"
+          :disabled="currentPage === 1"
+          @click="handleClick(1)"
+        >
+          <div class="mdc-button__icon">first_page</div>
+        </button>
+        <button
+          class="mdc-icon-button material-icons mdc-data-table__pagination-button"
+          data-prev-page="true"
+          :disabled="currentPage === 1"
+          @click="handleClick(currentPage - 1)"
+        >
+          <div class="mdc-button__icon">chevron_left</div>
+        </button>
+        <ul class="mdc-data-table__pagination-page">
+          <template v-for="pageNumber in pageCount">
+            <li
+              v-if="isShow(pageNumber)"
+              :key="`page-${pageNumber}`"
+              :class="getPageClassName(pageNumber)"
+            >
+              <a v-if="showPage(pageNumber)" @click="handleClick(pageNumber)">{{ pageNumber }}</a>
+              <span v-else class="ellipsis">...</span>
+            </li>
+          </template>
+        </ul>
+        <button
+          class="mdc-icon-button material-icons mdc-data-table__pagination-button"
+          data-next-page="true"
+          :disabled="currentPage === pageCount"
+          @click="handleClick(currentPage + 1)"
+        >
+          <div class="mdc-button__icon">chevron_right</div>
+        </button>
+        <button
+          class="mdc-icon-button material-icons mdc-data-table__pagination-button"
+          data-last-page="true"
+          :disabled="currentPage === pageCount"
+          @click="handleClick(pageCount)"
+        >
+          <div class="mdc-button__icon">last_page</div>
+        </button>
+      </div>
+      <!-- Jumper -->
+      <div v-if="!mini && showJumper" class="mdc-data-table__pagination-jumper">
+        <span>{{ jumperBeforeText }}</span>
+        <input
+          v-model="pager"
+          type="number"
+          min="1"
+          :max="pageCount"
+          @keydown.prevent.enter="handleClick($event.target.value)"
+        />
+        <span>{{ jumperAfterText }}</span>
+        <button
+          v-if="jumperButtonText"
+          type="button"
+          class="mdc-button"
+          @click="handleClick(pager)"
+          v-text="jumperButtonText"
+        ></button>
+      </div>
     </div>
-    <slot
-      name="after-jumper"
-      :recordClass="UI_PAGINATION.cssClasses.record"
-      :pageCount="pageCount"
-      :currentMinRow="currentMinRow"
-      :currentMaxRow="currentMaxRow"
-    ></slot>
-  </nav>
+  </div>
 </template>
 
 <script>
@@ -88,9 +92,6 @@ import UI_GLOBAL from '../../config/constants';
 // Define pagination constants
 const UI_PAGINATION = {
   POSITIONS: ['left', 'right'],
-  cssClasses: {
-    record: 'mdc-pagination__record'
-  },
   EVENT: {
     CHANGE: 'change'
   }
@@ -128,6 +129,14 @@ export default {
     next: {
       type: String,
       default: ''
+    },
+    showPageSize: {
+      type: Boolean,
+      default: false
+    },
+    showTotal: {
+      type: Boolean,
+      default: false
     },
     showJumper: {
       type: Boolean,
@@ -224,9 +233,9 @@ export default {
     getPageClassName(page) {
       return [
         this.showPage(page)
-          ? 'mdc-pagination__page-item'
-          : 'mdc-pagination__page-item-ellipsis',
-        { 'mdc-pagination__page-item--active': page === this.currentPage }
+          ? 'mdc-data-table__pagination-button'
+          : 'mdc-data-table__pagination-ellipsis',
+        { 'mdc-data-table__pagination-active': page === this.currentPage }
       ];
     },
     handleClick(page) {

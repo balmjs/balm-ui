@@ -1,6 +1,4 @@
-.mdc-data-table {
-  max-width: 100%;
-}
+@use '../../../../material-components-web/data-table/variables' as data-table-variables;
 
 .mdc-data-table--fullwidth {
   display: flex;
@@ -19,23 +17,11 @@
   text-align: right;
 }
 
-.mdc-data-table__header-cell--asc,
-.mdc-data-table__header-cell--desc {
-  & > div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  i {
-    cursor: pointer;
-  }
-}
-
 .mdc-data-table__footer-row {
-  @extend .mdc-data-table__row !optional;
-}
+  border-top: data-table-variables.$stroke-size solid
+    data-table-variables.$stroke-color;
 
-.mdc-data-table__footer-cell {
-  font-weight: bold;
-  @extend .mdc-data-table__cell !optional;
+  .mdc-data-table__cell {
+    font-weight: bold;
+  }
 }

@@ -27,10 +27,10 @@
                 :aria-sort="getSort(theadCell)"
               >
                 <!-- Column header row checkbox -->
-                <ui-checkbox
-                  v-if="theadCell[T_CELL.CHECKBOX]"
+                <input-checkbox
+                  v-if="theadCell[T_CELL.CHECKBOX] && tbodyData.length"
                   :class="'mdc-data-table__header-row-checkbox'"
-                ></ui-checkbox>
+                ></input-checkbox>
                 <template v-else>
                   <!-- With sort button -->
                   <div v-if="theadCell.sort" class="mdc-data-table__header-cell-wrapper">
@@ -81,10 +81,10 @@
               <template v-for="(tbodyCell, tbodyCellIndex) in tbodyRow">
                 <td :key="`tbody-cell-${tbodyCellIndex}`" :class="cellClassName(tbodyCell)">
                   <!-- Row checkboxes -->
-                  <ui-checkbox
+                  <input-checkbox
                     v-if="tbodyCell[T_CELL.CHECKBOX]"
                     :class="'mdc-data-table__row-checkbox'"
-                  ></ui-checkbox>
+                  ></input-checkbox>
                   <!-- Data / Actions -->
                   <template v-else>
                     <slot
@@ -99,10 +99,9 @@
             </tr>
           </template>
           <tr v-else class="mdc-data-table__row">
-            <td
-              class="mdc-data-table__cell mdc-data-table__cell--no-data"
-              :colspan="dataColumns"
-            >{{ noData }}</td>
+            <td class="mdc-data-table__cell mdc-data-table__cell--no-data" :colspan="dataColumns">
+              <slot name="no-data">{{ noData }}</slot>
+            </td>
           </tr>
         </tbody>
         <!-- Footers -->
@@ -124,13 +123,15 @@
         </tfoot>
       </table>
     </div>
+    <!-- <table-progress></table-progress> -->
   </div>
 </template>
 
 <script>
 import { MDCDataTable } from '../../../material-components-web/data-table';
 import { events } from '../../../material-components-web/data-table/constants';
-import UiCheckbox from '../selection-controls/checkbox';
+import InputCheckbox from '../selection-controls/input-checkbox';
+import TableProgress from './progress';
 import tableMixin from '../../mixins/table';
 import theadMixin from '../../mixins/thead';
 import tbodyMixin from '../../mixins/tbody';
@@ -140,7 +141,8 @@ import UI_TABLE from './constants';
 export default {
   name: 'UiTable',
   components: {
-    UiCheckbox
+    InputCheckbox,
+    TableProgress
   },
   mixins: [tableMixin, theadMixin, tbodyMixin, tfootMixin],
   model: {
@@ -215,11 +217,11 @@ export default {
     sortIconAlignEnd: {
       type: Boolean,
       default: false
+    },
+    stickyHeader: {
+      type: Boolean,
+      default: false
     }
-    // stickyHeader: {
-    //   type: Boolean,
-    //   default: false
-    // }
   },
   data() {
     return {
@@ -234,8 +236,8 @@ export default {
     className() {
       return {
         'mdc-data-table': true,
-        'mdc-data-table--fullwidth': this.fullwidth
-        // 'mdc-data-table--sticky-header': this.stickyHeader
+        'mdc-data-table--fullwidth': this.fullwidth,
+        'mdc-data-table--sticky-header': this.stickyHeader
       };
     }
   },
@@ -245,7 +247,6 @@ export default {
 
       this.$nextTick(() => {
         this.$table.layout();
-
         this.initSelectedRows();
       });
     }
@@ -335,7 +336,7 @@ export default {
   },
   methods: {
     initSelectedRows() {
-      if (this.selectedRows.length) {
+      if (this.currentData.length && this.selectedRows.length) {
         let rowIds = this.selectedRows
           .map((selectedRow) => {
             let rowIndex = this.selectedKey

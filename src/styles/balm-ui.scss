@@ -34,6 +34,7 @@
 @use 'balm-ui/components/editor/theme/bubble.scss';
 @use 'balm-ui/components/editor/ui-editor';
 @use 'balm-ui/components/editor/ui-editor-emoji';
+@use 'balm-ui/components/tooltip/ui-tooltip';
 
 /// Plugins Custom Styles
 @use 'balm-ui/plugins/alert/ui-alert' as alert-plugin;

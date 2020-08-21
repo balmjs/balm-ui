@@ -2,6 +2,7 @@ const pkg = require('../package.json');
 const env = require('./env');
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+// const WebpackBar = require('webpackbar');
 
 function getConfig(balm) {
   const useDocs = !balm.config.env.isProd || env.buildDocs;
@@ -94,10 +95,7 @@ function getConfig(balm) {
       mode: 'injectManifest',
       version: `v${pkg.version.replace(/\./g, '')}`
     },
-    useDefaults: env.useDefaults,
-    logs: {
-      level: 2
-    }
+    useDefaults: env.useDefaults
   };
 }
 

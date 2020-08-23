@@ -38,13 +38,19 @@ var events = {
     HIDDEN: 'MDCTooltip:hidden',
 };
 /** Enum for possible tooltip positioning relative to its anchor element. */
-var Position;
-(function (Position) {
-    Position[Position["DETECTED"] = 0] = "DETECTED";
-    Position[Position["START"] = 1] = "START";
-    Position[Position["CENTER"] = 2] = "CENTER";
-    Position[Position["END"] = 3] = "END";
-})(Position || (Position = {}));
+var XPosition;
+(function (XPosition) {
+    XPosition[XPosition["DETECTED"] = 0] = "DETECTED";
+    XPosition[XPosition["START"] = 1] = "START";
+    XPosition[XPosition["CENTER"] = 2] = "CENTER";
+    XPosition[XPosition["END"] = 3] = "END";
+})(XPosition || (XPosition = {}));
+var YPosition;
+(function (YPosition) {
+    YPosition[YPosition["DETECTED"] = 0] = "DETECTED";
+    YPosition[YPosition["ABOVE"] = 1] = "ABOVE";
+    YPosition[YPosition["BELOW"] = 2] = "BELOW";
+})(YPosition || (YPosition = {}));
 /**
  * Enum for possible anchor boundary types. This determines the gap between the
  * bottom of the anchor and the tooltip element.
@@ -56,5 +62,5 @@ var AnchorBoundaryType;
     AnchorBoundaryType[AnchorBoundaryType["BOUNDED"] = 0] = "BOUNDED";
     AnchorBoundaryType[AnchorBoundaryType["UNBOUNDED"] = 1] = "UNBOUNDED";
 })(AnchorBoundaryType || (AnchorBoundaryType = {}));
-export { CssClasses, numbers, events, Position, AnchorBoundaryType };
+export { CssClasses, numbers, events, XPosition, AnchorBoundaryType, YPosition };
 //# sourceMappingURL=constants.js.map

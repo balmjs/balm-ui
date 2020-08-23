@@ -75,8 +75,8 @@ var MDCTooltip = /** @class */ (function (_super) {
         this.unlisten('transitionend', this.handleTransitionEnd);
         _super.prototype.destroy.call(this);
     };
-    MDCTooltip.prototype.setTooltipPosition = function (pos) {
-        this.foundation.setTooltipPosition(pos);
+    MDCTooltip.prototype.setTooltipPosition = function (position) {
+        this.foundation.setTooltipPosition(position);
     };
     MDCTooltip.prototype.setAnchorBoundaryType = function (type) {
         this.foundation.setAnchorBoundaryType(type);

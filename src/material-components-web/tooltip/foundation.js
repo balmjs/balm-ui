@@ -23,7 +23,7 @@
 import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { KEY, normalizeKey } from '../dom/keyboard';
-import { AnchorBoundaryType, CssClasses, numbers, Position } from './constants';
+import { AnchorBoundaryType, CssClasses, numbers, XPosition, YPosition } from './constants';
 var SHOWN = CssClasses.SHOWN, SHOWING = CssClasses.SHOWING, SHOWING_TRANSITION = CssClasses.SHOWING_TRANSITION, HIDE = CssClasses.HIDE, HIDE_TRANSITION = CssClasses.HIDE_TRANSITION;
 var MDCTooltipFoundation = /** @class */ (function (_super) {
     __extends(MDCTooltipFoundation, _super);
@@ -31,7 +31,8 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         var _this = _super.call(this, __assign(__assign({}, MDCTooltipFoundation.defaultAdapter), adapter)) || this;
         _this.isShown = false;
         _this.anchorGap = numbers.BOUNDED_ANCHOR_GAP;
-        _this.tooltipPos = Position.DETECTED;
+        _this.xTooltipPos = XPosition.DETECTED;
+        _this.yTooltipPos = YPosition.DETECTED;
         // Minimum threshold distance needed between the tooltip and the viewport.
         _this.minViewportTooltipThreshold = numbers.MIN_VIEWPORT_TOOLTIP_THRESHOLD;
         _this.hideDelayMs = numbers.HIDE_DELAY_MS;
@@ -159,8 +160,14 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         this.adapter.removeClass(SHOWING_TRANSITION);
         this.adapter.removeClass(HIDE_TRANSITION);
     };
-    MDCTooltipFoundation.prototype.setTooltipPosition = function (pos) {
-        this.tooltipPos = pos;
+    MDCTooltipFoundation.prototype.setTooltipPosition = function (position) {
+        var xPos = position.xPos, yPos = position.yPos;
+        if (xPos) {
+            this.xTooltipPos = xPos;
+        }
+        if (yPos) {
+            this.yTooltipPos = yPos;
+        }
     };
     MDCTooltipFoundation.prototype.setAnchorBoundaryType = function (type) {
         if (type === AnchorBoundaryType.UNBOUNDED) {
@@ -190,42 +197,50 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
      */
     MDCTooltipFoundation.prototype.calculateTooltipDistance = function () {
         var anchorRect = this.adapter.getAnchorBoundingRect();
-        var tooltipSize = this.adapter.getTooltipSize();
         if (!anchorRect) {
             return { top: 0, left: 0 };
         }
-        var yPos = anchorRect.bottom + this.anchorGap;
+        var tooltipSize = this.adapter.getTooltipSize();
+        var top = this.calculateYTooltipDistance(anchorRect, tooltipSize.height);
+        var left = this.calculateXTooltipDistance(anchorRect, tooltipSize.width);
+        return { top: top, left: left };
+    };
+    /**
+     * Calculates the `left` distance for the tooltip.
+     */
+    MDCTooltipFoundation.prototype.calculateXTooltipDistance = function (anchorRect, tooltipWidth) {
         var startPos = anchorRect.left;
-        var endPos = anchorRect.right - tooltipSize.width;
-        var centerPos = anchorRect.left + (anchorRect.width - tooltipSize.width) / 2;
+        var endPos = anchorRect.right - tooltipWidth;
+        var centerPos = anchorRect.left + (anchorRect.width - tooltipWidth) / 2;
         if (this.adapter.isRTL()) {
-            startPos = anchorRect.right - tooltipSize.width;
+            startPos = anchorRect.right - tooltipWidth;
             endPos = anchorRect.left;
         }
         var positionOptions = this.determineValidPositionOptions(centerPos, startPos, endPos);
-        if (this.tooltipPos === Position.START && positionOptions.has(startPos)) {
-            return { top: yPos, left: startPos };
+        if (this.xTooltipPos === XPosition.START && positionOptions.has(startPos)) {
+            return startPos;
         }
-        if (this.tooltipPos === Position.END && positionOptions.has(endPos)) {
-            return { top: yPos, left: endPos };
+        if (this.xTooltipPos === XPosition.END && positionOptions.has(endPos)) {
+            return endPos;
         }
-        if (this.tooltipPos === Position.CENTER && positionOptions.has(centerPos)) {
-            return { top: yPos, left: centerPos };
+        if (this.xTooltipPos === XPosition.CENTER &&
+            positionOptions.has(centerPos)) {
+            return centerPos;
         }
         if (positionOptions.has(centerPos)) {
-            return { top: yPos, left: centerPos };
+            return centerPos;
         }
         if (positionOptions.has(startPos)) {
-            return { top: yPos, left: startPos };
+            return startPos;
         }
         if (positionOptions.has(endPos)) {
-            return { top: yPos, left: endPos };
+            return endPos;
         }
         // Indicates that all potential positions would result in the tooltip
         // colliding with the viewport. This would only occur when the anchor
         // element itself collides with the viewport, or the viewport is very
         // narrow.
-        return { top: yPos, left: centerPos };
+        return centerPos;
     };
     /**
      * Given the values for center/start/end alignment of the tooltip, calculates
@@ -272,6 +287,72 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         var viewportWidth = this.adapter.getViewportWidth();
         var tooltipWidth = this.adapter.getTooltipSize().width;
         return leftPos + tooltipWidth <= viewportWidth && leftPos >= 0;
+    };
+    /**
+     * Calculates the `top` distance for the tooltip.
+     */
+    MDCTooltipFoundation.prototype.calculateYTooltipDistance = function (anchorRect, tooltipHeight) {
+        var belowYPos = anchorRect.bottom + this.anchorGap;
+        var aboveYPos = anchorRect.top - (this.anchorGap + tooltipHeight);
+        var yPositionOptions = this.determineValidYPositionOptions(aboveYPos, belowYPos);
+        if (this.yTooltipPos === YPosition.ABOVE &&
+            yPositionOptions.has(aboveYPos)) {
+            return aboveYPos;
+        }
+        else if (this.yTooltipPos === YPosition.BELOW &&
+            yPositionOptions.has(belowYPos)) {
+            return belowYPos;
+        }
+        if (yPositionOptions.has(belowYPos)) {
+            return belowYPos;
+        }
+        if (yPositionOptions.has(aboveYPos)) {
+            return aboveYPos;
+        }
+        // Indicates that all potential positions would result in the tooltip
+        // colliding with the viewport. This would only occur when the viewport is
+        // very short.
+        return belowYPos;
+    };
+    /**
+     * Given the values for above/below alignment of the tooltip, calculates
+     * which of these options would result in the tooltip maintaining the required
+     * threshold distance vs which would result in the tooltip staying within the
+     * viewport.
+     *
+     * A Set of values is returned holding the distances that would honor the
+     * above requirements. Following the logic for determining the tooltip
+     * position, if all possible alignments violate the threshold, then the
+     * returned Set contains values that keep the tooltip within the viewport.
+     */
+    MDCTooltipFoundation.prototype.determineValidYPositionOptions = function (aboveAnchorPos, belowAnchorPos) {
+        var posWithinThreshold = new Set();
+        var posWithinViewport = new Set();
+        if (this.yPositionHonorsViewportThreshold(aboveAnchorPos)) {
+            posWithinThreshold.add(aboveAnchorPos);
+        }
+        else if (this.yPositionDoesntCollideWithViewport(aboveAnchorPos)) {
+            posWithinViewport.add(aboveAnchorPos);
+        }
+        if (this.yPositionHonorsViewportThreshold(belowAnchorPos)) {
+            posWithinThreshold.add(belowAnchorPos);
+        }
+        else if (this.yPositionDoesntCollideWithViewport(belowAnchorPos)) {
+            posWithinViewport.add(belowAnchorPos);
+        }
+        return posWithinThreshold.size ? posWithinThreshold : posWithinViewport;
+    };
+    MDCTooltipFoundation.prototype.yPositionHonorsViewportThreshold = function (yPos) {
+        var viewportHeight = this.adapter.getViewportHeight();
+        var tooltipHeight = this.adapter.getTooltipSize().height;
+        return yPos + tooltipHeight + this.minViewportTooltipThreshold <=
+            viewportHeight &&
+            yPos >= this.minViewportTooltipThreshold;
+    };
+    MDCTooltipFoundation.prototype.yPositionDoesntCollideWithViewport = function (yPos) {
+        var viewportHeight = this.adapter.getViewportHeight();
+        var tooltipHeight = this.adapter.getTooltipSize().height;
+        return yPos + tooltipHeight <= viewportHeight && yPos >= 0;
     };
     MDCTooltipFoundation.prototype.clearHideTimeout = function () {
         if (this.hideTimeout) {

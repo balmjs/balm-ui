@@ -52,7 +52,7 @@
   "dependencies": {
     "deepmerge": "^4.2.2",
     "flatpickr": "^4.6.6",
-    "material-components-web": "^8.0.0-canary.95e4eeea7.0",
+    "material-components-web": "^8.0.0-canary.58eaa9f02.0",
     "quill": "^1.3.7"
   },
   "devDependencies": {
@@ -63,7 +63,7 @@
     "axios": "^0.20.0",
     "babel-eslint": "^10.1.0",
     "babel-plugin-istanbul": "^6.0.0",
-    "balm": "^3.0.0-rc.0",
+    "balm": "^3.0.0-rc.1",
     "chai": "^4.2.0",
     "clipboard": "^2.0.6",
     "core-js": "^3.6.5",

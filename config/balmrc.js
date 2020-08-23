@@ -2,7 +2,6 @@ const pkg = require('../package.json');
 const env = require('./env');
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-// const WebpackBar = require('webpackbar');
 
 function getConfig(balm) {
   const useDocs = !balm.config.env.isProd || env.buildDocs;

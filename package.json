@@ -101,8 +101,7 @@
     "vue-router": "^3.4.0",
     "vue-template-compiler": "^2.6.12",
     "webpack": "^4.44.0",
-    "webpack-node-externals": "^2.5.0",
-    "webpackbar": "^4.0.0"
+    "webpack-node-externals": "^2.5.0"
   },
   "peerDependencies": {
     "vue": ">=2.1.0"

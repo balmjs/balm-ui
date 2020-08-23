@@ -2,11 +2,6 @@
 @use './variables' as ui-pagination-variables;
 
 .mdc-pagination {
-  display: flex;
-  flex-flow: wrap;
-  justify-content: center;
-  align-items: center;
-
   &.mdc-pagination--left {
     justify-content: flex-start;
   }
@@ -17,17 +12,19 @@
     justify-content: space-between;
     align-items: center;
   }
-  &.mdc-pagination--mini {
-    display: block;
-    .mdc-pagination__pages {
-      display: flex;
+}
 
-      justify-content: space-between;
-    }
-    a {
-      min-width: auto;
-      margin: 0;
-    }
+.mdc-pagination--mini {
+  .mdc-data-table__pagination-navigation {
+    justify-content: space-between;
+  }
+
+  .mdc-data-table__pagination-total {
+    margin: 0;
+  }
+
+  .mdc-data-table__pagination-first-button {
+    order: -1;
   }
 }
 

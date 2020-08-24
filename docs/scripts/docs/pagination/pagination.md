@@ -4,49 +4,28 @@
 
 #### Props
 
-| Name               | Type    | Default  | Description                                       |
-| ------------------ | ------- | -------- | ------------------------------------------------- |
-| `page`             | number  | `1`      | Current page number.                              |
-| `pageSize`         | number  | `10`     | The number of data items per page.                |
-| `total`            | number  | `0`      | The total number of data items.                   |
-| `pageSpan`         | number  | `3`      | Display the first N pages of the current page.    |
-| `prev`             | string  | `''`     | The previous button text.                         |
-| `next`             | string  | `''`     | The next button text.                             |
-| `showJumper`       | boolean | `false`  | Determine whether you can jump to pages directly. |
-| `jumperBeforeText` | string  | `'Goto'` | Add text before jumper.                           |
-| `jumperAfterText`  | string  | `''`     | Add text after jumper.                            |
-| `jumperButtonText` | string  | `''`     | The jumper button text.                           |
-| `position`         | string  | `''`     | The pagination postion. [`left`, `right`]         |
-| `mini`             | boolean | `false`  | Whether to use simple mode.                       |
+| Name               | Type            | Default           | Description                                                     |
+| ------------------ | --------------- | ----------------- | --------------------------------------------------------------- |
+| `page`             | number          | `1`               | Current page number.                                            |
+| `total`            | number          | `0`               | The total number of data items.                                 |
+| `pageSpan`         | number, boolean | `3`               | Display the first N pages of the current page. (MIN VALUE: `3`) |
+| `showTotal`        | boolean         | `false`           | Display total info.                                             |
+| `pageSize`         | number, array   | `10`              | The number of data items per page.                              |
+| `pageSizeText`     | string, array   | `'Rows per page'` | The page size before/after text.                                |
+| `showJumper`       | boolean         | `false`           | Determine whether you can jump to pages directly.               |
+| `jumperText`       | string, array   | `'Goto'`          | The jumper before/after text.                                   |
+| `jumperButtonText` | string          | `''`              | The jumper button text.                                         |
+| `position`         | string          | `''`              | The pagination postion. [`'left'`, `'center'`, `'right'`]       |
+| `mini`             | boolean         | `false`           | Whether to use simple mode.                                     |
 
 #### Slots
 
-| Name            | Props                                                        | Description                                  |
-| --------------- | ------------------------------------------------------------ | -------------------------------------------- |
-| `prev`          |                                                              | The custom previous button.                  |
-| `next`          |                                                              | The custom next button.                      |
-| `before`        | `recordClass`, `pageCount`, `currentMinRow`, `currentMaxRow` | The custom record info and can contain HTML. |
-| `before-jumper` | `recordClass`, `pageCount`, `currentMinRow`, `currentMaxRow` | The custom before jumper area content.       |
-| `after-jumper`  | `recordClass`, `pageCount`, `currentMinRow`, `currentMaxRow` | The custom after jumper area content.        |
-
-- `pageCount`: Total number of rows.
-- `currentMinRow` & `currentMaxRow`: The range currently in view.
-
-```html
-<template #before="{ recordClass, pageCount, currentMinRow, currentMaxRow }">
-  <ui-form-field :class="recordClass">
-    <label>Rows per page:</label>
-    <ui-select
-      outlined
-      v-model="pageSize"
-      :options="pageSizeOptions"
-    ></ui-select>
-    <span>
-      {{ currentMinRow }}-{{ currentMaxRow }} of {{ total }}
-    </span>
-  </ui-form-field>
-</template>
-```
+| Name    | Props | Description                      |
+| ------- | ----- | -------------------------------- |
+| `first` |       | The custom first button icon.    |
+| `prev`  |       | The custom previous button icon. |
+| `next`  |       | The custom next button icon.     |
+| `last`  |       | The custom last button icon.     |
 
 #### Events
 
@@ -57,10 +36,13 @@
 > NOTE: If you are not using `v-model`, you should listen for the select using `@change` and update the `page` prop.
 
 - Automatic
+
   ```html
   <ui-pagination v-model="page"></ui-pagination>
   ```
+
 - Manual
+
   ```html
   <ui-pagination
     :page="page"

@@ -1,10 +1,5 @@
 ```html
-<ui-pagination
-  v-model="page"
-  :total="total"
-  show-total
-  position="center"
-></ui-pagination>
+<ui-pagination v-model="page" :total="total" show-total mini></ui-pagination>
 ```
 
 ```js

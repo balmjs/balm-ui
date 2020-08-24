@@ -1,7 +1,10 @@
 ```html
-<ui-pagination mini v-model="page" :total="total" prev="Prev" next="Next">
-  <span>Page {{ page }}</span>
-</ui-pagination>
+<ui-pagination
+  v-model="page"
+  :total="total"
+  show-total
+  show-jumper
+></ui-pagination>
 ```
 
 ```js

@@ -124,6 +124,7 @@
       </table>
     </div>
     <!-- <table-progress></table-progress> -->
+    <slot></slot>
   </div>
 </template>
 
@@ -131,7 +132,7 @@
 import { MDCDataTable } from '../../../material-components-web/data-table';
 import { events } from '../../../material-components-web/data-table/constants';
 import InputCheckbox from '../selection-controls/input-checkbox';
-import TableProgress from './progress';
+// import TableProgress from './progress';
 import tableMixin from '../../mixins/table';
 import theadMixin from '../../mixins/thead';
 import tbodyMixin from '../../mixins/tbody';
@@ -141,8 +142,8 @@ import UI_TABLE from './constants';
 export default {
   name: 'UiTable',
   components: {
-    InputCheckbox,
-    TableProgress
+    InputCheckbox
+    // TableProgress
   },
   mixins: [tableMixin, theadMixin, tbodyMixin, tfootMixin],
   model: {

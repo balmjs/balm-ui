@@ -3,16 +3,6 @@
 @use './mixins' as ui-pagination-mixins;
 
 .mdc-pagination {
-  &.mdc-pagination--left {
-    justify-content: flex-start;
-  }
-  &.mdc-pagination--center {
-    justify-content: center;
-  }
-  &.mdc-pagination--right {
-    justify-content: flex-end;
-  }
-
   .material-icons {
     font-size: 18px;
   }
@@ -55,6 +45,37 @@
       }
     }
   }
+
+  &.mdc-pagination--left {
+    justify-content: flex-start;
+  }
+  &.mdc-pagination--center {
+    justify-content: center;
+  }
+  &.mdc-pagination--right {
+    justify-content: flex-end;
+  }
+
+  &.mdc-pagination--mini {
+    .mdc-data-table__pagination-trailing {
+      justify-content: center;
+      width: 100%;
+      margin: 0;
+    }
+
+    .mdc-data-table__pagination-navigation {
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .mdc-data-table__pagination-total {
+      margin: 0;
+    }
+
+    .mdc-data-table__pagination-prev-button {
+      order: -1;
+    }
+  }
 }
 
 .mdc-data-table__pagination-rows-per-page {
@@ -88,19 +109,5 @@
       color: ui-pagination-variables.$hover-text-color;
       border-color: ui-pagination-variables.$hover-border-color;
     }
-  }
-}
-
-.mdc-pagination--mini {
-  .mdc-data-table__pagination-navigation {
-    justify-content: space-between;
-  }
-
-  .mdc-data-table__pagination-total {
-    margin: 0;
-  }
-
-  .mdc-data-table__pagination-prev-button {
-    order: -1;
   }
 }

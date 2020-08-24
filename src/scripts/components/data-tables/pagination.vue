@@ -1,6 +1,6 @@
 <template>
   <div :class="className">
-    <div :class="innerClassName">
+    <div class="mdc-data-table__pagination-trailing">
       <!-- Page size -->
       <div v-if="!mini && Array.isArray(pageSize)" class="mdc-data-table__pagination-rows-per-page">
         <div class="mdc-data-table__pagination-rows-per-page-label">{{ pageSizeBeforeText }}</div>
@@ -193,14 +193,11 @@ export default {
   },
   computed: {
     className() {
-      return {
-        'mdc-data-table__pagination': true,
-        'mdc-pagination': true,
-        'mdc-pagination--mini': this.mini
-      };
-    },
-    innerClassName() {
-      let result = ['mdc-data-table__pagination-trailing'];
+      let result = [
+        'mdc-data-table__pagination',
+        'mdc-pagination',
+        { 'mdc-pagination--mini': this.mini }
+      ];
 
       if (UI_PAGINATION.POSITIONS.includes(this.position)) {
         result.push(`mdc-pagination--${this.position}`);

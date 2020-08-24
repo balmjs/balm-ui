@@ -2,7 +2,7 @@
 
 ## v7.6.0 / 2020-07-30
 
-> build by `balm@next`, `balm@3` is coming up!
+> build by `balm@next`, `balm 3.0` is coming up!
 
 ### Bug Fixes
 

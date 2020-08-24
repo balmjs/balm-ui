@@ -1,16 +1,93 @@
 @use '@material/shape/mixins' as shape-mixins;
 @use './variables' as ui-pagination-variables;
+@use './mixins' as ui-pagination-mixins;
 
 .mdc-pagination {
   &.mdc-pagination--left {
     justify-content: flex-start;
   }
+  &.mdc-pagination--center {
+    justify-content: center;
+  }
   &.mdc-pagination--right {
     justify-content: flex-end;
   }
-  &.mdc-pagination--between {
-    justify-content: space-between;
-    align-items: center;
+
+  .material-icons {
+    font-size: 18px;
+  }
+
+  .mdc-button {
+    min-width: 32px;
+    height: ui-pagination-variables.$height;
+
+    &.mdc-pagination__button--ellipsis {
+      cursor: default;
+      color: currentColor;
+    }
+  }
+
+  .mdc-data-table__pagination-button:not(.mdc-pagination__button--ellipsis) {
+    background-color: ui-pagination-variables.$fill-color;
+    color: ui-pagination-variables.$text-color;
+    border: 1px solid ui-pagination-variables.$border-color;
+
+    &:hover {
+      background-color: ui-pagination-variables.$hover-fill-color;
+      color: ui-pagination-variables.$hover-text-color;
+      border-color: ui-pagination-variables.$hover-border-color;
+    }
+
+    &:disalbed {
+      cursor: not-allowed;
+    }
+
+    &.mdc-pagination__button--active {
+      background-color: ui-pagination-variables.$active-fill-color;
+      color: ui-pagination-variables.$active-text-color;
+      border-color: ui-pagination-variables.$active-border-color;
+      cursor: default;
+
+      &:hover {
+        background-color: ui-pagination-variables.$active-fill-color;
+        color: ui-pagination-variables.$active-text-color;
+        border-color: ui-pagination-variables.$active-border-color;
+      }
+    }
+  }
+}
+
+.mdc-data-table__pagination-rows-per-page {
+  select {
+    @include ui-pagination-mixins.paginationInput();
+  }
+}
+
+.mdc-data-table__pagination-jumper {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 22px;
+
+  .mdc-data-table__pagination-jumper-label {
+    margin-right: 12px;
+  }
+
+  input {
+    @include ui-pagination-mixins.paginationInput();
+  }
+
+  button {
+    height: 24px;
+    line-height: 22px;
+    padding: 0;
+    color: ui-pagination-variables.$text-color;
+    border: 1px solid #d9d9d9;
+
+    &:hover {
+      background: none;
+      color: ui-pagination-variables.$hover-text-color;
+      border-color: ui-pagination-variables.$hover-border-color;
+    }
   }
 }
 
@@ -23,148 +100,7 @@
     margin: 0;
   }
 
-  .mdc-data-table__pagination-first-button {
+  .mdc-data-table__pagination-prev-button {
     order: -1;
-  }
-}
-
-.mdc-pagination__pages {
-  display: flex;
-  flex-flow: wrap;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-}
-
-.mdc-pagination__previous,
-.mdc-pagination__next,
-.mdc-pagination__page-item,
-.mdc-pagination__page-item-ellipsis {
-  display: inline-block;
-  min-width: 32px;
-  height: ui-pagination-variables.$height;
-  line-height: 30px;
-  margin-right: 8px;
-  text-align: center;
-  vertical-align: middle;
-  outline: none;
-  user-select: none;
-  border: 1px solid ui-pagination-variables.$border-color;
-  background-color: ui-pagination-variables.$fill-color;
-  color: ui-pagination-variables.$text-color;
-  @include shape-mixins.radius(ui-pagination-variables.$corner-radius);
-}
-
-.mdc-pagination__previous,
-.mdc-pagination__next,
-.mdc-pagination__page-item {
-  & > i,
-  & > span,
-  & > a {
-    display: block;
-    margin: 0;
-    padding: 0 6px;
-    line-height: inherit;
-    font-size: inherit;
-    outline: none;
-    color: ui-pagination-variables.$text-color;
-  }
-}
-
-.mdc-pagination__previous:not(.mdc-pagination__page-item--disabled),
-.mdc-pagination__next:not(.mdc-pagination__page-item--disabled),
-.mdc-pagination__page-item {
-  cursor: pointer;
-  transition: all 0.3s;
-
-  &:hover {
-    border-color: ui-pagination-variables.$hover-border-color;
-    background-color: ui-pagination-variables.$hover-fill-color;
-    color: ui-pagination-variables.$hover-text-color;
-
-    & > i,
-    & > span,
-    & > a {
-      color: ui-pagination-variables.$hover-text-color;
-    }
-  }
-}
-
-.mdc-pagination__page-item--active {
-  border-color: ui-pagination-variables.$active-border-color;
-  background-color: ui-pagination-variables.$active-fill-color;
-  cursor: default;
-
-  a {
-    color: ui-pagination-variables.$active-text-color;
-  }
-
-  &:hover {
-    border-color: ui-pagination-variables.$active-border-color;
-    background-color: ui-pagination-variables.$active-fill-color;
-    a {
-      color: ui-pagination-variables.$active-text-color;
-    }
-  }
-}
-
-.mdc-pagination__page-item--disabled {
-  cursor: not-allowed;
-  &:hover {
-    border: 1px solid ui-pagination-variables.$border-color;
-    color: ui-pagination-variables.$text-color;
-  }
-}
-
-.mdc-pagination__jumper {
-  display: inline-block;
-
-  input {
-    width: 44px;
-    height: 24px;
-
-    transition: all 0.3s;
-    text-indent: 3px;
-
-    color: ui-pagination-variables.$text-color;
-    border: 1px solid #d9d9d9;
-    &:hover,
-    &:focus {
-      border-color: ui-pagination-variables.$hover-border-color;
-    }
-    &:focus {
-      outline: 0;
-      box-shadow: 0 0 0 2px rgba(16, 142, 233, 0.2);
-    }
-  }
-
-  button {
-    line-height: 22px;
-
-    height: 24px;
-    padding: 0;
-
-    color: ui-pagination-variables.$text-color;
-    border: 1px solid #d9d9d9;
-    &:hover {
-      color: ui-pagination-variables.$hover-text-color;
-      border-color: ui-pagination-variables.$hover-border-color;
-      background: none;
-    }
-  }
-}
-
-.mdc-pagination__record {
-  margin-right: 12px;
-  .mdc-select {
-    margin: 0 6px;
-  }
-  .mdc-select__anchor {
-    min-width: 100px;
-  }
-  .mdc-select__anchor,
-  .mdc-select__selected-text,
-  .mdc-list-item {
-    height: ui-pagination-variables.$height;
   }
 }

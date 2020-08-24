@@ -1,12 +1,12 @@
 <template>
-  <div class="mdc-data-table__pagination">
-    <div :class="className">
+  <div :class="className">
+    <div :class="innerClassName">
       <!-- Page size -->
-      <div v-if="!mini && pageSizeList.length" class="mdc-data-table__pagination-rows-per-page">
+      <div v-if="!mini && Array.isArray(pageSize)" class="mdc-data-table__pagination-rows-per-page">
         <div class="mdc-data-table__pagination-rows-per-page-label">{{ pageSizeBeforeText }}</div>
         <div class="mdc-data-table__pagination-rows-per-page-select">
-          <select v-model="currentPageSize">
-            <template v-for="size in pageSizeList">
+          <select v-model="currentPageSize" @change="handleChange">
+            <template v-for="size in pageSize">
               <option :key="`pageSize-${size}`">{{ size }}</option>
             </template>
           </select>
@@ -22,7 +22,7 @@
         <!-- Navigation buttons -->
         <button
           v-if="!hasPageSpan"
-          class="mdc-button mdc-data-table__pagination-button"
+          class="mdc-button mdc-data-table__pagination-button mdc-data-table__pagination-first-button"
           data-first-page="true"
           :disabled="currentPage === 1"
           @click="handleClick(1)"
@@ -33,7 +33,7 @@
           </slot>
         </button>
         <button
-          class="mdc-button mdc-data-table__pagination-button mdc-data-table__pagination-first-button"
+          class="mdc-button mdc-data-table__pagination-button mdc-data-table__pagination-prev-button"
           data-prev-page="true"
           :disabled="currentPage === 1"
           @click="handleClick(currentPage - 1)"
@@ -70,7 +70,7 @@
           </template>
         </div>
         <button
-          class="mdc-button mdc-data-table__pagination-button"
+          class="mdc-button mdc-data-table__pagination-button mdc-data-table__pagination-next-button"
           data-next-page="true"
           :disabled="currentPage === pageCount"
           @click="handleClick(currentPage + 1)"
@@ -82,7 +82,7 @@
         </button>
         <button
           v-if="!hasPageSpan"
-          class="mdc-button mdc-data-table__pagination-button"
+          class="mdc-button mdc-data-table__pagination-button mdc-data-table__pagination-last-button"
           data-last-page="true"
           :disabled="currentPage === pageCount"
           @click="handleClick(pageCount)"
@@ -95,8 +95,8 @@
       </div>
       <!-- Jumper -->
       <div v-if="!mini && showJumper" class="mdc-data-table__pagination-jumper">
-        <span class="mdc-data-table__pagination-jumper-label">{{ jumperBeforeText }}</span>
-        <span class="mdc-data-table__pagination-jumper-input">
+        <div class="mdc-data-table__pagination-jumper-label">{{ jumperBeforeText }}</div>
+        <div class="mdc-data-table__pagination-jumper-input">
           <input
             v-model="jumpPage"
             type="number"
@@ -104,15 +104,15 @@
             :max="pageCount"
             @keydown.prevent.enter="handleClick($event.target.value)"
           />
-        </span>
-        <span>{{ jumperAfterText }}</span>
-        <button
-          v-if="jumperButtonText"
-          type="button"
-          class="mdc-button"
-          @click="handleClick(jumpPage)"
-          v-text="jumperButtonText"
-        ></button>
+          <span>{{ jumperAfterText }}</span>
+          <button
+            v-if="jumperButtonText"
+            type="button"
+            class="mdc-button"
+            @click="handleClick(jumpPage)"
+            v-text="jumperButtonText"
+          ></button>
+        </div>
       </div>
     </div>
   </div>
@@ -121,7 +121,7 @@
 <script>
 // Define pagination constants
 const UI_PAGINATION = {
-  POSITIONS: ['left', 'right'],
+  POSITIONS: ['left', 'center', 'right'],
   MIN_PAGE_SPAN: 3,
   EVENT: {
     CHANGE: 'change'
@@ -145,23 +145,21 @@ export default {
       default: 0
     },
     // UI attributes
-    pageSizeList: {
-      type: Array,
-      default() {
-        return [];
-      }
-    },
-    pageSizeText: {
-      type: [String, Array],
-      default: 'Rows per page'
+    pageSpan: {
+      type: [Number, Boolean],
+      default: UI_PAGINATION.MIN_PAGE_SPAN
     },
     showTotal: {
       type: Boolean,
       default: false
     },
-    pageSpan: {
-      type: [Number, Boolean],
-      default: UI_PAGINATION.MIN_PAGE_SPAN
+    pageSize: {
+      type: [Number, Array],
+      default: 10
+    },
+    pageSizeText: {
+      type: [String, Array],
+      default: 'Rows per page'
     },
     showJumper: {
       type: Boolean,
@@ -186,19 +184,25 @@ export default {
   },
   data() {
     return {
-      UI_PAGINATION,
       currentPage: this.page,
-      currentPageSize: this.pageSizeList.length ? this.pageSizeList[0] : 10,
+      currentPageSize: Array.isArray(this.pageSize)
+        ? this.pageSize[0]
+        : this.pageSize,
       jumpPage: this.page
     };
   },
   computed: {
     className() {
-      let result = ['mdc-data-table__pagination-trailing mdc-pagination'];
+      return {
+        'mdc-data-table__pagination': true,
+        'mdc-pagination': true,
+        'mdc-pagination--mini': this.mini
+      };
+    },
+    innerClassName() {
+      let result = ['mdc-data-table__pagination-trailing'];
 
-      if (this.mini) {
-        result.push('mdc-pagination--mini');
-      } else if (UI_PAGINATION.POSITIONS.includes(this.position)) {
+      if (UI_PAGINATION.POSITIONS.includes(this.position)) {
         result.push(`mdc-pagination--${this.position}`);
       }
 
@@ -214,6 +218,12 @@ export default {
       const max = this.currentPageSize * this.currentPage;
       return max > this.total ? this.total : max;
     },
+    hasPageSpan() {
+      return (
+        this.mini ||
+        (this.pageSpan && this.pageSpan >= UI_PAGINATION.MIN_PAGE_SPAN)
+      );
+    },
     pageSizeBeforeText() {
       return Array.isArray(this.pageSizeText)
         ? this.pageSizeText[0]
@@ -221,12 +231,6 @@ export default {
     },
     pageSizeAfterText() {
       return Array.isArray(this.pageSizeText) ? this.pageSizeText[1] : '';
-    },
-    hasPageSpan() {
-      return (
-        this.mini ||
-        (this.pageSpan && this.pageSpan >= UI_PAGINATION.MIN_PAGE_SPAN)
-      );
     },
     jumperBeforeText() {
       return Array.isArray(this.jumperText)
@@ -264,22 +268,33 @@ export default {
       let nonFirstOrLast = page !== 1 && page !== this.pageCount;
       return !(isExisted && nonFirstOrLast);
     },
+    getPage(page) {
+      switch (true) {
+        case page > this.pageCount:
+          page = this.pageCount;
+          break;
+        case page < 1:
+          page = 1;
+          break;
+      }
+      return page;
+    },
     handleClick(page) {
       if (this.currentPage !== page) {
         if (isNaN(page)) {
           this.jumpPage = this.currentPage;
         } else {
-          switch (true) {
-            case page > this.pageCount:
-              page = this.pageCount;
-              break;
-            case page < 1:
-              page = 1;
-              break;
-          }
+          page = this.getPage(page);
           this.jumpPage = page;
           this.$emit(UI_PAGINATION.EVENT.CHANGE, +page);
         }
+      }
+    },
+    handleChange() {
+      let page = this.getPage(this.currentPage);
+      if (this.currentPage !== page) {
+        this.jumpPage = page;
+        this.$emit(UI_PAGINATION.EVENT.CHANGE, +page);
       }
     }
   }

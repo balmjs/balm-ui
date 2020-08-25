@@ -4,7 +4,7 @@
   v-model="value4"
   type="discrete"
   :step="10"
-  with-tick-marks
+  withTickMarks
 ></ui-slider>
 <ui-slider v-model="value5" type="discrete" :step="10"></ui-slider>
 ```

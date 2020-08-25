@@ -13,7 +13,7 @@
 | ------------------- | -------------- | ------- | ----------------------------------------------------------------- |
 | `type`              | string, number | `0`     | Mandatory. Slider types.                                          |
 | `discrete`          | boolean        | `false` | Styles the slider as a discrete slider.                           |
-| `with-tick-marks`   | boolean        | `false` | Discrete sliders support display markers on their tracks.         |
+| `withTickMarks`     | boolean        | `false` | Discrete sliders support display markers on their tracks.         |
 | `model` (`v-model`) | number, array  | `0`     | The current value of the slider. (`array` value for range slider) |
 | `min`               | number         | `0`     | The minimum value a slider can have.                              |
 | `max`               | number         | `100`   | The maximum value a slider can have.                              |

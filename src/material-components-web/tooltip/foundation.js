@@ -36,8 +36,10 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         // Minimum threshold distance needed between the tooltip and the viewport.
         _this.minViewportTooltipThreshold = numbers.MIN_VIEWPORT_TOOLTIP_THRESHOLD;
         _this.hideDelayMs = numbers.HIDE_DELAY_MS;
+        _this.showDelayMs = numbers.SHOW_DELAY_MS;
         _this.frameId = null;
         _this.hideTimeout = null;
+        _this.showTimeout = null;
         _this.documentClickHandler = function () {
             _this.handleClick();
         };
@@ -72,16 +74,32 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         configurable: true
     });
     MDCTooltipFoundation.prototype.handleAnchorMouseEnter = function () {
-        this.show();
+        var _this = this;
+        if (this.isShown) {
+            // Covers the instance where a user hovers over the anchor to reveal the
+            // tooltip, and then quickly navigates away and then back to the anchor.
+            // The tooltip should stay visible without animating out and then back in
+            // again.
+            this.show();
+        }
+        else {
+            this.showTimeout = setTimeout(function () {
+                _this.show();
+            }, this.showDelayMs);
+        }
     };
     MDCTooltipFoundation.prototype.handleAnchorFocus = function () {
+        var _this = this;
         // TODO(b/157075286): Need to add some way to distinguish keyboard
         // navigation focus events from other focus events, and only show the
         // tooltip on the former of these events.
-        this.show();
+        this.showTimeout = setTimeout(function () {
+            _this.show();
+        }, this.showDelayMs);
     };
     MDCTooltipFoundation.prototype.handleAnchorMouseLeave = function () {
         var _this = this;
+        this.clearShowTimeout();
         this.hideTimeout = setTimeout(function () {
             _this.hide();
         }, this.hideDelayMs);
@@ -104,6 +122,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
     MDCTooltipFoundation.prototype.show = function () {
         var _this = this;
         this.clearHideTimeout();
+        this.clearShowTimeout();
         if (this.isShown) {
             return;
         }
@@ -127,6 +146,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
     };
     MDCTooltipFoundation.prototype.hide = function () {
         this.clearHideTimeout();
+        this.clearShowTimeout();
         if (!this.isShown) {
             return;
         }
@@ -354,6 +374,12 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         var tooltipHeight = this.adapter.getTooltipSize().height;
         return yPos + tooltipHeight <= viewportHeight && yPos >= 0;
     };
+    MDCTooltipFoundation.prototype.clearShowTimeout = function () {
+        if (this.showTimeout) {
+            clearTimeout(this.showTimeout);
+            this.showTimeout = null;
+        }
+    };
     MDCTooltipFoundation.prototype.clearHideTimeout = function () {
         if (this.hideTimeout) {
             clearTimeout(this.hideTimeout);
@@ -366,6 +392,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             this.frameId = null;
         }
         this.clearHideTimeout();
+        this.clearShowTimeout();
         this.adapter.removeClass(SHOWN);
         this.adapter.removeClass(SHOWING_TRANSITION);
         this.adapter.removeClass(SHOWING);

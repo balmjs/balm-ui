@@ -1,6 +1,6 @@
 {
   "name": "balm-ui",
-  "version": "8.0.0-beta.0",
+  "version": "8.0.0-canary.0",
   "description": "Next Generation Material UI for Vue.js",
   "keywords": [
     "balm",
@@ -107,5 +107,5 @@
   "peerDependencies": {
     "vue": ">=2.1.0"
   },
-  "private": true
+  "private": false
 }

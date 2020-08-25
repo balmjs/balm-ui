@@ -82,13 +82,6 @@ const MATERIAL_COMPONENTS = [
         description: 'Navigation drawer',
         url: 'drawer'
       },
-      // {
-      //   icon: 'component',
-      //   name: 'Bottom Navigation',
-      //   description: 'Bottom Navigation',
-      //   url: 'bottom-navigation',
-      //   next: true
-      // },
       {
         icon: 'tab',
         name: 'Tabs',
@@ -104,6 +97,13 @@ const MATERIAL_COMPONENTS = [
         name: 'Pagination',
         description: 'Pagination'
       }
+      // {
+      //   icon: 'video_label',
+      //   name: 'Bottom Navigation',
+      //   description: 'Bottom Navigation',
+      //   url: 'bottom-navigation',
+      //   next: true
+      // }
     ]
   },
   '-',
@@ -191,6 +191,12 @@ const MATERIAL_COMPONENTS = [
         name: 'Rangepicker',
         description: 'Range datepicker',
         plus: true
+      },
+      {
+        icon: 'watch_later',
+        name: 'Timepicker',
+        description: 'Time picker',
+        next: true
       },
       {
         icon: 'toggle_off',

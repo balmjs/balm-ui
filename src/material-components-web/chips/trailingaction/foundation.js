@@ -21,8 +21,8 @@
  * THE SOFTWARE.
  */
 import { __assign, __extends } from "tslib";
-import { MDCFoundation } from '@material/base/foundation';
-import { isNavigationEvent, KEY, normalizeKey } from '@material/dom/keyboard';
+import { MDCFoundation } from '../../base/foundation';
+import { isNavigationEvent, KEY, normalizeKey } from '../../dom/keyboard';
 import { InteractionTrigger, strings } from './constants';
 var MDCChipTrailingActionFoundation = /** @class */ (function (_super) {
     __extends(MDCChipTrailingActionFoundation, _super);

@@ -32,6 +32,7 @@ module.exports = (mix) => {
           `${constants.DEV_SOURCE.mdc}/${item}/test`
         ]);
       });
+      mix.remove(`${constants.DEV_SOURCE.mdc}/chips/trailingaction/test`);
     } else {
       if (mix.env.isProd) {
         // Clear individual

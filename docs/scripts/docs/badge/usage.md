@@ -16,7 +16,7 @@ Vue.use(BalmUI);
 ```scss
 @use 'balm-ui/components/core';
 @use 'balm-ui/components/badge/badge';
-@use 'balm-ui/components/icon/icon';
+@use 'balm-ui/components/icon/icon'; // Recommended
 ```
 
 ```js

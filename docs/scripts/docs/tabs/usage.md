@@ -21,7 +21,7 @@ Vue.use(BalmUI, {
 ```scss
 @use 'balm-ui/components/core';
 @use 'balm-ui/components/tabs/tabs';
-@use 'balm-ui/components/icon/icon';
+@use 'balm-ui/components/icon/icon'; // Optional
 ```
 
 ```js

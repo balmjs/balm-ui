@@ -19,7 +19,7 @@ Vue.use(BalmUI);
 
 ```js
 import Vue from 'vue';
-import shape from 'balm-ui/directives/shape';
+import vShape from 'balm-ui/directives/shape';
 
-Vue.directive(shape.name, shape);
+Vue.directive(vShape.name, vShape);
 ```

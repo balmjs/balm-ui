@@ -23,7 +23,7 @@ Vue.use(BalmUI);
 
 ```js
 import Vue from 'vue';
-import elevation from 'balm-ui/directives/elevation';
+import vElevation from 'balm-ui/directives/elevation';
 
-Vue.directive(elevation.name, elevation);
+Vue.directive(vElevation.name, vElevation);
 ```

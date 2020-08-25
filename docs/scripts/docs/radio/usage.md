@@ -20,8 +20,8 @@ Vue.use(BalmUI, {
 
 ```scss
 @use 'balm-ui/components/core';
-@use 'balm-ui/components/form-field/form-field';
 @use 'balm-ui/components/radio/radio';
+@use 'balm-ui/components/form-field/form-field';
 ```
 
 ```js

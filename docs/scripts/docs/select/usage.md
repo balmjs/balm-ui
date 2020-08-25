@@ -24,7 +24,7 @@ Vue.use(BalmUI, {
 @use 'balm-ui/components/menu/menu';
 @use 'balm-ui/components/form-field/form-item';
 @use 'balm-ui/components/select/select';
-@use 'balm-ui/components/icon/icon';
+@use 'balm-ui/components/icon/icon'; // Optional
 ```
 
 ```js

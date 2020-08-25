@@ -3,7 +3,7 @@
 ```scss
 @use 'balm-ui/dist/balm-ui';
 @use 'balm-ui/components/editor/theme/snow';
-@use 'balm-ui/components/editor/theme/bubble';
+@use 'balm-ui/components/editor/theme/bubble'; // Optional
 ```
 
 ```js
@@ -24,7 +24,7 @@ Vue.use(BalmUIPlus, {
 @use 'balm-ui/components/core';
 @use 'balm-ui/components/editor/editor';
 @use 'balm-ui/components/editor/theme/snow';
-@use 'balm-ui/components/editor/theme/bubble';
+@use 'balm-ui/components/editor/theme/bubble'; // Optional
 ```
 
 ```js

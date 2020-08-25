@@ -231,7 +231,7 @@ const MATERIAL_COMPONENTS = [
         description: 'Various card layout styles'
       },
       {
-        icon: 'table_chart',
+        icon: 'table_view',
         name: 'Data Table',
         description: 'Data tables display sets of data',
         url: 'table'

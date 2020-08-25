@@ -15,8 +15,8 @@ Vue.use(BalmUIPlus);
 
 ```scss
 @use 'balm-ui/components/core';
-@use 'balm-ui/components/alert/alert';
 @use 'balm-ui/components/icon/icon';
+@use 'balm-ui/components/alert/alert';
 ```
 
 ```js

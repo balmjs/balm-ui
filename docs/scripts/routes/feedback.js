@@ -8,7 +8,7 @@ const Banner = () => import('@/views/components/banner');
 const Progress = () => import('@/views/components/progress');
 const Spinner = () => import('@/views/components/spinner');
 const Skeleton = () => import('@/views/components/skeleton');
-const Tooltip = () => import('@/views/directives/tooltip');
+const Tooltip = () => import('@/views/components/tooltip');
 
 export default [
   {

@@ -8,7 +8,12 @@
 import Vue from 'vue';
 import BalmUI from 'balm-ui';
 
-Vue.use(BalmUI);
+Vue.use(BalmUI, {
+  // Optional. Overwrite `<ui-tooltip>` props with default value.
+  UiTooltip: {
+    // some props
+  }
+});
 ```
 
 ### Individual Usage
@@ -20,10 +25,12 @@ Vue.use(BalmUI);
 
 ```js
 import Vue from 'vue';
-import tooltip from 'balm-ui/directives/tooltip';
-import UiTooltip from 'balm-ui/components/tooltip'; // Optional. For custom
+import UiTooltip from 'balm-ui/components/tooltip';
+import vTooltip from 'balm-ui/directives/tooltip'; // Optional
 
-Vue.directive(tooltip.name, tooltip);
-// Optional. For custom
-Vue.use(UiTooltip);
+// Optional. Overwrite `<ui-tooltip>` props with default value.
+Vue.use(UiTooltip, {
+  // some props
+});
+Vue.directive(vTooltip.name, vTooltip); // Optional
 ```

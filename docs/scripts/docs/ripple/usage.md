@@ -23,7 +23,7 @@ Vue.use(BalmUI);
 
 ```js
 import Vue from 'vue';
-import ripple from 'balm-ui/directives/ripple';
+import vRipple from 'balm-ui/directives/ripple';
 
-Vue.directive(ripple.name, ripple);
+Vue.directive(vRipple.name, vRipple);
 ```

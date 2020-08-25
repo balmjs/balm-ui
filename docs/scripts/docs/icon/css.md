@@ -1,5 +1,5 @@
-```css
-@use 'balm-ui/components/icon/variables' with (
+```scss
+@use 'balm-ui/components/icon' with (
   $font-path: '../fonts',
   $with-subdir: 0,
 

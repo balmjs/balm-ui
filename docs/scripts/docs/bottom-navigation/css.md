@@ -1,4 +1,4 @@
-```css
+```scss
 @use 'balm-ui/components/bottom-navigation/variables' with (
   $height: 48px,
   $stacked-height: 72px,

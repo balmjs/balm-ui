@@ -1,5 +1,5 @@
-```css
-@use '@material/switch/variables' with (
+```scss
+@use '@material/switch' with (
   $track-width: 32px,
   $track-height: 14px,
   $thumb-diameter: 20px,
@@ -16,6 +16,7 @@
     ),
   ),
 
+  // Amount the edge of the thumb should be offset from the edge of the track.
   $thumb-offset: 4px,
 
   $thumb-active-margin: $track-width - $thumb-diameter + $thumb-offset * 2,

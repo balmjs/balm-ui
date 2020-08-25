@@ -1,7 +1,7 @@
 ### Default Usage
 
-```css
-@use 'balm-ui/dist/balm-ui.scss';
+```scss
+@use 'balm-ui/dist/balm-ui';
 ```
 
 ```js
@@ -13,12 +13,12 @@ Vue.use(BalmUI);
 
 ### Individual Usage
 
-```css
+```scss
 /* Included `elevation.scss` */
-@use 'balm-ui/components/core.scss';
+@use 'balm-ui/components/core';
 
 /* OR */
-@use 'balm-ui/directives/elevation/elevation.scss';
+@use 'balm-ui/directives/elevation/elevation';
 ```
 
 ```js

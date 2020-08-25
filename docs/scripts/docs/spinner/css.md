@@ -1,11 +1,26 @@
-```css
-@use '@material/circular-progress/variables' with (
-  $color: primary
+```scss
+@use '@material/circular-progress' with (
+  $color: primary,
+  $track-color: transparent,
+
+  /// The rotation position of the arcs that corresponds to their fully contracted state
+  $base-angle: 135deg,
+  /// Amount of circle the arc takes up
+  $arc-size: 270deg,
+  /// Time it takes to expand and contract arc
+  $arc-time: 1333ms,
+  /// Time for inactive indicator to disappear
+  $shrink-time: 400ms,
+  /// How much the start location of the arc should rotate each time; 216 gives
+  /// us a 5 pointed star shape (it's 360/5 * 3)
+  $arc-start-rotation-interval: 216deg,
+  /// The timing function used for the core spinner animations.
+  $timing-function: cubic-bezier(0.4, 0, 0.2, 1)
 );
 ```
 
-```css
-@use 'balm-ui/components/spinner/variables' with (
+```scss
+@use 'balm-ui/components/spinner' with (
   $fourColors: $blue $red $yellow $green
 );
 ```

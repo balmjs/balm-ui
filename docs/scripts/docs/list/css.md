@@ -1,11 +1,11 @@
-```css
-@use '@material/list/variables' with (
-  $divider-color-on-light-bg: rgba(0, 0, 0, .12),
-  $divider-color-on-dark-bg: rgba(255, 255, 255, .2),
+```scss
+@use '@material/list' with (
+  $divider-color-on-light-bg: rgba(0, 0, 0, 0.12),
+  $divider-color-on-dark-bg: rgba(255, 255, 255, 0.2),
   $side-padding: 16px,
   $trailing-padding: 16px,
   $text-offset: 72px,
-  $text-disabled-opacity: theme-variables.text-emphasis(disabled),
+  $text-disabled-opacity: theme-color.text-emphasis(disabled),
   $text-disabled-color: on-surface,
   $text-selected-color: primary,
 
@@ -30,52 +30,64 @@
   $two-line-graphic-height: 72px,
   $two-line-icon-top-margin: 16px,
 
-  $deprecated-graphic-config: (
-    graphic-size: (width: 24px, height: 24px),
-    leading-padding: 16px,
-    text-offset: 72px
-  ),
-
   $textual-variant-config: (
     single-line-height: $single-line-height,
-    graphic-size: (width: 24px, height: 24px),
+    graphic-size: (
+      width: 24px,
+      height: 24px,
+    ),
     leading-padding: 16px,
-    text-offset: 16px
+    text-offset: 16px,
   ),
 
   $icon-variant-config: (
     single-line-height: 56px,
-    graphic-size: (width: 24px, height: 24px),
+    graphic-size: (
+      width: 24px,
+      height: 24px,
+    ),
     leading-padding: 16px,
-    text-offset: 72px
+    text-offset: 72px,
   ),
 
   $avatar-variant-config: (
     single-line-height: 56px,
-    graphic-size: (width: 40px, height: 40px),
+    graphic-size: (
+      width: 40px,
+      height: 40px,
+    ),
     leading-padding: 16px,
-    text-offset: 72px
+    text-offset: 72px,
   ),
 
   $thumbnail-variant-config: (
     single-line-height: 56px,
-    graphic-size: (width: 40px, height: 40px),
+    graphic-size: (
+      width: 40px,
+      height: 40px,
+    ),
     leading-padding: 16px,
-    text-offset: 72px
+    text-offset: 72px,
   ),
 
   $image-variant-config: (
     single-line-height: 72px,
-    graphic-size: (width: 56px, height: 56px),
+    graphic-size: (
+      width: 56px,
+      height: 56px,
+    ),
     leading-padding: 16px,
-    text-offset: 88px
+    text-offset: 88px,
   ),
 
   $video-variant-config: (
     single-line-height: 72px,
-    graphic-size: (width: 100px, height: 56px),
+    graphic-size: (
+      width: 100px,
+      height: 56px,
+    ),
     leading-padding: 0px,
-    text-offset: 116px
+    text-offset: 116px,
   )
 );
 ```

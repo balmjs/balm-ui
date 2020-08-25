@@ -31,9 +31,6 @@ import UiTocAffix from '@/components/toc-affix';
 import SvgLogo from '@/components/svg-logo';
 // Syntax highlighting
 import prismjs from 'prismjs';
-import 'prismjs/plugins/toolbar/prism-toolbar';
-import 'prismjs/plugins/highlight-keywords/prism-highlight-keywords';
-import 'prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard';
 // Ready translated locales
 // import { locales } from '@/config/lang';
 // PWA

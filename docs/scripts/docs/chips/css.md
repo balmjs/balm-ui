@@ -1,11 +1,11 @@
-```css
-@use '@material/chips/variables' with (
+```scss
+@use '@material/chips' with (
   $fill-color-default: color.mix(
-    theme-variables.prop-value(on-surface),
-    theme-variables.prop-value(surface),
+    theme-color.prop-value(on-surface),
+    theme-color.prop-value(surface),
     12%
   ),
-  $ink-color-default: rgba(theme-variables.prop-value(on-surface), 0.87),
+  $ink-color-default: rgba(theme-color.prop-value(on-surface), 0.87),
   $horizontal-padding: 12px,
   $height: 32px,
   $shape-radius: 50%,
@@ -21,12 +21,13 @@
     ),
   ),
 
-  $icon-color: theme-variables.prop-value(on-surface),
+  $icon-color: theme-color.prop-value(on-surface),
   $icon-opacity: 0.54,
   $trailing-icon-hover-opacity: 0.62,
   $trailing-icon-focus-opacity: 0.87,
   $leading-icon-size: 20px,
   $trailing-icon-size: 18px,
+  // Speed up delay to bridge gap between leading icon and checkmark transition.
   $leading-icon-delay: -50ms,
   $checkmark-with-leading-icon-delay: 80ms,
 

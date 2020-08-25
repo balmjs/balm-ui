@@ -1,6 +1,6 @@
 ### Default Usage
 
-```css
+```scss
 @use 'balm-ui/dist/balm-ui.scss';
 ```
 
@@ -18,7 +18,7 @@ Vue.use(BalmUINext, {
 
 ### Individual Usage
 
-```css
+```scss
 @use 'balm-ui/components/core.scss';
 @use 'balm-ui/components/tabs/tabs.scss';
 @use 'balm-ui/components/icon/icon.scss';

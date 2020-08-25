@@ -58,6 +58,7 @@ const level1 = [
 const level2 = [
   'chips/chip',
   'chips/chip-set',
+  'chips/trailingaction',
   'drawer/dismissible',
   'drawer/modal',
   'select/helper-text',

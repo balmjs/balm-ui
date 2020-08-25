@@ -1,5 +1,5 @@
-```css
-@use '@material/image-list/variables' with (
+```scss
+@use '@material/image-list' with (
   $standard-gutter-size: 4px,
   $masonry-gutter-size: 16px,
   $icon-size: 24px,

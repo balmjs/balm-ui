@@ -12,7 +12,16 @@ module.exports = function (api) {
 
   return {
     presets: [['@babel/preset-env', envOptions]],
-    plugins: [['@babel/plugin-transform-runtime', runtimeOptions]],
+    plugins: [
+      ['@babel/plugin-transform-runtime', runtimeOptions],
+      [
+        'prismjs',
+        {
+          languages: ['markup', 'css', 'javascript', 'bash', 'scss'],
+          plugins: ['highlight-keywords', 'toolbar', 'copy-to-clipboard']
+        }
+      ]
+    ],
     env: {
       test: {
         presets: ['@babel/preset-env'],

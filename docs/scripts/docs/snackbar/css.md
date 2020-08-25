@@ -1,18 +1,18 @@
-```css
-@use '@material/snackbar/variables' with (
+```scss
+@use '@material/snackbar' with (
   $fill-color: color.mix(
-    variables.prop-value(on-surface),
-    variables.prop-value(surface),
+    theme-color.prop-value(on-surface),
+    theme-color.prop-value(surface),
     80%
   ),
   $label-ink-color: rgba(
-    variables.prop-value(surface),
-    variables.text-emphasis(high)
+    theme-color.prop-value(surface),
+    theme-color.text-emphasis(high)
   ),
   $action-ink-color: #bb86fc,
   $dismiss-ink-color: rgba(
-    variables.prop-value(surface),
-    variables.text-emphasis(high)
+    theme-color.prop-value(surface),
+    theme-color.text-emphasis(high)
   ),
 
   $label-type-scale: body2,
@@ -25,9 +25,10 @@
   $padding: 8px,
 
   $elevation: 6,
-  $shape-radius: small,
-  $z-index: 8,
+  $shape-radius: small, // Key from shape.$category-keywords or CSS length value (e.g., 4px)
+  $z-index: 8, // One above `<ui-dialog>`
 
+  // These variables need to be kept in sync with the values in constants.js.
   $enter-duration: 150ms,
   $exit-duration: 75ms
 );

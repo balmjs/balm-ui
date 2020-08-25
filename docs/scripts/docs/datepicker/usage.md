@@ -1,7 +1,7 @@
 ### Default Usage
 
-```css
-@use 'balm-ui/dist/balm-ui.scss';
+```scss
+@use 'balm-ui/dist/balm-ui';
 ```
 
 ```js
@@ -18,12 +18,12 @@ Vue.use(BalmUIPlus, {
 
 ### Individual Usage
 
-```css
-@use 'balm-ui/components/core.scss';
-@use 'balm-ui/components/form-field/form-item.scss';
-@use 'balm-ui/components/textfield/textfield.scss';
-@use 'balm-ui/components/picker/picker.scss';
-@use 'balm-ui/components/datepicker/datepicker.scss';
+```scss
+@use 'balm-ui/components/core';
+@use 'balm-ui/components/form-field/form-item';
+@use 'balm-ui/components/textfield/textfield';
+@use 'balm-ui/components/picker/picker';
+@use 'balm-ui/components/datepicker/datepicker';
 ```
 
 ```js

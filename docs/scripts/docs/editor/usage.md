@@ -1,9 +1,9 @@
 ### Default Usage
 
-```css
-@use 'balm-ui/dist/balm-ui.scss';
-@use 'balm-ui/components/editor/theme/snow.scss';
-@use 'balm-ui/components/editor/theme/bubble.scss';
+```scss
+@use 'balm-ui/dist/balm-ui';
+@use 'balm-ui/components/editor/theme/snow';
+@use 'balm-ui/components/editor/theme/bubble';
 ```
 
 ```js
@@ -20,11 +20,11 @@ Vue.use(BalmUIPlus, {
 
 ### Individual Usage
 
-```css
-@use 'balm-ui/components/core.scss';
-@use 'balm-ui/components/editor/editor.scss';
-@use 'balm-ui/components/editor/theme/snow.scss';
-@use 'balm-ui/components/editor/theme/bubble.scss';
+```scss
+@use 'balm-ui/components/core';
+@use 'balm-ui/components/editor/editor';
+@use 'balm-ui/components/editor/theme/snow';
+@use 'balm-ui/components/editor/theme/bubble';
 ```
 
 ```js

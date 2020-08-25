@@ -1,7 +1,8 @@
-```css
-@use '@material/typography/variables' with (
+```scss
+@use '@material/typography' with (
   $font-family: string.unquote('Roboto, sans-serif'),
 
+  // Override styles
   $styles-headline1: (),
   $styles-headline2: (),
   $styles-headline3: (),

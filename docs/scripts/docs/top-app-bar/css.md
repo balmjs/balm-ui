@@ -1,5 +1,6 @@
-```css
-@use '@material/top-app-bar/variables' with (
+```scss
+@use '@material/top-app-bar' with (
+  // Default styles
   $row-height: 64px,
   $title-left-padding: 20px,
   $section-vertical-padding: 8px,
@@ -7,22 +8,28 @@
 
   $mobile-breakpoint: 599px,
 
+  // Default mobile styles
   $mobile-row-height: 56px,
   $mobile-section-padding: 4px,
 
+  // Short top app bar
   $short-collapsed-border-radius: 4px,
   $short-collapsed-width: 56px,
   $short-collapsed-right-icon-padding: 12px,
 
+  // Prominent styles
   $prominent-row-height: 128px,
   $prominent-title-bottom-padding: 2px,
 
+  // Prominent mobile styles
   $prominent-mobile-title-bottom-padding: 6px,
 
+  // Dense styles
   $dense-row-height: 48px,
   $dense-section-horizontal-padding: 4px,
   $dense-title-left-padding: 12px,
 
+  // Dense & Prominent styles
   $dense-prominent-title-bottom-padding: 9px
 );
 ```

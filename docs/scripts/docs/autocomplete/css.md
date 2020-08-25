@@ -1,9 +1,6 @@
-```css
-@use 'balm-ui/components/autocomplete/variables' with (
-  $selected-bgcolor: rgba(
-    theme-variables.prop-value(primary),
-    0.6
-  ),
+```scss
+@use 'balm-ui/components/autocomplete' with (
+  $selected-bgcolor: rgba(theme-variables.prop-value(primary), 0.87),
   $selected-color: theme-variables.prop-value(on-primary)
 );
 ```

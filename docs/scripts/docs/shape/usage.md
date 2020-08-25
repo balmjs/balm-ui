@@ -1,7 +1,7 @@
 ### Default Usage
 
-```css
-@use 'balm-ui/dist/balm-ui.scss';
+```scss
+@use 'balm-ui/dist/balm-ui';
 ```
 
 ```js
@@ -13,8 +13,8 @@ Vue.use(BalmUI);
 
 ### Individual Usage
 
-```css
-@use 'balm-ui/directives/shape/shape.scss';
+```scss
+@use 'balm-ui/directives/shape/shape';
 ```
 
 ```js

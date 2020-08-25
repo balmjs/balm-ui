@@ -1,18 +1,23 @@
-```css
-@use 'balm-ui/components/pagination/variables' with (
-  $color: theme-variables.$primary,
+```scss
+@use 'balm-ui/components/pagination' with (
+  // Global
+  $height: 32px,
+  $color: theme-variables.prop-value(primary),
   $corner-radius: 4px,
 
-  $fill-color: white,
+  // Default
+  $fill-color: theme-variables.prop-value(on-primary),
   $text-color: rgba(theme-variables.prop-value(on-surface), 0.87),
-  $border-color: rgba(theme-variables.prop-value(on-surface), 0.6),
+  $border-color: rgba(theme-variables.prop-value(on-surface), 0.87),
 
+  // Hover
   $hover-fill-color: $fill-color,
   $hover-text-color: $color,
   $hover-border-color: $color,
 
-  $active-fill-color: rgba($color, 0.6),
+  // Activated
+  $active-fill-color: rgba($color, 0.87),
   $active-text-color: $fill-color,
-  $active-border-color: rgba($color, 0.6)
+  $active-border-color: $color
 );
 ```

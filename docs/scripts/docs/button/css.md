@@ -1,5 +1,5 @@
-```css
-@use '@material/button/variables' with (
+```scss
+@use '@material/button' with (
   $height: 36px,
   $horizontal-padding: 8px,
   $contained-horizontal-padding: 16px,
@@ -16,16 +16,13 @@
   ),
 
   $outlined-border-width: 1px,
-  $outline-color: rgba(theme-variables.prop-value(on-surface), 0.12),
+  $outline-color: rgba(theme-color.prop-value(on-surface), 0.12),
   $shape-radius: small,
 
   $disabled-container-color: rgba(
-    theme-variables.prop-value(on-surface),
+    theme-color.prop-value(on-surface),
     0.12
   ),
-  $disabled-ink-color: rgba(
-    theme-variables.prop-value(on-surface),
-    0.38
-  )
+  $disabled-ink-color: rgba(theme-color.prop-value(on-surface), 0.38)
 );
 ```

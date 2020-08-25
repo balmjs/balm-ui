@@ -1,5 +1,5 @@
-```css
-@use 'balm-ui/plugins/confirm/variables' with (
+```scss
+@use 'balm-ui/plugins/confirm' with (
   $width: 450px
 );
 ```

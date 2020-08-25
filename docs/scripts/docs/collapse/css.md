@@ -1,5 +1,5 @@
-```css
-@use 'balm-ui/components/collapse/variables' with (
+```scss
+@use 'balm-ui/components/collapse' with (
   $collapse-margin-bottom: 0,
   $header-margin-bottom: 0,
   $title-padding: 8px 0,

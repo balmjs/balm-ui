@@ -1,18 +1,21 @@
 @use '@material/theme/variables' as theme-variables;
 
-/// Global
-$height: 32px;
-$color: theme-variables.$primary !default;
+// Global
+$height: 32px !default;
+$color: theme-variables.prop-value(primary) !default;
 $corner-radius: 4px !default;
-/// Default
+
+// Default
 $fill-color: theme-variables.prop-value(on-primary) !default;
 $text-color: rgba(theme-variables.prop-value(on-surface), 0.87) !default;
 $border-color: rgba(theme-variables.prop-value(on-surface), 0.87) !default;
-/// Hover
+
+// Hover
 $hover-fill-color: $fill-color !default;
 $hover-text-color: $color !default;
 $hover-border-color: $color !default;
-/// Activated
+
+// Activated
 $active-fill-color: rgba($color, 0.87) !default;
 $active-text-color: $fill-color !default;
 $active-border-color: $color !default;

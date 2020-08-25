@@ -1,5 +1,5 @@
 <template>
-  <ui-page type="directive" name="tooltip" demo-count="2" without-css>
+  <ui-page type="directive" name="tooltip" demo-count="2">
     <template #hero>
       <h1
         :class="$tt('headline1')"

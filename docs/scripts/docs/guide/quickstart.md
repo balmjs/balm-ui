@@ -16,7 +16,7 @@ Install [Node.js® and npm](https://nodejs.org/en/download/) if they are not alr
 
 First install the [Balm Core](https://github.com/balmjs/balm) and [Balm CLI](https://github.com/balmjs/balm-cli) globally.
 
-```sh
+```bash
 yarn global add balm-core balm-cli
 # OR
 npm install -g balm-core balm-cli
@@ -28,7 +28,7 @@ Open a terminal window.
 
 Generate a new project and default app by running the following command:
 
-```sh
+```bash
 balm init vue my-project
 ```
 
@@ -36,13 +36,13 @@ balm init vue my-project
 
 Go to the project directory.
 
-```sh
+```bash
 cd my-project
 ```
 
 2.1 Install dependencies
 
-```sh
+```bash
 yarn
 # OR
 npm install
@@ -54,7 +54,7 @@ Installs the necessary npm packages, This can take some time.
 
 2.2 Install **BalmUI**
 
-```sh
+```bash
 yarn add balm-ui
 # OR
 npm install --save balm-ui
@@ -70,7 +70,7 @@ npm install --save balm-ui
 module.exports = {
   styles: {
     extname: 'scss',
-    dartSass: true // !important
+    dartSass: true // required
   }
   // Other Options...
 };
@@ -86,9 +86,9 @@ module.exports = {
 
 Edit `my-project/app/styles/global/_vendor.scss`
 
-```css
+```scss
 /* import BalmUI styles */
-@use 'balm-ui/dist/balm-ui.scss';
+@use 'balm-ui/dist/balm-ui';
 ```
 
 > Recommend to use Sass in `/path/to/your-project/styles/_vendor.scss`, and you can use more advanced style usage of the BalmUI.
@@ -116,11 +116,11 @@ new Vue({
 
 Edit `my-project/app/styles/global/_vendor.scss`
 
-```css
-@use 'balm-ui/components/core.scss';
-@use 'balm-ui/components/button/button.scss';
-@use 'balm-ui/components/dialog/dialog.scss';
-@use 'balm-ui/plugins/alert/alert.scss';
+```scss
+@use 'balm-ui/components/core';
+@use 'balm-ui/components/button/button';
+@use 'balm-ui/components/dialog/dialog';
+@use 'balm-ui/plugins/alert/alert';
 ```
 
 Edit `my-project/app/scripts/main.js`
@@ -134,7 +134,7 @@ Vue.use(UiButton);
 
 ## 5. Development and testing
 
-```sh
+```bash
 npm run dev
 ```
 
@@ -152,7 +152,7 @@ Edit a vue component: `my-project/app/scripts/views/components/hello.vue`
 
 ## 6. Bundling and deployment
 
-```sh
+```bash
 npm run prod
 ```
 

@@ -1,5 +1,5 @@
-```css
-@use '@material/layout-grid/variables' with (
+```scss
+@use '@material/layout-grid' with (
   $breakpoints: (
     desktop: 840px,
     tablet: 600px,

@@ -1,7 +1,7 @@
 ### Default Usage
 
-```css
-@use 'balm-ui/dist/balm-ui.scss';
+```scss
+@use 'balm-ui/dist/balm-ui';
 ```
 
 ```js
@@ -16,12 +16,12 @@ Vue.use(BalmUI, {
 
 ### Individual Usage
 
-```css
+```scss
 /* Included `typography.scss` */
-@use 'balm-ui/components/core.scss';
+@use 'balm-ui/components/core';
 
 /* OR */
-@use 'balm-ui/plugins/typography/typography.scss';
+@use 'balm-ui/plugins/typography/typography';
 ```
 
 ```js

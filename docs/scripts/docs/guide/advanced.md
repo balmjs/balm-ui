@@ -5,12 +5,12 @@
 ## TOC
 
 1. Modular CSS
-    - <a href="javascript:void(0)" class="v-anchor" data-href="#use-sass">Use Sass</a>
-    - <a href="javascript:void(0)" class="v-anchor" data-href="#use-css">Use CSS</a>
+   - <a href="javascript:void(0)" class="v-anchor" data-href="#use-sass">Use Sass</a>
+   - <a href="javascript:void(0)" class="v-anchor" data-href="#use-css">Use CSS</a>
 2. Modular JS
-    - <a href="javascript:void(0)" class="v-anchor" data-href="#default-usage">Default Usage</a> (desktop)
-    - <a href="javascript:void(0)" class="v-anchor" data-href="#Individual-usage">Individual Usage</a> (mobile)
-    - <a href="javascript:void(0)" class="v-anchor" data-href="#source-code-usage">Source Code Usage</a>
+   - <a href="javascript:void(0)" class="v-anchor" data-href="#default-usage">Default Usage</a> (desktop)
+   - <a href="javascript:void(0)" class="v-anchor" data-href="#Individual-usage">Individual Usage</a> (mobile)
+   - <a href="javascript:void(0)" class="v-anchor" data-href="#source-code-usage">Source Code Usage</a>
 3. <a href="javascript:void(0)" class="v-anchor" data-href="#mdi">Get Material Design Icons without downloading</a>
 
 ## 1. Modular CSS
@@ -25,7 +25,7 @@
 module.exports = {
   styles: {
     extname: 'scss',
-    dartSass: true // !important
+    dartSass: true // required
   }
   // Other Options...
 };
@@ -33,11 +33,11 @@ module.exports = {
 
 Edit `/path/to/my-project/app/styles/global/_vendor.scss` (manage sass/css entry files of the vendors)
 
-```css
-@use 'balm-ui/dist/balm-ui.scss';
+```scss
+@use 'balm-ui/dist/balm-ui';
 ```
 
-Then, you can overwrite or redefine UI styles by sass variables. (See components __SASS__ docs)
+Then, you can overwrite or redefine UI styles by sass variables. (See components **SASS** docs)
 
 **The template standard format:**
 
@@ -188,11 +188,11 @@ new Vue({
 
 - SASS management
 
-  ```css
-  @use 'balm-ui/components/core.scss';
-  @use 'balm-ui/components/button/button.scss';
-  @use 'balm-ui/components/dialog/dialog.scss';
-  @use 'balm-ui/plugins/alert/alert.scss';
+  ```scss
+  @use 'balm-ui/components/core';
+  @use 'balm-ui/components/button/button';
+  @use 'balm-ui/components/dialog/dialog';
+  @use 'balm-ui/plugins/alert/alert';
   ```
 
 - CSS management
@@ -302,6 +302,6 @@ module.exports = (balm) => {
   return {
     config,
     api
-  }
+  };
 };
 ```

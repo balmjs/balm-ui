@@ -1,7 +1,7 @@
 - `<ui-tab>`
 
-```css
-@use '@material/tab/variables' with (
+```scss
+@use '@material/tab' with (
   $icon-size: 24px,
   $height: 48px,
   $stacked-height: 72px,
@@ -9,11 +9,11 @@
   $text-label-opacity: 0.6,
   $icon-opacity: 0.54,
   $text-label-color-default: rgba(
-    variables.prop-value(on-surface),
+    theme-color.prop-value(on-surface),
     $text-label-opacity
   ),
   $icon-color-default: rgba(
-    variables.prop-value(on-surface),
+    theme-color.prop-value(on-surface),
     $icon-opacity
   ),
   $text-label-color-active: primary,
@@ -23,8 +23,8 @@
 
 - `<ui-tab-bar>`
 
-```css
-@use '@material/tab-bar/variables' with (
+```scss
+@use '@material/tab-bar' with (
   $height: tab-variables.$height,
   $minimum-height: 30px,
   $maximum-height: $height,
@@ -52,8 +52,8 @@
 
 - `<ui-tab-scroller>`
 
-```css
-@use '@material/fab/variables' with (
+```scss
+@use '@material/tab-scroller' with (
   $transition-duration: 250ms
 );
 ```

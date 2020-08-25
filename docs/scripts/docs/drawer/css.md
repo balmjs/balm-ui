@@ -1,30 +1,35 @@
-```css
-@use '@material/drawer/variables' with (
-  $title-ink-color: variables.prop-value(on-surface),
-  $subtitle-ink-color: variables.prop-value(on-surface),
-  $item-inactive-ink-color: variables.prop-value(on-surface),
-  $item-activated-ink-color: variables.prop-value(primary),
-  $divider-color: variables.prop-value(on-surface),
-  $surface-fill-color: variables.prop-value(surface),
+```scss
+@use '@material/drawer' with (
+  // Colors
+  $title-ink-color: theme-color.prop-value(on-surface),
+  $subtitle-ink-color: theme-color.prop-value(on-surface),
+  $item-inactive-ink-color: theme-color.prop-value(on-surface),
+  $item-activated-ink-color: theme-color.prop-value(primary),
+  $divider-color: theme-color.prop-value(on-surface),
+  $surface-fill-color: theme-color.prop-value(surface),
 
-  $title-ink-opacity: variables.text-emphasis(high),
-  $subtitle-ink-opacity: variables.text-emphasis(medium),
-  $item-inactive-icon-ink-opacity: variables.text-emphasis(medium),
-  $item-inactive-text-ink-opacity: variables.text-emphasis(high),
+  // Opacity
+  $title-ink-opacity: theme-color.text-emphasis(high),
+  $subtitle-ink-opacity: theme-color.text-emphasis(medium),
+  $item-inactive-icon-ink-opacity: theme-color.text-emphasis(medium),
+  $item-inactive-text-ink-opacity: theme-color.text-emphasis(high),
   $item-active-icon-ink-opacity: 1,
-  $item-active-text-ink-opacity: variables.text-emphasis(high),
+  $item-active-text-ink-opacity: theme-color.text-emphasis(high),
   $divider-opacity: 0.12,
 
+  // Widths
   $width: 256px,
   $list-item-spacing: 4px,
   $surface-padding: 16px,
   $shape-radius: large,
   $item-shape-radius: small,
 
+  // Animations
   $animation-enter: 250ms,
   $animation-exit: 200ms,
 
-  $modal-scrim-color: variables.prop-value(on-surface),
+  // Scrim
+  $modal-scrim-color: theme-color.prop-value(on-surface),
   $modal-scrim-opacity: 0.32,
 
   $z-index: 6,

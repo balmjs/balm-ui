@@ -1,15 +1,12 @@
-```css
-@use '@material/radio/variables' with (
+```scss
+@use '@material/radio' with (
   $ripple-size: 40px,
   $icon-size: 20px,
   $transition-duration: 120ms,
   $ripple-opacity: 0.14,
   $baseline-theme-color: secondary,
-  $unchecked-color: rgba(theme-variables.prop-value(on-surface), 0.54),
-  $disabled-circle-color: rgba(
-    theme-variables.prop-value(on-surface),
-    0.38
-  ),
+  $unchecked-color: rgba(theme-color.prop-value(on-surface), 0.54),
+  $disabled-circle-color: rgba(theme-color.prop-value(on-surface), 0.38),
 
   $minimum-size: 28px,
   $maximum-size: $ripple-size,

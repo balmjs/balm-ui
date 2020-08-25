@@ -1,7 +1,7 @@
 ### Default Usage
 
-```css
-@use 'balm-ui/dist/balm-ui.scss';
+```scss
+@use 'balm-ui/dist/balm-ui';
 ```
 
 ```js
@@ -18,13 +18,13 @@ Vue.use(BalmUI, {
 
 ### Individual Usage
 
-```css
-@use 'balm-ui/components/core.scss';
-@use 'balm-ui/components/list/list.scss';
-@use 'balm-ui/components/menu/menu.scss';
-@use 'balm-ui/components/form-field/form-item.scss';
-@use 'balm-ui/components/select/select.scss';
-@use 'balm-ui/components/icon/icon.scss';
+```scss
+@use 'balm-ui/components/core';
+@use 'balm-ui/components/list/list';
+@use 'balm-ui/components/menu/menu';
+@use 'balm-ui/components/form-field/form-item';
+@use 'balm-ui/components/select/select';
+@use 'balm-ui/components/icon/icon';
 ```
 
 ```js

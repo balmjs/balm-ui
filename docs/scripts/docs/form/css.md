@@ -1,16 +1,13 @@
-```css
-@use 'balm-ui/components/form-field/variables' with (
+```scss
+@use 'balm-ui/components/form-field' with (
   $form-margin: 0,
   $form-padding: 0,
   $form-border: 0,
 
   $form-item-margin-bottom: 0,
 
-  $form-item-label-width: auto,
-  $form-item-label-margin-right: 0,
-  $form-item-label-margin-bottom: 0
+  $horizontal-form-item-label-width: auto,
+  $horizontal-form-item-label-margin-right: 0,
+  $vertical-form-item-label-margin-bottom: 0
 );
 ```
-
-- `$form-item-label-width` and `$form-item-label-margin-right` are applicable only for `horizontal` type form.
-- `$form-item-label-margin-bottom` is applicable only for `vertical` type form.

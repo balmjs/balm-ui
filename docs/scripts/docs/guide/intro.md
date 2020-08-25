@@ -11,6 +11,7 @@ Following the [Material Design](https://material.io/components/) UI components f
 - Alert (💡)
 - Autocomplete (💡)
 - Badge (💡)
+- Banner
 - Button
 - Card
 - Checkbox
@@ -20,6 +21,7 @@ Following the [Material Design](https://material.io/components/) UI components f
 - Data Table
 - Datepicker (💡)
 - Dialog
+- Divider (💡)
 - Drawer
 - Editor (WYSIWYG) (💡)
 - Floating Action Button
@@ -41,8 +43,8 @@ Following the [Material Design](https://material.io/components/) UI components f
 - Snackbar
 - Switch
 - Tabs
-- Text Divider (💡)
 - Text Field
+- Tooltip
 - Top App Bar
 
 ### 2. Plugins
@@ -64,6 +66,7 @@ Following the [Material Design](https://material.io/components/) UI components f
 - Elevation
 - Ripple
 - Shape
+- Tooltip
 
 ### 4. Utilities (💡)
 

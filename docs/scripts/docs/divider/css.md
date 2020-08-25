@@ -1,7 +1,7 @@
-```css
-@use 'balm-ui/components/divider/variables' with (
+```scss
+@use 'balm-ui/components/divider' with (
   $color: if(
-    theme-functions.tone(theme-variables.$background) == 'dark',
+    theme-color.tone(theme-color.$background) == 'dark',
     list-variables.$divider-color-on-dark-bg,
     list-variables.$divider-color-on-light-bg
   ),

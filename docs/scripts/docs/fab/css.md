@@ -1,5 +1,5 @@
-```css
-@use '@material/fab/variables' with (
+```scss
+@use '@material/fab' with (
   $extended-icon-padding: 12px,
   $extended-label-padding: 20px,
   $height: 56px,

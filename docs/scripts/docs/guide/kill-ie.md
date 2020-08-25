@@ -40,7 +40,7 @@ if (isIE) {
 
 - File: `/path/to/app/styles/_kill-ie.scss`
 
-```css
+```scss
 .kill-ie {
   position: absolute;
   text-align: center;

@@ -1,7 +1,7 @@
 ### Default Usage
 
-```css
-@use 'balm-ui/dist/balm-ui.scss';
+```scss
+@use 'balm-ui/dist/balm-ui';
 ```
 
 ```js
@@ -18,12 +18,12 @@ Vue.use(BalmUI, {
 
 ### Individual Usage
 
-```css
-@use 'balm-ui/components/core.scss';
-@use 'balm-ui/components/table/table.scss';
-@use 'balm-ui/components/checkbox/checkbox.scss';
-@use 'balm-ui/components/icon-button/icon-button.scss';
-@use 'balm-ui/components/icon/icon.scss';
+```scss
+@use 'balm-ui/components/core';
+@use 'balm-ui/components/table/table';
+@use 'balm-ui/components/checkbox/checkbox';
+@use 'balm-ui/components/icon-button/icon-button';
+@use 'balm-ui/components/icon/icon';
 ```
 
 ```js

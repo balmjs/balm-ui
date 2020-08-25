@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="banner" demo-count="1" without-css>
+  <ui-page name="banner" demo-count="1">
     <template #hero>
       <h1 :class="$tt('headline1')">Banner</h1>
     </template>

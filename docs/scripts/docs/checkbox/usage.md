@@ -1,7 +1,7 @@
 ### Default Usage
 
-```css
-@use 'balm-ui/dist/balm-ui.scss';
+```scss
+@use 'balm-ui/dist/balm-ui';
 ```
 
 ```js
@@ -18,10 +18,10 @@ Vue.use(BalmUI, {
 
 ### Individual Usage
 
-```css
-@use 'balm-ui/components/core.scss';
-@use 'balm-ui/components/form-field/form-field.scss';
-@use 'balm-ui/components/checkbox/checkbox.scss';
+```scss
+@use 'balm-ui/components/core';
+@use 'balm-ui/components/form-field/form-field';
+@use 'balm-ui/components/checkbox/checkbox';
 ```
 
 ```js

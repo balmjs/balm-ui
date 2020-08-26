@@ -92,6 +92,8 @@ module.exports = (mix) => {
 
         // For example
         mix.copy('./src/material-icons/*', './components/fonts');
+      } else {
+        mix.copy('./src/material-icons/*', './docs/fonts'); // For new fonts updated
       }
     }
   }

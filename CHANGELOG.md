@@ -15,6 +15,7 @@
 ### Features
 
 - update mdc@8.0.0
+- update material-icons v55
 - new components
   - `<ui-banner>`
   - `<ui-tooltip>`

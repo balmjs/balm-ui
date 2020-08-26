@@ -1,8 +1,8 @@
 /// Material Icons (order !important)
-@use 'balm-ui/components/icon/icon.scss';
+@use 'balm-ui/components/icon/icon';
 
 /// Material Components for the web (@material)
-@use 'node_modules/material-components-web/material-components-web.scss';
+@use 'node_modules/material-components-web/material-components-web';
 
 /// Components Custom Styles
 @use 'balm-ui/components/drawer/ui-drawer';
@@ -30,8 +30,8 @@
 @use 'balm-ui/components/badge/ui-badge';
 @use 'balm-ui/components/grid/ui-grid';
 @use 'balm-ui/components/list/ui-list';
-@use 'balm-ui/components/editor/theme/snow.scss';
-@use 'balm-ui/components/editor/theme/bubble.scss';
+@use 'balm-ui/components/editor/theme/snow';
+@use 'balm-ui/components/editor/theme/bubble';
 @use 'balm-ui/components/editor/ui-editor';
 @use 'balm-ui/components/editor/ui-editor-emoji';
 @use 'balm-ui/components/tooltip/ui-tooltip';

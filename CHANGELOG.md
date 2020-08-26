@@ -2,7 +2,26 @@
 
 ## v8.0.0 / 2020-08-25
 
-Coming up...
+### Bug Fixes
+
+- `<ui-table>`: bugfix for tbody fields function
+
+### Code Refactoring
+
+- `<ui-select>`
+- `<ui-slider>`
+- `<ui-pagination>`
+
+### Features
+
+- update mdc@8.0.0
+- new components
+  - `<ui-banner>`
+  - `<ui-tooltip>`
+
+### BREAKING CHANGES
+
+- `<ui-slider>`: rename prop `displayMarker` to `withTickMarks`
 
 ---
 

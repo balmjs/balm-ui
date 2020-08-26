@@ -16,10 +16,10 @@
 
 #### Slots
 
-| Name      | Props | Description                                               |
-| --------- | ----- | --------------------------------------------------------- |
-| `default` |       | The default slot holds the message text for the snackbar. |
-| `action`  |       | The custom action button or dismiss icon content.         |
+| Name      | Props         | Description                                               |
+| --------- | ------------- | --------------------------------------------------------- |
+| `default` |               | The default slot holds the message text for the snackbar. |
+| `action`  | `actionClass` | The custom action button.                                 |
 
 #### Events
 

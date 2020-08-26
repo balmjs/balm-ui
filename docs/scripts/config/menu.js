@@ -192,12 +192,12 @@ const MATERIAL_COMPONENTS = [
         description: 'Range datepicker',
         plus: true
       },
-      {
-        icon: 'watch_later',
-        name: 'Timepicker',
-        description: 'Time picker',
-        next: true
-      },
+      // {
+      //   icon: 'watch_later',
+      //   name: 'Timepicker',
+      //   description: 'Time picker',
+      //   next: true
+      // },
       {
         icon: 'toggle_off',
         name: 'Switch',

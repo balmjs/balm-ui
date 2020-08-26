@@ -31,7 +31,7 @@ npm install --save balm-ui
 module.exports = {
   styles: {
     extname: 'scss',
-    dartSass: true // !important
+    dartSass: true // required
   }
   // Other Options...
 };
@@ -47,7 +47,7 @@ Edit `my-project/app/styles/global/_vendor.scss`
 
 ```scss
 /* import BalmUI styles */
-@use 'balm-ui/dist/balm-ui.scss';
+@use 'balm-ui/dist/balm-ui';
 ```
 
 Edit `my-project/app/scripts/main.js`
@@ -66,9 +66,9 @@ Vue.use(BalmUIPlus); // Optional
 Edit `my-project/app/styles/global/_vendor.scss`
 
 ```scss
-@use 'balm-ui/components/core.scss';
-@use 'balm-ui/components/button/button.scss';
-@use 'balm-ui/components/icon/icon.scss'; // Optional
+@use 'balm-ui/components/core';
+@use 'balm-ui/components/button/button';
+@use 'balm-ui/components/icon/icon'; // Optional
 ```
 
 Edit `my-project/app/scripts/main.js`
@@ -89,6 +89,7 @@ Enjoy 👻
 - Alert (:bulb:)
 - Autocomplete (:bulb:)
 - Badge (:bulb:)
+- Banner
 - Button
 - Card
 - Checkbox
@@ -98,6 +99,7 @@ Enjoy 👻
 - Data Table
 - Datepicker (:bulb:)
 - Dialog
+- Divider (:bulb:)
 - Drawer
 - Editor (WYSIWYG) (:bulb:)
 - Floating Action Button
@@ -119,8 +121,8 @@ Enjoy 👻
 - Snackbar
 - Switch
 - Tabs
-- Text Divider (:bulb:)
 - Text Field
+- Tooltip
 - Top App Bar
 
 ### Plugins
@@ -142,6 +144,7 @@ Enjoy 👻
 - Elevation
 - Ripple
 - Shape
+- Tooltip
 
 ### Utilities (:bulb:)
 

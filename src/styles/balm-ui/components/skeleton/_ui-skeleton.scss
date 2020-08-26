@@ -1,5 +1,5 @@
-@use './variables' as ui-skeleton-variables;
-@use './mixins' as ui-skeleton-mixins;
+@use './variables' as skeleton-variables;
+@use './mixins' as skeleton-mixins;
 
 .mdc-skeleton {
   display: flex;
@@ -11,25 +11,25 @@
   display: block;
   margin-left: 0;
   margin-right: 16px;
-  background: ui-skeleton-variables.$color;
+  background: skeleton-variables.$color;
 
   &.mdc-skeleton-avatar--circle {
     border-radius: 50%;
   }
 
-  @include ui-skeleton-mixins.avatar-size(
-    map-get(ui-skeleton-variables.$avatar, 'base')
+  @include skeleton-mixins.avatar-size(
+    map-get(skeleton-variables.$avatar, 'base')
   );
 
   &.mdc-skeleton-avatar--large {
-    @include ui-skeleton-mixins.avatar-size(
-      map-get(ui-skeleton-variables.$avatar, 'large')
+    @include skeleton-mixins.avatar-size(
+      map-get(skeleton-variables.$avatar, 'large')
     );
   }
 
   &.mdc-skeleton-avatar--small {
-    @include ui-skeleton-mixins.avatar-size(
-      map-get(ui-skeleton-variables.$avatar, 'small')
+    @include skeleton-mixins.avatar-size(
+      map-get(skeleton-variables.$avatar, 'small')
     );
   }
 }
@@ -45,7 +45,7 @@
     width: 100%;
     height: 16px;
     list-style: none;
-    background: ui-skeleton-variables.$color;
+    background: skeleton-variables.$color;
     & + li {
       margin-top: 16px;
     }
@@ -59,7 +59,7 @@
   width: 100%;
   height: 16px;
   margin: 16px 0 0;
-  background: ui-skeleton-variables.$color;
+  background: skeleton-variables.$color;
   & + .mdc-skeleton-paragraph {
     margin-top: 24px;
   }
@@ -79,6 +79,6 @@
   .mdc-skeleton-avatar,
   .mdc-skeleton-title,
   .mdc-skeleton-paragraph > li {
-    @include ui-skeleton-mixins.color();
+    @include skeleton-mixins.color();
   }
 }

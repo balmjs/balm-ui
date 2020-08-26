@@ -1,16 +1,16 @@
-@use './variables' as ui-pagination-variables;
+@use './variables' as pagination-variables;
 
 @mixin paginationInput() {
   width: 48px;
   height: 24px;
-  color: ui-pagination-variables.$text-color;
+  color: pagination-variables.$text-color;
   border: 1px solid #d9d9d9;
   text-indent: 4px;
   transition: all 0.3s;
 
   &:hover,
   &:focus {
-    border-color: ui-pagination-variables.$hover-border-color;
+    border-color: pagination-variables.$hover-border-color;
   }
 
   &:focus {

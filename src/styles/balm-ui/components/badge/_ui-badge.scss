@@ -1,4 +1,4 @@
-@use '../icon/variables' as ui-icon-variables;
+@use '../icon/variables' as icon-variables;
 @use './variables' as badge-variables;
 
 .mdc-badge {
@@ -25,7 +25,7 @@
     border-radius: 50%;
   }
 
-  @each $key, $value in ui-icon-variables.$types {
+  @each $key, $value in icon-variables.$types {
     &.mdc-badge__sup--#{$key} {
       background-color: $value;
       color: badge-variables.$color;

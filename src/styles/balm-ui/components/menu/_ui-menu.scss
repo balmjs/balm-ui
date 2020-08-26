@@ -1,4 +1,4 @@
-@use './variables' as variables;
+@use './variables' as menu-variables;
 
 .mdc-menu-surface--absolute {
   position: absolute;
@@ -6,10 +6,10 @@
 
 .mdc-menu-surface {
   :not(.mdc-list-item--disabled).mdc-menu-item--selected {
-    background-color: variables.$selected-bgcolor;
-    color: variables.$selected-color;
+    background-color: menu-variables.$selected-bgcolor;
+    color: menu-variables.$selected-color;
     .mdc-list-item__graphic {
-      color: variables.$selected-color;
+      color: menu-variables.$selected-color;
     }
   }
 }

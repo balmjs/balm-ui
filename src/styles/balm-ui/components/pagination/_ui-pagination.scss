@@ -1,6 +1,6 @@
 @use '@material/shape/mixins' as shape-mixins;
-@use './variables' as ui-pagination-variables;
-@use './mixins' as ui-pagination-mixins;
+@use './variables' as pagination-variables;
+@use './mixins' as pagination-mixins;
 
 .mdc-pagination {
   .material-icons {
@@ -9,7 +9,7 @@
 
   .mdc-button {
     min-width: 32px;
-    height: ui-pagination-variables.$height;
+    height: pagination-variables.$height;
 
     &.mdc-pagination__button--ellipsis {
       cursor: default;
@@ -18,14 +18,14 @@
   }
 
   .mdc-data-table__pagination-button:not(.mdc-pagination__button--ellipsis) {
-    background-color: ui-pagination-variables.$fill-color;
-    color: ui-pagination-variables.$text-color;
-    border: 1px solid ui-pagination-variables.$border-color;
+    background-color: pagination-variables.$fill-color;
+    color: pagination-variables.$text-color;
+    border: 1px solid pagination-variables.$border-color;
 
     &:hover {
-      background-color: ui-pagination-variables.$hover-fill-color;
-      color: ui-pagination-variables.$hover-text-color;
-      border-color: ui-pagination-variables.$hover-border-color;
+      background-color: pagination-variables.$hover-fill-color;
+      color: pagination-variables.$hover-text-color;
+      border-color: pagination-variables.$hover-border-color;
     }
 
     &:disalbed {
@@ -33,15 +33,15 @@
     }
 
     &.mdc-pagination__button--active {
-      background-color: ui-pagination-variables.$active-fill-color;
-      color: ui-pagination-variables.$active-text-color;
-      border-color: ui-pagination-variables.$active-border-color;
+      background-color: pagination-variables.$active-fill-color;
+      color: pagination-variables.$active-text-color;
+      border-color: pagination-variables.$active-border-color;
       cursor: default;
 
       &:hover {
-        background-color: ui-pagination-variables.$active-fill-color;
-        color: ui-pagination-variables.$active-text-color;
-        border-color: ui-pagination-variables.$active-border-color;
+        background-color: pagination-variables.$active-fill-color;
+        color: pagination-variables.$active-text-color;
+        border-color: pagination-variables.$active-border-color;
       }
     }
   }
@@ -80,7 +80,7 @@
 
 .mdc-data-table__pagination-rows-per-page {
   select {
-    @include ui-pagination-mixins.paginationInput();
+    @include pagination-mixins.paginationInput();
   }
 }
 
@@ -94,20 +94,20 @@
   }
 
   input {
-    @include ui-pagination-mixins.paginationInput();
+    @include pagination-mixins.paginationInput();
   }
 
   button {
     height: 24px;
     line-height: 22px;
     padding: 0;
-    color: ui-pagination-variables.$text-color;
+    color: pagination-variables.$text-color;
     border: 1px solid #d9d9d9;
 
     &:hover {
       background: none;
-      color: ui-pagination-variables.$hover-text-color;
-      border-color: ui-pagination-variables.$hover-border-color;
+      color: pagination-variables.$hover-text-color;
+      border-color: pagination-variables.$hover-border-color;
     }
   }
 }

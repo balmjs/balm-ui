@@ -1,4 +1,4 @@
-@use './variables' as ui-skeleton-variables;
+@use './variables' as skeleton-variables;
 
 @keyframes mdc-skeleton-loading {
   0% {
@@ -12,9 +12,9 @@
 @mixin color() {
   background: linear-gradient(
     90deg,
-    ui-skeleton-variables.$color 25%,
-    ui-skeleton-variables.$to-color 37%,
-    ui-skeleton-variables.$color 63%
+    skeleton-variables.$color 25%,
+    skeleton-variables.$to-color 37%,
+    skeleton-variables.$color 63%
   );
   background-size: 400% 100%;
   animation: mdc-skeleton-loading 1.4s ease infinite;

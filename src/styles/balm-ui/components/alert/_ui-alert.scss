@@ -1,4 +1,4 @@
-@use '../icon/variables' as ui-icon-variables;
+@use '../icon/variables' as icon-variables;
 
 .mdc-alert {
   display: flex;
@@ -12,7 +12,7 @@
     margin-right: 8px;
   }
 
-  @each $key, $value in ui-icon-variables.$types {
+  @each $key, $value in icon-variables.$types {
     &.mdc-alert--#{$key} {
       background-color: rgba($value, 0.12);
       border: 1px solid rgba($value, 0.5);

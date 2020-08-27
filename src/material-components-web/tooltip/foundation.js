@@ -24,7 +24,7 @@ import { __assign, __extends } from "tslib";
 import { MDCFoundation } from '../base/foundation';
 import { KEY, normalizeKey } from '../dom/keyboard';
 import { AnchorBoundaryType, CssClasses, numbers, XPosition, YPosition } from './constants';
-var SHOWN = CssClasses.SHOWN, SHOWING = CssClasses.SHOWING, SHOWING_TRANSITION = CssClasses.SHOWING_TRANSITION, HIDE = CssClasses.HIDE, HIDE_TRANSITION = CssClasses.HIDE_TRANSITION;
+var SHOWN = CssClasses.SHOWN, SHOWING = CssClasses.SHOWING, SHOWING_TRANSITION = CssClasses.SHOWING_TRANSITION, HIDE = CssClasses.HIDE, HIDE_TRANSITION = CssClasses.HIDE_TRANSITION, MULTILINE_TOOLTIP = CssClasses.MULTILINE_TOOLTIP;
 var MDCTooltipFoundation = /** @class */ (function (_super) {
     __extends(MDCTooltipFoundation, _super);
     function MDCTooltipFoundation(adapter) {
@@ -133,6 +133,9 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         }
         this.adapter.removeClass(HIDE);
         this.adapter.addClass(SHOWING);
+        if (this.isTooltipMultiline()) {
+            this.adapter.addClass(MULTILINE_TOOLTIP);
+        }
         var _a = this.calculateTooltipDistance(), top = _a.top, left = _a.left;
         this.adapter.setStyleProperty('top', top + "px");
         this.adapter.setStyleProperty('left', left + "px");
@@ -200,6 +203,11 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
     MDCTooltipFoundation.prototype.parseShowTooltipOptions = function () {
         var hideFromScreenreader = Boolean(this.adapter.getAnchorAttribute('data-tooltip-id'));
         return { hideFromScreenreader: hideFromScreenreader };
+    };
+    MDCTooltipFoundation.prototype.isTooltipMultiline = function () {
+        var tooltipSize = this.adapter.getTooltipSize();
+        return tooltipSize.height > numbers.MIN_HEIGHT &&
+            tooltipSize.width >= numbers.MAX_WIDTH;
     };
     /**
      * Calculates the position of the tooltip. A tooltip will be placed beneath

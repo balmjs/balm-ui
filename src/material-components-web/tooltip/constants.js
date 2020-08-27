@@ -27,6 +27,7 @@ var CssClasses;
     CssClasses["SHOWING_TRANSITION"] = "mdc-tooltip--showing-transition";
     CssClasses["HIDE"] = "mdc-tooltip--hide";
     CssClasses["HIDE_TRANSITION"] = "mdc-tooltip--hide-transition";
+    CssClasses["MULTILINE_TOOLTIP"] = "mdc-tooltip--multiline";
 })(CssClasses || (CssClasses = {}));
 var numbers = {
     BOUNDED_ANCHOR_GAP: 4,
@@ -34,6 +35,9 @@ var numbers = {
     MIN_VIEWPORT_TOOLTIP_THRESHOLD: 32,
     HIDE_DELAY_MS: 600,
     SHOW_DELAY_MS: 500,
+    // LINT.IfChange(tooltip-dimensions)
+    MIN_HEIGHT: 24,
+    MAX_WIDTH: 200,
 };
 var events = {
     HIDDEN: 'MDCTooltip:hidden',

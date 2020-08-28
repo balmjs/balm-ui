@@ -2,7 +2,7 @@
 <ui-drawer><!-- the drawer child components --></ui-drawer>
 ```
 
-### `<ui-drawer>` Types
+**`<ui-drawer>` Types**
 
 - `0`: `'permanent'`
 - `1`: `'dismissible'`
@@ -13,7 +13,7 @@
 - `<ui-drawer>` (`type="permanent"`) has not props and events.
 - `<ui-drawer type="dismissible">` and `<ui-drawer type="modal">` must be including a `<ui-list>` or `<ui-nav>`. And the first `<ui-item>` needs to apply activated state in the drawer.
 
-#### Props
+### Props
 
 | Name               | Type           | Default | Description                                                                                                       |
 | ------------------ | -------------- | ------- | ----------------------------------------------------------------------------------------------------------------- |
@@ -22,7 +22,7 @@
 | `open` (`v-model`) | boolean        | `false` | The drawer toggle state.                                                                                          |
 | `viewportHeight`   | boolean        | `false` | Viewport full height(`100vh`) .                                                                                   |
 
-#### Slots
+### Slots
 
 | Name      | Props | Description                                         |
 | --------- | ----- | --------------------------------------------------- |
@@ -33,7 +33,7 @@
 - `<ui-drawer-header>`
 - `<ui-drawer-content>`
 
-#### Events
+### Events
 
 | Name  | Type                      | Description                                |
 | ----- | ------------------------- | ------------------------------------------ |
@@ -42,10 +42,13 @@
 > NOTE: If you are not using `v-model`, you should listen for the drawer using `@nav` and update the `open` prop.
 
 - Automatic
+
   ```html
   <ui-drawer type="modal" v-model="open"></ui-drawer>
   ```
+
 - Manual
+
   ```html
   <ui-drawer
     type="modal"

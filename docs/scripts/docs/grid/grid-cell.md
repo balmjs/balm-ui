@@ -12,7 +12,7 @@
 - The `columns` and `order` range are between 1 and 12
 - The `align` position: `'top'`, `'middle'`, `'bottom'`
 
-#### Slots
+### Slots
 
 | Name      | Props | Description                                                        |
 | --------- | ----- | ------------------------------------------------------------------ |

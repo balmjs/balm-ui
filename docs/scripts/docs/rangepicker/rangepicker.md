@@ -2,7 +2,7 @@
 <ui-rangepicker></ui-rangepicker>
 ```
 
-#### Props
+### Props
 
 | Name                | Type    | Default | Description                                                                                                             |
 | ------------------- | ------- | ------- | ----------------------------------------------------------------------------------------------------------------------- |
@@ -13,13 +13,13 @@
 | `placeholders`      | array   | `[]`    | The _placeholder_ attribute of the start and end `<input>`.                                                             |
 | `config`            | object  | `{}`    | See [Flatpickr configuration](https://flatpickr.js.org/options/).                                                       |
 
-#### Slots
+### Slots
 
 | Name        | Props | Description           |
 | ----------- | ----- | --------------------- |
 | `separator` |       | The custom separator. |
 
-#### Events
+### Events
 
 | Name     | Type                     | Description                                  |
 | -------- | ------------------------ | -------------------------------------------- |
@@ -28,10 +28,13 @@
 > NOTE: If you are not using `v-model`, you should listen for the rangepicker using `@change` and update the `model` prop.
 
 - Automatic
+
   ```html
   <ui-rangepicker v-model="value"></ui-rangepicker>
   ```
+
 - Manual
+
   ```html
   <ui-rangepicker
     :model="value"

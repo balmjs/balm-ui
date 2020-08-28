@@ -2,7 +2,7 @@
 <ui-badge></ui-badge>
 ```
 
-#### Props
+### Props
 
 | Name       | Type    | Default | Description                                                                  |
 | ---------- | ------- | ------- | ---------------------------------------------------------------------------- |
@@ -12,7 +12,7 @@
 | `dot`      | boolean | `false` | Whether to display a dot instead of `count`.                                 |
 | `state`    | string  | `''`    | State type for text badge. `['success', 'info', 'warning', 'error', 'help']` |
 
-#### Slots
+### Slots
 
 | Name      | Props | Description                                                   |
 | --------- | ----- | ------------------------------------------------------------- |

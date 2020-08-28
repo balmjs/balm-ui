@@ -2,7 +2,7 @@
 <ui-item><!-- the item child components --></ui-item>
 ```
 
-#### Props
+### Props
 
 | Name        | Type    | Default | Description                                      |
 | ----------- | ------- | ------- | ------------------------------------------------ |
@@ -10,7 +10,7 @@
 | `activated` | boolean | `false` | Optional, styles the row in the activated state. |
 | `disabled`  | boolean | `false` | Optional, styles the row in the disabled state.  |
 
-#### Slots
+### Slots
 
 | Name      | Props       | Description                                                                                                |
 | --------- | ----------- | ---------------------------------------------------------------------------------------------------------- |
@@ -26,7 +26,7 @@
 - `<ui-item-first-content>`
 - `<ui-item-last-content>`
 
-#### Events
+### Events
 
 | Name    | Type                      | Description                          |
 | ------- | ------------------------- | ------------------------------------ |

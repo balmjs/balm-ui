@@ -6,7 +6,7 @@ $confirm(message);
 $confirm(options);
 ```
 
-#### Options
+### Options
 
 | Option          | Type     | Default    | Description                                                   |
 | --------------- | -------- | ---------- | ------------------------------------------------------------- |
@@ -20,7 +20,7 @@ $confirm(options);
 | `cancelText`    | string   | `'Cancel'` | Cancel button content.                                        |
 | `callback`      | function | `false`    | Handle some event when the confirm button is clicked.         |
 
-#### Events
+### Events
 
 ```js
 // Usage 1

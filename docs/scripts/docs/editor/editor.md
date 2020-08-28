@@ -2,7 +2,7 @@
 <ui-editor></ui-editor>
 ```
 
-#### Props
+### Props
 
 | Name                    | Type            | Default  | Description                                                           |
 | ----------------------- | --------------- | -------- | --------------------------------------------------------------------- |
@@ -82,13 +82,13 @@
 - `this.$refs.editor.decodeEmoji(content): html`: get back-end data → set front-end view
 - `this.$refs.editor.encodeEmoji(html): content`: submit front-end data → save back-end data
 
-#### Slots
+### Slots
 
 | Name      | Props | Description                                                             |
 | --------- | ----- | ----------------------------------------------------------------------- |
 | `toolbar` |       | The toolbar slot holds the custom toolbar buttons and can contain HTML. |
 
-#### Events
+### Events
 
 | Name          | Type                        | Description                                    |
 | ------------- | --------------------------- | ---------------------------------------------- |
@@ -98,10 +98,13 @@
 > NOTE: If you are not using `v-model`, you should listen for the editor using `@change` and update the `model` prop.
 
 - Automatic
+
   ```html
   <ui-editor v-model="content"></ui-editor>
   ```
+
 - Manual
+
   ```html
   <ui-editor
     :model="content"

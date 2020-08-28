@@ -2,7 +2,7 @@
 <ui-tab><!-- The tab text label --></ui-tab>
 ```
 
-#### `<ui-tab>` & `<ui-tabs>` common Props
+### `<ui-tab>` & `<ui-tabs>` common Props
 
 | Name               | Type           | Default | Description                                                                                                      |
 | ------------------ | -------------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
@@ -13,14 +13,14 @@
 
 - **Types:** `0: 'text'`, `1: 'iconOnly'`, `2: 'textWithIcon'`
 
-#### `<ui-tab>` Props
+### `<ui-tab>` Props
 
 | Name   | Type   | Default | Description                                    |
 | ------ | ------ | ------- | ---------------------------------------------- |
 | `text` | string | `''`    | Tab text.                                      |
 | `icon` | string | `''`    | Tab icon. See [Material Icons](/#/icons) list. |
 
-#### Slots
+### Slots
 
 | Name        | Props       | Description                                                 |
 | ----------- | ----------- | ----------------------------------------------------------- |

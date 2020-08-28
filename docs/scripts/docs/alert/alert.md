@@ -2,7 +2,7 @@
 <ui-alert><!-- message --></ui-alert>
 ```
 
-#### Props
+### Props
 
 | Name            | Type    | Default | Description                                                   |
 | --------------- | ------- | ------- | ------------------------------------------------------------- |
@@ -10,7 +10,7 @@
 | `stateOutlined` | boolean | `false` | Show outlined state.                                          |
 | `closable`      | boolean | `false` | Whether alert can be closed.                                  |
 
-#### Slots
+### Slots
 
 | Name      | Props | Description                                                      |
 | --------- | ----- | ---------------------------------------------------------------- |

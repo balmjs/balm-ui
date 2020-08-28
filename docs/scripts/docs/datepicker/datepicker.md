@@ -2,7 +2,7 @@
 <ui-datepicker></ui-datepicker>
 ```
 
-#### Props
+### Props
 
 | Name                | Type                  | Default | Description                                                                                                                            |
 | ------------------- | --------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------- |
@@ -43,7 +43,7 @@ export default {
 };
 ```
 
-#### Slots
+### Slots
 
 | Name      | Props       | Description                                                                    |
 | --------- | ----------- | ------------------------------------------------------------------------------ |
@@ -53,7 +53,7 @@ export default {
 | `toggle`  |             | The custom toggle icon button. (When `withTrailingIcon = false`)               |
 | `clear`   |             | The custom clear icon button. (When `withTrailingIcon = false`)                |
 
-#### Events
+### Events
 
 | Name     | Type                             | Description                                 |
 | -------- | -------------------------------- | ------------------------------------------- |
@@ -62,10 +62,13 @@ export default {
 > NOTE: If you are not using `v-model`, you should listen for the datepicker using `@change` and update the `model` prop.
 
 - Automatic
+
   ```html
   <ui-datepicker v-model="value"></ui-datepicker>
   ```
+
 - Manual
+
   ```html
   <ui-datepicker
     :model="value"

@@ -2,12 +2,12 @@
 <ui-slider></ui-slider>
 ```
 
-### `<ui-slider>` Types
+**`<ui-slider>` Types**
 
 - `0`: `'continuous'`
 - `1`: `'discrete'`
 
-#### Props
+### Props
 
 | Name                | Type           | Default | Description                                                       |
 | ------------------- | -------------- | ------- | ----------------------------------------------------------------- |
@@ -20,7 +20,7 @@
 | `step`              | number         | `1`     | Specifies the increments at which a slider value can be set.      |
 | `disabled`          | boolean        | `false` | Whether or not the slider is disabled.                            |
 
-#### Events
+### Events
 
 | Name     | Type                             | Description                                                       |
 | -------- | -------------------------------- | ----------------------------------------------------------------- |

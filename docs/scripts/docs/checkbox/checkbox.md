@@ -5,7 +5,7 @@
 </ui-form-field>
 ```
 
-#### Props
+### Props
 
 | Name                | Type           | Default | Description                                                                   |
 | ------------------- | -------------- | ------- | ----------------------------------------------------------------------------- |
@@ -17,7 +17,7 @@
 | `disabled`          | boolean        | `false` | Styles the checkbox as a disabled checkbox.                                   |
 | `attrs`             | object         | `{}`    | Other attributes for `<input>`.                                               |
 
-#### Events
+### Events
 
 | Name     | Type                              | Description                         |
 | -------- | --------------------------------- | ----------------------------------- |
@@ -26,10 +26,13 @@
 > NOTE: If you are not using `v-model`, you should listen for the checkbox using `@change` and update the `model` prop.
 
 - Automatic
+
   ```html
   <ui-checkbox v-model="value"></ui-checkbox>
   ```
+
 - Manual
+
   ```html
   <ui-checkbox
     :model="value"

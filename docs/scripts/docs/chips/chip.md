@@ -2,7 +2,7 @@
 <ui-chip><!-- the chip text --></ui-chip>
 ```
 
-#### Props
+### Props
 
 | Name        | Type    | Default | Description                                                                                         |
 | ----------- | ------- | ------- | --------------------------------------------------------------------------------------------------- |
@@ -10,7 +10,7 @@
 | `hidden`    | boolean | `false` | Optional. Hides the leading icon in a filter chip when the chip is selected.                        |
 | `removable` | boolean | `false` | Optional. Indicates a trailing icon which removes the chip from the DOM. Only use with input chips. |
 
-#### Slots
+### Slots
 
 | Name      | Props       | Description                                       |
 | --------- | ----------- | ------------------------------------------------- |

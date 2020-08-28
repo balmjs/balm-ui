@@ -2,14 +2,14 @@
 <ui-dialog-actions><!-- the dialog actions --></ui-dialog-actions>
 ```
 
-#### Props
+### Props
 
 | Name         | Type   | Default    | Description             |
 | ------------ | ------ | ---------- | ----------------------- |
 | `acceptText` | string | `'OK'`     | The accept button text. |
 | `cancelText` | string | `'Cancel'` | The cancel button text. |
 
-#### Slots
+### Slots
 
 | Name      | Props         | Description                                                     |
 | --------- | ------------- | --------------------------------------------------------------- |

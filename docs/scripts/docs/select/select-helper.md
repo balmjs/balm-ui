@@ -2,7 +2,7 @@
 <ui-select-helper><!-- the helper text --></ui-select-helper>
 ```
 
-#### Props
+### Props
 
 | Name       | Type            | Default | Description                                        |
 | ---------- | --------------- | ------- | -------------------------------------------------- |
@@ -10,7 +10,7 @@
 | `visible`  | boolean         | `false` | Makes the helper text permanently visible.         |
 | `validMsg` | string, boolean | `false` | Indicates the helper text is a validation message. |
 
-#### Slots
+### Slots
 
 | Name      | Props | Description                                                         |
 | --------- | ----- | ------------------------------------------------------------------- |

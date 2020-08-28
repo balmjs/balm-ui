@@ -2,14 +2,14 @@
 <ui-button><!-- the button text label --></ui-button>
 ```
 
-### `<ui-button>` Types
+**`<ui-button>` Types**
 
 - `0`: `'text'`
 - `1`: `'outlined'`
 - `2`: `'raised'`
 - `3`: `'unelevated'`
 
-#### Props
+### Props
 
 | Name         | Type           | Default | Description                                                                   |
 | ------------ | -------------- | ------- | ----------------------------------------------------------------------------- |
@@ -20,7 +20,7 @@
 | `icon`       | string         | `''`    | Optional. Indicates an icon element. See [Material Icons](/#/icons) list.     |
 | `disabled`   | boolean        | `false` | To disable a button, add the `disabled` attribute directly to the `<button>`. |
 
-#### Slots
+### Slots
 
 | Name      | Props       | Description                                                          |
 | --------- | ----------- | -------------------------------------------------------------------- |
@@ -34,7 +34,7 @@
 </template>
 ```
 
-#### Events
+### Events
 
 | Name    | Type                      | Description                       |
 | ------- | ------------------------- | --------------------------------- |

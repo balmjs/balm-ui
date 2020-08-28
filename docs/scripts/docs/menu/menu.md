@@ -2,7 +2,7 @@
 <ui-menu><!-- the menuitem components --></ui-menu>
 ```
 
-#### Props
+### Props
 
 | Name               | Type            | Default      | Description                                                                                                       |
 | ------------------ | --------------- | ------------ | ----------------------------------------------------------------------------------------------------------------- |
@@ -17,13 +17,13 @@
 
 - Anchor corners: `TOP_LEFT`, `TOP_RIGHT`, `BOTTOM_LEFT`, `BOTTOM_RIGHT`, `TOP_START`, `TOP_END`, `BOTTOM_START`, `BOTTOM_END`.
 
-#### Slots
+### Slots
 
 | Name      | Props | Description                                     |
 | --------- | ----- | ----------------------------------------------- |
 | `default` |       | The default slot holds the menuitem components. |
 
-#### Events
+### Events
 
 | Name       | Type                         | Description                              |
 | ---------- | ---------------------------- | ---------------------------------------- |
@@ -45,10 +45,13 @@
 > NOTE: If you are not using `v-model`, you should listen for the menu using `@change` and update the `open` prop.
 
 - Automatic
+
   ```html
   <ui-menu v-model="open"></ui-menu>
   ```
+
 - Manual
+
   ```html
   <ui-menu :open="open" @change="$balmUI.onChange('open', $event)"></ui-menu>
   ```

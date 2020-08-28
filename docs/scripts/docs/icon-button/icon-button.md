@@ -2,7 +2,7 @@
 <ui-icon-button></ui-icon-button>
 ```
 
-#### Props
+### Props
 
 | Name                | Type    | Default | Description                                                              |
 | ------------------- | ------- | ------- | ------------------------------------------------------------------------ |
@@ -12,7 +12,7 @@
 
 > Configuring the icon button toggle states by `toggle.on` and `toggle.off` props.
 
-#### Slots
+### Slots
 
 | Name      | Props                 | Description                                                                  |
 | --------- | --------------------- | ---------------------------------------------------------------------------- |
@@ -25,7 +25,7 @@
 </template>
 ```
 
-#### Events
+### Events
 
 | Name     | Type                       | Description                            |
 | -------- | -------------------------- | -------------------------------------- |
@@ -35,10 +35,13 @@
 > NOTE: If you are not using `v-model`, you should listen for the icon button using `@change` and update the `model` prop.
 
 - Automatic
+
   ```html
   <ui-icon-button v-model="value"></ui-icon-button>
   ```
+
 - Manual
+
   ```html
   <ui-icon-button
     :model="value"

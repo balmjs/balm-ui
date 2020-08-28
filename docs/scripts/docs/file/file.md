@@ -2,7 +2,7 @@
 <ui-file></ui-file>
 ```
 
-#### Props
+### Props
 
 | Name       | Type    | Default    | Description                                                                |
 | ---------- | ------- | ---------- | -------------------------------------------------------------------------- |
@@ -13,13 +13,13 @@
 | `text`     | string  | `'Upload'` | Text for the default upload button.                                        |
 | `preview`  | boolean | `false`    | Optional. Enabled preview file data.                                       |
 
-#### Slots
+### Slots
 
 | Name      | Props | Description                                                          |
 | --------- | ----- | -------------------------------------------------------------------- |
 | `default` |       | The default slot holds the file button content and can contain HTML. |
 
-#### Events
+### Events
 
 | Name     | Type                     | Description                     |
 | -------- | ------------------------ | ------------------------------- |

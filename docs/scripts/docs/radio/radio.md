@@ -5,7 +5,7 @@
 </ui-form-field>
 ```
 
-#### Props
+### Props
 
 | Name                | Type           | Default | Description                                                                   |
 | ------------------- | -------------- | ------- | ----------------------------------------------------------------------------- |
@@ -16,7 +16,7 @@
 | `disabled`          | boolean        | `false` | Styles the radio button as a disabled radio button.                           |
 | `attrs`             | object         | `{}`    | Other attributes for `<input>`.                                               |
 
-#### Events
+### Events
 
 | Name     | Type                              | Description                             |
 | -------- | --------------------------------- | --------------------------------------- |
@@ -25,10 +25,13 @@
 > NOTE: If you are not using `v-model`, you should listen for the radio using `@change` and update the `model` prop.
 
 - Automatic
+
   ```html
   <ui-radio v-model="value"></ui-radio>
   ```
+
 - Manual
+
   ```html
   <ui-radio
     :model="value"

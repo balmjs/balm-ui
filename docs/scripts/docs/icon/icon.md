@@ -2,7 +2,7 @@
 <ui-icon><!-- the material design icon name --></ui-icon>
 ```
 
-#### Props
+### Props
 
 | Name       | Type           | Default | Description                                                                                                                                                                                                             |
 | ---------- | -------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -20,13 +20,13 @@
 
 > Although the icons in the font can be scaled to any size, in accordance with material design icons guidelines, we recommend them to be shown in either `18`, `24`, `36` or `48`px.
 
-#### Slots
+### Slots
 
 | Name      | Props | Description                                                                |
 | --------- | ----- | -------------------------------------------------------------------------- |
 | `default` |       | The default slot holds the material design icon name and can contain HTML. |
 
-#### Events
+### Events
 
 | Name    | Type                      | Description                     |
 | ------- | ------------------------- | ------------------------------- |

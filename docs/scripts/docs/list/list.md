@@ -4,12 +4,12 @@
 <ui-nav><!-- <router-link> --></ui-nav>
 ```
 
-### `<ui-list>` Types
+**`<ui-list>` Types**
 
 - `1`: `'singleLine'`
 - `2`: `'twoLine'`
 
-#### Common Props
+### Common Props
 
 | Name                        | Type           | Default | Description                                                                                                                                  |
 | --------------------------- | -------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -20,7 +20,7 @@
 | `dense`                     | boolean        | `false` | Optional, styles the density of the list, making it appear more compact.                                                                     |
 | `avatar`                    | boolean        | `false` | Optional, configures the leading tiles of each row to display images instead of icons. This will make the graphics of the list items larger. |
 
-#### `<ui-nav>` Slots
+### `<ui-nav>` Slots
 
 | Name      | Slots                      | Description                                                      |
 | --------- | -------------------------- | ---------------------------------------------------------------- |
@@ -37,7 +37,7 @@
 
 > Optional, styles the row in a selected or activated state.
 
-#### Common Events
+### Common Events
 
 | Name     | Type                      | Description                                                             |
 | -------- | ------------------------- | ----------------------------------------------------------------------- |

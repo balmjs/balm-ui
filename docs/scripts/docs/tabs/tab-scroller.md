@@ -2,7 +2,7 @@
 <ui-tab-scroller><!-- the tab components --></ui-tab-scroller>
 ```
 
-#### Props
+### Props
 
 | Name      | Type   | Default | Description                             |
 | --------- | ------ | ------- | --------------------------------------- |

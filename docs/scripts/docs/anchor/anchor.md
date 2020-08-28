@@ -2,7 +2,7 @@
 <div v-anchor></div>
 ```
 
-#### 1. Set Container
+### 1. Set Container
 
 - `v-anchor.bodyElement`: custom html contianer (Default contianer is `<html>`)
 - `v-anchor.html`: for html (e.g. markdown)
@@ -22,12 +22,12 @@
 </div>
 ```
 
-#### 2. Set Anchors & Targets
+### 2. Set Anchors & Targets
 
 - `v-anchor:href`
 - `v-anchor:id`
 
-**2.1 Default Usage**
+#### 2.1 Default Usage
 
 ```html
 <div v-anchor:href="'#target1'">Anchor 1</div>
@@ -37,7 +37,7 @@
 <div v-anchor:id="'target2'">Target 2</div>
 ```
 
-**2.2 HTML Usage**
+#### 2.2 HTML Usage
 
 - `class="v-anchor" data-href="selector"`
 - `id` or unique `class` attribute

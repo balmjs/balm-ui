@@ -2,7 +2,7 @@
 <div v-shadow="4"></div>
 ```
 
-#### Default elevation
+### Default elevation
 
 - `v-shadow="z"`
 
@@ -10,13 +10,11 @@
 | ----- | ------ | ------- | --------------------------------------------------- |
 | `z`   | number | `0`     | Sets the elevation to the (N)dp, where 1 <= N <= 24 |
 
-#### Transition elevation
+### Transition elevation
 
 - `v-shadow.transition="[z1, z2]"`
 
 Applies the correct css rules to transition an element between elevations:
 
-```
-z1: default class
-z2: hover class
-```
+- `z1`: default class
+- `z2`: hover class

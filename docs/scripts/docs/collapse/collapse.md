@@ -2,7 +2,7 @@
 <ui-collapse></ui-collapse>
 ```
 
-#### Props
+### Props
 
 | Name       | Type            | Default | Description             |
 | ---------- | --------------- | ------- | ----------------------- |
@@ -15,7 +15,7 @@
   - `1`: primary color
   - `2`: secondary color
 
-#### Slots
+### Slots
 
 | Name               | Props | Description                                                       |
 | ------------------ | ----- | ----------------------------------------------------------------- |

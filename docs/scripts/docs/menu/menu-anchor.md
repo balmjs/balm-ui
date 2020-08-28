@@ -2,7 +2,7 @@
 <ui-menu-anchor><!-- the menu component --></ui-menu-anchor>
 ```
 
-#### Props
+### Props
 
 | Name       | Type    | Default | Description                                                                                                                                                |
 | ---------- | ------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -11,7 +11,7 @@
 
 - Menu button positions: `top left`, `top right`, `middle left`, `middle right`, `bottom left`, `bottom right`.
 
-#### Slots
+### Slots
 
 | Name      | Props | Description                                |
 | --------- | ----- | ------------------------------------------ |

@@ -2,7 +2,7 @@
 <ui-banner><!-- the banner message --></ui-banner>
 ```
 
-#### Props
+### Props
 
 | Name                  | Type    | Default | Description                |
 | --------------------- | ------- | ------- | -------------------------- |
@@ -11,7 +11,7 @@
 | `primaryButtonText`   | boolean | `'OK'`  | The primary action text.   |
 | `secondaryButtonText` | boolean | `''`    | The secondary action text. |
 
-#### Slots
+### Slots
 
 | Name      | Props        | Description                                             |
 | --------- | ------------ | ------------------------------------------------------- |
@@ -19,7 +19,7 @@
 | `image`   | `imageClass` | Images can help communicate a banner’s message.         |
 | `actions` |              | The custom action buttons.                              |
 
-#### Events
+### Events
 
 | Name     | Type                       | Description                      |
 | -------- | -------------------------- | -------------------------------- |

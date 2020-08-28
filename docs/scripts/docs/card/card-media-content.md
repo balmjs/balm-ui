@@ -2,7 +2,7 @@
 <ui-card-media-content><!-- rich media content --></ui-card-media-content>
 ```
 
-#### Slots
+### Slots
 
 | Name      | Props | Description                                                         |
 | --------- | ----- | ------------------------------------------------------------------- |

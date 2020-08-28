@@ -2,7 +2,7 @@
 <ui-pagination></ui-pagination>
 ```
 
-#### Props
+### Props
 
 | Name               | Type            | Default           | Description                                                     |
 | ------------------ | --------------- | ----------------- | --------------------------------------------------------------- |
@@ -18,7 +18,7 @@
 | `position`         | string          | `''`              | The pagination postion. [`'left'`, `'center'`, `'right'`]       |
 | `mini`             | boolean         | `false`           | Whether to use simple mode.                                     |
 
-#### Slots
+### Slots
 
 | Name    | Props | Description                      |
 | ------- | ----- | -------------------------------- |
@@ -27,7 +27,7 @@
 | `next`  |       | The custom next button icon.     |
 | `last`  |       | The custom last button icon.     |
 
-#### Events
+### Events
 
 | Name     | Type                     | Description                                |
 | -------- | ------------------------ | ------------------------------------------ |

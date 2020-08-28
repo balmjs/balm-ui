@@ -2,7 +2,7 @@
 <ui-image-text><!-- Text labels --></ui-image-text>
 ```
 
-#### Slots
+### Slots
 
 | Name      | Props | Description                                                         |
 | --------- | ----- | ------------------------------------------------------------------- |

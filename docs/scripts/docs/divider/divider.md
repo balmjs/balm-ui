@@ -2,18 +2,18 @@
 <ui-divider></ui-divider>
 ```
 
-### `<ui-divider>` Types
+**`<ui-divider>` Types**
 
 - `0`: `'horizontal'`
 - `1`: `'vertical'`
 
-#### Props
+### Props
 
 | Name   | Type           | Default | Description                    |
 | ------ | -------------- | ------- | ------------------------------ |
 | `type` | string, number | `0`     | Mandatory. Text divider types. |
 
-#### Slots
+### Slots
 
 | Name      | Props | Description                                                   |
 | --------- | ----- | ------------------------------------------------------------- |

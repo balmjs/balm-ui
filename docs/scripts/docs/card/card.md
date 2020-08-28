@@ -2,13 +2,13 @@
 <ui-card><!-- Card contents --></ui-card>
 ```
 
-#### Props
+### Props
 
 | Name       | Type    | Default | Description                                                |
 | ---------- | ------- | ------- | ---------------------------------------------------------- |
 | `outlined` | boolean | `false` | Removes the shadow and displays a hairline outline instead |
 
-#### Slots
+### Slots
 
 | Name      | Props | Description                                                            |
 | --------- | ----- | ---------------------------------------------------------------------- |

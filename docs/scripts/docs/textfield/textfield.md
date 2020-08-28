@@ -2,12 +2,12 @@
 <ui-textfield><!-- the label text --></ui-textfield>
 ```
 
-### `<ui-textfield>` Types
+**`<ui-textfield>` Types**
 
 - `0`: `'filled'`
 - `1`: `'outlined'`
 
-#### Props
+### Props
 
 | Name                | Type           | Default  | Description                                                                                                   |
 | ------------------- | -------------- | -------- | ------------------------------------------------------------------------------------------------------------- |
@@ -44,7 +44,7 @@ In addition to the above, the following properties proxy to the input or textare
 - `rows`
 - `cols`
 
-#### Slots
+### Slots
 
 | Name      | Props       | Description                                          |
 | --------- | ----------- | ---------------------------------------------------- |
@@ -52,7 +52,7 @@ In addition to the above, the following properties proxy to the input or textare
 | `before`  | `iconClass` | The before slot holds a custom leading icon.         |
 | `after`   | `iconClass` | The before slot holds a custom trailing icon.        |
 
-#### Events
+### Events
 
 | Name      | Type                      | Description                                               |
 | --------- | ------------------------- | --------------------------------------------------------- |
@@ -66,10 +66,13 @@ In addition to the above, the following properties proxy to the input or textare
 > NOTE: If you are not using `v-model`, you should listen for the text field using `@input` and update the `model` prop.
 
 - Automatic
+
   ```html
   <ui-textfield v-model="value"></ui-textfield>
   ```
+
 - Manual
+
   ```html
   <ui-textfield
     :model="value"

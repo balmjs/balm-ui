@@ -2,7 +2,7 @@
 <ui-top-app-bar><!-- the application title --></ui-top-app-bar>
 ```
 
-### `<ui-top-app-bar>` Types
+**`<ui-top-app-bar>` Types**
 
 - `0`: `'standard'`
 - `1`: `'fixed'`
@@ -13,7 +13,7 @@
 - `6`: `'shortCollapsed'`
 - `-1`: `'nonRegular'`
 
-#### Props
+### Props
 
 | Name              | Type            | Default    | Description                                                                                                                 |
 | ----------------- | --------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------- |
@@ -31,7 +31,7 @@
 
 > Short top app bars should be used with no more than 1 action item.
 
-#### Slots
+### Slots
 
 | Name       | Props              | Description                                                        |
 | ---------- | ------------------ | ------------------------------------------------------------------ |
@@ -45,7 +45,7 @@
 </template>
 ```
 
-#### Events
+### Events
 
 | Name    | Type         | Description                                                                           |
 | ------- | ------------ | ------------------------------------------------------------------------------------- |
@@ -55,11 +55,14 @@
 > NOTE: If you are not using `navId` of the top app bar and `navId` of the drawer, you should listen for the top app bar using `@nav` and update the `v-model` prop of the drawer.
 
 - Automatic
+
   ```html
   <ui-top-app-bar navId="demo-menu"></ui-top-app-bar>
   <ui-drawer type="modal" navId="demo-menu"></ui-drawer>
   ```
+
 - Manual
+
   ```html
   <ui-top-app-bar @nav="$balmUI.onShow('open')"></ui-top-app-bar>
   <ui-drawer type="modal" v-model="open"></ui-drawer>

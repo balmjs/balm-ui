@@ -5,13 +5,13 @@
 </ui-panels>
 ```
 
-#### Props
+### Props
 
 | Name                 | Type   | Default | Description |
 | -------------------- | ------ | ------- | ----------- |
 | `active` (`v-model`) | number | `0`     | Mandatory.  |
 
-#### Slots
+### Slots
 
 | Name      | Props | Description                                                       |
 | --------- | ----- | ----------------------------------------------------------------- |

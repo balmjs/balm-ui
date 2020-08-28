@@ -1,4 +1,4 @@
-### Manual custom grid for global
+## Manual custom grid for global
 
 ```js
 $setGrid(property, size, value);
@@ -10,7 +10,7 @@ $setGrid(property, size, value);
 | `size`     | string | `''`    | The target platform: `desktop`, `tablet` or `phone`.        |
 | `value`    | string | `''`    | Grid custom value.                                          |
 
-#### Grid properties
+### Grid properties
 
 - `margin`: the size of the grid margin.
 - `gutter`: the size of the gutter between cells.

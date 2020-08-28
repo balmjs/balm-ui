@@ -4,7 +4,7 @@
 </ui-card-media>
 ```
 
-#### Props
+### Props
 
 | Name        | Type    | Default | Description                                                                                                     |
 | ----------- | ------- | ------- | --------------------------------------------------------------------------------------------------------------- |
@@ -12,7 +12,7 @@
 |             |
 | `rectangle` | boolean | `false` | Optional. Automatically scales the media area's height according to its width, maintaining a 16:9 aspect ratio. |
 
-#### Slots
+### Slots
 
 | Name      | Props | Description                                                                   |
 | --------- | ----- | ----------------------------------------------------------------------------- |

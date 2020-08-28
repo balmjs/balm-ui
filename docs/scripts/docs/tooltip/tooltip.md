@@ -11,7 +11,7 @@
   <ui-tooltip id="tooltip-id">Tips text</ui-tooltip>
   ```
 
-#### Props
+### Props
 
 | Name    | Type   | Default | Description                             |
 | ------- | ------ | ------- | --------------------------------------- |

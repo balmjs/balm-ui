@@ -5,14 +5,14 @@
 </ui-chips>
 ```
 
-### `<ui-chips>` Types
+**`<ui-chips>` Types**
 
 - `0`: `'action'`
 - `1`: `'input'`
 - `2`: `'choice'`
 - `3`: `'filter'`
 
-#### Props
+### Props
 
 | Name                | Type                  | Default   | Description                                                                                                                      |
 | ------------------- | --------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------- |
@@ -25,7 +25,7 @@
 
 > `options`, `optionLabel`, `optionValue`: New in 7.2.0
 
-#### Slots
+### Slots
 
 | Name      | Props | Description                                                      |
 | --------- | ----- | ---------------------------------------------------------------- |
@@ -35,7 +35,7 @@
 
 - `<ui-chip>`
 
-#### Events
+### Events
 
 | Name     | Type                             | Description                      |
 | -------- | -------------------------------- | -------------------------------- |
@@ -44,10 +44,13 @@
 > NOTE: If you are not using `v-model`, you should listen for the chips using `@change` and update the `model` prop.
 
 - Automatic
+
   ```html
   <ui-chips v-model="selected"></ui-chips>
   ```
+
 - Manual
+
   ```html
   <ui-chips
     :model="selected"

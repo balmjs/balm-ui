@@ -2,7 +2,7 @@
 <ui-table></ui-table>
 ```
 
-#### Props
+### Props
 
 | Name               | Type            | Default     | Description                                                      |
 | ------------------ | --------------- | ----------- | ---------------------------------------------------------------- |
@@ -188,13 +188,13 @@
     ];
     ```
 
-#### Slots
+### Slots
 
 | Name            | Props | Description          |
 | --------------- | ----- | -------------------- |
 | `(custom-name)` |       | Custom slot for cell |
 
-#### Events
+### Events
 
 | Name       | Type                            | Description                         |
 | ---------- | ------------------------------- | ----------------------------------- |
@@ -203,10 +203,13 @@
 > NOTE: If you are not using `v-model`, you should listen for the select using `@selected` and update the `selectedRows` prop.
 
 - Automatic
+
   ```html
   <ui-table rowCheckbox v-model="selectedRows"></ui-table>
   ```
+
 - Manual
+
   ```html
   <ui-table
     rowCheckbox

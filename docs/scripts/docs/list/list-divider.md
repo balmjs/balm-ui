@@ -4,7 +4,7 @@
 <ui-item-divider></ui-item-divider>
 ```
 
-#### Common Props
+### Common Props
 
 | Name     | Type    | Default | Description                                                                                            |
 | -------- | ------- | ------- | ------------------------------------------------------------------------------------------------------ |

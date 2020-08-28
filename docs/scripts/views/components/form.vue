@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="form" demo-count="2">
+  <ui-page name="form" :apis="['form', 'form-field']" demo-count="2">
     <template #hero>
       <h1 :class="$tt('headline1')">Form</h1>
     </template>

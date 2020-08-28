@@ -2,7 +2,7 @@
 <div v-ripple></div>
 ```
 
-#### Default ripple
+### Default ripple
 
 - `v-ripple="color"`
 - `v-ripple:cssOnly="color"`
@@ -11,10 +11,10 @@
 | ------- | -------------- | ----------- | --------------------- |
 | `color` | number, string | `undefined` | Sets the ripple color |
 
-1.  Sets the ripple color to the theme primary color: `1` or `'primary'`.
-2.  Sets the ripple color to the theme secondary color: `2` or `'secondary'`.
+1. Sets the ripple color to the theme primary color: `1` or `'primary'`.
+2. Sets the ripple color to the theme secondary color: `2` or `'secondary'`.
 
-#### Unbounded ripple
+### Unbounded ripple
 
 - `v-ripple.unbounded="color"`
 - `v-ripple:cssOnly.unbounded="color"`

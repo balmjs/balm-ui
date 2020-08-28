@@ -6,7 +6,7 @@ $alert(message);
 $alert(options);
 ```
 
-#### Options
+### Options
 
 | Option          | Type     | Default | Description                                                   |
 | --------------- | -------- | ------- | ------------------------------------------------------------- |
@@ -19,7 +19,7 @@ $alert(options);
 | `buttonText`    | string   | `'OK'`  | Alert button content.                                         |
 | `callback`      | function | `false` | Handle some event when the alert button is clicked.           |
 
-#### Events
+### Events
 
 ```js
 // Usage 1

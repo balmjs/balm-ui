@@ -2,7 +2,7 @@
 <ui-textfield-helper><!-- the helper text --></ui-textfield-helper>
 ```
 
-#### Props
+### Props
 
 | Name                   | Type            | Default | Description                                        |
 | ---------------------- | --------------- | ------- | -------------------------------------------------- |
@@ -22,7 +22,7 @@
 <ui-textfield maxlength="40" withCounter></ui-textfield>
 ```
 
-#### Slots
+### Slots
 
 | Name      | Props | Description                                                             |
 | --------- | ----- | ----------------------------------------------------------------------- |

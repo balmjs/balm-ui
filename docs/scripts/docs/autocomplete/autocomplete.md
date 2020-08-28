@@ -2,7 +2,7 @@
 <ui-autocomplete></ui-autocomplete>
 ```
 
-#### Props
+### Props
 
 | Name                | Type            | Default | Description                                                                                                                                                                                                                             |
 | ------------------- | --------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -28,7 +28,7 @@
   - An array of strings: `[ 'Choice1', 'Choice2' ]`
   - An array of objects with `label` and `value` properties: `[ { label: 'Choice1', value: 'value1' }, ... ]`
 
-#### Slots
+### Slots
 
 | Name      | Props       | Description                                            |
 | --------- | ----------- | ------------------------------------------------------ |
@@ -36,7 +36,7 @@
 | `before`  | `iconClass` | The before slot holds a custom leading icon.           |
 | `after`   | `iconClass` | The before slot holds a custom trailing icon.          |
 
-#### Events
+### Events
 
 | Name       | Type                              | Description                                                                                  |
 | ---------- | --------------------------------- | -------------------------------------------------------------------------------------------- |
@@ -56,10 +56,13 @@
 > NOTE: If you are not using `v-model`, you should listen for the autocomplete using `@input` and update the `model` prop.
 
 - Automatic
+
   ```html
   <ui-autocomplete v-model="value"></ui-autocomplete>
   ```
+
 - Manual
+
   ```html
   <ui-autocomplete
     :model="value"

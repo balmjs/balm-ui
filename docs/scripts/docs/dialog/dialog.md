@@ -4,7 +4,7 @@
 
 > NOTE: `<ui-dialog>` must be including a `<ui-button>`.
 
-#### Props
+### Props
 
 | Name               | Type    | Default | Description                                                                                                      |
 | ------------------ | ------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
@@ -16,7 +16,7 @@
 | `scrollable`       | boolean | `false` | Optional. Applied automatically when the dialog has overflowing content to warrant scrolling.                    |
 | `stacked`          | boolean | `false` | Optional. Applied automatically when the dialog's action buttons can't fit on a single line and must be stacked. |
 
-#### Slots
+### Slots
 
 | Name      | Props | Description                                         |
 | --------- | ----- | --------------------------------------------------- |
@@ -28,7 +28,7 @@
 - `<ui-dialog-content>`
 - `<ui-dialog-actions>`
 
-#### Events
+### Events
 
 | Name      | Type                        | Description                               |
 | --------- | --------------------------- | ----------------------------------------- |
@@ -41,10 +41,13 @@
 > NOTE: If you are not using `v-model`, you should listen for the dialog using `@change` and update the `open` prop.
 
 - Automatic
+
   ```html
   <ui-dialog v-model="open"></ui-dialog>
   ```
+
 - Manual
+
   ```html
   <ui-dialog
     :open="open"

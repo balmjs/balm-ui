@@ -11,7 +11,7 @@ $setTheme(style, value); // Manual custom theme for global
 | `style` | string | `''`    | Theme style name.  |
 | `value` | string | `''`    | Theme color value. |
 
-#### Theme styles
+### Theme styles
 
 - `primary` <div class="theme-example mdc-theme--primary">primary</div>
 - `secondary` <div class="theme-example mdc-theme--secondary">secondary</div>
@@ -37,7 +37,7 @@ $setTextTheme(style, tone, value); // Manual custom theme for global
 | `tone`  | String | `'background'` | Theme tone name.  |
 | `value` | String | `''`           | Text color value. |
 
-#### Text styles
+### Text styles
 
 - `primary`
 - `secondary`
@@ -45,7 +45,7 @@ $setTextTheme(style, tone, value); // Manual custom theme for global
 - `disabled`
 - `icon`
 
-#### Theme tones
+### Theme tones
 
 - `background` <div class="theme-example mdc-theme--text-primary-on-background">primary</div> <div class="theme-example mdc-theme--text-secondary-on-background">secondary</div> <div class="theme-example mdc-theme--text-hint-on-background">hint</div> <div class="theme-example mdc-theme--text-disabled-on-background">disabled</div> <div class="theme-example mdc-theme--text-icon-on-background">icon</div>
 - `light` <div class="theme-example theme-light mdc-theme--text-primary-on-light">primary</div> <div class="theme-example theme-light mdc-theme--text-secondary-on-light">secondary</div> <div class="theme-example theme-light mdc-theme--text-hint-on-light">hint</div> <div class="theme-example theme-light mdc-theme--text-disabled-on-light">disabled</div> <div class="theme-example theme-light mdc-theme--text-icon-on-light">icon</div>

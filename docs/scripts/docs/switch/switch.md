@@ -5,7 +5,7 @@
 </ui-form-field>
 ```
 
-#### Props
+### Props
 
 | Name                | Type                    | Default | Description                                                                   |
 | ------------------- | ----------------------- | ------- | ----------------------------------------------------------------------------- |
@@ -17,7 +17,7 @@
 | `disabled`          | boolean                 | `false` | Styles the switch as a disabled switch.                                       |
 | `attrs`             | object                  | `{}`    | Other attributes for `<input>`.                                               |
 
-#### Events
+### Events
 
 | Name     | Type                                       | Description                       |
 | -------- | ------------------------------------------ | --------------------------------- |
@@ -26,10 +26,13 @@
 > NOTE: If you are not using `v-model`, you should listen for the switch using `@change` and update the `model` prop.
 
 - Automatic
+
   ```html
   <ui-switch v-model="value"></ui-switch>
   ```
+
 - Manual
+
   ```html
   <ui-switch
     :model="value"

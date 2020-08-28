@@ -2,7 +2,7 @@
 <ui-skeleton><!-- (the loaded data) --></ui-skeleton>
 ```
 
-#### Props
+### Props
 
 | Name        | Type            | Default | Description                 |
 | ----------- | --------------- | ------- | --------------------------- |
@@ -21,14 +21,12 @@
   - `paragraph.width: string`: Set the width of paragraph
   - `paragraph.rows: number`: Set the row count of paragraph
 
-#### Slots
+### Slots
 
 | Name      | Props | Description                                                     |
 | --------- | ----- | --------------------------------------------------------------- |
 | `default` |       | The default slot holds the any components and can contain HTML. |
 
 ```html
-<ui-skeleton v-model="loading" active>
-  Loaded data content
-</ui-skeleton>
+<ui-skeleton v-model="loading" active>Loaded data content</ui-skeleton>
 ```

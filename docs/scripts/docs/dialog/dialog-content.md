@@ -2,7 +2,7 @@
 <ui-dialog-content><!-- the dialog content --></ui-dialog-content>
 ```
 
-#### Slots
+### Slots
 
 | Name      | Props | Description                                                     |
 | --------- | ----- | --------------------------------------------------------------- |

@@ -2,7 +2,7 @@
 <ui-card-icons><!-- the icon button components --></ui-card-icons>
 ```
 
-#### Slots
+### Slots
 
 | Name      | Props | Description                                                      |
 | --------- | ----- | ---------------------------------------------------------------- |

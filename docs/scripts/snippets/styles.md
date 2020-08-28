@@ -3,7 +3,7 @@
 - SASS
 
   ```scss
-  @use 'balm-ui/dist/balm-ui.scss';
+  @use 'balm-ui/dist/balm-ui';
   ```
 
 - CSS

@@ -2,7 +2,7 @@
 <ui-tabs></ui-tabs>
 ```
 
-#### `<ui-tabs>` Props
+### `<ui-tabs>` Props
 
 | Name    | Type  | Default | Description           |
 | ------- | ----- | ------- | --------------------- |
@@ -17,7 +17,7 @@
 }
 ```
 
-#### `<ui-tabs>` Slots
+### `<ui-tabs>` Slots
 
 | Name      | Slots | Description                                                     |
 | --------- | ----- | --------------------------------------------------------------- |

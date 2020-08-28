@@ -2,12 +2,12 @@
 <ui-select><!-- the label text --></ui-select>
 ```
 
-### `<ui-select>` Types
+**`<ui-select>` Types**
 
 - `0`: `'filled'`
 - `1`: `'outlined'`
 
-#### Props
+### Props
 
 | Name                | Type           | Default   | Description                                                                                   |
 | ------------------- | -------------- | --------- | --------------------------------------------------------------------------------------------- |
@@ -29,14 +29,14 @@
 
 > NOTE: `withLeadingIcon` is only used for (**non `<ui-select-icon>`**) custom leading icon, and generally do not need to be configured.
 
-#### Slots
+### Slots
 
 | Name            | Props       | Description                                      |
 | --------------- | ----------- | ------------------------------------------------ |
 | `default`       |             | The default slot holds the label for the select. |
 | `dropdown-icon` | `iconClass` | Custom dropdown icon. (New in `6.9.0`)           |
 
-#### Events
+### Events
 
 | Name       | Type                              | Description                             |
 | ---------- | --------------------------------- | --------------------------------------- |
@@ -46,10 +46,13 @@
 > NOTE: If you are not using `v-model`, you should listen for the select using `@change` and update the `model` prop.
 
 - Automatic
+
   ```html
   <ui-select v-model="value"></ui-select>
   ```
+
 - Manual
+
   ```html
   <ui-select
     :model="value"

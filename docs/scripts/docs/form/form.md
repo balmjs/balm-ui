@@ -16,7 +16,7 @@
 </ui-form>
 ```
 
-### `<ui-form>` Types
+**`<ui-form>` Types**
 
 - `0`: `'horizontal'`
 - `1`: `'vertical'`
@@ -37,19 +37,3 @@
 | Name      | Props         | Description                                                 |
 | --------- | ------------- | ----------------------------------------------------------- |
 | `default` | `actionClass` | The default slot holds the form items and can contain HTML. |
-
-### `<ui-form-field>`
-
-#### Props
-
-| Name           | Type    | Default | Description                                                            |
-| -------------- | ------- | ------- | ---------------------------------------------------------------------- |
-| `nowrap`       | boolean | `false` | Force the text to stay on a single line and ellipse the overflow text. |
-| `alignEnd`     | boolean | `false` | Position the input after the label.                                    |
-| `spaceBetween` | boolean | `false` | Align the input and label space between.                               |
-
-#### Slots
-
-| Name      | Props | Description                                                |
-| --------- | ----- | ---------------------------------------------------------- |
-| `default` |       | The default slot holds the form item and can contain HTML. |

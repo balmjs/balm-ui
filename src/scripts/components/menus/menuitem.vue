@@ -6,6 +6,7 @@
       </ul>
     </template>
     <template v-else>
+      <span class="mdc-list-item__ripple"></span>
       <!-- Leading icon / Text / Command -->
       <slot>
         <ui-menuitem-icon v-if="item.icon">

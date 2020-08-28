@@ -9,10 +9,14 @@
 
       <h6 :class="$tt('headline6')">One-time Donations</h6>
       <p>We accept donations through these channels:</p>
-      <ul class="payment-methods">
-        <li class="alipay">Alipay</li>
-        <li class="wechatpay">WeChat</li>
-      </ul>
+      <ui-grid class="donate-methods">
+        <ui-grid-cell>
+          <div class="donate-method alipay"></div>
+        </ui-grid-cell>
+        <ui-grid-cell>
+          <div class="donate-method wechatpay"></div>
+        </ui-grid-cell>
+      </ui-grid>
 
       <h6 :class="$tt('headline6')">Recurring Pledges</h6>
       <p>Recurring pledges come with exclusive perks, e.g. having your name listed in the Vue GitHub repository, or have your company logo placed on this website.</p>

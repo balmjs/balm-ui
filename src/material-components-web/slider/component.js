@@ -30,10 +30,13 @@ import { Thumb, TickMark } from './types';
 var MDCSlider = /** @class */ (function (_super) {
     __extends(MDCSlider, _super);
     function MDCSlider() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.skipInitialUIUpdate = false;
+        return _this;
     }
-    MDCSlider.attachTo = function (root) {
-        return new MDCSlider(root);
+    MDCSlider.attachTo = function (root, options) {
+        if (options === void 0) { options = {}; }
+        return new MDCSlider(root, undefined, options);
     };
     MDCSlider.prototype.getDefaultFoundation = function () {
         var _this = this;
@@ -85,6 +88,9 @@ var MDCSlider = /** @class */ (function (_super) {
             },
             setTrackActiveStyleProperty: function (propertyName, value) {
                 _this.trackActive.style.setProperty(propertyName, value);
+            },
+            removeTrackActiveStyleProperty: function (propertyName) {
+                _this.trackActive.style.removeProperty(propertyName);
             },
             setValueIndicatorText: function (value, thumb) {
                 var valueIndicatorEl = _this.getThumbEl(thumb).querySelector("." + cssClasses.VALUE_INDICATOR_TEXT);
@@ -142,15 +148,25 @@ var MDCSlider = /** @class */ (function (_super) {
         };
         return new MDCSliderFoundation(adapter);
     };
-    MDCSlider.prototype.initialize = function () {
+    /**
+     * Initializes component, with the following options:
+     * - `skipInitialUIUpdate`: Whether to skip updating the UI when initially
+     *   syncing with the DOM. This should be enabled when the slider position
+     *   is set before component initialization.
+     */
+    MDCSlider.prototype.initialize = function (_a) {
+        var skipInitialUIUpdate = (_a === void 0 ? {} : _a).skipInitialUIUpdate;
         this.thumbs =
             [].slice.call(this.root.querySelectorAll("." + cssClasses.THUMB));
         this.trackActive =
             this.root.querySelector("." + cssClasses.TRACK_ACTIVE);
+        if (skipInitialUIUpdate) {
+            this.skipInitialUIUpdate = true;
+        }
     };
     MDCSlider.prototype.initialSyncWithDOM = function () {
         this.createRipples();
-        this.foundation.layout();
+        this.foundation.layout({ skipUpdateUI: this.skipInitialUIUpdate });
     };
     /** Redraws UI based on DOM (e.g. element dimensions, RTL). */
     MDCSlider.prototype.layout = function () {

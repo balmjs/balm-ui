@@ -88,6 +88,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
                 setThumbStyleProperty: function () { return undefined; },
                 removeThumbStyleProperty: function () { return undefined; },
                 setTrackActiveStyleProperty: function () { return undefined; },
+                removeTrackActiveStyleProperty: function () { return undefined; },
                 setValueIndicatorText: function () { return undefined; },
                 updateTickMarks: function () { return undefined; },
                 setPointerCapture: function () { return undefined; },
@@ -153,7 +154,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
             this.handleThumbFocusOrMouseenter.bind(this);
         this.thumbBlurOrMouseleaveListener =
             this.handleThumbBlurOrMouseleave.bind(this);
-        this.resizeListener = this.layout.bind(this);
+        this.resizeListener = this.handleResize.bind(this);
         this.registerEventHandlers();
     };
     MDCSliderFoundation.prototype.destroy = function () {
@@ -247,13 +248,20 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
      * - Syncs slider boundingClientRect with the current DOM.
      * - Updates UI based on internal state.
      */
-    MDCSliderFoundation.prototype.layout = function () {
+    MDCSliderFoundation.prototype.layout = function (_a) {
+        var skipUpdateUI = (_a === void 0 ? {} : _a).skipUpdateUI;
         this.rect = this.adapter.getBoundingClientRect();
         if (this.isRange) {
             this.startThumbKnobWidth = this.adapter.getThumbKnobWidth(Thumb.START);
             this.endThumbKnobWidth = this.adapter.getThumbKnobWidth(Thumb.END);
         }
-        this.updateUI();
+        if (!skipUpdateUI) {
+            this.updateUI();
+        }
+    };
+    /** Handles resize events on the window. */
+    MDCSliderFoundation.prototype.handleResize = function () {
+        this.layout();
     };
     /**
      * Handles pointer down events on the slider root element.
@@ -617,10 +625,10 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
                 // Set thumb styles.
                 var thumbStartPos = isRtl ? thumbRightPos_1 : thumbLeftPos_1;
                 var thumbEndPos = _this.adapter.isRTL() ? thumbLeftPos_1 : thumbRightPos_1;
-                if (thumb === Thumb.START || !thumb) {
+                if (thumb === Thumb.START || !thumb || !_this.initialStylesRemoved) {
                     _this.adapter.setThumbStyleProperty(transformProp, "translateX(" + thumbStartPos + "px)", Thumb.START);
                 }
-                if (thumb === Thumb.END || !thumb) {
+                if (thumb === Thumb.END || !thumb || !_this.initialStylesRemoved) {
                     _this.adapter.setThumbStyleProperty(transformProp, "translateX(" + thumbEndPos + "px)", Thumb.END);
                 }
                 _this.removeInitialStyles(isRtl);
@@ -650,12 +658,44 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
     MDCSliderFoundation.prototype.removeInitialStyles = function (isRtl) {
         if (this.initialStylesRemoved)
             return;
+        // Remove thumb position properties that were added for initial render.
         var position = isRtl ? 'right' : 'left';
         this.adapter.removeThumbStyleProperty(position, Thumb.END);
         if (this.isRange) {
             this.adapter.removeThumbStyleProperty(position, Thumb.START);
         }
         this.initialStylesRemoved = true;
+        this.resetTrackAndThumbAnimation();
+    };
+    /**
+     * Resets track/thumb animation to prevent animation when adding
+     * `transform` styles to thumb initially.
+     */
+    MDCSliderFoundation.prototype.resetTrackAndThumbAnimation = function () {
+        var _this = this;
+        if (!this.isDiscrete)
+            return;
+        // Set transition properties to default (no animation), so that the
+        // newly added `transform` styles do not animate thumb/track from
+        // their default positions.
+        var transitionProp = HAS_WINDOW ?
+            getCorrectPropertyName(window, 'transition') :
+            'transition';
+        var transitionDefault = 'all 0s ease 0s';
+        this.adapter.setThumbStyleProperty(transitionProp, transitionDefault, Thumb.END);
+        if (this.isRange) {
+            this.adapter.setThumbStyleProperty(transitionProp, transitionDefault, Thumb.START);
+        }
+        this.adapter.setTrackActiveStyleProperty(transitionProp, transitionDefault);
+        // In the next frame, remove the transition inline styles we just
+        // added, such that any animations added in the CSS can now take effect.
+        requestAnimationFrame(function () {
+            _this.adapter.removeThumbStyleProperty(transitionProp, Thumb.END);
+            _this.adapter.removeTrackActiveStyleProperty(transitionProp);
+            if (_this.isRange) {
+                _this.adapter.removeThumbStyleProperty(transitionProp, Thumb.START);
+            }
+        });
     };
     /**
      * Adds THUMB_TOP class to active thumb if thumb knobs overlap; otherwise

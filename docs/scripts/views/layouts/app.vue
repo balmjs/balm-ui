@@ -15,14 +15,17 @@
       >
         <router-link to="/" :class="['catalog-title', $themeColor('on-primary')]">BalmUI</router-link>
         <template #toolbar="{ toolbarItemClass }">
-          <a
-            :class="[toolbarItemClass, 'github']"
-            href="https://github.com/balmjs/balm-ui"
-            target="_blank"
-            rel="noopener"
-          >
-            <svg-github></svg-github>
-            <span>GitHub</span>
+          <!-- <ui-icon-button
+            v-tooltip="'Support BalmUI'"
+            :class="[toolbarItemClass, 'donate']"
+            icon="support"
+            aria-describedby="donate"
+            @click="$router.push({name: 'donate'})"
+          ></ui-icon-button>-->
+          <a href="https://github.com/balmjs/balm-ui" target="_blank" rel="noopener">
+            <ui-icon-button :class="[toolbarItemClass, 'github']" aria-describedby="github">
+              <svg-github></svg-github>
+            </ui-icon-button>
           </a>
         </template>
       </ui-top-app-bar>

@@ -2,9 +2,12 @@
 
 ## v8.0.0 / 2020-08-25
 
+> `balm-ui 8.0` is coming up
+
 ### Bug Fixes
 
-- `<ui-table>`: bugfix for tbody fields function
+- `<ui-table>`: fix tbody fields function bug
+- `<ui-datepicker>`: fix clear event bug
 
 ### Code Refactoring
 
@@ -14,6 +17,7 @@
 
 ### Features
 
+- simplify Sass module usage
 - update mdc@8.0.0
 - update material-icons v55
 - new components
@@ -23,6 +27,7 @@
 ### BREAKING CHANGES
 
 - `<ui-slider>`: rename prop `displayMarker` to `withTickMarks`
+- `<ui-pagination>`: optimize slots
 
 ---
 

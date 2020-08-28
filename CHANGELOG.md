@@ -1,5 +1,11 @@
 # [BalmUI](https://material.balmjs.com) ChangeLog
 
+## v7.6.2 / 2020-08-28
+
+### Bug Fixes
+
+- `<ui-datepicker>`: bugfix for clear event
+
 ## v7.6.1 / 2020-08-15
 
 ### Bug Fixes

@@ -198,6 +198,13 @@ export default {
               this.$emit(UI_DATEPICKER.EVENT.CHANGE, dateStr);
             }
           };
+
+          // bugfix: for `clear` event
+          config.onChange = (selectedDates, dateStr, instance) => {
+            if (!dateStr) {
+              this.$emit(UI_DATEPICKER.EVENT.CHANGE, '');
+            }
+          };
           break;
       }
       // Init

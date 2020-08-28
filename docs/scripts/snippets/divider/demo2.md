@@ -10,7 +10,7 @@
 </ui-divider>
 ```
 
-```css
+```scss
 .vertical-divider-demo {
   width: 300px;
   height: 120px;

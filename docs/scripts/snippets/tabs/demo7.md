@@ -1,16 +1,19 @@
 ```html
 <ui-tab-bar class="custom-demo-tab-bar" v-model="active">
-  <ui-tab v-for="(tab, index) in tabs" :key="index"
+  <ui-tab
+    v-for="(tab, index) in tabs"
+    :key="index"
     type="both"
     :icon="tab.icon"
     minWidth
-    contentIndicator>
+    contentIndicator
+  >
     {{ tab.text }}
   </ui-tab>
 </ui-tab-bar>
 ```
 
-```css
+```scss
 /* Sass code */
 .custom-demo-tab-bar {
   .mdc-tab {

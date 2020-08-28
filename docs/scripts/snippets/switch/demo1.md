@@ -1,17 +1,16 @@
 ```html
-<ui-switch id="basic-switch"
-  :trueValue="1"
-  :falseValue="0"
-  v-model="toggle1">
+<ui-switch id="basic-switch" :trueValue="1" :falseValue="0" v-model="toggle1">
   {{ toggle1 }}
 </ui-switch>
 <label for="basic-switch">{{ toggle1 }}</label>
 
-<ui-switch id="basic-switch-custom"
+<ui-switch
+  id="basic-switch-custom"
   class="demo-switch--custom"
   trueValue="on"
   falseValue="off"
-  v-model="toggle2">
+  v-model="toggle2"
+>
   {{ toggle2 }} (custom color)
 </ui-switch>
 <label for="basic-switch-custom">{{ toggle2 }} (custom color)</label>
@@ -28,7 +27,7 @@ export default {
 };
 ```
 
-```css
+```scss
 /* Sass code */
 .demo-switch--custom {
   $color: $material-color-red-500;

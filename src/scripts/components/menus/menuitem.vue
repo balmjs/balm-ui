@@ -1,5 +1,9 @@
 <template>
-  <li :class="nested ? null : getClass(item)" :role="nested ? null : 'menuitem'">
+  <li
+    :class="nested ? null : getClass(item)"
+    :role="nested ? null : 'menuitem'"
+    :data-value="item.value || value"
+  >
     <template v-if="nested">
       <ul class="mdc-menu__selection-group">
         <slot></slot>
@@ -41,8 +45,12 @@ export default {
     item: {
       type: Object,
       default() {
-        return {}; // { text: string, icon: string }
+        return {}; // { text: string, icon: string, value: string }
       }
+    },
+    value: {
+      type: null, // NOTE: String usually
+      default: null
     },
     // UI attributes
     disabled: {

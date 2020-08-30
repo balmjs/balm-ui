@@ -23,11 +23,13 @@
 - new components
   - `<ui-banner>`
   - `<ui-tooltip>`
+- `<ui-menuitem>`: add prop `value`
 
 ### BREAKING CHANGES
 
 - `<ui-slider>`: rename prop `displayMarker` to `withTickMarks`
 - `<ui-pagination>`: optimize slots
+- `<ui-menu>`: optimize selected event
 
 ---
 

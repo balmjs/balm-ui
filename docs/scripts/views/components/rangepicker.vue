@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="rangepicker" demo-count="1">
+  <docs-page name="rangepicker" demo-count="1">
     <template #hero>
       <ui-rangepicker v-model="date" :placeholders="['Start Date', 'End Date']">
         <template #separator>to</template>
@@ -15,7 +15,7 @@
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

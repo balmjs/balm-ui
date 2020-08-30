@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="editor" demo-count="3" without-css>
+  <docs-page name="editor" demo-count="3" without-css>
     <template #hero>
       <h1 :class="$tt('headline1')">WYSIWYG</h1>
     </template>
@@ -36,7 +36,7 @@
       <div>{{ encodeContent }}</div>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

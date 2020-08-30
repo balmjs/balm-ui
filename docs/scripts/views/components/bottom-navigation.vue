@@ -7,14 +7,14 @@
       <span class="['catalog-title', $themeColor('on-primary')]">Bottom Navigation</span>
     </ui-top-app-bar>
 
-    <ui-page class="demo-content" name="bottom-navigation" demo-count="1">
+    <docs-page class="demo-content" name="bottom-navigation" demo-count="1">
       <template #hero>
         <h3 :class="$tt('headline3')">Bottom Navigation</h3>
       </template>
 
       <!-- Content -->
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
-    </ui-page>
+    </docs-page>
 
     <ui-bottom-navigation content-selector=".page--bottom-navigation-container">
       <ui-tabs v-model="active" :items="items" @change="onChange"></ui-tabs>

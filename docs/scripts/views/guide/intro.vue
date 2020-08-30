@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import docs from '@/docs/guide/intro.md';
+import docs from '@/docs/en/guide/intro.md';
 
 export default {
   metaInfo: {

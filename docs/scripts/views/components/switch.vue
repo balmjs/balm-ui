@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="switch" demo-count="1">
+  <docs-page name="switch" demo-count="1">
     <template #hero>
       <ui-form-field>
         <ui-switch id="hero-switch" v-model="toggle"></ui-switch>
@@ -41,7 +41,7 @@
         </ui-form-field>
       </div>
     </section>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

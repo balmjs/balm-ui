@@ -7,7 +7,7 @@
       <span class="['catalog-title', $themeColor('on-primary')]">Layout Grid</span>
     </ui-top-app-bar>
 
-    <ui-page
+    <docs-page
       class="demo-content"
       name="grid"
       demo-count="9"
@@ -207,7 +207,7 @@
           <div id="current" ref="ruler"></div>
         </footer>
       </section>
-    </ui-page>
+    </docs-page>
   </div>
 </template>
 

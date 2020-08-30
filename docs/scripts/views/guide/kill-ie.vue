@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import docs from '@/docs/guide/kill-ie.md';
+import docs from '@/docs/en/guide/kill-ie.md';
 
 export default {
   metaInfo: {

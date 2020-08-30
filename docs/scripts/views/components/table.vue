@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="table" demo-count="2">
+  <docs-page name="table" demo-count="2">
     <template #hero>
       <ui-table row-checkbox :data="heroData" :thead="thead1" :tbody="tbody1"></ui-table>
     </template>
@@ -39,7 +39,7 @@
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

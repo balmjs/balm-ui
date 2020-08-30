@@ -57,7 +57,7 @@
     <ui-drawer-backdrop></ui-drawer-backdrop>
 
     <div class="demo-main">
-      <ui-page id="content-main" name="top-app-bar" demo-count="1" bottom-affix>
+      <docs-page id="content-main" name="top-app-bar" demo-count="1" bottom-affix>
         <template #hero>
           <h1 :class="$tt('headline1')">Top App Bar</h1>
         </template>
@@ -79,7 +79,7 @@
           </p>
           <ui-snippet :code="$store.demos[1]"></ui-snippet>
         </section>
-      </ui-page>
+      </docs-page>
     </div>
   </div>
 </template>

@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import docs from '@/docs/guide/advanced.md';
+import docs from '@/docs/en/guide/advanced.md';
 
 export default {
   metaInfo: {

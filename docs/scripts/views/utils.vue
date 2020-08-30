@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import docs from '@/docs/utils/intro.md';
+import docs from '@/docs/en/utils/intro.md';
 
 export default {
   metaInfo: {

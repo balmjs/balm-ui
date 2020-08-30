@@ -15,12 +15,23 @@
       >
         <router-link to="/" :class="['catalog-title', $themeColor('on-primary')]">BalmUI</router-link>
         <template #toolbar="{ toolbarItemClass }">
+          <ui-menu-anchor>
+            <ui-icon-button icon="language" @click="$balmUI.onShow('showTranslations')"></ui-icon-button>
+            <ui-menu v-model="showTranslations" @selected="$store.setLang">
+              <ui-menuitem
+                v-for="translation in translations"
+                :key="translation.value"
+                :item="translation"
+                :selected="translation.value === $store.lang"
+              ></ui-menuitem>
+            </ui-menu>
+          </ui-menu-anchor>
           <ui-icon-button
             v-tooltip="'Support BalmUI'"
             :class="[toolbarItemClass, 'donate']"
             icon="support"
             aria-describedby="donate"
-            @click="$router.push({name: 'donate'})"
+            @click="$router.push({ name: 'donate' })"
           ></ui-icon-button>
           <a href="https://github.com/balmjs/balm-ui" target="_blank" rel="noopener">
             <ui-icon-button :class="[toolbarItemClass, 'github']" aria-describedby="github">
@@ -75,7 +86,7 @@
                       @click.native="handleMenu"
                     >
                       <ui-icon v-if="item.icon" class="catalog-list-icon">{{ item.icon }}</ui-icon>
-                      <span>{{ item.name }}</span>
+                      <span>{{ $t(`menu.${item.name}`) }}</span>
                       <ui-badge v-if="item.plus" class="plus" state="info">
                         <template #badge>plus</template>
                       </ui-badge>
@@ -89,7 +100,7 @@
                       :key="`head${index}`"
                       :class="$textColor('primary', 'light')"
                     >
-                      {{ item.name }}
+                      {{ $t(`menu.${item.name}`) }}
                       <i
                         v-if="isWideScreen && item.name === 'Guide'"
                         :class="['balmui-version', $tt('subtitle2')]"
@@ -120,9 +131,8 @@
 
 <script>
 import SvgGithub from '@/components/svg-github';
-import { VERSION, $MIN_WIDTH } from '@/config';
+import { VERSION, $MIN_WIDTH, translations } from '@/config';
 import menu from '@/config/menu';
-// import { lang } from '@/config/lang';
 
 export default {
   metaInfo: {
@@ -142,7 +152,9 @@ export default {
       pageLoading: false,
       loadingProgress: 0,
       loadingTimer: null,
-      showGlobalMessage: false
+      showGlobalMessage: false,
+      translations,
+      showTranslations: false
     };
   },
   computed: {
@@ -179,6 +191,11 @@ export default {
     this.$bus.$on('global-message', (message) => {
       this.showGlobalMessage = true;
     });
+
+    this.$i18n.locale = this.$store.lang;
+    this.$bus.$on('switch-lang', (lang) => {
+      this.$i18n.locale = lang;
+    });
   },
   beforeDestroy() {
     window.removeEventListener('balmResize', this.init);
@@ -191,12 +208,6 @@ export default {
     init() {
       this.drawerType = this.getDrawerType();
     },
-    // isActiveLang(lang) {
-    //   return lang === this.$i18n.locale;
-    // },
-    // switchLang(lang) {
-    //   this.$i18n.locale = lang;
-    // },
     handleMenu() {
       this.$emit('page-load');
 

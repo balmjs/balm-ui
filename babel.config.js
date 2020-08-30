@@ -17,7 +17,14 @@ module.exports = function (api) {
       [
         'prismjs',
         {
-          languages: ['markup', 'css', 'javascript', 'bash', 'scss'],
+          languages: [
+            'markup',
+            'css',
+            'javascript',
+            'bash',
+            'scss',
+            'typescript'
+          ],
           plugins: ['highlight-keywords', 'toolbar', 'copy-to-clipboard']
         }
       ]

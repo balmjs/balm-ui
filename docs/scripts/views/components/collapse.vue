@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="collapse" demo-count="3">
+  <docs-page name="collapse" demo-count="3">
     <template #hero>
       <ui-collapse v-model="show">
         <template #toggle>
@@ -54,7 +54,7 @@
       </div>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

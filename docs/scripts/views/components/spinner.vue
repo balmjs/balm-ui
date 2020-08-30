@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="spinner" demo-count="2">
+  <docs-page name="spinner" demo-count="2">
     <template #hero>
       <ui-spinner active four-colored></ui-spinner>
     </template>
@@ -21,7 +21,7 @@
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

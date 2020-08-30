@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="pagination" demo-count="4">
+  <docs-page name="pagination" demo-count="4">
     <template #hero>
       <ui-pagination
         v-model="page"
@@ -48,7 +48,7 @@
       </div>
       <ui-snippet :code="$store.demos[4]"></ui-snippet>
     </section>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="file" demo-count="3" without-css>
+  <docs-page name="file" demo-count="3" without-css>
     <template #hero>
       <ui-file></ui-file>
     </template>
@@ -60,7 +60,7 @@
       </div>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

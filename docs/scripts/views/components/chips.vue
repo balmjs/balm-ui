@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="chips" demo-count="4" :apis="['chips', 'chip']">
+  <docs-page name="chips" demo-count="4" :apis="['chips', 'chip']">
     <template #hero>
       <ui-chips>
         <ui-chip v-a11y>Chip One</ui-chip>
@@ -79,7 +79,7 @@
       </div>
       <ui-snippet :code="$store.demos[4]"></ui-snippet>
     </section>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="progress" demo-count="1">
+  <docs-page name="progress" demo-count="1">
     <template #hero>
       <ui-progress active></ui-progress>
     </template>
@@ -45,7 +45,7 @@
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

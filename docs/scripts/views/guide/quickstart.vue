@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import docs from '@/docs/guide/quickstart.md';
+import docs from '@/docs/en/guide/quickstart.md';
 
 export default {
   metaInfo: {

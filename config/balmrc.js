@@ -48,12 +48,17 @@ function getConfig(balm) {
       libraryTarget: useDocs ? 'var' : 'umd',
       loaders: [
         {
+          test: /\.md$/,
+          loader: 'html-loader!markdown-loader'
+        },
+        {
           test: /\.vue$/,
           loader: 'vue-loader'
         },
         {
-          test: /\.md$/,
-          loader: 'html-loader!markdown-loader'
+          resourceQuery: /blockType=i18n/,
+          type: 'javascript/auto',
+          loader: '@intlify/vue-i18n-loader'
         }
       ],
       urlLoaderOptions: {

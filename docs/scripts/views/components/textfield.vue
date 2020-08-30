@@ -1,5 +1,5 @@
 <template>
-  <ui-page
+  <docs-page
     name="textfield"
     :apis="['ui-textfield', 'textfield', 'textfield-icon', 'textfield-helper']"
     demo-count="7"
@@ -353,7 +353,7 @@
       <ui-textfield-controls v-model="controls" :options="['disabled', 'required', 'customColor']"></ui-textfield-controls>
       <ui-snippet :code="$store.demos[7]"></ui-snippet>
     </section>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

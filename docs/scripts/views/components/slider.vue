@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="slider" demo-count="2">
+  <docs-page name="slider" demo-count="2">
     <template #hero>
       <ui-form>
         <ui-form-field id="hero-slider-wrapper">
@@ -67,7 +67,7 @@
 
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

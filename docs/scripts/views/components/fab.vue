@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="fab" demo-count="4">
+  <docs-page name="fab" demo-count="4">
     <template #hero>
       <div class="hero-demo">
         <ui-fab :type="typeOption" :mini="!!mini">
@@ -147,7 +147,7 @@
       </div>
       <ui-snippet :code="$store.demos[4]"></ui-snippet>
     </section>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

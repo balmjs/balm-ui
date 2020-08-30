@@ -4,13 +4,13 @@ import $http from '@/plugins/$http';
 import $bus from '@/plugins/$bus';
 import $store from '@/plugins/$store';
 import router from '@/routes';
+import i18n from '@/lang';
 import App from '@/views/layouts/app';
 import { isProd } from '@/config';
-import { pickerLang } from '@/config/lang';
 import validatorRules from '@/config/validator-rules';
+import prismjs from 'prismjs';
 // BalmUI
 import BalmUI from 'balm-ui';
-// import BalmUIPlus from 'balm-ui/plus';
 import UiAutocomplete from 'balm-ui/components/autocomplete';
 import UiDatepicker from 'balm-ui/components/datepicker';
 import UiRangepicker from 'balm-ui/components/rangepicker';
@@ -23,28 +23,25 @@ import UiSkeleton from 'balm-ui/components/skeleton';
 import vAnchor from 'balm-ui/directives/anchor';
 import BalmUINext from 'balm-ui/next';
 // Custom components
-import UiPage from '@/components/page';
+import DocsPage from '@/views/layouts/docs-page';
 import UiMarkdown from '@/components/markdown';
 import UiSnippet from '@/components/snippet';
 import UiFooterNav from '@/components/footer-nav';
 import UiTocAffix from '@/components/toc-affix';
 import SvgLogo from '@/components/svg-logo';
-// Syntax highlighting
-import prismjs from 'prismjs';
-// Ready translated locales
-// import { locales } from '@/config/lang';
 // PWA
 import './my-sw';
 
 function createApp() {
   Vue.config.productionTip = false;
+
   Vue.use($http);
   Vue.use($bus);
   Vue.use($store);
+
   Vue.use(BalmUI, {
     validator: validatorRules
   });
-  // Vue.use(BalmUIPlus);
   Vue.use(UiAutocomplete);
   Vue.use(UiDatepicker);
   Vue.use(UiRangepicker);
@@ -57,7 +54,7 @@ function createApp() {
   Vue.directive(vAnchor.name, vAnchor);
   Vue.use(BalmUINext);
 
-  Vue.component(UiPage.name, UiPage);
+  Vue.component(DocsPage.name, DocsPage);
   Vue.component(UiMarkdown.name, UiMarkdown);
   Vue.component(UiSnippet.name, UiSnippet);
   Vue.component(UiFooterNav.name, UiFooterNav);
@@ -99,21 +96,14 @@ function createApp() {
   };
   Vue.prototype.$domain = isProd ? '//material.balmjs.com' : '';
 
-  // Create VueI18n instance with options
-  // const i18n = new VueI18n({
-  //   locale: 'en', // set locale
-  //   messages: locales // set locale messages
-  // });
-  Vue.prototype.pickerLang = pickerLang;
-
   new Vue({
     el: '#app',
     components: {
       App
     },
     router,
+    i18n,
     template: '<app/>'
-    // i18n
   });
 }
 

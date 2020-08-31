@@ -21,7 +21,7 @@ export default [
   },
   {
     path: 'anchor',
-    name: 'others.anchor',
+    name: 'misc.anchor',
     component: Anchor
   }
 ];

@@ -71,7 +71,7 @@
                 <template #default="{ itemClass, activeClass }">
                   <template v-for="(item, index) in menu">
                     <router-link
-                      v-if="item.icon || item.isSubmenu"
+                      v-if="item.url || item.isSubmenu"
                       :key="`item${index}`"
                       v-ripple
                       :class="[
@@ -81,7 +81,7 @@
                           'no-icon': !item.icon
                         }
                       ]"
-                      :to="item.url"
+                      :to="{ name: item.url }"
                       :active-class="activeClass"
                       @click.native="handleMenu"
                     >

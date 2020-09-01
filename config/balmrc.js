@@ -54,11 +54,6 @@ function getConfig(balm) {
         {
           test: /\.vue$/,
           loader: 'vue-loader'
-        },
-        {
-          resourceQuery: /blockType=i18n/,
-          type: 'javascript/auto',
-          loader: '@intlify/vue-i18n-loader'
         }
       ],
       urlLoaderOptions: {

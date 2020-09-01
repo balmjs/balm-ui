@@ -24,6 +24,7 @@
   - `<ui-banner>`
   - `<ui-tooltip>`
 - `<ui-menuitem>`: add prop `value`
+- `$toast`: optimize option `timeoutMs`
 
 ### BREAKING CHANGES
 

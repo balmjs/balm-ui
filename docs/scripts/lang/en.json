@@ -63,5 +63,11 @@
     "elevation": "Elevation",
     "anchor": "Anchor",
     "utils": "Utils"
+  },
+  "page": {
+    "usage": "Usage",
+    "demo": "Demo",
+    "apis": "APIs",
+    "sass": "Sass Variables"
   }
 }

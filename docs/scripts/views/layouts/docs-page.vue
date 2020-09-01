@@ -19,15 +19,15 @@
 
       <slot name="before"></slot>
 
-      <h2 v-anchor:id="'ui-usage'">0. Usage</h2>
+      <h2 v-anchor:id="'ui-usage'">0. {{ $t('page.usage') }}</h2>
       <ui-markdown :text="$store.docs.usage"></ui-markdown>
 
-      <h2 v-anchor:id="'ui-demo'">1. Demo</h2>
+      <h2 v-anchor:id="'ui-demo'">1. {{ $t('page.demo') }}</h2>
       <slot>
         <p>Coming Up...</p>
       </slot>
 
-      <h2 v-anchor:id="'ui-apis'">2. APIs</h2>
+      <h2 v-anchor:id="'ui-apis'">2. {{ $t('page.apis') }}</h2>
       <ui-markdown
         v-for="(apidocs, index) in $store.docs.apis"
         :key="index"
@@ -39,7 +39,7 @@
       ></ui-markdown>
 
       <template v-if="!withoutCss">
-        <h2 v-anchor:id="'ui-sass'">3. Sass Variables</h2>
+        <h2 v-anchor:id="'ui-sass'">3. {{ $t('page.sass') }}</h2>
         <ui-markdown :text="$store.docs.css"></ui-markdown>
       </template>
 

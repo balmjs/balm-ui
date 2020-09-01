@@ -1,7 +1,12 @@
 <template>
   <docs-page name="snackbar" demo-count="1">
     <template #hero>
-      <ui-snackbar class="mdc-snackbar--open">Message sent</ui-snackbar>
+      <ui-snackbar class="mdc-snackbar--open">
+        Message sent
+        <template #action="{ actionClass }">
+          <ui-button :class="actionClass">Action</ui-button>
+        </template>
+      </ui-snackbar>
     </template>
 
     <!-- Content -->
@@ -19,7 +24,7 @@
         </ui-form-field>
         <ui-form-field>
           <ui-checkbox id="action-type" v-model="actionType"></ui-checkbox>
-          <label for="action-type">Action Icon Button</label>
+          <label for="action-type">Icon Button Action</label>
         </ui-form-field>
       </ui-form>
       <div class="demo">

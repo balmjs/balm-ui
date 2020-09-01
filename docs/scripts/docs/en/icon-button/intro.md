@@ -1,3 +1,3 @@
 # Icon Buttons
 
-Icon buttons allow users to take actions, and make choices, with a single tap.
+Icon buttons (Toggle buttons) allow users to take actions, and make choices, with a single tap.

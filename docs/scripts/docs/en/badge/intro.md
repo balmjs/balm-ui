@@ -1,5 +1,5 @@
-# Badge
+# Badges
 
-Small numerical value or status descriptor for UI elements.
+Small status descriptors for UI components.
 
 > New in 6.4.1

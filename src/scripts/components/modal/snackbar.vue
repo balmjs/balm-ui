@@ -7,15 +7,23 @@
         <slot>{{ message }}</slot>
       </div>
       <!-- Action (optional) -->
-      <div v-if="hasAction" class="mdc-snackbar__actions">
+      <div class="mdc-snackbar__actions">
         <slot name="action" :actionClass="actionButtonClassName">
           <button
+            v-if="canDismiss"
             type="button"
-            :class="[canDismiss ? 'mdc-icon-button': 'mdc-button', actionButtonClassName]"
-          >
-            <div v-if="!canDismiss" class="mdc-button__ripple"></div>
-            <span class="mdc-button__label">{{ canDismiss ? 'X' : actionButtonText }}</span>
-          </button>
+            :class="['mdc-icon-button', actionButtonClassName]"
+          >X</button>
+          <template v-else>
+            <button
+              v-if="actionButtonText"
+              type="button"
+              :class="['mdc-button', actionButtonClassName]"
+            >
+              <div class="mdc-button__ripple"></div>
+              <span class="mdc-button__label">{{ actionButtonText }}</span>
+            </button>
+          </template>
         </slot>
       </div>
     </div>
@@ -98,9 +106,6 @@ export default {
     },
     actionButtonClassName() {
       return this.canDismiss ? 'mdc-snackbar__dismiss' : 'mdc-snackbar__action';
-    },
-    hasAction() {
-      return this.actionButtonText || this.canDismiss;
     }
   },
   watch: {
@@ -140,7 +145,7 @@ export default {
         this.$snackbar.timeoutMs = val;
       } else {
         console.warn(
-          'The timeoutMs of the snackbar must be between `4000` and `10000`'
+          `The timeoutMs of the snackbar must be between ${UI_SNACKBAR.timeoutMs.MIN} and ${UI_SNACKBAR.timeoutMs.MAX}`
         );
       }
     }

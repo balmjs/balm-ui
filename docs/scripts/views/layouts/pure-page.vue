@@ -24,8 +24,10 @@ export default {
       default: null
     }
   },
-  created() {
-    this.$store.getDocs(this.name);
+  computed: {
+    docs() {
+      return require(`@/docs/${this.$store.lang}/guide/${this.name}.md`);
+    }
   }
 };
 </script>

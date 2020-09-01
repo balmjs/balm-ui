@@ -1,26 +1,15 @@
 <template>
-  <div :class="[$tt('body1'), 'page--advanced']">
-    <div :class="[$tt('body2'), 'pure-docs']">
-      <ui-markdown v-anchor.html.offset="64" :text="docs"></ui-markdown>
-      <ui-footer-nav
-        :prev="{ name: 'Get Started', url: 'guide.quickstart' }"
-        :next="{ name: 'Kill IE', url: 'guide.kill-ie' }"
-      ></ui-footer-nav>
-    </div>
-  </div>
+  <pure-page
+    name="advanced"
+    :prev="{ name: $t('menu.quickstart'), url: 'guide.quickstart' }"
+    :next="{ name: $t('menu.kill-ie'), url: 'guide.kill-ie' }"
+  ></pure-page>
 </template>
 
 <script>
-import docs from '@/docs/en/guide/advanced.md';
-
 export default {
   metaInfo: {
     titleTemplate: '%s - Advanced Usage'
-  },
-  data() {
-    return {
-      docs
-    };
   }
 };
 </script>

@@ -1,4 +1,4 @@
-# Kill IE (China Only)
+# 万恶的 IE
 
 > Please `Copy` + `Paste` or customize yours, if your need
 

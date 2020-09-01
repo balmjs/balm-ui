@@ -23,6 +23,7 @@ import UiSkeleton from 'balm-ui/components/skeleton';
 import vAnchor from 'balm-ui/directives/anchor';
 import BalmUINext from 'balm-ui/next';
 // Custom components
+import PurePage from '@/views/layouts/pure-page';
 import DocsPage from '@/views/layouts/docs-page';
 import UiMarkdown from '@/components/markdown';
 import UiSnippet from '@/components/snippet';
@@ -54,6 +55,7 @@ function createApp() {
   Vue.directive(vAnchor.name, vAnchor);
   Vue.use(BalmUINext);
 
+  Vue.component(PurePage.name, PurePage);
   Vue.component(DocsPage.name, DocsPage);
   Vue.component(UiMarkdown.name, UiMarkdown);
   Vue.component(UiSnippet.name, UiSnippet);

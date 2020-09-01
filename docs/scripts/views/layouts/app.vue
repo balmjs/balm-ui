@@ -26,13 +26,13 @@
               ></ui-menuitem>
             </ui-menu>
           </ui-menu-anchor>
-          <ui-icon-button
+          <!-- <ui-icon-button
             v-tooltip="'Support BalmUI'"
             :class="[toolbarItemClass, 'donate']"
             icon="support"
             aria-describedby="donate"
             @click="$router.push({ name: 'donate' })"
-          ></ui-icon-button>
+          ></ui-icon-button>-->
           <a href="https://github.com/balmjs/balm-ui" target="_blank" rel="noopener">
             <ui-icon-button :class="[toolbarItemClass, 'github']" aria-describedby="github">
               <svg-github></svg-github>
@@ -102,7 +102,7 @@
                     >
                       {{ $t(`menu.${item.name}`) }}
                       <i
-                        v-if="isWideScreen && item.name === 'Guide'"
+                        v-if="isWideScreen && item.name === 'guide'"
                         :class="['balmui-version', $tt('subtitle2')]"
                       >
                         v

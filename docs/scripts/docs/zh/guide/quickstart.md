@@ -1,4 +1,4 @@
-# Quick Start
+# 快速入门
 
 Good tools make application development quicker and easier to maintain than if you did everything by hand.
 

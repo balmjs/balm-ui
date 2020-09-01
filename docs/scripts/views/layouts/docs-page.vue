@@ -14,13 +14,13 @@
 
     <div :class="$tt('body2')">
       <div class="ui-intro">
-        <ui-markdown :text="$store.docs.intro"></ui-markdown>
+        <ui-markdown :text="docs.intro"></ui-markdown>
       </div>
 
       <slot name="before"></slot>
 
       <h2 v-anchor:id="'ui-usage'">0. {{ $t('page.usage') }}</h2>
-      <ui-markdown :text="$store.docs.usage"></ui-markdown>
+      <ui-markdown :text="docs.usage"></ui-markdown>
 
       <h2 v-anchor:id="'ui-demo'">1. {{ $t('page.demo') }}</h2>
       <slot>
@@ -29,7 +29,7 @@
 
       <h2 v-anchor:id="'ui-apis'">2. {{ $t('page.apis') }}</h2>
       <ui-markdown
-        v-for="(apidocs, index) in $store.docs.apis"
+        v-for="(apidocs, index) in docs.apis"
         :key="index"
         :class="[
           'component-docs',
@@ -40,7 +40,7 @@
 
       <template v-if="!withoutCss">
         <h2 v-anchor:id="'ui-sass'">3. {{ $t('page.sass') }}</h2>
-        <ui-markdown :text="$store.docs.css"></ui-markdown>
+        <ui-markdown :text="docs.css"></ui-markdown>
       </template>
 
       <h2 v-if="name === 'icon'" v-anchor:id="'ui-icons'">4. Icons List</h2>
@@ -81,12 +81,66 @@ export default {
       default: false
     }
   },
+  computed: {
+    docs() {
+      return this.initDocs(this.name, {
+        apis: this.apis,
+        css: !this.withoutCss
+      });
+    }
+  },
   created() {
-    this.$store.initDocs(this.name, {
-      demoCount: this.demoCount,
-      apis: this.apis,
-      css: !this.withoutCss
-    });
+    this.$store.initSnippet(this.name, this.demoCount);
+  },
+  methods: {
+    getDocs(name, key) {
+      let result;
+
+      if (Array.isArray(key)) {
+        result = key.map((apidoc) => {
+          let filename = `${name}/${apidoc}`;
+          let docs = require(`@/docs/${this.$store.lang}/${filename}.md`);
+          return docs;
+        });
+      } else {
+        let filename = `${name}/${key}`;
+        let docs = require(`@/docs/${this.$store.lang}/${filename}.md`);
+        result = docs;
+      }
+
+      return result;
+    },
+    initDocs(
+      name,
+      options = {
+        apis: [],
+        css: false
+      }
+    ) {
+      let result = {
+        intro: '',
+        usage: '',
+        apis: [],
+        css: ''
+      };
+
+      result.intro = this.getDocs(name, 'intro');
+
+      if (name !== 'utils') {
+        result.usage = this.getDocs(name, 'usage');
+
+        if (options.apis) {
+          const apidocs = options.apis.length ? options.apis : [name];
+          result.apis = this.getDocs(name, apidocs);
+        }
+
+        if (options.css) {
+          result.css = this.getDocs(name, 'css');
+        }
+      }
+
+      return result;
+    }
   }
 };
 </script>

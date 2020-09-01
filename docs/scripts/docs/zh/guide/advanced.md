@@ -1,4 +1,4 @@
-# Advanced Usage
+# 高级用法
 
 > The following configuration is still the Vue scaffold built based on [Balm CLI](https://github.com/balmjs/balm-cli).
 
@@ -201,9 +201,18 @@ new Vue({
   <head>
     <!-- build:css css/vendors.css -->
     <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
-    <link rel="stylesheet" href="/node_modules/balm-ui/components/button/button.css" />
-    <link rel="stylesheet" href="/node_modules/balm-ui/components/dialog/dialog.css" />
-    <link rel="stylesheet" href="/node_modules/balm-ui/plugins/alert/alert.css" />
+    <link
+      rel="stylesheet"
+      href="/node_modules/balm-ui/components/button/button.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/node_modules/balm-ui/components/dialog/dialog.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/node_modules/balm-ui/plugins/alert/alert.css"
+    />
     <!-- endbuild -->
   </head>
   ```
@@ -220,9 +229,18 @@ Edit `/path/to/my-project/app/index.html`
     ...
     <!-- build:css css/vendors.css -->
     <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
-    <link rel="stylesheet" href="/node_modules/balm-ui/components/button/button.css" />
-    <link rel="stylesheet" href="/node_modules/balm-ui/components/dialog/dialog.css" />
-    <link rel="stylesheet" href="/node_modules/balm-ui/plugins/alert/alert.css" />
+    <link
+      rel="stylesheet"
+      href="/node_modules/balm-ui/components/button/button.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/node_modules/balm-ui/components/dialog/dialog.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/node_modules/balm-ui/plugins/alert/alert.css"
+    />
     <!-- endbuild -->
   </head>
   <body>

@@ -1,23 +1,11 @@
 <template>
-  <div :class="[$tt('body1'), 'page--intro']">
-    <div :class="[$tt('body2'), 'pure-docs']">
-      <ui-markdown :text="docs"></ui-markdown>
-      <ui-footer-nav :next="{ name: 'Get Started', url: 'guide.quickstart' }"></ui-footer-nav>
-    </div>
-  </div>
+  <pure-page name="intro" :next="{ name: $t('menu.quickstart'), url: 'guide.quickstart' }"></pure-page>
 </template>
 
 <script>
-import docs from '@/docs/en/guide/intro.md';
-
 export default {
   metaInfo: {
     titleTemplate: '%s - Introduction'
-  },
-  data() {
-    return {
-      docs
-    };
   }
 };
 </script>

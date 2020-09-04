@@ -9,15 +9,26 @@ export default new Vue({
   mixins: [isDev ? dev : {}, page],
   data() {
     return {
+      theme: '',
       lang: ''
     };
   },
   created() {
-    this.lang = this.getLang() || 'en';
+    this.theme = this.getTheme();
+    this.lang = this.getLang();
   },
   methods: {
+    getTheme() {
+      return localStorage.getItem('theme') || 'light';
+    },
+    switchTheme() {
+      const newTheme = this.theme === 'light' ? 'dark' : 'light';
+      this.theme = newTheme;
+      localStorage.setItem('theme', newTheme);
+      // bus.$emit('switch-theme', newTheme);
+    },
     getLang() {
-      return localStorage.getItem('lang');
+      return localStorage.getItem('lang') || 'en';
     },
     setLang({ value }) {
       this.lang = value;

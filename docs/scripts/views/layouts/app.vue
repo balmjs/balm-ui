@@ -15,6 +15,10 @@
       >
         <router-link to="/" :class="['catalog-title', $themeColor('on-primary')]">BalmUI</router-link>
         <template #toolbar="{ toolbarItemClass }">
+          <!-- <ui-icon-button
+            :icon="$store.theme === 'dark' ? 'bedtime' : 'wb_sunny'"
+            @click="$store.switchTheme"
+          ></ui-icon-button>-->
           <ui-menu-anchor>
             <ui-icon-button icon="language" @click="$balmUI.onShow('showTranslations')"></ui-icon-button>
             <ui-menu v-model="showTranslations" @selected="$store.setLang">

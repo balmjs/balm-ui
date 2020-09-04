@@ -121,6 +121,7 @@ var MDCSelect = /** @class */ (function (_super) {
                 // select's value. This can happen e.g. if the user goes back or (in
                 // some browsers) refreshes the page.
                 this.foundation.setValue(this.hiddenInput.value, /** skipNotify */ true);
+                this.foundation.layout();
                 return;
             }
             this.hiddenInput.value = this.value;

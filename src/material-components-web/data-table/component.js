@@ -206,7 +206,10 @@ var MDCDataTable = /** @class */ (function (_super) {
                 return _this.rowCheckboxList[rowIndex].checked;
             },
             isHeaderRowCheckboxChecked: function () { return _this.headerRowCheckbox.checked; },
-            isRowsSelectable: function () { return !!_this.root.querySelector(selectors.ROW_CHECKBOX); },
+            isRowsSelectable: function () {
+                return !!_this.root.querySelector(selectors.ROW_CHECKBOX) ||
+                    !!_this.root.querySelector(selectors.HEADER_ROW_CHECKBOX);
+            },
             notifyRowSelectionChanged: function (data) {
                 _this.emit(events.ROW_SELECTION_CHANGED, {
                     row: _this.getRowByIndex(data.rowIndex),

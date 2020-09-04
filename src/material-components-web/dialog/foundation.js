@@ -35,6 +35,7 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
         _this.scrimClickAction_ = strings.CLOSE_ACTION;
         _this.autoStackButtons_ = true;
         _this.areButtonsStacked_ = false;
+        _this.suppressDefaultPressSelector = strings.SUPPRESS_DEFAULT_PRESS_SELECTOR;
         return _this;
     }
     Object.defineProperty(MDCDialogFoundation, "cssClasses", {
@@ -161,6 +162,12 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
     MDCDialogFoundation.prototype.setAutoStackButtons = function (autoStack) {
         this.autoStackButtons_ = autoStack;
     };
+    MDCDialogFoundation.prototype.getSuppressDefaultPressSelector = function () {
+        return this.suppressDefaultPressSelector;
+    };
+    MDCDialogFoundation.prototype.setSuppressDefaultPressSelector = function (selector) {
+        this.suppressDefaultPressSelector = selector;
+    };
     MDCDialogFoundation.prototype.layout = function () {
         var _this = this;
         if (this.layoutFrame_) {
@@ -197,7 +204,21 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
             // since space/enter keydowns on buttons trigger click events.
             return;
         }
-        var isDefault = !this.adapter.eventTargetMatches(evt.target, strings.SUPPRESS_DEFAULT_PRESS_SELECTOR);
+        // `composedPath` is used here, when available, to account for use cases
+        // where a target meant to suppress the default press behaviour
+        // may exist in a shadow root.
+        // For example, a textarea inside a web component:
+        // <mwc-dialog>
+        //   <horizontal-layout>
+        //     #shadow-root (open)
+        //       <mwc-textarea>
+        //         #shadow-root (open)
+        //           <textarea></textarea>
+        //       </mwc-textarea>
+        //   </horizontal-layout>
+        // </mwc-dialog>
+        var target = evt.composedPath ? evt.composedPath()[0] : evt.target;
+        var isDefault = !this.adapter.eventTargetMatches(target, this.suppressDefaultPressSelector);
         if (isEnter && isDefault) {
             this.adapter.clickDefaultButton();
         }

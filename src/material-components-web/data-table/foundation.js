@@ -256,13 +256,13 @@ var MDCDataTableFoundation = /** @class */ (function (_super) {
      * Updates header row checkbox state based on number of rows selected.
      */
     MDCDataTableFoundation.prototype.setHeaderRowCheckboxState = function () {
-        if (this.adapter.getSelectedRowCount() === this.adapter.getRowCount()) {
-            this.adapter.setHeaderRowCheckboxChecked(true);
+        if (this.adapter.getSelectedRowCount() === 0) {
+            this.adapter.setHeaderRowCheckboxChecked(false);
             this.adapter.setHeaderRowCheckboxIndeterminate(false);
         }
-        else if (this.adapter.getSelectedRowCount() === 0) {
+        else if (this.adapter.getSelectedRowCount() === this.adapter.getRowCount()) {
+            this.adapter.setHeaderRowCheckboxChecked(true);
             this.adapter.setHeaderRowCheckboxIndeterminate(false);
-            this.adapter.setHeaderRowCheckboxChecked(false);
         }
         else {
             this.adapter.setHeaderRowCheckboxIndeterminate(true);

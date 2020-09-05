@@ -1,5 +1,5 @@
 <template>
-  <ui-page type="directive" name="ripple" demo-count="3" without-css>
+  <docs-page type="directive" name="ripple" demo-count="3" without-css>
     <template #hero>
       <div v-ripple></div>
     </template>
@@ -64,7 +64,7 @@
       </div>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

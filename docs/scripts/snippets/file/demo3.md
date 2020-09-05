@@ -80,7 +80,7 @@ export default {
 };
 ```
 
-```css
+```scss
 /* extends demo2 */
 .preview-list {
   & > .item {

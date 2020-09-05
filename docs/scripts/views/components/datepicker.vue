@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="datepicker" demo-count="5" withoutCss>
+  <docs-page name="datepicker" demo-count="5" withoutCss>
     <template #hero>
       <ui-datepicker v-model="date" placeholder="Select Date.."></ui-datepicker>
     </template>
@@ -65,7 +65,7 @@
       </div>
       <ui-snippet :code="$store.demos[5]"></ui-snippet>
     </section>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

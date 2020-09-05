@@ -16,6 +16,7 @@ import feedbackRoutes from './feedback';
 import miscRoutes from './misc';
 // Pages
 import Home from '@/views/home';
+import Donate from '@/views/donate';
 const Utils = () => import('@/views/utils');
 const NotFound = () => import('@/views/not-found');
 import testRoutes from './test';
@@ -28,6 +29,11 @@ const baseRoutes = [
     path: '/',
     name: 'home',
     component: Home
+  },
+  {
+    path: '/donate',
+    name: 'donate',
+    component: Donate
   },
   {
     path: '/guide',

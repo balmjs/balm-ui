@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="skeleton" demo-count="3">
+  <docs-page name="skeleton" demo-count="3">
     <template #hero>
       <h1 :class="$tt('headline1')">Skeleton</h1>
     </template>
@@ -38,7 +38,7 @@
       </div>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

@@ -1,32 +1,24 @@
 <template>
-  <div
-    role="progressbar"
+  <linear-progress
     :class="className"
     :aria-label="label"
     aria-valuemin="0"
     aria-valuemax="1"
     :data-buffer="!!buffer"
-  >
-    <div class="mdc-linear-progress__buffer">
-      <div class="mdc-linear-progress__buffer-bar"></div>
-      <div class="mdc-linear-progress__buffer-dots"></div>
-    </div>
-    <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
-      <span class="mdc-linear-progress__bar-inner"></span>
-    </div>
-    <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
-      <span class="mdc-linear-progress__bar-inner"></span>
-    </div>
-  </div>
+  ></linear-progress>
 </template>
 
 <script>
 import { MDCLinearProgress } from '../../../material-components-web/linear-progress';
+import LinearProgress from './linear-progress';
 import progressMixin from '../../mixins/progress';
 import { UI_PROGRESS } from './constants';
 
 export default {
   name: 'UiProgress',
+  components: {
+    LinearProgress
+  },
   mixins: [progressMixin],
   props: {
     // States
@@ -48,7 +40,6 @@ export default {
   computed: {
     className() {
       return {
-        'mdc-linear-progress': true,
         'mdc-linear-progress--indeterminate': this.active,
         'mdc-linear-progress--reversed': this.reversed,
         'mdc-linear-progress--closed': this.closed

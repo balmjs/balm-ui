@@ -4,9 +4,11 @@ const AlertDialog = () => import('@/views/plugins/alert-dialog');
 const ConfirmDialog = () => import('@/views/plugins/confirm-dialog');
 const Snackbar = () => import('@/views/components/snackbar');
 const Toast = () => import('@/views/plugins/toast');
+const Banner = () => import('@/views/components/banner');
 const Progress = () => import('@/views/components/progress');
 const Spinner = () => import('@/views/components/spinner');
 const Skeleton = () => import('@/views/components/skeleton');
+const Tooltip = () => import('@/views/components/tooltip');
 
 export default [
   {
@@ -40,6 +42,11 @@ export default [
     component: Toast
   },
   {
+    path: 'banner',
+    name: 'feedback.banner',
+    component: Banner
+  },
+  {
     path: 'progress',
     name: 'feedback.progress',
     component: Progress
@@ -53,5 +60,10 @@ export default [
     path: 'skeleton',
     name: 'feedback.skeleton',
     component: Skeleton
+  },
+  {
+    path: 'tooltip',
+    name: 'feedback.tooltip',
+    component: Tooltip
   }
 ];

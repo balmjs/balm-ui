@@ -37,7 +37,7 @@
   text-transform: uppercase;
 
   &.ql-emoji-tab--active {
-    border-bottom: 2px solid theme-variables.$primary;
+    border-bottom: 2px solid theme-variables.prop-value(primary);
   }
 }
 

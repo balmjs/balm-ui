@@ -6,24 +6,24 @@ const Divider = () => import('@/views/components/divider');
 export default [
   {
     path: 'top-app-bar',
-    name: 'layouts.top-app-bar',
+    name: 'layout.top-app-bar',
     component: TopAppBar,
     meta: { noLayout: true }
   },
   {
     path: 'grid',
-    name: 'layouts.grid',
+    name: 'layout.grid',
     component: Grid,
     meta: { noLayout: true }
   },
   {
     path: 'form',
-    name: 'layouts.form',
+    name: 'layout.form',
     component: Form
   },
   {
     path: 'divider',
-    name: 'misc.divider',
+    name: 'layout.divider',
     component: Divider
   }
 ];

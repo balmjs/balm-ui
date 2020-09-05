@@ -1,28 +1,28 @@
-@use './variables' as ui-collapse-variables;
+@use './variables' as collapse-variables;
 
 .mdc-collapse {
   display: flex;
   flex-direction: column;
-  margin-bottom: ui-collapse-variables.$collapse-margin-bottom;
+  margin-bottom: collapse-variables.$collapse-margin-bottom;
 }
 
 .mdc-collapse__header {
   display: flex;
   align-items: center;
   align-self: flex-start;
-  margin-bottom: ui-collapse-variables.$header-margin-bottom;
+  margin-bottom: collapse-variables.$header-margin-bottom;
 }
 
 .mdc-collapse__icon {
-  margin-right: ui-collapse-variables.$icon-margin-right;
+  margin-right: collapse-variables.$icon-margin-right;
 }
 
 .mdc-collapse__title {
-  padding: ui-collapse-variables.$title-padding;
+  padding: collapse-variables.$title-padding;
 }
 
 .mdc-collapse__content {
-  padding: ui-collapse-variables.$content-padding;
+  padding: collapse-variables.$content-padding;
 }
 
 .mdc-collapse--with-icon {
@@ -31,7 +31,7 @@
   }
 
   .mdc-collapse__content {
-    padding-left: ui-collapse-variables.$icon-width +
-      ui-collapse-variables.$icon-margin-right;
+    padding-left: collapse-variables.$icon-width +
+      collapse-variables.$icon-margin-right;
   }
 }

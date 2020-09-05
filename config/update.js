@@ -3,19 +3,20 @@ const https = require('https');
 const { src, dest, task, series } = require('gulp');
 const $replace = require('gulp-replace');
 
-// updated: 2020.07.04
+// updated: 2020.08.26
 const LATEST_VERSIONS = {
-  filled: 53,
-  outlined: 22,
-  round: 22,
-  twoTone: 21,
-  sharp: 23
+  filled: 55,
+  outlined: 25,
+  round: 24,
+  twoTone: 23,
+  sharp: 25
 };
 
 // Update Material Components Web for BalmUI
 const mdcDir = './src/material-components-web/';
 const level0 = ['material-components-web.scss'];
 const level1 = [
+  'banner',
   'button',
   'card',
   'checkbox',
@@ -49,6 +50,7 @@ const level1 = [
   'tab-scroller',
   'textfield',
   'theme',
+  'tooltip',
   'top-app-bar',
   'touch-target',
   'typography'
@@ -56,6 +58,7 @@ const level1 = [
 const level2 = [
   'chips/chip',
   'chips/chip-set',
+  'chips/trailingaction',
   'drawer/dismissible',
   'drawer/modal',
   'select/helper-text',
@@ -182,13 +185,14 @@ function updateMDITask(cb) {
     .on('error', (e) => {
       console.error(e);
     });
+
   cb();
 }
 
 task('update:mdi', updateMDITask);
 
 // Set Material Icons Category
-// const MDI_JSON = 'https://fonts.google.com/metadata/icons';
+// const MDI_JSON = 'https://fonts.google.com/metadata/icons'; // NOTE: manual download `json.txt`
 const sourceData = './docs/data/txt.json';
 const targetData = './docs/data/icons.json';
 

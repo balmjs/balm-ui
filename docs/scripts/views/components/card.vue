@@ -1,5 +1,5 @@
 <template>
-  <ui-page
+  <docs-page
     name="card"
     :apis="[
       'ui-card',
@@ -138,7 +138,7 @@
       </div>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

@@ -26,8 +26,8 @@
 
 .mdc-form--horizontal {
   .mdc-form-field > label {
-    flex: 0 0 form-variables.$form-item-label-width;
-    margin-right: form-variables.$form-item-label-margin-right;
+    flex: 0 0 form-variables.$horizontal-form-item-label-width;
+    margin-right: form-variables.$horizontal-form-item-label-margin-right;
   }
 
   &.mdc-form--label-top-aligned {
@@ -42,9 +42,16 @@
     }
   }
 
-  .mdc-form-action {
-    padding-left: form-variables.$form-item-label-width +
-      form-variables.$form-item-label-margin-right;
+  .mdc-form__actions {
+    padding-left: form-variables.$horizontal-form-item-label-width +
+      form-variables.$horizontal-form-item-label-margin-right;
+
+    .mdc-button {
+      margin-right: 8px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
   }
 
   .mdc-checkbox,
@@ -61,7 +68,7 @@
     align-items: stretch;
 
     & > label {
-      margin-bottom: form-variables.$form-item-label-margin-bottom;
+      margin-bottom: form-variables.$vertical-form-item-label-margin-bottom;
     }
   }
 }

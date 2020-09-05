@@ -1,17 +1,17 @@
-@use './variables' as ui-card-variables;
+@use './variables' as card-variables;
 
 .mdc-card__text {
-  padding-left: ui-card-variables.$text-wrapper-padding;
-  padding-right: ui-card-variables.$text-wrapper-padding;
+  padding-left: card-variables.$text-wrapper-padding;
+  padding-right: card-variables.$text-wrapper-padding;
   &:first-child,
   & + & {
-    padding-top: ui-card-variables.$text-wrapper-padding;
+    padding-top: card-variables.$text-wrapper-padding;
   }
   &:last-child {
-    padding-bottom: ui-card-variables.$text-wrapper-padding;
+    padding-bottom: card-variables.$text-wrapper-padding;
   }
 }
 
 .mdc-card__media + .mdc-card__text {
-  padding-top: ui-card-variables.$text-wrapper-padding;
+  padding-top: card-variables.$text-wrapper-padding;
 }

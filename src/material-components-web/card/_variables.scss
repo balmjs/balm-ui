@@ -20,17 +20,17 @@
 // THE SOFTWARE.
 //
 
-@use "sass:color";
-@use "../theme/mixins";
-@use "../theme/variables";
+@use 'sass:color';
+@use '../theme/theme';
+@use '../theme/theme-color';
 
 $action-icon-color: rgba(
-  variables.prop-value(on-surface),
-  variables.text-emphasis(medium)
+  theme-color.prop-value(on-surface),
+  theme-color.text-emphasis(medium)
 ) !default;
 $outline-color: color.mix(
-  variables.prop-value(on-surface),
-  variables.prop-value(surface),
+  theme-color.prop-value(on-surface),
+  theme-color.prop-value(surface),
   12%
 ) !default;
 $outline-width: 1px !default;

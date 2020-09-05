@@ -22,7 +22,7 @@
 </div>
 ```
 
-```css
+```scss
 /* SASS code */
 .demo-color-combo {
   width: 250px;

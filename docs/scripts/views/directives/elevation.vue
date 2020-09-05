@@ -1,5 +1,5 @@
 <template>
-  <ui-page type="directive" name="elevation" demo-count="2">
+  <docs-page type="directive" name="elevation" demo-count="2">
     <template #hero>
       <div class="hero-demos">
         <figure v-shadow="0" class="demo-surface">
@@ -35,7 +35,7 @@
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

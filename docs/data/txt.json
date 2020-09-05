@@ -78,7 +78,7 @@
     },
     {
       "name": "6_ft_apart",
-      "version": 1,
+      "version": 2,
       "unsupported_families": [],
       "categories": ["social"],
       "tags": [],
@@ -259,7 +259,7 @@
     },
     {
       "name": "account_circle",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": [
@@ -317,7 +317,7 @@
     },
     {
       "name": "add",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["content"],
       "tags": ["+", "add", "create", "new", "plus"],
@@ -527,6 +527,14 @@
         "plus",
         "shopping"
       ],
+      "sizes_px": [24]
+    },
+    {
+      "name": "add_task",
+      "version": 1,
+      "unsupported_families": [],
+      "categories": ["action"],
+      "tags": [],
       "sizes_px": [24]
     },
     {
@@ -1005,6 +1013,54 @@
       "sizes_px": [24]
     },
     {
+      "name": "align_horizontal_center",
+      "version": 1,
+      "unsupported_families": [],
+      "categories": ["editor"],
+      "tags": [],
+      "sizes_px": [24]
+    },
+    {
+      "name": "align_horizontal_left",
+      "version": 1,
+      "unsupported_families": [],
+      "categories": ["editor"],
+      "tags": [],
+      "sizes_px": [24]
+    },
+    {
+      "name": "align_horizontal_right",
+      "version": 1,
+      "unsupported_families": [],
+      "categories": ["editor"],
+      "tags": [],
+      "sizes_px": [24]
+    },
+    {
+      "name": "align_vertical_bottom",
+      "version": 1,
+      "unsupported_families": [],
+      "categories": ["editor"],
+      "tags": [],
+      "sizes_px": [24]
+    },
+    {
+      "name": "align_vertical_center",
+      "version": 1,
+      "unsupported_families": [],
+      "categories": ["editor"],
+      "tags": [],
+      "sizes_px": [24]
+    },
+    {
+      "name": "align_vertical_top",
+      "version": 1,
+      "unsupported_families": [],
+      "categories": ["editor"],
+      "tags": [],
+      "sizes_px": [24]
+    },
+    {
       "name": "all_inbox",
       "version": 5,
       "unsupported_families": [],
@@ -1114,7 +1170,7 @@
     },
     {
       "name": "announcement",
-      "version": 7,
+      "version": 8,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": [
@@ -1252,7 +1308,7 @@
     },
     {
       "name": "archive",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["content"],
       "tags": ["archive", "inbox", "mail", "store"],
@@ -1260,7 +1316,7 @@
     },
     {
       "name": "arrow_back",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["navigation"],
       "tags": [
@@ -1317,7 +1373,7 @@
     },
     {
       "name": "arrow_drop_down",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["navigation"],
       "tags": ["arrow", "arrows", "direction", "down", "drop"],
@@ -1512,7 +1568,7 @@
     },
     {
       "name": "assignment_turned_in",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": [
@@ -1609,7 +1665,7 @@
     },
     {
       "name": "attach_file",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["editor"],
       "tags": ["add", "attach", "clip", "file", "link", "mail", "media"],
@@ -1617,7 +1673,7 @@
     },
     {
       "name": "attach_money",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["editor"],
       "tags": [
@@ -1640,7 +1696,7 @@
     },
     {
       "name": "attachment",
-      "version": 5,
+      "version": 6,
       "unsupported_families": [],
       "categories": ["file"],
       "tags": [
@@ -2131,9 +2187,9 @@
     },
     {
       "name": "book_online",
-      "version": 1,
+      "version": 5,
       "unsupported_families": [],
-      "categories": ["social"],
+      "categories": ["action"],
       "tags": [],
       "sizes_px": [24]
     },
@@ -2641,7 +2697,7 @@
     },
     {
       "name": "business_center",
-      "version": 5,
+      "version": 6,
       "unsupported_families": [],
       "categories": ["places"],
       "tags": [
@@ -2742,7 +2798,7 @@
     },
     {
       "name": "call",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["communication"],
       "tags": ["Call", "device", "mobile", "phone", "talk"],
@@ -3245,7 +3301,7 @@
     },
     {
       "name": "check_box",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["toggle"],
       "tags": [
@@ -3268,7 +3324,7 @@
     },
     {
       "name": "check_box_outline_blank",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["toggle"],
       "tags": [
@@ -3316,7 +3372,7 @@
     },
     {
       "name": "chevron_left",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["navigation"],
       "tags": ["arrow", "arrows", "chevron", "direction", "left"],
@@ -3324,7 +3380,7 @@
     },
     {
       "name": "chevron_right",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["navigation"],
       "tags": ["arrow", "arrows", "chevron", "direction", "right"],
@@ -3394,7 +3450,7 @@
     },
     {
       "name": "clean_hands",
-      "version": 1,
+      "version": 2,
       "unsupported_families": [],
       "categories": ["social"],
       "tags": [],
@@ -3435,7 +3491,7 @@
     },
     {
       "name": "close",
-      "version": 7,
+      "version": 8,
       "unsupported_families": [],
       "categories": ["navigation"],
       "tags": ["cancel", "close", "exit", "stop", "x"],
@@ -3660,7 +3716,7 @@
     },
     {
       "name": "color_lens",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["image"],
       "tags": ["art", "color", "lens", "paint", "pallet"],
@@ -3836,6 +3892,14 @@
         "profile",
         "user"
       ],
+      "sizes_px": [24]
+    },
+    {
+      "name": "contact_page",
+      "version": 1,
+      "unsupported_families": [],
+      "categories": ["action"],
+      "tags": [],
       "sizes_px": [24]
     },
     {
@@ -4493,7 +4557,7 @@
     },
     {
       "name": "delete",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": ["bin", "can", "delete", "garbage", "remove", "trash"],
@@ -4631,7 +4695,7 @@
     },
     {
       "name": "details",
-      "version": 6,
+      "version": 9,
       "unsupported_families": [],
       "categories": ["image"],
       "tags": [
@@ -4744,7 +4808,7 @@
     },
     {
       "name": "devices",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["device"],
       "tags": [
@@ -5026,6 +5090,14 @@
       "sizes_px": [24]
     },
     {
+      "name": "disabled_by_default",
+      "version": 1,
+      "unsupported_families": [],
+      "categories": ["action"],
+      "tags": [],
+      "sizes_px": [24]
+    },
+    {
       "name": "disc_full",
       "version": 6,
       "unsupported_families": [],
@@ -5111,7 +5183,7 @@
     },
     {
       "name": "domain",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["social"],
       "tags": [
@@ -5169,7 +5241,7 @@
     },
     {
       "name": "done",
-      "version": 8,
+      "version": 9,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": ["check", "complete", "done", "finished", "mark"],
@@ -5217,7 +5289,7 @@
     },
     {
       "name": "drafts",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["content"],
       "tags": [
@@ -5242,7 +5314,7 @@
     },
     {
       "name": "drag_indicator",
-      "version": 5,
+      "version": 6,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": [
@@ -5883,7 +5955,7 @@
     },
     {
       "name": "event",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": [
@@ -5903,7 +5975,7 @@
     },
     {
       "name": "event_available",
-      "version": 7,
+      "version": 8,
       "unsupported_families": [],
       "categories": ["notification"],
       "tags": [
@@ -5920,7 +5992,7 @@
     },
     {
       "name": "event_busy",
-      "version": 8,
+      "version": 10,
       "unsupported_families": [],
       "categories": ["notification"],
       "tags": [
@@ -6246,6 +6318,14 @@
       "sizes_px": [24]
     },
     {
+      "name": "facebook",
+      "version": 1,
+      "unsupported_families": [],
+      "categories": ["social"],
+      "tags": [],
+      "sizes_px": [24]
+    },
+    {
       "name": "fact_check",
       "version": 8,
       "unsupported_families": [],
@@ -6263,7 +6343,7 @@
     },
     {
       "name": "fast_forward",
-      "version": 7,
+      "version": 9,
       "unsupported_families": [],
       "categories": ["av"],
       "tags": ["Fast", "control", "forward", "music", "speed", "time", "video"],
@@ -6409,7 +6489,7 @@
     },
     {
       "name": "fiber_manual_record",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["av"],
       "tags": ["Fiber", "circle", "dot", "manual", "play", "record", "watch"],
@@ -7890,7 +7970,7 @@
     },
     {
       "name": "forum",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["communication"],
       "tags": [
@@ -7906,7 +7986,7 @@
     },
     {
       "name": "forward",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["content"],
       "tags": [
@@ -8267,7 +8347,7 @@
     },
     {
       "name": "grade",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": [
@@ -8400,7 +8480,7 @@
     },
     {
       "name": "group",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["social"],
       "tags": [
@@ -8423,7 +8503,7 @@
     },
     {
       "name": "group_add",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["social"],
       "tags": [
@@ -8462,6 +8542,14 @@
         "together",
         "work"
       ],
+      "sizes_px": [24]
+    },
+    {
+      "name": "groups",
+      "version": 1,
+      "unsupported_families": [],
+      "categories": ["social"],
+      "tags": [],
       "sizes_px": [24]
     },
     {
@@ -8847,7 +8935,7 @@
     },
     {
       "name": "home",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": [
@@ -8890,6 +8978,14 @@
       "sizes_px": [24]
     },
     {
+      "name": "horizontal_distribute",
+      "version": 1,
+      "unsupported_families": [],
+      "categories": ["editor"],
+      "tags": [],
+      "sizes_px": [24]
+    },
+    {
       "name": "horizontal_rule",
       "version": 8,
       "unsupported_families": [],
@@ -8899,7 +8995,7 @@
     },
     {
       "name": "horizontal_split",
-      "version": 5,
+      "version": 6,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": ["bars", "horizontal", "split", "stacked"],
@@ -8975,7 +9071,7 @@
     },
     {
       "name": "hourglass_empty",
-      "version": 5,
+      "version": 6,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": [
@@ -8993,7 +9089,7 @@
     },
     {
       "name": "hourglass_full",
-      "version": 5,
+      "version": 6,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": [
@@ -9110,7 +9206,7 @@
     },
     {
       "name": "https",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": ["connection", "https", "key", "lock", "locked", "secure"],
@@ -9126,7 +9222,7 @@
     },
     {
       "name": "image",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["image"],
       "tags": [
@@ -9242,7 +9338,7 @@
     },
     {
       "name": "inbox",
-      "version": 5,
+      "version": 6,
       "unsupported_families": [],
       "categories": ["content"],
       "tags": ["archive", "email", "inbox", "incoming", "mail", "message"],
@@ -9250,7 +9346,7 @@
     },
     {
       "name": "indeterminate_check_box",
-      "version": 8,
+      "version": 9,
       "unsupported_families": [],
       "categories": ["toggle"],
       "tags": [
@@ -9273,7 +9369,7 @@
     },
     {
       "name": "info",
-      "version": 8,
+      "version": 9,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": ["alert", "announcement", "bubble", "i", "info", "information"],
@@ -9341,7 +9437,7 @@
     },
     {
       "name": "insert_drive_file",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["editor"],
       "tags": ["doc", "drive", "file", "format", "insert", "sheet", "slide"],
@@ -9526,7 +9622,7 @@
     },
     {
       "name": "keyboard_arrow_down",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["hardware"],
       "tags": ["arrow", "arrows", "down", "keyboard"],
@@ -9534,7 +9630,7 @@
     },
     {
       "name": "keyboard_arrow_left",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["hardware"],
       "tags": ["arrow", "arrows", "keyboard", "left"],
@@ -9542,7 +9638,7 @@
     },
     {
       "name": "keyboard_arrow_right",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["hardware"],
       "tags": ["arrow", "arrows", "keyboard", "right"],
@@ -9550,7 +9646,7 @@
     },
     {
       "name": "keyboard_arrow_up",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["hardware"],
       "tags": ["arrow", "arrows", "keyboard", "up"],
@@ -9609,7 +9705,7 @@
     },
     {
       "name": "keyboard_voice",
-      "version": 7,
+      "version": 8,
       "unsupported_families": [],
       "categories": ["hardware"],
       "tags": [
@@ -9671,7 +9767,7 @@
     },
     {
       "name": "label",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": ["indent", "label", "stamp", "sticker", "tag"],
@@ -9679,7 +9775,7 @@
     },
     {
       "name": "label_important",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": [
@@ -9909,14 +10005,6 @@
       "sizes_px": [24]
     },
     {
-      "name": "leave_bags_at_home",
-      "version": 1,
-      "unsupported_families": [],
-      "categories": ["social"],
-      "tags": [],
-      "sizes_px": [24]
-    },
-    {
       "name": "legend_toggle",
       "version": 3,
       "unsupported_families": [],
@@ -9999,7 +10087,7 @@
     },
     {
       "name": "link",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["content"],
       "tags": [
@@ -10399,7 +10487,7 @@
     },
     {
       "name": "local_offer",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["maps"],
       "tags": [
@@ -10834,8 +10922,16 @@
       "sizes_px": [24]
     },
     {
+      "name": "luggage",
+      "version": 2,
+      "unsupported_families": [],
+      "categories": ["social"],
+      "tags": [],
+      "sizes_px": [24]
+    },
+    {
       "name": "mail",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["content"],
       "tags": ["email", "envelop", "mail", "message", "send", "text"],
@@ -11496,7 +11592,7 @@
     },
     {
       "name": "more_vert",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["navigation"],
       "tags": [
@@ -11513,7 +11609,7 @@
     },
     {
       "name": "motion_photos_on",
-      "version": 10,
+      "version": 11,
       "unsupported_families": [],
       "categories": ["image"],
       "tags": [
@@ -11529,6 +11625,14 @@
         "slash",
         "video"
       ],
+      "sizes_px": [24]
+    },
+    {
+      "name": "motion_photos_pause",
+      "version": 1,
+      "unsupported_families": [],
+      "categories": ["image"],
+      "tags": [],
       "sizes_px": [24]
     },
     {
@@ -11896,7 +12000,7 @@
     },
     {
       "name": "next_plan",
-      "version": 5,
+      "version": 6,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": [],
@@ -11957,6 +12061,14 @@
       "sizes_px": [20, 24]
     },
     {
+      "name": "no_backpack",
+      "version": 1,
+      "unsupported_families": [],
+      "categories": ["places"],
+      "tags": [],
+      "sizes_px": [24]
+    },
+    {
       "name": "no_cell",
       "version": 3,
       "unsupported_families": [],
@@ -12005,6 +12117,14 @@
       "version": 3,
       "unsupported_families": [],
       "categories": ["places"],
+      "tags": [],
+      "sizes_px": [24]
+    },
+    {
+      "name": "no_luggage",
+      "version": 2,
+      "unsupported_families": [],
+      "categories": ["social"],
       "tags": [],
       "sizes_px": [24]
     },
@@ -12213,7 +12333,7 @@
     },
     {
       "name": "notifications",
-      "version": 5,
+      "version": 8,
       "unsupported_families": [],
       "categories": ["social"],
       "tags": [
@@ -12392,7 +12512,7 @@
     },
     {
       "name": "open_in_new",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": ["arrow", "box", "new", "open", "window"],
@@ -12404,6 +12524,14 @@
       "unsupported_families": [],
       "categories": ["action"],
       "tags": ["arrow", "arrows", "direction", "expand", "move", "open"],
+      "sizes_px": [24]
+    },
+    {
+      "name": "outbond",
+      "version": 1,
+      "unsupported_families": [],
+      "categories": ["action"],
+      "tags": [],
       "sizes_px": [24]
     },
     {
@@ -12688,7 +12816,7 @@
     },
     {
       "name": "pending",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": [],
@@ -12704,7 +12832,7 @@
     },
     {
       "name": "people",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["social"],
       "tags": [
@@ -12896,7 +13024,7 @@
     },
     {
       "name": "person",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["social"],
       "tags": [
@@ -12912,7 +13040,7 @@
     },
     {
       "name": "person_add",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["social"],
       "tags": [
@@ -14081,7 +14209,7 @@
     },
     {
       "name": "print",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": ["draft", "ink", "paper", "print", "printer", "send"],
@@ -14204,6 +14332,14 @@
       "sizes_px": [24]
     },
     {
+      "name": "published_with_changes",
+      "version": 1,
+      "unsupported_families": [],
+      "categories": ["action"],
+      "tags": [],
+      "sizes_px": [24]
+    },
+    {
       "name": "push_pin",
       "version": 8,
       "unsupported_families": [],
@@ -14218,6 +14354,14 @@
       "categories": ["communication"],
       "tags": [],
       "sizes_px": [20, 24]
+    },
+    {
+      "name": "qr_code_2",
+      "version": 1,
+      "unsupported_families": [],
+      "categories": ["communication"],
+      "tags": [],
+      "sizes_px": [24]
     },
     {
       "name": "qr_code_scanner",
@@ -14530,7 +14674,7 @@
     },
     {
       "name": "refresh",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["navigation"],
       "tags": [
@@ -14546,7 +14690,7 @@
     },
     {
       "name": "remove",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["content"],
       "tags": [
@@ -14651,7 +14795,7 @@
     },
     {
       "name": "reorder",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": ["format", "lines", "list", "order", "reorder", "stacked"],
@@ -14775,7 +14919,7 @@
     },
     {
       "name": "reply",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["content"],
       "tags": [
@@ -14792,7 +14936,7 @@
     },
     {
       "name": "reply_all",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["content"],
       "tags": [
@@ -14811,7 +14955,7 @@
     },
     {
       "name": "report",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["content"],
       "tags": [
@@ -14881,6 +15025,14 @@
         "triangle",
         "warning"
       ],
+      "sizes_px": [24]
+    },
+    {
+      "name": "request_page",
+      "version": 2,
+      "unsupported_families": [],
+      "categories": ["action"],
+      "tags": [],
       "sizes_px": [24]
     },
     {
@@ -15477,7 +15629,7 @@
     },
     {
       "name": "search",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": [
@@ -15563,7 +15715,7 @@
     },
     {
       "name": "send",
-      "version": 7,
+      "version": 8,
       "unsupported_families": [],
       "categories": ["content"],
       "tags": [
@@ -15729,7 +15881,7 @@
     },
     {
       "name": "settings",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": [
@@ -16152,7 +16304,7 @@
     },
     {
       "name": "shuffle",
-      "version": 7,
+      "version": 8,
       "unsupported_families": [],
       "categories": ["av"],
       "tags": [
@@ -16525,7 +16677,7 @@
     },
     {
       "name": "smartphone",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["hardware"],
       "tags": [
@@ -16755,7 +16907,7 @@
     },
     {
       "name": "speaker",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["hardware"],
       "tags": [
@@ -17260,6 +17412,14 @@
       "sizes_px": [20, 24]
     },
     {
+      "name": "stacked_line_chart",
+      "version": 1,
+      "unsupported_families": [],
+      "categories": ["editor"],
+      "tags": [],
+      "sizes_px": [24]
+    },
+    {
       "name": "stairs",
       "version": 3,
       "unsupported_families": [],
@@ -17269,7 +17429,7 @@
     },
     {
       "name": "star",
-      "version": 7,
+      "version": 8,
       "unsupported_families": [],
       "categories": ["toggle"],
       "tags": [
@@ -17288,7 +17448,7 @@
     },
     {
       "name": "star_border",
-      "version": 7,
+      "version": 8,
       "unsupported_families": [],
       "categories": ["toggle"],
       "tags": [
@@ -17309,7 +17469,7 @@
     },
     {
       "name": "star_half",
-      "version": 8,
+      "version": 9,
       "unsupported_families": [],
       "categories": ["toggle"],
       "tags": [
@@ -18241,7 +18401,7 @@
     },
     {
       "name": "tag_faces",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["image"],
       "tags": [
@@ -18521,7 +18681,7 @@
     },
     {
       "name": "thumb_down",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": [
@@ -18564,7 +18724,7 @@
     },
     {
       "name": "thumb_up",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": [
@@ -18780,7 +18940,7 @@
     },
     {
       "name": "today",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": [
@@ -19185,7 +19345,7 @@
     },
     {
       "name": "tv",
-      "version": 6,
+      "version": 7,
       "unsupported_families": [],
       "categories": ["hardware"],
       "tags": [
@@ -19324,6 +19484,14 @@
       "sizes_px": [24]
     },
     {
+      "name": "unpublished",
+      "version": 1,
+      "unsupported_families": [],
+      "categories": ["action"],
+      "tags": [],
+      "sizes_px": [24]
+    },
+    {
       "name": "unsubscribe",
       "version": 5,
       "unsupported_families": [],
@@ -19356,6 +19524,14 @@
         "time",
         "update"
       ],
+      "sizes_px": [24]
+    },
+    {
+      "name": "update_disabled",
+      "version": 1,
+      "unsupported_families": [],
+      "categories": ["action"],
+      "tags": [],
       "sizes_px": [24]
     },
     {
@@ -19479,8 +19655,16 @@
       "sizes_px": [24]
     },
     {
+      "name": "vertical_distribute",
+      "version": 1,
+      "unsupported_families": [],
+      "categories": ["editor"],
+      "tags": [],
+      "sizes_px": [24]
+    },
+    {
       "name": "vertical_split",
-      "version": 5,
+      "version": 6,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": ["format", "paragraph", "split", "text", "vertical", "website"],
@@ -20010,7 +20194,7 @@
     },
     {
       "name": "watch_later",
-      "version": 7,
+      "version": 8,
       "unsupported_families": [],
       "categories": ["action"],
       "tags": ["clock", "hour", "minute", "time", "watch"],

@@ -1,3 +1,4 @@
+import packageJson from '../../package.json';
 import autoInstall from './config/auto-install';
 import multiConfigure from './config/multi-configure';
 /**
@@ -21,7 +22,7 @@ import toast from './plugins/toast';
  */
 import vAnchor from './directives/anchor';
 
-const version = require('../../package.json').version;
+const version = packageJson.version;
 
 const components = {
   UiAlert,

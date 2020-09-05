@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="autocomplete" demo-count="2">
+  <docs-page name="autocomplete" demo-count="2">
     <template #hero>
       <ui-autocomplete
         v-model="keywords"
@@ -36,7 +36,7 @@
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

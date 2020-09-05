@@ -1,170 +1,113 @@
 @use '@material/shape/mixins' as shape-mixins;
-@use './variables' as ui-pagination-variables;
+@use './variables' as pagination-variables;
+@use './mixins' as pagination-mixins;
 
 .mdc-pagination {
-  display: flex;
-  flex-flow: wrap;
-  justify-content: center;
-  align-items: center;
+  .material-icons {
+    font-size: 18px;
+  }
+
+  .mdc-button {
+    min-width: 32px;
+    height: pagination-variables.$height;
+
+    &.mdc-pagination__button--ellipsis {
+      cursor: default;
+      color: currentColor;
+    }
+  }
+
+  .mdc-data-table__pagination-button:not(.mdc-pagination__button--ellipsis) {
+    background-color: pagination-variables.$fill-color;
+    color: pagination-variables.$text-color;
+    border: 1px solid pagination-variables.$border-color;
+
+    &:hover {
+      background-color: pagination-variables.$hover-fill-color;
+      color: pagination-variables.$hover-text-color;
+      border-color: pagination-variables.$hover-border-color;
+    }
+
+    &:disalbed {
+      cursor: not-allowed;
+    }
+
+    &.mdc-pagination__button--active {
+      background-color: pagination-variables.$active-fill-color;
+      color: pagination-variables.$active-text-color;
+      border-color: pagination-variables.$active-border-color;
+      cursor: default;
+
+      &:hover {
+        background-color: pagination-variables.$active-fill-color;
+        color: pagination-variables.$active-text-color;
+        border-color: pagination-variables.$active-border-color;
+      }
+    }
+  }
 
   &.mdc-pagination--left {
     justify-content: flex-start;
   }
+  &.mdc-pagination--center {
+    justify-content: center;
+  }
   &.mdc-pagination--right {
     justify-content: flex-end;
   }
-  &.mdc-pagination--between {
-    justify-content: space-between;
-    align-items: center;
-  }
-  &.mdc-pagination--mini {
-    display: block;
-    .mdc-pagination__pages {
-      display: flex;
 
-      justify-content: space-between;
-    }
-    a {
-      min-width: auto;
+  &.mdc-pagination--mini {
+    .mdc-data-table__pagination-trailing {
+      justify-content: center;
+      width: 100%;
       margin: 0;
     }
+
+    .mdc-data-table__pagination-navigation {
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .mdc-data-table__pagination-total {
+      margin: 0;
+    }
+
+    .mdc-data-table__pagination-prev-button {
+      order: -1;
+    }
   }
 }
 
-.mdc-pagination__pages {
-  display: flex;
-  flex-flow: wrap;
-  justify-content: center;
+.mdc-data-table__pagination-rows-per-page {
+  select {
+    @include pagination-mixins.paginationInput();
+  }
+}
+
+.mdc-data-table__pagination-jumper {
+  display: inline-flex;
   align-items: center;
-  margin: 0;
-}
+  margin-left: 22px;
 
-.mdc-pagination__previous,
-.mdc-pagination__next,
-.mdc-pagination__page-item,
-.mdc-pagination__page-item-ellipsis {
-  display: inline-block;
-  min-width: 32px;
-  height: ui-pagination-variables.$height;
-  line-height: 30px;
-  margin-right: 8px;
-  text-align: center;
-  vertical-align: middle;
-  outline: none;
-  user-select: none;
-  border: 1px solid ui-pagination-variables.$border-color;
-  background-color: ui-pagination-variables.$fill-color;
-  color: ui-pagination-variables.$text-color;
-}
-
-.mdc-pagination__previous,
-.mdc-pagination__next,
-.mdc-pagination__page-item {
-  & > i,
-  & > span,
-  & > a {
-    display: block;
-    margin: 0;
-    padding: 0 6px;
-    line-height: inherit;
-    font-size: inherit;
-    outline: none;
-    color: ui-pagination-variables.$text-color;
+  .mdc-data-table__pagination-jumper-label {
+    margin-right: 12px;
   }
-}
-
-.mdc-pagination__previous,
-.mdc-pagination__next,
-.mdc-pagination__page-item {
-  cursor: pointer;
-  transition: all 0.3s;
-  @include shape-mixins.radius(ui-pagination-variables.$corner-radius);
-
-  &:hover {
-    border-color: ui-pagination-variables.$hover-border-color;
-    background-color: ui-pagination-variables.$hover-fill-color;
-    color: ui-pagination-variables.$hover-text-color;
-    a {
-      color: ui-pagination-variables.$hover-text-color;
-    }
-  }
-}
-
-.mdc-pagination__page-item--active {
-  border-color: ui-pagination-variables.$active-border-color;
-  background-color: ui-pagination-variables.$active-fill-color;
-  cursor: default;
-
-  a {
-    color: ui-pagination-variables.$active-text-color;
-  }
-
-  &:hover {
-    border-color: ui-pagination-variables.$active-border-color;
-    background-color: ui-pagination-variables.$active-fill-color;
-    a {
-      color: ui-pagination-variables.$active-text-color;
-    }
-  }
-}
-
-.mdc-pagination__page-item--disabled {
-  cursor: not-allowed;
-  &:hover {
-    border: 1px solid ui-pagination-variables.$border-color;
-    color: ui-pagination-variables.$text-color;
-  }
-}
-
-.mdc-pagination__jumper {
-  display: inline-block;
 
   input {
-    width: 44px;
-    height: 24px;
-
-    transition: all 0.3s;
-    text-indent: 3px;
-
-    color: ui-pagination-variables.$text-color;
-    border: 1px solid #d9d9d9;
-    &:hover,
-    &:focus {
-      border-color: ui-pagination-variables.$hover-border-color;
-    }
-    &:focus {
-      outline: 0;
-      box-shadow: 0 0 0 2px rgba(16, 142, 233, 0.2);
-    }
+    @include pagination-mixins.paginationInput();
   }
 
   button {
-    line-height: 22px;
-
     height: 24px;
+    line-height: 22px;
     padding: 0;
-
-    color: ui-pagination-variables.$text-color;
+    color: pagination-variables.$text-color;
     border: 1px solid #d9d9d9;
-    &:hover {
-      color: ui-pagination-variables.$hover-text-color;
-      border-color: ui-pagination-variables.$hover-border-color;
-      background: none;
-    }
-  }
-}
 
-.mdc-pagination__record {
-  margin-right: 12px;
-  .mdc-select {
-    margin: 0 6px;
-  }
-  .mdc-select__anchor {
-    min-width: 100px;
-  }
-  .mdc-select__anchor,
-  .mdc-select__selected-text,
-  .mdc-list-item {
-    height: ui-pagination-variables.$height;
+    &:hover {
+      background: none;
+      color: pagination-variables.$hover-text-color;
+      border-color: pagination-variables.$hover-border-color;
+    }
   }
 }

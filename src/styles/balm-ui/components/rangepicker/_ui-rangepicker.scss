@@ -1,5 +1,5 @@
 @use '@material/textfield/variables' as textfield-variables;
-@use './variables' as ui-rangepicker-variables;
+@use './variables' as rangepicker-variables;
 
 .mdc-rangepicker {
   display: inline-flex;
@@ -10,5 +10,5 @@
   justify-content: center;
   align-items: center;
   height: textfield-variables.$height;
-  padding: ui-rangepicker-variables.$separator-padding;
+  padding: rangepicker-variables.$separator-padding;
 }

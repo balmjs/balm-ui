@@ -1,18 +1,18 @@
 @use '@material/elevation/mixins' as elevation-mixins;
-@use './variables' as ui-bottom-navigation-variables;
+@use './variables' as bottom-navigation-variables;
 
 .mdc-bottom-navigation--fixed-adjust,
 .mdc-bottom-navigation--stacked-fixed-adjust {
   position: absolute;
   top: 0;
   right: 0;
-  bottom: ui-bottom-navigation-variables.$height;
+  bottom: bottom-navigation-variables.$height;
   left: 0;
   overflow-x: hidden;
 }
 
 .mdc-bottom-navigation--stacked-fixed-adjust {
-  bottom: ui-bottom-navigation-variables.$stacked-height;
+  bottom: bottom-navigation-variables.$stacked-height;
 }
 
 .mdc-bottom-navigation {
@@ -21,21 +21,21 @@
   bottom: 0;
   left: 0;
   z-index: 4;
-  height: ui-bottom-navigation-variables.$height;
-  background-color: ui-bottom-navigation-variables.$fill-color;
+  height: bottom-navigation-variables.$height;
+  background-color: bottom-navigation-variables.$fill-color;
   @include elevation-mixins.elevation(4);
 
   &.mdc-bottom-navigation--stacked {
-    height: ui-bottom-navigation-variables.$stacked-height;
+    height: bottom-navigation-variables.$stacked-height;
   }
 
   .mdc-tab__content,
   .mdc-tab__text-label {
-    color: ui-bottom-navigation-variables.$color;
+    color: bottom-navigation-variables.$color;
   }
 
   .mdc-tab--active {
-    color: ui-bottom-navigation-variables.$active-fill-color;
+    color: bottom-navigation-variables.$active-fill-color;
   }
 
   .mdc-tab-scroller__scroll-content {
@@ -43,7 +43,7 @@
   }
 }
 
-@each $width in ui-bottom-navigation-variables.$destinations {
+@each $width in bottom-navigation-variables.$destinations {
   .mdc-bottom-navigation--dest-#{$width} {
     .mdc-tab {
       width: percentage($width/100);

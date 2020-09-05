@@ -7,10 +7,24 @@
         <slot>{{ message }}</slot>
       </div>
       <!-- Action (optional) -->
-      <div v-if="hasAction" class="mdc-snackbar__actions">
-        <button type="button" :class="actionButtonClassName">
-          <slot name="action">{{ canDismiss ? 'X' : actionButtonText }}</slot>
-        </button>
+      <div class="mdc-snackbar__actions">
+        <slot name="action" :actionClass="actionButtonClassName">
+          <button
+            v-if="canDismiss"
+            type="button"
+            :class="['mdc-icon-button', actionButtonClassName]"
+          >X</button>
+          <template v-else>
+            <button
+              v-if="actionButtonText"
+              type="button"
+              :class="['mdc-button', actionButtonClassName]"
+            >
+              <div class="mdc-button__ripple"></div>
+              <span class="mdc-button__label">{{ actionButtonText }}</span>
+            </button>
+          </template>
+        </slot>
       </div>
     </div>
   </div>
@@ -91,12 +105,7 @@ export default {
       return this.actionType === UI_SNACKBAR.ACTION_TYPE.DISMISS_ICON;
     },
     actionButtonClassName() {
-      return this.canDismiss
-        ? 'mdc-icon-button mdc-snackbar__dismiss'
-        : 'mdc-button mdc-snackbar__action';
-    },
-    hasAction() {
-      return this.actionButtonText || this.canDismiss;
+      return this.canDismiss ? 'mdc-snackbar__dismiss' : 'mdc-snackbar__action';
     }
   },
   watch: {
@@ -122,7 +131,7 @@ export default {
       this.$snackbar.labelText = this.message;
     }
 
-    this.$snackbar.listen('MDCSnackbar:closed', () => {
+    this.$snackbar.listen(`MDCSnackbar:${UI_SNACKBAR.EVENT.CLOSED}`, () => {
       this.$emit(UI_SNACKBAR.EVENT.CHANGE, false);
       this.$emit(UI_SNACKBAR.EVENT.CLOSED);
     });
@@ -136,7 +145,7 @@ export default {
         this.$snackbar.timeoutMs = val;
       } else {
         console.warn(
-          'The timeoutMs of the snackbar must be between `4000` and `10000`'
+          `The timeoutMs of the snackbar must be between ${UI_SNACKBAR.timeoutMs.MIN} and ${UI_SNACKBAR.timeoutMs.MAX}`
         );
       }
     }

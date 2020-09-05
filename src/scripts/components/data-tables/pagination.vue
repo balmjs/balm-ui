@@ -1,96 +1,128 @@
 <template>
-  <nav :class="className">
-    <slot
-      name="before"
-      :recordClass="UI_PAGINATION.cssClasses.record"
-      :pageCount="pageCount"
-      :currentMinRow="currentMinRow"
-      :currentMaxRow="currentMaxRow"
-    ></slot>
-    <ul v-if="total" class="mdc-pagination__pages">
-      <li
-        :class="[
-          'mdc-pagination__previous',
-          { 'mdc-pagination__page-item--disabled': currentPage === 1 }
-        ]"
-        :aria-disabled="currentPage === 1"
-        @click="currentPage === 1 ? null : handleClick(currentPage - 1)"
-      >
-        <slot name="prev">
-          <i v-if="materialIcon" :class="UI_GLOBAL.cssClasses.icon" v-text="currentPrev"></i>
-          <span v-else>{{ currentPrev }}</span>
-        </slot>
-      </li>
-      <template v-if="mini">
-        <slot :pageCount="pageCount" :currentMinRow="currentMinRow" :currentMaxRow="currentMaxRow"></slot>
-      </template>
-      <template v-else>
-        <template v-for="(pageNumber, index) in pageCount">
-          <li v-if="isShow(pageNumber)" :key="index" :class="getPageClassName(pageNumber)">
-            <a v-if="showPage(pageNumber)" @click="handleClick(pageNumber)">{{ pageNumber }}</a>
-            <span v-else class="ellipsis">...</span>
-          </li>
-        </template>
-      </template>
-      <li
-        :class="[
-          'mdc-pagination__next',
-          { 'mdc-pagination__page-item--disabled': currentPage === pageCount }
-        ]"
-        :aria-disabled="currentPage === pageCount"
-        @click="currentPage === pageCount ? null : handleClick(currentPage + 1)"
-      >
-        <slot name="next">
-          <i v-if="materialIcon" :class="UI_GLOBAL.cssClasses.icon" v-text="currentNext"></i>
-          <span v-else>{{ currentNext }}</span>
-        </slot>
-      </li>
-    </ul>
-    <slot
-      name="before-jumper"
-      :recordClass="UI_PAGINATION.cssClasses.record"
-      :pageCount="pageCount"
-      :currentMinRow="currentMinRow"
-      :currentMaxRow="currentMaxRow"
-    ></slot>
-    <!-- Jumper -->
-    <div v-if="!mini && showJumper" class="mdc-pagination__jumper">
-      <span>{{ jumperBeforeText }}</span>
-      <input
-        v-model="pager"
-        type="number"
-        min="1"
-        :max="pageCount"
-        @keydown.prevent.enter="handleClick($event.target.value)"
-      />
-      <span>{{ jumperAfterText }}</span>
-      <button
-        v-if="jumperButtonText"
-        type="button"
-        class="mdc-button"
-        @click="handleClick(pager)"
-        v-text="jumperButtonText"
-      ></button>
+  <div :class="className">
+    <div class="mdc-data-table__pagination-trailing">
+      <!-- Page size -->
+      <div v-if="!mini && Array.isArray(pageSize)" class="mdc-data-table__pagination-rows-per-page">
+        <div class="mdc-data-table__pagination-rows-per-page-label">{{ pageSizeBeforeText }}</div>
+        <div class="mdc-data-table__pagination-rows-per-page-select">
+          <select v-model="currentPageSize" @change="handleChange">
+            <template v-for="size in pageSize">
+              <option :key="`pageSize-${size}`">{{ size }}</option>
+            </template>
+          </select>
+        </div>
+        <span>{{ pageSizeAfterText }}</span>
+      </div>
+      <div class="mdc-data-table__pagination-navigation">
+        <!-- Total -->
+        <div
+          v-if="showTotal"
+          class="mdc-data-table__pagination-total"
+        >{{ currentMinRow }}‑{{ currentMaxRow }} of {{ total }}</div>
+        <!-- Navigation buttons -->
+        <button
+          v-if="!hasPageSpan"
+          class="mdc-button mdc-data-table__pagination-button mdc-data-table__pagination-first-button"
+          data-first-page="true"
+          :disabled="currentPage === 1"
+          @click="handleClick(1)"
+        >
+          <div class="mdc-button__ripple"></div>
+          <slot name="first">
+            <i class="material-icons">first_page</i>
+          </slot>
+        </button>
+        <button
+          class="mdc-button mdc-data-table__pagination-button mdc-data-table__pagination-prev-button"
+          data-prev-page="true"
+          :disabled="currentPage === 1"
+          @click="handleClick(currentPage - 1)"
+        >
+          <div class="mdc-button__ripple"></div>
+          <slot name="prev">
+            <i class="material-icons">chevron_left</i>
+          </slot>
+        </button>
+        <div v-if="!mini && hasPageSpan" class="mdc-data-table__pagination-page">
+          <template v-for="pageNumber in pageCount">
+            <template v-if="isShow(pageNumber)">
+              <button
+                v-if="showPage(pageNumber)"
+                :key="`page-${pageNumber}`"
+                :class="{
+                  'mdc-button': true,
+                  'mdc-data-table__pagination-button': true,
+                  'mdc-pagination__button--active': pageNumber === currentPage
+                }"
+                @click="handleClick(pageNumber)"
+              >
+                <div class="mdc-button__ripple"></div>
+                <span class="mdc-button__label">{{ pageNumber }}</span>
+              </button>
+              <button
+                v-else
+                :key="`page-${pageNumber}`"
+                class="mdc-button mdc-data-table__pagination-button mdc-pagination__button--ellipsis"
+              >
+                <span class="mdc-button__label">...</span>
+              </button>
+            </template>
+          </template>
+        </div>
+        <button
+          class="mdc-button mdc-data-table__pagination-button mdc-data-table__pagination-next-button"
+          data-next-page="true"
+          :disabled="currentPage === pageCount"
+          @click="handleClick(currentPage + 1)"
+        >
+          <div class="mdc-button__ripple"></div>
+          <slot name="next">
+            <i class="material-icons">chevron_right</i>
+          </slot>
+        </button>
+        <button
+          v-if="!hasPageSpan"
+          class="mdc-button mdc-data-table__pagination-button mdc-data-table__pagination-last-button"
+          data-last-page="true"
+          :disabled="currentPage === pageCount"
+          @click="handleClick(pageCount)"
+        >
+          <div class="mdc-button__ripple"></div>
+          <slot name="last">
+            <i class="material-icons">last_page</i>
+          </slot>
+        </button>
+      </div>
+      <!-- Jumper -->
+      <div v-if="!mini && showJumper" class="mdc-data-table__pagination-jumper">
+        <div class="mdc-data-table__pagination-jumper-label">{{ jumperBeforeText }}</div>
+        <div class="mdc-data-table__pagination-jumper-input">
+          <input
+            v-model="jumpPage"
+            type="number"
+            min="1"
+            :max="pageCount"
+            @keydown.prevent.enter="handleClick($event.target.value)"
+          />
+          <span>{{ jumperAfterText }}</span>
+          <button
+            v-if="jumperButtonText"
+            type="button"
+            class="mdc-button"
+            @click="handleClick(jumpPage)"
+            v-text="jumperButtonText"
+          ></button>
+        </div>
+      </div>
     </div>
-    <slot
-      name="after-jumper"
-      :recordClass="UI_PAGINATION.cssClasses.record"
-      :pageCount="pageCount"
-      :currentMinRow="currentMinRow"
-      :currentMaxRow="currentMaxRow"
-    ></slot>
-  </nav>
+  </div>
 </template>
 
 <script>
-import UI_GLOBAL from '../../config/constants';
-
 // Define pagination constants
 const UI_PAGINATION = {
-  POSITIONS: ['left', 'right'],
-  cssClasses: {
-    record: 'mdc-pagination__record'
-  },
+  POSITIONS: ['left', 'center', 'right'],
+  MIN_PAGE_SPAN: 3,
   EVENT: {
     CHANGE: 'change'
   }
@@ -108,38 +140,34 @@ export default {
       type: Number,
       default: 1
     },
-    pageSize: {
-      type: Number,
-      default: 10
-    },
     total: {
       type: Number,
       default: 0
     },
     // UI attributes
     pageSpan: {
-      type: Number,
-      default: 3
+      type: [Number, Boolean],
+      default: UI_PAGINATION.MIN_PAGE_SPAN
     },
-    prev: {
-      type: String,
-      default: ''
+    showTotal: {
+      type: Boolean,
+      default: false
     },
-    next: {
-      type: String,
-      default: ''
+    pageSize: {
+      type: [Number, Array],
+      default: 10
+    },
+    pageSizeText: {
+      type: [String, Array],
+      default: 'Rows per page'
     },
     showJumper: {
       type: Boolean,
       default: false
     },
-    jumperBeforeText: {
-      type: String,
+    jumperText: {
+      type: [String, Array],
       default: 'Goto'
-    },
-    jumperAfterText: {
-      type: String,
-      default: ''
     },
     jumperButtonText: {
       type: String,
@@ -156,42 +184,58 @@ export default {
   },
   data() {
     return {
-      UI_GLOBAL,
-      UI_PAGINATION,
       currentPage: this.page,
-      pager: this.page
+      currentPageSize: Array.isArray(this.pageSize)
+        ? this.pageSize[0]
+        : this.pageSize,
+      jumpPage: this.page
     };
   },
   computed: {
     className() {
-      let result = ['mdc-pagination'];
+      let result = [
+        'mdc-data-table__pagination',
+        'mdc-pagination',
+        { 'mdc-pagination--mini': this.mini }
+      ];
 
-      if (this.mini) {
-        result.push('mdc-pagination--mini');
-      } else if (UI_PAGINATION.POSITIONS.includes(this.position)) {
+      if (UI_PAGINATION.POSITIONS.includes(this.position)) {
         result.push(`mdc-pagination--${this.position}`);
       }
 
       return result;
     },
     pageCount() {
-      return Math.ceil(this.total / this.pageSize);
+      return Math.ceil(this.total / this.currentPageSize);
     },
     currentMinRow() {
-      return this.pageSize * (this.page - 1) + 1;
+      return this.currentPageSize * (this.currentPage - 1) + 1;
     },
     currentMaxRow() {
-      const max = this.pageSize * this.page;
+      const max = this.currentPageSize * this.currentPage;
       return max > this.total ? this.total : max;
     },
-    materialIcon() {
-      return !(this.prev && this.next);
+    hasPageSpan() {
+      return (
+        this.mini ||
+        (this.pageSpan && this.pageSpan >= UI_PAGINATION.MIN_PAGE_SPAN)
+      );
     },
-    currentPrev() {
-      return this.prev || 'keyboard_arrow_left';
+    pageSizeBeforeText() {
+      return Array.isArray(this.pageSizeText)
+        ? this.pageSizeText[0]
+        : this.pageSizeText;
     },
-    currentNext() {
-      return this.next || 'keyboard_arrow_right';
+    pageSizeAfterText() {
+      return Array.isArray(this.pageSizeText) ? this.pageSizeText[1] : '';
+    },
+    jumperBeforeText() {
+      return Array.isArray(this.jumperText)
+        ? this.jumperText[0]
+        : this.jumperText;
+    },
+    jumperAfterText() {
+      return Array.isArray(this.jumperText) ? this.jumperText[1] : '';
     }
   },
   watch: {
@@ -221,30 +265,33 @@ export default {
       let nonFirstOrLast = page !== 1 && page !== this.pageCount;
       return !(isExisted && nonFirstOrLast);
     },
-    getPageClassName(page) {
-      return [
-        this.showPage(page)
-          ? 'mdc-pagination__page-item'
-          : 'mdc-pagination__page-item-ellipsis',
-        { 'mdc-pagination__page-item--active': page === this.currentPage }
-      ];
+    getPage(page) {
+      switch (true) {
+        case page > this.pageCount:
+          page = this.pageCount;
+          break;
+        case page < 1:
+          page = 1;
+          break;
+      }
+      return page;
     },
     handleClick(page) {
       if (this.currentPage !== page) {
         if (isNaN(page)) {
-          this.pager = this.currentPage;
+          this.jumpPage = this.currentPage;
         } else {
-          switch (true) {
-            case page > this.pageCount:
-              page = this.pageCount;
-              break;
-            case page < 1:
-              page = 1;
-              break;
-          }
-          this.pager = page;
+          page = this.getPage(page);
+          this.jumpPage = page;
           this.$emit(UI_PAGINATION.EVENT.CHANGE, +page);
         }
+      }
+    },
+    handleChange() {
+      let page = this.getPage(this.currentPage);
+      if (this.currentPage !== page) {
+        this.jumpPage = page;
+        this.$emit(UI_PAGINATION.EVENT.CHANGE, +page);
       }
     }
   }

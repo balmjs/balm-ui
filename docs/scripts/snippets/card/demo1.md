@@ -52,7 +52,7 @@ export default {
 };
 ```
 
-```css
+```scss
 /* Sass code */
 .demo-card {
   width: 350px;

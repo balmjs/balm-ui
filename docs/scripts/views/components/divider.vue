@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="divider" demo-count="2">
+  <docs-page name="divider" demo-count="2">
     <template #hero>
       <div class="hero-demo">
         <ui-divider v-show="withText" :type="typeOption">With Text</ui-divider>
@@ -41,7 +41,7 @@
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

@@ -2,154 +2,184 @@
 
 > Next Generation Material UI for Vue.js
 
-## What is BalmUI?
+## Introduction
 
-Following the [Material Design](https://material.io/components/) UI components for the web specification, we developed the BalmUI library that contains a set of high quality components and demos for building rich, interactive user interfaces.
+[BalmUI](https://material.balmjs.com/) is a modular and customizable [Material Design](https://material.io/) UI library for Vue.js.
 
-## [Documentation & Demos](https://material.balmjs.com/)
+## Features
+
+- Enterprise-class UI designed for web applications
+- A set of high-quality Vue components/plugins/directives/utils out of the box
+- Powerful theme customization in every detail
+- Integrated a complete set of the latest Material Icons
+- All components and plugins is highly customizable, and can be used individually
+
+## Documentation & Demos
+
+Visit [material.balmjs.com](https://material.balmjs.com/).
 
 ## Quick Start
 
-### 0. Requirement
+### Requirements
 
-- [BalmJS](https://balm.js.org/)@2.8.0+(Recommended) or other toolchains
-- [Vue.js](https://vuejs.org/)@2.1.0+
+- Vue.js@2.1.0+
+- **[Balm CLI](https://github.com/balmjs/balm-cli)**(Recommended) or [Vue CLI](https://github.com/vuejs/vue-cli) or other toolchains
 
-### 1. Install
+### 1. For Balm CLI
+
+#### 1.0 Create a project
+
+```sh
+balm init vue my-project
+cd my-project
+```
+
+#### 1.1 Installing `balm-ui`
 
 ```sh
 yarn add balm-ui
-// OR
+# OR
 npm install --save balm-ui
 ```
 
-### 2. Config
+#### 1.2 Configuration
 
-- **`balm.config`** [**setup**](https://balm.js.org/docs/config/styles.html#styles-dartsass) for Dart Sass
+update `balm.config.js`
 
-```js
-module.exports = {
-  styles: {
-    extname: 'scss',
-    dartSass: true // !important
-  }
-  // Other Options...
-};
-```
+- get [Material Icons](https://material.balmjs.com/material-icons.zip) without downloading (or, download and extract to `/path/to/my-project/app/fonts`)
 
-- Download [Material Design Icons](https://material.balmjs.com/material-icons.zip) and extract to `/path/to/my-project/app/fonts`.
+  ```js
+  const api = (mix) => {
+    if (mix.env.isDev) {
+      mix.copy('node_modules/balm-ui/fonts/*', 'app/fonts');
+    }
+  };
+  ```
 
-### 3. Usage
+- edit `/path/to/config/balmrc.js` for using [Dart Sass](https://balm.js.org/docs/config/styles.html#styles-dartsass)
 
-#### Default Usage
+  ```js
+  module.exports = {
+    styles: {
+      extname: 'scss',
+      dartSass: true
+    }
+    // Other Options...
+  };
+  ```
 
-Edit `my-project/app/styles/global/_vendor.scss`
+#### 1.3 Usage
 
-```scss
-/* import BalmUI styles */
-@use 'balm-ui/dist/balm-ui.scss';
-```
+##### Default Usage
 
-Edit `my-project/app/scripts/main.js`
+- edit `my-project/app/styles/global/_vendor.scss`
 
-```js
-import Vue from 'vue';
-import BalmUI from 'balm-ui'; // Official Google Material Components
-import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // BalmJS Team Material Components
+  ```scss
+  /* import BalmUI styles */
+  @use 'balm-ui/dist/balm-ui';
+  ```
 
-Vue.use(BalmUI); // Mandatory
-Vue.use(BalmUIPlus); // Optional
-```
+- edit `my-project/app/scripts/main.js`
 
-#### Standalone Usage
+  ```js
+  import Vue from 'vue';
+  import BalmUI from 'balm-ui';
+  import BalmUIPlus from 'balm-ui/dist/balm-ui-plus';
 
-Edit `my-project/app/styles/global/_vendor.scss`
+  Vue.use(BalmUI);
+  Vue.use(BalmUIPlus); // Optional
+  ```
 
-```scss
-@use 'balm-ui/components/core.scss';
-@use 'balm-ui/components/button/button.scss';
-@use 'balm-ui/components/icon/icon.scss'; // Optional
-```
+##### Standalone Usage
 
-Edit `my-project/app/scripts/main.js`
+- edit `my-project/app/styles/global/_vendor.scss`
 
-```js
-import Vue from 'vue';
-import UiButton from 'balm-ui/components/button';
+  ```scss
+  @use 'balm-ui/components/core';
+  @use 'balm-ui/components/button/button';
+  @use 'balm-ui/components/icon/icon'; // Optional
+  ```
 
-Vue.use(UiButton);
+- edit `my-project/app/scripts/main.js`
+
+  ```js
+  import Vue from 'vue';
+  import UiButton from 'balm-ui/components/button';
+
+  Vue.use(UiButton);
+  ```
+
+```sh
+# For development
+npm run dev
+
+# For production
+npm run prod
 ```
 
 Enjoy 👻
 
-## Reusability & Composition
+### 2. For Vue CLI
 
-### Components
+#### 2.0 Create a project
 
-- Alert (:bulb:)
-- Autocomplete (:bulb:)
-- Badge (:bulb:)
-- Button
-- Card
-- Checkbox
-- Chips
-- Circular Progress
-- Collapse (:bulb:)
-- Data Table
-- Datepicker (:bulb:)
-- Dialog
-- Drawer
-- Editor (WYSIWYG) (:bulb:)
-- Floating Action Button
-- File (:bulb:)
-- Form (:bulb:) + Form Field
-- Icon (Material icons)
-- Icon Button
-- Image List
-- Layout Grid
-- Linear Progress
-- List
-- Menu
-- Pagination (:bulb:)
-- Radio
-- Rangepicker (:bulb:)
-- Select
-- Skeleton (:bulb:)
-- Slider
-- Snackbar
-- Switch
-- Tabs
-- Text Divider (:bulb:)
-- Text Field
-- Top App Bar
+```sh
+vue create my-project
+cd my-project
+```
 
-### Plugins
+#### 2.1 Installing `balm-ui`
 
-- Alert Dialog (:bulb:)
-- Confirm Dialog (:bulb:)
-- Event (:bulb:)
-- Grid
-- Theme
-- Toast (:bulb:)
-- Typography
-- Validator (:bulb:)
+```sh
+yarn add balm-ui
+# OR
+npm install --save balm-ui
+```
 
-### Directives
+#### 2.2 Usage
 
-- A11y
-- Anchor (:bulb:)
-- Badge (:bulb:)
-- Elevation
-- Ripple
-- Shape
+- edit `/path/to/main.js`
 
-### Utilities (:bulb:)
+  ```js
+  import Vue from 'vue';
+  import BalmUI from 'balm-ui';
+  import 'balm-ui/dist/balm-ui.css';
 
-- Helper Functions
-- IE Detection
-- Type Detections
+  Vue.use(BalmUI);
+  ```
 
-> :bulb:: Extra Idea for UI
+### 3. For `<script>`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello BalmUI</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/balm-ui/dist/balm-ui.css"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <ui-button @click="$alert(message)" icon="add">SayHi</ui-button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/balm-ui"></script>
+    <script src="https://cdn.jsdelivr.net/npm/balm-ui/dist/balm-ui-plus.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          message: 'Hello BalmUI'
+        }
+      });
+    </script>
+  </body>
+</html>
+```
 
 ## Contributing
 
@@ -169,7 +199,11 @@ We officially support the last two versions of every major browser. Specifically
 
 - [BalmJS](https://balm.js.org/)
 - [Vue.js](https://vuejs.org/)
-- [MDC Web](https://material.io/components/)
+- [MDC Web](https://github.com/material-components/material-components-web)
+
+## License
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fbalmjs%2Fbalm-ui.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fbalmjs%2Fbalm-ui?ref=badge_large)
 
 [balm-ui-image]: https://badge.fury.io/js/balm-ui.svg
 [balm-ui-url]: https://www.npmjs.com/package/balm-ui
@@ -177,7 +211,3 @@ We officially support the last two versions of every major browser. Specifically
 [mdc-web-url]: https://www.npmjs.com/package/material-components-web
 [fossa-image]: https://app.fossa.io/api/projects/git%2Bgithub.com%2Fbalmjs%2Fbalm-ui.svg?type=shield
 [fossa-url]: https://app.fossa.io/projects/git%2Bgithub.com%2Fbalmjs%2Fbalm-ui?ref=badge_shield
-
-## License
-
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fbalmjs%2Fbalm-ui.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fbalmjs%2Fbalm-ui?ref=badge_large)

@@ -142,19 +142,11 @@ var MDCList = /** @class */ (function (_super) {
     MDCList.prototype.initializeListType = function () {
         var _this = this;
         var checkboxListItems = this.root.querySelectorAll(strings.ARIA_ROLE_CHECKBOX_SELECTOR);
-        var singleSelectedListItem = this.root.querySelector("\n      ." + cssClasses.LIST_ITEM_ACTIVATED_CLASS + ",\n      ." + cssClasses.LIST_ITEM_SELECTED_CLASS + "\n    ");
         var radioSelectedListItem = this.root.querySelector(strings.ARIA_CHECKED_RADIO_SELECTOR);
         if (checkboxListItems.length) {
             var preselectedItems = this.root.querySelectorAll(strings.ARIA_CHECKED_CHECKBOX_SELECTOR);
             this.selectedIndex =
                 [].map.call(preselectedItems, function (listItem) { return _this.listElements.indexOf(listItem); });
-        }
-        else if (singleSelectedListItem) {
-            if (singleSelectedListItem.classList.contains(cssClasses.LIST_ITEM_ACTIVATED_CLASS)) {
-                this.foundation.setUseActivatedClass(true);
-            }
-            this.singleSelection = true;
-            this.selectedIndex = this.listElements.indexOf(singleSelectedListItem);
         }
         else if (radioSelectedListItem) {
             this.selectedIndex = this.listElements.indexOf(radioSelectedListItem);
@@ -222,7 +214,8 @@ var MDCList = /** @class */ (function (_super) {
                 return toggleEl.checked;
             },
             isFocusInsideList: function () {
-                return _this.root.contains(document.activeElement);
+                return _this.root !== document.activeElement &&
+                    _this.root.contains(document.activeElement);
             },
             isRootFocused: function () { return document.activeElement === _this.root; },
             listItemAtIndexHasClass: function (index, className) {

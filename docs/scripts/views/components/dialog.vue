@@ -1,5 +1,5 @@
 <template>
-  <ui-page
+  <docs-page
     name="dialog"
     demo-count="2"
     :apis="[
@@ -120,7 +120,7 @@
       </ui-dialog-content>
       <ui-dialog-actions></ui-dialog-actions>
     </ui-dialog>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

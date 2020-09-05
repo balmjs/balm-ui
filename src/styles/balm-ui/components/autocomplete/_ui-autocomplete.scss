@@ -1,5 +1,5 @@
 @use '@material/theme/variables' as theme-variables;
-@use './variables' as variables;
+@use './variables' as autocomplete-variables;
 
 .mdc-autocomplete {
   .mdc-text-field__ripple {
@@ -66,8 +66,8 @@
       font-weight: bold;
     }
     &.selected {
-      background-color: variables.$selected-bgcolor;
-      color: variables.$selected-color;
+      background-color: autocomplete-variables.$selected-bgcolor;
+      color: autocomplete-variables.$selected-color;
     }
   }
 }

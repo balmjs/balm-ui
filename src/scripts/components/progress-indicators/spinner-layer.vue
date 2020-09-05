@@ -8,7 +8,8 @@
           :cy="svg.cy"
           :r="svg.r"
           :stroke-dasharray="svg.stroke"
-          :stroke-dashoffset="dashoffset"
+          :stroke-dashoffset="gapStroke"
+          :stroke-width="svg.width"
         />
       </svg>
     </div>
@@ -20,7 +21,8 @@
           :cy="svg.cy"
           :r="svg.r"
           :stroke-dasharray="svg.stroke"
-          :stroke-dashoffset="dashoffset"
+          :stroke-dashoffset="gapStroke"
+          :stroke-width="gapWidth"
         />
       </svg>
     </div>
@@ -32,7 +34,8 @@
           :cy="svg.cy"
           :r="svg.r"
           :stroke-dasharray="svg.stroke"
-          :stroke-dashoffset="dashoffset"
+          :stroke-dashoffset="gapStroke"
+          :stroke-width="svg.width"
         />
       </svg>
     </div>
@@ -61,8 +64,11 @@ export default {
     };
   },
   computed: {
-    dashoffset() {
+    gapStroke() {
       return this.svg.stroke / 2;
+    },
+    gapWidth() {
+      return this.svg.width * 0.8;
     }
   }
 };

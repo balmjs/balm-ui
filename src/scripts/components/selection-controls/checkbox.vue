@@ -1,5 +1,5 @@
 <template>
-  <div :class="className">
+  <input-checkbox :class="className">
     <input
       :id="id"
       v-model="selectedValue"
@@ -12,22 +12,12 @@
       v-bind="attrs"
       @change="handleChange"
     />
-    <div class="mdc-checkbox__background">
-      <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-        <path
-          class="mdc-checkbox__checkmark-path"
-          fill="none"
-          d="M1.73,12.91 8.1,19.28 22.79,4.59"
-        />
-      </svg>
-      <div class="mdc-checkbox__mixedmark"></div>
-    </div>
-    <div class="mdc-checkbox__ripple"></div>
-  </div>
+  </input-checkbox>
 </template>
 
 <script>
 import { MDCCheckbox } from '../../../material-components-web/checkbox';
+import InputCheckbox from './input-checkbox';
 import elementMixin from '../../mixins/element';
 
 // Define checkbox constants
@@ -42,6 +32,9 @@ const UI_CHECKBOX = {
 
 export default {
   name: 'UiCheckbox',
+  components: {
+    InputCheckbox
+  },
   mixins: [elementMixin],
   model: {
     prop: 'model',
@@ -83,7 +76,6 @@ export default {
         this.$el && this.$el.classList.contains(UI_CHECKBOX.cssClasses.touch);
 
       return {
-        'mdc-checkbox': true,
         'mdc-checkbox--disabled': this.disabled,
         // Accessibility
         'mdc-checkbox--touch': isAccessible

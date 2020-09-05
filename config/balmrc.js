@@ -48,12 +48,12 @@ function getConfig(balm) {
       libraryTarget: useDocs ? 'var' : 'umd',
       loaders: [
         {
-          test: /\.vue$/,
-          loader: 'vue-loader'
-        },
-        {
           test: /\.md$/,
           loader: 'html-loader!markdown-loader'
+        },
+        {
+          test: /\.vue$/,
+          loader: 'vue-loader'
         }
       ],
       urlLoaderOptions: {

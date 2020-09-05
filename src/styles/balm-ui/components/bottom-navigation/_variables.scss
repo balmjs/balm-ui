@@ -3,6 +3,6 @@
 $destinations: 33, 25, 20; // percent
 $height: 48px !default;
 $stacked-height: 72px !default;
-$color: theme-variables.$primary !default;
+$color: theme-variables.prop-value(primary) !default;
 $fill-color: white !default;
-$active-fill-color: rgba($color, 0.7) !default;
+$active-fill-color: rgba($color, 0.87) !default;

@@ -1,18 +1,16 @@
 ```html
-<section class="example">
-  <div>
-    <h2>Unbounded</h2>
-    <ui-icon class="demo-surface" data-mdc-ripple-is-unbounded v-ripple.unbounded>
-      favorite
-    </ui-icon>
-  </div>
-  <div>
-    <h2>Unbounded - CSS Only</h2>
-    <ui-icon class="demo-surface" data-mdc-ripple-is-unbounded v-ripple:cssOnly.unbounded>
-      favorite
-    </ui-icon>
-  </div>
-</section>
+<ui-icon v-ripple.unbounded class="demo-surface" data-mdc-ripple-is-unbounded
+  >favorite</ui-icon
+>
+```
+
+```html
+<ui-icon
+  v-ripple:cssOnly.unbounded
+  class="demo-surface"
+  data-mdc-ripple-is-unbounded
+  >favorite</ui-icon
+>
 ```
 
 ```css

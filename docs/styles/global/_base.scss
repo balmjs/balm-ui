@@ -1,33 +1,33 @@
 @use './vars' as global-vars;
 
 h1 {
-  font-size: global-vars.$font-size-h1;
-  line-height: global-vars.$font-size-h1;
+  font-size: 38px;
+  line-height: 46px;
 }
 
 h2 {
-  font-size: global-vars.$font-size-h2;
-  line-height: global-vars.$font-size-h2;
+  font-size: 30px;
+  line-height: 38px;
 }
 
 h3 {
-  font-size: global-vars.$font-size-h3;
-  line-height: global-vars.$font-size-h3;
+  font-size: 24px;
+  line-height: 32px;
 }
 
 h4 {
-  font-size: global-vars.$font-size-h4;
-  line-height: global-vars.$font-size-h4;
+  font-size: 20px;
+  line-height: 28px;
 }
 
 h5 {
-  font-size: global-vars.$font-size-h5;
-  line-height: global-vars.$font-size-h5;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 h6 {
-  font-size: global-vars.$font-size-h6;
-  line-height: global-vars.$font-size-h6;
+  font-size: 14px;
+  line-height: 22px;
 }
 
 .octicon {
@@ -66,7 +66,7 @@ h6 {
 
   h1 {
     width: 100%;
-    font: italic 96px 'Times New Roman', Georgia, Arial, sans-serif;
+    font: italic 68px/76px 'Times New Roman', Georgia, Arial, sans-serif;
     text-align: center;
   }
 

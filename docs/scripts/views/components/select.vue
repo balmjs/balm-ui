@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="select" demo-count="4" :apis="['select', 'select-helper', 'select-icon']">
+  <docs-page name="select" demo-count="4" :apis="['select', 'select-helper', 'select-icon']">
     <template #hero>
       <div class="hero-demo">
         <div>
@@ -146,7 +146,7 @@
       </div>
       <ui-snippet :code="$store.demos[4]"></ui-snippet>
     </section>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

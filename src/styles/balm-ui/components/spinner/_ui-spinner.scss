@@ -1,4 +1,4 @@
-@use './variables' as ui-circular-progress-variables;
+@use './variables' as spinner-variables;
 
 .mdc-circular-progress__spinner-layer {
   display: flex;
@@ -8,10 +8,17 @@
   display: inline-flex;
 }
 
-@each $color in ui-circular-progress-variables.$fourColors {
-  .mdc-circular-progress__color-#{index(ui-circular-progress-variables.$fourColors, $color)} {
+@each $color in spinner-variables.$fourColors {
+  .mdc-circular-progress__color-#{index(spinner-variables.$fourColors, $color)} {
     .mdc-circular-progress__indeterminate-circle-graphic {
       stroke: $color;
     }
+  }
+}
+
+@each $size, $dia in spinner-variables.$sizing {
+  .mdc-circular-progress--#{$size} {
+    width: $dia;
+    height: $dia;
   }
 }

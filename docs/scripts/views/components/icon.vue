@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="icon" demo-count="2">
+  <docs-page name="icon" demo-count="2">
     <template #hero>
       <div class="hero-demos">
         <ui-icon :type="typeOption">add</ui-icon>
@@ -120,7 +120,7 @@
         </template>
       </ui-list-group>
     </template>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

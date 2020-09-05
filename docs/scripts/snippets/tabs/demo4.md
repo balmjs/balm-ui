@@ -17,7 +17,7 @@
 </ui-tab-bar>
 ```
 
-```css
+```scss
 /* Sass code */
 .demo-tab {
   flex: 0 1 auto;

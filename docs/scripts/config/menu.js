@@ -1,338 +1,282 @@
 const MATERIAL_COMPONENTS = [
   {
-    name: 'Guide',
+    name: 'guide',
     children: [
       {
-        name: 'Introduction',
-        url: 'intro'
+        name: 'intro'
       },
       {
-        name: 'Get Started',
-        url: 'quickstart'
+        name: 'quickstart'
       },
       {
-        name: 'Advanced',
-        url: 'advanced'
+        name: 'advanced'
       },
       {
-        name: 'Kill IE',
-        url: 'kill-ie'
+        name: 'kill-ie'
       }
     ]
   },
   '-',
   {
-    name: 'General',
+    name: 'general',
     children: [
       {
         icon: 'add_box',
-        name: 'Button',
-        description: 'Raised and flat buttons'
+        name: 'button'
       },
       {
         icon: 'add_circle_outline',
-        name: 'Floating action', // Floating action button
-        description: 'The primary action in an application',
-        url: 'fab'
+        name: 'fab'
       },
       {
         icon: 'add',
-        name: 'Icon button',
-        description: 'Icon buttons and toggles',
-        url: 'icon-button'
+        name: 'icon-button'
       }
     ]
   },
   '-',
   {
-    name: 'Layout',
+    name: 'layout',
     children: [
       {
         icon: 'web',
-        name: 'Top App Bar',
-        description:
-          'Container for application title, navigation icon, and action items',
-        url: 'top-app-bar'
+        name: 'top-app-bar'
       },
       {
         icon: 'grid_on',
-        name: 'Layout grid',
-        description: 'Grid and gutter support',
-        url: 'grid'
+        name: 'grid'
       },
       {
         icon: 'view_list',
-        name: 'Form',
-        description: 'Form + Form Field'
+        name: 'form'
       },
       {
         icon: 'horizontal_rule',
-        name: 'Divider',
-        description: 'Divider'
+        name: 'divider'
       }
     ]
   },
   '-',
   {
-    name: 'Navigation',
+    name: 'navigation',
     children: [
       {
         icon: 'vertical_split',
-        name: 'Drawer',
-        description: 'Navigation drawer',
-        url: 'drawer'
+        name: 'drawer'
       },
-      // {
-      //   icon: 'component',
-      //   name: 'Bottom Navigation',
-      //   description: 'Bottom Navigation',
-      //   url: 'bottom-navigation',
-      //   next: true
-      // },
       {
         icon: 'tab',
-        name: 'Tabs',
-        description: 'Tabs with support for icon and text labels'
+        name: 'tabs'
       },
       {
         icon: 'menu',
-        name: 'Menu',
-        description: 'Pop over menus'
+        name: 'menu'
       },
       {
         icon: 'pages',
-        name: 'Pagination',
-        description: 'Pagination'
+        name: 'pagination'
       }
+      // {
+      //   icon: 'video_label',
+      //   name: 'bottom-navigation',
+      //   next: true
+      // }
     ]
   },
   '-',
   {
-    name: 'Theme',
+    name: 'theme',
     children: [
       {
         icon: 'palette',
-        name: 'Color',
-        description: 'Using primary and accent colors'
+        name: 'color'
       },
       {
         icon: 'text_fields',
-        name: 'Typography',
-        description: 'Type hierarchy'
+        name: 'typography'
       },
       {
         icon: 'emoji_symbols',
-        name: 'Icons',
-        description: 'Material Icons'
+        name: 'icons'
       },
       {
         icon: 'category',
-        name: 'Shape',
-        description: 'Mixins for angled corners on unelevated components'
+        name: 'shape'
       }
     ]
   },
   '-',
   {
-    name: 'Data Input',
-    url: 'data-input',
+    name: 'data-input',
     children: [
       {
         icon: 'text_format',
-        name: 'Text Field',
-        description: 'Single and multiline text fields',
-        url: 'textfield'
+        name: 'textfield'
       },
       {
         icon: 'text_format',
-        name: 'Autocomplete',
-        description: 'Autocomplete',
+        name: 'autocomplete',
         plus: true
       },
       {
         icon: 'wysiwyg',
-        name: 'Editor',
-        description: 'a modern WYSIWYG editor',
+        name: 'editor',
         plus: true
       },
       {
         icon: 'menu',
-        name: 'Select',
-        description: 'Popover selection menus'
+        name: 'select'
       },
       {
         icon: 'check_box',
-        name: 'Checkbox',
-        description: 'Multi-selection controls'
+        name: 'checkbox'
       },
       {
         icon: 'radio_button_checked',
-        name: 'Radio', // Radio buttons
-        description: 'Single selection controls'
+        name: 'radio'
       },
       {
         icon: 'indeterminate_check_box',
-        name: 'Chips',
-        description: 'Chips for actions, selection, and input'
+        name: 'chips'
       },
       {
         icon: 'publish',
-        name: 'File',
-        description: 'File upload'
+        name: 'file'
       },
       {
         icon: 'today',
-        name: 'Datepicker',
-        description: 'Datepicker',
+        name: 'datepicker',
         plus: true
       },
       {
         icon: 'date_range',
-        name: 'Rangepicker',
-        description: 'Range datepicker',
+        name: 'rangepicker',
         plus: true
       },
+      // {
+      //   icon: 'watch_later',
+      //   name: 'timepicker',
+      //   next: true
+      // },
       {
         icon: 'toggle_off',
-        name: 'Switch',
-        description: 'On off switches'
+        name: 'switch'
       },
       {
         icon: 'linear_scale',
-        name: 'Slider',
-        description: 'Range controls'
+        name: 'slider'
       },
       {
         icon: 'api',
-        name: 'Validator',
-        description: 'Validator'
+        name: 'validator'
       }
     ]
   },
   '-',
   {
-    name: 'Data Display',
-    url: 'data-display',
+    name: 'data-display',
     children: [
       {
         icon: 'list',
-        name: 'List',
-        description: 'Item layouts in lists'
+        name: 'list'
       },
       {
         icon: 'view_comfy',
-        name: 'Image list',
-        description: 'Displays a collection of images in a repeated pattern',
-        url: 'image-list'
+        name: 'image-list'
       },
       {
         icon: 'category',
-        name: 'Card',
-        description: 'Various card layout styles'
+        name: 'card'
       },
       {
-        icon: 'table_chart',
-        name: 'Data Table',
-        description: 'Data tables display sets of data',
-        url: 'table'
+        icon: 'table_view',
+        name: 'table'
       },
       {
         icon: 'swap_vert',
-        name: 'Collapse',
-        description: 'Collapse',
+        name: 'collapse',
         plus: true
       },
       {
         icon: 'category',
-        name: 'Badge',
-        description: 'Badge'
+        name: 'badge'
       }
     ]
   },
   '-',
   {
-    name: 'Feedback',
+    name: 'feedback',
     children: [
       {
         icon: 'feedback',
-        name: 'Alert',
-        description: 'Alert',
+        name: 'alert',
         plus: true
       },
       {
         icon: 'event_note',
-        name: 'Dialog',
-        description: 'Secondary text'
+        name: 'dialog'
       },
       {
         icon: 'event_note',
-        name: 'Alert Dialog',
-        description: 'window.alert',
-        url: 'alert-dialog',
+        name: 'alert-dialog',
         plus: true
       },
       {
         icon: 'event_note',
-        name: 'Confirm Dialog',
-        description: 'window.confirm',
-        url: 'confirm-dialog',
+        name: 'confirm-dialog',
         plus: true
       },
       {
         icon: 'call_to_action',
-        name: 'Snackbar',
-        description: 'Transient messages'
+        name: 'snackbar'
       },
       {
         icon: 'call_to_action',
-        name: 'Toast',
-        description: 'Toast',
+        name: 'toast',
         plus: true
       },
       {
-        icon: 'trip_origin',
-        name: 'Linear Progress',
-        description: 'Fills from 0% to 100%, represented by bars',
-        url: 'progress'
+        icon: 'notifications',
+        name: 'banner'
       },
       {
         icon: 'trip_origin',
-        name: 'Circular Progress',
-        description: '',
-        url: 'spinner'
+        name: 'progress'
+      },
+      {
+        icon: 'trip_origin',
+        name: 'spinner'
       },
       {
         icon: 'notes',
-        name: 'Skeleton',
-        description:
-          "Provide a placeholder while you wait for content to load, or to visualise content that doesn't exist yet.",
+        name: 'skeleton',
         plus: true
+      },
+      {
+        icon: 'feedback',
+        name: 'tooltip'
       }
     ]
   },
   '-',
   {
-    name: 'Misc',
+    name: 'misc',
     children: [
       {
         icon: 'api',
-        name: 'Event',
-        description: 'Global event handler'
+        name: 'event'
       },
       {
         icon: 'texture',
-        name: 'Ripple',
-        description: 'Touch ripple'
+        name: 'ripple'
       },
       {
         icon: 'layers',
-        name: 'Elevation',
-        description: 'Shadow for different elevations'
+        name: 'elevation'
       },
       {
         icon: 'anchor',
-        name: 'Anchor',
-        description: 'Anchor',
+        name: 'anchor',
         plus: true
       }
     ]
@@ -340,8 +284,8 @@ const MATERIAL_COMPONENTS = [
   '-',
   {
     icon: 'widgets',
-    name: 'Utils',
-    description: 'Utils'
+    name: 'utils',
+    link: true
   }
 ];
 
@@ -350,31 +294,24 @@ for (let component of MATERIAL_COMPONENTS) {
   if (component === '-') {
     menu.push('-');
   } else {
-    let baseUrl = '/' + (component.url || component.name.toLowerCase());
-
     menu.push({
       icon: component.icon,
       name: component.name,
-      description: component.description || false,
-      url: component.icon ? baseUrl : false,
-      plus: component.plus || false
+      url: component.link ? component.name : false
     });
 
     if (component.children) {
       for (let subComponent of component.children) {
         let url =
-          subComponent.name === 'Icons'
-            ? '/' + (subComponent.url || subComponent.name.toLowerCase())
-            : baseUrl +
-              '/' +
-              (subComponent.url || subComponent.name.toLowerCase());
+          subComponent.name === 'icons'
+            ? subComponent.name
+            : `${component.name}.${subComponent.name}`;
 
         menu.push({
+          isSubmenu: true,
           icon: subComponent.icon,
           name: subComponent.name,
-          description: subComponent.description || false,
           url,
-          isSubmenu: true,
           plus: subComponent.plus || false,
           next: subComponent.next || false
         });

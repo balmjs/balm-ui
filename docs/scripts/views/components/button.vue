@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="button" demo-count="1">
+  <docs-page name="button" demo-count="1">
     <template #hero>
       <div class="hero-demo">
         <ui-button v-a11y :type="typeOption">{{ text }}</ui-button>
@@ -15,7 +15,7 @@
       <div class="demo-controls">
         <ui-form-field>
           <ui-checkbox id="toggle-disabled" v-model="controls.disabled"></ui-checkbox>
-          <label for="toggle-disabled">Disabled buttons (excluding links)</label>
+          <label for="toggle-disabled">Disabled buttons</label>
         </ui-form-field>
       </div>
 
@@ -34,7 +34,7 @@
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

@@ -30,7 +30,7 @@ export default {
 };
 ```
 
-```css
+```scss
 /* Sass code */
 .list-enter,
 .list-leave-to {

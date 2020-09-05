@@ -21,6 +21,8 @@
  * THE SOFTWARE.
  */
 import { __assign, __extends } from "tslib";
+// TODO(b/152410470): Remove trailing underscores from private properties
+// tslint:disable:strip-private-property-underscore
 import { MDCFoundation } from '../base/foundation';
 import { normalizeKey } from '../dom/keyboard';
 import { cssClasses, numbers, strings } from './constants';
@@ -104,6 +106,9 @@ var MDCListFoundation = /** @class */ (function (_super) {
         else if (this.adapter.hasRadioAtIndex(0)) {
             this.isRadioList_ = true;
         }
+        else {
+            this.maybeInitializeSingleSelection();
+        }
         if (this.hasTypeahead) {
             this.sortedIndexByFirstChar = this.typeaheadInitSortedIndex();
         }
@@ -125,6 +130,28 @@ var MDCListFoundation = /** @class */ (function (_super) {
      */
     MDCListFoundation.prototype.setSingleSelection = function (value) {
         this.isSingleSelectionList_ = value;
+        if (value) {
+            this.maybeInitializeSingleSelection();
+        }
+    };
+    /**
+     * Automatically determines whether the list is single selection list. If so,
+     * initializes the internal state to match the selected item.
+     */
+    MDCListFoundation.prototype.maybeInitializeSingleSelection = function () {
+        for (var i = 0; i < this.adapter.getListItemCount(); i++) {
+            var hasSelectedClass = this.adapter.listItemAtIndexHasClass(i, cssClasses.LIST_ITEM_SELECTED_CLASS);
+            var hasActivatedClass = this.adapter.listItemAtIndexHasClass(i, cssClasses.LIST_ITEM_ACTIVATED_CLASS);
+            if (!(hasSelectedClass || hasActivatedClass)) {
+                continue;
+            }
+            if (hasActivatedClass) {
+                this.setUseActivatedClass(true);
+            }
+            this.isSingleSelectionList_ = true;
+            this.selectedIndex_ = i;
+            return;
+        }
     };
     /**
      * Sets whether typeahead is enabled on the list.
@@ -172,6 +199,7 @@ var MDCListFoundation = /** @class */ (function (_super) {
     MDCListFoundation.prototype.handleFocusIn = function (_, listItemIndex) {
         if (listItemIndex >= 0) {
             this.focusedItemIndex = listItemIndex;
+            this.adapter.setAttributeForElementIndex(listItemIndex, 'tabindex', '0');
             this.adapter.setTabIndexForListItemChildren(listItemIndex, '0');
         }
     };
@@ -181,6 +209,7 @@ var MDCListFoundation = /** @class */ (function (_super) {
     MDCListFoundation.prototype.handleFocusOut = function (_, listItemIndex) {
         var _this = this;
         if (listItemIndex >= 0) {
+            this.adapter.setAttributeForElementIndex(listItemIndex, 'tabindex', '-1');
             this.adapter.setTabIndexForListItemChildren(listItemIndex, '-1');
         }
         /**
@@ -189,7 +218,7 @@ var MDCListFoundation = /** @class */ (function (_super) {
          */
         setTimeout(function () {
             if (!_this.adapter.isFocusInsideList()) {
-                _this.setTabindexToFirstSelectedItem_();
+                _this.setTabindexToFirstSelectedOrFocusedItem();
             }
         }, 0);
     };
@@ -297,8 +326,6 @@ var MDCListFoundation = /** @class */ (function (_super) {
         if (index === numbers.UNSET_INDEX) {
             return;
         }
-        this.setTabindexAtIndex_(index);
-        this.focusedItemIndex = index;
         if (this.adapter.listItemAtIndexHasClass(index, cssClasses.LIST_ITEM_DISABLED_CLASS)) {
             return;
         }
@@ -379,8 +406,11 @@ var MDCListFoundation = /** @class */ (function (_super) {
         if (this.selectedIndex_ !== numbers.UNSET_INDEX) {
             this.adapter.removeClassForElementIndex(this.selectedIndex_, selectedClassName);
         }
-        this.adapter.addClassForElementIndex(index, selectedClassName);
         this.setAriaForSingleSelectionAtIndex_(index);
+        this.setTabindexAtIndex_(index);
+        if (index !== numbers.UNSET_INDEX) {
+            this.adapter.addClassForElementIndex(index, selectedClassName);
+        }
         this.selectedIndex_ = index;
     };
     /**
@@ -397,8 +427,10 @@ var MDCListFoundation = /** @class */ (function (_super) {
         if (this.selectedIndex_ !== numbers.UNSET_INDEX) {
             this.adapter.setAttributeForElementIndex(this.selectedIndex_, ariaAttribute, 'false');
         }
-        var ariaAttributeValue = isAriaCurrent ? this.ariaCurrentAttrValue_ : 'true';
-        this.adapter.setAttributeForElementIndex(index, ariaAttribute, ariaAttributeValue);
+        if (index !== numbers.UNSET_INDEX) {
+            var ariaAttributeValue = isAriaCurrent ? this.ariaCurrentAttrValue_ : 'true';
+            this.adapter.setAttributeForElementIndex(index, ariaAttribute, ariaAttributeValue);
+        }
     };
     /**
      * Toggles radio at give index. Radio doesn't change the checked state if it is already checked.
@@ -424,14 +456,24 @@ var MDCListFoundation = /** @class */ (function (_super) {
     };
     MDCListFoundation.prototype.setTabindexAtIndex_ = function (index) {
         if (this.focusedItemIndex === numbers.UNSET_INDEX && index !== 0) {
-            // If no list item was selected set first list item's tabindex to -1.
-            // Generally, tabindex is set to 0 on first list item of list that has no preselected items.
+            // If some list item was selected set first list item's tabindex to -1.
+            // Generally, tabindex is set to 0 on first list item of list that has no
+            // preselected items.
             this.adapter.setAttributeForElementIndex(0, 'tabindex', '-1');
         }
         else if (this.focusedItemIndex >= 0 && this.focusedItemIndex !== index) {
             this.adapter.setAttributeForElementIndex(this.focusedItemIndex, 'tabindex', '-1');
         }
-        this.adapter.setAttributeForElementIndex(index, 'tabindex', '0');
+        // Set the previous selection's tabindex to -1. We need this because
+        // in selection menus that are not visible, programmatically setting an
+        // option will not change focus but will change where tabindex should be 0.
+        if (!(this.selectedIndex_ instanceof Array) &&
+            this.selectedIndex_ !== index) {
+            this.adapter.setAttributeForElementIndex(this.selectedIndex_, 'tabindex', '-1');
+        }
+        if (index !== numbers.UNSET_INDEX) {
+            this.adapter.setAttributeForElementIndex(index, 'tabindex', '0');
+        }
     };
     /**
      * @return Return true if it is single selectin list, checkbox list or radio list.
@@ -439,8 +481,8 @@ var MDCListFoundation = /** @class */ (function (_super) {
     MDCListFoundation.prototype.isSelectableList_ = function () {
         return this.isSingleSelectionList_ || this.isCheckboxList_ || this.isRadioList_;
     };
-    MDCListFoundation.prototype.setTabindexToFirstSelectedItem_ = function () {
-        var targetIndex = 0;
+    MDCListFoundation.prototype.setTabindexToFirstSelectedOrFocusedItem = function () {
+        var targetIndex = this.focusedItemIndex >= 0 ? this.focusedItemIndex : 0;
         if (this.isSelectableList_()) {
             if (typeof this.selectedIndex_ === 'number' && this.selectedIndex_ !== numbers.UNSET_INDEX) {
                 targetIndex = this.selectedIndex_;
@@ -468,7 +510,8 @@ var MDCListFoundation = /** @class */ (function (_super) {
             if (this.isCheckboxList_) {
                 throw new Error('MDCListFoundation: Expected array of index for checkbox based list but got number: ' + index);
             }
-            return this.isIndexInRange_(index);
+            return this.isIndexInRange_(index) ||
+                this.isSingleSelectionList_ && index === numbers.UNSET_INDEX;
         }
         else {
             return false;
@@ -509,7 +552,6 @@ var MDCListFoundation = /** @class */ (function (_super) {
         this.selectedIndex_ = selectedIndexes;
     };
     MDCListFoundation.prototype.focusItemAtIndex = function (index) {
-        this.setTabindexAtIndex_(index);
         this.adapter.focusItemAtIndex(index);
         this.focusedItemIndex = index;
     };

@@ -1,5 +1,6 @@
 <template>
   <li :class="className" :role="role" @click="handleClick">
+    <span class="mdc-list-item__ripple"></span>
     <slot name="before" :iconClass="UI_LIST.cssClasses.firstTile"></slot>
     <slot>
       <!-- text content -->

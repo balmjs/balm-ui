@@ -1,4 +1,4 @@
-import { version } from '../../package.json';
+import packageJson from '../../package.json';
 import autoInstall from './config/auto-install';
 import multiConfigure from './config/multi-configure';
 /**
@@ -84,8 +84,10 @@ import UiDialogTitle from './components/modal/dialog-title';
 import UiDialogContent from './components/modal/dialog-content';
 import UiDialogActions from './components/modal/dialog-actions';
 import UiSnackbar from './components/modal/snackbar';
+import UiBanner from './components/modal/banner';
 import UiProgress from './components/progress-indicators/progress';
 import UiSpinner from './components/progress-indicators/spinner';
+import UiTooltip from './components/others/tooltip';
 /**
  * Plugins
  */
@@ -102,6 +104,7 @@ import vShape from './directives/shape';
 import vShadow from './directives/elevation';
 import vAccessibility from './directives/a11y';
 import vBadge from './directives/badge'; // Custom
+import vTooltip from './directives/tooltip';
 /**
  * Utilities
  */
@@ -111,6 +114,7 @@ import detectIE from './utils/ie';
 
 const components = {
   UiBadge,
+  UiBanner,
   UiButton,
   UiCard,
   UiCardActions,
@@ -184,6 +188,7 @@ const components = {
   UiTextfield,
   UiTextfieldHelper,
   UiTextfieldIcon,
+  UiTooltip,
   UiTopAppBar
 };
 
@@ -200,11 +205,12 @@ const directives = {
   vBadge,
   vRipple,
   vShadow,
-  vShape
+  vShape,
+  vTooltip
 };
 
 const BalmUI = {
-  version,
+  version: packageJson.version,
   install(Vue, options = {}) {
     // Configure the components' props
     multiConfigure(components, options);

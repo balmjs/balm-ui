@@ -2,15 +2,16 @@ import merge from 'deepmerge';
 import getType from '../utils/typeof';
 
 const setPropsDefaultValue = ({ componentProps, propName, props }) => {
-  let defaultValue = componentProps[propName].default;
   let newValue = props[propName];
 
-  if (getType(defaultValue) === 'object') {
-    componentProps[propName].default = merge(defaultValue, newValue);
-    return;
+  if (getType(newValue) === 'object') {
+    const defaultValue = componentProps[propName].default;
+    componentProps[propName].default = () => merge(defaultValue, newValue);
+  } else if (Array.isArray(newValue)) {
+    componentProps[propName].default = () => newValue;
+  } else {
+    componentProps[propName].default = newValue;
   }
-
-  componentProps[propName].default = newValue;
 };
 
 const setPropsInMixins = ({ componentMixins, propName, props }) => {

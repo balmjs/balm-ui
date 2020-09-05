@@ -1,5 +1,5 @@
 <template>
-  <ui-page
+  <docs-page
     name="drawer"
     demo-count="5"
     :apis="[
@@ -84,7 +84,7 @@
         </ui-item-text-content>
       </ui-item>
     </ui-list>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

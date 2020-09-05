@@ -1,0 +1,18 @@
+.page--donate {
+  .donate-method {
+    list-style: none;
+    width: 256px;
+    height: 300px;
+    margin: 0 auto;
+    background: none center no-repeat;
+    background-size: contain;
+
+    &.alipay {
+      background-image: url('../images/alipay.png');
+    }
+
+    &.wechatpay {
+      background-image: url('../images/wechatpay.png');
+    }
+  }
+}

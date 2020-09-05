@@ -35,7 +35,7 @@ export default {
       }
     },
     showDocs(name, componentName) {
-      this.docs[componentName] = require(`@/docs/${name}/${componentName}.md`);
+      this.docs[componentName] = require(`@/docs/en/${name}/${componentName}.md`);
     },
     initDocs(
       name,

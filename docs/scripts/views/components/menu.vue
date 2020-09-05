@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="menu" demo-count="2" :apis="['ui-menu', 'menu', 'menuitem', 'menu-anchor']">
+  <docs-page name="menu" demo-count="2" :apis="['ui-menu', 'menu', 'menuitem', 'menu-anchor']">
     <template #hero>
       <ui-menu
         css-only
@@ -191,25 +191,25 @@
               @closed="onClosed"
             >
               <ui-menuitem nested>
-                <ui-menuitem>
+                <ui-menuitem value="1">
                   <ui-menuitem-icon>
                     <svg-selected></svg-selected>
                   </ui-menuitem-icon>
                   <ui-menuitem-text>Single</ui-menuitem-text>
                 </ui-menuitem>
-                <ui-menuitem disabled>
+                <ui-menuitem value="2" disabled>
                   <ui-menuitem-icon>
                     <svg-selected></svg-selected>
                   </ui-menuitem-icon>
                   <ui-menuitem-text>1.15</ui-menuitem-text>
                 </ui-menuitem>
-                <ui-menuitem>
+                <ui-menuitem value="3">
                   <ui-menuitem-icon>
                     <svg-selected></svg-selected>
                   </ui-menuitem-icon>
                   <ui-menuitem-text>Double</ui-menuitem-text>
                 </ui-menuitem>
-                <ui-menuitem selected>
+                <ui-menuitem value="4" selected>
                   <ui-menuitem-icon>
                     <svg-selected></svg-selected>
                   </ui-menuitem-icon>
@@ -217,14 +217,14 @@
                 </ui-menuitem>
               </ui-menuitem>
               <ui-item-divider></ui-item-divider>
-              <ui-menuitem>
+              <ui-menuitem value="5">
                 <ui-menuitem-text>Add space before paragraph</ui-menuitem-text>
               </ui-menuitem>
-              <ui-menuitem>
+              <ui-menuitem value="6">
                 <ui-menuitem-text>Add space after paragraph</ui-menuitem-text>
               </ui-menuitem>
               <ui-item-divider></ui-item-divider>
-              <ui-menuitem>
+              <ui-menuitem value="7">
                 <ui-menuitem-text>Custom spacing...</ui-menuitem-text>
               </ui-menuitem>
             </ui-menu>
@@ -233,7 +233,7 @@
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

@@ -4,14 +4,14 @@
 
     <h6 :class="$tt('subtitle1')">Text Label</h6>
     <div class="demo">
-      <ui-tab-bar v-model="active">
+      <ui-tab-bar>
         <ui-tab v-for="(tab, index) in tabs" :key="index">{{ tab.text }}</ui-tab>
       </ui-tab-bar>
     </div>
 
     <h6 :class="$tt('subtitle1')">Icon</h6>
     <div class="demo">
-      <ui-tab-bar v-model="active">
+      <ui-tab-bar>
         <template v-for="(tab, index) in tabs">
           <ui-tab :key="index" type="iconOnly" :icon="tab.icon"></ui-tab>
         </template>
@@ -21,7 +21,7 @@
 
     <h6 :class="$tt('subtitle1')">Text Label and Icon</h6>
     <div class="demo">
-      <ui-tab-bar v-model="active" type="both">
+      <ui-tab-bar type="both">
         <template v-for="(tab, index) in tabs">
           <ui-tab :key="index" type="textWithIcon" :icon="tab.icon">{{ tab.text }}</ui-tab>
         </template>
@@ -30,7 +30,7 @@
 
     <h6 :class="$tt('subtitle1')">Stacked Text Label and Icon</h6>
     <div class="demo">
-      <ui-tab-bar v-model="active" type="both">
+      <ui-tab-bar type="both">
         <template v-for="(tab, index) in tabs">
           <ui-tab :key="index" type="textWithIcon" :icon="tab.icon" stacked>{{ tab.text }}</ui-tab>
         </template>
@@ -40,14 +40,14 @@
 
     <h6 :class="$tt('subtitle1')">Text Label Width-Matching Indicator</h6>
     <div class="example">
-      <ui-tab-bar v-model="active">
+      <ui-tab-bar>
         <ui-tab v-for="(tab, index) in tabs" :key="index" content-indicator>{{ tab.text }}</ui-tab>
       </ui-tab-bar>
     </div>
 
     <h6 :class="$tt('subtitle1')">Text Label with Icon Indicator</h6>
     <div class="example">
-      <ui-tab-bar v-model="active">
+      <ui-tab-bar>
         <ui-tab v-for="(tab, index) in tabs" :key="index">
           {{ tab.text }}
           <template #indicator>
@@ -60,7 +60,7 @@
 
     <h6 :class="$tt('subtitle1')">Customization</h6>
     <div class="example">
-      <ui-tab-bar v-model="active" class="custom-demo">
+      <ui-tab-bar class="custom-demo">
         <ui-tab
           v-for="(tab, index) in tabs"
           :key="index"
@@ -93,7 +93,6 @@ export default {
   },
   data() {
     return {
-      active: 0,
       tabs: [
         {
           text: 'Favorites',

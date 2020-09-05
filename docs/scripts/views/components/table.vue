@@ -1,5 +1,5 @@
 <template>
-  <ui-page name="table" demo-count="2">
+  <docs-page name="table" demo-count="2">
     <template #hero>
       <ui-table row-checkbox :data="heroData" :thead="thead1" :tbody="tbody1"></ui-table>
     </template>
@@ -36,18 +36,10 @@
             <ui-icon @click="show(data)">delete</ui-icon>
           </template>
         </ui-table>
-
-        <!-- <br /><br />
-      <ui-pagination
-        v-model="page"
-        :pageSize="8"
-        :total="12"
-        @change="onPage"
-        ></ui-pagination>-->
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

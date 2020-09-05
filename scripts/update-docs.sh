@@ -1,3 +1,5 @@
+#!/bin/bash
+
 npm run docs
 cd dist
 git init

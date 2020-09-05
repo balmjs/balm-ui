@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     tfootCellClassName(data) {
-      let className = ['mdc-data-table__footer-cell'];
+      let className = ['mdc-data-table__cell'];
 
       className = this.setTextAlignClassName(className, data);
       className = this.setCustomClassName(className, data);

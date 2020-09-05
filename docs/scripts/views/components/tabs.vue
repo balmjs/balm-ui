@@ -1,5 +1,5 @@
 <template>
-  <ui-page
+  <docs-page
     name="tabs"
     demo-count="9"
     :apis="[
@@ -52,7 +52,7 @@
     <ui-tab-bar-demo :code="demoCode" :is-large-screen="isLargeScreen"></ui-tab-bar-demo>
     <ui-tab-scroller-demo :code="demoCode"></ui-tab-scroller-demo>
     <ui-tab-panel-demo :code="demoCode"></ui-tab-panel-demo>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

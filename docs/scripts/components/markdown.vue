@@ -41,8 +41,6 @@ export default {
     init() {
       if (this.html) {
         this.$nextTick(() => {
-          // Supported languages:
-          // https://prismjs.com/#languages-list
           this.$prism.highlightAll();
         });
       }

@@ -10,6 +10,7 @@ const DEV_SOURCE = {
 const DMC_COMPONENTS = [
   'animation',
   'base',
+  'banner', // New in mdc@8.0.0
   'button',
   'card',
   'checkbox',
@@ -49,6 +50,7 @@ const DMC_COMPONENTS = [
   'tab-scroller', // New in mdc@0.38.0
   'textfield',
   'theme',
+  'tooltip', // New in mdc@8.0.0
   'top-app-bar', // New in mdc@0.32.0
   'touch-target', // New in mdc@4.0.0
   'typography'

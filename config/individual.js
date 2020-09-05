@@ -9,6 +9,7 @@ const input = {
 const components = [
   // MDC
   'badge', // Custom
+  'banner',
   'button',
   'card',
   'checkbox',
@@ -37,6 +38,7 @@ const components = [
   'table',
   'tabs',
   'textfield',
+  'tooltip',
   'top-app-bar',
   // Plus
   'alert',

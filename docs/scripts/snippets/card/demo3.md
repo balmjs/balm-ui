@@ -7,9 +7,7 @@
         class="demo-card__media demo-card__media--music"
       ></ui-card-media>
       <div class="demo-card__music-info">
-        <div :class="[$tt('headline5'), 'demo-card__music-title']">
-          Rozes
-        </div>
+        <div :class="[$tt('headline5'), 'demo-card__music-title']">Rozes</div>
         <div class="demo-card__music-artist">Under the Grave</div>
         <div class="demo-card__music-year">(2016)</div>
       </div>
@@ -33,7 +31,7 @@
 </ui-card>
 ```
 
-```css
+```scss
 /* Sass code */
 .demo-card {
   width: 350px;

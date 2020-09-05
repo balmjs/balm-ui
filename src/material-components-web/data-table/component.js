@@ -20,10 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { __extends } from "tslib";
+import { __extends, __values } from "tslib";
 import { MDCComponent } from '../base/component';
 import { MDCCheckbox } from '../checkbox/component';
 import { closest } from '../dom/ponyfill';
+import { MDCLinearProgress } from '../linear-progress/component';
 import { cssClasses, dataAttributes, events, messages, selectors, SortValue } from './constants';
 import { MDCDataTableFoundation } from './foundation';
 /**
@@ -46,7 +47,7 @@ var MDCDataTable = /** @class */ (function (_super) {
         this.headerRow =
             this.root.querySelector("." + cssClasses.HEADER_ROW);
         this.handleHeaderRowCheckboxChange = function () {
-            return _this.foundation.handleHeaderRowCheckboxChange();
+            _this.foundation.handleHeaderRowCheckboxChange();
         };
         this.headerRow.addEventListener('change', this.handleHeaderRowCheckboxChange);
         this.headerRowClickListener = function (event) {
@@ -56,7 +57,7 @@ var MDCDataTable = /** @class */ (function (_super) {
         this.content =
             this.root.querySelector("." + cssClasses.CONTENT);
         this.handleRowCheckboxChange = function (event) {
-            return _this.foundation.handleRowCheckboxChange(event);
+            _this.foundation.handleRowCheckboxChange(event);
         };
         this.content.addEventListener('change', this.handleRowCheckboxChange);
         this.layout();
@@ -92,14 +93,49 @@ var MDCDataTable = /** @class */ (function (_super) {
     MDCDataTable.prototype.setSelectedRowIds = function (rowIds) {
         this.foundation.setSelectedRowIds(rowIds);
     };
+    /**
+     * Shows progress indicator when data table is in loading state.
+     */
+    MDCDataTable.prototype.showProgress = function () {
+        this.getLinearProgress().open();
+        this.foundation.showProgress();
+    };
+    /**
+     * Hides progress indicator after data table is finished loading.
+     */
+    MDCDataTable.prototype.hideProgress = function () {
+        this.foundation.hideProgress();
+        this.getLinearProgress().close();
+    };
     MDCDataTable.prototype.destroy = function () {
-        this.headerRow.removeEventListener('change', this.handleHeaderRowCheckboxChange);
-        this.headerRow.removeEventListener('click', this.headerRowClickListener);
-        this.content.removeEventListener('change', this.handleRowCheckboxChange);
-        this.headerRowCheckbox.destroy();
-        this.rowCheckboxList.forEach(function (checkbox) {
-            checkbox.destroy();
-        });
+        var e_1, _a;
+        if (this.handleHeaderRowCheckboxChange) {
+            this.headerRow.removeEventListener('change', this.handleHeaderRowCheckboxChange);
+        }
+        if (this.headerRowClickListener) {
+            this.headerRow.removeEventListener('click', this.headerRowClickListener);
+        }
+        if (this.handleRowCheckboxChange) {
+            this.content.removeEventListener('change', this.handleRowCheckboxChange);
+        }
+        if (this.headerRowCheckbox) {
+            this.headerRowCheckbox.destroy();
+        }
+        if (this.rowCheckboxList) {
+            try {
+                for (var _b = __values(this.rowCheckboxList), _c = _b.next(); !_c.done; _c = _b.next()) {
+                    var checkbox = _c.value;
+                    checkbox.destroy();
+                }
+            }
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
+            finally {
+                try {
+                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                }
+                finally { if (e_1) throw e_1.error; }
+            }
+        }
     };
     MDCDataTable.prototype.getDefaultFoundation = function () {
         var _this = this;
@@ -130,26 +166,27 @@ var MDCDataTable = /** @class */ (function (_super) {
             notifySortAction: function (data) {
                 _this.emit(events.SORTED, data, /** shouldBubble */ true);
             },
-            getTableBodyHeight: function () {
-                var tableBody = _this.root.querySelector(selectors.CONTENT);
-                if (!tableBody) {
-                    throw new Error('MDCDataTable: Table body element not found.');
+            getTableContainerHeight: function () {
+                var tableContainer = _this.root.querySelector("." + cssClasses.TABLE_CONTAINER);
+                if (!tableContainer) {
+                    throw new Error('MDCDataTable: Table container element not found.');
                 }
-                return tableBody.getBoundingClientRect().height + "px";
+                return tableContainer.getBoundingClientRect().height;
             },
             getTableHeaderHeight: function () {
                 var tableHeader = _this.root.querySelector(selectors.HEADER_ROW);
                 if (!tableHeader) {
                     throw new Error('MDCDataTable: Table header element not found.');
                 }
-                return tableHeader.getBoundingClientRect().height + "px";
+                return tableHeader.getBoundingClientRect().height;
             },
             setProgressIndicatorStyles: function (styles) {
                 var progressIndicator = _this.root.querySelector(selectors.PROGRESS_INDICATOR);
                 if (!progressIndicator) {
                     throw new Error('MDCDataTable: Progress indicator element not found.');
                 }
-                Object.assign(progressIndicator.style, styles);
+                progressIndicator.style.setProperty('height', styles.height);
+                progressIndicator.style.setProperty('top', styles.top);
             },
             addClassAtRowIndex: function (rowIndex, className) {
                 _this.getRows()[rowIndex].classList.add(className);
@@ -169,7 +206,10 @@ var MDCDataTable = /** @class */ (function (_super) {
                 return _this.rowCheckboxList[rowIndex].checked;
             },
             isHeaderRowCheckboxChecked: function () { return _this.headerRowCheckbox.checked; },
-            isRowsSelectable: function () { return !!_this.root.querySelector(selectors.ROW_CHECKBOX); },
+            isRowsSelectable: function () {
+                return !!_this.root.querySelector(selectors.ROW_CHECKBOX) ||
+                    !!_this.root.querySelector(selectors.HEADER_ROW_CHECKBOX);
+            },
             notifyRowSelectionChanged: function (data) {
                 _this.emit(events.ROW_SELECTION_CHANGED, {
                     row: _this.getRowByIndex(data.rowIndex),
@@ -257,6 +297,20 @@ var MDCDataTable = /** @class */ (function (_super) {
             default:
                 return '';
         }
+    };
+    MDCDataTable.prototype.getLinearProgressElement = function () {
+        var el = this.root.querySelector("." + cssClasses.LINEAR_PROGRESS);
+        if (!el) {
+            throw new Error('MDCDataTable: linear progress element is not found.');
+        }
+        return el;
+    };
+    MDCDataTable.prototype.getLinearProgress = function () {
+        if (!this.linearProgress) {
+            var el = this.getLinearProgressElement();
+            this.linearProgress = new MDCLinearProgress(el);
+        }
+        return this.linearProgress;
     };
     return MDCDataTable;
 }(MDCComponent));

@@ -21,7 +21,12 @@ web_modules/
 
 # Build build output
 .tmp/
-/assets/
+dist/
+/fonts/
+/components/
+/plugins/
+/directives/
+/utils/
 
 # MacOS generated files
 .DS_Store

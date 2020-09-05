@@ -1,9 +1,8 @@
-@use '@material/theme/functions' as theme-functions;
-@use '@material/theme/variables' as theme-variables;
+@use '@material/theme/theme-color';
 @use '@material/list/variables' as list-variables;
 
 $color: if(
-  theme-functions.tone(theme-variables.$background) == 'dark',
+  theme-color.tone(theme-color.$background) == 'dark',
   list-variables.$divider-color-on-dark-bg,
   list-variables.$divider-color-on-light-bg
 ) !default;

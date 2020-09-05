@@ -178,17 +178,18 @@ export default {
         `MDCMenu:${UI_MENU.EVENT.SELECTED}`,
         ({ detail }) => {
           const index = detail.index;
+          const dataValue = detail.item.dataset.value;
           const currentTextItem = this.currentTextItems[index];
           const item =
             getType(currentTextItem) === 'object'
-              ? Object.assign({}, currentTextItem)
-              : currentTextItem;
+              ? currentTextItem
+              : { value: currentTextItem };
 
           this.currentItem = item;
           this.$emit(UI_MENU.EVENT.SELECTED, {
-            item, // object
             index, // number
-            label: detail.item.textContent.trim() // string
+            text: this.$menu.getPrimaryTextAtIndex(index), // string
+            value: item.value || dataValue // string
           });
         }
       );

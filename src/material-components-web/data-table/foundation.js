@@ -45,8 +45,8 @@ var MDCDataTableFoundation = /** @class */ (function (_super) {
                 getRowIdAtIndex: function () { return ''; },
                 getRowIndexByChildElement: function () { return 0; },
                 getSelectedRowCount: function () { return 0; },
-                getTableBodyHeight: function () { return ''; },
-                getTableHeaderHeight: function () { return ''; },
+                getTableContainerHeight: function () { return 0; },
+                getTableHeaderHeight: function () { return 0; },
                 isCheckboxAtRowIndexChecked: function () { return false; },
                 isHeaderRowCheckboxChecked: function () { return false; },
                 isRowsSelectable: function () { return false; },
@@ -235,11 +235,14 @@ var MDCDataTableFoundation = /** @class */ (function (_super) {
      * loading state.
      */
     MDCDataTableFoundation.prototype.showProgress = function () {
-        var height = this.adapter.getTableBodyHeight();
-        var top = this.adapter.getTableHeaderHeight();
+        var tableHeaderHeight = this.adapter.getTableHeaderHeight();
+        // Calculate the height of table content (Not scroll content) excluding
+        // header row height.
+        var height = this.adapter.getTableContainerHeight() - tableHeaderHeight;
+        var top = tableHeaderHeight;
         this.adapter.setProgressIndicatorStyles({
-            height: height,
-            top: top,
+            height: height + "px",
+            top: top + "px",
         });
         this.adapter.addClass(cssClasses.IN_PROGRESS);
     };
@@ -253,13 +256,13 @@ var MDCDataTableFoundation = /** @class */ (function (_super) {
      * Updates header row checkbox state based on number of rows selected.
      */
     MDCDataTableFoundation.prototype.setHeaderRowCheckboxState = function () {
-        if (this.adapter.getSelectedRowCount() === this.adapter.getRowCount()) {
-            this.adapter.setHeaderRowCheckboxChecked(true);
+        if (this.adapter.getSelectedRowCount() === 0) {
+            this.adapter.setHeaderRowCheckboxChecked(false);
             this.adapter.setHeaderRowCheckboxIndeterminate(false);
         }
-        else if (this.adapter.getSelectedRowCount() === 0) {
+        else if (this.adapter.getSelectedRowCount() === this.adapter.getRowCount()) {
+            this.adapter.setHeaderRowCheckboxChecked(true);
             this.adapter.setHeaderRowCheckboxIndeterminate(false);
-            this.adapter.setHeaderRowCheckboxChecked(false);
         }
         else {
             this.adapter.setHeaderRowCheckboxIndeterminate(true);

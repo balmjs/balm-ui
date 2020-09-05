@@ -2,16 +2,24 @@ import autoInstall from '../config/auto-install';
 import UiSnackbar from '../components/modal/snackbar';
 import getType from '../utils/typeof';
 
+// Define toast constants
+const UI_TOAST = {
+  timeoutMs: {
+    MIN: 1000,
+    MAX: 4000,
+    DEFAULTS: 1800
+  }
+};
+
 const DEFAULT_OPTIONS = {
   className: '',
-  timeoutMs: 4000,
+  timeoutMs: UI_TOAST.timeoutMs.DEFAULTS,
   message: ''
 };
 
 const template = `<ui-snackbar
   :open="open"
   :class="['mdc-toast', options.className]"
-  :timeoutMs="options.timeoutMs"
   :message="options.message"
   @closed="handleClosed">
 </ui-snackbar>`;
@@ -38,20 +46,36 @@ const BalmUI_ToastPlugin = {
               this.options = Object.assign({}, this.options, customOptions);
             }
 
+            if (
+              this.options.timeoutMs < UI_TOAST.timeoutMs.MIN ||
+              this.options.timeoutMs > UI_TOAST.timeoutMs.MAX
+            ) {
+              this.options.timeoutMs = UI_TOAST.timeoutMs.DEFAULTS;
+              console.warn(
+                `The timeoutMs of the toast must be between ${UI_TOAST.timeoutMs.MIN} and ${UI_TOAST.timeoutMs.MAX}`
+              );
+            }
+
             this.$nextTick(() => {
               document.body.appendChild(this.$el);
               setTimeout(() => {
                 this.open = true;
+
+                setTimeout(() => {
+                  vm.handleClosed();
+                }, options.timeoutMs);
               }, 1);
             });
           },
           methods: {
             handleClosed() {
-              this.open = false;
-              this.$nextTick(() => {
-                document.body.removeChild(this.$el);
-                vm = null;
-              });
+              if (vm) {
+                this.open = false;
+                this.$nextTick(() => {
+                  document.body.removeChild(this.$el);
+                  vm = null;
+                });
+              }
             }
           },
           template

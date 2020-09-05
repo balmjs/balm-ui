@@ -67,7 +67,7 @@ export default [
   },
   {
     path: 'pagination',
-    name: 'data-display.pagination',
+    name: 'navigation.pagination',
     component: Pagination
   }
 ];

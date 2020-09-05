@@ -15,17 +15,42 @@
       >
         <router-link to="/" :class="['catalog-title', $themeColor('on-primary')]">BalmUI</router-link>
         <template #toolbar="{ toolbarItemClass }">
-          <a
-            :class="[toolbarItemClass, 'github']"
-            href="https://github.com/balmjs/balm-ui"
-            target="_blank"
-            rel="noopener"
-          >
-            <svg-github></svg-github>
-            <span>GitHub</span>
+          <!-- <ui-icon-button
+            :icon="$store.theme === 'dark' ? 'bedtime' : 'wb_sunny'"
+            @click="$store.switchTheme"
+          ></ui-icon-button>-->
+          <ui-menu-anchor>
+            <ui-icon-button icon="language" @click="$balmUI.onShow('showTranslations')"></ui-icon-button>
+            <ui-menu v-model="showTranslations" @selected="$store.setLang">
+              <ui-menuitem
+                v-for="translation in translations"
+                :key="translation.value"
+                :item="translation"
+                :selected="translation.value === $store.lang"
+              ></ui-menuitem>
+            </ui-menu>
+          </ui-menu-anchor>
+          <!-- <ui-icon-button
+            v-tooltip="'Support BalmUI'"
+            :class="[toolbarItemClass, 'donate']"
+            icon="support"
+            aria-describedby="donate"
+            @click="$router.push({ name: 'donate' })"
+          ></ui-icon-button>-->
+          <a href="https://github.com/balmjs/balm-ui" target="_blank" rel="noopener">
+            <ui-icon-button :class="[toolbarItemClass, 'github']" aria-describedby="github">
+              <svg-github></svg-github>
+            </ui-icon-button>
           </a>
         </template>
       </ui-top-app-bar>
+      <!-- Global Message -->
+      <ui-banner
+        v-model="showGlobalMessage"
+        class="global-message-banner"
+        primary-button-text="Cool"
+        secondary-button-text="Good"
+      >Do you like BalmUI</ui-banner>
       <!-- Content -->
       <div class="balmui-body">
         <!-- Drawer -->
@@ -50,7 +75,7 @@
                 <template #default="{ itemClass, activeClass }">
                   <template v-for="(item, index) in menu">
                     <router-link
-                      v-if="item.icon || item.isSubmenu"
+                      v-if="item.url || item.isSubmenu"
                       :key="`item${index}`"
                       v-ripple
                       :class="[
@@ -60,12 +85,12 @@
                           'no-icon': !item.icon
                         }
                       ]"
-                      :to="item.url"
+                      :to="{ name: item.url }"
                       :active-class="activeClass"
                       @click.native="handleMenu"
                     >
                       <ui-icon v-if="item.icon" class="catalog-list-icon">{{ item.icon }}</ui-icon>
-                      <span>{{ item.name }}</span>
+                      <span>{{ $t(`menu.${item.name}`) }}</span>
                       <ui-badge v-if="item.plus" class="plus" state="info">
                         <template #badge>plus</template>
                       </ui-badge>
@@ -79,9 +104,9 @@
                       :key="`head${index}`"
                       :class="$textColor('primary', 'light')"
                     >
-                      {{ item.name }}
+                      {{ $t(`menu.${item.name}`) }}
                       <i
-                        v-if="isWideScreen && item.name === 'Guide'"
+                        v-if="isWideScreen && item.name === 'guide'"
                         :class="['balmui-version', $tt('subtitle2')]"
                       >
                         v
@@ -110,9 +135,8 @@
 
 <script>
 import SvgGithub from '@/components/svg-github';
-import { VERSION, $MIN_WIDTH } from '@/config';
+import { VERSION, $MIN_WIDTH, translations } from '@/config';
 import menu from '@/config/menu';
-// import { lang } from '@/config/lang';
 
 export default {
   metaInfo: {
@@ -131,7 +155,10 @@ export default {
       openDrawer: false,
       pageLoading: false,
       loadingProgress: 0,
-      loadingTimer: null
+      loadingTimer: null,
+      showGlobalMessage: false,
+      translations,
+      showTranslations: false
     };
   },
   computed: {
@@ -164,6 +191,15 @@ export default {
   mounted() {
     this.init();
     window.addEventListener('balmResize', this.init);
+
+    this.$bus.$on('global-message', (message) => {
+      this.showGlobalMessage = true;
+    });
+
+    this.$i18n.locale = this.$store.lang;
+    this.$bus.$on('switch-lang', (lang) => {
+      this.$i18n.locale = lang;
+    });
   },
   beforeDestroy() {
     window.removeEventListener('balmResize', this.init);
@@ -176,12 +212,6 @@ export default {
     init() {
       this.drawerType = this.getDrawerType();
     },
-    // isActiveLang(lang) {
-    //   return lang === this.$i18n.locale;
-    // },
-    // switchLang(lang) {
-    //   this.$i18n.locale = lang;
-    // },
     handleMenu() {
       this.$emit('page-load');
 

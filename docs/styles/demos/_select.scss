@@ -1,3 +1,4 @@
+// TODO: mdc@8.0 changed
 @use '@material/select/mixins' as select-mixins;
 
 // stylelint-disable selector-class-pattern
@@ -6,10 +7,10 @@
   @include select-mixins.label-color(rgba(blue, 0.6));
   @include select-mixins.bottom-line-color(rgba(blue, 0.5));
   // Focused colors
-  @include select-mixins.focused-bottom-line-color(green);
-  @include select-mixins.focused-label-color(green);
+  // @include select-mixins.focused-bottom-line-color(green);
+  // @include select-mixins.focused-label-color(green);
   // Hover colors
-  @include select-mixins.hover-bottom-line-color(rgba(blue, 0.87));
+  // @include select-mixins.hover-bottom-line-color(rgba(blue, 0.87));
 }
 
 .demo-select-custom-colors.mdc-select--box {
@@ -18,8 +19,8 @@
 
 .demo-select-custom-colors.mdc-select--outlined {
   @include select-mixins.outline-color(rgba(blue, 0.6));
-  @include select-mixins.hover-outline-color(rgba(blue, 0.87));
-  @include select-mixins.focused-outline-color(green);
+  // @include select-mixins.hover-outline-color(rgba(blue, 0.87));
+  // @include select-mixins.focused-outline-color(green);
 }
 
 .button-container {

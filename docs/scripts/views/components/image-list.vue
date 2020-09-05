@@ -1,5 +1,5 @@
 <template>
-  <ui-page
+  <docs-page
     name="image-list"
     :apis="['ui-image-list', 'image-list', 'image-item', 'image-text']"
     demo-count="2"
@@ -67,7 +67,7 @@
         <ui-snippet :code="$store.demos[2]"></ui-snippet>
       </section>
     </section>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>

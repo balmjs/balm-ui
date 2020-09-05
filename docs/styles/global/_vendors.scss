@@ -1,10 +1,10 @@
 // Base style
-@use '@material/theme/variables' as theme-variables with (
+@use '@material/theme' as theme-variables with (
   $primary: #6200ee, // baseline purple, 500 tone
   $secondary: #018786 // baseline teal, 600 tone
 );
 
-@use '../../../src/styles/balm-ui.scss';
-@use 'font-awesome/scss/font-awesome.scss';
-@use 'prismjs/themes/prism-okaidia.css';
+@use '../../../src/styles/balm-ui';
+@use 'font-awesome/scss/font-awesome';
+@use 'prismjs/themes/prism-tomorrow.css';
 @use 'prismjs/plugins/toolbar/prism-toolbar.css';

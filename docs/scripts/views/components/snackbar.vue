@@ -1,33 +1,38 @@
 <template>
-  <ui-page name="snackbar" demo-count="1">
+  <docs-page name="snackbar" demo-count="1">
     <template #hero>
-      <ui-snackbar class="mdc-snackbar--open">Message sent</ui-snackbar>
+      <ui-snackbar class="mdc-snackbar--open">
+        Message sent
+        <template #action="{ actionClass }">
+          <ui-button :class="actionClass">Action</ui-button>
+        </template>
+      </ui-snackbar>
     </template>
 
     <!-- Content -->
     <section class="demo-wrapper">
       <ui-form class="demo-controls">
-        <label>Timeout: {{ timeout / 1000 }}second</label>
+        <label>Timeout: {{ timeout }}second</label>
         <ui-form-field>
-          <ui-slider id="timeout" v-model="timeout" min="4000" max="10000" step="1000"></ui-slider>
+          <ui-slider v-model="timeout" type="discrete" min="4" max="10"></ui-slider>
         </ui-form-field>
         <ui-form-field>
-          <ui-textfield id="message" v-model="message">Message Text</ui-textfield>
+          <ui-textfield v-model="message">Message Text</ui-textfield>
         </ui-form-field>
         <ui-form-field>
-          <ui-textfield id="action" v-model="actionText">Action Text</ui-textfield>
+          <ui-textfield v-model="actionText">Action Text</ui-textfield>
         </ui-form-field>
         <ui-form-field>
           <ui-checkbox id="action-type" v-model="actionType"></ui-checkbox>
-          <label for="action-type">Action Icon Button</label>
+          <label for="action-type">Icon Button Action</label>
         </ui-form-field>
       </ui-form>
       <div class="demo">
-        <ui-button raised @click="$balmUI.onOpen('open')">Show</ui-button>
+        <ui-button raised @click="$balmUI.onOpen('open')">Show Snackbar</ui-button>
 
         <ui-snackbar
           v-model="open"
-          :timeout-ms="timeout"
+          :timeout-ms="timeout*1e3"
           :message="message"
           :action-button-text="actionText"
           :action-type="actionType ? 1 : 0"
@@ -35,7 +40,7 @@
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
-  </ui-page>
+  </docs-page>
 </template>
 
 <script>
@@ -47,7 +52,7 @@ export default {
     return {
       // demo
       open: false,
-      timeout: 5000,
+      timeout: 5,
       message: 'Hello Snackbar',
       actionText: 'close',
       actionType: false

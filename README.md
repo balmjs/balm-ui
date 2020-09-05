@@ -4,7 +4,7 @@
 
 ## Introduction
 
-BalmUI is a modular and customizable [Material Design](https://material.io/) UI library for Vue.js.
+[BalmUI](https://material.balmjs.com/) is a modular and customizable [Material Design](https://material.io/) UI library for Vue.js.
 
 ## Features
 
@@ -32,8 +32,6 @@ Visit [material.balmjs.com](https://material.balmjs.com/).
 ```sh
 balm init vue my-project
 cd my-project
-yarn
-# OR npm install
 ```
 
 #### 1.1 Installing `balm-ui`

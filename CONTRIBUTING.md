@@ -24,7 +24,7 @@ Even better: propose a fix with a pull request and link it to the issue!
 
 - Checkout a topic branch from the relevant branch, e.g. `dev`, and merge back against that branch.
 
-- Work in the `src`, `docs` and `test` folder and **DO NOT** checkin `dist`, `components`, `directives`, `plugins` and `utils` in the commits.
+- Work in the `src`, `docs` and `test` folder and **DO NOT** checkin `dist`, `components`, `directives`, `plugins`, `utils` and `fonts` in the commits.
 
 - If the pull request is accepted, we will merge the pull request for you.
 
@@ -65,43 +65,44 @@ npm run dev
 
 ```
 project
-├── build      // Build-related configuration files.
 ├── components // contains all standalone components for distribution.
 ├── config     // BalmJS config files.
 ├── directives // contains all standalone directives for distribution.
 ├── dist       // contains built files for distribution.
-├── docs       // BalmUI demos and documentation. (DEV)
+├── docs       // BalmUI documentation and demos. (DEV)
 │ ├── data     // mock data
 │ ├── ...
 │ ├── scripts
-│ │ ├── apidocs  // API docs
+│ │ ├── docs     // API docs
 │ │ ├── ...
 │ │ ├── snippets // code snippets
 │ │ ├── ...
 │ │ └── views    // official demos
 │ └── styles
-├── font       // Material Icons
+├── examples   // BalmUI examples. (TEST)
+├── fonts      // Material Icons
 ├── plugins    // contains all standalone plugins for distribution.
+├── scripts    // Build-related configuration files.
 ├─┬ src        // contains the source code, obviously.
-│ ├── fonts    // Material source icons.
-│ ├── material-components-web // Stable mdc source code for the BalmUI.
+│ ├── material-components-web // Stable mdc-web source code.
+│ ├── material-icons          // Stable Material Icons fonts.
 │ ├── scripts        // BalmUI core scripts (DEV)
 │ │ ├── ...
-│ │ ├── index.js     // MDC UI entry.
-│ │ └── plus.js      // Custom feature UI entry.
+│ │ ├── index.js     // Official Google Material Components entry.
+│ │ ├── next.js      // Experimental Google Material Components entry.
+│ │ └── plus.js      // BalmJS Team Feature Material Components entry.
 │ └── styles         // BalmUI core styles (DEV)
 │   ├── ...
-│   ├── _color.scss  // Google color palette.
 │   └── balm-ui.scss // BalmUI style entry.
-├── test       // contains all tests. (TODO)
+├── test       // contains all tests. (TEST)
 ├── utils      // contains all standalone utils for distribution.
 └── ...
 ```
 
-> `build`, `config`, `font`: In most cases you don't need to touch them.
+- `config`: In most cases you don't need to touch them.
 
-> `dist`, `components`, `directives`, `plugins` and `utils`: Note these directories are only updated when a release happens; they do not reflect the latest changes in development branches.
+- `dist`, `components`, `directives`, `plugins` and `utils`: Note these directories are only updated when a release happens; they do not reflect the latest changes in development branches.
 
-> `src/fonts` and `src/material-components-web`: Note these directories are only updated in `next` branch.
+- `src/material-components-web` and `src/material-icons`: Note these directories are only updated in `next` branch.
 
-> `docs/scripts`, `docs/styles`, `src/scripts`, `src/styles` and `test`: **Welcome to improve me;)**
+- `docs/{styles,scripts}`, `src/{styles,scripts}` and `test`: **Welcome to improve me;)**

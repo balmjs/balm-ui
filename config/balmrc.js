@@ -94,7 +94,10 @@ function getConfig(balm) {
       mode: 'injectManifest',
       version: `v${pkg.version.replace(/\./g, '')}`
     },
-    useDefaults: env.useDefaults
+    useDefaults: env.useDefaults,
+    logs: {
+      level: 2
+    }
   };
 }
 

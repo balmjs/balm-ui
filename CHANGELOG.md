@@ -1,10 +1,11 @@
 # [BalmUI](https://material.balmjs.com) ChangeLog
 
-## v7.6.3 / 2020-09-05
+## v7.6.4 / 2020-09-05
 
 ### Bug Fixes
 
 - fix material icons css
+- fix grid css
 
 ## v7.6.2 / 2020-08-28
 

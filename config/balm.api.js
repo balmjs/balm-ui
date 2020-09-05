@@ -2,6 +2,7 @@ const fs = require('fs');
 const env = require('./env');
 const constants = require('./constants');
 const individual = require('./individual');
+const fixGridCss = require('./build.fix');
 
 module.exports = (mix) => {
   if (env.buildDocs) {
@@ -91,6 +92,9 @@ module.exports = (mix) => {
 
         // For example
         mix.copy('./src/material-icons/*', './components/fonts');
+
+        // Fix `grid` css bug for cssnano
+        fixGridCss(mix);
       }
     }
   }

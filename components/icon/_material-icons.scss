@@ -14,15 +14,26 @@ $font-styles: (
     font-style: normal;
     font-weight: 400;
 
-    @if ui-icon-variables.$with-subdir == 1 {
-      src: url('#{ui-icon-variables.$font-path}/#{ui-icon-variables.$subdir}/#{$className}.woff2')
-          format('woff2'),
-        url('#{ui-icon-variables.$font-path}/#{ui-icon-variables.$subdir}/#{$className}.woff')
-          format('woff');
+    @if (ui-icon-variables.$with-subdir == 1) {
+      @if ($className == 'material-icons') {
+        src: url('#{ui-icon-variables.$font-path}/#{ui-icon-variables.$subdir}/#{$className}.woff2')
+            format('woff2'),
+          url('#{ui-icon-variables.$font-path}/#{ui-icon-variables.$subdir}/#{$className}.woff')
+            format('woff');
+      } @else {
+        src: url('#{ui-icon-variables.$font-path}/#{ui-icon-variables.$subdir}/#{$className}.woff2')
+          format('woff2');
+      }
     } @else {
-      src: url('#{ui-icon-variables.$font-path}/#{$className}.woff2')
-          format('woff2'),
-        url('#{ui-icon-variables.$font-path}/#{$className}.woff') format('woff');
+      @if ($className == 'material-icons') {
+        src: url('#{ui-icon-variables.$font-path}/#{$className}.woff2')
+            format('woff2'),
+          url('#{ui-icon-variables.$font-path}/#{$className}.woff')
+            format('woff');
+      } @else {
+        src: url('#{ui-icon-variables.$font-path}/#{$className}.woff2')
+          format('woff2');
+      }
     }
 
     font-display: swap; // [Intervention] Slow network is detected. See https://www.chromestatus.com/feature/5636954674692096 for more details.

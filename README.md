@@ -20,36 +20,57 @@ Visit [material.balmjs.com](https://material.balmjs.com/).
 
 ## Quick Start
 
-### 0. Requirement
+### Requirements
 
 - Vue.js@2.1.0+
 - **[Balm CLI](https://github.com/balmjs/balm-cli)**(Recommended) or [Vue CLI](https://github.com/vuejs/vue-cli) or other toolchains
 
-### 1. Installing `balm-ui`
+### 1. For Balm CLI
+
+#### 1.0 Create a project
+
+```sh
+balm init vue my-project
+cd my-project
+yarn
+# OR npm install
+```
+
+#### 1.1 Installing `balm-ui`
 
 ```sh
 yarn add balm-ui
-// OR
+# OR
 npm install --save balm-ui
 ```
 
-### 2. Config & Usage
+#### 1.2 Configuration
 
-#### 2.1 For Balm CLI
+update `balm.config.js`
 
-- edit `balm.config.js` for [Dart Sass](https://balm.js.org/docs/config/styles.html#styles-dartsass)
+- get [Material Icons](https://material.balmjs.com/material-icons.zip) without downloading (or, download and extract to `/path/to/my-project/app/fonts`)
+
+  ```js
+  const api = (mix) => {
+    if (mix.env.isDev) {
+      mix.copy('node_modules/balm-ui/fonts/*', 'app/fonts');
+    }
+  };
+  ```
+
+- edit `/path/to/config/balmrc.js` for using [Dart Sass](https://balm.js.org/docs/config/styles.html#styles-dartsass)
 
   ```js
   module.exports = {
     styles: {
       extname: 'scss',
-      dartSass: true // required
+      dartSass: true
     }
     // Other Options...
   };
   ```
 
-- Download [Material Design Icons](https://material.balmjs.com/material-icons.zip) and extract to `/path/to/my-project/app/fonts`.
+#### 1.3 Usage
 
 ##### Default Usage
 
@@ -64,10 +85,10 @@ npm install --save balm-ui
 
   ```js
   import Vue from 'vue';
-  import BalmUI from 'balm-ui'; // Google Official Material Components
-  import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // BalmJS Team Extension Components
+  import BalmUI from 'balm-ui';
+  import BalmUIPlus from 'balm-ui/dist/balm-ui-plus';
 
-  Vue.use(BalmUI); // Mandatory
+  Vue.use(BalmUI);
   Vue.use(BalmUIPlus); // Optional
   ```
 
@@ -90,19 +111,77 @@ npm install --save balm-ui
   Vue.use(UiButton);
   ```
 
-- Enjoy 👻
+```sh
+# For development
+npm run dev
 
-  ```sh
-  # For development
-  npm run dev
+# For production
+npm run prod
+```
 
-  # For production
-  npm run prod
+Enjoy 👻
+
+### 2. For Vue CLI
+
+#### 2.0 Create a project
+
+```sh
+vue create my-project
+cd my-project
+```
+
+#### 2.1 Installing `balm-ui`
+
+```sh
+yarn add balm-ui
+# OR
+npm install --save balm-ui
+```
+
+#### 2.2 Usage
+
+- edit `/path/to/main.js`
+
+  ```js
+  import Vue from 'vue';
+  import BalmUI from 'balm-ui';
+  import 'balm-ui/dist/balm-ui.css';
+
+  Vue.use(BalmUI);
   ```
 
-#### 2.2 For Vue CLI
+### 3. For `<script>`
 
-// TODO
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello BalmUI</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/balm-ui/dist/balm-ui.css"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <ui-button @click="$alert(message)" icon="add">SayHi</ui-button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/balm-ui"></script>
+    <script src="https://cdn.jsdelivr.net/npm/balm-ui/dist/balm-ui-plus.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          message: 'Hello BalmUI'
+        }
+      });
+    </script>
+  </body>
+</html>
+```
 
 ## Contributing
 

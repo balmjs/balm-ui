@@ -1,11 +1,5 @@
 # Quick Start
 
-Good tools make application development quicker and easier to maintain than if you did everything by hand.
-
-The [Balm CLI](https://github.com/balmjs/balm-cli) is a command line interface tool that scaffolds out a [BalmJS](https://github.com/balmjs/balm) project.
-
-> **[Balm CLI](https://github.com/balmjs/balm-cli)**(Recommended) or [Vue CLI](https://github.com/vuejs/vue-cli) or other toolchains 🚀
-
 ## 0. Set up the Development Environment
 
 You need to set up your development environment before you can do anything.
@@ -14,7 +8,13 @@ Install [Node.js® and npm](https://nodejs.org/en/download/) if they are not alr
 
 > **Verify that you are running at least Node.js version 12.0.0 or greater and npm version 5.2.0 or greater** by running `node -v` and `npm -v` in a terminal/console window. Older versions produce errors, but newer versions are fine.
 
-- For Balm CLI, first install the [Balm Core](https://github.com/balmjs/balm) and [Balm CLI](https://github.com/balmjs/balm-cli) globally.
+Good tools make application development quicker and easier to maintain than if you did everything by hand.
+
+The [Balm CLI](https://github.com/balmjs/balm-cli) is a command line interface tool that scaffolds out a [BalmJS](https://github.com/balmjs/balm) project.
+
+> **[Balm CLI](https://github.com/balmjs/balm-cli)**(Recommended) or [Vue CLI](https://github.com/vuejs/vue-cli) or other toolchains 🚀
+
+- First install the [Balm Core](https://github.com/balmjs/balm) and [Balm CLI](https://github.com/balmjs/balm-cli) globally for Balm CLI.
 
   ```bash
   yarn global add balm-core balm-cli
@@ -140,7 +140,7 @@ npm run dev
     <div class="hello">
       ...
       <!-- Add a test button -->
-      <ui-button @click="$alert('gg')">Click Me</ui-button>
+      <ui-button @click="$alert('Hello BalmUI')">Click Me</ui-button>
     </div>
   </template>
   ```

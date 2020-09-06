@@ -1,13 +1,12 @@
 import autoInstall from '../config/auto-install';
-import UiSnackbar from '../components/modal/snackbar';
 import getType from '../utils/typeof';
 
 // Define toast constants
 const UI_TOAST = {
   timeoutMs: {
-    MIN: 1000,
-    MAX: 4000,
-    DEFAULTS: 1800
+    MIN: 2000,
+    MAX: 3500,
+    DEFAULTS: 2000
   }
 };
 
@@ -17,65 +16,92 @@ const DEFAULT_OPTIONS = {
   message: ''
 };
 
-const template = `<ui-snackbar
-  :open="open"
-  :class="['mdc-toast', options.className]"
-  :message="options.message"
-  @closed="handleClosed">
-</ui-snackbar>`;
+const template = `<div
+  :class="[
+    'mdc-snackbar',
+    'mdc-toast',
+    options.className,
+    {'mdc-snackbar--open': open}
+  ]">
+  <div class="mdc-snackbar__surface">
+    <div class="mdc-snackbar__label">
+      {{ options.message }}
+    </div>
+  </div>
+</div>`;
+
+let vm;
+let toastTimer;
+let toastElTimer;
+
+function hasToast() {
+  return document.querySelector('.mdc-toast');
+}
 
 const BalmUI_ToastPlugin = {
   install(Vue, configs = {}) {
     let options = Object.assign({}, DEFAULT_OPTIONS, configs);
 
     const $toast = (customOptions = {}) => {
-      if (!document.querySelector('.mdc-toast')) {
-        let vm = new Vue({
+      if (getType(customOptions) === 'string') {
+        options.message = `${customOptions}`; // To string
+      } else if (getType(customOptions) === 'object') {
+        options = Object.assign({}, options, customOptions);
+      }
+
+      if (hasToast()) {
+        clearTimeout(toastTimer);
+        clearTimeout(toastElTimer);
+
+        vm.init(options);
+      } else {
+        vm = new Vue({
           el: document.createElement('div'),
-          components: {
-            UiSnackbar
-          },
           data: {
             open: false,
             options
           },
-          created() {
-            if (getType(customOptions) === 'string') {
-              this.options.message = `${customOptions}`; // To string
-            } else if (getType(customOptions) === 'object') {
-              this.options = Object.assign({}, this.options, customOptions);
-            }
-
-            if (
-              this.options.timeoutMs < UI_TOAST.timeoutMs.MIN ||
-              this.options.timeoutMs > UI_TOAST.timeoutMs.MAX
-            ) {
-              this.options.timeoutMs = UI_TOAST.timeoutMs.DEFAULTS;
-              console.warn(
-                `The timeoutMs of the toast must be between ${UI_TOAST.timeoutMs.MIN} and ${UI_TOAST.timeoutMs.MAX}`
-              );
-            }
-
-            this.$nextTick(() => {
-              document.body.appendChild(this.$el);
-              setTimeout(() => {
-                this.open = true;
-
-                setTimeout(() => {
-                  vm.handleClosed();
-                }, options.timeoutMs);
-              }, 1);
-            });
+          mounted() {
+            this.init(options);
           },
           methods: {
-            handleClosed() {
-              if (vm) {
-                this.open = false;
+            init(options) {
+              if (
+                options.timeoutMs <= UI_TOAST.timeoutMs.MAX &&
+                options.timeoutMs >= UI_TOAST.timeoutMs.MIN
+              ) {
+                this.options = options;
+
                 this.$nextTick(() => {
+                  if (!hasToast()) {
+                    document.body.appendChild(this.$el);
+                  }
+
+                  this.show();
+                });
+              } else {
+                throw new Error(
+                  `The timeoutMs of the toast must be between ${UI_TOAST.timeoutMs.MIN} and ${UI_TOAST.timeoutMs.MAX}`
+                );
+              }
+            },
+            show() {
+              this.open = true;
+              // hide toast
+              toastTimer = setTimeout(() => {
+                this.hide();
+              }, this.options.timeoutMs);
+            },
+            hide() {
+              this.open = false;
+
+              // remove toast
+              toastElTimer = setTimeout(() => {
+                try {
                   document.body.removeChild(this.$el);
                   vm = null;
-                });
-              }
+                } catch (e) {}
+              }, this.options.timeoutMs);
             }
           },
           template

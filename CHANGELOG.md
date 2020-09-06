@@ -14,6 +14,7 @@
 - `<ui-select>`
 - `<ui-slider>`
 - `<ui-pagination>`
+- `$toast`
 
 ### Features
 

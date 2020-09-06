@@ -23,9 +23,9 @@ Visit [material.balmjs.com](https://material.balmjs.com/).
 ### Requirements
 
 - Vue.js@2.1.0+
-- **[Balm CLI](https://github.com/balmjs/balm-cli)**(Recommended) or [Vue CLI](https://github.com/vuejs/vue-cli) or other toolchains
+- :rocket: **[Balm CLI](https://github.com/balmjs/balm-cli)**(Recommended) or [Vue CLI](https://github.com/vuejs/vue-cli) or other toolchains
 
-### 1. For Balm CLI
+### 1. For Balm CLI (Recommended)
 
 #### 1.0 Create a project
 
@@ -56,7 +56,7 @@ update `balm.config.js`
   };
   ```
 
-- edit `/path/to/config/balmrc.js` for using [Dart Sass](https://balm.js.org/docs/config/styles.html#styles-dartsass)
+- edit `my-project/config/balmrc.js` for using [Dart Sass](https://balm.js.org/docs/config/styles.html#styles-dartsass)
 
   ```js
   module.exports = {
@@ -79,14 +79,16 @@ update `balm.config.js`
   @use 'balm-ui/dist/balm-ui';
   ```
 
+  > Recommend to use Sass in `/path/to/your-project/styles/_vendor.scss`, and you can use more advanced style usage of the BalmUI.
+
 - edit `my-project/app/scripts/main.js`
 
   ```js
   import Vue from 'vue';
-  import BalmUI from 'balm-ui';
-  import BalmUIPlus from 'balm-ui/dist/balm-ui-plus';
+  import BalmUI from 'balm-ui'; // Official Google Material Components
+  import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // BalmJS Team Material Components
 
-  Vue.use(BalmUI);
+  Vue.use(BalmUI); // Mandatory
   Vue.use(BalmUIPlus); // Optional
   ```
 
@@ -97,7 +99,9 @@ update `balm.config.js`
   ```scss
   @use 'balm-ui/components/core';
   @use 'balm-ui/components/button/button';
-  @use 'balm-ui/components/icon/icon'; // Optional
+  @use 'balm-ui/components/icon/icon';
+  @use 'balm-ui/components/dialog/dialog';
+  @use 'balm-ui/plugins/alert/alert';
   ```
 
 - edit `my-project/app/scripts/main.js`
@@ -105,19 +109,35 @@ update `balm.config.js`
   ```js
   import Vue from 'vue';
   import UiButton from 'balm-ui/components/button';
+  import $alert from 'balm-ui/plugins/alert';
 
   Vue.use(UiButton);
+  Vue.use($alert);
   ```
 
-```sh
-# For development
-npm run dev
+#### 1.4 Development and testing
 
-# For production
-npm run prod
+```bash
+npm run dev
 ```
 
-Enjoy 👻
+- edit a vue component: `my-project/app/scripts/views/components/hello.vue`
+
+  ```html
+  <template>
+    <div class="hello">
+      ...
+      <!-- Add a test button -->
+      <ui-button @click="$alert('Hello BalmUI')">Click Me</ui-button>
+    </div>
+  </template>
+  ```
+
+#### 1.5 Bundling and deployment
+
+```bash
+npm run prod
+```
 
 ### 2. For Vue CLI
 
@@ -142,10 +162,12 @@ npm install --save balm-ui
 
   ```js
   import Vue from 'vue';
-  import BalmUI from 'balm-ui';
+  import BalmUI from 'balm-ui'; // Official Google Material Components
+  import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // BalmJS Team Material Components
   import 'balm-ui/dist/balm-ui.css';
 
-  Vue.use(BalmUI);
+  Vue.use(BalmUI); // Mandatory
+  Vue.use(BalmUIPlus); // Optional
   ```
 
 ### 3. For `<script>`
@@ -180,6 +202,8 @@ npm install --save balm-ui
   </body>
 </html>
 ```
+
+Enjoy 👻
 
 ## Contributing
 

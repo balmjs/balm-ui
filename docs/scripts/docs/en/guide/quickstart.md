@@ -112,6 +112,7 @@ update `balm.config.js`
   ```scss
   @use 'balm-ui/components/core';
   @use 'balm-ui/components/button/button';
+  @use 'balm-ui/components/icon/icon';
   @use 'balm-ui/components/dialog/dialog';
   @use 'balm-ui/plugins/alert/alert';
   ```

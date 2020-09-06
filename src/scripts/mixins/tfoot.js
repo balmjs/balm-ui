@@ -62,7 +62,9 @@ export default {
                   result += value;
                 }
               });
-              result /= columnData.length;
+              if (columnData.length) {
+                result /= columnData.length;
+              }
               break;
             case UI_TABLE.AGG.MAX:
               columnData.forEach((value) => {

@@ -1,8 +1,4 @@
 import autoInstall from '../config/auto-install';
-import UiDialog from '../components/modal/dialog';
-import UiDialogTitle from '../components/modal/dialog-title';
-import UiDialogContent from '../components/modal/dialog-content';
-import UiDialogActions from '../components/modal/dialog-actions';
 import stateTypeMixins from '../mixins/state-type';
 import getType from '../utils/typeof';
 
@@ -17,25 +13,28 @@ const DEFAULT_OPTIONS = {
   callback: false
 };
 
-const template = `<ui-dialog
-  :open="open"
-  :class="['mdc-alert-dialog', options.className]"
-  @close="handleClose">
-  <ui-dialog-title v-if="options.title">{{ options.title }}</ui-dialog-title>
-  <ui-dialog-content v-if="options.raw" v-html="options.message"></ui-dialog-content>
-  <ui-dialog-content v-else>
-    <i v-if="materialIcon" :class="['material-icons mdc-alert-dialog__icon', stateClassName]">{{ materialIcon }}</i>
-    <span class="mdc-alert-dialog__message">{{ options.message }}</span>
-  </ui-dialog-content>
-  <ui-dialog-actions>
-    <button type="button"
-      class="mdc-button mdc-button--raised mdc-alert-dialog__button"
-      data-mdc-dialog-button-default
-      @click="handleClick">
-      <span class="mdc-button__label">{{ options.buttonText }}</span>
-    </button>
-  </ui-dialog-actions>
-</ui-dialog>`;
+const template = `<div
+  :class="['mdc-dialog', 'mdc-alert-dialog', options.className, {'mdc-dialog--open': open}]">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <h2 v-if="options.title" class="mdc-dialog__title">{{ options.title }}</h2>
+      <div v-if="options.raw" class="mdc-dialog__content" v-html="options.message"></div>
+      <div v-else class="mdc-dialog__content">
+        <i v-if="materialIcon" :class="['material-icons mdc-alert-dialog__icon', stateClassName]">{{ materialIcon }}</i>
+        <span class="mdc-alert-dialog__message">{{ options.message }}</span>
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button"
+          class="mdc-button mdc-button--raised mdc-alert-dialog__button"
+          data-mdc-dialog-button-default
+          @click="handleClick">
+          <span class="mdc-button__label">{{ options.buttonText }}</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>`;
 
 const BalmUI_AlertPlugin = {
   install(Vue, configs = {}) {
@@ -45,12 +44,6 @@ const BalmUI_AlertPlugin = {
       return new Promise((resolve) => {
         let vm = new Vue({
           el: document.createElement('div'),
-          components: {
-            UiDialog,
-            UiDialogTitle,
-            UiDialogContent,
-            UiDialogActions
-          },
           mixins: [stateTypeMixins],
           data: {
             open: false,
@@ -69,24 +62,24 @@ const BalmUI_AlertPlugin = {
               this.state = this.options.state;
               this.stateOutlined = this.options.stateOutlined;
             }
+          },
+          mounted() {
+            document.body.appendChild(this.$el);
 
-            this.$nextTick(() => {
-              document.body.appendChild(this.$el);
-              setTimeout(() => {
-                this.open = true;
-              }, 1);
-            });
+            setTimeout(() => {
+              this.open = true;
+            }, 1);
           },
           methods: {
             handleClose() {
               this.open = false;
-              this.$nextTick(() => {
-                document.body.removeChild(this.$el);
-                vm = null;
-              });
+
+              document.body.removeChild(this.$el);
+              vm = null;
             },
             handleClick() {
               this.handleClose();
+
               if (getType(this.options.callback) === 'function') {
                 this.options.callback();
               } else {

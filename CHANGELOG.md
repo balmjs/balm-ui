@@ -15,6 +15,8 @@
 - `<ui-slider>`
 - `<ui-pagination>`
 - `$toast`
+- `$alert`
+- `$confirm`
 
 ### Features
 

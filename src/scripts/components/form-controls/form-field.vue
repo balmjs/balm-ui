@@ -70,16 +70,18 @@ export default {
   },
   methods: {
     formLabel() {
-      const label = this.$slots.default.find(
-        (component) => component.tag === 'label'
-      );
+      if (this.$slots.default) {
+        const label = this.$slots.default.find(
+          (component) => component.tag === 'label'
+        );
 
-      if (label) {
-        ['flexBasis', 'marginRight', 'marginBottom'].forEach((key) => {
-          if (this[key]) {
-            label.elm.style[key] = this[key];
-          }
-        });
+        if (label) {
+          ['flexBasis', 'marginRight', 'marginBottom'].forEach((key) => {
+            if (this[key]) {
+              label.elm.style[key] = this[key];
+            }
+          });
+        }
       }
     }
   }

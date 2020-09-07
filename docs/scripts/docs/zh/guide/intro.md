@@ -1,80 +1,14 @@
 # 介绍
 
-## What is BalmUI?
+[BalmUI](https://github.com/balmjs/balm-ui) is a modular and customizable [Material Design](https://material.io/) UI library for Vue.js.
 
-Following the [Material Design](https://material.io/components/) UI components for the web specification, we developed the BalmUI library that contains a set of high quality components and demos for building rich, interactive user interfaces.
+## Features
 
-## Reusability & Composition
-
-### 1. Components
-
-- Alert (💡)
-- Autocomplete (💡)
-- Badge (💡)
-- Banner
-- Button
-- Card
-- Checkbox
-- Chips
-- Circular Progress
-- Collapse (💡)
-- Data Table
-- Datepicker (💡)
-- Dialog
-- Divider (💡)
-- Drawer
-- Editor (WYSIWYG) (💡)
-- Floating Action Button
-- File (💡)
-- Form (💡) + Form Field
-- Icon (Material icons)
-- Icon Button
-- Image List
-- Layout Grid
-- Linear Progress
-- List
-- Menu
-- Pagination (💡)
-- Radio
-- Rangepicker (💡)
-- Select
-- Skeleton (💡)
-- Slider
-- Snackbar
-- Switch
-- Tabs
-- Text Field
-- Tooltip
-- Top App Bar
-
-### 2. Plugins
-
-- Alert Dialog (💡)
-- Confirm Dialog (💡)
-- Event (💡)
-- Grid
-- Theme
-- Toast (💡)
-- Typography
-- Validator (💡)
-
-### 3. Directives
-
-- A11y
-- Anchor (💡)
-- Badge (💡)
-- Elevation
-- Ripple
-- Shape
-- Tooltip
-
-### 4. Utilities (💡)
-
-- Helper Functions
-- IE Detection
-- Type Detections
-
-> 💡: Extra Idea for UI
+- Enterprise-class UI designed for web applications
+- A set of high-quality Vue components/plugins/directives/utils out of the box
+- Powerful theme customization in every detail
+- Integrated a complete set of the latest Material Icons
+- All components and plugins is highly customizable, and can be used individually
 
 ## Contributing
 
@@ -94,4 +28,4 @@ We officially support the last two versions of every major browser. Specifically
 
 - [BalmJS](https://balm.js.org/)
 - [Vue.js](https://vuejs.org/)
-- [MDC Web](https://material.io/components/)
+- [MDC Web](https://github.com/material-components/material-components-web)

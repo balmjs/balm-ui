@@ -1,12 +1,6 @@
 # 快速入门
 
-Good tools make application development quicker and easier to maintain than if you did everything by hand.
-
-The [Balm CLI](https://github.com/balmjs/balm-cli) is a command line interface tool that scaffolds out a [BalmJS](https://github.com/balmjs/balm) project.
-
-> [BalmJS](https://balm.js.org/)@2.8.0+(Recommended) or other toolchains 🚀
-
-## 0. Set up the Development Environment
+## 0. 设置开发环境
 
 You need to set up your development environment before you can do anything.
 
@@ -14,33 +8,34 @@ Install [Node.js® and npm](https://nodejs.org/en/download/) if they are not alr
 
 > **Verify that you are running at least Node.js version 12.0.0 or greater and npm version 5.2.0 or greater** by running `node -v` and `npm -v` in a terminal/console window. Older versions produce errors, but newer versions are fine.
 
-First install the [Balm Core](https://github.com/balmjs/balm) and [Balm CLI](https://github.com/balmjs/balm-cli) globally.
+Good tools make application development quicker and easier to maintain than if you did everything by hand.
 
-```bash
-yarn global add balm-core balm-cli
-# OR
-npm install -g balm-core balm-cli
-```
+The [Balm CLI](https://github.com/balmjs/balm-cli) is a command line interface tool that scaffolds out a [BalmJS](https://github.com/balmjs/balm) project.
 
-## 1. Create a new project
+> **[Balm CLI](https://github.com/balmjs/balm-cli)**（BalmJS 官方推荐） 或 [Vue CLI](https://github.com/vuejs/vue-cli) 或 其他工具链 🚀
 
-Open a terminal window.
+- 使用 Balm CLI 前首先需要全局安装 [Balm Core](https://github.com/balmjs/balm) 和 [Balm CLI](https://github.com/balmjs/balm-cli)。
 
-Generate a new project and default app by running the following command:
+  ```bash
+  yarn global add balm-core balm-cli
+  # OR
+  npm install -g balm-core balm-cli
+  ```
+
+## 1. Balm CLI (推荐)
+
+### 1.0 创建一个新项目
+
+打开一个命令行窗口。
+
+根据以下命令生成一个新项目：
 
 ```bash
 balm init vue my-project
+cd my-project # Go to the project directory
 ```
 
-## 2. Install
-
-Go to the project directory.
-
-```bash
-cd my-project
-```
-
-2.1 Install dependencies
+安装依赖
 
 ```bash
 yarn
@@ -48,11 +43,11 @@ yarn
 npm install
 ```
 
-Installs the necessary npm packages, This can take some time.
+安装必须要的 npm 包，这里可能需要一些时间。
 
-> (China Only) 如果“网络”不科学，请设置[淘宝源](https://developer.aliyun.com/mirror/NPM)
+> （天朝专属）如果“网络”不科学，请设置[淘宝源](https://developer.aliyun.com/mirror/NPM)
 
-2.2 Install **BalmUI**
+### 1.1 安装 `balm-ui`
 
 ```bash
 yarn add balm-ui
@@ -60,100 +55,169 @@ yarn add balm-ui
 npm install --save balm-ui
 ```
 
-## 3. Config
+> `balm-ui@next` for canary version
 
-- **`balm.config`** [**setup**](https://balm.js.org/docs/config/styles.html#styles-dartsass) for Dart Sass
+### 1.2 Configuration
 
-⚠️️ Edit `my-project/config/balmrc.js`
+更新 `balm.config.js`
 
-```js
-module.exports = {
-  styles: {
-    extname: 'scss',
-    dartSass: true // required
-  }
-  // Other Options...
-};
-```
+- 获取 [Material Icons](https://material.balmjs.com/material-icons.zip) 无需下载（或者下载后解压至 `/path/to/my-project/app/fonts`）
 
-- Download [Material Design Icons](https://material.balmjs.com/material-icons.zip) and extract to `/path/to/my-project/app/fonts`.
+  ```js
+  const api = (mix) => {
+    if (mix.env.isDev) {
+      mix.copy('node_modules/balm-ui/fonts/*', 'app/fonts');
+    }
+  };
+  ```
 
-> More BalmUI usages and font without downloading, see [Advanced Usage](https://material.balmjs.com/#/guide/advanced).
+- 编辑 `my-project/config/balmrc.js`，配置使用 [Dart Sass](https://balm.js.org/docs/config/styles.html#styles-dartsass)
 
-## 4. Usage
+  ```js
+  module.exports = {
+    styles: {
+      extname: 'scss',
+      dartSass: true
+    }
+    // Other Options...
+  };
+  ```
 
-### Default Usage
+### 1.3 使用
 
-Edit `my-project/app/styles/global/_vendor.scss`
+#### 默认用法
 
-```scss
-/* import BalmUI styles */
-@use 'balm-ui/dist/balm-ui';
-```
+- 编辑 `my-project/app/styles/global/_vendor.scss`
 
-> Recommend to use Sass in `/path/to/your-project/styles/_vendor.scss`, and you can use more advanced style usage of the BalmUI.
+  ```scss
+  /* import BalmUI styles */
+  @use 'balm-ui/dist/balm-ui';
+  ```
 
-Edit `my-project/app/scripts/main.js`
+> 推荐在 `/path/to/your-project/styles/_vendor.scss` 中使用 Sass，这样你将能使用到更多 BalmUI 的高级简便的样式管理方案。
 
-```js
-import Vue from 'vue';
-import App from './views/layouts/app';
-import BalmUI from 'balm-ui'; // BalmUI Core & Official Google Material Components
-import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // BalmJS Team Material Components
+- 编辑 `my-project/app/scripts/main.js`
 
-Vue.config.productionTip = false;
-Vue.use(BalmUI); // Mandatory
-Vue.use(BalmUIPlus); // Optional
+  ```js
+  import Vue from 'vue';
+  import BalmUI from 'balm-ui'; // Official Google Material Components
+  import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // BalmJS Team Material Components
 
-new Vue({
-  el: '#app',
-  components: { App },
-  template: '<app/>'
-});
-```
+  Vue.use(BalmUI); // Mandatory
+  Vue.use(BalmUIPlus); // Optional
+  ```
 
-### Individual Usage
+#### 独立用法
 
-Edit `my-project/app/styles/global/_vendor.scss`
+- 编辑 `my-project/app/styles/global/_vendor.scss`
 
-```scss
-@use 'balm-ui/components/core';
-@use 'balm-ui/components/button/button';
-@use 'balm-ui/components/dialog/dialog';
-@use 'balm-ui/plugins/alert/alert';
-```
+  ```scss
+  @use 'balm-ui/components/core';
+  @use 'balm-ui/components/button/button';
+  @use 'balm-ui/components/icon/icon';
+  @use 'balm-ui/components/dialog/dialog';
+  @use 'balm-ui/plugins/alert/alert';
+  ```
 
-Edit `my-project/app/scripts/main.js`
+- 编辑 `my-project/app/scripts/main.js`
 
-```js
-import Vue from 'vue';
-import UiButton from 'balm-ui/components/button';
+  ```js
+  import Vue from 'vue';
+  import UiButton from 'balm-ui/components/button';
+  import $alert from 'balm-ui/plugins/alert';
 
-Vue.use(UiButton);
-```
+  Vue.use(UiButton);
+  Vue.use($alert);
+  ```
 
-## 5. Development and testing
+### 1.4 开发和测试
 
 ```bash
 npm run dev
 ```
 
-Edit a vue component: `my-project/app/scripts/views/components/hello.vue`
+- 编辑一个 vue 组件：`my-project/app/scripts/views/components/hello.vue`
 
-```html
-<template>
-  <div class="hello">
-    ...
-    <!-- Add a test button -->
-    <ui-button @click="$alert('gg')">Click Me</ui-button>
-  </div>
-</template>
-```
+  ```html
+  <template>
+    <div class="hello">
+      ...
+      <!-- Add a test button -->
+      <ui-button icon="add" @click="$alert('Hello BalmUI')">Click Me</ui-button>
+    </div>
+  </template>
+  ```
 
-## 6. Bundling and deployment
+### 1.5 打包和发布
 
 ```bash
 npm run prod
 ```
 
-Enjoy 👻
+## 2. Vue CLI
+
+### 2.0 创建一个新项目
+
+```bash
+vue create my-project
+cd my-project
+```
+
+### 2.1 安装 `balm-ui`
+
+```bash
+yarn add balm-ui
+# OR
+npm install --save balm-ui
+```
+
+> `balm-ui@next` for canary version
+
+### 2.2 使用
+
+- 编辑 `/path/to/main.js`
+
+  ```js
+  import Vue from 'vue';
+  import BalmUI from 'balm-ui'; // Official Google Material Components
+  import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // BalmJS Team Material Components
+  import 'balm-ui/dist/balm-ui.css';
+
+  Vue.use(BalmUI); // Mandatory
+  Vue.use(BalmUIPlus); // Optional
+  ```
+
+## 3. 直接 `<script>` 引用
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello BalmUI</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/balm-ui/dist/balm-ui.css"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <ui-button @click="$alert(message)" icon="add">SayHi</ui-button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/balm-ui"></script>
+    <script src="https://cdn.jsdelivr.net/npm/balm-ui/dist/balm-ui-plus.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          message: 'Hello BalmUI'
+        }
+      });
+    </script>
+  </body>
+</html>
+```
+
+愉快的“码”起来 👻

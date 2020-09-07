@@ -199,10 +199,9 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
 
 > With regard to _CSSinJS_, styles can be extracted through BalmJS configuration, but the idea of BalmJS is more recommended to separate and manage styles and scripts to achieve more flexible module configuration and management.
 
-- SASS management
+- SASS management (`/path/to/my-project/app/styles/global/_vendor.scss`)
 
   ```scss
-  /* /path/to/my-project/app/styles/global/_vendor.scss */
   @use 'balm-ui/components/core';
   @use 'balm-ui/components/button/button';
   @use 'balm-ui/components/icon/icon';
@@ -210,7 +209,7 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
   @use 'balm-ui/plugins/alert/alert';
   ```
 
-- CSS management
+- CSS management (`/path/to/my-project/app/index.html`)
 
   ```html
   <head>

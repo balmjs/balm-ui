@@ -1,13 +1,13 @@
 # 万恶的 IE
 
-> Please `Copy` + `Paste` or customize yours, if your need
+> 如果需要请直接 **复制粘贴** 或 可 _自定义_
 
-- File: `/path/to/app/scripts/kill-ie.js`
+- 文件：`/path/to/app/scripts/kill-ie.js`
 
 ```js
-import { detectIE } from 'balm-ui'; // Default Usage
-// OR
-// import detectIE from 'balm-ui/utils/ie'; // Individual Usage
+import { detectIE } from 'balm-ui'; // 默认用法
+// 或
+// import detectIE from 'balm-ui/utils/ie'; // 独立用法
 
 const IE = detectIE();
 
@@ -16,8 +16,8 @@ const isIE = IE && IE < 11; // Browser support IE 11+
 const killIE = () => {
   let body = document.getElementsByTagName('body')[0];
   let template = `<div class="kill-ie">
-      <h1>Your browser is out-of-date. Please <a href="https://browsehappy.com/">download</a> one of the up-to-date, free and excellent browsers for better security, speed and comfort.</h1>
-      <p>Recommended Choice：<a href="https://www.google.cn/intl/zh-CN/chrome/">Chrome</a></p>
+      <h1>您当前使用的浏览器版本过低，可能存在安全风险，请点击<a href="https://browsehappy.com/">这里</a>选择一款新版浏览器。</h1>
+      <p>建议升级：<a href="https://www.google.cn/intl/zh-CN/chrome/">谷歌浏览器</a></p>
     </div>`;
 
   body.innerHTML = template;
@@ -38,7 +38,7 @@ if (isIE) {
 }
 ```
 
-- File: `/path/to/app/styles/_kill-ie.scss`
+- 文件：`/path/to/app/styles/_kill-ie.scss`
 
 ```scss
 .kill-ie {

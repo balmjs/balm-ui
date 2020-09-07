@@ -13,7 +13,8 @@ const UI_TOAST = {
 const DEFAULT_OPTIONS = {
   className: '',
   timeoutMs: UI_TOAST.timeoutMs.DEFAULTS,
-  message: ''
+  message: '',
+  debug: false
 };
 
 const template = `<div
@@ -95,13 +96,15 @@ const BalmUI_ToastPlugin = {
             hide() {
               this.open = false;
 
-              // remove toast
-              toastElTimer = setTimeout(() => {
-                try {
-                  document.body.removeChild(this.$el);
-                  vm = null;
-                } catch (e) {}
-              }, this.options.timeoutMs);
+              if (!this.options.debug) {
+                // remove toast
+                toastElTimer = setTimeout(() => {
+                  try {
+                    document.body.removeChild(this.$el);
+                    vm = null;
+                  } catch (e) {}
+                }, this.options.timeoutMs);
+              }
             }
           },
           template

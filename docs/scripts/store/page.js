@@ -18,7 +18,7 @@ export default {
 
           // 2. 部分使用变量 require(prefix + variable + suffix)
           let filename = `${name}/demo${i}`;
-          let code = require(`@/snippets/${filename}.md`);
+          let code = require(`@/snippets/${filename}.md`); // NOTE: just one variable in `require`
 
           this.$store.demos.push(code);
         }

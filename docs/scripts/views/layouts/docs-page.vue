@@ -99,12 +99,12 @@ export default {
       if (Array.isArray(key)) {
         result = key.map((apidoc) => {
           let filename = `${this.$store.lang}/${name}/${apidoc}`;
-          let docs = require(`@/docs/${filename}.md`);
+          let docs = require(`@/docs/${filename}.md`); // NOTE: just one variable in `require`
           return docs;
         });
       } else {
         let filename = `${this.$store.lang}/${name}/${key}`;
-        let docs = require(`@/docs/${filename}.md`);
+        let docs = require(`@/docs/${filename}.md`); // NOTE: just one variable in `require`
         result = docs;
       }
 

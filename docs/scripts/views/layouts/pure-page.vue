@@ -1,5 +1,5 @@
 <template>
-  <div :class="[$tt('body1'), `page--${name}`]">
+  <div v-anchor.html.offset="64" :class="[$tt('body1'), `page--${name}`]">
     <div :class="[$tt('body2'), 'pure-docs']">
       <ui-markdown :text="docs"></ui-markdown>
       <ui-footer-nav :prev="prev" :next="next"></ui-footer-nav>

@@ -28,6 +28,7 @@
   - `<ui-tooltip>`
 - `<ui-menuitem>`: add prop `value`
 - `<ui-form>`: add prop `itemMarginBottom`, `labelWidth`, `labelMarginRight`, `labelMarginBottom`
+- `v-anchor`: optimize for dynamic html
 
 ### BREAKING CHANGES
 

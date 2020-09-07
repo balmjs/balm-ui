@@ -56,10 +56,11 @@ const initAnchor = (el, { value, rawName, modifiers }) => {
   }
 };
 
-const bindAnchor = (method) => {
-  let anchorElementList = document.querySelectorAll(
+const bindAnchor = (method, el = document) => {
+  let anchorElementList = el.querySelectorAll(
     `.${UI_ANCHOR.cssClasses.outer} .${UI_ANCHOR.cssClasses.inner}`
   );
+
   if (anchorElementList.length) {
     anchorElementList.forEach((anchorEl) => {
       anchorEl[`${method}EventListener`]('click', () => {
@@ -78,6 +79,13 @@ const BalmUI_AnchorDirective = {
     initAnchor(el, binding);
     if (binding.modifiers.html) {
       bindAnchor('add');
+    }
+  },
+  update(el, binding, vnode) {
+    if (binding.modifiers.html) {
+      vnode.context.$nextTick(() => {
+        bindAnchor('add', vnode.context.$el);
+      });
     }
   },
   unbind(el, binding) {

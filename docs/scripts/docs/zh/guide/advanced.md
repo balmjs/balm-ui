@@ -2,16 +2,16 @@
 
 > The following configuration is still the Vue scaffold built based on [Balm CLI](https://github.com/balmjs/balm-cli).
 
-## TOC
+##  目录
 
-1. Modular CSS
-   - <a href="javascript:void(0)" class="v-anchor" data-href="#use-sass">Use Sass</a>
-   - <a href="javascript:void(0)" class="v-anchor" data-href="#use-css">Use CSS</a>
-2. Modular JS
-   - <a href="javascript:void(0)" class="v-anchor" data-href="#default-usage">Default Usage</a> (desktop)
-   - <a href="javascript:void(0)" class="v-anchor" data-href="#Individual-usage">Individual Usage</a> (mobile)
-   - <a href="javascript:void(0)" class="v-anchor" data-href="#source-code-usage">Source Code Usage</a> (development)
-3. <a href="javascript:void(0)" class="v-anchor" data-href="#mdi">Get Material Icons without downloading</a>
+1. CSS 模块化
+   - <a href="javascript:void(0)" class="v-anchor" data-href="#use-sass">使用 Sass</a>
+   - <a href="javascript:void(0)" class="v-anchor" data-href="#use-css">使用 CSS</a>
+2. JS 模块化
+   - <a href="javascript:void(0)" class="v-anchor" data-href="#default-usage">默认用法</a>（桌面端）
+   - <a href="javascript:void(0)" class="v-anchor" data-href="#Individual-usage">独立用法</a>（手机端）
+   - <a href="javascript:void(0)" class="v-anchor" data-href="#source-code-usage">源代码用法</a>（开发）
+3. <a href="javascript:void(0)" class="v-anchor" data-href="#mdi">获取 Material Icons 无需下载</a>
 
 ## 1. Modular CSS
 

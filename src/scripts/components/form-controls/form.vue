@@ -40,6 +40,20 @@ export default {
       type: Boolean,
       default: false
     }
+    // horizontal form
+    // labelWidth: {
+    //   type: Number,
+    //   default: 0
+    // },
+    // labelMarginRight: {
+    //   type: Number,
+    //   default: 0
+    // },
+    // // vertical form
+    // labelMarginBottom: {
+    //   type: Number,
+    //   default: 0
+    // }
   },
   data() {
     return {
@@ -60,6 +74,35 @@ export default {
         'mdc-form--label-right-aligned': this.labelRightAligned
       };
     }
+    // style() {
+    //   let result = {};
+
+    //   if (this.isVertical) {
+    //     if (this.labelWidth || this.labelMarginRight) {
+    //       console.warn(
+    //         '`labelWidth`/`labelMarginRight` just for `horizontal` type form'
+    //       );
+    //     }
+
+    //     if (this.labelMarginBottom) {
+    //       result['margin-bottom'] = `${this.labelMarginBottom}px`;
+    //     }
+    //   } else {
+    //     if (this.labelMarginBottom) {
+    //       console.warn('`labelMarginBottom` just for `vertical` type form');
+    //     }
+
+    //     if (this.labelWidth) {
+    //       result['flex-basis'] = `${this.labelWidth}px`;
+    //     }
+
+    //     if (this.labelMarginRight) {
+    //       result['margin-right'] = `${this.labelMarginRight}px`;
+    //     }
+    //   }
+
+    //   return result;
+    // }
   }
 };
 </script>

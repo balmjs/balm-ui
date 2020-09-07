@@ -55,6 +55,8 @@ yarn add balm-ui
 npm install --save balm-ui
 ```
 
+> `balm-ui@next` for canary version
+
 ### 1.2 Configuration
 
 update `balm.config.js`
@@ -141,7 +143,7 @@ npm run dev
     <div class="hello">
       ...
       <!-- Add a test button -->
-      <ui-button @click="$alert('Hello BalmUI')">Click Me</ui-button>
+      <ui-button icon="add" @click="$alert('Hello BalmUI')">Click Me</ui-button>
     </div>
   </template>
   ```
@@ -168,6 +170,8 @@ yarn add balm-ui
 # OR
 npm install --save balm-ui
 ```
+
+> `balm-ui@next` for canary version
 
 ### 2.2 Usage
 

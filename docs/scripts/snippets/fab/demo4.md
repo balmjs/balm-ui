@@ -1,3 +1,8 @@
+```scss
+// my-project/app/styles/global/_vendor.scss
+@use 'font-awesome/scss/font-awesome';
+```
+
 ```html
 <ui-fab>
   <i class="fa fa-flag fa-lg"></i>

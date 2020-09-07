@@ -98,13 +98,13 @@ export default {
 
       if (Array.isArray(key)) {
         result = key.map((apidoc) => {
-          let filename = `${name}/${apidoc}`;
-          let docs = require(`@/docs/${this.$store.lang}/${filename}.md`);
+          let filename = `${this.$store.lang}/${name}/${apidoc}`;
+          let docs = require(`@/docs/${filename}.md`);
           return docs;
         });
       } else {
-        let filename = `${name}/${key}`;
-        let docs = require(`@/docs/${this.$store.lang}/${filename}.md`);
+        let filename = `${this.$store.lang}/${name}/${key}`;
+        let docs = require(`@/docs/${filename}.md`);
         result = docs;
       }
 

@@ -26,7 +26,8 @@ export default {
   },
   computed: {
     docs() {
-      return require(`@/docs/${this.$store.lang}/guide/${this.name}.md`);
+      let filename = `${this.$store.lang}/guide/${this.name}`;
+      return require(`@/docs/${filename}.md`);
     }
   }
 };

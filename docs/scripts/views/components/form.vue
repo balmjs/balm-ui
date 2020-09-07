@@ -30,7 +30,7 @@
 
     <section class="demo-wrapper">
       <div class="demo">
-        <ui-form type="|">
+        <ui-form type="|" itemMarginBottom="50">
           <legend>Vertical Form</legend>
           <ui-form-field>
             <label>Input:</label>

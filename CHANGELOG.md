@@ -14,7 +14,7 @@
 - `<ui-select>`
 - `<ui-slider>`
 - `<ui-pagination>`
-- `$toast`
+- `$toast`: optimize option `timeoutMs`
 - `$alert`
 - `$confirm`
 
@@ -27,7 +27,7 @@
   - `<ui-banner>`
   - `<ui-tooltip>`
 - `<ui-menuitem>`: add prop `value`
-- `$toast`: optimize option `timeoutMs`
+- `<ui-form>`: add prop `itemMarginBottom`, `labelWidth`, `labelMarginRight`, `labelMarginBottom`
 
 ### BREAKING CHANGES
 

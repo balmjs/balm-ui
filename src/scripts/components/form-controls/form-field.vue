@@ -1,5 +1,5 @@
 <template>
-  <div :class="className">
+  <div :class="className" :style="style">
     <slot>
       <!-- Form item: checkbox or radio + label -->
     </slot>
@@ -39,10 +39,49 @@ export default {
         'mdc-form-field--align-end': this.alignEnd,
         'mdc-form-field--space-between': this.spaceBetween
       };
+    },
+    // horizontal form
+    style() {
+      return this.$parent.itemMarginBottom
+        ? {
+            'margin-bottom': `${this.$parent.itemMarginBottom}px`
+          }
+        : {};
+    },
+    flexBasis() {
+      return this.$parent.labelWidth ? `${this.$parent.labelWidth}px` : 0;
+    },
+    marginRight() {
+      return this.$parent.labelMarginRight
+        ? `${this.$parent.labelMarginRight}px`
+        : 0;
+    },
+    // vertical form
+    marginBottom() {
+      return this.$parent.labelMarginBottom
+        ? `${this.$parent.labelMarginBottom}px`
+        : 0;
     }
   },
   mounted() {
     this.$formField = new MDCFormField(this.$el);
+
+    this.formLabel();
+  },
+  methods: {
+    formLabel() {
+      const label = this.$slots.default.find(
+        (component) => component.tag === 'label'
+      );
+
+      if (label) {
+        ['flexBasis', 'marginRight', 'marginBottom'].forEach((key) => {
+          if (this[key]) {
+            label.elm.style[key] = this[key];
+          }
+        });
+      }
+    }
   }
 };
 </script>

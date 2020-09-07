@@ -22,7 +22,10 @@ const template = `<div
     'mdc-snackbar',
     'mdc-toast',
     options.className,
-    {'mdc-snackbar--open': open}
+    {
+      'mdc-snackbar--opening': opening,
+      'mdc-snackbar--open': opened
+    }
   ]">
   <div class="mdc-snackbar__surface">
     <div class="mdc-snackbar__label">
@@ -60,7 +63,26 @@ const BalmUI_ToastPlugin = {
           el: document.createElement('div'),
           data: {
             open: false,
+            opening: true,
+            opened: false,
             options
+          },
+          watch: {
+            open(val) {
+              if (val) {
+                // animation
+                setTimeout(() => {
+                  this.opened = true;
+                  setTimeout(() => {
+                    this.opening = false;
+                  }, 150);
+                }, 150);
+              } else {
+                // reset
+                this.opening = true;
+                this.opened = false;
+              }
+            }
           },
           mounted() {
             this.init(options);

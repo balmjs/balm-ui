@@ -1,5 +1,5 @@
 import autoInstall from '../config/auto-install';
-import stateTypeMixins from '../mixins/state-type';
+import WindowDialog from '../components/modal/window-dialog';
 import getType from '../utils/typeof';
 
 const DEFAULT_OPTIONS = {
@@ -13,28 +13,14 @@ const DEFAULT_OPTIONS = {
   callback: false
 };
 
-const template = `<div
-  :class="['mdc-dialog', 'mdc-alert-dialog', options.className, {'mdc-dialog--open': open}]">
-  <div class="mdc-dialog__container">
-    <div class="mdc-dialog__surface">
-      <h2 v-if="options.title" class="mdc-dialog__title">{{ options.title }}</h2>
-      <div v-if="options.raw" class="mdc-dialog__content" v-html="options.message"></div>
-      <div v-else class="mdc-dialog__content">
-        <i v-if="materialIcon" :class="['material-icons mdc-alert-dialog__icon', stateClassName]">{{ materialIcon }}</i>
-        <span class="mdc-alert-dialog__message">{{ options.message }}</span>
-      </div>
-      <footer class="mdc-dialog__actions">
-        <button type="button"
-          class="mdc-button mdc-button--raised mdc-alert-dialog__button"
-          data-mdc-dialog-button-default
-          @click="handleClick">
-          <span class="mdc-button__label">{{ options.buttonText }}</span>
-        </button>
-      </footer>
-    </div>
-  </div>
-  <div class="mdc-dialog__scrim"></div>
-</div>`;
+const template = `<window-dialog class="mdc-alert-dialog" :open="open" :options="options">
+  <button type="button"
+    class="mdc-button mdc-button--raised mdc-alert-dialog__button"
+    data-mdc-dialog-button-default
+    @click="handleClick">
+    <span class="mdc-button__label">{{ options.buttonText }}</span>
+  </button>
+</window-dialog>`;
 
 const BalmUI_AlertPlugin = {
   install(Vue, configs = {}) {
@@ -44,12 +30,12 @@ const BalmUI_AlertPlugin = {
       return new Promise((resolve) => {
         let vm = new Vue({
           el: document.createElement('div'),
-          mixins: [stateTypeMixins],
+          components: {
+            WindowDialog
+          },
           data: {
             open: false,
-            options,
-            state: '',
-            stateOutlined: false
+            options
           },
           created() {
             if (getType(customOptions) === 'string') {
@@ -57,18 +43,13 @@ const BalmUI_AlertPlugin = {
             } else if (getType(customOptions) === 'object') {
               this.options = Object.assign({}, this.options, customOptions);
             }
-
-            if (this.options.state) {
-              this.state = this.options.state;
-              this.stateOutlined = this.options.stateOutlined;
-            }
           },
           mounted() {
             document.body.appendChild(this.$el);
 
-            setTimeout(() => {
+            this.$nextTick(() => {
               this.open = true;
-            }, 1);
+            });
           },
           methods: {
             handleClose() {

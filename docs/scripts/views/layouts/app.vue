@@ -147,7 +147,7 @@ export default {
   },
   data() {
     return {
-      version: VERSION.split('-')[0] + '-canary',
+      version: VERSION.split('-')[0] + '-canary.8',
       menu,
       bodyEl: document.documentElement || document.body,
       isWideScreen: true,

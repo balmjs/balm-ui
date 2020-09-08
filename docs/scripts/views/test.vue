@@ -1,10 +1,5 @@
 <template>
-  <div>
-    <ui-form-field>
-      <label>Input:</label>
-      <ui-textfield></ui-textfield>
-    </ui-form-field>
-  </div>
+  <div></div>
 </template>
 
 <script>

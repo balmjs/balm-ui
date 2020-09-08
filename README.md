@@ -42,7 +42,7 @@ yarn add balm-ui
 npm install --save balm-ui
 ```
 
-> `balm-ui@next` for canary version
+> :tada: `balm-ui@next` for canary version
 
 #### 1.2 Configuration
 
@@ -158,7 +158,7 @@ yarn add balm-ui
 npm install --save balm-ui
 ```
 
-> `balm-ui@next` for canary version
+> :tada: `balm-ui@next` for canary version
 
 #### 2.2 Usage
 

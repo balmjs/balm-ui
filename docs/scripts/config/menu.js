@@ -13,6 +13,9 @@ const MATERIAL_COMPONENTS = [
       },
       {
         name: 'kill-ie'
+      },
+      {
+        name: 'upgrade'
       }
     ]
   },

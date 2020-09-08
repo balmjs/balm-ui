@@ -2,6 +2,7 @@ const Intro = () => import('@/views/guide/intro');
 const Quickstart = () => import('@/views/guide/quickstart');
 const Advanced = () => import('@/views/guide/advanced');
 const KillIE = () => import('@/views/guide/kill-ie');
+const Upgrade = () => import('@/views/guide/upgrade');
 
 export default [
   {
@@ -23,5 +24,10 @@ export default [
     path: 'kill-ie',
     name: 'guide.kill-ie',
     component: KillIE
+  },
+  {
+    path: 'upgrade',
+    name: 'guide.upgrade',
+    component: Upgrade
   }
 ];

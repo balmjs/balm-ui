@@ -29,6 +29,19 @@
 - `<ui-menuitem>`: add prop `value`
 - `<ui-form>`: add prop `itemMarginBottom`, `labelWidth`, `labelMarginRight`, `labelMarginBottom`
 - `v-anchor`: optimize for dynamic html
+- overwrite variables become more concise and clear
+
+  - Old
+
+    ```scss
+    @use '@material/button/variables';
+    ```
+
+  - New
+
+    ```scss
+    @use '@material/button';
+    ```
 
 ### BREAKING CHANGES
 

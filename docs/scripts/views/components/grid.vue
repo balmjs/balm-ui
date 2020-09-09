@@ -4,7 +4,7 @@
       <template #nav-icon="{ navIconClass }">
         <ui-icon-button icon="arrow_back" :class="navIconClass" @click="$router.back()"></ui-icon-button>
       </template>
-      <span class="['catalog-title', $themeColor('on-primary')]">Layout Grid</span>
+      <span class="['catalog-title', $theme.color('on-primary')]">Layout Grid</span>
     </ui-top-app-bar>
 
     <docs-page

@@ -18,3 +18,28 @@ export const translations = [
     value: 'zh'
   }
 ];
+
+export const theme = {
+  light: {
+    primary: '#6200ee',
+    secondary: '#018786',
+    background: '#fff',
+    surface: '#fff',
+    error: '#b00020',
+    'on-primary': '#fff',
+    'on-secondary': '#fff',
+    'on-surface': '#000',
+    'on-error': '#fff'
+  },
+  dark: {
+    primary: '#bb86fc',
+    secondary: '#03dac6',
+    background: '#121212',
+    surface: '#121212',
+    error: '#cf6679',
+    'on-primary': '#fff',
+    'on-secondary': '#fff',
+    'on-surface': '#fff',
+    'on-error': '#000'
+  }
+};

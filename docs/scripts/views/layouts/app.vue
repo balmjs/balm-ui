@@ -13,12 +13,12 @@
         fixed
         @nav="$balmUI.onChange('openDrawer', !openDrawer)"
       >
-        <router-link to="/" :class="['catalog-title', $themeColor('on-primary')]">BalmUI</router-link>
+        <router-link to="/" :class="['catalog-title', $theme.color('on-primary')]">BalmUI</router-link>
         <template #toolbar="{ toolbarItemClass }">
-          <!-- <ui-icon-button
+          <ui-icon-button
             :icon="$store.theme === 'dark' ? 'bedtime' : 'wb_sunny'"
             @click="$store.switchTheme"
-          ></ui-icon-button>-->
+          ></ui-icon-button>
           <ui-menu-anchor>
             <ui-icon-button icon="language" @click="$balmUI.onShow('showTranslations')"></ui-icon-button>
             <ui-menu v-model="showTranslations" @selected="$store.setLang">
@@ -102,7 +102,7 @@
                     <ui-list-group-subheader
                       v-else
                       :key="`head${index}`"
-                      :class="$textColor('primary', 'light')"
+                      :class="$theme.text('primary', 'light')"
                     >
                       {{ $t(`menu.${item.name}`) }}
                       <i
@@ -147,7 +147,7 @@ export default {
   },
   data() {
     return {
-      version: VERSION.split('-')[0] + '-canary.9',
+      version: VERSION.split('-')[0] + '-canary.10',
       menu,
       bodyEl: document.documentElement || document.body,
       isWideScreen: true,
@@ -200,6 +200,8 @@ export default {
     this.$bus.$on('switch-lang', (lang) => {
       this.$i18n.locale = lang;
     });
+
+    this.$store.setTheme();
   },
   beforeDestroy() {
     window.removeEventListener('balmResize', this.init);

@@ -25,10 +25,10 @@
             ></ui-card-media>
             <ui-card-text>
               <div :class="$tt('headline6')">Card title</div>
-              <div :class="[$tt('subtitle2'), $textColor('secondary')]">Secondary text</div>
+              <div :class="[$tt('subtitle2'), $theme.text('secondary')]">Secondary text</div>
             </ui-card-text>
             <ui-card-text v-if="cardOptions.supportingText">
-              <div :class="[$tt('subtitle2'), $textColor('secondary')]">
+              <div :class="[$tt('subtitle2'), $theme.text('secondary')]">
                 Greyhound divisively hello coldly wonderfully marginally far
                 upon excluding.
               </div>

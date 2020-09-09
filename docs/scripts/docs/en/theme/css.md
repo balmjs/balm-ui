@@ -11,7 +11,24 @@
   $on-surface: if(contrast-tone($surface) == 'dark', #000, #fff),
 
   $error: #b00020,
-  $on-error: if(contrast-tone($error) == 'dark', #000, #fff)
+  $on-error: if(contrast-tone($error) == 'dark', #000, #fff),
+
+  $text-colors: (
+    dark: (
+      primary: rgba(black, 0.87),
+      secondary: rgba(black, 0.54),
+      hint: rgba(black, 0.38),
+      disabled: rgba(black, 0.38),
+      icon: rgba(black, 0.38),
+    ),
+    light: (
+      primary: white,
+      secondary: rgba(white, 0.7),
+      hint: rgba(white, 0.5),
+      disabled: rgba(white, 0.5),
+      icon: rgba(white, 0.5),
+    ),
+  )
 );
 ```
 

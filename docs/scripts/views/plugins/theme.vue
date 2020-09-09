@@ -2,8 +2,8 @@
   <docs-page type="plugin" name="theme" demo-count="4">
     <template #hero>
       <div class="hero-demos">
-        <ui-button raised :class="[$themeColor('primary-bg')]">Primary</ui-button>
-        <ui-button raised :class="[$themeColor('secondary-bg')]">Secondary</ui-button>
+        <ui-button raised :class="[$theme.color('primary-bg')]">Primary</ui-button>
+        <ui-button raised :class="[$theme.color('secondary-bg')]">Secondary</ui-button>
       </div>
     </template>
 
@@ -40,31 +40,49 @@
       </ui-menu>
     </ui-menu-anchor>
 
-    <div class="demo-main">
-      <button-demo></button-demo>
-      <fab-demo></fab-demo>
+    <section class="demo-wrapper">
+      <h6 :class="$tt('headline6')">1.1 Baseline theme</h6>
+      <div :class="['demo-theme-color', $theme.color(['primary-bg', 'on-primary'])]">primary</div>
+      <div :class="['demo-theme-color', $theme.color(['secondary-bg', 'on-secondary'])]">secondary</div>
+      <div
+        :class="[
+        'demo-theme-color',
+        $theme.color('background'),
+        $theme.text('primary', $store.theme)
+      ]"
+      >background</div>
+      <div :class="['demo-theme-color', $theme.color(['surface', 'on-surface'])]">surface</div>
+      <div :class="['demo-theme-color', $theme.color(['error'])]">error</div>
+    </section>
 
-      <top-app-bar-demo></top-app-bar-demo>
-      <drawer-demo></drawer-demo>
+    <section class="demo-wrapper">
+      <h6 :class="$tt('headline6')">1.2 Components theme</h6>
+      <div class="demo-main">
+        <button-demo></button-demo>
+        <fab-demo></fab-demo>
 
-      <menu-demo></menu-demo>
-      <tabs-demo></tabs-demo>
+        <top-app-bar-demo></top-app-bar-demo>
+        <drawer-demo></drawer-demo>
 
-      <textfield-demo></textfield-demo>
-      <select-demo></select-demo>
+        <menu-demo></menu-demo>
+        <tabs-demo></tabs-demo>
 
-      <checkbox-demo></checkbox-demo>
-      <radio-demo></radio-demo>
+        <textfield-demo></textfield-demo>
+        <select-demo></select-demo>
 
-      <switch-demo></switch-demo>
-      <slider-demo></slider-demo>
+        <checkbox-demo></checkbox-demo>
+        <radio-demo></radio-demo>
 
-      <card-demo></card-demo>
-      <image-list-demo></image-list-demo>
+        <switch-demo></switch-demo>
+        <slider-demo></slider-demo>
 
-      <list-demo></list-demo>
-      <table-demo></table-demo>
-    </div>
+        <card-demo></card-demo>
+        <image-list-demo></image-list-demo>
+
+        <list-demo></list-demo>
+        <table-demo></table-demo>
+      </div>
+    </section>
 
     <template #after>
       <ui-grid class="color-palette">
@@ -95,7 +113,7 @@
           <h6 :class="$tt('headline6')">Black &amp; White</h6>
           <ui-list>
             <ui-item
-              :class="[$textColor('primary', 'dark'), 'btn-copy']"
+              :class="[$theme.text('primary', 'dark'), 'btn-copy']"
               :style="{ 'background-color': '#000' }"
               data-clipboard-text="#000000"
               data-name="Black"
@@ -104,7 +122,7 @@
               <span class="hex">#000000</span>
             </ui-item>
             <ui-item
-              :class="[$textColor('primary', 'light'), 'btn-copy']"
+              :class="[$theme.text('primary', 'light'), 'btn-copy']"
               :style="{ 'background-color': '#fff' }"
               data-clipboard-text="#ffffff"
               data-name="White"
@@ -139,6 +157,18 @@ import ImageListDemo from '@/demos/theme/image-list';
 import ListDemo from '@/demos/theme/list';
 import TableDemo from '@/demos/theme/table';
 
+const THEME_STYLES = [
+  ['primary', 'on-primary', 'primary-bg'],
+  ['secondary', 'on-secondary', 'secondary-bg'],
+  'background',
+  ['surface', 'on-surface'],
+  ['error', 'on-error'],
+  'on-primary',
+  'on-secondary',
+  'on-surface',
+  'on-error'
+];
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Theme'
@@ -163,6 +193,7 @@ export default {
   },
   data() {
     return {
+      THEME_STYLES,
       COLOR,
       open: false,
       selectedTheme: 'baseline',
@@ -210,8 +241,10 @@ export default {
       this.secondary = '#018786';
 
       // this.$setTheme('background', '#fff');
-      this.$setTheme('on-primary', '#fff');
-      this.$setTheme('on-secondary', '#fff');
+      this.$theme.themeColors = {
+        'on-primary': '#fff',
+        'on-secondary': '#fff'
+      };
       // this.$setTextTheme('primary', 'background', 'rgba(0, 0, 0, 0.87)');
       // this.$setTextTheme('secondary', 'background', 'rgba(0, 0, 0, 0.54)');
       // this.$setTextTheme('hint', 'background', 'rgba(0, 0, 0, 0.38)');
@@ -226,30 +259,38 @@ export default {
           this.primary = '#ffd54f';
           this.secondary = '#ec407a';
 
-          this.$setTheme('on-primary', '#000');
-          this.$setTheme('on-secondary', '#fff');
+          this.$theme.themeColors = {
+            'on-primary': '#000',
+            'on-secondary': '#fff'
+          };
           break;
         case 'black':
           this.primary = '#212121';
           this.secondary = '#64dd17';
 
-          this.$setTheme('on-primary', '#fff');
-          this.$setTheme('on-secondary', '#000');
+          this.$theme.themeColors = {
+            'on-primary': '#fff',
+            'on-secondary': '#000'
+          };
           break;
         case 'shrine':
           this.primary = '#fcb8ab';
           this.secondary = '#feeae6';
 
-          this.$setTheme('on-primary', '#442b2d');
-          this.$setTheme('on-secondary', '#442b2d');
+          this.$theme.themeColors = {
+            'on-primary': '#442b2d',
+            'on-secondary': '#442b2d'
+          };
           break;
         default:
           this.reset();
           break;
       }
 
-      this.$setTheme('primary', this.primary);
-      this.$setTheme('secondary', this.secondary);
+      this.$theme.themeColors = {
+        primary: this.primary,
+        secondary: this.secondary
+      };
 
       // if (themeValue !== 'baseline') {
       //   if (themeValue === 'dark') {
@@ -306,7 +347,7 @@ export default {
       if (names[1]) {
         key += names[1];
       }
-      return this.$textColor(
+      return this.$theme.text(
         'primary',
         COLOR.hex[key].tone[shadeIndex] ? 'light' : 'dark'
       );

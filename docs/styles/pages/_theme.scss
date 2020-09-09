@@ -29,60 +29,28 @@ $demo-color-high-luminance: color.$amber-50;
   }
 }
 
+.demo-theme-color {
+  width: 300px;
+  height: 80px;
+}
+
 .page--theme {
-  //
-  // Global styles
-  //
   figure {
     margin-left: 0;
     margin-right: 0;
   }
+
   .hero button {
     margin: 24px;
   }
-  //
-  // Toolbar
-  //
-  // .demo-toolbar-progress-row {
-  //   min-height: auto;
-  //   overflow: hidden;
-  //   position: absolute;
-  //   bottom: 0;
-  // }
-  // .demo-toolbar-progress-bar {
-  //   transform: translateY(100%);
-  //   transition: mdc-animation-exit-temporary(transform, 150ms);
-  //   @include mdc-linear-progress-bar-color($demo-toolbar-progress-bar-color);
-  //   @include mdc-linear-progress-buffer-color(
-  //     $demo-toolbar-progress-buffer-color
-  //   );
-  // }
-  // .demo-toolbar-progress-bar--active {
-  //   transform: none;
-  //   transition: mdc-animation-enter(transform, 200ms);
-  // }
-  // .demo-anchor-with-toolbar-offset {
-  //   $margin: $demo-section-margin / 2;
-  //   display: block;
-  //   position: relative;
-  //   top: -($mdc-toolbar-row-height + $margin);
-  //   @media (max-width: $mdc-toolbar-mobile-landscape-width-breakpoint) and (orientation: landscape) {
-  //     top: -($mdc-toolbar-mobile-landscape-row-height + $margin);
-  //   }
-  //   @media (max-width: $mdc-toolbar-mobile-breakpoint) {
-  //     top: -($mdc-toolbar-mobile-row-height + $margin);
-  //   }
-  //   visibility: hidden;
-  // }
-  //
-  // Page content
-  //
+
   .demo-fixed-theme {
     position: fixed;
     top: 70px;
     right: 0;
     z-index: 4;
   }
+
   @media (max-width: global.$mobile-breakpoint) {
     .demo-fixed-theme {
       top: 110px;

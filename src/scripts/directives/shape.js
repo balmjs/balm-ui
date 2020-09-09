@@ -2,15 +2,18 @@ import autoInit from './register';
 
 // Define shape constants
 const UI_SHAPE = {
-  cssClasses: {
-    roundedCorner: {
-      base: 'mdc-shape--rounded',
-      topLeft: 'mdc-shape--rounded-top-left',
-      topRight: 'mdc-shape--rounded-top-right',
-      bottomRight: 'mdc-shape--rounded-bottom-right',
-      bottomLeft: 'mdc-shape--rounded-bottom-left'
-    },
+  rounded: {
+    base: 'mdc-shape--rounded',
+    all: 'mdc-shape--rounded-all',
+    topLeft: 'mdc-shape--rounded-top-left',
+    topRight: 'mdc-shape--rounded-top-right',
+    bottomRight: 'mdc-shape--rounded-bottom-right',
+    bottomLeft: 'mdc-shape--rounded-bottom-left'
+  },
+  cut: 'mdc-shape--cut',
+  size: {
     small: 'mdc-shape--small',
+    medium: 'mdc-shape--medium',
     large: 'mdc-shape--large'
   }
 };
@@ -57,7 +60,7 @@ const updateShape = (method, el, { value, modifiers }) => {
   }
 
   // console.log(
-  //   'corner',
+  //   'shape corner',
   //   Object.assign(
   //     {},
   //     {
@@ -69,25 +72,32 @@ const updateShape = (method, el, { value, modifiers }) => {
   //   )
   // );
 
-  let className = [UI_SHAPE.cssClasses.roundedCorner.base];
-
-  if (topLeft) {
-    className.push(UI_SHAPE.cssClasses.roundedCorner.topLeft);
-  }
-  if (topRight) {
-    className.push(UI_SHAPE.cssClasses.roundedCorner.topRight);
-  }
-  if (bottomRight) {
-    className.push(UI_SHAPE.cssClasses.roundedCorner.bottomRight);
-  }
-  if (bottomLeft) {
-    className.push(UI_SHAPE.cssClasses.roundedCorner.bottomLeft);
+  let className = modifiers.cut ? [UI_SHAPE.cut] : [UI_SHAPE.rounded.base];
+  if (!modifiers.cut) {
+    if (topLeft && topRight && bottomRight && bottomLeft) {
+      className.push(UI_SHAPE.rounded.all);
+    } else {
+      if (topLeft) {
+        className.push(UI_SHAPE.rounded.topLeft);
+      }
+      if (topRight) {
+        className.push(UI_SHAPE.rounded.topRight);
+      }
+      if (bottomRight) {
+        className.push(UI_SHAPE.rounded.bottomRight);
+      }
+      if (bottomLeft) {
+        className.push(UI_SHAPE.rounded.bottomLeft);
+      }
+    }
   }
 
   if (modifiers.small) {
-    className.push(UI_SHAPE.cssClasses.small);
+    className.push(UI_SHAPE.size.small);
   } else if (modifiers.large) {
-    className.push(UI_SHAPE.cssClasses.large);
+    className.push(UI_SHAPE.size.large);
+  } else {
+    className.push(UI_SHAPE.size.medium);
   }
 
   el.classList[method](...className);

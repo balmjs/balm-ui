@@ -1,0 +1,16 @@
+.page--shape {
+  .demos {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .demo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 128px;
+    height: 128px;
+    margin: 0 10px 10px 0;
+    background: #e5e5e5;
+  }
+}

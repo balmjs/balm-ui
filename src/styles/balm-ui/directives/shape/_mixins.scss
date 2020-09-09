@@ -1,0 +1,70 @@
+@use '@material/shape/variables' as shape-variables;
+
+@mixin roundedShapes($corner: 0) {
+  @if ($corner == 0) {
+    &.mdc-shape--small {
+      border-radius: shape-variables.$small-component-radius;
+    }
+
+    &.mdc-shape--medium {
+      border-radius: shape-variables.$medium-component-radius;
+    }
+
+    &.mdc-shape--large {
+      border-radius: shape-variables.$large-component-radius;
+    }
+  } @else {
+    &.mdc-shape--small {
+      border-#{$corner}-radius: shape-variables.$small-component-radius;
+    }
+
+    &.mdc-shape--medium {
+      border-#{$corner}-radius: shape-variables.$medium-component-radius;
+    }
+
+    &.mdc-shape--large {
+      border-#{$corner}-radius: shape-variables.$large-component-radius;
+    }
+  }
+}
+
+@mixin cutShapes() {
+  &.mdc-shape--small {
+    clip-path: polygon(
+      0% shape-variables.$small-component-radius,
+      shape-variables.$small-component-radius 0%,
+      calc(100% - #{shape-variables.$small-component-radius}) 0,
+      100% shape-variables.$small-component-radius,
+      100% calc(100% - #{shape-variables.$small-component-radius}),
+      calc(100% - #{shape-variables.$small-component-radius}) 100%,
+      shape-variables.$small-component-radius 100%,
+      0px calc(100% - #{shape-variables.$small-component-radius})
+    );
+  }
+
+  &.mdc-shape--medium {
+    clip-path: polygon(
+      0% shape-variables.$medium-component-radius,
+      shape-variables.$medium-component-radius 0%,
+      calc(100% - #{shape-variables.$medium-component-radius}) 0,
+      100% shape-variables.$medium-component-radius,
+      100% calc(100% - #{shape-variables.$medium-component-radius}),
+      calc(100% - #{shape-variables.$medium-component-radius}) 100%,
+      shape-variables.$medium-component-radius 100%,
+      0px calc(100% - #{shape-variables.$medium-component-radius})
+    );
+  }
+
+  &.mdc-shape--large {
+    clip-path: polygon(
+      0% shape-variables.$large-component-radius,
+      shape-variables.$large-component-radius 0%,
+      calc(100% - #{shape-variables.$large-component-radius}) 0,
+      100% shape-variables.$large-component-radius,
+      100% calc(100% - #{shape-variables.$large-component-radius}),
+      calc(100% - #{shape-variables.$large-component-radius}) 100%,
+      shape-variables.$large-component-radius 100%,
+      0px calc(100% - #{shape-variables.$large-component-radius})
+    );
+  }
+}

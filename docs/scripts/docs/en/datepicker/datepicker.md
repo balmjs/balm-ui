@@ -2,6 +2,14 @@
 <ui-datepicker></ui-datepicker>
 ```
 
+<ui-datepicker> mode in `options` prop
+
+- single (default)
+- multiple
+- range
+- month
+- time
+
 ### Props
 
 | Name                | Type                  | Default | Description                                                                                                                            |

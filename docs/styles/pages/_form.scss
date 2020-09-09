@@ -9,21 +9,4 @@
   .mdc-form-field {
     margin-bottom: 16px;
   }
-
-  .mdc-form--horizontal {
-    .mdc-form-field > label {
-      flex-basis: 60px;
-      margin-right: 10px;
-    }
-
-    .mdc-form__actions {
-      padding-left: 70px;
-    }
-  }
-
-  .mdc-form--vertical {
-    .mdc-button {
-      margin-bottom: 10px;
-    }
-  }
 }

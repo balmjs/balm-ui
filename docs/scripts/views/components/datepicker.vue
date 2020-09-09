@@ -1,5 +1,5 @@
 <template>
-  <docs-page name="datepicker" demo-count="5" withoutCss>
+  <docs-page name="datepicker" demo-count="6" withoutCss>
     <template #hero>
       <ui-datepicker v-model="date" placeholder="Select Date.."></ui-datepicker>
     </template>
@@ -65,6 +65,14 @@
       </div>
       <ui-snippet :code="$store.demos[5]"></ui-snippet>
     </section>
+
+    <section class="demo-wrapper">
+      <h6 :class="$tt('headline6')">6. Time picker</h6>
+      <div class="demo">
+        <ui-datepicker v-model="date6" :config="config6" placeholder="Select Time.."></ui-datepicker>
+      </div>
+      <ui-snippet :code="$store.demos[6]"></ui-snippet>
+    </section>
   </docs-page>
 </template>
 
@@ -107,6 +115,11 @@ export default {
         shorthand: true, //defaults to false
         dateFormat: 'm.y', //defaults to "F Y"
         altFormat: 'F Y' //defaults to "F Y"
+      },
+      date6: '',
+      config6: {
+        mode: 'time'
+        // time_24hr: true
       }
     };
   },

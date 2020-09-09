@@ -13,4 +13,44 @@
     margin: 0 10px 10px 0;
     background: #e5e5e5;
   }
+
+  .mdc-shape--rounded {
+    &.mdc-shape--rounded-top-left.mdc-shape--medium {
+      border-top-left-radius: 16px;
+    }
+    &.mdc-shape--rounded-bottom-right.mdc-shape--medium {
+      border-bottom-right-radius: 16px;
+    }
+
+    &.mdc-shape--rounded-top-left.mdc-shape--large {
+      border-top-left-radius: 24px;
+    }
+  }
+
+  .mdc-shape--cut {
+    &.mdc-shape--medium {
+      clip-path: polygon(
+        0% 16px,
+        16px 0%,
+        calc(100% - 16px) 0,
+        100% 16px,
+        100% calc(100% - 16px),
+        calc(100% - 16px) 100%,
+        16px 100%,
+        0px calc(100% - 16px)
+      );
+    }
+    &.mdc-shape--large {
+      clip-path: polygon(
+        0% 24px,
+        24px 0%,
+        calc(100% - 24px) 0,
+        100% 24px,
+        100% calc(100% - 24px),
+        calc(100% - 24px) 100%,
+        24px 100%,
+        0px calc(100% - 24px)
+      );
+    }
+  }
 }

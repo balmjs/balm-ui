@@ -25,9 +25,23 @@
 }
 
 .mdc-form--horizontal {
-  .mdc-form-field > label {
-    flex: 0 0 form-variables.$horizontal-form-item-label-width;
-    margin-right: form-variables.$horizontal-form-item-label-margin-right;
+  .mdc-form-field {
+    > label {
+      flex: 0 0 form-variables.$horizontal-form-item-label-width;
+      margin-right: form-variables.$horizontal-form-item-label-margin-right;
+    }
+
+    &.mdc-form__actions {
+      padding-left: form-variables.$horizontal-form-item-label-width +
+        form-variables.$horizontal-form-item-label-margin-right;
+
+      .mdc-button {
+        margin-right: 8px;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
   }
 
   &.mdc-form--label-top-aligned {
@@ -39,18 +53,6 @@
   &.mdc-form--label-right-aligned {
     .mdc-form-field > label {
       text-align: right;
-    }
-  }
-
-  .mdc-form__actions {
-    padding-left: form-variables.$horizontal-form-item-label-width +
-      form-variables.$horizontal-form-item-label-margin-right;
-
-    .mdc-button {
-      margin-right: 8px;
-      &:last-child {
-        margin-right: 0;
-      }
     }
   }
 
@@ -67,8 +69,19 @@
     flex-direction: column;
     align-items: stretch;
 
-    & > label {
+    > label {
       margin-bottom: form-variables.$vertical-form-item-label-margin-bottom;
+    }
+
+    &.mdc-form__actions {
+      flex-direction: row;
+
+      .mdc-button {
+        margin-right: 8px;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
     }
   }
 }

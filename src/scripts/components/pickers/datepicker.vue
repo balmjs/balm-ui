@@ -76,7 +76,8 @@ const UI_DATEPICKER = {
     SINGLE: 'single',
     MULTIPLE: 'multiple',
     RANGE: 'range',
-    MONTH: 'month' // Custom
+    MONTH: 'month', // Custom
+    TIME: 'time' // Custom
   },
   EVENT: {
     CHANGE: 'change'
@@ -164,11 +165,21 @@ export default {
 
     if (!this.flatpickr) {
       let config = Object.assign({}, this.config);
-      if (this.config.mode === UI_DATEPICKER.MODE.MONTH) {
-        config = Object.assign(config, {
-          mode: UI_DATEPICKER.MODE.SINGLE,
-          plugins: [new monthSelectPlugin(this.monthOptions)]
-        });
+      switch (this.config.mode) {
+        case UI_DATEPICKER.MODE.MONTH:
+          config = Object.assign(config, {
+            mode: UI_DATEPICKER.MODE.SINGLE,
+            plugins: [new monthSelectPlugin(this.monthOptions)]
+          });
+          break;
+        case UI_DATEPICKER.MODE.TIME:
+          config = Object.assign(config, {
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: 'H:i'
+          });
+          break;
+        default:
       }
       // Default config for ui
       config.disableMobile = true; // required

@@ -40,26 +40,29 @@ export default {
         'mdc-form-field--space-between': this.spaceBetween
       };
     },
-    // horizontal form
     style() {
       return this.$parent.itemMarginBottom
         ? {
             'margin-bottom': `${this.$parent.itemMarginBottom}px`
           }
-        : {};
+        : 0;
     },
+    // horizontal form
     flexBasis() {
-      return this.$parent.labelWidth ? `${this.$parent.labelWidth}px` : 0;
+      return this.$parent.labelWidth ? +this.$parent.labelWidth : 0;
     },
     marginRight() {
-      return this.$parent.labelMarginRight
-        ? `${this.$parent.labelMarginRight}px`
+      return this.$parent.labelMarginRight ? +this.$parent.labelMarginRight : 0;
+    },
+    actionPaddingLeft() {
+      return this.flexBasis || this.marginRight
+        ? this.flexBasis + this.marginRight
         : 0;
     },
     // vertical form
     marginBottom() {
       return this.$parent.labelMarginBottom
-        ? `${this.$parent.labelMarginBottom}px`
+        ? +this.$parent.labelMarginBottom
         : 0;
     }
   },
@@ -78,9 +81,13 @@ export default {
         if (label) {
           ['flexBasis', 'marginRight', 'marginBottom'].forEach((key) => {
             if (this[key]) {
-              label.elm.style[key] = this[key];
+              label.elm.style[key] = `${this[key]}px`;
             }
           });
+        }
+
+        if (this.$el && this.$el.classList.contains('mdc-form__actions')) {
+          this.$el.style['padding-left'] = `${this.actionPaddingLeft}px`;
         }
       }
     }

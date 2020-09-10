@@ -1,5 +1,11 @@
 # [BalmUI](https://material.balmjs.com) ChangeLog
 
+## v7.6.5 / 2020-09-10
+
+### Bug Fixes
+
+- `<ui-table>`: fix selected rows rendering bug when page is changed
+
 ## v7.6.4 / 2020-09-05
 
 ### Bug Fixes

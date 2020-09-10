@@ -349,6 +349,11 @@ export default {
 
         if (rowIds.length) {
           this.$table.setSelectedRowIds(rowIds);
+        } else {
+          // TODO: mdc@7 table component has bug
+          try {
+            this.$table.setSelectedRowIds([]);
+          } catch (e) {}
         }
       }
     }

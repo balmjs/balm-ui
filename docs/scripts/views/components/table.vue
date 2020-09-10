@@ -37,13 +37,8 @@
           </template>
         </ui-table>
 
-        <!-- <br /><br />
-      <ui-pagination
-        v-model="page"
-        :pageSize="8"
-        :total="12"
-        @change="onPage"
-        ></ui-pagination>-->
+        <br />
+        <ui-pagination v-model="page" :pageSize="8" :total="12" @change="onPage"></ui-pagination>
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>

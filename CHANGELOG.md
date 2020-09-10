@@ -30,6 +30,7 @@
 - `<ui-form>`: add prop `itemMarginBottom`, `labelWidth`, `labelMarginRight`, `labelMarginBottom`
 - `v-anchor`: optimize for dynamic html
 - `v-shape`: add cut sharps for experimental
+- `$theme`: new theme apis
 - overwrite variables become more concise and clear
 
   - Old
@@ -49,6 +50,7 @@
 - `<ui-slider>`: rename prop `displayMarker` to `withTickMarks`
 - `<ui-pagination>`: optimize slots
 - `<ui-menu>`: optimize selected event
+- `$themeColor`, `$setTheme`, `$textColor`, `$setTextTheme`: deprecated. Use `$theme` instead.
 
 ---
 

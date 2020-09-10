@@ -1,5 +1,5 @@
 @use '@material/theme/variables' as theme-variables;
-@use './variables' as autocomplete-variables;
+@use '../mixins' as ui-mixins;
 
 .mdc-autocomplete {
   .mdc-text-field__ripple {
@@ -18,7 +18,6 @@
     top: 56px;
     left: 0;
     z-index: 999;
-
     display: none;
     width: 100%;
   }
@@ -37,37 +36,40 @@
 .mdc-autocomplete__list .mdc-list-item {
   margin: 0;
   padding: 0;
-
-  list-style: none;
-
   border: 0;
+  list-style: none;
 }
 
 .mdc-autocomplete__list {
   position: relative;
-
   overflow-x: hidden;
   overflow-y: auto;
-
   max-height: 210px;
-
   text-align: left;
-
   border-width: 0 1px 1px;
   border-style: solid;
-  border-color: rgba(theme-variables.prop-value(on-surface), 0.5);
-  background-color: white;
-  .mdc-list-item {
-    line-height: 30px;
+  border-color: rgba(theme-variables.prop-value(primary), 0.5);
+  border-color: var(
+    --mdc-theme-primary,
+    rgba(theme-variables.prop-value(primary), 0.5)
+  );
+  background-color: theme-variables.prop-value(background);
+  background-color: var(
+    --mdc-theme-background,
+    theme-variables.prop-value(background)
+  );
 
+  .mdc-list-item {
     height: 30px;
+    line-height: 30px;
     padding: 0 10px;
+
     b {
       font-weight: bold;
     }
+
     &.selected {
-      background-color: autocomplete-variables.$selected-bgcolor;
-      color: autocomplete-variables.$selected-color;
+      @include ui-mixins.selected();
     }
   }
 }

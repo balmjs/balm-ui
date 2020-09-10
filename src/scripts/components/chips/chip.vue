@@ -86,7 +86,7 @@ export default {
   },
   methods: {
     handleClick(event) {
-      this.$parent.choiceChipId = this.$el.id; // NOTE: for twice trigger bugfix
+      this.$parent.choiceChipId = this.$el.id; // fix(ui): twice trigger
       this.$emit(UI_CHIPS.EVENT.CLICK, event);
     },
     handleRemove(event) {

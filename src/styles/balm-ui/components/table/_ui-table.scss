@@ -1,4 +1,5 @@
 @use '@material/data-table/variables' as data-table-variables;
+@use './theme';
 
 .mdc-data-table--fullwidth {
   display: flex;

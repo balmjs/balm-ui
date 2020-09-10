@@ -1,4 +1,4 @@
-@use './variables' as select-variables;
+@use '../mixins' as ui-mixins;
 
 .mdc-select {
   display: inline-flex;
@@ -14,6 +14,5 @@
 }
 
 .mdc-select__menu .mdc-list .mdc-list-item--selected {
-  background-color: select-variables.$selected-bgcolor;
-  color: select-variables.$selected-color;
+  @include ui-mixins.selected();
 }

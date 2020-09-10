@@ -83,7 +83,7 @@ export default {
   watch: {
     model(val) {
       this.selectedValue = val;
-      // NOTE: fix trigger bug
+      // fix(ui): trigger bug
       this.$switch.checked = this.selectedValue === this.trueValue;
     }
   },

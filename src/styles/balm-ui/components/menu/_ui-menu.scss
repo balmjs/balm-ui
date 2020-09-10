@@ -1,4 +1,6 @@
-@use './variables' as menu-variables;
+@use '@material/theme/variables' as theme-variables;
+@use '../mixins' as ui-mixins;
+@use './theme';
 
 .mdc-menu-surface--absolute {
   position: absolute;
@@ -6,10 +8,14 @@
 
 .mdc-menu-surface {
   :not(.mdc-list-item--disabled).mdc-menu-item--selected {
-    background-color: menu-variables.$selected-bgcolor;
-    color: menu-variables.$selected-color;
+    @include ui-mixins.selected();
+
     .mdc-list-item__graphic {
-      color: menu-variables.$selected-color;
+      color: theme-variables.prop-value(on-primary);
+      color: var(
+        --mdc-theme-on-primary,
+        theme-variables.prop-value(on-primary)
+      );
     }
   }
 }

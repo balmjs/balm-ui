@@ -36,6 +36,7 @@
             <ui-icon @click="show(data)">delete</ui-icon>
           </template>
         </ui-table>
+        <ui-pagination v-model="page" :total="total" show-total @change="onPage"></ui-pagination>
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
@@ -171,7 +172,8 @@ export default {
       ],
       selectedRows: [1, 2, 4],
       selectedKey: 'id',
-      page: 1
+      page: 1,
+      total: 12
     };
   },
   async created() {

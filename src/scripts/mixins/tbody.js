@@ -42,6 +42,7 @@ export default {
       let className = [
         {
           'mdc-data-table__cell': true,
+          'mdc-theme--on-surface': true, // fix(@mdc): dark theme
           'mdc-data-table__cell--numeric': data[this.T_CELL.NUMBER],
           'mdc-data-table__cell--checkbox': data[this.T_CELL.CHECKBOX]
         }

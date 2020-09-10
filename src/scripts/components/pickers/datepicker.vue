@@ -184,7 +184,7 @@ export default {
       // Default config for ui
       config.disableMobile = true; // required
       config.wrap = true; // For toggle & clear icons, mobile support
-      config.clickOpens = !config.allowInput; // NOTE: fix flatpickr bug
+      config.clickOpens = !config.allowInput; // fix(ui): for flatpickr
       // Custom event
       config.onClose = () => {
         inputEl.blur();
@@ -210,7 +210,7 @@ export default {
             }
           };
 
-          // bugfix: for `clear` event
+          // fix(ui): `clear` event
           config.onChange = (selectedDates, dateStr, instance) => {
             if (!dateStr) {
               this.$emit(UI_DATEPICKER.EVENT.CHANGE, '');

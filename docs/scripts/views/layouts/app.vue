@@ -13,7 +13,7 @@
         fixed
         @nav="$balmUI.onChange('openDrawer', !openDrawer)"
       >
-        <router-link to="/" :class="['catalog-title', $theme.color('on-primary')]">BalmUI</router-link>
+        <router-link to="/" :class="['catalog-title', $theme.getThemeClass('on-primary')]">BalmUI</router-link>
         <template #toolbar="{ toolbarItemClass }">
           <ui-icon-button
             :icon="$store.theme === 'dark' ? 'bedtime' : 'wb_sunny'"
@@ -102,7 +102,7 @@
                     <ui-list-group-subheader
                       v-else
                       :key="`head${index}`"
-                      :class="$theme.text('primary', 'light')"
+                      :class="$theme.getTextClassOnLight('primary')"
                     >
                       {{ $t(`menu.${item.name}`) }}
                       <i

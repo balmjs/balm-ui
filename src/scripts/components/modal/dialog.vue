@@ -124,7 +124,7 @@ export default {
     });
   },
   beforeDestroy() {
-    // NOTE: conditional rendering bugfix
+    // NOTE: for conditional rendering
     document.querySelector('body').classList.remove(cssClasses.SCROLL_LOCK);
   },
   methods: {

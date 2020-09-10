@@ -24,7 +24,7 @@ export default new Vue({
     setTheme() {
       const currentTheme = this.theme === 'dark' ? theme.dark : theme.light;
 
-      this.$theme.themeColors = currentTheme;
+      this.$theme.colors = currentTheme;
     },
     switchTheme() {
       const newTheme = this.theme === 'light' ? 'dark' : 'light';

@@ -63,7 +63,7 @@ export default {
       selectedValue: this.model,
       currentOptions: this.options,
       chipsCount: this.chips.length,
-      choiceChipId: null // NOTE: for twice trigger bugfix
+      choiceChipId: null // fix(ui): twice trigger
     };
   },
   computed: {

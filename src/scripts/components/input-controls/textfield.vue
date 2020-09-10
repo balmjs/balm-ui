@@ -289,12 +289,12 @@ export default {
     model(val, oldVal) {
       this.inputValue = val;
 
-      // NOTE: fix dynamic assignment bug
+      // fix(ui): dynamic assignment bug
       if (!oldVal && val) {
         this.$textField.value = val;
       }
 
-      // NOTE: fix focus bug
+      // fix(ui): focus bug
       if (oldVal && !val) {
         setTimeout(() => {
           this.$textField.foundation.deactivateFocus();

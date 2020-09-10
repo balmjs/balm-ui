@@ -18,10 +18,3 @@
   $shape-radius: medium
 );
 ```
-
-```scss
-@use 'balm-ui/components/menu' with (
-  $selected-bgcolor: rgba(theme-variables.prop-value(primary), 0.87),
-  $selected-color: theme-variables.prop-value(on-primary)
-);
-```

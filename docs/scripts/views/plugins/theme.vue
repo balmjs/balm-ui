@@ -2,8 +2,8 @@
   <docs-page type="plugin" name="theme" demo-count="4">
     <template #hero>
       <div class="hero-demos">
-        <ui-button raised :class="[$theme.color('primary-bg')]">Primary</ui-button>
-        <ui-button raised :class="[$theme.color('secondary-bg')]">Secondary</ui-button>
+        <ui-button raised :class="[$theme.getThemeClass('primary-bg')]">Primary</ui-button>
+        <ui-button raised :class="[$theme.getThemeClass('secondary-bg')]">Secondary</ui-button>
       </div>
     </template>
 
@@ -42,17 +42,22 @@
 
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 Baseline theme</h6>
-      <div :class="['demo-theme-color', $theme.color(['primary-bg', 'on-primary'])]">primary</div>
-      <div :class="['demo-theme-color', $theme.color(['secondary-bg', 'on-secondary'])]">secondary</div>
+      <div :class="['demo-theme-color', $theme.getThemeClass(['primary-bg', 'on-primary'])]">primary</div>
+      <div
+        :class="['demo-theme-color', $theme.getThemeClass(['secondary-bg', 'on-secondary'])]"
+      >secondary</div>
       <div
         :class="[
         'demo-theme-color',
-        $theme.color('background'),
-        $theme.text('primary', $store.theme)
+        $theme.getThemeClass('background'),
+        $theme.getTextClass('primary', $store.theme)
       ]"
       >background</div>
-      <div :class="['demo-theme-color', $theme.color(['surface', 'on-surface'])]">surface</div>
-      <div :class="['demo-theme-color', $theme.color(['error'])]">error</div>
+      <div :class="['demo-theme-color', $theme.getThemeClass(['surface', 'on-surface'])]">surface</div>
+      <div
+        :class="['demo-theme-color', $theme.getThemeClass('on-error')]"
+        :style="{ background: $theme.getThemeColor('error') }"
+      >error</div>
     </section>
 
     <section class="demo-wrapper">
@@ -113,7 +118,7 @@
           <h6 :class="$tt('headline6')">Black &amp; White</h6>
           <ui-list>
             <ui-item
-              :class="[$theme.text('primary', 'dark'), 'btn-copy']"
+              :class="[$theme.getTextClassOnDark('primary'), 'btn-copy']"
               :style="{ 'background-color': '#000' }"
               data-clipboard-text="#000000"
               data-name="Black"
@@ -122,7 +127,7 @@
               <span class="hex">#000000</span>
             </ui-item>
             <ui-item
-              :class="[$theme.text('primary', 'light'), 'btn-copy']"
+              :class="[$theme.getTextClassOnLight('primary'), 'btn-copy']"
               :style="{ 'background-color': '#fff' }"
               data-clipboard-text="#ffffff"
               data-name="White"
@@ -241,7 +246,7 @@ export default {
       this.secondary = '#018786';
 
       // this.$setTheme('background', '#fff');
-      this.$theme.themeColors = {
+      this.$theme.colors = {
         'on-primary': '#fff',
         'on-secondary': '#fff'
       };
@@ -259,7 +264,7 @@ export default {
           this.primary = '#ffd54f';
           this.secondary = '#ec407a';
 
-          this.$theme.themeColors = {
+          this.$theme.colors = {
             'on-primary': '#000',
             'on-secondary': '#fff'
           };
@@ -268,7 +273,7 @@ export default {
           this.primary = '#212121';
           this.secondary = '#64dd17';
 
-          this.$theme.themeColors = {
+          this.$theme.colors = {
             'on-primary': '#fff',
             'on-secondary': '#000'
           };
@@ -277,7 +282,7 @@ export default {
           this.primary = '#fcb8ab';
           this.secondary = '#feeae6';
 
-          this.$theme.themeColors = {
+          this.$theme.colors = {
             'on-primary': '#442b2d',
             'on-secondary': '#442b2d'
           };
@@ -287,7 +292,7 @@ export default {
           break;
       }
 
-      this.$theme.themeColors = {
+      this.$theme.colors = {
         primary: this.primary,
         secondary: this.secondary
       };
@@ -347,7 +352,7 @@ export default {
       if (names[1]) {
         key += names[1];
       }
-      return this.$theme.text(
+      return this.$theme.getTextColor(
         'primary',
         COLOR.hex[key].tone[shadeIndex] ? 'light' : 'dark'
       );

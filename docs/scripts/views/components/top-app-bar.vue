@@ -36,7 +36,7 @@
 
     <!-- navId="demo-menu" -->
     <ui-drawer v-model="openDrawer" type="modal">
-      <ui-drawer-header :inner-class="$theme.color(['on-primary', 'primary-bg'])">
+      <ui-drawer-header :inner-class="$theme.getThemeClass(['primary-bg', 'on-primary'])">
         <ui-drawer-title>Header here</ui-drawer-title>
       </ui-drawer-header>
       <ui-drawer-content>

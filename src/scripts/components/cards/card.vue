@@ -19,6 +19,7 @@ export default {
     className() {
       return {
         'mdc-card': true,
+        'mdc-theme--on-surface': true, // fix(@mdc): dark theme
         'mdc-card--outlined': this.outlined
       };
     }

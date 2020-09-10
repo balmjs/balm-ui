@@ -1,4 +1,5 @@
 import autoInstall from '../config/auto-install';
+import { contrastTone } from './color';
 
 // Define theme constants
 const THEME_STYLES = [
@@ -23,110 +24,204 @@ const MESSAGE = {
   THEME_TONE: 'Please choose a theme tone: ' + JSON.stringify(THEME_TONES)
 };
 
-class Theme {
-  setThemeProperty(style, value) {
-    document.documentElement.style.setProperty(`--mdc-theme-${style}`, value);
-  }
-
-  set primary(value) {
-    this.setThemeProperty('primary', value);
-  }
-
-  set secondary(value) {
-    this.setThemeProperty('secondary', value);
-  }
-
-  set background(value) {
-    this.setThemeProperty('background', value);
-  }
-
-  set surface(value) {
-    this.setThemeProperty('surface', value);
-  }
-
-  set error(value) {
-    this.setThemeProperty('error', value);
-  }
-
-  set onPrimary(value) {
-    this.setThemeProperty('on-primary', value);
-  }
-
-  set onSecondary(value) {
-    this.setThemeProperty('on-secondary', value);
-  }
-
-  set onSurface(value) {
-    this.setThemeProperty('on-surface', value);
-  }
-
-  set onError(value) {
-    this.setThemeProperty('on-error', value);
-  }
-
-  set themeColors(colors) {
-    const themeStyles = Object.keys(colors);
-
-    if (themeStyles.every((style) => THEME_STYLES.includes(style))) {
-      themeStyles.forEach((style) =>
-        this.setThemeProperty(style, colors[style])
-      );
-    } else {
-      console.warn(MESSAGE.THEME_STYLE);
-    }
-  }
-
-  getThemeClass(style) {
+class ThemeStyle {
+  getTheme(style, isClass = false) {
     let result = '';
 
     if (ALL_THEME_STYLES.includes(style)) {
-      result = `mdc-theme--${style}`;
+      result = isClass
+        ? `mdc-theme--${style}`
+        : document.documentElement.style.getPropertyValue(
+            `--mdc-theme-${style}`
+          );
     } else {
-      console.warn(MESSAGE.ALL_THEME_STYLES);
+      throw new Error(
+        `[Theme ${isClass ? 'Class' : 'Color'}] ${MESSAGE.ALL_THEME_STYLES}`
+      );
     }
 
     return result;
   }
-
-  color(style = '') {
-    let className = '';
-
-    if (Array.isArray(style)) {
-      className = style.map((curStyle) => this.getThemeClass(curStyle));
-    } else {
-      className = this.getThemeClass(style);
-    }
-
-    return className;
+  setTheme(style, value) {
+    document.documentElement.style.setProperty(`--mdc-theme-${style}`, value);
   }
 
-  getTextClass(style, tone) {
+  themeText(style, tone, fn) {
     let result = '';
 
     if (TEXT_STYLES.includes(style)) {
       if (THEME_TONES.includes(tone)) {
-        result = `mdc-theme--text-${style}-on-${tone}`;
+        result = fn();
       } else {
-        console.warn(MESSAGE.THEME_TONE);
+        throw new Error(MESSAGE.THEME_TONE);
       }
     } else {
-      console.warn(MESSAGE.TEXT_STYLE);
+      throw new Error(MESSAGE.TEXT_STYLE);
     }
 
     return result;
   }
 
-  text(style = '', tone = 'background') {
-    let className = '';
+  getText(style, tone, isClass = false) {
+    return this.themeText(style, tone, () => {
+      return isClass
+        ? `mdc-theme--text-${style}-on-${tone}`
+        : document.documentElement.style.getPropertyValue(
+            `--mdc-theme-text-${style}-on-${tone}`
+          );
+    });
+  }
+  setText(style, tone, value) {
+    this.themeText(style, tone, () => {
+      document.documentElement.style.setProperty(
+        `--mdc-theme-text-${style}-on-${tone}`,
+        value
+      );
+    });
+  }
+}
+
+class Theme extends ThemeStyle {
+  get primary() {
+    return this.getTheme('primary');
+  }
+  set primary(value) {
+    this.setTheme('primary', value);
+    this.setTheme(
+      'on-primary',
+      contrastTone(value) === 'dark' ? '#000' : '#fff'
+    );
+  }
+
+  get secondary() {
+    return this.getTheme('secondary');
+  }
+  set secondary(value) {
+    this.setTheme('secondary', value);
+    this.setTheme(
+      'on-secondary',
+      contrastTone(value) === 'dark' ? '#000' : '#fff'
+    );
+  }
+
+  get background() {
+    return this.getTheme('background');
+  }
+  set background(value) {
+    this.setTheme('background', value);
+  }
+
+  get surface() {
+    return this.getTheme('surface');
+  }
+  set surface(value) {
+    this.setTheme('surface', value);
+    this.setTheme(
+      'on-surface',
+      contrastTone(value) === 'dark' ? '#000' : '#fff'
+    );
+  }
+
+  get error() {
+    return this.getTheme('error');
+  }
+  set error(value) {
+    this.setTheme('error', value);
+    this.setTheme('on-error', contrastTone(value) === 'dark' ? '#000' : '#fff');
+  }
+
+  get onPrimary() {
+    return this.getTheme('on-primary');
+  }
+  set onPrimary(value) {
+    this.setTheme('on-primary', value);
+  }
+
+  get onSecondary() {
+    return this.getTheme('on-secondary');
+  }
+  set onSecondary(value) {
+    this.setTheme('on-secondary', value);
+  }
+
+  get onSurface() {
+    return this.getTheme('on-surface');
+  }
+  set onSurface(value) {
+    this.setTheme('on-surface', value);
+  }
+
+  get onError() {
+    return this.getTheme('on-error');
+  }
+  set onError(value) {
+    this.setTheme('on-error', value);
+  }
+
+  set colors(colors) {
+    const themeStyles = Object.keys(colors);
+
+    if (themeStyles.every((style) => THEME_STYLES.includes(style))) {
+      themeStyles.forEach((style) => this.setTheme(style, colors[style]));
+      ['primary', 'secondary', 'surface', 'error'].forEach((style) => {
+        if (
+          themeStyles.includes(style) &&
+          !themeStyles.includes(`on-${style}`)
+        ) {
+          this.setTheme(
+            `on-${style}`,
+            contrastTone(colors[style]) === 'dark' ? '#000' : '#fff'
+          );
+        }
+      });
+    } else {
+      throw new Error(MESSAGE.THEME_STYLE);
+    }
+  }
+
+  getThemeColor(style) {
+    return this.getTheme(style);
+  }
+  getThemeClass(style) {
+    let result = '';
 
     if (Array.isArray(style)) {
-      let result = style.map((curStyle) => this.getTextClass(style, tone));
-      className = result.join(',');
+      result = style.map((themeStyle) => this.getTheme(themeStyle, true));
     } else {
-      className = this.getTextClass(style, tone);
+      result = this.getTheme(style, true);
     }
 
-    return className;
+    return result;
+  }
+
+  getTextColor(style, tone = 'background') {
+    return this.getText(style, tone);
+  }
+  getTextClass(style, tone = 'background') {
+    return this.getText(style, tone, true);
+  }
+  setTextColor(style, value) {
+    this.setText(style, 'background', value);
+  }
+
+  getTextColorOnLight(style) {
+    return this.getTextColor(style, 'light');
+  }
+  getTextClassOnLight(style) {
+    return this.getTextClass(style, 'light');
+  }
+  setTextColorOnLight(style, value) {
+    this.setText(style, 'light', value);
+  }
+
+  getTextColorOnDark(style) {
+    return this.getTextColor(style, 'dark');
+  }
+  getTextClassOnDark(style) {
+    return this.getTextClass(style, 'dark');
+  }
+  setTextColorOnDark(style, value) {
+    this.setText(style, 'dark', value);
   }
 }
 

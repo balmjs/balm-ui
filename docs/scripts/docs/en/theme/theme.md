@@ -1,34 +1,63 @@
-### 2.1 Theme color (`mdc-theme--<THEME_STYLE>`)
+### 2.1 Theme color
 
-```js
-$themeColor(style); // Output: classname
+### 2.1.1 Getters/setters for single theme
 
-$setTheme(style, value); // Manual custom theme for global
+- `$theme.primary`
+- `$theme.secondary`
+- `$theme.background`
+- `$theme.surface`
+- `$theme.error`
+- `$theme.onPrimary`
+- `$theme.onSecondary`
+- `$theme.onSurface`
+- `$theme.onError`
+
+### 2.1.2 Set multiple colors for all theme
+
+```ts
+interface themeColor {
+  primary?: string;
+  secondary?: string;
+  background?: string;
+  surface?: string;
+  error?: string;
+  on-primary?: string;
+  on-secondary?: string;
+  on-surface?: string;
+  on-error?: string;
+}
+
+$theme.colors = themeColor;
 ```
 
-| Param   | Type   | Default | Description        |
-| ------- | ------ | ------- | ------------------ |
-| `style` | string | `''`    | Theme style name.  |
-| `value` | string | `''`    | Theme color value. |
-
-### Theme styles
-
-- `primary` <div class="theme-example mdc-theme--primary">primary</div>
-- `secondary` <div class="theme-example mdc-theme--secondary">secondary</div>
-- `background` <div class="theme-example mdc-theme--background">background</div>
-- `surface` <div class="theme-example mdc-theme--surface">surface</div>
-- `on-primary` <div class="theme-example mdc-theme--on-primary mdc-theme--primary-bg">on-primary</div>
-- `on-secondary` <div class="theme-example mdc-theme--on-secondary mdc-theme--secondary-bg">on-secondary</div>
-- `on-surface` <div class="theme-example mdc-theme--on-surface">on-surface</div>
-- `primary-bg` <div class="theme-example mdc-theme--primary-bg">primary-bg</div>
-- `secondary-bg` <div class="theme-example mdc-theme--secondary-bg">secondary-bg</div>
-
-### 2.2 Text color (`mdc-theme--text-<TEXT_STYLE>-on-<THEME_TONE>`)
+### 2.1.3 Get theme color/classname
 
 ```js
-$textColor(style, tone); // Output: classname
+$theme.getThemeColor(style);
+$theme.getThemeClass(style);
+```
 
-$setTextTheme(style, tone, value); // Manual custom theme for global
+- Theme styles:
+  - `primary`
+  - `secondary`
+  - `background`
+  - `surface`
+  - `error`
+  - `on-primary`
+  - `on-secondary`
+  - `on-surface`
+  - `on-error`
+  - `primary-bg`
+  - `secondary-bg`
+
+### 2.2 Text color
+
+#### 2.2.1 Default
+
+```js
+$theme.getTextColor(style, tone);
+$theme.getTextClass(style, tone);
+$theme.setTextColor(style, value);
 ```
 
 | Param   | Type   | Default        | Description       |
@@ -37,16 +66,30 @@ $setTextTheme(style, tone, value); // Manual custom theme for global
 | `tone`  | String | `'background'` | Theme tone name.  |
 | `value` | String | `''`           | Text color value. |
 
-### Text styles
+#### 2.2.1 Light or Dark
 
-- `primary`
-- `secondary`
-- `hint`
-- `disabled`
-- `icon`
+```js
+$theme.getTextColorOnLight(style);
+$theme.getTextClassOnLight(style);
+$theme.setTextColorOnLight(style, value);
 
-### Theme tones
+$theme.getTextColorOnDark(style);
+$theme.getTextClassOnDark(style);
+$theme.setTextColorOnDark(style, value);
+```
 
-- `background` <div class="theme-example mdc-theme--text-primary-on-background">primary</div> <div class="theme-example mdc-theme--text-secondary-on-background">secondary</div> <div class="theme-example mdc-theme--text-hint-on-background">hint</div> <div class="theme-example mdc-theme--text-disabled-on-background">disabled</div> <div class="theme-example mdc-theme--text-icon-on-background">icon</div>
-- `light` <div class="theme-example theme-light mdc-theme--text-primary-on-light">primary</div> <div class="theme-example theme-light mdc-theme--text-secondary-on-light">secondary</div> <div class="theme-example theme-light mdc-theme--text-hint-on-light">hint</div> <div class="theme-example theme-light mdc-theme--text-disabled-on-light">disabled</div> <div class="theme-example theme-light mdc-theme--text-icon-on-light">icon</div>
-- `dark` <div class="theme-example theme-dark mdc-theme--text-primary-on-dark">primary</div> <div class="theme-example theme-dark mdc-theme--text-secondary-on-dark">secondary</div> <div class="theme-example theme-dark mdc-theme--text-hint-on-dark">hint</div> <div class="theme-example theme-dark mdc-theme--text-disabled-on-dark">disabled</div> <div class="theme-example theme-dark mdc-theme--text-icon-on-dark">icon</div>
+| Param   | Type   | Default | Description       |
+| ------- | ------ | ------- | ----------------- |
+| `style` | String | `''`    | Text style name.  |
+| `value` | String | `''`    | Text color value. |
+
+- Text styles:
+  - `primary`
+  - `secondary`
+  - `hint`
+  - `disabled`
+  - `icon`
+- Theme tones
+  - `background`
+  - `light`
+  - `dark`

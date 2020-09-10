@@ -41,27 +41,6 @@
     </ui-menu-anchor>
 
     <section class="demo-wrapper">
-      <h6 :class="$tt('headline6')">1.1 Baseline theme</h6>
-      <div :class="['demo-theme-color', $theme.getThemeClass(['primary-bg', 'on-primary'])]">primary</div>
-      <div
-        :class="['demo-theme-color', $theme.getThemeClass(['secondary-bg', 'on-secondary'])]"
-      >secondary</div>
-      <div
-        :class="[
-        'demo-theme-color',
-        $theme.getThemeClass('background'),
-        $theme.getTextClass('primary', $store.theme)
-      ]"
-      >background</div>
-      <div :class="['demo-theme-color', $theme.getThemeClass(['surface', 'on-surface'])]">surface</div>
-      <div
-        :class="['demo-theme-color', $theme.getThemeClass('on-error')]"
-        :style="{ background: $theme.getThemeColor('error') }"
-      >error</div>
-    </section>
-
-    <section class="demo-wrapper">
-      <h6 :class="$tt('headline6')">1.2 Components theme</h6>
       <div class="demo-main">
         <button-demo></button-demo>
         <fab-demo></fab-demo>
@@ -245,16 +224,10 @@ export default {
       this.primary = '#6200ee';
       this.secondary = '#018786';
 
-      // this.$setTheme('background', '#fff');
       this.$theme.colors = {
         'on-primary': '#fff',
         'on-secondary': '#fff'
       };
-      // this.$setTextTheme('primary', 'background', 'rgba(0, 0, 0, 0.87)');
-      // this.$setTextTheme('secondary', 'background', 'rgba(0, 0, 0, 0.54)');
-      // this.$setTextTheme('hint', 'background', 'rgba(0, 0, 0, 0.38)');
-      // this.$setTextTheme('disabled', 'background', 'rgba(0, 0, 0, 0.38)');
-      // this.$setTextTheme('icon', 'background', 'rgba(0, 0, 0, 0.38)');
     },
     onSelected(data) {
       let themeValue = this.colorItems[data.index].value;
@@ -297,32 +270,6 @@ export default {
         secondary: this.secondary
       };
 
-      // if (themeValue !== 'baseline') {
-      //   if (themeValue === 'dark') {
-      //     this.$setTheme('background', '#212121');
-      //     this.$setTextTheme('primary', 'background', 'white');
-      //     this.$setTextTheme(
-      //       'secondary',
-      //       'background',
-      //       'rgba(255, 255, 255, 0.7)'
-      //     );
-      //     this.$setTextTheme('hint', 'background', 'rgba(255, 255, 255, 0.5)');
-      //     this.$setTextTheme(
-      //       'disabled',
-      //       'background',
-      //       'rgba(255, 255, 255, 0.5)'
-      //     );
-      //     this.$setTextTheme('icon', 'background', 'rgba(255, 255, 255, 0.5)');
-      //   } else {
-      //     this.$setTheme('background', '#fff');
-      //     this.$setTextTheme('primary', 'background', 'rgba(0, 0, 0, 0.87)');
-      //     this.$setTextTheme('secondary', 'background', 'rgba(0, 0, 0, 0.54)');
-      //     this.$setTextTheme('hint', 'background', 'rgba(0, 0, 0, 0.38)');
-      //     this.$setTextTheme('disabled', 'background', 'rgba(0, 0, 0, 0.38)');
-      //     this.$setTextTheme('icon', 'background', 'rgba(0, 0, 0, 0.38)');
-      //   }
-      // }
-
       this.selectedTheme = themeValue;
       this.$refs.colorButton.$el.dataset.theme = themeValue;
     },
@@ -352,7 +299,7 @@ export default {
       if (names[1]) {
         key += names[1];
       }
-      return this.$theme.getTextColor(
+      return this.$theme.getTextClass(
         'primary',
         COLOR.hex[key].tone[shadeIndex] ? 'light' : 'dark'
       );

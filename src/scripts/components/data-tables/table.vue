@@ -349,9 +349,7 @@ export default {
           })
           .filter((row) => row > -1);
 
-        if (rowIds.length) {
-          this.$table.setSelectedRowIds(rowIds);
-        }
+        this.$table.setSelectedRowIds(rowIds);
       }
     }
   }

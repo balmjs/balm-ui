@@ -1,5 +1,9 @@
-.mdc-data-table {
-  .mdc-checkbox__background {
-    background-color: white;
+@use '../mixins' as ui-mixins;
+
+.mdc-data-table__header-row-checkbox,
+.mdc-data-table__row-checkbox {
+  .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate='true'])
+    ~ .mdc-checkbox__background {
+    @include ui-mixins.background;
   }
 }

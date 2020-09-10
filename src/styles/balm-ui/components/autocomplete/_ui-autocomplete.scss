@@ -53,11 +53,7 @@
     --mdc-theme-primary,
     rgba(theme-variables.prop-value(primary), 0.5)
   );
-  background-color: theme-variables.prop-value(background);
-  background-color: var(
-    --mdc-theme-background,
-    theme-variables.prop-value(background)
-  );
+  @include ui-mixins.background;
 
   .mdc-list-item {
     height: 30px;

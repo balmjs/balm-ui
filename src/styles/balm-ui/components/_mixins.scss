@@ -2,6 +2,14 @@
 
 $alpha: 0.87;
 
+@mixin background {
+  background-color: theme-variables.prop-value(background);
+  background-color: var(
+    --mdc-theme-background,
+    theme-variables.prop-value(background)
+  );
+}
+
 @mixin selected($withBorder: 0) {
   background-color: rgba(theme-variables.prop-value(primary), $alpha);
   background-color: var(

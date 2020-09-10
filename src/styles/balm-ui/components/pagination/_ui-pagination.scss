@@ -1,6 +1,8 @@
+@use '@material/theme/variables' as theme-variables;
 @use '@material/shape/mixins' as shape-mixins;
 @use './variables' as pagination-variables;
 @use './mixins' as pagination-mixins;
+@use '../mixins' as ui-mixins;
 
 .mdc-pagination {
   .material-icons {
@@ -13,36 +15,33 @@
 
     &.mdc-pagination__button--ellipsis {
       cursor: default;
-      color: currentColor;
+      color: theme-variables.prop-value(text-hint-on-background);
     }
   }
 
-  .mdc-data-table__pagination-button:not(.mdc-pagination__button--ellipsis) {
-    background-color: pagination-variables.$fill-color;
-    color: pagination-variables.$text-color;
-    border: 1px solid pagination-variables.$border-color;
-
-    &:hover {
-      background-color: pagination-variables.$hover-fill-color;
-      color: pagination-variables.$hover-text-color;
-      border-color: pagination-variables.$hover-border-color;
-    }
-
-    &:disalbed {
-      cursor: not-allowed;
-    }
-
-    &.mdc-pagination__button--active {
-      background-color: pagination-variables.$active-fill-color;
-      color: pagination-variables.$active-text-color;
-      border-color: pagination-variables.$active-border-color;
-      cursor: default;
+  .mdc-data-table__pagination-button {
+    &:not(.mdc-pagination__button--ellipsis) {
+      color: rgba(theme-variables.prop-value(on-surface), 0.87);
+      border: 1px solid rgba(theme-variables.prop-value(on-surface), 0.87);
 
       &:hover {
-        background-color: pagination-variables.$active-fill-color;
-        color: pagination-variables.$active-text-color;
-        border-color: pagination-variables.$active-border-color;
+        @include pagination-mixins.paginationHover();
       }
+
+      &.mdc-pagination__button--active {
+        cursor: default;
+        @include ui-mixins.selected(1);
+
+        &:hover {
+          @include ui-mixins.selected(1);
+        }
+      }
+    }
+
+    &:disabled {
+      color: theme-variables.prop-value(text-disabled-on-background);
+      border-color: theme-variables.prop-value(text-disabled-on-background);
+      cursor: not-allowed;
     }
   }
 
@@ -100,14 +99,11 @@
   button {
     height: 24px;
     line-height: 22px;
-    padding: 0;
-    color: pagination-variables.$text-color;
     border: 1px solid #d9d9d9;
 
     &:hover {
       background: none;
-      color: pagination-variables.$hover-text-color;
-      border-color: pagination-variables.$hover-border-color;
+      @include pagination-mixins.paginationHover();
     }
   }
 }

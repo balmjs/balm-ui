@@ -110,8 +110,10 @@
             type="button"
             class="mdc-button"
             @click="handleClick(jumpPage)"
-            v-text="jumperButtonText"
-          ></button>
+          >
+            <div class="mdc-button__ripple"></div>
+            <span class="mdc-button__label">{{ jumperButtonText }}</span>
+          </button>
         </div>
       </div>
     </div>

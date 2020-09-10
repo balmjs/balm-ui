@@ -18,8 +18,11 @@
           :stacked="!!buttonOption"
           class="hero-dialog mdc-dialog--open"
         >
-          <ui-dialog-title v-if="hasTitle">Dialog header</ui-dialog-title>
-          <ui-dialog-content>
+          <ui-dialog-title
+            v-if="hasTitle"
+            :class="$theme.getTextClass('primary', $store.theme)"
+          >Dialog header</ui-dialog-title>
+          <ui-dialog-content :class="$theme.getTextClass('secondary', $store.theme)">
             <p>Dialog body text</p>
           </ui-dialog-content>
           <ui-dialog-actions>
@@ -28,11 +31,16 @@
           </ui-dialog-actions>
         </ui-dialog>
         <ui-dialog v-if="typeOption === 1" no-backdrop class="hero-dialog mdc-dialog--open">
-          <ui-dialog-title>Dialog header</ui-dialog-title>
+          <ui-dialog-title :class="$theme.getTextClass('primary', $store.theme)">Dialog header</ui-dialog-title>
           <ui-dialog-content>
-            <ui-list v-model="heroSelectedIndex" avatar single-selection>
+            <ui-list
+              v-model="heroSelectedIndex"
+              avatar
+              single-selection
+              :class="$theme.getTextClass('secondary', $store.theme)"
+            >
               <ui-item v-for="i in 3" :key="i">
-                <ui-item-first-content>
+                <ui-item-first-content :class="$theme.getTextClass('secondary', $store.theme)">
                   <ui-icon size="48">account_circle</ui-icon>
                 </ui-item-first-content>
                 <ui-item-text-content>Item {{ i }}</ui-item-text-content>
@@ -47,12 +55,15 @@
           :stacked="!!buttonOption"
           class="demo-confirmation-dialog hero-dialog mdc-dialog--open"
         >
-          <ui-dialog-title>Dialog header</ui-dialog-title>
+          <ui-dialog-title :class="$theme.getTextClass('primary', $store.theme)">Dialog header</ui-dialog-title>
           <ui-dialog-content>
             <ui-form>
               <ui-form-field v-for="i in 4" :key="i">
                 <ui-radio name="hero-radio" :id="`hero-radio${i}`" :value="i"></ui-radio>
-                <label :for="`hero-radio${i}`">Item {{ i }}</label>
+                <label
+                  :for="`hero-radio${i}`"
+                  :class="$theme.getTextClass('secondary', $store.theme)"
+                >Item {{ i }}</label>
               </ui-form-field>
             </ui-form>
           </ui-dialog-content>

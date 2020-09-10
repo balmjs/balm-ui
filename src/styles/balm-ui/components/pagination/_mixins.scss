@@ -1,20 +1,23 @@
-@use './variables' as pagination-variables;
+@use '@material/theme/variables' as theme-variables;
+
+@mixin paginationHover() {
+  color: theme-variables.prop-value(primary);
+  color: var(--mdc-theme-primary, theme-variables.prop-value(primary));
+  border-color: theme-variables.prop-value(primary);
+  border-color: var(--mdc-theme-primary, theme-variables.prop-value(primary));
+}
 
 @mixin paginationInput() {
   width: 48px;
   height: 24px;
-  color: pagination-variables.$text-color;
   border: 1px solid #d9d9d9;
   text-indent: 4px;
+  outline: 0;
   transition: all 0.3s;
 
   &:hover,
   &:focus {
-    border-color: pagination-variables.$hover-border-color;
-  }
-
-  &:focus {
-    outline: 0;
-    box-shadow: 0 0 0 2px rgba(16, 142, 233, 0.2);
+    border-color: theme-variables.prop-value(primary);
+    border-color: var(--mdc-theme-primary, theme-variables.prop-value(primary));
   }
 }

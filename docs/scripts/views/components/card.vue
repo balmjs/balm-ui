@@ -25,10 +25,12 @@
             ></ui-card-media>
             <ui-card-text>
               <div :class="$tt('headline6')">Card title</div>
-              <div :class="[$tt('subtitle2'), $theme.getTextClass('secondary')]">Secondary text</div>
+              <div
+                :class="[$tt('subtitle2'), $theme.getTextClass('secondary', $store.theme)]"
+              >Secondary text</div>
             </ui-card-text>
             <ui-card-text v-if="cardOptions.supportingText">
-              <div :class="[$tt('subtitle2'), $theme.getTextClass('secondary')]">
+              <div :class="[$tt('subtitle2'), $theme.getTextClass('secondary', $store.theme)]">
                 Greyhound divisively hello coldly wonderfully marginally far
                 upon excluding.
               </div>
@@ -63,13 +65,17 @@
     <section class="demo-wrapper">
       <div class="demo">
         <ui-card outlined class="demo-card">
-          <div :class="[$tt('subtitle2'), 'demo-card-article-group-heading']">Headlines</div>
+          <div
+            :class="[$tt('subtitle2'), $theme.getTextClass('secondary', $store.theme), 'demo-card-article-group-heading']"
+          >Headlines</div>
           <ui-list-divider></ui-list-divider>
 
           <template v-for="(item, index) in list">
             <a :key="`item${index}`" v-ripple class="demo-card-article">
               <h2 :class="[$tt('headline5'), 'demo-card-article__title']">{{ item.title }}</h2>
-              <p class="demo-card-article__snippet">{{ item.content }}</p>
+              <p
+                :class="[$theme.getTextClass('secondary', $store.theme), 'demo-card-article__snippet']"
+              >{{ item.content }}</p>
             </a>
             <ui-list-divider :key="`divider${index}`"></ui-list-divider>
           </template>
@@ -99,9 +105,9 @@
           </ui-card-content>
           <ui-card-actions>
             <ui-card-icons>
-              <ui-icon-button :toggle="icon1"></ui-icon-button>
-              <ui-icon-button :toggle="icon2"></ui-icon-button>
-              <ui-icon-button icon="share"></ui-icon-button>
+              <ui-icon-button :class="$theme.getTextClass('icon', $store.theme)" :toggle="icon1"></ui-icon-button>
+              <ui-icon-button :class="$theme.getTextClass('icon', $store.theme)" :toggle="icon2"></ui-icon-button>
+              <ui-icon-button :class="$theme.getTextClass('icon', $store.theme)" icon="share"></ui-icon-button>
             </ui-card-icons>
           </ui-card-actions>
         </ui-card>
@@ -129,7 +135,7 @@
               <ui-icon
                 v-for="i in 5"
                 :key="i"
-                class="demo-card__action-icon--star"
+                :class="[$theme.getTextClass('icon', $store.theme), 'demo-card__action-icon--star']"
                 :title="`${i} star${i > 1 ? 's' : ''}`"
               >star_border</ui-icon>
             </ui-card-icons>

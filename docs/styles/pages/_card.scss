@@ -84,7 +84,6 @@
   // Headlines card
   //
   .demo-card-article-group-heading {
-    @include theme-mixins.prop(color, text-secondary-on-light);
     padding: 8px 16px;
   }
 
@@ -99,7 +98,6 @@
   }
 
   .demo-card-article__snippet {
-    @include theme-mixins.prop(color, text-secondary-on-light);
     margin: 0;
   }
 

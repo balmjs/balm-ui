@@ -1,6 +1,6 @@
 # [BalmUI](https://material.balmjs.com) ChangeLog
 
-## v7.6.5 / 2020-09-10
+## v7.6.6 / 2020-09-10
 
 ### Bug Fixes
 

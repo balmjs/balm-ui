@@ -21,6 +21,28 @@ const MATERIAL_COMPONENTS = [
   },
   '-',
   {
+    name: 'theme',
+    children: [
+      {
+        icon: 'palette',
+        name: 'color'
+      },
+      {
+        icon: 'text_fields',
+        name: 'typography'
+      },
+      {
+        icon: 'emoji_symbols',
+        name: 'icons'
+      },
+      {
+        icon: 'category',
+        name: 'shape'
+      }
+    ]
+  },
+  '-',
+  {
     name: 'general',
     children: [
       {
@@ -84,28 +106,6 @@ const MATERIAL_COMPONENTS = [
       //   name: 'bottom-navigation',
       //   next: true
       // }
-    ]
-  },
-  '-',
-  {
-    name: 'theme',
-    children: [
-      {
-        icon: 'palette',
-        name: 'color'
-      },
-      {
-        icon: 'text_fields',
-        name: 'typography'
-      },
-      {
-        icon: 'emoji_symbols',
-        name: 'icons'
-      },
-      {
-        icon: 'category',
-        name: 'shape'
-      }
     ]
   },
   '-',

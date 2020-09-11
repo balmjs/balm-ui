@@ -9,6 +9,12 @@
   v-model="selectedRows"
   selectedKey="id"
 >
+  <template #th-dessert>
+    Dessert
+    <ui-icon v-tooltip="'100g serving'" aria-describedby="th-cell-1"
+      >error_outline</ui-icon
+    >
+  </template>
   <template #dessert="{ data }">
     <div class="dessert">{{ data.dessert }}</div>
   </template>
@@ -32,7 +38,7 @@ export default {
           columnId: 'id'
         },
         {
-          value: 'Dessert (100g serving)',
+          slot: 'th-dessert',
           class: 'gg',
           sort: 'none',
           columnId: 'dessert'

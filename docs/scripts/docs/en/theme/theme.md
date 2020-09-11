@@ -42,8 +42,8 @@ interface themeColor {
   - `on-secondary`
   - `on-surface`
   - `on-error`
-  - `primary-bg`
-  - `secondary-bg`
+  - `primary-bg` (only for `getThemeClass`)
+  - `secondary-bg` (only for `getThemeClass`)
 
 ```js
 $theme.getThemeColor(style);

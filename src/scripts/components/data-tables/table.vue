@@ -33,31 +33,36 @@
                 ></input-checkbox>
                 <template v-else>
                   <!-- With sort button -->
-                  <div v-if="theadCell.sort" class="mdc-data-table__header-cell-wrapper">
-                    <template v-if="sortIconAlignEnd">
-                      <div
-                        class="mdc-data-table__header-cell-label"
-                        v-text="theadCell[T_CELL.VALUE]"
-                      ></div>
-                      <button
-                        class="mdc-icon-button material-icons mdc-data-table__sort-icon-button"
-                        v-text="UI_TABLE.SORTING.ICON"
-                      ></button>
+                  <div class="mdc-data-table__header-cell-wrapper">
+                    <template v-if="theadCell.sort">
+                      <template v-if="sortIconAlignEnd">
+                        <div
+                          class="mdc-data-table__header-cell-label"
+                          v-text="theadCell[T_CELL.VALUE]"
+                        ></div>
+                        <button
+                          class="mdc-icon-button material-icons mdc-data-table__sort-icon-button"
+                          v-text="UI_TABLE.SORTING.ICON"
+                        ></button>
+                      </template>
+                      <template v-else>
+                        <button
+                          class="mdc-icon-button material-icons mdc-data-table__sort-icon-button"
+                          v-text="UI_TABLE.SORTING.ICON"
+                        ></button>
+                        <div class="mdc-data-table__header-cell-label">
+                          <slot v-if="theadCell[T_CELL.SLOT]" :name="theadCell[T_CELL.SLOT]"></slot>
+                          <template v-else>{{ theadCell[T_CELL.VALUE] }}</template>
+                        </div>
+                      </template>
+                      <div class="mdc-data-table__sort-status-label" aria-hidden="true"></div>
                     </template>
+                    <!-- Column header name -->
                     <template v-else>
-                      <button
-                        class="mdc-icon-button material-icons mdc-data-table__sort-icon-button"
-                        v-text="UI_TABLE.SORTING.ICON"
-                      ></button>
-                      <div
-                        class="mdc-data-table__header-cell-label"
-                        v-text="theadCell[T_CELL.VALUE]"
-                      ></div>
+                      <slot v-if="theadCell[T_CELL.SLOT]" :name="theadCell[T_CELL.SLOT]"></slot>
+                      <template v-else>{{ theadCell[T_CELL.VALUE] }}</template>
                     </template>
-                    <div class="mdc-data-table__sort-status-label" aria-hidden="true"></div>
                   </div>
-                  <!-- Column header name -->
-                  <div v-else>{{ theadCell[T_CELL.VALUE] }}</div>
                 </template>
               </th>
             </template>
@@ -333,11 +338,13 @@ export default {
       this.handleSort(detail);
     });
 
-    this.initSelectedRows();
+    if (this.selectedRows.length) {
+      this.initSelectedRows();
+    }
   },
   methods: {
     initSelectedRows() {
-      if (this.currentData.length && this.selectedRows.length) {
+      if (this.rowCheckbox && this.currentData.length) {
         let rowIds = this.selectedRows
           .map((selectedRow) => {
             let rowIndex = this.selectedKey

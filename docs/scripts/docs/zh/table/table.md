@@ -23,12 +23,13 @@
 
 - `thead` & `tbody` & `tfoot` items common format
 
-  ```js
+  ```ts
   {
     value: string, // Cell content
     numeric: boolean, // Numeric cell is displayed right (Equivalent to `align: 'right'`)
     align: string, // Text alignment: 'left'|'center'|'right'
-    class: string // Custom classname
+    class: string, // Custom classname
+    slot: string // Custom slot for cell
   }
   ```
 
@@ -49,7 +50,7 @@
 
   - custom items (`object[]` or `object[][]`)
 
-    ```js
+    ```ts
     {
       sort: string, // Sorting: 'none'|'asc'|'desc'
       columnId: string, // sort field, e.g. 'id'
@@ -104,11 +105,10 @@
 
   - custom fields (`object[]`)
 
-    ```js
+    ```ts
     {
       field: string, // Data field name
-      fn: function, // Simple data processing
-      slot: string // Custom slot for cell
+      fn: function // Simple data processing
     }
     ```
 
@@ -152,7 +152,7 @@
 
 - `tfoot` items format (`object[]`)
 
-  ```js
+  ```ts
   {
     fnName: string, // Frequently-used statistical method
     fn: function, // Simple data processing for result

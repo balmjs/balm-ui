@@ -32,7 +32,19 @@
 );
 ```
 
+- Material Color System (See below color palette)
+
 ```scss
-/* Color Palette: /path/to/styles/global/_color.scss */
+// `/path/to/my-project/app/styles/global/_color.scss`
 @forward '@material/theme/color-palette';
+```
+
+Usage in `/path/to/my-project/app/styles/main.scss`
+
+```scss
+@use './global/color' as color;
+
+.test {
+  color: color.$red-800;
+}
 ```

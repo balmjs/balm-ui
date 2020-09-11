@@ -1,10 +1,10 @@
 <template>
-  <docs-page type="directive" name="tooltip" demo-count="2">
+  <docs-page type="directive" name="tooltip" demo-count="2" without-css>
     <template #hero>
       <h1
+        v-tooltip="'Hello BalmUI'"
         :class="$tt('headline1')"
         aria-describedby="hero-tooltip"
-        v-tooltip="'Hello BalmUI'"
       >Tooltip</h1>
     </template>
 
@@ -13,8 +13,8 @@
       <h6 :class="$tt('headline6')">1.1 Base tooltip</h6>
       <div class="demo">
         <ui-icon
-          aria-describedby="tooltip-demo-1"
           v-tooltip="'Share your content via social media'"
+          aria-describedby="tooltip-demo-1"
         >share</ui-icon>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>

@@ -10,6 +10,7 @@
 
 ### Features
 
+- `$theme`: 全新的主题 APIs
 - `<ui-menuitem>`: 新增属性 `value`
 - `<ui-form>`: 新增属性 `itemMarginBottom`, `labelWidth`, `labelMarginRight`, `labelMarginBottom`
 - Sass: 复写变量更简洁
@@ -28,6 +29,7 @@
 
 ### BREAKING CHANGES
 
+- `$themeColor`, `$setTheme`, `$textColor`, `$setTextTheme`: 已弃用。使用 `$theme` 代替
 - `<ui-slider>`: 重命名属性 `displayMarker` 为 `withTickMarks`
 - `<ui-pagination>`:
   - 移除插槽属性 `before`, `before-jumper` 和 `after-jumper`

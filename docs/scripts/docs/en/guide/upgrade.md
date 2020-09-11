@@ -10,6 +10,7 @@
 
 ### Features
 
+- `$theme`: new theme apis
 - `<ui-menuitem>`: add prop `value`
 - `<ui-form>`: add prop `itemMarginBottom`, `labelWidth`, `labelMarginRight`, `labelMarginBottom`
 - Sass: overwrite variables become more concise and clear
@@ -28,6 +29,7 @@
 
 ### BREAKING CHANGES
 
+- `$themeColor`, `$setTheme`, `$textColor`, `$setTextTheme`: deprecated. Use `$theme` instead
 - `<ui-slider>`: rename prop `displayMarker` to `withTickMarks`
 - `<ui-pagination>`:
   - remove slot prop `before`, `before-jumper` and `after-jumper`

@@ -14,6 +14,8 @@
 
 ### 2.1.2 Set multiple colors for all theme
 
+- `$theme.colors = themeColor`
+
 ```ts
 interface themeColor {
   primary?: string;
@@ -26,16 +28,9 @@ interface themeColor {
   on-surface?: string;
   on-error?: string;
 }
-
-$theme.colors = themeColor;
 ```
 
 ### 2.1.3 Get theme color/classname
-
-```js
-$theme.getThemeColor(style);
-$theme.getThemeClass(style);
-```
 
 - Theme styles:
   - `primary`
@@ -50,38 +45,12 @@ $theme.getThemeClass(style);
   - `primary-bg`
   - `secondary-bg`
 
+```js
+$theme.getThemeColor(style);
+$theme.getThemeClass(style);
+```
+
 ### 2.2 Text color
-
-#### 2.2.1 Default
-
-```js
-$theme.getTextColor(style, tone);
-$theme.getTextClass(style, tone);
-$theme.setTextColor(style, value);
-```
-
-| Param   | Type   | Default        | Description       |
-| ------- | ------ | -------------- | ----------------- |
-| `style` | String | `''`           | Text style name.  |
-| `tone`  | String | `'background'` | Theme tone name.  |
-| `value` | String | `''`           | Text color value. |
-
-#### 2.2.1 Light or Dark
-
-```js
-$theme.getTextColorOnLight(style);
-$theme.getTextClassOnLight(style);
-$theme.setTextColorOnLight(style, value);
-
-$theme.getTextColorOnDark(style);
-$theme.getTextClassOnDark(style);
-$theme.setTextColorOnDark(style, value);
-```
-
-| Param   | Type   | Default | Description       |
-| ------- | ------ | ------- | ----------------- |
-| `style` | String | `''`    | Text style name.  |
-| `value` | String | `''`    | Text color value. |
 
 - Text styles:
   - `primary`
@@ -93,3 +62,40 @@ $theme.setTextColorOnDark(style, value);
   - `background`
   - `light`
   - `dark`
+
+#### 2.2.1 Default
+
+```js
+$theme.getTextColor(style, tone);
+$theme.getTextClass(style, tone);
+```
+
+```js
+$theme.setTextColor(style, value);
+```
+
+| Param   | Type   | Default        | Description       |
+| ------- | ------ | -------------- | ----------------- |
+| `style` | String | `''`           | Text style name.  |
+| `tone`  | String | `'background'` | Theme tone name.  |
+| `value` | String | `''`           | Text color value. |
+
+#### 2.2.2 Light or Dark
+
+```js
+$theme.getTextColorOnLight(style);
+$theme.getTextClassOnLight(style);
+
+$theme.getTextColorOnDark(style);
+$theme.getTextClassOnDark(style);
+```
+
+```js
+$theme.setTextColorOnLight(style, value);
+$theme.setTextColorOnDark(style, value);
+```
+
+| Param   | Type   | Default | Description       |
+| ------- | ------ | ------- | ----------------- |
+| `style` | String | `''`    | Text style name.  |
+| `value` | String | `''`    | Text color value. |

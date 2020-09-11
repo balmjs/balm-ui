@@ -103,7 +103,10 @@ export default {
           return docs;
         });
       } else {
-        let filename = `${this.$store.lang}/${name}/${key}`;
+        let filename =
+          key === 'css'
+            ? `${key}/${name}`
+            : `${this.$store.lang}/${name}/${key}`;
         let docs = require(`@/docs/${filename}.md`); // NOTE: just one variable in `require`
         result = docs;
       }

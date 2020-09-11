@@ -337,24 +337,19 @@ export default {
   },
   methods: {
     initSelectedRows() {
-      let rowIds = this.selectedRows
-        .map((selectedRow) => {
-          let rowIndex = this.selectedKey
-            ? this.currentData.findIndex(
-                (tbodyData) => tbodyData[this.selectedKey] === selectedRow
-              )
-            : selectedRow;
-          return `${this.rowIdPrefix}${rowIndex}`;
-        })
-        .filter((row) => row > -1);
+      if (this.rowCheckbox && this.currentData.length) {
+        let rowIds = this.selectedRows
+          .map((selectedRow) => {
+            let rowIndex = this.selectedKey
+              ? this.currentData.findIndex(
+                  (tbodyData) => tbodyData[this.selectedKey] === selectedRow
+                )
+              : selectedRow;
+            return `${this.rowIdPrefix}${rowIndex}`;
+          })
+          .filter((row) => row > -1);
 
-      if (rowIds.length) {
         this.$table.setSelectedRowIds(rowIds);
-      } else {
-        // TODO: mdc@7 table component has bug
-        try {
-          this.$table.setSelectedRowIds([]);
-        } catch (e) {}
       }
     }
   }

@@ -1,6 +1,6 @@
 {
   "name": "balm-ui",
-  "version": "8.0.0-canary.10",
+  "version": "8.0.0-canary.11",
   "description": "Next Generation Material UI for Vue.js",
   "keywords": [
     "balm",
@@ -59,7 +59,7 @@
     "@babel/register": "^7.10.0",
     "@babel/runtime-corejs3": "^7.10.0",
     "@csstools/normalize.css": "^11.0.1",
-    "@vue/test-utils": "^1.0.0",
+    "@vue/test-utils": "^1.1.0",
     "axios": "^0.20.0",
     "babel-eslint": "^10.1.0",
     "babel-plugin-istanbul": "^6.0.0",

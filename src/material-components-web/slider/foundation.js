@@ -94,6 +94,8 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
                 setPointerCapture: function () { return undefined; },
                 emitChangeEvent: function () { return undefined; },
                 emitInputEvent: function () { return undefined; },
+                emitDragStartEvent: function () { return undefined; },
+                emitDragEndEvent: function () { return undefined; },
                 registerEventHandler: function () { return undefined; },
                 deregisterEventHandler: function () { return undefined; },
                 registerThumbEventHandler: function () { return undefined; },
@@ -279,6 +281,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         this.thumb = this.getThumbFromDownEvent(clientX, value);
         if (this.thumb === null)
             return;
+        this.adapter.emitDragStartEvent(value, this.thumb);
         // Presses within the range do not invoke slider updates.
         var newValueInCurrentRange = this.isRange && value >= this.valueStart && value <= this.value;
         if (newValueInCurrentRange)
@@ -296,10 +299,14 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         var clientX = event.clientX != null ?
             event.clientX :
             event.targetTouches[0].clientX;
+        var dragAlreadyStarted = this.thumb != null;
         this.thumb = this.getThumbFromMoveEvent(clientX);
         if (this.thumb === null)
             return;
         var value = this.mapClientXOnSliderScale(clientX);
+        if (!dragAlreadyStarted) {
+            this.adapter.emitDragStartEvent(value, this.thumb);
+        }
         this.updateValue(value, this.thumb, { emitInputEvent: true });
     };
     /**
@@ -315,6 +322,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         if (oldValue !== newValue) {
             this.adapter.emitChangeEvent(newValue, this.thumb);
         }
+        this.adapter.emitDragEndEvent(newValue, this.thumb);
         this.thumb = null;
     };
     /**

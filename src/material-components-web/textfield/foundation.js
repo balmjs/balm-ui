@@ -198,7 +198,7 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
      * Opens/closes the notched outline.
      */
     MDCTextFieldFoundation.prototype.notchOutline = function (openNotch) {
-        if (!this.adapter.hasOutline()) {
+        if (!this.adapter.hasOutline() || !this.adapter.hasLabel()) {
             return;
         }
         if (openNotch) {

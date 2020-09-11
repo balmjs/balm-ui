@@ -121,6 +121,14 @@ var MDCSlider = /** @class */ (function (_super) {
             emitInputEvent: function (value, thumb) {
                 _this.emit(events.INPUT, { value: value, thumb: thumb });
             },
+            emitDragStartEvent: function () {
+                // Not yet implemented. See issue:
+                // https://github.com/material-components/material-components-web/issues/6448
+            },
+            emitDragEndEvent: function () {
+                // Not yet implemented. See issue:
+                // https://github.com/material-components/material-components-web/issues/6448
+            },
             registerEventHandler: function (evtType, handler) {
                 _this.listen(evtType, handler);
             },

@@ -27,4 +27,24 @@
 <div :class="$tt('button')">Button text</div>
 <div :class="$tt('caption')">Caption text</div>
 <div :class="$tt('overline')">Overline text</div>
+
+<div :class="$tt('custom-style-1')">Custom style 1</div>
+<div :class="$tt('custom-style-2')">Custom style 2</div>
+```
+
+```scss
+.mdc-typography--custom-style-1 {
+  color: red;
+}
+
+.mdc-typography--custom-style-2 {
+  color: blue;
+}
+```
+
+```js
+// main.js
+Vue.use(BalmUI, {
+  typography: ['custom-style-1', 'custom-style-2']
+});
 ```

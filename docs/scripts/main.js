@@ -41,6 +41,7 @@ function createApp() {
   Vue.use($store);
 
   Vue.use(BalmUI, {
+    typography: ['custom-style-1', 'custom-style-2'],
     validator: validatorRules
   });
   Vue.use(UiAutocomplete);

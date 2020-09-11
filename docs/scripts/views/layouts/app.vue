@@ -15,10 +15,10 @@
       >
         <router-link to="/" :class="['catalog-title', $theme.getThemeClass('on-primary')]">BalmUI</router-link>
         <template #toolbar="{ toolbarItemClass }">
-          <ui-icon-button
+          <!-- <ui-icon-button
             :icon="$store.theme === 'dark' ? 'bedtime' : 'wb_sunny'"
             @click="$store.switchTheme"
-          ></ui-icon-button>
+          ></ui-icon-button>-->
           <ui-menu-anchor>
             <ui-icon-button icon="language" @click="$balmUI.onShow('showTranslations')"></ui-icon-button>
             <ui-menu v-model="showTranslations" @selected="$store.setLang">
@@ -121,7 +121,13 @@
           <ui-drawer-backdrop v-show="drawerType === 'modal'" @click="$balmUI.onHide('openDrawer')"></ui-drawer-backdrop>
         </div>
         <!-- App content -->
-        <div class="balmui-content">
+        <div
+          :class="[
+            'balmui-content',
+            $theme.getThemeClass('background'),
+            $theme.getTextClass('primary', $store.theme)
+          ]"
+        >
           <ui-spinner v-if="pageLoading" class="page-loading" active four-colored></ui-spinner>
           <transition name="loading">
             <router-view v-if="pageLoading"></router-view>
@@ -147,7 +153,7 @@ export default {
   },
   data() {
     return {
-      version: VERSION.split('-')[0] + '-canary.10',
+      version: VERSION, // .split('-')[0],
       menu,
       bodyEl: document.documentElement || document.body,
       isWideScreen: true,

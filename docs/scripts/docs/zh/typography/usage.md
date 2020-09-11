@@ -10,7 +10,7 @@ import BalmUI from 'balm-ui';
 
 Vue.use(BalmUI, {
   // Optional. Overwrite the param of `$tt()`.
-  typography: ['custom-module-classname-1', 'custom-module-classname-2']
+  typography: ['custom-style-1', 'custom-style-2']
 });
 ```
 
@@ -29,5 +29,17 @@ import Vue from 'vue';
 import typography from 'balm-ui/plugins/typography';
 
 // Optional. Overwrite the param of `$tt()`.
-Vue.use(typography, ['custom-module-classname-1', 'custom-module-classname-2']);
+Vue.use(typography, ['custom-style-1', 'custom-style-2']);
+```
+
+> ⚠️ NOTE: You can customize the style for your scale classname (`mdc-typography--<STYLE>`)
+
+```scss
+.mdc-typography--custom-style-1 {
+  // ...
+}
+
+.mdc-typography--custom-style-2 {
+  // ...
+}
 ```

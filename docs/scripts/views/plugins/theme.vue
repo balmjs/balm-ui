@@ -41,6 +41,56 @@
     </ui-menu-anchor>
 
     <section class="demo-wrapper">
+      <h6 :class="$tt('headline6')">1.1 The Material Design baseline default theme</h6>
+
+      <h6>Theme Color</h6>
+      <dl class="demo-theme">
+        <dt
+          :style="themeColorStyle($theme.getThemeColor('background'))"
+        >background: {{ $theme.background }}</dt>
+        <dd
+          :class="$theme.getThemeClass('on-primary')"
+          :style="themeColorStyle($theme.getThemeColor('primary'))"
+        >primary: {{ $theme.primary }}</dd>
+        <dd :style="themeColorStyle('#fff')">on-primary: {{ $theme.onPrimary }}</dd>
+        <dd
+          :class="$theme.getThemeClass('on-secondary')"
+          :style="themeColorStyle($theme.getThemeColor('secondary'))"
+        >secondary: {{ $theme.secondary }}</dd>
+        <dd :style="themeColorStyle('#fff')">on-secondary: {{ $theme.onSecondary }}</dd>
+        <dd
+          :class="$theme.getThemeClass('on-surface')"
+          :style="themeColorStyle($theme.getThemeColor('surface'))"
+        >surface: {{ $theme.surface }}</dd>
+        <dd :style="[themeColorStyle('#000'), { color: '#fff' }]">on-surface: {{ $theme.onSurface }}</dd>
+        <dd
+          :class="$theme.getThemeClass('on-error')"
+          :style="themeColorStyle($theme.getThemeColor('error'))"
+        >error: {{ $theme.error }}</dd>
+        <dd :style="themeColorStyle('#fff')">on-error: {{ $theme.onError }}</dd>
+      </dl>
+
+      <h6>Text Color</h6>
+      <div class="demo-text-theme">
+        <ul :style="themeColorStyle('#fff')">
+          <li :class="$theme.getTextClassOnLight('primary')">primary</li>
+          <li :class="$theme.getTextClassOnLight('secondary')">secondary</li>
+          <li :class="$theme.getTextClassOnLight('hint')">hint</li>
+          <li :class="$theme.getTextClassOnLight('disabled')">disabled</li>
+          <li :class="$theme.getTextClassOnLight('icon')">icon</li>
+        </ul>
+        <ul :style="themeColorStyle('#000')">
+          <li :class="$theme.getTextClassOnDark('primary')">primary</li>
+          <li :class="$theme.getTextClassOnDark('secondary')">secondary</li>
+          <li :class="$theme.getTextClassOnDark('hint')">hint</li>
+          <li :class="$theme.getTextClassOnDark('disabled')">disabled</li>
+          <li :class="$theme.getTextClassOnDark('icon')">icon</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="demo-wrapper">
+      <h6 :class="$tt('headline6')">1.2 The Material Design Components demo</h6>
       <div class="demo-main">
         <button-demo></button-demo>
         <fab-demo></fab-demo>
@@ -220,6 +270,11 @@ export default {
     this.reset();
   },
   methods: {
+    themeColorStyle(background) {
+      return {
+        background
+      };
+    },
     reset() {
       this.primary = '#6200ee';
       this.secondary = '#018786';

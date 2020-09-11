@@ -23,12 +23,14 @@ export const theme = {
   light: {
     primary: '#6200ee',
     secondary: '#018786',
+    background: '#fff',
     surface: '#fff',
     error: '#b00020'
   },
   dark: {
-    primary: '#bb86fc',
-    secondary: '#03dac6',
+    primary: '#ce93d8',
+    secondary: '#80cbc4',
+    background: '#121212',
     surface: '#121212',
     error: '#cf6679'
   }

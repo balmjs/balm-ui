@@ -5,6 +5,12 @@ a {
   color: global.$primary;
 }
 
+.mdc-theme--text-primary-on-dark {
+  a {
+    color: #ce93d8;
+  }
+}
+
 .balmui-container {
   display: flex;
   flex-direction: column;

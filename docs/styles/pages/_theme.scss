@@ -29,9 +29,51 @@ $demo-color-high-luminance: color.$amber-50;
   }
 }
 
-.demo-theme-color {
-  width: 300px;
-  height: 80px;
+.demo-theme {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 8px;
+  background-color: gray;
+
+  dt,
+  dd {
+    height: 80px;
+    padding: 8px;
+    margin-bottom: 1px;
+  }
+
+  dt {
+    width: 100%;
+  }
+
+  dd {
+    width: 50%;
+    margin-left: 0;
+  }
+}
+
+.demo-text-theme {
+  padding: 2px;
+  background-color: gray;
+
+  ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    list-style: none;
+    width: 20%;
+    height: 40px;
+    line-height: 40px;
+    border-right: 1px solid;
+    text-align: center;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
 }
 
 .page--theme {

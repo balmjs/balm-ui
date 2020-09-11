@@ -1,5 +1,13 @@
 @use '../global/index' as global;
 
+.mdc-typography--custom-style-1 {
+  color: red;
+}
+
+.mdc-typography--custom-style-2 {
+  color: blue;
+}
+
 .page--typography {
   .demo-typography--section {
     margin: 24px;

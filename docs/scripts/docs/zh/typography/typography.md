@@ -2,9 +2,9 @@
 $tt(style);
 ```
 
-| Param   | Type   | Default | Description            |
-| ------- | ------ | ------- | ---------------------- |
-| `style` | string | `''`    | Typography style name. |
+| Param   | Type   | Default | Description                                      |
+| ------- | ------ | ------- | ------------------------------------------------ |
+| `style` | string | `''`    | Typography style name or custom style classname. |
 
 The typographic styles in this module are derived from thirteen styles:
 

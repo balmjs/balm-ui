@@ -46,6 +46,11 @@
         <div :class="$tt('caption')">Caption text</div>
         <div :class="$tt('overline')">Overline text</div>
       </div>
+
+      <div class="demo-typography--custom">
+        <div :class="$tt('custom-style-1')">Custom style 1</div>
+        <div :class="$tt('custom-style-2')">Custom style 2</div>
+      </div>
     </section>
     <ui-snippet :code="$store.demos[1]"></ui-snippet>
 

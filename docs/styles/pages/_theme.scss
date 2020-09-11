@@ -90,7 +90,7 @@ $demo-color-high-luminance: color.$amber-50;
     position: fixed;
     top: 70px;
     right: 0;
-    z-index: 4;
+    z-index: 3;
   }
 
   @media (max-width: global.$mobile-breakpoint) {

@@ -1,30 +1,16 @@
 @use '@material/shape/variables' as shape-variables;
 
-@mixin roundedShapes($corner: 0) {
-  @if ($corner == 0) {
-    &.mdc-shape--small {
-      border-radius: shape-variables.$small-component-radius;
-    }
+@mixin roundedShapes() {
+  &.mdc-shape--small {
+    border-radius: shape-variables.$small-component-radius;
+  }
 
-    &.mdc-shape--medium {
-      border-radius: shape-variables.$medium-component-radius;
-    }
+  &.mdc-shape--medium {
+    border-radius: shape-variables.$medium-component-radius;
+  }
 
-    &.mdc-shape--large {
-      border-radius: shape-variables.$large-component-radius;
-    }
-  } @else {
-    &.mdc-shape--small {
-      border-#{$corner}-radius: shape-variables.$small-component-radius;
-    }
-
-    &.mdc-shape--medium {
-      border-#{$corner}-radius: shape-variables.$medium-component-radius;
-    }
-
-    &.mdc-shape--large {
-      border-#{$corner}-radius: shape-variables.$large-component-radius;
-    }
+  &.mdc-shape--large {
+    border-radius: shape-variables.$large-component-radius;
   }
 }
 

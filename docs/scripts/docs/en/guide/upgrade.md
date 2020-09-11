@@ -11,6 +11,7 @@
 ### Features
 
 - `$theme`: new theme apis
+- `v-shape`: new shape apis
 - `<ui-menuitem>`: add prop `value`
 - `<ui-form>`: add prop `itemMarginBottom`, `labelWidth`, `labelMarginRight`, `labelMarginBottom`
 - Sass: overwrite variables become more concise and clear

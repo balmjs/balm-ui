@@ -1,18 +1,8 @@
 @use './mixins' as shape-mixins;
 
-$corners: top-left, top-right, bottom-right, bottom-left;
-
 // Rounded shapes
 .mdc-shape--rounded {
-  &.mdc-shape--rounded-all {
-    @include shape-mixins.roundedShapes();
-  }
-
-  @each $corner in $corners {
-    &.mdc-shape--rounded-#{$corner} {
-      @include shape-mixins.roundedShapes($corner);
-    }
-  }
+  @include shape-mixins.roundedShapes();
 }
 
 // Cut shapes

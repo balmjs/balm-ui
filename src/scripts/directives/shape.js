@@ -2,14 +2,7 @@ import autoInit from './register';
 
 // Define shape constants
 const UI_SHAPE = {
-  rounded: {
-    base: 'mdc-shape--rounded',
-    all: 'mdc-shape--rounded-all',
-    topLeft: 'mdc-shape--rounded-top-left',
-    topRight: 'mdc-shape--rounded-top-right',
-    bottomRight: 'mdc-shape--rounded-bottom-right',
-    bottomLeft: 'mdc-shape--rounded-bottom-left'
-  },
+  rounded: 'mdc-shape--rounded',
   cut: 'mdc-shape--cut',
   size: {
     small: 'mdc-shape--small',
@@ -18,95 +11,51 @@ const UI_SHAPE = {
   }
 };
 
-const updateShape = (method, el, { value, modifiers }) => {
-  let topLeft = false;
-  let topRight = false;
-  let bottomRight = false;
-  let bottomLeft = false;
+const updateStyle = (el, { value, modifiers }) => {
+  if (modifiers.cut) {
+    let values = value.split(' ').map((currentValue) => currentValue);
+    let topLeft = `0% ${values[0]}, ${values[0]} 0%`;
+    let topRight = `calc(100% - ${values[1]}) 0, 100% ${values[1]}`;
+    let bottomRight = `100% calc(100% - ${values[2]}), calc(100% - ${values[2]}) 100%`;
+    let bottomLeft = `${values[3]} 100%, 0px calc(100% - ${values[3]})`;
 
-  if (value) {
-    let values = value.split(' ').map((currentValue) => +currentValue);
-
-    switch (values.length) {
-      case 4:
-        // top-left | top-right | bottom-right | bottom-left
-        topLeft = values[0];
-        topRight = values[1];
-        bottomRight = values[2];
-        bottomLeft = values[3];
-        break;
-      case 3:
-        // top-left | top-right-and-bottom-left | bottom-right
-        topLeft = values[0];
-        topRight = values[1];
-        bottomRight = values[2];
-        bottomLeft = values[1];
-        break;
-      case 2:
-        // top-left-and-bottom-right | top-right-and-bottom-left
-        topLeft = values[0];
-        topRight = values[1];
-        bottomRight = values[0];
-        bottomLeft = values[1];
-        break;
-      default:
-        // all four sides
-        topLeft = values[0];
-        topRight = values[0];
-        bottomRight = values[0];
-        bottomLeft = values[0];
-        break;
-    }
-  }
-
-  // console.log(
-  //   'shape corner',
-  //   Object.assign(
-  //     {},
-  //     {
-  //       topLeft,
-  //       topRight,
-  //       bottomRight,
-  //       bottomLeft
-  //     }
-  //   )
-  // );
-
-  let className = modifiers.cut ? [UI_SHAPE.cut] : [UI_SHAPE.rounded.base];
-  if (!modifiers.cut) {
-    if (topLeft && topRight && bottomRight && bottomLeft) {
-      className.push(UI_SHAPE.rounded.all);
-    } else {
-      if (topLeft) {
-        className.push(UI_SHAPE.rounded.topLeft);
-      }
-      if (topRight) {
-        className.push(UI_SHAPE.rounded.topRight);
-      }
-      if (bottomRight) {
-        className.push(UI_SHAPE.rounded.bottomRight);
-      }
-      if (bottomLeft) {
-        className.push(UI_SHAPE.rounded.bottomLeft);
-      }
-    }
-  }
-
-  if (modifiers.small) {
-    className.push(UI_SHAPE.size.small);
-  } else if (modifiers.large) {
-    className.push(UI_SHAPE.size.large);
+    el.style.clipPath = `polygon(${topLeft}, ${topRight}, ${bottomRight}, ${bottomLeft})`;
   } else {
-    className.push(UI_SHAPE.size.medium);
+    el.style.borderRadius = value;
   }
+};
 
-  el.classList[method](...className);
+const updateShape = (method, el, { value, modifiers }) => {
+  if (method === 'update') {
+    if (value) {
+      updateStyle(el, { value, modifiers });
+    }
+  } else {
+    if (value) {
+      updateStyle(el, { value, modifiers });
+    } else {
+      let className = modifiers.cut ? [UI_SHAPE.cut] : [UI_SHAPE.rounded];
+
+      if (modifiers.small) {
+        className.push(UI_SHAPE.size.small);
+      } else if (modifiers.large) {
+        className.push(UI_SHAPE.size.large);
+      } else {
+        className.push(UI_SHAPE.size.medium);
+      }
+
+      el.classList[method](...className);
+    }
+  }
 };
 
 const BalmUI_ShapeDirective = {
   name: 'shape',
   bind(el, binding) {
     updateShape('add', el, binding);
+  },
+  update(el, binding, vnode) {
+    updateShape('update', el, binding);
   },
   unbind(el, binding) {
     updateShape('remove', el, binding);

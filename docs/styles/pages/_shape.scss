@@ -15,41 +15,50 @@
   }
 
   .mdc-shape--rounded {
-    &.mdc-shape--rounded-top-left.mdc-shape--medium {
-      border-top-left-radius: 16px;
-    }
-    &.mdc-shape--rounded-bottom-right.mdc-shape--medium {
-      border-bottom-right-radius: 16px;
+    &.mdc-shape--medium {
+      border-radius: 16px;
     }
 
-    &.mdc-shape--rounded-top-left.mdc-shape--large {
-      border-top-left-radius: 24px;
+    &.mdc-shape--large {
+      border-radius: 24px;
     }
   }
 
   .mdc-shape--cut {
+    &.mdc-shape--small {
+      clip-path: polygon(
+        0% 4px,
+        4px 0%,
+        calc(100% - 4px) 0,
+        100% 4px,
+        100% calc(100% - 4px),
+        calc(100% - 4px) 100%,
+        4px 100%,
+        0px calc(100% - 4px)
+      );
+    }
     &.mdc-shape--medium {
       clip-path: polygon(
-        0% 16px,
-        16px 0%,
-        calc(100% - 16px) 0,
-        100% 16px,
-        100% calc(100% - 16px),
-        calc(100% - 16px) 100%,
-        16px 100%,
-        0px calc(100% - 16px)
+        0% 8px,
+        8px 0%,
+        calc(100% - 8px) 0,
+        100% 8px,
+        100% calc(100% - 8px),
+        calc(100% - 8px) 100%,
+        8px 100%,
+        0px calc(100% - 8px)
       );
     }
     &.mdc-shape--large {
       clip-path: polygon(
-        0% 24px,
-        24px 0%,
-        calc(100% - 24px) 0,
-        100% 24px,
-        100% calc(100% - 24px),
-        calc(100% - 24px) 100%,
-        24px 100%,
-        0px calc(100% - 24px)
+        0% 12px,
+        12px 0%,
+        calc(100% - 12px) 0,
+        100% 12px,
+        100% calc(100% - 12px),
+        calc(100% - 12px) 100%,
+        12px 100%,
+        0px calc(100% - 12px)
       );
     }
   }

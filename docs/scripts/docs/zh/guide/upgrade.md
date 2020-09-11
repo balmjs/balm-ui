@@ -11,6 +11,7 @@
 ### Features
 
 - `$theme`: 全新的主题 APIs
+- `v-shape`: 全新的形状 APIs
 - `<ui-menuitem>`: 新增属性 `value`
 - `<ui-form>`: 新增属性 `itemMarginBottom`, `labelWidth`, `labelMarginRight`, `labelMarginBottom`
 - Sass: 复写变量更简洁

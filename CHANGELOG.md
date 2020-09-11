@@ -29,8 +29,8 @@
 - `<ui-menuitem>`: add prop `value`
 - `<ui-form>`: add prop `itemMarginBottom`, `labelWidth`, `labelMarginRight`, `labelMarginBottom`
 - `v-anchor`: optimize for dynamic html
-- `v-shape`: add cut sharps for experimental
 - `$theme`: new theme apis
+- `v-shape`: new shape apis
 - overwrite variables become more concise and clear
 
   - Old

@@ -28,6 +28,7 @@
   - `<ui-tooltip>`
 - `<ui-menuitem>`: add prop `value`
 - `<ui-form>`: add prop `itemMarginBottom`, `labelWidth`, `labelMarginRight`, `labelMarginBottom`
+- `<ui-table>`: add slot for thead cell
 - `v-anchor`: optimize for dynamic html
 - `$theme`: new theme apis
 - `v-shape`: new shape apis

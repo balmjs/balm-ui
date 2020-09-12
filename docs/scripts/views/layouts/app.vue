@@ -15,10 +15,10 @@
       >
         <router-link to="/" :class="['catalog-title', $theme.getThemeClass('on-primary')]">BalmUI</router-link>
         <template #toolbar="{ toolbarItemClass }">
-          <!-- <ui-icon-button
+          <ui-icon-button
             :icon="$store.theme === 'dark' ? 'bedtime' : 'wb_sunny'"
             @click="$store.switchTheme"
-          ></ui-icon-button>-->
+          ></ui-icon-button>
           <ui-menu-anchor>
             <ui-icon-button icon="language" @click="$balmUI.onShow('showTranslations')"></ui-icon-button>
             <ui-menu v-model="showTranslations" @selected="$store.setLang">
@@ -89,8 +89,16 @@
                       :active-class="activeClass"
                       @click.native="handleMenu"
                     >
-                      <ui-icon v-if="item.icon" class="catalog-list-icon">{{ item.icon }}</ui-icon>
-                      <span>{{ $t(`menu.${item.name}`) }}</span>
+                      <ui-icon
+                        v-if="item.icon"
+                        :class="[
+                          $theme.getTextClass('secondary', $store.theme),
+                          'catalog-list-icon'
+                        ]"
+                      >{{ item.icon }}</ui-icon>
+                      <span
+                        :class="$theme.getTextClass('primary', $store.theme)"
+                      >{{ $t(`menu.${item.name}`) }}</span>
                       <ui-badge v-if="item.plus" class="plus" state="info">
                         <template #badge>plus</template>
                       </ui-badge>
@@ -102,7 +110,7 @@
                     <ui-list-group-subheader
                       v-else
                       :key="`head${index}`"
-                      :class="$theme.getTextClassOnLight('primary')"
+                      :class="$theme.getTextClass('primary', $store.theme)"
                     >
                       {{ $t(`menu.${item.name}`) }}
                       <i

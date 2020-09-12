@@ -6,7 +6,7 @@
   $item-inactive-ink-color: theme-color.prop-value(on-surface),
   $item-activated-ink-color: theme-color.prop-value(primary),
   $divider-color: theme-color.prop-value(on-surface),
-  $surface-fill-color: theme-color.prop-value(surface),
+  $surface-fill-color: surface,
 
   // Opacity
   $title-ink-opacity: theme-color.text-emphasis(high),

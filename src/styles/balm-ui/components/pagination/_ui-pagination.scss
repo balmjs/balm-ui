@@ -1,4 +1,4 @@
-@use '@material/theme/variables' as theme-variables;
+@use '@material/theme/theme-color';
 @use '@material/shape/mixins' as shape-mixins;
 @use './variables' as pagination-variables;
 @use './mixins' as pagination-mixins;
@@ -15,14 +15,14 @@
 
     &.mdc-pagination__button--ellipsis {
       cursor: default;
-      color: theme-variables.prop-value(text-hint-on-background);
+      color: theme-color.prop-value(text-hint-on-background);
     }
   }
 
   .mdc-data-table__pagination-button {
     &:not(.mdc-pagination__button--ellipsis) {
-      color: rgba(theme-variables.prop-value(on-surface), 0.87);
-      border: 1px solid rgba(theme-variables.prop-value(on-surface), 0.87);
+      color: rgba(theme-color.prop-value(on-surface), 0.87);
+      border: 1px solid rgba(theme-color.prop-value(on-surface), 0.87);
 
       &:hover {
         @include pagination-mixins.paginationHover();
@@ -39,8 +39,8 @@
     }
 
     &:disabled {
-      color: theme-variables.prop-value(text-disabled-on-background);
-      border-color: theme-variables.prop-value(text-disabled-on-background);
+      color: theme-color.prop-value(text-disabled-on-background);
+      border-color: theme-color.prop-value(text-disabled-on-background);
       cursor: not-allowed;
     }
   }

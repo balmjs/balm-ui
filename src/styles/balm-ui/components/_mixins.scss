@@ -1,26 +1,20 @@
-@use '@material/theme/variables' as theme-variables;
+@use '@material/theme/theme';
+@use '@material/theme/theme-color';
 
 $alpha: 0.87;
 
 @mixin background {
-  background-color: theme-variables.prop-value(background);
-  background-color: var(
-    --mdc-theme-background,
-    theme-variables.prop-value(background)
-  );
+  @include theme.prop(background-color, background);
 }
 
 @mixin selected($withBorder: 0) {
-  background-color: rgba(theme-variables.prop-value(primary), $alpha);
-  background-color: var(
-    --mdc-theme-primary,
-    rgba(theme-variables.prop-value(primary), $alpha)
+  @include theme.prop(
+    background-color,
+    rgba(theme-color.prop-value(primary), $alpha)
   );
-  color: theme-variables.prop-value(on-primary);
-  color: var(--mdc-theme-on-primary, theme-variables.prop-value(on-primary));
+  @include theme.prop(color, rgba(theme-color.prop-value(on-primary), $alpha));
 
   @if ($withBorder == 1) {
-    border-color: theme-variables.prop-value(primary);
-    border-color: var(--mdc-theme-primary, theme-variables.prop-value(primary));
+    @include theme.prop(border-color, primary);
   }
 }

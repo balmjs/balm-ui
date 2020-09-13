@@ -1,10 +1,8 @@
-@use '@material/theme/variables' as theme-variables;
+@use '@material/theme/theme';
 
 @mixin paginationHover() {
-  color: theme-variables.prop-value(primary);
-  color: var(--mdc-theme-primary, theme-variables.prop-value(primary));
-  border-color: theme-variables.prop-value(primary);
-  border-color: var(--mdc-theme-primary, theme-variables.prop-value(primary));
+  @include theme.prop(color, primary);
+  @include theme.prop(border-color, primary);
 }
 
 @mixin paginationInput() {
@@ -17,7 +15,6 @@
 
   &:hover,
   &:focus {
-    border-color: theme-variables.prop-value(primary);
-    border-color: var(--mdc-theme-primary, theme-variables.prop-value(primary));
+    @include theme.prop(border-color, primary);
   }
 }

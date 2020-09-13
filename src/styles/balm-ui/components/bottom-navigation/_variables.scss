@@ -1,8 +1,8 @@
-@use '@material/theme/variables' as theme-variables;
+@use '@material/theme/theme-color';
 
 $destinations: 33, 25, 20; // percent
 $height: 48px !default;
 $stacked-height: 72px !default;
-$color: theme-variables.prop-value(primary) !default;
+$color: theme-color.prop-value(primary) !default;
 $fill-color: white !default;
 $active-fill-color: rgba($color, 0.87) !default;

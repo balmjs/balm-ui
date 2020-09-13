@@ -1,4 +1,4 @@
-@use '@material/theme/variables' as theme-variables;
+@use '@material/theme/theme-color';
 
 #ql-emoji-palette {
   display: flex;
@@ -37,7 +37,7 @@
   text-transform: uppercase;
 
   &.ql-emoji-tab--active {
-    border-bottom: 2px solid theme-variables.prop-value(primary);
+    border-bottom: 2px solid theme-color.prop-value(primary);
   }
 }
 

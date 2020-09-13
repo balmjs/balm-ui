@@ -1,10 +1,25 @@
 @use '@material/theme/theme';
+@use '@material/theme/theme-color';
 
 // fix(@mdc): for `<ui-list>` in `<ui-drawer>`
-.mdc-drawer .mdc-list-item--activated {
-  @include theme.prop(color, primary);
+.mdc-drawer {
+  .mdc-list-item {
+    &.mdc-ripple-surface::before,
+    &.mdc-ripple-surface::after {
+      @include theme.prop(background-color, on-surface);
+    }
+  }
 
-  .mdc-list-item__graphic {
+  .mdc-list-item--activated {
     @include theme.prop(color, primary);
+
+    .mdc-list-item__graphic {
+      @include theme.prop(color, primary);
+    }
+
+    [class*='mdc-theme--text-'],
+    &[class*='mdc-theme--text-'] {
+      @include theme.prop(color, primary, true);
+    }
   }
 }

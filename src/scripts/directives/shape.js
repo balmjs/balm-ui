@@ -54,7 +54,7 @@ const BalmUI_ShapeDirective = {
   bind(el, binding) {
     updateShape('add', el, binding);
   },
-  update(el, binding, vnode) {
+  update(el, binding) {
     updateShape('update', el, binding);
   },
   unbind(el, binding) {

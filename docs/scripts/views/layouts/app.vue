@@ -76,35 +76,40 @@
                   <template v-for="(item, index) in menu">
                     <router-link
                       v-if="item.url || item.isSubmenu"
+                      v-slot="{ href, isActive }"
                       :key="`item${index}`"
-                      v-ripple
-                      :class="[
-                        itemClass,
-                        {
-                          submenu: item.isSubmenu,
-                          'no-icon': !item.icon
-                        }
-                      ]"
                       :to="{ name: item.url }"
-                      :active-class="activeClass"
                       @click.native="handleMenu"
                     >
-                      <ui-icon
-                        v-if="item.icon"
+                      <a
+                        v-ripple
                         :class="[
-                          $theme.getTextClass('secondary', $store.theme),
-                          'catalog-list-icon'
+                          itemClass,
+                          {
+                            submenu: item.isSubmenu,
+                            'no-icon': !item.icon
+                          },
+                          isActive ? activeClass : ''
                         ]"
-                      >{{ item.icon }}</ui-icon>
-                      <span
-                        :class="$theme.getTextClass('primary', $store.theme)"
-                      >{{ $t(`menu.${item.name}`) }}</span>
-                      <ui-badge v-if="item.plus" class="plus" state="info">
-                        <template #badge>plus</template>
-                      </ui-badge>
-                      <ui-badge v-if="item.next" class="next" state="error">
-                        <template #badge>next</template>
-                      </ui-badge>
+                        :href="href"
+                      >
+                        <ui-icon
+                          v-if="item.icon"
+                          :class="[
+                            $theme.getTextClass('secondary', $store.theme),
+                            'catalog-list-icon'
+                          ]"
+                        >{{ item.icon }}</ui-icon>
+                        <span
+                          :class="$theme.getTextClass('primary', $store.theme)"
+                        >{{ $t(`menu.${item.name}`) }}</span>
+                        <ui-badge v-if="item.plus" class="plus" state="info">
+                          <template #badge>plus</template>
+                        </ui-badge>
+                        <ui-badge v-if="item.next" class="next" state="error">
+                          <template #badge>next</template>
+                        </ui-badge>
+                      </a>
                     </router-link>
                     <ui-list-divider v-else-if="item === '-'" :key="`divider${index}`"></ui-list-divider>
                     <ui-list-group-subheader

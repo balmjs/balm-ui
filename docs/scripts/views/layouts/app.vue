@@ -15,6 +15,7 @@
       >
         <router-link to="/" :class="['catalog-title', $theme.getThemeClass('on-primary')]">BalmUI</router-link>
         <template #toolbar="{ toolbarItemClass }">
+          <!-- For dark theme test -->
           <!-- <ui-icon-button
             :icon="$store.theme === 'dark' ? 'bedtime' : 'wb_sunny'"
             @click="$store.switchTheme"

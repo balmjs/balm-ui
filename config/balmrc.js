@@ -1,7 +1,7 @@
 const pkg = require('../package.json');
 const env = require('./env');
 const path = require('path');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 
 function getConfig(balm) {
   const useDocs = !balm.config.env.isProd || env.buildDocs;
@@ -61,10 +61,9 @@ function getConfig(balm) {
       },
       includeJsResource: useDocs ? [path.join(workspace, 'src/scripts')] : [],
       alias: {
-        vue$: 'vue/dist/vue.esm.js',
         pickerLangZh: 'flatpickr/dist/l10n/zh.js',
         '@': path.join(workspace, 'docs/scripts'),
-        'balm-ui': path.join(workspace, 'src/scripts')
+        'balm-ui$': path.join(workspace, 'src/scripts')
       },
       plugins: [new VueLoaderPlugin()],
       eslint: true,

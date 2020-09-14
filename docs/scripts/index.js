@@ -1,4 +1,4 @@
 import { isIE, killIE } from '@/kill-ie';
-import createApp from '@/main';
+import createBalmUIApp from '@/main';
 
-isIE ? killIE() : createApp();
+isIE ? killIE() : createBalmUIApp();

@@ -1,3 +1,19 @@
-import Vue from 'vue';
+import { createApp } from 'vue';
 
-export default new Vue();
+let eventBus = {};
+
+const busApp = createApp(
+  {},
+  {
+    $emit(eventName, ...args) {
+      eventBus[eventName] = [...args];
+    },
+    $on(event, callback) {
+      if (eventBus[event]) {
+        callback(eventBus[event]);
+      }
+    }
+  }
+);
+
+export default busApp._props;

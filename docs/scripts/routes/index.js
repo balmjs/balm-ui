@@ -1,6 +1,5 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import VueMeta from 'vue-meta';
+import { createRouter, createWebHashHistory } from 'vue-router';
+// import VueMeta from 'vue-meta';
 import bus from '@/store/bus';
 // Layout
 import BlankLayout from '@/views/layouts/blank';
@@ -22,7 +21,7 @@ const NotFound = () => import('@/views/not-found');
 import testRoutes from './test';
 
 Vue.use(VueRouter);
-Vue.use(VueMeta);
+// Vue.use(VueMeta);
 
 const baseRoutes = [
   {
@@ -104,12 +103,15 @@ const baseRoutes = [
     component: Utils
   },
   {
-    path: '*',
+    path: '/:catchAll(.*)',
     component: NotFound
   }
 ];
 const routes = baseRoutes.concat(testRoutes);
-const router = new VueRouter({
+
+const history = createWebHashHistory();
+const router = createRouter({
+  history,
   routes
 });
 

@@ -87,7 +87,7 @@
                         'no-icon': !item.icon
                       }"
                       :activated="isActive"
-                      @click.native="handleMenu"
+                      @click="handleMenu"
                     >
                       <template #before="{ iconClass }">
                         <ui-icon

@@ -1,7 +1,7 @@
 import store from '@/store';
 
 export default {
-  install(Vue) {
-    Vue.prototype.$store = store;
+  install(app) {
+    app.provide('$store', store);
   }
 };

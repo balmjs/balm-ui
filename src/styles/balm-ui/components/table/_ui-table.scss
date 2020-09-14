@@ -1,9 +1,9 @@
 @use '@material/data-table/variables' as data-table-variables;
-@use './theme';
+@use '@material/top-app-bar/variables' as top-app-bar-variables;
+@use './theme' as ui-theme;
 
 .mdc-data-table--fullwidth {
   display: flex;
-  flex: 1;
   width: 100%;
 }
 
@@ -33,4 +33,10 @@
   align-items: center;
   display: inline-flex;
   vertical-align: middle;
+}
+
+@media (max-width: top-app-bar-variables.$mobile-breakpoint) {
+  .mdc-data-table {
+    width: 100%;
+  }
 }

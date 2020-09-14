@@ -1,12 +1,7 @@
 @use '../mixins' as ui-mixins;
 
-.mdc-select {
-  display: inline-flex;
-}
-
 .mdc-select--fullwidth {
   display: flex;
-  flex: 1;
 }
 
 .mdc-select__anchor .mdc-select__ripple {

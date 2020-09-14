@@ -35,6 +35,7 @@
 - `<ui-pagination>`:
   - 移除插槽属性 `before`, `before-jumper` 和 `after-jumper`
   - 新增插槽属性 `first` 和 `last`
+- `<ui-nav>`: 移除插槽属性 `itemClass`, `activeClass`。使用新组件 `<ui-nav-item>`
 
 <div id="up-to-7"></div>
 

@@ -32,10 +32,17 @@
 </ui-list-group>
 ```
 
+```html
+<ui-nav>
+  <ui-nav-item activated>activated item</ui-nav-item>
+  <ui-nav-item>unactivated item</ui-nav-item>
+</ui-nav>
+```
+
 | Component                   | Description                                                                                                                    |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| `<ui-list>`                 | Mandatory, for the list element.                                                                                               |
-| `<ui-item>`                 | Mandatory, for the list item element.                                                                                          |
+| `<ui-list>`/`<ui-nav>`      | Mandatory, for the list element.                                                                                               |
+| `<ui-item>`/`<ui-nav-item>` | Mandatory, for the list item element.                                                                                          |
 | `<ui-item-text-content>`    | Mandatory. Wrapper for list item text content (displayed as middle column of the list item).                                   |
 | `<ui-item-text1>`           | Optional, primary text for the list item. Should be the child of `<ui-item-text-content>`.                                     |
 | `<ui-item-text2>`           | Optional, secondary text for the list item. Displayed below the primary text. Should be the child of `<ui-item-text-content>`. |

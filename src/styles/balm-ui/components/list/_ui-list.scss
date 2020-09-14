@@ -3,13 +3,6 @@
 
 // fix(@mdc): for `<ui-list>` in `<ui-drawer>`
 .mdc-drawer {
-  .mdc-list-item {
-    &.mdc-ripple-surface::before,
-    &.mdc-ripple-surface::after {
-      @include theme.prop(background-color, on-surface);
-    }
-  }
-
   .mdc-list-item--activated {
     @include theme.prop(color, primary);
 

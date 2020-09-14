@@ -37,19 +37,17 @@
     <!-- navId="demo-menu" -->
     <ui-drawer v-model="openDrawer" type="modal">
       <ui-drawer-header :inner-class="$theme.getThemeClass(['primary-bg', 'on-primary'])">
-        <ui-drawer-title>Header here</ui-drawer-title>
+        <ui-drawer-title :class="$theme.getTextClass('primary', $store.theme)">Header here</ui-drawer-title>
       </ui-drawer-header>
       <ui-drawer-content>
         <ui-nav>
-          <template #default="{ itemClass, activeClass }">
-            <a v-ripple :class="[itemClass, activeClass]" @click="$router.back()">
-              <ui-item-first-content>
-                <ui-icon>arrow_back</ui-icon>
-              </ui-item-first-content>
-              <ui-item-text-content>Back</ui-item-text-content>
-            </a>
-            <ui-list-divider></ui-list-divider>
-          </template>
+          <ui-nav-item @click="$router.back()">
+            <ui-item-first-content :class="$theme.getTextClass('secondary', $store.theme)">
+              <ui-icon>arrow_back</ui-icon>
+            </ui-item-first-content>
+            <ui-item-text-content :class="$theme.getTextClass('primary', $store.theme)">Back</ui-item-text-content>
+          </ui-nav-item>
+          <ui-list-divider></ui-list-divider>
         </ui-nav>
       </ui-drawer-content>
     </ui-drawer>

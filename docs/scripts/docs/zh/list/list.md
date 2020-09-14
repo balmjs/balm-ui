@@ -1,7 +1,7 @@
 ```html
 <ui-list><!-- <ui-item> --></ui-list>
 
-<ui-nav><!-- <router-link> --></ui-nav>
+<ui-nav><!-- <ui-nav-item> --></ui-nav>
 ```
 
 **`<ui-list>` Types**
@@ -9,7 +9,7 @@
 - `1`: `'singleLine'`
 - `2`: `'twoLine'`
 
-### Common Props
+### Props
 
 | Name                        | Type           | Default | Description                                                                                                                                  |
 | --------------------------- | -------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -20,24 +20,13 @@
 | `dense`                     | boolean        | `false` | Optional, styles the density of the list, making it appear more compact.                                                                     |
 | `avatar`                    | boolean        | `false` | Optional, configures the leading tiles of each row to display images instead of icons. This will make the graphics of the list items larger. |
 
-### `<ui-nav>` Slots
+### Slots
 
-| Name      | Slots                      | Description                                                      |
-| --------- | -------------------------- | ---------------------------------------------------------------- |
-| `default` | `itemClass`, `activeClass` | The default slot holds the item components and can contain HTML. |
+| Name      | Slots | Description                                                      |
+| --------- | ----- | ---------------------------------------------------------------- |
+| `default` |       | The default slot holds the item components and can contain HTML. |
 
-```html
-<ui-nav>
-  <template #default="{ itemClass, activeClass }">
-    <a :class="[itemClass, activeClass]">activated item</a>
-    <a :class="itemClass">unactivated item</a>
-  </template>
-</ui-nav>
-```
-
-> Optional, styles the row in a selected or activated state.
-
-### Common Events
+### Events
 
 | Name     | Type                      | Description                                                             |
 | -------- | ------------------------- | ----------------------------------------------------------------------- |

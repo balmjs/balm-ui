@@ -17,6 +17,7 @@
 - `$toast`: optimize option `timeoutMs`
 - `$alert`
 - `$confirm`
+- `<ui-nav>`
 
 ### Features
 
@@ -26,6 +27,7 @@
 - new components
   - `<ui-banner>`
   - `<ui-tooltip>`
+  - `<ui-nav-item>`
 - `<ui-menuitem>`: add prop `value`
 - `<ui-form>`: add prop `itemMarginBottom`, `labelWidth`, `labelMarginRight`, `labelMarginBottom`
 - `<ui-table>`: add slot for thead cell
@@ -52,6 +54,7 @@
 - `<ui-pagination>`: optimize slots
 - `<ui-menu>`: optimize selected event
 - `$themeColor`, `$setTheme`, `$textColor`, `$setTextTheme`: deprecated. Use `$theme` instead.
+- `<ui-nav>`: remove slot prop `itemClass`, `activeClass`
 
 ---
 

@@ -54,6 +54,7 @@ import UiSlider from './components/selection-controls/slider';
 import UiFile from './components/input-controls/file'; // Custom
 // Data Display
 import UiNav from './components/lists/nav';
+import UiNavItem from './components/lists/nav-item';
 import UiList from './components/lists/list';
 import UiItem from './components/lists/item';
 import UiItemTextContent from './components/lists/item-text-content';
@@ -168,6 +169,7 @@ const components = {
   UiMenuitemIcon,
   UiMenuitemText,
   UiNav,
+  UiNavItem,
   UiPagination,
   UiPanels,
   UiPanel,

@@ -12,15 +12,20 @@
       <!-- Drawer -->
       <ui-drawer type="permanent" viewport-height>
         <ui-drawer-header>
-          <ui-drawer-title>Title</ui-drawer-title>
-          <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>
+          <ui-drawer-title :class="$theme.getTextClass('primary', $store.theme)">Title</ui-drawer-title>
+          <ui-drawer-subtitle :class="$theme.getTextClass('secondary', $store.theme)">Subtitle</ui-drawer-subtitle>
         </ui-drawer-header>
         <ui-drawer-content>
           <ui-nav>
-            <template #default="{ itemClass, activeClass }">
-              <a :class="[itemClass, activeClass]">Item {{ 0 }}</a>
-              <a v-for="i in 12" :key="i" :class="itemClass">Item {{ i }}</a>
-            </template>
+            <ui-nav-item
+              :class="$theme.getTextClass('primary', $store.theme)"
+              activated
+            >Item {{ 0 }}</ui-nav-item>
+            <ui-nav-item
+              v-for="i in 12"
+              :key="i"
+              :class="$theme.getTextClass('primary', $store.theme)"
+            >Item {{ i }}</ui-nav-item>
           </ui-nav>
         </ui-drawer-content>
       </ui-drawer>
@@ -40,9 +45,7 @@ export default {
     titleTemplate: '%s - Permanent Drawer Below Toolbar'
   },
   created() {
-    this.$store.initDocs('drawer', {
-      demoCount: 5
-    });
+    this.$store.initSnippet('drawer', 2);
   }
 };
 </script>

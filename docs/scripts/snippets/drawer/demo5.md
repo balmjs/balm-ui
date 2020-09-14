@@ -8,10 +8,8 @@
     </ui-drawer-header>
     <ui-drawer-content>
       <ui-nav>
-        <template #default="{ itemClass, activeClass }">
-          <a :class="[itemClass, activeClass]">Item {{ 0 }}</a>
-          <a v-for="i in 12" :key="i" :class="itemClass">Item {{ i }}</a>
-        </template>
+        <ui-nav-item activated>Item {{ 0 }}</ui-nav-item>
+        <ui-nav-item v-for="i in 12" :key="i">Item {{ i }}</ui-nav-item>
       </ui-nav>
     </ui-drawer-content>
   </ui-drawer>

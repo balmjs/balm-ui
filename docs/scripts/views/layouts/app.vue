@@ -15,10 +15,10 @@
       >
         <router-link to="/" :class="['catalog-title', $theme.getThemeClass('on-primary')]">BalmUI</router-link>
         <template #toolbar="{ toolbarItemClass }">
-          <ui-icon-button
+          <!-- <ui-icon-button
             :icon="$store.theme === 'dark' ? 'bedtime' : 'wb_sunny'"
             @click="$store.switchTheme"
-          ></ui-icon-button>
+          ></ui-icon-button>-->
           <ui-menu-anchor>
             <ui-icon-button icon="language" @click="$balmUI.onShow('showTranslations')"></ui-icon-button>
             <ui-menu v-model="showTranslations" @selected="$store.setLang">
@@ -72,61 +72,56 @@
             </ui-drawer-header>
             <ui-drawer-content>
               <ui-nav class="catalog-list">
-                <template #default="{ itemClass, activeClass }">
-                  <template v-for="(item, index) in menu">
-                    <router-link
-                      v-if="item.url || item.isSubmenu"
-                      v-slot="{ href, isActive }"
-                      :key="`item${index}`"
-                      :to="{ name: item.url }"
+                <template v-for="(item, index) in menu">
+                  <router-link
+                    v-if="item.url || item.isSubmenu"
+                    v-slot="{ href, isActive }"
+                    :key="`item${index}`"
+                    :to="{ name: item.url }"
+                  >
+                    <ui-nav-item
+                      :href="href"
+                      :class="{
+                        submenu: item.isSubmenu,
+                        'no-icon': !item.icon
+                      }"
+                      :activated="isActive"
                       @click.native="handleMenu"
                     >
-                      <a
-                        v-ripple
-                        :class="[
-                          itemClass,
-                          {
-                            submenu: item.isSubmenu,
-                            'no-icon': !item.icon
-                          },
-                          isActive ? activeClass : ''
-                        ]"
-                        :href="href"
-                      >
+                      <template #before="{ iconClass }">
                         <ui-icon
                           v-if="item.icon"
-                          :class="[
-                            $theme.getTextClass('secondary', $store.theme),
-                            'catalog-list-icon'
-                          ]"
+                          :class="['catalog-list-icon', iconClass, $theme.getTextClass('secondary', $store.theme)]"
                         >{{ item.icon }}</ui-icon>
-                        <span
-                          :class="$theme.getTextClass('primary', $store.theme)"
-                        >{{ $t(`menu.${item.name}`) }}</span>
+                      </template>
+                      <span
+                        :class="$theme.getTextClass('primary', $store.theme)"
+                      >{{ $t(`menu.${item.name}`) }}</span>
+                      <template #after>
                         <ui-badge v-if="item.plus" class="plus" state="info">
                           <template #badge>plus</template>
                         </ui-badge>
                         <ui-badge v-if="item.next" class="next" state="error">
                           <template #badge>next</template>
                         </ui-badge>
-                      </a>
-                    </router-link>
-                    <ui-list-divider v-else-if="item === '-'" :key="`divider${index}`"></ui-list-divider>
-                    <ui-list-group-subheader
-                      v-else
-                      :key="`head${index}`"
-                      :class="$theme.getTextClass('primary', $store.theme)"
+                      </template>
+                    </ui-nav-item>
+                  </router-link>
+                  <ui-list-divider v-else-if="item === '-'" :key="`divider${index}`"></ui-list-divider>
+                  <ui-list-group-subheader
+                    v-else
+                    :key="`head${index}`"
+                    :class="$theme.getTextClass('primary', $store.theme)"
+                  >
+                    {{ $t(`menu.${item.name}`) }}
+                    <i
+                      v-if="isWideScreen && item.name === 'guide'"
+                      :class="['balmui-version', $tt('subtitle2')]"
                     >
-                      {{ $t(`menu.${item.name}`) }}
-                      <i
-                        v-if="isWideScreen && item.name === 'guide'"
-                        :class="['balmui-version', $tt('subtitle2')]"
-                      >
-                        v
-                        <span class="version">{{ version }}</span>
-                      </i>
-                    </ui-list-group-subheader>
-                  </template>
+                      v
+                      <span class="version">{{ version }}</span>
+                    </i>
+                  </ui-list-group-subheader>
                 </template>
               </ui-nav>
             </ui-drawer-content>

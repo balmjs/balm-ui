@@ -3,21 +3,23 @@
     <!-- Drawer -->
     <ui-drawer type="dismissible" viewport-height nav-id="demo-menu">
       <ui-drawer-header>
-        <ui-drawer-title>Title</ui-drawer-title>
-        <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>
+        <ui-drawer-title :class="$theme.getTextClass('primary', $store.theme)">Title</ui-drawer-title>
+        <ui-drawer-subtitle :class="$theme.getTextClass('secondary', $store.theme)">Subtitle</ui-drawer-subtitle>
       </ui-drawer-header>
       <ui-drawer-content>
         <ui-nav>
-          <template #default="{ itemClass, activeClass }">
-            <a :class="[itemClass, activeClass]" @click="$router.back()">
-              <ui-item-first-content>
-                <ui-icon>arrow_back</ui-icon>
-              </ui-item-first-content>
-              <ui-item-text-content>Back</ui-item-text-content>
-            </a>
-            <ui-list-divider></ui-list-divider>
-            <a v-for="i in 12" :key="i" :class="itemClass">Item {{ i }}</a>
-          </template>
+          <ui-nav-item activated @click="$router.back()">
+            <ui-item-first-content :class="$theme.getTextClass('secondary', $store.theme)">
+              <ui-icon>arrow_back</ui-icon>
+            </ui-item-first-content>
+            <ui-item-text-content :class="$theme.getTextClass('primary', $store.theme)">Back</ui-item-text-content>
+          </ui-nav-item>
+          <ui-list-divider></ui-list-divider>
+          <ui-nav-item
+            v-for="i in 12"
+            :key="i"
+            :class="$theme.getTextClass('primary', $store.theme)"
+          >Item {{ i }}</ui-nav-item>
         </ui-nav>
       </ui-drawer-content>
     </ui-drawer>
@@ -45,9 +47,7 @@ export default {
     titleTemplate: '%s - Dismissible Drawer'
   },
   created() {
-    this.$store.initDocs('drawer', {
-      demoCount: 5
-    });
+    this.$store.initSnippet('drawer', 3);
   }
 };
 </script>

@@ -35,6 +35,7 @@
 - `<ui-pagination>`:
   - remove slot prop `before`, `before-jumper` and `after-jumper`
   - add slot prop `first` and `last`
+- `<ui-nav>`: remove slot prop `itemClass`, `activeClass`. Use `<ui-nav-item>` for new
 
 <div id="up-to-7"></div>
 

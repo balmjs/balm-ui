@@ -5,8 +5,6 @@ export default {
     twoLine: 2
   },
   cssClasses: {
-    item: 'mdc-list-item',
-    active: 'mdc-list-item--activated',
     firstTile: 'mdc-list-item__graphic',
     lastTile: 'mdc-list-item__meta'
   },

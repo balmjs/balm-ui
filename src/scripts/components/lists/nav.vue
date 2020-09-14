@@ -1,6 +1,6 @@
 <template>
   <nav :class="className">
-    <slot :itemClass="UI_LIST.cssClasses.item" :activeClass="UI_LIST.cssClasses.active"></slot>
+    <slot></slot>
   </nav>
 </template>
 

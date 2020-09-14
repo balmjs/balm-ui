@@ -1,14 +1,16 @@
 ```html
 <ui-item><!-- the item child components --></ui-item>
+
+<ui-nav-item><!-- the link item child components --></ui-nav-item>
 ```
 
 ### Props
 
-| Name        | Type    | Default | Description                                      |
-| ----------- | ------- | ------- | ------------------------------------------------ |
-| `selected`  | boolean | `false` | Optional, styles the row in an selected state.   |
-| `activated` | boolean | `false` | Optional, styles the row in the activated state. |
-| `disabled`  | boolean | `false` | Optional, styles the row in the disabled state.  |
+| Name        | Type    | Default | Description                                                                           |
+| ----------- | ------- | ------- | ------------------------------------------------------------------------------------- |
+| `selected`  | boolean | `false` | Optional, styles the row in an selected state. Applicable only for `<ui-item>`.       |
+| `activated` | boolean | `false` | Optional, styles the row in the activated state. Applicable only for `<ui-nav-item>`. |
+| `disabled`  | boolean | `false` | Optional, styles the row in the disabled state.                                       |
 
 ### Slots
 

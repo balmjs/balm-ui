@@ -9,28 +9,22 @@
         </ui-drawer-header>
         <ui-drawer-content>
           <ui-nav>
-            <template #default="{ itemClass, activeClass }">
-              <a
-                v-for="(item, index) in [
+            <ui-nav-item
+              v-for="(item, index) in [
                   'inbox',
                   'star',
                   'bookmark',
                   'send',
                   'drafts'
                 ]"
-                :key="index"
-                v-ripple
-                :class="[
-                  index === 0 ? [itemClass, activeClass] : itemClass,
-                  $theme.getTextClass('primary', $store.theme)
-                ]"
-              >
-                <ui-item-first-content :class="$theme.getTextClass('secondary', $store.theme)">
-                  <ui-icon>{{ item }}</ui-icon>
-                </ui-item-first-content>
-                <ui-item-text-content>Body 2</ui-item-text-content>
-              </a>
-            </template>
+              :key="index"
+              :activated="index === 0"
+            >
+              <ui-item-first-content :class="$theme.getTextClass('secondary', $store.theme)">
+                <ui-icon>{{ item }}</ui-icon>
+              </ui-item-first-content>
+              <ui-item-text-content :class="$theme.getTextClass('primary', $store.theme)">Body 2</ui-item-text-content>
+            </ui-nav-item>
           </ui-nav>
         </ui-drawer-content>
       </ui-drawer>

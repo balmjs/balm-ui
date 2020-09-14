@@ -15,24 +15,19 @@
       <div class="hero-demo">
         <ui-drawer>
           <ui-drawer-header>
-            <ui-drawer-title>Title</ui-drawer-title>
-            <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>
+            <ui-drawer-title :class="$theme.getTextClass('primary', $store.theme)">Title</ui-drawer-title>
+            <ui-drawer-subtitle :class="$theme.getTextClass('secondary', $store.theme)">Subtitle</ui-drawer-subtitle>
           </ui-drawer-header>
           <ui-drawer-content>
             <ui-nav>
-              <template #default="{ itemClass, activeClass }">
-                <a
-                  v-for="(item, index) in menu"
-                  :key="index"
-                  v-ripple
-                  :class="index === 0 ? [itemClass, activeClass] : itemClass"
-                >
-                  <ui-item-first-content>
-                    <ui-icon>{{ item.icon }}</ui-icon>
-                  </ui-item-first-content>
-                  <ui-item-text-content>{{ item.name }}</ui-item-text-content>
-                </a>
-              </template>
+              <ui-nav-item v-for="(item, index) in menu" :key="index" :activated="index === 0">
+                <ui-item-first-content :class="$theme.getTextClass('secondary', $store.theme)">
+                  <ui-icon>{{ item.icon }}</ui-icon>
+                </ui-item-first-content>
+                <ui-item-text-content
+                  :class="$theme.getTextClass('primary', $store.theme)"
+                >{{ item.name }}</ui-item-text-content>
+              </ui-nav-item>
             </ui-nav>
           </ui-drawer-content>
         </ui-drawer>

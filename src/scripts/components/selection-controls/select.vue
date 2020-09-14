@@ -30,7 +30,9 @@
         ></i>
       </slot>
       <!-- Enhanced Select -->
-      <span class="mdc-select__selected-text"></span>
+      <span class="mdc-select__selected-text-container">
+        <span class="mdc-select__selected-text"></span>
+      </span>
       <span class="mdc-select__dropdown-icon">
         <slot name="dropdown-icon">
           <svg class="mdc-select__dropdown-icon-graphic" viewBox="7 10 10 5" focusable="false">

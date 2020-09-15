@@ -20,7 +20,12 @@
           </ui-drawer-header>
           <ui-drawer-content>
             <ui-nav>
-              <ui-nav-item v-for="(item, index) in menu" :key="index" :activated="index === 0">
+              <ui-nav-item
+                v-for="(item, index) in menu"
+                :key="index"
+                href="javascript:void(0)"
+                :active="index === 0"
+              >
                 <ui-item-first-content :class="$theme.getTextClass('secondary', $store.theme)">
                   <ui-icon>{{ item.icon }}</ui-icon>
                 </ui-item-first-content>

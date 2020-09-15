@@ -16,7 +16,7 @@
     </ui-drawer-header>
     <ui-drawer-content>
       <ui-nav>
-        <ui-nav-item activated>Item {{ 0 }}</ui-nav-item>
+        <ui-nav-item active>Item {{ 0 }}</ui-nav-item>
         <ui-nav-item v-for="i in 12" :key="i">Item {{ i }}</ui-nav-item>
       </ui-nav>
     </ui-drawer-content>

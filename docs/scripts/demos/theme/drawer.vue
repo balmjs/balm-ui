@@ -18,7 +18,8 @@
                   'drafts'
                 ]"
               :key="index"
-              :activated="index === 0"
+              href="javascript:void(0)"
+              :active="index === 0"
             >
               <ui-item-first-content :class="$theme.getTextClass('secondary', $store.theme)">
                 <ui-icon>{{ item }}</ui-icon>

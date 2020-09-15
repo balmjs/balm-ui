@@ -1,6 +1,6 @@
 {
   "name": "balm-ui",
-  "version": "8.0.0-canary.12",
+  "version": "8.0.0-canary.13",
   "description": "Next Generation Material UI for Vue.js",
   "keywords": [
     "balm",
@@ -69,7 +69,7 @@
     "clipboard": "^2.0.6",
     "core-js": "^3.6.5",
     "cross-env": "^7.0.2",
-    "eslint": "^7.8.0",
+    "eslint": "^7.9.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-vue": "^6.2.2",

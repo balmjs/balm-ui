@@ -82,12 +82,12 @@
                   >
                     <ui-nav-item
                       :href="href"
+                      :active="isActive"
                       :class="{
                         submenu: item.isSubmenu,
                         'no-icon': !item.icon
                       }"
-                      :activated="isActive"
-                      @click.native="handleMenu"
+                      @click="handleMenu"
                     >
                       <template #before="{ iconClass }">
                         <ui-icon

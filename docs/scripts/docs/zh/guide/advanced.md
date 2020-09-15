@@ -279,9 +279,9 @@ module.exports = {
     alias: {
       ...
       // Reassign the entry file
-      'balm-ui$': 'balm-ui/src/scripts',
-      'balm-ui-plus$': 'balm-ui/src/scripts/plus.js',
-      'balm-ui-next$': 'balm-ui/src/scripts/next.js'
+      'balm-ui': 'balm-ui/src/scripts',
+      'balm-ui-plus': 'balm-ui/src/scripts/plus.js',
+      'balm-ui-next': 'balm-ui/src/scripts/next.js'
     },
     includeJsResource: [
       // The script in this folder needs to compile ES6+

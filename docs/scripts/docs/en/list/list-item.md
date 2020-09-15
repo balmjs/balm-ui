@@ -4,13 +4,27 @@
 <ui-nav-item><!-- the link item child components --></ui-nav-item>
 ```
 
-### Props
+### `<ui-item>` Props
 
-| Name        | Type    | Default | Description                                                                           |
-| ----------- | ------- | ------- | ------------------------------------------------------------------------------------- |
-| `selected`  | boolean | `false` | Optional, styles the row in an selected state. Applicable only for `<ui-item>`.       |
-| `activated` | boolean | `false` | Optional, styles the row in the activated state. Applicable only for `<ui-nav-item>`. |
-| `disabled`  | boolean | `false` | Optional, styles the row in the disabled state.                                       |
+| Name       | Type    | Default | Description                                     |
+| ---------- | ------- | ------- | ----------------------------------------------- |
+| `selected` | boolean | `false` | Optional, styles the row in an selected state.  |
+| `disabled` | boolean | `false` | Optional, styles the row in the disabled state. |
+
+### `<ui-nav-item>` Props
+
+| Name     | Type    | Default    | Description                                                         |
+| -------- | ------- | ---------- | ------------------------------------------------------------------- |
+| `href`   | string  | (required) | Resolved url. This would be the `href` attribute of an `a` element. |
+| `active` | boolean | `false`    | Optional, styles the row in the activated state.                    |
+
+- Usage with `<router-link>` (requires `vue-router@3.1.0+`)
+
+```html
+<router-link v-slot="{ href, isActive }">
+  <ui-nav-item :href="href" :active="isActive"></ui-nav-item>
+</router-link>
+```
 
 ### Slots
 

@@ -15,17 +15,12 @@ import UI_LIST from './constants';
 export default {
   name: 'UiNavItem',
   props: {
-    // For `<router-link>`
     href: {
       type: String,
-      default: ''
+      required: true
     },
     // States
-    activated: {
-      type: Boolean,
-      default: false
-    },
-    disabled: {
+    active: {
       type: Boolean,
       default: false
     }
@@ -39,8 +34,7 @@ export default {
     className() {
       return {
         'mdc-list-item': true,
-        'mdc-list-item--activated': this.activated,
-        'mdc-list-item--disabled': this.disabled
+        'mdc-list-item--activated': this.active
       };
     }
   },

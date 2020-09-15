@@ -41,7 +41,7 @@
       </ui-drawer-header>
       <ui-drawer-content>
         <ui-nav>
-          <ui-nav-item @click="$router.back()">
+          <ui-nav-item href="javascript:void(0)" @click="$router.back()">
             <ui-item-first-content :class="$theme.getTextClass('secondary', $store.theme)">
               <ui-icon>arrow_back</ui-icon>
             </ui-item-first-content>

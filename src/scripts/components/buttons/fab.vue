@@ -1,6 +1,6 @@
 <template>
   <!-- Container -->
-  <button type="button" :class="className" @click="handleClick">
+  <button ref="button" type="button" :class="className" @click="handleClick">
     <div class="mdc-fab__ripple"></div>
     <template v-if="isExtended">
       <!-- Icon (optional) -->
@@ -32,10 +32,7 @@
 </template>
 
 <script>
-import typeMixin from '../../mixins/type';
-import materialIconMixin from '../../mixins/material-icon';
-import rippleMixin from '../../mixins/ripple';
-import UI_GLOBAL from '../../config/constants';
+import buttonMixin from '../../mixins/button';
 
 // Define fab constants
 const UI_FAB = {
@@ -46,15 +43,12 @@ const UI_FAB = {
   cssClasses: {
     icon: 'mdc-fab__icon',
     touch: 'mdc-fab--touch'
-  },
-  EVENT: {
-    CLICK: 'click'
   }
 };
 
 export default {
   name: 'UiFab',
-  mixins: [typeMixin, materialIconMixin, rippleMixin],
+  mixins: [buttonMixin],
   props: {
     // UI variants
     type: {
@@ -77,7 +71,6 @@ export default {
   },
   data() {
     return {
-      UI_GLOBAL,
       UI_FAB
     };
   },
@@ -97,22 +90,6 @@ export default {
         // Accessibility
         'mdc-fab--touch': isTouch
       };
-    }
-  },
-  watch: {
-    type() {
-      this.init();
-    }
-  },
-  mounted() {
-    this.init();
-  },
-  methods: {
-    init() {
-      this.initRipple(this.$el);
-    },
-    handleClick(event) {
-      this.$emit(UI_FAB.EVENT.CLICK, event);
     }
   }
 };

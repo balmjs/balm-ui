@@ -116,7 +116,7 @@ import detectIE from './utils/ie';
 const components = {
   // UiBadge,
   // UiBanner,
-  UiButton
+  UiButton,
   // UiCard,
   // UiCardActions,
   // UiCardButtons,
@@ -141,7 +141,7 @@ const components = {
   // UiDrawerContent,
   // UiDrawerAppContent,
   // UiDrawerBackdrop,
-  // UiFab,
+  UiFab
   // UiFile,
   // UiForm,
   // UiFormField,

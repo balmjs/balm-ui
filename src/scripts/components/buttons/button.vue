@@ -1,10 +1,6 @@
 <template>
   <!-- Container -->
-  <button
-    type="button"
-    :class="[className, cardActionClassName]"
-    @click="$emit(UI_BUTTON.EVENT.CLICK, $event)"
-  >
+  <button ref="button" type="button" :class="className" @click="handleClick">
     <div class="mdc-button__ripple"></div>
     <!-- Icon (optional) -->
     <slot name="before" :iconClass="UI_BUTTON.cssClasses.icon">
@@ -25,16 +21,27 @@
 </template>
 
 <script>
-import typeMixin from '../../mixins/type';
-import rippleMixin from '../../mixins/ripple';
-import materialIconMixin from '../../mixins/material-icon';
+import buttonMixin from '../../mixins/button';
 import cardActionMixin from '../../mixins/card-action';
-import UI_GLOBAL from '../../config/constants';
-import UI_BUTTON from './constants';
+
+// Define button constants
+const UI_BUTTON = {
+  TYPES: {
+    text: 0,
+    outlined: 1,
+    raised: 2,
+    unelevated: 3
+  },
+  cssClasses: {
+    icon: 'mdc-button__icon',
+    label: 'mdc-button__label',
+    touch: 'mdc-button--touch'
+  }
+};
 
 export default {
   name: 'UiButton',
-  mixins: [typeMixin, rippleMixin, materialIconMixin, cardActionMixin],
+  mixins: [buttonMixin, cardActionMixin],
   props: {
     // UI variants
     type: {
@@ -54,12 +61,9 @@ export default {
       default: false
     }
   },
-  emits: [UI_BUTTON.EVENT.CLICK],
   data() {
     return {
-      UI_GLOBAL,
-      UI_BUTTON,
-      el: null
+      UI_BUTTON
     };
   },
   computed: {
@@ -76,32 +80,20 @@ export default {
       const isAccessible =
         this.el && this.el.classList.contains(UI_BUTTON.cssClasses.touch);
 
-      return {
-        // Text button
-        'mdc-button': true,
-        // Outlined button
-        'mdc-button--outlined': this.isOutlined,
-        // Contained button
-        'mdc-button--raised': this.isRaised,
-        'mdc-button--unelevated': this.isUnelevated,
-        // Accessibility
-        'mdc-button--touch': isAccessible
-      };
-    }
-  },
-  watch: {
-    type() {
-      this.init();
-    }
-  },
-  mounted() {
-    this.el = document.querySelector('.mdc-button');
-
-    this.init();
-  },
-  methods: {
-    init() {
-      this.initRipple(this.el);
+      return [
+        {
+          // Text button
+          'mdc-button': true,
+          // Outlined button
+          'mdc-button--outlined': this.isOutlined,
+          // Contained button
+          'mdc-button--raised': this.isRaised,
+          'mdc-button--unelevated': this.isUnelevated,
+          // Accessibility
+          'mdc-button--touch': isAccessible
+        },
+        this.cardActionClassName
+      ];
     }
   }
 };

@@ -5,6 +5,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 function getConfig(balm) {
   const useDocs = !balm.config.env.isProd || env.buildDocs;
+  const useBuild = balm.config.env.isProd && !env.buildDocs;
   const workspace = path.resolve(__dirname, '..');
 
   return {
@@ -68,11 +69,21 @@ function getConfig(balm) {
       },
       plugins: [new VueLoaderPlugin()],
       eslint: true,
-      options: {
-        compress: {
-          drop_console: false
-        }
-      }
+      webpackOptions: useBuild
+        ? {
+            output: {
+              libraryExport: 'default',
+              umdNamedDefine: true,
+              // See https://github.com/webpack/webpack/issues/6522
+              globalObject: "typeof self !== 'undefined' ? self : this"
+            }
+          }
+        : {}
+      // options: {
+      //   compress: {
+      //     drop_console: false
+      //   }
+      // }
     },
     images: {
       plugins: {

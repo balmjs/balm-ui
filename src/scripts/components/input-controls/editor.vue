@@ -9,8 +9,6 @@
 </template>
 
 <script>
-import Quill from 'quill';
-import Editor from './editor-extension';
 import Emotion from './editor-extension/emotion';
 import getType from '../../utils/typeof';
 
@@ -115,6 +113,8 @@ export default {
     }
   },
   mounted() {
+    const Editor = require('./editor-extension').default; // NOTE: For SSR
+
     this.$nextTick(() => {
       this.$editor = Editor.create(this.$refs.editor, {
         options: this.getOptions(),

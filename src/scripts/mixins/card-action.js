@@ -16,14 +16,13 @@ export default {
       };
     }
   },
-  created() {
-    this.$parent.$nextTick(() => {
-      const parentEl = this.$parent.$el;
-
+  mounted() {
+    const parentEl = this.$parent.$el;
+    if (parentEl) {
       this.cardButton =
         parentEl.classList.contains(UI_CARD.cssClasses.button) ||
         parentEl.classList.contains(UI_CARD.cssClasses.action);
       this.cardIcon = parentEl.classList.contains(UI_CARD.cssClasses.icon);
-    });
+    }
   }
 };

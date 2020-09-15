@@ -1,13 +1,12 @@
 import autoInit from './register';
 
 // Define anchor constants
-const DEFAULT_BODY = document.documentElement || document.body;
 let UI_ANCHOR = {
   cssClasses: {
     outer: 'v-anchor--html',
     inner: 'v-anchor'
   },
-  body: DEFAULT_BODY,
+  body: null,
   offset: 0 // Global offset
 };
 
@@ -44,15 +43,14 @@ const updateAnchor = (method, el, { value, arg, modifiers }) => {
 
 const initAnchor = (el, { value, rawName, modifiers }) => {
   if (rawName === UI_ANCHOR.cssClasses.inner || rawName.includes('.')) {
-    // Custom container
-    if (modifiers.bodyElement) {
-      UI_ANCHOR.body = el;
-    }
+    UI_ANCHOR.body = modifiers.bodyElement // Custom container
+      ? el
+      : document.documentElement || document.body;
 
     // Custom offset
     UI_ANCHOR.offset = modifiers.offset
       ? value
-      : DEFAULT_BODY.dataset.vanchorOffset || 0;
+      : UI_ANCHOR.body.dataset.vanchorOffset || 0;
   }
 };
 
@@ -90,7 +88,7 @@ const BalmUI_AnchorDirective = {
   },
   unbind(el, binding) {
     if (el === UI_ANCHOR.body) {
-      UI_ANCHOR.body = DEFAULT_BODY;
+      UI_ANCHOR.body = document.documentElement || document.body;
     }
 
     updateAnchor('remove', el, binding);

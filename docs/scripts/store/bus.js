@@ -8,9 +8,9 @@ const busApp = createApp(
     $emit(eventName, ...args) {
       eventBus[eventName] = [...args];
     },
-    $on(event, callback) {
-      if (eventBus[event]) {
-        callback(eventBus[event]);
+    $on(eventName, callback) {
+      if (eventBus[eventName]) {
+        callback(eventBus[eventName]);
       }
     }
   }

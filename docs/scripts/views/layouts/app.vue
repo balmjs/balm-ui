@@ -149,9 +149,37 @@
 </template>
 
 <script>
+import { reactive, toRefs, onMounted, onBeforeUnmount, nextTick } from 'vue';
+import { useBus, useStore } from '@/plugins';
 import SvgGithub from '@/components/svg-github';
 import { VERSION, $MIN_WIDTH, translations } from '@/config';
 import menu from '@/config/menu';
+
+const bodyEl = document.documentElement || document.body;
+const state = reactive({
+  isWideScreen: true,
+  drawerType: 'permanent',
+  openDrawer: false,
+  pageLoading: false,
+  loadingProgress: 0,
+  loadingTimer: null,
+  showGlobalMessage: false,
+  showTranslations: false
+});
+
+function init() {
+  state.isWideScreen = window.innerWidth >= $MIN_WIDTH;
+  state.drawerType = state.isWideScreen ? 'permanent' : 'modal';
+}
+
+function loading() {
+  if (state.loadingProgress === 0.8) {
+    clearInterval(state.loadingTimer);
+  } else {
+    state.loadingProgress += 0.2;
+    state.loadingProgress = +state.loadingProgress.toFixed(2);
+  }
+}
 
 export default {
   metaInfo: {
@@ -160,20 +188,59 @@ export default {
   components: {
     SvgGithub
   },
+  setup() {
+    const $bus = useBus();
+    const $store = useStore();
+
+    $bus.$on('page-load', () => {
+      state.pageLoading = true;
+      state.loadingTimer = setInterval(loading, 20);
+    });
+
+    $bus.$on('page-ready', () => {
+      nextTick(() => {
+        bodyEl.scrollTop = 0;
+      });
+
+      setTimeout(() => {
+        state.loadingProgress = 1;
+
+        state.pageLoading = false;
+        clearInterval(state.loadingTimer);
+        state.loadingProgress = 0;
+      }, 100);
+    });
+
+    onMounted(() => {
+      init();
+      window.addEventListener('balmResize', init);
+
+      // $bus.$on('global-message', (message) => {
+      //   this.showGlobalMessage = true;
+      // });
+
+      // this.$i18n.locale = $store.lang;
+      // $bus.$on('switch-lang', (lang) => {
+      //   this.$i18n.locale = lang;
+      // });
+
+      $store.setTheme();
+    });
+
+    onBeforeUnmount(() => {
+      window.removeEventListener('balmResize', init);
+    });
+
+    return {
+      $store,
+      ...toRefs(state)
+    };
+  },
   data() {
     return {
       version: VERSION, // .split('-')[0],
       menu,
-      bodyEl: document.documentElement || document.body,
-      isWideScreen: true,
-      drawerType: 'permanent',
-      openDrawer: false,
-      pageLoading: false,
-      loadingProgress: 0,
-      loadingTimer: null,
-      showGlobalMessage: false,
-      translations,
-      showTranslations: false
+      translations
     };
   },
   computed: {
@@ -183,66 +250,15 @@ export default {
         : true;
     }
   },
-  created() {
-    this.$bus.$on('page-load', () => {
-      this.pageLoading = true;
-      this.loadingTimer = setInterval(this.loading, 20);
-    });
-
-    this.$bus.$on('page-ready', () => {
-      this.$nextTick(() => {
-        this.bodyEl.scrollTop = 0;
-      });
-
-      setTimeout(() => {
-        this.loadingProgress = 1;
-
-        this.pageLoading = false;
-        clearInterval(this.loadingTimer);
-        this.loadingProgress = 0;
-      }, 100);
-    });
-  },
-  mounted() {
-    this.init();
-    window.addEventListener('balmResize', this.init);
-
-    this.$bus.$on('global-message', (message) => {
-      this.showGlobalMessage = true;
-    });
-
-    this.$i18n.locale = this.$store.lang;
-    this.$bus.$on('switch-lang', (lang) => {
-      this.$i18n.locale = lang;
-    });
-
-    this.$store.setTheme();
-  },
-  beforeDestroy() {
-    window.removeEventListener('balmResize', this.init);
-  },
   methods: {
-    getDrawerType() {
-      this.isWideScreen = window.innerWidth >= $MIN_WIDTH;
-      return this.isWideScreen ? 'permanent' : 'modal';
-    },
-    init() {
-      this.drawerType = this.getDrawerType();
-    },
     handleMenu() {
-      this.$emit('page-load');
+      const $bus = useBus();
 
-      this.openDrawer = false;
+      $bus.$emit('page-load');
+
+      state.openDrawer = false;
       if (window.innerWidth < $MIN_WIDTH) {
-        this.isWideScreen = false;
-      }
-    },
-    loading() {
-      if (this.loadingProgress === 0.8) {
-        clearInterval(this.loadingTimer);
-      } else {
-        this.loadingProgress += 0.2;
-        this.loadingProgress = +this.loadingProgress.toFixed(2);
+        state.isWideScreen = false;
       }
     }
   }

@@ -27,6 +27,7 @@ axios.interceptors.response.use(
 
 export default {
   install(app) {
+    app.config.globalProperties.$http = axios;
     app.provide('$http', axios);
   }
 };

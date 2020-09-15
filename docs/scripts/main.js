@@ -5,12 +5,12 @@ import $bus from '@/plugins/$bus';
 import $store from '@/plugins/$store';
 import router from '@/routes';
 import i18n from '@/lang';
-import App from '@/views/layouts/app';
+import App from '@/views/test';
 // import { isProd } from '@/config';
 // import validatorRules from '@/config/validator-rules';
 // import prismjs from 'prismjs';
-// // BalmUI
-// import BalmUI from 'balm-ui';
+// BalmUI
+import BalmUI from 'balm-ui';
 // import UiAutocomplete from 'balm-ui/components/autocomplete';
 // import UiDatepicker from 'balm-ui/components/datepicker';
 // import UiRangepicker from 'balm-ui/components/rangepicker';
@@ -42,32 +42,38 @@ function createBalmUIApp() {
   app.use(router);
   app.use(i18n);
 
-  // Vue.use(BalmUI, {
+  app.use(BalmUI, {
+    // UiButton: {
+    //   outlined: true,
+    //   raised: true
+    // }
+  });
+  // app.use(BalmUI, {
   //   typography: ['custom-style-1', 'custom-style-2'],
   //   validator: validatorRules
   // });
-  // Vue.use(UiAutocomplete);
-  // Vue.use(UiDatepicker);
-  // Vue.use(UiRangepicker);
-  // Vue.use(UiCollapse);
-  // Vue.use(UiAlert);
-  // Vue.use($alert);
-  // Vue.use($confirm);
-  // Vue.use($toast);
-  // Vue.use(UiSkeleton);
-  // Vue.directive(vAnchor.name, vAnchor);
-  // Vue.use(BalmUINext);
+  // app.use(UiAutocomplete);
+  // app.use(UiDatepicker);
+  // app.use(UiRangepicker);
+  // app.use(UiCollapse);
+  // app.use(UiAlert);
+  // app.use($alert);
+  // app.use($confirm);
+  // app.use($toast);
+  // app.use(UiSkeleton);
+  // app.directive(vAnchor.name, vAnchor);
+  // app.use(BalmUINext);
 
-  // Vue.component(PurePage.name, PurePage);
-  // Vue.component(DocsPage.name, DocsPage);
-  // Vue.component(UiMarkdown.name, UiMarkdown);
-  // Vue.component(UiSnippet.name, UiSnippet);
-  // Vue.component(UiFooterNav.name, UiFooterNav);
-  // Vue.component(UiTocAffix.name, UiTocAffix);
-  // Vue.component(SvgLogo.name, SvgLogo);
+  // app.component(PurePage.name, PurePage);
+  // app.component(DocsPage.name, DocsPage);
+  // app.component(UiMarkdown.name, UiMarkdown);
+  // app.component(UiSnippet.name, UiSnippet);
+  // app.component(UiFooterNav.name, UiFooterNav);
+  // app.component(UiTocAffix.name, UiTocAffix);
+  // app.component(SvgLogo.name, SvgLogo);
 
-  // Vue.prototype.$prism = prismjs;
-  // Vue.prototype.$docs = {
+  // app.prototype.$prism = prismjs;
+  // app.prototype.$docs = {
   //   props: {
   //     thead: ['Name', 'Type', 'Default', 'Description'],
   //     tbody: [
@@ -99,17 +105,8 @@ function createBalmUIApp() {
   //     ]
   //   }
   // };
-  // Vue.prototype.$domain = isProd ? '//material.balmjs.com' : '';
+  // app.prototype.$domain = isProd ? '//material.balmjs.com' : '';
 
-  // new Vue({
-  //   el: '#app',
-  //   components: {
-  //     App
-  //   },
-  //   router,
-  //   i18n,
-  //   template: '<app/>'
-  // });
   app.mount('#app');
 }
 

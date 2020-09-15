@@ -1,7 +1,7 @@
 import { createI18n } from 'vue-i18n';
 import en from './en.json';
 import zh from './zh.json';
-import pickerLangZh from 'pickerLangZh';
+// import pickerLangZh from 'pickerLangZh';
 
 const i18n = new createI18n({
   locale: 'en',
@@ -12,10 +12,10 @@ const i18n = new createI18n({
 });
 
 // for picker
-const pickerLang = {
-  zh: pickerLangZh.zh
-};
+// const pickerLang = {
+//   zh: pickerLangZh.zh
+// };
 
-Vue.prototype.pickerLang = pickerLang;
+// Vue.prototype.pickerLang = pickerLang;
 
 export default i18n;

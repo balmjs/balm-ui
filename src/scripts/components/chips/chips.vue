@@ -1,8 +1,8 @@
 <template>
   <div :class="className" role="grid">
     <slot>
-      <template v-for="(option, index) in currentOptions">
-        <ui-chip :key="index">{{ option[optionLabel] }}</ui-chip>
+      <template v-for="(option, index) in currentOptions" :key="index">
+        <ui-chip>{{ option[optionLabel] }}</ui-chip>
       </template>
     </slot>
   </div>

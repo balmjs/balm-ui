@@ -6,8 +6,8 @@
         <div class="mdc-data-table__pagination-rows-per-page-label">{{ pageSizeBeforeText }}</div>
         <div class="mdc-data-table__pagination-rows-per-page-select">
           <select v-model="currentPageSize" @change="handleChange">
-            <template v-for="size in pageSize">
-              <option :key="`pageSize-${size}`">{{ size }}</option>
+            <template v-for="size in pageSize" :key="`pageSize-${size}`">
+              <option>{{ size }}</option>
             </template>
           </select>
         </div>

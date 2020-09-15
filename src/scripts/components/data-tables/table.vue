@@ -5,8 +5,8 @@
       <table class="mdc-data-table__table" :aria-label="caption">
         <caption v-if="caption">{{ caption }}</caption>
         <colgroup v-if="colgroup">
-          <template v-for="(colValue, colKey) in dataColumns">
-            <col :key="colKey" :class="`col-${colValue}`" />
+          <template v-for="(colValue, colKey) in dataColumns" :key="colKey">
+            <col :class="`col-${colValue}`" />
           </template>
         </colgroup>
         <!-- Column header -->
@@ -16,9 +16,11 @@
             :key="`thead-row-${theadRowIndex}`"
             class="mdc-data-table__header-row"
           >
-            <template v-for="(theadCell, theadCellIndex) in theadRow">
+            <template
+              v-for="(theadCell, theadCellIndex) in theadRow"
+              :key="`thead-cell-${theadCellIndex}`"
+            >
               <th
-                :key="`thead-cell-${theadCellIndex}`"
                 :class="theadCellClassName(theadCell)"
                 :colspan="theadCell[T_CELL.COLSPAN] || null"
                 :rowspan="theadCell[T_CELL.ROWSPAN] || null"
@@ -83,8 +85,11 @@
               :data-row-id="tbodyRow[0][T_CELL.ROW_ID] || null"
               :aria-selected="tbodyRow[0][T_CELL.SELECTED] || null"
             >
-              <template v-for="(tbodyCell, tbodyCellIndex) in tbodyRow">
-                <td :key="`tbody-cell-${tbodyCellIndex}`" :class="cellClassName(tbodyCell)">
+              <template
+                v-for="(tbodyCell, tbodyCellIndex) in tbodyRow"
+                :key="`tbody-cell-${tbodyCellIndex}`"
+              >
+                <td :class="cellClassName(tbodyCell)">
                   <!-- Row checkboxes -->
                   <input-checkbox
                     v-if="tbodyCell[T_CELL.CHECKBOX]"

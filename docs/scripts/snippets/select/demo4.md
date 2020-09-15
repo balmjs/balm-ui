@@ -34,21 +34,21 @@ const CITIES = [
   [
     {
       value: 11,
-      label: '海定'
+      label: 'Haiding'
     },
     {
       value: 12,
-      label: '朝阳'
+      label: 'Chaoyang'
     }
   ],
   [
     {
       value: 21,
-      label: '黄浦'
+      label: 'Huangpu'
     },
     {
       value: 22,
-      label: '徐汇'
+      label: 'Xuhui'
     }
   ],
   [

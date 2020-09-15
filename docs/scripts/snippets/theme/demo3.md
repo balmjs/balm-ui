@@ -4,9 +4,15 @@
     <legend :class="$tt('subtitle1')">Text on primary</legend>
 
     <div class="demo-theme-color-group">
-      <div :class="['demo-theme-text-row', $themeColor('primary-bg')]">
-        <span :class="['demo-theme-text-style', $themeColor('on-primary')]">Text</span>
-        <span :class="['demo-theme-text-style', $themeColor('on-primary'), 'material-icons']">favorite</span>
+      <div :class="['demo-theme-text-row', $theme.getThemeClass('primary-bg')]">
+        <span
+          :class="['demo-theme-text-style', $$theme.getThemeClass('on-primary')]"
+          >Text</span
+        >
+        <span
+          :class="['demo-theme-text-style', $$theme.getThemeClass('on-primary'), 'material-icons']"
+          >favorite</span
+        >
       </div>
     </div>
   </fieldset>
@@ -15,9 +21,17 @@
     <legend :class="$tt('subtitle1')">Text on secondary</legend>
 
     <div class="demo-theme-color-group">
-      <div :class="['demo-theme-text-row', $themeColor('secondary-bg')]">
-        <span :class="['demo-theme-text-style', $themeColor('on-secondary')]">Text</span>
-        <span :class="['demo-theme-text-style', $themeColor('on-secondary'), 'material-icons']">favorite</span>
+      <div
+        :class="['demo-theme-text-row', $$theme.getThemeClass('secondary-bg')]"
+      >
+        <span
+          :class="['demo-theme-text-style', $$theme.getThemeClass('on-secondary')]"
+          >Text</span
+        >
+        <span
+          :class="['demo-theme-text-style', $$theme.getThemeClass('on-secondary'), 'material-icons']"
+          >favorite</span
+        >
       </div>
     </div>
   </fieldset>

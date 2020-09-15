@@ -21,7 +21,7 @@
 
   <ui-drawer type="modal" v-model="openDrawer">
     <ui-drawer-header
-      :innerClass="[$themeColor('on-primary'), $themeColor('primary-bg')]"
+      :innerClass="$theme.getThemeClass(['primary-bg', 'on-primary'])"
     >
       <ui-drawer-title>Header here</ui-drawer-title>
     </ui-drawer-header>

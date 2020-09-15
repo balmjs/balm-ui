@@ -1,5 +1,5 @@
-// For IE9+
-(function () {
+// For IE9-11
+function getCustomEventPolyfill() {
   if (typeof window.CustomEvent === 'function') {
     return false;
   }
@@ -23,4 +23,6 @@
   }
 
   window.CustomEvent = CustomEvent;
-})();
+}
+
+export default getCustomEventPolyfill;

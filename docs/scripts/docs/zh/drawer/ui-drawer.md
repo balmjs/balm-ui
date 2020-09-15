@@ -6,8 +6,8 @@
   </ui-drawer-header>
   <ui-drawer-content>
     <ui-nav>
-      <ui-nav-item activated>Active link</ui-nav-item>
-      <ui-nav-item>Unactive link</ui-nav-item>
+      <ui-nav-item active>Activated link</ui-nav-item>
+      <ui-nav-item>Unactivated link</ui-nav-item>
     </ui-nav>
   </ui-drawer-content>
 </ui-drawer>

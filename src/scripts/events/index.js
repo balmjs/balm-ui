@@ -1,6 +1,8 @@
-import './custom-event-polyfill';
+import getCustomEventPolyfill from './custom-event-polyfill';
 
-(function () {
+function createCustomEvent() {
+  getCustomEventPolyfill();
+
   const throttle = function (type, name, obj) {
     obj = obj || window;
 
@@ -23,4 +25,6 @@ import './custom-event-polyfill';
 
   throttle('resize', 'balmResize');
   throttle('scroll', 'balmScroll');
-})();
+}
+
+export default createCustomEvent;

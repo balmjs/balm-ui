@@ -9,8 +9,6 @@
 </template>
 
 <script>
-import Quill from 'quill';
-import Editor from './editor-extension';
 import Emotion from './editor-extension/emotion';
 import getType from '../../utils/typeof';
 
@@ -98,6 +96,7 @@ export default {
   },
   data() {
     return {
+      Editor: {},
       $editor: null,
       htmlContent: ''
     };
@@ -115,8 +114,10 @@ export default {
     }
   },
   mounted() {
+    this.Editor = require('./editor-extension').default; // NOTE: For SSR
+
     this.$nextTick(() => {
-      this.$editor = Editor.create(this.$refs.editor, {
+      this.$editor = this.Editor.create(this.$refs.editor, {
         options: this.getOptions(),
         emotions: this.emotions,
         extension: this.extension
@@ -138,7 +139,7 @@ export default {
     });
   },
   beforeDestroy() {
-    Editor.destroy();
+    this.Editor.destroy();
   },
   methods: {
     getOptions() {
@@ -169,7 +170,7 @@ export default {
           customHandlers[customFormat] = (formatValue) => {
             if (formatValue) {
               const insert = (value = 'null') => {
-                Editor.insert(customFormat, value);
+                this.Editor.insert(customFormat, value);
               };
 
               this.toolbarCustomHandlers[customFormat](this.$editor, insert);
@@ -202,7 +203,7 @@ export default {
     onFileChange(event) {
       const file = event.target.files[0];
       const insert = (url) => {
-        Editor.insert('image', url);
+        this.Editor.insert('image', url);
       };
 
       this.$emit(UI_EDITOR.EVENT.FILE_CHANGE, file, insert);

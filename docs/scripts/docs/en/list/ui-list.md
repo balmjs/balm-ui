@@ -34,8 +34,8 @@
 
 ```html
 <ui-nav>
-  <ui-nav-item activated>activated item</ui-nav-item>
-  <ui-nav-item>unactivated item</ui-nav-item>
+  <ui-nav-item active>Activated item</ui-nav-item>
+  <ui-nav-item>Unactivated item</ui-nav-item>
 </ui-nav>
 ```
 

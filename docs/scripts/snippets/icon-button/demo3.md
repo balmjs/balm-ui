@@ -1,14 +1,16 @@
 ```html
 <div id="light-on-bg" class="demo-color-combo">
   <div>
-    <ui-icon-button :class="$themeColor('on-primary')" :toggle="icon1">
+    <ui-icon-button :class="$theme.getThemeClass('on-primary')" :toggle="icon1">
     </ui-icon-button>
   </div>
-  <div :class="$themeColor('on-primary')">Light icon on background</div>
+  <div :class="$theme.getThemeClass('on-primary')">
+    Light icon on background
+  </div>
 </div>
 
 <div id="dark-on-bg" class="demo-color-combo">
-  <div :class="$themeColor('primary')">
+  <div :class="$theme.getThemeClass('primary')">
     <ui-icon-button :toggle="icon1"> </ui-icon-button>
   </div>
   <div>Dark icon on background</div>

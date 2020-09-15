@@ -4,14 +4,22 @@
 
   <div class="demo-theme-color-group">
     <div class="demo-theme-color-swatches">
-      <div :class="[
+      <div
+        :class="[
         'demo-theme-color-swatch demo-theme-color-swatch--elevated',
-        $themeColor('primary')]">Primary</div>
+        $theme.getThemeClass('primary')]"
+      >
+        Primary
+      </div>
     </div>
     <div class="demo-theme-color-swatches">
-      <div :class="[
+      <div
+        :class="[
         'demo-theme-color-swatch demo-theme-color-swatch--elevated',
-        $themeColor('secondary')]">Secondary</div>
+        $theme.getThemeClass('secondary')]"
+      >
+        Secondary
+      </div>
     </div>
   </div>
 </fieldset>
@@ -21,22 +29,34 @@
 
   <div class="demo-theme-color-group">
     <div class="demo-theme-color-swatches">
-      <div :class="[
-        'demo-theme-color-swatch demo-theme-color-swatch--elevated',
-        $themeColor('primary-bg'),
-        $themeColor('on-primary')]">Primary</div>
+      <div
+        :class="[
+          'demo-theme-color-swatch demo-theme-color-swatch--elevated',
+          $theme.getThemeClass(['primary-bg', 'on-primary'])
+        ]"
+      >
+        Primary
+      </div>
     </div>
     <div class="demo-theme-color-swatches">
-      <div :class="[
-        'demo-theme-color-swatch demo-theme-color-swatch--elevated',
-        $themeColor('secondary-bg'),
-        $themeColor('on-secondary')]">Secondary</div>
+      <div
+        :class="[
+          'demo-theme-color-swatch demo-theme-color-swatch--elevated',
+          $theme.getThemeClass(['secondary-bg', 'on-secondary'])
+        ]"
+      >
+        Secondary
+      </div>
     </div>
     <div class="demo-theme-color-swatches">
-      <div :class="[
+      <div
+        :class="[
         'demo-theme-color-swatch demo-theme-color-swatch--elevated',
-        $themeColor('background'),
-        $textColor('primary')]">Background</div>
+        $theme.getThemeClass('background'),
+        $theme.getTextClass('primary')]"
+      >
+        Background
+      </div>
     </div>
   </div>
 </fieldset>

@@ -1,6 +1,6 @@
 import autoInstall from '../config/auto-install';
 import getType from '../utils/typeof';
-import '../events';
+import createCustomEvent from '../events';
 
 // Define constants
 const DEFAULT_NAMESPACE = 'balmUI';
@@ -77,6 +77,12 @@ const BalmUI_EventPlugin = {
           });
 
           return balmUI; // Return new object for every vm !important
+        }
+      });
+
+      Vue.mixin({
+        mounted() {
+          createCustomEvent();
         }
       });
     } else {

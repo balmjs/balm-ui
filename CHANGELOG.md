@@ -8,6 +8,7 @@
 
 - `<ui-table>`: fix tbody fields function bug
 - `<ui-datepicker>`: fix clear event bug
+- fix custom event, typography, card action, anchor and editor for SSR
 
 ### Code Refactoring
 

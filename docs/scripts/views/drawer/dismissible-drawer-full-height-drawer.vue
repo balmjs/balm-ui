@@ -8,7 +8,7 @@
       </ui-drawer-header>
       <ui-drawer-content>
         <ui-nav>
-          <ui-nav-item activated @click="$router.back()">
+          <ui-nav-item href="javascript:void(0)" active @click="$router.back()">
             <ui-item-first-content :class="$theme.getTextClass('secondary', $store.theme)">
               <ui-icon>arrow_back</ui-icon>
             </ui-item-first-content>
@@ -18,6 +18,7 @@
           <ui-nav-item
             v-for="i in 12"
             :key="i"
+            href="javascript:void(0)"
             :class="$theme.getTextClass('primary', $store.theme)"
           >Item {{ i }}</ui-nav-item>
         </ui-nav>

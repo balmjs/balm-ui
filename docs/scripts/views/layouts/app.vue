@@ -15,6 +15,7 @@
       >
         <router-link to="/" :class="['catalog-title', $theme.getThemeClass('on-primary')]">BalmUI</router-link>
         <template #toolbar="{ toolbarItemClass }">
+          <switch-theme v-if="$route.name === 'theme.color'"></switch-theme>
           <!-- For dark theme test -->
           <!-- <ui-icon-button
             :icon="$store.theme === 'dark' ? 'bedtime' : 'wb_sunny'"
@@ -150,6 +151,7 @@
 
 <script>
 import SvgGithub from '@/components/svg-github';
+import SwitchTheme from '@/components/switch-theme';
 import { VERSION, $MIN_WIDTH, translations } from '@/config';
 import menu from '@/config/menu';
 
@@ -158,7 +160,8 @@ export default {
     title: 'BalmUI'
   },
   components: {
-    SvgGithub
+    SvgGithub,
+    SwitchTheme
   },
   data() {
     return {

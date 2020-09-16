@@ -52,6 +52,9 @@ export default {
   created() {
     this.$store.initSnippet('drawer', 5);
   },
+  mounted() {
+    this.$store.setTheme();
+  },
   methods: {
     openMenu() {
       this.open = true;

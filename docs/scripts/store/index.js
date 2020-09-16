@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { isDev, theme } from '@/config';
+import { isDev, themes } from '@/config';
 import bus from './bus';
 import dev from './dev';
 import page from './page';
@@ -10,27 +10,46 @@ export default new Vue({
   data() {
     return {
       theme: '',
+      themeColors: {},
       lang: ''
     };
   },
   created() {
-    this.theme = this.getTheme();
+    this.theme = this.getThemeName();
     this.lang = this.getLang();
   },
   methods: {
-    getTheme() {
+    getThemeName() {
       return localStorage.getItem('theme') || 'light';
     },
-    setTheme() {
-      const currentTheme = this.theme === 'dark' ? theme.dark : theme.light;
+    getTheme() {
+      [
+        'background',
+        'primary',
+        'on-primary',
+        'secondary',
+        'on-secondary',
+        'surface',
+        'on-surface',
+        'error',
+        'on-error'
+      ].forEach((style) => {
+        this.$set(this.themeColors, style, this.$theme.getThemeColor(style));
+      });
+    },
+    setTheme(themeName = this.theme) {
+      const themeColors = themes[themeName];
 
-      this.$theme.colors = currentTheme;
+      localStorage.setItem('theme', themeName);
+      this.$theme.colors = themeColors;
+
+      this.getTheme();
     },
     switchTheme() {
-      const newTheme = this.theme === 'light' ? 'dark' : 'light';
-      this.theme = newTheme;
-      localStorage.setItem('theme', newTheme);
-      this.setTheme();
+      const themeName = this.theme === 'dark' ? 'light' : 'dark';
+
+      this.theme = themeName;
+      this.setTheme(themeName);
     },
     getLang() {
       return localStorage.getItem('lang') || 'en';

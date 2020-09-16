@@ -1,0 +1,6 @@
+@use '@material/theme/theme';
+
+// fix(@mdc): dark theme
+.mdc-top-app-bar {
+  @include theme.prop(color, on-primary);
+}

@@ -49,7 +49,7 @@
   text-align: left;
   border-width: 0 1px 1px;
   border-style: solid;
-  @include theme.prop(border-color, rgba(theme-color.prop-value(primary), 0.5));
+  @include theme.prop(border-color, primary);
   @include ui-mixins.background;
 
   .mdc-list-item {

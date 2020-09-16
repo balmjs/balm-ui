@@ -24,16 +24,22 @@ const MESSAGE = {
   THEME_TONE: 'Please choose a theme tone: ' + JSON.stringify(THEME_TONES)
 };
 
+const themeColors = new Map();
+const textColors = new Map();
+
 class ThemeStyle {
+  get themeColors() {
+    return themeColors;
+  }
+  get textColors() {
+    return textColors;
+  }
+
   getTheme(style, isClass = false) {
     let result = '';
 
     if (ALL_THEME_STYLES.includes(style)) {
-      result = isClass
-        ? `mdc-theme--${style}`
-        : document.documentElement.style.getPropertyValue(
-            `--mdc-theme-${style}`
-          );
+      result = isClass ? `mdc-theme--${style}` : themeColors.get(style);
     } else {
       throw new Error(
         `[Theme ${isClass ? 'Class' : 'Color'}] ${MESSAGE.ALL_THEME_STYLES}`
@@ -44,6 +50,7 @@ class ThemeStyle {
   }
   setTheme(style, value) {
     document.documentElement.style.setProperty(`--mdc-theme-${style}`, value);
+    themeColors.set(style, value);
   }
 
   themeText(style, tone, fn) {
@@ -66,9 +73,7 @@ class ThemeStyle {
     return this.themeText(style, tone, () => {
       return isClass
         ? `mdc-theme--text-${style}-on-${tone}`
-        : document.documentElement.style.getPropertyValue(
-            `--mdc-theme-text-${style}-on-${tone}`
-          );
+        : textColors.get(`${style}-on-${tone}`);
     });
   }
   setText(style, tone, value) {
@@ -77,13 +82,14 @@ class ThemeStyle {
         `--mdc-theme-text-${style}-on-${tone}`,
         value
       );
+      textColors.set(`${style}-on-${tone}`, value);
     });
   }
 }
 
 class Theme extends ThemeStyle {
   get primary() {
-    return this.getTheme('primary');
+    return themeColors.get('primary');
   }
   set primary(value) {
     this.setTheme('primary', value);
@@ -94,7 +100,7 @@ class Theme extends ThemeStyle {
   }
 
   get secondary() {
-    return this.getTheme('secondary');
+    return themeColors.get('secondary');
   }
   set secondary(value) {
     this.setTheme('secondary', value);
@@ -105,14 +111,14 @@ class Theme extends ThemeStyle {
   }
 
   get background() {
-    return this.getTheme('background');
+    return themeColors.get('background');
   }
   set background(value) {
     this.setTheme('background', value);
   }
 
   get surface() {
-    return this.getTheme('surface');
+    return themeColors.get('surface');
   }
   set surface(value) {
     this.setTheme('surface', value);
@@ -123,7 +129,7 @@ class Theme extends ThemeStyle {
   }
 
   get error() {
-    return this.getTheme('error');
+    return themeColors.get('error');
   }
   set error(value) {
     this.setTheme('error', value);
@@ -131,28 +137,28 @@ class Theme extends ThemeStyle {
   }
 
   get onPrimary() {
-    return this.getTheme('on-primary');
+    return themeColors.get('on-primary');
   }
   set onPrimary(value) {
     this.setTheme('on-primary', value);
   }
 
   get onSecondary() {
-    return this.getTheme('on-secondary');
+    return themeColors.get('on-secondary');
   }
   set onSecondary(value) {
     this.setTheme('on-secondary', value);
   }
 
   get onSurface() {
-    return this.getTheme('on-surface');
+    return themeColors.get('on-surface');
   }
   set onSurface(value) {
     this.setTheme('on-surface', value);
   }
 
   get onError() {
-    return this.getTheme('on-error');
+    return themeColors.get('on-error');
   }
   set onError(value) {
     this.setTheme('on-error', value);

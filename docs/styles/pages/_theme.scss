@@ -1,6 +1,6 @@
 @use '@material/elevation/mixins' as elevation-mixins;
 @use '@material/ripple/mixins' as ripple-mixins;
-@use '@material/theme/mixins' as theme-mixins;
+@use '@material/theme/theme';
 @use '../global/color' as color;
 @use '../global/index' as global;
 
@@ -10,24 +10,6 @@ $demo-section-margin: 48px;
 $demo-color-custom: color.$red-500;
 $demo-color-low-luminance: color.$brown-900;
 $demo-color-high-luminance: color.$amber-50;
-
-.theme-example {
-  display: inline-block;
-  vertical-align: middle;
-  width: 120px;
-  height: 40px;
-  line-height: 40px;
-  border: 1px solid;
-  text-indent: 6px;
-
-  &.theme-light {
-    background-color: white;
-  }
-
-  &.theme-dark {
-    background-color: black;
-  }
-}
 
 .demo-theme {
   display: flex;
@@ -333,46 +315,6 @@ $demo-color-high-luminance: color.$amber-50;
   .demo-text-field {
     margin-top: 0 !important;
   }
-  //
-  // Toolbar and menu
-  //
-  .demo-theme-menu {
-    min-width: 320px;
-  }
-  .demo-theme-menu__list-item--selected {
-    background-color: color.$grey-400;
-  }
-  .demo-theme-list {
-    @include theme-mixins.prop(color, text-primary-on-light);
-  }
-  //
-  // Radios
-  //
-  .demo-theme-color-radio {
-    display: block;
-    border: 1px solid color.$grey-500;
-    border-radius: 50%;
-  }
-  .demo-theme-color-radio__inner {
-    display: block;
-    border: 11px solid;
-    border-radius: 50%;
-  }
-  [data-theme='baseline'] .demo-theme-color-radio__inner {
-    border-color: color.$deep-purple-a700 color.$teal-a400 color.$teal-a400
-      color.$deep-purple-a700;
-  }
-  [data-theme='black'] .demo-theme-color-radio__inner {
-    border-color: color.$grey-900 color.$light-green-a700
-      color.$light-green-a700 color.$grey-900;
-  }
-  [data-theme='dark'] .demo-theme-color-radio__inner {
-    border-color: color.$amber-300 color.$pink-400 color.$pink-400
-      color.$amber-300;
-  }
-  [data-theme='shrine'] .demo-theme-color-radio__inner {
-    border-color: #442b2d #fcb8ab #fcb8ab #442b2d;
-  }
 }
 
 .component-section {
@@ -453,5 +395,43 @@ $demo-color-high-luminance: color.$amber-50;
   .component-section {
     width: 40%;
     margin: 10px 5% 20px;
+  }
+}
+
+.switch-theme {
+  .demo-theme-color-radio {
+    display: block;
+    border: 1px solid color.$grey-500;
+    border-radius: 50%;
+  }
+  .demo-theme-color-radio__inner {
+    display: block;
+    border: 11px solid;
+    border-radius: 50%;
+  }
+  [data-theme='baseline'] .demo-theme-color-radio__inner {
+    border-color: color.$deep-purple-a700 color.$teal-a400 color.$teal-a400
+      color.$deep-purple-a700;
+  }
+  [data-theme='black'] .demo-theme-color-radio__inner {
+    border-color: color.$grey-900 color.$light-green-a700
+      color.$light-green-a700 color.$grey-900;
+  }
+  [data-theme='dark'] .demo-theme-color-radio__inner {
+    border-color: color.$amber-300 color.$pink-400 color.$pink-400
+      color.$amber-300;
+  }
+  [data-theme='shrine'] .demo-theme-color-radio__inner {
+    border-color: #442b2d #fcb8ab #fcb8ab #442b2d;
+  }
+
+  .demo-theme-menu {
+    min-width: 320px;
+  }
+  .demo-theme-menu__list-item--selected {
+    background-color: color.$grey-400;
+  }
+  .demo-theme-list {
+    @include theme.prop(color, text-primary-on-light);
   }
 }

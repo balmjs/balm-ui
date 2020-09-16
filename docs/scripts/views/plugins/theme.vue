@@ -14,30 +14,36 @@
       <h6>Theme Color</h6>
       <dl class="demo-theme">
         <dt
-          :style="themeColorStyle($theme.getThemeColor('background'))"
+          :style="onThemeColorStyle($theme.getThemeColor('background'))"
         >background: {{ $store.themeColors.background }}</dt>
         <dd
           :class="$theme.getThemeClass('on-primary')"
           :style="themeColorStyle($theme.getThemeColor('primary'))"
         >primary: {{ $store.themeColors.primary }}</dd>
-        <dd :style="themeColorStyle('#fff')">on-primary: {{ $store.themeColors['on-primary'] }}</dd>
+        <dd
+          :style="onThemeColorStyle($theme.getThemeColor('on-primary'))"
+        >on-primary: {{ $store.themeColors['on-primary'] }}</dd>
         <dd
           :class="$theme.getThemeClass('on-secondary')"
           :style="themeColorStyle($theme.getThemeColor('secondary'))"
         >secondary: {{ $store.themeColors.secondary }}</dd>
-        <dd :style="themeColorStyle('#fff')">on-secondary: {{ $store.themeColors['on-secondary'] }}</dd>
+        <dd
+          :style="onThemeColorStyle($theme.getThemeColor('on-secondary'))"
+        >on-secondary: {{ $store.themeColors['on-secondary'] }}</dd>
         <dd
           :class="$theme.getThemeClass('on-surface')"
-          :style="themeColorStyle($theme.getThemeColor('surface'))"
+          :style="onThemeColorStyle($theme.getThemeColor('surface'))"
         >surface: {{ $store.themeColors.surface }}</dd>
         <dd
-          :style="[themeColorStyle('#000'), { color: '#fff' }]"
+          :style="onThemeColorStyle($theme.getThemeColor('on-surface'))"
         >on-surface: {{ $store.themeColors['on-surface'] }}</dd>
         <dd
           :class="$theme.getThemeClass('on-error')"
           :style="themeColorStyle($theme.getThemeColor('error'))"
         >error: {{ $store.themeColors.error }}</dd>
-        <dd :style="themeColorStyle('#fff')">on-error: {{ $store.themeColors['on-error'] }}</dd>
+        <dd
+          :style="onThemeColorStyle($theme.getThemeColor('on-error'))"
+        >on-error: {{ $store.themeColors['on-error'] }}</dd>
       </dl>
 
       <h6>Text Color</h6>
@@ -208,6 +214,26 @@ export default {
       return {
         background
       };
+    },
+    onThemeColorStyle(background) {
+      let result = {
+        background,
+        color: '#fff' // NOTE: for shrine theme
+      };
+
+      if (background === '#000') {
+        result = {
+          background: '#000',
+          color: '#fff'
+        };
+      } else if (background === '#fff') {
+        result = {
+          background: '#fff',
+          color: '#000'
+        };
+      }
+
+      return result;
     },
     getColorName(color, shade) {
       let colorName = color.toLowerCase().split(' ').join('-');

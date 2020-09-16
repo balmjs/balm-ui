@@ -4,6 +4,14 @@
   $secondary: #018786 // baseline teal, 600 tone
 );
 
+// fix(@mdc): for changing theme
+@use '@material/textfield' with (
+  $focused-label-color: primary
+);
+@use '@material/select' with (
+  $focused-label-color: primary
+);
+
 @use '../../../src/styles/balm-ui';
 @use 'font-awesome/scss/font-awesome';
 @use 'prismjs/themes/prism-tomorrow.css';

@@ -19,7 +19,7 @@ export const translations = [
   }
 ];
 
-export const theme = {
+export const themes = {
   light: {
     primary: '#6200ee',
     secondary: '#018786',

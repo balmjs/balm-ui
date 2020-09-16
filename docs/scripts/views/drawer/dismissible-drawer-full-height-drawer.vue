@@ -49,6 +49,9 @@ export default {
   },
   created() {
     this.$store.initSnippet('drawer', 3);
+  },
+  mounted() {
+    this.$store.setTheme();
   }
 };
 </script>

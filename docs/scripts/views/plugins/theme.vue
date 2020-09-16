@@ -8,66 +8,42 @@
     </template>
 
     <!-- Content -->
-    <ui-menu-anchor class="demo-fixed-theme">
-      <ui-button
-        id="theme-color-action"
-        ref="colorButton"
-        title="Change theme colors"
-        data-theme="baseline"
-        @click="$balmUI.onShow('open')"
-      >
-        <i class="demo-theme-color-radio">
-          <span class="demo-theme-color-radio__inner"></span>
-        </i>
-      </ui-button>
-
-      <ui-menu id="theme-color-menu" v-model="open" class="demo-theme-menu" @selected="onSelected">
-        <ui-menuitem
-          v-for="(item, index) in colorItems"
-          :key="index"
-          :data-theme="item.value"
-          :class="{
-            'demo-theme-menu__list-item--selected': selectedTheme === item.value
-          }"
-        >
-          <span class="mdc-list-item__graphic">
-            <i class="demo-theme-color-radio">
-              <span class="demo-theme-color-radio__inner"></span>
-            </i>
-          </span>
-          {{ item.label }}
-        </ui-menuitem>
-      </ui-menu>
-    </ui-menu-anchor>
-
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 The Material Design baseline default theme</h6>
 
       <h6>Theme Color</h6>
       <dl class="demo-theme">
         <dt
-          :style="themeColorStyle($theme.getThemeColor('background'))"
-        >background: {{ $theme.background }}</dt>
+          :style="onThemeColorStyle($theme.getThemeColor('background'))"
+        >background: {{ $store.themeColors.background }}</dt>
         <dd
           :class="$theme.getThemeClass('on-primary')"
           :style="themeColorStyle($theme.getThemeColor('primary'))"
-        >primary: {{ $theme.primary }}</dd>
-        <dd :style="themeColorStyle('#fff')">on-primary: {{ $theme.onPrimary }}</dd>
+        >primary: {{ $store.themeColors.primary }}</dd>
+        <dd
+          :style="onThemeColorStyle($theme.getThemeColor('on-primary'))"
+        >on-primary: {{ $store.themeColors['on-primary'] }}</dd>
         <dd
           :class="$theme.getThemeClass('on-secondary')"
           :style="themeColorStyle($theme.getThemeColor('secondary'))"
-        >secondary: {{ $theme.secondary }}</dd>
-        <dd :style="themeColorStyle('#fff')">on-secondary: {{ $theme.onSecondary }}</dd>
+        >secondary: {{ $store.themeColors.secondary }}</dd>
+        <dd
+          :style="onThemeColorStyle($theme.getThemeColor('on-secondary'))"
+        >on-secondary: {{ $store.themeColors['on-secondary'] }}</dd>
         <dd
           :class="$theme.getThemeClass('on-surface')"
-          :style="themeColorStyle($theme.getThemeColor('surface'))"
-        >surface: {{ $theme.surface }}</dd>
-        <dd :style="[themeColorStyle('#000'), { color: '#fff' }]">on-surface: {{ $theme.onSurface }}</dd>
+          :style="onThemeColorStyle($theme.getThemeColor('surface'))"
+        >surface: {{ $store.themeColors.surface }}</dd>
+        <dd
+          :style="onThemeColorStyle($theme.getThemeColor('on-surface'))"
+        >on-surface: {{ $store.themeColors['on-surface'] }}</dd>
         <dd
           :class="$theme.getThemeClass('on-error')"
           :style="themeColorStyle($theme.getThemeColor('error'))"
-        >error: {{ $theme.error }}</dd>
-        <dd :style="themeColorStyle('#fff')">on-error: {{ $theme.onError }}</dd>
+        >error: {{ $store.themeColors.error }}</dd>
+        <dd
+          :style="onThemeColorStyle($theme.getThemeColor('on-error'))"
+        >on-error: {{ $store.themeColors['on-error'] }}</dd>
       </dl>
 
       <h6>Text Color</h6>
@@ -191,18 +167,6 @@ import ImageListDemo from '@/demos/theme/image-list';
 import ListDemo from '@/demos/theme/list';
 import TableDemo from '@/demos/theme/table';
 
-const THEME_STYLES = [
-  ['primary', 'on-primary', 'primary-bg'],
-  ['secondary', 'on-secondary', 'secondary-bg'],
-  'background',
-  ['surface', 'on-surface'],
-  ['error', 'on-error'],
-  'on-primary',
-  'on-secondary',
-  'on-surface',
-  'on-error'
-];
-
 export default {
   metaInfo: {
     titleTemplate: '%s - Theme'
@@ -227,28 +191,7 @@ export default {
   },
   data() {
     return {
-      THEME_STYLES,
-      COLOR,
-      open: false,
-      selectedTheme: 'baseline',
-      colorItems: [
-        {
-          label: 'Baseline (default)',
-          value: 'baseline'
-        },
-        {
-          label: 'Dark background (custom)',
-          value: 'dark'
-        },
-        {
-          label: 'Black primary (custom)',
-          value: 'black'
-        },
-        {
-          label: 'Shrine (custom)',
-          value: 'shrine'
-        }
-      ]
+      COLOR
     };
   },
   mounted() {
@@ -266,67 +209,31 @@ export default {
       }
     });
   },
-  beforeDestroy() {
-    this.reset();
-  },
   methods: {
     themeColorStyle(background) {
       return {
         background
       };
     },
-    reset() {
-      this.primary = '#6200ee';
-      this.secondary = '#018786';
-
-      this.$theme.colors = {
-        'on-primary': '#fff',
-        'on-secondary': '#fff'
+    onThemeColorStyle(background) {
+      let result = {
+        background,
+        color: '#fff' // NOTE: for shrine theme
       };
-    },
-    onSelected(data) {
-      let themeValue = this.colorItems[data.index].value;
 
-      switch (themeValue) {
-        case 'dark':
-          this.primary = '#ffd54f';
-          this.secondary = '#ec407a';
-
-          this.$theme.colors = {
-            'on-primary': '#000',
-            'on-secondary': '#fff'
-          };
-          break;
-        case 'black':
-          this.primary = '#212121';
-          this.secondary = '#64dd17';
-
-          this.$theme.colors = {
-            'on-primary': '#fff',
-            'on-secondary': '#000'
-          };
-          break;
-        case 'shrine':
-          this.primary = '#fcb8ab';
-          this.secondary = '#feeae6';
-
-          this.$theme.colors = {
-            'on-primary': '#442b2d',
-            'on-secondary': '#442b2d'
-          };
-          break;
-        default:
-          this.reset();
-          break;
+      if (background === '#000') {
+        result = {
+          background: '#000',
+          color: '#fff'
+        };
+      } else if (background === '#fff') {
+        result = {
+          background: '#fff',
+          color: '#000'
+        };
       }
 
-      this.$theme.colors = {
-        primary: this.primary,
-        secondary: this.secondary
-      };
-
-      this.selectedTheme = themeValue;
-      this.$refs.colorButton.$el.dataset.theme = themeValue;
+      return result;
     },
     getColorName(color, shade) {
       let colorName = color.toLowerCase().split(' ').join('-');

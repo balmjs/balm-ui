@@ -4,7 +4,7 @@
       <template #nav-icon="{ navIconClass }">
         <ui-icon-button icon="arrow_back" :class="navIconClass" @click="$router.back()"></ui-icon-button>
       </template>
-      <span class="['catalog-title', $theme.getThemeClass('on-primary')]">Layout Grid</span>
+      <span class="catalog-title">Layout Grid</span>
     </ui-top-app-bar>
 
     <docs-page
@@ -271,6 +271,8 @@ export default {
     };
   },
   mounted() {
+    this.$store.setTheme();
+
     this.initRuler();
     window.addEventListener('balmResize', this.initRuler);
   },

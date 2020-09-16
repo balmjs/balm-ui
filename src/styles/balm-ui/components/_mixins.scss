@@ -1,18 +1,12 @@
 @use '@material/theme/theme';
-@use '@material/theme/theme-color';
-
-$alpha: 0.87;
 
 @mixin background {
   @include theme.prop(background-color, background);
 }
 
 @mixin selected($withBorder: 0) {
-  @include theme.prop(
-    background-color,
-    rgba(theme-color.prop-value(primary), $alpha)
-  );
-  @include theme.prop(color, rgba(theme-color.prop-value(on-primary), $alpha));
+  @include theme.prop(background-color, primary);
+  @include theme.prop(color, on-primary);
 
   @if ($withBorder == 1) {
     @include theme.prop(border-color, primary);

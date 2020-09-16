@@ -132,11 +132,13 @@ export default {
     isShort() {
       return this.typeOption === 5 || this.typeOption === 6;
     }
+  },
+  mounted() {
+    this.$store.setTheme();
+
+    // setTimeout(() => {
+    //   this.openDrawer = true;
+    // }, 1e3);
   }
-  // mounted() {
-  //   setTimeout(() => {
-  //     this.openDrawer = true;
-  //   }, 1e3);
-  // }
 };
 </script>

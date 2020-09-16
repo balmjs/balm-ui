@@ -22,6 +22,7 @@
  */
 export var cssClasses = {
     CLOSED_CLASS: 'mdc-linear-progress--closed',
+    CLOSED_ANIMATION_OFF_CLASS: 'mdc-linear-progress--closed-animation-off',
     INDETERMINATE_CLASS: 'mdc-linear-progress--indeterminate',
     REVERSED_CLASS: 'mdc-linear-progress--reversed',
     ANIMATION_READY_CLASS: 'mdc-linear-progress--animation-ready',

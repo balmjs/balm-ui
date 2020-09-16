@@ -65,6 +65,12 @@ var MDCLinearProgress = /** @class */ (function (_super) {
     MDCLinearProgress.prototype.close = function () {
         this.foundation.close();
     };
+    MDCLinearProgress.prototype.initialSyncWithDOM = function () {
+        var _this = this;
+        this.root.addEventListener('transitionend', function () {
+            _this.foundation.handleTransitionEnd();
+        });
+    };
     MDCLinearProgress.prototype.getDefaultFoundation = function () {
         var _this = this;
         // DO NOT INLINE this variable. For backward compatibility, foundations take

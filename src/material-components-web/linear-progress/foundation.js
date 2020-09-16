@@ -160,9 +160,20 @@ var MDCLinearProgressFoundation = /** @class */ (function (_super) {
     };
     MDCLinearProgressFoundation.prototype.open = function () {
         this.adapter.removeClass(cssClasses.CLOSED_CLASS);
+        this.adapter.removeClass(cssClasses.CLOSED_ANIMATION_OFF_CLASS);
     };
     MDCLinearProgressFoundation.prototype.close = function () {
         this.adapter.addClass(cssClasses.CLOSED_CLASS);
+    };
+    /**
+     * Handles the transitionend event emitted after `close()` is called and the
+     * opacity fades out. This is so that animations are removed only after the
+     * progress indicator is completely hidden.
+     */
+    MDCLinearProgressFoundation.prototype.handleTransitionEnd = function () {
+        if (this.adapter.hasClass(cssClasses.CLOSED_CLASS)) {
+            this.adapter.addClass(cssClasses.CLOSED_ANIMATION_OFF_CLASS);
+        }
     };
     MDCLinearProgressFoundation.prototype.destroy = function () {
         _super.prototype.destroy.call(this);

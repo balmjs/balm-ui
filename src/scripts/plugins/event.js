@@ -1,7 +1,7 @@
 import { getCurrentInstance } from 'vue';
 import autoInstall from '../config/auto-install';
 import getType from '../utils/typeof';
-// import createCustomEvent from '../events';
+import createCustomEvent from '../events';
 
 // Define constants
 const DEFAULT_NAMESPACE = 'balmUI';
@@ -44,6 +44,7 @@ function handleEvent(_property, value) {
 }
 
 let vm;
+let customEventCreated = false;
 
 const EventMethods = {
   onChange(_property, value, fn = noop) {
@@ -82,10 +83,14 @@ const BalmUI_EventPlugin = {
           if (currentInstance && currentInstance.uid === 0) {
             vm = currentInstance;
           }
+        },
+        mounted() {
+          if (!customEventCreated) {
+            customEventCreated = true;
+            createCustomEvent();
+          }
         }
       });
-
-      // createCustomEvent(); // TODO: ssr test again
     } else {
       console.error('[BalmUI] The namespace of the event plugin is required');
     }

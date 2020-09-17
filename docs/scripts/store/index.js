@@ -1,10 +1,10 @@
-import Vue from 'vue';
+import { createApp } from 'vue';
 import { isDev, themes } from '@/config';
 import bus from './bus';
 import dev from './dev';
 import page from './page';
 
-export default new Vue({
+export default createApp({
   name: 'Store',
   mixins: [isDev ? dev : {}, page],
   data() {

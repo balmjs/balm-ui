@@ -10,7 +10,7 @@
       <slot
         :onClass="UI_ICON_BUTTON.cssClasses.on"
         :offClass="UI_ICON_BUTTON.cssClasses.off"
-      >{{ materialIcon }}</slot>
+      >{{ icon }}</slot>
     </template>
   </button>
 </template>

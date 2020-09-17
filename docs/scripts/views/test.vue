@@ -1,6 +1,5 @@
 <template>
   <div class="page--top-app-bar">
-    {{ a.b.c }}
     <ui-top-app-bar content-selector="#content-main" :type="type" :title="title" @nav="onTest">
       <template #toolbar="{ toolbarItemClass }">
         <ui-icon-button :class="toolbarItemClass" icon="file_download"></ui-icon-button>
@@ -51,9 +50,7 @@ export default {
       }
     };
   },
-  mounted() {
-    console.log('mounted', this.$balmUI);
-  },
+  mounted() {},
   methods: {
     onTest() {
       this.$balmUI.onShow('a.b.c');

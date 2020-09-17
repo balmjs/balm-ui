@@ -1,14 +1,12 @@
 import { MDCList } from '../../material-components-web/list';
+import { strings } from '../../material-components-web/list/constants';
+import domMixin from './dom';
 import typeMixin from './type';
 import rippleMixin from './ripple';
 import UI_LIST from '../components/lists/constants';
 
 export default {
-  mixins: [typeMixin, rippleMixin],
-  model: {
-    prop: 'selectedIndex',
-    event: UI_LIST.EVENT.ACTION
-  },
+  mixins: [domMixin, typeMixin, rippleMixin],
   props: {
     // UI variants
     type: {
@@ -20,7 +18,7 @@ export default {
       default: false
     },
     // States
-    selectedIndex: {
+    modelValue: {
       type: Number,
       default: -1
     },
@@ -38,6 +36,7 @@ export default {
       default: false
     }
   },
+  emits: [UI_LIST.EVENT.ACTION],
   data() {
     return {
       UI_LIST,
@@ -60,27 +59,27 @@ export default {
     }
   },
   watch: {
-    selectedIndex(val) {
+    modelValue(val) {
       if (this.$list) {
         this.$list.selectedIndex = val;
       }
     }
   },
   mounted() {
-    this.$list = new MDCList(this.$el);
+    this.$list = new MDCList(this.el);
 
-    this.$list.listen(`MDCList:${UI_LIST.EVENT.ACTION}`, ({ detail }) => {
+    this.$list.listen(strings.ACTION_EVENT, ({ detail }) => {
       this.$emit(UI_LIST.EVENT.ACTION, detail.index);
     });
 
-    if (this.singleSelection && this.selectedIndex > -1) {
+    if (this.singleSelection && this.modelValue > -1) {
       this.$list.singleSelection = true;
-      this.$list.selectedIndex = this.selectedIndex;
+      this.$list.selectedIndex = this.modelValue;
     }
 
     // Making lists accessible
     this.role =
-      this.$el.getAttribute('role') ||
+      this.el.getAttribute('role') ||
       (this.singleSelection ? 'listbox' : 'list');
 
     // For `<ui-drawer type="modal">` focus management
@@ -88,8 +87,8 @@ export default {
   },
   updated() {
     if (this.$list) {
-      if (this.singleSelection && this.selectedIndex > -1) {
-        this.$list.selectedIndex = this.selectedIndex;
+      if (this.singleSelection && this.modelValue > -1) {
+        this.$list.selectedIndex = this.modelValue;
       }
 
       if (!this.nonInteractive) {
@@ -106,9 +105,10 @@ export default {
   },
   methods: {
     fix4Drawer() {
+      const parentEl = this.$parent.$el.nextElementSibling;
       if (
-        this.$parent.$el &&
-        this.$parent.$el.classList.contains('mdc-drawer__content') &&
+        parentEl &&
+        parentEl.classList.contains('mdc-drawer__content') &&
         this.$list.listElements.length
       ) {
         const currentItem =

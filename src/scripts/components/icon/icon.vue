@@ -8,7 +8,21 @@
 
 <script>
 import typeMixin from '../../mixins/type';
-import UI_ICON from './constants';
+
+// Define material icons constants
+const UI_ICON = {
+  TYPES: {
+    filled: 0,
+    outlined: 1,
+    round: 2,
+    twoTone: 3,
+    sharp: 4
+  },
+  DEFAULT_SIZE: 24,
+  EVENT: {
+    CLICK: 'click'
+  }
+};
 
 export default {
   name: 'UiIcon',
@@ -53,6 +67,7 @@ export default {
       default: false
     }
   },
+  emits: [UI_ICON.EVENT.CLICK],
   computed: {
     isFilled() {
       return this.checkType(UI_ICON.TYPES, 'filled');

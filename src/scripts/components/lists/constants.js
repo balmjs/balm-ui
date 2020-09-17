@@ -10,6 +10,6 @@ export default {
   },
   EVENT: {
     CLICK: 'click',
-    ACTION: 'action'
+    ACTION: 'update:modelValue'
   }
 };

@@ -91,10 +91,10 @@ export default {
     if (this.isDismissible || this.isModal) {
       this.$drawer = new MDCDrawer(this.el);
 
-      this.$drawer.listen(string.OPEN_EVENT, () => {
+      this.$drawer.listen(strings.OPEN_EVENT, () => {
         this.$emit(UI_DRAWER.EVENT.NAV, true);
       });
-      this.$drawer.listen(string.CLOSE_EVENT, () => {
+      this.$drawer.listen(strings.CLOSE_EVENT, () => {
         this.$emit(UI_DRAWER.EVENT.NAV, false);
         this.$emit(UI_DRAWER.EVENT.CHANGE, false);
       });

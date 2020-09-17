@@ -7,6 +7,7 @@
 
 <script>
 import { MDCDrawer } from '../../../material-components-web/drawer';
+import { strings } from '../../../material-components-web/drawer/constants';
 import domMixin from '../../mixins/dom';
 import typeMixin from '../../mixins/type';
 
@@ -22,8 +23,6 @@ const UI_DRAWER = {
   },
   EVENT: {
     NAV: 'nav',
-    OPENED: 'opened',
-    CLOSED: 'closed',
     CHANGE: 'update:modelValue'
   }
 };
@@ -52,7 +51,7 @@ export default {
       default: false
     }
   },
-  emits: [UI_DRAWER.EVENT.NAV],
+  emits: [UI_DRAWER.EVENT.NAV, UI_DRAWER.EVENT.CHANGE],
   data() {
     return {
       $drawer: null
@@ -92,10 +91,10 @@ export default {
     if (this.isDismissible || this.isModal) {
       this.$drawer = new MDCDrawer(this.el);
 
-      this.$drawer.listen(`MDCDrawer:${UI_DRAWER.EVENT.OPENED}`, () => {
+      this.$drawer.listen(string.OPEN_EVENT, () => {
         this.$emit(UI_DRAWER.EVENT.NAV, true);
       });
-      this.$drawer.listen(`MDCDrawer:${UI_DRAWER.EVENT.CLOSED}`, () => {
+      this.$drawer.listen(string.CLOSE_EVENT, () => {
         this.$emit(UI_DRAWER.EVENT.NAV, false);
         this.$emit(UI_DRAWER.EVENT.CHANGE, false);
       });

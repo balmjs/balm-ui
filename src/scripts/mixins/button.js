@@ -1,7 +1,7 @@
+import domMixin from './dom';
 import typeMixin from './type';
 import rippleMixin from './ripple';
 import materialIconMixin from './material-icon';
-import UI_GLOBAL from '../config/constants';
 
 // Define button/fab constants
 const UI_BUTTON = {
@@ -11,22 +11,14 @@ const UI_BUTTON = {
 };
 
 export default {
-  mixins: [typeMixin, rippleMixin, materialIconMixin],
+  mixins: [domMixin, typeMixin, rippleMixin, materialIconMixin],
   emits: [UI_BUTTON.EVENT.CLICK],
-  data() {
-    return {
-      UI_GLOBAL,
-      el: null
-    };
-  },
   watch: {
     type() {
       this.init();
     }
   },
   mounted() {
-    this.el = this.$refs.button;
-
     this.init();
   },
   methods: {

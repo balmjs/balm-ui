@@ -1,13 +1,13 @@
 <template>
   <!-- Container -->
-  <button ref="button" type="button" :class="className" @click="handleClick">
+  <button ref="root" type="button" :class="className" @click="handleClick">
     <div class="mdc-fab__ripple"></div>
     <template v-if="isExtended">
       <!-- Icon (optional) -->
       <slot name="before" :iconClass="UI_FAB.cssClasses.icon">
         <i
           v-if="materialIcon"
-          :class="[UI_GLOBAL.cssClasses.icon, UI_FAB.cssClasses.icon]"
+          :class="getIconClassName(UI_FAB.cssClasses.icon)"
           v-text="materialIcon"
         ></i>
       </slot>
@@ -23,7 +23,7 @@
       <slot :iconClass="UI_FAB.cssClasses.icon">
         <i
           v-if="materialIcon"
-          :class="[UI_GLOBAL.cssClasses.icon, UI_FAB.cssClasses.icon]"
+          :class="getIconClassName(UI_FAB.cssClasses.icon)"
           v-text="materialIcon"
         ></i>
       </slot>
@@ -80,7 +80,7 @@ export default {
     },
     className() {
       const isTouch =
-        this.$el && this.$el.classList.contains(UI_FAB.cssClasses.touch);
+        this.el && this.el.classList.contains(UI_FAB.cssClasses.touch);
 
       return {
         'mdc-fab': true,

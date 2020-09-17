@@ -141,14 +141,14 @@ const components = {
   // UiDrawerContent,
   // UiDrawerAppContent,
   // UiDrawerBackdrop,
-  UiFab
+  UiFab,
   // UiFile,
   // UiForm,
   // UiFormField,
   // UiGrid,
   // UiGridCell,
   // UiIcon,
-  // UiIconButton,
+  UiIconButton
   // UiImageItem,
   // UiImageList,
   // UiImageText,

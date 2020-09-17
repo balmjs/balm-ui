@@ -17,6 +17,7 @@ export default {
     }
   },
   mounted() {
+    // TODO
     const parentEl = this.$parent.$el;
     if (parentEl) {
       this.cardButton =

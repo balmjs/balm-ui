@@ -1,12 +1,12 @@
 <template>
   <!-- Container -->
-  <button ref="button" type="button" :class="className" @click="handleClick">
+  <button ref="root" type="button" :class="className" @click="handleClick">
     <div class="mdc-button__ripple"></div>
     <!-- Icon (optional) -->
     <slot name="before" :iconClass="UI_BUTTON.cssClasses.icon">
       <i
         v-if="materialIcon"
-        :class="[UI_GLOBAL.cssClasses.icon, UI_BUTTON.cssClasses.icon]"
+        :class="getIconClassName(UI_BUTTON.cssClasses.icon)"
         aria-hidden="true"
         v-text="materialIcon"
       ></i>

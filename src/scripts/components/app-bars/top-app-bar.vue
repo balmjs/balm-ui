@@ -10,8 +10,7 @@
               v-if="defaultNavIcon"
               :id="navId"
               :class="[
-                UI_GLOBAL.cssClasses.icon,
-                UI_TOP_APP_BAR.cssClasses.navIcon,
+                getIconClassName(UI_TOP_APP_BAR.cssClasses.navIcon),
                 'mdc-icon-button'
               ]"
               v-text="defaultNavIcon"
@@ -34,8 +33,9 @@
 
 <script>
 import { MDCTopAppBar } from '../../../material-components-web/top-app-bar';
+import domMixin from '../../mixins/dom';
 import typeMixin from '../../mixins/type';
-import UI_GLOBAL from '../../config/constants';
+import materialIconMixin from '../../mixins/material-icon';
 
 // Define top app bar constants
 const UI_TOP_APP_BAR = {
@@ -68,7 +68,7 @@ const UI_TOP_APP_BAR = {
 
 export default {
   name: 'UiTopAppBar',
-  mixins: [typeMixin],
+  mixins: [domMixin, typeMixin, materialIconMixin],
   props: {
     contentSelector: {
       type: String,
@@ -117,9 +117,9 @@ export default {
       default: null
     }
   },
+  emits: [UI_TOP_APP_BAR.EVENT.NAV, UI_TOP_APP_BAR.EVENT.CLOSE],
   data() {
     return {
-      UI_GLOBAL,
       UI_TOP_APP_BAR,
       $topAppBar: null
     };
@@ -173,32 +173,32 @@ export default {
   },
   methods: {
     getFixedAdjustElement(contentEl) {
-      let el;
+      let fixedAdjustEl;
 
       const newDiv = document.createElement('div');
       const firstElInContent = contentEl.children[0];
 
       if (firstElInContent) {
         if (firstElInContent.classList.contains('mdc-drawer')) {
-          el = contentEl;
+          fixedAdjustEl = contentEl;
         } else {
           let existingFixedAdjust = /^mdc-top-app-bar--([a-z]+-)*fixed-adjust$/.test(
             firstElInContent.className
           );
 
           if (existingFixedAdjust) {
-            el = firstElInContent;
+            fixedAdjustEl = firstElInContent;
           } else {
-            el = newDiv;
+            fixedAdjustEl = newDiv;
             contentEl.insertBefore(newDiv, contentEl.firstChild);
           }
         }
       } else {
-        el = newDiv;
+        fixedAdjustEl = newDiv;
         contentEl.insertBefore(newDiv, contentEl.firstChild);
       }
 
-      return el;
+      return fixedAdjustEl;
     },
     createFixedAdjustElement() {
       if (this.contentSelector) {
@@ -235,7 +235,7 @@ export default {
 
       this.$nextTick(() => {
         this.createFixedAdjustElement();
-        this.$topAppBar = new MDCTopAppBar(this.$el);
+        this.$topAppBar = new MDCTopAppBar(this.el);
 
         this.$topAppBar.listen(
           `MDCTopAppBar:${UI_TOP_APP_BAR.EVENT.NAV}`,

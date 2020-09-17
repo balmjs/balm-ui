@@ -1,6 +1,6 @@
 <template>
   <!-- Container -->
-  <button ref="root" type="button" :class="className" @click="handleClick">
+  <button type="button" :class="className" @click="handleClick">
     <div class="mdc-fab__ripple"></div>
     <template v-if="isExtended">
       <!-- Icon (optional) -->

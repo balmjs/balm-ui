@@ -11,8 +11,8 @@ export default {
     }
   },
   methods: {
-    getIconClassName(componentIconClass) {
-      return ['material-icons', componentIconClass];
+    getIconClassName(...componentIconClass) {
+      return ['material-icons', ...componentIconClass];
     }
   }
 };

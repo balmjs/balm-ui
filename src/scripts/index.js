@@ -134,13 +134,13 @@ const components = {
   // UiDialogContent,
   // UiDialogTitle,
   // UiDivider,
-  // UiDrawer,
-  // UiDrawerHeader,
-  // UiDrawerTitle,
-  // UiDrawerSubtitle,
-  // UiDrawerContent,
-  // UiDrawerAppContent,
-  // UiDrawerBackdrop,
+  UiDrawer,
+  UiDrawerHeader,
+  UiDrawerTitle,
+  UiDrawerSubtitle,
+  UiDrawerContent,
+  UiDrawerAppContent,
+  UiDrawerBackdrop,
   UiFab,
   // UiFile,
   // UiForm,
@@ -148,7 +148,7 @@ const components = {
   // UiGrid,
   // UiGridCell,
   // UiIcon,
-  UiIconButton
+  UiIconButton,
   // UiImageItem,
   // UiImageList,
   // UiImageText,
@@ -191,11 +191,11 @@ const components = {
   // UiTextfieldHelper,
   // UiTextfieldIcon,
   // UiTooltip,
-  // UiTopAppBar
+  UiTopAppBar
 };
 
 const plugins = {
-  // event,
+  event
   // grid,
   // theme,
   // typography,

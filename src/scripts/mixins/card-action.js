@@ -17,8 +17,7 @@ export default {
     }
   },
   mounted() {
-    // TODO
-    const parentEl = this.$parent.$el;
+    const parentEl = this.$parent.$el.nextElementSibling;
     if (parentEl) {
       this.cardButton =
         parentEl.classList.contains(UI_CARD.cssClasses.button) ||

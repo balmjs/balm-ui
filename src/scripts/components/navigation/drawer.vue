@@ -7,23 +7,37 @@
 
 <script>
 import { MDCDrawer } from '../../../material-components-web/drawer';
+import domMixin from '../../mixins/dom';
 import typeMixin from '../../mixins/type';
-import UI_DRAWER from './constants';
+
+// Define drawer constants
+const UI_DRAWER = {
+  TYPES: {
+    permanent: 0,
+    dismissible: 1,
+    modal: 2
+  },
+  cssClasses: {
+    root: 'mdc-drawer-root'
+  },
+  EVENT: {
+    NAV: 'nav',
+    OPENED: 'opened',
+    CLOSED: 'closed',
+    CHANGE: 'update:modelValue'
+  }
+};
 
 export default {
   name: 'UiDrawer',
-  mixins: [typeMixin],
-  model: {
-    prop: 'open',
-    event: UI_DRAWER.EVENT.NAV
-  },
+  mixins: [domMixin, typeMixin],
   props: {
     navId: {
       type: [String, null],
       default: null
     },
     // States
-    open: {
+    modelValue: {
       type: Boolean,
       default: false
     },
@@ -38,6 +52,7 @@ export default {
       default: false
     }
   },
+  emits: [UI_DRAWER.EVENT.NAV],
   data() {
     return {
       $drawer: null
@@ -58,12 +73,12 @@ export default {
         'mdc-drawer': true,
         'mdc-drawer--dismissible': this.isDismissible,
         'mdc-drawer--modal': this.isModal,
-        'mdc-drawer--open': this.open
+        'mdc-drawer--open': this.modelValue
       };
     }
   },
   watch: {
-    open(val) {
+    modelValue(val) {
       if (this.$drawer) {
         this.$drawer.open = val;
       }
@@ -71,17 +86,18 @@ export default {
   },
   mounted() {
     if (this.viewportHeight) {
-      this.$el.parentNode.classList.add(UI_DRAWER.cssClasses.root);
+      this.el.parentNode.classList.add(UI_DRAWER.cssClasses.root);
     }
 
     if (this.isDismissible || this.isModal) {
-      this.$drawer = new MDCDrawer(this.$el);
+      this.$drawer = new MDCDrawer(this.el);
 
       this.$drawer.listen(`MDCDrawer:${UI_DRAWER.EVENT.OPENED}`, () => {
         this.$emit(UI_DRAWER.EVENT.NAV, true);
       });
       this.$drawer.listen(`MDCDrawer:${UI_DRAWER.EVENT.CLOSED}`, () => {
         this.$emit(UI_DRAWER.EVENT.NAV, false);
+        this.$emit(UI_DRAWER.EVENT.CHANGE, false);
       });
 
       this.init();
@@ -110,7 +126,7 @@ export default {
           }
         });
 
-        this.$drawer.open = this.open;
+        this.$drawer.open = this.modelValue;
       }
     }
   }

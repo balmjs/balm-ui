@@ -1,6 +1,7 @@
+import { getCurrentInstance } from 'vue';
 import autoInstall from '../config/auto-install';
 import getType from '../utils/typeof';
-import createCustomEvent from '../events';
+// import createCustomEvent from '../events';
 
 // Define constants
 const DEFAULT_NAMESPACE = 'balmUI';
@@ -42,49 +43,49 @@ function handleEvent(_property, value) {
   }
 }
 
+let vm;
+
 const EventMethods = {
   onChange(_property, value, fn = noop) {
-    handleEvent.call(this, _property, value);
+    vm && handleEvent.call(vm.ctx.$data, _property, value);
     return callback(fn);
   },
   onOpen(_property, fn = noop) {
-    handleEvent.call(this, _property, true);
+    vm && handleEvent.call(vm.ctx.$data, _property, true);
     return callback(fn);
   },
   onClose(_property, fn = noop) {
-    handleEvent.call(this, _property, false);
+    vm && handleEvent.call(vm.ctx.$data, _property, false);
     return callback(fn);
   },
   onShow(_property, fn = noop) {
-    handleEvent.call(this, _property, true);
+    vm && handleEvent.call(vm.ctx.$data, _property, true);
     return callback(fn);
   },
   onHide(_property, fn = noop) {
-    handleEvent.call(this, _property, false);
+    vm && handleEvent.call(vm.ctx.$data, _property, false);
     return callback(fn);
   }
 };
 
 const BalmUI_EventPlugin = {
-  install(Vue, customNamespace = DEFAULT_NAMESPACE) {
+  install(app, customNamespace = DEFAULT_NAMESPACE) {
     if (customNamespace) {
-      Object.defineProperty(Vue.prototype, `$${customNamespace}`, {
-        get() {
-          let balmUI = {};
+      const eventKey = `$${customNamespace}`;
 
-          Object.keys(EventMethods).forEach((key) => {
-            balmUI[key] = EventMethods[key].bind(this);
-          });
+      app.provide(eventKey, EventMethods);
 
-          return balmUI; // Return new object for every vm !important
+      app.mixin({
+        inject: [eventKey],
+        created() {
+          const currentInstance = getCurrentInstance();
+          if (currentInstance && currentInstance.uid === 0) {
+            vm = currentInstance;
+          }
         }
       });
 
-      Vue.mixin({
-        mounted() {
-          createCustomEvent();
-        }
-      });
+      // createCustomEvent(); // TODO: ssr test again
     } else {
       console.error('[BalmUI] The namespace of the event plugin is required');
     }

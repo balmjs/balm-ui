@@ -1,6 +1,6 @@
 <template>
   <!-- Container -->
-  <button ref="root" type="button" :class="className" @click="handleClick">
+  <button type="button" :class="className" @click="handleClick">
     <!-- Icon -->
     <template v-if="toggleButton">
       <i :class="getIconClassName(UI_ICON_BUTTON.cssClasses.off)" v-text="toggle.off"></i>

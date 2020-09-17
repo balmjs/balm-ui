@@ -5,6 +5,6 @@ export default {
     };
   },
   mounted() {
-    this.el = this.$refs.root;
+    this.el = this.$el.nextElementSibling;
   }
 };

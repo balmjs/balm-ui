@@ -1,6 +1,6 @@
 <template>
   <!-- Container -->
-  <button ref="root" type="button" :class="className" @click="handleClick">
+  <button type="button" :class="className" @click="handleClick">
     <div class="mdc-button__ripple"></div>
     <!-- Icon (optional) -->
     <slot name="before" :iconClass="UI_BUTTON.cssClasses.icon">

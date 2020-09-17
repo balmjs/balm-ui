@@ -65,6 +65,8 @@ const EventMethods = {
   }
 };
 
+let customEventCreated = false;
+
 const BalmUI_EventPlugin = {
   install(Vue, customNamespace = DEFAULT_NAMESPACE) {
     if (customNamespace) {
@@ -82,7 +84,10 @@ const BalmUI_EventPlugin = {
 
       Vue.mixin({
         mounted() {
-          createCustomEvent();
+          if (!customEventCreated) {
+            customEventCreated = true;
+            createCustomEvent();
+          }
         }
       });
     } else {

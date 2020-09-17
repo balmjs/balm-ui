@@ -41,7 +41,10 @@ const BalmUI_TypographyPlugin = {
 
     Vue.mixin({
       mounted() {
-        document.querySelector('body').classList.add(T_BASE);
+        const bodyClassList = document.querySelector('body').classList;
+        if (!bodyClassList.contains(T_BASE)) {
+          bodyClassList.add(T_BASE);
+        }
       }
     });
 

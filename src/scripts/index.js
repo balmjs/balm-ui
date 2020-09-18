@@ -195,11 +195,11 @@ const components = {
 };
 
 const plugins = {
-  event
-  // grid,
-  // theme,
-  // typography,
-  // validator
+  event,
+  grid,
+  theme,
+  typography,
+  validator
 };
 
 const directives = {

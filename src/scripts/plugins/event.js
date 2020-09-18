@@ -48,23 +48,23 @@ let customEventCreated = false;
 
 const EventMethods = {
   onChange(_property, value, fn = noop) {
-    vm && handleEvent.call(vm.ctx.$data, _property, value);
+    vm && handleEvent.call(vm.$data, _property, value);
     return callback(fn);
   },
   onOpen(_property, fn = noop) {
-    vm && handleEvent.call(vm.ctx.$data, _property, true);
+    vm && handleEvent.call(vm.$data, _property, true);
     return callback(fn);
   },
   onClose(_property, fn = noop) {
-    vm && handleEvent.call(vm.ctx.$data, _property, false);
+    vm && handleEvent.call(vm.$data, _property, false);
     return callback(fn);
   },
   onShow(_property, fn = noop) {
-    vm && handleEvent.call(vm.ctx.$data, _property, true);
+    vm && handleEvent.call(vm.$data, _property, true);
     return callback(fn);
   },
   onHide(_property, fn = noop) {
-    vm && handleEvent.call(vm.ctx.$data, _property, false);
+    vm && handleEvent.call(vm.$data, _property, false);
     return callback(fn);
   }
 };
@@ -81,7 +81,7 @@ const BalmUI_EventPlugin = {
         created() {
           const currentInstance = getCurrentInstance();
           if (currentInstance && currentInstance.uid === 0) {
-            vm = currentInstance;
+            vm = currentInstance.ctx;
           }
         },
         mounted() {

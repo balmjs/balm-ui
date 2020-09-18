@@ -19,7 +19,7 @@ const T_DEFAULT_STYLES = [
 ];
 
 const BalmUI_TypographyPlugin = {
-  install(Vue, customStyles = []) {
+  install(app, customStyles = []) {
     const T_STYLES = Array.isArray(customStyles)
       ? T_DEFAULT_STYLES.concat(customStyles)
       : T_DEFAULT_STYLES;
@@ -39,7 +39,7 @@ const BalmUI_TypographyPlugin = {
       return className;
     };
 
-    Vue.mixin({
+    app.mixin({
       mounted() {
         const bodyClassList = document.querySelector('body').classList;
         if (!bodyClassList.contains(T_BASE)) {
@@ -48,7 +48,7 @@ const BalmUI_TypographyPlugin = {
       }
     });
 
-    Vue.prototype.$tt = $tt;
+    app.config.globalProperties.$tt = $tt;
   }
 };
 

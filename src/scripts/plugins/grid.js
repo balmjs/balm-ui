@@ -5,7 +5,7 @@ const GRID_PROPERTY = ['margin', 'gutter', 'column-width'];
 const TYPE_OF_DEVICE = ['desktop', 'tablet', 'phone'];
 
 const BalmUI_GridPlugin = {
-  install(Vue) {
+  install(app) {
     const $setGrid = (_property, size, value) => {
       if (GRID_PROPERTY.includes(_property)) {
         if (TYPE_OF_DEVICE.includes(size)) {
@@ -25,7 +25,7 @@ const BalmUI_GridPlugin = {
       }
     };
 
-    Vue.prototype.$setGrid = $setGrid;
+    app.config.globalProperties.$setGrid = $setGrid;
   }
 };
 

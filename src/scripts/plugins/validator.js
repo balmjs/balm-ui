@@ -1,3 +1,4 @@
+import { getCurrentInstance } from 'vue';
 import autoInstall from '../config/auto-install';
 import getType from '../utils/typeof';
 
@@ -15,8 +16,10 @@ const FIELD_LABEL = 'label';
 const FIELD_VALIDATOR = 'validator';
 const LABEL_PLACEHOLDER = '%s';
 
+let vm;
+
 const BalmUI_ValidatorPlugin = {
-  install(Vue, customRules = {}) {
+  install(app, customRules = {}) {
     let globalValidationRules = Object.assign({}, defaultRules, customRules);
 
     const $validate = function (formData = {}, customFieldset = []) {
@@ -30,7 +33,7 @@ const BalmUI_ValidatorPlugin = {
       };
 
       // 获取待验证字段
-      let validations = this.$options.validations || {};
+      let validations = vm.$options.validations || {};
       let validationFields = Object.keys(validations);
 
       if (customFieldset.length) {
@@ -60,7 +63,7 @@ const BalmUI_ValidatorPlugin = {
           if (rule && getType(rule.validate) === 'function') {
             let fieldValue = formData[fieldName];
             let fieldArgs = [fieldValue, formData];
-            if (!rule.validate.apply(this, fieldArgs)) {
+            if (!rule.validate.apply(vm.$data, fieldArgs)) {
               isAllValidOfField = false;
               let message = '';
 
@@ -69,7 +72,7 @@ const BalmUI_ValidatorPlugin = {
                   message = rule.message.replace(LABEL_PLACEHOLDER, fieldLabel);
                   break;
                 case 'function':
-                  message = rule.message.apply(this, fieldArgs);
+                  message = rule.message.apply(vm.$data, fieldArgs);
                   break;
                 default:
                   console.warn(
@@ -114,28 +117,44 @@ const BalmUI_ValidatorPlugin = {
     };
 
     const $resetValidations = function () {
-      this.$options.validations = {};
+      vm.$options.validations = {};
     };
 
     const $setValidations = function (fieldName, validationRule = {}) {
-      if (!this.$options.validations) {
+      if (!vm.$options.validations) {
         $resetValidations();
       }
 
       if (getType(fieldName) === 'object') {
-        this.$options.validations = Object.assign(
+        vm.$options.validations = Object.assign(
           {},
-          this.$options.validations,
+          vm.$options.validations,
           fieldName
         );
       } else {
-        this.$options.validations[fieldName] = validationRule;
+        vm.$options.validations[fieldName] = validationRule;
       }
     };
 
-    Vue.prototype.$validate = $validate;
-    Vue.prototype.$resetValidations = $resetValidations;
-    Vue.prototype.$setValidations = $setValidations;
+    const validators = {
+      $validate,
+      $resetValidations,
+      $setValidations
+    };
+
+    Object.entries(validators).forEach(([key, value]) =>
+      app.provide(key, value)
+    );
+
+    app.mixin({
+      inject: Object.keys(validators),
+      created() {
+        const currentInstance = getCurrentInstance();
+        if (currentInstance && currentInstance.uid === 0) {
+          vm = currentInstance.ctx;
+        }
+      }
+    });
   }
 };
 

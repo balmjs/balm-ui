@@ -3,19 +3,13 @@
   <div :class="className">
     <ul class="mdc-list" tabindex="-1" role="menu" aria-hidden="true" aria-orientation="vertical">
       <slot>
-        <template v-for="(item, index) in currentItems">
+        <template v-for="(item, index) in currentItems" :key="`menu-item-${index}`">
           <template v-if="getType(item) === 'array'">
             <ui-menuitem :key="`group${index}`" nested>
-              <template v-for="(subItem, subIndex) in item">
-                <li
-                  v-if="subItem === UI_MENU.DIVIDER"
-                  :key="`subdivider${subIndex}`"
-                  class="mdc-list-divider"
-                  role="separator"
-                ></li>
+              <template v-for="(subItem, subIndex) in item" :key="`menu-subitem-${subIndex}`">
+                <ui-menuitem-divider v-if="isDivider(subItem)"></ui-menuitem-divider>
                 <ui-menuitem
                   v-else
-                  :key="`subitem${subIndex}`"
                   :item="getType(subItem) === 'object' ? subItem : {}"
                   :selected="isSelected(subItem)"
                 >
@@ -27,15 +21,9 @@
             </ui-menuitem>
           </template>
           <template v-else>
-            <li
-              v-if="item === UI_MENU.DIVIDER"
-              :key="`divider${index}`"
-              class="mdc-list-divider"
-              role="separator"
-            ></li>
+            <ui-menuitem-divider v-if="isDivider(item)"></ui-menuitem-divider>
             <ui-menuitem
               v-else
-              :key="`item${index}`"
               :item="getType(item) === 'object' ? item : {}"
               :selected="isSelected(item)"
             >
@@ -55,6 +43,8 @@ import { MDCMenu } from '../../../material-components-web/menu';
 import { Corner } from '../../../material-components-web/menu-surface/constants';
 import UiMenuitem from './menuitem';
 import UiMenuitemText from './menuitem-text';
+import UiMenuitemDivider from './menuitem-divider';
+import domMixin from '../../mixins/dom';
 import getType from '../../utils/typeof';
 
 // Define menu constants
@@ -74,7 +64,7 @@ const UI_MENU = {
     SELECTED: 'selected',
     CLOSED: 'closed',
     OPENED: 'opened',
-    CHANGE: 'change'
+    CHANGE: 'update:modelValue'
   }
 };
 
@@ -82,15 +72,13 @@ export default {
   name: 'UiMenu',
   components: {
     UiMenuitem,
-    UiMenuitemText
+    UiMenuitemText,
+    UiMenuitemDivider
   },
-  model: {
-    prop: 'open',
-    event: UI_MENU.EVENT.CHANGE
-  },
+  mixins: [domMixin],
   props: {
     // States
-    open: {
+    modelValue: {
       type: Boolean,
       default: false
     },
@@ -126,9 +114,14 @@ export default {
       default: false
     }
   },
+  emits: [
+    UI_MENU.EVENT.SELECTED,
+    UI_MENU.EVENT.CLOSED,
+    UI_MENU.EVENT.OPENED,
+    UI_MENU.EVENT.CHANGE
+  ],
   data() {
     return {
-      UI_MENU,
       getType,
       $menu: null,
       currentItems: this.items,
@@ -148,7 +141,7 @@ export default {
     }
   },
   watch: {
-    open(val) {
+    modelValue(val) {
       if (this.$menu.open !== val) {
         this.$menu.open = val;
       }
@@ -171,10 +164,10 @@ export default {
     this.initItems();
 
     if (!this.cssOnly) {
-      this.$menu = new MDCMenu(this.$el);
+      this.$menu = new MDCMenu(this.el);
 
       // Listen for selected item
-      this.$el.addEventListener(
+      this.el.addEventListener(
         `MDCMenu:${UI_MENU.EVENT.SELECTED}`,
         ({ detail }) => {
           const index = detail.index;
@@ -194,20 +187,14 @@ export default {
         }
       );
 
-      this.$el.addEventListener(
-        `MDCMenuSurface:${UI_MENU.EVENT.CLOSED}`,
-        () => {
-          this.$emit(UI_MENU.EVENT.CHANGE, false);
-          this.$emit(UI_MENU.EVENT.CLOSED);
-        }
-      );
+      this.el.addEventListener(`MDCMenuSurface:${UI_MENU.EVENT.CLOSED}`, () => {
+        this.$emit(UI_MENU.EVENT.CHANGE, false);
+        this.$emit(UI_MENU.EVENT.CLOSED);
+      });
 
-      this.$el.addEventListener(
-        `MDCMenuSurface:${UI_MENU.EVENT.OPENED}`,
-        () => {
-          this.$emit(UI_MENU.EVENT.OPENED);
-        }
-      );
+      this.el.addEventListener(`MDCMenuSurface:${UI_MENU.EVENT.OPENED}`, () => {
+        this.$emit(UI_MENU.EVENT.OPENED);
+      });
 
       this.setQuickOpen();
       this.setAnchorCorner();
@@ -215,6 +202,9 @@ export default {
     }
   },
   methods: {
+    isDivider(item) {
+      return item === UI_MENU.DIVIDER;
+    },
     initItems() {
       this.currentTextItems = this.currentItems.filter((item) =>
         getType(item) === 'object'
@@ -241,8 +231,8 @@ export default {
     },
     hasAnchor() {
       return (
-        this.$el.parentElement &&
-        this.$el.parentElement.classList.contains('mdc-menu-surface--anchor')
+        this.el.parentElement &&
+        this.el.parentElement.classList.contains('mdc-menu-surface--anchor')
       );
     },
     setAnchorCorner(menuPosition = this.position) {

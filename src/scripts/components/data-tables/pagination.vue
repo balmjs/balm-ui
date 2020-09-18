@@ -44,11 +44,10 @@
           </slot>
         </button>
         <div v-if="!mini && hasPageSpan" class="mdc-data-table__pagination-page">
-          <template v-for="pageNumber in pageCount">
+          <template v-for="pageNumber in pageCount" :key="`page-${pageNumber}`">
             <template v-if="isShow(pageNumber)">
               <button
                 v-if="showPage(pageNumber)"
-                :key="`page-${pageNumber}`"
                 :class="{
                   'mdc-button': true,
                   'mdc-data-table__pagination-button': true,
@@ -61,7 +60,6 @@
               </button>
               <button
                 v-else
-                :key="`page-${pageNumber}`"
                 class="mdc-button mdc-data-table__pagination-button mdc-pagination__button--ellipsis"
               >
                 <span class="mdc-button__label">...</span>
@@ -126,19 +124,15 @@ const UI_PAGINATION = {
   POSITIONS: ['left', 'center', 'right'],
   MIN_PAGE_SPAN: 3,
   EVENT: {
-    CHANGE: 'change'
+    CHANGE: 'update:modelValue'
   }
 };
 
 export default {
   name: 'UiPagination',
-  model: {
-    prop: 'page',
-    event: UI_PAGINATION.EVENT.CHANGE
-  },
   props: {
     // States
-    page: {
+    modelValue: {
       type: Number,
       default: 1
     },
@@ -184,13 +178,14 @@ export default {
       default: false
     }
   },
+  emits: [UI_PAGINATION.EVENT.CHANGE],
   data() {
     return {
-      currentPage: this.page,
+      currentPage: this.modelValue,
       currentPageSize: Array.isArray(this.pageSize)
         ? this.pageSize[0]
         : this.pageSize,
-      jumpPage: this.page
+      jumpPage: this.modelValue
     };
   },
   computed: {
@@ -241,7 +236,7 @@ export default {
     }
   },
   watch: {
-    page(val) {
+    modelValue(val) {
       this.currentPage = val;
     }
   },

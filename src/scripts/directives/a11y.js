@@ -72,7 +72,7 @@ const initAccessibility = (el) => {
 
 const BalmUI_AccessibilityDirective = {
   name: 'a11y',
-  inserted(el) {
+  mounted(el) {
     initAccessibility(el);
   }
 };

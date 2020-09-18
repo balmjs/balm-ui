@@ -70,23 +70,23 @@ const bindAnchor = (method, el = document) => {
 
 const BalmUI_AnchorDirective = {
   name: 'anchor',
-  bind(el, binding) {
+  beforeMount(el, binding) {
     updateAnchor('add', el, binding);
   },
-  inserted(el, binding) {
+  mounted(el, binding) {
     initAnchor(el, binding);
     if (binding.modifiers.html) {
       bindAnchor('add');
     }
   },
-  update(el, binding, vnode) {
+  updated(el, binding, vnode) {
     if (binding.modifiers.html) {
       vnode.context.$nextTick(() => {
         bindAnchor('add', vnode.context.$el);
       });
     }
   },
-  unbind(el, binding) {
+  beforeUnmount(el, binding) {
     if (el === UI_ANCHOR.body) {
       UI_ANCHOR.body = document.documentElement || document.body;
     }

@@ -61,10 +61,10 @@ const updateElevation = (method, el, { value, modifiers }) => {
 
 const BalmUI_ElevationDirective = {
   name: 'shadow',
-  bind(el, binding) {
+  beforeMount(el, binding) {
     updateElevation('add', el, binding);
   },
-  unbind(el, binding) {
+  beforeUnmount(el, binding) {
     updateElevation('remove', el, binding);
   }
 };

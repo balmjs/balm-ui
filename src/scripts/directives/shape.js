@@ -51,13 +51,13 @@ const updateShape = (method, el, { value, modifiers }) => {
 
 const BalmUI_ShapeDirective = {
   name: 'shape',
-  bind(el, binding) {
+  beforeMount(el, binding) {
     updateShape('add', el, binding);
   },
-  update(el, binding) {
+  updated(el, binding) {
     updateShape('update', el, binding);
   },
-  unbind(el, binding) {
+  beforeUnmount(el, binding) {
     updateShape('remove', el, binding);
   }
 };

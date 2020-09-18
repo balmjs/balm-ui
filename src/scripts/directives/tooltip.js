@@ -21,7 +21,7 @@ const initTooltip = (el, { value }) => {
 
 const BalmUI_TooltipDirective = {
   name: 'tooltip',
-  inserted(el, binding) {
+  mounted(el, binding) {
     initTooltip(el, binding);
   }
 };

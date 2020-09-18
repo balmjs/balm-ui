@@ -61,10 +61,10 @@ const updateBadge = (el, { value, modifiers }) => {
 
 const BalmUI_BadgeDirective = {
   name: 'badge',
-  inserted(el, binding) {
+  mounted(el, binding) {
     initBadge(el, binding);
   },
-  update(el, binding) {
+  updated(el, binding) {
     updateBadge(el, binding);
   }
 };

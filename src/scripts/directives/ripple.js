@@ -40,13 +40,13 @@ const initRipple = (el, { value, arg, modifiers }) => {
 
 const BalmUI_RippleDirective = {
   name: 'ripple',
-  bind(el, binding) {
+  beforeMount(el, binding) {
     updateRipple('add', el, binding);
   },
-  inserted(el, binding) {
+  mounted(el, binding) {
     initRipple(el, binding);
   },
-  unbind(el, binding) {
+  beforeUnmount(el, binding) {
     updateRipple('remove', el, binding);
   }
 };

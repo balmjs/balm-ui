@@ -1,4 +1,13 @@
-import UI_CARD from '../components/cards/constants';
+import { getCurrentElement } from './dom';
+
+// Define card constants
+const UI_CARD = {
+  cssClasses: {
+    action: 'mdc-card__actions',
+    button: 'mdc-card__action-buttons',
+    icon: 'mdc-card__action-icons'
+  }
+};
 
 export default {
   data() {
@@ -17,7 +26,7 @@ export default {
     }
   },
   mounted() {
-    const parentEl = this.$parent.$el.nextElementSibling;
+    const parentEl = getCurrentElement(this.$parent.$el);
     if (parentEl) {
       this.cardButton =
         parentEl.classList.contains(UI_CARD.cssClasses.button) ||

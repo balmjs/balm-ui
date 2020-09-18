@@ -8,6 +8,10 @@ function isElement(obj) {
         typeof obj.nodeName === 'string';
 }
 
+function getCurrentElement(el) {
+  return isElement(el) ? el : el.nextElementSibling;
+}
+
 export default {
   data() {
     return {
@@ -15,6 +19,8 @@ export default {
     };
   },
   mounted() {
-    this.el = isElement(this.$el) ? this.$el : this.$el.nextElementSibling;
+    this.el = getCurrentElement(this.$el);
   }
 };
+
+export { getCurrentElement };

@@ -117,14 +117,14 @@ const components = {
   // UiBadge,
   // UiBanner,
   UiButton,
-  // UiCard,
-  // UiCardActions,
-  // UiCardButtons,
-  // UiCardContent,
-  // UiCardMedia,
-  // UiCardMediaContent,
-  // UiCardText,
-  // UiCardIcons,
+  UiCard,
+  UiCardActions,
+  UiCardButtons,
+  UiCardContent,
+  UiCardMedia,
+  UiCardMediaContent,
+  UiCardText,
+  UiCardIcons,
   // UiCheckbox,
   // UiChip,
   // UiChips,
@@ -203,12 +203,12 @@ const plugins = {
 };
 
 const directives = {
-  // vAccessibility,
-  // vBadge,
-  // vRipple,
-  // vShadow,
-  // vShape,
-  // vTooltip
+  vAccessibility,
+  vBadge,
+  vRipple,
+  vShadow,
+  vShape,
+  vTooltip
 };
 
 const BalmUI = {

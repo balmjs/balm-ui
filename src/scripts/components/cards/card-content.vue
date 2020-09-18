@@ -7,14 +7,22 @@
 </template>
 
 <script>
+import domMixin from '../../mixins/dom';
 import rippleMixin from '../../mixins/ripple';
-import UI_CARD from './constants';
+
+// Define card constants
+const UI_CARD = {
+  EVENT: {
+    CLICK: 'click'
+  }
+};
 
 export default {
   name: 'UiCardContent',
-  mixins: [rippleMixin],
+  mixins: [domMixin, rippleMixin],
+  emits: [UI_CARD.EVENT.CLICK],
   mounted() {
-    this.initRipple(this.$el);
+    this.initRipple(this.el);
   },
   methods: {
     handleClick(event) {

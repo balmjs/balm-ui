@@ -92,7 +92,7 @@ const BalmUI_EventPlugin = {
         }
       });
     } else {
-      console.error('[BalmUI] The namespace of the event plugin is required');
+      throw new Error('[BalmUI] The namespace of the event plugin is required');
     }
   }
 };

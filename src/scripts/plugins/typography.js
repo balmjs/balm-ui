@@ -30,7 +30,7 @@ const BalmUI_TypographyPlugin = {
       if (T_STYLES.includes(style)) {
         className = `${T_BASE}--${style}`;
       } else {
-        console.warn(
+        throw new Error(
           '[BalmUI] Please set a valid typographic style:\n' +
             JSON.stringify(T_STYLES)
         );

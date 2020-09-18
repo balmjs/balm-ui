@@ -90,6 +90,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
                 setTrackActiveStyleProperty: function () { return undefined; },
                 removeTrackActiveStyleProperty: function () { return undefined; },
                 setValueIndicatorText: function () { return undefined; },
+                getValueToAriaValueTextFn: function () { return null; },
                 updateTickMarks: function () { return undefined; },
                 setPointerCapture: function () { return undefined; },
                 emitChangeEvent: function () { return undefined; },
@@ -500,11 +501,27 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
      *     updated for both thumbs based on current internal state.
      */
     MDCSliderFoundation.prototype.updateUI = function (thumb) {
+        this.updateThumbAriaAttributes(thumb);
         this.updateThumbAndTrackUI(thumb);
         this.updateValueIndicatorUI(thumb);
         this.updateTickMarksUI();
     };
     /**
+     * Updates thumb aria attributes based on current value.
+     * @param thumb Thumb whose aria attributes to update.
+     */
+    MDCSliderFoundation.prototype.updateThumbAriaAttributes = function (thumb) {
+        if (!thumb)
+            return;
+        var value = this.isRange && thumb === Thumb.START ? this.valueStart : this.value;
+        this.adapter.setThumbAttribute(attributes.ARIA_VALUENOW, String(value), thumb);
+        var valueToAriaValueTextFn = this.adapter.getValueToAriaValueTextFn();
+        if (valueToAriaValueTextFn) {
+            this.adapter.setThumbAttribute(attributes.ARIA_VALUETEXT, valueToAriaValueTextFn(value), thumb);
+        }
+    };
+    /**
+     * Updates value indicator UI based on current value.
      * @param thumb Thumb whose value indicator to update.
      */
     MDCSliderFoundation.prototype.updateValueIndicatorUI = function (thumb) {
@@ -557,14 +574,12 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
             if (this.valueStart === value)
                 return;
             this.valueStart = value;
-            this.adapter.setThumbAttribute(attributes.ARIA_VALUENOW, String(this.valueStart), Thumb.START);
         }
         else {
             // Exit early if current value is the same as the new value.
             if (this.value === value)
                 return;
             this.value = value;
-            this.adapter.setThumbAttribute(attributes.ARIA_VALUENOW, String(this.value), Thumb.END);
         }
         this.updateUI(thumb);
         if (emitInputEvent) {

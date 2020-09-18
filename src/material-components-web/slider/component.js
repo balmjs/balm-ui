@@ -32,6 +32,9 @@ var MDCSlider = /** @class */ (function (_super) {
     function MDCSlider() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.skipInitialUIUpdate = false;
+        // Function that maps a slider value to the value of the `aria-valuetext`
+        // attribute on the thumb element.
+        _this.valueToAriaValueTextFn = null;
         return _this;
     }
     MDCSlider.attachTo = function (root, options) {
@@ -96,6 +99,7 @@ var MDCSlider = /** @class */ (function (_super) {
                 var valueIndicatorEl = _this.getThumbEl(thumb).querySelector("." + cssClasses.VALUE_INDICATOR_TEXT);
                 valueIndicatorEl.textContent = String(value);
             },
+            getValueToAriaValueTextFn: function () { return _this.valueToAriaValueTextFn; },
             updateTickMarks: function (tickMarks) {
                 var tickMarksContainer = _this.root.querySelector("." + cssClasses.TICK_MARKS_CONTAINER);
                 if (!tickMarksContainer) {
@@ -199,6 +203,13 @@ var MDCSlider = /** @class */ (function (_super) {
     /** Sets slider disabled state. */
     MDCSlider.prototype.setDisabled = function (disabled) {
         this.foundation.setDisabled(disabled);
+    };
+    /**
+     * Sets a function that maps the slider value to the value of the
+     * `aria-valuetext` attribute on the thumb element.
+     */
+    MDCSlider.prototype.setValueToAriaValueTextFn = function (mapFn) {
+        this.valueToAriaValueTextFn = mapFn;
     };
     MDCSlider.prototype.getThumbEl = function (thumb) {
         return thumb === Thumb.END ? this.thumbs[this.thumbs.length - 1] :

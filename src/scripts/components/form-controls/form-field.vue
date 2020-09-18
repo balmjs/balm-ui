@@ -8,9 +8,11 @@
 
 <script>
 import { MDCFormField } from '../../../material-components-web/form-field';
+import domMixin from '../../mixins/dom';
 
 export default {
   name: 'UiFormField',
+  mixins: [domMixin],
   props: {
     // UI attributes
     nowrap: {
@@ -67,27 +69,27 @@ export default {
     }
   },
   mounted() {
-    this.$formField = new MDCFormField(this.$el);
+    this.$formField = new MDCFormField(this.el);
 
     this.formLabel();
   },
   methods: {
     formLabel() {
       if (this.$slots.default) {
-        const label = this.$slots.default.find(
-          (component) => component.tag === 'label'
-        );
+        const label = this.$slots
+          .default()
+          .find((component) => component.type === 'label');
 
         if (label) {
-          ['flexBasis', 'marginRight', 'marginBottom'].forEach((key) => {
+          [('flexBasis', 'marginRight', 'marginBottom')].forEach((key) => {
             if (this[key]) {
-              label.elm.style[key] = `${this[key]}px`;
+              label.el.style[key] = `${this[key]}px`;
             }
           });
         }
 
-        if (this.$el && this.$el.classList.contains('mdc-form__actions')) {
-          this.$el.style['padding-left'] = `${this.actionPaddingLeft}px`;
+        if (this.el && this.el.classList.contains('mdc-form__actions')) {
+          this.el.style['padding-left'] = `${this.actionPaddingLeft}px`;
         }
       }
     }

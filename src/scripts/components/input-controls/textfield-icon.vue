@@ -27,6 +27,7 @@ export default {
       default: false
     }
   },
+  emits: [UI_TEXTFIELD_ICON.EVENT.CLICK],
   computed: {
     className() {
       let result = [

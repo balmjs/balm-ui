@@ -1,10 +1,8 @@
+import domMixin from './dom';
 import getType from '../utils/typeof';
 
 export default {
-  model: {
-    prop: 'validMsg',
-    event: 'change' // NOTE: just for `@blur` event of the `<ui-textfield>`
-  },
+  mixins: [domMixin],
   props: {
     // States
     validMsg: {
@@ -22,6 +20,7 @@ export default {
       default: false
     }
   },
+  emits: ['update:validMsg'], // NOTE: just for `@blur` event of the `<ui-textfield>`
   computed: {
     hasValidMsg() {
       return !!this.validMsg;
@@ -32,20 +31,27 @@ export default {
   },
   methods: {
     updatePrevEl(className) {
-      const prevEl = this.$el.previousElementSibling;
-
-      if (prevEl && prevEl.classList.contains(className)) {
-        const prevElClasses = prevEl.classList;
-
-        if (
-          this.hasValidMsg &&
-          !prevElClasses.contains(`${className}--invalid`)
-        ) {
-          prevElClasses.add(`${className}--invalid`);
-        } else {
-          prevElClasses.remove(`${className}--invalid`);
-        }
-      }
+      // TODO: find dom
+      // const textfield = this.$parent.$slots
+      //   .default()
+      //   .find(
+      //     (vm) =>
+      //       getType(vm.type) === 'object' && vm.type.name === 'UiTextfield'
+      //   );
+      // console.log(textfield);
+      // const prevEl = this.el.previousElementSibling;
+      // console.log('updatePrevEl', prevEl);
+      // if (prevEl && prevEl.classList.contains(className)) {
+      //   const prevElClasses = prevEl.classList;
+      //   if (
+      //     this.hasValidMsg &&
+      //     !prevElClasses.contains(`${className}--invalid`)
+      //   ) {
+      //     prevElClasses.add(`${className}--invalid`);
+      //   } else {
+      //     prevElClasses.remove(`${className}--invalid`);
+      //   }
+      // }
     }
   }
 };

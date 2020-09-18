@@ -80,7 +80,7 @@ const BalmUI_EventPlugin = {
         inject: [eventKey],
         created() {
           const currentInstance = getCurrentInstance();
-          if (currentInstance && currentInstance.uid === 0) {
+          if (currentInstance && !currentInstance.parent) {
             vm = currentInstance.ctx;
           }
         },

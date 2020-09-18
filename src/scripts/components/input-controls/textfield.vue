@@ -10,11 +10,7 @@
     >
       <i
         v-if="materialIcon"
-        :class="[
-          UI_GLOBAL.cssClasses.icon,
-          UI_TEXTFIELD_ICON.cssClasses.icon,
-          UI_TEXTFIELD_ICON.cssClasses.leadingIcon
-        ]"
+        :class="getIconClassName([UI_TEXTFIELD_ICON.cssClasses.icon, UI_TEXTFIELD_ICON.cssClasses.leadingIcon])"
         v-text="materialIcon"
       ></i>
     </slot>
@@ -125,11 +121,11 @@ import FloatingLabel from '../form-controls/floating-label';
 import LineRipple from '../form-controls/line-ripple';
 import NotchedOutline from '../form-controls/notched-outline';
 import UiTextfieldCounter from './textfield-counter';
+import domMixin from '../../mixins/dom';
 import textfieldMixin from '../../mixins/textfield';
 import typeMixin from '../../mixins/type';
 import elementMixin from '../../mixins/element';
 import materialIconMixin from '../../mixins/material-icon';
-import UI_GLOBAL from '../../config/constants';
 import { UI_TEXTFIELD_ICON } from './constants';
 
 // Define textfield constants
@@ -141,7 +137,7 @@ const UI_TEXTFIELD = {
   EVENT: {
     FOCUS: 'focus',
     KEYDOWN: 'keydown',
-    INPUT: 'input',
+    INPUT: 'update:modelValue',
     KEYUP: 'keyup',
     CHANGE: 'change',
     ENTER: 'enter',
@@ -157,11 +153,13 @@ export default {
     NotchedOutline,
     UiTextfieldCounter
   },
-  mixins: [textfieldMixin, typeMixin, elementMixin, materialIconMixin],
-  model: {
-    prop: 'model',
-    event: UI_TEXTFIELD.EVENT.INPUT
-  },
+  mixins: [
+    domMixin,
+    textfieldMixin,
+    typeMixin,
+    elementMixin,
+    materialIconMixin
+  ],
   props: {
     // UI variants
     type: {
@@ -173,7 +171,7 @@ export default {
       default: false
     },
     // States
-    model: {
+    modelValue: {
       type: [String, Number, Array], // NOTE: Array for `<ui-datepicker>`
       default: ''
     },
@@ -240,13 +238,21 @@ export default {
       default: false
     }
   },
+  emits: [
+    UI_TEXTFIELD.EVENT.FOCUS,
+    UI_TEXTFIELD.EVENT.KEYDOWN,
+    UI_TEXTFIELD.EVENT.INPUT,
+    UI_TEXTFIELD.EVENT.KEYUP,
+    UI_TEXTFIELD.EVENT.CHANGE,
+    UI_TEXTFIELD.EVENT.ENTER,
+    UI_TEXTFIELD.EVENT.BLUR
+  ],
   data() {
     return {
-      UI_GLOBAL,
       UI_TEXTFIELD,
       UI_TEXTFIELD_ICON,
       $textField: null,
-      inputValue: this.model
+      inputValue: this.modelValue
     };
   },
   computed: {
@@ -286,7 +292,7 @@ export default {
     }
   },
   watch: {
-    model(val, oldVal) {
+    modelValue(val, oldVal) {
       this.inputValue = val;
 
       // fix(ui): dynamic assignment bug
@@ -307,8 +313,8 @@ export default {
   },
   methods: {
     init() {
-      if (this.$el.nextElementSibling) {
-        const characterCounter = this.$el.nextElementSibling.querySelector(
+      if (this.el.nextElementSibling) {
+        const characterCounter = this.el.nextElementSibling.querySelector(
           '.mdc-text-field-character-counter'
         );
 
@@ -320,7 +326,7 @@ export default {
         }
       }
 
-      this.$textField = new MDCTextField(this.$el);
+      this.$textField = new MDCTextField(this.el);
     },
     handleFocus(event) {
       this.$emit(UI_TEXTFIELD.EVENT.FOCUS, event);
@@ -341,17 +347,21 @@ export default {
       this.$emit(UI_TEXTFIELD.EVENT.ENTER, event.target.value);
     },
     handleBlur(event) {
-      this.clearCustomValidationMsg();
+      // this.clearCustomValidationMsg();
       this.$emit(UI_TEXTFIELD.EVENT.BLUR, event);
-    },
-    clearCustomValidationMsg() {
-      if (this.helperTextId) {
-        const textfieldHelper = this.$parent.$children.find(
-          (vnode) => vnode.id === this.helperTextId
-        );
-        textfieldHelper && textfieldHelper.$emit('change', '');
-      }
     }
+    // TODO
+    // clearCustomValidationMsg() {
+    //   if (this.helperTextId && this.el.nextElementSibling) {
+    //     const textfieldHelperEl = this.el.nextElementSibling.querySelector(
+    //       '.mdc-text-field-helper-text'
+    //     );
+
+    //     if (textfieldHelperEl && textfieldHelperEl.id === this.helperTextId) {
+    //       // this.el.nextSibling.$emit('update:validMsg', '');
+    //     }
+    //   }
+    // }
   }
 };
 </script>

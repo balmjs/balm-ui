@@ -143,8 +143,8 @@ const components = {
   UiDrawerBackdrop,
   UiFab,
   // UiFile,
-  // UiForm,
-  // UiFormField,
+  UiForm,
+  UiFormField,
   UiGrid,
   UiGridCell,
   UiIcon,
@@ -187,9 +187,9 @@ const components = {
   UiTabScroller,
   UiTabIndicator,
   UiTab,
-  // UiTextfield,
-  // UiTextfieldHelper,
-  // UiTextfieldIcon,
+  UiTextfield,
+  UiTextfieldHelper,
+  UiTextfieldIcon,
   // UiTooltip,
   UiTopAppBar
 };

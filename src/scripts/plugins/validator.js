@@ -150,7 +150,7 @@ const BalmUI_ValidatorPlugin = {
       inject: Object.keys(validators),
       created() {
         const currentInstance = getCurrentInstance();
-        if (currentInstance && currentInstance.uid === 0) {
+        if (currentInstance && !currentInstance.parent) {
           vm = currentInstance.ctx;
         }
       }

@@ -1,5 +1,8 @@
 export default {
   props: {
-    align: String
+    align: {
+      type: String,
+      default: 'start'
+    }
   }
 };

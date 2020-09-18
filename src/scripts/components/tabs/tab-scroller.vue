@@ -12,16 +12,13 @@
 
 <script>
 import { MDCTabScroller } from '../../../material-components-web/tab-scroller';
+import domMixin from '../../mixins/dom';
 import tabScrollerMixin from '../../mixins/tab-scroller';
 import { UI_TAB_SCROLLER } from './constants';
 
 export default {
   name: 'UiTabScroller',
-  mixins: [tabScrollerMixin],
-  model: {
-    prop: 'scrollX',
-    event: UI_TAB_SCROLLER.EVENT.CHANGE
-  },
+  mixins: [domMixin, tabScrollerMixin],
   props: {
     // States
     scrollX: {
@@ -29,6 +26,7 @@ export default {
       default: 0
     }
   },
+  emits: [UI_TAB_SCROLLER.EVENT.CHANGE],
   data() {
     return {
       $tabScroller: null,
@@ -55,7 +53,7 @@ export default {
     }
   },
   mounted() {
-    this.$tabScroller = new MDCTabScroller(this.$el);
+    this.$tabScroller = new MDCTabScroller(this.el);
   },
   methods: {
     increment(scrollX = 0) {

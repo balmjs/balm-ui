@@ -1,7 +1,7 @@
 // Define tab bar constants
 const UI_TAB_BAR = {
   EVENT: {
-    CHANGE: 'change'
+    CHANGE: 'update:modelValue'
   }
 };
 
@@ -9,7 +9,7 @@ const UI_TAB_BAR = {
 const UI_TAB_SCROLLER = {
   ALIGN: ['start', 'center', 'end'],
   EVENT: {
-    CHANGE: 'change'
+    CHANGE: 'update:scrollX' // TODO
   }
 };
 

@@ -33,9 +33,11 @@ export default {
   },
   computed: {
     className() {
+      const isActive = this.$parent && this.$parent.$data.modelValue;
+
       return {
         'mdc-tab-indicator': true,
-        'mdc-tab-indicator--active': this.$parent.active,
+        'mdc-tab-indicator--active': isActive,
         'mdc-tab-indicator--fade': this.fade
       };
     },

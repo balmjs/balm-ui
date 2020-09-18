@@ -14,12 +14,12 @@ const BalmUI_GridPlugin = {
             value
           );
         } else {
-          console.warn(
+          throw new Error(
             'Please set a device type: ' + JSON.stringify(TYPE_OF_DEVICE)
           );
         }
       } else {
-        console.warn(
+        throw new Error(
           'Please set a grid property: ' + JSON.stringify(GRID_PROPERTY)
         );
       }

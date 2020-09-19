@@ -198,7 +198,7 @@ npm install --save balm-ui
     <title>Hello BalmUI</title>
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/balm-ui/dist/balm-ui.css"
+      href="https://cdn.jsdelivr.net/npm/balm-ui@next/dist/balm-ui.css"
     />
   </head>
   <body>
@@ -206,8 +206,8 @@ npm install --save balm-ui
       <ui-button @click="$alert(message)" icon="add">SayHi</ui-button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script src="https://cdn.jsdelivr.net/npm/balm-ui"></script>
-    <script src="https://cdn.jsdelivr.net/npm/balm-ui/dist/balm-ui-plus.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/balm-ui@next"></script>
+    <script src="https://cdn.jsdelivr.net/npm/balm-ui@next/dist/balm-ui-plus.js"></script>
     <script>
       new Vue({
         el: '#app',

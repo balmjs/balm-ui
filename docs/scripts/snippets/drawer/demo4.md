@@ -3,13 +3,13 @@
   <!-- App bar -->
   <ui-top-app-bar
     class="demo-app-bar"
-    contentSelector=".demo-app-content"
-    navId="demo-menu"
+    content-selector=".demo-app-content"
+    nav-id="demo-menu"
   >
     Title
   </ui-top-app-bar>
   <!-- Drawer -->
-  <ui-drawer type="dismissible" viewportHeight navId="demo-menu">
+  <ui-drawer type="dismissible" viewport-height nav-id="demo-menu">
     <ui-drawer-header>
       <ui-drawer-title>Title</ui-drawer-title>
       <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>

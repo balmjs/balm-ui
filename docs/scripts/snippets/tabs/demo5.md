@@ -1,8 +1,6 @@
 ```html
-<ui-tab-bar class="hero-demo-tab-bar" v-model="active">
-  <ui-tab v-for="(item, index) in list" :key="index">
-    {{ item }}
-  </ui-tab>
+<ui-tab-bar v-model="active" class="hero-demo-tab-bar">
+  <ui-tab v-for="(item, index) in list" :key="index"> {{ item }} </ui-tab>
 </ui-tab-bar>
 ```
 

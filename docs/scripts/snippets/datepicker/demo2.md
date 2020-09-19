@@ -1,10 +1,10 @@
 ```html
 <ui-datepicker
+  v-model="date"
+  :config="config"
   placeholder="Select Datetime.."
   toggle
   clear
-  :config="config"
-  v-model="date"
 >
   <template #toggle>
     <i class="fa fa-calendar"></i>

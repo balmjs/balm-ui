@@ -1,15 +1,15 @@
 ```html
 <ui-select
-  defaultLabel="Province"
-  :options="provinces"
   v-model="formData.province"
+  :options="provinces"
+  default-label="Province"
   @change="onChangeProvince($event)"
 ></ui-select>
 
 <ui-select
-  defaultLabel="City"
-  :options="cities"
   v-model="formData.city"
+  :options="cities"
+  default-label="City"
 ></ui-select>
 ```
 

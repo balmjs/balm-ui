@@ -1,15 +1,15 @@
 ```html
-<ui-switch id="basic-switch" :trueValue="1" :falseValue="0" v-model="toggle1">
+<ui-switch id="basic-switch" v-model="toggle1" :true-value="1" :false-value="0">
   {{ toggle1 }}
 </ui-switch>
 <label for="basic-switch">{{ toggle1 }}</label>
 
 <ui-switch
   id="basic-switch-custom"
-  class="demo-switch--custom"
-  trueValue="on"
-  falseValue="off"
   v-model="toggle2"
+  class="demo-switch--custom"
+  true-value="on"
+  false-value="off"
 >
   {{ toggle2 }} (custom color)
 </ui-switch>

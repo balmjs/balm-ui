@@ -1,12 +1,12 @@
 ```html
-<ui-tab-bar class="custom-demo-tab-bar" v-model="active">
+<ui-tab-bar v-model="active" class="custom-demo-tab-bar">
   <ui-tab
     v-for="(tab, index) in tabs"
     :key="index"
     type="both"
     :icon="tab.icon"
-    minWidth
-    contentIndicator
+    min-width
+    content-indicator
   >
     {{ tab.text }}
   </ui-tab>

@@ -1,7 +1,7 @@
 ```html
 <div class="page--top-app-bar">
   <ui-top-app-bar
-    contentSelector="#content-main"
+    content-selector="#content-main"
     :type="type"
     :title="title"
     @nav="$balmUI.onShow('openDrawer')"
@@ -19,7 +19,7 @@
     </template>
   </ui-top-app-bar>
 
-  <ui-drawer type="modal" v-model="openDrawer">
+  <ui-drawer v-model="openDrawer" type="modal">
     <ui-drawer-header
       :innerClass="$theme.getThemeClass(['primary-bg', 'on-primary'])"
     >

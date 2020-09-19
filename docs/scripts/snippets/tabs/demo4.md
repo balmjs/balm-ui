@@ -1,5 +1,5 @@
 ```html
-<ui-tab-bar class="custom-demo" v-model="active">
+<ui-tab-bar v-model="active" class="custom-demo">
   <ui-tab
     v-for="(tab, index) in tabs"
     :key="index"
@@ -7,7 +7,7 @@
     type="both"
     :icon="tab.icon"
     stacked
-    contentIndicator
+    content-indicator
   >
     {{ tab.text }}
     <template #indicator>

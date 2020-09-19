@@ -5,7 +5,7 @@
   :options="filterList"
 ></ui-chips>
 
-<ui-chips type="filter" v-model="selectedValue2">
+<ui-chips v-model="selectedValue2" type="filter">
   <ui-chip
     v-for="(item, index) in filterList2"
     :key="index"

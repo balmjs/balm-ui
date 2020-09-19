@@ -3,10 +3,10 @@
 
 <ui-snackbar
   v-model="open"
-  :timeoutMs="timeout"
+  :timeout-ms="timeout"
   :message="message"
-  :actionButtonText="actionText"
-  :actionType="actionType ? 1 : 0"
+  :action-button-text="actionText"
+  :action-type="actionType ? 1 : 0"
 ></ui-snackbar>
 ```
 

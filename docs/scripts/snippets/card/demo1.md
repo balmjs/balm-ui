@@ -6,7 +6,7 @@
   <ui-list-divider></ui-list-divider>
 
   <template v-for="(item, index) in list">
-    <a :key="`item${index}`" class="demo-card-article" v-ripple>
+    <a v-ripple :key="`item${index}`" class="demo-card-article">
       <h2 :class="[$tt('headline5'), 'demo-card-article__title']">
         {{ item.title }}
       </h2>
@@ -15,7 +15,7 @@
     <ui-list-divider :key="`divider${index}`"></ui-list-divider>
   </template>
 
-  <ui-card-actions fullBleed>
+  <ui-card-actions full-bleed>
     <ui-button class="demo-card-action">
       All Business Headlines
       <template #after>

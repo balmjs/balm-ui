@@ -1,10 +1,10 @@
 ```html
 <ui-datepicker
+  v-model="date"
+  :config="config"
   placeholder="Select Date.."
   toggle
   clear
-  :config="config"
-  v-model="date"
 ></ui-datepicker>
 ```
 

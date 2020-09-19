@@ -4,10 +4,10 @@
   v-model="decodeContent"
   placeholder="Compose an epic..."
   :toolbar="toolbar"
-  :toolbarCustomHandlers="toolbarCustomHandlers"
+  :toolbar-custom-handlers="toolbarCustomHandlers"
   :emotions="emotions"
   :extension="extension"
-  customImageHandler
+  custom-image-handler
   @file-change="onFileChange"
 ></ui-editor>
 ```

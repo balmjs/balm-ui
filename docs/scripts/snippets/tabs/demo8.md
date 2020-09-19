@@ -2,8 +2,8 @@
 <div class="demo">
   <ui-tab-scroller
     ref="scroller"
-    class="demo-scroller"
     v-model="value"
+    class="demo-scroller"
     @change="$balmUI.onChange('scrollValue', $event)"
   >
     <span v-for="i in 32" :key="i" class="demo-cube"></span>
@@ -15,10 +15,10 @@
     <label for="id0">Scroll to</label>
     <input
       id="id0"
+      v-model="scrollValue"
       class="demo-scroll-value"
       type="number"
       name="scrollLeft"
-      v-model="scrollValue"
     />
     <button type="submit" @click="$balmUI.onChange('value', +scrollValue)">
       Scroll

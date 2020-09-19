@@ -2,7 +2,7 @@
 <h6 :class="$tt('headline6')">Text Label Width-Matching Indicator</h6>
 <div class="example">
   <ui-tab-bar v-model="active">
-    <ui-tab v-for="(tab, index) in tabs" :key="index" contentIndicator>
+    <ui-tab v-for="(tab, index) in tabs" :key="index" content-indicator>
       {{ tab.text }}
     </ui-tab>
   </ui-tab-bar>

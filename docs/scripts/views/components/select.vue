@@ -76,7 +76,6 @@
           <ui-select
             id="full-func-js-select"
             v-model="selected1.value"
-            :selected-index="selected1.index"
             :options="options1"
             :class="{ 'demo-select-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
@@ -105,7 +104,6 @@
             id="outlined-select"
             v-model="selected1.value"
             outlined
-            :selected-index="selected1.index"
             :options="options1"
             :class="{ 'demo-select-custom-colors': controls.customColor }"
             :disabled="controls.disabled"

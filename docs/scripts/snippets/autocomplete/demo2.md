@@ -5,7 +5,7 @@
   placeholder="Type 'a', then 'b'"
   delay="500"
   remote
-  autoFocus
+  auto-focus
   @search="onSearch"
 ></ui-autocomplete>
 ```

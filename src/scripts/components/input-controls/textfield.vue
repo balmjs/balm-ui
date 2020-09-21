@@ -94,17 +94,17 @@
     ></slot>
 
     <!-- Label text -->
-    <floating-label v-if="!noLabel && !isOutlined">
+    <mdc-floating-label v-if="!noLabel && !isOutlined">
       <slot>{{ label }}</slot>
-    </floating-label>
+    </mdc-floating-label>
 
     <!-- Activation indicator -->
-    <notched-outline v-if="isOutlined" :has-label="!noLabel">
-      <floating-label>
+    <mdc-notched-outline v-if="isOutlined" :has-label="!noLabel">
+      <mdc-floating-label>
         <slot>{{ label }}</slot>
-      </floating-label>
-    </notched-outline>
-    <line-ripple v-else></line-ripple>
+      </mdc-floating-label>
+    </mdc-notched-outline>
+    <mdc-line-ripple v-else></mdc-line-ripple>
 
     <!-- Custom area (optional) -->
     <div v-if="plus" class="mdc-text-field__plus">
@@ -117,9 +117,9 @@
 
 <script>
 import { MDCTextField } from '../../../material-components-web/textfield';
-import FloatingLabel from '../form-controls/floating-label';
-import LineRipple from '../form-controls/line-ripple';
-import NotchedOutline from '../form-controls/notched-outline';
+import MdcFloatingLabel from '../form-controls/mdc-floating-label';
+import MdcLineRipple from '../form-controls/mdc-line-ripple';
+import MdcNotchedOutline from '../form-controls/mdc-notched-outline';
 import UiTextfieldCounter from './textfield-counter';
 import domMixin from '../../mixins/dom';
 import textfieldMixin from '../../mixins/textfield';
@@ -148,9 +148,9 @@ const UI_TEXTFIELD = {
 export default {
   name: 'UiTextfield',
   components: {
-    FloatingLabel,
-    LineRipple,
-    NotchedOutline,
+    MdcFloatingLabel,
+    MdcLineRipple,
+    MdcNotchedOutline,
     UiTextfieldCounter
   },
   mixins: [

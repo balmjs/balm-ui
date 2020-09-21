@@ -10,16 +10,16 @@
       :aria-describedby="helperTextId"
     >
       <!-- Label -->
-      <notched-outline v-if="isOutlined" :has-label="!noLabel">
-        <floating-label>
+      <mdc-notched-outline v-if="isOutlined" :has-label="!noLabel">
+        <mdc-floating-label>
           <slot>{{ label }}</slot>
-        </floating-label>
-      </notched-outline>
+        </mdc-floating-label>
+      </mdc-notched-outline>
       <template v-else>
         <span class="mdc-select__ripple"></span>
-        <floating-label v-if="!noLabel">
+        <mdc-floating-label v-if="!noLabel">
           <slot>{{ label }}</slot>
-        </floating-label>
+        </mdc-floating-label>
       </template>
       <!-- Leading Icon -->
       <slot name="icon">
@@ -51,7 +51,7 @@
           </svg>
         </slot>
       </span>
-      <line-ripple v-if="!isOutlined"></line-ripple>
+      <mdc-line-ripple v-if="!isOutlined"></mdc-line-ripple>
     </div>
     <!-- Options -->
     <div
@@ -87,9 +87,9 @@
 
 <script>
 import { MDCSelect } from '../../../material-components-web/select';
-import FloatingLabel from '../form-controls/floating-label';
-import LineRipple from '../form-controls/line-ripple';
-import NotchedOutline from '../form-controls/notched-outline';
+import MdcFloatingLabel from '../form-controls/mdc-floating-label';
+import MdcLineRipple from '../form-controls/mdc-line-ripple';
+import MdcNotchedOutline from '../form-controls/mdc-notched-outline';
 import typeMixin from '../../mixins/type';
 import materialIconMixin from '../../mixins/material-icon';
 import UI_GLOBAL from '../../config/constants';
@@ -113,9 +113,9 @@ const UI_SELECT = {
 export default {
   name: 'UiSelect',
   components: {
-    FloatingLabel,
-    LineRipple,
-    NotchedOutline
+    MdcFloatingLabel,
+    MdcLineRipple,
+    MdcNotchedOutline
   },
   mixins: [typeMixin, materialIconMixin],
   model: {

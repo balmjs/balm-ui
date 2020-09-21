@@ -143,7 +143,7 @@ import { MDCDataTable } from '../../../material-components-web/data-table';
 import { events } from '../../../material-components-web/data-table/constants';
 import MdcCheckbox from '../selection-controls/mdc-checkbox';
 import MdcIconButton from '../buttons/mdc-icon-button';
-// import TableProgress from './progress';
+// import MdcTableProgress from './mdc-table-progress';
 import tableMixin from '../../mixins/table';
 import theadMixin from '../../mixins/thead';
 import tbodyMixin from '../../mixins/tbody';
@@ -155,7 +155,7 @@ export default {
   components: {
     MdcCheckbox,
     MdcIconButton
-    // TableProgress
+    // MdcTableProgress
   },
   mixins: [tableMixin, theadMixin, tbodyMixin, tfootMixin],
   model: {

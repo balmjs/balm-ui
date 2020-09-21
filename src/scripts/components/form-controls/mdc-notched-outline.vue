@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'NotchedOutline',
+  name: 'MdcNotchedOutline',
   props: {
     hasLabel: {
       type: Boolean,

@@ -11,6 +11,6 @@
 import LinearProgress from '../progress-indicators/linear-progress';
 
 export default {
-  name: 'TableProgress'
+  name: 'MdcTableProgress'
 };
 </script>

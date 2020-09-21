@@ -32,6 +32,7 @@
 
 <script>
 import { MDCSnackbar } from '../../../material-components-web/snackbar';
+import domMixin from '../../mixins/dom';
 
 // Define snackbar constants
 const UI_SNACKBAR = {
@@ -45,24 +46,21 @@ const UI_SNACKBAR = {
     DEFAULTS: 5000
   },
   EVENT: {
-    CHANGE: 'change',
+    CHANGE: 'update:modelValue',
     CLOSED: 'closed'
   }
 };
 
 export default {
   name: 'UiSnackbar',
-  model: {
-    prop: 'open',
-    event: UI_SNACKBAR.EVENT.CHANGE
-  },
+  mixins: [domMixin],
   props: {
     actionType: {
       type: Number,
       default: UI_SNACKBAR.ACTION_TYPE.ACTION_BUTTON
     },
     // States
-    open: {
+    modelValue: {
       type: Boolean,
       default: false
     },
@@ -88,6 +86,7 @@ export default {
       default: false
     }
   },
+  emits: [UI_SNACKBAR.EVENT.CHANGE, UI_SNACKBAR.EVENT.CLOSED],
   data() {
     return {
       $snackbar: null
@@ -109,7 +108,7 @@ export default {
     }
   },
   watch: {
-    open(val) {
+    modelValue(val) {
       if (val) {
         this.$snackbar.open();
       }
@@ -122,7 +121,7 @@ export default {
     }
   },
   mounted() {
-    this.$snackbar = new MDCSnackbar(this.$el);
+    this.$snackbar = new MDCSnackbar(this.el);
 
     if (this.timeoutMs !== UI_SNACKBAR.timeoutMs.DEFAULTS) {
       this.setTimeoutMs(+this.timeoutMs);

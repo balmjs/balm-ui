@@ -8,9 +8,11 @@
 
 <script>
 import { MDCTooltip } from '../../../material-components-web/tooltip';
+import domMixin from '../../mixins/dom';
 
 export default {
   name: 'UiTooltip',
+  mixins: [domMixin],
   props: {
     width: {
       type: [String, Number],
@@ -27,7 +29,7 @@ export default {
     }
   },
   mounted() {
-    new MDCTooltip(this.$el);
+    new MDCTooltip(this.el);
   }
 };
 </script>

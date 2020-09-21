@@ -180,7 +180,7 @@ const components = {
   // UiSelectHelper,
   // UiSelectIcon,
   UiSlider,
-  // UiSnackbar,
+  UiSnackbar,
   UiSpinner,
   UiSwitch,
   UiTabs,
@@ -191,7 +191,7 @@ const components = {
   UiTextfield,
   UiTextfieldHelper,
   UiTextfieldIcon,
-  // UiTooltip,
+  UiTooltip,
   UiTopAppBar
 };
 

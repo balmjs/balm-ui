@@ -16,7 +16,10 @@
 
 <script>
 import { MDCDialog } from '../../../material-components-web/dialog';
-import { cssClasses } from '../../../material-components-web/dialog/constants';
+import {
+  cssClasses,
+  strings
+} from '../../../material-components-web/dialog/constants';
 
 // Define dialog constants
 const UI_DIALOG = {
@@ -24,23 +27,17 @@ const UI_DIALOG = {
     content: 'mdc-dialog__content'
   },
   EVENT: {
-    CHANGE: 'change',
+    CHANGE: 'update:modelValue',
     CLOSE: 'close',
-    CONFIRM: 'confirm',
-    ACCEPT: 'accept',
-    CANCEL: 'cancel'
+    CONFIRM: 'confirm'
   }
 };
 
 export default {
   name: 'UiDialog',
-  model: {
-    prop: 'open',
-    event: UI_DIALOG.EVENT.CHANGE
-  },
   props: {
     // States
-    open: {
+    modelValue: {
       type: Boolean,
       default: false
     },
@@ -70,6 +67,11 @@ export default {
       default: false
     }
   },
+  emits: [
+    UI_DIALOG.EVENT.CHANGE,
+    UI_DIALOG.EVENT.CLOSE,
+    UI_DIALOG.EVENT.CONFIRM
+  ],
   data() {
     return {
       $dialog: null,
@@ -86,7 +88,7 @@ export default {
     }
   },
   watch: {
-    open(val) {
+    modelValue(val) {
       if (val) {
         this.$dialog.open();
       } else {
@@ -106,10 +108,10 @@ export default {
       );
 
       // Accessibility: Using `aria-hidden` as a fallback for `aria-modal`
-      this.$dialog.listen('MDCDialog:opened', () => {
+      this.$dialog.listen(strings.OPENED_EVENT, () => {
         this.dialogBody.setAttribute('aria-hidden', 'true');
       });
-      this.$dialog.listen('MDCDialog:closing', ({ detail }) => {
+      this.$dialog.listen(strings.CLOSING_EVENT, ({ detail }) => {
         this.dialogBody.removeAttribute('aria-hidden');
 
         // NOTE: fix for the Escape key
@@ -123,7 +125,7 @@ export default {
       }
     });
   },
-  beforeDestroy() {
+  beforeUnmount() {
     // NOTE: for conditional rendering
     document.querySelector('body').classList.remove(cssClasses.SCROLL_LOCK);
   },
@@ -135,12 +137,10 @@ export default {
       this.$emit(UI_DIALOG.EVENT.CLOSE);
     },
     handleAccept() {
-      this.$emit(UI_DIALOG.EVENT.ACCEPT);
       this.$emit(UI_DIALOG.EVENT.CONFIRM, true);
       this.handleClose();
     },
     handleCancel() {
-      this.$emit(UI_DIALOG.EVENT.CANCEL);
       this.$emit(UI_DIALOG.EVENT.CONFIRM, false);
       this.handleClose();
     }

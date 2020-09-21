@@ -222,7 +222,7 @@ export default {
       this.flatpickr = flatpickr(this.$el, config);
     }
   },
-  beforeDestroy() {
+  beforeUnmount() {
     this.flatpickr.destroy();
     this.flatpickr = null;
   },

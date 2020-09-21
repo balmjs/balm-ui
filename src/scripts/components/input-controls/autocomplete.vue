@@ -196,7 +196,7 @@ export default {
 
     this.setDataSource(this.source);
   },
-  beforeDestroy() {
+  beforeUnmount() {
     if (this.$callback) {
       document.removeEventListener(UI_AUTOCOMPLETE.EVENT.CLICK, this.$callback);
     }
@@ -270,7 +270,7 @@ export default {
           keywords = `\\${keywords}`;
         }
         // Local datasource
-        this.currentSuggestion.data = this.currentSource.filter(word => {
+        this.currentSuggestion.data = this.currentSource.filter((word) => {
           return RegExp(keywords, 'i').test(word[UI_AUTOCOMPLETE.ITEM.LABEL]);
         });
 
@@ -279,7 +279,7 @@ export default {
     },
     setDataSource(dataSource) {
       if (getType(dataSource) === 'array') {
-        this.currentSource = dataSource.map(data => {
+        this.currentSource = dataSource.map((data) => {
           let item = {};
 
           if (getType(data) === 'string' || getType(data) === 'number') {
@@ -384,7 +384,7 @@ export default {
     },
     handleBlur(event) {
       if (!this.$callback) {
-        this.$callback = e => {
+        this.$callback = (e) => {
           let inTextfield = false;
           let parentEl = e.target;
 

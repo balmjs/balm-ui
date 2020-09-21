@@ -10,6 +10,7 @@
 
 <script>
 import { MDCChipSet } from '../../../material-components-web/chips';
+import { strings } from '../../../material-components-web/chips/chip/constants';
 import UiChip from './chip';
 import domMixin from '../../mixins/dom';
 import typeMixin from '../../mixins/type';
@@ -163,7 +164,7 @@ export default {
         }
 
         const adapter = this.$chipSet.foundation.adapter;
-        this.$chipSet.listen('MDCChip:selection', ({ detail }) => {
+        this.$chipSet.listen(strings.SELECTION_EVENT, ({ detail }) => {
           if (this.choiceChips) {
             if (detail.chipId === this.choiceChipId) {
               const selectedIndex = detail.selected

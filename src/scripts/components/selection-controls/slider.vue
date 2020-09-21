@@ -38,6 +38,7 @@
 
 <script>
 import { MDCSlider } from '../../../material-components-web/slider';
+import { events } from '../../../material-components-web/slider/constants';
 import MdcSliderThumb from './mdc-slider-thumb';
 import domMixin from '../../mixins/dom';
 import typeMixin from '../../mixins/type';
@@ -135,7 +136,7 @@ export default {
   mounted() {
     this.$slider = new MDCSlider(this.el);
 
-    this.$slider.listen(`MDCSlider:${UI_SLIDER.EVENT.CHANGE}`, ({ detail }) => {
+    this.$slider.listen(events.CHANGE, ({ detail }) => {
       const valuenow = Math.round(detail.value);
       if (this.isRange) {
         if (this.selectedValue[detail.thumb - 1] !== valuenow) {

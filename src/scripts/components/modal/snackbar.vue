@@ -24,6 +24,7 @@
 
 <script>
 import { MDCSnackbar } from '../../../material-components-web/snackbar';
+import { strings } from '../../../material-components-web/snackbar/constants';
 import MdcButton from '../buttons/mdc-button';
 import MdcIconButton from '../buttons/mdc-icon-button';
 import domMixin from '../../mixins/dom';
@@ -128,7 +129,7 @@ export default {
       this.$snackbar.labelText = this.message;
     }
 
-    this.$snackbar.listen(`MDCSnackbar:${UI_SNACKBAR.EVENT.CLOSED}`, () => {
+    this.$snackbar.listen(strings.CLOSED_EVENT, () => {
       this.$emit(UI_SNACKBAR.EVENT.CHANGE, false);
       this.$emit(UI_SNACKBAR.EVENT.CLOSED);
     });

@@ -42,16 +42,16 @@
                           class="mdc-data-table__header-cell-label"
                           v-text="theadCell[T_CELL.VALUE]"
                         ></div>
-                        <button
-                          class="mdc-icon-button material-icons mdc-data-table__sort-icon-button"
-                          v-text="UI_TABLE.SORTING.ICON"
-                        ></button>
+                        <mdc-icon-button
+                          class="mdc-data-table__sort-icon-button"
+                          :icon="UI_TABLE.SORTING.ICON"
+                        ></mdc-icon-button>
                       </template>
                       <template v-else>
-                        <button
-                          class="mdc-icon-button material-icons mdc-data-table__sort-icon-button"
-                          v-text="UI_TABLE.SORTING.ICON"
-                        ></button>
+                        <mdc-icon-button
+                          class="mdc-data-table__sort-icon-button"
+                          :icon="UI_TABLE.SORTING.ICON"
+                        ></mdc-icon-button>
                         <div class="mdc-data-table__header-cell-label">
                           <slot v-if="theadCell[T_CELL.SLOT]" :name="theadCell[T_CELL.SLOT]"></slot>
                           <template v-else>{{ theadCell[T_CELL.VALUE] }}</template>
@@ -142,6 +142,7 @@
 import { MDCDataTable } from '../../../material-components-web/data-table';
 import { events } from '../../../material-components-web/data-table/constants';
 import MdcCheckbox from '../selection-controls/mdc-checkbox';
+import MdcIconButton from '../buttons/mdc-icon-button';
 // import TableProgress from './progress';
 import tableMixin from '../../mixins/table';
 import theadMixin from '../../mixins/thead';
@@ -152,7 +153,8 @@ import UI_TABLE from './constants';
 export default {
   name: 'UiTable',
   components: {
-    MdcCheckbox
+    MdcCheckbox,
+    MdcIconButton
     // TableProgress
   },
   mixins: [tableMixin, theadMixin, tbodyMixin, tfootMixin],

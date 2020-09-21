@@ -143,7 +143,7 @@ const components = {
   UiDrawerAppContent,
   UiDrawerBackdrop,
   UiFab,
-  // UiFile,
+  UiFile,
   UiForm,
   UiFormField,
   UiGrid,

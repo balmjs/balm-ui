@@ -11,18 +11,11 @@
       <!-- Buttons -->
       <div class="mdc-banner__actions">
         <slot name="actions">
-          <button
+          <mdc-button
             v-if="secondaryButtonText"
-            type="button"
-            class="mdc-button mdc-banner__secondary-action"
-          >
-            <div class="mdc-button__ripple"></div>
-            <div class="mdc-button__label">{{ secondaryButtonText }}</div>
-          </button>
-          <button type="button" class="mdc-button mdc-banner__primary-action">
-            <div class="mdc-button__ripple"></div>
-            <div class="mdc-button__label">{{ primaryButtonText }}</div>
-          </button>
+            class="mdc-banner__secondary-action"
+          >{{ secondaryButtonText }}</mdc-button>
+          <mdc-button class="mdc-banner__primary-action">{{ primaryButtonText }}</mdc-button>
         </slot>
       </div>
     </div>
@@ -32,6 +25,7 @@
 <script>
 import { MDCBanner } from '../../../material-components-web/banner';
 import { events } from '../../../material-components-web/banner/constants';
+import MdcButton from '../buttons/mdc-button';
 import domMixin from '../../mixins/dom';
 
 // Define banner constants
@@ -47,6 +41,9 @@ const UI_BANNER = {
 
 export default {
   name: 'UiBanner',
+  components: {
+    MdcButton
+  },
   mixins: [domMixin],
   props: {
     // States

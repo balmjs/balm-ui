@@ -20,44 +20,38 @@
           class="mdc-data-table__pagination-total"
         >{{ currentMinRow }}‑{{ currentMaxRow }} of {{ total }}</div>
         <!-- Navigation buttons -->
-        <button
+        <mdc-button
           v-if="!hasPageSpan"
-          class="mdc-button mdc-data-table__pagination-button mdc-data-table__pagination-first-button"
-          data-first-page="true"
+          class="mdc-data-table__pagination-button mdc-data-table__pagination-first-button"
           :disabled="currentPage === 1"
+          data-first-page="true"
           @click="handleClick(1)"
         >
-          <div class="mdc-button__ripple"></div>
           <slot name="first">
-            <i class="material-icons">first_page</i>
+            <i class="material-icons"></i>
           </slot>
-        </button>
-        <button
-          class="mdc-button mdc-data-table__pagination-button mdc-data-table__pagination-prev-button"
-          data-prev-page="true"
+        </mdc-button>
+        <mdc-button
+          class="mdc-data-table__pagination-button mdc-data-table__pagination-prev-button"
           :disabled="currentPage === 1"
+          data-prev-page="true"
           @click="handleClick(currentPage - 1)"
         >
-          <div class="mdc-button__ripple"></div>
           <slot name="prev">
             <i class="material-icons">chevron_left</i>
           </slot>
-        </button>
+        </mdc-button>
         <div v-if="!mini && hasPageSpan" class="mdc-data-table__pagination-page">
           <template v-for="pageNumber in pageCount" :key="`page-${pageNumber}`">
             <template v-if="isShow(pageNumber)">
-              <button
+              <mdc-button
                 v-if="showPage(pageNumber)"
                 :class="{
-                  'mdc-button': true,
                   'mdc-data-table__pagination-button': true,
                   'mdc-pagination__button--active': pageNumber === currentPage
                 }"
                 @click="handleClick(pageNumber)"
-              >
-                <div class="mdc-button__ripple"></div>
-                <span class="mdc-button__label">{{ pageNumber }}</span>
-              </button>
+              >{{ pageNumber }}</mdc-button>
               <button
                 v-else
                 class="mdc-button mdc-data-table__pagination-button mdc-pagination__button--ellipsis"
@@ -67,29 +61,27 @@
             </template>
           </template>
         </div>
-        <button
-          class="mdc-button mdc-data-table__pagination-button mdc-data-table__pagination-next-button"
-          data-next-page="true"
+        <mdc-button
+          class="mdc-data-table__pagination-button mdc-data-table__pagination-next-button"
           :disabled="currentPage === pageCount"
+          data-next-page="true"
           @click="handleClick(currentPage + 1)"
         >
-          <div class="mdc-button__ripple"></div>
           <slot name="next">
             <i class="material-icons">chevron_right</i>
           </slot>
-        </button>
-        <button
+        </mdc-button>
+        <mdc-button
           v-if="!hasPageSpan"
-          class="mdc-button mdc-data-table__pagination-button mdc-data-table__pagination-last-button"
-          data-last-page="true"
+          class="mdc-data-table__pagination-button mdc-data-table__pagination-last-button"
           :disabled="currentPage === pageCount"
+          data-last-page="true"
           @click="handleClick(pageCount)"
         >
-          <div class="mdc-button__ripple"></div>
           <slot name="last">
             <i class="material-icons">last_page</i>
           </slot>
-        </button>
+        </mdc-button>
       </div>
       <!-- Jumper -->
       <div v-if="!mini && showJumper" class="mdc-data-table__pagination-jumper">
@@ -103,15 +95,11 @@
             @keydown.prevent.enter="handleClick($event.target.value)"
           />
           <span>{{ jumperAfterText }}</span>
-          <button
+          <mdc-button
             v-if="jumperButtonText"
-            type="button"
-            class="mdc-button"
+            outlined
             @click="handleClick(jumpPage)"
-          >
-            <div class="mdc-button__ripple"></div>
-            <span class="mdc-button__label">{{ jumperButtonText }}</span>
-          </button>
+          >{{ jumperButtonText }}</mdc-button>
         </div>
       </div>
     </div>
@@ -119,6 +107,8 @@
 </template>
 
 <script>
+import MdcButton from '../buttons/mdc-button';
+
 // Define pagination constants
 const UI_PAGINATION = {
   POSITIONS: ['left', 'center', 'right'],
@@ -130,6 +120,9 @@ const UI_PAGINATION = {
 
 export default {
   name: 'UiPagination',
+  components: {
+    MdcButton
+  },
   props: {
     // States
     modelValue: {

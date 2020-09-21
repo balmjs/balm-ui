@@ -1,8 +1,9 @@
 <template>
-  <div :class="className.outer" @click="handleClick">
+  <div :class="className" @click="handleClick">
     <input
       v-show="false"
       :id="id"
+      ref="file"
       type="file"
       :accept="accept"
       :multiple="multiple"
@@ -11,15 +12,13 @@
       @change="handleChange($event)"
     />
     <slot>
-      <button :class="className.button" :disabled="disabled">
-        <i :class="[UI_GLOBAL.cssClasses.icon, className.icon]">publish</i>
-        <span :class="className.label">{{ text }}</span>
-      </button>
+      <mdc-button unelevated icon="publish" :disabled="disabled">{{ text }}</mdc-button>
     </slot>
   </div>
 </template>
 
 <script>
+import MdcButton from '../buttons/mdc-button';
 import elementMixin from '../../mixins/element';
 import UI_GLOBAL from '../../config/constants';
 
@@ -78,6 +77,9 @@ const UI_FILE = {
 
 export default {
   name: 'UiFile',
+  components: {
+    MdcButton
+  },
   mixins: [elementMixin],
   props: {
     // <input type="file"> attributes
@@ -108,6 +110,7 @@ export default {
       default: false
     }
   },
+  emits: [UI_FILE.EVENT.CHANGE],
   data() {
     return {
       UI_GLOBAL
@@ -116,25 +119,16 @@ export default {
   computed: {
     className() {
       return {
-        outer: {
-          'mdc-file': true,
-          'mdc-file--single': !this.multiple,
-          'mdc-file--multiple': this.multiple
-        },
-        button: {
-          'mdc-button': true,
-          'mdc-button--unelevated': !this.outlined,
-          'mdc-button--outlined': this.outlined
-        },
-        icon: 'mdc-button__icon',
-        label: 'mdc-button__label'
+        'mdc-file': true,
+        'mdc-file--single': !this.multiple,
+        'mdc-file--multiple': this.multiple
       };
     }
   },
   methods: {
     handleClick() {
       if (!this.disabled) {
-        let input = this.$el.querySelector('input');
+        let input = this.$refs.file;
         input && input.click();
       }
     },

@@ -6,15 +6,12 @@
         <!-- Navigation icon (optional) / Close button (instead of a navigation icon) -->
         <span class="mdc-top-app-bar__brand">
           <slot name="nav-icon" :navIconClass="UI_TOP_APP_BAR.cssClasses.navIcon">
-            <button
+            <mdc-icon-button
               v-if="defaultNavIcon"
               :id="navId"
-              :class="[
-                getIconClassName(UI_TOP_APP_BAR.cssClasses.navIcon),
-                'mdc-icon-button'
-              ]"
-              v-text="defaultNavIcon"
-            ></button>
+              :class="UI_TOP_APP_BAR.cssClasses.navIcon"
+              :icon="defaultNavIcon"
+            ></mdc-icon-button>
           </slot>
         </span>
         <!-- Title (optional) / Contextual title -->
@@ -33,9 +30,9 @@
 
 <script>
 import { MDCTopAppBar } from '../../../material-components-web/top-app-bar';
+import MdcIconButton from '../buttons/mdc-icon-button';
 import domMixin from '../../mixins/dom';
 import typeMixin from '../../mixins/type';
-import materialIconMixin from '../../mixins/material-icon';
 
 // Define top app bar constants
 const UI_TOP_APP_BAR = {
@@ -68,7 +65,10 @@ const UI_TOP_APP_BAR = {
 
 export default {
   name: 'UiTopAppBar',
-  mixins: [domMixin, typeMixin, materialIconMixin],
+  components: {
+    MdcIconButton
+  },
+  mixins: [domMixin, typeMixin],
   props: {
     contentSelector: {
       type: String,

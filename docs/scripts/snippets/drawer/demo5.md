@@ -1,7 +1,7 @@
 ```html
 <div class="demo-container">
   <!-- Drawer -->
-  <ui-drawer type="modal" navId="demo-menu">
+  <ui-drawer type="modal" nav-id="demo-menu">
     <ui-drawer-header>
       <ui-drawer-title>Title</ui-drawer-title>
       <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>
@@ -22,8 +22,8 @@
     <ui-top-app-bar
       fixed
       class="demo-app-bar"
-      contentSelector=".demo-app-content"
-      navId="demo-menu"
+      content-selector=".demo-app-content"
+      nav-id="demo-menu"
     >
       Title
     </ui-top-app-bar>

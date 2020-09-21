@@ -5,13 +5,13 @@
     fullwidth
     placeholder="Subject"
     maxlength="40"
-    withCounter
+    with-counter
   >
   </ui-textfield>
 
   <ui-textfield
-    inputType="textarea"
     v-model="content"
+    input-type="textarea"
     fullwidth
     placeholder="Content"
     maxlength="140"

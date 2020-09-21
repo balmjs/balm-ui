@@ -3,15 +3,15 @@
   <!-- App bar -->
   <ui-top-app-bar
     class="demo-app-bar"
-    contentSelector=".demo-content"
-    :navIcon="false"
+    content-selector=".demo-content"
+    :nav-icon="false"
   >
     Title
   </ui-top-app-bar>
   <!-- Content -->
   <div class="demo-content">
     <!-- Drawer -->
-    <ui-drawer viewportHeight>
+    <ui-drawer viewport-height>
       <ui-drawer-header>
         <ui-drawer-title>Title</ui-drawer-title>
         <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>

@@ -1,5 +1,5 @@
 ```html
-<ui-collapse v-for="i in 3" :key="i" withIcon ripple>
+<ui-collapse v-for="i in 3" :key="i" with-icon ripple>
   <template #toggle>
     <div>Heading {{ i }}</div>
   </template>

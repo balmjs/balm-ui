@@ -1,5 +1,5 @@
 ```html
-<ui-list singleSelection v-model="selectedIndex">
+<ui-list v-model="selectedIndex" single-selection>
   <ui-item v-for="(item, index) in items2" :key="index">
     <ui-item-first-content>
       <ui-icon>{{ item.icon }}</ui-icon>

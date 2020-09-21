@@ -13,7 +13,7 @@
 </ui-textfield>
 
 <!-- Custom leading/trailing icon -->
-<ui-textfield outlined withLeadingIcon>
+<ui-textfield outlined with-leading-icon>
   Your other name
   <template #before="{ iconClass }">
     <span :class="iconClass">
@@ -21,7 +21,7 @@
     </span>
   </template>
 </ui-textfield>
-<ui-textfield outlined withTrailingIcon>
+<ui-textfield outlined with-trailing-icon>
   Your other name
   <template #after="{ iconClass }">
     <span :class="iconClass">

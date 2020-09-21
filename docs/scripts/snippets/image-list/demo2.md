@@ -1,5 +1,5 @@
 ```html
-<ui-image-list type="masonry" :textProtection="labelsType === 2">
+<ui-image-list type="masonry" :text-protection="labelsType === 2">
   <ui-image-item
     v-for="(item, index) in list"
     :key="index"

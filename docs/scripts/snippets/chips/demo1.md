@@ -1,25 +1,25 @@
 ```html
 <ui-textfield
-  outlined
-  v-model="name"
-  class="demo-tf-add-space"
   id="input-chip-set-input"
+  v-model="name"
+  outlined
+  class="demo-tf-add-space"
   placeholder="Chip text"
 ></ui-textfield>
 <br />
-<ui-button raised dense id="input-chip-set-button" @click="addOne">
+<ui-button id="input-chip-set-button" raised dense @click="addOne">
   Add Input Chip
 </ui-button>
 <ui-button
+  id="input-chip-set-delete-button"
   outlined
   dense
-  id="input-chip-set-delete-button"
   @click="removeLastOne"
 >
   Delete Last Chip
 </ui-button>
 
-<ui-chips type="input" id="input-chip-set" :options="list">
+<ui-chips id="input-chip-set" type="input" :options="list">
   <ui-chip
     v-for="item in list"
     :key="item.id"
@@ -64,7 +64,7 @@ export default {
       this.list.pop();
     },
     removeOneById(id) {
-      let index = this.list.findIndex(item => item.id === id);
+      let index = this.list.findIndex((item) => item.id === id);
       this.list.splice(index, 1);
     }
   }

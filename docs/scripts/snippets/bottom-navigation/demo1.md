@@ -2,8 +2,8 @@
 <div class="container">
   <!-- Content -->
 
-  <ui-bottom-navigation contentSelector=".container">
-    <ui-tabs :items="items" v-model="active" @change="onChange"></ui-tabs>
+  <ui-bottom-navigation content-selector=".container">
+    <ui-tabs v-model="active" :items="items" @change="onChange"></ui-tabs>
   </ui-bottom-navigation>
 </div>
 ```

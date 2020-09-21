@@ -1,10 +1,13 @@
 ```html
 <h6 :class="$tt('headline6')">Text Label and Icon</h6>
 <div class="demo">
-  <ui-tab-bar type="both" v-model="active">
-    <ui-tab v-for="(tab, index) in tabs" :key="index"
+  <ui-tab-bar v-model="active" type="both">
+    <ui-tab
+      v-for="(tab, index) in tabs"
+      :key="index"
       type="both"
-      :icon="tab.icon">
+      :icon="tab.icon"
+    >
       {{ tab.text }}
     </ui-tab>
   </ui-tab-bar>
@@ -12,11 +15,14 @@
 
 <h6 :class="$tt('headline6')">Stacked Text Label and Icon</h6>
 <div class="demo">
-  <ui-tab-bar type="both" v-model="active">
-    <ui-tab v-for="(tab, index) in tabs" :key="index"
+  <ui-tab-bar v-model="active" type="both">
+    <ui-tab
+      v-for="(tab, index) in tabs"
+      :key="index"
       type="both"
       :icon="tab.icon"
-      stacked>
+      stacked
+    >
       {{ tab.text }}
     </ui-tab>
   </ui-tab-bar>

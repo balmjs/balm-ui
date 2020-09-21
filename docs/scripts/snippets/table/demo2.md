@@ -1,13 +1,13 @@
 ```html
 <ui-table
+  v-model="selectedRows"
   fullwidth
-  rowCheckbox
   :data="data"
   :thead="thead"
   :tbody="tbody"
   :tfoot="tfoot"
-  v-model="selectedRows"
-  selectedKey="id"
+  row-checkbox
+  selected-key="id"
 >
   <template #th-dessert>
     Dessert

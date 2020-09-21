@@ -1,5 +1,5 @@
 ```html
-<ui-collapse v-for="i in 3" :key="i" withIcon :ripple="1">
+<ui-collapse v-for="i in 3" :key="i" with-icon :ripple="1">
   <template #expand-more-icon>
     <ui-icon>arrow_drop_down</ui-icon>
   </template>

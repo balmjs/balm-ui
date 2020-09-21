@@ -1,8 +1,8 @@
 ```html
 <ui-datepicker
-  placeholder="Select Date Range.."
-  :config="config"
   v-model="date"
+  :config="config"
+  placeholder="Select Date Range.."
 ></ui-datepicker>
 ```
 

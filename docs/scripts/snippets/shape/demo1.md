@@ -8,8 +8,7 @@
 ```
 
 ```html
-<div class="demo"></div>
-<div class="demo" v-shape.small="'1'"></div>
-<div class="demo" v-shape="'1 0'"></div>
-<div class="demo" v-shape.large="'1 0 0'"></div>
+<div v-shape.small class="demo">4dp</div>
+<div v-shape class="demo">16dp</div>
+<div v-shape.large class="demo">24dp</div>
 ```

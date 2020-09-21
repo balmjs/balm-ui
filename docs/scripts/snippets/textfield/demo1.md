@@ -7,7 +7,7 @@
     :dense="controls.dense"
     :required="controls.required"
     :class="{'demo-text-field-custom-colors': controls.customColor}"
-    helperTextId="my-text-field-helper-text"
+    helper-text-id="my-text-field-helper-text"
   >
     Email Address
   </ui-textfield>
@@ -15,7 +15,7 @@
     v-if="controls.helperText"
     id="my-text-field-helper-text"
     :visible="controls.isVisible"
-    :validMsg="controls.isValidMsg"
+    :valid-msg="controls.isValidMsg"
   >
     Helper Text (possibly validation message)
   </ui-textfield-helper>

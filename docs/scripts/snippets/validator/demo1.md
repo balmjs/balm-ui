@@ -5,7 +5,7 @@
     <ui-textfield
       id="mobile"
       v-model="formData.mobile"
-      helperTextId="mobile-helper-text"
+      helper-text-id="mobile-helper-text"
       >Mobile</ui-textfield
     >
     <ui-textfield-helper
@@ -17,8 +17,8 @@
     <ui-textfield
       id="password"
       v-model="formData.password"
-      inputType="password"
-      helperTextId="password-helper-text"
+      input-type="password"
+      helper-text-id="password-helper-text"
       >Password</ui-textfield
     >
     <ui-textfield-helper
@@ -30,8 +30,8 @@
     <ui-textfield
       id="repassword"
       v-model="formData.repassword"
-      inputType="password"
-      helperTextId="repassword-helper-text"
+      input-type="password"
+      helper-text-id="repassword-helper-text"
       >Repeat Password</ui-textfield
     >
     <ui-textfield-helper

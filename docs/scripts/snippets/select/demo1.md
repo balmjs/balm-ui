@@ -1,23 +1,15 @@
 ```html
 <section :dir="controls.rtl ? 'rtl' : null">
-  <ui-select id="full-func-js-select"
-    v-model="selected.value"
-    :selectedIndex="selected.index"
+  <ui-select
+    id="full-func-js-select"
+    v-model="selected"
     :options="options"
-    :class="{'demo-select-custom-colors': controls.customColor}"
+    :class="{ 'demo-select-custom-colors': controls.customColor }"
     :disabled="controls.disabled"
-    @selected="onSelected($event)">
+    @selected="onSelected($event)"
+  >
     Food Group
   </ui-select>
-
-  <ui-button raised
-    @click="$balmUI.onChange('selected.index', 0)">
-    Set Selected Index (0)
-  </ui-button>
-  <ui-button raised
-    @click="$balmUI.onChange('selected.value', 'meat')">
-    Set Value to Meat
-  </ui-button>
 </section>
 ```
 
@@ -54,10 +46,7 @@ export default {
   data() {
     return {
       options,
-      selected: {
-        value: '',
-        index: 0
-      },
+      selected: '',
       controls: {
         rtl: false,
         customColor: false,
@@ -67,7 +56,7 @@ export default {
   },
   methods: {
     onSelected(selected) {
-      this.selected = selected;
+      this.selected = selected.value;
     }
   }
 };

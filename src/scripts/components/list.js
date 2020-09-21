@@ -1,5 +1,6 @@
 import multiBootstrap from '../config/multi-bootstrap';
 import UiNav from './lists/nav';
+import UiNavItem from './lists/nav-item';
 import UiList from './lists/list';
 import UiItem from './lists/item';
 import UiItemTextContent from './lists/item-text-content';
@@ -14,6 +15,7 @@ import UiListGroupSubheader from './lists/list-group-subheader';
 
 export default multiBootstrap({
   UiNav,
+  UiNavItem,
   UiList,
   UiItem,
   UiItemTextContent,

@@ -1,7 +1,7 @@
 ```html
 <div class="demo-container">
   <!-- Drawer -->
-  <ui-drawer viewportHeight>
+  <ui-drawer viewport-height>
     <ui-drawer-header>
       <ui-drawer-title>Title</ui-drawer-title>
       <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>
@@ -20,8 +20,8 @@
     <!-- App bar -->
     <ui-top-app-bar
       class="demo-app-bar"
-      contentSelector=".demo-app-content"
-      :navIcon="false"
+      content-selector=".demo-app-content"
+      :nav-icon="false"
     >
       Title
     </ui-top-app-bar>

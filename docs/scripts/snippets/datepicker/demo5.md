@@ -3,7 +3,7 @@
   v-model="date"
   :config="config"
   placeholder="Select Month.."
-  :monthOptions="monthOptions"
+  :month-options="monthOptions"
 ></ui-datepicker>
 ```
 

@@ -1,4 +1,4 @@
 #!/bin/bash
 
 npm run prod
-npm publish
+npm publish --tag vue3

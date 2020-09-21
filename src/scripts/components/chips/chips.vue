@@ -11,19 +11,28 @@
 <script>
 import { MDCChipSet } from '../../../material-components-web/chips';
 import UiChip from './chip';
+import domMixin from '../../mixins/dom';
 import typeMixin from '../../mixins/type';
-import UI_CHIPS from './constants';
+
+// Define chips constants
+const UI_CHIPS = {
+  TYPES: {
+    action: 0,
+    input: 1,
+    choice: 2,
+    filter: 3
+  },
+  EVENT: {
+    CHANGE: 'update:modelValue'
+  }
+};
 
 export default {
   name: 'UiChips',
   components: {
     UiChip
   },
-  mixins: [typeMixin],
-  model: {
-    prop: 'model',
-    event: UI_CHIPS.EVENT.CHANGE
-  },
+  mixins: [domMixin, typeMixin],
   props: {
     // UI variants
     type: {
@@ -31,7 +40,7 @@ export default {
       default: 0
     },
     // States
-    model: {
+    modelValue: {
       type: [String, Number, Array],
       default: -1
     },
@@ -57,10 +66,11 @@ export default {
       }
     }
   },
+  emits: [UI_CHIPS.EVENT.CHANGE],
   data() {
     return {
       $chipSet: null,
-      selectedValue: this.model,
+      selectedValue: this.modelValue,
       currentOptions: this.options,
       chipsCount: this.chips.length,
       choiceChipId: null // fix(ui): twice trigger
@@ -86,7 +96,7 @@ export default {
     }
   },
   watch: {
-    model(val) {
+    modelValue(val) {
       this.selectedValue = val;
     },
     options(val) {
@@ -95,6 +105,7 @@ export default {
       }
     },
     chips(val) {
+      // TODO: no watching
       if (val.length > this.chipsCount) {
         this.addChip(val.length);
       } else if (val.length < this.chipsCount) {
@@ -112,9 +123,10 @@ export default {
   },
   methods: {
     init() {
-      this.$chipSet = new MDCChipSet(this.$el);
+      this.$chipSet = new MDCChipSet(this.el);
 
       const chips = this.$chipSet.chips;
+
       if (chips.length) {
         if (this.filterChips) {
           let selectedIndexes = [];
@@ -195,7 +207,7 @@ export default {
     addChip(length) {
       this.$nextTick(() => {
         let newChipIndex = length - 1;
-        let newChipEl = this.$el.querySelectorAll('.mdc-chip')[newChipIndex];
+        let newChipEl = this.el.querySelectorAll('.mdc-chip')[newChipIndex];
         this.$chipSet.addChip(newChipEl);
         this.chipsCount++;
       });

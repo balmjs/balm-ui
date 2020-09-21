@@ -242,4 +242,4 @@ const BalmUI = {
 autoInstall(BalmUI);
 
 export default BalmUI;
-// export { types, helpers, detectIE };
+export { types, helpers, detectIE };

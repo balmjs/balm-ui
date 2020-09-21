@@ -30,8 +30,8 @@
           :rows="rows"
           :cols="cols"
           :aria-labelledby="id"
-          :aria-controls="helperTextId"
-          :aria-describedby="helperTextId"
+          :aria-controls="currentHelperTextId"
+          :aria-describedby="currentHelperTextId"
           v-bind="attrs"
           @focus="handleFocus"
           @keydown="handleKeydown"
@@ -42,7 +42,7 @@
           @blur="handleBlur"
         ></textarea>
         <!-- Character counter (optional) -->
-        <ui-textfield-counter v-if="withCounter"></ui-textfield-counter>
+        <mdc-textfield-counter v-if="withInnerCounter"></mdc-textfield-counter>
       </span>
     </template>
     <!-- Input text -->
@@ -67,8 +67,8 @@
         :max="max"
         :step="step"
         :aria-labelledby="id"
-        :aria-controls="helperTextId"
-        :aria-describedby="helperTextId"
+        :aria-controls="currentHelperTextId"
+        :aria-describedby="currentHelperTextId"
         v-bind="attrs"
         @focus="handleFocus"
         @keydown="handleKeydown"
@@ -84,7 +84,7 @@
         v-text="suffixText"
       ></span>
       <!-- Character counter (optional) -->
-      <ui-textfield-counter v-if="withCounter"></ui-textfield-counter>
+      <mdc-textfield-counter v-if="withInnerCounter"></mdc-textfield-counter>
     </template>
 
     <!-- Trailing icon (optional) -->
@@ -113,6 +113,16 @@
       </slot>
     </div>
   </div>
+
+  <mdc-textfield-helper
+    v-if="currentHelperTextId"
+    :id="currentHelperTextId"
+    :visible="helperTextVisible"
+    :valid-msg="validMsg"
+    :with-counter="withOuterCounter"
+  >
+    <slot name="helper-text"></slot>
+  </mdc-textfield-helper>
 </template>
 
 <script>
@@ -120,12 +130,14 @@ import { MDCTextField } from '../../../material-components-web/textfield';
 import MdcFloatingLabel from '../form-controls/mdc-floating-label';
 import MdcLineRipple from '../form-controls/mdc-line-ripple';
 import MdcNotchedOutline from '../form-controls/mdc-notched-outline';
-import UiTextfieldCounter from './textfield-counter';
+import MdcTextfieldCounter from './mdc-textfield-counter';
+import MdcTextfieldHelper from './mdc-textfield-helper';
 import domMixin from '../../mixins/dom';
 import textfieldMixin from '../../mixins/textfield';
 import typeMixin from '../../mixins/type';
 import elementMixin from '../../mixins/element';
 import materialIconMixin from '../../mixins/material-icon';
+import { componentHelperTextMixin } from '../../mixins/helper-text';
 import { UI_TEXTFIELD_ICON } from './constants';
 
 // Define textfield constants
@@ -151,14 +163,16 @@ export default {
     MdcFloatingLabel,
     MdcLineRipple,
     MdcNotchedOutline,
-    UiTextfieldCounter
+    MdcTextfieldCounter,
+    MdcTextfieldHelper
   },
   mixins: [
     domMixin,
     textfieldMixin,
     typeMixin,
     elementMixin,
-    materialIconMixin
+    materialIconMixin,
+    componentHelperTextMixin
   ],
   props: {
     // UI variants
@@ -223,14 +237,14 @@ export default {
       type: String,
       default: ''
     },
-    withCounter: {
+    withInnerCounter: {
       type: Boolean,
       default: false
     },
     // For helper text
-    helperTextId: {
-      type: [String, null],
-      default: null
+    withOuterCounter: {
+      type: Boolean,
+      default: false
     },
     // For plus
     plus: {
@@ -285,10 +299,16 @@ export default {
           'mdc-text-field--with-trailing-icon': this.hasTrailingIcon,
           'mdc-text-field--no-label': this.noLabel,
           'mdc-text-field--end-aligned': this.endAligned,
-          'mdc-text-field--with-internal-counter': this.withCounter
+          'mdc-text-field--with-internal-counter': this.withInnerCounter
         },
         input: 'mdc-text-field__input'
       };
+    },
+    currentHelperTextId() {
+      const hasTextfieldId = this.id ? `${this.id}-helper` : false;
+      const hasHelperTextId = this.helperTextId || false;
+
+      return hasHelperTextId || hasTextfieldId;
     }
   },
   watch: {
@@ -306,28 +326,28 @@ export default {
           this.$textField.foundation.deactivateFocus();
         }, 1);
       }
+    },
+    validMsg(val) {
+      if (val) {
+        this.$textField.valid = false;
+      }
+    }
+  },
+  beforeMount() {
+    const noHelperTextId = !(this.helperTextId || this.id);
+    const needHelperTextId =
+      this.helperTextVisible || this.validMsg || this.withOuterCounter;
+
+    if (noHelperTextId && needHelperTextId) {
+      console.warn(
+        `'helperTextId' is required for '<ui-textfield>' with outer counter`
+      );
     }
   },
   mounted() {
-    this.init();
+    this.$textField = new MDCTextField(this.el);
   },
   methods: {
-    init() {
-      if (this.el.nextElementSibling) {
-        const characterCounter = this.el.nextElementSibling.querySelector(
-          '.mdc-text-field-character-counter'
-        );
-
-        if (characterCounter && !this.maxlength) {
-          characterCounter.parentNode.removeChild(characterCounter);
-          console.warn(
-            'The `maxlength` prop is required in the `<ui-textfield>` with character counter.'
-          );
-        }
-      }
-
-      this.$textField = new MDCTextField(this.el);
-    },
     handleFocus(event) {
       this.$emit(UI_TEXTFIELD.EVENT.FOCUS, event);
     },
@@ -347,21 +367,8 @@ export default {
       this.$emit(UI_TEXTFIELD.EVENT.ENTER, event.target.value);
     },
     handleBlur(event) {
-      // this.clearCustomValidationMsg();
       this.$emit(UI_TEXTFIELD.EVENT.BLUR, event);
     }
-    // TODO
-    // clearCustomValidationMsg() {
-    //   if (this.helperTextId && this.el.nextElementSibling) {
-    //     const textfieldHelperEl = this.el.nextElementSibling.querySelector(
-    //       '.mdc-text-field-helper-text'
-    //     );
-
-    //     if (textfieldHelperEl && textfieldHelperEl.id === this.helperTextId) {
-    //       // this.el.nextSibling.$emit('update:validMsg', '');
-    //     }
-    //   }
-    // }
   }
 };
 </script>

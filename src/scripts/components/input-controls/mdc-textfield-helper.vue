@@ -3,21 +3,21 @@
   <div class="mdc-text-field-helper-line">
     <!-- Helper text (optional) -->
     <div :id="id" :class="className" aria-hidden="true">
-      <slot>{{ validationMsg }}</slot>
+      <slot></slot>
     </div>
     <!-- Character counter (optional) -->
-    <ui-textfield-counter v-if="withCounter"></ui-textfield-counter>
+    <mdc-textfield-counter v-if="withCounter"></mdc-textfield-counter>
   </div>
 </template>
 
 <script>
-import UiTextfieldCounter from './textfield-counter';
-import helperTextMixin from '../../mixins/helper-text';
+import MdcTextfieldCounter from './mdc-textfield-counter';
+import { helperTextMixin } from '../../mixins/helper-text';
 
 export default {
-  name: 'UiTextfieldHelper',
+  name: 'MdcTextfieldHelper',
   components: {
-    UiTextfieldCounter
+    MdcTextfieldCounter
   },
   mixins: [helperTextMixin],
   props: {
@@ -31,13 +31,8 @@ export default {
       return {
         'mdc-text-field-helper-text': true,
         'mdc-text-field-helper-text--persistent': this.visible,
-        'mdc-text-field-helper-text--validation-msg': this.hasValidMsg
+        'mdc-text-field-helper-text--validation-msg': this.validMsg
       };
-    }
-  },
-  watch: {
-    validMsg() {
-      this.updatePrevEl('mdc-text-field');
     }
   }
 };

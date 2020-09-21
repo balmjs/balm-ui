@@ -20,6 +20,7 @@ import {
   cssClasses,
   strings
 } from '../../../material-components-web/dialog/constants';
+import domMixin from '../../mixins/dom';
 
 // Define dialog constants
 const UI_DIALOG = {
@@ -35,6 +36,7 @@ const UI_DIALOG = {
 
 export default {
   name: 'UiDialog',
+  mixins: [domMixin],
   props: {
     // States
     modelValue: {
@@ -100,7 +102,7 @@ export default {
     }
   },
   mounted() {
-    this.$dialog = new MDCDialog(this.$el);
+    this.$dialog = new MDCDialog(this.el);
 
     this.$nextTick(() => {
       this.dialogBody = this.$refs.dialog.querySelector(
@@ -120,7 +122,7 @@ export default {
         }
       });
 
-      if (!this.$el.querySelector('.mdc-button')) {
+      if (!this.el.querySelector('.mdc-button')) {
         console.warn('`<ui-button>` is required in the dialog');
       }
     });

@@ -25,7 +25,7 @@
       <slot name="icon">
         <i
           v-if="materialIcon"
-          :class="[UI_GLOBAL.cssClasses.icon, UI_SELECT.cssClasses.icon]"
+          :class="getIconClassName(UI_SELECT.cssClasses.icon)"
           v-text="materialIcon"
         ></i>
       </slot>
@@ -65,13 +65,12 @@
           v-for="(option, index) in currentOptions"
           :key="index"
           :class="[
-              'mdc-list-item',
-              {
-                'mdc-list-item--selected':
-                  option[optionValue] === selectedValue,
-                'mdc-list-item--disabled': option.disabled
-              }
-            ]"
+            'mdc-list-item',
+            {
+              'mdc-list-item--selected': option[optionValue] === selectedValue,
+              'mdc-list-item--disabled': option.disabled
+            }
+          ]"
           :data-value="option[optionValue]"
           :aria-selected="option[optionValue] === selectedValue"
           :aria-disabled="option.disabled"
@@ -83,16 +82,28 @@
       </ul>
     </div>
   </div>
+
+  <mdc-select-helper
+    v-if="helperTextId"
+    :id="helperTextId"
+    :visible="helperTextVisible"
+    :valid-msg="validMsg"
+  >
+    <slot name="helper-text"></slot>
+  </mdc-select-helper>
 </template>
 
 <script>
 import { MDCSelect } from '../../../material-components-web/select';
+import { strings } from '../../../material-components-web/select/constants';
 import MdcFloatingLabel from '../form-controls/mdc-floating-label';
 import MdcLineRipple from '../form-controls/mdc-line-ripple';
 import MdcNotchedOutline from '../form-controls/mdc-notched-outline';
+import MdcSelectHelper from './mdc-select-helper';
+import domMixin from '../../mixins/dom';
 import typeMixin from '../../mixins/type';
 import materialIconMixin from '../../mixins/material-icon';
-import UI_GLOBAL from '../../config/constants';
+import { componentHelperTextMixin } from '../../mixins/helper-text';
 
 // Define select constants
 const UI_SELECT = {
@@ -104,7 +115,7 @@ const UI_SELECT = {
     icon: 'mdc-select__icon'
   },
   EVENT: {
-    CHANGE: 'change',
+    CHANGE: 'update:modelValue',
     SELECTED: 'selected'
   },
   DEFAULT_SELECTED_INDEX: -1
@@ -115,13 +126,10 @@ export default {
   components: {
     MdcFloatingLabel,
     MdcLineRipple,
-    MdcNotchedOutline
+    MdcNotchedOutline,
+    MdcSelectHelper
   },
-  mixins: [typeMixin, materialIconMixin],
-  model: {
-    prop: 'model',
-    event: UI_SELECT.EVENT.CHANGE
-  },
+  mixins: [domMixin, typeMixin, materialIconMixin, componentHelperTextMixin],
   props: {
     // UI variants
     type: {
@@ -133,7 +141,7 @@ export default {
       default: false
     },
     // States
-    model: {
+    modelValue: {
       type: [String, Number],
       default: ''
     },
@@ -179,20 +187,15 @@ export default {
     withLeadingIcon: {
       type: Boolean,
       default: false
-    },
-    // For helper text
-    helperTextId: {
-      type: [String, null],
-      default: null
     }
   },
+  emits: [UI_SELECT.EVENT.CHANGE, UI_SELECT.EVENT.SELECTED],
   data() {
     return {
-      UI_GLOBAL,
       UI_SELECT,
       $select: null,
       currentOptions: [],
-      selectedValue: this.model
+      selectedValue: this.modelValue
     };
   },
   computed: {
@@ -219,19 +222,33 @@ export default {
     }
   },
   watch: {
-    model(val) {
+    modelValue(val) {
       this.selectedValue = val;
 
       this.setCurrentOption();
     },
     options(val) {
       this.init(val);
+    },
+    validMsg(val) {
+      if (val) {
+        this.$select.valid = false;
+      }
+    }
+  },
+  beforeMount() {
+    const needHelperTextId = this.helperTextVisible || this.validMsg;
+
+    if (!this.helperTextId && needHelperTextId) {
+      console.warn(
+        `'helperTextId' is required for '<ui-select>' with outer counter`
+      );
     }
   },
   mounted() {
-    this.$select = new MDCSelect(this.$el);
+    this.$select = new MDCSelect(this.el);
 
-    this.$select.listen(`MDCSelect:${UI_SELECT.EVENT.CHANGE}`, ({ detail }) => {
+    this.$select.listen(strings.CHANGE_EVENT, ({ detail }) => {
       // NOTE: for dynamic options
       this.$nextTick(() => {
         let hasOptions = this.defaultLabel

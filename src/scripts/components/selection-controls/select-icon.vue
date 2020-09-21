@@ -29,6 +29,7 @@ export default {
       default: false
     }
   },
+  emits: [UI_SELECT_ICON.EVENT.CLICK],
   data() {
     return {
       UI_GLOBAL

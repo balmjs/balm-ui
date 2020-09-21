@@ -10,35 +10,36 @@
     </div>
     <!-- Thumb -->
     <template v-if="isRange">
-      <ui-slider-thumb
+      <mdc-slider-thumb
         :is-discrete="isDiscrete"
         :valuemin="+min"
         :valuemax="+max"
         :valuenow="startValue"
         :disabled="disabled"
-      ></ui-slider-thumb>
-      <ui-slider-thumb
+      ></mdc-slider-thumb>
+      <mdc-slider-thumb
         :is-discrete="isDiscrete"
         :valuemin="+min"
         :valuemax="+max"
         :valuenow="endValue"
         :disabled="disabled"
-      ></ui-slider-thumb>
+      ></mdc-slider-thumb>
     </template>
-    <ui-slider-thumb
+    <mdc-slider-thumb
       v-else
       :is-discrete="isDiscrete"
       :valuemin="+min"
       :valuemax="+max"
       :valuenow="selectedValue"
       :disabled="disabled"
-    ></ui-slider-thumb>
+    ></mdc-slider-thumb>
   </div>
 </template>
 
 <script>
 import { MDCSlider } from '../../../material-components-web/slider';
-import UiSliderThumb from './slider-thumb';
+import MdcSliderThumb from './mdc-slider-thumb';
+import domMixin from '../../mixins/dom';
 import typeMixin from '../../mixins/type';
 
 // Define slider constants
@@ -49,20 +50,16 @@ const UI_SLIDER = {
   },
   EVENT: {
     // INPUT: 'input',
-    CHANGE: 'change'
+    CHANGE: 'update:modelValue'
   }
 };
 
 export default {
   name: 'UiSlider',
   components: {
-    UiSliderThumb
+    MdcSliderThumb
   },
-  mixins: [typeMixin],
-  model: {
-    prop: 'model',
-    event: UI_SLIDER.EVENT.CHANGE
-  },
+  mixins: [domMixin, typeMixin],
   props: {
     // UI variants
     type: {
@@ -78,7 +75,7 @@ export default {
       default: false
     },
     // States
-    model: {
+    modelValue: {
       type: [String, Number, Array],
       default: 0
     },
@@ -100,10 +97,11 @@ export default {
       default: false
     }
   },
+  emits: [UI_SLIDER.EVENT.CHANGE],
   data() {
     return {
       $slider: null,
-      selectedValue: this.model,
+      selectedValue: this.modelValue,
       startValue: 0,
       endValue: 0
     };
@@ -126,7 +124,7 @@ export default {
     }
   },
   watch: {
-    model(val) {
+    modelValue(val) {
       this.selectedValue = val;
       this.update(val);
     },
@@ -135,7 +133,7 @@ export default {
     }
   },
   mounted() {
-    this.$slider = new MDCSlider(this.$el);
+    this.$slider = new MDCSlider(this.el);
 
     this.$slider.listen(`MDCSlider:${UI_SLIDER.EVENT.CHANGE}`, ({ detail }) => {
       const valuenow = Math.round(detail.value);

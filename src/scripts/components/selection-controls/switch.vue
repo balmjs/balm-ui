@@ -22,25 +22,22 @@
 
 <script>
 import { MDCSwitch } from '../../../material-components-web/switch';
+import domMixin from '../../mixins/dom';
 import elementMixin from '../../mixins/element';
 
 // Define switch constants
 const UI_SWITCH = {
   EVENT: {
-    CHANGE: 'change'
+    CHANGE: 'update:modelValue'
   }
 };
 
 export default {
   name: 'UiSwitch',
-  mixins: [elementMixin],
-  model: {
-    prop: 'model',
-    event: UI_SWITCH.EVENT.CHANGE
-  },
+  mixins: [domMixin, elementMixin],
   props: {
     // States
-    model: {
+    modelValue: {
       type: null, // NOTE: Boolean only
       default: false
     },
@@ -62,10 +59,11 @@ export default {
       default: false
     }
   },
+  emits: [UI_SWITCH.EVENT.CHANGE],
   data() {
     return {
       $switch: null,
-      selectedValue: this.model
+      selectedValue: this.modelValue
     };
   },
   computed: {
@@ -81,16 +79,19 @@ export default {
     }
   },
   watch: {
-    model(val) {
+    modelValue(val) {
       this.selectedValue = val;
-      // fix(ui): trigger bug
-      this.$switch.checked = this.selectedValue === this.trueValue;
+      this.triggerChecked();
     }
   },
   mounted() {
-    this.$switch = new MDCSwitch(this.$el);
+    this.$switch = new MDCSwitch(this.el);
+    this.triggerChecked();
   },
   methods: {
+    triggerChecked() {
+      this.$switch.checked = this.selectedValue === this.trueValue;
+    },
     handleChange() {
       this.$emit(UI_SWITCH.EVENT.CHANGE, this.selectedValue);
     }

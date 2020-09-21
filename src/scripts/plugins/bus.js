@@ -20,6 +20,7 @@ const $bus = {
 const BalmUI_BusPlugin = {
   install(app) {
     app.config.globalProperties.$bus = $bus;
+    app.provide('$bus', $bus);
   }
 };
 

@@ -64,7 +64,7 @@ function getConfig(balm) {
       alias: {
         pickerLangZh: 'flatpickr/dist/l10n/zh.js',
         '@': path.join(workspace, 'docs/scripts'),
-        'balm-ui$': path.join(workspace, 'src/scripts')
+        'balm-ui': path.join(workspace, 'src/scripts')
       },
       plugins: [new VueLoaderPlugin()],
       eslint: true,

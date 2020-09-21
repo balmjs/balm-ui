@@ -25,23 +25,23 @@ import vAnchor from './directives/anchor';
 const version = packageJson.version;
 
 const components = {
-  UiAlert,
-  UiAutocomplete,
-  UiCollapse,
-  UiDatepicker,
-  UiEditor,
-  UiRangepicker,
-  UiSkeleton
+  // UiAlert,
+  UiAutocomplete
+  // UiCollapse,
+  // UiDatepicker,
+  // UiEditor,
+  // UiRangepicker,
+  // UiSkeleton
 };
 
 const plugins = {
-  alert,
-  confirm,
-  toast
+  // alert,
+  // confirm,
+  // toast
 };
 
 const directives = {
-  vAnchor
+  // vAnchor
 };
 
 const BalmUIPlus = {

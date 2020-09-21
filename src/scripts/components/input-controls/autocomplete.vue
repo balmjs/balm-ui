@@ -65,9 +65,10 @@ const UI_AUTOCOMPLETE = {
     SELECTED: 'selected'
   },
   EVENT: {
-    INPUT: 'input',
+    INPUT: 'update:modelValue',
     SEARCH: 'search',
     SELECTED: 'selected',
+    // For inner
     CLICK: 'click',
     MOUSEMOVE: 'mousemove',
     MOUSELEAVE: 'mouseleave'
@@ -87,10 +88,6 @@ export default {
     UiTextfield
   },
   mixins: [textfieldMixin],
-  model: {
-    prop: 'model',
-    event: UI_AUTOCOMPLETE.EVENT.INPUT
-  },
   props: {
     // <ui-textfield> variants
     outlined: {
@@ -98,7 +95,7 @@ export default {
       default: false
     },
     // States
-    model: {
+    modelValue: {
       type: [String, Number],
       default: ''
     },
@@ -135,6 +132,11 @@ export default {
       default: false
     }
   },
+  emits: [
+    UI_AUTOCOMPLETE.EVENT.INPUT,
+    UI_AUTOCOMPLETE.EVENT.SEARCH,
+    UI_AUTOCOMPLETE.EVENT.SELECTED
+  ],
   data() {
     return {
       UI_AUTOCOMPLETE,
@@ -142,7 +144,7 @@ export default {
       $autocomplete: null,
       $callback: null,
       isExpanded: false,
-      inputValue: this.model,
+      inputValue: this.modelValue,
       currentSource: [], // source data
       currentSuggestion: {
         data: [], // filter data
@@ -173,7 +175,7 @@ export default {
     }
   },
   watch: {
-    model(val) {
+    modelValue(val) {
       if (this.inputValue !== val) {
         this.inputValue = `${val}`;
       }

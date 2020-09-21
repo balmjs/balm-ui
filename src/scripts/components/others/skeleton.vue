@@ -7,8 +7,8 @@
       <div class="mdc-skeleton__content">
         <h3 v-if="title" class="mdc-skeleton-title" :style="titleWidth"></h3>
         <ul v-if="paragraphRows" class="mdc-skeleton-paragraph">
-          <template v-for="row in paragraphRows">
-            <li :key="row" :style="row === paragraphRows ? paragraphWidth : {}"></li>
+          <template v-for="row in paragraphRows" :key="row">
+            <li :style="row === paragraphRows ? paragraphWidth : {}"></li>
           </template>
         </ul>
       </div>

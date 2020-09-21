@@ -9,7 +9,7 @@
       <!-- Action (optional) -->
       <div class="mdc-snackbar__actions">
         <slot name="action" :actionClass="actionButtonClassName">
-          <mdc-button v-if="canDismiss" :class="actionButtonClassName">X</mdc-button>
+          <mdc-icon-button v-if="canDismiss" :class="actionButtonClassName">X</mdc-icon-button>
           <template v-else>
             <mdc-button
               v-if="actionButtonText"

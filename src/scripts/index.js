@@ -129,7 +129,7 @@ const components = {
   UiCheckbox,
   UiChip,
   UiChips,
-  // UiDataTable,
+  UiDataTable,
   UiDialog,
   UiDialogActions,
   UiDialogContent,

@@ -39,6 +39,6 @@ export default {
     MIN: 'min'
   },
   EVENT: {
-    SELECTED: 'selected'
+    CHANGE: 'update:modelValue'
   }
 };

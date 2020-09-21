@@ -62,7 +62,7 @@ export default {
         let selectedRowId = this.selectedKey
           ? currentData[this.selectedKey]
           : rowIndex;
-        let selected = this.selectedRows.includes(selectedRowId);
+        let selected = this.modelValue.includes(selectedRowId);
 
         cell[this.T_CELL.ROW_ID] = `${this.rowIdPrefix}${rowIndex}`;
         cell[this.T_CELL.CHECKBOX] = true;

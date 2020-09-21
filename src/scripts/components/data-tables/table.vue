@@ -44,13 +44,13 @@
                         ></div>
                         <mdc-icon-button
                           class="mdc-data-table__sort-icon-button"
-                          :icon="UI_TABLE.SORTING.ICON"
+                          v-text="UI_TABLE.SORTING.ICON"
                         ></mdc-icon-button>
                       </template>
                       <template v-else>
                         <mdc-icon-button
                           class="mdc-data-table__sort-icon-button"
-                          :icon="UI_TABLE.SORTING.ICON"
+                          v-text="UI_TABLE.SORTING.ICON"
                         ></mdc-icon-button>
                         <div class="mdc-data-table__header-cell-label">
                           <slot v-if="theadCell[T_CELL.SLOT]" :name="theadCell[T_CELL.SLOT]"></slot>
@@ -144,6 +144,7 @@ import { events } from '../../../material-components-web/data-table/constants';
 import MdcCheckbox from '../selection-controls/mdc-checkbox';
 import MdcIconButton from '../buttons/mdc-icon-button';
 // import MdcTableProgress from './mdc-table-progress';
+import domMixin from '../../mixins/dom';
 import tableMixin from '../../mixins/table';
 import theadMixin from '../../mixins/thead';
 import tbodyMixin from '../../mixins/tbody';
@@ -157,11 +158,7 @@ export default {
     MdcIconButton
     // MdcTableProgress
   },
-  mixins: [tableMixin, theadMixin, tbodyMixin, tfootMixin],
-  model: {
-    prop: 'selectedRows',
-    event: UI_TABLE.EVENT.SELECTED
-  },
+  mixins: [domMixin, tableMixin, theadMixin, tbodyMixin, tfootMixin],
   props: {
     // States
     data: {
@@ -170,7 +167,7 @@ export default {
         return [];
       }
     },
-    selectedRows: {
+    modelValue: {
       type: Array,
       default() {
         return [];
@@ -236,6 +233,7 @@ export default {
       default: false
     }
   },
+  emits: [UI_TABLE.EVENT.CHANGE],
   data() {
     return {
       UI_TABLE,
@@ -276,10 +274,10 @@ export default {
     }
   },
   mounted() {
-    this.$table = new MDCDataTable(this.$el);
+    this.$table = new MDCDataTable(this.el);
 
     this.$table.listen(events.ROW_SELECTION_CHANGED, ({ detail }) => {
-      let selectedRows = this.selectedRows; // NOTE: cache selected rows for pagination
+      let selectedRows = this.modelValue; // NOTE: cache selected rows for pagination
 
       this.currentData.forEach((tbodyData, tbodyDataIndex) => {
         let selectedRowId = this.selectedKey
@@ -302,11 +300,11 @@ export default {
         }
       });
 
-      this.$emit(UI_TABLE.EVENT.SELECTED, selectedRows);
+      this.$emit(UI_TABLE.EVENT.CHANGE, selectedRows);
     });
 
     this.$table.listen(events.SELECTED_ALL, () => {
-      let oldSelectedRows = this.selectedRows; // NOTE: cache selected rows for pagination
+      let oldSelectedRows = this.modelValue; // NOTE: cache selected rows for pagination
 
       let newSelectedRows = this.currentData.map(
         (tbodyData, tbodyDataIndex) => {
@@ -318,11 +316,11 @@ export default {
 
       let selectedRows = [...new Set(oldSelectedRows.concat(newSelectedRows))]; // merge + unique
 
-      this.$emit(UI_TABLE.EVENT.SELECTED, selectedRows);
+      this.$emit(UI_TABLE.EVENT.CHANGE, selectedRows);
     });
 
     this.$table.listen(events.UNSELECTED_ALL, () => {
-      let oldSelectedRows = this.selectedRows; // NOTE: cache selected rows for pagination
+      let oldSelectedRows = this.modelValue; // NOTE: cache selected rows for pagination
 
       let newSelectedRows = this.currentData.map(
         (tbodyData, tbodyDataIndex) => {
@@ -337,7 +335,7 @@ export default {
       let b = new Set(newSelectedRows);
       let selectedRows = Array.from(new Set([...a].filter((x) => !b.has(x))));
 
-      this.$emit(UI_TABLE.EVENT.SELECTED, selectedRows);
+      this.$emit(UI_TABLE.EVENT.CHANGE, selectedRows);
     });
 
     this.$table.listen(events.SORTED, ({ detail }) => {
@@ -345,14 +343,14 @@ export default {
       this.handleSort(detail);
     });
 
-    if (this.selectedRows.length) {
+    if (this.modelValue.length) {
       this.initSelectedRows();
     }
   },
   methods: {
     initSelectedRows() {
       if (this.rowCheckbox && this.currentData.length) {
-        let rowIds = this.selectedRows
+        let rowIds = this.modelValue
           .map((selectedRow) => {
             let rowIndex = this.selectedKey
               ? this.currentData.findIndex(

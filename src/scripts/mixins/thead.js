@@ -120,10 +120,10 @@ export default {
         let oldSelectedIndex = 0;
         let tableRowCount = this.currentData.length;
         if (this.selectedKey) {
-          newSelectedRows = [...this.selectedRows];
+          newSelectedRows = [...this.modelValue];
         } else {
           for (let index = tableRowCount - 1; index >= 0; index--) {
-            if (this.selectedRows.includes(oldSelectedIndex)) {
+            if (this.modelValue.includes(oldSelectedIndex)) {
               newSelectedRows.push(index);
             }
             oldSelectedIndex++;

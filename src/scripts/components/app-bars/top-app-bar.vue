@@ -10,7 +10,7 @@
               v-if="defaultNavIcon"
               :id="navId"
               :class="UI_TOP_APP_BAR.cssClasses.navIcon"
-              :icon="defaultNavIcon"
+              v-text="defaultNavIcon"
             ></mdc-icon-button>
           </slot>
         </span>

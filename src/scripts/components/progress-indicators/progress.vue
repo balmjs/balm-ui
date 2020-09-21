@@ -1,23 +1,23 @@
 <template>
-  <linear-progress
+  <mdc-linear-progress
     :class="className"
     :aria-label="label"
     aria-valuemin="0"
     aria-valuemax="1"
     :data-buffer="!!buffer"
-  ></linear-progress>
+  ></mdc-linear-progress>
 </template>
 
 <script>
 import { MDCLinearProgress } from '../../../material-components-web/linear-progress';
-import LinearProgress from './linear-progress';
+import MdcLinearProgress from './mdc-linear-progress';
 import progressMixin from '../../mixins/progress';
 import { UI_PROGRESS } from './constants';
 
 export default {
   name: 'UiProgress',
   components: {
-    LinearProgress
+    MdcLinearProgress
   },
   mixins: [progressMixin],
   props: {
@@ -52,10 +52,10 @@ export default {
     }
   },
   mounted() {
-    this.$linearProgress = new MDCLinearProgress(this.$el);
+    this.$linearProgress = new MDCLinearProgress(this.el);
 
     this.setProgress(this.progress);
-    if (this.$el.dataset.buffer) {
+    if (this.el.dataset.buffer) {
       this.setBuffer(this.buffer);
     }
   },

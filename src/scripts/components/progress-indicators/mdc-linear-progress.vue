@@ -15,6 +15,6 @@
 
 <script>
 export default {
-  name: 'LinearProgress'
+  name: 'MdcLinearProgress'
 };
 </script>

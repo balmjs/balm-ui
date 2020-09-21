@@ -19,6 +19,6 @@
 
 <script>
 export default {
-  name: 'InputCheckbox'
+  name: 'MdcCheckbox'
 };
 </script>

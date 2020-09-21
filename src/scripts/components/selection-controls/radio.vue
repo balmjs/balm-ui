@@ -21,6 +21,7 @@
 
 <script>
 import { MDCRadio } from '../../../material-components-web/radio';
+import domMixin from '../../mixins/dom';
 import elementMixin from '../../mixins/element';
 
 // Define radio constants
@@ -29,20 +30,16 @@ const UI_RADIO = {
     touch: 'mdc-radio--touch'
   },
   EVENT: {
-    CHANGE: 'change'
+    CHANGE: 'update:modelValue'
   }
 };
 
 export default {
   name: 'UiRadio',
-  mixins: [elementMixin],
-  model: {
-    prop: 'model',
-    event: UI_RADIO.EVENT.CHANGE
-  },
+  mixins: [domMixin, elementMixin],
   props: {
     // States
-    model: {
+    modelValue: {
       type: [String, Number],
       default: ''
     },
@@ -60,16 +57,17 @@ export default {
       default: false
     }
   },
+  emits: [UI_RADIO.EVENT.CHANGE],
   data() {
     return {
       $radio: null,
-      selectedValue: this.model
+      selectedValue: this.modelValue
     };
   },
   computed: {
     className() {
       const isTouch =
-        this.$el && this.$el.classList.contains(UI_RADIO.cssClasses.touch);
+        this.el && this.el.classList.contains(UI_RADIO.cssClasses.touch);
 
       return {
         'mdc-radio': true,
@@ -80,12 +78,12 @@ export default {
     }
   },
   watch: {
-    model(val) {
+    modelValue(val) {
       this.selectedValue = val;
     }
   },
   mounted() {
-    this.$radio = new MDCRadio(this.$el);
+    this.$radio = new MDCRadio(this.el);
 
     this.$nextTick(() => {
       if (this.$parent.$formField) {

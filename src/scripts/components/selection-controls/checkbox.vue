@@ -1,5 +1,5 @@
 <template>
-  <input-checkbox :class="className">
+  <mdc-checkbox :class="className">
     <input
       :id="id"
       v-model="selectedValue"
@@ -12,12 +12,13 @@
       v-bind="attrs"
       @change="handleChange"
     />
-  </input-checkbox>
+  </mdc-checkbox>
 </template>
 
 <script>
 import { MDCCheckbox } from '../../../material-components-web/checkbox';
-import InputCheckbox from './input-checkbox';
+import MdcCheckbox from './mdc-checkbox';
+import domMixin from '../../mixins/dom';
 import elementMixin from '../../mixins/element';
 
 // Define checkbox constants
@@ -26,23 +27,19 @@ const UI_CHECKBOX = {
     touch: 'mdc-checkbox--touch'
   },
   EVENT: {
-    CHANGE: 'change'
+    CHANGE: 'update:modelValue'
   }
 };
 
 export default {
   name: 'UiCheckbox',
   components: {
-    InputCheckbox
+    MdcCheckbox
   },
-  mixins: [elementMixin],
-  model: {
-    prop: 'model',
-    event: UI_CHECKBOX.EVENT.CHANGE
-  },
+  mixins: [domMixin, elementMixin],
   props: {
     // States
-    model: {
+    modelValue: {
       type: null, // NOTE: [Boolean, Array] only
       default: false
     },
@@ -64,16 +61,17 @@ export default {
       default: false
     }
   },
+  emits: [UI_CHECKBOX.EVENT.CHANGE],
   data() {
     return {
       $checkbox: null,
-      selectedValue: this._setSelectedValue(this.model)
+      selectedValue: this._setSelectedValue(this.modelValue)
     };
   },
   computed: {
     className() {
       const isAccessible =
-        this.$el && this.$el.classList.contains(UI_CHECKBOX.cssClasses.touch);
+        this.el && this.el.classList.contains(UI_CHECKBOX.cssClasses.touch);
 
       return {
         'mdc-checkbox--disabled': this.disabled,
@@ -83,7 +81,7 @@ export default {
     }
   },
   watch: {
-    model(val) {
+    modelValue(val) {
       this.selectedValue = this._setSelectedValue(val);
     },
     indeterminate(val) {
@@ -91,7 +89,7 @@ export default {
     }
   },
   mounted() {
-    this.$checkbox = new MDCCheckbox(this.$el);
+    this.$checkbox = new MDCCheckbox(this.el);
     this.$checkbox.indeterminate = this.indeterminate;
 
     this.$nextTick(() => {

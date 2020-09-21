@@ -1,6 +1,8 @@
+import domMixin from './dom';
 import { UI_PROGRESS } from '../components/progress-indicators/constants';
 
 export default {
+  mixins: [domMixin],
   props: {
     // States
     active: {

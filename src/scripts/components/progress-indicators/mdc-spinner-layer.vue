@@ -51,7 +51,7 @@ const UI_CIRCULAR_PROGRESS_INDETERMINATE = {
 };
 
 export default {
-  name: 'UiSpinnerLayer',
+  name: 'MdcSpinnerLayer',
   props: {
     svg: {
       type: Object,

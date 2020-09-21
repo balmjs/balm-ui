@@ -29,10 +29,10 @@
                 :aria-sort="getSort(theadCell)"
               >
                 <!-- Column header row checkbox -->
-                <input-checkbox
+                <mdc-checkbox
                   v-if="theadCell[T_CELL.CHECKBOX] && tbodyData.length"
                   :class="'mdc-data-table__header-row-checkbox'"
-                ></input-checkbox>
+                ></mdc-checkbox>
                 <template v-else>
                   <!-- With sort button -->
                   <div class="mdc-data-table__header-cell-wrapper">
@@ -91,10 +91,10 @@
               >
                 <td :class="cellClassName(tbodyCell)">
                   <!-- Row checkboxes -->
-                  <input-checkbox
+                  <mdc-checkbox
                     v-if="tbodyCell[T_CELL.CHECKBOX]"
                     :class="'mdc-data-table__row-checkbox'"
-                  ></input-checkbox>
+                  ></mdc-checkbox>
                   <!-- Data / Actions -->
                   <template v-else>
                     <slot
@@ -141,7 +141,7 @@
 <script>
 import { MDCDataTable } from '../../../material-components-web/data-table';
 import { events } from '../../../material-components-web/data-table/constants';
-import InputCheckbox from '../selection-controls/input-checkbox';
+import MdcCheckbox from '../selection-controls/mdc-checkbox';
 // import TableProgress from './progress';
 import tableMixin from '../../mixins/table';
 import theadMixin from '../../mixins/thead';
@@ -152,7 +152,7 @@ import UI_TABLE from './constants';
 export default {
   name: 'UiTable',
   components: {
-    InputCheckbox
+    MdcCheckbox
     // TableProgress
   },
   mixins: [tableMixin, theadMixin, tbodyMixin, tfootMixin],

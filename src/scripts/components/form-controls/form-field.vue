@@ -42,8 +42,11 @@ export default {
         'mdc-form-field--space-between': this.spaceBetween
       };
     },
+    hasFormParent() {
+      return this.$parent.$.type.name === 'UiForm';
+    },
     style() {
-      return this.$parent.itemMarginBottom
+      return this.hasFormParent && this.$parent.itemMarginBottom
         ? {
             'margin-bottom': `${this.$parent.itemMarginBottom}px`
           }
@@ -51,10 +54,14 @@ export default {
     },
     // horizontal form
     flexBasis() {
-      return this.$parent.labelWidth ? +this.$parent.labelWidth : 0;
+      return this.hasFormParent && this.$parent.labelWidth
+        ? +this.$parent.labelWidth
+        : 0;
     },
     marginRight() {
-      return this.$parent.labelMarginRight ? +this.$parent.labelMarginRight : 0;
+      return this.hasFormParent && this.$parent.labelMarginRight
+        ? +this.$parent.labelMarginRight
+        : 0;
     },
     actionPaddingLeft() {
       return this.flexBasis || this.marginRight
@@ -63,7 +70,7 @@ export default {
     },
     // vertical form
     marginBottom() {
-      return this.$parent.labelMarginBottom
+      return this.hasFormParent && this.$parent.labelMarginBottom
         ? +this.$parent.labelMarginBottom
         : 0;
     }

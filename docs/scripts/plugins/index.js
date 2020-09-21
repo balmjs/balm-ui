@@ -1,9 +1,5 @@
 import { inject } from 'vue';
 
-export function useBus() {
-  return inject('$bus');
-}
-
 export function useHttp() {
   return inject('$http');
 }

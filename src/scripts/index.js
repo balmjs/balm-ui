@@ -93,6 +93,7 @@ import UiTooltip from './components/others/tooltip';
  * Plugins
  */
 import event from './plugins/event'; // Custom
+import bus from './plugins/bus'; // Custom
 import grid from './plugins/grid';
 import theme from './plugins/theme';
 import typography from './plugins/typography';
@@ -114,8 +115,8 @@ import helpers from './utils/helpers';
 import detectIE from './utils/ie';
 
 const components = {
-  // UiBadge,
-  // UiBanner,
+  UiBadge,
+  UiBanner,
   UiButton,
   UiCard,
   UiCardActions,
@@ -196,6 +197,7 @@ const components = {
 
 const plugins = {
   event,
+  bus,
   grid,
   theme,
   typography,

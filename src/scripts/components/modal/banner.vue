@@ -31,6 +31,8 @@
 
 <script>
 import { MDCBanner } from '../../../material-components-web/banner';
+import { events } from '../../../material-components-web/banner/constants';
+import domMixin from '../../mixins/dom';
 
 // Define banner constants
 const UI_BANNER = {
@@ -38,20 +40,17 @@ const UI_BANNER = {
     image: 'mdc-banner__image'
   },
   EVENT: {
-    CHANGE: 'change',
+    CHANGE: 'update:modelValue',
     CLOSED: 'closed'
   }
 };
 
 export default {
   name: 'UiBanner',
-  model: {
-    prop: 'open',
-    event: UI_BANNER.EVENT.CHANGE
-  },
+  mixins: [domMixin],
   props: {
     // States
-    open: {
+    modelValue: {
       type: Boolean,
       default: false
     },
@@ -69,6 +68,7 @@ export default {
       default: ''
     }
   },
+  emits: [UI_BANNER.EVENT.CHANGE, UI_BANNER.EVENT.CLOSED],
   data() {
     return {
       UI_BANNER,
@@ -76,16 +76,16 @@ export default {
     };
   },
   watch: {
-    open(val) {
+    modelValue(val) {
       if (val) {
         this.$banner.open();
       }
     }
   },
   mounted() {
-    this.$banner = new MDCBanner(this.$el);
+    this.$banner = new MDCBanner(this.el);
 
-    this.$banner.listen('MDCBanner:closed', ({ detail }) => {
+    this.$banner.listen(events.CLOSED, ({ detail }) => {
       this.$emit(UI_BANNER.EVENT.CHANGE, false);
       this.$emit(UI_BANNER.EVENT.CLOSED, detail.reason);
     });

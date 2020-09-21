@@ -1,7 +1,6 @@
 import '@/polyfill';
 import { createApp } from 'vue';
 import $http from '@/plugins/$http';
-import $bus from '@/plugins/$bus';
 import $store from '@/plugins/$store';
 import router from '@/routes';
 import i18n from '@/lang';
@@ -37,7 +36,6 @@ function createBalmUIApp() {
   const app = createApp(App);
 
   app.use($http);
-  app.use($bus);
   app.use($store);
   app.use(router);
   app.use(i18n);

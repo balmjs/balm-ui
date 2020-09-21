@@ -1,6 +1,5 @@
 import { createApp } from 'vue';
 import { isDev, themes } from '@/config';
-import bus from './bus';
 import dev from './dev';
 import page from './page';
 
@@ -57,7 +56,7 @@ export default createApp({
     setLang({ value }) {
       this.lang = value;
       localStorage.setItem('lang', value);
-      bus.$emit('switch-lang', value);
+      this.$bus.$emit('switch-lang', value);
     }
   }
 });

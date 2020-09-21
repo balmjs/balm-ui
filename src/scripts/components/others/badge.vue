@@ -2,14 +2,7 @@
   <div :class="className">
     <slot></slot>
     <sup v-if="count" class="mdc-badge__sup">{{ overflowCount }}</sup>
-    <sup
-      v-else
-      :class="[
-        'mdc-badge__sup',
-        { 'mdc-badge__sup--dot': dot },
-        stateType ? `mdc-badge__sup--${stateType}` : ''
-      ]"
-    >
+    <sup v-else :class="supClassName">
       <slot name="badge"></slot>
     </sup>
   </div>
@@ -54,6 +47,15 @@ export default {
     },
     overflowCount() {
       return this.count > this.maxCount ? `${this.maxCount}+` : this.count;
+    },
+    supClassName() {
+      return [
+        {
+          'mdc-badge__sup': true,
+          'mdc-badge__sup--dot': this.dot
+        },
+        this.stateType ? `mdc-badge__sup--${this.stateType}` : ''
+      ];
     }
   }
 };

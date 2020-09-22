@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page--subtest">
     <ui-button @click="$balmUI.onShow('open')">Child Test</ui-button>
     <ui-dialog v-model="open">
       <ui-dialog-content>Dialog</ui-dialog-content>

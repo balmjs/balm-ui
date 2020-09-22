@@ -6,9 +6,6 @@
 export default {
   metaInfo: {
     titleTemplate: '%s - Upgrade Guide'
-  },
-  data() {
-    return {};
   }
 };
 </script>

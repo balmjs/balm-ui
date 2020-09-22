@@ -91,9 +91,9 @@
 
       <h6 :class="$tt('headline6')">1.6 Two-Line with Leading and Trailing Icon and Divider</h6>
       <ui-list :type="2" avatar>
-        <template v-for="(item, index) in items3">
-          <ui-item-divider v-if="item === '-'" :key="index"></ui-item-divider>
-          <ui-item v-else :key="index">
+        <template v-for="(item, index) in items3" :key="index">
+          <ui-item-divider v-if="item === '-'"></ui-item-divider>
+          <ui-item v-else>
             <template #before="{ iconClass }">
               <ui-icon :class="iconClass">folder</ui-icon>
             </template>
@@ -113,9 +113,9 @@
         :class="$tt('headline6')"
       >1.7 List with Trailing Checkbox (Checked values: {{ checkedValues }})</h6>
       <ui-list role="group">
-        <template v-for="(item, index) in items3">
-          <ui-item-divider v-if="item === '-'" :key="index"></ui-item-divider>
-          <ui-item v-else :key="index">
+        <template v-for="(item, index) in items3" :key="index">
+          <ui-item-divider v-if="item === '-'"></ui-item-divider>
+          <ui-item v-else>
             <ui-item-text-content>{{ item.text }}</ui-item-text-content>
             <ui-item-last-content>
               <ui-checkbox v-model="checkedValues" :value="item.value" @click.native.stop></ui-checkbox>
@@ -130,9 +130,9 @@
         {{ checkedValue }})
       </h6>
       <ui-list role="radiogroup">
-        <template v-for="(item, index) in items3">
-          <ui-item-divider v-if="item === '-'" :key="index"></ui-item-divider>
-          <ui-item v-else :key="index">
+        <template v-for="(item, index) in items3" :key="index">
+          <ui-item-divider v-if="item === '-'"></ui-item-divider>
+          <ui-item v-else>
             <ui-item-text-content>{{ item.text }}</ui-item-text-content>
             <ui-item-last-content>
               <ui-radio v-model="checkedValue" :value="item.value" @click.native.stop></ui-radio>

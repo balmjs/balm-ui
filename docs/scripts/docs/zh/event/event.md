@@ -25,7 +25,7 @@ export default {
     this.init();
     window.addEventListener('balmResize', this.init);
   },
-  beforeDestroy() {
+  beforeUnmount() {
     window.removeEventListener('balmResize', this.init);
   },
   methods: {

@@ -40,14 +40,8 @@
     <h6 :class="$tt('subtitle1')">Customization</h6>
     <div class="demo">
       <ui-tab-bar class="custom-demo-tab-bar">
-        <template v-for="(tab, index) in tabs">
-          <ui-tab
-            :key="index"
-            type="textWithIcon"
-            :icon="tab.icon"
-            min-width
-            content-indicator
-          >{{ tab.text }}</ui-tab>
+        <template v-for="(tab, index) in tabs" :key="index">
+          <ui-tab type="textWithIcon" :icon="tab.icon" min-width content-indicator>{{ tab.text }}</ui-tab>
         </template>
       </ui-tab-bar>
     </div>

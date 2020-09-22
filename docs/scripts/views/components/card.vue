@@ -70,14 +70,14 @@
           >Headlines</div>
           <ui-list-divider></ui-list-divider>
 
-          <template v-for="(item, index) in list">
-            <a :key="`item${index}`" v-ripple class="demo-card-article">
+          <template v-for="(item, index) in list" :key="`item${index}`">
+            <a v-ripple class="demo-card-article">
               <h2 :class="[$tt('headline5'), 'demo-card-article__title']">{{ item.title }}</h2>
               <p
                 :class="[$theme.getTextClass('secondary', $store.theme), 'demo-card-article__snippet']"
               >{{ item.content }}</p>
             </a>
-            <ui-list-divider :key="`divider${index}`"></ui-list-divider>
+            <ui-list-divider></ui-list-divider>
           </template>
 
           <ui-card-actions full-bleed>

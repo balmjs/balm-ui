@@ -1,9 +1,9 @@
 import { inject } from 'vue';
 
 export function useHttp() {
-  return inject('$http');
+  return inject('http');
 }
 
 export function useStore(key = '') {
-  return key ? inject('$store')[key] : inject('$store');
+  return key ? inject('store')[key] : inject('store');
 }

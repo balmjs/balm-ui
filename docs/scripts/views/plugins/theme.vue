@@ -96,8 +96,8 @@
 
     <template #after>
       <ui-grid class="color-palette">
-        <template v-for="(color, colorIndex) in COLOR.colors">
-          <ui-grid-cell :key="colorIndex">
+        <template v-for="(color, colorIndex) in COLOR.colors" :key="colorIndex">
+          <ui-grid-cell>
             <h6 :class="$tt('headline6')">{{ color }}</h6>
             <ui-list>
               <template v-for="(shade, shadeIndex) in COLOR.shades">

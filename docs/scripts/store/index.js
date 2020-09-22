@@ -58,5 +58,6 @@ export default createApp({
       localStorage.setItem('lang', value);
       this.$bus.$emit('switch-lang', value);
     }
-  }
+  },
+  template: '<div></div>'
 });

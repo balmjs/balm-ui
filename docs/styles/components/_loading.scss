@@ -15,14 +15,14 @@
   right: 16px;
 }
 
+.loading-enter-from,
+.loading-leave-to {
+  opacity: 0;
+}
+
 .loading-enter-active,
 .loading-leave-active {
   transition: opacity 0.4s;
-}
-
-.loading-enter,
-.loading-leave-to {
-  opacity: 0;
 }
 
 .loading-leave-active {

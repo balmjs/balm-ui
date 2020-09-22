@@ -1,5 +1,4 @@
 import axios from 'axios';
-// import bus from '@/store/bus';
 
 // axios.defaults.baseURL = '/api';
 
@@ -28,6 +27,6 @@ axios.interceptors.response.use(
 export default {
   install(app) {
     app.config.globalProperties.$http = axios;
-    app.provide('$http', axios);
+    app.provide('http', axios);
   }
 };

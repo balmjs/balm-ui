@@ -90,14 +90,13 @@
       </div>
 
       <ui-list-group>
-        <template v-for="(category, index) in categories">
+        <template v-for="(category, index) in categories" :key="`category${index}`">
           <ui-list-group-subheader
-            :key="`subheader${index}`"
             v-anchor:id="category.name"
             :class="$tt('headline6')"
           >{{ category.name }}</ui-list-group-subheader>
           <template v-if="Object.keys(currentIcons).length">
-            <ui-image-list :key="`list${index}`">
+            <ui-image-list>
               <ui-image-item
                 v-for="icon in currentIcons[category.name]"
                 :key="icon.id"

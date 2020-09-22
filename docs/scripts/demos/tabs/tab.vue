@@ -12,8 +12,8 @@
     <h6 :class="$tt('subtitle1')">Icon</h6>
     <div class="demo">
       <ui-tab-bar>
-        <template v-for="(tab, index) in tabs">
-          <ui-tab :key="index" type="iconOnly" :icon="tab.icon"></ui-tab>
+        <template v-for="(tab, index) in tabs" :key="index">
+          <ui-tab type="iconOnly" :icon="tab.icon"></ui-tab>
         </template>
       </ui-tab-bar>
     </div>
@@ -22,8 +22,8 @@
     <h6 :class="$tt('subtitle1')">Text Label and Icon</h6>
     <div class="demo">
       <ui-tab-bar type="both">
-        <template v-for="(tab, index) in tabs">
-          <ui-tab :key="index" type="textWithIcon" :icon="tab.icon">{{ tab.text }}</ui-tab>
+        <template v-for="(tab, index) in tabs" :key="index">
+          <ui-tab type="textWithIcon" :icon="tab.icon">{{ tab.text }}</ui-tab>
         </template>
       </ui-tab-bar>
     </div>
@@ -31,8 +31,8 @@
     <h6 :class="$tt('subtitle1')">Stacked Text Label and Icon</h6>
     <div class="demo">
       <ui-tab-bar type="both">
-        <template v-for="(tab, index) in tabs">
-          <ui-tab :key="index" type="textWithIcon" :icon="tab.icon" stacked>{{ tab.text }}</ui-tab>
+        <template v-for="(tab, index) in tabs" :key="index">
+          <ui-tab type="textWithIcon" :icon="tab.icon" stacked>{{ tab.text }}</ui-tab>
         </template>
       </ui-tab-bar>
     </div>

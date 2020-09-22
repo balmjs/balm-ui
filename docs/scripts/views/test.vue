@@ -1,59 +1,101 @@
 <template>
-  <div class="page--top-app-bar">
-    <ui-top-app-bar content-selector="#content-main" :type="type" :title="title" @nav="onTest">
-      <template #toolbar="{ toolbarItemClass }">
-        <ui-icon-button :class="toolbarItemClass" icon="file_download"></ui-icon-button>
-        <ui-icon-button :class="toolbarItemClass" icon="print"></ui-icon-button>
-        <ui-icon-button :class="toolbarItemClass" icon="bookmark"></ui-icon-button>
-      </template>
-    </ui-top-app-bar>
-
-    <ui-drawer v-model="a.b.c" type="modal">
-      <ui-drawer-header>
-        <ui-drawer-title>Header here</ui-drawer-title>
-      </ui-drawer-header>
-      <ui-drawer-content>
-        <ui-list>
-          <ui-item active @click="$router.back()">
-            <ui-item-first-content>
-              <ui-icon>arrow_back</ui-icon>
-            </ui-item-first-content>
-            <ui-item-text-content>Back</ui-item-text-content>
-          </ui-item>
-          <ui-list-divider></ui-list-divider>
-        </ui-list>
-      </ui-drawer-content>
-    </ui-drawer>
-
-    <ui-drawer-backdrop></ui-drawer-backdrop>
-
-    <div id="content-main">
-      <p v-for="i in 36" :key="i">Content</p>
-    </div>
+  <div class="page--test">
+    <ui-form>
+      <legend>Form Area</legend>
+      <ui-form-field class="form-item">
+        <ui-textfield id="mobile" v-model="formData.mobile" v-model:valid-msg="validMsg.mobile">
+          Mobile
+          <template #helper-text>{{ validMsg.mobile }}</template>
+        </ui-textfield>
+      </ui-form-field>
+      <ui-form-field class="form-item">
+        <ui-textfield
+          id="password"
+          v-model="formData.password"
+          v-model:valid-msg="validMsg.password"
+          input-type="password"
+        >Password</ui-textfield>
+      </ui-form-field>
+      <ui-form-field class="form-item">
+        <ui-textfield
+          id="repassword"
+          v-model="formData.repassword"
+          v-model:valid-msg="validMsg.repassword"
+          input-type="password"
+        >Repeat Password</ui-textfield>
+      </ui-form-field>
+      <ui-form-field class="form-item form-actions">
+        <ui-button raised @click="submit">Submit</ui-button>
+      </ui-form-field>
+    </ui-form>
+    <!-- <router-view></router-view> -->
   </div>
 </template>
 
 <script>
-import { getCurrentInstance } from 'vue';
+import { useValidator } from 'balm-ui';
 
 export default {
-  name: 'Test',
-  data() {
-    return {
-      type: 1,
-      title: 'Hello BalmUI',
-      openDrawer: false,
-      a: {
-        b: {
-          c: false
-        }
+  validations: {
+    mobile: {
+      label: 'Mobile',
+      validator: 'required, mobile'
+    },
+    password: {
+      label: 'Password',
+      validator: 'required, password, minRule, maxRule',
+      minRule: {
+        validate(value) {
+          return value.trim().length >= 6;
+        },
+        message: '%s minLength >= 6'
+      },
+      maxRule: {
+        validate(value) {
+          return value.trim().length <= 8;
+        },
+        message: '%s maxLength <= 8'
       }
+    },
+    repassword: {
+      label: 'Repeat Password',
+      validator: 'required, password, repasswordRule',
+      repasswordRule: {
+        validate(value, data) {
+          return value === data.password;
+        },
+        message: 'repassword !== password'
+      }
+    }
+  },
+  setup() {
+    let validator = useValidator();
+
+    return {
+      validator
     };
   },
-  mounted() {},
+  data() {
+    return {
+      formData: {
+        mobile: '',
+        password: '',
+        repassword: ''
+      },
+      validMsg: {}
+    };
+  },
   methods: {
-    onTest() {
-      this.$balmUI.onShow('a.b.c');
+    submit() {
+      let result = this.validator.validate(this.formData);
+      let { valid, validMsg } = result;
+      this.validMsg = validMsg;
+
+      console.log(result);
+
+      if (valid) {
+        console.log('gg');
+      }
     }
   }
 };

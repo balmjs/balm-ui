@@ -1,13 +1,18 @@
 <template>
-  <div v-anchor.html.offset="64" :class="[$tt('body1'), `page--${name}`]">
-    <div :class="[$tt('body2'), 'pure-docs']">
-      <ui-markdown :text="docs"></ui-markdown>
-      <ui-footer-nav :prev="prev" :next="next"></ui-footer-nav>
+  <transition name="loading">
+    <div v-anchor.html.offset="64" :class="[$tt('body1'), `page--${name}`]">
+      <div :class="[$tt('body2'), 'pure-docs']">
+        <ui-markdown :text="docs"></ui-markdown>
+        <ui-footer-nav :prev="prev" :next="next"></ui-footer-nav>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
+import { computed } from 'vue';
+import { useStore } from '@/plugins';
+
 export default {
   name: 'PurePage',
   props: {
@@ -24,11 +29,19 @@ export default {
       default: null
     }
   },
-  computed: {
-    docs() {
-      let filename = `${this.$store.lang}/guide/${this.name}`;
+  setup() {
+    const store = useStore();
+
+    console.log('-----', store);
+
+    const docs = computed(() => {
+      let filename = `${store.lang}/guide/${this.name}`;
       return require(`@/docs/${filename}.md`); // NOTE: just one variable in `require`
-    }
+    });
+
+    return {
+      docs
+    };
   }
 };
 </script>

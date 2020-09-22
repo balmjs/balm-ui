@@ -276,7 +276,7 @@ export default {
     this.initRuler();
     window.addEventListener('balmResize', this.initRuler);
   },
-  beforeDestroy() {
+  beforeUnmount() {
     window.removeEventListener('balmResize', this.initRuler);
   },
   methods: {

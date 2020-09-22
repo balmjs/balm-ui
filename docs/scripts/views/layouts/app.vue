@@ -11,18 +11,18 @@
         content-selector=".balmui-content"
         nav-id="balmui-menu"
         fixed
-        @nav="$balmUI.onChange('openDrawer', !openDrawer)"
+        @nav="balmUI.onChange('openDrawer', !openDrawer)"
       >
         <router-link to="/" :class="['catalog-title', $theme.getThemeClass('on-primary')]">BalmUI</router-link>
         <template #toolbar="{ toolbarItemClass }">
           <switch-theme v-if="$route.name === 'theme.color'"></switch-theme>
           <!-- For dark theme test -->
-          <!-- <ui-icon-button
+          <ui-icon-button
             :icon="$store.theme === 'dark' ? 'bedtime' : 'wb_sunny'"
             @click="$store.switchTheme"
-          ></ui-icon-button>-->
+          ></ui-icon-button>
           <ui-menu-anchor>
-            <ui-icon-button icon="language" @click="$balmUI.onShow('showTranslations')"></ui-icon-button>
+            <ui-icon-button icon="language" @click="balmUI.onShow('showTranslations')"></ui-icon-button>
             <ui-menu v-model="showTranslations" @selected="$store.setLang">
               <ui-menuitem
                 v-for="translation in translations"
@@ -32,13 +32,13 @@
               ></ui-menuitem>
             </ui-menu>
           </ui-menu-anchor>
-          <!-- <ui-icon-button
+          <ui-icon-button
             v-tooltip="'Support BalmUI'"
             :class="[toolbarItemClass, 'donate']"
             icon="support"
             aria-describedby="donate"
             @click="$router.push({ name: 'donate' })"
-          ></ui-icon-button>-->
+          ></ui-icon-button>
           <a href="https://github.com/balmjs/balm-ui" target="_blank" rel="noopener">
             <ui-icon-button :class="[toolbarItemClass, 'github']" aria-describedby="github">
               <svg-github></svg-github>
@@ -98,7 +98,7 @@
                       </template>
                       <span
                         :class="$theme.getTextClass('primary', $store.theme)"
-                      >{{ $t(`menu.${item.name}`) }}</span>
+                      >{{ t(`menu.${item.name}`) }}</span>
                       <template #after>
                         <ui-badge v-if="item.plus" class="plus" state="info">
                           <template #badge>plus</template>
@@ -115,7 +115,7 @@
                     :key="`head${index}`"
                     :class="$theme.getTextClass('primary', $store.theme)"
                   >
-                    {{ $t(`menu.${item.name}`) }}
+                    {{ t(`menu.${item.name}`) }}
                     <i
                       v-if="isWideScreen && item.name === 'guide'"
                       :class="['balmui-version', $tt('subtitle2')]"
@@ -128,9 +128,10 @@
               </ui-nav>
             </ui-drawer-content>
           </ui-drawer>
-          <ui-drawer-backdrop v-show="drawerType === 'modal'" @click="$balmUI.onHide('openDrawer')"></ui-drawer-backdrop>
+          <ui-drawer-backdrop v-show="drawerType === 'modal'" @click="balmUI.onHide('openDrawer')"></ui-drawer-backdrop>
         </div>
         <!-- App content -->
+
         <div
           :class="[
             'balmui-content',
@@ -139,10 +140,8 @@
           ]"
         >
           <ui-spinner v-if="pageLoading" class="page-loading" active four-colored></ui-spinner>
-          <transition name="loading">
-            <router-view v-if="pageLoading"></router-view>
-            <router-view v-else></router-view>
-          </transition>
+          <router-view v-if="pageLoading"></router-view>
+          <router-view v-else></router-view>
         </div>
       </div>
     </template>
@@ -154,6 +153,47 @@ import SvgGithub from '@/components/svg-github';
 import SwitchTheme from '@/components/switch-theme';
 import { VERSION, $MIN_WIDTH, translations } from '@/config';
 import menu from '@/config/menu';
+import {
+  inject,
+  reactive,
+  toRefs,
+  nextTick,
+  onBeforeMount,
+  onMounted,
+  onBeforeUnmount
+} from 'vue';
+import { useI18n } from 'vue-i18n';
+import { useEvent, useBus } from 'balm-ui';
+
+const state = reactive({
+  version: VERSION, // .split('-')[0],
+  menu,
+  bodyEl: document.documentElement || document.body,
+  isWideScreen: true,
+  drawerType: 'permanent',
+  openDrawer: false,
+  pageLoading: false,
+  loadingProgress: 0,
+  loadingTimer: null,
+  showGlobalMessage: false,
+  translations,
+  showTranslations: false
+});
+
+function init() {
+  state.isWideScreen = window.innerWidth >= $MIN_WIDTH;
+
+  state.drawerType = state.isWideScreen ? 'permanent' : 'modal';
+}
+
+function loading() {
+  if (state.loadingProgress === 0.8) {
+    clearInterval(state.loadingTimer);
+  } else {
+    state.loadingProgress += 0.2;
+    state.loadingProgress = +state.loadingProgress.toFixed(2);
+  }
+}
 
 export default {
   metaInfo: {
@@ -163,20 +203,58 @@ export default {
     SvgGithub,
     SwitchTheme
   },
-  data() {
+  setup(props, ctx) {
+    const balmUI = useEvent();
+    const bus = useBus();
+    const { t, locale } = useI18n();
+
+    onBeforeMount(() => {
+      bus.$on('page-load', () => {
+        state.pageLoading = true;
+        state.loadingTimer = setInterval(loading, 20);
+      });
+
+      bus.$on('page-ready', async () => {
+        await nextTick();
+
+        state.bodyEl.scrollTop = 0;
+
+        setTimeout(() => {
+          state.loadingProgress = 1;
+
+          state.pageLoading = false;
+          clearInterval(state.loadingTimer);
+          state.loadingProgress = 0;
+        }, 100);
+      });
+    });
+
+    onMounted(() => {
+      init();
+      window.addEventListener('balmResize', init);
+
+      bus.$on('global-message', (message) => {
+        state.showGlobalMessage = true;
+      });
+
+      // locale = this.$store.lang;
+      // $bus.$on('switch-lang', (lang) => {
+      //   locale = lang;
+      // });
+
+      // this.$store.setTheme();
+    });
+
+    onBeforeUnmount(() => {
+      window.removeEventListener('balmResize', init);
+    });
+
     return {
-      version: VERSION, // .split('-')[0],
-      menu,
-      bodyEl: document.documentElement || document.body,
-      isWideScreen: true,
-      drawerType: 'permanent',
-      openDrawer: false,
-      pageLoading: false,
-      loadingProgress: 0,
-      loadingTimer: null,
-      showGlobalMessage: false,
-      translations,
-      showTranslations: false
+      ...toRefs(state),
+      balmUI,
+      bus,
+      t,
+      locale
     };
   },
   computed: {
@@ -186,66 +264,13 @@ export default {
         : true;
     }
   },
-  created() {
-    this.$bus.$on('page-load', () => {
-      this.pageLoading = true;
-      this.loadingTimer = setInterval(this.loading, 20);
-    });
-
-    this.$bus.$on('page-ready', () => {
-      this.$nextTick(() => {
-        this.bodyEl.scrollTop = 0;
-      });
-
-      setTimeout(() => {
-        this.loadingProgress = 1;
-
-        this.pageLoading = false;
-        clearInterval(this.loadingTimer);
-        this.loadingProgress = 0;
-      }, 100);
-    });
-  },
-  mounted() {
-    this.init();
-    window.addEventListener('balmResize', this.init);
-
-    this.$bus.$on('global-message', (message) => {
-      this.showGlobalMessage = true;
-    });
-
-    this.$i18n.locale = this.$store.lang;
-    this.$bus.$on('switch-lang', (lang) => {
-      this.$i18n.locale = lang;
-    });
-
-    this.$store.setTheme();
-  },
-  beforeDestroy() {
-    window.removeEventListener('balmResize', this.init);
-  },
   methods: {
-    getDrawerType() {
-      this.isWideScreen = window.innerWidth >= $MIN_WIDTH;
-      return this.isWideScreen ? 'permanent' : 'modal';
-    },
-    init() {
-      this.drawerType = this.getDrawerType();
-    },
     handleMenu() {
-      this.$emit('page-load');
+      this.bus.$emit('page-load');
 
-      this.openDrawer = false;
+      state.openDrawer = false;
       if (window.innerWidth < $MIN_WIDTH) {
-        this.isWideScreen = false;
-      }
-    },
-    loading() {
-      if (this.loadingProgress === 0.8) {
-        clearInterval(this.loadingTimer);
-      } else {
-        this.loadingProgress += 0.2;
-        this.loadingProgress = +this.loadingProgress.toFixed(2);
+        state.isWideScreen = false;
       }
     }
   }

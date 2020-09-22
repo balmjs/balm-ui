@@ -9,8 +9,13 @@ export const componentHelperTextMixin = {
       default: false
     },
     validMsg: {
-      type: Boolean,
-      default: false
+      type: String,
+      default: ''
+    }
+  },
+  computed: {
+    hasValidMsg() {
+      return !!this.validMsg;
     }
   }
 };

@@ -87,7 +87,7 @@
     v-if="helperTextId"
     :id="helperTextId"
     :visible="helperTextVisible"
-    :valid-msg="validMsg"
+    :valid-msg="hasValidMsg"
   >
     <slot name="helper-text"></slot>
   </mdc-select-helper>
@@ -231,9 +231,7 @@ export default {
       this.init(val);
     },
     validMsg(val) {
-      if (val) {
-        this.$select.valid = false;
-      }
+      this.$select.valid = !this.hasValidMsg;
     }
   },
   beforeMount() {

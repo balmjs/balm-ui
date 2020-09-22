@@ -118,7 +118,7 @@
     v-if="currentHelperTextId"
     :id="currentHelperTextId"
     :visible="helperTextVisible"
-    :valid-msg="validMsg"
+    :valid-msg="hasValidMsg"
     :with-counter="withOuterCounter"
   >
     <slot name="helper-text"></slot>
@@ -153,7 +153,8 @@ const UI_TEXTFIELD = {
     KEYUP: 'keyup',
     CHANGE: 'change',
     ENTER: 'enter',
-    BLUR: 'blur'
+    BLUR: 'blur',
+    CLEAR_VALID_MSG: 'update:validMsg'
   }
 };
 
@@ -259,7 +260,8 @@ export default {
     UI_TEXTFIELD.EVENT.KEYUP,
     UI_TEXTFIELD.EVENT.CHANGE,
     UI_TEXTFIELD.EVENT.ENTER,
-    UI_TEXTFIELD.EVENT.BLUR
+    UI_TEXTFIELD.EVENT.BLUR,
+    UI_TEXTFIELD.EVENT.CLEAR_VALID_MSG
   ],
   data() {
     return {
@@ -328,9 +330,7 @@ export default {
       }
     },
     validMsg(val) {
-      if (val) {
-        this.$textField.valid = false;
-      }
+      this.$textField.valid = !this.hasValidMsg;
     }
   },
   beforeMount() {
@@ -367,6 +367,7 @@ export default {
       this.$emit(UI_TEXTFIELD.EVENT.ENTER, event.target.value);
     },
     handleBlur(event) {
+      this.$emit(UI_TEXTFIELD.EVENT.CLEAR_VALID_MSG, ''); // fix(@mdc): valid bug
       this.$emit(UI_TEXTFIELD.EVENT.BLUR, event);
     }
   }

@@ -25,7 +25,7 @@ import stateTypeMixins from '../../mixins/state-type';
 
 // For $alert/$confirm
 export default {
-  name: 'WindowDialog',
+  name: 'MdcDialog',
   mixins: [stateTypeMixins],
   props: {
     // States

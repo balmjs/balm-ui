@@ -1,6 +1,6 @@
 import { createApp } from 'vue';
 import autoInstall from '../config/auto-install';
-import WindowDialog from '../components/modal/window-dialog';
+import MdcDialog from '../components/modal/mdc-dialog';
 import getType from '../utils/typeof';
 
 const DEFAULT_OPTIONS = {
@@ -14,25 +14,25 @@ const DEFAULT_OPTIONS = {
   callback: false
 };
 
-const template = `<window-dialog class="mdc-alert-dialog" :open="open" :options="options">
+const template = `<mdc-dialog ref="alert" class="mdc-alert-dialog" :open="open" :options="options">
   <button type="button"
     class="mdc-button mdc-button--raised mdc-alert-dialog__button"
     data-mdc-dialog-button-default
     @click="handleClick">
     <span class="mdc-button__label">{{ options.buttonText }}</span>
   </button>
-</window-dialog>`;
+</mdc-dialog>`;
 
 const BalmUI_AlertPlugin = {
-  install(Vue, configs = {}) {
-    let options = Object.assign({}, DEFAULT_OPTIONS, configs);
+  install(app, globalOptions = {}) {
+    options = Object.assign({}, DEFAULT_OPTIONS, globalOptions);
 
     const $alert = (customOptions = {}) => {
       return new Promise((resolve) => {
-        let vm = createApp({
+        let alertApp = createApp({
           el: document.createElement('div'),
           components: {
-            WindowDialog
+            MdcDialog
           },
           data: {
             open: false,
@@ -46,7 +46,7 @@ const BalmUI_AlertPlugin = {
             }
           },
           mounted() {
-            document.body.appendChild(this.$el);
+            document.body.appendChild(this.$refs.alert);
 
             this.$nextTick(() => {
               this.open = true;
@@ -56,8 +56,8 @@ const BalmUI_AlertPlugin = {
             handleClose() {
               this.open = false;
 
-              document.body.removeChild(this.$el);
-              vm = null;
+              document.body.removeChild(this.$refs.alert);
+              alertApp = null;
             },
             handleClick() {
               this.handleClose();
@@ -74,7 +74,7 @@ const BalmUI_AlertPlugin = {
       });
     };
 
-    Vue.prototype.$alert = $alert;
+    app.config.globalProperties.$alert = $alert;
   }
 };
 

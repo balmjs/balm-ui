@@ -4,7 +4,7 @@ import autoInstall from '../config/auto-install';
 const GRID_PROPERTY = ['margin', 'gutter', 'column-width'];
 const TYPE_OF_DEVICE = ['desktop', 'tablet', 'phone'];
 
-const $setGrid = (_property, size, value) => {
+const setGrid = (_property, size, value) => {
   if (GRID_PROPERTY.includes(_property)) {
     if (TYPE_OF_DEVICE.includes(size)) {
       document.documentElement.style.setProperty(
@@ -25,11 +25,12 @@ const $setGrid = (_property, size, value) => {
 
 const BalmUI_GridPlugin = {
   install(app) {
-    app.config.globalProperties.$setGrid = $setGrid;
+    app.config.globalProperties.$setGrid = setGrid;
+    app.provide('setGrid', setGrid);
   }
 };
 
-const useGrid = () => $setGrid;
+const useGrid = () => setGrid;
 
 autoInstall(BalmUI_GridPlugin);
 

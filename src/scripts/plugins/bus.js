@@ -12,19 +12,19 @@ function $on(eventName, callback) {
   eventBus.set(eventName, callback);
 }
 
-const $bus = {
+const uiBus = {
   $emit,
   $on
 };
 
 const BalmUI_BusPlugin = {
   install(app) {
-    app.config.globalProperties.$bus = $bus;
-    app.provide('$bus', $bus);
+    app.config.globalProperties.$bus = uiBus;
+    app.provide('bus', uiBus);
   }
 };
 
-const useBus = () => $bus;
+const useBus = () => uiBus;
 
 autoInstall(BalmUI_BusPlugin);
 

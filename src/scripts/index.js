@@ -92,7 +92,7 @@ import UiTooltip from './components/others/tooltip';
  */
 import event, { useEvent } from './plugins/event'; // Custom
 import bus, { useBus } from './plugins/bus'; // Custom
-import grid from './plugins/grid';
+import grid, { useGrid } from './plugins/grid';
 import theme, { useTheme } from './plugins/theme';
 import typography from './plugins/typography';
 import validator, { useValidator } from './plugins/validator'; // Custom
@@ -211,30 +211,30 @@ const directives = {
 
 const BalmUI = {
   version: packageJson.version,
-  install(Vue, options = {}) {
+  install(app, options = {}) {
     // Configure the components' props
     multiConfigure(components, options);
 
     // Install the components
     for (let key in components) {
       let Component = components[key];
-      Vue.component(Component.name, Component);
+      app.component(Component.name, Component);
     }
 
     // Install the plugins
     for (let key in plugins) {
       let Plugin = plugins[key];
       if (options[key]) {
-        Vue.use(Plugin, options[key]);
+        app.use(Plugin, options[key]);
       } else {
-        Vue.use(Plugin);
+        app.use(Plugin);
       }
     }
 
     // Init the directives
     for (let key in directives) {
       let Directive = directives[key];
-      Vue.directive(Directive.name, Directive);
+      app.directive(Directive.name, Directive);
     }
   }
 };
@@ -242,4 +242,13 @@ const BalmUI = {
 autoInstall(BalmUI);
 
 export default BalmUI;
-export { useEvent, useBus, useTheme, useValidator, types, helpers, detectIE };
+export {
+  useEvent,
+  useBus,
+  useGrid,
+  useTheme,
+  useValidator,
+  types,
+  helpers,
+  detectIE
+};

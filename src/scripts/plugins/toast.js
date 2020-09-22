@@ -1,3 +1,4 @@
+import { createApp } from 'vue';
 import autoInstall from '../config/auto-install';
 import getType from '../utils/typeof';
 
@@ -17,7 +18,7 @@ const DEFAULT_OPTIONS = {
   debug: false
 };
 
-const template = `<div
+const template = `<div ref="toast"
   :class="[
     'mdc-snackbar',
     'mdc-toast',
@@ -34,7 +35,7 @@ const template = `<div
   </div>
 </div>`;
 
-let vm;
+let toastApp;
 let toastTimer;
 let toastElTimer;
 
@@ -43,10 +44,10 @@ function hasToast() {
 }
 
 const BalmUI_ToastPlugin = {
-  install(Vue, configs = {}) {
+  install(app, configs = {}) {
     let options = Object.assign({}, DEFAULT_OPTIONS, configs);
 
-    const $toast = (customOptions = {}) => {
+    const toast = (customOptions = {}) => {
       if (getType(customOptions) === 'string') {
         options.message = `${customOptions}`; // To string
       } else if (getType(customOptions) === 'object') {
@@ -57,9 +58,9 @@ const BalmUI_ToastPlugin = {
         clearTimeout(toastTimer);
         clearTimeout(toastElTimer);
 
-        vm.init(options);
+        toastApp.init(options);
       } else {
-        vm = new Vue({
+        toastApp = createApp({
           el: document.createElement('div'),
           data: {
             open: false,
@@ -97,7 +98,7 @@ const BalmUI_ToastPlugin = {
 
                 this.$nextTick(() => {
                   if (!hasToast()) {
-                    document.body.appendChild(this.$el);
+                    document.body.appendChild(this.$refs.toast);
                   }
 
                   this.show();
@@ -122,8 +123,8 @@ const BalmUI_ToastPlugin = {
                 // remove toast
                 toastElTimer = setTimeout(() => {
                   try {
-                    document.body.removeChild(this.$el);
-                    vm = null;
+                    document.body.removeChild(this.$refs.toast);
+                    toastApp = null;
                   } catch (e) {}
                 }, this.options.timeoutMs);
               }
@@ -134,10 +135,14 @@ const BalmUI_ToastPlugin = {
       }
     };
 
-    Vue.prototype.$toast = $toast;
+    app.config.globalProperties.$toast = toast;
+    app.provide('toast', toast);
   }
 };
+
+const useToast = () => toast;
 
 autoInstall(BalmUI_ToastPlugin);
 
 export default BalmUI_ToastPlugin;
+export { useToast };

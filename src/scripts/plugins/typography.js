@@ -24,7 +24,7 @@ const BalmUI_TypographyPlugin = {
       ? T_DEFAULT_STYLES.concat(customStyles)
       : T_DEFAULT_STYLES;
 
-    const $tt = (style) => {
+    const tt = (style) => {
       let className = '';
 
       if (T_STYLES.includes(style)) {
@@ -48,7 +48,8 @@ const BalmUI_TypographyPlugin = {
       }
     });
 
-    app.config.globalProperties.$tt = $tt;
+    app.config.globalProperties.$tt = tt;
+    app.provide('tt', tt);
   }
 };
 

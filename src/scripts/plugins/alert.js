@@ -27,7 +27,7 @@ const BalmUI_AlertPlugin = {
   install(app, globalOptions = {}) {
     options = Object.assign({}, DEFAULT_OPTIONS, globalOptions);
 
-    const $alert = (customOptions = {}) => {
+    const alertDialog = (customOptions = {}) => {
       return new Promise((resolve) => {
         let alertApp = createApp({
           el: document.createElement('div'),
@@ -74,10 +74,14 @@ const BalmUI_AlertPlugin = {
       });
     };
 
-    app.config.globalProperties.$alert = $alert;
+    app.config.globalProperties.$alert = alertDialog;
+    app.provide('alert', alertDialog);
   }
 };
+
+const useAlert = () => alertDialog;
 
 autoInstall(BalmUI_AlertPlugin);
 
 export default BalmUI_AlertPlugin;
+export { useAlert };

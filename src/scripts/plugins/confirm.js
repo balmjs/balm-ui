@@ -1,5 +1,6 @@
+import { createApp } from 'vue';
 import autoInstall from '../config/auto-install';
-import WindowDialog from '../components/modal/window-dialog';
+import MdcDialog from '../components/modal/mdc-dialog';
 import getType from '../utils/typeof';
 
 const DEFAULT_OPTIONS = {
@@ -14,7 +15,7 @@ const DEFAULT_OPTIONS = {
   callback: false
 };
 
-const template = `<window-dialog class="mdc-confirm-dialog" :open="open" :options="options">
+const template = `<mdc-dialog ref="confirm" class="mdc-confirm-dialog" :open="open" :options="options">
   <button type="button"
     class="mdc-button mdc-button--raised mdc-confirm-dialog__primary-button"
     data-mdc-dialog-button-default
@@ -26,15 +27,15 @@ const template = `<window-dialog class="mdc-confirm-dialog" :open="open" :option
     @click="handleConfirm(false)">
     <span class="mdc-button__label">{{ options.cancelText }}</span>
   </button>
-</window-dialog>`;
+</mdc-dialog>`;
 
 const BalmUI_ConfirmPlugin = {
-  install(Vue, configs = {}) {
+  install(app, configs = {}) {
     let options = Object.assign({}, DEFAULT_OPTIONS, configs);
 
-    const $confirm = (customOptions = {}) => {
+    const confirmDialog = (customOptions = {}) => {
       return new Promise((resolve) => {
-        let vm = new Vue({
+        let confirmApp = createApp({
           el: document.createElement('div'),
           components: {
             WindowDialog
@@ -51,7 +52,7 @@ const BalmUI_ConfirmPlugin = {
             }
           },
           mounted() {
-            document.body.appendChild(this.$el);
+            document.body.appendChild(this.$refs.confirm);
 
             this.$nextTick(() => {
               this.open = true;
@@ -61,8 +62,8 @@ const BalmUI_ConfirmPlugin = {
             handleClose() {
               this.open = false;
 
-              document.body.removeChild(this.$el);
-              vm = null;
+              document.body.removeChild(this.$refs.confirm);
+              confirmApp = null;
             },
             handleConfirm(result) {
               this.handleClose();
@@ -79,10 +80,14 @@ const BalmUI_ConfirmPlugin = {
       });
     };
 
-    Vue.prototype.$confirm = $confirm;
+    app.config.globalProperties.$confirm = confirmDialog;
+    app.provide('confirm', confirmDialog);
   }
 };
+
+const useConfirm = () => confirmDialog;
 
 autoInstall(BalmUI_ConfirmPlugin);
 
 export default BalmUI_ConfirmPlugin;
+export { useConfirm };

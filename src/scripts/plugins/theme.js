@@ -231,16 +231,16 @@ class Theme extends ThemeStyle {
   }
 }
 
-const $theme = new Theme();
+const theme = new Theme();
 
 const BalmUI_ThemePlugin = {
   install(app) {
-    app.config.globalProperties.$theme = $theme;
-    app.provide('$theme', $theme);
+    app.config.globalProperties.$theme = theme;
+    app.provide('theme', theme);
   }
 };
 
-const useTheme = () => $theme;
+const useTheme = () => theme;
 
 autoInstall(BalmUI_ThemePlugin);
 

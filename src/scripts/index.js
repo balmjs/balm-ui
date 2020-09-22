@@ -90,12 +90,12 @@ import UiTooltip from './components/others/tooltip';
 /**
  * Plugins
  */
-import event from './plugins/event'; // Custom
-import bus from './plugins/bus'; // Custom
+import event, { useEvent } from './plugins/event'; // Custom
+import bus, { useBus } from './plugins/bus'; // Custom
 import grid from './plugins/grid';
-import theme from './plugins/theme';
+import theme, { useTheme } from './plugins/theme';
 import typography from './plugins/typography';
-import validator from './plugins/validator'; // Custom
+import validator, { useValidator } from './plugins/validator'; // Custom
 /**
  * Directives
  */
@@ -242,4 +242,4 @@ const BalmUI = {
 autoInstall(BalmUI);
 
 export default BalmUI;
-export { types, helpers, detectIE };
+export { useEvent, useBus, useTheme, useValidator, types, helpers, detectIE };

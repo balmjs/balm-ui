@@ -1,3 +1,4 @@
+import { createApp } from 'vue';
 import autoInstall from '../config/auto-install';
 import WindowDialog from '../components/modal/window-dialog';
 import getType from '../utils/typeof';
@@ -28,7 +29,7 @@ const BalmUI_AlertPlugin = {
 
     const $alert = (customOptions = {}) => {
       return new Promise((resolve) => {
-        let vm = new Vue({
+        let vm = createApp({
           el: document.createElement('div'),
           components: {
             WindowDialog

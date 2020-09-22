@@ -2,19 +2,19 @@ import autoInstall from '../config/auto-install';
 
 let eventBus = new Map();
 
-function $on(eventName, callback) {
-  eventBus.set(eventName, callback);
-}
-
 function $emit(eventName, ...args) {
   if (eventBus.has(eventName)) {
     eventBus.get(eventName)(...args);
   }
 }
 
+function $on(eventName, callback) {
+  eventBus.set(eventName, callback);
+}
+
 const $bus = {
-  $on,
-  $emit
+  $emit,
+  $on
 };
 
 const BalmUI_BusPlugin = {
@@ -24,6 +24,9 @@ const BalmUI_BusPlugin = {
   }
 };
 
+const useBus = () => $bus;
+
 autoInstall(BalmUI_BusPlugin);
 
 export default BalmUI_BusPlugin;
+export { useBus };

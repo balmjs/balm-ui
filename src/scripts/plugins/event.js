@@ -46,7 +46,7 @@ function handleEvent(_property, value) {
 let vm;
 let customEventCreated = false;
 
-const EventMethods = {
+const $uiEvent = {
   onChange(_property, value, fn = noop) {
     vm && handleEvent.call(vm.$data, _property, value);
     return callback(fn);
@@ -72,15 +72,17 @@ const EventMethods = {
 const BalmUI_EventPlugin = {
   install(app, customNamespace = DEFAULT_NAMESPACE) {
     if (customNamespace) {
-      const eventKey = `$${customNamespace}`;
+      const key = `$${customNamespace}`;
 
-      app.provide(eventKey, EventMethods);
+      app.provide(key, $uiEvent);
 
       app.mixin({
-        inject: [eventKey],
+        inject: [key],
         created() {
           const currentInstance = getCurrentInstance();
           if (currentInstance && !currentInstance.parent) {
+            console.log('BalmUI event', currentInstance);
+            // TODO:  test for children
             vm = currentInstance.ctx;
           }
         },
@@ -97,6 +99,14 @@ const BalmUI_EventPlugin = {
   }
 };
 
+function useEvent() {
+  const currentInstance = getCurrentInstance();
+  vm = currentInstance.ctx;
+
+  return $uiEvent;
+}
+
 autoInstall(BalmUI_EventPlugin);
 
 export default BalmUI_EventPlugin;
+export { useEvent };

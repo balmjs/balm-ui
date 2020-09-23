@@ -99,6 +99,8 @@ function createBalmUIApp() {
   };
   app.config.globalProperties.$domain = isProd ? '//material.balmjs.com' : '';
 
+  app.config.isCustomElement = (tag) => tag.startsWith('ui-');
+
   app.mount('#app');
 }
 

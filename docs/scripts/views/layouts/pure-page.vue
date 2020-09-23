@@ -29,11 +29,11 @@ export default {
       default: null
     }
   },
-  setup() {
+  setup(props) {
     const store = useStore();
 
     const docs = computed(() => {
-      let filename = `${store.lang}/guide/${this.name}`;
+      let filename = `${store.lang}/guide/${props.name}`;
       return require(`@/docs/${filename}.md`); // NOTE: just one variable in `require`
     });
 

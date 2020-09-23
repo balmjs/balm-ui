@@ -1,47 +1,59 @@
+import { reactive, toRefs } from 'vue';
+import { useTheme } from 'balm-ui';
 import { themes } from '@/config';
 
-export default {
-  data() {
-    return {
-      theme: '',
-      themeColors: {}
-    };
-  },
-  created() {
-    this.theme = this.getThemeName();
-  },
-  methods: {
-    getThemeName() {
-      return localStorage.getItem('theme') || 'light';
-    },
-    getTheme() {
-      [
-        'background',
-        'primary',
-        'on-primary',
-        'secondary',
-        'on-secondary',
-        'surface',
-        'on-surface',
-        'error',
-        'on-error'
-      ].forEach((style) => {
-        this.$set(this.themeColors, style, this.$theme.getThemeColor(style));
-      });
-    },
-    setTheme(themeName = this.theme) {
-      const themeColors = themes[themeName];
+const theme = useTheme();
 
-      localStorage.setItem('theme', themeName);
-      this.$theme.colors = themeColors;
+const state = reactive({
+  theme: '',
+  themeColors: {}
+});
 
-      this.getTheme();
-    },
-    switchTheme() {
-      const themeName = this.theme === 'dark' ? 'light' : 'dark';
+function getThemeName() {
+  return localStorage.getItem('theme') || 'light';
+}
 
-      this.theme = themeName;
-      this.setTheme(themeName);
-    }
-  }
+function getTheme() {
+  [
+    'background',
+    'primary',
+    'on-primary',
+    'secondary',
+    'on-secondary',
+    'surface',
+    'on-surface',
+    'error',
+    'on-error'
+  ].forEach((style) => {
+    state.themeColors[style] = theme.getThemeColor(style);
+  });
+}
+
+function setTheme(themeName = state.theme) {
+  const themeColors = themes[themeName];
+
+  localStorage.setItem('theme', themeName);
+  theme.colors = themeColors;
+
+  getTheme();
+}
+
+function switchTheme() {
+  const themeName = state.theme === 'dark' ? 'light' : 'dark';
+
+  state.theme = themeName;
+  setTheme(themeName);
+}
+
+state.theme = getThemeName();
+setTheme();
+
+const useThemeStore = () => {
+  return {
+    ...toRefs(state),
+    getThemeName,
+    switchTheme
+  };
 };
+
+export default useThemeStore;

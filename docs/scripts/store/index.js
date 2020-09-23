@@ -1,23 +1,11 @@
-import { createApp } from 'vue';
-import page from './page';
-import lang from './lang';
-import theme from './theme';
+import useLangStore from './lang';
+import useThemeStore from './theme';
+import useSnippetStore from './snippet';
 
-function createBalmUIStore() {
-  const el = document.createElement('div');
-  el.id = 'store';
-  document.body.appendChild(el);
-
-  const storeApp = createApp({
-    name: 'BalmUIStore',
-    mixins: [page, lang, theme]
-  });
-
-  storeApp.mount('#store');
-
-  console.log('store', storeApp);
-
-  return storeApp;
-}
-
-export default createBalmUIStore();
+export default () => {
+  return {
+    ...useLangStore(),
+    ...useThemeStore(),
+    ...useSnippetStore()
+  };
+};

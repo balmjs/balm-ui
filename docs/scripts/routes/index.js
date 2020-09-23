@@ -115,7 +115,7 @@ const router = createRouter({
 const bus = useBus();
 
 router.beforeEach((to, from, next) => {
-  bus.$emit('page-load');
+  bus.pub('page-load');
   next();
 });
 
@@ -145,7 +145,7 @@ router.afterEach((to, from) => {
     pageClassList.add(`${CLASS_NAMESPACE}-${toName}`);
   }
 
-  bus.$emit('page-ready');
+  bus.pub('page-ready');
 });
 
 export default router;

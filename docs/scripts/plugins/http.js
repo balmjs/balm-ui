@@ -1,6 +1,9 @@
 import axios from 'axios';
+import { useBus } from 'balm-ui';
 
 // axios.defaults.baseURL = '/api';
+
+const bus = useBus();
 
 axios.interceptors.request.use(
   (config) => {
@@ -13,16 +16,18 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   (response) => {
-    // bus.$emit('off-loading');
+    bus.pub('off-loading');
 
     return response.data;
   },
   (error) => {
-    // bus.$emit('off-loading');
+    bus.pub('off-loading');
 
     return Promise.reject(error);
   }
 );
+
+const useHttp = () => axios;
 
 export default {
   install(app) {
@@ -30,3 +35,4 @@ export default {
     app.provide('http', axios);
   }
 };
+export { useHttp };

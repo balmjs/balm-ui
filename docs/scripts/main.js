@@ -1,9 +1,9 @@
 import '@/polyfill';
 import { createApp } from 'vue';
-import $http from '@/plugins/$http';
-import $store from '@/plugins/$store';
 import router from '@/routes';
 import i18n from '@/lang';
+import http from '@/plugins/http';
+import store from '@/store';
 import App from '@/views/layouts/app';
 import { isProd } from '@/config';
 import validatorRules from '@/config/validator-rules';
@@ -35,12 +35,12 @@ import './my-sw';
 function createBalmUIApp() {
   const app = createApp(App);
 
-  app.use($http);
-  app.use($store);
   app.use(router);
   app.use(i18n);
+  app.use(http);
 
   app.use(BalmUI, {
+    store,
     typography: ['custom-style-1', 'custom-style-2'],
     validator: validatorRules
   });

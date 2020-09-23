@@ -23,12 +23,12 @@
           ></ui-icon-button>
           <ui-menu-anchor>
             <ui-icon-button icon="language" @click="balmUI.onShow('showTranslations')"></ui-icon-button>
-            <ui-menu v-model="showTranslations" @selected="$store.setLang">
+            <ui-menu v-model="showTranslations" @selected="locale">
               <ui-menuitem
                 v-for="translation in translations"
                 :key="translation.value"
                 :item="translation"
-                :selected="translation.value === $store.lang"
+                :selected="translation.value === locale"
               ></ui-menuitem>
             </ui-menu>
           </ui-menu-anchor>
@@ -149,12 +149,7 @@
 </template>
 
 <script>
-import SvgGithub from '@/components/svg-github';
-import SwitchTheme from '@/components/switch-theme';
-import { VERSION, $MIN_WIDTH, translations } from '@/config';
-import menu from '@/config/menu';
 import {
-  inject,
   reactive,
   toRefs,
   nextTick,
@@ -163,7 +158,11 @@ import {
   onBeforeUnmount
 } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useEvent, useBus } from 'balm-ui';
+import { useEvent, useBus, useStore } from 'balm-ui';
+import SvgGithub from '@/components/svg-github';
+import SwitchTheme from '@/components/switch-theme';
+import { VERSION, $MIN_WIDTH, translations } from '@/config';
+import menu from '@/config/menu';
 
 const state = reactive({
   version: VERSION, // .split('-')[0],
@@ -195,6 +194,8 @@ function loading() {
   }
 }
 
+const store = useStore();
+
 export default {
   name: 'BalmUIApp',
   metaInfo: {
@@ -210,14 +211,12 @@ export default {
     const { t, locale } = useI18n();
 
     onBeforeMount(() => {
-      bus.$on('page-load', () => {
+      bus.sub('page-load', () => {
         state.pageLoading = true;
         state.loadingTimer = setInterval(loading, 20);
       });
 
-      bus.$on('page-ready', async () => {
-        await nextTick();
-
+      bus.sub('page-ready', () => {
         state.bodyEl.scrollTop = 0;
 
         setTimeout(() => {
@@ -230,20 +229,20 @@ export default {
       });
     });
 
-    onMounted(() => {
+    onMounted(async () => {
+      await nextTick();
+
       init();
       window.addEventListener('balmResize', init);
 
-      bus.$on('global-message', (message) => {
+      bus.sub('global-message', (message) => {
         state.showGlobalMessage = true;
       });
 
-      // locale = this.$store.lang;
-      // $bus.$on('switch-lang', (lang) => {
+      // locale = store.lang;
+      // bus.sub('switch-lang', (lang) => {
       //   locale = lang;
       // });
-
-      // this.$store.setTheme();
     });
 
     onBeforeUnmount(() => {
@@ -267,7 +266,7 @@ export default {
   },
   methods: {
     handleMenu() {
-      this.bus.$emit('page-load');
+      this.bus.pub('page-load');
 
       state.openDrawer = false;
       if (window.innerWidth < $MIN_WIDTH) {

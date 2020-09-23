@@ -11,7 +11,7 @@
 
 <script>
 import { computed } from 'vue';
-import { useStore } from '@/plugins';
+import { useStore } from 'balm-ui';
 
 export default {
   name: 'PurePage',

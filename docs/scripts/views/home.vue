@@ -11,15 +11,10 @@
 </template>
 
 <script>
-import { useStore } from '@/plugins';
-
 export default {
   name: 'Home',
   metaInfo: {
     titleTemplate: '%s - Home'
-  },
-  setup() {
-    const store = useStore();
   }
 };
 </script>

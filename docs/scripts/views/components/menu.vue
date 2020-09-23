@@ -1,5 +1,9 @@
 <template>
-  <docs-page name="menu" demo-count="2" :apis="['ui-menu', 'menu', 'menuitem', 'menu-anchor']">
+  <docs-page
+    name="menu"
+    demo-count="2"
+    :apis="['ui-menu', 'menu', 'menuitem', 'menu-anchor']"
+  >
     <template #hero>
       <ui-menu
         css-only
@@ -141,9 +145,15 @@
             Menu Distance:
             <ui-form-field>
               <ui-textfield v-model="controls.distance.top">Top:</ui-textfield>
-              <ui-textfield v-model="controls.distance.right">Right:</ui-textfield>
-              <ui-textfield v-model="controls.distance.bottom">Bottom:</ui-textfield>
-              <ui-textfield v-model="controls.distance.left">Left:</ui-textfield>
+              <ui-textfield v-model="controls.distance.right"
+                >Right:</ui-textfield
+              >
+              <ui-textfield v-model="controls.distance.bottom"
+                >Bottom:</ui-textfield
+              >
+              <ui-textfield v-model="controls.distance.left"
+                >Left:</ui-textfield
+              >
             </ui-form-field>
           </div>
           <div class="other-controls">
@@ -152,11 +162,17 @@
               <label for="is-rtl">RTL</label>
             </ui-form-field>
             <ui-form-field>
-              <ui-checkbox id="animation" v-model="controls.disableAnimation"></ui-checkbox>
+              <ui-checkbox
+                id="animation"
+                v-model="controls.disableAnimation"
+              ></ui-checkbox>
               <label for="animation">Disable Open Animation</label>
             </ui-form-field>
             <ui-form-field>
-              <ui-checkbox id="fixed-position" v-model="controls.fixedPosition"></ui-checkbox>
+              <ui-checkbox
+                id="fixed-position"
+                v-model="controls.fixedPosition"
+              ></ui-checkbox>
               <label for="fixed-position">Fixed Position Menu Surface</label>
             </ui-form-field>
           </div>
@@ -164,9 +180,11 @@
           <div>
             <span>
               Last Selected item:
-              <em
-                id="last-selected"
-              >{{ selectedValue ? `"${selectedValue.label}" at index ${selectedValue.index}` : '&lt;none selected&gt;' }}</em>
+              <em id="last-selected">{{
+                selectedValue
+                  ? `"${selectedValue.label}" at index ${selectedValue.index}`
+                  : '&lt;none selected&gt;'
+              }}</em>
             </span>
           </div>
         </ui-form>
@@ -177,7 +195,8 @@
               raised
               class="demo-button demo-button--normal"
               @click="$balmUI.onOpen('open2')"
-            >Show Menu</ui-button>
+              >Show Menu</ui-button
+            >
 
             <ui-menu
               id="demo-menu"

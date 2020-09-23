@@ -14,7 +14,12 @@
       <ui-form class="demo-controls">
         <label>Timeout: {{ timeout }}second</label>
         <ui-form-field>
-          <ui-slider v-model="timeout" type="discrete" min="4" max="10"></ui-slider>
+          <ui-slider
+            v-model="timeout"
+            type="discrete"
+            min="4"
+            max="10"
+          ></ui-slider>
         </ui-form-field>
         <ui-form-field>
           <ui-textfield v-model="message">Message Text</ui-textfield>
@@ -28,11 +33,13 @@
         </ui-form-field>
       </ui-form>
       <div class="demo">
-        <ui-button raised @click="$balmUI.onOpen('open')">Show Snackbar</ui-button>
+        <ui-button raised @click="$balmUI.onOpen('open')"
+          >Show Snackbar</ui-button
+        >
 
         <ui-snackbar
           v-model="open"
-          :timeout-ms="timeout*1e3"
+          :timeout-ms="timeout * 1e3"
           :message="message"
           :action-button-text="actionText"
           :action-type="actionType ? 1 : 0"

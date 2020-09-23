@@ -8,7 +8,12 @@
         <ui-icon :type="typeOption">delete</ui-icon>
       </div>
       <div class="hero-options">
-        <ui-select v-model="typeOption" class="hero-option" :options="TypeOptions">Icon themes</ui-select>
+        <ui-select
+          v-model="typeOption"
+          class="hero-option"
+          :options="TypeOptions"
+          >Icon themes</ui-select
+        >
       </div>
     </template>
 
@@ -81,7 +86,9 @@
             @input="onSearch"
             @selected="onSelected"
           ></ui-autocomplete>
-          <ui-select id="icon-type" v-model="typeOption" :options="TypeOptions">Theme</ui-select>
+          <ui-select id="icon-type" v-model="typeOption" :options="TypeOptions"
+            >Theme</ui-select
+          >
         </div>
         <ui-textfield-helper class="search-helper" visible>
           TIPS: Click an icon to copy icon name, then you can use `
@@ -90,11 +97,15 @@
       </div>
 
       <ui-list-group>
-        <template v-for="(category, index) in categories" :key="`category${index}`">
+        <template
+          v-for="(category, index) in categories"
+          :key="`category${index}`"
+        >
           <ui-list-group-subheader
             v-anchor:id="category.name"
             :class="$tt('headline6')"
-          >{{ category.name }}</ui-list-group-subheader>
+            >{{ category.name }}</ui-list-group-subheader
+          >
           <template v-if="Object.keys(currentIcons).length">
             <ui-image-list>
               <ui-image-item
@@ -105,7 +116,9 @@
                 :data-clipboard-text="icon.name"
               >
                 <template #image>
-                  <ui-icon :type="typeOption" size="36">{{ icon.name }}</ui-icon>
+                  <ui-icon :type="typeOption" size="36">{{
+                    icon.name
+                  }}</ui-icon>
                   <div v-if="icon.isNew" class="new-badge">New</div>
                 </template>
                 <ui-image-text>{{ icon.name }}</ui-image-text>

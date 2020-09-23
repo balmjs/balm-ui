@@ -17,11 +17,23 @@
       <h6 :class="$tt('headline6')">Disabled</h6>
       <div class="demo">
         <ui-form-field>
-          <ui-radio id="ex4a-radio1" v-model="hero" name="ex4a" value="0" disabled></ui-radio>
+          <ui-radio
+            id="ex4a-radio1"
+            v-model="hero"
+            name="ex4a"
+            value="0"
+            disabled
+          ></ui-radio>
           <label for="ex4a-radio1">Disabled Radio 1</label>
         </ui-form-field>
         <ui-form-field>
-          <ui-radio id="ex4a-radio2" v-model="hero" name="ex4a" value="1" disabled></ui-radio>
+          <ui-radio
+            id="ex4a-radio2"
+            v-model="hero"
+            name="ex4a"
+            value="1"
+            disabled
+          ></ui-radio>
           <label for="ex4a-radio2">Disabled Radio 2</label>
         </ui-form-field>
       </div>
@@ -34,7 +46,12 @@
           <label for="male">Male</label>
         </ui-form-field>
         <ui-form-field>
-          <ui-radio id="female" v-model="gender" name="sex" value="F"></ui-radio>
+          <ui-radio
+            id="female"
+            v-model="gender"
+            name="sex"
+            value="F"
+          ></ui-radio>
           <label for="female">Female</label>
         </ui-form-field>
         <p>Gender: {{ gender }}</p>

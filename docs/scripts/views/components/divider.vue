@@ -10,7 +10,12 @@
           <ui-checkbox id="divider-with-text" v-model="withText"></ui-checkbox>
           <label for="divider-with-text">With text</label>
         </ui-form-field>
-        <ui-select v-model="typeOption" class="hero-option" :options="TypeOptions">Type</ui-select>
+        <ui-select
+          v-model="typeOption"
+          class="hero-option"
+          :options="TypeOptions"
+          >Type</ui-select
+        >
       </div>
     </template>
 

@@ -9,7 +9,11 @@
     <!-- Content -->
     <section class="demo-wrapper">
       <div class="demo">
-        <ui-rangepicker v-model="date" outlined :labels="['Start Date', 'End Date']">
+        <ui-rangepicker
+          v-model="date"
+          outlined
+          :labels="['Start Date', 'End Date']"
+        >
           <template #separator>-</template>
         </ui-rangepicker>
       </div>

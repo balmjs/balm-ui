@@ -31,7 +31,9 @@
         @file-change="onFileChange"
       ></ui-editor>
       <p>
-        <ui-button outlined @click="onEncodeContent">Show Encode Content</ui-button>
+        <ui-button outlined @click="onEncodeContent"
+          >Show Encode Content</ui-button
+        >
       </p>
       <div>{{ encodeContent }}</div>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>

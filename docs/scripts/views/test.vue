@@ -3,7 +3,11 @@
     <ui-form>
       <legend>Form Area</legend>
       <ui-form-field class="form-item">
-        <ui-textfield id="mobile" v-model="formData.mobile" v-model:valid-msg="validMsg.mobile">
+        <ui-textfield
+          id="mobile"
+          v-model="formData.mobile"
+          v-model:valid-msg="validMsg.mobile"
+        >
           Mobile
           <template #helper-text>{{ validMsg.mobile }}</template>
         </ui-textfield>
@@ -14,7 +18,8 @@
           v-model="formData.password"
           v-model:valid-msg="validMsg.password"
           input-type="password"
-        >Password</ui-textfield>
+          >Password</ui-textfield
+        >
       </ui-form-field>
       <ui-form-field class="form-item">
         <ui-textfield
@@ -22,7 +27,8 @@
           v-model="formData.repassword"
           v-model:valid-msg="validMsg.repassword"
           input-type="password"
-        >Repeat Password</ui-textfield>
+          >Repeat Password</ui-textfield
+        >
       </ui-form-field>
       <ui-form-field class="form-item form-actions">
         <ui-button raised @click="submit">Submit</ui-button>

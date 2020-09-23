@@ -13,21 +13,27 @@
       <h6 :class="$tt('subtitle1')">Start Alignment</h6>
       <div class="demo">
         <ui-tab-bar align="start">
-          <ui-tab v-for="(tab, index) in tabs" :key="index" min-width>{{ tab.text }}</ui-tab>
+          <ui-tab v-for="(tab, index) in tabs" :key="index" min-width>{{
+            tab.text
+          }}</ui-tab>
         </ui-tab-bar>
       </div>
 
       <h6 :class="$tt('subtitle1')">Center Alignment</h6>
       <div class="demo">
         <ui-tab-bar align="center">
-          <ui-tab v-for="(tab, index) in tabs" :key="index" min-width>{{ tab.text }}</ui-tab>
+          <ui-tab v-for="(tab, index) in tabs" :key="index" min-width>{{
+            tab.text
+          }}</ui-tab>
         </ui-tab-bar>
       </div>
 
       <h6 :class="$tt('subtitle1')">End Alignment</h6>
       <div class="demo">
         <ui-tab-bar align="end">
-          <ui-tab v-for="(tab, index) in tabs" :key="index" min-width>{{ tab.text }}</ui-tab>
+          <ui-tab v-for="(tab, index) in tabs" :key="index" min-width>{{
+            tab.text
+          }}</ui-tab>
         </ui-tab-bar>
       </div>
       <ui-snippet :code="$store.demos[6]"></ui-snippet>
@@ -41,7 +47,13 @@
     <div class="demo">
       <ui-tab-bar class="custom-demo-tab-bar">
         <template v-for="(tab, index) in tabs" :key="index">
-          <ui-tab type="textWithIcon" :icon="tab.icon" min-width content-indicator>{{ tab.text }}</ui-tab>
+          <ui-tab
+            type="textWithIcon"
+            :icon="tab.icon"
+            min-width
+            content-indicator
+            >{{ tab.text }}</ui-tab
+          >
         </template>
       </ui-tab-bar>
     </div>

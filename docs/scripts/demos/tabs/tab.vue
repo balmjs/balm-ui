@@ -5,7 +5,9 @@
     <h6 :class="$tt('subtitle1')">Text Label</h6>
     <div class="demo">
       <ui-tab-bar>
-        <ui-tab v-for="(tab, index) in tabs" :key="index">{{ tab.text }}</ui-tab>
+        <ui-tab v-for="(tab, index) in tabs" :key="index">{{
+          tab.text
+        }}</ui-tab>
       </ui-tab-bar>
     </div>
 
@@ -32,7 +34,9 @@
     <div class="demo">
       <ui-tab-bar type="both">
         <template v-for="(tab, index) in tabs" :key="index">
-          <ui-tab type="textWithIcon" :icon="tab.icon" stacked>{{ tab.text }}</ui-tab>
+          <ui-tab type="textWithIcon" :icon="tab.icon" stacked>{{
+            tab.text
+          }}</ui-tab>
         </template>
       </ui-tab-bar>
     </div>
@@ -41,7 +45,9 @@
     <h6 :class="$tt('subtitle1')">Text Label Width-Matching Indicator</h6>
     <div class="example">
       <ui-tab-bar>
-        <ui-tab v-for="(tab, index) in tabs" :key="index" content-indicator>{{ tab.text }}</ui-tab>
+        <ui-tab v-for="(tab, index) in tabs" :key="index" content-indicator>{{
+          tab.text
+        }}</ui-tab>
       </ui-tab-bar>
     </div>
 

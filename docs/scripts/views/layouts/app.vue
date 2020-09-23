@@ -1,6 +1,10 @@
 <template>
   <div class="balmui-container">
-    <ui-progress v-if="pageLoading" class="top-loading" :progress="loadingProgress"></ui-progress>
+    <ui-progress
+      v-if="pageLoading"
+      class="top-loading"
+      :progress="loadingProgress"
+    ></ui-progress>
     <template v-if="noLayout">
       <router-view></router-view>
     </template>
@@ -13,7 +17,11 @@
         fixed
         @nav="balmUI.onChange('openDrawer', !openDrawer)"
       >
-        <router-link to="/" :class="['catalog-title', $theme.getThemeClass('on-primary')]">BalmUI</router-link>
+        <router-link
+          to="/"
+          :class="['catalog-title', $theme.getThemeClass('on-primary')]"
+          >BalmUI</router-link
+        >
         <template #toolbar="{ toolbarItemClass }">
           <switch-theme v-if="$route.name === 'theme.color'"></switch-theme>
           <!-- For dark theme test -->
@@ -22,7 +30,10 @@
             @click="$store.switchTheme"
           ></ui-icon-button>
           <ui-menu-anchor>
-            <ui-icon-button icon="language" @click="balmUI.onShow('showTranslations')"></ui-icon-button>
+            <ui-icon-button
+              icon="language"
+              @click="balmUI.onShow('showTranslations')"
+            ></ui-icon-button>
             <ui-menu v-model="showTranslations" @selected="$store.setLang">
               <ui-menuitem
                 v-for="translation in translations"
@@ -39,8 +50,15 @@
             aria-describedby="donate"
             @click="$router.push({ name: 'donate' })"
           ></ui-icon-button>
-          <a href="https://github.com/balmjs/balm-ui" target="_blank" rel="noopener">
-            <ui-icon-button :class="[toolbarItemClass, 'github']" aria-describedby="github">
+          <a
+            href="https://github.com/balmjs/balm-ui"
+            target="_blank"
+            rel="noopener"
+          >
+            <ui-icon-button
+              :class="[toolbarItemClass, 'github']"
+              aria-describedby="github"
+            >
               <svg-github></svg-github>
             </ui-icon-button>
           </a>
@@ -52,7 +70,8 @@
         class="global-message-banner"
         primary-button-text="Cool"
         secondary-button-text="Good"
-      >Do you like BalmUI</ui-banner>
+        >Do you like BalmUI</ui-banner
+      >
       <!-- Content -->
       <div class="balmui-body">
         <!-- Drawer -->
@@ -62,7 +81,11 @@
             { 'balmui-drawer--mobile': !isWideScreen }
           ]"
         >
-          <ui-drawer v-model="openDrawer" :type="drawerType" class="balmui-menu">
+          <ui-drawer
+            v-model="openDrawer"
+            :type="drawerType"
+            class="balmui-menu"
+          >
             <ui-drawer-header>
               <ui-drawer-title>BalmUI</ui-drawer-title>
               <ui-drawer-subtitle>
@@ -93,12 +116,18 @@
                       <template #before="{ iconClass }">
                         <ui-icon
                           v-if="item.icon"
-                          :class="['catalog-list-icon', iconClass, $theme.getTextClass('secondary', $store.theme)]"
-                        >{{ item.icon }}</ui-icon>
+                          :class="[
+                            'catalog-list-icon',
+                            iconClass,
+                            $theme.getTextClass('secondary', $store.theme)
+                          ]"
+                          >{{ item.icon }}</ui-icon
+                        >
                       </template>
                       <span
                         :class="$theme.getTextClass('primary', $store.theme)"
-                      >{{ t(`menu.${item.name}`) }}</span>
+                        >{{ t(`menu.${item.name}`) }}</span
+                      >
                       <template #after>
                         <ui-badge v-if="item.plus" class="plus" state="info">
                           <template #badge>plus</template>
@@ -109,7 +138,10 @@
                       </template>
                     </ui-nav-item>
                   </router-link>
-                  <ui-list-divider v-else-if="item === '-'" :key="`divider${index}`"></ui-list-divider>
+                  <ui-list-divider
+                    v-else-if="item === '-'"
+                    :key="`divider${index}`"
+                  ></ui-list-divider>
                   <ui-list-group-subheader
                     v-else
                     :key="`head${index}`"
@@ -128,10 +160,12 @@
               </ui-nav>
             </ui-drawer-content>
           </ui-drawer>
-          <ui-drawer-backdrop v-show="drawerType === 'modal'" @click="balmUI.onHide('openDrawer')"></ui-drawer-backdrop>
+          <ui-drawer-backdrop
+            v-show="drawerType === 'modal'"
+            @click="balmUI.onHide('openDrawer')"
+          ></ui-drawer-backdrop>
         </div>
         <!-- App content -->
-
         <div
           :class="[
             'balmui-content',
@@ -139,7 +173,12 @@
             $theme.getTextClass('primary', $store.theme)
           ]"
         >
-          <ui-spinner v-if="pageLoading" class="page-loading" active four-colored></ui-spinner>
+          <ui-spinner
+            v-if="pageLoading"
+            class="page-loading"
+            active
+            four-colored
+          ></ui-spinner>
           <router-view v-slot="{ Component }">
             <transition name="loading">
               <component :is="Component" v-if="pageLoading" />

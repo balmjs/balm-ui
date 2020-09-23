@@ -33,7 +33,9 @@
               :key="i"
               :bg-image="require(`@/assets/photos/3x2/${i}.jpg`)"
             >
-              <ui-image-text v-if="controls1.labelsType">Text label</ui-image-text>
+              <ui-image-text v-if="controls1.labelsType"
+                >Text label</ui-image-text
+              >
             </ui-image-item>
           </ui-image-list>
         </div>
@@ -42,7 +44,10 @@
 
       <section class="demo-wrapper">
         <h6 :class="$tt('headline6')">1.2 Masonry Image List</h6>
-        <ui-image-list-controls v-model="controls2" id-prefix="masonry"></ui-image-list-controls>
+        <ui-image-list-controls
+          v-model="controls2"
+          id-prefix="masonry"
+        ></ui-image-list-controls>
         <div class="demo">
           <ui-image-list
             id="masonry-image-list"

@@ -12,7 +12,12 @@
       <h6 :class="$tt('headline6')">1.1 Enabled</h6>
       <div class="demo">
         <ui-form-field>
-          <ui-switch id="basic-switch" v-model="toggle1" :trueValue="1" :falseValue="0"></ui-switch>
+          <ui-switch
+            id="basic-switch"
+            v-model="toggle1"
+            :true-value="1"
+            :false-value="0"
+          ></ui-switch>
           <label for="basic-switch">{{ toggle1 }}</label>
         </ui-form-field>
       </div>

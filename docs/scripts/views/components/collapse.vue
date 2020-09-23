@@ -3,7 +3,9 @@
     <template #hero>
       <ui-collapse v-model="show">
         <template #toggle>
-          <ui-button :icon="show ? 'code' : 'settings_ethernet'">{{ show ? 'Hide' : 'Show' }} Code</ui-button>
+          <ui-button :icon="show ? 'code' : 'settings_ethernet'"
+            >{{ show ? 'Hide' : 'Show' }} Code</ui-button
+          >
         </template>
         Collapse Content
       </ui-collapse>

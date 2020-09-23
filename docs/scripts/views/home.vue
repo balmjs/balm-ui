@@ -4,8 +4,12 @@
       <h1 :class="$tt('headline1')">BalmUI</h1>
     </section>
     <div :class="[$tt('body2'), 'pure-docs']">
-      <p :class="$tt('subtitle1')">Build beautiful, usable products with BalmUI for Vue.js</p>
-      <ui-button raised @click="$router.push({ name: 'guide.intro' })">Get started</ui-button>
+      <p :class="$tt('subtitle1')">
+        Build beautiful, usable products with BalmUI for Vue.js
+      </p>
+      <ui-button raised @click="$router.push({ name: 'guide.intro' })"
+        >Get started</ui-button
+      >
     </div>
   </div>
 </template>

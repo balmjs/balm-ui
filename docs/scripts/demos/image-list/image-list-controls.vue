@@ -17,7 +17,9 @@
         :name="`${idPrefix}-labels`"
         :value="2"
       ></ui-radio>
-      <label :for="`${idPrefix}-label-protected`">Labels over images with text protection</label>
+      <label :for="`${idPrefix}-label-protected`"
+        >Labels over images with text protection</label
+      >
     </ui-form-field>
 
     <ui-form-field>

@@ -1,13 +1,27 @@
 <template>
   <!-- Container -->
   <div :class="className">
-    <ul class="mdc-list" tabindex="-1" role="menu" aria-hidden="true" aria-orientation="vertical">
+    <ul
+      class="mdc-list"
+      tabindex="-1"
+      role="menu"
+      aria-hidden="true"
+      aria-orientation="vertical"
+    >
       <slot>
-        <template v-for="(item, index) in currentItems" :key="`menu-item-${index}`">
+        <template
+          v-for="(item, index) in currentItems"
+          :key="`menu-item-${index}`"
+        >
           <template v-if="getType(item) === 'array'">
             <ui-menuitem :key="`group${index}`" nested>
-              <template v-for="(subItem, subIndex) in item" :key="`menu-subitem-${subIndex}`">
-                <ui-menuitem-divider v-if="isDivider(subItem)"></ui-menuitem-divider>
+              <template
+                v-for="(subItem, subIndex) in item"
+                :key="`menu-subitem-${subIndex}`"
+              >
+                <ui-menuitem-divider
+                  v-if="isDivider(subItem)"
+                ></ui-menuitem-divider>
                 <ui-menuitem
                   v-else
                   :item="getType(subItem) === 'object' ? subItem : {}"

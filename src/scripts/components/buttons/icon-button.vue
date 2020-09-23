@@ -3,14 +3,21 @@
   <button type="button" :class="className" @click="handleClick">
     <!-- Icon -->
     <template v-if="toggleButton">
-      <i :class="getIconClassName(UI_ICON_BUTTON.cssClasses.off)" v-text="toggle.off"></i>
-      <i :class="getIconClassName(UI_ICON_BUTTON.cssClasses.on)" v-text="toggle.on"></i>
+      <i
+        :class="getIconClassName(UI_ICON_BUTTON.cssClasses.off)"
+        v-text="toggle.off"
+      ></i>
+      <i
+        :class="getIconClassName(UI_ICON_BUTTON.cssClasses.on)"
+        v-text="toggle.on"
+      ></i>
     </template>
     <template v-else>
       <slot
         :onClass="UI_ICON_BUTTON.cssClasses.on"
         :offClass="UI_ICON_BUTTON.cssClasses.off"
-      >{{ icon }}</slot>
+        >{{ icon }}</slot
+      >
     </template>
   </button>
 </template>

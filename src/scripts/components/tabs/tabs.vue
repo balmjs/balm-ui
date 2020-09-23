@@ -1,5 +1,9 @@
 <template>
-  <ui-tab-bar :model-value="modelValue" :align="align" @update:model-value="handleChange">
+  <ui-tab-bar
+    :model-value="modelValue"
+    :align="align"
+    @update:model-value="handleChange"
+  >
     <slot>
       <ui-tab
         v-for="(tabItem, tabIndex) in items"

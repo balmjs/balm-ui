@@ -2,8 +2,13 @@
   <div :class="className">
     <div class="mdc-data-table__pagination-trailing">
       <!-- Page size -->
-      <div v-if="!mini && Array.isArray(pageSize)" class="mdc-data-table__pagination-rows-per-page">
-        <div class="mdc-data-table__pagination-rows-per-page-label">{{ pageSizeBeforeText }}</div>
+      <div
+        v-if="!mini && Array.isArray(pageSize)"
+        class="mdc-data-table__pagination-rows-per-page"
+      >
+        <div class="mdc-data-table__pagination-rows-per-page-label">
+          {{ pageSizeBeforeText }}
+        </div>
         <div class="mdc-data-table__pagination-rows-per-page-select">
           <select v-model="currentPageSize" @change="handleChange">
             <template v-for="size in pageSize" :key="`pageSize-${size}`">
@@ -15,10 +20,9 @@
       </div>
       <div class="mdc-data-table__pagination-navigation">
         <!-- Total -->
-        <div
-          v-if="showTotal"
-          class="mdc-data-table__pagination-total"
-        >{{ currentMinRow }}‑{{ currentMaxRow }} of {{ total }}</div>
+        <div v-if="showTotal" class="mdc-data-table__pagination-total">
+          {{ currentMinRow }}‑{{ currentMaxRow }} of {{ total }}
+        </div>
         <!-- Navigation buttons -->
         <mdc-button
           v-if="!hasPageSpan"
@@ -41,7 +45,10 @@
             <i class="material-icons">chevron_left</i>
           </slot>
         </mdc-button>
-        <div v-if="!mini && hasPageSpan" class="mdc-data-table__pagination-page">
+        <div
+          v-if="!mini && hasPageSpan"
+          class="mdc-data-table__pagination-page"
+        >
           <template v-for="pageNumber in pageCount" :key="`page-${pageNumber}`">
             <template v-if="isShow(pageNumber)">
               <mdc-button
@@ -51,7 +58,8 @@
                   'mdc-pagination__button--active': pageNumber === currentPage
                 }"
                 @click="handleClick(pageNumber)"
-              >{{ pageNumber }}</mdc-button>
+                >{{ pageNumber }}</mdc-button
+              >
               <button
                 v-else
                 class="mdc-button mdc-data-table__pagination-button mdc-pagination__button--ellipsis"
@@ -85,7 +93,9 @@
       </div>
       <!-- Jumper -->
       <div v-if="!mini && showJumper" class="mdc-data-table__pagination-jumper">
-        <div class="mdc-data-table__pagination-jumper-label">{{ jumperBeforeText }}</div>
+        <div class="mdc-data-table__pagination-jumper-label">
+          {{ jumperBeforeText }}
+        </div>
         <div class="mdc-data-table__pagination-jumper-input">
           <input
             v-model="jumpPage"
@@ -99,7 +109,8 @@
             v-if="jumperButtonText"
             outlined
             @click="handleClick(jumpPage)"
-          >{{ jumperButtonText }}</mdc-button>
+            >{{ jumperButtonText }}</mdc-button
+          >
         </div>
       </div>
     </div>

@@ -2,13 +2,20 @@
   <div :class="className">
     <div class="mdc-dialog__container">
       <div class="mdc-dialog__surface">
-        <h2 v-if="options.title" class="mdc-dialog__title">{{ options.title }}</h2>
-        <div v-if="options.raw" class="mdc-dialog__content" v-html="options.message"></div>
+        <h2 v-if="options.title" class="mdc-dialog__title">
+          {{ options.title }}
+        </h2>
+        <div
+          v-if="options.raw"
+          class="mdc-dialog__content"
+          v-html="options.message"
+        ></div>
         <div v-else class="mdc-dialog__content">
           <i
             v-if="materialIcon"
             :class="['material-icons mdc-alert-dialog__icon', stateClassName]"
-          >{{ materialIcon }}</i>
+            >{{ materialIcon }}</i
+          >
           <span class="mdc-alert-dialog__message">{{ options.message }}</span>
         </div>
         <footer class="mdc-dialog__actions">

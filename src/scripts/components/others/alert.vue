@@ -17,7 +17,12 @@
     <div class="mdc-alert__content">
       <slot></slot>
     </div>
-    <i v-if="closable" class="material-icons mdc-alert__close-button" @click="onClose">clear</i>
+    <i
+      v-if="closable"
+      class="material-icons mdc-alert__close-button"
+      @click="onClose"
+      >clear</i
+    >
   </div>
 </template>
 

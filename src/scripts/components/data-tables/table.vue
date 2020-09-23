@@ -3,7 +3,7 @@
   <div :class="className">
     <div class="mdc-data-table__table-container">
       <table class="mdc-data-table__table" :aria-label="caption">
-        <caption v-if="caption">{{ caption }}</caption>
+        <caption v-if="caption" v-text="caption"></caption>
         <colgroup v-if="colgroup">
           <template v-for="(colValue, colKey) in dataColumns" :key="colKey">
             <col :class="`col-${colValue}`" />
@@ -53,15 +53,26 @@
                           v-text="UI_TABLE.SORTING.ICON"
                         ></mdc-icon-button>
                         <div class="mdc-data-table__header-cell-label">
-                          <slot v-if="theadCell[T_CELL.SLOT]" :name="theadCell[T_CELL.SLOT]"></slot>
-                          <template v-else>{{ theadCell[T_CELL.VALUE] }}</template>
+                          <slot
+                            v-if="theadCell[T_CELL.SLOT]"
+                            :name="theadCell[T_CELL.SLOT]"
+                          ></slot>
+                          <template v-else>{{
+                            theadCell[T_CELL.VALUE]
+                          }}</template>
                         </div>
                       </template>
-                      <div class="mdc-data-table__sort-status-label" aria-hidden="true"></div>
+                      <div
+                        class="mdc-data-table__sort-status-label"
+                        aria-hidden="true"
+                      ></div>
                     </template>
                     <!-- Column header name -->
                     <template v-else>
-                      <slot v-if="theadCell[T_CELL.SLOT]" :name="theadCell[T_CELL.SLOT]"></slot>
+                      <slot
+                        v-if="theadCell[T_CELL.SLOT]"
+                        :name="theadCell[T_CELL.SLOT]"
+                      ></slot>
                       <template v-else>{{ theadCell[T_CELL.VALUE] }}</template>
                     </template>
                   </div>
@@ -109,7 +120,10 @@
             </tr>
           </template>
           <tr v-else class="mdc-data-table__row">
-            <td class="mdc-data-table__cell mdc-data-table__cell--no-data" :colspan="dataColumns">
+            <td
+              class="mdc-data-table__cell mdc-data-table__cell--no-data"
+              :colspan="dataColumns"
+            >
               <slot name="no-data">{{ noData }}</slot>
             </td>
           </tr>

@@ -32,7 +32,8 @@
           tabindex="-1"
           role="button"
           @click="handleRemove"
-        >cancel</i>
+          >cancel</i
+        >
       </span>
     </slot>
   </div>

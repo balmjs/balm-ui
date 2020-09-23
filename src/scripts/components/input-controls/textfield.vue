@@ -10,7 +10,12 @@
     >
       <i
         v-if="materialIcon"
-        :class="getIconClassName([UI_TEXTFIELD_ICON.cssClasses.icon, UI_TEXTFIELD_ICON.cssClasses.leadingIcon])"
+        :class="
+          getIconClassName([
+            UI_TEXTFIELD_ICON.cssClasses.icon,
+            UI_TEXTFIELD_ICON.cssClasses.leadingIcon
+          ])
+        "
         v-text="materialIcon"
       ></i>
     </slot>

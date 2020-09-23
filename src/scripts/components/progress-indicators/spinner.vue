@@ -8,7 +8,10 @@
   >
     <!-- Determinate -->
     <div class="mdc-circular-progress__determinate-container">
-      <svg class="mdc-circular-progress__determinate-circle-graphic" :viewBox="svg.viewBox">
+      <svg
+        class="mdc-circular-progress__determinate-circle-graphic"
+        :viewBox="svg.viewBox"
+      >
         <circle
           class="mdc-circular-progress__determinate-circle"
           fill="none"

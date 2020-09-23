@@ -12,7 +12,9 @@
       @change="handleChange($event)"
     />
     <slot>
-      <mdc-button unelevated icon="publish" :disabled="disabled">{{ text }}</mdc-button>
+      <mdc-button unelevated icon="publish" :disabled="disabled">{{
+        text
+      }}</mdc-button>
     </slot>
   </div>
 </template>

@@ -35,7 +35,11 @@
       </span>
       <span class="mdc-select__dropdown-icon">
         <slot name="dropdown-icon">
-          <svg class="mdc-select__dropdown-icon-graphic" viewBox="7 10 10 5" focusable="false">
+          <svg
+            class="mdc-select__dropdown-icon-graphic"
+            viewBox="7 10 10 5"
+            focusable="false"
+          >
             <polygon
               class="mdc-select__dropdown-icon-inactive"
               stroke="none"
@@ -77,7 +81,11 @@
           role="option"
         >
           <span class="mdc-list-item__ripple"></span>
-          <span v-if="option[optionLabel]" class="mdc-list-item__text" v-text="option[optionLabel]"></span>
+          <span
+            v-if="option[optionLabel]"
+            class="mdc-list-item__text"
+            v-text="option[optionLabel]"
+          ></span>
         </li>
       </ul>
     </div>

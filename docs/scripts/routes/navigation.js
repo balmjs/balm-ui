@@ -15,6 +15,10 @@ const Pagination = () => import('@/views/components/pagination');
 
 export default [
   {
+    path: '',
+    redirect: 'drawer'
+  },
+  {
     path: 'drawer',
     name: 'navigation.drawer',
     component: Drawer

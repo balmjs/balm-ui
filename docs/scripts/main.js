@@ -18,7 +18,7 @@ import BalmUI from 'balm-ui';
 // import $alert from 'balm-ui/plugins/alert';
 // import $confirm from 'balm-ui/plugins/confirm';
 // import $toast from 'balm-ui/plugins/toast';
-// import UiSkeleton from 'balm-ui/components/skeleton';
+import UiSkeleton from 'balm-ui/components/skeleton';
 // import vAnchor from 'balm-ui/directives/anchor';
 // import BalmUINext from 'balm-ui/next';
 // Custom components
@@ -52,7 +52,7 @@ function createBalmUIApp() {
   // app.use($alert);
   // app.use($confirm);
   // app.use($toast);
-  // app.use(UiSkeleton);
+  app.use(UiSkeleton);
   // app.directive(vAnchor.name, vAnchor);
   // app.use(BalmUINext);
 

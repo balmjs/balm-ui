@@ -5,6 +5,10 @@ const Anchor = () => import('@/views/directives/anchor');
 
 export default [
   {
+    path: '',
+    redirect: 'event'
+  },
+  {
     path: 'event',
     name: 'misc.event',
     component: Event

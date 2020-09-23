@@ -1,22 +1,23 @@
 <template>
   <div v-shadow.transition="[2, 8]" class="toc-affix">
     <ui-tabs v-model="active" @change="onChange">
-      <ui-tab v-anchor:href="'#ui-usage'" class="v-anchor">{{ $t('page.usage') }}</ui-tab>
-      <ui-tab v-anchor:href="'#ui-demo'" class="v-anchor">{{ $t('page.demo') }}</ui-tab>
+      <ui-tab v-anchor:href="'#ui-usage'" class="v-anchor">{{ t('page.usage') }}</ui-tab>
+      <ui-tab v-anchor:href="'#ui-demo'" class="v-anchor">{{ t('page.demo') }}</ui-tab>
       <ui-tab
         v-for="(item, index) in items"
         :key="index"
         v-anchor:href="item.id"
         class="v-anchor"
       >{{ item.name }}</ui-tab>
-      <ui-tab v-anchor:href="'#ui-apis'" class="v-anchor">{{ $t('page.apis') }}</ui-tab>
-      <ui-tab v-if="!withoutCss" v-anchor:href="'#ui-sass'" class="v-anchor">{{ $t('page.sass') }}</ui-tab>
+      <ui-tab v-anchor:href="'#ui-apis'" class="v-anchor">{{ t('page.apis') }}</ui-tab>
+      <ui-tab v-if="!withoutCss" v-anchor:href="'#ui-sass'" class="v-anchor">{{ t('page.sass') }}</ui-tab>
       <slot></slot>
     </ui-tabs>
   </div>
 </template>
 
 <script>
+import { useI18n } from 'vue-i18n';
 import { $MIN_WIDTH } from '@/config';
 
 export default {
@@ -32,6 +33,13 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+  setup() {
+    const { t } = useI18n();
+
+    return {
+      t
+    };
   },
   data() {
     return {

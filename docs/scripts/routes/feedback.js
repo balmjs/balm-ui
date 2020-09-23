@@ -12,6 +12,10 @@ const Tooltip = () => import('@/views/components/tooltip');
 
 export default [
   {
+    path: '',
+    redirect: 'alert'
+  },
+  {
     path: 'alert',
     name: 'feedback.alert',
     component: Alert

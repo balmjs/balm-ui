@@ -1,12 +1,10 @@
 <template>
-  <transition name="loading">
-    <div v-anchor.html.offset="64" :class="[$tt('body1'), `page--${name}`]">
-      <div :class="[$tt('body2'), 'pure-docs']">
-        <ui-markdown :text="docs"></ui-markdown>
-        <ui-footer-nav :prev="prev" :next="next"></ui-footer-nav>
-      </div>
+  <div v-anchor.html.offset="64" :class="[$tt('body1'), `page--${name}`]">
+    <div :class="[$tt('body2'), 'pure-docs']">
+      <ui-markdown :text="docs"></ui-markdown>
+      <ui-footer-nav :prev="prev" :next="next"></ui-footer-nav>
     </div>
-  </transition>
+  </div>
 </template>
 
 <script>

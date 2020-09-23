@@ -140,8 +140,12 @@
           ]"
         >
           <ui-spinner v-if="pageLoading" class="page-loading" active four-colored></ui-spinner>
-          <router-view v-if="pageLoading"></router-view>
-          <router-view v-else></router-view>
+          <router-view v-slot="{ Component }">
+            <transition name="loading">
+              <component :is="Component" v-if="pageLoading" />
+              <component :is="Component" v-else></component>
+            </transition>
+          </router-view>
         </div>
       </div>
     </template>
@@ -152,11 +156,13 @@
 import {
   reactive,
   toRefs,
+  computed,
   nextTick,
   onBeforeMount,
   onMounted,
   onBeforeUnmount
 } from 'vue';
+import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { useEvent, useBus, useStore } from 'balm-ui';
 import SvgGithub from '@/components/svg-github';
@@ -200,10 +206,15 @@ export default {
     SwitchTheme
   },
   setup(props, ctx) {
+    const route = useRoute();
     const balmUI = useEvent();
     const bus = useBus();
     const { t, locale } = useI18n();
     const store = useStore();
+
+    const noLayout = computed(() => {
+      return route.name ? route.meta && route.meta.noLayout : true;
+    });
 
     onBeforeMount(() => {
       bus.sub('page-load', () => {
@@ -235,7 +246,6 @@ export default {
       });
 
       bus.sub('switch-lang', (lang) => {
-        console.log('switch-lang', lang);
         locale.value = lang;
       });
 
@@ -251,6 +261,7 @@ export default {
 
     return {
       ...toRefs(state),
+      noLayout,
       balmUI,
       bus,
       t,
@@ -265,16 +276,9 @@ export default {
       showTranslations: false
     };
   },
-  computed: {
-    noLayout() {
-      return this.$route.name
-        ? this.$route.meta && this.$route.meta.noLayout
-        : true;
-    }
-  },
   methods: {
     handleMenu() {
-      this.bus.pub('page-load');
+      this.$bus.pub('page-load');
 
       this.openDrawer = false;
       if (window.innerWidth < $MIN_WIDTH) {

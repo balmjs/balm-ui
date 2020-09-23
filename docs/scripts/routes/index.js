@@ -34,63 +34,54 @@ const baseRoutes = [
   {
     path: '/guide',
     name: 'guide',
-    redirect: '/guide/intro',
     component: BlankLayout,
     children: guideRoutes
   },
   {
     path: '/general',
     name: 'general',
-    redirect: '/general/button',
     component: BlankLayout,
     children: generalRoutes
   },
   {
     path: '/layout',
     name: 'layout',
-    redirect: '/layout/grid',
     component: BlankLayout,
     children: layoutRoutes
   },
   {
     path: '/navigation',
     name: 'navigation',
-    redirect: '/navigation/drawer',
     component: BlankLayout,
     children: navigationRoutes
   },
   {
     path: '/theme',
     name: 'theme',
-    redirect: '/theme/color',
     component: BlankLayout,
     children: themeRoutes
   },
   {
     path: '/data-input',
     name: 'data-input',
-    redirect: '/data-input/textfield',
     component: BlankLayout,
     children: dataInputRoutes
   },
   {
     path: '/data-display',
     name: 'data-display',
-    redirect: '/data-display/list',
     component: BlankLayout,
     children: dataDisplayRoutes
   },
   {
     path: '/feedback',
     name: 'feedback',
-    redirect: '/feedback/dialog',
     component: BlankLayout,
     children: feedbackRoutes
   },
   {
     path: '/misc',
     name: 'misc',
-    redirect: '/misc/event',
     component: BlankLayout,
     children: miscRoutes
   },

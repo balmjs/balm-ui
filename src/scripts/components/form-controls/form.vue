@@ -84,12 +84,14 @@ export default {
     if (this.isVertical) {
       if (this.labelWidth || this.labelMarginRight) {
         throw new Error(
-          '`labelWidth`/`labelMarginRight` just for `horizontal` type form'
+          '[BalmUI form]: `labelWidth`/`labelMarginRight` just for `horizontal` type form'
         );
       }
     } else {
       if (this.labelMarginBottom) {
-        throw new Error('`labelMarginBottom` just for `vertical` type form');
+        throw new Error(
+          '[BalmUI form]: `labelMarginBottom` just for `vertical` type form'
+        );
       }
     }
   }

@@ -23,12 +23,12 @@
           ></ui-icon-button>
           <ui-menu-anchor>
             <ui-icon-button icon="language" @click="balmUI.onShow('showTranslations')"></ui-icon-button>
-            <ui-menu v-model="showTranslations" @selected="locale">
+            <ui-menu v-model="showTranslations" @selected="$store.setLang">
               <ui-menuitem
                 v-for="translation in translations"
                 :key="translation.value"
                 :item="translation"
-                :selected="translation.value === locale"
+                :selected="translation.value === $store.lang"
               ></ui-menuitem>
             </ui-menu>
           </ui-menu-anchor>
@@ -165,18 +165,14 @@ import { VERSION, $MIN_WIDTH, translations } from '@/config';
 import menu from '@/config/menu';
 
 const state = reactive({
-  version: VERSION, // .split('-')[0],
-  menu,
   bodyEl: document.documentElement || document.body,
   isWideScreen: true,
   drawerType: 'permanent',
-  openDrawer: false,
   pageLoading: false,
   loadingProgress: 0,
   loadingTimer: null,
   showGlobalMessage: false,
-  translations,
-  showTranslations: false
+  translations
 });
 
 function init() {
@@ -194,8 +190,6 @@ function loading() {
   }
 }
 
-const store = useStore();
-
 export default {
   name: 'BalmUIApp',
   metaInfo: {
@@ -209,6 +203,7 @@ export default {
     const balmUI = useEvent();
     const bus = useBus();
     const { t, locale } = useI18n();
+    const store = useStore();
 
     onBeforeMount(() => {
       bus.sub('page-load', () => {
@@ -239,10 +234,15 @@ export default {
         state.showGlobalMessage = true;
       });
 
-      // locale = store.lang;
-      // bus.sub('switch-lang', (lang) => {
-      //   locale = lang;
-      // });
+      bus.sub('switch-lang', (lang) => {
+        console.log('switch-lang', lang);
+        locale.value = lang;
+      });
+
+      // NOTE: for lang init
+      setTimeout(() => {
+        locale.value = store.lang;
+      }, 1);
     });
 
     onBeforeUnmount(() => {
@@ -257,6 +257,14 @@ export default {
       locale
     };
   },
+  data() {
+    return {
+      version: VERSION, // .split('-')[0],
+      menu,
+      openDrawer: false,
+      showTranslations: false
+    };
+  },
   computed: {
     noLayout() {
       return this.$route.name
@@ -268,7 +276,7 @@ export default {
     handleMenu() {
       this.bus.pub('page-load');
 
-      state.openDrawer = false;
+      this.openDrawer = false;
       if (window.innerWidth < $MIN_WIDTH) {
         state.isWideScreen = false;
       }

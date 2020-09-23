@@ -105,7 +105,7 @@ const BalmUI_ToastPlugin = {
                 });
               } else {
                 throw new Error(
-                  `The timeoutMs of the toast must be between ${UI_TOAST.timeoutMs.MIN} and ${UI_TOAST.timeoutMs.MAX}`
+                  `[BalmUI toast]: The timeoutMs of the toast must be between ${UI_TOAST.timeoutMs.MIN} and ${UI_TOAST.timeoutMs.MAX}`
                 );
               }
             },

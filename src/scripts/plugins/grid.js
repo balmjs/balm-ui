@@ -13,12 +13,14 @@ const setGrid = (_property, size, value) => {
       );
     } else {
       throw new Error(
-        'Please set a device type: ' + JSON.stringify(TYPE_OF_DEVICE)
+        '[BalmUI grid]: Please set a device type: ' +
+          JSON.stringify(TYPE_OF_DEVICE)
       );
     }
   } else {
     throw new Error(
-      'Please set a grid property: ' + JSON.stringify(GRID_PROPERTY)
+      '[BalmUI grid]: Please set a grid property: ' +
+        JSON.stringify(GRID_PROPERTY)
     );
   }
 };

@@ -1,4 +1,4 @@
-import { getCurrentInstance } from 'vue';
+import { getCurrentInstance, ref } from 'vue';
 import autoInstall from '../config/auto-install';
 import getType from '../utils/typeof';
 import createCustomEvent from '../events';
@@ -23,10 +23,17 @@ function handleAssign(properties, value, data = null) {
 }
 
 function handleEvent(_property, value) {
-  if (getType(new Function()) === 'function') {
-    new Function('value', `this.${_property} = value;`).call(this, value);
+  if (this.$data.hasOwnProperty(_property)) {
+    if (getType(new Function()) === 'function') {
+      new Function('value', `this.${_property} = value;`).call(
+        this.$data,
+        value
+      );
+    } else {
+      handleAssign.call(this.$data, _property.split('.'), value);
+    }
   } else {
-    handleAssign.call(this, _property.split('.'), value);
+    throw new Error('[BalmUI event]: Only support data options');
   }
 }
 
@@ -50,25 +57,25 @@ class UiEvent {
   }
 
   onChange(_property, value, fn = noop) {
-    handleEvent.call(this.ctx.$data, _property, value);
+    handleEvent.call(this.ctx, _property, value);
     return callback(fn);
   }
 
   onOpen(_property, fn = noop) {
-    handleEvent.call(this.ctx.$data, _property, true);
+    handleEvent.call(this.ctx, _property, true);
     return callback(fn);
   }
   onClose(_property, fn = noop) {
-    handleEvent.call(this.ctx.$data, _property, false);
+    handleEvent.call(this.ctx, _property, false);
     return callback(fn);
   }
 
   onShow(_property, fn = noop) {
-    handleEvent.call(this.ctx.$data, _property, true);
+    handleEvent.call(this.ctx, _property, true);
     return callback(fn);
   }
   onHide(_property, fn = noop) {
-    handleEvent.call(this.ctx.$data, _property, false);
+    handleEvent.call(this.ctx, _property, false);
     return callback(fn);
   }
 }

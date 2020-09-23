@@ -7,7 +7,7 @@ let store = new Map();
 
 function createStore(setupOptions, key = DefaultKey) {
   if (store.has(key)) {
-    throw new Error(`The '${key}' already exists`);
+    throw new Error(`[BalmUI store]: The '${key}' already exists`);
   }
 
   const el = document.createElement('div');

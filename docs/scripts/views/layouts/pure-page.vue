@@ -32,8 +32,6 @@ export default {
   setup() {
     const store = useStore();
 
-    console.log('-----', store);
-
     const docs = computed(() => {
       let filename = `${store.lang}/guide/${this.name}`;
       return require(`@/docs/${filename}.md`); // NOTE: just one variable in `require`

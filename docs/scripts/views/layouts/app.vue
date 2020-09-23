@@ -196,6 +196,7 @@ function loading() {
 }
 
 export default {
+  name: 'BalmUIApp',
   metaInfo: {
     title: 'BalmUI'
   },

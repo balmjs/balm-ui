@@ -92,6 +92,7 @@ import UiTooltip from './components/others/tooltip';
  */
 import event, { useEvent } from './plugins/event'; // Custom
 import bus, { useBus } from './plugins/bus'; // Custom
+import store, { useStore } from './plugins/store'; // Custom
 import grid, { useGrid } from './plugins/grid';
 import theme, { useTheme } from './plugins/theme';
 import typography from './plugins/typography';
@@ -194,6 +195,7 @@ const components = {
 const plugins = {
   event,
   bus,
+  store,
   grid,
   theme,
   typography,
@@ -245,6 +247,7 @@ export default BalmUI;
 export {
   useEvent,
   useBus,
+  useStore,
   useGrid,
   useTheme,
   useValidator,

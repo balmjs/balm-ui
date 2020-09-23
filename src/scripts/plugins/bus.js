@@ -2,19 +2,25 @@ import autoInstall from '../config/auto-install';
 
 let eventBus = new Map();
 
-function $emit(eventName, ...args) {
+function pub(eventName, ...args) {
   if (eventBus.has(eventName)) {
     eventBus.get(eventName)(...args);
+  } else {
+    eventBus.set(eventName, ...args);
   }
 }
 
-function $on(eventName, callback) {
-  eventBus.set(eventName, callback);
+function sub(eventName, callback) {
+  if (eventBus.has(eventName)) {
+    callback(eventBus.get(eventName));
+  } else {
+    eventBus.set(eventName, callback);
+  }
 }
 
 const uiBus = {
-  $emit,
-  $on
+  pub,
+  sub
 };
 
 const BalmUI_BusPlugin = {

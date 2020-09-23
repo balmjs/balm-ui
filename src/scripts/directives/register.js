@@ -1,6 +1,6 @@
-const autoInit = (id, definition) => {
+const autoInit = (name, definition) => {
   if (typeof window !== 'undefined' && window.Vue) {
-    window.Vue.directive(id, definition);
+    window.Vue.directive(name, definition);
   }
 };
 

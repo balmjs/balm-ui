@@ -41,8 +41,8 @@ const updateAnchor = (method, el, { value, arg, modifiers }) => {
   }
 };
 
-const initAnchor = (el, { value, rawName, modifiers }) => {
-  if (rawName === UI_ANCHOR.cssClasses.inner || rawName.includes('.')) {
+const initAnchor = (el, { value, modifiers }) => {
+  if (Object.keys(modifiers).length) {
     UI_ANCHOR.body = modifiers.bodyElement // Custom container
       ? el
       : document.documentElement || document.body;
@@ -80,10 +80,11 @@ const BalmUI_AnchorDirective = {
     }
   },
   updated(el, binding, vnode) {
+    // TODO:
     if (binding.modifiers.html) {
-      vnode.context.$nextTick(() => {
-        bindAnchor('add', vnode.context.$el);
-      });
+      // vnode.context.$nextTick(() => {
+      //   bindAnchor('add', vnode.context.$el);
+      // });
     }
   },
   beforeUnmount(el, binding) {

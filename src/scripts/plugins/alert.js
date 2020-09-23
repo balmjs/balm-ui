@@ -34,9 +34,11 @@ const BalmUI_AlertPlugin = {
           components: {
             MdcDialog
           },
-          data: {
-            open: false,
-            options
+          data() {
+            return {
+              open: false,
+              options
+            };
           },
           created() {
             if (getType(customOptions) === 'string') {

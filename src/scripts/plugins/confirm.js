@@ -40,9 +40,11 @@ const BalmUI_ConfirmPlugin = {
           components: {
             WindowDialog
           },
-          data: {
-            open: false,
-            options
+          data() {
+            return {
+              open: false,
+              options
+            };
           },
           created() {
             if (getType(customOptions) === 'string') {

@@ -4,7 +4,7 @@
       ref="colorButton"
       title="Change theme colors"
       data-theme="baseline"
-      @click="$balmUI.onShow('open')"
+      @click="open = true"
     >
       <i class="demo-theme-color-radio">
         <span class="demo-theme-color-radio__inner"></span>
@@ -32,71 +32,97 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      open: false,
-      selectedTheme: 'baseline',
-      themeColorList: [
-        {
-          label: 'Baseline (default)',
-          value: 'baseline'
-        },
-        {
-          label: 'Dark background (custom)',
-          value: 'dark'
-        },
-        {
-          label: 'Black primary (custom)',
-          value: 'black'
-        },
-        {
-          label: 'Shrine (custom)',
-          value: 'shrine'
-        }
-      ]
-    };
+import { reactive, toRefs, ref, onMounted } from 'vue';
+import { useTheme, useStore } from 'balm-ui';
+
+const themeColorList = [
+  {
+    label: 'Baseline (default)',
+    value: 'baseline'
   },
-  methods: {
-    onSelected(data) {
-      let themeValue = this.themeColorList[data.index].value;
+  {
+    label: 'Dark background (custom)',
+    value: 'dark'
+  },
+  {
+    label: 'Black primary (custom)',
+    value: 'black'
+  },
+  {
+    label: 'Shrine (custom)',
+    value: 'shrine'
+  }
+];
 
-      switch (themeValue) {
-        case 'dark':
-          this.primary = '#ffd54f';
-          this.secondary = '#ec407a';
-          break;
-        case 'black':
-          this.primary = '#212121';
-          this.secondary = '#64dd17';
-          break;
-        case 'shrine':
-          this.primary = '#fcb8ab';
-          this.secondary = '#feeae6';
-          break;
-        default:
-          this.primary = '#6200ee';
-          this.secondary = '#018786';
-      }
+const useSwitchTheme = () => {
+  const state = reactive({
+    open: false,
+    selectedTheme: 'baseline'
+  });
 
-      if (themeValue === 'shrine') {
-        this.$theme.colors = {
-          primary: this.primary,
-          secondary: this.secondary,
-          'on-primary': '#442b2d',
-          'on-secondary': '#442b2d'
-        };
-      } else {
-        this.$theme.colors = {
-          primary: this.primary,
-          secondary: this.secondary
-        };
-      }
-      this.$store.getTheme();
+  const theme = useTheme();
+  const store = useStore();
 
-      this.selectedTheme = themeValue;
-      this.$refs.colorButton.$el.dataset.theme = themeValue;
+  function onSelected(data) {
+    let themeValue = themeColorList[data.index].value;
+    let primary;
+    let secondary;
+
+    switch (themeValue) {
+      case 'dark':
+        primary = '#ffd54f';
+        secondary = '#ec407a';
+        break;
+      case 'black':
+        primary = '#212121';
+        secondary = '#64dd17';
+        break;
+      case 'shrine':
+        primary = '#fcb8ab';
+        secondary = '#feeae6';
+        break;
+      default:
+        primary = '#6200ee';
+        secondary = '#018786';
     }
+
+    if (themeValue === 'shrine') {
+      theme.colors = {
+        primary,
+        secondary,
+        'on-primary': '#442b2d',
+        'on-secondary': '#442b2d'
+      };
+    } else {
+      theme.colors = {
+        primary,
+        secondary
+      };
+    }
+
+    store.getTheme();
+
+    state.selectedTheme = themeValue;
+
+    onMounted(() => {
+      const colorButtonEl = ref('colorButton').value;
+      console.log('colorButtonEl', colorButtonEl);
+      colorButtonEl.dataset.theme = themeValue;
+    });
+  }
+
+  return {
+    ...toRefs(state),
+    onSelected
+  };
+};
+
+export default {
+  setup() {
+    return {
+      themeColorList,
+      ...useSwitchTheme()
+    };
   }
 };
 </script>

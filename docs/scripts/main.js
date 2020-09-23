@@ -17,9 +17,9 @@ import BalmUI from 'balm-ui';
 // import UiAlert from 'balm-ui/components/alert';
 // import $alert from 'balm-ui/plugins/alert';
 // import $confirm from 'balm-ui/plugins/confirm';
-// import $toast from 'balm-ui/plugins/toast';
+import $toast from 'balm-ui/plugins/toast';
 import UiSkeleton from 'balm-ui/components/skeleton';
-// import vAnchor from 'balm-ui/directives/anchor';
+import vAnchor from 'balm-ui/directives/anchor';
 // import BalmUINext from 'balm-ui/next';
 // Custom components
 import PurePage from '@/views/layouts/pure-page';
@@ -51,9 +51,9 @@ function createBalmUIApp() {
   // app.use(UiAlert);
   // app.use($alert);
   // app.use($confirm);
-  // app.use($toast);
+  app.use($toast);
   app.use(UiSkeleton);
-  // app.directive(vAnchor.name, vAnchor);
+  app.directive(vAnchor.name, vAnchor);
   // app.use(BalmUINext);
 
   app.component(PurePage.name, PurePage);
@@ -102,6 +102,7 @@ function createBalmUIApp() {
   app.config.isCustomElement = (tag) => tag.startsWith('ui-');
 
   app.mount('#app');
+  document.getElementById('app').removeAttribute('class');
 }
 
 export default createBalmUIApp;

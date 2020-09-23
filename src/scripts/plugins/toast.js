@@ -18,22 +18,24 @@ const DEFAULT_OPTIONS = {
   debug: false
 };
 
-const template = `<div ref="toast"
-  :class="[
-    'mdc-snackbar',
-    'mdc-toast',
-    options.className,
-    {
-      'mdc-snackbar--opening': opening,
-      'mdc-snackbar--open': opened
-    }
-  ]">
-  <div class="mdc-snackbar__surface">
-    <div class="mdc-snackbar__label">
-      {{ options.message }}
+const template = `<teleport to="body">
+  <div ref="toast"
+    :class="[
+      'mdc-snackbar',
+      'mdc-toast',
+      options.className,
+      {
+        'mdc-snackbar--opening': opening,
+        'mdc-snackbar--open': opened
+      }
+    ]">
+    <div class="mdc-snackbar__surface">
+      <div class="mdc-snackbar__label">
+        {{ options.message }}
+      </div>
     </div>
   </div>
-</div>`;
+</teleport>`;
 
 let toastApp;
 let toastTimer;
@@ -62,11 +64,13 @@ const BalmUI_ToastPlugin = {
       } else {
         toastApp = createApp({
           el: document.createElement('div'),
-          data: {
-            open: false,
-            opening: true,
-            opened: false,
-            options
+          data() {
+            return {
+              open: false,
+              opening: true,
+              opened: false,
+              options
+            };
           },
           watch: {
             open(val) {

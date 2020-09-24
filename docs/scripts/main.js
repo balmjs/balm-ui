@@ -11,10 +11,10 @@ import prismjs from 'prismjs';
 // BalmUI
 import BalmUI from 'balm-ui';
 import UiAutocomplete from 'balm-ui/components/autocomplete';
-// import UiDatepicker from 'balm-ui/components/datepicker';
-// import UiRangepicker from 'balm-ui/components/rangepicker';
+import UiDatepicker from 'balm-ui/components/datepicker';
+import UiRangepicker from 'balm-ui/components/rangepicker';
 import UiCollapse from 'balm-ui/components/collapse';
-// import UiAlert from 'balm-ui/components/alert';
+import UiAlert from 'balm-ui/components/alert';
 import $alert from 'balm-ui/plugins/alert';
 import $confirm from 'balm-ui/plugins/confirm';
 import $toast from 'balm-ui/plugins/toast';
@@ -45,10 +45,10 @@ function createBalmUIApp() {
     validator: validatorRules
   });
   app.use(UiAutocomplete);
-  // app.use(UiDatepicker);
-  // app.use(UiRangepicker);
+  app.use(UiDatepicker);
+  app.use(UiRangepicker);
   app.use(UiCollapse);
-  // app.use(UiAlert);
+  app.use(UiAlert);
   app.use($alert);
   app.use($confirm);
   app.use($toast);

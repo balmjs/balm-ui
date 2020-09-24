@@ -66,5 +66,10 @@ export default {
 
       return result;
     }
+  },
+  methods: {
+    getIconClassName(...componentIconClass) {
+      return ['material-icons', this.stateClassName, ...componentIconClass];
+    }
   }
 };

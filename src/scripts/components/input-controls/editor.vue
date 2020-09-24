@@ -15,7 +15,7 @@ import getType from '../../utils/typeof';
 // Define editor constants
 const UI_EDITOR = {
   EVENT: {
-    TEXT_CHANGE: 'change',
+    TEXT_CHANGE: 'update:modelValue',
     FILE_CHANGE: 'file-change'
   },
   BLANK: '<p><br></p>',
@@ -39,13 +39,9 @@ const UI_EDITOR = {
 
 export default {
   name: 'UiEditor',
-  model: {
-    prop: 'model',
-    event: UI_EDITOR.EVENT.TEXT_CHANGE
-  },
   props: {
     // States
-    model: {
+    modelValue: {
       type: String,
       default: ''
     },
@@ -94,6 +90,7 @@ export default {
       default: false
     }
   },
+  emits: [UI_EDITOR.EVENT.TEXT_CHANGE, UI_EDITOR.EVENT.FILE_CHANGE],
   data() {
     return {
       Editor: {},
@@ -123,8 +120,8 @@ export default {
         extension: this.extension
       });
 
-      if (this.model) {
-        this.setHTML(this.model);
+      if (this.modelValue) {
+        this.setHTML(this.modelValue);
       }
 
       this.$editor.on('text-change', (delta, oldDelta, source) => {

@@ -1,7 +1,6 @@
 <template>
   <ui-textfield
-    ref="input"
-    v-model="inputValue"
+    :model-value="inputValue"
     :input-id="inputId"
     class="mdc-datepicker"
     :outlined="outlined"
@@ -68,6 +67,7 @@
 import flatpickr from 'flatpickr';
 import monthSelectPlugin from 'flatpickr/dist/plugins/monthSelect';
 import UiTextfield from '../input-controls/textfield';
+import domMixin from '../../mixins/dom';
 import textfieldMixin from '../../mixins/textfield';
 
 // Define datepicker constants
@@ -80,7 +80,7 @@ const UI_DATEPICKER = {
     TIME: 'time' // Custom
   },
   EVENT: {
-    CHANGE: 'change'
+    CHANGE: 'update:modelValue'
   }
 };
 
@@ -89,11 +89,7 @@ export default {
   components: {
     UiTextfield
   },
-  mixins: [textfieldMixin],
-  model: {
-    prop: 'model',
-    event: UI_DATEPICKER.EVENT.CHANGE
-  },
+  mixins: [domMixin, textfieldMixin],
   props: {
     // <ui-textfield> variants
     outlined: {
@@ -101,7 +97,7 @@ export default {
       default: false
     },
     // States
-    model: {
+    modelValue: {
       type: [String, Number, Array],
       default: ''
     },
@@ -136,10 +132,11 @@ export default {
       }
     }
   },
+  emits: [UI_DATEPICKER.EVENT.CHANGE],
   data() {
     return {
       flatpickr: null,
-      inputValue: this.model,
+      inputValue: this.modelValue,
       mode: this.config.mode || UI_DATEPICKER.MODE.SINGLE,
       rangeSeparator: ''
     };
@@ -150,7 +147,7 @@ export default {
     }
   },
   watch: {
-    model(val) {
+    modelValue(val) {
       if (this.mode === UI_DATEPICKER.MODE.RANGE) {
         this.setRangeDate(val);
       } else {
@@ -160,7 +157,7 @@ export default {
     }
   },
   mounted() {
-    const inputEl = this.$refs.input.$el.querySelector('input');
+    const inputEl = this.el.querySelector('input');
     inputEl.dataset.input = '';
 
     if (!this.flatpickr) {
@@ -198,7 +195,7 @@ export default {
           this.rangeSeparator = config.locale
             ? config.locale.rangeSeparator
             : ' to ';
-          this.setRangeDate(this.model);
+          this.setRangeDate(this.modelValue);
           config.defaultDate = this.inputValue;
           break;
         default:
@@ -219,7 +216,7 @@ export default {
           break;
       }
       // Init
-      this.flatpickr = flatpickr(this.$el, config);
+      this.flatpickr = flatpickr(this.el, config);
     }
   },
   beforeUnmount() {

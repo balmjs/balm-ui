@@ -102,10 +102,6 @@ const toast = (customOptions = {}) => {
             this.options = options;
 
             this.$nextTick(() => {
-              if (!hasToast()) {
-                document.body.appendChild(this.$refs.toast);
-              }
-
               this.show();
             });
           } else {

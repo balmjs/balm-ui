@@ -35,7 +35,7 @@ import getType from '../../utils/typeof';
 // Define rangepicker constants
 const UI_RANGEPICKER = {
   EVENT: {
-    CHANGE: 'change'
+    CHANGE: 'update:modelValue'
   }
 };
 
@@ -44,10 +44,6 @@ export default {
   components: {
     UiTextfield
   },
-  model: {
-    prop: 'model',
-    event: UI_RANGEPICKER.EVENT.CHANGE
-  },
   props: {
     // <ui-textfield> variants
     outlined: {
@@ -55,7 +51,7 @@ export default {
       default: false
     },
     // States
-    model: {
+    modelValue: {
       type: Array,
       default() {
         return [];
@@ -87,6 +83,7 @@ export default {
       }
     }
   },
+  emits: [UI_RANGEPICKER.EVENT.CHANGE],
   data() {
     return {
       flatpickr: null,
@@ -149,7 +146,7 @@ export default {
       };
       // set default value
       config.onReady = (selectedDates, dateStr, instance) => {
-        this.updateInputs(this.model);
+        this.updateInputs(this.modelValue);
         this.updateInitialValue(instance);
 
         const dateValue = [this.startInputValue, this.endInputValue];

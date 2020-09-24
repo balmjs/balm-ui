@@ -1,16 +1,9 @@
 <template>
-  <div
-    v-if="!destroyed"
-    :class="[
-      'mdc-alert',
-      `mdc-alert--${stateType}`,
-      { 'mdc-alert--closed': closed }
-    ]"
-  >
+  <div v-if="!destroyed" :class="className">
     <slot name="icon">
       <i
         v-if="materialIcon"
-        :class="['material-icons mdc-alert__icon', stateClassName]"
+        :class="getIconClassName('mdc-alert__icon')"
         v-text="materialIcon"
       ></i>
     </slot>
@@ -52,6 +45,17 @@ export default {
       closed: false,
       destroyed: false
     };
+  },
+  computed: {
+    className() {
+      return [
+        'mdc-alert',
+        `mdc-alert--${this.stateType}`,
+        {
+          'mdc-alert--closed': this.closed
+        }
+      ];
+    }
   },
   methods: {
     onClose() {

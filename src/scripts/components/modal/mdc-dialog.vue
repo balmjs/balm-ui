@@ -13,7 +13,7 @@
         <div v-else class="mdc-dialog__content">
           <i
             v-if="materialIcon"
-            :class="['material-icons mdc-alert-dialog__icon', stateClassName]"
+            :class="getIconClassName('mdc-alert-dialog__icon')"
             >{{ materialIcon }}</i
           >
           <span class="mdc-alert-dialog__message">{{ options.message }}</span>

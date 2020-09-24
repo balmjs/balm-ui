@@ -36,23 +36,19 @@ import UI_GLOBAL from '../../config/constants';
 
 // Define collapse constants
 const UI_COLLAPSE = {
-  EVENT: {
-    CHANGE: 'change'
-  },
   cssClasses: {
     icon: 'mdc-collapse__icon'
+  },
+  EVENT: {
+    CHANGE: 'update:modelValue'
   }
 };
 
 export default {
   name: 'UiCollapse',
-  model: {
-    prop: 'expanded',
-    event: UI_COLLAPSE.EVENT.CHANGE
-  },
   props: {
     // States
-    expanded: {
+    modelValue: {
       type: Boolean,
       default: false
     },
@@ -66,11 +62,12 @@ export default {
       default: false
     }
   },
+  emits: [UI_COLLAPSE.EVENT.CHANGE],
   data() {
     return {
       UI_GLOBAL,
       UI_COLLAPSE,
-      isExpanded: this.expanded
+      isExpanded: this.modelValue
     };
   },
   computed: {
@@ -83,7 +80,7 @@ export default {
     }
   },
   watch: {
-    expanded(val) {
+    modelValue(val) {
       this.isExpanded = val;
     }
   },

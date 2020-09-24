@@ -15,12 +15,12 @@ export default {
     className() {
       return {
         'mdc-select-helper-text': true,
-        'mdc-select-helper-text--validation-msg-persistent': this.validMsg,
+        'mdc-select-helper-text--validation-msg-persistent': this.isValidMsg,
         'mdc-select-helper-text--validation-msg': this.isVisible
       };
     },
     isVisible() {
-      return !this.visible || this.validMsg; // For css name bug
+      return !this.visible || this.isValidMsg; // For css name bug
     }
   }
 };

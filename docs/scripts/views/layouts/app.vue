@@ -143,8 +143,7 @@
           ></ui-spinner>
           <router-view v-slot="{ Component }">
             <transition name="loading">
-              <component :is="Component" v-if="pageLoading" />
-              <component :is="Component" v-else></component>
+              <component :is="Component" />
             </transition>
           </router-view>
         </div>

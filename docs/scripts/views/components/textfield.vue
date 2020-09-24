@@ -4,50 +4,49 @@
     :apis="['ui-textfield', 'textfield', 'textfield-icon', 'textfield-helper']"
     demo-count="7"
   >
-    <template #hero>
+    <!-- <template #hero>
       <div class="hero-demo">
         <div>
-          <template v-if="typeOption === 0">
-            <ui-textfield
-              id="my-text-field"
-              v-model="value1"
-              maxlength="20"
-              helper-text-id="my-text-field-helper"
-              :with-leading-icon="iconOption.includes(2)"
-              :with-trailing-icon="iconOption.includes(3)"
-            >
-              Label
-              <template v-if="iconOption.includes(2)" #before>
-                <ui-textfield-icon>favorite</ui-textfield-icon>
-              </template>
-              <template v-if="iconOption.includes(3)" #after>
-                <ui-textfield-icon trailing>visibility</ui-textfield-icon>
-              </template>
-            </ui-textfield>
-            <ui-textfield-helper
-              id="my-text-field-helper"
-              :class="{ 'show-counter': iconOption.includes(1) }"
-              :visible="assistiveTextOption === 1"
-              :valid-msg="assistiveTextOption === 2"
-              with-counter
-            >
-              <template #default>
-                <span v-if="assistiveTextOption === 1">Helper message</span>
-                <span v-if="assistiveTextOption === 2">Error message</span>
-              </template>
-            </ui-textfield-helper>
-          </template>
+          <ui-textfield
+            v-if="typeOption === 0"
+            v-model="value1"
+            input-id="my-text-field"
+            maxlength="20"
+            :with-leading-icon="iconOption.includes(2)"
+            :with-trailing-icon="iconOption.includes(3)"
+            :class="{ 'show-counter': iconOption.includes(1) }"
+            helper-text-id="my-text-field-helper"
+            with-outer-counter
+            :helper-text-visible="assistiveTextOption === 1"
+            :valid-msg="assistiveTextOption === 2"
+          >
+            Label
+            <template v-if="iconOption.includes(2)" #before>
+              <ui-textfield-icon>favorite</ui-textfield-icon>
+            </template>
+            <template v-if="iconOption.includes(3)" #after>
+              <ui-textfield-icon trailing>visibility</ui-textfield-icon>
+            </template>
+            <template #helper-text>
+              <span v-if="assistiveTextOption === 1">Helper message</span>
+              <span v-if="assistiveTextOption === 2">Error message</span>
+            </template>
+          </ui-textfield>
         </div>
         <div>
           <template v-if="typeOption === 1">
             <ui-textfield
-              id="my-text-field-outlined"
               v-model="value2"
+              input-id="my-text-field-outlined"
               outlined
               maxlength="20"
-              helper-text-id="my-text-field-outlined-helper"
               :with-leading-icon="iconOption.includes(2)"
               :with-trailing-icon="iconOption.includes(3)"
+              :class="{ 'show-counter': iconOption.includes(1) }"
+              helper-text-id="my-text-field-outlined-helper"
+              with-outer-counter
+              :helper-text-visible="assistiveTextOption === 1"
+              :valid-msg="assistiveTextOption === 2"
             >
               Label
               <template v-if="iconOption.includes(2)" #before>
@@ -56,19 +55,11 @@
               <template v-if="iconOption.includes(3)" #after>
                 <ui-textfield-icon trailing>visibility</ui-textfield-icon>
               </template>
-            </ui-textfield>
-            <ui-textfield-helper
-              id="my-text-field-outlined-helper"
-              :class="{ 'show-counter': iconOption.includes(1) }"
-              :visible="assistiveTextOption === 1"
-              :valid-msg="assistiveTextOption === 2"
-              with-counter
-            >
-              <template #default>
+              <template #helper-text>
                 <span v-if="assistiveTextOption === 1">Helper message</span>
                 <span v-if="assistiveTextOption === 2">Error message</span>
               </template>
-            </ui-textfield-helper>
+            </ui-textfield>
           </template>
         </div>
       </div>
@@ -112,7 +103,7 @@
           </ui-form>
         </div>
       </div>
-    </template>
+    </template> -->
 
     <!-- Content -->
     <section class="demo-wrapper">
@@ -121,20 +112,20 @@
       </h6>
       <div class="demo" :dir="controls.rtl ? 'rtl' : null">
         <ui-textfield
-          id="full-func-text-field"
-          helper-text-id="my-text-field-helper-text"
+          input-id="full-func-text-field"
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
           :required="controls.required"
-          >Email Address</ui-textfield
-        >
-        <ui-textfield-helper
-          v-if="controls.helperText"
-          id="my-text-field-helper-text"
-          :visible="controls.isVisible"
+          :helper-text-id="
+            controls.helperText ? 'full-func-text-field-helper' : null
+          "
+          :helper-text-visible="controls.isVisible"
           :valid-msg="controls.hasValidMsg"
-          >Helper Text (possibly validation message)</ui-textfield-helper
-        >
+          >Email Address
+          <template #helper-text>
+            Helper Text (possibly validation message)
+          </template>
+        </ui-textfield>
       </div>
       <ui-textfield-controls
         v-model="controls"
@@ -143,20 +134,18 @@
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
 
-    <section class="demo-wrapper">
+    <!-- <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Password field with validation</h6>
       <div class="demo">
         <ui-textfield
-          id="pw"
+          input-id="pw"
           input-type="password"
           required
           pattern=".{8,}"
-          helper-text-id="pw-validation-msg"
           :attrs="{ autocomplete: 'current-password' }"
+          helper-text-visible
+          valid-msg="Must be at least 8 characters long"
           >Choose password</ui-textfield
-        >
-        <ui-textfield-helper id="pw-validation-msg" visible valid-msg
-          >Must be at least 8 characters long</ui-textfield-helper
         >
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
@@ -166,21 +155,20 @@
       <h6 :class="$tt('headline6')">1.3 Outlined Text Field</h6>
       <div class="demo" :dir="controls.rtl ? 'rtl' : null">
         <ui-textfield
-          id="tf-outlined-input"
+          input-id="tf-outlined-input"
           outlined
-          helper-text-id="name-validation-message"
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
           :required="controls.required"
           :maxlength="controls.max ? 10 : null"
           :minlength="controls.min ? 8 : 0"
+          :valid-msg="
+            controls.min
+              ? 'Must be at least 8 characters'
+              : 'Helper Text (possibly validation message)'
+          "
           >Your Name</ui-textfield
         >
-        <ui-textfield-helper id="name-validation-message" valid-msg>{{
-          controls.min
-            ? 'Must be at least 8 characters'
-            : 'Helper Text (possibly validation message)'
-        }}</ui-textfield-helper>
       </div>
       <ui-textfield-controls
         v-model="controls"
@@ -198,7 +186,7 @@
         :dir="controls.rtl ? 'rtl' : null"
       >
         <ui-textfield
-          id="tf-box-leading"
+          input-id="tf-box-leading"
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
           :required="controls.required"
@@ -218,7 +206,7 @@
         :dir="controls.rtl ? 'rtl' : null"
       >
         <ui-textfield
-          id="tf-box-trailing"
+          input-id="tf-box-trailing"
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
           :required="controls.required"
@@ -238,7 +226,7 @@
         :dir="controls.rtl ? 'rtl' : null"
       >
         <ui-textfield
-          id="tf-outlined-leading"
+          input-id="tf-outlined-leading"
           outlined
           with-leading-icon
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
@@ -260,7 +248,7 @@
         :dir="controls.rtl ? 'rtl' : null"
       >
         <ui-textfield
-          id="tf-outlined-trailing"
+          input-id="tf-outlined-trailing"
           outlined
           with-trailing-icon
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
@@ -293,7 +281,7 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.5 Preventing FOUC</h6>
       <div class="demo">
-        <ui-textfield id="fouc" v-model="value"
+        <ui-textfield input-id="fouc" v-model="value"
           >Label floating above</ui-textfield
         >
       </div>
@@ -343,22 +331,22 @@
           fullwidth
           placeholder="Subject"
           maxlength="40"
-          with-counter
+          with-outer-counter
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
           :required="controls.required"
         ></ui-textfield>
 
         <ui-textfield
-          id="full-width-textarea"
           v-model="content"
+          input-id="full-width-textarea"
           input-type="textarea"
           fullwidth
           placeholder="Content"
           class="full-width-textarea-example"
           rows="8"
           maxlength="140"
-          with-counter
+          with-outer-counter
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
           :required="controls.required"
@@ -369,11 +357,12 @@
         :options="['disabled', 'required', 'customColor']"
       ></ui-textfield-controls>
       <ui-snippet :code="$store.demos[7]"></ui-snippet>
-    </section>
+    </section> -->
   </docs-page>
 </template>
 
 <script>
+import { reactive, toRefs } from 'vue';
 const UiTextfieldControls = () =>
   import('@/demos/textfield/textfield-controls');
 
@@ -418,6 +407,31 @@ const AssistiveTextOptions = [
   }
 ];
 
+const state = reactive({
+  // hero
+  typeOption: 0,
+  iconOption: [],
+  assistiveTextOption: 0,
+  value1: '',
+  value2: '',
+  // demo
+  controls: {
+    disabled: false,
+    rtl: false,
+    required: false,
+    customColor: false,
+    helperText: false,
+    isVisible: false,
+    hasValidMsg: false,
+    min: false,
+    max: false,
+    unclickable: false
+  },
+  value: 'Pre-filled value',
+  title: '',
+  content: ''
+});
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Textfield'
@@ -425,61 +439,13 @@ export default {
   components: {
     UiTextfieldControls
   },
-  data() {
+  setup() {
     return {
-      // hero
       TypeOptions,
       IconOptions,
       AssistiveTextOptions,
-      typeOption: 0,
-      iconOption: [],
-      assistiveTextOption: 0,
-      value1: '',
-      value2: '',
-      // demo
-      controls: {
-        disabled: false,
-        rtl: false,
-        required: false,
-        customColor: false,
-        helperText: false,
-        isVisible: false,
-        hasValidMsg: false,
-        min: false,
-        max: false,
-        unclickable: false
-      },
-      value: 'Pre-filled value',
-      title: '',
-      content: ''
+      ...toRefs(state)
     };
-  },
-  mounted() {
-    // setTimeout(() => {
-    //   this.value1 = 'Hello BalmJS';
-    // }, 1e3);
   }
-  // methods: {
-  //   onFocus(event) {
-  //     console.log('onFocus', event);
-  //   },
-  //   onBlur({ valid, message }) {
-  //     if (this.useValidation) {
-  //       this.msg = message;
-  //     } else {
-  //       this.msg = 'Help Text (possibly validation message)';
-  //     }
-  //   },
-  //   onInput(value) {
-  //     console.log('onInput', value);
-  //     this.text = value;
-  //   },
-  //   onKeydown(event) {
-  //     console.log('onKeydown', event);
-  //   },
-  //   onEnter(value) {
-  //     console.log('onEnter', value);
-  //   }
-  // }
 };
 </script>

@@ -2,7 +2,7 @@
   <div :class="className" @click="handleClick">
     <input
       v-show="false"
-      :id="id"
+      :id="inputId"
       ref="file"
       type="file"
       :accept="accept"

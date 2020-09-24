@@ -95,7 +95,7 @@
     v-if="helperTextId"
     :id="helperTextId"
     :visible="helperTextVisible"
-    :valid-msg="hasValidMsg"
+    :is-valid-msg="hasValidMsg"
   >
     <slot name="helper-text"></slot>
   </mdc-select-helper>

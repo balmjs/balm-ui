@@ -1,4 +1,3 @@
-import { defineAsyncComponent } from 'vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
 import { useBus } from 'balm-ui';
 // Layout
@@ -16,8 +15,8 @@ import miscRoutes from './misc';
 // Pages
 import Home from '@/views/home';
 import Donate from '@/views/donate';
-const Utils = defineAsyncComponent(() => import('@/views/utils'));
-const NotFound = defineAsyncComponent(() => import('@/views/not-found'));
+const Utils = () => import('@/views/utils');
+const NotFound = () => import('@/views/not-found');
 import testRoutes from './test';
 
 const baseRoutes = [

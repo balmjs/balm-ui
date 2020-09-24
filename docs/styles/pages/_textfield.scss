@@ -4,10 +4,14 @@
   }
 
   .hero-demo {
-    .mdc-text-field-character-counter {
+    .mdc-text-field
+      + .mdc-text-field-helper-line
+      .mdc-text-field-character-counter {
       display: none;
     }
-    .show-counter .mdc-text-field-character-counter {
+    .mdc-text-field.show-counter
+      + .mdc-text-field-helper-line
+      .mdc-text-field-character-counter {
       display: block;
     }
   }

@@ -1,7 +1,7 @@
 <template>
   <ui-textfield
-    :id="id"
     v-model="inputValue"
+    :input-id="inputId"
     :class="className"
     :outlined="outlined"
     :label="label"
@@ -106,7 +106,7 @@ export default {
       }
     },
     // <ui-textfield> props
-    id: {
+    inputId: {
       type: [String, null],
       default: null
     },

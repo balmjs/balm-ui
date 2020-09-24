@@ -18,8 +18,8 @@
       <div class="demo">
         <ui-form-field>
           <ui-radio
-            id="ex4a-radio1"
             v-model="hero"
+            input-id="ex4a-radio1"
             name="ex4a"
             value="0"
             disabled
@@ -28,8 +28,8 @@
         </ui-form-field>
         <ui-form-field>
           <ui-radio
-            id="ex4a-radio2"
             v-model="hero"
+            input-id="ex4a-radio2"
             name="ex4a"
             value="1"
             disabled
@@ -42,13 +42,18 @@
     <section class="demo-wrapper">
       <div class="demo">
         <ui-form-field>
-          <ui-radio id="male" v-model="gender" name="sex" value="M"></ui-radio>
+          <ui-radio
+            v-model="gender"
+            input-id="male"
+            name="sex"
+            value="M"
+          ></ui-radio>
           <label for="male">Male</label>
         </ui-form-field>
         <ui-form-field>
           <ui-radio
-            id="female"
             v-model="gender"
+            input-id="female"
             name="sex"
             value="F"
           ></ui-radio>

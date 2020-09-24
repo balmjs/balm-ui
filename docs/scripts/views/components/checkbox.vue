@@ -2,7 +2,11 @@
   <docs-page name="checkbox" demo-count="2">
     <template #hero>
       <ui-form-field>
-        <ui-checkbox id="hero-checkbox" v-model="hero" v-a11y></ui-checkbox>
+        <ui-checkbox
+          v-model="hero"
+          v-a11y
+          input-id="hero-checkbox"
+        ></ui-checkbox>
         <label for="hero-checkbox">Checkbox</label>
       </ui-form-field>
     </template>
@@ -11,10 +15,10 @@
     <section class="demo-wrapper">
       <div class="demo">
         <ui-form-field :align-end="alignEnd">
-          <ui-checkbox :id="`basic-checkbox`"></ui-checkbox>
+          <ui-checkbox :input-id="`basic-checkbox`"></ui-checkbox>
           <label :for="`basic-checkbox`">Default checkbox</label>
         </ui-form-field>
-        <ui-button outlined @click="$balmUI.onChange('alignEnd', !alignEnd)">
+        <ui-button outlined @click="balmUI.onChange('alignEnd', !alignEnd)">
           Toggle
           <code>--align-end</code>
         </ui-button>
@@ -22,12 +26,12 @@
       <div class="demo">
         <ui-form-field>
           <ui-checkbox
-            :id="`basic-checkbox-disabled`"
+            :input-id="`basic-checkbox-disabled`"
             :disabled="disabled"
           ></ui-checkbox>
           <label :for="`basic-checkbox-disabled`">Disabled checkbox</label>
         </ui-form-field>
-        <ui-button outlined @click="$balmUI.onChange('disabled', !disabled)">
+        <ui-button outlined @click="balmUI.onChange('disabled', !disabled)">
           Toggle
           <code>disabled</code>
         </ui-button>
@@ -35,7 +39,7 @@
       <div class="demo">
         <ui-form-field>
           <ui-checkbox
-            id="basic-checkbox-indeterminate"
+            input-id="basic-checkbox-indeterminate"
             :indeterminate="indeterminate"
           ></ui-checkbox>
           <label for="basic-checkbox-indeterminate"
@@ -44,7 +48,7 @@
         </ui-form-field>
         <ui-button
           outlined
-          @click="$balmUI.onChange('indeterminate', !indeterminate)"
+          @click="balmUI.onChange('indeterminate', !indeterminate)"
         >
           Toggle
           <code>indeterminate</code>
@@ -52,7 +56,7 @@
       </div>
       <div class="demo">
         <ui-form-field class="demo-checkbox--custom-all">
-          <ui-checkbox id="basic-checkbox-custom-all"></ui-checkbox>
+          <ui-checkbox input-id="basic-checkbox-custom-all"></ui-checkbox>
           <label for="basic-checkbox-custom-all"
             >Custom colored checkbox (stroke, fill, ripple, and focus)</label
           >
@@ -60,7 +64,9 @@
       </div>
       <div class="demo">
         <ui-form-field class="demo-checkbox--custom-stroke-and-fill">
-          <ui-checkbox id="basic-checkbox-custom-stroke-and-fill"></ui-checkbox>
+          <ui-checkbox
+            input-id="basic-checkbox-custom-stroke-and-fill"
+          ></ui-checkbox>
           <label for="basic-checkbox-custom-stroke-and-fill"
             >Custom colored checkbox (stroke and fill only)</label
           >
@@ -72,7 +78,7 @@
       <p>Single checkbox, boolean value:</p>
       <div class="demo">
         <ui-form-field>
-          <ui-checkbox id="checkbox" v-model="checked"></ui-checkbox>
+          <ui-checkbox v-model="checked" input-id="checkbox"></ui-checkbox>
           <label for="checkbox">{{ checked }}</label>
         </ui-form-field>
       </div>
@@ -84,24 +90,24 @@
       <div class="demo">
         <ui-form-field>
           <ui-checkbox
-            id="jack"
             v-model="checkedNames"
+            input-id="jack"
             value="Jack"
           ></ui-checkbox>
           <label for="jack">Jack</label>
         </ui-form-field>
         <ui-form-field>
           <ui-checkbox
-            id="john"
             v-model="checkedNames"
+            input-id="john"
             value="John"
           ></ui-checkbox>
           <label for="john">John</label>
         </ui-form-field>
         <ui-form-field>
           <ui-checkbox
-            id="mike"
             v-model="checkedNames"
+            input-id="mike"
             value="Mike"
           ></ui-checkbox>
           <label for="mike">Mike</label>
@@ -113,9 +119,18 @@
 </template>
 
 <script>
+import { useEvent } from 'balm-ui';
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Checkbox'
+  },
+  setup() {
+    const balmUI = useEvent();
+
+    return {
+      balmUI
+    };
   },
   data() {
     return {

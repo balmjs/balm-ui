@@ -10,7 +10,7 @@
       <div class="demo">
         <ui-file
           accept="image/*"
-          @change="$balmUI.onChange('files1', $event)"
+          @change="balmUI.onChange('files1', $event)"
         ></ui-file>
         <p>Files: {{ files1 }}</p>
       </div>
@@ -24,7 +24,7 @@
           accept="image/*"
           multiple
           preview
-          @change="$balmUI.onChange('files2', $event)"
+          @change="balmUI.onChange('files2', $event)"
         ></ui-file>
         <transition-group class="preview-list" name="list" tag="ul">
           <li v-for="file in files2" :key="file.tmpId" class="item">
@@ -77,9 +77,18 @@
 </template>
 
 <script>
+import { useEvent } from 'balm-ui';
+
 export default {
   metaInfo: {
     titleTemplate: '%s - File'
+  },
+  setup() {
+    const balmUI = useEvent();
+
+    return {
+      balmUI
+    };
   },
   data() {
     return {

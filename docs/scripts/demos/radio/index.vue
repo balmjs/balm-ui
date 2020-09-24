@@ -3,8 +3,8 @@
     <div class="demo-radio-row">
       <ui-form-field>
         <ui-radio
-          id="ex-default-radio1"
           v-model="value1"
+          input-id="ex-default-radio1"
           :name="`ex-default`"
           value="1"
         ></ui-radio>
@@ -12,8 +12,8 @@
       </ui-form-field>
       <ui-form-field>
         <ui-radio
-          id="ex-default-radio2"
           v-model="value1"
+          input-id="ex-default-radio2"
           :name="`ex-default`"
           value="2"
         ></ui-radio>
@@ -23,8 +23,8 @@
     <div class="demo-radio-row">
       <ui-form-field class="demo-radio--custom">
         <ui-radio
-          id="ex-custom-radio1"
           v-model="value2"
+          input-id="ex-custom-radio1"
           :name="`ex-custom`"
           :value="1"
         ></ui-radio>
@@ -32,8 +32,8 @@
       </ui-form-field>
       <ui-form-field class="demo-radio--custom">
         <ui-radio
-          id="ex-custom-radio2"
           v-model="value2"
+          input-id="ex-custom-radio2"
           :name="`ex-custom`"
           :value="2"
         ></ui-radio>
@@ -46,7 +46,12 @@
 <script>
 export default {
   props: {
-    code: Array
+    code: {
+      type: Array,
+      default() {
+        return [];
+      }
+    }
   },
   data() {
     return {

@@ -30,8 +30,9 @@ export default {
     className() {
       return {
         'mdc-text-field-helper-text': true,
-        'mdc-text-field-helper-text--persistent': this.visible,
-        'mdc-text-field-helper-text--validation-msg': this.validMsg
+        'mdc-text-field-helper-text--persistent':
+          this.visible || this.isValidMsg,
+        'mdc-text-field-helper-text--validation-msg': this.isValidMsg
       };
     }
   }

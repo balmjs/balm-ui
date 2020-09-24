@@ -1,7 +1,7 @@
 <template>
   <div :class="className">
     <input
-      :id="id"
+      :id="inputId"
       v-model="selectedValue"
       class="mdc-radio__native-control"
       type="radio"

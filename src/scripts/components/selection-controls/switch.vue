@@ -4,7 +4,7 @@
     <div class="mdc-switch__thumb-underlay">
       <div class="mdc-switch__thumb"></div>
       <input
-        :id="id"
+        :id="inputId"
         v-model="selectedValue"
         type="checkbox"
         class="mdc-switch__native-control"

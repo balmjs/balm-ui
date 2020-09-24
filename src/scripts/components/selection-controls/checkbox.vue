@@ -1,7 +1,7 @@
 <template>
   <mdc-checkbox :class="className">
     <input
-      :id="id"
+      :id="inputId"
       v-model="selectedValue"
       type="checkbox"
       class="mdc-checkbox__native-control"

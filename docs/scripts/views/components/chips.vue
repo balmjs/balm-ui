@@ -13,24 +13,17 @@
       <h6 :class="$tt('headline6')">1.1 Input Chips</h6>
       <div class="demo">
         <ui-textfield
-          id="input-chip-set-input"
           v-model="name"
           outlined
           class="demo-tf-add-space"
           placeholder="Chip text"
         ></ui-textfield>
         <br />
-        <ui-button id="input-chip-set-button" raised dense @click="addOne"
-          >Add Input Chip</ui-button
-        >
-        <ui-button
-          id="input-chip-set-delete-button"
-          outlined
-          dense
-          @click="removeLastOne"
+        <ui-button raised dense @click="addOne">Add Input Chip</ui-button>
+        <ui-button outlined dense @click="removeLastOne"
           >Delete Last Chip</ui-button
         >
-        <ui-chips id="input-chip-set" type="input" :chips="list">
+        <ui-chips :chips="list" type="input">
           <ui-chip
             v-for="item in list"
             :key="item.id"

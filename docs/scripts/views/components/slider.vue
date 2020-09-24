@@ -14,7 +14,10 @@
     <!-- Content -->
     <ui-form class="demo-controls">
       <ui-form-field>
-        <ui-checkbox id="slider-disabled" v-model="disabled"></ui-checkbox>
+        <ui-checkbox
+          v-model="disabled"
+          input-id="slider-disabled"
+        ></ui-checkbox>
         <label for="slider-disabled">Disabled</label>
       </ui-form-field>
     </ui-form>
@@ -97,31 +100,41 @@
 </template>
 
 <script>
+import { ref, onMounted, reactive, toRefs } from 'vue';
+
+const state = reactive({
+  // hero
+  value: 0,
+  // demo
+  value1: 50,
+  value2: [30, 70],
+  value3: 50,
+  value4: 50,
+  value5: [20, 50],
+  disabled: false
+});
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Slider'
   },
-  data() {
-    return {
-      // hero
-      value: 0,
-      // demo
-      value1: 50,
-      value2: [30, 70],
-      value3: 50,
-      value4: 50,
-      value5: [20, 50],
-      disabled: false
-    };
-  },
-  mounted() {
-    setTimeout(() => {
-      this.value = 50;
-    }, 1e3);
+  setup() {
+    const slider = ref(null);
 
-    setTimeout(() => {
-      this.$refs.slider.recompute();
-    }, 300);
+    onMounted(() => {
+      setTimeout(() => {
+        slider.value.recompute();
+      }, 300);
+
+      setTimeout(() => {
+        state.value = 50;
+      }, 1e3);
+    });
+
+    return {
+      slider,
+      ...toRefs(state)
+    };
   },
   methods: {
     onChange(value) {

@@ -9,7 +9,7 @@ export const componentHelperTextMixin = {
       default: false
     },
     validMsg: {
-      type: String,
+      type: [String, Boolean],
       default: ''
     }
   },
@@ -32,7 +32,7 @@ export const helperTextMixin = {
       type: Boolean,
       default: false
     },
-    validMsg: {
+    isValidMsg: {
       type: Boolean,
       default: false
     }

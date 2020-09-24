@@ -24,7 +24,7 @@
     <template v-if="isTextarea">
       <span class="mdc-text-field__resizer">
         <textarea
-          :id="id"
+          :id="inputId"
           v-model="inputValue"
           :class="className.input"
           :placeholder="placeholder"
@@ -34,9 +34,8 @@
           :maxlength="maxlength"
           :rows="rows"
           :cols="cols"
-          :aria-labelledby="id"
-          :aria-controls="currentHelperTextId"
-          :aria-describedby="currentHelperTextId"
+          :aria-controls="helperTextId"
+          :aria-describedby="helperTextId"
           v-bind="attrs"
           @focus="handleFocus"
           @keydown="handleKeydown"
@@ -58,7 +57,7 @@
         v-text="prefixText"
       ></span>
       <input
-        :id="id"
+        :id="inputId"
         v-model="inputValue"
         :type="inputType"
         :class="className.input"
@@ -71,9 +70,8 @@
         :min="min"
         :max="max"
         :step="step"
-        :aria-labelledby="id"
-        :aria-controls="currentHelperTextId"
-        :aria-describedby="currentHelperTextId"
+        :aria-controls="helperTextId"
+        :aria-describedby="helperTextId"
         v-bind="attrs"
         @focus="handleFocus"
         @keydown="handleKeydown"
@@ -120,10 +118,10 @@
   </div>
 
   <mdc-textfield-helper
-    v-if="currentHelperTextId"
-    :id="currentHelperTextId"
+    v-if="helperTextId"
+    :id="helperTextId"
     :visible="helperTextVisible"
-    :valid-msg="hasValidMsg"
+    :is-valid-msg="hasValidMsg"
     :with-counter="withOuterCounter"
   >
     <slot name="helper-text"></slot>
@@ -311,12 +309,6 @@ export default {
         },
         input: 'mdc-text-field__input'
       };
-    },
-    currentHelperTextId() {
-      const hasTextfieldId = this.id ? `${this.id}-helper` : false;
-      const hasHelperTextId = this.helperTextId || false;
-
-      return hasHelperTextId || hasTextfieldId;
     }
   },
   watch: {

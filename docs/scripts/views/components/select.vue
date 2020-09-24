@@ -4,55 +4,47 @@
     demo-count="4"
     :apis="['select', 'select-helper', 'select-icon']"
   >
-    <template #hero>
+    <!-- <template #hero>
       <div class="hero-demo">
         <div>
-          <template v-if="typeOption === 0">
-            <ui-select
-              id="my-select"
-              v-model="selected"
-              :options="options"
-              :with-leading-icon="selectOption.includes(1)"
-              helper-text-id="my-helper-text1"
-            >
-              <template v-if="selectOption.includes(1)" #icon>
-                <ui-select-icon>face</ui-select-icon>
-              </template>
-              <template #dropdown-icon="{ iconClass }">
-                <ui-icon :class="iconClass">keyboard_arrow_down</ui-icon>
-              </template>
-              Pick a fruit
-            </ui-select>
-            <ui-select-helper
-              id="my-helper-text1"
-              :visible="selectOption.includes(2)"
-              :valid-msg="selectOption.includes(3)"
-              >Helper text</ui-select-helper
-            >
-          </template>
+          <ui-select
+            v-if="typeOption === 0"
+            id="my-select"
+            v-model="selected"
+            :options="options"
+            :with-leading-icon="selectOption.includes(1)"
+            helper-text-id="my-select-helper"
+            :helper-text-visible="selectOption.includes(2)"
+            :valid-msg="selectOption.includes(3)"
+          >
+            <template v-if="selectOption.includes(1)" #icon>
+              <ui-select-icon>face</ui-select-icon>
+            </template>
+            <template #dropdown-icon="{ iconClass }">
+              <ui-icon :class="iconClass">keyboard_arrow_down</ui-icon>
+            </template>
+            Pick a fruit
+            <template #helper-text>Helper text</template>
+          </ui-select>
         </div>
         <div>
-          <template v-if="typeOption === 1">
-            <ui-select
-              id="my-select"
-              v-model="selected"
-              outlined
-              :options="options"
-              :with-leading-icon="selectOption.includes(1)"
-              helper-text-id="my-helper-text2"
-            >
-              <template v-if="selectOption.includes(1)" #icon>
-                <ui-select-icon>face</ui-select-icon>
-              </template>
-              Pick a fruit
-            </ui-select>
-            <ui-select-helper
-              id="my-helper-text2"
-              :visible="selectOption.includes(2)"
-              :valid-msg="selectOption.includes(3)"
-              >Helper text</ui-select-helper
-            >
-          </template>
+          <ui-select
+            v-if="typeOption === 1"
+            id="my-select-outlined"
+            v-model="selected"
+            outlined
+            :options="options"
+            :with-leading-icon="selectOption.includes(1)"
+            helper-text-id="my-select-outlined-helper"
+            :helper-text-visible="selectOption.includes(2)"
+            :valid-msg="selectOption.includes(3)"
+          >
+            <template v-if="selectOption.includes(1)" #icon>
+              <ui-select-icon>face</ui-select-icon>
+            </template>
+            Pick a fruit
+            <template #helper-text>Helper text</template>
+          </ui-select>
         </div>
       </div>
       <div class="hero-options">
@@ -89,7 +81,7 @@
           </ui-form-field>
         </ui-form>
       </div>
-    </template>
+    </template> -->
 
     <!-- Content -->
     <section class="demo-wrapper">
@@ -124,7 +116,7 @@
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
 
-    <section class="demo-wrapper">
+    <!-- <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Outlined Select</h6>
       <div class="demo">
         <div class="example" :dir="controls.rtl ? 'rtl' : null">
@@ -153,9 +145,9 @@
         ></ui-select-controls>
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
-    </section>
+    </section> -->
 
-    <section class="demo-wrapper">
+    <!-- <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.3 Pre-selected option via HTML</h6>
       <div class="demo">
         <ui-select
@@ -166,9 +158,9 @@
         >
       </div>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
-    </section>
+    </section> -->
 
-    <section class="demo-wrapper">
+    <!-- <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.4 Custom Select</h6>
       <div class="demo">
         <ui-select
@@ -186,13 +178,12 @@
         <p>Province: {{ formData.province }} - City: {{ formData.city }}</p>
       </div>
       <ui-snippet :code="$store.demos[4]"></ui-snippet>
-    </section>
+    </section> -->
   </docs-page>
 </template>
 
 <script>
 import { PROVINCES, CITIES, OPTIONS } from '../../../data/select';
-
 const UiSelectControls = () => import('@/demos/select/select-controls');
 
 const TypeOptions = [

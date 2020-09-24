@@ -1,8 +1,8 @@
 <template>
   <ui-textfield
-    :id="id"
     ref="input"
     v-model="inputValue"
+    :input-id="inputId"
     class="mdc-datepicker"
     :outlined="outlined"
     :label="label"
@@ -106,7 +106,7 @@ export default {
       default: ''
     },
     // <ui-textfield> attributes
-    id: {
+    inputId: {
       type: [String, null],
       default: null
     },

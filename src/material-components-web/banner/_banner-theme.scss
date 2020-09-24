@@ -47,6 +47,12 @@ $mobile-breakpoint: 480px;
   @include feature-targeting.targets($feat-color) {
     @include theme.property(background-color, $color);
   }
+
+  .mdc-banner__fixed {
+    @include feature-targeting.targets($feat-color) {
+      @include theme.property(background-color, $color);
+    }
+  }
 }
 
 ///
@@ -74,6 +80,12 @@ $mobile-breakpoint: 480px;
 
   @include feature-targeting.targets($feat-color) {
     @include theme.property(border-bottom-color, $color);
+  }
+
+  .mdc-banner__fixed {
+    @include feature-targeting.targets($feat-color) {
+      @include theme.property(border-bottom-color, $color);
+    }
   }
 }
 
@@ -154,6 +166,22 @@ $mobile-breakpoint: 480px;
   .mdc-banner__content {
     @include feature-targeting.targets($feat-structure) {
       max-width: $max-width;
+    }
+  }
+}
+
+///
+/// Sets the banner content to centered instead of leading.
+///
+@mixin position-centered($query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  .mdc-banner__content {
+    @include feature-targeting.targets($feat-structure) {
+      left: 0;
+      margin-left: auto;
+      margin-right: auto;
+      right: 0;
     }
   }
 }

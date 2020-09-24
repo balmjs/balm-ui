@@ -2,6 +2,12 @@ import { createApp } from 'vue';
 import autoInstall from '../config/auto-install';
 import MdcDialog from '../components/modal/mdc-dialog';
 import getType from '../utils/typeof';
+import { createDiv, removeDiv } from '../utils/div';
+
+// Define alert dialog constants
+const UI_ALERT_DIALOG = {
+  id: 'alert-dialog'
+};
 
 const DEFAULT_OPTIONS = {
   className: '',
@@ -14,7 +20,9 @@ const DEFAULT_OPTIONS = {
   callback: false
 };
 
-const template = `<mdc-dialog ref="alert" class="mdc-alert-dialog" :open="open" :options="options">
+let globalOptions = DEFAULT_OPTIONS;
+
+const template = `<mdc-dialog class="mdc-alert-dialog" :open="open" :options="options">
   <button type="button"
     class="mdc-button mdc-button--raised mdc-alert-dialog__button"
     data-mdc-dialog-button-default
@@ -23,58 +31,58 @@ const template = `<mdc-dialog ref="alert" class="mdc-alert-dialog" :open="open" 
   </button>
 </mdc-dialog>`;
 
-const BalmUI_AlertPlugin = {
-  install(app, globalOptions = {}) {
-    options = Object.assign({}, DEFAULT_OPTIONS, globalOptions);
+const alertDialog = (customOptions = {}) => {
+  let options = Object.assign({}, globalOptions);
 
-    const alertDialog = (customOptions = {}) => {
-      return new Promise((resolve) => {
-        let alertApp = createApp({
-          el: document.createElement('div'),
-          components: {
-            MdcDialog
-          },
-          data() {
-            return {
-              open: false,
-              options
-            };
-          },
-          created() {
-            if (getType(customOptions) === 'string') {
-              this.options.message = `${customOptions}`; // To string
-            } else if (getType(customOptions) === 'object') {
-              this.options = Object.assign({}, this.options, customOptions);
-            }
-          },
-          mounted() {
-            document.body.appendChild(this.$refs.alert);
+  if (getType(customOptions) === 'string') {
+    options.message = `${customOptions}`; // To string
+  } else if (getType(customOptions) === 'object') {
+    options = Object.assign({}, options, customOptions);
+  }
 
-            this.$nextTick(() => {
-              this.open = true;
-            });
-          },
-          methods: {
-            handleClose() {
-              this.open = false;
+  return new Promise((resolve) => {
+    const el = createDiv(UI_ALERT_DIALOG.id);
 
-              document.body.removeChild(this.$refs.alert);
-              alertApp = null;
-            },
-            handleClick() {
-              this.handleClose();
-
-              if (getType(this.options.callback) === 'function') {
-                this.options.callback();
-              } else {
-                resolve();
-              }
-            }
-          },
-          template
+    let alertApp = createApp({
+      components: {
+        MdcDialog
+      },
+      data() {
+        return {
+          open: false,
+          options
+        };
+      },
+      mounted() {
+        this.$nextTick(() => {
+          this.open = true;
         });
-      });
-    };
+      },
+      methods: {
+        handleClose() {
+          this.open = false;
+
+          removeDiv(el);
+          alertApp = null;
+        },
+        handleClick() {
+          this.handleClose();
+
+          if (getType(this.options.callback) === 'function') {
+            this.options.callback();
+          } else {
+            resolve();
+          }
+        }
+      },
+      template
+    }).mount(`#${UI_ALERT_DIALOG.id}`);
+  });
+};
+
+const BalmUI_AlertPlugin = {
+  install(app, options = {}) {
+    globalOptions = Object.assign({}, DEFAULT_OPTIONS, options);
 
     app.config.globalProperties.$alert = alertDialog;
     app.provide('alert', alertDialog);

@@ -2,6 +2,12 @@ import { createApp } from 'vue';
 import autoInstall from '../config/auto-install';
 import MdcDialog from '../components/modal/mdc-dialog';
 import getType from '../utils/typeof';
+import { createDiv, removeDiv } from '../utils/div';
+
+// Define confirm dialog constants
+const UI_CONFIRM_DIALOG = {
+  id: 'confirm-dialog'
+};
 
 const DEFAULT_OPTIONS = {
   className: '',
@@ -15,7 +21,9 @@ const DEFAULT_OPTIONS = {
   callback: false
 };
 
-const template = `<mdc-dialog ref="confirm" class="mdc-confirm-dialog" :open="open" :options="options">
+let globalOptions = DEFAULT_OPTIONS;
+
+const template = `<mdc-dialog class="mdc-confirm-dialog" :open="open" :options="options">
   <button type="button"
     class="mdc-button mdc-button--raised mdc-confirm-dialog__primary-button"
     data-mdc-dialog-button-default
@@ -29,58 +37,58 @@ const template = `<mdc-dialog ref="confirm" class="mdc-confirm-dialog" :open="op
   </button>
 </mdc-dialog>`;
 
-const BalmUI_ConfirmPlugin = {
-  install(app, configs = {}) {
-    let options = Object.assign({}, DEFAULT_OPTIONS, configs);
+const confirmDialog = (customOptions = {}) => {
+  let options = Object.assign({}, globalOptions);
 
-    const confirmDialog = (customOptions = {}) => {
-      return new Promise((resolve) => {
-        let confirmApp = createApp({
-          el: document.createElement('div'),
-          components: {
-            WindowDialog
-          },
-          data() {
-            return {
-              open: false,
-              options
-            };
-          },
-          created() {
-            if (getType(customOptions) === 'string') {
-              this.options.message = `${customOptions}`; // To string
-            } else if (getType(customOptions) === 'object') {
-              this.options = Object.assign({}, this.options, customOptions);
-            }
-          },
-          mounted() {
-            document.body.appendChild(this.$refs.confirm);
+  if (getType(customOptions) === 'string') {
+    this.options.message = `${customOptions}`; // To string
+  } else if (getType(customOptions) === 'object') {
+    this.options = Object.assign({}, this.options, customOptions);
+  }
 
-            this.$nextTick(() => {
-              this.open = true;
-            });
-          },
-          methods: {
-            handleClose() {
-              this.open = false;
+  return new Promise((resolve) => {
+    const el = createDiv(UI_CONFIRM_DIALOG.id);
 
-              document.body.removeChild(this.$refs.confirm);
-              confirmApp = null;
-            },
-            handleConfirm(result) {
-              this.handleClose();
-
-              if (getType(this.options.callback) === 'function') {
-                this.options.callback(result);
-              } else {
-                resolve(result);
-              }
-            }
-          },
-          template
+    let confirmApp = createApp({
+      components: {
+        MdcDialog
+      },
+      data() {
+        return {
+          open: false,
+          options
+        };
+      },
+      mounted() {
+        this.$nextTick(() => {
+          this.open = true;
         });
-      });
-    };
+      },
+      methods: {
+        handleClose() {
+          this.open = false;
+
+          removeDiv(el);
+          confirmApp = null;
+        },
+        handleConfirm(result) {
+          this.handleClose();
+
+          if (getType(this.options.callback) === 'function') {
+            this.options.callback(result);
+          } else {
+            resolve(result);
+          }
+        }
+      },
+      template
+    }).mount(`#${UI_CONFIRM_DIALOG.id}`);
+  });
+};
+
+const BalmUI_ConfirmPlugin = {
+  install(app, options = {}) {
+    globalOptions = Object.assign({}, DEFAULT_OPTIONS, options);
 
     app.config.globalProperties.$confirm = confirmDialog;
     app.provide('confirm', confirmDialog);

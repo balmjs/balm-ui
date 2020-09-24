@@ -2,48 +2,62 @@
   <docs-page type="plugin" name="theme" demo-count="4">
     <template #hero>
       <div class="hero-demos">
-        <ui-button raised :class="[$theme.getThemeClass('primary-bg')]">Primary</ui-button>
-        <ui-button raised :class="[$theme.getThemeClass('secondary-bg')]">Secondary</ui-button>
+        <ui-button raised :class="[$theme.getThemeClass('primary-bg')]"
+          >Primary</ui-button
+        >
+        <ui-button raised :class="[$theme.getThemeClass('secondary-bg')]"
+          >Secondary</ui-button
+        >
       </div>
     </template>
 
     <!-- Content -->
     <section class="demo-wrapper">
-      <h6 :class="$tt('headline6')">1.1 The Material Design baseline default theme</h6>
+      <h6 :class="$tt('headline6')">
+        1.1 The Material Design baseline default theme
+      </h6>
 
       <h6>Theme Color</h6>
       <dl class="demo-theme">
-        <dt
-          :style="onThemeColorStyle($theme.getThemeColor('background'))"
-        >background: {{ $store.themeColors.background }}</dt>
+        <dt :style="onThemeColorStyle($theme.getThemeColor('background'))">
+          background: {{ $store.themeColors.background }}
+        </dt>
         <dd
           :class="$theme.getThemeClass('on-primary')"
           :style="themeColorStyle($theme.getThemeColor('primary'))"
-        >primary: {{ $store.themeColors.primary }}</dd>
-        <dd
-          :style="onThemeColorStyle($theme.getThemeColor('on-primary'))"
-        >on-primary: {{ $store.themeColors['on-primary'] }}</dd>
+        >
+          primary: {{ $store.themeColors.primary }}
+        </dd>
+        <dd :style="onThemeColorStyle($theme.getThemeColor('on-primary'))">
+          on-primary: {{ $store.themeColors['on-primary'] }}
+        </dd>
         <dd
           :class="$theme.getThemeClass('on-secondary')"
           :style="themeColorStyle($theme.getThemeColor('secondary'))"
-        >secondary: {{ $store.themeColors.secondary }}</dd>
-        <dd
-          :style="onThemeColorStyle($theme.getThemeColor('on-secondary'))"
-        >on-secondary: {{ $store.themeColors['on-secondary'] }}</dd>
+        >
+          secondary: {{ $store.themeColors.secondary }}
+        </dd>
+        <dd :style="onThemeColorStyle($theme.getThemeColor('on-secondary'))">
+          on-secondary: {{ $store.themeColors['on-secondary'] }}
+        </dd>
         <dd
           :class="$theme.getThemeClass('on-surface')"
           :style="onThemeColorStyle($theme.getThemeColor('surface'))"
-        >surface: {{ $store.themeColors.surface }}</dd>
-        <dd
-          :style="onThemeColorStyle($theme.getThemeColor('on-surface'))"
-        >on-surface: {{ $store.themeColors['on-surface'] }}</dd>
+        >
+          surface: {{ $store.themeColors.surface }}
+        </dd>
+        <dd :style="onThemeColorStyle($theme.getThemeColor('on-surface'))">
+          on-surface: {{ $store.themeColors['on-surface'] }}
+        </dd>
         <dd
           :class="$theme.getThemeClass('on-error')"
           :style="themeColorStyle($theme.getThemeColor('error'))"
-        >error: {{ $store.themeColors.error }}</dd>
-        <dd
-          :style="onThemeColorStyle($theme.getThemeColor('on-error'))"
-        >on-error: {{ $store.themeColors['on-error'] }}</dd>
+        >
+          error: {{ $store.themeColors.error }}
+        </dd>
+        <dd :style="onThemeColorStyle($theme.getThemeColor('on-error'))">
+          on-error: {{ $store.themeColors['on-error'] }}
+        </dd>
       </dl>
 
       <h6>Text Color</h6>
@@ -113,7 +127,9 @@
                   :data-name="getColorName(color, shade)"
                 >
                   <span class="shade">${{ getColorName(color, shade) }}</span>
-                  <span class="hex">{{ getColorValue(color, shadeIndex) }}</span>
+                  <span class="hex">{{
+                    getColorValue(color, shadeIndex)
+                  }}</span>
                 </ui-item>
               </template>
             </ui-list>
@@ -148,7 +164,9 @@
 </template>
 
 <script>
+import { onMounted } from 'vue';
 import Clipboard from 'clipboard';
+import { useToast } from 'balm-ui/plugins/toast';
 import COLOR from '@/config/color';
 import ButtonDemo from '@/demos/theme/button';
 import FabDemo from '@/demos/theme/fab';
@@ -189,25 +207,29 @@ export default {
     ListDemo,
     TableDemo
   },
+  setup() {
+    onMounted(() => {
+      const toast = useToast();
+      const clipboard = new Clipboard('.btn-copy');
+
+      clipboard.on('success', (e) => {
+        let color = e.trigger.dataset.name;
+        if (color) {
+          let colorName = ['Black', 'White'].includes(color)
+            ? color
+            : `$${color}`;
+
+          toast(`${colorName} copied: ${e.text}`);
+
+          e.clearSelection();
+        }
+      });
+    });
+  },
   data() {
     return {
       COLOR
     };
-  },
-  mounted() {
-    let clipboard = new Clipboard('.btn-copy');
-
-    clipboard.on('success', (e) => {
-      let color = e.trigger.dataset.name;
-      if (color) {
-        let colorName = ['Black', 'White'].includes(color)
-          ? color
-          : `$${color}`;
-        this.$toast(`${colorName} copied: ${e.text}`);
-
-        e.clearSelection();
-      }
-    });
   },
   methods: {
     themeColorStyle(background) {

@@ -1,50 +1,28 @@
 <template>
   <div class="page--top-app-bar">
-    <!-- navId="demo-menu" -->
     <ui-top-app-bar
       content-selector="#content-main"
       :type="typeOption"
       :title="title"
-      @nav="$balmUI.onShow('openDrawer')"
+      nav-id="demo-menu"
     >
       <template #toolbar="{ toolbarItemClass }">
-        <template v-if="isShort">
-          <ui-menu-anchor>
-            <ui-icon-button
-              :class="toolbarItemClass"
-              icon="more_vert"
-              @click="$balmUI.onOpen('showMoreActions')"
-            ></ui-icon-button>
-            <ui-menu
-              v-model="showMoreActions"
-              :items="['Back', 'Forward', 'Reload', '-', 'Settings']"
-            ></ui-menu>
-          </ui-menu-anchor>
-        </template>
-        <template v-else>
+        <ui-menu-anchor v-if="isShort">
           <ui-icon-button
             :class="toolbarItemClass"
-            icon="file_download"
+            icon="more_vert"
+            @click="showMoreActions = true"
           ></ui-icon-button>
-          <ui-icon-button
-            :class="toolbarItemClass"
-            icon="print"
-          ></ui-icon-button>
-          <ui-icon-button
-            :class="toolbarItemClass"
-            icon="bookmark"
-          ></ui-icon-button>
-          <!-- <ui-list :class="toolbarItemClass">
-            <ui-item>Menu item 1</ui-item>
-            <ui-item>Menu item 2</ui-item>
-            <ui-item>Menu item 3</ui-item>
-          </ui-list>-->
-        </template>
+          <ui-menu
+            v-model="showMoreActions"
+            :items="['Back', 'Forward', 'Reload', '-', 'Settings']"
+          ></ui-menu>
+        </ui-menu-anchor>
+        <top-toolbar v-else :item-class="toolbarItemClass"></top-toolbar>
       </template>
     </ui-top-app-bar>
 
-    <!-- navId="demo-menu" -->
-    <ui-drawer v-model="openDrawer" type="modal">
+    <ui-drawer v-model="openDrawer" nav-id="demo-menu" type="modal">
       <ui-drawer-header
         :inner-class="$theme.getThemeClass(['primary-bg', 'on-primary'])"
       >
@@ -108,6 +86,10 @@
 </template>
 
 <script>
+import { reactive, toRefs, computed } from 'vue';
+import { useStore } from 'balm-ui';
+import TopToolbar from '@/components/top-toolbar';
+
 const TypeOptions = [
   {
     label: 'Standard',
@@ -139,31 +121,35 @@ const TypeOptions = [
   }
 ];
 
+const state = reactive({
+  typeOption: 0,
+  title: 'Hello BalmUI',
+  openDrawer: false,
+  showMoreActions: false
+});
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Top App Bar'
   },
-  data() {
+  components: {
+    TopToolbar
+  },
+  setup() {
+    const store = useStore();
+
+    store.setTheme();
+
+    const isShort = computed(
+      () => state.typeOption === 5 || state.typeOption === 6
+    );
+
     return {
       // hero
       TypeOptions,
-      typeOption: 0,
-      title: 'Hello BalmUI',
-      openDrawer: false,
-      showMoreActions: false
+      ...toRefs(state),
+      isShort
     };
-  },
-  computed: {
-    isShort() {
-      return this.typeOption === 5 || this.typeOption === 6;
-    }
-  },
-  mounted() {
-    this.$store.setTheme();
-
-    // setTimeout(() => {
-    //   this.openDrawer = true;
-    // }, 1e3);
   }
 };
 </script>

@@ -23,7 +23,7 @@
       <h6 :class="$tt('headline6')">1.1 Simple</h6>
       <div class="demo-content">
         <ui-menu-anchor>
-          <ui-button @click="$balmUI.onOpen('open1')">Open Menu</ui-button>
+          <ui-button @click="open1 = true">Open Menu</ui-button>
           <ui-menu
             v-model="open1"
             :items="[
@@ -194,7 +194,7 @@
             <ui-button
               raised
               class="demo-button demo-button--normal"
-              @click="$balmUI.onOpen('open2')"
+              @click="open2 = true"
               >Show Menu</ui-button
             >
 
@@ -256,7 +256,27 @@
 </template>
 
 <script>
+import { reactive, toRefs, computed } from 'vue';
 import SvgSelected from '@/components/svg-selected';
+
+const state = reactive({
+  open1: false,
+  open2: false,
+  selectedValue: null,
+  controls: {
+    buttonPosition: 'top left',
+    menuPosition: 'top start',
+    distance: {
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0
+    },
+    rtl: false,
+    disableAnimation: false,
+    fixedPosition: false
+  }
+});
 
 export default {
   metaInfo: {
@@ -265,30 +285,15 @@ export default {
   components: {
     SvgSelected
   },
-  data() {
+  setup() {
+    const menuPosition = computed(() =>
+      state.controls.menuPosition.toUpperCase().split(' ').join('_')
+    );
+
     return {
-      open1: false,
-      open2: false,
-      selectedValue: null,
-      controls: {
-        buttonPosition: 'top left',
-        menuPosition: 'top start',
-        distance: {
-          top: 0,
-          bottom: 0,
-          left: 0,
-          right: 0
-        },
-        rtl: false,
-        disableAnimation: false,
-        fixedPosition: false
-      }
+      ...toRefs(state),
+      menuPosition
     };
-  },
-  computed: {
-    menuPosition() {
-      return this.controls.menuPosition.toUpperCase().split(' ').join('_');
-    }
   },
   methods: {
     onSelected1(data) {
@@ -296,7 +301,7 @@ export default {
     },
     onSelected2(data) {
       console.log('onSelected', data);
-      this.selectedValue = data;
+      state.selectedValue = data;
     },
     onClosed() {
       console.log('onClosed');

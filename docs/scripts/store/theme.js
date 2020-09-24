@@ -53,6 +53,7 @@ const useThemeStore = () => {
     ...toRefs(state),
     getThemeName,
     getTheme,
+    setTheme,
     switchTheme
   };
 };

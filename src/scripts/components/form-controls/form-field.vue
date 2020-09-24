@@ -83,20 +83,19 @@ export default {
   methods: {
     formLabel() {
       if (this.$slots.default) {
-        const label = this.$slots
-          .default()
-          .find((component) => component.type === 'label');
+        // TODO: get dom element by slot
+        const label = this.$el.querySelector('label');
 
         if (label) {
-          [('flexBasis', 'marginRight', 'marginBottom')].forEach((key) => {
+          ['flexBasis', 'marginRight', 'marginBottom'].forEach((key) => {
             if (this[key]) {
-              label.el.style[key] = `${this[key]}px`;
+              label.style[key] = `${this[key]}px`;
             }
           });
         }
 
         if (this.el && this.el.classList.contains('mdc-form__actions')) {
-          this.el.style['padding-left'] = `${this.actionPaddingLeft}px`;
+          this.el.style.paddingLeft = `${this.actionPaddingLeft}px`;
         }
       }
     }

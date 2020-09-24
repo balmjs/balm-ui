@@ -23,45 +23,7 @@
           >BalmUI</router-link
         >
         <template #toolbar="{ toolbarItemClass }">
-          <switch-theme v-if="$route.name === 'theme.color'"></switch-theme>
-          <!-- For dark theme test -->
-          <ui-icon-button
-            :icon="$store.theme === 'dark' ? 'bedtime' : 'wb_sunny'"
-            @click="$store.switchTheme"
-          ></ui-icon-button>
-          <ui-menu-anchor>
-            <ui-icon-button
-              icon="language"
-              @click="balmUI.onShow('showTranslations')"
-            ></ui-icon-button>
-            <ui-menu v-model="showTranslations" @selected="$store.setLang">
-              <ui-menuitem
-                v-for="translation in translations"
-                :key="translation.value"
-                :item="translation"
-                :selected="translation.value === $store.lang"
-              ></ui-menuitem>
-            </ui-menu>
-          </ui-menu-anchor>
-          <ui-icon-button
-            v-tooltip="'Support BalmUI'"
-            :class="[toolbarItemClass, 'donate']"
-            icon="support"
-            aria-describedby="donate"
-            @click="$router.push({ name: 'donate' })"
-          ></ui-icon-button>
-          <a
-            href="https://github.com/balmjs/balm-ui"
-            target="_blank"
-            rel="noopener"
-          >
-            <ui-icon-button
-              :class="[toolbarItemClass, 'github']"
-              aria-describedby="github"
-            >
-              <svg-github></svg-github>
-            </ui-icon-button>
-          </a>
+          <top-toolbar :item-class="toolbarItemClass"></top-toolbar>
         </template>
       </ui-top-app-bar>
       <!-- Global Message -->
@@ -204,9 +166,8 @@ import {
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { useEvent, useBus, useStore } from 'balm-ui';
-import SvgGithub from '@/components/svg-github';
-import SwitchTheme from '@/components/switch-theme';
-import { VERSION, $MIN_WIDTH, translations } from '@/config';
+import TopToolbar from '@/components/top-toolbar';
+import { VERSION, $MIN_WIDTH } from '@/config';
 import menu from '@/config/menu';
 
 const state = reactive({
@@ -216,8 +177,7 @@ const state = reactive({
   pageLoading: false,
   loadingProgress: 0,
   loadingTimer: null,
-  showGlobalMessage: false,
-  translations
+  showGlobalMessage: false
 });
 
 function init() {
@@ -241,8 +201,7 @@ export default {
     title: 'BalmUI'
   },
   components: {
-    SvgGithub,
-    SwitchTheme
+    TopToolbar
   },
   setup(props, ctx) {
     const route = useRoute();
@@ -311,8 +270,7 @@ export default {
     return {
       version: VERSION, // .split('-')[0],
       menu,
-      openDrawer: false,
-      showTranslations: false
+      openDrawer: false
     };
   },
   methods: {

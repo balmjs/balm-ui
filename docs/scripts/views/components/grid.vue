@@ -9,6 +9,9 @@
         ></ui-icon-button>
       </template>
       <span class="catalog-title">Layout Grid</span>
+      <template #toolbar="{ toolbarItemClass }">
+        <top-toolbar :item-class="toolbarItemClass"></top-toolbar>
+      </template>
     </ui-top-app-bar>
 
     <docs-page
@@ -38,14 +41,14 @@
               <ui-select
                 v-model="desktop.margin"
                 :options="gutterOptions"
-                @change="$setGrid('margin', 'desktop', $event)"
+                @update:modelValue="$setGrid('margin', 'desktop', $event)"
               ></ui-select>
 
               <br />Desktop Gutter:
               <ui-select
                 v-model="desktop.gutter"
                 :options="gutterOptions"
-                @change="$setGrid('gutter', 'desktop', $event)"
+                @update:modelValue="$setGrid('gutter', 'desktop', $event)"
               ></ui-select>
             </div>
           </ui-grid-cell>
@@ -55,14 +58,14 @@
               <ui-select
                 v-model="tablet.margin"
                 :options="gutterOptions"
-                @change="$setGrid('margin', 'tablet', $event)"
+                @update:modelValue="$setGrid('margin', 'tablet', $event)"
               ></ui-select>
 
               <br />Tablet Gutter:
               <ui-select
                 v-model="tablet.gutter"
                 :options="gutterOptions"
-                @change="$setGrid('gutter', 'tablet', $event)"
+                @update:modelValue="$setGrid('gutter', 'tablet', $event)"
               ></ui-select>
             </div>
           </ui-grid-cell>
@@ -72,14 +75,14 @@
               <ui-select
                 v-model="phone.margin"
                 :options="gutterOptions"
-                @change="$setGrid('margin', 'phone', $event)"
+                @update:modelValue="$setGrid('margin', 'phone', $event)"
               ></ui-select>
 
               <br />Phone Gutter:
               <ui-select
                 v-model="phone.gutter"
                 :options="gutterOptions"
-                @change="$setGrid('gutter', 'phone', $event)"
+                @update:modelValue="$setGrid('gutter', 'phone', $event)"
               ></ui-select>
             </div>
           </ui-grid-cell>
@@ -239,6 +242,10 @@
 </template>
 
 <script>
+import { ref, reactive, toRefs, onMounted, onBeforeUnmount } from 'vue';
+import { useStore } from 'balm-ui';
+import TopToolbar from '@/components/top-toolbar';
+
 const wideScreenSize = 1440;
 
 const gutterOptions = [
@@ -270,55 +277,70 @@ const widthOptions = [
   }
 ];
 
+const state = reactive({
+  desktop: {
+    margin: '24px',
+    gutter: '24px',
+    width: '72px'
+  },
+  tablet: {
+    margin: '16px',
+    gutter: '16px',
+    width: '72px'
+  },
+  phone: {
+    margin: '16px',
+    gutter: '16px',
+    width: '72px'
+  },
+  isWideScreen: false,
+  ruler: null
+});
+
+function initRuler() {
+  let size = '(phone)';
+
+  if (window.innerWidth >= 840) {
+    size = '(desktop)';
+  } else if (window.innerWidth >= 480) {
+    size = '(tablet)';
+  }
+
+  if (state.ruler) {
+    state.ruler.textContent = window.innerWidth + 'px ' + size;
+  }
+
+  state.isWideScreen = window.innerWidth >= wideScreenSize;
+}
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Layout Grid'
   },
-  data() {
+  components: {
+    TopToolbar
+  },
+  setup() {
+    const store = useStore();
+
+    state.ruler = ref(null);
+
+    onMounted(() => {
+      store.setTheme();
+
+      initRuler();
+      window.addEventListener('balmResize', initRuler);
+    });
+
+    onBeforeUnmount(() => {
+      window.removeEventListener('balmResize', initRuler);
+    });
+
     return {
-      // demo
       gutterOptions,
       widthOptions,
-      desktop: {
-        margin: '24px',
-        gutter: '24px',
-        width: '72px'
-      },
-      tablet: {
-        margin: '16px',
-        gutter: '16px',
-        width: '72px'
-      },
-      phone: {
-        margin: '16px',
-        gutter: '16px',
-        width: '72px'
-      },
-      isWideScreen: false
+      ...toRefs(state)
     };
-  },
-  mounted() {
-    this.$store.setTheme();
-
-    this.initRuler();
-    window.addEventListener('balmResize', this.initRuler);
-  },
-  beforeUnmount() {
-    window.removeEventListener('balmResize', this.initRuler);
-  },
-  methods: {
-    initRuler() {
-      let size = '(phone)';
-      if (window.innerWidth >= 840) {
-        size = '(desktop)';
-      } else if (window.innerWidth >= 480) {
-        size = '(tablet)';
-      }
-      if (this.$refs.ruler) {
-        this.$refs.ruler.textContent = window.innerWidth + 'px ' + size;
-      }
-      this.isWideScreen = window.innerWidth >= wideScreenSize;
-    }
   }
 };
 </script>

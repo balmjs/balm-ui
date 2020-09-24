@@ -103,30 +103,32 @@
 </template>
 
 <script>
+const menu = [
+  {
+    icon: 'inbox',
+    name: 'Inbox'
+  },
+  {
+    icon: 'star',
+    name: 'Star'
+  },
+  {
+    icon: 'send',
+    name: 'Sent Mail'
+  },
+  {
+    icon: 'drafts',
+    name: 'Drafts'
+  }
+];
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Drawer'
   },
-  data() {
+  setup() {
     return {
-      menu: [
-        {
-          icon: 'inbox',
-          name: 'Inbox'
-        },
-        {
-          icon: 'star',
-          name: 'Star'
-        },
-        {
-          icon: 'send',
-          name: 'Sent Mail'
-        },
-        {
-          icon: 'drafts',
-          name: 'Drafts'
-        }
-      ],
+      menu,
       isDesktop: window.innerWidth >= 840
     };
   }

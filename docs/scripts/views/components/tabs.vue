@@ -15,14 +15,14 @@
     <template #hero>
       <div class="hero-demo">
         <ui-tabs
-          v-show="typeOption === 0"
+          v-if="typeOption === 0"
           v-model="active1"
           :type="tabType"
           :items="ShortTabItems"
           :stacked="iconOption === 2"
         ></ui-tabs>
         <ui-tabs
-          v-show="typeOption === 1"
+          v-if="typeOption === 1"
           v-model="active2"
           class="long"
           :type="tabType"
@@ -59,17 +59,18 @@
     </ui-tab-bar>-->
 
     <!-- Content -->
-    <ui-tab-demo :code="demoCode"></ui-tab-demo>
+    <ui-tab-demo :code="$store.demos"></ui-tab-demo>
     <ui-tab-bar-demo
-      :code="demoCode"
+      :code="$store.demos"
       :is-large-screen="isLargeScreen"
     ></ui-tab-bar-demo>
-    <ui-tab-scroller-demo :code="demoCode"></ui-tab-scroller-demo>
-    <ui-tab-panel-demo :code="demoCode"></ui-tab-panel-demo>
+    <ui-tab-scroller-demo :code="$store.demos"></ui-tab-scroller-demo>
+    <ui-tab-panel-demo :code="$store.demos"></ui-tab-panel-demo>
   </docs-page>
 </template>
 
 <script>
+import { reactive, toRefs, computed, onMounted, onBeforeUnmount } from 'vue';
 import UiTabDemo from '@/demos/tabs/tab';
 import UiTabBarDemo from '@/demos/tabs/tab-bar';
 import UiTabScrollerDemo from '@/demos/tabs/tab-scroller';
@@ -150,6 +151,22 @@ const LongTabItems = [
   }
 ];
 
+const state = reactive({
+  // hero
+  typeOption: 0,
+  textLabel: true,
+  iconOption: 0,
+  active1: 0,
+  active2: 0,
+  // demo
+  active: 0,
+  isLargeScreen: false
+});
+
+function initScreen() {
+  state.isLargeScreen = window.innerWidth >= largeScreenSize;
+}
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Tabs'
@@ -160,48 +177,34 @@ export default {
     UiTabScrollerDemo,
     UiTabPanelDemo
   },
-  data() {
+  setup() {
+    const tabType = computed(() => {
+      let type = 0;
+
+      if (state.iconOption) {
+        type = state.textLabel ? 2 : 1;
+      }
+
+      return type;
+    });
+
+    onMounted(() => {
+      initScreen();
+      window.addEventListener('balmResize', initScreen);
+    });
+
+    onBeforeUnmount(() => {
+      window.removeEventListener('balmResize', initScreen);
+    });
+
     return {
-      // hero
       TypeOptions,
       IconOptions,
       ShortTabItems,
       LongTabItems,
-      typeOption: 0,
-      textLabel: true,
-      iconOption: 0,
-      active1: 0,
-      active2: 0,
-      // demo
-      active: 0,
-      isLargeScreen: false
+      ...toRefs(state),
+      tabType
     };
-  },
-  computed: {
-    tabType() {
-      let type = 0;
-
-      if (this.iconOption) {
-        type = this.textLabel ? 2 : 1;
-      }
-
-      return type;
-    },
-    demoCode() {
-      return this.$store.demos;
-    }
-  },
-  mounted() {
-    this.init();
-    window.addEventListener('balmResize', this.init);
-  },
-  beforeUnmount() {
-    window.removeEventListener('balmResize', this.init);
-  },
-  methods: {
-    init() {
-      this.isLargeScreen = window.innerWidth >= largeScreenSize;
-    }
   }
 };
 </script>

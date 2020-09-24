@@ -2,7 +2,7 @@
   <ui-tab-bar
     :model-value="modelValue"
     :align="align"
-    @update:model-value="handleChange"
+    @update:modelValue="handleChange"
   >
     <slot>
       <ui-tab

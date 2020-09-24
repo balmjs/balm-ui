@@ -9,7 +9,10 @@
         v-text="materialIcon"
       ></i>
     </slot>
-    <span class="mdc-button__label">
+    <template v-if="noLabel">
+      <slot></slot>
+    </template>
+    <span v-else class="mdc-button__label">
       <slot></slot>
     </span>
   </button>
@@ -27,6 +30,10 @@ export default {
       default: false
     },
     unelevated: {
+      type: Boolean,
+      default: false
+    },
+    noLabel: {
       type: Boolean,
       default: false
     }

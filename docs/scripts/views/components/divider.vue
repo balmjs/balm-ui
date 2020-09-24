@@ -50,6 +50,8 @@
 </template>
 
 <script>
+import { reactive, toRefs } from 'vue';
+
 const TypeOptions = [
   {
     label: 'Horizontal',
@@ -61,16 +63,20 @@ const TypeOptions = [
   }
 ];
 
+const state = reactive({
+  withText: false,
+  typeOption: 0
+});
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Text Divider'
   },
-  data() {
+  setup() {
     return {
       // hero
       TypeOptions,
-      withText: false,
-      typeOption: 0
+      ...toRefs(state)
     };
   }
 };

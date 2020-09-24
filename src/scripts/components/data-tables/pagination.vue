@@ -27,16 +27,18 @@
         <mdc-button
           v-if="!hasPageSpan"
           class="mdc-data-table__pagination-button mdc-data-table__pagination-first-button"
+          no-label
           :disabled="currentPage === 1"
           data-first-page="true"
           @click="handleClick(1)"
         >
           <slot name="first">
-            <i class="material-icons"></i>
+            <i class="material-icons">first_page</i>
           </slot>
         </mdc-button>
         <mdc-button
           class="mdc-data-table__pagination-button mdc-data-table__pagination-prev-button"
+          no-label
           :disabled="currentPage === 1"
           data-prev-page="true"
           @click="handleClick(currentPage - 1)"
@@ -72,6 +74,7 @@
         <mdc-button
           class="mdc-data-table__pagination-button mdc-data-table__pagination-next-button"
           :disabled="currentPage === pageCount"
+          no-label
           data-next-page="true"
           @click="handleClick(currentPage + 1)"
         >
@@ -83,6 +86,7 @@
           v-if="!hasPageSpan"
           class="mdc-data-table__pagination-button mdc-data-table__pagination-last-button"
           :disabled="currentPage === pageCount"
+          no-label
           data-last-page="true"
           @click="handleClick(pageCount)"
         >

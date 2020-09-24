@@ -3,6 +3,7 @@ import { strings } from '../../material-components-web/list/constants';
 import domMixin from './dom';
 import typeMixin from './type';
 import rippleMixin from './ripple';
+import { getCurrentElement } from '../mixins/dom';
 import UI_LIST from '../components/lists/constants';
 
 export default {
@@ -83,7 +84,7 @@ export default {
       (this.singleSelection ? 'listbox' : 'list');
 
     // For `<ui-drawer type="modal">` focus management
-    this.fix4Drawer();
+    this.focusTrapOnDrawer();
   },
   updated() {
     if (this.$list) {
@@ -104,18 +105,17 @@ export default {
     }
   },
   methods: {
-    fix4Drawer() {
-      const parentEl = this.$parent.$el.nextElementSibling;
+    focusTrapOnDrawer() {
+      const parentEl = getCurrentElement(this.$parent.$el);
+
       if (
         parentEl &&
         parentEl.classList.contains('mdc-drawer__content') &&
         this.$list.listElements.length
       ) {
         const currentItem =
-          this.$list.listElements.find(
-            (item) =>
-              item.classList.contains(UI_LIST.cssClasses.active) ||
-              item.classList.contains('router-link-active')
+          this.$list.listElements.find((item) =>
+            item.classList.contains('mdc-list-item--activated')
           ) || this.$list.listElements[0];
 
         // Solution - https://github.com/material-components/material-components-web/issues/5615

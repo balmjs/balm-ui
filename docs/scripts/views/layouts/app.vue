@@ -246,6 +246,10 @@ export default {
         locale.value = lang;
       });
 
+      // bus.sub('off-loading', () => {
+      //   console.log('off-loading');
+      // });
+
       // NOTE: for lang init
       setTimeout(() => {
         locale.value = store.lang;

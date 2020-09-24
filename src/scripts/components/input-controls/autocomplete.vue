@@ -1,6 +1,6 @@
 <template>
   <ui-textfield
-    v-model="inputValue"
+    :model-value="inputValue"
     :input-id="inputId"
     :class="className"
     :outlined="outlined"
@@ -16,7 +16,7 @@
     plus
     @focus="handleFocus"
     @keydown="handleKeydown"
-    @input="handleInput"
+    @update:modelValue="handleInput"
     @blur="handleBlur"
   >
     <!-- Leading icon (optional) -->
@@ -53,6 +53,7 @@
 
 <script>
 import UiTextfield from './textfield';
+import domMixin from '../../mixins/dom';
 import textfieldMixin from '../../mixins/textfield';
 import getType from '../../utils/typeof';
 import { UI_TEXTFIELD_ICON } from './constants';
@@ -87,7 +88,7 @@ export default {
   components: {
     UiTextfield
   },
-  mixins: [textfieldMixin],
+  mixins: [domMixin, textfieldMixin],
   props: {
     // <ui-textfield> variants
     outlined: {
@@ -390,9 +391,9 @@ export default {
           let inTextfield = false;
           let parentEl = e.target;
 
-          while (parentEl && parentEl !== this.$el) {
+          while (parentEl && parentEl !== this.el) {
             parentEl = parentEl.parentNode;
-            if (parentEl === this.$el) {
+            if (parentEl === this.el) {
               inTextfield = true;
             }
           }

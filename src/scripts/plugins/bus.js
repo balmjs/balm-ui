@@ -4,7 +4,9 @@ let eventBus = new Map();
 
 function pub(eventName, ...args) {
   if (eventBus.has(eventName)) {
-    eventBus.get(eventName)(...args);
+    try {
+      eventBus.get(eventName)(...args);
+    } catch (e) {}
   } else {
     eventBus.set(eventName, ...args);
   }
@@ -12,7 +14,9 @@ function pub(eventName, ...args) {
 
 function sub(eventName, callback) {
   if (eventBus.has(eventName)) {
-    callback(eventBus.get(eventName));
+    try {
+      callback(eventBus.get(eventName));
+    } catch (e) {}
   } else {
     eventBus.set(eventName, callback);
   }

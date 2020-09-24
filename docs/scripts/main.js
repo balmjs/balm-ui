@@ -2,7 +2,7 @@ import '@/polyfill';
 import { createApp } from 'vue';
 import router from '@/routes';
 import i18n from '@/lang';
-import http from '@/plugins/http';
+import $http from '@/plugins/http';
 import store from '@/store';
 import App from '@/views/layouts/app';
 import { isProd } from '@/config';
@@ -37,7 +37,7 @@ function createBalmUIApp() {
 
   app.use(router);
   app.use(i18n);
-  app.use(http);
+  app.use($http);
 
   app.use(BalmUI, {
     store,

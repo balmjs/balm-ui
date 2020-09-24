@@ -128,16 +128,14 @@
     <!-- Content -->
     <section class="demo-wrapper">
       <div class="demo">
-        <ui-button raised @click="$balmUI.onOpen('open')"
-          >Show Dialog</ui-button
-        >
+        <ui-button raised @click="balmUI.onOpen('open')">Show Dialog</ui-button>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
 
     <section class="demo-wrapper">
       <div class="demo">
-        <ui-button raised @click="$balmUI.onShow('open2')"
+        <ui-button raised @click="balmUI.onShow('open2')"
           >Show Scrolling Dialog</ui-button
         >
       </div>
@@ -170,6 +168,8 @@
 </template>
 
 <script>
+import { useEvent } from 'balm-ui';
+
 const TypeOptions = [
   {
     label: 'Alert',
@@ -199,6 +199,13 @@ const ButtonOptions = [
 export default {
   metaInfo: {
     titleTemplate: '%s - Dialog'
+  },
+  setup() {
+    const balmUI = useEvent();
+
+    return {
+      balmUI
+    };
   },
   data() {
     return {

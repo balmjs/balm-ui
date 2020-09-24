@@ -120,8 +120,8 @@ export default {
     }
   },
   mounted() {
-    const startInputEl = this.$refs.startInput.$el.querySelector('input');
-    const endInputEl = this.$refs.endInput.$el.querySelector('input');
+    const startInputEl = this.$refs.startInput.el.querySelector('input');
+    const endInputEl = this.$refs.endInput.el.querySelector('input');
 
     if (!this.flatpickr) {
       let config = Object.assign({}, this.config, {

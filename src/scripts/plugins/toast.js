@@ -5,7 +5,7 @@ import { createDiv, removeDiv } from '../utils/div';
 
 // Define toast constants
 const UI_TOAST = {
-  id: 'toast',
+  id: 'balmui-toast',
   timeoutMs: {
     MIN: 2000,
     MAX: 3500,
@@ -64,7 +64,6 @@ const toast = (customOptions = {}) => {
     const el = createDiv(UI_TOAST.id);
 
     toastApp = createApp({
-      el: document.createElement('div'),
       data() {
         return {
           open: false,
@@ -101,9 +100,7 @@ const toast = (customOptions = {}) => {
           ) {
             this.options = options;
 
-            this.$nextTick(() => {
-              this.show();
-            });
+            this.show();
           } else {
             throw new Error(
               `[BalmUI toast]: The timeoutMs of the toast must be between ${UI_TOAST.timeoutMs.MIN} and ${UI_TOAST.timeoutMs.MAX}`

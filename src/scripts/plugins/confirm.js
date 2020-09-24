@@ -6,7 +6,7 @@ import { createDiv, removeDiv } from '../utils/div';
 
 // Define confirm dialog constants
 const UI_CONFIRM_DIALOG = {
-  id: 'confirm-dialog'
+  id: 'balmui-confirm-dialog'
 };
 
 const DEFAULT_OPTIONS = {
@@ -41,9 +41,9 @@ const confirmDialog = (customOptions = {}) => {
   let options = Object.assign({}, globalOptions);
 
   if (getType(customOptions) === 'string') {
-    this.options.message = `${customOptions}`; // To string
+    options.message = `${customOptions}`; // To string
   } else if (getType(customOptions) === 'object') {
-    this.options = Object.assign({}, this.options, customOptions);
+    options = Object.assign({}, options, customOptions);
   }
 
   return new Promise((resolve) => {

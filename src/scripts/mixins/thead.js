@@ -132,7 +132,7 @@ export default {
         }
       }
 
-      this.$emit(UI_TABLE.EVENT.SELECTED, newSelectedRows);
+      this.$emit(UI_TABLE.EVENT.CHANGE, newSelectedRows);
     }
   }
 };

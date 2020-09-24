@@ -1,7 +1,7 @@
 <template>
   <docs-page type="plugin" name="event" demo-count="4" without-css>
     <template #hero>
-      <h1 :class="$tt('headline1')">$balmUI</h1>
+      <h1 :class="$tt('headline1')">useEvent();</h1>
     </template>
 
     <!-- Content -->
@@ -20,15 +20,15 @@
           <ui-snippet :code="$store.demos[1]"></ui-snippet>
         </ui-grid-cell>
         <ui-grid-cell columns="6">
-          <label>$balmUI</label>
+          <label>balmUI methods</label>
 
           <p>
             <ui-button
               raised
-              @click="$balmUI.onChange('message2', 'Hello BalmUI')"
+              @click="balmUI.onChange('message2', 'Hello BalmUI')"
               >Show message</ui-button
             >
-            <ui-button outlined @click="$balmUI.onChange('message2', '')"
+            <ui-button outlined @click="balmUI.onChange('message2', '')"
               >Clear</ui-button
             >
           </p>
@@ -58,20 +58,20 @@
           <ui-snippet :code="$store.demos[3]"></ui-snippet>
         </ui-grid-cell>
         <ui-grid-cell columns="6">
-          <label>$balmUI</label>
+          <label>balmUI methods</label>
 
           <p>
-            <ui-button raised @click="$balmUI.onShow('open2')"
+            <ui-button raised @click="balmUI.onShow('open2')"
               >Open dialog</ui-button
             >
           </p>
           <ui-dialog v-model="open2">
             <ui-dialog-content>
-              <p>Open dialog: `$balmUI.onShow('open')`</p>
-              <p>Close dialog: `$balmUI.onHide('open')`</p>
+              <p>Open dialog: `balmUI.onShow('open')`</p>
+              <p>Close dialog: `balmUI.onHide('open')`</p>
             </ui-dialog-content>
             <ui-dialog-actions>
-              <ui-button @click="$balmUI.onHide('open2')"
+              <ui-button @click="balmUI.onHide('open2')"
                 >Close dialog</ui-button
               >
             </ui-dialog-actions>
@@ -85,9 +85,18 @@
 </template>
 
 <script>
+import { useEvent } from 'balm-ui';
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Event'
+  },
+  setup() {
+    const balmUI = useEvent();
+
+    return {
+      balmUI
+    };
   },
   data() {
     return {

@@ -6,7 +6,7 @@ import { createDiv, removeDiv } from '../utils/div';
 
 // Define alert dialog constants
 const UI_ALERT_DIALOG = {
-  id: 'alert-dialog'
+  id: 'balmui-alert-dialog'
 };
 
 const DEFAULT_OPTIONS = {

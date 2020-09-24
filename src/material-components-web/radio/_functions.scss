@@ -20,5 +20,13 @@
 // THE SOFTWARE.
 //
 
-/// @deprecated Import '_radio.scss' module instead.
-@forward './radio' show enter, exit;
+@use '../animation/functions';
+@use './variables';
+
+@function enter($name) {
+  @return functions.enter($name, variables.$transition-duration);
+}
+
+@function exit($name) {
+  @return functions.exit-temporary($name, variables.$transition-duration);
+}

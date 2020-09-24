@@ -20,9 +20,6 @@
 // THE SOFTWARE.
 //
 
-// Selector '.mdc-*' should only be used in this project.
-// stylelint-disable selector-class-pattern
-
 @use '../feature-targeting/feature-targeting';
 @use '../theme/theme';
 @use '../shape/mixins' as shape-mixins;

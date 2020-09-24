@@ -20,9 +20,6 @@
 // THE SOFTWARE.
 //
 
-// Selector '.mdc-*' should only be used in this project.
-// stylelint-disable selector-class-pattern
-
 @use 'sass:list';
 @use 'sass:meta';
 @use '../density/functions' as density-functions;
@@ -31,14 +28,14 @@
 @use '../line-ripple/mixins' as line-ripple-mixins;
 @use '../notched-outline/mixins' as notched-outline-mixins;
 @use '../notched-outline/variables' as notched-outline-variables;
-@use '../ripple/ripple';
-@use '../ripple/ripple-theme';
+@use '../ripple/mixins' as ripple-mixins;
+@use '../ripple/functions' as ripple-functions;
 @use '../theme/custom-properties';
 @use '../theme/theme';
 @use '../shape/mixins' as shape-mixins;
 @use '../shape/functions' as shape-functions;
 @use '../feature-targeting/feature-targeting';
-@use '../typography/typography';
+@use '../typography/mixins' as typography-mixins;
 @use 'helper-text/mixins' as helper-text-mixins;
 @use 'character-counter/mixins' as character-counter-mixins;
 @use 'icon/mixins' as icon-mixins;
@@ -125,10 +122,6 @@
 
   .mdc-text-field--outlined {
     @include outlined_($query);
-
-    .mdc-notched-outline {
-      @include _outlined-notched-outline($query);
-    }
   }
 
   // Other Variations
@@ -306,21 +299,21 @@
 // This API is intended for use by frameworks that may want to separate the ripple-related styles
 // from the other text field styles. It is recommended that most users use `mdc-text-field-core-styles` instead.
 @mixin ripple($query: feature-targeting.all()) {
-  @include ripple.common($query); // COPYBARA_COMMENT_THIS_LINE
+  @include ripple-mixins.common($query); // COPYBARA_COMMENT_THIS_LINE
 
   .mdc-text-field--filled {
-    @include ripple.surface(
+    @include ripple-mixins.surface(
       $query: $query,
       $ripple-target: variables.$ripple-target
     );
-    @include ripple.radius-bounded(
+    @include ripple-mixins.radius-bounded(
       $query: $query,
       $ripple-target: variables.$ripple-target
     );
   }
 
   #{variables.$ripple-target} {
-    @include ripple.target-common($query: $query);
+    @include ripple-mixins.target-common($query: $query);
   }
 }
 
@@ -1452,24 +1445,24 @@
 
 @mixin _filled($query: feature-targeting.all()) {
   // Text Field intentionally omits press ripple, so each state needs to be specified individually.
-  @include ripple-theme.states-base-color(
+  @include ripple-mixins.states-base-color(
     variables.$ink-color,
     $query: $query,
     $ripple-target: variables.$ripple-target
   );
-  @include ripple-theme.states-hover-opacity(
-    ripple-theme.states-opacity(variables.$ink-color, hover),
+  @include ripple-mixins.states-hover-opacity(
+    ripple-functions.states-opacity(variables.$ink-color, hover),
     $query: $query,
     $ripple-target: variables.$ripple-target
   );
-  @include ripple-theme.states-focus-opacity(
-    ripple-theme.states-opacity(variables.$ink-color, focus),
+  @include ripple-mixins.states-focus-opacity(
+    ripple-functions.states-opacity(variables.$ink-color, focus),
     $query: $query,
     $ripple-target: variables.$ripple-target
   );
 
   @include height(variables.$height, $query: $query);
-  @include typography.baseline-top(
+  @include typography-mixins.baseline-top(
     variables.$filled-baseline-top,
     $query: $query
   );
@@ -1546,7 +1539,7 @@
     notched-outline-variables.$border-width,
     $query: $query
   );
-  @include ripple-theme.states-base-color(
+  @include ripple-mixins.states-base-color(
     transparent,
     $query: $query,
     $ripple-target: variables.$ripple-target
@@ -1577,18 +1570,6 @@
         notched-outline-variables.$padding
       );
     }
-  }
-}
-
-@mixin _outlined-notched-outline($query: feature-targeting.all()) {
-  $feat-structure: feature-targeting.create-target($query, structure);
-
-  @include feature-targeting.targets($feat-structure) {
-    // Force the outline to appear "above" the textfield elements, even though
-    // it is absolutely positioned and comes before the input in the DOM. This
-    // is primarily for the textarea scrollbar and resize elements, which may
-    // clip with with outline border.
-    z-index: 1;
   }
 }
 
@@ -2047,7 +2028,7 @@
 @mixin _textarea-internal-counter($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
 
-  @include typography.baseline-bottom(
+  @include typography-mixins.baseline-bottom(
     variables.$textarea-internal-counter-baseline-bottom,
     $query: $query
   );
@@ -2171,7 +2152,7 @@
   $feat-structure: feature-targeting.create-target($query, structure);
 
   // Exclude setting line-height to keep caret (text cursor) same height as the input text in iOS browser.
-  @include typography.typography(
+  @include typography-mixins.typography(
     subtitle1,
     $exclude-props: (line-height),
     $query: $query

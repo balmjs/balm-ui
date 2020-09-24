@@ -20,20 +20,18 @@
 // THE SOFTWARE.
 //
 
-// Selector '.mdc-*' should only be used in this project.
-// stylelint-disable selector-class-pattern
-
 @use 'sass:list';
 @use 'sass:meta';
 @use '../feature-targeting/feature-targeting';
 @use '../animation/functions' as functions2;
 @use '../animation/variables' as animation-variables;
 @use '../rtl/mixins' as rtl-mixins;
-@use '../typography/typography';
+@use '../typography/mixins' as typography-mixins;
+@use '../typography/variables' as variables2;
 @use '../theme/theme';
 @use '../theme/theme-color';
 @use '../list/mixins' as list-mixins;
-@use '../ripple/ripple-theme';
+@use '../ripple/mixins' as ripple-mixins;
 @use '../shape/mixins' as shape-mixins;
 @use '../elevation/mixins' as elevation-mixins;
 @use './variables';
@@ -154,8 +152,8 @@
   }
 
   .mdc-drawer__title {
-    @include typography.typography(headline6, $query: $query);
-    @include typography.text-baseline(
+    @include typography-mixins.typography(headline6, $query: $query);
+    @include typography-mixins.text-baseline(
       $top: 36px,
       $bottom: 20px,
       $query: $query
@@ -163,8 +161,8 @@
   }
 
   .mdc-drawer__subtitle {
-    @include typography.typography(body2, $query: $query);
-    @include typography.text-baseline($top: 20px, $query: $query);
+    @include typography-mixins.typography(body2, $query: $query);
+    @include typography-mixins.text-baseline($top: 20px, $query: $query);
 
     @include feature-targeting.targets($feat-structure) {
       margin-bottom: 0;
@@ -284,7 +282,7 @@
 
 @mixin activated-overlay-color($color, $query: feature-targeting.all()) {
   :not(.mdc-list--non-interactive) > .mdc-list-item {
-    @include ripple-theme.states-activated($color, $query: $query);
+    @include ripple-mixins.states-activated($color, $query: $query);
   }
 }
 
@@ -293,7 +291,7 @@
   $value: rgba(theme-color.prop-value($color), variables.$divider-opacity);
 
   @include feature-targeting.targets($feat-color) {
-    @include theme.property(border-color, $value);
+    @include theme.prop(border-color, $value);
   }
 }
 
@@ -335,7 +333,7 @@
 
   .mdc-drawer__title {
     @include feature-targeting.targets($feat-color) {
-      @include theme.property(color, $value);
+      @include theme.prop(color, $value);
     }
   }
 }
@@ -348,7 +346,7 @@
 
   .mdc-drawer__subtitle {
     @include feature-targeting.targets($feat-color) {
-      @include theme.property(color, $value);
+      @include theme.prop(color, $value);
     }
   }
 }
@@ -407,9 +405,10 @@
 
 @mixin surface-fill-color($color, $query: feature-targeting.all()) {
   $feat-color: feature-targeting.create-target($query, color);
+  $value: theme-color.prop-value($color);
 
   @include feature-targeting.targets($feat-color) {
-    @include theme.property(background-color, $color);
+    @include theme.prop(background-color, $value);
   }
 }
 
@@ -419,7 +418,7 @@
 
   + .mdc-drawer-scrim {
     @include feature-targeting.targets($feat-color) {
-      @include theme.property(background-color, $value);
+      @include theme.prop(background-color, $value);
     }
   }
 }
@@ -454,7 +453,7 @@
 
   // postcss-bem-linter: ignore
   .mdc-list-item {
-    @include typography.typography(subtitle2, $query: $query);
+    @include typography-mixins.typography(subtitle2, $query: $query);
 
     @include feature-targeting.targets($feat-structure) {
       height: calc(48px - 2 * #{variables.$list-item-spacing});
@@ -480,8 +479,8 @@
 
   // postcss-bem-linter: ignore
   .mdc-list-group__subheader {
-    @include typography.typography(body2, $query: $query);
-    @include typography.text-baseline($top: 24px, $query: $query);
+    @include typography-mixins.typography(body2, $query: $query);
+    @include typography-mixins.text-baseline($top: 24px, $query: $query);
 
     @include feature-targeting.targets($feat-structure) {
       margin: 0;

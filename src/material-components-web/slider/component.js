@@ -30,16 +30,10 @@ import { Thumb, TickMark } from './types';
 var MDCSlider = /** @class */ (function (_super) {
     __extends(MDCSlider, _super);
     function MDCSlider() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.skipInitialUIUpdate = false;
-        // Function that maps a slider value to the value of the `aria-valuetext`
-        // attribute on the thumb element.
-        _this.valueToAriaValueTextFn = null;
-        return _this;
+        return _super !== null && _super.apply(this, arguments) || this;
     }
-    MDCSlider.attachTo = function (root, options) {
-        if (options === void 0) { options = {}; }
-        return new MDCSlider(root, undefined, options);
+    MDCSlider.attachTo = function (root) {
+        return new MDCSlider(root);
     };
     MDCSlider.prototype.getDefaultFoundation = function () {
         var _this = this;
@@ -86,20 +80,13 @@ var MDCSlider = /** @class */ (function (_super) {
             setThumbStyleProperty: function (propertyName, value, thumb) {
                 _this.getThumbEl(thumb).style.setProperty(propertyName, value);
             },
-            removeThumbStyleProperty: function (propertyName, thumb) {
-                _this.getThumbEl(thumb).style.removeProperty(propertyName);
-            },
             setTrackActiveStyleProperty: function (propertyName, value) {
                 _this.trackActive.style.setProperty(propertyName, value);
-            },
-            removeTrackActiveStyleProperty: function (propertyName) {
-                _this.trackActive.style.removeProperty(propertyName);
             },
             setValueIndicatorText: function (value, thumb) {
                 var valueIndicatorEl = _this.getThumbEl(thumb).querySelector("." + cssClasses.VALUE_INDICATOR_TEXT);
                 valueIndicatorEl.textContent = String(value);
             },
-            getValueToAriaValueTextFn: function () { return _this.valueToAriaValueTextFn; },
             updateTickMarks: function (tickMarks) {
                 var tickMarksContainer = _this.root.querySelector("." + cssClasses.TICK_MARKS_CONTAINER);
                 if (!tickMarksContainer) {
@@ -124,14 +111,6 @@ var MDCSlider = /** @class */ (function (_super) {
             },
             emitInputEvent: function (value, thumb) {
                 _this.emit(events.INPUT, { value: value, thumb: thumb });
-            },
-            emitDragStartEvent: function () {
-                // Not yet implemented. See issue:
-                // https://github.com/material-components/material-components-web/issues/6448
-            },
-            emitDragEndEvent: function () {
-                // Not yet implemented. See issue:
-                // https://github.com/material-components/material-components-web/issues/6448
             },
             registerEventHandler: function (evtType, handler) {
                 _this.listen(evtType, handler);
@@ -160,25 +139,15 @@ var MDCSlider = /** @class */ (function (_super) {
         };
         return new MDCSliderFoundation(adapter);
     };
-    /**
-     * Initializes component, with the following options:
-     * - `skipInitialUIUpdate`: Whether to skip updating the UI when initially
-     *   syncing with the DOM. This should be enabled when the slider position
-     *   is set before component initialization.
-     */
-    MDCSlider.prototype.initialize = function (_a) {
-        var skipInitialUIUpdate = (_a === void 0 ? {} : _a).skipInitialUIUpdate;
+    MDCSlider.prototype.initialize = function () {
         this.thumbs =
             [].slice.call(this.root.querySelectorAll("." + cssClasses.THUMB));
         this.trackActive =
             this.root.querySelector("." + cssClasses.TRACK_ACTIVE);
-        if (skipInitialUIUpdate) {
-            this.skipInitialUIUpdate = true;
-        }
     };
     MDCSlider.prototype.initialSyncWithDOM = function () {
         this.createRipples();
-        this.foundation.layout({ skipUpdateUI: this.skipInitialUIUpdate });
+        this.foundation.layout();
     };
     /** Redraws UI based on DOM (e.g. element dimensions, RTL). */
     MDCSlider.prototype.layout = function () {
@@ -203,13 +172,6 @@ var MDCSlider = /** @class */ (function (_super) {
     /** Sets slider disabled state. */
     MDCSlider.prototype.setDisabled = function (disabled) {
         this.foundation.setDisabled(disabled);
-    };
-    /**
-     * Sets a function that maps the slider value to the value of the
-     * `aria-valuetext` attribute on the thumb element.
-     */
-    MDCSlider.prototype.setValueToAriaValueTextFn = function (mapFn) {
-        this.valueToAriaValueTextFn = mapFn;
     };
     MDCSlider.prototype.getThumbEl = function (thumb) {
         return thumb === Thumb.END ? this.thumbs[this.thumbs.length - 1] :

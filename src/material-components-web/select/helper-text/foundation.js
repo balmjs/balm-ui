@@ -53,7 +53,6 @@ var MDCSelectHelperTextFoundation = /** @class */ (function (_super) {
                 removeClass: function () { return undefined; },
                 hasClass: function () { return false; },
                 setAttr: function () { return undefined; },
-                getAttr: function () { return null; },
                 removeAttr: function () { return undefined; },
                 setContent: function () { return undefined; },
             };
@@ -62,18 +61,6 @@ var MDCSelectHelperTextFoundation = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
-    /**
-     * @return The ID of the helper text, or null if none is set.
-     */
-    MDCSelectHelperTextFoundation.prototype.getId = function () {
-        return this.adapter.getAttr('id');
-    };
-    /**
-     * @return Whether the helper text is currently visible.
-     */
-    MDCSelectHelperTextFoundation.prototype.isVisible = function () {
-        return this.adapter.getAttr(strings.ARIA_HIDDEN) !== 'true';
-    };
     /**
      * Sets the content of the helper text field.
      */
@@ -110,6 +97,12 @@ var MDCSelectHelperTextFoundation = /** @class */ (function (_super) {
         }
     };
     /**
+     * Makes the helper text visible to screen readers.
+     */
+    MDCSelectHelperTextFoundation.prototype.showToScreenReader = function () {
+        this.adapter.removeAttr(strings.ARIA_HIDDEN);
+    };
+    /**
      * When acting as a validation message, shows/hides the helper text and
      * triggers alerts as necessary based on the select's validity.
      */
@@ -139,12 +132,6 @@ var MDCSelectHelperTextFoundation = /** @class */ (function (_super) {
         // Hide everything.
         this.adapter.removeAttr(strings.ROLE);
         this.hide();
-    };
-    /**
-     * Makes the helper text visible to screen readers.
-     */
-    MDCSelectHelperTextFoundation.prototype.showToScreenReader = function () {
-        this.adapter.removeAttr(strings.ARIA_HIDDEN);
     };
     /**
      * Hides the help text from screen readers.

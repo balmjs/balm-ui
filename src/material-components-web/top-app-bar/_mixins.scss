@@ -20,13 +20,10 @@
 // THE SOFTWARE.
 //
 
-// Selector '.mdc-*' should only be used in this project.
-// stylelint-disable selector-class-pattern
-
 @use 'sass:list';
 @use 'sass:meta';
 @use '../animation/variables' as animation-variables;
-@use '../ripple/ripple-theme';
+@use '../ripple/mixins' as ripple-mixins;
 @use '../theme/theme-color';
 @use '../theme/theme';
 @use '../shape/mixins' as shape-mixins;
@@ -55,7 +52,7 @@
   .mdc-top-app-bar__action-item,
   .mdc-top-app-bar__navigation-icon {
     @include theme.prop(color, $color);
-    @include ripple-theme.states($color);
+    @include ripple-mixins.states($color);
   }
 }
 

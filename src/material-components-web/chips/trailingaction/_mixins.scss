@@ -20,12 +20,8 @@
 // THE SOFTWARE.
 //
 
-// Selector '.mdc-*' should only be used in this project.
-// stylelint-disable selector-class-pattern
-
 @use '../../feature-targeting/feature-targeting';
-@use '../../ripple/ripple';
-@use '../../ripple/ripple-theme';
+@use '../../ripple/mixins' as ripple;
 @use '../../rtl/mixins' as rtl;
 @use '../../theme/theme';
 @use '../../touch-target/mixins' as touch;
@@ -89,7 +85,7 @@ $ripple-target: '.mdc-chip-trailing-action__ripple';
       $query: $query,
       $ripple-target: $ripple-target
     );
-    @include ripple-theme.states(
+    @include ripple.states(
       variables.$ripple-color,
       $query: $query,
       $ripple-target: $ripple-target

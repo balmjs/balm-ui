@@ -21,9 +21,9 @@
 //
 
 @use './select';
-@use '../floating-label/mdc-floating-label'; // COPYBARA_COMMENT_THIS_LINE
-@use '../ripple/common'; // COPYBARA_COMMENT_THIS_LINE
-@use '../line-ripple/mdc-line-ripple'; // COPYBARA_COMMENT_THIS_LINE
-@use '../notched-outline/mdc-notched-outline'; // COPYBARA_COMMENT_THIS_LINE
+@use "../floating-label/mdc-floating-label"; // COPYBARA_COMMENT_THIS_LINE
+@use "../ripple/common"; // COPYBARA_COMMENT_THIS_LINE
+@use "../line-ripple/mdc-line-ripple"; // COPYBARA_COMMENT_THIS_LINE
+@use "../notched-outline/mdc-notched-outline"; // COPYBARA_COMMENT_THIS_LINE
 
 @include select.core-styles;

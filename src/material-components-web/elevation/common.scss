@@ -20,5 +20,5 @@
 // THE SOFTWARE.
 //
 
-/// @deprecated Import 'overlay-styles.scss' module instead.
-@forward './overlay-styles';
+@use './mixins';
+@include mixins.overlay-common;

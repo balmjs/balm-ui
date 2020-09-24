@@ -29,10 +29,6 @@ export var AnnouncerPriority;
     AnnouncerPriority["ASSERTIVE"] = "assertive";
 })(AnnouncerPriority || (AnnouncerPriority = {}));
 /**
- * Data attribute added to live region element.
- */
-export var DATA_MDC_DOM_ANNOUNCE = 'data-mdc-dom-announce';
-/**
  * Announces the given message with optional priority, defaulting to "polite"
  */
 export function announce(message, priority) {
@@ -84,7 +80,6 @@ var Announcer = /** @class */ (function () {
         el.style.overflow = 'hidden';
         el.setAttribute('aria-atomic', 'true');
         el.setAttribute('aria-live', priority);
-        el.setAttribute(DATA_MDC_DOM_ANNOUNCE, 'true');
         document.body.appendChild(el);
         return el;
     };

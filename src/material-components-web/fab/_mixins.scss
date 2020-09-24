@@ -23,8 +23,8 @@
 @use '../elevation/variables' as elevation-variables;
 @use '../feature-targeting/feature-targeting';
 @use '../dom/mixins' as dom-mixins;
-@use '../ripple/ripple';
-@use '../ripple/ripple-theme';
+@use '../ripple/mixins' as ripple-mixins;
+@use '../ripple/variables' as variables2;
 @use '../rtl/mixins' as rtl-mixins;
 @use '../shape/mixins' as shape-mixins;
 @use '../shape/functions' as shape-functions;
@@ -32,7 +32,7 @@
 @use '../theme/theme-color';
 @use '../theme/theme';
 @use '../touch-target/mixins' as touch-target-mixins;
-@use '../typography/typography';
+@use '../typography/mixins' as typography-mixins;
 @use './variables';
 
 $ripple-target: '.mdc-fab__ripple';
@@ -107,17 +107,20 @@ $ripple-target: '.mdc-fab__ripple';
 @mixin ripple($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
 
-  @include ripple.common($query); // COPYBARA_COMMENT_THIS_LINE
+  @include ripple-mixins.common($query); // COPYBARA_COMMENT_THIS_LINE
 
   // postcss-bem-linter: define fab
 
   .mdc-fab {
-    @include ripple.surface($query: $query, $ripple-target: $ripple-target);
-    @include ripple.radius-bounded(
+    @include ripple-mixins.surface(
       $query: $query,
       $ripple-target: $ripple-target
     );
-    @include ripple-theme.states(
+    @include ripple-mixins.radius-bounded(
+      $query: $query,
+      $ripple-target: $ripple-target
+    );
+    @include ripple-mixins.states(
       on-secondary,
       $query: $query,
       $ripple-target: $ripple-target
@@ -125,7 +128,7 @@ $ripple-target: '.mdc-fab__ripple';
 
     // stylelint-disable-next-line plugin/selector-bem-pattern
     #{$ripple-target} {
-      @include ripple.target-common($query: $query);
+      @include ripple-mixins.target-common($query: $query);
 
       @include feature-targeting.targets($feat-structure) {
         overflow: hidden;
@@ -143,14 +146,14 @@ $ripple-target: '.mdc-fab__ripple';
 
   @if ($fill-tone == 'dark') {
     @include ink-color(text-primary-on-dark, $query: $query);
-    @include ripple-theme.states(
+    @include ripple-mixins.states(
       text-primary-on-dark,
       $query: $query,
       $ripple-target: $ripple-target
     );
   } @else {
     @include ink-color(text-primary-on-light, $query: $query);
-    @include ripple-theme.states(
+    @include ripple-mixins.states(
       text-primary-on-light,
       $query: $query,
       $ripple-target: $ripple-target
@@ -206,14 +209,14 @@ $ripple-target: '.mdc-fab__ripple';
   // Offsets the outer label padding by deducting it from icon padding.
   .mdc-fab__icon {
     @include feature-targeting.targets($feat-structure) {
-      @include extended-icon-padding($icon-padding, $label-padding);
+      @include extended-icon-padding_($icon-padding, $label-padding);
     }
   }
 
   // For Extended FAB with text label followed by icon.
   .mdc-fab__label + .mdc-fab__icon {
     @include feature-targeting.targets($feat-structure) {
-      @include extended-icon-padding(
+      @include extended-icon-padding_(
         $icon-padding,
         $label-padding,
         $is-icon-at-end: true
@@ -222,25 +225,65 @@ $ripple-target: '.mdc-fab__ripple';
   }
 }
 
-@mixin extended-icon-padding(
+@mixin extended-icon-padding_(
   $icon-padding,
   $label-padding,
   $is-icon-at-end: false
 ) {
-  $start: calc(icon - label);
-  $end: $icon-padding;
+  $icon-padding-is-custom-prop: custom-properties.is-custom-prop($icon-padding);
+  $icon-padding-value: $icon-padding;
+  $icon-padding-px: $icon-padding;
+  $start: 'left';
+  $end: 'right';
 
   @if $is-icon-at-end {
-    $start: $icon-padding;
-    $end: calc(icon - label);
+    $start: 'right';
+    $end: 'left';
   }
 
-  @include rtl-mixins.reflexive-property(
-    margin,
-    $start,
-    $end,
-    $replace: (icon: $icon-padding, label: $label-padding)
+  @if $icon-padding-is-custom-prop {
+    $icon-padding-value: custom-properties.create-var($icon-padding);
+    $icon-padding-px: custom-properties.get-fallback($icon-padding);
+  }
+
+  $label-padding-is-custom-prop: custom-properties.is-custom-prop(
+    $label-padding
   );
+
+  $label-padding-value: $label-padding;
+  $label-padding-px: $label-padding;
+
+  @if $label-padding-is-custom-prop {
+    $label-padding-value: custom-properties.create-var($label-padding);
+    $label-padding-px: custom-properties.get-fallback($label-padding);
+  }
+
+  /* @noflip */
+  margin-#{$start}: $icon-padding-px - $label-padding-px;
+  @if $icon-padding-is-custom-prop or $label-padding-is-custom-prop {
+    // Use calc() for dynamic margin
+    /* @alternate */
+    /* @noflip */
+    margin-#{$start}: calc(#{$icon-padding-value} - #{$label-padding-value});
+  }
+  @include rtl-mixins.rtl {
+    /* @noflip */
+    margin-#{$end}: $icon-padding-px - $label-padding-px;
+    @if $icon-padding-is-custom-prop or $label-padding-is-custom-prop {
+      /* @alternate */
+      /* @noflip */
+      margin-#{$end}: calc(#{$icon-padding-value} - #{$label-padding-value});
+    }
+  }
+
+  @include theme.property(margin-#{$end}, $icon-padding, $gss: (noflip: true));
+  @include rtl-mixins.rtl {
+    @include theme.property(
+      margin-#{$start},
+      $icon-padding,
+      $gss: (noflip: true)
+    );
+  }
 }
 
 @mixin extended-label-padding($label-padding, $query: feature-targeting.all()) {
@@ -396,7 +439,7 @@ $icon-enter-duration_: 180ms;
 }
 
 @mixin extended_($query: feature-targeting.all()) {
-  @include typography.typography(button, $query: $query);
+  @include typography-mixins.typography(button, $query: $query);
   @include extended-shape-radius(variables.$shape-radius, $query: $query);
   @include extended-padding(
     variables.$extended-icon-padding,

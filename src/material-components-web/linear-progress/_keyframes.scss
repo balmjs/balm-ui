@@ -19,8 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 //
-@use '../theme/theme';
-@use '../theme/custom-properties';
 
 @mixin primary-indeterminate-translate-keyframes_ {
   @keyframes mdc-linear-progress-primary-indeterminate-translate {
@@ -40,20 +38,11 @@
         0.55,
         0.956352
       );
-
-      $primary-half: custom-properties.create(
-        --mdc-linear-progress-primary-half,
-        83.67142%
-      );
-      @include apply-translate_($primary-half);
+      transform: translateX(83.67142%);
     }
 
     100% {
-      $primary-full: custom-properties.create(
-        --mdc-linear-progress-primary-full,
-        200.611057%
-      );
-      @include apply-translate_($primary-full);
+      transform: translateX(200.611057%);
     }
   }
 }
@@ -89,28 +78,16 @@
 
     25% {
       animation-timing-function: cubic-bezier(0.31033, 0.284058, 0.8, 0.733712);
-      $secondary-quarter: custom-properties.create(
-        --mdc-linear-progress-secondary-quarter,
-        37.651913%
-      );
-      @include apply-translate_($secondary-quarter);
+      transform: translateX(37.651913%);
     }
 
     48.35% {
       animation-timing-function: cubic-bezier(0.4, 0.627035, 0.6, 0.902026);
-      $secondary-half: custom-properties.create(
-        --mdc-linear-progress-secondary-half,
-        84.386165%
-      );
-      @include apply-translate_($secondary-half);
+      transform: translateX(84.386165%);
     }
 
     100% {
-      $secondary-full: custom-properties.create(
-        --mdc-linear-progress-secondary-full,
-        160.277782%
-      );
-      @include apply-translate_($secondary-full);
+      transform: translateX(160.277782%);
     }
   }
 }
@@ -182,19 +159,11 @@
         0.55,
         0.956352
       );
-      $primary-half: custom-properties.create(
-        --mdc-linear-progress-primary-half-neg,
-        -83.67142%
-      );
-      @include apply-translate_($primary-half);
+      transform: translateX(-83.67142%);
     }
 
     100% {
-      $primary-full: custom-properties.create(
-        --mdc-linear-progress-primary-full-neg,
-        -200.611057%
-      );
-      @include apply-translate_($primary-full);
+      transform: translateX(-200.611057%);
     }
   }
 }
@@ -208,28 +177,16 @@
 
     25% {
       animation-timing-function: cubic-bezier(0.31033, 0.284058, 0.8, 0.733712);
-      $secondary-quarter: custom-properties.create(
-        --mdc-linear-progress-secondary-quarter-neg,
-        -37.651913%
-      );
-      @include apply-translate_($secondary-quarter);
+      transform: translateX(-37.651913%);
     }
 
     48.35% {
       animation-timing-function: cubic-bezier(0.4, 0.627035, 0.6, 0.902026);
-      $secondary-half: custom-properties.create(
-        --mdc-linear-progress-secondary-half-neg,
-        -84.386165%
-      );
-      @include apply-translate_($secondary-half);
+      transform: translateX(-84.386165%);
     }
 
     100% {
-      $secondary-full: custom-properties.create(
-        --mdc-linear-progress-secondary-full-neg,
-        -160.277782%
-      );
-      @include apply-translate_($secondary-full);
+      transform: translateX(-160.277782%);
     }
   }
 }
@@ -240,12 +197,4 @@
       transform: translateX(-10px);
     }
   }
-}
-
-@mixin apply-translate_($value) {
-  @include theme.property(
-    transform,
-    translateX(value),
-    $replace: (value: $value)
-  );
 }

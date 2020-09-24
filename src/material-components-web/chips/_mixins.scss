@@ -20,9 +20,6 @@
 // THE SOFTWARE.
 //
 
-// Selector '.mdc-*' should only be used in this project.
-// stylelint-disable selector-class-pattern
-
 @use 'sass:math';
 @use '../animation/functions';
 @use '../animation/variables' as animation-variables;
@@ -31,12 +28,11 @@
 @use '../elevation/mixins' as elevation-mixins;
 @use '../density/functions' as density-functions;
 @use '../feature-targeting/feature-targeting';
-@use '../ripple/ripple';
-@use '../ripple/ripple-theme';
+@use '../ripple/mixins' as ripple-mixins;
 @use '../rtl/mixins' as rtl-mixins;
 @use '../theme/theme';
 @use '../touch-target/mixins' as touch-target-mixins;
-@use '../typography/typography';
+@use '../typography/mixins' as typography-mixins;
 @use '../shape/mixins' as shape-mixins;
 @use '../shape/functions' as shape-functions;
 @use './variables';
@@ -72,7 +68,7 @@ $ripple-target: '.mdc-chip__ripple';
       variables.$ink-color-default,
       $query: $query
     );
-    @include typography.typography(body2, $query: $query);
+    @include typography-mixins.typography(body2, $query: $query);
     @include density($density-scale: 0, $query: $query);
     @include leading-icon-margin($query: $query);
     @include elevation-mixins.overlay-surface-position($query: $query);
@@ -286,19 +282,22 @@ $ripple-target: '.mdc-chip__ripple';
 }
 
 @mixin ripple($query: feature-targeting.all()) {
-  @include ripple.common($query); // COPYBARA_COMMENT_THIS_LINE
+  @include ripple-mixins.common($query); // COPYBARA_COMMENT_THIS_LINE
   $feat-structure: feature-targeting.create-target($query, structure);
 
   .mdc-chip {
-    @include ripple.surface($query: $query, $ripple-target: $ripple-target);
-    @include ripple.radius-bounded(
+    @include ripple-mixins.surface(
+      $query: $query,
+      $ripple-target: $ripple-target
+    );
+    @include ripple-mixins.radius-bounded(
       $query: $query,
       $ripple-target: $ripple-target
     );
     @include ink-color-ripple_(variables.$ink-color-default, $query: $query);
 
     #{$ripple-target} {
-      @include ripple.target-common($query: $query);
+      @include ripple-mixins.target-common($query: $query);
 
       @include feature-targeting.targets($feat-structure) {
         overflow: hidden;
@@ -424,7 +423,7 @@ $ripple-target: '.mdc-chip__ripple';
 }
 
 @mixin ink-color-ripple_($color, $query) {
-  @include ripple-theme.states(
+  @include ripple-mixins.states(
     $color,
     true,
     $query: $query,
@@ -463,7 +462,7 @@ $ripple-target: '.mdc-chip__ripple';
 
 @mixin selected-ink-color-ripple_($color, $query) {
   &.mdc-chip {
-    @include ripple-theme.states-selected(
+    @include ripple-mixins.states-selected(
       $color,
       $has-nested-focusable-element: true,
       $query: $query,

@@ -22,6 +22,5 @@
  */
 import * as util from './util';
 export { util }; // New namespace
-export * from './animationframe';
 export * from './util'; // Old namespace for backward compatibility
 //# sourceMappingURL=index.js.map

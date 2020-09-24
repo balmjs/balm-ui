@@ -20,23 +20,20 @@
 // THE SOFTWARE.
 //
 
-// Selector '.mdc-*' should only be used in this project.
-// stylelint-disable selector-class-pattern
-
 @use 'sass:math';
 @use '../elevation/mixins' as elevation-mixins;
 @use '../feature-targeting/feature-targeting';
 @use '../rtl/mixins' as rtl-mixins;
 @use '../list/mixins' as list-mixins;
 @use '../list/variables' as list-variables;
-@use '../ripple/ripple';
+@use '../ripple/mixins' as ripple-mixins;
 @use './variables';
 
 @mixin core-styles($query: feature-targeting.all()) {
   $feat-color: feature-targeting.create-target($query, color);
   $feat-structure: feature-targeting.create-target($query, structure);
 
-  @include ripple.common($query); // COPYBARA_COMMENT_THIS_LINE
+  @include ripple-mixins.common($query); // COPYBARA_COMMENT_THIS_LINE
   // prettier-ignore
   @include elevation-mixins.overlay-common($query); // COPYBARA_COMMENT_THIS_LINE
 

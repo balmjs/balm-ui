@@ -144,9 +144,10 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         }
         this.lastSelectedIndex = index;
     };
-    MDCSelectFoundation.prototype.setValue = function (value) {
+    MDCSelectFoundation.prototype.setValue = function (value, skipNotify) {
+        if (skipNotify === void 0) { skipNotify = false; }
         var index = this.adapter.getMenuItemValues().indexOf(value);
-        this.setSelectedIndex(index);
+        this.setSelectedIndex(index, /** closeMenu */ false, skipNotify);
     };
     MDCSelectFoundation.prototype.getValue = function () {
         var index = this.adapter.getSelectedIndex();
@@ -244,9 +245,6 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         var isRequired = this.adapter.hasClass(cssClasses.REQUIRED);
         if (isRequired && this.useDefaultValidation) {
             this.setValid(this.isValid());
-            if (this.helperText) {
-                this.helperText.setValidity(this.isValid());
-            }
         }
     };
     MDCSelectFoundation.prototype.handleMenuItemAction = function (index) {
@@ -366,6 +364,7 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
             this.adapter.addClass(cssClasses.INVALID);
             this.adapter.addMenuClass(cssClasses.MENU_INVALID);
         }
+        this.syncHelperTextValidity(isValid);
     };
     MDCSelectFoundation.prototype.isValid = function () {
         if (this.useDefaultValidation &&
@@ -399,6 +398,7 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         }
         this.adapter.setMenuWrapFocus(false);
         this.setDisabled(this.adapter.hasClass(cssClasses.DISABLED));
+        this.syncHelperTextValidity(!this.adapter.hasClass(cssClasses.INVALID));
         this.layout();
         this.layoutOptions();
     };
@@ -412,9 +412,22 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         var isRequired = this.adapter.hasClass(cssClasses.REQUIRED);
         if (isRequired && this.useDefaultValidation) {
             this.setValid(this.isValid());
-            if (this.helperText) {
-                this.helperText.setValidity(this.isValid());
-            }
+        }
+    };
+    MDCSelectFoundation.prototype.syncHelperTextValidity = function (isValid) {
+        if (!this.helperText) {
+            return;
+        }
+        this.helperText.setValidity(isValid);
+        var helperTextVisible = this.helperText.isVisible();
+        var helperTextId = this.helperText.getId();
+        if (helperTextVisible && helperTextId) {
+            this.adapter.setSelectAnchorAttr(strings.ARIA_DESCRIBEDBY, helperTextId);
+        }
+        else {
+            // Needed because screenreaders will read labels pointed to by
+            // `aria-describedby` even if they are `aria-hidden`.
+            this.adapter.removeSelectAnchorAttr(strings.ARIA_DESCRIBEDBY);
         }
     };
     return MDCSelectFoundation;

@@ -36,10 +36,10 @@
 @use '../shape/mixins' as shape-mixins;
 @use '../shape/functions' as shape-functions;
 @use '../theme/theme';
-@use '../typography/mixins' as typography-mixins;
+@use '../typography/typography';
 @use '../theme/theme-color';
 @use '../density/variables' as density-variables;
-@use '../select/mixins' as select-theme;
+@use '../select/select-theme';
 
 $fill-color: surface !default;
 $header-row-fill-color: surface !default;

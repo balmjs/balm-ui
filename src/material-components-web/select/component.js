@@ -53,6 +53,7 @@ var MDCSelect = /** @class */ (function (_super) {
             this.root.querySelector(strings.SELECT_ANCHOR_SELECTOR);
         this.selectedText =
             this.root.querySelector(strings.SELECTED_TEXT_SELECTOR);
+        this.hiddenInput = this.root.querySelector(strings.HIDDEN_INPUT_SELECTOR);
         if (!this.selectedText) {
             throw new Error('MDCSelect: Missing required element: The following selector must be present: ' +
                 ("'" + strings.SELECTED_TEXT_SELECTOR + "'"));
@@ -85,9 +86,6 @@ var MDCSelect = /** @class */ (function (_super) {
      */
     MDCSelect.prototype.initialSyncWithDOM = function () {
         var _this = this;
-        this.handleChange = function () {
-            _this.foundation.handleChange();
-        };
         this.handleFocus = function () {
             _this.foundation.handleFocus();
         };
@@ -117,9 +115,19 @@ var MDCSelect = /** @class */ (function (_super) {
         this.menu.listen(menuSurfaceConstants.strings.CLOSED_EVENT, this.handleMenuClosed);
         this.menu.listen(menuSurfaceConstants.strings.OPENED_EVENT, this.handleMenuOpened);
         this.menu.listen(menuConstants.strings.SELECTED_EVENT, this.handleMenuItemAction);
+        if (this.hiddenInput) {
+            if (this.hiddenInput.value) {
+                // If the hidden input already has a value, use it to restore the
+                // select's value. This can happen e.g. if the user goes back or (in
+                // some browsers) refreshes the page.
+                this.foundation.setValue(this.hiddenInput.value, /** skipNotify */ true);
+                this.foundation.layout();
+                return;
+            }
+            this.hiddenInput.value = this.value;
+        }
     };
     MDCSelect.prototype.destroy = function () {
-        this.selectAnchor.removeEventListener('change', this.handleChange);
         this.selectAnchor.removeEventListener('focus', this.handleFocus);
         this.selectAnchor.removeEventListener('blur', this.handleBlur);
         this.selectAnchor.removeEventListener('keydown', this.handleKeydown);
@@ -168,6 +176,9 @@ var MDCSelect = /** @class */ (function (_super) {
         },
         set: function (disabled) {
             this.foundation.setDisabled(disabled);
+            if (this.hiddenInput) {
+                this.hiddenInput.disabled = disabled;
+            }
         },
         enumerable: true,
         configurable: true
@@ -261,6 +272,9 @@ var MDCSelect = /** @class */ (function (_super) {
         // Update cached menuItemValues for adapter.
         this.menuItemValues =
             this.menu.items.map(function (el) { return el.getAttribute(strings.VALUE_ATTR) || ''; });
+        if (this.hiddenInput) {
+            this.hiddenInput.value = this.value;
+        }
     };
     MDCSelect.prototype.getDefaultFoundation = function () {
         // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
@@ -382,6 +396,9 @@ var MDCSelect = /** @class */ (function (_super) {
             notifyChange: function (value) {
                 var index = _this.selectedIndex;
                 _this.emit(strings.CHANGE_EVENT, { value: value, index: index }, true /* shouldBubble  */);
+                if (_this.hiddenInput) {
+                    _this.hiddenInput.value = value;
+                }
             },
         };
         // tslint:enable:object-literal-sort-keys

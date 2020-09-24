@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 //
 
+@use './banner/styles' as banner-styles;
 @use './button/mdc-button';
 @use './card/mdc-card';
 @use './checkbox/mdc-checkbox';

@@ -20,10 +20,14 @@
 // THE SOFTWARE.
 //
 
+// Selector '.mdc-*' should only be used in this project.
+// stylelint-disable selector-class-pattern
+
 @use 'sass:math';
 @use '../density/functions' as density-functions;
 @use '../feature-targeting/feature-targeting';
-@use '../ripple/mixins' as ripple-mixins;
+@use '../ripple/ripple';
+@use '../ripple/ripple-theme';
 @use '../rtl/mixins' as rtl;
 @use '../theme/theme';
 @use './variables';
@@ -73,12 +77,12 @@
 }
 
 @mixin ripple($query: feature-targeting.all()) {
-  @include ripple-mixins.common($query); // COPYBARA_COMMENT_THIS_LINE
+  @include ripple.common($query); // COPYBARA_COMMENT_THIS_LINE
 
   .mdc-icon-button {
-    @include ripple-mixins.surface($query: $query);
-    @include ripple-mixins.radius-unbounded($query: $query);
-    @include ripple-mixins.states($query: $query);
+    @include ripple.surface($query: $query);
+    @include ripple.radius-unbounded($query: $query);
+    @include ripple-theme.states($query: $query);
   }
 }
 
@@ -156,7 +160,7 @@
 ///
 @mixin ink-color($color, $query: feature-targeting.all()) {
   @include ink-color_($color, $query: $query);
-  @include ripple-mixins.states($color, $query: $query);
+  @include ripple-theme.states($color, $query: $query);
 }
 
 ///

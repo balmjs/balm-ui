@@ -20,9 +20,12 @@
 // THE SOFTWARE.
 //
 
+// Selector '.mdc-*' should only be used in this project.
+// stylelint-disable selector-class-pattern
+
 @use '../functions';
 @use '../../theme/theme';
-@use '../../typography/mixins' as typography-mixins;
+@use '../../typography/typography';
 @use '../../feature-targeting/feature-targeting';
 // Public mixins
 
@@ -33,8 +36,8 @@
   // postcss-bem-linter: define text-field-helper-text
 
   .mdc-text-field-helper-text {
-    @include typography-mixins.typography(caption, $query: $query);
-    @include typography-mixins.text-baseline($top: 16px, $query: $query);
+    @include typography.typography(caption, $query: $query);
+    @include typography.text-baseline($top: 16px, $query: $query);
 
     @include feature-targeting.targets($feat-structure) {
       margin: 0;

@@ -20,10 +20,13 @@
 // THE SOFTWARE.
 //
 
+// Selector '.mdc-*' should only be used in this project.
+// stylelint-disable selector-class-pattern
+
 @use '../feature-targeting/feature-targeting';
 @use '../rtl/mixins' as rtl-mixins;
 @use '../theme/theme';
-@use '../typography/mixins' as typography-mixins;
+@use '../typography/typography';
 @use './variables';
 
 @mixin core-styles($query: feature-targeting.all()) {
@@ -31,7 +34,7 @@
   $feat-structure: feature-targeting.create-target($query, structure);
 
   .mdc-form-field {
-    @include typography-mixins.typography(body2, $query);
+    @include typography.typography(body2, $query);
 
     @include feature-targeting.targets($feat-color) {
       @include theme.prop(color, text-primary-on-background);

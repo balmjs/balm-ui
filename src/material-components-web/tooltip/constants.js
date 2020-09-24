@@ -27,24 +27,35 @@ var CssClasses;
     CssClasses["SHOWING_TRANSITION"] = "mdc-tooltip--showing-transition";
     CssClasses["HIDE"] = "mdc-tooltip--hide";
     CssClasses["HIDE_TRANSITION"] = "mdc-tooltip--hide-transition";
+    CssClasses["MULTILINE_TOOLTIP"] = "mdc-tooltip--multiline";
 })(CssClasses || (CssClasses = {}));
 var numbers = {
     BOUNDED_ANCHOR_GAP: 4,
     UNBOUNDED_ANCHOR_GAP: 8,
     MIN_VIEWPORT_TOOLTIP_THRESHOLD: 32,
     HIDE_DELAY_MS: 600,
+    SHOW_DELAY_MS: 500,
+    // LINT.IfChange(tooltip-dimensions)
+    MIN_HEIGHT: 24,
+    MAX_WIDTH: 200,
 };
 var events = {
     HIDDEN: 'MDCTooltip:hidden',
 };
 /** Enum for possible tooltip positioning relative to its anchor element. */
-var Position;
-(function (Position) {
-    Position[Position["DETECTED"] = 0] = "DETECTED";
-    Position[Position["START"] = 1] = "START";
-    Position[Position["CENTER"] = 2] = "CENTER";
-    Position[Position["END"] = 3] = "END";
-})(Position || (Position = {}));
+var XPosition;
+(function (XPosition) {
+    XPosition[XPosition["DETECTED"] = 0] = "DETECTED";
+    XPosition[XPosition["START"] = 1] = "START";
+    XPosition[XPosition["CENTER"] = 2] = "CENTER";
+    XPosition[XPosition["END"] = 3] = "END";
+})(XPosition || (XPosition = {}));
+var YPosition;
+(function (YPosition) {
+    YPosition[YPosition["DETECTED"] = 0] = "DETECTED";
+    YPosition[YPosition["ABOVE"] = 1] = "ABOVE";
+    YPosition[YPosition["BELOW"] = 2] = "BELOW";
+})(YPosition || (YPosition = {}));
 /**
  * Enum for possible anchor boundary types. This determines the gap between the
  * bottom of the anchor and the tooltip element.
@@ -56,5 +67,5 @@ var AnchorBoundaryType;
     AnchorBoundaryType[AnchorBoundaryType["BOUNDED"] = 0] = "BOUNDED";
     AnchorBoundaryType[AnchorBoundaryType["UNBOUNDED"] = 1] = "UNBOUNDED";
 })(AnchorBoundaryType || (AnchorBoundaryType = {}));
-export { CssClasses, numbers, events, Position, AnchorBoundaryType };
+export { CssClasses, numbers, events, XPosition, AnchorBoundaryType, YPosition };
 //# sourceMappingURL=constants.js.map

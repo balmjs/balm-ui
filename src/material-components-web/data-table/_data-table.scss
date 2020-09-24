@@ -36,7 +36,7 @@
 @use '../shape/mixins' as shape-mixins;
 @use '../theme/theme';
 @use '../theme/theme-color';
-@use '../typography/mixins' as typography-mixins;
+@use '../typography/typography';
 @use './data-table-cell';
 @use './data-table-header-cell';
 @use './data-table-pagination';
@@ -51,7 +51,7 @@
   // postcss-bem-linter: define data-table
 
   .mdc-data-table__content {
-    @include typography-mixins.typography(body2, $query: $query);
+    @include typography.typography(body2, $query: $query);
   }
 
   .mdc-data-table {

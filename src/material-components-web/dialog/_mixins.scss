@@ -20,6 +20,9 @@
 // THE SOFTWARE.
 //
 
+// Selector '.mdc-*' should only be used in this project.
+// stylelint-disable selector-class-pattern
+
 @use 'sass:math';
 @use '../animation/functions' as animation-functions;
 @use '../button/variables' as button-variables;
@@ -30,7 +33,7 @@
 @use '../theme/theme';
 @use '../theme/theme-color';
 @use '../touch-target/variables' as touch-target-variables;
-@use '../typography/mixins' as typography-mixins;
+@use '../typography/typography';
 @use './variables';
 
 @mixin core-styles($query: feature-targeting.all()) {
@@ -129,12 +132,12 @@
   }
 
   .mdc-dialog__title {
-    @include typography-mixins.text-baseline(
+    @include typography.text-baseline(
       $top: 40px,
       $display: block,
       $query: $query
     );
-    @include typography-mixins.typography(headline6, $query: $query);
+    @include typography.typography(headline6, $query: $query);
 
     @include feature-targeting.targets($feat-structure) {
       position: relative;
@@ -161,7 +164,7 @@
   }
 
   .mdc-dialog__content {
-    @include typography-mixins.typography(body1, $query: $query);
+    @include typography.typography(body1, $query: $query);
 
     @include feature-targeting.targets($feat-structure) {
       flex-grow: 1;

@@ -20,6 +20,9 @@
 // THE SOFTWARE.
 //
 
+// Selector '.mdc-*' should only be used in this project.
+// stylelint-disable selector-class-pattern
+
 @use '../animation/functions' as animation-functions;
 @use '../feature-targeting/feature-targeting';
 @use '../theme/theme';
@@ -31,6 +34,7 @@
   $feat-animation: feature-targeting.create-target($query, animation);
 
   @include color(variables.$color, $query);
+  @include track-color(variables.$track-color, $query: $query);
 
   @include feature-targeting.targets($feat-animation) {
     @include keyframes.container-rotate-keyframes_;
@@ -45,7 +49,7 @@
 
   .mdc-circular-progress {
     @include feature-targeting.targets($feat-structure) {
-      display: inline-block;
+      display: inline-flex;
       position: relative;
       /* @noflip */
       direction: ltr;
@@ -116,7 +120,7 @@
 
   .mdc-circular-progress__circle-clipper {
     @include feature-targeting.targets($feat-structure) {
-      display: inline-block;
+      display: inline-flex;
       position: relative;
       width: 50%;
       height: 100%;
@@ -174,6 +178,19 @@
 
   .mdc-circular-progress__determinate-circle,
   .mdc-circular-progress__indeterminate-circle-graphic {
+    @include feature-targeting.targets($feat-color) {
+      @include theme.property(stroke, $color);
+    }
+  }
+}
+
+/// Customizes the track color of the indicator. Applies to the
+/// determinate variant only.
+/// @param {Color} $color - The desired track color.
+@mixin track-color($color, $query: feature-targeting.all()) {
+  $feat-color: feature-targeting.create-target($query, color);
+
+  .mdc-circular-progress__determinate-track {
     @include feature-targeting.targets($feat-color) {
       @include theme.property(stroke, $color);
     }

@@ -22,13 +22,23 @@
  */
 export var cssClasses = {
     CLOSED_CLASS: 'mdc-linear-progress--closed',
+    CLOSED_ANIMATION_OFF_CLASS: 'mdc-linear-progress--closed-animation-off',
     INDETERMINATE_CLASS: 'mdc-linear-progress--indeterminate',
     REVERSED_CLASS: 'mdc-linear-progress--reversed',
+    ANIMATION_READY_CLASS: 'mdc-linear-progress--animation-ready',
 };
 export var strings = {
     ARIA_VALUENOW: 'aria-valuenow',
     BUFFER_BAR_SELECTOR: '.mdc-linear-progress__buffer-bar',
     FLEX_BASIS: 'flex-basis',
     PRIMARY_BAR_SELECTOR: '.mdc-linear-progress__primary-bar',
+};
+// these are percentages pulled from keyframes.scss
+export var animationDimensionPercentages = {
+    PRIMARY_HALF: .8367142,
+    PRIMARY_FULL: 2.00611057,
+    SECONDARY_QUARTER: .37651913,
+    SECONDARY_HALF: .84386165,
+    SECONDARY_FULL: 1.60277782,
 };
 //# sourceMappingURL=constants.js.map

@@ -20,16 +20,25 @@
 // THE SOFTWARE.
 //
 
-@use '../feature-targeting/feature-targeting';
+// Selector '.mdc-*' should only be used in this project.
+// stylelint-disable selector-class-pattern
+
 @use '../animation/functions' as animation-functions;
-@use '../typography/mixins' as typography-mixins;
+@use '../feature-targeting/feature-targeting';
+@use '../rtl/rtl' as rtl;
 @use './tooltip-theme';
+@use '../typography/typography';
 
 $_padding-x: 4px;
 $_padding-y: 8px;
-$_max-width: 120px;
 $_min-width: 40px;
+$_max-height: 40vh;
+//LINT.IfChange(tooltip-dimensions)
+$_max-width: 200px;
+$_min-height: 24px;
+// LINT.ThenChange(constants.ts:tooltip-dimensions)
 $_label-type-scale: caption;
+$_line-height: 16px;
 
 $enter-duration: 150ms;
 $exit-duration: 75ms;
@@ -50,6 +59,12 @@ $exit-duration: 75ms;
     tooltip-theme.$background-color,
     $query: $query
   );
+  @include tooltip-theme.word-break(
+    tooltip-theme.$word-break-default,
+    tooltip-theme.$word-break-ie11-fallback,
+    $query: $query
+  );
+  @include tooltip-theme.z-index(tooltip-theme.$z-index, $query: $query);
 
   .mdc-tooltip {
     @include feature-targeting.targets($feat-structure) {
@@ -67,15 +82,36 @@ $exit-duration: 75ms;
   }
 
   .mdc-tooltip__surface {
-    @include typography-mixins.typography($_label-type-scale, $query: $query);
+    @include typography.typography(
+      $_label-type-scale,
+      $exclude-props: (line-height),
+      $query: $query
+    );
 
     @include feature-targeting.targets($feat-structure) {
+      line-height: $_line-height;
       padding: $_padding-x $_padding-y;
       min-width: $_min-width;
       max-width: $_max-width;
-      text-align: center;
+      min-height: $_min-height;
+      max-height: $_max-height;
+      box-sizing: border-box;
+      overflow: hidden;
       transform: scale(0.8);
+      text-align: center;
       opacity: 0;
+      outline: 1px solid transparent;
+    }
+
+    .mdc-tooltip--multiline & {
+      @include feature-targeting.targets($feat-structure) {
+        /* @noflip */
+        text-align: left;
+        @include rtl.rtl {
+          /* @noflip */
+          text-align: right;
+        }
+      }
     }
 
     .mdc-tooltip--shown & {

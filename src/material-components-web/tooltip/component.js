@@ -38,9 +38,10 @@ var MDCTooltip = /** @class */ (function (_super) {
         if (!tooltipId) {
             throw new Error('MDCTooltip: Tooltip component must have an id.');
         }
-        this.anchorElem = document.querySelector("[aria-describedby=\"" + tooltipId + "\"]");
+        this.anchorElem = document.querySelector("[aria-describedby=\"" + tooltipId + "\"]") ||
+            document.querySelector("[data-tooltip-id=\"" + tooltipId + "\"]");
         if (!this.anchorElem) {
-            throw new Error('MDCTooltip: Tooltip component requries an [aria-describedby] anchor element.');
+            throw new Error('MDCTooltip: Tooltip component requires an anchor element annotated with [aria-describedby] or [data-tooltip-id] anchor element.');
         }
         this.handleMouseEnter = function () {
             _this.foundation.handleAnchorMouseEnter();
@@ -74,8 +75,8 @@ var MDCTooltip = /** @class */ (function (_super) {
         this.unlisten('transitionend', this.handleTransitionEnd);
         _super.prototype.destroy.call(this);
     };
-    MDCTooltip.prototype.setTooltipPosition = function (pos) {
-        this.foundation.setTooltipPosition(pos);
+    MDCTooltip.prototype.setTooltipPosition = function (position) {
+        this.foundation.setTooltipPosition(position);
     };
     MDCTooltip.prototype.setAnchorBoundaryType = function (type) {
         this.foundation.setAnchorBoundaryType(type);
@@ -107,6 +108,9 @@ var MDCTooltip = /** @class */ (function (_super) {
             },
             getAnchorBoundingRect: function () {
                 return _this.anchorElem ? _this.anchorElem.getBoundingClientRect() : null;
+            },
+            getAnchorAttribute: function (attr) {
+                return _this.anchorElem ? _this.anchorElem.getAttribute(attr) : null;
             },
             isRTL: function () { return getComputedStyle(_this.root).direction === 'rtl'; },
             registerDocumentEventHandler: function (evt, handler) {

@@ -20,12 +20,17 @@
 // THE SOFTWARE.
 //
 
+// Selector '.mdc-*' should only be used in this project.
+// stylelint-disable selector-class-pattern
+
+@use '../animation/animation';
 @use '../elevation/mixins' as elevation-mixins;
 @use '../feature-targeting/feature-targeting';
-@use '../ripple/mixins' as ripple-mixins;
+@use '../ripple/ripple';
+@use '../ripple/ripple-theme';
 @use '../rtl/mixins' as rtl-mixins;
 @use '../theme/theme-color';
-@use '../typography/mixins' as typography-mixins;
+@use '../typography/typography';
 @use './slider-theme';
 
 // Thumb variables.
@@ -62,7 +67,6 @@ $_track-inactive-height: 4px;
       margin: 0 ($_thumb-ripple-size / 2);
       position: relative;
       touch-action: none;
-      width: 100%;
     }
 
     &.mdc-slider--disabled {
@@ -93,12 +97,12 @@ $_track-inactive-height: 4px;
 // ripple-related styles from the other slider styles.
 // It is recommended that most users use `core-styles` instead.
 @mixin ripple($query: feature-targeting.all()) {
-  @include ripple-mixins.common($query); // COPYBARA_COMMENT_THIS_LINE
+  @include ripple.common($query); // COPYBARA_COMMENT_THIS_LINE
 
   .mdc-slider__thumb {
-    @include ripple-mixins.surface($query: $query);
-    @include ripple-mixins.radius-unbounded($query: $query);
-    @include ripple-mixins.states($color: slider-theme.$color, $query: $query);
+    @include ripple.surface($query: $query);
+    @include ripple.radius-unbounded($query: $query);
+    @include ripple-theme.states($color: slider-theme.$color, $query: $query);
   }
 }
 
@@ -146,9 +150,11 @@ $_track-inactive-height: 4px;
       height: 100%;
       width: 100%;
       position: relative;
+      /* @noflip */
       transform-origin: left;
 
       @include rtl-mixins.rtl {
+        /* @noflip */
         transform-origin: right;
       }
     }
@@ -165,11 +171,17 @@ $_track-inactive-height: 4px;
   }
 
   @include slider-theme.track-active-color(
-    $color: slider-theme.$color,
+    $color-or-map: (
+      default: slider-theme.$color,
+      disabled: slider-theme.$disabled-color,
+    ),
     $query: $query
   );
   @include slider-theme.track-inactive-color(
-    $color: slider-theme.$color,
+    $color-or-map: (
+      default: slider-theme.$color,
+      disabled: slider-theme.$disabled-color,
+    ),
     $query: $query
   );
 }
@@ -218,6 +230,7 @@ $_track-inactive-height: 4px;
       border-radius: 50%;
       box-sizing: border-box;
       height: $_thumb-size;
+      /* @noflip */
       left: 50%;
       position: absolute;
       top: 50%;
@@ -227,7 +240,10 @@ $_track-inactive-height: 4px;
   }
 
   @include slider-theme.thumb-color(
-    $color: slider-theme.$color,
+    $color-or-map: (
+      default: slider-theme.$color,
+      disabled: slider-theme.$disabled-color,
+    ),
     $query: $query
   );
   @include slider-theme.thumb-ripple-color(
@@ -255,10 +271,6 @@ $_track-inactive-height: 4px;
 
   .mdc-slider__tick-mark--active,
   .mdc-slider__tick-mark--inactive {
-    @include feature-targeting.targets($feat-color) {
-      opacity: slider-theme.$tick-mark-opacity;
-    }
-
     @include feature-targeting.targets($feat-structure) {
       border-radius: 50%;
       height: 2px;
@@ -267,11 +279,17 @@ $_track-inactive-height: 4px;
   }
 
   @include slider-theme.tick-mark-active-color(
-    $color: slider-theme.$tick-mark-active-color,
+    $color-or-map: (
+      default: slider-theme.$tick-mark-active-color,
+      disabled: on-primary,
+    ),
     $query: $query
   );
   @include slider-theme.tick-mark-inactive-color(
-    $color: slider-theme.$tick-mark-inactive-color,
+    $color-or-map: (
+      default: slider-theme.$tick-mark-inactive-color,
+      disabled: slider-theme.$disabled-color,
+    ),
     $query: $query
   );
 }
@@ -292,7 +310,7 @@ $_track-inactive-height: 4px;
 
   .mdc-slider__value-indicator {
     @include feature-targeting.targets($feat-animation) {
-      transition: transform 100ms cubic-bezier(0.4, 0, 1, 1);
+      transition: animation.exit-permanent(transform, 100ms);
     }
 
     @include feature-targeting.targets($feat-structure) {
@@ -311,8 +329,7 @@ $_track-inactive-height: 4px;
       @include feature-targeting.targets($feat-structure) {
         border-left: $_value-indicator-caret-width solid transparent;
         border-right: $_value-indicator-caret-width solid transparent;
-        border-top: $_value-indicator-caret-width solid
-          slider-theme.$value-indicator-color;
+        border-top: $_value-indicator-caret-width solid;
         bottom: -$_value-indicator-caret-width + 1;
         content: '';
         height: 0;
@@ -326,7 +343,7 @@ $_track-inactive-height: 4px;
 
   .mdc-slider__thumb--with-indicator .mdc-slider__value-indicator {
     @include feature-targeting.targets($feat-animation) {
-      transition: transform 100ms cubic-bezier(0, 0, 0.2, 1);
+      transition: animation.enter(transform, 100ms);
     }
 
     @include feature-targeting.targets($feat-structure) {
@@ -344,7 +361,7 @@ $_track-inactive-height: 4px;
   }
 
   .mdc-slider__value-indicator-text {
-    @include typography-mixins.typography(subtitle2, $query);
+    @include typography.typography(subtitle2, $query);
   }
 
   @include slider-theme.value-indicator-color(
@@ -362,21 +379,6 @@ $_track-inactive-height: 4px;
 @mixin _disabled($query: feature-targeting.all()) {
   $feat-color: feature-targeting.create-target($query, color);
   $feat-structure: feature-targeting.create-target($query, structure);
-
-  @include slider-theme.track-active-color($color: on-surface, $query: $query);
-  @include slider-theme.track-inactive-color(
-    $color: on-surface,
-    $query: $query
-  );
-  @include slider-theme.thumb-color($color: on-surface, $query: $query);
-  @include slider-theme.tick-mark-active-color(
-    $color: on-primary,
-    $query: $query
-  );
-  @include slider-theme.tick-mark-inactive-color(
-    $color: on-surface,
-    $query: $query
-  );
 
   @include feature-targeting.targets($feat-color) {
     opacity: 0.38;

@@ -20,10 +20,14 @@
 // THE SOFTWARE.
 //
 
+// Selector '.mdc-*' should only be used in this project.
+// stylelint-disable selector-class-pattern
+
 @use '../feature-targeting/feature-targeting';
-@use '../ripple/mixins' as ripple-mixins;
+@use '../ripple/ripple';
+@use '../ripple/ripple-theme';
 @use '../theme/theme';
-@use '../typography/mixins' as typography-mixins;
+@use '../typography/typography';
 @use '../rtl/mixins' as rtl-mixins;
 @use '../tab-indicator/mixins' as tab-indicator-mixins;
 @use './variables';
@@ -106,7 +110,7 @@
 // This API is intended for use by frameworks that may want to separate the ripple-related styles
 // from the other tah styles. It is recommended that most users use `mdc-tab-core-styles` instead.
 @mixin ripple($query: feature-targeting.all()) {
-  @include ripple-mixins.common($query); // COPYBARA_COMMENT_THIS_LINE
+  @include ripple.common($query); // COPYBARA_COMMENT_THIS_LINE
 
   .mdc-tab__ripple {
     @include ripple_($query);
@@ -146,7 +150,7 @@
 
 @mixin states-color($color, $query: feature-targeting.all()) {
   .mdc-tab__ripple {
-    @include ripple-mixins.states($color, $query: $query);
+    @include ripple-theme.states($color, $query: $query);
   }
 }
 
@@ -223,7 +227,7 @@
 @mixin base_($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
 
-  @include typography-mixins.typography(button, $query);
+  @include typography.typography(button, $query);
   @include text-label-color(variables.$text-label-color-default, $query);
   @include icon-color(variables.$icon-color-default, $query);
   @include horizontal-padding(variables.$horizontal-padding, $query);
@@ -258,9 +262,9 @@
 @mixin ripple_($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
 
-  @include ripple-mixins.surface($query);
-  @include ripple-mixins.radius-bounded($query: $query);
-  @include ripple-mixins.states($color: primary, $query: $query);
+  @include ripple.surface($query);
+  @include ripple.radius-bounded($query: $query);
+  @include ripple-theme.states($color: primary, $query: $query);
 
   @include feature-targeting.targets($feat-structure) {
     position: absolute;

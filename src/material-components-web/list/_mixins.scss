@@ -26,13 +26,13 @@
 @use '../theme/theme';
 @use '../shape/functions' as shape-functions;
 @use '../shape/mixins' as shape-mixins;
-@use '../ripple/mixins' as ripple-mixins;
-@use '../typography/mixins' as typography-mixins;
-@use '../typography/variables' as typography-variables;
+@use '../ripple/ripple';
+@use '../ripple/ripple-theme';
+@use '../typography/typography';
 @use '../feature-targeting/feature-targeting';
 @use './variables';
-@use '../ripple/functions' as ripple-functions;
 @use '../theme/theme-color';
+@use './evolution-mixins';
 
 //
 // Public
@@ -222,7 +222,7 @@
   .mdc-list-item__meta {
     // stylelint-disable selector-class-pattern
     &:not(.material-icons) {
-      @include typography-mixins.typography(caption, $query);
+      @include typography.typography(caption, $query);
     }
     // stylelint-enable selector-class-pattern
 
@@ -232,7 +232,7 @@
   }
 
   .mdc-list-item__text {
-    @include typography-mixins.overflow-ellipsis($query);
+    @include typography.overflow-ellipsis($query);
   }
 
   // Disable interaction on label elements that may automatically
@@ -244,8 +244,8 @@
   }
 
   .mdc-list-item__primary-text {
-    @include typography-mixins.overflow-ellipsis($query);
-    @include typography-mixins.text-baseline(
+    @include typography.overflow-ellipsis($query);
+    @include typography.text-baseline(
       $top: variables.$item-primary-text-baseline-height,
       $bottom: variables.$item-secondary-text-baseline-height,
       $display: block,
@@ -257,7 +257,7 @@
     .mdc-list--thumbnail-list &,
     .mdc-list--avatar-list &,
     .mdc-list--icon-list & {
-      @include typography-mixins.text-baseline(
+      @include typography.text-baseline(
         $top: variables.$item-primary-text-baseline-height-with-graphic,
         $bottom: variables.$item-secondary-text-baseline-height,
         $query: $query
@@ -266,7 +266,7 @@
 
     // stylelint-disable plugin/selector-bem-pattern
     .mdc-list--dense & {
-      @include typography-mixins.text-baseline(
+      @include typography.text-baseline(
         $top: variables.$dense-item-primary-text-baseline-height,
         $bottom: variables.$item-secondary-text-baseline-height,
         $query: $query
@@ -276,9 +276,9 @@
   }
 
   .mdc-list-item__secondary-text {
-    @include typography-mixins.typography(body2, $query);
-    @include typography-mixins.overflow-ellipsis($query);
-    @include typography-mixins.text-baseline(
+    @include typography.typography(body2, $query);
+    @include typography.overflow-ellipsis($query);
+    @include typography.text-baseline(
       $top: variables.$item-secondary-text-baseline-height,
       $display: block,
       $query: $query
@@ -458,7 +458,7 @@
   .mdc-list-group__subheader {
     $mdc-list-subheader-virtual-height: 3rem;
     $mdc-list-subheader-leading: map.get(
-      map.get(typography-variables.$styles, body1),
+      map.get(typography.$styles, body1),
       line-height
     );
     $mdc-list-subheader-margin: calc(
@@ -466,47 +466,50 @@
         2
     );
 
-    @include typography-mixins.typography(subtitle1, $query);
+    @include typography.typography(subtitle1, $query);
 
     @include feature-targeting.targets($feat-structure) {
       margin: $mdc-list-subheader-margin variables.$side-padding;
     }
   }
+
+  @include evolution-mixins.evolution($query: $query);
 }
 
 // This API is intended for use by frameworks that may want to separate the ripple-related styles from the other
 // list styles. It is recommended that most users use `mdc-list-core-styles` instead.
 @mixin ripple($query: feature-targeting.all()) {
-  @include ripple-mixins.common($query); // COPYBARA_COMMENT_THIS_LINE
+  @include ripple.common($query); // COPYBARA_COMMENT_THIS_LINE
 
   // List items should support states by default, but it should be possible to opt out.
+  :not(.mdc-list-item--disabled).mdc-evolution-list-item,
   :not(.mdc-list-item--disabled).mdc-list-item {
     @include item-interactive-ripple_($query);
   }
 
   // Set styles only for focus state on disabled list item.
   .mdc-list-item--disabled {
-    @include ripple-mixins.surface(
+    @include ripple.surface(
       $ripple-target: variables.$ripple-target,
       $query: $query
     );
-    @include ripple-mixins.radius-bounded(
+    @include ripple.radius-bounded(
       $ripple-target: variables.$ripple-target,
       $query: $query
     );
-    @include ripple-mixins.states-base-color(
+    @include ripple-theme.states-base-color(
       theme-color.prop-value(on-surface),
       $ripple-target: variables.$ripple-target,
       $query: $query
     );
-    @include ripple-mixins.states-focus-opacity(
-      ripple-functions.states-opacity(primary, focus),
+    @include ripple-theme.states-focus-opacity(
+      ripple-theme.states-opacity(primary, focus),
       $ripple-target: variables.$ripple-target,
       $query: $query
     );
 
     #{variables.$ripple-target} {
-      @include ripple-mixins.target-common($query: $query);
+      @include ripple.target-common($query: $query);
     }
   }
 }
@@ -515,7 +518,7 @@
 /// Sets ripple color for a list item.
 ///
 @mixin ripple-states($color, $query: feature-targeting.all()) {
-  @include ripple-mixins.states(
+  @include ripple-theme.states(
     $color: $color,
     $query: $query,
     $ripple-target: variables.$ripple-target
@@ -959,16 +962,13 @@
   $feat-structure: feature-targeting.create-target($query, structure);
   $feat-typography: feature-targeting.create-target($query, typography);
 
-  @include typography-mixins.typography(subtitle1, $query);
+  @include typography.typography(subtitle1, $query);
 
   @include feature-targeting.targets($feat-typography) {
     // According to the mocks and stickersheet, the line-height is
     // adjusted to 24px for text content, same as for body1.
     /* @alternate */
-    line-height: map.get(
-      map.get(typography-variables.$styles, body1),
-      line-height
-    );
+    line-height: map.get(map.get(typography.$styles, body1), line-height);
   }
 
   @include feature-targeting.targets($feat-structure) {
@@ -999,27 +999,27 @@
 
 // Ripple styles for an interactive list item (one that is enabled and inside an interactive list).
 @mixin item-interactive-ripple_($query: feature-targeting.all()) {
-  @include ripple-mixins.surface(
+  @include ripple.surface(
     $ripple-target: variables.$ripple-target,
     $query: $query
   );
-  @include ripple-mixins.radius-bounded(
+  @include ripple.radius-bounded(
     $ripple-target: variables.$ripple-target,
     $query: $query
   );
-  @include ripple-mixins.states(
+  @include ripple-theme.states(
     theme-color.prop-value(on-surface),
     false,
     $ripple-target: variables.$ripple-target,
     $query: $query
   );
-  @include ripple-mixins.states-activated(
+  @include ripple-theme.states-activated(
     primary,
     false,
     $ripple-target: variables.$ripple-target,
     $query: $query
   );
-  @include ripple-mixins.states-selected(
+  @include ripple-theme.states-selected(
     primary,
     false,
     $ripple-target: variables.$ripple-target,
@@ -1027,6 +1027,6 @@
   );
 
   #{variables.$ripple-target} {
-    @include ripple-mixins.target-common($query: $query);
+    @include ripple.target-common($query: $query);
   }
 }

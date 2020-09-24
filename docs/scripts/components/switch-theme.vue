@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { reactive, toRefs, ref, onMounted } from 'vue';
+import { reactive, toRefs } from 'vue';
 import { useTheme, useStore } from 'balm-ui';
 
 const themeColorList = [

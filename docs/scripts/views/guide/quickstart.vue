@@ -7,17 +7,15 @@
 </template>
 
 <script>
-import { useI18n } from 'vue-i18n';
+import useTranslation from '@/utils/t';
 
 export default {
   metaInfo: {
     titleTemplate: '%s - Quick Start'
   },
   setup() {
-    const { t } = useI18n();
-
     return {
-      t
+      ...useTranslation()
     };
   }
 };

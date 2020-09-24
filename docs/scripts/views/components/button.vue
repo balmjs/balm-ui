@@ -21,23 +21,18 @@
     <section class="demo-wrapper">
       <div class="demo-controls">
         <ui-form-field>
-          <ui-checkbox
-            id="toggle-disabled"
-            v-model="controls.disabled"
-          ></ui-checkbox>
+          <ui-checkbox id="toggle-disabled" v-model="disabled"></ui-checkbox>
           <label for="toggle-disabled">Disabled buttons</label>
         </ui-form-field>
       </div>
 
       <div class="demo">
-        <ui-button :disabled="controls.disabled">Text</ui-button>
-        <ui-button outlined :disabled="controls.disabled">Outlined</ui-button>
-        <ui-button raised :disabled="controls.disabled">Raised</ui-button>
+        <ui-button :disabled="disabled">Text</ui-button>
+        <ui-button outlined :disabled="disabled">Outlined</ui-button>
+        <ui-button raised :disabled="disabled">Raised</ui-button>
 
-        <ui-button icon="favorite" :disabled="controls.disabled"
-          >Icon</ui-button
-        >
-        <ui-button :disabled="controls.disabled">
+        <ui-button icon="favorite" :disabled="disabled">Icon</ui-button>
+        <ui-button :disabled="disabled">
           Trailing Icon
           <template #after="{ iconClass }">
             <svg-logo :class="iconClass"></svg-logo>
@@ -50,6 +45,8 @@
 </template>
 
 <script>
+import { reactive, toRefs } from 'vue';
+
 const TypeOptions = [
   {
     label: 'Text',
@@ -73,16 +70,18 @@ export default {
   metaInfo: {
     titleTemplate: '%s - Button'
   },
-  data() {
-    return {
+  setup() {
+    const state = reactive({
       // hero
-      TypeOptions,
       typeOption: 0,
       text: 'Button',
       // demo
-      controls: {
-        disabled: false
-      }
+      disabled: false
+    });
+
+    return {
+      TypeOptions,
+      ...toRefs(state)
     };
   }
 };

@@ -3751,7 +3751,7 @@ eslint-plugin-prettier@^3.1.4:
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
-eslint-plugin-vue@^7.0.0-beta.3:
+eslint-plugin-vue@^7.0.0-beta.4:
   version "7.0.0-beta.4"
   resolved "https://registry.yarnpkg.com/eslint-plugin-vue/-/eslint-plugin-vue-7.0.0-beta.4.tgz#aa13b946702c4de1b8f7c3467698185775b11fdb"
   integrity sha512-yb8Kki8b94a3A1sGum9TyVAkvPfKGPzWfZcXRmA2Tylt7TRi+b6mOtn1o6kM3NWatBs5gcGiCrH033DDPn0Msw==
@@ -8608,7 +8608,7 @@ vue-i18n@^9.0.0-beta.2:
   resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-9.0.0-beta.2.tgz#a07b95502295a04ebc6fb790928af1ddeaf06aae"
   integrity sha512-fvpf+LjXFdcSxKWYDaYetto3hnLwLzkPfKUmkzhG/AqgaIi+ZaVf+fLsQUmOaXzqp0l/4orjXjhHUIjhYsBLhA==
 
-vue-loader@^16.0.0-beta.7:
+vue-loader@^16.0.0-beta.8:
   version "16.0.0-beta.8"
   resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-16.0.0-beta.8.tgz#1f523d9fea8e8c6e4f5bb99fd768165af5845879"
   integrity sha512-oouKUQWWHbSihqSD7mhymGPX1OQ4hedzAHyvm8RdyHh6m3oIvoRF+NM45i/bhNOlo8jCnuJhaSUf/6oDjv978g==

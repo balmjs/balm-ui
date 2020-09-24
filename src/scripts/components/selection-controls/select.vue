@@ -1,5 +1,5 @@
 <template>
-  <div :class="className">
+  <div :class="className" v-bind="$attrs">
     <div
       class="mdc-select__anchor"
       role="button"
@@ -138,6 +138,7 @@ export default {
     MdcSelectHelper
   },
   mixins: [domMixin, typeMixin, materialIconMixin, componentHelperTextMixin],
+  inheritAttrs: false,
   props: {
     // UI variants
     type: {

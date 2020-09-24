@@ -1,9 +1,8 @@
 <template>
   <ui-menu-anchor class="switch-theme">
     <ui-button
-      ref="colorButton"
       title="Change theme colors"
-      data-theme="baseline"
+      :data-theme="selectedTheme"
       @click="open = true"
     >
       <i class="demo-theme-color-radio">
@@ -103,12 +102,6 @@ const useSwitchTheme = () => {
     store.getTheme();
 
     state.selectedTheme = themeValue;
-
-    onMounted(() => {
-      const colorButtonEl = ref('colorButton').value;
-      console.log('colorButtonEl', colorButtonEl);
-      colorButtonEl.dataset.theme = themeValue;
-    });
   }
 
   return {

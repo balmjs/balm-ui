@@ -1,6 +1,6 @@
 <template>
   <!-- Container -->
-  <div :class="className.outer">
+  <div :class="className.outer" v-bind="$attrs">
     <div v-if="!isOutlined" class="mdc-text-field__ripple"></div>
 
     <!-- Leading icon (optional) -->
@@ -180,6 +180,7 @@ export default {
     materialIconMixin,
     componentHelperTextMixin
   ],
+  inheritAttrs: false,
   props: {
     // UI variants
     type: {

@@ -1,8 +1,8 @@
 # [BalmUI](https://material.balmjs.com) ChangeLog
 
-## v8.0.0 / 2020-09-25
+## v9.0.0-beta / 2020-09-25
 
-> :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) for Vue 3.0
+> :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/8.x)(v8.0) for Vue 2.0
 
 ### Bug Fixes
 

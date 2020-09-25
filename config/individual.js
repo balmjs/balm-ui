@@ -54,9 +54,11 @@ const components = [
 ];
 const plugins = [
   'alert',
+  'bus',
   'confirm',
   'event',
   'grid',
+  'store',
   'theme',
   'toast',
   'typography',

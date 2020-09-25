@@ -135,7 +135,7 @@ export default {
       });
     });
   },
-  beforeUnmount() {
+  unmounted() {
     this.Editor.destroy();
   },
   methods: {

@@ -139,7 +139,6 @@ import domMixin from '../../mixins/dom';
 import textfieldMixin from '../../mixins/textfield';
 import typeMixin from '../../mixins/type';
 import elementMixin from '../../mixins/element';
-import materialIconMixin from '../../mixins/material-icon';
 import { componentHelperTextMixin } from '../../mixins/helper-text';
 import { UI_TEXTFIELD_ICON } from './constants';
 
@@ -158,7 +157,8 @@ const UI_TEXTFIELD = {
     ENTER: 'enter',
     BLUR: 'blur',
     CLEAR_VALID_MSG: 'update:validMsg'
-  }
+  },
+  PLUS_COMPONENTS: ['UiAutocomplete', 'UiDatepicker']
 };
 
 export default {
@@ -175,7 +175,6 @@ export default {
     textfieldMixin,
     typeMixin,
     elementMixin,
-    materialIconMixin,
     componentHelperTextMixin
   ],
   inheritAttrs: false,
@@ -283,14 +282,18 @@ export default {
       return this.inputType === 'textarea';
     },
     hasLeadingIcon() {
-      return this.materialIcon || this.withLeadingIcon || this.$slots.before;
+      return !!(
+        this.materialIcon ||
+        this.withLeadingIcon ||
+        this.hasBeforeSlot()
+      );
     },
     hasTrailingIcon() {
-      return this.withTrailingIcon || this.$slots.after;
+      return !!(this.withTrailingIcon || this.hasAfterSlot());
     },
     noLabel() {
       const hasLabel = this.label || this.$slots.default;
-      return this.placeholder || !hasLabel;
+      return !!(this.placeholder || !hasLabel);
     },
     className() {
       return {
@@ -346,6 +349,20 @@ export default {
     this.$textField = new MDCTextField(this.el);
   },
   methods: {
+    hasBeforeSlot() {
+      return this.$parent &&
+        typeof this.$parent.$.type === 'object' &&
+        UI_TEXTFIELD.PLUS_COMPONENTS.includes(this.$parent.$.type.name)
+        ? this.$parent.hasLeadingIcon
+        : this.$slots.before;
+    },
+    hasAfterSlot() {
+      return this.$parent &&
+        typeof this.$parent.$.type === 'object' &&
+        UI_TEXTFIELD.PLUS_COMPONENTS.includes(this.$parent.$.type.name)
+        ? this.$parent.hasTrailingIcon
+        : this.$slots.after;
+    },
     handleFocus(event) {
       this.$emit(UI_TEXTFIELD.EVENT.FOCUS, event);
     },

@@ -10,15 +10,26 @@
     :required="required"
     :fullwidth="fullwidth"
     :end-aligned="endAligned"
-    :icon="icon"
-    :with-leading-icon="withLeadingIcon"
-    :with-trailing-icon="withTrailingIcon || toggle || allowInput || clear"
+    :with-leading-icon="hasLeadingIcon"
+    :with-trailing-icon="hasTrailingIcon"
     :attrs="{ readonly: true }"
     @change="handleChange"
   >
     <!-- Leading icon (optional) -->
     <template #before="{ iconClass }">
-      <slot name="before" :iconClass="iconClass"></slot>
+      <i
+        v-if="materialIcon"
+        :class="
+          getIconClassName([
+            UI_TEXTFIELD_ICON.cssClasses.icon,
+            UI_TEXTFIELD_ICON.cssClasses.leadingIcon
+          ])
+        "
+        v-text="materialIcon"
+      ></i>
+      <template v-else>
+        <slot name="before" :iconClass="iconClass"></slot>
+      </template>
     </template>
 
     <!-- Label text -->
@@ -69,6 +80,7 @@ import monthSelectPlugin from 'flatpickr/dist/plugins/monthSelect';
 import UiTextfield from '../input-controls/textfield';
 import domMixin from '../../mixins/dom';
 import textfieldMixin from '../../mixins/textfield';
+import { UI_TEXTFIELD_ICON } from '../input-controls/constants';
 
 // Define datepicker constants
 const UI_DATEPICKER = {
@@ -106,10 +118,6 @@ export default {
       type: [String, null],
       default: null
     },
-    icon: {
-      type: String,
-      default: ''
-    },
     // For flatpickr
     config: {
       type: Object,
@@ -135,6 +143,7 @@ export default {
   emits: [UI_DATEPICKER.EVENT.CHANGE],
   data() {
     return {
+      UI_TEXTFIELD_ICON,
       flatpickr: null,
       inputValue: this.modelValue,
       mode: this.config.mode || UI_DATEPICKER.MODE.SINGLE,
@@ -144,6 +153,18 @@ export default {
   computed: {
     allowInput() {
       return this.config.allowInput;
+    },
+    hasLeadingIcon() {
+      return !!(this.withLeadingIcon || this.$slots.before);
+    },
+    hasTrailingIcon() {
+      return !!(
+        this.withTrailingIcon ||
+        this.$slots.after ||
+        this.toggle ||
+        this.allowInput ||
+        this.clear
+      );
     }
   },
   watch: {
@@ -219,7 +240,7 @@ export default {
       this.flatpickr = flatpickr(this.el, config);
     }
   },
-  beforeUnmount() {
+  unmounted() {
     this.flatpickr.destroy();
     this.flatpickr = null;
   },

@@ -212,7 +212,7 @@ export default {
       return this.checkType(UI_SELECT.TYPES, 'outlined');
     },
     hasLeadingIcon() {
-      return this.materialIcon || this.withLeadingIcon || this.$slots.icon;
+      return !!(this.materialIcon || this.withLeadingIcon || this.$slots.icon);
     },
     noLabel() {
       return !(this.label || this.$slots.default);

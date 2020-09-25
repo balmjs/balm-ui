@@ -10,9 +10,8 @@
     :required="required"
     :fullwidth="fullwidth"
     :end-aligned="endAligned"
-    :icon="icon"
-    :with-leading-icon="withLeadingIcon"
-    :with-trailing-icon="withTrailingIcon"
+    :with-leading-icon="hasLeadingIcon"
+    :with-trailing-icon="hasTrailingIcon"
     plus
     @focus="handleFocus"
     @keydown="handleKeydown"
@@ -21,7 +20,19 @@
   >
     <!-- Leading icon (optional) -->
     <template #before="{ iconClass }">
-      <slot name="before" :iconClass="iconClass"></slot>
+      <i
+        v-if="materialIcon"
+        :class="
+          getIconClassName([
+            UI_TEXTFIELD_ICON.cssClasses.icon,
+            UI_TEXTFIELD_ICON.cssClasses.leadingIcon
+          ])
+        "
+        v-text="materialIcon"
+      ></i>
+      <template v-else>
+        <slot name="before" :iconClass="iconClass"></slot>
+      </template>
     </template>
 
     <!-- Label text -->
@@ -111,10 +122,6 @@ export default {
       type: [String, null],
       default: null
     },
-    icon: {
-      type: String,
-      default: ''
-    },
     // UI attributes
     autofocus: {
       type: Boolean,
@@ -173,6 +180,12 @@ export default {
         'mdc-autocomplete': true,
         'mdc-autocomplete--expanded': this.isExpanded
       };
+    },
+    hasLeadingIcon() {
+      return !!(this.withLeadingIcon || this.$slots.before);
+    },
+    hasTrailingIcon() {
+      return !!(this.withTrailingIcon || this.$slots.after);
     }
   },
   watch: {

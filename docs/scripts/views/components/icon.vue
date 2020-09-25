@@ -76,14 +76,14 @@
       <div v-shadow="1" class="search-area">
         <div class="search-area-inner">
           <ui-autocomplete
-            id="search"
-            :model="keywords"
+            v-model="keywords"
+            input-id="search"
             input-type="search"
             icon="search"
             placeholder="Icon name keywords"
             fullwidth
             :source="tags"
-            @input="onSearch"
+            @update:modelValue="onSearch"
             @selected="onSelected"
           ></ui-autocomplete>
           <ui-select id="icon-type" v-model="typeOption" :options="TypeOptions"
@@ -164,9 +164,6 @@ const TypeOptions = [
 export default {
   metaInfo: {
     titleTemplate: '%s - Icons'
-  },
-  setup(props, ctx) {
-    console.log(props, ctx);
   },
   data() {
     return {

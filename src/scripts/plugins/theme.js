@@ -1,5 +1,5 @@
 import autoInstall from '../config/auto-install';
-import { contrastTone } from './color';
+import { contrastTone } from '../utils/color';
 
 // Define theme constants
 const THEME_STYLES = [

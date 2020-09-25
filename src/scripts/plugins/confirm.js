@@ -1,8 +1,7 @@
 import { createApp } from 'vue';
 import autoInstall from '../config/auto-install';
 import MdcDialog from '../components/modal/mdc-dialog';
-import getType from '../utils/typeof';
-import { createDiv, removeDiv } from '../utils/div';
+import { getOptions, createModal, removeModel } from '../utils/modal';
 
 // Define confirm dialog constants
 const UI_CONFIRM_DIALOG = {
@@ -22,6 +21,8 @@ const DEFAULT_OPTIONS = {
 };
 
 let globalOptions = DEFAULT_OPTIONS;
+let confirmEl;
+let confirmApp;
 
 const template = `<mdc-dialog class="mdc-confirm-dialog" :open="open" :options="options">
   <button type="button"
@@ -37,52 +38,55 @@ const template = `<mdc-dialog class="mdc-confirm-dialog" :open="open" :options="
   </button>
 </mdc-dialog>`;
 
-const confirmDialog = (customOptions = {}) => {
-  let options = Object.assign({}, globalOptions);
+function createConfirmDialog(options, callback) {
+  confirmEl = createModal(UI_CONFIRM_DIALOG.id);
 
-  if (getType(customOptions) === 'string') {
-    options.message = `${customOptions}`; // To string
-  } else if (getType(customOptions) === 'object') {
-    options = Object.assign({}, options, customOptions);
-  }
+  confirmApp = createApp({
+    name: 'BalmUIConfirm',
+    components: {
+      MdcDialog
+    },
+    data() {
+      return {
+        open: false,
+        options
+      };
+    },
+    mounted() {
+      this.$nextTick(() => {
+        this.open = true;
+      });
+    },
+    unmounted() {
+      removeModel(confirmEl);
+    },
+    methods: {
+      handleClose() {
+        this.open = false;
+
+        confirmApp.unmount(`#${UI_CONFIRM_DIALOG.id}`);
+      },
+      handleConfirm(result) {
+        this.handleClose();
+
+        if (typeof this.options.callback === 'function') {
+          this.options.callback(result);
+        } else {
+          callback(result);
+        }
+      }
+    },
+    template
+  });
+
+  return confirmApp;
+}
+
+const confirmDialog = (customOptions = {}) => {
+  const options = getOptions(globalOptions, customOptions);
 
   return new Promise((resolve) => {
-    const el = createDiv(UI_CONFIRM_DIALOG.id);
-
-    let confirmApp = createApp({
-      components: {
-        MdcDialog
-      },
-      data() {
-        return {
-          open: false,
-          options
-        };
-      },
-      mounted() {
-        this.$nextTick(() => {
-          this.open = true;
-        });
-      },
-      methods: {
-        handleClose() {
-          this.open = false;
-
-          removeDiv(el);
-          confirmApp = null;
-        },
-        handleConfirm(result) {
-          this.handleClose();
-
-          if (getType(this.options.callback) === 'function') {
-            this.options.callback(result);
-          } else {
-            resolve(result);
-          }
-        }
-      },
-      template
-    }).mount(`#${UI_CONFIRM_DIALOG.id}`);
+    createConfirmDialog(options, resolve).mount(`#${UI_CONFIRM_DIALOG.id}`);
   });
 };
 

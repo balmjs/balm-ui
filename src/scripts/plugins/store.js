@@ -3,7 +3,7 @@ import autoInstall from '../config/auto-install';
 import getType from '../utils/typeof';
 import { createDiv } from '../utils/div';
 
-const DefaultKey = 'store1';
+const DefaultKey = 'appstore1';
 let store = new Map();
 
 function createStore(setupOptions, key = DefaultKey) {

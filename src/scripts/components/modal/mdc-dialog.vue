@@ -71,12 +71,17 @@ export default {
   watch: {
     open(val) {
       if (val) {
+        // animation
         setTimeout(() => {
           this.opened = true;
           setTimeout(() => {
             this.opening = false;
           }, 150);
         }, 150);
+      } else {
+        // reset
+        this.opening = true;
+        this.opened = false;
       }
     }
   },

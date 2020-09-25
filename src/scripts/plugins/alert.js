@@ -1,8 +1,7 @@
 import { createApp } from 'vue';
 import autoInstall from '../config/auto-install';
 import MdcDialog from '../components/modal/mdc-dialog';
-import getType from '../utils/typeof';
-import { createDiv, removeDiv } from '../utils/div';
+import { getOptions, createModal, removeModel } from '../utils/modal';
 
 // Define alert dialog constants
 const UI_ALERT_DIALOG = {
@@ -21,62 +20,67 @@ const DEFAULT_OPTIONS = {
 };
 
 let globalOptions = DEFAULT_OPTIONS;
+let alertEl;
+let alertApp;
 
 const template = `<mdc-dialog class="mdc-alert-dialog" :open="open" :options="options">
   <button type="button"
     class="mdc-button mdc-button--raised mdc-alert-dialog__button"
     data-mdc-dialog-button-default
     @click="handleClick">
-    <span class="mdc-button__label">{{ options.buttonText }}</span>
+    <span class="mdc-button__label" v-text="options.buttonText"></span>
   </button>
 </mdc-dialog>`;
 
-const alertDialog = (customOptions = {}) => {
-  let options = Object.assign({}, globalOptions);
+function createAlertDialog(options, done) {
+  alertEl = createModal(UI_ALERT_DIALOG.id);
 
-  if (getType(customOptions) === 'string') {
-    options.message = `${customOptions}`; // To string
-  } else if (getType(customOptions) === 'object') {
-    options = Object.assign({}, options, customOptions);
-  }
+  alertApp = createApp({
+    name: 'BalmUIAlert',
+    components: {
+      MdcDialog
+    },
+    data() {
+      return {
+        open: false,
+        options
+      };
+    },
+    mounted() {
+      this.$nextTick(() => {
+        this.open = true;
+      });
+    },
+    unmounted() {
+      removeModel(alertEl);
+    },
+    methods: {
+      handleClose() {
+        this.open = false;
+
+        alertApp.unmount(`#${UI_ALERT_DIALOG.id}`);
+      },
+      handleClick() {
+        this.handleClose();
+
+        if (typeof this.options.callback === 'function') {
+          this.options.callback();
+        } else {
+          done();
+        }
+      }
+    },
+    template
+  });
+
+  return alertApp;
+}
+
+const alertDialog = (customOptions = {}) => {
+  const options = getOptions(globalOptions, customOptions);
 
   return new Promise((resolve) => {
-    const el = createDiv(UI_ALERT_DIALOG.id);
-
-    let alertApp = createApp({
-      components: {
-        MdcDialog
-      },
-      data() {
-        return {
-          open: false,
-          options
-        };
-      },
-      mounted() {
-        this.$nextTick(() => {
-          this.open = true;
-        });
-      },
-      methods: {
-        handleClose() {
-          this.open = false;
-
-          removeDiv(el);
-          alertApp = null;
-        },
-        handleClick() {
-          this.handleClose();
-
-          if (getType(this.options.callback) === 'function') {
-            this.options.callback();
-          } else {
-            resolve();
-          }
-        }
-      },
-      template
-    }).mount(`#${UI_ALERT_DIALOG.id}`);
+    createAlertDialog(options, resolve).mount(`#${UI_ALERT_DIALOG.id}`);
   });
 };
 

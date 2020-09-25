@@ -12,6 +12,8 @@ Vue.use(BalmUI);
 ```js
 import Vue from 'vue';
 import event from 'balm-ui/plugins/event';
+import bus from 'balm-ui/plugins/bus';
 
 Vue.use(event);
+Vue.use(bus);
 ```

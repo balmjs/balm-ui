@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueMeta from 'vue-meta';
-import bus from '@/store/bus';
+import { bus } from 'balm-ui';
 // Layout
 import BlankLayout from '@/views/layouts/blank';
 // Routes
@@ -114,7 +114,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  bus.$emit('page-load');
+  bus.pub('page-load');
   next();
 });
 
@@ -144,7 +144,7 @@ router.afterEach((to, from) => {
     pageClassList.add(`${CLASS_NAMESPACE}-${toName}`);
   }
 
-  bus.$emit('page-ready');
+  bus.pub('page-ready');
 });
 
 export default router;

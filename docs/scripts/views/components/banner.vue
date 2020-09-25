@@ -6,7 +6,7 @@
 
     <!-- Content -->
     <section class="demo-wrapper">
-      <ui-button @click="$bus.$emit('global-message')">Show Banner</ui-button>
+      <ui-button @click="$bus.pub('global-message')">Show Banner</ui-button>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
   </docs-page>

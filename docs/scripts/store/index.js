@@ -1,12 +1,9 @@
-import Vue from 'vue';
-import { isDev, themes } from '@/config';
-import bus from './bus';
-import dev from './dev';
+import { bus } from 'balm-ui';
+import { themes } from '@/config';
 import page from './page';
 
-export default new Vue({
-  name: 'Store',
-  mixins: [isDev ? dev : {}, page],
+export default {
+  mixins: [page],
   data() {
     return {
       theme: '',
@@ -57,7 +54,7 @@ export default new Vue({
     setLang({ value }) {
       this.lang = value;
       localStorage.setItem('lang', value);
-      bus.$emit('switch-lang', value);
+      bus.pub('switch-lang', value);
     }
   }
-});
+};

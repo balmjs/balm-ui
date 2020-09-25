@@ -1,10 +1,9 @@
 import '@/polyfill';
 import Vue from 'vue';
-import $http from '@/plugins/$http';
-import $bus from '@/plugins/$bus';
-import $store from '@/plugins/$store';
 import router from '@/routes';
 import i18n from '@/lang';
+import store from '@/store';
+import $http from '@/plugins/$http';
 import App from '@/views/layouts/app';
 import { isProd } from '@/config';
 import validatorRules from '@/config/validator-rules';
@@ -37,12 +36,11 @@ function createApp() {
   Vue.config.productionTip = false;
 
   Vue.use($http);
-  Vue.use($bus);
-  Vue.use($store);
 
   Vue.use(BalmUI, {
     typography: ['custom-style-1', 'custom-style-2'],
-    validator: validatorRules
+    validator: validatorRules,
+    store
   });
   Vue.use(UiAutocomplete);
   Vue.use(UiDatepicker);

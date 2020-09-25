@@ -12,7 +12,7 @@
   $anchor-padding-left-with-leading-icon: 0,
   $anchor-padding-right: 0,
   $outlined-stroke-width: 2px,
-  $min-width: 200px,
+  $default-width: 200px,
   $shape-radius: small,
 
   $minimum-height: 40px,

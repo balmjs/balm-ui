@@ -22,7 +22,7 @@ Visit [material.balmjs.com](https://material.balmjs.com/).
 
 ### Requirements
 
-- Vue.js@2.1.0+
+- Vue.js@2.1.0+ / Vue.js@3.0+
 - :rocket: **[Balm CLI](https://github.com/balmjs/balm-cli)**(Recommended) or [Vue CLI](https://github.com/vuejs/vue-cli) or other toolchains
 
 ### 1. For Balm CLI (Recommended)
@@ -42,7 +42,7 @@ yarn add balm-ui
 npm install --save balm-ui
 ```
 
-> :tada: `balm-ui@next` for canary version
+> :tada: `balm-ui@next` for Vue 3.0
 
 #### 1.2 Configuration
 
@@ -158,7 +158,7 @@ yarn add balm-ui
 npm install --save balm-ui
 ```
 
-> :tada: `balm-ui@next` for canary version
+> :tada: `balm-ui@next` for Vue 3.0
 
 #### 2.2 Usage
 
@@ -185,7 +185,7 @@ npm install --save balm-ui
     <title>Hello BalmUI</title>
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/balm-ui@next/dist/balm-ui.css"
+      href="https://cdn.jsdelivr.net/npm/balm-ui/dist/balm-ui.css"
     />
   </head>
   <body>
@@ -193,8 +193,8 @@ npm install --save balm-ui
       <ui-button @click="$alert(message)" icon="add">SayHi</ui-button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script src="https://cdn.jsdelivr.net/npm/balm-ui@next"></script>
-    <script src="https://cdn.jsdelivr.net/npm/balm-ui@next/dist/balm-ui-plus.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/balm-ui"></script>
+    <script src="https://cdn.jsdelivr.net/npm/balm-ui/dist/balm-ui-plus.js"></script>
     <script>
       new Vue({
         el: '#app',
@@ -231,5 +231,5 @@ We officially support the last two versions of every major browser. Specifically
 
 [balm-ui-image]: https://badge.fury.io/js/balm-ui.svg
 [balm-ui-url]: https://www.npmjs.com/package/balm-ui
-[mdc-web-image]: https://img.shields.io/badge/mdc--web-7.0.0-blue.svg
+[mdc-web-image]: https://img.shields.io/badge/mdc--web-8.0.0-blue.svg
 [mdc-web-url]: https://www.npmjs.com/package/material-components-web

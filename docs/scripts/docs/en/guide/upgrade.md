@@ -1,5 +1,7 @@
 # Upgrade Guide
 
+> 🎉 `balm-ui@next`(v9.0) for Vue 3.0
+
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8">Upgrading To 8.0 From 7.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-7">Upgrading To 7.0 From 6.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-6">Upgrading To 6.0 From 5.x</a>
@@ -10,6 +12,13 @@
 
 ### Features
 
+- new components:
+  - `<ui-banner>`
+  - `<ui-tooltip>`
+  - `<ui-nav-item>`
+- new plugins:
+  - `$bus`
+  - `$store`
 - `$theme`: new theme apis
 - `v-shape`: new shape apis
 - `<ui-menuitem>`: add prop `value`

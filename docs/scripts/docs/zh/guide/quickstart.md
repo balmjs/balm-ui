@@ -31,7 +31,7 @@ The [Balm CLI](https://github.com/balmjs/balm-cli) is a command line interface t
 根据以下命令生成一个新项目：
 
 ```bash
-balm init vue my-project
+balm init vue#next my-project
 cd my-project # Go to the project directory
 ```
 
@@ -50,18 +50,16 @@ npm install
 ### 1.1 安装 `balm-ui`
 
 ```bash
-yarn add balm-ui
+yarn add balm-ui@next
 # OR
-npm install --save balm-ui
+npm install --save balm-ui@next
 ```
-
-> 🎉 `balm-ui@next`(v9.0) for Vue 3.0
 
 ### 1.2 Configuration
 
 更新 `balm.config.js`
 
-- 获取 [Material Icons](https://material.balmjs.com/material-icons.zip) 无需下载（或者下载后解压至 `/path/to/my-project/app/fonts`）
+- 获取 [Material Icons](https://next.material.balmjs.com/material-icons.zip) 无需下载（或者下载后解压至 `/path/to/my-project/app/fonts`）
 
   ```js
   const api = (mix) => {
@@ -166,12 +164,10 @@ cd my-project
 ### 2.1 安装 `balm-ui`
 
 ```bash
-yarn add balm-ui
+yarn add balm-ui@next
 # OR
-npm install --save balm-ui
+npm install --save balm-ui@next
 ```
-
-> 🎉 `balm-ui@next`(v9.0) for Vue 3.0
 
 ### 2.2 使用
 
@@ -198,7 +194,7 @@ npm install --save balm-ui
     <title>Hello BalmUI</title>
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/balm-ui/dist/balm-ui.css"
+      href="https://cdn.jsdelivr.net/npm/balm-ui@next/dist/balm-ui.css"
     />
   </head>
   <body>
@@ -206,8 +202,8 @@ npm install --save balm-ui
       <ui-button @click="$alert(message)" icon="add">SayHi</ui-button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script src="https://cdn.jsdelivr.net/npm/balm-ui"></script>
-    <script src="https://cdn.jsdelivr.net/npm/balm-ui/dist/balm-ui-plus.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/balm-ui@next"></script>
+    <script src="https://cdn.jsdelivr.net/npm/balm-ui@next/dist/balm-ui-plus.js"></script>
     <script>
       new Vue({
         el: '#app',

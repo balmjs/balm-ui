@@ -296,7 +296,7 @@ module.exports = {
 
 <div id="mdi"></div>
 
-## 3. Get [Material Icons](https://material.balmjs.com/material-icons.zip) without downloading
+## 3. Get [Material Icons](https://next.material.balmjs.com/material-icons.zip) without downloading
 
 - Edit `/path/to/my-project/balm.config.js`
 

@@ -62,6 +62,7 @@ function getConfig(balm) {
       },
       includeJsResource: useDocs ? [path.join(workspace, 'src/scripts')] : [],
       alias: {
+        vue$: 'vue/dist/vue.esm-bundler.js',
         pickerLangZh: 'flatpickr/dist/l10n/zh.js',
         '@': path.join(workspace, 'docs/scripts'),
         'balm-ui': path.join(workspace, 'src/scripts')

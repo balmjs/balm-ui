@@ -31,7 +31,7 @@
           <ui-slider
             v-model="value1"
             :disabled="disabled"
-            @change="onChange"
+            @update:modelValue="onChange"
           ></ui-slider>
         </div>
       </div>
@@ -44,7 +44,7 @@
           <ui-slider
             v-model="value2"
             :disabled="disabled"
-            @change="onChange"
+            @update:modelValue="onChange"
           ></ui-slider>
         </div>
       </div>

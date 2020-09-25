@@ -14,7 +14,7 @@
     <section :class="{ 'rounded-corners': radius }">
       <div class="demo-controls">
         <ui-form-field>
-          <ui-checkbox id="toggle-radius" v-model="radius"></ui-checkbox>
+          <ui-checkbox v-model="radius" input-id="toggle-radius"></ui-checkbox>
           <label for="toggle-radius">Toggle Rounded Corners</label>
         </ui-form-field>
       </div>
@@ -76,8 +76,7 @@
 </template>
 
 <script>
-const UiImageListControls = () =>
-  import('@/demos/image-list/image-list-controls');
+import UiImageListControls from '@/demos/image-list/image-list-controls';
 
 export default {
   metaInfo: {

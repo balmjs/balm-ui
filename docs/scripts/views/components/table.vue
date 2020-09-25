@@ -53,7 +53,7 @@
           v-model="page"
           :total="total"
           show-total
-          @change="onPage"
+          @update:modelValue="onPage"
         ></ui-pagination>
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>

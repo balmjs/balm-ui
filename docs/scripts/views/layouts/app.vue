@@ -20,7 +20,7 @@
         <router-link
           to="/"
           :class="['catalog-title', $theme.getThemeClass('on-primary')]"
-          >BalmUI</router-link
+          >{{ title }}</router-link
         >
         <template #toolbar="{ toolbarItemClass }">
           <top-toolbar :item-class="toolbarItemClass"></top-toolbar>
@@ -49,7 +49,7 @@
             class="balmui-menu"
           >
             <ui-drawer-header>
-              <ui-drawer-title>BalmUI</ui-drawer-title>
+              <ui-drawer-title>{{ title }}</ui-drawer-title>
               <ui-drawer-subtitle>
                 <i class="balmui-version">
                   v
@@ -271,6 +271,7 @@ export default {
   },
   data() {
     return {
+      title: 'BalmUI',
       version: VERSION, // .split('-')[0],
       menu,
       openDrawer: false

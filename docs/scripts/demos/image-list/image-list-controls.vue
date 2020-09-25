@@ -2,8 +2,8 @@
   <div>
     <ui-form-field>
       <ui-radio
-        :id="`${idPrefix}-label-below`"
         v-model="controls.labelsType"
+        :input-id="`${idPrefix}-label-below`"
         :name="`${idPrefix}-labels`"
         :value="1"
       ></ui-radio>
@@ -12,8 +12,8 @@
 
     <ui-form-field>
       <ui-radio
-        :id="`${idPrefix}-label-protected`"
         v-model="controls.labelsType"
+        :input-id="`${idPrefix}-label-protected`"
         :name="`${idPrefix}-labels`"
         :value="2"
       ></ui-radio>
@@ -24,8 +24,8 @@
 
     <ui-form-field>
       <ui-radio
-        :id="`${idPrefix}-label-none`"
         v-model="controls.labelsType"
+        :input-id="`${idPrefix}-label-none`"
         :name="`${idPrefix}-labels`"
         :value="0"
       ></ui-radio>
@@ -36,22 +36,28 @@
 
 <script>
 export default {
-  model: {
-    prop: 'controls',
-    event: 'change'
-  },
   props: {
     idPrefix: {
       type: String,
       default: 'standard'
     },
-    controls: {
+    modelValue: {
       type: Object,
       default() {
-        return {
-          labelsType: 1
-        };
+        return {};
       }
+    }
+  },
+  emits: ['update:modelValue'],
+  data() {
+    return {
+      controls: this.modelValue
+    };
+  },
+  watch: {
+    modelValue(val) {
+      this.controls = val;
+      this.$emit('update:modelValue', val);
     }
   }
 };

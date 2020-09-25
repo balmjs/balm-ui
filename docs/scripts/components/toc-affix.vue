@@ -1,6 +1,6 @@
 <template>
   <div v-shadow.transition="[2, 8]" class="toc-affix">
-    <ui-tabs v-model="active" @change="onChange">
+    <ui-tabs v-model="active" @update:modelValue="onChange">
       <ui-tab v-anchor:href="'#ui-usage'" class="v-anchor">{{
         t('page.usage')
       }}</ui-tab>

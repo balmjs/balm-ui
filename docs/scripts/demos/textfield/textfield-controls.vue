@@ -2,36 +2,36 @@
   <ui-form>
     <ui-form-field v-if="options.includes('disabled')">
       <ui-checkbox
-        :id="`${idPrefix}-disable`"
-        v-model="modelValue.disabled"
+        v-model="controls.disabled"
+        :input-id="`${idPrefix}-disable`"
       ></ui-checkbox>
       <label :for="`${idPrefix}-disable`">Disabled</label>
     </ui-form-field>
     <ui-form-field v-if="options.includes('rtl')">
       <ui-checkbox
-        :id="`${idPrefix}-rtl`"
-        v-model="modelValue.rtl"
+        v-model="controls.rtl"
+        :input-id="`${idPrefix}-rtl`"
       ></ui-checkbox>
       <label :for="`${idPrefix}-rtl`">RTL</label>
     </ui-form-field>
     <ui-form-field v-if="options.includes('required')">
       <ui-checkbox
-        :id="`${idPrefix}-required`"
-        v-model="modelValue.required"
+        v-model="controls.required"
+        :input-id="`${idPrefix}-required`"
       ></ui-checkbox>
       <label :for="`${idPrefix}-required`">Required</label>
     </ui-form-field>
     <ui-form-field v-if="options.includes('customColor')">
       <ui-checkbox
-        :id="`${idPrefix}-alternate-colors`"
-        v-model="modelValue.customColor"
+        v-model="controls.customColor"
+        :input-id="`${idPrefix}-alternate-colors`"
       ></ui-checkbox>
       <label :for="`${idPrefix}-alternate-colors`">Alternate Colors</label>
     </ui-form-field>
     <ui-form-field v-if="options.includes('unclickable')">
       <ui-checkbox
-        :id="`${idPrefix}-unclickable-leading-trailing`"
-        v-model="modelValue.unclickable"
+        v-model="controls.unclickable"
+        :input-id="`${idPrefix}-unclickable-leading-trailing`"
       ></ui-checkbox>
       <label :for="`${idPrefix}-unclickable-leading-trailing`"
         >Unclickable icons</label
@@ -39,8 +39,8 @@
     </ui-form-field>
     <ui-form-field v-if="options.includes('min')">
       <ui-checkbox
-        :id="`${idPrefix}-outlined-minlength`"
-        v-model="modelValue.min"
+        v-model="controls.min"
+        :input-id="`${idPrefix}-outlined-minlength`"
       ></ui-checkbox>
       <label :for="`${idPrefix}-outlined-minlength`"
         >Must be at least 8 characters</label
@@ -48,8 +48,8 @@
     </ui-form-field>
     <ui-form-field v-if="options.includes('max')">
       <ui-checkbox
-        :id="`${idPrefix}-outlined-maxlength`"
-        v-model="modelValue.max"
+        v-model="controls.max"
+        :input-id="`${idPrefix}-outlined-maxlength`"
       ></ui-checkbox>
       <label :for="`${idPrefix}-outlined-maxlength`"
         >Must not exceed 10 characters</label
@@ -58,16 +58,16 @@
     <template v-if="options.includes('helperText')">
       <ui-form-field>
         <ui-checkbox
-          :id="`${idPrefix}-use-helper-text`"
-          v-model="modelValue.helperText"
+          v-model="controls.helperText"
+          :input-id="`${idPrefix}-use-helper-text`"
         ></ui-checkbox>
         <label :for="`${idPrefix}-use-helper-text`">Use Helper Text</label>
       </ui-form-field>
       <ui-form-field>
         <ui-checkbox
-          :id="`${idPrefix}-persistent-helper-text`"
-          v-model="modelValue.isVisible"
-          :disabled="!modelValue.helperText"
+          v-model="controls.isVisible"
+          :input-id="`${idPrefix}-persistent-helper-text`"
+          :disabled="!controls.helperText"
         ></ui-checkbox>
         <label :for="`${idPrefix}-persistent-helper-text`"
           >Make helper text persistent</label
@@ -75,9 +75,9 @@
       </ui-form-field>
       <ui-form-field>
         <ui-checkbox
-          :id="`${idPrefix}-helper-text-as-validation`"
-          v-model="modelValue.hasValidMsg"
-          :disabled="!modelValue.helperText"
+          v-model="controls.hasValidMsg"
+          :input-id="`${idPrefix}-helper-text-as-validation`"
+          :disabled="!controls.helperText"
         ></ui-checkbox>
         <label :for="`${idPrefix}-helper-text-as-validation`"
           >Use helper text as validation message</label
@@ -107,6 +107,17 @@ export default {
       }
     }
   },
-  emits: ['update:modelValue']
+  emits: ['update:modelValue'],
+  data() {
+    return {
+      controls: this.modelValue
+    };
+  },
+  watch: {
+    modelValue(val) {
+      this.controls = val;
+      this.$emit('update:modelValue', val);
+    }
+  }
 };
 </script>

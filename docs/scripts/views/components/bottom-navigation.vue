@@ -21,7 +21,11 @@
     </docs-page>
 
     <ui-bottom-navigation content-selector=".page--bottom-navigation-container">
-      <ui-tabs v-model="active" :items="items" @change="onChange"></ui-tabs>
+      <ui-tabs
+        v-model="active"
+        :items="items"
+        @update:modelValue="onChange"
+      ></ui-tabs>
     </ui-bottom-navigation>
   </div>
 </template>

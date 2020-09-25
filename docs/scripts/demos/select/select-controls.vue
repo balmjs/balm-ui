@@ -32,15 +32,23 @@ export default {
       type: String,
       default: 'default'
     },
-    controls: {
+    modelValue: {
       type: Object,
       default() {
-        return {
-          rtl: false,
-          customColor: false,
-          disabled: false
-        };
+        return {};
       }
+    }
+  },
+  emits: ['update:modelValue'],
+  data() {
+    return {
+      controls: this.modelValue
+    };
+  },
+  watch: {
+    modelValue(val) {
+      this.controls = val;
+      this.$emit('update:modelValue', val);
     }
   }
 };

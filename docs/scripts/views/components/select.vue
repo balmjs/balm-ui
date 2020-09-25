@@ -4,7 +4,7 @@
     demo-count="4"
     :apis="['select', 'select-helper', 'select-icon']"
   >
-    <!-- <template #hero>
+    <template #hero>
       <div class="hero-demo">
         <div>
           <ui-select
@@ -81,7 +81,7 @@
           </ui-form-field>
         </ui-form>
       </div>
-    </template> -->
+    </template>
 
     <!-- Content -->
     <section class="demo-wrapper">
@@ -116,7 +116,7 @@
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
 
-    <!-- <section class="demo-wrapper">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Outlined Select</h6>
       <div class="demo">
         <div class="example" :dir="controls.rtl ? 'rtl' : null">
@@ -141,13 +141,13 @@
         </p>
         <ui-select-controls
           v-model="controls"
-          id-prefix="outline"
+          id-prefix="outlined"
         ></ui-select-controls>
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
-    </section> -->
+    </section>
 
-    <!-- <section class="demo-wrapper">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.3 Pre-selected option via HTML</h6>
       <div class="demo">
         <ui-select
@@ -158,16 +158,16 @@
         >
       </div>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
-    </section> -->
+    </section>
 
-    <!-- <section class="demo-wrapper">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.4 Custom Select</h6>
       <div class="demo">
         <ui-select
           v-model="formData.province"
           :options="provinces"
           default-label="Province"
-          @change="onChangeProvince($event)"
+          @update:modelValue="onChangeProvince($event)"
         ></ui-select>
 
         <ui-select
@@ -178,13 +178,13 @@
         <p>Province: {{ formData.province }} - City: {{ formData.city }}</p>
       </div>
       <ui-snippet :code="$store.demos[4]"></ui-snippet>
-    </section> -->
+    </section>
   </docs-page>
 </template>
 
 <script>
+import UiSelectControls from '@/demos/select/select-controls';
 import { PROVINCES, CITIES, OPTIONS } from '../../../data/select';
-const UiSelectControls = () => import('@/demos/select/select-controls');
 
 const TypeOptions = [
   {

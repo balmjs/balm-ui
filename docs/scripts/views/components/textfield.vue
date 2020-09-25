@@ -4,7 +4,7 @@
     :apis="['ui-textfield', 'textfield', 'textfield-icon', 'textfield-helper']"
     demo-count="7"
   >
-    <!-- <template #hero>
+    <template #hero>
       <div class="hero-demo">
         <div>
           <ui-textfield
@@ -103,7 +103,7 @@
           </ui-form>
         </div>
       </div>
-    </template> -->
+    </template>
 
     <!-- Content -->
     <section class="demo-wrapper">
@@ -127,14 +127,14 @@
           </template>
         </ui-textfield>
       </div>
-      <!-- <ui-textfield-controls
+      <ui-textfield-controls
         v-model="controls"
         :options="['disabled', 'rtl', 'required', 'customColor', 'helperText']"
-      ></ui-textfield-controls> -->
+      ></ui-textfield-controls>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
 
-    <!-- <section class="demo-wrapper">
+    <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Password field with validation</h6>
       <div class="demo">
         <ui-textfield
@@ -266,6 +266,7 @@
       </div>
       <ui-textfield-controls
         v-model="controls"
+        id-prefix="with-icons"
         :options="[
           'disabled',
           'rtl',
@@ -281,7 +282,7 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.5 Preventing FOUC</h6>
       <div class="demo">
-        <ui-textfield input-id="fouc" v-model="value"
+        <ui-textfield v-model="value" input-id="fouc"
           >Label floating above</ui-textfield
         >
       </div>
@@ -316,6 +317,7 @@
       </div>
       <ui-textfield-controls
         v-model="controls"
+        id-prefix="textarea"
         :options="['disabled', 'rtl', 'required', 'customColor']"
       ></ui-textfield-controls>
       <ui-snippet :code="$store.demos[6]"></ui-snippet>
@@ -328,9 +330,11 @@
       <div class="demo">
         <ui-textfield
           v-model="title"
+          input-id="full-width-textfield"
           fullwidth
           placeholder="Subject"
           maxlength="40"
+          helper-text-id="full-width-textfield-helper"
           with-outer-counter
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
@@ -346,6 +350,7 @@
           class="full-width-textarea-example"
           rows="8"
           maxlength="140"
+          helper-text-id="full-width-textarea-helper"
           with-outer-counter
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
@@ -354,17 +359,17 @@
       </div>
       <ui-textfield-controls
         v-model="controls"
+        id-prefix="full-width"
         :options="['disabled', 'required', 'customColor']"
       ></ui-textfield-controls>
       <ui-snippet :code="$store.demos[7]"></ui-snippet>
-    </section> -->
+    </section>
   </docs-page>
 </template>
 
 <script>
 import { reactive, toRefs } from 'vue';
-const UiTextfieldControls = () =>
-  import('@/demos/textfield/textfield-controls');
+import UiTextfieldControls from '@/demos/textfield/textfield-controls';
 
 const TypeOptions = [
   {

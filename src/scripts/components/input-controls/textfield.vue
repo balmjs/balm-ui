@@ -124,7 +124,7 @@
     :is-valid-msg="hasValidMsg"
     :with-counter="withOuterCounter"
   >
-    <slot name="helper-text"></slot>
+    <slot name="helper-text">{{ hasValidMsg ? validMsg : '' }}</slot>
   </mdc-textfield-helper>
 </template>
 

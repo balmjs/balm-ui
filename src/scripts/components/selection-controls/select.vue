@@ -97,7 +97,7 @@
     :visible="helperTextVisible"
     :is-valid-msg="hasValidMsg"
   >
-    <slot name="helper-text"></slot>
+    <slot name="helper-text">{{ hasValidMsg ? validMsg : '' }}</slot>
   </mdc-select-helper>
 </template>
 

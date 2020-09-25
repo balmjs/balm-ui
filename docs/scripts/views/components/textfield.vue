@@ -127,10 +127,10 @@
           </template>
         </ui-textfield>
       </div>
-      <ui-textfield-controls
+      <!-- <ui-textfield-controls
         v-model="controls"
         :options="['disabled', 'rtl', 'required', 'customColor', 'helperText']"
-      ></ui-textfield-controls>
+      ></ui-textfield-controls> -->
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
 

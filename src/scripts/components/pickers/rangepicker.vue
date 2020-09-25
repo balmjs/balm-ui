@@ -107,7 +107,7 @@ export default {
     }
   },
   watch: {
-    model(val, oldVal) {
+    modelValue(val, oldVal) {
       let hasOneOldValue = oldVal[0] || oldVal[1];
       let hasTwoNewValue = val[0] && val[1];
 

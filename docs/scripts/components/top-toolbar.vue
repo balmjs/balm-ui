@@ -1,10 +1,10 @@
 <template>
   <switch-theme v-if="$route.name === 'theme.color'"></switch-theme>
   <!-- For dark theme test -->
-  <ui-icon-button
+  <!-- <ui-icon-button
     :icon="$store.theme === 'dark' ? 'bedtime' : 'wb_sunny'"
     @click="$store.switchTheme"
-  ></ui-icon-button>
+  ></ui-icon-button> -->
   <ui-menu-anchor>
     <ui-icon-button
       icon="language"

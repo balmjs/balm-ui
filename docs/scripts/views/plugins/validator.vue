@@ -11,39 +11,30 @@
         <ui-textfield
           id="mobile"
           v-model="formData.mobile"
+          v-model:validMsg="validMsg.mobile"
           helper-text-id="mobile-helper-text"
-          >Mobile</ui-textfield
-        >
-        <ui-textfield-helper
-          id="mobile-helper-text"
-          v-model="validMsg.mobile"
-        ></ui-textfield-helper>
+          >Mobile
+        </ui-textfield>
       </ui-form-field>
       <ui-form-field class="form-item">
         <ui-textfield
           id="password"
           v-model="formData.password"
+          v-model:validMsg="validMsg.password"
           input-type="password"
           helper-text-id="password-helper-text"
           >Password</ui-textfield
         >
-        <ui-textfield-helper
-          id="password-helper-text"
-          v-model="validMsg.password"
-        ></ui-textfield-helper>
       </ui-form-field>
       <ui-form-field class="form-item">
         <ui-textfield
           id="repassword"
           v-model="formData.repassword"
+          v-model:validMsg="validMsg.repassword"
           input-type="password"
           helper-text-id="repassword-helper-text"
           >Repeat Password</ui-textfield
         >
-        <ui-textfield-helper
-          id="repassword-helper-text"
-          v-model="validMsg.repassword"
-        ></ui-textfield-helper>
       </ui-form-field>
       <ui-form-field class="form-item form-actions">
         <ui-button raised @click="submit">Submit</ui-button>
@@ -54,6 +45,37 @@
 </template>
 
 <script>
+import { reactive, toRefs } from 'vue';
+import { useValidator } from 'balm-ui';
+import { useToast } from 'balm-ui/plugins/toast';
+
+const state = reactive({
+  formData: {
+    mobile: '',
+    password: '',
+    repassword: ''
+  },
+  validMsg: {}
+});
+
+function useActions() {
+  const balmUI = useValidator();
+  const toast = useToast();
+
+  function submit() {
+    let { valid, validMsg } = balmUI.validate(state.formData);
+    state.validMsg = validMsg;
+
+    if (valid) {
+      toast('gg');
+    }
+  }
+
+  return {
+    submit
+  };
+}
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Validator'
@@ -90,25 +112,11 @@ export default {
       }
     }
   },
-  data() {
+  setup() {
     return {
-      formData: {
-        mobile: '',
-        password: '',
-        repassword: ''
-      },
-      validMsg: {}
+      ...toRefs(state),
+      ...useActions()
     };
-  },
-  methods: {
-    submit() {
-      let { valid, validMsg } = this.$validate(this.formData);
-      this.validMsg = validMsg;
-
-      if (valid) {
-        this.$toast('gg');
-      }
-    }
   }
 };
 </script>

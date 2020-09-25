@@ -1,7 +1,7 @@
 - page
 
 ```html
-<ui-button @click="$bus.$emit('global-message')">Show Banner</ui-button>
+<ui-button @click="$bus.pub('global-message')">Show Banner</ui-button>
 ```
 
 - layout
@@ -26,11 +26,11 @@ export default {
     };
   },
   mounted() {
-    this.$bus.$on('global-message', (message) => {
+    this.$bus.sub('global-message', (message) => {
       this.showGlobalMessage = true;
     });
   }
 };
 ```
 
-> **`$bus`**: is the global vue instance in Balm CLI - [vue expert](https://github.com/balmjs/template-vue-expert) template
+> **`$bus`**: see BalmUI [event plugin](/#/misc/event) docs for details

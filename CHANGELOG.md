@@ -1,8 +1,8 @@
 # [BalmUI](https://material.balmjs.com) ChangeLog
 
-## v8.0.0 / 2020-08-25
+## v8.0.0 / 2020-09-25
 
-> `balm-ui 8.0` is coming up
+> :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) for Vue 3.0
 
 ### Bug Fixes
 
@@ -25,10 +25,13 @@
 - simplify Sass module usage
 - update mdc@8.0.0
 - update material-icons v55
-- new components
+- new components:
   - `<ui-banner>`
   - `<ui-tooltip>`
   - `<ui-nav-item>`
+- new plugins:
+  - `$bus`
+  - `$store`
 - `<ui-menuitem>`: add prop `value`
 - `<ui-form>`: add prop `itemMarginBottom`, `labelWidth`, `labelMarginRight`, `labelMarginBottom`
 - `<ui-table>`: add slot for thead cell

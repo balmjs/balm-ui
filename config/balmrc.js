@@ -77,6 +77,11 @@ function getConfig(balm) {
               globalObject: "typeof self !== 'undefined' ? self : this"
             }
           }
+        : {},
+      externals: useBuild
+        ? {
+            vue: 'Vue'
+          }
         : {}
       // options: {
       //   compress: {

@@ -226,16 +226,17 @@ export default {
         : true;
     }
   },
-  created() {
+  mounted() {
+    this.init();
+    window.addEventListener('balmResize', this.init);
+
     this.$bus.sub('page-load', () => {
       this.pageLoading = true;
       this.loadingTimer = setInterval(this.loading, 20);
     });
 
     this.$bus.sub('page-ready', () => {
-      this.$nextTick(() => {
-        this.bodyEl.scrollTop = 0;
-      });
+      this.bodyEl.scrollTop = 0;
 
       setTimeout(() => {
         this.loadingProgress = 1;
@@ -245,10 +246,6 @@ export default {
         this.loadingProgress = 0;
       }, 100);
     });
-  },
-  mounted() {
-    this.init();
-    window.addEventListener('balmResize', this.init);
 
     this.$bus.sub('global-message', (message) => {
       this.showGlobalMessage = true;

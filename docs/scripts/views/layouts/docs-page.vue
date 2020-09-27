@@ -16,6 +16,7 @@
     <ui-toc-affix
       v-else
       :class="{ 'toc-affix--bottom': bottomAffix }"
+      :without-apis="name === 'store'"
       :without-css="withoutCss"
     ></ui-toc-affix>
 
@@ -30,11 +31,15 @@
       <ui-markdown :text="docs.usage"></ui-markdown>
 
       <h2 v-anchor:id="'ui-demo'">1. {{ t('page.demo') }}</h2>
-      <slot>
-        <p>Coming Up...</p>
-      </slot>
 
-      <h2 v-anchor:id="'ui-apis'">2. {{ t('page.apis') }}</h2>
+      <template v-if="name !== 'store'">
+        <slot>
+          <p>Coming Up...</p>
+        </slot>
+
+        <h2 v-anchor:id="'ui-apis'">2. {{ t('page.apis') }}</h2>
+      </template>
+
       <ui-markdown
         v-for="(apidocs, index) in docs.apis"
         :key="index"

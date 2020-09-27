@@ -82,13 +82,13 @@ function createConfirmDialog(options, callback) {
   return confirmApp;
 }
 
-const confirmDialog = (customOptions = {}) => {
+function confirmDialog(customOptions = {}) {
   const options = getOptions(globalOptions, customOptions);
 
   return new Promise((resolve) => {
     createConfirmDialog(options, resolve).mount(`#${UI_CONFIRM_DIALOG.id}`);
   });
-};
+}
 
 const BalmUI_ConfirmPlugin = {
   install(app, options = {}) {

@@ -5,9 +5,8 @@ import i18n from '@/lang';
 import $http from '@/plugins/http';
 import store from '@/store';
 import App from '@/views/layouts/app';
-import { isProd } from '@/config';
+import { setGlobalProps } from '@/config';
 import validatorRules from '@/config/validator-rules';
-import prismjs from 'prismjs';
 // BalmUI
 import BalmUI from 'balm-ui';
 import UiAutocomplete from 'balm-ui/components/autocomplete';
@@ -64,44 +63,7 @@ function createBalmUIApp() {
   app.component(UiTocAffix.name, UiTocAffix);
   app.component(SvgLogo.name, SvgLogo);
 
-  app.config.globalProperties.$prism = prismjs;
-  app.config.globalProperties.$docs = {
-    props: {
-      thead: ['Name', 'Type', 'Default', 'Description'],
-      tbody: [
-        'name',
-        'type',
-        'default',
-        {
-          field: 'description',
-          raw: true
-        }
-      ]
-    },
-    slots: {
-      thead: ['Name', 'Description', 'Slot'],
-      tbody: ['name', 'description', 'props']
-    },
-    events: {
-      thead: ['Name', 'Type', 'Description'],
-      tbody: ['name', 'type', 'description']
-    },
-    sass: {
-      thead: ['Variable', 'Description'],
-      tbody: [
-        'var',
-        {
-          field: 'description',
-          raw: true
-        }
-      ]
-    }
-  };
-  app.config.globalProperties.$domain = isProd
-    ? '//next.material.balmjs.com'
-    : '';
-
-  app.config.isCustomElement = (tag) => tag.startsWith('ui-');
+  setGlobalProps(app);
 
   app.mount('#app');
   document.getElementById('app').removeAttribute('class');

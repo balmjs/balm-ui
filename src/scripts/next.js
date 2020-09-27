@@ -6,14 +6,12 @@ import multiConfigure from './config/multi-configure';
  */
 import UiBottomNavigation from './components/navigation/bottom-navigation';
 
-const version = packageJson.version;
-
 const components = {
   UiBottomNavigation
 };
 
 const BalmUINext = {
-  version,
+  version: packageJson.version,
   install(Vue, options = {}) {
     // Configure the components' props
     multiConfigure(components, options);

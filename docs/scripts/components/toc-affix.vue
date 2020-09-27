@@ -14,7 +14,7 @@
         class="v-anchor"
         >{{ item.name }}</ui-tab
       >
-      <ui-tab v-anchor:href="'#ui-apis'" class="v-anchor">{{
+      <ui-tab v-if="!withoutApis" v-anchor:href="'#ui-apis'" class="v-anchor">{{
         t('page.apis')
       }}</ui-tab>
       <ui-tab v-if="!withoutCss" v-anchor:href="'#ui-sass'" class="v-anchor">{{
@@ -37,6 +37,10 @@ export default {
       default() {
         return {};
       }
+    },
+    withoutApis: {
+      type: Boolean,
+      default: false
     },
     withoutCss: {
       type: Boolean,

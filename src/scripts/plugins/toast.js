@@ -108,7 +108,7 @@ function createToast(options) {
   return toastApp;
 }
 
-const toast = (customOptions = {}) => {
+function toast(customOptions = {}) {
   const options = getOptions(globalOptions, customOptions);
 
   if (toastApp) {
@@ -119,7 +119,7 @@ const toast = (customOptions = {}) => {
   } else {
     toastAppInstance = createToast(options).mount(`#${UI_TOAST.id}`);
   }
-};
+}
 
 const BalmUI_ToastPlugin = {
   install(app, options = {}) {

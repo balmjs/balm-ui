@@ -22,8 +22,6 @@ import toast, { useToast } from './plugins/toast';
  */
 import vAnchor from './directives/anchor';
 
-const version = packageJson.version;
-
 const components = {
   UiAlert,
   UiAutocomplete,
@@ -45,7 +43,7 @@ const directives = {
 };
 
 const BalmUIPlus = {
-  version,
+  version: packageJson.version,
   install(Vue, options = {}) {
     // Configure the components' props
     multiConfigure(components, options);
@@ -77,4 +75,15 @@ const BalmUIPlus = {
 autoInstall(BalmUIPlus);
 
 export default BalmUIPlus;
+export {
+  UiAlert,
+  UiAutocomplete,
+  UiCollapse,
+  UiDatepicker,
+  UiEditor,
+  UiRangepicker,
+  UiSkeleton
+};
+export { alert, confirm, toast };
 export { useAlert, useConfirm, useToast };
+export { vAnchor };

@@ -76,13 +76,13 @@ function createAlertDialog(options, done) {
   return alertApp;
 }
 
-const alertDialog = (customOptions = {}) => {
+function alertDialog(customOptions = {}) {
   const options = getOptions(globalOptions, customOptions);
 
   return new Promise((resolve) => {
     createAlertDialog(options, resolve).mount(`#${UI_ALERT_DIALOG.id}`);
   });
-};
+}
 
 const BalmUI_AlertPlugin = {
   install(app, options = {}) {

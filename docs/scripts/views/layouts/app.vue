@@ -59,11 +59,10 @@
             </ui-drawer-header>
             <ui-drawer-content>
               <ui-nav class="catalog-list">
-                <template v-for="(item, index) in menu">
+                <template v-for="(item, index) in menu" :key="`item${index}`">
                   <router-link
                     v-if="item.url || item.isSubmenu"
                     v-slot="{ href, isActive }"
-                    :key="`item${index}`"
                     :to="{ name: item.url }"
                   >
                     <ui-nav-item
@@ -100,13 +99,9 @@
                       </template>
                     </ui-nav-item>
                   </router-link>
-                  <ui-list-divider
-                    v-else-if="item === '-'"
-                    :key="`divider${index}`"
-                  ></ui-list-divider>
+                  <ui-list-divider v-else-if="item === '-'"></ui-list-divider>
                   <ui-list-group-subheader
                     v-else
-                    :key="`head${index}`"
                     :class="$theme.getTextClass('primary', $store.theme)"
                   >
                     {{ t(`menu.${item.name}`) }}
@@ -214,12 +209,12 @@ export default {
     });
 
     onBeforeMount(() => {
-      bus.sub('page-load', () => {
+      bus.sub('page-loading', () => {
         state.pageLoading = true;
         state.loadingTimer = setInterval(loading, 20);
       });
 
-      bus.sub('page-ready', () => {
+      bus.sub('page-loaded', () => {
         state.bodyEl.scrollTop = 0;
 
         setTimeout(() => {
@@ -279,7 +274,7 @@ export default {
   },
   methods: {
     handleMenu() {
-      this.$bus.pub('page-load');
+      this.$bus.pub('page-loading');
 
       this.openDrawer = false;
       if (window.innerWidth < $MIN_WIDTH) {

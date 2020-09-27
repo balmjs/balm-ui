@@ -95,7 +95,7 @@ import bus, { useBus } from './plugins/bus'; // Custom
 import store, { useStore } from './plugins/store'; // Custom
 import grid, { useGrid } from './plugins/grid';
 import theme, { useTheme } from './plugins/theme';
-import typography from './plugins/typography';
+import typography, { useTypography } from './plugins/typography';
 import validator, { useValidator } from './plugins/validator'; // Custom
 /**
  * Directives
@@ -193,10 +193,10 @@ const components = {
 };
 
 const plugins = {
-  event,
   bus,
-  store,
+  event,
   grid,
+  store,
   theme,
   typography,
   validator
@@ -245,13 +245,92 @@ autoInstall(BalmUI);
 
 export default BalmUI;
 export {
-  useEvent,
-  useBus,
-  useStore,
-  useGrid,
-  useTheme,
-  useValidator,
-  types,
-  helpers,
-  detectIE
+  UiBadge,
+  UiBanner,
+  UiButton,
+  UiCard,
+  UiCardActions,
+  UiCardButtons,
+  UiCardContent,
+  UiCardMedia,
+  UiCardMediaContent,
+  UiCardText,
+  UiCardIcons,
+  UiCheckbox,
+  UiChip,
+  UiChips,
+  UiDataTable,
+  UiDialog,
+  UiDialogActions,
+  UiDialogContent,
+  UiDialogTitle,
+  UiDivider,
+  UiDrawer,
+  UiDrawerHeader,
+  UiDrawerTitle,
+  UiDrawerSubtitle,
+  UiDrawerContent,
+  UiDrawerAppContent,
+  UiDrawerBackdrop,
+  UiFab,
+  UiFile,
+  UiForm,
+  UiFormField,
+  UiGrid,
+  UiGridCell,
+  UiIcon,
+  UiIconButton,
+  UiImageItem,
+  UiImageList,
+  UiImageText,
+  UiItem,
+  UiItemTextContent,
+  UiItemText1,
+  UiItemText2,
+  UiItemFirstContent,
+  UiItemLastContent,
+  UiItemDivider,
+  UiList,
+  UiListDivider,
+  UiListGroup,
+  UiListGroupSubheader,
+  UiMenuAnchor,
+  UiMenu,
+  UiMenuitem,
+  UiMenuitemIcon,
+  UiMenuitemText,
+  UiNav,
+  UiNavItem,
+  UiPagination,
+  UiPanels,
+  UiPanel,
+  UiProgress,
+  UiRadio,
+  UiSelect,
+  UiSelectIcon,
+  UiSlider,
+  UiSnackbar,
+  UiSpinner,
+  UiSwitch,
+  UiTabs,
+  UiTabBar,
+  UiTabScroller,
+  UiTabIndicator,
+  UiTab,
+  UiTextfield,
+  UiTextfieldIcon,
+  UiTooltip,
+  UiTopAppBar
 };
+export { bus, event, grid, store, theme, typography, validator };
+export {
+  useBus,
+  useEvent,
+  useGrid,
+  useStore,
+  useTheme,
+  useTypography,
+  useValidator
+};
+export { vAccessibility, vBadge, vRipple, vShadow, vShape, vTooltip };
+export { types, helpers, detectIE };

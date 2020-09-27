@@ -3,9 +3,12 @@
   ```js
   // `/path/to/app/scripts/store/index.js`
   export default {
+    // name: 'Store',
     mixins: []
   };
   ```
+
+  > NOTE: `'Store'` is default store name, and you can customize yours. (e.g. set `name: 'AppStore'`, then using `$appstore`)
 
 ### Default Usage
 

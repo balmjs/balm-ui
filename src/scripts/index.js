@@ -93,11 +93,11 @@ import UiTooltip from './components/others/tooltip';
  * Plugins
  */
 import event from './plugins/event'; // Custom
-import $bus, { bus } from './plugins/bus'; // Custom
-import store from './plugins/store'; // Custom
-import grid from './plugins/grid';
-import theme from './plugins/theme';
-import typography from './plugins/typography';
+import bus, { useBus } from './plugins/bus'; // Custom
+import store, { useStore } from './plugins/store'; // Custom
+import grid, { useGrid } from './plugins/grid';
+import theme, { useTheme } from './plugins/theme';
+import typography, { useTypography } from './plugins/typography';
 import validator from './plugins/validator'; // Custom
 /**
  * Directives
@@ -197,7 +197,7 @@ const components = {
 };
 
 const plugins = {
-  $bus,
+  bus,
   event,
   grid,
   store,
@@ -248,4 +248,87 @@ const BalmUI = {
 autoInstall(BalmUI);
 
 export default BalmUI;
-export { bus, types, helpers, detectIE };
+export {
+  UiBadge,
+  UiBanner,
+  UiButton,
+  UiCard,
+  UiCardActions,
+  UiCardButtons,
+  UiCardContent,
+  UiCardMedia,
+  UiCardMediaContent,
+  UiCardText,
+  UiCardIcons,
+  UiCheckbox,
+  UiChip,
+  UiChips,
+  UiDataTable,
+  UiDialog,
+  UiDialogActions,
+  UiDialogContent,
+  UiDialogTitle,
+  UiDivider,
+  UiDrawer,
+  UiDrawerHeader,
+  UiDrawerTitle,
+  UiDrawerSubtitle,
+  UiDrawerContent,
+  UiDrawerAppContent,
+  UiDrawerBackdrop,
+  UiFab,
+  UiFile,
+  UiForm,
+  UiFormField,
+  UiGrid,
+  UiGridCell,
+  UiIcon,
+  UiIconButton,
+  UiImageItem,
+  UiImageList,
+  UiImageText,
+  UiItem,
+  UiItemTextContent,
+  UiItemText1,
+  UiItemText2,
+  UiItemFirstContent,
+  UiItemLastContent,
+  UiItemDivider,
+  UiList,
+  UiListDivider,
+  UiListGroup,
+  UiListGroupSubheader,
+  UiMenuAnchor,
+  UiMenu,
+  UiMenuitem,
+  UiMenuitemIcon,
+  UiMenuitemText,
+  UiNav,
+  UiNavItem,
+  UiPagination,
+  UiPanels,
+  UiPanel,
+  UiProgress,
+  UiRadio,
+  UiSelect,
+  UiSelectHelper,
+  UiSelectIcon,
+  UiSlider,
+  UiSnackbar,
+  UiSpinner,
+  UiSwitch,
+  UiTabs,
+  UiTabBar,
+  UiTabScroller,
+  UiTabIndicator,
+  UiTab,
+  UiTextfield,
+  UiTextfieldHelper,
+  UiTextfieldIcon,
+  UiTooltip,
+  UiTopAppBar
+};
+export { bus, event, grid, store, theme, typography, validator };
+export { useBus, useGrid, useStore, useTheme, useTypography };
+export { vAccessibility, vBadge, vRipple, vShadow, vShape, vTooltip };
+export { types, helpers, detectIE };

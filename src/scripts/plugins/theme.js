@@ -1,5 +1,5 @@
 import autoInstall from '../config/auto-install';
-import { contrastTone } from './color';
+import { contrastTone } from '../utils/color';
 
 // Define theme constants
 const THEME_STYLES = [
@@ -231,12 +231,17 @@ class Theme extends ThemeStyle {
   }
 }
 
+const theme = new Theme();
+
 const BalmUI_ThemePlugin = {
   install(Vue) {
-    Vue.prototype.$theme = new Theme();
+    Vue.prototype.$theme = theme;
   }
 };
+
+const useTheme = () => theme;
 
 autoInstall(BalmUI_ThemePlugin);
 
 export default BalmUI_ThemePlugin;
+export { useTheme };

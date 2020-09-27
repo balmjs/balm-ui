@@ -1,25 +1,14 @@
+import Vue from 'vue';
 import autoInstall from '../config/auto-install';
 
-let eventBus = new Map();
+const busApp = new Vue();
 
 function pub(eventName, ...args) {
-  if (eventBus.has(eventName)) {
-    try {
-      eventBus.get(eventName)(...args);
-    } catch (e) {}
-  } else {
-    eventBus.set(eventName, ...args);
-  }
+  busApp.$emit(eventName, ...args);
 }
 
 function sub(eventName, callback) {
-  if (eventBus.has(eventName)) {
-    try {
-      callback(eventBus.get(eventName));
-    } catch (e) {}
-  } else {
-    eventBus.set(eventName, callback);
-  }
+  busApp.$on(eventName, callback);
 }
 
 const bus = {
@@ -33,7 +22,9 @@ const BalmUI_BusPlugin = {
   }
 };
 
+const useBus = () => bus;
+
 autoInstall(BalmUI_BusPlugin);
 
 export default BalmUI_BusPlugin;
-export { bus };
+export { useBus };

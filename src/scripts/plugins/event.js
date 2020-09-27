@@ -5,19 +5,7 @@ import createCustomEvent from '../events';
 // Define constants
 const DEFAULT_NAMESPACE = 'balmUI';
 const noop = () => {};
-
-function callback(fn) {
-  let result;
-  let type = getType(fn);
-
-  if (type === 'function' || type === 'generatorfunction') {
-    result = fn();
-  } else {
-    result = fn;
-  }
-
-  return result;
-}
+let customEventCreated = false;
 
 function handleAssign(properties, value, data = null) {
   let key = properties.shift();
@@ -40,6 +28,19 @@ function handleEvent(_property, value) {
   } else {
     handleAssign.call(this, _property.split('.'), value);
   }
+}
+
+function callback(fn) {
+  let result;
+  let type = getType(fn);
+
+  if (type === 'function' || type === 'generatorfunction') {
+    result = fn();
+  } else {
+    result = fn;
+  }
+
+  return result;
 }
 
 const EventMethods = {
@@ -65,11 +66,18 @@ const EventMethods = {
   }
 };
 
-let customEventCreated = false;
-
 const BalmUI_EventPlugin = {
   install(Vue, customNamespace = DEFAULT_NAMESPACE) {
     if (customNamespace) {
+      Vue.mixin({
+        mounted() {
+          if (!customEventCreated) {
+            customEventCreated = true;
+            createCustomEvent();
+          }
+        }
+      });
+
       Object.defineProperty(Vue.prototype, `$${customNamespace}`, {
         get() {
           let balmUI = {};
@@ -79,15 +87,6 @@ const BalmUI_EventPlugin = {
           });
 
           return balmUI; // Return new object for every vm !important
-        }
-      });
-
-      Vue.mixin({
-        mounted() {
-          if (!customEventCreated) {
-            customEventCreated = true;
-            createCustomEvent();
-          }
         }
       });
     } else {

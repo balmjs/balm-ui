@@ -14,9 +14,9 @@ import UiEditor from './components/input-controls/editor';
 /**
  * Plugins
  */
-import alert from './plugins/alert';
-import confirm from './plugins/confirm';
-import toast from './plugins/toast';
+import alert, { useAlert } from './plugins/alert';
+import confirm, { useConfirm } from './plugins/confirm';
+import toast, { useToast } from './plugins/toast';
 /**
  * Directives
  */
@@ -77,3 +77,15 @@ const BalmUIPlus = {
 autoInstall(BalmUIPlus);
 
 export default BalmUIPlus;
+export {
+  UiAlert,
+  UiAutocomplete,
+  UiCollapse,
+  UiDatepicker,
+  UiEditor,
+  UiRangepicker,
+  UiSkeleton
+};
+export { alert, confirm, toast };
+export { useAlert, useConfirm, useToast };
+export { vAnchor };

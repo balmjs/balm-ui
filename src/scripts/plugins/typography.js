@@ -17,27 +17,28 @@ const T_DEFAULT_STYLES = [
   'button',
   'overline'
 ];
+let globalStyles;
+
+function tt(style) {
+  let className = '';
+
+  if (globalStyles.includes(style)) {
+    className = `${T_BASE}--${style}`;
+  } else {
+    throw new Error(
+      '[BalmUI] Please set a valid typographic style:\n' +
+        JSON.stringify(globalStyles)
+    );
+  }
+
+  return className;
+}
 
 const BalmUI_TypographyPlugin = {
   install(Vue, customStyles = []) {
-    const T_STYLES = Array.isArray(customStyles)
+    globalStyles = Array.isArray(customStyles)
       ? T_DEFAULT_STYLES.concat(customStyles)
       : T_DEFAULT_STYLES;
-
-    const $tt = (style) => {
-      let className = '';
-
-      if (T_STYLES.includes(style)) {
-        className = `${T_BASE}--${style}`;
-      } else {
-        throw new Error(
-          '[BalmUI] Please set a valid typographic style:\n' +
-            JSON.stringify(T_STYLES)
-        );
-      }
-
-      return className;
-    };
 
     Vue.mixin({
       mounted() {
@@ -48,10 +49,13 @@ const BalmUI_TypographyPlugin = {
       }
     });
 
-    Vue.prototype.$tt = $tt;
+    Vue.prototype.$tt = tt;
   }
 };
+
+const useTypography = () => tt;
 
 autoInstall(BalmUI_TypographyPlugin);
 
 export default BalmUI_TypographyPlugin;
+export { useTypography };

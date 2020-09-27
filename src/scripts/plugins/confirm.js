@@ -1,6 +1,7 @@
+import Vue from 'vue';
 import autoInstall from '../config/auto-install';
 import WindowDialog from '../components/modal/window-dialog';
-import getType from '../utils/typeof';
+import { getOptions, createModal, removeModel } from '../utils/modal';
 
 const DEFAULT_OPTIONS = {
   className: '',
@@ -13,6 +14,9 @@ const DEFAULT_OPTIONS = {
   cancelText: 'Cancel',
   callback: false
 };
+
+let globalOptions = DEFAULT_OPTIONS;
+let confirmApp;
 
 const template = `<window-dialog class="mdc-confirm-dialog" :open="open" :options="options">
   <button type="button"
@@ -28,61 +32,65 @@ const template = `<window-dialog class="mdc-confirm-dialog" :open="open" :option
   </button>
 </window-dialog>`;
 
-const BalmUI_ConfirmPlugin = {
-  install(Vue, configs = {}) {
-    let options = Object.assign({}, DEFAULT_OPTIONS, configs);
+function createConfirmDialog(options, done) {
+  confirmApp = new Vue({
+    el: document.createElement('div'),
+    components: {
+      WindowDialog
+    },
+    data() {
+      return {
+        open: false,
+        options
+      };
+    },
+    mounted() {
+      createModal(this.$el);
 
-    const $confirm = (customOptions = {}) => {
-      return new Promise((resolve) => {
-        let vm = new Vue({
-          el: document.createElement('div'),
-          components: {
-            WindowDialog
-          },
-          data: {
-            open: false,
-            options
-          },
-          created() {
-            if (getType(customOptions) === 'string') {
-              this.options.message = `${customOptions}`; // To string
-            } else if (getType(customOptions) === 'object') {
-              this.options = Object.assign({}, this.options, customOptions);
-            }
-          },
-          mounted() {
-            document.body.appendChild(this.$el);
-
-            this.$nextTick(() => {
-              this.open = true;
-            });
-          },
-          methods: {
-            handleClose() {
-              this.open = false;
-
-              document.body.removeChild(this.$el);
-              vm = null;
-            },
-            handleConfirm(result) {
-              this.handleClose();
-
-              if (getType(this.options.callback) === 'function') {
-                this.options.callback(result);
-              } else {
-                resolve(result);
-              }
-            }
-          },
-          template
-        });
+      this.$nextTick(() => {
+        this.open = true;
       });
-    };
+    },
+    methods: {
+      handleClose() {
+        this.open = false;
 
-    Vue.prototype.$confirm = $confirm;
+        removeModel(this.$el);
+        confirmApp = null;
+      },
+      handleConfirm(result) {
+        this.handleClose();
+
+        if (typeof this.options.callback === 'function') {
+          this.options.callback(result);
+        } else {
+          done(result);
+        }
+      }
+    },
+    template
+  });
+}
+
+function confirmDialog(customOptions = {}) {
+  const options = getOptions(globalOptions, customOptions);
+
+  return new Promise((resolve) => {
+    createConfirmDialog(options, resolve);
+  });
+}
+
+const BalmUI_ConfirmPlugin = {
+  install(Vue, options = {}) {
+    globalOptions = Object.assign({}, DEFAULT_OPTIONS, options);
+
+    Vue.prototype.$confirm = confirmDialog;
   }
 };
+
+const useConfirm = () => confirmDialog;
 
 autoInstall(BalmUI_ConfirmPlugin);
 
 export default BalmUI_ConfirmPlugin;
+export { useConfirm };

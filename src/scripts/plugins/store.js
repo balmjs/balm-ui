@@ -1,24 +1,22 @@
 import Vue from 'vue';
 import autoInstall from '../config/auto-install';
 
-const isDev = process.env.NODE_ENV === 'development';
+let store;
 
-function createDevMixin() {
+function createStore(storeKey, options) {
   const el = document.createElement('div');
+  el.id = storeKey;
+  document.body.appendChild(el);
 
-  return {
-    el,
-    created() {
-      document.body.appendChild(el);
-    },
-    template: '<div v-if="false"></div>'
-  };
-}
+  const storeName = storeKey.replace(/^\S/, (s) => s.toUpperCase());
 
-function createStore(options) {
   return new Vue(
     Object.assign(
-      { name: 'Store', mixins: [isDev ? createDevMixin() : {}] },
+      {
+        el: `#${storeKey}`,
+        name: storeName,
+        template: '<div v-if="false"></div>'
+      },
       options
     )
   );
@@ -26,10 +24,17 @@ function createStore(options) {
 
 const BalmUI_StorePlugin = {
   install(Vue, options) {
-    Vue.prototype.$store = createStore(options);
+    const storeKey = (options.name || 'Store').toLowerCase();
+
+    store = createStore(storeKey, options);
+
+    Vue.prototype[`$${storeKey}`] = store;
   }
 };
+
+const useStore = () => store;
 
 autoInstall(BalmUI_StorePlugin);
 
 export default BalmUI_StorePlugin;
+export { useStore };

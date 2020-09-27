@@ -1,5 +1,6 @@
+import Vue from 'vue';
 import autoInstall from '../config/auto-install';
-import getType from '../utils/typeof';
+import { getOptions, createModal, removeModel } from '../utils/modal';
 
 // Define toast constants
 const UI_TOAST = {
@@ -17,16 +18,12 @@ const DEFAULT_OPTIONS = {
   debug: false
 };
 
-const template = `<div
-  :class="[
-    'mdc-snackbar',
-    'mdc-toast',
-    options.className,
-    {
-      'mdc-snackbar--opening': opening,
-      'mdc-snackbar--open': opened
-    }
-  ]">
+let globalOptions = DEFAULT_OPTIONS;
+let toastApp;
+let toastTimer;
+let toastElTimer;
+
+const template = `<div :class="className">
   <div class="mdc-snackbar__surface">
     <div class="mdc-snackbar__label">
       {{ options.message }}
@@ -34,110 +31,123 @@ const template = `<div
   </div>
 </div>`;
 
-let vm;
-let toastTimer;
-let toastElTimer;
-
 function hasToast() {
   return document.querySelector('.mdc-toast');
 }
 
-const BalmUI_ToastPlugin = {
-  install(Vue, configs = {}) {
-    let options = Object.assign({}, DEFAULT_OPTIONS, configs);
-
-    const $toast = (customOptions = {}) => {
-      if (getType(customOptions) === 'string') {
-        options.message = `${customOptions}`; // To string
-      } else if (getType(customOptions) === 'object') {
-        options = Object.assign({}, options, customOptions);
+function createToast(options) {
+  toastApp = new Vue({
+    el: document.createElement('div'),
+    data() {
+      return {
+        open: false,
+        opening: true,
+        opened: false,
+        options
+      };
+    },
+    computed: {
+      className() {
+        return [
+          'mdc-snackbar',
+          'mdc-toast',
+          this.options.className,
+          {
+            'mdc-snackbar--opening': this.opening,
+            'mdc-snackbar--open': this.opened
+          }
+        ];
       }
-
-      if (hasToast()) {
-        clearTimeout(toastTimer);
-        clearTimeout(toastElTimer);
-
-        vm.init(options);
-      } else {
-        vm = new Vue({
-          el: document.createElement('div'),
-          data: {
-            open: false,
-            opening: true,
-            opened: false,
-            options
-          },
-          watch: {
-            open(val) {
-              if (val) {
-                // animation
-                setTimeout(() => {
-                  this.opened = true;
-                  setTimeout(() => {
-                    this.opening = false;
-                  }, 150);
-                }, 150);
-              } else {
-                // reset
-                this.opening = true;
-                this.opened = false;
-              }
-            }
-          },
-          mounted() {
-            this.init(options);
-          },
-          methods: {
-            init(options) {
-              if (
-                options.timeoutMs <= UI_TOAST.timeoutMs.MAX &&
-                options.timeoutMs >= UI_TOAST.timeoutMs.MIN
-              ) {
-                this.options = options;
-
-                this.$nextTick(() => {
-                  if (!hasToast()) {
-                    document.body.appendChild(this.$el);
-                  }
-
-                  this.show();
-                });
-              } else {
-                throw new Error(
-                  `The timeoutMs of the toast must be between ${UI_TOAST.timeoutMs.MIN} and ${UI_TOAST.timeoutMs.MAX}`
-                );
-              }
-            },
-            show() {
-              this.open = true;
-              // hide toast
-              toastTimer = setTimeout(() => {
-                this.hide();
-              }, this.options.timeoutMs);
-            },
-            hide() {
-              this.open = false;
-
-              if (!this.options.debug) {
-                // remove toast
-                toastElTimer = setTimeout(() => {
-                  try {
-                    document.body.removeChild(this.$el);
-                    vm = null;
-                  } catch (e) {}
-                }, this.options.timeoutMs);
-              }
-            }
-          },
-          template
-        });
+    },
+    watch: {
+      open(val) {
+        if (val) {
+          // animation
+          setTimeout(() => {
+            this.opened = true;
+            setTimeout(() => {
+              this.opening = false;
+            }, 150);
+          }, 150);
+        } else {
+          // reset
+          this.opening = true;
+          this.opened = false;
+        }
       }
-    };
+    },
+    mounted() {
+      this.render(options);
+    },
+    methods: {
+      hide() {
+        this.open = false;
 
-    Vue.prototype.$toast = $toast;
+        if (!this.options.debug) {
+          // remove toast
+          toastElTimer = setTimeout(() => {
+            try {
+              removeModel(this.$el);
+              vm = null;
+            } catch (e) {}
+          }, this.options.timeoutMs);
+        }
+      },
+      show() {
+        this.open = true;
+        // hide toast
+        toastTimer = setTimeout(() => {
+          this.hide();
+        }, this.options.timeoutMs);
+      },
+      render(options) {
+        if (
+          options.timeoutMs <= UI_TOAST.timeoutMs.MAX &&
+          options.timeoutMs >= UI_TOAST.timeoutMs.MIN
+        ) {
+          this.options = options;
+
+          if (!hasToast()) {
+            console.log('gg');
+            createModal(this.$el);
+          }
+
+          this.show();
+        } else {
+          throw new Error(
+            `The timeoutMs of the toast must be between ${UI_TOAST.timeoutMs.MIN} and ${UI_TOAST.timeoutMs.MAX}`
+          );
+        }
+      }
+    },
+    template
+  });
+}
+
+const toast = (customOptions = {}) => {
+  const options = getOptions(globalOptions, customOptions);
+
+  if (toastApp) {
+    clearTimeout(toastTimer);
+    clearTimeout(toastElTimer);
+
+    toastApp.render(options);
+  } else {
+    toastApp = createToast(options);
   }
 };
+
+const BalmUI_ToastPlugin = {
+  install(Vue, options = {}) {
+    globalOptions = Object.assign({}, DEFAULT_OPTIONS, options);
+
+    Vue.prototype.$toast = toast;
+  }
+};
+
+const useToast = () => toast;
 
 autoInstall(BalmUI_ToastPlugin);
 
 export default BalmUI_ToastPlugin;
+export { useToast };

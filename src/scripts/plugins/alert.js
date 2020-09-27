@@ -1,6 +1,7 @@
+import Vue from 'vue';
 import autoInstall from '../config/auto-install';
 import WindowDialog from '../components/modal/window-dialog';
-import getType from '../utils/typeof';
+import { getOptions, createModal, removeModel } from '../utils/modal';
 
 const DEFAULT_OPTIONS = {
   className: '',
@@ -13,6 +14,9 @@ const DEFAULT_OPTIONS = {
   callback: false
 };
 
+let globalOptions = DEFAULT_OPTIONS;
+let alertApp;
+
 const template = `<window-dialog class="mdc-alert-dialog" :open="open" :options="options">
   <button type="button"
     class="mdc-button mdc-button--raised mdc-alert-dialog__button"
@@ -22,61 +26,68 @@ const template = `<window-dialog class="mdc-alert-dialog" :open="open" :options=
   </button>
 </window-dialog>`;
 
-const BalmUI_AlertPlugin = {
-  install(Vue, configs = {}) {
-    let options = Object.assign({}, DEFAULT_OPTIONS, configs);
+function createAlertDialog(options, done) {
+  alertApp = new Vue({
+    el: document.createElement('div'),
+    name: 'BalmUIAlert',
+    components: {
+      WindowDialog
+    },
+    data() {
+      return {
+        open: false,
+        options
+      };
+    },
+    mounted() {
+      createModal(this.$el);
 
-    const $alert = (customOptions = {}) => {
-      return new Promise((resolve) => {
-        let vm = new Vue({
-          el: document.createElement('div'),
-          components: {
-            WindowDialog
-          },
-          data: {
-            open: false,
-            options
-          },
-          created() {
-            if (getType(customOptions) === 'string') {
-              this.options.message = `${customOptions}`; // To string
-            } else if (getType(customOptions) === 'object') {
-              this.options = Object.assign({}, this.options, customOptions);
-            }
-          },
-          mounted() {
-            document.body.appendChild(this.$el);
-
-            this.$nextTick(() => {
-              this.open = true;
-            });
-          },
-          methods: {
-            handleClose() {
-              this.open = false;
-
-              document.body.removeChild(this.$el);
-              vm = null;
-            },
-            handleClick() {
-              this.handleClose();
-
-              if (getType(this.options.callback) === 'function') {
-                this.options.callback();
-              } else {
-                resolve();
-              }
-            }
-          },
-          template
-        });
+      this.$nextTick(() => {
+        this.open = true;
       });
-    };
+    },
+    methods: {
+      handleClose() {
+        this.open = false;
 
-    Vue.prototype.$alert = $alert;
+        removeModel(this.$el);
+        alertApp = null;
+      },
+      handleClick() {
+        this.handleClose();
+
+        if (typeof this.options.callback === 'function') {
+          this.options.callback();
+        } else {
+          done();
+        }
+      }
+    },
+    template
+  });
+
+  return alertApp;
+}
+
+function alertDialog(customOptions = {}) {
+  const options = getOptions(globalOptions, customOptions);
+
+  return new Promise((resolve) => {
+    createAlertDialog(options, resolve);
+  });
+}
+
+const BalmUI_AlertPlugin = {
+  install(Vue, options = {}) {
+    globalOptions = Object.assign({}, DEFAULT_OPTIONS, options);
+
+    Vue.prototype.$alert = alertDialog;
   }
 };
+
+const useAlert = () => alertDialog;
 
 autoInstall(BalmUI_AlertPlugin);
 
 export default BalmUI_AlertPlugin;
+export { useAlert };

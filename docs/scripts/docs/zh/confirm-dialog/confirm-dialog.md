@@ -38,3 +38,16 @@ $confirm(message).then((result) => {
 ```
 
 > `result` is a boolean value indicating whether OK or Cancel was selected (`true` means OK).
+
+### Use `$confirm` without `.vue` component
+
+> New in 8.1.0
+
+```js
+import { useConfirm } from 'balm-ui';
+// OR
+// import { useConfirm } from 'balm-ui/plugins/confirm';
+
+const $confirm = useConfirm();
+$confirm('Hello BalmUI');
+```

@@ -6,6 +6,8 @@
 
 [BalmUI](https://material.balmjs.com/) is a modular and customizable [Material Design](https://material.io/) UI library for Vue.js.
 
+> :tada: NOW, [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x) (v9.0) supports for Vue 3.0
+
 ## Features
 
 - Enterprise-class UI designed for web applications

@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { bus } from 'balm-ui';
+import { useBus } from 'balm-ui';
+
+const bus = useBus();
 
 export default {
   install(Vue) {

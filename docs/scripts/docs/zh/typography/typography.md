@@ -25,3 +25,16 @@ The typographic styles in this module are derived from thirteen styles:
 | `overline`  | Used sparingly to introduce a headline                                             |
 
 > You can overwrite typography CSS Classes for your project so easy.
+
+### Use `$tt` without `.vue` component
+
+> New in 8.1.0
+
+```js
+import { useTypography } from 'balm-ui';
+// OR
+// import { useTypography } from 'balm-ui/plugins/typography';
+
+const $tt = useTypography();
+console.log($tt('custom-style-1'));
+```

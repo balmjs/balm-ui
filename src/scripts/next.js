@@ -29,3 +29,4 @@ const BalmUINext = {
 autoInstall(BalmUINext);
 
 export default BalmUINext;
+export { UiBottomNavigation };

@@ -35,3 +35,16 @@ $alert(message).then(() => {
   // ...
 });
 ```
+
+### Use `$alert` without `.vue` component
+
+> New in 8.1.0
+
+```js
+import { useAlert } from 'balm-ui';
+// OR
+// import { useAlert } from 'balm-ui/plugins/alert';
+
+const $alert = useAlert();
+$alert('Hello BalmUI');
+```

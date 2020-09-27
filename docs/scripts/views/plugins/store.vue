@@ -1,5 +1,5 @@
 <template>
-  <docs-page type="plugin" name="store" demo-count="1" without-css>
+  <docs-page type="plugin" name="store" without-css>
     <template #hero>
       <h1 :class="$tt('headline1')">Store (cover Vuex)</h1>
     </template>

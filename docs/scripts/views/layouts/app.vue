@@ -230,13 +230,15 @@ export default {
     this.init();
     window.addEventListener('balmResize', this.init);
 
-    this.$bus.sub('page-load', () => {
+    this.$bus.sub('page-loading', () => {
       this.pageLoading = true;
       this.loadingTimer = setInterval(this.loading, 20);
     });
 
-    this.$bus.sub('page-ready', () => {
-      this.bodyEl.scrollTop = 0;
+    this.$bus.sub('page-loaded', () => {
+      setTimeout(() => {
+        this.bodyEl.scrollTop = 0;
+      }, 1);
 
       setTimeout(() => {
         this.loadingProgress = 1;
@@ -255,8 +257,6 @@ export default {
     this.$bus.sub('switch-lang', (lang) => {
       this.$i18n.locale = lang;
     });
-
-    this.$store.setTheme();
   },
   beforeDestroy() {
     window.removeEventListener('balmResize', this.init);
@@ -270,7 +270,7 @@ export default {
       this.drawerType = this.getDrawerType();
     },
     handleMenu() {
-      this.$emit('page-load');
+      this.$emit('page-loading');
 
       this.openDrawer = false;
       if (window.innerWidth < $MIN_WIDTH) {

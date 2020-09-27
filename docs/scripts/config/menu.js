@@ -286,6 +286,12 @@ const MATERIAL_COMPONENTS = [
   },
   '-',
   {
+    icon: 'storage',
+    name: 'store',
+    link: true
+  },
+  '-',
+  {
     icon: 'widgets',
     name: 'utils',
     link: true

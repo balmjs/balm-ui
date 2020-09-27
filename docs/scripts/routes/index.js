@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueMeta from 'vue-meta';
-import { bus } from 'balm-ui';
+import { useBus } from 'balm-ui';
 // Layout
 import BlankLayout from '@/views/layouts/blank';
 // Routes
@@ -17,6 +17,7 @@ import miscRoutes from './misc';
 // Pages
 import Home from '@/views/home';
 import Donate from '@/views/donate';
+const Store = () => import('@/views/plugins/store');
 const Utils = () => import('@/views/utils');
 const NotFound = () => import('@/views/not-found');
 import testRoutes from './test';
@@ -99,6 +100,11 @@ const baseRoutes = [
     children: miscRoutes
   },
   {
+    path: '/store',
+    name: 'store',
+    component: Store
+  },
+  {
     path: '/utils',
     name: 'utils',
     component: Utils
@@ -113,8 +119,10 @@ const router = new VueRouter({
   routes
 });
 
+const bus = useBus();
+
 router.beforeEach((to, from, next) => {
-  bus.pub('page-load');
+  bus.pub('page-loading');
   next();
 });
 
@@ -144,7 +152,7 @@ router.afterEach((to, from) => {
     pageClassList.add(`${CLASS_NAMESPACE}-${toName}`);
   }
 
-  bus.pub('page-ready');
+  bus.pub('page-loaded');
 });
 
 export default router;

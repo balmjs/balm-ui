@@ -2,6 +2,20 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.1.0 / 2020-09-27
+
+### Features
+
+- update plugins without `.vue` component:
+  - `useBus`
+  - `useGrid`
+  - `useStore`
+  - `useTheme`
+  - `useTypography`
+  - `useAlert`
+  - `useConfirm`
+  - `useToast`
+
 ## v8.0.0 / 2020-09-25
 
 ### Bug Fixes

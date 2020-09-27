@@ -99,3 +99,15 @@ $theme.setTextColorOnDark(style, value);
 | ------- | ------ | ------- | ----------------- |
 | `style` | String | `''`    | Text style name.  |
 | `value` | String | `''`    | Text color value. |
+
+### Use `$theme` without `.vue` component
+
+> New in 8.1.0
+
+```js
+import { useTheme } from 'balm-ui';
+// OR
+// import { useTheme } from 'balm-ui/plugins/theme';
+
+const $theme = useTheme();
+```

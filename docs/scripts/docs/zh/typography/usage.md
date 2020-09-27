@@ -1,3 +1,15 @@
+- NOTE: You can customize the style for your scale classname (`mdc-typography--<STYLE>`)
+
+  ```scss
+  .mdc-typography--custom-style-1 {
+    // ...
+  }
+
+  .mdc-typography--custom-style-2 {
+    // ...
+  }
+  ```
+
 ### Default Usage
 
 ```scss
@@ -30,16 +42,4 @@ import typography from 'balm-ui/plugins/typography';
 
 // Optional. Overwrite the param of `$tt()`.
 Vue.use(typography, ['custom-style-1', 'custom-style-2']);
-```
-
-> ⚠️ NOTE: You can customize the style for your scale classname (`mdc-typography--<STYLE>`)
-
-```scss
-.mdc-typography--custom-style-1 {
-  // ...
-}
-
-.mdc-typography--custom-style-2 {
-  // ...
-}
 ```

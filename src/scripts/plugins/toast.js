@@ -36,7 +36,7 @@ function hasToast() {
 }
 
 function createToast(options) {
-  toastApp = new Vue({
+  return new Vue({
     el: document.createElement('div'),
     data() {
       return {
@@ -88,7 +88,7 @@ function createToast(options) {
           toastElTimer = setTimeout(() => {
             try {
               removeModel(this.$el);
-              vm = null;
+              toastApp = null;
             } catch (e) {}
           }, this.options.timeoutMs);
         }
@@ -108,7 +108,6 @@ function createToast(options) {
           this.options = options;
 
           if (!hasToast()) {
-            console.log('gg');
             createModal(this.$el);
           }
 
@@ -127,7 +126,7 @@ function createToast(options) {
 const toast = (customOptions = {}) => {
   const options = getOptions(globalOptions, customOptions);
 
-  if (toastApp) {
+  if (hasToast()) {
     clearTimeout(toastTimer);
     clearTimeout(toastElTimer);
 

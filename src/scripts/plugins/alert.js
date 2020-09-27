@@ -42,9 +42,7 @@ function createAlertDialog(options, done) {
     mounted() {
       createModal(this.$el);
 
-      this.$nextTick(() => {
-        this.open = true;
-      });
+      this.open = true;
     },
     methods: {
       handleClose() {

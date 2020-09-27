@@ -1,5 +1,8 @@
 <template>
-  <div v-anchor.offset="bottomAffix ? 64 : 128" :class="[$tt('body1'), `page--${name}`]">
+  <div
+    v-anchor.offset="bottomAffix ? 64 : 128"
+    :class="[$tt('body1'), `page--${name}`]"
+  >
     <header :class="[$theme.getTextClassOnLight('primary'), 'hero', type]">
       <slot name="hero"></slot>
     </header>
@@ -10,7 +13,12 @@
     <ui-toc-affix v-else-if="name === 'theme'">
       <ui-tab v-anchor:href="'#ui-colors'" class="v-anchor">Colors</ui-tab>
     </ui-toc-affix>
-    <ui-toc-affix v-else :class="{ 'toc-affix--bottom': bottomAffix }" :without-css="withoutCss"></ui-toc-affix>
+    <ui-toc-affix
+      v-else
+      :class="{ 'toc-affix--bottom': bottomAffix }"
+      :without-apis="name === 'store'"
+      :without-css="withoutCss"
+    ></ui-toc-affix>
 
     <div :class="$tt('body2')">
       <div class="ui-intro">
@@ -23,11 +31,15 @@
       <ui-markdown :text="docs.usage"></ui-markdown>
 
       <h2 v-anchor:id="'ui-demo'">1. {{ $t('page.demo') }}</h2>
-      <slot>
-        <p>Coming Up...</p>
-      </slot>
 
-      <h2 v-anchor:id="'ui-apis'">2. {{ $t('page.apis') }}</h2>
+      <template v-if="name !== 'store'">
+        <slot>
+          <p>Coming Up...</p>
+        </slot>
+
+        <h2 v-anchor:id="'ui-apis'">2. {{ $t('page.apis') }}</h2>
+      </template>
+
       <ui-markdown
         v-for="(apidocs, index) in docs.apis"
         :key="index"
@@ -44,7 +56,9 @@
       </template>
 
       <h2 v-if="name === 'icon'" v-anchor:id="'ui-icons'">4. Icons List</h2>
-      <h2 v-if="name === 'theme'" v-anchor:id="'ui-colors'">4. Color Palette</h2>
+      <h2 v-if="name === 'theme'" v-anchor:id="'ui-colors'">
+        4. Color Palette
+      </h2>
       <slot name="after"></slot>
     </div>
   </div>

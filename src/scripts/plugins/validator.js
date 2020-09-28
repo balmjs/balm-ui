@@ -26,16 +26,16 @@ class UiValidator {
 
   validate(formData = {}, customFieldset = []) {
     let result = {
-      valid: true, // 是否验证通过
-      validFields: [], // 有效字段
-      invalidFields: [], // 无效字段
-      messages: [], // 所有无效字段的提示语
-      message: '', // 第一个无效字段的提示语
+      valid: true,
+      validFields: [], // Valid fieldnames
+      invalidFields: [], // Invalid fieldnames
+      messages: [], // All invalid fields' messages
+      message: '', // First invalid field's message
       validMsg: {}
     };
 
-    // 获取待验证字段
-    let validations = this.ctx.$options.validations || {};
+    let validations =
+      this.ctx.validations || this.ctx.$options.validations || {};
     let validationFields = Object.keys(validations);
 
     if (customFieldset.length) {
@@ -45,18 +45,18 @@ class UiValidator {
     }
 
     for (let i = 0, fieldCount = validationFields.length; i < fieldCount; i++) {
-      let fieldName = validationFields[i]; // 字段名
-      let fieldOption = validations[fieldName]; // 对应验证配置
-      let fieldLabel = fieldOption[FIELD_LABEL] || ''; // 字段别名
+      let fieldName = validationFields[i]; // Field name
+      let fieldOption = validations[fieldName]; // The validation option of current field
+      let fieldLabel = fieldOption[FIELD_LABEL] || ''; // Field alias name
       let fieldRules = fieldOption[FIELD_VALIDATOR].split(
         ','
-      ).map((validator) => validator.trim()); // 当前字段需要的所有验证方法
-      let isAllValidOfField = true; // 当前字段通过全部验证规则
+      ).map((validator) => validator.trim()); // All validation methods of current field
+      let isAllValidOfField = true;
 
       for (let j = 0, rulesCount = fieldRules.length; j < rulesCount; j++) {
         let ruleName = fieldRules[j];
         let localValidationRule = fieldOption[ruleName];
-        let rule = localValidationRule || globalValidationRules[ruleName]; // 当前验证方法
+        let rule = localValidationRule || globalValidationRules[ruleName]; // Current validation method
 
         if (rule && getType(rule.validate) === 'function') {
           let fieldValue = formData[fieldName];

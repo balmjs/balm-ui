@@ -335,11 +335,10 @@ export default {
     }
   },
   beforeMount() {
-    const noHelperTextId = !(this.helperTextId || this.id);
     const needHelperTextId =
-      this.helperTextVisible || this.validMsg || this.withOuterCounter;
+      this.helperTextVisible || this.hasValidMsg || this.withOuterCounter;
 
-    if (noHelperTextId && needHelperTextId) {
+    if (!this.helperTextId && needHelperTextId) {
       console.warn(
         `'helperTextId' is required for '<ui-textfield>' with outer counter`
       );

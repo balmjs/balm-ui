@@ -9,5 +9,10 @@ export default {
     materialIcon() {
       return this.icon || false;
     }
+  },
+  methods: {
+    getIconClassName(...componentIconClass) {
+      return ['material-icons', ...componentIconClass];
+    }
   }
 };

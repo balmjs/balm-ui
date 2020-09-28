@@ -1,57 +1,16 @@
 import typeMixin from './type';
-import materialIconMixin from './material-icon';
 import rippleMixin from './ripple';
-import cardActionMixin from './card-action';
-import UI_BUTTON from '../components/buttons/constants';
+import materialIconMixin from './material-icon';
+
+// Define button/fab constants
+const UI_BUTTON = {
+  EVENT: {
+    CLICK: 'click'
+  }
+};
 
 export default {
-  mixins: [typeMixin, materialIconMixin, rippleMixin, cardActionMixin],
-  props: {
-    // UI variants
-    type: {
-      type: [String, Number],
-      default: 0
-    },
-    outlined: {
-      type: Boolean,
-      default: false
-    },
-    raised: {
-      type: Boolean,
-      default: false
-    },
-    unelevated: {
-      type: Boolean,
-      default: false
-    }
-  },
-  computed: {
-    isOutlined() {
-      return this.checkType(UI_BUTTON.TYPES, 'outlined');
-    },
-    isRaised() {
-      return this.checkType(UI_BUTTON.TYPES, 'raised');
-    },
-    isUnelevated() {
-      return this.checkType(UI_BUTTON.TYPES, 'unelevated');
-    },
-    className() {
-      const isAccessible =
-        this.$el && this.$el.classList.contains(UI_BUTTON.cssClasses.touch);
-
-      return {
-        // Text button
-        'mdc-button': true,
-        // Outlined button
-        'mdc-button--outlined': this.isOutlined,
-        // Contained button
-        'mdc-button--raised': this.isRaised,
-        'mdc-button--unelevated': this.isUnelevated,
-        // Accessibility
-        'mdc-button--touch': isAccessible
-      };
-    }
-  },
+  mixins: [typeMixin, rippleMixin, materialIconMixin],
   watch: {
     type() {
       this.init();
@@ -63,6 +22,9 @@ export default {
   methods: {
     init() {
       this.initRipple(this.$el);
+    },
+    handleClick(event) {
+      this.$emit(UI_BUTTON.EVENT.CLICK, event);
     }
   }
 };

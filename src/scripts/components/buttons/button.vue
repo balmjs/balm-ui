@@ -1,6 +1,6 @@
 <template>
   <!-- Container -->
-  <button type="button" :class="className" @click="handleClick">
+  <button :type="nativeType" :class="className" @click="handleClick">
     <div class="mdc-button__ripple"></div>
     <!-- Icon (optional) -->
     <slot name="before" :iconClass="UI_BUTTON.cssClasses.icon">
@@ -59,6 +59,11 @@ export default {
     unelevated: {
       type: Boolean,
       default: false
+    },
+    // native button attributes
+    nativeType: {
+      type: String,
+      default: 'button'
     }
   },
   data() {

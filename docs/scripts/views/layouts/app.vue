@@ -248,13 +248,9 @@ export default {
     });
 
     onBeforeUnmount(() => {
-      window.removeEventListener('balmResize', init);
+      bus.off();
 
-      bus.off('page-loading');
-      bus.off('page-loaded');
-      bus.off('global-message');
-      bus.off('switch-lang');
-      bus.off('off-loading');
+      window.removeEventListener('balmResize', init);
     });
 
     return {

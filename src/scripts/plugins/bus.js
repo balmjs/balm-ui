@@ -6,9 +6,21 @@ function on(eventName, callback) {
   eventBus.set(eventName, callback);
 }
 
-function off(eventName) {
+function removeEvent(eventName) {
   if (eventBus.has(eventName)) {
     eventBus.delete(eventName);
+  }
+}
+
+function off(eventName = false) {
+  if (eventName) {
+    if (Array.isArray(eventName)) {
+      eventName.forEach((event) => removeEvent(eventName));
+    } else {
+      removeEvent(eventName);
+    }
+  } else {
+    eventBus.clear();
   }
 }
 

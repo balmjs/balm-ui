@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.1.1 / 2020-09-28
+
+### Features
+
+- `<ui-button>`: add prop `nativeType`
+
 ## v8.1.0 / 2020-09-27
 
 ### Features

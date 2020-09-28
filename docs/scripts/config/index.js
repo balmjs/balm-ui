@@ -3,6 +3,7 @@ import { version } from '../../../package.json';
 export const VERSION = version;
 export const isDev = process.env.NODE_ENV === 'development';
 export const isProd = process.env.NODE_ENV === 'production';
+export const lazyLoadedTime = 1e3;
 
 // 同步 Sass variables
 // export const MDI_VERSION = 53;

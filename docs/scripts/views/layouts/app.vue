@@ -192,7 +192,7 @@
 <script>
 import SvgGithub from '@/components/svg-github';
 import SwitchTheme from '@/components/switch-theme';
-import { VERSION, $MIN_WIDTH, translations } from '@/config';
+import { VERSION, lazyLoadedTime, $MIN_WIDTH, translations } from '@/config';
 import menu from '@/config/menu';
 
 export default {
@@ -227,38 +227,44 @@ export default {
     }
   },
   mounted() {
-    this.init();
-    window.addEventListener('balmResize', this.init);
-
-    this.$bus.sub('page-loading', () => {
+    this.$bus.on('page-loading', () => {
       this.pageLoading = true;
-      this.loadingTimer = setInterval(this.loading, 20);
+
+      this.loadingProgress = 0;
+      clearInterval(this.loadingTimer);
+
+      this.loadingTimer = setInterval(this.loading, lazyLoadedTime / 5);
     });
 
-    this.$bus.sub('page-loaded', () => {
+    this.$bus.on('page-loaded', () => {
+      this.loaded();
+
       setTimeout(() => {
+        this.pageLoading = false;
         this.bodyEl.scrollTop = 0;
       }, 1);
-
-      setTimeout(() => {
-        this.loadingProgress = 1;
-
-        this.pageLoading = false;
-        clearInterval(this.loadingTimer);
-        this.loadingProgress = 0;
-      }, 100);
     });
 
-    this.$bus.sub('global-message', (message) => {
+    this.$bus.on('global-message', (message) => {
       this.showGlobalMessage = true;
     });
 
     this.$i18n.locale = this.$store.lang;
-    this.$bus.sub('switch-lang', (lang) => {
+    this.$bus.on('switch-lang', (lang) => {
       this.$i18n.locale = lang;
     });
+
+    this.init();
+    window.addEventListener('balmResize', this.init);
   },
   beforeDestroy() {
+    this.$bus.off([
+      'page-loading',
+      'page-loaded',
+      'global-message',
+      'switch-lang'
+    ]);
+
     window.removeEventListener('balmResize', this.init);
   },
   methods: {
@@ -270,19 +276,21 @@ export default {
       this.drawerType = this.getDrawerType();
     },
     handleMenu() {
-      this.$emit('page-loading');
-
       this.openDrawer = false;
       if (window.innerWidth < $MIN_WIDTH) {
         this.isWideScreen = false;
       }
     },
+    loaded() {
+      this.loadingProgress = 1;
+      clearInterval(this.loadingTimer);
+    },
     loading() {
-      if (this.loadingProgress === 0.8) {
-        clearInterval(this.loadingTimer);
-      } else {
+      if (this.loadingProgress < 1) {
         this.loadingProgress += 0.2;
         this.loadingProgress = +this.loadingProgress.toFixed(2);
+      } else {
+        this.loaded();
       }
     }
   }

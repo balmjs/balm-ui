@@ -3,17 +3,22 @@ import autoInstall from '../config/auto-install';
 
 const busApp = new Vue();
 
-function pub(eventName, ...args) {
-  busApp.$emit(eventName, ...args);
-}
-
-function sub(eventName, callback) {
+function on(eventName, callback) {
   busApp.$on(eventName, callback);
 }
 
+function off(eventName, callback) {
+  callback ? busApp.$off(eventName, callback) : busApp.$off(eventName);
+}
+
+function emit(eventName, ...args) {
+  busApp.$emit(eventName, ...args);
+}
+
 const bus = {
-  pub,
-  sub
+  on,
+  off,
+  emit
 };
 
 const BalmUI_BusPlugin = {

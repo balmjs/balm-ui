@@ -18,12 +18,12 @@ export default {
 
     axios.interceptors.response.use(
       (response) => {
-        bus.pub('off-loading');
+        bus.emit('off-loading');
 
         return response.data;
       },
       (error) => {
-        bus.pub('off-loading');
+        bus.emit('off-loading');
 
         return Promise.reject(error);
       }

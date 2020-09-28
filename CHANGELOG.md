@@ -2,6 +2,14 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.2.0 / 2020-09-28
+
+### Features
+
+- `$bus`: update apis
+  - `sub` -> `on(eventName, callback)`
+  - `pub` -> `emit(eventName, ...args)`
+
 ## v8.1.1 / 2020-09-28
 
 ### Features

@@ -1,7 +1,7 @@
 - page
 
 ```html
-<ui-button @click="$bus.pub('global-message')">Show Banner</ui-button>
+<ui-button @click="$bus.emit('global-message')">Show Banner</ui-button>
 ```
 
 - layout
@@ -26,7 +26,7 @@ export default {
     };
   },
   mounted() {
-    this.$bus.sub('global-message', (message) => {
+    this.$bus.on('global-message', (message) => {
       this.showGlobalMessage = true;
     });
   }

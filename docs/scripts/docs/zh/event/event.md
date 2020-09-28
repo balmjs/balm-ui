@@ -38,11 +38,11 @@ export default {
 
 ## 3. Global Communication
 
-> New in 8.1.0
+> New in 8.2.0
 
 ```js
-$bus.sub(eventName, callback); // Listen for a custom event on the current vm.
-$bus.pub(eventName, ...args); // Trigger an event on the current instance.
+$bus.on(eventName, callback); // Listen for a custom event on the current vm.
+$bus.emit(eventName, ...args); // Trigger an event on the current instance.
 ```
 
 ### Props
@@ -61,16 +61,19 @@ import { useBus } from 'balm-ui';
 // import { useBus } from 'balm-ui/plugins/bus';
 
 const $bus = useBus();
-$bus.pub('sayHi', 'Hello BalmUI');
+$bus.emit('custom-event', 'Hello BalmUI');
 ```
 
 ```js
 // `/path/to/app.vue`
 export default {
   mounted() {
-    this.$bus.sub('sayHi', (msg) => {
+    this.$bus.on('custom-event', (msg) => {
       console.log(msg);
     });
+  },
+  beforeDestroy() {
+    this.$bus.off('custom-event');
   }
 };
 ```

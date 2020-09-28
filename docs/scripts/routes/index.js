@@ -122,7 +122,7 @@ const router = new VueRouter({
 const bus = useBus();
 
 router.beforeEach((to, from, next) => {
-  bus.pub('page-loading');
+  bus.emit('page-loading');
   next();
 });
 
@@ -152,7 +152,7 @@ router.afterEach((to, from) => {
     pageClassList.add(`${CLASS_NAMESPACE}-${toName}`);
   }
 
-  bus.pub('page-loaded');
+  bus.emit('page-loaded');
 });
 
 export default router;

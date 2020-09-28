@@ -18,7 +18,7 @@ export default {
     setLang({ value }) {
       this.lang = value;
       localStorage.setItem('lang', value);
-      bus.pub('switch-lang', value);
+      bus.emit('switch-lang', value);
     }
   }
 };

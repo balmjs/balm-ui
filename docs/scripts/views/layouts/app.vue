@@ -63,6 +63,7 @@
                   <router-link
                     v-if="item.url || item.isSubmenu"
                     v-slot="{ href, isActive }"
+                    custom
                     :to="{ name: item.url }"
                   >
                     <ui-nav-item

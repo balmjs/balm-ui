@@ -21,7 +21,7 @@
 - Usage with `<router-link>` (requires `vue-router@3.1.0+`)
 
 ```html
-<router-link v-slot="{ href, isActive }">
+<router-link v-slot="{ href, isActive }" custom>
   <ui-nav-item :href="href" :active="isActive"></ui-nav-item>
 </router-link>
 ```

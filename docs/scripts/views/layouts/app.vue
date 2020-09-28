@@ -139,7 +139,8 @@
           ></ui-spinner>
           <router-view v-slot="{ Component }">
             <transition name="loading">
-              <component :is="Component" />
+              <component :is="Component" v-if="pageLoading" />
+              <component :is="Component" v-else />
             </transition>
           </router-view>
         </div>
@@ -149,20 +150,12 @@
 </template>
 
 <script>
-import {
-  reactive,
-  toRefs,
-  computed,
-  nextTick,
-  onBeforeMount,
-  onMounted,
-  onBeforeUnmount
-} from 'vue';
+import { reactive, toRefs, computed, onMounted, onBeforeUnmount } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { useEvent, useBus, useStore } from 'balm-ui';
 import TopToolbar from '@/components/top-toolbar';
-import { VERSION, $MIN_WIDTH } from '@/config';
+import { VERSION, lazyLoadedTime, $MIN_WIDTH } from '@/config';
 import menu from '@/config/menu';
 
 const state = reactive({
@@ -181,12 +174,17 @@ function init() {
   state.drawerType = state.isWideScreen ? 'permanent' : 'modal';
 }
 
+function loaded() {
+  state.loadingProgress = 1;
+  clearInterval(state.loadingTimer);
+}
+
 function loading() {
-  if (state.loadingProgress === 0.8) {
-    clearInterval(state.loadingTimer);
-  } else {
+  if (state.loadingProgress < 1) {
     state.loadingProgress += 0.2;
     state.loadingProgress = +state.loadingProgress.toFixed(2);
+  } else {
+    loaded();
   }
 }
 
@@ -209,42 +207,39 @@ export default {
       return route.name ? route.meta && route.meta.noLayout : true;
     });
 
-    onBeforeMount(() => {
-      bus.sub('page-loading', () => {
+    onMounted(() => {
+      bus.on('page-loading', () => {
         state.pageLoading = true;
-        state.loadingTimer = setInterval(loading, 20);
+
+        state.loadingProgress = 0;
+        clearInterval(state.loadingTimer);
+
+        state.loadingTimer = setInterval(loading, lazyLoadedTime / 5);
       });
 
-      bus.sub('page-loaded', () => {
-        state.bodyEl.scrollTop = 0;
+      bus.on('page-loaded', () => {
+        loaded();
 
         setTimeout(() => {
-          state.loadingProgress = 1;
-
           state.pageLoading = false;
-          clearInterval(state.loadingTimer);
-          state.loadingProgress = 0;
-        }, 100);
+          state.bodyEl.scrollTop = 0;
+        }, 1);
       });
-    });
 
-    onMounted(async () => {
-      await nextTick();
-
-      init();
-      window.addEventListener('balmResize', init);
-
-      bus.sub('global-message', (message) => {
+      bus.on('global-message', (message) => {
         state.showGlobalMessage = true;
       });
 
-      bus.sub('switch-lang', (lang) => {
+      bus.on('switch-lang', (lang) => {
         locale.value = lang;
       });
 
-      // bus.sub('off-loading', () => {
+      // bus.on('off-loading', () => {
       //   console.log('off-loading');
       // });
+
+      init();
+      window.addEventListener('balmResize', init);
 
       // NOTE: for lang init
       setTimeout(() => {
@@ -254,6 +249,12 @@ export default {
 
     onBeforeUnmount(() => {
       window.removeEventListener('balmResize', init);
+
+      bus.off('page-loading');
+      bus.off('page-loaded');
+      bus.off('global-message');
+      bus.off('switch-lang');
+      bus.off('off-loading');
     });
 
     return {
@@ -275,8 +276,6 @@ export default {
   },
   methods: {
     handleMenu() {
-      this.$bus.pub('page-loading');
-
       this.openDrawer = false;
       if (window.innerWidth < $MIN_WIDTH) {
         state.isWideScreen = false;

@@ -15,7 +15,7 @@ function getLang() {
 function setLang({ value }) {
   state.lang = value;
   localStorage.setItem('lang', value);
-  bus.pub('switch-lang', value);
+  bus.emit('switch-lang', value);
 }
 
 state.lang = getLang();

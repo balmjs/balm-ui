@@ -3,10 +3,10 @@ import autoInstall from '../config/auto-install';
 import getType from '../utils/typeof';
 import { createDiv } from '../utils/div';
 
-const DefaultKey = 'appstore1';
 let store = new Map();
+let defaultStoreKey;
 
-function createStore(setupOptions, key = DefaultKey) {
+function createStore(key, options) {
   if (store.has(key)) {
     throw new Error(`[BalmUI store]: The '${key}' already exists`);
   } else {
@@ -17,7 +17,7 @@ function createStore(setupOptions, key = DefaultKey) {
   const storeApp = createApp({
     name: `BalmUI${keyName}`,
     setup() {
-      return getType(setupOptions) === 'function' ? setupOptions() : {};
+      return getType(options) === 'function' ? options() : {};
     },
     template: '<div v-if="false"></div>'
   }).mount(`#${key}`);
@@ -27,14 +27,18 @@ function createStore(setupOptions, key = DefaultKey) {
 
 const BalmUI_StorePlugin = {
   install(app, options) {
-    createStore(options);
+    defaultStoreKey = (options.name || 'Store').toLowerCase();
 
-    app.config.globalProperties.$store = store.get(DefaultKey);
-    app.provide('store', store.get(DefaultKey));
+    createStore(defaultStoreKey, options);
+
+    app.config.globalProperties[`$${defaultStoreKey}`] = store.get(
+      defaultStoreKey
+    );
+    app.provide(defaultStoreKey, store.get(defaultStoreKey));
   }
 };
 
-const useStore = (key = DefaultKey) => store.get(key);
+const useStore = (key = defaultStoreKey) => store.get(key);
 
 autoInstall(BalmUI_StorePlugin);
 

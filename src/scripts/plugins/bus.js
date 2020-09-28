@@ -2,29 +2,28 @@ import autoInstall from '../config/auto-install';
 
 let eventBus = new Map();
 
-function pub(eventName, ...args) {
+function on(eventName, callback) {
+  eventBus.set(eventName, callback);
+}
+
+function off(eventName) {
   if (eventBus.has(eventName)) {
-    try {
-      eventBus.get(eventName)(...args);
-    } catch (e) {}
-  } else {
-    eventBus.set(eventName, ...args);
+    eventBus.delete(eventName);
   }
 }
 
-function sub(eventName, callback) {
+function emit(eventName, ...args) {
   if (eventBus.has(eventName)) {
-    try {
-      callback(eventBus.get(eventName));
-    } catch (e) {}
+    eventBus.get(eventName)(...args);
   } else {
-    eventBus.set(eventName, callback);
+    console.warn(`'${eventName}' is not defined`);
   }
 }
 
 const uiBus = {
-  pub,
-  sub
+  on,
+  off,
+  emit
 };
 
 const BalmUI_BusPlugin = {

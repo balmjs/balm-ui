@@ -6,7 +6,8 @@ export function initRouter(router) {
   const bus = useBus();
 
   router.beforeEach((to, from, next) => {
-    bus.pub('page-loading');
+    bus.emit('page-loading');
+
     next();
   });
 
@@ -35,6 +36,6 @@ export function initRouter(router) {
       pageClassList.add(`${CLASS_NAMESPACE}-${toName}`);
     }
 
-    bus.pub('page-loaded');
+    bus.emit('page-loaded');
   });
 }

@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import Vue from '../utils/vue';
 import autoInstall from '../config/auto-install';
 import WindowDialog from '../components/modal/window-dialog';
 import { getOptions, createModal, removeModel } from '../utils/modal';

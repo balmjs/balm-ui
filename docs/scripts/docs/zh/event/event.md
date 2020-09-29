@@ -38,7 +38,7 @@ export default {
 
 ## 3. Global Communication
 
-> New in 8.2.0
+> New in 8.2.1
 
 ```js
 $bus.on(eventName, callback); // Listen for a custom event on the current vm.
@@ -58,7 +58,7 @@ $bus.emit(eventName, ...args); // Trigger an event on the current instance.
 ```js
 import { useBus } from 'balm-ui';
 // OR
-// import { useBus } from 'balm-ui/plugins/bus';
+// import { useBus } from 'balm-ui/plugins/event';
 
 const $bus = useBus();
 $bus.emit('custom-event', 'Hello BalmUI');

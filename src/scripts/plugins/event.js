@@ -1,6 +1,7 @@
 import autoInstall from '../config/auto-install';
 import getType from '../utils/typeof';
 import createCustomEvent from '../events';
+import bus from '../events/bus';
 
 // Define constants
 const DEFAULT_NAMESPACE = 'balmUI';
@@ -89,12 +90,17 @@ const BalmUI_EventPlugin = {
           return balmUI; // Return new object for every vm !important
         }
       });
+
+      Vue.prototype.$bus = bus;
     } else {
       throw new Error('[BalmUI] The namespace of the event plugin is required');
     }
   }
 };
 
+const useBus = () => bus;
+
 autoInstall(BalmUI_EventPlugin);
 
 export default BalmUI_EventPlugin;
+export { useBus };

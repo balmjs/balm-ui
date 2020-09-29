@@ -1,40 +1,33 @@
-import Vue from 'vue';
 import autoInstall from '../config/auto-install';
 
 let store;
 
-function createStore(storeKey, options) {
-  const el = document.createElement('div');
-  el.id = storeKey;
-  document.body.appendChild(el);
-
+function createStore(Vue, storeKey, options) {
+  const el = document.body.appendChild(document.createElement('div'));
   const storeName = storeKey.replace(/^\S/, (s) => s.toUpperCase());
 
-  return new Vue(
+  store = new Vue(
     Object.assign(
       {
-        el: `#${storeKey}`,
+        el,
         name: storeName,
-        template: '<div v-if="false"></div>'
+        render: (createElement) => createElement('')
       },
       options
     )
   );
+
+  return store;
 }
 
 const BalmUI_StorePlugin = {
-  install(Vue, options) {
+  install(Vue, options = {}) {
     const storeKey = (options.name || 'Store').toLowerCase();
 
-    store = createStore(storeKey, options);
-
-    Vue.prototype[`$${storeKey}`] = store;
+    Vue.prototype[`$${storeKey}`] = createStore(Vue, storeKey, options);
   }
 };
-
-const useStore = () => store;
 
 autoInstall(BalmUI_StorePlugin);
 
 export default BalmUI_StorePlugin;
-export { useStore };

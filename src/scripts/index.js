@@ -93,7 +93,7 @@ import UiTooltip from './components/others/tooltip';
  * Plugins
  */
 import event, { useBus } from './plugins/event'; // Custom
-import store, { useStore } from './plugins/store'; // Custom
+import store from './plugins/store'; // Custom
 import grid, { useGrid } from './plugins/grid';
 import theme, { useTheme } from './plugins/theme';
 import typography, { useTypography } from './plugins/typography';
@@ -327,6 +327,6 @@ export {
   UiTopAppBar
 };
 export { event, grid, store, theme, typography, validator };
-export { useBus, useGrid, useStore, useTheme, useTypography };
+export { useBus, useGrid, useTheme, useTypography };
 export { vAccessibility, vBadge, vRipple, vShadow, vShape, vTooltip };
 export { types, helpers, detectIE };

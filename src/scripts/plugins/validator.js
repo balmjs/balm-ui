@@ -30,7 +30,7 @@ const BalmUI_ValidatorPlugin = {
       };
 
       // 获取待验证字段
-      let validations = this.$options.validations || {};
+      let validations = this.validations || this.$options.validations || {};
       let validationFields = Object.keys(validations);
 
       if (customFieldset.length) {

@@ -65,7 +65,7 @@ $bus.emit('custom-event', 'Hello BalmUI');
 ```
 
 ```js
-// `/path/to/app.vue`
+// `/path/to/app/scripts/views/app.vue`
 export default {
   mounted() {
     this.$bus.on('custom-event', (msg) => {

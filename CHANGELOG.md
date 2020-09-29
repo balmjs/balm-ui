@@ -2,9 +2,14 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.2.2 / 2020-09-29
+
+- update store plugins: remove `useStore`, use `$store` in app instance
+- optimize validator: support computed `validations`
+
 ## v8.2.1 / 2020-09-29
 
-### Features
+### BREAKING CHANGES
 
 - remove `bus` plugin and migrate to `event` plugin
 

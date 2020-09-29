@@ -31,13 +31,3 @@ import myStore from './store';
 
 Vue.use(store, myStore);
 ```
-
-### Use `$store` without `.vue` component
-
-```js
-import { useStore } from 'balm-ui';
-// OR
-// import { useStore } from 'balm-ui/plugins/store';
-
-const $store = useStore();
-```

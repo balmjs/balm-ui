@@ -1,7 +1,7 @@
 import { useTheme } from 'balm-ui';
 import { themes } from '@/config';
 
-const theme = useTheme();
+const $theme = useTheme();
 
 export default {
   data() {
@@ -14,7 +14,6 @@ export default {
     this.theme = this.getThemeName();
     this.setTheme();
   },
-  mounted() {},
   methods: {
     getThemeName() {
       return localStorage.getItem('theme') || 'light';
@@ -31,14 +30,14 @@ export default {
         'error',
         'on-error'
       ].forEach((style) => {
-        this.$set(this.themeColors, style, theme.getThemeColor(style));
+        this.$set(this.themeColors, style, $theme.getThemeColor(style));
       });
     },
     setTheme(themeName = this.theme) {
       const themeColors = themes[themeName];
 
       localStorage.setItem('theme', themeName);
-      theme.colors = themeColors;
+      $theme.colors = themeColors;
 
       this.getTheme();
     },

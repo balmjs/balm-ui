@@ -42,7 +42,9 @@ class ThemeStyle {
       result = isClass ? `mdc-theme--${style}` : themeColors.get(style);
     } else {
       throw new Error(
-        `[Theme ${isClass ? 'Class' : 'Color'}] ${MESSAGE.ALL_THEME_STYLES}`
+        `[BalmUI] - Theme ${isClass ? 'Class' : 'Color'}: ${
+          MESSAGE.ALL_THEME_STYLES
+        }`
       );
     }
 
@@ -60,10 +62,10 @@ class ThemeStyle {
       if (THEME_TONES.includes(tone)) {
         result = fn();
       } else {
-        throw new Error(MESSAGE.THEME_TONE);
+        throw new Error(`[BalmUI] ${MESSAGE.THEME_TONE}`);
       }
     } else {
-      throw new Error(MESSAGE.TEXT_STYLE);
+      throw new Error(`[BalmUI] ${MESSAGE.TEXT_STYLE}`);
     }
 
     return result;
@@ -181,7 +183,7 @@ class Theme extends ThemeStyle {
         }
       });
     } else {
-      throw new Error(MESSAGE.THEME_STYLE);
+      throw new Error(`[BalmUI] ${MESSAGE.THEME_STYLE}`);
     }
   }
 

@@ -114,7 +114,7 @@ function createToast(options) {
           this.show();
         } else {
           throw new Error(
-            `The timeoutMs of the toast must be between ${UI_TOAST.timeoutMs.MIN} and ${UI_TOAST.timeoutMs.MAX}`
+            `[BalmUI] The timeoutMs of the toast must be between ${UI_TOAST.timeoutMs.MIN} and ${UI_TOAST.timeoutMs.MAX}`
           );
         }
       }
@@ -123,7 +123,7 @@ function createToast(options) {
   });
 }
 
-const toast = (customOptions = {}) => {
+function toast(customOptions = {}) {
   const options = getOptions(globalOptions, customOptions);
 
   if (hasToast()) {
@@ -134,7 +134,7 @@ const toast = (customOptions = {}) => {
   } else {
     toastApp = createToast(options);
   }
-};
+}
 
 const BalmUI_ToastPlugin = {
   install(Vue, options = {}) {

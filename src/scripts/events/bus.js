@@ -1,5 +1,3 @@
-import autoInstall from '../config/auto-install';
-
 let eventBus = new Map();
 
 function on(eventName, callback) {
@@ -32,22 +30,10 @@ function emit(eventName, ...args) {
   }
 }
 
-const uiBus = {
+const bus = {
   on,
   off,
   emit
 };
 
-const BalmUI_BusPlugin = {
-  install(app) {
-    app.config.globalProperties.$bus = uiBus;
-    app.provide('bus', uiBus);
-  }
-};
-
-const useBus = () => uiBus;
-
-autoInstall(BalmUI_BusPlugin);
-
-export default BalmUI_BusPlugin;
-export { useBus };
+export default bus;

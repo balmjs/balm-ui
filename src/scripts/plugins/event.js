@@ -1,7 +1,8 @@
-import { getCurrentInstance } from 'vue';
+import { getCurrentInstance } from '../utils/vue';
 import autoInstall from '../config/auto-install';
 import getType from '../utils/typeof';
 import createCustomEvent from '../events';
+import bus from '../events/bus';
 
 // Define constants
 const noop = () => {};
@@ -90,12 +91,16 @@ const BalmUI_EventPlugin = {
         }
       }
     });
+
+    app.config.globalProperties.$bus = bus;
+    app.provide('bus', bus);
   }
 };
 
 const useEvent = () => new UiEvent();
+const useBus = () => bus;
 
 autoInstall(BalmUI_EventPlugin);
 
 export default BalmUI_EventPlugin;
-export { useEvent };
+export { useEvent, useBus };

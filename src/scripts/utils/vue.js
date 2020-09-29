@@ -1,3 +1,3 @@
-import Vue from 'vue/dist/vue.esm';
+import { createApp, getCurrentInstance } from 'vue/dist/vue.esm-bundler';
 
-export default Vue;
+export { createApp, getCurrentInstance };

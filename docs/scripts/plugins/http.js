@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { useBus } from 'balm-ui';
+// import { useBus } from 'balm-ui';
 
 // axios.defaults.baseURL = '/api';
 
-const bus = useBus();
+// const bus = useBus();
 
 axios.interceptors.request.use(
   (config) => {

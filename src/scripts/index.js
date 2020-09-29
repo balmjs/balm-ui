@@ -90,8 +90,7 @@ import UiTooltip from './components/others/tooltip';
 /**
  * Plugins
  */
-import event, { useEvent } from './plugins/event'; // Custom
-import bus, { useBus } from './plugins/bus'; // Custom
+import event, { useEvent, useBus } from './plugins/event'; // Custom
 import store, { useStore } from './plugins/store'; // Custom
 import grid, { useGrid } from './plugins/grid';
 import theme, { useTheme } from './plugins/theme';
@@ -193,7 +192,6 @@ const components = {
 };
 
 const plugins = {
-  bus,
   event,
   grid,
   store,
@@ -322,10 +320,10 @@ export {
   UiTooltip,
   UiTopAppBar
 };
-export { bus, event, grid, store, theme, typography, validator };
+export { event, grid, store, theme, typography, validator };
 export {
-  useBus,
   useEvent,
+  useBus,
   useGrid,
   useStore,
   useTheme,

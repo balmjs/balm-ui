@@ -257,7 +257,6 @@ export default {
       ...toRefs(state),
       noLayout,
       balmUI,
-      bus,
       t,
       locale
     };

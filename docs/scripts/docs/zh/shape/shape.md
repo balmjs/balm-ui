@@ -6,7 +6,7 @@
   - `v-shape="corner"` (medium)
   - `v-shape.small="corner"`
   - `v-shape.large="corner"`
-- Cut shapes
+- Cut shapes (Experimental, Sass Only)
   - `v-shape.cut="corner"` (medium)
   - `v-shape.cut.small="corner"`
   - `v-shape.cut.large="corner"`

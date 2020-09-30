@@ -15,14 +15,21 @@
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script src="/components/button/index.js"></script>
+  <script src="/plugins/event/index.js"></script>
   <script src="/plugins/store/index.js"></script>
+  <script src="./store-demo.js"></script>
   <script src="./store.js"></script>
   <script>
   BalmUI_store.default.install(Vue, myStore);
   </script>
   <script>
     new Vue({
-      el: '#app'
+      el: '#app',
+      created() {
+        this.$bus.on('custom-event', (msg) => {
+          console.log(msg);
+        });
+      }
     })
   </script>
 </body>

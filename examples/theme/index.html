@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BalmUI - theme example</title>
+  <link rel="stylesheet" href="/components/core.css">
+  <link rel="stylesheet" href="/components/button/button.css">
+</head>
+<body>
+  <div id="app">
+    <ui-button :class="$theme.getThemeClass('primary')">Primary Text</ui-button>
+    <ui-button :class="$theme.getThemeClass('secondary')">Secondary Text</ui-button>
+
+    <hr>
+
+    <ui-button @click="onChangeTheme">$theme</ui-button>
+    <ui-button @click="onChangeTheme2">Use Theme</ui-button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="/components/button/index.js"></script>
+  <script src="/plugins/theme/index.js"></script>
+  <script>
+    $theme = BalmUI_theme.useTheme();
+
+    new Vue({
+      el: '#app',
+      methods: {
+        onChangeTheme() {
+          this.$theme.colors = {
+            primary: '#f00',
+            secondary: '#00f'
+          };
+        },
+        onChangeTheme2() {
+          $theme.colors = {
+            primary: '#00f',
+            secondary: '#f00'
+          };
+        }
+      }
+    })
+  </script>
+</body>
+</html>

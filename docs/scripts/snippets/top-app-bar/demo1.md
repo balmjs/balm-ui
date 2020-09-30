@@ -20,14 +20,12 @@
   </ui-top-app-bar>
 
   <ui-drawer v-model="openDrawer" type="modal">
-    <ui-drawer-header
-      :innerClass="$theme.getThemeClass(['primary-bg', 'on-primary'])"
-    >
+    <ui-drawer-header>
       <ui-drawer-title>Header here</ui-drawer-title>
     </ui-drawer-header>
     <ui-drawer-content>
       <ui-list>
-        <ui-item active @click="$router.back()">
+        <ui-item active>
           <ui-item-first-content>
             <ui-icon>arrow_back</ui-icon>
           </ui-item-first-content>
@@ -41,7 +39,7 @@
   <ui-drawer-backdrop></ui-drawer-backdrop>
 
   <div id="content-main">
-    <p v-for="i in 36" :key="i">Content</p>
+    <p v-for="i in 36" :key="i">Content {{ i }}</p>
   </div>
 </div>
 ```

@@ -1,5 +1,3 @@
-import autoInit from './register';
-
 // Define elevation constants
 const UI_ELEVATION = {
   Z_SPACE: {
@@ -68,7 +66,5 @@ const BalmUI_ElevationDirective = {
     updateElevation('remove', el, binding);
   }
 };
-
-autoInit(BalmUI_ElevationDirective.name, BalmUI_ElevationDirective);
 
 export default BalmUI_ElevationDirective;

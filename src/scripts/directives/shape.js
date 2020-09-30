@@ -1,5 +1,3 @@
-import autoInit from './register';
-
 // Define shape constants
 const UI_SHAPE = {
   rounded: 'mdc-shape--rounded',
@@ -61,7 +59,5 @@ const BalmUI_ShapeDirective = {
     updateShape('remove', el, binding);
   }
 };
-
-autoInit(BalmUI_ShapeDirective.name, BalmUI_ShapeDirective);
 
 export default BalmUI_ShapeDirective;

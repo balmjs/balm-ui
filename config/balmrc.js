@@ -41,9 +41,7 @@ function getConfig(balm) {
             app: './docs/scripts/index.js'
           }
         : {
-            'balm-ui': './src/scripts/index.js',
-            'balm-ui-plus': './src/scripts/plus.js',
-            'balm-ui-next': './src/scripts/next.js'
+            'balm-ui': './src/scripts/index.js'
           },
       library: useDocs ? '' : 'BalmUI',
       libraryTarget: useDocs ? 'var' : 'umd',

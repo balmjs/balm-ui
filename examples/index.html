@@ -4,16 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hello BalmUI</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/balm-ui/dist/balm-ui.css"
-    />
+    <link rel="stylesheet" href="/dist/balm-ui.css" />
     <style>
       body {
         margin: 0;
       }
     </style>
   </head>
+
   <body>
     <div id="app" class="container">
       <ui-drawer viewport-height>
@@ -32,42 +30,25 @@
         <ui-button @click="$alert(message)" icon="add">SayHi</ui-button>
       </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script src="https://cdn.jsdelivr.net/npm/balm-ui"></script>
-    <script src="https://cdn.jsdelivr.net/npm/balm-ui/dist/balm-ui-plus.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
+    <script src="/dist/balm-ui.js"></script>
+    <script src="/dist/balm-ui-plus.js"></script>
+    <script src="./menu.js"></script>
     <script>
-      var app = new Vue({
-        el: '#app',
-        data: {
-          menu: [
-            'button',
-            'card',
-            'checkbox',
-            'dialog',
-            'drawer',
-            'fab',
-            'form',
-            'grid',
-            'icon',
-            'icon-button',
-            'menu',
-            'radio',
-            'select',
-            'shape',
-            'snackbar',
-            'store',
-            'table',
-            'tabs',
-            'theme',
-            'textfield',
-            'top-app-bar',
-            'typography',
-            'utils',
-            'validator'
-          ],
-          message: 'Hello BalmUI'
+      var message = 'Hello BalmUI';
+
+      var app = Vue.createApp({
+        setup() {
+          return {
+            menu,
+            message
+          };
         }
       });
+      app.use(BalmUI.default);
+      // app.use(BalmUIPlus.default);
+      app.mount('#app');
     </script>
   </body>
 </html>

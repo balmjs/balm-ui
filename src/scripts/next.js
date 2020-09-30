@@ -1,5 +1,4 @@
 import packageJson from '../../package.json';
-import autoInstall from './config/auto-install';
 import multiConfigure from './config/multi-configure';
 /**
  * Components
@@ -12,19 +11,17 @@ const components = {
 
 const BalmUINext = {
   version: packageJson.version,
-  install(Vue, options = {}) {
+  install(app, options = {}) {
     // Configure the components' props
     multiConfigure(components, options);
 
     // Install the components
     for (let key in components) {
       let Component = components[key];
-      Vue.component(Component.name, Component);
+      app.component(Component.name, Component);
     }
   }
 };
-
-autoInstall(BalmUINext);
 
 export default BalmUINext;
 export { UiBottomNavigation };

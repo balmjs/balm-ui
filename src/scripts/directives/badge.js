@@ -1,5 +1,3 @@
-import autoInit from './register';
-
 // Define badge constants
 const UI_BADGE = {
   cssClasses: {
@@ -68,7 +66,5 @@ const BalmUI_BadgeDirective = {
     updateBadge(el, binding);
   }
 };
-
-autoInit(BalmUI_BadgeDirective.name, BalmUI_BadgeDirective);
 
 export default BalmUI_BadgeDirective;

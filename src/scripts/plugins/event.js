@@ -1,5 +1,4 @@
 import { getCurrentInstance } from 'vue';
-import autoInstall from '../config/auto-install';
 import getType from '../utils/typeof';
 import createCustomEvent from '../events';
 import bus from '../events/bus';
@@ -99,8 +98,6 @@ const BalmUI_EventPlugin = {
 
 const useEvent = () => new UiEvent();
 const useBus = () => bus;
-
-autoInstall(BalmUI_EventPlugin);
 
 export default BalmUI_EventPlugin;
 export { useEvent, useBus };

@@ -1,5 +1,3 @@
-import autoInstall from '../config/auto-install';
-
 // Define typography constants
 const T_BASE = 'mdc-typography';
 const T_DEFAULT_STYLES = [
@@ -55,8 +53,6 @@ const BalmUI_TypographyPlugin = {
 };
 
 const useTypography = () => tt;
-
-autoInstall(BalmUI_TypographyPlugin);
 
 export default BalmUI_TypographyPlugin;
 export { useTypography };

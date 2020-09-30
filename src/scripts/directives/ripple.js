@@ -1,4 +1,3 @@
-import autoInit from './register';
 import { MDCRipple } from '../../material-components-web/ripple';
 
 // Define ripple constants
@@ -50,7 +49,5 @@ const BalmUI_RippleDirective = {
     updateRipple('remove', el, binding);
   }
 };
-
-autoInit(BalmUI_RippleDirective.name, BalmUI_RippleDirective);
 
 export default BalmUI_RippleDirective;

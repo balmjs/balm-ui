@@ -1,6 +1,5 @@
 import { createApp } from 'vue';
-import autoInstall from '../config/auto-install';
-import { getOptions, createModal, removeModel } from '../utils/modal';
+import { getOptions, createModal } from '../utils/modal';
 
 // Define toast constants
 const UI_TOAST = {
@@ -131,8 +130,6 @@ const BalmUI_ToastPlugin = {
 };
 
 const useToast = () => toast;
-
-autoInstall(BalmUI_ToastPlugin);
 
 export default BalmUI_ToastPlugin;
 export { useToast };

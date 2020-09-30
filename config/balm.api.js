@@ -4,6 +4,8 @@ const constants = require('./constants');
 const individual = require('./individual');
 const fixGridCss = require('./build.fix');
 
+const NAMESPACE = 'BalmUI';
+
 module.exports = (mix) => {
   if (env.buildDocs) {
     mix.copy('./docs/data/*', './dist/data');
@@ -44,6 +46,30 @@ module.exports = (mix) => {
           individual.output.utils
         ]);
 
+        // Build plus & next
+        mix.js(
+          {
+            'balm-ui-plus': './src/scripts/plus.js'
+          },
+          individual.output.dist,
+          {
+            output: {
+              library: `${NAMESPACE}Plus`
+            }
+          }
+        );
+        mix.js(
+          {
+            'balm-ui-next': './src/scripts/next.js'
+          },
+          individual.output.dist,
+          {
+            output: {
+              library: `${NAMESPACE}Next`
+            }
+          }
+        );
+
         // Build individual
         const individualBuild = [
           'components',
@@ -53,6 +79,23 @@ module.exports = (mix) => {
         ];
         const uiOutput = `${individual.output.dist}/css/balm-ui`;
         individualBuild.forEach((buildName) => {
+          let type;
+
+          switch (buildName) {
+            case 'components':
+              type = 'c';
+              break;
+            case 'plugins':
+              type = 'p';
+              break;
+            case 'directives':
+              type = 'd';
+              break;
+            case 'utils':
+              type = 'u';
+              break;
+          }
+
           individual[buildName].forEach((item) => {
             let jsInput =
               buildName === 'utils'
@@ -67,7 +110,8 @@ module.exports = (mix) => {
 
             mix.js(jsInput, jsOutput, {
               output: {
-                library: 'BalmUI_' + item
+                library: `${NAMESPACE}_${type}_${item}`,
+                libraryExport: 'default'
               }
             });
 

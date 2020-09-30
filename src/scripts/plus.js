@@ -1,5 +1,4 @@
 import packageJson from '../../package.json';
-import autoInstall from './config/auto-install';
 import multiConfigure from './config/multi-configure';
 /**
  * Components
@@ -44,35 +43,33 @@ const directives = {
 
 const BalmUIPlus = {
   version: packageJson.version,
-  install(Vue, options = {}) {
+  install(app, options = {}) {
     // Configure the components' props
     multiConfigure(components, options);
 
     // Install the components
     for (let key in components) {
       let Component = components[key];
-      Vue.component(Component.name, Component);
+      app.component(Component.name, Component);
     }
 
     // Install the plugins
     for (let key in plugins) {
       let Plugin = plugins[key];
       if (options[key]) {
-        Vue.use(Plugin, options[key]);
+        app.use(Plugin, options[key]);
       } else {
-        Vue.use(Plugin);
+        app.use(Plugin);
       }
     }
 
     // Init the directives
     for (let key in directives) {
       let Directive = directives[key];
-      Vue.directive(Directive.name, Directive);
+      app.directive(Directive.name, Directive);
     }
   }
 };
-
-autoInstall(BalmUIPlus);
 
 export default BalmUIPlus;
 export {

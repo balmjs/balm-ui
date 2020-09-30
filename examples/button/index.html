@@ -16,17 +16,18 @@
     <ui-button raised>Raised</ui-button>
     <ui-button icon="favorite">Icon</ui-button>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
   <script src="/components/button/index.js"></script>
   <script>
-  // BalmUI_button.default.install(Vue, {
+  // BalmUI_c_button.install(Vue, {
   //   raised: true
   // });
   </script>
   <script>
-    new Vue({
-      el: '#app'
-    })
+    var app = Vue.createApp({})
+    app.use(BalmUI_c_button)
+    // BalmUI_c_button.install(app);
+    app.mount('#app');
   </script>
 </body>
 </html>

@@ -1,5 +1,4 @@
 import { createApp } from 'vue';
-import autoInstall from '../config/auto-install';
 import getType from '../utils/typeof';
 import { createDiv } from '../utils/div';
 
@@ -39,8 +38,6 @@ const BalmUI_StorePlugin = {
 };
 
 const useStore = (key = defaultStoreKey) => store.get(key);
-
-autoInstall(BalmUI_StorePlugin);
 
 export default BalmUI_StorePlugin;
 export { createStore, useStore };

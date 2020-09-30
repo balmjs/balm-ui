@@ -1,5 +1,4 @@
 import packageJson from '../../package.json';
-import autoInstall from './config/auto-install';
 import multiConfigure from './config/multi-configure';
 /**
  * Components
@@ -238,8 +237,6 @@ const BalmUI = {
     }
   }
 };
-
-autoInstall(BalmUI);
 
 export default BalmUI;
 export {

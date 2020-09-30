@@ -1,5 +1,4 @@
 import { getCurrentInstance } from 'vue';
-import autoInstall from '../config/auto-install';
 import getType from '../utils/typeof';
 
 const defaultRules = {
@@ -142,8 +141,6 @@ const BalmUI_ValidatorPlugin = {
 };
 
 const useValidator = () => new UiValidator();
-
-autoInstall(BalmUI_ValidatorPlugin);
 
 export default BalmUI_ValidatorPlugin;
 export { useValidator };

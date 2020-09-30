@@ -1,4 +1,4 @@
-@use './variables' as icon-variables;
+@use './mixins' as icon-mixins;
 
 // Flagged: GPL-3.0-only
 @include icon-mixins.setFontFace(

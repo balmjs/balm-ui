@@ -1,4 +1,4 @@
-import { createApp } from '../utils/vue';
+import { createApp } from 'vue';
 import autoInstall from '../config/auto-install';
 import MdcDialog from '../components/modal/mdc-dialog';
 import { getOptions, createModal, removeModel } from '../utils/modal';

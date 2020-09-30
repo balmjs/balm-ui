@@ -1,4 +1,4 @@
-import { getCurrentInstance } from '../utils/vue';
+import { getCurrentInstance } from 'vue';
 import autoInstall from '../config/auto-install';
 import getType from '../utils/typeof';
 import createCustomEvent from '../events';

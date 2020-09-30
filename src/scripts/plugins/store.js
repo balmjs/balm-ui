@@ -1,4 +1,4 @@
-import { createApp } from '../utils/vue';
+import { createApp } from 'vue';
 import autoInstall from '../config/auto-install';
 import getType from '../utils/typeof';
 import { createDiv } from '../utils/div';

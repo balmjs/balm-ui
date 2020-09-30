@@ -6,7 +6,7 @@ function on(eventName, callback) {
   busApp.$on(eventName, callback);
 }
 
-function off(eventName, callback) {
+function off(eventName, callback = false) {
   callback ? busApp.$off(eventName, callback) : busApp.$off(eventName);
 }
 

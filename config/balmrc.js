@@ -62,10 +62,14 @@ function getConfig(balm) {
       },
       includeJsResource: useDocs ? [path.join(workspace, 'src/scripts')] : [],
       alias: {
-        vue$: 'vue/dist/vue.esm.js',
-        pickerLangZh: 'flatpickr/dist/l10n/zh.js',
         '@': path.join(workspace, 'docs/scripts'),
-        'balm-ui': path.join(workspace, 'src/scripts')
+        pickerLangZh: 'flatpickr/dist/l10n/zh.js',
+        vue$: 'vue/dist/vue.esm.js',
+        'balm-ui': path.join(workspace, 'src/scripts'),
+        'balm-ui-editor': path.join(
+          workspace,
+          'src/scripts/components/input-controls/editor.vue'
+        )
       },
       plugins: [new VueLoaderPlugin()],
       eslint: true,

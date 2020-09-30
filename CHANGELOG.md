@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.2.5 / 2020-09-30
+
+### BREAKING CHANGES
+
+- remove Material Icons Sharp (Flagged: GPL-3.0-only)
+
 ## v8.2.2 / 2020-09-29
 
 - update store plugins: remove `useStore`, use `$store` in app instance

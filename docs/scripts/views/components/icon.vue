@@ -8,7 +8,12 @@
         <ui-icon :type="typeOption">delete</ui-icon>
       </div>
       <div class="hero-options">
-        <ui-select v-model="typeOption" class="hero-option" :options="TypeOptions">Icon themes</ui-select>
+        <ui-select
+          v-model="typeOption"
+          class="hero-option"
+          :options="TypeOptions"
+          >Icon themes</ui-select
+        >
       </div>
     </template>
 
@@ -81,7 +86,9 @@
             @input="onSearch"
             @selected="onSelected"
           ></ui-autocomplete>
-          <ui-select id="icon-type" v-model="typeOption" :options="TypeOptions">Theme</ui-select>
+          <ui-select id="icon-type" v-model="typeOption" :options="TypeOptions"
+            >Theme</ui-select
+          >
         </div>
         <ui-textfield-helper class="search-helper" visible>
           TIPS: Click an icon to copy icon name, then you can use `
@@ -95,7 +102,8 @@
             :key="`subheader${index}`"
             v-anchor:id="category.name"
             :class="$tt('headline6')"
-          >{{ category.name }}</ui-list-group-subheader>
+            >{{ category.name }}</ui-list-group-subheader
+          >
           <template v-if="Object.keys(currentIcons).length">
             <ui-image-list :key="`list${index}`">
               <ui-image-item
@@ -106,7 +114,9 @@
                 :data-clipboard-text="icon.name"
               >
                 <template #image>
-                  <ui-icon :type="typeOption" size="36">{{ icon.name }}</ui-icon>
+                  <ui-icon :type="typeOption" size="36">{{
+                    icon.name
+                  }}</ui-icon>
                   <div v-if="icon.isNew" class="new-badge">New</div>
                 </template>
                 <ui-image-text>{{ icon.name }}</ui-image-text>
@@ -125,105 +135,6 @@
 
 <script>
 import Clipboard from 'clipboard';
-// import { MDI_VERSION } from '@/config';
-
-// let UNDEFINED_ICONS = [];
-// if (MDI_VERSION <= 48) {
-//   UNDEFINED_ICONS = UNDEFINED_ICONS.concat([
-//     'battery_20',
-//     'battery_30',
-//     'battery_50',
-//     'battery_60',
-//     'battery_80',
-//     'battery_90',
-//     'battery_charging_20',
-//     'battery_charging_30',
-//     'battery_charging_50',
-//     'battery_charging_60',
-//     'battery_charging_80',
-//     'battery_charging_90',
-//     'signal_cellular_0_bar',
-//     'signal_cellular_1_bar',
-//     'signal_cellular_2_bar',
-//     'signal_cellular_3_bar',
-//     'signal_cellular_connected_no_internet_0_bar',
-//     'signal_cellular_connected_no_internet_1_bar',
-//     'signal_cellular_connected_no_internet_2_bar',
-//     'signal_cellular_connected_no_internet_3_bar',
-//     'signal_wifi_0_bar',
-//     'signal_wifi_1_bar',
-//     'signal_wifi_1_bar_lock',
-//     'signal_wifi_2_bar',
-//     'signal_wifi_2_bar_lock',
-//     'signal_wifi_3_bar',
-//     'signal_wifi_3_bar_lock'
-//   ]);
-// }
-
-// if (MDI_VERSION <= 38) {
-//   UNDEFINED_ICONS = UNDEFINED_ICONS.concat([
-//     'all_inbox',
-//     'arrow_right_alt',
-//     'calendar_today',
-//     'calendar_view_day',
-//     'commute',
-//     'contact_support',
-//     'drag_indicator',
-//     'horizontal_split',
-//     'maximize',
-//     'minimize',
-//     'offline_bolt',
-//     'supervised_user_circle',
-//     'text_rotate_up',
-//     'text_rotate_vertical',
-//     'text_rotation_down',
-//     'text_rotation_none',
-//     'vertical_split',
-//     'voice_over_off',
-//     'notification_important',
-//     '4k',
-//     'control_camera',
-//     'missed_video_call',
-//     'alternate_email',
-//     'cell_wifi',
-//     'desktop_access_disabled',
-//     'duo',
-//     'mobile_screen_share',
-//     'unsubscribe',
-//     'ballot',
-//     'file_copy',
-//     'how_to_reg',
-//     'how_to_vote',
-//     'outlined_flag',
-//     'waves',
-//     'where_to_vote',
-//     'mobile_friendly',
-//     'mobile_off',
-//     'signal_cellular_alt',
-//     'bar_chart',
-//     'scatter_plot',
-//     'score',
-//     'device_unknown',
-//     'music_off',
-//     'shutter_speed',
-//     '360',
-//     'atm',
-//     'category',
-//     'compass_calibration',
-//     'departure_board',
-//     'fastfood',
-//     'money',
-//     'not_listed_location',
-//     'transit_enterexit',
-//     'trip_origin',
-//     'arrow_left',
-//     'arrow_right',
-//     'meeting_room',
-//     'no_meeting_room',
-//     'toggle_off',
-//     'toggle_on'
-//   ]);
-// }
 
 const TypeOptions = [
   {
@@ -241,11 +152,12 @@ const TypeOptions = [
   {
     label: 'Two-Tone',
     value: 3
-  },
-  {
-    label: 'Sharp',
-    value: 4
   }
+  // Flagged: GPL-3.0-only
+  // {
+  //   label: 'Sharp',
+  //   value: 4
+  // }
 ];
 
 export default {

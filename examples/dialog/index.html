@@ -5,12 +5,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>BalmUI - dialog example</title>
   <link rel="stylesheet" href="/components/core.css">
-  <link rel="stylesheet" href="/components/button/button.css">
   <link rel="stylesheet" href="/components/dialog/dialog.css">
+  <link rel="stylesheet" href="/components/button/button.css">
+  <link rel="stylesheet" href="/plugins/alert/alert.css">
+  <link rel="stylesheet" href="/plugins/confirm/confirm.css">
+  <link rel="stylesheet" href="/components/snackbar/snackbar.css">
 </head>
 <body>
   <div id="app">
-    <ui-button primary raised @click="$balmUI.onOpen('open')">Show Dialog</ui-button>
+    <ui-button raised @click="$balmUI.onOpen('open')">Show Dialog</ui-button>
     <ui-dialog
       :open="open"
       @close="$balmUI.onClose('open')"
@@ -26,8 +29,15 @@
   <script src="/components/button/index.js"></script>
   <script src="/components/dialog/index.js"></script>
   <script src="/plugins/event/index.js"></script>
+  <script src="/plugins/alert/index.js"></script>
+  <script src="/plugins/confirm/index.js"></script>
+  <script src="/plugins/toast/index.js"></script>
   <script>
-    var app = new Vue({
+    // $alert = BalmUI_alert.useAlert();
+    // $confirm = BalmUI_confirm.useConfirm();
+    // $toast = BalmUI_toast.useToast();
+
+    new Vue({
       el: '#app',
       data: {
         open: false
@@ -36,6 +46,9 @@
         onConfirm(result) {
           if (result) {
             console.log('ok');
+            this.$confirm('Do you like BalmUI?').then((r) => {
+              r ? this.$alert('Cool') : this.$toast('Good');
+            })
           } else {
             console.log('cancel');
           }

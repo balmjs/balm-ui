@@ -1,0 +1,3 @@
+var myStore = {
+  mixins: [demo]
+};

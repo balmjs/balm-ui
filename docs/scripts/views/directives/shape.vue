@@ -17,7 +17,9 @@
     </section>
 
     <section class="demo-wrapper">
-      <h6 :class="$tt('headline6')">1.2 Cut shapes (Experimental)</h6>
+      <h6 :class="$tt('headline6')">
+        1.2 Cut shapes (Experimental, Sass Only)
+      </h6>
       <div class="demos">
         <div class="demo">0dp</div>
         <div v-shape.cut.small class="demo">4dp</div>

@@ -1,33 +1,11 @@
 @use './variables' as icon-variables;
+@use './mixins' as icon-mixins;
 
 .material-icons,
 .material-icons-outlined,
 .material-icons-round,
-.material-icons-two-tone,
-.material-icons-sharp {
-  /* Rules for sizing the icon. */
-  @each $size in icon-variables.$sizes {
-    &.md-#{$size} {
-      font-size: #{$size}px;
-
-      width: #{$size}px;
-      height: #{$size}px;
-    }
-  }
-  /* Rules for using icons as black on a light background. */
-  &.md-dark {
-    color: icon-variables.$dark;
-    &.md-inactive {
-      color: icon-variables.$dark-inactive;
-    }
-  }
-  /* Rules for using icons as white on a dark background. */
-  &.md-light {
-    color: icon-variables.$light;
-    &.md-inactive {
-      color: icon-variables.$light-inactive;
-    }
-  }
+.material-icons-two-tone {
+  @include icon-mixins.setIconClass();
 }
 
 @each $key, $value in icon-variables.$types {

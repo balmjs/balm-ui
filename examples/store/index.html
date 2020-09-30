@@ -4,28 +4,32 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BalmUI - button example</title>
+  <title>BalmUI - store example</title>
   <link rel="stylesheet" href="/components/core.css">
   <link rel="stylesheet" href="/components/button/button.css">
-  <link rel="stylesheet" href="/components/icon/icon.css">
 </head>
 <body>
   <div id="app">
-    <ui-button>Text</ui-button>
-    <ui-button outlined>Outlined</ui-button>
-    <ui-button raised>Raised</ui-button>
-    <ui-button icon="favorite">Icon</ui-button>
+    <ui-button @click="$store.setMsg">Get Store</ui-button>
+    <p>Message: {{ $store.message }}</p>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script src="/components/button/index.js"></script>
+  <script src="/plugins/event/index.js"></script>
+  <script src="/plugins/store/index.js"></script>
+  <script src="./store-demo.js"></script>
+  <script src="./store.js"></script>
   <script>
-  // BalmUI_button.default.install(Vue, {
-  //   raised: true
-  // });
+  BalmUI_store.default.install(Vue, myStore);
   </script>
   <script>
     new Vue({
-      el: '#app'
+      el: '#app',
+      created() {
+        this.$bus.on('custom-event', (msg) => {
+          console.log(msg);
+        });
+      }
     })
   </script>
 </body>

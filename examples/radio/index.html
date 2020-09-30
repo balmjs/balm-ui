@@ -12,28 +12,24 @@
 <body>
   <div id="app">
     <ui-form-field>
-      <ui-radio id="ex1-radio1" name="ex1"
-        value="a" :model="value1"
-        @change="$balmUI.onChange('value1', $event)"></ui-radio>
-      <label for="ex1-radio1">Radio 1</label>
+      <ui-radio id="male" v-model="gender" name="sex" value="M"></ui-radio>
+      <label for="male">Male</label>
     </ui-form-field>
     <ui-form-field>
-      <ui-radio id="ex1-radio2" name="ex1"
-        value="b" :model="value1"
-        @change="$balmUI.onChange('value1', $event)"></ui-radio>
-      <label for="ex1-radio2">Radio 2</label>
+      <ui-radio id="female" v-model="gender" name="sex" value="F"></ui-radio>
+      <label for="female">Female</label>
     </ui-form-field>
+    <p>Gender: {{ gender }}</p>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script src="/components/form-field/index.js"></script>
   <script src="/components/radio/index.js"></script>
-  <script src="/plugins/event/index.js"></script>
   <script>
-    var app = new Vue({
+    new Vue({
       el: '#app',
       data() {
         return {
-          value1: 'a'
+          gender: ''
         };
       },
     })

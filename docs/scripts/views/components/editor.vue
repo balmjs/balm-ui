@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import UiEditor from 'balm-ui/components/input-controls/editor'; // Individual Usage for IE10
+import UiEditor from 'balm-ui-editor'; // Individual Usage for IE10 bug
 import EmojiHuaixiao from '@/assets/emoji/pcmoren_huaixiao.png';
 import EmojiTian from '@/assets/emoji/pcmoren_tian.png';
 import HrFormat from '@/extensions/hr-format';

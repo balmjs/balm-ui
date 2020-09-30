@@ -1,0 +1,11 @@
+@use './mixins' as icon-mixins;
+
+// Flagged: GPL-3.0-only
+@include icon-mixins.setFontFace(
+  'material-icons-sharp',
+  'Material Icons Sharp'
+);
+
+.material-icons-sharp {
+  @include icon-mixins.setIconClass();
+}

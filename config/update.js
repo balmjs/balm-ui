@@ -8,8 +8,8 @@ const LATEST_VERSIONS = {
   filled: 55,
   outlined: 27,
   round: 26,
-  twoTone: 25,
-  sharp: 27
+  twoTone: 25
+  // sharp: 27 // Flagged: GPL-3.0-only
 };
 
 // Update Material Components Web for BalmUI
@@ -132,11 +132,11 @@ const MaterialIconsFonts = [
   {
     style: 'two-tone',
     url: `twotone/v${LATEST_VERSIONS.twoTone}/hESh6WRmNCxEqUmNyh3JDeGxjVVyMg4tHGctNCu0NjbrHg.woff2`
-  },
-  {
-    style: 'sharp',
-    url: `sharp/v${LATEST_VERSIONS.sharp}/oPWQ_lt5nv4pWNJpghLP75WiFR4kLh3kvmvRImcycg.woff2`
   }
+  // {
+  //   style: 'sharp',
+  //   url: `sharp/v${LATEST_VERSIONS.sharp}/oPWQ_lt5nv4pWNJpghLP75WiFR4kLh3kvmvRImcycg.woff2`
+  // }
 ];
 
 function updateMDITask(cb) {

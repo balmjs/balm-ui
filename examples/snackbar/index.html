@@ -11,7 +11,7 @@
 </head>
 <body>
   <div id="app">
-    <ui-button primary raised @click="$balmUI.onShow('active')">Show Snackbar</ui-button>
+    <ui-button raised @click="$balmUI.onShow('active')">Show Snackbar</ui-button>
     <ui-snackbar
       v-model="active"
       :message="message"
@@ -22,7 +22,7 @@
   <script src="/components/snackbar/index.js"></script>
   <script src="/plugins/event/index.js"></script>
   <script>
-    var app = new Vue({
+    new Vue({
       el: '#app',
       data() {
         return {

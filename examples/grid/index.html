@@ -28,15 +28,15 @@
 <body>
   <div id="app">
     <ui-grid class="demo-grid">
-      <ui-grid-cell class="demo-cell" :col="{default:6, tablet:8}">6 (8 tablet)</ui-grid-cell>
-      <ui-grid-cell class="demo-cell" :col="{default:4, tablet:6}">4 (6 tablet)</ui-grid-cell>
-      <ui-grid-cell class="demo-cell" :col="{default:2, phone:4}">2 (4 phone)</ui-grid-cell>
+      <ui-grid-cell class="demo-cell" :col="{ default:6, tablet:8 }">6 (8 tablet)</ui-grid-cell>
+      <ui-grid-cell class="demo-cell" :col="{ default:4, tablet:6 }">4 (6 tablet)</ui-grid-cell>
+      <ui-grid-cell class="demo-cell" :col="{ default:2, phone:4 }">2 (4 phone)</ui-grid-cell>
     </ui-grid>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script src="/components/grid/index.js"></script>
   <script>
-    var app = new Vue({
+    new Vue({
       el: '#app'
     })
   </script>

@@ -1,4 +1,4 @@
-import Vue from '../utils/vue';
+import Vue from 'vue';
 
 const busApp = new Vue();
 

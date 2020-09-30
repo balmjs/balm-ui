@@ -15,16 +15,19 @@
     <ui-menu-anchor>
       <ui-button raised @click="openMenu">Reveal Menu</ui-button>
 
-      <ui-menu :open="open" :dark="dark"
+      <ui-menu :open="open"
         @selected="onSelected"
         @cancel="onCancel">
-        <ui-menuitem v-for="(item, index) in menu" :key="index">
+        <ui-menuitem v-for="(item, index) in menu"
+          :key="index"
+          :item="{ value: item }">
           {{ item }}
         </ui-menuitem>
         <ui-item-divider></ui-item-divider>
-        <ui-menuitem>Save As...</ui-menuitem>
+        <ui-menuitem :item="{ value: 'Save As' }">Save As...</ui-menuitem>
       </ui-menu>
     </ui-menu-anchor>
+    <p>Selected: {{ selected }}</p>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script src="/components/button/index.js"></script>
@@ -36,8 +39,7 @@
         return {
           open: false,
           menu: ['Back', 'Forward', 'Reload'],
-          selected: {},
-          dark: false
+          selected: {}
         }
       },
       methods: {

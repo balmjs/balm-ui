@@ -11,13 +11,18 @@
 </head>
 <body>
   <div id="app">
+    <ui-icon-button icon="favorite"></ui-icon-button>
+    <ui-icon-button icon="favorite" disabled></ui-icon-button>
+
+    <hr>
+
     <ui-icon-button v-model="value" :toggle="icon"></ui-icon-button>
     <p>{{ value }}</p>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script src="/components/icon-button/index.js"></script>
   <script>
-    var app = new Vue({
+    new Vue({
       el: '#app',
       data() {
         return {

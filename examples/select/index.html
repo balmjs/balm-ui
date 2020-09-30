@@ -13,18 +13,16 @@
 </head>
 <body>
   <div id="app">
-    <ui-select :options="options" v-model="selected.value">
+    <ui-select v-model="selected" :options="options">
       Food Group
     </ui-select>
-    <p>Currently selected:
-      <span id="currently-selected">{{ selected.value || '(none)'}}</span>
-    </p>
+    <p>Currently selected: {{ selected }}</p>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script src="/components/select/index.js"></script>
   <script src="/plugins/event/index.js"></script>
   <script>
-    var app = new Vue({
+    new Vue({
       el: '#app',
       data() {
         return {
@@ -55,10 +53,7 @@
               value: 'fats'
             }
           ],
-          selected: {
-            value: '',
-            index: 0
-          }
+          selected: 'grains'
         };
       }
     })

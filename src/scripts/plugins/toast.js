@@ -1,4 +1,4 @@
-import Vue from '../utils/vue';
+import Vue from 'vue';
 import autoInstall from '../config/auto-install';
 import { getOptions, createModal, removeModel } from '../utils/modal';
 

@@ -19,7 +19,7 @@ function createStore(key, options) {
     setup() {
       return getType(options) === 'function' ? options() : {};
     },
-    template: '<div v-if="false"></div>'
+    render: () => ''
   }).mount(`#${key}`);
 
   store.set(key, storeApp);

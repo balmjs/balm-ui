@@ -1,3 +1,4 @@
+const fs = require('fs');
 const individual = require('./individual');
 
 const NAMESPACE = 'BalmUI';

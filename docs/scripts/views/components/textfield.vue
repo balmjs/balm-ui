@@ -4,7 +4,7 @@
     :apis="['ui-textfield', 'textfield', 'textfield-icon', 'textfield-helper']"
     demo-count="7"
   >
-    <template #hero>
+    <!-- <template #hero>
       <div class="hero-demo">
         <div>
           <ui-textfield
@@ -103,7 +103,7 @@
           </ui-form>
         </div>
       </div>
-    </template>
+    </template> -->
 
     <!-- Content -->
     <section class="demo-wrapper">
@@ -116,16 +116,16 @@
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
           :required="controls.required"
-          :helper-text-id="
-            controls.helperText ? 'full-func-text-field-helper' : null
-          "
-          :helper-text-visible="controls.isVisible"
-          :valid-msg="controls.hasValidMsg"
+          helper-text-id="full-func-text-field-helper"
           >Email Address
-          <template #helper-text>
-            Helper Text (possibly validation message)
-          </template>
         </ui-textfield>
+        <ui-textfield-helper
+          id="full-func-text-field-helper"
+          :visible="controls.isVisible"
+          :valid-msg="controls.isValidMsg"
+        >
+          Helper Text (possibly validation message)
+        </ui-textfield-helper>
       </div>
       <ui-textfield-controls
         v-model="controls"
@@ -134,7 +134,7 @@
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
 
-    <section class="demo-wrapper">
+    <!-- <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Password field with validation</h6>
       <div class="demo">
         <ui-textfield
@@ -149,9 +149,9 @@
         >
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
-    </section>
+    </section> -->
 
-    <section class="demo-wrapper">
+    <!-- <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.3 Outlined Text Field</h6>
       <div class="demo" :dir="controls.rtl ? 'rtl' : null">
         <ui-textfield
@@ -176,9 +176,9 @@
         :options="['disabled', 'rtl', 'required', 'customColor', 'min', 'max']"
       ></ui-textfield-controls>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
-    </section>
+    </section> -->
 
-    <section class="demo-wrapper">
+    <!-- <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.4 Text Field - Leading/Trailing icons</h6>
       <div
         id="demo-tf-box-leading-wrapper"
@@ -277,9 +277,9 @@
         ]"
       ></ui-textfield-controls>
       <ui-snippet :code="$store.demos[4]"></ui-snippet>
-    </section>
+    </section> -->
 
-    <section class="demo-wrapper">
+    <!-- <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.5 Preventing FOUC</h6>
       <div class="demo">
         <ui-textfield v-model="value" input-id="fouc"
@@ -287,9 +287,9 @@
         >
       </div>
       <ui-snippet :code="$store.demos[5]"></ui-snippet>
-    </section>
+    </section> -->
 
-    <section class="demo-wrapper">
+    <!-- <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.6 Textarea</h6>
       <div class="demo" :dir="controls.rtl ? 'rtl' : null">
         <ui-textfield
@@ -321,9 +321,9 @@
         :options="['disabled', 'rtl', 'required', 'customColor']"
       ></ui-textfield-controls>
       <ui-snippet :code="$store.demos[6]"></ui-snippet>
-    </section>
+    </section> -->
 
-    <section class="demo-wrapper">
+    <!-- <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">
         1.7 Full-Width Text Field and Textarea with counter
       </h6>
@@ -363,7 +363,7 @@
         :options="['disabled', 'required', 'customColor']"
       ></ui-textfield-controls>
       <ui-snippet :code="$store.demos[7]"></ui-snippet>
-    </section>
+    </section> -->
   </docs-page>
 </template>
 
@@ -427,7 +427,7 @@ const state = reactive({
     customColor: false,
     helperText: false,
     isVisible: false,
-    hasValidMsg: false,
+    isValidMsg: false,
     min: false,
     max: false,
     unclickable: false

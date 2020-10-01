@@ -9,19 +9,22 @@
 import { helperTextMixin } from '../../mixins/helper-text';
 
 export default {
-  name: 'MdcSelectHelper',
+  name: 'UiSelectHelper',
   mixins: [helperTextMixin],
   computed: {
     className() {
       return {
         'mdc-select-helper-text': true,
-        'mdc-select-helper-text--validation-msg-persistent': this.isValidMsg,
+        'mdc-select-helper-text--validation-msg-persistent': this.hasValidMsg,
         'mdc-select-helper-text--validation-msg': this.isVisible
       };
     },
     isVisible() {
-      return !this.visible || this.isValidMsg; // For css name bug
+      return !this.visible || this.hasValidMsg; // For css name bug
     }
+  },
+  mounted() {
+    this.getPreviousInstance('Select');
   }
 };
 </script>

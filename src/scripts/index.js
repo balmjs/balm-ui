@@ -39,8 +39,10 @@ import UiIcon from './components/icon/icon';
 import UiForm from './components/form-controls/form'; // Custom
 import UiFormField from './components/form-controls/form-field';
 import UiTextfield from './components/input-controls/textfield';
+import UiTextfieldHelper from './components/input-controls/textfield-helper';
 import UiTextfieldIcon from './components/input-controls/textfield-icon';
 import UiSelect from './components/selection-controls/select';
+import UiSelectHelper from './components/selection-controls/select-helper';
 import UiSelectIcon from './components/selection-controls/select-icon';
 import UiCheckbox from './components/selection-controls/checkbox';
 import UiRadio from './components/selection-controls/radio';
@@ -174,6 +176,7 @@ const components = {
   UiProgress,
   UiRadio,
   UiSelect,
+  UiSelectHelper,
   UiSelectIcon,
   UiSlider,
   UiSnackbar,
@@ -185,6 +188,7 @@ const components = {
   UiTabIndicator,
   UiTab,
   UiTextfield,
+  UiTextfieldHelper,
   UiTextfieldIcon,
   UiTooltip,
   UiTopAppBar
@@ -302,6 +306,7 @@ export {
   UiProgress,
   UiRadio,
   UiSelect,
+  UiSelectHelper,
   UiSelectIcon,
   UiSlider,
   UiSnackbar,
@@ -313,6 +318,7 @@ export {
   UiTabIndicator,
   UiTab,
   UiTextfield,
+  UiTextfieldHelper,
   UiTextfieldIcon,
   UiTooltip,
   UiTopAppBar

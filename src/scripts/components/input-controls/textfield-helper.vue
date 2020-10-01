@@ -15,7 +15,7 @@ import MdcTextfieldCounter from './mdc-textfield-counter';
 import { helperTextMixin } from '../../mixins/helper-text';
 
 export default {
-  name: 'MdcTextfieldHelper',
+  name: 'UiTextfieldHelper',
   components: {
     MdcTextfieldCounter
   },
@@ -30,11 +30,23 @@ export default {
     className() {
       return {
         'mdc-text-field-helper-text': true,
-        'mdc-text-field-helper-text--persistent':
-          this.visible || this.isValidMsg,
-        'mdc-text-field-helper-text--validation-msg': this.isValidMsg
+        'mdc-text-field-helper-text--persistent': this.visible,
+        'mdc-text-field-helper-text--validation-msg': this.hasValidMsg
       };
     }
+  },
+  beforeMount() {
+    const needHelperTextId =
+      this.visible || this.hasValidMsg || this.withCounter;
+
+    if (!this.id && needHelperTextId) {
+      console.warn(
+        `'helperTextId' is required for '<ui-textfield>' with outer counter`
+      );
+    }
+  },
+  mounted() {
+    this.getPreviousInstance('Textfield');
   }
 };
 </script>

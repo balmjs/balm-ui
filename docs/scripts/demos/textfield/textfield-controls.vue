@@ -75,7 +75,7 @@
       </ui-form-field>
       <ui-form-field>
         <ui-checkbox
-          v-model="controls.hasValidMsg"
+          v-model="controls.isValidMsg"
           :input-id="`${idPrefix}-helper-text-as-validation`"
           :disabled="!controls.helperText"
         ></ui-checkbox>

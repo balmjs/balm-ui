@@ -1,6 +1,6 @@
 <template>
   <!-- Container -->
-  <div :class="className.outer" v-bind="$attrs">
+  <div :class="className.outer">
     <div v-if="!isOutlined" class="mdc-text-field__ripple"></div>
 
     <!-- Leading icon (optional) -->
@@ -46,7 +46,7 @@
           @blur="handleBlur"
         ></textarea>
         <!-- Character counter (optional) -->
-        <mdc-textfield-counter v-if="withInnerCounter"></mdc-textfield-counter>
+        <mdc-textfield-counter v-if="withCounter"></mdc-textfield-counter>
       </span>
     </template>
     <!-- Input text -->
@@ -87,7 +87,7 @@
         v-text="suffixText"
       ></span>
       <!-- Character counter (optional) -->
-      <mdc-textfield-counter v-if="withInnerCounter"></mdc-textfield-counter>
+      <mdc-textfield-counter v-if="withCounter"></mdc-textfield-counter>
     </template>
 
     <!-- Trailing icon (optional) -->
@@ -116,16 +116,6 @@
       </slot>
     </div>
   </div>
-
-  <mdc-textfield-helper
-    v-if="helperTextId"
-    :id="helperTextId"
-    :visible="helperTextVisible"
-    :is-valid-msg="hasValidMsg"
-    :with-counter="withOuterCounter"
-  >
-    <slot name="helper-text">{{ hasValidMsg ? validMsg : '' }}</slot>
-  </mdc-textfield-helper>
 </template>
 
 <script>
@@ -134,12 +124,14 @@ import MdcFloatingLabel from '../form-controls/mdc-floating-label';
 import MdcLineRipple from '../form-controls/mdc-line-ripple';
 import MdcNotchedOutline from '../form-controls/mdc-notched-outline';
 import MdcTextfieldCounter from './mdc-textfield-counter';
-import MdcTextfieldHelper from './mdc-textfield-helper';
 import domMixin from '../../mixins/dom';
 import textfieldMixin from '../../mixins/textfield';
 import typeMixin from '../../mixins/type';
 import elementMixin from '../../mixins/element';
-import { componentHelperTextMixin } from '../../mixins/helper-text';
+import {
+  UI_TEXTFIELD_HELPER,
+  componentHelperTextMixin
+} from '../../mixins/helper-text';
 import { UI_TEXTFIELD_ICON } from './constants';
 
 // Define textfield constants
@@ -155,8 +147,7 @@ const UI_TEXTFIELD = {
     KEYUP: 'keyup',
     CHANGE: 'change',
     ENTER: 'enter',
-    BLUR: 'blur',
-    CLEAR_VALID_MSG: 'update:validMsg'
+    BLUR: 'blur'
   },
   PLUS_COMPONENTS: ['UiAutocomplete', 'UiDatepicker']
 };
@@ -167,8 +158,7 @@ export default {
     MdcFloatingLabel,
     MdcLineRipple,
     MdcNotchedOutline,
-    MdcTextfieldCounter,
-    MdcTextfieldHelper
+    MdcTextfieldCounter
   },
   mixins: [
     domMixin,
@@ -177,7 +167,6 @@ export default {
     elementMixin,
     componentHelperTextMixin
   ],
-  inheritAttrs: false,
   props: {
     // UI variants
     type: {
@@ -241,12 +230,7 @@ export default {
       type: String,
       default: ''
     },
-    withInnerCounter: {
-      type: Boolean,
-      default: false
-    },
-    // For helper text
-    withOuterCounter: {
+    withCounter: {
       type: Boolean,
       default: false
     },
@@ -263,15 +247,15 @@ export default {
     UI_TEXTFIELD.EVENT.KEYUP,
     UI_TEXTFIELD.EVENT.CHANGE,
     UI_TEXTFIELD.EVENT.ENTER,
-    UI_TEXTFIELD.EVENT.BLUR,
-    UI_TEXTFIELD.EVENT.CLEAR_VALID_MSG
+    UI_TEXTFIELD.EVENT.BLUR
   ],
   data() {
     return {
       UI_TEXTFIELD,
       UI_TEXTFIELD_ICON,
       $textField: null,
-      inputValue: this.modelValue
+      inputValue: this.modelValue,
+      hasValidMsg: false // fix(@mdc): valid bug on blur
     };
   },
   computed: {
@@ -308,7 +292,7 @@ export default {
           'mdc-text-field--with-trailing-icon': this.hasTrailingIcon,
           'mdc-text-field--no-label': this.noLabel,
           'mdc-text-field--end-aligned': this.endAligned,
-          'mdc-text-field--with-internal-counter': this.withInnerCounter
+          'mdc-text-field--with-internal-counter': this.withCounter
         },
         input: 'mdc-text-field__input'
       };
@@ -329,19 +313,6 @@ export default {
           this.$textField.foundation.deactivateFocus();
         }, 1);
       }
-    },
-    validMsg(val) {
-      this.$textField.valid = !this.hasValidMsg;
-    }
-  },
-  beforeMount() {
-    const needHelperTextId =
-      this.helperTextVisible || this.hasValidMsg || this.withOuterCounter;
-
-    if (!this.helperTextId && needHelperTextId) {
-      console.warn(
-        `'helperTextId' is required for '<ui-textfield>' with outer counter`
-      );
     }
   },
   mounted() {
@@ -363,6 +334,7 @@ export default {
         : this.$slots.after;
     },
     handleFocus(event) {
+      this.getValidationMsg();
       this.$emit(UI_TEXTFIELD.EVENT.FOCUS, event);
     },
     handleKeydown(event) {
@@ -381,8 +353,24 @@ export default {
       this.$emit(UI_TEXTFIELD.EVENT.ENTER, event.target.value);
     },
     handleBlur(event) {
-      this.$emit(UI_TEXTFIELD.EVENT.CLEAR_VALID_MSG, ''); // fix(@mdc): valid bug
+      if (this.hasValidMsg) {
+        setTimeout(() => {
+          this.$textField.valid = false;
+        }, 1);
+      }
       this.$emit(UI_TEXTFIELD.EVENT.BLUR, event);
+    },
+    getValidationMsg() {
+      if (
+        this.el &&
+        this.el.nextElementSibling &&
+        typeof this.el.nextElementSibling.__vueParentComponent.type ===
+          'object' &&
+        this.el.nextElementSibling.__vueParentComponent.type.name ===
+          'UiTextfieldHelper'
+      ) {
+        this.hasValidMsg = this.el.nextElementSibling.__vueParentComponent.ctx.hasValidMsg;
+      }
     }
   }
 };

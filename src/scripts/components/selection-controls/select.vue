@@ -1,5 +1,5 @@
 <template>
-  <div :class="className" v-bind="$attrs">
+  <div :class="className">
     <div
       class="mdc-select__anchor"
       role="button"
@@ -90,15 +90,6 @@
       </ul>
     </div>
   </div>
-
-  <mdc-select-helper
-    v-if="helperTextId"
-    :id="helperTextId"
-    :visible="helperTextVisible"
-    :is-valid-msg="hasValidMsg"
-  >
-    <slot name="helper-text">{{ hasValidMsg ? validMsg : '' }}</slot>
-  </mdc-select-helper>
 </template>
 
 <script>
@@ -107,7 +98,6 @@ import { strings } from '../../../material-components-web/select/constants';
 import MdcFloatingLabel from '../form-controls/mdc-floating-label';
 import MdcLineRipple from '../form-controls/mdc-line-ripple';
 import MdcNotchedOutline from '../form-controls/mdc-notched-outline';
-import MdcSelectHelper from './mdc-select-helper';
 import domMixin from '../../mixins/dom';
 import typeMixin from '../../mixins/type';
 import materialIconMixin from '../../mixins/material-icon';
@@ -134,11 +124,9 @@ export default {
   components: {
     MdcFloatingLabel,
     MdcLineRipple,
-    MdcNotchedOutline,
-    MdcSelectHelper
+    MdcNotchedOutline
   },
   mixins: [domMixin, typeMixin, materialIconMixin, componentHelperTextMixin],
-  inheritAttrs: false,
   props: {
     // UI variants
     type: {

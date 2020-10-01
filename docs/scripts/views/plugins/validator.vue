@@ -11,30 +11,39 @@
         <ui-textfield
           id="mobile"
           v-model="formData.mobile"
-          v-model:validMsg="validMsg.mobile"
           helper-text-id="mobile-helper-text"
           >Mobile
         </ui-textfield>
+        <ui-textfield-helper
+          id="mobile-helper-text"
+          v-model:validMsg="validMsg.mobile"
+        ></ui-textfield-helper>
       </ui-form-field>
       <ui-form-field class="form-item">
         <ui-textfield
           id="password"
           v-model="formData.password"
-          v-model:validMsg="validMsg.password"
           input-type="password"
           helper-text-id="password-helper-text"
           >Password</ui-textfield
         >
+        <ui-textfield-helper
+          id="password-helper-text"
+          v-model:validMsg="validMsg.password"
+        ></ui-textfield-helper>
       </ui-form-field>
       <ui-form-field class="form-item">
-        <ui-textfield
+        <ui-select
           id="repassword"
           v-model="formData.repassword"
-          v-model:validMsg="validMsg.repassword"
           input-type="password"
           helper-text-id="repassword-helper-text"
-          >Repeat Password</ui-textfield
+          >Repeat Password</ui-select
         >
+        <ui-select-helper
+          id="repassword-helper-text"
+          v-model:validMsg="validMsg.repassword"
+        ></ui-select-helper>
       </ui-form-field>
       <ui-form-field class="form-item form-actions">
         <ui-button raised @click="submit">Submit</ui-button>

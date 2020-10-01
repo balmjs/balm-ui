@@ -19,14 +19,12 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
   <script src="/components/button/index.js"></script>
   <script>
-  // BalmUI_c_button.install(Vue, {
-  //   raised: true
-  // });
-  </script>
-  <script>
-    var app = Vue.createApp({})
-    app.use(BalmUI_c_button)
-    // BalmUI_c_button.install(app);
+    var app = Vue.createApp({});
+
+    app.use(UiButton, {
+      // raised: true
+    });
+
     app.mount('#app');
   </script>
 </body>

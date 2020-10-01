@@ -13,10 +13,10 @@
 </head>
 <body>
   <div id="app">
-    <ui-button raised @click="$balmUI.onOpen('open')">Show Dialog</ui-button>
+    <ui-button raised @click="open = true">Show Dialog</ui-button>
     <ui-dialog
-      :open="open"
-      @close="$balmUI.onClose('open')"
+      v-model="open"
+      @close="open = false"
       @confirm="onConfirm">
       <ui-dialog-title>Use Google's location service?</ui-dialog-title>
       <ui-dialog-content>
@@ -25,25 +25,25 @@
       <ui-dialog-actions></ui-dialog-actions>
     </ui-dialog>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
   <script src="/components/button/index.js"></script>
   <script src="/components/dialog/index.js"></script>
-  <script src="/plugins/event/index.js"></script>
   <script src="/plugins/alert/index.js"></script>
   <script src="/plugins/confirm/index.js"></script>
   <script src="/plugins/toast/index.js"></script>
   <script>
-    // $alert = $alert.useAlert();
-    // $confirm = $confirm.useConfirm();
-    // $toast = $toast.useToast();
-
-    new Vue({
-      el: '#app',
-      data: {
-        open: false
+    var app = Vue.createApp({
+      data() {
+        return {
+          open: false
+        }
       },
       methods: {
         onConfirm(result) {
+          // $alert = $alert.useAlert();
+          // $confirm = $confirm.useConfirm();
+          // $toast = $toast.useToast();
+
           if (result) {
             console.log('ok');
             this.$confirm('Do you like BalmUI?').then((r) => {
@@ -54,7 +54,15 @@
           }
         }
       }
-    })
+    });
+
+    app.use(UiDialog);
+    app.use(UiButton);
+    app.use($alert.default);
+    app.use($confirm.default);
+    app.use($toast.default);
+
+    app.mount('#app');
   </script>
 </body>
 </html>

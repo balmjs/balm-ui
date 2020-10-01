@@ -62,22 +62,29 @@
       </div>
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
   <script src="/components/icon/index.js"></script>
   <script src="/components/icon-button/index.js"></script>
   <script src="/components/top-app-bar/index.js"></script>
   <script src="/components/drawer/index.js"></script>
   <script src="/components/list/index.js"></script>
   <script>
-    new Vue({
-      el: '#app',
+    var app = Vue.createApp({
       data() {
         return {
           title: 'Hello BalmUI',
           openDrawer: false
         }
       }
-    })
+    });
+
+    app.use(UiIcon);
+    // app.use(UiIconButton);
+    // app.use(UiTopAppBar);
+    app.use(UiDrawer);
+    app.use(UiList);
+
+    app.mount('#app');
   </script>
 </body>
 </html>

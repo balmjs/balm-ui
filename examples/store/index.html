@@ -13,24 +13,26 @@
     <ui-button @click="$store.setMsg">Get Store</ui-button>
     <p>Message: {{ $store.message }}</p>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
   <script src="/components/button/index.js"></script>
   <script src="/plugins/event/index.js"></script>
   <script src="/plugins/store/index.js"></script>
   <script src="./store-demo.js"></script>
   <script src="./store.js"></script>
   <script>
-  $store.default.install(Vue, myStore);
-  </script>
-  <script>
-    new Vue({
-      el: '#app',
-      created() {
+    var app = Vue.createApp({
+      mounted() {
         this.$bus.on('custom-event', (msg) => {
           console.log(msg);
         });
       }
-    })
+    });
+
+    app.use(UiButton);
+    app.use($event.default);
+    app.use($store.default, myStore); // TODO
+
+    app.mount('#app');
   </script>
 </body>
 </html>

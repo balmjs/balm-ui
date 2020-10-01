@@ -1,3 +1,3 @@
-var myStore = {
-  mixins: [demo]
-};
+var { message, setMsg } = useDemo();
+
+var myStore = { message, setMsg };

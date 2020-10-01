@@ -18,14 +18,11 @@
     <ui-button @click="onChangeTheme">$theme</ui-button>
     <ui-button @click="onChangeTheme2">Use Theme</ui-button>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
   <script src="/components/button/index.js"></script>
   <script src="/plugins/theme/index.js"></script>
   <script>
-    $theme = $theme.useTheme();
-
-    new Vue({
-      el: '#app',
+    var app = Vue.createApp({
       methods: {
         onChangeTheme() {
           this.$theme.colors = {
@@ -34,13 +31,20 @@
           };
         },
         onChangeTheme2() {
+          $theme = $theme.useTheme();
+
           $theme.colors = {
             primary: '#00f',
             secondary: '#f00'
           };
         }
       }
-    })
+    });
+
+    app.use(UiButton);
+    app.use($theme.default);
+
+    app.mount('#app');
   </script>
 </body>
 </html>

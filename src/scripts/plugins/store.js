@@ -25,15 +25,17 @@ function createStore(key, options) {
 }
 
 const BalmUI_StorePlugin = {
-  install(app, options) {
-    defaultStoreKey = (options.name || 'Store').toLowerCase();
+  install(app, options = {}) {
+    if (Object.keys(options).length) {
+      defaultStoreKey = (options.name || 'Store').toLowerCase();
 
-    createStore(defaultStoreKey, options);
+      createStore(defaultStoreKey, options);
 
-    app.config.globalProperties[`$${defaultStoreKey}`] = store.get(
-      defaultStoreKey
-    );
-    app.provide(defaultStoreKey, store.get(defaultStoreKey));
+      app.config.globalProperties[`$${defaultStoreKey}`] = store.get(
+        defaultStoreKey
+      );
+      app.provide(defaultStoreKey, store.get(defaultStoreKey));
+    }
   }
 };
 

@@ -42,14 +42,18 @@
       </ui-card-actions>
     </ui-card>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
   <script src="/components/card/index.js"></script>
   <script src="/components/button/index.js"></script>
   <script src="/components/icon-button/index.js"></script>
   <script>
-    new Vue({
-      el: '#app'
-    })
+    var app = Vue.createApp({});
+
+    app.use(UiCard);
+    app.use(UiButton);
+    app.use(UiIconButton); // TODO: UiIconButton is not defined
+
+    app.mount('#app');
   </script>
 </body>
 </html>

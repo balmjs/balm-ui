@@ -15,7 +15,7 @@
     <ui-menu-anchor>
       <ui-button raised @click="openMenu">Reveal Menu</ui-button>
 
-      <ui-menu :open="open"
+      <ui-menu v-model="open"
         @selected="onSelected"
         @cancel="onCancel">
         <ui-menuitem v-for="(item, index) in menu"
@@ -23,18 +23,17 @@
           :item="{ value: item }">
           {{ item }}
         </ui-menuitem>
-        <ui-item-divider></ui-item-divider>
+        <ui-menuitem-divider></ui-menuitem-divider>
         <ui-menuitem :item="{ value: 'Save As' }">Save As...</ui-menuitem>
       </ui-menu>
     </ui-menu-anchor>
     <p>Selected: {{ selected }}</p>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
   <script src="/components/button/index.js"></script>
   <script src="/components/menu/index.js"></script>
   <script>
-    var app = new Vue({
-      el: '#app',
+    var app = Vue.createApp({
       data: function() {
         return {
           open: false,
@@ -56,7 +55,12 @@
           this.open = false;
         }
       }
-    })
+    });
+
+    app.use(UiButton);
+    app.use(UiMenu);
+
+    app.mount('#app');
   </script>
 </body>
 </html>

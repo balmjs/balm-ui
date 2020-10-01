@@ -19,11 +19,10 @@
     <ui-icon-button v-model="value" :toggle="icon"></ui-icon-button>
     <p>{{ value }}</p>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
   <script src="/components/icon-button/index.js"></script>
   <script>
-    new Vue({
-      el: '#app',
+    var app = Vue.createApp({
       data() {
         return {
           value: false,
@@ -33,7 +32,11 @@
           }
         }
       }
-    })
+    });
+
+    app.use(UiIconButton); // TODO: UiIconButton is not defined
+
+    app.mount('#app');
   </script>
 </body>
 </html>

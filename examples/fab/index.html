@@ -30,13 +30,16 @@
     </ui-fab>
     <ui-fab extended>Create</ui-fab>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
   <script src="/components/fab/index.js"></script>
   <script src="/components/icon/index.js"></script>
   <script>
-    new Vue({
-      el: '#app'
-    })
+    var app = Vue.createApp({});
+
+    app.use(UiFab);
+    app.use(UiIcon);
+
+    app.mount('#app');
   </script>
 </body>
 </html>

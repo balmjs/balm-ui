@@ -23,7 +23,7 @@ Vue.use(BalmUI);
 
 ```js
 import Vue from 'vue';
-import theme from 'balm-ui/plugins/theme';
+import $theme from 'balm-ui/plugins/theme';
 
-Vue.use(theme);
+Vue.use($theme);
 ```

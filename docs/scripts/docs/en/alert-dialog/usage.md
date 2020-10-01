@@ -10,7 +10,7 @@ import BalmUIPlus from 'balm-ui/dist/balm-ui-plus';
 
 Vue.use(BalmUIPlus, {
   // Optional. Overwrite `$alert` options.
-  alert: {
+  $alert: {
     // some options
   }
 });
@@ -26,10 +26,10 @@ Vue.use(BalmUIPlus, {
 
 ```js
 import Vue from 'vue';
-import alert from 'balm-ui/plugins/alert';
+import $alert from 'balm-ui/plugins/alert';
 
 // Optional. Overwrite `$alert` options.
-Vue.use(alert, {
+Vue.use($alert, {
   // some options
 });
 ```

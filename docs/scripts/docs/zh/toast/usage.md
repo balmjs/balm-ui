@@ -10,7 +10,7 @@ import BalmUIPlus from 'balm-ui/dist/balm-ui-plus';
 
 Vue.use(BalmUIPlus, {
   // Optional. Overwrite `$toast` options.
-  toast: {
+  $toast: {
     // some options
   }
 });
@@ -25,10 +25,10 @@ Vue.use(BalmUIPlus, {
 
 ```js
 import Vue from 'vue';
-import toast from 'balm-ui/plugins/toast';
+import $toast from 'balm-ui/plugins/toast';
 
 // Optional. Overwrite `$toast` options.
-Vue.use(toast, {
+Vue.use($toast, {
   // some options
 });
 ```

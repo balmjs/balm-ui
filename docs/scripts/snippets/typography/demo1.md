@@ -45,6 +45,6 @@
 ```js
 // main.js
 Vue.use(BalmUI, {
-  typography: ['custom-style-1', 'custom-style-2']
+  $typography: ['custom-style-1', 'custom-style-2']
 });
 ```

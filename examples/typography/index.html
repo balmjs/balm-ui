@@ -25,10 +25,10 @@
   <script src="/plugins/typography/index.js"></script>
   <script>
     var customTypography = ['custom-style-1', 'custom-style-2'];
-    BalmUI_typography.default.install(Vue, customTypography);
+    $typography.default.install(Vue, customTypography);
   </script>
   <script>
-    $tt = BalmUI_typography.useTypography();
+    $tt = $typography.useTypography();
 
     new Vue({
       el: '#app',

@@ -1,4 +1,4 @@
-var $bus = BalmUI_event.useBus();
+var $bus = $event.useBus();
 
 var demo = {
   data() {

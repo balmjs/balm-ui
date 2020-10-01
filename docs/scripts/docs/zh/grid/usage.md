@@ -26,7 +26,7 @@ Vue.use(BalmUI, {
 ```js
 import Vue from 'vue';
 import UiGridComponents from 'balm-ui/components/grid';
-import UiGridPlugin from 'balm-ui/plugins/grid'; // Optional
+import $grid from 'balm-ui/plugins/grid'; // Optional
 
 Vue.use(UiGridComponents, {
   // Optional. Overwrite `<ui-grid>` props with default value.
@@ -34,5 +34,5 @@ Vue.use(UiGridComponents, {
     // some props
   }
 });
-Vue.use(UiGridPlugin); // Optional
+Vue.use($grid); // Optional
 ```

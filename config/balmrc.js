@@ -102,7 +102,6 @@ function getConfig(balm) {
       includes: ['CNAME', 'material-icons.zip']
     },
     assets: {
-      publicUrl: env.buildDocs ? '//material.balmjs.com/' : '',
       cache: env.buildDocs,
       excludes: ['dist/img/icons/icon-*.png']
     },

@@ -11,7 +11,7 @@ Vue.use(BalmUI);
 
 ```js
 import Vue from 'vue';
-import event from 'balm-ui/plugins/event';
+import $event from 'balm-ui/plugins/event';
 
-Vue.use(event);
+Vue.use($event);
 ```

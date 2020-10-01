@@ -41,9 +41,7 @@ function getConfig(balm) {
             app: './docs/scripts/index.js'
           }
         : {
-            'balm-ui': './src/scripts/index.js',
-            'balm-ui-plus': './src/scripts/plus.js',
-            'balm-ui-next': './src/scripts/next.js'
+            'balm-ui': './src/scripts/index.js'
           },
       library: useDocs ? '' : 'BalmUI',
       libraryTarget: useDocs ? 'var' : 'umd',
@@ -104,7 +102,6 @@ function getConfig(balm) {
       includes: ['CNAME', 'material-icons.zip']
     },
     assets: {
-      publicUrl: env.buildDocs ? '//material.balmjs.com/' : '',
       cache: env.buildDocs,
       excludes: ['dist/img/icons/icon-*.png']
     },

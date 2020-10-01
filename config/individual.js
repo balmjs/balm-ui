@@ -49,8 +49,7 @@ const components = [
   'rangepicker',
   'skeleton',
   // Next
-  'bottom-navigation',
-  'banner'
+  'bottom-navigation'
 ];
 const plugins = [
   'alert',
@@ -63,7 +62,15 @@ const plugins = [
   'typography',
   'validator'
 ];
-const directives = ['a11y', 'anchor', 'badge', 'elevation', 'ripple', 'shape'];
+const directives = [
+  'a11y',
+  'anchor',
+  'badge',
+  'elevation',
+  'ripple',
+  'shape',
+  'tooltip'
+];
 const utils = ['ie', 'types', 'helpers'];
 
 const output = {

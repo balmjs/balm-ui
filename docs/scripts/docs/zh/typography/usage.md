@@ -22,7 +22,7 @@ import BalmUI from 'balm-ui';
 
 Vue.use(BalmUI, {
   // Optional. Overwrite the param of `$tt()`.
-  typography: ['custom-style-1', 'custom-style-2']
+  $typography: ['custom-style-1', 'custom-style-2']
 });
 ```
 
@@ -38,8 +38,8 @@ Vue.use(BalmUI, {
 
 ```js
 import Vue from 'vue';
-import typography from 'balm-ui/plugins/typography';
+import $typography from 'balm-ui/plugins/typography';
 
 // Optional. Overwrite the param of `$tt()`.
-Vue.use(typography, ['custom-style-1', 'custom-style-2']);
+Vue.use($typography, ['custom-style-1', 'custom-style-2']);
 ```

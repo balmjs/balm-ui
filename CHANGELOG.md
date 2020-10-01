@@ -2,6 +2,29 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.3.0 / 2020-10-01
+
+### Features
+
+- rebuild all
+  - The `Ui` prefix for components
+  - The `$` prefix for plugins
+  - The `v` prefix for directives
+- upgrade: export all plugins for Vue Compiler/Runtime
+- `$store`: optimize initialization
+
+### BREAKING CHANGES
+
+- `event` -> `$event`
+- `grid` -> `$grid`
+- `store` -> `$store`
+- `theme` -> `$theme`
+- `typography` -> `$typography`
+- `validator` -> `$validator`
+- `alert` -> `$alert`
+- `confirm` ->`$confirm`
+- `toast` -> `$toast`
+
 ## v8.2.5 / 2020-09-30
 
 ### BREAKING CHANGES

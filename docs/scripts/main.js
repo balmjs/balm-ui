@@ -2,23 +2,22 @@ import '@/polyfill';
 import Vue from 'vue';
 import router from '@/routes';
 import i18n from '@/lang';
-import store from '@/store';
+import myStore from '@/store';
 import $http from '@/plugins/$http';
 import App from '@/views/layouts/app';
-import { isProd } from '@/config';
+import { setGlobalProps } from '@/config';
 import validatorRules from '@/config/validator-rules';
-import prismjs from 'prismjs';
 // BalmUI
 import BalmUI from 'balm-ui';
+import UiAlert from 'balm-ui/components/alert';
 import UiAutocomplete from 'balm-ui/components/autocomplete';
+import UiCollapse from 'balm-ui/components/collapse';
 import UiDatepicker from 'balm-ui/components/datepicker';
 import UiRangepicker from 'balm-ui/components/rangepicker';
-import UiCollapse from 'balm-ui/components/collapse';
-import UiAlert from 'balm-ui/components/alert';
+import UiSkeleton from 'balm-ui/components/skeleton';
 import $alert from 'balm-ui/plugins/alert';
 import $confirm from 'balm-ui/plugins/confirm';
 import $toast from 'balm-ui/plugins/toast';
-import UiSkeleton from 'balm-ui/components/skeleton';
 import vAnchor from 'balm-ui/directives/anchor';
 import BalmUINext from 'balm-ui/next';
 // Custom components
@@ -33,24 +32,22 @@ import SvgLogo from '@/components/svg-logo';
 import './my-sw';
 
 function createApp() {
-  Vue.config.productionTip = false;
-
   Vue.use($http);
 
   Vue.use(BalmUI, {
-    typography: ['custom-style-1', 'custom-style-2'],
-    validator: validatorRules,
-    store
+    $typography: ['custom-style-1', 'custom-style-2'],
+    $validator: validatorRules,
+    $store: myStore
   });
+  Vue.use(UiAlert);
   Vue.use(UiAutocomplete);
+  Vue.use(UiCollapse);
   Vue.use(UiDatepicker);
   Vue.use(UiRangepicker);
-  Vue.use(UiCollapse);
-  Vue.use(UiAlert);
+  Vue.use(UiSkeleton);
   Vue.use($alert);
   Vue.use($confirm);
   Vue.use($toast);
-  Vue.use(UiSkeleton);
   Vue.directive(vAnchor.name, vAnchor);
   Vue.use(BalmUINext);
 
@@ -62,40 +59,7 @@ function createApp() {
   Vue.component(UiTocAffix.name, UiTocAffix);
   Vue.component(SvgLogo.name, SvgLogo);
 
-  Vue.prototype.$prism = prismjs;
-  Vue.prototype.$docs = {
-    props: {
-      thead: ['Name', 'Type', 'Default', 'Description'],
-      tbody: [
-        'name',
-        'type',
-        'default',
-        {
-          field: 'description',
-          raw: true
-        }
-      ]
-    },
-    slots: {
-      thead: ['Name', 'Description', 'Slot'],
-      tbody: ['name', 'description', 'props']
-    },
-    events: {
-      thead: ['Name', 'Type', 'Description'],
-      tbody: ['name', 'type', 'description']
-    },
-    sass: {
-      thead: ['Variable', 'Description'],
-      tbody: [
-        'var',
-        {
-          field: 'description',
-          raw: true
-        }
-      ]
-    }
-  };
-  Vue.prototype.$domain = isProd ? '//material.balmjs.com' : '';
+  setGlobalProps(Vue);
 
   new Vue({
     el: '#app',
@@ -104,7 +68,7 @@ function createApp() {
     },
     router,
     i18n,
-    template: '<app/>'
+    template: '<app />'
   });
 }
 

@@ -1,4 +1,5 @@
 import { version } from '../../../package.json';
+import prismjs from 'prismjs';
 
 export const VERSION = version;
 export const isDev = process.env.NODE_ENV === 'development';
@@ -36,3 +37,44 @@ export const themes = {
     error: '#cf6679'
   }
 };
+
+export function setGlobalProps(Vue) {
+  Vue.config.productionTip = false;
+
+  Vue.prototype.$domain = isProd ? '//material.balmjs.com' : '';
+
+  Vue.prototype.$prism = prismjs;
+
+  Vue.prototype.$docs = {
+    props: {
+      thead: ['Name', 'Type', 'Default', 'Description'],
+      tbody: [
+        'name',
+        'type',
+        'default',
+        {
+          field: 'description',
+          raw: true
+        }
+      ]
+    },
+    slots: {
+      thead: ['Name', 'Description', 'Slot'],
+      tbody: ['name', 'description', 'props']
+    },
+    events: {
+      thead: ['Name', 'Type', 'Description'],
+      tbody: ['name', 'type', 'description']
+    },
+    sass: {
+      thead: ['Variable', 'Description'],
+      tbody: [
+        'var',
+        {
+          field: 'description',
+          raw: true
+        }
+      ]
+    }
+  };
+}

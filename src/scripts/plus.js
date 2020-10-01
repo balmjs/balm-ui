@@ -14,9 +14,9 @@ import UiEditor from './components/input-controls/editor';
 /**
  * Plugins
  */
-import alert, { useAlert } from './plugins/alert';
-import confirm, { useConfirm } from './plugins/confirm';
-import toast, { useToast } from './plugins/toast';
+import $alert, { useAlert } from './plugins/alert';
+import $confirm, { useConfirm } from './plugins/confirm';
+import $toast, { useToast } from './plugins/toast';
 /**
  * Directives
  */
@@ -35,9 +35,9 @@ const components = {
 };
 
 const plugins = {
-  alert,
-  confirm,
-  toast
+  $alert,
+  $confirm,
+  $toast
 };
 
 const directives = {
@@ -86,6 +86,6 @@ export {
   UiRangepicker,
   UiSkeleton
 };
-export { alert, confirm, toast };
+export { $alert, $confirm, $toast };
 export { useAlert, useConfirm, useToast };
 export { vAnchor };

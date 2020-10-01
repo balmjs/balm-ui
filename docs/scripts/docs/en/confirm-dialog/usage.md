@@ -10,7 +10,7 @@ import BalmUIPlus from 'balm-ui/dist/balm-ui-plus';
 
 Vue.use(BalmUIPlus, {
   // Optional. Overwrite `$confirm` options.
-  confirm: {
+  $confirm: {
     // some options
   }
 });
@@ -26,10 +26,10 @@ Vue.use(BalmUIPlus, {
 
 ```js
 import Vue from 'vue';
-import confirm from 'balm-ui/plugins/confirm';
+import $confirm from 'balm-ui/plugins/confirm';
 
 // Optional. Overwrite `$confirm` options.
-Vue.use(confirm, {
+Vue.use($confirm, {
   // some options
 });
 ```

@@ -8,17 +8,17 @@
   };
   ```
 
-  > NOTE: `'Store'` is default store name, and you can customize yours. (e.g. set `name: 'AppStore'`, then using `$appstore`)
+  > NOTE: `'Store'` is default store name (`$store`), and you can customize yours. (e.g. set `name: 'AppStore'`, then using `$appstore`)
 
 ### Default Usage
 
 ```js
 import Vue from 'vue';
 import BalmUI from 'balm-ui';
-import store from './store';
+import myStore from './store';
 
 Vue.use(BalmUI, {
-  store
+  $store: myStore
 });
 ```
 
@@ -26,8 +26,8 @@ Vue.use(BalmUI, {
 
 ```js
 import Vue from 'vue';
-import store from 'balm-ui/plugins/store';
+import $store from 'balm-ui/plugins/store';
 import myStore from './store';
 
-Vue.use(store, myStore);
+Vue.use($store, myStore);
 ```

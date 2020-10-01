@@ -44,7 +44,7 @@ import validatorRules from './config/validator-rules';
 
 Vue.use(BalmUI, {
   // Optional. Set global validator rules.
-  validator: validatorRules
+  $validator: validatorRules
 });
 ```
 
@@ -52,9 +52,9 @@ Vue.use(BalmUI, {
 
 ```js
 import Vue from 'vue';
-import validator from 'balm-ui/plugins/validator';
+import $validator from 'balm-ui/plugins/validator';
 import validatorRules from './config/validator-rules';
 
 // Optional. Set global validator rules.
-Vue.use(validator, validatorRules);
+Vue.use($validator, validatorRules);
 ```

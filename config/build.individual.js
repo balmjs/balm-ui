@@ -4,7 +4,31 @@ const individual = require('./individual');
 const NAMESPACE = 'BalmUI';
 const individualBuild = ['components', 'plugins', 'directives', 'utils'];
 
+function getLibrary(buildName, item) {
+  let library;
+
+  switch (buildName) {
+    case 'components':
+      library = `Ui${item.replace(/^\S/, (s) => s.toUpperCase())}`;
+      break;
+    case 'plugins':
+      library = `$${item}`;
+      break;
+    case 'directives':
+      library = `v${item.replace(/^\S/, (s) => s.toUpperCase())}`;
+      break;
+    default:
+      library = item;
+  }
+
+  console.log(`library: ${library}`);
+
+  return library;
+}
+
 function buildIndividual(mix) {
+  console.log('Individual libraries:');
+
   // Build plus & next
   mix.js(
     {
@@ -39,21 +63,8 @@ function buildIndividual(mix) {
 
   const uiOutput = `${individual.output.dist}/css/balm-ui`;
   individualBuild.forEach((buildName) => {
-    let type;
-
-    switch (buildName) {
-      case 'components':
-        type = 'Ui';
-        break;
-      case 'directives':
-        type = 'v';
-        break;
-      default:
-        type = '';
-    }
-
     individual[buildName].forEach((item) => {
-      const library = `${type}${item.replace(/^\S/, (s) => s.toUpperCase())}`;
+      const library = getLibrary(buildName, item);
 
       let jsInput =
         buildName === 'utils'
@@ -67,10 +78,15 @@ function buildIndividual(mix) {
           : `${uiOutput}/${buildName}/${item}`;
 
       mix.js(jsInput, jsOutput, {
-        output: {
-          library,
-          libraryExport: 'default'
-        }
+        output:
+          buildName === 'plugins'
+            ? {
+                library
+              }
+            : {
+                library,
+                libraryExport: 'default'
+              }
       });
 
       let sassFolder = `${individual.input.sass}/balm-ui/${buildName}`;

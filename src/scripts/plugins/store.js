@@ -22,9 +22,11 @@ function createStore(Vue, storeKey, options) {
 
 const BalmUI_StorePlugin = {
   install(Vue, options = {}) {
-    const storeKey = (options.name || 'Store').toLowerCase();
+    if (Object.keys(options).length) {
+      const storeKey = (options.name || 'Store').toLowerCase();
 
-    Vue.prototype[`$${storeKey}`] = createStore(Vue, storeKey, options);
+      Vue.prototype[`$${storeKey}`] = createStore(Vue, storeKey, options);
+    }
   }
 };
 

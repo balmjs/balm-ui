@@ -10,9 +10,9 @@ function setMsg() {
   $bus.emit('custom-event', 'gg');
 }
 
-function useDemo() {
+var useDemo = function () {
   return {
     ...toRefs(state),
     setMsg
   };
-}
+};

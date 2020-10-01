@@ -1,3 +1,5 @@
-var { message, setMsg } = useDemo();
-
-var myStore = { message, setMsg };
+var myStore = function () {
+  return {
+    ...useDemo()
+  };
+};

@@ -3,21 +3,21 @@ import { createApp } from 'vue';
 import router from '@/routes';
 import i18n from '@/lang';
 import $http from '@/plugins/http';
-import store from '@/store';
+import myStore from '@/store';
 import App from '@/views/layouts/app';
 import { setGlobalProps } from '@/config';
 import validatorRules from '@/config/validator-rules';
 // BalmUI
 import BalmUI from 'balm-ui';
+import UiAlert from 'balm-ui/components/alert';
 import UiAutocomplete from 'balm-ui/components/autocomplete';
+import UiCollapse from 'balm-ui/components/collapse';
 import UiDatepicker from 'balm-ui/components/datepicker';
 import UiRangepicker from 'balm-ui/components/rangepicker';
-import UiCollapse from 'balm-ui/components/collapse';
-import UiAlert from 'balm-ui/components/alert';
+import UiSkeleton from 'balm-ui/components/skeleton';
 import $alert from 'balm-ui/plugins/alert';
 import $confirm from 'balm-ui/plugins/confirm';
 import $toast from 'balm-ui/plugins/toast';
-import UiSkeleton from 'balm-ui/components/skeleton';
 import vAnchor from 'balm-ui/directives/anchor';
 // import BalmUINext from 'balm-ui/next';
 // Custom components
@@ -39,19 +39,19 @@ function createBalmUIApp() {
   app.use($http);
 
   app.use(BalmUI, {
-    store,
-    typography: ['custom-style-1', 'custom-style-2'],
-    validator: validatorRules
+    $store: myStore,
+    $typography: ['custom-style-1', 'custom-style-2'],
+    $validator: validatorRules
   });
+  app.use(UiAlert);
   app.use(UiAutocomplete);
+  app.use(UiCollapse);
   app.use(UiDatepicker);
   app.use(UiRangepicker);
-  app.use(UiCollapse);
-  app.use(UiAlert);
+  app.use(UiSkeleton);
   app.use($alert);
   app.use($confirm);
   app.use($toast);
-  app.use(UiSkeleton);
   app.directive(vAnchor.name, vAnchor);
   // app.use(BalmUINext);
 

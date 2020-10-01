@@ -79,7 +79,7 @@ function buildIndividual(mix) {
 
       mix.js(jsInput, jsOutput, {
         output:
-          buildName === 'plugins'
+          buildName === 'plugins' || (buildName === 'utils' && item !== 'ie')
             ? {
                 library
               }

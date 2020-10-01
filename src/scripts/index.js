@@ -89,12 +89,12 @@ import UiTooltip from './components/others/tooltip';
 /**
  * Plugins
  */
-import event, { useEvent, useBus } from './plugins/event'; // Custom
-import store, { useStore } from './plugins/store'; // Custom
-import grid, { useGrid } from './plugins/grid';
-import theme, { useTheme } from './plugins/theme';
-import typography, { useTypography } from './plugins/typography';
-import validator, { useValidator } from './plugins/validator'; // Custom
+import $event, { useEvent, useBus } from './plugins/event'; // Custom
+import $store, { useStore } from './plugins/store'; // Custom
+import $grid, { useGrid } from './plugins/grid';
+import $theme, { useTheme } from './plugins/theme';
+import $typography, { useTypography } from './plugins/typography';
+import $validator, { useValidator } from './plugins/validator'; // Custom
 /**
  * Directives
  */
@@ -191,12 +191,12 @@ const components = {
 };
 
 const plugins = {
-  event,
-  grid,
-  store,
-  theme,
-  typography,
-  validator
+  $event,
+  $grid,
+  $store,
+  $theme,
+  $typography,
+  $validator
 };
 
 const directives = {
@@ -317,7 +317,7 @@ export {
   UiTooltip,
   UiTopAppBar
 };
-export { event, grid, store, theme, typography, validator };
+export { $event, $grid, $store, $theme, $typography, $validator };
 export {
   useEvent,
   useBus,

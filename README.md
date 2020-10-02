@@ -18,7 +18,7 @@
 
 ## Documentation & Demos
 
-Visit [next.material.balmjs.com](https://next.material.balmjs.com/).
+Visit [next-material.balmjs.com](https://next-material.balmjs.com/).
 
 ## Quick Start
 

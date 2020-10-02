@@ -42,7 +42,7 @@ export function setGlobalProps(app) {
   app.config.isCustomElement = (tag) => tag.startsWith('ui-');
 
   app.config.globalProperties.$domain = isProd
-    ? '//next.material.balmjs.com'
+    ? '//next-material.balmjs.com'
     : '';
 
   app.config.globalProperties.$prism = prismjs;

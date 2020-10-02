@@ -59,7 +59,7 @@ npm install --save balm-ui@next
 
 更新 `balm.config.js`
 
-- 获取 [Material Icons](https://next.material.balmjs.com/material-icons.zip) 无需下载（或者下载后解压至 `/path/to/my-project/app/fonts`）
+- 获取 [Material Icons](https://next-material.balmjs.com/material-icons.zip) 无需下载（或者下载后解压至 `/path/to/my-project/app/fonts`）
 
   ```js
   const api = (mix) => {

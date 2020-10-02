@@ -59,7 +59,7 @@ npm install --save balm-ui@next
 
 update `balm.config.js`
 
-- get [Material Icons](https://next.material.balmjs.com/material-icons.zip) without downloading (or, download and extract to `/path/to/my-project/app/fonts`)
+- get [Material Icons](https://next-material.balmjs.com/material-icons.zip) without downloading (or, download and extract to `/path/to/my-project/app/fonts`)
 
   ```js
   const api = (mix) => {

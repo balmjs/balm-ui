@@ -125,7 +125,7 @@ export default {
         });
       } else {
         let filename =
-          key === 'css'
+          key === 'usage' || key === 'css'
             ? `${key}/${name}`
             : `${this.$store.lang}/${name}/${key}`;
         let docs = require(`@/docs/${filename}.md`); // NOTE: just one variable in `require`

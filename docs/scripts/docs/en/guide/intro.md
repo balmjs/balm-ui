@@ -1,6 +1,6 @@
 # Introduction
 
-[BalmUI](https://github.com/balmjs/balm-ui) is a modular and customizable [Material Design](https://material.io/) UI library for Vue.js.
+[BalmUI](https://github.com/balmjs/balm-ui) is a modular and customizable [Material Design](https://material.io/) UI library for Vue.js 3.0.
 
 ## Features
 
@@ -27,5 +27,5 @@ We officially support the last two versions of every major browser. Specifically
 ## Thank you
 
 - [BalmJS](https://balm.js.org/)
-- [Vue.js](https://vuejs.org/)
+- [Vue.js](https://v3.vuejs.org/)
 - [MDC Web](https://github.com/material-components/material-components-web)

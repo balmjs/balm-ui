@@ -102,7 +102,7 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
 - Edit `/path/to/my-project/app/scripts/main.js`
 
   ```js
-  import Vue from 'vue';
+  import { createApp } from 'vue';
   import App from '@/views/layouts/app';
 
   // Import BalmUI scripts
@@ -113,15 +113,13 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
   // Import BalmUI styles (Not recommend usage, and see above "SASS/CSS Management" for recommended usage)
   import 'balm-ui/dist/balm-ui.css';
 
-  Vue.use(BalmUI); // Mandatory
-  Vue.use(BalmUIPlus); // Optional
-  Vue.use(BalmUINext); // Experimental
+  const app = createApp(App);
 
-  new Vue({
-    el: '#app',
-    components: { App },
-    template: '<app/>'
-  });
+  app.use(BalmUI); // Mandatory
+  app.use(BalmUIPlus); // Optional
+  app.use(BalmUINext); // Experimental
+
+  app.mount('#app');
   ```
 
 **2.1.2 Import in Browser**
@@ -150,12 +148,17 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
       <script src="/node_modules/balm-ui/dist/balm-ui-next.js"></script>
       <!-- endbuild -->
       <script>
-        var app = new Vue({
-          el: '#app',
-          data: {
-            message: 'Hello BalmUI'
+        var app = Vue.createApp({
+          setup() {
+            var message = 'Hello BalmUI';
+
+            return {
+              message
+            };
           }
         });
+
+        app.mount('#app');
       </script>
     </body>
   </html>
@@ -172,7 +175,7 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
 - Edit `/path/to/my-project/app/scripts/main.js`
 
   ```js
-  import Vue from 'vue';
+  import { createApp } from 'vue';
   import App from '@/views/layouts/app';
 
   // Import BalmUI scripts
@@ -186,15 +189,13 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
   import 'balm-ui/components/dialog/dialog.css';
   import 'balm-ui/plugins/alert/alert.css';
 
-  // Install components or plugins
-  Vue.use(UiButton);
-  Vue.use($alert);
+  const app = createApp(App);
 
-  new Vue({
-    el: '#app',
-    components: { App },
-    template: '<app/>'
-  });
+  // Install components or plugins
+  app.use(UiButton);
+  app.use($alert);
+
+  app.mount('#app');
   ```
 
 > With regard to _CSSinJS_, styles can be extracted through BalmJS configuration, but the idea of BalmJS is more recommended to separate and manage styles and scripts to achieve more flexible module configuration and management.
@@ -250,12 +251,17 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
       <script src="/node_modules/balm-ui/plugins/alert/alert.js"></script>
       <!-- endbuild -->
       <script>
-        var app = new Vue({
-          el: '#app',
-          data: {
-            message: 'Hello BalmUI'
+        var app = Vue.createApp({
+          setup() {
+            var message = 'Hello BalmUI';
+
+            return {
+              message
+            };
           }
         });
+
+        app.mount('#app');
       </script>
     </body>
   </html>

@@ -4,9 +4,9 @@
 
 ## Introduction
 
-[BalmUI](https://material.balmjs.com/) is a modular and customizable [Material Design](https://material.io/) UI library for Vue.js.
+[BalmUI](https://material.balmjs.com/) is a modular and customizable [Material Design](https://material.io/) UI library for Vue.js 3.0.
 
-> :tada: NOW, [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x) (v9.0) supports for Vue 3.0
+> [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) supports for Vue 2.0
 
 ## Features
 
@@ -18,7 +18,7 @@
 
 ## Documentation & Demos
 
-Visit [material.balmjs.com](https://material.balmjs.com/).
+Visit [next.material.balmjs.com](https://next.material.balmjs.com/).
 
 ## Quick Start
 
@@ -32,19 +32,17 @@ Visit [material.balmjs.com](https://material.balmjs.com/).
 #### 1.0 Create a project
 
 ```sh
-balm init vue my-project
+balm init vue#next my-project
 cd my-project
 ```
 
 #### 1.1 Installing `balm-ui`
 
 ```sh
-yarn add balm-ui
+yarn add balm-ui@next
 # OR
-npm install --save balm-ui
+npm install --save balm-ui@next
 ```
-
-> :tada: `balm-ui@next` for Vue 3.0
 
 #### 1.2 Configuration
 
@@ -111,12 +109,14 @@ update `balm.config.js`
 - edit `my-project/app/scripts/main.js`
 
   ```js
-  import Vue from 'vue';
+  import { createApp } from 'vue';
   import UiButton from 'balm-ui/components/button';
   import $alert from 'balm-ui/plugins/alert';
 
-  Vue.use(UiButton);
-  Vue.use($alert);
+  const app = createApp({});
+
+  app.use(UiButton);
+  app.use($alert);
   ```
 
 #### 1.4 Development and testing
@@ -155,25 +155,25 @@ cd my-project
 #### 2.1 Installing `balm-ui`
 
 ```sh
-yarn add balm-ui
+yarn add balm-ui@next
 # OR
-npm install --save balm-ui
+npm install --save balm-ui@next
 ```
-
-> :tada: `balm-ui@next` for Vue 3.0
 
 #### 2.2 Usage
 
 - edit `/path/to/main.js`
 
   ```js
-  import Vue from 'vue';
+  import { createApp } from 'vue';
   import BalmUI from 'balm-ui'; // Official Google Material Components
   import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // BalmJS Team Material Components
   import 'balm-ui/dist/balm-ui.css';
 
-  Vue.use(BalmUI); // Mandatory
-  Vue.use(BalmUIPlus); // Optional
+  const app = createApp({});
+
+  app.use(BalmUI); // Mandatory
+  app.use(BalmUIPlus); // Optional
   ```
 
 ### 3. For `<script>`
@@ -192,18 +192,23 @@ npm install --save balm-ui
   </head>
   <body>
     <div id="app">
-      <ui-button @click="$alert(message)" icon="add">SayHi</ui-button>
+      <ui-button icon="add" @click="$alert(message)">SayHi</ui-button>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script src="https://cdn.jsdelivr.net/npm/balm-ui"></script>
-    <script src="https://cdn.jsdelivr.net/npm/balm-ui/dist/balm-ui-plus.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
+    <script src="https://cdn.jsdelivr.net/npm/balm-ui@next"></script>
+    <script src="https://cdn.jsdelivr.net/npm/balm-ui@next/dist/balm-ui-plus.js"></script>
     <script>
-      new Vue({
-        el: '#app',
-        data: {
-          message: 'Hello BalmUI'
+      var app = Vue.createApp({
+        setup() {
+          var message = 'Hello BalmUI';
+
+          return {
+            message
+          };
         }
       });
+
+      app.mount('#app');
     </script>
   </body>
 </html>
@@ -228,7 +233,7 @@ We officially support the last two versions of every major browser. Specifically
 ## Special Thanks to
 
 - [BalmJS](https://balm.js.org/)
-- [Vue.js](https://vuejs.org/)
+- [Vue.js](https://v3.vuejs.org/)
 - [MDC Web](https://github.com/material-components/material-components-web)
 
 [balm-ui-image]: https://badge.fury.io/js/balm-ui.svg

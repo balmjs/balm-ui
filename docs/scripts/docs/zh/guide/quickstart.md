@@ -97,12 +97,14 @@ npm install --save balm-ui@next
 - 编辑 `my-project/app/scripts/main.js`
 
   ```js
-  import Vue from 'vue';
+  import { createApp } from 'vue';
   import BalmUI from 'balm-ui'; // Official Google Material Components
   import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // BalmJS Team Material Components
 
-  Vue.use(BalmUI); // Mandatory
-  Vue.use(BalmUIPlus); // Optional
+  const app = createApp({});
+
+  app.use(BalmUI); // Mandatory
+  app.use(BalmUIPlus); // Optional
   ```
 
 #### 独立用法
@@ -120,12 +122,14 @@ npm install --save balm-ui@next
 - 编辑 `my-project/app/scripts/main.js`
 
   ```js
-  import Vue from 'vue';
+  import { createApp } from 'vue';
   import UiButton from 'balm-ui/components/button';
   import $alert from 'balm-ui/plugins/alert';
 
-  Vue.use(UiButton);
-  Vue.use($alert);
+  const app = createApp({});
+
+  app.use(UiButton);
+  app.use($alert);
   ```
 
 ### 1.4 开发和测试
@@ -174,13 +178,15 @@ npm install --save balm-ui@next
 - 编辑 `/path/to/main.js`
 
   ```js
-  import Vue from 'vue';
+  import { createApp } from 'vue';
   import BalmUI from 'balm-ui'; // Official Google Material Components
   import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // BalmJS Team Material Components
   import 'balm-ui/dist/balm-ui.css';
 
-  Vue.use(BalmUI); // Mandatory
-  Vue.use(BalmUIPlus); // Optional
+  const app = createApp({});
+
+  app.use(BalmUI); // Mandatory
+  app.use(BalmUIPlus); // Optional
   ```
 
 ## 3. 直接 `<script>` 引用
@@ -199,18 +205,23 @@ npm install --save balm-ui@next
   </head>
   <body>
     <div id="app">
-      <ui-button @click="$alert(message)" icon="add">SayHi</ui-button>
+      <ui-button icon="add @click="$alert(message)"">SayHi</ui-button>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
     <script src="https://cdn.jsdelivr.net/npm/balm-ui@next"></script>
     <script src="https://cdn.jsdelivr.net/npm/balm-ui@next/dist/balm-ui-plus.js"></script>
     <script>
-      new Vue({
-        el: '#app',
-        data: {
-          message: 'Hello BalmUI'
+      var app = Vue.createApp({
+        setup() {
+          var message = 'Hello BalmUI';
+
+          return {
+            message
+          };
         }
       });
+
+      app.mount('#app');
     </script>
   </body>
 </html>

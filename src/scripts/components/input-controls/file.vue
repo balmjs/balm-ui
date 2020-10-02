@@ -21,7 +21,7 @@
 
 <script>
 import MdcButton from '../buttons/mdc-button';
-import elementMixin from '../../mixins/element';
+import inputMixin from '../../mixins/input';
 import UI_GLOBAL from '../../config/constants';
 
 // Define file constants
@@ -82,7 +82,7 @@ export default {
   components: {
     MdcButton
   },
-  mixins: [elementMixin],
+  mixins: [inputMixin],
   props: {
     // <input type="file"> attributes
     accept: {

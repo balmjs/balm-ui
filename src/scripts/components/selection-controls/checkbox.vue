@@ -19,7 +19,7 @@
 import { MDCCheckbox } from '../../../material-components-web/checkbox';
 import MdcCheckbox from './mdc-checkbox';
 import domMixin from '../../mixins/dom';
-import elementMixin from '../../mixins/element';
+import inputMixin from '../../mixins/input';
 
 // Define checkbox constants
 const UI_CHECKBOX = {
@@ -36,7 +36,7 @@ export default {
   components: {
     MdcCheckbox
   },
-  mixins: [domMixin, elementMixin],
+  mixins: [domMixin, inputMixin],
   props: {
     // States
     modelValue: {

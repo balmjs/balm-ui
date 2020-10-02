@@ -127,7 +127,7 @@ import MdcTextfieldCounter from './mdc-textfield-counter';
 import domMixin from '../../mixins/dom';
 import textfieldMixin from '../../mixins/textfield';
 import typeMixin from '../../mixins/type';
-import elementMixin from '../../mixins/element';
+import inputMixin from '../../mixins/input';
 import {
   UI_TEXTFIELD_HELPER,
   componentHelperTextMixin
@@ -164,7 +164,7 @@ export default {
     domMixin,
     textfieldMixin,
     typeMixin,
-    elementMixin,
+    inputMixin,
     componentHelperTextMixin
   ],
   props: {

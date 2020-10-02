@@ -9,9 +9,7 @@
       <ui-textfield-icon trailing>delete</ui-textfield-icon>
     </template>
   </ui-textfield>
-  <ui-textfield-helper withCounter>
-    Helper message
-  </ui-textfield-helper>
+  <ui-textfield-helper with-counter> Helper message </ui-textfield-helper>
 </ui-form-field>
 ```
 

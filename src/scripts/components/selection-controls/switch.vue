@@ -23,7 +23,7 @@
 <script>
 import { MDCSwitch } from '../../../material-components-web/switch';
 import domMixin from '../../mixins/dom';
-import elementMixin from '../../mixins/element';
+import inputMixin from '../../mixins/input';
 
 // Define switch constants
 const UI_SWITCH = {
@@ -34,7 +34,7 @@ const UI_SWITCH = {
 
 export default {
   name: 'UiSwitch',
-  mixins: [domMixin, elementMixin],
+  mixins: [domMixin, inputMixin],
   props: {
     // States
     modelValue: {

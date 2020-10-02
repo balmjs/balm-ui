@@ -22,7 +22,7 @@
 <script>
 import { MDCRadio } from '../../../material-components-web/radio';
 import domMixin from '../../mixins/dom';
-import elementMixin from '../../mixins/element';
+import inputMixin from '../../mixins/input';
 
 // Define radio constants
 const UI_RADIO = {
@@ -36,7 +36,7 @@ const UI_RADIO = {
 
 export default {
   name: 'UiRadio',
-  mixins: [domMixin, elementMixin],
+  mixins: [domMixin, inputMixin],
   props: {
     // States
     modelValue: {

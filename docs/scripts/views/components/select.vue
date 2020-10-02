@@ -6,16 +6,13 @@
   >
     <template #hero>
       <div class="hero-demo">
-        <div>
+        <div v-if="typeOption === 0">
           <ui-select
-            v-if="typeOption === 0"
             id="my-select"
             v-model="selected"
             :options="options"
             :with-leading-icon="selectOption.includes(1)"
             helper-text-id="my-select-helper"
-            :helper-text-visible="selectOption.includes(2)"
-            :valid-msg="selectOption.includes(3)"
           >
             <template v-if="selectOption.includes(1)" #icon>
               <ui-select-icon>face</ui-select-icon>
@@ -24,27 +21,34 @@
               <ui-icon :class="iconClass">keyboard_arrow_down</ui-icon>
             </template>
             Pick a fruit
-            <template #helper-text>Helper text</template>
           </ui-select>
+          <ui-select-helper
+            id="my-select-helper"
+            :visible="selectOption.includes(2)"
+            :valid-msg="selectOption.includes(3)"
+            >Helper text</ui-select-helper
+          >
         </div>
-        <div>
+        <div v-if="typeOption === 1">
           <ui-select
-            v-if="typeOption === 1"
             id="my-select-outlined"
             v-model="selected"
             outlined
             :options="options"
             :with-leading-icon="selectOption.includes(1)"
             helper-text-id="my-select-outlined-helper"
-            :helper-text-visible="selectOption.includes(2)"
-            :valid-msg="selectOption.includes(3)"
           >
             <template v-if="selectOption.includes(1)" #icon>
               <ui-select-icon>face</ui-select-icon>
             </template>
             Pick a fruit
-            <template #helper-text>Helper text</template>
           </ui-select>
+          <ui-select-helper
+            id="my-select-outlined-helper"
+            :visible="selectOption.includes(2)"
+            :valid-msg="selectOption.includes(3)"
+            >Helper text</ui-select-helper
+          >
         </div>
       </div>
       <div class="hero-options">

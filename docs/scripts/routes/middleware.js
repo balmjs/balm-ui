@@ -1,4 +1,4 @@
-import { useBus } from 'balm-ui';
+import { useBus, useStore } from 'balm-ui';
 
 const CLASS_NAMESPACE = 'balmui';
 
@@ -6,12 +6,18 @@ export function initRouter(router) {
   const bus = useBus();
 
   router.beforeEach((to, from, next) => {
-    bus.emit('page-loading');
+    const store = useStore();
+
+    if (store && !store.isFirstLoad) {
+      bus.emit('page-loading');
+    }
 
     next();
   });
 
   router.afterEach((to, from) => {
+    const store = useStore();
+
     let pageClassList = document.querySelector('html').classList;
     let routeName = to.name;
     let isNoLayout = routeName
@@ -36,6 +42,8 @@ export function initRouter(router) {
       pageClassList.add(`${CLASS_NAMESPACE}-${toName}`);
     }
 
-    bus.emit('page-loaded');
+    if (store && !store.isFirstLoad) {
+      bus.emit('page-loaded');
+    }
   });
 }

@@ -1,13 +1,14 @@
-import { createApp } from 'vue';
+import { createApp, computed } from 'vue';
 import getType from '../utils/typeof';
 import { createDiv } from '../utils/div';
 
-let store = new Map();
-let defaultStoreKey;
+let store;
 
 function createStore(key, options) {
-  if (store.has(key)) {
-    throw new Error(`[BalmUI store]: The '${key}' already exists`);
+  if (!(getType(options) === 'function' && getType(options()) === 'object')) {
+    throw new Error(
+      `[BalmUI store]: The '$store' must be a function (return an object)`
+    );
   } else {
     createDiv(key);
   }
@@ -16,28 +17,26 @@ function createStore(key, options) {
   const storeApp = createApp({
     name: `BalmUI${keyName}`,
     setup() {
-      return getType(options) === 'function' ? options() : {};
+      return options();
     },
     render: () => ''
   }).mount(`#${key}`);
 
-  store.set(key, storeApp);
+  store = storeApp.$.setupState;
 }
 
 const BalmUI_StorePlugin = {
   install(app, options = {}) {
-    defaultStoreKey = (options.name || 'Store').toLowerCase();
+    const defaultStoreKey = (options.name || 'Store').toLowerCase();
 
     createStore(defaultStoreKey, options);
 
-    app.config.globalProperties[`$${defaultStoreKey}`] = store.get(
-      defaultStoreKey
-    );
-    app.provide(defaultStoreKey, store.get(defaultStoreKey));
+    app.config.globalProperties.$store = store;
+    app.provide('store', store);
   }
 };
 
-const useStore = (key = defaultStoreKey) => store.get(key);
+const useStore = () => store;
 
 export default BalmUI_StorePlugin;
-export { createStore, useStore };
+export { useStore };

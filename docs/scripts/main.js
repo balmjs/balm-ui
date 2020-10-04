@@ -29,7 +29,7 @@ import UiFooterNav from '@/components/footer-nav';
 import UiTocAffix from '@/components/toc-affix';
 import SvgLogo from '@/components/svg-logo';
 // PWA
-import './my-sw';
+// import './my-sw';
 
 function createBalmUIApp() {
   const app = createApp(App);
@@ -66,7 +66,6 @@ function createBalmUIApp() {
   setGlobalProps(app);
 
   app.mount('#app');
-  document.getElementById('app').removeAttribute('class');
 }
 
 export default createBalmUIApp;

@@ -1,5 +1,5 @@
 <template>
-  <div class="balmui-container">
+  <div ref="root" class="balmui-container">
     <ui-progress
       v-if="pageLoading"
       class="top-loading"
@@ -149,7 +149,15 @@
 </template>
 
 <script>
-import { reactive, toRefs, computed, onMounted, onBeforeUnmount } from 'vue';
+import {
+  ref,
+  reactive,
+  toRefs,
+  computed,
+  onMounted,
+  onBeforeUnmount,
+  onBeforeMount
+} from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { useEvent, useBus, useStore } from 'balm-ui';
@@ -196,6 +204,7 @@ export default {
     TopToolbar
   },
   setup(props, ctx) {
+    const root = ref(null);
     const route = useRoute();
     const balmUI = useEvent();
     const bus = useBus();
@@ -207,6 +216,8 @@ export default {
     });
 
     onMounted(() => {
+      root.value.parentNode.removeAttribute('class');
+
       bus.on('page-loading', () => {
         state.pageLoading = true;
 
@@ -240,6 +251,13 @@ export default {
       init();
       window.addEventListener('balmResize', init);
 
+      if (store.isFirstLoad) {
+        store.isFirstLoad = false;
+
+        state.pageLoading = false;
+        state.bodyEl.scrollTop = 0;
+      }
+
       // NOTE: for lang init
       setTimeout(() => {
         locale.value = store.lang;
@@ -253,6 +271,7 @@ export default {
     });
 
     return {
+      root,
       ...toRefs(state),
       noLayout,
       balmUI,

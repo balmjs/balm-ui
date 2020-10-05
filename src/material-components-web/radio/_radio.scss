@@ -25,6 +25,7 @@
 
 @use 'sass:map';
 @use '../animation/animation';
+@use '../dom/dom';
 @use '../feature-targeting/feature-targeting';
 @use '../ripple/ripple';
 @use '../ripple/ripple-theme';
@@ -83,6 +84,18 @@ $ripple-target: '.mdc-radio__ripple';
       $query: $query
     );
     @include radio-theme.density(radio-theme.$density-scale, $query: $query);
+
+    @include dom.ie-high-contrast-mode {
+      @include radio-theme.disabled-unchecked-stroke-color(
+        GrayText,
+        $query: $query
+      );
+      @include radio-theme.disabled-checked-stroke-color(
+        GrayText,
+        $query: $query
+      );
+      @include radio-theme.disabled-ink-color(GrayText, $query: $query);
+    }
 
     @include feature-targeting.targets($feat-structure) {
       display: inline-block;

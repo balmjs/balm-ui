@@ -8,8 +8,6 @@
   };
   ```
 
-  > NOTE: `'Store'` is default store name (`$store`), and you can customize yours. (e.g. set `name: 'AppStore'`, then using `$appstore`)
-
 ### Default Usage
 
 ```js

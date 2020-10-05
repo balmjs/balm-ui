@@ -1,4 +1,5 @@
 import autoInstall from '../config/auto-install';
+import getType from '../utils/typeof';
 
 let store;
 
@@ -22,10 +23,10 @@ function createStore(Vue, storeKey, options) {
 
 const BalmUI_StorePlugin = {
   install(Vue, options = {}) {
-    if (Object.keys(options).length) {
+    if (getType(options) === 'object' && Object.keys(options).length) {
       const storeKey = (options.name || 'Store').toLowerCase();
 
-      Vue.prototype[`$${storeKey}`] = createStore(Vue, storeKey, options);
+      Vue.prototype.$store = createStore(Vue, storeKey, options);
     }
   }
 };

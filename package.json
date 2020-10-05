@@ -1,6 +1,6 @@
 {
   "name": "balm-ui",
-  "version": "8.3.1",
+  "version": "8.3.2",
   "description": "Next Generation Material UI for Vue.js",
   "keywords": [
     "balm",
@@ -52,7 +52,7 @@
   "dependencies": {
     "deepmerge": "^4.2.2",
     "flatpickr": "^4.6.6",
-    "material-components-web": "8.0.0-canary.199aecdfb.0",
+    "material-components-web": "8.0.0-canary.774dcfc8e.0",
     "quill": "^1.3.7"
   },
   "devDependencies": {

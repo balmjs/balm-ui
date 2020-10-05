@@ -1,4 +1,4 @@
-import { createApp, computed } from 'vue';
+import { createApp } from 'vue';
 import getType from '../utils/typeof';
 import { createDiv } from '../utils/div';
 

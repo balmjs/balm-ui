@@ -119,7 +119,7 @@
             </ui-drawer-content>
           </ui-drawer>
           <ui-drawer-backdrop
-            v-show="drawerType === 'modal'"
+            v-if="drawerType === 'modal'"
             @click="balmUI.onHide('openDrawer')"
           ></ui-drawer-backdrop>
         </div>
@@ -154,9 +154,9 @@ import {
   reactive,
   toRefs,
   computed,
+  onBeforeMount,
   onMounted,
-  onBeforeUnmount,
-  onBeforeMount
+  onBeforeUnmount
 } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
@@ -215,6 +215,8 @@ export default {
       return route.name ? route.meta && route.meta.noLayout : true;
     });
 
+    store.isFirstLoad = computed(() => route.name == null);
+
     onMounted(() => {
       root.value.parentNode.removeAttribute('class');
 
@@ -251,9 +253,9 @@ export default {
       init();
       window.addEventListener('balmResize', init);
 
-      if (store.isFirstLoad) {
-        store.isFirstLoad = false;
+      console.log('store.isFirstLoad', store.isFirstLoad);
 
+      if (store.isFirstLoad) {
         state.pageLoading = false;
         state.bodyEl.scrollTop = 0;
       }

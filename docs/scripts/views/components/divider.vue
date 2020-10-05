@@ -2,8 +2,8 @@
   <docs-page name="divider" demo-count="2">
     <template #hero>
       <div class="hero-demo">
-        <ui-divider v-show="withText" :type="typeOption">With Text</ui-divider>
-        <ui-divider v-show="!withText" :type="typeOption"></ui-divider>
+        <ui-divider v-if="withText" :type="typeOption">With Text</ui-divider>
+        <ui-divider v-else :type="typeOption"></ui-divider>
       </div>
       <div class="hero-options">
         <ui-form-field>

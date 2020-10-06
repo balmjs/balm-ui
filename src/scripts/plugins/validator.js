@@ -19,8 +19,9 @@ let globalValidationRules = {};
 
 class UiValidator {
   constructor() {
-    const { ctx } = getCurrentInstance();
-    this.ctx = ctx;
+    const currentInstance = getCurrentInstance();
+    window.v = currentInstance; // debug
+    this.instance = currentInstance.ctx;
   }
 
   validate(formData = {}, customFieldset = []) {
@@ -34,7 +35,7 @@ class UiValidator {
     };
 
     let validations =
-      this.ctx.validations || this.ctx.$options.validations || {};
+      this.instance.validations || this.instance.$options.validations || {};
     let validationFields = Object.keys(validations);
 
     if (customFieldset.length) {
@@ -60,7 +61,7 @@ class UiValidator {
         if (rule && getType(rule.validate) === 'function') {
           let fieldValue = formData[fieldName];
           let fieldArgs = [fieldValue, formData];
-          if (!rule.validate.apply(this.ctx.$data, fieldArgs)) {
+          if (!rule.validate.apply(this.instance.$data, fieldArgs)) {
             isAllValidOfField = false;
             let message = '';
 
@@ -69,7 +70,7 @@ class UiValidator {
                 message = rule.message.replace(LABEL_PLACEHOLDER, fieldLabel);
                 break;
               case 'function':
-                message = rule.message.apply(this.ctx.$data, fieldArgs);
+                message = rule.message.apply(this.instance.$data, fieldArgs);
                 break;
               default:
                 console.warn(
@@ -114,22 +115,22 @@ class UiValidator {
   }
 
   resetValidations() {
-    this.ctx.$options.validations = {};
+    this.instance.$options.validations = {};
   }
 
   setValidations(fieldName, validationRule = {}) {
-    if (!this.ctx.$options.validations) {
+    if (!this.instance.$options.validations) {
       $resetValidations();
     }
 
     if (getType(fieldName) === 'object') {
-      this.ctx.$options.validations = Object.assign(
+      this.instance.$options.validations = Object.assign(
         {},
-        this.ctx.$options.validations,
+        this.instance.$options.validations,
         fieldName
       );
     } else {
-      this.ctx.$options.validations[fieldName] = validationRule;
+      this.instance.$options.validations[fieldName] = validationRule;
     }
   }
 }

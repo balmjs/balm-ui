@@ -44,9 +44,6 @@ export default {
         `'helperTextId' is required for '<ui-textfield>' with outer counter`
       );
     }
-  },
-  mounted() {
-    this.getPreviousInstance('Textfield');
   }
 };
 </script>

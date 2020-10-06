@@ -101,7 +101,10 @@ import MdcNotchedOutline from '../form-controls/mdc-notched-outline';
 import domMixin from '../../mixins/dom';
 import typeMixin from '../../mixins/type';
 import materialIconMixin from '../../mixins/material-icon';
-import { componentHelperTextMixin } from '../../mixins/helper-text';
+import {
+  instanceMap,
+  componentHelperTextMixin
+} from '../../mixins/helper-text';
 
 // Define select constants
 const UI_SELECT = {
@@ -226,22 +229,14 @@ export default {
     },
     options(val) {
       this.init(val);
-    },
-    validMsg(val) {
-      this.$select.valid = !this.hasValidMsg;
-    }
-  },
-  beforeMount() {
-    const needHelperTextId = this.helperTextVisible || this.validMsg;
-
-    if (!this.helperTextId && needHelperTextId) {
-      console.warn(
-        `'helperTextId' is required for '<ui-select>' with outer counter`
-      );
     }
   },
   mounted() {
     this.$select = new MDCSelect(this.el);
+
+    if (this.helperTextId) {
+      instanceMap.set(`${this.helperTextId}-previous`, this.$select);
+    }
 
     this.$select.listen(strings.CHANGE_EVENT, ({ detail }) => {
       // NOTE: for dynamic options

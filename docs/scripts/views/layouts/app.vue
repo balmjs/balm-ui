@@ -253,8 +253,6 @@ export default {
       init();
       window.addEventListener('balmResize', init);
 
-      console.log('store.isFirstLoad', store.isFirstLoad);
-
       if (store.isFirstLoad) {
         state.pageLoading = false;
         state.bodyEl.scrollTop = 0;

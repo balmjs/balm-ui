@@ -130,6 +130,7 @@ import typeMixin from '../../mixins/type';
 import inputMixin from '../../mixins/input';
 import {
   UI_TEXTFIELD_HELPER,
+  instanceMap,
   componentHelperTextMixin
 } from '../../mixins/helper-text';
 import { UI_TEXTFIELD_ICON } from './constants';
@@ -317,6 +318,10 @@ export default {
   },
   mounted() {
     this.$textField = new MDCTextField(this.el);
+
+    if (this.helperTextId) {
+      instanceMap.set(`${this.helperTextId}-previous`, this.$textField);
+    }
   },
   methods: {
     hasBeforeSlot() {
@@ -334,7 +339,9 @@ export default {
         : this.$slots.after;
     },
     handleFocus(event) {
-      this.getValidationMsg();
+      this.hasValidMsg =
+        instanceMap.get(`${this.helperTextId}-next`) &&
+        instanceMap.get(`${this.helperTextId}-next`).hasValidMsg;
       this.$emit(UI_TEXTFIELD.EVENT.FOCUS, event);
     },
     handleKeydown(event) {
@@ -359,18 +366,6 @@ export default {
         }, 1);
       }
       this.$emit(UI_TEXTFIELD.EVENT.BLUR, event);
-    },
-    getValidationMsg() {
-      if (
-        this.el &&
-        this.el.nextElementSibling &&
-        typeof this.el.nextElementSibling.__vueParentComponent.type ===
-          'object' &&
-        this.el.nextElementSibling.__vueParentComponent.type.name ===
-          'UiTextfieldHelper'
-      ) {
-        this.hasValidMsg = this.el.nextElementSibling.__vueParentComponent.ctx.hasValidMsg;
-      }
     }
   }
 };

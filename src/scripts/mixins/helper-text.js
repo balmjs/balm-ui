@@ -1,10 +1,16 @@
-import getType from '../utils/typeof';
-
-export const UI_TEXTFIELD_HELPER = {
+export const UI_HELPER_TEXT = {
   EVENT: {
     CHANGE: 'update:validMsg'
   }
 };
+
+/**
+ * fix(@mdc): valid bug for `<ui-textfield>` on blur
+ *
+ * textfield-previous: $textField or $select
+ * textfield-next: helper text
+ */
+export const instanceMap = new Map();
 
 export const componentHelperTextMixin = {
   props: {
@@ -32,12 +38,7 @@ export const helperTextMixin = {
       default: false
     }
   },
-  emits: [UI_TEXTFIELD_HELPER.EVENT.CHANGE],
-  data() {
-    return {
-      $previous: null
-    };
-  },
+  emits: [UI_HELPER_TEXT.EVENT.CHANGE],
   computed: {
     hasValidMsg() {
       return !!this.validMsg;
@@ -45,24 +46,14 @@ export const helperTextMixin = {
   },
   watch: {
     validMsg() {
-      this.$previous.valid = !this.hasValidMsg;
+      if (instanceMap.get(`${this.id}-previous`)) {
+        instanceMap.get(`${this.id}-previous`).valid = !this.hasValidMsg;
+      }
     }
   },
-  methods: {
-    getPreviousInstance(name) {
-      if (
-        this.$el &&
-        this.$el.previousElementSibling &&
-        getType(this.$el.previousElementSibling.__vueParentComponent.type) ===
-          'object' &&
-        this.$el.previousElementSibling.__vueParentComponent.type.name ===
-          `Ui${name}`
-      ) {
-        const instance = name === 'Select' ? '$select' : '$textField';
-        this.$previous = this.$el.previousElementSibling.__vueParentComponent.data[
-          instance
-        ];
-      }
+  mounted() {
+    if (this.id) {
+      instanceMap.set(`${this.id}-next`, this);
     }
   }
 };

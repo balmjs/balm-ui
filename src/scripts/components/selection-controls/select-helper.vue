@@ -23,8 +23,12 @@ export default {
       return !this.visible || this.hasValidMsg; // For css name bug
     }
   },
-  mounted() {
-    this.getPreviousInstance('Select');
+  beforeMount() {
+    const needHelperTextId = this.visible || this.hasValidMsg;
+
+    if (!this.helperTextId && needHelperTextId) {
+      console.warn(`'helperTextId' is required for '<ui-select>'`);
+    }
   }
 };
 </script>

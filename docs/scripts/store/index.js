@@ -3,11 +3,9 @@ import useLangStore from './lang';
 import useThemeStore from './theme';
 import useSnippetStore from './snippet';
 
-export default () => {
-  return {
-    ...usePageStore(),
-    ...useLangStore(),
-    ...useThemeStore(),
-    ...useSnippetStore()
-  };
+export default {
+  ...usePageStore(),
+  ...useLangStore(),
+  ...useThemeStore(),
+  ...useSnippetStore()
 };

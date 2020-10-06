@@ -2,10 +2,8 @@
 // `/path/to/app/scripts/store/index.js`
 import useDemoStore from './demo';
 
-export default () => {
-  return {
-    ...useDemoStore()
-  };
+export default {
+  ...useDemoStore()
 };
 ```
 

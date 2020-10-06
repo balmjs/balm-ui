@@ -18,21 +18,21 @@
     <ui-textfield id="mobile"
       v-model="formData.mobile"
       helper-text-id="mobile-helper-text">Mobile</ui-textfield>
-    <ui-textfield-helper id="mobile-helper-text" v-model="validMsg.mobile"></ui-textfield-helper>
+    <ui-textfield-helper id="mobile-helper-text" v-model:validMsg="validMsg.mobile"></ui-textfield-helper>
   </p>
   <p class="form-item">
     <ui-textfield input-type="password"
       id="password"
       v-model="formData.password"
       helper-text-id="password-helper-text">Password</ui-textfield>
-    <ui-textfield-helper id="password-helper-text" v-model="validMsg.password"></ui-textfield-helper>
+    <ui-textfield-helper id="password-helper-text" v-model:validMsg="validMsg.password"></ui-textfield-helper>
   </p>
   <p class="form-item">
     <ui-textfield input-type="password"
       id="repassword"
       v-model="formData.repassword"
       helper-text-id="repassword-helper-text">Repeat Password</ui-textfield>
-    <ui-textfield-helper id="repassword-helper-text" v-model="validMsg.repassword"></ui-textfield-helper>
+    <ui-textfield-helper id="repassword-helper-text" v-model:validMsg="validMsg.repassword"></ui-textfield-helper>
   </p>
   <p class="form-actions">
     <ui-button raised @click="submit">Submit</ui-button>

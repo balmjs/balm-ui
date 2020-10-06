@@ -2,9 +2,7 @@
 
   ```js
   // `/path/to/app/scripts/store/index.js`
-  export default () => {
-    return {};
-  };
+  export default {};
   ```
 
 ### Default Usage

@@ -5,19 +5,13 @@ import { createDiv } from '../utils/div';
 let store;
 
 function createStore(key, options) {
-  if (!(getType(options) === 'function' && getType(options()) === 'object')) {
-    throw new Error(
-      `[BalmUI store]: The '$store' must be a function (return an object)`
-    );
-  } else {
-    createDiv(key);
-  }
+  createDiv(key);
 
   const keyName = key.replace(/^\S/, (s) => s.toUpperCase());
   const storeApp = createApp({
     name: `BalmUI${keyName}`,
     setup() {
-      return options();
+      return options;
     },
     render: () => ''
   }).mount(`#${key}`);
@@ -27,12 +21,18 @@ function createStore(key, options) {
 
 const BalmUI_StorePlugin = {
   install(app, options = {}) {
-    const defaultStoreKey = (options.name || 'Store').toLowerCase();
+    if (getType(options) === 'object') {
+      if (Object.keys(options).length) {
+        const defaultStoreKey = (options.name || 'Store').toLowerCase();
 
-    createStore(defaultStoreKey, options);
+        createStore(defaultStoreKey, options);
 
-    app.config.globalProperties.$store = store;
-    app.provide('store', store);
+        app.config.globalProperties.$store = store;
+        app.provide('store', store);
+      }
+    } else {
+      throw new Error(`[BalmUI store]: The '$store' must be an object`);
+    }
   }
 };
 

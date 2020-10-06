@@ -1,26 +1,34 @@
 ```js
 // `/path/to/app/scripts/store/index.js`
-import demo from './demo';
+import useDemoStore from './demo';
 
 export default {
-  mixins: [demo]
+  ...useDemoStore()
 };
 ```
 
 ```js
 // `/path/to/app/scripts/store/demo.js`
-export default {
-  data() {
-    return {
-      demoMenu: []
-    };
-  },
-  methods: {
-    async getDemoMenu() {
-      this.demoMenu = await this.$http.get('/api/get-menu');
-    }
-  }
+import { reactive, toRefs } from 'vue';
+import { useHttp } from '@/plugins/http';
+
+const state = reactive({
+  demoMenu: []
+});
+
+async function getDemoMenu() {
+  const $http = useHttp();
+  state.demoMenu = await $http.get('/api/get-menu');
+}
+
+const useDemoStore = () => {
+  return {
+    ...toRefs(state),
+    getDemoMenu
+  };
 };
+
+export default useDemoStore;
 ```
 
 ```js

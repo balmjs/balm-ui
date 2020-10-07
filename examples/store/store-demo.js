@@ -10,7 +10,7 @@ function setMsg() {
   $bus.emit('custom-event', 'gg');
 }
 
-var useDemo = function () {
+var useDemoStore = function () {
   return {
     ...toRefs(state),
     setMsg

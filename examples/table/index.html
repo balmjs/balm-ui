@@ -54,6 +54,7 @@
   <script src="/components/pagination/index.js"></script>
   <script src="/components/checkbox/index.js"></script>
   <script src="/components/icon-button/index.js"></script>
+  <script src="/components/icon/index.js"></script>
   <script src="/directives/tooltip/index.js"></script>
   <script>
     var app = Vue.createApp({
@@ -148,7 +149,8 @@
     app.use(UiTable);
     app.use(UiPagination);
     app.use(UiCheckbox);
-    app.use(UiIconButton); // TODO: UiIconButton is not defined
+    app.use(UiIconButton);
+    app.use(UiIcon);
     app.directive(vTooltip.name, vTooltip);
 
     app.mount('#app');

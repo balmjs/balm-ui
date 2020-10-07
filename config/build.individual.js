@@ -4,12 +4,19 @@ const individual = require('./individual');
 const NAMESPACE = 'BalmUI';
 const individualBuild = ['components', 'plugins', 'directives', 'utils'];
 
+function getComponentName(item) {
+  return item
+    .split('-')
+    .map((name) => name.replace(/^\S/, (s) => s.toUpperCase()))
+    .join('');
+}
+
 function getLibrary(buildName, item) {
   let library;
 
   switch (buildName) {
     case 'components':
-      library = `Ui${item.replace(/^\S/, (s) => s.toUpperCase())}`;
+      library = `Ui${getComponentName(item)}`;
       break;
     case 'plugins':
       library = `$${item}`;

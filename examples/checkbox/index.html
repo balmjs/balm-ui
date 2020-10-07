@@ -12,7 +12,7 @@
 <body>
   <div id="app">
     <ui-form-field>
-      <ui-checkbox id="native-js-checkbox"></ui-checkbox>
+      <ui-checkbox input-id="native-js-checkbox"></ui-checkbox>
       <label for="native-js-checkbox">This is my checkbox</label>
     </ui-form-fiel>
   </div>
@@ -22,7 +22,7 @@
   <script>
     var app = Vue.createApp({});
 
-    app.use(UiFormField); // TODO: UiFormField is not defined
+    app.use(UiFormField);
     app.use(UiCheckbox);
 
     app.mount('#app');

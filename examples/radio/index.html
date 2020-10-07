@@ -12,11 +12,11 @@
 <body>
   <div id="app">
     <ui-form-field>
-      <ui-radio id="male" v-model="gender" name="sex" value="M"></ui-radio>
+      <ui-radio input-id="male" v-model="gender" name="sex" value="M"></ui-radio>
       <label for="male">Male</label>
     </ui-form-field>
     <ui-form-field>
-      <ui-radio id="female" v-model="gender" name="sex" value="F"></ui-radio>
+      <ui-radio input-id="female" v-model="gender" name="sex" value="F"></ui-radio>
       <label for="female">Female</label>
     </ui-form-field>
     <p>Gender: {{ gender }}</p>
@@ -33,7 +33,7 @@
       }
     });
 
-    app.use(UiFormField); // TODO: UiFormField is not defined
+    app.use(UiFormField);
     app.use(UiRadio);
 
     app.mount('#app');

@@ -1,5 +1,3 @@
-var myStore = function () {
-  return {
-    ...useDemo()
-  };
+var myStore = {
+  ...useDemoStore()
 };

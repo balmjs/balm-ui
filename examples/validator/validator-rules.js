@@ -2,9 +2,9 @@ var validatorRules = {
   required: {
     validate: function (value) {
       let result = false;
-      if (BalmUI_types.isString(value)) {
+      if (types.isString(value)) {
         result = value.trim() !== '';
-      } else if (BalmUI_types.isArray(value)) {
+      } else if (types.isArray(value)) {
         return value.length;
       } else {
         result = value;

@@ -46,8 +46,8 @@
 
           if (result) {
             console.log('ok');
-            this.$confirm('Do you like BalmUI?').then((r) => {
-              r ? this.$alert('Cool') : this.$toast('Good');
+            this.$confirm('Do you like BalmUI?').then((result) => {
+              result ? this.$alert('Cool') : this.$toast('Good');
             })
           } else {
             console.log('cancel');

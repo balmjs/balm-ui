@@ -9,7 +9,7 @@ const UI_TAB_BAR = {
 const UI_TAB_SCROLLER = {
   ALIGN: ['start', 'center', 'end'],
   EVENT: {
-    CHANGE: 'update:scrollX' // TODO
+    CHANGE: 'update:scrollX'
   }
 };
 

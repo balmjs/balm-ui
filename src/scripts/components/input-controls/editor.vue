@@ -99,7 +99,7 @@ export default {
     };
   },
   watch: {
-    model(val) {
+    modelValue(val) {
       if (val) {
         if (this.htmlContent !== val) {
           this.setHTML(val);

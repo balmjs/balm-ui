@@ -1,3 +1,5 @@
+import getType from '../utils/typeof';
+
 export const UI_HELPER_TEXT = {
   EVENT: {
     CHANGE: 'update:validMsg'
@@ -42,6 +44,9 @@ export const helperTextMixin = {
   computed: {
     hasValidMsg() {
       return !!this.validMsg;
+    },
+    validMessage() {
+      return getType(this.validMsg) === 'string' ? this.validMsg : '';
     }
   },
   watch: {

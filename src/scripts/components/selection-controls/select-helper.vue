@@ -1,7 +1,7 @@
 <template>
   <!-- Helper text (optional) -->
   <p :id="id" :class="className" aria-hidden="true">
-    <slot></slot>
+    <slot>{{ validMessage }}</slot>
   </p>
 </template>
 

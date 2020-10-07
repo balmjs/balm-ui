@@ -3,7 +3,7 @@
   <div class="mdc-text-field-helper-line">
     <!-- Helper text (optional) -->
     <div :id="id" :class="className" aria-hidden="true">
-      <slot></slot>
+      <slot>{{ validMessage }}</slot>
     </div>
     <!-- Character counter (optional) -->
     <mdc-textfield-counter v-if="withCounter"></mdc-textfield-counter>

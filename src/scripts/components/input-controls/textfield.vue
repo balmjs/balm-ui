@@ -129,7 +129,7 @@ import textfieldMixin from '../../mixins/textfield';
 import typeMixin from '../../mixins/type';
 import inputMixin from '../../mixins/input';
 import {
-  UI_TEXTFIELD_HELPER,
+  UI_HELPER_TEXT,
   instanceMap,
   componentHelperTextMixin
 } from '../../mixins/helper-text';
@@ -255,8 +255,7 @@ export default {
       UI_TEXTFIELD,
       UI_TEXTFIELD_ICON,
       $textField: null,
-      inputValue: this.modelValue,
-      hasValidMsg: false // fix(@mdc): valid bug on blur
+      inputValue: this.modelValue
     };
   },
   computed: {
@@ -339,9 +338,6 @@ export default {
         : this.$slots.after;
     },
     handleFocus(event) {
-      this.hasValidMsg =
-        instanceMap.get(`${this.helperTextId}-next`) &&
-        instanceMap.get(`${this.helperTextId}-next`).hasValidMsg;
       this.$emit(UI_TEXTFIELD.EVENT.FOCUS, event);
     },
     handleKeydown(event) {
@@ -360,11 +356,14 @@ export default {
       this.$emit(UI_TEXTFIELD.EVENT.ENTER, event.target.value);
     },
     handleBlur(event) {
-      if (this.hasValidMsg) {
-        setTimeout(() => {
-          this.$textField.valid = false;
-        }, 1);
+      // fix(@mdc): valid bug on blur
+      if (instanceMap.get(`${this.helperTextId}-next`)) {
+        const helperText = instanceMap.get(`${this.helperTextId}-next`);
+        if (helperText.validMsg !== true) {
+          helperText.$emit(UI_HELPER_TEXT.EVENT.CHANGE, false);
+        }
       }
+
       this.$emit(UI_TEXTFIELD.EVENT.BLUR, event);
     }
   }

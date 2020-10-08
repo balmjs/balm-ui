@@ -33,17 +33,17 @@
         ></ui-textfield-helper>
       </ui-form-field>
       <ui-form-field class="form-item">
-        <ui-select
+        <ui-textfield
           id="repassword"
           v-model="formData.repassword"
           input-type="password"
           helper-text-id="repassword-helper-text"
-          >Repeat Password</ui-select
+          >Repeat Password</ui-textfield
         >
-        <ui-select-helper
+        <ui-textfield-helper
           id="repassword-helper-text"
           v-model:validMsg="validMsg.repassword"
-        ></ui-select-helper>
+        ></ui-textfield-helper>
       </ui-form-field>
       <ui-form-field class="form-item form-actions">
         <ui-button raised @click="submit">Submit</ui-button>

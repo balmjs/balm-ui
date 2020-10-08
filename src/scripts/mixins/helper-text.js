@@ -36,14 +36,16 @@ export const helperTextMixin = {
       default: false
     },
     validMsg: {
-      type: [String, Boolean],
+      type: [Boolean, String],
       default: false
     }
   },
   emits: [UI_HELPER_TEXT.EVENT.CHANGE],
   computed: {
     hasValidMsg() {
-      return !!this.validMsg;
+      return getType(this.validMsg) === 'string'
+        ? !!this.validMsg.length
+        : this.validMsg;
     },
     validMessage() {
       return getType(this.validMsg) === 'string' ? this.validMsg : '';

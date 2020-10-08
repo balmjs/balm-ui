@@ -20,6 +20,7 @@ let globalValidationRules = {};
 class UiValidator {
   constructor() {
     const currentInstance = getCurrentInstance();
+    window.abc = currentInstance; // TODO: test for runtime
     this.instance = currentInstance.ctx;
   }
 

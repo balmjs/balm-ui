@@ -198,7 +198,8 @@ npm install --save balm-ui@next
 
   ```js
   import { createApp } from 'vue';
-  import App from '@/views/layouts/app';
+  import App from './App.vue';
+  import './index.css';
   import BalmUI from 'balm-ui'; // Official Google Material Components
   import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // BalmJS Team Material Components
   import 'balm-ui/dist/balm-ui.css';

@@ -162,14 +162,27 @@ npm run dev
 npm run prod
 ```
 
-## 2. For Vue CLI
+## 2. For Vue CLI or Vite
 
 ### 2.0 Create a project
 
-```bash
-vue create my-project
-cd my-project
-```
+- `vue-cli`
+
+  ```bash
+  vue create my-project
+
+  cd my-project
+  ```
+
+- `vite`
+
+  ```bash
+  npm init vite-app my-project
+  # OR
+  yarn create vite-app my-project
+
+  cd my-project
+  ```
 
 ### 2.1 Installing `balm-ui`
 
@@ -181,19 +194,21 @@ npm install --save balm-ui@next
 
 ### 2.2 Usage
 
-- edit `/path/to/main.js`
+- edit `/path/to/src/main.js`
 
   ```js
   import { createApp } from 'vue';
-  import App from '@/views/layouts/app';
+  import App from './App.vue';
+  import './index.css';
   import BalmUI from 'balm-ui'; // Official Google Material Components
   import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // BalmJS Team Material Components
   import 'balm-ui/dist/balm-ui.css';
 
   const app = createApp(App);
 
-  app.use(BalmUI); // Mandatory
-  app.use(BalmUIPlus); // Optional
+  // using `.default`: because the non-esm-bundler for default vue
+  app.use(BalmUI.default);
+  app.use(BalmUIPlus.default);
 
   app.mount('#app');
   ```
@@ -229,6 +244,9 @@ npm install --save balm-ui@next
           };
         }
       });
+
+      app.use(BalmUI.default);
+      app.use(BalmUIPlus.default);
 
       app.mount('#app');
     </script>

@@ -162,14 +162,27 @@ npm run dev
 npm run prod
 ```
 
-## 2. Vue CLI
+## 2. Vue CLI 或 Vite
 
 ### 2.0 创建一个新项目
 
-```bash
-vue create my-project
-cd my-project
-```
+- `vue-cli`
+
+  ```bash
+  vue create my-project
+
+  cd my-project
+  ```
+
+- `vite`
+
+  ```bash
+  npm init vite-app my-project
+  # OR
+  yarn create vite-app my-project
+
+  cd my-project
+  ```
 
 ### 2.1 安装 `balm-ui`
 
@@ -181,7 +194,7 @@ npm install --save balm-ui@next
 
 ### 2.2 使用
 
-- 编辑 `/path/to/main.js`
+- 编辑 `/path/to/src/main.js`
 
   ```js
   import { createApp } from 'vue';
@@ -192,8 +205,9 @@ npm install --save balm-ui@next
 
   const app = createApp(App);
 
-  app.use(BalmUI); // Mandatory
-  app.use(BalmUIPlus); // Optional
+  // using `.default`: because the non-esm-bundler for default vue
+  app.use(BalmUI.default);
+  app.use(BalmUIPlus.default);
 
   app.mount('#app');
   ```
@@ -214,7 +228,7 @@ npm install --save balm-ui@next
   </head>
   <body>
     <div id="app">
-      <ui-button icon="add @click="$alert(message)"">SayHi</ui-button>
+      <ui-button icon="add" @click="$alert(message)">SayHi</ui-button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
     <script src="https://cdn.jsdelivr.net/npm/balm-ui@next"></script>
@@ -229,6 +243,9 @@ npm install --save balm-ui@next
           };
         }
       });
+
+      app.use(BalmUI.default);
+      app.use(BalmUIPlus.default);
 
       app.mount('#app');
     </script>

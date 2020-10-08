@@ -6,11 +6,11 @@
       id="mobile"
       v-model="formData.mobile"
       helper-text-id="mobile-helper-text"
-      >Mobile</ui-textfield
-    >
+      >Mobile
+    </ui-textfield>
     <ui-textfield-helper
       id="mobile-helper-text"
-      v-model="validMsg.mobile"
+      v-model:validMsg="validMsg.mobile"
     ></ui-textfield-helper>
   </ui-form-field>
   <ui-form-field class="form-item">
@@ -23,7 +23,7 @@
     >
     <ui-textfield-helper
       id="password-helper-text"
-      v-model="validMsg.password"
+      v-model:validMsg="validMsg.password"
     ></ui-textfield-helper>
   </ui-form-field>
   <ui-form-field class="form-item">
@@ -36,71 +36,87 @@
     >
     <ui-textfield-helper
       id="repassword-helper-text"
-      v-model="validMsg.repassword"
+      v-model:validMsg="validMsg.repassword"
     ></ui-textfield-helper>
   </ui-form-field>
   <ui-form-field class="form-item form-actions">
-    <ui-button raised @click="submit">Submit</ui-button>
+    <ui-button raised @click="onSubmit">Submit</ui-button>
   </ui-form-field>
 </ui-form>
 ```
 
 ```js
+import { reactive, toRefs } from 'vue';
+import { useValidator } from 'balm-ui';
+import { useToast } from 'balm-ui/plugins/toast';
+
+const validations = {
+  mobile: {
+    label: 'Mobile',
+    validator: 'required, mobile'
+  },
+  password: {
+    label: 'Password',
+    validator: 'required, password, minRule, maxRule',
+    minRule: {
+      validate(value) {
+        return value.trim().length >= 6;
+      },
+      message: '%s minLength >= 6'
+    },
+    maxRule: {
+      validate(value) {
+        return value.trim().length <= 8;
+      },
+      message: '%s maxLength <= 8'
+    }
+  },
+  repassword: {
+    label: 'Repeat Password',
+    validator: 'required, password, repasswordRule',
+    repasswordRule: {
+      validate(value, data) {
+        return value === data.password;
+      },
+      message: 'repassword !== password'
+    }
+  }
+};
+
+const state = reactive({
+  formData: {
+    mobile: '',
+    password: '',
+    repassword: ''
+  },
+  validMsg: {}
+});
+
+function useActions() {
+  const balmUI = useValidator();
+  const toast = useToast();
+
+  function onSubmit() {
+    let { valid, validMsg } = balmUI.validate(state.formData);
+    state.validMsg = validMsg;
+
+    if (valid) {
+      toast('gg');
+    }
+  }
+
+  return {
+    onSubmit
+  };
+}
+
 export default {
-  validations: {
-    mobile: {
-      label: 'Mobile',
-      validator: 'required, mobile'
-    },
-    password: {
-      label: 'Password',
-      validator: 'required, password, minRule, maxRule',
-      minRule: {
-        validate(value) {
-          return value.trim().length >= 6;
-        },
-        message: '%s minLength >= 6'
-      },
-      maxRule: {
-        validate(value) {
-          return value.trim().length <= 8;
-        },
-        message: '%s maxLength <= 8'
-      }
-    },
-    repassword: {
-      label: 'Repeat Password',
-      validator: 'required, password, repasswordRule',
-      repasswordRule: {
-        validate(value, data) {
-          return value === data.password;
-        },
-        message: 'repassword !== password'
-      }
-    }
-  },
-  data() {
+  setup() {
     return {
-      formData: {
-        mobile: '',
-        password: '',
-        repassword: ''
-      },
-      validMsg: {}
+      validations,
+      ...toRefs(state),
+      ...useActions()
     };
-  },
-  methods: {
-    submit() {
-      let result = this.$validate(this.formData);
-      let { valid, validMsg } = result;
-      this.validMsg = validMsg;
-
-      console.log(result);
-
-      if (valid) {
-        console.log('gg');
-      }
-    }
   }
 };
 ```

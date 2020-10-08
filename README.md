@@ -233,7 +233,6 @@ We officially support the last two versions of every major browser. Specifically
 ## TODO
 
 - [ ] Input Chips
-- [ ] `$validator`
 
 ## Special Thanks to
 

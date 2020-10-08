@@ -20,8 +20,8 @@ let globalValidationRules = {};
 class UiValidator {
   constructor() {
     const currentInstance = getCurrentInstance();
-    window.abc = currentInstance; // TODO: test for runtime
-    this.instance = currentInstance.ctx;
+    this.instance = currentInstance;
+    this.validations = {};
   }
 
   validate(formData = {}, customFieldset = []) {
@@ -34,9 +34,12 @@ class UiValidator {
       validMsg: {}
     };
 
-    let validations =
-      this.instance.validations || this.instance.$options.validations || {};
-    let validationFields = Object.keys(validations);
+    this.validations =
+      this.instance.data.validations ||
+      this.instance.setupState.validations ||
+      {};
+
+    let validationFields = Object.keys(this.validations);
 
     if (customFieldset.length) {
       validationFields = validationFields.filter((field) =>
@@ -46,7 +49,7 @@ class UiValidator {
 
     for (let i = 0, fieldCount = validationFields.length; i < fieldCount; i++) {
       let fieldName = validationFields[i]; // Field name
-      let fieldOption = validations[fieldName]; // The validation option of current field
+      let fieldOption = this.validations[fieldName]; // The validation option of current field
       let fieldLabel = fieldOption[FIELD_LABEL] || ''; // Field alias name
       let fieldRules = fieldOption[FIELD_VALIDATOR].split(
         ','
@@ -115,22 +118,18 @@ class UiValidator {
   }
 
   resetValidations() {
-    this.instance.$options.validations = {};
+    this.validations = {};
   }
 
   setValidations(fieldName, validationRule = {}) {
-    if (!this.instance.$options.validations) {
-      $resetValidations();
+    if (!this.validations) {
+      this.resetValidations();
     }
 
     if (getType(fieldName) === 'object') {
-      this.instance.$options.validations = Object.assign(
-        {},
-        this.instance.$options.validations,
-        fieldName
-      );
+      this.validations = Object.assign({}, this.validations, fieldName);
     } else {
-      this.instance.$options.validations[fieldName] = validationRule;
+      this.validations[fieldName] = validationRule;
     }
   }
 }

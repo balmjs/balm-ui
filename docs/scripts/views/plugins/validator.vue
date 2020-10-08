@@ -1,7 +1,7 @@
 <template>
   <docs-page type="plugin" name="validator" demo-count="1" without-css>
     <template #hero>
-      <h1 :class="$tt('headline1')">$validate</h1>
+      <h1 :class="$tt('headline1')">useValidator();</h1>
     </template>
 
     <!-- Content -->
@@ -46,7 +46,7 @@
         ></ui-textfield-helper>
       </ui-form-field>
       <ui-form-field class="form-item form-actions">
-        <ui-button raised @click="submit">Submit</ui-button>
+        <ui-button raised @click="onSubmit">Submit</ui-button>
       </ui-form-field>
     </ui-form>
     <ui-snippet :code="$store.demos[1]"></ui-snippet>
@@ -57,6 +57,39 @@
 import { reactive, toRefs } from 'vue';
 import { useValidator } from 'balm-ui';
 import { useToast } from 'balm-ui/plugins/toast';
+
+const validations = {
+  mobile: {
+    label: 'Mobile',
+    validator: 'required, mobile'
+  },
+  password: {
+    label: 'Password',
+    validator: 'required, password, minRule, maxRule',
+    minRule: {
+      validate(value) {
+        return value.trim().length >= 6;
+      },
+      message: '%s minLength >= 6'
+    },
+    maxRule: {
+      validate(value) {
+        return value.trim().length <= 8;
+      },
+      message: '%s maxLength <= 8'
+    }
+  },
+  repassword: {
+    label: 'Repeat Password',
+    validator: 'required, password, repasswordRule',
+    repasswordRule: {
+      validate(value, data) {
+        return value === data.password;
+      },
+      message: 'repassword !== password'
+    }
+  }
+};
 
 const state = reactive({
   formData: {
@@ -71,7 +104,7 @@ function useActions() {
   const balmUI = useValidator();
   const toast = useToast();
 
-  function submit() {
+  function onSubmit() {
     let { valid, validMsg } = balmUI.validate(state.formData);
     state.validMsg = validMsg;
 
@@ -81,7 +114,7 @@ function useActions() {
   }
 
   return {
-    submit
+    onSubmit
   };
 }
 
@@ -89,43 +122,39 @@ export default {
   metaInfo: {
     titleTemplate: '%s - Validator'
   },
-  validations: {
-    mobile: {
-      label: 'Mobile',
-      validator: 'required, mobile'
-    },
-    password: {
-      label: 'Password',
-      validator: 'required, password, minRule, maxRule',
-      minRule: {
-        validate(value) {
-          return value.trim().length >= 6;
-        },
-        message: '%s minLength >= 6'
+  // setup() {
+  //   return {
+  //     validations,
+  //     ...toRefs(state),
+  //     ...useActions()
+  //   };
+  // }
+  data() {
+    return {
+      validations,
+      formData: {
+        mobile: '',
+        password: '',
+        repassword: ''
       },
-      maxRule: {
-        validate(value) {
-          return value.trim().length <= 8;
-        },
-        message: '%s maxLength <= 8'
-      }
-    },
-    repassword: {
-      label: 'Repeat Password',
-      validator: 'required, password, repasswordRule',
-      repasswordRule: {
-        validate(value, data) {
-          return value === data.password;
-        },
-        message: 'repassword !== password'
+      validMsg: {}
+    };
+  },
+  created() {
+    this.balmUI = useValidator();
+  },
+  methods: {
+    onSubmit() {
+      let result = this.balmUI.validate(this.formData);
+      let { valid, validMsg } = result;
+      this.validMsg = validMsg;
+
+      console.log(result);
+
+      if (valid) {
+        console.log('gg');
       }
     }
-  },
-  setup() {
-    return {
-      ...toRefs(state),
-      ...useActions()
-    };
   }
 };
 </script>

@@ -1,5 +1,9 @@
 ```js
-$validate(formData, customFieldset);
+const balmUI = useValidator();
+```
+
+```js
+balmUI.validate(formData, customFieldset);
 ```
 
 | Param            | Type   | Default | Description                                   |
@@ -26,34 +30,42 @@ $validate(formData, customFieldset);
 - Usage in a vue component:
 
 ```js
-export default {
-  // Define validator
-  validations: {
-    fieldName: {
-      label: 'Field Label',
-      validator: 'required, customRule1',
-      customRule1: {
-        validate(fieldValue, formData) {
-          // Validation method
-          return true;
-        },
-        message: 'Invalid format'
-      }
-      // customRule2: { ... }
-    }
-  },
-  data() {
-    return {
-      formData: {
-        fieldName: ''
+// Define validator
+const validations = {
+  fieldName: {
+    label: 'Field Label',
+    validator: 'required, customRule1',
+    customRule1: {
+      validate(fieldValue, formData) {
+        // Validation method
+        return true;
       },
-      validMsg: {
-        fieldName: ''
-      }
-    };
-  },
-  methods: {
-    submit() {
+      message: 'Invalid format'
+    }
+    // customRule2: { ... }
+  }
+};
+```
+
+- using Composable API
+
+  ```js
+  import { reactive, toRefs } from 'vue';
+  import { useValidator } from 'balm-ui';
+
+  const state = reactive({
+    formData: {
+      fieldName: ''
+    },
+    validMsg: {
+      fieldName: ''
+    }
+  });
+
+  function useActions() {
+    const balmUI = useValidator();
+
+    function onSubmit() {
       let {
         valid,
         validFields,
@@ -61,13 +73,63 @@ export default {
         messages,
         message,
         validMsg
-      } = this.$validate(this.formData);
+      } = balmUI.validate(state.formData);
 
-      this.validMsg = validMsg;
+      state.validMsg = validMsg;
     }
+
+    return {
+      onSubmit
+    };
   }
-};
-```
+
+  export default {
+    setup() {
+      return {
+        validations,
+        ...toRefs(state),
+        ...useActions()
+      };
+    }
+  };
+  ```
+
+- using Legacy API
+
+  ```js
+  import { useValidator } from 'balm-ui';
+
+  export default {
+    data() {
+      return {
+        validations,
+        formData: {
+          fieldName: ''
+        },
+        validMsg: {
+          fieldName: ''
+        }
+      };
+    },
+    created() {
+      this.balmUI = useValidator();
+    },
+    methods: {
+      onSubmit() {
+        let {
+          valid,
+          validFields,
+          invalidFields,
+          messages,
+          message,
+          validMsg
+        } = this.balmUI.validate(this.formData);
+
+        this.validMsg = validMsg;
+      }
+    }
+  };
+  ```
 
 | Result          | Type    | Description                                            |
 | --------------- | ------- | ------------------------------------------------------ |
@@ -82,8 +144,8 @@ export default {
 
 ```js
 // New in 6.12.0
-$setValidations(fieldName, validationRule);
-$setValidations(validationRules);
+balmUI.setValidations(fieldName, validationRule);
+balmUI.setValidations(validationRules);
 ```
 
 | Param         | Type   | Default | Description                                               |
@@ -94,5 +156,5 @@ $setValidations(validationRules);
 
 ```js
 // New in 7.4.0
-$resetValidations();
+balmUI.resetValidations();
 ```

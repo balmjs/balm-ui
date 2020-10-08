@@ -106,6 +106,8 @@ update `balm.config.js`
 
   app.use(BalmUI); // Mandatory
   app.use(BalmUIPlus); // Optional
+
+  app.mount('#app');
   ```
 
 #### Individual Usage
@@ -132,6 +134,8 @@ update `balm.config.js`
 
   app.use(UiButton);
   app.use($alert);
+
+  app.mount('#app');
   ```
 
 ### 1.4 Development and testing
@@ -190,6 +194,8 @@ npm install --save balm-ui@next
 
   app.use(BalmUI); // Mandatory
   app.use(BalmUIPlus); // Optional
+
+  app.mount('#app');
   ```
 
 ## 3. For `<script>`

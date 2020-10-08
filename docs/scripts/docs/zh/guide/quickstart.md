@@ -106,6 +106,8 @@ npm install --save balm-ui@next
 
   app.use(BalmUI); // Mandatory
   app.use(BalmUIPlus); // Optional
+
+  app.mount('#app');
   ```
 
 #### 独立用法
@@ -132,6 +134,8 @@ npm install --save balm-ui@next
 
   app.use(UiButton);
   app.use($alert);
+
+  app.mount('#app');
   ```
 
 ### 1.4 开发和测试
@@ -190,6 +194,8 @@ npm install --save balm-ui@next
 
   app.use(BalmUI); // Mandatory
   app.use(BalmUIPlus); // Optional
+
+  app.mount('#app');
   ```
 
 ## 3. 直接 `<script>` 引用

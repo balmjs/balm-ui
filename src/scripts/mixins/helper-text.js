@@ -36,7 +36,7 @@ export const helperTextMixin = {
       default: false
     },
     validMsg: {
-      type: [Boolean, String],
+      type: [String, Boolean], // NOTE: string first
       default: false
     }
   },

@@ -2,9 +2,9 @@
 <div class="demo">
   <ui-tab-scroller
     ref="scroller"
-    v-model="value"
+    v-model:scrollX="value"
     class="demo-scroller"
-    @change="balmUI.onChange('scrollValue', $event)"
+    @update:scrollX="balmUI.onChange('scrollValue', $event)"
   >
     <span v-for="i in 32" :key="i" class="demo-cube"></span>
   </ui-tab-scroller>

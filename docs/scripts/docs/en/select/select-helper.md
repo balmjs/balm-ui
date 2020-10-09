@@ -15,3 +15,9 @@
 | Name      | Props | Description                                                         |
 | --------- | ----- | ------------------------------------------------------------------- |
 | `default` |       | The default slot holds the select helper text and can contain HTML. |
+
+### Events
+
+| Name              | Type                         | Description                                   |
+| ----------------- | ---------------------------- | --------------------------------------------- |
+| `update:validMsg` | `function(validMsg: string)` | Emits when the validation message is changed. |

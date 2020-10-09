@@ -15,12 +15,12 @@
 
 ### Props
 
-| Name               | Type           | Default | Description                                                                                                       |
-| ------------------ | -------------- | ------- | ----------------------------------------------------------------------------------------------------------------- |
-| `type`             | string, number | `0`     | Mandatory. Button types.                                                                                          |
-| `navId`            | string         | `null`  | The external menu button selector. (Please refer to the `navId` prop of the [top app bar](/#/layout/top-app-bar)) |
-| `open` (`v-model`) | boolean        | `false` | The drawer toggle state.                                                                                          |
-| `viewportHeight`   | boolean        | `false` | Viewport full height(`100vh`) .                                                                                   |
+| Name                     | Type           | Default | Description                                                                                                       |
+| ------------------------ | -------------- | ------- | ----------------------------------------------------------------------------------------------------------------- |
+| `type`                   | string, number | `0`     | Mandatory. Button types.                                                                                          |
+| `navId`                  | string         | `null`  | The external menu button selector. (Please refer to the `navId` prop of the [top app bar](/#/layout/top-app-bar)) |
+| `modelValue` (`v-model`) | boolean        | `false` | The drawer toggle state.                                                                                          |
+| `viewportHeight`         | boolean        | `false` | Viewport full height(`100vh`) .                                                                                   |
 
 ### Slots
 
@@ -35,16 +35,16 @@
 
 ### Events
 
-| Name  | Type                      | Description                                |
-| ----- | ------------------------- | ------------------------------------------ |
-| `nav` | `function(open: boolean)` | Emits when the drawer is opened or closed. |
+| Name  | Type                            | Description                                |
+| ----- | ------------------------------- | ------------------------------------------ |
+| `nav` | `function(modelValue: boolean)` | Emits when the drawer is opened or closed. |
 
-> NOTE: If you are not using `v-model`, you should listen for the drawer using `@nav` and update the `open` prop.
+> NOTE: If you are not using `v-model`, you should listen for the drawer using `@nav` and update the `modelValue` prop.
 
 - Automatic
 
   ```html
-  <ui-drawer type="modal" v-model="open"></ui-drawer>
+  <ui-drawer v-model="open" type="modal"></ui-drawer>
   ```
 
 - Manual
@@ -52,7 +52,7 @@
   ```html
   <ui-drawer
     type="modal"
-    :open="open"
-    @nav="$balmUI.onChange('open', $event)"
+    :model-value="open"
+    @nav="balmUI.onChange('open', $event)"
   ></ui-drawer>
   ```

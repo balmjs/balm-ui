@@ -1,8 +1,28 @@
 # Upgrade Guide
 
+- <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-9">Upgrading To 9.0 From 8.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8">Upgrading To 8.0 From 7.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-7">Upgrading To 7.0 From 6.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-6">Upgrading To 6.0 From 5.x</a>
+
+<div id="up-to-9"></div>
+
+## Upgrading To 9.0 From 8.x
+
+### BREAKING CHANGES
+
+#### Props
+
+- `<ui-icon-button>`, `<ui-textfield>`, `<ui-autocomplete>`, `<ui-editor>`, `<ui-select>`, `<ui-checkbox>`, `<ui-radio>`, `<ui-chips>`, `<ui-datepicker>`, `<ui-rangepicker>`, `<ui-switch>`, `<ui-slider>`: rename prop `model` -> `modelValue`
+- `<ui-drawer>`, `<ui-menu>`: rename prop `open` -> `modelValue`
+- `<ui-tab-bar>`, `<ui-tabs>`: rename prop `active` -> `modelValue`
+- `<ui-pagination>`: rename prop `page` -> `modelValue`
+- `<ui-textfield>`, `<ui-autocomplete>`, `<ui-checkbox>`, `<ui-radio>`, `<ui-file>`, `<ui-datepicker>`, `<ui-switch>`: rename prop `id` -> `inputId`
+
+#### Events
+
+- `<ui-icon-button>`, `<ui-drawer>`, `<ui-tab-bar>`, `<ui-tabs>`, `<ui-menu>`, `<ui-pagination>`, `<ui-editor>`, `<ui-select>`, `<ui-checkbox>`, `<ui-radio>`, `<ui-chips>`, `<ui-datepicker>`, `<ui-rangepicker>`, `<ui-switch>`, `<ui-slider>`: rename event `@change` -> `@update:modelValue`
+- `<ui-textfield>`, `<ui-autocomplete>`: rename event `@input` -> `@update:modelValue`
 
 <div id="up-to-8"></div>
 

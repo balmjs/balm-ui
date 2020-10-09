@@ -6,7 +6,7 @@
 
 | Name               | Type            | Default           | Description                                                     |
 | ------------------ | --------------- | ----------------- | --------------------------------------------------------------- |
-| `page`             | number          | `1`               | Current page number.                                            |
+| `modelValue`       | number          | `1`               | Current page number.                                            |
 | `total`            | number          | `0`               | The total number of data items.                                 |
 | `pageSpan`         | number, boolean | `3`               | Display the first N pages of the current page. (MIN VALUE: `3`) |
 | `showTotal`        | boolean         | `false`           | Display total info.                                             |
@@ -29,11 +29,11 @@
 
 ### Events
 
-| Name     | Type                     | Description                                |
-| -------- | ------------------------ | ------------------------------------------ |
-| `change` | `function(page: number)` | Emits when the pagination page is changed. |
+| Name                | Type                           | Description                                |
+| ------------------- | ------------------------------ | ------------------------------------------ |
+| `update:modelValue` | `function(modelValue: number)` | Emits when the pagination page is changed. |
 
-> NOTE: If you are not using `v-model`, you should listen for the select using `@change` and update the `page` prop.
+> NOTE: If you are not using `v-model`, you should listen for the select using `@update:modelValue` and update the `modelValue` prop.
 
 - Automatic
 
@@ -45,7 +45,7 @@
 
   ```html
   <ui-pagination
-    :page="page"
-    @change="$balmUI.onChange('page', $event)"
+    :model-value="page"
+    @update:modelValue="balmUI.onChange('page', $event)"
   ></ui-pagination>
   ```

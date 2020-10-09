@@ -187,6 +187,8 @@
 </template>
 
 <script>
+import { reactive, toRef, toRefs, onMounted } from 'vue';
+import { useEvent } from 'balm-ui';
 import UiSelectControls from '@/demos/select/select-controls';
 import { PROVINCES, CITIES, OPTIONS } from '../../../data/select';
 
@@ -275,6 +277,36 @@ const options3 = [
   }
 ];
 
+const state = reactive({
+  // hero
+  typeOption: 0,
+  selectOption: [],
+  selected: '',
+  // demo
+  selected1: {
+    value: '',
+    index: -1
+  },
+  selected2: {
+    value: '',
+    index: -1
+  },
+  selected3: 'fruit-roll-ups',
+  selected4: 'steak',
+  options1: [],
+  controls: {
+    rtl: false,
+    customColor: false,
+    disabled: false
+  },
+  formData: {
+    province: '',
+    city: ''
+  },
+  provinces: [],
+  cities: []
+});
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Select'
@@ -282,64 +314,42 @@ export default {
   components: {
     UiSelectControls
   },
-  data() {
+  setup() {
+    const balmUI = useEvent();
+
+    onMounted(() => {
+      setTimeout(() => {
+        state.options1 = OPTIONS;
+        state.provinces = PROVINCES;
+      }, 1e3);
+    });
+
     return {
-      // hero
+      balmUI,
       TypeOptions,
       SelectOptions,
-      typeOption: 0,
-      selectOption: [],
-      selected: '',
-      // demo
-      selected1: {
-        value: '',
-        index: -1
-      },
-      selected2: {
-        value: '',
-        index: -1
-      },
-      selected3: 'fruit-roll-ups',
-      selected4: 'steak',
       options,
-      options1: [],
       options2,
       options3,
-      controls: {
-        rtl: false,
-        customColor: false,
-        disabled: false
-      },
-      formData: {
-        province: '',
-        city: ''
-      },
-      provinces: [],
-      cities: []
+      ...toRefs(state)
     };
-  },
-  mounted() {
-    setTimeout(() => {
-      this.options1 = OPTIONS;
-      this.provinces = PROVINCES;
-    }, 1e3);
   },
   methods: {
     onSelected(result, key) {
-      this[`selected${key}`].value = result.value;
-      this[`selected${key}`].index = result.index;
+      state[`selected${key}`].value = result.value;
+      state[`selected${key}`].index = result.index;
     },
     onClick() {
-      this.$balmUI.onChange('selected1.value', 'meat');
-      this.$balmUI.onChange('selected1.index', 4);
+      this.balmUI.onChange('selected1.value', 'meat');
+      this.balmUI.onChange('selected1.index', 4);
     },
     onChangeProvince(value) {
-      this.formData.province = value;
+      state.formData.province = value;
 
       let key = value || -1;
-      this.cities = key > -1 ? CITIES[key] : [];
+      state.cities = key > -1 ? CITIES[key] : [];
 
-      this.formData.city = this.cities.length ? this.cities[0].value : '';
+      state.formData.city = state.cities.length ? state.cities[0].value : '';
     }
   }
 };

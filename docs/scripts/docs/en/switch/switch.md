@@ -7,23 +7,23 @@
 
 ### Props
 
-| Name                | Type                    | Default | Description                                                                   |
-| ------------------- | ----------------------- | ------- | ----------------------------------------------------------------------------- |
-| `model` (`v-model`) | boolean, number, string | `false` | Mandatory.                                                                    |
-| `trueValue`         | boolean, number, string | `true`  |                                                                               |
-| `falseValue`        | boolean, number, string | `false` |                                                                               |
-| `id`                | string                  | `null`  | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`. |
-| `name`              | string                  | `''`    | The _name_ attribute of the `<input>`.                                        |
-| `disabled`          | boolean                 | `false` | Styles the switch as a disabled switch.                                       |
-| `attrs`             | object                  | `{}`    | Other attributes for `<input>`.                                               |
+| Name                     | Type                    | Default | Description                                                                   |
+| ------------------------ | ----------------------- | ------- | ----------------------------------------------------------------------------- |
+| `modelValue` (`v-model`) | boolean, number, string | `false` | Mandatory.                                                                    |
+| `trueValue`              | boolean, number, string | `true`  |                                                                               |
+| `falseValue`             | boolean, number, string | `false` |                                                                               |
+| `id`                     | string                  | `null`  | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`. |
+| `name`                   | string                  | `''`    | The _name_ attribute of the `<input>`.                                        |
+| `disabled`               | boolean                 | `false` | Styles the switch as a disabled switch.                                       |
+| `attrs`                  | object                  | `{}`    | Other attributes for `<input>`.                                               |
 
 ### Events
 
-| Name     | Type                                       | Description                       |
-| -------- | ------------------------------------------ | --------------------------------- |
-| `change` | `function(model: boolean\|string\|number)` | Emits when the switch is changed. |
+| Name                | Type                                            | Description                       |
+| ------------------- | ----------------------------------------------- | --------------------------------- |
+| `update:modelValue` | `function(modelValue: boolean\|string\|number)` | Emits when the switch is changed. |
 
-> NOTE: If you are not using `v-model`, you should listen for the switch using `@change` and update the `model` prop.
+> NOTE: If you are not using `v-model`, you should listen for the switch using `@update:modelValue` and update the `modelValue` prop.
 
 - Automatic
 
@@ -35,7 +35,7 @@
 
   ```html
   <ui-switch
-    :model="value"
-    @change="$balmUI.onChange('value', $event)"
+    :model-value="value"
+    @update:modelValue="balmUI.onChange('value', $event)"
   ></ui-switch>
   ```

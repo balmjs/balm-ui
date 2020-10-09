@@ -4,14 +4,14 @@
 
 ### Props
 
-| Name                | Type    | Default | Description                                                                                                             |
-| ------------------- | ------- | ------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `outlined`          | boolean | `false` | Styles the rangepicker as an outlined text field. (`labels` or `placeholders` required)                                 |
-| `model` (`v-model`) | array   | `''`    | Mandatory.                                                                                                              |
-| `disabled`          | boolean | `false` | Styles the rangepicker as a disabled text field.                                                                        |
-| `labels`            | array   | `[]`    | A text caption or description for the rangepicker, which use the start and end input's `placeholder` attribute instead. |
-| `placeholders`      | array   | `[]`    | The _placeholder_ attribute of the start and end `<input>`.                                                             |
-| `config`            | object  | `{}`    | See [Flatpickr configuration](https://flatpickr.js.org/options/).                                                       |
+| Name                     | Type    | Default | Description                                                                                                             |
+| ------------------------ | ------- | ------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `outlined`               | boolean | `false` | Styles the rangepicker as an outlined text field. (`labels` or `placeholders` required)                                 |
+| `modelValue` (`v-model`) | array   | `''`    | Mandatory.                                                                                                              |
+| `disabled`               | boolean | `false` | Styles the rangepicker as a disabled text field.                                                                        |
+| `labels`                 | array   | `[]`    | A text caption or description for the rangepicker, which use the start and end input's `placeholder` attribute instead. |
+| `placeholders`           | array   | `[]`    | The _placeholder_ attribute of the start and end `<input>`.                                                             |
+| `config`                 | object  | `{}`    | See [Flatpickr configuration](https://flatpickr.js.org/options/).                                                       |
 
 ### Slots
 
@@ -21,11 +21,11 @@
 
 ### Events
 
-| Name     | Type                     | Description                                  |
-| -------- | ------------------------ | -------------------------------------------- |
-| `change` | `function(value: array)` | Emits when the rangepicker value is changed. |
+| Name                | Type                          | Description                                  |
+| ------------------- | ----------------------------- | -------------------------------------------- |
+| `update:modelValue` | `function(modelValue: array)` | Emits when the rangepicker value is changed. |
 
-> NOTE: If you are not using `v-model`, you should listen for the rangepicker using `@change` and update the `model` prop.
+> NOTE: If you are not using `v-model`, you should listen for the rangepicker using `@update:modelValue` and update the `modelValue` prop.
 
 - Automatic
 
@@ -37,7 +37,7 @@
 
   ```html
   <ui-rangepicker
-    :model="value"
-    @change="$balmUI.onChange('value', $event)"
+    :model-value="value"
+    @update:modelValue="$balmUI.onChange('value', $event)"
   ></ui-rangepicker>
   ```

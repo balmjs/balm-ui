@@ -100,61 +100,58 @@ const state = reactive({
   validMsg: {}
 });
 
-function useActions() {
-  const balmUI = useValidator();
-  const toast = useToast();
-
-  function onSubmit() {
-    let { valid, validMsg } = balmUI.validate(state.formData);
-    state.validMsg = validMsg;
-
-    if (valid) {
-      toast('gg');
-    }
-  }
-
-  return {
-    onSubmit
-  };
-}
-
 export default {
   metaInfo: {
     titleTemplate: '%s - Validator'
   },
-  // setup() {
-  //   return {
-  //     validations,
-  //     ...toRefs(state),
-  //     ...useActions()
-  //   };
-  // }
-  data() {
+  // using Composable API
+  setup() {
+    const balmUI = useValidator();
+
     return {
+      balmUI,
       validations,
-      formData: {
-        mobile: '',
-        password: '',
-        repassword: ''
-      },
-      validMsg: {}
+      ...toRefs(state)
     };
-  },
-  created() {
-    this.balmUI = useValidator();
   },
   methods: {
     onSubmit() {
-      let result = this.balmUI.validate(this.formData);
+      let result = this.balmUI.validate(state.formData);
       let { valid, validMsg } = result;
-      this.validMsg = validMsg;
+      state.validMsg = validMsg;
 
       console.log(result);
 
       if (valid) {
-        console.log('gg');
+        this.$toast('gg');
       }
     }
   }
+  // using Legacy API
+  // data() {
+  //   return {
+  //     balmUI: useValidator(),
+  //     validations,
+  //     formData: {
+  //       mobile: '',
+  //       password: '',
+  //       repassword: ''
+  //     },
+  //     validMsg: {}
+  //   };
+  // },
+  // methods: {
+  //   onSubmit() {
+  //     let result = this.balmUI.validate(this.formData);
+  //     let { valid, validMsg } = result;
+  //     this.validMsg = validMsg;
+
+  //     console.log(result);
+
+  //     if (valid) {
+  //       this.$toast('gg');
+  //     }
+  //   }
+  // }
 };
 </script>

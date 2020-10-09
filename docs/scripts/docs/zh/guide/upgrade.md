@@ -1,8 +1,28 @@
 # 升级向导
 
+- <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-9">从 8.x 升级到 9.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8">从 7.x 升级到 8.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-7">从 6.x 升级到 7.0</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-6">从 5.x 升级到 6.0</a>
+
+<div id="up-to-9"></div>
+
+## 从 8.x 升级到 9.0
+
+### BREAKING CHANGES
+
+#### Props
+
+- `<ui-icon-button>`, `<ui-textfield>`, `<ui-autocomplete>`, `<ui-editor>`, `<ui-select>`, `<ui-checkbox>`, `<ui-radio>`, `<ui-chips>`, `<ui-datepicker>`, `<ui-rangepicker>`, `<ui-switch>`, `<ui-slider>`: rename prop `model` -> `modelValue`
+- `<ui-drawer>`, `<ui-menu>`: rename prop `open` -> `modelValue`
+- `<ui-tab-bar>`, `<ui-tabs>`: rename prop `active` -> `modelValue`
+- `<ui-pagination>`: rename prop `page` -> `modelValue`
+- `<ui-textfield>`, `<ui-autocomplete>`, `<ui-checkbox>`, `<ui-radio>`, `<ui-file>`, `<ui-datepicker>`, `<ui-switch>`: rename prop `id` -> `inputId`
+
+#### Events
+
+- `<ui-icon-button>`, `<ui-drawer>`, `<ui-tab-bar>`, `<ui-tabs>`, `<ui-menu>`, `<ui-pagination>`, `<ui-editor>`, `<ui-select>`, `<ui-checkbox>`, `<ui-radio>`, `<ui-chips>`, `<ui-datepicker>`, `<ui-rangepicker>`, `<ui-switch>`, `<ui-slider>`: rename event `@change` -> `@update:modelValue`
+- `<ui-textfield>`, `<ui-autocomplete>`: rename event `@input` -> `@update:modelValue`
 
 <div id="up-to-8"></div>
 

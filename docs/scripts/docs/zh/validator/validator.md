@@ -53,6 +53,8 @@ const validations = {
   import { reactive, toRefs } from 'vue';
   import { useValidator } from 'balm-ui';
 
+  // const validations = ...
+
   const state = reactive({
     formData: {
       fieldName: ''
@@ -62,34 +64,29 @@ const validations = {
     }
   });
 
-  function useActions() {
-    const balmUI = useValidator();
-
-    function onSubmit() {
-      let {
-        valid,
-        validFields,
-        invalidFields,
-        messages,
-        message,
-        validMsg
-      } = balmUI.validate(state.formData);
-
-      state.validMsg = validMsg;
-    }
-
-    return {
-      onSubmit
-    };
-  }
-
   export default {
     setup() {
+      const balmUI = useValidator();
+
       return {
+        balmUI,
         validations,
-        ...toRefs(state),
-        ...useActions()
+        ...toRefs(state)
       };
+    },
+    methods: {
+      onSubmit() {
+        let {
+          valid,
+          validFields,
+          invalidFields,
+          messages,
+          message,
+          validMsg
+        } = this.balmUI.validate(state.formData);
+
+        state.validMsg = validMsg;
+      }
     }
   };
   ```
@@ -99,9 +96,12 @@ const validations = {
   ```js
   import { useValidator } from 'balm-ui';
 
+  // const validations = ...
+
   export default {
     data() {
       return {
+        balmUI: useValidator(),
         validations,
         formData: {
           fieldName: ''
@@ -110,9 +110,6 @@ const validations = {
           fieldName: ''
         }
       };
-    },
-    created() {
-      this.balmUI = useValidator();
     },
     methods: {
       onSubmit() {

@@ -158,6 +158,10 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
           }
         });
 
+        app.use(BalmUI.default);
+        app.use(BalmUIPlus.default);
+        app.use(BalmUINext.default);
+
         app.mount('#app');
       </script>
     </body>
@@ -260,6 +264,9 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
             };
           }
         });
+
+        app.use(UiButton);
+        app.use($alert);
 
         app.mount('#app');
       </script>

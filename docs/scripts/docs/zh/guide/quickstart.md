@@ -206,9 +206,8 @@ npm install --save balm-ui@next
 
   const app = createApp(App);
 
-  // using `.default`: because the non-esm-bundler for default vue
-  app.use(BalmUI.default);
-  app.use(BalmUIPlus.default);
+  app.use(BalmUI);
+  app.use(BalmUIPlus);
 
   app.mount('#app');
   ```

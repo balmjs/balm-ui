@@ -15,13 +15,10 @@ module.exports = {
     mocha: true
   },
   plugins: ['vue', 'prettier'],
-  extends: [
-    'plugin:vue/vue3-recommended',
-    'plugin:prettier/recommended',
-    'prettier/vue'
-  ],
+  extends: ['plugin:vue/vue3-recommended', 'prettier', 'prettier/vue'],
   rules: {
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'vue/html-indent': 'off'
   }
 };

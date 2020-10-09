@@ -1,6 +1,6 @@
 {
   "name": "balm-ui",
-  "version": "9.0.0-beta.13",
+  "version": "9.0.0-beta.14",
   "description": "Next Generation Material UI for Vue.js 3.0",
   "keywords": [
     "balm",
@@ -60,7 +60,7 @@
     "@babel/runtime-corejs3": "^7.11.0",
     "@csstools/normalize.css": "^11.0.1",
     "@vue/compiler-sfc": "^3.0.0",
-    "@vue/test-utils": "^2.0.0-beta.5",
+    "@vue/test-utils": "^2.0.0-beta.6",
     "axios": "^0.20.0",
     "babel-eslint": "^10.1.0",
     "babel-plugin-istanbul": "^6.0.0",
@@ -73,7 +73,7 @@
     "eslint": "^7.9.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-vue": "^7.0.0-beta.4",
+    "eslint-plugin-vue": "^7.0.1",
     "expect": "^26.4.0",
     "font-awesome": "^4.7.0",
     "gulp-replace": "^1.0.0",
@@ -97,15 +97,15 @@
     "sanitize.css": "^12.0.1",
     "sinon": "^9.0.0",
     "vue": "^3.0.0",
-    "vue-i18n": "^9.0.0-beta.2",
+    "vue-i18n": "^9.0.0-beta.4",
     "vue-loader": "^16.0.0-beta.8",
     "vue-meta": "^2.4.0",
-    "vue-router": "^4.0.0-beta.11",
+    "vue-router": "^4.0.0-beta.13",
     "webpack": "^4.44.0",
     "webpack-node-externals": "^2.5.0"
   },
   "peerDependencies": {
-    "vue": ">=2.1.0"
+    "vue": ">=3"
   },
   "private": false
 }

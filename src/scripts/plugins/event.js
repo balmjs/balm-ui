@@ -23,26 +23,30 @@ function handleAssign(properties, value, data = null) {
 }
 
 function handleEvent(_property, value) {
-  if (this.data.hasOwnProperty(_property)) {
-    if (getType(new Function()) === 'function') {
-      new Function('value', `this.${_property} = value;`).call(
-        this.data,
-        value
-      );
+  const currentRootProperty = _property.split('.')[0];
+
+  if (currentRootProperty) {
+    if (this.data.hasOwnProperty(currentRootProperty)) {
+      if (getType(new Function()) === 'function') {
+        new Function('value', `this.${_property} = value;`).call(
+          this.data,
+          value
+        );
+      } else {
+        handleAssign.call(this.data, _property.split('.'), value);
+      }
+    } else if (this.setupState.hasOwnProperty(currentRootProperty)) {
+      if (getType(new Function()) === 'function') {
+        new Function('value', `this.${_property} = value;`).call(
+          this.setupState,
+          value
+        );
+      } else {
+        handleAssign.call(this.setupState, _property.split('.'), value);
+      }
     } else {
-      handleAssign.call(this.data, _property.split('.'), value);
+      throw new Error('[BalmUI event]: Only support `data` or `setup` options');
     }
-  } else if (this.setupState.hasOwnProperty(_property)) {
-    if (getType(new Function()) === 'function') {
-      new Function('value', `this.${_property} = value;`).call(
-        this.setupState,
-        value
-      );
-    } else {
-      handleAssign.call(this.setupState, _property.split('.'), value);
-    }
-  } else {
-    throw new Error('[BalmUI event]: Only support `data` or `setup` options');
   }
 }
 

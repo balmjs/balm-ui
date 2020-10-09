@@ -1,4 +1,4 @@
-import packageJson from '../../package.json';
+import version from './version';
 import multiConfigure from './config/multi-configure';
 /**
  * Components
@@ -212,34 +212,36 @@ const directives = {
   vTooltip
 };
 
-const BalmUI = {
-  version: packageJson.version,
-  install(app, options = {}) {
-    // Configure the components' props
-    multiConfigure(components, options);
+function install(app, options = {}) {
+  // Configure the components' props
+  multiConfigure(components, options);
 
-    // Install the components
-    for (let key in components) {
-      let Component = components[key];
-      app.component(Component.name, Component);
-    }
+  // Install the components
+  for (let key in components) {
+    let Component = components[key];
+    app.component(Component.name, Component);
+  }
 
-    // Install the plugins
-    for (let key in plugins) {
-      let Plugin = plugins[key];
-      if (options[key]) {
-        app.use(Plugin, options[key]);
-      } else {
-        app.use(Plugin);
-      }
-    }
-
-    // Init the directives
-    for (let key in directives) {
-      let Directive = directives[key];
-      app.directive(Directive.name, Directive);
+  // Install the plugins
+  for (let key in plugins) {
+    let Plugin = plugins[key];
+    if (options[key]) {
+      app.use(Plugin, options[key]);
+    } else {
+      app.use(Plugin);
     }
   }
+
+  // Init the directives
+  for (let key in directives) {
+    let Directive = directives[key];
+    app.directive(Directive.name, Directive);
+  }
+}
+
+const BalmUI = {
+  version,
+  install
 };
 
 export default BalmUI;
@@ -335,3 +337,4 @@ export {
 };
 export { vAccessibility, vBadge, vRipple, vShadow, vShape, vTooltip };
 export { types, helpers, detectIE };
+export { version, install };

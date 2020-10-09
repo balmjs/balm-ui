@@ -158,9 +158,9 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
           }
         });
 
-        app.use(BalmUI.default);
-        app.use(BalmUIPlus.default);
-        app.use(BalmUINext.default);
+        app.use(BalmUI);
+        app.use(BalmUIPlus);
+        app.use(BalmUINext);
 
         app.mount('#app');
       </script>

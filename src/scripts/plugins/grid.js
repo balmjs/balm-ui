@@ -23,14 +23,16 @@ const setGrid = (_property, size, value) => {
   }
 };
 
+function install(app) {
+  app.config.globalProperties.$setGrid = setGrid;
+  app.provide('setGrid', setGrid);
+}
+
 const BalmUI_GridPlugin = {
-  install(app) {
-    app.config.globalProperties.$setGrid = setGrid;
-    app.provide('setGrid', setGrid);
-  }
+  install
 };
 
 const useGrid = () => setGrid;
 
 export default BalmUI_GridPlugin;
-export { useGrid };
+export { install, useGrid };

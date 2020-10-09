@@ -1,4 +1,4 @@
-import packageJson from '../../package.json';
+import version from './version';
 import multiConfigure from './config/multi-configure';
 /**
  * Components
@@ -9,19 +9,22 @@ const components = {
   UiBottomNavigation
 };
 
-const BalmUINext = {
-  version: packageJson.version,
-  install(app, options = {}) {
-    // Configure the components' props
-    multiConfigure(components, options);
+function install(app, options = {}) {
+  // Configure the components' props
+  multiConfigure(components, options);
 
-    // Install the components
-    for (let key in components) {
-      let Component = components[key];
-      app.component(Component.name, Component);
-    }
+  // Install the components
+  for (let key in components) {
+    let Component = components[key];
+    app.component(Component.name, Component);
   }
+}
+
+const BalmUINext = {
+  version,
+  install
 };
 
 export default BalmUINext;
 export { UiBottomNavigation };
+export { version, install };

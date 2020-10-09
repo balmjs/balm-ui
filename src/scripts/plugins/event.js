@@ -89,24 +89,26 @@ class UiEvent {
   }
 }
 
-const BalmUI_EventPlugin = {
-  install(app) {
-    app.mixin({
-      mounted() {
-        if (!customEventCreated) {
-          customEventCreated = true;
-          createCustomEvent();
-        }
+function install(app) {
+  app.mixin({
+    mounted() {
+      if (!customEventCreated) {
+        customEventCreated = true;
+        createCustomEvent();
       }
-    });
+    }
+  });
 
-    app.config.globalProperties.$bus = bus;
-    app.provide('bus', bus);
-  }
+  app.config.globalProperties.$bus = bus;
+  app.provide('bus', bus);
+}
+
+const BalmUI_EventPlugin = {
+  install
 };
 
 const useEvent = () => new UiEvent();
 const useBus = () => bus;
 
 export default BalmUI_EventPlugin;
-export { useEvent, useBus };
+export { install, useEvent, useBus };

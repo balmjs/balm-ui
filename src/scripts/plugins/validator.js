@@ -134,13 +134,15 @@ class UiValidator {
   }
 }
 
+function install(app, customRules = {}) {
+  globalValidationRules = Object.assign({}, defaultRules, customRules);
+}
+
 const BalmUI_ValidatorPlugin = {
-  install(app, customRules = {}) {
-    globalValidationRules = Object.assign({}, defaultRules, customRules);
-  }
+  install
 };
 
 const useValidator = () => new UiValidator();
 
 export default BalmUI_ValidatorPlugin;
-export { useValidator };
+export { install, useValidator };

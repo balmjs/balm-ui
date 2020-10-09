@@ -234,14 +234,16 @@ class Theme extends ThemeStyle {
 
 const theme = new Theme();
 
+function install(app) {
+  app.config.globalProperties.$theme = theme;
+  app.provide('theme', theme);
+}
+
 const BalmUI_ThemePlugin = {
-  install(app) {
-    app.config.globalProperties.$theme = theme;
-    app.provide('theme', theme);
-  }
+  install
 };
 
 const useTheme = () => theme;
 
 export default BalmUI_ThemePlugin;
-export { useTheme };
+export { install, useTheme };

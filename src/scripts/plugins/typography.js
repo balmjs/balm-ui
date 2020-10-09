@@ -32,27 +32,29 @@ function tt(style) {
   return className;
 }
 
-const BalmUI_TypographyPlugin = {
-  install(app, customStyles = []) {
-    globalStyles = Array.isArray(customStyles)
-      ? T_DEFAULT_STYLES.concat(customStyles)
-      : T_DEFAULT_STYLES;
+function install(app, customStyles = []) {
+  globalStyles = Array.isArray(customStyles)
+    ? T_DEFAULT_STYLES.concat(customStyles)
+    : T_DEFAULT_STYLES;
 
-    app.mixin({
-      mounted() {
-        const bodyClassList = document.querySelector('body').classList;
-        if (!bodyClassList.contains(T_BASE)) {
-          bodyClassList.add(T_BASE);
-        }
+  app.mixin({
+    mounted() {
+      const bodyClassList = document.querySelector('body').classList;
+      if (!bodyClassList.contains(T_BASE)) {
+        bodyClassList.add(T_BASE);
       }
-    });
+    }
+  });
 
-    app.config.globalProperties.$tt = tt;
-    app.provide('tt', tt);
-  }
+  app.config.globalProperties.$tt = tt;
+  app.provide('tt', tt);
+}
+
+const BalmUI_TypographyPlugin = {
+  install
 };
 
 const useTypography = () => tt;
 
 export default BalmUI_TypographyPlugin;
-export { useTypography };
+export { install, useTypography };

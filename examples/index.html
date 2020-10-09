@@ -47,9 +47,11 @@
           };
         }
       });
-      app.use(BalmUI.default);
-      app.use(BalmUIPlus.default);
-      app.use(BalmUINext.default);
+
+      app.use(BalmUI);
+      app.use(BalmUIPlus);
+      app.use(BalmUINext);
+
       app.mount('#app');
     </script>
   </body>

@@ -83,16 +83,18 @@ function alertDialog(customOptions = {}) {
   });
 }
 
-const BalmUI_AlertPlugin = {
-  install(app, options = {}) {
-    globalOptions = Object.assign({}, DEFAULT_OPTIONS, options);
+function install(app, options = {}) {
+  globalOptions = Object.assign({}, DEFAULT_OPTIONS, options);
 
-    app.config.globalProperties.$alert = alertDialog;
-    app.provide('alert', alertDialog);
-  }
+  app.config.globalProperties.$alert = alertDialog;
+  app.provide('alert', alertDialog);
+}
+
+const BalmUI_AlertPlugin = {
+  install
 };
 
 const useAlert = () => alertDialog;
 
 export default BalmUI_AlertPlugin;
-export { useAlert };
+export { install, useAlert };

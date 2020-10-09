@@ -19,24 +19,26 @@ function createStore(key, options) {
   store = storeApp.$.setupState;
 }
 
-const BalmUI_StorePlugin = {
-  install(app, options = {}) {
-    if (getType(options) === 'object') {
-      if (Object.keys(options).length) {
-        const defaultStoreKey = (options.name || 'Store').toLowerCase();
+function install(app, options = {}) {
+  if (getType(options) === 'object') {
+    if (Object.keys(options).length) {
+      const defaultStoreKey = (options.name || 'Store').toLowerCase();
 
-        createStore(defaultStoreKey, options);
+      createStore(defaultStoreKey, options);
 
-        app.config.globalProperties.$store = store;
-        app.provide('store', store);
-      }
-    } else {
-      throw new Error(`[BalmUI store]: The '$store' must be an object`);
+      app.config.globalProperties.$store = store;
+      app.provide('store', store);
     }
+  } else {
+    throw new Error(`[BalmUI store]: The '$store' must be an object`);
   }
+}
+
+const BalmUI_StorePlugin = {
+  install
 };
 
 const useStore = () => store;
 
 export default BalmUI_StorePlugin;
-export { useStore };
+export { install, useStore };

@@ -120,16 +120,18 @@ function toast(customOptions = {}) {
   }
 }
 
-const BalmUI_ToastPlugin = {
-  install(app, options = {}) {
-    globalOptions = Object.assign({}, DEFAULT_OPTIONS, options);
+function install(app, options = {}) {
+  globalOptions = Object.assign({}, DEFAULT_OPTIONS, options);
 
-    app.config.globalProperties.$toast = toast;
-    app.provide('toast', toast);
-  }
+  app.config.globalProperties.$toast = toast;
+  app.provide('toast', toast);
+}
+
+const BalmUI_ToastPlugin = {
+  install
 };
 
 const useToast = () => toast;
 
 export default BalmUI_ToastPlugin;
-export { useToast };
+export { install, useToast };

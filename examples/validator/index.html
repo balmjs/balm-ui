@@ -18,21 +18,21 @@
     <ui-textfield id="mobile"
       v-model="formData.mobile"
       helper-text-id="mobile-helper-text">Mobile</ui-textfield>
-    <ui-textfield-helper id="mobile-helper-text" :valid-msg="validMsg.mobile"></ui-textfield-helper>
+    <ui-textfield-helper id="mobile-helper-text" v-model:valid-msg="validMsg.mobile"></ui-textfield-helper>
   </p>
   <p class="form-item">
     <ui-textfield input-type="password"
       id="password"
       v-model="formData.password"
       helper-text-id="password-helper-text">Password</ui-textfield>
-    <ui-textfield-helper id="password-helper-text" :valid-msg="validMsg.password"></ui-textfield-helper>
+    <ui-textfield-helper id="password-helper-text" v-model:valid-msg="validMsg.password"></ui-textfield-helper>
   </p>
   <p class="form-item">
     <ui-textfield input-type="password"
       id="repassword"
       v-model="formData.repassword"
       helper-text-id="repassword-helper-text">Repeat Password</ui-textfield>
-    <ui-textfield-helper id="repassword-helper-text" :valid-msg="validMsg.repassword"></ui-textfield-helper>
+    <ui-textfield-helper id="repassword-helper-text" v-model:valid-msg="validMsg.repassword"></ui-textfield-helper>
   </p>
   <p class="form-actions">
     <ui-button raised @click="submit">Submit</ui-button>
@@ -46,48 +46,43 @@
   <script src="/utils/types.js"></script>
   <script src="./validator-rules.js"></script>
   <script>
-    var app = Vue.createApp({
-      validations: {
-        mobile: {
-          label: 'Mobile',
-          validator: 'required, mobile'
-        },
-        password: {
-          label: 'Password',
-          validator: 'required, password, minRule, maxRule',
-          minRule: {
-            validate(value) {
-              return value.trim().length >= 6;
-            },
-            message: '%s minLength >= 6'
+    var validations = {
+      mobile: {
+        label: 'Mobile',
+        validator: 'required, mobile'
+      },
+      password: {
+        label: 'Password',
+        validator: 'required, password, minRule, maxRule',
+        minRule: {
+          validate(value) {
+            return value.trim().length >= 6;
           },
-          maxRule: {
-            validate(value) {
-              return value.trim().length <= 8;
-            },
-            message: '%s maxLength <= 8'
-          }
+          message: '%s minLength >= 6'
         },
-        repassword: {
-          label: 'Repeat Password',
-          validator: 'required, password, repasswordRule',
-          repasswordRule: {
-            validate(value, data) {
-              return value === data.password;
-            },
-            message: 'repassword !== password'
-          }
+        maxRule: {
+          validate(value) {
+            return value.trim().length <= 8;
+          },
+          message: '%s maxLength <= 8'
         }
       },
-      setup() {
-        validator = $validator.useValidator();
+      repassword: {
+        label: 'Repeat Password',
+        validator: 'required, password, repasswordRule',
+        repasswordRule: {
+          validate(value, data) {
+            return value === data.password;
+          },
+          message: 'repassword !== password'
+        }
+      }
+    };
 
-        return {
-          validator
-        }
-      },
+    var app = Vue.createApp({
       data() {
         return {
+          validations,
           formData: {
             mobile: '',
             password: '',
@@ -96,9 +91,12 @@
           validMsg: {}
         }
       },
+      created() {
+        this.$balmUI = $validator.useValidator();
+      },
       methods: {
         submit() {
-          var { valid, validMsg } = validator.validate(this.formData);
+          var { valid, validMsg } = this.$balmUI.validate(this.formData);
           this.validMsg = validMsg;
 
           if (valid) {
@@ -110,7 +108,7 @@
 
     app.use(UiTextfield);
     app.use(UiButton);
-    app.use($validator.default, validatorRules);
+    app.use($validator, validatorRules);
 
     app.mount('#app');
   </script>

@@ -192,14 +192,40 @@ yarn add balm-ui@next
 npm install --save balm-ui@next
 ```
 
-### 2.2 Usage
+### 2.2 Configuration
+
+- `vue-cli`
+
+  ```js
+  // vue.config.js
+  module.exports = {
+    runtimeCompiler: true
+  }
+  ```
+
+- `vite`
+
+  ```js
+  // vite.config.js
+  export default {
+    alias: {
+      vue: 'vue/dist/vue.esm-bundler.js'
+    },
+    optimizeDeps: {
+      include: ['balm-ui/dist/balm-ui-plus']
+    }
+  };
+  ```
+
+### 2.3 Usage
 
 - edit `/path/to/src/main.js`
 
   ```js
   import { createApp } from 'vue';
   import App from './App.vue';
-  import './index.css';
+  import './index.css'; // vite template
+
   import BalmUI from 'balm-ui'; // Official Google Material Components
   import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // BalmJS Team Material Components
   import 'balm-ui/dist/balm-ui.css';
@@ -244,8 +270,8 @@ npm install --save balm-ui@next
         }
       });
 
-      app.use(BalmUI.default);
-      app.use(BalmUIPlus.default);
+      app.use(BalmUI);
+      app.use(BalmUIPlus);
 
       app.mount('#app');
     </script>

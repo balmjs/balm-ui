@@ -89,16 +89,18 @@ function confirmDialog(customOptions = {}) {
   });
 }
 
-const BalmUI_ConfirmPlugin = {
-  install(app, options = {}) {
-    globalOptions = Object.assign({}, DEFAULT_OPTIONS, options);
+function install(app, options = {}) {
+  globalOptions = Object.assign({}, DEFAULT_OPTIONS, options);
 
-    app.config.globalProperties.$confirm = confirmDialog;
-    app.provide('confirm', confirmDialog);
-  }
+  app.config.globalProperties.$confirm = confirmDialog;
+  app.provide('confirm', confirmDialog);
+}
+
+const BalmUI_ConfirmPlugin = {
+  install
 };
 
 const useConfirm = () => confirmDialog;
 
 export default BalmUI_ConfirmPlugin;
-export { useConfirm };
+export { install, useConfirm };

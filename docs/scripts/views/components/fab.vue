@@ -136,7 +136,7 @@
             <ui-button
               id="enter-exit-back"
               :disabled="!exited"
-              @click="$balmUI.onHide('exited')"
+              @click="balmUI.onHide('exited')"
               >Go back</ui-button
             >
           </p>
@@ -146,7 +146,7 @@
           class="demo-absolute-fab"
           icon="add"
           :exited="exited"
-          @click="$balmUI.onShow('exited')"
+          @click="balmUI.onShow('exited')"
         ></ui-fab>
       </div>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
@@ -174,6 +174,18 @@
 </template>
 
 <script>
+import { reactive, toRefs } from 'vue';
+import { useEvent } from 'balm-ui';
+
+const state = reactive({
+  // hero
+  typeOption: 0,
+  mini: 0,
+  withLeadingIcon: false,
+  // demo
+  exited: false
+});
+
 const TypeOptions = [
   {
     label: 'Regular',
@@ -189,16 +201,28 @@ export default {
   metaInfo: {
     titleTemplate: '%s - Fab'
   },
-  data() {
+  // using Composable API
+  setup() {
+    const balmUI = useEvent();
+
     return {
-      // hero
+      balmUI,
       TypeOptions,
-      typeOption: 0,
-      mini: 0,
-      withLeadingIcon: false,
-      // demo
-      exited: false
+      ...toRefs(state)
     };
   }
+  // using Legacy API
+  // data() {
+  //   return {
+  //     // hero
+  //     TypeOptions,
+  //     typeOption: 0,
+  //     mini: 0,
+  //     withLeadingIcon: false,
+  //     // demo
+  //     balmUI: useEvent(),
+  //     exited: false
+  //   };
+  // }
 };
 </script>

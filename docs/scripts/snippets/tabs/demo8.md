@@ -4,7 +4,7 @@
     ref="scroller"
     v-model="value"
     class="demo-scroller"
-    @change="$balmUI.onChange('scrollValue', $event)"
+    @change="balmUI.onChange('scrollValue', $event)"
   >
     <span v-for="i in 32" :key="i" class="demo-cube"></span>
   </ui-tab-scroller>
@@ -20,7 +20,7 @@
       type="number"
       name="scrollLeft"
     />
-    <button type="submit" @click="$balmUI.onChange('value', +scrollValue)">
+    <button type="submit" @click="balmUI.onChange('value', +scrollValue)">
       Scroll
     </button>
   </div>
@@ -43,13 +43,41 @@
 </div>
 ```
 
-```js
-export default {
-  data() {
-    return {
-      value: 0,
-      scrollValue: 0
-    };
-  }
-};
-```
+- using Composable API
+
+  ```js
+  import { reactive, toRefs } from 'vue';
+  import { useEvent } from 'balm-ui';
+
+  const state = reactive({
+    value: 0,
+    scrollValue: 0
+  });
+
+  export default {
+    setup() {
+      const balmUI = useEvent();
+
+      return {
+        balmUI,
+        ...toRefs(state)
+      };
+    }
+  };
+  ```
+
+- using Legacy API
+
+  ```js
+  import { useEvent } from 'balm-ui';
+
+  export default {
+    data() {
+      return {
+        balmUI: useEvent(),
+        value: 0,
+        scrollValue: 0
+      };
+    }
+  };
+  ```

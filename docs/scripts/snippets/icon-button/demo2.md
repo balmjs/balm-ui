@@ -1,12 +1,12 @@
 ```html
 <!-- Using Material Icons -->
-<ui-icon-button v-model="value1" :toggle="icon1"> </ui-icon-button>
+<ui-icon-button v-model="value1" :toggle="mdcIcon"> </ui-icon-button>
 
 <!-- Using Font Awesome -->
 <ui-icon-button v-model="value2">
   <template #default="{ onClass, offClass }">
-    <i :class="[onClass, icon2.on]"></i>
-    <i :class="[offClass, icon2.off]"></i>
+    <i :class="[onClass, faIcon.on]"></i>
+    <i :class="[offClass, faIcon.off]"></i>
   </template>
 </ui-icon-button>
 
@@ -47,23 +47,27 @@
 </ui-icon-button>
 
 <!-- Disabled Icons -->
-<ui-icon-button :toggle="icon1" disabled></ui-icon-button>
+<ui-icon-button :toggle="mdcIcon" disabled></ui-icon-button>
 ```
 
 ```js
+const mdcIcon = {
+  on: 'favorite',
+  off: 'favorite_border'
+};
+
+const faIcon = {
+  on: 'fa fa-star',
+  off: 'fa fa-star-o'
+};
+
 export default {
   data() {
     return {
+      mdcIcon,
+      faIcon,
       value1: false,
-      icon1: {
-        on: 'favorite',
-        off: 'favorite_border'
-      },
-      value2: true,
-      icon2: {
-        on: 'fa fa-star',
-        off: 'fa fa-star-o'
-      }
+      value2: true
     };
   }
 };

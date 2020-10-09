@@ -225,8 +225,7 @@ export default {
         }
       });
     });
-  },
-  data() {
+
     return {
       COLOR
     };

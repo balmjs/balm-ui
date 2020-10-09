@@ -66,19 +66,19 @@ const TypeOptions = [
   }
 ];
 
+const state = reactive({
+  // hero
+  typeOption: 0,
+  text: 'Button',
+  // demo
+  disabled: false
+});
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Button'
   },
   setup() {
-    const state = reactive({
-      // hero
-      typeOption: 0,
-      text: 'Button',
-      // demo
-      disabled: false
-    });
-
     return {
       TypeOptions,
       ...toRefs(state)

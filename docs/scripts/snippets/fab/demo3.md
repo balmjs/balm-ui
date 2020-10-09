@@ -12,7 +12,7 @@
       <ui-button
         id="enter-exit-back"
         :disabled="!exited"
-        @click="$balmUI.onHide('exited')"
+        @click="balmUI.onHide('exited')"
         >Go back</ui-button
       >
     </p>
@@ -22,21 +22,48 @@
     class="demo-absolute-fab"
     icon="add"
     :exited="exited"
-    @click="$balmUI.onShow('exited')"
+    @click="balmUI.onShow('exited')"
     >add</ui-fab
   >
 </div>
 ```
 
-```js
-export default {
-  data() {
-    return {
-      exited: false
-    };
-  }
-};
-```
+- using Composable API
+
+  ```js
+  import { reactive, toRefs } from 'vue';
+  import { useEvent } from 'balm-ui';
+
+  const state = reactive({
+    exited: false
+  });
+
+  export default {
+    setup() {
+      const balmUI = useEvent();
+
+      return {
+        balmUI,
+        ...toRefs(state)
+      };
+    }
+  };
+  ```
+
+- using Legacy API
+
+  ```js
+  import { useEvent } from 'balm-ui';
+
+  export default {
+    data() {
+      return {
+        balmUI: useEvent(),
+        exited: false
+      };
+    }
+  };
+  ```
 
 ```css
 .demo-absolute-fab {

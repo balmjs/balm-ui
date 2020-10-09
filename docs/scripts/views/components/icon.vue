@@ -136,7 +136,11 @@
 </template>
 
 <script>
+import { reactive, toRefs, onMounted } from 'vue';
+import { useToast } from 'balm-ui/plugins/toast';
 import Clipboard from 'clipboard';
+import { useHttp } from '@/plugins/http';
+import { useConfig } from '@/config';
 
 const TypeOptions = [
   {
@@ -162,72 +166,86 @@ const TypeOptions = [
   // }
 ];
 
+const state = reactive({
+  // hero
+  typeOption: 0,
+  // icons
+  categories: [],
+  icons: {},
+  tags: [],
+  currentIcons: {},
+  keywords: ''
+});
+
+function filterIcons() {
+  if (state.keywords) {
+    const tag = state.tags.find((tag) => tag === state.keywords);
+
+    for (let categoryName in state.icons) {
+      state.currentIcons[categoryName] = state.icons[categoryName].filter(
+        (icon) => {
+          const hasName = icon.name.indexOf(state.keywords) > -1;
+          const hasTag = icon.tags.includes(tag);
+          return hasName || hasTag;
+        }
+      );
+    }
+  } else {
+    state.currentIcons = Object.assign({}, state.icons);
+  }
+}
+
+async function init() {
+  const { domain } = useConfig();
+  const $http = useHttp();
+
+  const url = `${domain}/data/icons.json`;
+  const { icons, tags } = await $http.get(url);
+
+  Object.keys(icons).map((category) => {
+    state.categories.push({
+      name: category,
+      count: icons[category].length
+    });
+  });
+  state.icons = icons;
+  state.tags = tags;
+
+  state.currentIcons = Object.assign({}, state.icons);
+}
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Icons'
   },
-  data() {
-    return {
-      // hero
-      TypeOptions,
-      typeOption: 0,
-      // icons
-      categories: [],
-      icons: {},
-      tags: [],
-      currentIcons: {},
-      keywords: ''
-    };
-  },
-  async created() {
-    const url = `${this.$domain}/data/icons.json`;
-    const { icons, tags } = await this.$http.get(url);
+  setup() {
+    const $toast = useToast();
 
-    Object.keys(icons).map((category) => {
-      this.categories.push({
-        name: category,
-        count: icons[category].length
+    init();
+
+    onMounted(() => {
+      let clipboard = new Clipboard('.btn-copy');
+
+      clipboard.on('success', (e) => {
+        $toast(`'${e.text}' copied!`);
+
+        e.clearSelection();
       });
     });
-    this.icons = icons;
-    this.tags = tags;
 
-    this.currentIcons = Object.assign({}, this.icons);
-  },
-  mounted() {
-    let clipboard = new Clipboard('.btn-copy');
-
-    clipboard.on('success', (e) => {
-      this.$toast(`'${e.text}' copied!`);
-
-      e.clearSelection();
-    });
+    return {
+      TypeOptions,
+      ...toRefs(state)
+    };
   },
   methods: {
-    filterIcons() {
-      if (this.keywords) {
-        const tag = this.tags.find((tag) => tag === this.keywords);
-
-        for (let categoryName in this.icons) {
-          this.currentIcons[categoryName] = this.icons[categoryName].filter(
-            (icon) => {
-              const hasName = icon.name.indexOf(this.keywords) > -1;
-              const hasTag = icon.tags.includes(tag);
-              return hasName || hasTag;
-            }
-          );
-        }
-      } else {
-        this.currentIcons = Object.assign({}, this.icons);
-      }
-    },
     onSearch(value) {
-      this.keywords = value.trim();
-      this.filterIcons();
+      state.keywords = value.trim();
+      filterIcons();
     },
     onSelected(item) {
-      this.keywords = item.value;
-      this.filterIcons();
+      state.keywords = item.value;
+      filterIcons();
     }
   }
 };

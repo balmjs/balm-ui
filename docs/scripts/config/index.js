@@ -38,12 +38,12 @@ export const themes = {
   }
 };
 
+const domain = isProd ? '//next-material.balmjs.com' : '';
+
 export function setGlobalProps(app) {
   app.config.isCustomElement = (tag) => tag.startsWith('ui-');
 
-  app.config.globalProperties.$domain = isProd
-    ? '//next-material.balmjs.com'
-    : '';
+  app.config.globalProperties.$domain = domain;
 
   app.config.globalProperties.$prism = prismjs;
 
@@ -78,5 +78,11 @@ export function setGlobalProps(app) {
         }
       ]
     }
+  };
+}
+
+export function useConfig() {
+  return {
+    domain
   };
 }

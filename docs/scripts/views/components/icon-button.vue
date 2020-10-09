@@ -2,7 +2,7 @@
   <docs-page name="icon-button" demo-count="2">
     <template #hero>
       <div class="hero-demo">
-        <ui-icon-button v-model="value" :toggle="icon"></ui-icon-button>
+        <ui-icon-button v-model="value" :toggle="mdcIcon"></ui-icon-button>
       </div>
     </template>
 
@@ -49,7 +49,7 @@
         <div class="toggle-example">
           <div>Using Material Icons</div>
           <div class="example">
-            <ui-icon-button v-model="value1" :toggle="icon"></ui-icon-button>
+            <ui-icon-button v-model="value1" :toggle="mdcIcon"></ui-icon-button>
           </div>
           <p>
             Favorited?
@@ -62,8 +62,8 @@
           <div class="example">
             <ui-icon-button v-model="value2">
               <template #default="{ onClass, offClass }">
-                <i :class="[onClass, icon2.on]"></i>
-                <i :class="[offClass, icon2.off]"></i>
+                <i :class="[onClass, faIcon.on]"></i>
+                <i :class="[offClass, faIcon.off]"></i>
               </template>
             </ui-icon-button>
           </div>
@@ -115,7 +115,7 @@
         <div class="toggle-example">
           <div>Disabled Icons</div>
           <div class="example">
-            <ui-icon-button :toggle="icon1" disabled></ui-icon-button>
+            <ui-icon-button :toggle="mdcIcon" disabled></ui-icon-button>
           </div>
         </div>
       </div>
@@ -125,34 +125,60 @@
 </template>
 
 <script>
+import { reactive, toRefs, onMounted } from 'vue';
 import imageOn from '@/assets/ic_button.svg';
 import imageOff from '@/assets/ic_card.svg';
+
+const mdcIcon = {
+  on: 'favorite',
+  off: 'favorite_border'
+};
+
+const faIcon = {
+  on: 'fa fa-star',
+  off: 'fa fa-star-o'
+};
+
+const state = reactive({
+  // hero
+  value: false,
+  // demo
+  value1: false,
+  value2: true
+});
 
 export default {
   metaInfo: {
     titleTemplate: '%s - Icon Button'
   },
+  // using Composable API
+  // setup() {
+  //   onMounted(() => {
+  //     setTimeout(() => {
+  //       state.value = true;
+  //     }, 1e3);
+  //   });
+
+  //   return {
+  //     imageOn,
+  //     imageOff,
+  //     mdcIcon,
+  //     faIcon,
+  //     ...toRefs(state)
+  //   };
+  // },
+  // using Legacy API
   data() {
     return {
+      imageOn,
+      imageOff,
+      mdcIcon,
+      faIcon,
       // hero
       value: false,
-      icon: {
-        on: 'favorite',
-        off: 'favorite_border'
-      },
       // demo
       value1: false,
-      icon1: {
-        on: 'favorite',
-        off: 'favorite_border'
-      },
-      value2: true,
-      icon2: {
-        on: 'fa fa-star',
-        off: 'fa fa-star-o'
-      },
-      imageOn,
-      imageOff
+      value2: true
     };
   },
   mounted() {

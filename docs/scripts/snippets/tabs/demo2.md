@@ -30,24 +30,26 @@
 ```
 
 ```js
+const tabs = [
+  {
+    icon: 'phone',
+    url: '#recents'
+  },
+  {
+    icon: 'favorite',
+    url: '#favorites'
+  },
+  {
+    icon: 'person_pin',
+    url: '#nearby'
+  }
+];
+
 export default {
   data() {
     return {
-      active: 0,
-      tabs: [
-        {
-          icon: 'phone',
-          url: '#recents'
-        },
-        {
-          icon: 'favorite',
-          url: '#favorites'
-        },
-        {
-          icon: 'person_pin',
-          url: '#nearby'
-        }
-      ]
+      tabs,
+      active: 0
     };
   }
 };

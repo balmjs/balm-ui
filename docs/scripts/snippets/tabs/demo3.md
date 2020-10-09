@@ -22,27 +22,29 @@
 ```
 
 ```js
+const tabs = [
+  {
+    text: 'Favorites',
+    icon: 'favorite',
+    indicator: 'crop_square'
+  },
+  {
+    text: 'Recents',
+    icon: 'phone',
+    indicator: 'panorama_fish_eye'
+  },
+  {
+    text: 'Nearby',
+    icon: 'near_me',
+    indicator: 'change_history'
+  }
+];
+
 export default {
   data() {
     return {
-      active: 0,
-      tabs: [
-        {
-          text: 'Favorites',
-          icon: 'favorite',
-          indicator: 'crop_square'
-        },
-        {
-          text: 'Recents',
-          icon: 'phone',
-          indicator: 'panorama_fish_eye'
-        },
-        {
-          text: 'Nearby',
-          icon: 'near_me',
-          indicator: 'change_history'
-        }
-      ]
+      tabs,
+      active: 0
     };
   }
 };

@@ -48,21 +48,31 @@
 </template>
 
 <script>
+import { reactive, toRefs } from 'vue';
 import { useEvent } from 'balm-ui';
 
+const state = reactive({
+  value: 0,
+  scrollValue: 0
+});
+
 export default {
+  // using Composable API
   setup() {
     const balmUI = useEvent();
 
     return {
-      balmUI
-    };
-  },
-  data() {
-    return {
-      value: 0,
-      scrollValue: 0
+      balmUI,
+      ...toRefs(state)
     };
   }
+  // using Legacy API
+  // data() {
+  //   return {
+  //     balmUI: useEvent(),
+  //     value: 0,
+  //     scrollValue: 0
+  //   };
+  // }
 };
 </script>

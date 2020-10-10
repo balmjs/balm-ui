@@ -1,6 +1,6 @@
 ```html
 <div class="demo-content">
-  <ui-button @click="$balmUI.onOpen('open')">Open Menu</ui-button>
+  <ui-button @click="open = true">Open Menu</ui-button>
   <ui-menu
     v-model="open"
     :items="[

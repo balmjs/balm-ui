@@ -1,4 +1,8 @@
 ```js
+import { useValidator } from 'balm-ui';
+// OR
+// import { useValidator } from 'balm-ui/plugins/validator';
+
 const balmUI = useValidator();
 ```
 

@@ -54,6 +54,6 @@
   ```html
   <ui-chips
     :model-value="selected"
-    @update:modelValue="$balmUI.onChange('selected', $event)"
+    @update:modelValue="balmUI.onChange('selected', $event)"
   ></ui-chips>
   ```

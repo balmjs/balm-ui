@@ -4,7 +4,7 @@
 </p>
 
 <ui-skeleton
-  v-model="loading"
+  :loading="loading"
   active
   :avatar="{ size: 'large', shape: 'square' }"
 >

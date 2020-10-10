@@ -46,10 +46,6 @@
 ```
 
 ```js
-import { reactive, toRefs } from 'vue';
-import { useValidator } from 'balm-ui';
-import { useToast } from 'balm-ui/plugins/toast';
-
 const validations = {
   mobile: {
     label: 'Mobile',
@@ -82,41 +78,92 @@ const validations = {
     }
   }
 };
-
-const state = reactive({
-  formData: {
-    mobile: '',
-    password: '',
-    repassword: ''
-  },
-  validMsg: {}
-});
-
-function useActions() {
-  const balmUI = useValidator();
-  const toast = useToast();
-
-  function onSubmit() {
-    let { valid, validMsg } = balmUI.validate(state.formData);
-    state.validMsg = validMsg;
-
-    if (valid) {
-      toast('gg');
-    }
-  }
-
-  return {
-    onSubmit
-  };
-}
-
-export default {
-  setup() {
-    return {
-      validations,
-      ...toRefs(state),
-      ...useActions()
-    };
-  }
-};
 ```
+
+- using Composable API
+
+  ```js
+  import { reactive, toRefs } from 'vue';
+  import { useValidator } from 'balm-ui';
+
+  // const validations = ...
+
+  const state = reactive({
+    formData: {
+      mobile: '',
+      password: '',
+      repassword: ''
+    },
+    validMsg: {}
+  });
+
+  export default {
+    setup() {
+      const balmUI = useValidator();
+
+      return {
+        balmUI,
+        validations,
+        ...toRefs(state)
+      };
+    },
+    methods: {
+      onSubmit() {
+        let result = this.balmUI.validate(state.formData);
+        let { valid, validMsg } = result;
+        state.validMsg = validMsg;
+
+        console.log(result);
+
+        if (valid) {
+          this.$toast('gg');
+        }
+      }
+    }
+  };
+  ```
+
+- using Legacy API
+
+  ```js
+  import { useValidator } from 'balm-ui';
+
+  // const validations = ...
+
+  export default {
+    data() {
+      return {
+        balmUI: useValidator(),
+        validations,
+        formData: {
+          mobile: '',
+          password: '',
+          repassword: ''
+        },
+        validMsg: {}
+      };
+    },
+    setup() {
+      const balmUI = useValidator();
+
+      return {
+        balmUI,
+        validations,
+        ...toRefs(state)
+      };
+    },
+    methods: {
+      onSubmit() {
+        let result = this.balmUI.validate(this.formData);
+        let { valid, validMsg } = result;
+        this.validMsg = validMsg;
+
+        console.log(result);
+
+        if (valid) {
+          this.$toast('gg');
+        }
+      }
+    }
+  };
+  ```

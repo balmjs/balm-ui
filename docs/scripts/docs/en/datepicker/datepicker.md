@@ -80,6 +80,6 @@ export default {
   ```html
   <ui-datepicker
     :model-value="value"
-    @update:modelValue="$balmUI.onChange('value', $event)"
+    @update:modelValue="balmUI.onChange('value', $event)"
   ></ui-datepicker>
   ```

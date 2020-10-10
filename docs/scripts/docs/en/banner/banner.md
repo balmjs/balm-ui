@@ -4,12 +4,12 @@
 
 ### Props
 
-| Name                  | Type    | Default | Description                |
-| --------------------- | ------- | ------- | -------------------------- |
-| `open` (`v-model`)    | boolean | `false` | Mandatory.                 |
-| `message`             | string  | `''`    | The banner's message.      |
-| `primaryButtonText`   | boolean | `'OK'`  | The primary action text.   |
-| `secondaryButtonText` | boolean | `''`    | The secondary action text. |
+| Name                     | Type    | Default | Description                |
+| ------------------------ | ------- | ------- | -------------------------- |
+| `modelValue` (`v-model`) | boolean | `false` | Mandatory.                 |
+| `message`                | string  | `''`    | The banner's message.      |
+| `primaryButtonText`      | boolean | `'OK'`  | The primary action text.   |
+| `secondaryButtonText`    | boolean | `''`    | The secondary action text. |
 
 ### Slots
 
@@ -21,12 +21,12 @@
 
 ### Events
 
-| Name     | Type                       | Description                      |
-| -------- | -------------------------- | -------------------------------- |
-| `change` | `function(open: boolean)`  | Emits when the banner is hidden. |
-| `closed` | `function(reason: string)` | Emits when the banner is closed. |
+| Name                | Type                            | Description                      |
+| ------------------- | ------------------------------- | -------------------------------- |
+| `update:modelValue` | `function(modelValue: boolean)` | Emits when the banner is hidden. |
+| `closed`            | `function(reason: string)`      | Emits when the banner is closed. |
 
-> NOTE: If you are not using `v-model`, you should listen for the banner using `@change` and update the `open` prop.
+> NOTE: If you are not using `v-model`, you should listen for the banner using `@update:modelValue` and update the `modelValue` prop.
 
 - Automatic
 
@@ -38,7 +38,7 @@
 
   ```html
   <ui-banner
-    :open="open"
-    @change="$balmUI.onChange('open', $event)"
+    :model-value="open"
+    @update:modelValue="balmUI.onChange('open', $event)"
   ></ui-banner>
   ```

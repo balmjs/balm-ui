@@ -1,12 +1,13 @@
 ```html
-<ui-button raised @click="$balmUI.onOpen('open')">Show Dialog</ui-button>
+<ui-button raised @click="open = true">Show Dialog</ui-button>
 
-<ui-dialog
-  v-model="open"
-  @confirm="onConfirm">
+<ui-dialog v-model="open" @confirm="onConfirm">
   <ui-dialog-title>Use Google's location service?</ui-dialog-title>
   <ui-dialog-content>
-    <p>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</p>
+    <p>
+      Let Google help apps determine location. This means sending anonymous
+      location data to Google, even when no apps are running.
+    </p>
   </ui-dialog-content>
   <ui-dialog-actions></ui-dialog-actions>
 </ui-dialog>

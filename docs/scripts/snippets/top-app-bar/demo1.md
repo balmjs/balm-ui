@@ -4,7 +4,7 @@
     content-selector="#content-main"
     :type="type"
     :title="title"
-    @nav="$balmUI.onShow('openDrawer')"
+    @nav="openDrawer = true"
   >
     <template #toolbar="{ toolbarItemClass }">
       <ui-icon-button

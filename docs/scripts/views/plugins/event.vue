@@ -49,7 +49,10 @@
             <ui-button raised @click="openDialog">Open dialog</ui-button>
           </p>
           <ui-dialog v-model="open1">
-            <ui-dialog-content>Dialog content</ui-dialog-content>
+            <ui-dialog-content>
+              <p>Open dialog: `open = true`</p>
+              <p>Close dialog: `open = false`</p>
+            </ui-dialog-content>
             <ui-dialog-actions>
               <ui-button @click="closeDialog">Close dialog</ui-button>
             </ui-dialog-actions>

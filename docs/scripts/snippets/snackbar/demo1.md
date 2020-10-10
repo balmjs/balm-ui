@@ -1,5 +1,5 @@
 ```html
-<ui-button raised @click="$balmUI.onOpen('open')">Show Snackbar</ui-button>
+<ui-button raised @click="open = true">Show Snackbar</ui-button>
 
 <ui-snackbar
   v-model="open"

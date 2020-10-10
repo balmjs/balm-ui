@@ -10,7 +10,7 @@ export default {
 ```js
 // `/path/to/app/scripts/store/demo.js`
 import { reactive, toRefs } from 'vue';
-import { useHttp } from '@/plugins/http';
+import { useHttp } from '@/plugins/http'; // e.g. axios
 
 const state = reactive({
   demoMenu: []
@@ -31,12 +31,45 @@ const useDemoStore = () => {
 export default useDemoStore;
 ```
 
-```js
-// `/path/to/app.vue`
-export default {
-  async mounted() {
-    await this.$store.getDemoMenu();
-    console.log(this.$store.demoMenu);
-  }
-};
-```
+- using Composable API
+
+  ```html
+  <ui-button @click="store.getDemoMenu">Test</ui-button>
+  <ui-divider></ui-divider>
+  {{ store.demoMenu }}
+  ```
+
+  ```js
+  import { onBeforeMount } from 'vue';
+  import { useStore } from 'balm-ui';
+
+  export default {
+    setup() {
+      const store = useStore();
+
+      onBeforeMount(() => {
+        store.getDemoMenu();
+      });
+
+      return {
+        store
+      };
+    }
+  };
+  ```
+
+- using Legacy API
+
+  ```html
+  <ui-button @click="$store.getDemoMenu">Test</ui-button>
+  <ui-divider></ui-divider>
+  {{ $store.demoMenu }}
+  ```
+
+  ```js
+  export default {
+    beforeMount() {
+      this.$store.getDemoMenu();
+    }
+  };
+  ```

@@ -3,7 +3,7 @@
   accept="image/*"
   multiple
   preview
-  @change="$balmUI.onChange('files', $event)"
+  @change="balmUI.onChange('files', $event)"
 ></ui-file>
 <transition-group class="preview-list" name="list" tag="ul">
   <li class="item" v-for="(file, index) in files" :key="file.tmpId">
@@ -16,9 +16,12 @@
 ```
 
 ```js
+import { useEvent } from 'balm-ui';
+
 export default {
   data() {
     return {
+      balmUI: useEvent(),
       files: []
     };
   },

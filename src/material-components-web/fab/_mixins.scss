@@ -28,12 +28,16 @@
 @use '../rtl/mixins' as rtl-mixins;
 @use '../shape/mixins' as shape-mixins;
 @use '../shape/functions' as shape-functions;
+@use '../theme/css';
 @use '../theme/custom-properties';
+@use '../theme/state';
 @use '../theme/theme-color';
 @use '../theme/theme';
 @use '../touch-target/mixins' as touch-target-mixins;
 @use '../typography/typography';
 @use './variables';
+@use 'sass:math';
+@use 'sass:list';
 
 $ripple-target: '.mdc-fab__ripple';
 
@@ -109,8 +113,6 @@ $ripple-target: '.mdc-fab__ripple';
 
   @include ripple.common($query); // COPYBARA_COMMENT_THIS_LINE
 
-  // postcss-bem-linter: define fab
-
   .mdc-fab {
     @include ripple.surface($query: $query, $ripple-target: $ripple-target);
     @include ripple.radius-bounded(
@@ -123,17 +125,18 @@ $ripple-target: '.mdc-fab__ripple';
       $ripple-target: $ripple-target
     );
 
-    // stylelint-disable-next-line plugin/selector-bem-pattern
     #{$ripple-target} {
       @include ripple.target-common($query: $query);
 
       @include feature-targeting.targets($feat-structure) {
         overflow: hidden;
+        // Fixes Safari on Mac & iOS issue where ripple overflows button
+        // rendered in square shape. Creating new stacking context fixes this
+        // issue.
+        z-index: -1;
       }
     }
   }
-
-  // postcss-bem-linter: end
 }
 
 @mixin accessible($container-color, $query: feature-targeting.all()) {
@@ -183,6 +186,57 @@ $ripple-target: '.mdc-fab__ripple';
 
   @include feature-targeting.targets($feat-color) {
     @include theme.prop(color, $color);
+  }
+}
+
+///
+/// Sets outline width only when button is in focus. Also sets padding to
+/// include outline on focus (Helps prevent size jump on focus).
+/// @param {Number} $width - Outline (border) width.
+/// @param {Number|List} $padding [0] - Padding when button is not in focus.
+///     Offsets padding based on given outline width on focus.
+///
+@mixin focus-outline-width(
+  $width,
+  $padding: 0,
+  $query: feature-targeting.all()
+) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  $padding: css.unpack-value($padding);
+
+  // Padding should include outline width which will be set on focus.
+  padding: math.max(list.nth($padding, 1), $width)
+    math.max(list.nth($padding, 2), $width)
+    math.max(list.nth($padding, 3), $width)
+    math.max(list.nth($padding, 4), $width);
+
+  &:focus {
+    @include feature-targeting.targets($feat-structure) {
+      border-style: solid;
+      border-width: $width;
+
+      // Offset border width from padding.
+      padding: math.abs(list.nth($padding, 1) - $width)
+        math.abs(list.nth($padding, 2) - $width)
+        math.abs(list.nth($padding, 3) - $width)
+        math.abs(list.nth($padding, 4) - $width);
+    }
+  }
+}
+
+///
+/// Sets outline color only when button is in focus. Use `focus-outline-width()`
+/// to set appropriate outline width.
+/// @param {Color} $color - Outline (border) color.
+///
+@mixin focus-outline-color($color, $query: feature-targeting.all()) {
+  $feat-color: feature-targeting.create-target($query, color);
+
+  &:focus {
+    @include feature-targeting.targets($feat-color) {
+      @include theme.property(border-color, $color);
+    }
   }
 }
 

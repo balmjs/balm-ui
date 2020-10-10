@@ -1,6 +1,6 @@
 ```scss
 @use '@material/switch' with (
-  $track-width: 32px,
+  $track-width: 36px,
   $track-height: 14px,
   $thumb-diameter: 20px,
   $ripple-size: 48px,
@@ -16,10 +16,7 @@
     ),
   ),
 
-  // Amount the edge of the thumb should be offset from the edge of the track.
-  $thumb-offset: 4px,
-
-  $thumb-active-margin: $track-width - $thumb-diameter + $thumb-offset * 2,
+  $thumb-active-margin: $track-width - $thumb-diameter,
 
   $toggled-off-thumb-color: surface,
   $toggled-off-track-color: on-surface,

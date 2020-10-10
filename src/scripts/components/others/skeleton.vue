@@ -8,7 +8,10 @@
         <h3 v-if="title" class="mdc-skeleton-title" :style="titleWidth"></h3>
         <ul v-if="paragraphRows" class="mdc-skeleton-paragraph">
           <template v-for="row in paragraphRows">
-            <li :key="row" :style="row === paragraphRows ? paragraphWidth : {}"></li>
+            <li
+              :key="row"
+              :style="row === paragraphRows ? paragraphWidth : {}"
+            ></li>
           </template>
         </ul>
       </div>
@@ -22,19 +25,8 @@
 <script>
 import getType from '../../utils/typeof';
 
-// Define skeleton constants
-const UI_SKELETON = {
-  EVENT: {
-    CHANGE: 'change'
-  }
-};
-
 export default {
   name: 'UiSkeleton',
-  model: {
-    prop: 'loading',
-    event: UI_SKELETON.EVENT.CHANGE
-  },
   props: {
     // States
     loading: {

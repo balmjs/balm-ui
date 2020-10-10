@@ -4,22 +4,22 @@
 
 ### Props
 
-| Name               | Type            | Default     | Description                                                      |
-| ------------------ | --------------- | ----------- | ---------------------------------------------------------------- |
-| `data`             | array           | `[]`        | Data source.                                                     |
-| `caption`          | string          | `''`        | Specifies the caption (or title) of a table.                     |
-| `colgroup`         | boolean         | `false`     | Defines a group of columns within a table.                       |
-| `thead`            | array           | `[]`        | Table header renderer.                                           |
-| `tbody`            | array           | `[]`        | Table content renderer.                                          |
-| `tfoot`            | array           | `[]`        | Table footer renderer.                                           |
-| `fullwidth`        | boolean         | `false`     | Styles the table as a full width table.                          |
-| `columns`          | number          | `0`         | Set table columns by manual.                                     |
-| `noData`           | string          | `'No Data'` | Show text when data source is empty.                             |
-| `rowCheckbox`      | boolean         | `false`     | Data table with row selection.                                   |
-| `selectedRows`     | array           | `[]`        | Selected row indexes/ids. (Required: `rowCheckbox: true`)        |
-| `selectedKey`      | boolean, string | `false`     | `selectedRows` use custom key field, default use row index.      |
-| `rowIdPrefix`      | string          | `''`        | The prefix of `data-row-id` attribute value on row element `tr`. |
-| `sortIconAlignEnd` | boolean         | `false`     | The sort icon will be positioned after the label.                |
+| Name                      | Type            | Default     | Description                                                      |
+| ------------------------- | --------------- | ----------- | ---------------------------------------------------------------- |
+| `data`                    | array           | `[]`        | Data source.                                                     |
+| `caption`                 | string          | `''`        | Specifies the caption (or title) of a table.                     |
+| `colgroup`                | boolean         | `false`     | Defines a group of columns within a table.                       |
+| `thead`                   | array           | `[]`        | Table header renderer.                                           |
+| `tbody`                   | array           | `[]`        | Table content renderer.                                          |
+| `tfoot`                   | array           | `[]`        | Table footer renderer.                                           |
+| `fullwidth`               | boolean         | `false`     | Styles the table as a full width table.                          |
+| `columns`                 | number          | `0`         | Set table columns by manual.                                     |
+| `noData`                  | string          | `'No Data'` | Show text when data source is empty.                             |
+| `rowCheckbox` (`v-model`) | boolean         | `false`     | Data table with row selection.                                   |
+| `selectedRows`            | array           | `[]`        | Selected row indexes/ids. (Required: `rowCheckbox: true`)        |
+| `selectedKey`             | boolean, string | `false`     | `selectedRows` use custom key field, default use row index.      |
+| `rowIdPrefix`             | string          | `''`        | The prefix of `data-row-id` attribute value on row element `tr`. |
+| `sortIconAlignEnd`        | boolean         | `false`     | The sort icon will be positioned after the label.                |
 
 - `thead` & `tbody` & `tfoot` items common format
 

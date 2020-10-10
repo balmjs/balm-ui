@@ -55,8 +55,6 @@ yarn add balm-ui
 npm install --save balm-ui
 ```
 
-> 🎉 `balm-ui@next`(v9.0) for Vue 3.0
-
 ### 1.2 Configuration
 
 update `balm.config.js`
@@ -170,8 +168,6 @@ yarn add balm-ui
 # OR
 npm install --save balm-ui
 ```
-
-> 🎉 `balm-ui@next`(v9.0) for Vue 3.0
 
 ### 2.2 Usage
 

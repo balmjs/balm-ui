@@ -1,6 +1,6 @@
 # Upgrade Guide
 
-> 🎉 `balm-ui@next`(v9.0) for Vue 3.0
+> 🎉 `balm-ui@next`(v9.0) for Vue 3.0, see [next-material.balmjs.com](https://next-material.balmjs.com/)
 
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-8">Upgrading To 8.0 From 7.x</a>
 - <a href="javascript:void(0)" class="v-anchor" data-href="#up-to-7">Upgrading To 7.0 From 6.x</a>

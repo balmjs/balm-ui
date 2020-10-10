@@ -18,13 +18,14 @@
 
 ## Documentation & Demos
 
-Visit [material.balmjs.com](https://material.balmjs.com/).
+- Visit [material.balmjs.com](https://material.balmjs.com/)
+- Visit [next-material.balmjs.com](https://next-material.balmjs.com/) (for Vue 3.0)
 
 ## Quick Start
 
 ### Requirements
 
-- Vue.js@2.1.0+ / Vue.js@3.0+
+- Vue.js@2.1.0+
 - :rocket: **[Balm CLI](https://github.com/balmjs/balm-cli)**(Recommended) or [Vue CLI](https://github.com/vuejs/vue-cli) or other toolchains
 
 ### 1. For Balm CLI (Recommended)
@@ -43,8 +44,6 @@ yarn add balm-ui
 # OR
 npm install --save balm-ui
 ```
-
-> :tada: `balm-ui@next` for Vue 3.0
 
 #### 1.2 Configuration
 
@@ -159,8 +158,6 @@ yarn add balm-ui
 # OR
 npm install --save balm-ui
 ```
-
-> :tada: `balm-ui@next` for Vue 3.0
 
 #### 2.2 Usage
 

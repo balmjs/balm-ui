@@ -26,7 +26,3 @@
 | Name      | Props | Description                                                     |
 | --------- | ----- | --------------------------------------------------------------- |
 | `default` |       | The default slot holds the any components and can contain HTML. |
-
-```html
-<ui-skeleton v-model="loading" active>Loaded data content</ui-skeleton>
-```

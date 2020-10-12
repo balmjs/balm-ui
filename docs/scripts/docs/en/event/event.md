@@ -56,6 +56,8 @@ $bus.emit(eventName, ...args); // Trigger an event on the current instance.
 ### Use `$bus` without `.vue` component
 
 ```js
+// `/path/to/awesome.js`
+
 import { useBus } from 'balm-ui';
 // OR
 // import { useBus } from 'balm-ui/plugins/event';
@@ -65,7 +67,8 @@ $bus.emit('custom-event', 'Hello BalmUI');
 ```
 
 ```js
-// `/path/to/app/scripts/views/app.vue`
+// `/path/to/awesome.vue`
+
 export default {
   mounted() {
     this.$bus.on('custom-event', (msg) => {

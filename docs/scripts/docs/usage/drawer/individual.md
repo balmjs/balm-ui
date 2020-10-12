@@ -5,8 +5,8 @@
 ```
 
 ```js
-import Vue from 'vue';
 import UiDrawerComponents from 'balm-ui/components/drawer';
 
-Vue.use(UiDrawerComponents);
+// `app`: Vue app
+app.use(UiDrawerComponents);
 ```

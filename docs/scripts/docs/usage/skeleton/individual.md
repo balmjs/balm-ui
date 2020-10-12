@@ -4,11 +4,11 @@
 ```
 
 ```js
-import Vue from 'vue';
 import UiSkeleton from 'balm-ui/components/skeleton';
 
+// `app`: Vue app
 // Optional. Overwrite `<ui-skeleton>` props with default value.
-Vue.use(UiSkeleton, {
+app.use(UiSkeleton, {
   // some props
 });
 ```

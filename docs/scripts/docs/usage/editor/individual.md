@@ -6,11 +6,11 @@
 ```
 
 ```js
-import Vue from 'vue';
 import UiEditor from 'balm-ui/components/editor';
 
+// `app`: Vue app
 // Optional. Overwrite `<ui-editor>` props with default value.
-Vue.use(UiEditor, {
+app.use(UiEditor, {
   // some props
 });
 ```

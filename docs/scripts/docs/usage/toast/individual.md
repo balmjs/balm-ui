@@ -4,11 +4,11 @@
 ```
 
 ```js
-import Vue from 'vue';
 import $toast from 'balm-ui/plugins/toast';
 
+// `app`: Vue app
 // Optional. Overwrite `$toast` options.
-Vue.use($toast, {
+app.use($toast, {
   // some options
 });
 ```

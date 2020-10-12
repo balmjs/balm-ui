@@ -1,12 +1,12 @@
-# [BalmUI](https://material.balmjs.com/) [![BalmUI version][balm-ui-image]][balm-ui-url] [![MDC version][mdc-web-image]][mdc-web-url]
+# [BalmUI](https://next-material.balmjs.com/) [![BalmUI version][balm-ui-image]][balm-ui-url] [![MDC version][mdc-web-image]][mdc-web-url]
 
 > Next Generation Material UI for Vue.js
 
 ## Introduction
 
-[BalmUI](https://material.balmjs.com/) is a modular and customizable [Material Design](https://material.io/) UI library for Vue.js 3.0.
+[BalmUI](https://next-material.balmjs.com/) is a modular and customizable [Material Design](https://material.io/) UI library for Vue.js 3.0.
 
-> [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) supports for Vue 2.0
+> [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) supports for Vue 2
 
 ## Features
 
@@ -18,14 +18,15 @@
 
 ## Documentation & Demos
 
-Visit [next-material.balmjs.com](https://next-material.balmjs.com/).
+- Visit [next-material.balmjs.com](https://next-material.balmjs.com/)
+- Visit [material.balmjs.com](https://material.balmjs.com/) (for Vue 2)
 
 ## Quick Start
 
 ### Requirements
 
-- Vue.js@2.1.0+ / Vue.js@3.0+
-- :rocket: **[Balm CLI](https://github.com/balmjs/balm-cli)**(Recommended) or [Vue CLI](https://github.com/vuejs/vue-cli) or other toolchains
+- Vue.js@3.0+
+- :rocket: **[Balm CLI](https://github.com/balmjs/balm-cli)**(Recommended) or [Vue CLI](https://github.com/vuejs/vue-cli)/[Vite](https://github.com/vitejs/vite) or other toolchains
 
 ### 1. For Balm CLI (Recommended)
 
@@ -48,7 +49,7 @@ npm install --save balm-ui@next
 
 update `balm.config.js`
 
-- get [Material Icons](https://material.balmjs.com/material-icons.zip) without downloading (or, download and extract to `/path/to/my-project/app/fonts`)
+- get [Material Icons](https://next-material.balmjs.com/material-icons.zip) without downloading (or, download and extract to `/path/to/my-project/app/fonts`)
 
   ```js
   const api = (mix) => {
@@ -86,12 +87,17 @@ update `balm.config.js`
 - edit `my-project/app/scripts/main.js`
 
   ```js
-  import Vue from 'vue';
+  import { createApp } from 'vue';
+  import App from '@/views/layouts/app';
   import BalmUI from 'balm-ui'; // Official Google Material Components
   import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // BalmJS Team Material Components
 
-  Vue.use(BalmUI); // Mandatory
-  Vue.use(BalmUIPlus); // Optional
+  const app = createApp(App);
+
+  app.use(BalmUI); // Mandatory
+  app.use(BalmUIPlus); // Optional
+
+  app.mount('#app');
   ```
 
 ##### Standalone Usage
@@ -110,13 +116,16 @@ update `balm.config.js`
 
   ```js
   import { createApp } from 'vue';
+  import App from '@/views/layouts/app';
   import UiButton from 'balm-ui/components/button';
   import $alert from 'balm-ui/plugins/alert';
 
-  const app = createApp({});
+  const app = createApp(App);
 
   app.use(UiButton);
   app.use($alert);
+
+  app.mount('#app');
   ```
 
 #### 1.4 Development and testing
@@ -143,14 +152,27 @@ npm run dev
 npm run prod
 ```
 
-### 2. For Vue CLI
+### 2. For Vue CLI or Vite
 
 #### 2.0 Create a project
 
-```sh
-vue create my-project
-cd my-project
-```
+- `vue-cli`
+
+  ```sh
+  vue create my-project
+
+  cd my-project
+  ```
+
+- `vite`
+
+  ```sh
+  npm init vite-app my-project
+  # OR
+  yarn create vite-app my-project
+
+  cd my-project
+  ```
 
 #### 2.1 Installing `balm-ui`
 
@@ -160,20 +182,50 @@ yarn add balm-ui@next
 npm install --save balm-ui@next
 ```
 
-#### 2.2 Usage
+#### 2.2 Configuration
 
-- edit `/path/to/main.js`
+- `vue-cli`
+
+  ```js
+  // vue.config.js
+  module.exports = {
+    runtimeCompiler: true
+  };
+  ```
+
+- `vite`
+
+  ```js
+  // vite.config.js
+  export default {
+    alias: {
+      vue: 'vue/dist/vue.esm-bundler.js'
+    },
+    optimizeDeps: {
+      include: ['balm-ui/dist/balm-ui-plus']
+    }
+  };
+  ```
+
+#### 2.3 Usage
+
+- edit `/path/to/src/main.js`
 
   ```js
   import { createApp } from 'vue';
+  import App from './App.vue';
+  import './index.css'; // vite template
+
   import BalmUI from 'balm-ui'; // Official Google Material Components
   import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // BalmJS Team Material Components
   import 'balm-ui/dist/balm-ui.css';
 
-  const app = createApp({});
+  const app = createApp(App);
 
-  app.use(BalmUI); // Mandatory
-  app.use(BalmUIPlus); // Optional
+  app.use(BalmUI);
+  app.use(BalmUIPlus);
+
+  app.mount('#app');
   ```
 
 ### 3. For `<script>`
@@ -187,7 +239,7 @@ npm install --save balm-ui@next
     <title>Hello BalmUI</title>
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/balm-ui/dist/balm-ui.css"
+      href="https://cdn.jsdelivr.net/npm/balm-ui@next/dist/balm-ui.css"
     />
   </head>
   <body>
@@ -207,6 +259,9 @@ npm install --save balm-ui@next
           };
         }
       });
+
+      app.use(BalmUI);
+      app.use(BalmUIPlus);
 
       app.mount('#app');
     </script>

@@ -4,13 +4,13 @@
 ```
 
 ```js
-import Vue from 'vue';
 import UiTooltip from 'balm-ui/components/tooltip';
 import vTooltip from 'balm-ui/directives/tooltip'; // Optional
 
+// `app`: Vue app
 // Optional. Overwrite `<ui-tooltip>` props with default value.
-Vue.use(UiTooltip, {
+app.use(UiTooltip, {
   // some props
 });
-Vue.directive(vTooltip.name, vTooltip); // Optional
+app.directive(vTooltip.name, vTooltip); // Optional
 ```

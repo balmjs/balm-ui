@@ -28,7 +28,14 @@
       <slot name="before"></slot>
 
       <h2 v-anchor:id="'ui-usage'">0. {{ t('page.usage') }}</h2>
-      <ui-markdown :text="docs.usage"></ui-markdown>
+      <ui-markdown
+        v-if="hasRequirement"
+        :text="docs.usage.requirement"
+      ></ui-markdown>
+      <h3>{{ t('page.default-usage') }}</h3>
+      <ui-markdown :text="docs.usage.default"></ui-markdown>
+      <h3>{{ t('page.individual-usage') }}</h3>
+      <ui-markdown :text="docs.usage.individual"></ui-markdown>
 
       <h2 v-anchor:id="'ui-demo'">1. {{ t('page.demo') }}</h2>
 
@@ -108,28 +115,49 @@ export default {
         apis: this.apis,
         css: !this.withoutCss
       });
+    },
+    hasRequirement() {
+      return ['store', 'typography', 'validator'].includes(this.name);
     }
   },
   created() {
     this.$store.initSnippet(this.name, this.demoCount);
   },
   methods: {
+    // NOTE: just one variable in `require` !important
     getDocs(name, key) {
       let result;
 
-      if (Array.isArray(key)) {
-        result = key.map((apidoc) => {
-          let filename = `${this.$store.lang}/${name}/${apidoc}`;
-          let docs = require(`@/docs/${filename}.md`); // NOTE: just one variable in `require`
-          return docs;
-        });
-      } else {
-        let filename =
-          key === 'usage' || key === 'css'
-            ? `${key}/${name}`
-            : `${this.$store.lang}/${name}/${key}`;
-        let docs = require(`@/docs/${filename}.md`); // NOTE: just one variable in `require`
-        result = docs;
+      switch (key) {
+        case 'css':
+          let filename = `${key}/${name}`;
+          let docs = require(`@/docs/${filename}.md`);
+          result = docs;
+          break;
+        case 'usage':
+          const usageDocs = this.hasRequirement
+            ? ['requirement', 'default', 'individual']
+            : ['default', 'individual'];
+
+          result = {};
+          usageDocs.forEach((usageDoc) => {
+            let filename = `${key}/${name}/${usageDoc}`;
+            let docs = require(`@/docs/${filename}.md`);
+            result[usageDoc] = docs;
+          });
+          break;
+        default:
+          if (Array.isArray(key)) {
+            result = key.map((apiDoc) => {
+              let filename = `${this.$store.lang}/${name}/${apiDoc}`;
+              let docs = require(`@/docs/${filename}.md`);
+              return docs;
+            });
+          } else {
+            let filename = `${this.$store.lang}/${name}/${key}`;
+            let docs = require(`@/docs/${filename}.md`);
+            result = docs;
+          }
       }
 
       return result;

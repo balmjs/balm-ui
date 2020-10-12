@@ -4,11 +4,11 @@
 ```
 
 ```js
-import Vue from 'vue';
 import UiSpinner from 'balm-ui/components/spinner';
 
+// `app`: Vue app
 // Optional. Overwrite `<ui-spinner>` props with default value.
-Vue.use(UiSpinner, {
+app.use(UiSpinner, {
   // some props
 });
 ```

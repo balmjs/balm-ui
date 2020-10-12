@@ -1,26 +1,3 @@
-<<<<<<< HEAD:docs/scripts/docs/usage/autocomplete.md
-### Default Usage
-
-```scss
-@use 'balm-ui/dist/balm-ui';
-```
-
-```js
-import BalmUIPlus from 'balm-ui/dist/balm-ui-plus';
-
-// `app`: Vue app
-app.use(BalmUIPlus, {
-  // Optional. Overwrite `<ui-autocomplete>` props with default value.
-  UiAutocomplete: {
-    // some props
-  }
-});
-```
-
-### Individual Usage
-
-=======
->>>>>>> origin/8.x:docs/scripts/docs/usage/autocomplete/individual.md
 ```scss
 @use 'balm-ui/components/core';
 @use 'balm-ui/components/form-field/form-item';

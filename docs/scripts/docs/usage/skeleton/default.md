@@ -3,10 +3,10 @@
 ```
 
 ```js
-import Vue from 'vue';
 import BalmUIPlus from 'balm-ui/dist/balm-ui-plus';
 
-Vue.use(BalmUIPlus, {
+// `app`: Vue app
+app.use(BalmUIPlus, {
   // Optional. Overwrite `<ui-skeleton>` props with default value.
   UiSkeleton: {
     // some props

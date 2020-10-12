@@ -5,11 +5,11 @@
 ```
 
 ```js
-import Vue from 'vue';
 import UiFile from 'balm-ui/components/file';
 
+// `app`: Vue app
 // Optional. Overwrite `<ui-file>` props with default value.
-Vue.use(UiFile, {
+app.use(UiFile, {
   // some props
 });
 ```

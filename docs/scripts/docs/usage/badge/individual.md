@@ -1,21 +1,3 @@
-<<<<<<< HEAD:docs/scripts/docs/usage/badge.md
-### Default Usage
-
-```scss
-@use 'balm-ui/dist/balm-ui';
-```
-
-```js
-import BalmUI from 'balm-ui';
-
-// `app`: Vue app
-app.use(BalmUI);
-```
-
-### Individual Usage
-
-=======
->>>>>>> origin/8.x:docs/scripts/docs/usage/badge/individual.md
 ```scss
 @use 'balm-ui/components/core';
 @use 'balm-ui/components/badge/badge';

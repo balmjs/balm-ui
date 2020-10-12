@@ -3,10 +3,10 @@
 ```
 
 ```js
-import Vue from 'vue';
 import BalmUI from 'balm-ui';
 
-Vue.use(BalmUI, {
+// `app`: Vue app
+app.use(BalmUI, {
   // Optional. Overwrite the param of `$tt()`.
   $typography: ['custom-style-1', 'custom-style-2']
 });

@@ -4,8 +4,8 @@
 ```
 
 ```js
-import Vue from 'vue';
 import UiDivider from 'balm-ui/components/divider';
 
-Vue.use(UiDivider);
+// `app`: Vue app
+app.use(UiDivider);
 ```

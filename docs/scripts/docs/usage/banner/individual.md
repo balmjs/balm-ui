@@ -1,26 +1,3 @@
-<<<<<<< HEAD:docs/scripts/docs/usage/banner.md
-### Default Usage
-
-```scss
-@use 'balm-ui/dist/balm-ui';
-```
-
-```js
-import BalmUI from 'balm-ui';
-
-// `app`: Vue app
-app.use(BalmUI, {
-  // Optional. Overwrite `<ui-banner>` props with default value.
-  UiBanner: {
-    // some props
-  }
-});
-```
-
-### Individual Usage
-
-=======
->>>>>>> origin/8.x:docs/scripts/docs/usage/banner/individual.md
 ```scss
 @use 'balm-ui/components/core';
 @use 'balm-ui/components/banner/banner';

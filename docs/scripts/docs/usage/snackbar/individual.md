@@ -4,11 +4,11 @@
 ```
 
 ```js
-import Vue from 'vue';
 import UiSnackbar from 'balm-ui/components/snackbar';
 
+// `app`: Vue app
 // Optional. Overwrite `<ui-snackbar>` props with default value.
-Vue.use(UiSnackbar, {
+app.use(UiSnackbar, {
   // some props
 });
 ```

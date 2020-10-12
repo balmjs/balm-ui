@@ -7,9 +7,9 @@
 ```
 
 ```js
-import Vue from 'vue';
 import $typography from 'balm-ui/plugins/typography';
 
+// `app`: Vue app
 // Optional. Overwrite the param of `$tt()`.
-Vue.use($typography, ['custom-style-1', 'custom-style-2']);
+app.use($typography, ['custom-style-1', 'custom-style-2']);
 ```

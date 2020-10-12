@@ -5,10 +5,10 @@
 ```
 
 ```js
-import Vue from 'vue';
 import UiChipsComponents from 'balm-ui/components/chips';
 
-Vue.use(UiChipsComponents, {
+// `app`: Vue app
+app.use(UiChipsComponents, {
   // Optional. Overwrite `<ui-chips>` props with default value.
   UiChips: {
     // some props

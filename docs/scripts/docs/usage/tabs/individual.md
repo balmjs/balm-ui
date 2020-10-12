@@ -5,10 +5,10 @@
 ```
 
 ```js
-import Vue from 'vue';
 import UiTabsComponents from 'balm-ui/components/tabs';
 
-Vue.use(UiTabsComponents, {
+// `app`: Vue app
+app.use(UiTabsComponents, {
   // Optional. Overwrite `<ui-tabs>` props with default value.
   UiTabs: {
     // some props

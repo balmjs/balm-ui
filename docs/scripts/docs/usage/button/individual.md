@@ -1,26 +1,3 @@
-<<<<<<< HEAD:docs/scripts/docs/usage/button.md
-### Default Usage
-
-```scss
-@use 'balm-ui/dist/balm-ui';
-```
-
-```js
-import BalmUI from 'balm-ui';
-
-// `app`: Vue app
-app.use(BalmUI, {
-  // Optional. Overwrite `<ui-button>` props with default value.
-  UiButton: {
-    // some props
-  }
-});
-```
-
-### Individual Usage
-
-=======
->>>>>>> origin/8.x:docs/scripts/docs/usage/button/individual.md
 ```scss
 @use 'balm-ui/components/core';
 @use 'balm-ui/components/button/button';

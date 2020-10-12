@@ -1,26 +1,3 @@
-<<<<<<< HEAD:docs/scripts/docs/usage/table.md
-### Default Usage
-
-```scss
-@use 'balm-ui/dist/balm-ui';
-```
-
-```js
-import BalmUI from 'balm-ui';
-
-// `app`: Vue app
-app.use(BalmUI, {
-  // Optional. Overwrite `<ui-table>` props with default value.
-  UiTable: {
-    // some props
-  }
-});
-```
-
-### Individual Usage
-
-=======
->>>>>>> origin/8.x:docs/scripts/docs/usage/table/individual.md
 ```scss
 @use 'balm-ui/components/core';
 @use 'balm-ui/components/checkbox/checkbox'; // Required only for data table with row selection.

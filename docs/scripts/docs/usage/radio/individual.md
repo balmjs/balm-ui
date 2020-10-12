@@ -1,26 +1,3 @@
-<<<<<<< HEAD:docs/scripts/docs/usage/radio.md
-### Default Usage
-
-```scss
-@use 'balm-ui/dist/balm-ui';
-```
-
-```js
-import BalmUI from 'balm-ui';
-
-// `app`: Vue app
-app.use(BalmUI, {
-  // Optional. Overwrite `<ui-radio>` props with default value.
-  UiRadio: {
-    // some props
-  }
-});
-```
-
-### Individual Usage
-
-=======
->>>>>>> origin/8.x:docs/scripts/docs/usage/radio/individual.md
 ```scss
 @use 'balm-ui/components/core';
 @use 'balm-ui/components/radio/radio';

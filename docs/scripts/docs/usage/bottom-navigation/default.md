@@ -3,9 +3,9 @@
 ```
 
 ```js
-import Vue from 'vue';
 import BalmUINext from 'balm-ui/dist/balm-ui-next';
 
+// `app`: Vue app
 Vue.use(BalmUINext, {
   // Optional. Overwrite `<ui-bottom-navigation>` props with default value.
   UiBottomNavigation: {

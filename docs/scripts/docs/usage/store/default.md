@@ -1,9 +1,9 @@
 ```js
-import Vue from 'vue';
 import BalmUI from 'balm-ui';
 import myStore from './store';
 
-Vue.use(BalmUI, {
+// `app`: Vue app
+app.use(BalmUI, {
   $store: myStore
 });
 ```

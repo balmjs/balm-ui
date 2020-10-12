@@ -3,10 +3,10 @@
 ```
 
 ```js
-import Vue from 'vue';
 import BalmUI from 'balm-ui';
 
-Vue.use(BalmUI, {
+// `app`: Vue app
+app.use(BalmUI, {
   // Optional. Overwrite `<ui-textfield>` props with default value.
   UiTextfield: {
     // some props

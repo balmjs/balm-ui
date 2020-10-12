@@ -5,10 +5,10 @@
 ```
 
 ```js
-import Vue from 'vue';
 import UiMenuComponents from 'balm-ui/components/menu';
 
-Vue.use(UiMenuComponents, {
+// `app`: Vue app
+app.use(UiMenuComponents, {
   // Optional. Overwrite `<ui-menu>` props with default value.
   UiMenu: {
     // some props

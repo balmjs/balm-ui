@@ -5,13 +5,13 @@
 ```
 
 ```js
-import Vue from 'vue';
 import UiFormField from 'balm-ui/components/form-field';
 import UiCheckbox from 'balm-ui/components/checkbox';
 
-Vue.use(UiFormField);
+// `app`: Vue app
+app.use(UiFormField);
 // Optional. Overwrite `<ui-checkbox>` props with default value.
-Vue.use(UiCheckbox, {
+app.use(UiCheckbox, {
   // some props
 });
 ```

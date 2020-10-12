@@ -7,11 +7,11 @@
 ```
 
 ```js
-import Vue from 'vue';
 import UiDatepicker from 'balm-ui/components/datepicker';
 
+// `app`: Vue app
 // Optional. Overwrite `<ui-datepicker>` props with default value.
-Vue.use(UiDatepicker, {
+app.use(UiDatepicker, {
   // some props
 });
 ```

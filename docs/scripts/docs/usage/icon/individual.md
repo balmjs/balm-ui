@@ -4,11 +4,11 @@
 ```
 
 ```js
-import Vue from 'vue';
 import UiIcon from 'balm-ui/components/icon';
 
+// `app`: Vue app
 // Optional. Overwrite `<ui-icon>` props with default value.
-Vue.use(UiIcon, {
+app.use(UiIcon, {
   // some props
 });
 ```

@@ -5,11 +5,11 @@
 ```
 
 ```js
-import Vue from 'vue';
 import UiPagination from 'balm-ui/components/pagination';
 
+// `app`: Vue app
 // Optional. Overwrite `<ui-pagination>` props with default value.
-Vue.use(UiPagination, {
+app.use(UiPagination, {
   // some props
 });
 ```

@@ -4,11 +4,11 @@
 ```
 
 ```js
-import Vue from 'vue';
 import UiProgress from 'balm-ui/components/progress';
 
+// `app`: Vue app
 // Optional. Overwrite `<ui-progress>` props with default value.
-Vue.use(UiProgress, {
+app.use(UiProgress, {
   // some props
 });
 ```

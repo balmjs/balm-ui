@@ -6,9 +6,9 @@
 ```
 
 ```js
-import Vue from 'vue';
 import UiBottomNavigation from 'balm-ui/components/bottom-navigation';
 
+// `app`: Vue app
 // Optional. Overwrite `<ui-bottom-navigation>` props with default value.
 Vue.use(UiBottomNavigation, {
   // some props

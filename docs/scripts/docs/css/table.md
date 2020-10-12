@@ -8,7 +8,7 @@
   $divider-color: rgba(theme-color.prop-value(on-surface), 0.12),
   $divider-size: 1px,
   $row-hover-fill-color: rgba(theme-color.prop-value(on-surface), 0.04),
-  $checkbox-touch-dimension: 48px,
+  $checkbox-touch-size: 48px,
 
   $header-row-text-color: rgba(theme-color.prop-value(on-surface), 0.87),
   $row-text-color: rgba(theme-color.prop-value(on-surface), 0.87),

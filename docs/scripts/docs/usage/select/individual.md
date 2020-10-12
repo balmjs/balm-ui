@@ -1,0 +1,41 @@
+<<<<<<< HEAD:docs/scripts/docs/usage/select.md
+### Default Usage
+
+```scss
+@use 'balm-ui/dist/balm-ui';
+```
+
+```js
+import BalmUI from 'balm-ui';
+
+// `app`: Vue app
+app.use(BalmUI, {
+  // Optional. Overwrite `<ui-select>` props with default value.
+  UiSelect: {
+    // some props
+  }
+});
+```
+
+### Individual Usage
+
+=======
+>>>>>>> origin/8.x:docs/scripts/docs/usage/select/individual.md
+```scss
+@use 'balm-ui/components/core';
+@use 'balm-ui/components/list/list';
+@use 'balm-ui/components/menu/menu';
+@use 'balm-ui/components/form-field/form-item';
+@use 'balm-ui/components/select/select';
+@use 'balm-ui/components/icon/icon'; // Optional
+```
+
+```js
+import UiSelect from 'balm-ui/components/select';
+
+// `app`: Vue app
+// Optional. Overwrite `<ui-select>` props with default value.
+app.use(UiSelect, {
+  // some props
+});
+```

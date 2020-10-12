@@ -68,6 +68,8 @@
   },
   "page": {
     "usage": "Usage",
+    "default-usage": "Default Usage",
+    "individual-usage": "Individual Usage",
     "demo": "Demo",
     "apis": "APIs",
     "sass": "Sass Variables"

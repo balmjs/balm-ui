@@ -68,6 +68,8 @@
   },
   "page": {
     "usage": "用法",
+    "default-usage": "默认用法",
+    "individual-usage": "独立用法",
     "demo": "例子",
     "apis": "APIs",
     "sass": "Sass变量"

@@ -11,15 +11,15 @@
    - <a href="javascript:void(0)" class="v-anchor" data-href="#default-usage">默认用法</a>（桌面端）
    - <a href="javascript:void(0)" class="v-anchor" data-href="#Individual-usage">独立用法</a>（手机端）
    - <a href="javascript:void(0)" class="v-anchor" data-href="#source-code-usage">源代码用法</a>（开发）
-3. <a href="javascript:void(0)" class="v-anchor" data-href="#mdi">获取 Material Icons 无需下载</a>
+3. <a href="javascript:void(0)" class="v-anchor" data-href="#mdi">获取 Material Icons</a>（无需下载）
 
-## 1. Modular CSS
+## 1. CSS 模块化
 
 <div id="use-sass"></div>
 
-### 1.1 Use Sass (Recommended)
+### 1.1 使用 Sass（推荐）
 
-- Edit `/path/to/my-project/config/balmrc.js`
+- 编辑 `/path/to/my-project/config/balmrc.js`
 
   ```js
   module.exports = {
@@ -31,7 +31,7 @@
   };
   ```
 
-- Edit `/path/to/my-project/app/styles/global/_vendor.scss`
+- 编辑 `/path/to/my-project/app/styles/global/_vendor.scss`
 
   > **`SASS`/`CSS` Management** by [BalmJS](https://balm.js.org/): the entry files of the vendors
 
@@ -44,9 +44,9 @@
   @use 'balm-ui/dist/balm-ui';
   ```
 
-Then, you can overwrite or redefine UI styles by sass variables. (See components **SASS** docs)
+然后，您可以通过 Sass变量 复写或重新定义 UI 样式。（详情见各组件的 **SASS变量** 文档）
 
-**The template standard format:**
+**入口模板文件标准格式：**
 
 ```html
 <!DOCTYPE html>
@@ -62,11 +62,11 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
 </html>
 ```
 
-> If the third-party provides sass/css file, recommended to manage in `/path/to/my-project/app/styles/global/_vendor.scss`
+> 如果第三方提供了 sass/css 文件，建议在 `/path/to/my-project/app/styles/global/_vendor.scss` 中进行管理
 
 <div id="use-css"></div>
 
-### 1.2 Use CSS
+### 1.2 使用 CSS
 
 ```html
 <!DOCTYPE html>
@@ -86,20 +86,20 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
 </html>
 ```
 
-- `css/vendors.css`: The file path after building all third-party style files in [BalmJS](https://balm.js.org/) workflow.
-- `main.css`: The css entry file of the project.
+- `css/vendors.css`: [BalmJS](https://balm.js.org/) 工作流合并指定第三方样式文件之后的文件路径。
+- `main.css`: 项目的样式入口文件。
 
-## 2. Modular JS
+## 2. JS 模块化
 
 <div id="default-usage"></div>
 
-### 2.1 Default Usage
+### 2.1 默认用法
 
-> Recommended to use for **desktop**
+> 推荐用于 **桌面端**
 
-**2.1.1 Import in JS** (Recommended)
+**2.1.1 JS中引用**（推荐）
 
-- Edit `/path/to/my-project/app/scripts/main.js`
+- 编辑 `/path/to/my-project/app/scripts/main.js`
 
   ```js
   import { createApp } from 'vue';
@@ -122,9 +122,9 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
   app.mount('#app');
   ```
 
-**2.1.2 Import in Browser**
+**2.1.2 浏览器中引用**
 
-- Edit `/path/to/my-project/app/index.html`
+- 编辑 `/path/to/my-project/app/index.html`
 
   ```html
   <!DOCTYPE html>
@@ -170,13 +170,13 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
 
 <div id="Individual-usage"></div>
 
-### 2.2 Individual Usage
+### 2.2 独立用法
 
-> Recommended to use for **mobile**, because the building volume is relatively small.
+> 推荐用于 **移动端**，因为构建更小更快。
 
-**2.2.1 Import in JS**
+**2.2.1 JS中引用**
 
-- Edit `/path/to/my-project/app/scripts/main.js`
+- 编辑 `/path/to/my-project/app/scripts/main.js`
 
   ```js
   import { createApp } from 'vue';
@@ -202,9 +202,9 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
   app.mount('#app');
   ```
 
-> With regard to _CSSinJS_, styles can be extracted through BalmJS configuration, but the idea of BalmJS is more recommended to separate and manage styles and scripts to achieve more flexible module configuration and management.
+> 关于 CSSinJS ，可以通过BalmJS配置来提取样式；但是 BalmJS的思想 更建议分离管理项目中的样式和脚本，以实现更灵活的模块配置和管理。
 
-- SASS management (`/path/to/my-project/app/styles/global/_vendor.scss`)
+- SASS 管理 (`/path/to/my-project/app/styles/global/_vendor.scss`)
 
   ```scss
   @use 'balm-ui/components/core';
@@ -214,22 +214,23 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
   @use 'balm-ui/plugins/alert/alert';
   ```
 
-- CSS management (`/path/to/my-project/app/index.html`)
+- CSS 管理 (`/path/to/my-project/app/index.html`)
 
   ```html
   <head>
     <!-- build:css css/vendors.css -->
     <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
     <link rel="stylesheet" href="/node_modules/balm-ui/components/button/button.css" />
+    <link rel="stylesheet" href="/node_modules/balm-ui/components/icon/icon.css" />
     <link rel="stylesheet" href="/node_modules/balm-ui/components/dialog/dialog.css" />
     <link rel="stylesheet" href="/node_modules/balm-ui/plugins/alert/alert.css" />
     <!-- endbuild -->
   </head>
   ```
 
-**2.2.2 Import in Browser**
+**2.2.2 浏览器中引用**
 
-- Edit `/path/to/my-project/app/index.html`
+- 编辑 `/path/to/my-project/app/index.html`
 
   ```html
   <!DOCTYPE html>
@@ -240,6 +241,7 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
       <!-- build:css css/vendors.css -->
       <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
       <link rel="stylesheet" href="/node_modules/balm-ui/components/button/button.css" />
+      <link rel="stylesheet" href="/node_modules/balm-ui/components/icon/icon.css" />
       <link rel="stylesheet" href="/node_modules/balm-ui/components/dialog/dialog.css" />
       <link rel="stylesheet" href="/node_modules/balm-ui/plugins/alert/alert.css" />
       <!-- endbuild -->
@@ -276,42 +278,42 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
 
 <div id="source-code-usage"></div>
 
-### 2.3 Source Code Usage
+### 2.3 源码用法
 
-> Just for developing and debugging components, the building production is the same as the default usage.
+> 仅用于开发和调试组件，构建产品与默认用法相同。
 
-Edit `/path/to/my-project/app/config/balmrc.js`, and add the following lines of code:
+- 编辑 `/path/to/my-project/app/config/balmrc.js`，并添加以下代码：
 
-```js
-const path = require('path'); // Reference path library
+  ```js
+  const path = require('path'); // Reference path library
 
-module.exports = {
-  ...
-  scripts: {
+  module.exports = {
     ...
-    alias: {
+    scripts: {
       ...
-      // Reassign the entry file
-      'balm-ui': 'balm-ui/src/scripts',
-      'balm-ui-plus': 'balm-ui/src/scripts/plus.js',
-      'balm-ui-next': 'balm-ui/src/scripts/next.js'
+      alias: {
+        ...
+        // Reassign the entry file
+        'balm-ui': 'balm-ui/src/scripts',
+        'balm-ui-plus': 'balm-ui/src/scripts/plus.js',
+        'balm-ui-next': 'balm-ui/src/scripts/next.js'
+      },
+      includeJsResource: [
+        // The script in this folder needs to compile ES6+
+        path.resolve('./node_modules/balm-ui/src/scripts')
+      ]
     },
-    includeJsResource: [
-      // The script in this folder needs to compile ES6+
-      path.resolve('./node_modules/balm-ui/src/scripts')
-    ]
-  },
-  ...
-};
-```
+    ...
+  };
+  ```
 
-> Now, the `balm-ui` referenced in the code points directly to the source code, which can be used to debug BalmUI.
+> 现在，代码中引用的 `balm-ui` 已直接指向了源代码，可用于调试 BalmUI。
 
 <div id="mdi"></div>
 
-## 3. Get [Material Icons](https://next-material.balmjs.com/material-icons.zip) without downloading
+## 3. 获取 [Material Icons](https://next-material.balmjs.com/material-icons.zip)（无需下载）
 
-- Edit `/path/to/my-project/balm.config.js`
+- 编辑 `/path/to/my-project/balm.config.js`
 
   ```js
   const config = require('./config/balmrc');

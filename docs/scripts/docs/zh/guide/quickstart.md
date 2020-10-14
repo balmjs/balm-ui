@@ -12,7 +12,7 @@
 
 [Balm CLI](https://github.com/balmjs/balm-cli) 是一个命令行界面工具，用于构建 [BalmJS](https://github.com/balmjs/balm) 项目。
 
-> **[Balm CLI](https://github.com/balmjs/balm-cli)**（BalmJS 官方推荐） 或 [Vue CLI](https://github.com/vuejs/vue-cli) 或 其他工具链 🚀
+> **[Balm CLI](https://github.com/balmjs/balm-cli)**（BalmJS 官方推荐） 或 [Vue CLI](https://github.com/vuejs/vue-cli)/[Vite](https://github.com/vitejs/vite) 或 其他工具链 🚀
 
 - 使用 Balm CLI 前首先需要全局安装 [Balm Core](https://github.com/balmjs/balm) 和 [Balm CLI](https://github.com/balmjs/balm-cli)。
 

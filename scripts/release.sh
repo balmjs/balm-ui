@@ -11,4 +11,4 @@ read tagName
 git tag ${tagName}
 git push origin ${tagName}
 
-npm publish
+npm publish --tag next

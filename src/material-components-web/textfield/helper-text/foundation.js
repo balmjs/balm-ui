@@ -52,6 +52,7 @@ var MDCTextFieldHelperTextFoundation = /** @class */ (function (_super) {
                 addClass: function () { return undefined; },
                 removeClass: function () { return undefined; },
                 hasClass: function () { return false; },
+                getAttr: function () { return null; },
                 setAttr: function () { return undefined; },
                 removeAttr: function () { return undefined; },
                 setContent: function () { return undefined; },
@@ -61,11 +62,20 @@ var MDCTextFieldHelperTextFoundation = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
+    MDCTextFieldHelperTextFoundation.prototype.getId = function () {
+        return this.adapter.getAttr('id');
+    };
+    MDCTextFieldHelperTextFoundation.prototype.isVisible = function () {
+        return this.adapter.getAttr(strings.ARIA_HIDDEN) !== 'true';
+    };
     /**
      * Sets the content of the helper text field.
      */
     MDCTextFieldHelperTextFoundation.prototype.setContent = function (content) {
         this.adapter.setContent(content);
+    };
+    MDCTextFieldHelperTextFoundation.prototype.isPersistent = function () {
+        return this.adapter.hasClass(cssClasses.HELPER_TEXT_PERSISTENT);
     };
     /**
      * @param isPersistent Sets the persistency of the helper text.
@@ -77,6 +87,12 @@ var MDCTextFieldHelperTextFoundation = /** @class */ (function (_super) {
         else {
             this.adapter.removeClass(cssClasses.HELPER_TEXT_PERSISTENT);
         }
+    };
+    /**
+     * @return whether the helper text acts as an error validation message.
+     */
+    MDCTextFieldHelperTextFoundation.prototype.isValidation = function () {
+        return this.adapter.hasClass(cssClasses.HELPER_TEXT_VALIDATION_MSG);
     };
     /**
      * @param isValidation True to make the helper text act as an error validation message.
@@ -103,6 +119,7 @@ var MDCTextFieldHelperTextFoundation = /** @class */ (function (_super) {
         var helperTextIsValidationMsg = this.adapter.hasClass(cssClasses.HELPER_TEXT_VALIDATION_MSG);
         var validationMsgNeedsDisplay = helperTextIsValidationMsg && !inputIsValid;
         if (validationMsgNeedsDisplay) {
+            this.showToScreenReader();
             this.adapter.setAttr(strings.ROLE, 'alert');
         }
         else {

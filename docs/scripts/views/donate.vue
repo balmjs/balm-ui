@@ -30,6 +30,11 @@
       </p>
       <ul>
         <li>
+          <a href="https://www.patreon.com/balmjs"
+            >Become a backer or sponsor via Patreon</a
+          >
+        </li>
+        <li>
           <a href="https://opencollective.com/balmjs"
             >Become a backer or sponsor via OpenCollective</a
           >

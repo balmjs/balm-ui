@@ -22,7 +22,7 @@
         </ui-grid-cell>
       </ui-grid>
 
-      <!-- <h6 :class="$tt('headline6')">Recurring Pledges</h6>
+      <h6 :class="$tt('headline6')">Recurring Pledges</h6>
       <p>
         Recurring pledges come with exclusive perks, e.g. having your name
         listed in the Vue GitHub repository, or have your company logo placed on
@@ -34,7 +34,7 @@
             >Become a backer or sponsor via OpenCollective</a
           >
         </li>
-      </ul> -->
+      </ul>
     </div>
   </div>
 </template>

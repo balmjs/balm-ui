@@ -11,7 +11,7 @@
    - <a href="javascript:void(0)" class="v-anchor" data-href="#default-usage">Default Usage</a> (desktop)
    - <a href="javascript:void(0)" class="v-anchor" data-href="#Individual-usage">Individual Usage</a> (mobile)
    - <a href="javascript:void(0)" class="v-anchor" data-href="#source-code-usage">Source Code Usage</a> (development)
-3. <a href="javascript:void(0)" class="v-anchor" data-href="#mdi">Get Material Icons</a> (Without downloading)
+3. <a href="javascript:void(0)" class="v-anchor" data-href="#mdi">Get Material Icons</a> (without downloading)
 
 ## 1. Modular CSS
 
@@ -309,7 +309,7 @@ module.exports = {
 
 <div id="mdi"></div>
 
-## 3. Get [Material Icons](https://next-material.balmjs.com/material-icons.zip) (Without downloading)
+## 3. Get [Material Icons](https://next-material.balmjs.com/material-icons.zip) (without downloading)
 
 - Edit `/path/to/my-project/balm.config.js`
 

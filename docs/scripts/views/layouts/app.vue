@@ -43,13 +43,13 @@
               ></ui-menuitem>
             </ui-menu>
           </ui-menu-anchor>
-          <!-- <ui-icon-button
+          <ui-icon-button
             v-tooltip="'Support BalmUI'"
             :class="[toolbarItemClass, 'donate']"
             icon="support"
             aria-describedby="donate"
             @click="$router.push({ name: 'donate' })"
-          ></ui-icon-button>-->
+          ></ui-icon-button>
           <a
             href="https://github.com/balmjs/balm-ui"
             target="_blank"

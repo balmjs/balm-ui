@@ -72,6 +72,8 @@
     "individual-usage": "Individual Usage",
     "demo": "Demo",
     "apis": "APIs",
-    "sass": "Sass Variables"
+    "sass": "Sass Variables",
+    "icon-list": "Icon List",
+    "color-palette": "Material Color Palette"
   }
 }

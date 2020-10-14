@@ -2,15 +2,15 @@
 
 ## 0. 设置开发环境
 
-You need to set up your development environment before you can do anything.
+在开始之前，您需要先设置开发环境。
 
-Install [Node.js® and npm](https://nodejs.org/en/download/) if they are not already on your machine.
+如果您的计算机上尚未安装 [Node.js® and npm](https://nodejs.org/en/download/)，请安装它们。
 
-> **Verify that you are running at least Node.js version 10.13.0 or greater and npm version 5.2.0 or greater** by running `node -v` and `npm -v` in a terminal/console window. Older versions produce errors, but newer versions are fine.
+> 通过在终端/控制台窗口中运行 `node -v` 和 `npm -v` 来验证您至少在运行 Node.js 10.13.0 或更高版本以及 npm 5.2.0 或更高版本。较旧的版本可能会产生错误，所以推荐使用较新的版本。
 
-Good tools make application development quicker and easier to maintain than if you did everything by hand.
+工欲善其事，必先利其器。好的工具可以使应用程序开发更快，更容易维护。
 
-The [Balm CLI](https://github.com/balmjs/balm-cli) is a command line interface tool that scaffolds out a [BalmJS](https://github.com/balmjs/balm) project.
+[Balm CLI](https://github.com/balmjs/balm-cli) 是一个命令行界面工具，用于构建 [BalmJS](https://github.com/balmjs/balm) 项目。
 
 > **[Balm CLI](https://github.com/balmjs/balm-cli)**（BalmJS 官方推荐） 或 [Vue CLI](https://github.com/vuejs/vue-cli) 或 其他工具链 🚀
 

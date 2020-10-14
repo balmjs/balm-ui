@@ -1,1 +1,1 @@
-# Dialog: confirm
+# 确认框

@@ -1,4 +1,4 @@
-# Editor
+# 富文本
 
 A modern WYSIWYG editor. Supports `image` custom upload handler and `emoji` extension by default.
 

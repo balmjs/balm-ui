@@ -1,1 +1,1 @@
-# Theme color
+# 主题色彩

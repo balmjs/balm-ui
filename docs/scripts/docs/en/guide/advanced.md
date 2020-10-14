@@ -11,7 +11,7 @@
    - <a href="javascript:void(0)" class="v-anchor" data-href="#default-usage">Default Usage</a> (desktop)
    - <a href="javascript:void(0)" class="v-anchor" data-href="#Individual-usage">Individual Usage</a> (mobile)
    - <a href="javascript:void(0)" class="v-anchor" data-href="#source-code-usage">Source Code Usage</a> (development)
-3. <a href="javascript:void(0)" class="v-anchor" data-href="#mdi">Get Material Icons without downloading</a>
+3. <a href="javascript:void(0)" class="v-anchor" data-href="#mdi">Get Material Icons</a> (without downloading)
 
 ## 1. Modular CSS
 
@@ -216,6 +216,7 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
     <!-- build:css css/vendors.css -->
     <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
     <link rel="stylesheet" href="/node_modules/balm-ui/components/button/button.css" />
+    <link rel="stylesheet" href="/node_modules/balm-ui/components/icon/icon.css" />
     <link rel="stylesheet" href="/node_modules/balm-ui/components/dialog/dialog.css" />
     <link rel="stylesheet" href="/node_modules/balm-ui/plugins/alert/alert.css" />
     <!-- endbuild -->
@@ -235,6 +236,7 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
       <!-- build:css css/vendors.css -->
       <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
       <link rel="stylesheet" href="/node_modules/balm-ui/components/button/button.css" />
+      <link rel="stylesheet" href="/node_modules/balm-ui/components/icon/icon.css" />
       <link rel="stylesheet" href="/node_modules/balm-ui/components/dialog/dialog.css" />
       <link rel="stylesheet" href="/node_modules/balm-ui/plugins/alert/alert.css" />
       <!-- endbuild -->
@@ -296,7 +298,7 @@ module.exports = {
 
 <div id="mdi"></div>
 
-## 3. Get [Material Icons](https://material.balmjs.com/material-icons.zip) without downloading
+## 3. Get [Material Icons](https://material.balmjs.com/material-icons.zip) (without downloading)
 
 - Edit `/path/to/my-project/balm.config.js`
 

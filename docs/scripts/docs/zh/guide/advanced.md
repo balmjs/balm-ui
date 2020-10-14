@@ -11,7 +11,7 @@
    - <a href="javascript:void(0)" class="v-anchor" data-href="#default-usage">默认用法</a>（桌面端）
    - <a href="javascript:void(0)" class="v-anchor" data-href="#Individual-usage">独立用法</a>（手机端）
    - <a href="javascript:void(0)" class="v-anchor" data-href="#source-code-usage">源码用法</a>（开发）
-3. <a href="javascript:void(0)" class="v-anchor" data-href="#mdi">获取 Material Icons 无需下载</a>
+3. <a href="javascript:void(0)" class="v-anchor" data-href="#mdi">获取 Material Icons</a>（无需下载）
 
 ## 1. CSS 模块化
 
@@ -216,6 +216,7 @@
     <!-- build:css css/vendors.css -->
     <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
     <link rel="stylesheet" href="/node_modules/balm-ui/components/button/button.css" />
+    <link rel="stylesheet" href="/node_modules/balm-ui/components/icon/icon.css" />
     <link rel="stylesheet" href="/node_modules/balm-ui/components/dialog/dialog.css" />
     <link rel="stylesheet" href="/node_modules/balm-ui/plugins/alert/alert.css" />
     <!-- endbuild -->
@@ -235,6 +236,7 @@
       <!-- build:css css/vendors.css -->
       <link rel="stylesheet" href="/node_modules/balm-ui/components/core.css" />
       <link rel="stylesheet" href="/node_modules/balm-ui/components/button/button.css" />
+      <link rel="stylesheet" href="/node_modules/balm-ui/components/icon/icon.css" />
       <link rel="stylesheet" href="/node_modules/balm-ui/components/dialog/dialog.css" />
       <link rel="stylesheet" href="/node_modules/balm-ui/plugins/alert/alert.css" />
       <!-- endbuild -->
@@ -296,7 +298,7 @@
 
 <div id="mdi"></div>
 
-## 3. 获取 [Material Icons](https://material.balmjs.com/material-icons.zip) 无需下载
+## 3. 获取 [Material Icons](https://material.balmjs.com/material-icons.zip)（无需下载）
 
 - 编辑 `/path/to/my-project/balm.config.js`
 

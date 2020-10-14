@@ -22,6 +22,7 @@
  */
 var strings = {
     ARIA_CONTROLS: 'aria-controls',
+    ARIA_DESCRIBEDBY: 'aria-describedby',
     INPUT_SELECTOR: '.mdc-text-field__input',
     LABEL_SELECTOR: '.mdc-floating-label',
     LEADING_ICON_SELECTOR: '.mdc-text-field__icon--leading',

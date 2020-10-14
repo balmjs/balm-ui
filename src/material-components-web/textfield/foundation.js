@@ -103,11 +103,15 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
                 addClass: function () { return undefined; },
                 removeClass: function () { return undefined; },
                 hasClass: function () { return true; },
+                setInputAttr: function () { return undefined; },
+                removeInputAttr: function () { return undefined; },
                 registerTextFieldInteractionHandler: function () { return undefined; },
                 deregisterTextFieldInteractionHandler: function () { return undefined; },
                 registerInputInteractionHandler: function () { return undefined; },
                 deregisterInputInteractionHandler: function () { return undefined; },
-                registerValidationAttributeChangeHandler: function () { return new MutationObserver(function () { return undefined; }); },
+                registerValidationAttributeChangeHandler: function () {
+                    return new MutationObserver(function () { return undefined; });
+                },
                 deregisterValidationAttributeChangeHandler: function () { return undefined; },
                 getNativeInput: function () { return null; },
                 isFocused: function () { return false; },
@@ -222,7 +226,9 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
             this.styleFloating_(this.shouldFloat);
             this.adapter.shakeLabel(this.shouldShake);
         }
-        if (this.helperText_) {
+        if (this.helperText_ &&
+            (this.helperText_.isPersistent() || !this.helperText_.isValidation() ||
+                !this.isValid_)) {
             this.helperText_.showToScreenReader();
         }
     };
@@ -410,6 +416,20 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
         }
         if (this.helperText_) {
             this.helperText_.setValidity(isValid);
+            // We dynamically set or unset aria-describedby for validation helper text
+            // only, based on whether the field is valid
+            var helperTextValidation = this.helperText_.isValidation();
+            if (!helperTextValidation) {
+                return;
+            }
+            var helperTextVisible = this.helperText_.isVisible();
+            var helperTextId = this.helperText_.getId();
+            if (helperTextVisible && helperTextId) {
+                this.adapter.setInputAttr(strings.ARIA_DESCRIBEDBY, helperTextId);
+            }
+            else {
+                this.adapter.removeInputAttr(strings.ARIA_DESCRIBEDBY);
+            }
         }
     };
     /**

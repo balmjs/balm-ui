@@ -379,8 +379,12 @@ var MDCTextField = /** @class */ (function (_super) {
             addClass: function (className) { return _this.root.classList.add(className); },
             removeClass: function (className) { return _this.root.classList.remove(className); },
             hasClass: function (className) { return _this.root.classList.contains(className); },
-            registerTextFieldInteractionHandler: function (evtType, handler) { return _this.listen(evtType, handler); },
-            deregisterTextFieldInteractionHandler: function (evtType, handler) { return _this.unlisten(evtType, handler); },
+            registerTextFieldInteractionHandler: function (evtType, handler) {
+                _this.listen(evtType, handler);
+            },
+            deregisterTextFieldInteractionHandler: function (evtType, handler) {
+                _this.unlisten(evtType, handler);
+            },
             registerValidationAttributeChangeHandler: function (handler) {
                 var getAttributesList = function (mutationsList) {
                     return mutationsList
@@ -392,7 +396,9 @@ var MDCTextField = /** @class */ (function (_super) {
                 observer.observe(_this.input_, config);
                 return observer;
             },
-            deregisterValidationAttributeChangeHandler: function (observer) { return observer.disconnect(); },
+            deregisterValidationAttributeChangeHandler: function (observer) {
+                observer.disconnect();
+            },
         };
         // tslint:enable:object-literal-sort-keys
     };
@@ -401,12 +407,18 @@ var MDCTextField = /** @class */ (function (_super) {
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         return {
             getNativeInput: function () { return _this.input_; },
+            setInputAttr: function (attr, value) {
+                _this.input_.setAttribute(attr, value);
+            },
+            removeInputAttr: function (attr) {
+                _this.input_.removeAttribute(attr);
+            },
             isFocused: function () { return document.activeElement === _this.input_; },
             registerInputInteractionHandler: function (evtType, handler) {
-                return _this.input_.addEventListener(evtType, handler, applyPassive());
+                _this.input_.addEventListener(evtType, handler, applyPassive());
             },
             deregisterInputInteractionHandler: function (evtType, handler) {
-                return _this.input_.removeEventListener(evtType, handler, applyPassive());
+                _this.input_.removeEventListener(evtType, handler, applyPassive());
             },
         };
         // tslint:enable:object-literal-sort-keys

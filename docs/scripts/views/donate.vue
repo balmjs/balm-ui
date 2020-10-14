@@ -25,8 +25,8 @@
       <h6 :class="$tt('headline6')">Recurring Pledges</h6>
       <p>
         Recurring pledges come with exclusive perks, e.g. having your name
-        listed in the Vue GitHub repository, or have your company logo placed on
-        this website.
+        listed in the BalmUI GitHub repository, or have your company logo placed
+        on this website.
       </p>
       <ul>
         <li>

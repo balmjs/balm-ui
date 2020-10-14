@@ -1,5 +1,5 @@
-# Icons
+# 图标
 
 Material icons are delightful, beautifully crafted symbols for common actions and items.
 
-> ⚠️ **IE11** only supports `filled` mode
+> ⚠️ **IE11** 仅支持 `filled` 模式

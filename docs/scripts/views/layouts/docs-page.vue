@@ -62,9 +62,11 @@
         <ui-markdown :text="docs.css"></ui-markdown>
       </template>
 
-      <h2 v-if="name === 'icon'" v-anchor:id="'ui-icons'">4. Icons List</h2>
+      <h2 v-if="name === 'icon'" v-anchor:id="'ui-icons'">
+        4. {{ $t('page.icon-list') }}
+      </h2>
       <h2 v-if="name === 'theme'" v-anchor:id="'ui-colors'">
-        4. Color Palette
+        4. {{ $t('page.color-palette') }}
       </h2>
       <slot name="after"></slot>
     </div>

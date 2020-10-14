@@ -26,7 +26,7 @@ const killIE = () => {
 export { isIE, killIE };
 ```
 
-- File: `/path/to/app/scripts/main.js`
+- 文件：`/path/to/app/scripts/main.js`
 
 ```js
 import { isIE, killIE } from './kill-ie';

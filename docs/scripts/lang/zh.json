@@ -52,7 +52,7 @@
     "alert-dialog": "提示框",
     "confirm-dialog": "确认框",
     "snackbar": "消息框",
-    "toast": "消息提示",
+    "toast": "短消息提示",
     "banner": "全局提示",
     "progress": "进度条",
     "spinner": "加载中",
@@ -72,6 +72,8 @@
     "individual-usage": "独立用法",
     "demo": "例子",
     "apis": "APIs",
-    "sass": "Sass变量"
+    "sass": "Sass变量",
+    "icon-list": "图标列表",
+    "color-palette": "Material 调色板"
   }
 }

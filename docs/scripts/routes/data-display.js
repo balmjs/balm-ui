@@ -8,7 +8,9 @@ const Badge = () => import('@/views/components/badge');
 export default [
   {
     path: '',
-    redirect: 'list'
+    redirect: () => {
+      return { name: 'data-display.list' };
+    }
   },
   {
     path: 'list',

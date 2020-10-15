@@ -1,7 +1,9 @@
 <template>
-  <div class="page--subtest"></div>
+  <div>SubTest</div>
 </template>
 
 <script>
 export default {};
 </script>
+
+<style></style>

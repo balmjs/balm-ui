@@ -5,7 +5,9 @@ const IconButton = () => import('@/views/components/icon-button');
 export default [
   {
     path: '',
-    redirect: 'button'
+    redirect: () => {
+      return { name: 'general.button' };
+    }
   },
   {
     path: 'button',

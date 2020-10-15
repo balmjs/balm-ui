@@ -7,7 +7,9 @@ const Upgrade = () => import('@/views/guide/upgrade');
 export default [
   {
     path: '',
-    redirect: 'intro'
+    redirect: () => {
+      return { name: 'guide.intro' };
+    }
   },
   {
     path: 'intro',

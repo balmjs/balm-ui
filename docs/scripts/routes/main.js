@@ -1,4 +1,3 @@
-import { isDev } from '@/config';
 import Home from '@/views/home';
 // Layout
 import BlankLayout from '@/views/layouts/blank';
@@ -12,14 +11,14 @@ import dataInputRoutes from './data-input';
 import dataDisplayRoutes from './data-display';
 import feedbackRoutes from './feedback';
 import miscRoutes from './misc';
+import testRoutes from './test';
 // Pages
 const Store = () => import('@/views/plugins/store');
 const Utils = () => import('@/views/utils');
 const Donate = () => import('@/views/donate');
 const NotFound = () => import('@/views/not-found');
-const Test = () => import('@/views/test');
 
-const baseRoutes = [
+const routes = [
   {
     path: '/',
     name: 'home',
@@ -94,21 +93,11 @@ const baseRoutes = [
     name: 'donate',
     component: Donate
   },
+  ...testRoutes,
   {
     path: '/:catchAll(.*)',
     component: NotFound
   }
 ];
 
-const testRoutes = isDev
-  ? [
-      {
-        path: '/test',
-        name: 'test',
-        component: Test,
-        meta: { noLayout: true }
-      }
-    ]
-  : [];
-
-export default baseRoutes.concat(testRoutes);
+export default routes;

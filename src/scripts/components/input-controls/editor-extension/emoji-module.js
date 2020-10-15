@@ -1,6 +1,6 @@
 import Quill from 'quill';
 import Emotion from './emotion';
-import { emojiClassName, getCode, createEmoji } from './emoji-utils';
+import { getCode, createEmoji } from './emoji-utils';
 
 const Module = Quill.import('core/module');
 const icons = Quill.import('ui/icons');

@@ -77,14 +77,6 @@ const BalmUI_AnchorDirective = {
       bindAnchor('add');
     }
   },
-  updated(el, binding, vnode) {
-    // TODO:
-    if (binding.modifiers.html) {
-      // vnode.context.$nextTick(() => {
-      //   bindAnchor('add', vnode.context.$el);
-      // });
-    }
-  },
   beforeUnmount(el, binding) {
     if (el === UI_ANCHOR.body) {
       UI_ANCHOR.body = document.documentElement || document.body;

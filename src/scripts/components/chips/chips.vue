@@ -104,23 +104,19 @@ export default {
       if (this.choiceChips || this.filterChips) {
         this.currentOptions = val;
       }
-    },
-    chips(val) {
-      // TODO: no watching
-      if (val.length > this.chipsCount) {
-        this.addChip(val.length);
-      } else if (val.length < this.chipsCount) {
-        this.chipsCount--;
-      }
     }
   },
   mounted() {
     this.init();
   },
   updated() {
-    if (!this.$chipSet) {
-      this.init();
-    }
+    this.$nextTick(() => {
+      if (this.inputChips) {
+        this.addChip();
+      } else if (!this.$chipSet && (this.choiceChips || this.filterChips)) {
+        this.init();
+      }
+    });
   },
   methods: {
     init() {
@@ -202,16 +198,34 @@ export default {
           }
         });
       } else {
-        this.$chipSet = null;
+        if (!this.inputChips) {
+          this.$chipSet = null;
+        }
       }
     },
-    addChip(length) {
-      this.$nextTick(() => {
-        let newChipIndex = length - 1;
-        let newChipEl = this.el.querySelectorAll('.mdc-chip')[newChipIndex];
-        this.$chipSet.addChip(newChipEl);
-        this.chipsCount++;
-      });
+    addChip() {
+      const oldChipsCount = this.chipsCount;
+      const newChipsCount = this.chips.length;
+
+      if (newChipsCount) {
+        if (oldChipsCount === 0) {
+          this.el.querySelectorAll('.mdc-chip').forEach((newChipEl) => {
+            this.$chipSet.addChip(newChipEl);
+          });
+          this.chipsCount = newChipsCount;
+        } else {
+          if (newChipsCount > oldChipsCount) {
+            let newChipIndex = newChipsCount - 1;
+            let newChipEl = this.el.querySelectorAll('.mdc-chip')[newChipIndex];
+            this.$chipSet.addChip(newChipEl);
+            this.chipsCount++;
+          } else if (newChipsCount < oldChipsCount) {
+            this.chipsCount--;
+          }
+        }
+      } else {
+        this.chipsCount = 0;
+      }
     }
   }
 };

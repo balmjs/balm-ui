@@ -285,10 +285,6 @@ We officially support the last two versions of every major browser. Specifically
 - **Edge** on Windows
 - **IE** 11 on Windows
 
-## TODO
-
-- [ ] Input Chips
-
 ## Special Thanks to
 
 - [BalmJS](https://balm.js.org/)

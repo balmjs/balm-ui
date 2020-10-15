@@ -103,13 +103,15 @@ export default {
   },
   watch: {
     model(val) {
-      if (val) {
-        if (this.htmlContent !== val) {
-          this.setHTML(val);
-          this.$editor.blur();
+      if (this.$editor) {
+        if (val) {
+          if (this.htmlContent !== val) {
+            this.setHTML(val);
+            this.$editor.blur();
+          }
+        } else {
+          this.setHTML('');
         }
-      } else {
-        this.setHTML('');
       }
     }
   },
@@ -198,7 +200,18 @@ export default {
       return Emotion.encode(html); // output: content
     },
     decodeEmoji(content) {
-      return Emotion.decode(content); // output: html
+      let html = content;
+
+      try {
+        html = Emotion.decode(content); // output: html
+      } catch (e) {
+        console.warn(
+          '[UiEditor] - `decodeEmoji`:',
+          'The content must be an async data'
+        );
+      }
+
+      return html;
     },
     onFileChange(event) {
       const file = event.target.files[0];

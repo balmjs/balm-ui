@@ -159,6 +159,8 @@
 @use '@material/textfield/icon' with (
   $icon-size: 24px,
   $dense-icon-size: 20px,
+  $touch-target-size: 48px,
+
   $leading-icon-padding-left: 16px,
   $leading-icon-padding-right: 8px,
   $trailing-icon-padding-left: 12px,

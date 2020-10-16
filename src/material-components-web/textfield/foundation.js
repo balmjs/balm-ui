@@ -38,6 +38,7 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
         _this.receivedUserInput_ = false;
         _this.isValid_ = true;
         _this.useNativeValidation_ = true;
+        _this.validateOnValueChange_ = true;
         _this.helperText_ = foundationMap.helperText;
         _this.characterCounter_ = foundationMap.characterCounter;
         _this.leadingIcon_ = foundationMap.leadingIcon;
@@ -47,7 +48,9 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
         _this.inputInputHandler_ = function () { return _this.handleInput(); };
         _this.setPointerXOffset_ = function (evt) { return _this.setTransformOrigin(evt); };
         _this.textFieldInteractionHandler_ = function () { return _this.handleTextFieldInteraction(); };
-        _this.validationAttributeChangeHandler_ = function (attributesList) { return _this.handleValidationAttributeChange(attributesList); };
+        _this.validationAttributeChangeHandler_ = function (attributesList) {
+            return _this.handleValidationAttributeChange(attributesList);
+        };
         return _this;
     }
     Object.defineProperty(MDCTextFieldFoundation, "cssClasses", {
@@ -81,7 +84,8 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
     });
     Object.defineProperty(MDCTextFieldFoundation.prototype, "shouldFloat", {
         get: function () {
-            return this.shouldAlwaysFloat_ || this.isFocused_ || !!this.getValue() || this.isBadInput_();
+            return this.shouldAlwaysFloat_ || this.isFocused_ || !!this.getValue() ||
+                this.isBadInput_();
         },
         enumerable: true,
         configurable: true
@@ -95,7 +99,8 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
     });
     Object.defineProperty(MDCTextFieldFoundation, "defaultAdapter", {
         /**
-         * See {@link MDCTextFieldAdapter} for typing information on parameters and return types.
+         * See {@link MDCTextFieldAdapter} for typing information on parameters and
+         * return types.
          */
         get: function () {
             // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
@@ -288,26 +293,32 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
      * @param value The value to set on the input Element.
      */
     MDCTextFieldFoundation.prototype.setValue = function (value) {
-        // Prevent Safari from moving the caret to the end of the input when the value has not changed.
+        // Prevent Safari from moving the caret to the end of the input when the
+        // value has not changed.
         if (this.getValue() !== value) {
             this.getNativeInput_().value = value;
         }
         this.setCharacterCounter_(value.length);
-        var isValid = this.isValid();
-        this.styleValidity_(isValid);
+        if (this.validateOnValueChange_) {
+            var isValid = this.isValid();
+            this.styleValidity_(isValid);
+        }
         if (this.adapter.hasLabel()) {
             this.notchOutline(this.shouldFloat);
             this.adapter.floatLabel(this.shouldFloat);
             this.styleFloating_(this.shouldFloat);
-            this.adapter.shakeLabel(this.shouldShake);
+            if (this.validateOnValueChange_) {
+                this.adapter.shakeLabel(this.shouldShake);
+            }
         }
     };
     /**
-     * @return The custom validity state, if set; otherwise, the result of a native validity check.
+     * @return The custom validity state, if set; otherwise, the result of a
+     *     native validity check.
      */
     MDCTextFieldFoundation.prototype.isValid = function () {
-        return this.useNativeValidation_
-            ? this.isNativeInputValid_() : this.isValid_;
+        return this.useNativeValidation_ ? this.isNativeInputValid_() :
+            this.isValid_;
     };
     /**
      * @param isValid Sets the custom validity state of the Text Field.
@@ -321,8 +332,24 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
         }
     };
     /**
-     * Enables or disables the use of native validation. Use this for custom validation.
-     * @param useNativeValidation Set this to false to ignore native input validation.
+     * @param shouldValidate Whether or not validity should be updated on
+     *     value change.
+     */
+    MDCTextFieldFoundation.prototype.setValidateOnValueChange = function (shouldValidate) {
+        this.validateOnValueChange_ = shouldValidate;
+    };
+    /**
+     * @return Whether or not validity should be updated on value change. `true`
+     *     by default.
+     */
+    MDCTextFieldFoundation.prototype.getValidateOnValueChange = function () {
+        return this.validateOnValueChange_;
+    };
+    /**
+     * Enables or disables the use of native validation. Use this for custom
+     * validation.
+     * @param useNativeValidation Set this to false to ignore native input
+     *     validation.
      */
     MDCTextFieldFoundation.prototype.setUseNativeValidation = function (useNativeValidation) {
         this.useNativeValidation_ = useNativeValidation;
@@ -378,7 +405,8 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
         }
     };
     /**
-     * Sets character counter values that shows characters used and the total character limit.
+     * Sets character counter values that shows characters used and the total
+     * character limit.
      */
     MDCTextFieldFoundation.prototype.setCharacterCounter_ = function (currentLength) {
         if (!this.characterCounter_) {
@@ -391,7 +419,8 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
         this.characterCounter_.setCounterValue(currentLength, maxLength);
     };
     /**
-     * @return True if the Text Field input fails in converting the user-supplied value.
+     * @return True if the Text Field input fails in converting the user-supplied
+     *     value.
      */
     MDCTextFieldFoundation.prototype.isBadInput_ = function () {
         // The badInput property is not supported in IE 11 💩.
@@ -476,12 +505,15 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
         }
     };
     /**
-     * @return The native text input element from the host environment, or an object with the same shape for unit tests.
+     * @return The native text input element from the host environment, or an
+     *     object with the same shape for unit tests.
      */
     MDCTextFieldFoundation.prototype.getNativeInput_ = function () {
-        // this.adapter may be undefined in foundation unit tests. This happens when testdouble is creating a mock object
-        // and invokes the shouldShake/shouldFloat getters (which in turn call getValue(), which calls this method) before
-        // init() has been called from the MDCTextField constructor. To work around that issue, we return a dummy object.
+        // this.adapter may be undefined in foundation unit tests. This happens when
+        // testdouble is creating a mock object and invokes the
+        // shouldShake/shouldFloat getters (which in turn call getValue(), which
+        // calls this method) before init() has been called from the MDCTextField
+        // constructor. To work around that issue, we return a dummy object.
         var nativeInput = this.adapter ? this.adapter.getNativeInput() : null;
         return nativeInput || {
             disabled: false,

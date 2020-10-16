@@ -117,8 +117,6 @@ export default {
     }
   },
   mounted() {
-    this.Editor = require('./extension').default; // NOTE: For SSR
-
     this.$nextTick(() => {
       this.$editor = new QuillEditor(this.$refs.editor, {
         options: this.getOptions(),

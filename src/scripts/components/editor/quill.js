@@ -10,7 +10,6 @@ class QuillEditor {
 
     if (options.theme === 'snow') {
       registerExtension(Quill, emotions);
-
       options.modules.emoji = true;
     }
 

@@ -1,7 +1,7 @@
 import Emotion from '../emoji/emotion';
 import getEmojiFormat from './emoji-format';
 import getEmojiModule from './emoji-module';
-import getHistory from './history';
+import registerHistory from './history';
 
 function registerExtension(Quill, emotions) {
   new Emotion(emotions);
@@ -14,7 +14,7 @@ function registerExtension(Quill, emotions) {
     true
   );
 
-  getHistory(Quill);
+  registerHistory(Quill);
 }
 
 export default registerExtension;

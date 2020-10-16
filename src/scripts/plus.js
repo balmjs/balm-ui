@@ -10,7 +10,7 @@ import UiDatepicker from './components/pickers/datepicker';
 import UiRangepicker from './components/pickers/rangepicker';
 import UiAlert from './components/others/alert';
 import UiCollapse from './components/others/collapse';
-import UiEditor from './components/input-controls/editor';
+import UiEditor from './components/editor/editor';
 /**
  * Plugins
  */

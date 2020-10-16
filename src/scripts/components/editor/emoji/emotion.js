@@ -4,7 +4,7 @@ import {
   getCode,
   createEmoji,
   replaceElementToString
-} from './emoji-utils';
+} from './utils';
 
 const emojiRegExp = /(:\w+:)|(\[\w+\])/g;
 

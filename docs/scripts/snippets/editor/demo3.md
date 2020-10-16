@@ -95,11 +95,13 @@ export default {
     };
   },
   mounted() {
-    if (this.$refs.editor) {
-      this.decodeContent = this.$refs.editor.decodeEmoji(
-        '<p>Hello BalmUI [oo] and BalmJS :smile: !</p>'
-      );
-    }
+    setTimeout(() => {
+      if (this.$refs.editor) {
+        this.decodeContent = this.$refs.editor.decodeEmoji(
+          '<p>Hello BalmUI [oo] and BalmJS :smile: !</p>'
+        );
+      }
+    }, 1);
   },
   methods: {
     async onFileChange(file, insert) {

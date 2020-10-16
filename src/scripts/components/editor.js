@@ -1,4 +1,4 @@
 import bootstrap from '../config/bootstrap';
-import UiEditor from './input-controls/editor';
+import UiEditor from './editor/editor';
 
 export default bootstrap(UiEditor);

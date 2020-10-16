@@ -15,7 +15,7 @@ function getEmojiFormat(Quill) {
         const emojiMap = Emotion.getEmotions();
         createEmoji(emojiMap[value], node);
       } else {
-        console.warn('Invalid emoji');
+        console.warn('[UiEditor] Invalid emoji');
       }
 
       return node;

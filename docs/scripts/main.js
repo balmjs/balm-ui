@@ -4,7 +4,8 @@ import router from '@/routes';
 import i18n from '@/lang';
 import myStore from '@/store';
 import $http from '@/plugins/http';
-import App from '@/views/layouts/app';
+// import App from '@/views/layouts/app';
+import App from '@/views/editor'; // for dev
 import { setGlobalProps } from '@/config';
 import validatorRules from '@/config/validator-rules';
 // BalmUI

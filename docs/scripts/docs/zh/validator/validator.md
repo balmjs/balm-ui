@@ -49,9 +49,6 @@ export default {
     return {
       formData: {
         fieldName: ''
-      },
-      validMsg: {
-        fieldName: ''
       }
     };
   },
@@ -65,8 +62,6 @@ export default {
         messages,
         validMsg
       } = this.$validate(this.formData);
-
-      this.validMsg = validMsg;
     }
   }
 };
@@ -119,7 +114,7 @@ $resetValidations();
         validations() {
           return this.step === 1
             ? {
-                user: {
+                username: {
                   label: 'Username',
                   validator: 'required'
                 }
@@ -159,14 +154,14 @@ $resetValidations();
         return {
           step: 1,
           formData: {
-            user: '',
+            username: '',
             password: ''
           }
         };
       },
       methods: {
         onSubmit() {
-          let customFieldset = this.step === 1 ? ['user'] : ['password'];
+          let customFieldset = this.step === 1 ? ['username'] : ['password'];
           let result = this.$validate(this.formData, customFieldset);
           // ...
         }
@@ -182,7 +177,7 @@ $resetValidations();
         return {
           step: 1,
           formData: {
-            user: '',
+            username: '',
             password: ''
           }
         }
@@ -194,7 +189,7 @@ $resetValidations();
           let customValidations =
             this.step === 1
               ? {
-                  user: {
+                  username: {
                     label: 'Username',
                     validator: 'required'
                   }

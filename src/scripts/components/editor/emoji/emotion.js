@@ -4,7 +4,7 @@ import {
   getCode,
   createEmoji,
   replaceElementToString
-} from './emoji-utils';
+} from './utils';
 
 const emojiRegExp = /(:\w+:)|(\[\w+\])/g;
 
@@ -36,7 +36,7 @@ class Emotion {
 
         emojiData[emotion.title] = emojiList;
       } else {
-        console.warn('Invalid emotions format');
+        console.warn('[UiEditor] Invalid emotions format');
         // reset
         emojiTypes = [];
         emojiData = {};

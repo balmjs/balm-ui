@@ -66,7 +66,7 @@ function getConfig(balm) {
         'balm-ui': path.join(workspace, 'src/scripts'),
         'balm-ui-editor': path.join(
           workspace,
-          'src/scripts/components/input-controls/editor.vue'
+          'src/scripts/components/editor/editor.vue'
         )
       },
       plugins: [new VueLoaderPlugin()],

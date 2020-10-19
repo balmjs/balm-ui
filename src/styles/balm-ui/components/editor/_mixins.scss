@@ -1,0 +1,11 @@
+@mixin setFontFamliy($font-families) {
+  @each $family-value, $family-name in $font-families {
+    .ql-font .ql-picker-item[data-value='#{$family-value}']::before {
+      font-family: $family-name;
+    }
+
+    .ql-font-#{$family-value} {
+      font-family: $family-name;
+    }
+  }
+}

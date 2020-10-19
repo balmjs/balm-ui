@@ -24,7 +24,9 @@ class QuillEditor {
       .forEach((el) => el.classList.add('material-icons'));
 
     document
-      .querySelectorAll('.ql-toolbar .ql-picker-label')
+      .querySelectorAll(
+        '.ql-toolbar .ql-picker:not(.ql-header):not(.ql-font):not(.ql-size) .ql-picker-label'
+      )
       .forEach((el) => el.classList.add('material-icons'));
 
     document

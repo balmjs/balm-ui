@@ -58,6 +58,8 @@ const UI_EDITOR = {
     underline: 'format_underlined',
     video: 'videocam',
     // extension icons
+    'horizontal-rule': 'horizontal_rule',
+    'line-height': 'format_line_spacing',
     cut: 'content_cut',
     copy: 'content_copy',
     paste: 'content_paste',

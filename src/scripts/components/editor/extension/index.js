@@ -2,6 +2,7 @@ import Emotion from '../emoji/emotion';
 import getEmojiFormat from './emoji-format';
 import getEmojiModule from './emoji-module';
 import setToolbarIcons from './toolbar';
+import setFont from './font';
 
 function registerExtension(Quill, { toolbarIcons, emotions }) {
   new Emotion(emotions);
@@ -15,6 +16,7 @@ function registerExtension(Quill, { toolbarIcons, emotions }) {
   );
 
   setToolbarIcons(Quill, toolbarIcons);
+  setFont(Quill);
 }
 
 export default registerExtension;

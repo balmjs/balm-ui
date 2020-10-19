@@ -1,6 +1,10 @@
 <template>
   <div>
-    <ui-editor v-model="content" :toolbar="toolbar">
+    <ui-editor
+      v-model="content"
+      :toolbar="toolbar"
+      :toolbar-custom-handlers="toolbarCustomHandlers"
+    >
       <template #toolbar>
         <div id="toolbar">
           <div class="toolbar">
@@ -19,24 +23,69 @@
               <span class="ql-background"></span>
               <select class="ql-background"></select>
 
-              <span class="ql-align"></span>
               <select class="ql-align"></select>
 
-              <span class="ql-header"></span>
               <select class="ql-header">
                 <option selected></option>
-                <option value="1">Headline 1</option>
-                <option value="2">Headline 2</option>
-                <option value="3">Headline 3</option>
-                <option value="4">Headline 4</option>
-                <option value="5">Headline 5</option>
-                <option value="6">Headline 6</option>
+                <option value="1"></option>
+                <option value="2"></option>
+                <option value="3"></option>
+                <option value="4"></option>
+                <option value="5"></option>
+                <option value="6"></option>
               </select>
 
-              <span class="ql-font"></span>
-              <select class="ql-font"></select>
-              <span class="ql-size"></span>
-              <select class="ql-size"></select>
+              <select class="ql-font">
+                <option
+                  v-for="(font, index) in [
+                    'Arial',
+                    'Arial Black',
+                    'Comic Sans MS',
+                    'Courier New',
+                    'Tahoma',
+                    'Georgia',
+                    'Helvetica',
+                    'Segoe UI',
+                    'Sans-Serif',
+                    'Impact',
+                    'Times New Roman',
+                    'Verdana'
+                  ]"
+                  :key="index"
+                  :value="font.toLowerCase().replace(/\s/g, '-')"
+                >
+                  {{ font }}
+                </option>
+              </select>
+              <select class="ql-size">
+                <option
+                  v-for="size in [
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    16,
+                    18,
+                    24,
+                    36,
+                    48,
+                    60,
+                    72,
+                    96
+                  ]"
+                  :key="size"
+                  :value="`${size}px`"
+                >
+                  {{ size }}px
+                </option>
+              </select>
+
+              <select class="ql-line-height">
+                <option value="1" selected>100%</option>
+              </select>
             </span>
           </div>
           <div class="toolbar"></div>
@@ -62,7 +111,19 @@ export default {
   data() {
     return {
       content: '',
-      toolbar: '#toolbar'
+      toolbar: '#toolbar',
+      // toolbar: [
+      //   'bold',
+      //   'italic',
+      //   'underline',
+      //   'color',
+      //   'background',
+      //   { align: [] },
+      //   { header: [false, 1, 2, 3, 4, 5, 6] },
+      //   { font: [] },
+      //   { size: [8, 9, 10, 11, 12, 13, 14, 16, 18, 24, 36, 48, 60, 72, 96] }
+      // ],
+      toolbarCustomHandlers: {}
     };
   }
 };

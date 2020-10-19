@@ -1,3 +1,6 @@
+@use './variables' as editor-variables;
+@use './mixins' as editor-mixins;
+
 .mdc-editor-container {
   position: relative;
 }
@@ -14,3 +17,5 @@
 .ql-toolbar .material-icons {
   font-size: 18px;
 }
+
+@include editor-mixins.setFontFamliy(editor-variables.$font-families);

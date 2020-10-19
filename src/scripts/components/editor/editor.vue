@@ -9,7 +9,8 @@
 </template>
 
 <script>
-import Emotion from './editor-extension/emotion';
+import QuillEditor from './quill';
+import Emotion from './emoji/emotion';
 import getType from '../../utils/typeof';
 
 // Define editor constants
@@ -20,11 +21,11 @@ const UI_EDITOR = {
   },
   BLANK: '<p><br></p>',
   toolbarOptions: [
-    [{ font: [] }, { size: ['small', false, 'large', 'huge'] }],
+    [{ font: [] }, { size: [] }],
     ['bold', 'italic', 'underline', 'strike'],
     [{ color: [] }, { background: [] }],
     [{ script: 'sub' }, { script: 'super' }],
-    [{ header: 1 }, { header: 2 }, 'blockquote', 'code-block'],
+    [{ header: [] }, 'blockquote', 'code-block'],
     [
       { list: 'ordered' },
       { list: 'bullet' },
@@ -93,7 +94,6 @@ export default {
   emits: [UI_EDITOR.EVENT.TEXT_CHANGE, UI_EDITOR.EVENT.FILE_CHANGE],
   data() {
     return {
-      Editor: {},
       $editor: null,
       htmlContent: ''
     };
@@ -111,10 +111,8 @@ export default {
     }
   },
   mounted() {
-    this.Editor = require('./editor-extension').default; // NOTE: For SSR
-
     this.$nextTick(() => {
-      this.$editor = this.Editor.create(this.$refs.editor, {
+      this.$editor = new QuillEditor(this.$refs.editor, {
         options: this.getOptions(),
         emotions: this.emotions,
         extension: this.extension
@@ -136,7 +134,7 @@ export default {
     });
   },
   unmounted() {
-    this.Editor.destroy();
+    QuillEditor.destroy();
   },
   methods: {
     getOptions() {
@@ -167,7 +165,7 @@ export default {
           customHandlers[customFormat] = (formatValue) => {
             if (formatValue) {
               const insert = (value = 'null') => {
-                this.Editor.insert(customFormat, value);
+                QuillEditor.insert(customFormat, value);
               };
 
               this.toolbarCustomHandlers[customFormat](this.$editor, insert);
@@ -200,7 +198,7 @@ export default {
     onFileChange(event) {
       const file = event.target.files[0];
       const insert = (url) => {
-        this.Editor.insert('image', url);
+        QuillEditor.insert('image', url);
       };
 
       this.$emit(UI_EDITOR.EVENT.FILE_CHANGE, file, insert);

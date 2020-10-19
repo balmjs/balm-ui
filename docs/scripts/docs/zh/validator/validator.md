@@ -20,7 +20,7 @@ balmUI.validate(formData, customFieldset);
 ```js
 {
   fieldName1: {
-    validate(fieldValue1, formData) {
+    validate(fieldValue, formData) {
       // Validation method
       return true;
     },
@@ -36,7 +36,7 @@ balmUI.validate(formData, customFieldset);
 ```js
 // Define validator
 const validations = {
-  fieldName: {
+  fieldName1: {
     label: 'Field Label',
     validator: 'required, customRule1',
     customRule1: {
@@ -46,8 +46,9 @@ const validations = {
       },
       message: 'Invalid format'
     }
-    // customRule2: { ... }
+    // customRule2: {}
   }
+  // fieldName2: {}
 };
 ```
 
@@ -61,9 +62,6 @@ const validations = {
 
   const state = reactive({
     formData: {
-      fieldName: ''
-    },
-    validMsg: {
       fieldName: ''
     }
   });
@@ -84,12 +82,10 @@ const validations = {
           valid,
           validFields,
           invalidFields,
-          messages,
           message,
+          messages,
           validMsg
         } = this.balmUI.validate(state.formData);
-
-        state.validMsg = validMsg;
       }
     }
   };
@@ -109,9 +105,6 @@ const validations = {
         validations,
         formData: {
           fieldName: ''
-        },
-        validMsg: {
-          fieldName: ''
         }
       };
     },
@@ -121,12 +114,10 @@ const validations = {
           valid,
           validFields,
           invalidFields,
-          messages,
           message,
+          messages,
           validMsg
         } = this.balmUI.validate(this.formData);
-
-        this.validMsg = validMsg;
       }
     }
   };
@@ -137,8 +128,8 @@ const validations = {
 | `valid`         | boolean | The validator result.                                  |
 | `validFields`   | array   | Valid fields.                                          |
 | `invalidFields` | array   | Invalid fields.                                        |
-| `messages`      | array   | The messages of all invalid fields.                    |
 | `message`       | string  | The message of the first invalid field.                |
+| `messages`      | array   | The messages of all invalid fields.                    |
 | `validMsg`      | object  | The messages as an object. (Same format as `formData`) |
 
 - Set validations for the dynamic form
@@ -159,3 +150,127 @@ balmUI.setValidations(validationRules);
 // New in 7.4.0
 balmUI.resetValidations();
 ```
+
+- For the dynamic form verification:
+
+  - 1. using `computed`
+
+    ```js
+    import { useValidator } from 'balm-ui';
+
+    export default {
+      data() {
+        return {
+          balmUI: useValidator(),
+          step: 1,
+          formData: {
+            username: '',
+            password: ''
+          }
+        };
+      },
+      computed: {
+        validations() {
+          return this.step === 1
+            ? {
+                username: {
+                  label: 'Username',
+                  validator: 'required'
+                }
+              }
+            : {
+                password: {
+                  label: 'Password',
+                  validator: 'required'
+                }
+              };
+        }
+      },
+      methods: {
+        onSubmit() {
+          let result = this.balmUI.validate(this.formData);
+          // ...
+        }
+      }
+    };
+    ```
+
+  - 2. using `customFieldset` for `balmUI.validate`
+
+    ```js
+    import { useValidator } from 'balm-ui';
+
+    const validations = {
+      username: {
+        label: 'Username',
+        validator: 'required'
+      },
+      password: {
+        label: 'Password',
+        validator: 'required'
+      }
+    };
+
+    export default {
+      data() {
+        return {
+          balmUI: useValidator(),
+          validations,
+          step: 1,
+          formData: {
+            username: '',
+            password: ''
+          }
+        };
+      },
+      methods: {
+        onSubmit() {
+          let customFieldset = this.step === 1 ? ['username'] : ['password'];
+          let result = this.balmUI.validate(this.formData, customFieldset);
+          // ...
+        }
+      }
+    };
+    ```
+
+  - 3. using `balmUI.resetValidations` and `balmUI.setValidations`
+
+    ```js
+    import { useValidator } from 'balm-ui';
+
+    export default {
+      data() {
+        return {
+          balmUI: useValidator(),
+          step: 1,
+          formData: {
+            username: '',
+            password: ''
+          }
+        }
+      },
+      methods: {
+        onSubmit() {
+          this.balmUI.resetValidations();
+
+          let customValidations =
+            this.step === 1
+              ? {
+                  username: {
+                    label: 'Username',
+                    validator: 'required'
+                  }
+                }
+              : {
+                  password: {
+                    label: 'Password',
+                    validator: 'required'
+                  }
+                };
+          this.balmUI.setValidations(customValidations);
+
+          let result = this.balmUI.validate(this.formData);
+          // ...
+      }
+    };
+    ```

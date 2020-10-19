@@ -1,7 +1,7 @@
 ```html
 <ui-form item-margin-bottom="10">
   <ui-form-field class="form-item">
-    <ui-textfield v-model="formData.mobile">Mobile</ui-textfield>
+    <ui-textfield v-model="formData.mobile">Mobile </ui-textfield>
   </ui-form-field>
   <ui-form-field class="form-item">
     <ui-textfield v-model="formData.password" input-type="password"
@@ -29,12 +29,14 @@
   </ui-alert>
 
   <ui-form-field class="form-item form-actions">
-    <ui-button raised @click="submit">Submit</ui-button>
+    <ui-button raised @click="onSubmit">Submit</ui-button>
   </ui-form-field>
 </ui-form>
 ```
 
 ```js
+import { useValidator } from 'balm-ui';
+
 const validations = {
   mobile: {
     label: 'Mobile',
@@ -84,9 +86,10 @@ const genderOptions = [
 ];
 
 export default {
-  validations,
   data() {
     return {
+      balmUI: useValidator(),
+      validations,
       genderOptions,
       formData: {
         mobile: '',
@@ -98,13 +101,13 @@ export default {
     };
   },
   methods: {
-    submit() {
-      let result = this.$validate(this.formData);
+    onSubmit() {
+      let result = this.balmUI.validate(this.formData);
       let { valid, messages } = result;
       this.messages = messages;
 
       if (valid) {
-        console.log('gg');
+        this.$toast('gg');
       }
     }
   }

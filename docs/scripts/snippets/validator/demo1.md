@@ -1,44 +1,29 @@
 ```html
-<ui-form>
-  <legend>Form Area</legend>
+<ui-form item-margin-bottom="10">
   <ui-form-field class="form-item">
-    <ui-textfield
-      id="mobile"
-      v-model="formData.mobile"
-      helper-text-id="mobile-helper-text"
-      >Mobile
-    </ui-textfield>
-    <ui-textfield-helper
-      id="mobile-helper-text"
-      v-model:validMsg="validMsg.mobile"
-    ></ui-textfield-helper>
+    <ui-textfield v-model="formData.mobile">Mobile </ui-textfield>
   </ui-form-field>
   <ui-form-field class="form-item">
-    <ui-textfield
-      id="password"
-      v-model="formData.password"
-      input-type="password"
-      helper-text-id="password-helper-text"
+    <ui-textfield v-model="formData.password" input-type="password"
       >Password</ui-textfield
     >
-    <ui-textfield-helper
-      id="password-helper-text"
-      v-model:validMsg="validMsg.password"
-    ></ui-textfield-helper>
   </ui-form-field>
   <ui-form-field class="form-item">
-    <ui-textfield
-      id="repassword"
-      v-model="formData.repassword"
-      input-type="password"
-      helper-text-id="repassword-helper-text"
+    <ui-textfield v-model="formData.repassword" input-type="password"
       >Repeat Password</ui-textfield
     >
-    <ui-textfield-helper
-      id="repassword-helper-text"
-      v-model:validMsg="validMsg.repassword"
-    ></ui-textfield-helper>
   </ui-form-field>
+  <ui-form-field>
+    <ui-select
+      v-model="formData.gender"
+      :options="genderOptions"
+      default-label="Unknown"
+      >Gender</ui-select
+    >
+  </ui-form-field>
+
+  <ui-alert v-if="message" state="error">{{ message }}</ui-alert>
+
   <ui-form-field class="form-item form-actions">
     <ui-button raised @click="onSubmit">Submit</ui-button>
   </ui-form-field>
@@ -46,6 +31,8 @@
 ```
 
 ```js
+import { useValidator } from 'balm-ui';
+
 const validations = {
   mobile: {
     label: 'Mobile',
@@ -76,94 +63,49 @@ const validations = {
       },
       message: 'repassword !== password'
     }
+  },
+  gender: {
+    label: 'Gender',
+    validator: 'required'
+  }
+};
+
+const genderOptions = [
+  {
+    label: 'Male',
+    value: 'M'
+  },
+  {
+    label: 'Female',
+    value: 'F'
+  }
+];
+
+export default {
+  data() {
+    return {
+      balmUI: useValidator(),
+      validations,
+      genderOptions,
+      formData: {
+        mobile: '',
+        password: '',
+        repassword: '',
+        gender: ''
+      },
+      message: ''
+    };
+  },
+  methods: {
+    onSubmit() {
+      let result = this.balmUI.validate(this.formData);
+      let { valid, message } = result;
+      this.message = message;
+
+      if (valid) {
+        this.$toast('gg');
+      }
+    }
   }
 };
 ```
-
-- using Composable API
-
-  ```js
-  import { reactive, toRefs } from 'vue';
-  import { useValidator } from 'balm-ui';
-
-  // const validations = ...
-
-  const state = reactive({
-    formData: {
-      mobile: '',
-      password: '',
-      repassword: ''
-    },
-    validMsg: {}
-  });
-
-  export default {
-    setup() {
-      const balmUI = useValidator();
-
-      return {
-        balmUI,
-        validations,
-        ...toRefs(state)
-      };
-    },
-    methods: {
-      onSubmit() {
-        let result = this.balmUI.validate(state.formData);
-        let { valid, validMsg } = result;
-        state.validMsg = validMsg;
-
-        console.log(result);
-
-        if (valid) {
-          this.$toast('gg');
-        }
-      }
-    }
-  };
-  ```
-
-- using Legacy API
-
-  ```js
-  import { useValidator } from 'balm-ui';
-
-  // const validations = ...
-
-  export default {
-    data() {
-      return {
-        balmUI: useValidator(),
-        validations,
-        formData: {
-          mobile: '',
-          password: '',
-          repassword: ''
-        },
-        validMsg: {}
-      };
-    },
-    setup() {
-      const balmUI = useValidator();
-
-      return {
-        balmUI,
-        validations,
-        ...toRefs(state)
-      };
-    },
-    methods: {
-      onSubmit() {
-        let result = this.balmUI.validate(this.formData);
-        let { valid, validMsg } = result;
-        this.validMsg = validMsg;
-
-        console.log(result);
-
-        if (valid) {
-          this.$toast('gg');
-        }
-      }
-    }
-  };
-  ```

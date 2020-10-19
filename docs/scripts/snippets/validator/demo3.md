@@ -2,11 +2,11 @@
 <ui-form item-margin-bottom="10">
   <ui-form-field class="form-item">
     <ui-textfield v-model="formData.mobile" helper-text-id="mobile-helper-text"
-      >Mobile</ui-textfield
-    >
+      >Mobile
+    </ui-textfield>
     <ui-textfield-helper
       id="mobile-helper-text"
-      v-model="validMsg.mobile"
+      v-model:validMsg="validMsg.mobile"
     ></ui-textfield-helper>
   </ui-form-field>
   <ui-form-field class="form-item">
@@ -18,7 +18,7 @@
     >
     <ui-textfield-helper
       id="password-helper-text"
-      v-model="validMsg.password"
+      v-model:validMsg="validMsg.password"
     ></ui-textfield-helper>
   </ui-form-field>
   <ui-form-field class="form-item">
@@ -30,7 +30,7 @@
     >
     <ui-textfield-helper
       id="repassword-helper-text"
-      v-model="validMsg.repassword"
+      v-model:validMsg="validMsg.repassword"
     ></ui-textfield-helper>
   </ui-form-field>
   <ui-form-field>
@@ -43,17 +43,19 @@
     >
     <ui-select-helper
       id="gender-helper-text"
-      v-model="validMsg.gender"
+      v-model:validMsg="validMsg.gender"
     ></ui-select-helper>
   </ui-form-field>
 
   <ui-form-field class="form-item form-actions">
-    <ui-button raised @click="submit">Submit</ui-button>
+    <ui-button raised @click="onSubmit">Submit</ui-button>
   </ui-form-field>
 </ui-form>
 ```
 
 ```js
+import { useValidator } from 'balm-ui';
+
 const validations = {
   mobile: {
     label: 'Mobile',
@@ -103,9 +105,10 @@ const genderOptions = [
 ];
 
 export default {
-  validations,
   data() {
     return {
+      balmUI: useValidator(),
+      validations,
       genderOptions,
       formData: {
         mobile: '',
@@ -117,13 +120,13 @@ export default {
     };
   },
   methods: {
-    submit() {
-      let result = this.$validate(this.formData);
+    onSubmit() {
+      let result = this.balmUI.validate(this.formData);
       let { valid, validMsg } = result;
       this.validMsg = validMsg;
 
       if (valid) {
-        console.log('gg');
+        this.$toast('gg');
       }
     }
   }

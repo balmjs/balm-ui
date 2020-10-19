@@ -20,6 +20,59 @@ const UI_EDITOR = {
     FILE_CHANGE: 'file-change'
   },
   BLANK: '<p><br></p>',
+  toolbarIcons: {
+    // default icons
+    align: {
+      '': 'format_align_left',
+      center: 'format_align_center',
+      right: 'format_align_right',
+      justify: 'format_align_justify'
+    },
+    background: 'font_download',
+    blockquote: 'format_quote',
+    bold: 'format_bold',
+    clean: 'format_clear',
+    code: 'code',
+    // 'code-block': '',
+    color: 'text_format',
+    // direction: {
+    //   '': 'format_textdirection_l_to_r',
+    //   rtl: 'format_textdirection_r_to_l'
+    // },
+    italic: 'format_italic',
+    image: 'insert_photo',
+    indent: {
+      '+1': 'format_indent_increase',
+      '-1': 'format_indent_decrease'
+    },
+    link: 'insert_link',
+    list: {
+      ordered: 'format_list_numbered',
+      bullet: 'format_list_bulleted'
+    },
+    script: {
+      sub: 'subscript',
+      super: 'superscript'
+    },
+    strike: 'strikethrough_s',
+    underline: 'format_underlined',
+    video: 'videocam',
+    // extension icons
+    cut: 'content_cut',
+    copy: 'content_copy',
+    paste: 'content_paste',
+    delete: 'clear',
+    search: 'search',
+    preview: 'preview',
+    fullscreen: {
+      '': 'fullscreen',
+      exit: 'fullscreen_exit'
+    },
+    table: 'table_view',
+    emoji: 'insert_emoticon',
+    undo: 'undo',
+    redo: 'redo'
+  },
   toolbarOptions: [
     [{ font: [] }, { size: [] }],
     ['bold', 'italic', 'underline', 'strike'],
@@ -61,6 +114,12 @@ export default {
       type: [Array, String, null],
       default: null
     },
+    toolbarIcons: {
+      type: Object,
+      default() {
+        return UI_EDITOR.toolbarIcons;
+      }
+    },
     placeholder: {
       type: [String, null],
       default: null
@@ -97,7 +156,6 @@ export default {
   },
   data() {
     return {
-      Editor: {},
       $editor: null,
       htmlContent: ''
     };
@@ -119,6 +177,7 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.$editor = new QuillEditor(this.$refs.editor, {
+        toolbarIcons: this.toolbarIcons,
         options: this.getOptions(),
         emotions: this.emotions,
         extension: this.extension

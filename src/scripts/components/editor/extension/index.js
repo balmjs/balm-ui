@@ -1,9 +1,9 @@
 import Emotion from '../emoji/emotion';
 import getEmojiFormat from './emoji-format';
 import getEmojiModule from './emoji-module';
-import registerHistory from './history';
+import setToolbarIcons from './toolbar';
 
-function registerExtension(Quill, emotions) {
+function registerExtension(Quill, { toolbarIcons, emotions }) {
   new Emotion(emotions);
 
   Quill.register(
@@ -14,7 +14,7 @@ function registerExtension(Quill, emotions) {
     true
   );
 
-  registerHistory(Quill);
+  setToolbarIcons(Quill, toolbarIcons);
 }
 
 export default registerExtension;

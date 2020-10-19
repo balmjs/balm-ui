@@ -5,11 +5,11 @@ let Quill;
 let quill;
 
 class QuillEditor {
-  constructor(editorEl, { options, emotions, extension }) {
+  constructor(editorEl, { toolbarIcons, options, emotions, extension }) {
     Quill = require('quill');
 
     if (options.theme === 'snow') {
-      registerExtension(Quill, emotions);
+      registerExtension(Quill, { toolbarIcons, emotions });
       options.modules.emoji = true;
     }
 
@@ -18,6 +18,18 @@ class QuillEditor {
     }
 
     quill = new Quill(editorEl, options);
+
+    document
+      .querySelectorAll('.ql-toolbar button')
+      .forEach((el) => el.classList.add('material-icons'));
+
+    document
+      .querySelectorAll('.ql-toolbar .ql-picker-label')
+      .forEach((el) => el.classList.add('material-icons'));
+
+    document
+      .querySelectorAll('.ql-toolbar .ql-align .ql-picker-item')
+      .forEach((el) => el.classList.add('material-icons'));
 
     return quill;
   }

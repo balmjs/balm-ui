@@ -12,10 +12,31 @@
               ></button>
               <button class="ql-italic"></button>
               <button class="ql-underline"></button>
-              <button class="ql-align"></button>
-            </span>
-            <span class="ql-formats">
-              <button class="ql-table"></button>
+
+              <span class="ql-color"></span>
+              <select class="ql-color"></select>
+
+              <span class="ql-background"></span>
+              <select class="ql-background"></select>
+
+              <span class="ql-align"></span>
+              <select class="ql-align"></select>
+
+              <span class="ql-header"></span>
+              <select class="ql-header">
+                <option selected></option>
+                <option value="1">Headline 1</option>
+                <option value="2">Headline 2</option>
+                <option value="3">Headline 3</option>
+                <option value="4">Headline 4</option>
+                <option value="5">Headline 5</option>
+                <option value="6">Headline 6</option>
+              </select>
+
+              <span class="ql-font"></span>
+              <select class="ql-font"></select>
+              <span class="ql-size"></span>
+              <select class="ql-size"></select>
             </span>
           </div>
           <div class="toolbar"></div>

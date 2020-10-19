@@ -12,7 +12,7 @@ $validate(formData, customFieldset);
 ```js
 {
   fieldName1: {
-    validate(fieldValue1, formData) {
+    validate(fieldValue, formData) {
       // Validation method
       return true;
     },
@@ -26,44 +26,42 @@ $validate(formData, customFieldset);
 - Usage in a vue component:
 
 ```js
+const validations = {
+  fieldName1: {
+    label: 'Field Label1',
+    validator: 'required, customRule1',
+    customRule1: {
+      validate(fieldValue, formData) {
+        // Validation method
+        return true;
+      },
+      message: 'Invalid format'
+    }
+    // customRule2: {}
+  }
+  // fieldName2: {}
+};
+
 export default {
   // Define validator
-  validations: {
-    fieldName: {
-      label: 'Field Label',
-      validator: 'required, customRule1',
-      customRule1: {
-        validate(fieldValue, formData) {
-          // Validation method
-          return true;
-        },
-        message: 'Invalid format'
-      }
-      // customRule2: { ... }
-    }
-  },
+  validations,
   data() {
     return {
       formData: {
-        fieldName: ''
-      },
-      validMsg: {
         fieldName: ''
       }
     };
   },
   methods: {
-    submit() {
+    onSubmit() {
       let {
         valid,
         validFields,
         invalidFields,
-        messages,
         message,
+        messages,
         validMsg
       } = this.$validate(this.formData);
-
-      this.validMsg = validMsg;
     }
   }
 };
@@ -74,8 +72,8 @@ export default {
 | `valid`         | boolean | The validator result.                                  |
 | `validFields`   | array   | Valid fields.                                          |
 | `invalidFields` | array   | Invalid fields.                                        |
-| `messages`      | array   | The messages of all invalid fields.                    |
 | `message`       | string  | The message of the first invalid field.                |
+| `messages`      | array   | The messages of all invalid fields.                    |
 | `validMsg`      | object  | The messages as an object. (Same format as `formData`) |
 
 - Set validations for the dynamic form
@@ -96,3 +94,116 @@ $setValidations(validationRules);
 // New in 7.4.0
 $resetValidations();
 ```
+
+- For the dynamic form verification:
+
+  - 1. using `computed`
+
+    ```js
+    export default {
+      data() {
+        return {
+          step: 1,
+          formData: {
+            username: '',
+            password: ''
+          }
+        };
+      },
+      computed: {
+        validations() {
+          return this.step === 1
+            ? {
+                username: {
+                  label: 'Username',
+                  validator: 'required'
+                }
+              }
+            : {
+                password: {
+                  label: 'Password',
+                  validator: 'required'
+                }
+              };
+        }
+      },
+      methods: {
+        onSubmit() {
+          let result = this.$validate(this.formData);
+          // ...
+        }
+      }
+    };
+    ```
+
+  - 2. using `customFieldset` for `$validate`
+
+    ```js
+    export default {
+      validations: {
+        username: {
+          label: 'Username',
+          validator: 'required'
+        },
+        password: {
+          label: 'Password',
+          validator: 'required'
+        }
+      },
+      data() {
+        return {
+          step: 1,
+          formData: {
+            username: '',
+            password: ''
+          }
+        };
+      },
+      methods: {
+        onSubmit() {
+          let customFieldset = this.step === 1 ? ['username'] : ['password'];
+          let result = this.$validate(this.formData, customFieldset);
+          // ...
+        }
+      }
+    };
+    ```
+
+  - 3. using `$resetValidations` and `$setValidations`
+
+    ```js
+    export default {
+      data() {
+        return {
+          step: 1,
+          formData: {
+            username: '',
+            password: ''
+          }
+        }
+      },
+      methods: {
+        onSubmit() {
+          this.$resetValidations();
+
+          let customValidations =
+            this.step === 1
+              ? {
+                  username: {
+                    label: 'Username',
+                    validator: 'required'
+                  }
+                }
+              : {
+                  password: {
+                    label: 'Password',
+                    validator: 'required'
+                  }
+                };
+          this.$setValidations(customValidations);
+
+          let result = this.$validate(this.formData);
+          // ...
+      }
+    };
+    ```

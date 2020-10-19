@@ -22,7 +22,11 @@
     >
   </ui-form-field>
 
-  <ui-alert v-if="message" state="error">{{ message }}</ui-alert>
+  <ui-alert v-if="messages.length" state="error">
+    <ul>
+      <li v-for="(message, index) in messages" :key="index">{{ message }}</li>
+    </ul>
+  </ui-alert>
 
   <ui-form-field class="form-item form-actions">
     <ui-button raised @click="submit">Submit</ui-button>
@@ -90,14 +94,14 @@ export default {
         repassword: '',
         gender: ''
       },
-      message: ''
+      messages: []
     };
   },
   methods: {
     submit() {
       let result = this.$validate(this.formData);
-      let { valid, message } = result;
-      this.message = message;
+      let { valid, messages } = result;
+      this.messages = messages;
 
       if (valid) {
         console.log('gg');

@@ -14,7 +14,7 @@ const EMOJI_TOOLBAR = {
   }
 };
 
-function getEmojiModule(Quill) {
+function emojiModule(Quill) {
   const Module = Quill.import('core/module');
 
   class EmojiToolbarModule extends Module {
@@ -172,7 +172,7 @@ function getEmojiModule(Quill) {
     });
   }
 
-  return EmojiToolbarModule;
+  Quill.register('modules/emoji', EmojiToolbarModule);
 }
 
-export default getEmojiModule;
+export default emojiModule;

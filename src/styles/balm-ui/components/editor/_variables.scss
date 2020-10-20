@@ -1,4 +1,4 @@
-$font-families: (
+$font-family: (
   'arial': 'Arial',
   'arial-black': 'Arial Black',
   'comic-sans-ms': 'Comic Sans MS',
@@ -11,4 +11,18 @@ $font-families: (
   'impact': 'Impact',
   'times-new-roman': 'Times New Roman',
   'verdana': 'Verdana'
+) !default;
+
+$line-height: (
+  '1.0',
+  '1.2',
+  '1.5',
+  '1.6',
+  '1.8',
+  '2.0',
+  '2.4',
+  '2.8',
+  '3.0',
+  '4.0',
+  '5.0'
 ) !default;

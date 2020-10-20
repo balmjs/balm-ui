@@ -1,0 +1,24 @@
+@use '../variables' as editor-variables;
+
+.ql-snow .ql-picker.ql-lineheight {
+  width: 88px;
+}
+
+@each $line-height in editor-variables.$line-height {
+  .ql-snow .ql-picker.ql-lineheight .ql-picker-label::before,
+  .ql-snow .ql-picker.ql-lineheight .ql-picker-item::before {
+    content: 'Normal';
+  }
+
+  .ql-snow
+    .ql-picker.ql-lineheight
+    .ql-picker-item[data-value='#{$line-height}']::before {
+    content: $line-height;
+  }
+
+  .ql-snow
+    .ql-picker.ql-lineheight
+    .ql-picker-label[data-value='#{$line-height}']::before {
+    content: $line-height !important;
+  }
+}

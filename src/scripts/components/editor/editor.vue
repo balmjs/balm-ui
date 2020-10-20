@@ -5,6 +5,7 @@
     <template v-if="customImageHandler">
       <input ref="file" type="file" hidden @change="onFileChange" />
     </template>
+    <div ref="counter" class="mdc-editor-counter"></div>
   </div>
 </template>
 
@@ -58,8 +59,7 @@ const UI_EDITOR = {
     underline: 'format_underlined',
     video: 'videocam',
     // extension icons
-    'horizontal-rule': 'horizontal_rule',
-    'line-height': 'format_line_spacing',
+    divider: 'horizontal_rule',
     cut: 'content_cut',
     copy: 'content_copy',
     paste: 'content_paste',
@@ -180,7 +180,7 @@ export default {
     this.$nextTick(() => {
       this.$editor = new QuillEditor(this.$refs.editor, {
         toolbarIcons: this.toolbarIcons,
-        options: this.getOptions(),
+        options: this.getOptions(this.$refs.counter),
         emotions: this.emotions,
         extension: this.extension
       });
@@ -204,7 +204,7 @@ export default {
     QuillEditor.destroy();
   },
   methods: {
-    getOptions() {
+    getOptions(counterEl) {
       const defaultOptions = {
         modules: {},
         placeholder: this.placeholder,
@@ -245,6 +245,11 @@ export default {
         options.modules.toolbar = {
           container: options.modules.toolbar,
           handlers: customHandlers
+        };
+
+        options.modules.counter = {
+          container: counterEl
+          // unit: 'word'
         };
       }
 

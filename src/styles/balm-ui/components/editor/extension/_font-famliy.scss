@@ -1,0 +1,20 @@
+@use '../variables' as editor-variables;
+
+.ql-snow .ql-picker.ql-font .ql-picker-label {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+@each $family-value, $family-name in editor-variables.$font-family {
+  .ql-font .ql-picker-item[data-value='#{$family-value}']::before {
+    font-family: $family-name;
+  }
+
+  .ql-font-#{$family-value} {
+    font-family: $family-name;
+  }
+}

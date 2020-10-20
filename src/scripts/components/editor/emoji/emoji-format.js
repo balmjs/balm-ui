@@ -1,8 +1,8 @@
-import Emotion from '../emoji/emotion';
-import { emojiClassName, createEmoji } from '../emoji/utils';
+import Emotion from './emotion';
+import { emojiClassName, createEmoji } from './utils';
 import getType from '../../../utils/typeof';
 
-function getEmojiFormat(Quill) {
+function emojiFormat(Quill) {
   const Embed = Quill.import('blots/embed');
 
   class EmojiBlot extends Embed {
@@ -23,10 +23,10 @@ function getEmojiFormat(Quill) {
   }
 
   EmojiBlot.blotName = 'emoji';
-  EmojiBlot.className = emojiClassName;
   EmojiBlot.tagName = 'SPAN';
+  EmojiBlot.className = emojiClassName;
 
-  return EmojiBlot;
+  Quill.register('formats/emoji', EmojiBlot);
 }
 
-export default getEmojiFormat;
+export default emojiFormat;

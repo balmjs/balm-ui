@@ -1,5 +1,9 @@
-import registerExtension from './extension';
 import Emotion from './emoji/emotion';
+import setToolbarIcons from './extension/toolbar';
+import useTypography from './typography';
+import useEmoji from './emoji';
+import useCounter from './extension/counter-module';
+import useDivider from './extension/divider-format';
 
 let Quill;
 let quill;
@@ -9,8 +13,17 @@ class QuillEditor {
     Quill = require('quill');
 
     if (options.theme === 'snow') {
-      registerExtension(Quill, { toolbarIcons, emotions });
+      setToolbarIcons(Quill, toolbarIcons);
+
+      useTypography(Quill);
+      useEmoji(Quill, emotions);
+      useCounter(Quill);
+      useDivider(Quill);
+
       options.modules.emoji = true;
+      options.modules.toolbar.handlers.divider = () => {
+        QuillEditor.insert('divider', 'null');
+      };
     }
 
     if (extension) {
@@ -25,7 +38,7 @@ class QuillEditor {
 
     document
       .querySelectorAll(
-        '.ql-toolbar .ql-picker:not(.ql-header):not(.ql-font):not(.ql-size) .ql-picker-label'
+        '.ql-toolbar .ql-picker:not(.ql-header):not(.ql-font):not(.ql-size):not(.ql-lineheight) .ql-picker-label'
       )
       .forEach((el) => el.classList.add('material-icons'));
 

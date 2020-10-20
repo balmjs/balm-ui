@@ -4,6 +4,7 @@ import useTypography from './typography';
 import useEmoji from './emoji';
 import useCounter from './extension/counter-module';
 import useDivider from './extension/divider-format';
+import getType from '../../utils/typeof';
 
 let Quill;
 let quill;
@@ -45,6 +46,17 @@ class QuillEditor {
     document
       .querySelectorAll('.ql-toolbar .ql-align .ql-picker-item')
       .forEach((el) => el.classList.add('material-icons'));
+
+    const toolbar = quill.getModule('toolbar');
+    toolbar.addHandler('font', setFont);
+
+    function setFont(value) {
+      if (getType(value) === 'string') {
+        quill.format('font', value.toLowerCase().replace(/\s+/g, '-'));
+      } else {
+        quill.format('font', false);
+      }
+    }
 
     return quill;
   }

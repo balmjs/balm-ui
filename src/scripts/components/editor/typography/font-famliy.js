@@ -1,7 +1,7 @@
 function fontFamliy(Quill) {
   const FontFamliyAttributor = Quill.import('attributors/class/font');
 
-  FontFamliyAttributor.whitelist = [
+  const fontFamliy = [
     'Arial',
     'Arial Black',
     'Comic Sans MS',
@@ -14,7 +14,11 @@ function fontFamliy(Quill) {
     'Impact',
     'Times New Roman',
     'Verdana'
-  ].map((font) => font.toLowerCase().replace(/\s/g, '-'));
+  ];
+
+  FontFamliyAttributor.whitelist = fontFamliy.map((font) =>
+    font.toLowerCase().replace(/\s+/g, '-')
+  );
 
   Quill.register(FontFamliyAttributor, true);
 }

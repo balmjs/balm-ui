@@ -1,0 +1,5 @@
+@use '../mixins' as editor-mixins;
+
+.ql-snow .ql-picker.ql-size {
+  @include editor-mixins.picker('Font Size');
+}

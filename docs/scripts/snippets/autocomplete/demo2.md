@@ -1,6 +1,7 @@
 ```html
 <ui-autocomplete
   v-model="keywords"
+  outlined
   :source="source"
   placeholder="Type 'a', then 'b'"
   delay="500"

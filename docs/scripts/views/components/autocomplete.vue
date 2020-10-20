@@ -16,7 +16,11 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 Static data</h6>
       <div class="demo">
-        <ui-autocomplete v-model="keywords1" :source="source1" placeholder="Try to type"></ui-autocomplete>
+        <ui-autocomplete
+          v-model="keywords1"
+          :source="source1"
+          placeholder="Try to type"
+        ></ui-autocomplete>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
@@ -26,6 +30,7 @@
       <div class="demo">
         <ui-autocomplete
           v-model="keywords2"
+          outlined
           :source="source2"
           placeholder="Type 'a', then 'b'"
           delay="500"

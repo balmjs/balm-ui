@@ -1,5 +1,6 @@
 @use '@material/theme/theme';
 @use '@material/theme/theme-color';
+@use '@material/textfield/variables' as textfield-variables;
 @use '../mixins' as ui-mixins;
 
 .mdc-autocomplete {
@@ -47,7 +48,8 @@
   overflow-y: auto;
   max-height: 210px;
   text-align: left;
-  border-width: 0 1px 1px;
+  border-width: 0 textfield-variables.$outlined-stroke-width
+    textfield-variables.$outlined-stroke-width;
   border-style: solid;
   @include theme.prop(border-color, primary);
   @include ui-mixins.background;

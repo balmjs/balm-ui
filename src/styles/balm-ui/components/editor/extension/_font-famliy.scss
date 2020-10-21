@@ -18,8 +18,4 @@
   .ql-picker-item[data-value='#{$family-name}']::before {
     font-family: '#{$family-name}';
   }
-
-  .ql-font-#{$family-value} {
-    font-family: $family-name;
-  }
 }

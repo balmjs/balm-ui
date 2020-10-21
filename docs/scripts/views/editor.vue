@@ -3,6 +3,7 @@
     <ui-editor
       v-model="content"
       :toolbar="toolbar"
+      :toolbar-options="toolbarOptions"
       :toolbar-custom-handlers="toolbarCustomHandlers"
     >
       <!-- <template #toolbar>
@@ -126,6 +127,52 @@
 <script>
 import UiEditor from 'balm-ui-editor';
 
+const toolbarOptions = {
+  font: [
+    'Arial',
+    'Arial Black',
+    'Comic Sans MS',
+    'Courier New',
+    'Tahoma',
+    'Georgia',
+    'Helvetica',
+    'Segoe UI',
+    'Impact',
+    'Times New Roman',
+    'Verdana'
+  ],
+  size: [
+    '8px',
+    '9px',
+    '10px',
+    '11px',
+    '12px',
+    '13px',
+    '14px',
+    '16px',
+    '18px',
+    '24px',
+    '36px',
+    '48px',
+    '60px',
+    '72px',
+    '96px'
+  ],
+  lineheight: [
+    '1.0',
+    '1.2',
+    '1.5',
+    '1.6',
+    '1.8',
+    '2.0',
+    '2.4',
+    '2.8',
+    '3.0',
+    '4.0',
+    '5.0'
+  ]
+};
+
 export default {
   components: {
     UiEditor
@@ -134,6 +181,7 @@ export default {
     return {
       content: '',
       // toolbar: '#toolbar',
+      toolbarOptions,
       toolbar: [
         'bold',
         'italic',
@@ -143,56 +191,13 @@ export default {
         { align: [] },
         { header: [false, 1, 2, 3, 4, 5, 6] },
         {
-          font: [
-            false,
-            'Arial',
-            'Arial Black',
-            'Comic Sans MS',
-            'Courier New',
-            'Tahoma',
-            'Georgia',
-            'Helvetica',
-            'Segoe UI',
-            'Impact',
-            'Times New Roman',
-            'Verdana'
-          ]
+          font: [false, ...toolbarOptions.font]
         },
         {
-          size: [
-            false,
-            '8px',
-            '9px',
-            '10px',
-            '11px',
-            '12px',
-            '13px',
-            '14px',
-            '16px',
-            '18px',
-            '24px',
-            '36px',
-            '48px',
-            '60px',
-            '72px',
-            '96px'
-          ]
+          size: [false, ...toolbarOptions.size]
         },
         {
-          lineheight: [
-            false,
-            '1.0',
-            '1.2',
-            '1.5',
-            '1.6',
-            '1.8',
-            '2.0',
-            '2.4',
-            '2.8',
-            '3.0',
-            '4.0',
-            '5.0'
-          ]
+          lineheight: [false, ...toolbarOptions.lineheight]
         }
       ],
       toolbarCustomHandlers: {}

@@ -6,6 +6,7 @@
       <input ref="file" type="file" hidden @change="onFileChange" />
     </template>
     <div ref="counter" class="mdc-editor-counter"></div>
+    <pre class="mdc-editor-preview" contenteditable>{{ htmlContent }}</pre>
   </div>
 </template>
 
@@ -122,6 +123,12 @@ export default {
         return UI_EDITOR.toolbarIcons;
       }
     },
+    toolbarOptions: {
+      type: Object,
+      default() {
+        return {};
+      }
+    },
     placeholder: {
       type: [String, null],
       default: null
@@ -180,6 +187,7 @@ export default {
     this.$nextTick(() => {
       this.$editor = new QuillEditor(this.$refs.editor, {
         toolbarIcons: this.toolbarIcons,
+        toolbarOptions: this.toolbarOptions,
         options: this.getOptions(this.$refs.counter),
         emotions: this.emotions,
         extension: this.extension

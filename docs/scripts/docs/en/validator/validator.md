@@ -76,6 +76,8 @@ export default {
 | `messages`      | array   | The messages of all invalid fields.                    |
 | `validMsg`      | object  | The messages as an object. (Same format as `formData`) |
 
+> NOTE: `validMsg` can be used with `<ui-textfield-helper>`/`<ui-select-helper>` to trigger the `<ui-textfield>`/`<ui-select>` invalid styling
+
 - Set validations for the dynamic form
 
 ```js

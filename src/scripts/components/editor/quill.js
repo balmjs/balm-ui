@@ -38,17 +38,6 @@ class QuillEditor {
 
     setToolbarStyle();
 
-    const toolbar = editor.getModule('toolbar');
-    toolbar.addHandler('font', setFont);
-
-    function setFont(value) {
-      if (getType(value) === 'string') {
-        editor.format('font', value.toLowerCase().replace(/\s+/g, '-'));
-      } else {
-        editor.format('font', false);
-      }
-    }
-
     return editor;
   }
 

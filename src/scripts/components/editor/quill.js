@@ -4,7 +4,8 @@ import useTypography from './typography';
 import useEmoji from './emoji';
 import useCounter from './extension/counter-module';
 import useDivider from './extension/divider-format';
-import getType from '../../utils/typeof';
+import usePreview from './extension/preview-module';
+import handleCode from './extension/code-module';
 
 let Quill;
 let editor;
@@ -20,14 +21,10 @@ class QuillEditor {
       setToolbarIcons(Quill, toolbarIcons);
 
       useTypography(Quill, toolbarOptions);
-      useEmoji(Quill, emotions);
+      useEmoji(Quill, options, emotions);
       useCounter(Quill);
-      useDivider(Quill);
-
-      options.modules.emoji = true;
-      options.modules.toolbar.handlers.divider = () => {
-        QuillEditor.insert('divider', 'null');
-      };
+      useDivider(Quill, options, QuillEditor);
+      usePreview(Quill, options);
     }
 
     if (extension) {
@@ -37,6 +34,7 @@ class QuillEditor {
     editor = new Quill(editorEl, options);
 
     setToolbarStyle();
+    handleCode(editor);
 
     return editor;
   }

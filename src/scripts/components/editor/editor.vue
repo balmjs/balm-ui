@@ -1,12 +1,14 @@
 <template>
   <div class="mdc-editor-container">
     <slot name="toolbar"></slot>
-    <div ref="editor" class="mdc-editor"></div>
+    <div class="mdc-editor-content">
+      <div ref="editor" class="mdc-editor"></div>
+      <pre class="mdc-editor-code" contenteditable>{{ htmlContent }}</pre>
+    </div>
     <template v-if="customImageHandler">
       <input ref="file" type="file" hidden @change="onFileChange" />
     </template>
     <div ref="counter" class="mdc-editor-counter"></div>
-    <pre class="mdc-editor-preview" contenteditable>{{ htmlContent }}</pre>
   </div>
 </template>
 

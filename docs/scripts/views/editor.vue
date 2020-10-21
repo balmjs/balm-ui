@@ -159,17 +159,17 @@ const toolbarOptions = {
     '96px'
   ],
   lineheight: [
-    '1.0',
+    '1',
     '1.2',
     '1.5',
     '1.6',
     '1.8',
-    '2.0',
+    '2',
     '2.4',
     '2.8',
-    '3.0',
-    '4.0',
-    '5.0'
+    '3',
+    '4',
+    '5'
   ]
 };
 
@@ -198,7 +198,9 @@ export default {
         },
         {
           lineheight: [false, ...toolbarOptions.lineheight]
-        }
+        },
+        'preview',
+        'code'
       ],
       toolbarCustomHandlers: {}
     };

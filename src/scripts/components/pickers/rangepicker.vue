@@ -8,7 +8,6 @@
       :label="startLabel"
       :placeholder="startPlaceholder"
       :disabled="disabled"
-      :attrs="{ readonly: true }"
     ></ui-textfield>
     <span class="mdc-rangepicker__separator">
       <slot name="separator"></slot>
@@ -21,7 +20,6 @@
       :label="endLabel"
       :placeholder="endPlaceholder"
       :disabled="disabled"
-      :attrs="{ readonly: true }"
     ></ui-textfield>
   </div>
 </template>

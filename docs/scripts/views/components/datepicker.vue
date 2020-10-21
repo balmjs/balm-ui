@@ -136,7 +136,7 @@ export default {
         dateFormat: 'm.y', //defaults to "F Y"
         altFormat: 'F Y' //defaults to "F Y"
       },
-      date6: '',
+      date6: '13:20',
       config6: {
         mode: 'time'
         // time_24hr: true

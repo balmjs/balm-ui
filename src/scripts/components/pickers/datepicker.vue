@@ -1,8 +1,8 @@
 <template>
   <ui-textfield
-    :id="id"
     ref="input"
-    v-model="inputValue"
+    :model-value="inputValue"
+    :input-id="inputId"
     class="mdc-datepicker"
     :outlined="outlined"
     :label="label"
@@ -11,14 +11,25 @@
     :required="required"
     :fullwidth="fullwidth"
     :end-aligned="endAligned"
-    :icon="icon"
-    :with-leading-icon="withLeadingIcon"
-    :with-trailing-icon="withTrailingIcon || toggle || clear"
+    :with-leading-icon="hasLeadingIcon"
+    :with-trailing-icon="hasTrailingIcon"
     @change="handleChange"
   >
     <!-- Leading icon (optional) -->
     <template #before="{ iconClass }">
-      <slot name="before" :iconClass="iconClass"></slot>
+      <i
+        v-if="materialIcon"
+        :class="
+          getIconClassName([
+            UI_TEXTFIELD_ICON.cssClasses.icon,
+            UI_TEXTFIELD_ICON.cssClasses.leadingIcon
+          ])
+        "
+        v-text="materialIcon"
+      ></i>
+      <template v-else>
+        <slot name="before" :iconClass="iconClass"></slot>
+      </template>
     </template>
 
     <!-- Label text -->
@@ -71,7 +82,9 @@
 import flatpickr from 'flatpickr';
 import monthSelectPlugin from 'flatpickr/dist/plugins/monthSelect';
 import UiTextfield from '../input-controls/textfield';
+import domMixin from '../../mixins/dom';
 import textfieldMixin from '../../mixins/textfield';
+import { UI_TEXTFIELD_ICON } from '../input-controls/constants';
 
 // Define datepicker constants
 const UI_DATEPICKER = {
@@ -83,7 +96,7 @@ const UI_DATEPICKER = {
     TIME: 'time' // Custom
   },
   EVENT: {
-    CHANGE: 'change'
+    CHANGE: 'update:modelValue'
   }
 };
 
@@ -92,11 +105,7 @@ export default {
   components: {
     UiTextfield
   },
-  mixins: [textfieldMixin],
-  model: {
-    prop: 'model',
-    event: UI_DATEPICKER.EVENT.CHANGE
-  },
+  mixins: [domMixin, textfieldMixin],
   props: {
     // <ui-textfield> variants
     outlined: {
@@ -104,18 +113,14 @@ export default {
       default: false
     },
     // States
-    model: {
+    modelValue: {
       type: [String, Number, Array],
       default: ''
     },
     // <ui-textfield> attributes
-    id: {
+    inputId: {
       type: [String, null],
       default: null
-    },
-    icon: {
-      type: String,
-      default: ''
     },
     // For flatpickr
     config: {
@@ -139,16 +144,31 @@ export default {
       }
     }
   },
+  emits: [UI_DATEPICKER.EVENT.CHANGE],
   data() {
     return {
-      flatpickr: null,
-      inputValue: this.model,
+      UI_TEXTFIELD_ICON,
+      picker: null,
+      inputValue: this.modelValue,
       mode: this.config.mode || UI_DATEPICKER.MODE.SINGLE,
       rangeSeparator: ''
     };
   },
+  computed: {
+    hasLeadingIcon() {
+      return !!(this.withLeadingIcon || this.$slots.before);
+    },
+    hasTrailingIcon() {
+      return !!(
+        this.withTrailingIcon ||
+        this.$slots.after ||
+        this.toggle ||
+        this.clear
+      );
+    }
+  },
   watch: {
-    model(val) {
+    modelValue(val) {
       if (this.mode === UI_DATEPICKER.MODE.RANGE) {
         this.setRangeDate(val);
       } else {
@@ -159,10 +179,10 @@ export default {
   },
   mounted() {
     const uiTextField = this.$refs.input;
-    const inputEl = uiTextField.$el.querySelector('input');
+    const inputEl = this.el.querySelector('input');
     inputEl.dataset.input = '';
 
-    if (!this.flatpickr) {
+    if (!this.picker) {
       let config = Object.assign({}, this.config);
       switch (this.config.mode) {
         case UI_DATEPICKER.MODE.MONTH:
@@ -207,7 +227,7 @@ export default {
         this.rangeSeparator = config.locale
           ? config.locale.rangeSeparator
           : ' to ';
-        this.setRangeDate(this.model);
+        this.setRangeDate(this.modelValue);
       } else {
         config.onReady = (selectedDates, dateStr, instance) => {
           // defaultDate: 'today'
@@ -225,17 +245,17 @@ export default {
       }
       // Init
       config.defaultDate = this.inputValue;
-      this.flatpickr = flatpickr(this.$el, config);
+      this.picker = flatpickr(this.el, config);
     }
   },
-  beforeDestroy() {
-    this.flatpickr.destroy();
-    this.flatpickr = null;
+  beforeUnmount() {
+    this.picker.destroy();
+    this.picker = null;
   },
   methods: {
     syncSelectedDates(value) {
-      if (this.flatpickr) {
-        this.flatpickr.setDate(value);
+      if (this.picker) {
+        this.picker.setDate(value);
       }
     },
     handleChange(event) {

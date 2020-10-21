@@ -1,5 +1,5 @@
 <template>
-  <docs-page name="datepicker" demo-count="6" withoutCss>
+  <docs-page name="datepicker" demo-count="6" without-css>
     <template #hero>
       <ui-datepicker v-model="date" placeholder="Select Date.."></ui-datepicker>
     </template>

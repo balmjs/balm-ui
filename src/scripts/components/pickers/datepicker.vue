@@ -13,8 +13,7 @@
     :end-aligned="endAligned"
     :icon="icon"
     :with-leading-icon="withLeadingIcon"
-    :with-trailing-icon="withTrailingIcon || toggle || allowInput || clear"
-    :attrs="{ readonly: true }"
+    :with-trailing-icon="withTrailingIcon || toggle || clear"
     @change="handleChange"
   >
     <!-- Leading icon (optional) -->
@@ -29,10 +28,10 @@
 
     <!-- Trailing icon (optional) -->
     <template #after="{ iconClass }">
-      <template v-if="toggle || allowInput || clear">
+      <template v-if="toggle || clear">
         <span :class="[iconClass, 'mdc-datepicker__icon']">
-          <template v-if="toggle || allowInput">
-            <span class="mdc-datepicker__toggle" title="toggle" data-toggle>
+          <template v-if="toggle">
+            <span class="mdc-datepicker__toggle" data-toggle>
               <slot name="toggle">
                 <svg viewBox="0 0 18 18">
                   <path
@@ -44,7 +43,11 @@
             </span>
           </template>
           <template v-if="clear">
-            <span class="mdc-datepicker__clear" title="clear" data-clear>
+            <span
+              class="mdc-datepicker__clear"
+              data-clear
+              @click.capture="handleClear"
+            >
               <slot name="clear">
                 <svg viewBox="0 0 18 18">
                   <path
@@ -144,11 +147,6 @@ export default {
       rangeSeparator: ''
     };
   },
-  computed: {
-    allowInput() {
-      return this.config.allowInput;
-    }
-  },
   watch: {
     model(val) {
       if (this.mode === UI_DATEPICKER.MODE.RANGE) {
@@ -160,7 +158,8 @@ export default {
     }
   },
   mounted() {
-    const inputEl = this.$refs.input.$el.querySelector('input');
+    const uiTextField = this.$refs.input;
+    const inputEl = uiTextField.$el.querySelector('input');
     inputEl.dataset.input = '';
 
     if (!this.flatpickr) {
@@ -182,43 +181,50 @@ export default {
         default:
       }
       // Default config for ui
-      config.disableMobile = true; // required
-      config.wrap = true; // For toggle & clear icons, mobile support
-      config.clickOpens = !config.allowInput; // fix(ui): for flatpickr
+      config.disableMobile = true; // mobile support required
+      config.wrap = true; // For toggle & clear icons
       // Custom event
+      config.onOpen = () => {
+        // fix(ui): `altInput` bug
+        if (config.altInput) {
+          uiTextField.$textField.foundation.activateFocus();
+        }
+      };
       config.onClose = () => {
+        if (config.altInput) {
+          uiTextField.$textField.foundation.deactivateFocus();
+        }
+
+        // fix(ui): time mode bug when the initial value is empty
+        if (config.mode === UI_DATEPICKER.MODE.TIME && !this.inputValue) {
+          inputEl.value = '';
+        }
+
         inputEl.blur();
       };
       // Set default value
-      switch (this.mode) {
-        case UI_DATEPICKER.MODE.MULTIPLE:
-          config.defaultDate = this.inputValue;
-          break;
-        case UI_DATEPICKER.MODE.RANGE:
-          this.rangeSeparator = config.locale
-            ? config.locale.rangeSeparator
-            : ' to ';
-          this.setRangeDate(this.model);
-          config.defaultDate = this.inputValue;
-          break;
-        default:
-          config.onReady = (selectedDates, dateStr, instance) => {
-            // defaultDate: 'today'
-            if (dateStr) {
-              this.inputValue = dateStr;
-              this.$emit(UI_DATEPICKER.EVENT.CHANGE, dateStr);
-            }
-          };
-
-          // fix(ui): `clear` event
-          config.onChange = (selectedDates, dateStr, instance) => {
-            if (!dateStr) {
-              this.$emit(UI_DATEPICKER.EVENT.CHANGE, '');
-            }
-          };
-          break;
+      if (this.mode === UI_DATEPICKER.MODE.RANGE) {
+        this.rangeSeparator = config.locale
+          ? config.locale.rangeSeparator
+          : ' to ';
+        this.setRangeDate(this.model);
+      } else {
+        config.onReady = (selectedDates, dateStr, instance) => {
+          // defaultDate: 'today'
+          if (dateStr) {
+            this.inputValue = dateStr;
+            this.$emit(UI_DATEPICKER.EVENT.CHANGE, dateStr);
+          }
+        };
+        // fix(ui): `clear` event
+        config.onChange = (selectedDates, dateStr, instance) => {
+          if (!dateStr) {
+            this.$emit(UI_DATEPICKER.EVENT.CHANGE, '');
+          }
+        };
       }
       // Init
+      config.defaultDate = this.inputValue;
       this.flatpickr = flatpickr(this.$el, config);
     }
   },
@@ -264,6 +270,12 @@ export default {
 
       if (result) {
         this.$emit(UI_DATEPICKER.EVENT.CHANGE, result);
+      }
+    },
+    handleClear(event) {
+      // fix(ui): trigger `<ui-textfield>` focused when clicking the clear button
+      if (!this.inputValue) {
+        event.stopPropagation();
       }
     },
     setRangeDate(selectedDates) {

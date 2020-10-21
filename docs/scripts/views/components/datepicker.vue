@@ -8,7 +8,13 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 Basic + default icon</h6>
       <div class="demo">
-        <ui-datepicker v-model="date1" :config="config1" placeholder="Select Date.." toggle clear></ui-datepicker>
+        <ui-datepicker
+          v-model="date1"
+          :config="config1"
+          placeholder="Select Date.."
+          toggle
+          clear
+        ></ui-datepicker>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
@@ -37,7 +43,11 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">3. Selecting multiple dates</h6>
       <div class="demo">
-        <ui-datepicker v-model="date3" :config="config3" placeholder="Select Multi Date.."></ui-datepicker>
+        <ui-datepicker
+          v-model="date3"
+          :config="config3"
+          placeholder="Select Multi Date.."
+        ></ui-datepicker>
       </div>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>
@@ -45,10 +55,16 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">
         4. Simple range calendar (Customized rangepicker:
-        <router-link :to="{ name: 'data-input.rangepicker' }">&lt;ui-rangepicker&gt;</router-link>)
+        <router-link :to="{ name: 'data-input.rangepicker' }"
+          >&lt;ui-rangepicker&gt;</router-link
+        >)
       </h6>
       <div class="demo">
-        <ui-datepicker v-model="date4" :config="config4" placeholder="Select Date Range.."></ui-datepicker>
+        <ui-datepicker
+          v-model="date4"
+          :config="config4"
+          placeholder="Select Date Range.."
+        ></ui-datepicker>
       </div>
       <ui-snippet :code="$store.demos[4]"></ui-snippet>
     </section>
@@ -69,7 +85,11 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">6. Time picker</h6>
       <div class="demo">
-        <ui-datepicker v-model="date6" :config="config6" placeholder="Select Time.."></ui-datepicker>
+        <ui-datepicker
+          v-model="date6"
+          :config="config6"
+          placeholder="Select Time.."
+        ></ui-datepicker>
       </div>
       <ui-snippet :code="$store.demos[6]"></ui-snippet>
     </section>
@@ -116,7 +136,7 @@ export default {
         dateFormat: 'm.y', //defaults to "F Y"
         altFormat: 'F Y' //defaults to "F Y"
       },
-      date6: '',
+      date6: '13:20',
       config6: {
         mode: 'time'
         // time_24hr: true

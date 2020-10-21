@@ -10,7 +10,7 @@
 export default {
   data() {
     return {
-      date: '',
+      date: '13:20',
       config: {
         mode: 'time'
         // time_24hr: true

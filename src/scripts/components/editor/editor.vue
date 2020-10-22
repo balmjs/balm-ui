@@ -1,7 +1,10 @@
 <template>
   <div class="mdc-editor-container">
     <slot name="toolbar"></slot>
-    <div ref="editor" class="mdc-editor"></div>
+    <div class="mdc-editor-content">
+      <div ref="editor" class="mdc-editor"></div>
+      <pre class="mdc-editor-code" contenteditable>{{ htmlContent }}</pre>
+    </div>
     <template v-if="customImageHandler">
       <input ref="file" type="file" hidden @change="onFileChange" />
     </template>
@@ -10,9 +13,10 @@
 </template>
 
 <script>
-import QuillEditor from './quill';
+import createEditor from './quill';
 import Emotion from './emoji/emotion';
 import getType from '../../utils/typeof';
+import { isString, isObject, isArray } from '../../utils/types';
 
 // Define editor constants
 const UI_EDITOR = {
@@ -73,7 +77,8 @@ const UI_EDITOR = {
     table: 'table_view',
     emoji: 'insert_emoticon',
     undo: 'undo',
-    redo: 'redo'
+    redo: 'redo',
+    'link-off': 'link_off'
   },
   toolbarOptions: [
     [{ font: [] }, { size: [] }],
@@ -120,6 +125,12 @@ export default {
       type: Object,
       default() {
         return UI_EDITOR.toolbarIcons;
+      }
+    },
+    toolbarOptions: {
+      type: Object,
+      default() {
+        return {};
       }
     },
     placeholder: {
@@ -178,8 +189,9 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.$editor = new QuillEditor(this.$refs.editor, {
+      this.$editor = createEditor(this.$refs.editor, {
         toolbarIcons: this.toolbarIcons,
+        toolbarOptions: this.toolbarOptions,
         options: this.getOptions(this.$refs.counter),
         emotions: this.emotions,
         extension: this.extension
@@ -201,7 +213,7 @@ export default {
     });
   },
   beforeDestroy() {
-    QuillEditor.destroy();
+    createEditor.destroy();
   },
   methods: {
     getOptions(counterEl) {
@@ -232,7 +244,7 @@ export default {
           customHandlers[customFormat] = (formatValue) => {
             if (formatValue) {
               const insert = (value = 'null') => {
-                QuillEditor.insert(customFormat, value);
+                createEditor.insert(customFormat, value);
               };
 
               this.toolbarCustomHandlers[customFormat](this.$editor, insert);
@@ -281,7 +293,7 @@ export default {
     onFileChange(event) {
       const file = event.target.files[0];
       const insert = (url) => {
-        QuillEditor.insert('image', url);
+        createEditor.insert('image', url);
       };
 
       this.$emit(UI_EDITOR.EVENT.FILE_CHANGE, file, insert);

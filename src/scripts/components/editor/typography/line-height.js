@@ -1,5 +1,4 @@
-function lineHeight(Quill) {
-  // TODO: options
+function useLineHeight(Quill, lineHeight = []) {
   const Parchment = Quill.import('parchment');
 
   let config = {
@@ -21,12 +20,6 @@ function lineHeight(Quill) {
 
   class LineHeightStyle extends Parchment.Attributor.Style { }
   
-
-  // let LineHeightClass = new Parchment.Attributor.Class(
-  //   'lineheight',
-  //   'ql-line-height',
-  //   config
-  // );
   let style = new LineHeightStyle(
     'lineheight',
     'line-height',
@@ -36,4 +29,4 @@ function lineHeight(Quill) {
   Quill.register(style, true);
 }
 
-export default lineHeight;
+export default useLineHeight;

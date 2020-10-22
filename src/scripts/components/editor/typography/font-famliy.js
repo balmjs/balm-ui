@@ -1,26 +1,9 @@
-function fontFamliy(Quill) {
-  const FontFamliyAttributor = Quill.import('attributors/class/font');
+function useFontFamliy(Quill, fontFamliy = []) {
+  const FontFamliyStyle = Quill.import('attributors/style/font');
 
-  const fontFamliy = [
-    'Arial',
-    'Arial Black',
-    'Comic Sans MS',
-    'Courier New',
-    'Tahoma',
-    'Georgia',
-    'Helvetica',
-    'Segoe UI',
-    'Sans-Serif',
-    'Impact',
-    'Times New Roman',
-    'Verdana'
-  ];
+  FontFamliyStyle.whitelist = fontFamliy;
 
-  FontFamliyAttributor.whitelist = fontFamliy.map((font) =>
-    font.toLowerCase().replace(/\s+/g, '-')
-  );
-
-  Quill.register(FontFamliyAttributor, true);
+  Quill.register(FontFamliyStyle, true);
 }
 
-export default fontFamliy;
+export default useFontFamliy;

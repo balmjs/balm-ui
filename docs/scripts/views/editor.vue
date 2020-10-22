@@ -3,6 +3,7 @@
     <ui-editor
       v-model="content"
       :toolbar="toolbar"
+      :toolbar-options="toolbarOptions"
       :toolbar-custom-handlers="toolbarCustomHandlers"
     >
       <!-- <template #toolbar>
@@ -120,11 +121,64 @@
         </div>
       </template> -->
     </ui-editor>
+    <!-- <ui-editor
+      v-model="content2"
+      :toolbar="toolbar"
+      :toolbar-options="toolbarOptions"
+      :toolbar-custom-handlers="toolbarCustomHandlers"
+    >
+    </ui-editor> -->
   </div>
 </template>
 
 <script>
 import UiEditor from 'balm-ui-editor';
+
+const toolbarOptions = {
+  font: [
+    'Arial',
+    'Arial Black',
+    'Comic Sans MS',
+    'Courier New',
+    'Tahoma',
+    'Georgia',
+    'Helvetica',
+    'Segoe UI',
+    'Impact',
+    'Times New Roman',
+    'Verdana'
+  ],
+  size: [
+    '8px',
+    '9px',
+    '10px',
+    '11px',
+    '12px',
+    '13px',
+    '14px',
+    '16px',
+    '18px',
+    '24px',
+    '36px',
+    '48px',
+    '60px',
+    '72px',
+    '96px'
+  ],
+  lineheight: [
+    '1',
+    '1.2',
+    '1.5',
+    '1.6',
+    '1.8',
+    '2',
+    '2.4',
+    '2.8',
+    '3',
+    '4',
+    '5'
+  ]
+};
 
 export default {
   components: {
@@ -133,7 +187,9 @@ export default {
   data() {
     return {
       content: '',
+      content2: '',
       // toolbar: '#toolbar',
+      toolbarOptions,
       toolbar: [
         'bold',
         'italic',
@@ -143,55 +199,16 @@ export default {
         { align: [] },
         { header: [false, 1, 2, 3, 4, 5, 6] },
         {
-          font: [
-            'Arial',
-            'Arial Black',
-            'Comic Sans MS',
-            'Courier New',
-            'Tahoma',
-            'Georgia',
-            'Helvetica',
-            'Segoe UI',
-            'Impact',
-            'Times New Roman',
-            'Verdana'
-          ]
+          font: [false, ...toolbarOptions.font]
         },
         {
-          size: [
-            '8px',
-            '9px',
-            '10px',
-            '11px',
-            '12px',
-            '13px',
-            '14px',
-            '16px',
-            '18px',
-            '24px',
-            '36px',
-            '48px',
-            '60px',
-            '72px',
-            '96px'
-          ]
+          size: [false, ...toolbarOptions.size]
         },
         {
-          lineheight: [
-            false,
-            '1',
-            '1.2',
-            '1.5',
-            '1.6',
-            '1.8',
-            '2',
-            '2.4',
-            '2.8',
-            '3',
-            '4',
-            '5'
-          ]
-        }
+          lineheight: [false, ...toolbarOptions.lineheight]
+        },
+        'preview',
+        'code'
       ],
       toolbarCustomHandlers: {}
     };

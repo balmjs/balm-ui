@@ -1,11 +1,11 @@
-import fontFamliy from './font-famliy';
-import fontSize from './font-size';
-import lineHeight from './line-height';
+import useFontFamliy from './font-famliy';
+import useFontSize from './font-size';
+import useLineHeight from './line-height';
 
-function useTypography(Quill) {
-  fontFamliy(Quill);
-  fontSize(Quill);
-  lineHeight(Quill);
+function useTypography(Quill, { font, size, lineheight }) {
+  font && useFontFamliy(Quill, font);
+  size && useFontSize(Quill, size);
+  lineheight && useLineHeight(Quill, lineheight);
 }
 
 export default useTypography;

@@ -1,5 +1,5 @@
 import Emotion from './emoji/emotion';
-import useTypography from './typography';
+import useDefaultFormats from './formats';
 import useEmoji from './emoji';
 import useDefaultExtension from './extension';
 
@@ -7,15 +7,23 @@ let Quill;
 let editor;
 let prototypeInitialized = false;
 
-
-const createEditor = function(editorEl, { toolbarIcons, toolbarOptions, options, emotions, extension }) {
+const createEditor = function (
+  editorEl,
+  { toolbarIcons, toolbarOptions, options, emotions, extension }
+) {
   Quill = require('quill');
 
-  let onInstantiated = useDefaultExtension(Quill, options, createEditor, toolbarIcons, prototypeInitialized);
-  
+  let onInstantiated = useDefaultExtension(
+    Quill,
+    options,
+    createEditor,
+    toolbarIcons,
+    prototypeInitialized
+  );
+
   if (!prototypeInitialized) {
     if (options.theme === 'snow') {
-      useTypography(Quill, toolbarOptions);
+      useDefaultFormats(Quill, toolbarOptions);
       useEmoji(Quill, options, emotions);
     }
 
@@ -29,27 +37,22 @@ const createEditor = function(editorEl, { toolbarIcons, toolbarOptions, options,
   editor = new Quill(editorEl, options);
 
   return onInstantiated(editor);
-}
+};
 
 createEditor.destroy = function () {
   Emotion.clear();
-}
+};
 
 createEditor.insert = function (customFormat, value) {
   if (editor) {
     const range = editor.getSelection();
     if (range) {
-      editor.insertEmbed(
-        range.index,
-        customFormat,
-        value,
-        Quill.sources.USER
-      );
+      editor.insertEmbed(range.index, customFormat, value, Quill.sources.USER);
     }
   } else {
     console.warn('[UiEditor] Quill registration failed');
   }
-}
+};
 
 // class QuillEditor {
 //   constructor(

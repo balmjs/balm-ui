@@ -1,7 +1,7 @@
-function useFontSize(Quill, fontSize = []) {
+function useFontSize(Quill, customFontSize = []) {
   const FontSizeStyle = Quill.import('attributors/style/size');
 
-  FontSizeStyle.whitelist = fontSize;
+  FontSizeStyle.whitelist = customFontSize;
 
   Quill.register(FontSizeStyle, true);
 }

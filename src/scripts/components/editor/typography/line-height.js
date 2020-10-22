@@ -5,33 +5,35 @@ function lineHeight(Quill) {
   let config = {
     scope: Parchment.Scope.INLINE,
     whitelist: [
-      '1.0',
+      '1',
       '1.2',
       '1.5',
       '1.6',
       '1.8',
-      '2.0',
+      '2',
       '2.4',
       '2.8',
-      '3.0',
-      '4.0',
-      '5.0'
+      '3',
+      '4',
+      '5'
     ]
   };
 
-  let LineHeightClass = new Parchment.Attributor.Class(
-    'lineheight',
-    'ql-line-height',
-    config
-  );
-  let LineHeightStyle = new Parchment.Attributor.Style(
+  class LineHeightStyle extends Parchment.Attributor.Style { }
+  
+
+  // let LineHeightClass = new Parchment.Attributor.Class(
+  //   'lineheight',
+  //   'ql-line-height',
+  //   config
+  // );
+  let style = new LineHeightStyle(
     'lineheight',
     'line-height',
     config
   );
-
-  Parchment.register(LineHeightClass);
-  Parchment.register(LineHeightStyle);
+  
+  Quill.register(style, true);
 }
 
 export default lineHeight;

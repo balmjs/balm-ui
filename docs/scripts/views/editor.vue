@@ -144,7 +144,6 @@ export default {
         { header: [false, 1, 2, 3, 4, 5, 6] },
         {
           font: [
-            false,
             'Arial',
             'Arial Black',
             'Comic Sans MS',
@@ -160,7 +159,6 @@ export default {
         },
         {
           size: [
-            false,
             '8px',
             '9px',
             '10px',
@@ -181,17 +179,17 @@ export default {
         {
           lineheight: [
             false,
-            '1.0',
+            '1',
             '1.2',
             '1.5',
             '1.6',
             '1.8',
-            '2.0',
+            '2',
             '2.4',
             '2.8',
-            '3.0',
-            '4.0',
-            '5.0'
+            '3',
+            '4',
+            '5'
           ]
         }
       ],

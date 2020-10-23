@@ -14,17 +14,12 @@ function createEditor(
 ) {
   Quill = require('quill');
 
-  let onMounted = useDefaultExtensions(
-    Quill,
-    options,
-    toolbarIcons,
-    prototypeInitialized
-  );
+  let onMounted = useDefaultExtensions(Quill, options, prototypeInitialized);
 
   if (!prototypeInitialized) {
     if (options.theme === 'snow') {
       useDefaultFormats(Quill, toolbarOptions);
-      useDefaultModules(Quill);
+      useDefaultModules(Quill, options, toolbarIcons);
       useEmoji(Quill, options, emotions);
     }
 
@@ -37,19 +32,14 @@ function createEditor(
 
   editor = new Quill(editorEl, options);
 
-  return onMounted(editor);
-}
-
-// TODO: 待优化
-createEditor.insert = (customFormat, value) => {
-  if (editor) {
+  editor.insert = (customFormat, value) => {
     const range = editor.getSelection();
     if (range) {
-      editor.insertEmbed(range.index, customFormat, value, Quill.sources.USER);
+      editor.insertEmbed(range.index, customFormat, value);
     }
-  } else {
-    console.warn('[UiEditor] Quill registration failed');
-  }
-};
+  };
+
+  return onMounted(editor);
+}
 
 export { createEditor, Emotion };

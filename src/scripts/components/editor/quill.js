@@ -1,6 +1,7 @@
 import Emotion from './extensions/emoji/emotion';
-import useDefaultFormats from './formats';
 import useEmoji from './extensions/emoji';
+import useDefaultFormats from './formats';
+import useDefaultModules from './modules';
 import useDefaultExtensions from './extensions';
 
 let Quill;
@@ -13,10 +14,9 @@ function createEditor(
 ) {
   Quill = require('quill');
 
-  let onInstantiated = useDefaultExtensions(
+  let onMounted = useDefaultExtensions(
     Quill,
     options,
-    createEditor,
     toolbarIcons,
     prototypeInitialized
   );
@@ -24,6 +24,7 @@ function createEditor(
   if (!prototypeInitialized) {
     if (options.theme === 'snow') {
       useDefaultFormats(Quill, toolbarOptions);
+      useDefaultModules(Quill);
       useEmoji(Quill, options, emotions);
     }
 
@@ -36,7 +37,7 @@ function createEditor(
 
   editor = new Quill(editorEl, options);
 
-  return onInstantiated(editor);
+  return onMounted(editor);
 }
 
 // TODO: 待优化

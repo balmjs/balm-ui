@@ -1,9 +1,9 @@
-function handleCode(quill) {
-  const toolbar = quill.getModule('toolbar');
+function handleCode(editor) {
+  const toolbar = editor.getModule('toolbar');
 
   if (typeof toolbar !== 'undefined') {
     toolbar.addHandler('code', () => {
-      console.log('code', quill);
+      console.log('code', editor);
     });
   }
 }

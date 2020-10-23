@@ -1,19 +1,19 @@
-import Emotion from './emoji/emotion';
+import Emotion from './extensions/emoji/emotion';
 import useDefaultFormats from './formats';
 import useEmoji from './emoji';
-import useDefaultExtension from './extension';
+import useDefaultExtensions from './extensions';
 
 let Quill;
 let editor;
 let prototypeInitialized = false;
 
-const createEditor = function (
+function createEditor(
   editorEl,
   { toolbarIcons, toolbarOptions, options, emotions, extension }
 ) {
   Quill = require('quill');
 
-  let onInstantiated = useDefaultExtension(
+  let onInstantiated = useDefaultExtensions(
     Quill,
     options,
     createEditor,
@@ -37,13 +37,10 @@ const createEditor = function (
   editor = new Quill(editorEl, options);
 
   return onInstantiated(editor);
-};
+}
 
-createEditor.destroy = function () {
-  Emotion.clear();
-};
-
-createEditor.insert = function (customFormat, value) {
+// TODO: 待优化
+createEditor.insert = (customFormat, value) => {
   if (editor) {
     const range = editor.getSelection();
     if (range) {
@@ -54,54 +51,4 @@ createEditor.insert = function (customFormat, value) {
   }
 };
 
-// class QuillEditor {
-//   constructor(
-//     editorEl,
-//     { toolbarIcons, toolbarOptions, options, emotions, extension }
-//   ) {
-//     Quill = require('quill');
-
-//     if (options.theme === 'snow') {
-//       setToolbarIcons(Quill, toolbarIcons);
-
-//       useTypography(Quill, toolbarOptions);
-//       useEmoji(Quill, options, emotions);
-//       useCounter(Quill);
-//       useDivider(Quill, options, QuillEditor);
-//       usePreview(Quill, options);
-//     }
-
-//     if (extension) {
-//       Quill.register(extension, true);
-//     }
-
-//     editor = new Quill(editorEl, options);
-
-//     setToolbarStyle();
-//     handleCode(editor);
-
-//     return editor;
-//   }
-
-//   static destroy() {
-//     Emotion.clear();
-//   }
-
-//   static insert(customFormat, value) {
-//     if (editor) {
-//       const range = editor.getSelection();
-//       if (range) {
-//         editor.insertEmbed(
-//           range.index,
-//           customFormat,
-//           value,
-//           Quill.sources.USER
-//         );
-//       }
-//     } else {
-//       console.warn('[UiEditor] Quill registration failed');
-//     }
-//   }
-// }
-
-export default createEditor;
+export { createEditor, Emotion };

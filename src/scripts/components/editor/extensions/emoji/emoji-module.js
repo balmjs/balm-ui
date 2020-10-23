@@ -1,5 +1,5 @@
-import Emotion from '../emoji/emotion';
-import { getCode, createEmoji } from '../emoji/utils';
+import Emotion from './emotion';
+import { getCode, createEmoji } from './utils';
 
 const EMOJI_TOOLBAR = {
   id: 'ql-emoji-palette',

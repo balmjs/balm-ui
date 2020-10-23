@@ -1,4 +1,4 @@
-function counterModule(Quill) {
+function useCounter(Quill) {
   class Counter {
     constructor(quill, options) {
       this.quill = quill;
@@ -32,4 +32,4 @@ function counterModule(Quill) {
   Quill.register('modules/counter', Counter);
 }
 
-export default counterModule;
+export default useCounter;

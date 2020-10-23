@@ -4,7 +4,7 @@ function handlePreview(options) {
   };
 }
 
-function previewModule(Quill, options) {
+function usePreview(Quill, options) {
   class Preview {
     constructor(quill, options) {}
   }
@@ -14,4 +14,4 @@ function previewModule(Quill, options) {
   handlePreview(options);
 }
 
-export default previewModule;
+export default usePreview;

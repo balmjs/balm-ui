@@ -194,8 +194,8 @@ export default {
         'bold',
         'italic',
         'underline',
-        {'color': []},
-        {'background': []},
+        { color: [] },
+        { background: [] },
         { align: [] },
         { header: [false, 1, 2, 3, 4, 5, 6] },
         {

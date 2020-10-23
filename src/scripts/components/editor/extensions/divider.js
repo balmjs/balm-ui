@@ -1,12 +1,10 @@
-import createEditor from "../quill";
-
-function handleDivider(options, createEditor) {
+function handleDivider(options, editor) {
   options.modules.toolbar.handlers.divider = () => {
-    createEditor.insert('divider', 'null');
+    editor.insert('divider', 'null');
   };
 }
 
-function dividerFormat(Quill, options, createEditor) {
+function dividerFormat(Quill, options, editor) {
   let BlockEmbed = Quill.import('blots/block/embed');
 
   class DividerBlot extends BlockEmbed {}
@@ -16,7 +14,7 @@ function dividerFormat(Quill, options, createEditor) {
 
   Quill.register('formats/divider', DividerBlot);
 
-  handleDivider(options, createEditor);
+  handleDivider(options, editor);
 }
 
 export default dividerFormat;

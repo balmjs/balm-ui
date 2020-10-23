@@ -1,6 +1,5 @@
 import Emotion from './emotion';
 import { emojiClassName, createEmoji } from './utils';
-import getType from '../../../utils/typeof';
 
 function emojiFormat(Quill) {
   const Embed = Quill.import('blots/embed');
@@ -9,9 +8,9 @@ function emojiFormat(Quill) {
     static create(value) {
       const node = super.create();
 
-      if (getType(value) === 'object') {
+      if (typeof value === 'object') {
         createEmoji(value, node);
-      } else if (getType(value) === 'string') {
+      } else if (typeof value === 'string') {
         const emojiMap = Emotion.getEmotions();
         createEmoji(emojiMap[value], node);
       } else {

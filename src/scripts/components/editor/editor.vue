@@ -13,10 +13,8 @@
 </template>
 
 <script>
-import createEditor from './quill';
-import Emotion from './emoji/emotion';
+import { createEditor, Emotion } from './quill';
 import getType from '../../utils/typeof';
-import { isString, isObject, isArray } from '../../utils/types';
 
 // Define editor constants
 const UI_EDITOR = {
@@ -213,7 +211,7 @@ export default {
     });
   },
   beforeDestroy() {
-    createEditor.destroy();
+    Emotion.clear();
   },
   methods: {
     getOptions(counterEl) {
@@ -277,18 +275,7 @@ export default {
       return Emotion.encode(html); // output: content
     },
     decodeEmoji(content) {
-      let html = content;
-
-      try {
-        html = Emotion.decode(content); // output: html
-      } catch (e) {
-        console.warn(
-          '[UiEditor] - `decodeEmoji`:',
-          'The content must be an async data'
-        );
-      }
-
-      return html;
+      return Emotion.decode(content); // output: html
     },
     onFileChange(event) {
       const file = event.target.files[0];

@@ -14,7 +14,7 @@ function useDefaultFormats(Quill, { font, size, lineheight }) {
   font && useFontFamliy(Quill, font);
   size && useFontSize(Quill, size);
   lineheight && useLineHeight(Quill, lineheight);
-  
+
   useDivider(Quill);
 }
 

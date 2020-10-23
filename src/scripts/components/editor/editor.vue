@@ -80,7 +80,7 @@ const UI_EDITOR = {
     textindent: {
       '+1': 'format_indent_increase',
       '-1': 'format_indent_decrease'
-    },
+    }
   },
   toolbarOptions: [
     [{ font: [] }, { size: [] }],
@@ -246,7 +246,7 @@ export default {
           customHandlers[customFormat] = (formatValue) => {
             if (formatValue) {
               const insert = (value = 'null') => {
-                createEditor.insert(customFormat, value);
+                this.$editor.insert(customFormat, value);
               };
 
               this.toolbarCustomHandlers[customFormat](this.$editor, insert);
@@ -284,7 +284,7 @@ export default {
     onFileChange(event) {
       const file = event.target.files[0];
       const insert = (url) => {
-        createEditor.insert('image', url);
+        this.$editor.insert('image', url);
       };
 
       this.$emit(UI_EDITOR.EVENT.FILE_CHANGE, file, insert);

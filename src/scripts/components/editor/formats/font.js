@@ -1,4 +1,7 @@
-function useFontFamliy(Quill, customFontFamliy = []) {
+import { useEditor } from '../quill';
+
+function useFontFamliy(customFontFamliy = []) {
+  const { Quill } = useEditor();
   const FontFamliyStyle = Quill.import('attributors/style/font');
 
   FontFamliyStyle.whitelist = customFontFamliy;

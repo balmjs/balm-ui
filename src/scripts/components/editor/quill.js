@@ -14,13 +14,14 @@ function createEditor(
 ) {
   Quill = require('quill');
 
-  let onMounted = useDefaultExtensions(Quill, options, prototypeInitialized);
+  let onMounted = useDefaultExtensions(options, prototypeInitialized);
 
   if (!prototypeInitialized) {
+    useDefaultFormats(toolbarOptions);
+    useDefaultModules(options, toolbarIcons);
+
     if (options.theme === 'snow') {
-      useDefaultFormats(Quill, toolbarOptions);
-      useDefaultModules(Quill, options, toolbarIcons);
-      useEmoji(Quill, options, emotions);
+      useEmoji(options, emotions);
     }
 
     if (extension) {
@@ -42,4 +43,11 @@ function createEditor(
   return onMounted(editor);
 }
 
-export { createEditor, Emotion };
+const useEditor = () => {
+  return {
+    Quill,
+    editor
+  };
+};
+
+export { createEditor, useEditor, Emotion };

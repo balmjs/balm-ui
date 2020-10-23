@@ -1,5 +1,4 @@
 function hanldeLinkOff(options) {
-
   options.modules.toolbar.handlers.linkoff = function () {
     let contents = this.quill.getContents();
     let newContent = contents.ops.map((item) => {
@@ -10,7 +9,6 @@ function hanldeLinkOff(options) {
     });
     this.quill.setContents(newContent);
   };
-  
 }
 
 export default hanldeLinkOff;

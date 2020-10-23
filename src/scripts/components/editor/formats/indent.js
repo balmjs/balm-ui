@@ -1,9 +1,12 @@
+import { useEditor } from '../quill';
+
 const unit = 'em';
 const defaultIndent = [1, 2, 3, 4, 5, 6, 7, 8].map(
   (value) => `${value}${unit}`
 );
 
-function useIndent(Quill) {
+function useIndent() {
+  const { Quill } = useEditor();
   const Parchment = Quill.import('parchment');
 
   let config = {

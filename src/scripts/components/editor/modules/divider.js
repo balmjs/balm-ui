@@ -1,4 +1,8 @@
-function useDivider(Quill) {
+import { useEditor } from '../quill';
+
+function useDivider() {
+  const { Quill } = useEditor();
+
   class DividerModule {
     constructor(quill) {
       const toolbar = quill.getModule('toolbar');

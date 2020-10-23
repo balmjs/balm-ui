@@ -2,13 +2,11 @@ import Emotion from './emotion';
 import emojiFormat from './emoji-format';
 import emojiModule from './emoji-module';
 
-function useEmoji(Quill, options, emotions) {
-  options.modules.emoji = true;
-
+function useEmoji(options, emotions) {
   new Emotion(emotions);
 
-  emojiFormat(Quill);
-  emojiModule(Quill);
+  emojiFormat();
+  emojiModule();
 }
 
 export default useEmoji;

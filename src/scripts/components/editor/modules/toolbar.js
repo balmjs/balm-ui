@@ -1,5 +1,9 @@
-export function setToolbarIcons(Quill, customIcons = {}) {
+import { useEditor } from '../quill';
+
+export function setToolbarIcons(customIcons = {}) {
+  const { Quill } = useEditor();
   const icons = Quill.import('ui/icons');
+
   for (const [key, value] of Object.entries(customIcons)) {
     icons[key] = value;
   }

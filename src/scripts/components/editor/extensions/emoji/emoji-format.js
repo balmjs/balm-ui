@@ -1,7 +1,9 @@
+import { useEditor } from '../../quill';
 import Emotion from './emotion';
 import { emojiClassName, createEmoji } from './utils';
 
-function emojiFormat(Quill) {
+function emojiFormat() {
+  const { Quill } = useEditor();
   const Embed = Quill.import('blots/embed');
 
   class EmojiBlot extends Embed {

@@ -1,3 +1,4 @@
+import { useEditor } from '../../quill';
 import Emotion from './emotion';
 import { getCode, createEmoji } from './utils';
 
@@ -14,7 +15,8 @@ const EMOJI_TOOLBAR = {
   }
 };
 
-function emojiModule(Quill) {
+function emojiModule() {
+  const { Quill } = useEditor();
   const Module = Quill.import('core/module');
 
   class EmojiToolbarModule extends Module {

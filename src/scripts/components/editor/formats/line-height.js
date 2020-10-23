@@ -1,4 +1,7 @@
-function useLineHeight(Quill, customLineHeight = []) {
+import { useEditor } from '../quill';
+
+function useLineHeight(customLineHeight = []) {
+  const { Quill } = useEditor();
   const Parchment = Quill.import('parchment');
 
   let config = {

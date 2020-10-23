@@ -6,16 +6,16 @@ import useFontSize from './size';
 import useLineHeight from './line-height';
 import useDivider from './divider';
 
-function useDefaultFormats(Quill, { font, size, lineheight }) {
-  useTextAlign(Quill);
-  useDirection(Quill);
-  useIndent(Quill);
+function useDefaultFormats({ font, size, lineheight }) {
+  useTextAlign();
+  useDirection();
+  useIndent();
 
-  font && useFontFamliy(Quill, font);
-  size && useFontSize(Quill, size);
-  lineheight && useLineHeight(Quill, lineheight);
+  font && useFontFamliy(font);
+  size && useFontSize(size);
+  lineheight && useLineHeight(lineheight);
 
-  useDivider(Quill);
+  useDivider();
 }
 
 export default useDefaultFormats;

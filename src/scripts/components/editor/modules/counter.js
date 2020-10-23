@@ -1,4 +1,8 @@
-function useCounter(Quill) {
+import { useEditor } from '../quill';
+
+function useCounter() {
+  const { Quill } = useEditor();
+
   class Counter {
     constructor(quill, options) {
       this.quill = quill;

@@ -1,6 +1,8 @@
 import { useEditor } from '../quill';
 
-function useHistory(toolbarHandlers) {
+function useHistory() {
+  const { toolbarHandlers } = useEditor();
+
   toolbarHandlers.undo = () => {
     const { editor } = useEditor();
     editor.history.undo();

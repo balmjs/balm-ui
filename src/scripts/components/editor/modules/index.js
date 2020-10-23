@@ -2,13 +2,10 @@ import { setToolbarIcons } from './toolbar';
 import useCounter from './counter';
 import useDivider from './divider';
 import useHistory from './history';
-import usePreview from './preview';
 
 const customFormatHandlers = ['divider', 'emoji'];
 
 function useDefaultModules(options, toolbarIcons) {
-  const toolbarHandlers = options.modules.toolbar.handlers;
-
   customFormatHandlers.forEach((blotName) => {
     options.modules[blotName] = true;
   });
@@ -17,8 +14,7 @@ function useDefaultModules(options, toolbarIcons) {
 
   useCounter();
   useDivider();
-  useHistory(toolbarHandlers);
-  usePreview(options);
+  useHistory();
 }
 
 export default useDefaultModules;

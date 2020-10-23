@@ -6,6 +6,7 @@ import useDefaultExtensions from './extensions';
 
 let Quill;
 let editor;
+let toolbarHandlers = {};
 let prototypeInitialized = false;
 
 function createEditor(
@@ -14,14 +15,16 @@ function createEditor(
 ) {
   Quill = require('quill');
 
-  let onMounted = useDefaultExtensions(options, prototypeInitialized);
+  toolbarHandlers = options.modules.toolbar.handlers;
+
+  let onMounted = useDefaultExtensions(prototypeInitialized);
 
   if (!prototypeInitialized) {
     useDefaultFormats(toolbarOptions);
     useDefaultModules(options, toolbarIcons);
 
     if (options.theme === 'snow') {
-      useEmoji(options, emotions);
+      useEmoji(emotions);
     }
 
     if (extension) {
@@ -46,7 +49,8 @@ function createEditor(
 const useEditor = () => {
   return {
     Quill,
-    editor
+    editor,
+    toolbarHandlers
   };
 };
 

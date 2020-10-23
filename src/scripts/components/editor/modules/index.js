@@ -3,11 +3,11 @@ import useDivider from './divider';
 import useCounter from './counter';
 // import usePreview from './preview';
 
-const customModules = ['divider'];
+const customHandlers = ['divider'];
 
 function useDefaultModules(Quill, options, toolbarIcons) {
-  customModules.forEach((moduleName) => {
-    options.modules[moduleName] = true;
+  customHandlers.forEach((blotName) => {
+    options.modules[blotName] = true;
   });
 
   setToolbarIcons(Quill, toolbarIcons);

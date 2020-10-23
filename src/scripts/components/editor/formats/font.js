@@ -1,12 +1,14 @@
 import { useEditor } from '../quill';
 
 function useFontFamliy(customFontFamliy = []) {
-  const { Quill } = useEditor();
-  const FontFamliyStyle = Quill.import('attributors/style/font');
+  if (customFontFamliy.length) {
+    const { Quill } = useEditor();
+    const FontFamliyStyle = Quill.import('attributors/style/font');
 
-  FontFamliyStyle.whitelist = customFontFamliy;
+    FontFamliyStyle.whitelist = customFontFamliy;
 
-  Quill.register(FontFamliyStyle, true);
+    Quill.register(FontFamliyStyle, true);
+  }
 }
 
 export default useFontFamliy;

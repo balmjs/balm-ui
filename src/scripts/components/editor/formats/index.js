@@ -11,9 +11,9 @@ function useDefaultFormats({ font, size, lineheight }) {
   useDirection();
   useIndent();
 
-  font && useFontFamliy(font);
-  size && useFontSize(size);
-  lineheight && useLineHeight(lineheight);
+  useFontFamliy(font);
+  useFontSize(size);
+  useLineHeight(lineheight);
 
   useDivider();
 }

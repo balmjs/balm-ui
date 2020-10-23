@@ -92,10 +92,13 @@ const UI_EDITOR = {
       { list: 'ordered' },
       { list: 'bullet' },
       { indent: '-1' },
-      { indent: '+1' }
+      { indent: '+1' },
+      { textindent: '-1' },
+      { textindent: '+1' }
     ],
     [{ direction: 'rtl' }, { align: [] }],
-    ['link', 'image', 'video'], // NOTE: 'formula' - requires `KaTex`
+    ['link', 'linkoff'],
+    [ 'image', 'video'], // NOTE: 'formula' - requires `KaTex`
     ['clean']
   ]
 };

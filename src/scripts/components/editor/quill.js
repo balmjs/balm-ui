@@ -1,6 +1,6 @@
 import Emotion from './extensions/emoji/emotion';
 import useDefaultFormats from './formats';
-import useEmoji from './emoji';
+import useEmoji from './extensions/emoji';
 import useDefaultExtensions from './extensions';
 
 let Quill;

@@ -4,9 +4,9 @@ import useIndent from './indent';
 import useFontFamliy from './font';
 import useFontSize from './size';
 import useLineHeight from './line-height';
-import useTextIndent from './text-indent';
+import useDivider from './divider';
 
-function useTypography(Quill, { font, size, lineheight, textindent }) {
+function useDefaultFormats(Quill, { font, size, lineheight }) {
   useTextAlign(Quill);
   useDirection(Quill);
   useIndent(Quill);
@@ -14,7 +14,8 @@ function useTypography(Quill, { font, size, lineheight, textindent }) {
   font && useFontFamliy(Quill, font);
   size && useFontSize(Quill, size);
   lineheight && useLineHeight(Quill, lineheight);
-  textindent && useTextIndent(Quill)
+  
+  useDivider(Quill);
 }
 
-export default useTypography;
+export default useDefaultFormats;

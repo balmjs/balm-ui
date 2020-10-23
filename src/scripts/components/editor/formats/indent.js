@@ -7,11 +7,11 @@ function useIndent(Quill) {
     scope: Parchment.Scope.BLOCK,
     whitelist: defaultIndent
   };
-
+  
   class IdentAttributor extends Parchment.Attributor.Style {
     add(node, value) {
       if (value === '+1' || value === '-1') {
-        let indent = this.value(node.replace('px', '')) || 0;
+        let indent = this.value(node) || 0;
         value = value === '+1' ? indent + 1 : indent - 1;
       }
 
@@ -23,15 +23,14 @@ function useIndent(Quill) {
       }
     }
 
+
     value(node) {
       return parseInt(super.value(node)) || undefined; // Don't return NaN
     }
   }
 
   const IndentStyle = new IdentAttributor('indent', 'margin-left', config);
-  const TextIndentStyle = new TextIndentAttibute('textindent', 'text-indent', {
-    scope: Parchment.Scope.INLINE,
-  });
+  const TextIndentStyle = new IdentAttributor('textindent', 'text-indent', config);
 
   Quill.register(IndentStyle, true);
   Quill.register(TextIndentStyle, true);

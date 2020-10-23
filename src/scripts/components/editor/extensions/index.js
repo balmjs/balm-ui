@@ -1,29 +1,24 @@
-import useDivider from './divider';
-import useCounter from '../modules/counter';
-import usePreview from '../modules/preview';
-import handleCode from './code';
-import handleLinkOff from './link-off';
+import useCode from './code';
+import useLinkOff from './link-off';
+import useHistory from './history';
 
 import { setToolbarIcons, setToolbarStyle } from './toolbar';
 
-export default function (
-  Quill,
-  options,
-  editor,
-  toolbarIcons,
-  prototypeInitialized
-) {
-  if (options.theme === 'snow' && !prototypeInitialized) {
-    setToolbarIcons(Quill, toolbarIcons);
-    useCounter(Quill);
-    useDivider(Quill, options, editor);
-    usePreview(Quill, options);
-  }
+export default function (Quill, options, toolbarIcons, prototypeInitialized) {
 
-  return function (instance) {
+  if (!prototypeInitialized) {
+    useLinkOff(options);
+    if (options.theme === 'snow' && !prototypeInitialized) {
+      setToolbarIcons(Quill, toolbarIcons);
+    }
+  }
+  
+
+  return function (editor) {
     setToolbarStyle();
-    handleCode(instance);
-    handleLinkOff(instance);
-    return instance;
+    useCode(editor);
+    useHistory(editor);
+
+    return editor;
   };
 }

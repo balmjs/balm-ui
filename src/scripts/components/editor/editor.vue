@@ -76,7 +76,11 @@ const UI_EDITOR = {
     emoji: 'insert_emoticon',
     undo: 'undo',
     redo: 'redo',
-    'link-off': 'link_off'
+    linkoff: 'link_off',
+    textindent: {
+      '+1': 'format_indent_increase',
+      '-1': 'format_indent_decrease'
+    },
   },
   toolbarOptions: [
     [{ font: [] }, { size: [] }],

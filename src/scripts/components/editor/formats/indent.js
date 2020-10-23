@@ -10,7 +10,6 @@ function useIndent(Quill) {
 
   class IdentAttributor extends Parchment.Attributor.Style {
     add(node, value) {
-      console.log('add', node, value);
       if (value === '+1' || value === '-1') {
         let indent = this.value(node.replace('px', '')) || 0;
         value = value === '+1' ? indent + 1 : indent - 1;
@@ -30,8 +29,12 @@ function useIndent(Quill) {
   }
 
   const IndentStyle = new IdentAttributor('indent', 'margin-left', config);
+  const TextIndentStyle = new TextIndentAttibute('textindent', 'text-indent', {
+    scope: Parchment.Scope.INLINE,
+  });
 
   Quill.register(IndentStyle, true);
+  Quill.register(TextIndentStyle, true);
 }
 
 export default useIndent;

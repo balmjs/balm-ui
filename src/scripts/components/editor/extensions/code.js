@@ -1,11 +1,11 @@
-function handleCode(editor) {
-  const toolbar = editor.getModule('toolbar');
+import { useEditor } from '../quill';
 
-  if (typeof toolbar !== 'undefined') {
-    toolbar.addHandler('code', () => {
-      console.log('code', editor);
-    });
-  }
+function handleCode() {
+  const { toolbarHandlers } = useEditor();
+
+  toolbarHandlers.preview = () => {
+    console.log('code');
+  };
 }
 
 export default handleCode;

@@ -3,6 +3,7 @@ import useEmoji from './extensions/emoji';
 import useDefaultFormats from './formats';
 import useDefaultModules from './modules';
 import useDefaultExtensions from './extensions';
+import { setToolbarStyle } from './modules/toolbar';
 
 let Quill;
 let editor;
@@ -17,11 +18,10 @@ function createEditor(
 
   toolbarHandlers = options.modules.toolbar.handlers;
 
-  let onMounted = useDefaultExtensions(prototypeInitialized);
-
   if (!prototypeInitialized) {
     useDefaultFormats(toolbarOptions);
     useDefaultModules(options, toolbarIcons);
+    useDefaultExtensions();
 
     if (options.theme === 'snow') {
       useEmoji(emotions);
@@ -43,7 +43,9 @@ function createEditor(
     }
   };
 
-  return onMounted(editor);
+  setToolbarStyle();
+
+  return editor;
 }
 
 const useEditor = () => {

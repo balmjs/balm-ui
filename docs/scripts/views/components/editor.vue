@@ -26,7 +26,6 @@
         :toolbar="toolbar"
         :toolbar-custom-handlers="toolbarCustomHandlers"
         :emotions="emotions"
-        :extension="extension"
         custom-image-handler
         @file-change="onFileChange"
       ></ui-editor>
@@ -45,7 +44,6 @@
 import UiEditor from 'balm-ui-editor'; // Individual Usage for IE10 bug
 import EmojiHuaixiao from '@/assets/emoji/pcmoren_huaixiao.png';
 import EmojiTian from '@/assets/emoji/pcmoren_tian.png';
-import HrFormat from '@/extensions/hr-format';
 
 export default {
   components: {
@@ -76,7 +74,7 @@ export default {
         ['emoji', 'link', 'image', 'video'],
         ['clean'],
         ['undo', 'redo'],
-        ['hr']
+        ['divider']
       ],
       toolbarCustomHandlers: {
         undo: (quill) => {
@@ -84,9 +82,6 @@ export default {
         },
         redo: (quill) => {
           quill.history.redo();
-        },
-        hr: (quill, insert) => {
-          insert();
         }
       },
       emotions: [
@@ -126,10 +121,7 @@ export default {
             }
           ]
         }
-      ],
-      extension: {
-        'formats/hr': HrFormat
-      }
+      ]
     };
   },
   mounted() {

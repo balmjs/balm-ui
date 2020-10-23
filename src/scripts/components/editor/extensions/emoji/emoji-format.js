@@ -27,7 +27,12 @@ function emojiFormat() {
   EmojiBlot.tagName = 'SPAN';
   EmojiBlot.className = emojiClassName;
 
-  Quill.register('formats/emoji', EmojiBlot);
+  Quill.register(
+    {
+      'formats/emoji': EmojiBlot
+    },
+    true
+  );
 }
 
 export default emojiFormat;

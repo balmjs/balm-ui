@@ -174,7 +174,12 @@ function emojiModule() {
     });
   }
 
-  Quill.register('modules/emoji', EmojiToolbarModule);
+  Quill.register(
+    {
+      'modules/emoji': EmojiToolbarModule
+    },
+    true
+  );
 }
 
 export default emojiModule;

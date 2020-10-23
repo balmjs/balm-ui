@@ -3,13 +3,7 @@ import useCounter from './counter';
 import useDivider from './divider';
 import useHistory from './history';
 
-const customFormatHandlers = ['divider', 'emoji'];
-
-function useDefaultModules(options, toolbarIcons) {
-  customFormatHandlers.forEach((blotName) => {
-    options.modules[blotName] = true;
-  });
-
+function useDefaultModules(toolbarIcons) {
   setToolbarIcons(toolbarIcons);
 
   useCounter();

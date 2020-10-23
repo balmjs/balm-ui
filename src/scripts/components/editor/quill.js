@@ -5,6 +5,8 @@ import useDefaultModules from './modules';
 import useDefaultExtensions from './extensions';
 import { setToolbarStyle } from './modules/toolbar';
 
+const customFormatHandlers = ['divider', 'emoji'];
+
 let Quill;
 let editor;
 let toolbarHandlers = {};
@@ -17,15 +19,18 @@ function createEditor(
   Quill = require('quill');
 
   toolbarHandlers = options.modules.toolbar.handlers;
+  customFormatHandlers.forEach((blotName) => {
+    options.modules[blotName] = true;
+  });
+
+  if (options.theme === 'snow') {
+    useEmoji(emotions);
+  }
 
   if (!prototypeInitialized) {
     useDefaultFormats(toolbarOptions);
-    useDefaultModules(options, toolbarIcons);
+    useDefaultModules(toolbarIcons);
     useDefaultExtensions();
-
-    if (options.theme === 'snow') {
-      useEmoji(emotions);
-    }
 
     if (extension) {
       Quill.register(extension, true);

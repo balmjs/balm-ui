@@ -8,7 +8,12 @@ function useDivider() {
   DividerBlot.blotName = 'divider';
   DividerBlot.tagName = 'hr';
 
-  Quill.register('formats/divider', DividerBlot);
+  Quill.register(
+    {
+      'formats/divider': DividerBlot
+    },
+    true
+  );
 }
 
 export default useDivider;

@@ -151,7 +151,7 @@ function emojiModule() {
       let emojiList = Emotion.getEmotion(title);
 
       emojiList.forEach((emoji) => {
-        const emojiEl = createEmoji(emoji);
+        const emojiEl = createEmoji(emoji, true);
         emojiEl.setAttribute('title', getCode(emoji));
 
         panelEl.appendChild(emojiEl);
@@ -159,7 +159,7 @@ function emojiModule() {
         handleChooseEmoji(quill, emojiEl, emoji);
       });
     } else {
-      panelEl.innerHTML = 'emotions prop is required';
+      panelEl.innerHTML = 'Emotions is empty';
     }
   }
 

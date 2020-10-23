@@ -4,17 +4,17 @@ import { emojiClassName, createEmoji } from './utils';
 
 function emojiFormat() {
   const { Quill } = useEditor();
-  const Embed = Quill.import('blots/embed');
+  const Parchment = Quill.import('parchment');
 
-  class EmojiBlot extends Embed {
+  class EmojiBlot extends Parchment.Embed {
     static create(value) {
-      const node = super.create();
+      let node = super.create();
 
       if (typeof value === 'object') {
-        createEmoji(value, node);
+        return createEmoji(value);
       } else if (typeof value === 'string') {
         const emojiMap = Emotion.getEmotions();
-        createEmoji(emojiMap[value], node);
+        return createEmoji(emojiMap[value]);
       } else {
         console.warn('[UiEditor] Invalid emoji');
       }
@@ -24,7 +24,7 @@ function emojiFormat() {
   }
 
   EmojiBlot.blotName = 'emoji';
-  EmojiBlot.tagName = 'SPAN';
+  EmojiBlot.tagName = 'span';
   EmojiBlot.className = emojiClassName;
 
   Quill.register(

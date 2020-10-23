@@ -57,6 +57,17 @@
 
     width: 24px;
     height: 24px;
+
+    em,
+    img {
+      width: 20px;
+      height: 20px;
+    }
+
+    em {
+      font-style: normal;
+      font-size: 18px;
+    }
   }
 }
 
@@ -66,18 +77,4 @@
   left: 0;
   width: 100%;
   height: 100%;
-}
-
-// TODO: to inline style
-.ql-emoji {
-  i,
-  img {
-    width: 20px;
-    height: 20px;
-  }
-
-  i {
-    font-style: normal;
-    font-size: 18px;
-  }
 }

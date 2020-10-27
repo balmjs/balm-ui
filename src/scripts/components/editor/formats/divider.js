@@ -6,7 +6,7 @@ function useDivider() {
 
   class DividerBlot extends Parchment.Embed {}
   DividerBlot.blotName = 'divider';
-  DividerBlot.tagName = 'hr';
+  DividerBlot.tagName = 'HR';
 
   Quill.register(
     {

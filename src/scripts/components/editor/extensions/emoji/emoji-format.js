@@ -8,13 +8,16 @@ function emojiFormat() {
 
   class EmojiBlot extends Parchment.Embed {
     static create(value) {
-      let node = super.create();
+      let node =
+        value.type === 'emoji'
+          ? document.createElement('i')
+          : document.createElement('img');
 
       if (typeof value === 'object') {
-        return createEmoji(value);
+        return createEmoji(value, node);
       } else if (typeof value === 'string') {
         const emojiMap = Emotion.getEmotions();
-        return createEmoji(emojiMap[value]);
+        return createEmoji(emojiMap[value], node);
       } else {
         console.warn('[UiEditor] Invalid emoji');
       }
@@ -24,7 +27,7 @@ function emojiFormat() {
   }
 
   EmojiBlot.blotName = 'emoji';
-  EmojiBlot.tagName = 'span';
+  EmojiBlot.tagName = ['I', 'IMG'];
   EmojiBlot.className = emojiClassName;
 
   Quill.register(

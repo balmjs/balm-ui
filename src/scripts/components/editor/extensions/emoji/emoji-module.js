@@ -151,7 +151,7 @@ function emojiModule() {
       let emojiList = Emotion.getEmotion(title);
 
       emojiList.forEach((emoji) => {
-        const emojiEl = createEmoji(emoji, true);
+        const emojiEl = createEmoji(emoji);
         emojiEl.setAttribute('title', getCode(emoji));
 
         panelEl.appendChild(emojiEl);

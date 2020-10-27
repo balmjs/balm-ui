@@ -30,12 +30,7 @@ function emojiFormat() {
   EmojiBlot.tagName = ['I', 'IMG'];
   EmojiBlot.className = emojiClassName;
 
-  Quill.register(
-    {
-      'formats/emoji': EmojiBlot
-    },
-    true
-  );
+  Quill.register('formats/emoji', EmojiBlot, true);
 }
 
 export default emojiFormat;

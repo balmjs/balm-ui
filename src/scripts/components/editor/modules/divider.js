@@ -17,12 +17,7 @@ function useDivider() {
     }
   }
 
-  Quill.register(
-    {
-      'modules/divider': DividerModule
-    },
-    true
-  );
+  Quill.register('modules/divider', DividerModule, true);
 }
 
 export default useDivider;

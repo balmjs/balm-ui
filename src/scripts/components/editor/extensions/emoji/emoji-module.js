@@ -172,7 +172,7 @@ function emojiModule() {
         .addEventListener('click', (e) => {
           const el = e.target.parentNode;
           if (el && el.classList.contains(emojiClassName)) {
-            let range = this.quill.getSelection(true);
+            let range = this.quill.getSelection();
 
             this.quill.insertEmbed(
               range.index,
@@ -209,12 +209,7 @@ function emojiModule() {
     }
   }
 
-  Quill.register(
-    {
-      'modules/emoji': EmojiToolbarModule
-    },
-    true
-  );
+  Quill.register('modules/emoji', EmojiToolbarModule, true);
 }
 
 export default emojiModule;

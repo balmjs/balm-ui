@@ -1,10 +1,10 @@
 import { useEditor } from '../../quill';
 import Emotion from './emotion';
-import { getCode, createEmoji } from './utils';
+import { emojiClassName, getCode, createEmoji } from './utils';
 
 const EMOJI_TOOLBAR = {
-  id: 'ql-emoji-palette',
-  closeId: 'ql-emoji-close-area',
+  id: 'ql-emoji-toolbar',
+  backdropId: 'ql-emoji-toolbar-backdrop',
   cssClasses: {
     tabBar: 'ql-emoji-tab-bar',
     tabScroller: 'ql-emoji-tab-scroller',
@@ -14,6 +14,12 @@ const EMOJI_TOOLBAR = {
     panel: 'ql-emoji-panel'
   }
 };
+
+function createElement(className, tagName = 'div') {
+  const el = document.createElement(tagName);
+  el.className = className;
+  return el;
+}
 
 function emojiModule() {
   const { Quill } = useEditor();
@@ -26,152 +32,158 @@ function emojiModule() {
       this.quill = quill;
       this.toolbar = quill.getModule('toolbar');
       if (typeof this.toolbar !== 'undefined') {
-        this.toolbar.addHandler('emoji', this.checkPalatteExist);
+        this.toolbar.addHandler('emoji', () => {
+          this.openEmojiToolbar();
+        });
       }
     }
 
-    checkPalatteExist() {
-      const quill = this.quill;
+    closeEmojiToolbar() {
+      const emojiToolbarEl = document.getElementById(EMOJI_TOOLBAR.id);
 
-      openEmojiPalette(quill);
+      if (emojiToolbarEl) {
+        emojiToolbarEl.remove();
+        document.getElementById(EMOJI_TOOLBAR.backdropId).style.display =
+          'none';
+      }
 
-      quill.on('text-change', function (delta, oldDelta, source) {
-        if (source === 'user') {
-          closeEmojiPalette();
-          updateRange(quill);
+      return emojiToolbarEl;
+    }
+
+    setEmojiToolbarBounds(emojiToolbarEl) {
+      let range = this.quill.getSelection();
+      let currentBounds = this.quill.getBounds(range.index);
+      let paletteMaxPos = currentBounds.left + 240; // emoji toolbar max width is 240
+
+      emojiToolbarEl.style.top = `${
+        currentBounds.top + currentBounds.height + 10
+      }px`;
+      if (paletteMaxPos > this.quill.container.offsetWidth) {
+        emojiToolbarEl.style.left = `${currentBounds.left - 250}px`;
+      } else {
+        emojiToolbarEl.style.left = `${currentBounds.left}px`;
+      }
+    }
+
+    openEmojiToolbar() {
+      if (!this.closeEmojiToolbar()) {
+        const emojiToolbarEl = document.createElement('div');
+        emojiToolbarEl.id = EMOJI_TOOLBAR.id;
+        this.quill.container.appendChild(emojiToolbarEl);
+
+        this.setEmojiToolbarBounds(emojiToolbarEl);
+
+        // add tab container
+        const tabBarEl = createElement(EMOJI_TOOLBAR.cssClasses.tabBar);
+        const tabScrollerEl = createElement(
+          EMOJI_TOOLBAR.cssClasses.tabScroller
+        );
+        tabBarEl.appendChild(tabScrollerEl);
+        emojiToolbarEl.appendChild(tabBarEl);
+        // add panel container
+        const panelEl = createElement(EMOJI_TOOLBAR.cssClasses.panel);
+        emojiToolbarEl.appendChild(panelEl);
+        // update emoji type
+        const tabs = Emotion.getTypes();
+        this.addTabs(tabs, tabScrollerEl, panelEl);
+        // update emoji content
+        this.updatePanel(tabs[0] && tabs[0].title, panelEl);
+        // events
+        this.onSelectHandler();
+        this.onBlurHanlder();
+      }
+    }
+
+    addTabs(tabs, tabScrollerEl, panelEl) {
+      const tabContentEl = createElement(
+        EMOJI_TOOLBAR.cssClasses.tabContent,
+        'ul'
+      );
+      tabScrollerEl.appendChild(tabContentEl);
+
+      tabs.forEach((tab, index) => {
+        let tabEl = document.createElement('li');
+        tabEl.classList.add(EMOJI_TOOLBAR.cssClasses.tab);
+        if (index === 0) {
+          tabEl.classList.add(EMOJI_TOOLBAR.cssClasses.tabActive);
         }
-      });
-    }
-  }
+        tabEl.innerHTML = tab.title;
+        tabEl.dataset.title = tab.title;
+        tabContentEl.appendChild(tabEl);
 
-  function updateRange(quill) {
-    return quill.getSelection();
-  }
+        tabEl.addEventListener('click', (e) => {
+          let currentTabEl = e.target;
+          if (
+            !currentTabEl.classList.contains(EMOJI_TOOLBAR.cssClasses.tabActive)
+          ) {
+            let activeTab = document.querySelector(
+              `.${EMOJI_TOOLBAR.cssClasses.tabActive}`
+            );
+            if (activeTab) {
+              activeTab.classList.remove(EMOJI_TOOLBAR.cssClasses.tabActive);
+            }
 
-  function closeEmojiPalette() {
-    const emojiPaletteEl = document.getElementById(EMOJI_TOOLBAR.id);
-
-    if (emojiPaletteEl) {
-      emojiPaletteEl.remove();
-      document.getElementById(EMOJI_TOOLBAR.closeId).style.display = 'none';
-    }
-
-    return !!emojiPaletteEl;
-  }
-
-  function openEmojiPalette(quill) {
-    if (!closeEmojiPalette()) {
-      showEmojiPalatte(quill);
-      onBlurHanlder();
-    }
-  }
-
-  function onBlurHanlder() {
-    if (document.getElementById(EMOJI_TOOLBAR.closeId)) {
-      document.getElementById(EMOJI_TOOLBAR.closeId).style.display = 'block';
-    } else {
-      const closeEl = document.createElement('div');
-      closeEl.id = EMOJI_TOOLBAR.closeId;
-      closeEl.addEventListener('click', closeEmojiPalette, false);
-      document.querySelector('body').appendChild(closeEl);
-    }
-  }
-
-  function showEmojiPalatte(quill) {
-    const emojiPaletteEl = document.createElement('div');
-    const range = updateRange(quill);
-    const atSignBounds = quill.getBounds(range.index);
-
-    quill.container.appendChild(emojiPaletteEl);
-    const paletteMaxPos = atSignBounds.left + 240; // palette max width is 240
-    emojiPaletteEl.id = EMOJI_TOOLBAR.id;
-    emojiPaletteEl.style.top =
-      10 + atSignBounds.top + atSignBounds.height + 'px';
-    if (paletteMaxPos > quill.container.offsetWidth) {
-      emojiPaletteEl.style.left = atSignBounds.left - 250 + 'px';
-    } else {
-      emojiPaletteEl.style.left = atSignBounds.left + 'px';
-    }
-
-    // add tab container
-    const tabBarEl = document.createElement('div');
-    tabBarEl.className = EMOJI_TOOLBAR.cssClasses.tabBar;
-    emojiPaletteEl.appendChild(tabBarEl);
-    const tabScrollerEl = document.createElement('div');
-    tabScrollerEl.className = EMOJI_TOOLBAR.cssClasses.tabScroller;
-    tabBarEl.appendChild(tabScrollerEl);
-    // add panel container
-    const panelEl = document.createElement('div');
-    panelEl.className = EMOJI_TOOLBAR.cssClasses.panel;
-    emojiPaletteEl.appendChild(panelEl);
-    // update emoji type
-    const tabs = Emotion.getTypes();
-    addTabs(quill, tabs, tabScrollerEl, panelEl);
-    // update emoji content
-    updatePanel(quill, tabs[0] && tabs[0].title, panelEl);
-  }
-
-  function addTabs(quill, tabs, tabScrollerEl, panelEl) {
-    const tabContentEl = document.createElement('ul');
-    tabContentEl.className = EMOJI_TOOLBAR.cssClasses.tabContent;
-    tabScrollerEl.appendChild(tabContentEl);
-
-    tabs.forEach((tab, index) => {
-      let tabEl = document.createElement('li');
-      tabEl.classList.add(EMOJI_TOOLBAR.cssClasses.tab);
-      if (index === 0) {
-        tabEl.classList.add(EMOJI_TOOLBAR.cssClasses.tabActive);
-      }
-      tabEl.innerHTML = tab.title;
-      tabEl.dataset.title = tab.title;
-      tabContentEl.appendChild(tabEl);
-
-      tabEl.addEventListener('click', (e) => {
-        let currentTabEl = e.target;
-        if (
-          !currentTabEl.classList.contains(EMOJI_TOOLBAR.cssClasses.tabActive)
-        ) {
-          let activeTab = document.querySelector(
-            `.${EMOJI_TOOLBAR.cssClasses.tabActive}`
-          );
-          if (activeTab) {
-            activeTab.classList.remove(EMOJI_TOOLBAR.cssClasses.tabActive);
+            currentTabEl.classList.toggle(EMOJI_TOOLBAR.cssClasses.tabActive);
+            this.updatePanel(currentTabEl.dataset.title, panelEl);
           }
-
-          currentTabEl.classList.toggle(EMOJI_TOOLBAR.cssClasses.tabActive);
-          updatePanel(quill, currentTabEl.dataset.title, panelEl);
-        }
+        });
       });
-    });
-  }
-
-  function updatePanel(quill, title, panelEl) {
-    if (title) {
-      panelEl.innerHTML = '';
-      let emojiList = Emotion.getEmotion(title);
-
-      emojiList.forEach((emoji) => {
-        const emojiEl = createEmoji(emoji);
-        emojiEl.setAttribute('title', getCode(emoji));
-
-        panelEl.appendChild(emojiEl);
-
-        handleChooseEmoji(quill, emojiEl, emoji);
-      });
-    } else {
-      panelEl.innerHTML = 'Emotions is empty';
     }
-  }
 
-  function handleChooseEmoji(quill, emojiEl, result) {
-    quill.focus();
-    const range = updateRange(quill);
+    updatePanel(title, panelEl) {
+      if (title) {
+        panelEl.innerHTML = '';
+        let emojiList = Emotion.getEmotion(title);
 
-    emojiEl.addEventListener('click', (e) => {
-      quill.insertEmbed(range.index, 'emoji', result, Quill.sources.USER);
-      setTimeout(() => quill.setSelection(range.index + 1), 1);
-      closeEmojiPalette();
-    });
+        emojiList.forEach((emoji) => {
+          const emojiEl = createEmoji(emoji);
+          emojiEl.setAttribute('title', getCode(emoji));
+          panelEl.appendChild(emojiEl);
+        });
+
+        this.quill.focus();
+      } else {
+        panelEl.innerHTML = 'Emotions is empty';
+      }
+    }
+
+    onSelectHandler() {
+      const emojiMap = Emotion.getEmotions();
+      document
+        .querySelector('.ql-emoji-panel')
+        .addEventListener('click', (e) => {
+          const el = e.target.parentNode;
+          if (el && el.classList.contains(emojiClassName)) {
+            let range = this.quill.getSelection(true);
+
+            this.quill.insertEmbed(
+              range.index,
+              'emoji',
+              emojiMap[el.title],
+              Quill.sources.USER
+            );
+
+            setTimeout(() => this.quill.setSelection(range.index + 1), 1);
+
+            this.closeEmojiToolbar();
+          }
+        });
+    }
+
+    onBlurHanlder() {
+      let emojiToolbarCloseEl = document.getElementById(
+        EMOJI_TOOLBAR.backdropId
+      );
+
+      if (emojiToolbarCloseEl) {
+        emojiToolbarCloseEl.style.display = 'block';
+      } else {
+        const closeEl = document.createElement('div');
+        closeEl.id = EMOJI_TOOLBAR.backdropId;
+        closeEl.addEventListener('click', this.closeEmojiToolbar);
+        document.querySelector('body').appendChild(closeEl);
+      }
+    }
   }
 
   Quill.register(

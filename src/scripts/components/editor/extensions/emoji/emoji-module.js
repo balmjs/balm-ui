@@ -4,6 +4,7 @@ import { emojiClassName, getCode, createEmoji } from './utils';
 
 const EMOJI_TOOLBAR = {
   id: 'ql-emoji-toolbar',
+  closeId: 'ql-emoji-toolbar-close',
   backdropId: 'ql-emoji-toolbar-backdrop',
   cssClasses: {
     tabBar: 'ql-emoji-tab-bar',
@@ -35,6 +36,10 @@ function emojiModule() {
         this.toolbar.addHandler('emoji', () => {
           this.openEmojiToolbar();
         });
+
+        this.quill.on('selection-change', (range, oldRange, source) => {
+          this.setEmojiToolbarBounds();
+        });
       }
     }
 
@@ -50,18 +55,24 @@ function emojiModule() {
       return emojiToolbarEl;
     }
 
-    setEmojiToolbarBounds(emojiToolbarEl) {
-      let range = this.quill.getSelection();
-      let currentBounds = this.quill.getBounds(range.index);
-      let paletteMaxPos = currentBounds.left + 240; // emoji toolbar max width is 240
+    setEmojiToolbarBounds(emojiToolbarEl = null) {
+      if (!emojiToolbarEl) {
+        emojiToolbarEl = document.getElementById(EMOJI_TOOLBAR.id);
+      }
 
-      emojiToolbarEl.style.top = `${
-        currentBounds.top + currentBounds.height + 10
-      }px`;
-      if (paletteMaxPos > this.quill.container.offsetWidth) {
-        emojiToolbarEl.style.left = `${currentBounds.left - 250}px`;
-      } else {
-        emojiToolbarEl.style.left = `${currentBounds.left}px`;
+      let range = this.quill.getSelection();
+      if (emojiToolbarEl && range) {
+        let currentBounds = this.quill.getBounds(range.index);
+        let paletteMaxPos = currentBounds.left + 240; // emoji toolbar max width is 240
+
+        emojiToolbarEl.style.top = `${
+          currentBounds.top + currentBounds.height + 10
+        }px`;
+        if (paletteMaxPos > this.quill.container.offsetWidth) {
+          emojiToolbarEl.style.left = `${currentBounds.left - 250}px`;
+        } else {
+          emojiToolbarEl.style.left = `${currentBounds.left}px`;
+        }
       }
     }
 
@@ -73,6 +84,12 @@ function emojiModule() {
 
         this.setEmojiToolbarBounds(emojiToolbarEl);
 
+        // add close
+        const closeEl = document.createElement('i');
+        closeEl.id = EMOJI_TOOLBAR.closeId;
+        closeEl.className = 'material-icons';
+        closeEl.innerHTML = 'close';
+        emojiToolbarEl.appendChild(closeEl);
         // add tab container
         const tabBarEl = createElement(EMOJI_TOOLBAR.cssClasses.tabBar);
         const tabScrollerEl = createElement(
@@ -89,7 +106,8 @@ function emojiModule() {
         // update emoji content
         this.updatePanel(tabs[0] && tabs[0].title, panelEl);
         // events
-        this.onSelectHandler();
+        this.onEmojiHandler();
+        this.onCloseHandler();
         this.onBlurHanlder();
       }
     }
@@ -147,7 +165,7 @@ function emojiModule() {
       }
     }
 
-    onSelectHandler() {
+    onEmojiHandler() {
       const emojiMap = Emotion.getEmotions();
       document
         .querySelector('.ql-emoji-panel')
@@ -170,18 +188,23 @@ function emojiModule() {
         });
     }
 
+    onCloseHandler() {
+      let emojiToolbarCloseEl = document.getElementById(EMOJI_TOOLBAR.closeId);
+      emojiToolbarCloseEl.addEventListener('click', this.closeEmojiToolbar);
+    }
+
     onBlurHanlder() {
-      let emojiToolbarCloseEl = document.getElementById(
+      let emojiToolbarBackdropEl = document.getElementById(
         EMOJI_TOOLBAR.backdropId
       );
 
-      if (emojiToolbarCloseEl) {
-        emojiToolbarCloseEl.style.display = 'block';
+      if (emojiToolbarBackdropEl) {
+        emojiToolbarBackdropEl.style.display = 'block';
       } else {
-        const closeEl = document.createElement('div');
-        closeEl.id = EMOJI_TOOLBAR.backdropId;
-        closeEl.addEventListener('click', this.closeEmojiToolbar);
-        document.querySelector('body').appendChild(closeEl);
+        const backdropEl = document.createElement('div');
+        backdropEl.id = EMOJI_TOOLBAR.backdropId;
+        backdropEl.addEventListener('click', this.closeEmojiToolbar);
+        document.querySelector('body').appendChild(backdropEl);
       }
     }
   }

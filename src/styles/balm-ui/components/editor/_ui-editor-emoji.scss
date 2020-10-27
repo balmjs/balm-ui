@@ -13,6 +13,14 @@
   background-color: #fff;
 }
 
+#ql-emoji-toolbar-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 18px;
+  cursor: pointer;
+}
+
 #ql-emoji-toolbar-backdrop {
   position: fixed;
   top: 0;
@@ -31,6 +39,7 @@
 .ql-emoji-tab-scroller {
   display: flex;
   overflow-x: auto;
+  padding-right: 18px;
 }
 
 .ql-emoji-tab-content {

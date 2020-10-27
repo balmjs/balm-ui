@@ -172,16 +172,18 @@ function emojiModule() {
         .addEventListener('click', (e) => {
           const el = e.target.parentNode;
           if (el && el.classList.contains(emojiClassName)) {
-            let range = this.quill.getSelection();
+            let range = this.quill.getSelection(true);
 
-            this.quill.insertEmbed(
-              range.index,
-              'emoji',
-              emojiMap[el.title],
-              Quill.sources.USER
-            );
+            if (range) {
+              this.quill.insertEmbed(
+                range.index,
+                'emoji',
+                emojiMap[el.title],
+                Quill.sources.USER
+              );
 
-            setTimeout(() => this.quill.setSelection(range.index + 1), 1);
+              setTimeout(() => this.quill.setSelection(range.index + 1), 1);
+            }
 
             this.closeEmojiToolbar();
           }

@@ -86,7 +86,7 @@ export default {
       'blockquote',
       'emoji'
     ],
-    ['cut', 'copy', 'paste', 'delete', 'search'],
+    // ['selectall', 'cut', 'copy', 'paste', 'delete', 'search'],
     ['link', 'image', 'video'], // NOTE: 'formula' - requires `KaTex`
     ['preview'],
     ['strike', { script: 'super' }, { script: 'sub' }, 'divider'],

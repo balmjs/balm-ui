@@ -3,7 +3,7 @@ import { useEditor } from '../quill';
 function useLinkOff() {
   const { toolbarHandlers } = useEditor();
 
-  toolbarHandlers.linkoff = function () {
+  toolbarHandlers.linkoff = () => {
     const { editor } = useEditor();
 
     let delta = editor.getContents();

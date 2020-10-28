@@ -23,10 +23,6 @@ function createEditor(
     options.modules[blotName] = true;
   });
 
-  if (options.theme === 'snow') {
-    useEmoji(emotions);
-  }
-
   if (!prototypeInitialized) {
     useDefaultFormats(toolbarOptions);
     useDefaultModules(toolbarIcons);
@@ -37,6 +33,10 @@ function createEditor(
     }
 
     prototypeInitialized = true;
+  }
+
+  if (options.theme === 'snow') {
+    useEmoji(emotions);
   }
 
   editor = new Quill(editorEl, options);

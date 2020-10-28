@@ -149,8 +149,16 @@ export default {
       };
       let options = Object.assign(defaultOptions, this.options);
 
-      options.modules.toolbar =
-        this.toolbar === 'full' ? UI_EDITOR.defaultToolbar : this.toolbar;
+      options.modules.toolbar = {
+        container:
+          this.toolbar === 'full' ? UI_EDITOR.defaultToolbar : this.toolbar,
+        handlers: {}
+      };
+
+      options.modules.counter = {
+        container: counterEl
+        // unit: 'word'
+      };
 
       if (this.imageCustomHandler) {
         let customHandlers = this.imageCustomHandler
@@ -160,16 +168,6 @@ export default {
               }
             }
           : {};
-
-        options.modules.toolbar = {
-          container: options.modules.toolbar,
-          handlers: customHandlers
-        };
-
-        options.modules.counter = {
-          container: counterEl
-          // unit: 'word'
-        };
       }
 
       return options;

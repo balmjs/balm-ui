@@ -10,7 +10,7 @@ function emojiFormat() {
     static create(value) {
       let node =
         value.type === 'emoji'
-          ? document.createElement('i')
+          ? document.createElement('span')
           : document.createElement('img');
 
       if (typeof value === 'object') {
@@ -27,7 +27,7 @@ function emojiFormat() {
   }
 
   EmojiBlot.blotName = 'emoji';
-  EmojiBlot.tagName = ['I', 'IMG'];
+  EmojiBlot.tagName = ['SPAN', 'IMG'];
   EmojiBlot.className = emojiClassName;
 
   Quill.register('formats/emoji', EmojiBlot, true);

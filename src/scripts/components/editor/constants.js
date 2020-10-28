@@ -43,6 +43,10 @@ export default {
     underline: 'format_underlined',
     video: 'videocam',
     // extension icons
+    alignleft: 'format_align_left',
+    aligncenter: 'format_align_center',
+    alignright: 'format_align_right',
+    alignjustify: 'format_align_justify',
     divider: 'horizontal_rule',
     cut: 'content_cut',
     copy: 'content_copy',

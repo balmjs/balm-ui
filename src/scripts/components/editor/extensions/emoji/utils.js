@@ -14,13 +14,12 @@ function getEmoji(emoji, node) {
   if (!node) {
     emojiEl =
       emoji.type === 'emoji'
-        ? document.createElement('i')
+        ? document.createElement('span')
         : document.createElement('img');
   }
 
   if (emoji.type === 'emoji') {
     emojiEl.innerHTML = emoji.value;
-    emojiEl.style.fontStyle = 'normal';
     emojiEl.style.fontSize = '18px';
   } else {
     emojiEl.src = emoji.src;

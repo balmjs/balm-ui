@@ -37,7 +37,10 @@ function emojiModule() {
         toolbar.addHandler('emoji', this.openEmojiToolbar.bind(this));
 
         this.quill.on('selection-change', (range, oldRange, source) => {
-          this.setEmojiToolbarBounds();
+          let emojiToolbarEl = document.getElementById(EMOJI_TOOLBAR.id);
+          if (emojiToolbarEl) {
+            this.setEmojiToolbarBounds(emojiToolbarEl);
+          }
         });
       }
     }
@@ -54,11 +57,7 @@ function emojiModule() {
       return emojiToolbarEl;
     }
 
-    setEmojiToolbarBounds(emojiToolbarEl = null) {
-      if (!emojiToolbarEl) {
-        emojiToolbarEl = document.getElementById(EMOJI_TOOLBAR.id);
-      }
-
+    setEmojiToolbarBounds(emojiToolbarEl) {
       let range = this.quill.getSelection(true);
       if (emojiToolbarEl && range) {
         let currentBounds = this.quill.getBounds(range.index);

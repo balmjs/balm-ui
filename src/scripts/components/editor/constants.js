@@ -18,12 +18,12 @@ export default {
     bold: 'format_bold',
     clean: 'format_clear',
     code: 'code',
-    // 'code-block': '',
     color: 'text_format',
     // direction: {
     //   '': 'format_textdirection_l_to_r',
     //   rtl: 'format_textdirection_r_to_l'
     // },
+    formula: 'functions',
     italic: 'format_italic',
     image: 'insert_photo',
     indent: {
@@ -48,43 +48,48 @@ export default {
     alignright: 'format_align_right',
     alignjustify: 'format_align_justify',
     divider: 'horizontal_rule',
+    emoji: 'insert_emoticon',
     cut: 'content_cut',
     copy: 'content_copy',
     paste: 'content_paste',
     delete: 'clear',
     search: 'search',
     preview: 'preview',
+    selectall: 'select_all',
     fullscreen: {
       '': 'fullscreen',
       exit: 'fullscreen_exit'
     },
-    table: 'table_view',
-    emoji: 'insert_emoticon',
     undo: 'undo',
     redo: 'redo',
     linkoff: 'link_off',
     textindent: {
       '+1': 'format_indent_increase',
       '-1': 'format_indent_decrease'
-    }
+    },
+    pdf: 'picture_as_pdf'
   },
   defaultToolbar: [
-    [{ font: [] }, { size: [] }],
-    ['bold', 'italic', 'underline', 'strike'],
-    [{ color: [] }, { background: [] }],
-    [{ script: 'sub' }, { script: 'super' }],
-    [{ header: [] }, 'blockquote', 'code-block'],
+    [{ header: [] }, { font: [] }, { size: [] }],
+    ['bold', 'italic', 'underline', { color: [] }, { background: [] }],
+    [
+      { align: '' },
+      { align: 'center' },
+      { align: 'right' },
+      { align: 'justify' }
+    ],
     [
       { list: 'ordered' },
       { list: 'bullet' },
-      { indent: '-1' },
       { indent: '+1' },
-      { textindent: '-1' },
-      { textindent: '+1' }
+      { indent: '-1' },
+      'blockquote',
+      'emoji'
     ],
-    [{ direction: 'rtl' }, { align: [] }],
-    ['link', 'linkoff'],
-    ['image', 'video'], // NOTE: 'formula' - requires `KaTex`
-    ['clean']
+    ['cut', 'copy', 'paste', 'delete', 'search'],
+    ['link', 'image', 'video'], // NOTE: 'formula' - requires `KaTex`
+    ['preview'],
+    ['strike', { script: 'super' }, { script: 'sub' }, 'divider'],
+    ['clean', 'undo', 'redo']
   ]
 };

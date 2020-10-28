@@ -2,9 +2,12 @@
   <div class="mdc-editor-container">
     <slot name="toolbar"></slot>
     <div class="mdc-editor-content">
-      <div ref="editor" class="mdc-editor"></div>
-      <pre class="mdc-editor-code" contenteditable>{{ htmlContent }}</pre>
+      <pre v-if="editSourceCode" class="mdc-editor-code" contenteditable>{{
+        htmlContent
+      }}</pre>
+      <div v-else ref="editor" class="mdc-editor"></div>
     </div>
+    <div v-if="withCounter" ref="counter" class="mdc-editor-counter"></div>
     <template v-if="imageCustomHandler">
       <input
         ref="file"
@@ -17,7 +20,7 @@
         "
       />
     </template>
-    <div ref="counter" class="mdc-editor-counter"></div>
+    <slot></slot>
   </div>
 </template>
 
@@ -79,6 +82,12 @@ export default {
       type: Boolean,
       default: false
     },
+    toolbarCustomHandlers: {
+      type: Object,
+      default() {
+        return {};
+      }
+    },
     emotions: {
       type: Array,
       default() {
@@ -88,13 +97,18 @@ export default {
     extension: {
       type: [Boolean, Object],
       default: false
+    },
+    withCounter: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
       UI_EDITOR,
       $editor: null,
-      htmlContent: ''
+      htmlContent: '',
+      editSourceCode: false // TODO
     };
   },
   watch: {
@@ -155,20 +169,27 @@ export default {
         handlers: {}
       };
 
-      options.modules.counter = {
-        container: counterEl
-        // unit: 'word'
-      };
+      if (this.withCounter) {
+        options.modules.counter = {
+          container: counterEl
+          // unit: 'word'
+        };
+      }
+
+      // Custom event handlers
+      const toolbarHandlers = options.modules.toolbar.handlers;
 
       if (this.imageCustomHandler) {
-        let customHandlers = this.imageCustomHandler
-          ? {
-              image: () => {
-                this.$refs.file.click();
-              }
-            }
-          : {};
+        toolbarHandlers.image = () => {
+          this.$refs.file.click();
+        };
       }
+
+      Object.keys(this.toolbarCustomHandlers).forEach((format) => {
+        toolbarHandlers[format] = (value) => {
+          this.toolbarCustomHandlers[format](this.$editor, value);
+        };
+      });
 
       return options;
     },

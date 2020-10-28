@@ -93,7 +93,14 @@ class Emotion {
 
       if (result) {
         result.forEach((code) => {
-          const emojiEl = createEmoji(emojiMap[code]);
+          let node =
+            emojiMap[code].type === 'emoji'
+              ? document.createElement('span')
+              : document.createElement('img');
+
+          node.classList.add(emojiClassName);
+
+          const emojiEl = createEmoji(emojiMap[code], node);
           html = html.replace(code, emojiEl.outerHTML);
         });
       }

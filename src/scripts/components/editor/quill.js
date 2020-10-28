@@ -10,7 +10,6 @@ const customFormatHandlers = ['divider', 'emoji'];
 let Quill;
 let editor;
 let toolbarHandlers = {};
-let prototypeInitialized = false;
 
 function createEditor(
   editorEl,
@@ -23,20 +22,16 @@ function createEditor(
     options.modules[blotName] = true;
   });
 
-  if (!prototypeInitialized) {
-    useDefaultFormats(toolbarOptions);
-    useDefaultModules(toolbarIcons);
-    useDefaultExtensions();
-
-    if (extension) {
-      Quill.register(extension, true);
-    }
-
-    prototypeInitialized = true;
-  }
+  useDefaultFormats(toolbarOptions);
+  useDefaultModules(toolbarIcons);
+  useDefaultExtensions();
 
   if (options.theme === 'snow') {
     useEmoji(emotions);
+  }
+
+  if (extension) {
+    Quill.register(extension, true);
   }
 
   editor = new Quill(editorEl, options);

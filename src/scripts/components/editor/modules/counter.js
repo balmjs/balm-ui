@@ -24,8 +24,8 @@ function useCounter() {
     }
 
     update() {
-      var length = this.calculate();
-      var label = this.options.unit || 'characters';
+      let length = this.calculate();
+      let label = this.options.unit || 'character';
       if (length !== 1) {
         label += 's';
       }
@@ -33,7 +33,7 @@ function useCounter() {
     }
   }
 
-  Quill.register('modules/counter', Counter);
+  Quill.register('modules/counter', Counter, true);
 }
 
 export default useCounter;

@@ -2,10 +2,6 @@
 
 .mdc-editor-container {
   position: relative;
-}
-
-.ql-tooltip,
-.ql-bubble {
   z-index: 3;
 }
 
@@ -15,4 +11,9 @@
 
 .ql-toolbar .material-icons {
   font-size: 18px;
+}
+
+.ql-bubble.ql-toolbar button,
+.ql-bubble .ql-toolbar button {
+  color: #ccc;
 }

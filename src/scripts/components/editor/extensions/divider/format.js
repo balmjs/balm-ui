@@ -1,6 +1,6 @@
-import { useEditor } from '../quill';
+import { useEditor } from '../../quill';
 
-function useDivider() {
+function dividerFormat() {
   const { Quill } = useEditor();
   const Parchment = Quill.import('parchment');
 
@@ -11,4 +11,4 @@ function useDivider() {
   Quill.register('formats/divider', DividerBlot, true);
 }
 
-export default useDivider;
+export default dividerFormat;

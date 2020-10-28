@@ -42,7 +42,7 @@ function createEditor(
   editor = new Quill(editorEl, options);
 
   editor.insert = (customFormat, value) => {
-    const range = editor.getSelection();
+    const range = editor.getSelection(true);
     if (range) {
       editor.insertEmbed(range.index, customFormat, value);
     }

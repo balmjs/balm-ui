@@ -1,14 +1,14 @@
 import { setToolbarIcons } from './toolbar';
 import useCounter from './counter';
-import useDivider from './divider';
 import useHistory from './history';
+// import useClipboard from './clipboard';
 
 function useDefaultModules(toolbarIcons) {
   setToolbarIcons(toolbarIcons);
 
   useCounter();
-  useDivider();
   useHistory();
+  // useClipboard();
 }
 
 export default useDefaultModules;

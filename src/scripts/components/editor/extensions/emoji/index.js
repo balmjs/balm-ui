@@ -1,6 +1,6 @@
 import Emotion from './emotion';
-import emojiFormat from './emoji-format';
-import emojiModule from './emoji-module';
+import emojiFormat from './format';
+import emojiModule from './module';
 
 function useEmoji(emotions) {
   new Emotion(emotions);

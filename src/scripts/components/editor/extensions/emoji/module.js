@@ -31,11 +31,10 @@ function emojiModule() {
       super(quill, options);
 
       this.quill = quill;
-      this.toolbar = quill.getModule('toolbar');
-      if (typeof this.toolbar !== 'undefined') {
-        this.toolbar.addHandler('emoji', () => {
-          this.openEmojiToolbar();
-        });
+
+      const toolbar = quill.getModule('toolbar');
+      if (typeof toolbar !== 'undefined') {
+        toolbar.addHandler('emoji', this.openEmojiToolbar.bind(this));
 
         this.quill.on('selection-change', (range, oldRange, source) => {
           this.setEmojiToolbarBounds();
@@ -60,7 +59,7 @@ function emojiModule() {
         emojiToolbarEl = document.getElementById(EMOJI_TOOLBAR.id);
       }
 
-      let range = this.quill.getSelection();
+      let range = this.quill.getSelection(true);
       if (emojiToolbarEl && range) {
         let currentBounds = this.quill.getBounds(range.index);
         let paletteMaxPos = currentBounds.left + 240; // emoji toolbar max width is 240

@@ -180,8 +180,7 @@ function emojiModule() {
                 emojiMap[el.title],
                 Quill.sources.USER
               );
-
-              setTimeout(() => this.quill.setSelection(range.index + 1), 1);
+              this.quill.setSelection(range.index + 1, Quill.sources.SILENT);
             }
 
             this.closeEmojiToolbar();

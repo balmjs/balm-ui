@@ -5,8 +5,17 @@
       <div ref="editor" class="mdc-editor"></div>
       <pre class="mdc-editor-code" contenteditable>{{ htmlContent }}</pre>
     </div>
-    <template v-if="customImageHandler">
-      <input ref="file" type="file" hidden @change="onFileChange" />
+    <template v-if="imageCustomHandler">
+      <input
+        ref="file"
+        type="file"
+        hidden
+        @change="
+          handleFileChange($event, (result) => {
+            $emit(UI_EDITOR.EVENT.FILE_CHANGE, result[0], insertImage);
+          })
+        "
+      />
     </template>
     <div ref="counter" class="mdc-editor-counter"></div>
   </div>
@@ -16,6 +25,7 @@
 import { createEditor, Emotion } from './quill';
 import UI_EDITOR from './constants';
 import getType from '../../utils/typeof';
+import handleFileChange from '../../utils/file';
 
 export default {
   name: 'UiEditor',
@@ -65,15 +75,9 @@ export default {
       default: 'snow'
     },
     // Extension attributes
-    customImageHandler: {
+    imageCustomHandler: {
       type: Boolean,
       default: false
-    },
-    toolbarCustomHandlers: {
-      type: Object,
-      default() {
-        return {};
-      }
     },
     emotions: {
       type: Array,
@@ -88,6 +92,7 @@ export default {
   },
   data() {
     return {
+      UI_EDITOR,
       $editor: null,
       htmlContent: ''
     };
@@ -145,33 +150,16 @@ export default {
       let options = Object.assign(defaultOptions, this.options);
 
       options.modules.toolbar =
-        this.toolbar === 'full' ? UI_EDITOR.toolbarOptions : this.toolbar;
+        this.toolbar === 'full' ? UI_EDITOR.defaultToolbar : this.toolbar;
 
-      if (
-        this.customImageHandler ||
-        getType(this.toolbarCustomHandlers) === 'object'
-      ) {
-        let customHandlers = this.customImageHandler
+      if (this.imageCustomHandler) {
+        let customHandlers = this.imageCustomHandler
           ? {
               image: () => {
                 this.$refs.file.click();
               }
             }
           : {};
-
-        Object.keys(this.toolbarCustomHandlers).forEach((customFormat) => {
-          customHandlers[customFormat] = (formatValue) => {
-            if (formatValue) {
-              const insert = (value = 'null') => {
-                this.$editor.insert(customFormat, value);
-              };
-
-              this.toolbarCustomHandlers[customFormat](this.$editor, insert);
-            } else {
-              this.$editor.format(customFormat, false);
-            }
-          };
-        });
 
         options.modules.toolbar = {
           container: options.modules.toolbar,
@@ -192,20 +180,15 @@ export default {
     setHTML(html) {
       this.$editor.root.innerHTML = html;
     },
+    handleFileChange,
+    insertImage(url) {
+      this.$editor.insert('image', url);
+    },
     encodeEmoji(html) {
       return Emotion.encode(html); // output: content
     },
     decodeEmoji(content) {
       return Emotion.decode(content); // output: html
-    },
-    onFileChange(event) {
-      const file = event.target.files[0];
-      const insert = (url) => {
-        this.$editor.insert('image', url);
-      };
-
-      this.$emit(UI_EDITOR.EVENT.FILE_CHANGE, file, insert);
-      event.target.value = '';
     }
   }
 };

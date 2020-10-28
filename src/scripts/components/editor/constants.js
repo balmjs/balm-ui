@@ -64,7 +64,7 @@ export default {
       '-1': 'format_indent_decrease'
     }
   },
-  toolbarOptions: [
+  defaultToolbar: [
     [{ font: [] }, { size: [] }],
     ['bold', 'italic', 'underline', 'strike'],
     [{ color: [] }, { background: [] }],

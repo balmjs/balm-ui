@@ -41,10 +41,11 @@ function createEditor(
 
   editor = new Quill(editorEl, options);
 
-  editor.insert = (customFormat, value) => {
-    const range = editor.getSelection(true);
+  editor.insert = (customFormat, value = true) => {
+    let range = editor.getSelection(true);
     if (range) {
-      editor.insertEmbed(range.index, customFormat, value);
+      editor.insertEmbed(range.index, customFormat, value, Quill.sources.USER);
+      editor.setSelection(range.index + 1, Quill.sources.SILENT);
     }
   };
 

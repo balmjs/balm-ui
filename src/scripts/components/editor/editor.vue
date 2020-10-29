@@ -1,42 +1,34 @@
 <template>
   <div class="mdc-editor-container">
     <slot name="toolbar"></slot>
-    <div ref="editor" class="mdc-editor"></div>
+    <div class="mdc-editor-content">
+      <pre v-if="editSourceCode" class="mdc-editor-code" contenteditable>{{
+        htmlContent
+      }}</pre>
+      <div v-else ref="editor" class="mdc-editor"></div>
+    </div>
+    <div v-if="withCounter" ref="counter" class="mdc-editor-counter"></div>
     <template v-if="customImageHandler">
-      <input ref="file" type="file" hidden @change="onFileChange" />
+      <input
+        ref="file"
+        type="file"
+        hidden
+        @change="
+          handleFileChange($event, (result) => {
+            $emit(UI_EDITOR.EVENT.FILE_CHANGE, result[0], insertImage);
+          })
+        "
+      />
     </template>
+    <slot></slot>
   </div>
 </template>
 
 <script>
-import QuillEditor from './quill';
-import Emotion from './emoji/emotion';
+import { createEditor, Emotion } from './quill';
+import UI_EDITOR from './constants';
+import handleFileChange from '../../utils/file';
 import getType from '../../utils/typeof';
-
-// Define editor constants
-const UI_EDITOR = {
-  EVENT: {
-    TEXT_CHANGE: 'change',
-    FILE_CHANGE: 'file-change'
-  },
-  BLANK: '<p><br></p>',
-  toolbarOptions: [
-    [{ font: [] }, { size: [] }],
-    ['bold', 'italic', 'underline', 'strike'],
-    [{ color: [] }, { background: [] }],
-    [{ script: 'sub' }, { script: 'super' }],
-    [{ header: [] }, 'blockquote', 'code-block'],
-    [
-      { list: 'ordered' },
-      { list: 'bullet' },
-      { indent: '-1' },
-      { indent: '+1' }
-    ],
-    [{ direction: 'rtl' }, { align: [] }],
-    ['link', 'image', 'video'], // NOTE: 'formula' - requires `KaTex`
-    ['clean']
-  ]
-};
 
 export default {
   name: 'UiEditor',
@@ -74,21 +66,37 @@ export default {
       default: 'snow'
     },
     // Extension attributes
-    customImageHandler: {
-      type: Boolean,
-      default: false
-    },
-    toolbarCustomHandlers: {
+    toolbarIcons: {
       type: Object,
       default() {
         return {};
       }
+    },
+    toolbarOptions: {
+      type: Object,
+      default() {
+        return {};
+      }
+    },
+    toolbarHandlers: {
+      type: Object,
+      default() {
+        return {};
+      }
+    },
+    customImageHandler: {
+      type: Boolean,
+      default: false
     },
     emotions: {
       type: Array,
       default() {
         return []; // format: [{ type, title, content: { name, value, src } }]
       }
+    },
+    withCounter: {
+      type: Boolean,
+      default: false
     },
     extension: {
       type: [Boolean, Object],
@@ -97,9 +105,10 @@ export default {
   },
   data() {
     return {
-      Editor: {},
+      UI_EDITOR,
       $editor: null,
-      htmlContent: ''
+      htmlContent: '',
+      editSourceCode: false // TODO
     };
   },
   watch: {
@@ -118,8 +127,10 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.$editor = new QuillEditor(this.$refs.editor, {
-        options: this.getOptions(),
+      this.$editor = createEditor(this.$refs.editor, {
+        toolbarIcons: Object.assign(UI_EDITOR.toolbarIcons, this.toolbarIcons),
+        toolbarOptions: this.toolbarOptions,
+        options: this.getOptions(this.$refs.counter),
         emotions: this.emotions,
         extension: this.extension
       });
@@ -140,10 +151,41 @@ export default {
     });
   },
   beforeDestroy() {
-    QuillEditor.destroy();
+    Emotion.clear();
   },
   methods: {
-    getOptions() {
+    setToolbarOption(toolbar, key, value) {
+      for (let format of toolbar) {
+        if (
+          getType(format) === 'object' &&
+          getType(format[key]) === 'array' &&
+          format[key].length === 0
+        ) {
+          format[key] = [false, ...value];
+        } else if (getType(format) === 'array') {
+          this.setToolbarOption(format, key, value);
+        }
+      }
+    },
+    getToolbar() {
+      let customToolbar = this.toolbar;
+
+      if (getType(customToolbar) === 'array') {
+        Object.keys(this.toolbarOptions).forEach((format) => {
+          let value = this.toolbarOptions[format];
+          if (value.length) {
+            this.setToolbarOption(
+              customToolbar,
+              format,
+              this.toolbarOptions[format]
+            );
+          }
+        });
+      }
+
+      return this.toolbar === 'full' ? UI_EDITOR.defaultToolbar : customToolbar;
+    },
+    getOptions(counterEl) {
       const defaultOptions = {
         modules: {},
         placeholder: this.placeholder,
@@ -152,40 +194,32 @@ export default {
       };
       let options = Object.assign(defaultOptions, this.options);
 
-      options.modules.toolbar =
-        this.toolbar === 'full' ? UI_EDITOR.toolbarOptions : this.toolbar;
+      options.modules.toolbar = {
+        container: this.getToolbar(),
+        handlers: {}
+      };
 
-      if (
-        this.customImageHandler ||
-        getType(this.toolbarCustomHandlers) === 'object'
-      ) {
-        let customHandlers = this.customImageHandler
-          ? {
-              image: () => {
-                this.$refs.file.click();
-              }
-            }
-          : {};
-
-        Object.keys(this.toolbarCustomHandlers).forEach((customFormat) => {
-          customHandlers[customFormat] = (formatValue) => {
-            if (formatValue) {
-              const insert = (value = 'null') => {
-                QuillEditor.insert(customFormat, value);
-              };
-
-              this.toolbarCustomHandlers[customFormat](this.$editor, insert);
-            } else {
-              this.$editor.format(customFormat, false);
-            }
-          };
-        });
-
-        options.modules.toolbar = {
-          container: options.modules.toolbar,
-          handlers: customHandlers
+      if (this.withCounter) {
+        options.modules.counter = {
+          container: counterEl
+          // unit: 'word'
         };
       }
+
+      // Custom event handlers
+      const toolbarHandlers = options.modules.toolbar.handlers;
+
+      if (this.customImageHandler) {
+        toolbarHandlers.image = () => {
+          this.$refs.file.click();
+        };
+      }
+
+      Object.keys(this.toolbarHandlers).forEach((format) => {
+        toolbarHandlers[format] = (value) => {
+          this.toolbarHandlers[format](this.$editor, value);
+        };
+      });
 
       return options;
     },
@@ -195,31 +229,15 @@ export default {
     setHTML(html) {
       this.$editor.root.innerHTML = html;
     },
+    handleFileChange,
+    insertImage(url) {
+      this.$editor.insert('image', url);
+    },
     encodeEmoji(html) {
       return Emotion.encode(html); // output: content
     },
     decodeEmoji(content) {
-      let html = content;
-
-      try {
-        html = Emotion.decode(content); // output: html
-      } catch (e) {
-        console.warn(
-          '[UiEditor] - `decodeEmoji`:',
-          'The content must be an async data'
-        );
-      }
-
-      return html;
-    },
-    onFileChange(event) {
-      const file = event.target.files[0];
-      const insert = (url) => {
-        QuillEditor.insert('image', url);
-      };
-
-      this.$emit(UI_EDITOR.EVENT.FILE_CHANGE, file, insert);
-      event.target.value = '';
+      return Emotion.decode(content); // output: html
     }
   }
 };

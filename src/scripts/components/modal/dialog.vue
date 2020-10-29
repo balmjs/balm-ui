@@ -2,13 +2,22 @@
   <div :class="className">
     <!-- Container -->
     <div class="mdc-dialog__container">
-      <div ref="dialog" class="mdc-dialog__surface" role="alertdialog" aria-modal="true">
+      <div
+        ref="dialog"
+        class="mdc-dialog__surface"
+        role="alertdialog"
+        aria-modal="true"
+      >
         <slot></slot>
       </div>
     </div>
     <!-- Scrim -->
     <template v-if="!noBackdrop">
-      <div v-if="maskClosable" class="mdc-dialog__scrim" @click="handleClose"></div>
+      <div
+        v-if="maskClosable"
+        class="mdc-dialog__scrim"
+        @click="handleClose"
+      ></div>
       <div v-else class="mdc-dialog__scrim" @click.stop></div>
     </template>
   </div>
@@ -118,8 +127,15 @@ export default {
         }
       });
 
-      if (!this.$el.querySelector('.mdc-button')) {
-        console.warn('`<ui-button>` is required in the dialog');
+      if (
+        !(
+          this.$el.querySelector('.mdc-button') ||
+          this.$el.querySelector('.mdc-icon-button')
+        )
+      ) {
+        console.warn(
+          '`<ui-button>` or `<ui-icon-button>` is required in the dialog'
+        );
       }
     });
   },

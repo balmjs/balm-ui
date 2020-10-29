@@ -88,12 +88,26 @@ class Emotion {
   static decode(content) {
     let html = content;
 
-    const result = content.match(emojiRegExp);
-    if (result) {
-      result.forEach((code) => {
-        const emojiEl = createEmoji(emojiMap[code]);
-        html = html.replace(code, emojiEl.outerHTML);
-      });
+    try {
+      const result = content.match(emojiRegExp);
+
+      if (result) {
+        result.forEach((code) => {
+          let node =
+            emojiMap[code].type === 'emoji'
+              ? document.createElement('span')
+              : document.createElement('img');
+
+          node.classList.add(emojiClassName);
+
+          const emojiEl = createEmoji(emojiMap[code], node);
+          html = html.replace(code, emojiEl.outerHTML);
+        });
+      }
+    } catch (e) {
+      console.warn(
+        '[UiEditor] - `decodeEmoji`: The content must be an async data'
+      );
     }
 
     return html;

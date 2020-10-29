@@ -1,41 +1,60 @@
-import registerExtension from './extension';
-import Emotion from './emoji/emotion';
+import Emotion from './extensions/emoji/emotion';
+import useEmoji from './extensions/emoji';
+import useDefaultFormats from './formats';
+import useDefaultModules from './modules';
+import useDefaultExtensions from './extensions';
+import { setToolbarStyle } from './modules/toolbar';
+
+const customFormatHandlers = ['divider', 'emoji'];
 
 let Quill;
-let quill;
+let editor;
+let toolbarHandlers = {};
 
-class QuillEditor {
-  constructor(editorEl, { options, emotions, extension }) {
-    Quill = require('quill');
+function createEditor(
+  editorEl,
+  { toolbarIcons, toolbarOptions, options, emotions, extension }
+) {
+  Quill = require('quill');
 
-    if (options.theme === 'snow') {
-      registerExtension(Quill, emotions);
-      options.modules.emoji = true;
-    }
+  toolbarHandlers = options.modules.toolbar.handlers;
+  customFormatHandlers.forEach((blotName) => {
+    options.modules[blotName] = true;
+  });
 
-    if (extension) {
-      Quill.register(extension, true);
-    }
+  useDefaultFormats(toolbarOptions);
+  useDefaultModules(toolbarIcons);
+  useDefaultExtensions();
 
-    quill = new Quill(editorEl, options);
-
-    return quill;
+  if (options.theme === 'snow') {
+    useEmoji(emotions);
   }
 
-  static destroy() {
-    Emotion.clear();
+  if (extension) {
+    Quill.register(extension, true);
   }
 
-  static insert(customFormat, value) {
-    if (quill) {
-      const range = quill.getSelection();
-      if (range) {
-        quill.insertEmbed(range.index, customFormat, value, Quill.sources.USER);
-      }
-    } else {
-      console.warn('[UiEditor] Quill registration failed');
+  editor = new Quill(editorEl, options);
+
+  editor.insert = (customFormat, value = true) => {
+    let range = editor.getSelection(true);
+    if (range) {
+      editor.insertEmbed(range.index, customFormat, value, Quill.sources.USER);
+      editor.setSelection(range.index + 1, Quill.sources.SILENT);
     }
-  }
+  };
+
+  setToolbarStyle();
+
+  return editor;
 }
 
-export default QuillEditor;
+const useEditor = () => {
+  return {
+    Quill,
+    editor,
+    toolbarHandlers
+  };
+};
+
+export { createEditor, useEditor, Emotion };

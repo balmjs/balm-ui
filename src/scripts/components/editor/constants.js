@@ -88,7 +88,6 @@ export default {
     ],
     // ['selectall', 'cut', 'copy', 'paste', 'delete', 'search'],
     ['link', 'image', 'video'], // NOTE: 'formula' - requires `KaTex`
-    ['preview'],
     ['strike', { script: 'super' }, { script: 'sub' }, 'divider'],
     ['clean', 'undo', 'redo']
   ]

@@ -1,22 +1,9 @@
 <template>
-  <div>
-    <ui-editor v-model="content"></ui-editor>
-  </div>
+  <div></div>
 </template>
 
 <script>
-import UiEditor from 'balm-ui-editor';
-
-export default {
-  components: {
-    UiEditor
-  },
-  data() {
-    return {
-      content: ''
-    };
-  }
-};
+export default {};
 </script>
 
 <style></style>

@@ -24,6 +24,7 @@
         v-model="decodeContent"
         placeholder="Compose an epic..."
         :toolbar="toolbar"
+        :toolbar-options="toolbarOptions"
         :toolbar-custom-handlers="toolbarCustomHandlers"
         :emotions="emotions"
       ></ui-editor>
@@ -75,9 +76,54 @@
 </template>
 
 <script>
-import UiEditor from 'balm-ui-editor'; // Individual Usage for IE10 bug
 import EmojiHuaixiao from '@/assets/emoji/pcmoren_huaixiao.png';
 import EmojiTian from '@/assets/emoji/pcmoren_tian.png';
+
+const toolbarOptions = {
+  font: [
+    'Arial',
+    'Arial Black',
+    'Comic Sans MS',
+    'Courier New',
+    'Tahoma',
+    'Georgia',
+    'Helvetica',
+    'Segoe UI',
+    'Impact',
+    'Times New Roman',
+    'Verdana'
+  ],
+  size: [
+    '8px',
+    '9px',
+    '10px',
+    '11px',
+    '12px',
+    '13px',
+    '14px',
+    '16px',
+    '18px',
+    '24px',
+    '36px',
+    '48px',
+    '60px',
+    '72px',
+    '96px'
+  ],
+  lineheight: [
+    '1',
+    '1.2',
+    '1.5',
+    '1.6',
+    '1.8',
+    '2',
+    '2.4',
+    '2.8',
+    '3',
+    '4',
+    '5'
+  ]
+};
 
 const emotions = [
   {
@@ -119,26 +165,50 @@ const emotions = [
 ];
 
 export default {
-  components: {
-    UiEditor
-  },
   metaInfo: {
     titleTemplate: '%s - Editor'
   },
   data() {
     return {
+      toolbarOptions,
+      emotions,
       content1: '',
       content2: '',
       encodeContent: '',
       decodeContent: '',
-      toolbar: 'full',
+      toolbar: [
+        [
+          { header: [false, 1, 2, 3, 4, 5, 6] },
+          { font: [false, ...toolbarOptions.font] },
+          { size: [false, ...toolbarOptions.size] },
+          { lineheight: [false, ...toolbarOptions.lineheight] }
+        ],
+        ['bold', 'italic', 'underline', { color: [] }, { background: [] }],
+        [
+          { align: '' },
+          { align: 'center' },
+          { align: 'right' },
+          { align: 'justify' }
+        ],
+        [
+          { list: 'ordered' },
+          { list: 'bullet' },
+          { indent: '+1' },
+          { indent: '-1' },
+          'blockquote',
+          'emoji'
+        ],
+        ['link', 'image', 'video'],
+        ['strike', { script: 'super' }, { script: 'sub' }, 'divider'],
+        ['clean', 'undo', 'redo'],
+        ['preview']
+      ],
       toolbarCustomHandlers: {
         preview: (quill, value) => {
           this.preview.show = true;
           this.preview.content = this.decodeContent;
         }
       },
-      emotions,
       preview: {
         show: false,
         type: 0,
@@ -166,8 +236,9 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      this.content1 = '<p>Hello BalmUI</p>';
-      this.content2 = '<p>Hello BalmJS</p>';
+      this.content1 = `<p><strong>BalmUI</strong> is a modular and customizable Material Design UI library for Vue.js.</p><p><br></p><ul><li>Enterprise-class UI designed for web applications</li><li>A set of high-quality Vue components/plugins/directives/utils out of the box</li><li>Powerful theme customization in every detail</li><li>Integrated a complete set of the latest Material Icons</li><li>All components and plugins is highly customizable, and can be used individually</li></ul>`;
+      this.content2 =
+        '<p><strong>BalmJS</strong>: A flexible Front-End workflow for webapps</p>';
 
       if (this.$refs.editor) {
         this.decodeContent = this.$refs.editor.decodeEmoji(

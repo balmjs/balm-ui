@@ -9,16 +9,7 @@ import { setGlobalProps } from '@/config';
 import validatorRules from '@/config/validator-rules';
 // BalmUI
 import BalmUI from 'balm-ui';
-import UiAlert from 'balm-ui/components/alert';
-import UiAutocomplete from 'balm-ui/components/autocomplete';
-import UiCollapse from 'balm-ui/components/collapse';
-import UiDatepicker from 'balm-ui/components/datepicker';
-import UiRangepicker from 'balm-ui/components/rangepicker';
-import UiSkeleton from 'balm-ui/components/skeleton';
-import $alert from 'balm-ui/plugins/alert';
-import $confirm from 'balm-ui/plugins/confirm';
-import $toast from 'balm-ui/plugins/toast';
-import vAnchor from 'balm-ui/directives/anchor';
+import BalmUIPlus from 'balm-ui/plus';
 import BalmUINext from 'balm-ui/next';
 // Custom components
 import PurePage from '@/views/layouts/pure-page';
@@ -39,16 +30,7 @@ function createApp() {
     $validator: validatorRules,
     $store: myStore
   });
-  Vue.use(UiAlert);
-  Vue.use(UiAutocomplete);
-  Vue.use(UiCollapse);
-  Vue.use(UiDatepicker);
-  Vue.use(UiRangepicker);
-  Vue.use(UiSkeleton);
-  Vue.use($alert);
-  Vue.use($confirm);
-  Vue.use($toast);
-  Vue.directive(vAnchor.name, vAnchor);
+  Vue.use(BalmUIPlus);
   Vue.use(BalmUINext);
 
   Vue.component(PurePage.name, PurePage);

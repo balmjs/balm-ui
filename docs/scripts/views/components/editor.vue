@@ -25,7 +25,7 @@
         placeholder="Compose an epic..."
         :toolbar="toolbar"
         :toolbar-options="toolbarOptions"
-        :toolbar-custom-handlers="toolbarCustomHandlers"
+        :toolbar-handlers="toolbarHandlers"
         :emotions="emotions"
       ></ui-editor>
       <ui-dialog v-model="preview.show" class="preview-dialog">
@@ -179,9 +179,9 @@ export default {
       toolbar: [
         [
           { header: [false, 1, 2, 3, 4, 5, 6] },
-          { font: [false, ...toolbarOptions.font] },
-          { size: [false, ...toolbarOptions.size] },
-          { lineheight: [false, ...toolbarOptions.lineheight] }
+          { font: [] },
+          { size: [] },
+          { lineheight: [] }
         ],
         ['bold', 'italic', 'underline', { color: [] }, { background: [] }],
         [
@@ -203,7 +203,7 @@ export default {
         ['clean', 'undo', 'redo'],
         ['preview']
       ],
-      toolbarCustomHandlers: {
+      toolbarHandlers: {
         preview: (quill, value) => {
           this.preview.show = true;
           this.preview.content = this.decodeContent;

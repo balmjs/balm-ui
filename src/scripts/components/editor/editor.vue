@@ -8,7 +8,7 @@
       <div v-else ref="editor" class="mdc-editor"></div>
     </div>
     <div v-if="withCounter" ref="counter" class="mdc-editor-counter"></div>
-    <template v-if="imageCustomHandler">
+    <template v-if="customImageHandler">
       <input
         ref="file"
         type="file"
@@ -27,8 +27,8 @@
 <script>
 import { createEditor, Emotion } from './quill';
 import UI_EDITOR from './constants';
-import getType from '../../utils/typeof';
 import handleFileChange from '../../utils/file';
+import getType from '../../utils/typeof';
 
 export default {
   name: 'UiEditor',
@@ -53,18 +53,6 @@ export default {
       type: [Array, String, null],
       default: null
     },
-    toolbarIcons: {
-      type: Object,
-      default() {
-        return UI_EDITOR.toolbarIcons;
-      }
-    },
-    toolbarOptions: {
-      type: Object,
-      default() {
-        return {};
-      }
-    },
     placeholder: {
       type: [String, null],
       default: null
@@ -78,15 +66,27 @@ export default {
       default: 'snow'
     },
     // Extension attributes
-    imageCustomHandler: {
-      type: Boolean,
-      default: false
-    },
-    toolbarCustomHandlers: {
+    toolbarIcons: {
       type: Object,
       default() {
         return {};
       }
+    },
+    toolbarOptions: {
+      type: Object,
+      default() {
+        return {};
+      }
+    },
+    toolbarHandlers: {
+      type: Object,
+      default() {
+        return {};
+      }
+    },
+    customImageHandler: {
+      type: Boolean,
+      default: false
     },
     emotions: {
       type: Array,
@@ -94,12 +94,12 @@ export default {
         return []; // format: [{ type, title, content: { name, value, src } }]
       }
     },
-    extension: {
-      type: [Boolean, Object],
-      default: false
-    },
     withCounter: {
       type: Boolean,
+      default: false
+    },
+    extension: {
+      type: [Boolean, Object],
       default: false
     }
   },
@@ -128,7 +128,7 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.$editor = createEditor(this.$refs.editor, {
-        toolbarIcons: this.toolbarIcons,
+        toolbarIcons: Object.assign(UI_EDITOR.toolbarIcons, this.toolbarIcons),
         toolbarOptions: this.toolbarOptions,
         options: this.getOptions(this.$refs.counter),
         emotions: this.emotions,
@@ -154,6 +154,37 @@ export default {
     Emotion.clear();
   },
   methods: {
+    setToolbarOption(toolbar, key, value) {
+      for (let format of toolbar) {
+        if (
+          getType(format) === 'object' &&
+          getType(format[key]) === 'array' &&
+          format[key].length === 0
+        ) {
+          format[key] = [false, ...value];
+        } else if (getType(format) === 'array') {
+          this.setToolbarOption(format, key, value);
+        }
+      }
+    },
+    getToolbar() {
+      let customToolbar = this.toolbar;
+
+      if (getType(customToolbar) === 'array') {
+        Object.keys(this.toolbarOptions).forEach((format) => {
+          let value = this.toolbarOptions[format];
+          if (value.length) {
+            this.setToolbarOption(
+              customToolbar,
+              format,
+              this.toolbarOptions[format]
+            );
+          }
+        });
+      }
+
+      return this.toolbar === 'full' ? UI_EDITOR.defaultToolbar : customToolbar;
+    },
     getOptions(counterEl) {
       const defaultOptions = {
         modules: {},
@@ -164,8 +195,7 @@ export default {
       let options = Object.assign(defaultOptions, this.options);
 
       options.modules.toolbar = {
-        container:
-          this.toolbar === 'full' ? UI_EDITOR.defaultToolbar : this.toolbar,
+        container: this.getToolbar(),
         handlers: {}
       };
 
@@ -179,15 +209,15 @@ export default {
       // Custom event handlers
       const toolbarHandlers = options.modules.toolbar.handlers;
 
-      if (this.imageCustomHandler) {
+      if (this.customImageHandler) {
         toolbarHandlers.image = () => {
           this.$refs.file.click();
         };
       }
 
-      Object.keys(this.toolbarCustomHandlers).forEach((format) => {
+      Object.keys(this.toolbarHandlers).forEach((format) => {
         toolbarHandlers[format] = (value) => {
-          this.toolbarCustomHandlers[format](this.$editor, value);
+          this.toolbarHandlers[format](this.$editor, value);
         };
       });
 

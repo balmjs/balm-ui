@@ -3,10 +3,12 @@ import emojiFormat from './format';
 import emojiModule from './module';
 
 function useEmoji(emotions) {
-  new Emotion(emotions);
+  if (!Emotion.getTypes().length) {
+    new Emotion(emotions);
 
-  emojiFormat();
-  emojiModule();
+    emojiFormat();
+    emojiModule();
+  }
 }
 
 export default useEmoji;

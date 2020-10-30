@@ -4,6 +4,7 @@ import prismjs from 'prismjs';
 export const VERSION = version;
 export const isDev = process.env.NODE_ENV === 'development';
 export const isProd = process.env.NODE_ENV === 'production';
+export const domain = isProd ? '//material.balmjs.com' : '';
 export const lazyLoadedTime = 1e3;
 
 // 同步 Sass variables
@@ -41,7 +42,7 @@ export const themes = {
 export function setGlobalProps(Vue) {
   Vue.config.productionTip = false;
 
-  Vue.prototype.$domain = isProd ? '//material.balmjs.com' : '';
+  Vue.prototype.$domain = domain;
 
   Vue.prototype.$prism = prismjs;
 

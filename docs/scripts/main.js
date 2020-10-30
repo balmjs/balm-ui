@@ -7,6 +7,7 @@ import $http from '@/plugins/http';
 import App from '@/views/layouts/app';
 import { setGlobalProps } from '@/config';
 import validatorRules from '@/config/validator-rules';
+import { toolbarOptions, emotions } from '@/config/editor';
 // BalmUI
 import BalmUI from 'balm-ui';
 import BalmUIPlus from 'balm-ui/plus';
@@ -30,7 +31,12 @@ function createApp() {
     $validator: validatorRules,
     $store: myStore
   });
-  Vue.use(BalmUIPlus);
+  Vue.use(BalmUIPlus, {
+    UiEditor: {
+      toolbarOptions,
+      emotions
+    }
+  });
   Vue.use(BalmUINext);
 
   Vue.component(PurePage.name, PurePage);

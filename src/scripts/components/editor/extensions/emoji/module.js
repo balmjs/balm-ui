@@ -5,7 +5,6 @@ import { emojiClassName, getCode, createEmoji } from './utils';
 const EMOJI_TOOLBAR = {
   id: 'ql-emoji-toolbar',
   closeId: 'ql-emoji-toolbar-close',
-  backdropId: 'ql-emoji-toolbar-backdrop',
   cssClasses: {
     tabBar: 'ql-emoji-tab-bar',
     tabScroller: 'ql-emoji-tab-scroller',
@@ -16,10 +15,21 @@ const EMOJI_TOOLBAR = {
   }
 };
 
+let hasRange = false;
+
 function createElement(className, tagName = 'div') {
   const el = document.createElement(tagName);
   el.className = className;
   return el;
+}
+
+function closeEmojiToolbar() {
+  let emojiToolbarEl = document.getElementById(EMOJI_TOOLBAR.id);
+  if (emojiToolbarEl) {
+    emojiToolbarEl.remove();
+  }
+
+  return emojiToolbarEl;
 }
 
 function emojiModule() {
@@ -37,24 +47,16 @@ function emojiModule() {
         toolbar.addHandler('emoji', this.openEmojiToolbar.bind(this));
 
         this.quill.on('selection-change', (range, oldRange, source) => {
-          let emojiToolbarEl = document.getElementById(EMOJI_TOOLBAR.id);
-          if (emojiToolbarEl) {
-            this.setEmojiToolbarBounds(emojiToolbarEl);
+          hasRange = range;
+
+          if (hasRange) {
+            let emojiToolbarEl = document.getElementById(EMOJI_TOOLBAR.id);
+            if (emojiToolbarEl) {
+              this.setEmojiToolbarBounds(emojiToolbarEl);
+            }
           }
         });
       }
-    }
-
-    closeEmojiToolbar() {
-      const emojiToolbarEl = document.getElementById(EMOJI_TOOLBAR.id);
-
-      if (emojiToolbarEl) {
-        emojiToolbarEl.remove();
-        document.getElementById(EMOJI_TOOLBAR.backdropId).style.display =
-          'none';
-      }
-
-      return emojiToolbarEl;
     }
 
     setEmojiToolbarBounds(emojiToolbarEl) {
@@ -75,7 +77,7 @@ function emojiModule() {
     }
 
     openEmojiToolbar() {
-      if (!this.closeEmojiToolbar()) {
+      if (!closeEmojiToolbar()) {
         const emojiToolbarEl = document.createElement('div');
         emojiToolbarEl.id = EMOJI_TOOLBAR.id;
         this.quill.container.appendChild(emojiToolbarEl);
@@ -106,7 +108,6 @@ function emojiModule() {
         // events
         this.onEmojiHandler();
         this.onCloseHandler();
-        this.onBlurHanlder();
       }
     }
 
@@ -182,33 +183,33 @@ function emojiModule() {
               this.quill.setSelection(range.index + 1, Quill.sources.SILENT);
             }
 
-            this.closeEmojiToolbar();
+            closeEmojiToolbar();
           }
         });
     }
 
     onCloseHandler() {
       let emojiToolbarCloseEl = document.getElementById(EMOJI_TOOLBAR.closeId);
-      emojiToolbarCloseEl.addEventListener('click', this.closeEmojiToolbar);
-    }
-
-    onBlurHanlder() {
-      let emojiToolbarBackdropEl = document.getElementById(
-        EMOJI_TOOLBAR.backdropId
-      );
-
-      if (emojiToolbarBackdropEl) {
-        emojiToolbarBackdropEl.style.display = 'block';
-      } else {
-        const backdropEl = document.createElement('div');
-        backdropEl.id = EMOJI_TOOLBAR.backdropId;
-        backdropEl.addEventListener('click', this.closeEmojiToolbar);
-        document.querySelector('body').appendChild(backdropEl);
-      }
+      emojiToolbarCloseEl.addEventListener('click', closeEmojiToolbar);
     }
   }
 
   Quill.register('modules/emoji', EmojiToolbarModule, true);
 }
 
+function onBlurEmojiHandler(e) {
+  const el = e.target;
+  if (el && new RegExp(`^${emojiClassName}`).test(el.classList[0])) {
+    e.preventDefault();
+    e.stopPropagation();
+  } else {
+    if (!hasRange) {
+      closeEmojiToolbar();
+    }
+  }
+}
+
+document.addEventListener('click', onBlurEmojiHandler);
+
 export default emojiModule;
+export { onBlurEmojiHandler };

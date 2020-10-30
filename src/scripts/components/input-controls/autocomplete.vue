@@ -140,7 +140,7 @@ export default {
       UI_AUTOCOMPLETE,
       UI_TEXTFIELD_ICON,
       $autocomplete: null,
-      $callback: null,
+      $listener: null,
       isExpanded: false,
       inputValue: this.model,
       currentSource: [], // source data
@@ -197,8 +197,8 @@ export default {
     this.setDataSource(this.source);
   },
   beforeDestroy() {
-    if (this.$callback) {
-      document.removeEventListener(UI_AUTOCOMPLETE.EVENT.CLICK, this.$callback);
+    if (this.$listener) {
+      document.removeEventListener(UI_AUTOCOMPLETE.EVENT.CLICK, this.$listener);
     }
     this.$autocomplete.removeEventListener(
       UI_AUTOCOMPLETE.EVENT.MOUSEMOVE,
@@ -270,7 +270,7 @@ export default {
           keywords = `\\${keywords}`;
         }
         // Local datasource
-        this.currentSuggestion.data = this.currentSource.filter(word => {
+        this.currentSuggestion.data = this.currentSource.filter((word) => {
           return RegExp(keywords, 'i').test(word[UI_AUTOCOMPLETE.ITEM.LABEL]);
         });
 
@@ -279,7 +279,7 @@ export default {
     },
     setDataSource(dataSource) {
       if (getType(dataSource) === 'array') {
-        this.currentSource = dataSource.map(data => {
+        this.currentSource = dataSource.map((data) => {
           let item = {};
 
           if (getType(data) === 'string' || getType(data) === 'number') {
@@ -383,8 +383,8 @@ export default {
       }
     },
     handleBlur(event) {
-      if (!this.$callback) {
-        this.$callback = e => {
+      if (!this.$listener) {
+        this.$listener = (e) => {
           let inTextfield = false;
           let parentEl = e.target;
 
@@ -398,13 +398,13 @@ export default {
           if (e !== event && this.isExpanded && !inTextfield) {
             document.removeEventListener(
               UI_AUTOCOMPLETE.EVENT.CLICK,
-              this.$callback
+              this.$listener
             );
             this.hide();
           }
         };
       }
-      document.addEventListener(UI_AUTOCOMPLETE.EVENT.CLICK, this.$callback);
+      document.addEventListener(UI_AUTOCOMPLETE.EVENT.CLICK, this.$listener);
     },
     handleMousemove(event) {
       let el = event.target;

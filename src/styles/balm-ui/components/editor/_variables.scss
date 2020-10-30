@@ -1,3 +1,6 @@
+$editor-height: 100% !default;
+$bubble-editor-height: 100px !default;
+
 $font-family: (
   'arial': 'Arial',
   'arial-black': 'Arial Black',
@@ -12,7 +15,6 @@ $font-family: (
   'times-new-roman': 'Times New Roman',
   'verdana': 'Verdana'
 ) !default;
-
 $font-size: (
   '8px',
   '9px',
@@ -30,7 +32,6 @@ $font-size: (
   '72px',
   '96px'
 ) !default;
-
 $line-height: (
   '1.0',
   '1.2',

@@ -1,4 +1,15 @@
-@use './extension';
+@use './variables' as editor-variables;
+@use './extensions';
+
+.mdc-editor {
+  &.ql-snow .ql-editor {
+    height: editor-variables.$editor-height;
+  }
+
+  &.ql-bubble .ql-editor {
+    height: editor-variables.$bubble-editor-height;
+  }
+}
 
 .ql-bubble .ql-editor {
   border: 1px solid #ccc;

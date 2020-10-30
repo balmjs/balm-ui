@@ -1,5 +1,5 @@
 # Editor
 
-A modern WYSIWYG editor. Supports `image` custom upload handler and `emoji` extension by default.
+A modern WYSIWYG editor with built-in extension features.
 
 > New in 6.7.0

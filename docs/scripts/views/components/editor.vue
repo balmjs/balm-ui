@@ -1,5 +1,5 @@
 <template>
-  <docs-page name="editor" demo-count="3" without-css>
+  <docs-page name="editor" demo-count="3">
     <template #hero>
       <h1 :class="$tt('headline1')">WYSIWYG</h1>
     </template>

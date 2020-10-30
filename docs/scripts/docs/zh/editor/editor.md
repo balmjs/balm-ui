@@ -20,7 +20,28 @@
 | `withCounter`        | boolean         | `false`                                 | Styles the editor with an internal character counter.                 |
 | `extension`          | `false`, object | `false`                                 | Custom extension for Quill.                                           |
 
-- **`toolbarHandlers`**
+> `toolbarIcons`, `toolbarOptions`, `withCounter`: New in 8.6.0
+
+#### `toolbar` prop
+
+- Defaults:
+  - `align`/`direction`/`indent`
+  - `background`/`color`/`font`/`size`
+  - `blockquote`/`code-block`/`header`/`list`
+  - `bold`/`italic`/`link`/`script`/`strike`/`underline`
+  - `image`/`video`
+- Extensions:
+  - `font`/`size`/`lineheight`: custom Font Famliy, Font Size and Line Height
+  - `image`: custom image upload handler
+  - `emoji`: emoji module
+  - `divider`: horizontal rule
+  - `textindent`: like `indent`, but for inline
+  - `linkoff`: remove all links in editor
+  - `counter`: character counter module
+  - `undo`/`redo`: built-in undo/redo handling
+  - `selectall`: select all content in editor
+
+#### `toolbarHandlers` prop
 
 ```js
 {
@@ -31,7 +52,7 @@
 }
 ```
 
-- **`emotions` format:**
+#### `emotions` format
 
 ```js
 [
@@ -76,7 +97,7 @@
 ];
 ```
 
-- **Encode & Decode Emoji**
+#### Encode & Decode Emoji
 
 ```html
 <ui-editor ref="editor" v-model="content"></ui-editor>

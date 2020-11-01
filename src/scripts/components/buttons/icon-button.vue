@@ -58,7 +58,6 @@ export default {
       default: false
     },
     // UI attributes
-    icon: String,
     toggle: {
       type: Object,
       default() {

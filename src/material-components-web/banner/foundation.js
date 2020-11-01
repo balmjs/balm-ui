@@ -116,6 +116,10 @@ var MDCBannerFoundation = /** @class */ (function (_super) {
     MDCBannerFoundation.prototype.handleSecondaryActionClick = function () {
         this.close(CloseReason.SECONDARY);
     };
+    MDCBannerFoundation.prototype.layout = function () {
+        var contentHeight = this.adapter.getContentHeight();
+        this.adapter.setStyleProperty('height', contentHeight + "px");
+    };
     MDCBannerFoundation.prototype.handleAnimationTimerEnd = function () {
         this.animationTimer = 0;
         this.adapter.removeClass(OPENING);

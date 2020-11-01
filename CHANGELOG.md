@@ -2,6 +2,20 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.6.0 / 2020-11-01
+
+### Code Refactoring
+
+- `<ui-editor>`: more built-in quill extensions
+
+### Features
+
+- `<ui-editor>`: add prop `toolbarIcons`, `toolbarOptions`, `withCounter`
+
+### BREAKING CHANGES
+
+- `<ui-editor>`: rename prop `toolbarCustomHandlers` to `toolbarHandlers`
+
 ## v8.5.1 / 2020-10-21
 
 ### Bug Fixes

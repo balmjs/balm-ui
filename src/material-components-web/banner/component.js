@@ -59,6 +59,9 @@ var MDCBanner = /** @class */ (function (_super) {
         _super.prototype.destroy.call(this);
         this.deregisterContentClickHandler(this.handleContentClick);
     };
+    MDCBanner.prototype.layout = function () {
+        this.foundation.layout();
+    };
     /**
      * Opens the banner and fires events.OPENING to indicate the beginning of its
      * opening animation and then events.OPENED once the animation finishes.

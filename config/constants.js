@@ -9,8 +9,8 @@ const DEV_SOURCE = {
 
 const DMC_COMPONENTS = [
   'animation',
-  'base',
   'banner', // New in mdc@8.0.0
+  'base',
   'button',
   'card',
   'checkbox',
@@ -39,6 +39,7 @@ const DMC_COMPONENTS = [
   'radio',
   'ripple',
   'rtl',
+  'segmented-button', // New in mdc@9.0.0
   'select',
   'shape',
   'slider',

@@ -1,5 +1,7 @@
 import { domain } from '@/config';
 
+const DEMO_IMAGE_DIR = `${domain}/images/demo/emoji`;
+
 const toolbar = [
   [
     { header: [false, 1, 2, 3, 4, 5, 6] },
@@ -82,12 +84,12 @@ const emotions = [
       {
         name: 'oo',
         alt: '坏笑',
-        src: `${domain}/images/emoji/p_huaixiao.png`
+        src: `${DEMO_IMAGE_DIR}/p_huaixiao.png`
       },
       {
         name: 'xx',
         alt: '舔屏',
-        src: `${domain}/images/emoji/p_tian.png`
+        src: `${DEMO_IMAGE_DIR}/p_tian.png`
       }
     ]
   },
@@ -112,12 +114,12 @@ const emotions = [
       {
         name: 'yy',
         alt: '神兽',
-        src: `${domain}/images/emoji/g_shenshou.gif`
+        src: `${DEMO_IMAGE_DIR}/g_shenshou.gif`
       },
       {
         name: 'zz',
         alt: '浮云',
-        src: `${domain}/images/emoji/g_fuyun.gif`
+        src: `${DEMO_IMAGE_DIR}/g_fuyun.gif`
       }
     ]
   }

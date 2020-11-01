@@ -127,7 +127,7 @@ export default {
 
       if (this.$refs.editor) {
         this.decodeContent = this.$refs.editor.decodeEmoji(
-          `<h1 style="text-align: center;">Rich Text Editor</h1><p><br></p><p><a href="https://quilljs.com/" rel="noopener noreferrer" target="_blank">Quill</a> is a free, open source WYSIWYG editor built for the modern web. With its modular architecture and expressive API, it is completely customizable to fit any need.</p><p><br></p><p style="text-align: center;"><img src="${this.$domain}/images/editor-image.png"></p><p><br></p><p style="text-align: center;">Hello BalmUI [oo] and BalmJS :smile: !</p>`
+          `<h1 style="text-align: center;">Rich Text Editor</h1><p><br></p><p><a href="https://quilljs.com/" rel="noopener noreferrer" target="_blank">Quill</a> is a free, open source WYSIWYG editor built for the modern web. With its modular architecture and expressive API, it is completely customizable to fit any need.</p><p><br></p><p style="text-align: center;"><img src="${this.$domain}/images/demo/editor-image.png"></p><p><br></p><p style="text-align: center;">Hello BalmUI [oo] and BalmJS :smile: !</p>`
         );
 
         this.setToolbar();

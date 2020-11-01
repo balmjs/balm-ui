@@ -7,8 +7,9 @@ const fixGridCss = require('./build.fix');
 module.exports = (mix) => {
   if (env.buildDocs) {
     mix.copy('./docs/data/*', './dist/data');
+    mix.copy('./docs/images/demo/**/*', './dist/images/demo');
     mix.remove([
-      './dist/img/photos',
+      './dist/img/demo',
       './dist/font/materialicons',
       './dist/rev-manifest.json',
       './dist/service-worker.js'

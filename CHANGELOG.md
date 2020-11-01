@@ -11,6 +11,7 @@
 ### Features
 
 - `<ui-editor>`: add prop `toolbarIcons`, `toolbarOptions`, `withCounter`
+- update `mdc@8.0.0-canary.5511c5254.0`
 
 ### BREAKING CHANGES
 

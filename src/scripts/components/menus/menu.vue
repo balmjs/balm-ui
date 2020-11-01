@@ -1,7 +1,13 @@
 <template>
   <!-- Container -->
   <div :class="className">
-    <ul class="mdc-list" tabindex="-1" role="menu" aria-hidden="true" aria-orientation="vertical">
+    <ul
+      class="mdc-list"
+      tabindex="-1"
+      role="menu"
+      aria-hidden="true"
+      aria-orientation="vertical"
+    >
       <slot>
         <template v-for="(item, index) in currentItems">
           <template v-if="getType(item) === 'array'">

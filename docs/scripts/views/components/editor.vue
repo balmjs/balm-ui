@@ -56,9 +56,9 @@
           ></ui-tabs>
           <div
             v-shadow="4"
-            v-html="preview.content"
             class="preview-content"
             :style="previewStyle"
+            v-html="preview.content"
           ></div>
         </ui-dialog-content>
       </ui-dialog>
@@ -129,8 +129,14 @@ export default {
         this.decodeContent = this.$refs.editor.decodeEmoji(
           `<h1 style="text-align: center;">Rich Text Editor</h1><p><br></p><p><a href="https://quilljs.com/" rel="noopener noreferrer" target="_blank">Quill</a> is a free, open source WYSIWYG editor built for the modern web. With its modular architecture and expressive API, it is completely customizable to fit any need.</p><p><br></p><p style="text-align: center;"><img src="${this.$domain}/images/editor-image.png"></p><p><br></p><p style="text-align: center;">Hello BalmUI [oo] and BalmJS :smile: !</p>`
         );
+
+        this.setToolbar();
+        window.addEventListener('balmResize', this.setToolbar);
       }
     }, 1e3);
+  },
+  beforeDestroy() {
+    window.removeEventListener('balmResize', this.setToolbar);
   },
   methods: {
     async onFileChange(file, insert) {
@@ -140,6 +146,17 @@ export default {
     },
     onEncodeContent() {
       this.encodeContent = this.$refs.editor.encodeEmoji(this.decodeContent);
+    },
+    setToolbar() {
+      let isWideScreen = window.innerWidth > 1024;
+      let previewFormat = this.$refs.editor.$el.querySelector('.ql-preview');
+
+      if (isWideScreen) {
+        previewFormat.style.display = 'block';
+      } else {
+        previewFormat.style.display = 'none';
+        this.preview.show = false;
+      }
     }
   }
 };

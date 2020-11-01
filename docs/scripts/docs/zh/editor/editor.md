@@ -41,6 +41,124 @@
   - `undo`/`redo`: built-in undo/redo handling
   - `selectall`: select all content in editor
 
+#### `toolbarOptions` & `emotions` format for global
+
+- `/path/to/app/scripts/config/editor.js`
+
+  ```js
+  const toolbarOptions = {
+    font: [
+      'Arial',
+      'Arial Black',
+      'Comic Sans MS',
+      'Courier New',
+      'Tahoma',
+      'Georgia',
+      'Helvetica',
+      'Segoe UI',
+      'Impact',
+      'Times New Roman',
+      'Verdana'
+    ],
+    size: [
+      '8px',
+      '9px',
+      '10px',
+      '11px',
+      '12px',
+      '13px',
+      '14px',
+      '16px',
+      '18px',
+      '24px',
+      '36px',
+      '48px',
+      '60px',
+      '72px',
+      '96px'
+    ],
+    lineheight: [
+      '1',
+      '1.2',
+      '1.5',
+      '1.6',
+      '1.8',
+      '2',
+      '2.4',
+      '2.8',
+      '3',
+      '4',
+      '5'
+    ]
+  };
+
+  const emotions = [
+    {
+      type: 'image',
+      title: 'Default',
+      content: [
+        {
+          name: 'oo',
+          alt: '坏笑',
+          src: 'https://material.balmjs.com/images/emoji/p_huaixiao.png'
+        },
+        {
+          name: 'xx',
+          alt: '舔屏',
+          src: 'https://material.balmjs.com/images/emoji/p_tian.png'
+        }
+      ]
+    },
+    {
+      type: 'emoji',
+      title: 'emoji',
+      content: [
+        {
+          name: 'smile',
+          value: '😀'
+        },
+        {
+          name: 'cry',
+          value: '😆'
+        }
+      ]
+    },
+    {
+      type: 'image',
+      title: 'Custom',
+      content: [
+        {
+          name: 'yy',
+          alt: '神兽',
+          src: 'https://material.balmjs.com/images/emoji/g_shenshou.gif'
+        },
+        {
+          name: 'zz',
+          alt: '浮云',
+          src: 'https://material.balmjs.com/images/emoji/g_fuyun.gif'
+        }
+      ]
+    }
+  ];
+
+  export { toolbarOptions, emotions };
+  ```
+
+- `/path/to/app/scripts/main.js`
+
+  ```js
+  import Vue from 'vue';
+  import { toolbarOptions, emotions } from '@/config/editor';
+  import BalmUIPlus from 'balm-ui/dist/balm-ui-plus';
+
+  Vue.use(BalmUIPlus, {
+    UiEditor: {
+      toolbarOptions,
+      emotions
+    }
+  });
+  ```
+
 #### `toolbarHandlers` prop
 
 ```js
@@ -50,51 +168,6 @@
     customFormat: (quill, value) => {}; // Insert content into the editor by `quill.insert(customFormat, value) => {}`
   }
 }
-```
-
-#### `emotions` format
-
-```js
-[
-  {
-    type: 'image',
-    title: 'Default',
-    content: [
-      {
-        name: 'oo',
-        alt: '坏笑',
-        src:
-          'https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/50/pcmoren_huaixiao_org.png'
-      }
-    ]
-  },
-  {
-    type: 'emoji',
-    title: 'emoji',
-    content: [
-      {
-        name: 'smile',
-        value: '😀'
-      },
-      {
-        name: 'cry',
-        value: '😆'
-      }
-    ]
-  },
-  {
-    type: 'image',
-    title: 'Custom',
-    content: [
-      {
-        name: 'xx',
-        alt: '舔屏',
-        src:
-          'https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/40/pcmoren_tian_org.png'
-      }
-    ]
-  }
-];
 ```
 
 #### Encode & Decode Emoji

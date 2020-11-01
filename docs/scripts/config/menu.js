@@ -56,6 +56,11 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'add',
         name: 'icon-button'
+      },
+      {
+        icon: 'add_box',
+        name: 'segmented-button',
+        next: true
       }
     ]
   },

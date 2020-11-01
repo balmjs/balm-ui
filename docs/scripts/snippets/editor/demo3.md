@@ -4,9 +4,7 @@
   v-model="decodeContent"
   placeholder="Compose an epic..."
   :toolbar="toolbar"
-  :toolbar-options="toolbarOptions"
   :toolbar-handlers="toolbarHandlers"
-  :emotions="emotions"
   custom-image-handler
   @file-change="onFileChange"
 ></ui-editor>
@@ -42,134 +40,49 @@
     ></ui-tabs>
     <div
       v-shadow="4"
-      v-html="preview.content"
       class="preview-content"
       :style="previewStyle"
+      v-html="preview.content"
     ></div>
   </ui-dialog-content>
 </ui-dialog>
 ```
 
 ```js
-const toolbarOptions = {
-  font: [
-    'Arial',
-    'Arial Black',
-    'Comic Sans MS',
-    'Courier New',
-    'Tahoma',
-    'Georgia',
-    'Helvetica',
-    'Segoe UI',
-    'Impact',
-    'Times New Roman',
-    'Verdana'
+const toolbar = [
+  [
+    { header: [false, 1, 2, 3, 4, 5, 6] },
+    { font: [] },
+    { size: [] },
+    { lineheight: [] }
   ],
-  size: [
-    '8px',
-    '9px',
-    '10px',
-    '11px',
-    '12px',
-    '13px',
-    '14px',
-    '16px',
-    '18px',
-    '24px',
-    '36px',
-    '48px',
-    '60px',
-    '72px',
-    '96px'
+  ['bold', 'italic', 'underline', { color: [] }, { background: [] }],
+  [
+    { align: '' },
+    { align: 'center' },
+    { align: 'right' },
+    { align: 'justify' }
   ],
-  lineheight: [
-    '1',
-    '1.2',
-    '1.5',
-    '1.6',
-    '1.8',
-    '2',
-    '2.4',
-    '2.8',
-    '3',
-    '4',
-    '5'
-  ]
-};
-
-const emotions = [
-  {
-    type: 'image',
-    title: 'Default',
-    content: [
-      {
-        name: 'oo',
-        alt: '坏笑',
-        src: EmojiHuaixiao
-      }
-    ]
-  },
-  {
-    type: 'emoji',
-    title: 'Emoji',
-    content: [
-      {
-        name: 'smile',
-        value: '😀'
-      },
-      {
-        name: 'cry',
-        value: '😆'
-      }
-    ]
-  },
-  {
-    type: 'image',
-    title: 'Custom',
-    content: [
-      {
-        name: 'xx',
-        alt: '舔屏',
-        src: EmojiTian
-      }
-    ]
-  }
+  [
+    { list: 'ordered' },
+    { list: 'bullet' },
+    { indent: '+1' },
+    { indent: '-1' },
+    'blockquote',
+    'emoji'
+  ],
+  ['link', 'image', 'video'],
+  ['strike', { script: 'super' }, { script: 'sub' }, 'divider'],
+  ['clean', 'undo', 'redo'],
+  ['preview'] // custom
 ];
 
 export default {
   data() {
     return {
-      toolbarOptions,
-      emotions,
+      toolbar,
       encodeContent: '',
       decodeContent: '',
-      toolbar: [
-        [
-          { header: [false, 1, 2, 3, 4, 5, 6] },
-          { font: [] },
-          { size: [] },
-          { lineheight: [] }
-        ],
-        ['bold', 'italic', 'underline', { color: [] }, { background: [] }],
-        [
-          { align: '' },
-          { align: 'center' },
-          { align: 'right' },
-          { align: 'justify' }
-        ],
-        [
-          { list: 'ordered' },
-          { list: 'bullet' },
-          { indent: '+1' },
-          { indent: '-1' },
-          'blockquote',
-          'emoji'
-        ],
-        ['link', 'image', 'video'],
-        ['strike', { script: 'super' }, { script: 'sub' }, 'divider'],
-        ['clean', 'undo', 'redo'],
-        ['preview'] // custom
-      ],
       toolbarHandlers: {
         preview: (quill, value) => {
           this.preview.show = true;

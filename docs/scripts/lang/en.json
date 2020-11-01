@@ -10,6 +10,7 @@
     "button": "Button",
     "fab": "Floating Action",
     "icon-button": "Icon Button",
+    "segmented-button": "Segmented Button",
     "layout": "Layout",
     "top-app-bar": "Top App Bar",
     "grid": "Layout Grid",

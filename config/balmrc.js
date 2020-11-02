@@ -1,6 +1,7 @@
 const pkg = require('../package.json');
 const env = require('./env');
 const path = require('path');
+const webpack = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
 
 function getConfig(balm) {
@@ -69,7 +70,13 @@ function getConfig(balm) {
           'src/scripts/components/editor/editor.vue'
         )
       },
-      plugins: [new VueLoaderPlugin()],
+      plugins: [
+        new VueLoaderPlugin(),
+        new webpack.DefinePlugin({
+          __VUE_OPTIONS_API__: true,
+          __VUE_PROD_DEVTOOLS__: false
+        })
+      ],
       eslint: true,
       webpackOptions: useBuild
         ? {

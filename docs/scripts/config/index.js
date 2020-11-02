@@ -4,6 +4,7 @@ import prismjs from 'prismjs';
 export const VERSION = version;
 export const isDev = process.env.NODE_ENV === 'development';
 export const isProd = process.env.NODE_ENV === 'production';
+export const domain = isProd ? '//next-material.balmjs.com' : '';
 export const lazyLoadedTime = 1e3;
 
 // 同步 Sass variables
@@ -37,8 +38,6 @@ export const themes = {
     error: '#cf6679'
   }
 };
-
-const domain = isProd ? '//next-material.balmjs.com' : '';
 
 export function setGlobalProps(app) {
   app.config.isCustomElement = (tag) => tag.startsWith('ui-');

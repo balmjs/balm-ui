@@ -25,31 +25,28 @@
 
 <script>
 import { MDCDialog } from '../../../material-components-web/dialog';
-import { cssClasses } from '../../../material-components-web/dialog/constants';
-
+import {
+  cssClasses,
+  strings
+} from '../../../material-components-web/dialog/constants';
+import domMixin from '../../mixins/dom';
 // Define dialog constants
 const UI_DIALOG = {
   cssClasses: {
     content: 'mdc-dialog__content'
   },
   EVENT: {
-    CHANGE: 'change',
+    CHANGE: 'update:modelValue',
     CLOSE: 'close',
-    CONFIRM: 'confirm',
-    ACCEPT: 'accept',
-    CANCEL: 'cancel'
+    CONFIRM: 'confirm'
   }
 };
-
 export default {
   name: 'UiDialog',
-  model: {
-    prop: 'open',
-    event: UI_DIALOG.EVENT.CHANGE
-  },
+  mixins: [domMixin],
   props: {
     // States
-    open: {
+    modelValue: {
       type: Boolean,
       default: false
     },
@@ -79,6 +76,11 @@ export default {
       default: false
     }
   },
+  emits: [
+    UI_DIALOG.EVENT.CHANGE,
+    UI_DIALOG.EVENT.CLOSE,
+    UI_DIALOG.EVENT.CONFIRM
+  ],
   data() {
     return {
       $dialog: null,
@@ -95,7 +97,7 @@ export default {
     }
   },
   watch: {
-    open(val) {
+    modelValue(val) {
       if (val) {
         this.$dialog.open();
       } else {
@@ -107,20 +109,18 @@ export default {
     }
   },
   mounted() {
-    this.$dialog = new MDCDialog(this.$el);
-
+    this.$dialog = new MDCDialog(this.el);
     this.$nextTick(() => {
       this.dialogBody = this.$refs.dialog.querySelector(
         `.${UI_DIALOG.cssClasses.content}`
       );
 
       // Accessibility: Using `aria-hidden` as a fallback for `aria-modal`
-      this.$dialog.listen('MDCDialog:opened', () => {
+      this.$dialog.listen(strings.OPENED_EVENT, () => {
         this.dialogBody.setAttribute('aria-hidden', 'true');
       });
-      this.$dialog.listen('MDCDialog:closing', ({ detail }) => {
+      this.$dialog.listen(strings.CLOSING_EVENT, ({ detail }) => {
         this.dialogBody.removeAttribute('aria-hidden');
-
         // NOTE: fix for the Escape key
         if (detail.action === 'close') {
           this.handleClose();
@@ -129,8 +129,8 @@ export default {
 
       if (
         !(
-          this.$el.querySelector('.mdc-button') ||
-          this.$el.querySelector('.mdc-icon-button')
+          this.el.querySelector('.mdc-button') ||
+          this.el.querySelector('.mdc-icon-button')
         )
       ) {
         console.warn(
@@ -139,7 +139,7 @@ export default {
       }
     });
   },
-  beforeDestroy() {
+  beforeUnmount() {
     // NOTE: for conditional rendering
     document.querySelector('body').classList.remove(cssClasses.SCROLL_LOCK);
   },
@@ -151,12 +151,10 @@ export default {
       this.$emit(UI_DIALOG.EVENT.CLOSE);
     },
     handleAccept() {
-      this.$emit(UI_DIALOG.EVENT.ACCEPT);
       this.$emit(UI_DIALOG.EVENT.CONFIRM, true);
       this.handleClose();
     },
     handleCancel() {
-      this.$emit(UI_DIALOG.EVENT.CANCEL);
       this.$emit(UI_DIALOG.EVENT.CONFIRM, false);
       this.handleClose();
     }

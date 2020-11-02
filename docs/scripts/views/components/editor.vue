@@ -67,7 +67,7 @@
           >Show Encode Content</ui-button
         >
       </p>
-      <div>{{ encodeContent }}</div>
+      <div class="preview-code">{{ encodeContent }}</div>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>
   </docs-page>

@@ -1,4 +1,4 @@
-// @use '../global/index' as global;
+@use '../global/index' as global;
 
 .ql-snow .ql-tooltip,
 .ql-bubble .ql-tooltip {
@@ -24,4 +24,8 @@
     margin: 0 auto;
     padding: 20px;
   }
+}
+
+.preview-code {
+  @include global.overflow-wrap;
 }

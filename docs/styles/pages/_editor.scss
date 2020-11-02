@@ -1,0 +1,27 @@
+// @use '../global/index' as global;
+
+.ql-snow .ql-tooltip,
+.ql-bubble .ql-tooltip {
+  z-index: 2;
+}
+
+.preview-dialog {
+  .mdc-dialog__title {
+    .close {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+
+  .mdc-dialog__surface {
+    max-width: 1024px;
+  }
+
+  .preview-content {
+    min-width: 280px;
+    min-height: 320px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+}

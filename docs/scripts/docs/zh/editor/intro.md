@@ -1,5 +1,5 @@
 # 富文本
 
-A modern WYSIWYG editor. Supports `image` custom upload handler and `emoji` extension by default.
+一款现代的所见即所得编辑器（基于 Quill 且内置了丰富的扩展功能）。
 
 > New in 6.7.0

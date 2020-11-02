@@ -1,12 +1,25 @@
-.mdc-editor-container {
-  position: relative;
-}
+@use './variables' as editor-variables;
+@use './extensions';
 
-.ql-tooltip,
-.ql-bubble {
-  z-index: 3;
+.mdc-editor {
+  &.ql-snow .ql-editor {
+    height: editor-variables.$editor-height;
+  }
+
+  &.ql-bubble .ql-editor {
+    height: editor-variables.$bubble-editor-height;
+  }
 }
 
 .ql-bubble .ql-editor {
   border: 1px solid #ccc;
+}
+
+.ql-toolbar .material-icons {
+  font-size: 18px;
+}
+
+.ql-bubble.ql-toolbar button,
+.ql-bubble .ql-toolbar button {
+  color: #ccc;
 }

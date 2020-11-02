@@ -10,6 +10,7 @@
     "button": "按钮",
     "fab": "浮动按钮",
     "icon-button": "图标按钮",
+    "segmented-button": "按钮组",
     "layout": "布局",
     "top-app-bar": "顶部导航",
     "grid": "栅格",

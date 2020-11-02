@@ -6,7 +6,7 @@
 
 | Name               | Type           | Default | Description                                                                                                      |
 | ------------------ | -------------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
-| `type`             | string, number | 0       | Mandatory. The permutation of tab labels.                                                                        |
+| `type`             | string, number | `0`     | Mandatory. The permutation of tab labels.                                                                        |
 | `stacked`          | boolean        | `false` | Optional. Indicates that the tab icon and label should flow vertically instead of horizontally.                  |
 | `minWidth`         | boolean        | `false` | Optional. Indicates that the tab should shrink in size to be as narrow as possible without causing text to wrap. |
 | `contentIndicator` | boolean        | `false` | Optional. Text label width-matching indicator.                                                                   |

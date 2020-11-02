@@ -25,11 +25,7 @@
 
 <script>
 import { MDCDialog } from '../../../material-components-web/dialog';
-import {
-  cssClasses,
-  strings
-} from '../../../material-components-web/dialog/constants';
-import domMixin from '../../mixins/dom';
+import { cssClasses } from '../../../material-components-web/dialog/constants';
 
 // Define dialog constants
 const UI_DIALOG = {
@@ -37,18 +33,23 @@ const UI_DIALOG = {
     content: 'mdc-dialog__content'
   },
   EVENT: {
-    CHANGE: 'update:modelValue',
+    CHANGE: 'change',
     CLOSE: 'close',
-    CONFIRM: 'confirm'
+    CONFIRM: 'confirm',
+    ACCEPT: 'accept',
+    CANCEL: 'cancel'
   }
 };
 
 export default {
   name: 'UiDialog',
-  mixins: [domMixin],
+  model: {
+    prop: 'open',
+    event: UI_DIALOG.EVENT.CHANGE
+  },
   props: {
     // States
-    modelValue: {
+    open: {
       type: Boolean,
       default: false
     },
@@ -78,11 +79,6 @@ export default {
       default: false
     }
   },
-  emits: [
-    UI_DIALOG.EVENT.CHANGE,
-    UI_DIALOG.EVENT.CLOSE,
-    UI_DIALOG.EVENT.CONFIRM
-  ],
   data() {
     return {
       $dialog: null,
@@ -99,7 +95,7 @@ export default {
     }
   },
   watch: {
-    modelValue(val) {
+    open(val) {
       if (val) {
         this.$dialog.open();
       } else {
@@ -111,7 +107,7 @@ export default {
     }
   },
   mounted() {
-    this.$dialog = new MDCDialog(this.el);
+    this.$dialog = new MDCDialog(this.$el);
 
     this.$nextTick(() => {
       this.dialogBody = this.$refs.dialog.querySelector(
@@ -119,10 +115,10 @@ export default {
       );
 
       // Accessibility: Using `aria-hidden` as a fallback for `aria-modal`
-      this.$dialog.listen(strings.OPENED_EVENT, () => {
+      this.$dialog.listen('MDCDialog:opened', () => {
         this.dialogBody.setAttribute('aria-hidden', 'true');
       });
-      this.$dialog.listen(strings.CLOSING_EVENT, ({ detail }) => {
+      this.$dialog.listen('MDCDialog:closing', ({ detail }) => {
         this.dialogBody.removeAttribute('aria-hidden');
 
         // NOTE: fix for the Escape key
@@ -131,12 +127,19 @@ export default {
         }
       });
 
-      if (!this.el.querySelector('.mdc-button')) {
-        console.warn('`<ui-button>` is required in the dialog');
+      if (
+        !(
+          this.$el.querySelector('.mdc-button') ||
+          this.$el.querySelector('.mdc-icon-button')
+        )
+      ) {
+        console.warn(
+          '`<ui-button>` or `<ui-icon-button>` is required in the dialog'
+        );
       }
     });
   },
-  beforeUnmount() {
+  beforeDestroy() {
     // NOTE: for conditional rendering
     document.querySelector('body').classList.remove(cssClasses.SCROLL_LOCK);
   },
@@ -148,10 +151,12 @@ export default {
       this.$emit(UI_DIALOG.EVENT.CLOSE);
     },
     handleAccept() {
+      this.$emit(UI_DIALOG.EVENT.ACCEPT);
       this.$emit(UI_DIALOG.EVENT.CONFIRM, true);
       this.handleClose();
     },
     handleCancel() {
+      this.$emit(UI_DIALOG.EVENT.CANCEL);
       this.$emit(UI_DIALOG.EVENT.CONFIRM, false);
       this.handleClose();
     }

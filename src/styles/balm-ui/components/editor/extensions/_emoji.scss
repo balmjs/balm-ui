@@ -1,6 +1,6 @@
 @use '@material/theme/theme-color';
 
-#ql-emoji-palette {
+#ql-emoji-toolbar {
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -13,6 +13,14 @@
   background-color: #fff;
 }
 
+#ql-emoji-toolbar-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 18px;
+  cursor: pointer;
+}
+
 .ql-emoji-tab-bar {
   width: 100%;
   overflow-y: hidden;
@@ -23,6 +31,7 @@
 .ql-emoji-tab-scroller {
   display: flex;
   overflow-x: auto;
+  padding-right: 18px;
 }
 
 .ql-emoji-tab-content {
@@ -57,26 +66,16 @@
 
     width: 24px;
     height: 24px;
-  }
-}
 
-#ql-emoji-close-area {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
+    em,
+    img {
+      width: 20px;
+      height: 20px;
+    }
 
-.ql-emoji {
-  i,
-  img {
-    width: 20px;
-    height: 20px;
-  }
-
-  i {
-    font-style: normal;
-    font-size: 18px;
+    em {
+      font-style: normal;
+      font-size: 18px;
+    }
   }
 }

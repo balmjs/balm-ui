@@ -49,7 +49,8 @@ const components = [
   'rangepicker',
   'skeleton',
   // Next
-  'bottom-navigation'
+  'bottom-navigation',
+  'segmented-button'
 ];
 const plugins = [
   'alert',

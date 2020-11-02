@@ -8,31 +8,38 @@ export function getCode(emoji) {
   return emoji.type === 'emoji' ? `:${emoji.name}:` : `[${emoji.name}]`;
 }
 
-export function createEmoji(emoji, node = null) {
-  let emojiEl;
+function getEmoji(emoji, node) {
+  let emojiEl = node;
+
+  if (!node) {
+    emojiEl =
+      emoji.type === 'emoji'
+        ? document.createElement('span')
+        : document.createElement('img');
+  }
 
   if (emoji.type === 'emoji') {
-    emojiEl = document.createElement('i');
     emojiEl.innerHTML = emoji.value;
+    emojiEl.style.fontSize = '18px';
   } else {
-    emojiEl = document.createElement('img');
     emojiEl.src = emoji.src;
     emojiEl.setAttribute('alt', emoji.alt || '');
   }
 
-  if (node) {
-    node.classList.add(`ql-${emoji.type}-${emoji.name}`);
-    node.appendChild(emojiEl);
-  } else {
-    const emojiWrapperEl = document.createElement('span');
-    emojiWrapperEl.classList.add(
-      emojiClassName,
-      `ql-${emoji.type}-${emoji.name}`
-    );
-    emojiWrapperEl.appendChild(emojiEl);
+  return emojiEl;
+}
 
-    return emojiWrapperEl;
+export function createEmoji(emoji, node = null) {
+  let emojiEl = getEmoji(emoji, node);
+  let emojiItemEl;
+
+  if (!node) {
+    emojiItemEl = document.createElement('span');
+    emojiItemEl.classList.add(emojiClassName, `ql-${emoji.type}-${emoji.name}`);
+    emojiItemEl.appendChild(emojiEl);
   }
+
+  return node ? emojiEl : emojiItemEl;
 }
 
 export function replaceElementToString(el, str) {

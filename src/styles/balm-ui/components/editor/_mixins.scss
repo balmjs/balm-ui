@@ -1,0 +1,18 @@
+@mixin picker($defaultLabelText: '', $defaultItemText: '') {
+  @if ($defaultLabelText != '') {
+    .ql-picker-label:before {
+      content: $defaultLabelText;
+    }
+  }
+
+  @if ($defaultItemText != '') {
+    .ql-picker-item::before {
+      content: $defaultItemText;
+    }
+  }
+
+  .ql-picker-item[data-value]::before,
+  .ql-picker-label[data-value]::before {
+    content: attr(data-value);
+  }
+}

@@ -4,95 +4,115 @@
   v-model="decodeContent"
   placeholder="Compose an epic..."
   :toolbar="toolbar"
-  :toolbar-custom-handlers="toolbarCustomHandlers"
-  :emotions="emotions"
-  :extension="extension"
+  :toolbar-handlers="toolbarHandlers"
   custom-image-handler
   @file-change="onFileChange"
 ></ui-editor>
+
+<!-- Custom editor content preview -->
+<ui-dialog v-model="preview.show" class="preview-dialog">
+  <ui-dialog-title>
+    Preview
+    <ui-icon-button
+      class="close"
+      icon="close"
+      @click="$balmUI.onClose('preview.show')"
+    ></ui-icon-button>
+  </ui-dialog-title>
+  <ui-dialog-content>
+    <ui-tabs
+      v-model="preview.type"
+      :type="2"
+      :items="[
+              {
+                text: 'Desktop',
+                icon: 'desktop_windows'
+              },
+              {
+                text: 'Tablet',
+                icon: 'tablet'
+              },
+              {
+                text: 'Mobile',
+                icon: 'phone_iphone'
+              }
+            ]"
+    ></ui-tabs>
+    <div
+      v-shadow="4"
+      class="preview-content"
+      :style="previewStyle"
+      v-html="preview.content"
+    ></div>
+  </ui-dialog-content>
+</ui-dialog>
 ```
 
 ```js
-import HrFormat from '@/extensions/hr-format';
+const toolbar = [
+  [
+    { header: [false, 1, 2, 3, 4, 5, 6] },
+    { font: [] },
+    { size: [] },
+    { lineheight: [] }
+  ],
+  ['bold', 'italic', 'underline', { color: [] }, { background: [] }],
+  [
+    { align: '' },
+    { align: 'center' },
+    { align: 'right' },
+    { align: 'justify' }
+  ],
+  [
+    { list: 'ordered' },
+    { list: 'bullet' },
+    { indent: '+1' },
+    { indent: '-1' },
+    'blockquote',
+    'emoji'
+  ],
+  ['link', 'image', 'video'],
+  ['strike', { script: 'super' }, { script: 'sub' }, 'divider'],
+  ['clean', 'undo', 'redo'],
+  ['preview'] // custom
+];
 
 export default {
   data() {
     return {
+      toolbar,
       encodeContent: '',
       decodeContent: '',
-      toolbar: [
-        [{ font: [] }, { size: ['small', false, 'large', 'huge'] }],
-        ['bold', 'italic', 'underline', 'strike'],
-        [{ color: [] }, { background: [] }],
-        [{ script: 'sub' }, { script: 'super' }],
-        [{ header: 1 }, { header: 2 }, 'blockquote', 'code-block'],
-        [
-          { list: 'ordered' },
-          { list: 'bullet' },
-          { indent: '-1' },
-          { indent: '+1' }
-        ],
-        [{ direction: 'rtl' }, { align: [] }],
-        ['emoji', 'link', 'image', 'video'],
-        ['clean'],
-        ['undo', 'redo'],
-        ['hr']
-      ],
-      toolbarCustomHandlers: {
-        undo: (quill) => {
-          quill.history.undo();
-        },
-        redo: (quill) => {
-          quill.history.redo();
-        },
-        hr: (quill, insert) => {
-          insert();
+      toolbarHandlers: {
+        preview: (quill, value) => {
+          this.preview.show = true;
+          this.preview.content = this.decodeContent;
         }
       },
-      emotions: [
-        {
-          type: 'image',
-          title: 'Default',
-          content: [
-            {
-              name: 'oo',
-              alt: '坏笑',
-              src:
-                'https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/50/pcmoren_huaixiao_org.png'
-            }
-          ]
-        },
-        {
-          type: 'emoji',
-          title: 'Emoji',
-          content: [
-            {
-              name: 'smile',
-              value: '😀'
-            },
-            {
-              name: 'cry',
-              value: '😆'
-            }
-          ]
-        },
-        {
-          type: 'image',
-          title: 'Custom',
-          content: [
-            {
-              name: 'xx',
-              alt: '舔屏',
-              src:
-                'https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/40/pcmoren_tian_org.png'
-            }
-          ]
-        }
-      ],
-      extension: {
-        'formats/hr': HrFormat
+      preview: {
+        show: false,
+        type: 0,
+        content: ''
       }
     };
+  },
+  computed: {
+    previewStyle() {
+      let width;
+
+      switch (this.preview.type) {
+        case 1:
+          width = '768px';
+          break;
+        case 2:
+          width = '375px';
+          break;
+        default:
+          width = '960px';
+      }
+
+      return { width };
+    }
   },
   mounted() {
     setTimeout(() => {

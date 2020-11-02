@@ -52,7 +52,7 @@ var MDCMenuSurface = /** @class */ (function (_super) {
             document.body.addEventListener('click', _this.handleBodyClick, { capture: true });
         };
         this.deregisterBodyClickListener = function () {
-            document.body.removeEventListener('click', _this.handleBodyClick);
+            document.body.removeEventListener('click', _this.handleBodyClick, { capture: true });
         };
         this.listen('keydown', this.handleKeydown);
         this.listen(strings.OPENED_EVENT, this.registerBodyClickListener);

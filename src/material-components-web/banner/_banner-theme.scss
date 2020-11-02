@@ -35,6 +35,7 @@ $primary-action-text-color: primary;
 $secondary-action-text-color: primary;
 
 $mobile-breakpoint: 480px;
+$z-index: 1;
 
 ///
 /// Customizes fill color.
@@ -140,8 +141,8 @@ $mobile-breakpoint: 480px;
   $query: feature-targeting.all()
 ) {
   $feat-structure: feature-targeting.create-target($query, structure);
-
-  .mdc-banner__content {
+  .mdc-banner__content,
+  .mdc-banner__fixed {
     @include feature-targeting.targets($feat-structure) {
       min-width: $min-width;
 
@@ -182,6 +183,29 @@ $mobile-breakpoint: 480px;
       margin-left: auto;
       margin-right: auto;
       right: 0;
+    }
+  }
+}
+
+// Sets the z-index of the banner.
+// @param {Number} $z-index
+@mixin z-index($z-index, $query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  @include feature-targeting.targets($feat-structure) {
+    z-index: $z-index;
+  }
+}
+
+// Sets the width of the banner fixed element. Use to adjust the width of the
+// fixed banner in cases where width is not the same as the viewport.
+// @param {Number} $width Width value in `px`.
+@mixin fixed-width($width, $query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  .mdc-banner__fixed {
+    @include feature-targeting.targets($feat-structure) {
+      width: $width;
     }
   }
 }

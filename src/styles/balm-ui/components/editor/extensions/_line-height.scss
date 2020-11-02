@@ -1,0 +1,6 @@
+@use '../mixins' as editor-mixins;
+
+.ql-snow .ql-picker.ql-lineheight {
+  width: 98px;
+  @include editor-mixins.picker('Line Height', 'Normal');
+}

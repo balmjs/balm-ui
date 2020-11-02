@@ -1,0 +1,21 @@
+@use '../variables' as editor-variables;
+@use '../mixins' as editor-mixins;
+
+.ql-snow .ql-picker.ql-font {
+  @include editor-mixins.picker('Font Famliy');
+
+  .ql-picker-label {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+  }
+}
+
+@each $family-value, $family-name in editor-variables.$font-family {
+  .ql-picker-item[data-value='#{$family-name}']::before {
+    font-family: '#{$family-name}';
+  }
+}

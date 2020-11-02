@@ -16,7 +16,7 @@
     <ui-icon-button
       class="close"
       icon="close"
-      @click="$balmUI.onClose('preview.show')"
+      @click="preview.show = false"
     ></ui-icon-button>
   </ui-dialog-title>
   <ui-dialog-content>

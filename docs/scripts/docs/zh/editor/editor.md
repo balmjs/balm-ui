@@ -176,8 +176,8 @@
 <ui-editor ref="editor" v-model="content"></ui-editor>
 ```
 
-- `this.$refs.editor.decodeEmoji(content): html`: get back-end data → set front-end view
-- `this.$refs.editor.encodeEmoji(html): content`: submit front-end data → save back-end data
+- `$refs.editor.decodeEmoji(content): html`: get back-end data → set front-end view
+- `$refs.editor.encodeEmoji(html): content`: submit front-end data → save back-end data
 
 ### Slots
 
@@ -187,12 +187,12 @@
 
 ### Events
 
-| Name          | Type                        | Description                                                                                              |
-| ------------- | --------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `change`      | `function(content: string)` | Emits when the editor text content is changed.                                                           |
-| `file-change` | `function(file, insert)`    | `customImageHandler` required. (Insert uploaded image content into the editor by `insert(url)` function) |
+| Name                | Type                                       | Description                                                                                              |
+| ------------------- | ------------------------------------------ | -------------------------------------------------------------------------------------------------------- |
+| `update:modelValue` | `function(modelValue: string)`             | Emits when the editor text content is changed.                                                           |
+| `file-change`       | `function(file: object, insert: function)` | `customImageHandler` required. (Insert uploaded image content into the editor by `insert(url)` function) |
 
-> NOTE: If you are not using `v-model`, you should listen for the editor using `@change` and update the `model` prop.
+> NOTE: If you are not using `v-model`, you should listen for the editor using `@update:modelValue` and update the `modelValue` prop.
 
 - Automatic
 
@@ -204,7 +204,7 @@
 
   ```html
   <ui-editor
-    :model="content"
-    @change="$balmUI.onChange('content', $event)"
+    :model-value="content"
+    @update:modelValue="balmUI.onChange('content', $event)"
   ></ui-editor>
   ```

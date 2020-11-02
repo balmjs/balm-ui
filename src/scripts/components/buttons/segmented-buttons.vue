@@ -15,12 +15,13 @@
 <script>
 import { MDCSegmentedButton } from '../../../material-components-web/segmented-button';
 import UiSegmentedButton from './segmented-button';
+import domMixin from '../../mixins/dom';
 
 // Define segmented button constants
 const UI_SEGMENTED_BUTTON = {
   EVENT: {
     SELECTED: 'selected',
-    CHANGE: 'change'
+    CHANGE: 'update:modelValue'
   }
 };
 
@@ -29,13 +30,10 @@ export default {
   components: {
     UiSegmentedButton
   },
-  model: {
-    prop: 'model',
-    event: UI_SEGMENTED_BUTTON.EVENT.CHANGE
-  },
+  mixins: [domMixin],
   props: {
     // States
-    model: {
+    modelValue: {
       type: [String, Number, Array],
       default: ''
     },
@@ -51,6 +49,7 @@ export default {
       default: false
     }
   },
+  emits: [UI_SEGMENTED_BUTTON.EVENT.CHANGE],
   data() {
     return {
       $segmentedButton: null
@@ -68,10 +67,10 @@ export default {
     }
   },
   mounted() {
-    this.$segmentedButton = new MDCSegmentedButton(this.$el);
+    this.$segmentedButton = new MDCSegmentedButton(this.el);
 
     // this.$segmentedButton.listen(
-    //   `MDCSegmentedButton:${UI_SEGMENTED_BUTTON.EVENT.CHANGE}`,
+    //   'MDCSegmentedButton:change',
     //   ({ detail }) => {
     //     console.log('change', detail);
     //   }

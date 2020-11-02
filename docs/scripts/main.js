@@ -11,7 +11,7 @@ import { toolbarOptions, emotions } from '@/config/editor';
 // BalmUI
 import BalmUI from 'balm-ui';
 import BalmUIPlus from 'balm-ui/plus';
-// import BalmUINext from 'balm-ui/next';
+import BalmUINext from 'balm-ui/next';
 // Custom components
 import PurePage from '@/views/layouts/pure-page';
 import DocsPage from '@/views/layouts/docs-page';
@@ -41,7 +41,7 @@ function createBalmUIApp() {
       emotions
     }
   });
-  // app.use(BalmUINext);
+  app.use(BalmUINext);
 
   app.component(PurePage.name, PurePage);
   app.component(DocsPage.name, DocsPage);

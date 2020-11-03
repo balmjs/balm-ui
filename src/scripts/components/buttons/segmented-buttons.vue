@@ -19,8 +19,8 @@ import UiSegmentedButton from './segmented-button';
 // Define segmented button constants
 const UI_SEGMENTED_BUTTON = {
   EVENT: {
-    SELECTED: 'selected',
-    CHANGE: 'change'
+    CHANGE: 'change',
+    SELECTED: 'selected'
   }
 };
 
@@ -73,13 +73,13 @@ export default {
     // this.$segmentedButton.listen(
     //   `MDCSegmentedButton:${UI_SEGMENTED_BUTTON.EVENT.CHANGE}`,
     //   ({ detail }) => {
-    //     console.log('change', detail);
+    //     console.log('change', e);
     //   }
     // );
     // this.$segmentedButton.listen(
     //   `MDCSegmentedButtonSegment:${UI_SEGMENTED_BUTTON.EVENT.SELECTED}`,
     //   ({ detail }) => {
-    //     console.log('selected', detail);
+    //     console.log('selected', e);
     //   }
     // );
   },

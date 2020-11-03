@@ -16,7 +16,7 @@
 | ------------------------ | --------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | `outlined`               | boolean               | `false` | Styles the datepicker as an outlined text field. (`label` or `placeholder` required)                                                   |
 | `modelValue` (`v-model`) | string, number, array | `''`    | Mandatory.                                                                                                                             |
-| `id`                     | string                | `null`  | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`.                                                          |
+| `inputId`                | string                | `null`  | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`.                                                          |
 | `label`                  | string                | `''`    | A text caption or description for the datepicker, which use the input's `placeholder` attribute instead.                               |
 | `placeholder`            | string                | `null`  | The _placeholder_ attribute of the `<input>`.                                                                                          |
 | `disabled`               | boolean               | `false` | Styles the datepicker as a disabled text field.                                                                                        |

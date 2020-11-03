@@ -20,8 +20,8 @@ import domMixin from '../../mixins/dom';
 // Define segmented button constants
 const UI_SEGMENTED_BUTTON = {
   EVENT: {
-    SELECTED: 'selected',
-    CHANGE: 'update:modelValue'
+    CHANGE: 'update:modelValue',
+    SELECTED: 'selected'
   }
 };
 

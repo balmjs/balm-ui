@@ -1,5 +1,8 @@
 <template>
-  <button :class="className" @click="$emit('click', $event)">
+  <button
+    :class="className"
+    @click="$emit(UI_SEGMENTED_BUTTON.EVENT.CLICK, $event)"
+  >
     <div class="mdc-segmented-button__ripple"></div>
     <slot name="before" :iconClass="UI_SEGMENTED_BUTTON.cssClasses.icon">
       <i
@@ -27,6 +30,9 @@ const UI_SEGMENTED_BUTTON = {
     icon: 'mdc-segmented-button__icon',
     label: 'mdc-segmented-button__label',
     touch: 'mdc-segmented-button--touch'
+  },
+  EVENT: {
+    CLICK: 'click'
   }
 };
 
@@ -40,6 +46,7 @@ export default {
       default: ''
     }
   },
+  emits: [UI_SEGMENTED_BUTTON.EVENT.CLICK],
   data() {
     return {
       UI_SEGMENTED_BUTTON

@@ -1,4 +1,4 @@
 import bootstrap from '../config/bootstrap';
-import UiFile from './input-controls/file';
+import UiFile from './selection-controls/file';
 
 export default bootstrap(UiFile);

@@ -1,5 +1,5 @@
 <template>
-  <docs-page name="segmented-button">
+  <docs-page name="segmented-button" without-css>
     <template #hero>
       <h1 :class="$tt('headline1')">
         <ui-segmented-buttons :items="heroItems"></ui-segmented-buttons>

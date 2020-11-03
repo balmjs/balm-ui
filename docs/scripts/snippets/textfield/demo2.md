@@ -1,6 +1,5 @@
 ```html
 <ui-textfield
-  id="pw"
   input-type="password"
   required
   pattern=".{8,}"

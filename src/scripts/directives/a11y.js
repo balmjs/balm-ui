@@ -26,6 +26,10 @@ const UI_ACCESSIBILITY = {
     miniFab: {
       outer: 'mdc-fab--touch',
       inner: 'mdc-fab__touch'
+    },
+    segmentedButton: {
+      outer: 'mdc-segmented-button--touch',
+      inner: 'mdc-segmented-button__touch'
     }
   }
 };

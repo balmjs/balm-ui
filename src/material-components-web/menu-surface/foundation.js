@@ -350,7 +350,8 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
         }
         var isRtl = this.adapter.isRtl();
         var isFlipRtl = this.hasBit(this.anchorCorner, CornerBit.FLIP_RTL);
-        var hasRightBit = this.hasBit(this.anchorCorner, CornerBit.RIGHT);
+        var hasRightBit = this.hasBit(this.anchorCorner, CornerBit.RIGHT) ||
+            this.hasBit(corner, CornerBit.RIGHT);
         // Whether surface attached to right side of anchor element.
         var isAnchoredToRight = false;
         // Anchored to start

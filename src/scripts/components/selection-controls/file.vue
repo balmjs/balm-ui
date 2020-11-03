@@ -26,7 +26,6 @@
 import MdcButton from '../buttons/mdc-button';
 import inputMixin from '../../mixins/input';
 import handleFileChange from '../../utils/file';
-import UI_GLOBAL from '../../config/constants';
 
 export default {
   name: 'UiFile',
@@ -62,11 +61,6 @@ export default {
       type: Boolean,
       default: false
     }
-  },
-  data() {
-    return {
-      UI_GLOBAL
-    };
   },
   computed: {
     className() {

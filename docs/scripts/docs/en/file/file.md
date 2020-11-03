@@ -4,14 +4,15 @@
 
 ### Props
 
-| Name       | Type    | Default    | Description                                                                |
-| ---------- | ------- | ---------- | -------------------------------------------------------------------------- |
-| `accept`   | string  | `''`       | File types that can be accepted.                                           |
-| `multiple` | boolean | `false`    | Whether to support selected multiple file.                                 |
-| `disabled` | boolean | `false`    | To disable a upload button.                                                |
-| `outlined` | boolean | `false`    | Optional. Styles an outlined upload button that is flush with the surface. |
-| `text`     | string  | `'Upload'` | Text for the default upload button.                                        |
-| `preview`  | boolean | `false`    | Optional. Enabled preview file data.                                       |
+| Name       | Type    | Default    | Description                                                                   |
+| ---------- | ------- | ---------- | ----------------------------------------------------------------------------- |
+| `inputId`  | string  | `null`     | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`. |
+| `accept`   | string  | `''`       | File types that can be accepted.                                              |
+| `multiple` | boolean | `false`    | Whether to support selected multiple file.                                    |
+| `disabled` | boolean | `false`    | To disable a upload button.                                                   |
+| `outlined` | boolean | `false`    | Optional. Styles an outlined upload button that is flush with the surface.    |
+| `text`     | string  | `'Upload'` | Text for the default upload button.                                           |
+| `preview`  | boolean | `false`    | Optional. Enabled preview file data.                                          |
 
 ### Slots
 

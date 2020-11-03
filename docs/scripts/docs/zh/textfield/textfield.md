@@ -15,7 +15,7 @@
 | `outlined`          | boolean        | `false`  | Styles the text field as an outlined text field. (Equivalent to `type=1`) (`label` or `placeholder` required) |
 | `model` (`v-model`) | string, number | `''`     | Mandatory.                                                                                                    |
 | `inputType`         | string         | `'text'` | Native `<input>` types: `text`, `number`, `password`, etc.                                                    |
-| `id`                | string         | `null`   | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`.                                 |
+| `inputId`           | string         | `null`   | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`.                                 |
 | `label`             | string         | `''`     | A text caption or description for the text field, which use the input's `placeholder` attribute instead.      |
 | `placeholder`       | string         | `null`   | The _placeholder_ attribute of the `<input>`.                                                                 |
 | `disabled`          | boolean        | `false`  | Styles the text field as a disabled text field.                                                               |

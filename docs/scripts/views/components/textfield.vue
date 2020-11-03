@@ -9,8 +9,8 @@
         <div>
           <template v-if="typeOption === 0">
             <ui-textfield
-              id="my-text-field"
               v-model="value1"
+              input-id="my-text-field"
               maxlength="20"
               helper-text-id="my-text-field-helper"
               :with-leading-icon="iconOption.includes(2)"
@@ -41,8 +41,8 @@
         <div>
           <template v-if="typeOption === 1">
             <ui-textfield
-              id="my-text-field-outlined"
               v-model="value2"
+              input-id="my-text-field-outlined"
               outlined
               maxlength="20"
               helper-text-id="my-text-field-outlined-helper"
@@ -73,29 +73,41 @@
         </div>
       </div>
       <div class="hero-options">
-        <ui-select v-model="typeOption" class="hero-option" :options="TypeOptions">Type</ui-select>
+        <ui-select
+          v-model="typeOption"
+          class="hero-option"
+          :options="TypeOptions"
+          >Type</ui-select
+        >
         <div class="hero-option hero-options">
           <ui-form class="hero-option">
             <div>Options</div>
             <ui-form-field v-for="option in IconOptions" :key="option.value">
               <ui-checkbox
-                :id="`iconOption${option.value}`"
                 v-model="iconOption"
+                :input-id="`iconOption${option.value}`"
                 :value="option.value"
               ></ui-checkbox>
-              <label :for="`iconOption${option.value}`">{{ option.label }}</label>
+              <label :for="`iconOption${option.value}`">{{
+                option.label
+              }}</label>
             </ui-form-field>
           </ui-form>
           <ui-form class="hero-option">
             <div>Assistive text</div>
-            <ui-form-field v-for="option in AssistiveTextOptions" :key="option.value">
+            <ui-form-field
+              v-for="option in AssistiveTextOptions"
+              :key="option.value"
+            >
               <ui-radio
-                :id="`textOption${option.value}`"
                 v-model="assistiveTextOption"
+                :input-id="`textOption${option.value}`"
                 name="assistiveText"
                 :value="option.value"
               ></ui-radio>
-              <label :for="`textOption${option.value}`">{{ option.label }}</label>
+              <label :for="`textOption${option.value}`">{{
+                option.label
+              }}</label>
             </ui-form-field>
           </ui-form>
         </div>
@@ -104,31 +116,28 @@
 
     <!-- Content -->
     <section class="demo-wrapper">
-      <h6 :class="$tt('headline6')">1.1 Full Functionality JS Component (Floating Label, Validation)</h6>
+      <h6 :class="$tt('headline6')">
+        1.1 Full Functionality JS Component (Floating Label, Validation)
+      </h6>
       <div class="demo" :dir="controls.rtl ? 'rtl' : null">
         <ui-textfield
-          id="full-func-text-field"
           helper-text-id="my-text-field-helper-text"
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
           :required="controls.required"
-        >Email Address</ui-textfield>
+          >Email Address</ui-textfield
+        >
         <ui-textfield-helper
           v-if="controls.helperText"
           id="my-text-field-helper-text"
           :visible="controls.isVisible"
           :valid-msg="controls.hasValidMsg"
-        >Helper Text (possibly validation message)</ui-textfield-helper>
+          >Helper Text (possibly validation message)</ui-textfield-helper
+        >
       </div>
       <ui-textfield-controls
         v-model="controls"
-        :options="[
-          'disabled',
-          'rtl',
-          'required',
-          'customColor',
-          'helperText'
-        ]"
+        :options="['disabled', 'rtl', 'required', 'customColor', 'helperText']"
       ></ui-textfield-controls>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
@@ -137,18 +146,16 @@
       <h6 :class="$tt('headline6')">1.2 Password field with validation</h6>
       <div class="demo">
         <ui-textfield
-          id="pw"
           input-type="password"
           required
           pattern=".{8,}"
           helper-text-id="pw-validation-msg"
           :attrs="{ autocomplete: 'current-password' }"
-        >Choose password</ui-textfield>
-        <ui-textfield-helper
-          id="pw-validation-msg"
-          visible
-          valid-msg
-        >Must be at least 8 characters long</ui-textfield-helper>
+          >Choose password</ui-textfield
+        >
+        <ui-textfield-helper id="pw-validation-msg" visible valid-msg
+          >Must be at least 8 characters long</ui-textfield-helper
+        >
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
@@ -157,7 +164,6 @@
       <h6 :class="$tt('headline6')">1.3 Outlined Text Field</h6>
       <div class="demo" :dir="controls.rtl ? 'rtl' : null">
         <ui-textfield
-          id="tf-outlined-input"
           outlined
           helper-text-id="name-validation-message"
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
@@ -165,23 +171,18 @@
           :required="controls.required"
           :maxlength="controls.max ? 10 : null"
           :minlength="controls.min ? 8 : 0"
-        >Your Name</ui-textfield>
-        <ui-textfield-helper
-          id="name-validation-message"
-          valid-msg
-        >{{ controls.min ? 'Must be at least 8 characters' : 'Helper Text (possibly validation message)' }}</ui-textfield-helper>
+          >Your Name</ui-textfield
+        >
+        <ui-textfield-helper id="name-validation-message" valid-msg>{{
+          controls.min
+            ? 'Must be at least 8 characters'
+            : 'Helper Text (possibly validation message)'
+        }}</ui-textfield-helper>
       </div>
       <ui-textfield-controls
         v-model="controls"
         id-prefix="outlined"
-        :options="[
-          'disabled',
-          'rtl',
-          'required',
-          'customColor',
-          'min',
-          'max'
-        ]"
+        :options="['disabled', 'rtl', 'required', 'customColor', 'min', 'max']"
       ></ui-textfield-controls>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>
@@ -194,14 +195,15 @@
         :dir="controls.rtl ? 'rtl' : null"
       >
         <ui-textfield
-          id="tf-box-leading"
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
           :required="controls.required"
           :minlength="controls.min ? 8 : 0"
         >
           <template #before>
-            <ui-textfield-icon :unclickable="controls.unclickable">event</ui-textfield-icon>
+            <ui-textfield-icon :unclickable="controls.unclickable"
+              >event</ui-textfield-icon
+            >
           </template>
           Your name
         </ui-textfield>
@@ -212,7 +214,6 @@
         :dir="controls.rtl ? 'rtl' : null"
       >
         <ui-textfield
-          id="tf-box-trailing"
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
           :required="controls.required"
@@ -220,7 +221,9 @@
         >
           Your name
           <template #after>
-            <ui-textfield-icon trailing :unclickable="controls.unclickable">delete</ui-textfield-icon>
+            <ui-textfield-icon trailing :unclickable="controls.unclickable"
+              >delete</ui-textfield-icon
+            >
           </template>
         </ui-textfield>
       </div>
@@ -230,7 +233,6 @@
         :dir="controls.rtl ? 'rtl' : null"
       >
         <ui-textfield
-          id="tf-outlined-leading"
           outlined
           with-leading-icon
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
@@ -252,7 +254,6 @@
         :dir="controls.rtl ? 'rtl' : null"
       >
         <ui-textfield
-          id="tf-outlined-trailing"
           outlined
           with-trailing-icon
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
@@ -285,7 +286,7 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.5 Preventing FOUC</h6>
       <div class="demo">
-        <ui-textfield id="fouc" v-model="value">Label floating above</ui-textfield>
+        <ui-textfield v-model="value">Label floating above</ui-textfield>
       </div>
       <ui-snippet :code="$store.demos[5]"></ui-snippet>
     </section>
@@ -300,7 +301,8 @@
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
           :required="controls.required"
-        >Textarea Label</ui-textfield>
+          >Textarea Label</ui-textfield
+        >
       </div>
       <br />
       <div class="demo" :dir="controls.rtl ? 'rtl' : null">
@@ -312,7 +314,8 @@
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
           :required="controls.required"
-        >Textarea Label</ui-textfield>
+          >Textarea Label</ui-textfield
+        >
       </div>
       <ui-textfield-controls
         v-model="controls"
@@ -322,7 +325,9 @@
     </section>
 
     <section class="demo-wrapper">
-      <h6 :class="$tt('headline6')">1.7 Full-Width Text Field and Textarea with counter</h6>
+      <h6 :class="$tt('headline6')">
+        1.7 Full-Width Text Field and Textarea with counter
+      </h6>
       <div class="demo">
         <ui-textfield
           v-model="title"
@@ -336,7 +341,6 @@
         ></ui-textfield>
 
         <ui-textfield
-          id="full-width-textarea"
           v-model="content"
           input-type="textarea"
           fullwidth
@@ -350,7 +354,10 @@
           :required="controls.required"
         ></ui-textfield>
       </div>
-      <ui-textfield-controls v-model="controls" :options="['disabled', 'required', 'customColor']"></ui-textfield-controls>
+      <ui-textfield-controls
+        v-model="controls"
+        :options="['disabled', 'required', 'customColor']"
+      ></ui-textfield-controls>
       <ui-snippet :code="$store.demos[7]"></ui-snippet>
     </section>
   </docs-page>

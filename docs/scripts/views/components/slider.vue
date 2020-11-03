@@ -14,7 +14,10 @@
     <!-- Content -->
     <ui-form class="demo-controls">
       <ui-form-field>
-        <ui-checkbox id="slider-disabled" v-model="disabled"></ui-checkbox>
+        <ui-checkbox
+          v-model="disabled"
+          input-id="slider-disabled"
+        ></ui-checkbox>
         <label for="slider-disabled">Disabled</label>
       </ui-form-field>
     </ui-form>

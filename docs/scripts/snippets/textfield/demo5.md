@@ -1,7 +1,5 @@
 ```html
-<ui-textfield id="fouc" v-model="value">
-  Label floating above
-</ui-textfield>
+<ui-textfield v-model="value">Label floating above</ui-textfield>
 ```
 
 ```js

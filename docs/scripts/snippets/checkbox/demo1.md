@@ -1,6 +1,6 @@
 ```html
 <ui-form-field>
-  <ui-checkbox id="checkbox" v-model="checked"></ui-checkbox>
+  <ui-checkbox v-model="checked" input-id="checkbox"></ui-checkbox>
   <label for="checkbox">{{checked}}</label>
 </ui-form-field>
 ```

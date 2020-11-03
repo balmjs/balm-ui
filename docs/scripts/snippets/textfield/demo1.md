@@ -1,7 +1,6 @@
 ```html
 <section :dir="controls.rtl ? 'rtl' : null">
   <ui-textfield
-    id="full-func-text-field"
     v-model="value"
     :disabled="controls.disabled"
     :dense="controls.dense"

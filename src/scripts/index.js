@@ -51,7 +51,7 @@ import UiChips from './components/chips/chips';
 import UiChip from './components/chips/chip';
 import UiSwitch from './components/selection-controls/switch';
 import UiSlider from './components/selection-controls/slider';
-import UiFile from './components/input-controls/file'; // Custom
+import UiFile from './components/selection-controls/file'; // Custom
 // Data Display
 import UiNav from './components/lists/nav';
 import UiNavItem from './components/lists/nav-item';

@@ -2,7 +2,7 @@
   <docs-page name="switch" demo-count="1">
     <template #hero>
       <ui-form-field>
-        <ui-switch id="hero-switch" v-model="toggle"></ui-switch>
+        <ui-switch v-model="toggle" input-id="hero-switch"></ui-switch>
         <label for="hero-switch">{{ toggle }}</label>
       </ui-form-field>
     </template>
@@ -12,7 +12,12 @@
       <h6 :class="$tt('headline6')">1.1 Enabled</h6>
       <div class="demo">
         <ui-form-field>
-          <ui-switch id="basic-switch" v-model="toggle1" :trueValue="1" :falseValue="0"></ui-switch>
+          <ui-switch
+            v-model="toggle1"
+            input-id="basic-switch"
+            :trueValue="1"
+            :falseValue="0"
+          ></ui-switch>
           <label for="basic-switch">{{ toggle1 }}</label>
         </ui-form-field>
       </div>
@@ -20,8 +25,8 @@
       <div class="demo">
         <ui-form-field>
           <ui-switch
-            id="basic-switch-custom"
             v-model="toggle2"
+            input-id="basic-switch-custom"
             class="demo-switch--custom"
             true-value="on"
             false-value="off"
@@ -36,7 +41,7 @@
       <h6 :class="$tt('headline6')">1.2 Disabled</h6>
       <div class="demo">
         <ui-form-field>
-          <ui-switch id="basic-switch--disabled" disabled></ui-switch>
+          <ui-switch input-id="basic-switch--disabled" disabled></ui-switch>
           <label for="basic-switch--disabled">off/on</label>
         </ui-form-field>
       </div>

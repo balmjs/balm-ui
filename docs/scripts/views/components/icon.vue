@@ -76,8 +76,8 @@
       <div v-shadow="1" class="search-area">
         <div class="search-area-inner">
           <ui-autocomplete
-            id="search"
             :model="keywords"
+            input-id="search"
             input-type="search"
             icon="search"
             placeholder="Icon name keywords"

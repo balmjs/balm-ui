@@ -1,53 +1,87 @@
 <template>
   <ui-form>
     <ui-form-field v-if="options.includes('disabled')">
-      <ui-checkbox :id="`${idPrefix}-disable`" v-model="value.disabled"></ui-checkbox>
+      <ui-checkbox
+        v-model="value.disabled"
+        :input-id="`${idPrefix}-disable`"
+      ></ui-checkbox>
       <label :for="`${idPrefix}-disable`">Disabled</label>
     </ui-form-field>
     <ui-form-field v-if="options.includes('rtl')">
-      <ui-checkbox :id="`${idPrefix}-rtl`" v-model="value.rtl"></ui-checkbox>
+      <ui-checkbox
+        v-model="value.rtl"
+        :input-id="`${idPrefix}-rtl`"
+      ></ui-checkbox>
       <label :for="`${idPrefix}-rtl`">RTL</label>
     </ui-form-field>
     <ui-form-field v-if="options.includes('required')">
-      <ui-checkbox :id="`${idPrefix}-required`" v-model="value.required"></ui-checkbox>
+      <ui-checkbox
+        v-model="value.required"
+        :input-id="`${idPrefix}-required`"
+      ></ui-checkbox>
       <label :for="`${idPrefix}-required`">Required</label>
     </ui-form-field>
     <ui-form-field v-if="options.includes('customColor')">
-      <ui-checkbox :id="`${idPrefix}-alternate-colors`" v-model="value.customColor"></ui-checkbox>
+      <ui-checkbox
+        v-model="value.customColor"
+        :input-id="`${idPrefix}-alternate-colors`"
+      ></ui-checkbox>
       <label :for="`${idPrefix}-alternate-colors`">Alternate Colors</label>
     </ui-form-field>
     <ui-form-field v-if="options.includes('unclickable')">
-      <ui-checkbox :id="`${idPrefix}-unclickable-leading-trailing`" v-model="value.unclickable"></ui-checkbox>
-      <label :for="`${idPrefix}-unclickable-leading-trailing`">Unclickable icons</label>
+      <ui-checkbox
+        v-model="value.unclickable"
+        :input-id="`${idPrefix}-unclickable-leading-trailing`"
+      ></ui-checkbox>
+      <label :for="`${idPrefix}-unclickable-leading-trailing`"
+        >Unclickable icons</label
+      >
     </ui-form-field>
     <ui-form-field v-if="options.includes('min')">
-      <ui-checkbox :id="`${idPrefix}-outlined-minlength`" v-model="value.min"></ui-checkbox>
-      <label :for="`${idPrefix}-outlined-minlength`">Must be at least 8 characters</label>
+      <ui-checkbox
+        v-model="value.min"
+        :input-id="`${idPrefix}-outlined-minlength`"
+      ></ui-checkbox>
+      <label :for="`${idPrefix}-outlined-minlength`"
+        >Must be at least 8 characters</label
+      >
     </ui-form-field>
     <ui-form-field v-if="options.includes('max')">
-      <ui-checkbox :id="`${idPrefix}-outlined-maxlength`" v-model="value.max"></ui-checkbox>
-      <label :for="`${idPrefix}-outlined-maxlength`">Must not exceed 10 characters</label>
+      <ui-checkbox
+        v-model="value.max"
+        :input-id="`${idPrefix}-outlined-maxlength`"
+      ></ui-checkbox>
+      <label :for="`${idPrefix}-outlined-maxlength`"
+        >Must not exceed 10 characters</label
+      >
     </ui-form-field>
     <template v-if="options.includes('helperText')">
       <ui-form-field>
-        <ui-checkbox :id="`${idPrefix}-use-helper-text`" v-model="value.helperText"></ui-checkbox>
+        <ui-checkbox
+          v-model="value.helperText"
+          :input-id="`${idPrefix}-use-helper-text`"
+        ></ui-checkbox>
         <label :for="`${idPrefix}-use-helper-text`">Use Helper Text</label>
       </ui-form-field>
       <ui-form-field>
         <ui-checkbox
-          :id="`${idPrefix}-persistent-helper-text`"
           v-model="value.isVisible"
+          :input-id="`${idPrefix}-persistent-helper-text`"
           :disabled="!value.helperText"
         ></ui-checkbox>
-        <label :for="`${idPrefix}-persistent-helper-text`">Make helper text persistent</label>
+        <label :for="`${idPrefix}-persistent-helper-text`"
+          >Make helper text persistent</label
+        >
       </ui-form-field>
       <ui-form-field>
         <ui-checkbox
-          :id="`${idPrefix}-helper-text-as-validation`"
           v-model="value.hasValidMsg"
+          :input-id="`${idPrefix}-helper-text-as-validation`"
           :disabled="!value.helperText"
         ></ui-checkbox>
-        <label :for="`${idPrefix}-helper-text-as-validation`">Use helper text as validation message</label>
+        <label :for="`${idPrefix}-helper-text-as-validation`"
+          >Use helper text as validation message</label
+        >
       </ui-form-field>
     </template>
   </ui-form>

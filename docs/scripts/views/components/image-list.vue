@@ -14,7 +14,7 @@
     <section :class="{ 'rounded-corners': radius }">
       <div class="demo-controls">
         <ui-form-field>
-          <ui-checkbox id="toggle-radius" v-model="radius"></ui-checkbox>
+          <ui-checkbox v-model="radius" input-id="toggle-radius"></ui-checkbox>
           <label for="toggle-radius">Toggle Rounded Corners</label>
         </ui-form-field>
       </div>
@@ -33,7 +33,9 @@
               :key="i"
               :bg-image="require(`@/assets/photos/3x2/${i}.jpg`)"
             >
-              <ui-image-text v-if="controls1.labelsType">Text label</ui-image-text>
+              <ui-image-text v-if="controls1.labelsType"
+                >Text label</ui-image-text
+              >
             </ui-image-item>
           </ui-image-list>
         </div>
@@ -42,7 +44,10 @@
 
       <section class="demo-wrapper">
         <h6 :class="$tt('headline6')">1.2 Masonry Image List</h6>
-        <ui-image-list-controls v-model="controls2" id-prefix="masonry"></ui-image-list-controls>
+        <ui-image-list-controls
+          v-model="controls2"
+          id-prefix="masonry"
+        ></ui-image-list-controls>
         <div class="demo">
           <ui-image-list
             id="masonry-image-list"

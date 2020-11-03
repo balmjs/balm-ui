@@ -2,6 +2,18 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.7.0 / 2020-11-03
+
+### Features
+
+- update [`mdc@8.0.0`](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#800-2020-11-02)
+
+### BREAKING CHANGES
+
+> sync code from BalmUI v9
+
+- `<ui-textfield>`, `<ui-autocomplete>`, `<ui-checkbox>`, `<ui-radio>`, `<ui-file>`, `<ui-datepicker>`, `<ui-switch>`: rename prop `id` -> `inputId`
+
 ## v8.6.0 / 2020-11-01
 
 ### Code Refactoring

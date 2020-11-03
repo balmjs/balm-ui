@@ -1,6 +1,6 @@
 <template>
   <ui-textfield
-    :id="id"
+    :input-id="inputId"
     v-model="inputValue"
     :class="className"
     :outlined="outlined"
@@ -21,7 +21,19 @@
   >
     <!-- Leading icon (optional) -->
     <template #before="{ iconClass }">
-      <slot name="before" :iconClass="iconClass"></slot>
+      <i
+        v-if="materialIcon"
+        :class="
+          getIconClassName([
+            UI_TEXTFIELD_ICON.cssClasses.icon,
+            UI_TEXTFIELD_ICON.cssClasses.leadingIcon
+          ])
+        "
+        v-text="materialIcon"
+      ></i>
+      <template v-else>
+        <slot name="before" :iconClass="iconClass"></slot>
+      </template>
     </template>
 
     <!-- Label text -->
@@ -109,13 +121,9 @@ export default {
       }
     },
     // <ui-textfield> props
-    id: {
+    inputId: {
       type: [String, null],
       default: null
-    },
-    icon: {
-      type: String,
-      default: ''
     },
     // UI attributes
     autofocus: {

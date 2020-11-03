@@ -10,11 +10,12 @@
     >
       <i
         v-if="materialIcon"
-        :class="[
-          UI_GLOBAL.cssClasses.icon,
-          UI_TEXTFIELD_ICON.cssClasses.icon,
-          UI_TEXTFIELD_ICON.cssClasses.leadingIcon
-        ]"
+        :class="
+          getIconClassName([
+            UI_TEXTFIELD_ICON.cssClasses.icon,
+            UI_TEXTFIELD_ICON.cssClasses.leadingIcon
+          ])
+        "
         v-text="materialIcon"
       ></i>
     </slot>
@@ -23,7 +24,7 @@
     <template v-if="isTextarea">
       <span class="mdc-text-field__resizer">
         <textarea
-          :id="id"
+          :id="inputId"
           v-model="inputValue"
           :class="className.input"
           :placeholder="placeholder"
@@ -33,7 +34,7 @@
           :maxlength="maxlength"
           :rows="rows"
           :cols="cols"
-          :aria-labelledby="id"
+          :aria-labelledby="inputId"
           :aria-controls="helperTextId"
           :aria-describedby="helperTextId"
           v-bind="attrs"
@@ -46,7 +47,7 @@
           @blur="handleBlur"
         ></textarea>
         <!-- Character counter (optional) -->
-        <ui-textfield-counter v-if="withCounter"></ui-textfield-counter>
+        <mdc-textfield-counter v-if="withCounter"></mdc-textfield-counter>
       </span>
     </template>
     <!-- Input text -->
@@ -57,7 +58,7 @@
         v-text="prefixText"
       ></span>
       <input
-        :id="id"
+        :id="inputId"
         v-model="inputValue"
         :type="inputType"
         :class="className.input"
@@ -70,7 +71,7 @@
         :min="min"
         :max="max"
         :step="step"
-        :aria-labelledby="id"
+        :aria-labelledby="inputId"
         :aria-controls="helperTextId"
         :aria-describedby="helperTextId"
         v-bind="attrs"
@@ -88,7 +89,7 @@
         v-text="suffixText"
       ></span>
       <!-- Character counter (optional) -->
-      <ui-textfield-counter v-if="withCounter"></ui-textfield-counter>
+      <mdc-textfield-counter v-if="withCounter"></mdc-textfield-counter>
     </template>
 
     <!-- Trailing icon (optional) -->
@@ -98,17 +99,17 @@
     ></slot>
 
     <!-- Label text -->
-    <floating-label v-if="!noLabel && !isOutlined">
+    <mdc-floating-label v-if="!noLabel && !isOutlined">
       <slot>{{ label }}</slot>
-    </floating-label>
+    </mdc-floating-label>
 
     <!-- Activation indicator -->
-    <notched-outline v-if="isOutlined" :has-label="!noLabel">
-      <floating-label>
+    <mdc-notched-outline v-if="isOutlined" :has-label="!noLabel">
+      <mdc-floating-label>
         <slot>{{ label }}</slot>
-      </floating-label>
-    </notched-outline>
-    <line-ripple v-else></line-ripple>
+      </mdc-floating-label>
+    </mdc-notched-outline>
+    <mdc-line-ripple v-else></mdc-line-ripple>
 
     <!-- Custom area (optional) -->
     <div v-if="plus" class="mdc-text-field__plus">
@@ -121,15 +122,13 @@
 
 <script>
 import { MDCTextField } from '../../../material-components-web/textfield';
-import FloatingLabel from '../form-controls/floating-label';
-import LineRipple from '../form-controls/line-ripple';
-import NotchedOutline from '../form-controls/notched-outline';
-import UiTextfieldCounter from './textfield-counter';
+import MdcFloatingLabel from '../form-controls/mdc-floating-label';
+import MdcLineRipple from '../form-controls/mdc-line-ripple';
+import MdcNotchedOutline from '../form-controls/mdc-notched-outline';
+import MdcTextfieldCounter from './mdc-textfield-counter';
 import textfieldMixin from '../../mixins/textfield';
 import typeMixin from '../../mixins/type';
-import elementMixin from '../../mixins/element';
-import materialIconMixin from '../../mixins/material-icon';
-import UI_GLOBAL from '../../config/constants';
+import inputMixin from '../../mixins/input';
 import { UI_TEXTFIELD_ICON } from './constants';
 
 // Define textfield constants
@@ -152,12 +151,12 @@ const UI_TEXTFIELD = {
 export default {
   name: 'UiTextfield',
   components: {
-    FloatingLabel,
-    LineRipple,
-    NotchedOutline,
-    UiTextfieldCounter
+    MdcFloatingLabel,
+    MdcLineRipple,
+    MdcNotchedOutline,
+    MdcTextfieldCounter
   },
-  mixins: [textfieldMixin, typeMixin, elementMixin, materialIconMixin],
+  mixins: [textfieldMixin, typeMixin, inputMixin],
   model: {
     prop: 'model',
     event: UI_TEXTFIELD.EVENT.INPUT
@@ -242,7 +241,6 @@ export default {
   },
   data() {
     return {
-      UI_GLOBAL,
       UI_TEXTFIELD,
       UI_TEXTFIELD_ICON,
       $textField: null,

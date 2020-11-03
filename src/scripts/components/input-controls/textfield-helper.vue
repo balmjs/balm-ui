@@ -6,18 +6,18 @@
       <slot>{{ validationMsg }}</slot>
     </div>
     <!-- Character counter (optional) -->
-    <ui-textfield-counter v-if="withCounter"></ui-textfield-counter>
+    <mdc-textfield-counter v-if="withCounter"></mdc-textfield-counter>
   </div>
 </template>
 
 <script>
-import UiTextfieldCounter from './textfield-counter';
+import MdcTextfieldCounter from './mdc-textfield-counter';
 import helperTextMixin from '../../mixins/helper-text';
 
 export default {
   name: 'UiTextfieldHelper',
   components: {
-    UiTextfieldCounter
+    MdcTextfieldCounter
   },
   mixins: [helperTextMixin],
   props: {

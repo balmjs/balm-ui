@@ -9,20 +9,15 @@
       <!-- Action (optional) -->
       <div class="mdc-snackbar__actions">
         <slot name="action" :actionClass="actionButtonClassName">
-          <button
-            v-if="canDismiss"
-            type="button"
-            :class="['mdc-icon-button', actionButtonClassName]"
-          >X</button>
+          <mdc-icon-button v-if="canDismiss" :class="actionButtonClassName"
+            >close</mdc-icon-button
+          >
           <template v-else>
-            <button
+            <mdc-button
               v-if="actionButtonText"
-              type="button"
-              :class="['mdc-button', actionButtonClassName]"
+              :class="actionButtonClassName"
+              >{{ actionButtonText }}</mdc-button
             >
-              <div class="mdc-button__ripple"></div>
-              <span class="mdc-button__label">{{ actionButtonText }}</span>
-            </button>
           </template>
         </slot>
       </div>
@@ -32,6 +27,8 @@
 
 <script>
 import { MDCSnackbar } from '../../../material-components-web/snackbar';
+import MdcButton from '../buttons/mdc-button';
+import MdcIconButton from '../buttons/mdc-icon-button';
 
 // Define snackbar constants
 const UI_SNACKBAR = {
@@ -52,6 +49,10 @@ const UI_SNACKBAR = {
 
 export default {
   name: 'UiSnackbar',
+  components: {
+    MdcButton,
+    MdcIconButton
+  },
   model: {
     prop: 'open',
     event: UI_SNACKBAR.EVENT.CHANGE

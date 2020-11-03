@@ -2,7 +2,7 @@
 export default {
   props: {
     // Element attributes
-    id: {
+    inputId: {
       type: [String, null],
       default: null
     },

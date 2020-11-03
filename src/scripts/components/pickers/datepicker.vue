@@ -1,6 +1,6 @@
 <template>
   <ui-textfield
-    :id="id"
+    :input-id="inputId"
     ref="input"
     v-model="inputValue"
     class="mdc-datepicker"
@@ -18,7 +18,19 @@
   >
     <!-- Leading icon (optional) -->
     <template #before="{ iconClass }">
-      <slot name="before" :iconClass="iconClass"></slot>
+      <i
+        v-if="materialIcon"
+        :class="
+          getIconClassName([
+            UI_TEXTFIELD_ICON.cssClasses.icon,
+            UI_TEXTFIELD_ICON.cssClasses.leadingIcon
+          ])
+        "
+        v-text="materialIcon"
+      ></i>
+      <template v-else>
+        <slot name="before" :iconClass="iconClass"></slot>
+      </template>
     </template>
 
     <!-- Label text -->
@@ -72,6 +84,7 @@ import flatpickr from 'flatpickr';
 import monthSelectPlugin from 'flatpickr/dist/plugins/monthSelect';
 import UiTextfield from '../input-controls/textfield';
 import textfieldMixin from '../../mixins/textfield';
+import { UI_TEXTFIELD_ICON } from '../input-controls/constants';
 
 // Define datepicker constants
 const UI_DATEPICKER = {
@@ -109,13 +122,9 @@ export default {
       default: ''
     },
     // <ui-textfield> attributes
-    id: {
+    inputId: {
       type: [String, null],
       default: null
-    },
-    icon: {
-      type: String,
-      default: ''
     },
     // For flatpickr
     config: {
@@ -141,6 +150,7 @@ export default {
   },
   data() {
     return {
+      UI_TEXTFIELD_ICON,
       flatpickr: null,
       inputValue: this.model,
       mode: this.config.mode || UI_DATEPICKER.MODE.SINGLE,

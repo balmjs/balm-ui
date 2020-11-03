@@ -1,5 +1,5 @@
 <template>
-  <docs-page name="slider" demo-count="2">
+  <docs-page name="slider" demo-count="2" without-css>
     <template #hero>
       <ui-form>
         <ui-form-field id="hero-slider-wrapper">

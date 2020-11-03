@@ -10,16 +10,16 @@
       :aria-describedby="helperTextId"
     >
       <!-- Label -->
-      <notched-outline v-if="isOutlined" :has-label="!noLabel">
-        <floating-label>
+      <mdc-notched-outline v-if="isOutlined" :has-label="!noLabel">
+        <mdc-floating-label>
           <slot>{{ label }}</slot>
-        </floating-label>
-      </notched-outline>
+        </mdc-floating-label>
+      </mdc-notched-outline>
       <template v-else>
         <span class="mdc-select__ripple"></span>
-        <floating-label v-if="!noLabel">
+        <mdc-floating-label v-if="!noLabel">
           <slot>{{ label }}</slot>
-        </floating-label>
+        </mdc-floating-label>
       </template>
       <!-- Leading Icon -->
       <slot name="icon">
@@ -35,7 +35,11 @@
       </span>
       <span class="mdc-select__dropdown-icon">
         <slot name="dropdown-icon">
-          <svg class="mdc-select__dropdown-icon-graphic" viewBox="7 10 10 5" focusable="false">
+          <svg
+            class="mdc-select__dropdown-icon-graphic"
+            viewBox="7 10 10 5"
+            focusable="false"
+          >
             <polygon
               class="mdc-select__dropdown-icon-inactive"
               stroke="none"
@@ -51,7 +55,7 @@
           </svg>
         </slot>
       </span>
-      <line-ripple v-if="!isOutlined"></line-ripple>
+      <mdc-line-ripple v-if="!isOutlined"></mdc-line-ripple>
     </div>
     <!-- Options -->
     <div
@@ -65,20 +69,23 @@
           v-for="(option, index) in currentOptions"
           :key="index"
           :class="[
-              'mdc-list-item',
-              {
-                'mdc-list-item--selected':
-                  option[optionValue] === selectedValue,
-                'mdc-list-item--disabled': option.disabled
-              }
-            ]"
+            'mdc-list-item',
+            {
+              'mdc-list-item--selected': option[optionValue] === selectedValue,
+              'mdc-list-item--disabled': option.disabled
+            }
+          ]"
           :data-value="option[optionValue]"
           :aria-selected="option[optionValue] === selectedValue"
           :aria-disabled="option.disabled"
           role="option"
         >
           <span class="mdc-list-item__ripple"></span>
-          <span v-if="option[optionLabel]" class="mdc-list-item__text" v-text="option[optionLabel]"></span>
+          <span
+            v-if="option[optionLabel]"
+            class="mdc-list-item__text"
+            v-text="option[optionLabel]"
+          ></span>
         </li>
       </ul>
     </div>
@@ -87,9 +94,9 @@
 
 <script>
 import { MDCSelect } from '../../../material-components-web/select';
-import FloatingLabel from '../form-controls/floating-label';
-import LineRipple from '../form-controls/line-ripple';
-import NotchedOutline from '../form-controls/notched-outline';
+import MdcFloatingLabel from '../form-controls/mdc-floating-label';
+import MdcLineRipple from '../form-controls/mdc-line-ripple';
+import MdcNotchedOutline from '../form-controls/mdc-notched-outline';
 import typeMixin from '../../mixins/type';
 import materialIconMixin from '../../mixins/material-icon';
 import UI_GLOBAL from '../../config/constants';
@@ -113,9 +120,9 @@ const UI_SELECT = {
 export default {
   name: 'UiSelect',
   components: {
-    FloatingLabel,
-    LineRipple,
-    NotchedOutline
+    MdcFloatingLabel,
+    MdcLineRipple,
+    MdcNotchedOutline
   },
   mixins: [typeMixin, materialIconMixin],
   model: {

@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: 'UiSliderThumb',
+  name: 'MdcSliderThumb',
   props: {
     isDiscrete: {
       type: Boolean,

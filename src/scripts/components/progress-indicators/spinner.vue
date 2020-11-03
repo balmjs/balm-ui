@@ -8,7 +8,10 @@
   >
     <!-- Determinate -->
     <div class="mdc-circular-progress__determinate-container">
-      <svg class="mdc-circular-progress__determinate-circle-graphic" :viewBox="svg.viewBox">
+      <svg
+        class="mdc-circular-progress__determinate-circle-graphic"
+        :viewBox="svg.viewBox"
+      >
         <circle
           class="mdc-circular-progress__determinate-circle"
           fill="none"
@@ -24,21 +27,21 @@
     <!-- Indeterminate -->
     <div class="mdc-circular-progress__indeterminate-container">
       <template v-if="fourColored">
-        <ui-spinner-layer
+        <mdc-spinner-layer
           v-for="i in 4"
           :key="i"
           :class="`mdc-circular-progress__color-${i}`"
           :svg="svg"
-        ></ui-spinner-layer>
+        ></mdc-spinner-layer>
       </template>
-      <ui-spinner-layer v-else :svg="svg"></ui-spinner-layer>
+      <mdc-spinner-layer v-else :svg="svg"></mdc-spinner-layer>
     </div>
   </div>
 </template>
 
 <script>
 import { MDCCircularProgress } from '../../../material-components-web/circular-progress';
-import UiSpinnerLayer from './spinner-layer';
+import MdcSpinnerLayer from './mdc-spinner-layer';
 import progressMixin from '../../mixins/progress';
 
 // Define circular progress constants
@@ -77,7 +80,7 @@ const UI_CIRCULAR_PROGRESS = {
 export default {
   name: 'UiSpinner',
   components: {
-    UiSpinnerLayer
+    MdcSpinnerLayer
   },
   mixins: [progressMixin],
   props: {

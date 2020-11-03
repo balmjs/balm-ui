@@ -1,5 +1,6 @@
 <template>
   <button class="mdc-segmented-button__segment">
+    <div class="mdc-segmented-button__ripple"></div>
     <i v-if="icon" class="material-icons mdc-segmented-button__icon">{{
       icon
     }}</i>

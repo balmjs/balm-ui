@@ -2,28 +2,26 @@
   <!-- Buttons -->
   <footer class="mdc-dialog__actions">
     <slot :buttonClass="UI_DIALOG_ACTION.cssClasses.button">
-      <button
-        type="button"
-        :class="['mdc-button', UI_DIALOG_ACTION.cssClasses.button]"
+      <mdc-button
+        :class="UI_DIALOG_ACTION.cssClasses.button"
         data-mdc-dialog-action="close"
         @click="$parent.handleCancel"
+        >{{ cancelText }}</mdc-button
       >
-        <span class="mdc-button__label">{{ cancelText }}</span>
-      </button>
-      <button
-        type="button"
-        :class="['mdc-button', UI_DIALOG_ACTION.cssClasses.button]"
+      <mdc-button
+        :class="UI_DIALOG_ACTION.cssClasses.button"
         data-mdc-dialog-action="accept"
         data-mdc-dialog-button-default
         @click="$parent.handleAccept"
+        >{{ acceptText }}</mdc-button
       >
-        <span class="mdc-button__label">{{ acceptText }}</span>
-      </button>
     </slot>
   </footer>
 </template>
 
 <script>
+import MdcButton from '../buttons/mdc-button';
+
 // Define dialog action constants
 const UI_DIALOG_ACTION = {
   cssClasses: {
@@ -33,6 +31,9 @@ const UI_DIALOG_ACTION = {
 
 export default {
   name: 'UiDialogActions',
+  components: {
+    MdcButton
+  },
   props: {
     // UI attributes
     acceptText: {

@@ -1,7 +1,7 @@
 <template>
   <div :class="className">
     <input
-      :id="id"
+      :id="inputId"
       v-model="selectedValue"
       class="mdc-radio__native-control"
       type="radio"
@@ -21,7 +21,7 @@
 
 <script>
 import { MDCRadio } from '../../../material-components-web/radio';
-import elementMixin from '../../mixins/element';
+import inputMixin from '../../mixins/input';
 
 // Define radio constants
 const UI_RADIO = {
@@ -35,7 +35,7 @@ const UI_RADIO = {
 
 export default {
   name: 'UiRadio',
-  mixins: [elementMixin],
+  mixins: [inputMixin],
   model: {
     prop: 'model',
     event: UI_RADIO.EVENT.CHANGE

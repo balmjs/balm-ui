@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'FloatingLabel'
+  name: 'MdcFloatingLabel'
 };
 </script>

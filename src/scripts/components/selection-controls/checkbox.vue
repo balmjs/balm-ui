@@ -1,7 +1,7 @@
 <template>
-  <input-checkbox :class="className">
+  <mdc-checkbox :class="className">
     <input
-      :id="id"
+      :id="inputId"
       v-model="selectedValue"
       type="checkbox"
       class="mdc-checkbox__native-control"
@@ -12,13 +12,13 @@
       v-bind="attrs"
       @change="handleChange"
     />
-  </input-checkbox>
+  </mdc-checkbox>
 </template>
 
 <script>
 import { MDCCheckbox } from '../../../material-components-web/checkbox';
-import InputCheckbox from './input-checkbox';
-import elementMixin from '../../mixins/element';
+import MdcCheckbox from './mdc-checkbox';
+import inputMixin from '../../mixins/input';
 
 // Define checkbox constants
 const UI_CHECKBOX = {
@@ -33,9 +33,9 @@ const UI_CHECKBOX = {
 export default {
   name: 'UiCheckbox',
   components: {
-    InputCheckbox
+    MdcCheckbox
   },
-  mixins: [elementMixin],
+  mixins: [inputMixin],
   model: {
     prop: 'model',
     event: UI_CHECKBOX.EVENT.CHANGE

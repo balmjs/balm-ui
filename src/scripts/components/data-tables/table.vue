@@ -3,7 +3,11 @@
   <div :class="className">
     <div class="mdc-data-table__table-container">
       <table class="mdc-data-table__table" :aria-label="caption">
-        <caption v-if="caption">{{ caption }}</caption>
+        <caption v-if="caption">
+          {{
+            caption
+          }}
+        </caption>
         <colgroup v-if="colgroup">
           <template v-for="(colValue, colKey) in dataColumns">
             <col :key="colKey" :class="`col-${colValue}`" />
@@ -27,10 +31,10 @@
                 :aria-sort="getSort(theadCell)"
               >
                 <!-- Column header row checkbox -->
-                <input-checkbox
+                <mdc-checkbox
                   v-if="theadCell[T_CELL.CHECKBOX] && tbodyData.length"
                   :class="'mdc-data-table__header-row-checkbox'"
-                ></input-checkbox>
+                ></mdc-checkbox>
                 <template v-else>
                   <!-- With sort button -->
                   <div class="mdc-data-table__header-cell-wrapper">
@@ -40,26 +44,37 @@
                           class="mdc-data-table__header-cell-label"
                           v-text="theadCell[T_CELL.VALUE]"
                         ></div>
-                        <button
-                          class="mdc-icon-button material-icons mdc-data-table__sort-icon-button"
+                        <mdc-icon-button
+                          class="mdc-data-table__sort-icon-button"
                           v-text="UI_TABLE.SORTING.ICON"
-                        ></button>
+                        ></mdc-icon-button>
                       </template>
                       <template v-else>
-                        <button
-                          class="mdc-icon-button material-icons mdc-data-table__sort-icon-button"
+                        <mdc-icon-button
+                          class="mdc-data-table__sort-icon-button"
                           v-text="UI_TABLE.SORTING.ICON"
-                        ></button>
+                        ></mdc-icon-button>
                         <div class="mdc-data-table__header-cell-label">
-                          <slot v-if="theadCell[T_CELL.SLOT]" :name="theadCell[T_CELL.SLOT]"></slot>
-                          <template v-else>{{ theadCell[T_CELL.VALUE] }}</template>
+                          <slot
+                            v-if="theadCell[T_CELL.SLOT]"
+                            :name="theadCell[T_CELL.SLOT]"
+                          ></slot>
+                          <template v-else>{{
+                            theadCell[T_CELL.VALUE]
+                          }}</template>
                         </div>
                       </template>
-                      <div class="mdc-data-table__sort-status-label" aria-hidden="true"></div>
+                      <div
+                        class="mdc-data-table__sort-status-label"
+                        aria-hidden="true"
+                      ></div>
                     </template>
                     <!-- Column header name -->
                     <template v-else>
-                      <slot v-if="theadCell[T_CELL.SLOT]" :name="theadCell[T_CELL.SLOT]"></slot>
+                      <slot
+                        v-if="theadCell[T_CELL.SLOT]"
+                        :name="theadCell[T_CELL.SLOT]"
+                      ></slot>
                       <template v-else>{{ theadCell[T_CELL.VALUE] }}</template>
                     </template>
                   </div>
@@ -84,12 +99,15 @@
               :aria-selected="tbodyRow[0][T_CELL.SELECTED] || null"
             >
               <template v-for="(tbodyCell, tbodyCellIndex) in tbodyRow">
-                <td :key="`tbody-cell-${tbodyCellIndex}`" :class="cellClassName(tbodyCell)">
+                <td
+                  :key="`tbody-cell-${tbodyCellIndex}`"
+                  :class="cellClassName(tbodyCell)"
+                >
                   <!-- Row checkboxes -->
-                  <input-checkbox
+                  <mdc-checkbox
                     v-if="tbodyCell[T_CELL.CHECKBOX]"
                     :class="'mdc-data-table__row-checkbox'"
-                  ></input-checkbox>
+                  ></mdc-checkbox>
                   <!-- Data / Actions -->
                   <template v-else>
                     <slot
@@ -104,7 +122,10 @@
             </tr>
           </template>
           <tr v-else class="mdc-data-table__row">
-            <td class="mdc-data-table__cell mdc-data-table__cell--no-data" :colspan="dataColumns">
+            <td
+              class="mdc-data-table__cell mdc-data-table__cell--no-data"
+              :colspan="dataColumns"
+            >
               <slot name="no-data">{{ noData }}</slot>
             </td>
           </tr>
@@ -136,8 +157,9 @@
 <script>
 import { MDCDataTable } from '../../../material-components-web/data-table';
 import { events } from '../../../material-components-web/data-table/constants';
-import InputCheckbox from '../selection-controls/input-checkbox';
-// import TableProgress from './progress';
+import MdcCheckbox from '../selection-controls/mdc-checkbox';
+import MdcIconButton from '../buttons/mdc-icon-button';
+// import MdcTableProgress from './mdc-table-progress';
 import tableMixin from '../../mixins/table';
 import theadMixin from '../../mixins/thead';
 import tbodyMixin from '../../mixins/tbody';
@@ -147,8 +169,9 @@ import UI_TABLE from './constants';
 export default {
   name: 'UiTable',
   components: {
-    InputCheckbox
-    // TableProgress
+    MdcCheckbox,
+    MdcIconButton
+    // MdcTableProgress
   },
   mixins: [tableMixin, theadMixin, tbodyMixin, tfootMixin],
   model: {

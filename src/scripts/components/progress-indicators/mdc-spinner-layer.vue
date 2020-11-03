@@ -1,7 +1,12 @@
 <template>
   <div class="mdc-circular-progress__spinner-layer">
-    <div class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-left">
-      <svg :class="UI_CIRCULAR_PROGRESS_INDETERMINATE.cssClasses.circle" :viewBox="svg.viewBox">
+    <div
+      class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-left"
+    >
+      <svg
+        :class="UI_CIRCULAR_PROGRESS_INDETERMINATE.cssClasses.circle"
+        :viewBox="svg.viewBox"
+      >
         <circle
           fill="none"
           :cx="svg.cx"
@@ -14,7 +19,10 @@
       </svg>
     </div>
     <div class="mdc-circular-progress__gap-patch">
-      <svg :class="UI_CIRCULAR_PROGRESS_INDETERMINATE.cssClasses.circle" :viewBox="svg.viewBox">
+      <svg
+        :class="UI_CIRCULAR_PROGRESS_INDETERMINATE.cssClasses.circle"
+        :viewBox="svg.viewBox"
+      >
         <circle
           fill="none"
           :cx="svg.cx"
@@ -26,8 +34,13 @@
         />
       </svg>
     </div>
-    <div class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-right">
-      <svg :class="UI_CIRCULAR_PROGRESS_INDETERMINATE.cssClasses.circle" :viewBox="svg.viewBox">
+    <div
+      class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-right"
+    >
+      <svg
+        :class="UI_CIRCULAR_PROGRESS_INDETERMINATE.cssClasses.circle"
+        :viewBox="svg.viewBox"
+      >
         <circle
           fill="none"
           :cx="svg.cx"
@@ -51,7 +64,7 @@ const UI_CIRCULAR_PROGRESS_INDETERMINATE = {
 };
 
 export default {
-  name: 'UiSpinnerLayer',
+  name: 'MdcSpinnerLayer',
   props: {
     svg: {
       type: Object,

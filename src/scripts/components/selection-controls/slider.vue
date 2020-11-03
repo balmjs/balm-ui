@@ -10,35 +10,35 @@
     </div>
     <!-- Thumb -->
     <template v-if="isRange">
-      <ui-slider-thumb
+      <mdc-slider-thumb
         :is-discrete="isDiscrete"
         :valuemin="+min"
         :valuemax="+max"
         :valuenow="startValue"
         :disabled="disabled"
-      ></ui-slider-thumb>
-      <ui-slider-thumb
+      ></mdc-slider-thumb>
+      <mdc-slider-thumb
         :is-discrete="isDiscrete"
         :valuemin="+min"
         :valuemax="+max"
         :valuenow="endValue"
         :disabled="disabled"
-      ></ui-slider-thumb>
+      ></mdc-slider-thumb>
     </template>
-    <ui-slider-thumb
+    <mdc-slider-thumb
       v-else
       :is-discrete="isDiscrete"
       :valuemin="+min"
       :valuemax="+max"
       :valuenow="selectedValue"
       :disabled="disabled"
-    ></ui-slider-thumb>
+    ></mdc-slider-thumb>
   </div>
 </template>
 
 <script>
 import { MDCSlider } from '../../../material-components-web/slider';
-import UiSliderThumb from './slider-thumb';
+import MdcSliderThumb from './mdc-slider-thumb';
 import typeMixin from '../../mixins/type';
 
 // Define slider constants
@@ -56,7 +56,7 @@ const UI_SLIDER = {
 export default {
   name: 'UiSlider',
   components: {
-    UiSliderThumb
+    MdcSliderThumb
   },
   mixins: [typeMixin],
   model: {

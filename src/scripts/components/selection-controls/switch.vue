@@ -4,7 +4,7 @@
     <div class="mdc-switch__thumb-underlay">
       <div class="mdc-switch__thumb"></div>
       <input
-        :id="id"
+        :id="inputId"
         v-model="selectedValue"
         type="checkbox"
         class="mdc-switch__native-control"
@@ -22,7 +22,7 @@
 
 <script>
 import { MDCSwitch } from '../../../material-components-web/switch';
-import elementMixin from '../../mixins/element';
+import inputMixin from '../../mixins/input';
 
 // Define switch constants
 const UI_SWITCH = {
@@ -33,7 +33,7 @@ const UI_SWITCH = {
 
 export default {
   name: 'UiSwitch',
-  mixins: [elementMixin],
+  mixins: [inputMixin],
   model: {
     prop: 'model',
     event: UI_SWITCH.EVENT.CHANGE

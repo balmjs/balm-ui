@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import autoInstall from '../config/auto-install';
-import WindowDialog from '../components/modal/window-dialog';
+import MdcDialog from '../components/modal/mdc-dialog';
 import { getOptions, createModal, removeModel } from '../utils/modal';
 
 const DEFAULT_OPTIONS = {
@@ -18,7 +18,7 @@ const DEFAULT_OPTIONS = {
 let globalOptions = DEFAULT_OPTIONS;
 let confirmApp;
 
-const template = `<window-dialog class="mdc-confirm-dialog" :open="open" :options="options">
+const template = `<mdc-dialog class="mdc-confirm-dialog" :open="open" :options="options">
   <button type="button"
     class="mdc-button mdc-button--raised mdc-confirm-dialog__primary-button"
     data-mdc-dialog-button-default
@@ -30,13 +30,13 @@ const template = `<window-dialog class="mdc-confirm-dialog" :open="open" :option
     @click="handleConfirm(false)">
     <span class="mdc-button__label">{{ options.cancelText }}</span>
   </button>
-</window-dialog>`;
+</mdc-dialog>`;
 
 function createConfirmDialog(options, done) {
   confirmApp = new Vue({
     el: document.createElement('div'),
     components: {
-      WindowDialog
+      MdcDialog
     },
     data() {
       return {

@@ -1,4 +1,7 @@
+import materialIconMixin from './material-icon';
+
 export default {
+  mixins: [materialIconMixin],
   props: {
     label: {
       type: String,

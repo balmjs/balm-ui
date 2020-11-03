@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import autoInstall from '../config/auto-install';
-import WindowDialog from '../components/modal/window-dialog';
+import MdcDialog from '../components/modal/mdc-dialog';
 import { getOptions, createModal, removeModel } from '../utils/modal';
 
 const DEFAULT_OPTIONS = {
@@ -17,21 +17,21 @@ const DEFAULT_OPTIONS = {
 let globalOptions = DEFAULT_OPTIONS;
 let alertApp;
 
-const template = `<window-dialog class="mdc-alert-dialog" :open="open" :options="options">
+const template = `<mdc-dialog class="mdc-alert-dialog" :open="open" :options="options">
   <button type="button"
     class="mdc-button mdc-button--raised mdc-alert-dialog__button"
     data-mdc-dialog-button-default
     @click="handleClick">
     <span class="mdc-button__label">{{ options.buttonText }}</span>
   </button>
-</window-dialog>`;
+</mdc-dialog>`;
 
 function createAlertDialog(options, done) {
   alertApp = new Vue({
     el: document.createElement('div'),
     name: 'BalmUIAlert',
     components: {
-      WindowDialog
+      MdcDialog
     },
     data() {
       return {

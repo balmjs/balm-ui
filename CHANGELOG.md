@@ -3,6 +3,12 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.0.1 / 2020-11-04
+
+### Features
+
+- `<ui-select>`: add prop `fixedWidth` for [mdc select bug](https://github.com/material-components/material-components-web/issues/5590)
+
 ## v9.0.0 / 2020-11-03
 
 ### Features

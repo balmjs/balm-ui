@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.7.1 / 2020-11-04
+
+### Features
+
+- `<ui-select>`: add prop `fixedWidth` for [mdc select bug](https://github.com/material-components/material-components-web/issues/5590)
+
 ## v8.7.0 / 2020-11-03
 
 ### Features

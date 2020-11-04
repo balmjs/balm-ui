@@ -1,7 +1,12 @@
 <template>
   <docs-page name="table" demo-count="2">
     <template #hero>
-      <ui-table row-checkbox :data="heroData" :thead="thead1" :tbody="tbody1"></ui-table>
+      <ui-table
+        row-checkbox
+        :data="heroData"
+        :thead="thead1"
+        :tbody="tbody1"
+      ></ui-table>
     </template>
 
     <!-- Content -->
@@ -15,7 +20,9 @@
 
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Advanced Usage</h6>
-      <p>Selected rows: {{ selectedRows }} ( Selected key: {{ selectedKey }})</p>
+      <p>
+        Selected rows: {{ selectedRows }} ( Selected key: {{ selectedKey }})
+      </p>
       <div class="demo">
         <ui-table
           v-model="selectedRows"
@@ -29,7 +36,9 @@
         >
           <template #th-dessert>
             Dessert
-            <ui-icon v-tooltip="'100g serving'" aria-describedby="th-cell-1">error_outline</ui-icon>
+            <ui-icon v-tooltip="'100g serving'" aria-describedby="th-cell-1"
+              >error_outline</ui-icon
+            >
           </template>
           <template #dessert="{ data }">
             <div class="dessert">{{ data.dessert }}</div>
@@ -40,7 +49,12 @@
             <ui-icon @click="show(data)">delete</ui-icon>
           </template>
         </ui-table>
-        <ui-pagination v-model="page" :total="total" show-total @change="onPage"></ui-pagination>
+        <ui-pagination
+          v-model="page"
+          :total="total"
+          show-total
+          @change="onPage"
+        ></ui-pagination>
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>

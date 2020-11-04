@@ -21,7 +21,7 @@ import UiFooterNav from '@/components/footer-nav';
 import UiTocAffix from '@/components/toc-affix';
 import SvgLogo from '@/components/svg-logo';
 // PWA
-// import './my-sw';
+import './my-sw';
 
 function createBalmUIApp() {
   const app = createApp(App);

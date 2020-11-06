@@ -47,7 +47,7 @@
   position: relative;
   overflow-x: hidden;
   overflow-y: auto;
-  max-height: calc(100vh - #{menu-surface-variables.$min-distance-from-edge});
+  max-height: calc(50vh - #{menu-surface-variables.$min-distance-from-edge});
   text-align: left;
   border-width: 0 textfield-variables.$outlined-stroke-width
     textfield-variables.$outlined-stroke-width;

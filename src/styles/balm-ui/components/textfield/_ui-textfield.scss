@@ -1,3 +1,7 @@
 .mdc-text-field--fullwidth {
   display: flex;
 }
+
+.mdc-form-field .mdc-text-field--fullwidth {
+  width: 100%;
+}

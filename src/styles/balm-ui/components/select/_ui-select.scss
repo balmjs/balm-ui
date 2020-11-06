@@ -4,10 +4,10 @@
   display: flex;
 }
 
-.mdc-select__anchor .mdc-select__ripple {
-  overflow: hidden; // bugfix
-}
-
 .mdc-select__menu .mdc-list .mdc-list-item--selected {
   @include ui-mixins.selected();
+}
+
+.mdc-form-field .mdc-select--fullwidth {
+  width: 100%;
 }

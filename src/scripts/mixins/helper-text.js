@@ -7,7 +7,7 @@ export const UI_HELPER_TEXT = {
 };
 
 /**
- * fix(@mdc): valid bug for `<ui-textfield>` on blur
+ * fix(@material-components): valid bug for `<ui-textfield>` on blur
  *
  * textfield-previous: $textField or $select
  * textfield-next: helper text

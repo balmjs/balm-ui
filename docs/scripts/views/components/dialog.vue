@@ -74,7 +74,7 @@
               <ui-form-field v-for="i in 4" :key="i">
                 <ui-radio
                   name="hero-radio"
-                  :id="`hero-radio${i}`"
+                  :input-id="`hero-radio${i}`"
                   :value="i"
                 ></ui-radio>
                 <label
@@ -113,8 +113,8 @@
           <template v-else>
             <ui-form-field v-for="item in ButtonOptions" :key="item.value">
               <ui-radio
-                :id="`hero-button${item.value}`"
                 v-model="buttonOption"
+                :input-id="`hero-button${item.value}`"
                 name="dialog-button"
                 :value="item.value"
               ></ui-radio>

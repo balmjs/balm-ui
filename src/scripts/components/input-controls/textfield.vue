@@ -358,7 +358,7 @@ export default {
       this.$emit(UI_TEXTFIELD.EVENT.ENTER, event.target.value);
     },
     handleBlur(event) {
-      // fix(@mdc): valid bug on blur
+      // fix(@material-components): valid bug on blur
       if (instanceMap.get(`${this.helperTextId}-next`)) {
         const helperText = instanceMap.get(`${this.helperTextId}-next`);
         if (helperText.validMsg !== true) {

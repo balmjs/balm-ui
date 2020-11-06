@@ -21,8 +21,11 @@
           <ui-dialog-title
             v-if="hasTitle"
             :class="$theme.getTextClass('primary', $store.theme)"
-          >Dialog header</ui-dialog-title>
-          <ui-dialog-content :class="$theme.getTextClass('secondary', $store.theme)">
+            >Dialog header</ui-dialog-title
+          >
+          <ui-dialog-content
+            :class="$theme.getTextClass('secondary', $store.theme)"
+          >
             <p>Dialog body text</p>
           </ui-dialog-content>
           <ui-dialog-actions>
@@ -30,8 +33,14 @@
             <ui-button>Action2</ui-button>
           </ui-dialog-actions>
         </ui-dialog>
-        <ui-dialog v-if="typeOption === 1" no-backdrop class="hero-dialog mdc-dialog--open">
-          <ui-dialog-title :class="$theme.getTextClass('primary', $store.theme)">Dialog header</ui-dialog-title>
+        <ui-dialog
+          v-if="typeOption === 1"
+          no-backdrop
+          class="hero-dialog mdc-dialog--open"
+        >
+          <ui-dialog-title :class="$theme.getTextClass('primary', $store.theme)"
+            >Dialog header</ui-dialog-title
+          >
           <ui-dialog-content>
             <ui-list
               v-model="heroSelectedIndex"
@@ -40,7 +49,9 @@
               :class="$theme.getTextClass('secondary', $store.theme)"
             >
               <ui-item v-for="i in 3" :key="i">
-                <ui-item-first-content :class="$theme.getTextClass('secondary', $store.theme)">
+                <ui-item-first-content
+                  :class="$theme.getTextClass('secondary', $store.theme)"
+                >
                   <ui-icon size="48">account_circle</ui-icon>
                 </ui-item-first-content>
                 <ui-item-text-content>Item {{ i }}</ui-item-text-content>
@@ -55,15 +66,22 @@
           :stacked="!!buttonOption"
           class="demo-confirmation-dialog hero-dialog mdc-dialog--open"
         >
-          <ui-dialog-title :class="$theme.getTextClass('primary', $store.theme)">Dialog header</ui-dialog-title>
+          <ui-dialog-title :class="$theme.getTextClass('primary', $store.theme)"
+            >Dialog header</ui-dialog-title
+          >
           <ui-dialog-content>
             <ui-form>
               <ui-form-field v-for="i in 4" :key="i">
-                <ui-radio name="hero-radio" :id="`hero-radio${i}`" :value="i"></ui-radio>
+                <ui-radio
+                  name="hero-radio"
+                  :input-id="`hero-radio${i}`"
+                  :value="i"
+                ></ui-radio>
                 <label
                   :for="`hero-radio${i}`"
                   :class="$theme.getTextClass('secondary', $store.theme)"
-                >Item {{ i }}</label>
+                  >Item {{ i }}</label
+                >
               </ui-form-field>
             </ui-form>
           </ui-dialog-content>
@@ -74,18 +92,29 @@
         </ui-dialog>
       </div>
       <div class="hero-options">
-        <ui-select v-model="typeOption" class="hero-option" :options="TypeOptions">Type</ui-select>
+        <ui-select
+          v-model="typeOption"
+          class="hero-option"
+          :options="TypeOptions"
+          >Type</ui-select
+        >
         <div class="hero-option">
           <ui-form-field v-if="typeOption === 0">
-            <ui-checkbox id="hero-checkbox-title" v-model="hasTitle" value="1"></ui-checkbox>
+            <ui-checkbox
+              id="hero-checkbox-title"
+              v-model="hasTitle"
+              value="1"
+            ></ui-checkbox>
             <label for="hero-checkbox-title">Title</label>
           </ui-form-field>
-          <span v-if="typeOption === 1">Selected Index: {{ heroSelectedIndex }}</span>
+          <span v-if="typeOption === 1"
+            >Selected Index: {{ heroSelectedIndex }}</span
+          >
           <template v-else>
             <ui-form-field v-for="item in ButtonOptions" :key="item.value">
               <ui-radio
-                :id="`hero-button${item.value}`"
                 v-model="buttonOption"
+                :input-id="`hero-button${item.value}`"
                 name="dialog-button"
                 :value="item.value"
               ></ui-radio>
@@ -99,14 +128,18 @@
     <!-- Content -->
     <section class="demo-wrapper">
       <div class="demo">
-        <ui-button raised @click="$balmUI.onOpen('open')">Show Dialog</ui-button>
+        <ui-button raised @click="$balmUI.onOpen('open')"
+          >Show Dialog</ui-button
+        >
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
 
     <section class="demo-wrapper">
       <div class="demo">
-        <ui-button raised @click="$balmUI.onShow('open2')">Show Scrolling Dialog</ui-button>
+        <ui-button raised @click="$balmUI.onShow('open2')"
+          >Show Scrolling Dialog</ui-button
+        >
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
@@ -126,7 +159,9 @@
       <ui-dialog-title>Choose a Ringtone</ui-dialog-title>
       <ui-dialog-content>
         <ui-list>
-          <ui-item v-for="(item, index) in list" :key="index">{{ item }}</ui-item>
+          <ui-item v-for="(item, index) in list" :key="index">{{
+            item
+          }}</ui-item>
         </ui-list>
       </ui-dialog-content>
       <ui-dialog-actions></ui-dialog-actions>

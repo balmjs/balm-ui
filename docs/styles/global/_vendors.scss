@@ -4,7 +4,7 @@
   $secondary: #018786 // baseline teal, 600 tone
 );
 
-// fix(@mdc): for changing theme
+// fix(@material-components): for changing theme
 @use '@material/textfield' with (
   $focused-label-color: primary
 );

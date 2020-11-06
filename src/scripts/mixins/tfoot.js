@@ -30,7 +30,7 @@ export default {
     tfootCellClassName(data) {
       let className = [
         'mdc-data-table__cell',
-        'mdc-theme--on-surface' // fix(@mdc): dark theme
+        'mdc-theme--on-surface' // fix(@material-components): dark theme
       ];
 
       className = this.setTextAlignClassName(className, data);

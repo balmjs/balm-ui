@@ -134,7 +134,7 @@ export default {
         )
       ) {
         console.warn(
-          '`<ui-button>` or `<ui-icon-button>` is required in the dialog'
+          'At least one `<ui-button>` or `<ui-icon-button>` needs to be added to the <ui-dialog>'
         );
       }
     });

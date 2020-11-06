@@ -1,6 +1,7 @@
 @use '@material/theme/theme';
 @use '@material/theme/theme-color';
 @use '@material/textfield/variables' as textfield-variables;
+@use '@material/menu-surface/variables' as menu-surface-variables;
 @use '../mixins' as ui-mixins;
 
 .mdc-autocomplete {
@@ -46,7 +47,7 @@
   position: relative;
   overflow-x: hidden;
   overflow-y: auto;
-  max-height: 210px;
+  max-height: calc(50vh - #{menu-surface-variables.$min-distance-from-edge});
   text-align: left;
   border-width: 0 textfield-variables.$outlined-stroke-width
     textfield-variables.$outlined-stroke-width;

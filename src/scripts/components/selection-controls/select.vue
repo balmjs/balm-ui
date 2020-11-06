@@ -8,7 +8,6 @@
       :aria-disabled="disabled"
       :aria-controls="helperTextId"
       :aria-describedby="helperTextId"
-      :style="menuFixedWidth"
     >
       <!-- Label -->
       <mdc-notched-outline v-if="isOutlined" :has-label="!noLabel">
@@ -59,7 +58,7 @@
       <mdc-line-ripple v-if="!isOutlined"></mdc-line-ripple>
     </div>
     <!-- Options -->
-    <div :class="['mdc-select__menu', menuClassName]" :style="menuFixedWidth">
+    <div :class="menuClassName">
       <ul class="mdc-list" role="listbox">
         <li
           v-for="(option, index) in currentOptions"
@@ -183,11 +182,6 @@ export default {
       type: Boolean,
       default: false
     },
-    // fix(@mdc) - https://github.com/material-components/material-components-web/issues/5590
-    fixedWidth: {
-      type: Number,
-      default: 0
-    },
     // For helper text
     helperTextId: {
       type: [String, null],
@@ -227,16 +221,13 @@ export default {
     },
     menuClassName() {
       return [
+        'mdc-select__menu',
         'mdc-menu',
         'mdc-menu-surface',
         {
-          'mdc-menu-surface--fixed': this.fixedWidth,
           'mdc-menu-surface--fullwidth': this.fullwidth
         }
       ];
-    },
-    menuFixedWidth() {
-      return this.fixedWidth ? { width: `${this.fixedWidth}px` } : {};
     }
   },
   watch: {

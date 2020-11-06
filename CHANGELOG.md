@@ -3,11 +3,26 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
-## v9.0.1 / 2020-11-04
+## v9.0.2 / 2020-11-06
+
+### Bug Fixes
+
+- `<ui-textfield>`, `<ui-select>`: update the component inside of `<ui-form-field>` css
+- `<ui-select>`: update the component inside of `<ui-dialog>` css
+
+### Chore
+
+- `<ui-autocomplete>`, `<ui-dialog>`: update css
+
+### Reverts
+
+- `<ui-select>`: deprecated v9.0.1
+
+## <del>v9.0.1</del> / 2020-11-04
 
 ### Features
 
-- `<ui-select>`: add prop `fixedWidth` for [mdc select bug](https://github.com/material-components/material-components-web/issues/5590)
+- `<ui-select>`: add prop <del>`fixedWidth`</del> for [mdc select bug](https://github.com/material-components/material-components-web/issues/5590)
 
 ## v9.0.0 / 2020-11-03
 

@@ -1,3 +1,11 @@
-.mdc-dialog__content .mdc-select__menu .mdc-list:first-child:last-child {
-  padding: 8px 0;
+@use '@material/select/variables' as select-variables;
+
+.mdc-dialog__content .mdc-select__menu {
+  // fix(ui): `ui-select` inside of dialog (#24)
+  top: select-variables.$height !important;
+  bottom: auto !important;
+
+  .mdc-list:first-child:last-child {
+    padding: 8px 0;
+  }
 }

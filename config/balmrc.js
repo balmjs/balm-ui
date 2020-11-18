@@ -3,6 +3,7 @@ const env = require('./env');
 const path = require('path');
 const webpack = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
+const alias = require('./alias');
 
 function getConfig(balm) {
   const useDocs = !balm.config.env.isProd || env.buildDocs;
@@ -60,19 +61,7 @@ function getConfig(balm) {
         esModule: false
       },
       includeJsResource: useDocs ? [path.join(workspace, 'src/scripts')] : [],
-      alias: Object.assign(
-        {
-          '@': path.join(workspace, 'docs/scripts'),
-          'balm-ui': path.join(workspace, 'src/scripts'),
-          vue$: 'vue/dist/vue.esm-bundler.js',
-          pickerLangZh: 'flatpickr/dist/l10n/zh.js'
-        },
-        // fix(vue@3.0.1+): __VUE_HMR_RUNTIME__ is not defined in development
-        {
-          '@vue/runtime-core':
-            '@vue/runtime-core/dist/runtime-core.esm-bundler.js'
-        }
-      ),
+      alias,
       plugins: [
         new VueLoaderPlugin(),
         new webpack.DefinePlugin({

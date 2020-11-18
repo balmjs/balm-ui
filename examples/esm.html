@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello BalmUI for ES Module</title>
+    <link rel="stylesheet" href="/dist/balm-ui.css" />
+    <style>
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app" class="container">
+      <ui-drawer viewport-height>
+        <ui-drawer-header>
+          <ui-drawer-title>BalmUI examples</ui-drawer-title>
+        </ui-drawer-header>
+        <ui-drawer-content>
+          <ui-nav>
+            <ui-nav-item v-for="(item, index) in menu" :key="index" :href="item">
+              {{ item }}
+            </ui-nav-item>
+          </ui-nav>
+        </ui-drawer-content>
+      </ui-drawer>
+      <div class="content">
+        <ui-button @click="$alert(message)" icon="add">SayHi</ui-button>
+      </div>
+    </div>
+
+    <script src="./menu.js"></script>
+    <script type="module">
+      import { createApp } from 'https://cdn.jsdelivr.net/npm/vue@next/dist/vue.esm-browser.js';
+      import BalmUI from '/dist/balm-ui.esm.js';
+      // import BalmUIPlus from '/dist/balm-ui-plus.js';
+      // import BalmUINext from '/dist/balm-ui-next.js';
+
+      console.log(BalmUI);
+
+      // let message = 'Hello BalmUI';
+
+      // let app = createApp({
+      //   setup() {
+      //     return {
+      //       menu,
+      //       message
+      //     };
+      //   }
+      // });
+
+      // app.use(BalmUI);
+      // app.use(BalmUIPlus);
+      // app.use(BalmUINext);
+
+      // app.mount('#app');
+    </script>
+  </body>
+</html>

@@ -245,6 +245,7 @@ const BalmUI = {
 };
 
 export default BalmUI;
+export { version, install };
 export {
   UiBadge,
   UiBanner,
@@ -337,4 +338,3 @@ export {
 };
 export { vAccessibility, vBadge, vRipple, vShadow, vShape, vTooltip };
 export { types, helpers, detectIE };
-export { version, install };

@@ -74,6 +74,7 @@ const BalmUIPlus = {
 };
 
 export default BalmUIPlus;
+export { version, install };
 export {
   UiAlert,
   UiAutocomplete,
@@ -86,4 +87,3 @@ export {
 export { $alert, $confirm, $toast };
 export { useAlert, useConfirm, useToast };
 export { vAnchor };
-export { version, install };

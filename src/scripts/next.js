@@ -30,5 +30,5 @@ const BalmUINext = {
 };
 
 export default BalmUINext;
-export { UiBottomNavigation, UiSegmentedButtons, UiSegmentedButton };
 export { version, install };
+export { UiBottomNavigation, UiSegmentedButtons, UiSegmentedButton };

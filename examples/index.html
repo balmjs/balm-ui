@@ -4,55 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hello BalmUI</title>
-    <link rel="stylesheet" href="/dist/balm-ui.css" />
-    <style>
-      body {
-        margin: 0;
-      }
-    </style>
   </head>
-
   <body>
-    <div id="app" class="container">
-      <ui-drawer viewport-height>
-        <ui-drawer-header>
-          <ui-drawer-title>BalmUI examples</ui-drawer-title>
-        </ui-drawer-header>
-        <ui-drawer-content>
-          <ui-nav>
-            <ui-nav-item v-for="(item, index) in menu" :key="index" :href="item">
-              {{ item }}
-            </ui-nav-item>
-          </ui-nav>
-        </ui-drawer-content>
-      </ui-drawer>
-      <div class="content">
-        <ui-button @click="$alert(message)" icon="add">SayHi</ui-button>
-      </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
-    <script src="/dist/balm-ui.js"></script>
-    <script src="/dist/balm-ui-plus.js"></script>
-    <script src="/dist/balm-ui-next.js"></script>
-    <script src="./menu.js"></script>
-    <script>
-      var message = 'Hello BalmUI';
-
-      var app = Vue.createApp({
-        setup() {
-          return {
-            menu,
-            message
-          };
-        }
-      });
-
-      app.use(BalmUI);
-      app.use(BalmUIPlus);
-      app.use(BalmUINext);
-
-      app.mount('#app');
-    </script>
+    <ul>
+      <li>
+        <a href="cjs.html">CommonJS</a>
+      </li>
+      <li>
+        <a href="esm.html">ES Module</a>
+      </li>
+    </ul>
   </body>
 </html>

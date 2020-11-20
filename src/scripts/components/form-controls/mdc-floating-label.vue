@@ -1,7 +1,7 @@
 <template>
-  <span class="mdc-floating-label">
+  <label class="mdc-floating-label">
     <slot></slot>
-  </span>
+  </label>
 </template>
 
 <script>

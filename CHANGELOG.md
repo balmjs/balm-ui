@@ -3,6 +3,17 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.1.0 / 2020-11-20
+
+### Features
+
+- add esModule build: `balm-ui.esm.js` and `balm-ui-plus.esm.js` for `vite`
+- update `mdc@9.0.0-canary.99cfb6bd5.0`
+
+### Chore
+
+- `<ui-dialog>`: update css
+
 ## v9.0.2 / 2020-11-06
 
 ### Bug Fixes

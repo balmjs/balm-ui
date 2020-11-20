@@ -217,6 +217,8 @@ npm install --save balm-ui@next
   };
   ```
 
+  > ⚠️ NOTE: If you are using an old BalmUI version or want to use **Individual Usage** in vite, you need to configure `optimizeDeps.include`.
+
 ### 2.3 Usage
 
 - edit `/path/to/src/main.js`

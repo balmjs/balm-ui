@@ -1,4 +1,8 @@
 .page--donate {
+  .hero {
+    overflow: hidden; // fix(@material-components): ripple bug
+  }
+
   .donate-method {
     list-style: none;
     width: 256px;

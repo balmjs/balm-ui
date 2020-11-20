@@ -1,8 +1,9 @@
 <template>
   <div :class="[$tt('body1'), 'page--home']">
-    <section v-ripple.unbounded class="hero">
+    <header v-ripple.unbounded class="hero">
       <h1 :class="$tt('headline1')">BalmUI for Vue3</h1>
-    </section>
+    </header>
+
     <div :class="[$tt('body2'), 'pure-docs']">
       <p :class="$tt('subtitle1')">
         Build beautiful products, faster for Vue.js

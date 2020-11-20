@@ -217,6 +217,8 @@ npm install --save balm-ui@next
   };
   ```
 
+  > ⚠️ 提示：在 vite 中，如果你正在使用一个旧版的 BalmUI 或者想使用 **独立模块用法**，你需要配置`optimizeDeps.include`。
+
 ### 2.3 使用
 
 - 编辑 `/path/to/src/main.js`

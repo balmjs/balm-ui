@@ -1,9 +1,10 @@
 <template>
   <div :class="[$tt('body1'), 'page--donate']">
-    <section v-ripple.unbounded class="hero">
+    <header v-ripple.unbounded class="hero">
       <h1 :class="$tt('headline1')">Support BalmUI</h1>
-    </section>
-    <div :class="[$tt('body2'), 'pure-docs']">
+    </header>
+
+    <section :class="[$tt('body2'), 'pure-docs']">
       <p>
         BalmUI is an MIT licensed open source project and completely free to
         use. However, the amount of effort needed to maintain and develop new
@@ -40,7 +41,7 @@
           >
         </li>
       </ul>
-    </div>
+    </section>
   </div>
 </template>
 

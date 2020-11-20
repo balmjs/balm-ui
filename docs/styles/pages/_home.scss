@@ -1,3 +1,9 @@
-.page--home .pure-docs {
-  text-align: center;
+.page--home {
+  .hero {
+    overflow: hidden; // fix(@material-components): ripple bug
+  }
+
+  .pure-docs {
+    text-align: center;
+  }
 }

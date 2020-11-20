@@ -1,8 +1,9 @@
 <template>
   <div :class="[$tt('body1'), 'page--not-found']">
-    <section class="hero">
+    <header class="hero">
       <h2 :class="$tt('headline2')">404 Not Found</h2>
-    </section>
+    </header>
+
     <div :class="$tt('body2')">
       <p>
         <ui-button @click="$router.replace({ name: 'home' })">Back</ui-button>

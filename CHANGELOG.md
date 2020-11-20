@@ -2,6 +2,16 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.7.3 / 2020-11-20
+
+### Chore
+
+- `<ui-dialog>`: update css
+
+### Reverts
+
+- revert floating label tag
+
 ## v8.7.2 / 2020-11-06
 
 ### Bug Fixes

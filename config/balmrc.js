@@ -3,7 +3,6 @@ const env = require('./env');
 const path = require('path');
 const webpack = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
-const alias = require('./alias');
 
 function getConfig(balm) {
   const useDocs = !balm.config.env.isProd || env.buildDocs;
@@ -24,6 +23,7 @@ function getConfig(balm) {
       dartSass: true
     },
     scripts: {
+      eslint: true,
       entry: useDocs
         ? {
             hello: [
@@ -50,35 +50,37 @@ function getConfig(balm) {
       loaders: [
         {
           test: /\.md$/,
-          loader: 'html-loader!markdown-loader'
+          use: ['html-loader', 'markdown-loader']
         },
         {
           test: /\.vue$/,
           loader: 'vue-loader'
         }
       ],
+      includeJsResource: useDocs ? [path.join(workspace, 'src/scripts')] : [],
       urlLoaderOptions: {
         esModule: false
       },
-      includeJsResource: useDocs ? [path.join(workspace, 'src/scripts')] : [],
-      alias,
+      alias: Object.assign(
+        {
+          '@': path.resolve(workspace, 'docs/scripts'),
+          'balm-ui': path.resolve(workspace, 'src/scripts'),
+          vue$: 'vue/dist/vue.esm-bundler.js',
+          pickerLangZh: 'flatpickr/dist/l10n/zh.js'
+        },
+        // fix(vue@3.0.1+): __VUE_HMR_RUNTIME__ is not defined in development
+        {
+          '@vue/runtime-core':
+            '@vue/runtime-core/dist/runtime-core.esm-bundler.js'
+        }
+      ),
       plugins: [
         new VueLoaderPlugin(),
         new webpack.DefinePlugin({
-          __VUE_OPTIONS_API__: true,
-          __VUE_PROD_DEVTOOLS__: false
+          __VUE_OPTIONS_API__: JSON.stringify(true),
+          __VUE_PROD_DEVTOOLS__: JSON.stringify(false)
         })
       ],
-      eslint: true,
-      webpackOptions: useBuild
-        ? {
-            output: {
-              umdNamedDefine: true,
-              // See https://github.com/webpack/webpack/issues/6522
-              globalObject: "typeof self !== 'undefined' ? self : this"
-            }
-          }
-        : {},
       externals: useBuild
         ? {
             vue: {
@@ -88,12 +90,16 @@ function getConfig(balm) {
               amd: 'vue'
             }
           }
+        : {},
+      webpackOptions: useBuild
+        ? {
+            output: {
+              umdNamedDefine: true,
+              // See https://github.com/webpack/webpack/issues/6522
+              globalObject: "typeof self !== 'undefined' ? self : this"
+            }
+          }
         : {}
-      // options: {
-      //   compress: {
-      //     drop_console: false
-      //   }
-      // }
     },
     images: {
       plugins: {

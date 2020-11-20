@@ -1,7 +1,7 @@
-import { version } from '../../../package.json';
+import pkg from '../../../package.json';
 import prismjs from 'prismjs';
 
-export const VERSION = version;
+export const VERSION = pkg.version;
 export const isDev = process.env.NODE_ENV === 'development';
 export const isProd = process.env.NODE_ENV === 'production';
 export const domain = isProd ? '//next-material.balmjs.com' : '';

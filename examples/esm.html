@@ -33,29 +33,27 @@
 
     <script src="./menu.js"></script>
     <script type="module">
-      import { createApp } from 'https://cdn.jsdelivr.net/npm/vue@next/dist/vue.esm-browser.js';
+      import { createApp } from '/node_modules/vue/dist/vue.esm-browser.js';
       import BalmUI from '/dist/balm-ui.esm.js';
-      // import BalmUIPlus from '/dist/balm-ui-plus.js';
-      // import BalmUINext from '/dist/balm-ui-next.js';
+      import BalmUIPlus from '/dist/balm-ui-plus.esm.js';
+      // import BalmUINext from '/dist/balm-ui-next.esm.js';
 
-      console.log(BalmUI);
+      let message = 'Hello BalmUI';
 
-      // let message = 'Hello BalmUI';
+      let app = createApp({
+        setup() {
+          return {
+            menu,
+            message
+          };
+        }
+      });
 
-      // let app = createApp({
-      //   setup() {
-      //     return {
-      //       menu,
-      //       message
-      //     };
-      //   }
-      // });
-
-      // app.use(BalmUI);
-      // app.use(BalmUIPlus);
+      app.use(BalmUI);
+      app.use(BalmUIPlus);
       // app.use(BalmUINext);
 
-      // app.mount('#app');
+      app.mount('#app');
     </script>
   </body>
 </html>

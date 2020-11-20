@@ -1,5 +1,4 @@
 const pkg = require('../package.json');
-const path = require('path');
 const alias = require('@rollup/plugin-alias');
 const commonjs = require('@rollup/plugin-commonjs');
 const { nodeResolve } = require('@rollup/plugin-node-resolve');
@@ -8,7 +7,6 @@ const { babel } = require('@rollup/plugin-babel');
 const json = require('@rollup/plugin-json');
 const vue = require('rollup-plugin-vue');
 const individual = require('./individual');
-const aliases = require('./alias');
 
 const banner =
   '/*!\n' +
@@ -21,99 +19,70 @@ const baseConfig = {
   plugins: {
     preVue: [
       nodeResolve({
-        extensions: ['.js', '.vue']
+        browser: true,
+        extensions: ['.js', '.json', '.vue']
       }),
-      alias(aliases)
+      alias({
+        entries: [
+          {
+            find: 'vue',
+            replacement: 'node_modules/vue/dist/vue.esm-bundler.js'
+          }
+        ]
+      })
     ],
-    replace: {
-      'process.env.NODE_ENV': JSON.stringify('production'),
-      __VUE_OPTIONS_API__: JSON.stringify(true),
-      __VUE_PROD_DEVTOOLS__: JSON.stringify(false)
-    },
     vue: {
       target: 'browser'
     },
     babel: {
       exclude: 'node_modules/**',
-      extensions: ['.js', '.jsx', '.vue'],
+      extensions: ['.js', '.vue'],
       babelHelpers: 'runtime',
-      configFile: path.resolve(__dirname, '..', 'babel.config.js')
+      presets: [['@babel/preset-env', { modules: false }]]
+    },
+    replace: {
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      __VUE_OPTIONS_API__: JSON.stringify(true),
+      __VUE_PROD_DEVTOOLS__: JSON.stringify(false)
     }
   }
 };
 
+const plugins = [
+  replace(baseConfig.plugins.replace),
+  ...baseConfig.plugins.preVue,
+  vue(baseConfig.plugins.vue),
+  babel(baseConfig.plugins.babel),
+  commonjs(),
+  json()
+];
+
+const buildESLibraries = {
+  index: 'balm-ui',
+  plus: 'balm-ui-plus'
+  // next: 'balm-ui-next'
+};
+
 const external = ['vue'];
-const globals = { vue: 'Vue' };
 
 function buildESModule(mix) {
-  mix.rollup(
-    {
-      external,
-      input: './src/scripts/index.js',
-      plugins: [
-        json(),
-        replace(baseConfig.plugins.replace),
-        ...baseConfig.plugins.preVue,
-        vue(baseConfig.plugins.vue),
-        babel(baseConfig.plugins.babel),
-        commonjs()
-      ]
-    },
-    [
+  Object.keys(buildESLibraries).forEach((key) => {
+    const value = `${buildESLibraries[key]}.esm`;
+    console.log(`build ${value} library`);
+
+    mix.rollup(
       {
-        file: `${individual.output.dist}/balm-ui.cjs.js`,
-        format: 'cjs',
-        exports: 'named',
-        globals,
-        banner
+        external,
+        input: `./src/scripts/${key}.js`,
+        plugins
       },
       {
-        file: `${individual.output.dist}/balm-ui.esm.js`,
+        file: `${individual.output.dist}/${value}.js`,
         format: 'es',
         banner
       }
-    ]
-  );
-
-  // mix.rollup(
-  //   {
-  //     input: './src/scripts/plus.js',
-  //     plugins: [VuePlugin()]
-  //   },
-  //   [
-  //     {
-  //       file: `${individual.output.dist}/balm-ui-plus.cjs.js`,
-  //       format: 'cjs',
-  //       exports: 'auto',
-  //       banner
-  //     },
-  //     {
-  //       file: `${individual.output.dist}/balm-ui-plus.esm.js`,
-  //       format: 'es',
-  //       banner
-  //     }
-  //   ]
-  // );
-
-  // mix.rollup(
-  //   {
-  //     input: './src/scripts/next.js',
-  //     plugins: [VuePlugin()]
-  //   },
-  //   [
-  //     {
-  //       file: `${individual.output.dist}/balm-ui-next.cjs.js`,
-  //       format: 'cjs',
-  //       exports: 'auto',
-  //       banner
-  //     },
-  //     {
-  //       file: `${individual.output.dist}/balm-ui-next.esm.js`,
-  //       format: 'es',
-  //       banner
-  //     }
-  //   ]
-  // );
+    );
+  });
 }
 
 module.exports = buildESModule;

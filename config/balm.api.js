@@ -38,19 +38,19 @@ module.exports = (mix) => {
       mix.remove(`${constants.DEV_SOURCE.mdc}/chips/trailingaction/test`);
     } else {
       if (mix.env.isProd) {
-        // buildIndividual(mix);
+        buildIndividual(mix);
 
-        // // For sass entry
-        // mix.copy(`${individual.input.sass}/*.scss`, individual.output.dist);
+        // For sass entry
+        mix.copy(`${individual.input.sass}/*.scss`, individual.output.dist);
 
-        // // For fonts
-        // mix.copy('./src/material-icons/*', './fonts'); // NOTE: manual zip fonts & rename to `material-icons.zip`
+        // For fonts
+        mix.copy('./src/material-icons/*', './fonts'); // NOTE: manual zip fonts & rename to `material-icons.zip`
 
-        // // For example
-        // mix.copy('./src/material-icons/*', './components/fonts');
+        // For example
+        mix.copy('./src/material-icons/*', './components/fonts');
 
-        // // Fix `grid` css bug for cssnano
-        // fixGridCss(mix);
+        // Fix `grid` css bug for cssnano
+        fixGridCss(mix);
 
         buildESModule(mix);
       } else {

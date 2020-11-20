@@ -97,13 +97,13 @@
     ></slot>
 
     <!-- Label text -->
-    <mdc-floating-label v-if="!noLabel && !isOutlined">
+    <mdc-floating-label v-if="!noLabel && !isOutlined" :for="inputId">
       <slot>{{ label }}</slot>
     </mdc-floating-label>
 
     <!-- Activation indicator -->
     <mdc-notched-outline v-if="isOutlined" :has-label="!noLabel">
-      <mdc-floating-label>
+      <mdc-floating-label :for="inputId">
         <slot>{{ label }}</slot>
       </mdc-floating-label>
     </mdc-notched-outline>

@@ -200,7 +200,7 @@ npm install --save balm-ui@next
   // vue.config.js
   module.exports = {
     runtimeCompiler: true
-  }
+  };
   ```
 
 - `vite`
@@ -209,10 +209,10 @@ npm install --save balm-ui@next
   // vite.config.js
   export default {
     alias: {
-      vue: 'vue/dist/vue.esm-bundler.js'
-    },
-    optimizeDeps: {
-      include: ['balm-ui/dist/balm-ui-plus']
+      vue: 'vue/dist/vue.esm-bundler.js',
+      // balm-ui@9.1.0+
+      'balm-ui': 'balm-ui/dist/balm-ui.esm.js',
+      'balm-ui-plus': 'balm-ui/dist/balm-ui-plus.esm.js'
     }
   };
   ```
@@ -227,7 +227,7 @@ npm install --save balm-ui@next
   import './index.css'; // vite template
 
   import BalmUI from 'balm-ui'; // Official Google Material Components
-  import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // BalmJS Team Material Components
+  import BalmUIPlus from 'balm-ui-plus'; // BalmJS Team Material Components
   import 'balm-ui/dist/balm-ui.css';
 
   const app = createApp(App);

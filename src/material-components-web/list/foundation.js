@@ -243,6 +243,8 @@ var MDCListFoundation = /** @class */ (function (_super) {
         var isEnd = normalizeKey(event) === 'End';
         var isEnter = normalizeKey(event) === 'Enter';
         var isSpace = normalizeKey(event) === 'Spacebar';
+        // Have to check both upper and lower case, because having caps lock on affects the value.
+        var isLetterA = event.key === 'A' || event.key === 'a';
         if (this.adapter.isRootFocused()) {
             if (isArrowUp || isEnd) {
                 event.preventDefault();
@@ -294,6 +296,10 @@ var MDCListFoundation = /** @class */ (function (_super) {
         else if (isEnd) {
             preventDefaultEvent(event);
             this.focusLastElement();
+        }
+        else if (isLetterA && event.ctrlKey && this.isCheckboxList_) {
+            event.preventDefault();
+            this.toggleAll(this.selectedIndex_ === numbers.UNSET_INDEX ? [] : this.selectedIndex_);
         }
         else if (isEnter || isSpace) {
             if (isRootListItem) {
@@ -592,6 +598,24 @@ var MDCListFoundation = /** @class */ (function (_super) {
     MDCListFoundation.prototype.focusItemAtIndex = function (index) {
         this.adapter.focusItemAtIndex(index);
         this.focusedItemIndex = index;
+    };
+    MDCListFoundation.prototype.toggleAll = function (currentlySelectedIndexes) {
+        var count = this.adapter.getListItemCount();
+        // If all items are selected, deselect everything.
+        if (currentlySelectedIndexes.length === count) {
+            this.setCheckboxAtIndex_([]);
+        }
+        else {
+            // Otherwise select all enabled options.
+            var allIndexes = [];
+            for (var i = 0; i < count; i++) {
+                if (!this.adapter.listItemAtIndexHasClass(i, cssClasses.LIST_ITEM_DISABLED_CLASS) ||
+                    currentlySelectedIndexes.indexOf(i) > -1) {
+                    allIndexes.push(i);
+                }
+            }
+            this.setCheckboxAtIndex_(allIndexes);
+        }
     };
     /**
      * Given the next desired character from the user, adds it to the typeahead

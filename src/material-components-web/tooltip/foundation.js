@@ -267,8 +267,15 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         // Indicates that all potential positions would result in the tooltip
         // colliding with the viewport. This would only occur when the anchor
         // element itself collides with the viewport, or the viewport is very
-        // narrow.
-        return centerPos;
+        // narrow. In this case, we allow the tooltip to be mis-aligned from the
+        // anchor element.
+        if (anchorRect.left < 0) {
+            return this.minViewportTooltipThreshold;
+        }
+        else {
+            var viewportWidth = this.adapter.getViewportWidth();
+            return viewportWidth - (tooltipWidth + this.minViewportTooltipThreshold);
+        }
     };
     /**
      * Given the values for center/start/end alignment of the tooltip, calculates

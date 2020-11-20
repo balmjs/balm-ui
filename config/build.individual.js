@@ -37,7 +37,7 @@ function buildIndividual(mix) {
   console.log('Individual libraries:');
 
   // Build plus & next
-  mix.js(
+  mix.webpack(
     {
       'balm-ui-plus': './src/scripts/plus.js'
     },
@@ -48,7 +48,7 @@ function buildIndividual(mix) {
       }
     }
   );
-  mix.js(
+  mix.webpack(
     {
       'balm-ui-next': './src/scripts/next.js'
     },
@@ -84,7 +84,7 @@ function buildIndividual(mix) {
           ? `${uiOutput}/${buildName}`
           : `${uiOutput}/${buildName}/${item}`;
 
-      mix.js(jsInput, jsOutput, {
+      mix.webpack(jsInput, jsOutput, {
         output:
           buildName === 'plugins' || (buildName === 'utils' && item !== 'ie')
             ? {

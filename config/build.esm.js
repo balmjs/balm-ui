@@ -57,32 +57,34 @@ const plugins = [
   json()
 ];
 
-const buildESLibraries = {
-  index: 'balm-ui',
-  plus: 'balm-ui-plus'
-  // next: 'balm-ui-next'
-};
-
 const external = ['vue'];
 
 function buildESModule(mix) {
-  Object.keys(buildESLibraries).forEach((key) => {
-    const value = `${buildESLibraries[key]}.esm`;
-    console.log(`build ${value} library`);
+  mix.rollup(
+    {
+      external,
+      input: `./src/scripts/index.js`,
+      plugins
+    },
+    {
+      file: `${individual.output.dist}/balm-ui.esm.js`,
+      format: 'es',
+      banner
+    }
+  );
 
-    mix.rollup(
-      {
-        external,
-        input: `./src/scripts/${key}.js`,
-        plugins
-      },
-      {
-        file: `${individual.output.dist}/${value}.js`,
-        format: 'es',
-        banner
-      }
-    );
-  });
+  mix.rollup(
+    {
+      external,
+      input: `./src/scripts/plus.js`,
+      plugins
+    },
+    {
+      file: `${individual.output.dist}/balm-ui-plus.esm.js`,
+      format: 'es',
+      banner
+    }
+  );
 }
 
 module.exports = buildESModule;

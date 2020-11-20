@@ -48,7 +48,7 @@ function getConfig(balm) {
       loaders: [
         {
           test: /\.md$/,
-          loader: 'html-loader!markdown-loader'
+          use: ['html-loader', 'markdown-loader']
         },
         {
           test: /\.vue$/,

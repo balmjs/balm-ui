@@ -30,6 +30,12 @@ const toolbar = [
   ['preview'] // custom
 ];
 
+const toolbarTips = {
+  font: 'Font Famliy',
+  size: 'Font Size',
+  lineheight: 'Line Height'
+};
+
 const toolbarOptions = {
   font: [
     'Arial',
@@ -125,4 +131,4 @@ const emotions = [
   }
 ];
 
-export { toolbar, toolbarOptions, emotions };
+export { toolbar, toolbarTips, toolbarOptions, emotions };

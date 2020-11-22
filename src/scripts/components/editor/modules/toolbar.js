@@ -9,7 +9,7 @@ export function setToolbarIcons(customIcons = {}) {
   }
 }
 
-export function setToolbarStyle() {
+export function setToolbarStyle(toolbarTips = {}) {
   const buttons = document.querySelectorAll('.ql-toolbar button');
   const labels = document.querySelectorAll(
     '.ql-toolbar .ql-picker:not(.ql-header):not(.ql-font):not(.ql-size):not(.ql-lineheight) .ql-picker-label'
@@ -18,7 +18,9 @@ export function setToolbarStyle() {
     '.ql-toolbar .ql-align .ql-picker-item'
   );
 
-  [...buttons, ...labels, ...pickerItems].forEach((el) =>
-    el.classList.add('material-icons')
-  );
+  [...buttons, ...labels, ...pickerItems].forEach((el) => {
+    el.classList.add('material-icons');
+
+    // TODO: toolbarTips
+  });
 }

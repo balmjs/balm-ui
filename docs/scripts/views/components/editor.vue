@@ -24,6 +24,7 @@
         v-model="decodeContent"
         placeholder="Compose an epic..."
         :toolbar="toolbar"
+        :toolbar-tips="toolbarTips"
         :toolbar-handlers="toolbarHandlers"
       ></ui-editor>
       <ui-dialog v-model="preview.show" class="preview-dialog">
@@ -74,7 +75,7 @@
 </template>
 
 <script>
-import { toolbar } from '@/config/editor';
+import { toolbar, toolbarTips } from '@/config/editor';
 
 export default {
   metaInfo: {
@@ -88,6 +89,7 @@ export default {
       encodeContent: '',
       decodeContent: '',
       toolbar,
+      toolbarTips,
       toolbarHandlers: {
         preview: (quill, value) => {
           this.preview.show = true;

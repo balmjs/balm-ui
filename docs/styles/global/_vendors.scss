@@ -1,14 +1,8 @@
-// Base style
-@use '@material/theme' as theme-variables with (
-  $primary: #6200ee, // baseline purple, 500 tone
-  $secondary: #018786 // baseline teal, 600 tone
-);
-
 // fix(@material-components): for changing theme
-@use '@material/textfield' with (
+@use '@material/textfield' as textfield-variables with (
   $focused-label-color: primary
 );
-@use '@material/select' with (
+@use '@material/select' as select-variables with (
   $focused-label-color: primary
 );
 

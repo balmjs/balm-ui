@@ -9,18 +9,39 @@ export function setToolbarIcons(customIcons = {}) {
   }
 }
 
-export function setToolbarStyle(toolbarTips = {}) {
+function setToolbarTips(formatElements, cutomTooltips) {
+  const formats = Object.keys(cutomTooltips);
+
+  formatElements.forEach((el) => {
+    const format = el.classList[0].replace('ql-', '');
+    if (formats.includes(format)) {
+      console.log('format', cutomTooltips[format]);
+      el.title = cutomTooltips[format];
+    }
+  });
+}
+
+const pickerExcludes = ['header', 'font', 'size', 'lineheight'];
+const pickerSelectors = `.ql-picker${pickerExcludes
+  .map((format) => `:not(.ql-${format})`)
+  .join('')} .ql-picker-label`;
+
+export function setToolbarStyle(cutomTooltips = {}) {
   const buttons = document.querySelectorAll('.ql-toolbar button');
-  const labels = document.querySelectorAll(
-    '.ql-toolbar .ql-picker:not(.ql-header):not(.ql-font):not(.ql-size):not(.ql-lineheight) .ql-picker-label'
+  const pickerLabels = document.querySelectorAll(
+    `.ql-toolbar ${pickerSelectors}`
   );
   const pickerItems = document.querySelectorAll(
     '.ql-toolbar .ql-align .ql-picker-item'
   );
 
-  [...buttons, ...labels, ...pickerItems].forEach((el) => {
+  [...buttons, ...pickerLabels, ...pickerItems].forEach((el) => {
     el.classList.add('material-icons');
-
-    // TODO: toolbarTips
   });
+
+  if (Object.keys(cutomTooltips).length) {
+    const pickers = document.querySelectorAll('.ql-toolbar .ql-picker');
+
+    setToolbarTips([...buttons, ...pickers], cutomTooltips);
+  }
 }

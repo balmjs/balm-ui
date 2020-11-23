@@ -31,6 +31,7 @@ const toolbar = [
 ];
 
 const toolbarTips = {
+  header: 'Headline',
   font: 'Font Famliy',
   size: 'Font Size',
   lineheight: 'Line Height'

@@ -4,23 +4,22 @@
 
 ### Props
 
-| Name                 | Type            | Default                                 | Description                                                           |
-| -------------------- | --------------- | --------------------------------------- | --------------------------------------------------------------------- |
-| `model` (`v-model`)  | string          | `''`                                    | Mandatory.                                                            |
-| `options`            | object          | `{}`                                    | See [Quill options](https://quilljs.com/docs/configuration/#options). |
-| `toolbar`            | array, string   | null                                    | Custom or `'full'` editor toolbar.                                    |
-| `placeholder`        | string          | `null`                                  | Placeholder text to show when editor is empty.                        |
-| `readonly`           | boolean         | `false`                                 | Whether to instantiate the editor to read-only mode.                  |
-| `theme`              | string          | `'snow'`                                | Name of theme to use. (`'bubble'` or `'snow'`)                        |
-| `toolbarIcons`       | object          | `{}`                                    | Custom toolbar icons.                                                 |
-| `toolbarOptions`     | object          | `{ font: [], size: [], lineheight:[] }` | Custom toolbar options of the Font Famliy, Font Size and Line Height. |
-| `toolbarHandlers`    | object          | `{}`                                    | Custom toolbar handlers.                                              |
-| `customImageHandler` | boolean         | `false`                                 | Enable custom image handler.                                          |
-| `emotions`           | array           | `[]`                                    | The emoticon extension. Supports `emoji` and `image`.                 |
-| `withCounter`        | boolean         | `false`                                 | Styles the editor with an internal character counter.                 |
-| `extension`          | `false`, object | `false`                                 | Custom extension for Quill.                                           |
-
-> `toolbarIcons`, `toolbarOptions`, `withCounter`: New in 8.6.0
+| Name                 | Type            | Default                                 | Description                                                           | Version |
+| -------------------- | --------------- | --------------------------------------- | --------------------------------------------------------------------- | ------- |
+| `model` (`v-model`)  | string          | `''`                                    | Mandatory.                                                            |         |
+| `options`            | object          | `{}`                                    | See [Quill options](https://quilljs.com/docs/configuration/#options). |         |
+| `toolbar`            | array, string   | null                                    | Custom or `'full'` editor toolbar.                                    |         |
+| `placeholder`        | string          | `null`                                  | Placeholder text to show when editor is empty.                        |         |
+| `readonly`           | boolean         | `false`                                 | Whether to instantiate the editor to read-only mode.                  |         |
+| `theme`              | string          | `'snow'`                                | Name of theme to use. (`'bubble'` or `'snow'`)                        |         |
+| `toolbarIcons`       | object          | `{}`                                    | Custom toolbar icons.                                                 | 8.6.0   |
+| `toolbarTips`        | object          | `{}`                                    | Custom toolbar tooltips.                                              | 8.8.0   |
+| `toolbarOptions`     | object          | `{ font: [], size: [], lineheight:[] }` | Custom toolbar options of the Font Famliy, Font Size and Line Height. | 8.6.0   |
+| `toolbarHandlers`    | object          | `{}`                                    | Custom toolbar handlers.                                              |         |
+| `customImageHandler` | boolean         | `false`                                 | Enable custom image handler.                                          |         |
+| `emotions`           | array           | `[]`                                    | The emoticon extension. Supports `emoji` and `image`.                 |         |
+| `withCounter`        | boolean         | `false`                                 | Styles the editor with an internal character counter.                 | 8.6.0   |
+| `extension`          | `false`, object | `false`                                 | Custom extension for Quill.                                           |         |
 
 #### `toolbar` prop
 

@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.8.0 / 2020-11-23
+
+### Features
+
+- `<ui-editor>`: add prop `toolbarTips`
+
 ## v8.7.3 / 2020-11-20
 
 ### Chore

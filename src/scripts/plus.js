@@ -11,7 +11,6 @@ import UiRangepicker from './components/pickers/rangepicker';
 import UiAlert from './components/others/alert';
 import UiCollapse from './components/others/collapse';
 import UiEditor from './components/editor/editor';
-import { useEditor } from './components/editor/quill';
 /**
  * Plugins
  */
@@ -88,5 +87,5 @@ export {
   UiSkeleton
 };
 export { $alert, $confirm, $toast };
-export { useEditor, useAlert, useConfirm, useToast };
+export { useAlert, useConfirm, useToast };
 export { vAnchor };

@@ -15,8 +15,11 @@ function setToolbarTips(formatElements, cutomTooltips) {
   formatElements.forEach((el) => {
     const format = el.classList[0].replace('ql-', '');
     if (formats.includes(format)) {
-      console.log('format', cutomTooltips[format]);
-      el.title = cutomTooltips[format];
+      if (typeof cutomTooltips[format] === 'object') {
+        el.title = cutomTooltips[format][el.value || 'default'];
+      } else {
+        el.title = cutomTooltips[format];
+      }
     }
   });
 }

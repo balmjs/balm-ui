@@ -2,6 +2,16 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.9.0 / 2020-11-24
+
+### Features
+
+- `<ui-editor>`: add `html` format
+
+### Chore
+
+- `<ui-editor>`: update toolbarTips for `align`/`list`/`indent`/`script` formats
+
 ## v8.8.0 / 2020-11-23
 
 ### Features

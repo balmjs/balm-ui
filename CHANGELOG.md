@@ -3,6 +3,16 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.2.0 / 2020-11-25
+
+### Features
+
+- `<ui-editor>`: add prop `toolbarTips`, add `html` format
+
+### Bug Fixed
+
+- `<ui-select>`: overflow inside of dialog (#24), set an explicit width by `data-width` attribute
+
 ## v9.1.0 / 2020-11-20
 
 ### Features

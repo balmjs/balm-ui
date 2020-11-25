@@ -29,6 +29,8 @@
 
 > NOTE: `withLeadingIcon` is only used for (**non `<ui-select-icon>`**) custom leading icon, and generally do not need to be configured.
 
+- Set an explicit width by `data-width` attribute for `<ui-select>` inside of `<ui-dialog>` (New in 9.2.0)
+
 ### Slots
 
 | Name            | Props       | Description                                      | Version |

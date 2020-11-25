@@ -8,6 +8,7 @@
       :aria-disabled="disabled"
       :aria-controls="helperTextId"
       :aria-describedby="helperTextId"
+      :style="style"
     >
       <!-- Label -->
       <mdc-notched-outline v-if="isOutlined" :has-label="!noLabel">
@@ -58,7 +59,7 @@
       <mdc-line-ripple v-if="!isOutlined"></mdc-line-ripple>
     </div>
     <!-- Options -->
-    <div :class="menuClassName">
+    <div :class="menuClassName" :style="style">
       <ul class="mdc-list" role="listbox">
         <li
           v-for="(option, index) in currentOptions"
@@ -88,6 +89,7 @@
 </template>
 
 <script>
+import { reactive } from 'vue';
 import { MDCSelect } from '../../../material-components-web/select';
 import { strings } from '../../../material-components-web/select/constants';
 import MdcFloatingLabel from '../form-controls/mdc-floating-label';
@@ -116,6 +118,10 @@ const UI_SELECT = {
   },
   DEFAULT_SELECTED_INDEX: -1
 };
+
+const state = reactive({
+  fixed: false // fix(@material-components-web): overflow inside of dialog
+});
 
 export default {
   name: 'UiSelect',
@@ -221,9 +227,17 @@ export default {
         'mdc-menu',
         'mdc-menu-surface',
         {
-          'mdc-menu-surface--fullwidth': this.fullwidth
+          'mdc-menu-surface--fullwidth': this.fullwidth,
+          'mdc-menu-surface--fixed': state.fixed
         }
       ];
+    },
+    style() {
+      return this.el && state.fixed
+        ? {
+            width: this.el.dataset.width || 'auto'
+          }
+        : {};
     }
   },
   watch: {
@@ -316,6 +330,9 @@ export default {
         value: selected[this.optionValue],
         label: selected[this.optionLabel]
       };
+    },
+    fixedSelectMenu() {
+      state.fixed = true;
     }
   }
 };

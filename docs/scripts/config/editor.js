@@ -30,6 +30,34 @@ const toolbar = [
   ['preview'] // custom
 ];
 
+const toolbarTips = {
+  header: 'Headline',
+  font: 'Font Famliy',
+  size: 'Font Size',
+  lineheight: 'Line Height',
+  bold: 'Bold',
+  italic: 'Italic',
+  underline: 'Underline',
+  color: 'Text Color',
+  background: 'Background Color',
+  align: {
+    default: 'Left Align',
+    center: 'Center Align',
+    right: 'Right Align',
+    justify: 'Justify Align'
+  },
+  list: {
+    ordered: 'Ordered List',
+    bullet: 'Bullet List'
+  },
+  indent: {
+    '+1': 'Increase Indent',
+    '-1': 'Decrease Indent'
+  },
+  blockquote: 'Blockquote',
+  emoji: 'Emoji'
+};
+
 const toolbarOptions = {
   font: [
     'Arial',
@@ -125,4 +153,4 @@ const emotions = [
   }
 ];
 
-export { toolbar, toolbarOptions, emotions };
+export { toolbar, toolbarTips, toolbarOptions, emotions };

@@ -13,7 +13,7 @@ let toolbarHandlers = {};
 
 function createEditor(
   editorEl,
-  { toolbarIcons, toolbarOptions, options, emotions, extension }
+  { toolbarIcons, toolbarTips, toolbarOptions, options, emotions, extension }
 ) {
   Quill = require('quill');
 
@@ -44,7 +44,7 @@ function createEditor(
     }
   };
 
-  setToolbarStyle();
+  setToolbarStyle(toolbarTips);
 
   return editor;
 }

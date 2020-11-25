@@ -7,7 +7,7 @@ import myStore from '@/store';
 import App from '@/views/layouts/app';
 import { setGlobalProps } from '@/config';
 import validatorRules from '@/config/validator-rules';
-import { toolbarOptions, emotions } from '@/config/editor';
+import { toolbarTips, toolbarOptions, emotions } from '@/config/editor';
 // BalmUI
 import BalmUI from 'balm-ui';
 import BalmUIPlus from 'balm-ui/plus';
@@ -37,6 +37,7 @@ function createBalmUIApp() {
   });
   app.use(BalmUIPlus, {
     UiEditor: {
+      toolbarTips,
       toolbarOptions,
       emotions
     }

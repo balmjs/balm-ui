@@ -68,6 +68,12 @@ export default {
         return {};
       }
     },
+    toolbarTips: {
+      type: Object,
+      default() {
+        return {};
+      }
+    },
     toolbarOptions: {
       type: Object,
       default() {
@@ -124,6 +130,7 @@ export default {
     this.$nextTick(() => {
       this.$editor = createEditor(this.$refs.editor, {
         toolbarIcons: Object.assign(UI_EDITOR.toolbarIcons, this.toolbarIcons),
+        toolbarTips: this.toolbarTips,
         toolbarOptions: this.toolbarOptions,
         options: this.getOptions(),
         emotions: this.emotions,

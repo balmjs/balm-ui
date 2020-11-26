@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.9.1 / 2020-11-25
+
+### Bug Fixes
+
+- `<ui-form>`: change <del>`fieldset`</del> to `div` tag for display bug
+
 ## v8.9.0 / 2020-11-24
 
 ### Features

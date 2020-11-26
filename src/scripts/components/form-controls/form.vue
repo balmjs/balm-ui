@@ -1,7 +1,7 @@
 <template>
-  <fieldset :class="className">
+  <div :class="className">
     <slot :actionClass="UI_FORM.cssClasses.action"></slot>
-  </fieldset>
+  </div>
 </template>
 
 <script>

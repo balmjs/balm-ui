@@ -1,3 +1,5 @@
+import getType from '../utils/typeof';
+
 // Define card constants
 const UI_CARD = {
   cssClasses: {
@@ -25,7 +27,7 @@ export default {
   },
   mounted() {
     const parentEl = this.$parent.$el;
-    if (parentEl) {
+    if (parentEl && getType(parentEl) === 'htmldivelement') {
       this.cardButton =
         parentEl.classList.contains(UI_CARD.cssClasses.button) ||
         parentEl.classList.contains(UI_CARD.cssClasses.action);

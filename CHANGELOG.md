@@ -3,15 +3,22 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.2.1 / 2020-11-27
+
+### Bug Fixes
+
+- `<ui-table>`: textfield onBlur bug in table
+- `<ui-button>`: card button class bugfix
+
 ## v9.2.0 / 2020-11-25
 
 ### Features
 
 - `<ui-editor>`: add prop `toolbarTips`, add `html` format
 
-### Bug Fixed
+### Bug Fixes
 
-- `<ui-select>`: overflow inside of dialog (#24), set an explicit width by `data-width` attribute
+- `<ui-select>`: overflow inside of dialog, set an explicit width by `data-width` attribute
 
 ## v9.1.0 / 2020-11-20
 

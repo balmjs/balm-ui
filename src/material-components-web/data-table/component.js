@@ -57,7 +57,9 @@ var MDCDataTable = /** @class */ (function (_super) {
         this.content =
             this.root.querySelector("." + cssClasses.CONTENT);
         this.handleRowCheckboxChange = function (event) {
+          if (event.target.getAttribute('type') === 'checkbox') {
             _this.foundation.handleRowCheckboxChange(event);
+          }
         };
         this.content.addEventListener('change', this.handleRowCheckboxChange);
         this.layout();
@@ -216,7 +218,7 @@ var MDCDataTable = /** @class */ (function (_super) {
                     rowId: _this.getRowIdByIndex(data.rowIndex),
                     rowIndex: data.rowIndex,
                     selected: data.selected,
-                }, 
+                },
                 /** shouldBubble */ true);
             },
             notifySelectedAll: function () {

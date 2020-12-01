@@ -13,7 +13,7 @@ export default {
     return {
       date: '',
       config: {
-        mode: 'month' // New in `7.4.2`
+        mode: 'month'
       },
       monthOptions: {
         shorthand: true, // defaults to false

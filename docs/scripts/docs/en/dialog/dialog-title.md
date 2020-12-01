@@ -4,9 +4,9 @@
 
 ### Props
 
-| Name       | Type    | Default | Description                 |
-| ---------- | ------- | ------- | --------------------------- |
-| `closable` | boolean | `true`  | Displays close icon button. |
+| Name       | Type    | Default | Description                 | Version |
+| ---------- | ------- | ------- | --------------------------- | ------- |
+| `closable` | boolean | `true`  | Displays close icon button. | 8.10.0  |
 
 ### Slots
 

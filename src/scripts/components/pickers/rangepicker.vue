@@ -85,7 +85,6 @@ export default {
   data() {
     return {
       flatpickr: null,
-      loaded: false,
       startInputValue: '',
       endInputValue: ''
     };
@@ -150,6 +149,10 @@ export default {
         const dateValue = [this.startInputValue, this.endInputValue];
         this.$emit(UI_RANGEPICKER.EVENT.CHANGE, dateValue);
       };
+      // fix(@flatpickr): second input onChange bug for rangePlugin (temporary solution)
+      config.onValueUpdate = () => {
+        this.onEndInputChange();
+      };
 
       this.flatpickr = flatpickr(startInputEl, config);
     }
@@ -189,6 +192,18 @@ export default {
       this.startInputValue = '';
       this.endInputValue = '';
       this.updateInitialValue();
+    },
+    onEndInputChange() {
+      if (this.config.enableTime) {
+        const endInputValue = this.$refs.endInput.$textField.value;
+        if (endInputValue !== this.endInputValue) {
+          this.updateInputs([this.startInputValue, endInputValue]);
+          this.$emit(UI_RANGEPICKER.EVENT.CHANGE, [
+            this.startInputValue,
+            this.endInputValue
+          ]);
+        }
+      }
     }
   }
 };

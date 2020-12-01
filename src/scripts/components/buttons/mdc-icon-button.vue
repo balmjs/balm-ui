@@ -1,5 +1,9 @@
 <template>
-  <button type="button" class="mdc-icon-button material-icons">
+  <button
+    type="button"
+    class="mdc-icon-button material-icons"
+    @click="$emit('click', $event)"
+  >
     <slot>
       <!-- Material icon -->
     </slot>

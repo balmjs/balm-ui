@@ -2,6 +2,17 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.10.0 / 2020-12-01
+
+### Features
+
+- `<ui-dialog-title>`: add `closable` prop
+- `<ui-autocomplete>`: add `sourceFormat` prop
+
+### Bug Fixes
+
+- `<ui-rangepicker>`: fix second input onChange bug for rangePlugin
+
 ## v8.9.2 / 2020-11-27
 
 ### Bug Fixes

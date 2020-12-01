@@ -1,5 +1,9 @@
 <template>
-  <button type="button" class="mdc-icon-button material-icons">
+  <button
+    type="button"
+    class="mdc-icon-button material-icons"
+    @click="$emit('click', $event)"
+  >
     <slot>
       <!-- Material icon -->
     </slot>
@@ -8,6 +12,7 @@
 
 <script>
 export default {
-  name: 'MdcIconButton'
+  name: 'MdcIconButton',
+  emits: ['click']
 };
 </script>

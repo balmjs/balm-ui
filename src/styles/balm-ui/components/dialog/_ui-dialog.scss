@@ -1,5 +1,19 @@
 @use '@material/select/variables' as select-variables;
 
+.mdc-dialog__title--closable {
+  position: relative;
+
+  .mdc-icon-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 36px;
+    height: 36px;
+    padding: 9px;
+    font-size: 18px;
+  }
+}
+
 .mdc-dialog__content .mdc-select__menu {
   // fix(ui): `ui-select` inside of dialog (#24)
   &:not(.mdc-menu-surface--fixed) {

@@ -144,8 +144,8 @@ export default {
     document.querySelector('body').classList.remove(cssClasses.SCROLL_LOCK);
   },
   methods: {
-    handleClose() {
-      if (this.closable) {
+    handleClose(forceQuit = false) {
+      if (forceQuit || this.closable) {
         this.$emit(UI_DIALOG.EVENT.CHANGE, false);
       }
       this.$emit(UI_DIALOG.EVENT.CLOSE);

@@ -54,7 +54,7 @@
             :data-index="index"
             :class="getItemClassName(index)"
             @click="handleSelected(item)"
-            v-html="item[UI_AUTOCOMPLETE.ITEM.LABEL]"
+            v-html="item[sourceFormat.label]"
           ></li>
         </ul>
       </div>
@@ -71,10 +71,8 @@ import { UI_TEXTFIELD_ICON } from './constants';
 
 // Define autocomplete constants
 const UI_AUTOCOMPLETE = {
-  ITEM: {
-    LABEL: 'label',
-    VALUE: 'value',
-    SELECTED: 'selected'
+  cssClasses: {
+    selected: 'selected'
   },
   EVENT: {
     INPUT: 'update:modelValue',
@@ -115,6 +113,15 @@ export default {
       type: Array, // Two supported formats: ['Choice1', 'Choice2'] or [{label: 'Choice1', value: 'value1'}, ...]
       default() {
         return [];
+      }
+    },
+    sourceFormat: {
+      type: Object,
+      default() {
+        return {
+          label: 'label',
+          value: 'value'
+        };
       }
     },
     // <ui-textfield> props
@@ -287,7 +294,7 @@ export default {
         }
         // Local datasource
         this.currentSuggestion.data = this.currentSource.filter((word) => {
-          return RegExp(keywords, 'i').test(word[UI_AUTOCOMPLETE.ITEM.LABEL]);
+          return RegExp(keywords, 'i').test(word[this.sourceFormat.label]);
         });
 
         this.show();
@@ -299,8 +306,8 @@ export default {
           let item = {};
 
           if (getType(data) === 'string' || getType(data) === 'number') {
-            item[UI_AUTOCOMPLETE.ITEM.LABEL] = data;
-            item[UI_AUTOCOMPLETE.ITEM.VALUE] = data;
+            item[this.sourceFormat.label] = data;
+            item[this.sourceFormat.value] = data;
           } else if (getType(data) === 'object') {
             item = data;
           } else {
@@ -426,44 +433,42 @@ export default {
       let el = event.target;
       if (
         el.tagName === 'LI' &&
-        !el.classList.contains(UI_AUTOCOMPLETE.ITEM.SELECTED)
+        !el.classList.contains(UI_AUTOCOMPLETE.cssClasses.selected)
       ) {
         this.currentSelectedItem = el;
 
         this.clearSelected();
 
-        el.classList.add(UI_AUTOCOMPLETE.ITEM.SELECTED);
+        el.classList.add(UI_AUTOCOMPLETE.cssClasses.selected);
         this.currentSuggestion.index = el.dataset.index;
       }
     },
     handleMouseleave() {
       this.currentSelectedItem &&
         this.currentSelectedItem.classList.remove(
-          UI_AUTOCOMPLETE.ITEM.SELECTED
+          UI_AUTOCOMPLETE.cssClasses.selected
         );
     },
     handleSelected(selectedItem) {
       this.hide();
 
-      delete selectedItem[UI_AUTOCOMPLETE.ITEM.SELECTED];
+      delete selectedItem[UI_AUTOCOMPLETE.cssClasses.selected];
 
       let result = Object.assign({}, selectedItem);
-      result[UI_AUTOCOMPLETE.ITEM.LABEL] = result[
-        UI_AUTOCOMPLETE.ITEM.LABEL
-      ].replace(UI_AUTOCOMPLETE.escapeRegex, '');
-
-      this.$emit(
-        UI_AUTOCOMPLETE.EVENT.INPUT,
-        result[UI_AUTOCOMPLETE.ITEM.LABEL]
+      result[this.sourceFormat.label] = result[this.sourceFormat.label].replace(
+        UI_AUTOCOMPLETE.escapeRegex,
+        ''
       );
+
+      this.$emit(UI_AUTOCOMPLETE.EVENT.INPUT, result[this.sourceFormat.label]);
       this.$emit(UI_AUTOCOMPLETE.EVENT.SELECTED, result); // result: any
     },
     clearSelected() {
       let selectedItem = this.$autocomplete.querySelector(
-        `li.${UI_AUTOCOMPLETE.ITEM.SELECTED}`
+        `li.${UI_AUTOCOMPLETE.cssClasses.selected}`
       );
       if (selectedItem) {
-        selectedItem.classList.remove(UI_AUTOCOMPLETE.ITEM.SELECTED);
+        selectedItem.classList.remove(UI_AUTOCOMPLETE.cssClasses.selected);
       }
     },
     getItemClassName(index) {

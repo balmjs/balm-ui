@@ -54,7 +54,6 @@ helpers.isEmpty(value);
 helpers.jsonEqual(jsonA, jsonB); // The order of the properties IS IMPORTANT
 helpers.isDeepEqual(obj1, obj2);
 
-// New in 6.7.0
 helpers.merge(target, source);
 helpers.merge.all(arrayOfObjects);
 ```

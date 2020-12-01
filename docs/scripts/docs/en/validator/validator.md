@@ -137,7 +137,6 @@ const validations = {
 - Set validations for the dynamic form
 
 ```js
-// New in 6.12.0
 balmUI.setValidations(fieldName, validationRule);
 balmUI.setValidations(validationRules);
 ```
@@ -149,7 +148,6 @@ balmUI.setValidations(validationRules);
 | `validations` | object | `{}`    | (See) BalmUI validator rules.                             |
 
 ```js
-// New in 7.4.0
 balmUI.resetValidations();
 ```
 

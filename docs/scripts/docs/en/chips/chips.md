@@ -23,8 +23,6 @@
 | `optionValue`            | string                | `'value'` | Option item value's key field name of the `options`.                                                                             |
 | `chips`                  | array                 | `[]`      | A set of chips. Applicable only for updating the input chips.                                                                    |
 
-> `options`, `optionLabel`, `optionValue`: New in 7.2.0
-
 ### Slots
 
 | Name      | Props | Description                                                      |

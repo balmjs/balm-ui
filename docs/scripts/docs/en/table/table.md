@@ -59,8 +59,6 @@
     }
     ```
 
-    > `columnId` field: New in `7.0.0`, if `balm-ui < 7.0.0` please use `by` field
-
     ```js
     [
       [

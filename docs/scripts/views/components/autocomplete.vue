@@ -5,6 +5,7 @@
         v-model="keywords"
         placeholder="Input 'balm'"
         :source="source"
+        :source-format="{ label: 'name', value: 'url' }"
         @selected="onSelected"
       ></ui-autocomplete>
       <p v-if="website">
@@ -47,28 +48,23 @@
 <script>
 const source = [
   {
-    label: 'BalmJS',
-    value: 1,
+    name: 'BalmJS',
     url: 'https://balm.js.org/'
   },
   {
-    label: 'BalmCLI',
-    value: 0,
+    name: 'BalmCLI',
     url: 'https://github.com/balmjs/balm-cli'
   },
   {
-    label: 'BalmUI Lite',
-    value: 2,
+    name: 'BalmUI Lite',
     url: 'https://mdl.balmjs.com/'
   },
   {
-    label: 'BalmUI',
-    value: 3,
+    name: 'BalmUI',
     url: 'https://next-material.balmjs.com/'
   },
   {
-    label: 'BalmScroll',
-    value: 4,
+    name: 'BalmScroll',
     url: 'https://iscroll.balmjs.com/'
   }
 ];

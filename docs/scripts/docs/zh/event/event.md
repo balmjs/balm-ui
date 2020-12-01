@@ -71,8 +71,6 @@ balmUI.onClose(property, fn); / balmUI.onHide(property, fn); // update property 
 
 ## 3. Global Communication
 
-> New in 8.2.1
-
 ```js
 $bus.on(eventName, callback); // Listen for a custom event on the current vm.
 $bus.emit(eventName, ...args); // Trigger an event on the current instance.

@@ -11,7 +11,7 @@
 | `selected` | boolean | `false` | Optional, styles the row in an selected state.  |
 | `disabled` | boolean | `false` | Optional, styles the row in the disabled state. |
 
-### `<ui-nav-item>` Props (New in 8.0.0)
+### `<ui-nav-item>` Props
 
 | Name     | Type    | Default    | Description                                                         |
 | -------- | ------- | ---------- | ------------------------------------------------------------------- |

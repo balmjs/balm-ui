@@ -18,8 +18,6 @@ $setGrid(property, size, value);
 
 ### Use `$setGrid` without `.vue` component
 
-> New in 8.1.0
-
 ```js
 import { useGrid } from 'balm-ui';
 // OR

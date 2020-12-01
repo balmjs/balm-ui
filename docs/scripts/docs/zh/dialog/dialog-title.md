@@ -2,8 +2,14 @@
 <ui-dialog-title><!-- the dialog title --></ui-dialog-title>
 ```
 
+### Props
+
+| Name       | Type    | Default | Description  | Version |
+| ---------- | ------- | ------- | ------------ | ------- |
+| `closable` | boolean | `true`  | 展现关闭按钮 | 9.3.0   |
+
 ### Slots
 
-| Name      | Props | Description                                                   |
-| --------- | ----- | ------------------------------------------------------------- |
-| `default` |       | The default slot holds the dialog title and can contain HTML. |
+| Name      | Props | Description                       |
+| --------- | ----- | --------------------------------- |
+| `default` |       | 默认插槽可包含对话框标题及其 HTML |

@@ -102,8 +102,6 @@ $theme.setTextColorOnDark(style, value);
 
 ### Use `$theme` without `.vue` component
 
-> New in 8.1.0
-
 ```js
 import { useTheme } from 'balm-ui';
 // OR

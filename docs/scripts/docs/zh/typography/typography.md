@@ -28,8 +28,6 @@ The typographic styles in this module are derived from thirteen styles:
 
 ### Use `$tt` without `.vue` component
 
-> New in 8.1.0
-
 ```js
 import { useTypography } from 'balm-ui';
 // OR

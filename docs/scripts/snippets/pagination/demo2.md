@@ -5,7 +5,11 @@
   show-total
   :page-size="[10, 25, 100]"
   position="left"
-></ui-pagination>
+>
+  <template #default="{ currentMinRow, currentMaxRow }">
+    {{ currentMinRow }} - {{ currentMaxRow }} / {{ total }}
+  </template>
+</ui-pagination>
 ```
 
 ```js

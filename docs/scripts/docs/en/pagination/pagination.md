@@ -20,12 +20,13 @@
 
 ### Slots
 
-| Name    | Props | Description                      |
-| ------- | ----- | -------------------------------- |
-| `first` |       | The custom first button icon.    |
-| `prev`  |       | The custom previous button icon. |
-| `next`  |       | The custom next button icon.     |
-| `last`  |       | The custom last button icon.     |
+| Name      | Props                            | Description                      | Version |
+| --------- | -------------------------------- | -------------------------------- | ------- |
+| `default` | `currentMinRow`, `currentMaxRow` | The custom page size area.       | 8.11.0  |
+| `first`   |                                  | The custom first button icon.    |         |
+| `prev`    |                                  | The custom previous button icon. |         |
+| `next`    |                                  | The custom next button icon.     |         |
+| `last`    |                                  | The custom last button icon.     |         |
 
 ### Events
 

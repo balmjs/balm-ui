@@ -14,7 +14,12 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.1 Default Usage</h6>
       <div class="demo">
-        <ui-pagination v-model="page1" :total="total1" show-total position="center"></ui-pagination>
+        <ui-pagination
+          v-model="page1"
+          :total="total1"
+          show-total
+          position="center"
+        ></ui-pagination>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
@@ -28,7 +33,11 @@
           show-total
           :page-size="[10, 25, 100]"
           position="left"
-        ></ui-pagination>
+        >
+          <template #default="{ currentMinRow, currentMaxRow }">
+            {{ currentMinRow }} - {{ currentMaxRow }} / {{ total2 }}
+          </template>
+        </ui-pagination>
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
@@ -36,7 +45,12 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.3 Pagination with jumper</h6>
       <div class="demo">
-        <ui-pagination v-model="page3" :total="total3" show-total show-jumper></ui-pagination>
+        <ui-pagination
+          v-model="page3"
+          :total="total3"
+          show-total
+          show-jumper
+        ></ui-pagination>
       </div>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>
@@ -44,7 +58,12 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.4 Mini Mode</h6>
       <div class="demo">
-        <ui-pagination v-model="page4" :total="total4" show-total mini></ui-pagination>
+        <ui-pagination
+          v-model="page4"
+          :total="total4"
+          show-total
+          mini
+        ></ui-pagination>
       </div>
       <ui-snippet :code="$store.demos[4]"></ui-snippet>
     </section>

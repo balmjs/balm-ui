@@ -21,7 +21,9 @@
       <div class="mdc-data-table__pagination-navigation">
         <!-- Total -->
         <div v-if="showTotal" class="mdc-data-table__pagination-total">
-          {{ currentMinRow }}‑{{ currentMaxRow }} of {{ total }}
+          <slot :currentMinRow="currentMinRow" :currentMaxRow="currentMaxRow">
+            {{ currentMinRow }}‑{{ currentMaxRow }} of {{ total }}
+          </slot>
         </div>
         <!-- Navigation buttons -->
         <mdc-button

@@ -2,6 +2,16 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.11.0 / 2020-12-07
+
+### Features
+
+- `<ui-pagination>`: add default slot for custom pagesize area info
+
+### Reverts
+
+- restore `<ui-select>` css for the component inside of `<ui-dialog>`
+
 ## v8.10.0 / 2020-12-01
 
 ### Features

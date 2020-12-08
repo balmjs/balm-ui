@@ -1,7 +1,12 @@
-const TopAppBar = () => import('@/views/components/top-app-bar');
-const Grid = () => import('@/views/components/grid');
-const Form = () => import('@/views/components/form');
-const Divider = () => import('@/views/components/divider');
+import { defineAsyncComponent } from 'vue';
+const TopAppBar = defineAsyncComponent(() =>
+  import('@/views/components/top-app-bar')
+);
+const Grid = defineAsyncComponent(() => import('@/views/components/grid'));
+const Form = defineAsyncComponent(() => import('@/views/components/form'));
+const Divider = defineAsyncComponent(() =>
+  import('@/views/components/divider')
+);
 
 export default [
   {

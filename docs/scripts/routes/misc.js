@@ -1,7 +1,10 @@
-const Event = () => import('@/views/plugins/event');
-const Ripple = () => import('@/views/directives/ripple');
-const Elevation = () => import('@/views/directives/elevation');
-const Anchor = () => import('@/views/directives/anchor');
+import { defineAsyncComponent } from 'vue';
+const Event = defineAsyncComponent(() => import('@/views/plugins/event'));
+const Ripple = defineAsyncComponent(() => import('@/views/directives/ripple'));
+const Elevation = defineAsyncComponent(() =>
+  import('@/views/directives/elevation')
+);
+const Anchor = defineAsyncComponent(() => import('@/views/directives/anchor'));
 
 export default [
   {

@@ -1,16 +1,29 @@
-const Textfield = () => import('@/views/components/textfield');
-const Select = () => import('@/views/components/select');
-const Checkbox = () => import('@/views/components/checkbox');
-const Radio = () => import('@/views/components/radio');
-const Chips = () => import('@/views/components/chips');
-const Switch = () => import('@/views/components/switch');
-const Slider = () => import('@/views/components/slider');
-const File = () => import('@/views/components/file');
-const Autocomplete = () => import('@/views/components/autocomplete');
-const Datepicker = () => import('@/views/components/datepicker');
-const Rangepicker = () => import('@/views/components/rangepicker');
-const Editor = () => import('@/views/components/editor');
-const Validator = () => import('@/views/plugins/validator');
+import { defineAsyncComponent } from 'vue';
+const Textfield = defineAsyncComponent(() =>
+  import('@/views/components/textfield')
+);
+const Select = defineAsyncComponent(() => import('@/views/components/select'));
+const Checkbox = defineAsyncComponent(() =>
+  import('@/views/components/checkbox')
+);
+const Radio = defineAsyncComponent(() => import('@/views/components/radio'));
+const Chips = defineAsyncComponent(() => import('@/views/components/chips'));
+const Switch = defineAsyncComponent(() => import('@/views/components/switch'));
+const Slider = defineAsyncComponent(() => import('@/views/components/slider'));
+const File = defineAsyncComponent(() => import('@/views/components/file'));
+const Autocomplete = defineAsyncComponent(() =>
+  import('@/views/components/autocomplete')
+);
+const Datepicker = defineAsyncComponent(() =>
+  import('@/views/components/datepicker')
+);
+const Rangepicker = defineAsyncComponent(() =>
+  import('@/views/components/rangepicker')
+);
+const Editor = defineAsyncComponent(() => import('@/views/components/editor'));
+const Validator = defineAsyncComponent(() =>
+  import('@/views/plugins/validator')
+);
 
 export default [
   {

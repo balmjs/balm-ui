@@ -8,7 +8,7 @@
         <ui-radio
           v-model="checkedValue"
           :value="item.value"
-          @click.native.stop
+          @click.stop
         ></ui-radio>
       </ui-item-last-content>
     </ui-item>

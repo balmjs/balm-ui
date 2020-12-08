@@ -6,6 +6,7 @@
         placeholder="Input 'balm'"
         :source="source"
         :source-format="{ label: 'name', value: 'url' }"
+        highlight
         @selected="onSelected"
       ></ui-autocomplete>
       <p v-if="website">

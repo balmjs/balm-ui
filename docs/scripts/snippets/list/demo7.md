@@ -8,7 +8,7 @@
         <ui-checkbox
           v-model="checkedValues"
           :value="item.value"
-          @click.native.stop
+          @click.stop
         ></ui-checkbox>
       </ui-item-last-content>
     </ui-item>

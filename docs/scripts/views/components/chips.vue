@@ -23,7 +23,7 @@
         <ui-button outlined dense @click="removeLastOne"
           >Delete Last Chip</ui-button
         >
-        <ui-chips :chips="list" type="input">
+        <ui-chips v-if="list.length" :chips="list" type="input">
           <ui-chip
             v-for="item in list"
             :key="item.id"
@@ -61,7 +61,11 @@
         ></ui-chips>
 
         <p>With leading icon (selectedIndexes: {{ selectedValue2 }})</p>
-        <ui-chips v-model="selectedValue2" type="filter">
+        <ui-chips
+          v-if="filterList.length"
+          v-model="selectedValue2"
+          type="filter"
+        >
           <ui-chip
             v-for="(item, index) in filterList"
             :key="index"

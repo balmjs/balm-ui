@@ -83,6 +83,7 @@
             placeholder="Icon name keywords"
             fullwidth
             :source="tags"
+            highlight
             @update:modelValue="onSearch"
             @selected="onSelected"
           ></ui-autocomplete>
@@ -96,7 +97,7 @@
         </p>
       </div>
 
-      <ui-list-group>
+      <ui-list-group v-if="categories.length">
         <template
           v-for="(category, index) in categories"
           :key="`category${index}`"
@@ -107,7 +108,7 @@
             >{{ category.name }}</ui-list-group-subheader
           >
           <template v-if="Object.keys(currentIcons).length">
-            <ui-image-list>
+            <ui-image-list v-if="currentIcons[category.name].length">
               <ui-image-item
                 v-for="icon in currentIcons[category.name]"
                 :key="icon.id"

@@ -254,10 +254,13 @@ export default {
       this.init(val);
     }
   },
+  beforeMount() {
+    // fix(@material-components-web): overflow inside of the scrollable component
+    if (this.fixed) {
+      state.fixed = this.fixed;
+    }
+  },
   mounted() {
-    // fix(@material-components-web): overflow inside of the custom scrollable component
-    state.fixed = this.fixed;
-
     this.$select = new MDCSelect(this.el);
 
     if (this.helperTextId) {

@@ -46,7 +46,11 @@
     </template>
 
     <template #plus>
-      <div ref="autocomplete" class="mdc-autocomplete__list">
+      <div
+        v-show="currentSuggestion.data.length"
+        ref="autocomplete"
+        class="mdc-autocomplete__list"
+      >
         <ul class="mdc-list">
           <li
             v-for="(item, index) in currentSuggestion.data"
@@ -54,7 +58,7 @@
             :data-index="index"
             :class="getItemClassName(index)"
             @click="handleSelected(item)"
-            v-html="item[sourceFormat.label]"
+            v-html="item.html"
           ></li>
         </ul>
       </div>
@@ -82,8 +86,7 @@ const UI_AUTOCOMPLETE = {
     CLICK: 'click',
     MOUSEMOVE: 'mousemove',
     MOUSELEAVE: 'mouseleave'
-  },
-  escapeRegex: new RegExp('<[^>]+>', 'g')
+  }
 };
 
 const KEYCODE = {
@@ -143,6 +146,10 @@ export default {
       default: 1
     },
     remote: {
+      type: Boolean,
+      default: false
+    },
+    highlight: {
       type: Boolean,
       default: false
     }
@@ -261,8 +268,47 @@ export default {
 
       this.scroll.currentLastIndex = this.scroll.defaultLastIndex;
     },
+    escapeRegExChars(value) {
+      return value.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&');
+    },
+    sanitize(value) {
+      return value
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    },
+    formatResult(keywords) {
+      const pattern = '(' + this.escapeRegExChars(keywords) + ')';
+      const regExp = new RegExp(pattern, 'gi');
+
+      // Local datasource
+      this.currentSuggestion.data = this.currentSource
+        .filter(
+          (word) =>
+            word[this.sourceFormat.label].toLowerCase().indexOf(keywords) !== -1
+        )
+        .map((word) => {
+          const suggestionLabel = word[this.sourceFormat.label];
+
+          word.html = this.highlight
+            ? this.sanitize(
+                suggestionLabel.replace(regExp, '<strong>$1</strong>')
+              ).replace(/&lt;(\/?strong)&gt;/g, '<$1>')
+            : this.sanitize(suggestionLabel);
+
+          return word;
+        });
+    },
     show() {
-      let keywords = this.inputValue.trim();
+      let keywords = this.inputValue;
+
+      if (getType(keywords) === 'string') {
+        this.formatResult(keywords.trim().toLowerCase());
+      } else {
+        throw new Error('[BalmUI autocomplete]: keywords must be a string');
+      }
+
       if (
         keywords.length >= this.minlength &&
         this.currentSuggestion.data.length
@@ -289,14 +335,6 @@ export default {
           this.$emit(UI_AUTOCOMPLETE.EVENT.SEARCH, keywords); // AJAX
         }, this.delay);
       } else {
-        if (['*', '+', '?', '[', '\\'].includes(keywords)) {
-          keywords = `\\${keywords}`;
-        }
-        // Local datasource
-        this.currentSuggestion.data = this.currentSource.filter((word) => {
-          return RegExp(keywords, 'i').test(word[this.sourceFormat.label]);
-        });
-
         this.show();
       }
     },
@@ -453,15 +491,13 @@ export default {
       this.hide();
 
       delete selectedItem[UI_AUTOCOMPLETE.cssClasses.selected];
+      delete selectedItem.html;
 
-      let result = Object.assign({}, selectedItem);
-      result[this.sourceFormat.label] = result[this.sourceFormat.label].replace(
-        UI_AUTOCOMPLETE.escapeRegex,
-        ''
+      this.$emit(
+        UI_AUTOCOMPLETE.EVENT.INPUT,
+        selectedItem[this.sourceFormat.label]
       );
-
-      this.$emit(UI_AUTOCOMPLETE.EVENT.INPUT, result[this.sourceFormat.label]);
-      this.$emit(UI_AUTOCOMPLETE.EVENT.SELECTED, result); // result: any
+      this.$emit(UI_AUTOCOMPLETE.EVENT.SELECTED, selectedItem); // selectedItem: any
     },
     clearSelected() {
       let selectedItem = this.$autocomplete.querySelector(

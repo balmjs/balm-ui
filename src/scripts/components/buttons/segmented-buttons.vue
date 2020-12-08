@@ -69,12 +69,10 @@ export default {
   mounted() {
     this.$segmentedButton = new MDCSegmentedButton(this.el);
 
-    // this.$segmentedButton.listen(
-    //   'MDCSegmentedButton:change',
-    //   ({ detail }) => {
-    //     console.log('change', detail);
-    //   }
-    // );
+    // TODO:
+    // this.$segmentedButton.listen('MDCSegmentedButton:change', ({ detail }) => {
+    //   console.log('change', detail);
+    // });
     // this.$segmentedButton.listen(
     //   `MDCSegmentedButtonSegment:${UI_SEGMENTED_BUTTON.EVENT.SELECTED}`,
     //   ({ detail }) => {

@@ -22,6 +22,7 @@
  */
 var CssClasses;
 (function (CssClasses) {
+    CssClasses["RICH"] = "mdc-tooltip--rich";
     CssClasses["SHOWN"] = "mdc-tooltip--shown";
     CssClasses["SHOWING"] = "mdc-tooltip--showing";
     CssClasses["SHOWING_TRANSITION"] = "mdc-tooltip--showing-transition";
@@ -38,6 +39,9 @@ var numbers = {
     // LINT.IfChange(tooltip-dimensions)
     MIN_HEIGHT: 24,
     MAX_WIDTH: 200,
+};
+var attributes = {
+    PERSISTENT: 'data-mdc-tooltip-persistent',
 };
 var events = {
     HIDDEN: 'MDCTooltip:hidden',
@@ -67,5 +71,5 @@ var AnchorBoundaryType;
     AnchorBoundaryType[AnchorBoundaryType["BOUNDED"] = 0] = "BOUNDED";
     AnchorBoundaryType[AnchorBoundaryType["UNBOUNDED"] = 1] = "UNBOUNDED";
 })(AnchorBoundaryType || (AnchorBoundaryType = {}));
-export { CssClasses, numbers, events, XPosition, AnchorBoundaryType, YPosition };
+export { CssClasses, numbers, attributes, events, XPosition, AnchorBoundaryType, YPosition };
 //# sourceMappingURL=constants.js.map

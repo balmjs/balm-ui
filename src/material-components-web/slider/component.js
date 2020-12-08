@@ -20,9 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { __extends, __values } from "tslib";
+import { __assign, __extends } from "tslib";
 import { MDCComponent } from '../base/component';
+import { matches } from '../dom/ponyfill';
 import { MDCRipple } from '../ripple/component';
+import { MDCRippleFoundation } from '../ripple/foundation';
 import { cssClasses, events } from './constants';
 import { MDCSliderFoundation } from './foundation';
 import { Thumb, TickMark } from './types';
@@ -60,17 +62,24 @@ var MDCSlider = /** @class */ (function (_super) {
                 _this.getThumbEl(thumb).classList.remove(className);
             },
             getAttribute: function (attribute) { return _this.root.getAttribute(attribute); },
-            getThumbAttribute: function (attribute, thumb) {
-                return _this.getThumbEl(thumb).getAttribute(attribute);
+            getInputValue: function (thumb) { return _this.getInput(thumb).value; },
+            setInputValue: function (value, thumb) {
+                _this.getInput(thumb).value = value;
             },
-            setThumbAttribute: function (attribute, value, thumb) {
-                _this.getThumbEl(thumb).setAttribute(attribute, value);
+            getInputAttribute: function (attribute, thumb) {
+                return _this.getInput(thumb).getAttribute(attribute);
             },
-            isThumbFocused: function (thumb) {
-                return _this.getThumbEl(thumb) === document.activeElement;
+            setInputAttribute: function (attribute, value, thumb) {
+                _this.getInput(thumb).setAttribute(attribute, value);
             },
-            focusThumb: function (thumb) {
-                _this.getThumbEl(thumb).focus();
+            removeInputAttribute: function (attribute, thumb) {
+                _this.getInput(thumb).removeAttribute(attribute);
+            },
+            focusInput: function (thumb) {
+                _this.getInput(thumb).focus();
+            },
+            isInputFocused: function (thumb) {
+                return _this.getInput(thumb) === document.activeElement;
             },
             getThumbKnobWidth: function (thumb) {
                 return _this.getThumbEl(thumb)
@@ -125,13 +134,15 @@ var MDCSlider = /** @class */ (function (_super) {
             emitInputEvent: function (value, thumb) {
                 _this.emit(events.INPUT, { value: value, thumb: thumb });
             },
-            emitDragStartEvent: function () {
-                // Not yet implemented. See issue:
+            emitDragStartEvent: function (_, thumb) {
+                // Emitting event is not yet implemented. See issue:
                 // https://github.com/material-components/material-components-web/issues/6448
+                _this.getRipple(thumb).activate();
             },
-            emitDragEndEvent: function () {
-                // Not yet implemented. See issue:
+            emitDragEndEvent: function (_, thumb) {
+                // Emitting event is not yet implemented. See issue:
                 // https://github.com/material-components/material-components-web/issues/6448
+                _this.getRipple(thumb).deactivate();
             },
             registerEventHandler: function (evtType, handler) {
                 _this.listen(evtType, handler);
@@ -144,6 +155,12 @@ var MDCSlider = /** @class */ (function (_super) {
             },
             deregisterThumbEventHandler: function (thumb, evtType, handler) {
                 _this.getThumbEl(thumb).removeEventListener(evtType, handler);
+            },
+            registerInputEventHandler: function (thumb, evtType, handler) {
+                _this.getInput(thumb).addEventListener(evtType, handler);
+            },
+            deregisterInputEventHandler: function (thumb, evtType, handler) {
+                _this.getInput(thumb).removeEventListener(evtType, handler);
             },
             registerBodyEventHandler: function (evtType, handler) {
                 document.body.addEventListener(evtType, handler);
@@ -168,16 +185,18 @@ var MDCSlider = /** @class */ (function (_super) {
      */
     MDCSlider.prototype.initialize = function (_a) {
         var skipInitialUIUpdate = (_a === void 0 ? {} : _a).skipInitialUIUpdate;
+        this.inputs =
+            [].slice.call(this.root.querySelectorAll("." + cssClasses.INPUT));
         this.thumbs =
             [].slice.call(this.root.querySelectorAll("." + cssClasses.THUMB));
         this.trackActive =
             this.root.querySelector("." + cssClasses.TRACK_ACTIVE);
+        this.ripples = this.createRipples();
         if (skipInitialUIUpdate) {
             this.skipInitialUIUpdate = true;
         }
     };
     MDCSlider.prototype.initialSyncWithDOM = function () {
-        this.createRipples();
         this.foundation.layout({ skipUpdateUI: this.skipInitialUIUpdate });
     };
     /** Redraws UI based on DOM (e.g. element dimensions, RTL). */
@@ -215,6 +234,14 @@ var MDCSlider = /** @class */ (function (_super) {
         return thumb === Thumb.END ? this.thumbs[this.thumbs.length - 1] :
             this.thumbs[0];
     };
+    MDCSlider.prototype.getInput = function (thumb) {
+        return thumb === Thumb.END ? this.inputs[this.inputs.length - 1] :
+            this.inputs[0];
+    };
+    MDCSlider.prototype.getRipple = function (thumb) {
+        return thumb === Thumb.END ? this.ripples[this.ripples.length - 1] :
+            this.ripples[0];
+    };
     /** Adds tick mark elements to the given container. */
     MDCSlider.prototype.addTickMarks = function (tickMarkContainer, tickMarks) {
         var fragment = document.createDocumentFragment();
@@ -244,22 +271,33 @@ var MDCSlider = /** @class */ (function (_super) {
     };
     /** Initializes thumb ripples. */
     MDCSlider.prototype.createRipples = function () {
-        var e_1, _a;
+        var ripples = [];
         var rippleSurfaces = [].slice.call(this.root.querySelectorAll("." + cssClasses.THUMB));
-        try {
-            for (var rippleSurfaces_1 = __values(rippleSurfaces), rippleSurfaces_1_1 = rippleSurfaces_1.next(); !rippleSurfaces_1_1.done; rippleSurfaces_1_1 = rippleSurfaces_1.next()) {
-                var rippleSurface = rippleSurfaces_1_1.value;
-                var ripple = new MDCRipple(rippleSurface);
-                ripple.unbounded = true;
-            }
+        var _loop_1 = function (i) {
+            var rippleSurface = rippleSurfaces[i];
+            // Use the corresponding input as the focus source for the ripple (i.e.
+            // when the input is focused, the ripple is in the focused state).
+            var input = this_1.inputs[i];
+            var adapter = __assign(__assign({}, MDCRipple.createAdapter(this_1)), { addClass: function (className) {
+                    rippleSurface.classList.add(className);
+                }, computeBoundingRect: function () { return rippleSurface.getBoundingClientRect(); }, deregisterInteractionHandler: function (evtType, handler) {
+                    input.removeEventListener(evtType, handler);
+                }, isSurfaceActive: function () { return matches(input, ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (evtType, handler) {
+                    input.addEventListener(evtType, handler);
+                }, removeClass: function (className) {
+                    rippleSurface.classList.remove(className);
+                }, updateCssVariable: function (varName, value) {
+                    rippleSurface.style.setProperty(varName, value);
+                } });
+            var ripple = new MDCRipple(rippleSurface, new MDCRippleFoundation(adapter));
+            ripple.unbounded = true;
+            ripples.push(ripple);
+        };
+        var this_1 = this;
+        for (var i = 0; i < rippleSurfaces.length; i++) {
+            _loop_1(i);
         }
-        catch (e_1_1) { e_1 = { error: e_1_1 }; }
-        finally {
-            try {
-                if (rippleSurfaces_1_1 && !rippleSurfaces_1_1.done && (_a = rippleSurfaces_1.return)) _a.call(rippleSurfaces_1);
-            }
-            finally { if (e_1) throw e_1.error; }
-        }
+        return ripples;
     };
     return MDCSlider;
 }(MDCComponent));

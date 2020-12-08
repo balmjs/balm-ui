@@ -46,12 +46,6 @@ workbox.routing.registerRoute(
   })
 );
 
-// Cache Resources from a Specific Subdirectory
-workbox.routing.registerRoute(
-  new RegExp('/docs/'),
-  new workbox.strategies.StaleWhileRevalidate()
-);
-
 // Cache Others
 workbox.routing.registerRoute(
   /\.(?:ico)|json|ttf|woff2?$/,

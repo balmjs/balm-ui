@@ -5,6 +5,7 @@
   $icon-size: 24px,
   $height: 48px,
   $stacked-height: 72px,
+  $min-width: 90px,
   $horizontal-padding: 24px,
   $text-label-opacity: 0.6,
   $icon-opacity: 0.54,

@@ -6,7 +6,7 @@
 
 | Name       | Type    | Default | Description  | Version |
 | ---------- | ------- | ------- | ------------ | ------- |
-| `closable` | boolean | `true`  | 展现关闭按钮 | 9.3.0   |
+| `closable` | boolean | `false` | 展现关闭按钮 | 9.3.0   |
 
 ### Slots
 

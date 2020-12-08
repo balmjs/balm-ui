@@ -9,7 +9,7 @@
 import { onBeforeMount } from 'vue';
 
 function fixedSelectMenuInDialog(parent) {
-  if (parent.default) {
+  if (parent && parent.default) {
     parent.default().filter((child) => {
       if (child.type.name === 'UiSelect') {
         child.type.methods.fixedSelectMenu();

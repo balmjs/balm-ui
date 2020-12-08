@@ -188,6 +188,10 @@ export default {
     withLeadingIcon: {
       type: Boolean,
       default: false
+    },
+    fixed: {
+      type: Boolean,
+      default: false
     }
   },
   emits: [UI_SELECT.EVENT.CHANGE, UI_SELECT.EVENT.SELECTED],
@@ -251,6 +255,9 @@ export default {
     }
   },
   mounted() {
+    // fix(@material-components-web): overflow inside of the custom scrollable component
+    state.fixed = this.fixed;
+
     this.$select = new MDCSelect(this.el);
 
     if (this.helperTextId) {

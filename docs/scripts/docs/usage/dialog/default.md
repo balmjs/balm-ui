@@ -11,6 +11,10 @@ Vue.use(BalmUI, {
   UiDialog: {
     // some props
   },
+  // Optional. Overwrite `<ui-dialog-title>` props with default value.
+  UiDialogTitle: {
+    // some props
+  },
   // Optional. Overwrite `<ui-dialog-actions>` props with default value.
   UiDialogActions: {
     // some props

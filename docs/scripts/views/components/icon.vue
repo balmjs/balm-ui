@@ -83,6 +83,7 @@
             placeholder="Icon name keywords"
             fullwidth
             :source="tags"
+            highlight
             @input="onSearch"
             @selected="onSelected"
           ></ui-autocomplete>

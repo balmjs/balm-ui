@@ -67,12 +67,12 @@ function getConfig(balm) {
           'balm-ui': path.resolve(workspace, 'src/scripts'),
           vue$: 'vue/dist/vue.esm-bundler.js',
           pickerLangZh: 'flatpickr/dist/l10n/zh.js'
-        },
-        // fix(vue@3.0.1+): __VUE_HMR_RUNTIME__ is not defined in development
-        {
-          '@vue/runtime-core':
-            '@vue/runtime-core/dist/runtime-core.esm-bundler.js'
         }
+        // fix(vue@3.0.1+): __VUE_HMR_RUNTIME__ is not defined in development
+        // {
+        //   '@vue/runtime-core':
+        //     '@vue/runtime-core/dist/runtime-core.esm-bundler.js'
+        // }
       ),
       plugins: [
         new VueLoaderPlugin(),

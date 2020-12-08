@@ -3,16 +3,19 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
-## v9.3.0 / 2020-12-01
+## v9.3.0 / 2020-12-08
 
 ### Features
 
 - `<ui-dialog-title>`: add `closable` prop
-- `<ui-autocomplete>`: add `sourceFormat` prop
+- `<ui-autocomplete>`: add `sourceFormat`, `highlight` prop
+- `<ui-select>`: add `fixed` prop for overflow inside of the scrollable component
+- `<ui-pagination>`: add default slot for custom pagesize area
 
 ### Bug Fixes
 
 - `<ui-rangepicker>`: fix second input onChange bug for rangePlugin
+- `<ui-autocomplete>`: optimize and improve search function
 
 ## v9.2.1 / 2020-11-27
 

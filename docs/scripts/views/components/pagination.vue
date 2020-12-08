@@ -33,7 +33,11 @@
           show-total
           :page-size="[10, 25, 100]"
           position="left"
-        ></ui-pagination>
+        >
+          <template #default="{ currentMinRow, currentMaxRow }">
+            {{ currentMinRow }} - {{ currentMaxRow }} / {{ total2 }}
+          </template>
+        </ui-pagination>
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>

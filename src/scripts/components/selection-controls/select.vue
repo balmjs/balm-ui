@@ -89,7 +89,6 @@
 </template>
 
 <script>
-import { reactive } from 'vue';
 import { MDCSelect } from '../../../material-components-web/select';
 import { strings } from '../../../material-components-web/select/constants';
 import MdcFloatingLabel from '../form-controls/mdc-floating-label';
@@ -118,10 +117,6 @@ const UI_SELECT = {
   },
   DEFAULT_SELECTED_INDEX: -1
 };
-
-const state = reactive({
-  fixed: false // fix(@material-components-web): overflow inside of dialog
-});
 
 export default {
   name: 'UiSelect',
@@ -200,7 +195,8 @@ export default {
       UI_SELECT,
       $select: null,
       currentOptions: [],
-      selectedValue: this.modelValue
+      selectedValue: this.modelValue,
+      selectMenuFixed: this.fixed
     };
   },
   computed: {
@@ -232,15 +228,13 @@ export default {
         'mdc-menu-surface',
         {
           'mdc-menu-surface--fullwidth': this.fullwidth,
-          'mdc-menu-surface--fixed': state.fixed
+          'mdc-menu-surface--fixed': this.selectMenuFixed
         }
       ];
     },
     style() {
-      return this.el && state.fixed
-        ? {
-            width: this.el.dataset.width || 'auto'
-          }
+      return this.el && this.selectMenuFixed
+        ? { width: this.el.dataset.width || 'auto' }
         : {};
     }
   },
@@ -255,10 +249,8 @@ export default {
     }
   },
   beforeMount() {
-    // fix(@material-components-web): overflow inside of the scrollable component
-    if (this.fixed) {
-      state.fixed = this.fixed;
-    }
+    // fix(@material-components-web): overflow inside of the component
+    this.selectMenuFixed = this.fixed;
   },
   mounted() {
     this.$select = new MDCSelect(this.el);
@@ -340,9 +332,6 @@ export default {
         value: selected[this.optionValue],
         label: selected[this.optionLabel]
       };
-    },
-    fixedSelectMenu() {
-      state.fixed = true;
     }
   }
 };

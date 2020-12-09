@@ -8,6 +8,7 @@
       :aria-disabled="disabled"
       :aria-controls="helperTextId"
       :aria-describedby="helperTextId"
+      :style="style"
     >
       <!-- Label -->
       <mdc-notched-outline v-if="isOutlined" :has-label="!noLabel">
@@ -58,7 +59,7 @@
       <mdc-line-ripple v-if="!isOutlined"></mdc-line-ripple>
     </div>
     <!-- Options -->
-    <div :class="menuClassName">
+    <div :class="menuClassName" :style="style">
       <ul class="mdc-list" role="listbox">
         <li
           v-for="(option, index) in currentOptions"
@@ -182,6 +183,10 @@ export default {
       type: Boolean,
       default: false
     },
+    fixed: {
+      type: Boolean,
+      default: false
+    },
     // For helper text
     helperTextId: {
       type: [String, null],
@@ -194,7 +199,8 @@ export default {
       UI_SELECT,
       $select: null,
       currentOptions: [],
-      selectedValue: this.model
+      selectedValue: this.model,
+      selectMenuFixed: this.fixed
     };
   },
   computed: {
@@ -225,9 +231,15 @@ export default {
         'mdc-menu',
         'mdc-menu-surface',
         {
-          'mdc-menu-surface--fullwidth': this.fullwidth
+          'mdc-menu-surface--fullwidth': this.fullwidth,
+          'mdc-menu-surface--fixed': this.selectMenuFixed
         }
       ];
+    },
+    style() {
+      return this.$attrs && this.selectMenuFixed
+        ? { width: this.$attrs['data-width'] || 'auto' }
+        : {};
     }
   },
   watch: {
@@ -239,6 +251,10 @@ export default {
     options(val) {
       this.init(val);
     }
+  },
+  beforeMount() {
+    // fix(@material-components-web): overflow inside of the component
+    this.selectMenuFixed = this.fixed;
   },
   mounted() {
     this.$select = new MDCSelect(this.$el);

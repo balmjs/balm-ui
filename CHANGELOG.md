@@ -2,11 +2,12 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
-## v8.12.0 / 2020-12-08
+## v8.12.0 / 2020-12-09
 
 ### Features
 
 - `<ui-autocomplete>`: add `highlight` prop
+- `<ui-select>`: add `fixed` prop for overflow inside of some component
 
 ### Bug Fixes
 

@@ -3,6 +3,16 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.3.1 / 2020-12-09
+
+### Bug Fixes
+
+- `<ui-select>`: fix select menu fixed bug
+
+### Reverts
+
+- `<ui-dialog-content>`: remove auto fixed internal select
+
 ## v9.3.0 / 2020-12-08
 
 ### Features

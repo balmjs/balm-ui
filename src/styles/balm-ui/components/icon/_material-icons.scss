@@ -5,7 +5,8 @@ $font-styles: (
   ('material-icons', 'Material Icons'),
   ('material-icons-outlined', 'Material Icons Outlined'),
   ('material-icons-round', 'Material Icons Round'),
-  ('material-icons-two-tone', 'Material Icons Two Tone')
+  ('material-icons-two-tone', 'Material Icons Two Tone'),
+  ('material-icons-sharp', 'Material Icons Sharp')
 );
 
 @each $className, $fontFamily in $font-styles {

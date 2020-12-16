@@ -101,12 +101,6 @@ function getConfig(balm) {
           }
         : {}
     },
-    images: {
-      plugins: {
-        jpeg: false,
-        png: false
-      }
-    },
     extras: {
       excludes: ['index.js', 'service-worker.js'],
       includes: ['CNAME', 'material-icons.zip']

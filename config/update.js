@@ -3,13 +3,13 @@ const https = require('https');
 const { src, dest, task, series } = require('gulp');
 const $replace = require('gulp-replace');
 
-// updated: 2020.09.08
+// updated: 2020.12.16
 const LATEST_VERSIONS = {
-  filled: 55,
-  outlined: 27,
-  round: 26,
-  twoTone: 25
-  // sharp: 27 // Flagged: GPL-3.0-only
+  filled: 67,
+  outlined: 35,
+  round: 34,
+  twoTone: 33,
+  sharp: 35
 };
 
 // Update Material Components Web for BalmUI
@@ -135,11 +135,11 @@ const MaterialIconsFonts = [
   {
     style: 'two-tone',
     url: `twotone/v${LATEST_VERSIONS.twoTone}/hESh6WRmNCxEqUmNyh3JDeGxjVVyMg4tHGctNCu0NjbrHg.woff2`
+  },
+  {
+    style: 'sharp',
+    url: `sharp/v${LATEST_VERSIONS.sharp}/oPWQ_lt5nv4pWNJpghLP75WiFR4kLh3kvmvRImcycg.woff2`
   }
-  // {
-  //   style: 'sharp',
-  //   url: `sharp/v${LATEST_VERSIONS.sharp}/oPWQ_lt5nv4pWNJpghLP75WiFR4kLh3kvmvRImcycg.woff2`
-  // }
 ];
 
 function updateMDITask(cb) {

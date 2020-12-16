@@ -26,6 +26,8 @@
 @use './checkbox/mdc-checkbox';
 @use './chips/mdc-chips';
 @use './circular-progress/mdc-circular-progress';
+// Select's styles must be emitted before datatable's due to equal specificity.
+@use './select/mdc-select';
 @use './data-table/mdc-data-table';
 @use './dialog/mdc-dialog';
 @use './drawer/mdc-drawer';
@@ -44,7 +46,6 @@
 @use './notched-outline/mdc-notched-outline';
 @use './radio/mdc-radio';
 @use './ripple/mdc-ripple';
-@use './select/mdc-select';
 @use './segmented-button/styles' as segmented-button-styles;
 @use './slider/styles' as slider-styles;
 @use './snackbar/mdc-snackbar';

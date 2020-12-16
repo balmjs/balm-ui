@@ -41,6 +41,8 @@ var numbers = {
     MAX_WIDTH: 200,
 };
 var attributes = {
+    ARIA_EXPANDED: 'aria-expanded',
+    ARIA_HASPOPUP: 'aria-haspopup',
     PERSISTENT: 'data-mdc-tooltip-persistent',
 };
 var events = {

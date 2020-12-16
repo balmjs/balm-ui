@@ -32,17 +32,20 @@ var MDCTooltip = /** @class */ (function (_super) {
     MDCTooltip.attachTo = function (root) {
         return new MDCTooltip(root);
     };
-    MDCTooltip.prototype.initialSyncWithDOM = function () {
-        var _this = this;
+    MDCTooltip.prototype.initialize = function () {
         var tooltipId = this.root.getAttribute('id');
         if (!tooltipId) {
             throw new Error('MDCTooltip: Tooltip component must have an id.');
         }
-        this.anchorElem = document.querySelector("[aria-describedby=\"" + tooltipId + "\"]") ||
+        var anchorElem = document.querySelector("[aria-describedby=\"" + tooltipId + "\"]") ||
             document.querySelector("[data-tooltip-id=\"" + tooltipId + "\"]");
-        if (!this.anchorElem) {
+        if (!anchorElem) {
             throw new Error('MDCTooltip: Tooltip component requires an anchor element annotated with [aria-describedby] or [data-tooltip-id] anchor element.');
         }
+        this.anchorElem = anchorElem;
+    };
+    MDCTooltip.prototype.initialSyncWithDOM = function () {
+        var _this = this;
         this.isTooltipRich = this.foundation.getIsRich();
         this.isTooltipPersistent = this.foundation.getIsPersistent();
         this.handleMouseEnter = function () {
@@ -54,8 +57,8 @@ var MDCTooltip = /** @class */ (function (_super) {
         this.handleMouseLeave = function () {
             _this.foundation.handleAnchorMouseLeave();
         };
-        this.handleBlur = function () {
-            _this.foundation.handleAnchorBlur();
+        this.handleBlur = function (evt) {
+            _this.foundation.handleAnchorBlur(evt);
         };
         this.handleTransitionEnd = function () {
             _this.foundation.handleTransitionEnd();
@@ -63,6 +66,7 @@ var MDCTooltip = /** @class */ (function (_super) {
         this.handleClick = function () {
             _this.foundation.handleAnchorClick();
         };
+        this.anchorElem.addEventListener('blur', this.handleBlur);
         if (this.isTooltipRich && this.isTooltipPersistent) {
             this.anchorElem.addEventListener('click', this.handleClick);
         }
@@ -71,12 +75,12 @@ var MDCTooltip = /** @class */ (function (_super) {
             // TODO(b/157075286): Listening for a 'focus' event is too broad.
             this.anchorElem.addEventListener('focus', this.handleFocus);
             this.anchorElem.addEventListener('mouseleave', this.handleMouseLeave);
-            this.anchorElem.addEventListener('blur', this.handleBlur);
         }
         this.listen('transitionend', this.handleTransitionEnd);
     };
     MDCTooltip.prototype.destroy = function () {
         if (this.anchorElem) {
+            this.anchorElem.removeEventListener('blur', this.handleBlur);
             if (this.isTooltipRich && this.isTooltipPersistent) {
                 this.anchorElem.removeEventListener('click', this.handleClick);
             }
@@ -84,7 +88,6 @@ var MDCTooltip = /** @class */ (function (_super) {
                 this.anchorElem.removeEventListener('mouseenter', this.handleMouseEnter);
                 this.anchorElem.removeEventListener('focus', this.handleFocus);
                 this.anchorElem.removeEventListener('mouseleave', this.handleMouseLeave);
-                this.anchorElem.removeEventListener('blur', this.handleBlur);
             }
         }
         this.unlisten('transitionend', this.handleTransitionEnd);
@@ -133,8 +136,11 @@ var MDCTooltip = /** @class */ (function (_super) {
             },
             isRTL: function () { return getComputedStyle(_this.root).direction === 'rtl'; },
             anchorContainsElement: function (element) {
-                var hasAnchorElem = Boolean(_this.anchorElem);
-                return hasAnchorElem && _this.anchorElem.contains(element);
+                var _a;
+                return !!((_a = _this.anchorElem) === null || _a === void 0 ? void 0 : _a.contains(element));
+            },
+            tooltipContainsElement: function (element) {
+                return _this.root.contains(element);
             },
             registerEventHandler: function (evt, handler) {
                 if (_this.root instanceof HTMLElement) {

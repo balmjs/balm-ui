@@ -101,6 +101,8 @@ var MDCLinearProgressFoundation = /** @class */ (function (_super) {
         if (this.isDeterminate) {
             this.adapter.removeClass(cssClasses.INDETERMINATE_CLASS);
             this.adapter.setAttribute(strings.ARIA_VALUENOW, this.progress.toString());
+            this.adapter.setAttribute(strings.ARIA_VALUEMAX, '1');
+            this.adapter.setAttribute(strings.ARIA_VALUEMIN, '0');
             this.setPrimaryBarProgress(this.progress);
             this.setBufferBarProgress(this.buffer);
             return;
@@ -120,6 +122,8 @@ var MDCLinearProgressFoundation = /** @class */ (function (_super) {
         }
         this.adapter.addClass(cssClasses.INDETERMINATE_CLASS);
         this.adapter.removeAttribute(strings.ARIA_VALUENOW);
+        this.adapter.removeAttribute(strings.ARIA_VALUEMAX);
+        this.adapter.removeAttribute(strings.ARIA_VALUEMIN);
         this.setPrimaryBarProgress(1);
         this.setBufferBarProgress(1);
     };

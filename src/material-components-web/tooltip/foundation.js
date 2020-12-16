@@ -59,6 +59,9 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         _this.richTooltipMouseLeaveHandler = function () {
             _this.handleRichTooltipMouseLeave();
         };
+        _this.richTooltipFocusOutHandler = function (evt) {
+            _this.handleRichTooltipFocusOut(evt);
+        };
         _this.windowScrollHandler = function () {
             _this.handleWindowChangeEvent();
         };
@@ -86,6 +89,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                 setAnchorAttribute: function () { return null; },
                 isRTL: function () { return false; },
                 anchorContainsElement: function () { return false; },
+                tooltipContainsElement: function () { return false; },
                 registerEventHandler: function () { return undefined; },
                 deregisterEventHandler: function () { return undefined; },
                 registerDocumentEventHandler: function () { return undefined; },
@@ -102,6 +106,9 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         this.isRich = this.adapter.hasClass(RICH);
         this.isPersistent =
             this.adapter.getAttribute(attributes.PERSISTENT) === 'true';
+        this.isInteractive =
+            !!this.adapter.getAnchorAttribute(attributes.ARIA_EXPANDED) &&
+                this.adapter.getAnchorAttribute(attributes.ARIA_HASPOPUP) === 'true';
     };
     MDCTooltipFoundation.prototype.getIsRich = function () {
         return this.isRich;
@@ -140,7 +147,15 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             _this.hide();
         }, this.hideDelayMs);
     };
-    MDCTooltipFoundation.prototype.handleAnchorBlur = function () {
+    MDCTooltipFoundation.prototype.handleAnchorBlur = function (evt) {
+        if (this.isRich) {
+            var tooltipContainsRelatedTargetElement = evt.relatedTarget instanceof HTMLElement &&
+                this.adapter.tooltipContainsElement(evt.relatedTarget);
+            // If focus changed to the tooltip element, don't hide the tooltip.
+            if (tooltipContainsRelatedTargetElement) {
+                return;
+            }
+        }
         // Hide tooltip immediately on focus change.
         this.hide();
     };
@@ -183,6 +198,17 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             _this.hide();
         }, this.hideDelayMs);
     };
+    MDCTooltipFoundation.prototype.handleRichTooltipFocusOut = function (evt) {
+        var anchorOrTooltipContainsRelatedTargetElement = evt.relatedTarget instanceof HTMLElement &&
+            (this.adapter.anchorContainsElement(evt.relatedTarget) ||
+                this.adapter.tooltipContainsElement(evt.relatedTarget));
+        // If the focus is still within the anchor or the tooltip, do not hide the
+        // tooltip.
+        if (anchorOrTooltipContainsRelatedTargetElement) {
+            return;
+        }
+        this.hide();
+    };
     /**
      * On window resize or scroll, check the anchor position and size and
      * repostion tooltip if necessary.
@@ -209,7 +235,10 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             this.adapter.setAttribute('aria-hidden', 'false');
         }
         if (this.isRich) {
-            this.adapter.setAnchorAttribute('aria-expanded', 'true');
+            if (this.isInteractive) {
+                this.adapter.setAnchorAttribute('aria-expanded', 'true');
+            }
+            this.adapter.registerEventHandler('focusout', this.richTooltipFocusOutHandler);
             if (!this.isPersistent) {
                 this.adapter.registerEventHandler('mouseenter', this.richTooltipMouseEnterHandler);
                 this.adapter.registerEventHandler('mouseleave', this.richTooltipMouseLeaveHandler);
@@ -243,8 +272,11 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         }
         this.isShown = false;
         this.adapter.setAttribute('aria-hidden', 'true');
+        this.adapter.deregisterEventHandler('focusout', this.richTooltipFocusOutHandler);
         if (this.isRich) {
-            this.adapter.setAnchorAttribute('aria-expanded', 'false');
+            if (this.isInteractive) {
+                this.adapter.setAnchorAttribute('aria-expanded', 'false');
+            }
             if (!this.isPersistent) {
                 this.adapter.deregisterEventHandler('mouseenter', this.richTooltipMouseEnterHandler);
                 this.adapter.deregisterEventHandler('mouseleave', this.richTooltipMouseLeaveHandler);
@@ -523,9 +555,12 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         this.adapter.removeClass(SHOWING);
         this.adapter.removeClass(HIDE);
         this.adapter.removeClass(HIDE_TRANSITION);
-        if (this.isRich && !this.isPersistent) {
-            this.adapter.deregisterEventHandler('mouseenter', this.richTooltipMouseEnterHandler);
-            this.adapter.deregisterEventHandler('mouseleave', this.richTooltipMouseLeaveHandler);
+        if (this.isRich) {
+            this.adapter.deregisterEventHandler('focusout', this.richTooltipFocusOutHandler);
+            if (!this.isPersistent) {
+                this.adapter.deregisterEventHandler('mouseenter', this.richTooltipMouseEnterHandler);
+                this.adapter.deregisterEventHandler('mouseleave', this.richTooltipMouseLeaveHandler);
+            }
         }
         this.adapter.deregisterDocumentEventHandler('click', this.documentClickHandler);
         this.adapter.deregisterDocumentEventHandler('keydown', this.documentKeydownHandler);

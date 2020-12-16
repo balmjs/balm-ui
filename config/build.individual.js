@@ -86,9 +86,7 @@ function buildIndividual(mix) {
 
       mix.webpack(jsInput, jsOutput, {
         output:
-          buildName === 'plugins' ||
-          (buildName === 'utils' && item !== 'ie') ||
-          (buildName === 'components' && item !== 'editor')
+          buildName === 'plugins' || (buildName === 'utils' && item !== 'ie')
             ? {
                 library
               }

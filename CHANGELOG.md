@@ -2,6 +2,16 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.13.0 / 2020-12-16
+
+### Features
+
+- update material-icons v67
+
+### Reverts
+
+- restore sharp theme icons
+
 ## v8.12.0 / 2020-12-09
 
 ### Features

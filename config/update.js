@@ -9,7 +9,7 @@ const LATEST_VERSIONS = {
   outlined: 35,
   round: 34,
   twoTone: 33,
-  sharp: 35 // Flagged: GPL-3.0-only
+  sharp: 35
 };
 
 // Update Material Components Web for BalmUI

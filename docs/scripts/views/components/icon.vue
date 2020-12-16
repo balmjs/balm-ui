@@ -159,12 +159,11 @@ const TypeOptions = [
   {
     label: 'Two-Tone',
     value: 3
+  },
+  {
+    label: 'Sharp',
+    value: 4
   }
-  // Flagged: GPL-3.0-only
-  // {
-  //   label: 'Sharp',
-  //   value: 4
-  // }
 ];
 
 const state = reactive({

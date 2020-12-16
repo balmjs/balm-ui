@@ -2247,22 +2247,22 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
 
-balm@^3.9.2:
-  version "3.9.2"
-  resolved "https://registry.yarnpkg.com/balm/-/balm-3.9.2.tgz#f54e74e248b27ad27a5a328a4a6647f0a7e8dd4e"
-  integrity sha512-dr3HAhMXU4YnZVcws3SkEkAJTY0mtj+jYgT0sRaV90UmoX+6/peQjkHqW1ORtU0USsSUdXeGrriZr3j+EOcIug==
+balm@^3.9.3:
+  version "3.9.3"
+  resolved "https://registry.yarnpkg.com/balm/-/balm-3.9.3.tgz#d156bc04a88846f3c4f09237e1255245a9977128"
+  integrity sha512-2EQq1WmWFI0hX4PBBlTj8LPp/9PaXzVTnTfWRP3FqFdevNYruMvhkKUlLF+xrxyhnA5zoNVg8RE261xZgQ2l/A==
   dependencies:
     "@babel/core" "^7.12.0"
     "@babel/plugin-transform-runtime" "^7.12.0"
     "@babel/preset-env" "^7.12.0"
     "@babel/runtime" "^7.12.0"
     ansi-colors "^4.1.1"
-    global-dirs "^2.0.1"
+    global-dirs "^2.1.0"
     gulp "^4.0.2"
     semver "^7.3.4"
     webpack-hot-middleware "^2.25.0"
     workbox-sw "^6.0.2"
-    yargs "^16.1.1"
+    yargs "^16.2.0"
 
 base64-arraybuffer@0.1.4:
   version "0.1.4"
@@ -3728,10 +3728,10 @@ eslint-config-prettier@^7.0.0:
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-7.0.0.tgz#c1ae4106f74e6c0357f44adb076771d032ac0e97"
   integrity sha512-8Y8lGLVPPZdaNA7JXqnvETVC7IiVRgAP6afQu9gOQRn90YY3otMNh+x7Vr2vMePQntF+5erdSUBqSzCmU/AxaQ==
 
-eslint-plugin-prettier@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-3.2.0.tgz#af391b2226fa0e15c96f36c733f6e9035dbd952c"
-  integrity sha512-kOUSJnFjAUFKwVxuzy6sA5yyMx6+o9ino4gCdShzBNx4eyFRudWRYKCFolKjoM40PEiuU6Cn7wBLfq3WsGg7qg==
+eslint-plugin-prettier@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-3.3.0.tgz#61e295349a65688ffac0b7808ef0a8244bdd8d40"
+  integrity sha512-tMTwO8iUWlSRZIwS9k7/E4vrTsfvsrcM5p1eftyuqWH25nKsz/o6/54I7jwQ/3zobISyC7wMy9ZsFwgTxOcOpQ==
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
@@ -4433,12 +4433,12 @@ glob@7.1.6, glob@^7.1.1, glob@^7.1.3, glob@^7.1.4, glob@^7.1.6:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-global-dirs@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/global-dirs/-/global-dirs-2.0.1.tgz#acdf3bb6685bcd55cb35e8a052266569e9469201"
-  integrity sha512-5HqUqdhkEovj2Of/ms3IeS/EekcO54ytHRLV4PEY2rhRwrHXLQjeVEES0Lhka0xwNDtGYn58wyC4s5+MHsOO6A==
+global-dirs@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/global-dirs/-/global-dirs-2.1.0.tgz#e9046a49c806ff04d6c1825e196c8f0091e8df4d"
+  integrity sha512-MG6kdOUh/xBnyo9cJFeIKkLEc1AyFq42QTU4XiX51i2NEdxLxLWXIjEjmqKeSuKR7pAZjTqUVoT2b2huxVLgYQ==
   dependencies:
-    ini "^1.3.5"
+    ini "1.3.7"
 
 global-modules@^1.0.0:
   version "1.0.0"
@@ -4861,7 +4861,12 @@ inherits@2.0.3:
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
   integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
 
-ini@^1.3.4, ini@^1.3.5:
+ini@1.3.7:
+  version "1.3.7"
+  resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.7.tgz#a09363e1911972ea16d7a8851005d84cf09a9a84"
+  integrity sha512-iKpRpXP+CrP2jyrxvg1kMUpXDyRUFDWurxbnVT1vQPx+Wz9uCYsMIqYuSBLV+PAaZG/d7kRLKRFc9oDMsH+mFQ==
+
+ini@^1.3.4:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.5.tgz#eee25f56db1c9ec6085e0c22778083f596abf927"
   integrity sha512-RZY5huIKCMRWDUqZlEi72f/lmXKMvuszcMBduliQ3nnWbx9X/ZBQO7DijMEYS9EhHBb2qacRUMtC7svLwe0lcw==
@@ -6017,7 +6022,7 @@ mocha@^8.2.0:
     yargs-parser "13.1.2"
     yargs-unparser "2.0.0"
 
-mochapack@^2.0.6:
+mochapack@^2.0.0:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/mochapack/-/mochapack-2.0.6.tgz#79bee97a3d300c890816ce6cf374c5fb5053dec0"
   integrity sha512-6ijz1pJlSnzuy0PXEZKhO2QRrZ1RSI8ZEQ2Rk9jvGAm7dyXXrYcyd8hMmrBXSJSLnZqRuKV0e1SAYQJxYSlfEg==
@@ -8949,7 +8954,7 @@ yargs@^15.0.2, yargs@^15.3.1:
     y18n "^4.0.0"
     yargs-parser "^18.1.2"
 
-yargs@^16.1.1:
+yargs@^16.2.0:
   version "16.2.0"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-16.2.0.tgz#1c82bf0f6b6a66eafce7ef30e376f49a12477f66"
   integrity sha512-D1mvvtDG0L5ft/jGWkLpG1+m0eQxOfaBvTNELraWj22wSVUMWxZUvYgJYcKh6jGGIkJFhH4IZPQhR4TKpc8mBw==

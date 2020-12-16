@@ -21,6 +21,7 @@
 - `<ui-autocomplete>`: add `sourceFormat`, `highlight` prop
 - `<ui-select>`: add `fixed` prop for overflow inside of the scrollable component
 - `<ui-pagination>`: add default slot for custom pagesize area
+- update `mdc@9.0.0-canary.832668d33.0`
 
 ### Bug Fixes
 

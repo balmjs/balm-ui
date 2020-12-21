@@ -23,8 +23,12 @@ a {
 }
 
 .balmui-head {
-  .github > span {
-    display: none;
+  .github {
+    line-height: 1; // fix(ie11): css bug
+
+    & > span {
+      display: none;
+    }
   }
 }
 

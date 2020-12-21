@@ -4,8 +4,10 @@ const UI_FILE = {
     NOT_PREVIEWABLE: 2 // 当前浏览器不支持本地预览
   },
   tmpFileId() {
+    const cryptoObj = window.crypto || window.msCrypto; // for IE 11
+
     let arr = new Uint32Array(8);
-    window.crypto.getRandomValues(arr);
+    cryptoObj.getRandomValues(arr);
 
     let result = '';
     for (let i = 0, len = arr.length; i < len; i++) {

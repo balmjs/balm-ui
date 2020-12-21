@@ -3,6 +3,12 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.4.1 / 2020-12-21
+
+### Bug Fixes
+
+- `<ui-file>`: fix tmpId compatibility bug for IE 11
+
 ## v9.4.0 / 2020-12-16
 
 ### Features

@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.13.1 / 2020-12-21
+
+### Bug Fixes
+
+- `<ui-file>`: fix tmpId compatibility bug for IE 11
+
 ## v8.13.0 / 2020-12-16
 
 ### Features

@@ -62,7 +62,7 @@
                 <template v-for="(item, index) in menu" :key="`item${index}`">
                   <router-link
                     v-if="item.url || item.isSubmenu"
-                    v-slot="{ href, isActive }"
+                    v-slot="{ href, navigate, isActive }"
                     custom
                     :to="{ name: item.url }"
                   >
@@ -73,7 +73,7 @@
                         submenu: item.isSubmenu,
                         'no-icon': !item.icon
                       }"
-                      @click="handleMenu"
+                      @click="handleMenu($event, navigate)"
                     >
                       <template #before="{ iconClass }">
                         <ui-icon
@@ -288,11 +288,13 @@ export default {
     };
   },
   methods: {
-    handleMenu() {
+    handleMenu(event, navigate) {
       this.openDrawer = false;
       if (window.innerWidth < $MIN_WIDTH) {
         state.isWideScreen = false;
       }
+
+      navigate(event);
     }
   }
 };

@@ -46,6 +46,8 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         _this.useDefaultValidation = true;
         _this.customValidity = true;
         _this.lastSelectedIndex = numbers.UNSET_INDEX;
+        _this.clickDebounceTimeout = 0;
+        _this.recentlyClicked = false;
         _this.leadingIcon = foundationMap.leadingIcon;
         _this.helperText = foundationMap.helperText;
         return _this;
@@ -268,9 +270,10 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         this.blur();
     };
     MDCSelectFoundation.prototype.handleClick = function (normalizedX) {
-        if (this.disabled) {
+        if (this.disabled || this.recentlyClicked) {
             return;
         }
+        this.setClickDebounceTimeout();
         if (this.isMenuOpen) {
             this.adapter.closeMenu();
             return;
@@ -429,6 +432,14 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
             // `aria-describedby` even if they are `aria-hidden`.
             this.adapter.removeSelectAnchorAttr(strings.ARIA_DESCRIBEDBY);
         }
+    };
+    MDCSelectFoundation.prototype.setClickDebounceTimeout = function () {
+        var _this = this;
+        clearTimeout(this.clickDebounceTimeout);
+        this.clickDebounceTimeout = setTimeout(function () {
+            _this.recentlyClicked = false;
+        }, numbers.CLICK_DEBOUNCE_TIMEOUT_MS);
+        this.recentlyClicked = true;
     };
     return MDCSelectFoundation;
 }(MDCFoundation));

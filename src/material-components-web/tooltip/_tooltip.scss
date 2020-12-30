@@ -24,6 +24,7 @@
 // stylelint-disable selector-class-pattern
 
 @use '../animation/functions' as animation-functions;
+@use '../elevation/mixins' as elevation-mixins;
 @use '../feature-targeting/feature-targeting';
 @use '../rtl/rtl' as rtl;
 @use './tooltip-theme';
@@ -39,6 +40,14 @@ $_min-height: 24px;
 // LINT.ThenChange(constants.ts:tooltip-dimensions)
 $_label-type-scale: caption;
 $_line-height: 16px;
+
+// Rich Tooltip variables
+$_rich_corner_radius: 8px;
+$_rich_max-width: 320px;
+$_rich_padding: 8px;
+$_content-margin-x: 8px;
+$_content-type-scale: body1;
+$_title-type-scale: subtitle2;
 
 $enter-duration: 150ms;
 $exit-duration: 75ms;
@@ -79,6 +88,29 @@ $exit-duration: 75ms;
     @include feature-targeting.targets($feat-structure) {
       display: inline-flex;
     }
+
+    &.mdc-tooltip--rich {
+      @include elevation-mixins.elevation(2, $query: $query);
+      @include tooltip-theme.fill-color(
+        tooltip-theme.$rich-background-color,
+        $query: $query
+      );
+      @include tooltip-theme.rich-text-ink-color(
+        tooltip-theme.$rich-title-text-color,
+        tooltip-theme.$rich-content-text-color,
+        tooltip-theme.$rich-content-link-color,
+        $query: $query
+      );
+      @include feature-targeting.targets($feat-structure) {
+        display: inline-block;
+        border-radius: $_rich_corner_radius;
+        // Moves the rich tooltip out of the viewport/parent element initially
+        // so that the initial width is not affected and a 'correct' width can
+        // be used to calculate the position of the tooltip.
+        left: -$_rich_max_width;
+        padding: $_rich_padding $_rich_padding;
+      }
+    }
   }
 
   .mdc-tooltip__surface {
@@ -101,6 +133,17 @@ $exit-duration: 75ms;
       text-align: center;
       opacity: 0;
       outline: 1px solid transparent;
+    }
+
+    .mdc-tooltip--rich & {
+      @include feature-targeting.targets($feat-structure) {
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        min-height: $_min-height;
+        min-width: $_min-width;
+        max-width: $_rich_max-width;
+      }
     }
 
     .mdc-tooltip--multiline & {
@@ -137,6 +180,36 @@ $exit-duration: 75ms;
     .mdc-tooltip--hide-transition & {
       @include feature-targeting.targets($feat-animation) {
         transition: animation-functions.exit-permanent(opacity, $exit-duration);
+      }
+    }
+
+    .mdc-tooltip__title {
+      @include typography.text-baseline($top: 20px, $query: $query);
+      @include typography.typography(
+        $_title-type-scale,
+        $exclude-props: (line-height),
+        $query: $query
+      );
+      @include feature-targeting.targets($feat-structure) {
+        margin: 0 $_content-margin-x;
+      }
+    }
+
+    .mdc-tooltip__content {
+      @include typography.text-baseline($top: 24px, $query: $query);
+      @include typography.typography(
+        $_content-type-scale,
+        $exclude-props: (line-height),
+        $query: $query
+      );
+      @include feature-targeting.targets($feat-structure) {
+        margin: 0 $_content-margin-x 16px $_content-margin-x;
+      }
+    }
+
+    .mdc-tooltip__content-link {
+      @include feature-targeting.targets($feat-structure) {
+        text-decoration: none;
       }
     }
   }

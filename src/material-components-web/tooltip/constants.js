@@ -22,6 +22,7 @@
  */
 var CssClasses;
 (function (CssClasses) {
+    CssClasses["RICH"] = "mdc-tooltip--rich";
     CssClasses["SHOWN"] = "mdc-tooltip--shown";
     CssClasses["SHOWING"] = "mdc-tooltip--showing";
     CssClasses["SHOWING_TRANSITION"] = "mdc-tooltip--showing-transition";
@@ -32,12 +33,17 @@ var CssClasses;
 var numbers = {
     BOUNDED_ANCHOR_GAP: 4,
     UNBOUNDED_ANCHOR_GAP: 8,
-    MIN_VIEWPORT_TOOLTIP_THRESHOLD: 32,
+    MIN_VIEWPORT_TOOLTIP_THRESHOLD: 8,
     HIDE_DELAY_MS: 600,
     SHOW_DELAY_MS: 500,
     // LINT.IfChange(tooltip-dimensions)
     MIN_HEIGHT: 24,
     MAX_WIDTH: 200,
+};
+var attributes = {
+    ARIA_EXPANDED: 'aria-expanded',
+    ARIA_HASPOPUP: 'aria-haspopup',
+    PERSISTENT: 'data-mdc-tooltip-persistent',
 };
 var events = {
     HIDDEN: 'MDCTooltip:hidden',
@@ -47,6 +53,7 @@ var XPosition;
 (function (XPosition) {
     XPosition[XPosition["DETECTED"] = 0] = "DETECTED";
     XPosition[XPosition["START"] = 1] = "START";
+    // Note: CENTER is not valid for rich tooltips.
     XPosition[XPosition["CENTER"] = 2] = "CENTER";
     XPosition[XPosition["END"] = 3] = "END";
 })(XPosition || (XPosition = {}));
@@ -67,5 +74,5 @@ var AnchorBoundaryType;
     AnchorBoundaryType[AnchorBoundaryType["BOUNDED"] = 0] = "BOUNDED";
     AnchorBoundaryType[AnchorBoundaryType["UNBOUNDED"] = 1] = "UNBOUNDED";
 })(AnchorBoundaryType || (AnchorBoundaryType = {}));
-export { CssClasses, numbers, events, XPosition, AnchorBoundaryType, YPosition };
+export { CssClasses, numbers, attributes, events, XPosition, AnchorBoundaryType, YPosition };
 //# sourceMappingURL=constants.js.map

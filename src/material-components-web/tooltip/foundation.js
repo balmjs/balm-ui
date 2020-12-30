@@ -20,11 +20,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { __assign, __extends } from "tslib";
+import { __assign, __extends, __values } from "tslib";
+import { AnimationFrame } from '../animation/animationframe';
 import { MDCFoundation } from '../base/foundation';
 import { KEY, normalizeKey } from '../dom/keyboard';
-import { AnchorBoundaryType, CssClasses, numbers, XPosition, YPosition } from './constants';
-var SHOWN = CssClasses.SHOWN, SHOWING = CssClasses.SHOWING, SHOWING_TRANSITION = CssClasses.SHOWING_TRANSITION, HIDE = CssClasses.HIDE, HIDE_TRANSITION = CssClasses.HIDE_TRANSITION, MULTILINE_TOOLTIP = CssClasses.MULTILINE_TOOLTIP;
+import { AnchorBoundaryType, attributes, CssClasses, numbers, XPosition, YPosition } from './constants';
+var RICH = CssClasses.RICH, SHOWN = CssClasses.SHOWN, SHOWING = CssClasses.SHOWING, SHOWING_TRANSITION = CssClasses.SHOWING_TRANSITION, HIDE = CssClasses.HIDE, HIDE_TRANSITION = CssClasses.HIDE_TRANSITION, MULTILINE_TOOLTIP = CssClasses.MULTILINE_TOOLTIP;
+var AnimationKeys;
+(function (AnimationKeys) {
+    AnimationKeys["POLL_ANCHOR"] = "poll_anchor";
+})(AnimationKeys || (AnimationKeys = {}));
 var MDCTooltipFoundation = /** @class */ (function (_super) {
     __extends(MDCTooltipFoundation, _super);
     function MDCTooltipFoundation(adapter) {
@@ -37,14 +42,31 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         _this.minViewportTooltipThreshold = numbers.MIN_VIEWPORT_TOOLTIP_THRESHOLD;
         _this.hideDelayMs = numbers.HIDE_DELAY_MS;
         _this.showDelayMs = numbers.SHOW_DELAY_MS;
+        _this.anchorRect = null;
         _this.frameId = null;
         _this.hideTimeout = null;
         _this.showTimeout = null;
-        _this.documentClickHandler = function () {
-            _this.handleClick();
+        _this.animFrame = new AnimationFrame();
+        _this.documentClickHandler = function (evt) {
+            _this.handleDocumentClick(evt);
         };
         _this.documentKeydownHandler = function (evt) {
             _this.handleKeydown(evt);
+        };
+        _this.richTooltipMouseEnterHandler = function () {
+            _this.handleRichTooltipMouseEnter();
+        };
+        _this.richTooltipMouseLeaveHandler = function () {
+            _this.handleRichTooltipMouseLeave();
+        };
+        _this.richTooltipFocusOutHandler = function (evt) {
+            _this.handleRichTooltipFocusOut(evt);
+        };
+        _this.windowScrollHandler = function () {
+            _this.handleWindowChangeEvent();
+        };
+        _this.windowResizeHandler = function () {
+            _this.handleWindowChangeEvent();
         };
         return _this;
     }
@@ -64,15 +86,37 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                     return ({ top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 });
                 },
                 getAnchorAttribute: function () { return null; },
+                setAnchorAttribute: function () { return null; },
                 isRTL: function () { return false; },
+                anchorContainsElement: function () { return false; },
+                tooltipContainsElement: function () { return false; },
+                focusAnchorElement: function () { return undefined; },
+                registerEventHandler: function () { return undefined; },
+                deregisterEventHandler: function () { return undefined; },
                 registerDocumentEventHandler: function () { return undefined; },
                 deregisterDocumentEventHandler: function () { return undefined; },
+                registerWindowEventHandler: function () { return undefined; },
+                deregisterWindowEventHandler: function () { return undefined; },
                 notifyHidden: function () { return undefined; },
             };
         },
         enumerable: true,
         configurable: true
     });
+    MDCTooltipFoundation.prototype.init = function () {
+        this.isRich = this.adapter.hasClass(RICH);
+        this.isPersistent =
+            this.adapter.getAttribute(attributes.PERSISTENT) === 'true';
+        this.isInteractive =
+            !!this.adapter.getAnchorAttribute(attributes.ARIA_EXPANDED) &&
+                this.adapter.getAnchorAttribute(attributes.ARIA_HASPOPUP) === 'true';
+    };
+    MDCTooltipFoundation.prototype.getIsRich = function () {
+        return this.isRich;
+    };
+    MDCTooltipFoundation.prototype.getIsPersistent = function () {
+        return this.isPersistent;
+    };
     MDCTooltipFoundation.prototype.handleAnchorMouseEnter = function () {
         var _this = this;
         if (this.isShown) {
@@ -88,11 +132,20 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             }, this.showDelayMs);
         }
     };
-    MDCTooltipFoundation.prototype.handleAnchorFocus = function () {
+    MDCTooltipFoundation.prototype.handleAnchorFocus = function (evt) {
         var _this = this;
         // TODO(b/157075286): Need to add some way to distinguish keyboard
         // navigation focus events from other focus events, and only show the
         // tooltip on the former of these events.
+        var relatedTarget = evt.relatedTarget;
+        var tooltipContainsRelatedTarget = relatedTarget instanceof HTMLElement &&
+            this.adapter.tooltipContainsElement(relatedTarget);
+        // Do not show tooltip if the previous focus was on a tooltip element. This
+        // occurs when a rich tooltip is closed and focus is restored to the anchor
+        // or when user tab-navigates back into the anchor from the rich tooltip.
+        if (tooltipContainsRelatedTarget) {
+            return;
+        }
         this.showTimeout = setTimeout(function () {
             _this.show();
         }, this.showDelayMs);
@@ -104,11 +157,41 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             _this.hide();
         }, this.hideDelayMs);
     };
-    MDCTooltipFoundation.prototype.handleAnchorBlur = function () {
+    MDCTooltipFoundation.prototype.handleAnchorBlur = function (evt) {
+        if (this.isRich) {
+            var tooltipContainsRelatedTargetElement = evt.relatedTarget instanceof HTMLElement &&
+                this.adapter.tooltipContainsElement(evt.relatedTarget);
+            // If focus changed to the tooltip element, don't hide the tooltip.
+            if (tooltipContainsRelatedTargetElement) {
+                return;
+            }
+        }
         // Hide tooltip immediately on focus change.
         this.hide();
     };
-    MDCTooltipFoundation.prototype.handleClick = function () {
+    MDCTooltipFoundation.prototype.handleAnchorClick = function () {
+        if (this.isShown) {
+            this.hide();
+        }
+        else {
+            this.show();
+        }
+    };
+    MDCTooltipFoundation.prototype.handleDocumentClick = function (evt) {
+        var anchorOrTooltipContainsTargetElement = evt.target instanceof HTMLElement &&
+            (this.adapter.anchorContainsElement(evt.target) ||
+                this.adapter.tooltipContainsElement(evt.target));
+        // For persistent rich tooltips, we will not hide if:
+        // - The click target is within the anchor element. Otherwise, both
+        //   the anchor element's click handler and this handler will handle the
+        //   click (due to event propagation), resulting in a shown tooltip
+        //   being immediately hidden if the tooltip was initially hidden.
+        // - The click target is within the tooltip element, since clicks
+        //   on the tooltip do not close the tooltip.
+        if (this.isRich && this.isPersistent &&
+            anchorOrTooltipContainsTargetElement) {
+            return;
+        }
         // Hide the tooltip immediately on click.
         this.hide();
     };
@@ -116,8 +199,47 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         // Hide the tooltip immediately on ESC key.
         var key = normalizeKey(evt);
         if (key === KEY.ESCAPE) {
+            var tooltipContainsActiveElement = document.activeElement instanceof HTMLElement &&
+                this.adapter.tooltipContainsElement(document.activeElement);
+            if (tooltipContainsActiveElement) {
+                this.adapter.focusAnchorElement();
+            }
             this.hide();
         }
+    };
+    MDCTooltipFoundation.prototype.handleRichTooltipMouseEnter = function () {
+        this.show();
+    };
+    MDCTooltipFoundation.prototype.handleRichTooltipMouseLeave = function () {
+        var _this = this;
+        this.clearShowTimeout();
+        this.hideTimeout = setTimeout(function () {
+            _this.hide();
+        }, this.hideDelayMs);
+    };
+    MDCTooltipFoundation.prototype.handleRichTooltipFocusOut = function (evt) {
+        var anchorOrTooltipContainsRelatedTargetElement = evt.relatedTarget instanceof HTMLElement &&
+            (this.adapter.anchorContainsElement(evt.relatedTarget) ||
+                this.adapter.tooltipContainsElement(evt.relatedTarget));
+        // If the focus is still within the anchor or the tooltip, do not hide the
+        // tooltip.
+        if (anchorOrTooltipContainsRelatedTargetElement) {
+            return;
+        }
+        this.hide();
+    };
+    /**
+     * On window resize or scroll, check the anchor position and size and
+     * repostion tooltip if necessary.
+     */
+    MDCTooltipFoundation.prototype.handleWindowChangeEvent = function () {
+        var _this = this;
+        // Since scroll and resize events can fire at a high rate, we throttle
+        // the potential re-positioning of tooltip component using
+        // requestAnimationFrame.
+        this.animFrame.request(AnimationKeys.POLL_ANCHOR, function () {
+            _this.repositionTooltipOnAnchorMove();
+        });
     };
     MDCTooltipFoundation.prototype.show = function () {
         var _this = this;
@@ -131,16 +253,27 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         if (!showTooltipOptions.hideFromScreenreader) {
             this.adapter.setAttribute('aria-hidden', 'false');
         }
+        if (this.isRich) {
+            if (this.isInteractive) {
+                this.adapter.setAnchorAttribute('aria-expanded', 'true');
+            }
+            this.adapter.registerEventHandler('focusout', this.richTooltipFocusOutHandler);
+            if (!this.isPersistent) {
+                this.adapter.registerEventHandler('mouseenter', this.richTooltipMouseEnterHandler);
+                this.adapter.registerEventHandler('mouseleave', this.richTooltipMouseLeaveHandler);
+            }
+        }
         this.adapter.removeClass(HIDE);
         this.adapter.addClass(SHOWING);
-        if (this.isTooltipMultiline()) {
+        if (this.isTooltipMultiline() && !this.isRich) {
             this.adapter.addClass(MULTILINE_TOOLTIP);
         }
-        var _a = this.calculateTooltipDistance(), top = _a.top, left = _a.left;
-        this.adapter.setStyleProperty('top', top + "px");
-        this.adapter.setStyleProperty('left', left + "px");
+        this.anchorRect = this.adapter.getAnchorBoundingRect();
+        this.positionTooltip();
         this.adapter.registerDocumentEventHandler('click', this.documentClickHandler);
         this.adapter.registerDocumentEventHandler('keydown', this.documentKeydownHandler);
+        this.adapter.registerWindowEventHandler('scroll', this.windowScrollHandler);
+        this.adapter.registerWindowEventHandler('resize', this.windowResizeHandler);
         this.frameId = requestAnimationFrame(function () {
             _this.clearAllAnimationClasses();
             _this.adapter.addClass(SHOWN);
@@ -158,12 +291,24 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         }
         this.isShown = false;
         this.adapter.setAttribute('aria-hidden', 'true');
+        this.adapter.deregisterEventHandler('focusout', this.richTooltipFocusOutHandler);
+        if (this.isRich) {
+            if (this.isInteractive) {
+                this.adapter.setAnchorAttribute('aria-expanded', 'false');
+            }
+            if (!this.isPersistent) {
+                this.adapter.deregisterEventHandler('mouseenter', this.richTooltipMouseEnterHandler);
+                this.adapter.deregisterEventHandler('mouseleave', this.richTooltipMouseLeaveHandler);
+            }
+        }
         this.clearAllAnimationClasses();
         this.adapter.addClass(HIDE);
         this.adapter.addClass(HIDE_TRANSITION);
         this.adapter.removeClass(SHOWN);
         this.adapter.deregisterDocumentEventHandler('click', this.documentClickHandler);
         this.adapter.deregisterDocumentEventHandler('keydown', this.documentKeydownHandler);
+        this.adapter.deregisterWindowEventHandler('scroll', this.windowScrollHandler);
+        this.adapter.deregisterWindowEventHandler('resize', this.windowResizeHandler);
     };
     MDCTooltipFoundation.prototype.handleTransitionEnd = function () {
         var isHidingTooltip = this.adapter.hasClass(HIDE);
@@ -209,6 +354,11 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         return tooltipSize.height > numbers.MIN_HEIGHT &&
             tooltipSize.width >= numbers.MAX_WIDTH;
     };
+    MDCTooltipFoundation.prototype.positionTooltip = function () {
+        var _a = this.calculateTooltipDistance(this.anchorRect), top = _a.top, left = _a.left;
+        this.adapter.setStyleProperty('top', top + "px");
+        this.adapter.setStyleProperty('left', left + "px");
+    };
     /**
      * Calculates the position of the tooltip. A tooltip will be placed beneath
      * the anchor element and aligned either with the 'start'/'end' edge of the
@@ -223,8 +373,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
      * Users can specify an alignment, however, if this alignment results in the
      * tooltip colliding with the viewport, this specification is overwritten.
      */
-    MDCTooltipFoundation.prototype.calculateTooltipDistance = function () {
-        var anchorRect = this.adapter.getAnchorBoundingRect();
+    MDCTooltipFoundation.prototype.calculateTooltipDistance = function (anchorRect) {
         if (!anchorRect) {
             return { top: 0, left: 0 };
         }
@@ -237,14 +386,21 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
      * Calculates the `left` distance for the tooltip.
      */
     MDCTooltipFoundation.prototype.calculateXTooltipDistance = function (anchorRect, tooltipWidth) {
-        var startPos = anchorRect.left;
-        var endPos = anchorRect.right - tooltipWidth;
-        var centerPos = anchorRect.left + (anchorRect.width - tooltipWidth) / 2;
-        if (this.adapter.isRTL()) {
-            startPos = anchorRect.right - tooltipWidth;
-            endPos = anchorRect.left;
+        var isLTR = !this.adapter.isRTL();
+        var startPos, endPos, centerPos;
+        if (this.isRich) {
+            startPos = isLTR ? anchorRect.left - tooltipWidth : anchorRect.right;
+            endPos = isLTR ? anchorRect.right : anchorRect.left - tooltipWidth;
         }
-        var positionOptions = this.determineValidPositionOptions(centerPos, startPos, endPos);
+        else {
+            startPos = isLTR ? anchorRect.left : anchorRect.right - tooltipWidth;
+            endPos = isLTR ? anchorRect.right - tooltipWidth : anchorRect.left;
+            centerPos = anchorRect.left + (anchorRect.width - tooltipWidth) / 2;
+        }
+        var positionOptions = this.isRich ?
+            this.determineValidPositionOptions(startPos, endPos) :
+            // For plain tooltips, centerPos is defined
+            this.determineValidPositionOptions(centerPos, startPos, endPos);
         if (this.xTooltipPos === XPosition.START && positionOptions.has(startPos)) {
             return startPos;
         }
@@ -255,52 +411,62 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             positionOptions.has(centerPos)) {
             return centerPos;
         }
-        if (positionOptions.has(centerPos)) {
-            return centerPos;
-        }
-        if (positionOptions.has(startPos)) {
-            return startPos;
-        }
-        if (positionOptions.has(endPos)) {
-            return endPos;
+        // If no user position is supplied, rich tooltips default to end pos, then
+        // start position. Plain tooltips default to center, start, then end.
+        var possiblePositions = this.isRich ? [endPos, startPos] : [centerPos, startPos, endPos];
+        var validPosition = possiblePositions.find(function (pos) { return positionOptions.has(pos); });
+        if (validPosition) {
+            return validPosition;
         }
         // Indicates that all potential positions would result in the tooltip
         // colliding with the viewport. This would only occur when the anchor
         // element itself collides with the viewport, or the viewport is very
-        // narrow.
-        return centerPos;
+        // narrow. In this case, we allow the tooltip to be mis-aligned from the
+        // anchor element.
+        if (anchorRect.left < 0) {
+            return this.minViewportTooltipThreshold;
+        }
+        else {
+            var viewportWidth = this.adapter.getViewportWidth();
+            return viewportWidth - (tooltipWidth + this.minViewportTooltipThreshold);
+        }
     };
     /**
-     * Given the values for center/start/end alignment of the tooltip, calculates
+     * Given the values for the horizontal alignments of the tooltip, calculates
      * which of these options would result in the tooltip maintaining the required
      * threshold distance vs which would result in the tooltip staying within the
      * viewport.
      *
      * A Set of values is returned holding the distances that would honor the
      * above requirements. Following the logic for determining the tooltip
-     * position, if all three alignments violate the threshold, then the returned
-     * Set contains values that keep the tooltip within the viewport.
+     * position, if all alignments violate the threshold, then the returned Set
+     * contains values that keep the tooltip within the viewport.
      */
-    MDCTooltipFoundation.prototype.determineValidPositionOptions = function (centerPos, startPos, endPos) {
+    MDCTooltipFoundation.prototype.determineValidPositionOptions = function () {
+        var e_1, _a;
+        var positions = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            positions[_i] = arguments[_i];
+        }
         var posWithinThreshold = new Set();
         var posWithinViewport = new Set();
-        if (this.positionHonorsViewportThreshold(centerPos)) {
-            posWithinThreshold.add(centerPos);
+        try {
+            for (var positions_1 = __values(positions), positions_1_1 = positions_1.next(); !positions_1_1.done; positions_1_1 = positions_1.next()) {
+                var position = positions_1_1.value;
+                if (this.positionHonorsViewportThreshold(position)) {
+                    posWithinThreshold.add(position);
+                }
+                else if (this.positionDoesntCollideWithViewport(position)) {
+                    posWithinViewport.add(position);
+                }
+            }
         }
-        else if (this.positionDoesntCollideWithViewport(centerPos)) {
-            posWithinViewport.add(centerPos);
-        }
-        if (this.positionHonorsViewportThreshold(startPos)) {
-            posWithinThreshold.add(startPos);
-        }
-        else if (this.positionDoesntCollideWithViewport(startPos)) {
-            posWithinViewport.add(startPos);
-        }
-        if (this.positionHonorsViewportThreshold(endPos)) {
-            posWithinThreshold.add(endPos);
-        }
-        else if (this.positionDoesntCollideWithViewport(endPos)) {
-            posWithinViewport.add(endPos);
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (positions_1_1 && !positions_1_1.done && (_a = positions_1.return)) _a.call(positions_1);
+            }
+            finally { if (e_1) throw e_1.error; }
         }
         return posWithinThreshold.size ? posWithinThreshold : posWithinViewport;
     };
@@ -382,6 +548,18 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         var tooltipHeight = this.adapter.getTooltipSize().height;
         return yPos + tooltipHeight <= viewportHeight && yPos >= 0;
     };
+    MDCTooltipFoundation.prototype.repositionTooltipOnAnchorMove = function () {
+        var newAnchorRect = this.adapter.getAnchorBoundingRect();
+        if (!newAnchorRect || !this.anchorRect)
+            return;
+        if (newAnchorRect.top !== this.anchorRect.top ||
+            newAnchorRect.left !== this.anchorRect.left ||
+            newAnchorRect.height !== this.anchorRect.height ||
+            newAnchorRect.width !== this.anchorRect.width) {
+            this.anchorRect = newAnchorRect;
+            this.positionTooltip();
+        }
+    };
     MDCTooltipFoundation.prototype.clearShowTimeout = function () {
         if (this.showTimeout) {
             clearTimeout(this.showTimeout);
@@ -406,8 +584,18 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         this.adapter.removeClass(SHOWING);
         this.adapter.removeClass(HIDE);
         this.adapter.removeClass(HIDE_TRANSITION);
+        if (this.isRich) {
+            this.adapter.deregisterEventHandler('focusout', this.richTooltipFocusOutHandler);
+            if (!this.isPersistent) {
+                this.adapter.deregisterEventHandler('mouseenter', this.richTooltipMouseEnterHandler);
+                this.adapter.deregisterEventHandler('mouseleave', this.richTooltipMouseLeaveHandler);
+            }
+        }
         this.adapter.deregisterDocumentEventHandler('click', this.documentClickHandler);
         this.adapter.deregisterDocumentEventHandler('keydown', this.documentKeydownHandler);
+        this.adapter.deregisterWindowEventHandler('scroll', this.windowScrollHandler);
+        this.adapter.deregisterWindowEventHandler('resize', this.windowResizeHandler);
+        this.animFrame.cancelAll();
     };
     return MDCTooltipFoundation;
 }(MDCFoundation));

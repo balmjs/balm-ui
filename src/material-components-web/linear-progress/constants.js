@@ -28,6 +28,8 @@ export var cssClasses = {
     ANIMATION_READY_CLASS: 'mdc-linear-progress--animation-ready',
 };
 export var strings = {
+    ARIA_VALUEMAX: 'aria-valuemax',
+    ARIA_VALUEMIN: 'aria-valuemin',
     ARIA_VALUENOW: 'aria-valuenow',
     BUFFER_BAR_SELECTOR: '.mdc-linear-progress__buffer-bar',
     FLEX_BASIS: 'flex-basis',

@@ -30,6 +30,7 @@ const components = [
   'pagination', // Custom
   'progress',
   'radio',
+  'segmented-button',
   'select',
   'slider',
   'snackbar',
@@ -49,8 +50,7 @@ const components = [
   'rangepicker',
   'skeleton',
   // Next
-  'bottom-navigation',
-  'segmented-button'
+  'bottom-navigation'
 ];
 const plugins = [
   'alert',

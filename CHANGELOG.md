@@ -2,6 +2,19 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.14.0 / 2020-12-30
+
+### Code Refactoring
+
+- `<ui-slider>`
+
+### Features
+
+- update [`mdc@9.0.0`](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#900-2020-12-29)
+- new components:
+  - `<ui-segmented-buttons>`
+  - `<ui-segmented-button>`
+
 ## v8.13.1 / 2020-12-21
 
 ### Bug Fixes

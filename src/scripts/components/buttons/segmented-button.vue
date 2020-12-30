@@ -1,5 +1,9 @@
 <template>
-  <button :class="className" @click="$emit('click', $event)">
+  <button
+    :class="className"
+    :role="$parent.singleSelect ? 'radio' : null"
+    @click="$emit('click', $event)"
+  >
     <div class="mdc-segmented-button__ripple"></div>
     <slot name="before" :iconClass="UI_SEGMENTED_BUTTON.cssClasses.icon">
       <i
@@ -34,6 +38,11 @@ export default {
   name: 'UiSegmentedButton',
   mixins: [materialIconMixin],
   props: {
+    // States
+    selected: {
+      type: Boolean,
+      default: false
+    },
     // UI attributes
     text: {
       type: String,
@@ -53,6 +62,7 @@ export default {
 
       return {
         'mdc-segmented-button__segment': true,
+        'mdc-segmented-button__segment--selected': this.selected,
         // Accessibility
         'mdc-segmented-button--touch': isAccessible
       };

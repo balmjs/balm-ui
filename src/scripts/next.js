@@ -5,15 +5,11 @@ import multiConfigure from './config/multi-configure';
  * Components
  */
 import UiBottomNavigation from './components/navigation/bottom-navigation';
-import UiSegmentedButtons from './components/buttons/segmented-buttons';
-import UiSegmentedButton from './components/buttons/segmented-button';
 
 const version = packageJson.version;
 
 const components = {
-  UiBottomNavigation,
-  UiSegmentedButtons,
-  UiSegmentedButton
+  UiBottomNavigation
 };
 
 const BalmUINext = {
@@ -33,4 +29,4 @@ const BalmUINext = {
 autoInstall(BalmUINext);
 
 export default BalmUINext;
-export { UiBottomNavigation, UiSegmentedButton };
+export { UiBottomNavigation };

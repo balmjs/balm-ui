@@ -8,6 +8,8 @@ import multiConfigure from './config/multi-configure';
 import UiButton from './components/buttons/button';
 import UiFab from './components/buttons/fab';
 import UiIconButton from './components/buttons/icon-button';
+import UiSegmentedButtons from './components/buttons/segmented-buttons';
+import UiSegmentedButton from './components/buttons/segmented-button';
 // Layouts
 import UiTopAppBar from './components/app-bars/top-app-bar';
 import UiGrid from './components/layout-grid/grid';
@@ -176,6 +178,8 @@ const components = {
   UiPanel,
   UiProgress,
   UiRadio,
+  UiSegmentedButton,
+  UiSegmentedButtons,
   UiSelect,
   UiSelectHelper,
   UiSelectIcon,
@@ -308,6 +312,8 @@ export {
   UiPanel,
   UiProgress,
   UiRadio,
+  UiSegmentedButton,
+  UiSegmentedButtons,
   UiSelect,
   UiSelectHelper,
   UiSelectIcon,

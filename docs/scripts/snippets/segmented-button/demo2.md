@@ -2,6 +2,7 @@
 <ui-segmented-buttons
   v-model="checkedValue"
   :items="items"
+  single-select
 ></ui-segmented-buttons>
 ```
 
@@ -23,7 +24,7 @@ export default {
   data() {
     return {
       items,
-      checkedValue: []
+      checkedValue: -1
     };
   }
 };

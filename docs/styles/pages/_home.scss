@@ -1,3 +1,9 @@
-.page--home .pure-docs {
-  text-align: center;
+.page--home {
+  .hero {
+    overflow: hidden;
+  }
+
+  .pure-docs {
+    text-align: center;
+  }
 }

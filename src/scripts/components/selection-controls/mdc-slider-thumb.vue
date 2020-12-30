@@ -1,17 +1,9 @@
 <template>
-  <div
-    class="mdc-slider__thumb"
-    role="slider"
-    :tabindex="disabled ? -1 : 0"
-    :aria-valuemin="valuemin"
-    :aria-valuemax="valuemax"
-    :aria-valuenow="valuenow"
-    :aria-disabled="disabled"
-  >
+  <div class="mdc-slider__thumb">
     <!-- Value label (optional) -->
     <div v-if="isDiscrete" class="mdc-slider__value-indicator-container">
       <div class="mdc-slider__value-indicator">
-        <span class="mdc-slider__value-indicator-text" v-text="valuenow"></span>
+        <span class="mdc-slider__value-indicator-text" v-text="value"></span>
       </div>
     </div>
     <div class="mdc-slider__thumb-knob"></div>
@@ -26,21 +18,9 @@ export default {
       type: Boolean,
       default: false
     },
-    valuemin: {
+    value: {
       type: Number,
       default: 0
-    },
-    valuemax: {
-      type: Number,
-      default: 100
-    },
-    valuenow: {
-      type: Number,
-      default: 0
-    },
-    disabled: {
-      type: Boolean,
-      default: false
     }
   }
 };

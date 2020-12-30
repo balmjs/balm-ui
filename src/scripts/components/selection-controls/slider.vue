@@ -1,6 +1,27 @@
 <template>
   <!-- <input type="range"> -->
   <div :class="className" :data-step="+step">
+    <template v-if="isRange">
+      <mdc-slider-input
+        :min="+min"
+        :max="+max"
+        :value="startValue"
+        :disabled="disabled"
+      ></mdc-slider-input>
+      <mdc-slider-input
+        :min="+min"
+        :max="+max"
+        :value="endValue"
+        :disabled="disabled"
+      ></mdc-slider-input>
+    </template>
+    <mdc-slider-input
+      v-else
+      :min="+min"
+      :max="+max"
+      :value="selectedValue"
+      :disabled="disabled"
+    ></mdc-slider-input>
     <!-- Track -->
     <div class="mdc-slider__track">
       <div class="mdc-slider__track--inactive"></div>
@@ -12,32 +33,25 @@
     <template v-if="isRange">
       <mdc-slider-thumb
         :is-discrete="isDiscrete"
-        :valuemin="+min"
-        :valuemax="+max"
-        :valuenow="startValue"
-        :disabled="disabled"
+        :value="startValue"
       ></mdc-slider-thumb>
       <mdc-slider-thumb
         :is-discrete="isDiscrete"
-        :valuemin="+min"
-        :valuemax="+max"
-        :valuenow="endValue"
-        :disabled="disabled"
+        :value="endValue"
       ></mdc-slider-thumb>
     </template>
     <mdc-slider-thumb
       v-else
       :is-discrete="isDiscrete"
-      :valuemin="+min"
-      :valuemax="+max"
-      :valuenow="selectedValue"
-      :disabled="disabled"
+      :value="selectedValue"
     ></mdc-slider-thumb>
   </div>
 </template>
 
 <script>
 import { MDCSlider } from '../../../material-components-web/slider';
+import { events } from '../../../material-components-web/slider/constants';
+import MdcSliderInput from './mdc-slider-input';
 import MdcSliderThumb from './mdc-slider-thumb';
 import typeMixin from '../../mixins/type';
 
@@ -56,6 +70,7 @@ const UI_SLIDER = {
 export default {
   name: 'UiSlider',
   components: {
+    MdcSliderInput,
     MdcSliderThumb
   },
   mixins: [typeMixin],
@@ -137,7 +152,7 @@ export default {
   mounted() {
     this.$slider = new MDCSlider(this.$el);
 
-    this.$slider.listen(`MDCSlider:${UI_SLIDER.EVENT.CHANGE}`, ({ detail }) => {
+    this.$slider.listen(events.CHANGE, ({ detail }) => {
       const valuenow = Math.round(detail.value);
       if (this.isRange) {
         if (this.selectedValue[detail.thumb - 1] !== valuenow) {

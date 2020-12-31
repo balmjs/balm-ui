@@ -2,4 +2,4 @@
 
 Segmented buttons allow users to toggle the selected states of grouped buttons.
 
-> New in 8.14.0
+> New in 9.5.0

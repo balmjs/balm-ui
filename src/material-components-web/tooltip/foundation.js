@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { __assign, __extends } from "tslib";
+import { __assign, __extends, __values } from "tslib";
 import { AnimationFrame } from '../animation/animationframe';
 import { MDCFoundation } from '../base/foundation';
 import { KEY, normalizeKey } from '../dom/keyboard';
@@ -90,6 +90,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                 isRTL: function () { return false; },
                 anchorContainsElement: function () { return false; },
                 tooltipContainsElement: function () { return false; },
+                focusAnchorElement: function () { return undefined; },
                 registerEventHandler: function () { return undefined; },
                 deregisterEventHandler: function () { return undefined; },
                 registerDocumentEventHandler: function () { return undefined; },
@@ -131,11 +132,20 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             }, this.showDelayMs);
         }
     };
-    MDCTooltipFoundation.prototype.handleAnchorFocus = function () {
+    MDCTooltipFoundation.prototype.handleAnchorFocus = function (evt) {
         var _this = this;
         // TODO(b/157075286): Need to add some way to distinguish keyboard
         // navigation focus events from other focus events, and only show the
         // tooltip on the former of these events.
+        var relatedTarget = evt.relatedTarget;
+        var tooltipContainsRelatedTarget = relatedTarget instanceof HTMLElement &&
+            this.adapter.tooltipContainsElement(relatedTarget);
+        // Do not show tooltip if the previous focus was on a tooltip element. This
+        // occurs when a rich tooltip is closed and focus is restored to the anchor
+        // or when user tab-navigates back into the anchor from the rich tooltip.
+        if (tooltipContainsRelatedTarget) {
+            return;
+        }
         this.showTimeout = setTimeout(function () {
             _this.show();
         }, this.showDelayMs);
@@ -168,14 +178,18 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         }
     };
     MDCTooltipFoundation.prototype.handleDocumentClick = function (evt) {
-        var anchorContainsTargetElement = evt.target instanceof HTMLElement &&
-            this.adapter.anchorContainsElement(evt.target);
-        // For persistent rich tooltips, we will only hide if the click target is
-        // not within the anchor element, otherwise both the anchor element's click
-        // handler and this handler will handle the click (due to event
-        // propagation), resulting in a shown tooltip being immediately hidden if
-        // the tooltip was initially hidden.
-        if (this.isRich && this.isPersistent && anchorContainsTargetElement) {
+        var anchorOrTooltipContainsTargetElement = evt.target instanceof HTMLElement &&
+            (this.adapter.anchorContainsElement(evt.target) ||
+                this.adapter.tooltipContainsElement(evt.target));
+        // For persistent rich tooltips, we will not hide if:
+        // - The click target is within the anchor element. Otherwise, both
+        //   the anchor element's click handler and this handler will handle the
+        //   click (due to event propagation), resulting in a shown tooltip
+        //   being immediately hidden if the tooltip was initially hidden.
+        // - The click target is within the tooltip element, since clicks
+        //   on the tooltip do not close the tooltip.
+        if (this.isRich && this.isPersistent &&
+            anchorOrTooltipContainsTargetElement) {
             return;
         }
         // Hide the tooltip immediately on click.
@@ -185,6 +199,11 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         // Hide the tooltip immediately on ESC key.
         var key = normalizeKey(evt);
         if (key === KEY.ESCAPE) {
+            var tooltipContainsActiveElement = document.activeElement instanceof HTMLElement &&
+                this.adapter.tooltipContainsElement(document.activeElement);
+            if (tooltipContainsActiveElement) {
+                this.adapter.focusAnchorElement();
+            }
             this.hide();
         }
     };
@@ -367,14 +386,21 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
      * Calculates the `left` distance for the tooltip.
      */
     MDCTooltipFoundation.prototype.calculateXTooltipDistance = function (anchorRect, tooltipWidth) {
-        var startPos = anchorRect.left;
-        var endPos = anchorRect.right - tooltipWidth;
-        var centerPos = anchorRect.left + (anchorRect.width - tooltipWidth) / 2;
-        if (this.adapter.isRTL()) {
-            startPos = anchorRect.right - tooltipWidth;
-            endPos = anchorRect.left;
+        var isLTR = !this.adapter.isRTL();
+        var startPos, endPos, centerPos;
+        if (this.isRich) {
+            startPos = isLTR ? anchorRect.left - tooltipWidth : anchorRect.right;
+            endPos = isLTR ? anchorRect.right : anchorRect.left - tooltipWidth;
         }
-        var positionOptions = this.determineValidPositionOptions(centerPos, startPos, endPos);
+        else {
+            startPos = isLTR ? anchorRect.left : anchorRect.right - tooltipWidth;
+            endPos = isLTR ? anchorRect.right - tooltipWidth : anchorRect.left;
+            centerPos = anchorRect.left + (anchorRect.width - tooltipWidth) / 2;
+        }
+        var positionOptions = this.isRich ?
+            this.determineValidPositionOptions(startPos, endPos) :
+            // For plain tooltips, centerPos is defined
+            this.determineValidPositionOptions(centerPos, startPos, endPos);
         if (this.xTooltipPos === XPosition.START && positionOptions.has(startPos)) {
             return startPos;
         }
@@ -385,14 +411,12 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             positionOptions.has(centerPos)) {
             return centerPos;
         }
-        if (positionOptions.has(centerPos)) {
-            return centerPos;
-        }
-        if (positionOptions.has(startPos)) {
-            return startPos;
-        }
-        if (positionOptions.has(endPos)) {
-            return endPos;
+        // If no user position is supplied, rich tooltips default to end pos, then
+        // start position. Plain tooltips default to center, start, then end.
+        var possiblePositions = this.isRich ? [endPos, startPos] : [centerPos, startPos, endPos];
+        var validPosition = possiblePositions.find(function (pos) { return positionOptions.has(pos); });
+        if (validPosition) {
+            return validPosition;
         }
         // Indicates that all potential positions would result in the tooltip
         // colliding with the viewport. This would only occur when the anchor
@@ -408,36 +432,41 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         }
     };
     /**
-     * Given the values for center/start/end alignment of the tooltip, calculates
+     * Given the values for the horizontal alignments of the tooltip, calculates
      * which of these options would result in the tooltip maintaining the required
      * threshold distance vs which would result in the tooltip staying within the
      * viewport.
      *
      * A Set of values is returned holding the distances that would honor the
      * above requirements. Following the logic for determining the tooltip
-     * position, if all three alignments violate the threshold, then the returned
-     * Set contains values that keep the tooltip within the viewport.
+     * position, if all alignments violate the threshold, then the returned Set
+     * contains values that keep the tooltip within the viewport.
      */
-    MDCTooltipFoundation.prototype.determineValidPositionOptions = function (centerPos, startPos, endPos) {
+    MDCTooltipFoundation.prototype.determineValidPositionOptions = function () {
+        var e_1, _a;
+        var positions = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            positions[_i] = arguments[_i];
+        }
         var posWithinThreshold = new Set();
         var posWithinViewport = new Set();
-        if (this.positionHonorsViewportThreshold(centerPos)) {
-            posWithinThreshold.add(centerPos);
+        try {
+            for (var positions_1 = __values(positions), positions_1_1 = positions_1.next(); !positions_1_1.done; positions_1_1 = positions_1.next()) {
+                var position = positions_1_1.value;
+                if (this.positionHonorsViewportThreshold(position)) {
+                    posWithinThreshold.add(position);
+                }
+                else if (this.positionDoesntCollideWithViewport(position)) {
+                    posWithinViewport.add(position);
+                }
+            }
         }
-        else if (this.positionDoesntCollideWithViewport(centerPos)) {
-            posWithinViewport.add(centerPos);
-        }
-        if (this.positionHonorsViewportThreshold(startPos)) {
-            posWithinThreshold.add(startPos);
-        }
-        else if (this.positionDoesntCollideWithViewport(startPos)) {
-            posWithinViewport.add(startPos);
-        }
-        if (this.positionHonorsViewportThreshold(endPos)) {
-            posWithinThreshold.add(endPos);
-        }
-        else if (this.positionDoesntCollideWithViewport(endPos)) {
-            posWithinViewport.add(endPos);
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (positions_1_1 && !positions_1_1.done && (_a = positions_1.return)) _a.call(positions_1);
+            }
+            finally { if (e_1) throw e_1.error; }
         }
         return posWithinThreshold.size ? posWithinThreshold : posWithinViewport;
     };

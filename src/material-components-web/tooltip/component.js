@@ -51,8 +51,8 @@ var MDCTooltip = /** @class */ (function (_super) {
         this.handleMouseEnter = function () {
             _this.foundation.handleAnchorMouseEnter();
         };
-        this.handleFocus = function () {
-            _this.foundation.handleAnchorFocus();
+        this.handleFocus = function (evt) {
+            _this.foundation.handleAnchorFocus(evt);
         };
         this.handleMouseLeave = function () {
             _this.foundation.handleAnchorMouseLeave();
@@ -141,6 +141,10 @@ var MDCTooltip = /** @class */ (function (_super) {
             },
             tooltipContainsElement: function (element) {
                 return _this.root.contains(element);
+            },
+            focusAnchorElement: function () {
+                var _a;
+                (_a = _this.anchorElem) === null || _a === void 0 ? void 0 : _a.focus();
             },
             registerEventHandler: function (evt, handler) {
                 if (_this.root instanceof HTMLElement) {

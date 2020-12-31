@@ -59,8 +59,7 @@ const MATERIAL_COMPONENTS = [
       },
       {
         icon: 'add_box',
-        name: 'segmented-button',
-        next: true
+        name: 'segmented-button'
       }
     ]
   },

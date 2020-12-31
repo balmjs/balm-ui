@@ -53,6 +53,7 @@ var XPosition;
 (function (XPosition) {
     XPosition[XPosition["DETECTED"] = 0] = "DETECTED";
     XPosition[XPosition["START"] = 1] = "START";
+    // Note: CENTER is not valid for rich tooltips.
     XPosition[XPosition["CENTER"] = 2] = "CENTER";
     XPosition[XPosition["END"] = 3] = "END";
 })(XPosition || (XPosition = {}));

@@ -3,6 +3,15 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.5.0 / 2020-12-31
+
+### Features
+
+- update [mdc@9.0.0](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#900-2020-12-29)
+- new components:
+  - `<ui-segmented-buttons>`
+  - `<ui-segmented-button>`
+
 ## v9.4.1 / 2020-12-21
 
 ### Bug Fixes

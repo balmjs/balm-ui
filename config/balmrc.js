@@ -5,17 +5,53 @@ const webpack = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
 
 function getConfig(balm) {
-  const useDocs = !balm.config.env.isProd || env.buildDocs;
+  const useDocsProd = balm.config.env.isProd && env.buildDocs;
+  const useDocsDev = !balm.config.env.isProd || env.buildDocs;
   const useBuild = balm.config.env.isProd && !env.buildDocs;
   const workspace = path.resolve(__dirname, '..');
 
+  let envOptions = useDocsProd
+    ? {
+        modules: false,
+        useBuiltIns: 'entry',
+        corejs: { version: 3, proposals: true }
+      }
+    : {
+        modules: false
+      };
+  let runtimeOptions = useDocsProd ? { corejs: 3 } : {};
+
+  let babelLoaderOptions =
+    useDocsProd || useDocsDev
+      ? {
+          presets: [['@babel/preset-env', envOptions]],
+          plugins: [
+            ['@babel/plugin-transform-runtime', runtimeOptions],
+            [
+              'prismjs',
+              {
+                languages: [
+                  'markup',
+                  'css',
+                  'javascript',
+                  'bash',
+                  'scss',
+                  'typescript'
+                ],
+                plugins: ['highlight-keywords', 'toolbar', 'copy-to-clipboard']
+              }
+            ]
+          ]
+        }
+      : {};
+
   return {
     roots: {
-      source: useDocs ? 'docs' : 'src'
+      source: useDocsDev ? 'docs' : 'src'
     },
     paths: {
       target: {
-        font: useDocs ? 'font' : 'fonts'
+        font: useDocsDev ? 'font' : 'fonts'
       }
     },
     styles: {
@@ -24,7 +60,7 @@ function getConfig(balm) {
     },
     scripts: {
       eslint: true,
-      entry: useDocs
+      entry: useDocsDev
         ? {
             hello: [
               '@babel/runtime-corejs3',
@@ -45,8 +81,8 @@ function getConfig(balm) {
         : {
             'balm-ui': './src/scripts/index.js'
           },
-      library: useDocs ? '' : 'BalmUI',
-      libraryTarget: useDocs ? 'var' : 'umd',
+      library: useDocsDev ? '' : 'BalmUI',
+      libraryTarget: useDocsDev ? 'var' : 'umd',
       loaders: [
         {
           test: /\.md$/,
@@ -57,10 +93,13 @@ function getConfig(balm) {
           loader: 'vue-loader'
         }
       ],
-      includeJsResource: useDocs ? [path.join(workspace, 'src/scripts')] : [],
       urlLoaderOptions: {
         esModule: false
       },
+      babelLoaderOptions,
+      includeJsResource: useDocsDev
+        ? [path.join(workspace, 'src/scripts')]
+        : [],
       alias: Object.assign(
         {
           '@': path.resolve(workspace, 'docs/scripts'),

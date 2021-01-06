@@ -321,7 +321,7 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
   };
   ```
 
-> Now, the `balm-ui` referenced in the code points directly to the source code, which can be used to developing BalmUI.
+> Now, the `balm-ui` referenced in the code points directly to the source code, which can be used to develop or debug BalmUI.
 
 <div id="mdi"></div>
 

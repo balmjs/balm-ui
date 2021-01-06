@@ -311,13 +311,13 @@
   }
 
   module.exports = {
+    transpileDependencies: ['balm-ui'],
     chainWebpack: (config) => {
       config.resolve.alias
         .set('balm-ui-source', resolve('node_modules/balm-ui/src/scripts'))
         .set('balm-ui-plus$', resolve('node_modules/balm-ui/src/scripts/plus.js'))
         .set('balm-ui-css$', resolve('node_modules/balm-ui/dist/balm-ui.css'));
-    },
-    transpileDependencies: ['balm-ui'],
+    }
   };
   ```
 

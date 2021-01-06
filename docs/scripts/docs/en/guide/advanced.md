@@ -10,7 +10,7 @@
 2. Modular JS
    - <a href="javascript:void(0)" class="v-anchor" data-href="#default-usage">Default Usage</a> (desktop)
    - <a href="javascript:void(0)" class="v-anchor" data-href="#Individual-usage">Individual Usage</a> (mobile)
-   - <a href="javascript:void(0)" class="v-anchor" data-href="#source-code-usage">Source Code Usage</a> (development)
+   - <a href="javascript:void(0)" class="v-anchor" data-href="#source-code-usage">Source Code Usage</a>
 3. <a href="javascript:void(0)" class="v-anchor" data-href="#mdi">Get Material Icons</a> (without downloading)
 
 ## 1. Modular CSS
@@ -278,34 +278,61 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
 
 ### 2.3 Source Code Usage
 
-> Just for developing and debugging components, the building production is the same as the default usage.
+> For the optimal code building solution, the usage is the same as the built versions.
 
-Edit `/path/to/my-project/app/config/balmrc.js`, and add the following lines of code:
+**2.3.1 For Balm CLI**
 
-```js
-const path = require('path'); // Reference path library
+- Edit `/path/to/my-project/config/balmrc.js`, and add the following lines of code:
 
-module.exports = {
-  ...
-  scripts: {
+  ```js
+  const path = require('path');
+
+  function resolve(dir) {
+    return path.join(__dirname, '..', dir);
+  }
+
+  module.exports = {
     ...
-    alias: {
-      ...
+    scripts: {
+      // To explicitly transpile a dependency with Babel
+      includeJsResource: [
+        resolve('node_modules/balm-ui/src/scripts')
+      ],
       // Reassign the entry file
-      'balm-ui': 'balm-ui/src/scripts',
-      'balm-ui-plus': 'balm-ui/src/scripts/plus.js',
-      'balm-ui-next': 'balm-ui/src/scripts/next.js'
+      alias: {
+        'balm-ui-source': 'balm-ui/src/scripts',
+        'balm-ui-plus$': 'balm-ui/src/scripts/plus.js',
+        'balm-ui-next$': 'balm-ui/src/scripts/next.js',
+        'balm-ui-css$': 'balm-ui/dist/balm-ui.css'
+      }
     },
-    includeJsResource: [
-      // The script in this folder needs to compile ES6+
-      path.resolve('./node_modules/balm-ui/src/scripts')
-    ]
-  },
-  ...
-};
-```
+    ...
+  };
+  ```
 
-> Now, the `balm-ui` referenced in the code points directly to the source code, which can be used to debug BalmUI.
+**2.3.2 For Vue CLI**
+
+- Edit `/path/to/my-project/vue.config.js`, and add the following lines of code:
+
+  ```js
+  const path = require('path');
+
+  function resolve(dir) {
+    return path.join(__dirname, dir);
+  }
+
+  module.exports = {
+    transpileDependencies: ['balm-ui'],
+    chainWebpack: (config) => {
+      config.resolve.alias
+        .set('balm-ui-source', resolve('node_modules/balm-ui/src/scripts'))
+        .set('balm-ui-plus$', resolve('node_modules/balm-ui/src/scripts/plus.js'))
+        .set('balm-ui-css$', resolve('node_modules/balm-ui/dist/balm-ui.css'));
+    }
+  };
+  ```
+
+> Now, the `balm-ui` referenced in the code points directly to the source code, which can be used to develop or debug BalmUI.
 
 <div id="mdi"></div>
 

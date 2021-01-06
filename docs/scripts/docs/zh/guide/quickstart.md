@@ -1,5 +1,14 @@
 # 快速入门
 
+## TOC
+
+0. <a href="javascript:void(0)" class="v-anchor" data-href="#for-env">设置开发环境</a>
+1. <a href="javascript:void(0)" class="v-anchor" data-href="#for-balm-cli">Balm CLI</a> (推荐)
+2. <a href="javascript:void(0)" class="v-anchor" data-href="#for-vue-cli-or-vite">Vue CLI 或 Vite</a>
+3. <a href="javascript:void(0)" class="v-anchor" data-href="#for-script">&lt;script&gt; 引用</a>
+
+<div id="for-env"></div>
+
 ## 0. 设置开发环境
 
 在开始之前，您需要先设置开发环境。
@@ -21,6 +30,8 @@
   # OR
   npm install -g balm-core balm-cli
   ```
+
+<div id="for-balm-cli"></div>
 
 ## 1. Balm CLI (推荐)
 
@@ -162,6 +173,8 @@ npm run dev
 npm run prod
 ```
 
+<div id="for-vue-cli-or-vite"></div>
+
 ## 2. Vue CLI 或 Vite
 
 ### 2.0 创建一个新项目
@@ -245,7 +258,9 @@ npm install --save balm-ui@next
   app.mount('#app');
   ```
 
-## 3. 直接 `<script>` 引用
+<div id="for-script"></div>
+
+## 3. `<script>` 引用
 
 ```html
 <!DOCTYPE html>

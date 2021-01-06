@@ -4,11 +4,16 @@ const path = require('path');
 const webpack = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
 
+const workspace = path.join(__dirname, '..');
+
+function resolve(dir) {
+  return path.join(workspace, dir);
+}
+
 function getConfig(balm) {
   const useDocsProd = balm.config.env.isProd && env.buildDocs;
   const useDocsDev = !balm.config.env.isProd || env.buildDocs;
   const useBuild = balm.config.env.isProd && !env.buildDocs;
-  const workspace = path.resolve(__dirname, '..');
 
   let envOptions = useDocsProd
     ? {
@@ -97,13 +102,11 @@ function getConfig(balm) {
         esModule: false
       },
       babelLoaderOptions,
-      includeJsResource: useDocsDev
-        ? [path.join(workspace, 'src/scripts')]
-        : [],
+      includeJsResource: useDocsDev ? [resolve('src/scripts')] : [],
       alias: Object.assign(
         {
-          '@': path.resolve(workspace, 'docs/scripts'),
-          'balm-ui': path.resolve(workspace, 'src/scripts'),
+          '@': resolve('docs/scripts'),
+          'balm-ui': resolve('src/scripts'),
           vue$: 'vue/dist/vue.esm-bundler.js',
           pickerLangZh: 'flatpickr/dist/l10n/zh.js'
         }

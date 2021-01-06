@@ -1,6 +1,6 @@
 # 进阶用法
 
-> The following configuration is still the Vue scaffold built based on [Balm CLI](https://github.com/balmjs/balm-cli).
+> 以下配置仍然是基于 [Balm CLI](https://github.com/balmjs/balm-cli) 构建的 Vue 脚手架。
 
 ##  目录
 
@@ -10,7 +10,7 @@
 2. JS 模块化
    - <a href="javascript:void(0)" class="v-anchor" data-href="#default-usage">默认用法</a>（桌面端）
    - <a href="javascript:void(0)" class="v-anchor" data-href="#Individual-usage">独立用法</a>（手机端）
-   - <a href="javascript:void(0)" class="v-anchor" data-href="#source-code-usage">源代码用法</a>（开发）
+   - <a href="javascript:void(0)" class="v-anchor" data-href="#source-code-usage">源代码用法</a>
 3. <a href="javascript:void(0)" class="v-anchor" data-href="#mdi">获取 Material Icons</a>（无需下载）
 
 ## 1. CSS 模块化
@@ -280,34 +280,63 @@
 
 ### 2.3 源码用法
 
-> 仅用于开发和调试组件，构建产品与默认用法相同。
+> 这是最优化的代码构建方案，用法和默认构建版本相同。
 
-- 编辑 `/path/to/my-project/app/config/balmrc.js`，并添加以下代码：
+**2.3.1 Balm CLI**
+
+- 编辑 `/path/to/my-project/config/balmrc.js`，并添加以下代码：
 
   ```js
-  const path = require('path'); // Reference path library
+  const path = require('path');
+
+  function resolve(dir) {
+    return path.join(__dirname, '..', dir);
+  }
 
   module.exports = {
     ...
     scripts: {
-      ...
+      // To explicitly transpile a dependency with Babel
+      includeJsResource: [
+        resolve('node_modules/balm-ui/src/scripts')
+      ],
+      // Reassign the entry file
       alias: {
         ...
         // Reassign the entry file
-        'balm-ui': 'balm-ui/src/scripts',
-        'balm-ui-plus': 'balm-ui/src/scripts/plus.js',
-        'balm-ui-next': 'balm-ui/src/scripts/next.js'
-      },
-      includeJsResource: [
-        // The script in this folder needs to compile ES6+
-        path.resolve('./node_modules/balm-ui/src/scripts')
-      ]
+        'balm-ui-source': 'balm-ui/src/scripts',
+        'balm-ui-plus$': 'balm-ui/src/scripts/plus.js',
+        'balm-ui-next$': 'balm-ui/src/scripts/next.js',
+        'balm-ui-css$': 'balm-ui/dist/balm-ui.css'
+      }
     },
     ...
   };
   ```
 
-> 现在，代码中引用的 `balm-ui` 已直接指向了源代码，可用于调试 BalmUI。
+**2.3.2 Vue CLI**
+
+- 编辑 `/path/to/my-project/vue.config.js`，并添加以下代码：
+
+  ```js
+  const path = require('path');
+
+  function resolve(dir) {
+    return path.join(__dirname, dir);
+  }
+
+  module.exports = {
+    transpileDependencies: ['balm-ui'],
+    chainWebpack: (config) => {
+      config.resolve.alias
+        .set('balm-ui-source', resolve('node_modules/balm-ui/src/scripts'))
+        .set('balm-ui-plus$', resolve('node_modules/balm-ui/src/scripts/plus.js'))
+        .set('balm-ui-css$', resolve('node_modules/balm-ui/dist/balm-ui.css'));
+    }
+  };
+  ```
+
+> 现在，代码中引用的 `balm-ui` 已直接指向了源代码，可用于开发或调试 BalmUI。
 
 <div id="mdi"></div>
 

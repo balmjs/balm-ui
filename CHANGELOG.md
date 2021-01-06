@@ -3,6 +3,12 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.6.1 / 2021-01-06
+
+### Bug Fixes
+
+- `v-anchor`: fix updated bug in html modifier
+
 ## v9.6.0 / 2021-01-04
 
 ### Chore

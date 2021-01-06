@@ -1,5 +1,14 @@
 # Quick Start
 
+## TOC
+
+0. <a href="javascript:void(0)" class="v-anchor" data-href="#for-env">Set up the Development Environment</a>
+1. <a href="javascript:void(0)" class="v-anchor" data-href="#for-balm-cli">For Balm CLI</a> (Recommended)
+2. <a href="javascript:void(0)" class="v-anchor" data-href="#for-vue-cli">For Vue CLI</a>
+3. <a href="javascript:void(0)" class="v-anchor" data-href="#for-script">For &lt;script&gt;</a>
+
+<div id="for-env"></div>
+
 ## 0. Set up the Development Environment
 
 You need to set up your development environment before you can do anything.
@@ -21,6 +30,8 @@ The [Balm CLI](https://github.com/balmjs/balm-cli) is a command line interface t
   # OR
   npm install -g balm-core balm-cli
   ```
+
+<div id="for-balm-cli"></div>
 
 ## 1. For Balm CLI (Recommended)
 
@@ -152,6 +163,8 @@ npm run dev
 npm run prod
 ```
 
+<div id="for-vue-cli"></div>
+
 ## 2. For Vue CLI
 
 ### 2.0 Create a project
@@ -182,6 +195,8 @@ npm install --save balm-ui
   Vue.use(BalmUI); // Mandatory
   Vue.use(BalmUIPlus); // Optional
   ```
+
+<div id="for-script"></div>
 
 ## 3. For `<script>`
 

@@ -12,7 +12,7 @@ module.exports = {
     browser: true,
     node: true,
     es6: true,
-    mocha: true
+    jest: true
   },
   plugins: ['vue', 'prettier'],
   extends: ['plugin:vue/vue3-recommended', 'prettier', 'prettier/vue'],

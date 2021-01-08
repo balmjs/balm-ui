@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ui-button> renders button with icon 1`] = `
+<button
+  class="mdc-button"
+  type="button"
+>
+  <div
+    class="mdc-button__ripple"
+  />
+   
+  <i
+    aria-hidden="true"
+    class="material-icons mdc-button__icon"
+  >
+    favorite
+  </i>
+   
+  <span
+    class="mdc-button__label"
+  />
+   
+</button>
+`;
+
+exports[`<ui-button> renders button with slot-scope 1`] = `
+<button
+  class="mdc-button"
+  type="button"
+>
+  <div
+    class="mdc-button__ripple"
+  />
+   
+  <i>
+    mdc-button__icon
+  </i>
+   
+  <span
+    class="mdc-button__label"
+  />
+   
+</button>
+`;
+
+exports[`<ui-button> renders default button 1`] = `
+<button
+  class="mdc-button"
+  type="button"
+>
+  <div
+    class="mdc-button__ripple"
+  />
+   
+  <!---->
+   
+  <span
+    class="mdc-button__label"
+  />
+   
+</button>
+`;
+
+exports[`<ui-button> renders outlined button 1`] = `
+<button
+  class="mdc-button mdc-button--outlined"
+  type="button"
+>
+  <div
+    class="mdc-button__ripple"
+  />
+   
+  <!---->
+   
+  <span
+    class="mdc-button__label"
+  />
+   
+</button>
+`;
+
+exports[`<ui-button> renders raised button 1`] = `
+<button
+  class="mdc-button mdc-button--raised"
+  type="button"
+>
+  <div
+    class="mdc-button__ripple"
+  />
+   
+  <!---->
+   
+  <span
+    class="mdc-button__label"
+  />
+   
+</button>
+`;
+
+exports[`<ui-button> renders unelevated button 1`] = `
+<button
+  class="mdc-button mdc-button--unelevated"
+  type="button"
+>
+  <div
+    class="mdc-button__ripple"
+  />
+   
+  <!---->
+   
+  <span
+    class="mdc-button__label"
+  />
+   
+</button>
+`;

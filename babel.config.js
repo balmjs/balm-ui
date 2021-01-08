@@ -3,8 +3,7 @@ module.exports = {
   plugins: ['@babel/plugin-transform-runtime'],
   env: {
     test: {
-      presets: ['@babel/preset-env'],
-      plugins: ['istanbul']
+      presets: ['@babel/preset-env']
     }
   }
 };

@@ -8,22 +8,29 @@ exports[`<ui-button> renders button with icon 1`] = `
   <div
     class="mdc-button__ripple"
   />
-   
+  <!-- Icon (optional) -->
+  
   <i
     aria-hidden="true"
     class="material-icons mdc-button__icon"
   >
     favorite
   </i>
-   
+  
+  <!-- Text label -->
   <span
     class="mdc-button__label"
-  />
-   
+  >
+    
+    
+  </span>
+  <!-- Icon (optional) -->
+  
+  
 </button>
 `;
 
-exports[`<ui-button> renders button with slot-scope 1`] = `
+exports[`<ui-button> renders button with scoped slots 1`] = `
 <button
   class="mdc-button"
   type="button"
@@ -31,15 +38,26 @@ exports[`<ui-button> renders button with slot-scope 1`] = `
   <div
     class="mdc-button__ripple"
   />
-   
-  <i>
+  <!-- Icon (optional) -->
+  
+  
+  <i
+    class="mdc-button__icon"
+  >
     mdc-button__icon
   </i>
-   
+  
+  
+  <!-- Text label -->
   <span
     class="mdc-button__label"
-  />
-   
+  >
+    
+    
+  </span>
+  <!-- Icon (optional) -->
+  
+  
 </button>
 `;
 
@@ -51,13 +69,20 @@ exports[`<ui-button> renders default button 1`] = `
   <div
     class="mdc-button__ripple"
   />
-   
-  <!---->
-   
+  <!-- Icon (optional) -->
+  
+  <!--v-if-->
+  
+  <!-- Text label -->
   <span
     class="mdc-button__label"
-  />
-   
+  >
+    
+    
+  </span>
+  <!-- Icon (optional) -->
+  
+  
 </button>
 `;
 
@@ -69,13 +94,20 @@ exports[`<ui-button> renders outlined button 1`] = `
   <div
     class="mdc-button__ripple"
   />
-   
-  <!---->
-   
+  <!-- Icon (optional) -->
+  
+  <!--v-if-->
+  
+  <!-- Text label -->
   <span
     class="mdc-button__label"
-  />
-   
+  >
+    
+    
+  </span>
+  <!-- Icon (optional) -->
+  
+  
 </button>
 `;
 
@@ -87,13 +119,20 @@ exports[`<ui-button> renders raised button 1`] = `
   <div
     class="mdc-button__ripple"
   />
-   
-  <!---->
-   
+  <!-- Icon (optional) -->
+  
+  <!--v-if-->
+  
+  <!-- Text label -->
   <span
     class="mdc-button__label"
-  />
-   
+  >
+    
+    
+  </span>
+  <!-- Icon (optional) -->
+  
+  
 </button>
 `;
 
@@ -105,12 +144,19 @@ exports[`<ui-button> renders unelevated button 1`] = `
   <div
     class="mdc-button__ripple"
   />
-   
-  <!---->
-   
+  <!-- Icon (optional) -->
+  
+  <!--v-if-->
+  
+  <!-- Text label -->
   <span
     class="mdc-button__label"
-  />
-   
+  >
+    
+    
+  </span>
+  <!-- Icon (optional) -->
+  
+  
 </button>
 `;

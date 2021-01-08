@@ -1,15 +1,24 @@
-import UiButton from '@/components/button/button';
+import { shallowMount } from '@vue/test-utils';
+import UiButton from '@/components/buttons/button.vue';
 
 describe('<ui-button>', () => {
   it('renders default button', () => {
     const wrapper = shallowMount(UiButton);
 
-    if (DEBUG) {
-      console.log('[OUTPUT]:', wrapper.html());
-    }
-
-    expect(wrapper.is('button')).toBe(true);
+    expect(wrapper.element).toMatchSnapshot();
+    expect(wrapper.element.tagName).toBe('BUTTON');
     expect(wrapper.classes()).toContain('mdc-button');
+  });
+
+  it('renders outlined button', () => {
+    const wrapper = shallowMount(UiButton, {
+      propsData: {
+        outlined: true
+      }
+    });
+
+    expect(wrapper.element).toMatchSnapshot();
+    expect(wrapper.classes()).toContain('mdc-button--outlined');
   });
 
   it('renders raised button', () => {
@@ -19,11 +28,19 @@ describe('<ui-button>', () => {
       }
     });
 
-    if (DEBUG) {
-      console.log('[OUTPUT]:', wrapper.html());
-    }
-
+    expect(wrapper.element).toMatchSnapshot();
     expect(wrapper.classes()).toContain('mdc-button--raised');
+  });
+
+  it('renders unelevated button', () => {
+    const wrapper = shallowMount(UiButton, {
+      propsData: {
+        unelevated: true
+      }
+    });
+
+    expect(wrapper.element).toMatchSnapshot();
+    expect(wrapper.classes()).toContain('mdc-button--unelevated');
   });
 
   it('renders button with icon', () => {
@@ -34,10 +51,7 @@ describe('<ui-button>', () => {
       }
     });
 
-    if (DEBUG) {
-      console.log('[OUTPUT]:', wrapper.html());
-    }
-
+    expect(wrapper.element).toMatchSnapshot();
     expect(wrapper.find('.mdc-button__icon').text()).toBe(icon);
   });
 
@@ -48,32 +62,15 @@ describe('<ui-button>', () => {
       }
     });
 
-    if (DEBUG) {
-      console.log('[OUTPUT]:', wrapper.html());
-    }
-
+    expect(wrapper.element).toMatchSnapshot();
     expect(wrapper.text()).toBe('mdc-button__icon');
   });
 
-  it('renders button with @click', () => {
+  it('renders button with @click', async () => {
     const wrapper = shallowMount(UiButton);
-    const spy = sinon.spy(wrapper.vm, 'handleClick');
-    wrapper.vm.handleClick();
 
-    expect(spy.calledOnce).toBe(true);
-  });
+    await wrapper.trigger('click');
 
-  it('renders cssOnly button', () => {
-    const wrapper = shallowMount(UiButton, {
-      propsData: {
-        cssOnly: true
-      }
-    });
-
-    if (DEBUG) {
-      console.log('[OUTPUT]:', wrapper.html());
-    }
-
-    expect(wrapper.is('button')).toBe(true);
+    expect(wrapper.emitted().click).toBeTruthy();
   });
 });

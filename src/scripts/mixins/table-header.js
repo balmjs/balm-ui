@@ -1,11 +1,28 @@
+import tableMixin from './table';
 import UI_TABLE from '../components/data-tables/constants';
 import getType from '../utils/typeof';
 
 export default {
-  data() {
-    return {
-      T_CELL: UI_TABLE.CELL
-    };
+  mixins: [tableMixin],
+  props: {
+    thead: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
+    rowCheckbox: {
+      type: Boolean,
+      default: false
+    },
+    sortIconAlignEnd: {
+      type: Boolean,
+      default: false
+    },
+    fixed: {
+      type: Boolean,
+      default: false
+    }
   },
   computed: {
     theadData() {
@@ -37,6 +54,9 @@ export default {
     }
   },
   methods: {
+    hasMultipleRows(data) {
+      return data && getType(data[0]) === 'array';
+    },
     theadCellClassName(data) {
       let className = [
         {
@@ -48,7 +68,8 @@ export default {
           'mdc-data-table__header-cell--sorted':
             data.sort === UI_TABLE.SORTING.ASC,
           'mdc-data-table__header-cell--sorted-descending':
-            data.sort === UI_TABLE.SORTING.DESC
+            data.sort === UI_TABLE.SORTING.DESC,
+          'mdc-data-table__header-cell--scrollbar': data.scrollbar
         }
       ];
 
@@ -86,53 +107,6 @@ export default {
       }
 
       return result;
-    },
-    handleSort({ columnId, sortValue }) {
-      let newSelectedRows = [];
-
-      if (sortValue) {
-        const isNumber = this.currentData.every(
-          (data) => getType(data[columnId]) === 'number'
-        );
-
-        if (sortValue === 'descending') {
-          if (isNumber) {
-            this.currentData.sort((a, b) => {
-              return b[columnId] - a[columnId];
-            });
-          } else {
-            this.currentData.sort((a, b) => {
-              return b[columnId].localeCompare(a[columnId]);
-            });
-          }
-        } else if (sortValue === 'ascending') {
-          if (isNumber) {
-            this.currentData.sort((a, b) => {
-              return a[columnId] - b[columnId];
-            });
-          } else {
-            this.currentData.sort((a, b) => {
-              return a[columnId].localeCompare(b[columnId]);
-            });
-          }
-        }
-
-        let oldSelectedIndex = 0;
-        let tableRowCount = this.currentData.length;
-        if (this.selectedKey) {
-          newSelectedRows = [...this.selectedRows];
-        } else {
-          for (let index = tableRowCount - 1; index >= 0; index--) {
-            if (this.selectedRows.includes(oldSelectedIndex)) {
-              newSelectedRows.push(index);
-            }
-            oldSelectedIndex++;
-          }
-          newSelectedRows.sort();
-        }
-      }
-
-      this.$emit(UI_TABLE.EVENT.SELECTED, newSelectedRows);
     }
   }
 };

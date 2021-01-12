@@ -40,3 +40,22 @@
     width: 100%;
   }
 }
+
+.mdc-data-table__header-cell--scrollbar {
+  position: sticky;
+  right: 0px;
+  padding: 16px 8px;
+  border-right-color: transparent;
+}
+
+.mdc-data-table__fixed-header {
+  overflow: hidden;
+}
+
+.mdc-data-table__fixed-body {
+  overflow: auto scroll;
+
+  table {
+    min-width: 100%;
+  }
+}

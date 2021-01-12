@@ -1,10 +1,25 @@
+import tableMixin from './table';
 import UI_TABLE from '../components/data-tables/constants';
 
 export default {
-  data() {
-    return {
-      T_CELL: UI_TABLE.CELL
-    };
+  mixins: [tableMixin],
+  props: {
+    data: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
+    tfoot: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
+    columns: {
+      type: Number,
+      default: 1
+    }
   },
   computed: {
     tfootData() {
@@ -17,7 +32,7 @@ export default {
           result.unshift({});
         }
 
-        let restColumns = this.dataColumns - result.length;
+        let restColumns = this.columns - result.length;
         while (restColumns--) {
           result.push({});
         }

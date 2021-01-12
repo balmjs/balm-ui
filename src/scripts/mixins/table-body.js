@@ -1,10 +1,52 @@
-import UI_TABLE from '../components/data-tables/constants';
+import tableMixin from './table';
 
 export default {
-  data() {
-    return {
-      T_CELL: UI_TABLE.CELL
-    };
+  mixins: [tableMixin],
+  props: {
+    data: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
+    currentData: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
+    selectedRows: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
+    tbody: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
+    rowCheckbox: {
+      type: Boolean,
+      default: false
+    },
+    selectedKey: {
+      type: [Boolean, String],
+      default: false
+    },
+    rowIdPrefix: {
+      type: String,
+      default: ''
+    },
+    columns: {
+      type: Number,
+      default: 1
+    },
+    noData: {
+      type: String,
+      default: 'No Data'
+    }
   },
   computed: {
     tbodyData() {
@@ -53,14 +95,14 @@ export default {
 
       return className;
     },
-    getData(currentData, rowIndex, dataFields) {
+    getData(originData, rowIndex, dataFields) {
       let data = [];
 
       // Set checkbox
       if (this.rowCheckbox) {
         let cell = {};
         let selectedRowId = this.selectedKey
-          ? currentData[this.selectedKey]
+          ? originData[this.selectedKey]
           : rowIndex;
         let selected = this.selectedRows.includes(selectedRowId);
 
@@ -71,9 +113,10 @@ export default {
         data.push(cell);
       }
 
-      if (this.isObject(currentData)) {
-        let rowData = Object.assign({}, currentData);
+      if (this.isObject(originData)) {
+        let rowData = Object.assign({}, originData);
 
+        // TODO: dataFields forEach
         Object.keys(rowData).forEach((key, index) => {
           let cell = {};
           let field = this.isObject(dataFields[index])
@@ -115,7 +158,7 @@ export default {
           data.push(cell);
         });
       } else {
-        console.warn(`Invalid tbody cell data: ${currentData}`);
+        console.warn(`Invalid tbody cell data: ${originData}`);
       }
 
       return data;

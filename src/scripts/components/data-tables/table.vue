@@ -1,155 +1,115 @@
 <template>
   <!-- Container -->
   <div :class="className">
-    <div class="mdc-data-table__table-container">
-      <table class="mdc-data-table__table" :aria-label="caption">
-        <caption v-if="caption">
-          {{
-            caption
-          }}
-        </caption>
-        <colgroup v-if="colgroup">
-          <template v-for="(colValue, colKey) in dataColumns">
-            <col :key="colKey" :class="`col-${colValue}`" />
-          </template>
-        </colgroup>
-        <!-- Column header -->
-        <thead v-if="theadData.length">
-          <tr
-            v-for="(theadRow, theadRowIndex) in theadData"
-            :key="`thead-row-${theadRowIndex}`"
-            class="mdc-data-table__header-row"
+    <template v-if="hasFixedCell">
+      <mdc-table-frame
+        class="mdc-data-table__fixed-header"
+        :columns-data="columnsData"
+      >
+        <mdc-table-header
+          :thead="thead"
+          :tbody="tbody"
+          :row-checkbox="rowCheckbox"
+          :sort-icon-align-end="sortIconAlignEnd"
+          :fixed="hasFixedCell"
+        >
+          <slot v-for="(_, name) in $slots" :slot="name" :name="name"></slot>
+          <template
+            v-for="(_, name) in $scopedSlots"
+            :slot="name"
+            slot-scope="slotData"
           >
-            <template v-for="(theadCell, theadCellIndex) in theadRow">
-              <th
-                :key="`thead-cell-${theadCellIndex}`"
-                :class="theadCellClassName(theadCell)"
-                :colspan="theadCell[T_CELL.COLSPAN] || null"
-                :rowspan="theadCell[T_CELL.ROWSPAN] || null"
-                role="columnheader"
-                :data-column-id="theadCell.columnId"
-                :aria-sort="getSort(theadCell)"
-              >
-                <!-- Column header row checkbox -->
-                <mdc-checkbox
-                  v-if="theadCell[T_CELL.CHECKBOX] && tbodyData.length"
-                  :class="'mdc-data-table__header-row-checkbox'"
-                ></mdc-checkbox>
-                <template v-else>
-                  <!-- With sort button -->
-                  <div class="mdc-data-table__header-cell-wrapper">
-                    <template v-if="theadCell.sort">
-                      <template v-if="sortIconAlignEnd">
-                        <div
-                          class="mdc-data-table__header-cell-label"
-                          v-text="theadCell[T_CELL.VALUE]"
-                        ></div>
-                        <mdc-icon-button
-                          class="mdc-data-table__sort-icon-button"
-                          v-text="UI_TABLE.SORTING.ICON"
-                        ></mdc-icon-button>
-                      </template>
-                      <template v-else>
-                        <mdc-icon-button
-                          class="mdc-data-table__sort-icon-button"
-                          v-text="UI_TABLE.SORTING.ICON"
-                        ></mdc-icon-button>
-                        <div class="mdc-data-table__header-cell-label">
-                          <slot
-                            v-if="theadCell[T_CELL.SLOT]"
-                            :name="theadCell[T_CELL.SLOT]"
-                          ></slot>
-                          <template v-else>{{
-                            theadCell[T_CELL.VALUE]
-                          }}</template>
-                        </div>
-                      </template>
-                      <div
-                        class="mdc-data-table__sort-status-label"
-                        aria-hidden="true"
-                      ></div>
-                    </template>
-                    <!-- Column header name -->
-                    <template v-else>
-                      <slot
-                        v-if="theadCell[T_CELL.SLOT]"
-                        :name="theadCell[T_CELL.SLOT]"
-                      ></slot>
-                      <template v-else>{{ theadCell[T_CELL.VALUE] }}</template>
-                    </template>
-                  </div>
-                </template>
-              </th>
-            </template>
-          </tr>
-        </thead>
-        <!-- Rows -->
-        <tbody class="mdc-data-table__content">
-          <template v-if="tbodyData.length">
-            <tr
-              v-for="(tbodyRow, tbodyRowIndex) in tbodyData"
-              :key="`tbody-row-${tbodyRowIndex}`"
-              :class="[
-                'mdc-data-table__row',
-                {
-                  'mdc-data-table__row--selected': tbodyRow[0][T_CELL.SELECTED]
-                }
-              ]"
-              :data-row-id="tbodyRow[0][T_CELL.ROW_ID] || null"
-              :aria-selected="tbodyRow[0][T_CELL.SELECTED] || null"
-            >
-              <template v-for="(tbodyCell, tbodyCellIndex) in tbodyRow">
-                <td
-                  :key="`tbody-cell-${tbodyCellIndex}`"
-                  :class="cellClassName(tbodyCell)"
-                >
-                  <!-- Row checkboxes -->
-                  <mdc-checkbox
-                    v-if="tbodyCell[T_CELL.CHECKBOX]"
-                    :class="'mdc-data-table__row-checkbox'"
-                  ></mdc-checkbox>
-                  <!-- Data / Actions -->
-                  <template v-else>
-                    <slot
-                      v-if="tbodyCell[T_CELL.SLOT]"
-                      :name="tbodyCell[T_CELL.SLOT]"
-                      :data="currentData[tbodyRowIndex]"
-                    ></slot>
-                    <template v-else>{{ tbodyCell[T_CELL.VALUE] }}</template>
-                  </template>
-                </td>
-              </template>
-            </tr>
+            <slot :name="name" v-bind="slotData"></slot>
           </template>
-          <tr v-else class="mdc-data-table__row">
-            <td
-              class="mdc-data-table__cell mdc-data-table__cell--no-data"
-              :colspan="dataColumns"
-            >
-              <slot name="no-data">{{ noData }}</slot>
-            </td>
-          </tr>
-        </tbody>
-        <!-- Footers -->
-        <tfoot v-if="tfootData.length">
-          <tr class="mdc-data-table__footer-row">
-            <td
-              v-for="(tfootCell, tfootCellIndex) in tfootData"
-              :key="tfootCellIndex"
-              :class="tfootCellClassName(tfootCell)"
-            >
-              <slot
-                v-if="tfootCell[T_CELL.SLOT]"
-                :name="tfootCell[T_CELL.SLOT]"
-                :data="tfootCell[T_CELL.VALUE]"
-              ></slot>
-              <template v-else>{{ tfootCell[T_CELL.VALUE] }}</template>
-            </td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
-    <!-- <table-progress></table-progress> -->
+        </mdc-table-header>
+      </mdc-table-frame>
+      <mdc-table-frame
+        ref="content"
+        class="mdc-data-table__fixed-body"
+        :columns-data="columnsData"
+      >
+        <mdc-table-body
+          :data="data"
+          :current-data="currentData"
+          :selected-rows="selectedRows"
+          :tbody="tbody"
+          :row-checkbox="rowCheckbox"
+          :selected-key="selectedKey"
+          :row-id-prefix="rowIdPrefix"
+        >
+          <slot v-for="(_, name) in $slots" :slot="name" :name="name"></slot>
+          <template
+            v-for="(_, name) in $scopedSlots"
+            :slot="name"
+            slot-scope="slotData"
+          >
+            <slot :name="name" v-bind="slotData"></slot>
+          </template>
+        </mdc-table-body>
+      </mdc-table-frame>
+      <mdc-table-frame
+        class="mdc-data-table__footer"
+        :columns-data="columnsData"
+      >
+        <mdc-table-footer :data="data" :tfoot="tfoot" :columns="columns">
+          <slot v-for="(_, name) in $slots" :slot="name" :name="name"></slot>
+          <template
+            v-for="(_, name) in $scopedSlots"
+            :slot="name"
+            slot-scope="slotData"
+          >
+            <slot :name="name" v-bind="slotData"></slot>
+          </template>
+        </mdc-table-footer>
+      </mdc-table-frame>
+    </template>
+    <mdc-table-frame v-else :columns-data="columnsData">
+      <mdc-table-header
+        :thead="thead"
+        :row-checkbox="rowCheckbox"
+        :sort-icon-align-end="sortIconAlignEnd"
+      >
+        <slot v-for="(_, name) in $slots" :slot="name" :name="name"></slot>
+        <template
+          v-for="(_, name) in $scopedSlots"
+          :slot="name"
+          slot-scope="slotData"
+        >
+          <slot :name="name" v-bind="slotData"></slot>
+        </template>
+      </mdc-table-header>
+      <mdc-table-body
+        :data="data"
+        :current-data="currentData"
+        :selected-rows="selectedRows"
+        :tbody="tbody"
+        :row-checkbox="rowCheckbox"
+        :selected-key="selectedKey"
+        :row-id-prefix="rowIdPrefix"
+      >
+        <slot v-for="(_, name) in $slots" :slot="name" :name="name"></slot>
+        <template
+          v-for="(_, name) in $scopedSlots"
+          :slot="name"
+          slot-scope="slotData"
+        >
+          <slot :name="name" v-bind="slotData"></slot>
+        </template>
+      </mdc-table-body>
+      <mdc-table-footer :data="data" :tfoot="tfoot" :columns="columns">
+        <slot v-for="(_, name) in $slots" :slot="name" :name="name"></slot>
+        <template
+          v-for="(_, name) in $scopedSlots"
+          :slot="name"
+          slot-scope="slotData"
+        >
+          <slot :name="name" v-bind="slotData"></slot>
+        </template>
+      </mdc-table-footer>
+    </mdc-table-frame>
+
+    <mdc-table-progress></mdc-table-progress>
+
     <slot></slot>
   </div>
 </template>
@@ -157,23 +117,23 @@
 <script>
 import { MDCDataTable } from '../../../material-components-web/data-table';
 import { events } from '../../../material-components-web/data-table/constants';
-import MdcCheckbox from '../selection-controls/mdc-checkbox';
-import MdcIconButton from '../buttons/mdc-icon-button';
-// import MdcTableProgress from './mdc-table-progress';
-import tableMixin from '../../mixins/table';
-import theadMixin from '../../mixins/thead';
-import tbodyMixin from '../../mixins/tbody';
-import tfootMixin from '../../mixins/tfoot';
+import MdcTableFrame from './mdc-table-frame';
+import MdcTableHeader from './mdc-table-header';
+import MdcTableBody from './mdc-table-body';
+import MdcTableFooter from './mdc-table-footer';
+import MdcTableProgress from './mdc-table-progress';
 import UI_TABLE from './constants';
+import getType from '../../utils/typeof';
 
 export default {
   name: 'UiTable',
   components: {
-    MdcCheckbox,
-    MdcIconButton
-    // MdcTableProgress
+    MdcTableFrame,
+    MdcTableHeader,
+    MdcTableBody,
+    MdcTableFooter,
+    MdcTableProgress
   },
-  mixins: [tableMixin, theadMixin, tbodyMixin, tfootMixin],
   model: {
     prop: 'selectedRows',
     event: UI_TABLE.EVENT.SELECTED
@@ -193,14 +153,6 @@ export default {
       }
     },
     // UI attributes
-    caption: {
-      type: [String, null],
-      default: null
-    },
-    colgroup: {
-      type: Boolean,
-      default: false
-    },
     thead: {
       type: Array,
       default() {
@@ -223,14 +175,6 @@ export default {
       type: Boolean,
       default: false
     },
-    columns: {
-      type: Number,
-      default: 0
-    },
-    noData: {
-      type: String,
-      default: 'No Data'
-    },
     rowCheckbox: {
       type: Boolean,
       default: false
@@ -247,7 +191,15 @@ export default {
       type: Boolean,
       default: false
     },
-    stickyHeader: {
+    // stickyHeader: {
+    //   type: Boolean,
+    //   default: false
+    // },
+    showProgress: {
+      type: Boolean,
+      default: false
+    },
+    fixedHeader: {
       type: Boolean,
       default: false
     }
@@ -255,9 +207,8 @@ export default {
   data() {
     return {
       UI_TABLE,
-      T_CELL: UI_TABLE.CELL,
       $table: null,
-      dataColumns: 1,
+      columnsData: this.tbody,
       currentData: this.data
     };
   },
@@ -265,9 +216,17 @@ export default {
     className() {
       return {
         'mdc-data-table': true,
-        'mdc-data-table--fullwidth': this.fullwidth,
-        'mdc-data-table--sticky-header': this.stickyHeader
+        'mdc-data-table--fullwidth': this.fullwidth
+        // 'mdc-data-table--sticky-header': this.stickyHeader
       };
+    },
+    hasFixedCell() {
+      return this.fixedHeader || this.tbody.some((cell) => cell.fixed);
+    },
+    columns() {
+      return this.rowCheckbox
+        ? this.columnsData.length + this.columnsData.length
+        : this.columnsData.length;
     }
   },
   watch: {
@@ -275,20 +234,10 @@ export default {
       this.currentData = val;
 
       this.$nextTick(() => {
+        this.$table.hideProgress();
         this.$table.layout();
         this.initSelectedRows();
       });
-    }
-  },
-  created() {
-    this.dataColumns = this.tbody.length;
-
-    if (this.columns) {
-      this.dataColumns = this.columns; // Manual set columns
-    }
-
-    if (this.rowCheckbox) {
-      this.dataColumns += 1;
     }
   },
   mounted() {
@@ -364,8 +313,62 @@ export default {
     if (this.selectedRows.length) {
       this.initSelectedRows();
     }
+
+    if (this.showProgress) {
+      this.$table.showProgress();
+    }
+
+    this.$refs.content.$el.style.maxHeight = '300px';
+    this.$refs.content.$el.querySelector('table').style.width = '1650px';
   },
   methods: {
+    handleSort({ columnId, sortValue }) {
+      let newSelectedRows = [];
+
+      if (sortValue) {
+        const isNumber = this.currentData.every(
+          (data) => getType(data[columnId]) === 'number'
+        );
+
+        if (sortValue === 'descending') {
+          if (isNumber) {
+            this.currentData.sort((a, b) => {
+              return b[columnId] - a[columnId];
+            });
+          } else {
+            this.currentData.sort((a, b) => {
+              return b[columnId].localeCompare(a[columnId]);
+            });
+          }
+        } else if (sortValue === 'ascending') {
+          if (isNumber) {
+            this.currentData.sort((a, b) => {
+              return a[columnId] - b[columnId];
+            });
+          } else {
+            this.currentData.sort((a, b) => {
+              return a[columnId].localeCompare(b[columnId]);
+            });
+          }
+        }
+
+        let oldSelectedIndex = 0;
+        let tableRowCount = this.currentData.length;
+        if (this.selectedKey) {
+          newSelectedRows = [...this.selectedRows];
+        } else {
+          for (let index = tableRowCount - 1; index >= 0; index--) {
+            if (this.selectedRows.includes(oldSelectedIndex)) {
+              newSelectedRows.push(index);
+            }
+            oldSelectedIndex++;
+          }
+          newSelectedRows.sort();
+        }
+      }
+
+      this.$emit(UI_TABLE.EVENT.SELECTED, newSelectedRows);
+    },
     initSelectedRows() {
       if (this.rowCheckbox && this.currentData.length) {
         let rowIds = this.selectedRows

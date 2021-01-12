@@ -17,9 +17,6 @@ export default {
     isFunction(any) {
       return getType(any) === 'function';
     },
-    hasMultipleRows(data) {
-      return data && getType(data[0]) === 'array';
-    },
     setTextAlignClassName(className, data) {
       if (data[this.T_CELL.ALIGN]) {
         switch (data[this.T_CELL.ALIGN].toLowerCase()) {

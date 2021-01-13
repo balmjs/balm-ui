@@ -2,6 +2,20 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.16.0
+
+### Features
+
+- `<ui-table>`: add prop `showProgress`, `fixedHeader`, `defaultColWidth`, `scroll`
+
+### Code Refactoring
+
+- `<ui-table>`: add fixed table
+
+### BREAKING CHANGES
+
+- `<ui-table>`: rename prop `caption`, `colgroup`, `columns`, `noData`
+
 ## v8.15.0 / 2021-01-04
 
 ### Chore

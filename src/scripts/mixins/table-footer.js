@@ -16,6 +16,10 @@ export default {
         return [];
       }
     },
+    rowCheckbox: {
+      type: Boolean,
+      default: false
+    },
     columns: {
       type: Number,
       default: 1
@@ -26,10 +30,19 @@ export default {
       let result = [];
 
       if (this.tfoot.length) {
-        result = this.tfoot.map((tfootCell) => this.getTfootCell(tfootCell));
+        result = this.tfoot.map((tfootCellData, tfootCellIndex) =>
+          this.getTfootCell(tfootCellData, tfootCellIndex)
+        );
 
         if (this.rowCheckbox) {
-          result.unshift({});
+          let cellData = {};
+
+          // Set fixed
+          if (this.cellStyle[0]) {
+            cellData[this.T_CELL.STYLE] = this.cellStyle[0];
+          }
+
+          result.unshift(cellData);
         }
 
         let restColumns = this.columns - result.length;
@@ -53,7 +66,7 @@ export default {
 
       return className;
     },
-    getTfootCell(data) {
+    getTfootCell(data, index) {
       let cell = {};
 
       if (this.isObject(data)) {
@@ -111,6 +124,12 @@ export default {
         Object.keys(data).forEach((key) => {
           cell[key] = data[key];
         });
+
+        // Set fixed
+        const cellIndex = this.rowCheckbox ? index + 1 : index;
+        if (this.cellStyle[cellIndex]) {
+          cell[this.T_CELL.STYLE] = this.cellStyle[cellIndex];
+        }
       }
 
       return cell;

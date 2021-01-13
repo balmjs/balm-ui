@@ -3,16 +3,17 @@
   <tfoot v-if="tfootData.length">
     <tr class="mdc-data-table__footer-row">
       <td
-        v-for="(tfootCell, tfootCellIndex) in tfootData"
+        v-for="(tfootCellData, tfootCellIndex) in tfootData"
         :key="tfootCellIndex"
-        :class="tfootCellClassName(tfootCell)"
+        :class="tfootCellClassName(tfootCellData)"
+        :style="tfootCellData[T_CELL.STYLE] || null"
       >
         <slot
-          v-if="tfootCell[T_CELL.SLOT]"
-          :name="tfootCell[T_CELL.SLOT]"
-          :data="tfootCell[T_CELL.VALUE]"
+          v-if="tfootCellData[T_CELL.SLOT]"
+          :name="tfootCellData[T_CELL.SLOT]"
+          :data="tfootCellData[T_CELL.VALUE]"
         ></slot>
-        <template v-else>{{ tfootCell[T_CELL.VALUE] }}</template>
+        <template v-else>{{ tfootCellData[T_CELL.VALUE] }}</template>
       </td>
     </tr>
   </tfoot>

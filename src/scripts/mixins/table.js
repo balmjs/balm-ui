@@ -2,6 +2,14 @@ import getType from '../utils/typeof';
 import UI_TABLE from '../components/data-tables/constants';
 
 export default {
+  props: {
+    cellStyle: {
+      type: Array,
+      default() {
+        return [];
+      }
+    }
+  },
   data() {
     return {
       T_CELL: UI_TABLE.CELL

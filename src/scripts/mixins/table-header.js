@@ -29,25 +29,31 @@ export default {
       let result = [];
 
       if (this.hasMultipleRows(this.thead)) {
-        this.thead.forEach((currentTheadRow) => {
-          let theadRow = currentTheadRow.map((theadCell) =>
-            this.getTheadCell(theadCell)
+        this.thead.forEach((theadRowData) => {
+          let data = theadRowData.map((theadCellData, theadCellIndex) =>
+            this.getTheadCell(theadCellData, theadCellIndex)
           );
-          result.push(theadRow);
+          result.push(data);
         });
       } else {
-        let theadRow = this.thead.map((theadCell) =>
-          this.getTheadCell(theadCell)
+        let data = this.thead.map((theadCellData, theadCellIndex) =>
+          this.getTheadCell(theadCellData, theadCellIndex)
         );
-        result.push(theadRow);
+        result.push(data);
       }
 
       if (this.rowCheckbox) {
-        let cell = {
+        let cellData = {
           checkbox: true,
           rowspan: result.length
         };
-        result[0].unshift(cell);
+
+        // Set fixed
+        if (this.cellStyle[0]) {
+          cellData[this.T_CELL.STYLE] = this.cellStyle[0];
+        }
+
+        result[0].unshift(cellData);
       }
 
       return result;
@@ -78,7 +84,7 @@ export default {
 
       return className;
     },
-    getTheadCell(data) {
+    getTheadCell(data, index) {
       let cell = {};
 
       if (this.isString(data) || this.isObject(data)) {
@@ -88,6 +94,12 @@ export default {
           Object.keys(data).forEach((key) => {
             cell[key] = data[key];
           });
+        }
+
+        // Set fixed
+        const cellIndex = this.rowCheckbox ? index + 1 : index;
+        if (this.cellStyle[cellIndex]) {
+          cell[this.T_CELL.STYLE] = this.cellStyle[cellIndex];
         }
       } else {
         console.warn(`Invalid thead cell data: ${data}`);

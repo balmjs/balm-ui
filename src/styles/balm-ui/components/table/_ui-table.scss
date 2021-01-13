@@ -48,8 +48,20 @@
   border-right-color: transparent;
 }
 
+.mdc-data-table--fixed {
+  width: 100%;
+}
+
 .mdc-data-table__fixed-header {
   overflow: hidden;
+
+  table {
+    width: 100%;
+  }
+
+  .mdc-data-table__header-cell {
+    background-color: white;
+  }
 }
 
 .mdc-data-table__fixed-body {
@@ -57,5 +69,9 @@
 
   table {
     min-width: 100%;
+  }
+
+  .mdc-data-table__cell {
+    background-color: white;
   }
 }

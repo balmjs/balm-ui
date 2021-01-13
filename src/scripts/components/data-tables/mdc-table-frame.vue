@@ -1,12 +1,12 @@
 <template>
-  <div class="mdc-data-table__table-container">
-    <table class="mdc-data-table__table">
+  <div class="mdc-data-table__table-container" :style="containerStyle">
+    <table class="mdc-data-table__table" :style="tableStyle">
       <colgroup v-if="columnsData.length">
         <template v-for="(colValue, colKey) in columnsData">
           <col
             :key="colKey"
-            :class="colValue.className ? `col-${colValue.className}` : null"
-            :style="style(colValue)"
+            :class="colValue.class ? `col-${colValue.class}` : `col-${colKey}`"
+            :style="colValue.style || null"
           />
         </template>
       </colgroup>
@@ -16,8 +16,6 @@
 </template>
 
 <script>
-import getType from '../../utils/typeof';
-
 export default {
   name: 'MdcTableFrame',
   props: {
@@ -27,20 +25,27 @@ export default {
         return [];
       }
     },
-    defaultWidth: {
-      type: String,
-      default: '200px'
+    scroll: {
+      type: Object,
+      default() {
+        return {};
+      }
     }
   },
-  methods: {
-    style({ width }) {
-      return {
-        width: width
-          ? getType(width) === 'number'
-            ? `${width}px`
-            : width
-          : this.defaultWidth
-      };
+  computed: {
+    containerStyle() {
+      return this.scroll.y
+        ? {
+            'max-height': `${this.scroll.y}px`
+          }
+        : null;
+    },
+    tableStyle() {
+      return this.scroll.x
+        ? {
+            width: `${this.scroll.x}px`
+          }
+        : null;
     }
   }
 };

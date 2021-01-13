@@ -4,14 +4,14 @@
     <template v-if="hasFixedCell">
       <mdc-table-frame
         class="mdc-data-table__fixed-header"
-        :columns-data="columnsData"
+        :columns-data="columns.data"
       >
         <mdc-table-header
           :thead="thead"
-          :tbody="tbody"
           :row-checkbox="rowCheckbox"
           :sort-icon-align-end="sortIconAlignEnd"
           :fixed="hasFixedCell"
+          :cell-style="cellStyle"
         >
           <slot v-for="(_, name) in $slots" :slot="name" :name="name"></slot>
           <template
@@ -26,7 +26,8 @@
       <mdc-table-frame
         ref="content"
         class="mdc-data-table__fixed-body"
-        :columns-data="columnsData"
+        :columns-data="columns.data"
+        :scroll="scroll"
       >
         <mdc-table-body
           :data="data"
@@ -36,6 +37,7 @@
           :row-checkbox="rowCheckbox"
           :selected-key="selectedKey"
           :row-id-prefix="rowIdPrefix"
+          :cell-style="cellStyle"
         >
           <slot v-for="(_, name) in $slots" :slot="name" :name="name"></slot>
           <template
@@ -49,9 +51,15 @@
       </mdc-table-frame>
       <mdc-table-frame
         class="mdc-data-table__footer"
-        :columns-data="columnsData"
+        :columns-data="columns.data"
       >
-        <mdc-table-footer :data="data" :tfoot="tfoot" :columns="columns">
+        <mdc-table-footer
+          :data="data"
+          :tfoot="tfoot"
+          :row-checkbox="rowCheckbox"
+          :columns="columns.count"
+          :cell-style="cellStyle"
+        >
           <slot v-for="(_, name) in $slots" :slot="name" :name="name"></slot>
           <template
             v-for="(_, name) in $scopedSlots"
@@ -63,7 +71,7 @@
         </mdc-table-footer>
       </mdc-table-frame>
     </template>
-    <mdc-table-frame v-else :columns-data="columnsData">
+    <mdc-table-frame v-else :columns-data="columns.data">
       <mdc-table-header
         :thead="thead"
         :row-checkbox="rowCheckbox"
@@ -96,7 +104,12 @@
           <slot :name="name" v-bind="slotData"></slot>
         </template>
       </mdc-table-body>
-      <mdc-table-footer :data="data" :tfoot="tfoot" :columns="columns">
+      <mdc-table-footer
+        :data="data"
+        :tfoot="tfoot"
+        :row-checkbox="rowCheckbox"
+        :columns="columns.count"
+      >
         <slot v-for="(_, name) in $slots" :slot="name" :name="name"></slot>
         <template
           v-for="(_, name) in $scopedSlots"
@@ -191,10 +204,6 @@ export default {
       type: Boolean,
       default: false
     },
-    // stickyHeader: {
-    //   type: Boolean,
-    //   default: false
-    // },
     showProgress: {
       type: Boolean,
       default: false
@@ -202,6 +211,19 @@ export default {
     fixedHeader: {
       type: Boolean,
       default: false
+    },
+    defaultColWidth: {
+      type: Number,
+      default: 0
+    },
+    scroll: {
+      type: Object,
+      default() {
+        return {
+          x: false,
+          y: false
+        };
+      }
     }
   },
   data() {
@@ -216,17 +238,95 @@ export default {
     className() {
       return {
         'mdc-data-table': true,
+        'mdc-data-table--fixed': this.hasFixedCell,
         'mdc-data-table--fullwidth': this.fullwidth
-        // 'mdc-data-table--sticky-header': this.stickyHeader
       };
     },
     hasFixedCell() {
-      return this.fixedHeader || this.tbody.some((cell) => cell.fixed);
+      return (
+        this.fixedHeader ||
+        this.tbody.some((cell) =>
+          getType(cell) === 'object' ? cell.fixed : false
+        )
+      );
     },
     columns() {
-      return this.rowCheckbox
-        ? this.columnsData.length + this.columnsData.length
-        : this.columnsData.length;
+      let count = this.columnsData.length;
+      let data = this.tbody.map(({ colClass, width }) => {
+        const colWidth = width
+          ? `${width}px`
+          : this.defaultColWidth
+          ? `${this.defaultColWidth}px`
+          : null;
+
+        return {
+          class: colClass,
+          style: colWidth ? { width: colWidth } : null
+        };
+      });
+
+      if (this.rowCheckbox) {
+        count += 1;
+        data.unshift({
+          class: 'checkbox',
+          style: { width: `${UI_TABLE.CHECKBOX_COL_WIDTH}px` }
+        });
+      }
+
+      return {
+        count,
+        data
+      };
+    },
+    cellStyle() {
+      let result = [];
+
+      let originTbody = Object.assign([], this.tbody);
+      let leftFixedCell = originTbody.map(({ fixed }) => fixed === 'left');
+      if (this.rowCheckbox) {
+        originTbody.unshift(
+          leftFixedCell.length
+            ? {
+                fixed: 'left',
+                width: UI_TABLE.CHECKBOX_COL_WIDTH
+              }
+            : {}
+        );
+      }
+
+      let sumWidth = 0;
+      for (let index = 0, len = originTbody.length; index < len; index++) {
+        let style;
+
+        let { fixed } = originTbody[index];
+        let fixedWidth = 0;
+        switch (fixed) {
+          case 'left':
+            if (index > 0) {
+              let { width } = originTbody[index - 1];
+              sumWidth += width;
+              fixedWidth = `${sumWidth}px`;
+            }
+            style = { position: 'sticky', left: fixedWidth };
+            break;
+          case 'right':
+            if (index < len - 1) {
+              sumWidth = 0;
+              for (let j = index + 1; j < len; j++) {
+                let { width } = originTbody[j];
+                sumWidth += width;
+              }
+              fixedWidth = `${sumWidth}px`;
+            }
+            style = { position: 'sticky', right: fixedWidth };
+            break;
+          default:
+        }
+
+        result.push(style);
+      }
+
+      return result;
     }
   },
   watch: {
@@ -246,12 +346,12 @@ export default {
     this.$table.listen(events.ROW_SELECTION_CHANGED, ({ detail }) => {
       let selectedRows = this.selectedRows; // NOTE: cache selected rows for pagination
 
-      this.currentData.forEach((tbodyData, tbodyDataIndex) => {
+      this.currentData.forEach((tbodyRowData, tbodyRowIndex) => {
         let selectedRowId = this.selectedKey
-          ? tbodyData[this.selectedKey]
-          : tbodyDataIndex;
+          ? tbodyRowData[this.selectedKey]
+          : tbodyRowIndex;
 
-        if (tbodyDataIndex === detail.rowIndex) {
+        if (tbodyRowIndex === detail.rowIndex) {
           // checked
           if (detail.selected) {
             selectedRows.push(selectedRowId);
@@ -274,10 +374,10 @@ export default {
       let oldSelectedRows = this.selectedRows; // NOTE: cache selected rows for pagination
 
       let newSelectedRows = this.currentData.map(
-        (tbodyData, tbodyDataIndex) => {
+        (tbodyRowData, tbodyRowIndex) => {
           return this.selectedKey
-            ? tbodyData[this.selectedKey]
-            : tbodyDataIndex;
+            ? tbodyRowData[this.selectedKey]
+            : tbodyRowIndex;
         }
       );
 
@@ -290,10 +390,10 @@ export default {
       let oldSelectedRows = this.selectedRows; // NOTE: cache selected rows for pagination
 
       let newSelectedRows = this.currentData.map(
-        (tbodyData, tbodyDataIndex) => {
+        (tbodyRowData, tbodyRowIndex) => {
           return this.selectedKey
-            ? tbodyData[this.selectedKey]
-            : tbodyDataIndex;
+            ? tbodyRowData[this.selectedKey]
+            : tbodyRowIndex;
         }
       );
 
@@ -317,9 +417,6 @@ export default {
     if (this.showProgress) {
       this.$table.showProgress();
     }
-
-    this.$refs.content.$el.style.maxHeight = '300px';
-    this.$refs.content.$el.querySelector('table').style.width = '1650px';
   },
   methods: {
     handleSort({ columnId, sortValue }) {
@@ -327,7 +424,7 @@ export default {
 
       if (sortValue) {
         const isNumber = this.currentData.every(
-          (data) => getType(data[columnId]) === 'number'
+          (tbodyRowData) => getType(tbodyRowData[columnId]) === 'number'
         );
 
         if (sortValue === 'descending') {
@@ -375,7 +472,8 @@ export default {
           .map((selectedRow) => {
             let rowIndex = this.selectedKey
               ? this.currentData.findIndex(
-                  (tbodyData) => tbodyData[this.selectedKey] === selectedRow
+                  (tbodyRowData) =>
+                    tbodyRowData[this.selectedKey] === selectedRow
                 )
               : selectedRow;
             return `${this.rowIdPrefix}${rowIndex}`;

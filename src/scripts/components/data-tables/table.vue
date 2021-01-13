@@ -3,8 +3,10 @@
   <div :class="className">
     <template v-if="hasFixedCell">
       <mdc-table-frame
+        ref="header"
         class="mdc-data-table__fixed-header"
         :columns-data="columns.data"
+        :offset-left="offsetLeft"
       >
         <mdc-table-header
           :thead="thead"
@@ -50,8 +52,10 @@
         </mdc-table-body>
       </mdc-table-frame>
       <mdc-table-frame
-        class="mdc-data-table__footer"
+        ref="footer"
+        class="mdc-data-table__fixed-footer"
         :columns-data="columns.data"
+        :offset-left="offsetLeft"
       >
         <mdc-table-footer
           :data="data"
@@ -188,6 +192,10 @@ export default {
       type: Boolean,
       default: false
     },
+    noData: {
+      type: String,
+      default: 'No Data'
+    },
     rowCheckbox: {
       type: Boolean,
       default: false
@@ -231,7 +239,9 @@ export default {
       UI_TABLE,
       $table: null,
       columnsData: this.tbody,
-      currentData: this.data
+      currentData: this.data,
+      ticking: false,
+      offsetLeft: 0
     };
   },
   computed: {
@@ -338,6 +348,13 @@ export default {
         this.$table.layout();
         this.initSelectedRows();
       });
+    },
+    showProgress(val) {
+      if (val) {
+        this.$table.showProgress();
+      } else {
+        this.$table.hideProgress();
+      }
     }
   },
   mounted() {
@@ -417,6 +434,15 @@ export default {
     if (this.showProgress) {
       this.$table.showProgress();
     }
+
+    if (this.hasFixedCell) {
+      this.$refs.content.$el.addEventListener('scroll', this.handleScroll);
+    }
+  },
+  beforeDestroy() {
+    if (this.hasFixedCell) {
+      this.$refs.content.$el.removeEventListener('scroll', this.handleScroll);
+    }
   },
   methods: {
     handleSort({ columnId, sortValue }) {
@@ -481,6 +507,20 @@ export default {
           .filter((row) => row > -1);
 
         this.$table.setSelectedRowIds(rowIds);
+      }
+    },
+    handleScroll(e) {
+      if (!this.ticking) {
+        window.requestAnimationFrame(() => {
+          const offsetLeft = e.target.scrollLeft;
+
+          if (this.offsetLeft != offsetLeft) {
+            this.offsetLeft = offsetLeft;
+          }
+
+          this.ticking = false;
+        });
+        this.ticking = true;
       }
     }
   }

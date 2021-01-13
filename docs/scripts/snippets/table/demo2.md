@@ -11,9 +11,9 @@
 >
   <template #th-dessert>
     Dessert
-    <ui-icon v-tooltip="'100g serving'" aria-describedby="th-cell-1"
-      >error_outline</ui-icon
-    >
+    <ui-icon v-tooltip="'100g serving'" aria-describedby="th-cell-1">
+      error_outline
+    </ui-icon>
   </template>
   <template #dessert="{ data }">
     <div class="dessert">{{ data.dessert }}</div>

@@ -1,5 +1,5 @@
 <template>
-  <docs-page name="table" demo-count="2">
+  <docs-page name="table" demo-count="3">
     <template #hero>
       <ui-table
         row-checkbox
@@ -67,11 +67,13 @@
           :data="data3"
           :thead="thead3"
           :tbody="tbody3"
-          row-checkbox
+          :tfoot="tfoot3"
           :default-col-width="200"
           :scroll="{ x: 1600, y: 300 }"
+          style="max-width: 800px"
         ></ui-table>
       </div>
+      <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>
   </docs-page>
 </template>
@@ -226,8 +228,8 @@ export default {
         },
         {
           field: 'b',
-          width: 100,
-          fixed: 'left'
+          width: 100
+          // fixed: 'left'
         },
         {
           field: 'c',
@@ -255,19 +257,32 @@ export default {
         },
         {
           field: 'c',
-          width: 100,
-          fixed: 'right'
+          width: 100
         },
         {
           field: 'b',
-          width: 100,
-          fixed: 'right'
+          width: 100
+          // fixed: 'right'
         },
         {
           field: 'b',
           width: 80,
           fixed: 'right'
         }
+      ],
+      tfoot3: [
+        { value: 1 },
+        { value: 2 },
+        { value: 3 },
+        { value: 4 },
+        { value: 5 },
+        { value: 6 },
+        { value: 7 },
+        { value: 8 },
+        { value: 9 },
+        { value: 10 },
+        { value: 11 },
+        { value: 12 }
       ],
       data3: [],
       selectedRows: [1, 2, 4],
@@ -284,18 +299,18 @@ export default {
     }, 2e3);
 
     this.data3 = [
-      { a: 'aaa', b: 'bbb', c: '内容内容内容内容内容', d: 3, key: '1' },
-      { a: 'aaa', b: 'bbb', c: '内容内容内容内容内容', d: 3, key: '2' },
-      { a: 'aaa', c: '内容内容内容内容内容', d: 2, key: '3' },
-      { a: 'aaa', c: '内容内容内容内容内容', d: 2, key: '4' },
-      { a: 'aaa', c: '内容内容内容内容内容', d: 2, key: '5' },
-      { a: 'aaa', c: '内容内容内容内容内容', d: 2, key: '6' },
-      { a: 'aaa', c: '内容内容内容内容内容', d: 2, key: '7' },
-      { a: 'aaa', c: '内容内容内容内容内容', d: 2, key: '8' },
-      { a: 'aaa', c: '内容内容内容内容内容', d: 2, key: '9' },
-      { a: 'aaa', b: 'bbb', c: '内容内容内容内容内容', d: 3, key: '10' },
-      { a: 'aaa', b: 'bbb', c: '内容内容内容内容内容', d: 3, key: '11' },
-      { a: 'aaa', b: 'bbb', c: '内容内容内容内容内容', d: 3, key: '12' }
+      { a: 'aaa', b: 'bbb', c: 'ContentContentContent', d: 3, key: '1' },
+      { a: 'aaa', b: 'bbb', c: 'ContentContentContent', d: 3, key: '2' },
+      { a: 'aaa', c: 'ContentContentContent', d: 2, key: '3' },
+      { a: 'aaa', c: 'ContentContentContent', d: 2, key: '4' },
+      { a: 'aaa', c: 'ContentContentContent', d: 2, key: '5' },
+      { a: 'aaa', c: 'ContentContentContent', d: 2, key: '6' },
+      { a: 'aaa', c: 'ContentContentContent', d: 2, key: '7' },
+      { a: 'aaa', c: 'ContentContentContent', d: 2, key: '8' },
+      { a: 'aaa', c: 'ContentContentContent', d: 2, key: '9' },
+      { a: 'aaa', b: 'bbb', c: 'ContentContentContent', d: 3, key: '10' },
+      { a: 'aaa', b: 'bbb', c: 'ContentContentContent', d: 3, key: '11' },
+      { a: 'aaa', b: 'bbb', c: 'ContentContentContent', d: 3, key: '12' }
     ];
   },
   methods: {

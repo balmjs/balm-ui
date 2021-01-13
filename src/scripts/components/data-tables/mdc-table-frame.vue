@@ -30,6 +30,10 @@ export default {
       default() {
         return {};
       }
+    },
+    offsetLeft: {
+      type: Number,
+      default: 0
     }
   },
   computed: {
@@ -46,6 +50,11 @@ export default {
             width: `${this.scroll.x}px`
           }
         : null;
+    }
+  },
+  watch: {
+    offsetLeft(val) {
+      this.$el.scrollLeft = val;
     }
   }
 };

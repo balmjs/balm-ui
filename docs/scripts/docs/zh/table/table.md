@@ -192,9 +192,10 @@
 
 ### Slots
 
-| Name            | Props | Description          |
-| --------------- | ----- | -------------------- |
-| `(custom-name)` |       | Custom slot for cell |
+| Name            | Props | Description                                                           |
+| --------------- | ----- | --------------------------------------------------------------------- |
+| `default`       |       | The default slot holds the pagination component and can contain HTML. |
+| `(custom-name)` |       | Custom slot for cell                                                  |
 
 ### Events
 

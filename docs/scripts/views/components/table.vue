@@ -49,13 +49,14 @@
             <ui-icon @click="show(data)">edit</ui-icon>
             <ui-icon @click="show(data)">delete</ui-icon>
           </template>
+
+          <ui-pagination
+            v-model="page"
+            :total="total"
+            show-total
+            @change="onPage"
+          ></ui-pagination>
         </ui-table>
-        <ui-pagination
-          v-model="page"
-          :total="total"
-          show-total
-          @change="onPage"
-        ></ui-pagination>
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>

@@ -23,6 +23,13 @@
     <ui-icon @click="show(data)">edit</ui-icon>
     <ui-icon @click="show(data)">delete</ui-icon>
   </template>
+
+  <ui-pagination
+    v-model="page"
+    :total="total"
+    show-total
+    @change="onPage"
+  ></ui-pagination>
 </ui-table>
 ```
 
@@ -101,7 +108,9 @@ export default {
           fnName: 'min'
         }
       ],
-      selectedRows: [1, 2, 4]
+      selectedRows: [1, 2, 4],
+      page: 1,
+      total: 12
     };
   },
   created() {
@@ -111,6 +120,9 @@ export default {
   methods: {
     show(data) {
       console.log(data);
+    },
+    onPage(page) {
+      // your code
     }
   }
 };

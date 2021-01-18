@@ -38,14 +38,6 @@ export default {
     rowIdPrefix: {
       type: String,
       default: ''
-    },
-    columns: {
-      type: Number,
-      default: 1
-    },
-    noData: {
-      type: String,
-      default: 'No Data'
     }
   },
   computed: {

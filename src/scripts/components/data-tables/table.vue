@@ -3,7 +3,6 @@
   <div :class="className">
     <template v-if="hasFixedCell">
       <mdc-table-frame
-        ref="header"
         class="mdc-data-table__fixed-header"
         :columns-data="columns.data"
         :offset-left="offsetLeft"
@@ -29,7 +28,7 @@
         <mdc-table-body
           :data="data"
           :current-data="currentData"
-          :selected-rows="selectedRows"
+          :selected-rows="modelValue"
           :tbody="tbody"
           :row-checkbox="rowCheckbox"
           :selected-key="selectedKey"
@@ -42,7 +41,6 @@
         </mdc-table-body>
       </mdc-table-frame>
       <mdc-table-frame
-        ref="footer"
         class="mdc-data-table__fixed-footer"
         :columns-data="columns.data"
         :offset-left="offsetLeft"
@@ -73,7 +71,7 @@
       <mdc-table-body
         :data="data"
         :current-data="currentData"
-        :selected-rows="selectedRows"
+        :selected-rows="modelValue"
         :tbody="tbody"
         :row-checkbox="rowCheckbox"
         :selected-key="selectedKey"
@@ -159,10 +157,6 @@ export default {
     fullwidth: {
       type: Boolean,
       default: false
-    },
-    noData: {
-      type: String,
-      default: 'No Data'
     },
     rowCheckbox: {
       type: Boolean,
@@ -419,38 +413,40 @@ export default {
 
       if (sortValue) {
         const isNumber = this.currentData.every(
-          (tbodyRowData) => getType(tbodyRowData[columnId]) === 'number'
+          (data) => getType(data[columnId]) === 'number'
         );
 
         if (sortValue === 'descending') {
-          if (isNumber) {
-            this.currentData.sort((a, b) => {
-              return b[columnId] - a[columnId];
-            });
-          } else {
-            this.currentData.sort((a, b) => {
-              return b[columnId].localeCompare(a[columnId]);
-            });
-          }
+          this.currentData.sort(
+            isNumber
+              ? (a, b) => {
+                  return b[columnId] - a[columnId];
+                }
+              : (a, b) => {
+                  return b[columnId].localeCompare(a[columnId]);
+                }
+          );
         } else if (sortValue === 'ascending') {
-          if (isNumber) {
-            this.currentData.sort((a, b) => {
-              return a[columnId] - b[columnId];
-            });
-          } else {
-            this.currentData.sort((a, b) => {
-              return a[columnId].localeCompare(b[columnId]);
-            });
-          }
+          this.currentData.sort(
+            isNumber
+              ? (a, b) => {
+                  return a[columnId] - b[columnId];
+                }
+              : (a, b) => {
+                  return a[columnId].localeCompare(b[columnId]);
+                }
+          );
         }
 
-        let oldSelectedIndex = 0;
-        let tableRowCount = this.currentData.length;
+        let oldSelectedRows = this.modelValue;
         if (this.selectedKey) {
-          newSelectedRows = [...this.selectedRows];
+          newSelectedRows = [...oldSelectedRows];
         } else {
+          const tableRowCount = this.currentData.length;
+
+          let oldSelectedIndex = 0;
           for (let index = tableRowCount - 1; index >= 0; index--) {
-            if (this.selectedRows.includes(oldSelectedIndex)) {
+            if (oldSelectedRows.includes(oldSelectedIndex)) {
               newSelectedRows.push(index);
             }
             oldSelectedIndex++;

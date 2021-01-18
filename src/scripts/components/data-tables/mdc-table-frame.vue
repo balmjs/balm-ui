@@ -2,13 +2,12 @@
   <div class="mdc-data-table__table-container" :style="containerStyle">
     <table class="mdc-data-table__table" :style="tableStyle">
       <colgroup v-if="columnsData.length">
-        <template v-for="(colValue, colKey) in columnsData">
-          <col
-            :key="colKey"
-            :class="colValue.class ? `col-${colValue.class}` : `col-${colKey}`"
-            :style="colValue.style || null"
-          />
-        </template>
+        <col
+          v-for="(colValue, colKey) in columnsData"
+          :key="colKey"
+          :class="colValue.class ? `col-${colValue.class}` : `col-${colKey}`"
+          :style="colValue.style || null"
+        />
       </colgroup>
       <slot></slot>
     </table>

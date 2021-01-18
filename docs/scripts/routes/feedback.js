@@ -1,29 +1,14 @@
-import { defineAsyncComponent } from 'vue';
-const Alert = defineAsyncComponent(() => import('@/views/components/alert'));
-const Dialog = defineAsyncComponent(() => import('@/views/components/dialog'));
-const AlertDialog = defineAsyncComponent(() =>
-  import('@/views/plugins/alert-dialog')
-);
-const ConfirmDialog = defineAsyncComponent(() =>
-  import('@/views/plugins/confirm-dialog')
-);
-const Snackbar = defineAsyncComponent(() =>
-  import('@/views/components/snackbar')
-);
-const Toast = defineAsyncComponent(() => import('@/views/plugins/toast'));
-const Banner = defineAsyncComponent(() => import('@/views/components/banner'));
-const Progress = defineAsyncComponent(() =>
-  import('@/views/components/progress')
-);
-const Spinner = defineAsyncComponent(() =>
-  import('@/views/components/spinner')
-);
-const Skeleton = defineAsyncComponent(() =>
-  import('@/views/components/skeleton')
-);
-const Tooltip = defineAsyncComponent(() =>
-  import('@/views/components/tooltip')
-);
+const Alert = () => import('@/views/components/alert');
+const Dialog = () => import('@/views/components/dialog');
+const AlertDialog = () => import('@/views/plugins/alert-dialog');
+const ConfirmDialog = () => import('@/views/plugins/confirm-dialog');
+const Snackbar = () => import('@/views/components/snackbar');
+const Toast = () => import('@/views/plugins/toast');
+const Banner = () => import('@/views/components/banner');
+const Progress = () => import('@/views/components/progress');
+const Spinner = () => import('@/views/components/spinner');
+const Skeleton = () => import('@/views/components/skeleton');
+const Tooltip = () => import('@/views/components/tooltip');
 
 export default [
   {

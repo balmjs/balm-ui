@@ -1,10 +1,7 @@
-import { defineAsyncComponent } from 'vue';
-const Color = defineAsyncComponent(() => import('@/views/plugins/theme'));
-const Typography = defineAsyncComponent(() =>
-  import('@/views/plugins/typography')
-);
-const Shape = defineAsyncComponent(() => import('@/views/directives/shape'));
-const Icon = defineAsyncComponent(() => import('@/views/components/icon'));
+const Color = () => import('@/views/plugins/theme');
+const Typography = () => import('@/views/plugins/typography');
+const Shape = () => import('@/views/directives/shape');
+const Icon = () => import('@/views/components/icon');
 
 export default [
   {

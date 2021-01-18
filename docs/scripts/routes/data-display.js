@@ -1,14 +1,9 @@
-import { defineAsyncComponent } from 'vue';
-const List = defineAsyncComponent(() => import('@/views/components/list'));
-const ImageList = defineAsyncComponent(() =>
-  import('@/views/components/image-list')
-);
-const Card = defineAsyncComponent(() => import('@/views/components/card'));
-const Table = defineAsyncComponent(() => import('@/views/components/table'));
-const Collapse = defineAsyncComponent(() =>
-  import('@/views/components/collapse')
-);
-const Badge = defineAsyncComponent(() => import('@/views/components/badge'));
+const List = () => import('@/views/components/list');
+const ImageList = () => import('@/views/components/image-list');
+const Card = () => import('@/views/components/card');
+const Table = () => import('@/views/components/table');
+const Collapse = () => import('@/views/components/collapse');
+const Badge = () => import('@/views/components/badge');
 
 export default [
   {

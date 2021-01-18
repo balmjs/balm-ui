@@ -1,8 +1,7 @@
-import { defineAsyncComponent } from 'vue';
 import { isDev } from '@/config';
 import BlankLayout from '@/views/layouts/blank';
-const MainTest = defineAsyncComponent(() => import('@/views/test/main'));
-const Subtest = defineAsyncComponent(() => import('@/views/test/sub'));
+const MainTest = () => import('@/views/test/main');
+const Subtest = () => import('@/views/test/sub');
 
 const testSingleRoute = true;
 

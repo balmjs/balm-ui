@@ -1,11 +1,8 @@
-import { defineAsyncComponent } from 'vue';
-const Intro = defineAsyncComponent(() => import('@/views/guide/intro'));
-const Quickstart = defineAsyncComponent(() =>
-  import('@/views/guide/quickstart')
-);
-const Advanced = defineAsyncComponent(() => import('@/views/guide/advanced'));
-const KillIE = defineAsyncComponent(() => import('@/views/guide/kill-ie'));
-const Upgrade = defineAsyncComponent(() => import('@/views/guide/upgrade'));
+const Intro = () => import('@/views/guide/intro');
+const Quickstart = () => import('@/views/guide/quickstart');
+const Advanced = () => import('@/views/guide/advanced');
+const KillIE = () => import('@/views/guide/kill-ie');
+const Upgrade = () => import('@/views/guide/upgrade');
 
 export default [
   {

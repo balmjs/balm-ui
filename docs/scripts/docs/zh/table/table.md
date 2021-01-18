@@ -4,32 +4,32 @@
 
 ### Props
 
-| Name                     | Type            | Default     | Description                                                      |
-| ------------------------ | --------------- | ----------- | ---------------------------------------------------------------- |
-| `data`                   | array           | `[]`        | Data source.                                                     |
-| `caption`                | string          | `''`        | Specifies the caption (or title) of a table.                     |
-| `colgroup`               | boolean         | `false`     | Defines a group of columns within a table.                       |
-| `thead`                  | array           | `[]`        | Table header renderer.                                           |
-| `tbody`                  | array           | `[]`        | Table content renderer.                                          |
-| `tfoot`                  | array           | `[]`        | Table footer renderer.                                           |
-| `fullwidth`              | boolean         | `false`     | Styles the table as a full width table.                          |
-| `columns`                | number          | `0`         | Set table columns by manual.                                     |
-| `noData`                 | string          | `'No Data'` | Show text when data source is empty.                             |
-| `rowCheckbox`            | boolean         | `false`     | Data table with row selection.                                   |
-| `modelValue` (`v-model`) | array           | `[]`        | Selected row indexes/ids. (Required: `rowCheckbox: true`)        |
-| `selectedKey`            | boolean, string | `false`     | `modelValue` use custom key field, default use row index.        |
-| `rowIdPrefix`            | string          | `''`        | The prefix of `data-row-id` attribute value on row element `tr`. |
-| `sortIconAlignEnd`       | boolean         | `false`     | The sort icon will be positioned after the label.                |
+| Name                     | Type            | Default                  | Description                                                      | Version |
+| ------------------------ | --------------- | ------------------------ | ---------------------------------------------------------------- | ------- |
+| `data`                   | array           | `[]`                     | Data source.                                                     |         |
+| `thead`                  | array           | `[]`                     | Table header renderer.                                           |         |
+| `tbody`                  | array           | `[]`                     | Table content renderer.                                          |         |
+| `tfoot`                  | array           | `[]`                     | Table footer renderer.                                           |         |
+| `fullwidth`              | boolean         | `false`                  | Styles the table as a full width table.                          |         |
+| `rowCheckbox`            | boolean         | `false`                  | Data table with row selection.                                   |         |
+| `modelValue` (`v-model`) | array           | `[]`                     | Selected row indexes/ids. (Required: `rowCheckbox: true`)        |         |
+| `selectedKey`            | boolean, string | `false`                  | `modelValue` use custom key field, default use row index.        |         |
+| `rowIdPrefix`            | string          | `''`                     | The prefix of `data-row-id` attribute value on row element `tr`. |         |
+| `sortIconAlignEnd`       | boolean         | `false`                  | The sort icon will be positioned after the label.                |         |
+| `showProgress`           | boolean         | `false`                  | Styles the table with progress indicator for data loading.       | 9.7.0   |
+| `fixedHeader`            | boolean         | `false`                  | Styles the table as a fixed header.                              | 9.7.0   |
+| `defaultColWidth`        | number          | `100`                    | Set the default column width for the fixed table.                | 9.7.0   |
+| `scroll`                 | object          | `{ x: false, y: false }` | Set the table container size for the fixed table.                | 9.7.0   |
 
 - `thead` & `tbody` & `tfoot` items common format
 
   ```ts
   {
-    value: string, // Cell content
-    numeric: boolean, // Numeric cell is displayed right (Equivalent to `align: 'right'`)
-    align: string, // Text alignment: 'left'|'center'|'right'
-    class: string, // Custom classname
-    slot: string // Custom slot for cell
+    value: string; // Cell content
+    numeric: boolean; // Numeric cell is displayed right (Equivalent to `align: 'right'`)
+    align: string; // Text alignment: 'left'|'center'|'right'
+    class: string; // Custom classname
+    slot: string; // Custom slot for cell
   }
   ```
 
@@ -52,10 +52,10 @@
 
     ```ts
     {
-      sort: string, // Sorting: 'none'|'asc'|'desc'
-      columnId: string, // sort field, e.g. 'id'
-      rowspan: number,
-      colspan: number
+      sort: string; // Sorting: 'none'|'asc'|'desc'
+      columnId: string; // sort field, e.g. 'id'
+      rowspan: number;
+      colspan: number;
     }
     ```
 
@@ -105,8 +105,11 @@
 
     ```ts
     {
-      field: string, // Data field name
-      fn: function // Simple data processing
+      field: string; // Data field name
+      fn: function; // Simple data processing
+      colClass: string; // The class name of the <col> element (New in 9.7.0)
+      fixed: string; // Fixed cell for 'left' or 'right' (New in 9.7.0)
+      width: number; // Set column width for fixed cell (New in 9.7.0)
     }
     ```
 
@@ -152,9 +155,9 @@
 
   ```ts
   {
-    fnName: string, // Frequently-used statistical method
-    fn: function, // Simple data processing for result
-    slot: string // Custom slot for footer cell
+    fnName: string; // Frequently-used statistical method
+    fn: function; // Simple data processing for result
+    slot: string; // Custom slot for footer cell
   }
   ```
 
@@ -188,9 +191,10 @@
 
 ### Slots
 
-| Name            | Props | Description          |
-| --------------- | ----- | -------------------- |
-| `(custom-name)` |       | Custom slot for cell |
+| Name            | Props | Description                                                           |
+| --------------- | ----- | --------------------------------------------------------------------- |
+| `default`       |       | The default slot holds the pagination component and can contain HTML. |
+| `(custom-name)` |       | Custom slot for cell                                                  |
 
 ### Events
 

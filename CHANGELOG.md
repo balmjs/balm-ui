@@ -3,6 +3,20 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.7.0 / 2021-01-18
+
+### Features
+
+- `<ui-table>`: add prop `showProgress`, `fixedHeader`, `defaultColWidth`, `scroll`
+
+### Code Refactoring
+
+- `<ui-table>`: add fixed table
+
+### BREAKING CHANGES
+
+- `<ui-table>`: rename prop `caption`, `colgroup`, `columns`, `noData`
+
 ## v9.6.1 / 2021-01-06
 
 ### Bug Fixes

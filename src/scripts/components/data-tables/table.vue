@@ -1,153 +1,102 @@
 <template>
   <!-- Container -->
   <div :class="className">
-    <div class="mdc-data-table__table-container">
-      <table class="mdc-data-table__table" :aria-label="caption">
-        <caption v-if="caption" v-text="caption"></caption>
-        <colgroup v-if="colgroup">
-          <template v-for="(colValue, colKey) in dataColumns" :key="colKey">
-            <col :class="`col-${colValue}`" />
+    <template v-if="hasFixedCell">
+      <mdc-table-frame
+        ref="header"
+        class="mdc-data-table__fixed-header"
+        :columns-data="columns.data"
+        :offset-left="offsetLeft"
+      >
+        <mdc-table-header
+          :thead="thead"
+          :row-checkbox="rowCheckbox"
+          :sort-icon-align-end="sortIconAlignEnd"
+          :fixed="hasFixedCell"
+          :cell-style="cellStyle"
+        >
+          <template v-for="(_, name) in $slots" #[name]="slotData">
+            <slot :name="name" v-bind="slotData"></slot>
           </template>
-        </colgroup>
-        <!-- Column header -->
-        <thead v-if="theadData.length">
-          <tr
-            v-for="(theadRow, theadRowIndex) in theadData"
-            :key="`thead-row-${theadRowIndex}`"
-            class="mdc-data-table__header-row"
-          >
-            <template
-              v-for="(theadCell, theadCellIndex) in theadRow"
-              :key="`thead-cell-${theadCellIndex}`"
-            >
-              <th
-                :class="theadCellClassName(theadCell)"
-                :colspan="theadCell[T_CELL.COLSPAN] || null"
-                :rowspan="theadCell[T_CELL.ROWSPAN] || null"
-                role="columnheader"
-                :data-column-id="theadCell.columnId"
-                :aria-sort="getSort(theadCell)"
-              >
-                <!-- Column header row checkbox -->
-                <mdc-checkbox
-                  v-if="theadCell[T_CELL.CHECKBOX] && tbodyData.length"
-                  :class="'mdc-data-table__header-row-checkbox'"
-                ></mdc-checkbox>
-                <template v-else>
-                  <!-- With sort button -->
-                  <div class="mdc-data-table__header-cell-wrapper">
-                    <template v-if="theadCell.sort">
-                      <template v-if="sortIconAlignEnd">
-                        <div
-                          class="mdc-data-table__header-cell-label"
-                          v-text="theadCell[T_CELL.VALUE]"
-                        ></div>
-                        <mdc-icon-button
-                          class="mdc-data-table__sort-icon-button"
-                          v-text="UI_TABLE.SORTING.ICON"
-                        ></mdc-icon-button>
-                      </template>
-                      <template v-else>
-                        <mdc-icon-button
-                          class="mdc-data-table__sort-icon-button"
-                          v-text="UI_TABLE.SORTING.ICON"
-                        ></mdc-icon-button>
-                        <div class="mdc-data-table__header-cell-label">
-                          <slot
-                            v-if="theadCell[T_CELL.SLOT]"
-                            :name="theadCell[T_CELL.SLOT]"
-                          ></slot>
-                          <template v-else>{{
-                            theadCell[T_CELL.VALUE]
-                          }}</template>
-                        </div>
-                      </template>
-                      <div
-                        class="mdc-data-table__sort-status-label"
-                        aria-hidden="true"
-                      ></div>
-                    </template>
-                    <!-- Column header name -->
-                    <template v-else>
-                      <slot
-                        v-if="theadCell[T_CELL.SLOT]"
-                        :name="theadCell[T_CELL.SLOT]"
-                      ></slot>
-                      <template v-else>{{ theadCell[T_CELL.VALUE] }}</template>
-                    </template>
-                  </div>
-                </template>
-              </th>
-            </template>
-          </tr>
-        </thead>
-        <!-- Rows -->
-        <tbody class="mdc-data-table__content">
-          <template v-if="tbodyData.length">
-            <tr
-              v-for="(tbodyRow, tbodyRowIndex) in tbodyData"
-              :key="`tbody-row-${tbodyRowIndex}`"
-              :class="[
-                'mdc-data-table__row',
-                {
-                  'mdc-data-table__row--selected': tbodyRow[0][T_CELL.SELECTED]
-                }
-              ]"
-              :data-row-id="tbodyRow[0][T_CELL.ROW_ID] || null"
-              :aria-selected="tbodyRow[0][T_CELL.SELECTED] || null"
-            >
-              <template
-                v-for="(tbodyCell, tbodyCellIndex) in tbodyRow"
-                :key="`tbody-cell-${tbodyCellIndex}`"
-              >
-                <td :class="cellClassName(tbodyCell)">
-                  <!-- Row checkboxes -->
-                  <mdc-checkbox
-                    v-if="tbodyCell[T_CELL.CHECKBOX]"
-                    :class="'mdc-data-table__row-checkbox'"
-                  ></mdc-checkbox>
-                  <!-- Data / Actions -->
-                  <template v-else>
-                    <slot
-                      v-if="tbodyCell[T_CELL.SLOT]"
-                      :name="tbodyCell[T_CELL.SLOT]"
-                      :data="currentData[tbodyRowIndex]"
-                    ></slot>
-                    <template v-else>{{ tbodyCell[T_CELL.VALUE] }}</template>
-                  </template>
-                </td>
-              </template>
-            </tr>
+        </mdc-table-header>
+      </mdc-table-frame>
+      <mdc-table-frame
+        ref="content"
+        class="mdc-data-table__fixed-body"
+        :columns-data="columns.data"
+        :scroll="scroll"
+      >
+        <mdc-table-body
+          :data="data"
+          :current-data="currentData"
+          :selected-rows="selectedRows"
+          :tbody="tbody"
+          :row-checkbox="rowCheckbox"
+          :selected-key="selectedKey"
+          :row-id-prefix="rowIdPrefix"
+          :cell-style="cellStyle"
+        >
+          <template v-for="(_, name) in $slots" #[name]="slotData">
+            <slot :name="name" v-bind="slotData"></slot>
           </template>
-          <tr v-else class="mdc-data-table__row">
-            <td
-              class="mdc-data-table__cell mdc-data-table__cell--no-data"
-              :colspan="dataColumns"
-            >
-              <slot name="no-data">{{ noData }}</slot>
-            </td>
-          </tr>
-        </tbody>
-        <!-- Footers -->
-        <tfoot v-if="tfootData.length">
-          <tr class="mdc-data-table__footer-row">
-            <td
-              v-for="(tfootCell, tfootCellIndex) in tfootData"
-              :key="tfootCellIndex"
-              :class="tfootCellClassName(tfootCell)"
-            >
-              <slot
-                v-if="tfootCell[T_CELL.SLOT]"
-                :name="tfootCell[T_CELL.SLOT]"
-                :data="tfootCell[T_CELL.VALUE]"
-              ></slot>
-              <template v-else>{{ tfootCell[T_CELL.VALUE] }}</template>
-            </td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
-    <!-- <table-progress></table-progress> -->
+        </mdc-table-body>
+      </mdc-table-frame>
+      <mdc-table-frame
+        ref="footer"
+        class="mdc-data-table__fixed-footer"
+        :columns-data="columns.data"
+        :offset-left="offsetLeft"
+      >
+        <mdc-table-footer
+          :data="data"
+          :tfoot="tfoot"
+          :row-checkbox="rowCheckbox"
+          :columns="columns.count"
+          :cell-style="cellStyle"
+        >
+          <template v-for="(_, name) in $slots" #[name]="slotData">
+            <slot :name="name" v-bind="slotData"></slot>
+          </template>
+        </mdc-table-footer>
+      </mdc-table-frame>
+    </template>
+    <mdc-table-frame v-else :columns-data="columns.data">
+      <mdc-table-header
+        :thead="thead"
+        :row-checkbox="rowCheckbox"
+        :sort-icon-align-end="sortIconAlignEnd"
+      >
+        <template v-for="(_, name) in $slots" #[name]="slotData">
+          <slot :name="name" v-bind="slotData"></slot>
+        </template>
+      </mdc-table-header>
+      <mdc-table-body
+        :data="data"
+        :current-data="currentData"
+        :selected-rows="selectedRows"
+        :tbody="tbody"
+        :row-checkbox="rowCheckbox"
+        :selected-key="selectedKey"
+        :row-id-prefix="rowIdPrefix"
+      >
+        <template v-for="(_, name) in $slots" #[name]="slotData">
+          <slot :name="name" v-bind="slotData"></slot>
+        </template>
+      </mdc-table-body>
+      <mdc-table-footer
+        :data="data"
+        :tfoot="tfoot"
+        :row-checkbox="rowCheckbox"
+        :columns="columns.count"
+      >
+        <template v-for="(_, name) in $slots" #[name]="slotData">
+          <slot :name="name" v-bind="slotData"></slot>
+        </template>
+      </mdc-table-footer>
+    </mdc-table-frame>
+
+    <mdc-table-progress></mdc-table-progress>
+
     <slot></slot>
   </div>
 </template>
@@ -155,24 +104,25 @@
 <script>
 import { MDCDataTable } from '../../../material-components-web/data-table';
 import { events } from '../../../material-components-web/data-table/constants';
-import MdcCheckbox from '../selection-controls/mdc-checkbox';
-import MdcIconButton from '../buttons/mdc-icon-button';
-// import MdcTableProgress from './mdc-table-progress';
+import MdcTableFrame from './mdc-table-frame';
+import MdcTableHeader from './mdc-table-header';
+import MdcTableBody from './mdc-table-body';
+import MdcTableFooter from './mdc-table-footer';
+import MdcTableProgress from './mdc-table-progress';
 import domMixin from '../../mixins/dom';
-import tableMixin from '../../mixins/table';
-import theadMixin from '../../mixins/thead';
-import tbodyMixin from '../../mixins/tbody';
-import tfootMixin from '../../mixins/tfoot';
 import UI_TABLE from './constants';
+import getType from '../../utils/typeof';
 
 export default {
   name: 'UiTable',
   components: {
-    MdcCheckbox,
-    MdcIconButton
-    // MdcTableProgress
+    MdcTableFrame,
+    MdcTableHeader,
+    MdcTableBody,
+    MdcTableFooter,
+    MdcTableProgress
   },
-  mixins: [domMixin, tableMixin, theadMixin, tbodyMixin, tfootMixin],
+  mixins: [domMixin],
   props: {
     // States
     data: {
@@ -188,14 +138,6 @@ export default {
       }
     },
     // UI attributes
-    caption: {
-      type: [String, null],
-      default: null
-    },
-    colgroup: {
-      type: Boolean,
-      default: false
-    },
     thead: {
       type: Array,
       default() {
@@ -218,10 +160,6 @@ export default {
       type: Boolean,
       default: false
     },
-    columns: {
-      type: Number,
-      default: 0
-    },
     noData: {
       type: String,
       default: 'No Data'
@@ -242,28 +180,132 @@ export default {
       type: Boolean,
       default: false
     },
-    stickyHeader: {
+    showProgress: {
       type: Boolean,
       default: false
+    },
+    fixedHeader: {
+      type: Boolean,
+      default: false
+    },
+    defaultColWidth: {
+      type: Number,
+      default: 0
+    },
+    scroll: {
+      type: Object,
+      default() {
+        return {
+          x: false,
+          y: false
+        };
+      }
     }
   },
   emits: [UI_TABLE.EVENT.CHANGE],
   data() {
     return {
       UI_TABLE,
-      T_CELL: UI_TABLE.CELL,
       $table: null,
-      dataColumns: 1,
-      currentData: this.data
+      columnsData: this.tbody,
+      currentData: this.data,
+      ticking: false,
+      offsetLeft: 0
     };
   },
   computed: {
     className() {
       return {
         'mdc-data-table': true,
-        'mdc-data-table--fullwidth': this.fullwidth,
-        'mdc-data-table--sticky-header': this.stickyHeader
+        'mdc-data-table--fixed': this.hasFixedCell,
+        'mdc-data-table--fullwidth': this.fullwidth
       };
+    },
+    hasFixedCell() {
+      return (
+        this.fixedHeader ||
+        this.tbody.some((cell) =>
+          getType(cell) === 'object' ? cell.fixed : false
+        )
+      );
+    },
+    columns() {
+      let count = this.columnsData.length;
+      let data = this.tbody.map(({ colClass, width }) => {
+        const colWidth = width
+          ? `${width}px`
+          : this.defaultColWidth
+          ? `${this.defaultColWidth}px`
+          : null;
+
+        return {
+          class: colClass,
+          style: colWidth ? { width: colWidth } : null
+        };
+      });
+
+      if (this.rowCheckbox) {
+        count += 1;
+        data.unshift({
+          class: 'checkbox',
+          style: { width: `${UI_TABLE.CHECKBOX_COL_WIDTH}px` }
+        });
+      }
+
+      return {
+        count,
+        data
+      };
+    },
+    cellStyle() {
+      let result = [];
+
+      let originTbody = Object.assign([], this.tbody);
+      let leftFixedCell = originTbody.map(({ fixed }) => fixed === 'left');
+      if (this.rowCheckbox) {
+        originTbody.unshift(
+          leftFixedCell.length
+            ? {
+                fixed: 'left',
+                width: UI_TABLE.CHECKBOX_COL_WIDTH
+              }
+            : {}
+        );
+      }
+
+      let sumWidth = 0;
+      for (let index = 0, len = originTbody.length; index < len; index++) {
+        let style;
+
+        let { fixed } = originTbody[index];
+        let fixedWidth = 0;
+        switch (fixed) {
+          case 'left':
+            if (index > 0) {
+              let { width } = originTbody[index - 1];
+              sumWidth += width;
+              fixedWidth = `${sumWidth}px`;
+            }
+            style = { position: 'sticky', left: fixedWidth };
+            break;
+          case 'right':
+            if (index < len - 1) {
+              sumWidth = 0;
+              for (let j = index + 1; j < len; j++) {
+                let { width } = originTbody[j];
+                sumWidth += width;
+              }
+              fixedWidth = `${sumWidth}px`;
+            }
+            style = { position: 'sticky', right: fixedWidth };
+            break;
+          default:
+        }
+
+        result.push(style);
+      }
+
+      return result;
     }
   },
   watch: {
@@ -271,20 +313,17 @@ export default {
       this.currentData = val;
 
       this.$nextTick(() => {
+        this.$table.hideProgress();
         this.$table.layout();
         this.initSelectedRows();
       });
-    }
-  },
-  created() {
-    this.dataColumns = this.tbody.length;
-
-    if (this.columns) {
-      this.dataColumns = this.columns; // Manual set columns
-    }
-
-    if (this.rowCheckbox) {
-      this.dataColumns += 1;
+    },
+    showProgress(val) {
+      if (val) {
+        this.$table.showProgress();
+      } else {
+        this.$table.hideProgress();
+      }
     }
   },
   mounted() {
@@ -293,12 +332,12 @@ export default {
     this.$table.listen(events.ROW_SELECTION_CHANGED, ({ detail }) => {
       let selectedRows = this.modelValue; // NOTE: cache selected rows for pagination
 
-      this.currentData.forEach((tbodyData, tbodyDataIndex) => {
+      this.currentData.forEach((tbodyRowData, tbodyRowIndex) => {
         let selectedRowId = this.selectedKey
-          ? tbodyData[this.selectedKey]
-          : tbodyDataIndex;
+          ? tbodyRowData[this.selectedKey]
+          : tbodyRowIndex;
 
-        if (tbodyDataIndex === detail.rowIndex) {
+        if (tbodyRowIndex === detail.rowIndex) {
           // checked
           if (detail.selected) {
             selectedRows.push(selectedRowId);
@@ -321,10 +360,10 @@ export default {
       let oldSelectedRows = this.modelValue; // NOTE: cache selected rows for pagination
 
       let newSelectedRows = this.currentData.map(
-        (tbodyData, tbodyDataIndex) => {
+        (tbodyRowData, tbodyRowIndex) => {
           return this.selectedKey
-            ? tbodyData[this.selectedKey]
-            : tbodyDataIndex;
+            ? tbodyRowData[this.selectedKey]
+            : tbodyRowIndex;
         }
       );
 
@@ -337,10 +376,10 @@ export default {
       let oldSelectedRows = this.modelValue; // NOTE: cache selected rows for pagination
 
       let newSelectedRows = this.currentData.map(
-        (tbodyData, tbodyDataIndex) => {
+        (tbodyRowData, tbodyRowIndex) => {
           return this.selectedKey
-            ? tbodyData[this.selectedKey]
-            : tbodyDataIndex;
+            ? tbodyRowData[this.selectedKey]
+            : tbodyRowIndex;
         }
       );
 
@@ -360,15 +399,76 @@ export default {
     if (this.modelValue.length) {
       this.initSelectedRows();
     }
+
+    if (this.showProgress) {
+      this.$table.showProgress();
+    }
+
+    if (this.hasFixedCell) {
+      this.$refs.content.$el.addEventListener('scroll', this.handleScroll);
+    }
+  },
+  beforeUnmount() {
+    if (this.hasFixedCell) {
+      this.$refs.content.$el.removeEventListener('scroll', this.handleScroll);
+    }
   },
   methods: {
+    handleSort({ columnId, sortValue }) {
+      let newSelectedRows = [];
+
+      if (sortValue) {
+        const isNumber = this.currentData.every(
+          (tbodyRowData) => getType(tbodyRowData[columnId]) === 'number'
+        );
+
+        if (sortValue === 'descending') {
+          if (isNumber) {
+            this.currentData.sort((a, b) => {
+              return b[columnId] - a[columnId];
+            });
+          } else {
+            this.currentData.sort((a, b) => {
+              return b[columnId].localeCompare(a[columnId]);
+            });
+          }
+        } else if (sortValue === 'ascending') {
+          if (isNumber) {
+            this.currentData.sort((a, b) => {
+              return a[columnId] - b[columnId];
+            });
+          } else {
+            this.currentData.sort((a, b) => {
+              return a[columnId].localeCompare(b[columnId]);
+            });
+          }
+        }
+
+        let oldSelectedIndex = 0;
+        let tableRowCount = this.currentData.length;
+        if (this.selectedKey) {
+          newSelectedRows = [...this.selectedRows];
+        } else {
+          for (let index = tableRowCount - 1; index >= 0; index--) {
+            if (this.selectedRows.includes(oldSelectedIndex)) {
+              newSelectedRows.push(index);
+            }
+            oldSelectedIndex++;
+          }
+          newSelectedRows.sort();
+        }
+      }
+
+      this.$emit(UI_TABLE.EVENT.CHANGE, newSelectedRows);
+    },
     initSelectedRows() {
       if (this.rowCheckbox && this.currentData.length) {
         let rowIds = this.modelValue
           .map((selectedRow) => {
             let rowIndex = this.selectedKey
               ? this.currentData.findIndex(
-                  (tbodyData) => tbodyData[this.selectedKey] === selectedRow
+                  (tbodyRowData) =>
+                    tbodyRowData[this.selectedKey] === selectedRow
                 )
               : selectedRow;
             return `${this.rowIdPrefix}${rowIndex}`;
@@ -376,6 +476,20 @@ export default {
           .filter((row) => row > -1);
 
         this.$table.setSelectedRowIds(rowIds);
+      }
+    },
+    handleScroll(e) {
+      if (!this.ticking) {
+        window.requestAnimationFrame(() => {
+          const offsetLeft = e.target.scrollLeft;
+
+          if (this.offsetLeft != offsetLeft) {
+            this.offsetLeft = offsetLeft;
+          }
+
+          this.ticking = false;
+        });
+        this.ticking = true;
       }
     }
   }

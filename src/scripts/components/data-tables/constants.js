@@ -15,6 +15,7 @@ export default {
     NUMBER: 'numeric',
     ALIGN: 'align',
     CLASS: 'class',
+    STYLE: 'style',
     // thead config
     SORTING: 'sort',
     ROWSPAN: 'rowspan',
@@ -40,5 +41,6 @@ export default {
   },
   EVENT: {
     CHANGE: 'update:modelValue'
-  }
+  },
+  CHECKBOX_COL_WIDTH: 50 // px
 };

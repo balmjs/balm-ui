@@ -78,7 +78,7 @@ import UiCardText from './components/cards/card-text';
 import UiCardActions from './components/cards/card-actions';
 import UiCardButtons from './components/cards/card-buttons';
 import UiCardIcons from './components/cards/card-icons';
-import UiDataTable from './components/data-tables/table';
+import UiTable from './components/data-tables/table';
 import UiBadge from './components/others/badge'; // Custom
 // Feedback
 import UiDialog from './components/modal/dialog';
@@ -130,7 +130,6 @@ const components = {
   UiCheckbox,
   UiChip,
   UiChips,
-  UiDataTable,
   UiDialog,
   UiDialogActions,
   UiDialogContent,
@@ -186,6 +185,7 @@ const components = {
   UiSnackbar,
   UiSpinner,
   UiSwitch,
+  UiTable,
   UiTabs,
   UiTabBar,
   UiTabScroller,
@@ -265,7 +265,6 @@ export {
   UiCheckbox,
   UiChip,
   UiChips,
-  UiDataTable,
   UiDialog,
   UiDialogActions,
   UiDialogContent,
@@ -321,6 +320,7 @@ export {
   UiSnackbar,
   UiSpinner,
   UiSwitch,
+  UiTable,
   UiTabs,
   UiTabBar,
   UiTabScroller,

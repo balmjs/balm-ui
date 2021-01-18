@@ -1,7 +1,11 @@
 <template>
   <div class="mdc-checkbox">
     <slot>
-      <input type="checkbox" class="mdc-checkbox__native-control" />
+      <input
+        type="checkbox"
+        class="mdc-checkbox__native-control"
+        :checked="checked"
+      />
     </slot>
     <div class="mdc-checkbox__background">
       <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
@@ -19,6 +23,12 @@
 
 <script>
 export default {
-  name: 'MdcCheckbox'
+  name: 'MdcCheckbox',
+  props: {
+    checked: {
+      type: [Boolean, null],
+      default: null
+    }
+  }
 };
 </script>

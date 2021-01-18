@@ -11,7 +11,11 @@
         }
       ]"
       :data-row-id="tbodyRowData[0][T_CELL.ROW_ID] || null"
-      :aria-selected="tbodyRowData[0][T_CELL.SELECTED] || null"
+      :aria-selected="
+        tbodyRowData[0][T_CELL.CHECKBOX]
+          ? tbodyRowData[0][T_CELL.SELECTED]
+          : null
+      "
     >
       <template v-for="(tbodyCellData, tbodyCellIndex) in tbodyRowData">
         <td
@@ -22,7 +26,13 @@
           <!-- Row checkboxes -->
           <mdc-checkbox
             v-if="tbodyCellData[T_CELL.CHECKBOX]"
-            :class="'mdc-data-table__row-checkbox'"
+            :class="[
+              'mdc-data-table__row-checkbox',
+              {
+                'mdc-checkbox--selected': tbodyCellData[T_CELL.SELECTED]
+              }
+            ]"
+            :checked="tbodyCellData[T_CELL.SELECTED]"
           ></mdc-checkbox>
           <!-- Data / Actions -->
           <template v-else>

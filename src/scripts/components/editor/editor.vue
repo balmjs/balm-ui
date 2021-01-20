@@ -26,6 +26,7 @@
 
 <script>
 import { createEditor, Emotion } from './quill';
+import { onBlurEmojiHandler } from './extensions/emoji/module';
 import UI_EDITOR from './constants';
 import handleFileChange from '../../utils/file';
 import getType from '../../utils/typeof';
@@ -156,9 +157,13 @@ export default {
         this.$emit(UI_EDITOR.EVENT.TEXT_CHANGE, html);
       });
     });
+
+    document.addEventListener('click', onBlurEmojiHandler);
   },
   beforeDestroy() {
     Emotion.clear();
+
+    document.removeEventListener('click', onBlurEmojiHandler);
   },
   methods: {
     setToolbarOption(toolbar, key, value) {

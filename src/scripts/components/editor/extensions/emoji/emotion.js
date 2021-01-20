@@ -5,7 +5,6 @@ import {
   createEmoji,
   replaceElementToString
 } from './utils';
-import { onBlurEmojiHandler } from './module';
 
 const emojiRegExp = /(:\w+:)|(\[\w+\])/g;
 
@@ -67,8 +66,6 @@ class Emotion {
     emojiTypes = [];
     emojiData = {};
     emojiMap = {};
-
-    document.removeEventListener('click', onBlurEmojiHandler);
   }
 
   static encode(html) {

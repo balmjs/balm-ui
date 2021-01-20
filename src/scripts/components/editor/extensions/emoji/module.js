@@ -203,13 +203,22 @@ function onBlurEmojiHandler(e) {
     e.preventDefault();
     e.stopPropagation();
   } else {
-    if (!hasRange) {
+    if (hasRange) {
+      let parentEl = el;
+      while (parentEl && !parentEl.classList.contains('mdc-editor-container')) {
+        parentEl = parentEl.parentNode;
+        if (parentEl.classList.contains('mdc-editor-container')) {
+          if (!parentEl.querySelector('#ql-emoji-toolbar')) {
+            closeEmojiToolbar();
+          }
+          break;
+        }
+      }
+    } else {
       closeEmojiToolbar();
     }
   }
 }
-
-document.addEventListener('click', onBlurEmojiHandler);
 
 export default emojiModule;
 export { onBlurEmojiHandler };

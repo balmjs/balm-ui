@@ -3,6 +3,12 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.7.1 / 2021-01-20
+
+### Bug Fixes
+
+- `<ui-editor>`: fix document event bug for ssr, fix emoji blur event for multi editors
+
 ## v9.7.0 / 2021-01-18
 
 ### Features

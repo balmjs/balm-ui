@@ -109,6 +109,7 @@
     {
       field: string; // Data field name
       fn: function; // Simple data processing
+      colClass: string; // The class name of the <col> element (New in 8.16.0)
       fixed: string; // Fixed cell for 'left' or 'right' (New in 8.16.0)
       width: number; // Set column width for fixed cell (New in 8.16.0)
     }

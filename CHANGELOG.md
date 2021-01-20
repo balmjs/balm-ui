@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.16.1 / 2021-01-20
+
+### Bug Fixes
+
+- `<ui-editor>`: fix document event bug for ssr, fix emoji blur event for multi editors
+
 ## v8.16.0 / 2021-01-13
 
 ### Features

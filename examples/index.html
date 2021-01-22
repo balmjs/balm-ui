@@ -4,10 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hello BalmUI</title>
-    <link
-      rel="stylesheet"
-      href="/dist/balm-ui.css"
-    />
+    <link rel="stylesheet" href="/dist/balm-ui.css" />
     <style>
       body {
         margin: 0;
@@ -22,7 +19,11 @@
         </ui-drawer-header>
         <ui-drawer-content>
           <ui-nav>
-            <ui-nav-item v-for="(item, index) in menu" :key="index" :href="item">
+            <ui-nav-item
+              v-for="(item, index) in menu"
+              :key="index"
+              :href="item"
+            >
               {{ item }}
             </ui-nav-item>
           </ui-nav>
@@ -48,6 +49,7 @@
             'drawer',
             'editor',
             'fab',
+            'file',
             'form',
             'grid',
             'icon',

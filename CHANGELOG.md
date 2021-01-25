@@ -3,6 +3,12 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.7.2 / 2021-01-25
+
+### Bug Fixes
+
+- `<ui-table>`: fix header row checkbox bug
+
 ## v9.7.1 / 2021-01-20
 
 ### Bug Fixes

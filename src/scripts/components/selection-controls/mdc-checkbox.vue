@@ -2,6 +2,7 @@
   <div class="mdc-checkbox">
     <slot>
       <input
+        ref="checkbox"
         type="checkbox"
         class="mdc-checkbox__native-control"
         :checked="checked"
@@ -28,6 +29,16 @@ export default {
     checked: {
       type: [Boolean, null],
       default: null
+    }
+  },
+  methods: {
+    // For the row checkbox of `<ui-table-header>`
+    reset() {
+      if (this.$refs.checkbox.indeterminate) {
+        this.$refs.checkbox.indeterminate = false;
+      } else {
+        this.$refs.checkbox.checked = false;
+      }
     }
   }
 };

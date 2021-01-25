@@ -5,6 +5,12 @@ import getType from '../utils/typeof';
 export default {
   mixins: [tableMixin],
   props: {
+    selectedRows: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
     thead: {
       type: Array,
       default() {
@@ -57,6 +63,13 @@ export default {
       }
 
       return result;
+    }
+  },
+  watch: {
+    selectedRows(val) {
+      if (!val.length) {
+        this.$refs.checkbox[0].reset();
+      }
     }
   },
   methods: {

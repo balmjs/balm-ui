@@ -8,6 +8,7 @@
         :offset-left="offsetLeft"
       >
         <mdc-table-header
+          :selected-rows="selectedRows"
           :thead="thead"
           :row-checkbox="rowCheckbox"
           :sort-icon-align-end="sortIconAlignEnd"
@@ -75,6 +76,7 @@
     </template>
     <mdc-table-frame v-else :columns-data="columns.data">
       <mdc-table-header
+        :selected-rows="selectedRows"
         :thead="thead"
         :row-checkbox="rowCheckbox"
         :sort-icon-align-end="sortIconAlignEnd"

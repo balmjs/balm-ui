@@ -20,6 +20,7 @@
         <!-- Column header row checkbox -->
         <mdc-checkbox
           v-if="theadCellData[T_CELL.CHECKBOX]"
+          ref="checkbox"
           :class="[
             'mdc-data-table__header-row-checkbox',
             {

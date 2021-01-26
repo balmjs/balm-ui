@@ -44,7 +44,7 @@ $confirm(message).then((result) => {
 > New in 8.1.0
 
 ```js
-import { useConfirm } from 'balm-ui';
+import { useConfirm } from 'balm-ui/dist/balm-ui-plus';
 // OR
 // import { useConfirm } from 'balm-ui/plugins/confirm';
 

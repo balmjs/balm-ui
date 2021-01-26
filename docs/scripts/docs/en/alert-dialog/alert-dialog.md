@@ -39,7 +39,7 @@ $alert(message).then(() => {
 ### Use `$alert` without `.vue` component
 
 ```js
-import { useAlert } from 'balm-ui';
+import { useAlert } from 'balm-ui/dist/balm-ui-plus';
 // OR
 // import { useAlert } from 'balm-ui/plugins/alert';
 

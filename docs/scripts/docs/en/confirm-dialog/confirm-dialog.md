@@ -42,7 +42,7 @@ $confirm(message).then((result) => {
 ### Use `$confirm` without `.vue` component
 
 ```js
-import { useConfirm } from 'balm-ui';
+import { useConfirm } from 'balm-ui/dist/balm-ui-plus';
 // OR
 // import { useConfirm } from 'balm-ui/plugins/confirm';
 

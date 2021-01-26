@@ -17,7 +17,7 @@ $toast(options);
 ### Use `$toast` without `.vue` component
 
 ```js
-import { useToast } from 'balm-ui';
+import { useToast } from 'balm-ui/dist/balm-ui-plus';
 // OR
 // import { useToast } from 'balm-ui/plugins/toast';
 

@@ -147,9 +147,7 @@ balmUI.setValidations(validationRules);
 | `validation`  | object | `{}`    | A validation. (BalmUI validator rule value)               |
 | `validations` | object | `{}`    | (See) BalmUI validator rules.                             |
 
-```js
-balmUI.resetValidations();
-```
+> <del>`balmUI.resetValidations()`</del> is deprecated in 9.8.0
 
 - For the dynamic form verification:
 
@@ -233,7 +231,7 @@ balmUI.resetValidations();
     };
     ```
 
-  - 3. using `balmUI.resetValidations` and `balmUI.setValidations`
+  - 3. using `balmUI.setValidations`
 
     ```js
     import { useValidator } from 'balm-ui';
@@ -251,8 +249,6 @@ balmUI.resetValidations();
       },
       methods: {
         onSubmit() {
-          this.balmUI.resetValidations();
-
           let customValidations =
             this.step === 1
               ? {

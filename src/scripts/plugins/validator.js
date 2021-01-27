@@ -22,6 +22,7 @@ class UiValidator {
     const currentInstance = getCurrentInstance();
     this.instance = currentInstance;
     this.validations = {};
+    this.customValidations = {};
   }
 
   validate(formData = {}, customFieldset = []) {
@@ -34,10 +35,11 @@ class UiValidator {
       validMsg: {}
     };
 
-    this.validations =
-      this.instance.data.validations ||
-      this.instance.setupState.validations ||
-      {};
+    this.validations = Object.keys(this.customValidations).length
+      ? this.customValidations
+      : this.instance.data.validations ||
+        this.instance.setupState.validations ||
+        {};
 
     let validationFields = Object.keys(this.validations);
 
@@ -50,7 +52,7 @@ class UiValidator {
     for (let i = 0, fieldCount = validationFields.length; i < fieldCount; i++) {
       let fieldName = validationFields[i]; // Field name
       let fieldOption = this.validations[fieldName]; // The validation option of current field
-      let fieldLabel = fieldOption[FIELD_LABEL] || ''; // Field alias name
+      let fieldLabel = fieldOption[FIELD_LABEL] || fieldName; // Field alias name
       let fieldRules = fieldOption[FIELD_VALIDATOR].split(
         ','
       ).map((validator) => validator.trim()); // All validation methods of current field
@@ -117,19 +119,13 @@ class UiValidator {
     return result;
   }
 
-  resetValidations() {
-    this.validations = {};
-  }
-
   setValidations(fieldName, validationRule = {}) {
-    if (!this.validations) {
-      this.resetValidations();
-    }
+    this.customValidations = {};
 
     if (getType(fieldName) === 'object') {
-      this.validations = Object.assign({}, this.validations, fieldName);
+      this.customValidations = Object.assign({}, fieldName);
     } else {
-      this.validations[fieldName] = validationRule;
+      this.customValidations[fieldName] = validationRule;
     }
   }
 }

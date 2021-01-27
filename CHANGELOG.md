@@ -3,6 +3,17 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.8.0 / 2021-01-27
+
+### Bug Fixes
+
+- `$validator`: fix custom validations bug
+- `<ui-select-helper>`: fix `helperTextId` tips bug
+
+### BREAKING CHANGES
+
+- `$validator`: `resetValidations` is deprecated
+
 ## v9.7.2 / 2021-01-25
 
 ### Bug Fixes

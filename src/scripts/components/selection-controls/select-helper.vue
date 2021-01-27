@@ -26,7 +26,7 @@ export default {
   beforeMount() {
     const needHelperTextId = this.visible || this.hasValidMsg;
 
-    if (!this.helperTextId && needHelperTextId) {
+    if (!this.id && needHelperTextId) {
       console.warn(`'helperTextId' is required for '<ui-select>'`);
     }
   }

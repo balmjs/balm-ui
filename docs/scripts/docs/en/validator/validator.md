@@ -92,10 +92,7 @@ $setValidations(validationRules);
 | `validation`  | object | `{}`    | A validation. (BalmUI validator rule value)               |
 | `validations` | object | `{}`    | (See) BalmUI validator rules.                             |
 
-```js
-// New in 7.4.0
-$resetValidations();
-```
+> <del>`$resetValidations()`</del> is deprecated in 8.17.0
 
 - For the dynamic form verification:
 
@@ -171,7 +168,7 @@ $resetValidations();
     };
     ```
 
-  - 3. using `$resetValidations` and `$setValidations`
+  - 3. using `$setValidations`
 
     ```js
     export default {
@@ -186,8 +183,6 @@ $resetValidations();
       },
       methods: {
         onSubmit() {
-          this.$resetValidations();
-
           let customValidations =
             this.step === 1
               ? {

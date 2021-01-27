@@ -15,6 +15,8 @@ const FIELD_LABEL = 'label';
 const FIELD_VALIDATOR = 'validator';
 const LABEL_PLACEHOLDER = '%s';
 
+let customValidations = {};
+
 const BalmUI_ValidatorPlugin = {
   install(Vue, customRules = {}) {
     let globalValidationRules = Object.assign({}, defaultRules, customRules);
@@ -30,7 +32,9 @@ const BalmUI_ValidatorPlugin = {
       };
 
       // 获取待验证字段
-      let validations = this.validations || this.$options.validations || {};
+      let validations = Object.keys(customValidations).length
+        ? customValidations
+        : this.validations || this.$options.validations || {};
       let validationFields = Object.keys(validations);
 
       if (customFieldset.length) {
@@ -46,7 +50,7 @@ const BalmUI_ValidatorPlugin = {
       ) {
         let fieldName = validationFields[i]; // 字段名
         let fieldOption = validations[fieldName]; // 对应验证配置
-        let fieldLabel = fieldOption[FIELD_LABEL] || ''; // 字段别名
+        let fieldLabel = fieldOption[FIELD_LABEL] || fieldName; // 字段别名
         let fieldRules = fieldOption[FIELD_VALIDATOR].split(
           ','
         ).map((validator) => validator.trim()); // 当前字段需要的所有验证方法
@@ -113,28 +117,17 @@ const BalmUI_ValidatorPlugin = {
       return result;
     };
 
-    const $resetValidations = function () {
-      this.$options.validations = {};
-    };
-
     const $setValidations = function (fieldName, validationRule = {}) {
-      if (!this.$options.validations) {
-        $resetValidations();
-      }
+      customValidations = {};
 
       if (getType(fieldName) === 'object') {
-        this.$options.validations = Object.assign(
-          {},
-          this.$options.validations,
-          fieldName
-        );
+        customValidations = Object.assign({}, fieldName);
       } else {
-        this.$options.validations[fieldName] = validationRule;
+        customValidations[fieldName] = validationRule;
       }
     };
 
     Vue.prototype.$validate = $validate;
-    Vue.prototype.$resetValidations = $resetValidations;
     Vue.prototype.$setValidations = $setValidations;
   }
 };

@@ -1,6 +1,6 @@
 {
   "name": "balm-ui",
-  "version": "8.17.0",
+  "version": "8.18.0",
   "description": "Next Generation Material UI for Vue.js",
   "keywords": [
     "balm",
@@ -87,7 +87,7 @@
     "vue-jest": "^3.0.7",
     "vue-loader": "^15.9.0",
     "vue-meta": "^2.4.0",
-    "vue-router": "^3.4.0",
+    "vue-router": "^3.5.0",
     "vue-template-compiler": "^2.6.0",
     "webpack": "4"
   },

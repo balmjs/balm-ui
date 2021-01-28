@@ -2,6 +2,20 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.18.0 / 2021-01-28
+
+### Features
+
+- `<ui-form>`
+  - add prop `labelTopRightAligned`, `actionAlign`
+  - add slot prop `itemClass`, `subitemClass`
+  - add sass variable `$form-subitem-margin-right`
+  - style refactoring
+
+### Bug Fixes
+
+- `<ui-menu>`: fix `distance` watching bug
+
 ## v8.17.0 / 2021-01-27
 
 ### Bug Fixes

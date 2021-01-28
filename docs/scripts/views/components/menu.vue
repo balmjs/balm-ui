@@ -44,7 +44,11 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Advanced</h6>
       <div class="demo-content">
-        <ui-form class="demo-controls" label-width="120">
+        <ui-form
+          class="demo-controls"
+          item-margin-bottom="16"
+          label-width="120"
+        >
           <template #default="{ subitemClass, actionClass }">
             <ui-form-field>
               <label>Button Position:</label>

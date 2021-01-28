@@ -114,9 +114,9 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.$children
-        .filter((child) => child.$el.classList.contains('mdc-form-field'))
-        .forEach((child) => child.$el.classList.add(UI_FORM.cssClasses.item));
+      [...this.$el.children]
+        .filter((child) => child.classList.contains('mdc-form-field'))
+        .forEach((child) => child.classList.add(UI_FORM.cssClasses.item));
     });
   }
 };

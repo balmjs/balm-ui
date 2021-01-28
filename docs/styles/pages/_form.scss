@@ -5,4 +5,17 @@
     padding: 10px;
     border: 1px solid;
   }
+
+  .conditions-form {
+    .mdc-form__item > label {
+      flex-basis: 80px;
+      margin-right: 10px;
+      text-align: right;
+    }
+
+    .mdc-text-field,
+    .mdc-select {
+      min-width: 200px;
+    }
+  }
 }

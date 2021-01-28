@@ -116,8 +116,10 @@ export default {
       default: 'TOP_LEFT'
     },
     distance: {
-      type: [Boolean, Object],
-      default: false
+      type: Object,
+      default() {
+        return {};
+      }
     },
     fixed: {
       type: Boolean,
@@ -151,6 +153,9 @@ export default {
         'mdc-menu-surface--fullwidth': this.fullwidth && !this.fixed,
         'mdc-menu-surface--open': this.cssOnly
       };
+    },
+    menuDistance() {
+      return Object.assign({}, this.distance);
     }
   },
   watch: {
@@ -169,7 +174,7 @@ export default {
     position(val) {
       this.setAnchorCorner(val);
     },
-    distance(val) {
+    menuDistance(val) {
       this.setAnchorMargin(val);
     }
   },
@@ -261,7 +266,7 @@ export default {
       }
     },
     setAnchorMargin(distance = this.distance) {
-      if (this.hasAnchor() && distance) {
+      if (this.hasAnchor() && Object.keys(distance).length) {
         this.$menu.setAnchorMargin(distance);
       }
     }

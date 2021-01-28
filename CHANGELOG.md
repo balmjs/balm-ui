@@ -3,6 +3,20 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.9.0 / 2021-01-28
+
+### Features
+
+- `<ui-form>`
+  - add prop `labelTopRightAligned`, `actionAlign`
+  - add slot prop `itemClass`, `subitemClass`
+  - add sass variable `$form-subitem-margin-right`
+  - style refactoring
+
+### Bug Fixes
+
+- `<ui-menu>`: fix distance watching bug
+
 ## v9.8.0 / 2021-01-27
 
 ### Bug Fixes

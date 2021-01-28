@@ -9,6 +9,6 @@
   $horizontal-form-item-label-margin-right: 0,
   $vertical-form-item-label-margin-bottom: 0,
 
-  $form-subitem-margin-right: 0 // New in 8.18.0
+  $form-subitem-margin-right: 0 // New in 9.9.0
 );
 ```

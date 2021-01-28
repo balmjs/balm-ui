@@ -43,7 +43,7 @@
       background-color: divider-variables.$color;
     }
 
-    & > span {
+    > span {
       padding: divider-variables.$horizontal-text-padding;
     }
   }
@@ -69,7 +69,7 @@
       background-color: divider-variables.$color;
     }
 
-    & > span {
+    > span {
       padding: divider-variables.$vertical-text-padding;
     }
   }

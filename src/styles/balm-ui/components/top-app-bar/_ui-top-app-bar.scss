@@ -1,7 +1,7 @@
 @use './theme' as ui-theme;
 
 .mdc-top-app-bar__section--align-end {
-  & > .mdc-list {
+  > .mdc-list {
     display: flex;
   }
 }

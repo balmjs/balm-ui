@@ -4,16 +4,16 @@
 
 ### Props
 
-| Name               | Type            | Default      | Description                                                                                                                   |
-| ------------------ | --------------- | ------------ | ----------------------------------------------------------------------------------------------------------------------------- |
-| `open` (`v-model`) | boolean         | `false`      | Mandatory.                                                                                                                    |
-| `items`            | array           | `[]`         | Menu items. (one item format: `{ value: string, text: string, icon: string, disabled: boolean, selected: boolean }`) |
-| `quickOpen`        | boolean         | `false`      | Turn off menu open animations.                                                                                                |
-| `position`         | string          | `'TOP_LEFT'` | Menu position to the menu button.                                                                                             |
-| `distance`         | boolean, object | `false`      | Anchor margin. Value format: `{ top, right, bottom, left }`.                                                                  |
-| `fixed`            | boolean         | `false`      | Used to indicate that the menu is using fixed positioning.                                                                    |
-| `fullwidth`        | boolean         | `false`      | Sets the menu surface's width to match that of its parent anchor. Do not use with `fixed` or if hoisting to body.             |
-| `cssOnly`          | boolean         | `false`      | Show static menu.                                                                                                             |
+| Name               | Type    | Default      | Description                                                                                                          |
+| ------------------ | ------- | ------------ | -------------------------------------------------------------------------------------------------------------------- |
+| `open` (`v-model`) | boolean | `false`      | Mandatory.                                                                                                           |
+| `items`            | array   | `[]`         | Menu items. (one item format: `{ value: string, text: string, icon: string, disabled: boolean, selected: boolean }`) |
+| `quickOpen`        | boolean | `false`      | Turn off menu open animations.                                                                                       |
+| `position`         | string  | `'TOP_LEFT'` | Menu position to the menu button.                                                                                    |
+| `distance`         | object  | `false`      | Anchor margin. Value format: `{ top, right, bottom, left }`.                                                         |
+| `fixed`            | boolean | `false`      | Used to indicate that the menu is using fixed positioning.                                                           |
+| `fullwidth`        | boolean | `false`      | Sets the menu surface's width to match that of its parent anchor. Do not use with `fixed` or if hoisting to body.    |
+| `cssOnly`          | boolean | `false`      | Show static menu.                                                                                                    |
 
 - Anchor corners: `TOP_LEFT`, `TOP_RIGHT`, `BOTTOM_LEFT`, `BOTTOM_RIGHT`, `TOP_START`, `TOP_END`, `BOTTOM_START`, `BOTTOM_END`.
 

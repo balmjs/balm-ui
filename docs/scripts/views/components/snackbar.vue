@@ -28,7 +28,10 @@
           <ui-textfield v-model="actionText">Action Text</ui-textfield>
         </ui-form-field>
         <ui-form-field>
-          <ui-checkbox id="action-type" v-model="actionType"></ui-checkbox>
+          <ui-checkbox
+            v-model="actionType"
+            input-id="action-type"
+          ></ui-checkbox>
           <label for="action-type">Icon Button Action</label>
         </ui-form-field>
       </ui-form>

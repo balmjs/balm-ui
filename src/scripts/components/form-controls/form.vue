@@ -1,6 +1,10 @@
 <template>
   <div :class="className">
-    <slot :actionClass="UI_FORM.cssClasses.action"></slot>
+    <slot
+      :itemClass="UI_FORM.cssClasses.item"
+      :subitemClass="UI_FORM.cssClasses.subitem"
+      :actionClass="UI_FORM.cssClasses.actions"
+    ></slot>
   </div>
 </template>
 
@@ -14,7 +18,9 @@ const UI_FORM = {
     vertical: 1
   },
   cssClasses: {
-    action: 'mdc-form__actions'
+    item: 'mdc-form__item',
+    subitem: 'mdc-form__subitem',
+    actions: 'mdc-form__actions'
   }
 };
 
@@ -40,10 +46,18 @@ export default {
       type: Boolean,
       default: false
     },
+    labelTopRightAligned: {
+      type: Boolean,
+      default: false
+    },
     // form items
     itemMarginBottom: {
       type: [String, Number],
       default: 0
+    },
+    actionAlign: {
+      type: String,
+      default: 'left'
     },
     // horizontal form
     labelWidth: {
@@ -76,7 +90,10 @@ export default {
         'mdc-form--vertical': this.isVertical,
         'mdc-form--nowrap': this.nowrap,
         'mdc-form--label-top-aligned': this.labelTopAligned,
-        'mdc-form--label-right-aligned': this.labelRightAligned
+        'mdc-form--label-right-aligned': this.labelRightAligned,
+        'mdc-form--label-top-right-aligned': this.labelTopRightAligned,
+        'mdc-form--actions-center': this.actionAlign === 'center',
+        'mdc-form--actions-right': this.actionAlign === 'right'
       };
     }
   },
@@ -94,6 +111,13 @@ export default {
         );
       }
     }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.$children
+        .filter((child) => child.$el.classList.contains('mdc-form-field'))
+        .forEach((child) => child.$el.classList.add(UI_FORM.cssClasses.item));
+    });
   }
 };
 </script>

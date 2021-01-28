@@ -64,7 +64,8 @@ export default {
         : 0;
     },
     actionPaddingLeft() {
-      return this.flexBasis || this.marginRight
+      return this.$parent.actionAlign === 'left' &&
+        (this.flexBasis || this.marginRight)
         ? this.flexBasis + this.marginRight
         : 0;
     },

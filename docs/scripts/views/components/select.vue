@@ -56,29 +56,30 @@
           v-model="typeOption"
           class="hero-option"
           :options="TypeOptions"
-          >Type</ui-select
         >
+          Type
+        </ui-select>
         <ui-form class="hero-option">
           <ui-form-field>
             <ui-checkbox
-              id="with-leading-icon"
               v-model="selectOption"
+              input-id="with-leading-icon"
               :value="1"
             ></ui-checkbox>
             <label for="with-leading-icon">Leading Icon</label>
           </ui-form-field>
           <ui-form-field>
             <ui-checkbox
-              id="with-helper-text"
               v-model="selectOption"
+              input-id="with-helper-text"
               :value="2"
             ></ui-checkbox>
             <label for="with-helper-text">Helper Text</label>
           </ui-form-field>
           <ui-form-field>
             <ui-checkbox
-              id="with-error-text"
               v-model="selectOption"
+              input-id="with-error-text"
               :value="3"
             ></ui-checkbox>
             <label for="with-error-text">Error Text</label>

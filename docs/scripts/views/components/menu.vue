@@ -157,12 +157,18 @@
                   <ui-textfield v-model="controls.distance.top">
                     Top:
                   </ui-textfield>
+                </ui-form-field>
+                <ui-form-field>
                   <ui-textfield v-model="controls.distance.right">
                     Right:
                   </ui-textfield>
+                </ui-form-field>
+                <ui-form-field>
                   <ui-textfield v-model="controls.distance.bottom">
                     Bottom:
                   </ui-textfield>
+                </ui-form-field>
+                <ui-form-field>
                   <ui-textfield v-model="controls.distance.left">
                     Left:
                   </ui-textfield>

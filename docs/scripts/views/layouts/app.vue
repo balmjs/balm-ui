@@ -20,8 +20,9 @@
         <router-link
           to="/"
           :class="['catalog-title', $theme.getThemeClass('on-primary')]"
-          >BalmUI</router-link
         >
+          BalmUI
+        </router-link>
         <template #toolbar="{ toolbarItemClass }">
           <switch-theme v-if="$route.name === 'theme.color'"></switch-theme>
           <!-- For dark theme test -->
@@ -100,9 +101,10 @@
                 <template v-for="(item, index) in menu">
                   <router-link
                     v-if="item.url || item.isSubmenu"
-                    v-slot="{ href, navigate, isActive }"
+                    v-slot="{ navigate, href, isActive }"
                     :key="`item${index}`"
                     :to="{ name: item.url }"
+                    custom
                   >
                     <ui-nav-item
                       :href="href"

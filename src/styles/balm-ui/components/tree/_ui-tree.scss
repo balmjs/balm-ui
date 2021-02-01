@@ -1,0 +1,19 @@
+.mdc-tree {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.mdc-tree-node {
+  display: flex;
+  flex-direction: column;
+}
+
+.mdc-tree-node__content {
+  display: flex;
+  align-items: center;
+}
+
+.mdc-tree-node__label {
+  flex: 1;
+}

@@ -4,6 +4,7 @@ const Card = () => import('@/views/components/card');
 const Table = () => import('@/views/components/table');
 const Collapse = () => import('@/views/components/collapse');
 const Badge = () => import('@/views/components/badge');
+const Tree = () => import('@/views/components/tree');
 
 export default [
   {
@@ -35,5 +36,10 @@ export default [
     path: 'badge',
     name: 'data-display.badge',
     component: Badge
+  },
+  {
+    path: 'tree',
+    name: 'data-display.tree',
+    component: Tree
   }
 ];

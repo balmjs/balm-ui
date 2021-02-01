@@ -207,6 +207,11 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'category',
         name: 'badge'
+      },
+      {
+        icon: 'account_tree',
+        name: 'tree',
+        plus: true
       }
     ]
   },

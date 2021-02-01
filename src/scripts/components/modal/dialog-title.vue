@@ -6,8 +6,9 @@
       v-if="closable"
       tabindex="-1"
       @click="$parent.handleClose(true)"
-      >close</mdc-icon-button
     >
+      close
+    </mdc-icon-button>
   </h2>
 </template>
 

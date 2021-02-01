@@ -1,9 +1,9 @@
 <template>
   <ui-textfield
-    :input-id="inputId"
     ref="input"
     v-model="inputValue"
     class="mdc-datepicker"
+    :input-id="inputId"
     :outlined="outlined"
     :label="label"
     :placeholder="placeholder"

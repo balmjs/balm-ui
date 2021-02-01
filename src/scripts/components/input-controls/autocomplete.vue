@@ -1,8 +1,8 @@
 <template>
   <ui-textfield
-    :input-id="inputId"
     v-model="inputValue"
     :class="className"
+    :input-id="inputId"
     :outlined="outlined"
     :label="label"
     :placeholder="placeholder"

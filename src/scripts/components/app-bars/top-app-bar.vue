@@ -2,10 +2,15 @@
   <!-- Container -->
   <header :class="className">
     <div class="mdc-top-app-bar__row">
-      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+      <section
+        class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start"
+      >
         <!-- Navigation icon (optional) / Close button (instead of a navigation icon) -->
         <span class="mdc-top-app-bar__brand">
-          <slot name="nav-icon" :navIconClass="UI_TOP_APP_BAR.cssClasses.navIcon">
+          <slot
+            name="nav-icon"
+            :navIconClass="UI_TOP_APP_BAR.cssClasses.navIcon"
+          >
             <button
               v-if="defaultNavIcon"
               :id="navId"
@@ -23,10 +28,16 @@
           <slot>{{ title }}</slot>
         </span>
       </section>
-      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+      <section
+        class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end"
+        role="toolbar"
+      >
         <!-- Regular: Action items (optional) & Overflow menu (optional) -->
         <!-- Contextual action bar: Contextual actions & Overflow menu (optional) -->
-        <slot name="toolbar" :toolbarItemClass="UI_TOP_APP_BAR.cssClasses.actionItem"></slot>
+        <slot
+          name="toolbar"
+          :toolbarItemClass="UI_TOP_APP_BAR.cssClasses.actionItem"
+        ></slot>
       </section>
     </div>
   </header>

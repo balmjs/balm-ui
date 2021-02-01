@@ -14,8 +14,9 @@
           <i
             v-if="materialIcon"
             :class="['material-icons mdc-alert-dialog__icon', stateClassName]"
-            >{{ materialIcon }}</i
           >
+            {{ materialIcon }}
+          </i>
           <span class="mdc-alert-dialog__message">{{ options.message }}</span>
         </div>
         <footer class="mdc-dialog__actions">

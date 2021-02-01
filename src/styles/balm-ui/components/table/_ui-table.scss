@@ -50,6 +50,10 @@
 
 .mdc-data-table--fixed {
   width: 100%;
+
+  .mdc-data-table__cell {
+    background-color: white;
+  }
 }
 
 .mdc-data-table__fixed-header,
@@ -60,11 +64,6 @@
     position: relative;
     width: 100%;
   }
-
-  .mdc-data-table__header-cell,
-  .mdc-data-table__cell {
-    background-color: white;
-  }
 }
 
 .mdc-data-table__fixed-body {
@@ -72,9 +71,5 @@
 
   table {
     min-width: 100%;
-  }
-
-  .mdc-data-table__cell {
-    background-color: white;
   }
 }

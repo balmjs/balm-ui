@@ -3,15 +3,15 @@
     <li
       v-for="(nodeData, nodeIndex) in children"
       :key="nodeIndex"
-      :class="className"
+      class="mdc-tree-node"
     >
       <div class="mdc-tree-node__content">
         <div
           v-if="!nodeData.isLeaf"
           class="mdc-tree-node__icon"
-          @click="onExpand(nodeData)"
+          @click="handleExpand(nodeData)"
         >
-          <template v-if="nodeData.isExpanded">
+          <template v-if="nodeData.expanded">
             <slot name="expand-more-icon">
               <i :class="UI_GLOBAL.cssClasses.icon" aria-hidden="true">
                 expand_more
@@ -27,21 +27,36 @@
           </template>
         </div>
 
-        <div class="mdc-tree-node__checkbox">
+        <div class="mdc-tree-node__checkbox" @click="handleCheck(nodeData)">
           <slot name="checkbox">
-            <!-- TODO -->
+            <mdc-checkbox
+              v-if="nodeData.isLeaf"
+              :checked="nodeData.checked"
+            ></mdc-checkbox>
+            <mdc-checkbox
+              v-else
+              :checked="nodeData.checked"
+              :indeterminate="nodeData.indeterminate"
+            ></mdc-checkbox>
           </slot>
         </div>
 
-        <span class="mdc-tree-node__label" @click="onSelect(nodeData)">
-          <slot>{{ nodeData.title }} ({{ nodeData.level }})</slot>
+        <span class="mdc-tree-node__label" @click="handleSelect(nodeData)">
+          <slot>
+            {{ nodeData.title }} ({{ nodeData.level }}) selected:
+            {{ nodeData.selected }} | checked:
+            <span style="color: red">{{ nodeData.checked }}</span> |
+            indeterminate:
+            <span style="color: blue">{{ nodeData.indeterminate }}</span>
+          </slot>
         </span>
       </div>
 
       <ui-tree-node
-        v-if="!nodeData.isLeaf && nodeData.isExpanded"
+        v-if="!nodeData.isLeaf && nodeData.expanded"
         class="mdc-tree-node__children"
         :children="nodeData.children"
+        :data="data"
       ></ui-tree-node>
     </li>
   </ul>
@@ -49,15 +64,25 @@
 
 <script>
 import { MdcTree } from './mdc-tree';
+import MdcCheckbox from '../selection-controls/mdc-checkbox';
 import UI_GLOBAL from '../../config/constants';
 
 export default {
   name: 'UiTreeNode',
+  components: {
+    MdcCheckbox
+  },
   props: {
     children: {
       type: Array,
       default() {
         return [];
+      }
+    },
+    data: {
+      type: Object,
+      default() {
+        return {};
       }
     },
     isRoot: {
@@ -70,22 +95,15 @@ export default {
       UI_GLOBAL
     };
   },
-  computed: {
-    className() {
-      return {
-        'mdc-tree-node': true
-        // 'mdc-tree-node--root': this.isRoot,
-        // 'mdc-tree-node--leaf': this.data.isLeaf
-      };
-    }
-  },
   methods: {
-    onExpand({ key }) {
-      console.log('onExpand', key);
+    handleExpand(data) {
+      data.expanded = !data.expanded;
     },
-    onCheck() {},
-    onSelect({ key }) {
-      console.log('onSelect', key);
+    handleSelect({ key }) {
+      MdcTree.setSelected(this.data, key);
+    },
+    handleCheck(data) {
+      MdcTree.setCheckedValue(this.data, data);
     }
   }
 };

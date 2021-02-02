@@ -1,7 +1,7 @@
 <template>
   <div class="mdc-tree">
     <slot></slot>
-    <ui-tree-node :children="treeData"></ui-tree-node>
+    <ui-tree-node :children="nodeList" :data="currentTreeData"></ui-tree-node>
   </div>
 </template>
 
@@ -22,35 +22,31 @@ export default {
         return [];
       }
     },
-    selectedRows: {
-      type: Array,
-      default() {
-        return [];
-      }
-    },
     // UI attributes
-    rowCheckbox: {
-      type: Boolean,
-      default: false
-    },
-    selectedKey: {
-      type: [Boolean, String],
-      default: false
-    },
-    level: {
+    maxLevel: {
       type: Number,
-      default: 3
+      default: 1
     }
   },
   data() {
     return {
-      treeData: []
+      nodeList: [],
+      treeData: {
+        maxLevel: this.maxLevel,
+        nodeMap: new Map(),
+        selectedValue: '',
+        checkedValues: []
+      }
     };
   },
+  computed: {
+    currentTreeData() {
+      return this.treeData;
+    }
+  },
   created() {
-    const $tree = new MdcTree(this.data, this.level);
-    this.treeData = $tree.data;
-    window.treeData = $tree.data;
+    const $tree = new MdcTree(this.data, this.treeData);
+    this.nodeList = $tree.data;
   }
 };
 </script>

@@ -29,6 +29,15 @@ export default {
     checked: {
       type: [Boolean, null],
       default: null
+    },
+    indeterminate: {
+      type: Boolean,
+      default: false
+    }
+  },
+  watch: {
+    indeterminate(val) {
+      this.$refs.checkbox.indeterminate = val;
     }
   },
   methods: {

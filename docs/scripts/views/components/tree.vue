@@ -2,6 +2,8 @@
   <docs-page name="tree" demo-count="1" without-css>
     <template #hero>
       <ui-tree :data="treeData"></ui-tree>
+
+      <!-- <ui-tree :data="treeData2"></ui-tree> -->
     </template>
 
     <!-- Content -->
@@ -9,10 +11,10 @@
 </template>
 
 <script>
-function dig(path = '0', level = 3) {
+function dig(path = '0', level = 1) {
   const list = [];
 
-  for (let i = 0; i < 3; i += 1) {
+  for (let i = 0; i < 9; i += 1) {
     const key = `${path}-${i}`;
     const treeNode = {
       title: key,
@@ -36,7 +38,8 @@ console.log('treeData', treeData);
 export default {
   data() {
     return {
-      treeData
+      treeData,
+      treeData2: dig(1)
     };
   }
 };

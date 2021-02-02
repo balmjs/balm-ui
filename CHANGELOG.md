@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.18.1 / 2021-02-02
+
+### Chore
+
+- `<ui-table>`: update css for fixed table
+
 ## v8.18.0 / 2021-01-28
 
 ### Features

@@ -1,8 +1,8 @@
 <template>
   <ui-textfield
     :model-value="inputValue"
-    :input-id="inputId"
     :class="className"
+    :input-id="inputId"
     :outlined="outlined"
     :label="label"
     :placeholder="placeholder"

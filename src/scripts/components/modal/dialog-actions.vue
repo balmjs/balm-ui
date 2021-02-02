@@ -6,15 +6,17 @@
         :class="UI_DIALOG_ACTION.cssClasses.button"
         data-mdc-dialog-action="close"
         @click="$parent.handleCancel"
-        >{{ cancelText }}</mdc-button
       >
+        {{ cancelText }}
+      </mdc-button>
       <mdc-button
         :class="UI_DIALOG_ACTION.cssClasses.button"
         data-mdc-dialog-action="accept"
         data-mdc-dialog-button-default
         @click="$parent.handleAccept"
-        >{{ acceptText }}</mdc-button
       >
+        {{ acceptText }}
+      </mdc-button>
     </slot>
   </footer>
 </template>

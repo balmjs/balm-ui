@@ -2,8 +2,8 @@
   <ui-textfield
     ref="input"
     :model-value="inputValue"
-    :input-id="inputId"
     class="mdc-datepicker"
+    :input-id="inputId"
     :outlined="outlined"
     :label="label"
     :placeholder="placeholder"

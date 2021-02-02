@@ -14,11 +14,12 @@
           <mdc-button
             v-if="secondaryButtonText"
             class="mdc-banner__secondary-action"
-            >{{ secondaryButtonText }}</mdc-button
           >
-          <mdc-button class="mdc-banner__primary-action">{{
-            primaryButtonText
-          }}</mdc-button>
+            {{ secondaryButtonText }}
+          </mdc-button>
+          <mdc-button class="mdc-banner__primary-action">
+            {{ primaryButtonText }}
+          </mdc-button>
         </slot>
       </div>
     </div>

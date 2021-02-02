@@ -7,8 +7,9 @@
             v-if="withIcon"
             :class="[UI_GLOBAL.cssClasses.icon, UI_COLLAPSE.cssClasses.icon]"
             aria-hidden="true"
-            >expand_more</i
           >
+            expand_more
+          </i>
         </slot>
       </template>
       <template v-else>
@@ -17,8 +18,9 @@
             v-if="withIcon"
             :class="[UI_GLOBAL.cssClasses.icon, UI_COLLAPSE.cssClasses.icon]"
             aria-hidden="true"
-            >chevron_right</i
           >
+            chevron_right
+          </i>
         </slot>
       </template>
       <div class="mdc-collapse__title">

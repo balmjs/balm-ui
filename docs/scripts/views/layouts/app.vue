@@ -20,8 +20,9 @@
         <router-link
           to="/"
           :class="['catalog-title', $theme.getThemeClass('on-primary')]"
-          >{{ title }}</router-link
         >
+          {{ title }}
+        </router-link>
         <template #toolbar="{ toolbarItemClass }">
           <top-toolbar :item-class="toolbarItemClass"></top-toolbar>
         </template>
@@ -62,7 +63,7 @@
                 <template v-for="(item, index) in menu" :key="`item${index}`">
                   <router-link
                     v-if="item.url || item.isSubmenu"
-                    v-slot="{ href, navigate, isActive }"
+                    v-slot="{ navigate, href, isActive }"
                     custom
                     :to="{ name: item.url }"
                   >
@@ -83,13 +84,15 @@
                             iconClass,
                             $theme.getTextClass('secondary', $store.theme)
                           ]"
-                          >{{ item.icon }}</ui-icon
                         >
+                          {{ item.icon }}
+                        </ui-icon>
                       </template>
                       <span
                         :class="$theme.getTextClass('primary', $store.theme)"
-                        >{{ t(`menu.${item.name}`) }}</span
                       >
+                        {{ t(`menu.${item.name}`) }}
+                      </span>
                       <template #after>
                         <ui-badge v-if="item.plus" class="plus" state="info">
                           <template #badge>plus</template>

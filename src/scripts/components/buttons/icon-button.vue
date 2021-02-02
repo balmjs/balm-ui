@@ -16,8 +16,9 @@
       <slot
         :onClass="UI_ICON_BUTTON.cssClasses.on"
         :offClass="UI_ICON_BUTTON.cssClasses.off"
-        >{{ icon }}</slot
       >
+        {{ icon }}
+      </slot>
     </template>
   </button>
 </template>

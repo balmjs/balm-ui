@@ -62,8 +62,9 @@
                   'mdc-pagination__button--active': pageNumber === currentPage
                 }"
                 @click="handleClick(pageNumber)"
-                >{{ pageNumber }}</mdc-button
               >
+                {{ pageNumber }}
+              </mdc-button>
               <button
                 v-else
                 class="mdc-button mdc-data-table__pagination-button mdc-pagination__button--ellipsis"
@@ -115,8 +116,9 @@
             v-if="jumperButtonText"
             outlined
             @click="handleClick(jumpPage)"
-            >{{ jumperButtonText }}</mdc-button
           >
+            {{ jumperButtonText }}
+          </mdc-button>
         </div>
       </div>
     </div>

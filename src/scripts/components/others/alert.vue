@@ -14,8 +14,9 @@
       v-if="closable"
       class="material-icons mdc-alert__close-button"
       @click="onClose"
-      >clear</i
     >
+      clear
+    </i>
   </div>
 </template>
 

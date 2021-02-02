@@ -9,15 +9,13 @@
       <!-- Action (optional) -->
       <div class="mdc-snackbar__actions">
         <slot name="action" :actionClass="actionButtonClassName">
-          <mdc-icon-button v-if="canDismiss" :class="actionButtonClassName"
-            >close</mdc-icon-button
-          >
+          <mdc-icon-button v-if="canDismiss" :class="actionButtonClassName">
+            close
+          </mdc-icon-button>
           <template v-else>
-            <mdc-button
-              v-if="actionButtonText"
-              :class="actionButtonClassName"
-              >{{ actionButtonText }}</mdc-button
-            >
+            <mdc-button v-if="actionButtonText" :class="actionButtonClassName">
+              {{ actionButtonText }}
+            </mdc-button>
           </template>
         </slot>
       </div>

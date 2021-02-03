@@ -5,6 +5,7 @@ class MdcTree {
     this.maxLevel = maxLevel;
     this.nodeMap = nodeMap;
     this.nodeList = this.getData(originData);
+    // this.selectedValue = selectedValue;
   }
 
   get data() {
@@ -48,21 +49,35 @@ class MdcTree {
     return list;
   }
 
-  static setSelectedValue(nodeMap, key, selected) {
+  /** For single tree **/
+
+  static setSingleSelectedValue(nodeMap, key, selected) {
     if (nodeMap.get(key)) {
       nodeMap.get(key).selected = selected;
     }
   }
 
-  static setSelected(treeData, value) {
+  static onSelect(treeData, value) {
     const { nodeMap, selectedValue } = treeData;
 
     if (selectedValue) {
-      this.setSelectedValue(nodeMap, selectedValue, false);
+      this.setSingleSelectedValue(nodeMap, selectedValue, false);
     }
 
     treeData.selectedValue = value;
-    this.setSelectedValue(nodeMap, value, true);
+    this.setSingleSelectedValue(nodeMap, value, true);
+  }
+
+  /** For multiple tree **/
+
+  static setMultipleSelectedValue(treeData, currentValue, checked) {
+    if (checked) {
+      treeData.selectedValue.push(currentValue);
+    } else {
+      treeData.selectedValue = treeData.selectedValue.filter(
+        (value) => value !== currentValue
+      );
+    }
   }
 
   static setChildrenCheckedValue(treeData, children, checked) {
@@ -73,10 +88,11 @@ class MdcTree {
 
       if (nodeMap.get(item.key)) {
         nodeMap.get(item.key).checked = checked;
+        this.setMultipleSelectedValue(treeData, item.key, checked);
       }
 
       if (!item.isLeaf) {
-        MdcTree.setChildrenCheckedValue(treeData, item.children, checked);
+        this.setChildrenCheckedValue(treeData, item.children, checked);
       }
     }
   }
@@ -91,24 +107,26 @@ class MdcTree {
 
       nodeMap.get(item.key).checked = checkedAll;
       nodeMap.get(item.key).indeterminate = !checkedAll;
+      this.setMultipleSelectedValue(treeData, item.key, checkedAll);
     } else {
       nodeMap.get(item.key).checked = false;
       nodeMap.get(item.key).indeterminate = false;
     }
 
     if (!item.isRoot && treeData.nodeMap.get(item.parentKey)) {
-      MdcTree.setParentCheckedValue(
+      this.setParentCheckedValue(
         treeData,
         treeData.nodeMap.get(item.parentKey)
       );
     }
   }
 
-  static setCheckedValue(treeData, item) {
+  static onCheck(treeData, item) {
     let checked = !item.checked;
 
     if (item.isLeaf) {
       item.checked = checked;
+      this.setMultipleSelectedValue(treeData, item.key, checked);
     } else {
       if (item.indeterminate) {
         item.indeterminate = false;
@@ -116,8 +134,9 @@ class MdcTree {
       }
 
       item.checked = checked;
+      this.setMultipleSelectedValue(treeData, item.key, checked);
 
-      MdcTree.setChildrenCheckedValue(treeData, item.children, checked);
+      this.setChildrenCheckedValue(treeData, item.children, checked);
     }
 
     if (item.parentKey && treeData.nodeMap.get(item.parentKey)) {

@@ -3,7 +3,12 @@
     <li
       v-for="(nodeData, nodeIndex) in children"
       :key="nodeIndex"
-      class="mdc-tree-node"
+      :class="[
+        'mdc-tree-node',
+        {
+          'mdc-tree-node--selected': nodeData.selected
+        }
+      ]"
     >
       <div class="mdc-tree-node__content">
         <div
@@ -27,37 +32,51 @@
           </template>
         </div>
 
-        <div class="mdc-tree-node__checkbox" @click="handleCheck(nodeData)">
-          <slot name="checkbox">
-            <mdc-checkbox
-              v-if="nodeData.isLeaf"
-              :checked="nodeData.checked"
-            ></mdc-checkbox>
-            <mdc-checkbox
-              v-else
-              :checked="nodeData.checked"
-              :indeterminate="nodeData.indeterminate"
-            ></mdc-checkbox>
-          </slot>
+        <div
+          v-if="treeData.multiple"
+          class="mdc-tree-node__checkbox"
+          @click="handleCheck(nodeData)"
+        >
+          <mdc-checkbox
+            v-if="nodeData.isLeaf"
+            :checked="nodeData.checked"
+          ></mdc-checkbox>
+          <mdc-checkbox
+            v-else
+            :checked="nodeData.checked"
+            :indeterminate="nodeData.indeterminate"
+          ></mdc-checkbox>
         </div>
 
-        <span class="mdc-tree-node__label" @click="handleSelect(nodeData)">
-          <slot>
-            {{ nodeData.title }} ({{ nodeData.level }}) selected:
-            {{ nodeData.selected }} | checked:
-            <span style="color: red">{{ nodeData.checked }}</span> |
-            indeterminate:
-            <span style="color: blue">{{ nodeData.indeterminate }}</span>
-          </slot>
-        </span>
+        <label
+          class="mdc-tree-node__label"
+          @click="
+            treeData.multiple ? handleCheck(nodeData) : handleSelect(nodeData)
+          "
+        >
+          <slot name="title" :data="getData(nodeData)">{{
+            nodeData.title
+          }}</slot>
+        </label>
+
+        <slot name="action" :data="getData(nodeData)"></slot>
       </div>
 
       <ui-tree-node
         v-if="!nodeData.isLeaf && nodeData.expanded"
         class="mdc-tree-node__children"
         :children="nodeData.children"
-        :data="data"
-      ></ui-tree-node>
+        :tree-data="treeData"
+      >
+        <slot v-for="(_, name) in $slots" :slot="name" :name="name"></slot>
+        <template
+          v-for="(_, name) in $scopedSlots"
+          :slot="name"
+          slot-scope="slotData"
+        >
+          <slot :name="name" v-bind="slotData"></slot>
+        </template>
+      </ui-tree-node>
     </li>
   </ul>
 </template>
@@ -79,15 +98,11 @@ export default {
         return [];
       }
     },
-    data: {
+    treeData: {
       type: Object,
       default() {
         return {};
       }
-    },
-    isRoot: {
-      type: Boolean,
-      default: false
     }
   },
   data() {
@@ -96,14 +111,19 @@ export default {
     };
   },
   methods: {
-    handleExpand(data) {
-      data.expanded = !data.expanded;
+    handleExpand(item) {
+      item.expanded = !item.expanded;
     },
     handleSelect({ key }) {
-      MdcTree.setSelected(this.data, key);
+      MdcTree.onSelect(this.treeData, key);
     },
-    handleCheck(data) {
-      MdcTree.setCheckedValue(this.data, data);
+    handleCheck(item) {
+      MdcTree.onCheck(this.treeData, item);
+    },
+    getData(item) {
+      const { children, ...newItem } = item;
+      console.log('newItem', newItem.title);
+      return item.isLeaf ? item : newItem;
     }
   }
 };

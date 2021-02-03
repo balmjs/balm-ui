@@ -19,6 +19,12 @@ import { MdcTree } from './mdc-tree';
 import UiTreeNode from './tree-node';
 
 const UI_TREE = {
+  dataFormat: {
+    label: 'label',
+    value: 'value',
+    children: 'children',
+    isLeaf: 'isLeaf'
+  },
   EVENT: {
     CHANGE: 'change'
   }
@@ -35,34 +41,46 @@ export default {
   },
   props: {
     // States
+    selectedNodes: {
+      type: [String, Array],
+      default: ''
+    },
     data: {
       type: Array,
       default() {
         return [];
       }
     },
-    selectedNodes: {
-      type: [String, Array],
-      default: ''
+    dataFormat: {
+      type: Object,
+      default() {
+        return {};
+      }
     },
     // UI attributes
     maxLevel: {
       type: Number,
-      default: 1
+      default: 0
     },
     multiple: {
       type: Boolean,
       default: false
+    },
+    loadData: {
+      type: [Function, null],
+      default: null
     }
   },
   data() {
     return {
       nodeList: [],
       treeData: {
+        dataFormat: Object.assign(UI_TREE.dataFormat, this.dataFormat),
         maxLevel: this.maxLevel,
         nodeMap: new Map(),
         selectedValue: this.selectedNodes,
-        multiple: this.multiple
+        multiple: this.multiple,
+        loadData: this.loadData
       }
     };
   },
@@ -79,15 +97,12 @@ export default {
   created() {
     if (this.multiple && !Array.isArray(this.treeData.selectedValue)) {
       throw new Error(
-        `[BalmUI tree]: multiple tree' selectedValue must be an array`
+        `[BalmUI tree]: The prop selectedNodes must be an array in the multiple tree`
       );
     }
   },
   mounted() {
-    this.$nextTick(() => {
-      const $tree = new MdcTree(this.data, this.treeData);
-      this.nodeList = $tree.data;
-    });
+    this.nodeList = new MdcTree(this.data, this.treeData);
   }
 };
 </script>

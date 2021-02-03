@@ -55,7 +55,7 @@
           "
         >
           <slot name="title" :data="getData(nodeData)">{{
-            nodeData.title
+            nodeData[dataFormat.label]
           }}</slot>
         </label>
 
@@ -107,12 +107,18 @@ export default {
   },
   data() {
     return {
-      UI_GLOBAL
+      UI_GLOBAL,
+      dataFormat: this.treeData.dataFormat
     };
   },
   methods: {
-    handleExpand(item) {
-      item.expanded = !item.expanded;
+    async handleExpand(item) {
+      if (this.treeData.loadData && !item[this.dataFormat.children].length) {
+        let nodes = await this.treeData.loadData(item[this.dataFormat.value]);
+        MdcTree.addData(this.treeData, item, nodes);
+      } else {
+        item.expanded = !item.expanded;
+      }
     },
     handleSelect({ key }) {
       MdcTree.onSelect(this.treeData, key);
@@ -122,7 +128,6 @@ export default {
     },
     getData(item) {
       const { children, ...newItem } = item;
-      console.log('newItem', newItem.title);
       return item.isLeaf ? item : newItem;
     }
   }

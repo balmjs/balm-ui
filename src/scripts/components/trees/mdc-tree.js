@@ -138,6 +138,7 @@ class MdcTree {
       const children = item[this.getNodeChildren(treeData)];
 
       if (nodeMap.get(key)) {
+        nodeMap.get(key).indeterminate = false;
         nodeMap.get(key).checked = checked;
         this.setMultipleSelectedValue(treeData, key, checked);
       }
@@ -154,10 +155,12 @@ class MdcTree {
     const children = item[this.getNodeChildren(treeData)];
     const checkedList = children.filter(
       (subitem) => subitem.checked || subitem.indeterminate
-    ).length;
+    );
 
-    if (checkedList) {
-      const checkedAll = checkedList === children.length;
+    if (checkedList.length) {
+      const checkedAllList = checkedList.filter((subitem) => subitem.checked)
+        .length;
+      const checkedAll = checkedAllList === children.length;
 
       nodeMap.get(key).checked = checkedAll;
       nodeMap.get(key).indeterminate = !checkedAll;

@@ -2,7 +2,11 @@
   <div class="page--grid-container">
     <ui-top-app-bar content-selector=".demo-content" fixed>
       <template #nav-icon="{ navIconClass }">
-        <ui-icon-button icon="arrow_back" :class="navIconClass" @click="$router.back()"></ui-icon-button>
+        <ui-icon-button
+          icon="arrow_back"
+          :class="navIconClass"
+          @click="$router.back()"
+        ></ui-icon-button>
       </template>
       <span class="catalog-title">Layout Grid</span>
     </ui-top-app-bar>
@@ -17,7 +21,10 @@
         <ui-grid class="demo-grid">
           <ui-grid-cell class="demo-cell"></ui-grid-cell>
           <ui-grid-cell class="demo-cell" columns="4"></ui-grid-cell>
-          <ui-grid-cell class="demo-cell" :columns="{ default: 4 }"></ui-grid-cell>
+          <ui-grid-cell
+            class="demo-cell"
+            :columns="{ default: 4 }"
+          ></ui-grid-cell>
         </ui-grid>
       </template>
 
@@ -78,7 +85,9 @@
           </ui-grid-cell>
         </ui-grid>
 
-        <div class="demo-grid-legend">Grid of default wide (4 columns) items</div>
+        <div class="demo-grid-legend">
+          Grid of default wide (4 columns) items
+        </div>
         <ui-grid class="demo-grid">
           <ui-grid-cell class="demo-cell">4</ui-grid-cell>
           <ui-grid-cell class="demo-cell">4</ui-grid-cell>
@@ -88,7 +97,9 @@
 
         <div class="demo-grid-legend">Grid of 1 column wide items</div>
         <ui-grid class="demo-grid">
-          <ui-grid-cell v-for="i in 12" :key="i" class="demo-cell" columns="1">1</ui-grid-cell>
+          <ui-grid-cell v-for="i in 12" :key="i" class="demo-cell" columns="1">
+            1
+          </ui-grid-cell>
         </ui-grid>
         <ui-snippet :code="$store.demos[2]"></ui-snippet>
 
@@ -100,11 +111,19 @@
         </ui-grid>
         <ui-snippet :code="$store.demos[3]"></ui-snippet>
 
-        <div class="demo-grid-legend">Grid of items with tweaks at different screen sizes</div>
+        <div class="demo-grid-legend">
+          Grid of items with tweaks at different screen sizes
+        </div>
         <ui-grid class="demo-grid">
-          <ui-grid-cell class="demo-cell" :columns="{ default: 6, tablet: 8 }">6 (8 tablet)</ui-grid-cell>
-          <ui-grid-cell class="demo-cell" :columns="{ default: 4, tablet: 6 }">4 (6 tablet)</ui-grid-cell>
-          <ui-grid-cell class="demo-cell" :columns="{ default: 2, phone: 4 }">2 (4 phone)</ui-grid-cell>
+          <ui-grid-cell class="demo-cell" :columns="{ default: 6, tablet: 8 }">
+            6 (8 tablet)
+          </ui-grid-cell>
+          <ui-grid-cell class="demo-cell" :columns="{ default: 4, tablet: 6 }">
+            4 (6 tablet)
+          </ui-grid-cell>
+          <ui-grid-cell class="demo-cell" :columns="{ default: 2, phone: 4 }">
+            2 (4 phone)
+          </ui-grid-cell>
         </ui-grid>
         <ui-snippet :code="$store.demos[4]"></ui-snippet>
 
@@ -128,7 +147,9 @@
         <ui-snippet :code="$store.demos[5]"></ui-snippet>
 
         <h6>Grid with max width</h6>
-        <div class="demo-grid-legend">Grid with max width (1280px) and center alignment by default</div>
+        <div class="demo-grid-legend">
+          Grid with max width (1280px) and center alignment by default
+        </div>
         <ui-grid class="demo-grid max-width">
           <ui-grid-cell class="demo-cell" columns="4"></ui-grid-cell>
           <ui-grid-cell class="demo-cell" columns="4"></ui-grid-cell>
@@ -136,7 +157,9 @@
         </ui-grid>
         <ui-snippet :code="$store.demos[6]"></ui-snippet>
 
-        <div class="demo-grid-legend">Grid with max width (1280px) and left alignment</div>
+        <div class="demo-grid-legend">
+          Grid with max width (1280px) and left alignment
+        </div>
         <ui-grid class="demo-grid max-width" position="left">
           <ui-grid-cell class="demo-cell" columns="4"></ui-grid-cell>
           <ui-grid-cell class="demo-cell" columns="4"></ui-grid-cell>
@@ -146,7 +169,9 @@
       </section>
 
       <section class="demo-wrapper">
-        <h6 :class="$tt('headline6')">1.2 Fixed column width layout grid (Widescreen Only)</h6>
+        <h6 :class="$tt('headline6')">
+          1.2 Fixed column width layout grid (Widescreen Only)
+        </h6>
         <template v-if="isWideScreen">
           <ui-grid>
             <ui-grid-cell>
@@ -181,9 +206,9 @@
             </ui-grid-cell>
           </ui-grid>
 
-          <div
-            class="demo-grid-legend"
-          >Fixed column width layout grid and center alignment by default</div>
+          <div class="demo-grid-legend">
+            Fixed column width layout grid and center alignment by default
+          </div>
           <ui-grid class="demo-grid" fixed-column-width>
             <ui-grid-cell class="demo-cell" columns="1"></ui-grid-cell>
             <ui-grid-cell class="demo-cell" columns="1"></ui-grid-cell>
@@ -191,7 +216,9 @@
           </ui-grid>
           <ui-snippet :code="$store.demos[8]"></ui-snippet>
 
-          <div class="demo-grid-legend">Fixed column width layout grid and right alignment</div>
+          <div class="demo-grid-legend">
+            Fixed column width layout grid and right alignment
+          </div>
           <ui-grid class="demo-grid" fixed-column-width position="right">
             <ui-grid-cell class="demo-cell" columns="1"></ui-grid-cell>
             <ui-grid-cell class="demo-cell" columns="1"></ui-grid-cell>

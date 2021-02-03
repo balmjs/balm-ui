@@ -26,11 +26,21 @@
             <ui-card-text>
               <div :class="$tt('headline6')">Card title</div>
               <div
-                :class="[$tt('subtitle2'), $theme.getTextClass('secondary', $store.theme)]"
-              >Secondary text</div>
+                :class="[
+                  $tt('subtitle2'),
+                  $theme.getTextClass('secondary', $store.theme)
+                ]"
+              >
+                Secondary text
+              </div>
             </ui-card-text>
             <ui-card-text v-if="cardOptions.supportingText">
-              <div :class="[$tt('subtitle2'), $theme.getTextClass('secondary', $store.theme)]">
+              <div
+                :class="[
+                  $tt('subtitle2'),
+                  $theme.getTextClass('secondary', $store.theme)
+                ]"
+              >
                 Greyhound divisively hello coldly wonderfully marginally far
                 upon excluding.
               </div>
@@ -43,18 +53,35 @@
         </ui-card>
       </div>
       <div class="hero-options">
-        <ui-select v-model="typeOption" class="hero-option" :options="TypeOptions">Type</ui-select>
+        <ui-select
+          v-model="typeOption"
+          class="hero-option"
+          :options="TypeOptions"
+          >Type</ui-select
+        >
         <div class="hero-option hero-options">
           <ui-form-field>
-            <ui-checkbox id="card-media" v-model="cardOptions.media" :value="1"></ui-checkbox>
+            <ui-checkbox
+              v-model="cardOptions.media"
+              input-id="card-media"
+              :value="1"
+            ></ui-checkbox>
             <label for="card-media">Media</label>
           </ui-form-field>
           <ui-form-field>
-            <ui-checkbox id="card-supporting-text" v-model="cardOptions.supportingText" :value="1"></ui-checkbox>
+            <ui-checkbox
+              v-model="cardOptions.supportingText"
+              input-id="card-supporting-text"
+              :value="1"
+            ></ui-checkbox>
             <label for="card-supporting-text">Supporting text</label>
           </ui-form-field>
           <ui-form-field>
-            <ui-checkbox id="card-buttons" v-model="cardOptions.buttons" :value="1"></ui-checkbox>
+            <ui-checkbox
+              v-model="cardOptions.buttons"
+              input-id="card-buttons"
+              :value="1"
+            ></ui-checkbox>
             <label for="card-buttons">Buttons</label>
           </ui-form-field>
         </div>
@@ -66,16 +93,29 @@
       <div class="demo">
         <ui-card outlined class="demo-card">
           <div
-            :class="[$tt('subtitle2'), $theme.getTextClass('secondary', $store.theme), 'demo-card-article-group-heading']"
-          >Headlines</div>
+            :class="[
+              $tt('subtitle2'),
+              $theme.getTextClass('secondary', $store.theme),
+              'demo-card-article-group-heading'
+            ]"
+          >
+            Headlines
+          </div>
           <ui-list-divider></ui-list-divider>
 
           <template v-for="(item, index) in list">
             <a :key="`item${index}`" v-ripple class="demo-card-article">
-              <h2 :class="[$tt('headline5'), 'demo-card-article__title']">{{ item.title }}</h2>
+              <h2 :class="[$tt('headline5'), 'demo-card-article__title']">
+                {{ item.title }}
+              </h2>
               <p
-                :class="[$theme.getTextClass('secondary', $store.theme), 'demo-card-article__snippet']"
-              >{{ item.content }}</p>
+                :class="[
+                  $theme.getTextClass('secondary', $store.theme),
+                  'demo-card-article__snippet'
+                ]"
+              >
+                {{ item.content }}
+              </p>
             </a>
             <ui-list-divider :key="`divider${index}`"></ui-list-divider>
           </template>
@@ -98,16 +138,29 @@
         <ui-card class="demo-card demo-card--photo">
           <ui-card-content class="demo-card__primary-action">
             <ui-card-media square class="demo-card__media">
-              <ui-card-media-content class="demo-card__media-content--with-title">
-                <div :class="[$tt('subtitle2'), 'demo-card__media-title']">Vacation Photos</div>
+              <ui-card-media-content
+                class="demo-card__media-content--with-title"
+              >
+                <div :class="[$tt('subtitle2'), 'demo-card__media-title']">
+                  Vacation Photos
+                </div>
               </ui-card-media-content>
             </ui-card-media>
           </ui-card-content>
           <ui-card-actions>
             <ui-card-icons>
-              <ui-icon-button :class="$theme.getTextClass('icon', $store.theme)" :toggle="icon1"></ui-icon-button>
-              <ui-icon-button :class="$theme.getTextClass('icon', $store.theme)" :toggle="icon2"></ui-icon-button>
-              <ui-icon-button :class="$theme.getTextClass('icon', $store.theme)" icon="share"></ui-icon-button>
+              <ui-icon-button
+                :class="$theme.getTextClass('icon', $store.theme)"
+                :toggle="icon1"
+              ></ui-icon-button>
+              <ui-icon-button
+                :class="$theme.getTextClass('icon', $store.theme)"
+                :toggle="icon2"
+              ></ui-icon-button>
+              <ui-icon-button
+                :class="$theme.getTextClass('icon', $store.theme)"
+                icon="share"
+              ></ui-icon-button>
             </ui-card-icons>
           </ui-card-actions>
         </ui-card>
@@ -120,9 +173,14 @@
         <ui-card class="demo-card demo-card--music">
           <ui-card-content class="demo-card__primary-action">
             <div class="demo-card__music-row">
-              <ui-card-media square class="demo-card__media demo-card__media--music"></ui-card-media>
+              <ui-card-media
+                square
+                class="demo-card__media demo-card__media--music"
+              ></ui-card-media>
               <div class="demo-card__music-info">
-                <div :class="[$tt('headline5'), 'demo-card__music-title']">Rozes</div>
+                <div :class="[$tt('headline5'), 'demo-card__music-title']">
+                  Rozes
+                </div>
                 <div class="demo-card__music-artist">Under the Grave</div>
                 <div class="demo-card__music-year">(2016)</div>
               </div>
@@ -130,14 +188,21 @@
           </ui-card-content>
           <ui-list-divider></ui-list-divider>
           <ui-card-actions>
-            <ui-card-buttons class="demo-card__action-buttons--text-only">Rate this album</ui-card-buttons>
+            <ui-card-buttons class="demo-card__action-buttons--text-only">
+              Rate this album
+            </ui-card-buttons>
             <ui-card-icons>
               <ui-icon
                 v-for="i in 5"
                 :key="i"
-                :class="[$theme.getTextClass('icon', $store.theme), 'demo-card__action-icon--star']"
+                :class="[
+                  $theme.getTextClass('icon', $store.theme),
+                  'demo-card__action-icon--star'
+                ]"
                 :title="`${i} star${i > 1 ? 's' : ''}`"
-              >star_border</ui-icon>
+              >
+                star_border
+              </ui-icon>
             </ui-card-icons>
           </ui-card-actions>
         </ui-card>

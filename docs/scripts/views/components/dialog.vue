@@ -21,8 +21,9 @@
           <ui-dialog-title
             v-if="hasTitle"
             :class="$theme.getTextClass('primary', $store.theme)"
-            >Dialog header</ui-dialog-title
           >
+            Dialog header
+          </ui-dialog-title>
           <ui-dialog-content
             :class="$theme.getTextClass('secondary', $store.theme)"
           >
@@ -38,9 +39,11 @@
           no-backdrop
           class="hero-dialog mdc-dialog--open"
         >
-          <ui-dialog-title :class="$theme.getTextClass('primary', $store.theme)"
-            >Dialog header</ui-dialog-title
+          <ui-dialog-title
+            :class="$theme.getTextClass('primary', $store.theme)"
           >
+            Dialog header
+          </ui-dialog-title>
           <ui-dialog-content>
             <ui-list
               v-model="heroSelectedIndex"
@@ -66,9 +69,11 @@
           :stacked="!!buttonOption"
           class="demo-confirmation-dialog hero-dialog mdc-dialog--open"
         >
-          <ui-dialog-title :class="$theme.getTextClass('primary', $store.theme)"
-            >Dialog header</ui-dialog-title
+          <ui-dialog-title
+            :class="$theme.getTextClass('primary', $store.theme)"
           >
+            Dialog header
+          </ui-dialog-title>
           <ui-dialog-content>
             <ui-form>
               <ui-form-field v-for="i in 4" :key="i">
@@ -80,8 +85,9 @@
                 <label
                   :for="`hero-radio${i}`"
                   :class="$theme.getTextClass('secondary', $store.theme)"
-                  >Item {{ i }}</label
                 >
+                  Item {{ i }}
+                </label>
               </ui-form-field>
             </ui-form>
           </ui-dialog-content>
@@ -96,8 +102,9 @@
           v-model="typeOption"
           class="hero-option"
           :options="TypeOptions"
-          >Type</ui-select
         >
+          Type
+        </ui-select>
         <div class="hero-option">
           <ui-form-field v-if="typeOption === 0">
             <ui-checkbox
@@ -107,9 +114,9 @@
             ></ui-checkbox>
             <label for="hero-checkbox-title">Title</label>
           </ui-form-field>
-          <span v-if="typeOption === 1"
-            >Selected Index: {{ heroSelectedIndex }}</span
-          >
+          <span v-if="typeOption === 1">
+            Selected Index: {{ heroSelectedIndex }}
+          </span>
           <template v-else>
             <ui-form-field v-for="item in ButtonOptions" :key="item.value">
               <ui-radio

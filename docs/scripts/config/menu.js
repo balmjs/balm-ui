@@ -160,11 +160,6 @@ const MATERIAL_COMPONENTS = [
         name: 'rangepicker',
         plus: true
       },
-      // {
-      //   icon: 'watch_later',
-      //   name: 'timepicker',
-      //   next: true
-      // },
       {
         icon: 'toggle_off',
         name: 'switch'
@@ -211,7 +206,7 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'account_tree',
         name: 'tree',
-        plus: true
+        next: true
       }
     ]
   },

@@ -20,29 +20,41 @@
           placeholder="Chip text"
         ></ui-textfield>
         <br />
-        <ui-button id="input-chip-set-button" raised dense @click="addOne">Add Input Chip</ui-button>
+        <ui-button id="input-chip-set-button" raised dense @click="addOne">
+          Add Input Chip
+        </ui-button>
         <ui-button
           id="input-chip-set-delete-button"
           outlined
           dense
           @click="removeLastOne"
-        >Delete Last Chip</ui-button>
+        >
+          Delete Last Chip
+        </ui-button>
         <ui-chips id="input-chip-set" type="input" :chips="list">
           <ui-chip
             v-for="item in list"
             :key="item.id"
             icon="face"
             @remove="removeOneById(item.id)"
-          >{{ item.name }}</ui-chip>
+          >
+            {{ item.name }}
+          </ui-chip>
         </ui-chips>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
 
     <section class="demo-wrapper">
-      <h6 :class="$tt('headline6')">1.2 Choice Chips (selectedValue: {{ selectedIndex }})</h6>
+      <h6 :class="$tt('headline6')">
+        1.2 Choice Chips (selectedValue: {{ selectedIndex }})
+      </h6>
       <div class="demo">
-        <ui-chips v-model="selectedIndex" type="choice" :options="radioOptions"></ui-chips>
+        <ui-chips
+          v-model="selectedIndex"
+          type="choice"
+          :options="radioOptions"
+        ></ui-chips>
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
@@ -51,7 +63,11 @@
       <h6 :class="$tt('headline6')">1.3 Filter Chips</h6>
       <div class="demo">
         <p>No leading icon (selectedValue: {{ selectedValue }})</p>
-        <ui-chips v-model="selectedValue" type="filter" :options="checkboxOptions"></ui-chips>
+        <ui-chips
+          v-model="selectedValue"
+          type="filter"
+          :options="checkboxOptions"
+        ></ui-chips>
 
         <p>With leading icon (selectedIndexes: {{ selectedValue2 }})</p>
         <ui-chips v-model="selectedValue2" type="filter">
@@ -60,7 +76,9 @@
             :key="index"
             icon="face"
             :hidden="selectedValue2.includes(index)"
-          >{{ item }}</ui-chip>
+          >
+            {{ item }}
+          </ui-chip>
         </ui-chips>
       </div>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
@@ -74,7 +92,9 @@
             v-for="(item, index) in actionList"
             :key="index"
             :icon="item.icon"
-          >{{ item.name }}</ui-chip>
+          >
+            {{ item.name }}
+          </ui-chip>
         </ui-chips>
       </div>
       <ui-snippet :code="$store.demos[4]"></ui-snippet>

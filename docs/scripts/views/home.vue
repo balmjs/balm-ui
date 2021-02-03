@@ -11,9 +11,9 @@
         BalmUI is a Google Material design system – backed by open-source code –
         that helps teams build high-quality digital experiences.
       </p>
-      <ui-button raised @click="$router.push({ name: 'guide.intro' })"
-        >Get started</ui-button
-      >
+      <ui-button raised @click="$router.push({ name: 'guide.intro' })">
+        Get started
+      </ui-button>
     </div>
   </div>
 </template>

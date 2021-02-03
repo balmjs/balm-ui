@@ -22,9 +22,18 @@
           </ui-menu-anchor>
         </template>
         <template v-else>
-          <ui-icon-button :class="toolbarItemClass" icon="file_download"></ui-icon-button>
-          <ui-icon-button :class="toolbarItemClass" icon="print"></ui-icon-button>
-          <ui-icon-button :class="toolbarItemClass" icon="bookmark"></ui-icon-button>
+          <ui-icon-button
+            :class="toolbarItemClass"
+            icon="file_download"
+          ></ui-icon-button>
+          <ui-icon-button
+            :class="toolbarItemClass"
+            icon="print"
+          ></ui-icon-button>
+          <ui-icon-button
+            :class="toolbarItemClass"
+            icon="bookmark"
+          ></ui-icon-button>
           <!-- <ui-list :class="toolbarItemClass">
             <ui-item>Menu item 1</ui-item>
             <ui-item>Menu item 2</ui-item>
@@ -36,16 +45,25 @@
 
     <!-- navId="demo-menu" -->
     <ui-drawer v-model="openDrawer" type="modal">
-      <ui-drawer-header :inner-class="$theme.getThemeClass(['primary-bg', 'on-primary'])">
-        <ui-drawer-title :class="$theme.getTextClass('primary', $store.theme)">Header here</ui-drawer-title>
+      <ui-drawer-header
+        :inner-class="$theme.getThemeClass(['primary-bg', 'on-primary'])"
+      >
+        <ui-drawer-title :class="$theme.getTextClass('primary', $store.theme)"
+          >Header here</ui-drawer-title
+        >
       </ui-drawer-header>
       <ui-drawer-content>
         <ui-nav>
           <ui-nav-item href="javascript:void(0)" @click="$router.back()">
-            <ui-item-first-content :class="$theme.getTextClass('secondary', $store.theme)">
+            <ui-item-first-content
+              :class="$theme.getTextClass('secondary', $store.theme)"
+            >
               <ui-icon>arrow_back</ui-icon>
             </ui-item-first-content>
-            <ui-item-text-content :class="$theme.getTextClass('primary', $store.theme)">Back</ui-item-text-content>
+            <ui-item-text-content
+              :class="$theme.getTextClass('primary', $store.theme)"
+              >Back</ui-item-text-content
+            >
           </ui-nav-item>
           <ui-list-divider></ui-list-divider>
         </ui-nav>
@@ -55,7 +73,12 @@
     <ui-drawer-backdrop></ui-drawer-backdrop>
 
     <div class="demo-main">
-      <docs-page id="content-main" name="top-app-bar" demo-count="1" bottom-affix>
+      <docs-page
+        id="content-main"
+        name="top-app-bar"
+        demo-count="1"
+        bottom-affix
+      >
         <template #hero>
           <h1 :class="$tt('headline1')">Top App Bar</h1>
         </template>
@@ -63,7 +86,9 @@
         <!-- Content -->
         <section class="demo-wrapper">
           <div class="demo-controls">
-            <ui-select v-model="typeOption" :options="TypeOptions">Type</ui-select>
+            <ui-select v-model="typeOption" :options="TypeOptions"
+              >Type</ui-select
+            >
             <ui-textfield v-model="title">Title</ui-textfield>
           </div>
           <p v-for="i in 12" :key="i" class="demo-paragraph">

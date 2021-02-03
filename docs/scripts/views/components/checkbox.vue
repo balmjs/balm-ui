@@ -42,9 +42,9 @@
             input-id="basic-checkbox-indeterminate"
             :indeterminate="indeterminate"
           ></ui-checkbox>
-          <label for="basic-checkbox-indeterminate"
-            >Indeterminate checkbox</label
-          >
+          <label for="basic-checkbox-indeterminate">
+            Indeterminate checkbox
+          </label>
         </ui-form-field>
         <ui-button
           outlined
@@ -57,9 +57,9 @@
       <div class="demo">
         <ui-form-field class="demo-checkbox--custom-all">
           <ui-checkbox input-id="basic-checkbox-custom-all"></ui-checkbox>
-          <label for="basic-checkbox-custom-all"
-            >Custom colored checkbox (stroke, fill, ripple, and focus)</label
-          >
+          <label for="basic-checkbox-custom-all">
+            Custom colored checkbox (stroke, fill, ripple, and focus)
+          </label>
         </ui-form-field>
       </div>
       <div class="demo">
@@ -67,9 +67,9 @@
           <ui-checkbox
             input-id="basic-checkbox-custom-stroke-and-fill"
           ></ui-checkbox>
-          <label for="basic-checkbox-custom-stroke-and-fill"
-            >Custom colored checkbox (stroke and fill only)</label
-          >
+          <label for="basic-checkbox-custom-stroke-and-fill">
+            Custom colored checkbox (stroke and fill only)
+          </label>
         </ui-form-field>
       </div>
     </section>

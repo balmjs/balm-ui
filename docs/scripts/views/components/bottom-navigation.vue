@@ -2,7 +2,11 @@
   <div class="page--bottom-navigation-container">
     <ui-top-app-bar content-selector=".demo-content">
       <template #nav-icon="{ navIconClass }">
-        <ui-icon-button icon="arrow_back" :class="navIconClass" @click="$router.back()"></ui-icon-button>
+        <ui-icon-button
+          icon="arrow_back"
+          :class="navIconClass"
+          @click="$router.back()"
+        ></ui-icon-button>
       </template>
       <span class="catalog-title">Bottom Navigation</span>
     </ui-top-app-bar>

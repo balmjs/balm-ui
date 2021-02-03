@@ -5,7 +5,9 @@
         v-tooltip="'Hello BalmUI'"
         :class="$tt('headline1')"
         aria-describedby="hero-tooltip"
-      >Tooltip</h1>
+      >
+        Tooltip
+      </h1>
     </template>
 
     <!-- Content -->
@@ -15,7 +17,9 @@
         <ui-icon
           v-tooltip="'Share your content via social media'"
           aria-describedby="tooltip-demo-1"
-        >share</ui-icon>
+        >
+          share
+        </ui-icon>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>

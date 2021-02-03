@@ -15,8 +15,8 @@
           <ui-switch
             v-model="toggle1"
             input-id="basic-switch"
-            :trueValue="1"
-            :falseValue="0"
+            :true-value="1"
+            :false-value="0"
           ></ui-switch>
           <label for="basic-switch">{{ toggle1 }}</label>
         </ui-form-field>

@@ -2,17 +2,26 @@
   <docs-page name="alert" demo-count="1" without-css>
     <template #hero>
       <div class="hero-demo">
-        <ui-alert :state="state" :state-outlined="stateOutlined">{{ message }}</ui-alert>
+        <ui-alert :state="state" :state-outlined="stateOutlined">{{
+          message
+        }}</ui-alert>
       </div>
       <div class="hero-options">
         <div class="hero-option hero-options">
-          <ui-select v-model="state" :options="StateTypeOptions">State Type</ui-select>
+          <ui-select v-model="state" :options="StateTypeOptions">
+            State Type
+          </ui-select>
           <ui-form-field>
-            <ui-checkbox id="state-outlined" v-model="stateOutlined"></ui-checkbox>
+            <ui-checkbox
+              v-model="stateOutlined"
+              input-id="state-outlined"
+            ></ui-checkbox>
             <label for="state-outlined">Outlined State</label>
           </ui-form-field>
         </div>
-        <ui-textfield v-model="message" class="hero-option">Alert Message</ui-textfield>
+        <ui-textfield v-model="message" class="hero-option">
+          Alert Message
+        </ui-textfield>
       </div>
     </template>
 

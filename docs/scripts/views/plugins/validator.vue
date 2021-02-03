@@ -63,8 +63,8 @@
         </ui-form-field>
         <ui-alert v-if="messages.length" state="error">
           <ul>
-            <li v-for="(message, index) in messages" :key="index">
-              {{ message }}
+            <li v-for="(msg, index) in messages" :key="index">
+              {{ msg }}
             </li>
           </ul>
         </ui-alert>

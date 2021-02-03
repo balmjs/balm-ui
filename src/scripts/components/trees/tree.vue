@@ -1,7 +1,16 @@
 <template>
   <div class="mdc-tree">
     <slot></slot>
-    <ui-tree-node :children="treeData"></ui-tree-node>
+    <ui-tree-node :children="nodeList" :tree-data="treeData">
+      <slot v-for="(_, name) in $slots" :slot="name" :name="name"></slot>
+      <template
+        v-for="(_, name) in $scopedSlots"
+        :slot="name"
+        slot-scope="slotData"
+      >
+        <slot :name="name" v-bind="slotData"></slot>
+      </template>
+    </ui-tree-node>
   </div>
 </template>
 
@@ -9,48 +18,91 @@
 import { MdcTree } from './mdc-tree';
 import UiTreeNode from './tree-node';
 
+const UI_TREE = {
+  dataFormat: {
+    label: 'label',
+    value: 'value',
+    children: 'children',
+    isLeaf: 'isLeaf'
+  },
+  EVENT: {
+    CHANGE: 'change'
+  }
+};
+
 export default {
   name: 'UiTree',
   components: {
     UiTreeNode
   },
+  model: {
+    prop: 'selectedNodes',
+    event: UI_TREE.EVENT.CHANGE
+  },
   props: {
     // States
+    selectedNodes: {
+      type: [String, Array],
+      default: ''
+    },
     data: {
       type: Array,
       default() {
         return [];
       }
     },
-    selectedRows: {
-      type: Array,
+    dataFormat: {
+      type: Object,
       default() {
-        return [];
+        return {};
       }
     },
     // UI attributes
-    rowCheckbox: {
+    maxLevel: {
+      type: Number,
+      default: 0
+    },
+    multiple: {
       type: Boolean,
       default: false
     },
-    selectedKey: {
-      type: [Boolean, String],
-      default: false
-    },
-    level: {
-      type: Number,
-      default: 3
+    loadData: {
+      type: [Function, null],
+      default: null
     }
   },
   data() {
     return {
-      treeData: []
+      nodeList: [],
+      treeData: {
+        dataFormat: Object.assign(UI_TREE.dataFormat, this.dataFormat),
+        maxLevel: this.maxLevel,
+        nodeMap: new Map(),
+        selectedValue: this.selectedNodes,
+        multiple: this.multiple,
+        loadData: this.loadData
+      }
     };
   },
+  computed: {
+    selectedValue() {
+      return this.treeData.selectedValue;
+    }
+  },
+  watch: {
+    selectedValue(val) {
+      this.$emit(UI_TREE.EVENT.CHANGE, val);
+    }
+  },
   created() {
-    const $tree = new MdcTree(this.data, this.level);
-    this.treeData = $tree.data;
-    window.treeData = $tree.data;
+    if (this.multiple && !Array.isArray(this.treeData.selectedValue)) {
+      throw new Error(
+        `[BalmUI tree]: The prop selectedNodes must be an array in the multiple tree`
+      );
+    }
+  },
+  mounted() {
+    this.nodeList = new MdcTree(this.data, this.treeData);
   }
 };
 </script>

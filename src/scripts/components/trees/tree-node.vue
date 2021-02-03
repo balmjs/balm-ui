@@ -3,15 +3,20 @@
     <li
       v-for="(nodeData, nodeIndex) in children"
       :key="nodeIndex"
-      :class="className"
+      :class="[
+        'mdc-tree-node',
+        {
+          'mdc-tree-node--selected': nodeData.selected
+        }
+      ]"
     >
       <div class="mdc-tree-node__content">
         <div
           v-if="!nodeData.isLeaf"
           class="mdc-tree-node__icon"
-          @click="onExpand(nodeData)"
+          @click="handleExpand(nodeData)"
         >
-          <template v-if="nodeData.isExpanded">
+          <template v-if="nodeData.expanded">
             <slot name="expand-more-icon">
               <i :class="UI_GLOBAL.cssClasses.icon" aria-hidden="true">
                 expand_more
@@ -27,32 +32,65 @@
           </template>
         </div>
 
-        <div class="mdc-tree-node__checkbox">
-          <slot name="checkbox">
-            <!-- TODO -->
-          </slot>
+        <div
+          v-if="treeData.multiple"
+          class="mdc-tree-node__checkbox"
+          @click="handleCheck(nodeData)"
+        >
+          <mdc-checkbox
+            v-if="nodeData.isLeaf"
+            :checked="nodeData.checked"
+          ></mdc-checkbox>
+          <mdc-checkbox
+            v-else
+            :checked="nodeData.checked"
+            :indeterminate="nodeData.indeterminate"
+          ></mdc-checkbox>
         </div>
 
-        <span class="mdc-tree-node__label" @click="onSelect(nodeData)">
-          <slot>{{ nodeData.title }} ({{ nodeData.level }})</slot>
-        </span>
+        <label
+          class="mdc-tree-node__label"
+          @click="
+            treeData.multiple ? handleCheck(nodeData) : handleSelect(nodeData)
+          "
+        >
+          <slot name="title" :data="getData(nodeData)">{{
+            nodeData[dataFormat.label]
+          }}</slot>
+        </label>
+
+        <slot name="action" :data="getData(nodeData)"></slot>
       </div>
 
       <ui-tree-node
-        v-if="!nodeData.isLeaf && nodeData.isExpanded"
+        v-if="!nodeData.isLeaf && nodeData.expanded"
         class="mdc-tree-node__children"
         :children="nodeData.children"
-      ></ui-tree-node>
+        :tree-data="treeData"
+      >
+        <slot v-for="(_, name) in $slots" :slot="name" :name="name"></slot>
+        <template
+          v-for="(_, name) in $scopedSlots"
+          :slot="name"
+          slot-scope="slotData"
+        >
+          <slot :name="name" v-bind="slotData"></slot>
+        </template>
+      </ui-tree-node>
     </li>
   </ul>
 </template>
 
 <script>
 import { MdcTree } from './mdc-tree';
+import MdcCheckbox from '../selection-controls/mdc-checkbox';
 import UI_GLOBAL from '../../config/constants';
 
 export default {
   name: 'UiTreeNode',
+  components: {
+    MdcCheckbox
+  },
   props: {
     children: {
       type: Array,
@@ -60,32 +98,37 @@ export default {
         return [];
       }
     },
-    isRoot: {
-      type: Boolean,
-      default: false
+    treeData: {
+      type: Object,
+      default() {
+        return {};
+      }
     }
   },
   data() {
     return {
-      UI_GLOBAL
+      UI_GLOBAL,
+      dataFormat: this.treeData.dataFormat
     };
   },
-  computed: {
-    className() {
-      return {
-        'mdc-tree-node': true
-        // 'mdc-tree-node--root': this.isRoot,
-        // 'mdc-tree-node--leaf': this.data.isLeaf
-      };
-    }
-  },
   methods: {
-    onExpand({ key }) {
-      console.log('onExpand', key);
+    async handleExpand(item) {
+      if (this.treeData.loadData && !item[this.dataFormat.children].length) {
+        let nodes = await this.treeData.loadData(item[this.dataFormat.value]);
+        MdcTree.addData(this.treeData, item, nodes);
+      } else {
+        item.expanded = !item.expanded;
+      }
     },
-    onCheck() {},
-    onSelect({ key }) {
-      console.log('onSelect', key);
+    handleSelect({ key }) {
+      MdcTree.onSelect(this.treeData, key);
+    },
+    handleCheck(item) {
+      MdcTree.onCheck(this.treeData, item);
+    },
+    getData(item) {
+      const { children, ...newItem } = item;
+      return item.isLeaf ? item : newItem;
     }
   }
 };

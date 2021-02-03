@@ -39,7 +39,11 @@
         </figure>
 
         <figure class="example">
-          <ui-progress class="demo-progress--custom" :progress="0.5" :buffer="0.75"></ui-progress>
+          <ui-progress
+            class="demo-progress--custom"
+            :progress="0.5"
+            :buffer="0.75"
+          ></ui-progress>
           <figcaption>Custom Colors with Buffer</figcaption>
         </figure>
       </div>

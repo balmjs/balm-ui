@@ -3,6 +3,16 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.11.0 / 2021-02-04
+
+### Bug Fixes
+
+- `<ui-file>`: fix `outlined` prop bug
+
+### Features
+
+- `<ui-pagination>`: add prop `jumperButtonOutlined`
+
 ## v9.10.0 / 2021-02-04
 
 ### Features

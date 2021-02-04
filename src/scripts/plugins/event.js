@@ -2,6 +2,7 @@ import autoInstall from '../config/auto-install';
 import getType from '../utils/typeof';
 import createCustomEvent from '../events';
 import bus from '../events/bus';
+import throttle from '../events/throttle';
 
 // Define constants
 const DEFAULT_NAMESPACE = 'balmUI';
@@ -92,6 +93,7 @@ const BalmUI_EventPlugin = {
       });
 
       Vue.prototype.$bus = bus;
+      Vue.prototype.$throttle = throttle;
     } else {
       throw new Error('[BalmUI] The namespace of the event plugin is required');
     }

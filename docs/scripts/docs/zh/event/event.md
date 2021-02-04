@@ -53,19 +53,6 @@ $bus.emit(eventName, ...args); // Trigger an event on the current instance.
 | `args`      | any      |         | The arguments of custom event function.         |
 | `callback`  | function |         | Custom event function.                          |
 
-### Use `$bus` without `.vue` component
-
-```js
-// `/path/to/awesome.js`
-
-import { useBus } from 'balm-ui';
-// OR
-// import { useBus } from 'balm-ui/plugins/event';
-
-const $bus = useBus();
-$bus.emit('custom-event', 'Hello BalmUI');
-```
-
 ```js
 // `/path/to/awesome.vue`
 
@@ -79,4 +66,17 @@ export default {
     this.$bus.off('custom-event');
   }
 };
+```
+
+### Use `$bus` without `.vue` component
+
+```js
+// `/path/to/awesome.js`
+
+import { useBus } from 'balm-ui';
+// OR
+// import { useBus } from 'balm-ui/plugins/event';
+
+const $bus = useBus();
+$bus.emit('custom-event', 'Hello BalmUI');
 ```

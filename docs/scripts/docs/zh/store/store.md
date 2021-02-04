@@ -24,11 +24,27 @@ export default {
 ```
 
 ```js
-// `/path/to/app.vue`
+// `/path/to/awesome.vue`
+
 export default {
-  async mounted() {
+  async created() {
     await this.$store.getDemoMenu();
     console.log(this.$store.demoMenu);
   }
 };
+```
+
+### Use `$store` without `.vue` component
+
+> New in 8.19.0
+
+```js
+// `/path/to/awesome.js`
+
+import { useStore } from 'balm-ui';
+// OR
+// import { useStore } from 'balm-ui/plugins/store';
+
+const $store = useStore();
+console.log($store.demoMenu);
 ```

@@ -116,7 +116,8 @@
           <span>{{ jumperAfterText }}</span>
           <mdc-button
             v-if="jumperButtonText"
-            outlined
+            :outlined="jumperButtonOutlined"
+            :unelevated="!jumperButtonOutlined"
             @click="handleClick(jumpPage)"
           >
             {{ jumperButtonText }}
@@ -182,6 +183,10 @@ export default {
     jumperText: {
       type: [String, Array],
       default: 'Goto'
+    },
+    jumperButtonOutlined: {
+      type: Boolean,
+      default: false
     },
     jumperButtonText: {
       type: String,

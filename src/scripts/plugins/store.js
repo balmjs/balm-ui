@@ -17,8 +17,6 @@ function createStore(Vue, storeKey, options) {
       options
     )
   );
-
-  return store;
 }
 
 const BalmUI_StorePlugin = {
@@ -26,11 +24,16 @@ const BalmUI_StorePlugin = {
     if (getType(options) === 'object' && Object.keys(options).length) {
       const storeKey = (options.name || 'Store').toLowerCase();
 
-      Vue.prototype.$store = createStore(Vue, storeKey, options);
+      createStore(Vue, storeKey, options);
+
+      Vue.prototype.$store = store;
     }
   }
 };
 
+const useStore = () => store;
+
 autoInstall(BalmUI_StorePlugin);
 
 export default BalmUI_StorePlugin;
+export { useStore };

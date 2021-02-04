@@ -33,27 +33,27 @@
         v-model="value.unclickable"
         :input-id="`${idPrefix}-unclickable-leading-trailing`"
       ></ui-checkbox>
-      <label :for="`${idPrefix}-unclickable-leading-trailing`"
-        >Unclickable icons</label
-      >
+      <label :for="`${idPrefix}-unclickable-leading-trailing`">
+        Unclickable icons
+      </label>
     </ui-form-field>
     <ui-form-field v-if="options.includes('min')">
       <ui-checkbox
         v-model="value.min"
         :input-id="`${idPrefix}-outlined-minlength`"
       ></ui-checkbox>
-      <label :for="`${idPrefix}-outlined-minlength`"
-        >Must be at least 8 characters</label
-      >
+      <label :for="`${idPrefix}-outlined-minlength`">
+        Must be at least 8 characters
+      </label>
     </ui-form-field>
     <ui-form-field v-if="options.includes('max')">
       <ui-checkbox
         v-model="value.max"
         :input-id="`${idPrefix}-outlined-maxlength`"
       ></ui-checkbox>
-      <label :for="`${idPrefix}-outlined-maxlength`"
-        >Must not exceed 10 characters</label
-      >
+      <label :for="`${idPrefix}-outlined-maxlength`">
+        Must not exceed 10 characters
+      </label>
     </ui-form-field>
     <template v-if="options.includes('helperText')">
       <ui-form-field>
@@ -69,9 +69,9 @@
           :input-id="`${idPrefix}-persistent-helper-text`"
           :disabled="!value.helperText"
         ></ui-checkbox>
-        <label :for="`${idPrefix}-persistent-helper-text`"
-          >Make helper text persistent</label
-        >
+        <label :for="`${idPrefix}-persistent-helper-text`">
+          Make helper text persistent
+        </label>
       </ui-form-field>
       <ui-form-field>
         <ui-checkbox
@@ -79,9 +79,9 @@
           :input-id="`${idPrefix}-helper-text-as-validation`"
           :disabled="!value.helperText"
         ></ui-checkbox>
-        <label :for="`${idPrefix}-helper-text-as-validation`"
-          >Use helper text as validation message</label
-        >
+        <label :for="`${idPrefix}-helper-text-as-validation`">
+          Use helper text as validation message
+        </label>
       </ui-form-field>
     </template>
   </ui-form>

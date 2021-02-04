@@ -71,8 +71,9 @@
         class="global-message-banner"
         primary-button-text="Cool"
         secondary-button-text="Good"
-        >Do you like BalmUI</ui-banner
       >
+        Do you like BalmUI
+      </ui-banner>
       <!-- Content -->
       <div class="balmui-body">
         <!-- Drawer -->
@@ -123,13 +124,15 @@
                             iconClass,
                             $theme.getTextClass('secondary', $store.theme)
                           ]"
-                          >{{ item.icon }}</ui-icon
                         >
+                          {{ item.icon }}
+                        </ui-icon>
                       </template>
                       <span
                         :class="$theme.getTextClass('primary', $store.theme)"
-                        >{{ $t(`menu.${item.name}`) }}</span
                       >
+                        {{ $t(`menu.${item.name}`) }}
+                      </span>
                       <template #after>
                         <ui-badge v-if="item.plus" class="plus" state="info">
                           <template #badge>plus</template>

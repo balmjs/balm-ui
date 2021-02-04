@@ -4,7 +4,11 @@
     <div class="component-wrapper">
       <ui-image-list masonry>
         <template v-for="i in 6">
-          <ui-image-item v-if="i === 1 || i === 5" :key="i" :image="cardMediaV"></ui-image-item>
+          <ui-image-item
+            v-if="i === 1 || i === 5"
+            :key="i"
+            :image="cardMediaV"
+          ></ui-image-item>
           <ui-image-item v-else :key="i" :image="cardMediaH"></ui-image-item>
         </template>
       </ui-image-list>

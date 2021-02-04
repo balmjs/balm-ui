@@ -135,18 +135,18 @@
     <!-- Content -->
     <section class="demo-wrapper">
       <div class="demo">
-        <ui-button raised @click="$balmUI.onOpen('open')"
-          >Show Dialog</ui-button
-        >
+        <ui-button raised @click="$balmUI.onOpen('open')">
+          Show Dialog
+        </ui-button>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
 
     <section class="demo-wrapper">
       <div class="demo">
-        <ui-button raised @click="$balmUI.onShow('open2')"
-          >Show Scrolling Dialog</ui-button
-        >
+        <ui-button raised @click="$balmUI.onShow('open2')">
+          Show Scrolling Dialog
+        </ui-button>
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
@@ -166,9 +166,9 @@
       <ui-dialog-title>Choose a Ringtone</ui-dialog-title>
       <ui-dialog-content>
         <ui-list>
-          <ui-item v-for="(item, index) in list" :key="index">{{
-            item
-          }}</ui-item>
+          <ui-item v-for="(item, index) in list" :key="index">
+            {{ item }}
+          </ui-item>
         </ui-list>
       </ui-dialog-content>
       <ui-dialog-actions></ui-dialog-actions>

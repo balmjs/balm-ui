@@ -21,8 +21,9 @@
           </ui-drawer-title>
           <ui-drawer-subtitle
             :class="$theme.getTextClass('secondary', $store.theme)"
-            >Subtitle</ui-drawer-subtitle
           >
+            Subtitle
+          </ui-drawer-subtitle>
         </ui-drawer-header>
       </ui-drawer-header>
       <ui-drawer-content>

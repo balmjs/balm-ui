@@ -12,8 +12,9 @@
           v-model="typeOption"
           class="hero-option"
           :options="TypeOptions"
-          >Icon themes</ui-select
         >
+          Icon themes
+        </ui-select>
       </div>
     </template>
 
@@ -87,9 +88,9 @@
             @input="onSearch"
             @selected="onSelected"
           ></ui-autocomplete>
-          <ui-select id="icon-type" v-model="typeOption" :options="TypeOptions"
-            >Theme</ui-select
-          >
+          <ui-select id="icon-type" v-model="typeOption" :options="TypeOptions">
+            Theme
+          </ui-select>
         </div>
         <ui-textfield-helper class="search-helper" visible>
           TIPS: Click an icon to copy icon name, then you can use `
@@ -103,8 +104,9 @@
             :key="`subheader${index}`"
             v-anchor:id="category.name"
             :class="$tt('headline6')"
-            >{{ category.name }}</ui-list-group-subheader
           >
+            {{ category.name }}
+          </ui-list-group-subheader>
           <template v-if="Object.keys(currentIcons).length">
             <ui-image-list :key="`list${index}`">
               <ui-image-item

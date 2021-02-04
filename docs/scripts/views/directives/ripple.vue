@@ -31,8 +31,9 @@
             v-ripple.unbounded
             class="demo-surface"
             data-mdc-ripple-is-unbounded
-            >favorite</ui-icon
           >
+            favorite
+          </ui-icon>
         </div>
         <div class="example">
           <h6 :class="$tt('headline6')">Unbounded - CSS Only</h6>
@@ -40,8 +41,9 @@
             v-ripple:cssOnly.unbounded
             class="demo-surface"
             data-mdc-ripple-is-unbounded
-            >favorite</ui-icon
           >
+            favorite
+          </ui-icon>
         </div>
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>

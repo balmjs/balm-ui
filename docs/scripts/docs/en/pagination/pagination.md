@@ -4,19 +4,20 @@
 
 ### Props
 
-| Name               | Type            | Default           | Description                                                     |
-| ------------------ | --------------- | ----------------- | --------------------------------------------------------------- |
-| `page`             | number          | `1`               | Current page number.                                            |
-| `total`            | number          | `0`               | The total number of data items.                                 |
-| `pageSpan`         | number, boolean | `3`               | Display the first N pages of the current page. (MIN VALUE: `3`) |
-| `showTotal`        | boolean         | `false`           | Display total info.                                             |
-| `pageSize`         | number, array   | `10`              | The number of data items per page.                              |
-| `pageSizeText`     | string, array   | `'Rows per page'` | The page size before/after text.                                |
-| `showJumper`       | boolean         | `false`           | Determine whether you can jump to pages directly.               |
-| `jumperText`       | string, array   | `'Goto'`          | The jumper before/after text.                                   |
-| `jumperButtonText` | string          | `''`              | The jumper button text.                                         |
-| `position`         | string          | `''`              | The pagination postion. [`'left'`, `'center'`, `'right'`]       |
-| `mini`             | boolean         | `false`           | Whether to use simple mode.                                     |
+| Name                   | Type            | Default           | Description                                                     | Version |
+| ---------------------- | --------------- | ----------------- | --------------------------------------------------------------- | ------- |
+| `page`                 | number          | `1`               | Current page number.                                            |         |
+| `total`                | number          | `0`               | The total number of data items.                                 |         |
+| `pageSpan`             | number, boolean | `3`               | Display the first N pages of the current page. (MIN VALUE: `3`) |         |
+| `showTotal`            | boolean         | `false`           | Display total info.                                             |         |
+| `pageSize`             | number, array   | `10`              | The number of data items per page.                              |         |
+| `pageSizeText`         | string, array   | `'Rows per page'` | The page size before/after text.                                |         |
+| `showJumper`           | boolean         | `false`           | Determine whether you can jump to pages directly.               |         |
+| `jumperText`           | string, array   | `'Goto'`          | The jumper before/after text.                                   |         |
+| `jumperButtonOutlined` | boolean         | `false`           | Styles an outlined jumper button.                               | 8.20.0  |
+| `jumperButtonText`     | string          | `''`              | The jumper button text.                                         |         |
+| `position`             | string          | `''`              | The pagination postion. [`'left'`, `'center'`, `'right'`]       |         |
+| `mini`                 | boolean         | `false`           | Whether to use simple mode.                                     |         |
 
 ### Slots
 

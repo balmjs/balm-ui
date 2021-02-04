@@ -1,6 +1,9 @@
 ```html
-<ui-autocomplete v-model="keywords" :source="source" placeholder="Try to type">
-</ui-autocomplete>
+<ui-autocomplete
+  v-model="keywords"
+  :source="source"
+  placeholder="Try to type"
+></ui-autocomplete>
 ```
 
 ```js

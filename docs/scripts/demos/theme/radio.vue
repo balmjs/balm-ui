@@ -6,7 +6,11 @@
         <ui-radio name="radio-component-1" :value="0"></ui-radio>
       </ui-form-field>
       <ui-form-field>
-        <ui-radio v-model="value" name="radio-component-1" :value="1"></ui-radio>
+        <ui-radio
+          v-model="value"
+          name="radio-component-1"
+          :value="1"
+        ></ui-radio>
       </ui-form-field>
     </div>
   </section>

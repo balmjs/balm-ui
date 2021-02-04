@@ -21,8 +21,9 @@
           v-model="typeOption"
           class="hero-option"
           :options="TypeOptions"
-          >Type</ui-select
         >
+          Type
+        </ui-select>
         <ui-form-field v-if="typeOption" class="hero-option">
           <ui-checkbox
             v-model="withLeadingIcon"

@@ -48,9 +48,9 @@
       <ui-drawer-header
         :inner-class="$theme.getThemeClass(['primary-bg', 'on-primary'])"
       >
-        <ui-drawer-title :class="$theme.getTextClass('primary', $store.theme)"
-          >Header here</ui-drawer-title
-        >
+        <ui-drawer-title :class="$theme.getTextClass('primary', $store.theme)">
+          Header here
+        </ui-drawer-title>
       </ui-drawer-header>
       <ui-drawer-content>
         <ui-nav>
@@ -62,8 +62,9 @@
             </ui-item-first-content>
             <ui-item-text-content
               :class="$theme.getTextClass('primary', $store.theme)"
-              >Back</ui-item-text-content
             >
+              Back
+            </ui-item-text-content>
           </ui-nav-item>
           <ui-list-divider></ui-list-divider>
         </ui-nav>
@@ -86,9 +87,9 @@
         <!-- Content -->
         <section class="demo-wrapper">
           <div class="demo-controls">
-            <ui-select v-model="typeOption" :options="TypeOptions"
-              >Type</ui-select
-            >
+            <ui-select v-model="typeOption" :options="TypeOptions">
+              Type
+            </ui-select>
             <ui-textfield v-model="title">Title</ui-textfield>
           </div>
           <p v-for="i in 12" :key="i" class="demo-paragraph">

@@ -27,8 +27,9 @@
               id="my-helper-text1"
               :visible="selectOption.includes(2)"
               :valid-msg="selectOption.includes(3)"
-              >Helper text</ui-select-helper
             >
+              Helper text
+            </ui-select-helper>
           </template>
         </div>
         <div>

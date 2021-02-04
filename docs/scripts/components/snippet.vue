@@ -1,7 +1,9 @@
 <template>
   <ui-collapse v-model="show" class="ui-snippet">
     <template #toggle>
-      <ui-button :icon="show ? 'code' : 'settings_ethernet'">{{ show ? 'Hide' : 'Show' }} Code</ui-button>
+      <ui-button :icon="show ? 'code' : 'settings_ethernet'">
+        {{ show ? 'Hide' : 'Show' }} Code
+      </ui-button>
     </template>
     <div class="snippet-content">
       <ui-markdown code :text="code"></ui-markdown>

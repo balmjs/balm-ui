@@ -24,19 +24,19 @@
       v-model="preview.type"
       :type="2"
       :items="[
-              {
-                text: 'Desktop',
-                icon: 'desktop_windows'
-              },
-              {
-                text: 'Tablet',
-                icon: 'tablet'
-              },
-              {
-                text: 'Mobile',
-                icon: 'phone_iphone'
-              }
-            ]"
+        {
+          text: 'Desktop',
+          icon: 'desktop_windows'
+        },
+        {
+          text: 'Tablet',
+          icon: 'tablet'
+        },
+        {
+          text: 'Mobile',
+          icon: 'phone_iphone'
+        }
+      ]"
     ></ui-tabs>
     <div
       v-shadow="4"

@@ -14,8 +14,9 @@
           v-model="typeOption"
           class="hero-option"
           :options="TypeOptions"
-          >Type</ui-select
         >
+          Type
+        </ui-select>
       </div>
     </template>
 

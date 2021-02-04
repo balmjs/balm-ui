@@ -12,9 +12,9 @@
         >
           Type
         </ui-select>
-        <ui-textfield v-model="text" class="hero-option"
-          >Button Text</ui-textfield
-        >
+        <ui-textfield v-model="text" class="hero-option">
+          Button Text
+        </ui-textfield>
       </div>
     </template>
 

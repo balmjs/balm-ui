@@ -12,22 +12,23 @@
           <ui-textfield v-model="formData.mobile">Mobile</ui-textfield>
         </ui-form-field>
         <ui-form-field class="form-item">
-          <ui-textfield v-model="formData.password" input-type="password"
-            >Password</ui-textfield
-          >
+          <ui-textfield v-model="formData.password" input-type="password">
+            Password
+          </ui-textfield>
         </ui-form-field>
         <ui-form-field class="form-item">
-          <ui-textfield v-model="formData.repassword" input-type="password"
-            >Repeat Password</ui-textfield
-          >
+          <ui-textfield v-model="formData.repassword" input-type="password">
+            Repeat Password
+          </ui-textfield>
         </ui-form-field>
         <ui-form-field>
           <ui-select
             v-model="formData.gender"
             :options="genderOptions"
             default-label="Unknown"
-            >Gender</ui-select
           >
+            Gender
+          </ui-select>
         </ui-form-field>
         <ui-alert v-if="message" state="error">{{ message }}</ui-alert>
         <ui-form-field class="form-item form-actions">
@@ -44,22 +45,23 @@
           <ui-textfield v-model="formData.mobile">Mobile</ui-textfield>
         </ui-form-field>
         <ui-form-field class="form-item">
-          <ui-textfield v-model="formData.password" input-type="password"
-            >Password</ui-textfield
-          >
+          <ui-textfield v-model="formData.password" input-type="password">
+            Password
+          </ui-textfield>
         </ui-form-field>
         <ui-form-field class="form-item">
-          <ui-textfield v-model="formData.repassword" input-type="password"
-            >Repeat Password</ui-textfield
-          >
+          <ui-textfield v-model="formData.repassword" input-type="password">
+            Repeat Password
+          </ui-textfield>
         </ui-form-field>
         <ui-form-field>
           <ui-select
             v-model="formData.gender"
             :options="genderOptions"
             default-label="Unknown"
-            >Gender</ui-select
           >
+            Gender
+          </ui-select>
         </ui-form-field>
         <ui-alert v-if="messages.length" state="error">
           <ul>
@@ -82,8 +84,9 @@
           <ui-textfield
             v-model="formData.mobile"
             helper-text-id="mobile-helper-text"
-            >Mobile</ui-textfield
           >
+            Mobile
+          </ui-textfield>
           <ui-textfield-helper
             id="mobile-helper-text"
             v-model="validMsg.mobile"
@@ -94,8 +97,9 @@
             v-model="formData.password"
             input-type="password"
             helper-text-id="password-helper-text"
-            >Password</ui-textfield
           >
+            Password
+          </ui-textfield>
           <ui-textfield-helper
             id="password-helper-text"
             v-model="validMsg.password"
@@ -106,8 +110,9 @@
             v-model="formData.repassword"
             input-type="password"
             helper-text-id="repassword-helper-text"
-            >Repeat Password</ui-textfield
           >
+            Repeat Password
+          </ui-textfield>
           <ui-textfield-helper
             id="repassword-helper-text"
             v-model="validMsg.repassword"
@@ -119,8 +124,9 @@
             :options="genderOptions"
             default-label="Unknown"
             helper-text-id="gender-helper-text"
-            >Gender</ui-select
           >
+            Gender
+          </ui-select>
           <ui-select-helper
             id="gender-helper-text"
             v-model="validMsg.gender"

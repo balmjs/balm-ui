@@ -77,8 +77,9 @@
           v-model="typeOption"
           class="hero-option"
           :options="TypeOptions"
-          >Type</ui-select
         >
+          Type
+        </ui-select>
         <div class="hero-option hero-options">
           <ui-form class="hero-option">
             <div>Options</div>
@@ -125,15 +126,17 @@
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
           :required="controls.required"
-          >Email Address</ui-textfield
         >
+          Email Address
+        </ui-textfield>
         <ui-textfield-helper
           v-if="controls.helperText"
           id="my-text-field-helper-text"
           :visible="controls.isVisible"
           :valid-msg="controls.hasValidMsg"
-          >Helper Text (possibly validation message)</ui-textfield-helper
         >
+          Helper Text (possibly validation message)
+        </ui-textfield-helper>
       </div>
       <ui-textfield-controls
         v-model="controls"
@@ -151,8 +154,9 @@
           pattern=".{8,}"
           helper-text-id="pw-validation-msg"
           :attrs="{ autocomplete: 'current-password' }"
-          >Choose password</ui-textfield
         >
+          Choose password
+        </ui-textfield>
         <ui-textfield-helper id="pw-validation-msg" visible valid-msg
           >Must be at least 8 characters long</ui-textfield-helper
         >
@@ -171,8 +175,9 @@
           :required="controls.required"
           :maxlength="controls.max ? 10 : null"
           :minlength="controls.min ? 8 : 0"
-          >Your Name</ui-textfield
         >
+          Your Name
+        </ui-textfield>
         <ui-textfield-helper id="name-validation-message" valid-msg>{{
           controls.min
             ? 'Must be at least 8 characters'
@@ -201,9 +206,9 @@
           :minlength="controls.min ? 8 : 0"
         >
           <template #before>
-            <ui-textfield-icon :unclickable="controls.unclickable"
-              >event</ui-textfield-icon
-            >
+            <ui-textfield-icon :unclickable="controls.unclickable">
+              event
+            </ui-textfield-icon>
           </template>
           Your name
         </ui-textfield>
@@ -221,9 +226,9 @@
         >
           Your name
           <template #after>
-            <ui-textfield-icon trailing :unclickable="controls.unclickable"
-              >delete</ui-textfield-icon
-            >
+            <ui-textfield-icon trailing :unclickable="controls.unclickable">
+              delete
+            </ui-textfield-icon>
           </template>
         </ui-textfield>
       </div>
@@ -301,8 +306,9 @@
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
           :required="controls.required"
-          >Textarea Label</ui-textfield
         >
+          Textarea Label
+        </ui-textfield>
       </div>
       <br />
       <div class="demo" :dir="controls.rtl ? 'rtl' : null">
@@ -314,8 +320,9 @@
           :class="{ 'demo-text-field-custom-colors': controls.customColor }"
           :disabled="controls.disabled"
           :required="controls.required"
-          >Textarea Label</ui-textfield
         >
+          Textarea Label
+        </ui-textfield>
       </div>
       <ui-textfield-controls
         v-model="controls"

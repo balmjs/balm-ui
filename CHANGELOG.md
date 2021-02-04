@@ -7,6 +7,7 @@
 ### Features
 
 - `$store`: add `useStore` function
+- add `<ui-tree>` component for experimental
 
 ## v8.18.1 / 2021-02-02
 

@@ -11,8 +11,6 @@ import UiRangepicker from './components/pickers/rangepicker';
 import UiAlert from './components/others/alert';
 import UiCollapse from './components/others/collapse';
 import UiEditor from './components/editor/editor';
-import UiTree from './components/trees/tree';
-import UiTreeNode from './components/trees/tree-node';
 /**
  * Plugins
  */
@@ -33,9 +31,7 @@ const components = {
   UiDatepicker,
   UiEditor,
   UiRangepicker,
-  UiSkeleton,
-  UiTree,
-  UiTreeNode
+  UiSkeleton
 };
 
 const plugins = {

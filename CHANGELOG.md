@@ -3,6 +3,16 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.10.0 / 2021-02-04
+
+### Features
+
+- add `<ui-tree>` component for experimental
+
+### Chore
+
+- `<ui-table>`: update css for fixed table
+
 ## v9.9.0 / 2021-01-28
 
 ### Features

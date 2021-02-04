@@ -50,7 +50,8 @@ const components = [
   'rangepicker',
   'skeleton',
   // Next
-  'bottom-navigation'
+  'bottom-navigation',
+  'tree'
 ];
 const plugins = [
   'alert',

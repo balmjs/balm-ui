@@ -4,9 +4,13 @@ import multiConfigure from './config/multi-configure';
  * Components
  */
 import UiBottomNavigation from './components/navigation/bottom-navigation';
+import UiTree from './components/trees/tree';
+import UiTreeNode from './components/trees/tree-node';
 
 const components = {
-  UiBottomNavigation
+  UiBottomNavigation,
+  UiTree,
+  UiTreeNode
 };
 
 function install(app, options = {}) {

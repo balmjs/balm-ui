@@ -26,8 +26,9 @@
             id="my-select-helper"
             :visible="selectOption.includes(2)"
             :valid-msg="selectOption.includes(3)"
-            >Helper text</ui-select-helper
           >
+            Helper text
+          </ui-select-helper>
         </div>
         <div v-if="typeOption === 1">
           <ui-select
@@ -47,8 +48,9 @@
             id="my-select-outlined-helper"
             :visible="selectOption.includes(2)"
             :valid-msg="selectOption.includes(3)"
-            >Helper text</ui-select-helper
           >
+            Helper text
+          </ui-select-helper>
         </div>
       </div>
       <div class="hero-options">
@@ -100,8 +102,9 @@
             :class="{ 'demo-select-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
             @selected="onSelected($event, 1)"
-            >Food Group</ui-select
           >
+            Food Group
+          </ui-select>
         </div>
         <p>
           Currently selected:
@@ -133,8 +136,9 @@
             :class="{ 'demo-select-custom-colors': controls.customColor }"
             :disabled="controls.disabled"
             @selected="onSelected($event, 1)"
-            >Food Group</ui-select
           >
+            Food Group
+          </ui-select>
         </div>
         <p>
           Currently selected:
@@ -159,8 +163,9 @@
           id="select-preselected"
           v-model="selected3"
           :options="options2"
-          >Food Group</ui-select
         >
+          Food Group
+        </ui-select>
       </div>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>

@@ -100,9 +100,9 @@
 
         <div class="demo-grid-legend">Grid of 1 column wide items</div>
         <ui-grid class="demo-grid">
-          <ui-grid-cell v-for="i in 12" :key="i" class="demo-cell" columns="1"
-            >1</ui-grid-cell
-          >
+          <ui-grid-cell v-for="i in 12" :key="i" class="demo-cell" columns="1">
+            1
+          </ui-grid-cell>
         </ui-grid>
         <ui-snippet :code="$store.demos[2]"></ui-snippet>
 
@@ -118,15 +118,15 @@
           Grid of items with tweaks at different screen sizes
         </div>
         <ui-grid class="demo-grid">
-          <ui-grid-cell class="demo-cell" :columns="{ default: 6, tablet: 8 }"
-            >6 (8 tablet)</ui-grid-cell
-          >
-          <ui-grid-cell class="demo-cell" :columns="{ default: 4, tablet: 6 }"
-            >4 (6 tablet)</ui-grid-cell
-          >
-          <ui-grid-cell class="demo-cell" :columns="{ default: 2, phone: 4 }"
-            >2 (4 phone)</ui-grid-cell
-          >
+          <ui-grid-cell class="demo-cell" :columns="{ default: 6, tablet: 8 }">
+            6 (8 tablet)
+          </ui-grid-cell>
+          <ui-grid-cell class="demo-cell" :columns="{ default: 4, tablet: 6 }">
+            4 (6 tablet)
+          </ui-grid-cell>
+          <ui-grid-cell class="demo-cell" :columns="{ default: 2, phone: 4 }">
+            2 (4 phone)
+          </ui-grid-cell>
         </ui-grid>
         <ui-snippet :code="$store.demos[4]"></ui-snippet>
 

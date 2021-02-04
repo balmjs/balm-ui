@@ -2,12 +2,12 @@
   <docs-page type="plugin" name="theme" demo-count="4">
     <template #hero>
       <div class="hero-demos">
-        <ui-button raised :class="[$theme.getThemeClass('primary-bg')]"
-          >Primary</ui-button
-        >
-        <ui-button raised :class="[$theme.getThemeClass('secondary-bg')]"
-          >Secondary</ui-button
-        >
+        <ui-button raised :class="[$theme.getThemeClass('primary-bg')]">
+          Primary
+        </ui-button>
+        <ui-button raised :class="[$theme.getThemeClass('secondary-bg')]">
+          Secondary
+        </ui-button>
       </div>
     </template>
 

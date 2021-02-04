@@ -33,8 +33,9 @@
         class="global-message-banner"
         primary-button-text="Cool"
         secondary-button-text="Good"
-        >Do you like BalmUI</ui-banner
       >
+        Do you like BalmUI
+      </ui-banner>
       <!-- Content -->
       <div class="balmui-body">
         <!-- Drawer -->

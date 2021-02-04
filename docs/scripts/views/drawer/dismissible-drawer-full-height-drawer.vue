@@ -5,13 +5,14 @@
     <!-- Drawer -->
     <ui-drawer type="dismissible" viewport-height nav-id="demo-menu">
       <ui-drawer-header>
-        <ui-drawer-title :class="$theme.getTextClass('primary', $store.theme)"
-          >Title</ui-drawer-title
-        >
+        <ui-drawer-title :class="$theme.getTextClass('primary', $store.theme)">
+          Title
+        </ui-drawer-title>
         <ui-drawer-subtitle
           :class="$theme.getTextClass('secondary', $store.theme)"
-          >Subtitle</ui-drawer-subtitle
         >
+          Subtitle
+        </ui-drawer-subtitle>
       </ui-drawer-header>
       <ui-drawer-content>
         <ui-nav>
@@ -23,8 +24,9 @@
             </ui-item-first-content>
             <ui-item-text-content
               :class="$theme.getTextClass('primary', $store.theme)"
-              >Back</ui-item-text-content
             >
+              Back
+            </ui-item-text-content>
           </ui-nav-item>
           <ui-list-divider></ui-list-divider>
           <ui-nav-item
@@ -32,8 +34,9 @@
             :key="i"
             href="javascript:void(0)"
             :class="$theme.getTextClass('primary', $store.theme)"
-            >Item {{ i }}</ui-nav-item
           >
+            Item {{ i }}
+          </ui-nav-item>
         </ui-nav>
       </ui-drawer-content>
     </ui-drawer>
@@ -44,8 +47,9 @@
         class="demo-app-bar"
         content-selector=".demo-app-content"
         nav-id="demo-menu"
-        >Dismissible Drawer Full Height Drawer</ui-top-app-bar
       >
+        Dismissible Drawer Full Height Drawer
+      </ui-top-app-bar>
       <!-- App content -->
       <div :class="[$tt('body1'), 'demo-app-content']">
         <h6>Dismissible Drawer</h6>

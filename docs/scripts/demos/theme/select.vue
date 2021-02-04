@@ -12,8 +12,9 @@
           :options="options"
           default-label="Select"
           :default-value="0"
-          >Label</ui-select
         >
+          Label
+        </ui-select>
       </ui-form-field>
     </div>
   </section>

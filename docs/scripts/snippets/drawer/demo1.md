@@ -9,9 +9,9 @@
     <ui-drawer-content>
       <ui-nav>
         <ui-nav-item href="javascript:void(0)" active>Item {{ 0 }}</ui-nav-item>
-        <ui-nav-item v-for="i in 12" :key="i" href="javascript:void(0)"
-          >Item {{ i }}</ui-nav-item
-        >
+        <ui-nav-item v-for="i in 12" :key="i" href="javascript:void(0)">
+          Item {{ i }}
+        </ui-nav-item>
       </ui-nav>
     </ui-drawer-content>
   </ui-drawer>

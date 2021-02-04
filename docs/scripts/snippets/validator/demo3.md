@@ -1,8 +1,8 @@
 ```html
 <ui-form item-margin-bottom="10">
   <ui-form-field class="form-item">
-    <ui-textfield v-model="formData.mobile" helper-text-id="mobile-helper-text"
-      >Mobile
+    <ui-textfield v-model="formData.mobile" helper-text-id="mobile-helper-text">
+      Mobile
     </ui-textfield>
     <ui-textfield-helper
       id="mobile-helper-text"
@@ -14,8 +14,9 @@
       v-model="formData.password"
       input-type="password"
       helper-text-id="password-helper-text"
-      >Password</ui-textfield
     >
+      Password
+    </ui-textfield>
     <ui-textfield-helper
       id="password-helper-text"
       v-model:validMsg="validMsg.password"
@@ -26,8 +27,9 @@
       v-model="formData.repassword"
       input-type="password"
       helper-text-id="repassword-helper-text"
-      >Repeat Password</ui-textfield
     >
+      Repeat Password
+    </ui-textfield>
     <ui-textfield-helper
       id="repassword-helper-text"
       v-model:validMsg="validMsg.repassword"
@@ -39,8 +41,9 @@
       :options="genderOptions"
       default-label="Unknown"
       helper-text-id="gender-helper-text"
-      >Gender</ui-select
     >
+      Gender
+    </ui-select>
     <ui-select-helper
       id="gender-helper-text"
       v-model:validMsg="validMsg.gender"

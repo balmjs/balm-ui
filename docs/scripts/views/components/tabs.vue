@@ -46,9 +46,9 @@
             ></ui-checkbox>
             <label for="options">Text label</label>
           </ui-form-field>
-          <ui-select v-model="iconOption" :options="IconOptions"
-            >Icons</ui-select
-          >
+          <ui-select v-model="iconOption" :options="IconOptions">
+            Icons
+          </ui-select>
         </div>
       </div>
     </template>

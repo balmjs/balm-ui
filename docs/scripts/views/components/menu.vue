@@ -197,9 +197,9 @@
                     v-model="controls.fixedPosition"
                     input-id="fixed-position"
                   ></ui-checkbox>
-                  <label for="fixed-position"
-                    >Fixed Position Menu Surface</label
-                  >
+                  <label for="fixed-position">
+                    Fixed Position Menu Surface
+                  </label>
                 </ui-form-field>
               </div>
             </ui-form-field>

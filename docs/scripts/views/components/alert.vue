@@ -8,9 +8,9 @@
       </div>
       <div class="hero-options">
         <div class="hero-option hero-options">
-          <ui-select v-model="state" :options="StateTypeOptions"
-            >State Type</ui-select
-          >
+          <ui-select v-model="state" :options="StateTypeOptions">
+            State Type
+          </ui-select>
           <ui-form-field>
             <ui-checkbox
               id="state-outlined"
@@ -19,9 +19,9 @@
             <label for="state-outlined">Outlined State</label>
           </ui-form-field>
         </div>
-        <ui-textfield v-model="message" class="hero-option"
-          >Alert Message</ui-textfield
-        >
+        <ui-textfield v-model="message" class="hero-option">
+          Alert Message
+        </ui-textfield>
       </div>
     </template>
 

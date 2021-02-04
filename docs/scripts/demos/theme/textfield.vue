@@ -6,9 +6,9 @@
         <ui-textfield v-model="value" helper-text-id="textfield-component-1">
           Label
         </ui-textfield>
-        <ui-textfield-helper id="textfield-component-1" visible
-          >Assistive text</ui-textfield-helper
-        >
+        <ui-textfield-helper id="textfield-component-1" visible>
+          Assistive text
+        </ui-textfield-helper>
       </ui-form-field>
 
       <ui-form-field>
@@ -18,9 +18,9 @@
             <ui-textfield-icon trailing>visibility</ui-textfield-icon>
           </template>
         </ui-textfield>
-        <ui-textfield-helper id="textfield-component-2" visible
-          >Assistive text</ui-textfield-helper
-        >
+        <ui-textfield-helper id="textfield-component-2" visible>
+          Assistive text
+        </ui-textfield-helper>
       </ui-form-field>
     </div>
   </section>

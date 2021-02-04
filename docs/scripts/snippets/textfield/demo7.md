@@ -6,8 +6,7 @@
     placeholder="Subject"
     maxlength="40"
     with-counter
-  >
-  </ui-textfield>
+  ></ui-textfield>
 
   <ui-textfield
     v-model="content"
@@ -16,8 +15,7 @@
     placeholder="Content"
     maxlength="140"
     rows="8"
-  >
-  </ui-textfield>
+  ></ui-textfield>
 </div>
 ```
 

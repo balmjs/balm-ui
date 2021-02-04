@@ -20,17 +20,18 @@
         ></ui-textfield>
         <br />
         <ui-button raised dense @click="addOne">Add Input Chip</ui-button>
-        <ui-button outlined dense @click="removeLastOne"
-          >Delete Last Chip</ui-button
-        >
+        <ui-button outlined dense @click="removeLastOne">
+          Delete Last Chip
+        </ui-button>
         <ui-chips v-if="list.length" :chips="list" type="input">
           <ui-chip
             v-for="item in list"
             :key="item.id"
             icon="face"
             @remove="removeOneById(item.id)"
-            >{{ item.name }}</ui-chip
           >
+            {{ item.name }}
+          </ui-chip>
         </ui-chips>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
@@ -71,8 +72,9 @@
             :key="index"
             icon="face"
             :hidden="selectedValue2.includes(index)"
-            >{{ item }}</ui-chip
           >
+            {{ item }}
+          </ui-chip>
         </ui-chips>
       </div>
       <ui-snippet :code="$store.demos[3]"></ui-snippet>
@@ -86,8 +88,9 @@
             v-for="(item, index) in actionList"
             :key="index"
             :icon="item.icon"
-            >{{ item.name }}</ui-chip
           >
+            {{ item.name }}
+          </ui-chip>
         </ui-chips>
       </div>
       <ui-snippet :code="$store.demos[4]"></ui-snippet>

@@ -9,11 +9,12 @@
           v-model="typeOption"
           class="hero-option"
           :options="TypeOptions"
-          >Type</ui-select
         >
-        <ui-textfield v-model="text" class="hero-option"
-          >Button Text</ui-textfield
-        >
+          Type
+        </ui-select>
+        <ui-textfield v-model="text" class="hero-option">
+          Button Text
+        </ui-textfield>
       </div>
     </template>
 

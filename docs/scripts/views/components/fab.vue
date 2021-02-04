@@ -21,8 +21,9 @@
           v-model="typeOption"
           class="hero-option"
           :options="TypeOptions"
-          >Type</ui-select
         >
+          Type
+        </ui-select>
         <ui-form-field v-if="typeOption" class="hero-option">
           <ui-checkbox
             id="leading-icon"
@@ -137,8 +138,9 @@
               id="enter-exit-back"
               :disabled="!exited"
               @click="balmUI.onHide('exited')"
-              >Go back</ui-button
             >
+              Go back
+            </ui-button>
           </p>
         </div>
         <ui-fab

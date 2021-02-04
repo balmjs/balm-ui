@@ -2,6 +2,16 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.20.0 / 2021-02-04
+
+### Bug Fixes
+
+- `<ui-file>`: fix `outlined` prop bug
+
+### Features
+
+- `<ui-pagination>`: add prop `jumperButtonOutlined`
+
 ## v8.19.0 / 2021-02-04
 
 ### Features

@@ -68,12 +68,7 @@
         :children="nodeData.children"
         :tree-data="treeData"
       >
-        <slot v-for="(_, name) in $slots" :slot="name" :name="name"></slot>
-        <template
-          v-for="(_, name) in $scopedSlots"
-          :slot="name"
-          slot-scope="slotData"
-        >
+        <template v-for="(_, name) in $slots" #[name]="slotData">
           <slot :name="name" v-bind="slotData"></slot>
         </template>
       </ui-tree-node>

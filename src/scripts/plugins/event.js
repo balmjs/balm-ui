@@ -2,6 +2,7 @@ import { getCurrentInstance } from 'vue';
 import getType from '../utils/typeof';
 import createCustomEvent from '../events';
 import bus from '../events/bus';
+import throttle from '../events/throttle';
 
 // Define constants
 const noop = () => {};
@@ -105,6 +106,9 @@ function install(app) {
 
   app.config.globalProperties.$bus = bus;
   app.provide('bus', bus);
+
+  app.config.globalProperties.$throttle = throttle;
+  app.provide('throttle', throttle);
 }
 
 const BalmUI_EventPlugin = {

@@ -2,12 +2,7 @@
   <div class="mdc-tree">
     <slot></slot>
     <ui-tree-node :children="nodeList" :tree-data="treeData">
-      <slot v-for="(_, name) in $slots" :slot="name" :name="name"></slot>
-      <template
-        v-for="(_, name) in $scopedSlots"
-        :slot="name"
-        slot-scope="slotData"
-      >
+      <template v-for="(_, name) in $slots" #[name]="slotData">
         <slot :name="name" v-bind="slotData"></slot>
       </template>
     </ui-tree-node>
@@ -26,7 +21,7 @@ const UI_TREE = {
     isLeaf: 'isLeaf'
   },
   EVENT: {
-    CHANGE: 'change'
+    CHANGE: 'update:modelValue'
   }
 };
 
@@ -35,13 +30,9 @@ export default {
   components: {
     UiTreeNode
   },
-  model: {
-    prop: 'selectedNodes',
-    event: UI_TREE.EVENT.CHANGE
-  },
   props: {
     // States
-    selectedNodes: {
+    modelValue: {
       type: [String, Array],
       default: ''
     },
@@ -71,6 +62,7 @@ export default {
       default: null
     }
   },
+  emits: [UI_TREE.EVENT.CHANGE],
   data() {
     return {
       nodeList: [],
@@ -78,7 +70,7 @@ export default {
         dataFormat: Object.assign(UI_TREE.dataFormat, this.dataFormat),
         maxLevel: this.maxLevel,
         nodeMap: new Map(),
-        selectedValue: this.selectedNodes,
+        selectedValue: this.modelValue,
         multiple: this.multiple,
         loadData: this.loadData
       }
@@ -97,7 +89,7 @@ export default {
   created() {
     if (this.multiple && !Array.isArray(this.treeData.selectedValue)) {
       throw new Error(
-        `[BalmUI tree]: The prop selectedNodes must be an array in the multiple tree`
+        `[BalmUI tree]: The prop modelValue must be an array in the multiple tree`
       );
     }
   },

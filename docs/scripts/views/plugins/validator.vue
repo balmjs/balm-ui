@@ -45,14 +45,14 @@
           <ui-textfield v-model="formData.mobile">Mobile </ui-textfield>
         </ui-form-field>
         <ui-form-field class="form-item">
-          <ui-textfield v-model="formData.password" input-type="password"
-            >Password</ui-textfield
-          >
+          <ui-textfield v-model="formData.password" input-type="password">
+            Password
+          </ui-textfield>
         </ui-form-field>
         <ui-form-field class="form-item">
-          <ui-textfield v-model="formData.repassword" input-type="password"
-            >Repeat Password</ui-textfield
-          >
+          <ui-textfield v-model="formData.repassword" input-type="password">
+            Repeat Password
+          </ui-textfield>
         </ui-form-field>
         <ui-form-field>
           <ui-select

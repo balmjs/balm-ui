@@ -16,7 +16,12 @@
       "
     />
     <slot>
-      <mdc-button unelevated icon="publish" :disabled="disabled">
+      <mdc-button
+        :outlined="outlined"
+        :unelevated="!outlined"
+        icon="publish"
+        :disabled="disabled"
+      >
         {{ text }}
       </mdc-button>
     </slot>

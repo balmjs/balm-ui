@@ -23,7 +23,7 @@
         </mdc-floating-label>
       </template>
       <!-- Leading Icon -->
-      <slot name="icon">
+      <slot name="icon" :iconClass="UI_SELECT.cssClasses.icon">
         <i
           v-if="materialIcon"
           :class="getIconClassName(UI_SELECT.cssClasses.icon)"

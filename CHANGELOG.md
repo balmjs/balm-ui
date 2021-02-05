@@ -3,6 +3,12 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.11.1 / 2021-02-05
+
+### Bug Fixes
+
+- `<ui-textfield-icon>`, `<ui-select-icon>`: fix click handler bug
+
 ## v9.11.0 / 2021-02-04
 
 ### Bug Fixes

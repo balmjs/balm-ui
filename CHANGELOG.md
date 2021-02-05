@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.20.1 / 2021-02-05
+
+### Bug Fixes
+
+- `<ui-textfield-icon>`, `<ui-select-icon>`: fix click handler bug
+
 ## v8.20.0 / 2021-02-04
 
 ### Bug Fixes

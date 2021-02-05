@@ -35,7 +35,8 @@
 | Name            | Props       | Description                                      | Version |
 | --------------- | ----------- | ------------------------------------------------ | ------- |
 | `default`       |             | The default slot holds the label for the select. |         |
-| `dropdown-icon` | `iconClass` | Custom dropdown icon.                            | `6.9.0` |
+| `icon`          | `iconClass` | The icon slot holds a custom leading icon.       |         |
+| `dropdown-icon` |             | Custom dropdown icon.                            | `6.9.0` |
 
 ### Events
 

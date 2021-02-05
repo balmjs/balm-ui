@@ -23,10 +23,10 @@
         </mdc-floating-label>
       </template>
       <!-- Leading Icon -->
-      <slot name="icon">
+      <slot name="icon" :iconClass="UI_SELECT.cssClasses.icon">
         <i
           v-if="materialIcon"
-          :class="[UI_GLOBAL.cssClasses.icon, UI_SELECT.cssClasses.icon]"
+          :class="getIconClassName(UI_SELECT.cssClasses.icon)"
           v-text="materialIcon"
         ></i>
       </slot>
@@ -95,7 +95,6 @@ import MdcLineRipple from '../form-controls/mdc-line-ripple';
 import MdcNotchedOutline from '../form-controls/mdc-notched-outline';
 import typeMixin from '../../mixins/type';
 import materialIconMixin from '../../mixins/material-icon';
-import UI_GLOBAL from '../../config/constants';
 
 // Define select constants
 const UI_SELECT = {
@@ -195,7 +194,6 @@ export default {
   },
   data() {
     return {
-      UI_GLOBAL,
       UI_SELECT,
       $select: null,
       currentOptions: [],

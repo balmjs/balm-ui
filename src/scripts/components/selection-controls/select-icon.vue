@@ -3,7 +3,7 @@
     :class="[UI_GLOBAL.cssClasses.icon, 'mdc-select__icon']"
     :tabindex="unclickable ? null : 0"
     :role="unclickable ? null : 'button'"
-    @click="unclickable ? null : handleClick"
+    @click="handleClick"
   >
     <slot>
       <!-- Material Icons -->
@@ -36,7 +36,9 @@ export default {
   },
   methods: {
     handleClick(event) {
-      this.$emit(UI_SELECT_ICON.EVENT.CLICK, event);
+      if (!this.unclickable) {
+        this.$emit(UI_SELECT_ICON.EVENT.CLICK, event);
+      }
     }
   }
 };

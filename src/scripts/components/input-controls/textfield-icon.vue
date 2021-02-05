@@ -3,7 +3,7 @@
     :class="className"
     :tabindex="unclickable ? null : 0"
     :role="unclickable ? null : 'button'"
-    @click="unclickable ? null : handleClick"
+    @click="handleClick"
   >
     <slot>
       <!-- Material icon -->
@@ -45,7 +45,9 @@ export default {
   },
   methods: {
     handleClick(event) {
-      this.$emit(UI_TEXTFIELD_ICON.EVENT.CLICK, event);
+      if (!this.unclickable) {
+        this.$emit(UI_TEXTFIELD_ICON.EVENT.CLICK, event);
+      }
     }
   }
 };

@@ -11,16 +11,12 @@
             name="nav-icon"
             :navIconClass="UI_TOP_APP_BAR.cssClasses.navIcon"
           >
-            <button
+            <mdc-icon-button
               v-if="defaultNavIcon"
               :id="navId"
-              :class="[
-                UI_GLOBAL.cssClasses.icon,
-                UI_TOP_APP_BAR.cssClasses.navIcon,
-                'mdc-icon-button'
-              ]"
+              :class="UI_TOP_APP_BAR.cssClasses.navIcon"
               v-text="defaultNavIcon"
-            ></button>
+            ></mdc-icon-button>
           </slot>
         </span>
         <!-- Title (optional) / Contextual title -->
@@ -45,8 +41,8 @@
 
 <script>
 import { MDCTopAppBar } from '../../../material-components-web/top-app-bar';
+import MdcIconButton from '../buttons/mdc-icon-button';
 import typeMixin from '../../mixins/type';
-import UI_GLOBAL from '../../config/constants';
 
 // Define top app bar constants
 const UI_TOP_APP_BAR = {
@@ -79,6 +75,9 @@ const UI_TOP_APP_BAR = {
 
 export default {
   name: 'UiTopAppBar',
+  components: {
+    MdcIconButton
+  },
   mixins: [typeMixin],
   props: {
     contentSelector: {
@@ -130,7 +129,6 @@ export default {
   },
   data() {
     return {
-      UI_GLOBAL,
       UI_TOP_APP_BAR,
       $topAppBar: null
     };

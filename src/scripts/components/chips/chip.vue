@@ -28,7 +28,7 @@
     <slot name="after" :iconClass="UI_CHIPS.cssClasses.removeIcon">
       <span v-if="$parent.inputChips || removable" role="gridcell">
         <i
-          :class="[UI_GLOBAL.cssClasses.icon, UI_CHIPS.cssClasses.removeIcon]"
+          :class="getIconClassName(UI_CHIPS.cssClasses.removeIcon)"
           tabindex="-1"
           role="button"
           @click="handleRemove"
@@ -60,7 +60,6 @@ export default {
   },
   data() {
     return {
-      UI_GLOBAL,
       UI_CHIPS
     };
   },

@@ -10,10 +10,10 @@
           ></ui-card-media>
           <ui-card-text>
             <div :class="$tt('overline')">OVERLINE</div>
-            <div :class="$tt('headline6')">Headline 6</div>
+            <div :class="$tt('headline6')">Headline6</div>
             <div :class="$tt('body2')">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              (body2) Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </div>
           </ui-card-text>
         </ui-card-content>

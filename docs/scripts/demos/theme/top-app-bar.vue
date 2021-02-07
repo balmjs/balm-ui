@@ -3,7 +3,7 @@
     <h6 :class="$tt('headline6')">Top App Bar</h6>
     <div class="component-wrapper">
       <ui-top-app-bar content-selector=".top-app-content-1">
-        Headline 6
+        Headline6
         <template #toolbar="{ toolbarItemClass }">
           <ui-icon-button
             :class="toolbarItemClass"

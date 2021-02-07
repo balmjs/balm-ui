@@ -7,12 +7,12 @@
           <ui-drawer-title
             :class="$theme.getTextClass('primary', $store.theme)"
           >
-            Headline 6
+            Headline6
           </ui-drawer-title>
           <ui-drawer-subtitle
             :class="$theme.getTextClass('secondary', $store.theme)"
           >
-            Body 2
+            Body2
           </ui-drawer-subtitle>
         </ui-drawer-header>
         <ui-drawer-content>
@@ -37,7 +37,7 @@
               <ui-item-text-content
                 :class="$theme.getTextClass('primary', $store.theme)"
               >
-                Body 2
+                Body2
               </ui-item-text-content>
             </ui-nav-item>
           </ui-nav>

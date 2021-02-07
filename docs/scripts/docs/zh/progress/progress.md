@@ -4,11 +4,10 @@
 
 ### Props
 
-| Name       | Type    | Default | Description                                                            |
-| ---------- | ------- | ------- | ---------------------------------------------------------------------- |
-| `active`   | boolean | `false` | Puts the linear progress indicator in an indeterminate state.          |
-| `progress` | number  | `0`     | Sets the progress bar to this value. Value should be between `[0, 1]`. |
-| `buffer`   | number  | `0`     | Sets the buffer bar to this value. Value should be between `[0, 1]`.   |
-| `reversed` | boolean | `false` | Reverses the direction of the linear progress indicator.               |
-| `label`    | string  | `''`    | Label indicating how the progress bar should be announced to the user. |
-| `closed`   | boolean | `false` | Hides the linear progress indicator.                                   |
+| Name       | Type    | Default | Description                       |
+| ---------- | ------- | ------- | --------------------------------- |
+| `active`   | boolean | `false` | 设置进度条为活动状态。            |
+| `progress` | number  | `0`     | 设置进度条值。值的范围为 `[0, 1]` |
+| `buffer`   | number  | `0`     | 设置缓冲区值。值的范围为 `[0, 1]` |
+| `label`    | string  | `''`    | 进度条说明文字。                  |
+| `closed`   | boolean | `false` | 隐藏进度条。                      |

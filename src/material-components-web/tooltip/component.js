@@ -22,7 +22,7 @@
  */
 import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
-import { events } from './constants';
+import { CssClasses, events } from './constants';
 import { MDCTooltipFoundation } from './foundation';
 var MDCTooltip = /** @class */ (function (_super) {
     __extends(MDCTooltip, _super);
@@ -46,8 +46,8 @@ var MDCTooltip = /** @class */ (function (_super) {
     };
     MDCTooltip.prototype.initialSyncWithDOM = function () {
         var _this = this;
-        this.isTooltipRich = this.foundation.getIsRich();
-        this.isTooltipPersistent = this.foundation.getIsPersistent();
+        this.isTooltipRich = this.foundation.isRich();
+        this.isTooltipPersistent = this.foundation.isPersistent();
         this.handleMouseEnter = function () {
             _this.foundation.handleAnchorMouseEnter();
         };
@@ -99,6 +99,12 @@ var MDCTooltip = /** @class */ (function (_super) {
     MDCTooltip.prototype.setAnchorBoundaryType = function (type) {
         this.foundation.setAnchorBoundaryType(type);
     };
+    MDCTooltip.prototype.hide = function () {
+        this.foundation.hide();
+    };
+    MDCTooltip.prototype.isShown = function () {
+        this.foundation.isShown();
+    };
     MDCTooltip.prototype.getDefaultFoundation = function () {
         var _this = this;
         var adapter = {
@@ -113,8 +119,15 @@ var MDCTooltip = /** @class */ (function (_super) {
             removeClass: function (className) {
                 _this.root.classList.remove(className);
             },
+            getComputedStyleProperty: function (propertyName) {
+                return window.getComputedStyle(_this.root).getPropertyValue(propertyName);
+            },
             setStyleProperty: function (propertyName, value) {
                 _this.root.style.setProperty(propertyName, value);
+            },
+            setSurfaceStyleProperty: function (propertyName, value) {
+                var surface = _this.root.querySelector("." + CssClasses.SURFACE);
+                surface === null || surface === void 0 ? void 0 : surface.style.setProperty(propertyName, value);
             },
             getViewportWidth: function () { return window.innerWidth; },
             getViewportHeight: function () { return window.innerHeight; },
@@ -126,6 +139,10 @@ var MDCTooltip = /** @class */ (function (_super) {
             },
             getAnchorBoundingRect: function () {
                 return _this.anchorElem ? _this.anchorElem.getBoundingClientRect() : null;
+            },
+            getParentBoundingRect: function () {
+                var _a, _b;
+                return (_b = (_a = _this.root.parentElement) === null || _a === void 0 ? void 0 : _a.getBoundingClientRect()) !== null && _b !== void 0 ? _b : null;
             },
             getAnchorAttribute: function (attr) {
                 return _this.anchorElem ? _this.anchorElem.getAttribute(attr) : null;

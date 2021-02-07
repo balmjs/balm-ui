@@ -16,6 +16,7 @@
   $shape-radius: medium,
   $title-bottom-padding: 9px,
   $actions-padding: 8px,
+  $header-side-padding: 16px, // New in 9.12.0
 
   $z-index: 7
 );

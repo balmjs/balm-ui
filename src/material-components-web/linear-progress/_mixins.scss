@@ -18,9 +18,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+// stylelint-disable no-unknown-animations --
+// Animations keyframes are included in `keyframes.scss`.
+// stylelint-disable selector-class-pattern --
+// Selector '.mdc-*' should only be used in this project.
+
 @use 'sass:string';
 @use '../animation/functions' as animation-functions;
 @use '../feature-targeting/feature-targeting';
+@use '../rtl/rtl';
 @use '../theme/theme';
 @use '../theme/theme-color';
 @use './variables';
@@ -131,7 +137,14 @@
     }
 
     @include indeterminate_($query: $query);
-    @include reversed_($query: $query);
+
+    @include rtl.rtl() {
+      // The rtl() mixin does not account for nested `dir` attributes. Set
+      // `dir` attribute on root to take highest priority.
+      &:not([dir='ltr']) {
+        @include _rtl-styles($query: $query);
+      }
+    }
 
     &--closed {
       @include feature-targeting.targets($feat-structure) {
@@ -161,22 +174,6 @@
     @include bar-color(primary, $query: $query);
     @include buffer-color(variables.$baseline-buffer-color, $query: $query);
   }
-
-  .mdc-linear-progress--indeterminate.mdc-linear-progress--reversed {
-    .mdc-linear-progress__primary-bar {
-      @include feature-targeting.targets($feat-structure) {
-        right: -145.166611%;
-        left: auto;
-      }
-    }
-
-    .mdc-linear-progress__secondary-bar {
-      @include feature-targeting.targets($feat-structure) {
-        right: -54.888891%;
-        left: auto;
-      }
-    }
-  }
 }
 
 @mixin bar-color($color, $query: feature-targeting.all()) {
@@ -186,7 +183,7 @@
     @include feature-targeting.targets($feat-color) {
       // Border is used rather than background-color to ensure that the
       // bar is visible in Windows High Contrast Mode.
-      @include theme.prop(border-color, $color);
+      @include theme.property(border-color, $color);
     }
   }
 }
@@ -276,46 +273,59 @@
   }
 }
 
-@mixin reversed_($query: feature-targeting.all()) {
+@mixin _rtl-styles($query: $query) {
   $feat-structure: feature-targeting.create-target($query, structure);
   $feat-animation: feature-targeting.create-target($query, animation);
 
-  &--reversed {
-    .mdc-linear-progress__bar {
-      @include feature-targeting.targets($feat-structure) {
-        right: 0;
-        transform-origin: center right;
-      }
+  .mdc-linear-progress__bar {
+    @include feature-targeting.targets($feat-structure) {
+      /* @noflip */
+      right: 0;
+      /* @noflip */
+      transform-origin: center right;
     }
+  }
 
-    &.mdc-linear-progress--animation-ready {
-      .mdc-linear-progress__primary-bar {
-        @include feature-targeting.targets($feat-animation) {
-          animation-name: mdc-linear-progress-primary-indeterminate-translate-reverse;
-        }
-      }
-
-      .mdc-linear-progress__secondary-bar {
-        @include feature-targeting.targets($feat-animation) {
-          animation-name: mdc-linear-progress-secondary-indeterminate-translate-reverse;
-        }
-      }
-    }
-
-    .mdc-linear-progress__buffer-dots {
+  &.mdc-linear-progress--animation-ready {
+    .mdc-linear-progress__primary-bar {
       @include feature-targeting.targets($feat-animation) {
-        animation: mdc-linear-progress-buffering-reverse 250ms infinite linear;
-      }
-
-      @include feature-targeting.targets($feat-structure) {
-        order: 0;
-        transform: rotate(0);
+        animation-name: mdc-linear-progress-primary-indeterminate-translate-reverse;
       }
     }
 
-    .mdc-linear-progress__buffer-bar {
+    .mdc-linear-progress__secondary-bar {
+      @include feature-targeting.targets($feat-animation) {
+        animation-name: mdc-linear-progress-secondary-indeterminate-translate-reverse;
+      }
+    }
+  }
+
+  .mdc-linear-progress__buffer-dots {
+    @include feature-targeting.targets($feat-animation) {
+      animation: mdc-linear-progress-buffering-reverse 250ms infinite linear;
+    }
+
+    @include feature-targeting.targets($feat-structure) {
+      transform: rotate(0);
+    }
+  }
+
+  &.mdc-linear-progress--indeterminate {
+    .mdc-linear-progress__primary-bar {
       @include feature-targeting.targets($feat-structure) {
-        order: 1;
+        /* @noflip */
+        right: -145.166611%;
+        /* @noflip */
+        left: auto;
+      }
+    }
+
+    .mdc-linear-progress__secondary-bar {
+      @include feature-targeting.targets($feat-structure) {
+        /* @noflip */
+        right: -54.888891%;
+        /* @noflip */
+        left: auto;
       }
     }
   }

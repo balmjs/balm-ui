@@ -11,7 +11,7 @@
     @include ui-mixins.selected();
 
     .mdc-list-item__graphic {
-      @include theme.prop(color, on-primary);
+      @include theme.property(color, on-primary);
     }
   }
 }

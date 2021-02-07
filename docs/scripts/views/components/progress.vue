@@ -22,30 +22,6 @@
           <ui-progress :progress="0.5" :buffer="0.75"></ui-progress>
           <figcaption>Buffer</figcaption>
         </figure>
-
-        <figure class="example">
-          <ui-progress reversed :progress="0.5"></ui-progress>
-          <figcaption>Reversed</figcaption>
-        </figure>
-
-        <figure class="example">
-          <ui-progress active reversed></ui-progress>
-          <figcaption>Indeterminate Reversed</figcaption>
-        </figure>
-
-        <figure class="example">
-          <ui-progress reversed :progress="0.5" :buffer="0.75"></ui-progress>
-          <figcaption>Buffer Reversed</figcaption>
-        </figure>
-
-        <figure class="example">
-          <ui-progress
-            class="demo-progress--custom"
-            :progress="0.5"
-            :buffer="0.75"
-          ></ui-progress>
-          <figcaption>Custom Colors with Buffer</figcaption>
-        </figure>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>

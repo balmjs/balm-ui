@@ -1,6 +1,6 @@
 <template>
   <section class="component-section">
-    <h6 :class="$tt('headline6')">Tabs</h6>
+    <h6 :class="$tt('headline6')">Tabs (button)</h6>
     <div class="component-wrapper">
       <ui-tab-bar>
         <ui-tab>Tab 1</ui-tab>

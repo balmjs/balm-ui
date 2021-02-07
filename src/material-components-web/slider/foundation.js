@@ -389,6 +389,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         else {
             this.setValue(value);
         }
+        this.adapter.emitChangeEvent(thumb === Thumb.START ? this.valueStart : this.value, thumb);
     };
     /** Shows value indicator on thumb(s). */
     MDCSliderFoundation.prototype.handleInputFocus = function (thumb) {
@@ -837,8 +838,22 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         this.handleUp();
         this.adapter.deregisterEventHandler('pointermove', this.moveListener);
     };
-    MDCSliderFoundation.SUPPORTS_POINTER_EVENTS = HAS_WINDOW && Boolean(window.PointerEvent);
+    MDCSliderFoundation.SUPPORTS_POINTER_EVENTS = HAS_WINDOW && Boolean(window.PointerEvent) &&
+        // #setPointerCapture is buggy on iOS, so we can't use pointer events
+        // until the following bug is fixed:
+        // https://bugs.webkit.org/show_bug.cgi?id=220196
+        !isIOS();
     return MDCSliderFoundation;
 }(MDCFoundation));
 export { MDCSliderFoundation };
+function isIOS() {
+    // Source:
+    // https://stackoverflow.com/questions/9038625/detect-if-device-is-ios
+    return [
+        'iPad Simulator', 'iPhone Simulator', 'iPod Simulator', 'iPad', 'iPhone',
+        'iPod'
+    ].includes(navigator.platform)
+        // iPad on iOS 13 detection
+        || (navigator.userAgent.includes('Mac') && 'ontouchend' in document);
+}
 //# sourceMappingURL=foundation.js.map

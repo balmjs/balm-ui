@@ -3,6 +3,17 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.12.0 / 2021-02-07
+
+### Features
+
+- update [`mdc@10.0.0`](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#1000-2021-02-05)
+- update material-icons v76
+
+### BREAKING CHANGES
+
+- `<ui-progress>`: remove prop `reversed`
+
 ## v9.11.1 / 2021-02-05
 
 ### Bug Fixes

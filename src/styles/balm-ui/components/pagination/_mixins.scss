@@ -1,8 +1,8 @@
 @use '@material/theme/theme';
 
 @mixin paginationHover() {
-  @include theme.prop(color, primary);
-  @include theme.prop(border-color, primary);
+  @include theme.property(color, primary);
+  @include theme.property(border-color, primary);
 }
 
 @mixin paginationInput() {
@@ -15,6 +15,6 @@
 
   &:hover,
   &:focus {
-    @include theme.prop(border-color, primary);
+    @include theme.property(border-color, primary);
   }
 }

@@ -6,7 +6,6 @@
   >
     <template #hero>
       <ui-menu
-        css-only
         :items="[
           'Back',
           'Forward',
@@ -15,6 +14,7 @@
           'Help &amp; Feedback',
           'Settings'
         ]"
+        css-only
       ></ui-menu>
     </template>
 
@@ -26,14 +26,7 @@
           <ui-button @click="open1 = true">Open Menu</ui-button>
           <ui-menu
             v-model="open1"
-            :items="[
-              'Back',
-              'Forward',
-              'Reload',
-              '-',
-              'Help &amp; Feedback',
-              'Settings'
-            ]"
+            :items="items1"
             @selected="onSelected1"
           ></ui-menu>
         </ui-menu-anchor>
@@ -286,6 +279,24 @@ import { reactive, toRefs, computed } from 'vue';
 import SvgSelected from '@/components/svg-selected';
 
 const state = reactive({
+  items1: [
+    {
+      text: 'Back'
+    },
+    {
+      text: 'Forward'
+    },
+    {
+      text: 'Reload'
+    },
+    '-',
+    {
+      text: 'Help & Feedback'
+    },
+    {
+      text: 'Settings'
+    }
+  ],
   open1: false,
   open2: false,
   selectedValue: null,
@@ -324,6 +335,18 @@ export default {
   methods: {
     onSelected1(data) {
       console.log('onSelected', data);
+
+      const oldIndex = state.items1.findIndex(
+        (item) => item !== '-' && item.selected
+      );
+      if (oldIndex > -1) {
+        state.items1[oldIndex].selected = false;
+      }
+
+      const newIndex = state.items1.findIndex(
+        (item) => item !== '-' && item.text === data.text
+      );
+      state.items1[newIndex].selected = true;
     },
     onSelected2(data) {
       console.log('onSelected', data);

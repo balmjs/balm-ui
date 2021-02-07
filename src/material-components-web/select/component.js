@@ -108,11 +108,15 @@ var MDCSelect = /** @class */ (function (_super) {
         this.handleMenuClosed = function () {
             _this.foundation.handleMenuClosed();
         };
+        this.handleMenuClosing = function () {
+            _this.foundation.handleMenuClosing();
+        };
         this.selectAnchor.addEventListener('focus', this.handleFocus);
         this.selectAnchor.addEventListener('blur', this.handleBlur);
         this.selectAnchor.addEventListener('click', this.handleClick);
         this.selectAnchor.addEventListener('keydown', this.handleKeydown);
         this.menu.listen(menuSurfaceConstants.strings.CLOSED_EVENT, this.handleMenuClosed);
+        this.menu.listen(menuSurfaceConstants.strings.CLOSING_EVENT, this.handleMenuClosing);
         this.menu.listen(menuSurfaceConstants.strings.OPENED_EVENT, this.handleMenuOpened);
         this.menu.listen(menuConstants.strings.SELECTED_EVENT, this.handleMenuItemAction);
         if (this.hiddenInput) {

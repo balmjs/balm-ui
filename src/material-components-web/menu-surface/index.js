@@ -20,8 +20,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import * as util from './util';
-export { util };
 export * from './component';
 export * from './constants';
 export * from './foundation';

@@ -52,7 +52,7 @@
   border-width: 0 textfield-variables.$outlined-stroke-width
     textfield-variables.$outlined-stroke-width;
   border-style: solid;
-  @include theme.prop(border-color, primary);
+  @include theme.property(border-color, primary);
   @include ui-mixins.background;
 
   .mdc-list-item {

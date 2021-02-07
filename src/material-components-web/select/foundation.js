@@ -229,10 +229,12 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         var focusItemIndex = selectedIndex >= 0 ? selectedIndex : 0;
         this.adapter.focusMenuItemAtIndex(focusItemIndex);
     };
+    MDCSelectFoundation.prototype.handleMenuClosing = function () {
+        this.adapter.setSelectAnchorAttr('aria-expanded', 'false');
+    };
     MDCSelectFoundation.prototype.handleMenuClosed = function () {
         this.adapter.removeClass(cssClasses.ACTIVATED);
         this.isMenuOpen = false;
-        this.adapter.setSelectAnchorAttr('aria-expanded', 'false');
         // Unfocus the select if menu is closed without a selection
         if (!this.adapter.isSelectAnchorFocused()) {
             this.blur();

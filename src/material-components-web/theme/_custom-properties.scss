@@ -21,6 +21,7 @@
 //
 @use 'sass:map';
 @use 'sass:meta';
+@use 'sass:string';
 @use './css';
 @use './gss';
 
@@ -30,6 +31,11 @@
 /// @return true if the value is a custom property Map, or false if not.
 @function is-custom-prop($value) {
   @return meta.type-of($value) == 'map' and map.has-key($value, 'varname');
+}
+
+@function is-custom-prop-string($value) {
+  @return meta.type-of($value) == 'string' and string.slice($value, 1, 4) ==
+    'var(';
 }
 
 /// Returns true if $prop1's varname and fallback values are deeply equal to
@@ -119,23 +125,79 @@
   }
 }
 
-/// Applies a custom property value to the specified property.
+/// Retrieves the CSS declaration value for a custom property Map. This is
+/// typically a `var()` function.
 ///
-/// @param {String} $property - the name of the CSS property.
-/// @param {Map} $custom-prop - a custom property Map for the property's value.
-/// @param {Map} $gss - optional Map of GSS annotations to set.
-/// @param {Bool} $important - set to true to add an `!important` rule. Defaults
-///     to false.
-@mixin apply($property, $custom-prop, $gss: (), $important: false) {
-  @if not is-custom-prop($custom-prop) {
-    @error "mdc-theme: Invalid custom property: #{$custom-prop}. Must be a Map with 'varname' and 'fallback'.";
-  }
+/// @param {Map} $custom-prop - The custom property Map to retrieve a
+///     declaration value for.
+/// @return {String} The CSS declaration value.
+@function get-declaration-value($custom-prop) {
+  @return create-var($custom-prop);
+}
 
-  @include css.declaration(
-    $property,
-    $value: create-var($custom-prop),
-    $fallback-value: get-fallback($custom-prop),
-    $gss: $gss,
-    $important: $important
-  );
+/// Retrieves the CSS fallback declaration value for a custom property Map.
+/// This is typically a static CSS value if a custom property has a fallback, or
+/// null if it does not.
+///
+/// @param {Map} $custom-prop - The custom property Map to retrieve a fallback
+///     declaration value for.
+/// @return {String | null} The CSS fallback declaration value.
+@function get-declaration-fallback($custom-prop) {
+  @return get-fallback($custom-prop);
+}
+
+/// Emits a CSS declaration for a custom property. A custom property may either
+/// be provided as the value to a CSS property string to be emitted as a var()
+/// function, or as a standalone value to be emitted as a custom property
+/// declaration.
+///
+/// @example - scss
+///   @include declaration(color, create(--foo, teal));
+///   // color: var(--foo, teal);
+///   @include declaration(create(--foo, teal));
+///   // --foo: teal;
+///
+/// Standalone custom properties must have a fallback value to emit as a CSS
+/// declaration.
+///
+/// @see {mixin} css.declaration
+///
+/// @param {String} $property - The CSS property of the declaration or the
+///     custom property Map to emit.
+/// @param {Map} $custom-prop - A custom property Map for the property's value.
+///     Optional if $property is the custom property Map to emit.
+/// @param {Map} $gss - An optional Map of GSS annotations to add.
+/// @param {Bool} $important - If true, add `!important` to the declaration.
+@mixin declaration($property, $custom-prop: null, $gss: (), $important: false) {
+  @if $property {
+    $value: null;
+    $fallback-value: null;
+    @if is-custom-prop($property) {
+      $custom-prop: $property;
+      $property: get-varname($custom-prop);
+      $value: get-fallback($custom-prop, $shallow: true);
+      @if not $value {
+        @error 'Custom property #{$property} does not have a fallback value to emit for a CSS declaration.';
+      }
+
+      @if is-custom-prop($value) {
+        $value: create-var($value);
+      }
+    } @else {
+      @if not is-custom-prop($custom-prop) {
+        @error "Invalid custom property: #{$custom-prop}. Must be a Map with 'varname' and 'fallback'.";
+      }
+
+      $value: get-declaration-value($custom-prop);
+      $fallback-value: get-declaration-fallback($custom-prop);
+    }
+
+    @include css.declaration(
+      $property,
+      $value,
+      $fallback-value: $fallback-value,
+      $gss: $gss,
+      $important: $important
+    );
+  }
 }

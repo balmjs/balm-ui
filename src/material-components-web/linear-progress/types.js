@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2018 Google Inc.
+ * Copyright 2021 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,17 +20,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-var cachedCssTransformPropertyName_;
-/**
- * Returns the name of the correct transform property to use on the current browser.
- */
-function getTransformPropertyName(globalObj, forceRefresh) {
-    if (forceRefresh === void 0) { forceRefresh = false; }
-    if (cachedCssTransformPropertyName_ === undefined || forceRefresh) {
-        var el = globalObj.document.createElement('div');
-        cachedCssTransformPropertyName_ = 'transform' in el.style ? 'transform' : 'webkitTransform';
-    }
-    return cachedCssTransformPropertyName_;
-}
-export { getTransformPropertyName };
-//# sourceMappingURL=util.js.map
+//# sourceMappingURL=types.js.map

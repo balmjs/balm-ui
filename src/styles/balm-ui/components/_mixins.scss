@@ -1,14 +1,14 @@
 @use '@material/theme/theme';
 
 @mixin background {
-  @include theme.prop(background-color, background);
+  @include theme.property(background-color, background);
 }
 
 @mixin selected($withBorder: 0) {
-  @include theme.prop(background-color, primary);
-  @include theme.prop(color, on-primary);
+  @include theme.property(background-color, primary);
+  @include theme.property(color, on-primary);
 
   @if ($withBorder == 1) {
-    @include theme.prop(border-color, primary);
+    @include theme.property(border-color, primary);
   }
 }

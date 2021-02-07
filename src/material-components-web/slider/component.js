@@ -22,6 +22,7 @@
  */
 import { __assign, __extends } from "tslib";
 import { MDCComponent } from '../base/component';
+import { applyPassive } from '../dom/events';
 import { matches } from '../dom/ponyfill';
 import { MDCRipple } from '../ripple/component';
 import { MDCRippleFoundation } from '../ripple/foundation';
@@ -283,7 +284,7 @@ var MDCSlider = /** @class */ (function (_super) {
                 }, computeBoundingRect: function () { return rippleSurface.getBoundingClientRect(); }, deregisterInteractionHandler: function (evtType, handler) {
                     input.removeEventListener(evtType, handler);
                 }, isSurfaceActive: function () { return matches(input, ':active'); }, isUnbounded: function () { return true; }, registerInteractionHandler: function (evtType, handler) {
-                    input.addEventListener(evtType, handler);
+                    input.addEventListener(evtType, handler, applyPassive());
                 }, removeClass: function (className) {
                     rippleSurface.classList.remove(className);
                 }, updateCssVariable: function (varName, value) {

@@ -52,13 +52,6 @@ var MDCLinearProgress = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MDCLinearProgress.prototype, "reverse", {
-        set: function (value) {
-            this.foundation.setReverse(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
     MDCLinearProgress.prototype.open = function () {
         this.foundation.open();
     };
@@ -109,8 +102,9 @@ var MDCLinearProgress = /** @class */ (function (_super) {
                 _this.root.style.setProperty(name, value);
             },
             attachResizeObserver: function (callback) {
-                if (window.ResizeObserver) {
-                    var ro = new ResizeObserver(callback);
+                var RO = window.ResizeObserver;
+                if (RO) {
+                    var ro = new RO(callback);
                     ro.observe(_this.root);
                     return ro;
                 }

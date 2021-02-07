@@ -21,21 +21,31 @@
  * THE SOFTWARE.
  */
 import { __assign, __extends } from "tslib";
+import { AnimationFrame } from '../animation/animationframe';
 import { MDCFoundation } from '../base/foundation';
 import { cssClasses, numbers, strings } from './constants';
+var AnimationKeys;
+(function (AnimationKeys) {
+    AnimationKeys["POLL_SCROLL_POS"] = "poll_scroll_position";
+})(AnimationKeys || (AnimationKeys = {}));
 var MDCDialogFoundation = /** @class */ (function (_super) {
     __extends(MDCDialogFoundation, _super);
     function MDCDialogFoundation(adapter) {
         var _this = _super.call(this, __assign(__assign({}, MDCDialogFoundation.defaultAdapter), adapter)) || this;
-        _this.isOpen_ = false;
-        _this.animationFrame_ = 0;
-        _this.animationTimer_ = 0;
-        _this.layoutFrame_ = 0;
-        _this.escapeKeyAction_ = strings.CLOSE_ACTION;
-        _this.scrimClickAction_ = strings.CLOSE_ACTION;
-        _this.autoStackButtons_ = true;
-        _this.areButtonsStacked_ = false;
+        _this.dialogOpen = false;
+        _this.isFullscreen = false;
+        _this.animationFrame = 0;
+        _this.animationTimer = 0;
+        _this.layoutFrame = 0;
+        _this.escapeKeyAction = strings.CLOSE_ACTION;
+        _this.scrimClickAction = strings.CLOSE_ACTION;
+        _this.autoStackButtons = true;
+        _this.areButtonsStacked = false;
         _this.suppressDefaultPressSelector = strings.SUPPRESS_DEFAULT_PRESS_SELECTOR;
+        _this.animFrame = new AnimationFrame();
+        _this.contentScrollHandler = function () {
+            _this.handleScrollEvent();
+        };
         return _this;
     }
     Object.defineProperty(MDCDialogFoundation, "cssClasses", {
@@ -80,6 +90,10 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
                 removeClass: function () { return undefined; },
                 reverseButtons: function () { return undefined; },
                 trapFocus: function () { return undefined; },
+                registerContentEventHandler: function () { return undefined; },
+                deregisterContentEventHandler: function () { return undefined; },
+                isScrollableContentAtTop: function () { return false; },
+                isScrollableContentAtBottom: function () { return false; },
             };
         },
         enumerable: true,
@@ -89,32 +103,40 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
         if (this.adapter.hasClass(cssClasses.STACKED)) {
             this.setAutoStackButtons(false);
         }
+        this.isFullscreen = this.adapter.hasClass(cssClasses.FULLSCREEN);
     };
     MDCDialogFoundation.prototype.destroy = function () {
-        if (this.isOpen_) {
+        if (this.dialogOpen) {
             this.close(strings.DESTROY_ACTION);
         }
-        if (this.animationTimer_) {
-            clearTimeout(this.animationTimer_);
-            this.handleAnimationTimerEnd_();
+        if (this.animationTimer) {
+            clearTimeout(this.animationTimer);
+            this.handleAnimationTimerEnd();
         }
-        if (this.layoutFrame_) {
-            cancelAnimationFrame(this.layoutFrame_);
-            this.layoutFrame_ = 0;
+        if (this.layoutFrame) {
+            cancelAnimationFrame(this.layoutFrame);
+            this.layoutFrame = 0;
+        }
+        if (this.isFullscreen && this.adapter.isContentScrollable()) {
+            this.adapter.deregisterContentEventHandler('scroll', this.contentScrollHandler);
         }
     };
     MDCDialogFoundation.prototype.open = function () {
         var _this = this;
-        this.isOpen_ = true;
+        this.dialogOpen = true;
         this.adapter.notifyOpening();
         this.adapter.addClass(cssClasses.OPENING);
-        // Wait a frame once display is no longer "none", to establish basis for animation
-        this.runNextAnimationFrame_(function () {
+        if (this.isFullscreen && this.adapter.isContentScrollable()) {
+            this.adapter.registerContentEventHandler('scroll', this.contentScrollHandler);
+        }
+        // Wait a frame once display is no longer "none", to establish basis for
+        // animation
+        this.runNextAnimationFrame(function () {
             _this.adapter.addClass(cssClasses.OPEN);
             _this.adapter.addBodyClass(cssClasses.SCROLL_LOCK);
             _this.layout();
-            _this.animationTimer_ = setTimeout(function () {
-                _this.handleAnimationTimerEnd_();
+            _this.animationTimer = setTimeout(function () {
+                _this.handleAnimationTimerEnd();
                 _this.adapter.trapFocus(_this.adapter.getInitialFocusEl());
                 _this.adapter.notifyOpened();
             }, numbers.DIALOG_ANIMATION_OPEN_TIME_MS);
@@ -123,44 +145,48 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
     MDCDialogFoundation.prototype.close = function (action) {
         var _this = this;
         if (action === void 0) { action = ''; }
-        if (!this.isOpen_) {
-            // Avoid redundant close calls (and events), e.g. from keydown on elements that inherently emit click
+        if (!this.dialogOpen) {
+            // Avoid redundant close calls (and events), e.g. from keydown on elements
+            // that inherently emit click
             return;
         }
-        this.isOpen_ = false;
+        this.dialogOpen = false;
         this.adapter.notifyClosing(action);
         this.adapter.addClass(cssClasses.CLOSING);
         this.adapter.removeClass(cssClasses.OPEN);
         this.adapter.removeBodyClass(cssClasses.SCROLL_LOCK);
-        cancelAnimationFrame(this.animationFrame_);
-        this.animationFrame_ = 0;
-        clearTimeout(this.animationTimer_);
-        this.animationTimer_ = setTimeout(function () {
+        if (this.isFullscreen && this.adapter.isContentScrollable()) {
+            this.adapter.deregisterContentEventHandler('scroll', this.contentScrollHandler);
+        }
+        cancelAnimationFrame(this.animationFrame);
+        this.animationFrame = 0;
+        clearTimeout(this.animationTimer);
+        this.animationTimer = setTimeout(function () {
             _this.adapter.releaseFocus();
-            _this.handleAnimationTimerEnd_();
+            _this.handleAnimationTimerEnd();
             _this.adapter.notifyClosed(action);
         }, numbers.DIALOG_ANIMATION_CLOSE_TIME_MS);
     };
     MDCDialogFoundation.prototype.isOpen = function () {
-        return this.isOpen_;
+        return this.dialogOpen;
     };
     MDCDialogFoundation.prototype.getEscapeKeyAction = function () {
-        return this.escapeKeyAction_;
+        return this.escapeKeyAction;
     };
     MDCDialogFoundation.prototype.setEscapeKeyAction = function (action) {
-        this.escapeKeyAction_ = action;
+        this.escapeKeyAction = action;
     };
     MDCDialogFoundation.prototype.getScrimClickAction = function () {
-        return this.scrimClickAction_;
+        return this.scrimClickAction;
     };
     MDCDialogFoundation.prototype.setScrimClickAction = function (action) {
-        this.scrimClickAction_ = action;
+        this.scrimClickAction = action;
     };
     MDCDialogFoundation.prototype.getAutoStackButtons = function () {
-        return this.autoStackButtons_;
+        return this.autoStackButtons;
     };
     MDCDialogFoundation.prototype.setAutoStackButtons = function (autoStack) {
-        this.autoStackButtons_ = autoStack;
+        this.autoStackButtons = autoStack;
     };
     MDCDialogFoundation.prototype.getSuppressDefaultPressSelector = function () {
         return this.suppressDefaultPressSelector;
@@ -170,20 +196,20 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
     };
     MDCDialogFoundation.prototype.layout = function () {
         var _this = this;
-        if (this.layoutFrame_) {
-            cancelAnimationFrame(this.layoutFrame_);
+        if (this.layoutFrame) {
+            cancelAnimationFrame(this.layoutFrame);
         }
-        this.layoutFrame_ = requestAnimationFrame(function () {
-            _this.layoutInternal_();
-            _this.layoutFrame_ = 0;
+        this.layoutFrame = requestAnimationFrame(function () {
+            _this.layoutInternal();
+            _this.layoutFrame = 0;
         });
     };
     /** Handles click on the dialog root element. */
     MDCDialogFoundation.prototype.handleClick = function (evt) {
         var isScrim = this.adapter.eventTargetMatches(evt.target, strings.SCRIM_SELECTOR);
         // Check for scrim click first since it doesn't require querying ancestors.
-        if (isScrim && this.scrimClickAction_ !== '') {
-            this.close(this.scrimClickAction_);
+        if (isScrim && this.scrimClickAction !== '') {
+            this.close(this.scrimClickAction);
         }
         else {
             var action = this.adapter.getActionFromEvent(evt);
@@ -218,7 +244,9 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
         //   </horizontal-layout>
         // </mwc-dialog>
         var target = evt.composedPath ? evt.composedPath()[0] : evt.target;
-        var isDefault = !this.adapter.eventTargetMatches(target, this.suppressDefaultPressSelector);
+        var isDefault = this.suppressDefaultPressSelector ?
+            !this.adapter.eventTargetMatches(target, this.suppressDefaultPressSelector) :
+            true;
         if (isEnter && isDefault) {
             this.adapter.clickDefaultButton();
         }
@@ -226,50 +254,88 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
     /** Handles keydown on the document. */
     MDCDialogFoundation.prototype.handleDocumentKeydown = function (evt) {
         var isEscape = evt.key === 'Escape' || evt.keyCode === 27;
-        if (isEscape && this.escapeKeyAction_ !== '') {
-            this.close(this.escapeKeyAction_);
+        if (isEscape && this.escapeKeyAction !== '') {
+            this.close(this.escapeKeyAction);
         }
     };
-    MDCDialogFoundation.prototype.layoutInternal_ = function () {
-        if (this.autoStackButtons_) {
-            this.detectStackedButtons_();
-        }
-        this.detectScrollableContent_();
+    /**
+     * Handles scroll event on the dialog's content element -- showing a scroll
+     * divider on the header or footer based on the scroll position. This handler
+     * should only be registered on full-screen dialogs with scrollable content.
+     */
+    MDCDialogFoundation.prototype.handleScrollEvent = function () {
+        var _this = this;
+        // Since scroll events can fire at a high rate, we throttle these events by
+        // using requestAnimationFrame.
+        this.animFrame.request(AnimationKeys.POLL_SCROLL_POS, function () {
+            _this.toggleScrollDividerHeader();
+            _this.toggleScrollDividerFooter();
+        });
     };
-    MDCDialogFoundation.prototype.handleAnimationTimerEnd_ = function () {
-        this.animationTimer_ = 0;
+    MDCDialogFoundation.prototype.layoutInternal = function () {
+        if (this.autoStackButtons) {
+            this.detectStackedButtons();
+        }
+        this.toggleScrollableClasses();
+    };
+    MDCDialogFoundation.prototype.handleAnimationTimerEnd = function () {
+        this.animationTimer = 0;
         this.adapter.removeClass(cssClasses.OPENING);
         this.adapter.removeClass(cssClasses.CLOSING);
     };
     /**
-     * Runs the given logic on the next animation frame, using setTimeout to factor in Firefox reflow behavior.
+     * Runs the given logic on the next animation frame, using setTimeout to
+     * factor in Firefox reflow behavior.
      */
-    MDCDialogFoundation.prototype.runNextAnimationFrame_ = function (callback) {
+    MDCDialogFoundation.prototype.runNextAnimationFrame = function (callback) {
         var _this = this;
-        cancelAnimationFrame(this.animationFrame_);
-        this.animationFrame_ = requestAnimationFrame(function () {
-            _this.animationFrame_ = 0;
-            clearTimeout(_this.animationTimer_);
-            _this.animationTimer_ = setTimeout(callback, 0);
+        cancelAnimationFrame(this.animationFrame);
+        this.animationFrame = requestAnimationFrame(function () {
+            _this.animationFrame = 0;
+            clearTimeout(_this.animationTimer);
+            _this.animationTimer = setTimeout(callback, 0);
         });
     };
-    MDCDialogFoundation.prototype.detectStackedButtons_ = function () {
+    MDCDialogFoundation.prototype.detectStackedButtons = function () {
         // Remove the class first to let us measure the buttons' natural positions.
         this.adapter.removeClass(cssClasses.STACKED);
         var areButtonsStacked = this.adapter.areButtonsStacked();
         if (areButtonsStacked) {
             this.adapter.addClass(cssClasses.STACKED);
         }
-        if (areButtonsStacked !== this.areButtonsStacked_) {
+        if (areButtonsStacked !== this.areButtonsStacked) {
             this.adapter.reverseButtons();
-            this.areButtonsStacked_ = areButtonsStacked;
+            this.areButtonsStacked = areButtonsStacked;
         }
     };
-    MDCDialogFoundation.prototype.detectScrollableContent_ = function () {
-        // Remove the class first to let us measure the natural height of the content.
+    MDCDialogFoundation.prototype.toggleScrollableClasses = function () {
+        // Remove the class first to let us measure the natural height of the
+        // content.
         this.adapter.removeClass(cssClasses.SCROLLABLE);
         if (this.adapter.isContentScrollable()) {
             this.adapter.addClass(cssClasses.SCROLLABLE);
+            if (this.isFullscreen) {
+                // If dialog is full-screen and scrollable, check if a scroll divider
+                // should be shown.
+                this.toggleScrollDividerHeader();
+                this.toggleScrollDividerFooter();
+            }
+        }
+    };
+    MDCDialogFoundation.prototype.toggleScrollDividerHeader = function () {
+        if (!this.adapter.isScrollableContentAtTop()) {
+            this.adapter.addClass(cssClasses.SCROLL_DIVIDER_HEADER);
+        }
+        else if (this.adapter.hasClass(cssClasses.SCROLL_DIVIDER_HEADER)) {
+            this.adapter.removeClass(cssClasses.SCROLL_DIVIDER_HEADER);
+        }
+    };
+    MDCDialogFoundation.prototype.toggleScrollDividerFooter = function () {
+        if (!this.adapter.isScrollableContentAtBottom()) {
+            this.adapter.addClass(cssClasses.SCROLL_DIVIDER_FOOTER);
+        }
+        else if (this.adapter.hasClass(cssClasses.SCROLL_DIVIDER_FOOTER)) {
+            this.adapter.removeClass(cssClasses.SCROLL_DIVIDER_FOOTER);
         }
     };
     return MDCDialogFoundation;

@@ -25,11 +25,6 @@ export default {
     buffer: {
       type: Number,
       default: 0
-    },
-    // UI attributes
-    reversed: {
-      type: Boolean,
-      default: false
     }
   },
   data() {
@@ -41,7 +36,6 @@ export default {
     className() {
       return {
         'mdc-linear-progress--indeterminate': this.active,
-        'mdc-linear-progress--reversed': this.reversed,
         'mdc-linear-progress--closed': this.closed
       };
     }

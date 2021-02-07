@@ -29,6 +29,7 @@ var CssClasses;
     CssClasses["HIDE"] = "mdc-tooltip--hide";
     CssClasses["HIDE_TRANSITION"] = "mdc-tooltip--hide-transition";
     CssClasses["MULTILINE_TOOLTIP"] = "mdc-tooltip--multiline";
+    CssClasses["SURFACE"] = "mdc-tooltip__surface";
 })(CssClasses || (CssClasses = {}));
 var numbers = {
     BOUNDED_ANCHOR_GAP: 4,
@@ -74,5 +75,12 @@ var AnchorBoundaryType;
     AnchorBoundaryType[AnchorBoundaryType["BOUNDED"] = 0] = "BOUNDED";
     AnchorBoundaryType[AnchorBoundaryType["UNBOUNDED"] = 1] = "UNBOUNDED";
 })(AnchorBoundaryType || (AnchorBoundaryType = {}));
-export { CssClasses, numbers, attributes, events, XPosition, AnchorBoundaryType, YPosition };
+var strings = {
+    LEFT: 'left',
+    RIGHT: 'right',
+    CENTER: 'center',
+    TOP: 'top',
+    BOTTOM: 'bottom'
+};
+export { CssClasses, numbers, attributes, events, XPosition, AnchorBoundaryType, YPosition, strings };
 //# sourceMappingURL=constants.js.map

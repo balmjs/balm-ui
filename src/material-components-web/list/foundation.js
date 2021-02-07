@@ -141,7 +141,8 @@ var MDCListFoundation = /** @class */ (function (_super) {
      * initializes the internal state to match the selected item.
      */
     MDCListFoundation.prototype.maybeInitializeSingleSelection = function () {
-        for (var i = 0; i < this.adapter.getListItemCount(); i++) {
+        var listItemsCount = this.adapter.getListItemCount();
+        for (var i = 0; i < listItemsCount; i++) {
             var hasSelectedClass = this.adapter.listItemAtIndexHasClass(i, cssClasses.LIST_ITEM_SELECTED_CLASS);
             var hasActivatedClass = this.adapter.listItemAtIndexHasClass(i, cssClasses.LIST_ITEM_ACTIVATED_CLASS);
             if (!(hasSelectedClass || hasActivatedClass)) {

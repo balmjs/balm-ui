@@ -1,4 +1,22 @@
-// Compatible box-sizing
-.mdc-ripple-surface.material-icons {
-  box-sizing: content-box;
+@use '@material/theme/theme';
+
+.mdc-ripple-surface {
+  // Compatible box-sizing
+  &.material-icons {
+    box-sizing: content-box;
+  }
+
+  &.mdc-ripple-surface--primary {
+    &::before,
+    &::after {
+      @include theme.property(background-color, primary);
+    }
+  }
+
+  &.mdc-ripple-surface--secondary {
+    &::before,
+    &::after {
+      @include theme.property(background-color, secondary);
+    }
+  }
 }

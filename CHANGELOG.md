@@ -3,6 +3,12 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.12.1 / 2021-02-07
+
+### Bug Fixes
+
+- `v-ripple`: fix theme color bug
+
 ## v9.12.0 / 2021-02-07
 
 ### Features

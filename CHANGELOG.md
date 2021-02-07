@@ -2,6 +2,17 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.21.0 / 2021-02-07
+
+### Features
+
+- update [`mdc@10.0.0`](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#1000-2021-02-05)
+- update material-icons v76
+
+### BREAKING CHANGES
+
+- `<ui-progress>`: remove prop `reversed`
+
 ## v8.20.1 / 2021-02-05
 
 ### Bug Fixes

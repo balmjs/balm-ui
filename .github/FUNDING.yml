@@ -1,6 +1,10 @@
 # These are supported funding model platforms
 
-patreon: balmjs
 open_collective: balmjs
+patreon: balmjs
 issuehunt: balmjs/balm-ui
-custom: ["https://material.balmjs.com/#/donate", "https://www.buymeacoffee.com/balmjs"]
+custom:
+  [
+    'https://material.balmjs.com/#/donate',
+    'https://www.buymeacoffee.com/balmjs'
+  ]

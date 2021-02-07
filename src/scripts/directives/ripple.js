@@ -6,7 +6,7 @@ const UI_RIPPLE = {
   color: {
     base: 'mdc-ripple-surface',
     primary: 'mdc-ripple-surface--primary',
-    secondary: 'mdc-ripple-surface--accent'
+    secondary: 'mdc-ripple-surface--secondary'
   }
 };
 

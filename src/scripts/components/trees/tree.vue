@@ -22,7 +22,7 @@ const UI_TREE = {
   dataFormat: {
     label: 'label',
     value: 'value',
-    children: 'children',
+    hasChildren: 'hasChildren',
     isLeaf: 'isLeaf'
   },
   EVENT: {

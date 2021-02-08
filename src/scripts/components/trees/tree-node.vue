@@ -113,9 +113,16 @@ export default {
   },
   methods: {
     async handleExpand(item) {
-      if (this.treeData.loadData && !item[this.dataFormat.children].length) {
-        let nodes = await this.treeData.loadData(item[this.dataFormat.value]);
-        MdcTree.addData(this.treeData, item, nodes);
+      if (this.treeData.loadData) {
+        const hasChildren =
+          item[this.dataFormat.hasChildren] || item.children.length;
+
+        if (hasChildren) {
+          item.expanded = !item.expanded;
+        } else {
+          let nodes = await this.treeData.loadData(item[this.dataFormat.value]);
+          MdcTree.addData(this.treeData, item, nodes);
+        }
       } else {
         item.expanded = !item.expanded;
       }

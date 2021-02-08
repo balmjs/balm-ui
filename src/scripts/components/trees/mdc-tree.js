@@ -1,14 +1,10 @@
-const checkLeaf = (item, { isLeaf, children }) =>
-  item[isLeaf] || !item[children];
+const checkLeaf = (item, hasChildren) => item.isLeaf || !hasChildren;
 
 class MdcTree {
   constructor(originData, treeData) {
     const { dataFormat, maxLevel, nodeMap } = treeData;
 
-    this.dataFormat = dataFormat;
     this.nodeKey = dataFormat.value;
-    this.nodeChildren = dataFormat.children;
-
     this.maxLevel = maxLevel;
     this.nodeMap = nodeMap;
 
@@ -20,9 +16,11 @@ class MdcTree {
 
     for (let i = 0, len = nodes.length; i < len; i++) {
       let item = Object.assign({}, nodes[i]);
-      const isLeaf = checkLeaf(item, this.dataFormat);
+
       const key = item[this.nodeKey];
-      const children = item[this.nodeChildren];
+      const children = item.children;
+      const hasChildren = item.hasChildren || children;
+      const isLeaf = checkLeaf(item, hasChildren);
 
       item.level = level;
       item.isRoot = !level;
@@ -40,8 +38,8 @@ class MdcTree {
         this.nodeMap.set(key, item);
       }
 
-      if (level < this.maxLevel && children) {
-        item[this.nodeChildren] = this.getData(children, level + 1, key);
+      if (level < this.maxLevel && hasChildren) {
+        item.children = this.getData(children, level + 1, key);
       }
 
       list.push(item);

@@ -22,6 +22,7 @@ const UI_TREE = {
   dataFormat: {
     label: 'label',
     value: 'value',
+    children: 'children',
     hasChildren: 'hasChildren',
     isLeaf: 'isLeaf'
   },
@@ -73,6 +74,7 @@ export default {
   },
   data() {
     return {
+      $tree: null,
       nodeList: [],
       treeData: {
         dataFormat: Object.assign(UI_TREE.dataFormat, this.dataFormat),
@@ -92,6 +94,9 @@ export default {
   watch: {
     selectedValue(val) {
       this.$emit(UI_TREE.EVENT.CHANGE, val);
+    },
+    data(val) {
+      this.init(val);
     }
   },
   created() {
@@ -102,7 +107,15 @@ export default {
     }
   },
   mounted() {
-    this.nodeList = new MdcTree(this.data, this.treeData);
+    this.$tree = new MdcTree(this.treeData);
+    this.init();
+  },
+  methods: {
+    init(originData = this.data) {
+      if (!this.nodeList.length) {
+        this.nodeList = this.$tree.getData(originData);
+      }
+    }
   }
 };
 </script>

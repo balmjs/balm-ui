@@ -45,6 +45,9 @@
           :load-data="loadData"
         >
           <p>selectedValue: {{ selectedValue3 }}</p>
+          <template #title="{ data }">
+            {{ data.title }}
+          </template>
         </ui-tree>
       </div>
     </section>
@@ -80,14 +83,21 @@ export default {
   data() {
     return {
       dataFormat: { label: 'title', value: 'key' },
-      treeData1: dig('0', 2),
+      treeData1: [], // dig('0', 2),
       selectedValue1: '',
-      treeData2: dig('1', 2),
+      treeData2: [], // dig('1', 2),
       selectedValue2: [],
-      treeData3: dig('0', -1),
+      treeData3: [], // dig('0', -1),
       selectedValue3: [],
       keywords: ''
     };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.treeData1 = dig('0', 2);
+      this.treeData2 = dig('1', 2);
+      this.treeData3 = dig('0', -1);
+    }, 1);
   },
   methods: {
     onChange(value) {

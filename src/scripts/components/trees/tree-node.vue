@@ -114,7 +114,9 @@ export default {
   methods: {
     async handleExpand(item) {
       if (this.treeData.loadData) {
-        const hasChildren = item[this.dataFormat.children].length;
+        const hasChildren =
+          item[this.dataFormat.children] &&
+          item[this.dataFormat.children].length;
 
         if (hasChildren) {
           item.expanded = !item.expanded;

@@ -2,6 +2,16 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.22.0 / 2021-02-18
+
+### Bug Fixes
+
+- `<ui-table>`: fix table cell properies bug
+
+### Features
+
+- `<ui-dialog>`: add prop `escapeKey`
+
 ## v8.21.1 / 2021-02-07
 
 ### Bug Fixes

@@ -1,3 +1,4 @@
+@use '@material/theme/theme';
 @use '../mixins' as ui-mixins;
 
 .mdc-data-table__header-row-checkbox,
@@ -6,4 +7,10 @@
     ~ .mdc-checkbox__background {
     @include ui-mixins.background;
   }
+}
+
+// fix(@material-components): dark theme
+.mdc-data-table__header-cell,
+.mdc-data-table__cell {
+  @include theme.property(color, on-surface);
 }

@@ -6,7 +6,7 @@
 
 | Name       | Type    | Default | Description                 | Version |
 | ---------- | ------- | ------- | --------------------------- | ------- |
-| `closable` | boolean | `true`  | Displays close icon button. | 8.10.0  |
+| `closable` | boolean | `false`  | Displays close icon button. | 8.10.0  |
 
 ### Slots
 

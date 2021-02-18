@@ -6,15 +6,16 @@
 
 ### Props
 
-| Name               | Type    | Default | Description                                                                                                      |
-| ------------------ | ------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
-| `open` (`v-model`) | boolean | `false` | Mandatory.                                                                                                       |
-| `closable`         | boolean | `true`  | Closes the dialog, when a user actions on the accept or cancel button.                                           |
-| `maskClosable`     | boolean | `false` | Closes the dialog, when the dialog backdrop is clicked.                                                          |
-| `noBackdrop`       | boolean | `false` | Hides the dialog backdrop.                                                                                       |
-| `resetScroll`      | boolean | `false` | Reset scroll bar, when the dialog is closed.                                                                     |
-| `scrollable`       | boolean | `false` | Optional. Applied automatically when the dialog has overflowing content to warrant scrolling.                    |
-| `stacked`          | boolean | `false` | Optional. Applied automatically when the dialog's action buttons can't fit on a single line and must be stacked. |
+| Name               | Type    | Default | Description                                                                                                              | Version |
+| ------------------ | ------- | ------- | ------------------------------------------------------------------------------------------------------------------------ | ------- |
+| `open` (`v-model`) | boolean | `false` | Mandatory.                                                                                                               |         |
+| `escapeKey`        | boolean | `true`  | Sets the action reflected when the Escape key is pressed. Setting to `false` disables closing the dialog via Escape key. | 8.22.0  |
+| `closable`         | boolean | `true`  | Closes the dialog, when a user actions on the accept or cancel button.                                                   |         |
+| `maskClosable`     | boolean | `false` | Closes the dialog, when the dialog backdrop is clicked.                                                                  |         |
+| `noBackdrop`       | boolean | `false` | Hides the dialog backdrop.                                                                                               |         |
+| `resetScroll`      | boolean | `false` | Reset scroll bar, when the dialog is closed.                                                                             |         |
+| `scrollable`       | boolean | `false` | Optional. Applied automatically when the dialog has overflowing content to warrant scrolling.                            |         |
+| `stacked`          | boolean | `false` | Optional. Applied automatically when the dialog's action buttons can't fit on a single line and must be stacked.         |         |
 
 ### Slots
 

@@ -197,8 +197,7 @@ export default {
       UI_SELECT,
       $select: null,
       currentOptions: [],
-      selectedValue: this.model,
-      selectMenuFixed: this.fixed
+      selectedValue: this.model
     };
   },
   computed: {
@@ -229,13 +228,12 @@ export default {
         'mdc-menu',
         'mdc-menu-surface',
         {
-          'mdc-menu-surface--fullwidth': this.fullwidth,
-          'mdc-menu-surface--fixed': this.selectMenuFixed
+          'mdc-menu-surface--fullwidth': this.fullwidth
         }
       ];
     },
     style() {
-      return this.$attrs && this.selectMenuFixed
+      return this.$attrs && this.fixed
         ? { width: this.$attrs['data-width'] || 'auto' }
         : {};
     }
@@ -249,10 +247,6 @@ export default {
     options(val) {
       this.init(val);
     }
-  },
-  beforeMount() {
-    // fix(@material-components-web): overflow inside of the component
-    this.selectMenuFixed = this.fixed;
   },
   mounted() {
     this.$select = new MDCSelect(this.$el);
@@ -274,6 +268,11 @@ export default {
         }
       });
     });
+
+    // fix(@material-components-web): overflow inside of the component
+    if (this.fixed) {
+      this.$select.menu.setFixedPosition(true);
+    }
 
     this.init();
   },

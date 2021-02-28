@@ -3,6 +3,16 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.13.0 / 2021-02-28
+
+### Bug Fixes
+
+- `<ui-table>`: fix table cell properies bug
+
+### Features
+
+- `<ui-dialog>`: add prop `escapeKey`
+
 ## v9.12.1 / 2021-02-07
 
 ### Bug Fixes

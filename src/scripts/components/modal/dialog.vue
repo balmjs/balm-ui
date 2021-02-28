@@ -51,6 +51,10 @@ export default {
       default: false
     },
     // UI attributes
+    escapeKey: {
+      type: Boolean,
+      default: true
+    },
     closable: {
       type: Boolean,
       default: true
@@ -121,8 +125,9 @@ export default {
       });
       this.$dialog.listen(strings.CLOSING_EVENT, ({ detail }) => {
         this.dialogBody.removeAttribute('aria-hidden');
-        // NOTE: fix for the Escape key
-        if (detail.action === 'close') {
+
+        // fix: the escape key
+        if (this.$dialog.escapeKeyAction) {
           this.handleClose();
         }
       });
@@ -136,6 +141,10 @@ export default {
         console.warn(
           'At least one `<ui-button>` or `<ui-icon-button>` needs to be added to the <ui-dialog>'
         );
+      }
+
+      if (!(this.escapeKey && this.closable)) {
+        this.$dialog.escapeKeyAction = '';
       }
     });
   },

@@ -12,7 +12,7 @@
     >
       <div class="mdc-tree-node__content">
         <div
-          v-if="!nodeData.isLeaf"
+          v-if="!nodeData[dataFormat.isLeaf]"
           class="mdc-tree-node__icon"
           @click="handleExpand(nodeData)"
         >
@@ -38,7 +38,7 @@
           @click="handleCheck(nodeData)"
         >
           <mdc-checkbox
-            v-if="nodeData.isLeaf"
+            v-if="nodeData[dataFormat.isLeaf]"
             :checked="nodeData.checked"
           ></mdc-checkbox>
           <mdc-checkbox
@@ -63,9 +63,9 @@
       </div>
 
       <ui-tree-node
-        v-if="!nodeData.isLeaf && nodeData.expanded"
+        v-if="!nodeData[dataFormat.isLeaf] && nodeData.expanded"
         class="mdc-tree-node__children"
-        :children="nodeData.children"
+        :children="nodeData[dataFormat.children]"
         :tree-data="treeData"
       >
         <template v-for="(_, name) in $slots" #[name]="slotData">
@@ -108,9 +108,17 @@ export default {
   },
   methods: {
     async handleExpand(item) {
-      if (this.treeData.loadData && !item[this.dataFormat.children].length) {
-        let nodes = await this.treeData.loadData(item[this.dataFormat.value]);
-        MdcTree.addData(this.treeData, item, nodes);
+      if (this.treeData.loadData) {
+        const hasChildren =
+          item[this.dataFormat.children] &&
+          item[this.dataFormat.children].length;
+
+        if (hasChildren) {
+          item.expanded = !item.expanded;
+        } else {
+          let nodes = await this.treeData.loadData(item[this.dataFormat.value]);
+          MdcTree.addData(this.treeData, item, nodes);
+        }
       } else {
         item.expanded = !item.expanded;
       }
@@ -123,7 +131,7 @@ export default {
     },
     getData(item) {
       const { children, ...newItem } = item;
-      return item.isLeaf ? item : newItem;
+      return item[this.dataFormat.isLeaf] ? item : newItem;
     }
   }
 };

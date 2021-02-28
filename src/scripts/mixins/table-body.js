@@ -58,7 +58,6 @@ export default {
       let className = [
         {
           'mdc-data-table__cell': true,
-          'mdc-theme--on-surface': true, // fix(@material-components): dark theme
           'mdc-data-table__cell--numeric': data[this.T_CELL.NUMBER],
           'mdc-data-table__cell--checkbox': data[this.T_CELL.CHECKBOX]
         }
@@ -96,36 +95,38 @@ export default {
         this.tbody.forEach((tbodyCellData, tbodyCellIndex) => {
           let cell = {};
 
+          let field = this.isObject(tbodyCellData)
+            ? tbodyCellData[this.T_CELL.FIELD]
+            : tbodyCellData;
+          if (field) {
+            cell[this.T_CELL.FIELD] = field;
+          }
+
+          // Set slot or value
           if (tbodyCellData[this.T_CELL.SLOT]) {
             cell[this.T_CELL.SLOT] = tbodyCellData[this.T_CELL.SLOT];
           } else {
-            let field = this.isObject(tbodyCellData)
-              ? tbodyCellData[this.T_CELL.FIELD]
-              : tbodyCellData;
-            cell[this.T_CELL.FIELD] = field;
-
-            // Set value
             let customFn = tbodyCellData[this.T_CELL.FUNCTION];
             cell[this.T_CELL.VALUE] = this.isFunction(customFn)
               ? customFn(tbodyRowData)
               : tbodyRowData[field];
+          }
 
-            // Set others
-            for (const [key, value] of Object.entries(tbodyRowData)) {
-              if (key !== field) {
-                switch (key) {
-                  case this.T_CELL.CLASS:
-                    if (this.isString(value)) {
-                      cell[key] = value;
-                    } else if (this.isFunction(value)) {
-                      cell[key] = value(tbodyRowData);
-                    }
-                    break;
-                  case this.T_CELL.FUNCTION:
-                    break;
-                  default:
+          // Set others
+          for (const [key, value] of Object.entries(tbodyCellData)) {
+            if (key !== field) {
+              switch (key) {
+                case this.T_CELL.CLASS:
+                  if (this.isString(value)) {
                     cell[key] = value;
-                }
+                  } else if (this.isFunction(value)) {
+                    cell[key] = value(tbodyRowData);
+                  }
+                  break;
+                case this.T_CELL.FUNCTION:
+                  break;
+                default:
+                  cell[key] = value;
               }
             }
           }

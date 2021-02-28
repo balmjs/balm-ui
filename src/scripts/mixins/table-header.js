@@ -80,7 +80,6 @@ export default {
       let className = [
         {
           'mdc-data-table__header-cell': true,
-          'mdc-theme--on-surface': true, // fix(@material-components): dark theme
           'mdc-data-table__header-cell--checkbox': data[this.T_CELL.CHECKBOX],
           'mdc-data-table__header-cell--numeric': data[this.T_CELL.NUMBER],
           'mdc-data-table__header-cell--with-sort': data.sort,

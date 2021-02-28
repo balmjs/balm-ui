@@ -4,14 +4,14 @@
     <slot :buttonClass="UI_DIALOG_ACTION.cssClasses.button">
       <mdc-button
         :class="UI_DIALOG_ACTION.cssClasses.button"
-        data-mdc-dialog-action="close"
+        :data-mdc-dialog-action="closable ? 'close' : null"
         @click="$parent.handleCancel"
       >
         {{ cancelText }}
       </mdc-button>
       <mdc-button
         :class="UI_DIALOG_ACTION.cssClasses.button"
-        data-mdc-dialog-action="accept"
+        :data-mdc-dialog-action="closable ? 'accept' : null"
         data-mdc-dialog-button-default
         @click="$parent.handleAccept"
       >
@@ -51,6 +51,11 @@ export default {
     return {
       UI_DIALOG_ACTION
     };
+  },
+  computed: {
+    closable() {
+      return this.$parent.closable;
+    }
   }
 };
 </script>

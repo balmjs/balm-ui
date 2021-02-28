@@ -41,6 +41,7 @@ const baseConfig = {
       presets: [['@babel/preset-env', { modules: false }]]
     },
     replace: {
+      preventAssignment: true,
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       __VUE_OPTIONS_API__: JSON.stringify(true),
       __VUE_PROD_DEVTOOLS__: JSON.stringify(false)

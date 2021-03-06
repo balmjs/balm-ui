@@ -36,7 +36,7 @@ var MDCTextFieldCharacterCounter = /** @class */ (function (_super) {
         get: function () {
             return this.foundation;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCTextFieldCharacterCounter.prototype.getDefaultFoundation = function () {

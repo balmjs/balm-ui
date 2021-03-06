@@ -1,4 +1,3 @@
-@use '@material/list/mixins' as list-mixins;
 @use '@material/elevation/mixins' as elevation-mixins;
 @use '../global/color' as color;
 
@@ -6,35 +5,6 @@
   .mdc-list,
   .mdc-list-group {
     max-width: 600px;
-  }
-
-  .demo-list--icon-placeholders,
-  .demo-list--with-avatars {
-    @include list-mixins.item-graphic-ink-color(white);
-    @include list-mixins.item-graphic-fill-color(text-icon-on-background);
-  }
-
-  .demo-list--avatar-and-meta-icon {
-    @include list-mixins.item-meta-ink-color(color.$pink-a200);
-  }
-
-  .demo-list-group--custom,
-  .demo-list--custom {
-    @include list-mixins.divider-color(color.$pink-50);
-  }
-
-  .demo-list--custom {
-    @include list-mixins.item-primary-text-ink-color(color.$blue-600);
-    @include list-mixins.item-secondary-text-ink-color(color.$purple-600);
-    @include list-mixins.item-graphic-fill-color(color.$pink-400);
-    @include list-mixins.item-graphic-ink-color(color.$pink-50);
-    @include list-mixins.item-meta-ink-color(color.$orange-500);
-  }
-
-  .preamble {
-    max-width: 600px;
-    margin-top: 48px;
-    margin-left: 72px;
   }
 
   .demo-wrapper .mdc-list,

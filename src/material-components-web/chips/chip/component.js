@@ -46,7 +46,7 @@ var MDCChip = /** @class */ (function (_super) {
         set: function (selected) {
             this.foundation.setSelected(selected);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCChip.prototype, "shouldRemoveOnTrailingIconClick", {
@@ -62,7 +62,7 @@ var MDCChip = /** @class */ (function (_super) {
         set: function (shouldRemove) {
             this.foundation.setShouldRemoveOnTrailingIconClick(shouldRemove);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCChip.prototype, "setShouldFocusPrimaryActionOnClick", {
@@ -72,21 +72,21 @@ var MDCChip = /** @class */ (function (_super) {
         set: function (shouldFocus) {
             this.foundation.setShouldFocusPrimaryActionOnClick(shouldFocus);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCChip.prototype, "ripple", {
         get: function () {
             return this.ripple_;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCChip.prototype, "id", {
         get: function () {
             return this.root.id;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCChip.attachTo = function (root) {

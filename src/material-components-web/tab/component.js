@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { __assign, __extends } from "tslib";
+import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { MDCRipple } from '../ripple/component';
 import { MDCRippleFoundation } from '../ripple/foundation';
@@ -38,9 +38,7 @@ var MDCTab = /** @class */ (function (_super) {
         if (rippleFactory === void 0) { rippleFactory = function (el, foundation) { return new MDCRipple(el, foundation); }; }
         if (tabIndicatorFactory === void 0) { tabIndicatorFactory = function (el) { return new MDCTabIndicator(el); }; }
         this.id = this.root.id;
-        var rippleSurface = this.root.querySelector(MDCTabFoundation.strings.RIPPLE_SELECTOR);
-        var rippleAdapter = __assign(__assign({}, MDCRipple.createAdapter(this)), { addClass: function (className) { return rippleSurface.classList.add(className); }, removeClass: function (className) { return rippleSurface.classList.remove(className); }, updateCssVariable: function (varName, value) { return rippleSurface.style.setProperty(varName, value); } });
-        var rippleFoundation = new MDCRippleFoundation(rippleAdapter);
+        var rippleFoundation = new MDCRippleFoundation(MDCRipple.createAdapter(this));
         this.ripple_ = rippleFactory(this.root, rippleFoundation);
         var tabIndicatorElement = this.root.querySelector(MDCTabFoundation.strings.TAB_INDICATOR_SELECTOR);
         this.tabIndicator_ = tabIndicatorFactory(tabIndicatorElement);
@@ -87,14 +85,14 @@ var MDCTab = /** @class */ (function (_super) {
         get: function () {
             return this.foundation.isActive();
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTab.prototype, "focusOnActivate", {
         set: function (focusOnActivate) {
             this.foundation.setFocusOnActivate(focusOnActivate);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     /**

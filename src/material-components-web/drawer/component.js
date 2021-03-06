@@ -60,14 +60,14 @@ var MDCDrawer = /** @class */ (function (_super) {
                 this.foundation.close();
             }
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCDrawer.prototype, "list", {
         get: function () {
             return this.list_;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCDrawer.prototype.initialize = function (focusTrapFactory, listFactory) {

@@ -44,7 +44,7 @@ var MDCCheckbox = /** @class */ (function (_super) {
         get: function () {
             return this.ripple_;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCCheckbox.prototype, "checked", {
@@ -54,7 +54,7 @@ var MDCCheckbox = /** @class */ (function (_super) {
         set: function (checked) {
             this.nativeControl_.checked = checked;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCCheckbox.prototype, "indeterminate", {
@@ -64,7 +64,7 @@ var MDCCheckbox = /** @class */ (function (_super) {
         set: function (indeterminate) {
             this.nativeControl_.indeterminate = indeterminate;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCCheckbox.prototype, "disabled", {
@@ -74,7 +74,7 @@ var MDCCheckbox = /** @class */ (function (_super) {
         set: function (disabled) {
             this.foundation.setDisabled(disabled);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCCheckbox.prototype, "value", {
@@ -84,7 +84,7 @@ var MDCCheckbox = /** @class */ (function (_super) {
         set: function (value) {
             this.nativeControl_.value = value;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCCheckbox.prototype.initialize = function () {
@@ -186,7 +186,7 @@ var MDCCheckbox = /** @class */ (function (_super) {
             }
             return el;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return MDCCheckbox;

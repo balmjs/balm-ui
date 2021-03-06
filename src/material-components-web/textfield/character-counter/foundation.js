@@ -32,14 +32,14 @@ var MDCTextFieldCharacterCounterFoundation = /** @class */ (function (_super) {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextFieldCharacterCounterFoundation, "strings", {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextFieldCharacterCounterFoundation, "defaultAdapter", {
@@ -51,7 +51,7 @@ var MDCTextFieldCharacterCounterFoundation = /** @class */ (function (_super) {
                 setContent: function () { return undefined; },
             };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCTextFieldCharacterCounterFoundation.prototype.setCounterValue = function (currentLength, maxLength) {

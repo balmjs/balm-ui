@@ -38,14 +38,14 @@ var MDCIconButtonToggleFoundation = /** @class */ (function (_super) {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCIconButtonToggleFoundation, "strings", {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCIconButtonToggleFoundation, "defaultAdapter", {
@@ -59,7 +59,7 @@ var MDCIconButtonToggleFoundation = /** @class */ (function (_super) {
                 setAttr: function () { return undefined; },
             };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCIconButtonToggleFoundation.prototype.init = function () {

@@ -34,7 +34,7 @@ var MDCFloatingLabelFoundation = /** @class */ (function (_super) {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCFloatingLabelFoundation, "defaultAdapter", {
@@ -52,7 +52,7 @@ var MDCFloatingLabelFoundation = /** @class */ (function (_super) {
             };
             // tslint:enable:object-literal-sort-keys
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCFloatingLabelFoundation.prototype.init = function () {

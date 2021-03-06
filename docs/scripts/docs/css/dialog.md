@@ -18,6 +18,9 @@
   $actions-padding: 8px,
   $header-side-padding: 16px, // New in 9.12.0
 
+  $close-icon-padding: 12px, // New in 9.14.0
+  $title-side-padding: 32px, // New in 9.14.0
+
   $z-index: 7
 );
 ```

@@ -57,16 +57,18 @@ var MDCTooltip = /** @class */ (function (_super) {
         this.handleMouseLeave = function () {
             _this.foundation.handleAnchorMouseLeave();
         };
-        this.handleBlur = function (evt) {
-            _this.foundation.handleAnchorBlur(evt);
-        };
         this.handleTransitionEnd = function () {
             _this.foundation.handleTransitionEnd();
         };
         this.handleClick = function () {
             _this.foundation.handleAnchorClick();
         };
-        this.anchorElem.addEventListener('blur', this.handleBlur);
+        this.handleTouchstart = function () {
+            _this.foundation.handleAnchorTouchstart();
+        };
+        this.handleTouchend = function () {
+            _this.foundation.handleAnchorTouchend();
+        };
         if (this.isTooltipRich && this.isTooltipPersistent) {
             this.anchorElem.addEventListener('click', this.handleClick);
         }
@@ -75,12 +77,13 @@ var MDCTooltip = /** @class */ (function (_super) {
             // TODO(b/157075286): Listening for a 'focus' event is too broad.
             this.anchorElem.addEventListener('focus', this.handleFocus);
             this.anchorElem.addEventListener('mouseleave', this.handleMouseLeave);
+            this.anchorElem.addEventListener('touchstart', this.handleTouchstart);
+            this.anchorElem.addEventListener('touchend', this.handleTouchend);
         }
         this.listen('transitionend', this.handleTransitionEnd);
     };
     MDCTooltip.prototype.destroy = function () {
         if (this.anchorElem) {
-            this.anchorElem.removeEventListener('blur', this.handleBlur);
             if (this.isTooltipRich && this.isTooltipPersistent) {
                 this.anchorElem.removeEventListener('click', this.handleClick);
             }
@@ -88,6 +91,8 @@ var MDCTooltip = /** @class */ (function (_super) {
                 this.anchorElem.removeEventListener('mouseenter', this.handleMouseEnter);
                 this.anchorElem.removeEventListener('focus', this.handleFocus);
                 this.anchorElem.removeEventListener('mouseleave', this.handleMouseLeave);
+                this.anchorElem.removeEventListener('touchstart', this.handleTouchstart);
+                this.anchorElem.removeEventListener('touchend', this.handleTouchend);
             }
         }
         this.unlisten('transitionend', this.handleTransitionEnd);
@@ -172,6 +177,14 @@ var MDCTooltip = /** @class */ (function (_super) {
                 if (_this.root instanceof HTMLElement) {
                     _this.root.removeEventListener(evt, handler);
                 }
+            },
+            registerAnchorEventHandler: function (evt, handler) {
+                var _a;
+                (_a = _this.anchorElem) === null || _a === void 0 ? void 0 : _a.addEventListener(evt, handler);
+            },
+            deregisterAnchorEventHandler: function (evt, handler) {
+                var _a;
+                (_a = _this.anchorElem) === null || _a === void 0 ? void 0 : _a.addEventListener(evt, handler);
             },
             registerDocumentEventHandler: function (evt, handler) {
                 document.body.addEventListener(evt, handler);

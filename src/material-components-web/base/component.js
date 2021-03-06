@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { __read, __spread } from "tslib";
+import { __read, __spreadArray } from "tslib";
 import { MDCFoundation } from './foundation';
 var MDCComponent = /** @class */ (function () {
     function MDCComponent(root, foundation) {
@@ -29,7 +29,7 @@ var MDCComponent = /** @class */ (function () {
             args[_i - 2] = arguments[_i];
         }
         this.root = root;
-        this.initialize.apply(this, __spread(args));
+        this.initialize.apply(this, __spreadArray([], __read(args)));
         // Note that we initialize foundation here and not within the constructor's default param so that
         // this.root_ is defined and can be used within the foundation class.
         this.foundation =

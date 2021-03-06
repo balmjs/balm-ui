@@ -33,7 +33,7 @@ var MDCSwitchFoundation = /** @class */ (function (_super) {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSwitchFoundation, "cssClasses", {
@@ -41,7 +41,7 @@ var MDCSwitchFoundation = /** @class */ (function (_super) {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSwitchFoundation, "defaultAdapter", {
@@ -55,7 +55,7 @@ var MDCSwitchFoundation = /** @class */ (function (_super) {
                 setNativeControlAttr: function () { return undefined; },
             };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     /** Sets the checked state of the switch. */

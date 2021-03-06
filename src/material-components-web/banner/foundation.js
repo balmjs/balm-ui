@@ -54,7 +54,7 @@ var MDCBannerFoundation = /** @class */ (function (_super) {
                 setStyleProperty: function () { return undefined; },
             };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCBannerFoundation.prototype.destroy = function () {

@@ -63,21 +63,21 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCRippleFoundation, "strings", {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCRippleFoundation, "numbers", {
         get: function () {
             return numbers;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCRippleFoundation, "defaultAdapter", {
@@ -101,7 +101,7 @@ var MDCRippleFoundation = /** @class */ (function (_super) {
                 updateCssVariable: function () { return undefined; },
             };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCRippleFoundation.prototype.init = function () {

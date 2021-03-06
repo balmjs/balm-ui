@@ -52,21 +52,21 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCDialogFoundation, "strings", {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCDialogFoundation, "numbers", {
         get: function () {
             return numbers;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCDialogFoundation, "defaultAdapter", {
@@ -96,7 +96,7 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
                 isScrollableContentAtBottom: function () { return false; },
             };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCDialogFoundation.prototype.init = function () {
@@ -121,13 +121,16 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
             this.adapter.deregisterContentEventHandler('scroll', this.contentScrollHandler);
         }
     };
-    MDCDialogFoundation.prototype.open = function () {
+    MDCDialogFoundation.prototype.open = function (dialogOptions) {
         var _this = this;
         this.dialogOpen = true;
         this.adapter.notifyOpening();
         this.adapter.addClass(cssClasses.OPENING);
         if (this.isFullscreen && this.adapter.isContentScrollable()) {
             this.adapter.registerContentEventHandler('scroll', this.contentScrollHandler);
+        }
+        if (dialogOptions && dialogOptions.isAboveFullscreenDialog) {
+            this.adapter.addClass(cssClasses.SCRIM_HIDDEN);
         }
         // Wait a frame once display is no longer "none", to establish basis for
         // animation
@@ -166,6 +169,33 @@ var MDCDialogFoundation = /** @class */ (function (_super) {
             _this.handleAnimationTimerEnd();
             _this.adapter.notifyClosed(action);
         }, numbers.DIALOG_ANIMATION_CLOSE_TIME_MS);
+    };
+    /**
+     * Used only in instances of showing a secondary dialog over a full-screen
+     * dialog. Shows the "surface scrim" displayed over the full-screen dialog.
+     */
+    MDCDialogFoundation.prototype.showSurfaceScrim = function () {
+        var _this = this;
+        this.adapter.addClass(cssClasses.SURFACE_SCRIM_SHOWING);
+        this.runNextAnimationFrame(function () {
+            _this.adapter.addClass(cssClasses.SURFACE_SCRIM_SHOWN);
+        });
+    };
+    /**
+     * Used only in instances of showing a secondary dialog over a full-screen
+     * dialog. Hides the "surface scrim" displayed over the full-screen dialog.
+     */
+    MDCDialogFoundation.prototype.hideSurfaceScrim = function () {
+        this.adapter.removeClass(cssClasses.SURFACE_SCRIM_SHOWN);
+        this.adapter.addClass(cssClasses.SURFACE_SCRIM_HIDING);
+    };
+    /**
+     * Handles `transitionend` event triggered when surface scrim animation is
+     * finished.
+     */
+    MDCDialogFoundation.prototype.handleSurfaceScrimTransitionEnd = function () {
+        this.adapter.removeClass(cssClasses.SURFACE_SCRIM_HIDING);
+        this.adapter.removeClass(cssClasses.SURFACE_SCRIM_SHOWING);
     };
     MDCDialogFoundation.prototype.isOpen = function () {
         return this.dialogOpen;

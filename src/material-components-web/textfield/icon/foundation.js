@@ -36,14 +36,14 @@ var MDCTextFieldIconFoundation = /** @class */ (function (_super) {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextFieldIconFoundation, "cssClasses", {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextFieldIconFoundation, "defaultAdapter", {
@@ -63,7 +63,7 @@ var MDCTextFieldIconFoundation = /** @class */ (function (_super) {
             };
             // tslint:enable:object-literal-sort-keys
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCTextFieldIconFoundation.prototype.init = function () {

@@ -37,7 +37,7 @@ var MDCShortTopAppBarFoundation = /** @class */ (function (_super) {
         get: function () {
             return this.isCollapsed_;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCShortTopAppBarFoundation.prototype.init = function () {

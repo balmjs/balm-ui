@@ -90,7 +90,7 @@ var MDCMenu = /** @class */ (function (_super) {
                 this.menuSurface_.close();
             }
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCMenu.prototype, "wrapFocus", {
@@ -102,7 +102,7 @@ var MDCMenu = /** @class */ (function (_super) {
                 this.list_.wrapFocus = value;
             }
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCMenu.prototype, "hasTypeahead", {
@@ -115,7 +115,7 @@ var MDCMenu = /** @class */ (function (_super) {
                 this.list_.hasTypeahead = value;
             }
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCMenu.prototype, "typeaheadInProgress", {
@@ -125,7 +125,7 @@ var MDCMenu = /** @class */ (function (_super) {
         get: function () {
             return this.list_ ? this.list_.typeaheadInProgress : false;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     /**
@@ -165,7 +165,7 @@ var MDCMenu = /** @class */ (function (_super) {
         get: function () {
             return this.list_ ? this.list_.listElements : [];
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCMenu.prototype, "singleSelection", {
@@ -180,7 +180,7 @@ var MDCMenu = /** @class */ (function (_super) {
                 this.list_.singleSelection = singleSelection;
             }
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCMenu.prototype, "selectedIndex", {
@@ -202,14 +202,14 @@ var MDCMenu = /** @class */ (function (_super) {
                 this.list_.selectedIndex = index;
             }
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCMenu.prototype, "quickOpen", {
         set: function (quickOpen) {
             this.menuSurface_.quickOpen = quickOpen;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     /**

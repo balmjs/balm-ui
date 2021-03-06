@@ -32,21 +32,21 @@ var MDCNotchedOutlineFoundation = /** @class */ (function (_super) {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCNotchedOutlineFoundation, "cssClasses", {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCNotchedOutlineFoundation, "numbers", {
         get: function () {
             return numbers;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCNotchedOutlineFoundation, "defaultAdapter", {
@@ -63,7 +63,7 @@ var MDCNotchedOutlineFoundation = /** @class */ (function (_super) {
             };
             // tslint:enable:object-literal-sort-keys
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     /**

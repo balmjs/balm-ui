@@ -37,7 +37,7 @@ var MDCDialog = /** @class */ (function (_super) {
         get: function () {
             return this.foundation.isOpen();
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCDialog.prototype, "escapeKeyAction", {
@@ -47,7 +47,7 @@ var MDCDialog = /** @class */ (function (_super) {
         set: function (action) {
             this.foundation.setEscapeKeyAction(action);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCDialog.prototype, "scrimClickAction", {
@@ -57,7 +57,7 @@ var MDCDialog = /** @class */ (function (_super) {
         set: function (action) {
             this.foundation.setScrimClickAction(action);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCDialog.prototype, "autoStackButtons", {
@@ -67,7 +67,7 @@ var MDCDialog = /** @class */ (function (_super) {
         set: function (autoStack) {
             this.foundation.setAutoStackButtons(autoStack);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCDialog.attachTo = function (root) {

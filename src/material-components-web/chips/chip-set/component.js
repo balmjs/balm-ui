@@ -41,7 +41,7 @@ var MDCChipSet = /** @class */ (function (_super) {
         get: function () {
             return this.chips_.slice();
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCChipSet.prototype, "selectedChipIds", {
@@ -51,7 +51,7 @@ var MDCChipSet = /** @class */ (function (_super) {
         get: function () {
             return this.foundation.getSelectedChipIds();
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     /**

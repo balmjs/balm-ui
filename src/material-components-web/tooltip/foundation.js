@@ -51,6 +51,9 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         _this.hideTimeout = null;
         _this.showTimeout = null;
         _this.animFrame = new AnimationFrame();
+        _this.anchorBlurHandler = function (evt) {
+            _this.handleAnchorBlur(evt);
+        };
         _this.documentClickHandler = function (evt) {
             _this.handleDocumentClick(evt);
         };
@@ -102,6 +105,8 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                 focusAnchorElement: function () { return undefined; },
                 registerEventHandler: function () { return undefined; },
                 deregisterEventHandler: function () { return undefined; },
+                registerAnchorEventHandler: function () { return undefined; },
+                deregisterAnchorEventHandler: function () { return undefined; },
                 registerDocumentEventHandler: function () { return undefined; },
                 deregisterDocumentEventHandler: function () { return undefined; },
                 registerWindowEventHandler: function () { return undefined; },
@@ -109,7 +114,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                 notifyHidden: function () { return undefined; },
             };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCTooltipFoundation.prototype.init = function () {
@@ -148,6 +153,26 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             }, this.showDelayMs);
         }
     };
+    MDCTooltipFoundation.prototype.handleAnchorTouchstart = function () {
+        var _this = this;
+        this.showTimeout = setTimeout(function () {
+            _this.show();
+        }, this.showDelayMs);
+        // Prevent a context menu from appearing if user is long-pressing on a
+        // tooltip anchor.
+        this.adapter.registerWindowEventHandler('contextmenu', this.preventContextMenuOnLongTouch);
+    };
+    MDCTooltipFoundation.prototype.preventContextMenuOnLongTouch = function (evt) {
+        evt.preventDefault();
+    };
+    MDCTooltipFoundation.prototype.handleAnchorTouchend = function () {
+        this.clearShowTimeout();
+        // Only remove the 'contextmenu' listener if the tooltip is not shown. When
+        // the tooltip *is* shown, listener is removed in the close method.
+        if (!this.isShown()) {
+            this.adapter.deregisterWindowEventHandler('contextmenu', this.preventContextMenuOnLongTouch);
+        }
+    };
     MDCTooltipFoundation.prototype.handleAnchorFocus = function (evt) {
         var _this = this;
         // TODO(b/157075286): Need to add some way to distinguish keyboard
@@ -172,18 +197,6 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         this.hideTimeout = setTimeout(function () {
             _this.hide();
         }, this.hideDelayMs);
-    };
-    MDCTooltipFoundation.prototype.handleAnchorBlur = function (evt) {
-        if (this.richTooltip) {
-            var tooltipContainsRelatedTargetElement = evt.relatedTarget instanceof HTMLElement &&
-                this.adapter.tooltipContainsElement(evt.relatedTarget);
-            // If focus changed to the tooltip element, don't hide the tooltip.
-            if (tooltipContainsRelatedTargetElement) {
-                return;
-            }
-        }
-        // Hide tooltip immediately on focus change.
-        this.hide();
     };
     MDCTooltipFoundation.prototype.handleAnchorClick = function () {
         if (this.tooltipShown) {
@@ -222,6 +235,18 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             }
             this.hide();
         }
+    };
+    MDCTooltipFoundation.prototype.handleAnchorBlur = function (evt) {
+        if (this.richTooltip) {
+            var tooltipContainsRelatedTargetElement = evt.relatedTarget instanceof HTMLElement &&
+                this.adapter.tooltipContainsElement(evt.relatedTarget);
+            // If focus changed to the tooltip element, don't hide the tooltip.
+            if (tooltipContainsRelatedTargetElement) {
+                return;
+            }
+        }
+        // Hide tooltip immediately on focus change.
+        this.hide();
     };
     MDCTooltipFoundation.prototype.handleRichTooltipMouseEnter = function () {
         this.show();
@@ -287,6 +312,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         this.anchorRect = this.adapter.getAnchorBoundingRect();
         this.parentRect = this.adapter.getParentBoundingRect();
         this.richTooltip ? this.positionRichTooltip() : this.positionPlainTooltip();
+        this.adapter.registerAnchorEventHandler('blur', this.anchorBlurHandler);
         this.adapter.registerDocumentEventHandler('click', this.documentClickHandler);
         this.adapter.registerDocumentEventHandler('keydown', this.documentKeydownHandler);
         this.adapter.registerWindowEventHandler('scroll', this.windowScrollHandler);
@@ -322,10 +348,12 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         this.adapter.addClass(HIDE);
         this.adapter.addClass(HIDE_TRANSITION);
         this.adapter.removeClass(SHOWN);
+        this.adapter.deregisterAnchorEventHandler('blur', this.anchorBlurHandler);
         this.adapter.deregisterDocumentEventHandler('click', this.documentClickHandler);
         this.adapter.deregisterDocumentEventHandler('keydown', this.documentKeydownHandler);
         this.adapter.deregisterWindowEventHandler('scroll', this.windowScrollHandler);
         this.adapter.deregisterWindowEventHandler('resize', this.windowResizeHandler);
+        this.adapter.deregisterWindowEventHandler('contextmenu', this.preventContextMenuOnLongTouch);
     };
     MDCTooltipFoundation.prototype.handleTransitionEnd = function () {
         var isHidingTooltip = this.adapter.hasClass(HIDE);

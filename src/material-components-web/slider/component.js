@@ -175,6 +175,7 @@ var MDCSlider = /** @class */ (function (_super) {
             deregisterWindowEventHandler: function (evtType, handler) {
                 window.removeEventListener(evtType, handler);
             },
+            // tslint:enable:object-literal-sort-keys
         };
         return new MDCSliderFoundation(adapter);
     };
@@ -185,7 +186,7 @@ var MDCSlider = /** @class */ (function (_super) {
      *   is set before component initialization.
      */
     MDCSlider.prototype.initialize = function (_a) {
-        var skipInitialUIUpdate = (_a === void 0 ? {} : _a).skipInitialUIUpdate;
+        var _b = _a === void 0 ? {} : _a, skipInitialUIUpdate = _b.skipInitialUIUpdate;
         this.inputs =
             [].slice.call(this.root.querySelectorAll("." + cssClasses.INPUT));
         this.thumbs =

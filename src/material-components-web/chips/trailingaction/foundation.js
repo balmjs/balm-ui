@@ -33,7 +33,7 @@ var MDCChipTrailingActionFoundation = /** @class */ (function (_super) {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCChipTrailingActionFoundation, "defaultAdapter", {
@@ -46,7 +46,7 @@ var MDCChipTrailingActionFoundation = /** @class */ (function (_super) {
                 notifyNavigation: function () { return undefined; },
             };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCChipTrailingActionFoundation.prototype.handleClick = function (evt) {

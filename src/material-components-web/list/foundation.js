@@ -55,21 +55,21 @@ var MDCListFoundation = /** @class */ (function (_super) {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCListFoundation, "cssClasses", {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCListFoundation, "numbers", {
         get: function () {
             return numbers;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCListFoundation, "defaultAdapter", {
@@ -94,7 +94,7 @@ var MDCListFoundation = /** @class */ (function (_super) {
                 getPrimaryTextAtIndex: function () { return ''; },
             };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCListFoundation.prototype.layout = function () {

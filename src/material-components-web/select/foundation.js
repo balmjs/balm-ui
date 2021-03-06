@@ -56,21 +56,21 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSelectFoundation, "numbers", {
         get: function () {
             return numbers;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSelectFoundation, "strings", {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSelectFoundation, "defaultAdapter", {
@@ -118,7 +118,7 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
             };
             // tslint:enable:object-literal-sort-keys
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     /** Returns the index of the currently selected menu item, or -1 if none. */
@@ -295,9 +295,11 @@ var MDCSelectFoundation = /** @class */ (function (_super) {
         var isSpace = normalizeKey(event) === KEY.SPACEBAR;
         var arrowUp = normalizeKey(event) === KEY.ARROW_UP;
         var arrowDown = normalizeKey(event) === KEY.ARROW_DOWN;
+        var isModifier = event.ctrlKey || event.metaKey;
         // Typeahead
-        if (!isSpace && event.key && event.key.length === 1 ||
-            isSpace && this.adapter.isTypeaheadInProgress()) {
+        if (!isModifier &&
+            (!isSpace && event.key && event.key.length === 1 ||
+                isSpace && this.adapter.isTypeaheadInProgress())) {
             var key = isSpace ? ' ' : event.key;
             var typeaheadNextIndex = this.adapter.typeaheadMatchItem(key, this.getSelectedIndex());
             if (typeaheadNextIndex >= 0) {

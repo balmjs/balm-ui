@@ -40,6 +40,7 @@ var numbers = {
     // LINT.IfChange(tooltip-dimensions)
     MIN_HEIGHT: 24,
     MAX_WIDTH: 200,
+    // LINT.ThenChange(_tooltip.scss:tooltip-dimensions)
 };
 var attributes = {
     ARIA_EXPANDED: 'aria-expanded',

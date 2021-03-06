@@ -31,6 +31,7 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
         _this.isQuickOpen = false;
         _this.isHoistedElement = false;
         _this.isFixedPosition = false;
+        _this.maxHeight = 0;
         _this.openAnimationEndTimerId = 0;
         _this.closeAnimationEndTimerId = 0;
         _this.animationRequestId = 0;
@@ -58,28 +59,28 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCMenuSurfaceFoundation, "strings", {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCMenuSurfaceFoundation, "numbers", {
         get: function () {
             return numbers;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCMenuSurfaceFoundation, "Corner", {
         get: function () {
             return Corner;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCMenuSurfaceFoundation, "defaultAdapter", {
@@ -112,7 +113,7 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
             };
             // tslint:enable:object-literal-sort-keys
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCMenuSurfaceFoundation.prototype.init = function () {
@@ -166,6 +167,14 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
     };
     MDCMenuSurfaceFoundation.prototype.setQuickOpen = function (quickOpen) {
         this.isQuickOpen = quickOpen;
+    };
+    /**
+     * Sets maximum menu-surface height on open.
+     * @param maxHeight The desired max-height. Set to 0 (default) to
+     *     automatically calculate max height based on available viewport space.
+     */
+    MDCMenuSurfaceFoundation.prototype.setMaxHeight = function (maxHeight) {
+        this.maxHeight = maxHeight;
     };
     MDCMenuSurfaceFoundation.prototype.isOpen = function () {
         return this.isSurfaceOpen;
@@ -313,6 +322,7 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
                 right: viewportSize.width - anchorRect.right,
                 bottom: viewportSize.height - anchorRect.bottom,
                 left: anchorRect.left,
+                // tslint:enable:object-literal-sort-keys
             },
             viewportSize: viewportSize,
             windowScroll: windowScroll,
@@ -397,6 +407,9 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
      * @return Maximum height of the menu surface, based on available space. 0 indicates should not be set.
      */
     MDCMenuSurfaceFoundation.prototype.getMenuSurfaceMaxHeight = function (corner) {
+        if (this.maxHeight > 0) {
+            return this.maxHeight;
+        }
         var viewportDistance = this.measurements.viewportDistance;
         var maxHeight = 0;
         var isBottomAligned = this.hasBit(corner, CornerBit.BOTTOM);

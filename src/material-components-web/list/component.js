@@ -34,21 +34,21 @@ var MDCList = /** @class */ (function (_super) {
         set: function (value) {
             this.foundation.setVerticalOrientation(value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCList.prototype, "listElements", {
         get: function () {
             return Array.from(this.root.querySelectorAll("." + this.classNameMap[cssClasses.LIST_ITEM_CLASS]));
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCList.prototype, "wrapFocus", {
         set: function (value) {
             this.foundation.setWrapFocus(value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCList.prototype, "typeaheadInProgress", {
@@ -58,7 +58,7 @@ var MDCList = /** @class */ (function (_super) {
         get: function () {
             return this.foundation.isTypeaheadInProgress();
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCList.prototype, "hasTypeahead", {
@@ -69,14 +69,14 @@ var MDCList = /** @class */ (function (_super) {
         set: function (hasTypeahead) {
             this.foundation.setHasTypeahead(hasTypeahead);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCList.prototype, "singleSelection", {
         set: function (isSingleSelectionList) {
             this.foundation.setSingleSelection(isSingleSelectionList);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCList.prototype, "selectedIndex", {
@@ -86,7 +86,7 @@ var MDCList = /** @class */ (function (_super) {
         set: function (index) {
             this.foundation.setSelectedIndex(index);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCList.attachTo = function (root) {

@@ -118,7 +118,7 @@ var MDCBanner = /** @class */ (function (_super) {
         get: function () {
             return this.foundation.isOpen();
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCBanner.prototype.getText = function () {

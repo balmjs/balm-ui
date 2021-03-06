@@ -38,14 +38,14 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCChipSetFoundation, "cssClasses", {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCChipSetFoundation, "defaultAdapter", {
@@ -63,7 +63,7 @@ var MDCChipSetFoundation = /** @class */ (function (_super) {
                 selectChipAtIndex: function () { return undefined; },
             };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     /**

@@ -54,14 +54,14 @@ var MDCChipFoundation = /** @class */ (function (_super) {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCChipFoundation, "cssClasses", {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCChipFoundation, "defaultAdapter", {
@@ -94,7 +94,7 @@ var MDCChipFoundation = /** @class */ (function (_super) {
                 setStyleProperty: function () { return undefined; },
             };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCChipFoundation.prototype.isSelected = function () {

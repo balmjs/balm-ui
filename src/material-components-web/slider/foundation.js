@@ -110,7 +110,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
             };
             // tslint:enable:object-literal-sort-keys
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCSliderFoundation.prototype.init = function () {
@@ -254,7 +254,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
      * - Updates UI based on internal state.
      */
     MDCSliderFoundation.prototype.layout = function (_a) {
-        var skipUpdateUI = (_a === void 0 ? {} : _a).skipUpdateUI;
+        var _b = _a === void 0 ? {} : _a, skipUpdateUI = _b.skipUpdateUI;
         this.rect = this.adapter.getBoundingClientRect();
         if (this.isRange) {
             this.startThumbKnobWidth = this.adapter.getThumbKnobWidth(Thumb.START);

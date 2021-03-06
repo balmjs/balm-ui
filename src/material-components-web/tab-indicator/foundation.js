@@ -32,14 +32,14 @@ var MDCTabIndicatorFoundation = /** @class */ (function (_super) {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTabIndicatorFoundation, "strings", {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTabIndicatorFoundation, "defaultAdapter", {
@@ -53,7 +53,7 @@ var MDCTabIndicatorFoundation = /** @class */ (function (_super) {
             };
             // tslint:enable:object-literal-sort-keys
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCTabIndicatorFoundation.prototype.computeContentClientRect = function () {

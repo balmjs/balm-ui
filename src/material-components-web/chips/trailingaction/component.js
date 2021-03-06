@@ -35,7 +35,7 @@ var MDCChipTrailingAction = /** @class */ (function (_super) {
         get: function () {
             return this.ripple_;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCChipTrailingAction.attachTo = function (root) {

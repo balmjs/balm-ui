@@ -66,11 +66,11 @@ yarn add balm-ui
 npm install --save balm-ui
 ```
 
-### 1.2 Configuration
+### 1.2 配置
 
 更新 `balm.config.js`
 
-- 获取 [Material Icons](https://material.balmjs.com/material-icons.zip) 无需下载（或者下载后解压至 `/path/to/my-project/app/fonts`）
+- 获取 [Material Icons](https://material.balmjs.com/material-icons.zip) 无需下载（或者下载后解压至 `my-project/app/fonts`）
 
   ```js
   const api = (mix) => {
@@ -103,7 +103,7 @@ npm install --save balm-ui
   @use 'balm-ui/dist/balm-ui';
   ```
 
-> 推荐在 `/path/to/your-project/styles/_vendor.scss` 中使用 Sass，这样你将能使用到更多 BalmUI 的高级简便的样式管理方案。
+> 推荐在 `/path/to/project-name/styles/_vendor.scss` 中使用 Sass，这样你将能使用到更多 BalmUI 的高级简便的样式管理方案。
 
 - 编辑 `my-project/app/scripts/main.js`
 
@@ -182,15 +182,39 @@ yarn add balm-ui
 npm install --save balm-ui
 ```
 
-### 2.2 使用
+### 2.2 配置
 
-- 编辑 `/path/to/main.js`
+- 编辑 `my-project/vue.config.js`
+
+  ```js
+  module.exports = {
+    runtimeCompiler: true,
+    // NOTE: set alias via `configureWebpack` or `chainWebpack`
+    configureWebpack: {
+      resolve: {
+        alias: {
+          'balm-ui-plus': 'balm-ui/dist/balm-ui-plus.js',
+          'balm-ui-css': 'balm-ui/dist/balm-ui.css'
+        }
+      }
+    }
+    // chainWebpack: (config) => {
+    //   config.resolve.alias
+    //     .set('balm-ui-plus', 'balm-ui/dist/balm-ui-plus.js')
+    //     .set('balm-ui-css', 'balm-ui/dist/balm-ui.css');
+    // }
+  };
+  ```
+
+### 2.3 使用
+
+- 编辑 `my-project/src/main.js`
 
   ```js
   import Vue from 'vue';
   import BalmUI from 'balm-ui'; // Official Google Material Components
-  import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // BalmJS Team Material Components
-  import 'balm-ui/dist/balm-ui.css';
+  import BalmUIPlus from 'balm-ui-plus'; // BalmJS Team Material Components
+  import 'balm-ui-css';
 
   Vue.use(BalmUI); // Mandatory
   Vue.use(BalmUIPlus); // Optional

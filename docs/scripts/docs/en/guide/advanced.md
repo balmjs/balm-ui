@@ -26,6 +26,13 @@
     styles: {
       extname: 'scss',
       dartSass: true // required
+    },
+    scripts: {
+      alias: {
+        'balm-ui-plus': 'balm-ui/dist/balm-ui-plus.js',
+        'balm-ui-next': 'balm-ui/dist/balm-ui-next.js',
+        'balm-ui-css': 'balm-ui/dist/balm-ui.css'
+      }
     }
     // Other Options...
   };
@@ -107,11 +114,11 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
 
   // Import BalmUI scripts
   import BalmUI from 'balm-ui'; // Official Google Material Components
-  import BalmUIPlus from 'balm-ui/dist/balm-ui-plus'; // BalmJS Team Material Components
-  import BalmUINext from 'balm-ui/dist/balm-ui-next'; // Experimental Material Components
+  import BalmUIPlus from 'balm-ui-plus'; // BalmJS Team Material Components
+  import BalmUINext from 'balm-ui-next'; // Experimental Material Components
 
   // Import BalmUI styles (Not recommend usage, and see above "SASS/CSS Management" for recommended usage)
-  import 'balm-ui/dist/balm-ui.css';
+  import 'balm-ui-css';
 
   Vue.use(BalmUI); // Mandatory
   Vue.use(BalmUIPlus); // Optional
@@ -290,9 +297,8 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
       // Reassign the entry file
       alias: {
         'balm-ui-source': 'balm-ui/src/scripts',
-        'balm-ui-plus$': 'balm-ui/src/scripts/plus.js',
-        'balm-ui-next$': 'balm-ui/src/scripts/next.js',
-        'balm-ui-css$': 'balm-ui/dist/balm-ui.css'
+        'balm-ui-plus-source': 'balm-ui/src/scripts/plus.js',
+        'balm-ui-next-source': 'balm-ui/src/scripts/next.js'
       }
     },
     ...
@@ -304,20 +310,24 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
 - Edit `/path/to/my-project/vue.config.js`, and add the following lines of code:
 
   ```js
-  const path = require('path');
-
-  function resolve(dir) {
-    return path.join(__dirname, dir);
-  }
-
   module.exports = {
-    transpileDependencies: ['balm-ui'],
-    chainWebpack: (config) => {
-      config.resolve.alias
-        .set('balm-ui-source', resolve('node_modules/balm-ui/src/scripts'))
-        .set('balm-ui-plus$', resolve('node_modules/balm-ui/src/scripts/plus.js'))
-        .set('balm-ui-css$', resolve('node_modules/balm-ui/dist/balm-ui.css'));
+    runtimeCompiler: true,
+    // NOTE: set alias via `configureWebpack` or `chainWebpack`
+    configureWebpack: {
+      resolve: {
+        alias: {
+          'balm-ui-source': 'balm-ui/src/scripts',
+          'balm-ui-plus-source': 'balm-ui/src/scripts/plus.js',
+          'balm-ui-next-source': 'balm-ui/src/scripts/next.js'
+        }
+      }
     }
+    // chainWebpack: (config) => {
+    //   config.resolve.alias
+    //     .set('balm-ui-source', resolve('node_modules/balm-ui/src/scripts'))
+    //     .set('balm-ui-plus-source', resolve('node_modules/balm-ui/src/scripts/plus.js'))
+    //     .set('balm-ui-next-source', resolve('node_modules/balm-ui/src/scripts/next.js'));
+    // }
   };
   ```
 

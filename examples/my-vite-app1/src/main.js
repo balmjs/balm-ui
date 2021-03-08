@@ -2,7 +2,7 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import './index.css';
 
-import BalmUI from 'balm-ui-core'; // Official Google Material Components
+import BalmUI from 'balm-ui'; // Official Google Material Components
 import BalmUIPlus from 'balm-ui-plus'; // BalmJS Team Material Components
 import 'balm-ui-css';
 

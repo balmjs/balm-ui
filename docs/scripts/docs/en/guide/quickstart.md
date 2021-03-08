@@ -70,7 +70,7 @@ npm install --save balm-ui@next
 
 update `balm.config.js`
 
-- get [Material Icons](https://next-material.balmjs.com/material-icons.zip) without downloading (or, download and extract to `/path/to/my-project/app/fonts`)
+- get [Material Icons](https://next-material.balmjs.com/material-icons.zip) without downloading (or, download and extract to `my-project/app/fonts`)
 
   ```js
   const api = (mix) => {
@@ -103,7 +103,7 @@ update `balm.config.js`
   @use 'balm-ui/dist/balm-ui';
   ```
 
-> Recommend to use Sass in `/path/to/your-project/styles/_vendor.scss`, and you can use more advanced style usage of the BalmUI.
+> Recommend to use Sass in `/path/to/project-name/styles/_vendor.scss`, and you can use more advanced style usage of the BalmUI.
 
 - edit `my-project/app/scripts/main.js`
 
@@ -212,7 +212,21 @@ npm install --save balm-ui@next
   ```js
   // vue.config.js
   module.exports = {
-    runtimeCompiler: true
+    runtimeCompiler: true,
+    // NOTE: set alias via `configureWebpack` or `chainWebpack`
+    configureWebpack: {
+      resolve: {
+        alias: {
+          'balm-ui-plus': 'balm-ui/dist/balm-ui-plus.js',
+          'balm-ui-css': 'balm-ui/dist/balm-ui.css'
+        }
+      }
+    }
+    // chainWebpack: (config) => {
+    //   config.resolve.alias
+    //     .set('balm-ui-plus', 'balm-ui/dist/balm-ui-plus.js')
+    //     .set('balm-ui-css', 'balm-ui/dist/balm-ui.css');
+    // }
   };
   ```
 
@@ -223,14 +237,11 @@ npm install --save balm-ui@next
   export default {
     alias: {
       vue: 'vue/dist/vue.esm-bundler.js',
-      // balm-ui@9.1.0+
-      'balm-ui': 'balm-ui/dist/balm-ui.esm.js',
       'balm-ui-plus': 'balm-ui/dist/balm-ui-plus.esm.js',
       'balm-ui-css': 'balm-ui/dist/balm-ui.css'
     },
     optimizeDeps: {
-      // Remove useless warning for `balm-ui`
-      exclude: ['balm-ui']
+      include: ['balm-ui/dist/balm-ui-plus.esm.js']
     }
   };
   ```
@@ -239,12 +250,12 @@ npm install --save balm-ui@next
 
 ### 2.3 Usage
 
-- edit `/path/to/src/main.js`
+- edit `my-project/src/main.js`
 
   ```js
   import { createApp } from 'vue';
   import App from './App.vue';
-  import './index.css'; // vite template
+  import './index.css';
 
   import BalmUI from 'balm-ui'; // Official Google Material Components
   import BalmUIPlus from 'balm-ui-plus'; // BalmJS Team Material Components

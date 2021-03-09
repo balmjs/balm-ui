@@ -3,6 +3,16 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.14.0 / 2021-03-09
+
+### Bug Fixes
+
+- fix some bug for card actions and list
+
+### Features
+
+- add examples and docs for `vite` 2.0
+
 ## v9.13.0 / 2021-02-28
 
 ### Bug Fixes

@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import MdcCheckbox from '../selection-controls/mdc-checkbox';
+import MdcCheckbox from '../selection-controls/mdc-checkbox.vue';
 import tableBodyMixin from '../../mixins/table-body';
 
 export default {

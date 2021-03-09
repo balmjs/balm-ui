@@ -81,7 +81,7 @@
 <script>
 import flatpickr from 'flatpickr';
 import monthSelectPlugin from 'flatpickr/dist/plugins/monthSelect';
-import UiTextfield from '../input-controls/textfield';
+import UiTextfield from '../input-controls/textfield.vue';
 import domMixin from '../../mixins/dom';
 import textfieldMixin from '../../mixins/textfield';
 import { UI_TEXTFIELD_ICON } from '../input-controls/constants';

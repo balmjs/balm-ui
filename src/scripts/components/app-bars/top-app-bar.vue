@@ -42,7 +42,7 @@
 <script>
 import { MDCTopAppBar } from '../../../material-components-web/top-app-bar';
 import { strings } from '../../../material-components-web/top-app-bar/constants';
-import MdcIconButton from '../buttons/mdc-icon-button';
+import MdcIconButton from '../buttons/mdc-icon-button.vue';
 import domMixin from '../../mixins/dom';
 import typeMixin from '../../mixins/type';
 

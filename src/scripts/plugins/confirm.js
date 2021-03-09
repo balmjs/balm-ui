@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import MdcDialog from '../components/modal/mdc-dialog';
+import MdcDialog from '../components/modal/mdc-dialog.vue';
 import { getOptions, createModal, removeModel } from '../utils/modal';
 
 // Define confirm dialog constants

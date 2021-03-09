@@ -77,8 +77,8 @@
 </template>
 
 <script>
-import MdcCheckbox from '../selection-controls/mdc-checkbox';
-import MdcIconButton from '../buttons/mdc-icon-button';
+import MdcCheckbox from '../selection-controls/mdc-checkbox.vue';
+import MdcIconButton from '../buttons/mdc-icon-button.vue';
 import tableHeaderMixin from '../../mixins/table-header';
 import UI_TABLE from './constants';
 

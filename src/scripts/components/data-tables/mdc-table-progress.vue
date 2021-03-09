@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import MdcLinearProgress from '../progress-indicators/mdc-linear-progress';
+import MdcLinearProgress from '../progress-indicators/mdc-linear-progress.vue';
 
 export default {
   name: 'MdcTableProgress',

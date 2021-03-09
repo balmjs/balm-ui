@@ -127,7 +127,7 @@
 </template>
 
 <script>
-import MdcButton from '../buttons/mdc-button';
+import MdcButton from '../buttons/mdc-button.vue';
 
 // Define pagination constants
 const UI_PAGINATION = {

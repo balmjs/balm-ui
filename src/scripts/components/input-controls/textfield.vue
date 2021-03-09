@@ -120,10 +120,10 @@
 
 <script>
 import { MDCTextField } from '../../../material-components-web/textfield';
-import MdcFloatingLabel from '../form-controls/mdc-floating-label';
-import MdcLineRipple from '../form-controls/mdc-line-ripple';
-import MdcNotchedOutline from '../form-controls/mdc-notched-outline';
-import MdcTextfieldCounter from './mdc-textfield-counter';
+import MdcFloatingLabel from '../form-controls/mdc-floating-label.vue';
+import MdcLineRipple from '../form-controls/mdc-line-ripple.vue';
+import MdcNotchedOutline from '../form-controls/mdc-notched-outline.vue';
+import MdcTextfieldCounter from './mdc-textfield-counter.vue';
 import domMixin from '../../mixins/dom';
 import textfieldMixin from '../../mixins/textfield';
 import typeMixin from '../../mixins/type';

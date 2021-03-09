@@ -41,7 +41,7 @@
 
 <script>
 import { MDCCircularProgress } from '../../../material-components-web/circular-progress';
-import MdcSpinnerLayer from './mdc-spinner-layer';
+import MdcSpinnerLayer from './mdc-spinner-layer.vue';
 import progressMixin from '../../mixins/progress';
 
 // Define circular progress constants

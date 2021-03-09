@@ -78,7 +78,7 @@
 
 <script>
 import { MdcTree } from './mdc-tree';
-import MdcCheckbox from '../selection-controls/mdc-checkbox';
+import MdcCheckbox from '../selection-controls/mdc-checkbox.vue';
 import UI_GLOBAL from '../../config/constants';
 
 export default {

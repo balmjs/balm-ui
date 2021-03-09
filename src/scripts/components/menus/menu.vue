@@ -55,9 +55,9 @@
 <script>
 import { MDCMenu } from '../../../material-components-web/menu';
 import { Corner } from '../../../material-components-web/menu-surface/constants';
-import UiMenuitem from './menuitem';
-import UiMenuitemText from './menuitem-text';
-import UiMenuitemDivider from './menuitem-divider';
+import UiMenuitem from './menuitem.vue';
+import UiMenuitemText from './menuitem-text.vue';
+import UiMenuitemDivider from './menuitem-divider.vue';
 import domMixin from '../../mixins/dom';
 import getType from '../../utils/typeof';
 

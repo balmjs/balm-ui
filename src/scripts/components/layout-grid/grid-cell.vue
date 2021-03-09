@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import UiGridInner from './grid-inner';
+import UiGridInner from './grid-inner.vue';
 import getType from '../../utils/typeof';
 
 // Define grid cell constants

@@ -3,13 +3,13 @@ import multiConfigure from './config/multi-configure';
 /**
  * Components
  */
-import UiAutocomplete from './components/input-controls/autocomplete';
-import UiSkeleton from './components/others/skeleton';
-import UiDatepicker from './components/pickers/datepicker';
-import UiRangepicker from './components/pickers/rangepicker';
-import UiAlert from './components/others/alert';
-import UiCollapse from './components/others/collapse';
-import UiEditor from './components/editor/editor';
+import UiAutocomplete from './components/input-controls/autocomplete.vue';
+import UiSkeleton from './components/others/skeleton.vue';
+import UiDatepicker from './components/pickers/datepicker.vue';
+import UiRangepicker from './components/pickers/rangepicker.vue';
+import UiAlert from './components/others/alert.vue';
+import UiCollapse from './components/others/collapse.vue';
+import UiEditor from './components/editor/editor.vue';
 /**
  * Plugins
  */

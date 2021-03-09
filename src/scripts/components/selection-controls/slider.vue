@@ -51,8 +51,8 @@
 <script>
 import { MDCSlider } from '../../../material-components-web/slider';
 import { events } from '../../../material-components-web/slider/constants';
-import MdcSliderInput from './mdc-slider-input';
-import MdcSliderThumb from './mdc-slider-thumb';
+import MdcSliderInput from './mdc-slider-input.vue';
+import MdcSliderThumb from './mdc-slider-thumb.vue';
 import domMixin from '../../mixins/dom';
 import typeMixin from '../../mixins/type';
 

@@ -29,7 +29,7 @@
 <script>
 import { MDCBanner } from '../../../material-components-web/banner';
 import { events } from '../../../material-components-web/banner/constants';
-import MdcButton from '../buttons/mdc-button';
+import MdcButton from '../buttons/mdc-button.vue';
 import domMixin from '../../mixins/dom';
 
 // Define banner constants

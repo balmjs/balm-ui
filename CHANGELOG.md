@@ -11,7 +11,9 @@
 
 ### Features
 
+- update `mdc@11.0.0-canary.7522dcaca.0`
 - add examples and docs for `vite` 2.0
+- `<ui-dialog>`: add prop `fullscreen` for mobile
 
 ## v9.13.0 / 2021-02-28
 

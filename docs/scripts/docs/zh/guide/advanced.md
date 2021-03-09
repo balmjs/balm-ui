@@ -318,13 +318,15 @@
   };
   ```
 
-**2.3.2 Vue CLI**
+**2.3.2 Vue CLI or Vite**
 
-- 编辑 `/path/to/my-project/vue.config.js`，并添加以下代码：
+- `vue-cli`
 
   ```js
+  // vue.config.js
   module.exports = {
     runtimeCompiler: true,
+    transpileDependencies: ['node_modules/balm-ui/src/scripts'],
     // NOTE: set alias via `configureWebpack` or `chainWebpack`
     configureWebpack: {
       resolve: {
@@ -337,11 +339,31 @@
     }
     // chainWebpack: (config) => {
     //   config.resolve.alias
-    //     .set('balm-ui-source', resolve('node_modules/balm-ui/src/scripts'))
-    //     .set('balm-ui-plus-source', resolve('node_modules/balm-ui/src/scripts/plus.js'))
-    //     .set('balm-ui-next-source', resolve('node_modules/balm-ui/src/scripts/next.js'));
+    //     .set('balm-ui-source', 'balm-ui/src/scripts')
+    //     .set('balm-ui-plus-source', 'balm-ui/src/scripts/plus.js')
+    //     .set('balm-ui-next-source', 'balm-ui/src/scripts/next.js');
     // }
   };
+  ```
+
+- `vite`
+
+  ```js
+  // vite.config.js
+  import { defineConfig } from 'vite';
+  import vue from '@vitejs/plugin-vue';
+
+  export default defineConfig({
+    plugins: [vue()],
+    resolve: {
+      alias: {
+        vue: 'vue/dist/vue.esm-bundler.js',
+        'balm-ui-source': 'balm-ui/src/scripts',
+        'balm-ui-plus-source': 'balm-ui/src/scripts/plus.js',
+        'balm-ui-next-source': 'balm-ui/src/scripts/next.js'
+      }
+    }
+  });
   ```
 
 > 现在，代码中引用的 `balm-ui` 已直接指向了源代码，可用于开发或调试 BalmUI。

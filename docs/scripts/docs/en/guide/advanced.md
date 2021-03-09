@@ -316,13 +316,15 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
   };
   ```
 
-**2.3.2 For Vue CLI**
+**2.3.2 For Vue CLI or Vite**
 
-- Edit `/path/to/my-project/vue.config.js`, and add the following lines of code:
+- `vue-cli`
 
   ```js
+  // vue.config.js
   module.exports = {
     runtimeCompiler: true,
+    transpileDependencies: ['node_modules/balm-ui/src/scripts'],
     // NOTE: set alias via `configureWebpack` or `chainWebpack`
     configureWebpack: {
       resolve: {
@@ -335,11 +337,31 @@ Then, you can overwrite or redefine UI styles by sass variables. (See components
     }
     // chainWebpack: (config) => {
     //   config.resolve.alias
-    //     .set('balm-ui-source', resolve('node_modules/balm-ui/src/scripts'))
-    //     .set('balm-ui-plus-source', resolve('node_modules/balm-ui/src/scripts/plus.js'))
-    //     .set('balm-ui-next-source', resolve('node_modules/balm-ui/src/scripts/next.js'));
+    //     .set('balm-ui-source', 'balm-ui/src/scripts')
+    //     .set('balm-ui-plus-source', 'balm-ui/src/scripts/plus.js')
+    //     .set('balm-ui-next-source', 'balm-ui/src/scripts/next.js');
     // }
   };
+  ```
+
+- `vite`
+
+  ```js
+  // vite.config.js
+  import { defineConfig } from 'vite';
+  import vue from '@vitejs/plugin-vue';
+
+  export default defineConfig({
+    plugins: [vue()],
+    resolve: {
+      alias: {
+        vue: 'vue/dist/vue.esm-bundler.js',
+        'balm-ui-source': 'balm-ui/src/scripts',
+        'balm-ui-plus-source': 'balm-ui/src/scripts/plus.js',
+        'balm-ui-next-source': 'balm-ui/src/scripts/next.js'
+      }
+    }
+  });
   ```
 
 > Now, the `balm-ui` referenced in the code points directly to the source code, which can be used to develop or debug BalmUI.

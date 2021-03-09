@@ -33,7 +33,9 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "vue/html-indent": "off"
+    }
   },
   "browserslist": [
     "> 1%",

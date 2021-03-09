@@ -15,7 +15,7 @@ module.exports = {
     jest: true
   },
   plugins: ['vue', 'prettier'],
-  extends: ['plugin:vue/vue3-recommended', 'prettier', 'prettier/vue'],
+  extends: ['plugin:vue/vue3-recommended', 'prettier'],
   rules: {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',

@@ -106,20 +106,22 @@ export default {
   },
   methods: {
     focusTrapOnDrawer() {
-      const parentEl = getCurrentElement(this.$parent.$el);
+      if (this.$parent.$el) {
+        const parentEl = getCurrentElement(this.$parent.$el);
 
-      if (
-        parentEl &&
-        parentEl.classList.contains('mdc-drawer__content') &&
-        this.$list.listElements.length
-      ) {
-        const currentItem =
-          this.$list.listElements.find((item) =>
-            item.classList.contains('mdc-list-item--activated')
-          ) || this.$list.listElements[0];
+        if (
+          parentEl &&
+          parentEl.classList.contains('mdc-drawer__content') &&
+          this.$list.listElements.length
+        ) {
+          const currentItem =
+            this.$list.listElements.find((item) =>
+              item.classList.contains('mdc-list-item--activated')
+            ) || this.$list.listElements[0];
 
-        // Solution - https://github.com/material-components/material-components-web/issues/5615
-        currentItem.setAttribute('tabindex', 0);
+          // Solution - https://github.com/material-components/material-components-web/issues/5615
+          currentItem.setAttribute('tabindex', 0);
+        }
       }
     }
   }

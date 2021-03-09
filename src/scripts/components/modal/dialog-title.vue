@@ -1,15 +1,17 @@
 <template>
-  <!-- Title (optional) -->
-  <h2 :class="className">
-    <slot></slot>
+  <div :class="className">
+    <!-- Title (optional) -->
+    <h2 class="mdc-dialog__title">
+      <slot></slot>
+    </h2>
     <mdc-icon-button
-      v-if="closable"
-      tabindex="-1"
-      @click="$parent.handleClose(true)"
+      v-if="hasCloseAction"
+      class="mdc-dialog__close"
+      data-mdc-dialog-action="close"
     >
       close
     </mdc-icon-button>
-  </h2>
+  </div>
 </template>
 
 <script>
@@ -29,9 +31,12 @@ export default {
   computed: {
     className() {
       return {
-        'mdc-dialog__title': true,
+        'mdc-dialog__header': true,
         'mdc-dialog__title--closable': this.closable
       };
+    },
+    hasCloseAction() {
+      return this.$parent.fullscreen || this.closable;
     }
   }
 };

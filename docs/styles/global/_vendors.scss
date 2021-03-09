@@ -2,7 +2,7 @@
 @use '@material/textfield' as textfield-variables with (
   $focused-label-color: primary
 );
-@use '@material/select'  as select-variables with (
+@use '@material/select' as select-variables with (
   $focused-label-color: primary
 );
 

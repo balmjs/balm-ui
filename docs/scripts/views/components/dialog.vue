@@ -1,7 +1,7 @@
 <template>
   <docs-page
     name="dialog"
-    demo-count="2"
+    demo-count="3"
     :apis="[
       'ui-dialog',
       'dialog',
@@ -135,18 +135,32 @@
     <!-- Content -->
     <section class="demo-wrapper">
       <div class="demo">
-        <ui-button raised @click="balmUI.onOpen('open')">Show Dialog</ui-button>
+        <ui-button raised @click="balmUI.onOpen('open')">Show dialog</ui-button>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
 
     <section class="demo-wrapper">
       <div class="demo">
-        <ui-button raised @click="balmUI.onShow('open2')"
-          >Show Scrolling Dialog</ui-button
-        >
+        <ui-button raised @click="balmUI.onShow('open2')">
+          Show scrolling dialog
+        </ui-button>
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
+    </section>
+
+    <section class="demo-wrapper">
+      <div class="demo">
+        <ui-button raised @click="balmUI.onShow('open3')">
+          Show full-screen dialog
+        </ui-button>
+        <p>
+          Note: Full-screen dialogs are intended for mobile/small-screen
+          devices. The dialog's size will adapt to the screen size, and so
+          becomes modal if used on larger screen sizes.
+        </p>
+      </div>
+      <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>
 
     <ui-dialog v-model="open" @confirm="onConfirm">
@@ -170,6 +184,23 @@
         </ui-list>
       </ui-dialog-content>
       <ui-dialog-actions></ui-dialog-actions>
+    </ui-dialog>
+
+    <ui-dialog v-model="open3" fullscreen>
+      <ui-dialog-title>Full-Screen Dialog Title</ui-dialog-title>
+      <ui-dialog-content>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque
+        metus dapibus, maximus massa pulvinar, commodo nunc. Quisque vitae
+        luctus lectus, ut tempus ipsum. Sed suscipit gravida scelerisque. Aenean
+        vulputate elementum est, quis consectetur orci consectetur ac. Quisque
+        accumsan vel nisi id dapibus. Suspendisse nec urna eu massa ornare
+        rutrum. Vivamus at nisi sit amet nulla pretium volutpat sit amet in
+        justo. Donec mi metus, interdum ac tincidunt at, vehicula vitae nisl.
+        Morbi fermentum dapibus massa, nec lobortis massa vestibulum eu.
+      </ui-dialog-content>
+      <ui-dialog-actions>
+        <ui-button @click="balmUI.onHide('open3')">OK</ui-button>
+      </ui-dialog-actions>
     </ui-dialog>
   </docs-page>
 </template>
@@ -238,7 +269,8 @@ export default {
         'Luna',
         'Marimba',
         'Schwifty'
-      ]
+      ],
+      open3: false
     };
   },
   methods: {

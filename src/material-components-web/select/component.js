@@ -406,11 +406,11 @@ var MDCSelect = /** @class */ (function (_super) {
                 _this.lineRipple && _this.lineRipple.deactivate();
             },
             notifyChange: function (value) {
-                var index = _this.selectedIndex;
-                _this.emit(strings.CHANGE_EVENT, { value: value, index: index }, true /* shouldBubble  */);
                 if (_this.hiddenInput) {
                     _this.hiddenInput.value = value;
                 }
+                var index = _this.selectedIndex;
+                _this.emit(strings.CHANGE_EVENT, { value: value, index: index }, true /* shouldBubble  */);
             },
         };
         // tslint:enable:object-literal-sort-keys

@@ -16,6 +16,9 @@
 | `resetScroll`            | boolean | `false` | Reset scroll bar, when the dialog is closed.                                                                             |         |
 | `scrollable`             | boolean | `false` | Optional. Applied automatically when the dialog has overflowing content to warrant scrolling.                            |         |
 | `stacked`                | boolean | `false` | Optional. Applied automatically when the dialog's action buttons can't fit on a single line and must be stacked.         |         |
+| `fullscreen`             | boolean | `false` | Styles a full-screen dialog.                                                                                             | 9.14.0  |
+
+> **Note:** Full-screen dialogs are intended for mobile/small-screen devices. The dialog's size will adapt to the screen size, and so becomes modal if used on larger screen sizes.
 
 ### Slots
 

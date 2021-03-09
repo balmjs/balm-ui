@@ -1,5 +1,5 @@
 ```html
-<ui-button raised @click="open = true">Show Dialog</ui-button>
+<ui-button raised @click="open = true">Show dialog</ui-button>
 
 <ui-dialog v-model="open" @confirm="onConfirm">
   <ui-dialog-title>Use Google's location service?</ui-dialog-title>

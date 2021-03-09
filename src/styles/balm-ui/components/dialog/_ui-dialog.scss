@@ -1,16 +1,12 @@
-@use '@material/select/variables' as select-variables;
+@use '@material/dialog/variables' as dialog-variables;
 
 .mdc-dialog__title--closable {
   position: relative;
 
-  .mdc-icon-button {
+  .mdc-dialog__close {
     position: absolute;
-    top: 0;
-    right: 0;
-    width: 36px;
-    height: 36px;
-    padding: 9px;
-    font-size: 18px;
+    top: 5px;
+    right: dialog-variables.$close-icon-padding;
   }
 }
 

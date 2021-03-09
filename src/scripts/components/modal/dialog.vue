@@ -78,6 +78,10 @@ export default {
     stacked: {
       type: Boolean,
       default: false
+    },
+    fullscreen: {
+      type: Boolean,
+      default: false
     }
   },
   emits: [
@@ -96,7 +100,8 @@ export default {
       return {
         'mdc-dialog': true,
         'mdc-dialog--scrollable': this.scrollable,
-        'mdc-dialog--stacked': this.stacked
+        'mdc-dialog--stacked': this.stacked,
+        'mdc-dialog--fullscreen': this.fullscreen
       };
     }
   },

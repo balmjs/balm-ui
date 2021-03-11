@@ -206,7 +206,7 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'account_tree',
         name: 'tree',
-        next: true
+        plus: true
       }
     ]
   },

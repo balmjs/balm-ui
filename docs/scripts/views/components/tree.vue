@@ -17,6 +17,7 @@
           <p>selectedValue: {{ selectedValue1 }}</p>
         </ui-tree>
       </div>
+      <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
 
     <section class="demo-wrapper">
@@ -32,6 +33,7 @@
           <p>selectedValue: {{ selectedValue2 }}</p>
         </ui-tree>
       </div>
+      <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>
 
     <section class="demo-wrapper">
@@ -50,6 +52,7 @@
           </template>
         </ui-tree>
       </div>
+      <ui-snippet :code="$store.demos[3]"></ui-snippet>
     </section>
   </docs-page>
 </template>
@@ -65,12 +68,15 @@ function dig(path = '0', level = 0) {
       key
     };
 
+    // For test
     if (level > 0) {
       treeNode.children = dig(key, level - 1);
     }
 
+    // For async data test
     if (level === -1) {
-      treeNode.children = [];
+      // treeNode.children = [];
+      treeNode.hasChildren = 3;
     }
 
     list.push(treeNode);
@@ -100,9 +106,6 @@ export default {
     }, 1);
   },
   methods: {
-    onChange(value) {
-      console.log('onChange', value);
-    },
     async loadData(nodeKey) {
       return await dig(nodeKey, -1);
     }

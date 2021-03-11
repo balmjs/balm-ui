@@ -1,37 +1,48 @@
+> ⚠️ The `deprecated-` prefix is required in `balm-ui` >= 9.14.0 until MDC releases version 11.
+
 ```scss
 @use '@material/list' with (
-  $divider-color-on-light-bg: rgba(0, 0, 0, 0.12),
-  $divider-color-on-dark-bg: rgba(255, 255, 255, 0.2),
-  $side-padding: 16px,
-  $trailing-padding: 16px,
-  $text-offset: 72px,
-  $text-disabled-opacity: theme-color.text-emphasis(disabled),
-  $text-disabled-color: on-surface,
-  $text-selected-color: primary,
+  $deprecated-divider-color-on-light-bg: rgba(0, 0, 0, 0.12),
+  $deprecated-divider-color-on-dark-bg: rgba(255, 255, 255, 0.2),
+  $deprecated-side-padding: 16px,
+  $deprecated-trailing-padding: 16px,
+  $deprecated-text-offset: 72px,
+  $deprecated-text-disabled-opacity: theme-color.text-emphasis(disabled),
+  $deprecated-text-disabled-color: on-surface,
+  $deprecated-text-selected-color: primary,
 
-  $single-line-height: 48px,
-  $single-line-minimum-height: 24px,
-  $single-line-maximum-height: $single-line-height,
-  $single-line-density-scale: density-variables.$default-scale,
-  $single-line-density-config: (
+  $deprecated-single-line-height: 48px,
+  $deprecated-single-line-minimum-height: 24px,
+  $deprecated-single-line-maximum-height: $deprecated-single-line-height,
+  $deprecated-single-line-density-scale: density-variables.$default-scale,
+  $deprecated-single-line-density-config: (
     height: (
-      default: $single-line-height,
-      maximum: $single-line-maximum-height,
-      minimum: $single-line-minimum-height,
+      default: $deprecated-single-line-height,
+      maximum: $deprecated-single-line-maximum-height,
+      minimum: $deprecated-single-line-minimum-height,
     ),
   ),
 
-  $item-primary-text-baseline-height: 28px,
-  $item-primary-text-baseline-height-with-graphic: 32px,
-  $item-secondary-text-baseline-height: 20px,
-  $dense-item-primary-text-baseline-height: 24px,
+  $deprecated-item-primary-text-baseline-height: 28px,
+  $deprecated-item-primary-text-baseline-height-with-graphic: 32px,
+  $deprecated-item-secondary-text-baseline-height: 20px,
+  $deprecated-dense-item-primary-text-baseline-height: 24px,
 
-  $two-line-height: 64px,
-  $two-line-graphic-height: 72px,
-  $two-line-icon-top-margin: 16px,
+  $deprecated-two-line-height: 64px,
+  $deprecated-two-line-graphic-height: 72px,
+  $deprecated-two-line-icon-top-margin: 16px,
 
-  $textual-variant-config: (
-    single-line-height: $single-line-height,
+  $deprecated-deprecated-graphic-config: (
+    graphic-size: (
+      width: 24px,
+      height: 24px,
+    ),
+    leading-padding: 16px,
+    text-offset: 72px,
+  ),
+
+  $deprecated-textual-variant-config: (
+    single-line-height: $deprecated-single-line-height,
     graphic-size: (
       width: 24px,
       height: 24px,
@@ -40,7 +51,7 @@
     text-offset: 16px,
   ),
 
-  $icon-variant-config: (
+  $deprecated-icon-variant-config: (
     single-line-height: 56px,
     graphic-size: (
       width: 24px,
@@ -50,7 +61,7 @@
     text-offset: 72px,
   ),
 
-  $avatar-variant-config: (
+  $deprecated-avatar-variant-config: (
     single-line-height: 56px,
     graphic-size: (
       width: 40px,
@@ -60,7 +71,7 @@
     text-offset: 72px,
   ),
 
-  $thumbnail-variant-config: (
+  $deprecated-thumbnail-variant-config: (
     single-line-height: 56px,
     graphic-size: (
       width: 40px,
@@ -70,7 +81,7 @@
     text-offset: 72px,
   ),
 
-  $image-variant-config: (
+  $deprecated-image-variant-config: (
     single-line-height: 72px,
     graphic-size: (
       width: 56px,
@@ -80,7 +91,7 @@
     text-offset: 88px,
   ),
 
-  $video-variant-config: (
+  $deprecated-video-variant-config: (
     single-line-height: 72px,
     graphic-size: (
       width: 100px,
@@ -88,6 +99,6 @@
     ),
     leading-padding: 0px,
     text-offset: 116px,
-  )
+  ),
 );
 ```

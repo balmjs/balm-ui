@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-var _a;
+var _a, _b;
 var cssClasses = {
     LIST_ITEM_ACTIVATED_CLASS: 'mdc-list-item--activated',
     LIST_ITEM_CLASS: 'mdc-list-item',
@@ -46,6 +46,7 @@ var strings = {
     CHECKBOX_RADIO_SELECTOR: 'input[type="checkbox"], input[type="radio"]',
     CHECKBOX_SELECTOR: 'input[type="checkbox"]',
     CHILD_ELEMENTS_TO_TOGGLE_TABINDEX: 'button:not(:disabled), a',
+    DEPRECATED_SELECTOR: '.mdc-deprecated-list',
     FOCUSABLE_CHILD_ELEMENTS: 'button:not(:disabled), a, input[type="radio"]:not(:disabled), input[type="checkbox"]:not(:disabled)',
     RADIO_SELECTOR: 'input[type="radio"]',
     SELECTED_ITEM_SELECTOR: '[aria-selected="true"], [aria-current="true"]',
@@ -62,6 +63,15 @@ var evolutionClassNameMap = (_a = {},
     _a["" + cssClasses.LIST_ITEM_PRIMARY_TEXT_CLASS] = 'mdc-evolution-list-item__primary-text',
     _a["" + cssClasses.ROOT] = 'mdc-evolution-list',
     _a);
+var deprecatedClassNameMap = (_b = {},
+    _b["" + cssClasses.LIST_ITEM_ACTIVATED_CLASS] = 'mdc-deprecated-list-item--activated',
+    _b["" + cssClasses.LIST_ITEM_CLASS] = 'mdc-deprecated-list-item',
+    _b["" + cssClasses.LIST_ITEM_DISABLED_CLASS] = 'mdc-deprecated-list-item--disabled',
+    _b["" + cssClasses.LIST_ITEM_SELECTED_CLASS] = 'mdc-deprecated-list-item--selected',
+    _b["" + cssClasses.LIST_ITEM_TEXT_CLASS] = 'mdc-deprecated-list-item__text',
+    _b["" + cssClasses.LIST_ITEM_PRIMARY_TEXT_CLASS] = 'mdc-deprecated-list-item__primary-text',
+    _b["" + cssClasses.ROOT] = 'mdc-deprecated-list',
+    _b);
 var evolutionAttribute = 'evolution';
-export { strings, cssClasses, numbers, evolutionAttribute, evolutionClassNameMap };
+export { strings, cssClasses, numbers, deprecatedClassNameMap, evolutionAttribute, evolutionClassNameMap };
 //# sourceMappingURL=constants.js.map

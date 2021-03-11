@@ -23,7 +23,7 @@
 import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { closest, matches } from '../dom/ponyfill';
-import { cssClasses, evolutionAttribute, evolutionClassNameMap, numbers, strings } from './constants';
+import { cssClasses, deprecatedClassNameMap, evolutionAttribute, evolutionClassNameMap, numbers, strings } from './constants';
 import { MDCListFoundation } from './foundation';
 var MDCList = /** @class */ (function (_super) {
     __extends(MDCList, _super);
@@ -95,13 +95,20 @@ var MDCList = /** @class */ (function (_super) {
     MDCList.prototype.initialSyncWithDOM = function () {
         this.isEvolutionEnabled =
             evolutionAttribute in this.root.dataset;
-        this.classNameMap = this.isEvolutionEnabled ?
-            evolutionClassNameMap :
-            Object.values(cssClasses)
-                .reduce(function (obj, className) {
-                obj[className] = className;
-                return obj;
-            }, {});
+        if (this.isEvolutionEnabled) {
+            this.classNameMap = evolutionClassNameMap;
+        }
+        else if (matches(this.root, strings.DEPRECATED_SELECTOR)) {
+            this.classNameMap = deprecatedClassNameMap;
+        }
+        else {
+            this.classNameMap =
+                Object.values(cssClasses)
+                    .reduce(function (obj, className) {
+                    obj[className] = className;
+                    return obj;
+                }, {});
+        }
         this.handleClick = this.handleClickEvent.bind(this);
         this.handleKeydown = this.handleKeydownEvent.bind(this);
         this.focusInEventListener = this.handleFocusInEvent.bind(this);

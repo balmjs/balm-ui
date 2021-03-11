@@ -62,7 +62,7 @@ var FocusTrap = /** @class */ (function () {
             .forEach(function (sentinelEl) {
             sentinelEl.parentElement.removeChild(sentinelEl);
         });
-        if (this.elFocusedBeforeTrapFocus) {
+        if (!this.options.skipRestoreFocus && this.elFocusedBeforeTrapFocus) {
             this.elFocusedBeforeTrapFocus.focus();
         }
     };

@@ -2,6 +2,16 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.23.0 / 2021-03-11
+
+### Features
+
+- validator: add `$validations.clear`, `$validations.get`, `$validations.set`
+
+### BREAKING CHANGES
+
+- validator: The `$setValidations` has been deprecated. Use the `$validations.set` instead.
+
 ## v8.22.0 / 2021-02-18
 
 ### Bug Fixes

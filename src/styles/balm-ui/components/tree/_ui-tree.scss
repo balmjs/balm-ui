@@ -14,6 +14,14 @@
   align-items: center;
 }
 
+.mdc-tree-node__icon {
+  cursor: pointer;
+}
+
 .mdc-tree-node__label {
   flex: 1;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.04);
+  }
 }

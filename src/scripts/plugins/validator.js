@@ -17,6 +17,12 @@ const LABEL_PLACEHOLDER = '%s';
 
 let globalValidationRules = {};
 
+function upgradeMessage(from, to) {
+  console.warn(
+    `[BalmUI validator]: The '${from}' has been deprecated. Use the '${to}' instead.`
+  );
+}
+
 class UiValidator {
   constructor() {
     const currentInstance = getCurrentInstance();
@@ -79,7 +85,7 @@ class UiValidator {
                 break;
               default:
                 console.warn(
-                  `'[${fieldName}.message]' must be a string or function.`
+                  `[BalmUI validator]: '${fieldName}.message' must be a string or function.`
                 );
                 break;
             }
@@ -91,7 +97,7 @@ class UiValidator {
           }
         } else {
           console.warn(
-            `The field [${fieldName}] is missing a validation rule: '${ruleName}'.`
+            `[BalmUI validator]: The field '${fieldName}' is missing a validation rule: '${ruleName}'.`
           );
         }
       }
@@ -119,9 +125,25 @@ class UiValidator {
     return result;
   }
 
-  setValidations(fieldName, validationRule = {}) {
-    this.customValidations = {};
+  resetValidations() {
+    upgradeMessage('resetValidations', 'clear');
+  }
 
+  setValidations() {
+    upgradeMessage('setValidations', 'set');
+  }
+
+  clear() {
+    this.customValidations = {};
+  }
+
+  get(fieldName = '') {
+    return fieldName
+      ? this.customValidations[fieldName]
+      : this.customValidations;
+  }
+
+  set(fieldName, validationRule = {}) {
     if (getType(fieldName) === 'object') {
       this.customValidations = Object.assign({}, fieldName);
     } else {

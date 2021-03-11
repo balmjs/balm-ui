@@ -3,11 +3,11 @@ import { useValidator } from 'balm-ui';
 // OR
 // import { useValidator } from 'balm-ui/plugins/validator';
 
-const balmUI = useValidator();
+const validator = useValidator();
 ```
 
 ```js
-balmUI.validate(formData, customFieldset);
+validator.validate(formData, customFieldset);
 ```
 
 | Param            | Type   | Default | Description                                   |
@@ -68,10 +68,10 @@ const validations = {
 
   export default {
     setup() {
-      const balmUI = useValidator();
+      const validator = useValidator();
 
       return {
-        balmUI,
+        validator,
         validations,
         ...toRefs(state)
       };
@@ -85,7 +85,7 @@ const validations = {
           message,
           messages,
           validMsg
-        } = this.balmUI.validate(state.formData);
+        } = this.validator.validate(state.formData);
       }
     }
   };
@@ -101,7 +101,7 @@ const validations = {
   export default {
     data() {
       return {
-        balmUI: useValidator(),
+        validator: useValidator(),
         validations,
         formData: {
           fieldName: ''
@@ -117,7 +117,7 @@ const validations = {
           message,
           messages,
           validMsg
-        } = this.balmUI.validate(this.formData);
+        } = this.validator.validate(this.formData);
       }
     }
   };
@@ -136,18 +136,22 @@ const validations = {
 
 - Set validations for the dynamic form
 
-```js
-balmUI.setValidations(fieldName, validationRule);
-balmUI.setValidations(validationRules);
+```ts
+// New in 9.15.0
+validator.clear();
+validator.get(fieldName?: string); // show current validation rule(s)
+validator.set(fieldName: string, validationRule: object);
+validator.set(validations: object);
 ```
+
+> - <del>`validator.resetValidations()`</del> is deprecated in 8.17.0
+> - <del>`validator.setValidations()`</del> is deprecated in 9.15.0
 
 | Param         | Type   | Default | Description                                               |
 | ------------- | ------ | ------- | --------------------------------------------------------- |
 | `fieldName`   | string | `''`    | A field name of the formdata. (BalmUI validator rule key) |
 | `validation`  | object | `{}`    | A validation. (BalmUI validator rule value)               |
 | `validations` | object | `{}`    | (See) BalmUI validator rules.                             |
-
-> <del>`balmUI.resetValidations()`</del> is deprecated in 9.8.0
 
 - For the dynamic form verification:
 
@@ -159,7 +163,7 @@ balmUI.setValidations(validationRules);
     export default {
       data() {
         return {
-          balmUI: useValidator(),
+          validator: useValidator(),
           step: 1,
           formData: {
             username: '',
@@ -186,14 +190,14 @@ balmUI.setValidations(validationRules);
       },
       methods: {
         onSubmit() {
-          let result = this.balmUI.validate(this.formData);
+          let result = this.validator.validate(this.formData);
           // ...
         }
       }
     };
     ```
 
-  - 2. using `customFieldset` for `balmUI.validate`
+  - 2. using `customFieldset` for `validator.validate`
 
     ```js
     import { useValidator } from 'balm-ui';
@@ -212,7 +216,7 @@ balmUI.setValidations(validationRules);
     export default {
       data() {
         return {
-          balmUI: useValidator(),
+          validator: useValidator(),
           validations,
           step: 1,
           formData: {
@@ -224,14 +228,14 @@ balmUI.setValidations(validationRules);
       methods: {
         onSubmit() {
           let customFieldset = this.step === 1 ? ['username'] : ['password'];
-          let result = this.balmUI.validate(this.formData, customFieldset);
+          let result = this.validator.validate(this.formData, customFieldset);
           // ...
         }
       }
     };
     ```
 
-  - 3. using `balmUI.setValidations`
+  - 3. using `validator.setValidations`
 
     ```js
     import { useValidator } from 'balm-ui';
@@ -239,7 +243,7 @@ balmUI.setValidations(validationRules);
     export default {
       data() {
         return {
-          balmUI: useValidator(),
+          validator: useValidator(),
           step: 1,
           formData: {
             username: '',
@@ -263,9 +267,9 @@ balmUI.setValidations(validationRules);
                     validator: 'required'
                   }
                 };
-          this.balmUI.setValidations(customValidations);
+          this.validator.set(customValidations);
 
-          let result = this.balmUI.validate(this.formData);
+          let result = this.validator.validate(this.formData);
           // ...
       }
     };

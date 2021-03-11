@@ -17,6 +17,30 @@ const LABEL_PLACEHOLDER = '%s';
 
 let customValidations = {};
 
+class Validations {
+  clear() {
+    customValidations = {};
+  }
+
+  get(fieldName = '') {
+    return fieldName ? customValidations[fieldName] : customValidations;
+  }
+
+  set(fieldName, validationRule = {}) {
+    if (getType(fieldName) === 'object') {
+      customValidations = Object.assign({}, fieldName);
+    } else {
+      customValidations[fieldName] = validationRule;
+    }
+  }
+}
+
+function upgradeMessage(from, to) {
+  console.warn(
+    `[BalmUI validator]: The '${from}' has been deprecated. Use the '${to}' instead.`
+  );
+}
+
 const BalmUI_ValidatorPlugin = {
   install(Vue, customRules = {}) {
     let globalValidationRules = Object.assign({}, defaultRules, customRules);
@@ -77,7 +101,7 @@ const BalmUI_ValidatorPlugin = {
                   break;
                 default:
                   console.warn(
-                    `'[${fieldName}.message]' must be a string or function.`
+                    `[BalmUI validator]: '${fieldName}.message' must be a string or function.`
                   );
                   break;
               }
@@ -89,7 +113,7 @@ const BalmUI_ValidatorPlugin = {
             }
           } else {
             console.warn(
-              `The field [${fieldName}] is missing a validation rule: '${ruleName}'.`
+              `[BalmUI validator]: The field '${fieldName}' is missing a validation rule: '${ruleName}'.`
             );
           }
         }
@@ -117,18 +141,12 @@ const BalmUI_ValidatorPlugin = {
       return result;
     };
 
-    const $setValidations = function (fieldName, validationRule = {}) {
-      customValidations = {};
-
-      if (getType(fieldName) === 'object') {
-        customValidations = Object.assign({}, fieldName);
-      } else {
-        customValidations[fieldName] = validationRule;
-      }
-    };
-
+    Vue.prototype.$resetValidations = () =>
+      upgradeMessage('$resetValidations', '$validations.clear');
+    Vue.prototype.$setValidations = () =>
+      upgradeMessage('$setValidations', '$validations.set');
+    Vue.prototype.$validations = new Validations();
     Vue.prototype.$validate = $validate;
-    Vue.prototype.$setValidations = $setValidations;
   }
 };
 

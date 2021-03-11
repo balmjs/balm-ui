@@ -122,7 +122,11 @@ export default {
           item.expanded = !item.expanded;
         } else {
           let nodes = await this.treeData.loadData(item[this.dataFormat.value]);
-          MdcTree.addData(this.treeData, item, nodes);
+          if (Array.isArray(nodes)) {
+            MdcTree.addData(this.treeData, item, nodes);
+          } else {
+            console.warn(`[BalmUI tree]: Invalid data`);
+          }
         }
       } else {
         item.expanded = !item.expanded;

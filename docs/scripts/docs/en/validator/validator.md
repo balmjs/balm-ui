@@ -80,19 +80,22 @@ export default {
 
 - Set validations for the dynamic form
 
-```js
-// New in 6.12.0
-$setValidations(fieldName, validationRule);
-$setValidations(validationRules);
+```ts
+// New in 8.23.0
+$validations.clear();
+$validations.get(fieldName?: string); // show current validation rule(s)
+$validations.set(fieldName: string, validationRule: object);
+$validations.set(validationRules: object);
 ```
+
+> - <del>`$resetValidations()`</del> is deprecated in 8.17.0
+> - <del>`$setValidations()`</del> is deprecated in 8.23.0
 
 | Param         | Type   | Default | Description                                               |
 | ------------- | ------ | ------- | --------------------------------------------------------- |
 | `fieldName`   | string | `''`    | A field name of the formdata. (BalmUI validator rule key) |
 | `validation`  | object | `{}`    | A validation. (BalmUI validator rule value)               |
 | `validations` | object | `{}`    | (See) BalmUI validator rules.                             |
-
-> <del>`$resetValidations()`</del> is deprecated in 8.17.0
 
 - For the dynamic form verification:
 
@@ -168,7 +171,7 @@ $setValidations(validationRules);
     };
     ```
 
-  - 3. using `$setValidations`
+  - 3. using `$validations.set`
 
     ```js
     export default {
@@ -197,7 +200,7 @@ $setValidations(validationRules);
                     validator: 'required'
                   }
                 };
-          this.$setValidations(customValidations);
+          this.$validations.set(customValidations);
 
           let result = this.$validate(this.formData);
           // ...

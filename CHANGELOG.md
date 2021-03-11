@@ -3,6 +3,17 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.15.0 / 2021-03-11
+
+### Features
+
+- update `mdc@11.0.0-canary.a678806f5.0`
+- validator: add `validator.clear`, `validator.get`, `validator.set`
+
+### BREAKING CHANGES
+
+- validator: The `validator.setValidations` has been deprecated. Use the `validator.set` instead.
+
 ## v9.14.0 / 2021-03-09
 
 ### Bug Fixes

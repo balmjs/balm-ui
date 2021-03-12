@@ -3,6 +3,12 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.17.0 / 2021-03-12
+
+### Features
+
+- `<ui-tree>`: add prop `autoExpandParent`, `defaultExpandedKeys`, `defaultSelectedKeys`
+
 ## v9.16.2 / 2021-03-12
 
 ### Bug Fixes

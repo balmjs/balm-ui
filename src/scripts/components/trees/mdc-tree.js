@@ -69,6 +69,7 @@ class MdcTree {
     return list;
   }
 
+  /** For tree node */
   static addData(treeData, item, nodes) {
     const { dataFormat, nodeMap } = treeData;
 
@@ -96,6 +97,27 @@ class MdcTree {
     item.expanded = true;
 
     nodeMap.set(parentKey, item);
+  }
+
+  static async onExpand(treeData, item) {
+    if (treeData.loadData) {
+      const { dataFormat } = treeData;
+      const hasChildren =
+        item[dataFormat.children] && item[dataFormat.children].length;
+
+      if (hasChildren) {
+        item.expanded = !item.expanded;
+      } else {
+        let nodes = await treeData.loadData(item[dataFormat.value]);
+        if (Array.isArray(nodes)) {
+          this.addData(treeData, item, nodes);
+        } else {
+          console.warn(`[BalmUI tree]: Invalid data`);
+        }
+      }
+    } else {
+      item.expanded = !item.expanded;
+    }
   }
 
   /** For single tree **/
@@ -207,6 +229,45 @@ class MdcTree {
 
     if (!item.isRoot && nodeMap.get(item.parentKey)) {
       this.setParentCheckedValue(treeData, nodeMap.get(item.parentKey));
+    }
+  }
+
+  /** For init tree **/
+  static async setExpanded(
+    treeData,
+    nodeList,
+    { autoExpandParent, defaultExpandedKeys, defaultSelectedKeys }
+  ) {
+    const { dataFormat, nodeMap } = treeData;
+
+    if (autoExpandParent) {
+      const nodes = defaultExpandedKeys.length
+        ? nodeList.filter((node) =>
+            defaultExpandedKeys.includes(node[dataFormat.value])
+          )
+        : nodeList;
+
+      for await (let node of nodes) {
+        const nodeKey = node[dataFormat.value];
+        const item = nodeMap.get(nodeKey);
+
+        if (item[dataFormat.hasChildren]) {
+          this.onExpand(treeData, item);
+        }
+      }
+    }
+
+    this.setSelected(treeData, defaultSelectedKeys);
+  }
+
+  static setSelected(treeData, defaultSelectedKeys) {
+    const { nodeMap, multiple } = treeData;
+
+    for (let i = 0, len = defaultSelectedKeys.length; i < len; i++) {
+      const nodeKey = defaultSelectedKeys[i];
+      const item = nodeMap.get(nodeKey);
+      console.log(nodeKey, item);
+      multiple ? this.onCheck(treeData, item) : this.onSelect(treeData, item);
     }
   }
 }

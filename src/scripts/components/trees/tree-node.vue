@@ -118,25 +118,8 @@ export default {
     };
   },
   methods: {
-    async handleExpand(item) {
-      if (this.treeData.loadData) {
-        const hasChildren =
-          item[this.dataFormat.children] &&
-          item[this.dataFormat.children].length;
-
-        if (hasChildren) {
-          item.expanded = !item.expanded;
-        } else {
-          let nodes = await this.treeData.loadData(item[this.dataFormat.value]);
-          if (Array.isArray(nodes)) {
-            MdcTree.addData(this.treeData, item, nodes);
-          } else {
-            console.warn(`[BalmUI tree]: Invalid data`);
-          }
-        }
-      } else {
-        item.expanded = !item.expanded;
-      }
+    handleExpand(item) {
+      MdcTree.onExpand(this.treeData, item);
     },
     handleSelect(item) {
       MdcTree.onSelect(this.treeData, item);

@@ -4,14 +4,14 @@
 
 ### Props
 
-| Name            | Type          | Default | Description                                      |
-| --------------- | ------------- | ------- | ------------------------------------------------ |
-| `selectedNodes` | string, array | `''`    | Selected node keys.                              |
-| `data`          | array         | `[]`    | The tree data source.                            |
-| `dataFormat`    | object        | `{}`    | Defines the tree data source format.             |
-| `maxLevel`      | number        | `0`     | Set max level for tree nodes.                    |
-| `multiple`      | boolean       | `false` | Whether to support selected multiple tree nodes. |
-| `loadData`      | function      | `null`  | Load data asynchronously.                        |
+| Name                        | Type          | Default | Description                                      |
+| --------------------------- | ------------- | ------- | ------------------------------------------------ |
+| `selectedNodes` (`v-model`) | string, array | `''`    | Selected node keys.                              |
+| `data`                      | array         | `[]`    | The tree data source.                            |
+| `dataFormat`                | object        | `{}`    | Defines the tree data source format.             |
+| `maxLevel`                  | number        | `0`     | Set max level for tree nodes.                    |
+| `multiple`                  | boolean       | `false` | Whether to support selected multiple tree nodes. |
+| `loadData`                  | function      | `null`  | Load data asynchronously.                        |
 
 - Default data format:
 

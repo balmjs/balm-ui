@@ -43,11 +43,11 @@
 
 ### Events
 
-| Name     | Type                                       | Description                      |
-| -------- | ------------------------------------------ | -------------------------------- |
-| `change` | `function(selectedNodes: string \| array)` | Emits when tree node is changed. |
+| Name                | Type                                       | Description                      |
+| ------------------- | ------------------------------------------ | -------------------------------- |
+| `update:modelValue` | `function(selectedNodes: string \| array)` | Emits when tree node is changed. |
 
-> NOTE: If you are not using `v-model`, you should listen for the select using `@change` and update the `selectedNodes` prop.
+> NOTE: If you are not using `v-model`, you should listen for the select using `@update:modelValue` and update the `selectedNodes` prop.
 
 - Automatic
 
@@ -60,6 +60,6 @@
   ```html
   <ui-tree
     :selectedNodes="selectedValue"
-    @change="$balmUI.onChange('selectedValue', $event)"
+    @update:modelValue="$balmUI.onChange('selectedValue', $event)"
   ></ui-tree>
   ```

@@ -6,11 +6,11 @@
 ```
 
 ```js
-import Vue from 'vue';
 import UiTree from 'balm-ui/components/tree';
 
+// `app`: Vue app
 // Optional. Overwrite `<ui-tree>` props with default value.
-Vue.use(UiTree, {
+app.use(UiTree, {
   // some props
 });
 ```

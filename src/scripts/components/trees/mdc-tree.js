@@ -100,21 +100,22 @@ class MdcTree {
 
   /** For single tree **/
 
-  static setSingleSelectedValue(nodeMap, key, selected) {
-    if (nodeMap.get(key)) {
-      nodeMap.get(key).selected = selected;
+  static setSingleSelectedValue(nodeMap, nodeKey, selected) {
+    if (nodeMap.get(nodeKey)) {
+      nodeMap.get(nodeKey).selected = selected;
     }
   }
 
-  static onSelect(treeData, value) {
-    const { nodeMap, selectedValue } = treeData;
+  static onSelect(treeData, item) {
+    const { dataFormat, nodeMap, selectedValue } = treeData;
+    const nodeKey = item[dataFormat.value];
 
     if (selectedValue) {
       this.setSingleSelectedValue(nodeMap, selectedValue, false);
     }
 
-    treeData.selectedValue = value;
-    this.setSingleSelectedValue(nodeMap, value, true);
+    treeData.selectedValue = nodeKey;
+    this.setSingleSelectedValue(nodeMap, nodeKey, true);
   }
 
   /** For multiple tree **/

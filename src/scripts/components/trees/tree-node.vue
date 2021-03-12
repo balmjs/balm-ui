@@ -143,8 +143,8 @@ export default {
         item.expanded = !item.expanded;
       }
     },
-    handleSelect({ key }) {
-      MdcTree.onSelect(this.treeData, key);
+    handleSelect(item) {
+      MdcTree.onSelect(this.treeData, item);
     },
     handleCheck(item) {
       MdcTree.onCheck(this.treeData, item);

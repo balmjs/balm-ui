@@ -1,5 +1,5 @@
 <template>
-  <div class="mdc-tree">
+  <div :class="className">
     <slot></slot>
     <ui-tree-node :children="nodeList" :tree-data="treeData">
       <slot v-for="(_, name) in $slots" :slot="name" :name="name"></slot>
@@ -87,6 +87,12 @@ export default {
     };
   },
   computed: {
+    className() {
+      return {
+        'mdc-tree': true,
+        'mdc-tree--multiple': this.multiple
+      };
+    },
     selectedValue() {
       return this.treeData.selectedValue;
     }

@@ -1,7 +1,15 @@
+@use '@material/theme/theme-color';
+@use './variables' as tree-variables;
+
 .mdc-tree {
   display: flex;
   flex-direction: column;
   width: 100%;
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
 }
 
 .mdc-tree-node {
@@ -12,16 +20,35 @@
 .mdc-tree-node__content {
   display: flex;
   align-items: center;
+  min-height: tree-variables.$node-min-height;
+  margin-bottom: 4px;
+
+  &:not(.mdc-tree-node--selected):hover {
+    background: rgba(theme-color.prop-value(on-surface), 0.04);
+  }
+
+  &.mdc-tree-node--selected {
+    background-color: rgba(theme-color.prop-value(primary), 0.04);
+    color: theme-color.prop-value(on-surface);
+  }
+}
+
+.mdc-tree-node__indent {
+  align-self: stretch;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.mdc-tree-node__indent-unit {
+  display: inline-block;
+  width: tree-variables.$indent-width;
 }
 
 .mdc-tree-node__icon {
+  width: tree-variables.$icon-width;
   cursor: pointer;
 }
 
 .mdc-tree-node__label {
   flex: 1;
-
-  &:hover {
-    background: rgba(0, 0, 0, 0.04);
-  }
 }

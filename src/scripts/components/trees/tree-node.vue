@@ -3,33 +3,44 @@
     <li
       v-for="(nodeData, nodeIndex) in children"
       :key="nodeIndex"
-      :class="[
-        'mdc-tree-node',
-        {
-          'mdc-tree-node--selected': nodeData.selected
-        }
-      ]"
+      class="mdc-tree-node"
     >
-      <div class="mdc-tree-node__content">
-        <div
-          v-if="!nodeData[dataFormat.isLeaf]"
-          class="mdc-tree-node__icon"
-          @click="handleExpand(nodeData)"
-        >
-          <template v-if="nodeData.expanded">
-            <slot name="expand-more-icon">
-              <i :class="UI_GLOBAL.cssClasses.icon" aria-hidden="true">
-                expand_more
-              </i>
-            </slot>
-          </template>
-          <template v-else>
-            <slot name="expand-less-icon">
-              <i :class="UI_GLOBAL.cssClasses.icon" aria-hidden="true">
-                chevron_right
-              </i>
-            </slot>
-          </template>
+      <div
+        :class="[
+          'mdc-tree-node__content',
+          {
+            'mdc-tree-node--selected': nodeData.selected || nodeData.checked
+          }
+        ]"
+      >
+        <div v-if="nodeData.level" class="mdc-tree-node__indent">
+          <span
+            v-for="level in nodeData.level"
+            :key="level"
+            class="mdc-tree-node__indent-unit"
+          ></span>
+        </div>
+
+        <div class="mdc-tree-node__icon">
+          <span
+            v-if="!nodeData[dataFormat.isLeaf]"
+            @click="handleExpand(nodeData)"
+          >
+            <template v-if="nodeData.expanded">
+              <slot name="expand-more-icon">
+                <i :class="UI_GLOBAL.cssClasses.icon" aria-hidden="true">
+                  expand_more
+                </i>
+              </slot>
+            </template>
+            <template v-else>
+              <slot name="expand-less-icon">
+                <i :class="UI_GLOBAL.cssClasses.icon" aria-hidden="true">
+                  chevron_right
+                </i>
+              </slot>
+            </template>
+          </span>
         </div>
 
         <div

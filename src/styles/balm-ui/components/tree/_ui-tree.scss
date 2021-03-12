@@ -1,4 +1,3 @@
-@use '@material/theme/theme-color';
 @use './variables' as tree-variables;
 
 .mdc-tree {
@@ -20,16 +19,15 @@
 .mdc-tree-node__content {
   display: flex;
   align-items: center;
-  min-height: tree-variables.$node-min-height;
   margin-bottom: 4px;
 
   &:not(.mdc-tree-node--selected):hover {
-    background: rgba(theme-color.prop-value(on-surface), 0.04);
+    background: tree-variables.$node-hover-color;
   }
 
   &.mdc-tree-node--selected {
-    background-color: rgba(theme-color.prop-value(primary), 0.04);
-    color: theme-color.prop-value(on-surface);
+    background-color: tree-variables.$selected-background-color;
+    color: tree-variables.$selected-color;
   }
 }
 
@@ -51,4 +49,5 @@
 
 .mdc-tree-node__label {
   flex: 1;
+  padding: tree-variables.$label-padding;
 }

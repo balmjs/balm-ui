@@ -70,6 +70,22 @@ export default {
     loadData: {
       type: [Function, null],
       default: null
+    },
+    autoExpandParent: {
+      type: Boolean,
+      default: false
+    },
+    defaultExpandedKeys: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
+    defaultSelectedKeys: {
+      type: Array,
+      default() {
+        return [];
+      }
     }
   },
   data() {
@@ -120,6 +136,14 @@ export default {
     init(originData = this.data) {
       if (!this.nodeList.length) {
         this.nodeList = this.$tree.getData(originData);
+      }
+
+      if (this.nodeList.length) {
+        MdcTree.setExpanded(this.treeData, this.nodeList, {
+          autoExpandParent: this.autoExpandParent,
+          defaultExpandedKeys: this.defaultExpandedKeys,
+          defaultSelectedKeys: this.defaultSelectedKeys
+        });
       }
     }
   }

@@ -10,6 +10,8 @@ import UiRangepicker from './components/pickers/rangepicker.vue';
 import UiAlert from './components/others/alert.vue';
 import UiCollapse from './components/others/collapse.vue';
 import UiEditor from './components/editor/editor.vue';
+import UiTree from './components/trees/tree';
+import UiTreeNode from './components/trees/tree-node';
 /**
  * Plugins
  */
@@ -28,7 +30,9 @@ const components = {
   UiDatepicker,
   UiEditor,
   UiRangepicker,
-  UiSkeleton
+  UiSkeleton,
+  UiTree,
+  UiTreeNode
 };
 
 const plugins = {

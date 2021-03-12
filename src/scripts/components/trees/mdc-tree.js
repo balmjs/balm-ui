@@ -21,6 +21,10 @@ const getNode = (
   item.checked = checked;
   item.parentKey = parentKey;
 
+  if (!nodeChildren) {
+    item[children] = [];
+  }
+
   if (!nodeIsLeaf) {
     item.indeterminate = false;
   }

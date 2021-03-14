@@ -37,10 +37,10 @@ var MDCTooltip = /** @class */ (function (_super) {
         if (!tooltipId) {
             throw new Error('MDCTooltip: Tooltip component must have an id.');
         }
-        var anchorElem = document.querySelector("[aria-describedby=\"" + tooltipId + "\"]") ||
-            document.querySelector("[data-tooltip-id=\"" + tooltipId + "\"]");
+        var anchorElem = document.querySelector("[data-tooltip-id=\"" + tooltipId + "\"]") ||
+            document.querySelector("[aria-describedby=\"" + tooltipId + "\"]");
         if (!anchorElem) {
-            throw new Error('MDCTooltip: Tooltip component requires an anchor element annotated with [aria-describedby] or [data-tooltip-id] anchor element.');
+            throw new Error('MDCTooltip: Tooltip component requires an anchor element annotated with [aria-describedby] or [data-tooltip-id].');
         }
         this.anchorElem = anchorElem;
     };

@@ -20,19 +20,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-export var InteractionTrigger;
-(function (InteractionTrigger) {
-    InteractionTrigger[InteractionTrigger["UNSPECIFIED"] = 0] = "UNSPECIFIED";
-    InteractionTrigger[InteractionTrigger["CLICK"] = 1] = "CLICK";
-    InteractionTrigger[InteractionTrigger["BACKSPACE_KEY"] = 2] = "BACKSPACE_KEY";
-    InteractionTrigger[InteractionTrigger["DELETE_KEY"] = 3] = "DELETE_KEY";
-    InteractionTrigger[InteractionTrigger["SPACEBAR_KEY"] = 4] = "SPACEBAR_KEY";
-    InteractionTrigger[InteractionTrigger["ENTER_KEY"] = 5] = "ENTER_KEY";
-})(InteractionTrigger || (InteractionTrigger = {}));
-export var strings = {
-    ARIA_HIDDEN: 'aria-hidden',
-    INTERACTION_EVENT: 'MDCChipTrailingAction:interaction',
-    NAVIGATION_EVENT: 'MDCChipTrailingAction:navigation',
-    TAB_INDEX: 'tabindex',
-};
+export * from '../deprecated/trailingaction/constants';
 //# sourceMappingURL=constants.js.map

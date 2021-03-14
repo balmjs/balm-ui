@@ -89,6 +89,7 @@ import UiSnackbar from './components/modal/snackbar.vue';
 import UiBanner from './components/modal/banner.vue';
 import UiProgress from './components/progress-indicators/progress.vue';
 import UiSpinner from './components/progress-indicators/spinner.vue';
+import UiTooltipAnchor from './components/others/tooltip-anchor.vue';
 import UiTooltip from './components/others/tooltip.vue';
 /**
  * Plugins
@@ -194,6 +195,7 @@ const components = {
   UiTextfield,
   UiTextfieldHelper,
   UiTextfieldIcon,
+  UiTooltipAnchor,
   UiTooltip,
   UiTopAppBar
 };
@@ -329,6 +331,7 @@ export {
   UiTextfield,
   UiTextfieldHelper,
   UiTextfieldIcon,
+  UiTooltipAnchor,
   UiTooltip,
   UiTopAppBar
 };

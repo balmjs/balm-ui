@@ -20,9 +20,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-export * from './adapter';
-export * from './component';
-export * from './foundation';
-export * from './types';
-export { cssClasses as chipCssClasses, strings as chipStrings } from './constants';
+export * from '../deprecated/chip/index';
 //# sourceMappingURL=index.js.map

@@ -12,7 +12,7 @@
 
     <!-- Content -->
     <section class="demo-wrapper">
-      <h6 :class="$tt('headline6')">1.1 Base tooltip</h6>
+      <h6 :class="$tt('headline6')">1.1 Plain tooltip</h6>
       <div class="demo">
         <ui-icon
           v-tooltip="'Share your content via social media'"
@@ -27,11 +27,18 @@
     <section class="demo-wrapper">
       <h6 :class="$tt('headline6')">1.2 Rich tooltip</h6>
       <div class="demo">
-        <ui-button aria-describedby="tooltip-demo-2">Hello</ui-button>
-        <ui-tooltip id="tooltip-demo-2" width="200">
-          <ui-icon>face</ui-icon>
-          <span>lorem ipsum dolor</span>
-        </ui-tooltip>
+        <ui-button data-tooltip-id="tooltip-demo-2">Hello</ui-button>
+        <ui-tooltip-anchor>
+          <ui-tooltip id="tooltip-demo-2" rich>
+            <template #title>Lorem Ipsum</template>
+            <template #default="{ linkClass }">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+              pretium vitae est et dapibus. Aenean sit amet felis eu lorem
+              fermentum aliquam sit amet sit amet eros.
+              <a :class="linkClass">link</a>
+            </template>
+          </ui-tooltip>
+        </ui-tooltip-anchor>
       </div>
       <ui-snippet :code="$store.demos[2]"></ui-snippet>
     </section>

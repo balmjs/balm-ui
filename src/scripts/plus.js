@@ -88,7 +88,9 @@ export {
   UiDatepicker,
   UiEditor,
   UiRangepicker,
-  UiSkeleton
+  UiSkeleton,
+  UiTree,
+  UiTreeNode
 };
 export { $alert, $confirm, $toast };
 export { useAlert, useConfirm, useToast };

@@ -53,10 +53,19 @@ const initTooltip = (el, { value }) => {
   }
 };
 
+const removeTooltip = (el) => {
+  const id = el.getAttribute(UI_TOOLTIP.attrs.ariaId);
+  const tooltipEl = document.getElementById(id);
+  UI_TOOLTIP.globalAnchor.el.removeChild(tooltipEl);
+};
+
 const BalmUI_TooltipDirective = {
   name: 'tooltip',
   mounted(el, binding) {
     initTooltip(el, binding);
+  },
+  beforeUnmount(el) {
+    removeTooltip(el);
   }
 };
 

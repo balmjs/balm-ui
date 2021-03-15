@@ -1,18 +1,48 @@
-- Base tooltip
+## 指令用法
 
-  ```html
-  <div v-tooltip="Tips text" aria-describedby="tooltip-id">Text</div>
-  ```
+```html
+<div v-tooltip="'plain tips'" aria-describedby="tooltip-id"></div>
+```
 
-- Custom tooltip
+## 组件用法
+
+**`<ui-tooltip>` 类型**
+
+- `0`: `'plain'`
 
   ```html
   <div aria-describedby="tooltip-id">Text</div>
-  <ui-tooltip id="tooltip-id">Tips text</ui-tooltip>
+  <ui-tooltip id="tooltip-id">Tips content</ui-tooltip>
+  ```
+
+- `1`: `'rich'` (New in 9.18.0)
+
+  ```html
+  <ui-tooltip-anchor>
+    <div data-tooltip-id="tooltip-id">Text</div>
+    <ui-tooltip id="tooltip-id" rich>Tips content</ui-tooltip>
+  </ui-tooltip-anchor>
   ```
 
 ### Props
 
-| Name    | Type   | Default | Description                             |
-| ------- | ------ | ------- | --------------------------------------- |
-| `width` | number | `0`     | Custom width for the tooltip component. |
+| Name    | Type           | Default | Description                  | Version |
+| ------- | -------------- | ------- | ---------------------------- | ------- |
+| `type`  | string, number | `0`     | 文字提示的类型               | 9.18.0  |
+| `rich`  | boolean        | `false` | 可选。启用富文字提示         | 9.18.0  |
+| `width` | number         | `0`     | 自定义文字提示组件的最大宽度 |         |
+
+### Slots
+
+- Plain tooltip
+
+| Name      | Props | Description                                   |
+| --------- | ----- | --------------------------------------------- |
+| `default` |       | default 插槽包含文字提示的内容（可包含 HTML） |
+
+- Rich tooltip (New in 9.18.0)
+
+| Name      | Props       | Description                                   |
+| --------- | ----------- | --------------------------------------------- |
+| `title`   |             | title 插槽包含文字提示的标题（可包含 HTML）   |
+| `default` | `linkClass` | default 插槽包含文字提示的内容（可包含 HTML） |

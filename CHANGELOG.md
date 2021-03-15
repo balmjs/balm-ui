@@ -3,6 +3,14 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.18.0 / 2021-03-15
+
+### Features
+
+- new components: `<ui-tooltip-anchor>`
+- `<ui-tooltip>`: add prop `type`, `rich`
+- `v-tooltip`: add tooltip anchor for global
+
 ## v9.17.0 / 2021-03-12
 
 ### Features

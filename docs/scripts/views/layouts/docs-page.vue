@@ -8,10 +8,14 @@
     </header>
 
     <ui-toc-affix v-if="name === 'icon'">
-      <ui-tab v-anchor:href="'#ui-icons'" class="v-anchor">Icons</ui-tab>
+      <ui-tab v-anchor:href="'#ui-icons'" class="v-anchor">{{
+        $t('page.icons')
+      }}</ui-tab>
     </ui-toc-affix>
     <ui-toc-affix v-else-if="name === 'theme'">
-      <ui-tab v-anchor:href="'#ui-colors'" class="v-anchor">Colors</ui-tab>
+      <ui-tab v-anchor:href="'#ui-colors'" class="v-anchor">{{
+        $t('page.colors')
+      }}</ui-tab>
     </ui-toc-affix>
     <ui-toc-affix
       v-else

@@ -1,3 +1,3 @@
 # 按钮
 
-Buttons allow users to take actions, and make choices, with a single tap.
+按钮使用户只需单击一下即可执行操作并做出选择。

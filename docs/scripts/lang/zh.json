@@ -80,7 +80,9 @@
     "demo": "例子",
     "apis": "APIs",
     "sass": "Sass变量",
-    "icon-list": "图标列表",
+    "icons": "图标集",
+    "colors": "调色板",
+    "icon-list": "Material 图标集",
     "color-palette": "Material 调色板"
   }
 }

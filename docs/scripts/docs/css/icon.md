@@ -5,9 +5,11 @@
 
   $sizes: 18 24 36 48,
   $dark: rgba(0, 0, 0, 0.54),
-  $dark-inactive: rgba(0, 0, 0, 0.26),
-  $light: rgba(255, 255, 255, 1),
-  $light-inactive: rgba(255, 255, 255, 0.3),
+  $dark-focused: rgba(0, 0, 0, 0.87), // New in 8.26.0
+  $dark-inactive: rgba(0, 0, 0, 0.38),
+  $light: rgba(255, 255, 255, 0.7),
+  $light-focused: rgba(255, 255, 255, 1), // New in 8.26.0
+  $light-inactive: rgba(255, 255, 255, 0.5),
 
   $success: #0f9d58,
   $info: #4285f4,

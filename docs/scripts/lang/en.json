@@ -80,7 +80,9 @@
     "demo": "Demo",
     "apis": "APIs",
     "sass": "Sass Variables",
-    "icon-list": "Icon List",
+    "icons": "Icons",
+    "colors": "Colors",
+    "icon-list": "Material Icons",
     "color-palette": "Material Color Palette"
   }
 }

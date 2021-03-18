@@ -1,6 +1,6 @@
-### 2.1 Theme color
+### 2.1 主题颜色（背景色）
 
-### 2.1.1 Getters/setters for single theme
+### 2.1.1 获取/设置某个主题色
 
 - `$theme.primary`
 - `$theme.secondary`
@@ -12,7 +12,7 @@
 - `$theme.onSurface`
 - `$theme.onError`
 
-### 2.1.2 Set multiple colors for all theme
+### 2.1.2 批量设置主题色
 
 - `$theme.colors = themeColor`
 
@@ -30,9 +30,9 @@ interface themeColor {
 }
 ```
 
-### 2.1.3 Get theme color/classname
+### 2.1.3 获取主题色值/class
 
-- Theme styles:
+- 主题样式
   - `primary`
   - `secondary`
   - `background`
@@ -50,20 +50,20 @@ $theme.getThemeColor(style);
 $theme.getThemeClass(style);
 ```
 
-### 2.2 Text color
+### 2.2 文字颜色（前景色）
 
-- Text styles:
+- 文字样式
   - `primary`
   - `secondary`
   - `hint`
   - `disabled`
   - `icon`
-- Theme tones
+- 主题色调
   - `background`
   - `light`
   - `dark`
 
-#### 2.2.1 Default
+#### 2.2.1 默认
 
 ```js
 $theme.getTextColor(style, tone);
@@ -74,13 +74,13 @@ $theme.getTextClass(style, tone);
 $theme.setTextColor(style, value);
 ```
 
-| Param   | Type   | Default        | Description       |
-| ------- | ------ | -------------- | ----------------- |
-| `style` | String | `''`           | Text style name.  |
-| `tone`  | String | `'background'` | Theme tone name.  |
-| `value` | String | `''`           | Text color value. |
+| Param   | Type   | Default        | Description |
+| ------- | ------ | -------------- | ----------- |
+| `style` | String | `''`           | 文字样式名  |
+| `tone`  | String | `'background'` | 主题色调名  |
+| `value` | String | `''`           | 文字颜色值  |
 
-#### 2.2.2 Light or Dark
+#### 2.2.2 明暗色系
 
 ```js
 $theme.getTextColorOnLight(style);
@@ -95,18 +95,18 @@ $theme.setTextColorOnLight(style, value);
 $theme.setTextColorOnDark(style, value);
 ```
 
-| Param   | Type   | Default | Description       |
-| ------- | ------ | ------- | ----------------- |
-| `style` | String | `''`    | Text style name.  |
-| `value` | String | `''`    | Text color value. |
+| Param   | Type   | Default | Description |
+| ------- | ------ | ------- | ----------- |
+| `style` | String | `''`    | 文字样式名  |
+| `value` | String | `''`    | 文字颜色值  |
 
-### Use `$theme` without `.vue` component
+### 在非 `.vue` 组件中使用 `$theme`
 
 > New in 8.1.0
 
 ```js
 import { useTheme } from 'balm-ui';
-// OR
+// 或
 // import { useTheme } from 'balm-ui/plugins/theme';
 
 const $theme = useTheme();

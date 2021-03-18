@@ -1,3 +1,3 @@
 # 排版
 
-Material Design's text sizes and styles were developed to balance content density and reading comfort under typical usage conditions.
+Material Design 排版设计了文本大小和样式，以在典型使用条件下平衡内容密度和阅读舒适度。

@@ -2,37 +2,37 @@
 $tt(style);
 ```
 
-| Param   | Type   | Default | Description                                      |
-| ------- | ------ | ------- | ------------------------------------------------ |
-| `style` | string | `''`    | Typography style name or custom style classname. |
+| Param   | Type   | Default | Description                  |
+| ------- | ------ | ------- | ---------------------------- |
+| `style` | string | `''`    | 排版样式名或自定义样式 class |
 
-The typographic styles in this module are derived from thirteen styles:
+MDC Web 默认提供了 13 种样式：
 
-| Style       | Description                                                                        |
-| ----------- | ---------------------------------------------------------------------------------- |
-| `headline1` | The largest text on the screen, reserved for short, important text or numerals     |
-| `headline2` | Headline variant 2                                                                 |
-| `headline3` | Headline variant 3                                                                 |
-| `headline4` | Headline variant 4                                                                 |
-| `headline5` | Headline variant 5                                                                 |
-| `headline6` | Headline variant 6                                                                 |
-| `subtitle1` | Smaller than headline, reserved for medium-emphasis text that is shorter in length |
-| `subtitle2` | Subtitle variant 2                                                                 |
-| `body1`     | Used for long-form writing                                                         |
-| `body2`     | Body variant 2                                                                     |
-| `caption`   | Used sparingly to annotate imagery                                                 |
-| `button`    | A call to action used by different types of buttons                                |
-| `overline`  | Used sparingly to introduce a headline                                             |
+| Style       | Description                                          |
+| ----------- | ---------------------------------------------------- |
+| `headline1` | 标题 1，屏幕上最大的文本，保留简短，重要的文本或数字 |
+| `headline2` | 标题 2                                               |
+| `headline3` | 标题 3                                               |
+| `headline4` | 标题 4                                               |
+| `headline5` | 标题 5                                               |
+| `headline6` | 标题 6                                               |
+| `subtitle1` | 副标题 1，比标题小，保留给长度较短的中强调文字       |
+| `subtitle2` | 副标题 2                                             |
+| `body1`     | 主体内容 1，用于长篇写作                             |
+| `body2`     | 主体内容 2                                           |
+| `caption`   | 注释文字                                             |
+| `button`    | 按钮文字                                             |
+| `overline`  | 说明文字                                             |
 
-> You can overwrite typography CSS Classes for your project so easy.
+> 你可以很容易为你的项目重写排版样式（CSS Classes）
 
-### Use `$tt` without `.vue` component
+### 在非 `.vue` 组件中使用 `$tt`
 
 > New in 8.1.0
 
 ```js
 import { useTypography } from 'balm-ui';
-// OR
+// 或
 // import { useTypography } from 'balm-ui/plugins/typography';
 
 const $tt = useTypography();

@@ -32,7 +32,7 @@ interface themeColor {
 
 ### 2.1.3 Get theme color/classname
 
-- Theme styles:
+- Theme styles
   - `primary`
   - `secondary`
   - `background`
@@ -52,7 +52,7 @@ $theme.getThemeClass(style);
 
 ### 2.2 Text color
 
-- Text styles:
+- Text styles
   - `primary`
   - `secondary`
   - `hint`

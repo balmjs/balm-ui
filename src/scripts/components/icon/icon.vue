@@ -69,6 +69,12 @@ export default {
     isSharp() {
       return this.checkType(UI_ICON.TYPES, 'sharp');
     },
+    invalidIcon() {
+      return this.dark && this.light;
+    },
+    activeIcon() {
+      return this.dark || this.light;
+    },
     className() {
       let result = {
         'material-icons': this.isFilled,
@@ -88,9 +94,16 @@ export default {
       return result;
     }
   },
+  created() {
+    if (this.invalidIcon || (!this.activeIcon && this.inactive)) {
+      console.warn('[BalmUI icon]: Invalid dark or light icon.');
+    }
+  },
   methods: {
     handleClick(event) {
-      this.$emit(UI_ICON.EVENT.CLICK, event);
+      if (!this.inactive) {
+        this.$emit(UI_ICON.EVENT.CLICK, event);
+      }
     }
   }
 };

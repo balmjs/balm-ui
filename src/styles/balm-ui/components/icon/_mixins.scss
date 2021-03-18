@@ -1,3 +1,4 @@
+@use '@material/feature-targeting/feature-targeting';
 @use './variables' as icon-variables;
 
 @mixin setFontFace($className, $fontFamily) {
@@ -56,7 +57,9 @@
   }
 }
 
-@mixin setIconClass() {
+@mixin setIconClass($query: feature-targeting.all()) {
+  $feat-animation: feature-targeting.create-target($query, animation);
+
   /* Rules for sizing the icon. */
   @each $size in icon-variables.$sizes {
     &.md-#{$size} {
@@ -67,9 +70,19 @@
     }
   }
 
+  &.md-dark,
+  &.md-light {
+    @include feature-targeting.targets($feat-animation) {
+      transition: color 250ms;
+    }
+  }
+
   /* Rules for using icons as black on a light background. */
   &.md-dark {
     color: icon-variables.$dark;
+    &:hover {
+      color: icon-variables.$dark-focused;
+    }
     &.md-inactive {
       color: icon-variables.$dark-inactive;
     }
@@ -78,6 +91,9 @@
   /* Rules for using icons as white on a dark background. */
   &.md-light {
     color: icon-variables.$light;
+    &:hover {
+      color: icon-variables.$light-focused;
+    }
     &.md-inactive {
       color: icon-variables.$light-inactive;
     }

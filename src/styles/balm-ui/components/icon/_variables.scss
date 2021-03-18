@@ -5,9 +5,11 @@ $with-subdir: 0 !default; // `../fonts` or `../fonts/materialicons`
 
 $sizes: 18 24 36 48 !default;
 $dark: rgba(0, 0, 0, 0.54) !default;
-$dark-inactive: rgba(0, 0, 0, 0.26) !default;
-$light: rgba(255, 255, 255, 1) !default;
-$light-inactive: rgba(255, 255, 255, 0.3) !default;
+$dark-focused: rgba(0, 0, 0, 0.87) !default;
+$dark-inactive: rgba(0, 0, 0, 0.38) !default;
+$light: rgba(255, 255, 255, 0.7) !default;
+$light-focused: rgba(255, 255, 255, 1) !default;
+$light-inactive: rgba(255, 255, 255, 0.5) !default;
 
 /// @reference https://brandpalettes.com/google-colors/
 $info: #4285f4 !default;

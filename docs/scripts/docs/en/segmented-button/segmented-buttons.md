@@ -18,12 +18,12 @@
 
 - The keys of a segmented button item object:
 
-```js
-{
-  text: 'text', // label text
-  icon: 'icon', // label icon
-}
-```
+  ```js
+  {
+    text: 'text', // label text
+    icon: 'icon', // label icon
+  }
+  ```
 
 ### Slots
 
@@ -38,7 +38,7 @@
 | `change`   | `function(model: array \| number)` | Emits when the segmented buttons is changed. |
 | `selected` | `function(index: number)`          | Emits when the segmented button is clicked.  |
 
-> NOTE: If you are not using `v-model`, you should listen for the icon button using `@change` and update the `model` prop.
+> NOTE: If you are not using `v-model`, you should listen for the segmented buttons using `@change` and update the `model` prop.
 
 - Automatic
 

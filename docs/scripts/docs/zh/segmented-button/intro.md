@@ -1,5 +1,5 @@
-# Segmented Buttons
+# 按钮组
 
-Segmented buttons allow users to toggle the selected states of grouped buttons.
+按钮组允许用户切换分组按钮的选定状态。
 
 > New in 8.14.0

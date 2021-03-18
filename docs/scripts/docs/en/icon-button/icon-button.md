@@ -4,13 +4,20 @@
 
 ### Props
 
-| Name                | Type    | Default | Description                                                              |
-| ------------------- | ------- | ------- | ------------------------------------------------------------------------ |
-| `model` (`v-model`) | boolean | `false` | Sets the toggle state.                                                   |
-| `icon`              | string  | `''`    | A material icon of the icon button. See [Material Icons](/#/icons) list. |
-| `toggle`            | object  | `{}`    | Two icons of the icon button toggle. (Format: `{on, off}`)               |
+| Name                | Type    | Default | Description                                                                   |
+| ------------------- | ------- | ------- | ----------------------------------------------------------------------------- |
+| `model` (`v-model`) | boolean | `false` | Sets the toggle state.                                                        |
+| `icon`              | string  | `''`    | A material icon of the icon button. See [Material Icons](/#/icons) list.      |
+| `toggle`            | object  | `{}`    | Two material icons of the toggle button. See [Material Icons](/#/icons) list. |
 
-> Configuring the icon button toggle states by `toggle.on` and `toggle.off` props.
+- Configuring the toggle button states by `toggle.on` and `toggle.off` props
+
+  ```ts
+  interface toggle {
+    on: string;
+    off: string;
+  }
+  ```
 
 ### Slots
 

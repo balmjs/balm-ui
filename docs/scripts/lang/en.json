@@ -1,4 +1,9 @@
 {
+  "home": {
+    "slogan": "Build beautiful products, faster for Vue.js",
+    "title": "BalmUI is a Google Material design system – backed by open-source code – that helps teams build high-quality digital experiences.",
+    "get-started": "Get started"
+  },
   "menu": {
     "guide": "Guide",
     "intro": "Introduction",

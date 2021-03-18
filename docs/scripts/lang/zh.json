@@ -1,4 +1,9 @@
 {
+  "home": {
+    "slogan": "更高效地生产出精美的产品",
+    "title": "BalmUI 是基于谷歌 Material Design 系统为 Vue.js 量身定制的 UI 框架。",
+    "get-started": "起步"
+  },
   "menu": {
     "guide": "指南",
     "intro": "介绍",

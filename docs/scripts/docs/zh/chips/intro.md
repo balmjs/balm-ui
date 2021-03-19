@@ -1,3 +1,3 @@
-# 选项卡
+# 纸片
 
 Chips are compact elements that represent an input, attribute, or action.

@@ -1,5 +1,5 @@
-# Store (cover Vuex)
+# 状态管理 (cover Vuex)
 
 > New in 8.1.0
 
-A simple state management pattern.
+一种简单的状态管理模式。

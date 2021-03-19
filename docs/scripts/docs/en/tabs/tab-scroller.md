@@ -10,3 +10,9 @@
 | `align`   | string | `''`    | `<ui-tabs>` common prop. Tab alignment. |
 
 > Alignment: `'start'`, `'center'`, `'end'`
+
+### Slots
+
+| Name      | Slots | Description                                                     |
+| --------- | ----- | --------------------------------------------------------------- |
+| `default` |       | The default slot holds the tab components and can contain HTML. |

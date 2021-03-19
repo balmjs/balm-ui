@@ -13,7 +13,7 @@
 - 通过 `toggle.on` 和 `toggle.off` 属性配置切换按钮状态的图标
 
   ```ts
-  interface toggle {
+  {
     on: string;
     off: string;
   }

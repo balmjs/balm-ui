@@ -4,33 +4,33 @@
 
 ### Props
 
-| Name       | Type           | Default | Description                                                                    |
-| ---------- | -------------- | ------- | ------------------------------------------------------------------------------ |
-| `nested`   | boolean        | `false` | Used to wrap a group of `<ui-menuitem>` that will represent a selection group. |
-| `item`     | object         | `{}`    | A menu item.                                                                   |
-| `value`    | string, number | `null`  | The menu selected value.                                                       |
-| `disabled` | boolean        | `false` | To disable an item.                                                            |
-| `selected` | boolean        | `false` | Used to indicate which element in an item group is selected.                   |
+| Name       | Type           | Default | Description                                 |
+| ---------- | -------------- | ------- | ------------------------------------------- |
+| `nested`   | boolean        | `false` | 嵌套菜单项 `<ui-menuitem>` 形成一个菜单项组 |
+| `item`     | object         | `{}`    | 设置菜单项对象                              |
+| `value`    | string, number | `null`  | 设置菜单项的值                              |
+| `disabled` | boolean        | `false` | 禁用状态                                    |
+| `selected` | boolean        | `false` | 选中状态                                    |
 
-- The keys of a menu item object:
+- 菜单项对象的 keys：
 
-```ts
-{
-  value: string,
-  text: string,
-  icon: string,
-  disabled: boolean,
-  selected: boolean
-}
-```
+  ```ts
+  {
+    value: string;
+    text: string;
+    icon: string;
+    disabled: boolean;
+    selected: boolean;
+  }
+  ```
 
 ### Slots
 
-| Name      | Props | Description                                                                             |
-| --------- | ----- | --------------------------------------------------------------------------------------- |
-| `default` |       | The default slot holds the menu item icon component or label text and can contain HTML. |
+| Name      | Props | Description                         |
+| --------- | ----- | ----------------------------------- |
+| `default` |       | default 插槽包含菜单项子组件及 HTML |
 
-**Child components:**
+**子组件：**
 
 - `<ui-menuitem-text>`
 - `<ui-menuitem-icon>`

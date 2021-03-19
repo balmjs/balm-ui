@@ -1,23 +1,23 @@
-## 1. Event Shortcut
+## 1. 事件缩写
 
 ```js
-$balmUI.onChange(property, value, fn); // update property to `new value`
-$balmUI.onOpen(property, fn); / $balmUI.onShow(property, fn); // update property to `true`
-$balmUI.onClose(property, fn); / $balmUI.onHide(property, fn); // update property to `false`
+$balmUI.onChange(property, value, fn); // property 更新为 `new value`
+$balmUI.onOpen(property, fn); / $balmUI.onShow(property, fn); // property 更新为 `true`
+$balmUI.onClose(property, fn); / $balmUI.onHide(property, fn); // property 更新为 `false`
 ```
 
 ### Props
 
-| Name       | Type     | Default     | Description                                                                  |
-| ---------- | -------- | ----------- | ---------------------------------------------------------------------------- |
-| `property` | string   | `''`        | Update a specified `vm.$data`.                                               |
-| `value`    | any      | `undefined` | New value of a specified `vm.$data`. Applicable only for `$balmUI.onChange`. |
-| `fn`       | function | `noop`      | After method to handle.                                                      |
+| Name       | Type     | Default     | Description                                            |
+| ---------- | -------- | ----------- | ------------------------------------------------------ |
+| `property` | string   | `''`        | 更新指定的 `vm.$data`                                  |
+| `value`    | any      | `undefined` | 指定 `vm.$data` 的新值。仅限 `$balmUI.onChange` 方法。 |
+| `fn`       | function | `noop`      | 更新数据后的自定义事件                                 |
 
-## 2. Optimized Custom Event
+## 2. 优化自定义事件
 
-- `balmResize` (better than `resize`)
-- `balmScroll` (better than `scroll`)
+- `balmResize`（优于 `resize`）
+- `balmScroll`（优于 `scroll`）
 
 ```js
 export default {
@@ -36,7 +36,7 @@ export default {
 };
 ```
 
-## 3. Global Communication
+## 3. 全局通信
 
 > New in 8.2.1
 
@@ -68,7 +68,7 @@ export default {
 };
 ```
 
-### Use `$bus` without `.vue` component
+### 在非 `.vue` 组件中使用 `$bus`
 
 ```js
 // `/path/to/awesome.js`

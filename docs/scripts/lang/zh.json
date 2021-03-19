@@ -23,7 +23,7 @@
     "divider": "分割线",
     "navigation": "导航",
     "drawer": "抽屉式导航",
-    "tabs": "标签页",
+    "tabs": "选项卡",
     "menu": "导航菜单",
     "pagination": "分页",
     "theme": "主题",
@@ -38,7 +38,7 @@
     "select": "选择器",
     "checkbox": "多选框",
     "radio": "单选框",
-    "chips": "选项卡",
+    "chips": "纸片",
     "file": "文件上传",
     "datepicker": "日期选择框",
     "rangepicker": "日期范围选择框",
@@ -70,7 +70,7 @@
     "ripple": "水波纹效果",
     "elevation": "层级阴影",
     "anchor": "锚点",
-    "store": "Store",
+    "store": "状态管理",
     "utils": "常用工具库"
   },
   "page": {

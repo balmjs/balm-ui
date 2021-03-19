@@ -26,6 +26,7 @@
 
   ```html
   <ui-tab-bar v-model="active"></ui-tab-bar>
+  <!-- OR -->
   <ui-tabs v-model="active"></ui-tabs>
   ```
 
@@ -36,6 +37,7 @@
     :active="active"
     @change="$balmUI.onChange('active', $event)"
   ></ui-tab-bar>
+  <!-- OR -->
   <ui-tabs
     :active="active"
     @change="$balmUI.onChange('active', $event)"

@@ -1,3 +1,3 @@
 # 导航菜单
 
-Menus display a list of choices on temporary surfaces.
+导航菜单可显示临的选项列表。

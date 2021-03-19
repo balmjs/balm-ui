@@ -17,7 +17,7 @@
 - `$theme.colors = themeColor`
 
 ```ts
-interface themeColor {
+{
   primary?: string;
   secondary?: string;
   background?: string;

@@ -35,7 +35,7 @@
 | -------- | ------------------------ | ------------------------------------------ |
 | `change` | `function(page: number)` | Emits when the pagination page is changed. |
 
-> NOTE: If you are not using `v-model`, you should listen for the select using `@change` and update the `page` prop.
+> NOTE: If you are not using `v-model`, you should listen for the pagination using `@change` and update the `page` prop.
 
 - Automatic
 

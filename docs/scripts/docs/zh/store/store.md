@@ -34,7 +34,7 @@ export default {
 };
 ```
 
-### Use `$store` without `.vue` component
+### 在非 `.vue` 组件中使用 `$store`
 
 > New in 8.19.0
 

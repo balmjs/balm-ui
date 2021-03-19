@@ -2,31 +2,35 @@
 <ui-tab><!-- The tab text label --></ui-tab>
 ```
 
-### `<ui-tab>` & `<ui-tabs>` common Props
+**`<ui-tab>` & `<ui-tabs>` 类型**
 
-| Name               | Type           | Default | Description                                                                                                      |
-| ------------------ | -------------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
-| `type`             | string, number | `0`     | Mandatory. The permutation of tab labels.                                                                        |
-| `stacked`          | boolean        | `false` | Optional. Indicates that the tab icon and label should flow vertically instead of horizontally.                  |
-| `minWidth`         | boolean        | `false` | Optional. Indicates that the tab should shrink in size to be as narrow as possible without causing text to wrap. |
-| `contentIndicator` | boolean        | `false` | Optional. Text label width-matching indicator.                                                                   |
+- `0`: `'text'`
+- `1`: `'iconOnly'`
+- `2`: `'textWithIcon'`
 
-- **Types:** `0: 'text'`, `1: 'iconOnly'`, `2: 'textWithIcon'`
+### `<ui-tab>` & `<ui-tabs>` 共用 Props
+
+| Name               | Type           | Default | Description                                          |
+| ------------------ | -------------- | ------- | ---------------------------------------------------- |
+| `type`             | string, number | `0`     | 选项卡标签类型（排列方式）                           |
+| `stacked`          | boolean        | `false` | 设置选项卡图标和标签为垂直模式（默认为水平模式）     |
+| `minWidth`         | boolean        | `false` | 设置选项卡标签的大小应缩小到尽可能窄而不引起文本换行 |
+| `contentIndicator` | boolean        | `false` | 标签文本宽度匹配指示器                               |
 
 ### `<ui-tab>` Props
 
-| Name   | Type   | Default | Description                                    |
-| ------ | ------ | ------- | ---------------------------------------------- |
-| `text` | string | `''`    | Tab text.                                      |
-| `icon` | string | `''`    | Tab icon. See [Material Icons](/#/icons) list. |
+| Name   | Type   | Default | Description                                        |
+| ------ | ------ | ------- | -------------------------------------------------- |
+| `text` | string | `''`    | 标签文本                                           |
+| `icon` | string | `''`    | 标签图标。详见 [Material Icons](/#/icons) 图标集。 |
 
 ### Slots
 
-| Name        | Props       | Description                                                 |
-| ----------- | ----------- | ----------------------------------------------------------- |
-| `default`   |             | The default slot holds the tab labels and can contain HTML. |
-| `icon`      | `iconClass` | The icon slot holds the custom icon and can contain HTML.   |
-| `indicator` |             | The indicator slot holds the tab indicator component.       |
+| Name        | Props       | Description                            |
+| ----------- | ----------- | -------------------------------------- |
+| `default`   |             | default 插槽包含选项卡标签文本 及 HTML |
+| `icon`      | `iconClass` | 自定义选项卡图标                       |
+| `indicator` |             | 自定义选项卡指示器                     |
 
 ```html
 <ui-tab>

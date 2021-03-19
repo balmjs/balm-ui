@@ -9,6 +9,9 @@
         ></ui-icon-button>
       </template>
       <span class="catalog-title">Layout Grid</span>
+      <template #toolbar="{ toolbarItemClass }">
+        <top-app-toolbar :item-class="toolbarItemClass"></top-app-toolbar>
+      </template>
     </ui-top-app-bar>
 
     <docs-page
@@ -239,6 +242,8 @@
 </template>
 
 <script>
+import TopAppToolbar from '@/components/top-app-toolbar';
+
 const wideScreenSize = 1440;
 
 const gutterOptions = [
@@ -273,6 +278,9 @@ const widthOptions = [
 export default {
   metaInfo: {
     titleTemplate: '%s - Layout Grid'
+  },
+  components: {
+    TopAppToolbar
   },
   data() {
     return {

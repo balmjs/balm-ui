@@ -57,7 +57,8 @@ export default {
   created() {
     if (this.$parent.isMasonry && this.bgImage) {
       console.warn(
-        'The `bgImage` prop is not compatible with the masonry image list, you need to set the `image` prop'
+        '[UiImageItem]',
+        `The 'bgImage' prop is not compatible with the masonry image list, you need to set the 'image' prop`
       );
     }
   },

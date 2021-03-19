@@ -138,7 +138,8 @@ export default {
         )
       ) {
         console.warn(
-          'At least one `<ui-button>` or `<ui-icon-button>` needs to be added to the <ui-dialog>'
+          '[UiDialog]',
+          `At least one <ui-button> or <ui-icon-button> needs to be added to the <ui-dialog>`
         );
       }
 

@@ -112,7 +112,7 @@ class MdcTree {
         if (Array.isArray(nodes)) {
           this.addData(treeData, item, nodes);
         } else {
-          console.warn(`[BalmUI tree]: Invalid data`);
+          console.warn('[UiTree]', 'Invalid data');
         }
       }
     } else {

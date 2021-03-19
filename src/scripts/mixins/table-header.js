@@ -114,7 +114,7 @@ export default {
           cell[this.T_CELL.STYLE] = this.cellStyle[cellIndex];
         }
       } else {
-        console.warn(`Invalid thead cell data: ${data}`);
+        console.warn('[UiTable]', `Invalid thead cell data: ${data}`);
       }
 
       return cell;

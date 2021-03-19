@@ -22,23 +22,7 @@
           </ui-menu-anchor>
         </template>
         <template v-else>
-          <ui-icon-button
-            :class="toolbarItemClass"
-            icon="file_download"
-          ></ui-icon-button>
-          <ui-icon-button
-            :class="toolbarItemClass"
-            icon="print"
-          ></ui-icon-button>
-          <ui-icon-button
-            :class="toolbarItemClass"
-            icon="bookmark"
-          ></ui-icon-button>
-          <!-- <ui-list :class="toolbarItemClass">
-            <ui-item>Menu item 1</ui-item>
-            <ui-item>Menu item 2</ui-item>
-            <ui-item>Menu item 3</ui-item>
-          </ui-list>-->
+          <top-app-toolbar :item-class="toolbarItemClass"></top-app-toolbar>
         </template>
       </template>
     </ui-top-app-bar>
@@ -109,6 +93,8 @@
 </template>
 
 <script>
+import TopAppToolbar from '@/components/top-app-toolbar';
+
 const TypeOptions = [
   {
     label: 'Standard',
@@ -143,6 +129,9 @@ const TypeOptions = [
 export default {
   metaInfo: {
     titleTemplate: '%s - Top App Bar'
+  },
+  components: {
+    TopAppToolbar
   },
   data() {
     return {

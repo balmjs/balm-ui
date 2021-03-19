@@ -34,7 +34,10 @@ export default {
       ) {
         $currentProgress.progress = value;
       } else {
-        console.warn('Progress value should be between [0, 1]');
+        console.warn(
+          '[UiProgress/UiSpinner]',
+          'The value should be between [0, 1]'
+        );
       }
     }
   }

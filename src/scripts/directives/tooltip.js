@@ -15,7 +15,10 @@ const initTooltip = (el, { value }) => {
     el.parentNode.insertBefore(newNode, el.nextElementSibling);
     new MDCTooltip(document.getElementById(id));
   } else {
-    console.warn('`aria-describedby` is required for tooltip');
+    console.warn(
+      '[v-tooltip]',
+      `The 'aria-describedby' attribute is required for the tooltip`
+    );
   }
 };
 

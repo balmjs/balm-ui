@@ -26,7 +26,7 @@ function tt(style) {
     className = `${T_BASE}--${style}`;
   } else {
     throw new Error(
-      '[BalmUI] Please set a valid typographic style:\n' +
+      '[$typography]: Please set a valid typographic style:\n' +
         JSON.stringify(globalStyles)
     );
   }

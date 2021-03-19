@@ -95,7 +95,9 @@ const BalmUI_EventPlugin = {
       Vue.prototype.$bus = bus;
       Vue.prototype.$throttle = throttle;
     } else {
-      throw new Error('[BalmUI] The namespace of the event plugin is required');
+      throw new Error(
+        '[$event]: The namespace of the event plugin is required'
+      );
     }
   }
 };

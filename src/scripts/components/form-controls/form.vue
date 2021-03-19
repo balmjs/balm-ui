@@ -101,12 +101,14 @@ export default {
     if (this.isVertical) {
       if (this.labelWidth || this.labelMarginRight) {
         throw new Error(
-          '`labelWidth`/`labelMarginRight` just for `horizontal` type form'
+          `[UiForm]: The 'labelWidth'/'labelMarginRight' prop only takes effect in the horizontal type form`
         );
       }
     } else {
       if (this.labelMarginBottom) {
-        throw new Error('`labelMarginBottom` just for `vertical` type form');
+        throw new Error(
+          `[UiForm]: The 'labelMarginBottom' prop only takes effect in the vertical type form`
+        );
       }
     }
   },

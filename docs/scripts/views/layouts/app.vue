@@ -30,39 +30,7 @@
             :icon="$store.theme === 'dark' ? 'bedtime' : 'wb_sunny'"
             @click="$store.switchTheme"
           ></ui-icon-button>-->
-          <ui-menu-anchor>
-            <ui-icon-button
-              icon="language"
-              @click="$balmUI.onShow('showTranslations')"
-            ></ui-icon-button>
-            <ui-menu v-model="showTranslations" @selected="$store.setLang">
-              <ui-menuitem
-                v-for="translation in translations"
-                :key="translation.value"
-                :item="translation"
-                :selected="translation.value === $store.lang"
-              ></ui-menuitem>
-            </ui-menu>
-          </ui-menu-anchor>
-          <ui-icon-button
-            v-tooltip="'Support BalmUI'"
-            :class="[toolbarItemClass, 'donate']"
-            icon="support"
-            aria-describedby="donate"
-            @click="$router.push({ name: 'donate' })"
-          ></ui-icon-button>
-          <a
-            href="https://github.com/balmjs/balm-ui"
-            target="_blank"
-            rel="noopener"
-          >
-            <ui-icon-button
-              :class="[toolbarItemClass, 'github']"
-              aria-describedby="github"
-            >
-              <svg-github></svg-github>
-            </ui-icon-button>
-          </a>
+          <top-app-toolbar :item-class="toolbarItemClass"></top-app-toolbar>
         </template>
       </ui-top-app-bar>
       <!-- Global Message -->
@@ -195,9 +163,9 @@
 </template>
 
 <script>
-import SvgGithub from '@/components/svg-github';
+import TopAppToolbar from '@/components/top-app-toolbar';
 import SwitchTheme from '@/components/switch-theme';
-import { VERSION, lazyLoadedTime, $MIN_WIDTH, translations } from '@/config';
+import { VERSION, lazyLoadedTime, $MIN_WIDTH } from '@/config';
 import menu from '@/config/menu';
 
 export default {
@@ -205,7 +173,7 @@ export default {
     title: 'BalmUI'
   },
   components: {
-    SvgGithub,
+    TopAppToolbar,
     SwitchTheme
   },
   data() {
@@ -219,9 +187,7 @@ export default {
       pageLoading: false,
       loadingProgress: 0,
       loadingTimer: null,
-      showGlobalMessage: false,
-      translations,
-      showTranslations: false
+      showGlobalMessage: false
     };
   },
   computed: {

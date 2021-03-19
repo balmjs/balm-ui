@@ -18,7 +18,7 @@ const goAnchor = (selector) => {
     // console.log(UI_ANCHOR.body, UI_ANCHOR.offset);
     UI_ANCHOR.body.scrollTop = anchorEl.offsetTop - UI_ANCHOR.offset;
   } else {
-    console.warn(`Invalid anchor: ${selector}`);
+    console.warn('[v-anchor]', `Invalid anchor: ${selector}`);
   }
 };
 

@@ -298,7 +298,9 @@ export default {
       if (getType(keywords) === 'string') {
         this.formatResult(keywords.trim().toLowerCase());
       } else {
-        throw new Error('[BalmUI autocomplete]: keywords must be a string');
+        throw new Error(
+          '[UiAutocomplete]: The keywords value must be a string'
+        );
       }
 
       if (
@@ -341,7 +343,10 @@ export default {
           } else if (getType(data) === 'object') {
             item = data;
           } else {
-            console.warn("DataSource's item must be a string or object");
+            console.warn(
+              '[UiAutocomplete]',
+              `The item of the 'source' prop must be a string or object`
+            );
           }
 
           return item;

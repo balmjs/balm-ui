@@ -70,7 +70,10 @@ export default {
         if (orderIndex >= 1 && orderIndex <= 12) {
           result = this.handleCell(UI_GRID_CELL.TYPE.ORDER, result, orderIndex);
         } else {
-          console.warn('Order <INDEX> is an integer between 1 and 12');
+          console.warn(
+            '[UiGridCell]',
+            'Order <INDEX> is an integer between 1 and 12'
+          );
         }
       }
 

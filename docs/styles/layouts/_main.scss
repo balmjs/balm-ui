@@ -32,6 +32,10 @@ a {
   }
 }
 
+.top-app-toolbar {
+  display: flex;
+}
+
 .global-message-banner {
   position: fixed;
   z-index: 3;

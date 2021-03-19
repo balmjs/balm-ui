@@ -184,7 +184,7 @@ export default {
           this.$slider.setValue(this.endValue); // set first
           this.$slider.setValueStart(this.startValue);
         } else {
-          console.warn('Invalid slider value');
+          console.warn('[UiSlider]', 'Invalid slider value');
         }
       } else {
         this.$slider.setValue(selectedValue);

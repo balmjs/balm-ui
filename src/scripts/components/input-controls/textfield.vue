@@ -315,7 +315,8 @@ export default {
         if (characterCounter && !this.maxlength) {
           characterCounter.parentNode.removeChild(characterCounter);
           console.warn(
-            'The `maxlength` prop is required in the `<ui-textfield>` with character counter.'
+            '[UiTextfield]',
+            `The 'maxlength' prop is required in the <ui-textfield> with character counter`
           );
         }
       }

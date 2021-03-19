@@ -137,7 +137,7 @@ export default {
 
       this.setProgress(this.progress);
     } else {
-      console.warn('Please choose correct size');
+      console.warn('[UiSpinner]', 'Please choose correct size');
     }
   }
 };

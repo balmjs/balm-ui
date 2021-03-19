@@ -96,7 +96,7 @@ export default {
   },
   created() {
     if (this.invalidIcon || (!this.activeIcon && this.inactive)) {
-      console.warn('[BalmUI icon]: Invalid dark or light icon.');
+      console.warn('[UiIcon]', 'Invalid dark or light icon');
     }
   },
   methods: {

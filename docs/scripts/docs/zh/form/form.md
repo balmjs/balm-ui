@@ -45,8 +45,8 @@
 
 #### Slots
 
-| Name      | Props                                      | Description                                                 |
-| --------- | ------------------------------------------ | ----------------------------------------------------------- |
-| `default` | `itemClass`, `subitemClass`, `actionClass` | The default slot holds the form items and can contain HTML. |
+| Name      | Props                                      | Description                   |
+| --------- | ------------------------------------------ | ----------------------------- |
+| `default` | `itemClass`, `subitemClass`, `actionClass` | default 插槽包含表单项及 HTML |
 
 > `itemClass` 和 `subitemClass` 是 8.18.0 新增 prop

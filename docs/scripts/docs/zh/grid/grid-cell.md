@@ -2,23 +2,23 @@
 <ui-grid-cell><!-- the grid cell content --></ui-grid-cell>
 ```
 
-| Name      | Type           | Default | Description                                               |
-| --------- | -------------- | ------- | --------------------------------------------------------- |
-| `nested`  | boolean        | `false` | The nested layout grid.                                   |
-| `columns` | number, object | `4`     | Optional, specifies the number of columns the cell spans. |
-| `order`   | number         | `0`     | Optional, specifies the order of the cell.                |
-| `align`   | string         | `''`    | Optional, specifies the alignment of cell.                |
+| Name      | Type           | Default | Description          |
+| --------- | -------------- | ------- | -------------------- |
+| `nested`  | boolean        | `false` | 开启嵌套栅格布局     |
+| `columns` | number, object | `4`     | 指定单元格跨越的列数 |
+| `order`   | number         | `0`     | 指定单元格的顺序     |
+| `align`   | string         | `''`    | 指定单元格的对齐方式 |
 
-- The `columns` and `order` range are between 1 and 12
-- The `align` position: `'top'`, `'middle'`, `'bottom'`
+- `columns` 和 `order` 属性值的范围在 1 到 12 之间
+- `align` 属性方向：`'top'`, `'middle'` 或 `'bottom'`
 
 ### Slots
 
-| Name      | Props | Description                                                        |
-| --------- | ----- | ------------------------------------------------------------------ |
-| `default` |       | The default slot holds the grid cell content and can contain HTML. |
+| Name      | Props | Description                       |
+| --------- | ----- | --------------------------------- |
+| `default` |       | default 插槽包含单元格内容及 HTML |
 
-> When your contents need extra structure that cannot be supported by single layout grid, you can nest layout grid within each other. To nest layout grid, using `<ui-grid-cell nested>`.
+> 当你的内容需要额外结构且单个栅格布局无法支持时，可以将栅格布局彼此嵌套。 开启嵌套栅格布局，请使用 `<ui-grid-cell nested>`
 
 ```html
 <ui-grid>

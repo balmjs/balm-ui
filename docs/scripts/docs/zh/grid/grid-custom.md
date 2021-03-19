@@ -1,28 +1,28 @@
-## Manual custom grid for global
+## 手动自定义全局栅格属性
 
 ```js
 $setGrid(property, size, value);
 ```
 
-| Param      | Type   | Default | Description                                                 |
-| ---------- | ------ | ------- | ----------------------------------------------------------- |
-| `property` | string | `''`    | Grid custom property: `margin`, `gutter` or `column-width`. |
-| `size`     | string | `''`    | The target platform: `desktop`, `tablet` or `phone`.        |
-| `value`    | string | `''`    | Grid custom value.                                          |
+| Param      | Type   | Default | Description                                    |
+| ---------- | ------ | ------- | ---------------------------------------------- |
+| `property` | string | `''`    | 栅格属性：`margin`, `gutter` 或 `column-width` |
+| `size`     | string | `''`    | 目标平台：`desktop`, `tablet` 或 `phone`       |
+| `value`    | string | `''`    | 自定义栅格值                                   |
 
-### Grid properties
+### 栅格属性说明
 
-- `margin`: the size of the grid margin.
-- `gutter`: the size of the gutter between cells.
-- `column-width`: the width of the column within the grid.
+- `margin`: 栅格边距的大小
+- `gutter`: 单元之间的装订线的大小
+- `column-width`: 栅格内列的宽度
 
-### Use `$setGrid` without `.vue` component
+### 在非 `.vue` 组件中使用 `$setGrid`
 
 > New in 8.1.0
 
 ```js
 import { useGrid } from 'balm-ui';
-// OR
+// 或
 // import { useGrid } from 'balm-ui/plugins/grid';
 
 const $setGrid = useGrid();

@@ -13,12 +13,12 @@
 </ui-drawer>
 ```
 
-| Component                 | Description                                                                                                        |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| `<ui-drawer>`             | Mandatory.                                                                                                         |
-| `<ui-drawer-header>`      | Non-scrollable element that exists at the top of the drawer.                                                       |
-| `<ui-drawer-content>`     | Scrollable content area of the drawer.                                                                             |
-| `<ui-drawer-title>`       | Title text element of the drawer.                                                                                  |
-| `<ui-drawer-subtitle>`    | Subtitle text element of the drawer.                                                                               |
-| `<ui-drawer-app-content>` | Mandatory for `<ui-drawer type="dismissible">` only. Sibling element that is resized when the drawer opens/closes. |
-| `<ui-drawer-backdrop>`    | Mandatory for `<ui-drawer type="modal">` only. Used for the overlay on the app content.                            |
+| Component                 | Description                                                                    |
+| ------------------------- | ------------------------------------------------------------------------------ |
+| `<ui-drawer>`             | （父元素）导航布局元素                                                         |
+| `<ui-drawer-header>`      | （子元素）导航顶部元素（不可滚动）                                             |
+| `<ui-drawer-content>`     | （子元素）导航内容元素（可滚动）                                               |
+| `<ui-drawer-title>`       | （子元素）导航主标题元素                                                       |
+| `<ui-drawer-subtitle>`    | （子元素）导航副标题元素                                                       |
+| `<ui-drawer-app-content>` | 导航打开/关闭时调整大小的同级元素。仅限应用于 `<ui-drawer type="dismissible">` |
+| `<ui-drawer-backdrop>`    | 用于遮盖应用内容。仅限应用于 `<ui-drawer type="modal">`                        |

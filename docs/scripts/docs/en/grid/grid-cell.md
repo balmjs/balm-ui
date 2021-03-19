@@ -9,8 +9,8 @@
 | `order`   | number         | `0`     | Optional, specifies the order of the cell.                |
 | `align`   | string         | `''`    | Optional, specifies the alignment of cell.                |
 
-- The `columns` and `order` range are between 1 and 12
-- The `align` position: `'top'`, `'middle'`, `'bottom'`
+- The `columns` and `order` prop value range are between 1 and 12
+- The `align` prop position: `'top'`, `'middle'` or `'bottom'`
 
 ### Slots
 

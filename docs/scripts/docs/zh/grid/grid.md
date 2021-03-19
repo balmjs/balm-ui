@@ -4,13 +4,13 @@
 
 ### Props
 
-| Name               | Type    | Default | Description                                                                                 |
-| ------------------ | ------- | ------- | ------------------------------------------------------------------------------------------- |
-| `fixedColumnWidth` | boolean | `false` | Optional, specifies the grid should have fixed column width.                                |
-| `position`         | string  | `''`    | Optional, specifies the alignment of the whole grid. (Grid position: `'left'` or `'right'`) |
+| Name               | Type    | Default | Description                                     |
+| ------------------ | ------- | ------- | ----------------------------------------------- |
+| `fixedColumnWidth` | boolean | `false` | 指定栅格应具有固定的列宽                        |
+| `position`         | string  | `''`    | 指定整个栅格的对齐方式（`'left'` 或 `'right'`） |
 
 ### Slots
 
-| Name      | Props | Description                                                |
-| --------- | ----- | ---------------------------------------------------------- |
-| `default` |       | The default slot holds the grid cell and can contain HTML. |
+| Name      | Props | Description                               |
+| --------- | ----- | ----------------------------------------- |
+| `default` |       | default 插槽包含 `<ui-grid-cell>` 及 HTML |

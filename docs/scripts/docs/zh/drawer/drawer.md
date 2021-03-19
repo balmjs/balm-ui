@@ -2,52 +2,52 @@
 <ui-drawer><!-- the drawer child components --></ui-drawer>
 ```
 
-**`<ui-drawer>` Types**
+**`<ui-drawer>` 类型**
 
 - `0`: `'permanent'`
 - `1`: `'dismissible'`
 - `2`: `'modal'`
 
-**NOTE:**
+**提示：**
 
-- `<ui-drawer>` (`type="permanent"`) has not props and events.
-- `<ui-drawer type="dismissible">` and `<ui-drawer type="modal">` must be including a `<ui-nav>`. And the first `<ui-nav-item>` needs to apply activated state in the drawer.
+- 默认的 `<ui-drawer>` (`type="permanent"`) 没有属性和事件
+- `<ui-drawer type="dismissible">` 和 `<ui-drawer type="modal">` 必须包含一个 `<ui-nav>`。而且导航中的第一个 `<ui-nav-item>` 默认必须为激活状态。
 
 ### Props
 
-| Name               | Type           | Default | Description                                                                                                       |
-| ------------------ | -------------- | ------- | ----------------------------------------------------------------------------------------------------------------- |
-| `type`             | string, number | `0`     | Mandatory. Button types.                                                                                          |
-| `navId`            | string         | `null`  | The external menu button selector. (Please refer to the `navId` prop of the [top app bar](/#/layout/top-app-bar)) |
-| `open` (`v-model`) | boolean        | `false` | The drawer toggle state.                                                                                          |
-| `viewportHeight`   | boolean        | `false` | Viewport full height(`100vh`) .                                                                                   |
+| Name               | Type           | Default | Description                                                                       |
+| ------------------ | -------------- | ------- | --------------------------------------------------------------------------------- |
+| `type`             | string, number | `0`     | 抽屉式导航类型                                                                    |
+| `navId`            | string         | `null`  | 外部菜单按钮选择器（请参考 [top app bar](/#/layout/top-app-bar) 的 `navId` 属性） |
+| `open` (`v-model`) | boolean        | `false` | 导航切换的状态                                                                    |
+| `viewportHeight`   | boolean        | `false` | 设置视窗全高度（`100vh`）                                                         |
 
 ### Slots
 
-| Name      | Props | Description                                         |
-| --------- | ----- | --------------------------------------------------- |
-| `default` |       | The default slot holds the drawer child components. |
+| Name      | Props | Description                  |
+| --------- | ----- | ---------------------------- |
+| `default` |       | default 插槽包含导航的子元素 |
 
-**Child components:**
+**子元素：**
 
 - `<ui-drawer-header>`
 - `<ui-drawer-content>`
 
 ### Events
 
-| Name  | Type                      | Description                                |
-| ----- | ------------------------- | ------------------------------------------ |
-| `nav` | `function(open: boolean)` | Emits when the drawer is opened or closed. |
+| Name  | Type                      | Description    |
+| ----- | ------------------------- | -------------- |
+| `nav` | `function(open: boolean)` | 导航开关时触发 |
 
-> NOTE: If you are not using `v-model`, you should listen for the drawer using `@nav` and update the `open` prop.
+> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@nav` 监听抽屉式导航切换状态并更新 `open` 属性
 
-- Automatic
+- 自动
 
   ```html
   <ui-drawer type="modal" v-model="open"></ui-drawer>
   ```
 
-- Manual
+- 手动
 
   ```html
   <ui-drawer

@@ -1,10 +1,24 @@
 ## 1. Event Shortcut
 
-```js
-$balmUI.onChange(property, value, fn); // update property to `new value`
-$balmUI.onOpen(property, fn); / $balmUI.onShow(property, fn); // update property to `true`
-$balmUI.onClose(property, fn); / $balmUI.onHide(property, fn); // update property to `false`
-```
+- update the data object of the Vue instance to `new value`
+
+  ```ts
+  $balmUI.onChange(property: string, value: any, fn?: Function);
+  ```
+
+- update the data object of the Vue instance to `true`
+
+  ```ts
+  $balmUI.onOpen(property: string, fn?: Function);
+  $balmUI.onShow(property: string, fn?: Function);
+  ```
+
+- update the data object of the Vue instance to `false`
+
+  ```ts
+  $balmUI.onClose(property: string, fn?: Function);
+  $balmUI.onHide(property: string, fn?: Function);
+  ```
 
 ### Props
 
@@ -19,30 +33,30 @@ $balmUI.onClose(property, fn); / $balmUI.onHide(property, fn); // update propert
 - `balmResize` (better than `resize`)
 - `balmScroll` (better than `scroll`)
 
-```js
-export default {
-  mounted() {
-    this.init();
-    window.addEventListener('balmResize', this.init);
-  },
-  beforeDestroy() {
-    window.removeEventListener('balmResize', this.init);
-  },
-  methods: {
-    init() {
-      // ...
+  ```js
+  export default {
+    mounted() {
+      this.init();
+      window.addEventListener('balmResize', this.init);
+    },
+    beforeDestroy() {
+      window.removeEventListener('balmResize', this.init);
+    },
+    methods: {
+      init() {
+        // ...
+      }
     }
-  }
-};
-```
+  };
+  ```
 
 ## 3. Global Communication
 
 > New in 8.2.1
 
-```js
-$bus.on(eventName, callback); // Listen for a custom event on the current vm.
-$bus.emit(eventName, ...args); // Trigger an event on the current instance.
+```ts
+$bus.on(eventName: string | string[], callback: Function); // Listen for a custom event on the current vm.
+$bus.emit(eventName: string, ...args); // Trigger an event on the current instance.
 ```
 
 ### Props

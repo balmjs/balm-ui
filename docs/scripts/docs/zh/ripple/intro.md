@@ -1,3 +1,3 @@
 # 水波纹效果
 
-The Ripple provides the JavaScript and CSS required to provide components (or any element at all) with a material "ink ripple" interaction effect. It is designed to be efficient, uninvasive, and usable without adding any extra DOM to your elements.
+水波纹效果向组件（或任何元素）提供实质性“墨水波纹”交互效果。 它被设计为高效，无创且可用的，而无需向您的元素中添加任何额外的 DOM。

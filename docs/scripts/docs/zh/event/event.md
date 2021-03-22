@@ -1,10 +1,24 @@
 ## 1. 事件缩写
 
-```js
-$balmUI.onChange(property, value, fn); // property 更新为 `new value`
-$balmUI.onOpen(property, fn); / $balmUI.onShow(property, fn); // property 更新为 `true`
-$balmUI.onClose(property, fn); / $balmUI.onHide(property, fn); // property 更新为 `false`
-```
+- 更新 Vue 实例的数据对象为 `new value`
+
+  ```ts
+  $balmUI.onChange(property: string, value: any, fn?: Function);
+  ```
+
+- 更新 Vue 实例的数据对象为 `true`
+
+  ```ts
+  $balmUI.onOpen(property: string, fn?: Function);
+  $balmUI.onShow(property: string, fn?: Function);
+  ```
+
+- 更新 Vue 实例的数据对象为 `false`
+
+  ```ts
+  $balmUI.onClose(property: string, fn?: Function);
+  $balmUI.onHide(property: string, fn?: Function);
+  ```
 
 ### Props
 
@@ -19,39 +33,39 @@ $balmUI.onClose(property, fn); / $balmUI.onHide(property, fn); // property 更�
 - `balmResize`（优于 `resize`）
 - `balmScroll`（优于 `scroll`）
 
-```js
-export default {
-  mounted() {
-    this.init();
-    window.addEventListener('balmResize', this.init);
-  },
-  beforeDestroy() {
-    window.removeEventListener('balmResize', this.init);
-  },
-  methods: {
-    init() {
-      // ...
+  ```js
+  export default {
+    mounted() {
+      this.init();
+      window.addEventListener('balmResize', this.init);
+    },
+    beforeDestroy() {
+      window.removeEventListener('balmResize', this.init);
+    },
+    methods: {
+      init() {
+        // ...
+      }
     }
-  }
-};
-```
+  };
+  ```
 
 ## 3. 全局通信
 
 > New in 8.2.1
 
-```js
-$bus.on(eventName, callback); // Listen for a custom event on the current vm.
-$bus.emit(eventName, ...args); // Trigger an event on the current instance.
+```ts
+$bus.on(eventName: string | string[], callback: Function); // 监听当前 Vue 实例的自定义事件
+$bus.emit(eventName: string, ...args); // 触发当前 Vue 实例的自定义事件
 ```
 
 ### Props
 
-| Name        | Type     | Default | Description                                     |
-| ----------- | -------- | ------- | ----------------------------------------------- |
-| `eventName` | string   |         | Custom event name for the global communication. |
-| `args`      | any      |         | The arguments of custom event function.         |
-| `callback`  | function |         | Custom event function.                          |
+| Name        | Type     | Default | Description                      |
+| ----------- | -------- | ------- | -------------------------------- |
+| `eventName` | string   |         | 全局通信的自定义事件的名称       |
+| `args`      | any      |         | 全局通信的自定义事件的方法的参数 |
+| `callback`  | function |         | 全局通信的自定义事件的方法       |
 
 ```js
 // `/path/to/awesome.vue`
@@ -74,7 +88,7 @@ export default {
 // `/path/to/awesome.js`
 
 import { useBus } from 'balm-ui';
-// OR
+// 或
 // import { useBus } from 'balm-ui/plugins/event';
 
 const $bus = useBus();

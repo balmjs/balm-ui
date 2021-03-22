@@ -17,12 +17,12 @@
 </ui-panels>
 ```
 
-| Component            | Description                                    |
-| -------------------- | ---------------------------------------------- |
-| `<ui-tabs>`          | The shorthand for `<ui-tab-bar>` + `<ui-tab>`. |
-| `<ui-tab-bar>`       | Tab item container.                            |
-| `<ui-tab>`           | Tab item.                                      |
-| `<ui-panels>`        | Tab panel container.                           |
-| `<ui-panel>`         | Tab panel.                                     |
-| `<ui-tab-indicator>` | Contains the custom tab indicator content.     |
-| `<ui-tab-scroller>`  | Contains the custom tab scroller content.      |
+| Component            | Description                                                |
+| -------------------- | ---------------------------------------------------------- |
+| `<ui-tabs>`          | The shorthand for `<ui-tab-bar>` + `<ui-tab>`.             |
+| `<ui-tab-bar>`       | (Parent element) Tab item container.                       |
+| `<ui-tab>`           | (Child element) Tab item.                                  |
+| `<ui-panels>`        | (Parent element) Tab panel container.                      |
+| `<ui-panel>`         | (Child element) Tab panel.                                 |
+| `<ui-tab-indicator>` | (Child element) Contains the custom tab indicator content. |
+| `<ui-tab-scroller>`  | Contains the custom tab scroller content.                  |

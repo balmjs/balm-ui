@@ -9,14 +9,12 @@
       <ui-textfield-icon trailing>delete</ui-textfield-icon>
     </template>
   </ui-textfield>
-  <ui-textfield-helper withCounter>
-    Helper message
-  </ui-textfield-helper>
+  <ui-textfield-helper with-counter> Helper message </ui-textfield-helper>
 </ui-form-field>
 ```
 
 | Component               | Description                                                         |
 | ----------------------- | ------------------------------------------------------------------- |
-| `<ui-textfield>`        | Mandatory.                                                          |
-| `<ui-textfield-icon>`   | Mandatory for leading/trailing icons.                               |
+| `<ui-textfield>`        | (Parent element) Mandatory.                                         |
+| `<ui-textfield-icon>`   | (Child element) Mandatory for leading/trailing icons.               |
 | `<ui-textfield-helper>` | Styles the container of helper text and character counter elements. |

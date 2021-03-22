@@ -23,10 +23,10 @@
 </ui-menu-anchor>
 ```
 
-| Component            | Description      |
-| -------------------- | ---------------- |
-| `<ui-menu-anchor>`   | 菜单锚定容器元素 |
-| `<ui-menu>`          | 菜单容器元素     |
-| `<ui-menuitem>`      | 菜单项           |
-| `<ui-menuitem-text>` | 菜单文本         |
-| `<ui-menuitem-icon>` | 菜单图标         |
+| Component            | Description            |
+| -------------------- | ---------------------- |
+| `<ui-menu-anchor>`   | 菜单锚定容器元素       |
+| `<ui-menu>`          | （父元素）菜单容器元素 |
+| `<ui-menuitem>`      | （子元素）菜单项       |
+| `<ui-menuitem-text>` | （子元素）菜单文本     |
+| `<ui-menuitem-icon>` | （子元素）菜单图标     |

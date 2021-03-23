@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ui-icon> renders a dark and inactive/disabled icon 1`] = `
+<i
+  aria-hidden="true"
+  class="material-icons md-dark md-inactive"
+/>
+`;
+
+exports[`<ui-icon> renders a dark icon 1`] = `
+<i
+  aria-hidden="true"
+  class="material-icons md-dark"
+/>
+`;
+
+exports[`<ui-icon> renders a default icon 1`] = `
+<i
+  aria-hidden="true"
+  class="material-icons"
+/>
+`;
+
+exports[`<ui-icon> renders a light and inactive/disabled icon 1`] = `
+<i
+  aria-hidden="true"
+  class="material-icons md-light md-inactive"
+/>
+`;
+
+exports[`<ui-icon> renders a light icon 1`] = `
+<i
+  aria-hidden="true"
+  class="material-icons md-light"
+/>
+`;
+
+exports[`<ui-icon> renders a round icon 1`] = `
+<i
+  aria-hidden="true"
+  class="material-icons material-icons-round"
+/>
+`;
+
+exports[`<ui-icon> renders a sharp icon 1`] = `
+<i
+  aria-hidden="true"
+  class="material-icons material-icons-sharp"
+/>
+`;
+
+exports[`<ui-icon> renders a two-tone icon 1`] = `
+<i
+  aria-hidden="true"
+  class="material-icons material-icons-two-tone"
+/>
+`;
+
+exports[`<ui-icon> renders an icon with size 0 1`] = `
+<i
+  aria-hidden="true"
+  class="material-icons"
+/>
+`;
+
+exports[`<ui-icon> renders an icon with size of 18 1`] = `
+<i
+  aria-hidden="true"
+  class="material-icons md-18"
+/>
+`;
+
+exports[`<ui-icon> renders an invalid dark icon 1`] = `
+<i
+  aria-hidden="true"
+  class="material-icons"
+/>
+`;
+
+exports[`<ui-icon> renders an outlined icon 1`] = `
+<i
+  aria-hidden="true"
+  class="material-icons material-icons-outlined"
+/>
+`;

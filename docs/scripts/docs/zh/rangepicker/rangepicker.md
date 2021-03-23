@@ -4,36 +4,36 @@
 
 ### Props
 
-| Name                | Type    | Default | Description                                                                                                             |
-| ------------------- | ------- | ------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `outlined`          | boolean | `false` | Styles the rangepicker as an outlined text field. (`labels` or `placeholders` required)                                 |
-| `model` (`v-model`) | array   | `''`    | Mandatory.                                                                                                              |
-| `disabled`          | boolean | `false` | Styles the rangepicker as a disabled text field.                                                                        |
-| `labels`            | array   | `[]`    | A text caption or description for the rangepicker, which use the start and end input's `placeholder` attribute instead. |
-| `placeholders`      | array   | `[]`    | The _placeholder_ attribute of the start and end `<input>`.                                                             |
-| `config`            | object  | `{}`    | See [Flatpickr configuration](https://flatpickr.js.org/options/).                                                       |
+| Name                | Type    | Default | Description                                                       |
+| ------------------- | ------- | ------- | ----------------------------------------------------------------- |
+| `outlined`          | boolean | `false` | 轮廓文本框（必须配置 `label` 或 `placeholder`）                   |
+| `model` (`v-model`) | array   | `''`    | 日期范围选择框值                                                  |
+| `disabled`          | boolean | `false` | 禁用状态                                                          |
+| `labels`            | array   | `[]`    | 文本框的文本标题或说明，可使用文本框的 `placeholder` 属性代替     |
+| `placeholders`      | array   | `[]`    | 原生 `<input>` 的 _placeholder_ 属性                              |
+| `config`            | object  | `{}`    | 详见 [Flatpickr configuration](https://flatpickr.js.org/options/) |
 
 ### Slots
 
-| Name        | Props | Description           |
-| ----------- | ----- | --------------------- |
-| `separator` |       | The custom separator. |
+| Name        | Props | Description  |
+| ----------- | ----- | ------------ |
+| `separator` |       | 自定义分隔符 |
 
 ### Events
 
-| Name     | Type                     | Description                                  |
-| -------- | ------------------------ | -------------------------------------------- |
-| `change` | `function(value: array)` | Emits when the rangepicker value is changed. |
+| Name     | Type                     | Description                |
+| -------- | ------------------------ | -------------------------- |
+| `change` | `function(value: array)` | 日期范围选择框值变化时触发 |
 
-> NOTE: If you are not using `v-model`, you should listen for the rangepicker using `@change` and update the `model` prop.
+> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@change` 监听日期范围选择框值并更新 `model` 属性
 
-- Automatic
+- 自动
 
   ```html
   <ui-rangepicker v-model="value"></ui-rangepicker>
   ```
 
-- Manual
+- 手动
 
   ```html
   <ui-rangepicker

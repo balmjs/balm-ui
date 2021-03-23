@@ -6,41 +6,41 @@
 
 | Name                 | Type            | Default                                 | Description                                                           | Version |
 | -------------------- | --------------- | --------------------------------------- | --------------------------------------------------------------------- | ------- |
-| `model` (`v-model`)  | string          | `''`                                    | Mandatory.                                                            |         |
-| `options`            | object          | `{}`                                    | See [Quill options](https://quilljs.com/docs/configuration/#options). |         |
-| `toolbar`            | array, string   | null                                    | Custom or `'full'` editor toolbar.                                    |         |
-| `placeholder`        | string          | `null`                                  | Placeholder text to show when editor is empty.                        |         |
-| `readonly`           | boolean         | `false`                                 | Whether to instantiate the editor to read-only mode.                  |         |
-| `theme`              | string          | `'snow'`                                | Name of theme to use. (`'bubble'` or `'snow'`)                        |         |
-| `toolbarIcons`       | object          | `{}`                                    | Custom toolbar icons.                                                 | 8.6.0   |
-| `toolbarTips`        | object          | `{}`                                    | Custom toolbar tooltips.                                              | 8.8.0   |
-| `toolbarOptions`     | object          | `{ font: [], size: [], lineheight:[] }` | Custom toolbar options of the Font Famliy, Font Size and Line Height. | 8.6.0   |
-| `toolbarHandlers`    | object          | `{}`                                    | Custom toolbar handlers.                                              |         |
-| `customImageHandler` | boolean         | `false`                                 | Enable custom image handler.                                          |         |
-| `emotions`           | array           | `[]`                                    | The emoticon extension. Supports `emoji` and `image`.                 |         |
-| `withCounter`        | boolean         | `false`                                 | Styles the editor with an internal character counter.                 | 8.6.0   |
-| `extension`          | `false`, object | `false`                                 | Custom extension for Quill.                                           |         |
+| `model` (`v-model`)  | string          | `''`                                    | 富文本值                                                              |         |
+| `options`            | object          | `{}`                                    | 详见 [Quill options](https://quilljs.com/docs/configuration/#options) |         |
+| `toolbar`            | array, string   | null                                    | 富文本工具栏配置（自定义或 `'full'`)                                  |         |
+| `placeholder`        | string          | `null`                                  | 当编辑器为空时显示的占位符文本                                        |         |
+| `readonly`           | boolean         | `false`                                 | 只读模式                                                              |         |
+| `theme`              | string          | `'snow'`                                | 主题样式（`'bubble'` 或 `'snow'`）                                    |         |
+| `toolbarIcons`       | object          | `{}`                                    | 自定义工具栏图标                                                      | 8.6.0   |
+| `toolbarTips`        | object          | `{}`                                    | 自定义工具栏图标提示文本                                              | 8.8.0   |
+| `toolbarOptions`     | object          | `{ font: [], size: [], lineheight:[] }` | 自定义工具栏的字体，文字大小和行高                                    | 8.6.0   |
+| `toolbarHandlers`    | object          | `{}`                                    | 自定义工具栏事件处理                                                  |         |
+| `customImageHandler` | boolean         | `false`                                 | 启用自定义图片事件处理                                                |         |
+| `emotions`           | array           | `[]`                                    | 表情扩展。支持 `emoji` 和 `image`                                     |         |
+| `withCounter`        | boolean         | `false`                                 | 启用内部计数器                                                        | 8.6.0   |
+| `extension`          | `false`, object | `false`                                 | 自定义 Quill 扩展                                                     |         |
 
-#### `toolbar` prop
+#### `toolbar` 属性
 
-- Defaults:
+- 官方默认工具
   - `align`/`direction`/`indent`
   - `background`/`color`/`font`/`size`
   - `blockquote`/`code-block`/`header`/`list`
   - `bold`/`italic`/`link`/`script`/`strike`/`underline`
   - `image`/`video`
-- Extensions:
-  - `font`/`size`/`lineheight`: custom Font Famliy, Font Size and Line Height
-  - `image`: custom image upload handler
-  - `emoji`: emoji module
-  - `divider`: horizontal rule
-  - `textindent`: like `indent`, but for inline
-  - `linkoff`: remove all links in editor
-  - `counter`: character counter module
-  - `undo`/`redo`: built-in undo/redo handling
-  - `selectall`: select all content in editor
+- BalmUI 扩展工具
+  - `font`/`size`/`lineheight`: 自定义字体，文字大小和行高
+  - `image`: 自定义图片上传处理
+  - `emoji`: 表情模块
+  - `divider`: 水平分割线
+  - `textindent`: 内联的文本缩进（类似 `indent`）
+  - `linkoff`: 清除所有链接
+  - `counter`: 计数器模块
+  - `undo`/`redo`: 内置的撤销和重做处理
+  - `selectall`: 选中全部内容
 
-#### `toolbarOptions` & `emotions` format for global
+#### `toolbarOptions` 和 `emotions` 全局配置
 
 - `/path/to/app/scripts/config/editor.js`
 
@@ -74,6 +74,7 @@
   };
 
   const toolbarOptions = {
+    // 自定义 Font Family 需对应配置 Sass 变量 `$font-family`
     font: [
       'Arial',
       'Arial Black',
@@ -187,7 +188,7 @@
   });
   ```
 
-#### `toolbarHandlers` prop
+#### `toolbarHandlers` 属性
 
 ```js
 {
@@ -198,8 +199,8 @@
 }
 ```
 
-- `quill.insert(customFormat, value) => {}`: insert content into the editor
-- `quill.insert('html', content)`: insert html into the editor (New in 8.9.0)
+- `quill.insert(customFormat, value) => {}`: 向富文本插入内容
+- `quill.insert('html', content)`: 向富文本 HTML (New in 8.9.0)
 
 #### Encode & Decode Emoji
 
@@ -207,31 +208,31 @@
 <ui-editor ref="editor" v-model="content"></ui-editor>
 ```
 
-- `this.$refs.editor.decodeEmoji(content): html`: get back-end data → set front-end view
-- `this.$refs.editor.encodeEmoji(html): content`: submit front-end data → save back-end data
+- `this.$refs.editor.decodeEmoji(content): html`: 获取服务端数据 → 设置客户端展示
+- `this.$refs.editor.encodeEmoji(html): content`: 提交客户端数据 → 保存服务端数据
 
 ### Slots
 
-| Name      | Props | Description                                                            |
-| --------- | ----- | ---------------------------------------------------------------------- |
-| `toolbar` |       | The toolbar slot holds the custom format buttons and can contain HTML. |
+| Name      | Props | Description                           |
+| --------- | ----- | ------------------------------------- |
+| `toolbar` |       | toolbar 插槽包含自定义工具按钮及 HTML |
 
 ### Events
 
-| Name          | Type                        | Description                                                                                              |
-| ------------- | --------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `change`      | `function(content: string)` | Emits when the editor text content is changed.                                                           |
-| `file-change` | `function(file, insert)`    | `customImageHandler` required. (Insert uploaded image content into the editor by `insert(url)` function) |
+| Name          | Type                        | Description                                                                  |
+| ------------- | --------------------------- | ---------------------------------------------------------------------------- |
+| `change`      | `function(content: string)` | 富文本值变化时触发                                                           |
+| `file-change` | `function(file, insert)`    | 需要配置 `customImageHandler`（通过 `insert(url)` 方法向富文本插入上传图片） |
 
-> NOTE: If you are not using `v-model`, you should listen for the editor using `@change` and update the `model` prop.
+> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@change` 监听富文本值并更新 `model` 属性
 
-- Automatic
+- 自动
 
   ```html
   <ui-editor v-model="content"></ui-editor>
   ```
 
-- Manual
+- 手动
 
   ```html
   <ui-editor

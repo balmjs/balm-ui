@@ -1,3 +1,3 @@
 # 滑动条
 
-Sliders allow users to make selections from a range of values.
+滑动条允许用户从一系列值中进行选择。

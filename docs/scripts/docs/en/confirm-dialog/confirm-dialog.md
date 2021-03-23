@@ -1,10 +1,11 @@
-```js
-// Usage 1
-$confirm(message);
+- `$confirm(message)`
+- `$confirm(options)`
 
-// Usage 2
-$confirm(options);
-```
+  ```ts
+  interface VueInstance {
+    $confirm(options: string | object): Promise<boolean>;
+  }
+  ```
 
 ### Options
 

@@ -1,6 +1,10 @@
-```js
-$validate(formData, customFieldset);
-```
+- `$validate(formData, customFieldset)`
+
+  ```ts
+  interface VueInstance {
+    $validate(formData: object, customFieldset?: string[]);
+  }
+  ```
 
 | Param            | Type   | Default | Description                                   |
 | ---------------- | ------ | ------- | --------------------------------------------- |
@@ -80,22 +84,48 @@ export default {
 
 - Set validations for the dynamic form
 
-```ts
-// New in 8.23.0
-$validations.clear();
-$validations.get(fieldName?: string); // show current validation rule(s)
-$validations.set(fieldName: string, validationRule: object);
-$validations.set(validationRules: object);
-```
+  - `$validations.clear()`
+  - `$validations.get(fieldName)`
+  - `$validations.set(fieldName, validationRule)`
+  - `$validations.set(validationRules)`
 
-> - <del>`$resetValidations()`</del> is deprecated in 8.17.0
-> - <del>`$setValidations()`</del> is deprecated in 8.23.0
+  > - <del>`$resetValidations()`</del> is deprecated in 8.17.0
+  > - <del>`$setValidations()`</del> is deprecated in 8.23.0
 
-| Param         | Type   | Default | Description                                               |
-| ------------- | ------ | ------- | --------------------------------------------------------- |
-| `fieldName`   | string | `''`    | A field name of the formdata. (BalmUI validator rule key) |
-| `validation`  | object | `{}`    | A validation. (BalmUI validator rule value)               |
-| `validations` | object | `{}`    | (See) BalmUI validator rules.                             |
+  ```ts
+  interface BalmUIValidationRule {
+    label: string;
+    validator: string;
+    customRule?: {
+      validate(fieldValue: any, formData: object): boolean;
+      message: string;
+    };
+  }
+
+  type BalmUICustomValidationsObject = {
+    [fieldName: string]: BalmUIValidationRule;
+  };
+
+  // New in 8.23.0
+  interface BalmUIValidations {
+    clear(): void;
+    get(
+      fieldName?: string
+    ): BalmUICustomValidationsObject | BalmUIValidationRule; // show current validation rule(s)
+    set(fieldName: string, validationRule: BalmUIValidationRule): void;
+    set(validationRules: BalmUICustomValidationsObject): void;
+  }
+
+  interface VueInstance {
+    $validations: BalmUIValidations;
+  }
+  ```
+
+| Param         | Type   | Default | Description                                                 |
+| ------------- | ------ | ------- | ----------------------------------------------------------- |
+| `fieldName`   | string | `''`    | A field name of the `formData`. (BalmUI validator rule key) |
+| `validation`  | object | `{}`    | A validation. (BalmUI validator rule value)                 |
+| `validations` | object | `{}`    | (See) BalmUI validator rules.                               |
 
 - For the dynamic form verification:
 

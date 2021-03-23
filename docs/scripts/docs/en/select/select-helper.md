@@ -4,11 +4,11 @@
 
 ### Props
 
-| Name                   | Type            | Default | Description                                        |
-| ---------------------- | --------------- | ------- | -------------------------------------------------- |
-| `validMsg` (`v-model`) | string, boolean | `false` | Indicates the helper text is a validation message. |
-| `id`                   | string          | `null`  | Mandatory.                                         |
-| `visible`              | boolean         | `false` | Makes the helper text permanently visible.         |
+| Name                   | Type            | Default | Description                                                                  |
+| ---------------------- | --------------- | ------- | ---------------------------------------------------------------------------- |
+| `validMsg` (`v-model`) | string, boolean | `false` | Indicates the helper text is a validation message.                           |
+| `id`                   | string          | `null`  | Mandatory. (Corresponding to the `helperTextId` prop matching `<ui-select>`) |
+| `visible`              | boolean         | `false` | Makes the helper text permanently visible.                                   |
 
 ### Slots
 

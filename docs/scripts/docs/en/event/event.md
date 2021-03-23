@@ -1,32 +1,50 @@
 ## 1. Event Shortcut
 
-- update the data object of the Vue instance to `new value`
+- `$balmUI`
 
   ```ts
-  $balmUI.onChange(property: string, value: any, fn?: Function);
+  interface BalmUIEvent {
+    onChange(property: string, value: any, fn?: Function);
+
+    onOpen(property: string, fn?: Function);
+    onShow(property: string, fn?: Function);
+
+    onClose(property: string, fn?: Function);
+    onHide(property: string, fn?: Function);
+  }
+
+  interface VueInstance {
+    $balmUI: BalmUIEvent;
+  }
   ```
 
-- update the data object of the Vue instance to `true`
+  - update the data object of the Vue instance to `new value`
 
-  ```ts
-  $balmUI.onOpen(property: string, fn?: Function);
-  $balmUI.onShow(property: string, fn?: Function);
-  ```
+    ```js
+    $balmUI.onChange(property, value);
+    ```
 
-- update the data object of the Vue instance to `false`
+  - update the data object of the Vue instance to `true`
 
-  ```ts
-  $balmUI.onClose(property: string, fn?: Function);
-  $balmUI.onHide(property: string, fn?: Function);
-  ```
+    ```js
+    $balmUI.onOpen(property);
+    $balmUI.onShow(property);
+    ```
+
+  - update the data object of the Vue instance to `false`
+
+    ```js
+    $balmUI.onClose(property);
+    $balmUI.onHide(property);
+    ```
 
 ### Props
 
-| Name       | Type     | Default     | Description                                                                  |
-| ---------- | -------- | ----------- | ---------------------------------------------------------------------------- |
-| `property` | string   | `''`        | Update a specified `vm.$data`.                                               |
-| `value`    | any      | `undefined` | New value of a specified `vm.$data`. Applicable only for `$balmUI.onChange`. |
-| `fn`       | function | `noop`      | After method to handle.                                                      |
+| Name       | Type     | Default     | Description                                                                                |
+| ---------- | -------- | ----------- | ------------------------------------------------------------------------------------------ |
+| `property` | string   | `''`        | Update a specified Vue instance data object.                                               |
+| `value`    | any      | `undefined` | New value of a specified Vue instance data object. Applicable only for `$balmUI.onChange`. |
+| `fn`       | function | `noop`      | After method to handle.                                                                    |
 
 ## 2. Optimized Custom Event
 
@@ -54,10 +72,19 @@
 
 > New in 8.2.1
 
-```ts
-$bus.on(eventName: string | string[], callback: Function); // Listen for a custom event on the current vm.
-$bus.emit(eventName: string, ...args); // Trigger an event on the current instance.
-```
+- `$bus.on(eventName, callback)`
+- `$bus.emit(eventName, ...args)`
+
+  ```ts
+  interface BalmUIEventBus {
+    on(eventName: string | string[], callback: Function); // Listen for a custom event on the current vm.
+    emit(eventName: string, ...args); // Trigger an event on the current instance.
+  }
+
+  interface VueInstance {
+    $bus: BalmUIEventBus;
+  }
+  ```
 
 ### Props
 

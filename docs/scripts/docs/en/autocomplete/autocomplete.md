@@ -27,8 +27,8 @@
 | `withTrailingIcon`  | boolean, string | `false`                              | Styles the autocomplete as a text field with a trailing icon. (Use with `after` slot)                                                                                                                                                   |         |
 
 - **`source`** prop. There are two supported formats:
-  - An array of strings: `[ 'Choice1', 'Choice2' ]`
-  - An array of objects with `label` and `value` properties: `[ { label: 'Choice1', value: 'value1' }, ... ]`
+  - String array: `[ 'Choice1', 'Choice2' ]`
+  - Object array (The object must contain `label` and `value` key): `[ { label: 'Choice1', value: 'value1' }, ... ]`
     > You can customize your properties by `sourceFormat` prop
 
 ### Slots
@@ -49,13 +49,13 @@
 
 - `selected` event return data:
 
-```js
-{
-  label: 'Choice 1',
-  value: 'value 1',
-  // more custom fields
-}
-```
+  ```js
+  {
+    label: 'Choice 1',
+    value: 'value 1',
+    // more custom fields
+  }
+  ```
 
 > NOTE: If you are not using `v-model`, you should listen for the autocomplete using `@input` and update the `model` prop.
 

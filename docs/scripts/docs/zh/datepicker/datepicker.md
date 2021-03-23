@@ -2,28 +2,36 @@
 <ui-datepicker></ui-datepicker>
 ```
 
+**`<ui-datepicker>` 在 `config.mode` 属性中的类型**
+
+- single（默认）
+- multiple
+- range
+- month
+- time
+
 ### Props
 
-| Name                | Type                  | Default | Description                                                                                                                            |
-| ------------------- | --------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `outlined`          | boolean               | `false` | Styles the datepicker as an outlined text field. (`label` or `placeholder` required)                                                   |
-| `model` (`v-model`) | string, number, array | `''`    | Mandatory.                                                                                                                             |
-| `inputId`           | string                | `null`  | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`.                                                          |
-| `label`             | string                | `''`    | A text caption or description for the datepicker, which use the input's `placeholder` attribute instead.                               |
-| `placeholder`       | string                | `null`  | The _placeholder_ attribute of the `<input>`.                                                                                          |
-| `disabled`          | boolean               | `false` | Styles the datepicker as a disabled text field.                                                                                        |
-| `required`          | boolean               | `false` | Styles the datepicker as a required text field.                                                                                        |
-| `fullwidth`         | boolean               | `false` | Styles the datepicker as a full width text field.                                                                                      |
-| `endAligned`        | boolean               | `false` | Styles the datepicker with an end-aligned input.                                                                                       |
-| `icon`              | string                | `''`    | Optional. Indicates an icon element with a leading icon. See [Material Icons](/#/icons) list. (No need to configure `withLeadingIcon`) |
-| `withLeadingIcon`   | boolean, string       | `false` | Styles the datepicker as a text field with a leading icon. (Use with `before` slot)                                                    |
-| `withTrailingIcon`  | boolean, string       | `false` | Styles the datepicker as a text field with a trailing icon. (Use with `after` slot)                                                    |
-| `config`            | object                | `{}`    | See [Flatpickr configuration](https://flatpickr.js.org/options/).                                                                      |
-| `toggle`            | boolean               | `false` | Show calendar icon button.                                                                                                             |
-| `clear`             | boolean               | `false` | Show clear icon button.                                                                                                                |
-| `monthOptions`      | object                | `{}`    | See [Flatpickr month select options](https://flatpickr.js.org/plugins/#monthselectplugin). (New in `7.4.2`)                            |
+| Name                | Type                  | Default | Description                                                                                | Version |
+| ------------------- | --------------------- | ------- | ------------------------------------------------------------------------------------------ | ------- |
+| `outlined`          | boolean               | `false` | 轮廓文本框（必须配置 `label` 或 `placeholder`）                                            |         |
+| `model` (`v-model`) | string, number, array | `''`    | 日期选择框值                                                                               |         |
+| `inputId`           | string                | `null`  | 原生 `<input>` 的 _id_ 属性和 `<label>` 的 _for_ 属性                                      |         |
+| `label`             | string                | `''`    | 文本框的文本标题或说明，可使用文本框的 `placeholder` 属性代替                              |         |
+| `placeholder`       | string                | `null`  | 原生 `<input>` 的 _placeholder_ 属性                                                       |         |
+| `disabled`          | boolean               | `false` | 禁用状态                                                                                   |         |
+| `required`          | boolean               | `false` | 必填字段样                                                                                 |         |
+| `fullwidth`         | boolean               | `false` | 全屏宽度样式                                                                               |         |
+| `endAligned`        | boolean               | `false` | 输入文本右对齐                                                                             |         |
+| `icon`              | string                | `''`    | 设置首图标。详见 [Material Icons](/#/icons) 图标集。                                       |         |
+| `withLeadingIcon`   | boolean, string       | `false` | 启用首图标样（需使用 `before` 插槽）                                                       |         |
+| `withTrailingIcon`  | boolean, string       | `false` | 启用尾图标样式（需使用 `after` 插槽）                                                      |         |
+| `config`            | object                | `{}`    | 详见 [Flatpickr configuration](https://flatpickr.js.org/options/)                          |         |
+| `toggle`            | boolean               | `false` | 显示日历图标按钮                                                                           |         |
+| `clear`             | boolean               | `false` | 显示清除图标按钮                                                                           |         |
+| `monthOptions`      | object                | `{}`    | 详见 [Flatpickr month select options](https://flatpickr.js.org/plugins/#monthselectplugin) | 7.4.2   |
 
-- For localization
+- 多语言
 
 ```html
 <ui-datepicker :config="config"></ui-datepicker>
@@ -45,29 +53,29 @@ export default {
 
 ### Slots
 
-| Name      | Props       | Description                                                                    |
-| --------- | ----------- | ------------------------------------------------------------------------------ |
-| `default` |             | The default slot holds the label for the datepicker.                           |
-| `before`  | `iconClass` | The before slot holds a custom leading icon.                                   |
-| `after`   | `iconClass` | The before slot holds a custom trailing icon. (When `withTrailingIcon = true`) |
-| `toggle`  |             | The custom toggle icon button. (When `withTrailingIcon = false`)               |
-| `clear`   |             | The custom clear icon button. (When `withTrailingIcon = false`)                |
+| Name      | Props       | Description                                      |
+| --------- | ----------- | ------------------------------------------------ |
+| `default` |             | default 插槽包含文本框标题或说明文字             |
+| `before`  | `iconClass` | 自定义首图标                                     |
+| `after`   | `iconClass` | 自定义尾图标（`withTrailingIcon = true`）        |
+| `toggle`  |             | 自定义日历图标按钮（`withTrailingIcon = false`） |
+| `clear`   |             | 自定义清除图标按钮（`withTrailingIcon = false`） |
 
 ### Events
 
-| Name     | Type                             | Description                                 |
-| -------- | -------------------------------- | ------------------------------------------- |
-| `change` | `function(value: string\|array)` | Emits when the datepicker value is changed. |
+| Name     | Type                             | Description            |
+| -------- | -------------------------------- | ---------------------- |
+| `change` | `function(value: string\|array)` | 日期选择框值变化时触发 |
 
-> NOTE: If you are not using `v-model`, you should listen for the datepicker using `@change` and update the `model` prop.
+> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@change` 监听日期选择框值并更新 `model` 属性
 
-- Automatic
+- 自动
 
   ```html
   <ui-datepicker v-model="value"></ui-datepicker>
   ```
 
-- Manual
+- 手动
 
   ```html
   <ui-datepicker

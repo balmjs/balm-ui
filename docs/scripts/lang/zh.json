@@ -36,7 +36,7 @@
     "autocomplete": "自动完成",
     "editor": "富文本",
     "select": "选择器",
-    "checkbox": "多选框",
+    "checkbox": "复选框",
     "radio": "单选框",
     "chips": "纸片",
     "file": "文件上传",

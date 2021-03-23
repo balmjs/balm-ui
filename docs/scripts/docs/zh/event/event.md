@@ -1,32 +1,50 @@
 ## 1. 事件缩写
 
-- 更新 Vue 实例的数据对象为 `new value`
+- `$balmUI`
 
   ```ts
-  $balmUI.onChange(property: string, value: any, fn?: Function);
+  interface BalmUIEvent {
+    onChange(property: string, value: any, fn?: Function);
+
+    onOpen(property: string, fn?: Function);
+    onShow(property: string, fn?: Function);
+
+    onClose(property: string, fn?: Function);
+    onHide(property: string, fn?: Function);
+  }
+
+  interface VueInstance {
+    $balmUI: BalmUIEvent;
+  }
   ```
 
-- 更新 Vue 实例的数据对象为 `true`
+  - 更新 Vue 实例的数据对象为 `new value`
 
-  ```ts
-  $balmUI.onOpen(property: string, fn?: Function);
-  $balmUI.onShow(property: string, fn?: Function);
-  ```
+    ```js
+    $balmUI.onChange(property, value);
+    ```
 
-- 更新 Vue 实例的数据对象为 `false`
+  - 更新 Vue 实例的数据对象为 `true`
 
-  ```ts
-  $balmUI.onClose(property: string, fn?: Function);
-  $balmUI.onHide(property: string, fn?: Function);
-  ```
+    ```js
+    $balmUI.onOpen(property);
+    $balmUI.onShow(property);
+    ```
+
+  - 更新 Vue 实例的数据对象为 `false`
+
+    ```js
+    $balmUI.onClose(property);
+    $balmUI.onHide(property);
+    ```
 
 ### Props
 
-| Name       | Type     | Default     | Description                                            |
-| ---------- | -------- | ----------- | ------------------------------------------------------ |
-| `property` | string   | `''`        | 更新指定的 `vm.$data`                                  |
-| `value`    | any      | `undefined` | 指定 `vm.$data` 的新值。仅限 `$balmUI.onChange` 方法。 |
-| `fn`       | function | `noop`      | 更新数据后的自定义事件                                 |
+| Name       | Type     | Default     | Description                                                 |
+| ---------- | -------- | ----------- | ----------------------------------------------------------- |
+| `property` | string   | `''`        | 更新指定的 Vue 实例对象数据                                 |
+| `value`    | any      | `undefined` | 指定 Vue 实例对象数据的新值。仅限 `$balmUI.onChange` 方法。 |
+| `fn`       | function | `noop`      | 更新数据后的自定义事件                                      |
 
 ## 2. 优化自定义事件
 
@@ -54,10 +72,19 @@
 
 > New in 8.2.1
 
-```ts
-$bus.on(eventName: string | string[], callback: Function); // 监听当前 Vue 实例的自定义事件
-$bus.emit(eventName: string, ...args); // 触发当前 Vue 实例的自定义事件
-```
+- `$bus.on(eventName, callback)`
+- `$bus.emit(eventName, ...args)`
+
+  ```ts
+  interface BalmUIEventBus {
+    on(eventName: string | string[], callback: Function); // 监听当前 Vue 实例的自定义事件
+    emit(eventName: string, ...args); // 触发当前 Vue 实例的自定义事件
+  }
+
+  interface VueInstance {
+    $bus: BalmUIEventBus;
+  }
+  ```
 
 ### Props
 

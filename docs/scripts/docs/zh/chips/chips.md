@@ -5,7 +5,7 @@
 </ui-chips>
 ```
 
-**`<ui-chips>` Types**
+**`<ui-chips>` 类型**
 
 - `0`: `'action'`
 - `1`: `'input'`
@@ -14,42 +14,36 @@
 
 ### Props
 
-| Name                | Type                  | Default   | Description                                                                                                                      |
-| ------------------- | --------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `type`              | string, number        | `0`       | Mandatory. Chips types.                                                                                                          |
-| `model` (`v-model`) | string, number, array | `-1`      | Mandatory. Single or multiple selection from a set of options.                                                                   |
-| `options`           | array                 | `[]`      | An array of options to show to the user. Applicable only for choice or filter chips. (Default option format: `{ label, value }`) |
-| `optionLabel`       | string                | `'label'` | Option item label's key field name of the `options`.                                                                             |
-| `optionValue`       | string                | `'value'` | Option item value's key field name of the `options`.                                                                             |
-| `chips`             | array                 | `[]`      | A set of chips. Applicable only for updating the input chips.                                                                    |
-
-> `options`, `optionLabel`, `optionValue`: New in 7.2.0
+| Name                | Type                  | Default   | Description                                          | Version |
+| ------------------- | --------------------- | --------- | ---------------------------------------------------- | ------- |
+| `type`              | string, number        | `0`       | 纸片类型                                             |         |
+| `model` (`v-model`) | string, number, array | `-1`      | 纸片选项值。从一组选项中选择一个或多个。             |         |
+| `options`           | array                 | `[]`      | 设置纸片选项列表（默认选项格式：`{ label, value }`） | 7.2.0   |
+| `optionLabel`       | string                | `'label'` | 选项格式 label 的字段名                              | 7.2.0   |
+| `optionValue`       | string                | `'value'` | 选项格式 value 的字段名                              | 7.2.0   |
+| `chips`             | array                 | `[]`      | 一组纸片选项。仅适用于更新输入类型(`input`)的纸片    |         |
 
 ### Slots
 
-| Name      | Props | Description                                                      |
-| --------- | ----- | ---------------------------------------------------------------- |
-| `default` |       | The default slot holds the chip components and can contain HTML. |
-
-**Child components:**
-
-- `<ui-chip>`
+| Name      | Props | Description                         |
+| --------- | ----- | ----------------------------------- |
+| `default` |       | default 插槽包含纸片选项组件及 HTML |
 
 ### Events
 
-| Name     | Type                             | Description                      |
-| -------- | -------------------------------- | -------------------------------- |
-| `change` | `function(model: number\|array)` | Emits when the chips is changed. |
+| Name     | Type                             | Description          |
+| -------- | -------------------------------- | -------------------- |
+| `change` | `function(model: number\|array)` | 纸片选项值变化时触发 |
 
-> NOTE: If you are not using `v-model`, you should listen for the chips using `@change` and update the `model` prop.
+> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@change` 监听纸片选项值并更新 `model` 属性
 
-- Automatic
+- 自动
 
   ```html
   <ui-chips v-model="selected"></ui-chips>
   ```
 
-- Manual
+- 手动
 
   ```html
   <ui-chips

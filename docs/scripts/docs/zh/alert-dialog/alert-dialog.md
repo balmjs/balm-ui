@@ -1,10 +1,11 @@
-```js
-// Usage 1
-$alert(message);
+- `$alert(message)`
+- `$alert(options)`
 
-// Usage 2
-$alert(options);
-```
+  ```ts
+  interface VueInstance {
+    $alert(options: string | object): Promise<void>;
+  }
+  ```
 
 ### Options
 

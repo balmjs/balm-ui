@@ -1,8 +1,15 @@
 ## Manual custom grid for global
 
-```js
-$setGrid(property, size, value);
-```
+- `$setGrid(property, size, value)`
+
+  ```ts
+  type GridProperty = 'margin' | 'gutter' | 'column-width';
+  type GridSize = 'desktop' | 'tablet' | 'phone';
+
+  interface VueInstance {
+    $setGrid(property: GridProperty, size: GridSize, value: string): void;
+  }
+  ```
 
 | Param      | Type   | Default | Description                                                 |
 | ---------- | ------ | ------- | ----------------------------------------------------------- |

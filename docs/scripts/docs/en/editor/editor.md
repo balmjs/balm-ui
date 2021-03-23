@@ -23,13 +23,13 @@
 
 #### `toolbar` prop
 
-- Defaults:
+- Official default tools:
   - `align`/`direction`/`indent`
   - `background`/`color`/`font`/`size`
   - `blockquote`/`code-block`/`header`/`list`
   - `bold`/`italic`/`link`/`script`/`strike`/`underline`
   - `image`/`video`
-- Extensions:
+- BalmUI extension tools:
   - `font`/`size`/`lineheight`: custom Font Famliy, Font Size and Line Height
   - `image`: custom image upload handler
   - `emoji`: emoji module
@@ -74,6 +74,7 @@
   };
 
   const toolbarOptions = {
+    // To customize Font Family, you need to configure the Sass variable `$font-family`
     font: [
       'Arial',
       'Arial Black',

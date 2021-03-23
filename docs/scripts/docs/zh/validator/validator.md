@@ -1,13 +1,17 @@
-```js
-$validate(formData, customFieldset);
-```
+- `$validate(formData, customFieldset)`
 
-| Param            | Type   | Default | Description                                   |
-| ---------------- | ------ | ------- | --------------------------------------------- |
-| `formData`       | object | `{}`    | Mandatory. A form data object.                |
-| `customFieldset` | array  | `[]`    | Optional. The field names of the validations. |
+  ```ts
+  interface VueInstance {
+    $validate(formData: object, customFieldset?: string[]);
+  }
+  ```
 
-- **BalmUI validator rules** format:
+| Param            | Type   | Default | Description                |
+| ---------------- | ------ | ------- | -------------------------- |
+| `formData`       | object | `{}`    | 一组表单数据对象           |
+| `customFieldset` | array  | `[]`    | 可选。需要验证的字段名称。 |
+
+- **BalmUI 验证器规则** 格式：
 
 ```js
 {
@@ -23,7 +27,7 @@ $validate(formData, customFieldset);
 }
 ```
 
-- Usage in a vue component:
+- 在 vue 组件中的用法：
 
 ```js
 const validations = {
@@ -67,39 +71,65 @@ export default {
 };
 ```
 
-| Result          | Type    | Description                                            |
-| --------------- | ------- | ------------------------------------------------------ |
-| `valid`         | boolean | The validator result.                                  |
-| `validFields`   | array   | Valid fields.                                          |
-| `invalidFields` | array   | Invalid fields.                                        |
-| `message`       | string  | The message of the first invalid field.                |
-| `messages`      | array   | The messages of all invalid fields.                    |
-| `validMsg`      | object  | The messages as an object. (Same format as `formData`) |
+| Result          | Type    | Description                         |
+| --------------- | ------- | ----------------------------------- |
+| `valid`         | boolean | 验证结果                            |
+| `validFields`   | array   | 通过验证的字段                      |
+| `invalidFields` | array   | 未通过验证的字段                    |
+| `message`       | string  | 第一个未通过验证的字段提示语        |
+| `messages`      | array   | 所有未通过验证的字段提示语          |
+| `validMsg`      | object  | 提示语对象化（格式类似 `formData`） |
 
-> NOTE: `validMsg` can be used with `<ui-textfield-helper>`/`<ui-select-helper>` to trigger the `<ui-textfield>`/`<ui-select>` invalid styling
+> 提示：`validMsg` 可以和 `<ui-textfield-helper>`/`<ui-select-helper>` 一起使用来触发 `<ui-textfield>`/`<ui-select>` 的无效输入样式
 
-- Set validations for the dynamic form
+- 验证动态表单
 
-```ts
-// New in 8.23.0
-$validations.clear();
-$validations.get(fieldName?: string); // show current validation rule(s)
-$validations.set(fieldName: string, validationRule: object);
-$validations.set(validationRules: object);
-```
+  - `$validations.clear()`
+  - `$validations.get(fieldName)`
+  - `$validations.set(fieldName, validationRule)`
+  - `$validations.set(validationRules)`
 
-> - <del>`$resetValidations()`</del> is deprecated in 8.17.0
-> - <del>`$setValidations()`</del> is deprecated in 8.23.0
+  > - <del>`$resetValidations()`</del> is deprecated in 8.17.0
+  > - <del>`$setValidations()`</del> is deprecated in 8.23.0
 
-| Param         | Type   | Default | Description                                               |
-| ------------- | ------ | ------- | --------------------------------------------------------- |
-| `fieldName`   | string | `''`    | A field name of the formdata. (BalmUI validator rule key) |
-| `validation`  | object | `{}`    | A validation. (BalmUI validator rule value)               |
-| `validations` | object | `{}`    | (See) BalmUI validator rules.                             |
+  ```ts
+  interface BalmUIValidationRule {
+    label: string;
+    validator: string;
+    customRule?: {
+      validate(fieldValue: any, formData: object): boolean;
+      message: string;
+    };
+  }
 
-- For the dynamic form verification:
+  type BalmUICustomValidationsObject = {
+    [fieldName: string]: BalmUIValidationRule;
+  };
 
-  - 1. using `computed`
+  // New in 8.23.0
+  interface BalmUIValidations {
+    clear(): void;
+    get(
+      fieldName?: string
+    ): BalmUICustomValidationsObject | BalmUIValidationRule; // 显示当前已设置的验证规则
+    set(fieldName: string, validationRule: BalmUIValidationRule): void;
+    set(validationRules: BalmUICustomValidationsObject): void;
+  }
+
+  interface VueInstance {
+    $validations: BalmUIValidations;
+  }
+  ```
+
+| Param         | Type   | Default | Description                                          |
+| ------------- | ------ | ------- | ---------------------------------------------------- |
+| `fieldName`   | string | `''`    | `formData` 的一个字段名称（BalmUI 验证器规则的 key） |
+| `validation`  | object | `{}`    | 一个验证规则（BalmUI 验证器规则的 value）            |
+| `validations` | object | `{}`    | 详见上方 BalmUI 验证器规则                           |
+
+- 动态表单验证方式：
+
+  - 1. 使用 `computed`
 
     ```js
     export default {
@@ -138,7 +168,7 @@ $validations.set(validationRules: object);
     };
     ```
 
-  - 2. using `customFieldset` for `$validate`
+  - 2. 使用 `$validate` 的 `customFieldset` 参数
 
     ```js
     export default {
@@ -171,7 +201,7 @@ $validations.set(validationRules: object);
     };
     ```
 
-  - 3. using `$validations.set`
+  - 3. 使用 `$validations.set`
 
     ```js
     export default {

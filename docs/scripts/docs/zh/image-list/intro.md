@@ -1,3 +1,3 @@
 # 图片列表
 
-Image lists display a collection of images in an organized grid.
+图片列表在有组织的网格中显示图片的集合。

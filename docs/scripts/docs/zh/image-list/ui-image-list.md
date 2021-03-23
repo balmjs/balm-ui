@@ -6,8 +6,8 @@
 </ui-image-list>
 ```
 
-| Component         | Description                                                                                                                 |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `<ui-image-list>` | Mandatory. Indicates the root Image List element.                                                                           |
-| `<ui-image-item>` | Mandatory. Indicates each item in an Image List.                                                                            |
-| `<ui-image-text>` | Optional. Indicates the area within each item containing the supporting text label, if the Image List contains text labels. |
+| Component         | Description              |
+| ----------------- | ------------------------ |
+| `<ui-image-list>` | 图片列表元素             |
+| `<ui-image-item>` | 图片列表项元素           |
+| `<ui-image-text>` | 图片列表项的文字标签元素 |

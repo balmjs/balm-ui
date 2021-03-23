@@ -4,9 +4,9 @@
 
 ### `<ui-tab-bar>` & `<ui-tabs>` 共用 Props
 
-| Name                 | Type   | Default | Description          |
-| -------------------- | ------ | ------- | -------------------- |
-| `active` (`v-model`) | number | `0`     | 激动的选项卡标签索引 |
+| Name                 | Type   | Default | Description      |
+| -------------------- | ------ | ------- | ---------------- |
+| `active` (`v-model`) | number | `0`     | 选项卡标签索引值 |
 
 ### `<ui-tab-bar>` Slots
 

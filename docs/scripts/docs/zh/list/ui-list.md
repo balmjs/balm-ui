@@ -39,16 +39,16 @@
 </ui-nav>
 ```
 
-| Component                   | Description                                                                                                                    |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| `<ui-list>`/`<ui-nav>`      | Mandatory, for the list element.                                                                                               |
-| `<ui-item>`/`<ui-nav-item>` | Mandatory, for the list item element.                                                                                          |
-| `<ui-item-text-content>`    | Mandatory. Wrapper for list item text content (displayed as middle column of the list item).                                   |
-| `<ui-item-text1>`           | Optional, primary text for the list item. Should be the child of `<ui-item-text-content>`.                                     |
-| `<ui-item-text2>`           | Optional, secondary text for the list item. Displayed below the primary text. Should be the child of `<ui-item-text-content>`. |
-| `<ui-item-first-content>`   | Optional, the first tile in the row (in LTR languages, the first column of the list item). Typically an icon or image.         |
-| `<ui-item-last-content>`    | Optional, the last tile in the row (in LTR languages, the last column of the list item). Typically small text, icon. or image. |
-| `<ui-list-group>`           | Optional, wrapper around two or more `<ui-list>` elements to be grouped together.                                              |
-| `<ui-list-group-subheader>` | Optional, heading text displayed above each list in a group.                                                                   |
-| `<ui-list-divider>`         | Optional, for list divider element.                                                                                            |
-| `<ui-item-divider>`         | Optional, for list item divider element.                                                                                       |
+| Component                   | Description                                                                      |
+| --------------------------- | -------------------------------------------------------------------------------- |
+| `<ui-list>`/`<ui-nav>`      | 列表元素                                                                         |
+| `<ui-item>`/`<ui-nav-item>` | 列表项元素                                                                       |
+| `<ui-item-text-content>`    | 列表项文本内容容器（显示为列表项的中间列）                                       |
+| `<ui-item-text1>`           | 列表项的主要文字。应该是 `<ui-item-text-content>` 的子元素。                     |
+| `<ui-item-text2>`           | 列表项的次要文字。显示在主要文字下方。应该是 `<ui-item-text-content>` 的子元素。 |
+| `<ui-item-first-content>`   | 列表项每行的第一个区块。通常是图标或图像。                                       |
+| `<ui-item-last-content>`    | 列表项每行的最后一个区块。通常为小文字，图标或图像。                             |
+| `<ui-list-group>`           | 分组列表容器。两个或多个要分组在一起的 `<ui-list>` 元素的容器                    |
+| `<ui-list-group-subheader>` | 分组列表标题。标题文本显示在组中每个列表上方。                                   |
+| `<ui-list-divider>`         | 列表分割线                                                                       |
+| `<ui-item-divider>`         | 列表项分割线                                                                     |

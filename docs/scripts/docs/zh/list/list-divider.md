@@ -6,7 +6,7 @@
 
 ### Common Props
 
-| Name     | Type    | Default | Description                                                                                            |
-| -------- | ------- | ------- | ------------------------------------------------------------------------------------------------------ |
-| `padded` | boolean | `false` | Optional, leaves gaps on each side of divider to match padding of the last tile.                       |
-| `inset`  | boolean | `false` | Optional, increases the leading margin of the divider so that it does not intersect the avatar column. |
+| Name     | Type    | Default | Description                                            |
+| -------- | ------- | ------- | ------------------------------------------------------ |
+| `padded` | boolean | `false` | 在分隔线的每一侧都留有间隙，以匹配最后一个图块的填充。 |
+| `inset`  | boolean | `false` | 增加分隔线的前导边距，以使其不与图标或图像列相交。     |

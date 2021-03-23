@@ -13,8 +13,8 @@
 </ui-form-field>
 ```
 
-| Component               | Description                   |
-| ----------------------- | ----------------------------- |
-| `<ui-textfield>`        | （父元素）文本框元素          |
-| `<ui-textfield-icon>`   | （子元素）文本框首/尾图标元素 |
-| `<ui-textfield-helper>` | 帮助文本和字符计数器元素      |
+| Component               | Description              |
+| ----------------------- | ------------------------ |
+| `<ui-textfield>`        | 文本框元素               |
+| `<ui-textfield-icon>`   | 文本框首/尾图标元素      |
+| `<ui-textfield-helper>` | 帮助文本和字符计数器元素 |

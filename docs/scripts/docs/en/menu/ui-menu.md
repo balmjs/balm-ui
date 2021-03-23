@@ -23,10 +23,10 @@
 </ui-menu-anchor>
 ```
 
-| Component            | Description                                                                                                                                                                              |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `<ui-menu-anchor>`   | Used to indicate which element the menu should be anchored to.                                                                                                                           |
-| `<ui-menu>`          | (Parent element) Required on the root element.                                                                                                                                           |
-| `<ui-menuitem>`      | (Child element) A menu item.                                                                                                                                                             |
-| `<ui-menuitem-text>` | (Child element) A menu item text.                                                                                                                                                        |
-| `<ui-menuitem-icon>` | (Child element) Required when using a `<ui-menuitem nested>` to indicate which item is selected. Should contain an icon or svg that indicates the selected state of the `<ui-menuitem>`. |
+| Component            | Description                                                                                                                                                              |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `<ui-menu-anchor>`   | Used to indicate which element the menu should be anchored to.                                                                                                           |
+| `<ui-menu>`          | Required on the root element.                                                                                                                                            |
+| `<ui-menuitem>`      | A menu item.                                                                                                                                                             |
+| `<ui-menuitem-text>` | A menu item text.                                                                                                                                                        |
+| `<ui-menuitem-icon>` | Required when using a `<ui-menuitem nested>` to indicate which item is selected. Should contain an icon or svg that indicates the selected state of the `<ui-menuitem>`. |

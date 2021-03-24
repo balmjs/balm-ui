@@ -18,7 +18,7 @@
 - 菜单项对象的 keys:
 
   ```ts
-  {
+  interface MenuItem {
     value: string;
     text: string;
     icon: string;
@@ -47,7 +47,7 @@
 - `selected` 事件返回数据：
 
   ```ts
-  {
+  interface SelectedMenuItem {
     index: number; // 菜单项索引
     text: string; // 菜单项文本
     value: string; // 选中值

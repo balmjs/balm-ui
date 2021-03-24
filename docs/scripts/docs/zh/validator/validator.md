@@ -13,63 +13,63 @@
 
 - **BalmUI 验证器规则** 格式：
 
-```js
-{
-  fieldName1: {
-    validate(fieldValue, formData) {
-      // Validation method
-      return true;
-    },
-    message: '%s is required'
-  },
-  // More rules
-  // fieldName2: { ... }
-}
-```
-
-- 在 vue 组件中的用法：
-
-```js
-const validations = {
-  fieldName1: {
-    label: 'Field Label1',
-    validator: 'required, customRule1',
-    customRule1: {
+  ```js
+  {
+    fieldName1: {
       validate(fieldValue, formData) {
         // Validation method
         return true;
       },
-      message: 'Invalid format'
-    }
-    // customRule2: {}
+      message: '%s is required'
+    },
+    // More rules
+    // fieldName2: { ... }
   }
-  // fieldName2: {}
-};
+  ```
 
-export default {
-  // Define validator
-  validations,
-  data() {
-    return {
-      formData: {
-        fieldName: ''
+- 在 vue 组件中的用法：
+
+  ```js
+  const validations = {
+    fieldName1: {
+      label: 'Field Label1',
+      validator: 'required, customRule1',
+      customRule1: {
+        validate(fieldValue, formData) {
+          // Validation method
+          return true;
+        },
+        message: 'Invalid format'
       }
-    };
-  },
-  methods: {
-    onSubmit() {
-      let {
-        valid,
-        validFields,
-        invalidFields,
-        message,
-        messages,
-        validMsg
-      } = this.$validate(this.formData);
+      // customRule2: {}
     }
-  }
-};
-```
+    // fieldName2: {}
+  };
+
+  export default {
+    // Define validator
+    validations,
+    data() {
+      return {
+        formData: {
+          fieldName: ''
+        }
+      };
+    },
+    methods: {
+      onSubmit() {
+        let {
+          valid,
+          validFields,
+          invalidFields,
+          message,
+          messages,
+          validMsg
+        } = this.$validate(this.formData);
+      }
+    }
+  };
+  ```
 
 | Result          | Type    | Description                         |
 | --------------- | ------- | ----------------------------------- |

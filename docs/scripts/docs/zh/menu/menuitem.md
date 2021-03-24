@@ -15,7 +15,7 @@
 - 菜单项对象的 keys：
 
   ```ts
-  {
+  interface MenuItem {
     value: string;
     text: string;
     icon: string;

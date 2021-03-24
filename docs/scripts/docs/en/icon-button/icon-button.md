@@ -13,9 +13,11 @@
 - Configuring the toggle button states by `toggle.on` and `toggle.off` props
 
   ```ts
-  {
-    on: string;
-    off: string;
+  interface IconButton {
+    toggle: {
+      on: string;
+      off: string;
+    };
   }
   ```
 

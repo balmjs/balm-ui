@@ -18,7 +18,7 @@
 - The keys of the menuitem:
 
   ```ts
-  {
+  interface MenuItem {
     value: string;
     text: string;
     icon: string;
@@ -47,10 +47,10 @@
 - `selected` event return data:
 
   ```ts
-  {
-    index: number, // menuitem index
-    text: string, // menuitem text
-    value: string // selected value
+  interface SelectedMenuItem {
+    index: number; // menuitem index
+    text: string; // menuitem text
+    value: string; // selected value
   }
   ```
 

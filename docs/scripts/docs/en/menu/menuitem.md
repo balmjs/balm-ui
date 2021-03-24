@@ -15,7 +15,7 @@
 - The keys of a menu item object:
 
   ```ts
-  {
+  interface MenuItem {
     value: string;
     text: string;
     icon: string;

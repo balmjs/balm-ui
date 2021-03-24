@@ -4,6 +4,6 @@
 
 ### Slots
 
-| Name      | Props | Description                                                         |
-| --------- | ----- | ------------------------------------------------------------------- |
-| `default` |       | The default slot holds the card media content and can contain HTML. |
+| Name      | Props | Description                         |
+| --------- | ----- | ----------------------------------- |
+| `default` |       | default 插槽包含卡片媒体内容及 HTML |

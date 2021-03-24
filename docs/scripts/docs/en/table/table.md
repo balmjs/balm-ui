@@ -21,13 +21,13 @@
 | `defaultColWidth`          | number          | `100`                    | Set the default column width for the fixed table.                | 8.16.0  |
 | `scroll`                   | object          | `{ x: false, y: false }` | Set the table container size for the fixed table.                | 8.16.0  |
 
-- `thead` & `tbody` & `tfoot` items common format
+- `thead` & `tbody` & `tfoot` props common format
 
   ```ts
-  {
+  interface TableCell {
     value: string; // Cell content
     numeric: boolean; // Numeric cell is displayed right (Equivalent to `align: 'right'`)
-    align: string; // Text alignment: 'left'|'center'|'right'
+    align: 'left' | 'center' | 'right'; // Text alignment
     class: string; // Custom classname
     slot: string; // Custom slot for cell
   }
@@ -51,15 +51,15 @@
   - custom items (`object[]` or `object[][]`)
 
     ```ts
-    {
-      sort: string; // Sorting: 'none'|'asc'|'desc'
+    interface Thead {
+      sort: 'none' | 'asc' | 'desc'; // Sorting
       columnId: string; // sort field, e.g. 'id'
       rowspan: number;
       colspan: number;
     }
     ```
 
-    > `columnId` field: New in `7.0.0`, if `balm-ui < 7.0.0` please use `by` field
+    > `columnId` field: New in `7.0.0`; if `balm-ui < 7.0.0` please use `by` field
 
     ```js
     [
@@ -106,11 +106,11 @@
   - custom fields (`object[]`)
 
     ```ts
-    {
+    interface Tbody {
       field: string; // Data field name
       fn: function; // Simple data processing
       colClass: string; // The class name of the <col> element (New in 8.16.0)
-      fixed: string; // Fixed cell for 'left' or 'right' (New in 8.16.0)
+      fixed: 'left' ｜ 'right'; // Set column position for fixed cell (New in 8.16.0)
       width: number; // Set column width for fixed cell (New in 8.16.0)
     }
     ```
@@ -153,11 +153,11 @@
     </ui-table>
     ```
 
-- `tfoot` items format (`object[]`)
+- `tfoot` format (`object[]`)
 
   ```ts
-  {
-    fnName: string; // Frequently-used statistical method
+  interface Tfoot {
+    fnName: 'count' | 'sum' | 'avg' | 'max' | 'min'; // Frequently-used statistical method
     fn: function; // Simple data processing for result
     slot: string; // Custom slot for footer cell
   }
@@ -204,20 +204,20 @@
 | ---------- | ------------------------------- | ----------------------------------- |
 | `selected` | `function(selectedRows: array)` | Emits when row checkbox is changed. |
 
-> NOTE: If you are not using `v-model`, you should listen for the select using `@selected` and update the `selectedRows` prop.
+> NOTE: If you are not using `v-model`, you should listen for the table using `@selected` and update the `selectedRows` prop.
 
 - Automatic
 
   ```html
-  <ui-table rowCheckbox v-model="selectedRows"></ui-table>
+  <ui-table v-model="selectedRows" row-checkbox></ui-table>
   ```
 
 - Manual
 
   ```html
   <ui-table
-    rowCheckbox
     :selectedRows="selectedRows"
+    row-checkbox
     @selected="$balmUI.onChange('selectedRows', $event)"
   ></ui-table>
   ```

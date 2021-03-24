@@ -4,7 +4,7 @@
 
 ### Slots
 
-| Name      | Props | Description                                                         |
-| --------- | ----- | ------------------------------------------------------------------- |
-| `default` |       | Text labels display one line of text related to an image list item. |
-| `action`  |       | Optional. Actionable iconography can represent related actions.     |
+| Name      | Props | Description                            |
+| --------- | ----- | -------------------------------------- |
+| `default` |       | default 插槽包含图片相关的一行文本标签 |
+| `action`  |       | action 插槽包含图片相关动作内容        |

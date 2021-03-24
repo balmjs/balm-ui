@@ -6,9 +6,9 @@
 
 | Name      | Props | Description                             |
 | --------- | ----- | --------------------------------------- |
-| `default` |       | default 插槽包含导航的标题子元素及 HTML |
+| `default` |       | default 插槽包含导航的标题子组件及 HTML |
 
-**子元素：**
+**子组件：**
 
 - `<ui-drawer-title>`
 - `<ui-drawer-subtitle>`

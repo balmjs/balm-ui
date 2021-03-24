@@ -26,9 +26,9 @@
 
 | Name      | Props | Description                  |
 | --------- | ----- | ---------------------------- |
-| `default` |       | default 插槽包含导航的子元素 |
+| `default` |       | default 插槽包含导航的子组件 |
 
-**子元素：**
+**子组件：**
 
 - `<ui-drawer-header>`
 - `<ui-drawer-content>`

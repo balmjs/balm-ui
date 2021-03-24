@@ -22,20 +22,24 @@
 
 ### Events
 
-```js
-// Usage 1
-$alert({
-  message,
-  callback() {
-    // ...
-  }
-});
+- Usage 1
 
-// Usage 2 (Recommended)
-$alert(message).then(() => {
-  // ...
-});
-```
+  ```js
+  $alert({
+    message,
+    callback() {
+      // ...
+    }
+  });
+  ```
+
+- Usage 2 (Recommended)
+
+  ```js
+  $alert(message).then(() => {
+    // ...
+  });
+  ```
 
 ### Use `$alert` without `.vue` component
 

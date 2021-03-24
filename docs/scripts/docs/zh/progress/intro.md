@@ -1,3 +1,3 @@
 # 进度条
 
-Linear progress indicators display progress by animating an indicator along the length of a fixed, visible track.
+线性进度条通过沿固定的可见轨道的长度设置指示器动画来显示进度。

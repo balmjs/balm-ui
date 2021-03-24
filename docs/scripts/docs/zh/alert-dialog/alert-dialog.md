@@ -9,41 +9,45 @@
 
 ### Options
 
-| Option          | Type     | Default | Description                                                   |
-| --------------- | -------- | ------- | ------------------------------------------------------------- |
-| `className`     | string   | `''`    | The custom class name for the alert dialog.                   |
-| `title`         | string   | `''`    | The title of the alert dialog.                                |
-| `state`         | string   | `''`    | State type. `['success', 'info', 'warning', 'error', 'help']` |
-| `stateOutlined` | boolean  | `false` | Show outlined state.                                          |
-| `message`       | string   | `''`    | The content to be displayed in the alert dialog.              |
-| `raw`           | boolean  | `false` | Rendered plain HTML.                                          |
-| `buttonText`    | string   | `'OK'`  | Alert button content.                                         |
-| `callback`      | function | `false` | Handle some event when the alert button is clicked.           |
+| Option          | Type     | Default | Description                                                          |
+| --------------- | -------- | ------- | -------------------------------------------------------------------- |
+| `className`     | string   | `''`    | 自定义提示框的 class                                                 |
+| `title`         | string   | `''`    | 设置提示框的标题                                                     |
+| `state`         | string   | `''`    | 提示框状态图标类型 `['success', 'info', 'warning', 'error', 'help']` |
+| `stateOutlined` | boolean  | `false` | 显示轮廓状态图标                                                     |
+| `message`       | string   | `''`    | 设置提示框的内容                                                     |
+| `raw`           | boolean  | `false` | 渲染 HTML                                                            |
+| `buttonText`    | string   | `'OK'`  | 按钮文本                                                             |
+| `callback`      | function | `false` | 点击确定按钮后的事件处理                                             |
 
 ### Events
 
-```js
-// Usage 1
-$alert({
-  message,
-  callback() {
+- 用法 1
+
+  ```js
+  $alert({
+    message,
+    callback() {
+      // ...
+    }
+  });
+  ```
+
+- 用法 2（推荐）
+
+  ```js
+  $alert(message).then(() => {
     // ...
-  }
-});
+  });
+  ```
 
-// Usage 2 (Recommended)
-$alert(message).then(() => {
-  // ...
-});
-```
-
-### Use `$alert` without `.vue` component
+### 在非 `.vue` 组件中使用 `$alert`
 
 > New in 8.1.0
 
 ```js
 import { useAlert } from 'balm-ui/dist/balm-ui-plus';
-// OR
+// 或
 // import { useAlert } from 'balm-ui/plugins/alert';
 
 const $alert = useAlert();

@@ -1,5 +1,5 @@
-# 全局提示
+# 顶部消息栏
 
-A banner displays a prominent message and related optional actions.
+顶部消息栏显示突出的消息和相关的可选操作。
 
 > New in 8.0.0

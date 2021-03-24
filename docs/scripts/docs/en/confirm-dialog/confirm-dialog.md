@@ -23,20 +23,24 @@
 
 ### Events
 
-```js
-// Usage 1
-$confirm({
-  message,
-  callback(result) {
-    // ...
-  }
-});
+- Usage 1
 
-// Usage 2 (Recommended)
-$confirm(message).then((result) => {
-  // ...
-});
-```
+  ```js
+  $confirm({
+    message,
+    callback(result) {
+      // ...
+    }
+  });
+  ```
+
+- Usage 2 (Recommended)
+
+  ```js
+  $confirm(message).then((result) => {
+    // ...
+  });
+  ```
 
 > `result` is a boolean value indicating whether OK or Cancel was selected (`true` means OK).
 

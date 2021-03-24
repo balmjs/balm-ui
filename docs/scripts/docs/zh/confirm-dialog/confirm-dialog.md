@@ -9,44 +9,48 @@
 
 ### Options
 
-| Option          | Type     | Default    | Description                                                   |
-| --------------- | -------- | ---------- | ------------------------------------------------------------- |
-| `className`     | string   | `''`       | The custom class name for the confirm dialog.                 |
-| `title`         | string   | `''`       | The title of the confirm dialog.                              |
-| `state`         | string   | `''`       | State type. `['success', 'info', 'warning', 'error', 'help']` |
-| `stateOutlined` | boolean  | `false`    | Show outlined state.                                          |
-| `message`       | string   | `''`       | The content to be displayed in the confirm dialog.            |
-| `raw`           | boolean  | `false`    | Rendered plain HTML.                                          |
-| `acceptText`    | string   | `'OK'`     | Accept button content.                                        |
-| `cancelText`    | string   | `'Cancel'` | Cancel button content.                                        |
-| `callback`      | function | `false`    | Handle some event when the confirm button is clicked.         |
+| Option          | Type     | Default    | Description                                                          |
+| --------------- | -------- | ---------- | -------------------------------------------------------------------- |
+| `className`     | string   | `''`       | 自定义确认框的 class                                                 |
+| `title`         | string   | `''`       | 设置确认框的标题                                                     |
+| `state`         | string   | `''`       | 确认框状态图标类型 `['success', 'info', 'warning', 'error', 'help']` |
+| `stateOutlined` | boolean  | `false`    | 显示轮廓状态图标                                                     |
+| `message`       | string   | `''`       | 设置确认框的内容                                                     |
+| `raw`           | boolean  | `false`    | 渲染 HTML                                                            |
+| `acceptText`    | string   | `'OK'`     | 确定按钮文本                                                         |
+| `cancelText`    | string   | `'Cancel'` | 取消按钮文本                                                         |
+| `callback`      | function | `false`    | 点击按钮后的事件处理                                                 |
 
 ### Events
 
-```js
-// Usage 1
-$confirm({
-  message,
-  callback(result) {
+- 用法 1
+
+  ```js
+  $confirm({
+    message,
+    callback(result) {
+      // ...
+    }
+  });
+  ```
+
+- 用法 2（推荐）
+
+  ```js
+  $confirm(message).then((result) => {
     // ...
-  }
-});
+  });
+  ```
 
-// Usage 2 (Recommended)
-$confirm(message).then((result) => {
-  // ...
-});
-```
+> `result` 是一个布尔值，指示是否选择了“确定”或“取消”（`true`表示确定）
 
-> `result` is a boolean value indicating whether OK or Cancel was selected (`true` means OK).
-
-### Use `$confirm` without `.vue` component
+### 在非 `.vue` 组件中使用 `$confirm`
 
 > New in 8.1.0
 
 ```js
 import { useConfirm } from 'balm-ui/dist/balm-ui-plus';
-// OR
+// 或
 // import { useConfirm } from 'balm-ui/plugins/confirm';
 
 const $confirm = useConfirm();

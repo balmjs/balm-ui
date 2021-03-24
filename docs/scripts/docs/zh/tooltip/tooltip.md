@@ -1,18 +1,18 @@
-- Base tooltip
+## Tooltip directive
 
-  ```html
-  <div v-tooltip="Tips text" aria-describedby="tooltip-id">Text</div>
-  ```
+```html
+<div v-tooltip="'Tips text'" aria-describedby="tooltip-id">Text</div>
+```
 
-- Custom tooltip
+## Tooltip component
 
-  ```html
-  <div aria-describedby="tooltip-id">Text</div>
-  <ui-tooltip id="tooltip-id">Tips text</ui-tooltip>
-  ```
+```html
+<div aria-describedby="tooltip-id">Text</div>
+<ui-tooltip id="tooltip-id">Tips text</ui-tooltip>
+```
 
 ### Props
 
-| Name    | Type   | Default | Description                             |
-| ------- | ------ | ------- | --------------------------------------- |
-| `width` | number | `0`     | Custom width for the tooltip component. |
+| Name    | Type   | Default | Description              |
+| ------- | ------ | ------- | ------------------------ |
+| `width` | number | `0`     | 自定义文字提示的最大宽度 |

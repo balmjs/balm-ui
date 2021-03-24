@@ -10,6 +10,6 @@
 
 ### Slots
 
-| Name      | Props | Description                           |
-| --------- | ----- | ------------------------------------- |
-| `default` |       | default 插槽可包含对话框标题及其 HTML |
+| Name      | Props | Description                       |
+| --------- | ----- | --------------------------------- |
+| `default` |       | default 插槽包含对话框标题及 HTML |

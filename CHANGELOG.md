@@ -2,6 +2,15 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.26.0 / 2021-03-24
+
+### Features
+
+- `<ui-icon>`: add sass variables `$dark-focused`, `$light-focused`
+- optimize warn/error message for all
+- docs: update 中文 translation
+- update material-icons v82
+
 ## v8.25.0 / 2021-03-11
 
 ### Features

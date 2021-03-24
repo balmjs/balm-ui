@@ -4,17 +4,17 @@
 
 ### Props
 
-| Name       | Type    | Default | Description                                                                  |
-| ---------- | ------- | ------- | ---------------------------------------------------------------------------- |
-| `count`    | number  | `0`     | Number to show in badge.                                                     |
-| `overlap`  | boolean | `false` | Make the badge overlap with its container.                                   |
-| `maxCount` | number  | `99`    | Max count to show.                                                           |
-| `dot`      | boolean | `false` | Whether to display a dot instead of `count`.                                 |
-| `state`    | string  | `''`    | State type for text badge. `['success', 'info', 'warning', 'error', 'help']` |
+| Name       | Type    | Default | Description                                                      |
+| ---------- | ------- | ------- | ---------------------------------------------------------------- |
+| `count`    | number  | `0`     | 徽章中显示的数字                                                 |
+| `overlap`  | boolean | `false` | 使徽章与其容器重叠                                               |
+| `maxCount` | number  | `99`    | 可显示的最大数                                                   |
+| `dot`      | boolean | `false` | 使用小圆点代替数字显示                                           |
+| `state`    | string  | `''`    | 徽章的状态类型 `['success', 'info', 'warning', 'error', 'help']` |
 
 ### Slots
 
-| Name      | Props | Description                                                   |
-| --------- | ----- | ------------------------------------------------------------- |
-| `default` |       | The default slot holds the text content and can contain HTML. |
-| `badge`   |       | The badge slot holds the custom badge content.                |
+| Name      | Props | Description                         |
+| --------- | ----- | ----------------------------------- |
+| `default` |       | default 插槽包含徽章文字内容及 HTML |
+| `badge`   |       | 自定义徽章内容                      |

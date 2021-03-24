@@ -12,7 +12,7 @@
 | `color` | number, string | `undefined` | 设置波纹颜色 |
 
 1. 设置波纹颜色为主色：`1` 或 `'primary'`
-2. 设置波纹颜色为副色：`2` 或 `'secondary'`
+2. 设置波纹颜色为辅色：`2` 或 `'secondary'`
 
 ### 去波纹效果
 

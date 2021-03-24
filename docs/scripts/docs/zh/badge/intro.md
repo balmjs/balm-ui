@@ -1,5 +1,5 @@
 # 徽章
 
-Small numerical value or status descriptor for UI elements.
+小数值或状态的描述符。
 
 > New in 6.4.1

@@ -1,4 +1,4 @@
-### The Directive of the badge
+### 徽章指令
 
 ```html
 <div v-badge></div>
@@ -8,8 +8,8 @@
 - `v-badge.overlap="count"`
 - `v-badge.dot`
 
-| Value   | Type   | Default | Description              |
-| ------- | ------ | ------- | ------------------------ |
-| `count` | number | `0`     | Number to show in badge. |
+| Value   | Type   | Default | Description      |
+| ------- | ------ | ------- | ---------------- |
+| `count` | number | `0`     | 徽章中显示的数字 |
 
-> maximum count: `99`
+> 可显示的最大数：`99`

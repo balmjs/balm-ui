@@ -31,7 +31,11 @@
 - Load data asynchronously:
 
   ```ts
-  function loadData(nodeKey: string | number) {}
+  type TreeNodes = { [key: string]: any }[];
+
+  interface Tree {
+    loadData(nodeKey: string | number): TreeNodes;
+  }
   ```
 
 ### Slots
@@ -50,7 +54,7 @@
 | -------- | ------------------------------------------ | -------------------------------- |
 | `change` | `function(selectedNodes: string \| array)` | Emits when tree node is changed. |
 
-> NOTE: If you are not using `v-model`, you should listen for the select using `@change` and update the `selectedNodes` prop.
+> NOTE: If you are not using `v-model`, you should listen for the tree using `@change` and update the `selectedNodes` prop.
 
 - Automatic
 

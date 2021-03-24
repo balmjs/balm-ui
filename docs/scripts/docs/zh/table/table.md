@@ -4,22 +4,22 @@
 
 ### Props
 
-| Name                       | Type            | Default                  | Description                                       | Version |
-| -------------------------- | --------------- | ------------------------ | ------------------------------------------------- | ------- |
-| `data`                     | array           | `[]`                     | 数据源                                            |         |
-| `thead`                    | array           | `[]`                     | 表格头部渲染格式                                  |         |
-| `tbody`                    | array           | `[]`                     | 表格内容渲染格式                                  |         |
-| `tfoot`                    | array           | `[]`                     | 表格底部渲染格式                                  |         |
-| `fullwidth`                | boolean         | `false`                  | 全屏宽度样式                                      |         |
-| `rowCheckbox`              | boolean         | `false`                  | 带有行选择的表格                                  |         |
-| `selectedRows` (`v-model`) | array           | `[]`                     | 选择行索引或 IDs（必须设置 `rowCheckbox: true`）  |         |
-| `selectedKey`              | boolean, string | `false`                  | `selectedRows` 使用自定义键字段，默认使用行索引。 |         |
-| `rowIdPrefix`              | string          | `''`                     | 在行元素 `<tr>` 上的 `data-row-id` 属性值的前缀   |         |
-| `sortIconAlignEnd`         | boolean         | `false`                  | 设置排序图标位于标签之后                          |         |
-| `showProgress`             | boolean         | `false`                  | 启用表格进度指示器表示加载数据中                  | 8.16.0  |
-| `fixedHeader`              | boolean         | `false`                  | 表格头部固定模式                                  | 8.16.0  |
-| `defaultColWidth`          | number          | `100`                    | 设置固定模式表格每列的默认宽度                    | 8.16.0  |
-| `scroll`                   | object          | `{ x: false, y: false }` | 设置固定模式表格容器的大小                        | 8.16.0  |
+| Name                       | Type            | Default                  | Description                                        | Version |
+| -------------------------- | --------------- | ------------------------ | -------------------------------------------------- | ------- |
+| `data`                     | array           | `[]`                     | 数据源                                             |         |
+| `thead`                    | array           | `[]`                     | 表格头部渲染格式                                   |         |
+| `tbody`                    | array           | `[]`                     | 表格内容渲染格式                                   |         |
+| `tfoot`                    | array           | `[]`                     | 表格底部渲染格式                                   |         |
+| `fullwidth`                | boolean         | `false`                  | 全屏宽度样式                                       |         |
+| `rowCheckbox`              | boolean         | `false`                  | 带有行选择的表格                                   |         |
+| `selectedRows` (`v-model`) | array           | `[]`                     | 选择行的索引或 IDs（必须设置 `rowCheckbox: true`） |         |
+| `selectedKey`              | boolean, string | `false`                  | `selectedRows` 使用自定义键字段，默认使用行索引。  |         |
+| `rowIdPrefix`              | string          | `''`                     | 在行元素 `<tr>` 上的 `data-row-id` 属性值的前缀    |         |
+| `sortIconAlignEnd`         | boolean         | `false`                  | 设置排序图标位于标签之后                           |         |
+| `showProgress`             | boolean         | `false`                  | 启用表格进度指示器表示加载数据中                   | 8.16.0  |
+| `fixedHeader`              | boolean         | `false`                  | 表格头部固定模式                                   | 8.16.0  |
+| `defaultColWidth`          | number          | `100`                    | 设置固定模式表格每列的默认宽度                     | 8.16.0  |
+| `scroll`                   | object          | `{ x: false, y: false }` | 设置固定模式表格容器的大小                         | 8.16.0  |
 
 - `thead` & `tbody` & `tfoot` 属性通用格式
 

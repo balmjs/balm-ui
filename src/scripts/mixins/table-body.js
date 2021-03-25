@@ -142,7 +142,7 @@ export default {
           data.push(cell);
         });
       } else {
-        console.warn(`Invalid tbody cell data: ${tbodyRowData}`);
+        console.warn('[UiTable]', `Invalid tbody cell data: ${tbodyRowData}`);
       }
 
       return data;

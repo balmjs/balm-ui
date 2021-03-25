@@ -19,7 +19,7 @@ function emojiFormat() {
         const emojiMap = Emotion.getEmotions();
         return createEmoji(emojiMap[value], node);
       } else {
-        console.warn('[UiEditor] Invalid emoji');
+        console.warn('[UiEditor]', 'Invalid emoji');
       }
 
       return node;

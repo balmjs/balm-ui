@@ -2,42 +2,44 @@
 <ui-tab-bar><!-- the tab components --></ui-tab-bar>
 ```
 
-### `<ui-tab-bar>` & `<ui-tabs>` common Props
+### `<ui-tab-bar>` & `<ui-tabs>` 共用 Props
 
-| Name                     | Type   | Default | Description |
-| ------------------------ | ------ | ------- | ----------- |
-| `modelValue` (`v-model`) | number | `0`     | Mandatory.  |
+| Name                     | Type   | Default | Description      |
+| ------------------------ | ------ | ------- | ---------------- |
+| `modelValue` (`v-model`) | number | `0`     | 选项卡标签索引值 |
 
 ### `<ui-tab-bar>` Slots
 
-| Name      | Slots | Description                                                                      |
-| --------- | ----- | -------------------------------------------------------------------------------- |
-| `default` |       | The default slot holds the tab scroller and tab components and can contain HTML. |
+| Name      | Slots | Description                           |
+| --------- | ----- | ------------------------------------- |
+| `default` |       | default 插槽包含选项卡标签组件及 HTML |
 
-### `<ui-tab-bar>` & `<ui-tabs>` common Events
+### `<ui-tab-bar>` & `<ui-tabs>` 共用 Events
 
-| Name                | Type                           | Description                    |
-| ------------------- | ------------------------------ | ------------------------------ |
-| `update:modelValue` | `function(modelValue: number)` | Emits when the tab is changed. |
+| Name                | Type                            | Description              |
+| ------------------- | ------------------------------- | ------------------------ |
+| `update:modelValue` | `function(activeIndex: number)` | 选项卡标签索引变化时触发 |
 
-> NOTE: If you are not using `v-model`, you should listen for the tabs using `@update:modelValue` and update the `modelValue` prop.
+> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@update:modelValue` 监听选项卡索引并更新 `modelValue` 属性
 
-- Automatic
+- 自动
 
   ```html
-  <ui-tab-bar v-model="active"></ui-tab-bar>
-  <ui-tabs v-model="active"></ui-tabs>
+  <ui-tab-bar v-model="activeIndex"></ui-tab-bar>
+  <!-- 或 -->
+  <ui-tabs v-model="activeIndex"></ui-tabs>
   ```
 
-- Manual
+- 手动
 
   ```html
   <ui-tab-bar
-    :model-value="active"
-    @update:modelValue="balmUI.onChange('active', $event)"
+    :model-value="activeIndex"
+    @update:modelValue="balmUI.onChange('activeIndex', $event)"
   ></ui-tab-bar>
+  <!-- 或 -->
   <ui-tabs
-    :model-value="active"
-    @update:modelValue="balmUI.onChange('active', $event)"
+    :model-value="activeIndex"
+    @update:modelValue="balmUI.onChange('activeIndex', $event)"
   ></ui-tabs>
   ```

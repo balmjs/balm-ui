@@ -1,64 +1,62 @@
 # 常用工具库
 
-## 1. Types
+## 1. 类型检测
 
-Default Usage
+默认用法
 
 ```js
 import { types } from 'balm-ui';
 ```
 
-Individual Usage
+独立用法
 
 ```js
 import types from 'balm-ui/utils/types';
 ```
 
-Methods
+方法
 
-```js
-types.getType(any);
+```ts
+types.getType(any): string;
 
-types.isUndefined(value);
-types.isNull(value);
-types.isBoolean(value);
-types.isNumber(value);
-types.isString(value);
-types.isSymbol(value);
-types.isObject(value);
-types.isArray(value);
-types.isFunction(value);
+types.isUndefined(value): boolean;
+types.isNull(value): boolean;
+types.isBoolean(value): boolean;
+types.isNumber(value): boolean;
+types.isString(value): boolean;
+types.isSymbol(value): boolean;
+types.isObject(value): boolean;
+types.isArray(value): boolean;
+types.isFunction(value): boolean;
 ```
-
-> `getType` returns a string, others return a boolean.
 
 ## 2. Helpers
 
-Default Usage
+独立用法
 
 ```js
 import { helpers } from 'balm-ui';
 ```
 
-Individual Usage
+独立用法
 
 ```js
 import helpers from 'balm-ui/utils/helpers';
 ```
 
-Methods
+方法
 
-```js
-helpers.isEmpty(value);
+```ts
+helpers.isEmpty(value): boolean;
 
-helpers.jsonEqual(jsonA, jsonB); // The order of the properties IS IMPORTANT
-helpers.isDeepEqual(obj1, obj2);
+helpers.jsonEqual(jsonA, jsonB): boolean; // 属性的顺序很重要
+helpers.isDeepEqual(obj1, obj2): boolean;
 
-helpers.merge(target, source);
-helpers.merge.all(arrayOfObjects);
+helpers.merge(target: object, source: object): object;
+helpers.merge.all(arrayOfObjects: object[]): object;
 ```
 
-- `isEmpty` - The following values are considered to be empty:
+- `isEmpty` 以下值被认为是空值：
   - `undefined`
   - `null`
   - `false`
@@ -71,22 +69,22 @@ helpers.merge.all(arrayOfObjects);
 
 ## 3. IE
 
-Default Usage
+独立用法
 
 ```js
 import { detectIE } from 'balm-ui';
 ```
 
-Individual Usage
+独立用法
 
 ```js
 import detectIE from 'balm-ui/utils/ie';
 ```
 
-Methods
+方法
 
-```js
-detectIE();
+```ts
+detectIE(): string | false;
 ```
 
-> IE browser returns version, other browsers return `false`.
+> IE 浏览器返回版本号，其他浏览器返回 `false`

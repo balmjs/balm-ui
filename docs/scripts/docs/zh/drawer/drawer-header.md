@@ -4,11 +4,11 @@
 
 ### Slots
 
-| Name      | Props | Description                                                                     |
-| --------- | ----- | ------------------------------------------------------------------------------- |
-| `default` |       | The default slot holds the drawer header child components and can contain HTML. |
+| Name      | Props | Description                             |
+| --------- | ----- | --------------------------------------- |
+| `default` |       | default 插槽包含导航的标题子组件及 HTML |
 
-**Child components:**
+**子组件：**
 
 - `<ui-drawer-title>`
 - `<ui-drawer-subtitle>`

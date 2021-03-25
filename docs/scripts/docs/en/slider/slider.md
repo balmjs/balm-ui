@@ -22,9 +22,9 @@
 
 ### Events
 
-| Name                | Type                                  | Description                                                       |
-| ------------------- | ------------------------------------- | ----------------------------------------------------------------- |
-| `update:modelValue` | `function(modelValue: number\|array)` | Emits when a user stops dragging the slider or changes the value. |
+| Name                | Type                             | Description                                                       |
+| ------------------- | -------------------------------- | ----------------------------------------------------------------- |
+| `update:modelValue` | `function(value: number\|array)` | Emits when a user stops dragging the slider or changes the value. |
 
 > NOTE: If you are not using `v-model`, you should listen for the slider using `@update:modelValue` and update the `modelValue` prop.
 

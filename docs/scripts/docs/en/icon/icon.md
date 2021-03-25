@@ -2,6 +2,14 @@
 <ui-icon><!-- the material design icon name --></ui-icon>
 ```
 
+**`<ui-icon>` Types**
+
+- `0: 'filled'`
+- `1: 'outlined'`
+- `2: 'round'`
+- `3: 'twoTone'`
+- `4: 'sharp'`
+
 ### Props
 
 | Name       | Type           | Default | Description                                                                                                                                                                                                             |
@@ -15,8 +23,6 @@
 | `dark`     | boolean        | `false` | An icon on a light background with a dark foreground color.                                                                                                                                                             |
 | `light`    | boolean        | `false` | An icon on a dark background with a light foreground color.                                                                                                                                                             |
 | `inactive` | boolean        | `false` | An icon is disabled or inactive.                                                                                                                                                                                        |
-
-- **Types:** `0: 'filled'`, `1: 'outlined'`, `2: 'round'`, `3: 'twoTone'`, `4: 'sharp'`
 
 > Although the icons in the font can be scaled to any size, in accordance with material design icons guidelines, we recommend them to be shown in either `18`, `24`, `36` or `48`px.
 

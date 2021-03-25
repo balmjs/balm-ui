@@ -7,15 +7,15 @@
 
 ### Props
 
-| Name                 | Type   | Default | Description |
-| -------------------- | ------ | ------- | ----------- |
-| `active` (`v-model`) | number | `0`     | Mandatory.  |
+| Name                     | Type   | Default | Description          |
+| ------------------------ | ------ | ------- | -------------------- |
+| `modelValue` (`v-model`) | number | `0`     | 激动的选项卡标签索引 |
 
 ### Slots
 
-| Name      | Props | Description                                                       |
-| --------- | ----- | ----------------------------------------------------------------- |
-| `default` |       | The default slot holds the panel components and can contain HTML. |
+| Name      | Props | Description                           |
+| --------- | ----- | ------------------------------------- |
+| `default` |       | default 插槽包含选项卡面板组件及 HTML |
 
 ```html
 <ui-tabs v-model="active">

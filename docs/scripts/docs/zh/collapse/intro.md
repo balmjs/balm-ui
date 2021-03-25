@@ -1,3 +1,3 @@
 # 折叠面板
 
-A content area which can be collapsed and expanded.
+可以折叠和扩展的内容区域。

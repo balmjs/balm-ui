@@ -1,3 +1,3 @@
 # 文本框
 
-Text fields let users enter and edit text.
+文本框使用户可以输入和编辑文本。

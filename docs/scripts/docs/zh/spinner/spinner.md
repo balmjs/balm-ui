@@ -4,13 +4,19 @@
 
 ### Props
 
-| Name          | Type    | Default   | Description                                                                         |
-| ------------- | ------- | --------- | ----------------------------------------------------------------------------------- |
-| `active`      | boolean | `false`   | Puts the circular progress indicator in an indeterminate state.                     |
-| `progress`    | number  | `0`       | Sets the progress bar to this value. Value should be between `[0, 1]`.              |
-| `size`        | string  | `'large'` | To set the circular progress size.                                                  |
-| `fourColored` | boolean | `false`   | You may choose to have the indicator in inderminate state animate through 4 colors. |
-| `label`       | string  | `''`      | Label indicating how the progress bar should be announced to the user.              |
-| `closed`      | boolean | `false`   | Hides the circular progress indicator.                                              |
+| Name          | Type    | Default   | Description                              |
+| ------------- | ------- | --------- | ---------------------------------------- |
+| `active`      | boolean | `false`   | 启用加载中状态                           |
+| `progress`    | number  | `0`       | 设置进度条的值。值应介于 `[0, 1]` 之间。 |
+| `size`        | string  | `'large'` | 设置进度条尺寸                           |
+| `fourColored` | boolean | `false`   | 启用 4 种颜色循环                        |
+| `label`       | string  | `''`      | 进度条的标签                             |
+| `closed`      | boolean | `false`   | 隐藏进度条                               |
 
-- **Sizing:** `'large'`(`'L'`), `'medium'`(`'M'`), `'small'`(`'S'`).
+- **尺寸值：**
+
+  ```ts
+  interface Spinner {
+    size: 'large' | 'L' | 'medium' | 'M' | 'small' | 'S';
+  }
+  ```

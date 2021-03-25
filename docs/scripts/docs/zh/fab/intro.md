@@ -1,3 +1,3 @@
 # 浮动按钮
 
-A floating action button (FAB) represents the primary action of a screen.
+浮动动作按钮（FAB）表示屏幕的主要动作。

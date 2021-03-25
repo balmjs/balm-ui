@@ -44,9 +44,10 @@ const validations = {
         // Validation method
         return true;
       },
-      message: 'Invalid format'
+      message: '%s is required'
     }
-    // customRule2: {}
+    // More rules
+    // fieldName2: { ... }
   }
   // fieldName2: {}
 };
@@ -147,15 +148,15 @@ validator.set(validations: object);
 > - <del>`validator.resetValidations()`</del> is deprecated in 8.17.0
 > - <del>`validator.setValidations()`</del> is deprecated in 9.15.0
 
-| Param         | Type   | Default | Description                                               |
-| ------------- | ------ | ------- | --------------------------------------------------------- |
-| `fieldName`   | string | `''`    | A field name of the formdata. (BalmUI validator rule key) |
-| `validation`  | object | `{}`    | A validation. (BalmUI validator rule value)               |
-| `validations` | object | `{}`    | (See) BalmUI validator rules.                             |
+| Param         | Type   | Default | Description                                          |
+| ------------- | ------ | ------- | ---------------------------------------------------- |
+| `fieldName`   | string | `''`    | `formData` 的一个字段名称（BalmUI 验证器规则的 key） |
+| `validation`  | object | `{}`    | 一个验证规则（BalmUI 验证器规则的 value）            |
+| `validations` | object | `{}`    | 详见上方 BalmUI 验证器规则                           |
 
-- For the dynamic form verification:
+- 动态表单验证方式：
 
-  - 1. using `computed`
+  - 1. 使用 `computed`
 
     ```js
     import { useValidator } from 'balm-ui';

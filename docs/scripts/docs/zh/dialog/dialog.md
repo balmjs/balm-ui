@@ -6,27 +6,27 @@
 
 ### Props
 
-| Name                     | Type    | Default | Description                                                                                                              | Version |
-| ------------------------ | ------- | ------- | ------------------------------------------------------------------------------------------------------------------------ | ------- |
-| `modelValue` (`v-model`) | boolean | `false` | Mandatory.                                                                                                               |         |
-| `escapeKey`              | boolean | `true`  | Sets the action reflected when the Escape key is pressed. Setting to `false` disables closing the dialog via Escape key. | 9.13.0  |
-| `closable`               | boolean | `true`  | Closes the dialog, when a user actions on the accept or cancel button.                                                   |         |
-| `maskClosable`           | boolean | `false` | Closes the dialog, when the dialog backdrop is clicked.                                                                  |         |
-| `noBackdrop`             | boolean | `false` | Hides the dialog backdrop.                                                                                               |         |
-| `resetScroll`            | boolean | `false` | Reset scroll bar, when the dialog is closed.                                                                             |         |
-| `scrollable`             | boolean | `false` | Optional. Applied automatically when the dialog has overflowing content to warrant scrolling.                            |         |
-| `stacked`                | boolean | `false` | Optional. Applied automatically when the dialog's action buttons can't fit on a single line and must be stacked.         |         |
-| `fullscreen`             | boolean | `false` | Styles a full-screen dialog.                                                                                             | 9.14.0  |
+| Name                     | Type    | Default | Description                                                                     | Version |
+| ------------------------ | ------- | ------- | ------------------------------------------------------------------------------- | ------- |
+| `modelValue` (`v-model`) | boolean | `false` | 对话框开启状态                                                                  |         |
+| `escapeKey`              | boolean | `true`  | 设置按下 Escape 键时反映的操作。设置为 `false` 将禁用通过 Escape 键关闭对话框。 | 9.13.0  |
+| `closable`               | boolean | `true`  | 当用户对“接受”或“取消”按钮进行操作时，关闭对话框。                              |         |
+| `maskClosable`           | boolean | `false` | 当点击对话框遮罩层时，关闭对话框。                                              |         |
+| `noBackdrop`             | boolean | `false` | 隐藏对话框遮罩层                                                                |         |
+| `resetScroll`            | boolean | `false` | 对话框关闭时，重置滚动条。                                                      |         |
+| `scrollable`             | boolean | `false` | 当对话框中的内容溢出时自动应用以保证内容可滚动。                                |         |
+| `stacked`                | boolean | `false` | 当对话框的动作按钮不能放在一行上并且必须堆叠在一起时，将自动应用。              |         |
+| `fullscreen`             | boolean | `false` | 全屏效果                                                                        | 9.14.0  |
 
-> **Note:** Full-screen dialogs are intended for mobile/small-screen devices. The dialog's size will adapt to the screen size, and so becomes modal if used on larger screen sizes.
+> **提示：** 全屏对话框适用于移动/小屏幕设备。
 
 ### Slots
 
-| Name      | Props | Description                                         |
-| --------- | ----- | --------------------------------------------------- |
-| `default` |       | The default slot holds the dialog child components. |
+| Name      | Props | Description                  |
+| --------- | ----- | ---------------------------- |
+| `default` |       | default 插槽包含对话框子组件 |
 
-**Child components:**
+**子组件：**
 
 - `<ui-dialog-title>`
 - `<ui-dialog-content>`
@@ -34,23 +34,23 @@
 
 ### Events
 
-| Name                | Type                            | Description                               |
-| ------------------- | ------------------------------- | ----------------------------------------- |
-| `update:modelValue` | `function(modelValue: boolean)` | Emits when the dialog is changed.         |
-| `close`             | `function()`                    | Emits when the dialog is closed.          |
-| `confirm`           | `function(result: boolean)`     | Emits when the action buttons is clicked. |
-| `accept`            | `function()`                    | Emits when the accept button is clicked.  |
-| `cancel`            | `function()`                    | Emits when the cancel button is clicked.  |
+| Name                | Type                        | Description              |
+| ------------------- | --------------------------- | ------------------------ |
+| `update:modelValue` | `function(open: boolean)`   | 对话框开启状态变化时触发 |
+| `close`             | `function()`                | 对话框关闭时触发         |
+| `confirm`           | `function(result: boolean)` | 点击对话框动作按钮时触发 |
+| `accept`            | `function()`                | 点击对话框确定按钮时触发 |
+| `cancel`            | `function()`                | 点击对话框取消按钮时触发 |
 
-> NOTE: If you are not using `v-model`, you should listen for the dialog using `@update:modelValue` and update the `modelValue` prop.
+> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@update:modelValue` 监听对话框开启状态并更新 `modelValue` 属性
 
-- Automatic
+- 自动
 
   ```html
   <ui-dialog v-model="open"></ui-dialog>
   ```
 
-- Manual
+- 手动
 
   ```html
   <ui-dialog

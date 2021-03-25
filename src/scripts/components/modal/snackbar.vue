@@ -144,7 +144,8 @@ export default {
         this.$snackbar.timeoutMs = val;
       } else {
         console.warn(
-          `The timeoutMs of the snackbar must be between ${UI_SNACKBAR.timeoutMs.MIN} and ${UI_SNACKBAR.timeoutMs.MAX}`
+          '[UiSnackbar]',
+          `The 'timeoutMs' prop must be between ${UI_SNACKBAR.timeoutMs.MIN} and ${UI_SNACKBAR.timeoutMs.MAX}`
         );
       }
     }

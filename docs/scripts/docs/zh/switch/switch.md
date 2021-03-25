@@ -7,31 +7,31 @@
 
 ### Props
 
-| Name                     | Type                    | Default | Description                                                                   |
-| ------------------------ | ----------------------- | ------- | ----------------------------------------------------------------------------- |
-| `modelValue` (`v-model`) | boolean, number, string | `false` | Mandatory.                                                                    |
-| `trueValue`              | boolean, number, string | `true`  |                                                                               |
-| `falseValue`             | boolean, number, string | `false` |                                                                               |
-| `inputId`                | string                  | `null`  | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`. |
-| `name`                   | string                  | `''`    | The _name_ attribute of the `<input>`.                                        |
-| `disabled`               | boolean                 | `false` | Styles the switch as a disabled switch.                                       |
-| `attrs`                  | object                  | `{}`    | Other attributes for `<input>`.                                               |
+| Name                     | Type                    | Default | Description                                           |
+| ------------------------ | ----------------------- | ------- | ----------------------------------------------------- |
+| `modelValue` (`v-model`) | boolean, number, string | `false` | 开关值                                                |
+| `trueValue`              | boolean, number, string | `true`  | 开关开启时的返回值                                    |
+| `falseValue`             | boolean, number, string | `false` | 开关关闭时的返回值                                    |
+| `inputId`                | string                  | `null`  | 原生 `<input>` 的 _id_ 属性和 `<label>` 的 _for_ 属性 |
+| `name`                   | string                  | `''`    | 原生 `<input>` 的 _name_ 属性                         |
+| `disabled`               | boolean                 | `false` | 禁用状态                                              |
+| `attrs`                  | object                  | `{}`    | `<input>` 的其他属性                                  |
 
 ### Events
 
-| Name                | Type                                            | Description                       |
-| ------------------- | ----------------------------------------------- | --------------------------------- |
-| `update:modelValue` | `function(modelValue: boolean\|string\|number)` | Emits when the switch is changed. |
+| Name                | Type                                       | Description      |
+| ------------------- | ------------------------------------------ | ---------------- |
+| `update:modelValue` | `function(value: boolean\|string\|number)` | 开关值变化时触发 |
 
-> NOTE: If you are not using `v-model`, you should listen for the switch using `@update:modelValue` and update the `modelValue` prop.
+> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@update:modelValue` 监听开关值并更新 `modelValue` 属性
 
-- Automatic
+- 自动
 
   ```html
   <ui-switch v-model="value"></ui-switch>
   ```
 
-- Manual
+- 手动
 
   ```html
   <ui-switch

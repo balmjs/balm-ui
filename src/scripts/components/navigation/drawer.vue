@@ -109,7 +109,8 @@ export default {
       if (!(this.$drawer.list && this.$drawer.list.listElements.length)) {
         result = false;
         console.warn(
-          '`<ui-nav>` or `<ui-list>` is required for `<ui-drawer-content>` in the drawer'
+          '[UiDrawer]',
+          `<ui-nav> or <ui-list> is required for <ui-drawer-content> in the drawer`
         );
       }
 

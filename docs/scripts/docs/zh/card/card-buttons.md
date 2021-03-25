@@ -4,6 +4,6 @@
 
 ### Slots
 
-| Name      | Props | Description                                                        |
-| --------- | ----- | ------------------------------------------------------------------ |
-| `default` |       | The default slot holds the button components and can contain HTML. |
+| Name      | Props | Description                     |
+| --------- | ----- | ------------------------------- |
+| `default` |       | default 插槽包含按钮组件及 HTML |

@@ -237,7 +237,7 @@ export default {
           }
         }
       } else {
-        console.warn('`contentSelector` is required');
+        console.warn('[UiTopAppBar]', `The 'contentSelector' prop is required`);
       }
     },
     init() {

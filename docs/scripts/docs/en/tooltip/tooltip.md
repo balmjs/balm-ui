@@ -26,11 +26,11 @@
 
 ### Props
 
-| Name    | Type           | Default | Description                                 | Version |
-| ------- | -------------- | ------- | ------------------------------------------- | ------- |
-| `type`  | string, number | `0`     | Mandatory. Tooltip types.                   | 9.18.0  |
-| `rich`  | boolean        | `false` | Optional. Styles a rich tooltip.            | 9.18.0  |
-| `width` | number         | `0`     | Custom max width for the tooltip component. |         |
+| Name    | Type           | Default | Description                      | Version |
+| ------- | -------------- | ------- | -------------------------------- | ------- |
+| `type`  | string, number | `0`     | Mandatory. Tooltip types.        | 9.18.0  |
+| `rich`  | boolean        | `false` | Optional. Styles a rich tooltip. | 9.18.0  |
+| `width` | number         | `0`     | Custom max width for tooltip.    |         |
 
 ### Slots
 

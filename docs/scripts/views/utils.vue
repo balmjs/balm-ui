@@ -7,16 +7,15 @@
 </template>
 
 <script>
-import docs from '@/docs/en/utils/intro.md';
-
 export default {
   metaInfo: {
     titleTemplate: '%s - Utilities'
   },
-  data() {
-    return {
-      docs
-    };
+  computed: {
+    docs() {
+      let filename = `${this.$store.lang}/utils/intro`;
+      return require(`@/docs/${filename}.md`); // NOTE: just one variable in `require`
+    }
   }
 };
 </script>

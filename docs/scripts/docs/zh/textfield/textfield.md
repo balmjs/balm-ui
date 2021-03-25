@@ -2,42 +2,42 @@
 <ui-textfield><!-- the label text --></ui-textfield>
 ```
 
-**`<ui-textfield>` Types**
+**`<ui-textfield>` 类型**
 
 - `0`: `'filled'`
 - `1`: `'outlined'`
 
 ### Props
 
-| Name                     | Type           | Default  | Description                                                                                                   |
-| ------------------------ | -------------- | -------- | ------------------------------------------------------------------------------------------------------------- |
-| `type`                   | string, number | `0`      | Mandatory. Text field types.                                                                                  |
-| `outlined`               | boolean        | `false`  | Styles the text field as an outlined text field. (Equivalent to `type=1`) (`label` or `placeholder` required) |
-| `modelValue` (`v-model`) | string, number | `''`     | Mandatory.                                                                                                    |
-| `inputType`              | string         | `'text'` | Native `<input>` types: `text`, `number`, `password`, etc.                                                    |
-| `inputId`                | string         | `null`   | The _id_ attribute of the `<input>` and the _for_ attribute of the `<label>`.                                 |
-| `label`                  | string         | `''`     | A text caption or description for the text field, which use the input's `placeholder` attribute instead.      |
-| `placeholder`            | string         | `null`   | The _placeholder_ attribute of the `<input>`.                                                                 |
-| `disabled`               | boolean        | `false`  | Styles the text field as a disabled text field.                                                               |
-| `required`               | boolean        | `false`  | Styles the text field as a required text field.                                                               |
-| `fullwidth`              | boolean        | `false`  | Styles the text field as a full width text field.                                                             |
-| `endAligned`             | boolean        | `false`  | Styles the text field with an end-aligned input.                                                              |
-| `icon`                   | string         | `''`     | Optional. Indicates an icon element with a leading icon. See [Material Icons](/#/icons) list.                 |
-| `withLeadingIcon`        | boolean        | `false`  | Styles the text field as a text field with a leading icon.                                                    |
-| `withTrailingIcon`       | boolean        | `false`  | Styles the text field as a text field with a trailing icon.                                                   |
-| `prefixText`             | string         | `''`     | Sets the text content of the prefix.                                                                          |
-| `suffixText`             | string         | `''`     | sets the text content of the suffix.                                                                          |
-| `withCounter`            | boolean        | `false`  | Styles the text area as a text area with an internal character counter.                                       |
-| `helperTextId`           | string         | `null`   | Required for the _id_ attribute of the `<ui-textfield-helper>`.                                               |
-| `attrs`                  | object         | `{}`     | Other attributes for `<input>` or `<textarea>`.                                                               |
+| Name                     | Type           | Default  | Description                                                   |
+| ------------------------ | -------------- | -------- | ------------------------------------------------------------- |
+| `type`                   | string, number | `0`      | 文本框类型                                                    |
+| `outlined`               | boolean        | `false`  | 轮廓文本框（必须配置 `label` 或 `placeholder`）               |
+| `modelValue` (`v-model`) | string, number | `''`     | 文本框值                                                      |
+| `inputType`              | string         | `'text'` | 原生 `<input>` 类型：`text`, `number`, `password`, 等         |
+| `inputId`                | string         | `null`   | 原生 `<input>` 的 _id_ 属性和 `<label>` 的 _for_ 属性         |
+| `label`                  | string         | `''`     | 文本框的文本标题或说明，可使用文本框的 `placeholder` 属性代替 |
+| `placeholder`            | string         | `null`   | 原生 `<input>` 的 _placeholder_ 属性                          |
+| `disabled`               | boolean        | `false`  | 禁用状态                                                      |
+| `required`               | boolean        | `false`  | 必填字段样式                                                  |
+| `fullwidth`              | boolean        | `false`  | 全屏宽度样式                                                  |
+| `endAligned`             | boolean        | `false`  | 输入文本右对齐                                                |
+| `icon`                   | string         | `''`     | 设置首图标。详见 [Material Icons](/#/icons) 图标集。          |
+| `withLeadingIcon`        | boolean        | `false`  | 启用首图标样式                                                |
+| `withTrailingIcon`       | boolean        | `false`  | 启用尾图标样式                                                |
+| `prefixText`             | string         | `''`     | 设置文本前缀内容                                              |
+| `suffixText`             | string         | `''`     | 设置文本后缀内容                                              |
+| `withCounter`            | boolean        | `false`  | 启用内部计数器                                                |
+| `helperTextId`           | string         | `null`   | 匹配 `<ui-textfield-helper>` 的 _id_ 属性                     |
+| `attrs`                  | object         | `{}`     | `<input>` 或 `<textarea>` 的其他属性                          |
 
-> NOTE: `withLeadingIcon` and `withTrailingIcon` are only used for (**non `<ui-textfield-icon>`**) custom leading/trailing icons, and generally do not need to be configured.
+> 提示：`withLeadingIcon` 和 `withTrailingIcon` 仅用于 (**非 `<ui-textfield-icon>`**) 自定义首/尾图标，通常无需配置
 
-In addition to the above, the following properties proxy to the input or textarea elements' properties of the same name:
+除上述内容外，以下属性还可以替代具有相同名称的 input 或 textarea 元素的属性：
 
 - `pattern`
 - `minlength`
-- `maxlength`: Required for character counter
+- `maxlength`：计数器必备属性
 - `min`
 - `max`
 - `step`
@@ -46,32 +46,32 @@ In addition to the above, the following properties proxy to the input or textare
 
 ### Slots
 
-| Name      | Props       | Description                                          |
-| --------- | ----------- | ---------------------------------------------------- |
-| `default` |             | The default slot holds the label for the text field. |
-| `before`  | `iconClass` | The before slot holds a custom leading icon.         |
-| `after`   | `iconClass` | The before slot holds a custom trailing icon.        |
+| Name      | Props       | Description                          |
+| --------- | ----------- | ------------------------------------ |
+| `default` |             | default 插槽包含文本框标题或说明文字 |
+| `before`  | `iconClass` | 自定义首图标                         |
+| `after`   | `iconClass` | 自定义尾图标                         |
 
 ### Events
 
-| Name                | Type                           | Description                                               |
-| ------------------- | ------------------------------ | --------------------------------------------------------- |
-| `focus`             | `function(event: object)`      | Emits when the text field is focused.                     |
-| `keydown`           | `function(event: object)`      | Emits when a key is pressed in the text field.            |
-| `update:modelValue` | `function(modelValue: string)` | Emits when the text field value is changed.               |
-| `change`            | `function(event: object)`      | Emits when a change in the text field value is committed. |
-| `enter`             | `function(model: string)`      | Emits when the _Enter_ key is pressed in the input.       |
-| `blur`              | `function(event: object)`      | Emits when the text field loses focus.                    |
+| Name                | Type                      | Description                     |
+| ------------------- | ------------------------- | ------------------------------- |
+| `focus`             | `function(event: object)` | 文本框聚焦时触发                |
+| `keydown`           | `function(event: object)` | 文本框中按下键盘时触发          |
+| `update:modelValue` | `function(value: string)` | 文本框中输入内容时触发          |
+| `change`            | `function(event: object)` | 文本框值变化时触发              |
+| `enter`             | `function(value: string)` | 文本框中按下 _Enter_ 键盘时触发 |
+| `blur`              | `function(event: object)` | 文本框失去聚焦时触发            |
 
-> NOTE: If you are not using `v-model`, you should listen for the text field using `@update:modelValue` and update the `modelValue` prop.
+> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@update:modelValue` 监听文本框值并更新 `modelValue` 属性
 
-- Automatic
+- 自动
 
   ```html
   <ui-textfield v-model="value"></ui-textfield>
   ```
 
-- Manual
+- 手动
 
   ```html
   <ui-textfield

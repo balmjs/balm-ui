@@ -35,9 +35,9 @@
 
 ### Events
 
-| Name  | Type                            | Description                                |
-| ----- | ------------------------------- | ------------------------------------------ |
-| `nav` | `function(modelValue: boolean)` | Emits when the drawer is opened or closed. |
+| Name  | Type                      | Description                                |
+| ----- | ------------------------- | ------------------------------------------ |
+| `nav` | `function(open: boolean)` | Emits when the drawer is opened or closed. |
 
 > NOTE: If you are not using `v-model`, you should listen for the drawer using `@nav` and update the `modelValue` prop.
 

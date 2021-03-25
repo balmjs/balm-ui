@@ -4,17 +4,17 @@
 
 ### Props
 
-| Name                        | Type          | Default | Description                                                | Version |
-| --------------------------- | ------------- | ------- | ---------------------------------------------------------- | ------- |
-| `selectedNodes` (`v-model`) | string, array | `''`    | Selected node keys.                                        |         |
-| `data`                      | array         | `[]`    | The tree data source.                                      |         |
-| `dataFormat`                | object        | `{}`    | Defines the tree data source format.                       |         |
-| `maxLevel`                  | number        | `0`     | Set max level for tree nodes.                              |         |
-| `multiple`                  | boolean       | `false` | Whether to support selected multiple tree nodes.           |         |
-| `loadData`                  | function      | `null`  | Load data asynchronously.                                  |         |
-| `autoExpandParent`          | boolean       | `false` | Whether to automatically expand root parent(s) treeNode.   | 9.17.0  |
-| `defaultExpandedKeys`       | array         | `[]`    | Specify the node keys of the default expanded treeNodes.   | 9.17.0  |
-| `defaultSelectedKeys`       | array         | `[]`    | Specifies the node keys of the default selected treeNodes. | 9.17.0  |
+| Name                     | Type          | Default | Description                                                | Version |
+| ------------------------ | ------------- | ------- | ---------------------------------------------------------- | ------- |
+| `modelValue` (`v-model`) | string, array | `''`    | Selected node keys.                                        |         |
+| `data`                   | array         | `[]`    | The tree data source.                                      |         |
+| `dataFormat`             | object        | `{}`    | Defines the tree data source format.                       |         |
+| `maxLevel`               | number        | `0`     | Set max level for tree nodes.                              |         |
+| `multiple`               | boolean       | `false` | Whether to support selected multiple tree nodes.           |         |
+| `loadData`               | function      | `null`  | Load data asynchronously.                                  |         |
+| `autoExpandParent`       | boolean       | `false` | Whether to automatically expand root parent(s) treeNode.   | 9.17.0  |
+| `defaultExpandedKeys`    | array         | `[]`    | Specify the node keys of the default expanded treeNodes.   | 9.17.0  |
+| `defaultSelectedKeys`    | array         | `[]`    | Specifies the node keys of the default selected treeNodes. | 9.17.0  |
 
 - Default data format:
 
@@ -31,7 +31,11 @@
 - Load data asynchronously:
 
   ```ts
-  function loadData(nodeKey: string | number) {}
+  type TreeNodes = { [key: string]: any }[];
+
+  interface Tree {
+    loadData(nodeKey: string | number): TreeNodes;
+  }
   ```
 
 ### Slots
@@ -50,7 +54,7 @@
 | ------------------- | ------------------------------------------ | -------------------------------- |
 | `update:modelValue` | `function(selectedNodes: string \| array)` | Emits when tree node is changed. |
 
-> NOTE: If you are not using `v-model`, you should listen for the select using `@update:modelValue` and update the `selectedNodes` prop.
+> NOTE: If you are not using `v-model`, you should listen for the tree using `@update:modelValue` and update the `modelValue` prop.
 
 - Automatic
 
@@ -62,7 +66,7 @@
 
   ```html
   <ui-tree
-    :selectedNodes="selectedValue"
-    @update:modelValue="$balmUI.onChange('selectedValue', $event)"
+    :model-value="selectedValue"
+    @update:modelValue="balmUI.onChange('selectedValue', $event)"
   ></ui-tree>
   ```

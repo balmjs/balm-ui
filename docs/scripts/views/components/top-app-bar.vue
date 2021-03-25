@@ -18,7 +18,10 @@
             :items="['Back', 'Forward', 'Reload', '-', 'Settings']"
           ></ui-menu>
         </ui-menu-anchor>
-        <top-toolbar v-else :item-class="toolbarItemClass"></top-toolbar>
+        <top-app-toolbar
+          v-else
+          :item-class="toolbarItemClass"
+        ></top-app-toolbar>
       </template>
     </ui-top-app-bar>
 
@@ -89,7 +92,7 @@
 <script>
 import { reactive, toRefs, computed } from 'vue';
 import { useStore } from 'balm-ui';
-import TopToolbar from '@/components/top-toolbar';
+import TopAppToolbar from '@/components/top-app-toolbar';
 
 const TypeOptions = [
   {
@@ -134,7 +137,7 @@ export default {
     titleTemplate: '%s - Top App Bar'
   },
   components: {
-    TopToolbar
+    TopAppToolbar
   },
   setup() {
     const store = useStore();

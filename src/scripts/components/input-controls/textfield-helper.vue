@@ -41,7 +41,8 @@ export default {
 
     if (!this.id && needHelperTextId) {
       console.warn(
-        `'helperTextId' is required for '<ui-textfield>' with outer counter`
+        '[UiTextfield]',
+        `The 'helperTextId' prop is required for <ui-textfield> with outer counter`
       );
     }
   }

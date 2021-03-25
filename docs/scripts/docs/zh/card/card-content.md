@@ -6,11 +6,11 @@
 
 ### Slots
 
-| Name      | Props | Description                                                   |
-| --------- | ----- | ------------------------------------------------------------- |
-| `default` |       | The default slot holds the card content and can contain HTML. |
+| Name      | Props | Description                           |
+| --------- | ----- | ------------------------------------- |
+| `default` |       | default 插槽包含卡片内容子组件及 HTML |
 
-**Child components:**
+**子组件：**
 
 - `<ui-card-media>`
 - `<ui-card-text>`

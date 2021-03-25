@@ -21,9 +21,9 @@
 
 ### Events
 
-| Name                | Type                          | Description                                  |
-| ------------------- | ----------------------------- | -------------------------------------------- |
-| `update:modelValue` | `function(modelValue: array)` | Emits when the rangepicker value is changed. |
+| Name                | Type                     | Description                                  |
+| ------------------- | ------------------------ | -------------------------------------------- |
+| `update:modelValue` | `function(value: array)` | Emits when the rangepicker value is changed. |
 
 > NOTE: If you are not using `v-model`, you should listen for the rangepicker using `@update:modelValue` and update the `modelValue` prop.
 

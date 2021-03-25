@@ -1,3 +1,3 @@
 # 日期选择框
 
-Date pickers let users select a date, or a range of dates.
+日期选择器使用户可以选择日期或日期范围。

@@ -2,6 +2,12 @@
 <ui-tab><!-- The tab text label --></ui-tab>
 ```
 
+**`<ui-tab>` & `<ui-tabs>` Types**
+
+- `0`: `'text'`
+- `1`: `'iconOnly'`
+- `2`: `'textWithIcon'`
+
 ### `<ui-tab>` & `<ui-tabs>` common Props
 
 | Name               | Type           | Default | Description                                                                                                      |
@@ -10,8 +16,6 @@
 | `stacked`          | boolean        | `false` | Optional. Indicates that the tab icon and label should flow vertically instead of horizontally.                  |
 | `minWidth`         | boolean        | `false` | Optional. Indicates that the tab should shrink in size to be as narrow as possible without causing text to wrap. |
 | `contentIndicator` | boolean        | `false` | Optional. Text label width-matching indicator.                                                                   |
-
-- **Types:** `0: 'text'`, `1: 'iconOnly'`, `2: 'textWithIcon'`
 
 ### `<ui-tab>` Props
 

@@ -1,3 +1,3 @@
 # 栅格
 
-Material design’s responsive UI is based on a column-variate grid layout. It has 12 columns on desktop, 8 columns on tablet and 4 columns on phone.
+Material design 的响应式 UI 基于列变量栅格布局。它在台式机上有 12 列，在平板电脑上有 8 列，在手机上有 4 列。

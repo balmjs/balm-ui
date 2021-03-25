@@ -6,121 +6,33 @@ import { useValidator } from 'balm-ui';
 const validator = useValidator();
 ```
 
-```js
-validator.validate(formData, customFieldset);
-```
+- Verification method (`validator.validate(formData, customFieldset)`)
+
+  ```ts
+  interface BalmUIValidator {
+    validate(
+      formData: object,
+      customFieldset?: string[]
+    ): BalmUIVerificationResult;
+  }
+  ```
 
 | Param            | Type   | Default | Description                                   |
 | ---------------- | ------ | ------- | --------------------------------------------- |
 | `formData`       | object | `{}`    | Mandatory. A form data object.                |
 | `customFieldset` | array  | `[]`    | Optional. The field names of the validations. |
 
-- **BalmUI validator rules** format:
+- Verification result
 
-```js
-{
-  fieldName1: {
-    validate(fieldValue, formData) {
-      // Validation method
-      return true;
-    },
-    message: '%s is required'
-  },
-  // More rules
-  // fieldName2: { ... }
-}
-```
-
-- Usage in a vue component:
-
-```js
-// Define validator
-const validations = {
-  fieldName1: {
-    label: 'Field Label',
-    validator: 'required, customRule1',
-    customRule1: {
-      validate(fieldValue, formData) {
-        // Validation method
-        return true;
-      },
-      message: 'Invalid format'
-    }
-    // customRule2: {}
+  ```ts
+  interface BalmUIVerificationResult {
+    valid: boolean;
+    validFields: string[];
+    invalidFields: string[];
+    message: string;
+    messages: string[];
+    validMsg: { [fieldName: string]: string };
   }
-  // fieldName2: {}
-};
-```
-
-- using Composable API
-
-  ```js
-  import { reactive, toRefs } from 'vue';
-  import { useValidator } from 'balm-ui';
-
-  // const validations = ...
-
-  const state = reactive({
-    formData: {
-      fieldName: ''
-    }
-  });
-
-  export default {
-    setup() {
-      const validator = useValidator();
-
-      return {
-        validator,
-        validations,
-        ...toRefs(state)
-      };
-    },
-    methods: {
-      onSubmit() {
-        let {
-          valid,
-          validFields,
-          invalidFields,
-          message,
-          messages,
-          validMsg
-        } = this.validator.validate(state.formData);
-      }
-    }
-  };
-  ```
-
-- using Legacy API
-
-  ```js
-  import { useValidator } from 'balm-ui';
-
-  // const validations = ...
-
-  export default {
-    data() {
-      return {
-        validator: useValidator(),
-        validations,
-        formData: {
-          fieldName: ''
-        }
-      };
-    },
-    methods: {
-      onSubmit() {
-        let {
-          valid,
-          validFields,
-          invalidFields,
-          message,
-          messages,
-          validMsg
-        } = this.validator.validate(this.formData);
-      }
-    }
-  };
   ```
 
 | Result          | Type    | Description                                            |
@@ -133,6 +45,115 @@ const validations = {
 | `validMsg`      | object  | The messages as an object. (Same format as `formData`) |
 
 > NOTE: `validMsg` can be used with `<ui-textfield-helper>`/`<ui-select-helper>` to trigger the `<ui-textfield>`/`<ui-select>` invalid styling
+
+- **BalmUI validator rules** format:
+
+  ```js
+  {
+    fieldName1: {
+      validate(fieldValue, formData) {
+        // Validation method
+        return true;
+      },
+      message: '%s is required'
+    },
+    // More rules
+    // fieldName2: { ... }
+  }
+  ```
+
+- Usage in a vue component:
+
+  ```js
+  // Define validator
+  const validations = {
+    fieldName1: {
+      label: 'Field Label',
+      validator: 'required, customRule1',
+      customRule1: {
+        validate(fieldValue, formData) {
+          // Validation method
+          return true;
+        },
+        message: '%s is required'
+      }
+      // More rules
+      // fieldName2: { ... }
+    }
+    // fieldName2: {}
+  };
+  ```
+
+  - using Composable API
+
+    ```js
+    import { reactive, toRefs } from 'vue';
+    import { useValidator } from 'balm-ui';
+
+    // const validations = ...
+
+    const state = reactive({
+      formData: {
+        fieldName: ''
+      }
+    });
+
+    export default {
+      setup() {
+        const validator = useValidator();
+
+        return {
+          validator,
+          validations,
+          ...toRefs(state)
+        };
+      },
+      methods: {
+        onSubmit() {
+          let {
+            valid,
+            validFields,
+            invalidFields,
+            message,
+            messages,
+            validMsg
+          } = this.validator.validate(state.formData);
+        }
+      }
+    };
+    ```
+
+  - using Legacy API
+
+    ```js
+    import { useValidator } from 'balm-ui';
+
+    // const validations = ...
+
+    export default {
+      data() {
+        return {
+          validator: useValidator(),
+          validations,
+          formData: {
+            fieldName: ''
+          }
+        };
+      },
+      methods: {
+        onSubmit() {
+          let {
+            valid,
+            validFields,
+            invalidFields,
+            message,
+            messages,
+            validMsg
+          } = this.validator.validate(this.formData);
+        }
+      }
+    };
+    ```
 
 - Set validations for the dynamic form
 

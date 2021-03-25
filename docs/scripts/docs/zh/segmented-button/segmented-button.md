@@ -4,19 +4,19 @@
 
 ### Props
 
-| Name       | Type    | Default | Description                                                 |
-| ---------- | ------- | ------- | ----------------------------------------------------------- |
-| `selected` | boolean | `false` | Styles a selected segmented button.                         |
-| `text`     | string  | `''`    | Segmented button text.                                      |
-| `icon`     | string  | `''`    | Segmented button icon. See [Material Icons](/#/icons) list. |
+| Name       | Type    | Default | Description                                        |
+| ---------- | ------- | ------- | -------------------------------------------------- |
+| `selected` | boolean | `false` | 设置选中状态样式                                   |
+| `text`     | string  | `''`    | 按钮文字                                           |
+| `icon`     | string  | `''`    | 按钮图标。详见 [Material Icons](/#/icons) 图标集。 |
 
 ### Slots
 
-| Name      | Props       | Description                                                            |
-| --------- | ----------- | ---------------------------------------------------------------------- |
-| `default` |             | The default slot holds the segmented button text and can contain HTML. |
-| `before`  | `iconClass` | Custom leading icon                                                    |
-| `after`   | `iconClass` | Custom trailing icon                                                   |
+| Name      | Props       | Description                     |
+| --------- | ----------- | ------------------------------- |
+| `default` |             | default 插槽包含按钮文字及 HTML |
+| `before`  | `iconClass` | 自定义首图标                    |
+| `after`   | `iconClass` | 自定义尾图标                    |
 
 ```html
 <template #after="{ iconClass }">
@@ -26,6 +26,6 @@
 
 ### Events
 
-| Name    | Type                      | Description                                 |
-| ------- | ------------------------- | ------------------------------------------- |
-| `click` | `function(event: object)` | Emits when the segmented button is clicked. |
+| Name    | Type                      | Description    |
+| ------- | ------------------------- | -------------- |
+| `click` | `function(event: object)` | 点击按钮时触发 |

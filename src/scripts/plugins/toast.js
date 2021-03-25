@@ -96,7 +96,7 @@ function createToast(options) {
           this.show();
         } else {
           throw new Error(
-            `[BalmUI toast]: The timeoutMs of the toast must be between ${UI_TOAST.timeoutMs.MIN} and ${UI_TOAST.timeoutMs.MAX}`
+            `[$toast]: The timeoutMs of the toast must be between ${UI_TOAST.timeoutMs.MIN} and ${UI_TOAST.timeoutMs.MAX}`
           );
         }
       }

@@ -39,7 +39,7 @@ import SvgGithub from '@/components/svg-github';
 import { translations } from '@/config';
 
 export default {
-  name: 'TopToolbar',
+  name: 'TopAppToolbar',
   components: {
     SwitchTheme,
     SvgGithub

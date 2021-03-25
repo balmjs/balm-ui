@@ -10,7 +10,16 @@
 | `icon`                   | string  | `''`    | A material icon of the icon button. See [Material Icons](/#/icons) list. |
 | `toggle`                 | object  | `{}`    | Two icons of the icon button toggle. (Format: `{on, off}`)               |
 
-> Configuring the icon button toggle states by `toggle.on` and `toggle.off` props.
+- Configuring the toggle button states by `toggle.on` and `toggle.off` props
+
+  ```ts
+  interface IconButton {
+    toggle: {
+      on: string;
+      off: string;
+    };
+  }
+  ```
 
 ### Slots
 
@@ -27,10 +36,10 @@
 
 ### Events
 
-| Name                | Type                            | Description                            |
-| ------------------- | ------------------------------- | -------------------------------------- |
-| `click`             | `function(event: object)`       | Emits when the icon button is clicked. |
-| `update:modelValue` | `function(modelValue: boolean)` | Emits when the icon button is toggled. |
+| Name                | Type                        | Description                            |
+| ------------------- | --------------------------- | -------------------------------------- |
+| `click`             | `function(event: object)`   | Emits when the icon button is clicked. |
+| `update:modelValue` | `function(toggle: boolean)` | Emits when the icon button is toggled. |
 
 > NOTE: If you are not using `v-model`, you should listen for the icon button using `@update:modelValue` and update the `modelValue` prop.
 

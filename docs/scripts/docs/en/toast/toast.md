@@ -1,10 +1,11 @@
-```js
-// Usage 1
-$toast(message);
+- `$toast(message)`
+- `$toast(options)`
 
-// Usage 2
-$toast(options);
-```
+  ```ts
+  interface VueInstance {
+    $toast(options: string | object): Promise<void>;
+  }
+  ```
 
 ### Options
 

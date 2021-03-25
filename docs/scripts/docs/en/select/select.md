@@ -42,10 +42,10 @@
 
 ### Events
 
-| Name                | Type                                   | Description                             |
-| ------------------- | -------------------------------------- | --------------------------------------- |
-| `update:modelValue` | `function(modelValue: string\|number)` | Emits when the select value is changed. |
-| `selected`          | `function(option: object)`             | Emits when an option item is selected.  |
+| Name                | Type                              | Description                             |
+| ------------------- | --------------------------------- | --------------------------------------- |
+| `update:modelValue` | `function(value: string\|number)` | Emits when the select value is changed. |
+| `selected`          | `function(option: object)`        | Emits when an option item is selected.  |
 
 > NOTE: If you are not using `v-model`, you should listen for the select using `@update:modelValue` and update the `modelValue` prop.
 

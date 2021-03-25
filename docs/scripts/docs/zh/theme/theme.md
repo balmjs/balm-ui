@@ -1,6 +1,14 @@
-### 2.1 Theme color
+- `$theme`
 
-### 2.1.1 Getters/setters for single theme
+  ```ts
+  interface VueInstance {
+    $theme: BalmUIThemeObject;
+  }
+  ```
+
+### 2.1 主题颜色（背景色）
+
+### 2.1.1 获取/设置某个主题色
 
 - `$theme.primary`
 - `$theme.secondary`
@@ -12,99 +20,139 @@
 - `$theme.onSurface`
 - `$theme.onError`
 
-### 2.1.2 Set multiple colors for all theme
+  ```ts
+  interface $theme {
+    primary(color: string): void;
+    secondary(color: string): void;
+    background(color: string): void;
+    surface(color: string): void;
+    error(color: string): void;
+    onPrimary(color: string): void;
+    onSecondary(color: string): void;
+    onSurface(color: string): void;
+    onError(color: string): void;
+  }
+  ```
 
-- `$theme.colors = themeColor`
+### 2.1.2 批量设置主题色
+
+- `$theme.colors`
+
+  ```ts
+  type ThemeColor = {
+    primary?: string;
+    secondary?: string;
+    background?: string;
+    surface?: string;
+    error?: string;
+    on-primary?: string;
+    on-secondary?: string;
+    on-surface?: string;
+    on-error?: string;
+  }
+
+  interface $theme {
+    colors(color: ThemeColor): void;
+  }
+  ```
+
+### 2.1.3 获取主题色值/class
+
+- `$theme.getThemeColor(style)`
+
+  ```ts
+  type ThemeColorStyle =
+    | 'primary'
+    | 'secondary'
+    | 'background'
+    | 'surface'
+    | 'error'
+    | 'on-primary'
+    | 'on-secondary'
+    | 'on-surface'
+    | 'on-error';
+
+  interface $theme {
+    getThemeColor(style: ThemeColorStyle): string;
+  }
+  ```
+
+- `$theme.getThemeClass(style)`
+
+  ```ts
+  type ThemeClassStyle = ThemeColorStyle | 'primary-bg' | 'secondary-bg';
+
+  interface $theme {
+    getThemeClass(style: ThemeClassStyle): string;
+  }
+  ```
+
+### 2.2 文字颜色（前景色）
 
 ```ts
-interface themeColor {
-  primary?: string;
-  secondary?: string;
-  background?: string;
-  surface?: string;
-  error?: string;
-  on-primary?: string;
-  on-secondary?: string;
-  on-surface?: string;
-  on-error?: string;
-}
+type TextStyle = 'primary' | 'secondary' | 'hint' | 'disabled' | 'icon';
+
+type ThemeTone = 'background' | 'light' | 'dark';
 ```
 
-### 2.1.3 Get theme color/classname
+#### 2.2.1 默认
 
-- Theme styles:
-  - `primary`
-  - `secondary`
-  - `background`
-  - `surface`
-  - `error`
-  - `on-primary`
-  - `on-secondary`
-  - `on-surface`
-  - `on-error`
-  - `primary-bg` (only for `getThemeClass`)
-  - `secondary-bg` (only for `getThemeClass`)
+- 获取文字颜色值/class
 
-```js
-$theme.getThemeColor(style);
-$theme.getThemeClass(style);
-```
+  ```ts
+  interface $theme {
+    getTextColor(style: TextStyle, tone: ThemeTone): string;
+    getTextClass(style: TextStyle, tone: ThemeTone): string;
+  }
+  ```
 
-### 2.2 Text color
+- 设置文字颜色
 
-- Text styles:
-  - `primary`
-  - `secondary`
-  - `hint`
-  - `disabled`
-  - `icon`
-- Theme tones
-  - `background`
-  - `light`
-  - `dark`
+  ```ts
+  interface $theme {
+    setTextColor(style: TextStyle, value: string): void;
+  }
+  ```
 
-#### 2.2.1 Default
+| Param   | Type   | Default        | Description |
+| ------- | ------ | -------------- | ----------- |
+| `style` | string | `''`           | 文字样式名  |
+| `tone`  | string | `'background'` | 主题色调名  |
+| `value` | string | `''`           | 文字颜色值  |
 
-```js
-$theme.getTextColor(style, tone);
-$theme.getTextClass(style, tone);
-```
+#### 2.2.2 明暗色系
 
-```js
-$theme.setTextColor(style, value);
-```
+- 获取文字颜色值/class
 
-| Param   | Type   | Default        | Description       |
-| ------- | ------ | -------------- | ----------------- |
-| `style` | String | `''`           | Text style name.  |
-| `tone`  | String | `'background'` | Theme tone name.  |
-| `value` | String | `''`           | Text color value. |
+  ```ts
+  interface $theme {
+    getTextColorOnLight(style: TextStyle): string;
+    getTextClassOnLight(style: TextStyle): string;
 
-#### 2.2.2 Light or Dark
+    getTextColorOnDark(style: TextStyle): string;
+    getTextClassOnDark(style: TextStyle): string;
+  }
+  ```
 
-```js
-$theme.getTextColorOnLight(style);
-$theme.getTextClassOnLight(style);
+- 设置文字颜色
 
-$theme.getTextColorOnDark(style);
-$theme.getTextClassOnDark(style);
-```
+  ```ts
+  interface $theme {
+    setTextColorOnLight(style: TextStyle, value: string): void;
+    setTextColorOnDark(style: TextStyle, value: string): void;
+  }
+  ```
 
-```js
-$theme.setTextColorOnLight(style, value);
-$theme.setTextColorOnDark(style, value);
-```
+| Param   | Type   | Default | Description |
+| ------- | ------ | ------- | ----------- |
+| `style` | string | `''`    | 文字样式名  |
+| `value` | string | `''`    | 文字颜色值  |
 
-| Param   | Type   | Default | Description       |
-| ------- | ------ | ------- | ----------------- |
-| `style` | String | `''`    | Text style name.  |
-| `value` | String | `''`    | Text color value. |
-
-### Use `$theme` without `.vue` component
+### 在非 `.vue` 组件中使用 `$theme`
 
 ```js
 import { useTheme } from 'balm-ui';
-// OR
+// 或
 // import { useTheme } from 'balm-ui/plugins/theme';
 
 const $theme = useTheme();

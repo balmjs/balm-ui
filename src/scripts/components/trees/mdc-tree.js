@@ -112,7 +112,7 @@ class MdcTree {
         if (Array.isArray(nodes)) {
           this.addData(treeData, item, nodes);
         } else {
-          console.warn(`[BalmUI tree]: Invalid data`);
+          console.warn('[UiTree]', 'Invalid data');
         }
       }
     } else {
@@ -266,7 +266,6 @@ class MdcTree {
     for (let i = 0, len = defaultSelectedKeys.length; i < len; i++) {
       const nodeKey = defaultSelectedKeys[i];
       const item = nodeMap.get(nodeKey);
-      console.log(nodeKey, item);
       multiple ? this.onCheck(treeData, item) : this.onSelect(treeData, item);
     }
   }

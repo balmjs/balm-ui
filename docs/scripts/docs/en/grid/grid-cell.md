@@ -9,8 +9,13 @@
 | `order`   | number         | `0`     | Optional, specifies the order of the cell.                |
 | `align`   | string         | `''`    | Optional, specifies the alignment of cell.                |
 
-- The `columns` and `order` range are between 1 and 12
-- The `align` position: `'top'`, `'middle'`, `'bottom'`
+```ts
+interface GridCell {
+  columns: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+  order: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+  align: 'top' | 'middle' | 'bottom';
+}
+```
 
 ### Slots
 

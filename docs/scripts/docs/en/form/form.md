@@ -39,9 +39,15 @@
 | `labelWidth`           | number         | `0`      | Sets the horizontal form items' label width.                                     |         |
 | `labelMarginRight`     | number         | `0`      | Sets the horizontal form items' label margin right.                              |         |
 | `labelMarginBottom`    | number         | `0`      | Sets the vertical form items' label margin bottom.                               |         |
-| `actionAlign`          | string         | `'left'` | Sets the form actions align. [`'left'`, `'center'`, `'right'`]                   | 9.9.0   |
+| `actionAlign`          | string         | `'left'` | Sets the form actions align.                                                     | 9.9.0   |
 
 > `labelTopAligned`, `labelRightAligned` and `labelTopRightAligned` are applicable only for `horizontal` type form.
+
+```ts
+interface Form {
+  actionAlign: 'left' | 'center' | 'right';
+}
+```
 
 #### Slots
 

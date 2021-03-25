@@ -19,9 +19,9 @@
 
 ### Events
 
-| Name                | Type                                   | Description                         |
-| ------------------- | -------------------------------------- | ----------------------------------- |
-| `update:modelValue` | `function(modelValue: boolean\|array)` | Emits when the checkbox is changed. |
+| Name                | Type                              | Description                         |
+| ------------------- | --------------------------------- | ----------------------------------- |
+| `update:modelValue` | `function(value: boolean\|array)` | Emits when the checkbox is changed. |
 
 > NOTE: If you are not using `v-model`, you should listen for the checkbox using `@update:modelValue` and update the `modelValue` prop.
 

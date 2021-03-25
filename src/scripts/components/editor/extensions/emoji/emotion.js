@@ -36,7 +36,7 @@ class Emotion {
 
         emojiData[emotion.title] = emojiList;
       } else {
-        console.warn('[UiEditor] Invalid emotions format');
+        console.warn('[UiEditor]', 'Invalid emotions format');
         // reset
         emojiTypes = [];
         emojiData = {};
@@ -106,7 +106,8 @@ class Emotion {
       }
     } catch (e) {
       console.warn(
-        '[UiEditor] - `decodeEmoji`: The content must be an async data'
+        '[UiEditor]',
+        `The param of the 'decodeEmoji' method must be an async data`
       );
     }
 

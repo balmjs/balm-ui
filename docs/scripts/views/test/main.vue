@@ -2,7 +2,7 @@
   <div>MainTest</div>
 </template>
 
-<script>
+<script lang="ts">
 export default {};
 </script>
 

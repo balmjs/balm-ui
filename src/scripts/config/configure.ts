@@ -1,8 +1,18 @@
 import merge from 'deepmerge';
 import getType from '../utils/typeof';
+import {
+  VueComponent,
+  DefaultPropsObject,
+  Mixin,
+  CommonPropsObject
+} from '@balm-ui-types';
 
-const setPropsDefaultValue = ({ componentProps, propName, props }) => {
-  let newValue = props[propName];
+const setPropsDefaultValue = ({
+  componentProps,
+  propName,
+  props
+}: DefaultPropsObject) => {
+  const newValue = props[propName];
 
   if (getType(newValue) === 'object') {
     const defaultValue = componentProps[propName].default;
@@ -14,7 +24,11 @@ const setPropsDefaultValue = ({ componentProps, propName, props }) => {
   }
 };
 
-const setPropsInMixins = ({ componentMixins, propName, props }) => {
+const setPropsInMixins = ({
+  componentMixins,
+  propName,
+  props
+}: CommonPropsObject) => {
   if (componentMixins.length) {
     let i = componentMixins.length;
     while (i--) {
@@ -33,13 +47,13 @@ const setPropsInMixins = ({ componentMixins, propName, props }) => {
   }
 };
 
-const configure = (Component, props) => {
+const configure = (Component: VueComponent, props: any) => {
   Object.keys(props).forEach((propName) => {
     if (Component.props) {
       if (Component.props[propName] === undefined) {
         // Overwrite props in mixins
         setPropsInMixins({
-          componentMixins: Component.mixins,
+          componentMixins: Component.mixins as Mixin[],
           propName,
           props
         });
@@ -54,7 +68,7 @@ const configure = (Component, props) => {
     } else {
       // Overwrite props in mixins
       setPropsInMixins({
-        componentMixins: Component.mixins,
+        componentMixins: Component.mixins as Mixin[],
         propName,
         props
       });

@@ -1,4 +1,4 @@
-function isElement(obj) {
+function isElement(obj: any): boolean {
   return typeof HTMLElement === 'object'
     ? obj instanceof HTMLElement // DOM2
     : obj &&

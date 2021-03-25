@@ -1,8 +1,8 @@
 const reTypeOf = /(?:^\[object\s(.*?)\]$)/;
 
-const getType = (any) => {
+const getType = (obj: unknown) => {
   return Object.prototype.toString
-    .call(any)
+    .call(obj)
     .replace(reTypeOf, '$1')
     .toLowerCase();
 };

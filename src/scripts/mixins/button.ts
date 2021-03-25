@@ -1,3 +1,4 @@
+import { defineComponent } from 'vue';
 import domMixin from './dom';
 import typeMixin from './type';
 import rippleMixin from './ripple';
@@ -10,7 +11,7 @@ const UI_BUTTON = {
   }
 };
 
-export default {
+export default defineComponent({
   mixins: [domMixin, typeMixin, rippleMixin, materialIconMixin],
   emits: [UI_BUTTON.EVENT.CLICK],
   watch: {
@@ -25,8 +26,8 @@ export default {
     init() {
       this.initRipple(this.el);
     },
-    handleClick(event) {
+    handleClick(event: Event) {
       this.$emit(UI_BUTTON.EVENT.CLICK, event);
     }
   }
-};
+});

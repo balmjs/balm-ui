@@ -1,5 +1,7 @@
+import { defineComponent } from 'vue';
 import { getCurrentElement } from './dom';
 import getType from '../utils/typeof';
+import { VueClassName } from '@balm-ui-types';
 
 // Define card constants
 const UI_CARD = {
@@ -10,7 +12,7 @@ const UI_CARD = {
   }
 };
 
-export default {
+export default defineComponent({
   data() {
     return {
       cardButton: false,
@@ -18,7 +20,7 @@ export default {
     };
   },
   computed: {
-    cardActionClassName() {
+    cardActionClassName(): VueClassName {
       return {
         'mdc-card__action': this.cardButton || this.cardIcon,
         'mdc-card__action--button': this.cardButton,
@@ -27,7 +29,7 @@ export default {
     }
   },
   mounted() {
-    if (this.$parent.$el) {
+    if (this.$parent && this.$parent.$el) {
       const parentEl = getCurrentElement(this.$parent.$el);
 
       if (parentEl && getType(parentEl) === 'htmldivelement') {
@@ -38,4 +40,4 @@ export default {
       }
     }
   }
-};
+});

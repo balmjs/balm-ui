@@ -4,9 +4,12 @@ module.exports = {
   root: true,
   parser: 'vue-eslint-parser',
   parserOptions: {
-    parser: 'babel-eslint',
+    parser: '@typescript-eslint/parser',
     ecmaVersion: 2020,
-    sourceType: 'module'
+    sourceType: 'module',
+    project: 'tsconfig.json',
+    tsconfigRootDir: './',
+    extraFileExtensions: ['.vue']
   },
   env: {
     browser: true,
@@ -14,8 +17,12 @@ module.exports = {
     es6: true,
     jest: true
   },
-  plugins: ['vue', 'prettier'],
-  extends: ['plugin:vue/vue3-recommended', 'prettier'],
+  plugins: ['vue', '@typescript-eslint', 'prettier'],
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+    'plugin:vue/vue3-recommended',
+    'prettier'
+  ],
   rules: {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',

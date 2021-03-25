@@ -1,8 +1,8 @@
 import { createApp } from 'vue';
-import App from '@/views/test/main';
+import App from '@/views/test/main.vue';
 import BalmUI from 'balm-ui';
 
-function createBalmUIApp() {
+function createBalmUIApp(): void {
   const app = createApp(App);
 
   app.use(BalmUI);

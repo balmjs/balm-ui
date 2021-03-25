@@ -20,9 +20,11 @@
   </button>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import buttonMixin from '../../mixins/button';
 import cardActionMixin from '../../mixins/card-action';
+import { VueClassName } from '@balm-ui-types';
 
 // Define button constants
 const UI_BUTTON = {
@@ -39,7 +41,7 @@ const UI_BUTTON = {
   }
 };
 
-export default {
+export default defineComponent({
   name: 'UiButton',
   mixins: [buttonMixin, cardActionMixin],
   props: {
@@ -72,18 +74,19 @@ export default {
     };
   },
   computed: {
-    isOutlined() {
+    isOutlined(): boolean {
       return this.checkType(UI_BUTTON.TYPES, 'outlined');
     },
-    isRaised() {
+    isRaised(): boolean {
       return this.checkType(UI_BUTTON.TYPES, 'raised');
     },
-    isUnelevated() {
+    isUnelevated(): boolean {
       return this.checkType(UI_BUTTON.TYPES, 'unelevated');
     },
-    className() {
-      const isAccessible =
-        this.el && this.el.classList.contains(UI_BUTTON.cssClasses.touch);
+    className(): VueClassName[] {
+      const isAccessible = this.el
+        ? this.el.classList.contains(UI_BUTTON.cssClasses.touch)
+        : false;
 
       return [
         {
@@ -101,5 +104,5 @@ export default {
       ];
     }
   }
-};
+});
 </script>

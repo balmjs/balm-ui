@@ -27,7 +27,7 @@ module.exports = (mix) => {
       );
       constants.DMC_COMPONENTS.forEach((item) => {
         mix.copy(
-          `${constants.DMC_SOURCE.material}/${item}/**/{*.scss,*.js}`,
+          `${constants.DMC_SOURCE.material}/${item}/**/{*.scss,*.ts}`,
           `${constants.DEV_SOURCE.mdc}/${item}`
         );
         mix.remove([

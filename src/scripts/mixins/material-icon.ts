@@ -1,4 +1,6 @@
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   props: {
     icon: {
       type: String,
@@ -6,13 +8,13 @@ export default {
     }
   },
   computed: {
-    materialIcon() {
+    materialIcon(): string | false {
       return this.icon || false;
     }
   },
   methods: {
-    getIconClassName(...componentIconClass) {
+    getIconClassName(...componentIconClass: string[]) {
       return ['material-icons', ...componentIconClass];
     }
   }
-};
+});

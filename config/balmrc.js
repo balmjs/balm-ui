@@ -81,10 +81,10 @@ function getConfig(balm) {
             ],
             balm: ['src/material-components-web'],
             ui: ['@material', 'core-js', 'core-js-pure', 'src/scripts'],
-            app: './docs/scripts/index.js'
+            app: './docs/scripts/index.ts'
           }
         : {
-            'balm-ui': './src/scripts/index.js'
+            'balm-ui': './src/scripts/index.ts'
           },
       library: useDocsDev ? '' : 'BalmUI',
       libraryTarget: useDocsDev ? 'var' : 'umd',
@@ -92,6 +92,15 @@ function getConfig(balm) {
         {
           test: /\.md$/,
           use: ['html-loader', 'markdown-loader']
+        },
+        {
+          test: /\.tsx?$/,
+          loader: 'ts-loader',
+          options: {
+            configFile: resolve('tsconfig.json'),
+            appendTsSuffixTo: [/\.vue$/]
+          },
+          exclude: /node_modules/
         },
         {
           test: /\.vue$/,

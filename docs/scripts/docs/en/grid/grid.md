@@ -4,13 +4,19 @@
 
 ### Props
 
-| Name               | Type    | Default | Description                                                                                 |
-| ------------------ | ------- | ------- | ------------------------------------------------------------------------------------------- |
-| `fixedColumnWidth` | boolean | `false` | Optional, specifies the grid should have fixed column width.                                |
-| `position`         | string  | `''`    | Optional, specifies the alignment of the whole grid. (Grid position: `'left'` or `'right'`) |
+| Name               | Type    | Default | Description                                                  |
+| ------------------ | ------- | ------- | ------------------------------------------------------------ |
+| `fixedColumnWidth` | boolean | `false` | Optional, specifies the grid should have fixed column width. |
+| `position`         | string  | `''`    | Optional, specifies the alignment of the whole grid.         |
+
+```ts
+interface Grid {
+  position: 'left' | 'right';
+}
+```
 
 ### Slots
 
-| Name      | Props | Description                                                |
-| --------- | ----- | ---------------------------------------------------------- |
-| `default` |       | The default slot holds the grid cell and can contain HTML. |
+| Name      | Props | Description                                                   |
+| --------- | ----- | ------------------------------------------------------------- |
+| `default` |       | The default slot holds `<ui-grid-cell>` and can contain HTML. |

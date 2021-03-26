@@ -46,7 +46,7 @@ function handleEvent(_property, value) {
         handleAssign.call(this.setupState, _property.split('.'), value);
       }
     } else {
-      throw new Error('[BalmUI event]: Only support `data` or `setup` options');
+      throw new Error(`[$event]: Only support 'data' or 'setup' options.`);
     }
   }
 }

@@ -1,13 +1,13 @@
 <template>
   <!-- Container -->
   <div :class="className">
-    <div class="mdc-snackbar__surface">
+    <div class="mdc-snackbar__surface" role="status" aria-relevant="additions">
       <!-- Text label -->
-      <div class="mdc-snackbar__label" role="status" aria-live="polite">
+      <div class="mdc-snackbar__label" aria-atomic="false">
         <slot>{{ message }}</slot>
       </div>
       <!-- Action (optional) -->
-      <div class="mdc-snackbar__actions">
+      <div class="mdc-snackbar__actions" aria-atomic="true">
         <slot name="action" :actionClass="actionButtonClassName">
           <mdc-icon-button v-if="canDismiss" :class="actionButtonClassName">
             close
@@ -144,7 +144,8 @@ export default {
         this.$snackbar.timeoutMs = val;
       } else {
         console.warn(
-          `The timeoutMs of the snackbar must be between ${UI_SNACKBAR.timeoutMs.MIN} and ${UI_SNACKBAR.timeoutMs.MAX}`
+          '[UiSnackbar]',
+          `The 'timeoutMs' prop must be between ${UI_SNACKBAR.timeoutMs.MIN} and ${UI_SNACKBAR.timeoutMs.MAX}`
         );
       }
     }

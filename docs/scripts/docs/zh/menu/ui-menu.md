@@ -23,10 +23,10 @@
 </ui-menu-anchor>
 ```
 
-| Component            | Description                                                                                                                                                              |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `<ui-menu-anchor>`   | Used to indicate which element the menu should be anchored to.                                                                                                           |
-| `<ui-menu>`          | Required on the root element.                                                                                                                                            |
-| `<ui-menuitem>`      | A menu item.                                                                                                                                                             |
-| `<ui-menuitem-text>` | A menu item text.                                                                                                                                                        |
-| `<ui-menuitem-icon>` | Required when using a `<ui-menuitem nested>` to indicate which item is selected. Should contain an icon or svg that indicates the selected state of the `<ui-menuitem>`. |
+| Component            | Description      |
+| -------------------- | ---------------- |
+| `<ui-menu-anchor>`   | 菜单锚定容器元素 |
+| `<ui-menu>`          | 菜单容器元素     |
+| `<ui-menuitem>`      | 菜单项           |
+| `<ui-menuitem-text>` | 菜单文本         |
+| `<ui-menuitem-icon>` | 菜单图标         |

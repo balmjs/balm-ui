@@ -2,7 +2,7 @@
 <ui-top-app-bar><!-- the application title --></ui-top-app-bar>
 ```
 
-**`<ui-top-app-bar>` Types**
+**`<ui-top-app-bar>` 类型**
 
 - `0`: `'standard'`
 - `1`: `'fixed'`
@@ -15,29 +15,29 @@
 
 ### Props
 
-| Name              | Type            | Default    | Description                                                                                                                 |
-| ----------------- | --------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `contentSelector` | string          | (required) | Selector used to style the content below the top app bar, to prevent the top app bar from covering it.                      |
-| `type`            | number          | `0`        | Mandatory. Top app bar types.                                                                                               |
-| `fixed`           | boolean         | `false`    | Fixed top app bars stay at the top of the page and elevate above the content when scrolled.                                 |
-| `dense`           | boolean         | `false`    | The dense top app bar is shorter.                                                                                           |
-| `prominent`       | boolean         | `false`    | The prominent top app bar is taller.                                                                                        |
-| `prominentDense`  | boolean         | `false`    | The prominent top app bar with dense.                                                                                       |
-| `short`           | boolean         | `false`    | Short top app bars are top app bars that can collapse to the navigation icon side when scrolled.                            |
-| `shortCollapsed`  | boolean         | `false`    | Short top app bars can be configured to always appear collapsed.                                                            |
-| `title`           | string          | `''`       | Application title.                                                                                                          |
-| `navIcon`         | string, boolean | `'menu'`   | A navigation icon.                                                                                                          |
-| `navId`           | string          | `null`     | Control the navigation drawer is opened or closed. (Please refer to the `navId` prop of the [drawer](/#/navigation/drawer)) |
+| Name              | Type            | Default    | Description                                                                  |
+| ----------------- | --------------- | ---------- | ---------------------------------------------------------------------------- |
+| `contentSelector` | string          | (required) | 选择器用于设置顶部导航下方内容的样式，以防止顶部导航覆盖内容。               |
+| `type`            | number          | `0`        | 顶部导航类型                                                                 |
+| `fixed`           | boolean         | `false`    | 固定的顶部导航位于页面顶部，并且在滚动时位于内容上方。                       |
+| `dense`           | boolean         | `false`    | 密集的顶部导航较短。                                                         |
+| `prominent`       | boolean         | `false`    | 突出的顶部导航较高。                                                         |
+| `prominentDense`  | boolean         | `false`    | 突出且密集的顶部导航                                                         |
+| `short`           | boolean         | `false`    | 顶部短导航，滚动时可以折叠到导航图标的一侧。                                 |
+| `shortCollapsed`  | boolean         | `false`    | 设置顶部短导航始终显示折叠状态。                                             |
+| `title`           | string          | `''`       | 设置导航标题                                                                 |
+| `navIcon`         | string, boolean | `'menu'`   | 设置导航图标                                                                 |
+| `navId`           | string          | `null`     | 抽屉式导航的元素 ID（请参考 [drawer](/#/navigation/drawer) 的 `navId` 属性） |
 
-> Short top app bars should be used with no more than 1 action item.
+> 顶部短导航应与最多 1 个动作项一起使用。
 
 ### Slots
 
-| Name       | Props              | Description                                                        |
-| ---------- | ------------------ | ------------------------------------------------------------------ |
-| `default`  |                    | The default slot holds the application title and can contain HTML. |
-| `nav-icon` | `navIconClass`     | The nav-icon slot holds the navigation icon and can contain HTML.  |
-| `toolbar`  | `toolbarItemClass` | The toolbar slot holds the action items and can contain HTML.      |
+| Name       | Props              | Description                     |
+| ---------- | ------------------ | ------------------------------- |
+| `default`  |                    | default 插槽包含导航标题及 HTML |
+| `nav-icon` | `navIconClass`     | 自定义导航图标                  |
+| `toolbar`  | `toolbarItemClass` | toolbar 插槽包含动作项目及 HTML |
 
 ```html
 <template #toolbar="{ toolbarItemClass }">
@@ -47,21 +47,21 @@
 
 ### Events
 
-| Name    | Type         | Description                                                                           |
-| ------- | ------------ | ------------------------------------------------------------------------------------- |
-| `nav`   | `function()` | Emits when the navigation icon is clicked.                                            |
-| `close` | `function()` | Emits when the navigation icon is clicked. Applicable only for Contextual action bar. |
+| Name    | Type         | Description                                                |
+| ------- | ------------ | ---------------------------------------------------------- |
+| `nav`   | `function()` | 点击导航默认图标时触发                                     |
+| `close` | `function()` | 点击导航关闭图标时触发（仅限 `navIcon` 设置为 `close` 时） |
 
-> NOTE: If you are not using `navId` of the top app bar and `navId` of the drawer, you should listen for the top app bar using `@nav` and update the `v-model` prop of the drawer.
+> 提示：如果你没有联合使用顶部导航和抽屉式导航的 `navId` 属性绑定两者关系，你应该使用 `@nav` 监听顶部导航并更新抽屉式导航的 `v-model` 属性
 
-- Automatic
+- 自动
 
   ```html
   <ui-top-app-bar nav-id="demo-menu"></ui-top-app-bar>
   <ui-drawer nav-id="demo-menu" type="modal"></ui-drawer>
   ```
 
-- Manual
+- 手动
 
   ```html
   <ui-top-app-bar @nav="balmUI.onShow('open')"></ui-top-app-bar>

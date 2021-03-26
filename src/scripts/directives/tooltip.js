@@ -48,7 +48,8 @@ const initTooltip = (el, { value }) => {
     new MDCTooltip(document.getElementById(id));
   } else {
     console.warn(
-      `[BalmUI v-tooltip]: '${UI_TOOLTIP.attrs.ariaId}' is required for plain tooltip.`
+      '[v-tooltip]',
+      `The '${UI_TOOLTIP.attrs.ariaId}' attribute is required for plain tooltip`
     );
   }
 };

@@ -4,32 +4,38 @@
 
 ### Props
 
-| Name                 | Type            | Default                                 | Description                                                           | Version |
-| -------------------- | --------------- | --------------------------------------- | --------------------------------------------------------------------- | ------- |
-| `model` (`v-model`)  | string          | `''`                                    | Mandatory.                                                            |         |
-| `options`            | object          | `{}`                                    | See [Quill options](https://quilljs.com/docs/configuration/#options). |         |
-| `toolbar`            | array, string   | null                                    | Custom or `'full'` editor toolbar.                                    |         |
-| `placeholder`        | string          | `null`                                  | Placeholder text to show when editor is empty.                        |         |
-| `readonly`           | boolean         | `false`                                 | Whether to instantiate the editor to read-only mode.                  |         |
-| `theme`              | string          | `'snow'`                                | Name of theme to use. (`'bubble'` or `'snow'`)                        |         |
-| `toolbarIcons`       | object          | `{}`                                    | Custom toolbar icons.                                                 |         |
-| `toolbarTips`        | object          | `{}`                                    | Custom toolbar tooltips.                                              | 9.2.0   |
-| `toolbarOptions`     | object          | `{ font: [], size: [], lineheight:[] }` | Custom toolbar options of the Font Famliy, Font Size and Line Height. |         |
-| `toolbarHandlers`    | object          | `{}`                                    | Custom toolbar handlers.                                              |         |
-| `customImageHandler` | boolean         | `false`                                 | Enable custom image handler.                                          |         |
-| `emotions`           | array           | `[]`                                    | The emoticon extension. Supports `emoji` and `image`.                 |         |
-| `withCounter`        | boolean         | `false`                                 | Styles the editor with an internal character counter.                 |         |
-| `extension`          | `false`, object | `false`                                 | Custom extension for Quill.                                           |         |
+| Name                     | Type            | Default                                 | Description                                                           | Version |
+| ------------------------ | --------------- | --------------------------------------- | --------------------------------------------------------------------- | ------- |
+| `modelValue` (`v-model`) | string          | `''`                                    | Mandatory.                                                            |         |
+| `options`                | object          | `{}`                                    | See [Quill options](https://quilljs.com/docs/configuration/#options). |         |
+| `toolbar`                | array, string   | null                                    | Custom or `'full'` editor toolbar.                                    |         |
+| `placeholder`            | string          | `null`                                  | Placeholder text to show when editor is empty.                        |         |
+| `readonly`               | boolean         | `false`                                 | Whether to instantiate the editor to read-only mode.                  |         |
+| `theme`                  | string          | `'snow'`                                | Name of theme to use.                                                 |         |
+| `toolbarIcons`           | object          | `{}`                                    | Custom toolbar icons.                                                 |         |
+| `toolbarTips`            | object          | `{}`                                    | Custom toolbar tooltips.                                              | 9.2.0   |
+| `toolbarOptions`         | object          | `{ font: [], size: [], lineheight:[] }` | Custom toolbar options of the Font Famliy, Font Size and Line Height. |         |
+| `toolbarHandlers`        | object          | `{}`                                    | Custom toolbar handlers.                                              |         |
+| `customImageHandler`     | boolean         | `false`                                 | Enable custom image handler.                                          |         |
+| `emotions`               | array           | `[]`                                    | The emoticon extension. Supports `emoji` and `image`.                 |         |
+| `withCounter`            | boolean         | `false`                                 | Styles the editor with an internal character counter.                 |         |
+| `extension`              | `false`, object | `false`                                 | Custom extension for Quill.                                           |         |
+
+```ts
+interface Editor {
+  theme: 'bubble' | 'snow';
+}
+```
 
 #### `toolbar` prop
 
-- Defaults:
+- Official default tools:
   - `align`/`direction`/`indent`
   - `background`/`color`/`font`/`size`
   - `blockquote`/`code-block`/`header`/`list`
   - `bold`/`italic`/`link`/`script`/`strike`/`underline`
   - `image`/`video`
-- Extensions:
+- BalmUI extension tools:
   - `font`/`size`/`lineheight`: custom Font Famliy, Font Size and Line Height
   - `image`: custom image upload handler
   - `emoji`: emoji module
@@ -74,6 +80,7 @@
   };
 
   const toolbarOptions = {
+    // To customize Font Family, you need to configure the Sass variable `$font-family`
     font: [
       'Arial',
       'Arial Black',
@@ -174,11 +181,11 @@
 - `/path/to/app/scripts/main.js`
 
   ```js
-  import Vue from 'vue';
   import { toolbarTips, toolbarOptions, emotions } from '@/config/editor';
   import BalmUIPlus from 'balm-ui/dist/balm-ui-plus';
 
-  Vue.use(BalmUIPlus, {
+  // `app`: Vue app
+  app.use(BalmUIPlus, {
     UiEditor: {
       toolbarTips,
       toolbarOptions,
@@ -207,8 +214,8 @@
 <ui-editor ref="editor" v-model="content"></ui-editor>
 ```
 
-- `$refs.editor.decodeEmoji(content): html`: get back-end data → set front-end view
-- `$refs.editor.encodeEmoji(html): content`: submit front-end data → save back-end data
+- `$refs.editor.decodeEmoji(content)`: get back-end data → set front-end view
+- `$refs.editor.encodeEmoji(html)`: submit front-end data → save back-end data
 
 ### Slots
 
@@ -220,7 +227,7 @@
 
 | Name                | Type                                       | Description                                                                                              |
 | ------------------- | ------------------------------------------ | -------------------------------------------------------------------------------------------------------- |
-| `update:modelValue` | `function(modelValue: string)`             | Emits when the editor text content is changed.                                                           |
+| `update:modelValue` | `function(content: string)`                | Emits when the editor text content is changed.                                                           |
 | `file-change`       | `function(file: object, insert: function)` | `customImageHandler` required. (Insert uploaded image content into the editor by `insert(url)` function) |
 
 > NOTE: If you are not using `v-model`, you should listen for the editor using `@update:modelValue` and update the `modelValue` prop.

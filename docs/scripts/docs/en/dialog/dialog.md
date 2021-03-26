@@ -34,13 +34,13 @@
 
 ### Events
 
-| Name                | Type                            | Description                               |
-| ------------------- | ------------------------------- | ----------------------------------------- |
-| `update:modelValue` | `function(modelValue: boolean)` | Emits when the dialog is changed.         |
-| `close`             | `function()`                    | Emits when the dialog is closed.          |
-| `confirm`           | `function(result: boolean)`     | Emits when the action buttons is clicked. |
-| `accept`            | `function()`                    | Emits when the accept button is clicked.  |
-| `cancel`            | `function()`                    | Emits when the cancel button is clicked.  |
+| Name                | Type                        | Description                               |
+| ------------------- | --------------------------- | ----------------------------------------- |
+| `update:modelValue` | `function(open: boolean)`   | Emits when the dialog is changed.         |
+| `close`             | `function()`                | Emits when the dialog is closed.          |
+| `confirm`           | `function(result: boolean)` | Emits when the action buttons is clicked. |
+| `accept`            | `function()`                | Emits when the accept button is clicked.  |
+| `cancel`            | `function()`                | Emits when the cancel button is clicked.  |
 
 > NOTE: If you are not using `v-model`, you should listen for the dialog using `@update:modelValue` and update the `modelValue` prop.
 

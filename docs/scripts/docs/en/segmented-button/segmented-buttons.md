@@ -18,12 +18,12 @@
 
 - The keys of a segmented button item object:
 
-```js
-{
-  text: 'text', // label text
-  icon: 'icon', // label icon
-}
-```
+  ```js
+  {
+    text: 'text', // label text
+    icon: 'icon', // label icon
+  }
+  ```
 
 ### Slots
 
@@ -33,24 +33,24 @@
 
 ### Events
 
-| Name                | Type                                    | Description                                  |
-| ------------------- | --------------------------------------- | -------------------------------------------- |
-| `update:modelValue` | `function(modelValue: array \| number)` | Emits when the segmented buttons is changed. |
-| `selected`          | `function(index: number)`               | Emits when the segmented button is clicked.  |
+| Name                | Type                                       | Description                                  |
+| ------------------- | ------------------------------------------ | -------------------------------------------- |
+| `update:modelValue` | `function(selectedIndex: array \| number)` | Emits when the segmented buttons is changed. |
+| `selected`          | `function(index: number)`                  | Emits when the segmented button is clicked.  |
 
-> NOTE: If you are not using `v-model`, you should listen for the icon button using `@update:modelValue` and update the `modelValue` prop.
+> NOTE: If you are not using `v-model`, you should listen for the segmented buttons using `@update:modelValue` and update the `modelValue` prop.
 
 - Automatic
 
   ```html
-  <ui-segmented-buttons v-model="value"></ui-segmented-buttons>
+  <ui-segmented-buttons v-model="selectedIndex"></ui-segmented-buttons>
   ```
 
 - Manual
 
   ```html
   <ui-segmented-buttons
-    :model-value="value"
-    @update:modelValue="balmUI.onChange('value', $event)"
+    :model-value="selectedIndex"
+    @update:modelValue="balmUI.onChange('selectedIndex', $event)"
   ></ui-segmented-buttons>
   ```

@@ -13,8 +13,8 @@
 </ui-form-field>
 ```
 
-| Component               | Description                                                         |
-| ----------------------- | ------------------------------------------------------------------- |
-| `<ui-textfield>`        | Mandatory.                                                          |
-| `<ui-textfield-icon>`   | Mandatory for leading/trailing icons.                               |
-| `<ui-textfield-helper>` | Styles the container of helper text and character counter elements. |
+| Component               | Description              |
+| ----------------------- | ------------------------ |
+| `<ui-textfield>`        | 文本框元素               |
+| `<ui-textfield-icon>`   | 文本框首/尾图标元素      |
+| `<ui-textfield-helper>` | 帮助文本和字符计数器元素 |

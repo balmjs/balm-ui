@@ -6,35 +6,39 @@
 
 ### `<ui-item>` Props
 
-| Name       | Type    | Default | Description                                     |
-| ---------- | ------- | ------- | ----------------------------------------------- |
-| `selected` | boolean | `false` | Optional, styles the row in an selected state.  |
-| `disabled` | boolean | `false` | Optional, styles the row in the disabled state. |
+| Name       | Type    | Default | Description |
+| ---------- | ------- | ------- | ----------- |
+| `selected` | boolean | `false` | 选中状态    |
+| `disabled` | boolean | `false` | 禁用状态    |
 
 ### `<ui-nav-item>` Props
 
-| Name     | Type    | Default    | Description                                                         |
-| -------- | ------- | ---------- | ------------------------------------------------------------------- |
-| `href`   | string  | (required) | Resolved url. This would be the `href` attribute of an `a` element. |
-| `active` | boolean | `false`    | Optional, styles the row in the activated state.                    |
+| Name     | Type    | Default    | Description                                     |
+| -------- | ------- | ---------- | ----------------------------------------------- |
+| `href`   | string  | (required) | 解析的网址。这将是一个 `a` 元素的 `href` 属性。 |
+| `active` | boolean | `false`    | 激活状态                                        |
 
-- Usage with `<router-link>` (requires `vue-router@3.1.0+`)
+- 与 `<router-link>` 一起使用（需要 `vue-router@3.1.0+`）
 
-```html
-<router-link v-slot="{ href, navigate, isActive }" custom>
-  <ui-nav-item :href="href" :active="isActive" @click="navigate"></ui-nav-item>
-</router-link>
-```
+  ```html
+  <router-link v-slot="{ href, navigate, isActive }" custom>
+    <ui-nav-item
+      :href="href"
+      :active="isActive"
+      @click="navigate"
+    ></ui-nav-item>
+  </router-link>
+  ```
 
 ### Slots
 
-| Name      | Props       | Description                                                                                                |
-| --------- | ----------- | ---------------------------------------------------------------------------------------------------------- |
-| `default` |             | The default slot holds the item child components and can contain HTML.                                     |
-| `before`  | `iconClass` | Custom `<ui-item-first-content>`. Optional, the first tile in the row. Typically an icon or image.         |
-| `after`   | `iconClass` | Custom `<ui-item-last-content>`. Optional, the last tile in the row. Typically small text, icon. or image. |
+| Name      | Props       | Description                                                        |
+| --------- | ----------- | ------------------------------------------------------------------ |
+| `default` |             | default 插槽包含列表项子组件及 HTML                                |
+| `before`  | `iconClass` | 自定义 `<ui-item-first-content>` 的内容。通常是图标或图像。        |
+| `after`   | `iconClass` | 自定义 `<ui-item-last-content>` 的内容。通常为小文字，图标或图像。 |
 
-**Child components:**
+**子组件：**
 
 - `<ui-item-text-content>`
   - `<ui-item-text1>`
@@ -44,6 +48,6 @@
 
 ### Events
 
-| Name    | Type                      | Description                          |
-| ------- | ------------------------- | ------------------------------------ |
-| `click` | `function(event: object)` | Emits when the list item is clicked. |
+| Name    | Type                      | Description      |
+| ------- | ------------------------- | ---------------- |
+| `click` | `function(event: object)` | 点击列表项时触发 |

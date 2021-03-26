@@ -29,29 +29,25 @@
 | --------- | ----- | ---------------------------------------------------------------- |
 | `default` |       | The default slot holds the chip components and can contain HTML. |
 
-**Child components:**
-
-- `<ui-chip>`
-
 ### Events
 
-| Name                | Type                                  | Description                      |
-| ------------------- | ------------------------------------- | -------------------------------- |
-| `update:modelValue` | `function(modelValue: number\|array)` | Emits when the chips is changed. |
+| Name                | Type                             | Description                      |
+| ------------------- | -------------------------------- | -------------------------------- |
+| `update:modelValue` | `function(value: number\|array)` | Emits when the chips is changed. |
 
 > NOTE: If you are not using `v-model`, you should listen for the chips using `@update:modelValue` and update the `modelValue` prop.
 
 - Automatic
 
   ```html
-  <ui-chips v-model="selected"></ui-chips>
+  <ui-chips v-model="value"></ui-chips>
   ```
 
 - Manual
 
   ```html
   <ui-chips
-    :model-value="selected"
-    @update:modelValue="balmUI.onChange('selected', $event)"
+    :model-value="value"
+    @update:modelValue="balmUI.onChange('value', $event)"
   ></ui-chips>
   ```

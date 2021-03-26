@@ -27,7 +27,7 @@ export default {
     const needHelperTextId = this.visible || this.hasValidMsg;
 
     if (!this.id && needHelperTextId) {
-      console.warn(`'helperTextId' is required for '<ui-select>'`);
+      console.warn(`The 'helperTextId' prop is required for <ui-select>`);
     }
   }
 };

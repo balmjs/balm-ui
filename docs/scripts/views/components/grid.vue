@@ -10,7 +10,7 @@
       </template>
       <span class="catalog-title">Layout Grid</span>
       <template #toolbar="{ toolbarItemClass }">
-        <top-toolbar :item-class="toolbarItemClass"></top-toolbar>
+        <top-app-toolbar :item-class="toolbarItemClass"></top-app-toolbar>
       </template>
     </ui-top-app-bar>
 
@@ -248,7 +248,7 @@
 <script>
 import { ref, reactive, toRefs, onMounted, onBeforeUnmount } from 'vue';
 import { useStore } from 'balm-ui';
-import TopToolbar from '@/components/top-toolbar';
+import TopAppToolbar from '@/components/top-app-toolbar';
 
 const wideScreenSize = 1440;
 
@@ -322,7 +322,7 @@ export default {
     titleTemplate: '%s - Layout Grid'
   },
   components: {
-    TopToolbar
+    TopAppToolbar
   },
   setup() {
     const store = useStore();

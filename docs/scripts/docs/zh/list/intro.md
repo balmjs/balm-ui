@@ -1,3 +1,3 @@
 # 列表
 
-Lists are continuous, vertical indexes of text or images.
+列表是文本或图像的连续垂直索引。

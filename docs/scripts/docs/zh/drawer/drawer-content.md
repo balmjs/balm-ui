@@ -4,6 +4,6 @@
 
 ### Slots
 
-| Name      | Props | Description                                                                       |
-| --------- | ----- | --------------------------------------------------------------------------------- |
-| `default` |       | The default slot holds the list of items (router link list) and can contain HTML. |
+| Name      | Props | Description                              |
+| --------- | ----- | ---------------------------------------- |
+| `default` |       | default 插槽包含 router link 列表及 HTML |

@@ -1,3 +1,3 @@
-# 标签页
+# 选项卡
 
-Tabs organize content across different screens, data sets, and other interactions.
+选项卡跨不同的屏幕，数据集和其他交互来组织内容。

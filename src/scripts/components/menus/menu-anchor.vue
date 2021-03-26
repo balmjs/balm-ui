@@ -49,7 +49,7 @@ export default {
             result = positions.map((position) => `${position}:0`).join(';');
           }
         } else {
-          console.warn('Invalid anchor position');
+          console.warn('[UiMenuAnchor]', 'Invalid anchor position');
         }
       }
 

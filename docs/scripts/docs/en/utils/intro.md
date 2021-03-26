@@ -16,21 +16,19 @@ import types from 'balm-ui/utils/types';
 
 Methods
 
-```js
-types.getType(any);
+```ts
+types.getType(any): string;
 
-types.isUndefined(value);
-types.isNull(value);
-types.isBoolean(value);
-types.isNumber(value);
-types.isString(value);
-types.isSymbol(value);
-types.isObject(value);
-types.isArray(value);
-types.isFunction(value);
+types.isUndefined(value): boolean;
+types.isNull(value): boolean;
+types.isBoolean(value): boolean;
+types.isNumber(value): boolean;
+types.isString(value): boolean;
+types.isSymbol(value): boolean;
+types.isObject(value): boolean;
+types.isArray(value): boolean;
+types.isFunction(value): boolean;
 ```
-
-> `getType` returns a string, others return a boolean.
 
 ## 2. Helpers
 
@@ -48,17 +46,17 @@ import helpers from 'balm-ui/utils/helpers';
 
 Methods
 
-```js
-helpers.isEmpty(value);
+```ts
+helpers.isEmpty(value): boolean;
 
-helpers.jsonEqual(jsonA, jsonB); // The order of the properties IS IMPORTANT
-helpers.isDeepEqual(obj1, obj2);
+helpers.jsonEqual(jsonA, jsonB): boolean; // The order of the properties IS IMPORTANT
+helpers.isDeepEqual(obj1, obj2): boolean;
 
-helpers.merge(target, source);
-helpers.merge.all(arrayOfObjects);
+helpers.merge(target: object, source: object): object;
+helpers.merge.all(arrayOfObjects: object[]): object;
 ```
 
-- `isEmpty` - The following values are considered to be empty:
+- `isEmpty` The following values are considered to be empty:
   - `undefined`
   - `null`
   - `false`
@@ -85,8 +83,8 @@ import detectIE from 'balm-ui/utils/ie';
 
 Methods
 
-```js
-detectIE();
+```ts
+detectIE(): string | false;
 ```
 
 > IE browser returns version, other browsers return `false`.

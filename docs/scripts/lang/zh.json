@@ -1,4 +1,9 @@
 {
+  "home": {
+    "slogan": "更高效地生产出精美的产品",
+    "title": "BalmUI 是基于谷歌 Material Design 系统为 Vue.js 量身定制的 UI 框架。",
+    "get-started": "起步"
+  },
   "menu": {
     "guide": "指南",
     "intro": "介绍",
@@ -18,7 +23,7 @@
     "divider": "分割线",
     "navigation": "导航",
     "drawer": "抽屉式导航",
-    "tabs": "标签页",
+    "tabs": "选项卡",
     "menu": "导航菜单",
     "pagination": "分页",
     "theme": "主题",
@@ -31,9 +36,9 @@
     "autocomplete": "自动完成",
     "editor": "富文本",
     "select": "选择器",
-    "checkbox": "多选框",
+    "checkbox": "复选框",
     "radio": "单选框",
-    "chips": "选项卡",
+    "chips": "纸片",
     "file": "文件上传",
     "datepicker": "日期选择框",
     "rangepicker": "日期范围选择框",
@@ -53,9 +58,9 @@
     "dialog": "对话框",
     "alert-dialog": "提示框",
     "confirm-dialog": "确认框",
-    "snackbar": "消息框",
+    "snackbar": "底部消息栏",
     "toast": "短消息提示",
-    "banner": "全局提示",
+    "banner": "顶部消息栏",
     "progress": "进度条",
     "spinner": "加载中",
     "skeleton": "骨架屏",
@@ -65,7 +70,7 @@
     "ripple": "水波纹效果",
     "elevation": "层级阴影",
     "anchor": "锚点",
-    "store": "Store",
+    "store": "状态管理",
     "utils": "常用工具库"
   },
   "page": {
@@ -75,7 +80,9 @@
     "demo": "例子",
     "apis": "APIs",
     "sass": "Sass变量",
-    "icon-list": "图标列表",
+    "icons": "图标集",
+    "colors": "调色板",
+    "icon-list": "Material 图标集",
     "color-palette": "Material 调色板"
   }
 }

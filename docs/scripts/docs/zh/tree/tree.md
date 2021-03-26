@@ -4,19 +4,19 @@
 
 ### Props
 
-| Name                        | Type          | Default | Description                                                | Version |
-| --------------------------- | ------------- | ------- | ---------------------------------------------------------- | ------- |
-| `selectedNodes` (`v-model`) | string, array | `''`    | Selected node keys.                                        |         |
-| `data`                      | array         | `[]`    | The tree data source.                                      |         |
-| `dataFormat`                | object        | `{}`    | Defines the tree data source format.                       |         |
-| `maxLevel`                  | number        | `0`     | Set max level for tree nodes.                              |         |
-| `multiple`                  | boolean       | `false` | Whether to support selected multiple tree nodes.           |         |
-| `loadData`                  | function      | `null`  | Load data asynchronously.                                  |         |
-| `autoExpandParent`          | boolean       | `false` | Whether to automatically expand root parent(s) treeNode.   | 9.17.0  |
-| `defaultExpandedKeys`       | array         | `[]`    | Specify the node keys of the default expanded treeNodes.   | 9.17.0  |
-| `defaultSelectedKeys`       | array         | `[]`    | Specifies the node keys of the default selected treeNodes. | 9.17.0  |
+| Name                     | Type          | Default | Description                  | Version |
+| ------------------------ | ------------- | ------- | ---------------------------- | ------- |
+| `modelValue` (`v-model`) | string, array | `''`    | 选中的树节点键值             |         |
+| `data`                   | array         | `[]`    | 源数据                       |         |
+| `dataFormat`             | object        | `{}`    | 定义源数据的格式             |         |
+| `maxLevel`               | number        | `0`     | 设置加载树节点的最大层级     |         |
+| `multiple`               | boolean       | `false` | 是否支持选定的多个树节点     |         |
+| `loadData`               | function      | `null`  | 启用异步加载数据             |         |
+| `autoExpandParent`       | boolean       | `false` | 是否自动展开根父级树节点     | 9.17.0  |
+| `defaultExpandedKeys`    | array         | `[]`    | 指定默认展开的树节点的节点值 | 9.17.0  |
+| `defaultSelectedKeys`    | array         | `[]`    | 指定默认选中的树节点的节点值 | 9.17.0  |
 
-- Default data format:
+- 默认数据格式：
 
   ```js
   {
@@ -28,41 +28,45 @@
   }
   ```
 
-- Load data asynchronously:
+- 异步加载数据：
 
   ```ts
-  function loadData(nodeKey: string | number) {}
+  type TreeNodes = { [key: string]: any }[];
+
+  interface Tree {
+    loadData(nodeKey: string | number): TreeNodes;
+  }
   ```
 
 ### Slots
 
-| Name               | Props  | Description                                                           |
-| ------------------ | ------ | --------------------------------------------------------------------- |
-| `default`          |        | The default slot holds the tree top bar content and can contain HTML. |
-| `expand-more-icon` |        | The custom expand more icon.                                          |
-| `expand-less-icon` |        | The custom expand less icon.                                          |
-| `title`            | `data` | The title slot holds the tree node title and can contain HTML.        |
-| `action`           | `data` | The action slot holds the tree node actions and can contain HTML.     |
+| Name               | Props  | Description                         |
+| ------------------ | ------ | ----------------------------------- |
+| `default`          |        | default 插槽包含树顶部栏内容及 HTML |
+| `expand-more-icon` |        | 自定义展开图标                      |
+| `expand-less-icon` |        | 自定义收起图标                      |
+| `title`            | `data` | title 插槽包含树节点的标题及 HTML   |
+| `action`           | `data` | action 插槽包含树节点的动作及 HTML  |
 
 ### Events
 
-| Name                | Type                                       | Description                      |
-| ------------------- | ------------------------------------------ | -------------------------------- |
-| `update:modelValue` | `function(selectedNodes: string \| array)` | Emits when tree node is changed. |
+| Name                | Type                                       | Description        |
+| ------------------- | ------------------------------------------ | ------------------ |
+| `update:modelValue` | `function(selectedNodes: string \| array)` | 树节点值变化时触发 |
 
-> NOTE: If you are not using `v-model`, you should listen for the select using `@update:modelValue` and update the `selectedNodes` prop.
+> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@update:modelValue` 监听树节点值并更新 `modelValue` 属性
 
-- Automatic
+- 自动
 
   ```html
   <ui-tree v-model="selectedValue"></ui-tree>
   ```
 
-- Manual
+- 手动
 
   ```html
   <ui-tree
-    :selectedNodes="selectedValue"
-    @update:modelValue="$balmUI.onChange('selectedValue', $event)"
+    :model-value="selectedValue"
+    @update:modelValue="balmUI.onChange('selectedValue', $event)"
   ></ui-tree>
   ```

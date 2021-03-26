@@ -44,7 +44,7 @@ export default {
         if (UI_GRID.POSITIONS.includes(gridPosition)) {
           result.push(`mdc-layout-grid--align-${gridPosition}`);
         } else {
-          console.warn('Invalid <GRID_POSITION>');
+          console.warn('[UiGrid]', 'Invalid <GRID_POSITION>');
         }
       }
 

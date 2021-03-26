@@ -5,10 +5,10 @@
 ```
 
 ```js
-import Vue from 'vue';
 import UiSegmentedButtonComponents from 'balm-ui/components/segmented-button';
 
-Vue.use(UiSegmentedButtonComponents, {
+// `app`: Vue app
+app.use(UiSegmentedButtonComponents, {
   // Optional. Overwrite `<ui-segmented-buttons>` props with default value.
   UiSegmentedButtons: {
     // some props

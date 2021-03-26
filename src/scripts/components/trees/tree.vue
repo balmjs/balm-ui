@@ -116,7 +116,7 @@ export default {
   created() {
     if (this.multiple && !Array.isArray(this.treeData.selectedValue)) {
       throw new Error(
-        `[BalmUI tree]: The prop modelValue must be an array in the multiple tree`
+        `[UiTree]: The 'modelValue' prop must be an array in the multiple tree`
       );
     }
   },

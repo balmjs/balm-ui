@@ -62,7 +62,10 @@ export default {
       ) {
         this.$linearProgress.buffer = value;
       } else {
-        console.warn('Buffer value should be between [0, 1]');
+        console.warn(
+          '[UiProgress]',
+          `The 'buffer' prop value should be between [0, 1]`
+        );
       }
     }
   }

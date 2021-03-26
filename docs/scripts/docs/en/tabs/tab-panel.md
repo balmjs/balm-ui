@@ -7,9 +7,9 @@
 
 ### Props
 
-| Name                 | Type   | Default | Description |
-| -------------------- | ------ | ------- | ----------- |
-| `active` (`v-model`) | number | `0`     | Mandatory.  |
+| Name                     | Type   | Default | Description |
+| ------------------------ | ------ | ------- | ----------- |
+| `modelValue` (`v-model`) | number | `0`     | Mandatory.  |
 
 ### Slots
 

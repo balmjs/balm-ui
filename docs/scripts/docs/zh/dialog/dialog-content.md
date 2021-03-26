@@ -4,6 +4,6 @@
 
 ### Slots
 
-| Name      | Props | Description                                                     |
-| --------- | ----- | --------------------------------------------------------------- |
-| `default` |       | The default slot holds the dialog content and can contain HTML. |
+| Name      | Props | Description                       |
+| --------- | ----- | --------------------------------- |
+| `default` |       | default 插槽包含对话框内容及 HTML |

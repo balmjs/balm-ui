@@ -11,9 +11,9 @@
   - `v-shape.cut.small="corner"`
   - `v-shape.cut.large="corner"`
 
-| Value  | Type   | Default | Description                                                                                                       |
-| ------ | ------ | ------- | ----------------------------------------------------------------------------------------------------------------- |
-| corner | string | `''`    | Element for masking a specific corner; there may be up to 4. (Use shape sass radius variable when value is empty) |
+| Value  | Type   | Default | Description                                                                                                         |
+| ------ | ------ | ------- | ------------------------------------------------------------------------------------------------------------------- |
+| corner | string | `''`    | Element for masking a specific corner; there may be up to 4. (Use shape sass `radius` variable when value is empty) |
 
 > Syntax is similar to CSS `border-radius` property.
 

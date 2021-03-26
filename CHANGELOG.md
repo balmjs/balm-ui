@@ -3,6 +3,15 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.19.0 / 2021-03-26
+
+### Features
+
+- `<ui-icon>`: add sass variables `$dark-focused`, `$light-focused`
+- optimize warn/error message for all
+- docs: update 中文 translation
+- update material-icons v82
+
 ## v9.18.1 / 2021-03-15
 
 ### Bug Fixes

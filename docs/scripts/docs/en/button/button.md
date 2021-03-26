@@ -19,7 +19,13 @@
 | `unelevated` | boolean        | `false`    | Optional. Styles a contained button that is flush with the surface.       |
 | `icon`       | string         | `''`       | Optional. Indicates an icon element. See [Material Icons](/#/icons) list. |
 | `disabled`   | boolean        | `false`    | The `<button>` native attribute. To disable a button.                     |
-| `nativeType` | string         | `'button'` | The `<button>` native attribute. `['button', 'submit', 'reset']`          |
+| `nativeType` | string         | `'button'` | The `<button>` native attribute.                                          |
+
+```ts
+interface Button {
+  nativeType: 'button' | 'submit' | 'reset';
+}
+```
 
 ### Slots
 

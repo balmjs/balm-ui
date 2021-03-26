@@ -4,37 +4,37 @@
 
 ### Props
 
-| Name                     | Type    | Default | Description                |
-| ------------------------ | ------- | ------- | -------------------------- |
-| `modelValue` (`v-model`) | boolean | `false` | Mandatory.                 |
-| `message`                | string  | `''`    | The banner's message.      |
-| `primaryButtonText`      | boolean | `'OK'`  | The primary action text.   |
-| `secondaryButtonText`    | boolean | `''`    | The secondary action text. |
+| Name                     | Type    | Default | Description        |
+| ------------------------ | ------- | ------- | ------------------ |
+| `modelValue` (`v-model`) | boolean | `false` | 顶部消息栏显示状态 |
+| `message`                | string  | `''`    | 消息文本           |
+| `primaryButtonText`      | boolean | `'OK'`  | 主按钮文本         |
+| `secondaryButtonText`    | boolean | `''`    | 辅按钮文本         |
 
 ### Slots
 
-| Name      | Props        | Description                                             |
-| --------- | ------------ | ------------------------------------------------------- |
-| `default` |              | The default slot holds the message text for the banner. |
-| `image`   | `imageClass` | Images can help communicate a banner’s message.         |
-| `actions` |              | The custom action buttons.                              |
+| Name      | Props        | Description                     |
+| --------- | ------------ | ------------------------------- |
+| `default` |              | default 插槽包含消息文本及 HTML |
+| `image`   | `imageClass` | 自定义图片区域                  |
+| `actions` |              | 自定义动作按钮                  |
 
 ### Events
 
-| Name                | Type                            | Description                      |
-| ------------------- | ------------------------------- | -------------------------------- |
-| `update:modelValue` | `function(modelValue: boolean)` | Emits when the banner is hidden. |
-| `closed`            | `function(reason: string)`      | Emits when the banner is closed. |
+| Name                | Type                       | Description          |
+| ------------------- | -------------------------- | -------------------- |
+| `update:modelValue` | `function(open: boolean)`  | 顶部消息栏隐藏时触发 |
+| `closed`            | `function(reason: string)` | 顶部消息栏关闭时触发 |
 
-> NOTE: If you are not using `v-model`, you should listen for the banner using `@update:modelValue` and update the `modelValue` prop.
+> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@update:modelValue` 监听顶部消息栏显示状态并更新 `modelValue` 属性
 
-- Automatic
+- 自动
 
   ```html
   <ui-banner v-model="open"></ui-banner>
   ```
 
-- Manual
+- 手动
 
   ```html
   <ui-banner

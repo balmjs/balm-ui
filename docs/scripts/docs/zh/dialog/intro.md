@@ -1,3 +1,3 @@
 # 对话框
 
-Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.
+对话框通知用户有关一项任务的信息，并且可以包含关键信息，需要做出决定或涉及多个任务。

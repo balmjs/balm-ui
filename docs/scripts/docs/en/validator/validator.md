@@ -6,35 +6,67 @@ import { useValidator } from 'balm-ui';
 const validator = useValidator();
 ```
 
-```js
-validator.validate(formData, customFieldset);
-```
+- Validation Method
+
+  ```ts
+  interface BalmUIValidator {
+    validate(
+      formData: { [fieldName: string]: any },
+      customFieldset?: string[]
+    ): BalmUIValidationResult;
+  }
+  ```
 
 | Param            | Type   | Default | Description                                   |
 | ---------------- | ------ | ------- | --------------------------------------------- |
 | `formData`       | object | `{}`    | Mandatory. A form data object.                |
 | `customFieldset` | array  | `[]`    | Optional. The field names of the validations. |
 
-- **BalmUI validator rules** format:
+- Validation Result
+
+  ```ts
+  interface BalmUIValidationResult {
+    valid: boolean;
+    validFields: string[];
+    invalidFields: string[];
+    message: string;
+    messages: string[];
+    validMsg: { [fieldName: string]: string };
+  }
+  ```
+
+| Result          | Type    | Description                                            |
+| --------------- | ------- | ------------------------------------------------------ |
+| `valid`         | boolean | The validator result.                                  |
+| `validFields`   | array   | Valid fields.                                          |
+| `invalidFields` | array   | Invalid fields.                                        |
+| `message`       | string  | The message of the first invalid field.                |
+| `messages`      | array   | The messages of all invalid fields.                    |
+| `validMsg`      | object  | The messages as an object. (Same format as `formData`) |
+
+> NOTE: `validMsg` can be used with `<ui-textfield-helper>`/`<ui-select-helper>` to trigger the `<ui-textfield>`/`<ui-select>` invalid styling
+
+- Validation Rule
+
+  ```ts
+  interface BalmUIValidationRule {
+    label?: string;
+    validator: string; // 'customRule1, customRule2, ...'
+    ...customRule?: {
+      validate(fieldValue: any, formData: { [fieldName: string]: any }): boolean;
+      message: string;
+    };
+  }
+
+  type BalmUIValidations = {
+    [fieldName: string]: BalmUIValidationRule;
+  };
+  ```
+
+## 2.1 Default Validation
 
 ```js
-{
-  fieldName1: {
-    validate(fieldValue, formData) {
-      // Validation method
-      return true;
-    },
-    message: '%s is required'
-  },
-  // More rules
-  // fieldName2: { ... }
-}
-```
-
-- Usage in a vue component:
-
-```js
-// Define validator
+// Custom local validation rules
 const validations = {
   fieldName1: {
     label: 'Field Label',
@@ -44,10 +76,12 @@ const validations = {
         // Validation method
         return true;
       },
-      message: 'Invalid format'
+      message: '%s is required' // The '%s' symbol will automatically replace the label text
     }
-    // customRule2: {}
+    // More custom rules
+    // customRule2: { ... }
   }
+  // More form fields
   // fieldName2: {}
 };
 ```
@@ -62,7 +96,8 @@ const validations = {
 
   const state = reactive({
     formData: {
-      fieldName: ''
+      fieldName1: '',
+      fieldName2: ''
     }
   });
 
@@ -104,7 +139,8 @@ const validations = {
         validator: useValidator(),
         validations,
         formData: {
-          fieldName: ''
+          fieldName1: '',
+          fieldName2: ''
         }
       };
     },
@@ -123,29 +159,17 @@ const validations = {
   };
   ```
 
-| Result          | Type    | Description                                            |
-| --------------- | ------- | ------------------------------------------------------ |
-| `valid`         | boolean | The validator result.                                  |
-| `validFields`   | array   | Valid fields.                                          |
-| `invalidFields` | array   | Invalid fields.                                        |
-| `message`       | string  | The message of the first invalid field.                |
-| `messages`      | array   | The messages of all invalid fields.                    |
-| `validMsg`      | object  | The messages as an object. (Same format as `formData`) |
-
-> NOTE: `validMsg` can be used with `<ui-textfield-helper>`/`<ui-select-helper>` to trigger the `<ui-textfield>`/`<ui-select>` invalid styling
-
-- Set validations for the dynamic form
+## 2.2 Dynamic Form Validation
 
 ```ts
 // New in 9.15.0
-validator.clear();
-validator.get(fieldName?: string); // show current validation rule(s)
-validator.set(fieldName: string, validationRule: object);
-validator.set(validations: object);
+interface BalmUIValidator {
+  clear(): void;
+  get(fieldName?: string): BalmUIValidations | BalmUIValidationRule; // show current validation rule(s)
+  set(fieldName: string, validationRule: BalmUIValidationRule): void;
+  set(validations: BalmUIValidations): void;
+}
 ```
-
-> - <del>`validator.resetValidations()`</del> is deprecated in 8.17.0
-> - <del>`validator.setValidations()`</del> is deprecated in 9.15.0
 
 | Param         | Type   | Default | Description                                               |
 | ------------- | ------ | ------- | --------------------------------------------------------- |
@@ -153,27 +177,106 @@ validator.set(validations: object);
 | `validation`  | object | `{}`    | A validation. (BalmUI validator rule value)               |
 | `validations` | object | `{}`    | (See) BalmUI validator rules.                             |
 
-- For the dynamic form verification:
+- 1. using `computed`
 
-  - 1. using `computed`
+  ```js
+  import { useValidator } from 'balm-ui';
 
-    ```js
-    import { useValidator } from 'balm-ui';
+  export default {
+    data() {
+      return {
+        validator: useValidator(),
+        step: 1,
+        formData: {
+          username: '',
+          password: ''
+        }
+      };
+    },
+    computed: {
+      validations() {
+        return this.step === 1
+          ? {
+              username: {
+                label: 'Username',
+                validator: 'required'
+              }
+            }
+          : {
+              password: {
+                label: 'Password',
+                validator: 'required'
+              }
+            };
+      }
+    },
+    methods: {
+      onSubmit() {
+        let result = this.validator.validate(this.formData);
+        // ...
+      }
+    }
+  };
+  ```
 
-    export default {
-      data() {
-        return {
-          validator: useValidator(),
-          step: 1,
-          formData: {
-            username: '',
-            password: ''
-          }
-        };
-      },
-      computed: {
-        validations() {
-          return this.step === 1
+- 2. using `customFieldset`
+
+  ```js
+  import { useValidator } from 'balm-ui';
+
+  const validations = {
+    username: {
+      label: 'Username',
+      validator: 'required'
+    },
+    password: {
+      label: 'Password',
+      validator: 'required'
+    }
+  };
+
+  export default {
+    data() {
+      return {
+        validator: useValidator(),
+        validations,
+        step: 1,
+        formData: {
+          username: '',
+          password: ''
+        }
+      };
+    },
+    methods: {
+      onSubmit() {
+        let customFieldset = this.step === 1 ? ['username'] : ['password'];
+        let result = this.validator.validate(this.formData, customFieldset);
+        // ...
+      }
+    }
+  };
+  ```
+
+- 3. using `validator.set` for validations
+
+  ```js
+  import { useValidator } from 'balm-ui';
+
+  export default {
+    data() {
+      return {
+        validator: useValidator(),
+        step: 1,
+        formData: {
+          username: '',
+          password: ''
+        }
+      }
+    },
+    methods: {
+      onSubmit() {
+        let customValidations =
+          this.step === 1
             ? {
                 username: {
                   label: 'Username',
@@ -186,91 +289,10 @@ validator.set(validations: object);
                   validator: 'required'
                 }
               };
-        }
-      },
-      methods: {
-        onSubmit() {
-          let result = this.validator.validate(this.formData);
-          // ...
-        }
-      }
-    };
-    ```
+        this.validator.set(customValidations);
 
-  - 2. using `customFieldset` for `validator.validate`
-
-    ```js
-    import { useValidator } from 'balm-ui';
-
-    const validations = {
-      username: {
-        label: 'Username',
-        validator: 'required'
-      },
-      password: {
-        label: 'Password',
-        validator: 'required'
-      }
-    };
-
-    export default {
-      data() {
-        return {
-          validator: useValidator(),
-          validations,
-          step: 1,
-          formData: {
-            username: '',
-            password: ''
-          }
-        };
-      },
-      methods: {
-        onSubmit() {
-          let customFieldset = this.step === 1 ? ['username'] : ['password'];
-          let result = this.validator.validate(this.formData, customFieldset);
-          // ...
-        }
-      }
-    };
-    ```
-
-  - 3. using `validator.setValidations`
-
-    ```js
-    import { useValidator } from 'balm-ui';
-
-    export default {
-      data() {
-        return {
-          validator: useValidator(),
-          step: 1,
-          formData: {
-            username: '',
-            password: ''
-          }
-        }
-      },
-      methods: {
-        onSubmit() {
-          let customValidations =
-            this.step === 1
-              ? {
-                  username: {
-                    label: 'Username',
-                    validator: 'required'
-                  }
-                }
-              : {
-                  password: {
-                    label: 'Password',
-                    validator: 'required'
-                  }
-                };
-          this.validator.set(customValidations);
-
-          let result = this.validator.validate(this.formData);
-          // ...
-      }
-    };
-    ```
+        let result = this.validator.validate(this.formData);
+        // ...
+    }
+  };
+  ```

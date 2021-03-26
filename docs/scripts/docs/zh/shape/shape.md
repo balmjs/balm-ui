@@ -2,20 +2,20 @@
 <div v-shape></div>
 ```
 
-- Rounded shapes
+- 圆角形状
   - `v-shape="corner"` (medium)
   - `v-shape.small="corner"`
   - `v-shape.large="corner"`
-- Cut shapes (Experimental, Sass Only)
+- 切割形状 (实验性功能，仅支持 Sass 用法)
   - `v-shape.cut="corner"` (medium)
   - `v-shape.cut.small="corner"`
   - `v-shape.cut.large="corner"`
 
-| Value  | Type   | Default | Description                                                                                                       |
-| ------ | ------ | ------- | ----------------------------------------------------------------------------------------------------------------- |
-| corner | string | `''`    | Element for masking a specific corner; there may be up to 4. (Use shape sass radius variable when value is empty) |
+| Value  | Type   | Default | Description                                                                            |
+| ------ | ------ | ------- | -------------------------------------------------------------------------------------- |
+| corner | string | `''`    | 用于遮盖特定角落的元素；最多可能有 4 个。（值为空时使用 shape sass `radius` variable） |
 
-> Syntax is similar to CSS `border-radius` property.
+> 语法类似 CSS `border-radius` 属性
 
 ```html
 <!-- The syntax of the first corner allows one to four values -->

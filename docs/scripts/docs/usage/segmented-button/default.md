@@ -3,10 +3,10 @@
 ```
 
 ```js
-import Vue from 'vue';
 import BalmUI from 'balm-ui';
 
-Vue.use(BalmUI, {
+// `app`: Vue app
+app.use(BalmUI, {
   // Optional. Overwrite `<ui-segmented-buttons>` props with default value.
   UiSegmentedButtons: {
     // some props

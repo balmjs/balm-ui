@@ -259,7 +259,7 @@ export default {
         if (UI_MENU.MENU_POSITIONS.includes(menuPosition)) {
           this.$menu.setAnchorCorner(Corner[menuPosition]);
         } else {
-          console.warn('Invalid menu position');
+          console.warn('[UiMenu]', 'Invalid menu position');
         }
       }
     },

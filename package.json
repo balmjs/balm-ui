@@ -1,6 +1,6 @@
 {
   "name": "balm-ui",
-  "version": "9.18.1",
+  "version": "9.19.0",
   "description": "A modular and customizable UI library based on Material Design and Vue 3",
   "keywords": [
     "balm",
@@ -69,12 +69,12 @@
     "@typescript-eslint/eslint-plugin": "^4.19.0",
     "@typescript-eslint/parser": "^4.19.0",
     "@vue/compiler-sfc": "^3.0.0",
-    "@vue/test-utils": "^2.0.0-rc.3",
+    "@vue/test-utils": "^2.0.0-rc.4",
     "axios": "^0.21.1",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.3",
     "babel-plugin-prismjs": "^2.0.1",
-    "balm": "^3.11.0",
+    "balm": "^3.12.0",
     "clipboard": "^2.0.8",
     "core-js": "^3.9.0",
     "cross-env": "^7.0.3",

@@ -4,46 +4,52 @@
 
 ### Props
 
-| Name                   | Type            | Default           | Description                                                     | Version |
-| ---------------------- | --------------- | ----------------- | --------------------------------------------------------------- | ------- |
-| `modelValue`           | number          | `1`               | Current page number.                                            |         |
-| `total`                | number          | `0`               | The total number of data items.                                 |         |
-| `pageSpan`             | number, boolean | `3`               | Display the first N pages of the current page. (MIN VALUE: `3`) |         |
-| `showTotal`            | boolean         | `false`           | Display total info.                                             |         |
-| `pageSize`             | number, array   | `10`              | The number of data items per page.                              |         |
-| `pageSizeText`         | string, array   | `'Rows per page'` | The page size before/after text.                                |         |
-| `showJumper`           | boolean         | `false`           | Determine whether you can jump to pages directly.               |         |
-| `jumperText`           | string, array   | `'Goto'`          | The jumper before/after text.                                   |         |
-| `jumperButtonOutlined` | boolean         | `false`           | Styles an outlined jumper button.                               | 9.11.0  |
-| `jumperButtonText`     | string          | `''`              | The jumper button text.                                         |         |
-| `position`             | string          | `''`              | The pagination postion. [`'left'`, `'center'`, `'right'`]       |         |
-| `mini`                 | boolean         | `false`           | Whether to use simple mode.                                     |         |
+| Name                     | Type            | Default           | Description                          | Version |
+| ------------------------ | --------------- | ----------------- | ------------------------------------ | ------- |
+| `modelValue` (`v-model`) | number          | `1`               | 页码                                 |         |
+| `total`                  | number          | `0`               | 数据总数                             |         |
+| `pageSpan`               | number, boolean | `3`               | 展示当前页码的前 N 页（最小值：`3`） |         |
+| `showTotal`              | boolean         | `false`           | 显示数据量信息区域                   |         |
+| `pageSize`               | number, array   | `10`              | 每页展示的数据量                     |         |
+| `pageSizeText`           | string, array   | `'Rows per page'` | 每页数据量信息展示的前/后文字        |         |
+| `showJumper`             | boolean         | `false`           | 显示跳转区域                         |         |
+| `jumperText`             | string, array   | `'Goto'`          | 跳转区域展示的前/后文字              |         |
+| `jumperButtonOutlined`   | boolean         | `false`           | 跳转按钮启用轮廓按钮样式             | 9.11.0  |
+| `jumperButtonText`       | string          | `''`              | 跳转按钮文字                         |         |
+| `position`               | string          | `''`              | 分页排版位置                         |         |
+| `mini`                   | boolean         | `false`           | 使用迷你模式                         |         |
+
+```ts
+interface Pagination {
+  position: 'left' | 'center' | 'right';
+}
+```
 
 ### Slots
 
-| Name      | Props                            | Description                      | Version |
-| --------- | -------------------------------- | -------------------------------- | ------- |
-| `default` | `currentMinRow`, `currentMaxRow` | The custom page size area.       | 9.3.0   |
-| `first`   |                                  | The custom first button icon.    |         |
-| `prev`    |                                  | The custom previous button icon. |         |
-| `next`    |                                  | The custom next button icon.     |         |
-| `last`    |                                  | The custom last button icon.     |         |
+| Name      | Props                            | Description          | Version |
+| --------- | -------------------------------- | -------------------- | ------- |
+| `default` | `currentMinRow`, `currentMaxRow` | 自定义数据量信息区域 | 9.3.0   |
+| `first`   |                                  | 自定义首页按钮图标   |         |
+| `prev`    |                                  | 自定义上页按钮图标   |         |
+| `next`    |                                  | 自定义下页按钮图标   |         |
+| `last`    |                                  | 自定义尾页按钮图标   |         |
 
 ### Events
 
-| Name                | Type                           | Description                                |
-| ------------------- | ------------------------------ | ------------------------------------------ |
-| `update:modelValue` | `function(modelValue: number)` | Emits when the pagination page is changed. |
+| Name                | Type                     | Description    |
+| ------------------- | ------------------------ | -------------- |
+| `update:modelValue` | `function(page: number)` | 页码变化时触发 |
 
-> NOTE: If you are not using `v-model`, you should listen for the select using `@update:modelValue` and update the `modelValue` prop.
+> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@update:modelValue` 监听分页页码状态并更新 `modelValue` 属性
 
-- Automatic
+- 自动
 
   ```html
   <ui-pagination v-model="page"></ui-pagination>
   ```
 
-- Manual
+- 手动
 
   ```html
   <ui-pagination

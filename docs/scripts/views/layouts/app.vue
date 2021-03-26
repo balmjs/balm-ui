@@ -18,13 +18,13 @@
         @nav="balmUI.onChange('openDrawer', !openDrawer)"
       >
         <router-link
-          to="/"
+          :to="{ name: 'home' }"
           :class="['catalog-title', $theme.getThemeClass('on-primary')]"
         >
           {{ title }}
         </router-link>
         <template #toolbar="{ toolbarItemClass }">
-          <top-toolbar :item-class="toolbarItemClass"></top-toolbar>
+          <top-app-toolbar :item-class="toolbarItemClass"></top-app-toolbar>
         </template>
       </ui-top-app-bar>
       <!-- Global Message -->
@@ -51,7 +51,11 @@
             class="balmui-menu"
           >
             <ui-drawer-header>
-              <ui-drawer-title>{{ title }}</ui-drawer-title>
+              <ui-drawer-title>
+                <router-link :to="{ name: 'home' }">
+                  {{ title }}
+                </router-link>
+              </ui-drawer-title>
               <ui-drawer-subtitle>
                 <i class="balmui-version">
                   v
@@ -158,14 +162,13 @@ import {
   reactive,
   toRefs,
   computed,
-  onBeforeMount,
   onMounted,
   onBeforeUnmount
 } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { useEvent, useBus, useStore } from 'balm-ui';
-import TopToolbar from '@/components/top-toolbar';
+import TopAppToolbar from '@/components/top-app-toolbar';
 import { VERSION, lazyLoadedTime, $MIN_WIDTH } from '@/config';
 import menu from '@/config/menu';
 
@@ -205,7 +208,7 @@ export default {
     title: 'BalmUI'
   },
   components: {
-    TopToolbar
+    TopAppToolbar
   },
   setup(props, ctx) {
     const root = ref(null);

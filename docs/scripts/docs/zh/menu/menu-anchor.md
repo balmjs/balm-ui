@@ -4,15 +4,25 @@
 
 ### Props
 
-| Name       | Type    | Default | Description                                                                                                                                                |
-| ---------- | ------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `position` | string  | `''`    | Menu button position to the menu anchor.                                                                                                                   |
-| `absolute` | boolean | `false` | The menu surface can use absolute positioning when being displayed. This requires that the element containing the menu has the `position: relative` style. |
+| Name       | Type    | Default | Description                                         |
+| ---------- | ------- | ------- | --------------------------------------------------- |
+| `position` | string  | `''`    | 设置菜单按钮位置（相对于菜单锚点）                  |
+| `absolute` | boolean | `false` | 启用绝对定位（其容器需要设置 `position: relative`） |
 
-- Menu button positions: `top left`, `top right`, `middle left`, `middle right`, `bottom left`, `bottom right`.
+```ts
+interface MenuAnchor {
+  position:
+    | 'top left'
+    | 'top right'
+    | 'middle left'
+    | 'middle right'
+    | 'bottom left'
+    | 'bottom right';
+}
+```
 
 ### Slots
 
-| Name      | Props | Description                                |
-| --------- | ----- | ------------------------------------------ |
-| `default` |       | The default slot holds the menu component. |
+| Name      | Props | Description                     |
+| --------- | ----- | ------------------------------- |
+| `default` |       | default 插槽包含菜单组件及 HTML |

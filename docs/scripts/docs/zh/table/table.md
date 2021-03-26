@@ -4,38 +4,38 @@
 
 ### Props
 
-| Name                     | Type            | Default                  | Description                                                      | Version |
-| ------------------------ | --------------- | ------------------------ | ---------------------------------------------------------------- | ------- |
-| `data`                   | array           | `[]`                     | Data source.                                                     |         |
-| `thead`                  | array           | `[]`                     | Table header renderer.                                           |         |
-| `tbody`                  | array           | `[]`                     | Table content renderer.                                          |         |
-| `tfoot`                  | array           | `[]`                     | Table footer renderer.                                           |         |
-| `fullwidth`              | boolean         | `false`                  | Styles the table as a full width table.                          |         |
-| `rowCheckbox`            | boolean         | `false`                  | Data table with row selection.                                   |         |
-| `modelValue` (`v-model`) | array           | `[]`                     | Selected row indexes/ids. (Required: `rowCheckbox: true`)        |         |
-| `selectedKey`            | boolean, string | `false`                  | `modelValue` use custom key field, default use row index.        |         |
-| `rowIdPrefix`            | string          | `''`                     | The prefix of `data-row-id` attribute value on row element `tr`. |         |
-| `sortIconAlignEnd`       | boolean         | `false`                  | The sort icon will be positioned after the label.                |         |
-| `showProgress`           | boolean         | `false`                  | Styles the table with progress indicator for data loading.       | 9.7.0   |
-| `fixedHeader`            | boolean         | `false`                  | Styles the table as a fixed header.                              | 9.7.0   |
-| `defaultColWidth`        | number          | `100`                    | Set the default column width for the fixed table.                | 9.7.0   |
-| `scroll`                 | object          | `{ x: false, y: false }` | Set the table container size for the fixed table.                | 9.7.0   |
+| Name                     | Type            | Default                  | Description                                        | Version |
+| ------------------------ | --------------- | ------------------------ | -------------------------------------------------- | ------- |
+| `data`                   | array           | `[]`                     | 数据源                                             |         |
+| `thead`                  | array           | `[]`                     | 表格头部渲染格式                                   |         |
+| `tbody`                  | array           | `[]`                     | 表格内容渲染格式                                   |         |
+| `tfoot`                  | array           | `[]`                     | 表格底部渲染格式                                   |         |
+| `fullwidth`              | boolean         | `false`                  | 全屏宽度样式                                       |         |
+| `rowCheckbox`            | boolean         | `false`                  | 带有行选择的表格                                   |         |
+| `modelValue` (`v-model`) | array           | `[]`                     | 选择行的索引或 IDs（必须设置 `rowCheckbox: true`） |         |
+| `selectedKey`            | boolean, string | `false`                  | `selectedRows` 使用自定义键字段，默认使用行索引。  |         |
+| `rowIdPrefix`            | string          | `''`                     | 在行元素 `<tr>` 上的 `data-row-id` 属性值的前缀    |         |
+| `sortIconAlignEnd`       | boolean         | `false`                  | 设置排序图标位于标签之后                           |         |
+| `showProgress`           | boolean         | `false`                  | 启用表格进度指示器表示加载数据中                   | 9.7.0   |
+| `fixedHeader`            | boolean         | `false`                  | 表格头部固定模式                                   | 9.7.0   |
+| `defaultColWidth`        | number          | `100`                    | 设置固定模式表格每列的默认宽度                     | 9.7.0   |
+| `scroll`                 | object          | `{ x: false, y: false }` | 设置固定模式表格容器的大小                         | 9.7.0   |
 
-- `thead` & `tbody` & `tfoot` items common format
+- `thead` & `tbody` & `tfoot` 属性通用格式
 
   ```ts
-  {
-    value: string; // Cell content
-    numeric: boolean; // Numeric cell is displayed right (Equivalent to `align: 'right'`)
-    align: string; // Text alignment: 'left'|'center'|'right'
-    class: string; // Custom classname
-    slot: string; // Custom slot for cell
+  interface TableCell {
+    value: string; // 单元格内容
+    numeric: boolean; // 数字单元格居右显示（相当于 `align: 'right'`）
+    align: 'left' | 'center' | 'right';
+    class: string; // 自定义 class
+    slot: string; // 自定义插槽
   }
   ```
 
-- `thead` format
+- `thead` 格式
 
-  - default items (`string[]`)
+  - 默认（`string[]`）
 
     ```js
     [
@@ -48,12 +48,12 @@
     ];
     ```
 
-  - custom items (`object[]` or `object[][]`)
+  - 自定义（`object[]` 或 `object[][]`）
 
     ```ts
-    {
-      sort: string; // Sorting: 'none'|'asc'|'desc'
-      columnId: string; // sort field, e.g. 'id'
+    interface Thead {
+      sort: 'none' | 'asc' | 'desc'; // 排序
+      columnId: string; // 排序字段：例如 'id'
       rowspan: number;
       colspan: number;
     }
@@ -93,23 +93,23 @@
     ];
     ```
 
-- `tbody` format
+- `tbody` 格式
 
-  - default fields (`string[]`)
+  - 默认（`string[]`）
 
     ```js
     ['id', 'dessert', 'calories', 'fat', 'carbs', 'protein'];
     ```
 
-  - custom fields (`object[]`)
+  - 自定义（`object[]`）
 
     ```ts
-    {
-      field: string; // Data field name
-      fn: function; // Simple data processing
-      colClass: string; // The class name of the <col> element (New in 9.7.0)
-      fixed: string; // Fixed cell for 'left' or 'right' (New in 9.7.0)
-      width: number; // Set column width for fixed cell (New in 9.7.0)
+    interface Tbody {
+      field: string; // 数据字段名
+      fn: function; // 简单的数据处理
+      colClass: string; // <col> 元素的 class (New in 9.7.0)
+      fixed: 'left' ｜ 'right'; // 设置固定模式表格中单元格的位置 (New in 9.7.0)
+      width: number; // 设置固定模式表格中单元格的宽度 (New in 9.7.0)
     }
     ```
 
@@ -151,17 +151,17 @@
     </ui-table>
     ```
 
-- `tfoot` items format (`object[]`)
+- `tfoot` 格式（`object[]`）
 
   ```ts
-  {
-    fnName: string; // Frequently-used statistical method
-    fn: function; // Simple data processing for result
-    slot: string; // Custom slot for footer cell
+  interface Tfoot {
+    fnName: 'count' | 'sum' | 'avg' | 'max' | 'min'; // 常用统计方法
+    fn: function; // 简单的数据结果处理
+    slot: string; // 自定义插槽
   }
   ```
 
-  - `fnName` methods: `count`, `sum`, `avg`, `max`, `min`
+  - `fnName` 方法：`count`, `sum`, `avg`, `max`, `min`
 
     ```js
     [
@@ -191,31 +191,31 @@
 
 ### Slots
 
-| Name            | Props | Description                                                           |
-| --------------- | ----- | --------------------------------------------------------------------- |
-| `default`       |       | The default slot holds the pagination component and can contain HTML. |
-| `(custom-name)` |       | Custom slot for cell                                                  |
+| Name            | Props | Description                     |
+| --------------- | ----- | ------------------------------- |
+| `default`       |       | default 插槽包含分页组件及 HTML |
+| `(custom-name)` |       | 单元格自定义插槽                |
 
 ### Events
 
-| Name                | Type                          | Description                         |
-| ------------------- | ----------------------------- | ----------------------------------- |
-| `update:modelValue` | `function(modelValue: array)` | Emits when row checkbox is changed. |
+| Name                | Type                            | Description      |
+| ------------------- | ------------------------------- | ---------------- |
+| `update:modelValue` | `function(selectedRows: array)` | 选择行变化时触发 |
 
-> NOTE: If you are not using `v-model`, you should listen for the select using `@update:modelValue` and update the `modelValue` prop.
+> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@update:modelValue` 监听表格选择行并更新 `modelValue` 属性
 
-- Automatic
+- 自动
 
   ```html
   <ui-table v-model="selectedRows" row-checkbox></ui-table>
   ```
 
-- Manual
+- 手动
 
   ```html
   <ui-table
-    row-checkbox
     :model-value="selectedRows"
+    row-checkbox
     @update:modelValue="balmUI.onChange('selectedRows', $event)"
   ></ui-table>
   ```

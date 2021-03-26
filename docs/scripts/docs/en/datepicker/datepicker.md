@@ -2,7 +2,7 @@
 <ui-datepicker></ui-datepicker>
 ```
 
-<ui-datepicker> mode in `options` prop
+**`<ui-datepicker>` type in `config.mode` prop**
 
 - single (default)
 - multiple
@@ -63,9 +63,9 @@ export default {
 
 ### Events
 
-| Name                | Type                                  | Description                                 |
-| ------------------- | ------------------------------------- | ------------------------------------------- |
-| `update:modelValue` | `function(modelValue: string\|array)` | Emits when the datepicker value is changed. |
+| Name                | Type                             | Description                                 |
+| ------------------- | -------------------------------- | ------------------------------------------- |
+| `update:modelValue` | `function(value: string\|array)` | Emits when the datepicker value is changed. |
 
 > NOTE: If you are not using `v-model`, you should listen for the datepicker using `@update:modelValue` and update the `modelValue` prop.
 

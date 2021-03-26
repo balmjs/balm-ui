@@ -2,19 +2,19 @@
 <div v-ripple></div>
 ```
 
-### Default ripple
+### 波纹效果
 
 - `v-ripple="color"`
 - `v-ripple:cssOnly="color"`
 
-| Value   | Type           | Default     | Description           |
-| ------- | -------------- | ----------- | --------------------- |
-| `color` | number, string | `undefined` | Sets the ripple color |
+| Value   | Type           | Default     | Description  |
+| ------- | -------------- | ----------- | ------------ |
+| `color` | number, string | `undefined` | 设置波纹颜色 |
 
-1. Sets the ripple color to the theme primary color: `1` or `'primary'`.
-2. Sets the ripple color to the theme secondary color: `2` or `'secondary'`.
+1. 设置波纹颜色为主色：`1` 或 `'primary'`
+2. 设置波纹颜色为辅色：`2` 或 `'secondary'`
 
-### Unbounded ripple
+### 去波纹效果
 
 - `v-ripple.unbounded="color"`
 - `v-ripple:cssOnly.unbounded="color"`

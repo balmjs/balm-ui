@@ -30,7 +30,7 @@ function install(app, options = {}) {
       app.provide('store', store);
     }
   } else {
-    throw new Error(`[BalmUI store]: The '$store' must be an object`);
+    throw new Error(`[$store]: The '$store' of BalmUI must be an object`);
   }
 }
 

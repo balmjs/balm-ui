@@ -21,10 +21,10 @@
 
 ### Events
 
-| Name                | Type                            | Description                      |
-| ------------------- | ------------------------------- | -------------------------------- |
-| `update:modelValue` | `function(modelValue: boolean)` | Emits when the banner is hidden. |
-| `closed`            | `function(reason: string)`      | Emits when the banner is closed. |
+| Name                | Type                       | Description                      |
+| ------------------- | -------------------------- | -------------------------------- |
+| `update:modelValue` | `function(open: boolean)`  | Emits when the banner is hidden. |
+| `closed`            | `function(reason: string)` | Emits when the banner is closed. |
 
 > NOTE: If you are not using `v-model`, you should listen for the banner using `@update:modelValue` and update the `modelValue` prop.
 

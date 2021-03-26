@@ -1,3 +1,3 @@
 # 分割线
 
-A divider is a thin line that groups content in lists and layouts.
+分隔线是将内容按列表和布局分组的细线。

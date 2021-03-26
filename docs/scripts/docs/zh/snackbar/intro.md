@@ -1,3 +1,3 @@
-# 消息框
+# 底部消息栏
 
-Snackbars provide brief messages about app processes at the bottom of the screen.
+底部消息栏在屏幕底部提供有关应用程序过程的简短消息。

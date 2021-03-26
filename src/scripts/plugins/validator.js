@@ -38,7 +38,7 @@ class Validations {
 function upgradeMessage(from, to) {
   console.warn(
     '[$validator]',
-    `The '${from}' has been deprecated. Use the '${to}' instead.`
+    `The '${from}' has been deprecated. Use the '${to}' instead`
   );
 }
 
@@ -103,7 +103,7 @@ const BalmUI_ValidatorPlugin = {
                 default:
                   console.warn(
                     '[$validator]',
-                    `'${fieldName}.message' must be a string or function.`
+                    `'${fieldName}.message' must be a string or function`
                   );
                   break;
               }
@@ -116,7 +116,7 @@ const BalmUI_ValidatorPlugin = {
           } else {
             console.warn(
               '[$validator]',
-              `The field '${fieldName}' is missing a validation rule: '${ruleName}'.`
+              `The field '${fieldName}' is missing a validation rule: '${ruleName}'`
             );
           }
         }

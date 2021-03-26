@@ -103,14 +103,14 @@
           v-for="(category, index) in categories"
           :key="`category${index}`"
         >
-          <ui-list-group-subheader
-            v-anchor:id="category.name"
-            :class="$tt('headline6')"
-          >
-            {{ category.name }}
-          </ui-list-group-subheader>
-          <template v-if="Object.keys(currentIcons).length">
-            <ui-image-list v-if="currentIcons[category.name].length">
+          <template v-if="currentIcons[category.name].length">
+            <ui-list-group-subheader
+              v-anchor:id="category.name"
+              :class="$tt('headline6')"
+            >
+              {{ category.name }}
+            </ui-list-group-subheader>
+            <ui-image-list>
               <ui-image-item
                 v-for="icon in currentIcons[category.name]"
                 :key="icon.id"
@@ -127,10 +127,9 @@
                 <ui-image-text>{{ icon.name }}</ui-image-text>
               </ui-image-item>
             </ui-image-list>
-          </template>
-          <p v-else :key="`p${index}`">No Icons</p>
-          <template v-if="index < category.count - 1">
-            <ui-list-divider :key="`divider${index}`"></ui-list-divider>
+            <template v-if="index < category.count - 1">
+              <ui-list-divider :key="`divider${index}`"></ui-list-divider>
+            </template>
           </template>
         </template>
       </ui-list-group>

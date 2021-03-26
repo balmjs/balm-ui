@@ -18,7 +18,7 @@
         @nav="balmUI.onChange('openDrawer', !openDrawer)"
       >
         <router-link
-          to="/"
+          :to="{ name: 'home' }"
           :class="['catalog-title', $theme.getThemeClass('on-primary')]"
         >
           {{ title }}
@@ -51,7 +51,11 @@
             class="balmui-menu"
           >
             <ui-drawer-header>
-              <ui-drawer-title>{{ title }}</ui-drawer-title>
+              <ui-drawer-title>
+                <router-link :to="{ name: 'home' }">
+                  {{ title }}
+                </router-link>
+              </ui-drawer-title>
               <ui-drawer-subtitle>
                 <i class="balmui-version">
                   v

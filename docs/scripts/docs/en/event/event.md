@@ -1,13 +1,5 @@
 ## 1. Event Shortcut
 
-```js
-import { useEvent } from 'balm-ui';
-// OR
-// import { useEvent } from 'balm-ui/plugins/event';
-
-const balmUI = useEvent();
-```
-
 ```ts
 interface BalmUIEvent {
   onChange(property: string, value: any, fn?: Function);
@@ -18,6 +10,22 @@ interface BalmUIEvent {
   onClose(property: string, fn?: Function);
   onHide(property: string, fn?: Function);
 }
+```
+
+### Props
+
+| Name       | Type     | Default     | Description                                                                                                          |
+| ---------- | -------- | ----------- | -------------------------------------------------------------------------------------------------------------------- |
+| `property` | string   | `''`        | Update a specified Vue instance data object (`data` or `setup`) states.                                              |
+| `value`    | any      | `undefined` | New value of a specified Vue instance data object (`data` or `setup`) states. Applicable only for `balmUI.onChange`. |
+| `fn`       | function | `noop`      | After method to handle.                                                                                              |
+
+```js
+import { useEvent } from 'balm-ui';
+// OR
+// import { useEvent } from 'balm-ui/plugins/event';
+
+const balmUI = useEvent();
 ```
 
 - update the data object of the Vue instance to `new value`
@@ -39,14 +47,6 @@ interface BalmUIEvent {
   balmUI.onClose(property);
   balmUI.onHide(property);
   ```
-
-### Props
-
-| Name       | Type     | Default     | Description                                                                                                          |
-| ---------- | -------- | ----------- | -------------------------------------------------------------------------------------------------------------------- |
-| `property` | string   | `''`        | Update a specified Vue instance data object (`data` or `setup`) states.                                              |
-| `value`    | any      | `undefined` | New value of a specified Vue instance data object (`data` or `setup`) states. Applicable only for `balmUI.onChange`. |
-| `fn`       | function | `noop`      | After method to handle.                                                                                              |
 
 ## 2. Optimized Custom Event
 
@@ -119,18 +119,7 @@ interface BalmUIEvent {
 | `args`      | any      |         | The arguments of custom event function.         |
 | `callback`  | function |         | Custom event function.                          |
 
-### Use `$bus` without `.vue` component
-
-```js
-// `/path/to/awesome.js`
-
-import { useBus } from 'balm-ui';
-// OR
-// import { useBus } from 'balm-ui/plugins/event';
-
-const bus = useBus();
-bus.emit('custom-event', 'Hello BalmUI');
-```
+### 3.1 Use `$bus` with `.vue` component
 
 - using Composable API
 
@@ -160,7 +149,6 @@ bus.emit('custom-event', 'Hello BalmUI');
 
   ```js
   // `/path/to/awesome.vue`
-
   export default {
     mounted() {
       this.$bus.on('custom-event', (msg) => {
@@ -172,3 +160,16 @@ bus.emit('custom-event', 'Hello BalmUI');
     }
   };
   ```
+
+### 3.2 Use `$bus` without `.vue` component
+
+```js
+// `/path/to/awesome.js`
+
+import { useBus } from 'balm-ui';
+// OR
+// import { useBus } from 'balm-ui/plugins/event';
+
+const bus = useBus();
+bus.emit('custom-event', 'Hello BalmUI');
+```

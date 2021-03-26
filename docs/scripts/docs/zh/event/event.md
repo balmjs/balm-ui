@@ -1,13 +1,5 @@
 ## 1. 事件缩写
 
-```js
-import { useEvent } from 'balm-ui';
-// 或
-// import { useEvent } from 'balm-ui/plugins/event';
-
-const balmUI = useEvent();
-```
-
 ```ts
 interface BalmUIEvent {
   onChange(property: string, value: any, fn?: Function);
@@ -18,6 +10,22 @@ interface BalmUIEvent {
   onClose(property: string, fn?: Function);
   onHide(property: string, fn?: Function);
 }
+```
+
+### Props
+
+| Name       | Type     | Default     | Description                                                                     |
+| ---------- | -------- | ----------- | ------------------------------------------------------------------------------- |
+| `property` | string   | `''`        | 更新指定的 Vue 实例对象数据（`data` or `setup`）                                |
+| `value`    | any      | `undefined` | 指定 Vue 实例对象数据（`data` or `setup`）的新值。仅限 `balmUI.onChange` 方法。 |
+| `fn`       | function | `noop`      | 更新数据后的自定义事件                                                          |
+
+```js
+import { useEvent } from 'balm-ui';
+// 或
+// import { useEvent } from 'balm-ui/plugins/event';
+
+const balmUI = useEvent();
 ```
 
 - 更新 Vue 实例的数据对象为 `new value`
@@ -39,14 +47,6 @@ interface BalmUIEvent {
   balmUI.onClose(property);
   balmUI.onHide(property);
   ```
-
-### Props
-
-| Name       | Type     | Default     | Description                                                                     |
-| ---------- | -------- | ----------- | ------------------------------------------------------------------------------- |
-| `property` | string   | `''`        | 更新指定的 Vue 实例对象数据（`data` or `setup`）                                |
-| `value`    | any      | `undefined` | 指定 Vue 实例对象数据（`data` or `setup`）的新值。仅限 `balmUI.onChange` 方法。 |
-| `fn`       | function | `noop`      | 更新数据后的自定义事件                                                          |
 
 ## 2. 优化自定义事件
 
@@ -119,18 +119,7 @@ interface BalmUIEvent {
 | `args`      | any      |         | 全局通信的自定义事件的方法的参数 |
 | `callback`  | function |         | 全局通信的自定义事件的方法       |
 
-### 在非 `.vue` 组件中使用 `$bus`
-
-```js
-// `/path/to/awesome.js`
-
-import { useBus } from 'balm-ui';
-// 或
-// import { useBus } from 'balm-ui/plugins/event';
-
-const bus = useBus();
-bus.emit('custom-event', 'Hello BalmUI');
-```
+### 3.1 在 `.vue` 组件中使用 `$bus`
 
 - using Composable API
 
@@ -160,7 +149,6 @@ bus.emit('custom-event', 'Hello BalmUI');
 
   ```js
   // `/path/to/awesome.vue`
-
   export default {
     mounted() {
       this.$bus.on('custom-event', (msg) => {
@@ -172,3 +160,16 @@ bus.emit('custom-event', 'Hello BalmUI');
     }
   };
   ```
+
+### 3.2 在非 `.vue` 组件中使用 `$bus`
+
+```js
+// `/path/to/awesome.js`
+
+import { useBus } from 'balm-ui';
+// 或
+// import { useBus } from 'balm-ui/plugins/event';
+
+const bus = useBus();
+bus.emit('custom-event', 'Hello BalmUI');
+```

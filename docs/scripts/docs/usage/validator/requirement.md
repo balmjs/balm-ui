@@ -1,22 +1,14 @@
-- NOTE: Custom global validator rules
+- Set global validation rules
 
   ```js
-  import { types } from 'balm-ui'; // Default Usage
+  import { helpers } from 'balm-ui'; // Default Usage
   // OR
-  // import types from 'balm-ui/utils/types'; // ### Individual Usage
+  // import helpers from 'balm-ui/utils/helpers'; // ### Individual Usage
 
   export default {
     required: {
       validate(value) {
-        let result = false;
-        if (types.isString(value)) {
-          result = value.trim() !== '';
-        } else if (types.isArray(value)) {
-          return value.length;
-        } else {
-          result = value;
-        }
-        return result;
+        return !helpers.isEmpty(value);
       },
       message: '%s is required'
     },
@@ -30,7 +22,7 @@
       validate(value) {
         return /^\w+$/.test(value);
       },
-      message: 'Invalid password: must be a letter, digit or underline'
+      message: '%s must be a letter, digit or underline'
     }
   };
   ```

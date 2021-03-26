@@ -15,6 +15,7 @@
         <label>Timeout: {{ timeout }}second</label>
         <ui-form-field>
           <ui-slider
+            ref="slider"
             v-model="timeout"
             type="discrete"
             min="4"
@@ -52,18 +53,33 @@
 </template>
 
 <script>
+import { ref, onMounted, reactive, toRefs } from 'vue';
+
+const state = reactive({
+  // demo
+  open: false,
+  timeout: 5,
+  message: 'Hello Snackbar',
+  actionText: 'close',
+  actionType: false
+});
+
 export default {
   metaInfo: {
     titleTemplate: '%s - Snackbar'
   },
-  data() {
+  setup() {
+    const slider = ref(null);
+
+    onMounted(() => {
+      setTimeout(() => {
+        slider.value.recompute();
+      }, 300);
+    });
+
     return {
-      // demo
-      open: false,
-      timeout: 5,
-      message: 'Hello Snackbar',
-      actionText: 'close',
-      actionType: false
+      slider,
+      ...toRefs(state)
     };
   },
   methods: {

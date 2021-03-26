@@ -15,12 +15,16 @@
 - 菜单项对象的 keys：
 
   ```ts
-  interface MenuItem {
-    value: string;
+  interface Item {
+    value?: string;
     text: string;
-    icon: string;
-    disabled: boolean;
-    selected: boolean;
+    icon?: string;
+    disabled?: boolean;
+    selected?: boolean;
+  }
+
+  interface MenuItem {
+    item: Item;
   }
   ```
 

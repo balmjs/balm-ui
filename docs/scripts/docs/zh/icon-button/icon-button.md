@@ -39,7 +39,7 @@
 | Name     | Type                       | Description        |
 | -------- | -------------------------- | ------------------ |
 | `click`  | `function(event: object)`  | 点击图标按钮时触发 |
-| `change` | `function(model: boolean)` | 切换图标状态时触发 |
+| `change` | `function(value: boolean)` | 切换图标状态时触发 |
 
 > 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@change` 监听图标按钮状态并更新 `model` 属性
 

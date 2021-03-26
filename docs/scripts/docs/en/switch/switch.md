@@ -21,7 +21,7 @@
 
 | Name     | Type                                       | Description                       |
 | -------- | ------------------------------------------ | --------------------------------- |
-| `change` | `function(model: boolean\|string\|number)` | Emits when the switch is changed. |
+| `change` | `function(value: boolean\|string\|number)` | Emits when the switch is changed. |
 
 > NOTE: If you are not using `v-model`, you should listen for the switch using `@change` and update the `model` prop.
 

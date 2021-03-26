@@ -33,24 +33,24 @@
 
 ### Events
 
-| Name       | Type                               | Description                                  |
-| ---------- | ---------------------------------- | -------------------------------------------- |
-| `change`   | `function(model: array \| number)` | Emits when the segmented buttons is changed. |
-| `selected` | `function(index: number)`          | Emits when the segmented button is clicked.  |
+| Name       | Type                                       | Description                                  |
+| ---------- | ------------------------------------------ | -------------------------------------------- |
+| `change`   | `function(selectedIndex: array \| number)` | Emits when the segmented buttons is changed. |
+| `selected` | `function(index: number)`                  | Emits when the segmented button is clicked.  |
 
 > NOTE: If you are not using `v-model`, you should listen for the segmented buttons using `@change` and update the `model` prop.
 
 - Automatic
 
   ```html
-  <ui-segmented-buttons v-model="value"></ui-segmented-buttons>
+  <ui-segmented-buttons v-model="selectedIndex"></ui-segmented-buttons>
   ```
 
 - Manual
 
   ```html
   <ui-segmented-buttons
-    :model="value"
-    @change="$balmUI.onChange('value', $event)"
+    :model="selectedIndex"
+    @change="$balmUI.onChange('selectedIndex', $event)"
   ></ui-segmented-buttons>
   ```

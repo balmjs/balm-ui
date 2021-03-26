@@ -1,7 +1,7 @@
 - `$tt(style)`
 
   ```ts
-  type Style =
+  type TypographyStyle =
     | 'headline1'
     | 'headline2'
     | 'headline3'
@@ -18,7 +18,7 @@
     | string;
 
   interface VueInstance {
-    $tt(style: Style): string;
+    $tt(style: TypographyStyle): string;
   }
   ```
 

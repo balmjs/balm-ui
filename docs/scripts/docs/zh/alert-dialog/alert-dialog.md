@@ -9,16 +9,22 @@
 
 ### Options
 
-| Option          | Type     | Default | Description                                                          |
-| --------------- | -------- | ------- | -------------------------------------------------------------------- |
-| `className`     | string   | `''`    | 自定义提示框的 class                                                 |
-| `title`         | string   | `''`    | 设置提示框的标题                                                     |
-| `state`         | string   | `''`    | 提示框状态图标类型 `['success', 'info', 'warning', 'error', 'help']` |
-| `stateOutlined` | boolean  | `false` | 显示轮廓状态图标                                                     |
-| `message`       | string   | `''`    | 设置提示框的内容                                                     |
-| `raw`           | boolean  | `false` | 渲染 HTML                                                            |
-| `buttonText`    | string   | `'OK'`  | 按钮文本                                                             |
-| `callback`      | function | `false` | 点击确定按钮后的事件处理                                             |
+| Option          | Type     | Default | Description              |
+| --------------- | -------- | ------- | ------------------------ |
+| `className`     | string   | `''`    | 自定义提示框的 class     |
+| `title`         | string   | `''`    | 设置提示框的标题         |
+| `state`         | string   | `''`    | 提示框状态图标类型       |
+| `stateOutlined` | boolean  | `false` | 显示轮廓状态图标         |
+| `message`       | string   | `''`    | 设置提示框的内容         |
+| `raw`           | boolean  | `false` | 渲染 HTML                |
+| `buttonText`    | string   | `'OK'`  | 按钮文本                 |
+| `callback`      | function | `false` | 点击确定按钮后的事件处理 |
+
+```ts
+interface AlertDialog {
+  state: 'success' | 'info' | 'warning' | 'error' | 'help';
+}
+```
 
 ### Events
 

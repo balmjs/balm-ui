@@ -15,6 +15,7 @@
         <label>Timeout: {{ timeout }}second</label>
         <ui-form-field>
           <ui-slider
+            ref="slider"
             v-model="timeout"
             type="discrete"
             min="4"
@@ -67,6 +68,11 @@ export default {
       actionText: 'close',
       actionType: false
     };
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.$refs.slider.recompute();
+    });
   },
   methods: {
     actionHandler() {

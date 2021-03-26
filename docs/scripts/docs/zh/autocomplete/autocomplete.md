@@ -43,7 +43,7 @@
 
 | Name       | Type                              | Description                                                |
 | ---------- | --------------------------------- | ---------------------------------------------------------- |
-| `input`    | `function(model: string\|number)` | 文本框中输入内容时触发                                     |
+| `input`    | `function(value: string\|number)` | 文本框中输入内容时触发                                     |
 | `search`   | `function(keywords: string)`      | 文本框值变化时触发。仅用于启用 `remote` 的自动完成文本框。 |
 | `selected` | `function(item: object)`          | 自动完成建议值被选中时触发                                 |
 

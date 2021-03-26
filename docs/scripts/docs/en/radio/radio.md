@@ -20,7 +20,7 @@
 
 | Name     | Type                              | Description                             |
 | -------- | --------------------------------- | --------------------------------------- |
-| `change` | `function(model: string\|number)` | Emits when the radio button is changed. |
+| `change` | `function(value: string\|number)` | Emits when the radio button is changed. |
 
 > NOTE: If you are not using `v-model`, you should listen for the radio using `@change` and update the `model` prop.
 

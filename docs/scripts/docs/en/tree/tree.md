@@ -66,7 +66,7 @@
 
   ```html
   <ui-tree
-    :selectedNodes="selectedValue"
+    :selected-nodes="selectedValue"
     @change="$balmUI.onChange('selectedValue', $event)"
   ></ui-tree>
   ```

@@ -18,16 +18,27 @@
 - 菜单项对象的 keys:
 
   ```ts
-  interface MenuItem {
-    value: string;
+  interface Item {
+    value?: string;
     text: string;
-    icon: string;
-    disabled: boolean;
-    selected: boolean;
+    icon?: string;
+    disabled?: boolean;
+    selected?: boolean;
+  }
+
+  interface Menu {
+    items: Item[];
+    position:
+      | 'TOP_LEFT'
+      | 'TOP_RIGHT'
+      | 'BOTTOM_LEFT'
+      | 'BOTTOM_RIGHT'
+      | 'TOP_START'
+      | 'TOP_END'
+      | 'BOTTOM_START'
+      | 'BOTTOM_END';
   }
   ```
-
-- 锚角位置：`TOP_LEFT`, `TOP_RIGHT`, `BOTTOM_LEFT`, `BOTTOM_RIGHT`, `TOP_START`, `TOP_END`, `BOTTOM_START`, `BOTTOM_END`
 
 ### Slots
 
@@ -37,17 +48,17 @@
 
 ### Events
 
-| Name       | Type                         | Description        |
-| ---------- | ---------------------------- | ------------------ |
-| `change`   | `function(open: boolean)`    | 菜单变化时触发     |
-| `selected` | `function(menuitem: object)` | 菜单项被选中时触发 |
-| `closed`   | `function()`                 | 菜单关闭时触发     |
-| `opened`   | `function()`                 | 菜单打开时触发     |
+| Name       | Type                               | Description        |
+| ---------- | ---------------------------------- | ------------------ |
+| `change`   | `function(open: boolean)`          | 菜单变化时触发     |
+| `selected` | `function(menuitem: SelectedItem)` | 菜单项被选中时触发 |
+| `closed`   | `function()`                       | 菜单关闭时触发     |
+| `opened`   | `function()`                       | 菜单打开时触发     |
 
 - `selected` 事件返回数据：
 
   ```ts
-  interface SelectedMenuItem {
+  interface SelectedItem {
     index: number; // 菜单项索引
     text: string; // 菜单项文本
     value: string; // 选中值

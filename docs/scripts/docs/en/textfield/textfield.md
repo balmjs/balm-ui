@@ -58,9 +58,9 @@ In addition to the above, the following properties proxy to the input or textare
 | --------- | ------------------------- | --------------------------------------------------------- |
 | `focus`   | `function(event: object)` | Emits when the text field is focused.                     |
 | `keydown` | `function(event: object)` | Emits when a key is pressed in the text field.            |
-| `input`   | `function(model: string)` | Emits when the text field value is changed.               |
+| `input`   | `function(value: string)` | Emits when the text field value is changed.               |
 | `change`  | `function(event: object)` | Emits when a change in the text field value is committed. |
-| `enter`   | `function(model: string)` | Emits when the _Enter_ key is pressed in the input.       |
+| `enter`   | `function(value: string)` | Emits when the _Enter_ key is pressed in the input.       |
 | `blur`    | `function(event: object)` | Emits when the text field loses focus.                    |
 
 > NOTE: If you are not using `v-model`, you should listen for the text field using `@input` and update the `model` prop.

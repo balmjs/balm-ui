@@ -31,23 +31,23 @@
 
 ### Events
 
-| Name     | Type                             | Description          |
-| -------- | -------------------------------- | -------------------- |
-| `change` | `function(model: number\|array)` | 纸片选项值变化时触发 |
+| Name     | Type                                     | Description          |
+| -------- | ---------------------------------------- | -------------------- |
+| `change` | `function(selectedIndex: number\|array)` | 纸片选项值变化时触发 |
 
 > 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@change` 监听纸片选项值并更新 `model` 属性
 
 - 自动
 
   ```html
-  <ui-chips v-model="selected"></ui-chips>
+  <ui-chips v-model="selectedIndex"></ui-chips>
   ```
 
 - 手动
 
   ```html
   <ui-chips
-    :model="selected"
-    @change="$balmUI.onChange('selected', $event)"
+    :model="selectedIndex"
+    @change="$balmUI.onChange('selectedIndex', $event)"
   ></ui-chips>
   ```

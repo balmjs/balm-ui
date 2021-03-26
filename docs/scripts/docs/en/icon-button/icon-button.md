@@ -39,7 +39,7 @@
 | Name     | Type                       | Description                            |
 | -------- | -------------------------- | -------------------------------------- |
 | `click`  | `function(event: object)`  | Emits when the icon button is clicked. |
-| `change` | `function(model: boolean)` | Emits when the icon button is toggled. |
+| `change` | `function(value: boolean)` | Emits when the icon button is toggled. |
 
 > NOTE: If you are not using `v-model`, you should listen for the icon button using `@change` and update the `model` prop.
 

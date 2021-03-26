@@ -16,8 +16,14 @@
 | `jumperText`           | string, array   | `'Goto'`          | The jumper before/after text.                                   |         |
 | `jumperButtonOutlined` | boolean         | `false`           | Styles an outlined jumper button.                               | 8.20.0  |
 | `jumperButtonText`     | string          | `''`              | The jumper button text.                                         |         |
-| `position`             | string          | `''`              | The pagination postion. [`'left'`, `'center'`, `'right'`]       |         |
+| `position`             | string          | `''`              | The pagination postion.                                         |         |
 | `mini`                 | boolean         | `false`           | Whether to use simple mode.                                     |         |
+
+```ts
+interface Pagination {
+  position: 'left' | 'center' | 'right';
+}
+```
 
 ### Slots
 

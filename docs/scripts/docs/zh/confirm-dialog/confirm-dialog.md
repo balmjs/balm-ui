@@ -9,17 +9,23 @@
 
 ### Options
 
-| Option          | Type     | Default    | Description                                                          |
-| --------------- | -------- | ---------- | -------------------------------------------------------------------- |
-| `className`     | string   | `''`       | 自定义确认框的 class                                                 |
-| `title`         | string   | `''`       | 设置确认框的标题                                                     |
-| `state`         | string   | `''`       | 确认框状态图标类型 `['success', 'info', 'warning', 'error', 'help']` |
-| `stateOutlined` | boolean  | `false`    | 显示轮廓状态图标                                                     |
-| `message`       | string   | `''`       | 设置确认框的内容                                                     |
-| `raw`           | boolean  | `false`    | 渲染 HTML                                                            |
-| `acceptText`    | string   | `'OK'`     | 确定按钮文本                                                         |
-| `cancelText`    | string   | `'Cancel'` | 取消按钮文本                                                         |
-| `callback`      | function | `false`    | 点击按钮后的事件处理                                                 |
+| Option          | Type     | Default    | Description          |
+| --------------- | -------- | ---------- | -------------------- |
+| `className`     | string   | `''`       | 自定义确认框的 class |
+| `title`         | string   | `''`       | 设置确认框的标题     |
+| `state`         | string   | `''`       | 确认框状态图标类型   |
+| `stateOutlined` | boolean  | `false`    | 显示轮廓状态图标     |
+| `message`       | string   | `''`       | 设置确认框的内容     |
+| `raw`           | boolean  | `false`    | 渲染 HTML            |
+| `acceptText`    | string   | `'OK'`     | 确定按钮文本         |
+| `cancelText`    | string   | `'Cancel'` | 取消按钮文本         |
+| `callback`      | function | `false`    | 点击按钮后的事件处理 |
+
+```ts
+interface ConfirmDialog {
+  state: 'success' | 'info' | 'warning' | 'error' | 'help';
+}
+```
 
 ### Events
 

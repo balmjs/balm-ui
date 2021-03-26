@@ -33,24 +33,24 @@
 
 ### Events
 
-| Name       | Type                               | Description          |
-| ---------- | ---------------------------------- | -------------------- |
-| `change`   | `function(model: array \| number)` | 按钮组状态变化时触发 |
-| `selected` | `function(index: number)`          | 点击按钮组时触发     |
+| Name       | Type                                       | Description          |
+| ---------- | ------------------------------------------ | -------------------- |
+| `change`   | `function(selectedIndex: array \| number)` | 按钮组状态变化时触发 |
+| `selected` | `function(index: number)`                  | 点击按钮组时触发     |
 
 > 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@change` 监听按钮组状态并更新 `model` 属性
 
 - 自动
 
   ```html
-  <ui-segmented-buttons v-model="value"></ui-segmented-buttons>
+  <ui-segmented-buttons v-model="selectedIndex"></ui-segmented-buttons>
   ```
 
 - 手动
 
   ```html
   <ui-segmented-buttons
-    :model="value"
-    @change="$balmUI.onChange('value', $event)"
+    :model="selectedIndex"
+    @change="$balmUI.onChange('selectedIndex', $event)"
   ></ui-segmented-buttons>
   ```

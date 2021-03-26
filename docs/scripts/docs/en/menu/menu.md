@@ -18,16 +18,27 @@
 - The keys of the menuitem:
 
   ```ts
-  interface MenuItem {
-    value: string;
+  interface Item {
+    value?: string;
     text: string;
-    icon: string;
-    disabled: boolean;
-    selected: boolean;
+    icon?: string;
+    disabled?: boolean;
+    selected?: boolean;
+  }
+
+  interface Menu {
+    items: Item[];
+    position:
+      | 'TOP_LEFT'
+      | 'TOP_RIGHT'
+      | 'BOTTOM_LEFT'
+      | 'BOTTOM_RIGHT'
+      | 'TOP_START'
+      | 'TOP_END'
+      | 'BOTTOM_START'
+      | 'BOTTOM_END';
   }
   ```
-
-- Anchor corners: `TOP_LEFT`, `TOP_RIGHT`, `BOTTOM_LEFT`, `BOTTOM_RIGHT`, `TOP_START`, `TOP_END`, `BOTTOM_START`, `BOTTOM_END`.
 
 ### Slots
 
@@ -37,17 +48,17 @@
 
 ### Events
 
-| Name       | Type                         | Description                              |
-| ---------- | ---------------------------- | ---------------------------------------- |
-| `change`   | `function(open: boolean)`    | Emits when the menu is changed.          |
-| `selected` | `function(menuitem: object)` | Emits when an element has been selected. |
-| `closed`   | `function()`                 | Emits when the menu is closed.           |
-| `opened`   | `function()`                 | Emits when the menu is opened.           |
+| Name       | Type                               | Description                              |
+| ---------- | ---------------------------------- | ---------------------------------------- |
+| `change`   | `function(open: boolean)`          | Emits when the menu is changed.          |
+| `selected` | `function(menuitem: SelectedItem)` | Emits when an element has been selected. |
+| `closed`   | `function()`                       | Emits when the menu is closed.           |
+| `opened`   | `function()`                       | Emits when the menu is opened.           |
 
 - `selected` event return data:
 
   ```ts
-  interface SelectedMenuItem {
+  interface SelectedItem {
     index: number; // menuitem index
     text: string; // menuitem text
     value: string; // selected value

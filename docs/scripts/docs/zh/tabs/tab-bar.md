@@ -16,30 +16,30 @@
 
 ### `<ui-tab-bar>` & `<ui-tabs>` 共用 Events
 
-| Name     | Type                      | Description              |
-| -------- | ------------------------- | ------------------------ |
-| `change` | `function(model: number)` | 选项卡标签索引变化时触发 |
+| Name     | Type                            | Description              |
+| -------- | ------------------------------- | ------------------------ |
+| `change` | `function(activeIndex: number)` | 选项卡标签索引变化时触发 |
 
 > 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@change` 监听选项卡索引并更新 `active` 属性
 
 - 自动
 
   ```html
-  <ui-tab-bar v-model="active"></ui-tab-bar>
+  <ui-tab-bar v-model="activeIndex"></ui-tab-bar>
   <!-- 或 -->
-  <ui-tabs v-model="active"></ui-tabs>
+  <ui-tabs v-model="activeIndex"></ui-tabs>
   ```
 
 - 手动
 
   ```html
   <ui-tab-bar
-    :active="active"
-    @change="$balmUI.onChange('active', $event)"
+    :active="activeIndex"
+    @change="$balmUI.onChange('activeIndex', $event)"
   ></ui-tab-bar>
   <!-- 或 -->
   <ui-tabs
-    :active="active"
-    @change="$balmUI.onChange('active', $event)"
+    :active="activeIndex"
+    @change="$balmUI.onChange('activeIndex', $event)"
   ></ui-tabs>
   ```

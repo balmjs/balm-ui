@@ -11,7 +11,7 @@
 | `toolbar`            | array, string   | null                                    | Custom or `'full'` editor toolbar.                                    |         |
 | `placeholder`        | string          | `null`                                  | Placeholder text to show when editor is empty.                        |         |
 | `readonly`           | boolean         | `false`                                 | Whether to instantiate the editor to read-only mode.                  |         |
-| `theme`              | string          | `'snow'`                                | Name of theme to use. (`'bubble'` or `'snow'`)                        |         |
+| `theme`              | string          | `'snow'`                                | Name of theme to use.                                                 |         |
 | `toolbarIcons`       | object          | `{}`                                    | Custom toolbar icons.                                                 | 8.6.0   |
 | `toolbarTips`        | object          | `{}`                                    | Custom toolbar tooltips.                                              | 8.8.0   |
 | `toolbarOptions`     | object          | `{ font: [], size: [], lineheight:[] }` | Custom toolbar options of the Font Famliy, Font Size and Line Height. | 8.6.0   |
@@ -20,6 +20,12 @@
 | `emotions`           | array           | `[]`                                    | The emoticon extension. Supports `emoji` and `image`.                 |         |
 | `withCounter`        | boolean         | `false`                                 | Styles the editor with an internal character counter.                 | 8.6.0   |
 | `extension`          | `false`, object | `false`                                 | Custom extension for Quill.                                           |         |
+
+```ts
+interface Editor {
+  theme: 'bubble' | 'snow';
+}
+```
 
 #### `toolbar` prop
 
@@ -208,8 +214,8 @@
 <ui-editor ref="editor" v-model="content"></ui-editor>
 ```
 
-- `this.$refs.editor.decodeEmoji(content): html`: get back-end data → set front-end view
-- `this.$refs.editor.encodeEmoji(html): content`: submit front-end data → save back-end data
+- `this.$refs.editor.decodeEmoji(content)`: get back-end data → set front-end view
+- `this.$refs.editor.encodeEmoji(html)`: submit front-end data → save back-end data
 
 ### Slots
 

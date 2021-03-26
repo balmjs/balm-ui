@@ -1,4 +1,4 @@
-- NOTE: Custom global store by Vue `mixins`
+- Custom global store
 
   ```js
   // `/path/to/app/scripts/store/index.js`

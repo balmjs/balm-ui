@@ -43,7 +43,7 @@
 
 | Name       | Type                              | Description                                                                                  |
 | ---------- | --------------------------------- | -------------------------------------------------------------------------------------------- |
-| `input`    | `function(model: string\|number)` | Emits when the autocomplete value is changed.                                                |
+| `input`    | `function(value: string\|number)` | Emits when the autocomplete value is changed.                                                |
 | `search`   | `function(keywords: string)`      | Emits when the autocomplete value is changed. Applicable only for the `remote` autocomplete. |
 | `selected` | `function(item: object)`          | Emits when the autocomplete item is selected.                                                |
 

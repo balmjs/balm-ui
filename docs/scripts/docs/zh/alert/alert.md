@@ -4,11 +4,17 @@
 
 ### Props
 
-| Name            | Type    | Default | Description                                                    |
-| --------------- | ------- | ------- | -------------------------------------------------------------- |
-| `state`         | string  | `''`    | 状态图标类型 `['success', 'info', 'warning', 'error', 'help']` |
-| `stateOutlined` | boolean | `false` | 显示轮廓状态图标                                               |
-| `closable`      | boolean | `false` | 是否可关闭                                                     |
+| Name            | Type    | Default | Description      |
+| --------------- | ------- | ------- | ---------------- |
+| `state`         | string  | `''`    | 状态图标类型     |
+| `stateOutlined` | boolean | `false` | 显示轮廓状态图标 |
+| `closable`      | boolean | `false` | 是否可关闭       |
+
+```ts
+interface Alert {
+  state: 'success' | 'info' | 'warning' | 'error' | 'help';
+}
+```
 
 ### Slots
 

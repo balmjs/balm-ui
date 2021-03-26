@@ -17,11 +17,10 @@
 | `size`     | string | `''`    | 目标平台：`desktop`, `tablet` 或 `phone`       |
 | `value`    | string | `''`    | 自定义栅格值                                   |
 
-### 栅格属性说明
-
-- `margin`: 栅格边距的大小
-- `gutter`: 单元之间的装订线的大小
-- `column-width`: 栅格内列的宽度
+- 栅格属性说明
+  - `margin`: 栅格边距的大小
+  - `gutter`: 单元之间的装订线的大小
+  - `column-width`: 栅格内列的宽度
 
 ### 在非 `.vue` 组件中使用 `$setGrid`
 

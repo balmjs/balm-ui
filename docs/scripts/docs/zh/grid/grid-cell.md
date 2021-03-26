@@ -9,8 +9,13 @@
 | `order`   | number         | `0`     | 指定单元格的顺序     |
 | `align`   | string         | `''`    | 指定单元格的对齐方式 |
 
-- `columns` 和 `order` 属性值的范围在 1 到 12 之间
-- `align` 属性方向：`'top'`, `'middle'` 或 `'bottom'`
+```ts
+interface GridCell {
+  columns: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+  order: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+  align: 'top' | 'middle' | 'bottom';
+}
+```
 
 ### Slots
 

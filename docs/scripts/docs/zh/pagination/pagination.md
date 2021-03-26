@@ -4,20 +4,26 @@
 
 ### Props
 
-| Name                   | Type            | Default           | Description                                    | Version |
-| ---------------------- | --------------- | ----------------- | ---------------------------------------------- | ------- |
-| `page`                 | number          | `1`               | 页码                                           |         |
-| `total`                | number          | `0`               | 数据总数                                       |         |
-| `pageSpan`             | number, boolean | `3`               | 展示当前页码的前 N 页（最小值：`3`）           |         |
-| `showTotal`            | boolean         | `false`           | 显示数据量信息区域                             |         |
-| `pageSize`             | number, array   | `10`              | 每页展示的数据量                               |         |
-| `pageSizeText`         | string, array   | `'Rows per page'` | 每页数据量信息展示的前/后文字                  |         |
-| `showJumper`           | boolean         | `false`           | 显示跳转区域                                   |         |
-| `jumperText`           | string, array   | `'Goto'`          | 跳转区域展示的前/后文字                        |         |
-| `jumperButtonOutlined` | boolean         | `false`           | 跳转按钮启用轮廓按钮样式                       | 8.20.0  |
-| `jumperButtonText`     | string          | `''`              | 跳转按钮文字                                   |         |
-| `position`             | string          | `''`              | 分页排版位置 [`'left'`, `'center'`, `'right'`] |         |
-| `mini`                 | boolean         | `false`           | 使用迷你模式                                   |         |
+| Name                   | Type            | Default           | Description                          | Version |
+| ---------------------- | --------------- | ----------------- | ------------------------------------ | ------- |
+| `page`                 | number          | `1`               | 页码                                 |         |
+| `total`                | number          | `0`               | 数据总数                             |         |
+| `pageSpan`             | number, boolean | `3`               | 展示当前页码的前 N 页（最小值：`3`） |         |
+| `showTotal`            | boolean         | `false`           | 显示数据量信息区域                   |         |
+| `pageSize`             | number, array   | `10`              | 每页展示的数据量                     |         |
+| `pageSizeText`         | string, array   | `'Rows per page'` | 每页数据量信息展示的前/后文字        |         |
+| `showJumper`           | boolean         | `false`           | 显示跳转区域                         |         |
+| `jumperText`           | string, array   | `'Goto'`          | 跳转区域展示的前/后文字              |         |
+| `jumperButtonOutlined` | boolean         | `false`           | 跳转按钮启用轮廓按钮样式             | 8.20.0  |
+| `jumperButtonText`     | string          | `''`              | 跳转按钮文字                         |         |
+| `position`             | string          | `''`              | 分页排版位置                         |         |
+| `mini`                 | boolean         | `false`           | 使用迷你模式                         |         |
+
+```ts
+interface Pagination {
+  position: 'left' | 'center' | 'right';
+}
+```
 
 ### Slots
 

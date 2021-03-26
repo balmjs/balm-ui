@@ -2,7 +2,7 @@
 
   ```ts
   interface VueInstance {
-    $theme: BalmUIThemeObject;
+    $theme: BalmUITheme;
   }
   ```
 
@@ -21,7 +21,7 @@
 - `$theme.onError`
 
   ```ts
-  interface $theme {
+  interface BalmUITheme {
     primary(color: string): void;
     secondary(color: string): void;
     background(color: string): void;
@@ -51,7 +51,7 @@
     on-error?: string;
   }
 
-  interface $theme {
+  interface BalmUITheme {
     colors(color: ThemeColor): void;
   }
   ```
@@ -72,7 +72,7 @@
     | 'on-surface'
     | 'on-error';
 
-  interface $theme {
+  interface BalmUITheme {
     getThemeColor(style: ThemeColorStyle): string;
   }
   ```
@@ -82,7 +82,7 @@
   ```ts
   type ThemeClassStyle = ThemeColorStyle | 'primary-bg' | 'secondary-bg';
 
-  interface $theme {
+  interface BalmUITheme {
     getThemeClass(style: ThemeClassStyle): string;
   }
   ```
@@ -100,7 +100,7 @@ type ThemeTone = 'background' | 'light' | 'dark';
 - 获取文字颜色值/class
 
   ```ts
-  interface $theme {
+  interface BalmUITheme {
     getTextColor(style: TextStyle, tone: ThemeTone): string;
     getTextClass(style: TextStyle, tone: ThemeTone): string;
   }
@@ -109,7 +109,7 @@ type ThemeTone = 'background' | 'light' | 'dark';
 - 设置文字颜色
 
   ```ts
-  interface $theme {
+  interface BalmUITheme {
     setTextColor(style: TextStyle, value: string): void;
   }
   ```
@@ -125,7 +125,7 @@ type ThemeTone = 'background' | 'light' | 'dark';
 - 获取文字颜色值/class
 
   ```ts
-  interface $theme {
+  interface BalmUITheme {
     getTextColorOnLight(style: TextStyle): string;
     getTextClassOnLight(style: TextStyle): string;
 
@@ -137,7 +137,7 @@ type ThemeTone = 'background' | 'light' | 'dark';
 - 设置文字颜色
 
   ```ts
-  interface $theme {
+  interface BalmUITheme {
     setTextColorOnLight(style: TextStyle, value: string): void;
     setTextColorOnDark(style: TextStyle, value: string): void;
   }

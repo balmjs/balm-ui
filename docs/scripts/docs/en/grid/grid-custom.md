@@ -17,11 +17,10 @@
 | `size`     | string | `''`    | The target platform: `desktop`, `tablet` or `phone`.        |
 | `value`    | string | `''`    | Grid custom value.                                          |
 
-### Grid properties
-
-- `margin`: the size of the grid margin.
-- `gutter`: the size of the gutter between cells.
-- `column-width`: the width of the column within the grid.
+- Grid properties
+  - `margin`: the size of the grid margin.
+  - `gutter`: the size of the gutter between cells.
+  - `column-width`: the width of the column within the grid.
 
 ### Use `$setGrid` without `.vue` component
 

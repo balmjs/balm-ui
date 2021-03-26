@@ -11,7 +11,7 @@
 | `toolbar`            | array, string   | null                                    | 富文本工具栏配置（自定义或 `'full'`)                                  |         |
 | `placeholder`        | string          | `null`                                  | 当编辑器为空时显示的占位符文本                                        |         |
 | `readonly`           | boolean         | `false`                                 | 只读模式                                                              |         |
-| `theme`              | string          | `'snow'`                                | 主题样式（`'bubble'` 或 `'snow'`）                                    |         |
+| `theme`              | string          | `'snow'`                                | 主题样式                                                              |         |
 | `toolbarIcons`       | object          | `{}`                                    | 自定义工具栏图标                                                      | 8.6.0   |
 | `toolbarTips`        | object          | `{}`                                    | 自定义工具栏图标提示文本                                              | 8.8.0   |
 | `toolbarOptions`     | object          | `{ font: [], size: [], lineheight:[] }` | 自定义工具栏的字体，文字大小和行高                                    | 8.6.0   |
@@ -20,6 +20,12 @@
 | `emotions`           | array           | `[]`                                    | 表情扩展。支持 `emoji` 和 `image`                                     |         |
 | `withCounter`        | boolean         | `false`                                 | 启用内部计数器                                                        | 8.6.0   |
 | `extension`          | `false`, object | `false`                                 | 自定义 Quill 扩展                                                     |         |
+
+```ts
+interface Editor {
+  theme: 'bubble' | 'snow';
+}
+```
 
 #### `toolbar` 属性
 
@@ -208,8 +214,8 @@
 <ui-editor ref="editor" v-model="content"></ui-editor>
 ```
 
-- `this.$refs.editor.decodeEmoji(content): html`: 获取服务端数据 → 设置客户端展示
-- `this.$refs.editor.encodeEmoji(html): content`: 提交客户端数据 → 保存服务端数据
+- `this.$refs.editor.decodeEmoji(content)`: 获取服务端数据 → 设置客户端展示
+- `this.$refs.editor.encodeEmoji(html)`: 提交客户端数据 → 保存服务端数据
 
 ### Slots
 

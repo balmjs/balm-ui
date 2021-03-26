@@ -20,7 +20,7 @@
 
 | Name     | Type                              | Description        |
 | -------- | --------------------------------- | ------------------ |
-| `change` | `function(model: string\|number)` | 单选框值变化时触发 |
+| `change` | `function(value: string\|number)` | 单选框值变化时触发 |
 
 > 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@change` 监听单选框值并更新 `model` 属性
 

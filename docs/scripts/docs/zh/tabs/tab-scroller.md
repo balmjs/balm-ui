@@ -9,7 +9,11 @@
 | `scrollX` | number | `0`     | 当前的滚动值                               |
 | `align`   | string | `''`    | `<ui-tabs>` 共用属性。选项卡标签对齐方式。 |
 
-> 对齐方式：`'start'`, `'center'`, `'end'`
+```ts
+interface TabScroller {
+  align: 'start' | 'center' | 'end';
+}
+```
 
 ### Slots
 

@@ -58,9 +58,9 @@
 | --------- | ------------------------- | ------------------------------- |
 | `focus`   | `function(event: object)` | 文本框聚焦时触发                |
 | `keydown` | `function(event: object)` | 文本框中按下键盘时触发          |
-| `input`   | `function(model: string)` | 文本框中输入内容时触发          |
+| `input`   | `function(value: string)` | 文本框中输入内容时触发          |
 | `change`  | `function(event: object)` | 文本框值变化时触发              |
-| `enter`   | `function(model: string)` | 文本框中按下 _Enter_ 键盘时触发 |
+| `enter`   | `function(value: string)` | 文本框中按下 _Enter_ 键盘时触发 |
 | `blur`    | `function(event: object)` | 文本框失去聚焦时触发            |
 
 > 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@input` 监听文本框值并更新 `model` 属性

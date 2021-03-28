@@ -1,4 +1,4 @@
-import autoInit from './register';
+import autoInit from '../config/auto-init';
 import { MDCTooltip } from '../../material-components-web/tooltip';
 
 const createTooltip = (id, text) => {
@@ -29,6 +29,6 @@ const BalmUI_TooltipDirective = {
   }
 };
 
-autoInit(BalmUI_TooltipDirective.name, BalmUI_TooltipDirective);
+autoInit(BalmUI_TooltipDirective, 'directive');
 
 export default BalmUI_TooltipDirective;

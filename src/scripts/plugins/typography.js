@@ -1,4 +1,4 @@
-import autoInstall from '../config/auto-install';
+import autoInit from '../config/auto-init';
 
 // Define typography constants
 const T_BASE = 'mdc-typography';
@@ -55,7 +55,7 @@ const BalmUI_TypographyPlugin = {
 
 const useTypography = () => tt;
 
-autoInstall(BalmUI_TypographyPlugin);
+autoInit(BalmUI_TypographyPlugin);
 
 export default BalmUI_TypographyPlugin;
 export { useTypography };

@@ -1,6 +1,6 @@
 import Vue from 'vue';
-import autoInstall from '../config/auto-install';
-import MdcDialog from '../components/modal/mdc-dialog';
+import autoInit from '../config/auto-init';
+import MdcDialog from '../components/dialog/mdc-dialog';
 import { getOptions, createModal, removeModel } from '../utils/modal';
 
 const DEFAULT_OPTIONS = {
@@ -85,7 +85,7 @@ const BalmUI_AlertPlugin = {
 
 const useAlert = () => alertDialog;
 
-autoInstall(BalmUI_AlertPlugin);
+autoInit(BalmUI_AlertPlugin);
 
 export default BalmUI_AlertPlugin;
 export { useAlert };

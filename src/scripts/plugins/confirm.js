@@ -1,6 +1,6 @@
 import Vue from 'vue';
-import autoInstall from '../config/auto-install';
-import MdcDialog from '../components/modal/mdc-dialog';
+import autoInit from '../config/auto-init';
+import MdcDialog from '../components/dialog/mdc-dialog';
 import { getOptions, createModal, removeModel } from '../utils/modal';
 
 const DEFAULT_OPTIONS = {
@@ -88,7 +88,7 @@ const BalmUI_ConfirmPlugin = {
 
 const useConfirm = () => confirmDialog;
 
-autoInstall(BalmUI_ConfirmPlugin);
+autoInit(BalmUI_ConfirmPlugin);
 
 export default BalmUI_ConfirmPlugin;
 export { useConfirm };

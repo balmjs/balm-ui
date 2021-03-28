@@ -1,4 +1,4 @@
-import autoInstall from '../config/auto-install';
+import autoInit from '../config/auto-init';
 
 // Define grid constants
 const GRID_PROPERTY = ['margin', 'gutter', 'column-width'];
@@ -31,7 +31,7 @@ const BalmUI_GridPlugin = {
 
 const useGrid = () => setGrid;
 
-autoInstall(BalmUI_GridPlugin);
+autoInit(BalmUI_GridPlugin);
 
 export default BalmUI_GridPlugin;
 export { useGrid };

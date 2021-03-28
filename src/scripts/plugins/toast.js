@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import autoInstall from '../config/auto-install';
+import autoInit from '../config/auto-init';
 import { getOptions, createModal, removeModel } from '../utils/modal';
 
 // Define toast constants
@@ -146,7 +146,7 @@ const BalmUI_ToastPlugin = {
 
 const useToast = () => toast;
 
-autoInstall(BalmUI_ToastPlugin);
+autoInit(BalmUI_ToastPlugin);
 
 export default BalmUI_ToastPlugin;
 export { useToast };

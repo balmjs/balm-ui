@@ -1,4 +1,4 @@
-import autoInit from './register';
+import autoInit from '../config/auto-init';
 
 // Define elevation constants
 const UI_ELEVATION = {
@@ -70,6 +70,6 @@ const BalmUI_ElevationDirective = {
   }
 };
 
-autoInit(BalmUI_ElevationDirective.name, BalmUI_ElevationDirective);
+autoInit(BalmUI_ElevationDirective, 'directive');
 
 export default BalmUI_ElevationDirective;

@@ -1,4 +1,4 @@
-import autoInit from './register';
+import autoInit from '../config/auto-init';
 
 // Define anchor constants
 let UI_ANCHOR = {
@@ -98,6 +98,6 @@ const BalmUI_AnchorDirective = {
   }
 };
 
-autoInit(BalmUI_AnchorDirective.name, BalmUI_AnchorDirective);
+autoInit(BalmUI_AnchorDirective, 'directive');
 
 export default BalmUI_AnchorDirective;

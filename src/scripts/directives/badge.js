@@ -1,4 +1,4 @@
-import autoInit from './register';
+import autoInit from '../config/auto-init';
 
 // Define badge constants
 const UI_BADGE = {
@@ -69,6 +69,6 @@ const BalmUI_BadgeDirective = {
   }
 };
 
-autoInit(BalmUI_BadgeDirective.name, BalmUI_BadgeDirective);
+autoInit(BalmUI_BadgeDirective, 'directive');
 
 export default BalmUI_BadgeDirective;

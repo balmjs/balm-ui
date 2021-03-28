@@ -1,4 +1,4 @@
-import autoInit from './register';
+import autoInit from '../config/auto-init';
 
 // Define accessibility constants
 const UI_ACCESSIBILITY = {
@@ -81,6 +81,6 @@ const BalmUI_AccessibilityDirective = {
   }
 };
 
-autoInit(BalmUI_AccessibilityDirective.name, BalmUI_AccessibilityDirective);
+autoInit(BalmUI_AccessibilityDirective, 'directive');
 
 export default BalmUI_AccessibilityDirective;

@@ -1,4 +1,4 @@
-import autoInstall from '../config/auto-install';
+import autoInit from '../config/auto-init';
 import { contrastTone } from '../utils/color';
 
 // Define theme constants
@@ -243,7 +243,7 @@ const BalmUI_ThemePlugin = {
 
 const useTheme = () => theme;
 
-autoInstall(BalmUI_ThemePlugin);
+autoInit(BalmUI_ThemePlugin);
 
 export default BalmUI_ThemePlugin;
 export { useTheme };

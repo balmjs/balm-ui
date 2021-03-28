@@ -1,4 +1,4 @@
-import autoInstall from '../config/auto-install';
+import autoInit from '../config/auto-init';
 import getType from '../utils/typeof';
 import createCustomEvent from '../events';
 import bus from '../events/bus';
@@ -104,7 +104,7 @@ const BalmUI_EventPlugin = {
 
 const useBus = () => bus;
 
-autoInstall(BalmUI_EventPlugin);
+autoInit(BalmUI_EventPlugin);
 
 export default BalmUI_EventPlugin;
 export { useBus };

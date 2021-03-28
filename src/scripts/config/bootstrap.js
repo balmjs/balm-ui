@@ -1,4 +1,4 @@
-import autoInstall from './auto-install';
+import autoInit from './auto-init';
 import configure from './configure';
 
 const bootstrap = (Component) => {
@@ -12,7 +12,7 @@ const bootstrap = (Component) => {
     }
   };
 
-  autoInstall(UiComponent);
+  autoInit(UiComponent);
 
   return UiComponent;
 };

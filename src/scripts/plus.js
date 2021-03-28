@@ -1,18 +1,18 @@
-import packageJson from '../../package.json';
-import autoInstall from './config/auto-install';
+import version from './version';
+import autoInit from './config/auto-init';
 import multiConfigure from './config/multi-configure';
 /**
  * Components
  */
-import UiAutocomplete from './components/input-controls/autocomplete';
-import UiSkeleton from './components/others/skeleton';
-import UiDatepicker from './components/pickers/datepicker';
-import UiRangepicker from './components/pickers/rangepicker';
-import UiAlert from './components/others/alert';
-import UiCollapse from './components/others/collapse';
+import UiAutocomplete from './components/autocomplete/autocomplete';
+import UiSkeleton from './components/skeleton/skeleton';
+import UiDatepicker from './components/datepicker/datepicker';
+import UiRangepicker from './components/rangepicker/rangepicker';
+import UiAlert from './components/alert/alert';
+import UiCollapse from './components/collapse/collapse';
 import UiEditor from './components/editor/editor';
-import UiTree from './components/trees/tree';
-import UiTreeNode from './components/trees/tree-node';
+import UiTree from './components/tree/tree';
+import UiTreeNode from './components/tree/tree-node';
 /**
  * Plugins
  */
@@ -23,8 +23,6 @@ import $toast, { useToast } from './plugins/toast';
  * Directives
  */
 import vAnchor from './directives/anchor';
-
-const version = packageJson.version;
 
 const components = {
   UiAlert,
@@ -48,39 +46,42 @@ const directives = {
   vAnchor
 };
 
-const BalmUIPlus = {
-  version,
-  install(Vue, options = {}) {
-    // Configure the components' props
-    multiConfigure(components, options);
+function install(Vue, options = {}) {
+  // Configure the components' props
+  multiConfigure(components, options);
 
-    // Install the components
-    for (let key in components) {
-      let Component = components[key];
-      Vue.component(Component.name, Component);
-    }
+  // Install the components
+  for (let key in components) {
+    let Component = components[key];
+    Vue.component(Component.name, Component);
+  }
 
-    // Install the plugins
-    for (let key in plugins) {
-      let Plugin = plugins[key];
-      if (options[key]) {
-        Vue.use(Plugin, options[key]);
-      } else {
-        Vue.use(Plugin);
-      }
-    }
-
-    // Init the directives
-    for (let key in directives) {
-      let Directive = directives[key];
-      Vue.directive(Directive.name, Directive);
+  // Install the plugins
+  for (let key in plugins) {
+    let Plugin = plugins[key];
+    if (options[key]) {
+      Vue.use(Plugin, options[key]);
+    } else {
+      Vue.use(Plugin);
     }
   }
+
+  // Init the directives
+  for (let key in directives) {
+    let Directive = directives[key];
+    Vue.directive(Directive.name, Directive);
+  }
+}
+
+const BalmUIPlus = {
+  version,
+  install
 };
 
-autoInstall(BalmUIPlus);
+autoInit(BalmUIPlus);
 
 export default BalmUIPlus;
+export { version, install };
 export {
   UiAlert,
   UiAutocomplete,

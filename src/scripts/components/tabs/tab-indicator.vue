@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import UI_GLOBAL from '../../config/constants';
+import UI_GLOBAL from '../../icon/constants';
 import { UI_TAB_INDICATOR } from './constants';
 
 export default {

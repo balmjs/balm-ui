@@ -1,28 +1,28 @@
-import packageJson from '../../package.json';
-import autoInstall from './config/auto-install';
+import version from './version';
+import autoInit from './config/auto-init';
 import multiConfigure from './config/multi-configure';
 /**
  * Components
  */
 // General
-import UiButton from './components/buttons/button';
-import UiFab from './components/buttons/fab';
-import UiIconButton from './components/buttons/icon-button';
-import UiSegmentedButtons from './components/buttons/segmented-buttons';
-import UiSegmentedButton from './components/buttons/segmented-button';
+import UiButton from './components/button/button';
+import UiFab from './components/fab/fab';
+import UiIconButton from './components/icon-button/icon-button';
+import UiSegmentedButtons from './components/segmented-button/segmented-buttons';
+import UiSegmentedButton from './components/segmented-button/segmented-button';
 // Layouts
-import UiTopAppBar from './components/app-bars/top-app-bar';
+import UiTopAppBar from './components/top-app-bar/top-app-bar';
 import UiGrid from './components/layout-grid/grid';
 import UiGridCell from './components/layout-grid/grid-cell';
-import UiDivider from './components/others/divider'; // Custom
+import UiDivider from './components/divider/divider'; // Custom
 // Navigation
-import UiDrawer from './components/navigation/drawer';
-import UiDrawerHeader from './components/navigation/drawer-header';
-import UiDrawerTitle from './components/navigation/drawer-title';
-import UiDrawerSubtitle from './components/navigation/drawer-subtitle';
-import UiDrawerContent from './components/navigation/drawer-content';
-import UiDrawerAppContent from './components/navigation/drawer-app-content';
-import UiDrawerBackdrop from './components/navigation/drawer-backdrop';
+import UiDrawer from './components/drawer/drawer';
+import UiDrawerHeader from './components/drawer/drawer-header';
+import UiDrawerTitle from './components/drawer/drawer-title';
+import UiDrawerSubtitle from './components/drawer/drawer-subtitle';
+import UiDrawerContent from './components/drawer/drawer-content';
+import UiDrawerAppContent from './components/drawer/drawer-app-content';
+import UiDrawerBackdrop from './components/drawer/drawer-backdrop';
 import UiTabs from './components/tabs/tabs';
 import UiTabBar from './components/tabs/tab-bar';
 import UiTabScroller from './components/tabs/tab-scroller';
@@ -30,67 +30,67 @@ import UiTabIndicator from './components/tabs/tab-indicator';
 import UiTab from './components/tabs/tab';
 import UiPanels from './components/tabs/panels';
 import UiPanel from './components/tabs/panel';
-import UiMenuAnchor from './components/menus/menu-anchor';
-import UiMenu from './components/menus/menu';
-import UiMenuitem from './components/menus/menuitem';
-import UiMenuitemIcon from './components/menus/menuitem-icon';
-import UiMenuitemText from './components/menus/menuitem-text';
-import UiPagination from './components/data-tables/pagination'; // Custom
+import UiMenuAnchor from './components/menu/menu-anchor';
+import UiMenu from './components/menu/menu';
+import UiMenuitem from './components/menu/menuitem';
+import UiMenuitemIcon from './components/menu/menuitem-icon';
+import UiMenuitemText from './components/menu/menuitem-text';
+import UiPagination from './components/pagination/pagination'; // Custom
 // Theme
 import UiIcon from './components/icon/icon';
 // Data Entry
-import UiForm from './components/form-controls/form'; // Custom
-import UiFormField from './components/form-controls/form-field';
-import UiTextfield from './components/input-controls/textfield';
-import UiTextfieldHelper from './components/input-controls/textfield-helper';
-import UiTextfieldIcon from './components/input-controls/textfield-icon';
-import UiSelect from './components/selection-controls/select';
-import UiSelectHelper from './components/selection-controls/select-helper';
-import UiSelectIcon from './components/selection-controls/select-icon';
-import UiCheckbox from './components/selection-controls/checkbox';
-import UiRadio from './components/selection-controls/radio';
+import UiForm from './components/form/form'; // Custom
+import UiFormField from './components/form/form-field';
+import UiTextfield from './components/textfield/textfield';
+import UiTextfieldHelper from './components/textfield/textfield-helper';
+import UiTextfieldIcon from './components/textfield/textfield-icon';
+import UiSelect from './components/select/select';
+import UiSelectHelper from './components/select/select-helper';
+import UiSelectIcon from './components/select/select-icon';
+import UiCheckbox from './components/checkbox/checkbox';
+import UiRadio from './components/radio/radio';
 import UiChips from './components/chips/chips';
 import UiChip from './components/chips/chip';
-import UiSwitch from './components/selection-controls/switch';
-import UiSlider from './components/selection-controls/slider';
-import UiFile from './components/selection-controls/file'; // Custom
+import UiSwitch from './components/switch/switch';
+import UiSlider from './components/slider/slider';
+import UiFile from './components/file/file'; // Custom
 // Data Display
-import UiNav from './components/lists/nav';
-import UiNavItem from './components/lists/nav-item';
-import UiList from './components/lists/list';
-import UiItem from './components/lists/item';
-import UiItemTextContent from './components/lists/item-text-content';
-import UiItemText1 from './components/lists/item-text1';
-import UiItemText2 from './components/lists/item-text2';
-import UiItemFirstContent from './components/lists/item-first-content';
-import UiItemLastContent from './components/lists/item-last-content';
-import UiItemDivider from './components/lists/item-divider';
-import UiListDivider from './components/lists/list-divider';
-import UiListGroup from './components/lists/list-group';
-import UiListGroupSubheader from './components/lists/list-group-subheader';
-import UiImageList from './components/image-lists/image-list';
-import UiImageItem from './components/image-lists/image-item';
-import UiImageText from './components/image-lists/image-text';
-import UiCard from './components/cards/card';
-import UiCardContent from './components/cards/card-content';
-import UiCardMedia from './components/cards/card-media';
-import UiCardMediaContent from './components/cards/card-media-content';
-import UiCardText from './components/cards/card-text';
-import UiCardActions from './components/cards/card-actions';
-import UiCardButtons from './components/cards/card-buttons';
-import UiCardIcons from './components/cards/card-icons';
-import UiTable from './components/data-tables/table';
-import UiBadge from './components/others/badge'; // Custom
+import UiNav from './components/list/nav';
+import UiNavItem from './components/list/nav-item';
+import UiList from './components/list/list';
+import UiItem from './components/list/item';
+import UiItemTextContent from './components/list/item-text-content';
+import UiItemText1 from './components/list/item-text1';
+import UiItemText2 from './components/list/item-text2';
+import UiItemFirstContent from './components/list/item-first-content';
+import UiItemLastContent from './components/list/item-last-content';
+import UiItemDivider from './components/list/item-divider';
+import UiListDivider from './components/list/list-divider';
+import UiListGroup from './components/list/list-group';
+import UiListGroupSubheader from './components/list/list-group-subheader';
+import UiImageList from './components/image-list/image-list';
+import UiImageItem from './components/image-list/image-item';
+import UiImageText from './components/image-list/image-text';
+import UiCard from './components/card/card';
+import UiCardContent from './components/card/card-content';
+import UiCardMedia from './components/card/card-media';
+import UiCardMediaContent from './components/card/card-media-content';
+import UiCardText from './components/card/card-text';
+import UiCardActions from './components/card/card-actions';
+import UiCardButtons from './components/card/card-buttons';
+import UiCardIcons from './components/card/card-icons';
+import UiTable from './components/data-table/table';
+import UiBadge from './components/badge/badge'; // Custom
 // Feedback
-import UiDialog from './components/modal/dialog';
-import UiDialogTitle from './components/modal/dialog-title';
-import UiDialogContent from './components/modal/dialog-content';
-import UiDialogActions from './components/modal/dialog-actions';
-import UiSnackbar from './components/modal/snackbar';
-import UiBanner from './components/modal/banner';
-import UiProgress from './components/progress-indicators/progress';
-import UiSpinner from './components/progress-indicators/spinner';
-import UiTooltip from './components/others/tooltip';
+import UiDialog from './components/dialog/dialog';
+import UiDialogTitle from './components/dialog/dialog-title';
+import UiDialogContent from './components/dialog/dialog-content';
+import UiDialogActions from './components/dialog/dialog-actions';
+import UiSnackbar from './components/snackbar/snackbar';
+import UiBanner from './components/banner/banner';
+import UiProgress from './components/linear-progress/progress';
+import UiSpinner from './components/circular-progress/spinner';
+import UiTooltip from './components/tooltip/tooltip';
 /**
  * Plugins
  */
@@ -217,39 +217,38 @@ const directives = {
   vTooltip
 };
 
-const BalmUI = {
-  version: packageJson.version,
-  install(Vue, options = {}) {
-    // Configure the components' props
-    multiConfigure(components, options);
+function install(Vue, options = {}) {
+  // Configure the components' props
+  multiConfigure(components, options);
 
-    // Install the components
-    for (let key in components) {
-      let Component = components[key];
-      Vue.component(Component.name, Component);
-    }
-
-    // Install the plugins
-    for (let key in plugins) {
-      let Plugin = plugins[key];
-      if (options[key]) {
-        Vue.use(Plugin, options[key]);
-      } else {
-        Vue.use(Plugin);
-      }
-    }
-
-    // Init the directives
-    for (let key in directives) {
-      let Directive = directives[key];
-      Vue.directive(Directive.name, Directive);
-    }
+  // Install the components
+  for (let key in components) {
+    let Component = components[key];
+    Vue.component(Component.name, Component);
   }
+
+  // Install the plugins
+  for (let key in plugins) {
+    let Plugin = plugins[key];
+    options[key] ? Vue.use(Plugin, options[key]) : Vue.use(Plugin);
+  }
+
+  // Init the directives
+  for (let key in directives) {
+    let Directive = directives[key];
+    Vue.directive(Directive.name, Directive);
+  }
+}
+
+const BalmUI = {
+  version,
+  install
 };
 
-autoInstall(BalmUI);
+autoInit(BalmUI);
 
 export default BalmUI;
+export { version, install };
 export {
   UiBadge,
   UiBanner,

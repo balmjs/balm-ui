@@ -1,4 +1,4 @@
-import autoInit from './register';
+import autoInit from '../config/auto-init';
 
 // Define shape constants
 const UI_SHAPE = {
@@ -62,6 +62,6 @@ const BalmUI_ShapeDirective = {
   }
 };
 
-autoInit(BalmUI_ShapeDirective.name, BalmUI_ShapeDirective);
+autoInit(BalmUI_ShapeDirective, 'directive');
 
 export default BalmUI_ShapeDirective;

@@ -1,4 +1,4 @@
-import autoInstall from '../config/auto-install';
+import autoInit from '../config/auto-init';
 import getType from '../utils/typeof';
 
 let store;
@@ -33,7 +33,7 @@ const BalmUI_StorePlugin = {
 
 const useStore = () => store;
 
-autoInstall(BalmUI_StorePlugin);
+autoInit(BalmUI_StorePlugin);
 
 export default BalmUI_StorePlugin;
 export { useStore };

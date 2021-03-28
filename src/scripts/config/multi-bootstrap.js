@@ -1,4 +1,4 @@
-import autoInstall from './auto-install';
+import autoInit from './auto-init';
 import multiConfigure from './multi-configure';
 
 const multiBootstrap = (components) => {
@@ -15,7 +15,7 @@ const multiBootstrap = (components) => {
     }
   };
 
-  autoInstall(UiComponents);
+  autoInit(UiComponents);
 
   return UiComponents;
 };

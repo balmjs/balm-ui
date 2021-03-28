@@ -1,4 +1,4 @@
-import autoInstall from '../config/auto-install';
+import autoInit from '../config/auto-init';
 import getType from '../utils/typeof';
 
 const defaultRules = {
@@ -153,6 +153,6 @@ const BalmUI_ValidatorPlugin = {
   }
 };
 
-autoInstall(BalmUI_ValidatorPlugin);
+autoInit(BalmUI_ValidatorPlugin);
 
 export default BalmUI_ValidatorPlugin;

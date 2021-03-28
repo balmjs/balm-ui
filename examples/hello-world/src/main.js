@@ -1,14 +1,25 @@
 import Vue from 'vue';
 import App from './App.vue';
 
-import BalmUI from 'balm-ui'; // Official Google Material Components
-import BalmUIPlus from 'balm-ui-plus'; // BalmJS Team Material Components
+// For Import All
+import BalmUI from 'balm-ui';
+import BalmUIPlus from 'balm-ui-plus';
+
+// For Import on Demand
+// import { UiButton } from 'balm-ui';
+// import { $alert } from 'balm-ui-plus';
+
 import 'balm-ui-css';
 
 Vue.config.productionTip = false;
 
-Vue.use(BalmUI); // Mandatory
-Vue.use(BalmUIPlus); // Optional
+// For Import All
+Vue.use(BalmUI);
+Vue.use(BalmUIPlus);
+
+// For Import on Demand
+// Vue.use(UiButton);
+// Vue.use($alert);
 
 new Vue({
   render: (h) => h(App)

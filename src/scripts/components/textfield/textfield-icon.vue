@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import UI_GLOBAL from '../../icon/constants';
+import UI_GLOBAL from '../icon/constants';
 import { UI_TEXTFIELD_ICON } from './constants';
 
 export default {

@@ -30,7 +30,7 @@
 import UiMenuitemIcon from './menuitem-icon';
 import UiMenuitemText from './menuitem-text';
 import rippleMixin from '../../mixins/ripple';
-import UI_GLOBAL from '../../icon/constants';
+import UI_GLOBAL from '../icon/constants';
 
 export default {
   name: 'UiMenuitem',

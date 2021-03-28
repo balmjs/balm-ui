@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import UI_GLOBAL from '../../icon/constants';
+import UI_GLOBAL from '../icon/constants';
 
 // Define select icon constants
 const UI_SELECT_ICON = {

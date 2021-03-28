@@ -95,7 +95,7 @@
 <script>
 import { MdcTree } from './mdc-tree';
 import MdcCheckbox from '../checkbox/mdc-checkbox';
-import UI_GLOBAL from '../../icon/constants';
+import UI_GLOBAL from '../icon/constants';
 
 export default {
   name: 'UiTreeNode',

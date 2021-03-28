@@ -71,7 +71,7 @@
 import UiTextfield from '../textfield/textfield';
 import textfieldMixin from '../../mixins/textfield';
 import getType from '../../utils/typeof';
-import { UI_TEXTFIELD_ICON } from './constants';
+import { UI_TEXTFIELD_ICON } from '../textfield/constants';
 
 // Define autocomplete constants
 const UI_AUTOCOMPLETE = {

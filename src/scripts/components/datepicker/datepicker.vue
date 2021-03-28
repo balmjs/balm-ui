@@ -82,9 +82,9 @@
 <script>
 import flatpickr from 'flatpickr';
 import monthSelectPlugin from 'flatpickr/dist/plugins/monthSelect';
-import UiTextfield from '../input-controls/textfield';
+import UiTextfield from '../textfield/textfield';
 import textfieldMixin from '../../mixins/textfield';
-import { UI_TEXTFIELD_ICON } from '../input-controls/constants';
+import { UI_TEXTFIELD_ICON } from '../textfield/constants';
 
 // Define datepicker constants
 const UI_DATEPICKER = {

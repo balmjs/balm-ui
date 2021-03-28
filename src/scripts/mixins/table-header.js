@@ -1,5 +1,5 @@
 import tableMixin from './table';
-import UI_TABLE from '../components/data-tables/constants';
+import UI_TABLE from '../components/data-table/constants';
 import getType from '../utils/typeof';
 
 export default {

@@ -42,7 +42,7 @@
 
 <script>
 import materialIconMixin from '../../mixins/material-icon';
-import UI_GLOBAL from '../../icon/constants';
+import UI_GLOBAL from '../icon/constants';
 import UI_CHIPS from './constants';
 
 export default {

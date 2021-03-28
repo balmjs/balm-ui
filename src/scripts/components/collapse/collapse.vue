@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import UI_GLOBAL from '../../icon/constants';
+import UI_GLOBAL from '../icon/constants';
 
 // Define collapse constants
 const UI_COLLAPSE = {

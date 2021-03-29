@@ -23,6 +23,11 @@ import $toast, { useToast } from './plugins/toast';
  * Directives
  */
 import vAnchor from './directives/anchor';
+import vCopy from './directives/copy';
+import vLongpress from './directives/longpress';
+import vDebounce from './directives/debounce';
+import vLazyload from './directives/lazyload';
+import vDraggable from './directives/draggable';
 
 const components = {
   UiAlert,
@@ -43,7 +48,12 @@ const plugins = {
 };
 
 const directives = {
-  vAnchor
+  vAnchor,
+  vCopy,
+  vLongpress,
+  vDebounce,
+  vLazyload,
+  vDraggable
 };
 
 function install(Vue, options = {}) {

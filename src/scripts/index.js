@@ -40,7 +40,7 @@ import UiPagination from './components/pagination/pagination'; // Custom
 import UiIcon from './components/icon/icon';
 // Data Entry
 import UiForm from './components/form/form'; // Custom
-import UiFormField from './components/form/form-field';
+import UiFormField from './components/form-field/form-field';
 import UiTextfield from './components/textfield/textfield';
 import UiTextfieldHelper from './components/textfield/textfield-helper';
 import UiTextfieldIcon from './components/textfield/textfield-icon';

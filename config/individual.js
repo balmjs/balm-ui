@@ -20,7 +20,6 @@ const components = [
   'fab',
   'file', // Custom
   'form', // Custom
-  'form-field',
   'grid',
   'icon',
   'icon-button',
@@ -49,9 +48,9 @@ const components = [
   'editor',
   'rangepicker',
   'skeleton',
+  'tree',
   // Next
-  'bottom-navigation',
-  'tree'
+  'bottom-navigation'
 ];
 const plugins = [
   'alert',

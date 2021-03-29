@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import MdcLinearProgress from '../linear-progress/mdc-linear-progress';
+import MdcLinearProgress from '../progress/mdc-linear-progress';
 
 export default {
   name: 'MdcTableProgress',

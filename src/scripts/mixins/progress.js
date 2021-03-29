@@ -1,4 +1,4 @@
-import { UI_PROGRESS } from '../components/linear-progress/constants';
+import { UI_PROGRESS } from '../components/progress/constants';
 
 export default {
   props: {

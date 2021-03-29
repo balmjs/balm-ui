@@ -1,8 +1,4 @@
-import multiBootstrap from '../../config/multi-bootstrap';
+import bootstrap from '../../config/bootstrap';
 import UiForm from './form';
-import UiFormField from './form-field';
 
-export default multiBootstrap({
-  UiForm,
-  UiFormField
-});
+export default bootstrap(UiForm);

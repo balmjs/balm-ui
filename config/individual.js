@@ -20,6 +20,7 @@ const components = [
   'fab',
   'file', // Custom
   'form', // Custom
+  'form-field',
   'grid',
   'icon',
   'icon-button',

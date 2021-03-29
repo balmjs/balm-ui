@@ -122,9 +122,9 @@
 
 <script>
 import { MDCTextField } from '../../../material-components-web/textfield';
-import MdcFloatingLabel from '../form/mdc-floating-label';
-import MdcLineRipple from '../form/mdc-line-ripple';
-import MdcNotchedOutline from '../form/mdc-notched-outline';
+import MdcFloatingLabel from '../floating-label/mdc-floating-label';
+import MdcLineRipple from '../floating-label/mdc-line-ripple';
+import MdcNotchedOutline from '../floating-label/mdc-notched-outline';
 import MdcTextfieldCounter from './mdc-textfield-counter';
 import textfieldMixin from '../../mixins/textfield';
 import typeMixin from '../../mixins/type';

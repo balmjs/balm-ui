@@ -19,7 +19,7 @@ function createStore(Vue, storeKey, options) {
   );
 }
 
-const BalmUI_StorePlugin = {
+const $store = {
   install(Vue, options = {}) {
     if (getType(options) === 'object' && Object.keys(options).length) {
       const storeKey = (options.name || 'Store').toLowerCase();
@@ -33,7 +33,7 @@ const BalmUI_StorePlugin = {
 
 const useStore = () => store;
 
-autoInit(BalmUI_StorePlugin);
+autoInit($store);
 
-export default BalmUI_StorePlugin;
+export default $store;
 export { useStore };

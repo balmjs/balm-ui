@@ -38,6 +38,7 @@ function hasToast() {
 function createToast(options) {
   return new Vue({
     el: document.createElement('div'),
+    name: 'Toast',
     data() {
       return {
         open: false,
@@ -136,7 +137,7 @@ function toast(customOptions = {}) {
   }
 }
 
-const BalmUI_ToastPlugin = {
+const $toast = {
   install(Vue, options = {}) {
     globalOptions = Object.assign({}, DEFAULT_OPTIONS, options);
 
@@ -146,7 +147,7 @@ const BalmUI_ToastPlugin = {
 
 const useToast = () => toast;
 
-autoInit(BalmUI_ToastPlugin);
+autoInit($toast);
 
-export default BalmUI_ToastPlugin;
+export default $toast;
 export { useToast };

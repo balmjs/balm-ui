@@ -74,13 +74,13 @@ const initAccessibility = (el) => {
   }
 };
 
-const BalmUI_AccessibilityDirective = {
+const vAccessibility = {
   name: 'a11y',
   inserted(el) {
     initAccessibility(el);
   }
 };
 
-autoInit(BalmUI_AccessibilityDirective, 'directive');
+autoInit(vAccessibility, 'directive');
 
-export default BalmUI_AccessibilityDirective;
+export default vAccessibility;

@@ -35,6 +35,7 @@ const template = `<mdc-dialog class="mdc-confirm-dialog" :open="open" :options="
 function createConfirmDialog(options, done) {
   confirmApp = new Vue({
     el: document.createElement('div'),
+    name: 'ConfirmDialog',
     components: {
       MdcDialog
     },
@@ -78,7 +79,7 @@ function confirmDialog(customOptions = {}) {
   });
 }
 
-const BalmUI_ConfirmPlugin = {
+const $confirm = {
   install(Vue, options = {}) {
     globalOptions = Object.assign({}, DEFAULT_OPTIONS, options);
 
@@ -88,7 +89,7 @@ const BalmUI_ConfirmPlugin = {
 
 const useConfirm = () => confirmDialog;
 
-autoInit(BalmUI_ConfirmPlugin);
+autoInit($confirm);
 
-export default BalmUI_ConfirmPlugin;
+export default $confirm;
 export { useConfirm };

@@ -68,7 +68,7 @@ const EventMethods = {
   }
 };
 
-const BalmUI_EventPlugin = {
+const $event = {
   install(Vue, customNamespace = DEFAULT_NAMESPACE) {
     if (customNamespace) {
       Vue.mixin({
@@ -104,7 +104,7 @@ const BalmUI_EventPlugin = {
 
 const useBus = () => bus;
 
-autoInit(BalmUI_EventPlugin);
+autoInit($event);
 
-export default BalmUI_EventPlugin;
+export default $event;
 export { useBus };

@@ -22,13 +22,13 @@ const initTooltip = (el, { value }) => {
   }
 };
 
-const BalmUI_TooltipDirective = {
+const vTooltip = {
   name: 'tooltip',
   inserted(el, binding) {
     initTooltip(el, binding);
   }
 };
 
-autoInit(BalmUI_TooltipDirective, 'directive');
+autoInit(vTooltip, 'directive');
 
-export default BalmUI_TooltipDirective;
+export default vTooltip;

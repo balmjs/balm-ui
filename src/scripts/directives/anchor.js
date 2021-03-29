@@ -68,7 +68,7 @@ const bindAnchor = (method, el = document) => {
   }
 };
 
-const BalmUI_AnchorDirective = {
+const vAnchor = {
   name: 'anchor',
   bind(el, binding) {
     updateAnchor('add', el, binding);
@@ -98,6 +98,6 @@ const BalmUI_AnchorDirective = {
   }
 };
 
-autoInit(BalmUI_AnchorDirective, 'directive');
+autoInit(vAnchor, 'directive');
 
-export default BalmUI_AnchorDirective;
+export default vAnchor;

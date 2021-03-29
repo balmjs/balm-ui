@@ -59,7 +59,7 @@ const updateBadge = (el, { value, modifiers }) => {
   }
 };
 
-const BalmUI_BadgeDirective = {
+const vBadge = {
   name: 'badge',
   inserted(el, binding) {
     initBadge(el, binding);
@@ -69,6 +69,6 @@ const BalmUI_BadgeDirective = {
   }
 };
 
-autoInit(BalmUI_BadgeDirective, 'directive');
+autoInit(vBadge, 'directive');
 
-export default BalmUI_BadgeDirective;
+export default vBadge;

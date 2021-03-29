@@ -29,7 +29,7 @@ const template = `<mdc-dialog class="mdc-alert-dialog" :open="open" :options="op
 function createAlertDialog(options, done) {
   alertApp = new Vue({
     el: document.createElement('div'),
-    name: 'BalmUIAlert',
+    name: 'AlertDialog',
     components: {
       MdcDialog
     },
@@ -75,7 +75,7 @@ function alertDialog(customOptions = {}) {
   });
 }
 
-const BalmUI_AlertPlugin = {
+const $alert = {
   install(Vue, options = {}) {
     globalOptions = Object.assign({}, DEFAULT_OPTIONS, options);
 
@@ -85,7 +85,7 @@ const BalmUI_AlertPlugin = {
 
 const useAlert = () => alertDialog;
 
-autoInit(BalmUI_AlertPlugin);
+autoInit($alert);
 
-export default BalmUI_AlertPlugin;
+export default $alert;
 export { useAlert };

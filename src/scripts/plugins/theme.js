@@ -235,7 +235,7 @@ class Theme extends ThemeStyle {
 
 const theme = new Theme();
 
-const BalmUI_ThemePlugin = {
+const $theme = {
   install(Vue) {
     Vue.prototype.$theme = theme;
   }
@@ -243,7 +243,7 @@ const BalmUI_ThemePlugin = {
 
 const useTheme = () => theme;
 
-autoInit(BalmUI_ThemePlugin);
+autoInit($theme);
 
-export default BalmUI_ThemePlugin;
+export default $theme;
 export { useTheme };

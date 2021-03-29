@@ -34,7 +34,7 @@ function tt(style) {
   return className;
 }
 
-const BalmUI_TypographyPlugin = {
+const $typography = {
   install(Vue, customStyles = []) {
     globalStyles = Array.isArray(customStyles)
       ? T_DEFAULT_STYLES.concat(customStyles)
@@ -55,7 +55,7 @@ const BalmUI_TypographyPlugin = {
 
 const useTypography = () => tt;
 
-autoInit(BalmUI_TypographyPlugin);
+autoInit($typography);
 
-export default BalmUI_TypographyPlugin;
+export default $typography;
 export { useTypography };

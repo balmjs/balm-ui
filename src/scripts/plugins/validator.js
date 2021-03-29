@@ -42,7 +42,7 @@ function upgradeMessage(from, to) {
   );
 }
 
-const BalmUI_ValidatorPlugin = {
+const $validator = {
   install(Vue, customRules = {}) {
     let globalValidationRules = Object.assign({}, defaultRules, customRules);
 
@@ -153,6 +153,6 @@ const BalmUI_ValidatorPlugin = {
   }
 };
 
-autoInit(BalmUI_ValidatorPlugin);
+autoInit($validator);
 
-export default BalmUI_ValidatorPlugin;
+export default $validator;

@@ -49,7 +49,7 @@ const updateShape = (method, el, { value, modifiers }) => {
   }
 };
 
-const BalmUI_ShapeDirective = {
+const vShape = {
   name: 'shape',
   bind(el, binding) {
     updateShape('add', el, binding);
@@ -62,6 +62,6 @@ const BalmUI_ShapeDirective = {
   }
 };
 
-autoInit(BalmUI_ShapeDirective, 'directive');
+autoInit(vShape, 'directive');
 
-export default BalmUI_ShapeDirective;
+export default vShape;

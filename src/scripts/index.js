@@ -12,8 +12,8 @@ import UiSegmentedButtons from './components/segmented-button/segmented-buttons'
 import UiSegmentedButton from './components/segmented-button/segmented-button';
 // Layouts
 import UiTopAppBar from './components/top-app-bar/top-app-bar';
-import UiGrid from './components/layout-grid/grid';
-import UiGridCell from './components/layout-grid/grid-cell';
+import UiGrid from './components/grid/grid';
+import UiGridCell from './components/grid/grid-cell';
 import UiDivider from './components/divider/divider'; // Custom
 // Navigation
 import UiDrawer from './components/drawer/drawer';
@@ -79,7 +79,7 @@ import UiCardText from './components/card/card-text';
 import UiCardActions from './components/card/card-actions';
 import UiCardButtons from './components/card/card-buttons';
 import UiCardIcons from './components/card/card-icons';
-import UiTable from './components/data-table/table';
+import UiTable from './components/table/table';
 import UiBadge from './components/badge/badge'; // Custom
 // Feedback
 import UiDialog from './components/dialog/dialog';
@@ -88,8 +88,8 @@ import UiDialogContent from './components/dialog/dialog-content';
 import UiDialogActions from './components/dialog/dialog-actions';
 import UiSnackbar from './components/snackbar/snackbar';
 import UiBanner from './components/banner/banner';
-import UiProgress from './components/linear-progress/progress';
-import UiSpinner from './components/circular-progress/spinner';
+import UiProgress from './components/progress/progress';
+import UiSpinner from './components/spinner/spinner';
 import UiTooltip from './components/tooltip/tooltip';
 /**
  * Plugins

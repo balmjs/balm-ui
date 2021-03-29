@@ -1,20 +1,31 @@
 import autoInit from '../config/auto-init';
+import getType from '../utils/typeof';
 
 const vDebounce = {
   name: 'debounce',
   inserted(el, { value }) {
-    const { callback, delay } = value;
+    if (getType(value) === 'object') {
+      const { callback, delay } = value;
 
-    let timer;
-
-    el.addEventListener('click', () => {
-      if (timer) {
-        clearTimeout(timer);
+      if (getType(callback) !== 'function') {
+        console.warn(`[v-debounce]: The 'callback' must be a function`);
       }
-      timer = setTimeout(() => {
-        callback();
-      }, delay || 1e3);
-    });
+
+      let timer;
+
+      el.addEventListener('click', () => {
+        if (timer) {
+          clearTimeout(timer);
+        }
+        timer = setTimeout(() => {
+          callback();
+        }, delay || 1e3);
+      });
+    } else {
+      throw new Error(
+        `[vDebounce]: The 'value' must be an object ({ callback: Function, delay?: number })`
+      );
+    }
   }
 };
 

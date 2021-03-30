@@ -1,5 +1,5 @@
 // Auto-install when vue is found (eg. in browser via <script> tag)
-const autoInit = (ui, type = 'default') => {
+const autoInit = (AwesomeUI, type = 'default') => {
   let GlobalVue = null;
 
   if (typeof window !== 'undefined') {
@@ -10,9 +10,9 @@ const autoInit = (ui, type = 'default') => {
 
   if (GlobalVue) {
     if (type === 'directive') {
-      GlobalVue.directive(ui.name, ui);
+      GlobalVue.directive(AwesomeUI.name, AwesomeUI);
     } else {
-      GlobalVue.use(ui);
+      GlobalVue.use(AwesomeUI);
     }
   }
 };

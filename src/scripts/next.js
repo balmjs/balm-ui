@@ -6,20 +6,20 @@ import multiConfigure from './config/multi-configure';
  */
 import UiBottomNavigation from './components/bottom-navigation/bottom-navigation';
 
-const components = {
+const Components = {
   UiBottomNavigation
 };
 
-function install(Vue, options = {}) {
-  // Configure the components' props
-  multiConfigure(components, options);
+const Plugins = {};
 
-  // Install the components
-  for (let key in components) {
-    let Component = components[key];
-    Vue.component(Component.name, Component);
-  }
-}
+const Directives = {};
+
+const install = (Vue, options = {}) =>
+  autoInstall(Vue, options, {
+    Components,
+    Plugins,
+    Directives
+  });
 
 const BalmUINext = {
   version,

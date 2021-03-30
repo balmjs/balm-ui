@@ -1,15 +1,14 @@
 import autoInit from './auto-init';
 import multiConfigure from './multi-configure';
 
-const multiBootstrap = (components) => {
+const multiBootstrap = (Components) => {
   const UiComponents = {
     install(Vue, options = {}) {
       // Configure the components' props
-      multiConfigure(components, options);
+      multiConfigure(Components, options);
 
       // Install the components
-      for (let key in components) {
-        let Component = components[key];
+      for (const Component of Components) {
         Vue.component(Component.name, Component);
       }
     }

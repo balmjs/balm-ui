@@ -1,6 +1,6 @@
 import version from './version';
+import autoInstall from './config/auto-install';
 import autoInit from './config/auto-init';
-import multiConfigure from './config/multi-configure';
 /**
  * Components
  */
@@ -29,7 +29,7 @@ import vDebounce from './directives/debounce';
 import vLazyload from './directives/lazyload';
 import vDraggable from './directives/draggable';
 
-const components = {
+const Components = {
   UiAlert,
   UiAutocomplete,
   UiCollapse,
@@ -41,13 +41,13 @@ const components = {
   UiTreeNode
 };
 
-const plugins = {
+const Plugins = {
   $alert,
   $confirm,
   $toast
 };
 
-const directives = {
+const Directives = {
   vAnchor,
   vCopy,
   vLongpress,
@@ -56,32 +56,12 @@ const directives = {
   vDraggable
 };
 
-function install(Vue, options = {}) {
-  // Configure the components' props
-  multiConfigure(components, options);
-
-  // Install the components
-  for (let key in components) {
-    let Component = components[key];
-    Vue.component(Component.name, Component);
-  }
-
-  // Install the plugins
-  for (let key in plugins) {
-    let Plugin = plugins[key];
-    if (options[key]) {
-      Vue.use(Plugin, options[key]);
-    } else {
-      Vue.use(Plugin);
-    }
-  }
-
-  // Init the directives
-  for (let key in directives) {
-    let Directive = directives[key];
-    Vue.directive(Directive.name, Directive);
-  }
-}
+const install = (Vue, options = {}) =>
+  autoInstall(Vue, options, {
+    Components,
+    Plugins,
+    Directives
+  });
 
 const BalmUIPlus = {
   version,
@@ -105,4 +85,4 @@ export {
 };
 export { $alert, $confirm, $toast };
 export { useAlert, useConfirm, useToast };
-export { vAnchor };
+export { vAnchor, vCopy, vLongpress, vDebounce, vLazyload, vDraggable };

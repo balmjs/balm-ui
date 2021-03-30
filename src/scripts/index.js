@@ -1,6 +1,6 @@
 import version from './version';
+import autoInstall from './config/auto-install';
 import autoInit from './config/auto-init';
-import multiConfigure from './config/multi-configure';
 /**
  * Components
  */
@@ -116,7 +116,7 @@ import types from './utils/types';
 import helpers from './utils/helpers';
 import detectIE from './utils/ie';
 
-const components = {
+const Components = {
   UiBadge,
   UiBanner,
   UiButton,
@@ -199,7 +199,7 @@ const components = {
   UiTopAppBar
 };
 
-const plugins = {
+const Plugins = {
   $event,
   $grid,
   $store,
@@ -208,7 +208,7 @@ const plugins = {
   $validator
 };
 
-const directives = {
+const Directives = {
   vAccessibility,
   vBadge,
   vRipple,
@@ -217,28 +217,12 @@ const directives = {
   vTooltip
 };
 
-function install(Vue, options = {}) {
-  // Configure the components' props
-  multiConfigure(components, options);
-
-  // Install the components
-  for (let key in components) {
-    let Component = components[key];
-    Vue.component(Component.name, Component);
-  }
-
-  // Install the plugins
-  for (let key in plugins) {
-    let Plugin = plugins[key];
-    options[key] ? Vue.use(Plugin, options[key]) : Vue.use(Plugin);
-  }
-
-  // Init the directives
-  for (let key in directives) {
-    let Directive = directives[key];
-    Vue.directive(Directive.name, Directive);
-  }
-}
+const install = (Vue, options = {}) =>
+  autoInstall(Vue, options, {
+    Components,
+    Plugins,
+    Directives
+  });
 
 const BalmUI = {
   version,

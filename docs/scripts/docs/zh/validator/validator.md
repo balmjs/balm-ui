@@ -212,6 +212,9 @@ interface VueInstance {
         }
       }
     },
+    beforeDestroy() {
+      this.$validations.clear(); // 非常重要
+    },
     methods: {
       onSubmit() {
         let customValidations =

@@ -1,6 +1,5 @@
 ```scss
 @use 'balm-ui/components/core';
-@use 'balm-ui/components/form-field/form-item';
 @use 'balm-ui/components/textfield/textfield';
 @use 'balm-ui/components/icon/icon'; // Optional
 ```

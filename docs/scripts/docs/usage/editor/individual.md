@@ -1,9 +1,11 @@
 ```scss
 @use 'balm-ui/components/core';
-@use 'balm-ui/components/icon/icon';
 @use 'balm-ui/components/editor/editor';
+@use 'balm-ui/components/icon/icon';
+
+// Choose one editor theme
 @use 'balm-ui/components/editor/theme/snow';
-@use 'balm-ui/components/editor/theme/bubble'; // Optional
+@use 'balm-ui/components/editor/theme/bubble';
 ```
 
 ```js

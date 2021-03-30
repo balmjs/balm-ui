@@ -1,7 +1,7 @@
 ```scss
 @use 'balm-ui/components/core';
 @use 'balm-ui/components/icon-button/icon-button';
-@use 'balm-ui/components/icon/icon'; // Recommended
+@use 'balm-ui/components/icon/icon';
 ```
 
 ```js

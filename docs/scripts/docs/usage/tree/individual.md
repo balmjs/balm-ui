@@ -1,7 +1,7 @@
 ```scss
 @use 'balm-ui/components/core';
-@use 'balm-ui/components/icon/icon';
 @use 'balm-ui/components/tree/tree';
+@use 'balm-ui/components/icon/icon';
 @use 'balm-ui/components/checkbox/checkbox'; // Optional
 ```
 

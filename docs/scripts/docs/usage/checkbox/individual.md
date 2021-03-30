@@ -1,7 +1,7 @@
 ```scss
 @use 'balm-ui/components/core';
-@use 'balm-ui/components/checkbox/checkbox';
 @use 'balm-ui/components/form-field/form-field';
+@use 'balm-ui/components/checkbox/checkbox';
 ```
 
 ```js

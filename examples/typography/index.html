@@ -1,42 +1,41 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BalmUI - typography example</title>
-  <link rel="stylesheet" href="/components/core.css">
-  <style>
-    .mdc-typography--custom-style-1 {
-      color: red;
-    }
-
-    .mdc-typography--custom-style-2 {
-      color: blue;
-    }
-  </style>
-</head>
-<body>
-  <div id="app">
-    <div :class="$tt('custom-style-1')">Custom style 1</div>
-    <div :class="$tt('custom-style-2')">Custom style 2</div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-  <script src="/plugins/typography/index.js"></script>
-  <script>
-    var customTypography = ['custom-style-1', 'custom-style-2'];
-    $typography.default.install(Vue, customTypography);
-  </script>
-  <script>
-    $tt = $typography.useTypography();
-
-    new Vue({
-      el: '#app',
-      created() {
-        console.log($tt('custom-style-1'));
-        console.log($tt('custom-style-2'));
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BalmUI - typography example</title>
+    <link rel="stylesheet" href="/components/core.css" />
+    <style>
+      .mdc-typography--custom-style-1 {
+        color: red;
       }
-    })
-  </script>
-</body>
+
+      .mdc-typography--custom-style-2 {
+        color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div :class="$tt('custom-style-1')">Custom style 1</div>
+      <div :class="$tt('custom-style-2')">Custom style 2</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="/plugins/typography/index.js"></script>
+    <script>
+      var customTypography = ['custom-style-1', 'custom-style-2'];
+      $typography.default.install(Vue, customTypography);
+      $tt = $typography.useTypography();
+    </script>
+    <script>
+      new Vue({
+        el: '#app',
+        created() {
+          console.log($tt('custom-style-1'));
+          console.log($tt('custom-style-2'));
+        }
+      });
+    </script>
+  </body>
 </html>

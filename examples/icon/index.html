@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BalmUI - icon example</title>
-  <link rel="stylesheet" href="/components/core.css">
-  <link rel="stylesheet" href="/components/icon/icon.css">
-</head>
-<body>
-  <div id="app">
-    <div class="icons-preview-code">
-      <div v-for="i in [18, 24, 36, 48]" :key="i" class="icons-preview">
-        <ui-icon :size="i">face</ui-icon>
-        <div class="icon-caption">{{ i }}px</div>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BalmUI - icon example</title>
+    <link rel="stylesheet" href="/components/core.css" />
+    <link rel="stylesheet" href="/components/icon/icon.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="icons-preview-code">
+        <div v-for="i in [18, 24, 36, 48]" :key="i" class="icons-preview">
+          <ui-icon :size="i">face</ui-icon>
+          <div class="icon-caption">{{ i }}px</div>
+        </div>
       </div>
     </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-  <script src="/components/icon/index.js"></script>
-  <script>
-    new Vue({
-      el: '#app'
-    })
-  </script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="/components/icon/index.js"></script>
+    <script>
+      new Vue({
+        el: '#app'
+      });
+    </script>
+  </body>
 </html>

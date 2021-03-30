@@ -9,11 +9,9 @@ const autoInit = (AwesomeUI, type = 'default') => {
   }
 
   if (GlobalVue) {
-    if (type === 'directive') {
-      GlobalVue.directive(AwesomeUI.name, AwesomeUI);
-    } else {
-      GlobalVue.use(AwesomeUI);
-    }
+    type === 'directive'
+      ? GlobalVue.directive(AwesomeUI.name, AwesomeUI)
+      : GlobalVue.use(AwesomeUI);
   }
 };
 

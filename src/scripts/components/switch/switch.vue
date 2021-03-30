@@ -85,6 +85,11 @@ export default {
       this.selectedValue = val;
       // fix(ui): trigger bug
       this.$switch.checked = this.selectedValue === this.trueValue;
+    },
+    disabled(val) {
+      if (this.$switch) {
+        this.$switch.disabled = val;
+      }
     }
   },
   mounted() {

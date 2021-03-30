@@ -306,6 +306,11 @@ export default {
           }, 1);
         }
       }
+    },
+    disabled(val) {
+      if (this.$textField) {
+        this.$textField.disabled = val;
+      }
     }
   },
   mounted() {

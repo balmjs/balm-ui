@@ -87,7 +87,14 @@ export default {
       this.selectedValue = this._setSelectedValue(val);
     },
     indeterminate(val) {
-      this.$checkbox.indeterminate = val;
+      if (this.$checkbox) {
+        this.$checkbox.indeterminate = val;
+      }
+    },
+    disabled(val) {
+      if (this.$checkbox) {
+        this.$checkbox.disabled = val;
+      }
     }
   },
   mounted() {

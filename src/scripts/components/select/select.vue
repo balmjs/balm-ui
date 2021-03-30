@@ -246,6 +246,11 @@ export default {
     },
     options(val) {
       this.init(val);
+    },
+    disabled(val) {
+      if (this.$select) {
+        this.$select.disabled = val;
+      }
     }
   },
   mounted() {

@@ -146,7 +146,9 @@ export default {
       this.update(val);
     },
     disabled(val) {
-      this.$slider.setDisabled(val);
+      if (this.$slider) {
+        this.$slider.setDisabled(val);
+      }
     }
   },
   mounted() {

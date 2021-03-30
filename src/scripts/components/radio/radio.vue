@@ -82,6 +82,11 @@ export default {
   watch: {
     model(val) {
       this.selectedValue = val;
+    },
+    disabled(val) {
+      if (this.$radio) {
+        this.$radio.disabled = val;
+      }
     }
   },
   mounted() {

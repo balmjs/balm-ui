@@ -295,6 +295,12 @@ export default {
 
         // fix(ui): focus bug
         if (oldVal && !val) {
+          // fix(@material): sync counter bug
+          this.$textField.characterCounter_.foundation.setCounterValue(
+            0,
+            this.maxlength
+          );
+
           setTimeout(() => {
             this.$textField.foundation.deactivateFocus();
           }, 1);

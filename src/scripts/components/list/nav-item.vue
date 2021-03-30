@@ -1,16 +1,16 @@
 <template>
   <a :href="href" :class="className" @click="handleClick">
     <span class="mdc-list-item__ripple"></span>
-    <slot name="before" :iconClass="UI_LIST.cssClasses.firstTile"></slot>
+    <slot name="before" :iconClass="UI_ITEM.cssClasses.firstTile"></slot>
     <slot>
       <!-- text content -->
     </slot>
-    <slot name="after" :iconClass="UI_LIST.cssClasses.lastTile"></slot>
+    <slot name="after" :iconClass="UI_ITEM.cssClasses.lastTile"></slot>
   </a>
 </template>
 
 <script>
-import UI_LIST from './constants';
+import { UI_ITEM } from './constants';
 
 export default {
   name: 'UiNavItem',
@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return {
-      UI_LIST
+      UI_ITEM
     };
   },
   computed: {
@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     handleClick(event) {
-      this.$emit(UI_LIST.EVENT.CLICK, event);
+      this.$emit(UI_ITEM.EVENT.CLICK, event);
     }
   }
 };

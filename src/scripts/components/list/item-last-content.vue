@@ -1,6 +1,6 @@
 <template>
   <!-- Metadata / List control -->
-  <span :class="UI_LIST.cssClasses.lastTile">
+  <span class="mdc-list-item__meta">
     <slot>
       <!-- Typically small text, icon or image -->
     </slot>
@@ -8,14 +8,7 @@
 </template>
 
 <script>
-import UI_LIST from './constants';
-
 export default {
-  name: 'UiItemLastContent',
-  data() {
-    return {
-      UI_LIST
-    };
-  }
+  name: 'UiItemLastContent'
 };
 </script>

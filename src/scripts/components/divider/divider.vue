@@ -24,8 +24,8 @@
 <script>
 import typeMixin from '../../mixins/type';
 
-// Define text divider constants
-const UI_TEXT_DIVIDER = {
+// Define divider constants
+const UI_DIVIDER = {
   TYPES: {
     horizontal: 0,
     vertical: 1
@@ -44,9 +44,7 @@ export default {
   },
   computed: {
     isVertical() {
-      return (
-        this.checkType(UI_TEXT_DIVIDER.TYPES, 'vertical') || this.type === '|'
-      );
+      return this.checkType(UI_DIVIDER.TYPES, 'vertical') || this.type === '|';
     },
     hasText() {
       return this.$slots.default;

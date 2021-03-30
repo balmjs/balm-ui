@@ -18,8 +18,8 @@ import { MDCSegmentedButton } from '../../../material-components-web/segmented-b
 import { events } from '../../../material-components-web/segmented-button/segmented-button/constants';
 import UiSegmentedButton from './segmented-button';
 
-// Define segmented button constants
-const UI_SEGMENTED_BUTTON = {
+// Define segmented buttons constants
+const UI_SEGMENTED_BUTTONS = {
   EVENT: {
     CHANGE: 'change',
     SELECTED: 'selected'
@@ -33,7 +33,7 @@ export default {
   },
   model: {
     prop: 'model',
-    event: UI_SEGMENTED_BUTTON.EVENT.CHANGE
+    event: UI_SEGMENTED_BUTTONS.EVENT.CHANGE
   },
   props: {
     // States
@@ -100,8 +100,8 @@ export default {
           this.selectedValue.sort((a, b) => a - b);
         }
 
-        this.$emit(UI_SEGMENTED_BUTTON.EVENT.CHANGE, this.selectedValue);
-        this.$emit(UI_SEGMENTED_BUTTON.EVENT.SELECTED, currentIndex);
+        this.$emit(UI_SEGMENTED_BUTTONS.EVENT.CHANGE, this.selectedValue);
+        this.$emit(UI_SEGMENTED_BUTTONS.EVENT.SELECTED, currentIndex);
       });
 
       const selectedSegments = this.$segmentedButton.segments.filter(
@@ -115,8 +115,8 @@ export default {
       if (this.singleSelect) {
         this.selectedValue = index;
 
-        this.$emit(UI_SEGMENTED_BUTTON.EVENT.CHANGE, this.selectedValue);
-        this.$emit(UI_SEGMENTED_BUTTON.EVENT.SELECTED, index);
+        this.$emit(UI_SEGMENTED_BUTTONS.EVENT.CHANGE, this.selectedValue);
+        this.$emit(UI_SEGMENTED_BUTTONS.EVENT.SELECTED, index);
       }
     }
   }

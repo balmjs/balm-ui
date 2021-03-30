@@ -62,7 +62,6 @@ const UI_SLIDER = {
     discrete: 1
   },
   EVENT: {
-    // INPUT: 'input',
     CHANGE: 'change'
   }
 };

@@ -6,7 +6,20 @@
 
 <script>
 import typeMixin from '../../mixins/type';
-import UI_IMAGE_LIST from './constants';
+
+// Define image list constants
+const UI_IMAGE_LIST = {
+  TYPES: {
+    standard: 0,
+    masonry: 1
+  },
+  cssClasses: {
+    image: 'mdc-image-list__image'
+  },
+  EVENT: {
+    CLICK: 'click'
+  }
+};
 
 export default {
   name: 'UiImageList',

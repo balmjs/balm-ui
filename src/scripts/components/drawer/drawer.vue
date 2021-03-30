@@ -8,7 +8,23 @@
 <script>
 import { MDCDrawer } from '../../../material-components-web/drawer';
 import typeMixin from '../../mixins/type';
-import UI_DRAWER from './constants';
+
+// Define drawer constants
+const UI_DRAWER = {
+  TYPES: {
+    permanent: 0,
+    dismissible: 1,
+    modal: 2
+  },
+  cssClasses: {
+    root: 'mdc-drawer-root'
+  },
+  EVENT: {
+    NAV: 'nav',
+    OPENED: 'opened',
+    CLOSED: 'closed'
+  }
+};
 
 export default {
   name: 'UiDrawer',

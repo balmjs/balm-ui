@@ -12,7 +12,19 @@
 import { MDCChipSet } from '../../../material-components-web/chips';
 import UiChip from './chip';
 import typeMixin from '../../mixins/type';
-import UI_CHIPS from './constants';
+
+// Define chips constants
+const UI_CHIPS = {
+  TYPES: {
+    action: 0,
+    input: 1,
+    choice: 2,
+    filter: 3
+  },
+  EVENT: {
+    CHANGE: 'change'
+  }
+};
 
 export default {
   name: 'UiChips',

@@ -3,23 +3,23 @@
   <li class="mdc-image-list__item" @click="handleClick">
     <!-- Image container -->
     <template v-if="$parent.isMasonry">
-      <slot name="image" :imageClass="UI_IMAGE_LIST.cssClasses.image">
+      <slot name="image" :imageClass="UI_IMAGE_ITEM.cssClasses.image">
         <div
           v-if="bgImage"
-          :class="UI_IMAGE_LIST.cssClasses.image"
+          :class="UI_IMAGE_ITEM.cssClasses.image"
           :style="style"
         ></div>
-        <img v-else :class="UI_IMAGE_LIST.cssClasses.image" :src="image" />
+        <img v-else :class="UI_IMAGE_ITEM.cssClasses.image" :src="image" />
       </slot>
     </template>
     <div v-else class="mdc-image-list__image-aspect-container">
-      <slot name="image" :imageClass="UI_IMAGE_LIST.cssClasses.image">
+      <slot name="image" :imageClass="UI_IMAGE_ITEM.cssClasses.image">
         <div
           v-if="bgImage"
-          :class="UI_IMAGE_LIST.cssClasses.image"
+          :class="UI_IMAGE_ITEM.cssClasses.image"
           :style="style"
         ></div>
-        <img v-else :class="UI_IMAGE_LIST.cssClasses.image" :src="image" />
+        <img v-else :class="UI_IMAGE_ITEM.cssClasses.image" :src="image" />
       </slot>
     </div>
     <slot></slot>
@@ -27,7 +27,15 @@
 </template>
 
 <script>
-import UI_IMAGE_LIST from './constants';
+// Define image item constants
+const UI_IMAGE_ITEM = {
+  cssClasses: {
+    image: 'mdc-image-list__image'
+  },
+  EVENT: {
+    CLICK: 'click'
+  }
+};
 
 export default {
   name: 'UiImageItem',
@@ -44,7 +52,7 @@ export default {
   },
   data() {
     return {
-      UI_IMAGE_LIST
+      UI_IMAGE_ITEM
     };
   },
   computed: {
@@ -64,7 +72,7 @@ export default {
   },
   methods: {
     handleClick(event) {
-      this.$emit(UI_IMAGE_LIST.EVENT.CLICK, event);
+      this.$emit(UI_IMAGE_ITEM.EVENT.CLICK, event);
     }
   }
 };

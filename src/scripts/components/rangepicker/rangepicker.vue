@@ -28,7 +28,6 @@
 import flatpickr from 'flatpickr';
 import rangePlugin from 'flatpickr/dist/plugins/rangePlugin';
 import UiTextfield from '../textfield/textfield';
-import getType from '../../utils/typeof';
 
 // Define rangepicker constants
 const UI_RANGEPICKER = {

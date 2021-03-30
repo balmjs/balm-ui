@@ -1,7 +1,7 @@
 import { MDCList } from '../../material-components-web/list';
 import typeMixin from './type';
 import rippleMixin from './ripple';
-import UI_LIST from '../components/list/constants';
+import { UI_LIST, UI_ITEM } from '../components/list/constants';
 
 export default {
   mixins: [typeMixin, rippleMixin],
@@ -40,7 +40,6 @@ export default {
   },
   data() {
     return {
-      UI_LIST,
       $list: null,
       role: null
     };
@@ -114,7 +113,7 @@ export default {
         const currentItem =
           this.$list.listElements.find(
             (item) =>
-              item.classList.contains(UI_LIST.cssClasses.active) ||
+              item.classList.contains(UI_ITEM.cssClasses.active) ||
               item.classList.contains('router-link-active')
           ) || this.$list.listElements[0];
 

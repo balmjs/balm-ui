@@ -8,7 +8,8 @@ const multiBootstrap = (Components) => {
       multiConfigure(Components, options);
 
       // Install the components
-      for (const Component of Components) {
+      for (const key in Components) {
+        const Component = Components[key];
         Vue.component(Component.name, Component);
       }
     }

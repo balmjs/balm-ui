@@ -23,7 +23,7 @@ const vDebounce = {
       });
     } else {
       throw new Error(
-        `[vDebounce]: The 'value' must be an object ({ callback: Function, delay?: number })`
+        `[v-debounce]: The 'value' must be an object ({ callback: Function, delay?: number })`
       );
     }
   }

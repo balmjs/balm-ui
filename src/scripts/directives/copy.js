@@ -39,7 +39,7 @@ const vCopy = {
       el.addEventListener('click', el.handler);
     } else {
       throw new Error(
-        `[vCopy]: The 'value' must be an object ({ success: Function, error?: Function })`
+        `[v-copy]: The 'value' must be an object ({ success: Function, error?: Function })`
       );
     }
   },

@@ -45,7 +45,7 @@ const vLongpress = {
       el.addEventListener('touchcancel', cancel);
     } else {
       throw new Error(
-        `[vLongpress]: The 'value' must be an object ({ callback: Function, delay?: number })`
+        `[v-longpress]: The 'value' must be an object ({ callback: Function, delay?: number })`
       );
     }
   },

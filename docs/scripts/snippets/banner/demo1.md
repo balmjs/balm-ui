@@ -27,7 +27,7 @@
       };
     },
     mounted() {
-      this.$bus.on('global-message', (message) => {
+      this.$bus.on('global-message', () => {
         this.showGlobalMessage = true;
       });
     }

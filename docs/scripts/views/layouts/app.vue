@@ -37,10 +37,21 @@
       <ui-banner
         v-model="showGlobalMessage"
         class="global-message-banner"
-        primary-button-text="Cool"
-        secondary-button-text="Good"
+        fixed
+        primary-button-text="GOT IT"
       >
-        Do you like BalmUI
+        <template #icon>
+          <ui-icon>celebration</ui-icon>
+        </template>
+        You’re browsing the documentation for vue@2.x.
+        <a
+          href="https://next-material.balmjs.com/"
+          target="_blank"
+          rel="noopener"
+        >
+          Click here
+        </a>
+        for vue@3.x documentation.
       </ui-banner>
       <!-- Content -->
       <div class="balmui-body">
@@ -58,7 +69,15 @@
           >
             <ui-drawer-header>
               <ui-drawer-title>
-                <router-link :to="{ name: 'home' }">BalmUI</router-link>
+                <router-link
+                  v-slot="{ navigate, href }"
+                  :to="{ name: 'home' }"
+                  custom
+                >
+                  <a :href="href" @click="handleMenu($event, navigate)">
+                    BalmUI
+                  </a>
+                </router-link>
               </ui-drawer-title>
               <ui-drawer-subtitle>
                 <i class="balmui-version">
@@ -118,8 +137,21 @@
                     :key="`divider${index}`"
                   ></ui-list-divider>
                   <ui-list-group-subheader
+                    v-else-if="item === 'footer'"
+                    :key="`footer${index}`"
+                  >
+                    Powered by
+                    <a
+                      href="https://balm.js.org/"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      BalmJS
+                    </a>
+                  </ui-list-group-subheader>
+                  <ui-list-group-subheader
                     v-else
-                    :key="`head${index}`"
+                    :key="`header${index}`"
                     :class="$theme.getTextClass('primary', $store.theme)"
                   >
                     {{ $t(`menu.${item.name}`) }}
@@ -218,8 +250,8 @@ export default {
       }, 1);
     });
 
-    this.$bus.on('global-message', (message) => {
-      this.showGlobalMessage = true;
+    this.$bus.on('global-message', (show) => {
+      this.showGlobalMessage = show;
     });
 
     this.$i18n.locale = this.$store.lang;

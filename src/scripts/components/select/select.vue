@@ -90,6 +90,7 @@
 
 <script>
 import { MDCSelect } from '../../../material-components-web/select';
+import { strings } from '../../../material-components-web/select/constants';
 import MdcFloatingLabel from '../floating-label/mdc-floating-label';
 import MdcLineRipple from '../floating-label/mdc-line-ripple';
 import MdcNotchedOutline from '../floating-label/mdc-notched-outline';
@@ -256,7 +257,7 @@ export default {
   mounted() {
     this.$select = new MDCSelect(this.$el);
 
-    this.$select.listen(`MDCSelect:${UI_SELECT.EVENT.CHANGE}`, ({ detail }) => {
+    this.$select.listen(strings.CHANGE_EVENT, ({ detail }) => {
       // NOTE: for dynamic options
       this.$nextTick(() => {
         let hasOptions = this.defaultLabel

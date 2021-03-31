@@ -41,6 +41,7 @@
 
 <script>
 import { MDCTopAppBar } from '../../../material-components-web/top-app-bar';
+import { strings } from '../../../material-components-web/top-app-bar/constants';
 import MdcIconButton from '../icon-button/mdc-icon-button';
 import typeMixin from '../../mixins/type';
 
@@ -246,16 +247,13 @@ export default {
         this.createFixedAdjustElement();
         this.$topAppBar = new MDCTopAppBar(this.$el);
 
-        this.$topAppBar.listen(
-          `MDCTopAppBar:${UI_TOP_APP_BAR.EVENT.NAV}`,
-          () => {
-            this.$emit(
-              this.isNonRegular
-                ? UI_TOP_APP_BAR.EVENT.CLOSE
-                : UI_TOP_APP_BAR.EVENT.NAV
-            );
-          }
-        );
+        this.$topAppBar.listen(strings.NAVIGATION_EVENT, () => {
+          this.$emit(
+            this.isNonRegular
+              ? UI_TOP_APP_BAR.EVENT.CLOSE
+              : UI_TOP_APP_BAR.EVENT.NAV
+          );
+        });
       });
     }
   }

@@ -25,7 +25,10 @@
 
 <script>
 import { MDCDialog } from '../../../material-components-web/dialog';
-import { cssClasses } from '../../../material-components-web/dialog/constants';
+import {
+  strings,
+  cssClasses
+} from '../../../material-components-web/dialog/constants';
 
 // Define dialog constants
 const UI_DIALOG = {
@@ -119,10 +122,10 @@ export default {
       );
 
       // Accessibility: Using `aria-hidden` as a fallback for `aria-modal`
-      this.$dialog.listen('MDCDialog:opened', () => {
+      this.$dialog.listen(strings.OPENED_EVENT, () => {
         this.dialogBody.setAttribute('aria-hidden', 'true');
       });
-      this.$dialog.listen('MDCDialog:closing', ({ detail }) => {
+      this.$dialog.listen(strings.CLOSING_EVENT, ({ detail }) => {
         this.dialogBody.removeAttribute('aria-hidden');
 
         // fix: the escape key

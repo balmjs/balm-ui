@@ -1,4 +1,5 @@
 import { MDCList } from '../../material-components-web/list';
+import { strings } from '../../material-components-web/list/constants';
 import typeMixin from './type';
 import rippleMixin from './ripple';
 import { UI_LIST, UI_ITEM } from '../components/list/constants';
@@ -68,7 +69,7 @@ export default {
   mounted() {
     this.$list = new MDCList(this.$el);
 
-    this.$list.listen(`MDCList:${UI_LIST.EVENT.ACTION}`, ({ detail }) => {
+    this.$list.listen(strings.ACTION_EVENT, ({ detail }) => {
       this.$emit(UI_LIST.EVENT.ACTION, detail.index);
     });
 

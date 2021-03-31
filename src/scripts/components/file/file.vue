@@ -18,7 +18,7 @@
       <mdc-button
         :outlined="outlined"
         :unelevated="!outlined"
-        icon="publish"
+        icon="file_upload"
         :disabled="disabled"
       >
         {{ text }}

@@ -11,6 +11,7 @@
 
 <script>
 import { MDCTabBar } from '../../../material-components-web/tab-bar';
+import { strings } from '../../../material-components-web/tab-bar/constants';
 import UiTabScroller from './tab-scroller';
 import tabBarMixin from '../../mixins/tab-bar';
 import tabScrollerMixin from '../../mixins/tab-scroller';
@@ -55,7 +56,7 @@ export default {
       if (this.tabList.length) {
         this._activateTab();
 
-        this.$tabBar.listen('MDCTabBar:activated', ({ detail }) => {
+        this.$tabBar.listen(strings.TAB_ACTIVATED_EVENT, ({ detail }) => {
           this.handleChange(detail.index);
         });
       } else {

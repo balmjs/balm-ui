@@ -7,6 +7,7 @@
 
 <script>
 import { MDCDrawer } from '../../../material-components-web/drawer';
+import { strings } from '../../../material-components-web/drawer/constants';
 import typeMixin from '../../mixins/type';
 
 // Define drawer constants
@@ -93,10 +94,10 @@ export default {
     if (this.isDismissible || this.isModal) {
       this.$drawer = new MDCDrawer(this.$el);
 
-      this.$drawer.listen(`MDCDrawer:${UI_DRAWER.EVENT.OPENED}`, () => {
+      this.$drawer.listen(strings.OPEN_EVENT, () => {
         this.$emit(UI_DRAWER.EVENT.NAV, true);
       });
-      this.$drawer.listen(`MDCDrawer:${UI_DRAWER.EVENT.CLOSED}`, () => {
+      this.$drawer.listen(strings.CLOSE_EVENT, () => {
         this.$emit(UI_DRAWER.EVENT.NAV, false);
       });
 

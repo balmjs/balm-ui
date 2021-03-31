@@ -2,6 +2,26 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.27.0 / 2021-03-31
+
+### Code Refactoring
+
+- refactor BalmUI source code structure
+- `<ui-banner>`: add prop `centered`, `fixed`, `withImage`, `mobileStacked`
+
+### Features
+
+- docs: update material icons demo
+
+### Bug Fixes
+
+- `<ui-textfield>`: fix sync counter bug
+- fix `disabled` bug for all data input components
+
+### BREAKING CHANGES
+
+- `<ui-banner>`: remove prop `message`
+
 ## v8.26.0 / 2021-03-24
 
 ### Features

@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import UiFab from '@/components/buttons/fab.vue';
+import UiFab from '@/components/fab/fab.vue';
 
 describe('<ui-fab>', () => {
   it('renders default fab', () => {

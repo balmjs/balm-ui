@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import UiButton from '@/components/buttons/button.vue';
+import UiButton from '@/components/button/button.vue';
 
 describe('<ui-button>', () => {
   it('renders default button', () => {

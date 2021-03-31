@@ -60,7 +60,7 @@
     "confirm-dialog": "确认框",
     "snackbar": "底部消息栏",
     "toast": "短消息提示",
-    "banner": "顶部消息栏",
+    "banner": "横幅",
     "progress": "进度条",
     "spinner": "加载中",
     "skeleton": "骨架屏",

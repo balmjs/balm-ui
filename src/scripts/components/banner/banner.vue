@@ -70,7 +70,11 @@ export default {
       type: Boolean,
       default: false
     },
-    stacked: {
+    withImage: {
+      type: Boolean,
+      default: false
+    },
+    mobileStacked: {
       type: Boolean,
       default: false
     },
@@ -93,7 +97,7 @@ export default {
       return {
         'mdc-banner': true,
         'mdc-banner--centered': this.centered,
-        'mdc-banner--mobile-stacked': this.stacked
+        'mdc-banner--mobile-stacked': this.mobileStacked
       };
     }
   },

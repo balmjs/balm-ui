@@ -2,8 +2,8 @@
   <div class="mdc-banner__content" role="status" aria-live="assertive">
     <div class="mdc-banner__graphic-text-wrapper">
       <!-- Supporting illustration (optional) -->
-      <div class="mdc-banner__graphic">
-        <slot name="icon"></slot>
+      <div v-if="$parent.withImage" class="mdc-banner__graphic">
+        <slot name="image"></slot>
       </div>
       <!-- Text -->
       <div class="mdc-banner__text">

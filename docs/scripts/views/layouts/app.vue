@@ -37,10 +37,13 @@
       <ui-banner
         v-model="showGlobalMessage"
         class="global-message-banner"
+        centered
         fixed
+        with-image
+        mobile-stacked
         primary-button-text="GOT IT"
       >
-        <template #icon>
+        <template #image>
           <ui-icon>celebration</ui-icon>
         </template>
         You’re browsing the documentation for vue@2.x.

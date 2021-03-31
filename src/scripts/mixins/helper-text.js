@@ -36,15 +36,13 @@ export default {
 
       if (prevEl && prevEl.classList.contains(className)) {
         const prevElClasses = prevEl.classList;
+        const invalidClassName = `${className}--invalid`;
+        const invalid =
+          this.hasValidMsg && !prevElClasses.contains(invalidClassName);
 
-        if (
-          this.hasValidMsg &&
-          !prevElClasses.contains(`${className}--invalid`)
-        ) {
-          prevElClasses.add(`${className}--invalid`);
-        } else {
-          prevElClasses.remove(`${className}--invalid`);
-        }
+        invalid
+          ? prevElClasses.add(invalidClassName)
+          : prevElClasses.remove(invalidClassName);
       }
     }
   }

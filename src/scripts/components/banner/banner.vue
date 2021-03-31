@@ -1,40 +1,45 @@
 <template>
   <!-- Container -->
-  <div class="mdc-banner" role="banner">
-    <div class="mdc-banner__content" role="status" aria-live="assertive">
-      <!-- Supporting illustration (optional) -->
-      <slot name="image" :imageClass="UI_BANNER.cssClasses.image"></slot>
-      <!-- Text -->
-      <div class="mdc-banner__text">
-        <slot>{{ message }}</slot>
-      </div>
-      <!-- Buttons -->
-      <div class="mdc-banner__actions">
-        <slot name="actions">
-          <mdc-button
-            v-if="secondaryButtonText"
-            class="mdc-banner__secondary-action"
-          >
-            {{ secondaryButtonText }}
-          </mdc-button>
-          <mdc-button class="mdc-banner__primary-action">
-            {{ primaryButtonText }}
-          </mdc-button>
-        </slot>
-      </div>
+  <div :class="className" role="banner">
+    <div v-if="fixed" class="mdc-banner__fixed">
+      <mdc-banner-content
+        :primary-button-text="primaryButtonText"
+        :secondary-button-text="secondaryButtonText"
+      >
+        <slot v-for="(_, name) in $slots" :slot="name" :name="name"></slot>
+        <template
+          v-for="(_, name) in $scopedSlots"
+          :slot="name"
+          slot-scope="slotData"
+        >
+          <slot :name="name" v-bind="slotData"></slot>
+        </template>
+      </mdc-banner-content>
     </div>
+    <mdc-banner-content
+      v-else
+      :primary-button-text="primaryButtonText"
+      :secondary-button-text="secondaryButtonText"
+    >
+      <slot v-for="(_, name) in $slots" :slot="name" :name="name"></slot>
+      <template
+        v-for="(_, name) in $scopedSlots"
+        :slot="name"
+        slot-scope="slotData"
+      >
+        <slot :name="name" v-bind="slotData"></slot>
+      </template>
+    </mdc-banner-content>
   </div>
 </template>
 
 <script>
 import { MDCBanner } from '../../../material-components-web/banner';
-import MdcButton from '../button/mdc-button';
+import { events } from '../../../material-components-web/banner/constants';
+import MdcBannerContent from './mdc-banner-content';
 
 // Define banner constants
 const UI_BANNER = {
-  cssClasses: {
-    image: 'mdc-banner__image'
-  },
   EVENT: {
     CHANGE: 'change',
     CLOSED: 'closed'
@@ -44,7 +49,7 @@ const UI_BANNER = {
 export default {
   name: 'UiBanner',
   components: {
-    MdcButton
+    MdcBannerContent
   },
   model: {
     prop: 'open',
@@ -57,9 +62,17 @@ export default {
       default: false
     },
     // UI attributes
-    message: {
-      type: String,
-      default: ''
+    centered: {
+      type: Boolean,
+      default: false
+    },
+    fixed: {
+      type: Boolean,
+      default: false
+    },
+    stacked: {
+      type: Boolean,
+      default: false
     },
     primaryButtonText: {
       type: String,
@@ -72,21 +85,29 @@ export default {
   },
   data() {
     return {
-      UI_BANNER,
       $banner: null
     };
   },
+  computed: {
+    className() {
+      return {
+        'mdc-banner': true,
+        'mdc-banner--centered': this.centered,
+        'mdc-banner--mobile-stacked': this.stacked
+      };
+    }
+  },
   watch: {
     open(val) {
-      if (val) {
-        this.$banner.open();
+      if (this.$banner) {
+        val ? this.$banner.open() : this.$banner.close();
       }
     }
   },
   mounted() {
     this.$banner = new MDCBanner(this.$el);
 
-    this.$banner.listen('MDCBanner:closed', ({ detail }) => {
+    this.$banner.listen(events.CLOSED, ({ detail }) => {
       this.$emit(UI_BANNER.EVENT.CHANGE, false);
       this.$emit(UI_BANNER.EVENT.CLOSED, detail.reason);
     });

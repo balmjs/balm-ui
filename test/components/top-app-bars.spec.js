@@ -1,5 +1,6 @@
 import { shallowMount, mount } from '@vue/test-utils';
 import UiTopAppBar from '@/components/app-bars/top-app-bar.vue';
+import {MDCTopAppBar} from '../../src/material-components-web/top-app-bar';
 
 const CONTENT_ID = "content-main";
 
@@ -10,6 +11,10 @@ beforeAll(() => {
 });
 
 describe('<ui-top-app-bar>', () => {
+    let methods = {
+        init: jest.fn()
+    };
+
     it('renders a default top app bar', () => {
         const icon = 'menu'
         const wrapper = mount(UiTopAppBar, {
@@ -133,5 +138,33 @@ describe('<ui-top-app-bar>', () => {
         expect(wrapper.element).toMatchSnapshot();
         expect(wrapper.classes()).toContain('mdc-top-app-bar--short');
         expect(wrapper.classes()).toContain('mdc-top-app-bar--short-collapsed');
+     });
+
+     // setMethod is deprecated but this is the only way to test the watch method?
+     it('calls init method when the type changes', async () => {
+        const type_new = 2;
+        
+        const wrapper = mount(UiTopAppBar, {
+            propsData: {
+                contentSelector: "#" + CONTENT_ID,
+            },
+            methods
+        });
+
+        await wrapper.setProps({type: type_new});
+
+        expect(methods.init).toHaveBeenCalled();
+     });
+
+     test('init method destories exisited MDCTopAppBar when init', async () => {
+        const type_new = 2;
+        
+        const wrapper = mount(UiTopAppBar, {
+            propsData: {
+                contentSelector: "#" + CONTENT_ID,
+            },
+        });
+
+        await wrapper.setProps({type: type_new});
      });
 });

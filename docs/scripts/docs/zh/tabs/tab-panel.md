@@ -9,7 +9,7 @@
 
 | Name                 | Type   | Default | Description      |
 | -------------------- | ------ | ------- | ---------------- |
-| `active` (`v-model`) | number | `0`     | 激动的标签页索引 |
+| `active` (`v-model`) | number | `0`     | 激活的标签页索引 |
 
 ### Slots
 

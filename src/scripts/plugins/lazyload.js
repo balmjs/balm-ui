@@ -66,7 +66,7 @@ const LazyLoad = {
   }
 };
 
-let defaultSrc;
+let defaultSrc = '';
 
 const vLazyLoad = {
   id: 'lazyload',

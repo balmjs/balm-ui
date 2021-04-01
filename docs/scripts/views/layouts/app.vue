@@ -322,6 +322,8 @@ export default {
       if (this.hasNewVersion) {
         this.$store.serviceWorker.postMessage({ action: 'skipWaiting' });
         this.hasNewVersion = false;
+      } else {
+        this.showBanner = false;
       }
     }
   }

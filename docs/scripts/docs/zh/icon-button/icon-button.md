@@ -36,10 +36,10 @@
 
 ### Events
 
-| Name                | Type                        | Description        |
-| ------------------- | --------------------------- | ------------------ |
-| `click`             | `function(event: object)`   | 点击图标按钮时触发 |
-| `update:modelValue` | `function(toggle: boolean)` | 切换图标状态时触发 |
+| Name                | Type                       | Description        |
+| ------------------- | -------------------------- | ------------------ |
+| `click`             | `function(event: object)`  | 点击图标按钮时触发 |
+| `update:modelValue` | `function(value: boolean)` | 切换图标状态时触发 |
 
 > 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@update:modelValue` 监听图标按钮状态并更新 `modelValue` 属性
 

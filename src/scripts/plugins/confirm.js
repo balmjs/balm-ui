@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import MdcDialog from '../components/modal/mdc-dialog.vue';
+import MdcDialog from '../components/dialog/mdc-dialog.vue';
 import { getOptions, createModal, removeModel } from '../utils/modal';
 
 // Define confirm dialog constants
@@ -41,7 +41,7 @@ function createConfirmDialog(options, callback) {
   confirmEl = createModal(UI_CONFIRM_DIALOG.id);
 
   confirmApp = createApp({
-    name: 'BalmUIConfirm',
+    name: 'ConfirmDialog',
     components: {
       MdcDialog
     },
@@ -96,11 +96,11 @@ function install(app, options = {}) {
   app.provide('confirm', confirmDialog);
 }
 
-const BalmUI_ConfirmPlugin = {
+const $confirm = {
   install
 };
 
 const useConfirm = () => confirmDialog;
 
-export default BalmUI_ConfirmPlugin;
+export default $confirm;
 export { install, useConfirm };

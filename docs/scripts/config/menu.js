@@ -147,7 +147,7 @@ const MATERIAL_COMPONENTS = [
         name: 'chips'
       },
       {
-        icon: 'publish',
+        icon: 'file_upload',
         name: 'file'
       },
       {
@@ -251,7 +251,7 @@ const MATERIAL_COMPONENTS = [
         name: 'progress'
       },
       {
-        icon: 'trip_origin',
+        icon: 'pending',
         name: 'spinner'
       },
       {
@@ -299,13 +299,15 @@ const MATERIAL_COMPONENTS = [
     icon: 'widgets',
     name: 'utils',
     link: true
-  }
+  },
+  '-',
+  'footer'
 ];
 
 let menu = [];
 for (let component of MATERIAL_COMPONENTS) {
-  if (component === '-') {
-    menu.push('-');
+  if (component === '-' || component === 'footer') {
+    menu.push(component);
   } else {
     menu.push({
       icon: component.icon,

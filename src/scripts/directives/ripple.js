@@ -37,7 +37,7 @@ const initRipple = (el, { value, arg, modifiers }) => {
   }
 };
 
-const BalmUI_RippleDirective = {
+const vRipple = {
   name: 'ripple',
   beforeMount(el, binding) {
     updateRipple('add', el, binding);
@@ -50,4 +50,4 @@ const BalmUI_RippleDirective = {
   }
 };
 
-export default BalmUI_RippleDirective;
+export default vRipple;

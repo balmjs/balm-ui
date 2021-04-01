@@ -33,7 +33,7 @@ function createToast(options) {
   createModal(UI_TOAST.id);
 
   toastApp = createApp({
-    name: 'BalmUIToast',
+    name: 'Toast',
     data() {
       return {
         open: false,
@@ -127,11 +127,11 @@ function install(app, options = {}) {
   app.provide('toast', toast);
 }
 
-const BalmUI_ToastPlugin = {
+const $toast = {
   install
 };
 
 const useToast = () => toast;
 
-export default BalmUI_ToastPlugin;
+export default $toast;
 export { install, useToast };

@@ -73,12 +73,21 @@ function buildIndividual(mix) {
     individual[buildName].forEach((item) => {
       const library = getLibrary(buildName, item);
 
-      let jsInput =
-        buildName === 'utils'
-          ? [`${individual.input[buildName]}/${item}.js`]
-          : {
-              index: `${individual.input[buildName]}/${item}.js`
-            };
+      let jsInput;
+      switch (buildName) {
+        case 'utils':
+          jsInput = [`${individual.input[buildName]}/${item}.js`];
+          break;
+        case 'components':
+          jsInput = {
+            index: `${individual.input[buildName]}/${item}/index.js`
+          };
+          break;
+        default:
+          jsInput = {
+            index: `${individual.input[buildName]}/${item}.js`
+          };
+      }
       let jsOutput =
         buildName === 'utils'
           ? `${uiOutput}/${buildName}`

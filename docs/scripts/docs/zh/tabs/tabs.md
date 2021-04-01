@@ -4,11 +4,11 @@
 
 ### `<ui-tabs>` Props
 
-| Name    | Type  | Default | Description            |
-| ------- | ----- | ------- | ---------------------- |
-| `items` | array | `[]`    | 设置选项卡标签对象列表 |
+| Name    | Type  | Default | Description        |
+| ------- | ----- | ------- | ------------------ |
+| `items` | array | `[]`    | 设置标签页对象列表 |
 
-- 选项卡标签对象的 keys:
+- 标签页对象的 keys:
 
   ```js
   {
@@ -19,9 +19,9 @@
 
 ### `<ui-tabs>` Slots
 
-| Name      | Slots | Description                           |
-| --------- | ----- | ------------------------------------- |
-| `default` |       | default 插槽包含选项卡标签组件及 HTML |
+| Name      | Slots | Description                       |
+| --------- | ----- | --------------------------------- |
+| `default` |       | default 插槽包含标签页组件及 HTML |
 
 ```html
 <!-- Full syntax -->

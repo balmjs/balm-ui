@@ -9,7 +9,7 @@
 
 | Name                     | Type           | Default | Description                                           |
 | ------------------------ | -------------- | ------- | ----------------------------------------------------- |
-| `modelValue` (`v-model`) | string, number | `''`    | 单选框值                                              |
+| `modelValue` (`v-model`) | string, number | `''`    | 单选按钮值                                            |
 | `inputId`                | string         | `null`  | 原生 `<input>` 的 _id_ 属性和 `<label>` 的 _for_ 属性 |
 | `name`                   | string         | `''`    | 原生 `<input>` 的 _name_ 属性                         |
 | `value`                  | string, number | `''`    | 原生 `<input>` 的 _value_ 属性                        |
@@ -18,11 +18,11 @@
 
 ### Events
 
-| Name                | Type                              | Description        |
-| ------------------- | --------------------------------- | ------------------ |
-| `update:modelValue` | `function(value: string\|number)` | 单选框值变化时触发 |
+| Name                | Type                              | Description          |
+| ------------------- | --------------------------------- | -------------------- |
+| `update:modelValue` | `function(value: string\|number)` | 单选按钮值变化时触发 |
 
-> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@update:modelValue` 监听单选框值并更新 `modelValue` 属性
+> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@update:modelValue` 监听单选按钮值并更新 `modelValue` 属性
 
 - 自动
 

@@ -159,11 +159,11 @@ function install(app, customRules = {}) {
   globalValidationRules = Object.assign({}, defaultRules, customRules);
 }
 
-const BalmUI_ValidatorPlugin = {
+const $validator = {
   install
 };
 
 const useValidator = () => new UiValidator();
 
-export default BalmUI_ValidatorPlugin;
+export default $validator;
 export { install, useValidator };

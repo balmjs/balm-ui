@@ -1,5 +1,5 @@
 import { config, mount } from '@vue/test-utils';
-import UiFab from '@/components/buttons/fab.vue';
+import UiFab from '@/components/button/fab.vue';
 
 config.stubRenderDefaultSlot = true;
 

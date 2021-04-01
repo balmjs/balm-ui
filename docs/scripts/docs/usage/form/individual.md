@@ -1,6 +1,7 @@
 ```scss
 @use 'balm-ui/components/core';
-@use 'balm-ui/components/form-field/form-field';
+@use 'balm-ui/components/form-field/form-field'; // NOTE: It must be loaded before form styles
+@use 'balm-ui/components/form/form';
 ```
 
 ```js

@@ -49,9 +49,9 @@ const components = [
   'editor',
   'rangepicker',
   'skeleton',
+  'tree',
   // Next
-  'bottom-navigation',
-  'tree'
+  'bottom-navigation'
 ];
 const plugins = [
   'alert',

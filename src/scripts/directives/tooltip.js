@@ -60,7 +60,7 @@ const removeTooltip = (el) => {
   UI_TOOLTIP.globalAnchor.el.removeChild(tooltipEl);
 };
 
-const BalmUI_TooltipDirective = {
+const vTooltip = {
   name: 'tooltip',
   mounted(el, binding) {
     initTooltip(el, binding);
@@ -70,4 +70,4 @@ const BalmUI_TooltipDirective = {
   }
 };
 
-export default BalmUI_TooltipDirective;
+export default vTooltip;

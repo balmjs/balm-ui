@@ -17,6 +17,7 @@ const setPropsDefaultValue = ({ componentProps, propName, props }) => {
 const setPropsInMixins = ({ componentMixins, propName, props }) => {
   if (componentMixins.length) {
     let i = componentMixins.length;
+
     while (i--) {
       if (
         componentMixins[i].props &&
@@ -34,7 +35,7 @@ const setPropsInMixins = ({ componentMixins, propName, props }) => {
 };
 
 const configure = (Component, props) => {
-  Object.keys(props).forEach((propName) => {
+  for (const propName of Object.keys(props)) {
     if (Component.props) {
       if (Component.props[propName] === undefined) {
         // Overwrite props in mixins
@@ -44,7 +45,7 @@ const configure = (Component, props) => {
           props
         });
       } else {
-        // Overwrite props
+        // Overwrite props in component
         setPropsDefaultValue({
           componentProps: Component.props,
           propName,
@@ -59,7 +60,7 @@ const configure = (Component, props) => {
         props
       });
     }
-  });
+  }
 };
 
 export default configure;

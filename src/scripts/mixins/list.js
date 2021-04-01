@@ -4,7 +4,7 @@ import domMixin from './dom';
 import typeMixin from './type';
 import rippleMixin from './ripple';
 import { getCurrentElement } from '../mixins/dom';
-import UI_LIST from '../components/lists/constants';
+import { UI_LIST, UI_ITEM } from '../components/list/constants';
 
 export default {
   mixins: [domMixin, typeMixin, rippleMixin],
@@ -40,7 +40,6 @@ export default {
   emits: [UI_LIST.EVENT.ACTION],
   data() {
     return {
-      UI_LIST,
       $list: null,
       role: null
     };
@@ -115,8 +114,10 @@ export default {
           this.$list.listElements.length
         ) {
           const currentItem =
-            this.$list.listElements.find((item) =>
-              item.classList.contains('mdc-list-item--activated')
+            this.$list.listElements.find(
+              (item) =>
+                item.classList.contains(UI_ITEM.cssClasses.active) ||
+                item.classList.contains('mdc-list-item--activated')
             ) || this.$list.listElements[0];
 
           // Solution - https://github.com/material-components/material-components-web/issues/5615

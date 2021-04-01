@@ -1,7 +1,7 @@
 ```scss
 @use 'balm-ui/components/core';
-@use 'balm-ui/components/list/list';
 @use 'balm-ui/components/menu/menu';
+@use 'balm-ui/components/list/list';
 ```
 
 ```js

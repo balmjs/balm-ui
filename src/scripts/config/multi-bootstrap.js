@@ -1,14 +1,14 @@
 import multiConfigure from './multi-configure';
 
-const multiBootstrap = (components) => {
+const multiBootstrap = (Components) => {
   const UiComponents = {
     install(app, options = {}) {
       // Configure the components' props
-      multiConfigure(components, options);
+      multiConfigure(Components, options);
 
       // Install the components
-      for (let key in components) {
-        let Component = components[key];
+      for (let key in Components) {
+        const Component = Components[key];
         app.component(Component.name, Component);
       }
     }

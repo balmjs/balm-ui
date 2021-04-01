@@ -34,11 +34,11 @@ function install(app, options = {}) {
   }
 }
 
-const BalmUI_StorePlugin = {
+const $store = {
   install
 };
 
 const useStore = () => store;
 
-export default BalmUI_StorePlugin;
+export default $store;
 export { install, useStore };

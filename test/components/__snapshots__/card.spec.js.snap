@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ui-card> renders a default card 1`] = `
+<div
+  class="mdc-card mdc-theme--on-surface"
+/>
+`;
+
+exports[`<ui-card> renders a default card-action 1`] = `
+<div
+  class="mdc-card__actions"
+/>
+`;
+
+exports[`<ui-card> renders a default card-content 1`] = `
+<div
+  class="mdc-card__primary-action"
+  tabindex="0"
+/>
+`;
+
+exports[`<ui-card> renders a default card-media 1`] = `
+<div
+  class="mdc-card__media"
+/>
+`;
+
+exports[`<ui-card> renders a full bleed card-action 1`] = `
+<div
+  class="mdc-card__actions mdc-card__actions--full-bleed"
+/>
+`;
+
+exports[`<ui-card> renders a outlined card 1`] = `
+<div
+  class="mdc-card mdc-theme--on-surface mdc-card--outlined"
+/>
+`;
+
+exports[`<ui-card> renders a rectangle card-media 1`] = `
+<div
+  class="mdc-card__media mdc-card__media--16-9"
+/>
+`;
+
+exports[`<ui-card> renders a sqaure card-media 1`] = `
+<div
+  class="mdc-card__media mdc-card__media--square"
+/>
+`;

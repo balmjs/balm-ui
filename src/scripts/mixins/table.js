@@ -1,5 +1,5 @@
 import getType from '../utils/typeof';
-import UI_TABLE from '../components/data-tables/constants';
+import UI_TABLE from '../components/table/constants';
 
 export default {
   props: {

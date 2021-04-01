@@ -2,6 +2,7 @@
 @use 'balm-ui/components/core';
 @use 'balm-ui/components/dialog/dialog';
 @use 'balm-ui/plugins/confirm/confirm';
+@use 'balm-ui/components/icon/icon'; // Optional
 ```
 
 ```js

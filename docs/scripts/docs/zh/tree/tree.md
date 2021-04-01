@@ -59,14 +59,14 @@
 - 自动
 
   ```html
-  <ui-tree v-model="selectedValue"></ui-tree>
+  <ui-tree v-model="selectedNodes"></ui-tree>
   ```
 
 - 手动
 
   ```html
   <ui-tree
-    :model-value="selectedValue"
-    @update:modelValue="balmUI.onChange('selectedValue', $event)"
+    :model-value="selectedNodes"
+    @update:modelValue="balmUI.onChange('selectedNodes', $event)"
   ></ui-tree>
   ```

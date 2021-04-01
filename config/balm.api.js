@@ -52,6 +52,10 @@ module.exports = (mix) => {
         fixGridCss(mix);
       } else {
         mix.copy('./src/material-icons/*', './docs/fonts'); // For new fonts updated
+        // Test PWA for local
+        // const workboxSw = 'node_modules/workbox-sw/build/workbox-sw.js';
+        // mix.copy(workboxSw, '.tmp');
+        // mix.injectManifest();
       }
     }
   }

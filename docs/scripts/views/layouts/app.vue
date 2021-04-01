@@ -1,9 +1,9 @@
 <template>
   <div class="balmui-container">
     <ui-progress
-      v-if="pageLoading"
+      v-if="pageLoad.loading"
       class="top-loading"
-      :progress="loadingProgress"
+      :progress="pageLoad.progress"
     ></ui-progress>
     <template v-if="noLayout">
       <router-view></router-view>
@@ -35,26 +35,33 @@
       </ui-top-app-bar>
       <!-- Global Message -->
       <ui-banner
-        v-model="showGlobalMessage"
+        v-model="showBanner"
         class="global-message-banner"
         centered
         fixed
         with-image
         mobile-stacked
-        primary-button-text="GOT IT"
       >
         <template #image>
           <ui-icon>celebration</ui-icon>
         </template>
-        You’re browsing the documentation for vue@2.x.
-        <a
-          href="https://next-material.balmjs.com/"
-          target="_blank"
-          rel="noopener"
-        >
-          Click here
-        </a>
-        for vue@3.x documentation.
+        <template v-if="hasNewVersion">New content is available.</template>
+        <template v-else>
+          You’re browsing the documentation for vue@2.x.
+          <a
+            href="https://next-material.balmjs.com/"
+            target="_blank"
+            rel="noopener"
+          >
+            Click here
+          </a>
+          for vue@3.x documentation.
+        </template>
+        <template #actions>
+          <ui-button @click="refresh">{{
+            hasNewVersion ? 'Refresh' : 'GOT IT'
+          }}</ui-button>
+        </template>
       </ui-banner>
       <!-- Content -->
       <div class="balmui-body">
@@ -184,13 +191,13 @@
           ]"
         >
           <ui-spinner
-            v-if="pageLoading"
+            v-if="pageLoad.loading"
             class="page-loading"
             active
             four-colored
           ></ui-spinner>
           <transition name="loading">
-            <router-view v-if="pageLoading"></router-view>
+            <router-view v-if="pageLoad.loading"></router-view>
             <router-view v-else></router-view>
           </transition>
         </div>
@@ -221,10 +228,13 @@ export default {
       isWideScreen: true,
       drawerType: 'permanent',
       openDrawer: false,
-      pageLoading: false,
-      loadingProgress: 0,
-      loadingTimer: null,
-      showGlobalMessage: false
+      pageLoad: {
+        loading: false,
+        progress: 0,
+        timer: null
+      },
+      showBanner: false,
+      hasNewVersion: false
     };
   },
   computed: {
@@ -236,30 +246,35 @@ export default {
   },
   mounted() {
     this.$bus.on('page-loading', () => {
-      this.pageLoading = true;
+      this.pageLoad.loading = true;
 
-      this.loadingProgress = 0;
-      clearInterval(this.loadingTimer);
+      this.pageLoad.progress = 0;
+      clearInterval(this.pageLoad.timer);
 
-      this.loadingTimer = setInterval(this.loading, lazyLoadedTime / 5);
+      this.pageLoad.timer = setInterval(this.loading, lazyLoadedTime / 5);
     });
 
     this.$bus.on('page-loaded', () => {
       this.loaded();
 
       setTimeout(() => {
-        this.pageLoading = false;
+        this.pageLoad.loading = false;
         this.bodyEl.scrollTop = 0;
       }, 1);
     });
 
     this.$bus.on('global-message', (show) => {
-      this.showGlobalMessage = show;
+      this.showBanner = show;
     });
 
     this.$i18n.locale = this.$store.lang;
     this.$bus.on('switch-lang', (lang) => {
       this.$i18n.locale = lang;
+    });
+
+    this.$bus.on('refresh', () => {
+      this.hasNewVersion = true;
+      this.showBanner = true;
     });
 
     this.init();
@@ -292,15 +307,21 @@ export default {
       navigate(event);
     },
     loaded() {
-      this.loadingProgress = 1;
-      clearInterval(this.loadingTimer);
+      this.pageLoad.progress = 1;
+      clearInterval(this.pageLoad.timer);
     },
     loading() {
-      if (this.loadingProgress < 1) {
-        this.loadingProgress += 0.2;
-        this.loadingProgress = +this.loadingProgress.toFixed(2);
+      if (this.pageLoad.progress < 1) {
+        this.pageLoad.progress += 0.2;
+        this.pageLoad.progress = +this.pageLoad.progress.toFixed(2);
       } else {
         this.loaded();
+      }
+    },
+    refresh() {
+      if (this.hasNewVersion) {
+        this.$store.serviceWorker.postMessage({ action: 'skipWaiting' });
+        this.hasNewVersion = false;
       }
     }
   }

@@ -1,6 +1,7 @@
 ```scss
 @use 'balm-ui/components/core';
 @use 'balm-ui/components/snackbar/snackbar';
+@use 'balm-ui/plugins/toast/toast'; // New in 8.28.0
 ```
 
 ```js

@@ -4,23 +4,23 @@
 
 ### `<ui-tab-bar>` & `<ui-tabs>` 共用 Props
 
-| Name                 | Type   | Default | Description      |
-| -------------------- | ------ | ------- | ---------------- |
-| `active` (`v-model`) | number | `0`     | 选项卡标签索引值 |
+| Name                 | Type   | Default | Description  |
+| -------------------- | ------ | ------- | ------------ |
+| `active` (`v-model`) | number | `0`     | 标签页索引值 |
 
 ### `<ui-tab-bar>` Slots
 
-| Name      | Slots | Description                           |
-| --------- | ----- | ------------------------------------- |
-| `default` |       | default 插槽包含选项卡标签组件及 HTML |
+| Name      | Slots | Description                       |
+| --------- | ----- | --------------------------------- |
+| `default` |       | default 插槽包含标签页组件及 HTML |
 
 ### `<ui-tab-bar>` & `<ui-tabs>` 共用 Events
 
-| Name     | Type                            | Description              |
-| -------- | ------------------------------- | ------------------------ |
-| `change` | `function(activeIndex: number)` | 选项卡标签索引变化时触发 |
+| Name     | Type                            | Description          |
+| -------- | ------------------------------- | -------------------- |
+| `change` | `function(activeIndex: number)` | 标签页索引变化时触发 |
 
-> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@change` 监听选项卡索引并更新 `active` 属性
+> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@change` 监听标签页索引并更新 `active` 属性
 
 - 自动
 

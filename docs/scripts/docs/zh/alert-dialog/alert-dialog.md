@@ -11,11 +11,11 @@
 
 | Option          | Type     | Default | Description              |
 | --------------- | -------- | ------- | ------------------------ |
-| `className`     | string   | `''`    | 自定义提示框的 class     |
-| `title`         | string   | `''`    | 设置提示框的标题         |
-| `state`         | string   | `''`    | 提示框状态图标类型       |
+| `className`     | string   | `''`    | 自定义警告框的 class     |
+| `title`         | string   | `''`    | 设置警告框的标题         |
+| `state`         | string   | `''`    | 警告框状态图标类型       |
 | `stateOutlined` | boolean  | `false` | 显示轮廓状态图标         |
-| `message`       | string   | `''`    | 设置提示框的内容         |
+| `message`       | string   | `''`    | 设置警告框的内容         |
 | `raw`           | boolean  | `false` | 渲染 HTML                |
 | `buttonText`    | string   | `'OK'`  | 按钮文本                 |
 | `callback`      | function | `false` | 点击确定按钮后的事件处理 |

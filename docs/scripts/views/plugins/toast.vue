@@ -7,7 +7,7 @@
     <!-- Content -->
     <section class="demo-wrapper">
       <div class="demo">
-        <ui-button raised @click="$toast('gg')">Show Toast</ui-button>
+        <ui-button raised @click="show">Show Toast</ui-button>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
@@ -18,6 +18,17 @@
 export default {
   metaInfo: {
     titleTemplate: '%s - Toast'
+  },
+  data() {
+    return {
+      flag: false
+    };
+  },
+  methods: {
+    show() {
+      this.flag = !this.flag;
+      this.$toast(this.flag ? 'Hello' : 'BalmUI');
+    }
   }
 };
 </script>

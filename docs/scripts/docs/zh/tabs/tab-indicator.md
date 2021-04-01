@@ -6,7 +6,7 @@
 
 | Name   | Type    | Default       | Description                              |
 | ------ | ------- | ------------- | ---------------------------------------- |
-| `type` | string  | `'underline'` | 选项卡指示器类型 `['underline', 'icon']` |
+| `type` | string  | `'underline'` | 标签页指示器类型 `['underline', 'icon']` |
 | `fade` | boolean | `false`       | 淡入淡出效果                             |
 
 ### Slots

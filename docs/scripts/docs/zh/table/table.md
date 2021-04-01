@@ -7,19 +7,19 @@
 | Name                       | Type            | Default                  | Description                                        | Version |
 | -------------------------- | --------------- | ------------------------ | -------------------------------------------------- | ------- |
 | `data`                     | array           | `[]`                     | 数据源                                             |         |
-| `thead`                    | array           | `[]`                     | 表格头部渲染格式                                   |         |
-| `tbody`                    | array           | `[]`                     | 表格内容渲染格式                                   |         |
-| `tfoot`                    | array           | `[]`                     | 表格底部渲染格式                                   |         |
+| `thead`                    | array           | `[]`                     | 数据表头部渲染格式                                 |         |
+| `tbody`                    | array           | `[]`                     | 数据表内容渲染格式                                 |         |
+| `tfoot`                    | array           | `[]`                     | 数据表底部渲染格式                                 |         |
 | `fullwidth`                | boolean         | `false`                  | 全屏宽度样式                                       |         |
-| `rowCheckbox`              | boolean         | `false`                  | 带有行选择的表格                                   |         |
+| `rowCheckbox`              | boolean         | `false`                  | 带有行选择的数据表                                 |         |
 | `selectedRows` (`v-model`) | array           | `[]`                     | 选择行的索引或 IDs（必须设置 `rowCheckbox: true`） |         |
 | `selectedKey`              | boolean, string | `false`                  | `selectedRows` 使用自定义键字段，默认使用行索引。  |         |
 | `rowIdPrefix`              | string          | `''`                     | 在行元素 `<tr>` 上的 `data-row-id` 属性值的前缀    |         |
 | `sortIconAlignEnd`         | boolean         | `false`                  | 设置排序图标位于标签之后                           |         |
-| `showProgress`             | boolean         | `false`                  | 启用表格进度指示器表示加载数据中                   | 8.16.0  |
-| `fixedHeader`              | boolean         | `false`                  | 表格头部固定模式                                   | 8.16.0  |
-| `defaultColWidth`          | number          | `100`                    | 设置固定模式表格每列的默认宽度                     | 8.16.0  |
-| `scroll`                   | object          | `{ x: false, y: false }` | 设置固定模式表格容器的大小                         | 8.16.0  |
+| `showProgress`             | boolean         | `false`                  | 启用数据表进度指示器表示加载数据中                 | 8.16.0  |
+| `fixedHeader`              | boolean         | `false`                  | 数据表头部固定模式                                 | 8.16.0  |
+| `defaultColWidth`          | number          | `100`                    | 设置固定模式数据表每列的默认宽度                   | 8.16.0  |
+| `scroll`                   | object          | `{ x: false, y: false }` | 设置固定模式数据表容器的大小                       | 8.16.0  |
 
 - `thead` & `tbody` & `tfoot` 属性通用格式
 
@@ -110,8 +110,8 @@
       field: string; // 数据字段名
       fn: function; // 简单的数据处理
       colClass: string; // <col> 元素的 class (New in 8.16.0)
-      fixed: 'left' ｜ 'right'; // 设置固定模式表格中单元格的位置 (New in 8.16.0)
-      width: number; // 设置固定模式表格中单元格的宽度 (New in 8.16.0)
+      fixed: 'left' ｜ 'right'; // 设置固定模式数据表中单元格的位置 (New in 8.16.0)
+      width: number; // 设置固定模式数据表中单元格的宽度 (New in 8.16.0)
     }
     ```
 
@@ -204,7 +204,7 @@
 | ---------- | ------------------------------- | ---------------- |
 | `selected` | `function(selectedRows: array)` | 选择行变化时触发 |
 
-> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@selected` 监听表格选择行并更新 `selectedRows` 属性
+> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@selected` 监听数据表选择行并更新 `selectedRows` 属性
 
 - 自动
 

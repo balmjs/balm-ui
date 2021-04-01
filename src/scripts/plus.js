@@ -19,6 +19,7 @@ import UiTreeNode from './components/tree/tree-node';
 import $alert, { useAlert } from './plugins/alert';
 import $confirm, { useConfirm } from './plugins/confirm';
 import $toast, { useToast } from './plugins/toast';
+import $lazyload from './plugins/lazyload';
 /**
  * Directives
  */
@@ -26,7 +27,6 @@ import vAnchor from './directives/anchor';
 import vCopy from './directives/copy';
 import vLongpress from './directives/longpress';
 import vDebounce from './directives/debounce';
-import vLazyload from './directives/lazyload';
 import vDraggable from './directives/draggable';
 
 const Components = {
@@ -44,7 +44,8 @@ const Components = {
 const Plugins = {
   $alert,
   $confirm,
-  $toast
+  $toast,
+  $lazyload
 };
 
 const Directives = {
@@ -52,7 +53,6 @@ const Directives = {
   vCopy,
   vLongpress,
   vDebounce,
-  vLazyload,
   vDraggable
 };
 
@@ -83,6 +83,6 @@ export {
   UiTree,
   UiTreeNode
 };
-export { $alert, $confirm, $toast };
+export { $alert, $confirm, $toast, $lazyload };
 export { useAlert, useConfirm, useToast };
-export { vAnchor, vCopy, vLongpress, vDebounce, vLazyload, vDraggable };
+export { vAnchor, vCopy, vLongpress, vDebounce, vDraggable };

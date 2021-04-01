@@ -1,23 +1,6 @@
 import autoInit from '../config/auto-init';
 
-const vLazyload = {
-  name: 'lazyload',
-  // install方法
-  install(Vue, options) {
-    const defaultSrc = options.default;
-    Vue.directive('lazy', {
-      bind(el, binding) {
-        LazyLoad.init(el, binding.value, defaultSrc);
-      },
-      inserted(el) {
-        if (IntersectionObserver) {
-          LazyLoad.observe(el);
-        } else {
-          LazyLoad.listenerScroll(el);
-        }
-      }
-    });
-  },
+const LazyLoad = {
   // 初始化
   init(el, val, def) {
     el.setAttribute('data-src', val);
@@ -83,6 +66,32 @@ const vLazyload = {
   }
 };
 
-autoInit(vLazyload, 'directive');
+let defaultSrc;
 
-export default vLazyload;
+const vLazyLoad = {
+  id: 'lazyload',
+  definition: {
+    bind(el, { value }) {
+      LazyLoad.init(el, value, defaultSrc);
+    },
+    inserted(el) {
+      if (IntersectionObserver) {
+        LazyLoad.observe(el);
+      } else {
+        LazyLoad.listenerScroll(el);
+      }
+    }
+  }
+};
+
+const $lazyload = {
+  install(Vue, options = {}) {
+    defaultSrc = options.default;
+
+    Vue.directive(vLazyLoad.id, vLazyLoad.definition);
+  }
+};
+
+autoInit($lazyload);
+
+export default $lazyload;

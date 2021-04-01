@@ -58,7 +58,7 @@
           for vue@3.x documentation.
         </template>
         <template #actions>
-          <ui-button @click="refresh">{{
+          <ui-button outlined @click="$balmUI.onHide('showBanner', refresh)">{{
             hasNewVersion ? 'Refresh' : 'GOT IT'
           }}</ui-button>
         </template>
@@ -322,8 +322,6 @@ export default {
       if (this.hasNewVersion) {
         this.$store.serviceWorker.postMessage({ action: 'skipWaiting' });
         this.hasNewVersion = false;
-      } else {
-        this.showBanner = false;
       }
     }
   }

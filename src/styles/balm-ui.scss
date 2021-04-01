@@ -41,6 +41,7 @@
 /// Plugins Custom Styles
 @use 'balm-ui/plugins/alert/ui-alert' as alert-dialog;
 @use 'balm-ui/plugins/confirm/ui-confirm';
+@use 'balm-ui/plugins/toast/ui-toast';
 
 /// Directives Custom Styles
 @use 'balm-ui/directives/ripple/ui-ripple';

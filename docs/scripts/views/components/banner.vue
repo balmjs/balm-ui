@@ -19,7 +19,7 @@ export default {
   metaInfo: {
     titleTemplate: '%s - Banner'
   },
-  beforeDestroy() {
+  beforeUnmount() {
     this.$bus.emit('global-message', false);
   }
 };

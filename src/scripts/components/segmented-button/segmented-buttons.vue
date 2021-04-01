@@ -53,7 +53,10 @@ export default {
       default: false
     }
   },
-  emits: [UI_SEGMENTED_BUTTON.EVENT.CHANGE, UI_SEGMENTED_BUTTON.EVENT.SELECTED],
+  emits: [
+    UI_SEGMENTED_BUTTONS.EVENT.CHANGE,
+    UI_SEGMENTED_BUTTONS.EVENT.SELECTED
+  ],
   data() {
     return {
       $segmentedButton: null,

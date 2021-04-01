@@ -25,7 +25,7 @@ export default {
       default: false
     }
   },
-  emits: [UI_LIST.EVENT.CLICK],
+  emits: [UI_ITEM.EVENT.CLICK],
   data() {
     return {
       UI_ITEM

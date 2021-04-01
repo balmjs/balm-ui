@@ -50,7 +50,7 @@ export default {
       default: null
     }
   },
-  emits: [UI_IMAGE_LIST.EVENT.CLICK],
+  emits: [UI_IMAGE_ITEM.EVENT.CLICK],
   data() {
     return {
       UI_IMAGE_ITEM

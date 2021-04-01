@@ -25,7 +25,7 @@ export default {
       this.$bus.emit('global-message', true);
     });
   },
-  beforeDestroy() {
+  beforeUnmount() {
     this.$bus.emit('global-message', false);
   }
 };

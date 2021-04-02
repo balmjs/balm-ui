@@ -27,6 +27,7 @@
 import { MDCBanner } from '../../../material-components-web/banner';
 import { events } from '../../../material-components-web/banner/constants';
 import MdcBannerContent from './mdc-banner-content';
+import domMixin from '../../mixins/dom';
 
 // Define banner constants
 const UI_BANNER = {
@@ -41,6 +42,7 @@ export default {
   components: {
     MdcBannerContent
   },
+  mixins: [domMixin],
   props: {
     // States
     modelValue: {
@@ -89,14 +91,14 @@ export default {
     }
   },
   watch: {
-    open(val) {
+    modelValue(val) {
       if (this.$banner) {
         val ? this.$banner.open() : this.$banner.close();
       }
     }
   },
   mounted() {
-    this.$banner = new MDCBanner(this.$el);
+    this.$banner = new MDCBanner(this.el);
 
     this.$banner.listen(events.CLOSED, ({ detail }) => {
       this.$emit(UI_BANNER.EVENT.CHANGE, false);

@@ -48,6 +48,18 @@
           </a>
         </li>
       </ul>
+
+      <h6 :class="$tt('headline6')">Special Sponsors</h6>
+      <p>
+        <a
+          class="laravel-admin"
+          href="https://laravel-admin.org/"
+          target="_blank"
+          rel="noopener"
+        >
+          Laravel Admin
+        </a>
+      </p>
     </div>
   </div>
 </template>

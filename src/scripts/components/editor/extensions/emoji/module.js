@@ -205,9 +205,16 @@ function onBlurEmojiHandler(e) {
   } else {
     if (hasRange) {
       let parentEl = el;
-      while (parentEl && !parentEl.classList.contains('mdc-editor-container')) {
+      while (
+        parentEl &&
+        parentEl.classList &&
+        !parentEl.classList.contains('mdc-editor-container')
+      ) {
         parentEl = parentEl.parentNode;
-        if (parentEl.classList.contains('mdc-editor-container')) {
+        if (
+          parentEl.classList &&
+          parentEl.classList.contains('mdc-editor-container')
+        ) {
           if (!parentEl.querySelector('#ql-emoji-toolbar')) {
             closeEmojiToolbar();
           }

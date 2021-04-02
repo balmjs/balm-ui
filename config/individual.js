@@ -54,24 +54,33 @@ const components = [
   'bottom-navigation'
 ];
 const plugins = [
-  'alert',
-  'confirm',
+  // MDC
   'event',
   'grid',
   'store',
   'theme',
-  'toast',
   'typography',
-  'validator'
+  'validator',
+  // Plus
+  'alert',
+  'confirm',
+  'toast',
+  'lazyload'
 ];
 const directives = [
+  // MDC
   'a11y',
-  'anchor',
   'badge',
   'elevation',
   'ripple',
   'shape',
-  'tooltip'
+  'tooltip',
+  // Plus
+  'anchor',
+  'copy',
+  'longpress',
+  'debounce',
+  'draggable'
 ];
 const utils = ['ie', 'types', 'helpers'];
 

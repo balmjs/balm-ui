@@ -40,20 +40,10 @@
           <ui-icon>celebration</ui-icon>
         </template>
         <template v-if="hasNewVersion">New content is available.</template>
-        <template v-else>
-          You’re browsing the documentation for vue@2.x.
-          <a
-            href="https://next-material.balmjs.com/"
-            target="_blank"
-            rel="noopener"
-          >
-            Click here
-          </a>
-          for vue@3.x documentation.
-        </template>
+        <template v-else>Welcome to BalmUI!</template>
         <template #actions>
           <ui-button outlined @click="balmUI.onHide('showBanner', refresh)">{{
-            hasNewVersion ? 'Refresh' : 'GOT IT'
+            hasNewVersion ? 'Refresh' : 'Good Job'
           }}</ui-button>
         </template>
       </ui-banner>

@@ -108,6 +108,7 @@ var MDCCircularProgressFoundation = /** @class */ (function (_super) {
     MDCCircularProgressFoundation.prototype.open = function () {
         this.closed = false;
         this.adapter.removeClass(cssClasses.CLOSED_CLASS);
+        this.adapter.removeAttribute(strings.ARIA_HIDDEN);
     };
     /**
      * Hides the progress indicator
@@ -115,6 +116,7 @@ var MDCCircularProgressFoundation = /** @class */ (function (_super) {
     MDCCircularProgressFoundation.prototype.close = function () {
         this.closed = true;
         this.adapter.addClass(cssClasses.CLOSED_CLASS);
+        this.adapter.setAttribute(strings.ARIA_HIDDEN, 'true');
     };
     /**
      * @return Returns whether the progress indicator is hidden.

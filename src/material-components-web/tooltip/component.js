@@ -110,6 +110,23 @@ var MDCTooltip = /** @class */ (function (_super) {
     MDCTooltip.prototype.isShown = function () {
         this.foundation.isShown();
     };
+    /**
+     * Method that allows user to specify additional elements that should have a
+     * scroll event listener attached to it. This should be used in instances
+     * where the anchor element is placed inside a scrollable container (that is
+     * not the body element), and will ensure that the tooltip will stay attached
+     * to the anchor on scroll.
+     */
+    MDCTooltip.prototype.attachScrollHandler = function (addEventListenerFn) {
+        this.foundation.attachScrollHandler(addEventListenerFn);
+    };
+    /**
+     * Must be used in conjunction with #attachScrollHandler. Removes the scroll
+     * event handler from elements on the page.
+     */
+    MDCTooltip.prototype.removeScrollHandler = function (removeEventHandlerFn) {
+        this.foundation.removeScrollHandler(removeEventHandlerFn);
+    };
     MDCTooltip.prototype.getDefaultFoundation = function () {
         var _this = this;
         var adapter = {

@@ -1,5 +1,8 @@
 import { MDCList } from '../../material-components-web/list';
-import { strings } from '../../material-components-web/list/constants';
+import {
+  strings,
+  deprecatedClassNameMap
+} from '../../material-components-web/list/constants';
 import domMixin from './dom';
 import typeMixin from './type';
 import rippleMixin from './ripple';
@@ -49,13 +52,15 @@ export default {
       return this.checkType(UI_LIST.TYPES, 'twoLine');
     },
     className() {
-      return {
-        'mdc-list': true,
-        'mdc-list--two-line': this.isTwoLine,
-        'mdc-list--non-interactive': this.nonInteractive,
-        'mdc-list--dense': this.dense,
-        'mdc-list--avatar-list': this.avatar
-      };
+      return [
+        deprecatedClassNameMap['mdc-list'],
+        {
+          'mdc-deprecated-list--two-line': this.isTwoLine,
+          'mdc-deprecated-list--non-interactive': this.nonInteractive,
+          'mdc-deprecated-list--dense': this.dense,
+          'mdc-deprecated-list--avatar-list': this.avatar
+        }
+      ];
     }
   },
   watch: {
@@ -117,7 +122,9 @@ export default {
             this.$list.listElements.find(
               (item) =>
                 item.classList.contains(UI_ITEM.cssClasses.active) ||
-                item.classList.contains('mdc-list-item--activated')
+                item.classList.contains(
+                  deprecatedClassNameMap['mdc-list-item--activated']
+                )
             ) || this.$list.listElements[0];
 
           // Solution - https://github.com/material-components/material-components-web/issues/5615

@@ -52,10 +52,6 @@ export var numbers = {
 };
 /** Slider attributes. */
 export var attributes = {
-    ARIA_DISABLED: 'aria-disabled',
-    ARIA_VALUEMAX: 'aria-valuemax',
-    ARIA_VALUEMIN: 'aria-valuemin',
-    ARIA_VALUENOW: 'aria-valuenow',
     ARIA_VALUETEXT: 'aria-valuetext',
     INPUT_DISABLED: 'disabled',
     INPUT_MIN: 'min',

@@ -69,6 +69,11 @@ $z-index: 2;
   .mdc-tooltip__surface {
     @include shape-mixins.radius($radius, $rtl-reflexive, $query: $query);
   }
+
+  .mdc-tooltip__caret-surface-top,
+  .mdc-tooltip__caret-surface-bottom {
+    @include shape-mixins.radius($radius, $rtl-reflexive, $query: $query);
+  }
 }
 
 // Sets the word-break property for the tooltip label. Users of IE11 can
@@ -158,6 +163,13 @@ $z-index: 2;
         @include theme.property(background-color, $color);
       }
     }
+
+    .mdc-tooltip__caret-surface-top,
+    .mdc-tooltip__caret-surface-bottom {
+      @include feature-targeting.targets($feat-color) {
+        @include theme.property(background-color, $color);
+      }
+    }
   }
 }
 
@@ -179,7 +191,7 @@ $z-index: 2;
   $feat-animation: feature-targeting.create-target($query, animation);
 
   @include feature-targeting.targets($feat-animation) {
-    .mdc-tooltip--showing-transition .mdc-tooltip__surface {
+    .mdc-tooltip--showing-transition .mdc-tooltip__surface-animation {
       transition: animation-functions.enter(opacity, $enter-duration),
         animation-functions.enter(transform, $enter-duration);
     }
@@ -192,7 +204,7 @@ $z-index: 2;
   $feat-animation: feature-targeting.create-target($query, animation);
 
   @include feature-targeting.targets($feat-animation) {
-    .mdc-tooltip--hide-transition .mdc-tooltip__surface {
+    .mdc-tooltip--hide-transition .mdc-tooltip__surface-animation {
       transition: animation-functions.exit-permanent(opacity, $exit-duration);
     }
   }

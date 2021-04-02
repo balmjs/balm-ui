@@ -28,6 +28,7 @@ export var cssClasses = {
     ANIMATION_READY_CLASS: 'mdc-linear-progress--animation-ready',
 };
 export var strings = {
+    ARIA_HIDDEN: 'aria-hidden',
     ARIA_VALUEMAX: 'aria-valuemax',
     ARIA_VALUEMIN: 'aria-valuemin',
     ARIA_VALUENOW: 'aria-valuenow',

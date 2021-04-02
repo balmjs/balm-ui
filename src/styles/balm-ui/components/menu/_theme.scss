@@ -1,12 +1,12 @@
 // fix(@material-components): dark theme
 .mdc-menu {
-  .mdc-list {
+  .mdc-deprecated-list {
     color: inherit;
   }
 
-  :not(.mdc-list-item--disabled).mdc-list-item {
-    .mdc-list-item__ripple::before,
-    .mdc-list-item__ripple::after {
+  :not(.mdc-deprecated-list-item--disabled).mdc-deprecated-list-item {
+    .mdc-deprecated-list-item__ripple::before,
+    .mdc-deprecated-list-item__ripple::after {
       background-color: currentColor;
     }
   }

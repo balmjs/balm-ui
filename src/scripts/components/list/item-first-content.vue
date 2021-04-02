@@ -1,6 +1,6 @@
 <template>
   <!-- Supporting visuals -->
-  <span class="mdc-list-item__graphic">
+  <span :class="UI_ITEM.cssClasses.firstTile">
     <slot>
       <!-- Typically an icon or image -->
     </slot>
@@ -8,7 +8,14 @@
 </template>
 
 <script>
+import { UI_ITEM } from './constants';
+
 export default {
-  name: 'UiItemFirstContent'
+  name: 'UiItemFirstContent',
+  data() {
+    return {
+      UI_ITEM
+    };
+  }
 };
 </script>

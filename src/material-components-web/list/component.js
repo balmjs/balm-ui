@@ -131,15 +131,21 @@ var MDCList = /** @class */ (function (_super) {
         var direction = this.root.getAttribute(strings.ARIA_ORIENTATION);
         this.vertical = direction !== strings.ARIA_ORIENTATION_HORIZONTAL;
         var itemSelector = "." + this.classNameMap[cssClasses.LIST_ITEM_CLASS] + ":not([tabindex])";
-        var childSelector = "." + this.classNameMap[cssClasses.LIST_ITEM_CLASS] + " " + strings.FOCUSABLE_CHILD_ELEMENTS;
+        var childSelector = strings.FOCUSABLE_CHILD_ELEMENTS;
         // List items need to have at least tabindex=-1 to be focusable.
-        Array.prototype.forEach.call(this.root.querySelectorAll(itemSelector), function (el) {
-            el.setAttribute('tabindex', '-1');
-        });
+        var itemEls = this.root.querySelectorAll(itemSelector);
+        if (itemEls.length) {
+            Array.prototype.forEach.call(itemEls, function (el) {
+                el.setAttribute('tabindex', '-1');
+            });
+        }
         // Child button/a elements are not tabbable until the list item is focused.
-        Array.prototype.forEach.call(this.root.querySelectorAll(childSelector), function (el) {
-            el.setAttribute('tabindex', '-1');
-        });
+        var focusableChildEls = this.root.querySelectorAll(childSelector);
+        if (focusableChildEls.length) {
+            Array.prototype.forEach.call(focusableChildEls, function (el) {
+                el.setAttribute('tabindex', '-1');
+            });
+        }
         if (this.isEvolutionEnabled) {
             this.foundation.setUseSelectedAttribute(true);
         }
@@ -281,7 +287,7 @@ var MDCList = /** @class */ (function (_super) {
             },
             setTabIndexForListItemChildren: function (listItemIndex, tabIndexValue) {
                 var element = _this.listElements[listItemIndex];
-                var selector = "." + _this.classNameMap[cssClasses.LIST_ITEM_CLASS] + " " + strings.CHILD_ELEMENTS_TO_TOGGLE_TABINDEX;
+                var selector = strings.CHILD_ELEMENTS_TO_TOGGLE_TABINDEX;
                 Array.prototype.forEach.call(element.querySelectorAll(selector), function (el) {
                     el.setAttribute('tabindex', tabIndexValue);
                 });

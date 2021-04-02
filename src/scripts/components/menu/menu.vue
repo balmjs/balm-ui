@@ -2,7 +2,7 @@
   <!-- Container -->
   <div :class="className">
     <ul
-      class="mdc-list"
+      :class="deprecatedListClassNameMap['mdc-list']"
       tabindex="-1"
       role="menu"
       aria-hidden="true"
@@ -59,6 +59,7 @@ import UiMenuitem from './menuitem.vue';
 import UiMenuitemText from './menuitem-text.vue';
 import UiMenuitemDivider from './menuitem-divider.vue';
 import domMixin from '../../mixins/dom';
+import deprecatedListMixin from '../../mixins/deprecated-list';
 import getType from '../../utils/typeof';
 
 // Define menu constants
@@ -89,7 +90,7 @@ export default {
     UiMenuitemText,
     UiMenuitemDivider
   },
-  mixins: [domMixin],
+  mixins: [domMixin, deprecatedListMixin],
   props: {
     // States
     modelValue: {

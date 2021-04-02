@@ -1,5 +1,5 @@
 //
-// Copyright 2017 Google Inc.
+// Copyright 2020 Google Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,4 +20,37 @@
 // THE SOFTWARE.
 //
 
-@use './deprecated/mdc-chips';
+@use '../animation/animation';
+@use '../feature-targeting/feature-targeting';
+@use './chip-set-theme';
+
+@mixin core-styles($query: feature-targeting.all()) {
+  @include _static-styles($query);
+  @include _theme-styles($query);
+}
+
+@mixin _static-styles($query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+  $feat-animation: feature-targeting.create-target($query, animation);
+
+  .mdc-evolution-chip-set {
+    @include feature-targeting.targets($feat-structure) {
+      display: flex;
+    }
+  }
+
+  .mdc-evolution-chip-set:focus {
+    @include feature-targeting.targets($feat-structure) {
+      outline: none;
+    }
+  }
+}
+
+@mixin _theme-styles($query: feature-targeting.all()) {
+  .mdc-evolution-chip-set {
+    @include chip-set-theme.space-between-chips(
+      chip-set-theme.$space-between-chips,
+      $query
+    );
+  }
+}

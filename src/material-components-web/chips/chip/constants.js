@@ -20,5 +20,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-export * from '../deprecated/chip/constants';
+/**
+ * CssClasses provides the named constants for class names.
+ */
+export var CssClasses;
+(function (CssClasses) {
+    CssClasses["SELECTING"] = "mdc-evolution-chip--selecting";
+    CssClasses["DESELECTING"] = "mdc-evolution-chip--deselecting";
+    CssClasses["SELECTING_WITH_PRIMARY_ICON"] = "mdc-evolution-chip--selecting-with-primary-icon";
+    CssClasses["DESELECTING_WITH_PRIMARY_ICON"] = "mdc-evolution-chip--deselecting-with-primary-icon";
+    CssClasses["DISABLED"] = "mdc-evolution-chip--disabled";
+    CssClasses["ENTER"] = "mdc-evolution-chip--enter";
+    CssClasses["EXIT"] = "mdc-evolution-chip--exit";
+    CssClasses["SELECTED"] = "mdc-evolution-chip--selected";
+    CssClasses["HIDDEN"] = "mdc-evolution-chip--hidden";
+    CssClasses["WITH_PRIMARY_ICON"] = "mdc-evolution-chip--with-primary-icon";
+})(CssClasses || (CssClasses = {}));
+/**
+ * Events provides the named constants for emitted events.
+ */
+export var Events;
+(function (Events) {
+    Events["INTERACTION"] = "MDCChip:interaction";
+    Events["NAVIGATION"] = "MDCChip:navigation";
+    Events["ANIMATION"] = "MDCChip:animation";
+})(Events || (Events = {}));
+/**
+ * Events provides the named constants for strings used by the foundation.
+ */
+export var Attributes;
+(function (Attributes) {
+    Attributes["DATA_REMOVED_ANNOUNCEMENT"] = "data-mdc-removed-announcement";
+    Attributes["DATA_ADDED_ANNOUNCEMENT"] = "data-mdc-added-announcement";
+})(Attributes || (Attributes = {}));
+/**
+ * Animation provides the names of runnable animations.
+ */
+export var Animation;
+(function (Animation) {
+    Animation["ENTER"] = "mdc-evolution-chip-enter";
+    Animation["EXIT"] = "mdc-evolution-chip-exit";
+})(Animation || (Animation = {}));
 //# sourceMappingURL=constants.js.map

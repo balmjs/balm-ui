@@ -27,6 +27,7 @@
 @use '../elevation/mixins' as elevation-mixins;
 @use '../feature-targeting/feature-targeting';
 @use '../rtl/rtl' as rtl;
+@use '../dom/mixins' as dom-mixins;
 @use './tooltip-theme';
 @use '../typography/typography';
 
@@ -45,10 +46,10 @@ $_line-height: 16px;
 $_rich_corner_radius: 4px;
 $_rich_line-height: 20px;
 $_rich_max-width: 320px;
-$_rich_padding: 8px;
 $_content-margin-x: 8px;
 $_content-type-scale: body2;
 $_title-type-scale: subtitle2;
+$_caret-size: 24px;
 
 @mixin core-styles($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
@@ -118,13 +119,16 @@ $_title-type-scale: subtitle2;
         // be used to calculate the position of the tooltip.
         /* @noflip */
         left: -$_rich_max_width;
-        padding: $_rich_padding $_rich_padding;
         position: absolute;
       }
     }
   }
 
   .mdc-tooltip__surface {
+    &::before {
+      @include dom-mixins.transparent-border($query: $query);
+    }
+
     @include typography.typography(
       $_label-type-scale,
       $exclude-props: (line-height),
@@ -141,10 +145,6 @@ $_title-type-scale: subtitle2;
       box-sizing: border-box;
       overflow: hidden;
       text-align: center;
-      transform: scale(0.8);
-      opacity: 0;
-      will-change: transform, opacity;
-      outline: 1px solid transparent;
     }
 
     .mdc-tooltip--rich & {
@@ -171,19 +171,6 @@ $_title-type-scale: subtitle2;
           /* @noflip */
           text-align: right;
         }
-      }
-    }
-
-    .mdc-tooltip--shown & {
-      @include feature-targeting.targets($feat-structure) {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-
-    .mdc-tooltip--hide & {
-      @include feature-targeting.targets($feat-structure) {
-        transform: scale(1);
       }
     }
 
@@ -222,6 +209,47 @@ $_title-type-scale: subtitle2;
       @include feature-targeting.targets($feat-structure) {
         text-decoration: none;
       }
+    }
+  }
+
+  .mdc-tooltip__surface-animation {
+    @include feature-targeting.targets($feat-structure) {
+      opacity: 0;
+      transform: scale(0.8);
+      will-change: transform, opacity;
+    }
+
+    .mdc-tooltip--shown & {
+      @include feature-targeting.targets($feat-structure) {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .mdc-tooltip--hide & {
+      @include feature-targeting.targets($feat-structure) {
+        transform: scale(1);
+      }
+    }
+  }
+
+  .mdc-tooltip__caret-surface-top,
+  .mdc-tooltip__caret-surface-bottom {
+    @include feature-targeting.targets($feat-structure) {
+      bottom: 0;
+      height: $_caret-size;
+      position: absolute;
+      right: 24px;
+      transform: rotate(-45deg);
+      transform-origin: bottom right;
+      width: $_caret-size;
+    }
+  }
+
+  .mdc-tooltip__caret-surface-bottom {
+    @include elevation-mixins.elevation(2, $query: $query);
+    @include feature-targeting.targets($feat-structure) {
+      z-index: -1;
     }
   }
 }

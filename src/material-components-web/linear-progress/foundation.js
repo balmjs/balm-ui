@@ -141,9 +141,11 @@ var MDCLinearProgressFoundation = /** @class */ (function (_super) {
     MDCLinearProgressFoundation.prototype.open = function () {
         this.adapter.removeClass(cssClasses.CLOSED_CLASS);
         this.adapter.removeClass(cssClasses.CLOSED_ANIMATION_OFF_CLASS);
+        this.adapter.removeAttribute(strings.ARIA_HIDDEN);
     };
     MDCLinearProgressFoundation.prototype.close = function () {
         this.adapter.addClass(cssClasses.CLOSED_CLASS);
+        this.adapter.setAttribute(strings.ARIA_HIDDEN, 'true');
     };
     MDCLinearProgressFoundation.prototype.isClosed = function () {
         return this.adapter.hasClass(cssClasses.CLOSED_CLASS);

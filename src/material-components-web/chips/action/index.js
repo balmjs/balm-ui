@@ -20,5 +20,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-export * from '../deprecated/trailingaction/adapter';
-//# sourceMappingURL=adapter.js.map
+export * from './adapter';
+export * from './component';
+export * from './constants';
+export * from './foundation';
+export * from './primary-foundation';
+export * from './trailing-foundation';
+//# sourceMappingURL=index.js.map

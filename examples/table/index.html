@@ -1,159 +1,160 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BalmUI - table + pagination example</title>
-  <link rel="stylesheet" href="/components/core.css">
-  <link rel="stylesheet" href="/components/checkbox/checkbox.css">
-  <link rel="stylesheet" href="/components/icon-button/icon-button.css">
-  <link rel="stylesheet" href="/components/table/table.css">
-  <link rel="stylesheet" href="/components/pagination/pagination.css">
-  <link rel="stylesheet" href="/components/button/button.css">
-  <link rel="stylesheet" href="/components/icon/icon.css">
-</head>
-<body>
-  <div id="app">
-    <ui-table
-      v-model="selectedRows"
-      fullwidth
-      :data="data"
-      :thead="thead"
-      :tbody="tbody"
-      :tfoot="tfoot"
-      row-checkbox
-      selected-key="id"
-    >
-      <template #th-dessert>
-        Dessert
-        <ui-icon v-tooltip="'100g serving'" aria-describedby="th-cell-1"
-          >error_outline</ui-icon
-        >
-      </template>
-      <template #dessert="{ data }">
-        <div class="dessert">{{ data.dessert }}</div>
-      </template>
-      <template #actions="{ data }">
-        <ui-icon @click="show(data)">description</ui-icon>
-        <ui-icon @click="show(data)">edit</ui-icon>
-        <ui-icon @click="show(data)">delete</ui-icon>
-      </template>
-    </ui-table>
-    <ui-pagination
-      v-model="page"
-      :total="total"
-      show-total
-      :page-size="[10, 25, 100]"
-      show-jumper
-      position="center"
-    ></ui-pagination>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
-  <script src="/components/table/index.js"></script>
-  <script src="/components/pagination/index.js"></script>
-  <script src="/components/checkbox/index.js"></script>
-  <script src="/components/icon-button/index.js"></script>
-  <script src="/components/icon/index.js"></script>
-  <script src="/directives/tooltip/index.js"></script>
-  <script>
-    var app = Vue.createApp({
-      data() {
-        return {
-          data: [],
-          thead: [
-            {
-              value: 'ID',
-              sort: 'asc',
-              columnId: 'id'
-            },
-            {
-              slot: 'th-dessert',
-              class: 'gg',
-              sort: 'none',
-              columnId: 'dessert'
-            },
-            'Calories',
-            'Fat (g)',
-            'Carbs (g)',
-            'Protein (g)',
-            'Actions',
-          ],
-          tbody: [
-            'id',
-            {
-              slot: 'dessert'
-            },
-            {
-              field: 'calories',
-              numeric: true,
-              class: 'test'
-            },
-            {
-              field: 'fat',
-              fn: data => {
-                return data.fat.toFixed(1);
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BalmUI - table + pagination example</title>
+    <link rel="stylesheet" href="/components/core.css" />
+    <link rel="stylesheet" href="/components/checkbox/checkbox.css" />
+    <link rel="stylesheet" href="/components/icon-button/icon-button.css" />
+    <link rel="stylesheet" href="/components/table/table.css" />
+    <link rel="stylesheet" href="/components/pagination/pagination.css" />
+    <link rel="stylesheet" href="/components/button/button.css" />
+    <link rel="stylesheet" href="/components/icon/icon.css" />
+    <link rel="stylesheet" href="/components/tooltip/tooltip.css" />
+  </head>
+  <body>
+    <div id="app">
+      <ui-table
+        v-model="selectedRows"
+        fullwidth
+        :data="data"
+        :thead="thead"
+        :tbody="tbody"
+        :tfoot="tfoot"
+        row-checkbox
+        selected-key="id"
+      >
+        <template #th-dessert>
+          Dessert
+          <ui-icon v-tooltip="'100g serving'" aria-describedby="th-cell-1">
+            error_outline
+          </ui-icon>
+        </template>
+        <template #dessert="{ data }">
+          <div class="dessert">{{ data.dessert }}</div>
+        </template>
+        <template #actions="{ data }">
+          <ui-icon @click="show(data)">description</ui-icon>
+          <ui-icon @click="show(data)">edit</ui-icon>
+          <ui-icon @click="show(data)">delete</ui-icon>
+        </template>
+      </ui-table>
+      <ui-pagination
+        v-model="page"
+        :total="total"
+        show-total
+        :page-size="[10, 25, 100]"
+        show-jumper
+        position="center"
+      ></ui-pagination>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
+    <script src="/components/table/index.js"></script>
+    <script src="/components/pagination/index.js"></script>
+    <script src="/components/checkbox/index.js"></script>
+    <script src="/components/icon-button/index.js"></script>
+    <script src="/components/icon/index.js"></script>
+    <script src="/directives/tooltip/index.js"></script>
+    <script>
+      var app = Vue.createApp({
+        data() {
+          return {
+            data: [],
+            thead: [
+              {
+                value: 'ID',
+                sort: 'asc',
+                columnId: 'id'
+              },
+              {
+                slot: 'th-dessert',
+                class: 'gg',
+                sort: 'none',
+                columnId: 'dessert'
+              },
+              'Calories',
+              'Fat (g)',
+              'Carbs (g)',
+              'Protein (g)',
+              'Actions'
+            ],
+            tbody: [
+              'id',
+              {
+                slot: 'dessert'
+              },
+              {
+                field: 'calories',
+                numeric: true,
+                class: 'test'
+              },
+              {
+                field: 'fat',
+                fn: (data) => {
+                  return data.fat.toFixed(1);
+                }
+              },
+              'carbs',
+              {
+                field: 'protein',
+                class: (data) => {
+                  return data.protein > 5 ? 'red' : 'green';
+                }
+              },
+              {
+                slot: 'actions'
               }
-            },
-            'carbs',
-            {
-              field: 'protein',
-              class: data => {
-                return data.protein > 5 ? 'red' : 'green';
+            ],
+            tfoot: [
+              {
+                field: 'id',
+                fnName: 'count'
+              },
+              null,
+              {
+                field: 'calories',
+                fnName: 'sum',
+                align: 'right',
+                class: 'test'
+              },
+              {
+                field: 'fat',
+                fnName: 'avg'
+              },
+              {
+                field: 'carbs',
+                fnName: 'max'
+              },
+              {
+                field: 'protein',
+                fnName: 'min'
               }
-            },
-            {
-              slot: 'actions'
-            }
-          ],
-          tfoot: [
-            {
-              field: 'id',
-              fnName: 'count'
-            },
-            null,
-            {
-              field: 'calories',
-              fnName: 'sum',
-              align: 'right',
-              class: 'test'
-            },
-            {
-              field: 'fat',
-              fnName: 'avg'
-            },
-            {
-              field: 'carbs',
-              fnName: 'max'
-            },
-            {
-              field: 'protein',
-              fnName: 'min'
-            }
-          ],
-          selectedRows: [1, 2, 4],
-          page: 1,
-          total: 100
+            ],
+            selectedRows: [1, 2, 4],
+            page: 1,
+            total: 100
+          };
+        },
+        created() {
+          fetch('/docs/data/table.json')
+            .then((response) => response.json())
+            .then((data) => {
+              this.data = data;
+            })
+            .catch((error) => console.error(error));
         }
-      },
-      created() {
-        fetch('/docs/data/table.json')
-          .then((response) => response.json())
-          .then((data) => {
-            this.data = data;
-          })
-          .catch(error => console.error(error));
-      }
-    });
+      });
 
-    app.use(UiTable);
-    app.use(UiPagination);
-    app.use(UiCheckbox);
-    app.use(UiIconButton);
-    app.use(UiIcon);
-    app.directive(vTooltip.name, vTooltip);
+      app.use(UiTable);
+      app.use(UiPagination);
+      app.use(UiCheckbox);
+      app.use(UiIconButton);
+      app.use(UiIcon);
+      app.directive(vTooltip.name, vTooltip);
 
-    app.mount('#app');
-  </script>
-</body>
+      app.mount('#app');
+    </script>
+  </body>
 </html>

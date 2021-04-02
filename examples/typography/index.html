@@ -1,44 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BalmUI - typography example</title>
-  <link rel="stylesheet" href="/components/core.css">
-  <style>
-    .mdc-typography--custom-style-1 {
-      color: red;
-    }
-
-    .mdc-typography--custom-style-2 {
-      color: blue;
-    }
-  </style>
-</head>
-<body>
-  <div id="app">
-    <div :class="$tt('custom-style-1')">Custom style 1</div>
-    <div :class="$tt('custom-style-2')">Custom style 2</div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
-  <script src="/plugins/typography/index.js"></script>
-  <script>
-    var customTypography = ['custom-style-1', 'custom-style-2'];
-  </script>
-  <script>
-    var app = Vue.createApp({
-      created() {
-        $tt = $typography.useTypography();
-
-        console.log($tt('custom-style-1'));
-        console.log($tt('custom-style-2'));
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BalmUI - typography example</title>
+    <link rel="stylesheet" href="/components/core.css" />
+    <style>
+      .mdc-typography--custom-style-1 {
+        color: red;
       }
-    });
 
-    app.use($typography, customTypography);
+      .mdc-typography--custom-style-2 {
+        color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div :class="$tt('custom-style-1')">Custom style 1</div>
+      <div :class="$tt('custom-style-2')">Custom style 2</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
+    <script src="/plugins/typography/index.js"></script>
+    <script>
+      var customTypography = ['custom-style-1', 'custom-style-2'];
+    </script>
+    <script>
+      var app = Vue.createApp({
+        created() {
+          $tt = $typography.useTypography();
 
-    app.mount('#app');
-  </script>
-</body>
+          console.log($tt('custom-style-1'));
+          console.log($tt('custom-style-2'));
+        }
+      });
+
+      app.use($typography, customTypography);
+
+      app.mount('#app');
+    </script>
+  </body>
 </html>

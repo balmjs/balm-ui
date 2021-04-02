@@ -1,68 +1,68 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>BalmUI - dialog example</title>
-  <link rel="stylesheet" href="/components/core.css">
-  <link rel="stylesheet" href="/components/dialog/dialog.css">
-  <link rel="stylesheet" href="/components/button/button.css">
-  <link rel="stylesheet" href="/plugins/alert/alert.css">
-  <link rel="stylesheet" href="/plugins/confirm/confirm.css">
-  <link rel="stylesheet" href="/components/snackbar/snackbar.css">
-</head>
-<body>
-  <div id="app">
-    <ui-button raised @click="open = true">Show Dialog</ui-button>
-    <ui-dialog
-      v-model="open"
-      @close="open = false"
-      @confirm="onConfirm">
-      <ui-dialog-title>Use Google's location service?</ui-dialog-title>
-      <ui-dialog-content>
-        <p>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</p>
-      </ui-dialog-content>
-      <ui-dialog-actions></ui-dialog-actions>
-    </ui-dialog>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
-  <script src="/components/button/index.js"></script>
-  <script src="/components/dialog/index.js"></script>
-  <script src="/plugins/alert/index.js"></script>
-  <script src="/plugins/confirm/index.js"></script>
-  <script src="/plugins/toast/index.js"></script>
-  <script>
-    var app = Vue.createApp({
-      data() {
-        return {
-          open: false
-        }
-      },
-      methods: {
-        onConfirm(result) {
-          // $alert = $alert.useAlert();
-          // $confirm = $confirm.useConfirm();
-          // $toast = $toast.useToast();
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>BalmUI - dialog example</title>
+    <link rel="stylesheet" href="/components/core.css" />
+    <link rel="stylesheet" href="/components/dialog/dialog.css" />
+    <link rel="stylesheet" href="/components/button/button.css" />
+    <link rel="stylesheet" href="/plugins/alert/alert.css" />
+    <link rel="stylesheet" href="/plugins/confirm/confirm.css" />
+    <link rel="stylesheet" href="/components/snackbar/snackbar.css" />
+  </head>
+  <body>
+    <div id="app">
+      <ui-button raised @click="open = true">Show Dialog</ui-button>
+      <ui-dialog v-model="open" @close="open = false" @confirm="onConfirm">
+        <ui-dialog-title>Use Google's location service?</ui-dialog-title>
+        <ui-dialog-content>
+          <p>
+            Let Google help apps determine location. This means sending
+            anonymous location data to Google, even when no apps are running.
+          </p>
+        </ui-dialog-content>
+        <ui-dialog-actions></ui-dialog-actions>
+      </ui-dialog>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
+    <script src="/components/button/index.js"></script>
+    <script src="/components/dialog/index.js"></script>
+    <script src="/plugins/alert/index.js"></script>
+    <script src="/plugins/confirm/index.js"></script>
+    <script src="/plugins/toast/index.js"></script>
+    <script>
+      var app = Vue.createApp({
+        data() {
+          return {
+            open: false
+          };
+        },
+        methods: {
+          onConfirm(result) {
+            // $alert = $alert.useAlert();
+            // $confirm = $confirm.useConfirm();
+            // $toast = $toast.useToast();
 
-          if (result) {
-            console.log('ok');
-            this.$confirm('Do you like BalmUI?').then((result) => {
-              result ? this.$alert('Cool') : this.$toast('Good');
-            })
-          } else {
-            console.log('cancel');
+            if (result) {
+              console.log('ok');
+              this.$confirm('Do you like BalmUI?').then((result) => {
+                result ? this.$alert('Cool') : this.$toast('Good');
+              });
+            } else {
+              console.log('cancel');
+            }
           }
         }
-      }
-    });
+      });
 
-    app.use(UiDialog);
-    app.use(UiButton);
-    app.use($alert);
-    app.use($confirm);
-    app.use($toast);
+      app.use(UiDialog);
+      app.use(UiButton);
+      app.use($alert);
+      app.use($confirm);
+      app.use($toast);
 
-    app.mount('#app');
-  </script>
-</body>
+      app.mount('#app');
+    </script>
+  </body>
 </html>

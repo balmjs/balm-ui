@@ -177,7 +177,7 @@
           v-model="formData.province"
           :options="provinces"
           default-label="Province"
-          @update:modelValue="onChangeProvince($event)"
+          @update:modelValue="onChangeProvince"
         ></ui-select>
 
         <ui-select

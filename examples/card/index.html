@@ -1,59 +1,60 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BalmUI - card example</title>
-  <link rel="stylesheet" href="/components/core.css">
-  <link rel="stylesheet" href="/components/card/card.css">
-  <link rel="stylesheet" href="/components/button/button.css">
-  <link rel="stylesheet" href="/components/icon/icon.css">
-  <link rel="stylesheet" href="/components/icon-button/icon-button.css">
-  <style>
-  .demo-card {
-    max-width: 21.875rem;
-    margin-bottom: 48px;
-  }
-  </style>
-</head>
-<body>
-  <div id="app">
-    <ui-card class="demo-card">
-      <ui-card-content>
-        <header>
-          <h3>Title goes here</h3>
-          <h4>Subtitle here</h4>
-        </header>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-          ea commodo consequat.
-        </p>
-      </ui-card-content>
-      <ui-card-actions>
-        <ui-card-buttons>
-          <ui-button>Action 1</ui-button>
-          <ui-button>Action 2</ui-button>
-        </ui-card-buttons>
-        <ui-card-icons>
-          <ui-icon-button icon="share"></ui-icon-button>
-        </ui-card-icons>
-      </ui-card-actions>
-    </ui-card>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
-  <script src="/components/card/index.js"></script>
-  <script src="/components/button/index.js"></script>
-  <script src="/components/icon-button/index.js"></script>
-  <script>
-    var app = Vue.createApp({});
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BalmUI - card example</title>
+    <link rel="stylesheet" href="/components/core.css" />
+    <link rel="stylesheet" href="/components/card/card.css" />
+    <link rel="stylesheet" href="/components/button/button.css" />
+    <link rel="stylesheet" href="/components/icon/icon.css" />
+    <link rel="stylesheet" href="/components/icon-button/icon-button.css" />
+    <style>
+      .demo-card {
+        max-width: 21.875rem;
+        margin-bottom: 48px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <ui-card class="demo-card">
+        <ui-card-content>
+          <header>
+            <h3>Title goes here</h3>
+            <h4>Subtitle here</h4>
+          </header>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
+          </p>
+        </ui-card-content>
+        <ui-card-actions>
+          <ui-card-buttons>
+            <ui-button>Action 1</ui-button>
+            <ui-button>Action 2</ui-button>
+          </ui-card-buttons>
+          <ui-card-icons>
+            <ui-icon-button icon="share"></ui-icon-button>
+          </ui-card-icons>
+        </ui-card-actions>
+      </ui-card>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
+    <script src="/components/card/index.js"></script>
+    <script src="/components/button/index.js"></script>
+    <script src="/components/icon-button/index.js"></script>
+    <script>
+      var app = Vue.createApp({});
 
-    app.use(UiCard);
-    app.use(UiButton);
-    app.use(UiIconButton);
+      app.use(UiCard);
+      app.use(UiButton);
+      app.use(UiIconButton);
 
-    app.mount('#app');
-  </script>
-</body>
+      app.mount('#app');
+    </script>
+  </body>
 </html>

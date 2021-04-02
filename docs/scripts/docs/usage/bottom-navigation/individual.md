@@ -1,7 +1,7 @@
 ```scss
 @use 'balm-ui/components/core';
-@use 'balm-ui/components/tabs/tabs';
 @use 'balm-ui/components/bottom-navigation/bottom-navigation';
+@use 'balm-ui/components/tabs/tabs';
 @use 'balm-ui/components/icon/icon'; // Optional
 ```
 

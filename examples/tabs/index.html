@@ -1,50 +1,50 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BalmUI - tabs example</title>
-  <link rel="stylesheet" href="/components/core.css">
-  <link rel="stylesheet" href="/components/tabs/tabs.css">
-  <style>
-  .panels {
-    margin-top: 8px;
-    padding: 8px;
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BalmUI - tabs example</title>
+    <link rel="stylesheet" href="/components/core.css" />
+    <link rel="stylesheet" href="/components/tabs/tabs.css" />
+    <style>
+      .panels {
+        margin-top: 8px;
+        padding: 8px;
 
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  </style>
-</head>
-<body>
-  <div id="app">
-    <ui-tabs v-model="active">
-      <ui-tab>Tab One</ui-tab>
-      <ui-tab>Tab Two</ui-tab>
-      <ui-tab>Tab Three</ui-tab>
-    </ui-tabs>
-
-    <ui-panels v-model="active">
-      <ui-panel>Panel One</ui-panel>
-      <ui-panel>Panel Two</ui-panel>
-      <ui-panel>Panel Three</ui-panel>
-    </ui-panels>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
-  <script src="/components/tabs/index.js"></script>
-  <script>
-    var app = Vue.createApp({
-      data() {
-        return {
-          active: 0
-        }
+        border: 1px solid #ccc;
+        border-radius: 4px;
       }
-    });
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <ui-tabs v-model="active">
+        <ui-tab>Tab One</ui-tab>
+        <ui-tab>Tab Two</ui-tab>
+        <ui-tab>Tab Three</ui-tab>
+      </ui-tabs>
 
-    app.use(UiTabs);
+      <ui-panels v-model="active">
+        <ui-panel>Panel One</ui-panel>
+        <ui-panel>Panel Two</ui-panel>
+        <ui-panel>Panel Three</ui-panel>
+      </ui-panels>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
+    <script src="/components/tabs/index.js"></script>
+    <script>
+      var app = Vue.createApp({
+        data() {
+          return {
+            active: 0
+          };
+        }
+      });
 
-    app.mount('#app');
-  </script>
-</body>
+      app.use(UiTabs);
+
+      app.mount('#app');
+    </script>
+  </body>
 </html>

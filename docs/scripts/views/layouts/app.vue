@@ -1,9 +1,9 @@
 <template>
   <div ref="root" class="balmui-container">
     <ui-progress
-      v-if="pageLoading"
+      v-if="pageLoad.loading"
       class="top-loading"
-      :progress="loadingProgress"
+      :progress="pageLoad.progress"
     ></ui-progress>
     <template v-if="noLayout">
       <router-view></router-view>
@@ -29,12 +29,23 @@
       </ui-top-app-bar>
       <!-- Global Message -->
       <ui-banner
-        v-model="showGlobalMessage"
+        v-model="showBanner"
         class="global-message-banner"
-        primary-button-text="Cool"
-        secondary-button-text="Good"
+        centered
+        fixed
+        with-image
+        mobile-stacked
       >
-        Do you like BalmUI
+        <template #image>
+          <ui-icon>celebration</ui-icon>
+        </template>
+        <template v-if="hasNewVersion">New content is available.</template>
+        <template v-else>Welcome to BalmUI!</template>
+        <template #actions>
+          <ui-button outlined @click="balmUI.onHide('showBanner', refresh)">{{
+            hasNewVersion ? 'Refresh' : 'Good Job'
+          }}</ui-button>
+        </template>
       </ui-banner>
       <!-- Content -->
       <div class="balmui-body">
@@ -52,8 +63,14 @@
           >
             <ui-drawer-header>
               <ui-drawer-title>
-                <router-link :to="{ name: 'home' }">
-                  {{ title }}
+                <router-link
+                  v-slot="{ navigate, href }"
+                  :to="{ name: 'home' }"
+                  custom
+                >
+                  <a :href="href" @click="handleMenu($event, navigate)">
+                    BalmUI
+                  </a>
                 </router-link>
               </ui-drawer-title>
               <ui-drawer-subtitle>
@@ -110,6 +127,19 @@
                   </router-link>
                   <ui-list-divider v-else-if="item === '-'"></ui-list-divider>
                   <ui-list-group-subheader
+                    v-else-if="item === 'footer'"
+                    :key="`footer${index}`"
+                  >
+                    Powered by
+                    <a
+                      href="https://balm.js.org/"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      BalmJS
+                    </a>
+                  </ui-list-group-subheader>
+                  <ui-list-group-subheader
                     v-else
                     :class="$theme.getTextClass('primary', $store.theme)"
                   >
@@ -140,7 +170,7 @@
           ]"
         >
           <ui-spinner
-            v-if="pageLoading"
+            v-if="pageLoad.loading"
             class="page-loading"
             active
             four-colored
@@ -176,10 +206,13 @@ const state = reactive({
   bodyEl: document.documentElement || document.body,
   isWideScreen: true,
   drawerType: 'permanent',
-  pageLoading: false,
-  loadingProgress: 0,
-  loadingTimer: null,
-  showGlobalMessage: false
+  pageLoad: {
+    loading: false,
+    progress: 0,
+    timer: null
+  },
+  showBanner: false,
+  hasNewVersion: false
 });
 
 function init() {
@@ -189,14 +222,14 @@ function init() {
 }
 
 function loaded() {
-  state.loadingProgress = 1;
-  clearInterval(state.loadingTimer);
+  state.pageLoad.progress = 1;
+  clearInterval(state.pageLoad.timer);
 }
 
 function loading() {
-  if (state.loadingProgress < 1) {
-    state.loadingProgress += 0.2;
-    state.loadingProgress = +state.loadingProgress.toFixed(2);
+  if (state.pageLoad.progress < 1) {
+    state.pageLoad.progress += 0.2;
+    state.pageLoad.progress = +state.pageLoad.progress.toFixed(2);
   } else {
     loaded();
   }
@@ -224,29 +257,36 @@ export default {
 
     store.isFirstLoad = computed(() => route.name == null);
 
+    const refresh = () => {
+      if (state.hasNewVersion) {
+        store.serviceWorker.postMessage({ action: 'skipWaiting' });
+        state.hasNewVersion = false;
+      }
+    };
+
     onMounted(() => {
       root.value.parentNode.removeAttribute('class');
 
       bus.on('page-loading', () => {
-        state.pageLoading = true;
+        state.pageLoad.loading = true;
 
-        state.loadingProgress = 0;
-        clearInterval(state.loadingTimer);
+        state.pageLoad.progress = 0;
+        clearInterval(state.pageLoad.timer);
 
-        state.loadingTimer = setInterval(loading, lazyLoadedTime / 5);
+        state.pageLoad.timer = setInterval(loading, lazyLoadedTime / 5);
       });
 
       bus.on('page-loaded', () => {
         loaded();
 
         setTimeout(() => {
-          state.pageLoading = false;
+          state.pageLoad.loading = false;
           state.bodyEl.scrollTop = 0;
         }, 1);
       });
 
-      bus.on('global-message', (message) => {
-        state.showGlobalMessage = true;
+      bus.on('global-message', (show) => {
+        state.showBanner = show;
       });
 
       bus.on('switch-lang', (lang) => {
@@ -257,11 +297,16 @@ export default {
       //   console.log('off-loading');
       // });
 
+      bus.on('refresh', () => {
+        state.hasNewVersion = true;
+        state.showBanner = true;
+      });
+
       init();
       window.addEventListener('balmResize', init);
 
       if (store.isFirstLoad) {
-        state.pageLoading = false;
+        state.pageLoad.loading = false;
         state.bodyEl.scrollTop = 0;
       }
 
@@ -283,7 +328,8 @@ export default {
       noLayout,
       balmUI,
       t,
-      locale
+      locale,
+      refresh
     };
   },
   data() {

@@ -44,10 +44,6 @@ class Emotion {
         break;
       }
     }
-
-    // console.log('emojiTypes', emojiTypes);
-    // console.log('emojiData', emojiData);
-    // console.log('emojiMap', emojiMap);
   }
 
   static getTypes() {

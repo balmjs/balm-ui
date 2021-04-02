@@ -31,23 +31,23 @@
 
 ### Events
 
-| Name                | Type                             | Description                      |
-| ------------------- | -------------------------------- | -------------------------------- |
-| `update:modelValue` | `function(value: number\|array)` | Emits when the chips is changed. |
+| Name                | Type                                     | Description                      |
+| ------------------- | ---------------------------------------- | -------------------------------- |
+| `update:modelValue` | `function(selectedIndex: number\|array)` | Emits when the chips is changed. |
 
 > NOTE: If you are not using `v-model`, you should listen for the chips using `@update:modelValue` and update the `modelValue` prop.
 
 - Automatic
 
   ```html
-  <ui-chips v-model="value"></ui-chips>
+  <ui-chips v-model="selectedIndex"></ui-chips>
   ```
 
 - Manual
 
   ```html
   <ui-chips
-    :model-value="value"
-    @update:modelValue="balmUI.onChange('value', $event)"
+    :model-value="selectedIndex"
+    @update:modelValue="balmUI.onChange('selectedIndex', $event)"
   ></ui-chips>
   ```

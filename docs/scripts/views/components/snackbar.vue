@@ -82,6 +82,11 @@ export default {
       ...toRefs(state)
     };
   },
+  mounted() {
+    this.$nextTick(() => {
+      this.$refs.slider.recompute();
+    });
+  },
   methods: {
     actionHandler() {
       console.log('gg');

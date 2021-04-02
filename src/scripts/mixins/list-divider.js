@@ -13,9 +13,9 @@ export default {
   computed: {
     className() {
       return {
-        'mdc-list-divider': true,
-        'mdc-list-divider--padded': this.padded,
-        'mdc-list-divider--inset': this.inset
+        'mdc-deprecated-list-divider': true,
+        'mdc-deprecated-list-divider--padded': this.padded,
+        'mdc-deprecated-list-divider--inset': this.inset
       };
     }
   }

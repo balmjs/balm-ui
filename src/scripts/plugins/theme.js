@@ -239,11 +239,11 @@ function install(app) {
   app.provide('theme', theme);
 }
 
-const BalmUI_ThemePlugin = {
+const $theme = {
   install
 };
 
 const useTheme = () => theme;
 
-export default BalmUI_ThemePlugin;
+export default $theme;
 export { install, useTheme };

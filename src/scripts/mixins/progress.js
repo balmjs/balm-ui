@@ -1,5 +1,5 @@
 import domMixin from './dom';
-import { UI_PROGRESS } from '../components/progress-indicators/constants';
+import { UI_PROGRESS } from '../components/progress/constants';
 
 export default {
   mixins: [domMixin],

@@ -48,7 +48,7 @@
               <span class="actions">
                 <ui-fab
                   v-if="!file.uploaded"
-                  icon="publish"
+                  icon="file_upload"
                   mini
                   @click="upload(file)"
                 ></ui-fab>
@@ -66,7 +66,7 @@
         </transition-group>
         <ui-button raised @click="uploadAllFiles">
           <template #before="{ iconClass }">
-            <ui-icon :class="iconClass">publish</ui-icon>
+            <ui-icon :class="iconClass">file_upload</ui-icon>
           </template>
           Upload All
         </ui-button>

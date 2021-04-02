@@ -1,7 +1,5 @@
 ```scss
 @use 'balm-ui/dist/balm-ui';
-@use 'balm-ui/components/editor/theme/snow';
-@use 'balm-ui/components/editor/theme/bubble'; // Optional
 ```
 
 ```js

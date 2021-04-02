@@ -4,22 +4,28 @@
 
 ### Props
 
-| Name                     | Type            | Default                                 | Description                                                           |
-| ------------------------ | --------------- | --------------------------------------- | --------------------------------------------------------------------- |
-| `modelValue` (`v-model`) | string          | `''`                                    | 富文本值                                                              |
-| `options`                | object          | `{}`                                    | 详见 [Quill options](https://quilljs.com/docs/configuration/#options) |
-| `toolbar`                | array, string   | null                                    | 富文本工具栏配置（自定义或 `'full'`)                                  |
-| `placeholder`            | string          | `null`                                  | 当编辑器为空时显示的占位符文本                                        |
-| `readonly`               | boolean         | `false`                                 | 只读模式                                                              |
-| `theme`                  | string          | `'snow'`                                | 主题样式                                                              |
-| `toolbarIcons`           | object          | `{}`                                    | 自定义工具栏图标                                                      |
-| `toolbarTips`            | object          | `{}`                                    | 自定义工具栏图标提示文本                                              |
-| `toolbarOptions`         | object          | `{ font: [], size: [], lineheight:[] }` | 自定义工具栏的字体，文字大小和行高                                    |
-| `toolbarHandlers`        | object          | `{}`                                    | 自定义工具栏事件处理                                                  |
-| `customImageHandler`     | boolean         | `false`                                 | 启用自定义图片事件处理                                                |
-| `emotions`               | array           | `[]`                                    | 表情扩展。支持 `emoji` 和 `image`                                     |
-| `withCounter`            | boolean         | `false`                                 | 启用内部计数器                                                        |
-| `extension`              | `false`, object | `false`                                 | 自定义 Quill 扩展                                                     |
+| Name                     | Type            | Default                                 | Description                                                           | Version |
+| ------------------------ | --------------- | --------------------------------------- | --------------------------------------------------------------------- | ------- |
+| `modelValue` (`v-model`) | string          | `''`                                    | 富文本值                                                              |         |
+| `options`                | object          | `{}`                                    | 详见 [Quill options](https://quilljs.com/docs/configuration/#options) |         |
+| `toolbar`                | array, string   | null                                    | 富文本工具栏配置（自定义或 `'full'`)                                  |         |
+| `placeholder`            | string          | `null`                                  | 当编辑器为空时显示的占位符文本                                        |         |
+| `readonly`               | boolean         | `false`                                 | 只读模式                                                              |         |
+| `theme`                  | string          | `'snow'`                                | 主题样式                                                              |         |
+| `toolbarIcons`           | object          | `{}`                                    | 自定义工具栏图标                                                      |         |
+| `toolbarTips`            | object          | `{}`                                    | 自定义工具栏图标提示文本                                              | 9.2.0   |
+| `toolbarOptions`         | object          | `{ font: [], size: [], lineheight:[] }` | 自定义工具栏的字体，文字大小和行高                                    |         |
+| `toolbarHandlers`        | object          | `{}`                                    | 自定义工具栏事件处理                                                  |         |
+| `customImageHandler`     | boolean         | `false`                                 | 启用自定义图片事件处理                                                |         |
+| `emotions`               | array           | `[]`                                    | 表情扩展。支持 `emoji` 和 `image`                                     |         |
+| `withCounter`            | boolean         | `false`                                 | 启用内部计数器                                                        |         |
+| `extension`              | `false`, object | `false`                                 | 自定义 Quill 扩展                                                     |         |
+
+```ts
+interface Editor {
+  theme: 'bubble' | 'snow';
+}
+```
 
 ```ts
 interface Editor {

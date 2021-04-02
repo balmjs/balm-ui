@@ -1,66 +1,66 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BalmUI - menu example</title>
-  <link rel="stylesheet" href="/components/core.css">
-  <link rel="stylesheet" href="/components/button/button.css">
-  <link rel="stylesheet" href="/components/menu/menu.css">
-  <link rel="stylesheet" href="/components/list/list.css">
-</head>
-<body>
-  <div id="app">
-    <ui-menu-anchor>
-      <ui-button raised @click="openMenu">Reveal Menu</ui-button>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BalmUI - menu example</title>
+    <link rel="stylesheet" href="/components/core.css" />
+    <link rel="stylesheet" href="/components/button/button.css" />
+    <link rel="stylesheet" href="/components/menu/menu.css" />
+    <link rel="stylesheet" href="/components/list/list.css" />
+  </head>
+  <body>
+    <div id="app">
+      <ui-menu-anchor>
+        <ui-button raised @click="openMenu">Reveal Menu</ui-button>
 
-      <ui-menu v-model="open"
-        @selected="onSelected"
-        @cancel="onCancel">
-        <ui-menuitem v-for="(item, index) in menu"
-          :key="index"
-          :item="{ value: item }">
-          {{ item }}
-        </ui-menuitem>
-        <ui-menuitem-divider></ui-menuitem-divider>
-        <ui-menuitem :item="{ value: 'Save As' }">Save As...</ui-menuitem>
-      </ui-menu>
-    </ui-menu-anchor>
-    <p>Selected: {{ selected }}</p>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
-  <script src="/components/button/index.js"></script>
-  <script src="/components/menu/index.js"></script>
-  <script>
-    var app = Vue.createApp({
-      data: function() {
-        return {
-          open: false,
-          menu: ['Back', 'Forward', 'Reload'],
-          selected: {}
-        }
-      },
-      methods: {
-        openMenu: function() {
-          this.open = true;
+        <ui-menu v-model="open" @selected="onSelected" @cancel="onCancel">
+          <ui-menuitem
+            v-for="(item, index) in menu"
+            :key="index"
+            :item="{ value: item }"
+          >
+            {{ item }}
+          </ui-menuitem>
+          <ui-menuitem-divider></ui-menuitem-divider>
+          <ui-menuitem :item="{ value: 'Save As' }">Save As...</ui-menuitem>
+        </ui-menu>
+      </ui-menu-anchor>
+      <p>Selected: {{ selected }}</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
+    <script src="/components/button/index.js"></script>
+    <script src="/components/menu/index.js"></script>
+    <script>
+      var app = Vue.createApp({
+        data: function () {
+          return {
+            open: false,
+            menu: ['Back', 'Forward', 'Reload'],
+            selected: {}
+          };
         },
-        onSelected: function(data) {
-          console.log('onSelected', data);
-          this.selected = data;
-          this.open = false;
-        },
-        onCancel: function() {
-          console.log('onCancel');
-          this.open = false;
+        methods: {
+          openMenu: function () {
+            this.open = true;
+          },
+          onSelected: function (data) {
+            console.log('onSelected', data);
+            this.selected = data;
+            this.open = false;
+          },
+          onCancel: function () {
+            console.log('onCancel');
+            this.open = false;
+          }
         }
-      }
-    });
+      });
 
-    app.use(UiButton);
-    app.use(UiMenu);
+      app.use(UiButton);
+      app.use(UiMenu);
 
-    app.mount('#app');
-  </script>
-</body>
+      app.mount('#app');
+    </script>
+  </body>
 </html>

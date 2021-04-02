@@ -4,29 +4,32 @@
 
 ### Props
 
-| Name                     | Type    | Default | Description        |
-| ------------------------ | ------- | ------- | ------------------ |
-| `modelValue` (`v-model`) | boolean | `false` | 顶部消息栏显示状态 |
-| `message`                | string  | `''`    | 消息文本           |
-| `primaryButtonText`      | boolean | `'OK'`  | 主按钮文本         |
-| `secondaryButtonText`    | boolean | `''`    | 辅按钮文本         |
+| Name                  | Type    | Default | Description                                                                  | Version |
+| --------------------- | ------- | ------- | ---------------------------------------------------------------------------- | ------- |
+| `open` (`v-model`)    | boolean | `false` | 横幅显示状态                                                                 |         |
+| `centered`            | boolean | `false` | 内容居中显示。默认居左。                                                     | 9.20.0  |
+| `fixed`               | boolean | `false` | 在顶部导航栏下方使用横幅时，横幅应固定在屏幕顶部。                           | 9.20.0  |
+| `withImage`           | boolean | `false` | 图片可以帮助传达横幅广告的信息。                                             | 9.20.0  |
+| `mobileStacked`       | boolean | `false` | 带有长文字的横幅在移动视图中，应将其操作区域放置在文字下方，而不是并排放置。 | 9.20.0  |
+| `primaryButtonText`   | boolean | `'OK'`  | 主按钮文本                                                                   |         |
+| `secondaryButtonText` | boolean | `''`    | 辅按钮文本                                                                   |         |
 
 ### Slots
 
-| Name      | Props        | Description                     |
-| --------- | ------------ | ------------------------------- |
-| `default` |              | default 插槽包含消息文本及 HTML |
-| `image`   | `imageClass` | 自定义图片区域                  |
-| `actions` |              | 自定义动作按钮                  |
+| Name      | Props | Description                     |
+| --------- | ----- | ------------------------------- |
+| `default` |       | default 插槽包含消息文本及 HTML |
+| `image`   |       | 自定义图标或图片区域            |
+| `actions` |       | 自定义动作按钮                  |
 
 ### Events
 
-| Name                | Type                       | Description          |
-| ------------------- | -------------------------- | -------------------- |
-| `update:modelValue` | `function(open: boolean)`  | 顶部消息栏隐藏时触发 |
-| `closed`            | `function(reason: string)` | 顶部消息栏关闭时触发 |
+| Name                | Type                       | Description    |
+| ------------------- | -------------------------- | -------------- |
+| `update:modelValue` | `function(open: boolean)`  | 横幅隐藏时触发 |
+| `closed`            | `function(reason: string)` | 横幅关闭时触发 |
 
-> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@update:modelValue` 监听顶部消息栏显示状态并更新 `modelValue` 属性
+> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@update:modelValue` 监听横幅显示状态并更新 `modelValue` 属性
 
 - 自动
 

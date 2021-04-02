@@ -1,0 +1,117 @@
+<template>
+  <mdc-checkbox :class="className">
+    <input
+      :id="inputId"
+      v-model="selectedValue"
+      type="checkbox"
+      class="mdc-checkbox__native-control"
+      :name="name"
+      :value="value"
+      :disabled="disabled"
+      :data-indeterminate="indeterminate"
+      v-bind="attrs"
+      @change="handleChange"
+    />
+  </mdc-checkbox>
+</template>
+
+<script>
+import { MDCCheckbox } from '../../../material-components-web/checkbox';
+import MdcCheckbox from './mdc-checkbox.vue';
+import domMixin from '../../mixins/dom';
+import inputMixin from '../../mixins/input';
+
+// Define checkbox constants
+const UI_CHECKBOX = {
+  cssClasses: {
+    touch: 'mdc-checkbox--touch'
+  },
+  EVENT: {
+    CHANGE: 'update:modelValue'
+  }
+};
+
+export default {
+  name: 'UiCheckbox',
+  components: {
+    MdcCheckbox
+  },
+  mixins: [domMixin, inputMixin],
+  props: {
+    // States
+    modelValue: {
+      type: null, // NOTE: [Boolean, Array] only
+      default: false
+    },
+    indeterminate: {
+      type: Boolean,
+      default: false
+    },
+    // <input type="checkbox"> attributes
+    name: {
+      type: String,
+      default: ''
+    },
+    value: {
+      type: [String, Number],
+      default: ''
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    }
+  },
+  emits: [UI_CHECKBOX.EVENT.CHANGE],
+  data() {
+    return {
+      $checkbox: null,
+      selectedValue: this._setSelectedValue(this.modelValue)
+    };
+  },
+  computed: {
+    className() {
+      const isAccessible =
+        this.el && this.el.classList.contains(UI_CHECKBOX.cssClasses.touch);
+
+      return {
+        'mdc-checkbox--disabled': this.disabled,
+        // Accessibility
+        'mdc-checkbox--touch': isAccessible
+      };
+    }
+  },
+  watch: {
+    modelValue(val) {
+      this.selectedValue = this._setSelectedValue(val);
+    },
+    indeterminate(val) {
+      if (this.$checkbox) {
+        this.$checkbox.indeterminate = val;
+      }
+    },
+    disabled(val) {
+      if (this.$checkbox) {
+        this.$checkbox.disabled = val;
+      }
+    }
+  },
+  mounted() {
+    this.$checkbox = new MDCCheckbox(this.el);
+    this.$checkbox.indeterminate = this.indeterminate;
+
+    this.$nextTick(() => {
+      if (this.$parent.$formField) {
+        this.$parent.$formField.input = this.$checkbox;
+      }
+    });
+  },
+  methods: {
+    _setSelectedValue(value) {
+      return Array.isArray(value) ? [...value] : !!value;
+    },
+    handleChange() {
+      this.$emit(UI_CHECKBOX.EVENT.CHANGE, this.selectedValue);
+    }
+  }
+};
+</script>

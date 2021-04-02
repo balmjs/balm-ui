@@ -43,7 +43,7 @@
 <script>
 import domMixin from '../../mixins/dom';
 import materialIconMixin from '../../mixins/material-icon';
-import UI_GLOBAL from '../../config/constants';
+import UI_GLOBAL from '../icon/constants';
 
 // Define chip constants
 const UI_CHIP = {

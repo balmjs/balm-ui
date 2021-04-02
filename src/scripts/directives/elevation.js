@@ -58,7 +58,7 @@ const updateElevation = (method, el, { value, modifiers }) => {
   }
 };
 
-const BalmUI_ElevationDirective = {
+const vShadow = {
   name: 'shadow',
   beforeMount(el, binding) {
     updateElevation('add', el, binding);
@@ -68,4 +68,4 @@ const BalmUI_ElevationDirective = {
   }
 };
 
-export default BalmUI_ElevationDirective;
+export default vShadow;

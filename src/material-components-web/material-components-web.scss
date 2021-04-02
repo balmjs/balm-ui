@@ -24,7 +24,7 @@
 @use './button/mdc-button';
 @use './card/mdc-card';
 @use './checkbox/mdc-checkbox';
-@use './chips/mdc-chips';
+@use './chips/deprecated/mdc-chips';
 @use './circular-progress/mdc-circular-progress';
 // Select's styles must be emitted before datatable's due to equal specificity.
 @use './select/mdc-select';

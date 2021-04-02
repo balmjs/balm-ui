@@ -71,6 +71,7 @@ export var strings = {
     SUPPRESS_DEFAULT_PRESS_SELECTOR: [
         'textarea',
         '.mdc-menu .mdc-list-item',
+        '.mdc-menu .mdc-deprecated-list-item',
     ].join(', '),
     SURFACE_SELECTOR: '.mdc-dialog__surface',
 };

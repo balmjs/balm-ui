@@ -20,5 +20,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-export * from '../deprecated/chip-set/constants';
+/**
+ * Events provides the named constants for strings used by the foundation.
+ */
+export var Attributes;
+(function (Attributes) {
+    Attributes["ARIA_MULTISELECTABLE"] = "aria-multiselectable";
+})(Attributes || (Attributes = {}));
+/**
+ * CssClasses provides the named constants for class names.
+ */
+export var CssClasses;
+(function (CssClasses) {
+    CssClasses["CHIP"] = "mdc-evolution-chip";
+})(CssClasses || (CssClasses = {}));
+/**
+ * Events provides the constants for emitted events.
+ */
+export var Events;
+(function (Events) {
+    Events["INTERACTION"] = "MDCChipSet:interaction";
+    Events["REMOVAL"] = "MDCChipSet:removal";
+    Events["SELECTION"] = "MDCChipSet:selection";
+})(Events || (Events = {}));
 //# sourceMappingURL=constants.js.map

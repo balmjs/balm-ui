@@ -31,6 +31,7 @@ const setPropsInMixins = ({
 }: CommonPropsObject) => {
   if (componentMixins.length) {
     let i = componentMixins.length;
+
     while (i--) {
       if (
         componentMixins[i].props &&
@@ -48,7 +49,7 @@ const setPropsInMixins = ({
 };
 
 const configure = (Component: VueComponent, props: any) => {
-  Object.keys(props).forEach((propName) => {
+  for (const propName of Object.keys(props)) {
     if (Component.props) {
       if (Component.props[propName] === undefined) {
         // Overwrite props in mixins
@@ -58,7 +59,7 @@ const configure = (Component: VueComponent, props: any) => {
           props
         });
       } else {
-        // Overwrite props
+        // Overwrite props in component
         setPropsDefaultValue({
           componentProps: Component.props,
           propName,
@@ -73,7 +74,7 @@ const configure = (Component: VueComponent, props: any) => {
         props
       });
     }
-  });
+  }
 };
 
 export default configure;

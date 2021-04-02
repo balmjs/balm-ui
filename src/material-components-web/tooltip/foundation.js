@@ -50,6 +50,8 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         _this.frameId = null;
         _this.hideTimeout = null;
         _this.showTimeout = null;
+        _this.addAncestorScrollEventListeners = new Array();
+        _this.removeAncestorScrollEventListeners = new Array();
         _this.animFrame = new AnimationFrame();
         _this.anchorBlurHandler = function (evt) {
             _this.handleAnchorBlur(evt);
@@ -283,6 +285,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         });
     };
     MDCTooltipFoundation.prototype.show = function () {
+        var e_1, _a;
         var _this = this;
         this.clearHideTimeout();
         this.clearShowTimeout();
@@ -317,6 +320,20 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         this.adapter.registerDocumentEventHandler('keydown', this.documentKeydownHandler);
         this.adapter.registerWindowEventHandler('scroll', this.windowScrollHandler);
         this.adapter.registerWindowEventHandler('resize', this.windowResizeHandler);
+        try {
+            // Register any additional scroll handlers
+            for (var _b = __values(this.addAncestorScrollEventListeners), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var fn = _c.value;
+                fn();
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
         this.frameId = requestAnimationFrame(function () {
             _this.clearAllAnimationClasses();
             _this.adapter.addClass(SHOWN);
@@ -324,6 +341,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         });
     };
     MDCTooltipFoundation.prototype.hide = function () {
+        var e_2, _a;
         this.clearHideTimeout();
         this.clearShowTimeout();
         if (!this.tooltipShown) {
@@ -354,6 +372,20 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         this.adapter.deregisterWindowEventHandler('scroll', this.windowScrollHandler);
         this.adapter.deregisterWindowEventHandler('resize', this.windowResizeHandler);
         this.adapter.deregisterWindowEventHandler('contextmenu', this.preventContextMenuOnLongTouch);
+        try {
+            // Deregister any additional scroll handlers
+            for (var _b = __values(this.removeAncestorScrollEventListeners), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var fn = _c.value;
+                fn();
+            }
+        }
+        catch (e_2_1) { e_2 = { error: e_2_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_2) throw e_2.error; }
+        }
     };
     MDCTooltipFoundation.prototype.handleTransitionEnd = function () {
         var isHidingTooltip = this.adapter.hasClass(HIDE);
@@ -549,7 +581,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
      * contains values that keep the tooltip within the viewport.
      */
     MDCTooltipFoundation.prototype.determineValidPositionOptions = function () {
-        var e_1, _a;
+        var e_3, _a;
         var positions = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             positions[_i] = arguments[_i];
@@ -567,12 +599,12 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                 }
             }
         }
-        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        catch (e_3_1) { e_3 = { error: e_3_1 }; }
         finally {
             try {
                 if (positions_1_1 && !positions_1_1.done && (_a = positions_1.return)) _a.call(positions_1);
             }
-            finally { if (e_1) throw e_1.error; }
+            finally { if (e_3) throw e_3.error; }
         }
         return posWithinThreshold.size ? posWithinThreshold : posWithinViewport;
     };
@@ -682,7 +714,30 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             this.hideTimeout = null;
         }
     };
+    /**
+     * Method that allows user to specify additional elements that should have a
+     * scroll event listener attached to it. This should be used in instances
+     * where the anchor element is placed inside a scrollable container, and will
+     * ensure that the tooltip will stay attached to the anchor on scroll.
+     */
+    MDCTooltipFoundation.prototype.attachScrollHandler = function (addEventListenerFn) {
+        var _this = this;
+        this.addAncestorScrollEventListeners.push(function () {
+            addEventListenerFn('scroll', _this.windowScrollHandler);
+        });
+    };
+    /**
+     * Must be used in conjunction with #attachScrollHandler. Removes the scroll
+     * event handler from elements on the page.
+     */
+    MDCTooltipFoundation.prototype.removeScrollHandler = function (removeEventHandlerFn) {
+        var _this = this;
+        this.removeAncestorScrollEventListeners.push(function () {
+            removeEventHandlerFn('scroll', _this.windowScrollHandler);
+        });
+    };
     MDCTooltipFoundation.prototype.destroy = function () {
+        var e_4, _a;
         if (this.frameId) {
             cancelAnimationFrame(this.frameId);
             this.frameId = null;
@@ -705,6 +760,19 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         this.adapter.deregisterDocumentEventHandler('keydown', this.documentKeydownHandler);
         this.adapter.deregisterWindowEventHandler('scroll', this.windowScrollHandler);
         this.adapter.deregisterWindowEventHandler('resize', this.windowResizeHandler);
+        try {
+            for (var _b = __values(this.removeAncestorScrollEventListeners), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var fn = _c.value;
+                fn();
+            }
+        }
+        catch (e_4_1) { e_4 = { error: e_4_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_4) throw e_4.error; }
+        }
         this.animFrame.cancelAll();
     };
     return MDCTooltipFoundation;

@@ -111,12 +111,12 @@ function install(app) {
   app.provide('throttle', throttle);
 }
 
-const BalmUI_EventPlugin = {
+const $event = {
   install
 };
 
 const useEvent = () => new UiEvent();
 const useBus = () => bus;
 
-export default BalmUI_EventPlugin;
+export default $event;
 export { install, useEvent, useBus };

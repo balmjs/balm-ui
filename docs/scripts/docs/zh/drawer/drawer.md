@@ -17,7 +17,7 @@
 
 | Name                     | Type           | Default | Description                                                                       |
 | ------------------------ | -------------- | ------- | --------------------------------------------------------------------------------- |
-| `type`                   | string, number | `0`     | 抽屉式导航类型                                                                    |
+| `type`                   | string, number | `0`     | 侧边导航栏类型                                                                    |
 | `navId`                  | string         | `null`  | 外部菜单按钮选择器（请参考 [top app bar](/#/layout/top-app-bar) 的 `navId` 属性） |
 | `modelValue` (`v-model`) | boolean        | `false` | 导航切换的状态                                                                    |
 | `viewportHeight`         | boolean        | `false` | 设置视窗全高度（`100vh`）                                                         |
@@ -39,7 +39,7 @@
 | ----- | ------------------------- | -------------- |
 | `nav` | `function(open: boolean)` | 导航开关时触发 |
 
-> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@nav` 监听抽屉式导航切换状态并更新 `modelValue` 属性
+> 提示：如果你不使用 `v-model` 绑定数据，你应该使用 `@nav` 监听侧边导航栏切换状态并更新 `modelValue` 属性
 
 - 自动
 

@@ -1,10 +1,13 @@
-import { ref } from 'vue';
+import { reactive, toRefs } from 'vue';
 
-const isFirstLoad = ref(true);
+const state = reactive({
+  serviceWorker: null,
+  isFirstLoad: true
+});
 
 const usePageStore = () => {
   return {
-    isFirstLoad
+    ...toRefs(state)
   };
 };
 

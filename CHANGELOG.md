@@ -3,6 +3,29 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.20.0 / 2021-04-02
+
+### Features
+
+- docs: update material icons demo
+- `$toast`: update css for mobile
+- update `11.0.0-canary.e7202cb57.0`
+
+### Code Refactoring
+
+- refactor BalmUI source code structure
+- `<ui-banner>`: add prop `centered`, `fixed`, `withImage`, `mobileStacked`
+
+### Bug Fixes
+
+- `<ui-textfield>`: fix sync counter bug
+- fix disabled bug for all data input components
+- fix overwrite components' props bug
+
+### BREAKING CHANGES
+
+- `<ui-banner>`: remove prop message
+
 ## v9.19.0 / 2021-03-26
 
 ### Features

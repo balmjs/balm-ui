@@ -21,4 +21,5 @@
  * THE SOFTWARE.
  */
 export {};
+// tslint:enable:no-any
 //# sourceMappingURL=types.js.map

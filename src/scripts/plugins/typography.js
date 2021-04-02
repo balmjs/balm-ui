@@ -50,11 +50,11 @@ function install(app, customStyles = []) {
   app.provide('tt', tt);
 }
 
-const BalmUI_TypographyPlugin = {
+const $typography = {
   install
 };
 
 const useTypography = () => tt;
 
-export default BalmUI_TypographyPlugin;
+export default $typography;
 export { install, useTypography };

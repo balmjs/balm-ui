@@ -9,7 +9,7 @@
   ```html
   <ui-top-app-bar>...</ui-top-app-bar>
   <ui-banner
-    v-model="showGlobalMessage"
+    v-model="showBanner"
     class="global-message-banner"
     primary-button-text="Cool"
     secondary-button-text="Good"
@@ -23,12 +23,12 @@
   export default {
     data() {
       return {
-        showGlobalMessage: false
+        showBanner: false
       };
     },
     mounted() {
-      this.$bus.on('global-message', (message) => {
-        this.showGlobalMessage = true;
+      this.$bus.on('global-message', () => {
+        this.showBanner = true;
       });
     }
   };

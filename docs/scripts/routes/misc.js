@@ -3,6 +3,7 @@ const Ripple = () => import('@/views/directives/ripple');
 const Elevation = () => import('@/views/directives/elevation');
 const Anchor = () => import('@/views/directives/anchor');
 const Copy = () => import('@/views/directives/copy');
+const Debounce = () => import('@/views/directives/debounce');
 
 export default [
   {
@@ -29,5 +30,10 @@ export default [
     path: 'copy',
     name: 'misc.copy',
     component: Copy
+  },
+  {
+    path: 'debounce',
+    name: 'misc.debounce',
+    component: Debounce
   }
 ];

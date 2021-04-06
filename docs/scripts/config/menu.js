@@ -290,6 +290,11 @@ const MATERIAL_COMPONENTS = [
         icon: 'content_copy',
         name: 'copy',
         plus: true
+      },
+      {
+        icon: 'mouse',
+        name: 'debounce',
+        plus: true
       }
     ]
   },

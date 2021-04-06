@@ -71,6 +71,7 @@
     "elevation": "Elevation",
     "anchor": "Anchor",
     "copy": "Copy",
+    "debounce": "Debounce",
     "store": "Store",
     "utils": "Utils"
   },

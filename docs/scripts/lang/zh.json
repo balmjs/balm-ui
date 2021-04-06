@@ -71,6 +71,7 @@
     "elevation": "层级阴影",
     "anchor": "锚点",
     "copy": "拷贝",
+    "debounce": "防抖",
     "store": "状态管理",
     "utils": "常用工具库"
   },

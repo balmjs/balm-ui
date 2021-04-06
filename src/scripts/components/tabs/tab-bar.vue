@@ -37,30 +37,37 @@ export default {
     this.init();
   },
   updated() {
-    if (!this.$tabBar) {
+    if (
+      this.$slots.default &&
+      this.$slots.default.length !== this.tabList.length
+    ) {
+      if (this.$tabBar) {
+        this.$tabBar.unlisten(
+          strings.TAB_ACTIVATED_EVENT,
+          this._tabActivatedEvent
+        );
+      }
+
       this.init();
     }
   },
   methods: {
     _activateTab(active = this.active) {
-      if (this.$tabBar) {
-        const activeTabIndex =
-          active > -1 && active < this.tabList.length ? active : 0;
-        this.$tabBar.activateTab(activeTabIndex);
-      }
+      const activeTabIndex =
+        active > -1 && active < this.tabList.length ? active : 0;
+      this.$tabBar.activateTab(activeTabIndex);
+    },
+    _tabActivatedEvent({ detail }) {
+      this.handleChange(detail.index);
     },
     init() {
       this.$tabBar = new MDCTabBar(this.$el);
 
+      this.$tabBar.listen(strings.TAB_ACTIVATED_EVENT, this._tabActivatedEvent);
+
       this.tabList = this.$tabBar.tabList_;
       if (this.tabList.length) {
         this._activateTab();
-
-        this.$tabBar.listen(strings.TAB_ACTIVATED_EVENT, ({ detail }) => {
-          this.handleChange(detail.index);
-        });
-      } else {
-        this.$tabBar = null;
       }
     }
   }

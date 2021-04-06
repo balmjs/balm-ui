@@ -2,6 +2,12 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.28.2 / 2021-04-06
+
+### Bug Fixes
+
+- `<ui-tabs>`, `<ui-tab-bar>`: fix dynamic tabs bug
+
 ## v8.28.0 / 2021-04-01
 
 ### Features

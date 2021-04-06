@@ -72,6 +72,7 @@
     "anchor": "Anchor",
     "copy": "Copy",
     "debounce": "Debounce",
+    "longpress": "Long Press",
     "store": "Store",
     "utils": "Utils"
   },

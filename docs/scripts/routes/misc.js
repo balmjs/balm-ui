@@ -4,6 +4,7 @@ const Elevation = () => import('@/views/directives/elevation');
 const Anchor = () => import('@/views/directives/anchor');
 const Copy = () => import('@/views/directives/copy');
 const Debounce = () => import('@/views/directives/debounce');
+const Longpress = () => import('@/views/directives/longpress');
 
 export default [
   {
@@ -35,5 +36,10 @@ export default [
     path: 'debounce',
     name: 'misc.debounce',
     component: Debounce
+  },
+  {
+    path: 'longpress',
+    name: 'misc.longpress',
+    component: Longpress
   }
 ];

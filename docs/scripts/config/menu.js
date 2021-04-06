@@ -295,6 +295,11 @@ const MATERIAL_COMPONENTS = [
         icon: 'mouse',
         name: 'debounce',
         plus: true
+      },
+      {
+        icon: 'touch_app',
+        name: 'longpress',
+        plus: true
       }
     ]
   },

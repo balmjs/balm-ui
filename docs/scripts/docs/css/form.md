@@ -1,5 +1,5 @@
 ```scss
-@use 'balm-ui/components/form-field' with (
+@use 'balm-ui/components/form' with (
   $form-margin: 0,
   $form-padding: 0,
   $form-border: 0,

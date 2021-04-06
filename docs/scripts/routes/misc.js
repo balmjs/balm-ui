@@ -2,6 +2,7 @@ const Event = () => import('@/views/plugins/event');
 const Ripple = () => import('@/views/directives/ripple');
 const Elevation = () => import('@/views/directives/elevation');
 const Anchor = () => import('@/views/directives/anchor');
+const Copy = () => import('@/views/directives/copy');
 
 export default [
   {
@@ -23,5 +24,10 @@ export default [
     path: 'anchor',
     name: 'misc.anchor',
     component: Anchor
+  },
+  {
+    path: 'copy',
+    name: 'misc.copy',
+    component: Copy
   }
 ];

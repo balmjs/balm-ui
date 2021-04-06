@@ -5,13 +5,13 @@ const vCopy = {
   name: 'copy',
   bind(el, { value }) {
     if (getType(value) === 'object') {
-      const { success, error } = value;
+      const { text, success, error } = value;
 
       if (getType(success) !== 'function') {
         console.warn(`[v-copy]: The 'success' must be a function`);
       }
 
-      el.$value = value;
+      el.$value = text;
       el.handler = () => {
         if (!el.$value) {
           error && error();
@@ -29,7 +29,7 @@ const vCopy = {
         document.body.appendChild(textarea);
         // 选中值并复制
         textarea.select();
-        const result = document.execCommand('Copy');
+        const result = document.execCommand('copy');
         if (result) {
           success();
         }
@@ -39,13 +39,13 @@ const vCopy = {
       el.addEventListener('click', el.handler);
     } else {
       throw new Error(
-        `[v-copy]: The 'value' must be an object ({ success: Function, error?: Function })`
+        `[v-copy]: The 'value' must be an object ({ text: string; success: Function; error?: Function })`
       );
     }
   },
   // 当传进来的值更新的时候触发
   componentUpdated(el, { value }) {
-    el.$value = value;
+    el.$value = value.text;
   },
   // 指令与元素解绑的时候，移除事件绑定
   unbind(el) {

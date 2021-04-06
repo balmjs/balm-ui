@@ -285,6 +285,11 @@ const MATERIAL_COMPONENTS = [
         icon: 'anchor',
         name: 'anchor',
         plus: true
+      },
+      {
+        icon: 'content_copy',
+        name: 'copy',
+        plus: true
       }
     ]
   },

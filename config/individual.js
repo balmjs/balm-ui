@@ -65,6 +65,7 @@ const plugins = [
   'alert',
   'confirm',
   'toast',
+  // Next
   'lazyload'
 ];
 const directives = [
@@ -78,9 +79,8 @@ const directives = [
   // Plus
   'anchor',
   'copy',
-  'longpress',
   'debounce',
-  'draggable'
+  'longpress'
 ];
 const utils = ['ie', 'types', 'helpers'];
 

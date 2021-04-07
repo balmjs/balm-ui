@@ -4,12 +4,18 @@ import autoInstall from './config/auto-install';
  * Components
  */
 import UiBottomNavigation from './components/bottom-navigation/bottom-navigation.vue';
+/**
+ * Plugins
+ */
+import $lazyload from './plugins/lazyload';
 
 const Components = {
   UiBottomNavigation
 };
 
-const Plugins = {};
+const Plugins = {
+  $lazyload
+};
 
 const Directives = {};
 
@@ -28,3 +34,4 @@ const BalmUINext = {
 export default BalmUINext;
 export { version, install };
 export { UiBottomNavigation };
+export { $lazyload };

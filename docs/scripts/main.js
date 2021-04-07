@@ -20,6 +20,7 @@ import UiSnippet from '@/components/snippet';
 import UiFooterNav from '@/components/footer-nav';
 import UiTocAffix from '@/components/toc-affix';
 import SvgLogo from '@/components/svg-logo';
+// import dotImage from '../images/placeholder/handtinyblack.gif';
 // PWA
 import './my-sw';
 
@@ -36,6 +37,9 @@ function createApp() {
       toolbarOptions,
       emotions
     }
+    // $lazyload: {
+    //   src: dotImage
+    // }
   });
   Vue.use(BalmUINext);
 

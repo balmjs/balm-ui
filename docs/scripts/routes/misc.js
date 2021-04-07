@@ -1,16 +1,22 @@
 const Event = () => import('@/views/plugins/event');
+const Debounce = () => import('@/views/directives/debounce');
 const Ripple = () => import('@/views/directives/ripple');
 const Elevation = () => import('@/views/directives/elevation');
 const Anchor = () => import('@/views/directives/anchor');
 const Copy = () => import('@/views/directives/copy');
-const Debounce = () => import('@/views/directives/debounce');
 const Longpress = () => import('@/views/directives/longpress');
+const Draggable = () => import('@/views/directives/draggable');
 
 export default [
   {
     path: 'event',
     name: 'misc.event',
     component: Event
+  },
+  {
+    path: 'debounce',
+    name: 'misc.debounce',
+    component: Debounce
   },
   {
     path: 'ripple',
@@ -33,13 +39,13 @@ export default [
     component: Copy
   },
   {
-    path: 'debounce',
-    name: 'misc.debounce',
-    component: Debounce
-  },
-  {
     path: 'longpress',
     name: 'misc.longpress',
     component: Longpress
+  },
+  {
+    path: 'draggable',
+    name: 'misc.draggable',
+    component: Draggable
   }
 ];

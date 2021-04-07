@@ -1,23 +1,23 @@
 @use '@material/image-list/mixins' as image-list-mixins;
 
 .page--image-list {
-  .mdc-image-list.hero-image-list {
+  .hero-image-list {
     @include image-list-mixins.standard-columns(5);
     width: 300px;
     margin: 0;
+
+    .mdc-image-list__image {
+      background-color: #000;
+    }
   }
 
-  .hero-image-list .mdc-image-list__image {
-    background-color: #000;
-  }
-
-  .mdc-image-list.standard-image-list {
+  .standard-image-list {
     @include image-list-mixins.aspect(1.5); // Images are 3:2
     @include image-list-mixins.standard-columns(5);
     max-width: 1000px;
   }
 
-  .mdc-image-list.masonry-image-list {
+  .masonry-image-list {
     @include image-list-mixins.masonry-columns(5);
     max-width: 1000px;
   }
@@ -31,11 +31,11 @@
   }
 
   @media (max-width: 599px) {
-    .mdc-image-list.standard-image-list {
+    .standard-image-list {
       @include image-list-mixins.standard-columns(3);
     }
 
-    .mdc-image-list.masonry-image-list {
+    .masonry-image-list {
       @include image-list-mixins.masonry-columns(3);
     }
   }

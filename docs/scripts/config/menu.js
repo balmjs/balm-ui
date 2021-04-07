@@ -186,6 +186,11 @@ const MATERIAL_COMPONENTS = [
         icon: 'view_comfy',
         name: 'image-list'
       },
+      // {
+      //   icon: 'image',
+      //   name: 'lazyload',
+      //   plus: true
+      // },
       {
         icon: 'category',
         name: 'card'
@@ -274,6 +279,11 @@ const MATERIAL_COMPONENTS = [
         name: 'event'
       },
       {
+        icon: 'mouse',
+        name: 'debounce',
+        plus: true
+      },
+      {
         icon: 'texture',
         name: 'ripple'
       },
@@ -292,13 +302,13 @@ const MATERIAL_COMPONENTS = [
         plus: true
       },
       {
-        icon: 'mouse',
-        name: 'debounce',
+        icon: 'touch_app',
+        name: 'longpress',
         plus: true
       },
       {
-        icon: 'touch_app',
-        name: 'longpress',
+        icon: 'pan_tool',
+        name: 'draggable',
         plus: true
       }
     ]

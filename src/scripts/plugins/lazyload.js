@@ -105,7 +105,9 @@ const vLazyLoad = {
     inserted(el) {
       if (canRendering) {
         getImageElement(el, (imgEl) =>
-          false ? LazyLoad.observe(imgEl) : LazyLoad.listenerScroll(imgEl)
+          IntersectionObserver
+            ? LazyLoad.observe(imgEl)
+            : LazyLoad.listenerScroll(imgEl)
         );
       }
     }

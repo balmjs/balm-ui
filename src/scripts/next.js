@@ -5,12 +5,18 @@ import autoInit from './config/auto-init';
  * Components
  */
 import UiBottomNavigation from './components/bottom-navigation/bottom-navigation';
+/**
+ * Plugins
+ */
+import $lazyload from './plugins/lazyload';
 
 const Components = {
   UiBottomNavigation
 };
 
-const Plugins = {};
+const Plugins = {
+  $lazyload
+};
 
 const Directives = {};
 
@@ -31,3 +37,4 @@ autoInit(BalmUINext);
 export default BalmUINext;
 export { version, install };
 export { UiBottomNavigation };
+export { $lazyload };

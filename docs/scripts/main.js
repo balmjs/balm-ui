@@ -37,11 +37,12 @@ function createApp() {
       toolbarOptions,
       emotions
     }
+  });
+  Vue.use(BalmUINext, {
     // $lazyload: {
     //   src: dotImage
     // }
   });
-  Vue.use(BalmUINext);
 
   Vue.component(PurePage.name, PurePage);
   Vue.component(DocsPage.name, DocsPage);

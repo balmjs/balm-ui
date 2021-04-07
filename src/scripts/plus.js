@@ -19,7 +19,6 @@ import UiTreeNode from './components/tree/tree-node';
 import $alert, { useAlert } from './plugins/alert';
 import $confirm, { useConfirm } from './plugins/confirm';
 import $toast, { useToast } from './plugins/toast';
-import $lazyload from './plugins/lazyload';
 /**
  * Directives
  */
@@ -44,8 +43,7 @@ const Components = {
 const Plugins = {
   $alert,
   $confirm,
-  $toast,
-  $lazyload
+  $toast
 };
 
 const Directives = {
@@ -83,6 +81,6 @@ export {
   UiTree,
   UiTreeNode
 };
-export { $alert, $confirm, $toast, $lazyload };
+export { $alert, $confirm, $toast };
 export { useAlert, useConfirm, useToast };
 export { vAnchor, vCopy, vLongpress, vDebounce, vDraggable };

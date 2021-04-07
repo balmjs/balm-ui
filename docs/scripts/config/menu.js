@@ -186,11 +186,11 @@ const MATERIAL_COMPONENTS = [
         icon: 'view_comfy',
         name: 'image-list'
       },
-      // {
-      //   icon: 'image',
-      //   name: 'lazyload',
-      //   plus: true
-      // },
+      {
+        icon: 'image',
+        name: 'lazyload',
+        next: true
+      },
       {
         icon: 'category',
         name: 'card'

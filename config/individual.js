@@ -79,7 +79,6 @@ const directives = [
   'anchor',
   'copy',
   'debounce',
-  'draggable',
   'longpress'
 ];
 const utils = ['ie', 'types', 'helpers'];

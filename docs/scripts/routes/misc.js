@@ -5,7 +5,6 @@ const Elevation = () => import('@/views/directives/elevation');
 const Anchor = () => import('@/views/directives/anchor');
 const Copy = () => import('@/views/directives/copy');
 const Longpress = () => import('@/views/directives/longpress');
-const Draggable = () => import('@/views/directives/draggable');
 
 export default [
   {
@@ -42,10 +41,5 @@ export default [
     path: 'longpress',
     name: 'misc.longpress',
     component: Longpress
-  },
-  {
-    path: 'draggable',
-    name: 'misc.draggable',
-    component: Draggable
   }
 ];

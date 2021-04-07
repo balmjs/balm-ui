@@ -26,7 +26,6 @@ import vAnchor from './directives/anchor';
 import vCopy from './directives/copy';
 import vLongpress from './directives/longpress';
 import vDebounce from './directives/debounce';
-import vDraggable from './directives/draggable';
 
 const Components = {
   UiAlert,
@@ -49,9 +48,8 @@ const Plugins = {
 const Directives = {
   vAnchor,
   vCopy,
-  vLongpress,
   vDebounce,
-  vDraggable
+  vLongpress
 };
 
 const install = (Vue, options = {}) =>
@@ -83,4 +81,4 @@ export {
 };
 export { $alert, $confirm, $toast };
 export { useAlert, useConfirm, useToast };
-export { vAnchor, vCopy, vLongpress, vDebounce, vDraggable };
+export { vAnchor, vCopy, vDebounce, vLongpress };

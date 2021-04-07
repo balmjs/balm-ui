@@ -186,11 +186,11 @@ const MATERIAL_COMPONENTS = [
         icon: 'view_comfy',
         name: 'image-list'
       },
-      {
-        icon: 'image',
-        name: 'lazyload',
-        next: true
-      },
+      // {
+      //   icon: 'image',
+      //   name: 'lazyload',
+      //   next: true
+      // },
       {
         icon: 'category',
         name: 'card'
@@ -304,11 +304,6 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'touch_app',
         name: 'longpress',
-        plus: true
-      },
-      {
-        icon: 'pan_tool',
-        name: 'draggable',
         plus: true
       }
     ]

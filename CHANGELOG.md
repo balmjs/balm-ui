@@ -2,6 +2,15 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.29.0 / 2021-04-07
+
+### Features
+
+- new directives:
+  - `v-copy`
+  - `v-debounce`
+  - `v-longpress`
+
 ## v8.28.3 / 2021-04-06
 
 ### Bug Fixes

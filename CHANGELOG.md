@@ -7,6 +7,10 @@
 
 ### Features
 
+- new directives:
+  - `v-copy`
+  - `v-debounce`
+  - `v-longpress`
 - `<ui-snackbar>`: add prop `position`
 - `$toast`: add option `position`
 

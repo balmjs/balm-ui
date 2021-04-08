@@ -16,7 +16,7 @@
 
 ### Bug Fixes
 
-- `<ui-tab-bar>`, `<ui-tab>`: fix dynamic tab bug
+- `<ui-tabs>`, `<ui-tab-bar>`, `<ui-tab>`: fix dynamic tab bug
 
 ## v9.20.0 / 2021-04-02
 

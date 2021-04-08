@@ -36,10 +36,7 @@ export default {
     }
   },
   beforeMount() {
-    const needHelperTextId =
-      this.visible || this.hasValidMsg || this.withCounter;
-
-    if (!this.id && needHelperTextId) {
+    if (!this.id && this.withCounter) {
       console.warn(
         '[UiTextfield]',
         `The 'helperTextId' prop is required for <ui-textfield> with outer counter`

@@ -88,6 +88,11 @@ export default {
         'mdc-tab--active': isActive
       };
     }
+  },
+  updated() {
+    try {
+      this.$parent.$parent.updated();
+    } catch (e) {}
   }
 };
 </script>

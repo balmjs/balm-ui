@@ -18,7 +18,6 @@ import UiTreeNode from './components/tree/tree-node.vue';
 import $alert, { useAlert } from './plugins/alert';
 import $confirm, { useConfirm } from './plugins/confirm';
 import $toast, { useToast } from './plugins/toast';
-import $lazyload from './plugins/lazyload';
 /**
  * Directives
  */
@@ -26,7 +25,6 @@ import vAnchor from './directives/anchor';
 import vCopy from './directives/copy';
 import vLongpress from './directives/longpress';
 import vDebounce from './directives/debounce';
-import vDraggable from './directives/draggable';
 
 const Components = {
   UiAlert,
@@ -43,16 +41,14 @@ const Components = {
 const Plugins = {
   $alert,
   $confirm,
-  $toast,
-  $lazyload
+  $toast
 };
 
 const Directives = {
   vAnchor,
   vCopy,
   vLongpress,
-  vDebounce,
-  vDraggable
+  vDebounce
 };
 
 const install = (Vue, options = {}) =>
@@ -80,6 +76,6 @@ export {
   UiTree,
   UiTreeNode
 };
-export { $alert, $confirm, $toast, $lazyload };
+export { $alert, $confirm, $toast };
 export { useAlert, useConfirm, useToast };
-export { vAnchor, vCopy, vLongpress, vDebounce, vDraggable };
+export { vAnchor, vCopy, vLongpress, vDebounce };

@@ -1,3 +1,3 @@
 ```html
-<ui-button raised @click="$toast('gg')">Show Toast</ui-button>
+<ui-button raised @click="$toast('hello')">Show Toast</ui-button>
 ```

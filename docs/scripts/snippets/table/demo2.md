@@ -46,7 +46,7 @@ export default {
         },
         {
           slot: 'th-dessert',
-          class: 'gg',
+          class: 'good',
           sort: 'none',
           columnId: 'dessert'
         },

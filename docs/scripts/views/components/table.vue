@@ -125,7 +125,7 @@ export default {
       //   [
       //     {
       //       value: 'Dessert (100g serving)',
-      //       class: 'gg'
+      //       class: 'good'
       //     },
       //     {
       //       value: 'Calories',
@@ -146,7 +146,7 @@ export default {
         {
           // value: 'Dessert (100g serving)',
           slot: 'th-dessert',
-          class: 'gg',
+          class: 'good',
           sort: 'none',
           columnId: 'dessert'
         },

@@ -1,0 +1,8 @@
+@use '@material/image-list/mixins' as image-list-mixins;
+
+.page--lazyload {
+  .masonry-image-list {
+    @include image-list-mixins.masonry-columns(5);
+    max-width: 1000px;
+  }
+}

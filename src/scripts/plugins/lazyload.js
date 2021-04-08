@@ -1,13 +1,34 @@
+const DEFAULT_OPTIONS = {
+  src: '',
+  delay: 300,
+  scrollEvent: 'scroll'
+};
+
+let globalOptions = DEFAULT_OPTIONS;
+let canRendering = true;
+
+const getImageElement = (el, fn) => {
+  const imgEl = el.tagName === 'IMG' ? el : el.querySelector('img');
+
+  if (imgEl && imgEl.tagName === 'IMG') {
+    fn(imgEl);
+  } else {
+    canRendering = false;
+    throw new Error('[v-lazyload]: <image> element not found');
+  }
+};
+
 const LazyLoad = {
   // 初始化
-  init(el, val, def) {
-    el.setAttribute('data-src', val);
-    el.setAttribute('src', def);
+  init(el, value) {
+    el.setAttribute('data-src', value);
+    el.setAttribute('src', globalOptions.src);
   },
   // 利用IntersectionObserver监听el
   observe(el) {
     const io = new IntersectionObserver((entries) => {
       const realSrc = el.dataset.src;
+
       if (entries[0].isIntersecting) {
         if (realSrc) {
           el.src = realSrc;
@@ -15,13 +36,16 @@ const LazyLoad = {
         }
       }
     });
+
     io.observe(el);
   },
   // 监听scroll事件
   listenerScroll(el) {
-    const handler = LazyLoad.throttle(LazyLoad.load, 300);
+    const handler = LazyLoad.throttle(LazyLoad.load, globalOptions.delay);
+
     LazyLoad.load(el);
-    window.addEventListener('scroll', () => {
+
+    window.addEventListener(globalOptions.scrollEvent, () => {
       handler(el);
     });
   },
@@ -30,8 +54,9 @@ const LazyLoad = {
     const windowHeight = document.documentElement.clientHeight;
     const elTop = el.getBoundingClientRect().top;
     const elBtm = el.getBoundingClientRect().bottom;
-    const realSrc = el.dataset.src;
+
     if (elTop - windowHeight < 0 && elBtm > 0) {
+      const realSrc = el.dataset.src;
       if (realSrc) {
         el.src = realSrc;
         el.removeAttribute('data-src');
@@ -42,6 +67,7 @@ const LazyLoad = {
   throttle(fn, delay) {
     let timer;
     let prevTime;
+
     return function (...args) {
       const currTime = Date.now();
       const context = this;
@@ -64,26 +90,30 @@ const LazyLoad = {
   }
 };
 
-let defaultSrc = '';
-
 const vLazyLoad = {
   name: 'lazyload',
   definition: {
-    beforeMount(el, binding) {
-      LazyLoad.init(el, binding.value, defaultSrc);
+    beforeMount(el, { value }) {
+      if (canRendering) {
+        getImageElement(el, (imgEl) => {
+          LazyLoad.init(imgEl, value);
+        });
+      }
     },
     mounted(el) {
-      if (IntersectionObserver) {
-        LazyLoad.observe(el);
-      } else {
-        LazyLoad.listenerScroll(el);
+      if (canRendering) {
+        getImageElement(el, (imgEl) =>
+          IntersectionObserver
+            ? LazyLoad.observe(imgEl)
+            : LazyLoad.listenerScroll(imgEl)
+        );
       }
     }
   }
 };
 
 function install(app, options = {}) {
-  defaultSrc = options.default;
+  globalOptions = Object.assign({}, DEFAULT_OPTIONS, options);
 
   app.directive(vLazyLoad.name, vLazyLoad.definition);
 }

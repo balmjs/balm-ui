@@ -3,6 +3,21 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.21.0 / 2021-04-08
+
+### Features
+
+- new directives:
+  - `v-copy`
+  - `v-debounce`
+  - `v-longpress`
+- `<ui-snackbar>`: add prop `position`
+- `$toast`: add option `position`
+
+### Bug Fixes
+
+- `<ui-tabs>`, `<ui-tab-bar>`, `<ui-tab>`: fix dynamic tab bug
+
 ## v9.20.0 / 2021-04-02
 
 ### Features

@@ -6,9 +6,22 @@
 
     <!-- Content -->
     <section class="demo-wrapper">
-      <div class="demo">
-        <ui-button raised @click="show">Show Toast</ui-button>
+      <div class="demo-controls">
+        <label>Toast Position:</label>
+        <ui-form-field v-for="name in ['bottom', 'center', 'top']" :key="name">
+          <ui-radio
+            v-model="position"
+            :input-id="`position-${name}`"
+            :value="name"
+          ></ui-radio>
+          <label :for="`position-${name}`">{{ name }}</label>
+        </ui-form-field>
       </div>
+
+      <div class="demo">
+        <ui-button raised @click="show">Show toast</ui-button>
+      </div>
+
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>
   </docs-page>
@@ -21,13 +34,17 @@ export default {
   },
   data() {
     return {
-      flag: false
+      flag: false,
+      position: 'bottom'
     };
   },
   methods: {
     show() {
       this.flag = !this.flag;
-      this.$toast(this.flag ? 'Hello' : 'BalmUI');
+      this.$toast({
+        message: this.flag ? 'Hello' : 'BalmUI',
+        position: this.position
+      });
     }
   }
 };

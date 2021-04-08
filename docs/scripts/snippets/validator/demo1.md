@@ -104,7 +104,7 @@ export default {
       this.message = message;
 
       if (valid) {
-        this.$toast('gg');
+        this.$toast('ok');
       }
     }
   }

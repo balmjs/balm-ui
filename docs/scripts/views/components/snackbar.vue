@@ -35,6 +35,20 @@
           ></ui-checkbox>
           <label for="action-type">Icon Button Action</label>
         </ui-form-field>
+        <ui-form-field>
+          <label>Position:</label>
+          <ui-form-field
+            v-for="name in ['bottom', 'center', 'top']"
+            :key="name"
+          >
+            <ui-radio
+              v-model="position"
+              :input-id="`position-${name}`"
+              :value="name"
+            ></ui-radio>
+            <label :for="`position-${name}`">{{ name }}</label>
+          </ui-form-field>
+        </ui-form-field>
       </ui-form>
       <div class="demo">
         <ui-button raised @click="open = true">Show Snackbar</ui-button>
@@ -45,6 +59,7 @@
           :message="message"
           :action-button-text="actionText"
           :action-type="actionType ? 1 : 0"
+          :position="position"
         ></ui-snackbar>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
@@ -61,7 +76,8 @@ const state = reactive({
   timeout: 5,
   message: 'Hello Snackbar',
   actionText: 'close',
-  actionType: false
+  actionType: false,
+  position: 'bottom'
 });
 
 export default {
@@ -89,7 +105,7 @@ export default {
   },
   methods: {
     actionHandler() {
-      console.log('gg');
+      console.log('hello');
     }
   }
 };

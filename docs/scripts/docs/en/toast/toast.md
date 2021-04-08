@@ -8,7 +8,7 @@
     className?: string;
     timeoutMs?: number;
     message: ToastMessage;
-    position?: string;
+    position?: 'bottom' | 'center' | 'top';
   }
 
   interface VueInstance {

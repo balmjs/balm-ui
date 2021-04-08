@@ -50,7 +50,7 @@ function createToast(options) {
     },
     computed: {
       positionClassName() {
-        return this.options.position
+        return ['top', 'center'].includes(this.options.position)
           ? `mdc-toast--${this.options.position}`
           : '';
       },

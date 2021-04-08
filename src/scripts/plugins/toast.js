@@ -7,7 +7,12 @@ const UI_TOAST = {
   timeoutMs: {
     MIN: 2000,
     MAX: 3500,
-    DEFAULTS: 2000
+    DEFAULTS: 2750
+  },
+  position: {
+    TOP: 'top',
+    BOTTOM: 'bottom',
+    CENTER: 'center'
   }
 };
 
@@ -15,6 +20,7 @@ const DEFAULT_OPTIONS = {
   className: '',
   timeoutMs: UI_TOAST.timeoutMs.DEFAULTS,
   message: '',
+  position: UI_TOAST.position.BOTTOM,
   debug: false
 };
 
@@ -48,10 +54,16 @@ function createToast(options) {
       };
     },
     computed: {
+      positionClassName() {
+        return ['top', 'center'].includes(this.options.position)
+          ? `mdc-toast--${this.options.position}`
+          : '';
+      },
       className() {
         return [
           'mdc-snackbar',
           'mdc-toast',
+          this.positionClassName,
           this.options.className,
           {
             'mdc-snackbar--opening': this.opening,

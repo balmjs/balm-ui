@@ -37,6 +37,7 @@
 @use 'balm-ui/components/slider/ui-slider';
 @use 'balm-ui/components/dialog/ui-dialog';
 @use 'balm-ui/components/tree/ui-tree';
+@use 'balm-ui/components/snackbar/ui-snackbar';
 
 /// Plugins Custom Styles
 @use 'balm-ui/plugins/alert/ui-alert' as alert-dialog;

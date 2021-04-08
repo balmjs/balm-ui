@@ -40,6 +40,11 @@ const UI_SNACKBAR = {
     MAX: 10000,
     DEFAULTS: 5000
   },
+  position: {
+    TOP: 'top',
+    BOTTOM: 'bottom',
+    CENTER: 'center'
+  },
   EVENT: {
     CHANGE: 'change',
     CLOSED: 'closed'
@@ -86,6 +91,10 @@ export default {
     leading: {
       type: Boolean,
       default: false
+    },
+    position: {
+      type: String,
+      default: UI_SNACKBAR.position.BOTTOM
     }
   },
   data() {
@@ -94,12 +103,24 @@ export default {
     };
   },
   computed: {
+    positionClassName() {
+      return ['top', 'center'].includes(this.position)
+        ? `mdc-snackbar--${this.position}`
+        : '';
+    },
     className() {
-      return {
-        'mdc-snackbar': true,
-        'mdc-snackbar--stacked': this.stacked,
-        'mdc-snackbar--leading': this.leading // tablet and desktop only
-      };
+      const isOpen =
+        this.$el && this.$el.classList.contains('mdc-snackbar--open'); // fix(@ui): for `position`
+
+      return [
+        {
+          'mdc-snackbar': true,
+          'mdc-snackbar--stacked': this.stacked,
+          'mdc-snackbar--leading': this.leading, // tablet and desktop only
+          'mdc-snackbar--open': isOpen
+        },
+        this.positionClassName
+      ];
     },
     canDismiss() {
       return this.actionType === UI_SNACKBAR.ACTION_TYPE.DISMISS_ICON;

@@ -36,7 +36,7 @@
           <label for="action-type">Icon Button Action</label>
         </ui-form-field>
         <ui-form-field>
-          <label>Toast Position:</label>
+          <label>Position:</label>
           <ui-form-field
             v-for="name in ['bottom', 'center', 'top']"
             :key="name"

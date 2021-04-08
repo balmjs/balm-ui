@@ -129,7 +129,7 @@ export default {
       this.validMsg = validMsg;
 
       if (valid) {
-        this.$toast('gg');
+        this.$toast('ok');
       }
     }
   }

@@ -13,11 +13,8 @@
           class="masonry-image-list"
           text-protection
         >
-          <template v-for="(item, index) in list">
-            <ui-image-item
-              :key="index"
-              v-lazyload="require(`@/assets/photos/${item}.jpg`)"
-            >
+          <template v-for="(item, index) in list" :key="index">
+            <ui-image-item v-lazyload="require(`@/assets/photos/${item}.jpg`)">
               <ui-image-text>Text label</ui-image-text>
             </ui-image-item>
           </template>

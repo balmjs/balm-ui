@@ -89,7 +89,7 @@ export default {
   },
   methods: {
     actionHandler() {
-      console.log('gg');
+      console.log('hello');
     }
   }
 };

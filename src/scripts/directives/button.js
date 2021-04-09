@@ -1,4 +1,3 @@
-import autoInit from '../config/auto-init';
 import { MDCRipple } from '../../material-components-web/ripple';
 
 // Define link button constants
@@ -55,11 +54,9 @@ const initLinkButton = (el, { modifiers }) => {
 
 const vButton = {
   name: 'button',
-  inserted(el, binding) {
+  mounted(el, binding) {
     initLinkButton(el, binding);
   }
 };
-
-autoInit(vButton, 'directive');
 
 export default vButton;

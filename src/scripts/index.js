@@ -319,5 +319,5 @@ export {
 };
 export { $event, $grid, $store, $theme, $typography, $validator };
 export { useBus, useStore, useGrid, useTheme, useTypography };
-export { vAccessibility, vBadge, vRipple, vShadow, vShape, vTooltip };
+export { vAccessibility, vBadge, vButton, vRipple, vShadow, vShape, vTooltip };
 export { types, helpers, detectIE };

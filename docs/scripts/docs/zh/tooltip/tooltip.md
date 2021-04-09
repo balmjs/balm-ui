@@ -1,10 +1,4 @@
-## 指令用法
-
-```html
-<div v-tooltip="'plain tips'" aria-describedby="tooltip-id"></div>
-```
-
-## 组件用法
+## 文字提示组件
 
 **`<ui-tooltip>` 类型**
 

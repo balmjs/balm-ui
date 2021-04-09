@@ -1,3 +1,5 @@
+## Button component
+
 ```html
 <ui-button><!-- the button text label --></ui-button>
 ```

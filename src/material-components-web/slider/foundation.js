@@ -385,8 +385,9 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         this.adapter.emitChangeEvent(thumb === Thumb.START ? this.valueStart : this.value, thumb);
         this.adapter.emitInputEvent(thumb === Thumb.START ? this.valueStart : this.value, thumb);
     };
-    /** Shows value indicator on thumb(s). */
+    /** Shows activated state and value indicator on thumb(s). */
     MDCSliderFoundation.prototype.handleInputFocus = function (thumb) {
+        this.adapter.addThumbClass(cssClasses.THUMB_FOCUSED, thumb);
         if (!this.isDiscrete)
             return;
         this.adapter.addThumbClass(cssClasses.THUMB_WITH_INDICATOR, thumb);
@@ -395,8 +396,9 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
             this.adapter.addThumbClass(cssClasses.THUMB_WITH_INDICATOR, otherThumb);
         }
     };
-    /** Removes value indicator from thumb(s). */
+    /** Removes activated state and value indicator from thumb(s). */
     MDCSliderFoundation.prototype.handleInputBlur = function (thumb) {
+        this.adapter.removeThumbClass(cssClasses.THUMB_FOCUSED, thumb);
         if (!this.isDiscrete)
             return;
         this.adapter.removeThumbClass(cssClasses.THUMB_WITH_INDICATOR, thumb);

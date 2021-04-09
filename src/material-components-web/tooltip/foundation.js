@@ -25,7 +25,7 @@ import { AnimationFrame } from '../animation/animationframe';
 import { getCorrectPropertyName } from '../animation/util';
 import { MDCFoundation } from '../base/foundation';
 import { KEY, normalizeKey } from '../dom/keyboard';
-import { AnchorBoundaryType, attributes, CssClasses, numbers, strings, XPosition, YPosition } from './constants';
+import { AnchorBoundaryType, attributes, CssClasses, numbers, PositionWithCaret, strings, XPosition, YPosition } from './constants';
 var RICH = CssClasses.RICH, SHOWN = CssClasses.SHOWN, SHOWING = CssClasses.SHOWING, SHOWING_TRANSITION = CssClasses.SHOWING_TRANSITION, HIDE = CssClasses.HIDE, HIDE_TRANSITION = CssClasses.HIDE_TRANSITION, MULTILINE_TOOLTIP = CssClasses.MULTILINE_TOOLTIP;
 var AnimationKeys;
 (function (AnimationKeys) {
@@ -41,6 +41,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         _this.anchorGap = numbers.BOUNDED_ANCHOR_GAP;
         _this.xTooltipPos = XPosition.DETECTED;
         _this.yTooltipPos = YPosition.DETECTED;
+        _this.tooltipPositionWithCaret = PositionWithCaret.DETECTED;
         // Minimum threshold distance needed between the tooltip and the viewport.
         _this.minViewportTooltipThreshold = numbers.MIN_VIEWPORT_TOOLTIP_THRESHOLD;
         _this.hideDelayMs = numbers.HIDE_DELAY_MS;
@@ -114,6 +115,9 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                 registerWindowEventHandler: function () { return undefined; },
                 deregisterWindowEventHandler: function () { return undefined; },
                 notifyHidden: function () { return undefined; },
+                getTooltipCaretSize: function () { return null; },
+                setTooltipCaretStyle: function () { return undefined; },
+                clearTooltipCaretStyles: function () { return undefined; },
             };
         },
         enumerable: false,
@@ -126,6 +130,8 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         this.interactiveTooltip =
             !!this.adapter.getAnchorAttribute(attributes.ARIA_EXPANDED) &&
                 this.adapter.getAnchorAttribute(attributes.ARIA_HASPOPUP) === 'dialog';
+        this.hasCaret = this.richTooltip &&
+            this.adapter.getAttribute(attributes.HAS_CARET) === 'true';
     };
     MDCTooltipFoundation.prototype.isShown = function () {
         return this.tooltipShown;
@@ -315,6 +321,11 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         this.anchorRect = this.adapter.getAnchorBoundingRect();
         this.parentRect = this.adapter.getParentBoundingRect();
         this.richTooltip ? this.positionRichTooltip() : this.positionPlainTooltip();
+        // TODO(b/182906431): Position of the tooltip caret should be informed by
+        // the position of the tooltip.
+        if (this.hasCaret) {
+            this.setCaretPositionStyles(this.tooltipPositionWithCaret);
+        }
         this.adapter.registerAnchorEventHandler('blur', this.anchorBlurHandler);
         this.adapter.registerDocumentEventHandler('click', this.documentClickHandler);
         this.adapter.registerDocumentEventHandler('keydown', this.documentKeydownHandler);
@@ -406,7 +417,11 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         this.adapter.removeClass(HIDE_TRANSITION);
     };
     MDCTooltipFoundation.prototype.setTooltipPosition = function (position) {
-        var xPos = position.xPos, yPos = position.yPos;
+        var xPos = position.xPos, yPos = position.yPos, withCaretPos = position.withCaretPos;
+        if (this.hasCaret && withCaretPos) {
+            this.tooltipPositionWithCaret = withCaretPos;
+            return;
+        }
         if (xPos) {
             this.xTooltipPos = xPos;
         }
@@ -700,6 +715,147 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             this.parentRect = this.adapter.getParentBoundingRect();
             this.richTooltip ? this.positionRichTooltip() :
                 this.positionPlainTooltip();
+        }
+    };
+    /**
+     * Given a PositionWithCaret, applies the correct styles to the caret element
+     * so that it is positioned properly on the rich tooltip.
+     * Returns the x and y positions of the caret, to be used as the
+     * transform-origin on the tooltip itself for entrance animations.
+     */
+    MDCTooltipFoundation.prototype.setCaretPositionStyles = function (position) {
+        var values = this.calculateCaretPositionOnTooltip(position);
+        if (!values) {
+            return { yTransformOrigin: 0, xTransformOrigin: 0 };
+        }
+        // Prior to setting the caret position styles, clear any previous styles
+        // set. This is necessary as all position options do not use the same
+        // properties (e.g. using 'left' or 'right') and so old style properties
+        // might not get overridden, causing misplaced carets.
+        this.adapter.clearTooltipCaretStyles();
+        this.adapter.setTooltipCaretStyle(values.yAlignment, values.yAxisPx);
+        this.adapter.setTooltipCaretStyle(values.xAlignment, values.xAxisPx);
+        this.adapter.setTooltipCaretStyle('transform', "rotate(" + values.rotation + ")");
+        this.adapter.setTooltipCaretStyle('transform-origin', values.yAlignment + " " + values.xAlignment);
+        return { yTransformOrigin: values.yAxisPx, xTransformOrigin: values.xAxisPx };
+    };
+    /**
+     * Given a PositionWithCaret, determines the correct styles to position the
+     * caret properly on the rich tooltip.
+     */
+    MDCTooltipFoundation.prototype.calculateCaretPositionOnTooltip = function (tooltipPos) {
+        var isLTR = !this.adapter.isRTL();
+        var tooltipWidth = this.adapter.getComputedStyleProperty('width');
+        var tooltipHeight = this.adapter.getComputedStyleProperty('height');
+        var caretDimensions = this.adapter.getTooltipCaretSize();
+        if (!tooltipWidth || !tooltipHeight || !caretDimensions) {
+            return;
+        }
+        var caretDiagonal = caretDimensions.width * Math.sqrt(2);
+        var midpointWidth = "calc((" + tooltipWidth + " - " + caretDiagonal + "px) / 2)";
+        var midpointHeight = "calc((" + tooltipHeight + " - " + caretDiagonal + "px) / 2)";
+        var flushWithEdge = '0';
+        var indentedFromEdge = numbers.CARET_INDENTATION + "px";
+        var positiveRot = '45deg';
+        var negativeRot = '-45deg';
+        switch (tooltipPos) {
+            case PositionWithCaret.BELOW_CENTER:
+                return {
+                    yAlignment: strings.TOP,
+                    xAlignment: strings.LEFT,
+                    yAxisPx: flushWithEdge,
+                    xAxisPx: midpointWidth,
+                    rotation: negativeRot
+                };
+            case PositionWithCaret.BELOW_END:
+                return {
+                    yAlignment: strings.TOP,
+                    xAlignment: isLTR ? strings.RIGHT : strings.LEFT,
+                    yAxisPx: flushWithEdge,
+                    xAxisPx: indentedFromEdge,
+                    rotation: isLTR ? positiveRot : negativeRot
+                };
+            case PositionWithCaret.BELOW_START:
+                return {
+                    yAlignment: strings.TOP,
+                    xAlignment: isLTR ? strings.LEFT : strings.RIGHT,
+                    yAxisPx: flushWithEdge,
+                    xAxisPx: indentedFromEdge,
+                    rotation: isLTR ? negativeRot : positiveRot
+                };
+            case PositionWithCaret.TOP_SIDE_END:
+                return {
+                    yAlignment: strings.TOP,
+                    xAlignment: isLTR ? strings.LEFT : strings.RIGHT,
+                    yAxisPx: indentedFromEdge,
+                    xAxisPx: flushWithEdge,
+                    rotation: isLTR ? positiveRot : negativeRot
+                };
+            case PositionWithCaret.CENTER_SIDE_END:
+                return {
+                    yAlignment: strings.TOP,
+                    xAlignment: isLTR ? strings.LEFT : strings.RIGHT,
+                    yAxisPx: midpointHeight,
+                    xAxisPx: flushWithEdge,
+                    rotation: isLTR ? positiveRot : negativeRot
+                };
+            case PositionWithCaret.BOTTOM_SIDE_END:
+                return {
+                    yAlignment: strings.BOTTOM,
+                    xAlignment: isLTR ? strings.LEFT : strings.RIGHT,
+                    yAxisPx: indentedFromEdge,
+                    xAxisPx: flushWithEdge,
+                    rotation: isLTR ? negativeRot : positiveRot
+                };
+            case PositionWithCaret.TOP_SIDE_START:
+                return {
+                    yAlignment: strings.TOP,
+                    xAlignment: isLTR ? strings.RIGHT : strings.LEFT,
+                    yAxisPx: indentedFromEdge,
+                    xAxisPx: flushWithEdge,
+                    rotation: isLTR ? negativeRot : positiveRot
+                };
+            case PositionWithCaret.CENTER_SIDE_START:
+                return {
+                    yAlignment: strings.TOP,
+                    xAlignment: isLTR ? strings.RIGHT : strings.LEFT,
+                    yAxisPx: midpointHeight,
+                    xAxisPx: flushWithEdge,
+                    rotation: isLTR ? negativeRot : positiveRot
+                };
+            case PositionWithCaret.BOTTOM_SIDE_START:
+                return {
+                    yAlignment: strings.BOTTOM,
+                    xAlignment: isLTR ? strings.RIGHT : strings.LEFT,
+                    yAxisPx: indentedFromEdge,
+                    xAxisPx: flushWithEdge,
+                    rotation: isLTR ? positiveRot : negativeRot
+                };
+            case PositionWithCaret.ABOVE_CENTER:
+                return {
+                    yAlignment: strings.BOTTOM,
+                    xAlignment: strings.LEFT,
+                    yAxisPx: flushWithEdge,
+                    xAxisPx: midpointWidth,
+                    rotation: positiveRot
+                };
+            case PositionWithCaret.ABOVE_END:
+                return {
+                    yAlignment: strings.BOTTOM,
+                    xAlignment: isLTR ? strings.RIGHT : strings.LEFT,
+                    yAxisPx: flushWithEdge,
+                    xAxisPx: indentedFromEdge,
+                    rotation: isLTR ? negativeRot : positiveRot
+                };
+            default:
+            case PositionWithCaret.ABOVE_START:
+                return {
+                    yAlignment: strings.BOTTOM,
+                    xAlignment: isLTR ? strings.LEFT : strings.RIGHT,
+                    yAxisPx: flushWithEdge,
+                    xAxisPx: indentedFromEdge,
+                    rotation: isLTR ? positiveRot : negativeRot
+                };
         }
     };
     MDCTooltipFoundation.prototype.clearShowTimeout = function () {

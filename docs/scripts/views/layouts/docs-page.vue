@@ -147,12 +147,14 @@ export default {
           break;
         default:
           if (Array.isArray(key)) {
-            result = key.map((apiDoc) => {
-              let filename = `${this.$store.lang}/${name}/${apiDoc}`;
+            // apidocs
+            result = key.map((apiDocs) => {
+              let filename = `${this.$store.lang}/${name}/${apiDocs}`;
               let docs = require(`@/docs/${filename}.md`);
               return docs;
             });
           } else {
+            // intro
             let filename = `${this.$store.lang}/${name}/${key}`;
             let docs = require(`@/docs/${filename}.md`);
             result = docs;
@@ -181,7 +183,13 @@ export default {
         result.usage = this.getDocs(name, 'usage');
 
         if (options.apis) {
-          const apidocs = options.apis.length ? options.apis : [name];
+          let apidocs;
+          if (options.apis.length) {
+            apidocs = options.apis;
+          } else {
+            const keyName = this.type === 'directive' ? `v-${name}` : name;
+            apidocs = [keyName];
+          }
           result.apis = this.getDocs(name, apidocs);
         }
 

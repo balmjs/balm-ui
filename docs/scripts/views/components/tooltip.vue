@@ -1,5 +1,11 @@
 <template>
-  <docs-page type="directive" name="tooltip" demo-count="2" without-css>
+  <docs-page
+    type="directive"
+    name="tooltip"
+    :apis="['v-tooltip', 'tooltip']"
+    demo-count="2"
+    without-css
+  >
     <template #hero>
       <h1
         v-tooltip="'Hello BalmUI'"

@@ -1,10 +1,4 @@
-## Tooltip directive
-
-```html
-<div v-tooltip="'Tips text'" aria-describedby="tooltip-id">Text</div>
-```
-
-## Tooltip component
+## 文字提示组件
 
 ```html
 <div aria-describedby="tooltip-id">Text</div>

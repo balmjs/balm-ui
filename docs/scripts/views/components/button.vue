@@ -1,5 +1,5 @@
 <template>
-  <docs-page name="button" demo-count="1">
+  <docs-page name="button" :apis="['button', 'v-button']" demo-count="1">
     <template #hero>
       <div class="hero-demo">
         <ui-button v-a11y :type="typeOption">{{ text }}</ui-button>
@@ -44,6 +44,8 @@
             <svg-logo :class="iconClass"></svg-logo>
           </template>
         </ui-button>
+
+        <a v-button href="javascript:void(0)">Link</a>
       </div>
       <ui-snippet :code="$store.demos[1]"></ui-snippet>
     </section>

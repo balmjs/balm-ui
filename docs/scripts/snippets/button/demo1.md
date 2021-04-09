@@ -11,4 +11,6 @@
     <svg-logo :class="iconClass"></svg-logo>
   </template>
 </ui-button>
+
+<a v-button href="javascript:void(0)">Link</a>
 ```

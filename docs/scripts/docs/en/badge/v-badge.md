@@ -1,4 +1,4 @@
-### The Directive of the badge
+## Badge directive
 
 ```html
 <div v-badge></div>

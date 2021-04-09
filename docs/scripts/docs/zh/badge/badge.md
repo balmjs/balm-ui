@@ -1,3 +1,5 @@
+## 徽章组件
+
 ```html
 <ui-badge></ui-badge>
 ```

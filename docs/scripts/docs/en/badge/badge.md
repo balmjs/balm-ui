@@ -1,3 +1,5 @@
+## Badge component
+
 ```html
 <ui-badge></ui-badge>
 ```

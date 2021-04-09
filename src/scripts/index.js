@@ -103,6 +103,7 @@ import $validator, { useValidator } from './plugins/validator'; // Custom
 /**
  * Directives
  */
+import vButton from './directives/button';
 import vRipple from './directives/ripple';
 import vShape from './directives/shape';
 import vShadow from './directives/elevation';
@@ -212,6 +213,7 @@ const Plugins = {
 const Directives = {
   vAccessibility,
   vBadge,
+  vButton,
   vRipple,
   vShadow,
   vShape,
@@ -325,5 +327,5 @@ export {
   useTypography,
   useValidator
 };
-export { vAccessibility, vBadge, vRipple, vShadow, vShape, vTooltip };
+export { vAccessibility, vBadge, vButton, vRipple, vShadow, vShape, vTooltip };
 export { types, helpers, detectIE };

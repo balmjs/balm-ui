@@ -21,10 +21,15 @@
  * THE SOFTWARE.
  */
 import { __assign, __extends } from "tslib";
+import { AnimationFrame } from '../animation/animationframe';
 import { getCorrectPropertyName } from '../animation/util';
 import { MDCFoundation } from '../base/foundation';
 import { attributes, cssClasses, numbers } from './constants';
 import { Thumb, TickMark } from './types';
+var AnimationKeys;
+(function (AnimationKeys) {
+    AnimationKeys["SLIDER_UPDATE"] = "slider_update";
+})(AnimationKeys || (AnimationKeys = {}));
 // Accessing `window` without a `typeof` check will throw on Node environments.
 var HAS_WINDOW = typeof window !== 'undefined';
 /**
@@ -57,6 +62,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
         _this.startThumbKnobWidth = 0;
         // Width of the end thumb knob.
         _this.endThumbKnobWidth = 0;
+        _this.animFrame = new AnimationFrame();
         return _this;
     }
     Object.defineProperty(MDCSliderFoundation, "defaultAdapter", {
@@ -621,7 +627,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
                 (max - this.value) / (max - min) * this.rect.width :
                 (this.valueStart - min) / (max - min) * this.rect.width;
             var thumbRightPos_1 = thumbLeftPos_1 + rangePx;
-            requestAnimationFrame(function () {
+            this.animFrame.request(AnimationKeys.SLIDER_UPDATE, function () {
                 // Set active track styles, accounting for animation direction by
                 // setting `transform-origin`.
                 var trackAnimatesFromRight = (!isRtl && thumb === Thumb.START) ||
@@ -651,7 +657,7 @@ var MDCSliderFoundation = /** @class */ (function (_super) {
             });
         }
         else {
-            requestAnimationFrame(function () {
+            this.animFrame.request(AnimationKeys.SLIDER_UPDATE, function () {
                 var thumbStartPos = isRtl ? _this.rect.width - rangePx : rangePx;
                 _this.adapter.setThumbStyleProperty(transformProp, "translateX(" + thumbStartPos + "px)", Thumb.END);
                 _this.adapter.setTrackActiveStyleProperty(transformProp, "scaleX(" + pctComplete + ")");

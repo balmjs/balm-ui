@@ -11,6 +11,8 @@ module.exports = (mix) => {
     mix.remove([
       './dist/img/demo',
       './dist/font/materialicons',
+      './dist/data/json.txt',
+      './dist/data/txt.json',
       './dist/rev-manifest.json',
       './dist/service-worker.js'
     ]);

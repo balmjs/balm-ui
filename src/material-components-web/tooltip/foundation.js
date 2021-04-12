@@ -397,6 +397,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             }
             finally { if (e_2) throw e_2.error; }
         }
+        this.handleTransitionEnd();
     };
     MDCTooltipFoundation.prototype.handleTransitionEnd = function () {
         var isHidingTooltip = this.adapter.hasClass(HIDE);

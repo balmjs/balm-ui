@@ -3,6 +3,16 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.23.0 / 2021-04-12
+
+### Features
+
+- update material-icons v83
+
+### Bug Fixes
+
+- `<ui-tooltip>`: fix blur event bug for temporary solution
+
 ## v9.22.0 / 2021-04-09
 
 ### Features

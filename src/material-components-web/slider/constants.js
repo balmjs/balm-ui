@@ -27,6 +27,8 @@ export var cssClasses = {
     INPUT: 'mdc-slider__input',
     RANGE: 'mdc-slider--range',
     THUMB: 'mdc-slider__thumb',
+    // Applied when thumb is in the focused state.
+    THUMB_FOCUSED: 'mdc-slider__thumb--focused',
     THUMB_KNOB: 'mdc-slider__thumb-knob',
     // Class added to the top thumb (for overlapping thumbs in range slider).
     THUMB_TOP: 'mdc-slider__thumb--top',

@@ -218,6 +218,31 @@ var MDCTooltip = /** @class */ (function (_super) {
             notifyHidden: function () {
                 _this.emit(events.HIDDEN, {});
             },
+            getTooltipCaretSize: function () {
+                var caret = _this.root.querySelector("." + CssClasses.TOOLTIP_CARET_TOP);
+                if (!caret) {
+                    return null;
+                }
+                return { width: caret.offsetWidth, height: caret.offsetHeight };
+            },
+            setTooltipCaretStyle: function (propertyName, value) {
+                var topCaret = _this.root.querySelector("." + CssClasses.TOOLTIP_CARET_TOP);
+                var bottomCaret = _this.root.querySelector("." + CssClasses.TOOLTIP_CARET_BOTTOM);
+                if (!topCaret || !bottomCaret) {
+                    return;
+                }
+                topCaret.style.setProperty(propertyName, value);
+                bottomCaret.style.setProperty(propertyName, value);
+            },
+            clearTooltipCaretStyles: function () {
+                var topCaret = _this.root.querySelector("." + CssClasses.TOOLTIP_CARET_TOP);
+                var bottomCaret = _this.root.querySelector("." + CssClasses.TOOLTIP_CARET_BOTTOM);
+                if (!topCaret || !bottomCaret) {
+                    return;
+                }
+                topCaret.removeAttribute('style');
+                bottomCaret.removeAttribute('style');
+            },
         };
         //tslint:enable:object-literal-sort-keys
         return new MDCTooltipFoundation(adapter);

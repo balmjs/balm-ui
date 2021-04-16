@@ -21,8 +21,8 @@
  * THE SOFTWARE.
  */
 import { __extends } from "tslib";
-import { MDCComponent } from '@material/base/component';
-import { announce } from '@material/dom/announce';
+import { MDCComponent } from '../../../base/component';
+import { announce } from '../../../dom/announce';
 import { MDCChip } from '../chip/component';
 import { MDCChipFoundation } from '../chip/foundation';
 import { MDCChipSetFoundation } from './foundation';

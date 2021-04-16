@@ -21,9 +21,9 @@
  * THE SOFTWARE.
  */
 import { __assign, __extends } from "tslib";
-import { MDCComponent } from '@material/base/component';
-import { MDCRipple } from '@material/ripple/component';
-import { MDCRippleFoundation } from '@material/ripple/foundation';
+import { MDCComponent } from '../../../base/component';
+import { MDCRipple } from '../../../ripple/component';
+import { MDCRippleFoundation } from '../../../ripple/foundation';
 import { MDCChipTrailingAction } from '../trailingaction/component';
 import { strings as trailingActionStrings } from '../trailingaction/constants';
 import { strings } from './constants';

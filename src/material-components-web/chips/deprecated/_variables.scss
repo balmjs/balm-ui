@@ -21,9 +21,9 @@
 //
 
 @use 'sass:color';
-@use '@material/animation/variables' as animation-variables;
-@use '@material/density/variables' as density-variables;
-@use '@material/theme/theme-color';
+@use '../../animation/variables' as animation-variables;
+@use '../../density/variables' as density-variables;
+@use '../../theme/theme-color';
 
 $fill-color-default: color.mix(
   theme-color.prop-value(on-surface),

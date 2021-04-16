@@ -21,10 +21,10 @@
  * THE SOFTWARE.
  */
 import { __assign, __extends } from "tslib";
-import { MDCComponent } from '@material/base/component';
-import { closest } from '@material/dom/ponyfill';
-import { MDCRipple } from '@material/ripple/component';
-import { MDCRippleFoundation } from '@material/ripple/foundation';
+import { MDCComponent } from '../../base/component';
+import { closest } from '../../dom/ponyfill';
+import { MDCRipple } from '../../ripple/component';
+import { MDCRippleFoundation } from '../../ripple/foundation';
 import { computePrimaryActionRippleClientRect, GRAPHIC_SELECTED_WIDTH_STYLE_PROP } from './component-ripple';
 import { CssClasses } from './constants';
 import { MDCChipPrimaryActionFoundation } from './primary-foundation';

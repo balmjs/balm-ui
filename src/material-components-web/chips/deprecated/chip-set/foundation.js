@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 import { __assign, __extends } from "tslib";
-import { MDCFoundation } from '@material/base/foundation';
+import { MDCFoundation } from '../../../base/foundation';
 import { Direction, EventSource, jumpChipKeys, navigationKeys, strings as chipStrings } from '../chip/constants';
 import { cssClasses, strings } from './constants';
 var MDCChipSetFoundation = /** @class */ (function (_super) {

@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 import { __assign, __extends } from "tslib";
-import { MDCFoundation } from '@material/base/foundation';
+import { MDCFoundation } from '../../../base/foundation';
 import { cssClasses, Direction, EventSource, jumpChipKeys, navigationKeys, strings } from './constants';
 var emptyClientRect = {
     bottom: 0,

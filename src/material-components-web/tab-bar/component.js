@@ -40,14 +40,14 @@ var MDCTabBar = /** @class */ (function (_super) {
         set: function (focusOnActivate) {
             this.tabList_.forEach(function (tab) { return tab.focusOnActivate = focusOnActivate; });
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTabBar.prototype, "useAutomaticActivation", {
         set: function (useAutomaticActivation) {
             this.foundation.setUseAutomaticActivation(useAutomaticActivation);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCTabBar.prototype.initialize = function (tabFactory, tabScrollerFactory) {

@@ -34,7 +34,7 @@ var MDCLineRippleFoundation = /** @class */ (function (_super) {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCLineRippleFoundation, "defaultAdapter", {
@@ -53,7 +53,7 @@ var MDCLineRippleFoundation = /** @class */ (function (_super) {
             };
             // tslint:enable:object-literal-sort-keys
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCLineRippleFoundation.prototype.init = function () {

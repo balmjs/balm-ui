@@ -21,7 +21,9 @@
  * THE SOFTWARE.
  */
 export { Corner } from '../menu-surface/constants'; // for backward compatibility
+export * from './adapter';
 export * from './component';
 export * from './constants';
 export * from './foundation';
+export * from './types';
 //# sourceMappingURL=index.js.map

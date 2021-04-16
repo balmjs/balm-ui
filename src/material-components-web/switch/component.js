@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { __assign, __extends, __read, __spread } from "tslib";
+import { __assign, __extends, __read, __spreadArray } from "tslib";
 import { MDCComponent } from '../base/component';
 import { applyPassive } from '../dom/events';
 import { matches } from '../dom/ponyfill';
@@ -50,7 +50,7 @@ var MDCSwitch = /** @class */ (function (_super) {
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
             }
-            return (_a = _this.foundation).handleChange.apply(_a, __spread(args));
+            return (_a = _this.foundation).handleChange.apply(_a, __spreadArray([], __read(args)));
         };
         this.nativeControl_.addEventListener('change', this.changeHandler_);
         // Sometimes the checked state of the input element is saved in the history.
@@ -79,7 +79,7 @@ var MDCSwitch = /** @class */ (function (_super) {
         get: function () {
             return this.ripple_;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSwitch.prototype, "checked", {
@@ -89,7 +89,7 @@ var MDCSwitch = /** @class */ (function (_super) {
         set: function (checked) {
             this.foundation.setChecked(checked);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSwitch.prototype, "disabled", {
@@ -99,7 +99,7 @@ var MDCSwitch = /** @class */ (function (_super) {
         set: function (disabled) {
             this.foundation.setDisabled(disabled);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCSwitch.prototype.createRipple_ = function () {
@@ -124,7 +124,7 @@ var MDCSwitch = /** @class */ (function (_super) {
             var NATIVE_CONTROL_SELECTOR = MDCSwitchFoundation.strings.NATIVE_CONTROL_SELECTOR;
             return this.root.querySelector(NATIVE_CONTROL_SELECTOR);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return MDCSwitch;

@@ -41,21 +41,21 @@ var MDCSnackbarFoundation = /** @class */ (function (_super) {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSnackbarFoundation, "strings", {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSnackbarFoundation, "numbers", {
         get: function () {
             return numbers;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSnackbarFoundation, "defaultAdapter", {
@@ -70,7 +70,7 @@ var MDCSnackbarFoundation = /** @class */ (function (_super) {
                 removeClass: function () { return undefined; },
             };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCSnackbarFoundation.prototype.destroy = function () {

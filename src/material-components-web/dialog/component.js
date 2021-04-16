@@ -37,7 +37,7 @@ var MDCDialog = /** @class */ (function (_super) {
         get: function () {
             return this.foundation.isOpen();
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCDialog.prototype, "escapeKeyAction", {
@@ -47,7 +47,7 @@ var MDCDialog = /** @class */ (function (_super) {
         set: function (action) {
             this.foundation.setEscapeKeyAction(action);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCDialog.prototype, "scrimClickAction", {
@@ -57,7 +57,7 @@ var MDCDialog = /** @class */ (function (_super) {
         set: function (action) {
             this.foundation.setScrimClickAction(action);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCDialog.prototype, "autoStackButtons", {
@@ -67,7 +67,7 @@ var MDCDialog = /** @class */ (function (_super) {
         set: function (autoStack) {
             this.foundation.setAutoStackButtons(autoStack);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCDialog.attachTo = function (root) {
@@ -108,18 +108,11 @@ var MDCDialog = /** @class */ (function (_super) {
         this.handleKeydown = this.foundation.handleKeydown.bind(this.foundation);
         this.handleDocumentKeydown =
             this.foundation.handleDocumentKeydown.bind(this.foundation);
-        this.handleLayout = this.layout.bind(this);
-        var LAYOUT_EVENTS = ['resize', 'orientationchange'];
+        // this.handleLayout = this.layout.bind(this);
         this.handleOpening = function () {
-            LAYOUT_EVENTS.forEach(function (evtType) {
-                window.addEventListener(evtType, _this.handleLayout);
-            });
             document.addEventListener('keydown', _this.handleDocumentKeydown);
         };
         this.handleClosing = function () {
-            LAYOUT_EVENTS.forEach(function (evtType) {
-                window.removeEventListener(evtType, _this.handleLayout);
-            });
             document.removeEventListener('keydown', _this.handleDocumentKeydown);
         };
         this.listen('click', this.handleClick);
@@ -207,6 +200,12 @@ var MDCDialog = /** @class */ (function (_super) {
             },
             isScrollableContentAtBottom: function () {
                 return util.isScrollAtBottom(_this.content);
+            },
+            registerWindowEventHandler: function (evt, handler) {
+                window.addEventListener(evt, handler);
+            },
+            deregisterWindowEventHandler: function (evt, handler) {
+                window.removeEventListener(evt, handler);
             },
         };
         return new MDCDialogFoundation(adapter);

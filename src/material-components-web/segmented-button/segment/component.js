@@ -38,7 +38,7 @@ var MDCSegmentedButtonSegment = /** @class */ (function (_super) {
         get: function () {
             return this.rippleComponent;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCSegmentedButtonSegment.attachTo = function (root) {

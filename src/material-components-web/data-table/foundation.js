@@ -69,7 +69,7 @@ var MDCDataTableFoundation = /** @class */ (function (_super) {
                 setSortStatusLabelByHeaderCellIndex: function () { return undefined; },
             };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     /**

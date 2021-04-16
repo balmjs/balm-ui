@@ -88,7 +88,7 @@ var MDCRipple = /** @class */ (function (_super) {
             this.unbounded_ = Boolean(unbounded);
             this.setUnbounded_();
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCRipple.prototype.activate = function () {

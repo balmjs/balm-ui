@@ -42,7 +42,7 @@ var MDCCircularProgress = /** @class */ (function (_super) {
         set: function (value) {
             this.foundation.setDeterminate(value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCCircularProgress.prototype, "progress", {
@@ -55,7 +55,7 @@ var MDCCircularProgress = /** @class */ (function (_super) {
         set: function (value) {
             this.foundation.setProgress(value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCCircularProgress.prototype, "isClosed", {
@@ -65,7 +65,7 @@ var MDCCircularProgress = /** @class */ (function (_super) {
         get: function () {
             return this.foundation.isClosed();
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     /**

@@ -34,14 +34,14 @@ var MDCTabFoundation = /** @class */ (function (_super) {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTabFoundation, "strings", {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTabFoundation, "defaultAdapter", {
@@ -63,7 +63,7 @@ var MDCTabFoundation = /** @class */ (function (_super) {
             };
             // tslint:enable:object-literal-sort-keys
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCTabFoundation.prototype.handleClick = function () {

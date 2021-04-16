@@ -43,7 +43,7 @@ var MDCRadio = /** @class */ (function (_super) {
         set: function (checked) {
             this.nativeControl_.checked = checked;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCRadio.prototype, "disabled", {
@@ -53,7 +53,7 @@ var MDCRadio = /** @class */ (function (_super) {
         set: function (disabled) {
             this.foundation.setDisabled(disabled);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCRadio.prototype, "value", {
@@ -63,14 +63,14 @@ var MDCRadio = /** @class */ (function (_super) {
         set: function (value) {
             this.nativeControl_.value = value;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCRadio.prototype, "ripple", {
         get: function () {
             return this.ripple_;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCRadio.prototype.destroy = function () {
@@ -110,7 +110,7 @@ var MDCRadio = /** @class */ (function (_super) {
             }
             return el;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return MDCRadio;

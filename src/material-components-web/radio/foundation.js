@@ -32,14 +32,14 @@ var MDCRadioFoundation = /** @class */ (function (_super) {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCRadioFoundation, "strings", {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCRadioFoundation, "defaultAdapter", {
@@ -50,7 +50,7 @@ var MDCRadioFoundation = /** @class */ (function (_super) {
                 setNativeControlDisabled: function () { return undefined; },
             };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCRadioFoundation.prototype.setDisabled = function (disabled) {

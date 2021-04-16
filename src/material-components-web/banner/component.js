@@ -22,6 +22,7 @@
  */
 import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
+import { FocusTrap } from '../dom/focus-trap';
 import { closest } from '../dom/ponyfill';
 import { events, selectors } from './constants';
 import { MDCBannerFoundation } from './foundation';
@@ -34,14 +35,18 @@ var MDCBanner = /** @class */ (function (_super) {
     MDCBanner.attachTo = function (root) {
         return new MDCBanner(root);
     };
-    MDCBanner.prototype.initialize = function () {
+    MDCBanner.prototype.initialize = function (focusTrapFactory) {
         var _this = this;
+        if (focusTrapFactory === void 0) { focusTrapFactory = function (el, focusOptions) {
+            return new FocusTrap(el, focusOptions);
+        }; }
         this.contentEl = this.root.querySelector(selectors.CONTENT);
         this.textEl = this.root.querySelector(selectors.TEXT);
         this.primaryActionEl =
             this.root.querySelector(selectors.PRIMARY_ACTION);
         this.secondaryActionEl =
             this.root.querySelector(selectors.SECONDARY_ACTION);
+        this.focusTrapFactory = focusTrapFactory;
         this.handleContentClick = function (evt) {
             var target = evt.target;
             if (closest(target, selectors.PRIMARY_ACTION)) {
@@ -54,6 +59,7 @@ var MDCBanner = /** @class */ (function (_super) {
     };
     MDCBanner.prototype.initialSyncWithDOM = function () {
         this.registerContentClickHandler(this.handleContentClick);
+        this.focusTrap = this.focusTrapFactory(this.root, { initialFocusEl: this.primaryActionEl });
     };
     MDCBanner.prototype.destroy = function () {
         _super.prototype.destroy.call(this);
@@ -105,11 +111,17 @@ var MDCBanner = /** @class */ (function (_super) {
             notifyOpening: function () {
                 _this.emit(events.OPENING, {});
             },
+            releaseFocus: function () {
+                _this.focusTrap.releaseFocus();
+            },
             removeClass: function (className) {
                 _this.root.classList.remove(className);
             },
             setStyleProperty: function (propertyName, value) {
                 _this.root.style.setProperty(propertyName, value);
+            },
+            trapFocus: function () {
+                _this.focusTrap.trapFocus();
             },
         };
         return new MDCBannerFoundation(adapter);
@@ -118,7 +130,7 @@ var MDCBanner = /** @class */ (function (_super) {
         get: function () {
             return this.foundation.isOpen();
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCBanner.prototype.getText = function () {

@@ -35,21 +35,21 @@ var MDCLinearProgress = /** @class */ (function (_super) {
         set: function (value) {
             this.foundation.setDeterminate(value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCLinearProgress.prototype, "progress", {
         set: function (value) {
             this.foundation.setProgress(value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCLinearProgress.prototype, "buffer", {
         set: function (value) {
             this.foundation.setBuffer(value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCLinearProgress.prototype.open = function () {

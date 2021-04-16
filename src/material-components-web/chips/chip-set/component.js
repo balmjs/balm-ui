@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2016 Google Inc.
+ * Copyright 2018 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,13 +22,13 @@
  */
 import { __extends } from "tslib";
 import { MDCComponent } from '../../base/component';
-import { announce } from '../../dom/announce';
 import { MDCChip } from '../chip/component';
-import { MDCChipFoundation } from '../chip/foundation';
+import { Events } from '../chip/constants';
+import { CssClasses } from './constants';
 import { MDCChipSetFoundation } from './foundation';
-var _a = MDCChipFoundation.strings, INTERACTION_EVENT = _a.INTERACTION_EVENT, SELECTION_EVENT = _a.SELECTION_EVENT, REMOVAL_EVENT = _a.REMOVAL_EVENT, NAVIGATION_EVENT = _a.NAVIGATION_EVENT;
-var CHIP_SELECTOR = MDCChipSetFoundation.strings.CHIP_SELECTOR;
-var idCounter = 0;
+/**
+ * MDCChip provides component encapsulation of the foundation implementation.
+ */
 var MDCChipSet = /** @class */ (function (_super) {
     __extends(MDCChipSet, _super);
     function MDCChipSet() {
@@ -37,130 +37,121 @@ var MDCChipSet = /** @class */ (function (_super) {
     MDCChipSet.attachTo = function (root) {
         return new MDCChipSet(root);
     };
-    Object.defineProperty(MDCChipSet.prototype, "chips", {
-        get: function () {
-            return this.chips_.slice();
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(MDCChipSet.prototype, "selectedChipIds", {
-        /**
-         * @return An array of the IDs of all selected chips.
-         */
-        get: function () {
-            return this.foundation.getSelectedChipIds();
-        },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * @param chipFactory A function which creates a new MDCChip.
-     */
     MDCChipSet.prototype.initialize = function (chipFactory) {
         if (chipFactory === void 0) { chipFactory = function (el) { return new MDCChip(el); }; }
-        this.chipFactory_ = chipFactory;
-        this.chips_ = this.instantiateChips_(this.chipFactory_);
+        this.chips = [];
+        var chipEls = this.root.querySelectorAll("." + CssClasses.CHIP);
+        for (var i = 0; i < chipEls.length; i++) {
+            var chip = chipFactory(chipEls[i]);
+            this.chips.push(chip);
+        }
     };
     MDCChipSet.prototype.initialSyncWithDOM = function () {
         var _this = this;
-        this.chips_.forEach(function (chip) {
-            if (chip.id && chip.selected) {
-                _this.foundation.select(chip.id);
-            }
-        });
-        this.handleChipInteraction_ = function (evt) {
-            return _this.foundation.handleChipInteraction(evt.detail);
+        this.handleChipInteraction = function (event) {
+            _this.foundation.handleChipInteraction(event);
         };
-        this.handleChipSelection_ = function (evt) {
-            return _this.foundation.handleChipSelection(evt.detail);
+        this.handleChipNavigation = function (event) {
+            _this.foundation.handleChipNavigation(event);
         };
-        this.handleChipRemoval_ = function (evt) {
-            return _this.foundation.handleChipRemoval(evt.detail);
-        };
-        this.handleChipNavigation_ = function (evt) {
-            return _this.foundation.handleChipNavigation(evt.detail);
-        };
-        this.listen(INTERACTION_EVENT, this.handleChipInteraction_);
-        this.listen(SELECTION_EVENT, this.handleChipSelection_);
-        this.listen(REMOVAL_EVENT, this.handleChipRemoval_);
-        this.listen(NAVIGATION_EVENT, this.handleChipNavigation_);
+        this.listen(Events.INTERACTION, this.handleChipInteraction);
+        this.listen(Events.NAVIGATION, this.handleChipNavigation);
     };
     MDCChipSet.prototype.destroy = function () {
-        this.chips_.forEach(function (chip) {
-            chip.destroy();
-        });
-        this.unlisten(INTERACTION_EVENT, this.handleChipInteraction_);
-        this.unlisten(SELECTION_EVENT, this.handleChipSelection_);
-        this.unlisten(REMOVAL_EVENT, this.handleChipRemoval_);
-        this.unlisten(NAVIGATION_EVENT, this.handleChipNavigation_);
+        this.unlisten(Events.INTERACTION, this.handleChipInteraction);
+        this.unlisten(Events.NAVIGATION, this.handleChipNavigation);
         _super.prototype.destroy.call(this);
-    };
-    /**
-     * Adds a new chip object to the chip set from the given chip element.
-     */
-    MDCChipSet.prototype.addChip = function (chipEl) {
-        chipEl.id = chipEl.id || "mdc-chip-" + ++idCounter;
-        this.chips_.push(this.chipFactory_(chipEl));
     };
     MDCChipSet.prototype.getDefaultFoundation = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
-        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take
+        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
+        // methods, we need a separate, strongly typed adapter variable.
         var adapter = {
-            announceMessage: function (message) {
-                announce(message);
+            // TODO(b/169284745): Implement and test
+            announceMessage: function () { },
+            emitEvent: function (eventName, eventDetail) {
+                _this.emit(eventName, eventDetail, true /* shouldBubble */);
             },
-            focusChipPrimaryActionAtIndex: function (index) {
-                _this.chips_[index].focusPrimaryAction();
+            getAttribute: function (attrName) { return _this.root.getAttribute(attrName); },
+            getChipActionsAtIndex: function (index) {
+                if (!_this.isIndexValid(index))
+                    return [];
+                return _this.chips[index].getActions();
             },
-            focusChipTrailingActionAtIndex: function (index) {
-                _this.chips_[index].focusTrailingAction();
+            getChipCount: function () { return _this.chips.length; },
+            getChipIdAtIndex: function (index) {
+                if (!_this.isIndexValid(index))
+                    return '';
+                return _this.chips[index].getElementID();
             },
-            getChipListCount: function () { return _this.chips_.length; },
-            getIndexOfChipById: function (chipId) {
-                return _this.findChipIndex_(chipId);
+            getChipIndexById: function (id) {
+                return _this.chips.findIndex(function (chip) { return chip.getElementID() === id; });
             },
-            hasClass: function (className) { return _this.root.classList.contains(className); },
-            isRTL: function () { return window.getComputedStyle(_this.root).getPropertyValue('direction') === 'rtl'; },
-            removeChipAtIndex: function (index) {
-                if (index >= 0 && index < _this.chips_.length) {
-                    _this.chips_[index].destroy();
-                    _this.chips_[index].remove();
-                    _this.chips_.splice(index, 1);
-                }
+            isChipFocusableAtIndex: function (index, action) {
+                if (!_this.isIndexValid(index))
+                    return false;
+                return _this.chips[index].isActionFocusable(action);
             },
-            removeFocusFromChipAtIndex: function (index) {
-                _this.chips_[index].removeFocus();
+            isChipSelectableAtIndex: function (index, action) {
+                if (!_this.isIndexValid(index))
+                    return false;
+                return _this.chips[index].isActionSelectable(action);
             },
-            selectChipAtIndex: function (index, selected, shouldNotifyClients) {
-                if (index >= 0 && index < _this.chips_.length) {
-                    _this.chips_[index].setSelectedFromChipSet(selected, shouldNotifyClients);
-                }
+            isChipSelectedAtIndex: function (index, action) {
+                if (!_this.isIndexValid(index))
+                    return false;
+                return _this.chips[index].isActionSelected(action);
             },
+            // TODO(b/169284745): Implement and test
+            removeChipAtIndex: function () { },
+            setChipFocusAtIndex: function (index, action, focus) {
+                if (!_this.isIndexValid(index))
+                    return;
+                _this.chips[index].setActionFocus(action, focus);
+            },
+            setChipSelectedAtIndex: function (index, action, selected) {
+                if (!_this.isIndexValid(index))
+                    return;
+                _this.chips[index].setActionSelected(action, selected);
+            },
+            // TODO(b/169284745): Implement and test
+            startChipAnimationAtIndex: function () { },
         };
+        // Default to the primary foundation
         return new MDCChipSetFoundation(adapter);
     };
-    /**
-     * Instantiates chip components on all of the chip set's child chip elements.
-     */
-    MDCChipSet.prototype.instantiateChips_ = function (chipFactory) {
-        var chipElements = [].slice.call(this.root.querySelectorAll(CHIP_SELECTOR));
-        return chipElements.map(function (el) {
-            el.id = el.id || "mdc-chip-" + ++idCounter;
-            return chipFactory(el);
-        });
+    /** Returns the index of the chip with the given ID or -1 if none exists. */
+    MDCChipSet.prototype.getChipIndexByID = function (chipID) {
+        return this.chips.findIndex(function (chip) { return chip.getElementID() === chipID; });
     };
     /**
-     * Returns the index of the chip with the given id, or -1 if the chip does not exist.
+     * Returns the ID of the chip at the given index or an empty string if the
+     * index is out of bounds.
      */
-    MDCChipSet.prototype.findChipIndex_ = function (chipId) {
-        for (var i = 0; i < this.chips_.length; i++) {
-            if (this.chips_[i].id === chipId) {
-                return i;
-            }
-        }
-        return -1;
+    MDCChipSet.prototype.getChipIdAtIndex = function (index) {
+        if (!this.isIndexValid(index))
+            return '';
+        return this.chips[index].getElementID();
+    };
+    /** Returns the unique indexes of the selected chips. */
+    MDCChipSet.prototype.getSelectedChipIndexes = function () {
+        return this.foundation.getSelectedChipIndexes();
+    };
+    /** Sets the selection state of the chip. */
+    MDCChipSet.prototype.setChipSelected = function (index, action, isSelected) {
+        this.foundation.setChipSelected(index, action, isSelected);
+    };
+    /** Returns the selection state of the chip. */
+    MDCChipSet.prototype.isChipSelected = function (index, action) {
+        return this.foundation.isChipSelected(index, action);
+    };
+    /** Removes the chip at the given index. */
+    MDCChipSet.prototype.removeChip = function (index) {
+        this.foundation.removeChip(index);
+    };
+    MDCChipSet.prototype.isIndexValid = function (index) {
+        return index > -1 && index < this.chips.length;
     };
     return MDCChipSet;
 }(MDCComponent));

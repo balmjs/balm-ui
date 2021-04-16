@@ -50,11 +50,13 @@ var MDCBannerFoundation = /** @class */ (function (_super) {
                 notifyClosing: function () { return undefined; },
                 notifyOpened: function () { return undefined; },
                 notifyOpening: function () { return undefined; },
+                releaseFocus: function () { return undefined; },
                 removeClass: function () { return undefined; },
                 setStyleProperty: function () { return undefined; },
+                trapFocus: function () { return undefined; },
             };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCBannerFoundation.prototype.destroy = function () {
@@ -75,6 +77,7 @@ var MDCBannerFoundation = /** @class */ (function (_super) {
             _this.adapter.setStyleProperty('height', contentHeight + "px");
             _this.animationTimer = setTimeout(function () {
                 _this.handleAnimationTimerEnd();
+                _this.adapter.trapFocus();
                 _this.adapter.notifyOpened();
             }, numbers.BANNER_ANIMATION_OPEN_TIME_MS);
         });
@@ -103,6 +106,7 @@ var MDCBannerFoundation = /** @class */ (function (_super) {
         this.adapter.removeClass(OPENING);
         clearTimeout(this.animationTimer);
         this.animationTimer = setTimeout(function () {
+            _this.adapter.releaseFocus();
             _this.handleAnimationTimerEnd();
             _this.adapter.notifyClosed(reason);
         }, numbers.BANNER_ANIMATION_CLOSE_TIME_MS);

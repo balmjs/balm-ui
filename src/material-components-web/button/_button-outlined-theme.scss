@@ -29,6 +29,7 @@
 @use '../theme/state';
 @use '../theme/theme';
 @use '../theme/theme-color';
+@use '../ripple/ripple-theme';
 @use './button-base';
 @use './button-shared-theme';
 @use './button-ripple';
@@ -103,14 +104,16 @@ $light-theme: (
       );
     }
 
-    &:focus {
+    @include ripple-theme.focus() {
       @include _outline-color(
         state.get-focus-state($color-or-map),
         $query: $query
       );
     }
 
-    &:active {
+    // Increase active state specificity due to ripple-theme.focus().
+    &:active,
+    &:focus:active {
       @include _outline-color(
         state.get-pressed-state($color-or-map),
         $query: $query

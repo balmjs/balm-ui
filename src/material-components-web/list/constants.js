@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-var _a;
+var _a, _b;
 var cssClasses = {
     LIST_ITEM_ACTIVATED_CLASS: 'mdc-list-item--activated',
     LIST_ITEM_CLASS: 'mdc-list-item',
@@ -30,6 +30,23 @@ var cssClasses = {
     LIST_ITEM_PRIMARY_TEXT_CLASS: 'mdc-list-item__primary-text',
     ROOT: 'mdc-list',
 };
+var evolutionClassNameMap = (_a = {},
+    _a["" + cssClasses.LIST_ITEM_ACTIVATED_CLASS] = 'mdc-list-item--activated',
+    _a["" + cssClasses.LIST_ITEM_CLASS] = 'mdc-list-item',
+    _a["" + cssClasses.LIST_ITEM_DISABLED_CLASS] = 'mdc-list-item--disabled',
+    _a["" + cssClasses.LIST_ITEM_SELECTED_CLASS] = 'mdc-list-item--selected',
+    _a["" + cssClasses.LIST_ITEM_PRIMARY_TEXT_CLASS] = 'mdc-list-item__primary-text',
+    _a["" + cssClasses.ROOT] = 'mdc-list',
+    _a);
+var deprecatedClassNameMap = (_b = {},
+    _b["" + cssClasses.LIST_ITEM_ACTIVATED_CLASS] = 'mdc-deprecated-list-item--activated',
+    _b["" + cssClasses.LIST_ITEM_CLASS] = 'mdc-deprecated-list-item',
+    _b["" + cssClasses.LIST_ITEM_DISABLED_CLASS] = 'mdc-deprecated-list-item--disabled',
+    _b["" + cssClasses.LIST_ITEM_SELECTED_CLASS] = 'mdc-deprecated-list-item--selected',
+    _b["" + cssClasses.LIST_ITEM_TEXT_CLASS] = 'mdc-deprecated-list-item__text',
+    _b["" + cssClasses.LIST_ITEM_PRIMARY_TEXT_CLASS] = 'mdc-deprecated-list-item__primary-text',
+    _b["" + cssClasses.ROOT] = 'mdc-deprecated-list',
+    _b);
 var strings = {
     ACTION_EVENT: 'MDCList:action',
     ARIA_CHECKED: 'aria-checked',
@@ -45,8 +62,9 @@ var strings = {
     ARIA_MULTI_SELECTABLE_SELECTOR: '[aria-multiselectable="true"]',
     CHECKBOX_RADIO_SELECTOR: 'input[type="checkbox"], input[type="radio"]',
     CHECKBOX_SELECTOR: 'input[type="checkbox"]',
-    CHILD_ELEMENTS_TO_TOGGLE_TABINDEX: 'button:not(:disabled), a',
-    FOCUSABLE_CHILD_ELEMENTS: 'button:not(:disabled), a, input[type="radio"]:not(:disabled), input[type="checkbox"]:not(:disabled)',
+    CHILD_ELEMENTS_TO_TOGGLE_TABINDEX: "\n    ." + cssClasses.LIST_ITEM_CLASS + " button:not(:disabled),\n    ." + cssClasses.LIST_ITEM_CLASS + " a,\n    ." + deprecatedClassNameMap[cssClasses.LIST_ITEM_CLASS] + " button:not(:disabled),\n    ." + deprecatedClassNameMap[cssClasses.LIST_ITEM_CLASS] + " a\n  ",
+    DEPRECATED_SELECTOR: '.mdc-deprecated-list',
+    FOCUSABLE_CHILD_ELEMENTS: "\n    ." + cssClasses.LIST_ITEM_CLASS + " button:not(:disabled),\n    ." + cssClasses.LIST_ITEM_CLASS + " a,\n    ." + cssClasses.LIST_ITEM_CLASS + " input[type=\"radio\"]:not(:disabled),\n    ." + cssClasses.LIST_ITEM_CLASS + " input[type=\"checkbox\"]:not(:disabled),\n    ." + deprecatedClassNameMap[cssClasses.LIST_ITEM_CLASS] + " button:not(:disabled),\n    ." + deprecatedClassNameMap[cssClasses.LIST_ITEM_CLASS] + " a,\n    ." + deprecatedClassNameMap[cssClasses.LIST_ITEM_CLASS] + " input[type=\"radio\"]:not(:disabled),\n    ." + deprecatedClassNameMap[cssClasses.LIST_ITEM_CLASS] + " input[type=\"checkbox\"]:not(:disabled)\n  ",
     RADIO_SELECTOR: 'input[type="radio"]',
     SELECTED_ITEM_SELECTOR: '[aria-selected="true"], [aria-current="true"]',
 };
@@ -54,14 +72,6 @@ var numbers = {
     UNSET_INDEX: -1,
     TYPEAHEAD_BUFFER_CLEAR_TIMEOUT_MS: 300
 };
-var evolutionClassNameMap = (_a = {},
-    _a["" + cssClasses.LIST_ITEM_ACTIVATED_CLASS] = 'mdc-evolution-list-item--activated',
-    _a["" + cssClasses.LIST_ITEM_CLASS] = 'mdc-evolution-list-item',
-    _a["" + cssClasses.LIST_ITEM_DISABLED_CLASS] = 'mdc-evolution-list-item--disabled',
-    _a["" + cssClasses.LIST_ITEM_SELECTED_CLASS] = 'mdc-evolution-list-item--selected',
-    _a["" + cssClasses.LIST_ITEM_PRIMARY_TEXT_CLASS] = 'mdc-evolution-list-item__primary-text',
-    _a["" + cssClasses.ROOT] = 'mdc-evolution-list',
-    _a);
 var evolutionAttribute = 'evolution';
-export { strings, cssClasses, numbers, evolutionAttribute, evolutionClassNameMap };
+export { strings, cssClasses, numbers, deprecatedClassNameMap, evolutionAttribute, evolutionClassNameMap };
 //# sourceMappingURL=constants.js.map

@@ -27,6 +27,7 @@
 @use 'sass:math';
 @use '../animation/functions' as animation-functions;
 @use '../button/button-theme';
+@use '../dom/dom';
 @use '../elevation/mixins' as elevation-mixins;
 @use '../feature-targeting/feature-targeting';
 @use '../rtl/mixins' as rtl-mixins;
@@ -92,6 +93,14 @@
     &.mdc-dialog--fullscreen {
       @include _fullscreen-dialog-size($query: $query);
     }
+
+    &.mdc-dialog__scrim--hidden {
+      .mdc-dialog__scrim {
+        @include feature-targeting.targets($feat-structure) {
+          opacity: 0;
+        }
+      }
+    }
   }
 
   .mdc-dialog__scrim {
@@ -136,9 +145,27 @@
       // IE 11: Otherwise, scrolling content in `mdc-dialog__content` overflows.
       overflow-y: auto;
 
-      @include rtl-mixins.rtl('.mdc-dialog') {
+      @include rtl-mixins.rtl {
         /* @noflip */
         text-align: right;
+      }
+
+      @include dom.ie-high-contrast-mode {
+        // Colored outline is used for IE11 HCM instead of transparent border
+        // below to prevent scrolling content overflow.
+        outline: 2px solid windowText;
+      }
+    }
+
+    &::before {
+      @include dom.transparent-border($border-width: 2px, $query: $query);
+      @include feature-targeting.targets($feat-structure) {
+        // Prevent IE11 from rendering this element, because it causes scrolling
+        // content to overflow.
+        @media screen and (-ms-high-contrast: active),
+          screen and (-ms-high-contrast: none) {
+          content: none;
+        }
       }
     }
   }
@@ -155,11 +182,10 @@
       position: relative;
       flex-shrink: 0;
       box-sizing: border-box;
-      margin: 0;
+      margin: 0 0 1px;
       padding: 0 24px variables.$title-bottom-padding;
-      border-bottom: 1px solid transparent;
 
-      @include rtl-mixins.rtl('.mdc-dialog') {
+      @include rtl-mixins.rtl {
         /* @noflip */
         text-align: right;
       }
@@ -169,6 +195,7 @@
   // stylelint-disable-next-line plugin/selector-bem-pattern
   .mdc-dialog--scrollable .mdc-dialog__title {
     @include feature-targeting.targets($feat-structure) {
+      margin-bottom: 1px;
       // Adjust bottom padding to make title height align to spec when divider is present.
       // (Titles for alert dialogs w/o dividers align based on text baseline. All spec values are divisible by 4.)
       padding-bottom: variables.$title-bottom-padding + 6px;
@@ -184,18 +211,32 @@
         border-bottom: 1px solid transparent;
         justify-content: space-between;
         align-items: baseline;
+
+        @include _modal-header(
+          $close-icon-padding: variables.$close-icon-padding
+        );
       }
     }
 
     .mdc-dialog__title {
       @include feature-targeting.targets($feat-structure) {
+        margin-bottom: 0;
         padding: 0;
         border-bottom: 0;
       }
     }
 
+    &.mdc-dialog--scrollable .mdc-dialog__title {
+      @include feature-targeting.targets($feat-structure) {
+        border-bottom: 0;
+        margin-bottom: 0;
+      }
+    }
+
     .mdc-dialog__close {
-      @include iconbutton-mixins.size($size: 24px, $query: $query);
+      @include feature-targeting.targets($feat-structure) {
+        top: 5px;
+      }
     }
 
     &.mdc-dialog--scrollable .mdc-dialog__actions {
@@ -238,7 +279,8 @@
   }
 
   // stylelint-disable-next-line plugin/selector-bem-pattern
-  .mdc-dialog__title + .mdc-dialog__content {
+  .mdc-dialog__title + .mdc-dialog__content,
+  .mdc-dialog__header + .mdc-dialog__content {
     @include feature-targeting.targets($feat-structure) {
       // Eliminate padding to bring as close to spec as possible, relying on title padding.
       // (Spec seems inconsistent RE title/body spacing on alert vs. simple variants.)
@@ -257,9 +299,9 @@
   }
 
   // stylelint-disable-next-line plugin/selector-bem-pattern
-  .mdc-dialog__content .mdc-list:first-child:last-child {
+  .mdc-dialog__content .mdc-deprecated-list:first-child:last-child {
     @include feature-targeting.targets($feat-structure) {
-      // Override default .mdc-list padding for content consisting exclusively of a MDC List
+      // Override default .mdc-deprecated-list padding for content consisting exclusively of a MDC List
       padding: 6px 0 0; // Top padding balances with title height
     }
   }
@@ -267,9 +309,9 @@
   // stylelint-disable-next-line plugin/selector-bem-pattern, selector-max-specificity
   .mdc-dialog--scrollable
     .mdc-dialog__content
-    .mdc-list:first-child:last-child {
+    .mdc-deprecated-list:first-child:last-child {
     @include feature-targeting.targets($feat-structure) {
-      // Override default .mdc-list padding for content consisting exclusively of a MDC List
+      // Override default .mdc-deprecated-list padding for content consisting exclusively of a MDC List
       padding: 0;
     }
   }
@@ -313,7 +355,7 @@
       /* @noflip */
       text-align: right;
 
-      @include rtl-mixins.rtl('.mdc-dialog') {
+      @include rtl-mixins.rtl {
         /* @noflip */
         text-align: left;
       }
@@ -378,6 +420,49 @@
         opacity: 1;
       }
     }
+
+    &.mdc-dialog__surface-scrim--shown {
+      .mdc-dialog__surface-scrim {
+        @include feature-targeting.targets($feat-structure) {
+          opacity: 1;
+          z-index: 1;
+        }
+      }
+    }
+
+    &.mdc-dialog__surface-scrim--hiding {
+      .mdc-dialog__surface-scrim {
+        @include feature-targeting.targets($feat-animation) {
+          transition: opacity 75ms linear;
+        }
+      }
+    }
+
+    &.mdc-dialog__surface-scrim--showing {
+      .mdc-dialog__surface-scrim {
+        @include feature-targeting.targets($feat-animation) {
+          transition: opacity 150ms linear;
+        }
+      }
+    }
+  }
+
+  .mdc-dialog__surface-scrim {
+    @include feature-targeting.targets($feat-structure) {
+      display: none;
+      opacity: 0;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .mdc-dialog__surface-scrim--shown &,
+    .mdc-dialog__surface-scrim--showing &,
+    .mdc-dialog__surface-scrim--hiding & {
+      @include feature-targeting.targets($feat-structure) {
+        display: block;
+      }
+    }
   }
 
   // postcss-bem-linter: end
@@ -412,6 +497,12 @@
       background-color: rgba(theme-color.prop-value($color), $opacity);
     }
   }
+
+  .mdc-dialog__surface-scrim {
+    @include feature-targeting.targets($feat-color) {
+      background-color: rgba(theme-color.prop-value($color), $opacity);
+    }
+  }
 }
 
 @mixin title-ink-color(
@@ -439,6 +530,10 @@
     @include feature-targeting.targets($feat-color) {
       color: rgba(theme-color.prop-value($color), $opacity);
     }
+  }
+
+  .mdc-dialog__close {
+    @include iconbutton-mixins.ink_color($color: $color, $query: $query);
   }
 }
 
@@ -471,6 +566,13 @@
     .mdc-dialog__actions {
     @include feature-targeting.targets($feat-color) {
       border-color: rgba(theme-color.prop-value($color), $opacity);
+    }
+  }
+
+  &.mdc-dialog--scrollable .mdc-dialog__title {
+    @include feature-targeting.targets($feat-color) {
+      border-bottom: 1px solid rgba(theme-color.prop-value($color), $opacity);
+      margin-bottom: 0;
     }
   }
 
@@ -611,6 +713,9 @@
       @include feature-targeting.targets($feat-structure) {
         max-height: 560px;
         max-width: 560px;
+        @include _modal-header(
+          $close-icon-padding: variables.$close-icon-padding
+        );
       }
     }
 
@@ -627,6 +732,9 @@
           $horizontal-margin: $min-horizontal-small-margin,
           $max-width: $max-small-width
         );
+        @include _modal-header(
+          $close-icon-padding: variables.$close-icon-padding
+        );
       }
     }
 
@@ -637,6 +745,10 @@
         width: 100vw;
         max-height: 100vh;
         height: 100vh;
+        @include _fullscreen-header(
+          $close-icon-padding: variables.$close-icon-padding,
+          $title-side-padding: variables.$title-side-padding
+        );
       }
       @include shape-mixins.radius(0, $query: $query);
     }
@@ -648,6 +760,10 @@
         width: 100vw;
         max-height: 100vh;
         height: 100vh;
+        @include _fullscreen-header(
+          $close-icon-padding: variables.$close-icon-padding,
+          $title-side-padding: variables.$title-side-padding
+        );
       }
       @include shape-mixins.radius(0, $query: $query);
     }
@@ -657,6 +773,9 @@
       @include feature-targeting.targets($feat-structure) {
         $min-horizontal-margin: 200px;
         max-width: calc(100vw - #{$min-horizontal-margin * 2});
+        @include _modal-header(
+          $close-icon-padding: variables.$close-icon-padding
+        );
       }
     }
   }
@@ -692,5 +811,36 @@
   }
   @media (min-height: $max-height-breakpoint) {
     max-height: $max-height;
+  }
+}
+
+/// Defines styles for the header bar when a dialog takes up the full screen.
+/// @param  {Number} $close-icon-padding - Padding on close icon button.
+/// @param  {Number} $title-side-padding - Space between the edge of the close
+///   icon button and edge of the title.
+@mixin _fullscreen-header($close-icon-padding, $title-side-padding) {
+  .mdc-dialog__close {
+    order: -1;
+    @include theme.property(left, -#{$close-icon-padding});
+  }
+  .mdc-dialog__header {
+    padding: 0 variables.$fullscreen-header-side-padding
+      variables.$title-bottom-padding;
+    justify-content: flex-start;
+  }
+  .mdc-dialog__title {
+    @include theme.property(
+      margin-left,
+      calc(title - 2 * close),
+      $replace: (title: $title-side-padding, close: $close-icon-padding)
+    );
+  }
+}
+
+/// Defines styles for the header bar when a dialog is modal.
+/// @param  {Number} $close-icon-padding - Padding on close icon button.
+@mixin _modal-header($close-icon-padding) {
+  .mdc-dialog__close {
+    @include theme.property(right, -#{$close-icon-padding});
   }
 }

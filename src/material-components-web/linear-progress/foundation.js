@@ -35,14 +35,14 @@ var MDCLinearProgressFoundation = /** @class */ (function (_super) {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCLinearProgressFoundation, "strings", {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCLinearProgressFoundation, "defaultAdapter", {
@@ -61,18 +61,18 @@ var MDCLinearProgressFoundation = /** @class */ (function (_super) {
                 setAttribute: function () { return undefined; },
             };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCLinearProgressFoundation.prototype.init = function () {
         var _this = this;
-        this.isDeterminate = !this.adapter.hasClass(cssClasses.INDETERMINATE_CLASS);
+        this.determinate = !this.adapter.hasClass(cssClasses.INDETERMINATE_CLASS);
         this.adapter.addClass(cssClasses.ANIMATION_READY_CLASS);
         this.progress = 0;
         this.buffer = 1;
         this.observer = this.adapter.attachResizeObserver(function (entries) {
             var e_1, _a;
-            if (_this.isDeterminate) {
+            if (_this.determinate) {
                 return;
             }
             try {
@@ -91,13 +91,13 @@ var MDCLinearProgressFoundation = /** @class */ (function (_super) {
                 finally { if (e_1) throw e_1.error; }
             }
         });
-        if (!this.isDeterminate && this.observer) {
+        if (!this.determinate && this.observer) {
             this.calculateAndSetDimensions(this.adapter.getWidth());
         }
     };
     MDCLinearProgressFoundation.prototype.setDeterminate = function (isDeterminate) {
-        this.isDeterminate = isDeterminate;
-        if (this.isDeterminate) {
+        this.determinate = isDeterminate;
+        if (this.determinate) {
             this.adapter.removeClass(cssClasses.INDETERMINATE_CLASS);
             this.adapter.setAttribute(strings.ARIA_VALUENOW, this.progress.toString());
             this.adapter.setAttribute(strings.ARIA_VALUEMAX, '1');
@@ -116,12 +116,12 @@ var MDCLinearProgressFoundation = /** @class */ (function (_super) {
         this.setPrimaryBarProgress(1);
         this.setBufferBarProgress(1);
     };
-    MDCLinearProgressFoundation.prototype.getDeterminate = function () {
-        return this.isDeterminate;
+    MDCLinearProgressFoundation.prototype.isDeterminate = function () {
+        return this.determinate;
     };
     MDCLinearProgressFoundation.prototype.setProgress = function (value) {
         this.progress = value;
-        if (this.isDeterminate) {
+        if (this.determinate) {
             this.setPrimaryBarProgress(value);
             this.adapter.setAttribute(strings.ARIA_VALUENOW, value.toString());
         }
@@ -131,16 +131,24 @@ var MDCLinearProgressFoundation = /** @class */ (function (_super) {
     };
     MDCLinearProgressFoundation.prototype.setBuffer = function (value) {
         this.buffer = value;
-        if (this.isDeterminate) {
+        if (this.determinate) {
             this.setBufferBarProgress(value);
         }
+    };
+    MDCLinearProgressFoundation.prototype.getBuffer = function () {
+        return this.buffer;
     };
     MDCLinearProgressFoundation.prototype.open = function () {
         this.adapter.removeClass(cssClasses.CLOSED_CLASS);
         this.adapter.removeClass(cssClasses.CLOSED_ANIMATION_OFF_CLASS);
+        this.adapter.removeAttribute(strings.ARIA_HIDDEN);
     };
     MDCLinearProgressFoundation.prototype.close = function () {
         this.adapter.addClass(cssClasses.CLOSED_CLASS);
+        this.adapter.setAttribute(strings.ARIA_HIDDEN, 'true');
+    };
+    MDCLinearProgressFoundation.prototype.isClosed = function () {
+        return this.adapter.hasClass(cssClasses.CLOSED_CLASS);
     };
     /**
      * Handles the transitionend event emitted after `close()` is called and the

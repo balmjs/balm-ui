@@ -36,14 +36,14 @@ var MDCFormFieldFoundation = /** @class */ (function (_super) {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCFormFieldFoundation, "strings", {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCFormFieldFoundation, "defaultAdapter", {
@@ -55,7 +55,7 @@ var MDCFormFieldFoundation = /** @class */ (function (_super) {
                 registerInteractionHandler: function () { return undefined; },
             };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCFormFieldFoundation.prototype.init = function () {

@@ -22,4 +22,5 @@
  */
 export * from './component';
 export * from './foundation';
+export * from './types';
 //# sourceMappingURL=index.js.map

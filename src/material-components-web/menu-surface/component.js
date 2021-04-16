@@ -78,7 +78,7 @@ var MDCMenuSurface = /** @class */ (function (_super) {
         set: function (quickOpen) {
             this.foundation.setQuickOpen(quickOpen);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     /** Sets the foundation to use page offsets for an positioning when the menu is hoisted to the body. */

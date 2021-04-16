@@ -37,10 +37,10 @@ var MDCTooltip = /** @class */ (function (_super) {
         if (!tooltipId) {
             throw new Error('MDCTooltip: Tooltip component must have an id.');
         }
-        var anchorElem = document.querySelector("[aria-describedby=\"" + tooltipId + "\"]") ||
-            document.querySelector("[data-tooltip-id=\"" + tooltipId + "\"]");
+        var anchorElem = document.querySelector("[data-tooltip-id=\"" + tooltipId + "\"]") ||
+            document.querySelector("[aria-describedby=\"" + tooltipId + "\"]");
         if (!anchorElem) {
-            throw new Error('MDCTooltip: Tooltip component requires an anchor element annotated with [aria-describedby] or [data-tooltip-id] anchor element.');
+            throw new Error('MDCTooltip: Tooltip component requires an anchor element annotated with [aria-describedby] or [data-tooltip-id].');
         }
         this.anchorElem = anchorElem;
     };
@@ -57,16 +57,18 @@ var MDCTooltip = /** @class */ (function (_super) {
         this.handleMouseLeave = function () {
             _this.foundation.handleAnchorMouseLeave();
         };
-        this.handleBlur = function (evt) {
-            _this.foundation.handleAnchorBlur(evt);
-        };
         this.handleTransitionEnd = function () {
             _this.foundation.handleTransitionEnd();
         };
         this.handleClick = function () {
             _this.foundation.handleAnchorClick();
         };
-        this.anchorElem.addEventListener('blur', this.handleBlur);
+        this.handleTouchstart = function () {
+            _this.foundation.handleAnchorTouchstart();
+        };
+        this.handleTouchend = function () {
+            _this.foundation.handleAnchorTouchend();
+        };
         if (this.isTooltipRich && this.isTooltipPersistent) {
             this.anchorElem.addEventListener('click', this.handleClick);
         }
@@ -75,12 +77,13 @@ var MDCTooltip = /** @class */ (function (_super) {
             // TODO(b/157075286): Listening for a 'focus' event is too broad.
             this.anchorElem.addEventListener('focus', this.handleFocus);
             this.anchorElem.addEventListener('mouseleave', this.handleMouseLeave);
+            this.anchorElem.addEventListener('touchstart', this.handleTouchstart);
+            this.anchorElem.addEventListener('touchend', this.handleTouchend);
         }
         this.listen('transitionend', this.handleTransitionEnd);
     };
     MDCTooltip.prototype.destroy = function () {
         if (this.anchorElem) {
-            this.anchorElem.removeEventListener('blur', this.handleBlur);
             if (this.isTooltipRich && this.isTooltipPersistent) {
                 this.anchorElem.removeEventListener('click', this.handleClick);
             }
@@ -88,6 +91,8 @@ var MDCTooltip = /** @class */ (function (_super) {
                 this.anchorElem.removeEventListener('mouseenter', this.handleMouseEnter);
                 this.anchorElem.removeEventListener('focus', this.handleFocus);
                 this.anchorElem.removeEventListener('mouseleave', this.handleMouseLeave);
+                this.anchorElem.removeEventListener('touchstart', this.handleTouchstart);
+                this.anchorElem.removeEventListener('touchend', this.handleTouchend);
             }
         }
         this.unlisten('transitionend', this.handleTransitionEnd);
@@ -104,6 +109,23 @@ var MDCTooltip = /** @class */ (function (_super) {
     };
     MDCTooltip.prototype.isShown = function () {
         this.foundation.isShown();
+    };
+    /**
+     * Method that allows user to specify additional elements that should have a
+     * scroll event listener attached to it. This should be used in instances
+     * where the anchor element is placed inside a scrollable container (that is
+     * not the body element), and will ensure that the tooltip will stay attached
+     * to the anchor on scroll.
+     */
+    MDCTooltip.prototype.attachScrollHandler = function (addEventListenerFn) {
+        this.foundation.attachScrollHandler(addEventListenerFn);
+    };
+    /**
+     * Must be used in conjunction with #attachScrollHandler. Removes the scroll
+     * event handler from elements on the page.
+     */
+    MDCTooltip.prototype.removeScrollHandler = function (removeEventHandlerFn) {
+        this.foundation.removeScrollHandler(removeEventHandlerFn);
     };
     MDCTooltip.prototype.getDefaultFoundation = function () {
         var _this = this;
@@ -173,6 +195,14 @@ var MDCTooltip = /** @class */ (function (_super) {
                     _this.root.removeEventListener(evt, handler);
                 }
             },
+            registerAnchorEventHandler: function (evt, handler) {
+                var _a;
+                (_a = _this.anchorElem) === null || _a === void 0 ? void 0 : _a.addEventListener(evt, handler);
+            },
+            deregisterAnchorEventHandler: function (evt, handler) {
+                var _a;
+                (_a = _this.anchorElem) === null || _a === void 0 ? void 0 : _a.addEventListener(evt, handler);
+            },
             registerDocumentEventHandler: function (evt, handler) {
                 document.body.addEventListener(evt, handler);
             },
@@ -187,6 +217,31 @@ var MDCTooltip = /** @class */ (function (_super) {
             },
             notifyHidden: function () {
                 _this.emit(events.HIDDEN, {});
+            },
+            getTooltipCaretSize: function () {
+                var caret = _this.root.querySelector("." + CssClasses.TOOLTIP_CARET_TOP);
+                if (!caret) {
+                    return null;
+                }
+                return { width: caret.offsetWidth, height: caret.offsetHeight };
+            },
+            setTooltipCaretStyle: function (propertyName, value) {
+                var topCaret = _this.root.querySelector("." + CssClasses.TOOLTIP_CARET_TOP);
+                var bottomCaret = _this.root.querySelector("." + CssClasses.TOOLTIP_CARET_BOTTOM);
+                if (!topCaret || !bottomCaret) {
+                    return;
+                }
+                topCaret.style.setProperty(propertyName, value);
+                bottomCaret.style.setProperty(propertyName, value);
+            },
+            clearTooltipCaretStyles: function () {
+                var topCaret = _this.root.querySelector("." + CssClasses.TOOLTIP_CARET_TOP);
+                var bottomCaret = _this.root.querySelector("." + CssClasses.TOOLTIP_CARET_BOTTOM);
+                if (!topCaret || !bottomCaret) {
+                    return;
+                }
+                topCaret.removeAttribute('style');
+                bottomCaret.removeAttribute('style');
             },
         };
         //tslint:enable:object-literal-sort-keys

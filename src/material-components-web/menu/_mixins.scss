@@ -45,12 +45,18 @@
 
   // Customize the menu-surface and contained list to match the mdc-menu styles.
   .mdc-menu {
-    @include list-mixins.item-meta-ink-color(variables.$ink-color, $query);
-    @include list-mixins.item-graphic-ink-color(variables.$ink-color, $query);
+    @include list-mixins.deprecated-item-meta-ink-color(
+      variables.$ink-color,
+      $query
+    );
+    @include list-mixins.deprecated-item-graphic-ink-color(
+      variables.$ink-color,
+      $query
+    );
     @include min-width(variables.$min-width, $query: $query);
-    // Include mdc-list selector to ensure list-inside-menu overrides default list styles
-    .mdc-list {
-      @include list-mixins.item-primary-text-ink-color(
+    // Include mdc-deprecated-list selector to ensure list-inside-menu overrides default list styles
+    .mdc-deprecated-list {
+      @include list-mixins.deprecated-item-primary-text-ink-color(
         variables.$ink-color,
         $query
       );
@@ -58,27 +64,27 @@
       @include elevation-mixins.overlay-dimensions(100%, $query: $query);
     }
 
-    .mdc-list-divider {
+    .mdc-deprecated-list-divider {
       @include feature-targeting.targets($feat-structure) {
         margin: 8px 0;
       }
     }
 
-    .mdc-list-item {
+    .mdc-deprecated-list-item {
       @include feature-targeting.targets($feat-structure) {
         user-select: none;
       }
     }
 
-    .mdc-list-item--disabled {
+    .mdc-deprecated-list-item--disabled {
       @include feature-targeting.targets($feat-structure) {
         cursor: auto;
       }
     }
 
     //stylelint-disable selector-no-qualifying-type
-    a.mdc-list-item .mdc-list-item__text,
-    a.mdc-list-item .mdc-list-item__graphic {
+    a.mdc-deprecated-list-item .mdc-deprecated-list-item__text,
+    a.mdc-deprecated-list-item .mdc-deprecated-list-item__graphic {
       @include feature-targeting.targets($feat-structure) {
         pointer-events: none;
       }
@@ -93,17 +99,17 @@
       fill: currentColor;
     }
 
-    .mdc-list-item {
+    .mdc-deprecated-list-item {
       @include feature-targeting.targets($feat-structure) {
         @include rtl-mixins.reflexive-property(
           padding,
           56px,
-          list-variables.$side-padding
+          list-variables.$deprecated-side-padding
         );
       }
     }
 
-    // Extra specificity required to override `display` property on `mdc-list-item__graphic`.
+    // Extra specificity required to override `display` property on `mdc-deprecated-list-item__graphic`.
     .mdc-menu__selection-group-icon {
       @include feature-targeting.targets($feat-structure) {
         @include rtl-mixins.reflexive-position(left, 16px);

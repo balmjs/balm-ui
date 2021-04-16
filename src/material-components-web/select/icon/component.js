@@ -36,7 +36,7 @@ var MDCSelectIcon = /** @class */ (function (_super) {
         get: function () {
             return this.foundation;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCSelectIcon.prototype.getDefaultFoundation = function () {

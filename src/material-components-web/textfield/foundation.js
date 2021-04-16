@@ -57,21 +57,21 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextFieldFoundation, "strings", {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextFieldFoundation, "numbers", {
         get: function () {
             return numbers;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextFieldFoundation.prototype, "shouldAlwaysFloat_", {
@@ -79,7 +79,7 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
             var type = this.getNativeInput_().type;
             return ALWAYS_FLOAT_TYPES.indexOf(type) >= 0;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextFieldFoundation.prototype, "shouldFloat", {
@@ -87,14 +87,14 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
             return this.shouldAlwaysFloat_ || this.isFocused_ || !!this.getValue() ||
                 this.isBadInput_();
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextFieldFoundation.prototype, "shouldShake", {
         get: function () {
             return !this.isFocused_ && !this.isValid() && !!this.getValue();
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextFieldFoundation, "defaultAdapter", {
@@ -134,7 +134,7 @@ var MDCTextFieldFoundation = /** @class */ (function (_super) {
             };
             // tslint:enable:object-literal-sort-keys
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCTextFieldFoundation.prototype.init = function () {

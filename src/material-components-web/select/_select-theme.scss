@@ -20,6 +20,10 @@
 // THE SOFTWARE.
 //
 
+// Selector '.mdc-*' should only be used in this project.
+// stylelint-disable selector-class-pattern --
+// NOTE: this is the implementation of the aforementioned classes.
+
 @use 'sass:color';
 @use 'sass:list';
 @use 'sass:meta';
@@ -503,7 +507,10 @@ $error-color: error !default;
     $minimum-height-for-filled-label: $minimum-height-for-filled-label,
     $query: $query
   );
-  @include list-mixins.single-line-density($density-scale, $query: $query);
+  @include list-mixins.deprecated-single-line-density(
+    $density-scale,
+    $query: $query
+  );
 }
 
 ///
@@ -530,7 +537,10 @@ $error-color: error !default;
     $minimum-height-for-filled-label: $minimum-height-for-filled-label,
     $query: $query
   );
-  @include list-mixins.single-line-density($density-scale, $query: $query);
+  @include list-mixins.deprecated-single-line-density(
+    $density-scale,
+    $query: $query
+  );
 }
 
 ///
@@ -547,7 +557,10 @@ $error-color: error !default;
   );
 
   @include outlined-height($height, $query: $query);
-  @include list-mixins.single-line-density($density-scale, $query: $query);
+  @include list-mixins.deprecated-single-line-density(
+    $density-scale,
+    $query: $query
+  );
 }
 
 ///
@@ -567,7 +580,10 @@ $error-color: error !default;
   );
 
   @include outlined-with-leading-icon-height($height, $query: $query);
-  @include list-mixins.single-line-density($density-scale, $query: $query);
+  @include list-mixins.deprecated-single-line-density(
+    $density-scale,
+    $query: $query
+  );
 }
 
 ///
@@ -671,7 +687,7 @@ $error-color: error !default;
       );
     }
 
-    .mdc-list-item__graphic {
+    .mdc-deprecated-list-item__graphic {
       width: select-icon-theme.$dense-icon-size;
       height: select-icon-theme.$dense-icon-size;
     }
@@ -782,7 +798,7 @@ $error-color: error !default;
   }
 
   @if $new-height < $height {
-    .mdc-list-item__graphic {
+    .mdc-deprecated-list-item__graphic {
       width: select-icon-theme.$dense-icon-size;
       height: select-icon-theme.$dense-icon-size;
     }

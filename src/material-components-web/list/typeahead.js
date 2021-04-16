@@ -243,8 +243,8 @@ export function handleKeydown(opts, state) {
     var isEnd = normalizeKey(event) === 'End';
     var isEnter = normalizeKey(event) === 'Enter';
     var isSpace = normalizeKey(event) === 'Spacebar';
-    if (isArrowLeft || isArrowUp || isArrowRight || isArrowDown || isHome ||
-        isEnd || isEnter) {
+    if (event.ctrlKey || event.metaKey || isArrowLeft || isArrowUp ||
+        isArrowRight || isArrowDown || isHome || isEnd || isEnter) {
         return -1;
     }
     var isCharacterKey = !isSpace && event.key.length === 1;

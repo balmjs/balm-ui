@@ -40,14 +40,14 @@ var MDCTabScrollerFoundation = /** @class */ (function (_super) {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTabScrollerFoundation, "strings", {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTabScrollerFoundation, "defaultAdapter", {
@@ -71,7 +71,7 @@ var MDCTabScrollerFoundation = /** @class */ (function (_super) {
             };
             // tslint:enable:object-literal-sort-keys
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCTabScrollerFoundation.prototype.init = function () {

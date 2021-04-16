@@ -20,82 +20,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-export var Direction;
-(function (Direction) {
-    Direction["LEFT"] = "left";
-    Direction["RIGHT"] = "right";
-})(Direction || (Direction = {}));
-export var EventSource;
-(function (EventSource) {
-    EventSource["PRIMARY"] = "primary";
-    EventSource["TRAILING"] = "trailing";
-    EventSource["NONE"] = "none";
-})(EventSource || (EventSource = {}));
-export var strings = {
-    ADDED_ANNOUNCEMENT_ATTRIBUTE: 'data-mdc-chip-added-announcement',
-    ARIA_CHECKED: 'aria-checked',
-    ARROW_DOWN_KEY: 'ArrowDown',
-    ARROW_LEFT_KEY: 'ArrowLeft',
-    ARROW_RIGHT_KEY: 'ArrowRight',
-    ARROW_UP_KEY: 'ArrowUp',
-    BACKSPACE_KEY: 'Backspace',
-    CHECKMARK_SELECTOR: '.mdc-chip__checkmark',
-    DELETE_KEY: 'Delete',
-    END_KEY: 'End',
-    ENTER_KEY: 'Enter',
-    ENTRY_ANIMATION_NAME: 'mdc-chip-entry',
-    HOME_KEY: 'Home',
-    IE_ARROW_DOWN_KEY: 'Down',
-    IE_ARROW_LEFT_KEY: 'Left',
-    IE_ARROW_RIGHT_KEY: 'Right',
-    IE_ARROW_UP_KEY: 'Up',
-    IE_DELETE_KEY: 'Del',
-    INTERACTION_EVENT: 'MDCChip:interaction',
-    LEADING_ICON_SELECTOR: '.mdc-chip__icon--leading',
-    NAVIGATION_EVENT: 'MDCChip:navigation',
-    PRIMARY_ACTION_SELECTOR: '.mdc-chip__primary-action',
-    REMOVED_ANNOUNCEMENT_ATTRIBUTE: 'data-mdc-chip-removed-announcement',
-    REMOVAL_EVENT: 'MDCChip:removal',
-    SELECTION_EVENT: 'MDCChip:selection',
-    SPACEBAR_KEY: ' ',
-    TAB_INDEX: 'tabindex',
-    TRAILING_ACTION_SELECTOR: '.mdc-chip-trailing-action',
-    TRAILING_ICON_INTERACTION_EVENT: 'MDCChip:trailingIconInteraction',
-    TRAILING_ICON_SELECTOR: '.mdc-chip__icon--trailing',
-};
-export var cssClasses = {
-    CHECKMARK: 'mdc-chip__checkmark',
-    CHIP_EXIT: 'mdc-chip--exit',
-    DELETABLE: 'mdc-chip--deletable',
-    EDITABLE: 'mdc-chip--editable',
-    EDITING: 'mdc-chip--editing',
-    HIDDEN_LEADING_ICON: 'mdc-chip__icon--leading-hidden',
-    LEADING_ICON: 'mdc-chip__icon--leading',
-    PRIMARY_ACTION: 'mdc-chip__primary-action',
-    PRIMARY_ACTION_FOCUSED: 'mdc-chip--primary-action-focused',
-    SELECTED: 'mdc-chip--selected',
-    TEXT: 'mdc-chip__text',
-    TRAILING_ACTION: 'mdc-chip__trailing-action',
-    TRAILING_ICON: 'mdc-chip__icon--trailing',
-};
-export var navigationKeys = new Set();
-// IE11 has no support for new Set with iterable so we need to initialize this by hand
-navigationKeys.add(strings.ARROW_LEFT_KEY);
-navigationKeys.add(strings.ARROW_RIGHT_KEY);
-navigationKeys.add(strings.ARROW_DOWN_KEY);
-navigationKeys.add(strings.ARROW_UP_KEY);
-navigationKeys.add(strings.END_KEY);
-navigationKeys.add(strings.HOME_KEY);
-navigationKeys.add(strings.IE_ARROW_LEFT_KEY);
-navigationKeys.add(strings.IE_ARROW_RIGHT_KEY);
-navigationKeys.add(strings.IE_ARROW_DOWN_KEY);
-navigationKeys.add(strings.IE_ARROW_UP_KEY);
-export var jumpChipKeys = new Set();
-// IE11 has no support for new Set with iterable so we need to initialize this by hand
-jumpChipKeys.add(strings.ARROW_UP_KEY);
-jumpChipKeys.add(strings.ARROW_DOWN_KEY);
-jumpChipKeys.add(strings.HOME_KEY);
-jumpChipKeys.add(strings.END_KEY);
-jumpChipKeys.add(strings.IE_ARROW_UP_KEY);
-jumpChipKeys.add(strings.IE_ARROW_DOWN_KEY);
+/**
+ * CssClasses provides the named constants for class names.
+ */
+export var CssClasses;
+(function (CssClasses) {
+    CssClasses["SELECTING"] = "mdc-evolution-chip--selecting";
+    CssClasses["DESELECTING"] = "mdc-evolution-chip--deselecting";
+    CssClasses["SELECTING_WITH_PRIMARY_ICON"] = "mdc-evolution-chip--selecting-with-primary-icon";
+    CssClasses["DESELECTING_WITH_PRIMARY_ICON"] = "mdc-evolution-chip--deselecting-with-primary-icon";
+    CssClasses["DISABLED"] = "mdc-evolution-chip--disabled";
+    CssClasses["ENTER"] = "mdc-evolution-chip--enter";
+    CssClasses["EXIT"] = "mdc-evolution-chip--exit";
+    CssClasses["SELECTED"] = "mdc-evolution-chip--selected";
+    CssClasses["HIDDEN"] = "mdc-evolution-chip--hidden";
+    CssClasses["WITH_PRIMARY_ICON"] = "mdc-evolution-chip--with-primary-icon";
+})(CssClasses || (CssClasses = {}));
+/**
+ * Events provides the named constants for emitted events.
+ */
+export var Events;
+(function (Events) {
+    Events["INTERACTION"] = "MDCChip:interaction";
+    Events["NAVIGATION"] = "MDCChip:navigation";
+    Events["ANIMATION"] = "MDCChip:animation";
+})(Events || (Events = {}));
+/**
+ * Events provides the named constants for strings used by the foundation.
+ */
+export var Attributes;
+(function (Attributes) {
+    Attributes["DATA_REMOVED_ANNOUNCEMENT"] = "data-mdc-removed-announcement";
+    Attributes["DATA_ADDED_ANNOUNCEMENT"] = "data-mdc-added-announcement";
+})(Attributes || (Attributes = {}));
+/**
+ * Animation provides the names of runnable animations.
+ */
+export var Animation;
+(function (Animation) {
+    Animation["ENTER"] = "mdc-evolution-chip-enter";
+    Animation["EXIT"] = "mdc-evolution-chip-exit";
+})(Animation || (Animation = {}));
 //# sourceMappingURL=constants.js.map

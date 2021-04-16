@@ -32,14 +32,14 @@ var MDCTextFieldHelperTextFoundation = /** @class */ (function (_super) {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextFieldHelperTextFoundation, "strings", {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextFieldHelperTextFoundation, "defaultAdapter", {
@@ -59,7 +59,7 @@ var MDCTextFieldHelperTextFoundation = /** @class */ (function (_super) {
             };
             // tslint:enable:object-literal-sort-keys
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCTextFieldHelperTextFoundation.prototype.getId = function () {

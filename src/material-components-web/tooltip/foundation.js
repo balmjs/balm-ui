@@ -25,7 +25,7 @@ import { AnimationFrame } from '../animation/animationframe';
 import { getCorrectPropertyName } from '../animation/util';
 import { MDCFoundation } from '../base/foundation';
 import { KEY, normalizeKey } from '../dom/keyboard';
-import { AnchorBoundaryType, attributes, CssClasses, numbers, strings, XPosition, YPosition } from './constants';
+import { AnchorBoundaryType, attributes, CssClasses, numbers, PositionWithCaret, strings, XPosition, YPosition } from './constants';
 var RICH = CssClasses.RICH, SHOWN = CssClasses.SHOWN, SHOWING = CssClasses.SHOWING, SHOWING_TRANSITION = CssClasses.SHOWING_TRANSITION, HIDE = CssClasses.HIDE, HIDE_TRANSITION = CssClasses.HIDE_TRANSITION, MULTILINE_TOOLTIP = CssClasses.MULTILINE_TOOLTIP;
 var AnimationKeys;
 (function (AnimationKeys) {
@@ -41,6 +41,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         _this.anchorGap = numbers.BOUNDED_ANCHOR_GAP;
         _this.xTooltipPos = XPosition.DETECTED;
         _this.yTooltipPos = YPosition.DETECTED;
+        _this.tooltipPositionWithCaret = PositionWithCaret.DETECTED;
         // Minimum threshold distance needed between the tooltip and the viewport.
         _this.minViewportTooltipThreshold = numbers.MIN_VIEWPORT_TOOLTIP_THRESHOLD;
         _this.hideDelayMs = numbers.HIDE_DELAY_MS;
@@ -50,7 +51,12 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         _this.frameId = null;
         _this.hideTimeout = null;
         _this.showTimeout = null;
+        _this.addAncestorScrollEventListeners = new Array();
+        _this.removeAncestorScrollEventListeners = new Array();
         _this.animFrame = new AnimationFrame();
+        _this.anchorBlurHandler = function (evt) {
+            _this.handleAnchorBlur(evt);
+        };
         _this.documentClickHandler = function (evt) {
             _this.handleDocumentClick(evt);
         };
@@ -102,14 +108,19 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                 focusAnchorElement: function () { return undefined; },
                 registerEventHandler: function () { return undefined; },
                 deregisterEventHandler: function () { return undefined; },
+                registerAnchorEventHandler: function () { return undefined; },
+                deregisterAnchorEventHandler: function () { return undefined; },
                 registerDocumentEventHandler: function () { return undefined; },
                 deregisterDocumentEventHandler: function () { return undefined; },
                 registerWindowEventHandler: function () { return undefined; },
                 deregisterWindowEventHandler: function () { return undefined; },
                 notifyHidden: function () { return undefined; },
+                getTooltipCaretSize: function () { return null; },
+                setTooltipCaretStyle: function () { return undefined; },
+                clearTooltipCaretStyles: function () { return undefined; },
             };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCTooltipFoundation.prototype.init = function () {
@@ -119,6 +130,8 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         this.interactiveTooltip =
             !!this.adapter.getAnchorAttribute(attributes.ARIA_EXPANDED) &&
                 this.adapter.getAnchorAttribute(attributes.ARIA_HASPOPUP) === 'dialog';
+        this.hasCaret = this.richTooltip &&
+            this.adapter.getAttribute(attributes.HAS_CARET) === 'true';
     };
     MDCTooltipFoundation.prototype.isShown = function () {
         return this.tooltipShown;
@@ -148,6 +161,26 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             }, this.showDelayMs);
         }
     };
+    MDCTooltipFoundation.prototype.handleAnchorTouchstart = function () {
+        var _this = this;
+        this.showTimeout = setTimeout(function () {
+            _this.show();
+        }, this.showDelayMs);
+        // Prevent a context menu from appearing if user is long-pressing on a
+        // tooltip anchor.
+        this.adapter.registerWindowEventHandler('contextmenu', this.preventContextMenuOnLongTouch);
+    };
+    MDCTooltipFoundation.prototype.preventContextMenuOnLongTouch = function (evt) {
+        evt.preventDefault();
+    };
+    MDCTooltipFoundation.prototype.handleAnchorTouchend = function () {
+        this.clearShowTimeout();
+        // Only remove the 'contextmenu' listener if the tooltip is not shown. When
+        // the tooltip *is* shown, listener is removed in the close method.
+        if (!this.isShown()) {
+            this.adapter.deregisterWindowEventHandler('contextmenu', this.preventContextMenuOnLongTouch);
+        }
+    };
     MDCTooltipFoundation.prototype.handleAnchorFocus = function (evt) {
         var _this = this;
         // TODO(b/157075286): Need to add some way to distinguish keyboard
@@ -172,18 +205,6 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         this.hideTimeout = setTimeout(function () {
             _this.hide();
         }, this.hideDelayMs);
-    };
-    MDCTooltipFoundation.prototype.handleAnchorBlur = function (evt) {
-        if (this.richTooltip) {
-            var tooltipContainsRelatedTargetElement = evt.relatedTarget instanceof HTMLElement &&
-                this.adapter.tooltipContainsElement(evt.relatedTarget);
-            // If focus changed to the tooltip element, don't hide the tooltip.
-            if (tooltipContainsRelatedTargetElement) {
-                return;
-            }
-        }
-        // Hide tooltip immediately on focus change.
-        this.hide();
     };
     MDCTooltipFoundation.prototype.handleAnchorClick = function () {
         if (this.tooltipShown) {
@@ -223,6 +244,18 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             this.hide();
         }
     };
+    MDCTooltipFoundation.prototype.handleAnchorBlur = function (evt) {
+        if (this.richTooltip) {
+            var tooltipContainsRelatedTargetElement = evt.relatedTarget instanceof HTMLElement &&
+                this.adapter.tooltipContainsElement(evt.relatedTarget);
+            // If focus changed to the tooltip element, don't hide the tooltip.
+            if (tooltipContainsRelatedTargetElement) {
+                return;
+            }
+        }
+        // Hide tooltip immediately on focus change.
+        this.hide();
+    };
     MDCTooltipFoundation.prototype.handleRichTooltipMouseEnter = function () {
         this.show();
     };
@@ -258,6 +291,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         });
     };
     MDCTooltipFoundation.prototype.show = function () {
+        var e_1, _a;
         var _this = this;
         this.clearHideTimeout();
         this.clearShowTimeout();
@@ -287,10 +321,30 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         this.anchorRect = this.adapter.getAnchorBoundingRect();
         this.parentRect = this.adapter.getParentBoundingRect();
         this.richTooltip ? this.positionRichTooltip() : this.positionPlainTooltip();
+        // TODO(b/182906431): Position of the tooltip caret should be informed by
+        // the position of the tooltip.
+        if (this.hasCaret) {
+            this.setCaretPositionStyles(this.tooltipPositionWithCaret);
+        }
+        this.adapter.registerAnchorEventHandler('blur', this.anchorBlurHandler);
         this.adapter.registerDocumentEventHandler('click', this.documentClickHandler);
         this.adapter.registerDocumentEventHandler('keydown', this.documentKeydownHandler);
         this.adapter.registerWindowEventHandler('scroll', this.windowScrollHandler);
         this.adapter.registerWindowEventHandler('resize', this.windowResizeHandler);
+        try {
+            // Register any additional scroll handlers
+            for (var _b = __values(this.addAncestorScrollEventListeners), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var fn = _c.value;
+                fn();
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
         this.frameId = requestAnimationFrame(function () {
             _this.clearAllAnimationClasses();
             _this.adapter.addClass(SHOWN);
@@ -298,6 +352,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         });
     };
     MDCTooltipFoundation.prototype.hide = function () {
+        var e_2, _a;
         this.clearHideTimeout();
         this.clearShowTimeout();
         if (!this.tooltipShown) {
@@ -322,10 +377,26 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         this.adapter.addClass(HIDE);
         this.adapter.addClass(HIDE_TRANSITION);
         this.adapter.removeClass(SHOWN);
+        this.adapter.deregisterAnchorEventHandler('blur', this.anchorBlurHandler);
         this.adapter.deregisterDocumentEventHandler('click', this.documentClickHandler);
         this.adapter.deregisterDocumentEventHandler('keydown', this.documentKeydownHandler);
         this.adapter.deregisterWindowEventHandler('scroll', this.windowScrollHandler);
         this.adapter.deregisterWindowEventHandler('resize', this.windowResizeHandler);
+        this.adapter.deregisterWindowEventHandler('contextmenu', this.preventContextMenuOnLongTouch);
+        try {
+            // Deregister any additional scroll handlers
+            for (var _b = __values(this.removeAncestorScrollEventListeners), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var fn = _c.value;
+                fn();
+            }
+        }
+        catch (e_2_1) { e_2 = { error: e_2_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_2) throw e_2.error; }
+        }
     };
     MDCTooltipFoundation.prototype.handleTransitionEnd = function () {
         var isHidingTooltip = this.adapter.hasClass(HIDE);
@@ -346,7 +417,11 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         this.adapter.removeClass(HIDE_TRANSITION);
     };
     MDCTooltipFoundation.prototype.setTooltipPosition = function (position) {
-        var xPos = position.xPos, yPos = position.yPos;
+        var xPos = position.xPos, yPos = position.yPos, withCaretPos = position.withCaretPos;
+        if (this.hasCaret && withCaretPos) {
+            this.tooltipPositionWithCaret = withCaretPos;
+            return;
+        }
         if (xPos) {
             this.xTooltipPos = xPos;
         }
@@ -521,7 +596,7 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
      * contains values that keep the tooltip within the viewport.
      */
     MDCTooltipFoundation.prototype.determineValidPositionOptions = function () {
-        var e_1, _a;
+        var e_3, _a;
         var positions = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             positions[_i] = arguments[_i];
@@ -539,12 +614,12 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                 }
             }
         }
-        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        catch (e_3_1) { e_3 = { error: e_3_1 }; }
         finally {
             try {
                 if (positions_1_1 && !positions_1_1.done && (_a = positions_1.return)) _a.call(positions_1);
             }
-            finally { if (e_1) throw e_1.error; }
+            finally { if (e_3) throw e_3.error; }
         }
         return posWithinThreshold.size ? posWithinThreshold : posWithinViewport;
     };
@@ -642,6 +717,147 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
                 this.positionPlainTooltip();
         }
     };
+    /**
+     * Given a PositionWithCaret, applies the correct styles to the caret element
+     * so that it is positioned properly on the rich tooltip.
+     * Returns the x and y positions of the caret, to be used as the
+     * transform-origin on the tooltip itself for entrance animations.
+     */
+    MDCTooltipFoundation.prototype.setCaretPositionStyles = function (position) {
+        var values = this.calculateCaretPositionOnTooltip(position);
+        if (!values) {
+            return { yTransformOrigin: 0, xTransformOrigin: 0 };
+        }
+        // Prior to setting the caret position styles, clear any previous styles
+        // set. This is necessary as all position options do not use the same
+        // properties (e.g. using 'left' or 'right') and so old style properties
+        // might not get overridden, causing misplaced carets.
+        this.adapter.clearTooltipCaretStyles();
+        this.adapter.setTooltipCaretStyle(values.yAlignment, values.yAxisPx);
+        this.adapter.setTooltipCaretStyle(values.xAlignment, values.xAxisPx);
+        this.adapter.setTooltipCaretStyle('transform', "rotate(" + values.rotation + ")");
+        this.adapter.setTooltipCaretStyle('transform-origin', values.yAlignment + " " + values.xAlignment);
+        return { yTransformOrigin: values.yAxisPx, xTransformOrigin: values.xAxisPx };
+    };
+    /**
+     * Given a PositionWithCaret, determines the correct styles to position the
+     * caret properly on the rich tooltip.
+     */
+    MDCTooltipFoundation.prototype.calculateCaretPositionOnTooltip = function (tooltipPos) {
+        var isLTR = !this.adapter.isRTL();
+        var tooltipWidth = this.adapter.getComputedStyleProperty('width');
+        var tooltipHeight = this.adapter.getComputedStyleProperty('height');
+        var caretDimensions = this.adapter.getTooltipCaretSize();
+        if (!tooltipWidth || !tooltipHeight || !caretDimensions) {
+            return;
+        }
+        var caretDiagonal = caretDimensions.width * Math.sqrt(2);
+        var midpointWidth = "calc((" + tooltipWidth + " - " + caretDiagonal + "px) / 2)";
+        var midpointHeight = "calc((" + tooltipHeight + " - " + caretDiagonal + "px) / 2)";
+        var flushWithEdge = '0';
+        var indentedFromEdge = numbers.CARET_INDENTATION + "px";
+        var positiveRot = '45deg';
+        var negativeRot = '-45deg';
+        switch (tooltipPos) {
+            case PositionWithCaret.BELOW_CENTER:
+                return {
+                    yAlignment: strings.TOP,
+                    xAlignment: strings.LEFT,
+                    yAxisPx: flushWithEdge,
+                    xAxisPx: midpointWidth,
+                    rotation: negativeRot
+                };
+            case PositionWithCaret.BELOW_END:
+                return {
+                    yAlignment: strings.TOP,
+                    xAlignment: isLTR ? strings.RIGHT : strings.LEFT,
+                    yAxisPx: flushWithEdge,
+                    xAxisPx: indentedFromEdge,
+                    rotation: isLTR ? positiveRot : negativeRot
+                };
+            case PositionWithCaret.BELOW_START:
+                return {
+                    yAlignment: strings.TOP,
+                    xAlignment: isLTR ? strings.LEFT : strings.RIGHT,
+                    yAxisPx: flushWithEdge,
+                    xAxisPx: indentedFromEdge,
+                    rotation: isLTR ? negativeRot : positiveRot
+                };
+            case PositionWithCaret.TOP_SIDE_END:
+                return {
+                    yAlignment: strings.TOP,
+                    xAlignment: isLTR ? strings.LEFT : strings.RIGHT,
+                    yAxisPx: indentedFromEdge,
+                    xAxisPx: flushWithEdge,
+                    rotation: isLTR ? positiveRot : negativeRot
+                };
+            case PositionWithCaret.CENTER_SIDE_END:
+                return {
+                    yAlignment: strings.TOP,
+                    xAlignment: isLTR ? strings.LEFT : strings.RIGHT,
+                    yAxisPx: midpointHeight,
+                    xAxisPx: flushWithEdge,
+                    rotation: isLTR ? positiveRot : negativeRot
+                };
+            case PositionWithCaret.BOTTOM_SIDE_END:
+                return {
+                    yAlignment: strings.BOTTOM,
+                    xAlignment: isLTR ? strings.LEFT : strings.RIGHT,
+                    yAxisPx: indentedFromEdge,
+                    xAxisPx: flushWithEdge,
+                    rotation: isLTR ? negativeRot : positiveRot
+                };
+            case PositionWithCaret.TOP_SIDE_START:
+                return {
+                    yAlignment: strings.TOP,
+                    xAlignment: isLTR ? strings.RIGHT : strings.LEFT,
+                    yAxisPx: indentedFromEdge,
+                    xAxisPx: flushWithEdge,
+                    rotation: isLTR ? negativeRot : positiveRot
+                };
+            case PositionWithCaret.CENTER_SIDE_START:
+                return {
+                    yAlignment: strings.TOP,
+                    xAlignment: isLTR ? strings.RIGHT : strings.LEFT,
+                    yAxisPx: midpointHeight,
+                    xAxisPx: flushWithEdge,
+                    rotation: isLTR ? negativeRot : positiveRot
+                };
+            case PositionWithCaret.BOTTOM_SIDE_START:
+                return {
+                    yAlignment: strings.BOTTOM,
+                    xAlignment: isLTR ? strings.RIGHT : strings.LEFT,
+                    yAxisPx: indentedFromEdge,
+                    xAxisPx: flushWithEdge,
+                    rotation: isLTR ? positiveRot : negativeRot
+                };
+            case PositionWithCaret.ABOVE_CENTER:
+                return {
+                    yAlignment: strings.BOTTOM,
+                    xAlignment: strings.LEFT,
+                    yAxisPx: flushWithEdge,
+                    xAxisPx: midpointWidth,
+                    rotation: positiveRot
+                };
+            case PositionWithCaret.ABOVE_END:
+                return {
+                    yAlignment: strings.BOTTOM,
+                    xAlignment: isLTR ? strings.RIGHT : strings.LEFT,
+                    yAxisPx: flushWithEdge,
+                    xAxisPx: indentedFromEdge,
+                    rotation: isLTR ? negativeRot : positiveRot
+                };
+            default:
+            case PositionWithCaret.ABOVE_START:
+                return {
+                    yAlignment: strings.BOTTOM,
+                    xAlignment: isLTR ? strings.LEFT : strings.RIGHT,
+                    yAxisPx: flushWithEdge,
+                    xAxisPx: indentedFromEdge,
+                    rotation: isLTR ? positiveRot : negativeRot
+                };
+        }
+    };
     MDCTooltipFoundation.prototype.clearShowTimeout = function () {
         if (this.showTimeout) {
             clearTimeout(this.showTimeout);
@@ -654,7 +870,30 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
             this.hideTimeout = null;
         }
     };
+    /**
+     * Method that allows user to specify additional elements that should have a
+     * scroll event listener attached to it. This should be used in instances
+     * where the anchor element is placed inside a scrollable container, and will
+     * ensure that the tooltip will stay attached to the anchor on scroll.
+     */
+    MDCTooltipFoundation.prototype.attachScrollHandler = function (addEventListenerFn) {
+        var _this = this;
+        this.addAncestorScrollEventListeners.push(function () {
+            addEventListenerFn('scroll', _this.windowScrollHandler);
+        });
+    };
+    /**
+     * Must be used in conjunction with #attachScrollHandler. Removes the scroll
+     * event handler from elements on the page.
+     */
+    MDCTooltipFoundation.prototype.removeScrollHandler = function (removeEventHandlerFn) {
+        var _this = this;
+        this.removeAncestorScrollEventListeners.push(function () {
+            removeEventHandlerFn('scroll', _this.windowScrollHandler);
+        });
+    };
     MDCTooltipFoundation.prototype.destroy = function () {
+        var e_4, _a;
         if (this.frameId) {
             cancelAnimationFrame(this.frameId);
             this.frameId = null;
@@ -677,6 +916,19 @@ var MDCTooltipFoundation = /** @class */ (function (_super) {
         this.adapter.deregisterDocumentEventHandler('keydown', this.documentKeydownHandler);
         this.adapter.deregisterWindowEventHandler('scroll', this.windowScrollHandler);
         this.adapter.deregisterWindowEventHandler('resize', this.windowResizeHandler);
+        try {
+            for (var _b = __values(this.removeAncestorScrollEventListeners), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var fn = _c.value;
+                fn();
+            }
+        }
+        catch (e_4_1) { e_4 = { error: e_4_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_4) throw e_4.error; }
+        }
         this.animFrame.cancelAll();
     };
     return MDCTooltipFoundation;

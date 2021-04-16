@@ -37,21 +37,21 @@ var MDCCheckboxFoundation = /** @class */ (function (_super) {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCCheckboxFoundation, "strings", {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCCheckboxFoundation, "numbers", {
         get: function () {
             return numbers;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCCheckboxFoundation, "defaultAdapter", {
@@ -69,7 +69,7 @@ var MDCCheckboxFoundation = /** @class */ (function (_super) {
                 setNativeControlDisabled: function () { return undefined; },
             };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCCheckboxFoundation.prototype.init = function () {

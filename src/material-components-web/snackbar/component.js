@@ -96,7 +96,7 @@ var MDCSnackbar = /** @class */ (function (_super) {
         set: function (timeoutMs) {
             this.foundation.setTimeoutMs(timeoutMs);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSnackbar.prototype, "closeOnEscape", {
@@ -106,14 +106,14 @@ var MDCSnackbar = /** @class */ (function (_super) {
         set: function (closeOnEscape) {
             this.foundation.setCloseOnEscape(closeOnEscape);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSnackbar.prototype, "isOpen", {
         get: function () {
             return this.foundation.isOpen();
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSnackbar.prototype, "labelText", {
@@ -125,7 +125,7 @@ var MDCSnackbar = /** @class */ (function (_super) {
         set: function (labelText) {
             this.labelEl_.textContent = labelText;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCSnackbar.prototype, "actionButtonText", {
@@ -135,7 +135,7 @@ var MDCSnackbar = /** @class */ (function (_super) {
         set: function (actionButtonText) {
             this.actionEl_.textContent = actionButtonText;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCSnackbar.prototype.registerKeyDownHandler_ = function (handler) {

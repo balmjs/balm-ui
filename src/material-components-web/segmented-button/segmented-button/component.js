@@ -39,7 +39,7 @@ var MDCSegmentedButton = /** @class */ (function (_super) {
         get: function () {
             return this.segments_.slice();
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     // initialSyncWithDOM

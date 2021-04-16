@@ -65,6 +65,11 @@ $light-ink-opacities: (
 $pressed-dark-ink-opacity: 0.16 !default;
 $pressed-light-ink-opacity: 0.32 !default;
 
+// State selector variables used for state selector mixins below.
+$_hover-selector: '&:hover';
+$_focus-selector: '&.mdc-ripple-upgraded--background-focused, &:not(.mdc-ripple-upgraded):focus';
+$_active-selector: '&:active:active';
+
 @mixin states-base-color(
   $color,
   $query: feature-targeting.all(),
@@ -106,7 +111,7 @@ $pressed-light-ink-opacity: 0.32 !default;
   $query: feature-targeting.all()
 ) {
   // Ensure sufficient specificity to override base state opacities
-  @if map.has-key($opacity-map, hover) {
+  @if map.get($opacity-map, hover) {
     @include states-hover-opacity(
       map.get($opacity-map, hover),
       $ripple-target: $ripple-target,
@@ -114,7 +119,7 @@ $pressed-light-ink-opacity: 0.32 !default;
     );
   }
 
-  @if map.has-key($opacity-map, focus) {
+  @if map.get($opacity-map, focus) {
     @include states-focus-opacity(
       map.get($opacity-map, focus),
       $ripple-target: $ripple-target,
@@ -123,7 +128,7 @@ $pressed-light-ink-opacity: 0.32 !default;
     );
   }
 
-  @if map.has-key($opacity-map, press) {
+  @if map.get($opacity-map, press) {
     @include states-press-opacity(
       map.get($opacity-map, press),
       $ripple-target: $ripple-target,
@@ -386,10 +391,25 @@ $pressed-light-ink-opacity: 0.32 !default;
 
 /// Selector for hover, active and focus states.
 @mixin states-selector() {
-  &:hover,
-  &:active,
-  &:focus,
-  &.mdc-ripple-upgraded--background-focused {
+  #{$_hover-selector},
+  #{$_focus-selector},
+  #{$_active-selector} {
+    @content;
+  }
+}
+
+// Selector for focus state. Using ':not(.mdc-ripple-upgraded)' to continue
+// applying focus styles on JS-disabled components, and control focus
+// on JS-enabled components with '.mdc-ripple-upgraded--background-focused'.
+@mixin focus() {
+  #{$_focus-selector} {
+    @content;
+  }
+}
+
+// Selector for active state. Using `:active:active` to override focus styles.
+@mixin active() {
+  #{$_active-selector} {
     @content;
   }
 }

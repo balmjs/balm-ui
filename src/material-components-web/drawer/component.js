@@ -24,7 +24,6 @@ import { __extends } from "tslib";
 import { MDCComponent } from '../base/component';
 import { FocusTrap } from '../dom/focus-trap';
 import { MDCList } from '../list/component';
-import { MDCListFoundation } from '../list/foundation';
 import { MDCDismissibleDrawerFoundation } from './dismissible/foundation';
 import { MDCModalDrawerFoundation } from './modal/foundation';
 import * as util from './util';
@@ -60,20 +59,21 @@ var MDCDrawer = /** @class */ (function (_super) {
                 this.foundation.close();
             }
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCDrawer.prototype, "list", {
+        // initialSyncWithDOM()
         get: function () {
             return this.list_;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCDrawer.prototype.initialize = function (focusTrapFactory, listFactory) {
         if (focusTrapFactory === void 0) { focusTrapFactory = function (el) { return new FocusTrap(el); }; }
         if (listFactory === void 0) { listFactory = function (el) { return new MDCList(el); }; }
-        var listEl = this.root.querySelector("." + MDCListFoundation.cssClasses.ROOT);
+        var listEl = this.root.querySelector(strings.LIST_SELECTOR);
         if (listEl) {
             this.list_ = listFactory(listEl);
             this.list_.wrapFocus = true;
@@ -116,8 +116,9 @@ var MDCDrawer = /** @class */ (function (_super) {
     };
     MDCDrawer.prototype.getDefaultFoundation = function () {
         var _this = this;
-        // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
-        // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+        // DO NOT INLINE this variable. For backward compatibility, foundations take
+        // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
+        // methods, we need a separate, strongly typed adapter variable.
         // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
         var adapter = {
             addClass: function (className) { return _this.root.classList.add(className); },
@@ -135,7 +136,7 @@ var MDCDrawer = /** @class */ (function (_super) {
                 }
             },
             focusActiveNavigationItem: function () {
-                var activeNavItemEl = _this.root.querySelector("." + MDCListFoundation.cssClasses.LIST_ITEM_ACTIVATED_CLASS);
+                var activeNavItemEl = _this.root.querySelector(strings.LIST_ITEM_ACTIVATED_SELECTOR);
                 if (activeNavItemEl) {
                     activeNavItemEl.focus();
                 }

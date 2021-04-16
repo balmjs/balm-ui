@@ -31,6 +31,8 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
         _this.isQuickOpen = false;
         _this.isHoistedElement = false;
         _this.isFixedPosition = false;
+        _this.isHorizontallyCenteredOnViewport = false;
+        _this.maxHeight = 0;
         _this.openAnimationEndTimerId = 0;
         _this.closeAnimationEndTimerId = 0;
         _this.animationRequestId = 0;
@@ -58,28 +60,28 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
         get: function () {
             return cssClasses;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCMenuSurfaceFoundation, "strings", {
         get: function () {
             return strings;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCMenuSurfaceFoundation, "numbers", {
         get: function () {
             return numbers;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCMenuSurfaceFoundation, "Corner", {
         get: function () {
             return Corner;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCMenuSurfaceFoundation, "defaultAdapter", {
@@ -112,7 +114,7 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
             };
             // tslint:enable:object-literal-sort-keys
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCMenuSurfaceFoundation.prototype.init = function () {
@@ -164,8 +166,20 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
         this.position.x = this.isFinite(x) ? x : 0;
         this.position.y = this.isFinite(y) ? y : 0;
     };
+    /** Sets whether menu-surface should be horizontally centered to viewport. */
+    MDCMenuSurfaceFoundation.prototype.setIsHorizontallyCenteredOnViewport = function (isCentered) {
+        this.isHorizontallyCenteredOnViewport = isCentered;
+    };
     MDCMenuSurfaceFoundation.prototype.setQuickOpen = function (quickOpen) {
         this.isQuickOpen = quickOpen;
+    };
+    /**
+     * Sets maximum menu-surface height on open.
+     * @param maxHeight The desired max-height. Set to 0 (default) to
+     *     automatically calculate max height based on available viewport space.
+     */
+    MDCMenuSurfaceFoundation.prototype.setMaxHeight = function (maxHeight) {
+        this.maxHeight = maxHeight;
     };
     MDCMenuSurfaceFoundation.prototype.isOpen = function () {
         return this.isSurfaceOpen;
@@ -313,6 +327,7 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
                 right: viewportSize.width - anchorRect.right,
                 bottom: viewportSize.height - anchorRect.bottom,
                 left: anchorRect.left,
+                // tslint:enable:object-literal-sort-keys
             },
             viewportSize: viewportSize,
             windowScroll: windowScroll,
@@ -397,6 +412,9 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
      * @return Maximum height of the menu surface, based on available space. 0 indicates should not be set.
      */
     MDCMenuSurfaceFoundation.prototype.getMenuSurfaceMaxHeight = function (corner) {
+        if (this.maxHeight > 0) {
+            return this.maxHeight;
+        }
         var viewportDistance = this.measurements.viewportDistance;
         var maxHeight = 0;
         var isBottomAligned = this.hasBit(corner, CornerBit.BOTTOM);
@@ -468,12 +486,17 @@ var MDCMenuSurfaceFoundation = /** @class */ (function (_super) {
     /** Calculates the offsets for positioning the menu-surface when the menu-surface has been hoisted to the body. */
     MDCMenuSurfaceFoundation.prototype.adjustPositionForHoistedElement = function (position) {
         var e_1, _a;
-        var _b = this.measurements, windowScroll = _b.windowScroll, viewportDistance = _b.viewportDistance;
+        var _b = this.measurements, windowScroll = _b.windowScroll, viewportDistance = _b.viewportDistance, surfaceSize = _b.surfaceSize, viewportSize = _b.viewportSize;
         var props = Object.keys(position);
         try {
             for (var props_1 = __values(props), props_1_1 = props_1.next(); !props_1_1.done; props_1_1 = props_1.next()) {
                 var prop = props_1_1.value;
                 var value = position[prop] || 0;
+                if (this.isHorizontallyCenteredOnViewport &&
+                    (prop === 'left' || prop === 'right')) {
+                    position[prop] = (viewportSize.width - surfaceSize.width) / 2;
+                    continue;
+                }
                 // Hoisted surfaces need to have the anchor elements location on the page added to the
                 // position properties for proper alignment on the body.
                 value += viewportDistance[prop];

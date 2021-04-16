@@ -36,7 +36,7 @@ var MDCTextFieldIcon = /** @class */ (function (_super) {
         get: function () {
             return this.foundation;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     MDCTextFieldIcon.prototype.getDefaultFoundation = function () {

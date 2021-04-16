@@ -30,6 +30,8 @@ var CssClasses;
     CssClasses["HIDE_TRANSITION"] = "mdc-tooltip--hide-transition";
     CssClasses["MULTILINE_TOOLTIP"] = "mdc-tooltip--multiline";
     CssClasses["SURFACE"] = "mdc-tooltip__surface";
+    CssClasses["TOOLTIP_CARET_TOP"] = "mdc-tooltip__caret-surface-top";
+    CssClasses["TOOLTIP_CARET_BOTTOM"] = "mdc-tooltip__caret-surface-bottom";
 })(CssClasses || (CssClasses = {}));
 var numbers = {
     BOUNDED_ANCHOR_GAP: 4,
@@ -40,11 +42,15 @@ var numbers = {
     // LINT.IfChange(tooltip-dimensions)
     MIN_HEIGHT: 24,
     MAX_WIDTH: 200,
+    // LINT.ThenChange(_tooltip.scss:tooltip-dimensions)
+    CARET_INDENTATION: 24,
 };
 var attributes = {
     ARIA_EXPANDED: 'aria-expanded',
     ARIA_HASPOPUP: 'aria-haspopup',
     PERSISTENT: 'data-mdc-tooltip-persistent',
+    SCROLLABLE_ANCESTOR: 'tooltip-scrollable-ancestor',
+    HAS_CARET: 'data-mdc-tooltip-has-caret',
 };
 var events = {
     HIDDEN: 'MDCTooltip:hidden',
@@ -82,5 +88,28 @@ var strings = {
     TOP: 'top',
     BOTTOM: 'bottom'
 };
-export { CssClasses, numbers, attributes, events, XPosition, AnchorBoundaryType, YPosition, strings };
+/**
+ * Enum for possible positions of a tooltip with caret (this specifies the
+ * positioning of the tooltip relative to the anchor -- the position of the
+ * caret will follow that of the tooltip). This can NOT be combined with the
+ * above X/YPosition options. Naming for the enums follows: (vertical
+ * placement)_(horizontal placement).
+ */
+var PositionWithCaret;
+(function (PositionWithCaret) {
+    PositionWithCaret[PositionWithCaret["DETECTED"] = 0] = "DETECTED";
+    PositionWithCaret[PositionWithCaret["ABOVE_START"] = 1] = "ABOVE_START";
+    PositionWithCaret[PositionWithCaret["ABOVE_CENTER"] = 2] = "ABOVE_CENTER";
+    PositionWithCaret[PositionWithCaret["ABOVE_END"] = 3] = "ABOVE_END";
+    PositionWithCaret[PositionWithCaret["TOP_SIDE_START"] = 4] = "TOP_SIDE_START";
+    PositionWithCaret[PositionWithCaret["CENTER_SIDE_START"] = 5] = "CENTER_SIDE_START";
+    PositionWithCaret[PositionWithCaret["BOTTOM_SIDE_START"] = 6] = "BOTTOM_SIDE_START";
+    PositionWithCaret[PositionWithCaret["TOP_SIDE_END"] = 7] = "TOP_SIDE_END";
+    PositionWithCaret[PositionWithCaret["CENTER_SIDE_END"] = 8] = "CENTER_SIDE_END";
+    PositionWithCaret[PositionWithCaret["BOTTOM_SIDE_END"] = 9] = "BOTTOM_SIDE_END";
+    PositionWithCaret[PositionWithCaret["BELOW_START"] = 10] = "BELOW_START";
+    PositionWithCaret[PositionWithCaret["BELOW_CENTER"] = 11] = "BELOW_CENTER";
+    PositionWithCaret[PositionWithCaret["BELOW_END"] = 12] = "BELOW_END";
+})(PositionWithCaret || (PositionWithCaret = {}));
+export { CssClasses, numbers, attributes, events, XPosition, AnchorBoundaryType, YPosition, strings, PositionWithCaret, };
 //# sourceMappingURL=constants.js.map

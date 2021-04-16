@@ -128,7 +128,7 @@ var MDCTextField = /** @class */ (function (_super) {
         set: function (value) {
             this.foundation.setValue(value);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextField.prototype, "disabled", {
@@ -141,7 +141,7 @@ var MDCTextField = /** @class */ (function (_super) {
         set: function (disabled) {
             this.foundation.setDisabled(disabled);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextField.prototype, "valid", {
@@ -154,7 +154,7 @@ var MDCTextField = /** @class */ (function (_super) {
         set: function (valid) {
             this.foundation.setValid(valid);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextField.prototype, "required", {
@@ -167,7 +167,7 @@ var MDCTextField = /** @class */ (function (_super) {
         set: function (required) {
             this.input_.required = required;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextField.prototype, "pattern", {
@@ -180,7 +180,7 @@ var MDCTextField = /** @class */ (function (_super) {
         set: function (pattern) {
             this.input_.pattern = pattern;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextField.prototype, "minLength", {
@@ -193,7 +193,7 @@ var MDCTextField = /** @class */ (function (_super) {
         set: function (minLength) {
             this.input_.minLength = minLength;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextField.prototype, "maxLength", {
@@ -212,7 +212,7 @@ var MDCTextField = /** @class */ (function (_super) {
                 this.input_.maxLength = maxLength;
             }
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextField.prototype, "min", {
@@ -225,7 +225,7 @@ var MDCTextField = /** @class */ (function (_super) {
         set: function (min) {
             this.input_.min = min;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextField.prototype, "max", {
@@ -238,7 +238,7 @@ var MDCTextField = /** @class */ (function (_super) {
         set: function (max) {
             this.input_.max = max;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextField.prototype, "step", {
@@ -251,7 +251,7 @@ var MDCTextField = /** @class */ (function (_super) {
         set: function (step) {
             this.input_.step = step;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextField.prototype, "helperTextContent", {
@@ -261,7 +261,7 @@ var MDCTextField = /** @class */ (function (_super) {
         set: function (content) {
             this.foundation.setHelperTextContent(content);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextField.prototype, "leadingIconAriaLabel", {
@@ -271,7 +271,7 @@ var MDCTextField = /** @class */ (function (_super) {
         set: function (label) {
             this.foundation.setLeadingIconAriaLabel(label);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextField.prototype, "leadingIconContent", {
@@ -281,7 +281,7 @@ var MDCTextField = /** @class */ (function (_super) {
         set: function (content) {
             this.foundation.setLeadingIconContent(content);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextField.prototype, "trailingIconAriaLabel", {
@@ -291,7 +291,7 @@ var MDCTextField = /** @class */ (function (_super) {
         set: function (label) {
             this.foundation.setTrailingIconAriaLabel(label);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextField.prototype, "trailingIconContent", {
@@ -301,7 +301,7 @@ var MDCTextField = /** @class */ (function (_super) {
         set: function (content) {
             this.foundation.setTrailingIconContent(content);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextField.prototype, "useNativeValidation", {
@@ -312,7 +312,7 @@ var MDCTextField = /** @class */ (function (_super) {
         set: function (useNativeValidation) {
             this.foundation.setUseNativeValidation(useNativeValidation);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextField.prototype, "prefixText", {
@@ -330,7 +330,7 @@ var MDCTextField = /** @class */ (function (_super) {
                 this.prefix_.textContent = prefixText;
             }
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MDCTextField.prototype, "suffixText", {
@@ -348,7 +348,7 @@ var MDCTextField = /** @class */ (function (_super) {
                 this.suffix_.textContent = suffixText;
             }
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     /**

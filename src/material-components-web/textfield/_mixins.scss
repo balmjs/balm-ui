@@ -26,6 +26,7 @@
 
 @use 'sass:list';
 @use 'sass:meta';
+@use '../animation/animation';
 @use '../density/functions' as density-functions;
 @use '../floating-label/mixins' as floating-label-mixins;
 @use '../floating-label/variables' as floating-label-variables;
@@ -45,7 +46,6 @@
 @use 'icon/mixins' as icon-mixins;
 @use 'icon/variables' as icon-variables;
 @use './variables';
-@use './functions';
 @use '../rtl/mixins' as rtl-mixins;
 
 @mixin core-styles($query: feature-targeting.all()) {
@@ -2186,7 +2186,7 @@
   }
 
   @include feature-targeting.targets($feat-animation) {
-    transition: functions.transition(opacity);
+    transition: animation.standard(opacity, 150ms);
   }
 }
 
@@ -2230,7 +2230,7 @@
   $feat-structure: feature-targeting.create-target($query, structure);
 
   @include feature-targeting.targets($feat-animation) {
-    transition: functions.transition(opacity, $duration: 67ms);
+    transition: animation.standard(opacity, 67ms);
   }
 
   @include feature-targeting.targets($feat-structure) {

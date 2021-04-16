@@ -60,26 +60,28 @@
     </div>
     <!-- Options -->
     <div :class="menuClassName" :style="style">
-      <ul class="mdc-list" role="listbox">
+      <ul :class="deprecatedListClassNameMap['mdc-list']" role="listbox">
         <li
           v-for="(option, index) in currentOptions"
           :key="index"
           :class="[
-            'mdc-list-item',
-            {
-              'mdc-list-item--selected': option[optionValue] === selectedValue,
-              'mdc-list-item--disabled': option.disabled
-            }
+            deprecatedListClassNameMap['mdc-list-item'],
+            ...getDeprecatedItemClasses({
+              selected: option[optionValue] === selectedValue,
+              disabled: option.disabled
+            })
           ]"
           :data-value="option[optionValue]"
           :aria-selected="option[optionValue] === selectedValue"
           :aria-disabled="option.disabled"
           role="option"
         >
-          <span class="mdc-list-item__ripple"></span>
+          <span
+            :class="deprecatedListClassNameMap['mdc-list-item__ripple']"
+          ></span>
           <span
             v-if="option[optionLabel]"
-            class="mdc-list-item__text"
+            :class="deprecatedListClassNameMap['mdc-list-item__text']"
             v-text="option[optionLabel]"
           ></span>
         </li>
@@ -96,6 +98,7 @@ import MdcLineRipple from '../floating-label/mdc-line-ripple';
 import MdcNotchedOutline from '../floating-label/mdc-notched-outline';
 import typeMixin from '../../mixins/type';
 import materialIconMixin from '../../mixins/material-icon';
+import deprecatedListMixin from '../../mixins/deprecated-list';
 
 // Define select constants
 const UI_SELECT = {
@@ -120,7 +123,7 @@ export default {
     MdcLineRipple,
     MdcNotchedOutline
   },
-  mixins: [typeMixin, materialIconMixin],
+  mixins: [typeMixin, materialIconMixin, deprecatedListMixin],
   model: {
     prop: 'model',
     event: UI_SELECT.EVENT.CHANGE

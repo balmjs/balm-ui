@@ -90,6 +90,7 @@ import UiSnackbar from './components/snackbar/snackbar';
 import UiBanner from './components/banner/banner';
 import UiProgress from './components/progress/progress';
 import UiSpinner from './components/spinner/spinner';
+import UiTooltipAnchor from './components/tooltip/tooltip-anchor';
 import UiTooltip from './components/tooltip/tooltip';
 /**
  * Plugins
@@ -196,6 +197,7 @@ const Components = {
   UiTextfield,
   UiTextfieldHelper,
   UiTextfieldIcon,
+  UiTooltipAnchor,
   UiTooltip,
   UiTopAppBar
 };
@@ -314,6 +316,7 @@ export {
   UiTextfield,
   UiTextfieldHelper,
   UiTextfieldIcon,
+  UiTooltipAnchor,
   UiTooltip,
   UiTopAppBar
 };

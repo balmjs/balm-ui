@@ -2,7 +2,7 @@
   <!-- Container -->
   <div :class="className">
     <ul
-      class="mdc-list"
+      :class="deprecatedListClassNameMap['mdc-list']"
       tabindex="-1"
       role="menu"
       aria-hidden="true"
@@ -13,12 +13,10 @@
           <template v-if="getType(item) === 'array'">
             <ui-menuitem :key="`group${index}`" nested>
               <template v-for="(subItem, subIndex) in item">
-                <li
-                  v-if="subItem === UI_MENU.DIVIDER"
+                <ui-item-divider
+                  v-if="isDivider(subItem)"
                   :key="`subdivider${subIndex}`"
-                  class="mdc-list-divider"
-                  role="separator"
-                ></li>
+                ></ui-item-divider>
                 <ui-menuitem
                   v-else
                   :key="`subitem${subIndex}`"
@@ -33,12 +31,10 @@
             </ui-menuitem>
           </template>
           <template v-else>
-            <li
-              v-if="item === UI_MENU.DIVIDER"
+            <ui-item-divider
+              v-if="isDivider(item)"
               :key="`divider${index}`"
-              class="mdc-list-divider"
-              role="separator"
-            ></li>
+            ></ui-item-divider>
             <ui-menuitem
               v-else
               :key="`item${index}`"
@@ -61,6 +57,8 @@ import { MDCMenu } from '../../../material-components-web/menu';
 import { Corner } from '../../../material-components-web/menu-surface/constants';
 import UiMenuitem from './menuitem';
 import UiMenuitemText from './menuitem-text';
+import UiItemDivider from '../list/item-divider';
+import deprecatedListMixin from '../../mixins/deprecated-list';
 import getType from '../../utils/typeof';
 
 // Define menu constants
@@ -88,8 +86,10 @@ export default {
   name: 'UiMenu',
   components: {
     UiMenuitem,
-    UiMenuitemText
+    UiMenuitemText,
+    UiItemDivider
   },
+  mixins: [deprecatedListMixin],
   model: {
     prop: 'open',
     event: UI_MENU.EVENT.CHANGE
@@ -226,6 +226,9 @@ export default {
     }
   },
   methods: {
+    isDivider(item) {
+      return item === UI_MENU.DIVIDER;
+    },
     initItems() {
       this.currentTextItems = this.currentItems.filter((item) =>
         getType(item) === 'object'

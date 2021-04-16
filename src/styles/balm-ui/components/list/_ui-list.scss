@@ -3,10 +3,10 @@
 
 // fix(@material-components): for `<ui-list>` in `<ui-drawer>`
 .mdc-drawer {
-  .mdc-list-item--activated {
+  .mdc-deprecated-list-item--activated {
     @include theme.property(color, primary);
 
-    .mdc-list-item__graphic {
+    .mdc-deprecated-list-item__graphic {
       @include theme.property(color, primary);
     }
 

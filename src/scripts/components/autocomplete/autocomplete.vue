@@ -52,7 +52,7 @@
         ref="autocomplete"
         class="mdc-autocomplete__list"
       >
-        <ul class="mdc-list">
+        <ul :class="deprecatedListClassNameMap['mdc-list']">
           <li
             v-for="(item, index) in currentSuggestion.data"
             :key="index"
@@ -70,6 +70,7 @@
 <script>
 import UiTextfield from '../textfield/textfield';
 import textfieldMixin from '../../mixins/textfield';
+import deprecatedListMixin from '../../mixins/deprecated-list';
 import getType from '../../utils/typeof';
 import { UI_TEXTFIELD_ICON } from '../textfield/constants';
 
@@ -99,7 +100,7 @@ export default {
   components: {
     UiTextfield
   },
-  mixins: [textfieldMixin],
+  mixins: [textfieldMixin, deprecatedListMixin],
   model: {
     prop: 'model',
     event: UI_AUTOCOMPLETE.EVENT.INPUT
@@ -506,7 +507,7 @@ export default {
     },
     getItemClassName(index) {
       return [
-        'mdc-list-item',
+        this.deprecatedListClassNameMap['mdc-list-item'],
         { selected: index === this.currentSuggestion.index }
       ];
     }

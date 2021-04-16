@@ -10,7 +10,7 @@
       </ul>
     </template>
     <template v-else>
-      <span class="mdc-list-item__ripple"></span>
+      <span :class="deprecatedListClassNameMap['mdc-list-item__ripple']"></span>
       <!-- Leading icon / Text / Command -->
       <slot>
         <ui-menuitem-icon v-if="item.icon">
@@ -30,6 +30,7 @@
 import UiMenuitemIcon from './menuitem-icon';
 import UiMenuitemText from './menuitem-text';
 import rippleMixin from '../../mixins/ripple';
+import deprecatedListMixin from '../../mixins/deprecated-list';
 import UI_GLOBAL from '../icon/constants';
 
 export default {
@@ -38,7 +39,7 @@ export default {
     UiMenuitemIcon,
     UiMenuitemText
   },
-  mixins: [rippleMixin],
+  mixins: [rippleMixin, deprecatedListMixin],
   props: {
     // Layout
     nested: {
@@ -78,11 +79,15 @@ export default {
   },
   methods: {
     getClass(item) {
-      return {
-        'mdc-list-item': true,
-        'mdc-list-item--disabled': this.disabled || item.disabled,
-        'mdc-menu-item--selected': this.selected || item.selected
-      };
+      return [
+        this.deprecatedListClassNameMap['mdc-list-item'],
+        ...this.getDeprecatedItemClasses({
+          disabled: this.disabled || item.disabled
+        }),
+        {
+          'mdc-menu-item--selected': this.selected || item.selected
+        }
+      ];
     }
   }
 };

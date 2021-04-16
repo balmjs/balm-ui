@@ -35,8 +35,8 @@
   }
 }
 
-.mdc-autocomplete__list .mdc-list,
-.mdc-autocomplete__list .mdc-list-item {
+.mdc-autocomplete__list .mdc-deprecated-list,
+.mdc-autocomplete__list .mdc-deprecated-list-item {
   margin: 0;
   padding: 0;
   border: 0;
@@ -55,7 +55,7 @@
   @include theme.property(border-color, primary);
   @include ui-mixins.background;
 
-  .mdc-list-item {
+  .mdc-deprecated-list-item {
     height: 30px;
     line-height: 30px;
     padding: 0 10px;

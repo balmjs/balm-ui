@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import { MDCChipSet } from '../../../material-components-web/chips';
-import { strings } from '../../../material-components-web/chips/chip/constants';
+import { MDCChipSet } from '../../../material-components-web/chips/deprecated';
+import { strings } from '../../../material-components-web/chips/deprecated/chip/constants';
 import UiChip from './chip';
 import typeMixin from '../../mixins/type';
 

@@ -2,6 +2,20 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.33.0 / 2021-04-16
+
+### Features
+
+- update [`mdc@11.0.0`](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#1100-2021-04-15)
+- update material-icons v85
+- new components: `<ui-tooltip-anchor>`
+- `<ui-tooltip>`: add prop `type`, `rich`
+- `v-tooltip`: add tooltip anchor for global
+
+### Bug Fixes
+
+- `v-button`: individual package
+
 ## v8.32.0 / 2021-04-12
 
 ### Features

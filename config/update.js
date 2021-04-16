@@ -3,13 +3,13 @@ const https = require('https');
 const { src, dest, task, series } = require('gulp');
 const $replace = require('gulp-replace');
 
-// updated: 2021.04.12
+// updated: 2021.04.16
 const LATEST_VERSIONS = {
-  filled: 83,
-  outlined: 54,
-  round: 53,
-  twoTone: 52,
-  sharp: 54
+  filled: 85,
+  outlined: 56,
+  round: 55,
+  twoTone: 54,
+  sharp: 56
 };
 
 // Update Material Components Web for BalmUI

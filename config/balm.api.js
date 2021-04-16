@@ -40,7 +40,8 @@ module.exports = (mix) => {
       mix.remove([
         `${constants.DEV_SOURCE.mdc}/chips/trailingaction/test`,
         `${constants.DEV_SOURCE.mdc}/chips/deprecated/test`,
-        `${constants.DEV_SOURCE.mdc}/chips/deprecated/trailingaction/test`
+        `${constants.DEV_SOURCE.mdc}/chips/deprecated/trailingaction/test`,
+        `${constants.DEV_SOURCE.mdc}/switch/deprecated/test`
       ]);
     } else {
       if (mix.env.isProd) {

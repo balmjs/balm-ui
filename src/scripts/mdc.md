@@ -8,9 +8,3 @@
     _this.foundation.handleRowCheckboxChange(event);
   }
   ```
-
-- `tooltip`: foundation.js line 400
-
-  ```js
-  this.handleTransitionEnd();
-  ```

@@ -22,7 +22,7 @@ const createTooltipAnchor = () => {
 
 const createTooltip = (id, text) => {
   return `<div id="${id}" class="mdc-tooltip" role="tooltip" aria-hidden="true">
-    <div class="mdc-tooltip__surface">${text}</div>
+    <div class="mdc-tooltip__surface mdc-tooltip__surface-animation">${text}</div>
   </div>`;
 };
 

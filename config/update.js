@@ -57,10 +57,10 @@ const level1 = [
   'typography'
 ];
 const level2 = [
+  'chips/action',
   'chips/chip',
   'chips/chip-set',
   'chips/deprecated',
-  'chips/trailingaction',
   'drawer/dismissible',
   'drawer/modal',
   'segmented-button/segment',
@@ -73,6 +73,11 @@ const level2 = [
   'top-app-bar/fixed',
   'top-app-bar/short',
   'top-app-bar/standard'
+];
+const level3 = [
+  'chips/deprecated/chip',
+  'chips/deprecated/chip-set',
+  'chips/deprecated/trailingaction'
 ];
 
 let index = 0;
@@ -105,6 +110,17 @@ level2.forEach((file) => {
   task(name, () => {
     return src(mdcDir + file + '/*')
       .pipe($replace('@material/', '../../'))
+      .pipe(dest(mdcDir + file));
+  });
+  updateMDCTasks.push(name);
+  index++;
+});
+
+level3.forEach((file) => {
+  const name = `update:mdc:${index}`;
+  task(name, () => {
+    return src(mdcDir + file + '/*')
+      .pipe($replace('@material/', '../../../'))
       .pipe(dest(mdcDir + file));
   });
   updateMDCTasks.push(name);

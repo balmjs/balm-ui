@@ -72,6 +72,7 @@ const directives = [
   // MDC
   'a11y',
   'badge',
+  'button',
   'elevation',
   'ripple',
   'shape',

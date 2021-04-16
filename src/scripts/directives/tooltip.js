@@ -36,7 +36,7 @@ const initTooltipAnchor = () => {
   }
 };
 
-const initTooltip = (el, { value }) => {
+const addTooltip = (el, { value }) => {
   initTooltipAnchor();
 
   const id = el.getAttribute(UI_TOOLTIP.attrs.ariaId);
@@ -63,7 +63,7 @@ const removeTooltip = (el) => {
 const vTooltip = {
   name: 'tooltip',
   mounted(el, binding) {
-    initTooltip(el, binding);
+    addTooltip(el, binding);
   },
   beforeUnmount(el) {
     removeTooltip(el);

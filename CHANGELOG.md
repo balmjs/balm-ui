@@ -3,6 +3,12 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.24.1 / 2021-04-16
+
+### Bug Fixes
+
+- `v-button`: individual package
+
 ## v9.24.0 / 2021-04-16
 
 ### Features

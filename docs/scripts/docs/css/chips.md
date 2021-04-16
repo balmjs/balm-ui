@@ -1,4 +1,4 @@
-> ⚠️ The `deprecated` path is required in `balm-ui` >= 9.20.0 until MDC releases version 11.
+> ⚠️ The `deprecated` path is required in `balm-ui` >= 9.20.0
 
 ```scss
 @use '@material/chips/deprecated' with (

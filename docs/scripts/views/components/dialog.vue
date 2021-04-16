@@ -108,8 +108,8 @@
         <div class="hero-option">
           <ui-form-field v-if="typeOption === 0">
             <ui-checkbox
-              id="hero-checkbox-title"
               v-model="hasTitle"
+              input-id="hero-checkbox-title"
               value="1"
             ></ui-checkbox>
             <label for="hero-checkbox-title">Title</label>

@@ -26,8 +26,8 @@
         </ui-select>
         <ui-form-field v-if="typeOption" class="hero-option">
           <ui-checkbox
-            id="leading-icon"
             v-model="withLeadingIcon"
+            input-id="leading-icon"
             :value="1"
           ></ui-checkbox>
           <label for="leading-icon">Leading icon</label>
@@ -35,8 +35,8 @@
         <div v-else class="hero-option">
           <ui-form-field>
             <ui-radio
-              id="default"
               v-model="mini"
+              input-id="default"
               name="mini"
               :value="0"
             ></ui-radio>
@@ -44,8 +44,8 @@
           </ui-form-field>
           <ui-form-field>
             <ui-radio
-              id="mini"
               v-model="mini"
+              input-id="mini"
               name="mini"
               :value="1"
             ></ui-radio>

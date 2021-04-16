@@ -19,9 +19,7 @@
                 v-for="(subItem, subIndex) in item"
                 :key="`menu-subitem-${subIndex}`"
               >
-                <ui-menuitem-divider
-                  v-if="isDivider(subItem)"
-                ></ui-menuitem-divider>
+                <ui-item-divider v-if="isDivider(subItem)"></ui-item-divider>
                 <ui-menuitem
                   v-else
                   :item="getType(subItem) === 'object' ? subItem : {}"
@@ -35,7 +33,7 @@
             </ui-menuitem>
           </template>
           <template v-else>
-            <ui-menuitem-divider v-if="isDivider(item)"></ui-menuitem-divider>
+            <ui-item-divider v-if="isDivider(item)"></ui-item-divider>
             <ui-menuitem
               v-else
               :item="getType(item) === 'object' ? item : {}"
@@ -57,7 +55,7 @@ import { MDCMenu } from '../../../material-components-web/menu';
 import { Corner } from '../../../material-components-web/menu-surface/constants';
 import UiMenuitem from './menuitem.vue';
 import UiMenuitemText from './menuitem-text.vue';
-import UiMenuitemDivider from './menuitem-divider.vue';
+import UiItemDivider from '../list/item-divider.vue';
 import domMixin from '../../mixins/dom';
 import deprecatedListMixin from '../../mixins/deprecated-list';
 import getType from '../../utils/typeof';
@@ -88,7 +86,7 @@ export default {
   components: {
     UiMenuitem,
     UiMenuitemText,
-    UiMenuitemDivider
+    UiItemDivider
   },
   mixins: [domMixin, deprecatedListMixin],
   props: {

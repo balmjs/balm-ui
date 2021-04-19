@@ -1,3 +1,3 @@
-# 底部导航
+# 底部导航栏
 
-Bottom navigation bars allow movement between primary destinations in an app.
+底部导航栏允许在应用程序的主要目的地之间移动。

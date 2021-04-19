@@ -104,12 +104,12 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'pages',
         name: 'pagination'
+      },
+      {
+        icon: 'video_label',
+        name: 'bottom-navigation',
+        next: true
       }
-      // {
-      //   icon: 'video_label',
-      //   name: 'bottom-navigation',
-      //   next: true
-      // }
     ]
   },
   '-',

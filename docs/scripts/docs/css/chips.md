@@ -1,5 +1,7 @@
+> ⚠️ The `deprecated` path is required in `balm-ui` >= 8.33.0
+
 ```scss
-@use '@material/chips' with (
+@use '@material/chips/deprecated' with (
   $fill-color-default: color.mix(
     theme-color.prop-value(on-surface),
     theme-color.prop-value(surface),

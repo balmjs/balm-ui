@@ -60,10 +60,26 @@ export default {
     }
   },
   mounted() {
-    let content = document.querySelector(this.contentSelector);
-    content.classList.add(UI_BOTTOM_NAVIGATION.FIXED_ADJUST.STANDARD);
-    if (this.stacked) {
-      content.classList.add(UI_BOTTOM_NAVIGATION.FIXED_ADJUST.STACKED);
+    this.createFixedAdjustElement();
+  },
+  methods: {
+    createFixedAdjustElement() {
+      if (this.contentSelector) {
+        const contentEl = document.querySelector(this.contentSelector);
+
+        const newDiv = document.createElement('div');
+        newDiv.classList.add(
+          this.stacked
+            ? UI_BOTTOM_NAVIGATION.FIXED_ADJUST.STACKED
+            : UI_BOTTOM_NAVIGATION.FIXED_ADJUST.STANDARD
+        );
+        contentEl.appendChild(newDiv);
+      } else {
+        console.warn(
+          '[UiBottomNavigation]',
+          `The 'contentSelector' prop is required`
+        );
+      }
     }
   }
 };

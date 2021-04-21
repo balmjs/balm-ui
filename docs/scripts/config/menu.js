@@ -267,6 +267,11 @@ const MATERIAL_COMPONENTS = [
       {
         icon: 'feedback',
         name: 'tooltip'
+      },
+      {
+        icon: 'video_label',
+        name: 'bottom-sheet',
+        next: true
       }
     ]
   },

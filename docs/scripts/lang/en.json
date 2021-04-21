@@ -67,6 +67,7 @@
     "spinner": "Circular Progress",
     "skeleton": "Skeleton",
     "tooltip": "Tooltip",
+    "bottom-sheet": "Bottom Sheet",
     "misc": "Misc",
     "event": "Event",
     "debounce": "Debounce",

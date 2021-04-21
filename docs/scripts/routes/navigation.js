@@ -8,10 +8,10 @@ const DismissibleDrawerFullHeightDrawer = () =>
 const DismissibleDrawerBelowTopAppBar = () =>
   import('@/views/drawer/dismissible-drawer-below-top-app-bar');
 const ModalDrawer = () => import('@/views/drawer/modal-drawer');
-const BottomNavigation = () => import('@/views/components/bottom-navigation');
 const Tabs = () => import('@/views/components/tabs');
 const Menu = () => import('@/views/components/menu');
 const Pagination = () => import('@/views/components/pagination');
+const BottomNavigation = () => import('@/views/components/bottom-navigation');
 
 export default [
   {
@@ -50,12 +50,6 @@ export default [
     meta: { noLayout: true }
   },
   {
-    path: 'bottom-navigation',
-    name: 'navigation.bottom-navigation',
-    component: BottomNavigation,
-    meta: { noLayout: true }
-  },
-  {
     path: 'tabs',
     name: 'navigation.tabs',
     component: Tabs
@@ -69,5 +63,11 @@ export default [
     path: 'pagination',
     name: 'navigation.pagination',
     component: Pagination
+  },
+  {
+    path: 'bottom-navigation',
+    name: 'navigation.bottom-navigation',
+    component: BottomNavigation,
+    meta: { noLayout: true }
   }
 ];

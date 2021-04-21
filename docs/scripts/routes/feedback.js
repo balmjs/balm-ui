@@ -9,6 +9,7 @@ const Progress = () => import('@/views/components/progress');
 const Spinner = () => import('@/views/components/spinner');
 const Skeleton = () => import('@/views/components/skeleton');
 const Tooltip = () => import('@/views/components/tooltip');
+const BottomSheet = () => import('@/views/components/bottom-sheet');
 
 export default [
   {
@@ -65,5 +66,10 @@ export default [
     path: 'tooltip',
     name: 'feedback.tooltip',
     component: Tooltip
+  },
+  {
+    path: 'bottom-sheet',
+    name: 'feedback.bottom-sheet',
+    component: BottomSheet
   }
 ];

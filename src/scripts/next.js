@@ -5,13 +5,15 @@ import autoInit from './config/auto-init';
  * Components
  */
 import UiBottomNavigation from './components/bottom-navigation/bottom-navigation';
+import UiBottomSheet from './components/bottom-sheet/bottom-sheet';
 /**
  * Plugins
  */
 import $lazyload from './plugins/lazyload';
 
 const Components = {
-  UiBottomNavigation
+  UiBottomNavigation,
+  UiBottomSheet
 };
 
 const Plugins = {
@@ -36,5 +38,5 @@ autoInit(BalmUINext);
 
 export default BalmUINext;
 export { version, install };
-export { UiBottomNavigation };
+export { UiBottomNavigation, UiBottomSheet };
 export { $lazyload };

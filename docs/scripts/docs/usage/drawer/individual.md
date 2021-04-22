@@ -6,9 +6,9 @@
 
 ```js
 import Vue from 'vue';
-import UiListComponents from 'balm-ui/components/list';
 import UiDrawerComponents from 'balm-ui/components/drawer';
+import UiListComponents from 'balm-ui/components/list';
 
-Vue.use(UiListComponents);
 Vue.use(UiDrawerComponents);
+Vue.use(UiListComponents);
 ```

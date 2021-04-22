@@ -3,6 +3,13 @@
 - `balm-ui@next` for Vue 3
 - [`balm-ui@8`](https://github.com/balmjs/balm-ui/tree/8.x) for Vue 2
 
+## v9.25.0 / 2021-04-22
+
+### BREAKING CHANGES
+
+- `<ui-drawer-backdrop>`: the component is deprecated, just use `<ui-drawer type="modal">`
+- `<ui-dialog>`: the `noBackdrop` prop rename to `noScrim`
+
 ## v9.24.1 / 2021-04-16
 
 ### Bug Fixes

@@ -2,6 +2,13 @@
 
 > :tada: [`balm-ui@next`](https://github.com/balmjs/balm-ui/tree/9.x)(v9.0) supports for Vue 3.0
 
+## v8.35.0 / 2021-04-22
+
+### BREAKING CHANGES
+
+- `<ui-drawer-backdrop>`: the component is deprecated, just use `<ui-drawer type="modal">`
+- `<ui-dialog>`: the `noBackdrop` prop rename to `noScrim`
+
 ## v8.34.0 / 2021-04-21
 
 ### Features

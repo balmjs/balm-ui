@@ -12,7 +12,7 @@
       </div>
     </div>
     <!-- Scrim -->
-    <template v-if="!noBackdrop">
+    <template v-if="!noScrim">
       <div
         v-if="maskClosable"
         class="mdc-dialog__scrim"
@@ -69,7 +69,7 @@ export default {
       type: Boolean,
       default: false
     },
-    noBackdrop: {
+    noScrim: {
       type: Boolean,
       default: false
     },

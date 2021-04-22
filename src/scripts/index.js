@@ -22,7 +22,6 @@ import UiDrawerTitle from './components/drawer/drawer-title';
 import UiDrawerSubtitle from './components/drawer/drawer-subtitle';
 import UiDrawerContent from './components/drawer/drawer-content';
 import UiDrawerAppContent from './components/drawer/drawer-app-content';
-import UiDrawerBackdrop from './components/drawer/drawer-backdrop';
 import UiTabs from './components/tabs/tabs';
 import UiTabBar from './components/tabs/tab-bar';
 import UiTabScroller from './components/tabs/tab-scroller';
@@ -144,7 +143,6 @@ const Components = {
   UiDrawerSubtitle,
   UiDrawerContent,
   UiDrawerAppContent,
-  UiDrawerBackdrop,
   UiFab,
   UiFile,
   UiForm,
@@ -263,7 +261,6 @@ export {
   UiDrawerSubtitle,
   UiDrawerContent,
   UiDrawerAppContent,
-  UiDrawerBackdrop,
   UiFab,
   UiFile,
   UiForm,

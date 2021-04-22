@@ -8,7 +8,7 @@
 - `1`: `'dismissible'`
 - `2`: `'modal'`
 
-**提示：**
+提示：
 
 - 默认的 `<ui-drawer>` (`type="permanent"`) 没有属性和事件
 - `<ui-drawer type="dismissible">` 和 `<ui-drawer type="modal">` 必须包含一个 `<ui-nav>`。而且导航中的第一个 `<ui-nav-item>` 默认必须为激活状态。

@@ -2,8 +2,14 @@
 <div class="container">
   <!-- Content -->
 
-  <ui-bottom-navigation content-selector=".container">
-    <ui-tabs v-model="active" :items="items" @change="onChange"></ui-tabs>
+  <ui-bottom-navigation content-selector=".container" stacked>
+    <ui-tabs
+      v-model="active"
+      type="textWithIcon"
+      :items="items"
+      stacked
+      @change="onChange"
+    ></ui-tabs>
   </ui-bottom-navigation>
 </div>
 ```
@@ -14,19 +20,25 @@ export default {
     return {
       items: [
         {
-          text: 'Nav menu 1',
-          icon: 'watch_later'
+          text: 'Favorites',
+          icon: 'favorite',
+          url: 'url 1'
         },
         {
-          text: 'Nav menu 2',
-          icon: 'near_me'
+          text: 'Music',
+          icon: 'music_note',
+          url: 'url 2'
         },
         {
-          text: 'Nav menu 3',
-          icon: 'favorite'
+          text: 'Places',
+          icon: 'place'
+        },
+        {
+          text: 'News',
+          icon: 'fiber_new'
         }
       ],
-      active: 0
+      active: 1
     };
   },
   methods: {

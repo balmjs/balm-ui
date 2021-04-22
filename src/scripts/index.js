@@ -21,7 +21,6 @@ import UiDrawerTitle from './components/drawer/drawer-title.vue';
 import UiDrawerSubtitle from './components/drawer/drawer-subtitle.vue';
 import UiDrawerContent from './components/drawer/drawer-content.vue';
 import UiDrawerAppContent from './components/drawer/drawer-app-content.vue';
-import UiDrawerBackdrop from './components/drawer/drawer-backdrop.vue';
 import UiTabs from './components/tabs/tabs.vue';
 import UiTabBar from './components/tabs/tab-bar.vue';
 import UiTabScroller from './components/tabs/tab-scroller.vue';
@@ -143,7 +142,6 @@ const Components = {
   UiDrawerSubtitle,
   UiDrawerContent,
   UiDrawerAppContent,
-  UiDrawerBackdrop,
   UiFab,
   UiFile,
   UiForm,
@@ -260,7 +258,6 @@ export {
   UiDrawerSubtitle,
   UiDrawerContent,
   UiDrawerAppContent,
-  UiDrawerBackdrop,
   UiFab,
   UiFile,
   UiForm,

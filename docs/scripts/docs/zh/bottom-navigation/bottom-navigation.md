@@ -6,9 +6,9 @@
 
 ### Props
 
-| Name              | Type    | Default    | Description                                                                                                                   |
-| ----------------- | ------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `contentSelector` | string  | (required) | Mandatory. Selector used to style the content above the bottom navigation, to prevent the bottom navigation from covering it. |
-| `stacked`         | boolean | `false`    | Optional. Indicates that the tab icon and label should flow vertically instead of horizontally.                               |
-| `min`             | boolean | `false`    | Show 3 navigation items.                                                                                                      |
-| `max`             | boolean | `false`    | Show 5 navigation items.                                                                                                      |
+| Name              | Type    | Default    | Description                                                                |
+| ----------------- | ------- | ---------- | -------------------------------------------------------------------------- |
+| `contentSelector` | string  | (required) | 选择器用于对底部导航栏上方的内容进行样式设置，以防止底部导航栏覆盖其内容。 |
+| `stacked`         | boolean | `false`    | 设置底部导航栏标签页图标和标签为垂直模式（默认为水平模式）                 |
+| `min`             | boolean | `false`    | 显示 3 个导航标签页                                                        |
+| `max`             | boolean | `false`    | 显示 5 个导航标签页                                                        |

@@ -8,8 +8,6 @@ let UI_ANCHOR = {
   offset: 0 // Global offset
 };
 
-// TODO: It has bug in <ui-bottom-navigation>
-
 const goAnchor = (selector) => {
   let anchorEl = document.querySelector(selector);
   if (anchorEl) {

@@ -1,18 +1,12 @@
 @use '@material/elevation/mixins' as elevation-mixins;
 @use './variables' as bottom-navigation-variables;
 
-.mdc-bottom-navigation--fixed-adjust,
-.mdc-bottom-navigation--stacked-fixed-adjust {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: bottom-navigation-variables.$height;
-  left: 0;
-  overflow-x: hidden;
+.mdc-bottom-navigation--fixed-adjust {
+  padding-bottom: bottom-navigation-variables.$height;
 }
 
 .mdc-bottom-navigation--stacked-fixed-adjust {
-  bottom: bottom-navigation-variables.$stacked-height;
+  padding-bottom: bottom-navigation-variables.$stacked-height;
 }
 
 .mdc-bottom-navigation {

@@ -8,7 +8,7 @@
 - `1`: `'dismissible'`
 - `2`: `'modal'`
 
-**NOTE:**
+NOTE:
 
 - `<ui-drawer>` (`type="permanent"`) has not props and events.
 - `<ui-drawer type="dismissible">` and `<ui-drawer type="modal">` must be including a `<ui-nav>`. And the first `<ui-nav-item>` needs to apply activated state in the drawer.

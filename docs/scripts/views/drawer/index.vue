@@ -7,8 +7,8 @@
       'drawer',
       'drawer-header',
       'drawer-content',
-      'drawer-backdrop',
-      'drawer-app-content'
+      'drawer-app-content',
+      'drawer-backdrop'
     ]"
   >
     <template #hero>

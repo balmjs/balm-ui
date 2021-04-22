@@ -14,7 +14,7 @@
       <div class="hero-demo">
         <ui-dialog
           v-if="typeOption === 0"
-          no-backdrop
+          no-scrim
           :stacked="!!buttonOption"
           class="hero-dialog mdc-dialog--open"
         >
@@ -36,7 +36,7 @@
         </ui-dialog>
         <ui-dialog
           v-if="typeOption === 1"
-          no-backdrop
+          no-scrim
           class="hero-dialog mdc-dialog--open"
         >
           <ui-dialog-title
@@ -64,7 +64,7 @@
         </ui-dialog>
         <ui-dialog
           v-if="typeOption === 2"
-          no-backdrop
+          no-scrim
           scrollable
           :stacked="!!buttonOption"
           class="demo-confirmation-dialog hero-dialog mdc-dialog--open"

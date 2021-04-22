@@ -3,6 +3,8 @@
   <aside :class="className">
     <slot></slot>
   </aside>
+  <!-- Scrim (modal and bottom only) -->
+  <div v-if="isModal" class="mdc-drawer-scrim" @click="handleClose"></div>
 </template>
 
 <script>
@@ -94,10 +96,7 @@ export default {
       this.$drawer.listen(strings.OPEN_EVENT, () => {
         this.$emit(UI_DRAWER.EVENT.NAV, true);
       });
-      this.$drawer.listen(strings.CLOSE_EVENT, () => {
-        this.$emit(UI_DRAWER.EVENT.NAV, false);
-        this.$emit(UI_DRAWER.EVENT.CHANGE, false);
-      });
+      this.$drawer.listen(strings.CLOSE_EVENT, this.handleClose);
 
       this.init();
     }
@@ -128,6 +127,10 @@ export default {
 
         this.$drawer.open = this.modelValue;
       }
+    },
+    handleClose() {
+      this.$emit(UI_DRAWER.EVENT.NAV, false);
+      this.$emit(UI_DRAWER.EVENT.CHANGE, false);
     }
   }
 };

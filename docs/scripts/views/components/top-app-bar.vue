@@ -55,8 +55,6 @@
       </ui-drawer-content>
     </ui-drawer>
 
-    <ui-drawer-backdrop></ui-drawer-backdrop>
-
     <div class="demo-main">
       <docs-page
         id="content-main"

@@ -21,4 +21,3 @@
 | `<ui-drawer-subtitle>`    | Subtitle text element of the drawer.                                                                               |
 | `<ui-drawer-content>`     | Scrollable content area of the drawer.                                                                             |
 | `<ui-drawer-app-content>` | Mandatory for `<ui-drawer type="dismissible">` only. Sibling element that is resized when the drawer opens/closes. |
-| `<ui-drawer-backdrop>`    | Mandatory for `<ui-drawer type="modal">` only. Used for the overlay on the app content.                            |

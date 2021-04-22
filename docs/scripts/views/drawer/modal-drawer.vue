@@ -38,7 +38,6 @@
         </ui-nav>
       </ui-drawer-content>
     </ui-drawer>
-    <ui-drawer-backdrop></ui-drawer-backdrop>
     <!-- Content -->
     <div class="demo-content">
       <!-- App bar -->

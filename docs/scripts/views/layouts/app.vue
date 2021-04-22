@@ -177,10 +177,6 @@
               </ui-nav>
             </ui-drawer-content>
           </ui-drawer>
-          <ui-drawer-backdrop
-            v-show="drawerType === 'modal'"
-            @click="$balmUI.onHide('openDrawer')"
-          ></ui-drawer-backdrop>
         </div>
         <!-- App content -->
         <div

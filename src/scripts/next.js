@@ -4,7 +4,7 @@ import autoInstall from './config/auto-install';
  * Components
  */
 import UiBottomNavigation from './components/bottom-navigation/bottom-navigation.vue';
-import UiBottomSheet from './components/bottom-navigation/bottom-sheet.vue';
+import UiBottomSheet from './components/bottom-sheet/bottom-sheet.vue';
 /**
  * Plugins
  */

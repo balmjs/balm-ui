@@ -4,7 +4,6 @@
     <slot></slot>
   </aside>
   <!-- Scrim (modal and bottom only) -->
-  <div v-if="isModal" class="mdc-drawer-scrim" @click="handleClose"></div>
 </template>
 
 <script>
@@ -21,7 +20,8 @@ const UI_DRAWER = {
     modal: 2
   },
   cssClasses: {
-    root: 'mdc-drawer-root'
+    root: 'mdc-drawer-root',
+    scrim: 'mdc-drawer-scrim'
   },
   EVENT: {
     NAV: 'nav',
@@ -56,7 +56,8 @@ export default {
   emits: [UI_DRAWER.EVENT.NAV, UI_DRAWER.EVENT.CHANGE],
   data() {
     return {
-      $drawer: null
+      $drawer: null,
+      scrimEl: null
     };
   },
   computed: {
@@ -83,6 +84,11 @@ export default {
       if (this.$drawer) {
         this.$drawer.open = val;
       }
+    },
+    type(val) {
+      if (val === 'modal') {
+        this.createScrim();
+      }
     }
   },
   mounted() {
@@ -91,6 +97,8 @@ export default {
     }
 
     if (this.isDismissible || this.isModal) {
+      this.createScrim();
+
       this.$drawer = new MDCDrawer(this.el);
 
       this.$drawer.listen(strings.OPEN_EVENT, () => {
@@ -102,6 +110,15 @@ export default {
     }
   },
   methods: {
+    createScrim() {
+      if (this.isModal && !this.scrimEl) {
+        this.scrimEl = document.createElement('div');
+        this.scrimEl.className = UI_DRAWER.cssClasses.scrim;
+        this.scrimEl.addEventListener('click', this.handleClose);
+
+        this.el.parentNode.insertBefore(this.scrimEl, this.el.nextSibling);
+      }
+    },
     checkNav() {
       let result = true;
 

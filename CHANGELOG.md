@@ -5,6 +5,12 @@
 
 ## v9.25.0 / 2021-04-22
 
+### Features
+
+- new components for next:
+  - `<ui-bottom-navigation>`
+  - `<ui-bottom-sheet>`
+
 ### BREAKING CHANGES
 
 - `<ui-drawer-backdrop>`: the component is deprecated, just use `<ui-drawer type="modal">`

@@ -1,7 +1,7 @@
 <template>
   <div :class="className">
     <transition name="mdc-slide">
-      <div v-if="open" class="mdc-bottom-sheet__content">
+      <div v-if="modelValue" class="mdc-bottom-sheet__content">
         <slot></slot>
       </div>
     </transition>
